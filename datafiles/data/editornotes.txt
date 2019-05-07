@@ -1,0 +1,229 @@
+KNOWN WAYS TO MAKE THE EDITOR CRASH
+
+Most of them have to do with the Data Types dialog
+ - clicking Okay or x-ing out of the dialog while in the Data editor
+ - clicking Okay in the dialog while in the Event editor (although the X seems to be fine)
+ - they all seem to have to do with GUIDs mysteriously disappearing
+
+To Do - Now
+
+Special NPCs representing party member(s)
+List of character graphics, similar to the autotiles one
+
+Add autonomous_movement_route to save/load
+
+Somehow define the different move route actions somewhere (and print them out)
+
+Maybe make the event conditions work?
+Ask about following:
+	 - Following party members, and if so, can you interact with them on the overworld or are
+	they just there for decoration?
+	 - ALL OF THE MATH
+
+To Do - Soon™
+
+"Color" data property for generic data
+
+ - If you close out of the DataData menu without saving, if you open the dialog a second time and commit
+the changes instead, the game crashes (dc_data_commit_seriously - line 169, data structure does not exist)
+ - If you make a bunch of changes to the DataData menu and save them, if you open the game data editor
+the game crashes (ui_init_game_data_activate - line 84, 
+
+Attach a "summary" to custom event types so that you can know what they do
+Finally made an option to expand the text input box so that you can write large amounts of text
+without screwing up the formatting - make sure the text and cursor wrap properly
+
+Validation of contents of a map when it's loaded, and when a new data file is loaded
+
+When moving around a group of selected entities with the mouse, un-batch them and add them to a temporary
+"mobile" batch instead so they don't have to get re-batched every time you move things just a little bit
+ - which would slow things down quite a lot when moving a large number of entities
+
+In the Autotile Editor tab, the button that says "click for autotile" spawns a dialog that lets you
+select an autotile, with a button that says "Autotile Data" . . . which opens a dialog that's almost
+exactly the same. The button should instead just open a file selector.
+
+Autotiles
+
+the reconfigure code doesn't work properly in all cases. pretty sure the math to calculate the
+surroundings is correct but (1) not all of the Stuff.autotile_hash values have been added, and (2)
+the program does not correctly loop through all of the adjacent autotiles to recalculate their
+surroundings value, and (3) it's not efficient. bulk selections (rectangle and circle) can get away
+with setting the values of all of the internal tiles to CENTER, since we already know they will be
+surrounded on all four sides with the same autotiles
+
+also remember they should be animated.
+
+when they get exported they should stay as autotiles. they don't need to be able to reconfigure
+themselves during runtime but some of them may need to be animated.
+
+Loading Assets
+
+Loading meshes/images/audio should stay in the Data menu to make them harder to accidentally modify
+
+Loadable Assets
+
+ - Meshes (global)
+ - Tilesets (per map) - texture 0
+ - autotiles (per map) - texture 0
+ - particle graphics (global) - texture 1
+ - audio (global)
+ - npc images (global) - texture 2
+ - monster images (global) - texture 3
+
+Game Maker texture pages can go up to 8192x8192, although i'd rather not because those will decompress
+	to up to 250 mb each (the 4192x4192 texture pages will only be 67 mb, much better) - all four
+	of the main texture pages combined will be about 250 mb instead
+
+Map Texture (1) - local
+
+created when a new map is entered - perhaps these should be cached in temporary storage if computing
+	this takes a long time
+
+tileset images should not be more than 2048x2048 (25% of each map's 4096x4096 texture)
+autotiles should not be more than sixteen 1024x256 (2048x2048 total, 25% of map's texture)
+50% of map's texture still remains - you COULD have up to 48 autotiles to fill the space but that
+	seems excessive and if there are other map-specific graphics they would go there anyway
+
+Global Texture (2) - global
+
+particles and other graphics may take up half of it: up to 2048 64x64 particle graphics would take
+	up 4096x2048, which sounds like a lot, except animated particles can add up quickly so it
+	may fill up faster than you expect
+
+NPC Texture (3) - global
+
+npcs should probably not be more than 256x256, so you could fit up to 256 of them on the NPC texture
+	page, which sounds like a lot except something tells me it might not be too hard to push the
+	limit
+
+Followers Texture (4) - global
+
+because there are probably goign to be a lot of these, they also get their own texture page. because
+	there are probably going to be a lot of them, subject them to more rigorous size constraints.
+	64x128 ought to do it (they're normally composed of 6 32x32 images). you can fit 2048 of these
+	on a texture page.
+
+Serialization
+
+game data itself should probably stored in a way similar to bird game, though maybe not in ds_map strings,
+	since those can take up a lot of space and presumably take a long time to decode. maps and the
+	global game data will need to be stored separately but might as well follow the same format
+
+Guide:
+https://docs.google.com/spreadsheets/d/1DTndzzZdpPexH84J0dcIUruJ7ZU1wQcL0JFjPu09yK4/edit#gid=0
+
+Entities
+
+finish up their properties and editor's UI for accessing those properties
+
+modifications like move as group, group edit
+
+add the create-by-painting effect: an orthographic camera would be really useful for this
+
+old notes
+-----------------------------
+
+Doing stuff with the selection:
+ - edit properties of everything in the selection
+	 - if you have just one thing in the selection it's easy
+	 - if you have multiple things of the same type selected and they all have identitical properties it's easy
+	 - if you have multiple things of the same type selected and they have different properties, they should be listed as "(multiple)" or something, but changing one will set the properties of the entire selection
+	 - if you have multiple things of different types selected, only shared (inherited) properties should be editable following the above rules, i.e. 3D position and the basic data for multiple classes of NPC
+ - copy contents
+ - cut contents (copy and delete originals)
+ - paste contents
+
+Properties: Map
+ - width, height, depth
+ - tileset used
+
+Properties: Entity
+ - x, y, z position, color?
+ - is static or dynamic?
+ - is solid?
+ - name
+
+Properties: Entity\Tile
+ - u, v texture coordinates
+
+Properties: Entity\Mesh
+ - mesh (name, id, or something else)
+
+Now:
+ - every mesh entity should store the name string of its mesh and not its
+	index or id or something, because when they're loaded into the
+	game itself they're supposed to be random-access and should only
+	need to be looked up on map load or entity change
+ - in the editor, names should be sorted into an alphabetized list
+	(tree) to make it easy to display in the editor's ui, but
+	there should probably also be a hash map of the names the
+	same way the game has?
+ - if you remove a vrax or close the editor, modify a required one and
+	reopen the editor, mesh entities that use meshes that can no
+	longer be identified should have some kind of warning symbol at
+	their position in 3D space (probably for their origin plus any
+	cells which they occupy as "solid"), and there should be a nice
+	warning dialog immediately as the program starts
+ - when adding a new vrax there should be a notice that if you modify
+	the original vrax the changes won't be known to the editor until
+	you re-load it, since it's going to have to be copied to the
+	appdata folder in order to comply with the game maker sandbox;
+	it may be nice to have a "do not show this warning again" option,
+	and by extension a "reset warnings" button somewhere
+
+ - when you change selection from mesh to something that is not mesh,
+hide the mesh selector and swap in the appropriate options (tile picker
+for tiles, mob type probably, effect type probably)
+ - selecting an entitymesh should show the whole bounding box, not just
+the footprint; mobs and particles should probably be similar
+ - probably some other stuff
+ - talk to relic people?
+
+ - better deleting mechanism (instead of ds_list_delete-ing constantly, it
+would probably be faster to re-create the list)
+
+ - control+a for select all (this will be more complicated than it sounds
+owing to the different entity types), and likely other keyboard shortcuts
+	 - detection of the control key should override detection of wasd
+	for moving around
+
+commit notes
+
+tomorrow
+
+implement autotiles and the ability to draw (click and drag to fill) with all entity types, and make
+	autotiles respond correctly when you do that; also remember to give them the usual tile properties
+	for things like passability, etc (there are variables for this but nothing does anything yet)
+
+maybe the undo/redo stack is a bit unnecessary for the moment but at least being able to copy/paste tile
+	data and possibly set large swaths at once (all types of path, for example) would be pretty helpful
+
+-----------------------------
+
+Serialized Events
+
+Node names must be unique - check to make sure they're unique when you set them (another hash map)
+
+int: number of events
+for each event
+	int: number of nodes
+	for each node
+		string: name
+		int: x
+		int: y
+		int: type
+		
+		switch (type)
+		case entrypoint
+			break
+		case text
+			break
+		end
+		
+		for each outbound
+			string: data
+			string: outbound name
+		end
+	end
+end

@@ -1,0 +1,4 @@
+In this folder you will need (for default usage):
+
+b_tileset_overworld_0.png
+b_at_default_grass_0.png

@@ -1,0 +1,1 @@
+gpu_set_texrepeat( argument0 );

@@ -1,0 +1,14 @@
+{
+    "id": "4c3cc6ec-b6b2-4c91-8e56-a8eb7b56aa8b",
+    "modelName": "GMFolder",
+    "mvc": "1.1",
+    "name": "4c3cc6ec-b6b2-4c91-8e56-a8eb7b56aa8b",
+    "children": [
+        "420cae21-00cc-44d0-8fb4-147ce2b02795",
+        "5673a433-dfb8-411b-9713-47cc0ab299d8"
+    ],
+    "filterType": "GMScript",
+    "folderName": "data",
+    "isDefaultView": false,
+    "localisedFolderName": ""
+}

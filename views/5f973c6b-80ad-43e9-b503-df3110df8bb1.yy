@@ -1,0 +1,14 @@
+{
+    "id": "5f973c6b-80ad-43e9-b503-df3110df8bb1",
+    "modelName": "GMFolder",
+    "mvc": "1.1",
+    "name": "5f973c6b-80ad-43e9-b503-df3110df8bb1",
+    "children": [
+        "3e051823-5ef9-4923-bb43-20dd4710b10f",
+        "8ce47a97-7e64-4509-aa7c-e5615e5a15ac"
+    ],
+    "filterType": "GMScript",
+    "folderName": "events",
+    "isDefaultView": false,
+    "localisedFolderName": ""
+}
