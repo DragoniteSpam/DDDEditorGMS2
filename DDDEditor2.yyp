@@ -983,14 +983,6 @@
             }
         },
         {
-            "Key": "1d47940f-5609-4d7d-87d3-0026395977bc",
-            "Value": {
-                "id": "4c728d55-73f6-47f7-a7ab-5fed946d44c6",
-                "resourcePath": "scripts\\@draw_set_alpha_test\\draw_set_alpha_test.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "1d534715-46e0-411c-bc6b-0cf91fe1b0c3",
             "Value": {
                 "id": "f4582ba9-fcac-4189-8a97-6e00012b8033",
@@ -2551,14 +2543,6 @@
             }
         },
         {
-            "Key": "4f4a5c0f-785f-4d0e-b843-6ae135eed618",
-            "Value": {
-                "id": "1b842ed8-faf0-4c60-95bc-1b4ff019ea64",
-                "resourcePath": "scripts\\@draw_set_blend_mode\\draw_set_blend_mode.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "4fea7ff7-d725-4419-9070-283d9640487a",
             "Value": {
                 "id": "d926fac0-fd79-4af5-a4a1-4c0ae2973035",
@@ -3764,14 +3748,6 @@
                 "id": "7f94244b-d3e0-4d7a-83ae-a19debebce6e",
                 "resourcePath": "scripts\\omu_event_custom_data_select\\omu_event_custom_data_select.yy",
                 "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "76004c21-f8de-4b70-9345-32b77130ea8b",
-            "Value": {
-                "id": "98ec4387-c17d-46b7-b265-d52668d9c847",
-                "resourcePath": "views\\76004c21-f8de-4b70-9345-32b77130ea8b.yy",
-                "resourceType": "GMFolder"
             }
         },
         {
@@ -8808,8 +8784,6 @@
         "d97534a9-735f-44cf-be8c-87ea00a73dfe",
         "1b358e35-8e21-463d-a1bd-548709065648",
         "c0155fe0-da5a-48b4-88b4-6f2b72e329d1",
-        "1d47940f-5609-4d7d-87d3-0026395977bc",
-        "4f4a5c0f-785f-4d0e-b843-6ae135eed618",
         "7faf0656-ad87-48d1-ab59-cf60da0e8ab1",
         "b34b0d50-7663-4a28-abcc-8c67272270bb",
         "65ff3285-1d2e-4016-b23e-bb45b5774923",

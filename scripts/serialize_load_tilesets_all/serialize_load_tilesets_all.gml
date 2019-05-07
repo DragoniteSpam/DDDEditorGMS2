@@ -15,10 +15,10 @@ for (var i=0; i<n_tilesets; i++){
     var sh=buffer_read(argument0, buffer_u16);
     var sbuffer=buffer_create(sw*sh*4, buffer_grow, 1);
     buffer_copy(argument0, buffer_tell(argument0), sw*sh*4, sbuffer, 0);
-    
+    /*
     buffer_set_surface is either broken or not broken but i dont have time
     to figure out how to make it not broken now, so do that next
-    
+    */
     // all of the other things
     var n_autotiles=buffer_read(argument0, buffer_u8);
     var at_array=array_create(n_autotiles);

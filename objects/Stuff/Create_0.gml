@@ -1,5 +1,6 @@
-/// @description  enums that i need to put somewhere
+/// @description  setup
 
+#region setup
 enum SerializeThings {
     ERROR                   =$00000000,
     // basic stuff
@@ -71,6 +72,7 @@ etype_objects=array_compose(Entity,
     EntityPawn,
     EntityEffect,
     EntityEvent);
+#endregion
 
 alarm[0]=1200;
 

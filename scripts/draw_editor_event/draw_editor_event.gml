@@ -49,12 +49,8 @@ if (Controller.mouse_right){
     if (!dialog_exists()){
         window_set_cursor(cr_none);
         draw_scroll();
-        
-        // this is slightly hacky: controller's mouse previous variables track the previous
-        // value of regular mouse_xy, not mouse_xy_view, and since you really care about the
-        // difference and not the actual value, use those instead.
-        XVIEW=XVIEW-(mouse_x-Controller.mouse_x_previous);
-        YVIEW=YVIEW-(mouse_y-Controller.mouse_y_previous);
+		
+        camera_set_view_pos(view_get_camera(view_current), XVIEW-(mouse_x-Controller.mouse_x_previous), YVIEW-(mouse_y-Controller.mouse_y_previous));
     }
 } else {
     window_set_cursor(cr_default);
