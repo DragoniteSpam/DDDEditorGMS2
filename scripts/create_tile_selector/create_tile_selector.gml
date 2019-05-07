@@ -8,7 +8,7 @@
 /// @param  root
 /// @param  [help]
 
-with (instance_create(argument[0], argument[1], UITileSelector)){
+with (instance_create_depth(argument[0], argument[1], 0, UITileSelector)){
     width=argument[2];
     height=argument[3];
     

@@ -1,7 +1,7 @@
 /// @description  ui_init_game_data();
 
 // this one's not tabbed, it's just a bunch of elements floating in space
-with (instance_create(0, 0, UIThing)){
+with (instantiate(UIThing)){
     var columns=5;
     var spacing=16;
     
@@ -69,7 +69,7 @@ with (instance_create(0, 0, UIThing)){
     var this_column=2;
     yy=yy_base;
     
-    el_dynamic=instance_create(this_column*cw+spacing, yy, UIThing);
+    el_dynamic=instance_create_depth(this_column*cw+spacing, yy, 0, UIThing);
     ds_list_add(contents, el_dynamic);
     
     /*

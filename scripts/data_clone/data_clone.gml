@@ -8,7 +8,7 @@ var clone=ds_list_create();
 for (var i=0; i<ds_list_size(Stuff.all_data); i++){
     var data=Stuff.all_data[| i];
     
-    with (instance_create(0, 0, DataData)){
+    with (instantiate(DataData)){
         guid_remove(GUID);
         ds_list_pop(Stuff.all_data)
         
@@ -28,7 +28,7 @@ for (var i=0; i<ds_list_size(Stuff.all_data); i++){
         for (var j=0; j<ds_list_size(data.properties); j++){
             var property=data.properties[| j];
             
-            with (instance_create(0, 0, DataProperty)){
+            with (instantiate(DataProperty)){
                 guid_remove(GUID);
                 
                 name=property.name;

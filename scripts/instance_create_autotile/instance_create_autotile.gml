@@ -2,7 +2,7 @@
 /// @param autotile index
 /// @param  [other parameters that should be dealt with later]
 
-with (instance_create(0, 0, EntityAutoTile)){
+with (instantiate(EntityAutoTile)){
     switch (argument_count){
         case 1:
             autotile_id=argument[0];

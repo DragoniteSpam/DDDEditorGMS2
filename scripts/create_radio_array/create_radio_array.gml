@@ -9,7 +9,7 @@
 /// @param  root
 /// @param  [help]
 
-with (instance_create(argument[0], argument[1], UIRadioArray)){
+with (instance_create_depth(argument[0], argument[1], 0, UIRadioArray)){
     text=argument[2];
     width=argument[3];
     height=argument[4];

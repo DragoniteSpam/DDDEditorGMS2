@@ -216,10 +216,10 @@ c_shape_end_trimesh(c_shape_block);
 // at some point there shouldn't necessarily need to be an active
 // map in existence for this to work, but for now there does
 data_clear_map();
-instance_create(0, 0, Controller);
+instantiate(Controller);
 
 // this depends on activemap
-instance_create(0, 0, Camera);
+instantiate(Camera);
 
 // data that gets loaded: needs the camera (and vertex formats) to be
 // defined before running

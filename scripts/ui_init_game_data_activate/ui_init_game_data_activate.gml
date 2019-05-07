@@ -45,7 +45,7 @@ if (data!=noone){
         var yy_base=yy;
         
         var col_yy=yy;
-        var col_data=instance_create(/*2*cw+*/spacing, 0, UIThing);
+        var col_data=instance_create_depth(/*2*cw+*/spacing, 0, 0, UIThing);
         ds_list_add(container.contents, col_data);
         
         var element=create_input(spacing, yy, "Name:", ew, eh, uivc_data_set_name, "", "", "Instance name", validate_string, ui_value_string, 0, 1, 16, vx1, vy1, vx2, vy2, noone);
@@ -102,7 +102,7 @@ if (data!=noone){
             
             if (yy+hh>room_height-160){
                 var n=ds_list_size(container.contents);
-                col_data=instance_create((n/*+2*/)*cw+spacing*4, 0, UIThing);
+                col_data=instance_create_depth((n/*+2*/)*cw+spacing*4, 0, 0, UIThing);
                 if (n>3){
                     col_data.enabled=false;
                 }

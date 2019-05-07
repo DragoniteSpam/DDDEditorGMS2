@@ -4,7 +4,7 @@
 /// @param  [sprite index]
 
 // don't instantiate these outside of this script
-with (instance_create(0, 0, DataTileset)){
+with (instantiate(DataTileset)){
     picture_name=argument[0];
     
     if (argument_count>2){

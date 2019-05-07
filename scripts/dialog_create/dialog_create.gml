@@ -12,7 +12,7 @@ var base_y=96;
 var offset=64;
 var n=ds_list_size(Camera.dialogs);
 
-var dg=instance_create(base_x+n*offset, base_y+n*offset, Dialog);
+var dg=instance_create_depth(base_x+n*offset, base_y+n*offset, 0, Dialog);
 dg.width=argument[0];
 dg.height=argument[1];
 dg.text=argument[2];

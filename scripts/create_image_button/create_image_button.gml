@@ -12,7 +12,7 @@
 /// @param  [anchor horizontal]
 /// @param  [anchor vertical]
 
-with (instance_create(argument[0], argument[1], UIImageButton)){
+with (instance_create_depth(argument[0], argument[1], 0, UIImageButton)){
     text=argument[2];
     image=argument[3];
     width=argument[4];

@@ -11,7 +11,7 @@
 /// @param  root
 /// @param  [help]
 
-with (instance_create(argument[0], argument[1], UIList)){
+with (instance_create_depth(argument[0], argument[1], 0, UIList)){
     text=argument[2];
     text_vacant=argument[3];
     width=argument[4];

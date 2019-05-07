@@ -14,7 +14,7 @@ for (var i=1; i<argument_count; i++){
     } else {
         var yy=ds_list_top(argument[0].contents).y+ds_list_top(argument[0].contents).height;
     }
-    var option=instance_create(0, yy, UIBitFieldOption);
+    var option=instance_create_depth(0, yy, 0, UIBitFieldOption);
     option.value=data[0];
     option.render=data[1];
     option.onvaluechange=data[2];

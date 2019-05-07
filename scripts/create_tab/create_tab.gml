@@ -4,7 +4,7 @@
 /// @param  root
 /// @param  [help]
 
-with (instance_create(0, 0, UITab)){
+with (instantiate(UITab)){
     text=argument[0];
     home_row=argument[1];
     

@@ -28,7 +28,7 @@ switch (argument_count){
         break;
 }
 
-var node=instance_create(xx, yy, DataEventNode);
+var node=instance_create_depth(xx, yy, 0, DataEventNode);
 node.event=argument[0];
 node.type=argument[1];
 

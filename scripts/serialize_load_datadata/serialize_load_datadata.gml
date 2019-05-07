@@ -8,10 +8,10 @@ repeat (n_datadata){
     
     if (unpack(bools, 0)){
         // is enum?
-        var data=instance_create(0, 0, DataEnum);
+        var data=instantiate(DataEnum);
     } else {
         // is data?
-        var data=instance_create(0, 0, DataData);
+        var data=instantiate(DataData);
     }
     guid_remove(data.GUID);
     
@@ -25,7 +25,7 @@ repeat (n_datadata){
     var n_properties=buffer_read(argument0, buffer_u16);
     
     repeat (n_properties){
-        var property=instance_create(0, 0, DataProperty);
+        var property=instantiate(DataProperty);
         ds_list_add(data.properties, property);
         guid_remove(property.GUID);
         

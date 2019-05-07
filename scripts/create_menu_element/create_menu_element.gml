@@ -3,7 +3,7 @@
 /// @param  onmouseup
 /// @param  root
 
-with (instance_create(0, 0, MenuElement)){
+with (instantiate(MenuElement)){
     text=argument0;
     onmouseup=argument1;
     root=argument2;

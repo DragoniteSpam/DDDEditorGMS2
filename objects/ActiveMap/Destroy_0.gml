@@ -23,7 +23,3 @@ vertex_delete_buffer(frozen);
 
 ds_list_destroy(audio_ambient);
 ds_list_destroy(audio_ambient_frequencies);
-
-/* */
-action_reverse_ydir();
-/*  */

@@ -3,7 +3,7 @@
 /// @param  Entity
 /// @param  version
 
-var route=instance_create(0, 0, DataMoveRoute);
+var route=instantiate(DataMoveRoute);
 ds_list_add(argument1.movement_routes, route);
 
 serialize_load_generic(argument0, route, argument2);

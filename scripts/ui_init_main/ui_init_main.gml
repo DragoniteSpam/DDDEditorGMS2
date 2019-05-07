@@ -1,6 +1,6 @@
 /// @description  ui_init_main();
 
-with (instance_create(0, 0, UIMain)){
+with (instantiate(UIMain)){
     /*
      * tab system setup
      */

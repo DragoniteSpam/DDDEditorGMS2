@@ -121,14 +121,14 @@ changes=ds_list_create();
 ui=ui_init_main();
 ui_event=ui_init_event();
 ui_game_data=noone;
-menu=instance_create(0, 0, MenuMain);
+menu=instantiate(MenuMain);
 dialogs=ds_list_create();
 
 stuff_to_destroy=ds_queue_create();
 
 instance_deactivate_object(UIThing);
 
-texture_set_repeat(true);
+gpu_set_tex_repeat(true);
 
 /*
  * preview stuff

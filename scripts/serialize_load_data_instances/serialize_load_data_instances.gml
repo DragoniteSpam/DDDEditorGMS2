@@ -14,7 +14,7 @@ for (var i=0; i<n_datadata; i++){
         var n_instances=buffer_read(argument0, buffer_u16);
         
         for (var j=0; j<n_instances; j++){
-            var instance=instance_create(0, 0, DataInstantiated);
+            var instance=instantiate(DataInstantiated);
             ds_list_add(datadata.instances, instance);
             
             serialize_load_generic(argument0, instance, version);
