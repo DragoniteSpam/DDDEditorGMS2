@@ -2583,14 +2583,6 @@
             }
         },
         {
-            "Key": "513194cc-813b-4579-9521-9095cf3854ce",
-            "Value": {
-                "id": "69f73728-e965-43ff-affc-f6c2f79608bc",
-                "resourcePath": "scripts\\@d3d_set_culling\\d3d_set_culling.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "51463828-bf06-4297-9fe5-59a52079b96d",
             "Value": {
                 "id": "9890e640-dc76-467c-944e-80d4f567339f",
@@ -3444,14 +3436,6 @@
                 "id": "d5873f36-a412-4ed2-ac1e-76e89a6465b7",
                 "resourcePath": "objects\\DataEvent\\DataEvent.yy",
                 "resourceType": "GMObject"
-            }
-        },
-        {
-            "Key": "6b655a3e-c902-46c2-b343-574f5e08f371",
-            "Value": {
-                "id": "c8e8c398-cf51-4f5f-b3ef-70798c87cc33",
-                "resourcePath": "scripts\\@d3d_set_depth\\d3d_set_depth.yy",
-                "resourceType": "GMScript"
             }
         },
         {
@@ -7551,14 +7535,6 @@
             }
         },
         {
-            "Key": "f12de434-dde1-4b19-80bf-244673f50310",
-            "Value": {
-                "id": "f421df0c-d606-40bb-a28e-e94adbb04c8c",
-                "resourcePath": "scripts\\@d3d_set_hidden\\d3d_set_hidden.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "f164ce78-6383-46ef-8eb9-4ff3d61fc226",
             "Value": {
                 "id": "303ed1ca-f670-4dae-a3b4-887474c022db",
@@ -7748,14 +7724,6 @@
                 "id": "147ab7a5-646e-447d-bb04-7c8bc20380e9",
                 "resourcePath": "views\\f90db033-04e2-446f-b9f2-23fc44310846.yy",
                 "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "f96a22c7-cd4f-4fff-a5ae-2a3df4dd448b",
-            "Value": {
-                "id": "da8e6380-6fc8-4d49-bee4-f1d53f004bf1",
-                "resourcePath": "scripts\\@d3d_transform_vertex\\d3d_transform_vertex.yy",
-                "resourceType": "GMScript"
             }
         },
         {
@@ -8701,13 +8669,9 @@
         "a27aeed5-ebe2-402a-b47c-8b2a5b61f640",
         "830e6b08-59f3-4af4-8d31-e17da3126cc6",
         "5365daee-9fd7-4816-9f77-5f286c674bd4",
-        "513194cc-813b-4579-9521-9095cf3854ce",
-        "6b655a3e-c902-46c2-b343-574f5e08f371",
-        "f12de434-dde1-4b19-80bf-244673f50310",
         "783a7208-b6ec-4d91-853b-b8e7d1a66125",
         "433a233e-2ceb-4f36-84e7-95feb28de308",
         "47144304-b1f9-4b62-a852-958d0c42f356",
-        "f96a22c7-cd4f-4fff-a5ae-2a3df4dd448b",
         "d97534a9-735f-44cf-be8c-87ea00a73dfe",
         "1b358e35-8e21-463d-a1bd-548709065648",
         "c0155fe0-da5a-48b4-88b4-6f2b72e329d1",

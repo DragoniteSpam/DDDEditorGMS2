@@ -3,8 +3,8 @@ if (mouse_within_view(view_3d)&&!dialog_exists()){
 }
 
 d3d_start();
-d3d_set_culling(!view_backface);
-d3d_set_hidden(ActiveMap.is_3d);        // this will make things rather odd with the wrong setting
+gpu_set_cullmode(view_backface ? cull_noculling : cull_counterclockwise);
+gpu_set_ztestenable(ActiveMap.is_3d);        // this will make things rather odd with the wrong setting
 
 // todo GMS2 requires smooth shading to be handled by the shader(s) now,
 // so to make porting this to GMS2 as pain-free as possible I'd like to
@@ -31,7 +31,8 @@ if (view_grid){
 //shader_set(shd_default_autotile);
 //shader_set_uniform_f_array(shd_uniform_at_tex_offset, shd_value_at_tex_offset);
 
-shader_set(shd_default);
+//shader_set(shd_default);
+shader_reset();
 
 // this will need to be dynamic at some point
 if (view_texture){
@@ -70,16 +71,12 @@ for (var i=0; i<ds_list_size(ActiveMap.dynamic); i++){
 }
 
 shader_set(shd_default);
+gpu_set_cullmode(cull_noculling);
 
-// also anything else that gets drawn over everything else
-d3d_set_depth(1);
-
-d3d_set_culling(false);
 for (var i=0; i<ds_list_size(selection); i++){
     var sel=selection[| i];
     script_execute(sel.render, sel);
 }
-d3d_set_depth(0);
 
 shader_reset();
 

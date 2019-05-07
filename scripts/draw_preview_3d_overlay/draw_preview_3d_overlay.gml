@@ -9,7 +9,7 @@ draw_set_color(c_black);
 draw_rectangle(16, 16, 400, 144, false);
 draw_set_alpha(1);
 
-d3d_set_culling(false)
+gpu_set_cullmode(cull_noculling);
 draw_set_color(c_white);
 
 draw_line_width_colour(0, 0, w, 0, lw, Stuff.setting_color, Stuff.setting_color);

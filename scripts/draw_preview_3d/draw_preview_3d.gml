@@ -1,8 +1,8 @@
 control_3d_preview();
 
 d3d_start();
-d3d_set_culling(!view_backface);
-d3d_set_hidden(true);
+gpu_set_cullmode(view_backface ? cull_noculling : cull_counterclockwise);
+gpu_set_ztestenable(true);
 draw_set_color(c_white);
 
 var s=128;
@@ -19,9 +19,7 @@ matrix_set(matrix_world, matrix_build(mesh_x, mesh_y, mesh_z, mesh_xrot, mesh_yr
 vertex_submit(mesh_preview[MeshArrayData.VBUFF], pr_trianglelist, tex);
 
 // draw the wireframe
-d3d_set_depth(1);
 vertex_submit(mesh_preview[MeshArrayData.VBUFF_WIREFRAME], pr_linelist, tex);
 
 // clean up
-d3d_set_depth(0);
 matrix_set(matrix_world, matrix_build(0, 0, 0, 0, 0, 0, 1, 1, 1));

@@ -59,7 +59,7 @@ if (ds_list_size(ActiveMap.batch_in_the_future)>BATCH_CACHE_SIZE){
 // this is important, but gets turned back on when the 3D stuff gets dealt
 // with in the next frame
 d3d_end();
-d3d_set_hidden(false);
+gpu_set_ztestenable(false);
 
 var ts=get_active_tileset();
 

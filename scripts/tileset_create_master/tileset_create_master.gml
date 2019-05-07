@@ -1,7 +1,7 @@
 /// @description  sprite tileset_create_master(tileset);
 /// @param tileset
 
-// d3d and d3d_set_hidden have to be turned OFF when you do this otherwise things start acting broken
+// 3D and gpu_set_ztestenable have to be turned OFF when you do this otherwise things start acting broken
 
 var surface=surface_create(TEXTURE_SIZE, TEXTURE_SIZE);
 
