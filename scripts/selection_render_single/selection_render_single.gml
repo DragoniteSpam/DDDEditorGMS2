@@ -1,4 +1,4 @@
-transform_set(0, 0, argument0.z*TILE_DEPTH, 0, 0, 0, 1, 1, 1);
+transform_set(0, 0, argument0.z*TILE_DEPTH + 1, 0, 0, 0, 1, 1, 1);
 
 var x1=argument0.x*TILE_WIDTH;
 var y1=argument0.y*TILE_HEIGHT;

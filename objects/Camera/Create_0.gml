@@ -47,6 +47,7 @@ mouse_vector=array_compose(1, 1, 1);
  */
 
 gpu_set_alphatestenable(true);
+gpu_set_alphatestref(20);
 
 vertex_format_begin();
 vertex_format_add_position_3d();

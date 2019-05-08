@@ -22,17 +22,12 @@ if (ActiveMap.is_3d){
 
 // anything in the world
 
-// the grid, which you may want an option to turn this off if it gets annoying
-if (view_grid){
-    vertex_submit(grid, pr_linelist, -1);
-}
-
 // the autotile shader doesn't work yet and it's annoying
 //shader_set(shd_default_autotile);
 //shader_set_uniform_f_array(shd_uniform_at_tex_offset, shd_value_at_tex_offset);
 
-//shader_set(shd_default);
-shader_reset();
+shader_set(shd_default);
+//shader_reset();
 
 // this will need to be dynamic at some point
 if (view_texture){
@@ -70,15 +65,8 @@ for (var i=0; i<ds_list_size(ActiveMap.dynamic); i++){
     }
 }
 
-shader_set(shd_default);
-gpu_set_cullmode(cull_noculling);
-
-for (var i=0; i<ds_list_size(selection); i++){
-    var sel=selection[| i];
-    script_execute(sel.render, sel);
-}
-
 shader_reset();
+gpu_set_cullmode(cull_noculling);
 
 // because apparently you can't do color with a passthrough shader even though it has a color attribute
 for (var i=0; i<ds_list_size(list_routes); i++){
@@ -91,7 +79,21 @@ for (var i=0; i<ds_list_size(list_routes); i++){
         draw_sprite_ext(spr_plus_minus, 0, 0, 0, 0.25, 0.25, 0, c_lime, 1);
     }
 }
+
 // "set" overwrites the previous transform anyway
+transform_set(0, 0, 0.5, 0, 0, 0, 1, 1, 1);
+
+// the grid, which you may want an option to turn this off if it gets annoying
+if (view_grid){
+    vertex_submit(grid, pr_linelist, -1);
+}
+
+// tried using ztestenable for this - didn't look good. at all.
+for (var i=0; i<ds_list_size(selection); i++){
+    var sel=selection[| i];
+    script_execute(sel.render, sel);
+}
+
 transform_reset();
 
 ds_list_destroy(list_routes);

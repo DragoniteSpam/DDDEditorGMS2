@@ -1,4 +1,4 @@
-transform_set(0, 0, argument0.z*TILE_DEPTH, 0, 0, 0, 1, 1, 1);
+transform_set(0, 0, argument0.z*TILE_DEPTH + 1, 0, 0, 0, 1, 1, 1);
 
 var precision=24;
 var step=360/precision;

@@ -1,7 +1,7 @@
 var z1=argument0.z1*TILE_DEPTH;
 var z2=argument0.z2*TILE_DEPTH;
 
-transform_set(0, 0, z1, 0, 0, 0, 1, 1, 1);
+transform_set(0, 0, z1 + 1, 0, 0, 0, 1, 1, 1);
 
 var x1=argument0.x1*TILE_WIDTH;
 var y1=argument0.y1*TILE_HEIGHT;
