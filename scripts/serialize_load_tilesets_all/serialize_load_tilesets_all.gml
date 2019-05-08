@@ -14,7 +14,14 @@ for (var i=0; i<n_tilesets; i++){
     var sw=buffer_read(argument0, buffer_u16);
     var sh=buffer_read(argument0, buffer_u16);
     var sbuffer=buffer_create(sw*sh*4, buffer_grow, 1);
+	var surface=surface_create(sw, sh);
     buffer_copy(argument0, buffer_tell(argument0), sw*sh*4, sbuffer, 0);
+	
+	buffer_set_surface(sbuffer, surface, 0, 0, 0);
+	var sprite=sprite_create_from_surface(surface, 0, 0, sw, sh, false, false, 0, 0);
+	
+	buffer_delete(sbuffer);
+	surface_free(surface);
     /*
     buffer_set_surface is either broken or not broken but i dont have time
     to figure out how to make it not broken now, so do that next

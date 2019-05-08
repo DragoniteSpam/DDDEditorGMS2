@@ -14,7 +14,8 @@ if (ds_map_exists(Stuff.vra_data, argument[1])){
     cobject=c_object_create(argument[0].mesh_data[@ MeshArrayData.CDATA], 1, 1);
     
     map_transform_thing(argument[0]);
-    ds_list_add(Camera.changes, addition);
+	argument[0].modification = Modifications.UPDATE;
+    ds_list_add(Camera.changes, argument[0]);
     
     return true;
 }
