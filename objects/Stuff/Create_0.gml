@@ -127,8 +127,8 @@ dimensions=Dimensions.THREED;
 // This will cause a problem with texture pages later. They ought to be batched properly - and also,
 // loaded from files
 
-if (file_exists(PATH_GRAPHICS+"b_chr_default.png")){
-    spr_character_default=sprite_add(PATH_GRAPHICS+"b_chr_default.png", 0, false, false, 0, 0);
+if (file_exists(PATH_PERMANENT+"b_chr_default.png")){
+    spr_character_default=sprite_add(PATH_PERMANENT+"b_chr_default.png", 0, false, false, 0, 0);
 } else {
     spr_character_default=sprite_add(PATH_DUMMY+"b_chr_dummy.png", 0, false, false, 0, 0);
 }

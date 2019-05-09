@@ -14,7 +14,8 @@ if (header=="DDD"){
     buffer_delete(original);
 }
 
-if (buffer==-1){
+// if the decompressed buffer is bad, cancel - try catch will make this so much nicer
+if (buffer < 0){
     erroneous=true;
 } else {
     buffer_seek(buffer, buffer_seek_start, 0);
