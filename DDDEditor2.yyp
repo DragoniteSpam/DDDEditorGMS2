@@ -1226,7 +1226,7 @@
             "Key": "24e29505-417b-4d4b-97a7-b436186e7ef1",
             "Value": {
                 "id": "4321e7b3-0aea-40e4-bf6f-50783dd801a1",
-                "resourcePath": "scripts\\uivc_settings_compression_level\\uivc_settings_compression_level.yy",
+                "resourcePath": "scripts\\uivc_settings_compress\\uivc_settings_compress.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -6972,14 +6972,6 @@
                 "id": "39784730-27a5-4b51-9475-c4cf2eaf93df",
                 "resourcePath": "scripts\\uivc_settings_embed_tilesets\\uivc_settings_embed_tilesets.yy",
                 "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "e077208b-66a8-4617-9a31-bf6d50e6e1d1",
-            "Value": {
-                "id": "0cc136ba-3672-4f35-92ec-7aa3e027c955",
-                "resourcePath": "extensions\\buffer_zlib\\buffer_zlib.yy",
-                "resourceType": "GMExtension"
             }
         },
         {

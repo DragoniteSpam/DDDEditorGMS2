@@ -38,8 +38,7 @@ yy=yy+eh+eh;
 
 var el_other_title=create_text(16, yy, "Data Settings", ew, eh, fa_left, dw/2, dg);
 yy=yy+eh;
-var el_other_compression=create_input(16, yy, "Compression: ", ew, eh, uivc_settings_compression_level, "", Stuff.setting_compression_level,
-    Stuff.setting_compression_level, validate_int, ui_value_real, 0, 9, 1, vx1, vy1, vx2, vy2, dg);
+var el_other_compress=create_checkbox(16, yy, "Compress Data", ew, eh, uivc_settings_compress, "", Stuff.setting_compress, dg);
 
 // second column
 
@@ -70,7 +69,7 @@ var el_confirm=create_button(dw/2-b_width/2, dh-32-b_height/2, "Done", b_width, 
 ds_list_add(dg.contents,
     el_gameplay_title, el_gameplay_grid,
     el_embed_title, el_embed_tilesets, el_embed_npcs, el_embed_graphics,
-    el_embed_meshes, el_embed_se, el_other_title, el_other_compression,
+    el_embed_meshes, el_embed_se, el_other_title, el_other_compress,
     el_map_list, el_map_delete, el_map_starting,
     el_confirm);
 

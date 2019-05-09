@@ -10,7 +10,7 @@ if (header=="DDD"){
     var buffer=original;
 } else {
     // if it's compressed, decompress it - if possible
-    var buffer=buffer_inflate(original, 0, buffer_get_size(original));
+    var buffer=buffer_decompress(original);
     buffer_delete(original);
 }
 

@@ -42,14 +42,14 @@ if (string_length(fn)>0){
      * that's it!
      */
     
-    if (Stuff.setting_compression_level==0){
-        buffer_save_ext(buffer, fn, 0, buffer_tell(buffer));
-        buffer_save_ext(buffer, "auto"+EXPORT_EXTENSION_DATA, 0, buffer_tell(buffer));
-    } else {
-        var compressed=buffer_deflate(buffer, 0, buffer_tell(buffer), Stuff.setting_compression_level);
+    if (Stuff.setting_compress){
+		var compressed=buffer_compress(buffer, 0, buffer_tell(buffer));
         buffer_save_ext(compressed, fn, 0, buffer_tell(compressed));
         buffer_save_ext(compressed, "auto"+EXPORT_EXTENSION_DATA, 0, buffer_tell(buffer));
         buffer_delete(compressed);
+    } else {
+        buffer_save_ext(buffer, fn, 0, buffer_tell(buffer));
+        buffer_save_ext(buffer, "auto"+EXPORT_EXTENSION_DATA, 0, buffer_tell(buffer));
     }
     
     buffer_delete(buffer);

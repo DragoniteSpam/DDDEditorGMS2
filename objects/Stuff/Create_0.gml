@@ -285,7 +285,7 @@ setting_embed_npcs=true;            // large number of small(ish) images
 setting_embed_graphics=true;        // large number of images of varying sizes
 setting_embed_meshes=false;         // already stored in vrax but okay
 setting_embed_se=true;              // possibly large number of small sound effects
-setting_compression_level=5;        // 0 (none) through 9 (smallest)
+setting_compress=true;				// this used to be a number but now it's just on/off
 
 ini_open(DATA_INI);
 setting_color=ini_read_real("config", "color", c_green);                // BGR
