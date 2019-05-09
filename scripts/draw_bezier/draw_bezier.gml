@@ -5,7 +5,7 @@
 /// @param  y2
 // assumes the anchor points are in the middle: (meanx, y1) and (meanx, y2)
 
-var p1=array_compose(argument0, argument1);
+var p1=[argument0, argument1];
 var p2=p1;
 
 var x0=argument0;

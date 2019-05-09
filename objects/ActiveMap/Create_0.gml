@@ -45,7 +45,7 @@ map_grid=map_create_grid(xx, yy, zz);
 frozen=vertex_create_buffer();          // everything that will be a single batch in
                                         // the game
 
-population=array_compose(0, 0, 0, 0, 0, 0, 0);
+population=[0, 0, 0, 0, 0, 0, 0];
 population_static=0;
 population_solid=0;
 

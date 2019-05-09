@@ -44,4 +44,4 @@ py += 3 * u * tt * p2y;
 px +=        ttt * p3x; //fourth term
 py +=        ttt * p3y;
 
-return array_compose(px, py);
+return [px, py];

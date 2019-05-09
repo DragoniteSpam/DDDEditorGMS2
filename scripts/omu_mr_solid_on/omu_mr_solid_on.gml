@@ -2,5 +2,5 @@
 /// @param UIThing
 
 if (ds_list_size(argument0.root.route.steps)<255){
-    ds_list_add(argument0.root.route.steps, array_compose(MoveRouteActions.SOLID_ON));
+    ds_list_add(argument0.root.route.steps, [MoveRouteActions.SOLID_ON]);
 }

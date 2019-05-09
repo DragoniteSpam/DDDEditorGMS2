@@ -62,4 +62,4 @@ mZ = dZ+uZ*(1-2*MOUSE_Y/CH)+vZ*(2*MOUSE_X/CW-1);
 mm = sqrt(mX*mX+mY*mY+mZ*mZ);
 
 // normalize mouse direction vector
-return array_compose(mX/mm, mY/mm, mZ/mm);
+return [mX/mm, mY/mm, mZ/mm];

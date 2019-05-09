@@ -91,7 +91,7 @@ c_shape_end_trimesh(cdata);
 vertex_freeze(buffer);
 vertex_freeze(buffer_wire);
 
-return array_compose(buffer, buffer_wire, cdata, data, xmin, ymin, zmin, xmax, ymax, zmax, 0, 0, 0);
+return [buffer, buffer_wire, cdata, data, xmin, ymin, zmin, xmax, ymax, zmax, 0, 0, 0];
 
 enum MeshArrayData {
     VBUFF,

@@ -16,7 +16,7 @@ repeat(n_custom){
         var max_size=buffer_read(argument0, buffer_u8);
         var required=buffer_read(argument0, buffer_u8);
         
-        ds_list_add(custom.types, array_compose(name, type, guid, max_size, required));
+        ds_list_add(custom.types, [name, type, guid, max_size, required]);
     }
     
     ds_list_add(Stuff.all_event_custom, custom);

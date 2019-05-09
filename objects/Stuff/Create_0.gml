@@ -65,13 +65,13 @@ enum ETypeFlags {
     ENTITY_EVENT            =1<<6,
 }
 
-etype_objects=array_compose(Entity,
+etype_objects=[Entity,
     EntityTile,
     EntityAutoTile,
     EntityMesh,
     EntityPawn,
     EntityEffect,
-    EntityEvent);
+    EntityEvent];
 #endregion
 
 alarm[0]=1200;
@@ -91,7 +91,7 @@ time_int=0;
 
 all_guids=ds_map_create();
 
-tf=array_compose("False", "True");
+tf=["False", "True"];
 
 // local storage folders
 
@@ -142,7 +142,7 @@ if (file_exists(PATH_PERMANENT+"b_at_default_grass_0.png")){
 } else {
     var spr=sprite_add(PATH_DUMMY+"b_at_dummy_grass.png", 0, false, false, 0, 0);
 }
-available_autotiles[0]=array_compose(spr, "<default>", false, "", 1, 3);
+available_autotiles[0]=[spr, "<default>", false, "", 1, 3];
 
 autotile_hashes=array_create(256);
 array_clear(autotile_hashes, AutotileSegments.CENTER);
@@ -167,8 +167,8 @@ if (file_exists(PATH_PERMANENT+"b_tileset_overworld_0.png")){
 ds_list_add(all_tilesets, tileset_create(filename,
     // this is somewhat hard-coded;
     // the zeroth available tileset is automatically default_grass
-    array_compose(0, noone, noone, noone, noone, noone, noone, noone,
-        noone, noone, noone, noone, noone, noone, noone, noone)));
+    [0, noone, noone, noone, noone, noone, noone, noone,
+        noone, noone, noone, noone, noone, noone, noone, noone]));
 
 all_events=ds_list_create();
 all_event_custom=ds_list_create();
@@ -255,18 +255,18 @@ enum HelpPages {
     AUTOTILES,
 }
 
-help_pages=array_compose("overview", "whatsnew", "gettingstarted", "systemrequirements",
+help_pages=["overview", "whatsnew", "gettingstarted", "systemrequirements",
     "editorcomponents", "tabs", "menus",
     "general", "entityinstances", "tileinstances", "meshinstances", "mobinstances", "effectinstances", "eventinstances",
     "mesheditor", "tileeditor", "autotileeditor",
-    "autotiles",);
+    "autotiles",];
 
 enum Dimensions {
     TWOD,
     THREED
 }
 
-color_lookup=array_compose(c_red, c_green, c_blue, c_orange, c_aqua, c_fuchsia, c_purple, c_teal);
+color_lookup=[c_red, c_green, c_blue, c_orange, c_aqua, c_fuchsia, c_purple, c_teal];
 
 // global game settings
 

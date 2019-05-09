@@ -13,13 +13,13 @@ for (var i=0; i<ds_grid_width(argument0); i++){
                 if (k<le){
                     contents[k]=existing_array[k];
                 } else {
-                    contents[k]=array_compose(noone, noone, noone, noone);
+                    contents[k]=[noone, noone, noone, noone];
                 }
             }
         } else {
             var contents=array_create(argument1);
             for (var k=0; k<argument1; k++){
-                contents[k]=array_compose(noone, noone, noone, noone);
+                contents[k]=[noone, noone, noone, noone];
             }
         }
         argument0[# i, j]=contents;

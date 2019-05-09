@@ -40,7 +40,7 @@ enum EditorModes {
 MOUSE_X=window_mouse_get_x();
 MOUSE_Y=window_mouse_get_y();
 
-mouse_vector=array_compose(1, 1, 1);
+mouse_vector=[1, 1, 1];
 
 /*
  * Vertex formats
@@ -192,7 +192,7 @@ enum FillTypes {
     EVENT,
 }
 
-fill_types=array_compose(safc_fill_tile, safc_fill_autotile, safc_fill_mesh, safc_fill_pawn, safc_fill_effect, safc_fill_event);
+fill_types=[safc_fill_tile, safc_fill_autotile, safc_fill_mesh, safc_fill_pawn, safc_fill_effect, safc_fill_event];
 
 /*
  * the autotile shader

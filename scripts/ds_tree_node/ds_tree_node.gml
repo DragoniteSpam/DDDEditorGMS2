@@ -9,4 +9,4 @@ switch (argument_count){
         break;
 }
 
-return array_compose(exists, argument[0], noone, noone);
+return [exists, argument[0], noone, noone];

@@ -84,7 +84,7 @@ enum TileTerrainTags {
 // often, so i won't bother to put it somewhere more logical
 globalvar all_tile_terrain_tag_names;
 
-all_tile_terrain_tag_names=array_compose("None",
+all_tile_terrain_tag_names=["None",
     "Ledge",
     "Grass",
     "Sand",
@@ -99,7 +99,7 @@ all_tile_terrain_tag_names=array_compose("None",
     "Ice",
     "Neutral",
     "Soot Grass",
-    "Bridge");
+    "Bridge"];
 
 enum AutotileSegments {
     SURROUNDED,     /*00*/

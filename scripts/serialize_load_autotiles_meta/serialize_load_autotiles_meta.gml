@@ -27,7 +27,7 @@ for (var i=0; i<n_autotiles; i++){
             }
         }
         
-        Stuff.available_autotiles[i]=array_compose(at_picture, at_name, at_deleteable, at_filename, at_frames, at_width);
+        Stuff.available_autotiles[i]=[at_picture, at_name, at_deleteable, at_filename, at_frames, at_width];
     } else {
         Stuff.available_autotiles[i]=noone;
     }
