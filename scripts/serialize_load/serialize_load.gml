@@ -66,6 +66,9 @@ if (buffer < 0){
             var datatype=buffer_read(buffer, buffer_datatype);
             switch (datatype){
                 // game stuff
+                case SerializeThings.AUTOTILES_FULL:
+                    serialize_load_autotiles_all(buffer, version);
+                    break;
                 case SerializeThings.AUTOTILES_META:
                     serialize_load_autotiles_meta(buffer, version);
                     break;

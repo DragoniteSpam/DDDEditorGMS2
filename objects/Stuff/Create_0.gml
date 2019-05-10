@@ -28,7 +28,7 @@ enum SerializeThings {
     MAP_DYNAMIC             =$00000016,
     EVENTS                  =$00000017,
     AUTOTILES_META          =$00000018,
-    AUTOTILES               =$00000019,
+    AUTOTILES_FULL          =$00000019,
     MAP_META                =$0000001A,
     DATADATA                =$0000001B,
     EVENT_CUSTOM            =$0000001C,

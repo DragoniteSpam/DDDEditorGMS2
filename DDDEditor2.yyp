@@ -839,6 +839,14 @@
             }
         },
         {
+            "Key": "19fa2ef9-9c3f-4073-be76-9ea24070ee3c",
+            "Value": {
+                "id": "1a427756-2377-4be6-8da2-98ccf81b3ab4",
+                "resourcePath": "scripts\\serialize_load_autotiles_all\\serialize_load_autotiles_all.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "1aaa6354-fcdd-4251-8494-6dff10635795",
             "Value": {
                 "id": "becfc9ff-05b6-4e11-abd5-4e65da3992b0",
@@ -1011,6 +1019,14 @@
             "Value": {
                 "id": "e52e0a2b-80f1-4bfa-867e-7a1cd3599e51",
                 "resourcePath": "scripts\\ui_render_button_vrax\\ui_render_button_vrax.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "1e7b1bcf-3901-470a-a81b-b02751e9b314",
+            "Value": {
+                "id": "a621a6d5-1e3a-49b8-a812-9954e2daefb0",
+                "resourcePath": "scripts\\serialize_save_autotiles_all\\serialize_save_autotiles_all.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -8614,6 +8630,7 @@
         "53f467a4-8207-4be0-b8d3-9ab7e73874f5",
         "b1b43f72-7abf-46a5-814c-16c4c27909b6",
         "eaf5701b-74fc-47a5-8880-0efee5014109",
+        "19fa2ef9-9c3f-4073-be76-9ea24070ee3c",
         "86b18ec3-4cea-489d-b432-38f23efb52a4",
         "ed355f8e-9157-470f-96ba-12e23a5c1105",
         "1b12e036-c241-48d6-be82-9af82db584c2",
@@ -8634,6 +8651,7 @@
         "d245e1bb-2bdf-4a2b-9cd7-ab22514fd8d8",
         "60e9a43f-c389-4d54-8bdb-72892cbcc85b",
         "ca86f4fd-f21c-4057-9255-5687abf9badd",
+        "1e7b1bcf-3901-470a-a81b-b02751e9b314",
         "b683c3c7-a016-4194-a7d5-387032c9c021",
         "41a2377b-7051-4794-9d6f-ec9f7aab500b",
         "7717ebcd-87c3-4c60-bf52-d31237fb4b7e",

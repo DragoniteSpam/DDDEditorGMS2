@@ -23,7 +23,8 @@ if (string_length(fn)>0){
      * data
      */
     
-    serialize_save_autotiles_meta(buffer);
+    //serialize_save_autotiles_meta(buffer);
+    serialize_save_autotiles_all(buffer);
     //serialize_save_tilesets_meta(buffer);
     serialize_save_tilesets_all(buffer);
     serialize_save_event_custom(buffer);
