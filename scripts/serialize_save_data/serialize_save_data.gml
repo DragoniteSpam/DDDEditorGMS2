@@ -45,8 +45,8 @@ if (string_length(fn)>0){
     
     if (Stuff.setting_compress){
 		var compressed=buffer_compress(buffer, 0, buffer_tell(buffer));
-        buffer_save_ext(compressed, fn, 0, buffer_tell(compressed));
-        buffer_save_ext(compressed, "auto"+EXPORT_EXTENSION_DATA, 0, buffer_tell(buffer));
+        buffer_save(compressed, fn);
+        buffer_save(compressed, "auto"+EXPORT_EXTENSION_DATA);
         buffer_delete(compressed);
     } else {
         buffer_save_ext(buffer, fn, 0, buffer_tell(buffer));

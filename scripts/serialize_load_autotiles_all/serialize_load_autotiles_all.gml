@@ -1,4 +1,4 @@
-/// @description  void serialize_load_autotiles_meta(buffer, version);
+/// @description  void serialize_load_autotiles_all(buffer, version);
 /// @param buffer
 /// @param  version
 
