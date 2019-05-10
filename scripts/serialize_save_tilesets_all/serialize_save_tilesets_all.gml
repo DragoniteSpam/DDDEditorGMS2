@@ -14,21 +14,7 @@ for (var i=0; i<n_tilesets; i++){
     buffer_write(argument0, buffer_string, ts.picture_name);
     
     // stash the sprite in the buffer (via surface)
-    var surface=sprite_to_surface(ts.picture, 0);
-    var sw=surface_get_width(surface);
-    var sh=surface_get_height(surface);
-	var slength = sw * sh * 4;
-	
-    var sbuffer=buffer_create(slength, buffer_fixed, 1);
-    buffer_get_surface(sbuffer, surface, 0, 0, 0);
-    buffer_write(argument0, buffer_u16, sw);
-    buffer_write(argument0, buffer_u16, sh);
-	buffer_resize(argument0, buffer_get_size(argument0)+buffer_get_size(sbuffer));
-    buffer_copy(sbuffer, 0, buffer_get_size(sbuffer), argument0, buffer_tell(argument0));
-	buffer_seek(argument0, buffer_seek_relative, buffer_get_size(sbuffer));
-    
-    surface_free(surface);
-    buffer_delete(sbuffer);
+    buffer_write_sprite(argument0, ts.picture);
     
     // all of the other things
     
@@ -57,8 +43,8 @@ for (var i=0; i<n_tilesets; i++){
     buffer_write(argument0, buffer_u16, t_grid_width);
     buffer_write(argument0, buffer_u16, t_grid_height);
     
-    for (var j=0; j<t_grid_width; j++){
-        for (var k=0; k<t_grid_height; k++){
+    for (var j = 0; j < t_grid_width; j++){
+        for (var k = 0; k < t_grid_height; k++){
             buffer_write(argument0, buffer_u8, ts.passage[# j, k]);
             buffer_write(argument0, buffer_u8, ts.priority[# j, k]);
             buffer_write(argument0, buffer_u8, ts.flags[# j, k]);

@@ -24,6 +24,8 @@ event_inherited();
 // about populating the values right now
 picture_name="";
 picture=-1;
+
+// these are just the indices, the actual autotiles are stored in Stuff
 autotiles=array_create(AUTOTILE_MAX);
 array_clear(autotiles, noone);
 

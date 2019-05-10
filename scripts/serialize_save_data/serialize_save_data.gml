@@ -74,5 +74,6 @@ enum DataVersions {
     MOVE_ROUTES                 =15,
     ENTITY_GUID                 =16,
     MOVE_ROUTE_MOVE_PARAMS      =17,
+	EMBEDDED_AUTOTILES			=18,
     _CURRENT                    /* = whatever the last one is + 1 */
 }
