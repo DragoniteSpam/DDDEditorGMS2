@@ -49,5 +49,15 @@ with (instance_create_depth(argument[0], argument[1], 0, UIInput)){
             break;
     }
     
+    switch (validation){
+        case validate_double:
+        case validate_int:
+            real_value=true;
+            break;
+        default:
+            real_value=false;
+            break;
+    }
+    
     return id;
 }

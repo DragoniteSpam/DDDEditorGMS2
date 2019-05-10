@@ -21,8 +21,8 @@ draw_text(tx, ty, string_hash_to_newline(argument0.text));
 
 if (script_execute(argument0.validation, value)){
     var c=c_black;
-    if (argument0.validation!=validate_string){
-        var n=real(value);
+    if (argument0.real_value){
+        var n=script_execute(argument0.value_conversion, value);
         if (!is_clamped(n, argument0.value_lower, argument0.value_upper)){
             c=c_orange;
         }

@@ -1,6 +1,10 @@
 /// @description  boolean validate_double(string);
 /// @param string
 
+if (string_length(argument0)==0){
+    return false;
+}
+
 return regex("((\\+)|(\\-))?((\\d)*)((\\.)(\\d)+)?", argument0);
 
 // ((\+)|(\-))?

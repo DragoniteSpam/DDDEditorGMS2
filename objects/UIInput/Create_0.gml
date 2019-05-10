@@ -8,6 +8,11 @@ render=ui_render_input;
 validation=validate_string;
 value_conversion=ui_value_string;
 
+// you could determine this by looking at the validation script, but that's going
+// to get messy if too many more of them are added - and since you're not supposed
+// to change the validation script after setting it, you can get away with cacheing it
+real_value=false;
+
 value_x1=x;
 value_y1=y;
 value_x2=x+height;
