@@ -17,32 +17,15 @@ for (var i=0; i<n_tilesets; i++){
     var surface=sprite_to_surface(ts.picture, 0);
     var sw=surface_get_width(surface);
     var sh=surface_get_height(surface);
-    var sbuffer=buffer_create(sw*sh*4, buffer_fixed, 1);
-    surface_save(surface, "surface.png");
+	var slength = sw * sh * 4;
+	
+    var sbuffer=buffer_create(slength, buffer_fixed, 1);
     buffer_get_surface(sbuffer, surface, 0, 0, 0);
-    
-    buffer_save(sbuffer, "binarypng.bin")
-    
     buffer_write(argument0, buffer_u16, sw);
     buffer_write(argument0, buffer_u16, sh);
-    var where=buffer_tell(argument0);
+	buffer_resize(argument0, buffer_get_size(argument0)+buffer_get_size(sbuffer));
     buffer_copy(sbuffer, 0, buffer_get_size(sbuffer), argument0, buffer_tell(argument0));
-    
-    buffer_seek(argument0, buffer_seek_start, where);
-    
-    //buffer_seek(sbuffer, buffer_seek_start, 0);
-    var f=file_text_open_write("pnglog-in.txt");
-    /*repeat(sw*sh){
-        var aaa=buffer_read(argument0, buffer_u8);
-        var bbb=buffer_read(argument0, buffer_u8);
-        var ggg=buffer_read(argument0, buffer_u8);
-        var rrr=buffer_read(argument0, buffer_u8);
-        //file_text_write_string(f, "r: "+string(rrr)+"      g: "+string(ggg)+"      b: "+string(bbb)+"      a: "+string(aaa))
-        debug("r: "+string(rrr)+"      g: "+string(ggg)+"      b: "+string(bbb)+"      a: "+string(aaa))
-        //file_text_writeln(f);
-    }*/
-    
-    file_text_close(f);
+	buffer_seek(argument0, buffer_seek_relative, buffer_get_size(sbuffer));
     
     surface_free(surface);
     buffer_delete(sbuffer);
