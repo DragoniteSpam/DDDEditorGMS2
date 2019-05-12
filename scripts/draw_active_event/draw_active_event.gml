@@ -26,10 +26,10 @@ if (Stuff.active_event!=noone){
         draw_roundrect_colour(x1, y1-vertical_padding, x2, y2+vertical_padding, c_white, c_white, false);
         draw_roundrect(x1, y1-vertical_padding, x2, y2+vertical_padding, true);
         
-        draw_text(x1+16, y1+8, string_hash_to_newline(base.name));
+        draw_text(x1+16, y1+8, string(base.name));
         draw_line(x1+16, y1+24, x2-16, y1+24);
         if (n==0){
-            draw_text_colour(x1+16, y1+40, string_hash_to_newline("No data properties"), c_gray, c_gray, c_gray, c_gray, 1);
+            draw_text_colour(x1+16, y1+40, string("No data properties"), c_gray, c_gray, c_gray, c_gray, 1);
         } else {
             for (var i=0; i<n; i++){
                 var type=base.types[| i];
@@ -56,7 +56,7 @@ if (Stuff.active_event!=noone){
                         }
                         break;
                 }
-                draw_text(x1+16, y1+40+i*16, string_hash_to_newline(string(i+1)+". "+type[EventNodeCustomData.NAME]+" ("+type_name+")"));
+                draw_text(x1+16, y1+40+i*16, string(string(i+1)+". "+type[EventNodeCustomData.NAME]+" ("+type_name+")"));
             }
         }
     }

@@ -17,7 +17,7 @@ var value=argument0.value;
 draw_set_halign(argument0.alignment);
 draw_set_valign(argument0.valignment);
 draw_set_color(argument0.color);
-draw_text(tx, ty, string_hash_to_newline(argument0.text));
+draw_text(tx, ty, string(argument0.text));
 
 if (script_execute(argument0.validation, value)){
     var c=c_black;
@@ -44,9 +44,9 @@ if (!argument0.interactive){
 }
 draw_rectangle(vx1, vy1, vx2, vy2, true);
 
-draw_text_ext_colour(vtx, vty, string_hash_to_newline(value), -1, (vx2-vtx), c, c, c, c, 1);
+draw_text_ext_colour(vtx, vty, string(value), -1, (vx2-vtx), c, c, c, c, 1);
 if (string_length(value)==0){
-    draw_text_ext_colour(vtx, vty, string_hash_to_newline(string(argument0.value_default)), -1, (vx2-2*vtx), c_dkgray, c_dkgray, c_dkgray, c_dkgray, 1);
+    draw_text_ext_colour(vtx, vty, string(string(argument0.value_default)), -1, (vx2-2*vtx), c_dkgray, c_dkgray, c_dkgray, c_dkgray, 1);
 }
 
 if (argument0.interactive&&dialog_is_active(argument0.root)){
@@ -54,7 +54,7 @@ if (argument0.interactive&&dialog_is_active(argument0.root)){
         // this will not work correctly if there are line breaks, but fixing that is
         // like the bottom of the priority queue right now
         if (current_second%2==0){
-            var bx=tx+argument0.value_x1+string_width(string_hash_to_newline(value))+4;
+            var bx=tx+argument0.value_x1+string_width(string(value))+4;
             draw_line_width(bx, ty-7, bx, ty+7, 2);
         }
         var v0=value;

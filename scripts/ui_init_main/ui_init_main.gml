@@ -257,7 +257,7 @@ with (instantiate(UIMain)){
     
     draw_set_font(FDefault12);
     var max_characters=18;
-    vx2=vx1+string_width(string_hash_to_newline("m"))*max_characters+32;
+    vx2=vx1+string_width(string("m"))*max_characters+32;
     
     element_entity_name=create_input(legal_x+spacing, yy, "Name: ", col_width, element_height, uivc_input_entity_name, "", "", "Helpful if unique", validate_string, ui_value_string, 0, 1, max_characters, vx1, vy1, vx2, vy2, t_p_entity);
     ds_list_add(t_p_entity.contents, element_entity_name);

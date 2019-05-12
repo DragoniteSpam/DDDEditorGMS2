@@ -11,4 +11,4 @@ var y1=argument0.y+argument2;
 var x2=x1+argument0.width;
 var y2=y1+argument0.height;
 
-draw_text(mean(x1, x2), mean(y1, y2), string_hash_to_newline(argument0.text));
+draw_text(mean(x1, x2), mean(y1, y2), string(argument0.text));

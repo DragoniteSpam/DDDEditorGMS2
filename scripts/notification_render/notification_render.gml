@@ -6,7 +6,7 @@ if (t<1){
     var a=max(1-(t-lifespan-1), 0);
 }
 
-draw_text_colour(x, y, string_hash_to_newline(text), color, color, color, color, a);
+draw_text_colour(x, y, string(text), color, color, color, color, a);
 
 t=t+delta_time/MILLION;
 

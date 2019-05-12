@@ -30,4 +30,4 @@ if (!dialog_exists()&&event_canvas_active_node==noone){
     }
 }
     
-draw_text(x1+16, mean(y1, y2), string_hash_to_newline(argument0.name));
+draw_text(x1+16, mean(y1, y2), string(argument0.name));

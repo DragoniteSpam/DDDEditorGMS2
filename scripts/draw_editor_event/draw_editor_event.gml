@@ -42,7 +42,7 @@ draw_checkerbox((XVIEW div checker_width)*checker_width-checker_width,
 draw_active_event();
 
 draw_rectangle_colour(XVIEW, YVIEW+HVIEW-16, XVIEW+WVIEW, YVIEW+HVIEW, c_white, c_white, c_white, c_white, false);
-draw_text_colour(XVIEW+16, YVIEW+HVIEW-8, string_hash_to_newline("Canvas at ("+string(XVIEW)+", "+string(YVIEW)+"); mouse at ("+
+draw_text_colour(XVIEW+16, YVIEW+HVIEW-8, string("Canvas at ("+string(XVIEW)+", "+string(YVIEW)+"); mouse at ("+
     string(mouse_x_view)+", "+string(mouse_y_view)+")"), c_black, c_black, c_black, c_black, 1);
 
 if (Controller.mouse_right){

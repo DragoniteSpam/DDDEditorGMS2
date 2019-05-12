@@ -24,5 +24,5 @@ if (mouse_within_rectangle_view(x1, y1, x2, y2)){
     }
 }
 
-draw_text(x1+16, argument3, string_hash_to_newline(argument4.name));
+draw_text(x1+16, argument3, string(argument4.name));
 draw_line(argument0, argument1, argument2, argument3);

@@ -25,13 +25,13 @@ if (mouse_within_rectangle(x1, y1, x2, y2)){
 draw_set_halign(argument0.alignment);
 draw_set_valign(argument0.valignment);
 draw_set_color(argument0.color);
-draw_text(tx, ty, string_hash_to_newline(argument0.text));
+draw_text(tx, ty, string(argument0.text));
 
 if (menu_is_active(argument0)){
     var separation=16;
     var ww=separation*2;
     for (var i=0; i<ds_list_size(argument0.contents); i++){
-        var ew=string_width(string_hash_to_newline(argument0.contents[| i].text));
+        var ew=string_width(string(argument0.contents[| i].text));
         if (argument0.contents[| i].onmouseup==momu_expand){
             ew=ew+16;
         }

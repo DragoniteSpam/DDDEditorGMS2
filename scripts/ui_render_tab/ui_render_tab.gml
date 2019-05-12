@@ -28,7 +28,7 @@ var ty=ui_get_text_y(argument0, y1, y2);
 draw_set_halign(argument0.alignment);
 draw_set_valign(argument0.valignment);
 draw_set_color(argument0.color);
-draw_text(tx, ty, string_hash_to_newline(argument0.text));
+draw_text(tx, ty, string(argument0.text));
 
 if (argument0.interactive&&dialog_is_active(argument0.root)){
     if (mouse_within_rectangle(x1, y1, x2, y2)){

@@ -18,7 +18,7 @@ var tolerance=4;
 switch (argument0.type){
     case EventNodeTypes.ENTRYPOINT:
         x2=x1+EVENT_NODE_CONTACT_WIDTH;
-        y2=y1+16+string_height(string_hash_to_newline(argument0.name));
+        y2=y1+16+string_height(string(argument0.name));
         
         if (rectangle_within_view(view_current, x1, y1, x2, y2)){
             var c=colour_mute(c_ev_init);
@@ -60,7 +60,7 @@ switch (argument0.type){
                     }
                 }
                 
-                draw_text_ext(x1+16, mean(entry_yy, entry_yy+entry_height), string_hash_to_newline(argument0.data[| i]), -1, EVENT_NODE_CONTACT_WIDTH-16);
+                draw_text_ext(x1+16, mean(entry_yy, entry_yy+entry_height), string(argument0.data[| i]), -1, EVENT_NODE_CONTACT_WIDTH-16);
                 var yy_center=mean(entry_yy, entry_yy+entry_height);
                 if (i>0){
                     // this works out nicely because the outbound node is going to be in the same place at index 0,
@@ -207,10 +207,10 @@ switch (argument0.type){
                 }
                 
                 if (type[1]==DataTypes.STRING&&ds_list_size(custom_data_list)==1){
-                    draw_text(x1+16, entry_yy+12, string_hash_to_newline(message));
-                    draw_text_ext(x1+16, mean(entry_yy+12, entry_yy+eh), string_hash_to_newline(custom_data_list[| 0]), -1, EVENT_NODE_CONTACT_WIDTH-16);
+                    draw_text(x1+16, entry_yy+12, string(message));
+                    draw_text_ext(x1+16, mean(entry_yy+12, entry_yy+eh), string(custom_data_list[| 0]), -1, EVENT_NODE_CONTACT_WIDTH-16);
                 } else {
-                    draw_text_ext(x1+16, mean(entry_yy, entry_yy+eh), string_hash_to_newline(message), -1, EVENT_NODE_CONTACT_WIDTH-16);
+                    draw_text_ext(x1+16, mean(entry_yy, entry_yy+eh), string(message), -1, EVENT_NODE_CONTACT_WIDTH-16);
                 }
                 
                 entry_yy=entry_yy+eh;

@@ -14,4 +14,4 @@ var ty=ui_get_text_y(argument0, y1, y2);
 draw_set_halign(argument0.alignment);
 draw_set_valign(argument0.valignment);
 draw_set_color(argument0.color);
-draw_text_ext(tx, ty, string_hash_to_newline(argument0.text), -1, argument0.wrap_width);
+draw_text_ext(tx, ty, string(argument0.text), -1, argument0.wrap_width);

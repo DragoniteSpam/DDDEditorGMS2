@@ -20,22 +20,22 @@ draw_line_width_colour(0, h-1, w, h-1, lw, Stuff.setting_color, Stuff.setting_co
 draw_set_font(FDefault12Bold);
 draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
-draw_text(32, 32, string_hash_to_newline("Press Escape to close"));
+draw_text(32, 32, string("Press Escape to close"));
 
 if (keyboard_check(vk_shift)){
-    draw_text(32, 64, string_hash_to_newline("Up/Down: translate across Z"));
-    draw_text(32, 80, string_hash_to_newline("Left/Right: rotate around Z"));
+    draw_text(32, 64, string("Up/Down: translate across Z"));
+    draw_text(32, 80, string("Left/Right: rotate around Z"));
 } else if (keyboard_check(vk_control)){
-    draw_text(32, 64, string_hash_to_newline("Up/Down: rotate around Y"));
-    draw_text(32, 80, string_hash_to_newline("Left/Right: rotate around X"));
+    draw_text(32, 64, string("Up/Down: rotate around Y"));
+    draw_text(32, 80, string("Left/Right: rotate around X"));
 } else if (keyboard_check(vk_alt)){
-    draw_text(32, 64, string_hash_to_newline("Up/Down: scale up/down (all axes)"));
+    draw_text(32, 64, string("Up/Down: scale up/down (all axes)"));
 } else {
-    draw_text(32, 64, string_hash_to_newline("Up/Down: translate across Y"));
-    draw_text(32, 80, string_hash_to_newline("Left/Right: translate across X"));
+    draw_text(32, 64, string("Up/Down: translate across Y"));
+    draw_text(32, 80, string("Left/Right: translate across X"));
 }
 
-draw_text(32, 112, string_hash_to_newline("Press Backspace to reset"));
-draw_text(32, 128, string_hash_to_newline("Shift, Control and Alt all do different things"));
+draw_text(32, 112, string("Press Backspace to reset"));
+draw_text(32, 128, string("Shift, Control and Alt all do different things"));
 
 draw_set_color(c_black);

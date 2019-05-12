@@ -16,7 +16,7 @@ var ty=ui_get_text_y(argument0, y1, y2);
 draw_set_halign(argument0.alignment);
 draw_set_valign(argument0.valignment);
 draw_set_color(argument0.color);
-draw_text(tx, ty, string_hash_to_newline(argument0.text));
+draw_text(tx, ty, string(argument0.text));
 
 var n=ds_list_size(argument0.entries);
 
@@ -25,7 +25,7 @@ var active=dialog_is_active(argument0.root);
 if (n==0){
     draw_rectangle_colour(x1, y2, x2, y2+argument0.height, c_ltgray, c_ltgray, c_ltgray, c_ltgray, false);
     ty=mean(y2, y2+argument0.height);
-    draw_text(tx, ty, string_hash_to_newline(argument0.text_vacant));
+    draw_text(tx, ty, string(argument0.text_vacant));
 } else {
     for (var i=0; i<min(n, argument0.slots); i++){
         var index=i+argument0.index;
@@ -63,7 +63,7 @@ if (n==0){
                 text=text+guid_get(argument0.entries[| index]).name;
                 break;
         }
-        draw_text_colour(tx, tya, string_hash_to_newline(text), c, c, c, c, 1);
+        draw_text_colour(tx, tya, string(text), c, c, c, c, 1);
     }
 }
 

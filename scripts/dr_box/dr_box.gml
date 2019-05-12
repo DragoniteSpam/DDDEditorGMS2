@@ -32,7 +32,7 @@ var cby=ty;
 var cbi=2;  // 0 is is available, 1 is hovering, 2 is unavailable
 
 draw_set_halign(fa_left);
-draw_text(tx, ty, string_hash_to_newline(argument0.text));
+draw_text(tx, ty, string(argument0.text));
 
 if (active){
     cbi=0;
