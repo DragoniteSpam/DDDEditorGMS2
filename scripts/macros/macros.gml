@@ -17,7 +17,7 @@
 #macro DATA_INI "data.ini"
 #macro DEBUG true
 #macro EVENT_NODE_CONTACT_HEIGHT 32
-#macro EVENT_NODE_CONTACT_WIDTH 256
+#macro EVENT_NODE_CONTACT_WIDTH 320
 #macro EXPORT_EXTENSION_DATA ".dddd"
 #macro EXPORT_EXTENSION_MAP ".dddm"
 #macro HH 900
