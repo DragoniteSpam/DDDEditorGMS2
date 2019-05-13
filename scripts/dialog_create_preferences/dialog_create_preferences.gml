@@ -26,6 +26,7 @@ yy=yy+eh+spacing;
 var el_autosave=create_checkbox(16, yy, "Automatic Backups", ew, eh, uivc_autosave, "", Stuff.setting_autosave, dg);
 yy=yy+eh+spacing;
 var el_alphabet=create_checkbox(16, yy, "Alphabetize Lists", ew, eh, uivc_alphabetize_lists, "", Stuff.setting_alphabetize_lists, dg);
+yy=yy+eh+spacing;
 var el_npc_animation=create_input(16, yy, "NPC speed:", ew, eh, uivc_bezier_precision, "", Stuff.setting_alphabetize_npc_animate_rate, "0...9",
     validate_int, ui_value_real, 1, 16, 2, vx1, vy1, vx2, vy2, dg);
 
