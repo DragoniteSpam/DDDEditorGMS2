@@ -1,58 +1,58 @@
 /// @description  ui_init_game_data_activate();
 
-var container=Camera.ui_game_data.el_dynamic;
+var container = Camera.ui_game_data.el_dynamic;
 if (Stuff.setting_alphabetize_lists){
-    var sorted=ds_list_sort_name_sucks(Stuff.all_data);
-    Camera.ui_game_data.active_type_guid=sorted[| ui_list_selection(Camera.ui_game_data.el_master)].GUID;
+    var sorted = ds_list_sort_name_sucks(Stuff.all_data);
+    Camera.ui_game_data.active_type_guid = sorted[| ui_list_selection(Camera.ui_game_data.el_master)].GUID;
     ds_list_destroy(sorted);
 } else {
-    Camera.ui_game_data.active_type_guid=Stuff.all_data[| ui_list_selection(Camera.ui_game_data.el_master)].GUID;
+    Camera.ui_game_data.active_type_guid = Stuff.all_data[| ui_list_selection(Camera.ui_game_data.el_master)].GUID;
 }
 
-var data=guid_get(Camera.ui_game_data.active_type_guid);
+var data = guid_get(Camera.ui_game_data.active_type_guid);
 
-Camera.ui_game_data.el_inst_add.interactive=false;
-Camera.ui_game_data.el_inst_remove.interactive=false;
+Camera.ui_game_data.el_inst_add.interactive = false;
+Camera.ui_game_data.el_inst_remove.interactive = false;
 
 ui_list_deselect(Camera.ui_game_data.el_instances);
 
 // i'm really hoping UI elements are destroyed correctly now
 ds_list_clear_instances(container.contents);
 
-if (data!=noone){
+if (data != noone){
     // this caused some sort of null pointer exception somehow, and I haven't been able to replicate
     // it. wrapping it in this "if" should take care of it, though.
-    Camera.ui_game_data.el_inst_add.interactive=!data.is_enum;
-    Camera.ui_game_data.el_inst_remove.interactive=!data.is_enum;
+    Camera.ui_game_data.el_inst_add.interactive = !data.is_enum;
+    Camera.ui_game_data.el_inst_remove.interactive = !data.is_enum;
     
     if (!data.is_enum){
-        var columns=5;
-        var spacing=16;
+        var columns = 5;
+        var spacing = 16;
         
-        var cw=(room_width-columns*32)/columns;
-        var ew=cw-spacing*2;
-        var eh=24;
+        var cw =(room_width - columns * 32) / columns;
+        var ew = cw - spacing * 2;
+        var eh = 24;
         
-        var vx1=room_width/(columns*2)-16;
-        var vy1=0;
-        var vx2=vx1+room_width/(columns*2)-16;
-        var vy2=vy1+eh;
+        var vx1 = room_width / (columns * 2) - 16;
+        var vy1 = 0;
+        var vx2 = vx1 + room_width / (columns * 2) - 16;
+        var vy2 = vy1 + eh;
         
-        var b_width=128;
-        var b_height=32;
+        var b_width = 128;
+        var b_height = 32;
         
-        var yy=32/*64+eh*/;
-        var yy_base=yy;
+        var yy = 32/*64 + eh*/;
+        var yy_base = yy;
         
-        var col_yy=yy;
-        var col_data=instance_create_depth(/*2*cw+*/spacing, 0, 0, UIThing);
+        var col_yy = yy;
+        var col_data = instance_create_depth(/*2 * cw + */spacing, 0, 0, UIThing);
         ds_list_add(container.contents, col_data);
         
-        var element=create_input(spacing, yy, "Name:", ew, eh, uivc_data_set_name, "", "", "Instance name", validate_string, ui_value_string, 0, 1, 16, vx1, vy1, vx2, vy2, noone);
+        var element = create_input(spacing, yy, "Name:", ew, eh, uivc_data_set_name, "", "", "Instance name", validate_string, ui_value_string, 0, 1, 16, vx1, vy1, vx2, vy2, noone);
         ds_list_add(col_data.contents, element);
-        Camera.ui_game_data.el_inst_name=element;
+        Camera.ui_game_data.el_inst_name = element;
         
-        yy=yy+element.height+spacing;
+        yy = yy + element.height + spacing;
         
         for (var i=0; i<ds_list_size(data.properties); i++){
             var property=data.properties[| i];

@@ -7,56 +7,56 @@ with (instantiate(UIMain)){
     
     // it would be best if you don't ask to access these later but if you need to these are just
     // object variables so you can look them up
-    t_general=create_tab("General", 0, id, HelpPages.TAB_GENERAL);
-    t_stats=create_tab("Stats", 0, id);
-    t_2=create_tab("ehh", 0, id);
+    t_general = create_tab("General", 0, id, HelpPages.TAB_GENERAL);
+    t_stats = create_tab("Stats", 0, id);
+    t_2 = create_tab("ehh", 0, id);
     
-    t_p_tile_editor=create_tab("Tile Ed.", 1, id, HelpPages.TAB_TILE_EDITOR);
-    t_p_autotile_editor=create_tab("Autotile Ed.", 1, id, HelpPages.TAB_AUTOTILE_EDITOR);
-    t_p_mesh_editor=create_tab("Mesh Ed.", 1, id, HelpPages.TAB_MESH_EDITOR);
-    t_p_other_editor=create_tab("Other Ed.", 1, id);
+    t_p_tile_editor = create_tab("Tile Ed.", 1, id, HelpPages.TAB_TILE_EDITOR);
+    t_p_autotile_editor = create_tab("Autotile Ed.", 1, id, HelpPages.TAB_AUTOTILE_EDITOR);
+    t_p_mesh_editor = create_tab("Mesh Ed.", 1, id, HelpPages.TAB_MESH_EDITOR);
+    t_p_other_editor = create_tab("Other Ed.", 1, id);
     
-    t_p_entity=create_tab("Entity", 2, id, HelpPages.TAB_ENTITY);
-    t_p_tile=create_tab("Tile", 2, id, HelpPages.TAB_TILE);
-    t_p_mesh=create_tab("Mesh", 2, id, HelpPages.TAB_MESH);
-    t_p_mob=create_tab("Mob", 2, id, HelpPages.TAB_MOB);
-    t_p_effect=create_tab("Effect", 2, id, HelpPages.TAB_EFFECT);
-    t_p_event=create_tab("Event", 2, id, HelpPages.TAB_EVENT);
+    t_p_entity = create_tab("Entity", 2, id, HelpPages.TAB_ENTITY);
+    t_p_tile = create_tab("Tile", 2, id, HelpPages.TAB_TILE);
+    t_p_mesh = create_tab("Mesh", 2, id, HelpPages.TAB_MESH);
+    t_p_mob = create_tab("Mob", 2, id, HelpPages.TAB_MOB);
+    t_p_effect = create_tab("Effect", 2, id, HelpPages.TAB_EFFECT);
+    t_p_event = create_tab("Event", 2, id, HelpPages.TAB_EVENT);
     
     // the game will crash if you create a tab row with zero width.
-    var tr_general=ds_list_create();
+    var tr_general = ds_list_create();
     ds_list_add(tr_general, t_general, t_stats, t_2);
-    var tr_editor=ds_list_create();
+    var tr_editor = ds_list_create();
     ds_list_add(tr_editor, t_p_tile_editor, t_p_autotile_editor, t_p_mesh_editor, t_p_other_editor);
-    var tr_world=ds_list_create();
+    var tr_world = ds_list_create();
     ds_list_add(tr_world, t_p_entity, t_p_tile, t_p_mesh, t_p_mob, t_p_effect, t_p_event);
     
     ds_list_add(tabs, tr_general, tr_editor, tr_world);
     
-    active_tab=t_general;
+    active_tab = t_general;
     
     // don't try to make three columns. the math has been hard-coded
     // for two. everything will go very badly if you try three or more.
     var element;
-    var spacing=16;
-    var legal_x=CW+32;
-    var legal_y=128;
-    var legal_width=ui_legal_width();
-    var col_width=legal_width/2-spacing*1.5;
-    var col2_x=legal_x+col_width+spacing*2;
+    var spacing = 16;
+    var legal_x = CW + 32;
+    var legal_y = 128;
+    var legal_width = ui_legal_width();
+    var col_width = legal_width / 2 - spacing * 1.5;
+    var col2_x = legal_x + col_width + spacing * 2;
     
-    var vx1=legal_width/4+16;
-    var vy1=0;
-    var vx2=vx1+80;
-    var vy2=vy1+24;
+    var vx1 = legal_width / 4 + 16;
+    var vy1 = 0;
+    var vx2 = vx1 + 80;
+    var vy2 = vy1 + 24;
     
-    var button_width=128;
+    var button_width = 128;
     
     /*
      * general tab setup
      */
     
-    var yy=legal_y+spacing;
+    var yy = legal_y + spacing;
     
     element=create_radio_array(legal_x+spacing, yy, "Selection mode", col_width, element_height, uivc_radio_selection_mode, Camera.selection_mode, t_general);
     create_radio_array_options(element, "Single", "Rectangle", "Circle");
