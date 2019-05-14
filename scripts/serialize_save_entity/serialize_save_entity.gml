@@ -9,13 +9,15 @@ buffer_write(argument0, buffer_u32, argument1.zz);
 // this next line only is for DataVersions.ENTITY_GUID and beyond only
 buffer_write(argument0, buffer_u32, argument1.GUID);
 
-var entity_bools=pack(argument1.am_solid, argument1.static);
+var entity_bools = pack(argument1.am_solid, argument1.static,
+    // DataVersions.ENTITY_MAP_OPTIONS_WHOOPS
+    argument1.animate_idle, argument1.animate_movement, argument1.direction_fix);
 buffer_write(argument0, buffer_u32, entity_bools);
 
 // DataVersions.MAP_ENTITY_EVENTS
-var n_events=ds_list_size(argument1.object_events);
+var n_events = ds_list_size(argument1.object_events);
 buffer_write(argument0, buffer_u8, n_events);
-for (var i=0; i<n_events; i++){
+for (var i = 0; i < n_events; i++){
     serialize_save_entity_event_page(argument0, argument1.object_events[| i]);
 }
 
@@ -41,10 +43,10 @@ buffer_write(argument0, buffer_u8, argument1.autonomous_movement_frequency);
 // corrected in DataVersions.MOVE_ROUTES, was previously a u8
 buffer_write(argument0, buffer_u32, argument1.autonomous_movement_route);
 
-var n_move_routes=ds_list_size(argument1.movement_routes);
+var n_move_routes = ds_list_size(argument1.movement_routes);
 buffer_write(argument0, buffer_u8, n_move_routes);
 
-for (var i=0; i<n_move_routes; i++){
+for (var i = 0; i < n_move_routes; i++){
     // DataVersions.MOVE_ROUTES
     serialize_save_move_route(argument0, argument1.movement_routes[| i]);
 }

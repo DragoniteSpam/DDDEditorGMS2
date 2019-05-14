@@ -10,10 +10,6 @@ To Do - Now
 Special NPCs representing party member(s)
 List of character graphics, similar to the autotiles one
 
-Add autonomous_movement_route to save/load
-
-Somehow define the different move route actions somewhere (and print them out)
-
 Maybe make the event conditions work?
 Ask about following:
 	 - Following party members, and if so, can you interact with them on the overworld or are
@@ -21,6 +17,9 @@ Ask about following:
 	 - ALL OF THE MATH
 
 To Do - Soon™
+
+Global game defaults
+ - Running shoes enabled?
 
 "Color" data property for generic data
 
