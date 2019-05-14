@@ -73,7 +73,7 @@ enum DataVersions {
     MOVE_ROUTES                 = 15,
     ENTITY_GUID                 = 16,
     MOVE_ROUTE_MOVE_PARAMS      = 17,
-	EMBEDDED_AUTOTILES			= 18,
+	__UNUSED_00			        = 18, // not used, i don't think, but i can't remove it now
     ENTITY_MAP_OPTIONS_WHOOPS   = 19,
     _CURRENT                    /* = whatever the last one is + 1 */
 }
