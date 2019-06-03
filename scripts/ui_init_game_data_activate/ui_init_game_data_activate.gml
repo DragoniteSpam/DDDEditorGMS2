@@ -33,9 +33,9 @@ if (data != noone) {
         var ew = cw - spacing * 2;
         var eh = 24;
         
-        var vx1 = room_width / (columns * 2) - 16;
+        var vx1 = room_width / (columns * 2) - spacing;
         var vy1 = 0;
-        var vx2 = vx1 + room_width / (columns * 2) - 16;
+        var vx2 = vx1 + room_width / (columns * 2) - spacing * 2;
         var vy2 = vy1 + eh;
         
         var b_width = 128;
