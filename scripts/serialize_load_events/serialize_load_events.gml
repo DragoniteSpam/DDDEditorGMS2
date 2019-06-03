@@ -1,18 +1,18 @@
-/// @description  void serialize_load_events(buffer, version);
+/// @description void serialize_load_events(buffer, version);
 /// @param buffer
-/// @param  version
+/// @param version
 
 var version=argument1;
 var n_events=buffer_read(argument0, buffer_u32);
 
 Stuff.active_event=noone;
 
-repeat(n_events){
+repeat(n_events) {
     // this was written in pieces before serialize_load_generic was
     // so don't use it here otherwise things will break
     var event_name=buffer_read(argument0, buffer_string);
     var event=event_create(event_name);
-    if (version>=DataVersions.EVENT_GUID){
+    if (version>=DataVersions.EVENT_GUID) {
         guid_set(event, buffer_read(argument0, buffer_u32));
     }
     
@@ -26,7 +26,7 @@ repeat(n_events){
     var connections=ds_list_create();
     
     var n_nodes=buffer_read(argument0, buffer_u32);
-    repeat(n_nodes){
+    repeat(n_nodes) {
         var node_name=buffer_read(argument0, buffer_string);
         var node_type=buffer_read(argument0, buffer_u16);
         var node_x=buffer_read(argument0, buffer_s32);
@@ -36,7 +36,7 @@ repeat(n_events){
         node.event=event;
         
         // forgot to do this earlier, whoops
-        if (version>=DataVersions.EVENT_NODE_GUID){
+        if (version>=DataVersions.EVENT_NODE_GUID) {
             guid_set(node, buffer_read(argument0, buffer_u32));
         }
         
@@ -52,22 +52,22 @@ repeat(n_events){
         ds_list_add(connections, node_connections);
         
         var n_outbound=buffer_read(argument0, buffer_u8);
-        repeat(n_outbound){
-            if (version<DataVersions.EVENT_NODE_FIXED_DATA_AGAIN){
+        repeat(n_outbound) {
+            if (version<DataVersions.EVENT_NODE_FIXED_DATA_AGAIN) {
                 ds_list_add(node.data, buffer_read(argument0, buffer_string));
             }
             ds_list_add(node_connections, buffer_read(argument0, buffer_string));
         }
         
-        if (version>=DataVersions.EVENT_NODE_FIXED_DATA_AGAIN){
+        if (version>=DataVersions.EVENT_NODE_FIXED_DATA_AGAIN) {
             var n_data=buffer_read(argument0, buffer_u8);
-            repeat(n_data){
+            repeat(n_data) {
                 ds_list_add(node.data, buffer_read(argument0, buffer_string));
             }
         }
         
         // special code for different node types
-        switch (node_type){
+        switch (node_type) {
             case EventNodeTypes.ENTRYPOINT:
                 // is_root is set in the constructor already
             case EventNodeTypes.TEXT:
@@ -76,11 +76,11 @@ repeat(n_events){
                 node.custom_guid=buffer_read(argument0, buffer_u32);
                 var custom=guid_get(node.custom_guid);
                 
-                for (var i=0; i<ds_list_size(custom.types); i++){
+                for (var i=0; i<ds_list_size(custom.types); i++) {
                     var sub_list=ds_list_create();
                     var type=custom.types[| i];
                     
-                    switch (type[EventNodeCustomData.TYPE]){
+                    switch (type[EventNodeCustomData.TYPE]) {
                         case DataTypes.INT:
                             var buffer_type=buffer_s32;
                             break;
@@ -100,7 +100,7 @@ repeat(n_events){
                     }
                     
                     var n_custom_data=buffer_read(argument0, buffer_u8);
-                    repeat(n_custom_data){
+                    repeat(n_custom_data) {
                         ds_list_add(sub_list, buffer_read(argument0, buffer_type));
                     }
                     ds_list_add(node.custom_data, sub_list);
@@ -112,12 +112,12 @@ repeat(n_events){
         // in the constructor (how nice)
     }
     
-    for (var i=0; i<n_nodes; i++){
+    for (var i=0; i<n_nodes; i++) {
         var node=event.nodes[| i];
         var node_connection=connections[| i];
         
-        for (var j=0; j<ds_list_size(node_connection); j++){
-            if (string_length(node_connection[| j])>0){
+        for (var j=0; j<ds_list_size(node_connection); j++) {
+            if (string_length(node_connection[| j])>0) {
                 event_connect_node(node, event_get_node(event, node_connection[| j]), j);
             }
         }
@@ -129,7 +129,7 @@ repeat(n_events){
 }
 
 // by default, set the 0th event as the active event
-if (ds_list_empty(Stuff.all_events)){
+if (ds_list_empty(Stuff.all_events)) {
     ds_list_add(all_events, event_create("DefaultEvent"));
 }
 

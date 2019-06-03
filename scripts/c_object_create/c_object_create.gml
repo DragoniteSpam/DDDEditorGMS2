@@ -1,7 +1,7 @@
 /// @description c_object_create(shape, group, mask)
 /// @param shape
-/// @param  group
-/// @param  mask
+/// @param group
+/// @param mask
 /*
 Creates a collision object from a shape and returns the id.
 

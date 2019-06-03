@@ -1,4 +1,4 @@
-/// @description  void dialog_create_add_custom_node(Dialog);
+/// @description void dialog_create_add_custom_node(Dialog);
 /// @param Dialog
 
 var dw=320;

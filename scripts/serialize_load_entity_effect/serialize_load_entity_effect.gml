@@ -1,7 +1,7 @@
-/// @description  void serialize_load_entity_effect(buffer, Entity, version);
+/// @description void serialize_load_entity_effect(buffer, Entity, version);
 /// @param buffer
-/// @param  Entity
-/// @param  version
+/// @param Entity
+/// @param version
 
 serialize_load_entity(argument0, argument1, argument2);
 

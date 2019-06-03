@@ -1,6 +1,6 @@
-/// @description  void dc_close_data_discard(Dialog, [force?]);
+/// @description void dc_close_data_discard(Dialog, [force?]);
 /// @param Dialog
-/// @param  [force?]
+/// @param [force?]
 
 // for whatever dumb reason, the original objects are the ones
 // that get changed. so delete the original objects and replace

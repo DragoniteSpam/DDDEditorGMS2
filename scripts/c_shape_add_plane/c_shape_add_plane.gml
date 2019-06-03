@@ -1,9 +1,9 @@
 /// @description c_shape_add_plane(shape, nx, ny, nz, distance)
 /// @param shape
-/// @param  nx
-/// @param  ny
-/// @param  nz
-/// @param  distance
+/// @param nx
+/// @param ny
+/// @param nz
+/// @param distance
 /*
 Adds an infinite plane that is solid to infinity on one side. It is defined by a surface normal and the distance to the world origin.
 */

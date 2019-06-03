@@ -1,10 +1,10 @@
-/// @description  MenuMenu create_menu(text, width, height, root);
+/// @description MenuMenu create_menu(text, width, height, root);
 /// @param text
-/// @param  width
-/// @param  height
-/// @param  root
+/// @param width
+/// @param height
+/// @param root
 
-with (instantiate(MenuMenu)){
+with (instantiate(MenuMenu)) {
     text=argument0;
     width=argument1;
     height=argument2;

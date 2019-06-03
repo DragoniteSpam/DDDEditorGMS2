@@ -1,14 +1,14 @@
-/// @description  ds_list data_clone();
+/// @description ds_list data_clone();
 // in case you need to back up and restore the DataData somewhere
 // the cloned instances have GUIDs, but they're not included in the
 // GUID map
 
 var clone=ds_list_create();
 
-for (var i=0; i<ds_list_size(Stuff.all_data); i++){
+for (var i=0; i<ds_list_size(Stuff.all_data); i++) {
     var data=Stuff.all_data[| i];
     
-    with (instantiate(DataData)){
+    with (instantiate(DataData)) {
         guid_remove(GUID);
         ds_list_pop(Stuff.all_data)
         
@@ -18,17 +18,17 @@ for (var i=0; i<ds_list_size(Stuff.all_data); i++){
         
         GUID=data.GUID;
         
-        if (!data.is_enum){
+        if (!data.is_enum) {
             // pass-by-reference; we need to know these later . . . probably
             instances=data.instances;
             is_cached=true;
         }
         
         // this is NOT pass-by-reference
-        for (var j=0; j<ds_list_size(data.properties); j++){
+        for (var j=0; j<ds_list_size(data.properties); j++) {
             var property=data.properties[| j];
             
-            with (instantiate(DataProperty)){
+            with (instantiate(DataProperty)) {
                 guid_remove(GUID);
                 
                 name=property.name;

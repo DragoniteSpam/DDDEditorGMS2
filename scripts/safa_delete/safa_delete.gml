@@ -1,4 +1,4 @@
-/// @description  void safa_delete(Entity);
+/// @description void safa_delete(Entity);
 /// @param Entity
 
 argument0.modification=Modifications.REMOVE;

@@ -1,4 +1,4 @@
-/// @description  boolean mouse_within_view(view);
+/// @description boolean mouse_within_view(view);
 /// @param view
 
 return point_in_rectangle(Camera.MOUSE_X, Camera.MOUSE_Y,

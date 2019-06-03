@@ -1,6 +1,6 @@
-/// @description  void serialize_save_entity_tile(buffer, EntityTile);
+/// @description void serialize_save_entity_tile(buffer, EntityTile);
 /// @param buffer
-/// @param  EntityTile
+/// @param EntityTile
 
 // just a fyi, the "static" variable doesn't do anything for tiles because
 // they're (currently) not allowed to move at all

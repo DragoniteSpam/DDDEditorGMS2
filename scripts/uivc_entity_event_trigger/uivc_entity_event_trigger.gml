@@ -1,4 +1,4 @@
-/// @description  void uivc_entity_event_trigger(UIThing);
+/// @description void uivc_entity_event_trigger(UIThing);
 /// @param UIThing
 
 // safe

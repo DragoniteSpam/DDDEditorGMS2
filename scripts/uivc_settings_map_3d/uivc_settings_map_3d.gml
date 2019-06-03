@@ -1,4 +1,4 @@
-/// @description  void uivc_settings_map_3d(UIThing);
+/// @description void uivc_settings_map_3d(UIThing);
 /// @param UIThing
 
 ActiveMap.is_3d=argument0.value;

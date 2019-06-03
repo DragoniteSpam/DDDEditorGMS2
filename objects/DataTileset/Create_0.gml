@@ -31,7 +31,7 @@ array_clear(autotiles, noone);
 
 autotile_positions=array_create(AUTOTILE_MAX);
 autotile_sizes=array_create(AUTOTILE_MAX);
-for (var i=0; i<AUTOTILE_MAX; i++){
+for (var i=0; i<AUTOTILE_MAX; i++) {
     autotile_positions[i]=vector2(0.5+(i div (AUTOTILE_MAX/2))*0.25, (i mod (AUTOTILE_MAX/2))/16);
     autotile_sizes[i]=vector2(32/TEXTURE_SIZE, 32/TEXTURE_SIZE);
 }

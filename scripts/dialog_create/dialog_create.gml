@@ -1,11 +1,11 @@
-/// @description  Dialog dialog_create(width, height, text, render, commit, root, [close]);
+/// @description Dialog dialog_create(width, height, text, render, commit, root, [close]);
 /// @param width
-/// @param  height
-/// @param  text
-/// @param  render
-/// @param  commit
-/// @param  root
-/// @param  [close]
+/// @param height
+/// @param text
+/// @param render
+/// @param commit
+/// @param root
+/// @param [close]
 
 var base_x=128;
 var base_y=96;
@@ -20,7 +20,7 @@ dg.render=argument[3];
 dg.commit=argument[4];
 dg.root=argument[5];
 
-if (argument_count>6){
+if (argument_count>6) {
     dg.close=argument[6];
 }
 

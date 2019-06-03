@@ -1,4 +1,4 @@
-/// @description  void dmu_dialog_dont_view_missing(UIThing);
+/// @description void dmu_dialog_dont_view_missing(UIThing);
 /// @param UIThing
 
 dialog_destroy();

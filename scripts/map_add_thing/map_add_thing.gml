@@ -1,8 +1,8 @@
-/// @description  void map_add_thing(Entity, [xx, yy, zz]);
+/// @description void map_add_thing(Entity, [xx, yy, zz]);
 /// @param Entity
-/// @param  [xx
-/// @param  yy
-/// @param  zz]
+/// @param [xx
+/// @param yy
+/// @param zz]
 // Does not check to see if the specified coordinates are in bounds.
 // You are responsible for that.
 
@@ -10,7 +10,7 @@ var xx=argument[0].xx;
 var yy=argument[0].yy;
 var zz=argument[0].zz;
 
-switch (argument_count){
+switch (argument_count) {
     case 4:
         xx=argument[1];
         yy=argument[2];
@@ -20,14 +20,14 @@ switch (argument_count){
 var cell=map_get_grid_cell(xx, yy, zz);
 
 // only add thing if the space is not already occupied
-if (cell[@ argument[0].slot]==noone){
+if (cell[@ argument[0].slot]==noone) {
     cell[@ argument[0].slot]=argument[0];
     
     argument[0].xx=xx;
     argument[0].yy=yy;
     argument[0].zz=zz;
     
-    if (argument[0].batchable){
+    if (argument[0].batchable) {
         ds_list_add(ActiveMap.batch_in_the_future, argument[0]);
     } else {
         ds_list_add(ActiveMap.dynamic, argument[0]);

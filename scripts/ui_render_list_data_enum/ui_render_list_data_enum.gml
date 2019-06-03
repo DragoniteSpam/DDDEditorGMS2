@@ -1,12 +1,12 @@
-/// @description  void ui_render_list_data_enum(UIList);
+/// @description void ui_render_list_data_enum(UIList);
 /// @param UIList
 
 var otext=argument0.text;
 var oentries=argument0.entries;
 var list_enum=ds_list_create();
 
-for (var i=0; i<ds_list_size(Stuff.all_data); i++){
-    if (Stuff.all_data[| i].is_enum){
+for (var i=0; i<ds_list_size(Stuff.all_data); i++) {
+    if (Stuff.all_data[| i].is_enum) {
         ds_list_add(list_enum, Stuff.all_data[| i]);
     }
 }

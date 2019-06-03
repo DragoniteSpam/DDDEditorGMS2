@@ -1,4 +1,4 @@
-/// @description  void dialog_create_manager_tileset(Dialog);
+/// @description void dialog_create_manager_tileset(Dialog);
 /// @param Dialog
 
 var dw=512;

@@ -1,27 +1,27 @@
-/// @description  void serialize_load_data_instances(buffer, version);
+/// @description void serialize_load_data_instances(buffer, version);
 /// @param buffer
-/// @param  version
+/// @param version
 
 var version=argument1;
 
 var n_datadata=ds_list_size(Stuff.all_data);
 
-for (var i=0; i<n_datadata; i++){
+for (var i=0; i<n_datadata; i++) {
     var datadata=Stuff.all_data[| i];
     
-    if (!datadata.is_enum){
+    if (!datadata.is_enum) {
         var n_properties=ds_list_size(datadata.properties);
         var n_instances=buffer_read(argument0, buffer_u16);
         
-        for (var j=0; j<n_instances; j++){
+        for (var j=0; j<n_instances; j++) {
             var instance=instantiate(DataInstantiated);
             ds_list_add(datadata.instances, instance);
             
             serialize_load_generic(argument0, instance, version);
             
-            for (var k=0; k<n_properties; k++){
+            for (var k=0; k<n_properties; k++) {
                 var property=datadata.properties[| k];
-                switch (property.type){
+                switch (property.type) {
                     case DataTypes.INT:
                         // constraining this to the range allowed by the property (u8, s8,
                         // s16, etc) sounds fun but probably not worth the time

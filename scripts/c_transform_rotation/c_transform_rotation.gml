@@ -1,7 +1,7 @@
 /// @description c_transform_rotation(xrot, yrot, zrot)
 /// @param xrot
-/// @param  yrot
-/// @param  zrot
+/// @param yrot
+/// @param zrot
 /*
 Sets the rotation of the transformation in euler angles.
 Note: Angles are in degrees. You can easily modify this script to use radians instead.

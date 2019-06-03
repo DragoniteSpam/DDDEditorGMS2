@@ -1,13 +1,13 @@
-/// @description  array bezier_point(lerp, p0x, p0y, p1x, p1y, p2x, p2y, p3x, p3y)
+/// @description array bezier_point(lerp, p0x, p0y, p1x, p1y, p2x, p2y, p3x, p3y)
 /// @param lerp
-/// @param  p0x
-/// @param  p0y
-/// @param  p1x
-/// @param  p1y
-/// @param  p2x
-/// @param  p2y
-/// @param  p3x
-/// @param  p3y
+/// @param p0x
+/// @param p0y
+/// @param p1x
+/// @param p1y
+/// @param p2x
+/// @param p2y
+/// @param p3x
+/// @param p3y
 /*
  * Lerp is a value from 0-1 to find on the line between p0 and p3
  * p1 and p2 are the control points

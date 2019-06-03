@@ -1,4 +1,4 @@
-/// @description  void sa_process_selection();
+/// @description void sa_process_selection();
 // could use selection_count() here but you may need to access
 // element(s) of the list so that won't work
 
@@ -6,7 +6,7 @@ var list=selection_all();
 ds_list_destroy(Camera.selected_entities);
 Camera.selected_entities=list;
 
-if (ds_list_size(list)==0){
+if (ds_list_size(list)==0) {
     // deactivate everything
     Camera.ui.element_entity_name.interactive=false;
     Camera.ui.element_entity_solid.interactive=false;
@@ -46,7 +46,7 @@ if (ds_list_size(list)==0){
     Camera.ui.element_entity_mob_direction.interactive=false;
     Camera.ui.element_entity_mob_animating.value=false;
     Camera.ui.element_entity_mob_animating.interactive=false;
-} else if (ds_list_size(list)==1){
+} else if (ds_list_size(list)==1) {
     safa_on_select(list[| 0]);
 } else {
     // populate the UI elements with a nice ¯\_(ツ)_/¯
@@ -108,7 +108,7 @@ if (ds_list_size(list)==0){
     Camera.ui.element_entity_scale_y.value="";
     Camera.ui.element_entity_scale_z.value="";
     
-    if (selection_all_pawn()){
+    if (selection_all_pawn()) {
         Camera.ui.element_entity_mob_frame.value="0";
         Camera.ui.element_entity_mob_direction.value=0;
         Camera.ui.element_entity_mob_animating.value=2;

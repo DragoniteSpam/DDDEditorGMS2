@@ -1,7 +1,7 @@
-/// @description  void serialize_load_entity_event_page(buffer, Entity, version);
+/// @description void serialize_load_entity_event_page(buffer, Entity, version);
 /// @param buffer
-/// @param  Entity
-/// @param  version
+/// @param Entity
+/// @param version
 
 var page=create_instantiated_event("");
 serialize_load_generic(argument0, page, argument2);
@@ -28,7 +28,7 @@ page.condition_variable_global_value=buffer_read(argument0, buffer_f32);
 page.condition_variable_self_comparison=buffer_read(argument0, buffer_u8);
 page.condition_variable_self_value=buffer_read(argument0, buffer_f32);
 
-if (argument2<DataVersions.OPTIONS_ON_ENTITIES){
+if (argument2<DataVersions.OPTIONS_ON_ENTITIES) {
     buffer_read(argument0, buffer_u8);
     buffer_read(argument0, buffer_u8);
     buffer_read(argument0, buffer_u8);

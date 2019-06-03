@@ -1,51 +1,52 @@
-/// @description  void dialog_create_data_types(Dialog);
+
+/// @description void dialog_create_data_types(Dialog);
 /// @param Dialog
 // there's a fair amount of redundant code in here, and in the associated scripts.
 // however, in this case, i've decided that a few lines of redundant code is better than
 // the spaghetti that i had before.
 
-Stuff.original_data=data_clone();
+Stuff.original_data = data_clone();
 
-var dw=960;
-var dh=640;
+var dw = 960;
+var dh = 640;
 
-var dg=dialog_create(dw, dh, "Data: Data", dialog_note_changes, dc_close_data_discard, argument0, dc_close_data_discard);
-dg.x=dg.x-32;
+var dg = dialog_create(dw, dh, "Data: Data", dialog_note_changes, dc_close_data_discard, argument0, dc_close_data_discard);
+dg.x = dg.x - 32;
 
-dg.selected_data=noone;
-dg.selected_property=noone;
-dg.changed=false;
+dg.selected_data = noone;
+dg.selected_property = noone;
+dg.changed = false;
 
-var columns=3;
-var ew=(dw-columns*32)/columns;
-var eh=24;
+var columns = 3;
+var ew = (dw - columns * 32) / columns;
+var eh = 24;
 
-var vx1=dw/(columns*2)-16;
-var vy1=0;
-var vx2=vx1+dw/(columns*2)-16;
-var vy2=vy1+eh;
+var vx1 = dw / (columns * 2) - 16;
+var vy1 = 0;
+var vx2 = vx1 + dw / (columns * 2) - 16;
+var vy2 = vy1 + eh;
 
-var b_width=128;
-var b_height=32;
+var b_width = 128;
+var b_height = 32;
 
-var spacing=16;
-var n_slots=14;
+var spacing = 16;
+var n_slots = 14;
 
-var yy=64;
+var yy = 64;
 
-var el_list=create_list(16, yy, "Data Types: ", "<no data types>", ew, eh, n_slots, uivc_list_data_data, false, dg);
-el_list.render=ui_render_list_data_data;
-el_list.entries_are=ListEntries.INSTANCES;
+var el_list = create_list(16, yy, "Data Types: ", "<no data types>", ew, eh, n_slots, uivc_list_data_data, false, dg);
+el_list.render = ui_render_list_data_data;
+el_list.entries_are = ListEntries.INSTANCES;
 
-dg.el_list_main=el_list;
+dg.el_list_main = el_list;
 
-yy=yy+ui_get_list_height(el_list)+spacing;
+yy = yy + ui_get_list_height(el_list) + spacing;
 
-var el_add=create_button(16, yy, "Add Data", ew, eh, fa_center, omu_data_add, dg);
-yy=yy+el_add.height+spacing;
+var el_add = create_button(16, yy, "Add Data", ew, eh, fa_center, omu_data_add, dg);
+yy = yy + el_add.height + spacing;
 
-var el_add_enum=create_button(16, yy, "Add Enum", ew, eh, fa_center, omu_data_enum_add, dg);
-yy=yy+el_add.height+spacing;
+var el_add_enum = create_button(16, yy, "Add Enum", ew, eh, fa_center, omu_data_enum_add, dg);
+yy = yy + el_add.height + spacing;
 
 el_remove=create_button(16, yy, "Remove", ew, eh, fa_center, omu_data_remove, dg);
 

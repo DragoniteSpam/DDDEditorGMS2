@@ -1,4 +1,4 @@
-/// @description  void omu_event_add_custom_event(UIThing);
+/// @description void omu_event_add_custom_event(UIThing);
 /// @param UIThing
 
 var custom=instantiate(DataEventNodeCustom);

@@ -1,4 +1,4 @@
-/// @description  uivc_radio_selection_mode(UIThing);
+/// @description uivc_radio_selection_mode(UIThing);
 /// @param UIThing
 
 Camera.selection_mode=argument0.value;

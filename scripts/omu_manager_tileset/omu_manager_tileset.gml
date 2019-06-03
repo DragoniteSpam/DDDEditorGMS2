@@ -1,4 +1,4 @@
-/// @description  void omu_manager_tileset(UIThing);
+/// @description void omu_manager_tileset(UIThing);
 /// @param UIThing
 
 var catch=argument0;

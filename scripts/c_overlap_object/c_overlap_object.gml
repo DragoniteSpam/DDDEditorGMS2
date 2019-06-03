@@ -1,6 +1,6 @@
 /// @description c_overlap_object(object1, object2)
 /// @param object1
-/// @param  object2
+/// @param object2
 /*
 Checks if two objects overlap each other. The objects do not need to be in the world.
 Returns true if there is an overlap, and false if not.

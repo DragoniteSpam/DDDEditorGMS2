@@ -1,26 +1,26 @@
-/// @description  UIInput create_input(x, y, text, width, height, onvaluechange, key, value, help text, validation, value conversion, lower bound, upper bound, value character limit, value x1, value y1, value x2, value y2, root, [help]);
+/// @description UIInput create_input(x, y, text, width, height, onvaluechange, key, value, help text, validation, value conversion, lower bound, upper bound, value character limit, value x1, value y1, value x2, value y2, root, [help]);
 /// @param x
-/// @param  y
-/// @param  text
-/// @param  width
-/// @param  height
-/// @param  onvaluechange
-/// @param  key
-/// @param  value
-/// @param  help text
-/// @param  validation
-/// @param  value conversion
-/// @param  lower bound
-/// @param  upper bound
-/// @param  value character limit
-/// @param  value x1
-/// @param  value y1
-/// @param  value x2
-/// @param  value y2
-/// @param  root
-/// @param  [help]
+/// @param y
+/// @param text
+/// @param width
+/// @param height
+/// @param onvaluechange
+/// @param key
+/// @param value
+/// @param help text
+/// @param validation
+/// @param value conversion
+/// @param lower bound
+/// @param upper bound
+/// @param value character limit
+/// @param value x1
+/// @param value y1
+/// @param value x2
+/// @param value y2
+/// @param root
+/// @param [help]
 
-with (instance_create_depth(argument[0], argument[1], 0, UIInput)){
+with (instance_create_depth(argument[0], argument[1], 0, UIInput)) {
     text=argument[2];
     width=argument[3];
     height=argument[4];
@@ -43,13 +43,13 @@ with (instance_create_depth(argument[0], argument[1], 0, UIInput)){
     
     root=argument[18];
     
-    switch (argument_count){
+    switch (argument_count) {
         case 20:
             help=argument[19];
             break;
     }
     
-    switch (validation){
+    switch (validation) {
         case validate_double:
         case validate_int:
             real_value=true;

@@ -4,7 +4,7 @@ vertex_begin(buffer, Camera.vertex_format);
 vertex_begin(buffer_wire, Camera.vertex_format_line);
 var list=ds_list_create();
 
-for (var i=0; i<ds_list_size(ActiveMap.batch_in_the_future); i++){
+for (var i=0; i<ds_list_size(ActiveMap.batch_in_the_future); i++) {
     var thing=ActiveMap.batch_in_the_future[| i];
     thing.batch_index=ds_list_size(ActiveMap.batches);
     script_execute(thing.batch, buffer, buffer_wire, thing);

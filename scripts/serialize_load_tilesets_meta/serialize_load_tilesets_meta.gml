@@ -1,6 +1,6 @@
-/// @description  void serialize_load_tilesets_meta(buffer, version);
+/// @description void serialize_load_tilesets_meta(buffer, version);
 /// @param buffer
-/// @param  version
+/// @param version
 
 var version=argument1;
 
@@ -9,7 +9,7 @@ var embedded_tilesets=buffer_read(argument0, buffer_u8);
 ds_list_clear_instances(Stuff.all_tilesets);
 
 var n_tilesets=buffer_read(argument0, buffer_u16);
-for (var i=0; i<n_tilesets; i++){
+for (var i=0; i<n_tilesets; i++) {
     var ts_name=buffer_read(argument0, buffer_string);
     
     var n_autotiles=buffer_read(argument0, buffer_u8);
@@ -19,7 +19,7 @@ for (var i=0; i<n_tilesets; i++){
     var at_flags=array_create(n_autotiles);
     var at_tags=array_create(n_autotiles);
     
-    for (var j=0; j<n_autotiles; j++){
+    for (var j=0; j<n_autotiles; j++) {
         // s16 because no tile is "noone"
         at_array[j]=buffer_read(argument0, buffer_s16);
         at_passage[j]=buffer_read(argument0, buffer_u8);
@@ -28,7 +28,7 @@ for (var i=0; i<n_tilesets; i++){
         at_tags[j]=buffer_read(argument0, buffer_u8);
     }
     
-    if (file_exists(PATH_PERMANENT+ts_name)){
+    if (file_exists(PATH_PERMANENT+ts_name)) {
         var ts=tileset_create(PATH_PERMANENT+ts_name, at_array);
     } else {
         var ts=tileset_create(PATH_DUMMY+"b_tileset_dummy_overworld.png", at_array);
@@ -48,8 +48,8 @@ for (var i=0; i<n_tilesets; i++){
     // (and autotile arrays, for that matter) already exist so there's no point
     // in recreating them, so just populate their values instead
     
-    for (var j=0; j<t_grid_width; j++){
-        for (var k=0; k<t_grid_height; k++){
+    for (var j=0; j<t_grid_width; j++) {
+        for (var k=0; k<t_grid_height; k++) {
             ts.passage[# j, k]=buffer_read(argument0, buffer_u8);
             ts.priority[# j, k]=buffer_read(argument0, buffer_u8);
             ts.flags[# j, k]=buffer_read(argument0, buffer_u8);

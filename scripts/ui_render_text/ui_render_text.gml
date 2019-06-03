@@ -1,7 +1,7 @@
-/// @description  void ui_render_text(UIText, x, y);
+/// @description void ui_render_text(UIText, x, y);
 /// @param UIText
-/// @param  x
-/// @param  y
+/// @param x
+/// @param y
 
 var x1=argument0.x+argument1;
 var y1=argument0.y+argument2;

@@ -1,4 +1,4 @@
-/// @description  d3d - begin making a primitive stream
+/// @description d3d - begin making a primitive stream
 /// @param kind Primitive kind
 /// @param tex Texture Index
 

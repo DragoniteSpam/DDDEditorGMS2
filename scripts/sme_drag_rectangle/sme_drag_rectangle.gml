@@ -1,7 +1,7 @@
-/// @description  void sme_drag_rectangle(Selection, x, y);
+/// @description void sme_drag_rectangle(Selection, x, y);
 /// @param Selection
-/// @param  x
-/// @param  y
+/// @param x
+/// @param y
 // MAYBE if there's an object under the cursor you want
 // to expand the selection on the x axis too, but deal with
 // that later.

@@ -1,6 +1,6 @@
-/// @description  boolean selected_rectangle(selection, Entity);
+/// @description boolean selected_rectangle(selection, Entity);
 /// @param selection
-/// @param  Entity
+/// @param Entity
 
 // since you don't know if start and end are in the correct
 // order, you have to put them in the correct order

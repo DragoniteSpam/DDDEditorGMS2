@@ -1,4 +1,4 @@
-/// @description  we're okay with this being an alarm because it can happen on its own regardless of what else is happening
+/// @description we're okay with this being an alarm because it can happen on its own regardless of what else is happening
 
 alarm[ALARM_CAMERA_SAVE]=room_speed*CAMERA_SAVE_FREQUENCY;
 

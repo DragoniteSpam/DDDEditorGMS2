@@ -1,4 +1,4 @@
-/// @description  void omu_event_custom_remove_property(UIThing);
+/// @description void omu_event_custom_remove_property(UIThing);
 /// @param UIThing
 
 // i really hope the garbage collector does its thing

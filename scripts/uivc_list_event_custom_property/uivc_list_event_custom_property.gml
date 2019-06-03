@@ -1,9 +1,9 @@
-/// @description  uivc_list_event_custom_property(UIList);
+/// @description uivc_list_event_custom_property(UIList);
 /// @param UIList
 
 var selection=ui_list_selection(argument0);
 
-if (selection>=0){
+if (selection>=0) {
     // do not alphabetize these
     var property=argument0.root.event.types[| selection];
     
@@ -20,7 +20,7 @@ if (selection>=0){
     argument0.root.el_property_all.value=property[EventNodeCustomData.REQUIRED];
     
     var datatype=guid_get(property[EventNodeCustomData.TYPE_GUID]);
-    if (datatype!=noone){
+    if (datatype!=noone) {
         argument0.root.el_property_type_guid.text="Select ("+datatype.name+")";
     } else {
         argument0.root.el_property_type_guid.text="Select";

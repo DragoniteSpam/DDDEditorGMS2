@@ -1,6 +1,6 @@
-/// @description  vector2(x, y);
+/// @description vector2(x, y);
 /// @param x
-/// @param  y
+/// @param y
 
 return [argument0, argument1];
 

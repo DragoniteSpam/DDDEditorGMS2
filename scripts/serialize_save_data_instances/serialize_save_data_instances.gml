@@ -1,4 +1,4 @@
-/// @description  void serialize_save_data_instances(buffer);
+/// @description void serialize_save_data_instances(buffer);
 /// @param buffer
 // i'd do this in serialize_save_datadata but i'd prefer to keep these things
 // separated - for now
@@ -7,22 +7,22 @@ buffer_write(argument0, buffer_datatype, SerializeThings.DATA_INSTANCES);
 
 var n_datadata=ds_list_size(Stuff.all_data);
 
-for (var i=0; i<n_datadata; i++){
+for (var i=0; i<n_datadata; i++) {
     var datadata=Stuff.all_data[| i];
     
-    if (!datadata.is_enum){
+    if (!datadata.is_enum) {
         var n_properties=ds_list_size(datadata.properties);
         var n_instances=ds_list_size(datadata.instances);
         
         buffer_write(argument0, buffer_u16, n_instances);
-        for (var j=0; j<n_instances; j++){
+        for (var j=0; j<n_instances; j++) {
             var instance=datadata.instances[| j];
             
             serialize_save_generic(argument0, instance);
             
-            for (var k=0; k<n_properties; k++){
+            for (var k=0; k<n_properties; k++) {
                 var property=datadata.properties[| k];
-                switch (property.type){
+                switch (property.type) {
                     case DataTypes.INT:
                         // constraining this to the range allowed by the property (u8, s8,
                         // s16, etc) sounds fun but probably not worth the time

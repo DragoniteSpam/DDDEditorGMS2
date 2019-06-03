@@ -1,4 +1,4 @@
-/// @description  void uivc_entity_auto_frequency(UIThing);
+/// @description void uivc_entity_auto_frequency(UIThing);
 /// @param UIThing
 
 // safe

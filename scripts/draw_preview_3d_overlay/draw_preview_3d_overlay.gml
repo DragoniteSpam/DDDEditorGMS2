@@ -22,13 +22,13 @@ draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
 draw_text(32, 32, string("Press Escape to close"));
 
-if (keyboard_check(vk_shift)){
+if (keyboard_check(vk_shift)) {
     draw_text(32, 64, string("Up/Down: translate across Z"));
     draw_text(32, 80, string("Left/Right: rotate around Z"));
-} else if (keyboard_check(vk_control)){
+} else if (keyboard_check(vk_control)) {
     draw_text(32, 64, string("Up/Down: rotate around Y"));
     draw_text(32, 80, string("Left/Right: rotate around X"));
-} else if (keyboard_check(vk_alt)){
+} else if (keyboard_check(vk_alt)) {
     draw_text(32, 64, string("Up/Down: scale up/down (all axes)"));
 } else {
     draw_text(32, 64, string("Up/Down: translate across Y"));

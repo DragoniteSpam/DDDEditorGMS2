@@ -1,15 +1,15 @@
-/// @description  void update_mouse_vector(xfrom, yfrom, zfrom, xto, yto, zto, xup, yup, zup, fov, aspect);
+/// @description void update_mouse_vector(xfrom, yfrom, zfrom, xto, yto, zto, xup, yup, zup, fov, aspect);
 /// @param xfrom
-/// @param  yfrom
-/// @param  zfrom
-/// @param  xto
-/// @param  yto
-/// @param  zto
-/// @param  xup
-/// @param  yup
-/// @param  zup
-/// @param  fov
-/// @param  aspect
+/// @param yfrom
+/// @param zfrom
+/// @param xto
+/// @param yto
+/// @param zto
+/// @param xup
+/// @param yup
+/// @param zup
+/// @param fov
+/// @param aspect
 // Pretty suret his is an adapted version of code written by a
 // guy called Yourself on the game maker forums, but i can't
 // find the original thread.

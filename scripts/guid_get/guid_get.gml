@@ -1,7 +1,7 @@
-/// @description  Data guid_get(guid);
+/// @description Data guid_get(guid);
 /// @param guid
 
-if (ds_map_exists(Stuff.all_guids, argument0)){
+if (ds_map_exists(Stuff.all_guids, argument0)) {
     return Stuff.all_guids[? argument0];
 }
 

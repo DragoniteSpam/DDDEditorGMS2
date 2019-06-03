@@ -1,4 +1,4 @@
-/// @description  void dc_event_custom_property_set_enum(UIThing);
+/// @description void dc_event_custom_property_set_enum(UIThing);
 /// @param UIThing
 // i really don't like how much of a clone of the other script
 // this is but
@@ -7,11 +7,11 @@ var pselection=ui_list_selection(argument0.root.root.root.el_list);
 var property=argument0.root.root.root.event.types[| pselection];
 var selection=ui_list_selection(argument0.root.el_list_main);
 
-if (selection>=0){
+if (selection>=0) {
     var list_data=ds_list_create();
     
-    for (var i=0; i<ds_list_size(Stuff.all_data); i++){
-        if (Stuff.all_data[| i].is_enum){
+    for (var i=0; i<ds_list_size(Stuff.all_data); i++) {
+        if (Stuff.all_data[| i].is_enum) {
             ds_list_add(list_data, Stuff.all_data[| i]);
         }
     }
@@ -19,8 +19,8 @@ if (selection>=0){
     var list_sorted=ds_list_sort_name_sucks(list_data);
     
     // this list is always alphabetized - for now
-    //if (Stuff.setting_alphabetize_lists){
-    if (true){
+    //if (Stuff.setting_alphabetize_lists) {
+    if (true) {
         var data=list_sorted[| selection];
     } else {
         var data=list_data[| selection];

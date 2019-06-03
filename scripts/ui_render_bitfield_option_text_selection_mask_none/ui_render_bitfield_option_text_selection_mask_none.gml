@@ -1,7 +1,7 @@
-/// @description  void ui_render_bitfield_option_text_selection_mask_none(UIBitFieldOption, x, y);
+/// @description void ui_render_bitfield_option_text_selection_mask_none(UIBitFieldOption, x, y);
 /// @param UIBitFieldOption
-/// @param  x
-/// @param  y
+/// @param x
+/// @param y
 
 // bitwise has its limits
 argument0.state=Camera.selection_mask==0;

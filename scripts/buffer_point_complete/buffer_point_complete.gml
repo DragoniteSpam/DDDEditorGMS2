@@ -1,15 +1,15 @@
-/// @description  void buffer_point_complete(buffer, x, y, z, nx, ny, nz, xtex, ytex, color, alpha);
+/// @description void buffer_point_complete(buffer, x, y, z, nx, ny, nz, xtex, ytex, color, alpha);
 /// @param buffer
-/// @param  x
-/// @param  y
-/// @param  z
-/// @param  nx
-/// @param  ny
-/// @param  nz
-/// @param  xtex
-/// @param  ytex
-/// @param  color
-/// @param  alpha
+/// @param x
+/// @param y
+/// @param z
+/// @param nx
+/// @param ny
+/// @param nz
+/// @param xtex
+/// @param ytex
+/// @param color
+/// @param alpha
 // Assume vbuff is a vertex buffer created using the correct format.
 
 buffer_write(argument0, T, argument1);

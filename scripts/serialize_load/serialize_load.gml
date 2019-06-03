@@ -1,11 +1,11 @@
-/// @description  void serialize_load(filename);
+/// @description void serialize_load(filename);
 /// @param filename
 
 var original=buffer_load(argument0);
 var erroneous=false;
 var header=chr(buffer_read(original, buffer_u8))+chr(buffer_read(original, buffer_u8))+chr(buffer_read(original, buffer_u8));
 
-if (header=="DDD"){
+if (header=="DDD") {
     // if it's uncompressed, don't decompress it
     var buffer=original;
 } else {
@@ -15,7 +15,7 @@ if (header=="DDD"){
 }
 
 // if the decompressed buffer is bad, cancel - try catch will make this so much nicer
-if (buffer < 0){
+if (buffer < 0) {
     erroneous=true;
 } else {
     buffer_seek(buffer, buffer_seek_start, 0);
@@ -26,18 +26,18 @@ if (buffer < 0){
     
     var header=chr(buffer_read(buffer, buffer_u8))+chr(buffer_read(buffer, buffer_u8))+chr(buffer_read(buffer, buffer_u8));
     
-    if (header=="DDD"){
+    if (header=="DDD") {
         Stuff.save_name_data=string_replace(filename_name(argument0), EXPORT_EXTENSION_DATA, "");
         
         var version=buffer_read(buffer, buffer_u32);
         var what=buffer_read(buffer, buffer_u8);
         var things=buffer_read(buffer, buffer_u32);
         
-        if (what==SERIALIZE_DATA){
+        if (what==SERIALIZE_DATA) {
             // this may cause things to break, but it shouldn't;
             // includes data, events, generics and everything else
             instance_activate_object(Data);
-            with (Data) if (deleteable){
+            with (Data) if (deleteable) {
                 instance_destroy();
             }
             // clear all data - data has already been destroyed so you just have to
@@ -47,7 +47,7 @@ if (buffer < 0){
             ds_list_clear(Stuff.all_event_templates);
             ds_map_clear(Stuff.all_guids);
             ds_list_clear(Stuff.all_data);
-        } else if (what==SERIALIZE_MAP){
+        } else if (what==SERIALIZE_MAP) {
             // todo clear editor map - IF entities get their own GUIDs eventually,
             // they should go in a separate lookup which should be cleared in here
         }
@@ -56,15 +56,15 @@ if (buffer < 0){
          * data types
          */
         
-        if (version>=DataVersions.NOT_STUPID_DATA_SIZE){
+        if (version>=DataVersions.NOT_STUPID_DATA_SIZE) {
             // you will never have this many Things
             things=100000000;
         }
         
         var stop=false;
-        repeat(things){
+        repeat(things) {
             var datatype=buffer_read(buffer, buffer_datatype);
-            switch (datatype){
+            switch (datatype) {
                 // game stuff
                 case SerializeThings.AUTOTILES_FULL:
                     serialize_load_autotiles_all(buffer, version);
@@ -109,17 +109,17 @@ if (buffer < 0){
                     break;
             }
             
-            if (stop){
+            if (stop) {
                 break;
             }
         }
         
-        if (what==SERIALIZE_MAP){
+        if (what==SERIALIZE_MAP) {
             Stuff.all_maps[? ActiveMap.internal_name]=true;
             uivc_select_autotile_refresh(/*Camera.selection_fill_autotile*/);
         }
         
-        with (Data) if (deactivateable){
+        with (Data) if (deactivateable) {
             instance_deactivate_object(id);
         }
         
@@ -131,7 +131,7 @@ if (buffer < 0){
     }
 }
 
-if (erroneous){
+if (erroneous) {
     dialog_create_notice(null, "this is a ddd* file but the contents are no good?");
 }
 

@@ -1,4 +1,4 @@
-/// @description  uivc_input_data_property_type(UIThing);
+/// @description uivc_input_data_property_type(UIThing);
 /// @param UIThing
 
 argument0.root.root.selected_property.type=argument0.value;

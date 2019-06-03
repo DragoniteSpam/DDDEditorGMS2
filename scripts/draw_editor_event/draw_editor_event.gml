@@ -13,7 +13,7 @@ var controller_release_middle=Controller.release_middle;
 // There are other ways to do this, but disable controller (mouse) input if
 // the mouse isn't in the view
 
-if (!mouse_within_view(view_fullscreen)){
+if (!mouse_within_view(view_fullscreen)) {
     Controller.mouse_left=false;
     Controller.mouse_right=false;
     Controller.mouse_middle=false;
@@ -45,8 +45,8 @@ draw_rectangle_colour(XVIEW, YVIEW+HVIEW-16, XVIEW+WVIEW, YVIEW+HVIEW, c_white, 
 draw_text_colour(XVIEW+16, YVIEW+HVIEW-8, string("Canvas at ("+string(XVIEW)+", "+string(YVIEW)+"); mouse at ("+
     string(mouse_x_view)+", "+string(mouse_y_view)+")"), c_black, c_black, c_black, c_black, 1);
 
-if (Controller.mouse_right){
-    if (!dialog_exists()){
+if (Controller.mouse_right) {
+    if (!dialog_exists()) {
         window_set_cursor(cr_none);
         draw_scroll();
 		
@@ -58,7 +58,7 @@ if (Controller.mouse_right){
 
 // Reset controller input
 
-if (!mouse_within_view(view_fullscreen)){
+if (!mouse_within_view(view_fullscreen)) {
     Controller.mouse_left=controller_left;
     Controller.mouse_right=controller_right;
     Controller.mouse_middle=controller_middle;

@@ -1,4 +1,4 @@
-/// @description  void dialog_data_type_disable(Dialog);
+/// @description void dialog_data_type_disable(Dialog);
 /// @param Dialog
 // turns off all of the UI elements associated with properties of data
 

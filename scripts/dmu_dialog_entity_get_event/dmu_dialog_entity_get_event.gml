@@ -1,4 +1,4 @@
-/// @description  void dmu_dialog_entity_get_event(UIThing);
+/// @description void dmu_dialog_entity_get_event(UIThing);
 /// @param UIThing
 
 var selection_index=ui_list_selection(argument0.root.el_list);
@@ -10,7 +10,7 @@ var selection_index=ui_list_selection(argument0.root.el_list);
 // just stay here, and wow that was a lot of technobabble in one runon sentence
 dmu_dialog_commit(argument0);
 
-if (selection_index>=0){
+if (selection_index>=0) {
     var new_event=Stuff.all_events[| selection_index];
     
     // safe
@@ -19,7 +19,7 @@ if (selection_index>=0){
     var entity=list[| 0];
     var page=entity.object_events[| index];
     
-    if (new_event.GUID!=page.event_guid){
+    if (new_event.GUID!=page.event_guid) {
         page.event_guid=new_event.GUID;
         argument0.root.root.el_event_guid.text="Event: "+new_event.name;
         dialog_create_entity_get_event_entrypoint(argument0.root.root);

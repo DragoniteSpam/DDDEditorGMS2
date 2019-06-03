@@ -1,4 +1,4 @@
-/// @description  void dmu_close_no_questions_asked(UIThing);
+/// @description void dmu_close_no_questions_asked(UIThing);
 /// @param UIThing
 
 // this is for the "okay" button at the bottom of dialogs. if you

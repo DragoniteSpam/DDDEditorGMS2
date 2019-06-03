@@ -1,4 +1,4 @@
-/// @description  void dialog_data_type_enable_by_type(Dialog);
+/// @description void dialog_data_type_enable_by_type(Dialog);
 /// @param Dialog
 // turns off all of the UI elements associated with properties of data
 
@@ -11,14 +11,14 @@ argument0.el_property_name.value=argument0.selected_property.name;
 
 argument0.el_property_type.interactive=!argument0.selected_data.is_enum;
 
-if (argument0.selected_data.is_enum){
+if (argument0.selected_data.is_enum) {
     // nothing special for here
 } else {
     argument0.el_property_type.interactive=true;
     
     argument0.el_property_type.value=argument0.selected_property.type;
     
-    switch (argument0.selected_property.type){
+    switch (argument0.selected_property.type) {
         case DataTypes.INT:
         case DataTypes.FLOAT:
             argument0.el_property_min.interactive=true;
@@ -46,19 +46,19 @@ if (argument0.selected_data.is_enum){
             var type=guid_get(argument0.selected_property.type_guid);
             
             if ((type!=noone)&&((type.is_enum&&argument0.selected_property.type==DataTypes.DATA)||
-                    (!type.is_enum&&argument0.selected_property.type==DataTypes.ENUM))){
+                    (!type.is_enum&&argument0.selected_property.type==DataTypes.ENUM))) {
                 argument0.el_property_type_guid.color=c_red;
             } else {
                 argument0.el_property_type_guid.color=c_black;
             }
             
-            if (type==noone){
+            if (type==noone) {
                 argument0.el_property_type_guid.text="Select";
             } else {
                 argument0.el_property_type_guid.text=type.name+" (Select)";
             }
             
-            if (argument0.selected_property.type==DataTypes.ENUM){
+            if (argument0.selected_property.type==DataTypes.ENUM) {
                 argument0.el_property_type_guid.onmouseup=omu_data_enum_select;
             } else  {
                 argument0.el_property_type_guid.onmouseup=omu_data_data_select;

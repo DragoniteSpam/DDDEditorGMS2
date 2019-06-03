@@ -1,4 +1,4 @@
-/// @description  void serialize_save_tilesets_meta(buffer);
+/// @description void serialize_save_tilesets_meta(buffer);
 /// @param buffer
 
 buffer_write(argument0, buffer_datatype, SerializeThings.TILESET_META);
@@ -8,7 +8,7 @@ buffer_write(argument0, buffer_u8, Stuff.setting_embed_tilesets);
 var n_tilesets=ds_list_size(Stuff.all_tilesets);
 buffer_write(argument0, buffer_u16, n_tilesets);
 
-for (var i=0; i<n_tilesets; i++){
+for (var i=0; i<n_tilesets; i++) {
     var ts=Stuff.all_tilesets[| i];
     
     buffer_write(argument0, buffer_string, ts.picture_name);
@@ -19,7 +19,7 @@ for (var i=0; i<n_tilesets; i++){
     var n_autotiles=array_length_1d(ts.autotiles);
     buffer_write(argument0, buffer_u8, n_autotiles);
     
-    for (var j=0; j<n_autotiles; j++){
+    for (var j=0; j<n_autotiles; j++) {
         // s16 because no tile is "noone"
         buffer_write(argument0, buffer_s16, ts.autotiles[j]);
         
@@ -38,8 +38,8 @@ for (var i=0; i<n_tilesets; i++){
     buffer_write(argument0, buffer_u16, t_grid_width);
     buffer_write(argument0, buffer_u16, t_grid_height);
     
-    for (var j=0; j<t_grid_width; j++){
-        for (var k=0; k<t_grid_height; k++){
+    for (var j=0; j<t_grid_width; j++) {
+        for (var k=0; k<t_grid_height; k++) {
             buffer_write(argument0, buffer_u8, ts.passage[# j, k]);
             buffer_write(argument0, buffer_u8, ts.priority[# j, k]);
             buffer_write(argument0, buffer_u8, ts.flags[# j, k]);

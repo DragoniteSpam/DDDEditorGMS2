@@ -1,7 +1,7 @@
-/// @description  void setting_save_string(section, key, value);
+/// @description void setting_save_string(section, key, value);
 /// @param section
-/// @param  key
-/// @param  value
+/// @param key
+/// @param value
 // wrapper for when you want to save a single configuration value
 
 ini_open(DATA_INI);

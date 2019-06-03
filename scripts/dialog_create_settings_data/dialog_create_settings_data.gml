@@ -1,4 +1,4 @@
-/// @description  void dialog_create_settings_data(Dialog);
+/// @description void dialog_create_settings_data(Dialog);
 /// @param Dialog
 
 var dw=512;

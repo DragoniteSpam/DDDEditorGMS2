@@ -1,7 +1,7 @@
 /// @description c_object_set_shape(object, group, mask)
 /// @param object
-/// @param  group
-/// @param  mask
+/// @param group
+/// @param mask
 /*
 Sets the collision mask of the object.
 */

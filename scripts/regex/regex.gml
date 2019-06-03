@@ -1,6 +1,6 @@
-/// @description  boolean regex(expression, string);
+/// @description boolean regex(expression, string);
 /// @param expression
-/// @param  string
+/// @param string
 
 regex_setexpression(argument0);
 regex_setinput(argument1);

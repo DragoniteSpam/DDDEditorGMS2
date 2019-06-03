@@ -1,4 +1,4 @@
-/// @description  void dialog_create_settings_map(Dialog);
+/// @description void dialog_create_settings_map(Dialog);
 /// @param Dialog
 
 var dw=960;

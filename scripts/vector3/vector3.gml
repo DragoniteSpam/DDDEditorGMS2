@@ -1,7 +1,7 @@
-/// @description  vector3(x, y, z);
+/// @description vector3(x, y, z);
 /// @param x
-/// @param  y
-/// @param  z
+/// @param y
+/// @param z
 
 return [argument0, argument1, argument2];
 

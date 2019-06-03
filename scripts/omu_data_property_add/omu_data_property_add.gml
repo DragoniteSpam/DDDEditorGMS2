@@ -1,9 +1,9 @@
-/// @description  void omu_data_property_add(UIThing);
+/// @description void omu_data_property_add(UIThing);
 /// @param UIThing
 
 var datadata=argument0.root.selected_data;
 
-if (ds_list_size(datadata.properties)<1000){
+if (ds_list_size(datadata.properties)<1000) {
     var property=instantiate(DataProperty);
     property.name="Property"+string(ds_list_size(datadata.properties));
     ds_list_add(datadata.properties, property);

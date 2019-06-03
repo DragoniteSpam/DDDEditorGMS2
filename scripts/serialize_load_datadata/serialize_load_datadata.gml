@@ -1,12 +1,12 @@
-/// @description  void serialize_load_datadata(buffer, version);
+/// @description void serialize_load_datadata(buffer, version);
 /// @param buffer
-/// @param  version
+/// @param version
 
 var n_datadata=buffer_read(argument0, buffer_u16);
-repeat (n_datadata){
+repeat (n_datadata) {
     var bools=buffer_read(argument0, buffer_u8);
     
-    if (unpack(bools, 0)){
+    if (unpack(bools, 0)) {
         // is enum?
         var data=instantiate(DataEnum);
     } else {
@@ -24,7 +24,7 @@ repeat (n_datadata){
     
     var n_properties=buffer_read(argument0, buffer_u16);
     
-    repeat (n_properties){
+    repeat (n_properties) {
         var property=instantiate(DataProperty);
         ds_list_add(data.properties, property);
         guid_remove(property.GUID);
@@ -36,7 +36,7 @@ repeat (n_datadata){
         var pbools=buffer_read(argument0, buffer_u8);
         property.deleted=unpack(pbools, 0);
         
-        if (data.is_enum){
+        if (data.is_enum) {
             // nothing special was saved
         } else {
             property.type=buffer_read(argument0, buffer_u8);

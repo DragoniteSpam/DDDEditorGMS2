@@ -1,4 +1,4 @@
-/// @description  void dmu_dialog_view_missing(UIThing);
+/// @description void dmu_dialog_view_missing(UIThing);
 /// @param UIThing
 
 ds_stuff_open_local("missing.txt");

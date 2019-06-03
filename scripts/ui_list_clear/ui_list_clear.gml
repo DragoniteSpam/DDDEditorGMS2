@@ -1,4 +1,4 @@
-/// @description  void ui_list_clear(UIList);
+/// @description void ui_list_clear(UIList);
 /// @param UIList
 // this clears EVERYTHING in the list - including the entries. most likely,
 // you actually want ui_list_deselect.

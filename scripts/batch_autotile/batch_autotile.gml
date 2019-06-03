@@ -1,7 +1,7 @@
-/// @description  void batch_autotile(vertex buffer, wireframe buffer, EntityAutoTile);
+/// @description void batch_autotile(vertex buffer, wireframe buffer, EntityAutoTile);
 /// @param vertex buffer
-/// @param  wireframe buffer
-/// @param  EntityAutoTile
+/// @param wireframe buffer
+/// @param EntityAutoTile
 
 var buffer=argument0;
 var wire=argument1;

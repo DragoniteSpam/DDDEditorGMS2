@@ -1,4 +1,4 @@
-/// @description  void ds_stuff_init();
+/// @description void ds_stuff_init();
 var dll = "data\\stuff.dll";
 var calltype = dll_cdecl;
 

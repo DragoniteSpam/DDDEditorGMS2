@@ -1,4 +1,4 @@
-/// @description  int ui_list_selection(UIList);
+/// @description int ui_list_selection(UIList);
 /// @param UIList
 
 // this is only guaranteed to work if the list only supports single
@@ -7,7 +7,7 @@
 
 // if nothing is selected it returns noone instead.
 
-if (ds_map_size(argument0.selected_entries)==0){
+if (ds_map_size(argument0.selected_entries)==0) {
     return noone;
 }
 

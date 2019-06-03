@@ -1,4 +1,4 @@
-/// @description  void omu_event_custom_data_select(UIThing);
+/// @description void omu_event_custom_data_select(UIThing);
 /// @param UIThing
 
 var dialog=dialog_create_data_data_select(argument0);

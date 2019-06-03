@@ -1,4 +1,4 @@
-/// @description  void update_autotile(EntityAutotile);
+/// @description void update_autotile(EntityAutotile);
 /// @param EntityAutotile
 
 var value=(argument0.neighbors[0]!=noone)<<0|

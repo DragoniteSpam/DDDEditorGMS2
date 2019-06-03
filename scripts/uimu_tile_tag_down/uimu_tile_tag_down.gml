@@ -1,4 +1,4 @@
-/// @description  uimu_tile_tag_down(UIThing);
+/// @description uimu_tile_tag_down(UIThing);
 /// @param UIThing
 
 var ts=get_active_tileset();

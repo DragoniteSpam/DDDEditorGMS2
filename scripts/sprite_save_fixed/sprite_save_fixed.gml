@@ -1,7 +1,7 @@
-/// @description  sprite_save_fixed(sprite, subimg, path)
+/// @description sprite_save_fixed(sprite, subimg, path)
 /// @param sprite
-/// @param  subimg
-/// @param  path
+/// @param subimg
+/// @param path
 // by yellowafterlife
 
 var t=sprite_to_surface(argument0, argument1);

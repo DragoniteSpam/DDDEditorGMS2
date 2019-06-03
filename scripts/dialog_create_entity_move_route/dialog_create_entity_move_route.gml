@@ -1,6 +1,6 @@
-/// @description  void dialog_create_entity_move_route(Dialog, DataMoveRoute);
+/// @description void dialog_create_entity_move_route(Dialog, DataMoveRoute);
 /// @param Dialog
-/// @param  DataMoveRoute
+/// @param DataMoveRoute
 
 var dw=1024;
 var dh=560;

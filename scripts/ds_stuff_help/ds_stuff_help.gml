@@ -1,8 +1,8 @@
-/// @description  double ds_stuff_help([file]);
+/// @description double ds_stuff_help([file]);
 /// @param [file]
 
 var where="Overview";
-switch (argument_count){
+switch (argument_count) {
     case 1:
         where=argument[0];
         break;

@@ -1,14 +1,14 @@
-/// @description  void omu_event_remove_custom_event(UIThing);
+/// @description void omu_event_remove_custom_event(UIThing);
 /// @param UIThing
 
 var index=ui_list_selection(argument0.root.root.el_list_custom);
 
-if (index==noone){
+if (index==noone) {
     show_message("select an event first!");
 } else {
     var custom=Stuff.all_event_custom[| index];
     
-    if (show_question("Delete "+custom.name+"? If you have any instances of it instantiated, they will also be deleted and event graphs may break.")){
+    if (show_question("Delete "+custom.name+"? If you have any instances of it instantiated, they will also be deleted and event graphs may break.")) {
         instance_activate_object(custom);
         instance_destroy(custom);
         ds_list_delete(Stuff.all_event_custom, index);

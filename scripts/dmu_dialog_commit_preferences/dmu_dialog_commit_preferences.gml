@@ -1,4 +1,4 @@
-/// @description  void dmu_dialog_commit_preferences(UIThing);
+/// @description void dmu_dialog_commit_preferences(UIThing);
 /// @param UIThing
 
 ini_open(DATA_INI);

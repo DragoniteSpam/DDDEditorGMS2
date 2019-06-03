@@ -1,4 +1,4 @@
-/// @description  void dialog_create_entity_get_event_entrypoint(Dialog);
+/// @description void dialog_create_entity_get_event_entrypoint(Dialog);
 /// @param Dialog
 
 // you might think it's odd that this is of a different size than the get_event
@@ -27,8 +27,8 @@ var yy=64;
 var spacing=16;
 
 var el_list=create_list(16, yy, "Select an entrypoint", "<should never see this>", ew, eh, 16, null, false, dg);
-for (var i=0; i<ds_list_size(event.nodes); i++){
-    if (event.nodes[| i].type==EventNodeTypes.ENTRYPOINT){
+for (var i=0; i<ds_list_size(event.nodes); i++) {
+    if (event.nodes[| i].type==EventNodeTypes.ENTRYPOINT) {
         ds_list_add(el_list.entries, event.nodes[| i].GUID);
     }
 }

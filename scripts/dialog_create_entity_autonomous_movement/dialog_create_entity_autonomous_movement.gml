@@ -1,4 +1,4 @@
-/// @description  void dialog_create_entity_autonomous_movement(Dialog);
+/// @description void dialog_create_entity_autonomous_movement(Dialog);
 /// @param Dialog
 
 var dw=640;

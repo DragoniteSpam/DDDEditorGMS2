@@ -1,8 +1,8 @@
-/// @description  EntityPawn instance_create_pawn([other parameters that should be dealt with later]);
+/// @description EntityPawn instance_create_pawn([other parameters that should be dealt with later]);
 /// @param [other parameters that should be dealt with later]
 
-with (instantiate(EntityPawn)){
-    switch (argument_count){
+with (instantiate(EntityPawn)) {
+    switch (argument_count) {
         case 1:
             break;
     }

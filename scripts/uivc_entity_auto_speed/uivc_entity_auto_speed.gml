@@ -1,4 +1,4 @@
-/// @description  void uivc_entity_auto_speed(UIThing);
+/// @description void uivc_entity_auto_speed(UIThing);
 /// @param UIThing
 
 // safe

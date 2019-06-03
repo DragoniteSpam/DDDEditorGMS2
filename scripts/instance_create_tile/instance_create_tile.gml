@@ -1,10 +1,10 @@
-/// @description  EntityTile instance_create_tile(tile x, tile y, [other parameters that should be dealt with later]);
+/// @description EntityTile instance_create_tile(tile x, tile y, [other parameters that should be dealt with later]);
 /// @param tile x
-/// @param  tile y
-/// @param  [other parameters that should be dealt with later]
+/// @param tile y
+/// @param [other parameters that should be dealt with later]
 
-with (instantiate(EntityTile)){
-    switch (argument_count){
+with (instantiate(EntityTile)) {
+    switch (argument_count) {
         case 2:
             tile_y=argument[1];
             tile_x=argument[0];

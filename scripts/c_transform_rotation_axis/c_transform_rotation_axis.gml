@@ -1,8 +1,8 @@
 /// @description c_transform_rotation_axis(xa, ya, za, angle)
 /// @param xa
-/// @param  ya
-/// @param  za
-/// @param  angle
+/// @param ya
+/// @param za
+/// @param angle
 /*
 Sets the rotation of the transformation as an angle around an axis.
 Note: Angle is in radians.

@@ -1,17 +1,17 @@
-/// @description  UIButton create_button(x, y, text, width, height, alignment, onmouseup, root, [help], [anchor horizontal], [anchor vertical]);
+/// @description UIButton create_button(x, y, text, width, height, alignment, onmouseup, root, [help], [anchor horizontal], [anchor vertical]);
 /// @param x
-/// @param  y
-/// @param  text
-/// @param  width
-/// @param  height
-/// @param  alignment
-/// @param  onmouseup
-/// @param  root
-/// @param  [help]
-/// @param  [anchor horizontal]
-/// @param  [anchor vertical]
+/// @param y
+/// @param text
+/// @param width
+/// @param height
+/// @param alignment
+/// @param onmouseup
+/// @param root
+/// @param [help]
+/// @param [anchor horizontal]
+/// @param [anchor vertical]
 
-with (instance_create_depth(argument[0], argument[1], 0, UIButton)){
+with (instance_create_depth(argument[0], argument[1], 0, UIButton)) {
     text=argument[2];
     width=argument[3];
     height=argument[4];
@@ -20,9 +20,9 @@ with (instance_create_depth(argument[0], argument[1], 0, UIButton)){
     onmouseup=argument[6];
     root=argument[7];
     
-    switch (argument_count){
+    switch (argument_count) {
         case 11:
-            switch (argument[10]){
+            switch (argument[10]) {
                 case fa_top:
                     break;
                 case fa_middle:
@@ -33,7 +33,7 @@ with (instance_create_depth(argument[0], argument[1], 0, UIButton)){
                     break;
             }
         case 10:
-            switch (argument[9]){
+            switch (argument[9]) {
                 case fa_left:
                     break;
                 case fa_center:

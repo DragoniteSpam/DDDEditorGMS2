@@ -1,7 +1,7 @@
-/// @description  serialize_load_generic(buffer, Data, version);
+/// @description serialize_load_generic(buffer, Data, version);
 /// @param buffer
-/// @param  Data
-/// @param  version
+/// @param Data
+/// @param version
 
 var version=argument2;
 

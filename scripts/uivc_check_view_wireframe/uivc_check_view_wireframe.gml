@@ -1,4 +1,4 @@
-/// @description  uivc_check_view_wireframe(UIThing);
+/// @description uivc_check_view_wireframe(UIThing);
 /// @param UIThing
 
 Camera.view_wireframe=argument0.value;

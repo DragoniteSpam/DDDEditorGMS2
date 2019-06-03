@@ -16,7 +16,7 @@ draw_line_width_colour(x2, y1, x2, y2, w, c_red, c_red);
 draw_line_width_colour(x1, y2, x2, y2, w, c_red, c_red);
 
 /*
-if (z2!=z1){
+if (z2!=z1) {
     // top box
     transform_add(0, 0, z2-z1, 0, 0, 0, 1, 1, 1);
     

@@ -1,4 +1,4 @@
-/// @description  void uivc_entity_auto_move(UIThing);
+/// @description void uivc_entity_auto_move(UIThing);
 /// @param UIThing
 
 // safe

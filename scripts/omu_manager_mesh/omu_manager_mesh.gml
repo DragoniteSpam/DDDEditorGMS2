@@ -1,4 +1,4 @@
-/// @description  void omu_manager_mesh(UIThing);
+/// @description void omu_manager_mesh(UIThing);
 /// @param UIThing
 
 var catch=argument0;

@@ -1,4 +1,4 @@
-/// @description  void uivc_entity_event_enable_switch_global(UIThing);
+/// @description void uivc_entity_event_enable_switch_global(UIThing);
 /// @param UIThing
 
 // safe

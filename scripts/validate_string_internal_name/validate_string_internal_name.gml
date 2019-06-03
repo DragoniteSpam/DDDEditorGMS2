@@ -1,4 +1,4 @@
-/// @description  boolean validate_string_internal_name(string);
+/// @description boolean validate_string_internal_name(string);
 /// @param string
 
 // characters must be save to use as a file name; to keep things simple we'll

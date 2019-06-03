@@ -1,7 +1,7 @@
-/// @description  void ui_render_list_event(UIList, x, y);
+/// @description void ui_render_list_event(UIList, x, y);
 /// @param UIList
-/// @param  x
-/// @param  y
+/// @param x
+/// @param y
 
 var oldentries=argument0.entries;
 argument0.entries=Stuff.all_events;

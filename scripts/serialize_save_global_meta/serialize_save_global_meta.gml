@@ -1,4 +1,4 @@
-/// @description  void serialize_save_global_meta(buffer);
+/// @description void serialize_save_global_meta(buffer);
 /// @param buffer
 
 buffer_write(argument0, buffer_datatype, SerializeThings.MISC_MAP_META);
@@ -10,7 +10,7 @@ var map_list=ds_map_to_list(Stuff.all_maps);
 var n_maps=ds_list_size(map_list);
 buffer_write(argument0, buffer_u16, n_maps);
 
-for (var i=0; i<n_maps; i++){
+for (var i=0; i<n_maps; i++) {
     buffer_write(argument0, buffer_string, map_list[| i]);
 }
 

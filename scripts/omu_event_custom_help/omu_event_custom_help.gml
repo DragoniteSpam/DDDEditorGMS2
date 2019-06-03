@@ -1,4 +1,4 @@
-/// @description  void omu_event_custom_help(UIThing);
+/// @description void omu_event_custom_help(UIThing);
 /// @param UIThing
 
 var catch=argument0;

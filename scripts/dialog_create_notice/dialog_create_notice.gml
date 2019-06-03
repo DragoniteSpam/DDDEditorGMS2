@@ -1,10 +1,10 @@
-/// @description  void dialog_create_notice(Dialog, message, [caption message], [confirm message], [width], [height]);
+/// @description void dialog_create_notice(Dialog, message, [caption message], [confirm message], [width], [height]);
 /// @param Dialog
-/// @param  message
-/// @param  [caption message]
-/// @param  [confirm message]
-/// @param  [width]
-/// @param  [height]
+/// @param message
+/// @param [caption message]
+/// @param [confirm message]
+/// @param [width]
+/// @param [height]
 
 var message=argument[1];
 var caption_message="Important!";
@@ -13,21 +13,21 @@ var confirm_message="sure";
 var dw=400;
 var dh=240;
 
-switch (argument_count){
+switch (argument_count) {
     case 6:
-        if (!is_undefined(argument[5])){
+        if (!is_undefined(argument[5])) {
             dh=argument[5];
         }
     case 5:
-        if (!is_undefined(argument[4])){
+        if (!is_undefined(argument[4])) {
             dw=argument[4];
         }
     case 4:
-        if (!is_undefined(argument[3])){
+        if (!is_undefined(argument[3])) {
             confirm_message=argument[3]
         }
     case 3:
-        if (!is_undefined(argument[2])){
+        if (!is_undefined(argument[2])) {
             caption_message=argument[2];
         }
         break;

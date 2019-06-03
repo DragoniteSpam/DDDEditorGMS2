@@ -1,4 +1,4 @@
-/// @description  void instance_destroy_later(what);
+/// @description void instance_destroy_later(what);
 /// @param what
 // if you can't savely destroy anything until the end of the step
 

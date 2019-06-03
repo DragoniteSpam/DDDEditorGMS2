@@ -9,7 +9,7 @@ varying vec4 v_vColour;
 const int maxpositions=12*16*8*2;
 uniform float texoffset[maxpositions];
 
-void main(){
+void main() {
     vec4 object_space_pos = vec4( in_Position.x, in_Position.y, in_Position.z, 1.0);
     gl_Position = gm_Matrices[MATRIX_WORLD_VIEW_PROJECTION] * object_space_pos;
     
@@ -42,21 +42,21 @@ value=0;
 #define draw
 // draw event code
 
-for (var i=0; i<9; i++){
-    if (i!=4){
+for (var i=0; i<9; i++) {
+    if (i!=4) {
         var xx=32+32*(i mod 3);
         var yy=32+32*(i div 3);
         var index=i;
-        if (index>3){
+        if (index>3) {
             index--;
         }
-        if (mouse_x>xx&&mouse_x<xx+32&&mouse_y>yy&&mouse_y<yy+32){
-            if (mouse_check_button_pressed(mb_left)){
+        if (mouse_x>xx&&mouse_x<xx+32&&mouse_y>yy&&mouse_y<yy+32) {
+            if (mouse_check_button_pressed(mb_left)) {
                 value=value^(1<<index);
             }
         }
         var c=c_blue;
-        if (value&(1<<index)){
+        if (value&(1<<index)) {
             c=c_green;
         }
         draw_rectangle_colour(xx, yy, xx+32, yy+32, c, c, c, c, false);

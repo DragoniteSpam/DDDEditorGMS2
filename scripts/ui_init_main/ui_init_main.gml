@@ -1,6 +1,6 @@
-/// @description  ui_init_main();
+/// @description ui_init_main();
 
-with (instantiate(UIMain)){
+with (instantiate(UIMain)) {
     /*
      * tab system setup
      */
@@ -652,7 +652,7 @@ with (instantiate(UIMain)){
     
     element=create_list(legal_x+spacing, yy, "Defined Autotiles: ", "<something is wrong>", col_width, element_height, 28, uivc_list_selection_autotile, false, t_p_autotile_editor);
     ds_map_add(element.selected_entries, 0, true);
-    for (var i=0; i<AUTOTILE_MAX; i++){
+    for (var i=0; i<AUTOTILE_MAX; i++) {
         create_list_entries(element, string(i)+". <none set>", c_black);
     }
     ds_list_add(t_p_autotile_editor.contents, element);

@@ -1,4 +1,4 @@
-/// @description  void dc_autotile_selector(Dialog);
+/// @description void dc_autotile_selector(Dialog);
 /// @param Dialog
 
 var map=argument0.data;
@@ -18,25 +18,25 @@ Camera.schedule_rebuild_master_texture=true;
 /*
 var index=noone;
 
-if (ds_map_exists(map, "list")){
+if (ds_map_exists(map, "list")) {
     // this is a single-select list so there should only be one value in the map.
     // also don't delete it yet, delete it when the dialog is destroyed otherwise
     // you have a memory leak
     index=ds_map_find_first(map[? "list"])-1;
 }
 
-if (index==noone){
+if (index==noone) {
     var missing=ds_list_create();
-    for (var i=0; i<ds_list_size(ActiveMap.all_entities); i++){
+    for (var i=0; i<ds_list_size(ActiveMap.all_entities); i++) {
         var thing=ActiveMap.all_entities[| i];
-        if (instanceof(thing, EntityAutoTile)){
-            if (thing.autotile_id!=index){
+        if (instanceof(thing, EntityAutoTile)) {
+            if (thing.autotile_id!=index) {
                 ds_list_add(missing, thing);
             }
         }
     }
     
-    if (!ds_list_empty(missing)){
+    if (!ds_list_empty(missing)) {
         var dg=dialog_create_yes_or_no(argument0, "So it looks like you want to reset this autotile. There are still some autotile Entities in the map that point to it, so if you proceed, they will just be deleted. Is this all right with you?",
             dmu_dialog_commit, "Hey!", "sure", dmu_dialog_cancel, "no stop");
         dg.commit=dc_vrax;
@@ -46,7 +46,7 @@ if (index==noone){
     
     ds_list_destroy(missing);
     /*
-    if (name_missing){
+    if (name_missing) {
         var dg=dialog_create_yes_or_no(argument0, "If you change the model file now, there are some Entities whose models will no longer point to anything. If you proceed, these Entities will just be deleted. Is this all right with you?",
             dmu_dialog_commit, "Hey!", "sure", dmu_dialog_cancel, "no stop");
         dg.commit=dc_vrax;
@@ -62,27 +62,27 @@ if (index==noone){
 var xx=ActiveMap.xx;
 var yy=ActiveMap.yy;
 var zz=ActiveMap.zz;
-if (ds_map_exists(map, "x")){
+if (ds_map_exists(map, "x")) {
     xx=map[? "x"];
 }
-if (ds_map_exists(map, "y")){
+if (ds_map_exists(map, "y")) {
     yy=map[? "y"];
 }
-if (ds_map_exists(map, "z")){
+if (ds_map_exists(map, "z")) {
     zz=map[? "z"];
 }
 
 var oob=ds_list_create();
-for (var i=0; i<ds_list_size(ActiveMap.all_entities); i++){
+for (var i=0; i<ds_list_size(ActiveMap.all_entities); i++) {
     var thing=ActiveMap.all_entities[| i];
-    if (thing.xx>=xx||thing.yy>=yy||thing.zz>=zz){
+    if (thing.xx>=xx||thing.yy>=yy||thing.zz>=zz) {
         ds_list_add(oob, thing);
     }
 }
 
 selection_clear();
 
-if (!ds_list_empty(oob)){
+if (!ds_list_empty(oob)) {
     dialog_create_settings_confirm_world_resize(argument0);
 } else {
     // normally when you do this kind of thing you'd want to destroy the

@@ -1,4 +1,4 @@
-/// @description  void momu_about(MenuElement);
+/// @description void momu_about(MenuElement);
 /// @param MenuElement
 
 var catch=argument0;

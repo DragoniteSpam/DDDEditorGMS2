@@ -1,4 +1,4 @@
-/// @description  void omu_entity_get_event(UIThing);
+/// @description void omu_entity_get_event(UIThing);
 /// @param UIThing
 
 // not sure if this is standard; argument0 is the button itself, so

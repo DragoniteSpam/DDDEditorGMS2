@@ -1,4 +1,4 @@
-/// @description  setup
+/// @description setup
 
 #region setup
 enum SerializeThings {
@@ -80,7 +80,7 @@ alarm[0]=1200;
 
 randomize();
 
-if (DEBUG){
+if (DEBUG) {
     show_debug_overlay(true);
 }
 
@@ -95,19 +95,19 @@ tf=["False", "True"];
 
 // local storage folders
 
-if (!directory_exists(PATH_BACKUP_DATA)){
+if (!directory_exists(PATH_BACKUP_DATA)) {
     directory_create(PATH_BACKUP_DATA);
 }
 
-if (!directory_exists(PATH_BACKUP_MAP)){
+if (!directory_exists(PATH_BACKUP_MAP)) {
     directory_create(PATH_BACKUP_MAP);
 }
 
-if (!directory_exists(PATH_VRA)){
+if (!directory_exists(PATH_VRA)) {
     directory_create(PATH_VRA);
 }
 
-if (!directory_exists(PATH_RESOURCES)){
+if (!directory_exists(PATH_RESOURCES)) {
     directory_create(PATH_RESOURCES);
 }
 
@@ -127,7 +127,7 @@ dimensions=Dimensions.THREED;
 // This will cause a problem with texture pages later. They ought to be batched properly - and also,
 // loaded from files
 
-if (file_exists(PATH_PERMANENT+"b_chr_default.png")){
+if (file_exists(PATH_PERMANENT+"b_chr_default.png")) {
     spr_character_default=sprite_add(PATH_PERMANENT+"b_chr_default.png", 0, false, false, 0, 0);
 } else {
     spr_character_default=sprite_add(PATH_DUMMY+"b_chr_dummy.png", 0, false, false, 0, 0);
@@ -137,7 +137,7 @@ if (file_exists(PATH_PERMANENT+"b_chr_default.png")){
 available_autotiles=array_create(AUTOTILE_AVAILABLE_MAX);
 array_clear(available_autotiles, noone);
 
-if (file_exists(PATH_PERMANENT+"b_at_default_grass_0.png")){
+if (file_exists(PATH_PERMANENT+"b_at_default_grass_0.png")) {
     var spr=sprite_add(PATH_PERMANENT+"b_at_default_grass_0.png", 0, false, false, 0, 0);
 } else {
     var spr=sprite_add(PATH_DUMMY+"b_at_dummy_grass.png", 0, false, false, 0, 0);
@@ -159,7 +159,7 @@ autotile_hashes[248]=AutotileSegments.UPPER;
 //autotile_hashes[255]=AutotileSegments.CENTER;
 
 all_tilesets=ds_list_create();
-if (file_exists(PATH_PERMANENT+"b_tileset_overworld_0.png")){
+if (file_exists(PATH_PERMANENT+"b_tileset_overworld_0.png")) {
     var filename=PATH_PERMANENT+"b_tileset_overworld_0.png";
 } else {
     var filename=PATH_DUMMY+"b_tileset_dummy_overworld.png";
@@ -302,11 +302,11 @@ ini_close();
 // in either of them. so either do a LOT of validation or have a way to clear the
 // autosaves if problems happen.
 
-if (setting_autosave&&file_exists("auto"+EXPORT_EXTENSION_DATA)){
+if (setting_autosave&&file_exists("auto"+EXPORT_EXTENSION_DATA)) {
     var tdata=save_name_data;
     serialize_load("auto"+EXPORT_EXTENSION_DATA);
     save_name_data=tdata;
-    if (file_exists("auto"+EXPORT_EXTENSION_MAP)){
+    if (file_exists("auto"+EXPORT_EXTENSION_MAP)) {
         // no need to store the map name in a variable since that's set based
         // on the internal name
         serialize_load("auto"+EXPORT_EXTENSION_MAP);

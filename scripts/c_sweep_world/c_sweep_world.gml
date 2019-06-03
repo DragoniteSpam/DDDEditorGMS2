@@ -1,12 +1,12 @@
 /// @description c_sweep_world(shape, xfrom, yfrom, zfrom, xto, yto, zto, mask)
 /// @param shape
-/// @param  xfrom
-/// @param  yfrom
-/// @param  zfrom
-/// @param  xto
-/// @param  yto
-/// @param  zto
-/// @param  mask
+/// @param xfrom
+/// @param yfrom
+/// @param zfrom
+/// @param xto
+/// @param yto
+/// @param zto
+/// @param mask
 /*
 Performs a convex sweep from (xfrom,yfrom,zfrom) to (xto,yto,zto), against all collision objects in the world, using a mask.
 A sweep is like a ray cast except it uses a shape to check for collisions instead of a ray.

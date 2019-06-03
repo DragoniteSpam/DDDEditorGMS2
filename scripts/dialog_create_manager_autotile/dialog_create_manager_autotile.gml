@@ -1,4 +1,4 @@
-/// @description  void dialog_create_manager_autotile(Dialog);
+/// @description void dialog_create_manager_autotile(Dialog);
 /// @param Dialog
 
 var dw=512;
@@ -23,9 +23,9 @@ var yy=64;
 
 var n=AUTOTILE_AVAILABLE_MAX;
 dg.el_list=create_list(16, yy, "Available autotiles: "+string(n), "", dw/2-16, b_height, 7, null, false, dg);
-for (var i=0; i<AUTOTILE_AVAILABLE_MAX; i++){
+for (var i=0; i<AUTOTILE_AVAILABLE_MAX; i++) {
     var at_data=Stuff.available_autotiles[i];
-    if (is_array(at_data)){
+    if (is_array(at_data)) {
         create_list_entries(dg.el_list, string(i)+". "+at_data[AvailableAutotileProperties.NAME], c_black);
     } else {
         create_list_entries(dg.el_list, string(i)+". <none loaded>", c_black);

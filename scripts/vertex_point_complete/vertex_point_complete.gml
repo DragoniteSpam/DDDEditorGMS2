@@ -1,20 +1,20 @@
-/// @description  void vertex_point_complete(vbuff, x, y, z, nx, ny, nz, xtex, ytex, color, alpha, [id]);
+/// @description void vertex_point_complete(vbuff, x, y, z, nx, ny, nz, xtex, ytex, color, alpha, [id]);
 /// @param vbuff
-/// @param  x
-/// @param  y
-/// @param  z
-/// @param  nx
-/// @param  ny
-/// @param  nz
-/// @param  xtex
-/// @param  ytex
-/// @param  color
-/// @param  alpha
-/// @param  [id]
+/// @param x
+/// @param y
+/// @param z
+/// @param nx
+/// @param ny
+/// @param nz
+/// @param xtex
+/// @param ytex
+/// @param color
+/// @param alpha
+/// @param [id]
 // Assume vbuff is a vertex buffer created using the correct format.
 
 var atid=0;
-switch (argument_count){
+switch (argument_count) {
     case 12:
         atid=argument[11];
         break;

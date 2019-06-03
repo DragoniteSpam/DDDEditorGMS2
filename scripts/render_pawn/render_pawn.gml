@@ -1,4 +1,4 @@
-/// @description  void render_pawn(EntityPawn);
+/// @description void render_pawn(EntityPawn);
 /// @param EntityPawn
 
 var pawn=argument0;
@@ -9,7 +9,7 @@ var zz=pawn.zz;
 var spritesheet_height=4;
 var spritesheet_frames=4;
 
-if (argument0.is_animating){
+if (argument0.is_animating) {
     pawn.frame=(pawn.frame+Stuff.setting_alphabetize_npc_animate_rate*(delta_time/MILLION))%4;
 }
 

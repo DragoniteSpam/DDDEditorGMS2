@@ -1,4 +1,4 @@
-/// @description  void ui_render_list_move_route_steps(UIList);
+/// @description void ui_render_list_move_route_steps(UIList);
 /// @param UIList
 
 var steps=argument0.root.route.steps;
@@ -8,9 +8,9 @@ argument0.colorize=false;
 
 ds_list_clear(argument0.entries);
 
-for (var i=0; i<ds_list_size(steps); i++){
+for (var i=0; i<ds_list_size(steps); i++) {
     var data=steps[| i];
-    switch (data[@ 0]){
+    switch (data[@ 0]) {
         case MoveRouteActions.MOVE_DOWN:
             ds_list_add(argument0.entries, "Move Down: "+string(data[@ 1])+" steps");
             break;
@@ -156,7 +156,7 @@ for (var i=0; i<ds_list_size(steps); i++){
         case MoveRouteActions.EVENT:
             var event=guid_get(data[@ 1]);
             var entrypoint=guid_get(data[@ 2]);
-            if (event==noone||entrypoint==noone){
+            if (event==noone||entrypoint==noone) {
                 ds_list_add(argument0.entries, "Event: N/A");
             } else {
                 ds_list_add(argument0.entries, "Event: "+event.name+"/"+entrypoint.name);

@@ -1,15 +1,15 @@
-/// @description  void create_bitfield_options_vertical(UIBitField, data0, .. datan);
+/// @description void create_bitfield_options_vertical(UIBitField, data0, .. datan);
 /// @param UIBitField
-/// @param  data0
-/// @param  .. datan
+/// @param data0
+/// @param .. datan
 /*
  * see create_bitfield_options for how the data is arranged
  */
 
-for (var i=1; i<argument_count; i++){
+for (var i=1; i<argument_count; i++) {
     var n=ds_list_size(argument[0].contents);
     var data=argument[i];
-    if (n==0){
+    if (n==0) {
         var yy=argument[0].height;
     } else {
         var yy=ds_list_top(argument[0].contents).y+ds_list_top(argument[0].contents).height;

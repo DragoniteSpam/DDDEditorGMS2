@@ -1,6 +1,6 @@
-/// @description  void serialize_save_entity_autotile(buffer, EntityAutoTile);
+/// @description void serialize_save_entity_autotile(buffer, EntityAutoTile);
 /// @param buffer
-/// @param  EntityAutoTile
+/// @param EntityAutoTile
 
 serialize_save_entity_tile(argument0, argument1);
 

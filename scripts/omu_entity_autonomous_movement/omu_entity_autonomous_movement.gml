@@ -1,4 +1,4 @@
-/// @description  void omu_entity_autonomous_movement(UIThing);
+/// @description void omu_entity_autonomous_movement(UIThing);
 /// @param UIThing
 
 var catch=argument0;

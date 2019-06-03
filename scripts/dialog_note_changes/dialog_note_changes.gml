@@ -1,9 +1,9 @@
-/// @description  void dialog_note_changes(Dialog);
+/// @description void dialog_note_changes(Dialog);
 /// @param Dialog
 
 var old_title=argument0.text;
 
-if (argument0.changed){
+if (argument0.changed) {
     argument0.text="* "+argument0.text;
 }
 

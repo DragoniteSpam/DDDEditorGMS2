@@ -1,6 +1,6 @@
-/// @description  double control_duration_right();
+/// @description double control_duration_right();
 
-if (Controller.time_right<0){
+if (Controller.time_right<0) {
     return 0;
 }
 

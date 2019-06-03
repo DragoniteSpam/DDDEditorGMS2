@@ -1,4 +1,4 @@
-/// @description  void render_autotile(EntityAutoTile);
+/// @description void render_autotile(EntityAutoTile);
 /// @param EntityAutoTile
 
 var tile=argument0;
@@ -34,8 +34,8 @@ var ytex=at_position[vec2.yy]+(argument0.segment_id div at_data[AvailableAutotil
 var color=tile.tile_color;
 var alpha=tile.tile_alpha;
 
-if (Camera.view_entities){
-    if (Camera.view_texture){
+if (Camera.view_entities) {
+    if (Camera.view_texture) {
         var tex=sprite_get_texture(ts.master, 0);
     } else {
         var tex=sprite_get_texture(b_tileset_textureless, 0)
@@ -54,7 +54,7 @@ if (Camera.view_entities){
     d3d_primitive_end();
 }
 
-if (Camera.view_wireframe){
+if (Camera.view_wireframe) {
     d3d_primitive_begin_texture(pr_linelist, -1);
     
     d3d_vertex(xx, yy, zz);

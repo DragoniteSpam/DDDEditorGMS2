@@ -1,4 +1,4 @@
-/// @description  void dialog_create_entity_get_event(Dialog);
+/// @description void dialog_create_entity_get_event(Dialog);
 /// @param Dialog
 
 var dw=320;
@@ -29,8 +29,8 @@ el_list.render=ui_render_list_event;
 el_list.entries_are=ListEntries.INSTANCES;
 dg.el_list=el_list;
 
-for (var i=0; i<ds_list_size(Stuff.all_events); i++){
-    if (Stuff.all_events[| i].GUID==page.event_guid){
+for (var i=0; i<ds_list_size(Stuff.all_events); i++) {
+    if (Stuff.all_events[| i].GUID==page.event_guid) {
         ds_map_add(el_list.selected_entries, i, true);
         break;
     }

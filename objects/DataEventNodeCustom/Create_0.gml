@@ -1,4 +1,4 @@
-/// @description  does NOT inherit from the normal DataEventNode
+/// @description does NOT inherit from the normal DataEventNode
 // it only contains the template for the node data
 event_inherited();
 

@@ -1,4 +1,4 @@
-/// @description  void event_view_node(DataEventNode);
+/// @description void event_view_node(DataEventNode);
 /// @param DataEventNode
 // snap the view to the specified node
 

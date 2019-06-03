@@ -1,6 +1,6 @@
 /// @description c_object_set_shape(object, shape)
 /// @param object
-/// @param  shape
+/// @param shape
 /*
 Sets the shape of the collision object.
 */

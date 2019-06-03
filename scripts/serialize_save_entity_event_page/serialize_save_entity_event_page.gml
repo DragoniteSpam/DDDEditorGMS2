@@ -1,6 +1,6 @@
-/// @description  void serialize_save_entity_event_page(buffer, DataInstantiatedEvent);
+/// @description void serialize_save_entity_event_page(buffer, DataInstantiatedEvent);
 /// @param buffer
-/// @param  DataInstantiatedEvent
+/// @param DataInstantiatedEvent
 
 // name, guid, flags
 serialize_save_generic(argument0, argument1);

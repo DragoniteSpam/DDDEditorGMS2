@@ -1,11 +1,11 @@
 /// @description c_raycast_world(xfrom, yfrom, zfrom, xto, yto, zto, mask)
 /// @param xfrom
-/// @param  yfrom
-/// @param  zfrom
-/// @param  xto
-/// @param  yto
-/// @param  zto
-/// @param  mask
+/// @param yfrom
+/// @param zfrom
+/// @param xto
+/// @param yto
+/// @param zto
+/// @param mask
 /*
 Casts a ray from (xfrom,yfrom,zfrom) to (xto,yto,zto), against all collision objects in the world, using a mask.
 Returns true if the ray hit something, and false if it did not.

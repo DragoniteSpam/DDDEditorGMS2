@@ -1,8 +1,8 @@
-/// @description  void draw_checkerbox(x, y, width, height);
+/// @description void draw_checkerbox(x, y, width, height);
 /// @param x
-/// @param  y
-/// @param  width
-/// @param  height
+/// @param y
+/// @param width
+/// @param height
 
 var s=sprite_get_width(b_tileset_checkers);
 

@@ -1,4 +1,4 @@
-/// @description  void dialog_create_entity_event_page(Dialog);
+/// @description void dialog_create_entity_event_page(Dialog);
 /// @param Dialog
 
 var dw=640;
@@ -81,14 +81,14 @@ var page_event=guid_get(page.event_guid);
 var page_entrypoint=guid_get(page.event_entrypoint);
 var text_event="None Set";
 var text_entrypoint="None Set";
-if (page_event==noone){
-    if (page.event_guid>0){
+if (page_event==noone) {
+    if (page.event_guid>0) {
         var text_event="<"+string(page.event_guid)+">";
     }
 } else {
     var text_event=page_event.name;
-    if (page_entrypoint==noone){
-        if (page.event_entrypoint>0){
+    if (page_entrypoint==noone) {
+        if (page.event_entrypoint>0) {
             var text_entrypoint="<"+string(page.event_entrypoint)+">";
         }
     } else {

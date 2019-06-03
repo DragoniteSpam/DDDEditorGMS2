@@ -1,4 +1,4 @@
-/// @description  void serialize_save_map_contents_batch(buffer);
+/// @description void serialize_save_map_contents_batch(buffer);
 /// @param buffer
 
 buffer_write(argument0, buffer_datatype, SerializeThings.MAP_BATCH);

@@ -1,7 +1,7 @@
-/// @description  void ui_render_bitfield(Button, x, y);
+/// @description void ui_render_bitfield(Button, x, y);
 /// @param Button
-/// @param  x
-/// @param  y
+/// @param x
+/// @param y
 
 /*
  * this is horizontal and the buttons are in line with the text. if you end up needing this
@@ -18,7 +18,7 @@ ui_render_text(argument0, argument1, argument2);
 draw_set_halign(fa_center);
 // default valign is middle
 
-for (var i=0; i<ds_list_size(argument0.contents); i++){
+for (var i=0; i<ds_list_size(argument0.contents); i++) {
     var thing=argument0.contents[| i];
     // these are all part of the same UIThing so there's no point in turning them
     // off

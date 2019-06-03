@@ -1,6 +1,6 @@
-/// @description  void serialize_load_map_contents_meta(buffer, version);
+/// @description void serialize_load_map_contents_meta(buffer, version);
 /// @param buffer
-/// @param  version
+/// @param version
 
 data_clear_map();
 
@@ -18,10 +18,10 @@ ActiveMap.tileset=buffer_read(argument0, buffer_u8);
 
 data_resize_map(xx, yy, zz);
 
-if (argument1>=DataVersions.MAP_VARS){
+if (argument1>=DataVersions.MAP_VARS) {
     ActiveMap.audio_bgm=buffer_read(argument0, buffer_string);
     var n_ambient=buffer_read(argument0, buffer_u16);
-    repeat(n_ambient){
+    repeat(n_ambient) {
         ds_list_add(ActiveMap.audio_ambient, buffer_read(argument0, buffer_string));
         ds_list_add(ActiveMap.audio_ambient_frequencies, buffer_read(argument0, buffer_u8));
     }
@@ -35,7 +35,7 @@ if (argument1>=DataVersions.MAP_VARS){
     ActiveMap.fast_travel_to=unpack(bools, 2);
     ActiveMap.fast_travel_from=unpack(bools, 3);
     
-    if (argument1>=DataVersions.MAP_3D){
+    if (argument1>=DataVersions.MAP_3D) {
         ActiveMap.is_3d=unpack(bools, 4);
     }
 }

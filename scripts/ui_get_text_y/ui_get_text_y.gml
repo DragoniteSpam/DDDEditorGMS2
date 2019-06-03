@@ -1,11 +1,11 @@
-/// @description  double ui_get_text_y(UIText, y1, y2);
+/// @description double ui_get_text_y(UIText, y1, y2);
 /// @param UIText
-/// @param  y1
-/// @param  y2
+/// @param y1
+/// @param y2
 
 var offset=12;
 
-switch (argument0.valignment){
+switch (argument0.valignment) {
     case fa_top:
         return argument1+offset;
     case fa_middle:

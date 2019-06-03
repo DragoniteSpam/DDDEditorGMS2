@@ -1,4 +1,4 @@
-/// @description  double ds_stuff_help_auto(UIThing);
+/// @description double ds_stuff_help_auto(UIThing);
 /// @param UIThing
 
 /*

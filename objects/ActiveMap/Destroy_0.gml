@@ -1,6 +1,6 @@
 event_inherited();
 
-for (var i=0; i<ds_list_size(batches); i++){
+for (var i=0; i<ds_list_size(batches); i++) {
     vertex_delete_buffer(batches[| i]);
     vertex_delete_buffer(batches_wire[| i]);
 }

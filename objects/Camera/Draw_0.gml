@@ -1,8 +1,8 @@
-/// @description  Anything visible in the world
+/// @description Anything visible in the world
 
-switch (mode){
+switch (mode) {
     case EditorModes.EDITOR_3D:
-        switch (view_current){
+        switch (view_current) {
             case view_3d:
                 draw_clear(c_black);
                 draw_editor_3d();
@@ -22,7 +22,7 @@ switch (mode){
         }
         break;
     case EditorModes.EDITOR_EVENT:
-        switch (view_current){
+        switch (view_current) {
             case view_fullscreen:
                 draw_editor_event();
                 break;
@@ -35,7 +35,7 @@ switch (mode){
         }
         break;
     case EditorModes.EDITOR_DATA:
-        switch (view_current){
+        switch (view_current) {
             case view_fullscreen:
                 draw_editor_data();
                 break;
@@ -47,8 +47,8 @@ switch (mode){
 }
 
 // these shouldn't be attached to any one view or anything
-if (view_current==view_invisible){
-    if (!dialog_exists()){
+if (view_current == view_invisible) {
+    if (!dialog_exists()) {
         control_global();
     }
 }
@@ -68,6 +68,3 @@ if (view_current==view_invisible){
  * 6.
  * 7. invisible - always, on, doesn't render
  */
-
-/* */
-/*  */

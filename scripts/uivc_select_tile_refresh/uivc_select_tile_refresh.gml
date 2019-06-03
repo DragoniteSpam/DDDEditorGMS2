@@ -1,6 +1,6 @@
-/// @description  void uivc_select_tile_refresh(tx, ty);
+/// @description void uivc_select_tile_refresh(tx, ty);
 /// @param tx
-/// @param  ty
+/// @param ty
 
 var tx=argument0;
 var ty=argument1;

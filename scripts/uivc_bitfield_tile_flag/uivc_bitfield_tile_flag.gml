@@ -1,4 +1,4 @@
-/// @description  uivc_bitfield_tile_flag(UIThing);
+/// @description uivc_bitfield_tile_flag(UIThing);
 /// @param UIThing
 
 var ts=get_active_tileset();

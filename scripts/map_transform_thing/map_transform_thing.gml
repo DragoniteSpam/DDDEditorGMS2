@@ -1,4 +1,4 @@
-/// @description  void map_transform_thing(Entity);
+/// @description void map_transform_thing(Entity);
 /// @param Entity
 
 c_world_add_object(argument0.cobject);

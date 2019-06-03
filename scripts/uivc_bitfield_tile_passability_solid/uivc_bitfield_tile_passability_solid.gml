@@ -1,4 +1,4 @@
-/// @description  uivc_bitfield_tile_passability_solid(UIThing);
+/// @description uivc_bitfield_tile_passability_solid(UIThing);
 /// @param UIThing
 
 // value^0 won't do what i want it to do

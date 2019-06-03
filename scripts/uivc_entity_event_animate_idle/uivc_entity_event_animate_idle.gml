@@ -1,4 +1,4 @@
-/// @description  void uivc_entity_event_animate_idle(UIThing);
+/// @description void uivc_entity_event_animate_idle(UIThing);
 /// @param UIThing
 
 // safe

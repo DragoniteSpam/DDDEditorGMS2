@@ -1,7 +1,7 @@
-/// @description  uivc_input_custom_data_property_name(UIThing);
+/// @description uivc_input_custom_data_property_name(UIThing);
 /// @param UIThing
 
-if (script_execute(argument0.validation, argument0.value)){
+if (script_execute(argument0.validation, argument0.value)) {
     var selection=ui_list_selection(argument0.root.el_list);
     var property=argument0.root.event.types[| selection];
     property[@ EventNodeCustomData.NAME]=argument0.value;

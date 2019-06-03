@@ -1,7 +1,7 @@
-/// @description  uivc_select_autotile(UITileSelector, tx, ty);
+/// @description uivc_select_autotile(UITileSelector, tx, ty);
 /// @param UITileSelector
-/// @param  tx
-/// @param  ty
+/// @param tx
+/// @param ty
 
 var catch=argument0;
 var catch=argument1;

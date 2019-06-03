@@ -1,8 +1,8 @@
 /// @description c_transform_rotation_quaternion(x, y, z, w)
 /// @param x
-/// @param  y
-/// @param  z
-/// @param  w
+/// @param y
+/// @param z
+/// @param w
 /*
 Sets the rotation of the transformation as a quaternion.
 */

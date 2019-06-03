@@ -1,4 +1,4 @@
-/// @description  void dmu_dialog_entity_get_event_entrypoint(UIThing);
+/// @description void dmu_dialog_entity_get_event_entrypoint(UIThing);
 /// @param UIThing
 
 // no need to validate this - [0] is automatically selected when

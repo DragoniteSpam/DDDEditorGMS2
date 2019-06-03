@@ -1,4 +1,4 @@
-/// @description  double ds_stuff_open(file);
+/// @description double ds_stuff_open(file);
 /// @param file
 
 /*

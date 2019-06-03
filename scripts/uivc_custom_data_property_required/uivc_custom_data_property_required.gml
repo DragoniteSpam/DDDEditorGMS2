@@ -1,4 +1,4 @@
-/// @description  uivc_custom_data_property_required(UIThing);
+/// @description uivc_custom_data_property_required(UIThing);
 /// @param UIThing
 
 var selection=ui_list_selection(argument0.root.el_list);

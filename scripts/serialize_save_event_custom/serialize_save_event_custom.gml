@@ -1,4 +1,4 @@
-/// @description  void serialize_save_event_custom(buffer);
+/// @description void serialize_save_event_custom(buffer);
 /// @param buffer
 
 buffer_write(argument0, buffer_datatype, SerializeThings.EVENT_CUSTOM);
@@ -6,13 +6,13 @@ buffer_write(argument0, buffer_datatype, SerializeThings.EVENT_CUSTOM);
 var n_custom=ds_list_size(Stuff.all_event_custom);
 buffer_write(argument0, buffer_u16, n_custom);
 
-for (var i=0; i<n_custom; i++){
+for (var i=0; i<n_custom; i++) {
     var custom=Stuff.all_event_custom[| i];
     serialize_save_generic(argument0, custom);
     
     var n_types=ds_list_size(custom.types);
     buffer_write(argument0, buffer_u8, n_types);
-    for (var j=0; j<n_types; j++){
+    for (var j=0; j<n_types; j++) {
         var type=custom.types[| j];
         buffer_write(argument0, buffer_string, type[0]);    // name
         buffer_write(argument0, buffer_u8, type[1]);        // data type

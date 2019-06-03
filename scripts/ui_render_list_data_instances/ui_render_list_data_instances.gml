@@ -1,4 +1,4 @@
-/// @description  void ui_render_list_data_instances(UIList);
+/// @description void ui_render_list_data_instances(UIList);
 /// @param UIList
 
 var otext=argument0.text;
@@ -8,8 +8,8 @@ var otextvacant=argument0.text_vacant;
 var data=guid_get(argument0.root.active_type_guid);
 
 // don't alphabetize this list, please
-if (data!=noone){
-    if (data.is_enum){
+if (data!=noone) {
+    if (data.is_enum) {
         argument0.text_vacant="<Enums can't be instantiated>"
     } else {
         argument0.entries=data.instances;

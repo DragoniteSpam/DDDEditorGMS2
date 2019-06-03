@@ -1,4 +1,4 @@
-/// @description  void momu_conflicts(MenuElement);
+/// @description void momu_conflicts(MenuElement);
 /// @param MenuElement
 
 var catch=argument0;

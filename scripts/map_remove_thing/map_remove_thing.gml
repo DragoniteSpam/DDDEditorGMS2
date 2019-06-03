@@ -1,4 +1,4 @@
-/// @description  void map_remove_thing(Entity);
+/// @description void map_remove_thing(Entity);
 /// @param Entity
 
 // this is INSANELY slow for large numbers of entities, and I'm
@@ -18,9 +18,9 @@
 
 // this NEEDS to be worked on sooner rather than later because i
 // imagine Delete All is going to be a somewhat common operation.
-if (argument0.listed){
-    if (argument0.batchable){
-        if (argument0.batch_index==-1){
+if (argument0.listed) {
+    if (argument0.batchable) {
+        if (argument0.batch_index==-1) {
             var future=ActiveMap.batch_in_the_future;
             ds_list_delete(future, ds_list_find_index(future, argument0));
         } else {
@@ -36,6 +36,6 @@ if (argument0.listed){
 }
 
 var cell=map_get_grid_cell(argument0.xx, argument0.yy, argument0.zz);
-if (cell[@ argument0.slot]==argument0){
+if (cell[@ argument0.slot]==argument0) {
     cell[@ argument0.slot]=noone;
 }

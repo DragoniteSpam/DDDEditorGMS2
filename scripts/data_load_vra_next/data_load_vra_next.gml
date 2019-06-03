@@ -1,6 +1,6 @@
-/// @description  array data_load_vra_next(buffer, grid size);
+/// @description array data_load_vra_next(buffer, grid size);
 /// @param buffer
-/// @param  grid size
+/// @param grid size
 // the array that is returned takes the form of
 // [vbuff, buff, xmin, ymin, zmin, xmax, ymax, zmax]
 
@@ -22,7 +22,7 @@ var yy=array_create(3);
 var zz=array_create(3);
 var nx, ny, nz, xtex, ytex, color, alpha;
 
-repeat(n){
+repeat(n) {
     xx[vc]=buffer_read(argument0, T);
     yy[vc]=buffer_read(argument0, T);
     zz[vc]=buffer_read(argument0, T);
@@ -39,7 +39,7 @@ repeat(n){
     
     vc=(++vc)%3;
     
-    if (vc==0){
+    if (vc==0) {
         vertex_point_line(buffer_wire, xx[0], yy[0], zz[0], c_white, 1);
         vertex_point_line(buffer_wire, xx[1], yy[1], zz[1], c_white, 1);
         
@@ -60,7 +60,7 @@ var xmax=0;
 var ymax=0;
 var zmax=0;
 
-if (argument1>0){
+if (argument1>0) {
     xmin=buffer_read(argument0, T);
     ymin=buffer_read(argument0, T);
     zmin=buffer_read(argument0, T);

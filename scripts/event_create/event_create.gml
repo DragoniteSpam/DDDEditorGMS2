@@ -1,4 +1,4 @@
-/// @description  DataEvent event_create(name);
+/// @description DataEvent event_create(name);
 /// @param name
 
 var event=instantiate(DataEvent);

@@ -1,6 +1,6 @@
-/// @description  void serialize_save_entity_mesh(buffer, EntityTile);
+/// @description void serialize_save_entity_mesh(buffer, EntityTile);
 /// @param buffer
-/// @param  EntityTile
+/// @param EntityTile
 
 serialize_save_entity(argument0, argument1);
 

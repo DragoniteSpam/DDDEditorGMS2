@@ -1,18 +1,18 @@
-/// @description  UIImageButton create_image_button(x, y, text, image, width, height, alignment, onmouseup, root, [help], [anchor horizontal], [anchor vertical]);
+/// @description UIImageButton create_image_button(x, y, text, image, width, height, alignment, onmouseup, root, [help], [anchor horizontal], [anchor vertical]);
 /// @param x
-/// @param  y
-/// @param  text
-/// @param  image
-/// @param  width
-/// @param  height
-/// @param  alignment
-/// @param  onmouseup
-/// @param  root
-/// @param  [help]
-/// @param  [anchor horizontal]
-/// @param  [anchor vertical]
+/// @param y
+/// @param text
+/// @param image
+/// @param width
+/// @param height
+/// @param alignment
+/// @param onmouseup
+/// @param root
+/// @param [help]
+/// @param [anchor horizontal]
+/// @param [anchor vertical]
 
-with (instance_create_depth(argument[0], argument[1], 0, UIImageButton)){
+with (instance_create_depth(argument[0], argument[1], 0, UIImageButton)) {
     text=argument[2];
     image=argument[3];
     width=argument[4];
@@ -22,9 +22,9 @@ with (instance_create_depth(argument[0], argument[1], 0, UIImageButton)){
     onmouseup=argument[7];
     root=argument[8];
     
-    switch (argument_count){
+    switch (argument_count) {
         case 12:
-            switch (argument[11]){
+            switch (argument[11]) {
                 case fa_top:
                     break;
                 case fa_middle:
@@ -35,7 +35,7 @@ with (instance_create_depth(argument[0], argument[1], 0, UIImageButton)){
                     break;
             }
         case 11:
-            switch (argument[10]){
+            switch (argument[10]) {
                 case fa_left:
                     break;
                 case fa_center:

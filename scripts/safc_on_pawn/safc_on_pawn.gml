@@ -1,4 +1,4 @@
-/// @description  void safc_on_pawn(EntityPawn);
+/// @description void safc_on_pawn(EntityPawn);
 /// @param EntityPawn
 
 safc_on_entity(argument0);

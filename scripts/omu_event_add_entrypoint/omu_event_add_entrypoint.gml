@@ -1,4 +1,4 @@
-/// @description  void omu_event_add_entrypoint(UIThing);
+/// @description void omu_event_add_entrypoint(UIThing);
 /// @param UIThing
 
 var catch=argument0;

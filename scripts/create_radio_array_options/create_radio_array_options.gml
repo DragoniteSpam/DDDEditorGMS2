@@ -1,9 +1,9 @@
-/// @description  void create_radio_array_options(UIRadioArray, string0, .. stringn);
+/// @description void create_radio_array_options(UIRadioArray, string0, .. stringn);
 /// @param UIRadioArray
-/// @param  string0
-/// @param  .. stringn
+/// @param string0
+/// @param .. stringn
 
-for (var i=1; i<argument_count; i++){
+for (var i=1; i<argument_count; i++) {
     var n=ds_list_size(argument[0].contents);
     var option=instance_create_depth(0, argument[0].height*(1+n), 0, UITextRadio);
     option.text=argument[i];

@@ -1,4 +1,4 @@
-/// @description  void safc_on_entity(Entity);
+/// @description void safc_on_entity(Entity);
 /// @param Entity
 
 // basic stuff

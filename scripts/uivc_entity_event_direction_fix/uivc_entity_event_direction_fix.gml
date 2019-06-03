@@ -1,4 +1,4 @@
-/// @description  void uivc_entity_event_direction_fix(UIThing);
+/// @description void uivc_entity_event_direction_fix(UIThing);
 /// @param UIThing
 
 // safe

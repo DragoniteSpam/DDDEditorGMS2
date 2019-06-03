@@ -1,7 +1,7 @@
-/// @description  void ui_render_text_stats_entities_tiles_auto(UIText, x, y);
+/// @description void ui_render_text_stats_entities_tiles_auto(UIText, x, y);
 /// @param UIText
-/// @param  x
-/// @param  y
+/// @param x
+/// @param y
 
 argument0.text=string(ActiveMap.population[ETypes.ENTITY_TILE_AUTO]);
 

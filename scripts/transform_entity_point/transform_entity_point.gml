@@ -1,8 +1,8 @@
-/// @description  vec3 transform_entity_point(Entity, x, y, z);
+/// @description vec3 transform_entity_point(Entity, x, y, z);
 /// @param Entity
-/// @param  x
-/// @param  y
-/// @param  z
+/// @param x
+/// @param y
+/// @param z
 
 transform_set(0, 0, 0, argument0.rot_xx, argument0.rot_yy, argument0.rot_zz, 1, 1, 1);
 transform_add(0, 0, 0, 0, 0, 0, argument0.scale_xx, argument0.scale_yy, argument0.scale_zz);

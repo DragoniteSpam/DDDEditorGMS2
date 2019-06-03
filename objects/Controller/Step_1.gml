@@ -10,23 +10,23 @@ release_left=mouse_check_button_released(mb_left);
 release_right=mouse_check_button_released(mb_right);
 release_middle=mouse_check_button_released(mb_middle);
 
-if (press_left){
+if (press_left) {
     time_left=get_timer();
 }
-if (press_right){
+if (press_right) {
     time_right=get_timer();
 }
-if (press_middle){
+if (press_middle) {
     time_middle=get_timer();
 }
 
-if (release_left){
+if (release_left) {
     time_left=-1;
 }
-if (release_right){
+if (release_right) {
     time_right=-1;
 }
-if (release_middle){
+if (release_middle) {
     time_middle=-1;
 }
 

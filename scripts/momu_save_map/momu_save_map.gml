@@ -1,4 +1,4 @@
-/// @description  void momu_save_map(MenuElement);
+/// @description void momu_save_map(MenuElement);
 /// @param MenuElement
 
 var catch=argument0;

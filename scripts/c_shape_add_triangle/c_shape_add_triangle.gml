@@ -1,13 +1,13 @@
 /// @description c_shape_add_triangle(x1, y1, z1, x2, y2, z2, x3, y3, z3)
 /// @param x1
-/// @param  y1
-/// @param  z1
-/// @param  x2
-/// @param  y2
-/// @param  z2
-/// @param  x3
-/// @param  y3
-/// @param  z3
+/// @param y1
+/// @param z1
+/// @param x2
+/// @param y2
+/// @param z2
+/// @param x3
+/// @param y3
+/// @param z3
 /*
 Adds a triangle to a trimesh. Make sure you call c_shape_begin_trimesh() before adding triangles.
 */

@@ -1,7 +1,7 @@
-/// @description  boolean validate_double(string);
+/// @description boolean validate_double(string);
 /// @param string
 
-if (string_length(argument0)==0){
+if (string_length(argument0)==0) {
     return false;
 }
 

@@ -1,4 +1,4 @@
-/// @description  void dialog_create_settings_confirm_world_resize(Dialog);
+/// @description void dialog_create_settings_confirm_world_resize(Dialog);
 /// @param Dialog
 
 var dw=400;

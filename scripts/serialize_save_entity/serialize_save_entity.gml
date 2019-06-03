@@ -1,6 +1,6 @@
-/// @description  void serialize_save_entity(buffer, Entity);
+/// @description void serialize_save_entity(buffer, Entity);
 /// @param buffer
-/// @param  Entity
+/// @param Entity
 buffer_write(argument0, buffer_string, argument1.name);
 buffer_write(argument0, buffer_u32, argument1.xx);
 buffer_write(argument0, buffer_u32, argument1.yy);
@@ -17,7 +17,7 @@ buffer_write(argument0, buffer_u32, entity_bools);
 // DataVersions.MAP_ENTITY_EVENTS
 var n_events = ds_list_size(argument1.object_events);
 buffer_write(argument0, buffer_u8, n_events);
-for (var i = 0; i < n_events; i++){
+for (var i = 0; i < n_events; i++) {
     serialize_save_entity_event_page(argument0, argument1.object_events[| i]);
 }
 
@@ -46,7 +46,7 @@ buffer_write(argument0, buffer_u32, argument1.autonomous_movement_route);
 var n_move_routes = ds_list_size(argument1.movement_routes);
 buffer_write(argument0, buffer_u8, n_move_routes);
 
-for (var i = 0; i < n_move_routes; i++){
+for (var i = 0; i < n_move_routes; i++) {
     // DataVersions.MOVE_ROUTES
     serialize_save_move_route(argument0, argument1.movement_routes[| i]);
 }

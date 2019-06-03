@@ -1,4 +1,4 @@
-/// @description  uimu_freeze_ask(UIThing);
+/// @description uimu_freeze_ask(UIThing);
 /// @param UIThing
 
 var dg=dialog_create_yes_or_no(noone, "Freezing selected entities will increase performance, but "+

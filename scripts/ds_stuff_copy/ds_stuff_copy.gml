@@ -1,6 +1,6 @@
-/// @description  double ds_stuff_copy(source, destination);
+/// @description double ds_stuff_copy(source, destination);
 /// @param source
-/// @param  destination
+/// @param destination
 
 /*
  * Copies a file from the source to the destination

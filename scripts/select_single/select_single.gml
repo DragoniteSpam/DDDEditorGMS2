@@ -1,4 +1,4 @@
-/// @description  void select_tile(EntityTile);
+/// @description void select_tile(EntityTile);
 /// @param EntityTile
 
 var ns=instantiate(SelectionSingle);

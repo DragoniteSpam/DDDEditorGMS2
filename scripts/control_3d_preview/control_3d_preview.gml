@@ -1,6 +1,6 @@
-/// @description  Select stuff with the mouse
+/// @description Select stuff with the mouse
 
-if (get_release_escape()){
+if (get_release_escape()) {
     __view_set( e__VW.Visible, view_3d_preview, false );
     return 0;
 }
@@ -20,55 +20,55 @@ var scale_rate=1.01;
  * scale:           up/down     alt
  */
 
-if (keyboard_check(vk_shift)){
-    if (keyboard_check(vk_up)||keyboard_check(ord("W"))){
+if (keyboard_check(vk_shift)) {
+    if (keyboard_check(vk_up)||keyboard_check(ord("W"))) {
         Camera.mesh_z=Camera.mesh_z-translation_rate;
     }
-    if (keyboard_check(vk_down)||keyboard_check(ord("S"))){
+    if (keyboard_check(vk_down)||keyboard_check(ord("S"))) {
         Camera.mesh_z=Camera.mesh_z+translation_rate;
     }
-    if (keyboard_check(vk_left)||keyboard_check(ord("A"))){
+    if (keyboard_check(vk_left)||keyboard_check(ord("A"))) {
         Camera.mesh_zrot=Camera.mesh_zrot-rotation_rate;
     }
-    if (keyboard_check(vk_right)||keyboard_check(ord("D"))){
+    if (keyboard_check(vk_right)||keyboard_check(ord("D"))) {
         Camera.mesh_zrot=Camera.mesh_zrot+rotation_rate;
     }
-} else if (keyboard_check(vk_control)){
-    if (keyboard_check(vk_up)||keyboard_check(ord("W"))){
+} else if (keyboard_check(vk_control)) {
+    if (keyboard_check(vk_up)||keyboard_check(ord("W"))) {
         Camera.mesh_yrot=Camera.mesh_yrot-translation_rate;
     }
-    if (keyboard_check(vk_down)||keyboard_check(ord("S"))){
+    if (keyboard_check(vk_down)||keyboard_check(ord("S"))) {
         Camera.mesh_yrot=Camera.mesh_yrot+translation_rate;
     }
-    if (keyboard_check(vk_left)||keyboard_check(ord("A"))){
+    if (keyboard_check(vk_left)||keyboard_check(ord("A"))) {
         Camera.mesh_xrot=Camera.mesh_xrot-rotation_rate;
     }
-    if (keyboard_check(vk_right)||keyboard_check(ord("D"))){
+    if (keyboard_check(vk_right)||keyboard_check(ord("D"))) {
         Camera.mesh_xrot=Camera.mesh_xrot+rotation_rate;
     }
-} else if (keyboard_check(vk_alt)){
-    if (keyboard_check(vk_up)||keyboard_check(ord("W"))){
+} else if (keyboard_check(vk_alt)) {
+    if (keyboard_check(vk_up)||keyboard_check(ord("W"))) {
         Camera.mesh_scale=min(Camera.mesh_scale*scale_rate, 10);
     }
-    if (keyboard_check(vk_down)||keyboard_check(ord("S"))){
+    if (keyboard_check(vk_down)||keyboard_check(ord("S"))) {
         Camera.mesh_scale=max(Camera.mesh_scale/scale_rate, 0.1);
     }
 } else {
-    if (keyboard_check(vk_up)||keyboard_check(ord("W"))){
+    if (keyboard_check(vk_up)||keyboard_check(ord("W"))) {
         Camera.mesh_y=Camera.mesh_y-translation_rate;
     }
-    if (keyboard_check(vk_down)||keyboard_check(ord("S"))){
+    if (keyboard_check(vk_down)||keyboard_check(ord("S"))) {
         Camera.mesh_y=Camera.mesh_y+translation_rate;
     }
-    if (keyboard_check(vk_left)||keyboard_check(ord("A"))){
+    if (keyboard_check(vk_left)||keyboard_check(ord("A"))) {
         Camera.mesh_x=Camera.mesh_x-translation_rate;
     }
-    if (keyboard_check(vk_right)||keyboard_check(ord("D"))){
+    if (keyboard_check(vk_right)||keyboard_check(ord("D"))) {
         Camera.mesh_x=Camera.mesh_x+translation_rate;
     }
 }
 
-if (keyboard_check(vk_backspace)||keyboard_check(vk_delete)){
+if (keyboard_check(vk_backspace)||keyboard_check(vk_delete)) {
     Camera.mesh_x=0;
     Camera.mesh_y=0;
     Camera.mesh_z=0;

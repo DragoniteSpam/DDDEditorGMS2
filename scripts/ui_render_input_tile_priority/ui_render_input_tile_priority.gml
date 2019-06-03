@@ -1,11 +1,11 @@
-/// @description  void ui_render_input_tile_priority(Button, x, y);
+/// @description void ui_render_input_tile_priority(Button, x, y);
 /// @param Button
-/// @param  x
-/// @param  y
+/// @param x
+/// @param y
 
-if (Stuff.dimensions=Dimensions.TWOD){
+if (Stuff.dimensions=Dimensions.TWOD) {
     argument0.color=c_black;
-} else if (Stuff.dimensions=Dimensions.THREED){
+} else if (Stuff.dimensions=Dimensions.THREED) {
     argument0.color=c_dkgray;
 }
 

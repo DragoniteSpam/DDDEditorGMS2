@@ -1,4 +1,4 @@
-/// @description  float selected_area_rectangle(SelectionRectangle);
+/// @description float selected_area_rectangle(SelectionRectangle);
 /// @param SelectionRectangle
 // volume can be zero if it's just a flat plane, just area can't
 

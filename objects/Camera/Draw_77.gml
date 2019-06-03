@@ -1,39 +1,38 @@
-/// @description  step cleanup actions
+/// @description step cleanup actions
 // dialogs (or other things) to be killed
 
-while (!ds_queue_empty(stuff_to_destroy)){
-    var thing=ds_queue_dequeue(stuff_to_destroy);
+while (!ds_queue_empty(stuff_to_destroy)) {
+    var thing = ds_queue_dequeue(stuff_to_destroy);
     instance_activate_object(thing);
     instance_destroy(thing);
 }
 
 // batch updates
 
-var future=ActiveMap.batch_in_the_future;
+var future = ActiveMap.batch_in_the_future;
 
-var cindex=0;
+var cindex = 0;
 
 // the list may still be appended to while it's being looped over - which is a
 // TERRIBLE idea, but i don't have the time to come up with something that will
 // appease the stackoverflow gods so too bad for them
 
-//for (var i=0; i<ds_list_size(changes); i++){
-while (cindex<ds_list_size(changes)){
-    var thing=changes[| cindex++];
-    switch (thing.modification){
+while (cindex < ds_list_size(changes)) {
+    var thing = changes[| cindex++];
+    switch (thing.modification) {
         case Modifications.CREATE:
             instance_deactivate_object(thing);
             script_execute(thing.on_create, thing);
-            thing.modification=Modifications.NONE;
+            thing.modification = Modifications.NONE;
             break;
         case Modifications.UPDATE:
-            if (thing.batch_index==-1){
+            if (thing.batch_index == -1) {
                 debug("how did you even get here?");
             } else {
                 batch_again(thing.batch_index);
             }
             script_execute(thing.on_update, thing);
-            thing.modification=Modifications.NONE;
+            thing.modification = Modifications.NONE;
             break;
         case Modifications.REMOVE:
             map_remove_thing(thing);
@@ -52,7 +51,7 @@ ds_list_clear(changes);
 
 // you may add/delete/move stuff in bulk and doing this for each
 // entity that was changed would slow the editor down quite a lot
-if (ds_list_size(ActiveMap.batch_in_the_future)>BATCH_CACHE_SIZE){
+if (ds_list_size(ActiveMap.batch_in_the_future) > BATCH_CACHE_SIZE) {
     batch_cache();
 }
 
@@ -61,51 +60,51 @@ if (ds_list_size(ActiveMap.batch_in_the_future)>BATCH_CACHE_SIZE){
 d3d_end();
 gpu_set_ztestenable(false);
 
-var ts=get_active_tileset();
+var ts = get_active_tileset();
 
-if (schedule_rebuild_master_texture){
-    if (sprite_exists(ts.master)){
+if (schedule_rebuild_master_texture) {
+    if (sprite_exists(ts.master)) {
         sprite_delete(ts.master);
     }
-    ts.master=tileset_create_master(ts);
-    schedule_rebuild_master_texture=false;
+    ts.master = tileset_create_master(ts);
+    schedule_rebuild_master_texture = false;
 }
 
-if (schedule_view_master_texture){
+if (schedule_view_master_texture) {
     sprite_save_fixed(ts.master, 0, "master-preview.png");
     ds_stuff_open_local("master-preview.png");
-    schedule_view_master_texture=false;
+    schedule_view_master_texture = false;
 }
 
-if (schedule_save_data){
+if (schedule_save_data) {
     serialize_save_data();
-    schedule_save_data=false;
+    schedule_save_data = false;
 }
 
-if (schedule_save_map){
+if (schedule_save_map) {
     serialize_save_map();
-    schedule_save_map=false;
+    schedule_save_map = false;
 }
 
-if (schedule_open){
-    var fn=get_open_filename("DDD game files ("+EXPORT_EXTENSION_DATA+", "+EXPORT_EXTENSION_MAP+")|*"+EXPORT_EXTENSION_DATA+";*"+EXPORT_EXTENSION_MAP, "");
+if (schedule_open) {
+    var fn = get_open_filename("DDD game files (" + EXPORT_EXTENSION_DATA + ", " + EXPORT_EXTENSION_MAP + ")|*" + EXPORT_EXTENSION_DATA+";*" + EXPORT_EXTENSION_MAP, "");
     
-    if (file_exists(fn)){
+    if (file_exists(fn)) {
         serialize_load(fn);
     }
     
-    schedule_open=false;
+    schedule_open = false;
 }
 
-/*for (var i=0; i<ds_list_size(schedule_list_kill); i++){
-    var data=schedule_list_kill[| i];
-    var victim=data[@ 0];
-    var current=data[@ 1];
-    for (var j=current; j<min(current+100, ds_list_size(victim)); j++){
+/*for (var i=0; i<ds_list_size(schedule_list_kill); i++) {
+    var data = schedule_list_kill[| i];
+    var victim = data[@ 0];
+    var current = data[@ 1];
+    for (var j = current; j<min(current + 100, ds_list_size(victim)); j++) {
         instance_activate_object(victim[| j]);
         instance_destroy(victim[| j]);
     }
-    if (j==ds_list_size(victim)){
+    if (j == ds_list_size(victim)) {
         ds_list_destroy(victim);
         ds_list_delete(schedule_list_kill, i--);
     }
@@ -113,8 +112,5 @@ if (schedule_open){
 
 // controller is invisible so
 
-Controller.mouse_x_previous=mouse_x;
-Controller.mouse_y_previous=mouse_y;
-
-/* */
-/*  */
+Controller.mouse_x_previous = mouse_x;
+Controller.mouse_y_previous = mouse_y;

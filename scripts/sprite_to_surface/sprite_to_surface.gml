@@ -1,6 +1,6 @@
-/// @description  surface sprite_to_surface(sprite, subimg)
+/// @description surface sprite_to_surface(sprite, subimg)
 /// @param sprite
-/// @param  subimg
+/// @param subimg
 // by yellowafterlife
 
 var q = argument0;

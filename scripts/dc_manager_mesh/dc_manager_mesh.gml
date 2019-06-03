@@ -1,4 +1,4 @@
-/// @description  void dc_manager_mesh(Dialog);
+/// @description void dc_manager_mesh(Dialog);
 /// @param Dialog
 // Doesn't actually commit any settings, just a verification to see if there
 // would be any side effects (entities being orphaned by the grid, etc) and

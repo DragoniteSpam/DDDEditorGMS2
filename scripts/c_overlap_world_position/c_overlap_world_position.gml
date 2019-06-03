@@ -1,8 +1,8 @@
 /// @description c_overlap_world_position(object, x, y, z)
 /// @param object
-/// @param  x
-/// @param  y
-/// @param  z
+/// @param x
+/// @param y
+/// @param z
 /*
 Checks if the object will overlap any other object at the given position. The object does not need to be in the world.
 Returns the number of objects that are overlapping this object. Use c_hit_object(n) to get those objects.

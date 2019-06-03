@@ -1,4 +1,4 @@
-/// @description  This is analagous to an "event page" in RPG Maker
+/// @description This is analagous to an "event page" in RPG Maker
 event_inherited();
 
 name="instantiated event";

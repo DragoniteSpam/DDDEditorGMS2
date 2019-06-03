@@ -1,4 +1,4 @@
-/// @description  properties of the active map
+/// @description properties of the active map
 
 event_inherited();
 

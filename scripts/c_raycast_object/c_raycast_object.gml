@@ -1,12 +1,12 @@
 /// @description c_raycast_object(object, xfrom, yfrom, zfrom, xto, yto, zto, mask)
 /// @param object
-/// @param  xfrom
-/// @param  yfrom
-/// @param  zfrom
-/// @param  xto
-/// @param  yto
-/// @param  zto
-/// @param  mask
+/// @param xfrom
+/// @param yfrom
+/// @param zfrom
+/// @param xto
+/// @param yto
+/// @param zto
+/// @param mask
 /*
 Casts a ray from (xfrom,yfrom,zfrom) to (xto,yto,zto), against the specified object.
 Returns true if the ray hit, and false if it did not.

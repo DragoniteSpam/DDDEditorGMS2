@@ -1,7 +1,7 @@
-/// @description  void move_route_update_buffer(DataMoveRoute);
+/// @description void move_route_update_buffer(DataMoveRoute);
 /// @param DataMoveRoute
 
-if (argument0.buffer!=noone){
+if (argument0.buffer!=noone) {
     vertex_delete_buffer(argument0.buffer);
     argument0.buffer=noone;
 }
@@ -22,11 +22,11 @@ vertex_begin(buffer, Camera.vertex_format_line);
 
 vertex_cube_line(buffer, 0, 0, 0, c, 1, cube_size);
 
-for (var i=0; i<ds_list_size(argument0.steps); i++){
+for (var i=0; i<ds_list_size(argument0.steps); i++) {
     var data=argument0.steps[| i];
     var stop=false;
     
-    switch (data[@ 0]){
+    switch (data[@ 0]) {
         // these either use some kind of random motion or use absolute coordinates,
         // so there's not much good in drawing them
         case MoveRouteActions.MOVE_RANDOM:
@@ -102,12 +102,12 @@ for (var i=0; i<ds_list_size(argument0.steps); i++){
             n_actions++;
             break;
     }
-    if (stop){
+    if (stop) {
         break;
     }
 }
 
-if (n_actions>0){
+if (n_actions>0) {
     vertex_end(buffer);
     vertex_freeze(buffer);
     argument0.buffer=buffer;

@@ -1,7 +1,7 @@
-/// @description  void data_resize_map(xx, yy, zz);
+/// @description void data_resize_map(xx, yy, zz);
 /// @param xx
-/// @param  yy
-/// @param  zz
+/// @param yy
+/// @param zz
 
 ActiveMap.xx=argument0;
 ActiveMap.yy=argument1;

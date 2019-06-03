@@ -1,6 +1,6 @@
 /// @description c_object_set_userid(object, number)
 /// @param object
-/// @param  number
+/// @param number
 /*
 Associate a collision object with any unsigned integer of your choice.
 Useful for linking a GameMaker instance with a collision object.

@@ -1,4 +1,4 @@
-/// @description  void momu_tileset(MenuElement);
+/// @description void momu_tileset(MenuElement);
 /// @param MenuElement
 
 var catch=argument0;

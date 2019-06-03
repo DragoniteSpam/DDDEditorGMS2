@@ -1,7 +1,7 @@
-/// @description  void ui_render_bitfield_option_text(UIBitFieldOption, x, y);
+/// @description void ui_render_bitfield_option_text(UIBitFieldOption, x, y);
 /// @param UIBitFieldOption
-/// @param  x
-/// @param  y
+/// @param x
+/// @param y
 
 // outer border and interactivity
 ui_render_bitfield_option(argument0, argument1, argument2);

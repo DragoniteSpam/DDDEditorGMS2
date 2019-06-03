@@ -1,13 +1,13 @@
-/// @description  matrix transform_add(x, y, z, xrot, yrot, zrot, xscale, yscale, zscale);
+/// @description matrix transform_add(x, y, z, xrot, yrot, zrot, xscale, yscale, zscale);
 /// @param x
-/// @param  y
-/// @param  z
-/// @param  xrot
-/// @param  yrot
-/// @param  zrot
-/// @param  xscale
-/// @param  yscale
-/// @param  zscale
+/// @param y
+/// @param z
+/// @param xrot
+/// @param yrot
+/// @param zrot
+/// @param xscale
+/// @param yscale
+/// @param zscale
 
 var matrix_current=matrix_get(matrix_world);
 var matrix_addition=matrix_build(argument0, argument1, argument2,

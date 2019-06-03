@@ -1,4 +1,4 @@
-/// @description  void omu_manager_autotile(UIThing);
+/// @description void omu_manager_autotile(UIThing);
 /// @param UIThing
 
 var catch=argument0;

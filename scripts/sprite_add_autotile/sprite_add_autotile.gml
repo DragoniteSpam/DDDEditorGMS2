@@ -1,4 +1,4 @@
-/// @description  sprite sprite_add_autotile(name);
+/// @description sprite sprite_add_autotile(name);
 /// @param name
 // name is only the file name, not the path
 

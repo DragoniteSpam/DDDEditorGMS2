@@ -1,6 +1,6 @@
-/// @description  void serialize_save_entity_pawn(buffer, EntityTile);
+/// @description void serialize_save_entity_pawn(buffer, EntityTile);
 /// @param buffer
-/// @param  EntityTile
+/// @param EntityTile
 
 serialize_save_entity(argument0, argument1);
 

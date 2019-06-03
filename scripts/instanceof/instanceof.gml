@@ -1,8 +1,8 @@
-/// @description  boolean instanceof(instance, object);
+/// @description boolean instanceof(instance, object);
 /// @param instance
-/// @param  object
+/// @param object
 
-if (argument0.object_index==argument1){
+if (argument0.object_index==argument1) {
     return true;
 }
 

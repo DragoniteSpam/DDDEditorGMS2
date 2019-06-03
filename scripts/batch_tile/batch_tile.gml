@@ -1,7 +1,7 @@
-/// @description  void batch_tile(vertex buffer, wireframe buffer, EntityTile);
+/// @description void batch_tile(vertex buffer, wireframe buffer, EntityTile);
 /// @param vertex buffer
-/// @param  wireframe buffer
-/// @param  EntityTile
+/// @param wireframe buffer
+/// @param EntityTile
 
 var buffer=argument0;
 var wire=argument1;

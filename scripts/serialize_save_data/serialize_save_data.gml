@@ -1,5 +1,5 @@
 var fn = get_save_filename("DDD game data files|*" + EXPORT_EXTENSION_DATA, "game");
-if (string_length(fn) > 0){
+if (string_length(fn) > 0) {
     Stuff.save_name_data=string_replace(filename_name(fn), EXPORT_EXTENSION_DATA, "");
     serialize_backup(PATH_BACKUP_DATA, Stuff.save_name_data, EXPORT_EXTENSION_DATA, fn);
     game_auto_title();
@@ -41,8 +41,8 @@ if (string_length(fn) > 0){
      * that's it!
      */
     
-    if (Stuff.setting_compress){
-		var compressed=buffer_compress(buffer, 0, buffer_tell(buffer));
+    if (Stuff.setting_compress) {
+		var compressed = buffer_compress(buffer, 0, buffer_tell(buffer));
         buffer_save(compressed, fn);
         buffer_save(compressed, "auto" + EXPORT_EXTENSION_DATA);
         buffer_delete(compressed);

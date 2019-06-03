@@ -1,4 +1,4 @@
-/// @description  void error_clear();
+/// @description void error_clear();
 
 var message=argument0;
 

@@ -1,6 +1,6 @@
-/// @description  void ui_init_event();
+/// @description void ui_init_event();
 
-with (instantiate(UIMain)){
+with (instantiate(UIMain)) {
     /*
      * tab system setup
      */

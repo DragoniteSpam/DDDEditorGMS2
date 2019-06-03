@@ -1,7 +1,7 @@
 /// @description c_transform_scaling(xs, ys, zs)
 /// @param xs
-/// @param  ys
-/// @param  zs
+/// @param ys
+/// @param zs
 /*
 Sets the scaling of the transformation.
 Note: Scaling only applies to shapes and will have no effect when applied to a collision object.

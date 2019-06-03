@@ -1,8 +1,8 @@
-/// @description  void dialog_create_event_node_custom_data(Dialog, DataNode, property index, multi index);
+/// @description void dialog_create_event_node_custom_data(Dialog, DataNode, property index, multi index);
 /// @param Dialog
-/// @param  DataNode
-/// @param  property index
-/// @param  multi index
+/// @param DataNode
+/// @param property index
+/// @param multi index
 
 var property=guid_get(argument1.custom_guid).types[| argument2];
 var type=guid_get(property[EventNodeCustomData.TYPE_GUID]);

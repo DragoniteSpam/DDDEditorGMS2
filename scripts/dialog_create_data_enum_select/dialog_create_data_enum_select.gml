@@ -1,4 +1,4 @@
-/// @description  void dialog_create_data_enum_select(Dialog);
+/// @description void dialog_create_data_enum_select(Dialog);
 /// @param Dialog
 
 var dw=320;

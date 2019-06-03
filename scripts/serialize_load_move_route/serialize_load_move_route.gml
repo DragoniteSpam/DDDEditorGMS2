@@ -1,7 +1,7 @@
-/// @description  void serialize_load_move_route(buffer, Entity, version);
+/// @description void serialize_load_move_route(buffer, Entity, version);
 /// @param buffer
-/// @param  Entity
-/// @param  version
+/// @param Entity
+/// @param version
 
 var route=instantiate(DataMoveRoute);
 ds_list_add(argument1.movement_routes, route);
@@ -16,10 +16,10 @@ route.wait=unpack(bools, 2);
 
 var n_steps=buffer_read(argument0, buffer_u16);
 
-repeat(n_steps){
+repeat(n_steps) {
     var type=buffer_read(argument0, buffer_u16);
     
-    switch (type){
+    switch (type) {
         // DataVersions.MOVE_ROUTE_MOVE_PARAMS
         case MoveRouteActions.MOVE_DOWN:
         case MoveRouteActions.MOVE_LEFT:
@@ -29,7 +29,7 @@ repeat(n_steps){
         case MoveRouteActions.MOVE_LOWER_RIGHT:
         case MoveRouteActions.MOVE_UPPER_LEFT:
         case MoveRouteActions.MOVE_UPPER_RIGHT:
-            if (argument2>=DataVersions.MOVE_ROUTE_MOVE_PARAMS){
+            if (argument2>=DataVersions.MOVE_ROUTE_MOVE_PARAMS) {
                 var ext=buffer_read(argument0, buffer_u8);
                 var data=[type, ext];
             } else {

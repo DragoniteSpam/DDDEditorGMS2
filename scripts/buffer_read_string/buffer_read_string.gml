@@ -1,4 +1,4 @@
-/// @description  String buffer_read_string(buffer);
+/// @description String buffer_read_string(buffer);
 /// @param buffer
 // Reads a string from a buffer of float32s.
 

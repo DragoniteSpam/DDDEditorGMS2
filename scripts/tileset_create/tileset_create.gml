@@ -1,20 +1,19 @@
-/// @description  DataTileset tileset_create(file/name, autotile array, [sprite index]);
 /// @param file/name
-/// @param  autotile array
-/// @param  [sprite index]
+/// @param autotile[]
+/// @param [sprite-index]
 
 // don't instantiate these outside of this script
-with (instantiate(DataTileset)){
-    picture_name=argument[0];
+with (instantiate(DataTileset)) {
+    picture_name = argument[0];
     
-    if (argument_count>2){
-        picture=argument[2];
+    if (argument_count > 2) {
+        picture = argument[2];
     } else {
-        picture=sprite_add(argument[0], 0, false, false, 0, 0);
+        picture = sprite_add(argument[0], 0, false, false, 0, 0);
         
-        if (!sprite_exists(picture)){
-            picture=b_tileset_checkers;
-            error_log("Missing tileset image; using default tileset instead: "+argument[0]);
+        if (!sprite_exists(picture)) {
+            picture = b_tileset_checkers;
+            error_log("Missing tileset image; using default tileset instead: " + argument[0]);
         }
     }
     
@@ -22,24 +21,24 @@ with (instantiate(DataTileset)){
     
     // these should be indices in Stuff.available_autotiles, not the
     // sprite asset itself!
-    autotiles=argument[1];
+    autotiles = argument[1];
     
-    passage=tileset_create_grid(picture, TILE_PASSABLE);
-    priority=tileset_create_grid(picture, 0);
-    flags=tileset_create_grid(picture, 0);
-    tags=tileset_create_grid(picture, TileTerrainTags.NONE);
+    passage = tileset_create_grid(picture, TILE_PASSABLE);
+    priority = tileset_create_grid(picture, 0);
+    flags = tileset_create_grid(picture, 0);
+    tags = tileset_create_grid(picture, TileTerrainTags.NONE);
     
-    at_passage=array_create(AUTOTILE_MAX);
-    at_priority=array_create(AUTOTILE_MAX);
-    at_flags=array_create(AUTOTILE_MAX);
-    at_tags=array_create(AUTOTILE_MAX);
+    at_passage = array_create(AUTOTILE_MAX);
+    at_priority = array_create(AUTOTILE_MAX);
+    at_flags = array_create(AUTOTILE_MAX);
+    at_tags = array_create(AUTOTILE_MAX);
     
     array_clear(at_passage, TILE_PASSABLE);
     array_clear(at_priority, 0);
     array_clear(at_flags, 0);
     array_clear(at_tags, TileTerrainTags.NONE);
     
-    master=tileset_create_master(id);
+    master = tileset_create_master(id);
     
     // don't do uivc_select_autotile_refresh here, the UI may not have been created yet
 

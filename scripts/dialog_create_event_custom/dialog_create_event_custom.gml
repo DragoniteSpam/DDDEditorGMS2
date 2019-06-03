@@ -1,4 +1,4 @@
-/// @description  void dialog_create_event_custom(Dialog);
+/// @description void dialog_create_event_custom(Dialog);
 /// @param Dialog
 
 var dw=720;

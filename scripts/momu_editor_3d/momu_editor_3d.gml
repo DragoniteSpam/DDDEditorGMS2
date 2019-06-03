@@ -1,4 +1,4 @@
-/// @description  void momu_editor_3d(MenuElement);
+/// @description void momu_editor_3d(MenuElement);
 /// @param MenuElement
 
 var catch=argument0;

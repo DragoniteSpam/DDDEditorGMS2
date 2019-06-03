@@ -1,23 +1,23 @@
-/// @description  uivc_select_tile(UITileSelector, tx, ty);
+/// @description uivc_select_tile(UITileSelector, tx, ty);
 /// @param UITileSelector
-/// @param  tx
-/// @param  ty
+/// @param tx
+/// @param ty
 
 var catch=argument0;
 
 var ts=get_active_tileset();
 
-switch (Camera.tile_on_click){
+switch (Camera.tile_on_click) {
     case TileSelectorOnClick.SELECT:
         Camera.selection_fill_tile_x=argument1;
         Camera.selection_fill_tile_y=argument2;
         uivc_select_tile_refresh(argument1, argument2);
         break;
     case TileSelectorOnClick.MODIFY:
-        switch (Camera.tile_data_view){
+        switch (Camera.tile_data_view) {
             case TileSelectorDisplayMode.PASSAGE:
                 var data=ts.passage;
-                if (data[# argument1, argument2]==0){
+                if (data[# argument1, argument2]==0) {
                     data[# argument1, argument2]=TILE_PASSABLE;
                 } else {
                     data[# argument1, argument2]=0;

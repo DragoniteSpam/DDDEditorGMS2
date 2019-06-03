@@ -1,4 +1,4 @@
-/// @description  void uivc_entity_event_enable_switch_self(UIThing);
+/// @description void uivc_entity_event_enable_switch_self(UIThing);
 /// @param UIThing
 
 // safe

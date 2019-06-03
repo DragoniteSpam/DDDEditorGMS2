@@ -1,7 +1,7 @@
-/// @description  void batch_mesh(vertex buffer, wireframe buffer, EntityMesh);
+/// @description void batch_mesh(vertex buffer, wireframe buffer, EntityMesh);
 /// @param vertex buffer
-/// @param  wireframe buffer
-/// @param  EntityMesh
+/// @param wireframe buffer
+/// @param EntityMesh
 
 var buffer=argument0;
 var wire=argument1;
@@ -21,7 +21,7 @@ var py=array_create(3);
 var pz=array_create(3);
 var nx, ny, nz, xtex, ytex, color, alpha;
 
-while (buffer_tell(data)<buffer_get_size(data)){
+while (buffer_tell(data)<buffer_get_size(data)) {
     // script arguments are parsed backwards and i don't think
     // there's a way to turn that off, and in any case it's a
     // better idea to just fetch the values first and *then*
@@ -45,7 +45,7 @@ while (buffer_tell(data)<buffer_get_size(data)){
     
     vc=(++vc)%3;
     
-    if (vc==0){
+    if (vc==0) {
         vertex_point_line(wire, px[0], py[0], pz[0], c_white, 1);
         vertex_point_line(wire, px[1], py[1], pz[1], c_white, 1);
         

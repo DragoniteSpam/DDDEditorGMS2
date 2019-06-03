@@ -1,8 +1,8 @@
-/// @description  void sme_down_rectangle(Selection, x, y, z);
+/// @description void sme_down_rectangle(Selection, x, y, z);
 /// @param Selection
-/// @param  x
-/// @param  y
-/// @param  z
+/// @param x
+/// @param y
+/// @param z
 
 argument0.x1=argument1;
 argument0.y1=argument2;

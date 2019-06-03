@@ -1,4 +1,4 @@
-/// @description  value ds_list_pop(list);
+/// @description value ds_list_pop(list);
 /// @param list
 // for when you want to be using a stack, but need to
 // do stuff with it that you need a list for.

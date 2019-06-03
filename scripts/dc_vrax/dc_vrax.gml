@@ -1,4 +1,4 @@
-/// @description  void dc_vrax(Dialog);
+/// @description void dc_vrax(Dialog);
 /// @param Dialog
 
 var map=argument0.data;

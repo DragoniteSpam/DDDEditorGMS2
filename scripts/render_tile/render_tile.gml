@@ -1,4 +1,4 @@
-/// @description  void render_tile(EntityTile);
+/// @description void render_tile(EntityTile);
 /// @param EntityTile
 
 var tile=argument0;
@@ -31,8 +31,8 @@ var ytex=tile.tile_y*texture_height;
 var color=tile.tile_color;
 var alpha=tile.tile_alpha;
 
-if (Camera.view_entities){
-    if (Camera.view_texture){
+if (Camera.view_entities) {
+    if (Camera.view_texture) {
         var tex=sprite_get_texture(ts.master, 0);
     } else {
         var tex=sprite_get_texture(b_tileset_textureless, 0)
@@ -51,7 +51,7 @@ if (Camera.view_entities){
     d3d_primitive_end();
 }
 
-if (Camera.view_wireframe){
+if (Camera.view_wireframe) {
     d3d_primitive_begin_texture(pr_linelist, -1);
     
     d3d_vertex(xx, yy, zz);

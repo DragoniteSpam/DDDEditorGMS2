@@ -1,9 +1,9 @@
-/// @description  void omu_event_custom_add_property(UIThing);
+/// @description void omu_event_custom_add_property(UIThing);
 /// @param UIThing
 
 var event=argument0.root.event;
 
-if (ds_list_size(event.types)<255){
+if (ds_list_size(event.types)<255) {
     var data=["Property"+string(ds_list_size(event.types)), DataTypes.INT, 0, 1, false];
     ds_list_add(event.types, data);
 } else {

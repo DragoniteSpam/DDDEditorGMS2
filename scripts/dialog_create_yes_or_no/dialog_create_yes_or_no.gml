@@ -1,11 +1,11 @@
-/// @description  Dialog dialog_create_yes_or_no(root Dialog, message, confirm action, [caption message], [confirm message], [cancel action], [cancel message]);
+/// @description Dialog dialog_create_yes_or_no(root Dialog, message, confirm action, [caption message], [confirm message], [cancel action], [cancel message]);
 /// @param root Dialog
-/// @param  message
-/// @param  confirm action
-/// @param  [caption message]
-/// @param  [confirm message]
-/// @param  [cancel action]
-/// @param  [cancel message]
+/// @param message
+/// @param confirm action
+/// @param [caption message]
+/// @param [confirm message]
+/// @param [cancel action]
+/// @param [cancel message]
 // if the order of these parameters seems a little weird, it's because all of
 // the required ones have to go at the beginning and the optional ones at the end
 
@@ -17,7 +17,7 @@ var cancel_message="nope";
 var action_confirm=argument[2];
 var action_cancel=dmu_dialog_cancel;
 
-switch (argument_count){
+switch (argument_count) {
     case 7:
         cancel_message=argument[6];
     case 6:

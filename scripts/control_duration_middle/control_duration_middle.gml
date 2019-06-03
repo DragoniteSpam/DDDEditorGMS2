@@ -1,6 +1,6 @@
-/// @description  double control_duration_middle();
+/// @description double control_duration_middle();
 
-if (Controller.time_middle<0){
+if (Controller.time_middle<0) {
     return 0;
 }
 

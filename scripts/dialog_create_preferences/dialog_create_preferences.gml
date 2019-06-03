@@ -1,4 +1,4 @@
-/// @description  void dialog_create_preferences(Dialog);
+/// @description void dialog_create_preferences(Dialog);
 /// @param Dialog
 
 var dw=512;

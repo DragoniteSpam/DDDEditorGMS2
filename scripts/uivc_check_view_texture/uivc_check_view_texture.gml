@@ -1,4 +1,4 @@
-/// @description  uivc_check_view_texture(UIThing);
+/// @description uivc_check_view_texture(UIThing);
 /// @param UIThing
 
 Camera.view_texture=argument0.value;

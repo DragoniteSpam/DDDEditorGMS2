@@ -1,4 +1,4 @@
-/// @description  void dc_data_why(UIButton);
+/// @description void dc_data_why(UIButton);
 /// @param UIButton
 
 var dw=400;
