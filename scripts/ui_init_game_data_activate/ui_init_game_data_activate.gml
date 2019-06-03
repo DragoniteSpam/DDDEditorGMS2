@@ -55,65 +55,70 @@ if (data != noone) {
         yy = yy + element.height + spacing;
         
         for (var i=0; i<ds_list_size(data.properties); i++) {
-            var property=data.properties[| i];
+            var property = data.properties[| i];
             switch (property.type) {
                 case DataTypes.INT:            // input
-                    var char_limit=log10(max(abs(property.range_min), abs(property.range_max))+1);
-                    if (property.range_min<0||property.range_max<0) {
+                    var char_limit = log10(max(abs(property.range_min), abs(property.range_max)) + 1);
+                    if (property.range_min < 0||property.range_max < 0) {
                         char_limit++;
                     }
                     
-                    var element=create_input(spacing, yy, property.name, ew, eh, uivc_data_set_property_input, i, property.range_min, string(property.range_min)+" - "+string(property.range_max), validate_int, ui_value_real,
+                    var element = create_input(spacing, yy, property.name, ew, eh, uivc_data_set_property_input, i, property.range_min, string(property.range_min)+" - "+string(property.range_max), validate_int, ui_value_real,
                         property.range_min, property.range_max, char_limit, vx1, vy1, vx2, vy2, noone);
-                    var hh=element.height;
+                    var hh = element.height;
                     break;
                 case DataTypes.FLOAT:          // input
-                    var element=create_input(spacing, yy, property.name, ew, eh, uivc_data_set_property_input, i, property.range_min, string(property.range_min)+" - "+string(property.range_max), validate_int, ui_value_real,
+                    var element = create_input(spacing, yy, property.name, ew, eh, uivc_data_set_property_input, i, property.range_min, string(property.range_min)+" - "+string(property.range_max), validate_int, ui_value_real,
                         property.range_min, property.range_max, 10 /* hard-coded do not touch */, vx1, vy1, vx2, vy2, noone);
-                    var hh=element.height;
+                    var hh = element.height;
                     break;
                 case DataTypes.STRING:         // input
-                    var element=create_input(spacing, yy, property.name, ew, eh, uivc_data_set_property_input, i, "", "string", validate_string, ui_value_string,
+                    var element = create_input(spacing, yy, property.name, ew, eh, uivc_data_set_property_input, i, "", "string", validate_string, ui_value_string,
                         0, 1, property.char_limit, vx1, vy1, vx2, vy2, noone);
-                    var hh=element.height;
+                    var hh = element.height;
                     break;
                 case DataTypes.ENUM:           // list
                 case DataTypes.DATA:           // list
-                    var datadata=guid_get(property.type_guid);
-                    var element=create_list(spacing, yy, property.name, "<no options: "+datadata.name+">", ew, eh, 8, uivc_data_set_property_list, false, noone);
+                    var datadata = guid_get(property.type_guid);
+                    var element = create_list(spacing, yy, property.name, "<no options: "+datadata.name+">", ew, eh, 8, uivc_data_set_property_list, false, noone);
                     if (datadata.is_enum) {
-                        for (var j=0; j<ds_list_size(datadata.properties); j++) {
+                        for (var j = 0; j < ds_list_size(datadata.properties); j++) {
                             create_list_entries(element, datadata.properties[| j], c_black);
                         }
                     } else {
-                        for (var j=0; j<ds_list_size(datadata.instances); j++) {
+                        for (var j = 0; j < ds_list_size(datadata.instances); j++) {
                             create_list_entries(element, datadata.instances[| j], c_black);
                         }
                     }
-                    element.key=i;
-                    element.entries_are=ListEntries.INSTANCES;
-                    var hh=ui_get_list_height(element);
+                    element.key = i;
+                    element.entries_are = ListEntries.INSTANCES;
+                    var hh = ui_get_list_height(element);
                     break;
                 case DataTypes.BOOL:           // checkbox
-                    var element=create_checkbox(spacing, yy, property.name, ew, eh, uivc_data_set_property_boolean, i, false, noone);
-                    var hh=element.height;
+                    var element = create_checkbox(spacing, yy, property.name, ew, eh, uivc_data_set_property_boolean, i, false, noone);
+                    var hh = element.height;
                     break;
             }
             
-            if (yy+hh>room_height-160) {
-                var n=ds_list_size(container.contents);
-                col_data=instance_create_depth((n/*+2*/)*cw+spacing*4, 0, 0, UIThing);
-                if (n>3) {
-                    col_data.enabled=false;
+            if (yy + hh > room_height - 160) {
+                var n = ds_list_size(container.contents);
+                col_data = instance_create_depth((n /* + 2 */) * cw + spacing * 4, 0, 0, UIThing);
+                if (n > 2) {
+                    col_data.enabled = false;
                 }
                 ds_list_add(container.contents, col_data);
-                element.y=yy_base;
-                yy=yy_base;
+                element.y = yy_base;
+                yy = yy_base;
             }
             
-            yy=yy+hh+spacing;
+            yy = yy + hh + spacing;
             
             ds_list_add(col_data.contents, element);
         }
+        
+        var pages = ds_list_size(container.contents);
+        Camera.ui_game_data.el_pages.text = "Page 1 / " + string(max(1, pages - 2));
+        Camera.ui_game_data.el_previous.interactive = pages > 2;
+        Camera.ui_game_data.el_next.interactive = pages > 2;
     }
 }

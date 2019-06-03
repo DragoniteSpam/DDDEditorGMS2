@@ -44,39 +44,48 @@ with (instantiate(UIThing)) {
     element.render = ui_render_text_data_name;
     ds_list_add(contents, element);
     
+    el_previous = create_button((this_column + 1) * cw + spacing, yy, "<", ew / 6, eh, fa_center, omu_data_previous, id);
+    el_pages = create_text((this_column + 1) * cw + spacing, yy, "Page x/x", cw, eh, fa_center, cw, id);
+    el_next = create_button((this_column + 11 / 6) * cw + spacing, yy, ">", ew / 6, eh, fa_center, omu_data_next, id);
+    ds_list_add(contents, el_previous);
+    ds_list_add(contents, el_pages);
+    ds_list_add(contents, el_next);
+    
     yy = yy + spacing + element.height;
     
-    el_instances=create_list(this_column*cw+spacing, yy, "Instances: ", "<No instances>", ew, eh, 27, ui_init_game_data_refresh, false, id);
-    el_instances.render=ui_render_list_data_instances;
-    el_instances.numbered=true;
-    el_instances.entries_are=ListEntries.INSTANCES;
+    el_instances = create_list(this_column * cw + spacing, yy, "Instances: ", "<No instances>", ew, eh, 27, ui_init_game_data_refresh, false, id);
+    el_instances.render = ui_render_list_data_instances;
+    el_instances.numbered = true;
+    el_instances.entries_are = ListEntries.INSTANCES;
     ds_list_add(contents, el_instances);
     
-    yy=yy+spacing+ui_get_list_height(el_instances);
+    yy = yy + spacing + ui_get_list_height(el_instances);
     
-    el_inst_add=create_button(this_column*cw+spacing, yy, "Add Instance", ew, eh, fa_center, uimu_data_add_data, id);
+    el_inst_add = create_button(this_column * cw + spacing, yy, "Add Instance", ew, eh, fa_center, uimu_data_add_data, id);
     ds_list_add(contents, el_inst_add);
     
-    yy=yy+spacing+element.height;
+    yy = yy + spacing + element.height;
     
-    el_inst_remove=create_button(this_column*cw+spacing, yy, "Remove Instance", ew, eh, fa_center, uimu_data_remove_data, id);
+    el_inst_remove = create_button(this_column * cw + spacing, yy, "Remove Instance", ew, eh, fa_center, uimu_data_remove_data, id);
     ds_list_add(contents, el_inst_remove);
     
     /*
      * contents - this is actually pretty boring, it's just a container for all of the things you create on the fly
      */
     
-    var this_column=2;
-    yy=yy_base;
+    var this_column = 2;
+    yy = yy_base;
     
-    el_dynamic=instance_create_depth(this_column*cw+spacing, yy, 0, UIThing);
+    el_dynamic = instance_create_depth(this_column * cw + spacing, yy, 0, UIThing);
+    el_dynamic.render = ui_render_columns;
+    el_dynamic.page = 0;
     ds_list_add(contents, el_dynamic);
     
     /*
      * more important stuff that needs to be done?
      */
     
-    active_type_guid=0;
+    active_type_guid = 0;
     instance_deactivate_object(UIThing);
     
     return id;
