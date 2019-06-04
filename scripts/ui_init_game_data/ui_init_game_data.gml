@@ -1,5 +1,3 @@
-/// @description ui_init_game_data();
-
 // this one's not tabbed, it's just a bunch of elements floating in space
 with (instantiate(UIThing)) {
     var columns = 5;

@@ -1,5 +1,4 @@
 
-/// @description void dialog_create_data_types(Dialog);
 /// @param Dialog
 // there's a fair amount of redundant code in here, and in the associated scripts.
 // however, in this case, i've decided that a few lines of redundant code is better than

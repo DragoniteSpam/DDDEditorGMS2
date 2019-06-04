@@ -1,4 +1,3 @@
-/// @description void serialize_save_entity_effect(buffer, EntityTile);
 /// @param buffer
 /// @param EntityTile
 

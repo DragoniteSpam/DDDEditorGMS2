@@ -1,4 +1,3 @@
-/// @description color colour_mute(color);
 /// @param color
 // merges a bit with black
 

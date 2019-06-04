@@ -1,5 +1,3 @@
-/// @description ui_init_game_data_activate();
-
 var container = Camera.ui_game_data.el_dynamic;
 if (Stuff.setting_alphabetize_lists) {
     var sorted = ds_list_sort_name_sucks(Stuff.all_data);

@@ -1,4 +1,3 @@
-/// @description void ui_render_list_data_data(UIList);
 /// @param UIList
 
 var otext = argument0.text;

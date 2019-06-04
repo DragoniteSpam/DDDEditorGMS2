@@ -1,4 +1,3 @@
-/// @description void dialog_default(Dialog);
 /// @param Dialog
 
 // there were going to be other things in here but i can't remember what

@@ -1,4 +1,3 @@
-/// @description uivc_list_data_data(UIList);
 /// @param UIList
 
 var selection = ui_list_selection(argument0);
