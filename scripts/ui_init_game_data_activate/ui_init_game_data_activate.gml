@@ -66,7 +66,7 @@ if (data != noone) {
                     var hh = element.height;
                     break;
                 case DataTypes.FLOAT:          // input
-                    var element = create_input(spacing, yy, property.name, ew, eh, uivc_data_set_property_input, i, property.range_min, string(property.range_min)+" - "+string(property.range_max), validate_int, ui_value_real,
+                    var element = create_input(spacing, yy, property.name, ew, eh, uivc_data_set_property_input, i, property.range_min, string(property.range_min)+" - "+string(property.range_max), validate_double, ui_value_real,
                         property.range_min, property.range_max, 10 /* hard-coded do not touch */, vx1, vy1, vx2, vy2, noone);
                     var hh = element.height;
                     break;

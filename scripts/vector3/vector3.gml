@@ -1,4 +1,3 @@
-/// @description vector3(x, y, z);
 /// @param x
 /// @param y
 /// @param z
