@@ -46,7 +46,9 @@ if (data != noone) {
         var col_data = instance_create_depth(/*2 * cw + */spacing, 0, 0, UIThing);
         ds_list_add(container.contents, col_data);
         
+        var element_header = noone;
         var element = create_input(spacing, yy, "Name:", ew, eh, uivc_data_set_name, "", "", "Instance name", validate_string, ui_value_string, 0, 1, 16, vx1, vy1, vx2, vy2, noone);
+        // if (element_header != noone)
         ds_list_add(col_data.contents, element);
         Camera.ui_game_data.el_inst_name = element;
         
@@ -97,8 +99,11 @@ if (data != noone) {
                     var hh = element.height;
                     break;
                 case DataTypes.CODE:
-                    var element = create_input_code(spacing, yy, property.name, ew, eh, vx1 - 80, vy1, vx2, vy2, property.default_code, null, noone);
-                    var hh = element.height;
+                    var element_header = create_text(spacing, yy, property.name, ew, eh, fa_left, ew, noone);
+                    var hh = element_header.height;
+                    var element = create_input_code(spacing, yy + hh, "", ew, eh, 0, vy1, vx2, vy2, property.default_code, null, noone);
+                    implement the onvaluechange code next. class now.
+                    hh = hh + element.height;
                     break;
                 case DataTypes.COLOR:
                 case DataTypes.MESH:
@@ -125,6 +130,11 @@ if (data != noone) {
             
             yy = yy + hh + spacing;
             
+            if (element_header != noone) {
+                element_header.is_aux = true;
+                ds_list_add(col_data.contents, element_header);
+                element_header = noone;
+            }
             ds_list_add(col_data.contents, element);
         }
         

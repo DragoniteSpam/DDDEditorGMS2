@@ -31,12 +31,17 @@ for (var i = 0; i < ds_list_size(dynamic.contents); i++) {
     var start = (i == 0) ? 1 : 0;
     
     for (var j = start; j < ds_list_size(column.contents); j++) {
+        var thingy = column.contents[| j];
+        
+        if (thingy.is_aux) {
+            continue;
+        }
+        
         // it'd be nice if i could just add the elements to a list and go over the
         // list without having to "physically" go down each column and row, but then
         // the list would be orphaned/memory leak unless i do some other things that
         // i don't feel like doing
         var property = data.properties[| n];
-        var thingy = column.contents[| j];
         
         // only check data, not enums
         if (property.type == DataTypes.DATA) {

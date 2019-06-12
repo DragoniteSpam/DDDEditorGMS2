@@ -16,3 +16,7 @@ alignment = fa_left;
 valignment = fa_middle;
 
 help = HelpPages.OVERVIEW;
+
+// if you have a list of ui things in a list, and want to iterate over the list, but
+// want to ignore this one
+is_aux = false;
