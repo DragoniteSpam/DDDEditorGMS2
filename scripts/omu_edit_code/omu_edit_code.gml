@@ -1,6 +1,6 @@
 /// @param UIThing
 
-var location = PATH_TEMP_CODE + string(argument0.id) + ".lua";
+var location = PATH_TEMP_CODE + string(argument0.id) + ".txt";
 
 var f = file_text_open_write(location);
 file_text_write_string(f, argument0.value);
