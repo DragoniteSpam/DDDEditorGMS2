@@ -1855,6 +1855,14 @@
             }
         },
         {
+            "Key": "3b627150-6352-40d8-98e3-21641d9782c5",
+            "Value": {
+                "id": "9dfa2f71-4a38-406d-9153-f12e0c59de20",
+                "resourcePath": "scripts\\ui_render_input_code\\ui_render_input_code.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "3c551174-f3d9-4f24-8a1b-bc6344e9eac7",
             "Value": {
                 "id": "b34ea58a-318e-4d47-9a0f-e753bf790111",
@@ -3487,6 +3495,14 @@
             }
         },
         {
+            "Key": "6bf27b2c-c013-4fb1-9836-b95167ffd715",
+            "Value": {
+                "id": "cad045ff-1aef-4d65-82dd-4371cd101b10",
+                "resourcePath": "scripts\\omu_edit_code\\omu_edit_code.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "6c193149-d9a6-4e26-804b-579d9c731103",
             "Value": {
                 "id": "9cf65401-75d8-4d33-8162-20c6c06151d8",
@@ -3611,6 +3627,14 @@
             "Value": {
                 "id": "1c9c42ee-61d7-4ae1-84fa-201938c81841",
                 "resourcePath": "scripts\\serialize_load_tilesets_all\\serialize_load_tilesets_all.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "70fbfb15-2cdd-4309-9035-a4f22b2ba44e",
+            "Value": {
+                "id": "602b9378-ed13-4bde-a69b-61bf4da1a297",
+                "resourcePath": "scripts\\ui_render_button_general\\ui_render_button_general.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -7599,6 +7623,14 @@
             }
         },
         {
+            "Key": "f2812c05-fdcf-402c-99e4-f2e6d180c128",
+            "Value": {
+                "id": "fed91ee7-9fda-4e39-a72e-8d5130cdd208",
+                "resourcePath": "objects\\UIInputCode\\UIInputCode.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "f297aafe-1c59-40a8-b59f-9c96502138d3",
             "Value": {
                 "id": "a2a69f0a-4e7b-445d-88b1-c73cf4c92a7b",
@@ -8428,6 +8460,7 @@
         "13e0e916-af0e-493a-8cad-5144001acfcf",
         "568cf033-4925-4c7c-8323-1506808d292f",
         "2f5ce293-5d19-4961-957c-cb2d450ac92e",
+        "6bf27b2c-c013-4fb1-9836-b95167ffd715",
         "7d1abbee-52fa-4e52-ad7b-5f30de25c5ce",
         "1822abda-6297-46bc-94d3-b91b2c8f6cea",
         "33774c6e-309c-4d7c-b28f-19e8c16b0f97",
@@ -8518,10 +8551,12 @@
         "43ae57f2-9a33-45c9-bb00-529bd505469d",
         "9fe42c44-3ba2-491e-a420-b440bfcd560f",
         "08190cb7-54fd-4af3-a3e4-b809b86b4ce5",
+        "70fbfb15-2cdd-4309-9035-a4f22b2ba44e",
         "8fa9751d-593d-483c-93a8-04a1412d68f2",
         "4c28c119-32d3-4ece-b237-73b6f910f6d4",
         "7c6ecbf5-cadc-4614-a94a-7e2afa16d7d1",
         "0467c3f2-5118-4e5f-81fa-5799e212448f",
+        "3b627150-6352-40d8-98e3-21641d9782c5",
         "a6e9b284-f5b1-449f-a867-c01238c2ed4f",
         "e1802c72-a7da-4ace-999f-cd8a452dbc1e",
         "fd1e4d64-1f5f-4456-81dd-bb94ad48ac6c",
