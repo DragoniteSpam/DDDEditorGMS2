@@ -1,6 +1,10 @@
-/// @description void omu_autotile_selector(UIThing);
 /// @param UIThing
 
-var catch=argument0;
+var location = PATH_TEMP_CODE + string(argument0.id) + ".lua";
 
-dialog_create_autotile_selector(noone);
+var f = file_text_open_write(location);
+file_text_write_string(f, argument0.value);
+file_text_writeln(f);
+file_text_close(f);
+
+argument0.editor_handle = ds_stuff_edit(location);

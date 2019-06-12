@@ -111,6 +111,10 @@ if (!directory_exists(PATH_RESOURCES)) {
     directory_create(PATH_RESOURCES);
 }
 
+if (!directory_exists(PATH_TEMP_CODE)) {
+    directory_create(PATH_TEMP_CODE);
+}
+
 // these are constants in DDD.gmx but we're allowed to change them here
 tile_width = 32;
 tile_height = 32;

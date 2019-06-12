@@ -1,0 +1,32 @@
+/// @param x
+/// @param y
+/// @param text
+/// @param width
+/// @param height
+/// @param value-x1
+/// @param value-y1
+/// @param value-x2
+/// @param value-y2
+/// @param root
+/// @param [help]
+
+with (instance_create_depth(argument[0], argument[1], 0, UIInputCode)) {
+    text = argument[2];
+    width = argument[3];
+    height = argument[4];
+    
+    value_x1 = argument[5];
+    value_y1 = argument[6];
+    value_x2 = argument[7];
+    value_y2 = argument[8];
+    
+    root = argument[9];
+    
+    switch (argument_count) {
+        case 11:
+            help = argument[10];
+            break;
+    }
+    
+    return id;
+}

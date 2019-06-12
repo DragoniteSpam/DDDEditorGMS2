@@ -26,4 +26,14 @@ var vy2 = y1 + argument0.value_y2;
 var vtx = vx1 + 12;
 var vty = mean(vy1, vy2);
 
-ui_render_button_general(vx1, vy1, vx2, vy2, vtx, vty, "(" + string_length(argument0.value) + " bytes)", fa_left, fa_middle, c_black, argument0.interactive && dialog_is_active(argument0.root), argument0.onmouseup, argument0);
+if (argument0.editor_handle == noone) {
+    var message = string(string_length(argument0.value)) + " bytes (edit)";
+    var omu = argument0.onmouseup;
+    var interactable = argument0.interactive && dialog_is_active(argument0.root);
+} else {
+    var message = "(edit in progress)";
+    var omu = null;
+    var interactable = false;
+}
+
+ui_render_button_general(vx1, vy1, vx2, vy2, vtx, vty, message, fa_left, fa_middle, c_black, interactable, omu, argument0);
