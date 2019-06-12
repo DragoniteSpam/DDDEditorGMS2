@@ -291,20 +291,23 @@ save_name_data = "";
 
 // user settings - dddd
 
-setting_embed_tilesets = false;       // small number of large images
-setting_embed_npcs = true;            // large number of small(ish) images
-setting_embed_graphics = true;        // large number of images of varying sizes
-setting_embed_meshes = false;         // already stored in vrax but okay
-setting_embed_se = true;              // possibly large number of small sound effects
-setting_compress = true;				// this used to be a number but now it's just on/off
+setting_embed_tilesets = false;         // small number of large images
+setting_embed_npcs = true;              // large number of small(ish) images
+setting_embed_graphics = true;          // large number of images of varying sizes
+setting_embed_meshes = false;           // already stored in vrax but okay
+setting_embed_se = true;                // possibly large number of small sound effects
+setting_compress = true;			    // this used to be a number but now it's just on/off
 
 ini_open(DATA_INI);
-setting_color = ini_read_real("config", "color", c_green);                // BGR
-setting_bezier_precision = ini_read_real("config", "bezier", 6);          // preferably keep this between like 4 and 16ish?
-setting_backups = ini_read_real("config", "backups", 2);                  // 0 (none) through 9 (why would you keep that many backups)
-setting_autosave = ini_read_real("config", "autosave", true);             // bool
-setting_alphabetize_lists = ini_read_real("config", "alphabetize", true); // bool
+setting_color = ini_read_real("config", "color", c_green);                  // BGR
+setting_bezier_precision = ini_read_real("config", "bezier", 6);            // preferably keep this between like 4 and 16ish?
+setting_backups = ini_read_real("config", "backups", 2);                    // 0 (none) through 9 (why would you keep that many backups)
+setting_autosave = ini_read_real("config", "autosave", true);               // bool
+setting_alphabetize_lists = ini_read_real("config", "alphabetize", true);   // bool
 setting_alphabetize_npc_animate_rate = ini_read_real("config", "npc-speed", 4); // bool
+setting_code_extension = ini_read_real("config", "code-ext", 0);            // 0 = txt, 1 = lua
+
+setting_code_extension_map = [".txt", ".lua"];
 ini_close();
 
 // todo: load configuration settings
