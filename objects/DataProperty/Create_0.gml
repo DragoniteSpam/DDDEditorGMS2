@@ -22,7 +22,7 @@ enum DataTypes {
     STRING,         // input
     BOOL,           // checkbox
     DATA,           // list
-    CODE,
+    CODE,           // opens in text editor
     COLOR,
     MESH,
     TILESET,

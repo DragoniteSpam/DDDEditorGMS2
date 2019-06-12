@@ -222,6 +222,18 @@ for (var i = 0; i < n_data; i++) {
                     case DataTypes.BOOL:
                         ds_list_add(instance.values, false);
                         break;
+                    // @todo data types
+                    case DataTypes.CODE:
+                        ds_list_add(instance.values, property.default_code);
+                        break;
+                    case DataTypes.COLOR:
+                    case DataTypes.MESH:
+                    case DataTypes.TILE:
+                    case DataTypes.TILESET:
+                    case DataTypes.AUTOTILE:
+                    case DataTypes.AUDIO_BGM:
+                    case DataTypes.AUDIO_SE:
+                        break;
                 }
             }
         }

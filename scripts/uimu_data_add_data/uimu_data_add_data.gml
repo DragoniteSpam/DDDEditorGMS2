@@ -24,6 +24,7 @@ if (data != noone) {
                 ds_list_add(instance.values, false);
                 break;
             case DataTypes.CODE:
+                debug(property.default_code);
                 ds_list_add(instance.values, property.default_code);
                 break;
             case DataTypes.COLOR:
