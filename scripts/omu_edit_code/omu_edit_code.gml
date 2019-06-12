@@ -7,4 +7,4 @@ file_text_write_string(f, argument0.value);
 file_text_writeln(f);
 file_text_close(f);
 
-argument0.editor_handle = ds_stuff_edit(location);
+argument0.editor_handle = ds_stuff_open_local(location);

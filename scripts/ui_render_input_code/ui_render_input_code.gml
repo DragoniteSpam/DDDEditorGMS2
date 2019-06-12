@@ -26,6 +26,12 @@ var vy2 = y1 + argument0.value_y2;
 var vtx = vx1 + 12;
 var vty = mean(vy1, vy2);
 
+if (argument0.editor_handle != noone) {
+    if (ds_stuff_process_complete(argument0.editor_handle)) {
+        argument0.editor_handle = noone;
+    }
+}
+
 if (argument0.editor_handle == noone) {
     var message = string(string_length(argument0.value)) + " bytes (edit)";
     var omu = argument0.onmouseup;

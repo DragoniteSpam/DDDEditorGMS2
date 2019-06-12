@@ -1,6 +1,6 @@
 #macro PATH_RESOURCES ".\\data\\resources\\"
 #macro PATH_GRAPHICS ".\\data\\graphics\\"
-#macro PATH_TEMP_CODE ".\\data\\temp\\"
+#macro PATH_VRA ".\\data\\vra\\"
 #macro ALARM_CAMERA_SAVE 0
 #macro AUTOTILE_AVAILABLE_MAX 100
 #macro AUTOTILE_MAX 16
@@ -39,7 +39,7 @@
 #macro PATH_BACKUP_MAP ".\\backups\\maps\\"
 #macro PATH_DUMMY ".\\data\\graphics\\dummy\\"
 #macro PATH_PERMANENT ".\\data\\graphics\\permanent\\"
-#macro PATH_VRA ".\\data\\vra\\"
+#macro PATH_TEMP_CODE "temp\\"            // local storage - no leading punctuation - used for opening files
 #macro SELECTION_MASK_ALL ETypeFlags.ENTITY_TILE|ETypeFlags.ENTITY_TILE_AUTO|ETypeFlags.ENTITY_EVENT|ETypeFlags.ENTITY_PAWN|ETypeFlags.ENTITY_MESH|ETypeFlags.ENTITY_EFFECT
 #macro SERIALIZE_DATA 1
 #macro SERIALIZE_MAP 0
