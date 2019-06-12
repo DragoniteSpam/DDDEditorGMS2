@@ -1,17 +1,17 @@
 event_inherited();
 
-repeat_action=false;
-skip=true;
-wait=true;
+repeat_action = false;
+skip = true;
+wait = true;
 
-buffer=noone;
-extra=false;
-extra_xx=0;
-extra_yy=0;
-extra_zz=0;
+buffer = noone;
+extra = false;
+extra_xx = 0;
+extra_yy = 0;
+extra_zz = 0;
 
 // [[action0 id, params...], [action1 id, params...], [action2 id, params]...]
-steps=ds_list_create();
+steps = ds_list_create();
 
 enum MoveRouteActions {
     MOVE_DOWN,                  // [id, u8 distance]
@@ -69,4 +69,3 @@ enum MoveRouteActions {
     
     MOVE_TO                     // [id, u16 x, u16 y]
 }
-
