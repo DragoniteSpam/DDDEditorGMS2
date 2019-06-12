@@ -1,8 +1,8 @@
 {
-    "id": "d18ad823-f821-4ab0-af2e-fbbcb454b8e5",
+    "id": "4182667f-9154-4529-b83f-0f642700c2e8",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "uivc_code",
+    "name": "uivc_weather_code",
     "IsCompatibility": false,
     "IsDnD": false
 }

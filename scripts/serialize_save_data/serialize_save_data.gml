@@ -76,5 +76,6 @@ enum DataVersions {
 	__UNUSED_00			        = 18, // not used, i don't think, but i can't remove it now
     ENTITY_MAP_OPTIONS_WHOOPS   = 19,
     VARIABLE_BATTLE             = 20,
+    MAP_WEATHER_CODE            = 21,
     _CURRENT                    /* = whatever the last one is + 1 */
 }

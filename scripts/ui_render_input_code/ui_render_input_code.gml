@@ -29,6 +29,7 @@ var vty = mean(vy1, vy2);
 if (argument0.editor_handle != noone) {
     if (ds_stuff_process_complete(argument0.editor_handle)) {
         argument0.editor_handle = noone;
+        script_execute(argument0.onsave, argument0);
         script_execute(argument0.onvaluechange, argument0);
     }
 }

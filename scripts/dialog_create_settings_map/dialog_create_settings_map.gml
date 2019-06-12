@@ -70,7 +70,7 @@ var el_other_fast_travel_from = create_checkbox(c2, yy, "Can fast travel from?",
 yy = yy_column_start;
 var el_audio = create_button(c3, yy, "Audio Properties", ew, eh, fa_center, null, dg);
 yy = yy + 32;
-var el_weather = create_input_code(c3, yy, "Weather: ", ew, eh, vx1 - 80, vy1, vx2, vy2, dg);
+var el_weather = create_input_code(c3, yy, "Weather: ", ew, eh, vx1 - 80, vy1, vx2, vy2, ActiveMap.weather_code, uivc_weather_code, dg);
 
 var b_width = 128;
 var b_height = 32;

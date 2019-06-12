@@ -1,6 +1,7 @@
 event_inherited();
 
-onvaluechange = uivc_code;
+onvaluechange = null;
+onsave = uios_code;
 onmouseup = omu_edit_code;
 render = ui_render_input_code;
 
