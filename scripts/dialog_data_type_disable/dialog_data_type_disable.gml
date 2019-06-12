@@ -20,3 +20,4 @@ argument0.el_property_bool_note.enabled = false;
 argument0.el_property_scale.enabled = false;
 
 argument0.el_property_default_code.enabled = false;
+argument0.el_property_default_code.editor_handle = noone;   // if something's open, we're just going to disown it

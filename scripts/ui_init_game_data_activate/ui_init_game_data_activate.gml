@@ -96,6 +96,20 @@ if (data != noone) {
                     var element = create_checkbox(spacing, yy, property.name, ew, eh, uivc_data_set_property_boolean, i, false, noone);
                     var hh = element.height;
                     break;
+                case DataTypes.CODE:
+                    var element = create_input_code(spacing, yy, property.name, ew, eh, vx1 - 80, vy1, vx2, vy2, property.default_code, null, noone);
+                    var hh = element.height;
+                    break;
+                case DataTypes.COLOR:
+                case DataTypes.MESH:
+                case DataTypes.TILE:
+                case DataTypes.TILESET:
+                case DataTypes.AUTOTILE:
+                case DataTypes.AUDIO_BGM:
+                case DataTypes.AUDIO_SE:
+                    var element = create_text(spacing, yy, "Not yet implemented", ew, eh, fa_left, ew, noone);
+                    var hh = element.height;
+                    break;
             }
             
             if (yy + hh > room_height - 160) {
