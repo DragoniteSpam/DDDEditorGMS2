@@ -101,8 +101,7 @@ if (data != noone) {
                 case DataTypes.CODE:
                     var element_header = create_text(spacing, yy, property.name, ew, eh, fa_left, ew, noone);
                     var hh = element_header.height;
-                    var element = create_input_code(spacing, yy + hh, "", ew, eh, 0, vy1, vx2, vy2, property.default_code, null, noone);
-                    implement the onvaluechange code next. class now.
+                    var element = create_input_code(spacing, yy + hh, "", ew, eh, 0, vy1, vx2, vy2, property.default_code, uivc_data_set_property_code, noone, i);
                     hh = hh + element.height;
                     break;
                 case DataTypes.COLOR:

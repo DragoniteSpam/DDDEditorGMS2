@@ -7,6 +7,6 @@ if (selection >= 0) {
     // @todo gml
     // because game maker can't handle doing all of these accessors in the same
     // line apparently
-    var instance=data.instances[| selection];
-    instance.values[| argument0.key]=argument0.value;
+    var instance = data.instances[| selection];
+    instance.values[| argument0.key] = argument0.value;
 }

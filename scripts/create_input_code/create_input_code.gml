@@ -8,8 +8,9 @@
 /// @param value-x2
 /// @param value-y2
 /// @param default-code
-/// @param onvaluechange
+/// @param onvaluechang
 /// @param root
+/// @param [key]
 /// @param [help]
 
 with (instance_create_depth(argument[0], argument[1], 0, UIInputCode)) {
@@ -28,8 +29,10 @@ with (instance_create_depth(argument[0], argument[1], 0, UIInputCode)) {
     root = argument[11];
     
     switch (argument_count) {
+        case 14:
+            help = argument[13];
         case 13:
-            help = argument[12];
+            key = argument[12];
             break;
     }
     
