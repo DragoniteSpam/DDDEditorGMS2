@@ -77,5 +77,6 @@ enum DataVersions {
     ENTITY_MAP_OPTIONS_WHOOPS   = 19,
     VARIABLE_BATTLE             = 20,
     MAP_WEATHER_CODE            = 21,
+    DATA_INSTANCE_CODE          = 22,
     _CURRENT                    /* = whatever the last one is + 1 */
 }
