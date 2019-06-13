@@ -31,13 +31,10 @@ is_3d = true;
 discovery = 0;                            // index
 
 weather_code =
-@"-- write Lua code that you want to determine the weather effects here.
--- you can add other functions or do pretty much anything else allowed by Lua, but don't
--- remove the Update function (with its argument list) and it should return a value
--- corresponding to the weather you want to initiate.
-
+@"-- Update is called once per second and determines whether or not the weather
+-- should change or not
+-- @param current the current weather
 function Update(current)
-    return 0
 end";
 
 // internal stuff

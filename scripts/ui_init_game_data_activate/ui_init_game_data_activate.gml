@@ -123,7 +123,13 @@ if (data != noone) {
                     col_data.enabled = false;
                 }
                 ds_list_add(container.contents, col_data);
+                
                 element.y = yy_base;
+                if (element_header != noone) {
+                    element_header.y = yy_base;
+                    element.y = yy_base + element_header.height;
+                }
+                
                 yy = yy_base;
             }
             

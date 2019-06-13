@@ -102,6 +102,7 @@ for (var i = 0; i < ds_list_size(dynamic.contents); i++) {
                 case DataTypes.CODE:
                     thingy.value = property.default_code;
                     break;
+                // @todo data types
                 case DataTypes.COLOR:
                 case DataTypes.MESH:
                 case DataTypes.TILE:
