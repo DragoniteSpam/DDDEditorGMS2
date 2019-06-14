@@ -31,10 +31,12 @@ is_3d = true;
 discovery = 0;                            // index
 
 weather_code =
-@"-- Update is called once per second and determines whether or not the weather
--- should change or not
+@"-- Required; called once per second when the game checks to see if the
+-- weather should change.
 -- @param current the current weather
-function Update(current)
+-- @param t the number of seconds since Game Start
+function Update(current, t)
+    return 0
 end";
 
 // internal stuff
