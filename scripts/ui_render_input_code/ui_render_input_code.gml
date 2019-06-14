@@ -35,7 +35,7 @@ if (argument0.editor_handle != noone) {
 }
 
 if (argument0.editor_handle == noone) {
-    var message = string(string_length(argument0.value)) + " bytes (edit)";
+    var message = string_comma(string_length(argument0.value)) + " bytes (edit)";
     var omu = argument0.onmouseup;
     var interactable = argument0.interactive && dialog_is_active(argument0.root);
 } else {

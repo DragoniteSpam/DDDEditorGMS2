@@ -4199,6 +4199,14 @@
             }
         },
         {
+            "Key": "809c965f-b63e-45a5-beac-da1abeba927b",
+            "Value": {
+                "id": "32290270-91a7-4967-b31c-03209a57f4e2",
+                "resourcePath": "scripts\\string_comma\\string_comma.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "80e9acf5-3faf-4d3d-9f79-d5fab7383cb9",
             "Value": {
                 "id": "688b14e5-f617-44c7-9b77-eab631ece5ab",
@@ -8764,6 +8772,7 @@
         "324e9aae-7c56-4986-bf51-924b1cb32e70",
         "75df0e3b-97ec-40cd-be24-05864fea5888",
         "589affe2-ae43-4754-8bc0-898c03bc332d",
+        "809c965f-b63e-45a5-beac-da1abeba927b",
         "8232738a-b358-48e5-9da6-d0f3db4d7698",
         "c504c050-69e0-4c3b-bfe4-ece3e679e3c5",
         "faae0bf2-d5cb-4fc7-9e96-3817f3567427",
