@@ -80,14 +80,11 @@ alarm[0] = 1200;
 
 randomize();
 
-if (DEBUG) {
-    show_debug_overlay(true);
-}
-
 // persistent stuff
 dt = 0;
 time = 0;
 time_int = 0;
+frames = 0;
 
 all_guids = ds_map_create();
 all_internal_names = ds_map_create();

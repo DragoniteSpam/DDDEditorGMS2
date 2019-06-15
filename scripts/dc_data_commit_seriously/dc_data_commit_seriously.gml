@@ -25,7 +25,7 @@ for (var i = 0; i < ds_list_size(Stuff.original_data); i++) {
                             case DataTypes.FLOAT:
                             case DataTypes.BOOL:
                                 // already numbers
-                                buffer_write(missing_output, buffer_textbuffer_text, data_new.name + "." + property_new.name + " has been changed to a " + new_type + ". All instances of " + data_new.name + "." + property_new.name + " are being cast to a " + new_type + ".\r\n");
+                                buffer_write(missing_output, buffer_text, data_new.name + "." + property_new.name + " has been changed to a " + new_type + ". All instances of " + data_new.name + "." + property_new.name + " are being cast to a " + new_type + ".\r\n");
                                 missing_count++;
                                 for (var k = 0; k < ds_list_size(data_old.instances); k++) {
                                     var instance = data_old.instances[| k];
