@@ -4,7 +4,14 @@ var data = guid_get(argument0.root.active_type_guid);
 
 if (data != noone) {
     var instance = instantiate(DataInstantiated);
-    instance.name = data.name + string(ds_list_size(data.instances));
+    
+    var n = ds_list_size(data.instances);
+    while (internal_name_get(string_upper(data.name) + string(n)) != noone) {
+        n++;
+    }
+    instance.name = data.name + nstr;
+    internal_name_set(instance, string_upper(data.name) + string(n));
+    
     instance_deactivate_object(instance);
     ds_list_add(data.instances, instance);
     

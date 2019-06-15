@@ -78,5 +78,6 @@ enum DataVersions {
     VARIABLE_BATTLE             = 20,
     MAP_WEATHER_CODE            = 21,
     DATA_INSTANCE_CODE          = 22,
+    DATA_INTERNAL_NAME          = 23,
     _CURRENT                    /* = whatever the last one is + 1 */
 }

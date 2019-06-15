@@ -1,4 +1,3 @@
-/// @description Data guid_get(guid);
 /// @param guid
 
 if (ds_map_exists(Stuff.all_guids, argument0)) {

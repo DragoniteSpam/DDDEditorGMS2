@@ -90,6 +90,7 @@ time = 0;
 time_int = 0;
 
 all_guids = ds_map_create();
+all_internal_names = ds_map_create();
 
 tf = ["False", "True"];
 

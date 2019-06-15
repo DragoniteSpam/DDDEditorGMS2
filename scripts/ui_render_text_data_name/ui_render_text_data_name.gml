@@ -1,4 +1,3 @@
-/// @description void ui_render_text_data_name(UIText, x, y);
 /// @param UIText
 /// @param x
 /// @param y

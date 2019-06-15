@@ -31,7 +31,8 @@
         "ac3df1bf-e0bc-4fe1-af8b-3940d520a11d",
         "9db57781-2030-4103-ba8b-0a6c7307e4da",
         "7d932a04-db90-4f98-a2f0-fd9d130062b0",
-        "5ecf7524-d817-4120-b4d8-87765b5d8b80"
+        "5ecf7524-d817-4120-b4d8-87765b5d8b80",
+        "97aba9b8-8e90-4d82-9c36-f68f510de9de"
     ],
     "filterType": "GMScript",
     "folderName": "special",

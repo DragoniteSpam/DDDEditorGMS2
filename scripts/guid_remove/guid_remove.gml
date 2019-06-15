@@ -1,4 +1,3 @@
-/// @description boolean guid_remove(guid);
 /// @param guid
 
 if (ds_map_exists(Stuff.all_guids, argument0)) {

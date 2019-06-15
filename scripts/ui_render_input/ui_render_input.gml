@@ -19,7 +19,7 @@ draw_set_color(argument0.color);
 draw_text(tx, ty, string(argument0.text));
 
 if (script_execute(argument0.validation, value)) {
-    var c = c_black;
+    var c = argument0.color;
     if (argument0.real_value) {
         var n = script_execute(argument0.value_conversion, value);
         if (!is_clamped(n, argument0.value_lower, argument0.value_upper)) {

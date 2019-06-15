@@ -15,8 +15,10 @@ if (selection < 0) {
 
 if (instance != noone) {
     Camera.ui_game_data.el_inst_name.value = instance.name;
+    Camera.ui_game_data.el_inst_internal_name.value = instance.internal_name;
 } else {
     Camera.ui_game_data.el_inst_name.value = "";
+    Camera.ui_game_data.el_inst_internal_name.value = "";
 }
 
 // if you got to this point, you already know data has a value
@@ -28,7 +30,7 @@ for (var i = 0; i < ds_list_size(dynamic.contents); i++) {
     var column = dynamic.contents[| i];
     
     // slot 0 in column 0 is taken up by "name" which doesn't count
-    var start = (i == 0) ? 1 : 0;
+    var start = (i == 0) ? 2 : 0;
     
     for (var j = start; j < ds_list_size(column.contents); j++) {
         var thingy = column.contents[| j];
