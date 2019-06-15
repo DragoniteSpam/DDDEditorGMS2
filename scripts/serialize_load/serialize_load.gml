@@ -1,22 +1,21 @@
-/// @description void serialize_load(filename);
 /// @param filename
 
-var original=buffer_load(argument0);
-var erroneous=false;
-var header=chr(buffer_read(original, buffer_u8))+chr(buffer_read(original, buffer_u8))+chr(buffer_read(original, buffer_u8));
+var original = buffer_load(argument0);
+var erroneous = false;
+var header = chr(buffer_read(original, buffer_u8)) + chr(buffer_read(original, buffer_u8)) + chr(buffer_read(original, buffer_u8));
 
-if (header=="DDD") {
+if (header == "DDD") {
     // if it's uncompressed, don't decompress it
-    var buffer=original;
+    var buffer = original;
 } else {
     // if it's compressed, decompress it - if possible
-    var buffer=buffer_decompress(original);
+    var buffer = buffer_decompress(original);
     buffer_delete(original);
 }
 
 // if the decompressed buffer is bad, cancel - try catch will make this so much nicer
 if (buffer < 0) {
-    erroneous=true;
+    erroneous = true;
 } else {
     buffer_seek(buffer, buffer_seek_start, 0);
     
@@ -24,16 +23,16 @@ if (buffer < 0) {
      * Header
      */
     
-    var header=chr(buffer_read(buffer, buffer_u8))+chr(buffer_read(buffer, buffer_u8))+chr(buffer_read(buffer, buffer_u8));
+    var header = chr(buffer_read(buffer, buffer_u8)) + chr(buffer_read(buffer, buffer_u8)) + chr(buffer_read(buffer, buffer_u8));
     
-    if (header=="DDD") {
-        Stuff.save_name_data=string_replace(filename_name(argument0), EXPORT_EXTENSION_DATA, "");
+    if (header == "DDD") {
+        Stuff.save_name_data = string_replace(filename_name(argument0), EXPORT_EXTENSION_DATA, "");
         
-        var version=buffer_read(buffer, buffer_u32);
-        var what=buffer_read(buffer, buffer_u8);
-        var things=buffer_read(buffer, buffer_u32);
+        var version = buffer_read(buffer, buffer_u32);
+        var what = buffer_read(buffer, buffer_u8);
+        var things = buffer_read(buffer, buffer_u32);
         
-        if (what==SERIALIZE_DATA) {
+        if (what == SERIALIZE_DATA) {
             // this may cause things to break, but it shouldn't;
             // includes data, events, generics and everything else
             instance_activate_object(Data);
@@ -46,8 +45,9 @@ if (buffer < 0) {
             ds_list_clear(Stuff.all_event_custom);
             ds_list_clear(Stuff.all_event_templates);
             ds_map_clear(Stuff.all_guids);
+            ds_map_clear(Stuff.all_internal_names);
             ds_list_clear(Stuff.all_data);
-        } else if (what==SERIALIZE_MAP) {
+        } else if (what == SERIALIZE_MAP) {
             // todo clear editor map - IF entities get their own GUIDs eventually,
             // they should go in a separate lookup which should be cleared in here
         }
@@ -56,14 +56,14 @@ if (buffer < 0) {
          * data types
          */
         
-        if (version>=DataVersions.NOT_STUPID_DATA_SIZE) {
+        if (version >= DataVersions.NOT_STUPID_DATA_SIZE) {
             // you will never have this many Things
-            things=100000000;
+            things = 100000000;
         }
         
-        var stop=false;
+        var stop = false;
         repeat(things) {
-            var datatype=buffer_read(buffer, buffer_datatype);
+            var datatype = buffer_read(buffer, buffer_datatype);
             switch (datatype) {
                 // game stuff
                 case SerializeThings.AUTOTILES_FULL:
@@ -105,7 +105,7 @@ if (buffer < 0) {
                     break;
                 // end of file
                 case SerializeThings.END_OF_FILE:
-                    stop=true;
+                    stop = true;
                     break;
             }
             
@@ -114,9 +114,9 @@ if (buffer < 0) {
             }
         }
         
-        if (what==SERIALIZE_MAP) {
-            Stuff.all_maps[? ActiveMap.internal_name]=true;
-            uivc_select_autotile_refresh(/*Camera.selection_fill_autotile*/);
+        if (what == SERIALIZE_MAP) {
+            Stuff.all_maps[? ActiveMap.internal_name] = true;
+            uivc_select_autotile_refresh(/* Camera.selection_fill_autotile */);
         }
         
         with (Data) if (deactivateable) {
@@ -127,7 +127,7 @@ if (buffer < 0) {
         
         game_auto_title();
     } else {
-        erroneous=true;
+        erroneous = true;
     }
 }
 

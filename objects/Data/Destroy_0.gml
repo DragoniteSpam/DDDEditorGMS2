@@ -1,2 +1,2 @@
-ds_map_delete(Stuff.all_guids, GUID);
-
+guid_remove(GUID);
+internal_name_remove(internal_name);
