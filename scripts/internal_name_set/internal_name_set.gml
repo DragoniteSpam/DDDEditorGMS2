@@ -4,7 +4,6 @@
 
 var addition = argument[0].internal_name;
 if (string_length(addition) > 0) {
-    debug("deleted " + string(addition));
     ds_map_delete(Stuff.all_internal_names, addition);
 }
 

@@ -9,7 +9,7 @@ if (data != noone) {
     while (internal_name_get(string_upper(data.name) + string(n)) != noone) {
         n++;
     }
-    instance.name = data.name + nstr;
+    instance.name = data.name + string(n);
     internal_name_set(instance, string_upper(data.name) + string(n));
     
     instance_deactivate_object(instance);
