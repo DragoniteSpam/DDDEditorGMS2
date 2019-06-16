@@ -6,3 +6,15 @@ time = get_timer()/MILLION;
 time_int = time div 1;
 // frames
 frames++;
+
+var status = ds_stuff_fetch_status();
+
+if (status == WINDOW_CLOSE) {
+    var top = ds_list_top(Camera.dialogs);
+    if (top == undefined || (top.dialog_flags & (1 << DialogFlags.IS_QUIT) == 0)) {
+        var dg = dialog_create_yes_or_no(noone, "Do you want to close the program?", dmu_dialog_quit);
+        dg.dialog_flags = dg.dialog_flags | (1 << DialogFlags.IS_QUIT);
+    }
+}
+
+ds_stuff_reset_status();

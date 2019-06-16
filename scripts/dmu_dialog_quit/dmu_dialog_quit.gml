@@ -1,3 +1,3 @@
 /// @param UIThing
 
-dialog_destroy();
+game_end();

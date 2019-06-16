@@ -887,6 +887,14 @@
             }
         },
         {
+            "Key": "1ab00827-899f-4239-afaf-2282f797fb49",
+            "Value": {
+                "id": "1d0c7cdd-5778-4b27-b469-4e436381ef74",
+                "resourcePath": "scripts\\dmu_dialog_quit\\dmu_dialog_quit.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "1adf9578-1fe3-4a55-919b-f4f2572696ee",
             "Value": {
                 "id": "6a238b52-ec86-446e-bc23-e9f1e75b7210",
@@ -1499,6 +1507,14 @@
             "Value": {
                 "id": "6066d5a8-5ae8-46dd-937f-911f647b7cc4",
                 "resourcePath": "scripts\\uivc_input_entity_name\\uivc_input_entity_name.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "2dbd7768-55c0-4ab6-9023-057ab43da986",
+            "Value": {
+                "id": "32b96962-0a1e-4103-a9d2-e54c791a5ae4",
+                "resourcePath": "scripts\\ds_stuff_fetch_status\\ds_stuff_fetch_status.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -3579,6 +3595,14 @@
             "Value": {
                 "id": "f074af35-9d95-4712-95d6-f3b4ea5b3f80",
                 "resourcePath": "scripts\\entity_set_solid\\entity_set_solid.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "6c74c3c7-3e1b-450f-8fbb-ad588f17dc89",
+            "Value": {
+                "id": "1be4400b-e535-421d-a7ed-d99ad7a55368",
+                "resourcePath": "scripts\\ds_stuff_reset_status\\ds_stuff_reset_status.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -8118,6 +8142,8 @@
         "884078f3-1176-4148-9840-98f63d93924d",
         "ef5f58dd-4716-45e2-87ed-852cb32d0b67",
         "d398cca7-14cd-4125-8c92-6bea3110170b",
+        "2dbd7768-55c0-4ab6-9023-057ab43da986",
+        "6c74c3c7-3e1b-450f-8fbb-ad588f17dc89",
         "f4ab2647-facc-496d-8b09-0c8e8e5efa34",
         "8dabfabd-6492-4961-ae4e-fa74df24de87",
         "884af337-59f0-4345-aa0b-02ca8702a81b",
@@ -8389,6 +8415,7 @@
         "01187694-4179-4bba-8d32-9cc6302150f1",
         "63247abf-b15d-4ad5-9dbb-2a4ab5905d4a",
         "1bdacbe1-7047-48c8-ba5e-ddc2a07a12f1",
+        "1ab00827-899f-4239-afaf-2282f797fb49",
         "fd0bf1e1-e02f-45d5-bd76-b9b20ea8c104",
         "bef7adaa-60e2-4931-8a93-06ce7ebac3ba",
         "7ffc85e3-ea46-4255-b83a-d72fed3feaf1",
