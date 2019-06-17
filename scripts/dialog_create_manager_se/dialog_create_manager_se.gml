@@ -34,17 +34,19 @@ var el_name = create_input(c2 + 16, yy, "Name:", ew, eh, null, "", "", "A-Za-z0=
 yy = yy + el_name.height + spacing;
 
 var xx = c2 + 16;
-var el_play = create_button(xx, yy, "Play", ew / 3, eh, fa_center, null, dg);
-var xx = xx + ((c2 - 32) / 3);
-var el_pause = create_button(xx, yy, "Pause", ew / 3, eh, fa_center, null, dg);
-var xx = xx + ((c2 - 32) / 3);
-var el_stop = create_button(xx, yy, "Stop", ew / 3, eh, fa_center, null, dg);
+var el_play = create_button(xx, yy, "Play", ew / 4, eh, fa_center, dmu_dialog_play_se, dg);
+var xx = xx + ((c2 - 32) / 4);
+var el_pause = create_button(xx, yy, "Pause", ew / 4, eh, fa_center, dmu_dialog_pause, dg);
+var xx = xx + ((c2 - 32) / 4);
+var el_resume = create_button(xx, yy, "Resume", ew / 4, eh, fa_center, dmu_dialog_resume, dg);
+var xx = xx + ((c2 - 32) / 4);
+var el_stop = create_button(xx, yy, "Stop", ew / 4, eh, fa_center, dmu_dialog_stop, dg);
 
 var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
 
 ds_list_add(dg.contents, el_list,
     el_add, el_remove,
-    el_play, el_pause, el_stop,
+    el_play, el_pause, el_resume, el_stop,
     el_name,
     el_confirm);
 
