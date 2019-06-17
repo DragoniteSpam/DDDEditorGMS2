@@ -1,3113 +1,0 @@
-Converting GML script: MACRO: PATH_RESOURCES
-Converted string - line 1: '.\data\resources\' -> ".\\data\\resources\\"
-
-Converting GML script: MACRO: PATH_GRAPHICS
-Converted string - line 1: '.\data\graphics\' -> ".\\data\\graphics\\"
-
-Converting GML script: MACRO: HVIEW
-Converted builtin - line 1: view_hview[view_current] -> __view_get( e__VW.HView, view_current )
-
-Converting GML script: MACRO: mouse_x_view
-Converted builtin - line 1: view_xview[view_current] -> __view_get( e__VW.XView, view_current )
-
-Converting GML script: MACRO: mouse_y_view
-Converted builtin - line 1: view_yview[view_current] -> __view_get( e__VW.YView, view_current )
-
-Converting GML script: MACRO: PATH_AUTOTILE
-Converted string - line 1: '.\autotile\' -> ".\\autotile\\"
-
-Converting GML script: MACRO: PATH_BACKUP_DATA
-Converted string - line 1: '.\backups\data\' -> ".\\backups\\data\\"
-
-Converting GML script: MACRO: PATH_BACKUP_MAP
-Converted string - line 1: '.\backups\maps\' -> ".\\backups\\maps\\"
-
-Converting GML script: MACRO: PATH_DUMMY
-Converted string - line 1: '.\data\graphics\dummy\' -> ".\\data\\graphics\\dummy\\"
-
-Converting GML script: MACRO: PATH_PERMANENT
-Converted string - line 1: '.\data\graphics\permanent\' -> ".\\data\\graphics\\permanent\\"
-
-Converting GML script: MACRO: PATH_VRA
-Converted string - line 1: '.\data\vra\' -> ".\\data\\vra\\"
-
-Converting GML script: MACRO: WVIEW
-Converted builtin - line 1: view_wview[view_current] -> __view_get( e__VW.WView, view_current )
-
-Converting GML script: MACRO: XVIEW
-Converted builtin - line 1: view_xview[view_current] -> __view_get( e__VW.XView, view_current )
-
-Converting GML script: MACRO: YVIEW
-Converted builtin - line 1: view_yview[view_current] -> __view_get( e__VW.YView, view_current )
-
-Converting GML script: ${project_dir}\scripts\ds_stuff_init\ds_stuff_init.gml
-Converted description /// @description void ds_stuff_init();
-Converted string - line 2: "data\stuff.dll" -> "data\\stuff.dll"
-
-Converting GML script: ${project_dir}\scripts\ds_stuff_open\ds_stuff_open.gml
-Converted description /// @description double ds_stuff_open(file);/// @param file
-
-Converting GML script: ${project_dir}\scripts\ds_stuff_copy\ds_stuff_copy.gml
-Converted description /// @description double ds_stuff_copy(source, destination);/// @param source
-/// @param destination
-
-Converting GML script: ${project_dir}\scripts\ds_stuff_help\ds_stuff_help.gml
-Converted description /// @description double ds_stuff_help([file]);/// @param [file]
-
-Converting GML script: ${project_dir}\scripts\ds_stuff_help_auto\ds_stuff_help_auto.gml
-Converted description /// @description double ds_stuff_help_auto(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\ds_stuff_open_local\ds_stuff_open_local.gml
-Converted description /// @description double ds_stuff_open_local(file);/// @param file
-Converted string - line 13: "\\DDDEditor\\" -> "\\\\DDDEditor\\\\"
-
-Converting GML script: ${project_dir}\scripts\c_hit_fraction\c_hit_fraction.gml
-Converted description /// @description c_hit_fraction()
-
-Converting GML script: ${project_dir}\scripts\c_hit_nx\c_hit_nx.gml
-Converted description /// @description c_hit_nx()
-
-Converting GML script: ${project_dir}\scripts\c_hit_ny\c_hit_ny.gml
-Converted description /// @description c_hit_ny()
-
-Converting GML script: ${project_dir}\scripts\c_hit_nz\c_hit_nz.gml
-Converted description /// @description c_hit_nz()
-
-Converting GML script: ${project_dir}\scripts\c_hit_object\c_hit_object.gml
-Converted description /// @description c_hit_object(n)/// @param n
-
-Converting GML script: ${project_dir}\scripts\c_hit_x\c_hit_x.gml
-Converted description /// @description c_hit_x()
-
-Converting GML script: ${project_dir}\scripts\c_hit_y\c_hit_y.gml
-Converted description /// @description c_hit_y()
-
-Converting GML script: ${project_dir}\scripts\c_hit_z\c_hit_z.gml
-Converted description /// @description c_hit_z()
-
-Converting GML script: ${project_dir}\scripts\c_init\c_init.gml
-Converted description /// @description c_init()
-Converted string - line 5: "data\collisions.dll" -> "data\\collisions.dll"
-Converted string - line 8: 'c_world_create' -> "c_world_create"
-Converted string - line 9: 'c_world_destroy' -> "c_world_destroy"
-Converted string - line 10: 'c_world_exists' -> "c_world_exists"
-Converted string - line 11: 'c_world_add_object' -> "c_world_add_object"
-Converted string - line 12: 'c_world_remove_object' -> "c_world_remove_object"
-Converted string - line 13: 'c_world_get_count' -> "c_world_get_count"
-Converted string - line 14: 'c_object_create' -> "c_object_create"
-Converted string - line 15: 'c_object_destroy' -> "c_object_destroy"
-Converted string - line 16: 'c_object_exists' -> "c_object_exists"
-Converted string - line 17: 'c_object_apply_transform' -> "c_object_apply_transform"
-Converted string - line 18: 'c_object_set_shape' -> "c_object_set_shape"
-Converted string - line 19: 'c_object_set_mask' -> "c_object_set_mask"
-Converted string - line 20: 'c_object_set_userid' -> "c_object_set_userid"
-Converted string - line 21: 'c_object_get_userid' -> "c_object_get_userid"
-Converted string - line 22: 'c_shape_create' -> "c_shape_create"
-Converted string - line 23: 'c_shape_destroy' -> "c_shape_destroy"
-Converted string - line 24: 'c_shape_exists' -> "c_shape_exists"
-Converted string - line 25: 'c_shape_add_box' -> "c_shape_add_box"
-Converted string - line 26: 'c_shape_add_sphere' -> "c_shape_add_sphere"
-Converted string - line 31: 'c_shape_begin_trimesh' -> "c_shape_begin_trimesh"
-Converted string - line 32: 'c_shape_load_trimesh' -> "c_shape_load_trimesh"
-Converted string - line 33: 'c_shape_end_trimesh' -> "c_shape_end_trimesh"
-Converted string - line 34: 'c_hit_x' -> "c_hit_x"
-Converted string - line 35: 'c_hit_y' -> "c_hit_y"
-Converted string - line 36: 'c_hit_z' -> "c_hit_z"
-Converted string - line 37: 'c_hit_nx' -> "c_hit_nx"
-Converted string - line 38: 'c_hit_ny' -> "c_hit_ny"
-Converted string - line 39: 'c_hit_nz' -> "c_hit_nz"
-Converted string - line 40: 'c_hit_fraction' -> "c_hit_fraction"
-Converted string - line 41: 'c_hit_object' -> "c_hit_object"
-Converted string - line 42: 'c_transform_position' -> "c_transform_position"
-Converted string - line 43: 'c_transform_rotation' -> "c_transform_rotation"
-Converted string - line 44: 'c_transform_scaling' -> "c_transform_scaling"
-Converted string - line 45: 'c_transform_identity' -> "c_transform_identity"
-Converted string - line 46: 'c_raycast_world' -> "c_raycast_world"
-Converted string - line 47: 'c_raycast_object' -> "c_raycast_object"
-Converted string - line 48: 'c_overlap_world' -> "c_overlap_world"
-Converted string - line 49: 'c_overlap_world_position' -> "c_overlap_world_position"
-Converted string - line 50: 'c_overlap_object' -> "c_overlap_object"
-Converted string - line 51: 'c_sweep_world' -> "c_sweep_world"
-Converted string - line 52: 'c_shape_add_triangle' -> "c_shape_add_triangle"
-
-Converting GML script: ${project_dir}\scripts\c_object_apply_transform\c_object_apply_transform.gml
-Converted description /// @description c_object_apply_transform(object)/// @param object
-
-Converting GML script: ${project_dir}\scripts\c_object_create\c_object_create.gml
-Converted description /// @description c_object_create(shape, group, mask)/// @param shape
-/// @param group
-/// @param mask
-
-Converting GML script: ${project_dir}\scripts\c_object_destroy\c_object_destroy.gml
-Converted description /// @description c_object_destroy(object)/// @param object
-
-Converting GML script: ${project_dir}\scripts\c_object_exists\c_object_exists.gml
-Converted description /// @description c_object_exists(object)/// @param object
-
-Converting GML script: ${project_dir}\scripts\c_object_get_userid\c_object_get_userid.gml
-Converted description /// @description c_object_get_userid(object)/// @param object
-
-Converting GML script: ${project_dir}\scripts\c_object_set_mask\c_object_set_mask.gml
-Converted description /// @description c_object_set_shape(object, group, mask)/// @param object
-/// @param group
-/// @param mask
-
-Converting GML script: ${project_dir}\scripts\c_object_set_shape\c_object_set_shape.gml
-Converted description /// @description c_object_set_shape(object, shape)/// @param object
-/// @param shape
-
-Converting GML script: ${project_dir}\scripts\c_object_set_userid\c_object_set_userid.gml
-Converted description /// @description c_object_set_userid(object, number)/// @param object
-/// @param number
-
-Converting GML script: ${project_dir}\scripts\c_overlap_object\c_overlap_object.gml
-Converted description /// @description c_overlap_object(object1, object2)/// @param object1
-/// @param object2
-
-Converting GML script: ${project_dir}\scripts\c_overlap_world\c_overlap_world.gml
-Converted description /// @description c_overlap_world(object)/// @param object
-
-Converting GML script: ${project_dir}\scripts\c_overlap_world_position\c_overlap_world_position.gml
-Converted description /// @description c_overlap_world_position(object, x, y, z)/// @param object
-/// @param x
-/// @param y
-/// @param z
-
-Converting GML script: ${project_dir}\scripts\c_raycast_object\c_raycast_object.gml
-Converted description /// @description c_raycast_object(object, xfrom, yfrom, zfrom, xto, yto, zto, mask)/// @param object
-/// @param xfrom
-/// @param yfrom
-/// @param zfrom
-/// @param xto
-/// @param yto
-/// @param zto
-/// @param mask
-
-Converting GML script: ${project_dir}\scripts\c_raycast_world\c_raycast_world.gml
-Converted description /// @description c_raycast_world(xfrom, yfrom, zfrom, xto, yto, zto, mask)/// @param xfrom
-/// @param yfrom
-/// @param zfrom
-/// @param xto
-/// @param yto
-/// @param zto
-/// @param mask
-
-Converting GML script: ${project_dir}\scripts\c_shape_add_box\c_shape_add_box.gml
-Converted description /// @description c_shape_add_box(shape, x_half_size, y_half_size, z_half_size)/// @param shape
-/// @param x_half_size
-/// @param y_half_size
-/// @param z_half_size
-
-Converting GML script: ${project_dir}\scripts\c_shape_add_capsule\c_shape_add_capsule.gml
-Converted description /// @description c_shape_add_capsule(shape, radius, height)/// @param shape
-/// @param radius
-/// @param height
-
-Converting GML script: ${project_dir}\scripts\c_shape_add_cone\c_shape_add_cone.gml
-Converted description /// @description c_shape_add_cone(shape, radius, height)/// @param shape
-/// @param radius
-/// @param height
-
-Converting GML script: ${project_dir}\scripts\c_shape_add_cylinder\c_shape_add_cylinder.gml
-Converted description /// @description c_shape_add_cylinder(shape, x_half_size, y_half_size, z_half_size)/// @param shape
-/// @param x_half_size
-/// @param y_half_size
-/// @param z_half_size
-
-Converting GML script: ${project_dir}\scripts\c_shape_add_plane\c_shape_add_plane.gml
-Converted description /// @description c_shape_add_plane(shape, nx, ny, nz, distance)/// @param shape
-/// @param nx
-/// @param ny
-/// @param nz
-/// @param distance
-
-Converting GML script: ${project_dir}\scripts\c_shape_add_sphere\c_shape_add_sphere.gml
-Converted description /// @description c_shape_add_sphere(shape, radius)/// @param shape
-/// @param radius
-
-Converting GML script: ${project_dir}\scripts\c_shape_add_triangle\c_shape_add_triangle.gml
-Converted description /// @description c_shape_add_triangle(x1, y1, z1, x2, y2, z2, x3, y3, z3)/// @param x1
-/// @param y1
-/// @param z1
-/// @param x2
-/// @param y2
-/// @param z2
-/// @param x3
-/// @param y3
-/// @param z3
-
-Converting GML script: ${project_dir}\scripts\c_shape_begin_trimesh\c_shape_begin_trimesh.gml
-Converted description /// @description c_shape_begin_trimesh()
-
-Converting GML script: ${project_dir}\scripts\c_shape_create\c_shape_create.gml
-Converted description /// @description c_shape_create()
-
-Converting GML script: ${project_dir}\scripts\c_shape_destroy\c_shape_destroy.gml
-Converted description /// @description c_shape_destroy(shape)/// @param shape
-
-Converting GML script: ${project_dir}\scripts\c_shape_end_trimesh\c_shape_end_trimesh.gml
-Converted description /// @description c_shape_end_trimesh(shape)/// @param shape
-
-Converting GML script: ${project_dir}\scripts\c_shape_exists\c_shape_exists.gml
-Converted description /// @description c_shape_exists(shape)/// @param shape
-
-Converting GML script: ${project_dir}\scripts\c_shape_load_trimesh\c_shape_load_trimesh.gml
-Converted description /// @description c_shape_load_trimesh(filename)/// @param filename
-
-Converting GML script: ${project_dir}\scripts\c_sweep_world\c_sweep_world.gml
-Converted description /// @description c_sweep_world(shape, xfrom, yfrom, zfrom, xto, yto, zto, mask)/// @param shape
-/// @param xfrom
-/// @param yfrom
-/// @param zfrom
-/// @param xto
-/// @param yto
-/// @param zto
-/// @param mask
-
-Converting GML script: ${project_dir}\scripts\c_transform_identity\c_transform_identity.gml
-Converted description /// @description c_transform_identity()
-
-Converting GML script: ${project_dir}\scripts\c_transform_matrix\c_transform_matrix.gml
-Converted description /// @description c_transform_matrix(matrix)/// @param matrix
-
-Converting GML script: ${project_dir}\scripts\c_transform_position\c_transform_position.gml
-Converted description /// @description c_transform_position(x, y, z)/// @param x
-/// @param y
-/// @param z
-
-Converting GML script: ${project_dir}\scripts\c_transform_rotation\c_transform_rotation.gml
-Converted description /// @description c_transform_rotation(xrot, yrot, zrot)/// @param xrot
-/// @param yrot
-/// @param zrot
-
-Converting GML script: ${project_dir}\scripts\c_transform_rotation_axis\c_transform_rotation_axis.gml
-Converted description /// @description c_transform_rotation_axis(xa, ya, za, angle)/// @param xa
-/// @param ya
-/// @param za
-/// @param angle
-
-Converting GML script: ${project_dir}\scripts\c_transform_rotation_quaternion\c_transform_rotation_quaternion.gml
-Converted description /// @description c_transform_rotation_quaternion(x, y, z, w)/// @param x
-/// @param y
-/// @param z
-/// @param w
-
-Converting GML script: ${project_dir}\scripts\c_transform_scaling\c_transform_scaling.gml
-Converted description /// @description c_transform_scaling(xs, ys, zs)/// @param xs
-/// @param ys
-/// @param zs
-
-Converting GML script: ${project_dir}\scripts\c_world_add_object\c_world_add_object.gml
-Converted description /// @description c_world_add_object(object)/// @param object
-
-Converting GML script: ${project_dir}\scripts\c_world_create\c_world_create.gml
-Converted description /// @description c_world_create()
-
-Converting GML script: ${project_dir}\scripts\c_world_destroy\c_world_destroy.gml
-Converted description /// @description c_world_destroy()
-
-Converting GML script: ${project_dir}\scripts\c_world_destroy_object\c_world_destroy_object.gml
-Converted description /// @description c_world_destroy_object(object)/// @param object
-
-Converting GML script: ${project_dir}\scripts\c_world_exists\c_world_exists.gml
-Converted description /// @description c_world_exists()
-
-Converting GML script: ${project_dir}\scripts\c_world_get_count\c_world_get_count.gml
-Converted description /// @description c_world_get_count()
-
-Converting GML script: ${project_dir}\scripts\c_world_remove_object\c_world_remove_object.gml
-Converted description /// @description c_world_remove_object(object)/// @param object
-
-Converting GML script: ${project_dir}\scripts\draw_active_event\draw_active_event.gml
-Converted description /// @description void draw_active_event();
-
-Converting GML script: ${project_dir}\scripts\draw_event_ghost\draw_event_ghost.gml
-Converted description /// @description void draw_event_ghost(x, y, x2, y2, outbound);/// @param x
-/// @param y
-/// @param x2
-/// @param y2
-/// @param outbound
-
-Converting GML script: ${project_dir}\scripts\draw_event_node\draw_event_node.gml
-Converted description /// @description void draw_event_node(DataEventNode);/// @param DataEventNode
-
-Converting GML script: ${project_dir}\scripts\draw_event_drag_handle\draw_event_drag_handle.gml
-Converted description /// @description void draw_event_drag_handle(DataEventNode, x1, y1, x2, y2, color);/// @param DataEventNode
-/// @param x1
-/// @param y1
-/// @param x2
-/// @param y2
-/// @param color
-
-Converting GML script: ${project_dir}\scripts\draw_event_node_outbound\draw_event_node_outbound.gml
-Converted description /// @description void draw_event_node_outbound(x, y, node, index, [terminal?]);/// @param x
-/// @param y
-/// @param node
-/// @param index
-/// @param [terminal?]
-
-Converting GML script: ${project_dir}\scripts\draw_event_node_text_add\draw_event_node_text_add.gml
-Converted description /// @description void draw_event_node_text_add(x, y, node);/// @param x
-/// @param y
-/// @param node
-
-Converting GML script: ${project_dir}\scripts\draw_event_node_text_remove\draw_event_node_text_remove.gml
-Converted description /// @description void draw_event_node_text_remove(x, y, node, index);/// @param x
-/// @param y
-/// @param node
-/// @param index
-
-Converting GML script: ${project_dir}\scripts\draw_event_node_text_move\draw_event_node_text_move.gml
-Converted description /// @description void draw_event_node_text_move(x, y, node, index, direction, image index);/// @param x
-/// @param y
-/// @param node
-/// @param index
-/// @param direction
-/// @param image index
-
-Converting GML script: ${project_dir}\scripts\draw_event_node_delete\draw_event_node_delete.gml
-Converted description /// @description void draw_event_node_delete(x, y, DataEventNode);/// @param x
-/// @param y
-/// @param DataEventNode
-
-Converting GML script: ${project_dir}\scripts\draw_event_node_custom_info\draw_event_node_custom_info.gml
-Converted description /// @description void draw_event_node_custom_info(x, y, DataEventNode);/// @param x
-/// @param y
-/// @param DataEventNode
-
-Converting GML script: ${project_dir}\scripts\draw_event_node_title\draw_event_node_title.gml
-Converted description /// @description void draw_event_node_title(DataEventNode, color);/// @param DataEventNode
-/// @param color
-
-Converting GML script: ${project_dir}\scripts\event_create\event_create.gml
-Converted description /// @description DataEvent event_create(name);/// @param name
-
-Converting GML script: ${project_dir}\scripts\event_create_node\event_create_node.gml
-Converted builtin - line 6: view_xview[view_fullscreen] -> __view_get( e__VW.XView, view_fullscreen )
-Converted builtin - line 7: view_yview[view_fullscreen] -> __view_get( e__VW.YView, view_fullscreen )
-Converted description /// @description DataEventNode event_create_node(Event, EventNodeType, [x, y], [custom guid]);/// @param Event
-/// @param EventNodeType
-/// @param [x
-/// @param y]
-/// @param [custom guid]
-
-Converting GML script: ${project_dir}\scripts\event_connect_node\event_connect_node.gml
-Converted description /// @description void event_connect_node(source, destination, [index]);/// @param source
-/// @param destination
-/// @param [index]
-
-Converting GML script: ${project_dir}\scripts\event_seek_node\event_seek_node.gml
-Converted description /// @description DataEventNode event_seek_node();
-
-Converting GML script: ${project_dir}\scripts\event_view_node\event_view_node.gml
-Converted builtin - line 6: view_xview[view_fullscreen]=floor(argument0.x-room_width/2) -> __view_set( e__VW.XView, view_fullscreen, floor(argument0.x-room_width/2) )
-Converted builtin - line 7: view_yview[view_fullscreen]=floor(argument0.y-room_height/3) -> __view_set( e__VW.YView, view_fullscreen, floor(argument0.y-room_height/3) )
-Converted description /// @description void event_view_node(DataEventNode);/// @param DataEventNode
-
-Converting GML script: ${project_dir}\scripts\event_get_node\event_get_node.gml
-Converted description /// @description DataEventNode event_get_node(DataEvent, name);/// @param DataEvent
-/// @param name
-
-Converting GML script: ${project_dir}\scripts\create_instantiated_event\create_instantiated_event.gml
-Converted description /// @description DataInstantiatedEvent create_instantiated_event(name);/// @param name
-
-Converting GML script: ${project_dir}\scripts\null\null.gml
-Converted description /// @description void null(argument0..argumentn);/// @param argument0..argumentn
-
-Converting GML script: ${project_dir}\scripts\transform_reset\transform_reset.gml
-Converted description /// @description void transform_reset();
-
-Converting GML script: ${project_dir}\scripts\transform_add\transform_add.gml
-Converted description /// @description matrix transform_add(x, y, z, xrot, yrot, zrot, xscale, yscale, zscale);/// @param x
-/// @param y
-/// @param z
-/// @param xrot
-/// @param yrot
-/// @param zrot
-/// @param xscale
-/// @param yscale
-/// @param zscale
-
-Converting GML script: ${project_dir}\scripts\transform_set\transform_set.gml
-Converted description /// @description matrix transform_set(x, y, z, xrot, yrot, zrot, xscale, yscale, zscale);/// @param x
-/// @param y
-/// @param z
-/// @param xrot
-/// @param yrot
-/// @param zrot
-/// @param xscale
-/// @param yscale
-/// @param zscale
-
-Converting GML script: ${project_dir}\scripts\array_clear\array_clear.gml
-Converted description /// @description void array_clear(array, value);/// @param array
-/// @param value
-
-Converting GML script: ${project_dir}\scripts\array_compose\array_compose.gml
-Converted description /// @description array_compose(argument0 .. argument1);/// @param argument0 .. argument1
-
-Converting GML script: ${project_dir}\scripts\array_to_list\array_to_list.gml
-Converted description /// @description ds_list array_to_list(array);/// @param array
-
-Converting GML script: ${project_dir}\scripts\buffer_point_complete\buffer_point_complete.gml
-Converted description /// @description void buffer_point_complete(buffer, x, y, z, nx, ny, nz, xtex, ytex, color, alpha);/// @param buffer
-/// @param x
-/// @param y
-/// @param z
-/// @param nx
-/// @param ny
-/// @param nz
-/// @param xtex
-/// @param ytex
-/// @param color
-/// @param alpha
-
-Converting GML script: ${project_dir}\scripts\buffer_read_string\buffer_read_string.gml
-Converted description /// @description String buffer_read_string(buffer);/// @param buffer
-Converted string - line 6: '' -> ""
-
-Converting GML script: ${project_dir}\scripts\ds_list_clear_instances\ds_list_clear_instances.gml
-Converted description /// @description int ds_list_clear_instances(list);/// @param list
-
-Converting GML script: ${project_dir}\scripts\ds_list_destroy_instances\ds_list_destroy_instances.gml
-Converted description /// @description int ds_list_destroy_instances(list);/// @param list
-
-Converting GML script: ${project_dir}\scripts\ds_list_destroy_instances_indirect\ds_list_destroy_instances_indirect.gml
-Converted description /// @description int ds_list_destroy_instances_indirect(list);/// @param list
-
-Converting GML script: ${project_dir}\scripts\ds_list_destroy_instances_scheduled\ds_list_destroy_instances_scheduled.gml
-Converted description /// @description void ds_list_destroy_instances_scheduled(list);/// @param list
-
-Converting GML script: ${project_dir}\scripts\ds_list_pop\ds_list_pop.gml
-Converted description /// @description value ds_list_pop(list);/// @param list
-
-Converting GML script: ${project_dir}\scripts\ds_list_sort_name_sucks\ds_list_sort_name_sucks.gml
-Converted description /// @description list ds_list_sort_name_sucks(list);/// @param list
-
-Converting GML script: ${project_dir}\scripts\ds_list_sort_sucks\ds_list_sort_sucks.gml
-Converted description /// @description list ds_list_sort_sucks(list);/// @param list
-
-Converting GML script: ${project_dir}\scripts\ds_list_top\ds_list_top.gml
-Converted description /// @description value ds_list_top(list);/// @param list
-
-Converting GML script: ${project_dir}\scripts\ds_map_to_list\ds_map_to_list.gml
-Converted description /// @description list ds_map_to_list(map);/// @param map
-
-Converting GML script: ${project_dir}\scripts\ds_map_to_list_sorted\ds_map_to_list_sorted.gml
-Converted description /// @description list ds_map_to_list_sorted(map);/// @param map
-
-Converting GML script: ${project_dir}\scripts\ds_tree_add\ds_tree_add.gml
-Converted description /// @description node ds_tree_add(tree, data);/// @param tree
-/// @param data
-
-Converting GML script: ${project_dir}\scripts\ds_tree_node\ds_tree_node.gml
-Converted description /// @description node ds_tree_node(data, [exists?]);/// @param data
-/// @param [exists?]
-
-Converting GML script: ${project_dir}\scripts\ds_tree_list\ds_tree_list.gml
-Converted description /// @description void ds_tree_list(tree, list);/// @param tree
-/// @param list
-
-Converting GML script: ${project_dir}\scripts\vector2\vector2.gml
-Converted description /// @description vector2(x, y);/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\vector3\vector3.gml
-Converted description /// @description vector3(x, y, z);/// @param x
-/// @param y
-/// @param z
-
-Converting GML script: ${project_dir}\scripts\vector4\vector4.gml
-Converted description /// @description vector4(r, g, b, a);/// @param r
-/// @param g
-/// @param b
-/// @param a
-
-Converting GML script: ${project_dir}\scripts\update_mouse_vector\update_mouse_vector.gml
-Converted description /// @description void update_mouse_vector(xfrom, yfrom, zfrom, xto, yto, zto, xup, yup, zup, fov, aspect);/// @param xfrom
-/// @param yfrom
-/// @param zfrom
-/// @param xto
-/// @param yto
-/// @param zto
-/// @param xup
-/// @param yup
-/// @param zup
-/// @param fov
-/// @param aspect
-
-Converting GML script: ${project_dir}\scripts\is_clamped\is_clamped.gml
-Converted description /// @description boolean is_clamped(n, a, b);/// @param n
-/// @param a
-/// @param b
-
-Converting GML script: ${project_dir}\scripts\mouse_within_view\mouse_within_view.gml
-Converted builtin - line 4: view_xport[argument0] -> __view_get( e__VW.XPort, argument0 )
-Converted builtin - line 5: view_xport[argument0] -> __view_get( e__VW.XPort, argument0 )
-Converted builtin - line 4: view_yport[argument0] -> __view_get( e__VW.YPort, argument0 )
-Converted builtin - line 6: view_yport[argument0] -> __view_get( e__VW.YPort, argument0 )
-Converted builtin - line 5: view_wport[argument0] -> __view_get( e__VW.WPort, argument0 )
-Converted builtin - line 6: view_hport[argument0] -> __view_get( e__VW.HPort, argument0 )
-Converted description /// @description boolean mouse_within_view(view);/// @param view
-
-Converting GML script: ${project_dir}\scripts\point_within_view\point_within_view.gml
-Converted builtin - line 4: view_xport[argument0] -> __view_get( e__VW.XPort, argument0 )
-Converted builtin - line 5: view_xport[argument0] -> __view_get( e__VW.XPort, argument0 )
-Converted builtin - line 4: view_yport[argument0] -> __view_get( e__VW.YPort, argument0 )
-Converted builtin - line 6: view_yport[argument0] -> __view_get( e__VW.YPort, argument0 )
-Converted builtin - line 5: view_wport[argument0] -> __view_get( e__VW.WPort, argument0 )
-Converted builtin - line 6: view_hport[argument0] -> __view_get( e__VW.HPort, argument0 )
-Converted description /// @description boolean point_within_view(view, x, y);/// @param view
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\rectangle_within_view\rectangle_within_view.gml
-Converted builtin - line 4: view_xview[argument0] -> __view_get( e__VW.XView, argument0 )
-Converted builtin - line 5: view_xview[argument0] -> __view_get( e__VW.XView, argument0 )
-Converted builtin - line 4: view_yview[argument0] -> __view_get( e__VW.YView, argument0 )
-Converted builtin - line 6: view_yview[argument0] -> __view_get( e__VW.YView, argument0 )
-Converted builtin - line 5: view_wview[argument0] -> __view_get( e__VW.WView, argument0 )
-Converted builtin - line 6: view_hview[argument0] -> __view_get( e__VW.HView, argument0 )
-Converted description /// @description boolean rectangle_within_view(view, x1, y1, x2, y2);/// @param view
-/// @param x1
-/// @param y1
-/// @param x2
-/// @param y2
-
-Converting GML script: ${project_dir}\scripts\mouse_within_rectangle\mouse_within_rectangle.gml
-Converted description /// @description boolean mouse_within_rectangle(x1, y1, x2, y2);/// @param x1
-/// @param y1
-/// @param x2
-/// @param y2
-
-Converting GML script: ${project_dir}\scripts\mouse_within_rectangle_abs\mouse_within_rectangle_abs.gml
-Converted description /// @description boolean mouse_within_rectangle_abs(x1, y1, x2, y2);/// @param x1
-/// @param y1
-/// @param x2
-/// @param y2
-
-Converting GML script: ${project_dir}\scripts\mouse_within_rectangle_view\mouse_within_rectangle_view.gml
-Converted description /// @description boolean mouse_within_rectangle_view(x1, y1, x2, y2);/// @param x1
-/// @param y1
-/// @param x2
-/// @param y2
-
-Converting GML script: ${project_dir}\scripts\cstr\cstr.gml
-Converted description /// @description string cstr(Entity);/// @param Entity
-
-Converting GML script: ${project_dir}\scripts\string_backspace\string_backspace.gml
-Converted description /// @description string string_backspace(string);/// @param string
-
-Converting GML script: ${project_dir}\scripts\validate_string\validate_string.gml
-Converted description /// @description boolean validate_string(string);/// @param string
-
-Converting GML script: ${project_dir}\scripts\validate_string_event_name\validate_string_event_name.gml
-Converted description /// @description boolean validate_string_event_name(string);/// @param string
-Converted string - line 7: "[A-Za-z0-9_\$]+" -> "[A-Za-z0-9_\\$]+"
-
-Converting GML script: ${project_dir}\scripts\validate_string_internal_name\validate_string_internal_name.gml
-Converted description /// @description boolean validate_string_internal_name(string);/// @param string
-
-Converting GML script: ${project_dir}\scripts\validate_int\validate_int.gml
-Converted description /// @description boolean validate_int(string);/// @param string
-Converted string - line 4: "((\+)|(\-))?(\d)+" -> "((\\+)|(\\-))?(\\d)+"
-
-Converting GML script: ${project_dir}\scripts\validate_double\validate_double.gml
-Converted description /// @description boolean validate_double(string);/// @param string
-Converted string - line 4: "((\+)|(\-))?((\d)*)((\.)(\d)+)?" -> "((\\+)|(\\-))?((\\d)*)((\\.)(\\d)+)?"
-
-Converting GML script: ${project_dir}\scripts\regex\regex.gml
-Converted description /// @description boolean regex(expression, string);/// @param expression
-/// @param string
-
-Converting GML script: ${project_dir}\scripts\instanceof\instanceof.gml
-Converted description /// @description boolean instanceof(instance, object);/// @param instance
-/// @param object
-
-Converting GML script: ${project_dir}\scripts\bezier_point\bezier_point.gml
-Converted description /// @description array bezier_point(lerp, p0x, p0y, p1x, p1y, p2x, p2y, p3x, p3y)/// @param lerp
-/// @param p0x
-/// @param p0y
-/// @param p1x
-/// @param p1y
-/// @param p2x
-/// @param p2y
-/// @param p3x
-/// @param p3y
-
-Converting GML script: ${project_dir}\scripts\game_auto_title\game_auto_title.gml
-Converted description /// @description void game_auto_title();
-
-Converting GML script: ${project_dir}\scripts\pack\pack.gml
-Converted description /// @description int pack(bool0, bool1, ...);/// @param bool0
-/// @param bool1
-/// @param ...
-
-Converting GML script: ${project_dir}\scripts\unpack\unpack.gml
-Converted description /// @description boolean unpack(int, n);/// @param int
-/// @param n
-
-Converting GML script: ${project_dir}\scripts\transform_entity_point\transform_entity_point.gml
-Converted description /// @description vec3 transform_entity_point(Entity, x, y, z);/// @param Entity
-/// @param x
-/// @param y
-/// @param z
-
-Converting GML script: ${project_dir}\scripts\selection_empty\selection_empty.gml
-Converted description /// @description boolean selection_empty();
-
-Converting GML script: ${project_dir}\scripts\selection_count\selection_count.gml
-Converted description /// @description list selection_count();
-
-Converting GML script: ${project_dir}\scripts\selection_all\selection_all.gml
-Converted description /// @description list selection_all();
-
-Converting GML script: ${project_dir}\scripts\select_single\select_single.gml
-Converted description /// @description void select_tile(EntityTile);/// @param EntityTile
-
-Converting GML script: ${project_dir}\scripts\selected\selected.gml
-Converted description /// @description boolean selected(Entity);/// @param Entity
-
-Converting GML script: ${project_dir}\scripts\sa_foreach_all\sa_foreach_all.gml
-Converted description /// @description void sa_foreach_all(script, params array);/// @param script
-/// @param params array
-
-Converting GML script: ${project_dir}\scripts\sa_foreach_global\sa_foreach_global.gml
-Converted description /// @description void sa_foreach_global(script, params array);/// @param script
-/// @param params array
-
-Converting GML script: ${project_dir}\scripts\sa_foreach_cell\sa_foreach_cell.gml
-Converted description /// @description void sa_foreach_cell(script, params array);/// @param script
-/// @param params array
-
-Converting GML script: ${project_dir}\scripts\sa_process_selection\sa_process_selection.gml
-Converted description /// @description void sa_process_selection();
-
-Converting GML script: ${project_dir}\scripts\safc_fill_tile\safc_fill_tile.gml
-Converted description /// @description void safc_fill_tile(x, y, z, params array);/// @param x
-/// @param y
-/// @param z
-/// @param params array
-
-Converting GML script: ${project_dir}\scripts\safc_fill_mesh\safc_fill_mesh.gml
-Converted description /// @description void safc_fill_mesh(x, y, z, params array);/// @param x
-/// @param y
-/// @param z
-/// @param params array
-
-Converting GML script: ${project_dir}\scripts\safc_fill_pawn\safc_fill_pawn.gml
-Converted description /// @description void safc_fill_pawn(x, y, z, params array);/// @param x
-/// @param y
-/// @param z
-/// @param params array
-
-Converting GML script: ${project_dir}\scripts\safc_fill_event\safc_fill_event.gml
-Converted description /// @description void safc_fill_event(x, y, z, params array);/// @param x
-/// @param y
-/// @param z
-/// @param params array
-
-Converting GML script: ${project_dir}\scripts\safc_fill_effect\safc_fill_effect.gml
-Converted description /// @description void safc_fill_effect(x, y, z, params array);/// @param x
-/// @param y
-/// @param z
-/// @param params array
-
-Converting GML script: ${project_dir}\scripts\safc_fill_autotile\safc_fill_autotile.gml
-Converted description /// @description void safc_fill_autotile(x, y, z, params array);/// @param x
-/// @param y
-/// @param z
-/// @param params array
-
-Converting GML script: ${project_dir}\scripts\safa_delete\safa_delete.gml
-Converted description /// @description void safa_delete(Entity);/// @param Entity
-
-Converting GML script: ${project_dir}\scripts\safa_on_select\safa_on_select.gml
-Converted description /// @description void safa_on_select(Entity);/// @param Entity
-
-Converting GML script: ${project_dir}\scripts\safc_on_autotile\safc_on_autotile.gml
-Converted description /// @description void safc_on_autotile(EntityTileAuto);/// @param EntityTileAuto
-
-Converting GML script: ${project_dir}\scripts\safc_on_effect\safc_on_effect.gml
-Converted description /// @description void safc_on_effect(EntityEffect);/// @param EntityEffect
-
-Converting GML script: ${project_dir}\scripts\safc_on_entity\safc_on_entity.gml
-Converted description /// @description void safc_on_entity(Entity);/// @param Entity
-
-Converting GML script: ${project_dir}\scripts\safc_on_event\safc_on_event.gml
-Converted description /// @description void safc_on_event(EntityEvent);/// @param EntityEvent
-
-Converting GML script: ${project_dir}\scripts\safc_on_mesh\safc_on_mesh.gml
-Converted description /// @description void safc_on_mesh(EntityMesh);/// @param EntityMesh
-
-Converting GML script: ${project_dir}\scripts\safc_on_pawn\safc_on_pawn.gml
-Converted description /// @description void safc_on_pawn(EntityPawn);/// @param EntityPawn
-
-Converting GML script: ${project_dir}\scripts\safc_on_tile\safc_on_tile.gml
-Converted description /// @description void safc_on_tile(EntityTile);/// @param EntityTile
-
-Converting GML script: ${project_dir}\scripts\selection_all_pawn\selection_all_pawn.gml
-Converted description /// @description boolean selection_all_pawn();
-
-Converting GML script: ${project_dir}\scripts\selection_foreach_cell_rectangle\selection_foreach_cell_rectangle.gml
-Converted description /// @description void selection_foreach_cell_rectangle(selection, processed, script, params array);/// @param selection
-/// @param processed
-/// @param script
-/// @param params array
-
-Converting GML script: ${project_dir}\scripts\selection_foreach_cell_single\selection_foreach_cell_single.gml
-Converted description /// @description void selection_foreach_cell_single(selection, processed, script, params array);/// @param selection
-/// @param processed
-/// @param script
-/// @param params array
-
-Converting GML script: ${project_dir}\scripts\selection_foreach_cell_circle\selection_foreach_cell_circle.gml
-Converted description /// @description void selection_foreach_cell_circle(selection, processed, script, params array);/// @param selection
-/// @param processed
-/// @param script
-/// @param params array
-
-Converting GML script: ${project_dir}\scripts\sme_down_rectangle\sme_down_rectangle.gml
-Converted description /// @description void sme_down_rectangle(Selection, x, y, z);/// @param Selection
-/// @param x
-/// @param y
-/// @param z
-
-Converting GML script: ${project_dir}\scripts\sme_down_circle\sme_down_circle.gml
-Converted description /// @description void sme_down_circle(Selection, x, y, z);/// @param Selection
-/// @param x
-/// @param y
-/// @param z
-
-Converting GML script: ${project_dir}\scripts\sme_down_single\sme_down_single.gml
-Converted description /// @description void sme_down_single(Selection, x, y, z);/// @param Selection
-/// @param x
-/// @param y
-/// @param z
-
-Converting GML script: ${project_dir}\scripts\sme_drag_rectangle\sme_drag_rectangle.gml
-Converted description /// @description void sme_drag_rectangle(Selection, x, y);/// @param Selection
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\sme_drag_circle\sme_drag_circle.gml
-Converted description /// @description void sme_drag_circle(Selection, x, y);/// @param Selection
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\selected_rectangle\selected_rectangle.gml
-Converted description /// @description boolean selected_rectangle(selection, Entity);/// @param selection
-/// @param Entity
-
-Converting GML script: ${project_dir}\scripts\selected_single\selected_single.gml
-Converted description /// @description boolean selected_single(selection, Entity);/// @param selection
-/// @param Entity
-
-Converting GML script: ${project_dir}\scripts\selected_circle\selected_circle.gml
-Converted description /// @description boolean selected_circle(selection, Entity);/// @param selection
-/// @param Entity
-
-Converting GML script: ${project_dir}\scripts\selected_area_rectangle\selected_area_rectangle.gml
-Converted description /// @description float selected_area_rectangle(SelectionRectangle);/// @param SelectionRectangle
-
-Converting GML script: ${project_dir}\scripts\selected_area_circle\selected_area_circle.gml
-Converted description /// @description float selected_area_circle(SelectionCircle);/// @param SelectionCircle
-
-Converting GML script: ${project_dir}\scripts\selected_area_single\selected_area_single.gml
-Converted description /// @description float selected_area_single(SelectionSingle);/// @param SelectionSingle
-
-Converting GML script: ${project_dir}\scripts\graphics_create_grid\graphics_create_grid.gml
-Converted description /// @description void graphics_create_grid();
-
-Converting GML script: ${project_dir}\scripts\vertex_point_complete\vertex_point_complete.gml
-Converted description /// @description void vertex_point_complete(vbuff, x, y, z, nx, ny, nz, xtex, ytex, color, alpha, [id]);/// @param vbuff
-/// @param x
-/// @param y
-/// @param z
-/// @param nx
-/// @param ny
-/// @param nz
-/// @param xtex
-/// @param ytex
-/// @param color
-/// @param alpha
-/// @param [id]
-
-Converting GML script: ${project_dir}\scripts\vertex_point_line\vertex_point_line.gml
-Converted description /// @description void vertex_point_line(vbuff, x, y, z, color, alpha);/// @param vbuff
-/// @param x
-/// @param y
-/// @param z
-/// @param color
-/// @param alpha
-
-Converting GML script: ${project_dir}\scripts\vertex_cube_line\vertex_cube_line.gml
-Converted description /// @description void vertex_cube_line(vbuff, x, y, z, color, alpha, size);/// @param vbuff
-/// @param x
-/// @param y
-/// @param z
-/// @param color
-/// @param alpha
-/// @param size
-
-Converting GML script: ${project_dir}\scripts\batch_tile\batch_tile.gml
-Converted description /// @description void batch_tile(vertex buffer, wireframe buffer, EntityTile);/// @param vertex buffer
-/// @param wireframe buffer
-/// @param EntityTile
-
-Converting GML script: ${project_dir}\scripts\batch_autotile\batch_autotile.gml
-Converted description /// @description void batch_autotile(vertex buffer, wireframe buffer, EntityAutoTile);/// @param vertex buffer
-/// @param wireframe buffer
-/// @param EntityAutoTile
-
-Converting GML script: ${project_dir}\scripts\batch_mesh\batch_mesh.gml
-Converted description /// @description void batch_mesh(vertex buffer, wireframe buffer, EntityMesh);/// @param vertex buffer
-/// @param wireframe buffer
-/// @param EntityMesh
-
-Converting GML script: ${project_dir}\scripts\batch_again\batch_again.gml
-Converted description /// @description void batch_again(index);/// @param index
-
-Converting GML script: ${project_dir}\scripts\render_tile\render_tile.gml
-Converted description /// @description void render_tile(EntityTile);/// @param EntityTile
-
-Converting GML script: ${project_dir}\scripts\render_pawn\render_pawn.gml
-Converted description /// @description void render_pawn(EntityPawn);/// @param EntityPawn
-
-Converting GML script: ${project_dir}\scripts\render_autotile\render_autotile.gml
-Converted description /// @description void render_autotile(EntityAutoTile);/// @param EntityAutoTile
-
-Converting GML script: ${project_dir}\scripts\render_mesh\render_mesh.gml
-Converted description /// @description void render_mesh(EntityMesh);/// @param EntityMesh
-
-Converting GML script: ${project_dir}\scripts\draw_editor_3d\draw_editor_3d.gml
-Converted builtin - line 18: view_wview[view_3d] -> __view_get( e__VW.WView, view_3d )
-Converted builtin - line 19: view_hview[view_3d] -> __view_get( e__VW.HView, view_3d )
-
-Converting GML script: ${project_dir}\scripts\draw_preview_3d\draw_preview_3d.gml
-Converted builtin - line 11: view_wview[view_3d_preview] -> __view_get( e__VW.WView, view_3d_preview )
-Converted builtin - line 11: view_hview[view_3d_preview] -> __view_get( e__VW.HView, view_3d_preview )
-
-Converting GML script: ${project_dir}\scripts\draw_preview_3d_overlay\draw_preview_3d_overlay.gml
-Converted builtin - line 1: view_wview[view_3d_preview] -> __view_get( e__VW.WView, view_3d_preview )
-Converted builtin - line 2: view_hview[view_3d_preview] -> __view_get( e__VW.HView, view_3d_preview )
-
-Converting GML script: ${project_dir}\scripts\map_add_thing\map_add_thing.gml
-Converted description /// @description void map_add_thing(Entity, [xx, yy, zz]);/// @param Entity
-/// @param [xx
-/// @param yy
-/// @param zz]
-
-Converting GML script: ${project_dir}\scripts\map_create_grid\map_create_grid.gml
-Converted description /// @description ds_grid map_create_grid(xx, yy, zz);/// @param xx
-/// @param yy
-/// @param zz
-
-Converting GML script: ${project_dir}\scripts\map_fill_grid\map_fill_grid.gml
-Converted description /// @description void map_fill_grid(grid, zz);/// @param grid
-/// @param zz
-
-Converting GML script: ${project_dir}\scripts\map_get_grid_cell\map_get_grid_cell.gml
-Converted description /// @description array map_get_grid_cell(xx, yy, zz);/// @param xx
-/// @param yy
-/// @param zz
-
-Converting GML script: ${project_dir}\scripts\map_get_free_at\map_get_free_at.gml
-Converted description /// @description array map_get_free_at(xx, yy, zz, slot);/// @param xx
-/// @param yy
-/// @param zz
-/// @param slot
-
-Converting GML script: ${project_dir}\scripts\map_move_thing\map_move_thing.gml
-Converted description /// @description void map_move_thing(Entity, xx, yy, zz);/// @param Entity
-/// @param xx
-/// @param yy
-/// @param zz
-
-Converting GML script: ${project_dir}\scripts\map_remove_thing\map_remove_thing.gml
-Converted description /// @description void map_remove_thing(Entity);/// @param Entity
-
-Converting GML script: ${project_dir}\scripts\map_transform_thing\map_transform_thing.gml
-Converted description /// @description void map_transform_thing(Entity);/// @param Entity
-
-Converting GML script: ${project_dir}\scripts\instance_create_tile\instance_create_tile.gml
-Converted description /// @description EntityTile instance_create_tile(tile x, tile y, [other parameters that should be dealt with later]);/// @param tile x
-/// @param tile y
-/// @param [other parameters that should be dealt with later]
-
-Converting GML script: ${project_dir}\scripts\instance_create_pawn\instance_create_pawn.gml
-Converted description /// @description EntityPawn instance_create_pawn([other parameters that should be dealt with later]);/// @param [other parameters that should be dealt with later]
-
-Converting GML script: ${project_dir}\scripts\instance_create_autotile\instance_create_autotile.gml
-Converted description /// @description EntityAutoTile instance_create_autotile(autotile index, [other parameters that should be dealt with later]);/// @param autotile index
-/// @param [other parameters that should be dealt with later]
-
-Converting GML script: ${project_dir}\scripts\instance_create_mesh\instance_create_mesh.gml
-Converted description /// @description EntityMesh instance_create_mesh(MeshName);/// @param MeshName
-
-Converting GML script: ${project_dir}\scripts\entity_init_collision_tile\entity_init_collision_tile.gml
-Converted description /// @description void entity_init_collision_tile(EntityTile);/// @param EntityTile
-
-Converting GML script: ${project_dir}\scripts\entity_init_collision_pawn\entity_init_collision_pawn.gml
-Converted description /// @description void entity_init_collision_pawn(EntityTile);/// @param EntityTile
-
-Converting GML script: ${project_dir}\scripts\entity_init_collision_mesh\entity_init_collision_mesh.gml
-Converted description /// @description void entity_init_collision_mesh(EntityTile);/// @param EntityTile
-
-Converting GML script: ${project_dir}\scripts\simple_map_data\simple_map_data.gml
-Converted description /// @description array simple_map_data(ActiveMap);/// @param ActiveMap
-
-Converting GML script: ${project_dir}\scripts\entity_mesh_set_mesh\entity_mesh_set_mesh.gml
-Converted description /// @description boolean entity_mesh_set_mesh(EntityMesh, name);/// @param EntityMesh
-/// @param name
-
-Converting GML script: ${project_dir}\scripts\entity_set_solid\entity_set_solid.gml
-Converted description /// @description boolean entity_set_solid(Entity, solid?);/// @param Entity
-/// @param solid?
-
-Converting GML script: ${project_dir}\scripts\entity_set_option_animate_idle\entity_set_option_animate_idle.gml
-Converted description /// @description boolean entity_set_option_animate_idle(Entity, solid?);/// @param Entity
-/// @param solid?
-
-Converting GML script: ${project_dir}\scripts\entity_set_option_animate_movement\entity_set_option_animate_movement.gml
-Converted description /// @description boolean entity_set_option_animate_movement(Entity, solid?);/// @param Entity
-/// @param solid?
-
-Converting GML script: ${project_dir}\scripts\entity_set_option_direction_fix\entity_set_option_direction_fix.gml
-Converted description /// @description boolean entity_set_option_direction_fix(Entity, solid?);/// @param Entity
-/// @param solid?
-
-Converting GML script: ${project_dir}\scripts\entity_set_static\entity_set_static.gml
-Converted description /// @description boolean entity_set_static(Entity, solid?);/// @param Entity
-/// @param solid?
-
-Converting GML script: ${project_dir}\scripts\tileset_create\tileset_create.gml
-Converted description /// @description DataTileset tileset_create(file/name, autotile array, [sprite index]);/// @param file/name
-/// @param autotile array
-/// @param [sprite index]
-
-Converting GML script: ${project_dir}\scripts\tileset_create_master\tileset_create_master.gml
-Converted description /// @description sprite tileset_create_master(tileset);/// @param tileset
-
-Converting GML script: ${project_dir}\scripts\tileset_create_grid\tileset_create_grid.gml
-Converted description /// @description grid tileset_create_grid(picture, default);/// @param picture
-/// @param default
-
-Converting GML script: ${project_dir}\scripts\update_autotile\update_autotile.gml
-Converted description /// @description void update_autotile(EntityAutotile);/// @param EntityAutotile
-
-Converting GML script: ${project_dir}\scripts\create_autotile\create_autotile.gml
-Converted description /// @description void create_autotile(EntityAutotile);/// @param EntityAutotile
-
-Converting GML script: ${project_dir}\scripts\get_active_tileset\get_active_tileset.gml
-Converted description /// @description DataTileset get_active_tileset();
-
-Converting GML script: ${project_dir}\scripts\guid_get\guid_get.gml
-Converted description /// @description Data guid_get(guid);/// @param guid
-
-Converting GML script: ${project_dir}\scripts\guid_remove\guid_remove.gml
-Converted description /// @description boolean guid_remove(guid);/// @param guid
-
-Converting GML script: ${project_dir}\scripts\data_clone\data_clone.gml
-Converted description /// @description ds_list data_clone();
-
-Converting GML script: ${project_dir}\scripts\data_apply_all_guids\data_apply_all_guids.gml
-Converted description /// @description void data_apply_all_guids(list of DataData);/// @param list of DataData
-
-Converting GML script: ${project_dir}\scripts\move_route_make_visible\move_route_make_visible.gml
-Converted description /// @description void move_route_make_visible(Entity, DataMoveRoute);/// @param Entity
-/// @param DataMoveRoute
-
-Converting GML script: ${project_dir}\scripts\move_route_make_invisible\move_route_make_invisible.gml
-Converted description /// @description void move_route_make_invisible(Entity, DataMoveRoute);/// @param Entity
-/// @param DataMoveRoute
-
-Converting GML script: ${project_dir}\scripts\move_route_update_buffer\move_route_update_buffer.gml
-Converted description /// @description void move_route_update_buffer(DataMoveRoute);/// @param DataMoveRoute
-
-Converting GML script: ${project_dir}\scripts\debug\debug.gml
-Converted description /// @description void debug(string);/// @param string
-
-Converting GML script: ${project_dir}\scripts\control_3d\control_3d.gml
-Converted description /// @description Select stuff with the mouse
-Converted string - line 95: 'W' -> "W"
-Converted string - line 101: 'S' -> "S"
-Converted string - line 107: 'A' -> "A"
-Converted string - line 112: 'D' -> "D"
-
-Converting GML script: ${project_dir}\scripts\control_3d_preview\control_3d_preview.gml
-Converted builtin - line 4: view_visible[view_3d_preview]=false -> __view_set( e__VW.Visible, view_3d_preview, false )
-Converted description /// @description Select stuff with the mouse
-Converted string - line 24: 'W' -> "W"
-Converted string - line 27: 'S' -> "S"
-Converted string - line 30: 'A' -> "A"
-Converted string - line 33: 'D' -> "D"
-Converted string - line 37: 'W' -> "W"
-Converted string - line 40: 'S' -> "S"
-Converted string - line 43: 'A' -> "A"
-Converted string - line 46: 'D' -> "D"
-Converted string - line 50: 'W' -> "W"
-Converted string - line 53: 'S' -> "S"
-Converted string - line 57: 'W' -> "W"
-Converted string - line 60: 'S' -> "S"
-Converted string - line 63: 'A' -> "A"
-Converted string - line 66: 'D' -> "D"
-
-Converting GML script: ${project_dir}\scripts\control_duration_left\control_duration_left.gml
-Converted description /// @description double control_duration_left();
-
-Converting GML script: ${project_dir}\scripts\control_duration_right\control_duration_right.gml
-Converted description /// @description double control_duration_right();
-
-Converting GML script: ${project_dir}\scripts\control_duration_middle\control_duration_middle.gml
-Converted description /// @description double control_duration_middle();
-
-Converting GML script: ${project_dir}\scripts\control_global\control_global.gml
-Converted description /// @description void control_global();
-
-Converting GML script: ${project_dir}\scripts\create_tab\create_tab.gml
-Converted description /// @description UITab create_tab(name, home row, root, [help]);/// @param name
-/// @param home row
-/// @param root
-/// @param [help]
-
-Converting GML script: ${project_dir}\scripts\create_radio_array\create_radio_array.gml
-Converted description /// @description UIRadioArray create_radio_array(x, y, text, width, height, onvaluechange, default, root, [help]);/// @param x
-/// @param y
-/// @param text
-/// @param width
-/// @param height
-/// @param onvaluechange
-/// @param default
-/// @param root
-/// @param [help]
-
-Converting GML script: ${project_dir}\scripts\create_bitfield\create_bitfield.gml
-Converted description /// @description UIBitField create_bitfield(x, y, text, width, height, onvaluechange, default, root, [help]);/// @param x
-/// @param y
-/// @param text
-/// @param width
-/// @param height
-/// @param onvaluechange
-/// @param default
-/// @param root
-/// @param [help]
-
-Converting GML script: ${project_dir}\scripts\create_list\create_list.gml
-Converted description /// @description UIRadioArray create_list(x, y, text, vacant text, width, element height, content slots, onvaluechange, allow multi select?, root, [help]);/// @param x
-/// @param y
-/// @param text
-/// @param vacant text
-/// @param width
-/// @param element height
-/// @param content slots
-/// @param onvaluechange
-/// @param allow multi select?
-/// @param root
-/// @param [help]
-
-Converting GML script: ${project_dir}\scripts\create_checkbox\create_checkbox.gml
-Converted description /// @description UICheckbox create_checkbox(x, y, text, width, height, onvaluechange, key, default, root, [help]);/// @param x
-/// @param y
-/// @param text
-/// @param width
-/// @param height
-/// @param onvaluechange
-/// @param key
-/// @param default
-/// @param root
-/// @param [help]
-
-Converting GML script: ${project_dir}\scripts\create_text\create_text.gml
-Converted description /// @description UIText create_text(x, y, text, width, height, halignment, wrap width, root, [help]);/// @param x
-/// @param y
-/// @param text
-/// @param width
-/// @param height
-/// @param halignment
-/// @param wrap width
-/// @param root
-/// @param [help]
-
-Converting GML script: ${project_dir}\scripts\create_tile_selector\create_tile_selector.gml
-Converted description /// @description UITileSelector create_tile_selector(x, y, width, height, onvaluechange, onvaluechangebackwards, root, [help]);/// @param x
-/// @param y
-/// @param width
-/// @param height
-/// @param onvaluechange
-/// @param onvaluechangebackwards
-/// @param root
-/// @param [help]
-
-Converting GML script: ${project_dir}\scripts\create_button\create_button.gml
-Converted description /// @description UIButton create_button(x, y, text, width, height, alignment, onmouseup, root, [help], [anchor horizontal], [anchor vertical]);/// @param x
-/// @param y
-/// @param text
-/// @param width
-/// @param height
-/// @param alignment
-/// @param onmouseup
-/// @param root
-/// @param [help]
-/// @param [anchor horizontal]
-/// @param [anchor vertical]
-
-Converting GML script: ${project_dir}\scripts\create_image_button\create_image_button.gml
-Converted description /// @description UIImageButton create_image_button(x, y, text, image, width, height, alignment, onmouseup, root, [help], [anchor horizontal], [anchor vertical]);/// @param x
-/// @param y
-/// @param text
-/// @param image
-/// @param width
-/// @param height
-/// @param alignment
-/// @param onmouseup
-/// @param root
-/// @param [help]
-/// @param [anchor horizontal]
-/// @param [anchor vertical]
-
-Converting GML script: ${project_dir}\scripts\create_input\create_input.gml
-Converted description /// @description UIInput create_input(x, y, text, width, height, onvaluechange, key, value, help text, validation, value conversion, lower bound, upper bound, value character limit, value x1, value y1, value x2, value y2, root, [help]);/// @param x
-/// @param y
-/// @param text
-/// @param width
-/// @param height
-/// @param onvaluechange
-/// @param key
-/// @param value
-/// @param help text
-/// @param validation
-/// @param value conversion
-/// @param lower bound
-/// @param upper bound
-/// @param value character limit
-/// @param value x1
-/// @param value y1
-/// @param value x2
-/// @param value y2
-/// @param root
-/// @param [help]
-
-Converting GML script: ${project_dir}\scripts\create_bitfield_option_data\create_bitfield_option_data.gml
-Converted description /// @description array create_bitfield_option_data(value, render, onvaluechange, text, sprite, image index, half width, half height);/// @param value
-/// @param render
-/// @param onvaluechange
-/// @param text
-/// @param sprite
-/// @param image index
-/// @param half width
-/// @param half height
-
-Converting GML script: ${project_dir}\scripts\create_bitfield_options\create_bitfield_options.gml
-Converted description /// @description void create_bitfield_options(UIBitField, data0, .. datan);/// @param UIBitField
-/// @param data0
-/// @param .. datan
-
-Converting GML script: ${project_dir}\scripts\create_bitfield_options_vertical\create_bitfield_options_vertical.gml
-Converted description /// @description void create_bitfield_options_vertical(UIBitField, data0, .. datan);/// @param UIBitField
-/// @param data0
-/// @param .. datan
-
-Converting GML script: ${project_dir}\scripts\create_list_entries\create_list_entries.gml
-Converted description /// @description void create_list_entries(UIList, thing0, color0, ... thingn, colorn);/// @param UIList
-/// @param thing0
-/// @param color0
-/// @param ... thingn
-/// @param colorn
-
-Converting GML script: ${project_dir}\scripts\create_radio_array_options\create_radio_array_options.gml
-Converted description /// @description void create_radio_array_options(UIRadioArray, string0, .. stringn);/// @param UIRadioArray
-/// @param string0
-/// @param .. stringn
-
-Converting GML script: ${project_dir}\scripts\dc_settings_execute\dc_settings_execute.gml
-Converted description /// @description void dc_settings_execute(Dialog);/// @param Dialog
-
-Converting GML script: ${project_dir}\scripts\dc_vrax\dc_vrax.gml
-Converted description /// @description void dc_vrax(Dialog);/// @param Dialog
-
-Converting GML script: ${project_dir}\scripts\dc_map_dereference\dc_map_dereference.gml
-Converted description /// @description void dc_map_dereference(Dialog);/// @param Dialog
-
-Converting GML script: ${project_dir}\scripts\dc_data_property_set_enum\dc_data_property_set_enum.gml
-Converted description /// @description void dc_data_property_set_enum(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\dc_event_custom_property_set_enum\dc_event_custom_property_set_enum.gml
-Converted description /// @description void dc_event_custom_property_set_enum(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\dc_event_custom_property_set_data\dc_event_custom_property_set_data.gml
-Converted description /// @description void dc_event_custom_property_set_data(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\dc_data_property_set_data\dc_data_property_set_data.gml
-Converted description /// @description void dc_data_property_set_data(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\dc_data_commit\dc_data_commit.gml
-Converted description /// @description void dc_data_commit(UIButton);/// @param UIButton
-
-Converting GML script: ${project_dir}\scripts\dc_custom_event_set_data\dc_custom_event_set_data.gml
-Converted description /// @description void dc_custom_event_set_data(UIButton);/// @param UIButton
-
-Converting GML script: ${project_dir}\scripts\dc_data_commit_seriously\dc_data_commit_seriously.gml
-Converted description /// @description void dc_data_commit_seriously(UIButton);/// @param UIButton
-
-Converting GML script: ${project_dir}\scripts\dc_data_why\dc_data_why.gml
-Converted description /// @description void dc_data_why(UIButton);/// @param UIButton
-
-Converting GML script: ${project_dir}\scripts\dc_settings_map\dc_settings_map.gml
-Converted description /// @description void dc_settings_map(Dialog);/// @param Dialog
-
-Converting GML script: ${project_dir}\scripts\dc_manager_mesh\dc_manager_mesh.gml
-Converted description /// @description void dc_manager_mesh(Dialog);/// @param Dialog
-
-Converting GML script: ${project_dir}\scripts\dc_autotile_selector\dc_autotile_selector.gml
-Converted description /// @description void dc_autotile_selector(Dialog);/// @param Dialog
-
-Converting GML script: ${project_dir}\scripts\dc_close_no_questions_asked\dc_close_no_questions_asked.gml
-Converted description /// @description void dc_close_no_questions_asked(Dialog, [force?]);/// @param Dialog
-/// @param [force?]
-
-Converting GML script: ${project_dir}\scripts\dc_close_data_discard\dc_close_data_discard.gml
-Converted description /// @description void dc_close_data_discard(Dialog, [force?]);/// @param Dialog
-/// @param [force?]
-
-Converting GML script: ${project_dir}\scripts\dc_default\dc_default.gml
-Converted description /// @description void dc_default(Dialog);/// @param Dialog
-
-Converting GML script: ${project_dir}\scripts\dialog_create_about\dialog_create_about.gml
-Converted description /// @description void dialog_create_about(Dialog);/// @param Dialog
-
-Converting GML script: ${project_dir}\scripts\dialog_create_autotile_selector\dialog_create_autotile_selector.gml
-Converted description /// @description void dialog_create_autotile_selector(Dialog);/// @param Dialog
-
-Converting GML script: ${project_dir}\scripts\dialog_create_manager_autotile\dialog_create_manager_autotile.gml
-Converted description /// @description void dialog_create_manager_autotile(Dialog);/// @param Dialog
-
-Converting GML script: ${project_dir}\scripts\dialog_create_manager_mesh\dialog_create_manager_mesh.gml
-Converted description /// @description void dialog_create_manager_mesh(Dialog);/// @param Dialog
-
-Converting GML script: ${project_dir}\scripts\dialog_create_manager_tileset\dialog_create_manager_tileset.gml
-Converted description /// @description void dialog_create_manager_tileset(Dialog);/// @param Dialog
-
-Converting GML script: ${project_dir}\scripts\dialog_create_notice\dialog_create_notice.gml
-Converted description /// @description void dialog_create_notice(Dialog, message, [caption message], [confirm message], [width], [height]);/// @param Dialog
-/// @param message
-/// @param [caption message]
-/// @param [confirm message]
-/// @param [width]
-/// @param [height]
-
-Converting GML script: ${project_dir}\scripts\dialog_create_preferences\dialog_create_preferences.gml
-Converted description /// @description void dialog_create_preferences(Dialog);/// @param Dialog
-
-Converting GML script: ${project_dir}\scripts\dialog_create_settings_confirm_world_resize\dialog_create_settings_confirm_world_resize.gml
-Converted description /// @description void dialog_create_settings_confirm_world_resize(Dialog);/// @param Dialog
-
-Converting GML script: ${project_dir}\scripts\dialog_create_settings_data\dialog_create_settings_data.gml
-Converted description /// @description void dialog_create_settings_data(Dialog);/// @param Dialog
-
-Converting GML script: ${project_dir}\scripts\dialog_create_settings_data_map_list\dialog_create_settings_data_map_list.gml
-Converted description /// @description void dialog_create_settings_data_map_list(UIList);/// @param UIList
-
-Converting GML script: ${project_dir}\scripts\dialog_create_settings_map\dialog_create_settings_map.gml
-Converted description /// @description void dialog_create_settings_map(Dialog);/// @param Dialog
-
-Converting GML script: ${project_dir}\scripts\dialog_create_yes_or_no\dialog_create_yes_or_no.gml
-Converted description /// @description Dialog dialog_create_yes_or_no(root Dialog, message, confirm action, [caption message], [confirm message], [cancel action], [cancel message]);/// @param root Dialog
-/// @param message
-/// @param confirm action
-/// @param [caption message]
-/// @param [confirm message]
-/// @param [cancel action]
-/// @param [cancel message]
-
-Converting GML script: ${project_dir}\scripts\dialog_create_entity_get_event\dialog_create_entity_get_event.gml
-Converted description /// @description void dialog_create_entity_get_event(Dialog);/// @param Dialog
-
-Converting GML script: ${project_dir}\scripts\dialog_create_entity_get_event_entrypoint\dialog_create_entity_get_event_entrypoint.gml
-Converted description /// @description void dialog_create_entity_get_event_entrypoint(Dialog);/// @param Dialog
-
-Converting GML script: ${project_dir}\scripts\dialog_create_entity_event_page\dialog_create_entity_event_page.gml
-Converted description /// @description void dialog_create_entity_event_page(Dialog);/// @param Dialog
-
-Converting GML script: ${project_dir}\scripts\dialog_create_entity_autonomous_movement\dialog_create_entity_autonomous_movement.gml
-Converted description /// @description void dialog_create_entity_autonomous_movement(Dialog);/// @param Dialog
-
-Converting GML script: ${project_dir}\scripts\dialog_create_entity_move_route\dialog_create_entity_move_route.gml
-Converted description /// @description void dialog_create_entity_move_route(Dialog, DataMoveRoute);/// @param Dialog
-/// @param DataMoveRoute
-
-Converting GML script: ${project_dir}\scripts\dialog_data_type_disable\dialog_data_type_disable.gml
-Converted description /// @description void dialog_data_type_disable(Dialog);/// @param Dialog
-
-Converting GML script: ${project_dir}\scripts\dialog_data_type_enable_by_type\dialog_data_type_enable_by_type.gml
-Converted description /// @description void dialog_data_type_enable_by_type(Dialog);/// @param Dialog
-
-Converting GML script: ${project_dir}\scripts\dialog_create_add_custom_node\dialog_create_add_custom_node.gml
-Converted description /// @description void dialog_create_add_custom_node(Dialog);/// @param Dialog
-
-Converting GML script: ${project_dir}\scripts\dialog_create_data_data_select\dialog_create_data_data_select.gml
-Converted description /// @description void dialog_create_data_data_select(Dialog);/// @param Dialog
-
-Converting GML script: ${project_dir}\scripts\dialog_create_data_enum_select\dialog_create_data_enum_select.gml
-Converted description /// @description void dialog_create_data_enum_select(Dialog);/// @param Dialog
-
-Converting GML script: ${project_dir}\scripts\dialog_create_data_types\dialog_create_data_types.gml
-Converted description /// @description void dialog_create_data_types(Dialog);/// @param Dialog
-
-Converting GML script: ${project_dir}\scripts\dialog_create_event_custom\dialog_create_event_custom.gml
-Converted description /// @description void dialog_create_event_custom(Dialog);/// @param Dialog
-
-Converting GML script: ${project_dir}\scripts\dialog_create_event_node_custom_data\dialog_create_event_node_custom_data.gml
-Converted description /// @description void dialog_create_event_node_custom_data(Dialog, DataNode, property index, multi index);/// @param Dialog
-/// @param DataNode
-/// @param property index
-/// @param multi index
-
-Converting GML script: ${project_dir}\scripts\dialog_create\dialog_create.gml
-Converted description /// @description Dialog dialog_create(width, height, text, render, commit, root, [close]);/// @param width
-/// @param height
-/// @param text
-/// @param render
-/// @param commit
-/// @param root
-/// @param [close]
-
-Converting GML script: ${project_dir}\scripts\dialog_destroy\dialog_destroy.gml
-Converted description /// @description void dialog_destroy();
-
-Converting GML script: ${project_dir}\scripts\dialog_exists\dialog_exists.gml
-Converted builtin - line 4: view_visible[view_3d_preview] -> __view_get( e__VW.Visible, view_3d_preview )
-Converted description /// @description boolean dialog_exists();
-
-Converting GML script: ${project_dir}\scripts\dialog_is_active\dialog_is_active.gml
-Converted builtin - line 6: view_visible[view_3d_preview] -> __view_get( e__VW.Visible, view_3d_preview )
-Converted description /// @description boolean dialog_is_active(Dialog);/// @param Dialog
-
-Converting GML script: ${project_dir}\scripts\dmu_dialog_commit\dmu_dialog_commit.gml
-Converted description /// @description void dmu_dialog_commit(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\dmu_dialog_view_missing\dmu_dialog_view_missing.gml
-Converted description /// @description void dmu_dialog_view_missing(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\dmu_dialog_dont_view_missing\dmu_dialog_dont_view_missing.gml
-Converted description /// @description void dmu_dialog_dont_view_missing(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\dmu_dialog_commit_preferences\dmu_dialog_commit_preferences.gml
-Converted description /// @description void dmu_dialog_commit_preferences(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\dmu_dialog_cancel\dmu_dialog_cancel.gml
-Converted description /// @description void dmu_dialog_cancel(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\dmu_dialog_settings_confirm_world_resize\dmu_dialog_settings_confirm_world_resize.gml
-Converted description /// @description void dmu_dialog_settings_confirm_world_resize(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\dmu_close_no_questions_asked\dmu_close_no_questions_asked.gml
-Converted description /// @description void dmu_close_no_questions_asked(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\dmu_data_dereference\dmu_data_dereference.gml
-Converted description /// @description void dmu_data_dereference(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\dmu_data_starting_map\dmu_data_starting_map.gml
-Converted description /// @description void dmu_data_starting_map(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\dmu_dialog_preview_mesh\dmu_dialog_preview_mesh.gml
-Converted builtin - line 7: view_visible[view_3d_preview]=true -> __view_set( e__VW.Visible, view_3d_preview, true )
-Converted description /// @description void dmu_dialog_preview_mesh(UIButton);/// @param UIButton
-
-Converting GML script: ${project_dir}\scripts\dmu_dialog_load_vrax\dmu_dialog_load_vrax.gml
-Converted description /// @description void dmu_dialog_load_vrax(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\dmu_dialog_cancel_destroy_data\dmu_dialog_cancel_destroy_data.gml
-Converted description /// @description void dmu_dialog_cancel_destroy_data(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\dmu_dialog_entity_get_event\dmu_dialog_entity_get_event.gml
-Converted description /// @description void dmu_dialog_entity_get_event(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\dmu_dialog_entity_get_event_entrypoint\dmu_dialog_entity_get_event_entrypoint.gml
-Converted description /// @description void dmu_dialog_entity_get_event_entrypoint(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\dialog_default\dialog_default.gml
-Converted description /// @description void dialog_default(Dialog);/// @param Dialog
-
-Converting GML script: ${project_dir}\scripts\dialog_note_changes\dialog_note_changes.gml
-Converted description /// @description void dialog_note_changes(Dialog);/// @param Dialog
-
-Converting GML script: ${project_dir}\scripts\dr_box\dr_box.gml
-Converted description /// @description void dr_box(Dialog);/// @param Dialog
-
-Converting GML script: ${project_dir}\scripts\ui_get_radio_array_height\ui_get_radio_array_height.gml
-Converted description /// @description double ui_get_radio_array_height(UIRadioArray);/// @param UIRadioArray
-
-Converting GML script: ${project_dir}\scripts\ui_get_list_height\ui_get_list_height.gml
-Converted description /// @description double ui_get_list_height(UIList);/// @param UIList
-
-Converting GML script: ${project_dir}\scripts\ui_get_text_x\ui_get_text_x.gml
-Converted description /// @description double ui_get_text_x(UIText, x1, x2);/// @param UIText
-/// @param x1
-/// @param x2
-
-Converting GML script: ${project_dir}\scripts\ui_get_text_y\ui_get_text_y.gml
-Converted description /// @description double ui_get_text_y(UIText, y1, y2);/// @param UIText
-/// @param y1
-/// @param y2
-
-Converting GML script: ${project_dir}\scripts\ui_legal_height\ui_legal_height.gml
-Converted builtin - line 3: view_hview[view_hud] -> __view_get( e__VW.HView, view_hud )
-Converted description /// @description double ui_legal_height();
-
-Converting GML script: ${project_dir}\scripts\ui_legal_width\ui_legal_width.gml
-Converted builtin - line 3: view_wview[view_hud] -> __view_get( e__VW.WView, view_hud )
-Converted description /// @description double ui_legal_width();
-
-Converting GML script: ${project_dir}\scripts\menu_render_main\menu_render_main.gml
-Converted description /// @description void menu_render_main(MenuMain, x, y);/// @param MenuMain
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\menu_render\menu_render.gml
-Converted description /// @description void menu_render(MenuMenu, x, y);/// @param MenuMenu
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\menu_render_element\menu_render_element.gml
-Converted description /// @description void menu_render_element(MenuMenu, x, y, x2, y2);/// @param MenuMenu
-/// @param x
-/// @param y
-/// @param x2
-/// @param y2
-
-Converting GML script: ${project_dir}\scripts\create_menu\create_menu.gml
-Converted description /// @description MenuMenu create_menu(text, width, height, root);/// @param text
-/// @param width
-/// @param height
-/// @param root
-
-Converting GML script: ${project_dir}\scripts\create_menu_element\create_menu_element.gml
-Converted description /// @description MenuMenu create_menu_element(text, onmouseup, root);/// @param text
-/// @param onmouseup
-/// @param root
-
-Converting GML script: ${project_dir}\scripts\momu_exit\momu_exit.gml
-Converted description /// @description void momu_exit(MenuElement);/// @param MenuElement
-
-Converting GML script: ${project_dir}\scripts\momu_open\momu_open.gml
-Converted description /// @description void momu_open(MenuElement);/// @param MenuElement
-
-Converting GML script: ${project_dir}\scripts\momu_backup\momu_backup.gml
-Converted description /// @description void momu_backup(MenuElement);/// @param MenuElement
-Converted string - line 8: "\\backups" -> "\\\\backups"
-
-Converting GML script: ${project_dir}\scripts\momu_preferences\momu_preferences.gml
-Converted description /// @description void momu_preferences(MenuElement);/// @param MenuElement
-
-Converting GML script: ${project_dir}\scripts\momu_settings_map\momu_settings_map.gml
-Converted description /// @description void momu_settings_map(MenuElement);/// @param MenuElement
-
-Converting GML script: ${project_dir}\scripts\momu_settings_data\momu_settings_data.gml
-Converted description /// @description void momu_settings_data(MenuElement);/// @param MenuElement
-
-Converting GML script: ${project_dir}\scripts\momu_save_data\momu_save_data.gml
-Converted description /// @description void momu_save_data(MenuElement);/// @param MenuElement
-
-Converting GML script: ${project_dir}\scripts\momu_save_map\momu_save_map.gml
-Converted description /// @description void momu_save_map(MenuElement);/// @param MenuElement
-
-Converting GML script: ${project_dir}\scripts\momu_new\momu_new.gml
-Converted description /// @description void momu_new(MenuElement);/// @param MenuElement
-
-Converting GML script: ${project_dir}\scripts\momu_copy\momu_copy.gml
-Converted description /// @description void momu_copy(MenuElement);/// @param MenuElement
-
-Converting GML script: ${project_dir}\scripts\momu_undo\momu_undo.gml
-Converted description /// @description void momu_undo(MenuElement);/// @param MenuElement
-
-Converting GML script: ${project_dir}\scripts\momu_redo\momu_redo.gml
-Converted description /// @description void momu_redo(MenuElement);/// @param MenuElement
-
-Converting GML script: ${project_dir}\scripts\momu_cut\momu_cut.gml
-Converted description /// @description void momu_cut(MenuElement);/// @param MenuElement
-
-Converting GML script: ${project_dir}\scripts\momu_select_all\momu_select_all.gml
-Converted description /// @description void momu_select_all(MenuElement);/// @param MenuElement
-
-Converting GML script: ${project_dir}\scripts\momu_deselect\momu_deselect.gml
-Converted description /// @description void momu_deselect(MenuElement);/// @param MenuElement
-
-Converting GML script: ${project_dir}\scripts\momu_paste\momu_paste.gml
-Converted description /// @description void momu_paste(MenuElement);/// @param MenuElement
-
-Converting GML script: ${project_dir}\scripts\momu_expand\momu_expand.gml
-Converted description /// @description void momu_expand(MenuElement);/// @param MenuElement
-
-Converting GML script: ${project_dir}\scripts\momu_help\momu_help.gml
-Converted description /// @description void momu_help(MenuElement);/// @param MenuElement
-
-Converting GML script: ${project_dir}\scripts\momu_about\momu_about.gml
-Converted description /// @description void momu_about(MenuElement);/// @param MenuElement
-
-Converting GML script: ${project_dir}\scripts\momu_conflicts\momu_conflicts.gml
-Converted description /// @description void momu_conflicts(MenuElement);/// @param MenuElement
-
-Converting GML script: ${project_dir}\scripts\momu_data_types\momu_data_types.gml
-Converted description /// @description void momu_data_types(MenuElement);/// @param MenuElement
-
-Converting GML script: ${project_dir}\scripts\momu_editor_3d\momu_editor_3d.gml
-Converted builtin - line 13: view_xview[view_hud]=room_width-view_hud_width_3d -> __view_set( e__VW.XView, view_hud, room_width-view_hud_width_3d )
-Converted builtin - line 18: view_xview[view_fullscreen]=0 -> __view_set( e__VW.XView, view_fullscreen, 0 )
-Converted builtin - line 19: view_yview[view_fullscreen]=0 -> __view_set( e__VW.YView, view_fullscreen, 0 )
-Converted builtin - line 14: view_wview[view_hud]=view_hud_width_3d -> __view_set( e__VW.WView, view_hud, view_hud_width_3d )
-Converted builtin - line 7: view_visible[view_fullscreen]=false -> __view_set( e__VW.Visible, view_fullscreen, false )
-Converted builtin - line 8: view_visible[view_3d]=true -> __view_set( e__VW.Visible, view_3d, true )
-Converted builtin - line 9: view_visible[view_ribbon]=true -> __view_set( e__VW.Visible, view_ribbon, true )
-Converted builtin - line 10: view_visible[view_hud]=true -> __view_set( e__VW.Visible, view_hud, true )
-Converted builtin - line 11: view_visible[view_3d_preview]=false -> __view_set( e__VW.Visible, view_3d_preview, false )
-Converted builtin - line 15: view_xport[view_hud]=room_width-view_hud_width_3d -> __view_set( e__VW.XPort, view_hud, room_width-view_hud_width_3d )
-Converted builtin - line 16: view_wport[view_hud]=view_hud_width_3d -> __view_set( e__VW.WPort, view_hud, view_hud_width_3d )
-Converted description /// @description void momu_editor_3d(MenuElement);/// @param MenuElement
-
-Converting GML script: ${project_dir}\scripts\momu_editor_data\momu_editor_data.gml
-Converted builtin - line 15: view_xview[view_fullscreen]=0 -> __view_set( e__VW.XView, view_fullscreen, 0 )
-Converted builtin - line 16: view_yview[view_fullscreen]=0 -> __view_set( e__VW.YView, view_fullscreen, 0 )
-Converted builtin - line 13: view_wview[view_fullscreen]=room_width -> __view_set( e__VW.WView, view_fullscreen, room_width )
-Converted builtin - line 7: view_visible[view_fullscreen]=true -> __view_set( e__VW.Visible, view_fullscreen, true )
-Converted builtin - line 8: view_visible[view_3d]=false -> __view_set( e__VW.Visible, view_3d, false )
-Converted builtin - line 9: view_visible[view_ribbon]=true -> __view_set( e__VW.Visible, view_ribbon, true )
-Converted builtin - line 10: view_visible[view_hud]=false -> __view_set( e__VW.Visible, view_hud, false )
-Converted builtin - line 11: view_visible[view_3d_preview]=false -> __view_set( e__VW.Visible, view_3d_preview, false )
-Converted builtin - line 14: view_wport[view_fullscreen]=room_width -> __view_set( e__VW.WPort, view_fullscreen, room_width )
-Converted description /// @description void momu_editor_data(MenuElement);/// @param MenuElement
-
-Converting GML script: ${project_dir}\scripts\momu_editor_event\momu_editor_event.gml
-Converted builtin - line 13: view_xview[view_hud]=room_width-view_hud_width_event -> __view_set( e__VW.XView, view_hud, room_width-view_hud_width_event )
-Converted builtin - line 20: view_xview[view_fullscreen]=0 -> __view_set( e__VW.XView, view_fullscreen, 0 )
-Converted builtin - line 21: view_yview[view_fullscreen]=0 -> __view_set( e__VW.YView, view_fullscreen, 0 )
-Converted builtin - line 14: view_wview[view_hud]=view_hud_width_event -> __view_set( e__VW.WView, view_hud, view_hud_width_event )
-Converted builtin - line 18: view_wview[view_fullscreen]=room_width-view_hud_width_event -> __view_set( e__VW.WView, view_fullscreen, room_width-view_hud_width_event )
-Converted builtin - line 7: view_visible[view_fullscreen]=true -> __view_set( e__VW.Visible, view_fullscreen, true )
-Converted builtin - line 8: view_visible[view_3d]=false -> __view_set( e__VW.Visible, view_3d, false )
-Converted builtin - line 9: view_visible[view_ribbon]=true -> __view_set( e__VW.Visible, view_ribbon, true )
-Converted builtin - line 10: view_visible[view_hud]=true -> __view_set( e__VW.Visible, view_hud, true )
-Converted builtin - line 11: view_visible[view_3d_preview]=false -> __view_set( e__VW.Visible, view_3d_preview, false )
-Converted builtin - line 15: view_xport[view_hud]=room_width-view_hud_width_event -> __view_set( e__VW.XPort, view_hud, room_width-view_hud_width_event )
-Converted builtin - line 16: view_wport[view_hud]=view_hud_width_event -> __view_set( e__VW.WPort, view_hud, view_hud_width_event )
-Converted builtin - line 19: view_wport[view_fullscreen]=room_width-view_hud_width_event -> __view_set( e__VW.WPort, view_fullscreen, room_width-view_hud_width_event )
-Converted description /// @description void momu_editor_event(MenuElement);/// @param MenuElement
-
-Converting GML script: ${project_dir}\scripts\momu_mesh\momu_mesh.gml
-Converted description /// @description void momu_mesh(MenuElement);/// @param MenuElement
-
-Converting GML script: ${project_dir}\scripts\momu_missing\momu_missing.gml
-Converted description /// @description void momu_missing(MenuElement);/// @param MenuElement
-
-Converting GML script: ${project_dir}\scripts\momu_tileset\momu_tileset.gml
-Converted description /// @description void momu_tileset(MenuElement);/// @param MenuElement
-
-Converting GML script: ${project_dir}\scripts\menu_is_ancestor\menu_is_ancestor.gml
-Converted description /// @description boolean menu_is_ancestor(test, root);/// @param test
-/// @param root
-
-Converting GML script: ${project_dir}\scripts\menu_is_active\menu_is_active.gml
-Converted description /// @description boolean menu_is_active(MenuMenu);/// @param MenuMenu
-
-Converting GML script: ${project_dir}\scripts\menu_activate\menu_activate.gml
-Converted description /// @description void menu_activate(MenuMenu);/// @param MenuMenu
-
-Converting GML script: ${project_dir}\scripts\create_notification\create_notification.gml
-Converted description /// @description UINotification create_notification(text);/// @param text
-
-Converting GML script: ${project_dir}\scripts\uivc_check_entity_solid\uivc_check_entity_solid.gml
-Converted description /// @description uivc_check_entity_solid(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_check_entity_option_animate_idle\uivc_check_entity_option_animate_idle.gml
-Converted description /// @description uivc_check_entity_option_animate_idle(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_check_entity_option_animate_movement\uivc_check_entity_option_animate_movement.gml
-Converted description /// @description uivc_check_entity_option_animate_movement(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_check_entity_option_direction_fix\uivc_check_entity_option_direction_fix.gml
-Converted description /// @description uivc_check_entity_option_direction_fix(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_check_entity_static\uivc_check_entity_static.gml
-Converted description /// @description uivc_check_entity_static(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_input_entity_name\uivc_input_entity_name.gml
-Converted description /// @description uivc_input_entity_name(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_entity_event_name\uivc_entity_event_name.gml
-Converted description /// @description void uivc_entity_event_name(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_entity_event_enable\uivc_entity_event_enable.gml
-Converted description /// @description void uivc_entity_event_enable(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_entity_event_enable_switch_global\uivc_entity_event_enable_switch_global.gml
-Converted description /// @description void uivc_entity_event_enable_switch_global(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_entity_move_route_loop\uivc_entity_move_route_loop.gml
-Converted description /// @description void uivc_entity_move_route_loop(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_entity_move_route_skip\uivc_entity_move_route_skip.gml
-Converted description /// @description void uivc_entity_move_route_skip(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_entity_move_route_wait\uivc_entity_move_route_wait.gml
-Converted description /// @description void uivc_entity_move_route_wait(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_entity_move_route_name\uivc_entity_move_route_name.gml
-Converted description /// @description void uivc_entity_move_route_name(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_entity_event_enable_switch_self\uivc_entity_event_enable_switch_self.gml
-Converted description /// @description void uivc_entity_event_enable_switch_self(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_entity_event_enable_variable_global\uivc_entity_event_enable_variable_global.gml
-Converted description /// @description void uivc_entity_event_enable_variable_global(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_entity_event_enable_variable_self\uivc_entity_event_enable_variable_self.gml
-Converted description /// @description void uivc_entity_event_enable_variable_self(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_entity_event_enable_item\uivc_entity_event_enable_item.gml
-Converted description /// @description void uivc_entity_event_enable_item(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_entity_event_enable_code\uivc_entity_event_enable_code.gml
-Converted description /// @description void uivc_entity_event_enable_code(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_entity_event_animate_movement\uivc_entity_event_animate_movement.gml
-Converted description /// @description void uivc_entity_event_animate_movement(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_entity_event_animate_idle\uivc_entity_event_animate_idle.gml
-Converted description /// @description void uivc_entity_event_animate_idle(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_entity_event_direction_fix\uivc_entity_event_direction_fix.gml
-Converted description /// @description void uivc_entity_event_direction_fix(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_entity_event_trigger\uivc_entity_event_trigger.gml
-Converted description /// @description void uivc_entity_event_trigger(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_entity_auto_move\uivc_entity_auto_move.gml
-Converted description /// @description void uivc_entity_auto_move(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_entity_auto_speed\uivc_entity_auto_speed.gml
-Converted description /// @description void uivc_entity_auto_speed(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_entity_auto_frequency\uivc_entity_auto_frequency.gml
-Converted description /// @description void uivc_entity_auto_frequency(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_input_entity_off_x\uivc_input_entity_off_x.gml
-Converted description /// @description uivc_input_entity_off_x(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_input_entity_off_y\uivc_input_entity_off_y.gml
-Converted description /// @description uivc_input_entity_off_y(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_input_entity_off_z\uivc_input_entity_off_z.gml
-Converted description /// @description uivc_input_entity_off_z(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_input_entity_pos_x\uivc_input_entity_pos_x.gml
-Converted description /// @description uivc_input_entity_pos_x(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_input_entity_pos_y\uivc_input_entity_pos_y.gml
-Converted description /// @description uivc_input_entity_pos_y(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_input_entity_pos_z\uivc_input_entity_pos_z.gml
-Converted description /// @description uivc_input_entity_pos_z(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_input_entity_rotate_x\uivc_input_entity_rotate_x.gml
-Converted description /// @description uivc_input_entity_rotate_x(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_input_entity_rotate_y\uivc_input_entity_rotate_y.gml
-Converted description /// @description uivc_input_entity_rotate_y(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_input_entity_rotate_z\uivc_input_entity_rotate_z.gml
-Converted description /// @description uivc_input_entity_rotate_z(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_input_entity_scale_x\uivc_input_entity_scale_x.gml
-Converted description /// @description uivc_input_entity_scale_x(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_input_entity_scale_y\uivc_input_entity_scale_y.gml
-Converted description /// @description uivc_input_entity_scale_y(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_input_entity_scale_z\uivc_input_entity_scale_z.gml
-Converted description /// @description uivc_input_entity_scale_z(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_entity_mob_editor_frame\uivc_entity_mob_editor_frame.gml
-Converted description /// @description void uivc_entity_mob_editor_frame(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_entity_mob_direction\uivc_entity_mob_direction.gml
-Converted description /// @description void uivc_entity_mob_direction(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_entity_mob_animating\uivc_entity_mob_animating.gml
-Converted description /// @description void uivc_entity_mob_animating(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_list_selection_event_node\uivc_list_selection_event_node.gml
-Converted description /// @description uivc_list_selection_event_node(UIList);/// @param UIList
-
-Converting GML script: ${project_dir}\scripts\uivc_list_selection_event\uivc_list_selection_event.gml
-Converted description /// @description uivc_list_selection_event(UIList);/// @param UIList
-
-Converting GML script: ${project_dir}\scripts\uivc_bitfield_selection_mask\uivc_bitfield_selection_mask.gml
-Converted description /// @description uivc_bitfield_selection_mask(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_bitfield_selection_mask_none\uivc_bitfield_selection_mask_none.gml
-Converted description /// @description uivc_bitfield_selection_mask_none(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_bitfield_selection_mask_all\uivc_bitfield_selection_mask_all.gml
-Converted description /// @description uivc_bitfield_selection_mask_all(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_bezier_precision\uivc_bezier_precision.gml
-Converted description /// @description void uivc_bezier_precision(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_npc_animate_speed\uivc_npc_animate_speed.gml
-Converted description /// @description void uivc_npc_animate_speed(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_alphabetize_lists\uivc_alphabetize_lists.gml
-Converted description /// @description void uivc_alphabetize_lists(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_backups\uivc_backups.gml
-Converted description /// @description void uivc_backups(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_autosave\uivc_autosave.gml
-Converted description /// @description void uivc_autosave(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_settings_embed_tilesets\uivc_settings_embed_tilesets.gml
-Converted description /// @description void uivc_settings_embed_tilesets(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_settings_game_grid\uivc_settings_game_grid.gml
-Converted description /// @description void uivc_settings_game_grid(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_settings_map_name\uivc_settings_map_name.gml
-Converted description /// @description void uivc_settings_map_name(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_settings_map_summary\uivc_settings_map_summary.gml
-Converted description /// @description void uivc_settings_map_summary(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_settings_map_internal\uivc_settings_map_internal.gml
-Converted description /// @description void uivc_settings_map_internal(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_settings_embed_npcs\uivc_settings_embed_npcs.gml
-Converted description /// @description void uivc_settings_embed_npcs(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_settings_embed_graphics\uivc_settings_embed_graphics.gml
-Converted description /// @description void uivc_settings_embed_graphics(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_settings_embed_meshes\uivc_settings_embed_meshes.gml
-Converted description /// @description void uivc_settings_embed_meshes(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_settings_embed_se\uivc_settings_embed_se.gml
-Converted description /// @description void uivc_settings_embed_se(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_settings_map_fog_start\uivc_settings_map_fog_start.gml
-Converted description /// @description uivc_settings_map_fog_start(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_settings_map_fog_end\uivc_settings_map_fog_end.gml
-Converted description /// @description uivc_settings_map_fog_end(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_settings_map_3d\uivc_settings_map_3d.gml
-Converted description /// @description void uivc_settings_map_3d(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_settings_map_indoors\uivc_settings_map_indoors.gml
-Converted description /// @description void uivc_settings_map_indoors(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_settings_map_water\uivc_settings_map_water.gml
-Converted description /// @description void uivc_settings_map_water(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_settings_map_fast_travel_to\uivc_settings_map_fast_travel_to.gml
-Converted description /// @description void uivc_settings_map_fast_travel_to(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_settings_map_fast_travel_from\uivc_settings_map_fast_travel_from.gml
-Converted description /// @description void uivc_settings_map_fast_travel_from(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_settings_compression_level\uivc_settings_compression_level.gml
-Converted description /// @description void uivc_settings_compression_level(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uimu_autotile_tag_down\uimu_autotile_tag_down.gml
-Converted description /// @description uimu_autotile_tag_down(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uimu_autotile_tag_up\uimu_autotile_tag_up.gml
-Converted description /// @description uimu_autotile_tag_up(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_input_autotile_tag\uivc_input_autotile_tag.gml
-Converted description /// @description uivc_input_autotile_tag(UIInput);/// @param UIInput
-
-Converting GML script: ${project_dir}\scripts\uivc_bitfield_autotile_passability\uivc_bitfield_autotile_passability.gml
-Converted description /// @description uivc_bitfield_autotile_passability(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_bitfield_autotile_passability_solid\uivc_bitfield_autotile_passability_solid.gml
-Converted description /// @description uivc_bitfield_autotile_passability_solid(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_bitfield_autotile_passability_passable\uivc_bitfield_autotile_passability_passable.gml
-Converted description /// @description uivc_bitfield_autotile_passability_passable(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_input_autotile_priority\uivc_input_autotile_priority.gml
-Converted description /// @description uivc_input_autotile_priority(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_bitfield_autotile_flag\uivc_bitfield_autotile_flag.gml
-Converted description /// @description uivc_bitfield_autotile_flag(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uimu_mesh_tag_down\uimu_mesh_tag_down.gml
-Converted description /// @description uimu_mesh_tag_down(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uimu_mesh_tag_up\uimu_mesh_tag_up.gml
-Converted description /// @description uimu_mesh_tag_up(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uimu_tile_tag_down\uimu_tile_tag_down.gml
-Converted description /// @description uimu_tile_tag_down(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uimu_tile_tag_up\uimu_tile_tag_up.gml
-Converted description /// @description uimu_tile_tag_up(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_bitfield_mesh_flag\uivc_bitfield_mesh_flag.gml
-Converted description /// @description uivc_bitfield_mesh_flag(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_bitfield_mesh_passability\uivc_bitfield_mesh_passability.gml
-Converted description /// @description uivc_bitfield_mesh_passability(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_bitfield_mesh_passability_passable\uivc_bitfield_mesh_passability_passable.gml
-Converted description /// @description uivc_bitfield_mesh_passability_passable(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_bitfield_mesh_passability_solid\uivc_bitfield_mesh_passability_solid.gml
-Converted description /// @description uivc_bitfield_mesh_passability_solid(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_bitfield_tile_flag\uivc_bitfield_tile_flag.gml
-Converted description /// @description uivc_bitfield_tile_flag(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_bitfield_tile_passability\uivc_bitfield_tile_passability.gml
-Converted description /// @description uivc_bitfield_tile_passability(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_bitfield_tile_passability_passable\uivc_bitfield_tile_passability_passable.gml
-Converted description /// @description uivc_bitfield_tile_passability_passable(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_bitfield_tile_passability_solid\uivc_bitfield_tile_passability_solid.gml
-Converted description /// @description uivc_bitfield_tile_passability_solid(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_input_mesh_tag\uivc_input_mesh_tag.gml
-Converted description /// @description uivc_input_mesh_tag(UIInput);/// @param UIInput
-
-Converting GML script: ${project_dir}\scripts\uivc_input_tile_priority\uivc_input_tile_priority.gml
-Converted description /// @description uivc_input_tile_priority(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_input_tile_tag\uivc_input_tile_tag.gml
-Converted description /// @description uivc_input_tile_tag(UIInput);/// @param UIInput
-
-Converting GML script: ${project_dir}\scripts\uimu_freeze_ask\uimu_freeze_ask.gml
-Converted description /// @description uimu_freeze_ask(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uimu_selection_delete\uimu_selection_delete.gml
-Converted description /// @description uimu_selection_delete(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uimu_selection_fill\uimu_selection_fill.gml
-Converted description /// @description uimu_selection_fill(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uimu_view_master_texture\uimu_view_master_texture.gml
-Converted description /// @description uimu_view_master_texture(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_check_selection_addition\uivc_check_selection_addition.gml
-Converted description /// @description uivc_check_selection_addition(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_check_view_backface\uivc_check_view_backface.gml
-Converted description /// @description uivc_check_view_backface(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_check_view_entities\uivc_check_view_entities.gml
-Converted description /// @description uivc_check_view_entities(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_check_view_grids\uivc_check_view_grids.gml
-Converted description /// @description uivc_check_view_grids(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_check_view_texture\uivc_check_view_texture.gml
-Converted description /// @description uivc_check_view_texture(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_check_view_wireframe\uivc_check_view_wireframe.gml
-Converted description /// @description uivc_check_view_wireframe(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_check_view_selection_mask\uivc_check_view_selection_mask.gml
-Converted description /// @description uivc_check_view_selection_mask(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_list_autotile_selector\uivc_list_autotile_selector.gml
-Converted description /// @description void uivc_list_autotile_selector(UIList);/// @param UIList
-
-Converting GML script: ${project_dir}\scripts\uivc_list_selection_autotile\uivc_list_selection_autotile.gml
-Converted description /// @description uivc_list_selection_autotile(UIList);/// @param UIList
-
-Converting GML script: ${project_dir}\scripts\uivc_list_selection_mesh\uivc_list_selection_mesh.gml
-Converted description /// @description uivc_list_selection_mesh(UIList);/// @param UIList
-
-Converting GML script: ${project_dir}\scripts\uivc_list_view_mesh\uivc_list_view_mesh.gml
-Converted description /// @description uivc_list_view_mesh(UIList);/// @param UIList
-
-Converting GML script: ${project_dir}\scripts\uivc_radio_fill_type\uivc_radio_fill_type.gml
-Converted description /// @description uivc_radio_fill_type(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_radio_selection_mode\uivc_radio_selection_mode.gml
-Converted description /// @description uivc_radio_selection_mode(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_select_autotile\uivc_select_autotile.gml
-Converted description /// @description uivc_select_autotile(UITileSelector, tx, ty);/// @param UITileSelector
-/// @param tx
-/// @param ty
-
-Converting GML script: ${project_dir}\scripts\uivc_select_autotile_refresh\uivc_select_autotile_refresh.gml
-Converted description /// @description void uivc_select_autotile_refresh(index);/// @param index
-
-Converting GML script: ${project_dir}\scripts\uivc_select_mesh_refresh\uivc_select_mesh_refresh.gml
-Converted description /// @description void uivc_select_mesh_refresh(index);/// @param index
-
-Converting GML script: ${project_dir}\scripts\uivc_select_tile\uivc_select_tile.gml
-Converted description /// @description uivc_select_tile(UITileSelector, tx, ty);/// @param UITileSelector
-/// @param tx
-/// @param ty
-
-Converting GML script: ${project_dir}\scripts\uivc_select_tile_refresh\uivc_select_tile_refresh.gml
-Converted description /// @description void uivc_select_tile_refresh(tx, ty);/// @param tx
-/// @param ty
-
-Converting GML script: ${project_dir}\scripts\uivc_select_tile_backwards\uivc_select_tile_backwards.gml
-Converted description /// @description uivc_select_tile_backwards(UITileSelector, tx, ty);/// @param UITileSelector
-/// @param tx
-/// @param ty
-
-Converting GML script: ${project_dir}\scripts\uivc_stash\uivc_stash.gml
-Converted description /// @description void uivc_stash(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_stash_list\uivc_stash_list.gml
-Converted description /// @description void uivc_stash_list(UIList);/// @param UIList
-
-Converting GML script: ${project_dir}\scripts\uivc_tile_set_data_view\uivc_tile_set_data_view.gml
-Converted description /// @description uivc_tile_set_data_view(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_tile_set_on_click\uivc_tile_set_on_click.gml
-Converted description /// @description uivc_tile_set_on_click(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uimu_data_add_data\uimu_data_add_data.gml
-Converted description /// @description uimu_data_add_data(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uimu_data_remove_data\uimu_data_remove_data.gml
-Converted description /// @description uimu_data_remove_data(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_custom_data_property_max\uivc_custom_data_property_max.gml
-Converted description /// @description uivc_custom_data_property_max(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_custom_data_property_required\uivc_custom_data_property_required.gml
-Converted description /// @description uivc_custom_data_property_required(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_custom_data_property_type\uivc_custom_data_property_type.gml
-Converted description /// @description uivc_custom_data_property_type(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_data_set_name\uivc_data_set_name.gml
-Converted description /// @description void uivc_data_set_name(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_data_set_property_boolean\uivc_data_set_property_boolean.gml
-Converted description /// @description void uivc_data_set_property_boolean(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_data_set_property_input\uivc_data_set_property_input.gml
-Converted description /// @description void uivc_data_set_property_input(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_data_set_property_list\uivc_data_set_property_list.gml
-Converted description /// @description void uivc_data_set_property_list(UIList);/// @param UIList
-
-Converting GML script: ${project_dir}\scripts\uivc_input_custom_data_property_name\uivc_input_custom_data_property_name.gml
-Converted description /// @description uivc_input_custom_data_property_name(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_input_custom_event_name\uivc_input_custom_event_name.gml
-Converted description /// @description uivc_input_custom_event_name(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_input_data_char_limit\uivc_input_data_char_limit.gml
-Converted description /// @description uivc_input_data_char_limit(UIInput);/// @param UIInput
-
-Converting GML script: ${project_dir}\scripts\uivc_input_data_name\uivc_input_data_name.gml
-Converted description /// @description uivc_input_data_name(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_input_data_number_scale\uivc_input_data_number_scale.gml
-Converted description /// @description uivc_input_data_number_scale(UIRadioArray);/// @param UIRadioArray
-
-Converting GML script: ${project_dir}\scripts\uivc_input_data_property_name\uivc_input_data_property_name.gml
-Converted description /// @description uivc_input_data_property_name(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_input_data_property_type\uivc_input_data_property_type.gml
-Converted description /// @description uivc_input_data_property_type(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\uivc_input_data_value_max\uivc_input_data_value_max.gml
-Converted description /// @description uivc_input_data_value_max(UIInput);/// @param UIInput
-
-Converting GML script: ${project_dir}\scripts\uivc_input_data_value_min\uivc_input_data_value_min.gml
-Converted description /// @description uivc_input_data_value_min(UIInput);/// @param UIInput
-
-Converting GML script: ${project_dir}\scripts\uivc_list_data_data\uivc_list_data_data.gml
-Converted description /// @description uivc_list_data_data(UIList);/// @param UIList
-
-Converting GML script: ${project_dir}\scripts\uivc_list_data_editor\uivc_list_data_editor.gml
-Converted description /// @description uivc_list_data_editor(UIList);/// @param UIList
-
-Converting GML script: ${project_dir}\scripts\uivc_list_data_editor_instances\uivc_list_data_editor_instances.gml
-Converted description /// @description uivc_list_data_editor_instances(UIList);/// @param UIList
-
-Converting GML script: ${project_dir}\scripts\uivc_list_data_property\uivc_list_data_property.gml
-Converted description /// @description uivc_list_data_property(UIList);/// @param UIList
-
-Converting GML script: ${project_dir}\scripts\uivc_list_event_custom_property\uivc_list_event_custom_property.gml
-Converted description /// @description uivc_list_event_custom_property(UIList);/// @param UIList
-
-Converting GML script: ${project_dir}\scripts\omu_autotile_selector\omu_autotile_selector.gml
-Converted description /// @description void omu_autotile_selector(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_entity_event_page\omu_entity_event_page.gml
-Converted description /// @description void omu_entity_event_page(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_entity_autonomous_movement\omu_entity_autonomous_movement.gml
-Converted description /// @description void omu_entity_autonomous_movement(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_event_add_custom_event\omu_event_add_custom_event.gml
-Converted description /// @description void omu_event_add_custom_event(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_event_add_custom\omu_event_add_custom.gml
-Converted description /// @description void omu_event_add_custom(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_event_add_entrypoint\omu_event_add_entrypoint.gml
-Converted description /// @description void omu_event_add_entrypoint(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_event_add_event\omu_event_add_event.gml
-Converted description /// @description void omu_event_add_event(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_event_add_text\omu_event_add_text.gml
-Converted description /// @description void omu_event_add_text(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_event_custom_dialog\omu_event_custom_dialog.gml
-Converted description /// @description void omu_event_custom_dialog(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_event_custom_help\omu_event_custom_help.gml
-Converted description /// @description void omu_event_custom_help(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_event_edit_custom_event\omu_event_edit_custom_event.gml
-Converted description /// @description void omu_event_edit_custom_event(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_event_remove_custom_event\omu_event_remove_custom_event.gml
-Converted description /// @description void omu_event_remove_custom_event(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_event_remove_event\omu_event_remove_event.gml
-Converted description /// @description void omu_event_remove_event(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_event_rename_event\omu_event_rename_event.gml
-Converted description /// @description void omu_event_rename_event(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_entity_add_event\omu_entity_add_event.gml
-Converted description /// @description void omu_entity_add_event(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_entity_add_move_route\omu_entity_add_move_route.gml
-Converted description /// @description void omu_entity_add_move_route(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_entity_get_event\omu_entity_get_event.gml
-Converted description /// @description void omu_entity_get_event(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_entity_remove_auto_move_route\omu_entity_remove_auto_move_route.gml
-Converted description /// @description void omu_entity_remove_auto_move_route(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_entity_move_route_make_visible\omu_entity_move_route_make_visible.gml
-Converted description /// @description void omu_entity_move_route_make_visible(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_entity_move_route_make_invisible\omu_entity_move_route_make_invisible.gml
-Converted description /// @description void omu_entity_move_route_make_invisible(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_entity_remove_event\omu_entity_remove_event.gml
-Converted description /// @description void omu_entity_remove_event(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_entity_remove_move_route\omu_entity_remove_move_route.gml
-Converted description /// @description void omu_entity_remove_move_route(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_entity_remove_move_route_step\omu_entity_remove_move_route_step.gml
-Converted description /// @description void omu_entity_remove_move_route_step(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_entity_set_auto_move_route\omu_entity_set_auto_move_route.gml
-Converted description /// @description void omu_entity_set_auto_move_route(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_entity_edit_move_route\omu_entity_edit_move_route.gml
-Converted description /// @description void omu_entity_edit_move_route(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_mr_move_up\omu_mr_move_up.gml
-Converted description /// @description void omu_mr_move_up(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_mr_move_to_exactly\omu_mr_move_to_exactly.gml
-Converted description /// @description void omu_mr_move_to_exactly(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_mr_move_down\omu_mr_move_down.gml
-Converted description /// @description void omu_mr_move_down(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_mr_move_left\omu_mr_move_left.gml
-Converted description /// @description void omu_mr_move_left(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_mr_move_right\omu_mr_move_right.gml
-Converted description /// @description void omu_mr_move_right(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_mr_move_lower_left\omu_mr_move_lower_left.gml
-Converted description /// @description void omu_mr_move_lower_left(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_mr_move_lower_right\omu_mr_move_lower_right.gml
-Converted description /// @description void omu_mr_move_lower_right(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_mr_move_upper_left\omu_mr_move_upper_left.gml
-Converted description /// @description void omu_mr_move_upper_left(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_mr_move_upper_right\omu_mr_move_upper_right.gml
-Converted description /// @description void omu_mr_move_upper_right(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_mr_move_random\omu_mr_move_random.gml
-Converted description /// @description void omu_mr_move_random(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_mr_move_towards_player\omu_mr_move_towards_player.gml
-Converted description /// @description void omu_mr_move_towards_player(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_mr_move_away_player\omu_mr_move_away_player.gml
-Converted description /// @description void omu_mr_move_away_player(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_mr_move_forward\omu_mr_move_forward.gml
-Converted description /// @description void omu_mr_move_forward(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_mr_move_backward\omu_mr_move_backward.gml
-Converted description /// @description void omu_mr_move_backward(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_mr_move_jump\omu_mr_move_jump.gml
-Converted description /// @description void omu_mr_move_jump(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_mr_move_actually_jump\omu_mr_move_actually_jump.gml
-Converted description /// @description void omu_mr_move_actually_jump(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_mr_wait\omu_mr_wait.gml
-Converted description /// @description void omu_mr_wait(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_mr_turn_down\omu_mr_turn_down.gml
-Converted description /// @description void omu_mr_turn_down(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_mr_turn_left\omu_mr_turn_left.gml
-Converted description /// @description void omu_mr_turn_left(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_mr_turn_right\omu_mr_turn_right.gml
-Converted description /// @description void omu_mr_turn_right(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_mr_turn_up\omu_mr_turn_up.gml
-Converted description /// @description void omu_mr_turn_up(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_mr_turn_90_right\omu_mr_turn_90_right.gml
-Converted description /// @description void omu_mr_turn_90_right(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_mr_turn_90_left\omu_mr_turn_90_left.gml
-Converted description /// @description void omu_mr_turn_90_left(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_mr_turn_180\omu_mr_turn_180.gml
-Converted description /// @description void omu_mr_turn_180(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_mr_turn_90_random\omu_mr_turn_90_random.gml
-Converted description /// @description void omu_mr_turn_90_random(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_mr_turn_random\omu_mr_turn_random.gml
-Converted description /// @description void omu_mr_turn_random(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_mr_turn_toward_player\omu_mr_turn_toward_player.gml
-Converted description /// @description void omu_mr_turn_toward_player(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_mr_turn_away_player\omu_mr_turn_away_player.gml
-Converted description /// @description void omu_mr_turn_away_player(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_mr_switch_on\omu_mr_switch_on.gml
-Converted description /// @description void omu_mr_switch_on(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_mr_switch_off\omu_mr_switch_off.gml
-Converted description /// @description void omu_mr_switch_off(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_mr_change_frequency\omu_mr_change_frequency.gml
-Converted description /// @description void omu_mr_change_frequency(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_mr_change_speed\omu_mr_change_speed.gml
-Converted description /// @description void omu_mr_change_speed(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_mr_walking_on\omu_mr_walking_on.gml
-Converted description /// @description void omu_mr_walking_on(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_mr_stepping_on\omu_mr_stepping_on.gml
-Converted description /// @description void omu_mr_stepping_on(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_mr_direction_fix_on\omu_mr_direction_fix_on.gml
-Converted description /// @description void omu_mr_direction_fix_on(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_mr_direction_fix_off\omu_mr_direction_fix_off.gml
-Converted description /// @description void omu_mr_direction_fix_off(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_mr_stepping_off\omu_mr_stepping_off.gml
-Converted description /// @description void omu_mr_stepping_off(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_mr_walking_off\omu_mr_walking_off.gml
-Converted description /// @description void omu_mr_walking_off(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_mr_solid_off\omu_mr_solid_off.gml
-Converted description /// @description void omu_mr_solid_off(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_mr_solid_on\omu_mr_solid_on.gml
-Converted description /// @description void omu_mr_solid_on(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_mr_transparent_on\omu_mr_transparent_on.gml
-Converted description /// @description void omu_mr_transparent_on(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_mr_transparent_off\omu_mr_transparent_off.gml
-Converted description /// @description void omu_mr_transparent_off(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_mr_change_graphic\omu_mr_change_graphic.gml
-Converted description /// @description void omu_mr_change_graphic(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_mr_change_alpha\omu_mr_change_alpha.gml
-Converted description /// @description void omu_mr_change_alpha(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_mr_change_color\omu_mr_change_color.gml
-Converted description /// @description void omu_mr_change_color(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_mr_play_se\omu_mr_play_se.gml
-Converted description /// @description void omu_mr_play_se(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_mr_event\omu_mr_event.gml
-Converted description /// @description void omu_mr_event(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_data_add\omu_data_add.gml
-Converted description /// @description void omu_data_add(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_data_data_select\omu_data_data_select.gml
-Converted description /// @description void omu_data_data_select(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_data_enum_add\omu_data_enum_add.gml
-Converted description /// @description void omu_data_enum_add(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_data_enum_select\omu_data_enum_select.gml
-Converted description /// @description void omu_data_enum_select(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_data_property_add\omu_data_property_add.gml
-Converted description /// @description void omu_data_property_add(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_data_property_remove\omu_data_property_remove.gml
-Converted description /// @description void omu_data_property_remove(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_data_remove\omu_data_remove.gml
-Converted description /// @description void omu_data_remove(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_event_custom_add_property\omu_event_custom_add_property.gml
-Converted description /// @description void omu_event_custom_add_property(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_event_custom_data_select\omu_event_custom_data_select.gml
-Converted description /// @description void omu_event_custom_data_select(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_event_custom_enum_select\omu_event_custom_enum_select.gml
-Converted description /// @description void omu_event_custom_enum_select(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_event_custom_remove_property\omu_event_custom_remove_property.gml
-Converted description /// @description void omu_event_custom_remove_property(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_manager_autotile\omu_manager_autotile.gml
-Converted description /// @description void omu_manager_autotile(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_manager_mesh\omu_manager_mesh.gml
-Converted description /// @description void omu_manager_mesh(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\omu_manager_tileset\omu_manager_tileset.gml
-Converted description /// @description void omu_manager_tileset(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\ui_render\ui_render.gml
-Converted description /// @description void ui_render(UIThing, x, y);/// @param UIThing
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_not_relative\ui_render_not_relative.gml
-Converted description /// @description void ui_render_not_relative(UIThing, x, y);/// @param UIThing
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_button\ui_render_button.gml
-Converted description /// @description void ui_render_button(UIButton, x, y);/// @param UIButton
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_image_button\ui_render_image_button.gml
-Converted description /// @description void ui_render_image_button(UIImageButton, x, y);/// @param UIImageButton
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_checkbox\ui_render_checkbox.gml
-Converted description /// @description void ui_render_checkbox(UIButton, x, y);/// @param UIButton
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_tile_selector\ui_render_tile_selector.gml
-Converted description /// @description void ui_render_tile_selector(UITileSelector, x, y);/// @param UITileSelector
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_input\ui_render_input.gml
-Converted description /// @description void ui_render_input(Button, x, y);/// @param Button
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_main\ui_render_main.gml
-Converted builtin - line 3: view_xview[view_hud] -> __view_get( e__VW.XView, view_hud )
-Converted builtin - line 4: view_yview[view_hud] -> __view_get( e__VW.YView, view_hud )
-Converted builtin - line 5: view_wview[view_hud] -> __view_get( e__VW.WView, view_hud )
-Converted builtin - line 6: view_hview[view_hud] -> __view_get( e__VW.HView, view_hud )
-Converted description /// @description void ui_render_main(UIMain);/// @param UIMain
-
-Converting GML script: ${project_dir}\scripts\ui_render_radio_array\ui_render_radio_array.gml
-Converted description /// @description void ui_render_radio_array(Button, x, y);/// @param Button
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_bitfield\ui_render_bitfield.gml
-Converted description /// @description void ui_render_bitfield(Button, x, y);/// @param Button
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_list\ui_render_list.gml
-Converted description /// @description void ui_render_list(UIList, x, y);/// @param UIList
-/// @param x
-/// @param y
-Converted string - line 111: 'A' -> "A"
-
-Converting GML script: ${project_dir}\scripts\ui_render_tab\ui_render_tab.gml
-Converted description /// @description void ui_render_tab(UITab, x, y);/// @param UITab
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_text\ui_render_text.gml
-Converted description /// @description void ui_render_text(UIText, x, y);/// @param UIText
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_radio_option_text\ui_render_radio_option_text.gml
-Converted description /// @description void ui_render_radio_option_text(Button, x, y);/// @param Button
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_bitfield_option\ui_render_bitfield_option.gml
-Converted description /// @description void ui_render_bitfield_option(UIBitFieldOption, x, y);/// @param UIBitFieldOption
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_bitfield_option_picture_tile_passability\ui_render_bitfield_option_picture_tile_passability.gml
-Converted description /// @description void ui_render_bitfield_option_picture_tile_passability(UIBitFieldOption, x, y);/// @param UIBitFieldOption
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_bitfield_option_picture_mesh_passability\ui_render_bitfield_option_picture_mesh_passability.gml
-Converted description /// @description void ui_render_bitfield_option_picture_mesh_passability(UIBitFieldOption, x, y);/// @param UIBitFieldOption
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_bitfield_option_text_passability\ui_render_bitfield_option_text_passability.gml
-Converted description /// @description void ui_render_bitfield_option_text_passability(UIBitFieldOption, x, y);/// @param UIBitFieldOption
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_bitfield_option_text_passability_tile_passable\ui_render_bitfield_option_text_passability_tile_passable.gml
-Converted description /// @description void ui_render_bitfield_option_text_passability_tile_passable(UIBitFieldOption, x, y);/// @param UIBitFieldOption
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_bitfield_option_text_passability_mesh_passable\ui_render_bitfield_option_text_passability_mesh_passable.gml
-Converted description /// @description void ui_render_bitfield_option_text_passability_mesh_passable(UIBitFieldOption, x, y);/// @param UIBitFieldOption
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_bitfield_option_text_tile_flag\ui_render_bitfield_option_text_tile_flag.gml
-Converted description /// @description void ui_render_bitfield_option_text_tile_flag(UIBitFieldOption, x, y);/// @param UIBitFieldOption
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_bitfield_option_text_mesh_flag\ui_render_bitfield_option_text_mesh_flag.gml
-Converted description /// @description void ui_render_bitfield_option_text_mesh_flag(UIBitFieldOption, x, y);/// @param UIBitFieldOption
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_bitfield_option_text_passability_tile_solid\ui_render_bitfield_option_text_passability_tile_solid.gml
-Converted description /// @description void ui_render_bitfield_option_text_passability_tile_solid(UIBitFieldOption, x, y);/// @param UIBitFieldOption
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_bitfield_option_text_passability_mesh_solid\ui_render_bitfield_option_text_passability_mesh_solid.gml
-Converted description /// @description void ui_render_bitfield_option_text_passability_mesh_solid(UIBitFieldOption, x, y);/// @param UIBitFieldOption
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_input_tile_priority\ui_render_input_tile_priority.gml
-Converted description /// @description void ui_render_input_tile_priority(Button, x, y);/// @param Button
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_bitfield_option_text_autotile_flag\ui_render_bitfield_option_text_autotile_flag.gml
-Converted description /// @description void ui_render_bitfield_option_text_autotile_flag(UIBitFieldOption, x, y);/// @param UIBitFieldOption
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_bitfield_option_autotext_tile_flag\ui_render_bitfield_option_autotext_tile_flag.gml
-Converted description /// @description void ui_render_bitfield_option_autotext_tile_flag(UIBitFieldOption, x, y);/// @param UIBitFieldOption
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_bitfield_option_picture_autotile_passability\ui_render_bitfield_option_picture_autotile_passability.gml
-Converted description /// @description void ui_render_bitfield_option_picture_autotile_passability(UIBitFieldOption, x, y);/// @param UIBitFieldOption
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_input_autotile_priority\ui_render_input_autotile_priority.gml
-Converted description /// @description void ui_render_input_autotile_priority(Button, x, y);/// @param Button
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_bitfield_option_text_passability_autotile_solid\ui_render_bitfield_option_text_passability_autotile_solid.gml
-Converted description /// @description void ui_render_bitfield_option_text_passability_autotile_solid(UIBitFieldOption, x, y);/// @param UIBitFieldOption
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_bitfield_option_text_passability_autotile_passable\ui_render_bitfield_option_text_passability_autotile_passable.gml
-Converted description /// @description void ui_render_bitfield_option_text_passability_autotile_passable(UIBitFieldOption, x, y);/// @param UIBitFieldOption
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_bitfield_option_picture\ui_render_bitfield_option_picture.gml
-Converted description /// @description void ui_render_bitfield_option_picture(UIBitFieldOption, x, y);/// @param UIBitFieldOption
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_bitfield_option_text\ui_render_bitfield_option_text.gml
-Converted description /// @description void ui_render_bitfield_option_text(UIBitFieldOption, x, y);/// @param UIBitFieldOption
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_button_vrax\ui_render_button_vrax.gml
-Converted description /// @description void ui_render_button_vrax(UIText, x, y);/// @param UIText
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_text_vrax\ui_render_text_vrax.gml
-Converted description /// @description void ui_render_text_vrax(UIText, x, y);/// @param UIText
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_text_active_node\ui_render_text_active_node.gml
-Converted description /// @description void ui_render_text_active_node(UIText, x, y);/// @param UIText
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_text_tile_label\ui_render_text_tile_label.gml
-Converted description /// @description void ui_render_text_tile_label(UIText, x, y);/// @param UIText
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_text_tile_tag\ui_render_text_tile_tag.gml
-Converted description /// @description void ui_render_text_tile_tag(UIText, x, y);/// @param UIText
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_text_autotile_tag\ui_render_text_autotile_tag.gml
-Converted description /// @description void ui_render_text_autotile_tag(UIText, x, y);/// @param UIText
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_text_mesh_label\ui_render_text_mesh_label.gml
-Converted description /// @description void ui_render_text_mesh_label(UIText, x, y);/// @param UIText
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_text_mesh_tag\ui_render_text_mesh_tag.gml
-Converted description /// @description void ui_render_text_mesh_tag(UIText, x, y);/// @param UIText
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_text_mesh_xmax\ui_render_text_mesh_xmax.gml
-Converted description /// @description void ui_render_text_mesh_xmax(UIText, x, y);/// @param UIText
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_text_mesh_xmin\ui_render_text_mesh_xmin.gml
-Converted description /// @description void ui_render_text_mesh_xmin(UIText, x, y);/// @param UIText
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_text_mesh_ymax\ui_render_text_mesh_ymax.gml
-Converted description /// @description void ui_render_text_mesh_ymax(UIText, x, y);/// @param UIText
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_text_mesh_ymin\ui_render_text_mesh_ymin.gml
-Converted description /// @description void ui_render_text_mesh_ymin(UIText, x, y);/// @param UIText
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_text_mesh_zmin\ui_render_text_mesh_zmin.gml
-Converted description /// @description void ui_render_text_mesh_zmin(UIText, x, y);/// @param UIText
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_text_mesh_zmax\ui_render_text_mesh_zmax.gml
-Converted description /// @description void ui_render_text_mesh_zmax(UIText, x, y);/// @param UIText
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_image_button_autotile\ui_render_image_button_autotile.gml
-Converted description /// @description void ui_render_image_button_autotile(UIImageButton, x, y);/// @param UIImageButton
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_image_button_autotile_preview\ui_render_image_button_autotile_preview.gml
-Converted description /// @description void ui_render_image_button_autotile_preview(UIImageButton, x, y);/// @param UIImageButton
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_list_event_node\ui_render_list_event_node.gml
-Converted description /// @description void ui_render_list_event_node(UIList, x, y);/// @param UIList
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_list_move_routes\ui_render_list_move_routes.gml
-Converted description /// @description void ui_render_list_move_routes(UIList, x, y);/// @param UIList
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_list_event_custom\ui_render_list_event_custom.gml
-Converted description /// @description void ui_render_list_event_custom(UIList, x, y);/// @param UIList
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_list_event_custom_set_data\ui_render_list_event_custom_set_data.gml
-Converted description /// @description void ui_render_list_event_custom_set_data(UIList, x, y);/// @param UIList
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_list_entity_events\ui_render_list_entity_events.gml
-Converted description /// @description void ui_render_list_entity_events(UIList, x, y);/// @param UIList
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_list_event\ui_render_list_event.gml
-Converted description /// @description void ui_render_list_event(UIList, x, y);/// @param UIList
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_list_data_data\ui_render_list_data_data.gml
-Converted description /// @description void ui_render_list_data_data(UIList);/// @param UIList
-
-Converting GML script: ${project_dir}\scripts\ui_render_list_data_instances\ui_render_list_data_instances.gml
-Converted description /// @description void ui_render_list_data_instances(UIList);/// @param UIList
-
-Converting GML script: ${project_dir}\scripts\ui_render_text_data_name\ui_render_text_data_name.gml
-Converted description /// @description void ui_render_text_data_name(UIText, x, y);/// @param UIText
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_list_data_enum\ui_render_list_data_enum.gml
-Converted description /// @description void ui_render_list_data_enum(UIList);/// @param UIList
-
-Converting GML script: ${project_dir}\scripts\ui_render_list_move_route_steps\ui_render_list_move_route_steps.gml
-Converted description /// @description void ui_render_list_move_route_steps(UIList);/// @param UIList
-
-Converting GML script: ${project_dir}\scripts\ui_render_list_data_data_only\ui_render_list_data_data_only.gml
-Converted description /// @description void ui_render_list_data_data_only(UIList);/// @param UIList
-
-Converting GML script: ${project_dir}\scripts\ui_render_list_data_properties\ui_render_list_data_properties.gml
-Converted description /// @description void ui_render_list_data_properties(UIList);/// @param UIList
-
-Converting GML script: ${project_dir}\scripts\ui_render_list_event_custom_properties\ui_render_list_event_custom_properties.gml
-Converted description /// @description void ui_render_list_event_custom_properties(List);/// @param List
-
-Converting GML script: ${project_dir}\scripts\ui_render_list_all_entities\ui_render_list_all_entities.gml
-Converted description /// @description void ui_render_list_all_entities(UIList, x, y);/// @param UIList
-/// @param x
-/// @param y
-Converted string - line 103: 'A' -> "A"
-
-Converting GML script: ${project_dir}\scripts\ui_render_text_stats_static\ui_render_text_stats_static.gml
-Converted description /// @description void ui_render_text_stats_static(UIText, x, y);/// @param UIText
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_text_stats_solid\ui_render_text_stats_solid.gml
-Converted description /// @description void ui_render_text_stats_solid(UIText, x, y);/// @param UIText
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_text_stats_entities\ui_render_text_stats_entities.gml
-Converted description /// @description void ui_render_text_stats_entities(UIText, x, y);/// @param UIText
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_text_stats_entities_tiles\ui_render_text_stats_entities_tiles.gml
-Converted description /// @description void ui_render_text_stats_entities_tiles(UIText, x, y);/// @param UIText
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_text_stats_entities_tiles_auto\ui_render_text_stats_entities_tiles_auto.gml
-Converted description /// @description void ui_render_text_stats_entities_tiles_auto(UIText, x, y);/// @param UIText
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_text_stats_entities_meshes\ui_render_text_stats_entities_meshes.gml
-Converted description /// @description void ui_render_text_stats_entities_meshes(UIText, x, y);/// @param UIText
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_text_stats_entities_pawns\ui_render_text_stats_entities_pawns.gml
-Converted description /// @description void ui_render_text_stats_entities_pawns(UIText, x, y);/// @param UIText
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_text_stats_entities_effects\ui_render_text_stats_entities_effects.gml
-Converted description /// @description void ui_render_text_stats_entities_effects(UIText, x, y);/// @param UIText
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_text_stats_entities_events\ui_render_text_stats_entities_events.gml
-Converted description /// @description void ui_render_text_stats_entities_events(UIText, x, y);/// @param UIText
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_bitfield_option_text_selection_mask\ui_render_bitfield_option_text_selection_mask.gml
-Converted description /// @description void ui_render_bitfield_option_text_selection_mask(UIBitFieldOption, x, y);/// @param UIBitFieldOption
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_bitfield_option_text_selection_mask_none\ui_render_bitfield_option_text_selection_mask_none.gml
-Converted description /// @description void ui_render_bitfield_option_text_selection_mask_none(UIBitFieldOption, x, y);/// @param UIBitFieldOption
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_render_bitfield_option_text_selection_mask_all\ui_render_bitfield_option_text_selection_mask_all.gml
-Converted description /// @description void ui_render_bitfield_option_text_selection_mask_all(UIBitFieldOption, x, y);/// @param UIBitFieldOption
-/// @param x
-/// @param y
-
-Converting GML script: ${project_dir}\scripts\ui_activate\ui_activate.gml
-Converted description /// @description void ui_activate(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\ui_button_down\ui_button_down.gml
-Converted description /// @description void ui_button_down(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\ui_button_down_tab\ui_button_down_tab.gml
-Converted description /// @description void ui_button_down_tab(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\ui_is_active\ui_is_active.gml
-Converted description /// @description void ui_is_active(UIThing);/// @param UIThing
-
-Converting GML script: ${project_dir}\scripts\ui_value_real\ui_value_real.gml
-Converted description /// @description string ui_value_real(string);/// @param string
-
-Converting GML script: ${project_dir}\scripts\ui_value_string\ui_value_string.gml
-Converted description /// @description string ui_value_string(string);/// @param string
-
-Converting GML script: ${project_dir}\scripts\ui_list_clear\ui_list_clear.gml
-Converted description /// @description void ui_list_clear(UIList);/// @param UIList
-
-Converting GML script: ${project_dir}\scripts\ui_list_deselect\ui_list_deselect.gml
-Converted description /// @description void ui_list_deselect(UIList);/// @param UIList
-
-Converting GML script: ${project_dir}\scripts\ui_list_selection\ui_list_selection.gml
-Converted description /// @description int ui_list_selection(UIList);/// @param UIList
-
-Converting GML script: ${project_dir}\scripts\ui_init_main\ui_init_main.gml
-Converted description /// @description ui_init_main();
-
-Converting GML script: ${project_dir}\scripts\ui_init_game_data\ui_init_game_data.gml
-Converted description /// @description ui_init_game_data();
-
-Converting GML script: ${project_dir}\scripts\ui_init_event\ui_init_event.gml
-Converted description /// @description void ui_init_event();
-
-Converting GML script: ${project_dir}\scripts\ui_init_game_data_refresh\ui_init_game_data_refresh.gml
-Converted description /// @description ui_init_game_data_refresh();
-
-Converting GML script: ${project_dir}\scripts\ui_init_game_data_activate\ui_init_game_data_activate.gml
-Converted description /// @description ui_init_game_data_activate();
-
-Converting GML script: ${project_dir}\scripts\get_press_left\get_press_left.gml
-Converted description /// @description boolean get_press_left([clear?]);/// @param [clear?]
-
-Converting GML script: ${project_dir}\scripts\get_press_right\get_press_right.gml
-Converted description /// @description boolean get_press_right([clear?]);/// @param [clear?]
-
-Converting GML script: ${project_dir}\scripts\get_release_escape\get_release_escape.gml
-Converted description /// @description boolean get_release_escape([clear?], [override?]);/// @param [clear?]
-/// @param [override?]
-
-Converting GML script: ${project_dir}\scripts\get_release_left\get_release_left.gml
-Converted description /// @description boolean get_release_left([clear?]);/// @param [clear?]
-
-Converting GML script: ${project_dir}\scripts\get_release_middle\get_release_middle.gml
-Converted description /// @description boolean get_release_middle();
-
-Converting GML script: ${project_dir}\scripts\get_release_right\get_release_right.gml
-Converted description /// @description boolean get_release_right([clear?]);/// @param [clear?]
-
-Converting GML script: ${project_dir}\scripts\data_load_vra_actually_thanks\data_load_vra_actually_thanks.gml
-Converted description /// @description void data_load_vra_actually_thanks(filename);/// @param filename
-
-Converting GML script: ${project_dir}\scripts\data_load_vra_names_only\data_load_vra_names_only.gml
-Converted description /// @description list data_load_vra_names_only(filename);/// @param filename
-
-Converting GML script: ${project_dir}\scripts\data_load_vra\data_load_vra.gml
-Converted description /// @description void data_load_vra();
-Converted string - line 11: "data\vra\assets.vrax" -> "data\\vra\\assets.vrax"
-
-Converting GML script: ${project_dir}\scripts\data_load_vra_next\data_load_vra_next.gml
-Converted description /// @description array data_load_vra_next(buffer, grid size);/// @param buffer
-/// @param grid size
-
-Converting GML script: ${project_dir}\scripts\data_load_vra_skip\data_load_vra_skip.gml
-Converted description /// @description array data_load_vra_skip(buffer, grid_size);/// @param buffer
-/// @param grid_size
-
-Converting GML script: ${project_dir}\scripts\data_load_vra_on_the_fly\data_load_vra_on_the_fly.gml
-Converted description /// @description void data_load_vra_on_the_fly(UIThing, vra path, filename);/// @param UIThing
-/// @param vra path
-/// @param filename
-
-Converting GML script: ${project_dir}\scripts\data_vra_exists\data_vra_exists.gml
-Converted description /// @description boolean data_vra_exists();
-
-Converting GML script: ${project_dir}\scripts\data_resize_map\data_resize_map.gml
-Converted description /// @description void data_resize_map(xx, yy, zz);/// @param xx
-/// @param yy
-/// @param zz
-
-Converting GML script: ${project_dir}\scripts\data_clear_map\data_clear_map.gml
-Converted description /// @description void data_clear_map();
-
-Converting GML script: ${project_dir}\scripts\data_rename_map\data_rename_map.gml
-Converted description /// @description void data_rename_map(ActiveMap, new_name);/// @param ActiveMap
-/// @param new_name
-
-Converting GML script: ${project_dir}\scripts\guid_set\guid_set.gml
-Converted description /// @description boolean guid_set(Data, [value], [force]);/// @param Data
-/// @param [value]
-/// @param [force]
-
-Converting GML script: ${project_dir}\scripts\sprite_add_autotile\sprite_add_autotile.gml
-Converted description /// @description sprite sprite_add_autotile(name);/// @param name
-
-Converting GML script: ${project_dir}\scripts\draw_checkerbox\draw_checkerbox.gml
-Converted description /// @description void draw_checkerbox(x, y, width, height);/// @param x
-/// @param y
-/// @param width
-/// @param height
-
-Converting GML script: ${project_dir}\scripts\draw_bezier\draw_bezier.gml
-Converted description /// @description void draw_bezier(x1, y1, x2, y2);/// @param x1
-/// @param y1
-/// @param x2
-/// @param y2
-
-Converting GML script: ${project_dir}\scripts\draw_scroll\draw_scroll.gml
-Converted description /// @description void draw_scroll();
-
-Converting GML script: ${project_dir}\scripts\colour_mute\colour_mute.gml
-Converted description /// @description color colour_mute(color);/// @param color
-
-Converting GML script: ${project_dir}\scripts\entity_destroy\entity_destroy.gml
-Converted description /// @description void entity_destroy();
-
-Converting GML script: ${project_dir}\scripts\entity_pawn_destroy\entity_pawn_destroy.gml
-Converted description /// @description void entity_pawn_destroy();
-
-Converting GML script: ${project_dir}\scripts\entity_tile_destroy\entity_tile_destroy.gml
-Converted description /// @description void entity_tile_destroy();
-
-Converting GML script: ${project_dir}\scripts\error_clear\error_clear.gml
-Converted description /// @description void error_clear();
-
-Converting GML script: ${project_dir}\scripts\error_log\error_log.gml
-Converted description /// @description void error_log(message);/// @param message
-
-Converting GML script: ${project_dir}\scripts\error_show\error_show.gml
-Converted description /// @description void error_show();
-
-Converting GML script: ${project_dir}\scripts\instance_destroy_later\instance_destroy_later.gml
-Converted description /// @description void instance_destroy_later(what);/// @param what
-
-Converting GML script: ${project_dir}\scripts\sprite_save_fixed\sprite_save_fixed.gml
-Converted description /// @description sprite_save_fixed(sprite, subimg, path)/// @param sprite
-/// @param subimg
-/// @param path
-
-Converting GML script: ${project_dir}\scripts\sprite_to_surface\sprite_to_surface.gml
-Converted description /// @description surface sprite_to_surface(sprite, subimg)/// @param sprite
-/// @param subimg
-
-Converting GML script: ${project_dir}\scripts\setting_save_real\setting_save_real.gml
-Converted description /// @description void setting_save_real(section, key, value);/// @param section
-/// @param key
-/// @param value
-
-Converting GML script: ${project_dir}\scripts\setting_save_string\setting_save_string.gml
-Converted description /// @description void setting_save_string(section, key, value);/// @param section
-/// @param key
-/// @param value
-
-Converting GML script: ${project_dir}\scripts\serialize_load_entity\serialize_load_entity.gml
-Converted description /// @description void serialize_load_entity(buffer, Entity, version);/// @param buffer
-/// @param Entity
-/// @param version
-
-Converting GML script: ${project_dir}\scripts\serialize_load_entity_autotile\serialize_load_entity_autotile.gml
-Converted description /// @description void serialize_load_entity_autotile(buffer, Entity, version);/// @param buffer
-/// @param Entity
-/// @param version
-
-Converting GML script: ${project_dir}\scripts\serialize_load_entity_effect\serialize_load_entity_effect.gml
-Converted description /// @description void serialize_load_entity_effect(buffer, Entity, version);/// @param buffer
-/// @param Entity
-/// @param version
-
-Converting GML script: ${project_dir}\scripts\serialize_load_entity_mesh\serialize_load_entity_mesh.gml
-Converted description /// @description void serialize_load_entity_mesh(buffer, Entity, version);/// @param buffer
-/// @param Entity
-/// @param version
-
-Converting GML script: ${project_dir}\scripts\serialize_load_entity_pawn\serialize_load_entity_pawn.gml
-Converted description /// @description void serialize_load_entity_pawn(buffer, Entity, version);/// @param buffer
-/// @param Entity
-/// @param version
-
-Converting GML script: ${project_dir}\scripts\serialize_load_entity_tile\serialize_load_entity_tile.gml
-Converted description /// @description void serialize_load_entity_tile(buffer, Entity, version);/// @param buffer
-/// @param Entity
-/// @param version
-
-Converting GML script: ${project_dir}\scripts\serialize_load_entity_event_page\serialize_load_entity_event_page.gml
-Converted description /// @description void serialize_load_entity_event_page(buffer, Entity, version);/// @param buffer
-/// @param Entity
-/// @param version
-
-Converting GML script: ${project_dir}\scripts\serialize_load_move_route\serialize_load_move_route.gml
-Converted description /// @description void serialize_load_move_route(buffer, Entity, version);/// @param buffer
-/// @param Entity
-/// @param version
-
-Converting GML script: ${project_dir}\scripts\serialize_load_autotiles_meta\serialize_load_autotiles_meta.gml
-Converted description /// @description void serialize_load_autotiles_meta(buffer, version);/// @param buffer
-/// @param version
-
-Converting GML script: ${project_dir}\scripts\serialize_load_events\serialize_load_events.gml
-Converted description /// @description void serialize_load_events(buffer, version);/// @param buffer
-/// @param version
-
-Converting GML script: ${project_dir}\scripts\serialize_load_datadata\serialize_load_datadata.gml
-Converted description /// @description void serialize_load_datadata(buffer, version);/// @param buffer
-/// @param version
-
-Converting GML script: ${project_dir}\scripts\serialize_load_map_contents_dynamic\serialize_load_map_contents_dynamic.gml
-Converted description /// @description void serialize_load_map_contents_dynamic(buffer, version);/// @param buffer
-/// @param version
-
-Converting GML script: ${project_dir}\scripts\serialize_load_map_contents_meta\serialize_load_map_contents_meta.gml
-Converted description /// @description void serialize_load_map_contents_meta(buffer, version);/// @param buffer
-/// @param version
-
-Converting GML script: ${project_dir}\scripts\serialize_load_map_contents_batch\serialize_load_map_contents_batch.gml
-Converted description /// @description void serialize_load_map_contents_batch(buffer, version);/// @param buffer
-/// @param version
-
-Converting GML script: ${project_dir}\scripts\serialize_load_tilesets_meta\serialize_load_tilesets_meta.gml
-Converted description /// @description void serialize_load_tilesets_meta(buffer, version);/// @param buffer
-/// @param version
-
-Converting GML script: ${project_dir}\scripts\serialize_load_tilesets_all\serialize_load_tilesets_all.gml
-ERROR: C:\Users\Fruit Fly\Documents\GameMakerStudio2\DDDEditor2\scripts\serialize_load_tilesets_all\serialize_load_tilesets_all.gml - 19: unexpected syntax error
-ERROR: C:\Users\Fruit Fly\Documents\GameMakerStudio2\DDDEditor2\scripts\serialize_load_tilesets_all\serialize_load_tilesets_all.gml - 65: unexpected syntax error
-Too many errors - GML not processed : ${project_dir}\scripts\serialize_load_tilesets_all\serialize_load_tilesets_all.gml
-
-Converting GML script: ${project_dir}\scripts\serialize_load_global_meta\serialize_load_global_meta.gml
-Converted description /// @description void serialize_load_global_meta(buffer, version);/// @param buffer
-/// @param version
-
-Converting GML script: ${project_dir}\scripts\serialize_load_event_custom\serialize_load_event_custom.gml
-Converted description /// @description void serialize_load_event_custom(buffer, version);/// @param buffer
-/// @param version
-
-Converting GML script: ${project_dir}\scripts\serialize_load_generic\serialize_load_generic.gml
-Converted description /// @description serialize_load_generic(buffer, Data, version);/// @param buffer
-/// @param Data
-/// @param version
-
-Converting GML script: ${project_dir}\scripts\serialize_load_data_instances\serialize_load_data_instances.gml
-Converted description /// @description void serialize_load_data_instances(buffer, version);/// @param buffer
-/// @param version
-
-Converting GML script: ${project_dir}\scripts\serialize_save_entity\serialize_save_entity.gml
-Converted description /// @description void serialize_save_entity(buffer, Entity);/// @param buffer
-/// @param Entity
-
-Converting GML script: ${project_dir}\scripts\serialize_save_entity_autotile\serialize_save_entity_autotile.gml
-Converted description /// @description void serialize_save_entity_autotile(buffer, EntityAutoTile);/// @param buffer
-/// @param EntityAutoTile
-
-Converting GML script: ${project_dir}\scripts\serialize_save_entity_effect\serialize_save_entity_effect.gml
-Converted description /// @description void serialize_save_entity_effect(buffer, EntityTile);/// @param buffer
-/// @param EntityTile
-
-Converting GML script: ${project_dir}\scripts\serialize_save_entity_mesh\serialize_save_entity_mesh.gml
-Converted description /// @description void serialize_save_entity_mesh(buffer, EntityTile);/// @param buffer
-/// @param EntityTile
-
-Converting GML script: ${project_dir}\scripts\serialize_save_entity_pawn\serialize_save_entity_pawn.gml
-Converted description /// @description void serialize_save_entity_pawn(buffer, EntityTile);/// @param buffer
-/// @param EntityTile
-
-Converting GML script: ${project_dir}\scripts\serialize_save_entity_tile\serialize_save_entity_tile.gml
-Converted description /// @description void serialize_save_entity_tile(buffer, EntityTile);/// @param buffer
-/// @param EntityTile
-
-Converting GML script: ${project_dir}\scripts\serialize_save_entity_event_page\serialize_save_entity_event_page.gml
-Converted description /// @description void serialize_save_entity_event_page(buffer, DataInstantiatedEvent);/// @param buffer
-/// @param DataInstantiatedEvent
-
-Converting GML script: ${project_dir}\scripts\serialize_save_move_route\serialize_save_move_route.gml
-Converted description /// @description void serialize_save_move_route(buffer, DataMoveRoute);/// @param buffer
-/// @param DataMoveRoute
-
-Converting GML script: ${project_dir}\scripts\serialize_save_autotiles_meta\serialize_save_autotiles_meta.gml
-Converted description /// @description void serialize_save_autotiles_meta(buffer);/// @param buffer
-
-Converting GML script: ${project_dir}\scripts\serialize_save_events\serialize_save_events.gml
-Converted description /// @description void serialize_save_events(buffer);/// @param buffer
-
-Converting GML script: ${project_dir}\scripts\serialize_save_map_contents_dynamic\serialize_save_map_contents_dynamic.gml
-Converted description /// @description void serialize_save_map_contents_dynamic(buffer, list_dynamic);/// @param buffer
-/// @param list_dynamic
-
-Converting GML script: ${project_dir}\scripts\serialize_save_map_contents_meta\serialize_save_map_contents_meta.gml
-Converted description /// @description void serialize_save_map_contents_meta(buffer);/// @param buffer
-
-Converting GML script: ${project_dir}\scripts\serialize_save_map_contents_batch\serialize_save_map_contents_batch.gml
-Converted description /// @description void serialize_save_map_contents_batch(buffer);/// @param buffer
-
-Converting GML script: ${project_dir}\scripts\serialize_save_tilesets_meta\serialize_save_tilesets_meta.gml
-Converted description /// @description void serialize_save_tilesets_meta(buffer);/// @param buffer
-
-Converting GML script: ${project_dir}\scripts\serialize_save_global_meta\serialize_save_global_meta.gml
-Converted description /// @description void serialize_save_global_meta(buffer);/// @param buffer
-
-Converting GML script: ${project_dir}\scripts\serialize_save_datadata\serialize_save_datadata.gml
-Converted description /// @description void serialize_save_datadata(buffer);/// @param buffer
-
-Converting GML script: ${project_dir}\scripts\serialize_save_event_custom\serialize_save_event_custom.gml
-Converted description /// @description void serialize_save_event_custom(buffer);/// @param buffer
-
-Converting GML script: ${project_dir}\scripts\serialize_save_tilesets_all\serialize_save_tilesets_all.gml
-Converted description /// @description void serialize_save_tilesets_meta(buffer);/// @param buffer
-
-Converting GML script: ${project_dir}\scripts\serialize_save_generic\serialize_save_generic.gml
-Converted description /// @description void serialize_save_generic(buffer, Data);/// @param buffer
-/// @param Data
-
-Converting GML script: ${project_dir}\scripts\serialize_save_data_instances\serialize_save_data_instances.gml
-Converted description /// @description void serialize_save_data_instances(buffer);/// @param buffer
-
-Converting GML script: ${project_dir}\scripts\serialize_load\serialize_load.gml
-Converted description /// @description void serialize_load(filename);/// @param filename
-
-Converting GML script: ${project_dir}\scripts\serialize_save_data\serialize_save_data.gml
-Converted description /// @description void serialize_save_data();
-
-Converting GML script: ${project_dir}\scripts\serialize_save_map\serialize_save_map.gml
-Converted description /// @description void serialize_save_map();
-
-Converting GML script: ${project_dir}\scripts\serialize_backup\serialize_backup.gml
-Converted description /// @description void serialize_backup(folder, filename, extension, original);/// @param folder
-/// @param filename
-/// @param extension
-/// @param original
-
-Font FDefault12 has been converted to font family Segoe UI (Regular)
-GameMaker Studio 1 font texture has been backed up at ${project_dir}\fonts\FDefault12\FDefault12.gms1.png
-Font FDefault12Bold has been converted to font family Segoe UI (Bold)
-GameMaker Studio 1 font texture has been backed up at ${project_dir}\fonts\FDefault12Bold\FDefault12Bold.gms1.png
-Converting GML script: ${project_dir}\objects\Camera\Alarm_0.gml
-Converted description /// @description we're okay with this being an alarm because it can happen on its own regardless of what else is happening
-
-Converting GML script: ${project_dir}\objects\Camera\Step_0.gml
-Converted description /// @description Preliminary stuff
-
-Converting GML script: ${project_dir}\objects\Camera\Draw_77.gml
-Converted description /// @description step cleanup actions
-
-Converting GML script: ${project_dir}\objects\Camera\Draw_0.gml
-Converted description /// @description Anything visible in the world
-
-Converting GML script: ${project_dir}\objects\Stuff\Create_0.gml
-Converted description /// @description enums that i need to put somewhere
-
-Converting GML script: ${project_dir}\objects\Stuff\Alarm_0.gml
-Converted description /// @description this alarm just ticks on its own regardless of what the rest of the program does
-
-Converting GML script: ${project_dir}\objects\Entity\Create_0.gml
-Converted string - line 1: 'Entity' -> "Entity"
-
-Converting GML script: ${project_dir}\objects\EntityTile\Create_0.gml
-Converted string - line 6: 'Tile' -> "Tile"
-
-Converting GML script: ${project_dir}\objects\EntityAutoTile\Create_0.gml
-Converted string - line 6: 'AutoTile' -> "AutoTile"
-
-Converting GML script: ${project_dir}\objects\EntityMesh\Create_0.gml
-Converted string - line 6: 'Mesh' -> "Mesh"
-Converted string - line 15: '' -> ""
-
-Converting GML script: ${project_dir}\objects\EntityPawn\Create_0.gml
-Converted string - line 18: 'Pawn' -> "Pawn"
-
-Converting GML script: ${project_dir}\objects\EntityEffect\Create_0.gml
-Converted string - line 6: 'Effect' -> "Effect"
-
-Converting GML script: ${project_dir}\objects\EntityEvent\Create_0.gml
-Converted string - line 3: 'Event' -> "Event"
-
-Converting GML script: ${project_dir}\objects\ActiveMap\Create_0.gml
-Converted description /// @description properties of the active map
-
-Converting GML script: ${project_dir}\objects\DataEventNodeCustom\Create_0.gml
-Converted description /// @description does NOT inherit from the normal DataEventNode
-
-Converting GML script: ${project_dir}\objects\DataInstantiatedEvent\Create_0.gml
-Converted description /// @description This is analagous to an "event page" in RPG Maker
-
-Converting GML script: ${project_dir}\objects\UIThing\Destroy_0.gml
-Converted description /// @description it's pretty uncommon go destroy a ui element (usually you just hide it) but/// @param usually you just hide it
-
-Converting GML script: buffer_zlib.gml
-Converted description /// @description ()
-
-Converting GML script: buffer_zlib.gml
-Converted description /// @description (buffer, offset, size, compression_level[1..9], ?out_buffer): Compresses a part of a buffer to a new or given buffer./// @param buffer
-/// @param offset
-/// @param size
-/// @param compression_level[1..9]
-/// @param ?out_buffer
-
-Converting GML script: buffer_zlib.gml
-Converted description /// @description (buffer, offset, size, ?out_buffer): Decompresses a part of a buffer to a new or given buffer./// @param buffer
-/// @param offset
-/// @param size
-/// @param ?out_buffer
-
-macOS icon ${options_dir}\mac\icons\icon512.png written out as 32-bit
-Windows NSIS Installer Script has been set to default due to changes in GameMaker Studio 2
-Game speed set to 60
-Added compatibility script 'action/action_reverse_ydir.gml'
-Added compatibility script 'd3d/d3d_end.gml'
-Added compatibility script 'd3d/d3d_primitive_begin_texture.gml'
-Added compatibility script 'd3d/d3d_primitive_end.gml'
-Added compatibility script 'd3d/d3d_set_culling.gml'
-Added compatibility script 'd3d/d3d_set_depth.gml'
-Added compatibility script 'd3d/d3d_set_hidden.gml'
-Added compatibility script 'd3d/d3d_set_projection_ext.gml'
-Added compatibility script 'd3d/d3d_set_projection_ortho.gml'
-Added compatibility script 'd3d/d3d_start.gml'
-Added compatibility script 'd3d/d3d_transform_vertex.gml'
-Added compatibility script 'd3d/d3d_vertex.gml'
-Added compatibility script 'd3d/d3d_vertex_normal_texture_colour.gml'
-Added compatibility script 'draw/draw_set_alpha_test.gml'
-Added compatibility script 'draw/draw_set_blend_mode.gml'
-Added compatibility script 'instance/instance_create.gml'
-Added compatibility script 'object/object_get_depth.gml'
-Added compatibility script 'texture/texture_set_repeat.gml'
-Added compatibility script 'view/__view_get.gml'
-Added compatibility script 'view/__view_set.gml'
-Added compatibility script 'view/__view_set_internal.gml'
-Added compatibility script 'action/__init_action.gml'
-Added compatibility script 'd3d/__init_d3d.gml'
-Added compatibility script 'view/__init_view.gml'
-Added compatibility script '__init_global.gml'
-Added compatibility script '__global_object_depths.gml'
