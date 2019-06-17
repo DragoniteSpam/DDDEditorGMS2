@@ -32,24 +32,35 @@ if (buffer < 0) {
         var what = buffer_read(buffer, buffer_u8);
         var things = buffer_read(buffer, buffer_u32);
         
-        if (what == SERIALIZE_DATA) {
-            // this may cause things to break, but it shouldn't;
-            // includes data, events, generics and everything else
-            instance_activate_object(Data);
-            with (Data) if (deleteable) {
-                instance_destroy();
-            }
-            // clear all data - data has already been destroyed so you just have to
-            // clear them
-            ds_list_clear(Stuff.all_events);
-            ds_list_clear(Stuff.all_event_custom);
-            ds_list_clear(Stuff.all_event_templates);
-            ds_map_clear(Stuff.all_guids);
-            ds_map_clear(Stuff.all_internal_names);
-            ds_list_clear(Stuff.all_data);
-        } else if (what == SERIALIZE_MAP) {
-            // todo clear editor map - IF entities get their own GUIDs eventually,
-            // they should go in a separate lookup which should be cleared in here
+        switch (what) {
+            case SERIALIZE_AUDIO:
+                while (!ds_list_empty(Stuff.all_bgm)) {
+                    audio_remove_bgm(ds_list_top(Stuff.all_bgm));
+                }
+                while (!ds_list_empty(Stuff.all_se)) {
+                    audio_remove_bgm(ds_list_top(Stuff.all_se));
+                }
+                break;
+            case SERIALIZE_DATA:
+                // this may cause things to break, but it shouldn't;
+                // includes data, events, generics and everything else
+                instance_activate_object(Data);
+                with (Data) if (deleteable) {
+                    instance_destroy();
+                }
+                // clear all data - data has already been destroyed so you just have to
+                // clear them
+                ds_list_clear(Stuff.all_events);
+                ds_list_clear(Stuff.all_event_custom);
+                ds_list_clear(Stuff.all_event_templates);
+                ds_map_clear(Stuff.all_guids);
+                ds_map_clear(Stuff.all_internal_names);
+                ds_list_clear(Stuff.all_data);
+                break;
+            case SERIALIZE_MAP:
+                // todo clear editor map - IF entities get their own GUIDs eventually,
+                // they should go in a separate lookup which should be cleared in here
+                break;
         }
         
         /*

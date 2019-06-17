@@ -231,6 +231,20 @@ vra_name = "";
 all_mesh_names = ds_list_create();
 data_load_vra();
 
+all_bgm = ds_list_create();
+all_se = ds_list_create();
+
+enum AudioProperties {
+    NAME, GUID, FILENAME, FMOD
+}
+
+FMODGMS_Util_Handshake();
+FMODGMS_Sys_Create();
+FMODGMS_Sys_Initialize(32);
+
+fmod_channel = FMODGMS_Chan_CreateChannel();
+fmod_sound = noone;
+
 // this depends on activemap existing
 uivc_select_autotile_refresh(/*Camera.selection_fill_autotile*/);
 

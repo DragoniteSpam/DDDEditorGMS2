@@ -21,6 +21,7 @@
 #macro EVENT_NODE_CONTACT_WIDTH 320
 #macro EXPORT_EXTENSION_DATA ".dddd"
 #macro EXPORT_EXTENSION_MAP ".dddm"
+#macro EXPORT_EXTENSION_AUDIO ".ddda"
 #macro HH 900
 #macro HVIEW __view_get( e__VW.HView, view_current )
 #macro HW 520
@@ -41,6 +42,7 @@
 #macro PATH_PERMANENT ".\\data\\graphics\\permanent\\"
 #macro PATH_TEMP_CODE "temp\\"            // local storage - no leading punctuation - used for opening files
 #macro SELECTION_MASK_ALL ETypeFlags.ENTITY_TILE|ETypeFlags.ENTITY_TILE_AUTO|ETypeFlags.ENTITY_EVENT|ETypeFlags.ENTITY_PAWN|ETypeFlags.ENTITY_MESH|ETypeFlags.ENTITY_EFFECT
+#macro SERIALIZE_AUDIO 2
 #macro SERIALIZE_DATA 1
 #macro SERIALIZE_MAP 0
 #macro T buffer_f32
@@ -60,6 +62,7 @@
 #macro view_hud 3
 #macro view_invisible 7
 #macro view_ribbon 2
+
 #macro WVIEW __view_get( e__VW.WView, view_current )
 #macro XVIEW __view_get( e__VW.XView, view_current )
 #macro YVIEW __view_get( e__VW.YView, view_current )
