@@ -11,7 +11,7 @@
 /// @param value-conversion
 /// @param lower-bound
 /// @param upper-bound
-/// @param value-character limit
+/// @param character-limit
 /// @param value-x1
 /// @param value-y1
 /// @param value-x2
