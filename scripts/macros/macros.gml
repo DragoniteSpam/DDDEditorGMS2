@@ -41,6 +41,7 @@
 #macro PATH_DUMMY ".\\data\\graphics\\dummy\\"
 #macro PATH_PERMANENT ".\\data\\graphics\\permanent\\"
 #macro PATH_TEMP_CODE "temp\\"            // local storage - no leading punctuation - used for opening files
+#macro PATH_AUDIO ".\\audio\\"
 #macro SELECTION_MASK_ALL ETypeFlags.ENTITY_TILE|ETypeFlags.ENTITY_TILE_AUTO|ETypeFlags.ENTITY_EVENT|ETypeFlags.ENTITY_PAWN|ETypeFlags.ENTITY_MESH|ETypeFlags.ENTITY_EFFECT
 #macro SERIALIZE_AUDIO 2
 #macro SERIALIZE_DATA 1
