@@ -799,6 +799,14 @@
             }
         },
         {
+            "Key": "15cdb7d9-0b40-4bbf-8a58-0877a0cab69f",
+            "Value": {
+                "id": "67cbf166-e4b6-4e9c-8eb6-10ded4536cbf",
+                "resourcePath": "scripts\\ui_render_list_se\\ui_render_list_se.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "15fb5f4b-74a0-4e42-85d8-81287293819c",
             "Value": {
                 "id": "fad61ebe-4438-466d-bafb-146db04cfa19",
@@ -5063,6 +5071,14 @@
             }
         },
         {
+            "Key": "98dd4377-dad0-420c-bac3-2d7d480854a4",
+            "Value": {
+                "id": "831b4bbb-657b-489f-8d30-a52e3cc4cd61",
+                "resourcePath": "scripts\\dmu_dialog_load_se\\dmu_dialog_load_se.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "991d7842-2f5f-47fb-bcfb-5a1b4b52dc9e",
             "Value": {
                 "id": "124f10f8-db33-4e8c-b34b-fa0eb7b91821",
@@ -7231,6 +7247,14 @@
             }
         },
         {
+            "Key": "dd530bc5-b3be-4ad9-98cb-00e3c00bce71",
+            "Value": {
+                "id": "d89e7c9b-e382-47ad-af94-b5ae7f44f5c5",
+                "resourcePath": "scripts\\dmu_dialog_load_bgm\\dmu_dialog_load_bgm.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "dd551730-3621-40ca-a3d8-67ee7d0c995e",
             "Value": {
                 "id": "ab4bd1e8-a434-435d-990c-4f64e69d4021",
@@ -7307,6 +7331,14 @@
             "Value": {
                 "id": "4bc84e39-3476-498b-a2f5-c9cb5e434d15",
                 "resourcePath": "scripts\\uivc_settings_map_internal\\uivc_settings_map_internal.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "dff9c3b9-a6e4-423c-9001-70902ff41c5b",
+            "Value": {
+                "id": "3c5f5e57-f664-44b2-8adb-43aa61fe027b",
+                "resourcePath": "scripts\\ui_render_list_bgm\\ui_render_list_bgm.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -8609,6 +8641,8 @@
         "c0649b09-7522-4726-b33c-d2f2900224fc",
         "420cae21-00cc-44d0-8fb4-147ce2b02795",
         "5673a433-dfb8-411b-9713-47cc0ab299d8",
+        "dd530bc5-b3be-4ad9-98cb-00e3c00bce71",
+        "98dd4377-dad0-420c-bac3-2d7d480854a4",
         "a61fc529-6b87-43ac-9347-b3af90e13277",
         "e680d418-bff4-4913-9284-dff1653b6d50",
         "0cff5256-af2b-47c1-ad06-efac5d560271",
@@ -8949,6 +8983,8 @@
         "b6ac9778-94c7-4faf-9518-2aeba52f7490",
         "0b38f5c9-84a5-4ab5-b126-aa80850cc5d1",
         "3d8d93db-017a-4a73-bebc-d1b241221ebf",
+        "dff9c3b9-a6e4-423c-9001-70902ff41c5b",
+        "15cdb7d9-0b40-4bbf-8a58-0877a0cab69f",
         "833268fe-073b-4f6f-a29b-0e517efd474e",
         "3cd97b95-b660-467d-b77e-23ea20c60d29",
         "0ef8d062-94f6-4c9c-8026-f63601f28916",
