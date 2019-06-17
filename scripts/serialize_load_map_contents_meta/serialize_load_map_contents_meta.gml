@@ -18,11 +18,15 @@ ActiveMap.tileset = buffer_read(argument0, buffer_u8);
 data_resize_map(xx, yy, zz);
 
 if (argument1 >= DataVersions.MAP_VARS) {
-    ActiveMap.audio_bgm = buffer_read(argument0, buffer_string);
-    var n_ambient = buffer_read(argument0, buffer_u16);
-    repeat(n_ambient) {
-        ds_list_add(ActiveMap.audio_ambient, buffer_read(argument0, buffer_string));
-        ds_list_add(ActiveMap.audio_ambient_frequencies, buffer_read(argument0, buffer_u8));
+    if (argument1 >= DataVersions.MAP_AUDIO_CODE) {
+        ActiveMap.audio_code = buffer_read(argument0, buffer_string);
+    } else {
+        buffer_read(argument0, buffer_string);
+        var n_ambient = buffer_read(argument0, buffer_u16);
+        repeat(n_ambient) {
+            buffer_read(argument0, buffer_string);
+            buffer_read(argument0, buffer_u8);
+        }
     }
     
     ActiveMap.fog_start = buffer_read(argument0, buffer_f32);

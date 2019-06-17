@@ -29,7 +29,7 @@ var vty = mean(vy1, vy2);
 if (argument0.editor_handle != noone) {
     if (ds_stuff_process_complete(argument0.editor_handle)) {
         argument0.editor_handle = noone;
-        file_delete(PATH_TEMP_CODE + string(argument0.id) + get_code_extension());
+        file_delete(get_temp_code_path(argument0));
     }
     script_execute(argument0.onsave, argument0);
     script_execute(argument0.onvaluechange, argument0);

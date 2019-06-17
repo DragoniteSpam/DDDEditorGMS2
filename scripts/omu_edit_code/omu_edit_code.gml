@@ -1,6 +1,6 @@
 /// @param UIThing
 
-var location = PATH_TEMP_CODE + string(argument0.id) + get_code_extension();
+var location = get_temp_code_path(argument0);
 
 var buffer = buffer_create(1, buffer_grow, 1);
 buffer_write(buffer, buffer_text, argument0.value);

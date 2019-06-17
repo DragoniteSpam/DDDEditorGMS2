@@ -17,4 +17,5 @@ if (status == WINDOW_CLOSE) {
     }
 }
 
+// if you want to do other things with the program window in c++ do them before you reset the status
 ds_stuff_reset_status();

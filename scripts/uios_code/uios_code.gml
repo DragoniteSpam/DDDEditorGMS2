@@ -1,6 +1,6 @@
 /// @param UIThing
 
-var location = PATH_TEMP_CODE + string(argument0.id) + get_code_extension();
+var location = get_temp_code_path(argument0);
 
 if (file_exists(location)) {
     var buffer = buffer_load(location);

@@ -20,6 +20,3 @@ ds_list_destroy_instances/*_scheduled*/(all_entities);
 ds_grid_destroy(map_grid);
 
 vertex_delete_buffer(frozen);
-
-ds_list_destroy(audio_ambient);
-ds_list_destroy(audio_ambient_frequencies);

@@ -79,5 +79,6 @@ enum DataVersions {
     MAP_WEATHER_CODE            = 21,
     DATA_INSTANCE_CODE          = 22,
     DATA_INTERNAL_NAME          = 23,
+    MAP_AUDIO_CODE              = 24,
     _CURRENT                    /* = whatever the last one is + 1 */
 }

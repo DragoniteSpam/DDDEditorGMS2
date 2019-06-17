@@ -15,9 +15,14 @@ summary = "It's a map, that does map things";
 
 tileset = 0;                              // index
 
-audio_bgm = "";                           // internal name
-audio_ambient = ds_list_create();         // list of internal names
-audio_ambient_frequencies = ds_list_create();  // list of bytes
+audio_code =
+@"-- Required; called once per second when the game checks to see if the audio
+-- should be updated.
+-- @param current the current song (internal name)
+-- @param t the number of seconds since Game Start
+function Update(current, t)
+    return 0
+end";
 
 fog_start = 256;                          // float
 fog_end = 1024;                           // float

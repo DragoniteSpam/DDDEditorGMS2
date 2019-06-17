@@ -15,14 +15,7 @@ buffer_write(argument0, buffer_u16, ActiveMap.zz);
 
 buffer_write(argument0, buffer_u8, ActiveMap.tileset);
 
-buffer_write(argument0, buffer_string, ActiveMap.audio_bgm);
-
-var n_ambient = ds_list_size(ActiveMap.audio_ambient);
-buffer_write(argument0, buffer_u16, n_ambient);
-for (var i = 0; i < n_ambient; i++) {
-    buffer_write(argument0, buffer_string, ActiveMap.audio_ambient[| i]);
-    buffer_write(argument0, buffer_u8, ActiveMap.audio_ambient_frequencies[| i]);
-}
+buffer_write(argument0, buffer_string, ActiveMap.audio_code);
 
 buffer_write(argument0, buffer_f32, ActiveMap.fog_start);
 buffer_write(argument0, buffer_f32, ActiveMap.fog_end);
