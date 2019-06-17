@@ -1511,6 +1511,14 @@
             }
         },
         {
+            "Key": "2c8a3826-1fff-44d3-975d-a37ccd829943",
+            "Value": {
+                "id": "2cf7fb47-83c0-4d25-84d3-a763272e5e6e",
+                "resourcePath": "scripts\\dmu_dialog_remove_se\\dmu_dialog_remove_se.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "2ccd3003-5ae4-4e72-b5e0-8364dec9eaa2",
             "Value": {
                 "id": "44d783c4-6845-4775-aff5-a2c4df43f7d5",
@@ -4043,6 +4051,14 @@
             "Value": {
                 "id": "113a1e01-2ee3-4ad3-8a01-4c2e6385b68b",
                 "resourcePath": "scripts\\c_shape_end_trimesh\\c_shape_end_trimesh.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "796df690-2228-4c77-b188-e46c05f22094",
+            "Value": {
+                "id": "92baec8d-68cd-46b5-92cb-f21385c1e9de",
+                "resourcePath": "scripts\\dmu_dialog_remove_bgm\\dmu_dialog_remove_bgm.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -8557,7 +8573,6 @@
         "72c8a6e4-9b33-4505-8f31-b6bc7620a015",
         "264290be-788b-4b72-a277-46569738402a",
         "5efe40e2-5099-4368-8ec4-d5d4d92d0bfc",
-        "ee2648be-9945-42de-813a-f6210f5a5a46",
         "af334ca9-9e18-41e4-95dc-86fad4ff92dd",
         "2014825b-a570-47e1-8600-19c965a6afcb",
         "ba4a8101-af2b-497e-907d-7a331adf03b6",
@@ -8642,6 +8657,8 @@
         "420cae21-00cc-44d0-8fb4-147ce2b02795",
         "5673a433-dfb8-411b-9713-47cc0ab299d8",
         "dd530bc5-b3be-4ad9-98cb-00e3c00bce71",
+        "796df690-2228-4c77-b188-e46c05f22094",
+        "2c8a3826-1fff-44d3-975d-a37ccd829943",
         "98dd4377-dad0-420c-bac3-2d7d480854a4",
         "a61fc529-6b87-43ac-9347-b3af90e13277",
         "e680d418-bff4-4913-9284-dff1653b6d50",
@@ -9050,6 +9067,7 @@
         "1dad5f6e-3cab-47d3-89d4-fb23d99de196",
         "eda421e6-0957-4159-8b01-a13dbd83a0f3",
         "8d906a80-8ffc-4012-82df-e380581a43e2",
+        "ee2648be-9945-42de-813a-f6210f5a5a46",
         "4ef4d916-562d-4362-b777-697ab3236fa1",
         "88a72ab1-34ee-4030-b06d-0468751727de",
         "ee359008-8b0a-4b60-98b1-6ccb0ec031bc",

@@ -23,12 +23,13 @@ var spacing = 16;
 
 var el_list = create_list(16, yy, "Background Music", "<no music>", ew, eh, 12, null, false, dg);
 el_list.render = ui_render_list_bgm;
+dg.el_list = el_list;
 
 var el_add = create_button(c2 + 16, yy, "Add BGM", ew, eh, fa_center, dmu_dialog_load_bgm, dg);
 yy = yy + el_add.height + spacing;
 var el_rename = create_button(c2 + 16, yy, "Rename BGM", ew, eh, fa_center, null, dg);
 yy = yy + el_rename.height + spacing;
-var el_remove = create_button(c2 + 16, yy, "Remove BGM", ew, eh, fa_center, null, dg);
+var el_remove = create_button(c2 + 16, yy, "Remove BGM", ew, eh, fa_center, dmu_dialog_remove_bgm, dg);
 yy = yy + el_remove.height + spacing;
 
 var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
