@@ -11,6 +11,7 @@ if (selection != noone) {
     }
     
     audio_remove_se(list[| selection].GUID);
+    ui_list_deselect(argument0.root.el_list);
     
     ds_list_destroy(list);
 }

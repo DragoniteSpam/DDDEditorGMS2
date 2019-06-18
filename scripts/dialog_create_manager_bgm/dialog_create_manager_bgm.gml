@@ -10,9 +10,9 @@ var eh = 24;
 
 var c2 = dw / 2;
 
-var vx1 = dw / 4 + 16 - 64;
+var vx1 = 0;
 var vy1 = 0;
-var vx2 = vx1 + 80 + 64;
+var vx2 = ew;
 var vy2 = vy1 + eh;
 
 var b_width = 128;
@@ -21,9 +21,10 @@ var b_height = 32;
 var yy = 64;
 var spacing = 16;
 
-var el_list = create_list(16, yy, "Background Music", "<no music>", ew, eh, 12, null, false, dg);
+var el_list = create_list(16, yy, "Background Music", "<no music>", ew, eh, 12, uivc_list_audio_bgm, false, dg);
 el_list.render = ui_render_list_bgm;
 el_list.entries_are = ListEntries.INSTANCES;
+el_list.numbered = true;
 dg.el_list = el_list;
 
 var el_add = create_button(c2 + 16, yy, "Add BGM", ew, eh, fa_center, dmu_dialog_load_bgm, dg);
@@ -31,8 +32,16 @@ yy = yy + el_add.height + spacing;
 var el_remove = create_button(c2 + 16, yy, "Remove BGM", ew, eh, fa_center, dmu_dialog_remove_bgm, dg);
 yy = yy + el_remove.height + spacing;
 
-var el_name = create_input(c2 + 16, yy, "Name:", ew, eh, null, "", "", "A-Za-z0=9_", validate_string_internal_name, ui_value_string, 0, 1, 16, vx1, vy1, vx2, vy2, dg);
+var el_name_text = create_text(c2 + 16, yy, "Name:", ew, eh, fa_left, ew, dg);
+yy = yy + el_name_text.height + spacing;
+var el_name = create_input(c2 + 16, yy, "", ew, eh, uivc_input_audio_bgm_name, "", "", "", validate_string, ui_value_string, 0, 1, 20, vx1, vy1, vx2, vy2, dg);
+dg.el_name = el_name;
 yy = yy + el_name.height + spacing;
+var el_name_internal_text = create_text(c2 + 16, yy, "Internal Name:", ew, eh, fa_left, ew, dg);
+yy = yy + el_name_internal_text.height + spacing;
+var el_name_internal = create_input(c2 + 16, yy, "", ew, eh, uivc_input_audio_bgm_internal_name, "", "", "A-Za-z0-9_", validate_string_internal_name, ui_value_string, 0, 1, 16, vx1, vy1, vx2, vy2, dg);
+dg.el_name_internal = el_name_internal;
+yy = yy + el_name_internal.height + spacing;
 
 var xx = c2 + 16;
 var el_play = create_button(xx, yy, "Play", ew / 4, eh, fa_center, dmu_dialog_play_bgm, dg);
@@ -51,7 +60,7 @@ var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Do
 ds_list_add(dg.contents, el_list,
     el_add, el_remove,
     el_play, el_pause, el_resume, el_stop,
-    el_name, el_effects,
+    el_name_text, el_name, el_name_internal_text, el_name_internal, el_effects,
     el_confirm);
 
 keyboard_string = "";

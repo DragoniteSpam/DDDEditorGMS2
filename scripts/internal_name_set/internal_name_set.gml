@@ -16,7 +16,7 @@ switch (argument_count) {
         break;
 }
 
-// almost all data is automatically created with a GUID, so remove it
+// almost all data is automatically created with an internal name, so remove it
 if (ds_map_exists(Stuff.all_internal_names, addition)) {
     ds_map_delete(Stuff.all_internal_names, addition);
 }
