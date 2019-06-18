@@ -22,43 +22,43 @@ event_inherited();
 
 // this should only be instantiated in tileset_create so don't worry
 // about populating the values right now
-picture_name="";
-picture=-1;
+picture_name = "";
+picture = -1;
 
 // these are just the indices, the actual autotiles are stored in Stuff
-autotiles=array_create(AUTOTILE_MAX);
+autotiles = array_create(AUTOTILE_MAX);
 array_clear(autotiles, noone);
 
-autotile_positions=array_create(AUTOTILE_MAX);
-autotile_sizes=array_create(AUTOTILE_MAX);
-for (var i=0; i<AUTOTILE_MAX; i++) {
-    autotile_positions[i]=vector2(0.5+(i div (AUTOTILE_MAX/2))*0.25, (i mod (AUTOTILE_MAX/2))/16);
-    autotile_sizes[i]=vector2(32/TEXTURE_SIZE, 32/TEXTURE_SIZE);
+autotile_positions = array_create(AUTOTILE_MAX);
+autotile_sizes = array_create(AUTOTILE_MAX);
+for (var i = 0; i < AUTOTILE_MAX; i++) {
+    autotile_positions[i] = vector2(0.5 + (i div (AUTOTILE_MAX / 2)) * 0.25, (i mod (AUTOTILE_MAX / 2)) / 16);
+    autotile_sizes[i] = vector2(32 / TEXTURE_SIZE, 32 / TEXTURE_SIZE);
 }
 
 // the main picture and all of the autotiles are stored on here
-master=noone;
+master = noone;
 
-passage=noone;
-priority=noone;
-flags=noone;
-tags=noone;
+passage = noone;
+priority = noone;
+flags = noone;
+tags = noone;
 
-at_passage=noone;
-at_priority=noone;
-at_flags=noone;
-at_tags=noone;
+at_passage = noone;
+at_priority = noone;
+at_flags = noone;
+at_tags = noone;
 
 enum TilePassability {
-    UP=1<<0,
-    DOWN=1<<1,
-    LEFT=1<<2,
-    RIGHT=1<<3
+    UP = 1 << 0,
+    DOWN = 1 << 1,
+    LEFT = 1 << 2,
+    RIGHT = 1 << 3
 }
 
 enum TileFlags {
-    BUSH=1<<0,
-    COUNTER=1<<1,
+    BUSH = 1 << 0,
+    COUNTER = 1 << 1,
 }
 
 enum TileTerrainTags {
@@ -86,7 +86,7 @@ enum TileTerrainTags {
 // often, so i won't bother to put it somewhere more logical
 globalvar all_tile_terrain_tag_names;
 
-all_tile_terrain_tag_names=["None",
+all_tile_terrain_tag_names = ["None",
     "Ledge",
     "Grass",
     "Sand",
@@ -101,7 +101,8 @@ all_tile_terrain_tag_names=["None",
     "Ice",
     "Neutral",
     "Soot Grass",
-    "Bridge"];
+    "Bridge"
+];
 
 enum AutotileSegments {
     SURROUNDED,     /*00*/
@@ -117,6 +118,3 @@ enum AutotileSegments {
     LOWER,          /*10*/
     LOWER_RIGHT     /*11*/
 }
-
-/* */
-/*  */

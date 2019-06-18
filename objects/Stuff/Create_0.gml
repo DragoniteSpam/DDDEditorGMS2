@@ -150,7 +150,7 @@ if (file_exists(PATH_PERMANENT + "b_at_default_grass_0.png")) {
 }
 available_autotiles[0] = [spr, "<default>", false, "", 1, 3];
 
-autotile_hashes=array_create(256);
+autotile_hashes = array_create(256);
 array_clear(autotile_hashes, AutotileSegments.CENTER);
 autotile_hashes[11] = AutotileSegments.LOWER_RIGHT;
 autotile_hashes[22] = AutotileSegments.LOWER_LEFT;
@@ -238,10 +238,6 @@ data_load_vra();
 all_bgm = ds_list_create();
 all_se = ds_list_create();
 
-enum AudioProperties {
-    NAME, GUID, FILENAME, FMOD
-}
-
 FMODGMS_Util_Handshake();
 FMODGMS_Sys_Create();
 FMODGMS_Sys_Initialize(32);
@@ -250,7 +246,7 @@ fmod_channel = FMODGMS_Chan_CreateChannel();
 fmod_sound = noone;
 
 // this depends on activemap existing
-uivc_select_autotile_refresh(/*Camera.selection_fill_autotile*/);
+uivc_select_autotile_refresh();
 
 enum AvailableAutotileProperties {
     PICTURE, NAME, DELETEABLE, FILENAME, FRAMES, WIDTH

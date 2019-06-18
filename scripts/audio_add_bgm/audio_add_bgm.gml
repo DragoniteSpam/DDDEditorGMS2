@@ -3,10 +3,17 @@
 
 var filename = argument[0];
 var name = (argument_count > 1) ? argument[1] : filename_name(filename);
-name = string_lettersdigits(string_replace_all(name, filename_ext(filename), ""));
+var internal_name = string_lettersdigits(string_replace_all(name, filename_ext(filename), ""));
 
-file_copy(filename, PATH_AUDIO + name + filename_ext(filename));
+file_copy(filename, PATH_AUDIO + internal_name + filename_ext(filename));
 
-var data = [name, guid_generate(), filename, FMODGMS_Snd_LoadStream(filename)];
-guid_set(data, data[@ AudioProperties.GUID]);
+var data = instance_create_depth(0, 0, 0, DataAudio);
+data.name = name;
+data.filename = filename;
+data.copy_name = internal_name;
+data.fmod = FMODGMS_Snd_LoadStream(filename);
+internal_name_set(data, internal_name);
+
 ds_list_add(Stuff.all_bgm, data);
+
+return data;

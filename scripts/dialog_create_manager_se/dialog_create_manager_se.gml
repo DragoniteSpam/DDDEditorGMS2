@@ -23,6 +23,7 @@ var spacing = 16;
 
 var el_list = create_list(16, yy, "Sound Effects", "<no sound effects>", ew, eh, 12, null, false, dg);
 el_list.render = ui_render_list_se;
+el_list.entries_are = ListEntries.INSTANCES;
 dg.el_list = el_list;
 
 var el_add = create_button(c2 + 16, yy, "Add SE", ew, eh, fa_center, dmu_dialog_load_se, dg);
@@ -38,16 +39,19 @@ var el_play = create_button(xx, yy, "Play", ew / 4, eh, fa_center, dmu_dialog_pl
 var xx = xx + ((c2 - 32) / 4);
 var el_pause = create_button(xx, yy, "Pause", ew / 4, eh, fa_center, dmu_dialog_pause, dg);
 var xx = xx + ((c2 - 32) / 4);
-var el_resume = create_button(xx, yy, "Resume", ew / 4, eh, fa_center, dmu_dialog_resume, dg);
+var el_resume = create_button(xx, yy, "Rsm.", ew / 4, eh, fa_center, dmu_dialog_resume, dg);
 var xx = xx + ((c2 - 32) / 4);
 var el_stop = create_button(xx, yy, "Stop", ew / 4, eh, fa_center, dmu_dialog_stop, dg);
+
+yy = yy + el_name.height + spacing * 2;
+var el_effects = create_text(c2 + 16, yy, "Effects such as volume, pitch, etc can be defined when the sound is played in-game.", ew, eh, fa_left, ew, dg);
 
 var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
 
 ds_list_add(dg.contents, el_list,
     el_add, el_remove,
     el_play, el_pause, el_resume, el_stop,
-    el_name,
+    el_name, el_effects,
     el_confirm);
 
 keyboard_string = "";

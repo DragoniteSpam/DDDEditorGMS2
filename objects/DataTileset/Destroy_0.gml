@@ -6,4 +6,3 @@ ds_grid_destroy(passage);
 ds_grid_destroy(priority);
 ds_grid_destroy(flags);
 ds_grid_destroy(tags);
-

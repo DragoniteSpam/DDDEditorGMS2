@@ -1127,6 +1127,14 @@
             }
         },
         {
+            "Key": "2068c531-a917-449d-8dd6-20d5f13d6c46",
+            "Value": {
+                "id": "499848c6-e961-4d01-9025-bdbea39d4176",
+                "resourcePath": "objects\\DataAudio\\DataAudio.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "2070afb6-8576-4d91-8dd7-25ed8ef9cf51",
             "Value": {
                 "id": "0d0a6e50-2eb6-4a24-8ba5-4cb6010431a2",
@@ -2756,6 +2764,14 @@
                 "id": "3087837f-3e4d-4dc2-b33f-9d7b133e915c",
                 "resourcePath": "objects\\EntityEffect\\EntityEffect.yy",
                 "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "525f7ef6-3fe7-4d1c-a3ff-5fd4e84f7fdc",
+            "Value": {
+                "id": "8f916c0f-304d-4858-835e-cdb738e7d87f",
+                "resourcePath": "views\\525f7ef6-3fe7-4d1c-a3ff-5fd4e84f7fdc.yy",
+                "resourceType": "GMFolder"
             }
         },
         {
@@ -9053,8 +9069,6 @@
         "b6ac9778-94c7-4faf-9518-2aeba52f7490",
         "0b38f5c9-84a5-4ab5-b126-aa80850cc5d1",
         "3d8d93db-017a-4a73-bebc-d1b241221ebf",
-        "dff9c3b9-a6e4-423c-9001-70902ff41c5b",
-        "15cdb7d9-0b40-4bbf-8a58-0877a0cab69f",
         "833268fe-073b-4f6f-a29b-0e517efd474e",
         "3cd97b95-b660-467d-b77e-23ea20c60d29",
         "0ef8d062-94f6-4c9c-8026-f63601f28916",
@@ -9083,6 +9097,8 @@
         "38605fcd-3b88-4729-bf05-0f7dc77f2813",
         "5ecf7524-d817-4120-b4d8-87765b5d8b80",
         "97aba9b8-8e90-4d82-9c36-f68f510de9de",
+        "dff9c3b9-a6e4-423c-9001-70902ff41c5b",
+        "15cdb7d9-0b40-4bbf-8a58-0877a0cab69f",
         "c37ecf28-8b0d-4b55-ad5e-e7c3ef5e5e0c",
         "7be262ef-2d7a-4cc8-85bb-446caf5592c9",
         "008f9998-5b4d-44c2-b795-eedcdadc9318",

@@ -6,29 +6,29 @@ event_inherited();
 // x                                                                    // serialize: buffer_u32
 // y                                                                    // serialize: buffer_u32
 
-type=EventNodeTypes.ENTRYPOINT;                                         // serialize: buffer_u16
+type = EventNodeTypes.ENTRYPOINT;                                         // serialize: buffer_u16
 
-data=ds_list_create();
-outbound=ds_list_create();
+data = ds_list_create();
+outbound = ds_list_create();
 ds_list_add(data, "The quick brown fox jumped over the lazy dog");      // serialize: buffer_string
 ds_list_add(outbound, noone);                                           // serialize: buffer_string (name of destination)
 
-custom_guid=0;                                                          // serialize: buffer_u32
-custom_data=ds_list_create();                                           // list of lists - contents determined by custom_guid
+custom_guid = 0;                                                          // serialize: buffer_u32
+custom_data = ds_list_create();                                           // list of lists - contents determined by custom_guid
 
 // editor only - set upon creation, or reset upon loading
 
-is_root=false;
-event=noone;
+is_root = false;
+event = noone;
 
-offset_x=-1;
-offset_y=-1;
+offset_x = -1;
+offset_y = -1;
 
 // PLEASE DON'T DELETE THIS. it's not needed for the event itself but it lets you
 // keep track of the nodes that refer to it when you delete it, so they can have
 // their outbound references set to zero.
 
-parents=ds_map_create();
+parents = ds_map_create();
 
 // could subclass this but i need to get this done in a hurry
 enum EventNodeTypes {
@@ -36,4 +36,3 @@ enum EventNodeTypes {
     TEXT,
     CUSTOM,
 }
-
