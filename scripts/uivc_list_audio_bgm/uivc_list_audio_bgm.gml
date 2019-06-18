@@ -12,6 +12,8 @@ if (selection >= 0) {
     argument0.root.el_name.value = listofthings[| selection].name;
     argument0.root.el_name_internal.value = listofthings[| selection].internal_name;
     
+    FMODGMS_Chan_StopChannel(Stuff.fmod_channel);
+    
     if (Stuff.setting_alphabetize_lists) {
         ds_list_destroy(listofthings);
     }
