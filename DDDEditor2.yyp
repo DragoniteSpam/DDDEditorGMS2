@@ -1783,6 +1783,14 @@
             }
         },
         {
+            "Key": "35250001-4554-4444-90d5-b30d13ca12cf",
+            "Value": {
+                "id": "122cd4e1-a18a-430f-a602-a0a0996f9b48",
+                "resourcePath": "scripts\\uivc_input_audio_loop\\uivc_input_audio_loop.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "352d84b0-fcb2-4215-aba1-9fc3eabce1e0",
             "Value": {
                 "id": "35406067-90a2-4f46-a58e-05d00e1f553a",
@@ -8985,6 +8993,7 @@
         "ac9824b9-f01e-4080-93cf-e47c9dda1c10",
         "96bfb326-f42e-43df-bb00-eddceff7d0ff",
         "4a7d881c-9d8c-47c3-8a82-69f55fa13634",
+        "35250001-4554-4444-90d5-b30d13ca12cf",
         "8f206002-6538-4576-9ab0-f7b262260530",
         "8781848a-dee5-4c42-9052-f8ba9985d848",
         "d18ad823-f821-4ab0-af2e-fbbcb454b8e5",

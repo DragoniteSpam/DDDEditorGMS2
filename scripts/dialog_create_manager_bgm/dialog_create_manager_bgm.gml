@@ -1,14 +1,16 @@
 /// @param Dialog
 
-var dw = 512;
+var dw = 768;
 var dh = 480;
 
 var dg = dialog_create(dw, dh, "Data: Availalbe Background Music", dialog_default, dc_default, argument0);
 
-var ew = (dw - 64) / 2;
+var columns = 3;
+var ew = (dw - 64) / columns;
 var eh = 24;
 
-var c2 = dw / 2;
+var c2 = dw / columns;
+var c3 = dw * 2 / columns;
 
 var vx1 = 0;
 var vy1 = 0;
@@ -19,6 +21,7 @@ var b_width = 128;
 var b_height = 32;
 
 var yy = 64;
+var yy_base = yy;
 var spacing = 16;
 
 var el_list = create_list(16, yy, "Background Music", "<no music>", ew, eh, 12, uivc_list_audio_bgm, false, dg);
@@ -51,16 +54,27 @@ var xx = xx + ((c2 - 32) / 4);
 var el_resume = create_button(xx, yy, "Rsm.", ew / 4, eh, fa_center, dmu_dialog_resume, dg);
 var xx = xx + ((c2 - 32) / 4);
 var el_stop = create_button(xx, yy, "Stop", ew / 4, eh, fa_center, dmu_dialog_stop, dg);
-
 yy = yy + el_name.height + spacing * 2;
+
 var el_effects = create_text(c2 + 16, yy, "Effects such as volume, pitch, etc can be defined when the sound is played in-game.", ew, eh, fa_left, ew, dg);
+yy = yy + el_effects.height + spacing * 2;
+
+var vx1 = dw / (columns * 2) + 16;
+var vy1 = 0;
+var vx2 = vx1 + 80;
+var vy2 = vy1 + eh;
+
+yy = yy_base;
+var el_loop = create_input(c3 + 16, yy, "Loop Point:", ew, eh, uivc_input_audio_loop, "", 0, "seconds", validate_double, ui_value_real, 0, 10000, 5, vx1, vy1, vx2, vy2, dg);
+dg.el_loop = el_loop;
 
 var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
 
 ds_list_add(dg.contents, el_list,
     el_add, el_remove,
     el_play, el_pause, el_resume, el_stop,
-    el_name_text, el_name, el_name_internal_text, el_name_internal, el_effects,
+    el_name_text, el_name, el_name_internal_text, el_name_internal,
+    el_effects, el_loop,
     el_confirm);
 
 keyboard_string = "";

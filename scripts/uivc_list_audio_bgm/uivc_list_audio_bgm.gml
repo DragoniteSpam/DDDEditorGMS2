@@ -11,6 +11,7 @@ if (selection >= 0) {
     
     argument0.root.el_name.value = listofthings[| selection].name;
     argument0.root.el_name_internal.value = listofthings[| selection].internal_name;
+    argument0.root.el_loop.value = string(listofthings[| selection].loop);
     
     FMODGMS_Chan_StopChannel(Stuff.fmod_channel);
     

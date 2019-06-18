@@ -3,3 +3,5 @@ event_inherited();
 
 fmod = noone;
 filename = "";
+
+loop = 0;
