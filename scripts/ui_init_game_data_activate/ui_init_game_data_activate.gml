@@ -53,7 +53,7 @@ if (data != noone) {
         ds_list_add(col_data.contents, element);
         Camera.ui_game_data.el_inst_name = element;
         
-        var element = create_input(spacing, yy, "Internal Name:", ew, eh, uivc_data_set_internal_name, "", "", "Internal name", validate_string_internal_name, ui_value_string, 0, 1, 16, vx1, vy1, vx2, vy2, noone);
+        var element = create_input(spacing, yy, "Internal Name:", ew, eh, uivc_data_set_internal_name, "", "", "Internal name", validate_string_internal_name, ui_value_string, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, noone);
         element.render = ui_render_text_data_internal_name;
         yy = yy + element.height + spacing;
         Camera.ui_game_data.el_inst_internal_name = element;

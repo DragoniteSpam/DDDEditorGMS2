@@ -39,7 +39,7 @@ dg.el_name = el_name;
 yy = yy + el_name.height + spacing;
 var el_name_internal_text = create_text(c2 + 16, yy, "Internal Name:", ew, eh, fa_left, ew, dg);
 yy = yy + el_name_internal_text.height + spacing;
-var el_name_internal = create_input(c2 + 16, yy, "", ew, eh, uivc_input_audio_se_internal_name, "", "", "A-Za-z0-9_", validate_string_internal_name, ui_value_string, 0, 1, 16, vx1, vy1, vx2, vy2, dg);
+var el_name_internal = create_input(c2 + 16, yy, "", ew, eh, uivc_input_audio_se_internal_name, "", "", "A-Za-z0-9_", validate_string_internal_name, ui_value_string, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
 dg.el_name_internal = el_name_internal;
 yy = yy + el_name_internal.height + spacing;
 

@@ -25,6 +25,7 @@
 #macro HH 900
 #macro HVIEW __view_get( e__VW.HView, view_current )
 #macro HW 520
+#macro INTERNAL_NAME_LENGTH 20
 #macro LIMIT_TILESET 255
 #macro MAP_X_LIMIT 1024
 #macro MAP_Y_LIMIT 1024
