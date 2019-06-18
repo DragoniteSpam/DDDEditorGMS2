@@ -61,7 +61,7 @@ ds_list_add(menu_edit.contents, me_undo, me_redo,
 
 var md_mesh = create_menu_element("Meshes (vrax)", momu_mesh, menu_data);
 var md_ts = create_menu_element("Tileset", momu_tileset, menu_data);
-var md_audio = create_menu_element("Audio", menu_activate, menu_data);
+var md_audio = create_menu_element("Audio", momu_expand, menu_data);
 var md_data_types = create_menu_element("Define Data Types", momu_data_types, menu_data);
 var md_conflicts = create_menu_element("View Mesh Conflicts", momu_conflicts, menu_data);
 var md_missing = create_menu_element("View Missing Data", momu_missing, menu_data);
