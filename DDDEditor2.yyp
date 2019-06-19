@@ -4775,6 +4775,14 @@
             }
         },
         {
+            "Key": "8ea255fa-966d-4d03-b7b7-473d9d2edd81",
+            "Value": {
+                "id": "2d138a0a-d2a4-4120-87c8-62e4aaac70ba",
+                "resourcePath": "scripts\\uivc_audio_bgm_loop_point\\uivc_audio_bgm_loop_point.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "8ef860af-6d24-4675-b8fd-bed8cc482c53",
             "Value": {
                 "id": "47497e5d-0ada-452e-8d36-f50a95336b26",
@@ -8975,6 +8983,7 @@
         "898412a1-5a61-4951-956d-9474e447b49f",
         "ed5ed73e-6f8a-4600-86cd-b40122c6c077",
         "c1658414-a62d-44ec-9233-a6ea8294750d",
+        "8ea255fa-966d-4d03-b7b7-473d9d2edd81",
         "8cf107f0-a217-4721-8431-8ba27659762b",
         "d8f62473-2be2-4cfe-91e8-4ca68c265695",
         "951e6460-e787-4469-bb88-c88927d739ae",

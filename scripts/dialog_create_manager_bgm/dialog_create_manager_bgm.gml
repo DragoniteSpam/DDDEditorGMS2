@@ -68,7 +68,7 @@ yy = yy_base;
 var el_loop = create_input(c3 + 16, yy, "Loop Point:", ew, eh, uivc_input_audio_loop, "", 0, "seconds", validate_double, ui_value_real, 0, 10000, 5, vx1, vy1, vx2, vy2, dg);
 dg.el_loop = el_loop;
 yy = yy + el_loop.height;
-var el_loop_progress = create_progress_bar(c3 + 16, yy, ew, eh, null, 4, 0, dg);
+var el_loop_progress = create_progress_bar(c3 + 16, yy, ew, eh, uivc_audio_bgm_loop_point, 4, 0, dg);
 el_loop_progress.render = ui_render_progress_bgm;
 yy = yy + el_loop_progress.height;
 
