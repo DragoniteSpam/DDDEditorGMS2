@@ -4575,6 +4575,14 @@
             }
         },
         {
+            "Key": "8780f730-a962-4fa8-96f8-68eb5902b5db",
+            "Value": {
+                "id": "b01d4dd6-915d-4822-9142-4f219291f90e",
+                "resourcePath": "scripts\\ui_render_progress_bgm\\ui_render_progress_bgm.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "8781848a-dee5-4c42-9052-f8ba9985d848",
             "Value": {
                 "id": "fbde44d2-d05e-4659-9d77-22e270242c71",
@@ -6703,6 +6711,14 @@
             }
         },
         {
+            "Key": "cb756648-c7dc-4c53-abee-54399769b094",
+            "Value": {
+                "id": "0a6551a5-eb6f-4be9-9e22-56367b72d5a5",
+                "resourcePath": "scripts\\create_progress_bar\\create_progress_bar.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "cbe4430f-d796-45b9-bf60-a484b4b355d5",
             "Value": {
                 "id": "f8734a3c-b837-4ddf-a777-df00d58cebbf",
@@ -6764,6 +6780,14 @@
                 "id": "69d78533-05af-4d6e-ac72-da704d03e4e3",
                 "resourcePath": "objects\\ObjectError\\ObjectError.yy",
                 "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "cd6942b8-df11-43ae-9b19-a6925d958efd",
+            "Value": {
+                "id": "e8fa5aeb-ba76-429c-816a-615af53ca9ad",
+                "resourcePath": "scripts\\ui_render_progress_bar\\ui_render_progress_bar.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -7887,6 +7911,14 @@
             }
         },
         {
+            "Key": "ecf9bf70-09ee-4431-a6f7-16c915c0b9b5",
+            "Value": {
+                "id": "d84dea72-e979-45b5-bb6f-ea9d5bde27fc",
+                "resourcePath": "objects\\UIProgressBar\\UIProgressBar.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "ed209c0f-e467-4743-a690-ae533fdb32be",
             "Value": {
                 "id": "9ac7d441-2920-4add-b92d-6acc7afc039f",
@@ -8718,6 +8750,7 @@
         "bde998b1-975a-4d67-b8ec-0d2dffca1356",
         "e2706ff0-d4fa-414f-9cc5-ccc0f7ddaac5",
         "42c39c4e-f00b-46ad-99c5-4a6a168ae69c",
+        "cb756648-c7dc-4c53-abee-54399769b094",
         "178c8cd0-dd20-49ca-874d-d0b000d872be",
         "2e726a9b-e54f-4ded-8163-0582555f05ed",
         "6622b9b3-4a48-4051-8378-a70214acf93f",
@@ -9091,6 +9124,7 @@
         "43ae57f2-9a33-45c9-bb00-529bd505469d",
         "9fe42c44-3ba2-491e-a420-b440bfcd560f",
         "08190cb7-54fd-4af3-a3e4-b809b86b4ce5",
+        "cd6942b8-df11-43ae-9b19-a6925d958efd",
         "70fbfb15-2cdd-4309-9035-a4f22b2ba44e",
         "8fa9751d-593d-483c-93a8-04a1412d68f2",
         "4c28c119-32d3-4ece-b237-73b6f910f6d4",
@@ -9170,6 +9204,7 @@
         "97aba9b8-8e90-4d82-9c36-f68f510de9de",
         "dff9c3b9-a6e4-423c-9001-70902ff41c5b",
         "15cdb7d9-0b40-4bbf-8a58-0877a0cab69f",
+        "8780f730-a962-4fa8-96f8-68eb5902b5db",
         "c37ecf28-8b0d-4b55-ad5e-e7c3ef5e5e0c",
         "7be262ef-2d7a-4cc8-85bb-446caf5592c9",
         "008f9998-5b4d-44c2-b795-eedcdadc9318",
