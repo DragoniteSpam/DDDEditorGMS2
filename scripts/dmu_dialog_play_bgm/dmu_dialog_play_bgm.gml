@@ -12,10 +12,13 @@ if (selection != noone) {
     
     if (Stuff.fmod_sound != noone) {
         FMODGMS_Chan_StopChannel(Stuff.fmod_channel);
+        Stuff.fmod_playing = false;
+        Stuff.fmod_paused = false;
     }
     
     Stuff.fmod_sound = list[| selection].fmod;
     FMODGMS_Snd_PlaySound(Stuff.fmod_sound, Stuff.fmod_channel);
+    Stuff.fmod_playing = true;
     
     ds_list_destroy(list);
 }

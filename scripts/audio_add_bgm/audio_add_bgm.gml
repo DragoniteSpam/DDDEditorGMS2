@@ -12,6 +12,12 @@ data.name = name;
 data.filename = filename;
 data.copy_name = internal_name;
 data.fmod = FMODGMS_Snd_LoadStream(filename);
+FMODGMS_Snd_Set_LoopMode(data.fmod, FMODGMS_LOOPMODE_NORMAL, -1);
+data.loop_start = 0;
+data.loop_end = FMODGMS_Snd_Get_Length(data.fmod) / AUDIO_FREQUENCY;
+
+FMODGMS_Snd_Set_LoopPoints(data.fmod, 0, data.loop_end * AUDIO_FREQUENCY);
+
 internal_name_set(data, internal_name);
 
 ds_list_add(Stuff.all_bgm, data);

@@ -4,4 +4,5 @@ event_inherited();
 fmod = noone;
 filename = "";
 
-loop = 0;
+loop_start = 0;
+loop_end = 0;

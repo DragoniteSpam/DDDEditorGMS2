@@ -68,3 +68,5 @@
 #macro WVIEW __view_get( e__VW.WView, view_current )
 #macro XVIEW __view_get( e__VW.XView, view_current )
 #macro YVIEW __view_get( e__VW.YView, view_current )
+
+#macro AUDIO_FREQUENCY 48000

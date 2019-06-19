@@ -1,8 +1,8 @@
 {
-    "id": "35250001-4554-4444-90d5-b30d13ca12cf",
+    "id": "f9346e64-d31f-4d5c-90cb-684e28734f0e",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "uivc_input_audio_loop",
+    "name": "uivc_input_audio_loop_end",
     "IsCompatibility": false,
     "IsDnD": false
 }

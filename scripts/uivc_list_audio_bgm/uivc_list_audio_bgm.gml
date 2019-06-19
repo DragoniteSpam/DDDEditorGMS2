@@ -11,9 +11,12 @@ if (selection >= 0) {
     
     argument0.root.el_name.value = listofthings[| selection].name;
     argument0.root.el_name_internal.value = listofthings[| selection].internal_name;
-    argument0.root.el_loop.value = string(listofthings[| selection].loop);
+    argument0.root.el_loop_start.value = string(listofthings[| selection].loop_start);
+    argument0.root.el_loop_end.value = string(listofthings[| selection].loop_end);
     
-    FMODGMS_Chan_StopChannel(Stuff.fmod_channel);
+    if (Stuff.fmod_sound != noone) {
+        FMODGMS_Chan_StopChannel(Stuff.fmod_channel);
+    }
     
     if (Stuff.setting_alphabetize_lists) {
         ds_list_destroy(listofthings);

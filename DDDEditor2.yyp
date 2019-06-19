@@ -1786,7 +1786,7 @@
             "Key": "35250001-4554-4444-90d5-b30d13ca12cf",
             "Value": {
                 "id": "122cd4e1-a18a-430f-a602-a0a0996f9b48",
-                "resourcePath": "scripts\\uivc_input_audio_loop\\uivc_input_audio_loop.yy",
+                "resourcePath": "scripts\\uivc_input_audio_loop_start\\uivc_input_audio_loop_start.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -8335,6 +8335,14 @@
             }
         },
         {
+            "Key": "f9346e64-d31f-4d5c-90cb-684e28734f0e",
+            "Value": {
+                "id": "6c0c80d0-a73a-4dda-a4f8-49194ada34b6",
+                "resourcePath": "scripts\\uivc_input_audio_loop_end\\uivc_input_audio_loop_end.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "f9b51669-2929-4992-b8ed-284133fcabf8",
             "Value": {
                 "id": "2ea59237-d905-4755-a4b9-cdd3894bc00d",
@@ -9036,6 +9044,7 @@
         "96bfb326-f42e-43df-bb00-eddceff7d0ff",
         "4a7d881c-9d8c-47c3-8a82-69f55fa13634",
         "35250001-4554-4444-90d5-b30d13ca12cf",
+        "f9346e64-d31f-4d5c-90cb-684e28734f0e",
         "8f206002-6538-4576-9ab0-f7b262260530",
         "8781848a-dee5-4c42-9052-f8ba9985d848",
         "d18ad823-f821-4ab0-af2e-fbbcb454b8e5",

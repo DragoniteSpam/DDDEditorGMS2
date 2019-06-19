@@ -16,7 +16,7 @@ draw_rectangle_colour(x1, bar_y1, bar_x, bar_y2, argument0.color, argument0.colo
 draw_rectangle_colour(x1, bar_y1, x2, bar_y2, c_black, c_black, c_black, c_black, true);
 
 if (argument0.interactive && mouse_within_rectangle(x1, y1, x2, y2) && dialog_is_active(argument0.root)) {
-    if (get_release_left()) {
+    if (Controller.mouse_left) {
         argument0.value = (Camera.MOUSE_X - x1) / (x2 - x1);
         script_execute(argument0.onvaluechange, argument0);
     }
