@@ -695,6 +695,14 @@
             }
         },
         {
+            "Key": "1311f21a-7abf-4139-8202-27716dea6aee",
+            "Value": {
+                "id": "8c02e888-7a0d-40c3-9ae2-2fc9415ab9b7",
+                "resourcePath": "sprites\\spr_slider\\spr_slider.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "1336cc12-c500-449a-b00d-65eaaef5a847",
             "Value": {
                 "id": "13a6f152-2559-4bd3-835d-fe659e6f639f",
