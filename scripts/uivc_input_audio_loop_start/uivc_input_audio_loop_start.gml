@@ -19,11 +19,8 @@ if (script_execute(argument0.validation, argument0.value)) {
                 FMODGMS_Snd_Set_LoopPoints(thing.fmod, thing.loop_start * AUDIO_FREQUENCY, thing.loop_end * AUDIO_FREQUENCY);
                 
                 if (Stuff.fmod_playing) {
-                    // setting a loop point while the sound is playing makes things weird
+                    // setting a loop point while the sound is playing makes things weird so we just stop it instead
                     FMODGMS_Chan_StopChannel(Stuff.fmod_channel);
-                    if (!Stuff.fmod_paused) {
-                        FMODGMS_Snd_PlaySound(thing.fmod, Stuff.fmod_channel);
-                    }
                     FMODGMS_Chan_Set_Position(Stuff.fmod_channel, position);
                 }
             }

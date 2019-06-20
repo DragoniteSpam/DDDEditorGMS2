@@ -9,10 +9,13 @@ if (selection >= 0) {
         var listofthings = Stuff.all_bgm;
     }
     
-    argument0.root.el_name.value = listofthings[| selection].name;
-    argument0.root.el_name_internal.value = listofthings[| selection].internal_name;
-    argument0.root.el_loop_start.value = string(listofthings[| selection].loop_start);
-    argument0.root.el_loop_end.value = string(listofthings[| selection].loop_end);
+    var what = listofthings[| selection];
+    
+    argument0.root.el_name.value = what.name;
+    argument0.root.el_name_internal.value = what.internal_name;
+    argument0.root.el_loop_start.value = string(what.loop_start);
+    argument0.root.el_loop_end.value = string(what.loop_end);
+    argument0.root.el_length.text = "Length: " + string(FMODGMS_Snd_Get_Length(what.fmod) / AUDIO_FREQUENCY) + " s";
     
     if (Stuff.fmod_sound != noone) {
         FMODGMS_Chan_StopChannel(Stuff.fmod_channel);
@@ -21,4 +24,6 @@ if (selection >= 0) {
     if (Stuff.setting_alphabetize_lists) {
         ds_list_destroy(listofthings);
     }
+} else {
+    argument0.root.el_length.text = "Length: N/A";
 }

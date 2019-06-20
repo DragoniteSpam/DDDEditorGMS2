@@ -65,6 +65,9 @@ var vx2 = vx1 + 80 + 32;
 var vy2 = vy1 + eh;
 
 yy = yy_base;
+var el_length = create_text(c3 + 16, yy, "Length: N/A", ew, eh, fa_left, ew, dg);
+dg.el_length = el_length;
+yy = yy + el_length.height + spacing;
 var el_loop_start = create_input(c3 + 16, yy, "Loop Start:", ew, eh, uivc_input_audio_loop_start, "", 0, "seconds", validate_double, ui_value_real, 0, 10000, 5, vx1, vy1, vx2, vy2, dg);
 dg.el_loop_start = el_loop_start;
 yy = yy + el_loop_start.height + spacing;
@@ -82,7 +85,7 @@ ds_list_add(dg.contents, el_list,
     el_add, el_remove,
     el_play, el_pause, el_resume, el_stop,
     el_name_text, el_name, el_name_internal_text, el_name_internal,
-    el_effects, el_loop_start, el_loop_end, el_loop_progress,
+    el_effects, el_length, el_loop_start, el_loop_end, el_loop_progress,
     el_confirm);
 
 keyboard_string = "";
