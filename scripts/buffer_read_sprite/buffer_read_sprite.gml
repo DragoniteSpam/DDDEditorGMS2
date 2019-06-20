@@ -1,4 +1,3 @@
-/// @description sprite buffer_read_sprite(buffer);
 /// @param buffer
 
 var sw = buffer_read(argument0, buffer_u16);

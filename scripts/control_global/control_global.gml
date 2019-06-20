@@ -1,5 +1,3 @@
-/// @description void control_global();
-
 /*
  * General keyboard shortcuts
  */
@@ -13,6 +11,8 @@ if (keyboard_check(vk_control)) {
     if (keyboard_check_pressed(ord("S"))) {
         if (keyboard_check(vk_shift)) {
             momu_save_data(noone);
+        } else if (keyboard_check(vk_alt)) {
+            momu_save_assets(noone);
         } else {
             momu_save_map(noone);
         }

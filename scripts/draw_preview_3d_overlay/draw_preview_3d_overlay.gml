@@ -1,6 +1,6 @@
-var w=__view_get( e__VW.WView, view_3d_preview );
-var h=__view_get( e__VW.HView, view_3d_preview );
-var lw=4;
+var w = __view_get( e__VW.WView, view_3d_preview );
+var h = __view_get( e__VW.HView, view_3d_preview );
+var lw = 4;
 
 d3d_set_projection_ortho(0, 0, w, h, 0);
 
@@ -14,8 +14,8 @@ draw_set_color(c_white);
 
 draw_line_width_colour(0, 0, w, 0, lw, Stuff.setting_color, Stuff.setting_color);
 draw_line_width_colour(0, 0, 0, h, lw, Stuff.setting_color, Stuff.setting_color);
-draw_line_width_colour(w-1, 0, w-1, h, lw, Stuff.setting_color, Stuff.setting_color);
-draw_line_width_colour(0, h-1, w, h-1, lw, Stuff.setting_color, Stuff.setting_color);
+draw_line_width_colour(w - 1, 0, w - 1, h, lw, Stuff.setting_color, Stuff.setting_color);
+draw_line_width_colour(0, h - 1, w, h - 1, lw, Stuff.setting_color, Stuff.setting_color);
 
 draw_set_font(FDefault12Bold);
 draw_set_halign(fa_left);

@@ -1,4 +1,4 @@
-var fn = get_save_filename("DDD game data files|*" + EXPORT_EXTENSION_ASSETS, "assets");
+var fn = get_save_filename("DDD game asset files|*" + EXPORT_EXTENSION_ASSETS, "assets");
 if (string_length(fn) > 0) {
     Stuff.save_name_data=string_replace(filename_name(fn), EXPORT_EXTENSION_ASSETS, "");
     serialize_backup(PATH_BACKUP_DATA, Stuff.save_name_data, EXPORT_EXTENSION_ASSETS, fn);

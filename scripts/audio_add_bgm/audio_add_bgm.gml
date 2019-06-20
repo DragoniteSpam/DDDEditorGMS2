@@ -7,7 +7,6 @@ var internal_name = string_lettersdigits(string_replace_all(name, filename_ext(f
 
 var data = instance_create_depth(0, 0, 0, DataAudio);
 data.name = name;
-data.copy_name = internal_name;
 data.fmod = FMODGMS_Snd_LoadStream(filename);
 FMODGMS_Snd_Set_LoopMode(data.fmod, FMODGMS_LOOPMODE_NORMAL, -1);
 data.loop_start = 0;

@@ -89,6 +89,12 @@ if (buffer < 0) {
                 case SerializeThings.TILESET_ALL:
                     serialize_load_tilesets_all(buffer, version);
                     break;
+                case SerializeThings.AUDIO_BGM:
+                    serialize_load_audio_bgm(buffer, version);
+                    break;
+                case SerializeThings.AUDIO_SE:
+                    serialize_load_audio_se(buffer, version);
+                    break;
                 case SerializeThings.EVENTS:
                     serialize_load_events(buffer, version);
                     break;
@@ -125,9 +131,11 @@ if (buffer < 0) {
             }
         }
         
-        if (what == SERIALIZE_MAP) {
-            Stuff.all_maps[? ActiveMap.internal_name] = true;
-            uivc_select_autotile_refresh(/* Camera.selection_fill_autotile */);
+        switch (what) {
+            case SERIALIZE_MAP:
+                Stuff.all_maps[? ActiveMap.internal_name] = true;
+                uivc_select_autotile_refresh();
+                break;
         }
         
         with (Data) if (deactivateable) {
