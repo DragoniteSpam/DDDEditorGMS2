@@ -33,9 +33,8 @@
 #macro MAX_AUTOTILE_SHADER_POSITIONS 12 * 16 * 8 * 2
 #macro MAX_VISIBLE_MOVE_ROUTES 4
 #macro MILLION 1000000
-#macro mouse_x_view mouse_x+__view_get( e__VW.XView, view_current )
-#macro mouse_y_view mouse_y+__view_get( e__VW.YView, view_current )
-#macro N chr($0d) + chr($0a)
+#macro mouse_x_view mouse_x + __view_get( e__VW.XView, view_current )
+#macro mouse_y_view mouse_y + __view_get( e__VW.YView, view_current )
 #macro PATH_AUTOTILE ".\\autotile\\"
 #macro PATH_BACKUP_DATA ".\\backups\\data\\"
 #macro PATH_BACKUP_MAP ".\\backups\\maps\\"
