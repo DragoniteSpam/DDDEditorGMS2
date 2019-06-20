@@ -2,47 +2,47 @@
 
 #region setup
 enum SerializeThings {
-    ERROR                   =$00000000,
+    ERROR                   = 0x00000000,
     // basic stuff
-    MESHES_META             =$00000001,
-    MESHES_REF              =$00000002,
-    MESHES                  =$00000003,
-    TILESET_META            =$00000004,
-    TILESET_BASE            =$00000005,
-    TILESET_AUTO            =$00000006,
-    TILESET_ALL             =$00000007,
-    PARTICLES               =$00000008,
-    NPCS                    =$00000009,
-    NPCS_FULL               =$0000000A,
-    FOLLOWERS               =$0000000B,
-    FOLLOWERS_FULL          =$0000000C,
-    MISC_GRAPHICS           =$0000000D,
-    MISC_GRAPHICS_FULL      =$0000000E,
-    UI_GRAPHICS             =$0000000F,
-    UI_GRAPHICS_FULL        =$00000010,
-    GLOBAL_GRAPHICS         =$00000011,
-    AUDIO_SE                =$00000012,
-    AUDIO_SE_FULL           =$00000013,
-    AUDIO_BGM               =$00000014,
-    MAP_BATCH               =$00000015,
-    MAP_DYNAMIC             =$00000016,
-    EVENTS                  =$00000017,
-    AUTOTILES_META          =$00000018,
-    AUTOTILES_FULL          =$00000019,
-    MAP_META                =$0000001A,
-    DATADATA                =$0000001B,
-    EVENT_CUSTOM            =$0000001C,
-    EVENT_TEMPLATE          =$0000001D,
+    MESHES_META             = 0x00000001,
+    MESHES_REF              = 0x00000002,
+    MESHES                  = 0x00000003,
+    TILESET_META            = 0x00000004,
+    TILESET_BASE            = 0x00000005,
+    TILESET_AUTO            = 0x00000006,
+    TILESET_ALL             = 0x00000007,
+    PARTICLES               = 0x00000008,
+    NPCS                    = 0x00000009,
+    NPCS_FULL               = 0x0000000A,
+    FOLLOWERS               = 0x0000000B,
+    FOLLOWERS_FULL          = 0x0000000C,
+    MISC_GRAPHICS           = 0x0000000D,
+    MISC_GRAPHICS_FULL      = 0x0000000E,
+    UI_GRAPHICS             = 0x0000000F,
+    UI_GRAPHICS_FULL        = 0x00000010,
+    GLOBAL_GRAPHICS         = 0x00000011,
+    AUDIO_SE                = 0x00000012,
+    AUDIO_SE_FULL           = 0x00000013,
+    AUDIO_BGM               = 0x00000014,
+    MAP_BATCH               = 0x00000015,
+    MAP_DYNAMIC             = 0x00000016,
+    EVENTS                  = 0x00000017,
+    AUTOTILES_META          = 0x00000018,
+    AUTOTILES_FULL          = 0x00000019,
+    MAP_META                = 0x0000001A,
+    DATADATA                = 0x0000001B,
+    EVENT_CUSTOM            = 0x0000001C,
+    EVENT_TEMPLATE          = 0x0000001D,
     // game data
-    DATA_ERROR              =$00000100,
-    DATA_INSTANCES          =$00000101,
+    DATA_ERROR              = 0x00000100,
+    DATA_INSTANCES          = 0x00000101,
     // misc
-    MISC_ERROR              =$00001000,
-    MISC_MAP_META           =$00001001,
-    MISC_GLOBAL             =$00001002,
-    MISC_UI                 =$00001003,
+    MISC_ERROR              = 0x00001000,
+    MISC_MAP_META           = 0x00001001,
+    MISC_GLOBAL             = 0x00001002,
+    MISC_UI                 = 0x00001003,
     // the last one i think
-    END_OF_FILE             =$00002000,
+    END_OF_FILE             = 0x00002000,
 }
 
 enum ETypes {
@@ -56,16 +56,16 @@ enum ETypes {
 }
 
 enum ETypeFlags {
-    ENTITY                  =1<<0,
-    ENTITY_TILE             =1<<1,
-    ENTITY_TILE_AUTO        =1<<2,
-    ENTITY_MESH             =1<<3,
-    ENTITY_PAWN             =1<<4,
-    ENTITY_EFFECT           =1<<5,
-    ENTITY_EVENT            =1<<6,
+    ENTITY                  = 1 << 0,
+    ENTITY_TILE             = 1 << 1,
+    ENTITY_TILE_AUTO        = 1 << 2,
+    ENTITY_MESH             = 1 << 3,
+    ENTITY_PAWN             = 1 << 4,
+    ENTITY_EFFECT           = 1 << 5,
+    ENTITY_EVENT            = 1 << 6,
 }
 
-etype_objects=[Entity,
+etype_objects = [Entity,
     EntityTile,
     EntityAutoTile,
     EntityMesh,
@@ -99,6 +99,10 @@ if (!directory_exists(PATH_BACKUP_DATA)) {
 
 if (!directory_exists(PATH_BACKUP_MAP)) {
     directory_create(PATH_BACKUP_MAP);
+}
+
+if (!directory_exists(PATH_BACKUP_ASSET)) {
+    directory_create(PATH_BACKUP_ASSET);
 }
 
 if (!directory_exists(PATH_VRA)) {

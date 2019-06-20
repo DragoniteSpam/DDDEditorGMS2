@@ -13,7 +13,7 @@ if (string_length(fn) > 0) {
     buffer_write(buffer, buffer_u8, $44);
     buffer_write(buffer, buffer_u8, $44);
     buffer_write(buffer, buffer_u8, $44);
-    buffer_write(buffer, buffer_u32, DataVersions._CURRENT-1);
+    buffer_write(buffer, buffer_u32, DataVersions._CURRENT - 1);
     buffer_write(buffer, buffer_u8, SERIALIZE_DATA);
     buffer_write(buffer, buffer_u32, 0);
     
@@ -22,9 +22,9 @@ if (string_length(fn) > 0) {
      */
     
     //serialize_save_autotiles_meta(buffer);
-    serialize_save_autotiles_all(buffer);
+    //serialize_save_autotiles_all(buffer);
     //serialize_save_tilesets_meta(buffer);
-    serialize_save_tilesets_all(buffer);
+    //serialize_save_tilesets_all(buffer);
     serialize_save_event_custom(buffer);
     serialize_save_global_meta(buffer);
     serialize_save_datadata(buffer);

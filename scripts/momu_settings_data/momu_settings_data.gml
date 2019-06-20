@@ -1,7 +1,6 @@
-/// @description void momu_settings_data(MenuElement);
 /// @param MenuElement
 
-var catch=argument0;
+var catch = argument0;
 
 menu_activate(noone);
 

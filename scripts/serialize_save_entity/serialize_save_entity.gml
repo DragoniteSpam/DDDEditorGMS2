@@ -1,6 +1,6 @@
-/// @description void serialize_save_entity(buffer, Entity);
 /// @param buffer
 /// @param Entity
+
 buffer_write(argument0, buffer_string, argument1.name);
 buffer_write(argument0, buffer_u32, argument1.xx);
 buffer_write(argument0, buffer_u32, argument1.yy);

@@ -170,6 +170,7 @@ schedule_rebuild_master_texture = false;
 schedule_view_master_texture = false;
 schedule_save_data = false;
 schedule_save_map = false;
+schedule_save_assets = false;
 schedule_open = false;
 schedule_list_kill = ds_list_create();            // list of arrays of [list index, current index]
 

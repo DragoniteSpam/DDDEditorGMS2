@@ -21,7 +21,7 @@
 #macro EVENT_NODE_CONTACT_WIDTH 320
 #macro EXPORT_EXTENSION_DATA ".dddd"
 #macro EXPORT_EXTENSION_MAP ".dddm"
-#macro EXPORT_EXTENSION_AUDIO ".ddda"
+#macro EXPORT_EXTENSION_ASSETS ".ddda"
 #macro HH 900
 #macro HVIEW __view_get( e__VW.HView, view_current )
 #macro HW 520
@@ -30,21 +30,22 @@
 #macro MAP_X_LIMIT 1024
 #macro MAP_Y_LIMIT 1024
 #macro MAP_Z_LIMIT 512
-#macro MAX_AUTOTILE_SHADER_POSITIONS 12*16*8*2
+#macro MAX_AUTOTILE_SHADER_POSITIONS 12 * 16 * 8 * 2
 #macro MAX_VISIBLE_MOVE_ROUTES 4
 #macro MILLION 1000000
 #macro mouse_x_view mouse_x+__view_get( e__VW.XView, view_current )
 #macro mouse_y_view mouse_y+__view_get( e__VW.YView, view_current )
-#macro N chr($0d)+chr($0a)
+#macro N chr($0d) + chr($0a)
 #macro PATH_AUTOTILE ".\\autotile\\"
 #macro PATH_BACKUP_DATA ".\\backups\\data\\"
 #macro PATH_BACKUP_MAP ".\\backups\\maps\\"
+#macro PATH_BACKUP_ASSET ".\\backups\\assets\\"
 #macro PATH_DUMMY ".\\data\\graphics\\dummy\\"
 #macro PATH_PERMANENT ".\\data\\graphics\\permanent\\"
 #macro PATH_TEMP_CODE "temp\\"            // local storage - no leading punctuation - used for opening files
 #macro PATH_AUDIO ".\\audio\\"
-#macro SELECTION_MASK_ALL ETypeFlags.ENTITY_TILE|ETypeFlags.ENTITY_TILE_AUTO|ETypeFlags.ENTITY_EVENT|ETypeFlags.ENTITY_PAWN|ETypeFlags.ENTITY_MESH|ETypeFlags.ENTITY_EFFECT
-#macro SERIALIZE_AUDIO 2
+#macro SELECTION_MASK_ALL ETypeFlags.ENTITY_TILE | ETypeFlags.ENTITY_TILE_AUTO | ETypeFlags.ENTITY_EVENT | ETypeFlags.ENTITY_PAWN | ETypeFlags.ENTITY_MESH | ETypeFlags.ENTITY_EFFECT
+#macro SERIALIZE_ASSETS 2
 #macro SERIALIZE_DATA 1
 #macro SERIALIZE_MAP 0
 #macro T buffer_f32
@@ -52,7 +53,7 @@
 #macro TILE_DEPTH Stuff.tile_depth
 #macro TILE_HEIGHT Stuff.tile_height
 #macro TILE_MAX_PRIORITY 256
-#macro TILE_PASSABLE TilePassability.UP|TilePassability.DOWN|TilePassability.LEFT|TilePassability.RIGHT
+#macro TILE_PASSABLE TilePassability.UP | TilePassability.DOWN | TilePassability.LEFT | TilePassability.RIGHT
 #macro TILE_WIDTH Stuff.tile_width
 #macro TILESET_TEXTURE_HEIGHT 0.5
 #macro TILESET_TEXTURE_WIDTH 0.5

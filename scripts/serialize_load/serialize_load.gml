@@ -33,7 +33,7 @@ if (buffer < 0) {
         var things = buffer_read(buffer, buffer_u32);
         
         switch (what) {
-            case SERIALIZE_AUDIO:
+            case SERIALIZE_ASSETS:
                 while (!ds_list_empty(Stuff.all_bgm)) {
                     audio_remove_bgm(ds_list_top(Stuff.all_bgm));
                 }

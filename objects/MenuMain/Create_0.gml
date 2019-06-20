@@ -27,6 +27,7 @@ var m_separator = create_menu_element("----------", null, id);
 var mf_new = create_menu_element("New (Ctrl+N)", momu_new, menu_file);
 var mf_save = create_menu_element("Save Map (Ctrl+S)", momu_save_map, menu_file);
 var mf_save_as = create_menu_element("Save Data (Ctrl+Shift+S)", momu_save_data, menu_file);
+var mf_save_as = create_menu_element("Save Assets (Ctrl+Alt+S)", momu_save_assets, menu_file);
 var mf_open = create_menu_element("Open (Ctrl+O)", momu_open, menu_file);
 var mf_backup = create_menu_element("View Backups", momu_backup, menu_file);
 var mf_settings_map = create_menu_element("Settings - Map", momu_settings_map, menu_file);

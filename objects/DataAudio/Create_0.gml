@@ -2,7 +2,8 @@
 event_inherited();
 
 fmod = noone;
-filename = "";
+
+temp_name = "";
 
 loop_start = 0;
 loop_end = 0;

@@ -86,6 +86,11 @@ if (schedule_save_map) {
     schedule_save_map = false;
 }
 
+if (schedule_save_assets) {
+    serialize_save_assets();
+    schedule_save_assets = false;
+}
+
 if (schedule_open) {
     var fn = get_open_filename("DDD game files (" + EXPORT_EXTENSION_DATA + ", " + EXPORT_EXTENSION_MAP + ")|*" + EXPORT_EXTENSION_DATA+";*" + EXPORT_EXTENSION_MAP, "");
     
