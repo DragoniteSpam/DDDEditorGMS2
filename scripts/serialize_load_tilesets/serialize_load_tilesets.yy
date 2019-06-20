@@ -1,8 +1,8 @@
 {
-    "id": "e8a844e6-6ae4-4288-b0d0-ccaefcc9e6b0",
+    "id": "7093dcaa-32d8-44e3-a978-d76f954b1b1b",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "uivc_settings_embed_npcs",
+    "name": "serialize_load_tilesets",
     "IsCompatibility": false,
     "IsDnD": false
 }

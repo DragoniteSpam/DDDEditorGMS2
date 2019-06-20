@@ -4,14 +4,7 @@ var original = buffer_load(argument0);
 var erroneous = false;
 var header = chr(buffer_read(original, buffer_u8)) + chr(buffer_read(original, buffer_u8)) + chr(buffer_read(original, buffer_u8));
 
-if (header == "DDD") {
-    // if it's uncompressed, don't decompress it
-    var buffer = original;
-} else {
-    // if it's compressed, decompress it - if possible
-    var buffer = buffer_decompress(original);
-    buffer_delete(original);
-}
+var buffer = buffer_decompress(original);
 
 // if the decompressed buffer is bad, cancel - try catch will make this so much nicer
 if (buffer < 0) {
@@ -77,17 +70,11 @@ if (buffer < 0) {
             var datatype = buffer_read(buffer, buffer_datatype);
             switch (datatype) {
                 // game stuff
-                case SerializeThings.AUTOTILES_FULL:
-                    serialize_load_autotiles_all(buffer, version);
+                case SerializeThings.AUTOTILES:
+                    serialize_load_autotiles(buffer, version);
                     break;
-                case SerializeThings.AUTOTILES_META:
-                    serialize_load_autotiles_meta(buffer, version);
-                    break;
-                case SerializeThings.TILESET_META:
-                    serialize_load_tilesets_meta(buffer, version);
-                    break;
-                case SerializeThings.TILESET_ALL:
-                    serialize_load_tilesets_all(buffer, version);
+                case SerializeThings.TILESET:
+                    serialize_load_tilesets(buffer, version);
                     break;
                 case SerializeThings.AUDIO_BGM:
                     serialize_load_audio_bgm(buffer, version);
@@ -159,3 +146,4 @@ if (erroneous) {
  */
 
 buffer_delete(buffer);
+buffer_delete(original);

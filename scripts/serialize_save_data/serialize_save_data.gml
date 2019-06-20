@@ -21,10 +21,6 @@ if (string_length(fn) > 0) {
      * data
      */
     
-    //serialize_save_autotiles_meta(buffer);
-    //serialize_save_autotiles_all(buffer);
-    //serialize_save_tilesets_meta(buffer);
-    //serialize_save_tilesets_all(buffer);
     serialize_save_event_custom(buffer);
     serialize_save_global_meta(buffer);
     serialize_save_datadata(buffer);
@@ -41,16 +37,10 @@ if (string_length(fn) > 0) {
      * that's it!
      */
     
-    if (Stuff.setting_compress) {
-		var compressed = buffer_compress(buffer, 0, buffer_tell(buffer));
-        buffer_save(compressed, fn);
-        buffer_save(compressed, "auto" + EXPORT_EXTENSION_DATA);
-        buffer_delete(compressed);
-    } else {
-        buffer_save_ext(buffer, fn, 0, buffer_tell(buffer));
-        buffer_save_ext(buffer, "auto" + EXPORT_EXTENSION_DATA, 0, buffer_tell(buffer));
-    }
-    
+    var compressed = buffer_compress(buffer, 0, buffer_tell(buffer));
+    buffer_save(compressed, fn);
+    buffer_save(compressed, "auto" + EXPORT_EXTENSION_DATA);
+    buffer_delete(compressed);
     buffer_delete(buffer);
 }
 

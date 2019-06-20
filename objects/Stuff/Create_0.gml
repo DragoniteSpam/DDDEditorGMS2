@@ -7,28 +7,28 @@ enum SerializeThings {
     MESHES_META             = 0x00000001,
     MESHES_REF              = 0x00000002,
     MESHES                  = 0x00000003,
-    TILESET_META            = 0x00000004,
-    TILESET_BASE            = 0x00000005,
-    TILESET_AUTO            = 0x00000006,
-    TILESET_ALL             = 0x00000007,
+    x0000004                = 0x00000004,
+    x0000005                = 0x00000005,
+    x0000006                = 0x00000006,
+    TILESET                 = 0x00000007,
     PARTICLES               = 0x00000008,
     NPCS                    = 0x00000009,
-    NPCS_FULL               = 0x0000000A,
+    x000000A                = 0x0000000A,
     FOLLOWERS               = 0x0000000B,
-    FOLLOWERS_FULL          = 0x0000000C,
+    x000000C                = 0x0000000C,
     MISC_GRAPHICS           = 0x0000000D,
-    MISC_GRAPHICS_FULL      = 0x0000000E,
+    x000000E                = 0x0000000E,
     UI_GRAPHICS             = 0x0000000F,
-    UI_GRAPHICS_FULL        = 0x00000010,
+    x0000010                = 0x00000010,
     GLOBAL_GRAPHICS         = 0x00000011,
     AUDIO_SE                = 0x00000012,
-    AUDIO_SE_FULL           = 0x00000013,
+    x0000013                = 0x00000013,
     AUDIO_BGM               = 0x00000014,
     MAP_BATCH               = 0x00000015,
     MAP_DYNAMIC             = 0x00000016,
     EVENTS                  = 0x00000017,
-    AUTOTILES_META          = 0x00000018,
-    AUTOTILES_FULL          = 0x00000019,
+    x0000018                = 0x00000018,
+    AUTOTILES               = 0x00000019,
     MAP_META                = 0x0000001A,
     DATADATA                = 0x0000001B,
     EVENT_CUSTOM            = 0x0000001C,
@@ -309,15 +309,7 @@ save_name_map = "";
 save_name_data = "";
 save_name_assets = "";
 
-// user settings - dddd
-
-setting_embed_tilesets = false;         // small number of large images
-setting_embed_npcs = true;              // large number of small(ish) images
-setting_embed_graphics = true;          // large number of images of varying sizes
-setting_embed_meshes = false;           // already stored in vrax but okay
-setting_embed_se = true;                // possibly large number of small sound effects
-setting_compress = true;			    // this used to be a number but now it's just on/off
-
+// user settings
 ini_open(DATA_INI);
 setting_color = ini_read_real("config", "color", c_green);                  // BGR
 setting_bezier_precision = ini_read_real("config", "bezier", 6);            // preferably keep this between like 4 and 16ish?

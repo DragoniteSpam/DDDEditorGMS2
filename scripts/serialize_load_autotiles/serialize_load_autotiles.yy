@@ -1,8 +1,8 @@
 {
-    "id": "e04c35de-0909-4c34-b1cf-75fc9e726b7a",
+    "id": "19fa2ef9-9c3f-4073-be76-9ea24070ee3c",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "uivc_settings_embed_tilesets",
+    "name": "serialize_load_autotiles",
     "IsCompatibility": false,
     "IsDnD": false
 }

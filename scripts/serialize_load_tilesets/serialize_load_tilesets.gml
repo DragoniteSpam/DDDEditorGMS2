@@ -3,7 +3,8 @@
 
 var version = argument1;
 
-var embedded_tilesets = buffer_read(argument0, buffer_u8);
+// junk - embed settings removed
+buffer_read(argument0, buffer_u8);
 
 ds_list_clear_instances(Stuff.all_tilesets);
 

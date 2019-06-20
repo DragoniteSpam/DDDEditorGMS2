@@ -25,26 +25,6 @@ var el_battle_type = create_radio_array(16, yy, "Battle Style", ew, eh, uivc_set
 create_radio_array_options(el_battle_type, "Team-based", "Melee");
 yy = yy + ui_get_radio_array_height(el_battle_type) + eh;
 
-yy = yy + 32;
-var el_embed_title = create_text(16, yy, "Data Embed Settings", ew, eh, fa_left, dw / 2, dg);
-yy = yy + eh;
-var el_embed_tilesets = create_checkbox(16, yy, "Embed tilesets", ew, eh, uivc_settings_embed_tilesets, "", Stuff.setting_embed_tilesets, dg);
-yy = yy + eh;
-var el_embed_npcs = create_checkbox(16, yy, "Embed NPC graphics", ew, eh, uivc_settings_embed_npcs, "", Stuff.setting_embed_npcs, dg);
-yy = yy + eh;
-var el_embed_graphics = create_checkbox(16, yy, "Embed other graphics", ew, eh, uivc_settings_embed_graphics, "", Stuff.setting_embed_graphics, dg);
-yy = yy + eh;
-var el_embed_meshes = create_checkbox(16, yy, "Embed meshes", ew, eh, uivc_settings_embed_meshes, "", Stuff.setting_embed_meshes, dg);
-yy = yy + eh;
-var el_embed_se = create_checkbox(16, yy, "Embed sound effects", ew, eh, uivc_settings_embed_se, "", Stuff.setting_embed_se, dg);
-yy = yy + eh+ eh;
-
-var el_other_title = create_text(16, yy, "Data Settings", ew, eh, fa_left, dw / 2, dg);
-yy = yy + eh;
-var el_other_compress = create_checkbox(16, yy, "Compress Data", ew, eh, uivc_settings_compress, "", Stuff.setting_compress, dg);
-yy = yy + eh;
-
-
 // second column
 
 yy = 64;
@@ -73,8 +53,6 @@ var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Do
 
 ds_list_add(dg.contents,
     el_gameplay_title, el_gameplay_grid, el_battle_type,
-    el_embed_title, el_embed_tilesets, el_embed_npcs, el_embed_graphics,
-    el_embed_meshes, el_embed_se, el_other_title, el_other_compress,
     el_map_list, el_map_delete, el_map_starting,
     el_confirm);
 
