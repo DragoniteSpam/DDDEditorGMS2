@@ -19,7 +19,6 @@ for (var i=0; i<n_steps; i++) {
     
     buffer_write(argument0, buffer_u16, step[@ 0]);
     switch(step[@ 0]) {
-        // DataVersions.MOVE_ROUTE_MOVE_PARAMS
         case MoveRouteActions.MOVE_DOWN:
         case MoveRouteActions.MOVE_LEFT:
         case MoveRouteActions.MOVE_RIGHT:

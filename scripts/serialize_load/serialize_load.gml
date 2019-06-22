@@ -23,11 +23,11 @@ if (buffer < 0) {
         
         var version = buffer_read(buffer, buffer_u32);
         
-        /*if (version < DataVersions.MAP_CODE_SINGLE) {
+        if (version < DataVersions.MAP_CODE_SINGLE) {
             show_error("We stopped supporting versions of the data file before MAP_CODE_SINGLE (" + string(DataVersions.MAP_CODE_SINGLE) +
                 "). This current version is " + string(version) + ". Please open and save " + filename_name(datafile) +
                 " through Version 0.1.0.9 of the editor.", true);
-        }*/
+        }
         
         var what = buffer_read(buffer, buffer_u8);
         var things = buffer_read(buffer, buffer_u32);
@@ -67,10 +67,8 @@ if (buffer < 0) {
          * data types
          */
         
-        if (version >= DataVersions.NOT_STUPID_DATA_SIZE) {
-            // you will never have this many Things
-            things = 100000000;
-        }
+        // you will never have this many Things
+        things = 100000000;
         
         var stop = false;
         repeat(things) {
@@ -106,7 +104,7 @@ if (buffer < 0) {
                     break;
                 // map stuff
                 case SerializeThings.MAP_META:
-                    serialize_load_map_contents_meta(buffer, version);
+                    serialize_load_map_contents_meta(buffer, version); 
                     break;
                 case SerializeThings.MAP_BATCH:
                     serialize_load_map_contents_batch(buffer, version);

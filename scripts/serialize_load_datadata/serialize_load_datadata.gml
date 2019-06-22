@@ -45,9 +45,7 @@ repeat (n_datadata) {
             property.char_limit = buffer_read(argument0, buffer_u16);
             property.type_guid = buffer_read(argument0, buffer_u32);
             
-            if (argument1 >= DataVersions.DATA_INSTANCE_CODE) {
-                property.default_code = buffer_read(argument0, buffer_string);
-            }
+            property.default_code = buffer_read(argument0, buffer_string);
         }
     }
 }
