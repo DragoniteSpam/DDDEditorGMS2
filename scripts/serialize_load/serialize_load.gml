@@ -25,7 +25,7 @@ if (buffer < 0) {
         
         if (version < DataVersions.MAP_CODE_SINGLE) {
             show_error("We stopped supporting versions of the data file before MAP_CODE_SINGLE (" + string(DataVersions.MAP_CODE_SINGLE) +
-                "). This current version is " + string(version) + ". Please open and save " + filename_name(datafile) +
+                "). This current version is " + string(version) + ". Please open and save " + filename_name(argument0) +
                 " through Version 0.1.0.9 of the editor.", true);
         }
         
