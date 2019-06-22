@@ -26,6 +26,7 @@ with (UINotification) {
 }
 
 if (DEBUG) {
+    draw_set_halign(fa_left);
     draw_rectangle_colour(0, 0, room_width, yy, false, c_white, c_white, c_white, c_white);
     draw_text_colour(16, yy / 2, "FPS: " + string(fps), c_black, c_black, c_black, c_black, 1);
     draw_text_colour(128, yy / 2, "Instant: " + string(fps_real), c_black, c_black, c_black, c_black, 1);

@@ -7711,6 +7711,14 @@
             }
         },
         {
+            "Key": "e6ccc2c7-7c9e-4015-9456-84b99b3fec49",
+            "Value": {
+                "id": "8de51b91-9fc3-4798-8e91-01ed27c01e95",
+                "resourcePath": "views\\e6ccc2c7-7c9e-4015-9456-84b99b3fec49.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "e6ceae80-9f81-419d-8803-e6b479ba85f7",
             "Value": {
                 "id": "c908c43b-ab01-479c-92a7-18e7c4892faf",
@@ -8428,6 +8436,14 @@
                 "id": "d115c4c3-3d3c-493f-be69-3b5197f33d21",
                 "resourcePath": "scripts\\selected_rectangle\\selected_rectangle.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "fce60398-cc5e-4b1d-a893-3b969f2beae8",
+            "Value": {
+                "id": "688b6b1f-7729-42ce-aa01-acdfdb464f0f",
+                "resourcePath": "datafiles_yy\\data\\lua\\map.lua.yy",
+                "resourceType": "GMIncludedFile"
             }
         },
         {

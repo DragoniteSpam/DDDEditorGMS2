@@ -1,6 +1,7 @@
 #macro PATH_RESOURCES ".\\data\\resources\\"
 #macro PATH_GRAPHICS ".\\data\\graphics\\"
 #macro PATH_VRA ".\\data\\vra\\"
+#macro PATH_LUA ".\\data\\lua\\"
 #macro ALARM_CAMERA_SAVE 0
 #macro AUTOTILE_AVAILABLE_MAX 100
 #macro AUTOTILE_MAX 16

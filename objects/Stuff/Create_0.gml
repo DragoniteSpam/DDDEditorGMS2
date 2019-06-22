@@ -72,6 +72,11 @@ etype_objects = [Entity,
     EntityPawn,
     EntityEffect,
     EntityEvent];
+
+var buffer = buffer_load(PATH_LUA + "map.lua");
+default_lua_map = buffer_read(buffer, buffer_text);
+buffer_delete(buffer);
+
 #endregion
 
 alarm[0] = 1200;
