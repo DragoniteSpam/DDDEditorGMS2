@@ -247,7 +247,6 @@ data_load_vra();
 all_bgm = ds_list_create();
 all_se = ds_list_create();
 
-FMODGMS_Util_Handshake();
 FMODGMS_Sys_Create();
 FMODGMS_Sys_Initialize(32);
 
