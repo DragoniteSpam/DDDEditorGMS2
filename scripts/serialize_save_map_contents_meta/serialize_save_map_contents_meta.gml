@@ -15,8 +15,6 @@ buffer_write(argument0, buffer_u16, ActiveMap.zz);
 
 buffer_write(argument0, buffer_u8, ActiveMap.tileset);
 
-buffer_write(argument0, buffer_string, ActiveMap.audio_code);
-
 buffer_write(argument0, buffer_f32, ActiveMap.fog_start);
 buffer_write(argument0, buffer_f32, ActiveMap.fog_end);
 
@@ -24,4 +22,4 @@ var bools = pack(ActiveMap.indoors, ActiveMap.draw_water, ActiveMap.fast_travel_
     ActiveMap.is_3d);
 
 buffer_write(argument0, buffer_u32, bools);
-buffer_write(argument0, buffer_string, ActiveMap.weather_code);
+buffer_write(argument0, buffer_string, ActiveMap.code);

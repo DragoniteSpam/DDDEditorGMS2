@@ -1,4 +1,3 @@
-/// @description d3d - set projection 
 /// @param xFrom	x of from position
 /// @param yFrom	y of from position
 /// @param zFrom	z of from position

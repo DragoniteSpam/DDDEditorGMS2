@@ -18,19 +18,6 @@ ActiveMap.tileset = buffer_read(argument0, buffer_u8);
 data_resize_map(xx, yy, zz);
 
 if (argument1 >= DataVersions.MAP_VARS) {
-    if (argument1 >= DataVersions.MAP_AUDIO_CODE) {
-        ActiveMap.audio_code = buffer_read(argument0, buffer_string);
-    } else {
-        #region legacy audio
-        buffer_read(argument0, buffer_string);
-        var n_ambient = buffer_read(argument0, buffer_u16);
-        repeat(n_ambient) {
-            buffer_read(argument0, buffer_string);
-            buffer_read(argument0, buffer_u8);
-        }
-        #endregion
-    }
-    
     ActiveMap.fog_start = buffer_read(argument0, buffer_f32);
     ActiveMap.fog_end = buffer_read(argument0, buffer_f32);
     
@@ -46,5 +33,9 @@ if (argument1 >= DataVersions.MAP_3D) {
 }
 
 if (argument1 >= DataVersions.MAP_WEATHER_CODE) {
-    ActiveMap.weather_code = buffer_read(argument0, buffer_string);
+    if (argument1 >= DataVersions.MAP_CODE_SINGLE) {
+        ActiveMap.code = buffer_read(argument0, buffer_string);
+    } else {
+        buffer_read(argument0, buffer_string);
+    }
 }

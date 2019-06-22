@@ -86,8 +86,3 @@ ds_list_add(md_audio.contents, md_aud_bgm, md_aud_se);
 var mh_help = create_menu_element("Contents", momu_help, menu_help);
 var mh_about = create_menu_element("Credits", momu_about, menu_help);
 ds_list_add(menu_help.contents, mh_help, mh_about);
-
-enum MenuTabs {
-    FILE,
-    EDIT
-}

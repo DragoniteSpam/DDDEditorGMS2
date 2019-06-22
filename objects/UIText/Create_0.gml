@@ -1,7 +1,6 @@
 event_inherited();
 
-text="text";
-render=ui_render_text;
+text = "text";
+render = ui_render_text;
 
-wrap_width=MILLION;
-
+wrap_width = MILLION;

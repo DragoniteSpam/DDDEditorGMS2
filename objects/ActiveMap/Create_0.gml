@@ -15,15 +15,6 @@ summary = "It's a map, that does map things";
 
 tileset = 0;                              // index
 
-audio_code =
-@"-- Required; called once per second when the game checks to see if the audio
--- should be updated.
--- @param current the current song (internal name)
--- @param t the number of seconds since Game Start
-function Update(current, t)
-    return 0
-end";
-
 fog_start = 256;                          // float
 fog_end = 1024;                           // float
 indoors = false;                          // bool
@@ -35,9 +26,9 @@ is_3d = true;
 
 discovery = 0;                            // index
 
-weather_code =
-@"-- Required; called once per second when the game checks to see if the
--- weather should change.
+code =
+@"-- Required; called once per second when the game checks to see if anything
+-- should change on the map (weather, effects, audio, etc).
 -- @param current the current weather
 -- @param t the number of seconds since Game Start
 function Update(current, t)

@@ -17,6 +17,7 @@ zup = ini_read_real("Camera", "zup", 1);
 
 fov = ini_read_real("Camera", "fov", 50);
 pitch = ini_read_real("Camera", "pitch", 0);
+direction = ini_read_real("Camera", "direction", 0);
 ini_close();
 
 alarm[ALARM_CAMERA_SAVE]=room_speed*CAMERA_SAVE_FREQUENCY;

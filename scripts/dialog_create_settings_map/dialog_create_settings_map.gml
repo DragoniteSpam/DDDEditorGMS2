@@ -68,13 +68,9 @@ yy = yy + 32;
 var el_other_fast_travel_from = create_checkbox(c2, yy, "Can fast travel from?", ew, eh, uivc_settings_map_fast_travel_from, "", ActiveMap.fast_travel_from, dg);
 
 yy = yy_column_start;
-var el_audio_heading = create_text(c3, yy, "Audio Code", ew, eh, fa_left, ew, dg);
+var el_code_heading = create_text(c3, yy, "Update Code", ew, eh, fa_left, ew, dg);
 yy = yy + 32;
-var el_audio = create_input_code(c3, yy, "", ew, eh, 0, vy1, vx2, vy2, ActiveMap.audio_code, uivc_audio_code, dg);
-yy = yy + 32;
-var el_weather_heading = create_text(c3, yy, "Weather Code", ew, eh, fa_left, ew, dg);
-yy = yy + 32;
-var el_weather = create_input_code(c3, yy, "", ew, eh, 0, vy1, vx2, vy2, ActiveMap.weather_code, uivc_weather_code, dg);
+var el_code = create_input_code(c3, yy, "", ew, eh, 0, vy1, vx2, vy2, ActiveMap.code, uivc_map_code, dg);
 
 var b_width = 128;
 var b_height = 32;
@@ -83,7 +79,7 @@ var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Co
 ds_list_add(dg.contents, el_name_text, el_name, el_name_internal, el_summary,
     el_dim_text, el_width, el_height, el_depth,
     el_other, el_other_3d, el_other_fog_start, el_other_fog_end, el_other_indoors, el_other_water, el_other_fast_travel_to, el_other_fast_travel_from,
-    el_audio_heading, el_audio, el_weather_heading, el_weather,
+    el_code_heading, el_code,
     el_confirm);
 
 keyboard_string = "";

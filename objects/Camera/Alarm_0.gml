@@ -1,6 +1,6 @@
 /// @description we're okay with this being an alarm because it can happen on its own regardless of what else is happening
 
-alarm[ALARM_CAMERA_SAVE]=room_speed*CAMERA_SAVE_FREQUENCY;
+alarm[ALARM_CAMERA_SAVE] = room_speed * CAMERA_SAVE_FREQUENCY;
 
 ini_open(DATA_INI);
 ini_write_real("Camera", "x", x);
@@ -17,5 +17,5 @@ ini_write_real("Camera", "zup", zup);
 
 ini_write_real("Camera", "fov", fov);
 ini_write_real("Camera", "pitch", pitch);
+ini_write_real("Camera", "direction", direction);
 ini_close();
-

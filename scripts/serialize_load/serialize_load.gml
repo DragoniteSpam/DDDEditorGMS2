@@ -22,6 +22,13 @@ if (buffer < 0) {
         Stuff.save_name_data = string_replace(filename_name(argument0), EXPORT_EXTENSION_DATA, "");
         
         var version = buffer_read(buffer, buffer_u32);
+        
+        /*if (version < DataVersions.MAP_CODE_SINGLE) {
+            show_error("We stopped supporting versions of the data file before MAP_CODE_SINGLE (" + string(DataVersions.MAP_CODE_SINGLE) +
+                "). This current version is " + string(version) + ". Please open and save " + filename_name(datafile) +
+                " through Version 0.1.0.9 of the editor.", true);
+        }*/
+        
         var what = buffer_read(buffer, buffer_u8);
         var things = buffer_read(buffer, buffer_u32);
         

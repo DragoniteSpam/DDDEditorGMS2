@@ -1,12 +1,11 @@
 event_inherited();
 
-render=ui_render_main;
-root=id;
+render = ui_render_main;
+root = id;
 
-element_height=24;
+element_height = 24;
 
-tabs=ds_list_create();
+tabs = ds_list_create();
 
-active_tab=noone;
-active_element=noone;
-
+active_tab = noone;
+active_element = noone;
