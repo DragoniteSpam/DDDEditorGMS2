@@ -15,6 +15,7 @@ if (argument0.selected_data.is_enum) {
 } else {
     argument0.el_property_type.interactive = true;
     argument0.el_property_size.interactive = true;
+    argument0.el_property_size.value = string(argument0.selected_property.max_size);
     
     argument0.el_property_type.value = argument0.selected_property.type;
     
@@ -33,8 +34,10 @@ if (argument0.selected_data.is_enum) {
             
             if (argument0.selected_property.type == DataTypes.INT) {
                 argument0.el_property_default_int.enabled = true;
+                argument0.el_property_default_int.value = string(argument0.selected_property.default_int);
             } else if (argument0.selected_property.type == DataTypes.FLOAT) {
                 argument0.el_property_default_real.enabled = true;
+                argument0.el_property_default_real.value = string(argument0.selected_property.default_real);
             }
             break;
         case DataTypes.STRING:
@@ -42,9 +45,11 @@ if (argument0.selected_data.is_enum) {
             argument0.el_property_char_limit.enabled = true;
             argument0.el_property_char_limit.value = string(argument0.selected_property.char_limit);
             argument0.el_property_default_string.enabled = true;
+            argument0.el_property_default_string.value = argument0.selected_property.default_string;
             break;
         case DataTypes.BOOL:
             argument0.el_property_default_bool.enabled = true;
+            argument0.el_property_default_bool.value = argument0.selected_property.default_bool;
             break;
         case DataTypes.ENUM:
         case DataTypes.DATA:
