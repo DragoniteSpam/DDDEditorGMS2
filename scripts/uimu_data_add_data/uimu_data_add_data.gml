@@ -19,19 +19,22 @@ if (data != noone) {
         var property = data.properties[| i];
         switch (property.type) {
             case DataTypes.INT:
+                ds_list_add(instance.values, property.default_int);
+                break;
             case DataTypes.FLOAT:
+                ds_list_add(instance.values, property.default_real);
+                break;
             case DataTypes.ENUM:
             case DataTypes.DATA:
                 ds_list_add(instance.values, 0);
                 break;
             case DataTypes.STRING:
-                ds_list_add(instance.values, "");
+                ds_list_add(instance.values, property.default_string);
                 break;
             case DataTypes.BOOL:
-                ds_list_add(instance.values, false);
+                ds_list_add(instance.values, clamp(property.default_int, 0, 1));
                 break;
             case DataTypes.CODE:
-                debug(property.default_code);
                 ds_list_add(instance.values, property.default_code);
                 break;
             case DataTypes.COLOR:
