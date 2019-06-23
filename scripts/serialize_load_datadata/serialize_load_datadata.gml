@@ -6,10 +6,8 @@ repeat (n_datadata) {
     var bools = buffer_read(argument0, buffer_u8);
     
     if (unpack(bools, 0)) {
-        // is enum?
         var data = instantiate(DataEnum);
     } else {
-        // is data?
         var data = instantiate(DataData);
     }
     guid_remove(data.GUID);
@@ -44,8 +42,13 @@ repeat (n_datadata) {
             property.number_scale = buffer_read(argument0, buffer_u8);
             property.char_limit = buffer_read(argument0, buffer_u16);
             property.type_guid = buffer_read(argument0, buffer_u32);
-            
             property.default_code = buffer_read(argument0, buffer_string);
+            
+            if (argument1 >= DataVersions.DATADATA_LISTS) {
+                property.max_size = buffer_read(argument0, buffer_u8);
+                property.default_string = buffer_read(argument0, buffer_string);
+                property.default_real = buffer_read(argument0, buffer_f32);
+            }
         }
     }
 }
