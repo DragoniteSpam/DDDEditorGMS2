@@ -47,6 +47,10 @@ repeat (n_datadata) {
             if (argument1 >= DataVersions.DATADATA_LISTS) {
                 property.max_size = buffer_read(argument0, buffer_u8);
                 property.default_string = buffer_read(argument0, buffer_string);
+                // whoops
+                if (argument1 >= DataVersions.DATADATA_DEFAULTS) {
+                    property.default_int = buffer_read(argument0, buffer_s32);
+                }
                 property.default_real = buffer_read(argument0, buffer_f32);
             }
         }

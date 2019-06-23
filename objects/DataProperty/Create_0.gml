@@ -16,6 +16,7 @@ type_guid = 0;                        // Data, enum
 max_size = 1;
 
 default_real = 0;
+default_int = 0;
 default_string = "";
 default_code =
 @"-- write Lua here";

@@ -34,6 +34,7 @@ for (var i = 0; i < n_datadata; i++) {
             buffer_write(argument0, buffer_string, property.default_code);
             buffer_write(argument0, buffer_u8, property.max_size);
             buffer_write(argument0, buffer_string, property.default_string);
+            buffer_write(argument0, buffer_s32, property.default_int);
             buffer_write(argument0, buffer_f32, property.default_real);
         }
     }

@@ -14,6 +14,7 @@ if (argument0.selected_data.is_enum) {
     // nothing special for here
 } else {
     argument0.el_property_type.interactive = true;
+    argument0.el_property_size.interactive = true;
     
     argument0.el_property_type.value = argument0.selected_property.type;
     
@@ -29,14 +30,21 @@ if (argument0.selected_data.is_enum) {
             argument0.el_property_min.value = string(argument0.selected_property.range_min);
             argument0.el_property_max.value = string(argument0.selected_property.range_max);
             argument0.el_property_scale.value = argument0.selected_property.number_scale;
+            
+            if (argument0.selected_property.type == DataTypes.INT) {
+                argument0.el_property_default_int.enabled = true;
+            } else if (argument0.selected_property.type == DataTypes.FLOAT) {
+                argument0.el_property_default_real.enabled = true;
+            }
             break;
         case DataTypes.STRING:
             argument0.el_property_char_limit.interactive = true;
             argument0.el_property_char_limit.enabled = true;
             argument0.el_property_char_limit.value = string(argument0.selected_property.char_limit);
+            argument0.el_property_default_string.enabled = true;
             break;
         case DataTypes.BOOL:
-            argument0.el_property_bool_note.enabled = true;
+            argument0.el_property_default_bool.enabled = true;
             break;
         case DataTypes.ENUM:
         case DataTypes.DATA:
@@ -62,7 +70,7 @@ if (argument0.selected_data.is_enum) {
             } else  {
                 argument0.el_property_type_guid.onmouseup = omu_data_data_select;
             }
-            
+            argument0.el_property_default_na.enabled = true;
             break;
         case DataTypes.CODE:
             argument0.el_property_default_code.enabled = true;

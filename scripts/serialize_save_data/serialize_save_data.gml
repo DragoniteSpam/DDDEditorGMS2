@@ -72,5 +72,6 @@ enum DataVersions {
     MAP_AUDIO_CODE              = 24,
     MAP_CODE_SINGLE             = 25,
     DATADATA_LISTS              = 26,
+    DATADATA_DEFAULTS           = 27,
     _CURRENT                    /* = whatever the last one is + 1 */
 }
