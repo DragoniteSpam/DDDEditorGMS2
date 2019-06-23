@@ -2,7 +2,7 @@
 event_inherited();
 
 fmod = noone;
-
+fmod_type = 0;          // FMODGMS_SOUND_TYPE_*
 temp_name = "";
 
 loop_start = 0;

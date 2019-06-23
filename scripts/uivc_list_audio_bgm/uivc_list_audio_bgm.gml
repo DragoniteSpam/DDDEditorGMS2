@@ -15,7 +15,7 @@ if (selection >= 0) {
     argument0.root.el_name_internal.value = what.internal_name;
     argument0.root.el_loop_start.value = string(what.loop_start);
     argument0.root.el_loop_end.value = string(what.loop_end);
-    argument0.root.el_length.text = "Length: " + string(FMODGMS_Snd_Get_Length(what.fmod) / AUDIO_FREQUENCY) + " s";
+    argument0.root.el_length.text = "Length: " + string(FMODGMS_Snd_Get_Length(what.fmod) / AUDIO_BASE_FREQUENCY) + " s";
     
     if (Stuff.fmod_sound != noone) {
         FMODGMS_Chan_StopChannel(Stuff.fmod_channel);

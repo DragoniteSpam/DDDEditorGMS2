@@ -16,7 +16,7 @@ if (script_execute(argument0.validation, argument0.value)) {
                 thing.loop_start = rv;
                 var position = FMODGMS_Chan_Get_Position(thing.fmod);
                 
-                FMODGMS_Snd_Set_LoopPoints(thing.fmod, thing.loop_start * AUDIO_FREQUENCY, thing.loop_end * AUDIO_FREQUENCY);
+                FMODGMS_Snd_Set_LoopPoints(thing.fmod, thing.loop_start * AUDIO_BASE_FREQUENCY, thing.loop_end * AUDIO_BASE_FREQUENCY);
                 
                 if (Stuff.fmod_playing) {
                     // setting a loop point while the sound is playing makes things weird so we just stop it instead

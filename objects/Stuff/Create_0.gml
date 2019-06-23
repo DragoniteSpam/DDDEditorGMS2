@@ -251,7 +251,7 @@ FMODGMS_Sys_Create();
 FMODGMS_Sys_Initialize(32);
 
 fmod_channel = FMODGMS_Chan_CreateChannel();
-FMODGMS_Chan_Set_Frequency(fmod_channel, AUDIO_FREQUENCY);
+FMODGMS_Chan_Set_Frequency(fmod_channel, AUDIO_BASE_FREQUENCY);
 fmod_sound = noone;
 fmod_playing = false;
 fmod_paused = false;

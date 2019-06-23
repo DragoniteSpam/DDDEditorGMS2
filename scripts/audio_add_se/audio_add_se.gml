@@ -8,6 +8,7 @@ var internal_name = string_lettersdigits(string_replace_all(name, filename_ext(f
 var data = instance_create_depth(0, 0, 0, DataAudio);
 data.name = name;
 data.fmod = FMODGMS_Snd_LoadStream(filename);
+data.fmod_type = FMODGMS_Snd_Get_Type(data.fmod);
 internal_name_set(data, internal_name);
 
 data.temp_name = PATH_AUDIO + string(data.GUID) + filename_ext(filename);
