@@ -53,7 +53,9 @@ for (var i = 0; i < n_datadata; i++) {
                     case DataTypes.AUDIO_SE:
                         break;
                 }
-                ds_list_add(instance.values, buffer_read(argument0, btype));
+                var plist = ds_list_create();
+                ds_list_add(plist, buffer_read(argument0, btype));
+                ds_list_add(instance.values, plist);
             }
         }
     }

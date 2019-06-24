@@ -30,11 +30,11 @@ for (var i = 0; i < ds_list_size(Stuff.original_data); i++) {
                                 for (var k = 0; k < ds_list_size(data_old.instances); k++) {
                                     var instance = data_old.instances[| k];
                                     if (property_new.type == DataTypes.INT) {
-                                        instance.values[| j] = floor(instance.values[| j]);
-                                    } else {
-                                        instance.values[| j] = instance.values[| j];
+                                        // @todo the value list
+                                        ds_list_set(instance.values[| j], 0, floor(ds_list_find_value(instance.values[| j], 0)));
                                     }
-                                    instance.values[| j] = clamp(instance.values[| j], property_new.range_min, property_new.range_max);
+                                    // @todo the value list
+                                    ds_list_set(instance.values[| j], 0, clamp(ds_list_find_value(instance.values[| j], 0), property_new.range_min, property_new.range_max));
                                 }
                                 break;
                             case DataTypes.STRING:
@@ -43,16 +43,17 @@ for (var i = 0; i < ds_list_size(Stuff.original_data); i++) {
                                 missing_count++;
                                 for (var k = 0; k < ds_list_size(data_old.instances); k++) {
                                     var instance = data_old.instances[| k];
-                                    if (validate_double(string(instance.values[| j]))) {
+                                    // @todo the value list in several places
+                                    if (validate_double(string(ds_list_find_value(instance.values[| j], 0)))) {
                                         if (property_new.type == DataTypes.INT) {
-                                            instance.values[| j] = floor(real(instance.values[| j]));
+                                            ds_list_set(instance.values[| j], 0, floor(real(ds_list_find_value(instance.values[| j], 0))));
                                         } else {
-                                            instance.values[| j] = real(instance.values[| j]);
+                                            ds_list_set(instance.values[| j], 0, real(ds_list_find_value(instance.values[| j], 0)));
                                         }
                                     } else {
-                                        instance.values[| j] = property_new.range_min;
+                                        ds_list_set(instance.values[| j], 0, property_new.range_min);
                                     }
-                                    instance.values[| j] = clamp(instance.values[| j], property_new.range_min, property_new.range_max);
+                                    ds_list_set(instance.values[| j], 0, clamp(ds_list_find_value(instance.values[| j], 0), property_new.range_min, property_new.range_max));
                                 }
                                 break;
                             case DataTypes.ENUM:
@@ -70,7 +71,7 @@ for (var i = 0; i < ds_list_size(Stuff.original_data); i++) {
                                 missing_count++;
                                 for (var k = 0; k < ds_list_size(data_old.instances); k++) {
                                     var instance = data_old.instances[| k];
-                                    instance.values[| j] = property_new.range_min;
+                                    ds_list_set(instance.values[| j], 0, property_new.range_min);
                                 }
                                 break;
                         }
@@ -86,10 +87,11 @@ for (var i = 0; i < ds_list_size(Stuff.original_data); i++) {
                                 for (var k = 0; k < ds_list_size(data_old.instances); k++) {
                                     var instance = data_old.instances[| k];
                                     if (property_old.type == DataTypes.BOOL) {
-                                        instance.values[| j] = Stuff.tf[instance.values[| j]];
+                                        var v = Stuff.tf[ds_list_find_value(instance.values[| j], 0)];
                                     } else {
-                                        instance.values[| j] = string(instance.values[| j]);
+                                        var v = string(instance.values[| j]);
                                     }
+                                    ds_list_set(instance.values[| j], 0, v);
                                 }
                                 break;
                             case DataTypes.ENUM:
@@ -107,7 +109,7 @@ for (var i = 0; i < ds_list_size(Stuff.original_data); i++) {
                                 missing_count++;
                                 for (var k = 0; k < ds_list_size(data_old.instances); k++) {
                                     var instance = data_old.instances[| k];
-                                    instance.values[| j] = "";
+                                    ds_list_set(instance.values[| j], 0, "");
                                 }
                                 break;
                         }
@@ -119,7 +121,7 @@ for (var i = 0; i < ds_list_size(Stuff.original_data); i++) {
                         missing_count++;
                         for (var k = 0; k < ds_list_size(data_old.instances); k++) {
                             var instance = data_old.instances[| k];
-                            instance.values[| j] = true;
+                            ds_list_set(instance.values[| j], 0, true);
                         }
                         break;
                     case DataTypes.DATA:
@@ -136,7 +138,7 @@ for (var i = 0; i < ds_list_size(Stuff.original_data); i++) {
                             // go through all instances and zero out the property values
                             for (var k = 0; k < ds_list_size(data_old.instances); k++) {
                                 var instance = data_old.instances[| k];
-                                instance.values[| j] = 0;
+                                ds_list_set(instance.values[| j], 0, 0);
                             }
                         // if the properties were data types and have changed but still exist, yell
                         } else if (property_old.type_guid != property_new.type_guid) {
@@ -144,14 +146,14 @@ for (var i = 0; i < ds_list_size(Stuff.original_data); i++) {
                             missing_count++;
                             for (var k = 0; k < ds_list_size(data_old.instances); k++) {
                                 var instance = data_old.instances[| k];
-                                instance.values[| j] = 0;
+                                ds_list_set(instance.values[| j], 0, 0);
                             }
                         } else {
                             buffer_write(missing_output, buffer_text, data_new.name + "." + property_new.name + " has changed to a data type or enum. All instances of " + data_new.name + "." + property_new.name + " will be set to null.\r\n");
                             missing_count++;
                             for (var k = 0; k < ds_list_size(data_old.instances); k++) {
                                 var instance = data_old.instances[| k];
-                                instance.values[| j] = noone;
+                                ds_list_set(instance.values[| j], 0, noone);
                             }
                         }
                         break;
@@ -161,7 +163,7 @@ for (var i = 0; i < ds_list_size(Stuff.original_data); i++) {
                         missing_count++;
                         for (var k = 0; k < ds_list_size(data_old.instances); k++) {
                             var instance = data_old.instances[| k];
-                            instance.values[| j] = property_new.default_code;
+                            ds_list_set(instance.values[| j], 0, property_new.default_code);
                         }
                         break;
                     case DataTypes.COLOR:
@@ -205,26 +207,36 @@ for (var i = 0; i < n_data; i++) {
         var n_properties = ds_list_size(data.properties);
         for (var j = 0; j < ds_list_size(data.instances); j++) {
             var instance = data.instances[| j];
-            for (var k = ds_list_size(instance.values); k<n_properties; k++) {
+            for (var k = ds_list_size(instance.values); k < n_properties; k++) {
                 var property = data.properties[| k];
                 switch (property.type) {
                     case DataTypes.INT:
                     case DataTypes.FLOAT:
-                        ds_list_add(instance.values, property.range_min);
+                        var plist = ds_list_create();
+                        ds_list_add(plist, property.range_min);
+                        ds_list_add(instance.values, );
                         break;
                     case DataTypes.ENUM:
                     case DataTypes.DATA:
-                        ds_list_add(instance.values, 0);
+                        var plist = ds_list_create();
+                        ds_list_add(plist, 0);
+                        ds_list_add(instance.values, plist);
                         break;
                     case DataTypes.STRING:
-                        ds_list_add(instance.values, "");
+                        var plist = ds_list_create();
+                        ds_list_add(plist, "");
+                        ds_list_add(instance.values, plist);
                         break;
                     case DataTypes.BOOL:
-                        ds_list_add(instance.values, false);
+                        var plist = ds_list_create();
+                        ds_list_add(plist, false);
+                        ds_list_add(instance.values, plist);
                         break;
                     // @todo data types
                     case DataTypes.CODE:
-                        ds_list_add(instance.values, property.default_code);
+                        var plist = ds_list_create();
+                        ds_list_add(plist, property.default_code);
+                        ds_list_add(instance.values, plist);
                         break;
                     case DataTypes.COLOR:
                     case DataTypes.MESH:

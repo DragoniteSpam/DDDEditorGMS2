@@ -49,7 +49,7 @@ if (argument0.selected_data.is_enum) {
             break;
         case DataTypes.BOOL:
             argument0.el_property_default_bool.enabled = true;
-            argument0.el_property_default_bool.value = argument0.selected_property.default_bool;
+            argument0.el_property_default_bool.value = clamp(argument0.selected_property.default_int, 0, 1);
             break;
         case DataTypes.ENUM:
         case DataTypes.DATA:

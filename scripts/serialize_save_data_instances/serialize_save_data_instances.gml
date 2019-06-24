@@ -55,7 +55,8 @@ for (var i = 0; i < n_datadata; i++) {
                         break;
                     
                 }
-                buffer_write(argument0, btype, instance.values[| k]);
+                var vlist = instance.values[| k];
+                buffer_write(argument0, btype, ds_list_find_value(vlist, 0));
             }
         }
     }

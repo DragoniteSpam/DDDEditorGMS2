@@ -19,23 +19,35 @@ if (data != noone) {
         var property = data.properties[| i];
         switch (property.type) {
             case DataTypes.INT:
-                ds_list_add(instance.values, property.default_int);
+                var plist = ds_list_create();
+                ds_list_add(plist, property.default_int);
+                ds_list_add(instance.values, plist);
                 break;
             case DataTypes.FLOAT:
-                ds_list_add(instance.values, property.default_real);
+                var plist = ds_list_create();
+                ds_list_add(plist, property.default_real);
+                ds_list_add(instance.values, plist);
                 break;
             case DataTypes.ENUM:
             case DataTypes.DATA:
-                ds_list_add(instance.values, 0);
+                var plist = ds_list_create();
+                ds_list_add(plist, 0);
+                ds_list_add(instance.values, plist);
                 break;
             case DataTypes.STRING:
-                ds_list_add(instance.values, property.default_string);
+                var plist = ds_list_create();
+                ds_list_add(plist, property.default_string);
+                ds_list_add(instance.values, plist);
                 break;
             case DataTypes.BOOL:
-                ds_list_add(instance.values, clamp(property.default_int, 0, 1));
+                var plist = ds_list_create();
+                ds_list_add(plist, clamp(property.default_int, 0, 1));
+                ds_list_add(instance.values, plist);
                 break;
             case DataTypes.CODE:
-                ds_list_add(instance.values, property.default_code);
+                var plist = ds_list_create();
+                ds_list_add(plist, property.default_code);
+                ds_list_add(instance.values, plist);
                 break;
             case DataTypes.COLOR:
             case DataTypes.MESH:
@@ -44,7 +56,9 @@ if (data != noone) {
             case DataTypes.AUTOTILE:
             case DataTypes.AUDIO_BGM:
             case DataTypes.AUDIO_SE:
-                ds_list_add(instance.values, 0);
+                var plist = ds_list_create();
+                ds_list_add(plist, 0);
+                ds_list_add(instance.values, plist);
                 break;
         }
     }
