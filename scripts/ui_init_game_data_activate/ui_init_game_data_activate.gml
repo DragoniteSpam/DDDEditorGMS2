@@ -122,7 +122,8 @@ if (data != noone) {
                         break;
                 }
             } else {
-                var element = create_button(spacing, yy, property.name + " (List)", ew, eh, fa_middle, null, noone);
+                var element = create_button(spacing, yy, property.name + " (List)", ew, eh, fa_middle, dialog_create_data_instance_property_list, noone);
+                element.key = i;
                 var hh = element.height;
                 switch (property.type) {
                     case DataTypes.INT:

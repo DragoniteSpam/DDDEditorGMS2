@@ -47,15 +47,17 @@ for (var i = 0; i < ds_list_size(dynamic.contents); i++) {
         
         // only check data, not enums
         if (property.type == DataTypes.DATA) {
-            ui_list_deselect(thingy);
-            if (property.type_guid == data.GUID) {
-                // element
-                ui_list_clear(thingy);
-                for (var k = 0; k < ds_list_size(data.instances); k++) {
-                    create_list_entries(thingy, data.instances[| k], c_black);
+            if (property.max_size == 1) {
+                ui_list_deselect(thingy);
+                if (property.type_guid == data.GUID) {
+                    // element
+                    ui_list_clear(thingy);
+                    for (var k = 0; k < ds_list_size(data.instances); k++) {
+                        create_list_entries(thingy, data.instances[| k], c_black);
+                    }
                 }
-            }
-        }
+            } // else it's a button
+        } // enums can't have their members instantiated on this screen so they don't need to be refreshed
         
         if (instance != noone) {
             if (property.max_size == 1) {
