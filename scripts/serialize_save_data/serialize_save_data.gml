@@ -73,5 +73,6 @@ enum DataVersions {
     MAP_CODE_SINGLE             = 25,
     DATADATA_LISTS              = 26,
     DATADATA_DEFAULTS           = 27,
+    DATADATA_SAVE_LISTS         = 28,
     _CURRENT                    /* = whatever the last one is + 1 */
 }

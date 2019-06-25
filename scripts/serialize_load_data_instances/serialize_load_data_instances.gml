@@ -54,7 +54,14 @@ for (var i = 0; i < n_datadata; i++) {
                         break;
                 }
                 var plist = ds_list_create();
-                ds_list_add(plist, buffer_read(argument0, btype));
+                if (argument1 >= DataVersions.DATADATA_SAVE_LISTS) {
+                    var n = buffer_read(argument0, buffer_u8);
+                    repeat (n) {
+                        ds_list_add(plist, buffer_read(argument0, btype));
+                    }
+                } else {
+                    ds_list_add(plist, buffer_read(argument0, btype));
+                }
                 ds_list_add(instance.values, plist);
             }
         }
