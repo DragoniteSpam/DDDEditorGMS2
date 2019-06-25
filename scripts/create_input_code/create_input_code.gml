@@ -8,7 +8,7 @@
 /// @param value-x2
 /// @param value-y2
 /// @param default-code
-/// @param onvaluechang
+/// @param onvaluechange
 /// @param root
 /// @param [key]
 /// @param [help]
