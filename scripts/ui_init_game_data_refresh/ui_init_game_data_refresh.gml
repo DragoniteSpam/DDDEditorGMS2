@@ -58,47 +58,49 @@ for (var i = 0; i < ds_list_size(dynamic.contents); i++) {
         }
         
         if (instance != noone) {
-            // @todo the value list
-            if (property.type == DataTypes.BOOL) {
-                thingy.value = ds_list_find_value(instance.values[| n], 0);
-            } else {
-                thingy.value = string(ds_list_find_value(instance.values[| n], 0));
-            }
-            // if you re-select a data that already has one of these fields set, it should
-            // be re-selected when you re-select the instance - there should be some indication
-            // that the value is set
-            switch (property.type) {
-                case DataTypes.DATA:
-                    ui_list_deselect(thingy);
-                    var datatype = guid_get(property.type_guid);
-                    for (var k = 0; k < ds_list_size(datatype.instances); k++) {
-                        // @todo the value list
-                        if (datatype.instances[| k].GUID == ds_list_find_value(instance.values[| n], 0)) {
-                            ds_map_add(thingy.selected_entries, k, true);
-                            thingy.index = max(0, k - thingy.slots + 1);
-                            break;
+            if (property.max_size == 1) {
+                // @todo the value list
+                if (property.type == DataTypes.BOOL) {
+                    thingy.value = ds_list_find_value(instance.values[| n], 0);
+                } else {
+                    thingy.value = string(ds_list_find_value(instance.values[| n], 0));
+                }
+                // if you re-select a data that already has one of these fields set, it should
+                // be re-selected when you re-select the instance - there should be some indication
+                // that the value is set
+                switch (property.type) {
+                    case DataTypes.DATA:
+                        ui_list_deselect(thingy);
+                        var datatype = guid_get(property.type_guid);
+                        for (var k = 0; k < ds_list_size(datatype.instances); k++) {
+                            // @todo the value list
+                            if (datatype.instances[| k].GUID == ds_list_find_value(instance.values[| n], 0)) {
+                                ds_map_add(thingy.selected_entries, k, true);
+                                thingy.index = max(0, k - thingy.slots + 1);
+                                break;
+                            }
                         }
-                    }
-                    break;
-                case DataTypes.ENUM:
-                    ui_list_deselect(thingy);
-                    var datatype = guid_get(property.type_guid);
-                    for (var k = 0; k < ds_list_size(datatype.properties); k++) {
-                        if (datatype.properties[| k].GUID == ds_list_find_value(instance.values[| n], 0)) {
-                            ds_map_add(thingy.selected_entries, k, true);
-                            thingy.index = max(0, k - thingy.slots + 1);
-                            break;
+                        break;
+                    case DataTypes.ENUM:
+                        ui_list_deselect(thingy);
+                        var datatype = guid_get(property.type_guid);
+                        for (var k = 0; k < ds_list_size(datatype.properties); k++) {
+                            if (datatype.properties[| k].GUID == ds_list_find_value(instance.values[| n], 0)) {
+                                ds_map_add(thingy.selected_entries, k, true);
+                                thingy.index = max(0, k - thingy.slots + 1);
+                                break;
+                            }
                         }
-                    }
-                    break;
-                case DataTypes.CODE:
-                    var location = get_temp_code_path(thingy);
-                    if (file_exists(location)) {
-                        file_delete(location);
-                        thingy.editor_handle = noone;
-                    }
-                    break;
-            }
+                        break;
+                    case DataTypes.CODE:
+                        var location = get_temp_code_path(thingy);
+                        if (file_exists(location)) {
+                            file_delete(location);
+                            thingy.editor_handle = noone;
+                        }
+                        break;
+                }
+            } // else it's just a button
         } else {
             switch (property.type) {
                 case DataTypes.INT:
