@@ -320,7 +320,7 @@ setting_bezier_precision = ini_read_real("config", "bezier", 6);            // p
 setting_backups = ini_read_real("config", "backups", 2);                    // 0 (none) through 9 (why would you keep that many backups)
 setting_autosave = ini_read_real("config", "autosave", true);               // bool
 setting_alphabetize_lists = ini_read_real("config", "alphabetize", true);   // bool
-setting_alphabetize_npc_animate_rate = ini_read_real("config", "npc-speed", 4); // bool
+setting_npc_animate_rate = ini_read_real("config", "npc-speed", 4); // bool
 setting_code_extension = ini_read_real("config", "code-ext", 0);            // 0 = txt, 1 = lua
 
 setting_code_extension_map = [".txt", ".lua"];
