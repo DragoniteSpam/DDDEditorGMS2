@@ -8551,6 +8551,14 @@
             }
         },
         {
+            "Key": "fd69df94-52ec-4dc4-ac67-39f1bbfee9b7",
+            "Value": {
+                "id": "48c52795-ff38-4927-a650-05d245f872d0",
+                "resourcePath": "scripts\\omu_data_list_add\\omu_data_list_add.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "fd796d95-e335-4355-8f3e-512fb7d1ae61",
             "Value": {
                 "id": "1591306a-5baf-4260-9af5-b587236ea00c",
@@ -9209,6 +9217,7 @@
         "4e6c2bd0-485b-4d69-9b59-5df2a95c4209",
         "58c47e9d-ecab-4472-b7a8-97668439288d",
         "a29d7679-9e69-44a1-bb5e-3a8dd119f452",
+        "fd69df94-52ec-4dc4-ac67-39f1bbfee9b7",
         "43ae57f2-9a33-45c9-bb00-529bd505469d",
         "9fe42c44-3ba2-491e-a420-b440bfcd560f",
         "08190cb7-54fd-4af3-a3e4-b809b86b4ce5",

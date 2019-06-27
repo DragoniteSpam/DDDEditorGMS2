@@ -36,7 +36,7 @@ var yy = 64;
 
 var plist = instance.values[| argument0.key];
 var el_list = create_list(16, yy, "Values (" + string(ds_list_size(plist)) + " / " + string(property.max_size) + ")",
-    "<something probably went wrong>", ew, eh, max(8, property.max_size), uivc_list_data_list_select, false, dg);
+    "<something went wrong>", ew, eh, max(8, property.max_size), uivc_list_data_list_select, false, dg);
 el_list.numbered = true;
 el_list.key = argument0.key;
 // @todo when other data types are added that use guids like mesh or audio
@@ -57,10 +57,12 @@ for (var i = 0; i < ds_list_size(plist); i++) {
 
 yy = yy + ui_get_list_height(el_list) + spacing;
 
-var el_add = create_button(16, yy, "Add", ew, eh, fa_center, null, dg);
+var el_add = create_button(16, yy, "Add", ew, eh, fa_center, omu_data_list_add, dg);
+el_add.key = argument0.key;
 dg.el_add = el_add;
 yy = yy + el_add.height + spacing;
 var el_remove = create_button(16, yy, "Remove", ew, eh, fa_center, null, dg);
+el_remove.key = argument0.key;
 dg.el_remove = el_remove;
 yy = yy + el_remove.height + spacing;
 
