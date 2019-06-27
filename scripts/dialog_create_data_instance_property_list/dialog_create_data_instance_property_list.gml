@@ -90,6 +90,15 @@ switch (property.type) {
     case DataTypes.ENUM:
     case DataTypes.DATA:
         var el_value = create_list(16, yy, "Select " + guid_get(property.type_guid).name + ":", "<no options>", ew, eh, 8, null, false, dg);
+        el_value.entries_are = ListEntries.GUIDS;
+        
+        var base_type = guid_get(property.type_guid);
+        var base_list = (property.type == DataTypes.ENUM) ? base_type.properties : base_type.instances;
+        for (var i = 0; i < ds_list_size(base_list); i++) {
+            create_list_entries(el_value, base_list[| i].GUID, c_black);
+        }
+        
+        dg.el_list_main = el_list;
         el_value.key = argument0.key;
         yy = yy + ui_get_list_height(el_value) + spacing;
         break;

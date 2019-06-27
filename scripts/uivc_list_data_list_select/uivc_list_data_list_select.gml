@@ -13,15 +13,24 @@ if (pselection >= 0) {
         case DataTypes.INT:
         case DataTypes.FLOAT:
         case DataTypes.STRING:
+        case DataTypes.CODE:
             argument0.root.el_value.value = string(plist[| pselection]);
             break;
         case DataTypes.BOOL:
             argument0.root.el_value.value = plist[| pselection];
             break;
-        case DataTypes.CODE:
-            break;
         case DataTypes.ENUM:
         case DataTypes.DATA:
+            var found = -1;
+            var list = argument0.root.el_value;
+            ui_list_deselect(list);
+            for (var i = 0; i < ds_list_size(list.entries); i++) {
+                if (list.entries[| i] == plist[| pselection]) {
+                    ds_map_add(list.selected_entries, i, i);
+                    list.index = clamp(i - ceil(list.slots / 2), 0, ds_list_size(list.entries) - list.slots);
+                    break;
+                }
+            }
             break;
         case DataTypes.AUDIO_BGM:
         case DataTypes.AUDIO_SE:
