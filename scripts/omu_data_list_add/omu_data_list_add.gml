@@ -36,8 +36,9 @@ if (ds_list_size(plist) < property.max_size) {
             break;
     }
     if (argument0.root.el_list_main.entries_are == ListEntries.STRINGS) {
-        create_list_entries(argument0.root.el_list_main, string(ds_list_size(plist) - 1), c_black);
+        create_list_entries(argument0.root.el_list_main, string(plist[| ds_list_size(plist) - 1]), c_black);
     } else {
+        // these are IDs and can't be cast to string otherwise theyll explode
         create_list_entries(argument0.root.el_list_main, plist[| ds_list_size(plist) - 1], c_black);
     }
 }
