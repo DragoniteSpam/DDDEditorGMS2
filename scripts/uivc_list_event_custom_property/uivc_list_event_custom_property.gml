@@ -8,6 +8,7 @@ if (selection >= 0) {
     
     argument0.root.el_property_name.interactive = true;
     argument0.root.el_property_type.interactive = true;
+    argument0.root.el_property_ext_type.interactive = true;
     argument0.root.el_property_type_guid.interactive = (property[EventNodeCustomData.TYPE] == DataTypes.DATA);
     argument0.root.el_property_max.interactive = true;
     argument0.root.el_property_all.interactive = true;

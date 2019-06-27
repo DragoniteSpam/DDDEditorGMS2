@@ -92,6 +92,12 @@ dg.el_property_type = el_property_type;
 
 yy = yy + ui_get_radio_array_height(el_property_type) + spacing;
 
+var el_property_ext_type = create_button(col3_x, yy, "Other Data Type . . .", ew, eh, fa_middle, null, dg);
+el_property_ext_type.interactive = false;
+
+yy = yy + el_property_ext_type.height + spacing;
+dg.el_property_ext_type = el_property_ext_type;
+
 var yy_top = yy;
 
 // anything common to all data types
@@ -161,7 +167,7 @@ el_confirm = create_button(dw / 2, dh - 32 - b_height / 2, "Done", b_width, b_he
 
 ds_list_add(dg.contents, el_list, el_add, el_add_enum, el_remove,
     el_data_name, el_list_p, el_add_p, el_remove_p,
-    el_property_name, el_property_type,
+    el_property_name, el_property_type, el_property_ext_type,
     el_property_size, el_property_type_guid, el_property_min, el_property_char_limit,
     el_property_max, el_property_scale,
     el_property_default_code, el_property_default_string, el_property_default_real,

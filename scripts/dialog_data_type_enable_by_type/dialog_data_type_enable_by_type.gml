@@ -14,6 +14,7 @@ if (argument0.selected_data.is_enum) {
     // nothing special for here
 } else {
     argument0.el_property_type.interactive = true;
+    argument0.el_property_ext_type.interactive = true;
     argument0.el_property_size.interactive = true;
     argument0.el_property_size.value = string(argument0.selected_property.max_size);
     

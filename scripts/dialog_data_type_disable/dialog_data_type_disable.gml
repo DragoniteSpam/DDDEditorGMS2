@@ -7,6 +7,7 @@ argument0.el_remove_p.interactive = false;
 
 argument0.el_property_name.interactive = false;
 argument0.el_property_type.interactive = false;
+argument0.el_property_ext_type.interactive = false;
 argument0.el_property_type_guid.enabled = false;
 argument0.el_property_size.interactive = false;
 argument0.el_property_min.interactive = false;
