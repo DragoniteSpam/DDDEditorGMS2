@@ -36,7 +36,7 @@ var yy = 64;
 
 var plist = instance.values[| argument0.key];
 var el_list = create_list(16, yy, "Values (" + string(ds_list_size(plist)) + " / " + string(property.max_size) + ")",
-    "<something went wrong>", ew, eh, max(8, property.max_size), uivc_list_data_list_select, false, dg);
+    "<something went wrong>", ew, eh, 8, uivc_list_data_list_select, false, dg);
 el_list.numbered = true;
 el_list.key = argument0.key;
 // @todo when other data types are added that use guids like mesh or audio

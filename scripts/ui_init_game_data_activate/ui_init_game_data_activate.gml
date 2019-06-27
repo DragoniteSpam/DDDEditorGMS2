@@ -110,8 +110,10 @@ if (data != noone) {
                         var element = create_input_code(spacing, yy + hh, "", ew, eh, 0, vy1, vx2, vy2, property.default_code, uivc_data_set_property_code, noone, i);
                         hh = hh + element.height;
                         break;
-                    case DataTypes.COLOR:
-                        stack_trace();
+                    case DataTypes.COLOR:           // @todo color box
+                        var element = create_button(spacing, yy, property.name, ew, eh, fa_left, stack_trace, noone);
+                        element.key = i;
+                        var hh = element.height;
                         break;
                     case DataTypes.MESH:           // list
                         var element = create_list(spacing, yy, property.name, "<no Meshes>", ew, eh, 8, stack_trace, false, noone);

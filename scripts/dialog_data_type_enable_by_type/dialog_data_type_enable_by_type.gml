@@ -83,7 +83,7 @@ if (argument0.selected_data.is_enum) {
             argument0.el_property_default_code.value = argument0.selected_property.default_code;
             break;
         default:
-            stack_trace();
+            // pretty sure the others don't have anything special
             break;
     }
 }
