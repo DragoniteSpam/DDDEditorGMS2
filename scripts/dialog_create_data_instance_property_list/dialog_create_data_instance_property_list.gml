@@ -76,20 +76,22 @@ switch (property.type) {
         yy = yy + el_value.height + spacing;
         break;
     case DataTypes.STRING:
-        var el_value = create_input(16, yy, "Value: ", ew, eh, null, argument0.key, "0", "text", validate_string, ui_value_string, 0, 1, property.char_limit, vx1, vy1, vx2, vy2, dg);
+        var el_value = create_input(16, yy, "Value: ", ew, eh, uivc_data_property_list_string, argument0.key, "0", "text", validate_string, ui_value_string, 0, 1, property.char_limit, vx1, vy1, vx2, vy2, dg);
         yy = yy + el_value.height + spacing;
         break;
     case DataTypes.BOOL:
-        var el_value = create_checkbox(16, yy, "Value", ew, eh, null, argument0.key, false, dg);
+        // this onvaluechange just copies the value without casting it so we can do this even though it's designed for strings and
+        // bools are decidedly not strings
+        var el_value = create_checkbox(16, yy, "Value", ew, eh, uivc_data_property_list_string, argument0.key, false, dg);
         yy = yy + el_value.height + spacing;
         break;
     case DataTypes.CODE:
-        var el_value = create_input_code(16, yy, "Code: ", ew, eh, vx1, vy1, vx2, vy2, "-- write Lua here", null, dg, argument0.key);
+        var el_value = create_input_code(16, yy, "Code: ", ew, eh, vx1, vy1, vx2, vy2, "-- write Lua here", uivc_data_property_list_string, dg, argument0.key);
         yy = yy + el_value.height + spacing;
         break;
     case DataTypes.ENUM:
     case DataTypes.DATA:
-        var el_value = create_list(16, yy, "Select " + guid_get(property.type_guid).name + ":", "<no options>", ew, eh, 8, null, false, dg);
+        var el_value = create_list(16, yy, "Select " + guid_get(property.type_guid).name + ":", "<no options>", ew, eh, 8, uivc_data_property_list_data, false, dg);
         el_value.entries_are = ListEntries.GUIDS;
         
         var base_type = guid_get(property.type_guid);

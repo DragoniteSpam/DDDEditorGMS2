@@ -27,7 +27,7 @@ if (pselection >= 0) {
             for (var i = 0; i < ds_list_size(list.entries); i++) {
                 if (list.entries[| i] == plist[| pselection]) {
                     ds_map_add(list.selected_entries, i, i);
-                    list.index = clamp(i - ceil(list.slots / 2), 0, ds_list_size(list.entries) - list.slots);
+                    list.index = clamp(i - floor(list.slots / 2), 0, ds_list_size(list.entries) - list.slots);
                     break;
                 }
             }
