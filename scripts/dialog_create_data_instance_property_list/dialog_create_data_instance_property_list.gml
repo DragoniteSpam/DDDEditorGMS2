@@ -2,6 +2,7 @@
 
 var selection = ui_list_selection(Camera.ui_game_data.el_instances);
 
+// this is honestly easier than disabling/enabling interface elements when stuff is deselected
 if (selection < 0) {
     return noone;
 }
@@ -33,8 +34,11 @@ var spacing = 16;
 
 var yy = 64;
 
-var el_list = create_list(16, yy, "Values (" + string(ds_list_size(instance.values[| argument0.key])) + " / " + string(property.max_size) + ")",
-    "<something probably went wrong>", ew, eh, min(8, property.max_size), null, false, dg);
+var plist = instance.values[| argument0.key];
+var el_list = create_list(16, yy, "Values (" + string(ds_list_size(plist)) + " / " + string(property.max_size) + ")",
+    "<something probably went wrong>", ew, eh, max(8, property.max_size), uivc_list_data_list_select, false, dg);
+el_list.numbered = true;
+el_list.key = argument0.key;
 // @todo when other data types are added that use guids like mesh or audio
 if (property.type == DataTypes.ENUM || property.type == DataTypes.DATA) {
     el_list.entries_are = ListEntries.GUIDS;
@@ -42,6 +46,14 @@ if (property.type == DataTypes.ENUM || property.type == DataTypes.DATA) {
     el_list.entries_are = ListEntries.STRINGS;
 }
 dg.el_list_main = el_list;
+
+for (var i = 0; i < ds_list_size(plist); i++) {
+    if (el_list.entries_are == ListEntries.STRINGS) {
+        create_list_entries(el_list, string(plist[| i]), c_black);
+    } else {
+        create_list_entries(el_list, plist[| i], c_black);
+    }
+}
 
 yy = yy + ui_get_list_height(el_list) + spacing;
 
@@ -54,13 +66,13 @@ yy = yy + el_remove.height + spacing;
 
 switch (property.type) {
     case DataTypes.INT:
-        var el_value = create_input(16, yy, "Value: ", ew, eh, null, argument0.key, "0", string(property.range_min) + "..." + string(property.range_max),
+        var el_value = create_input(16, yy, "Value: ", ew, eh, uivc_data_property_list_number, argument0.key, "0", string(property.range_min) + "..." + string(property.range_max),
             validate_int, ui_value_real, property.range_min, property.range_max, log10(property.range_max) + 2, vx1, vy1, vx2, vy2, dg);
         yy = yy + el_value.height + spacing;
         break;
     case DataTypes.FLOAT:
-        var el_value = create_input(16, yy, "Value: ", ew, eh, null, argument0.key, "0", string(property.range_min) + "..." + string(property.range_max),
-            validate_double, ui_value_real, property.range_min, property.range_max, log10(property.range_max) + 2, vx1, vy1, vx2, vy2, dg);
+        var el_value = create_input(16, yy, "Value: ", ew, eh, uivc_data_property_list_number, argument0.key, "0", string(property.range_min) + "..." + string(property.range_max),
+            validate_double, ui_value_real, property.range_min, property.range_max, 12, vx1, vy1, vx2, vy2, dg);
         yy = yy + el_value.height + spacing;
         break;
     case DataTypes.STRING:

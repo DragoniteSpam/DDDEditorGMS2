@@ -5775,6 +5775,14 @@
             }
         },
         {
+            "Key": "aae4ffe6-191e-45a6-9503-b7a62840c0da",
+            "Value": {
+                "id": "0a27d1e2-20a7-4f76-abaf-6a7653bef5ca",
+                "resourcePath": "scripts\\uivc_data_property_list_number\\uivc_data_property_list_number.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "aaee8de7-e29b-49c3-b6fb-edc4188c2be9",
             "Value": {
                 "id": "c2b6915c-64f7-4d22-9931-9eb9f30c17dd",
@@ -6939,6 +6947,14 @@
             "Value": {
                 "id": "d74b7f88-5625-4b7b-8cb5-54b53f3e190e",
                 "resourcePath": "scripts\\momu_help\\momu_help.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "d07825c9-30b2-484f-a697-85cb112430c1",
+            "Value": {
+                "id": "48b5a6b3-85b2-4b9b-b65b-16753664ce48",
+                "resourcePath": "scripts\\uivc_list_data_list_select\\uivc_list_data_list_select.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -9073,7 +9089,9 @@
         "5dc54462-9911-4a91-8440-015408d28413",
         "5264ec02-3b15-43ce-8364-c580befdb8a7",
         "13e0e916-af0e-493a-8cad-5144001acfcf",
+        "aae4ffe6-191e-45a6-9503-b7a62840c0da",
         "568cf033-4925-4c7c-8323-1506808d292f",
+        "d07825c9-30b2-484f-a697-85cb112430c1",
         "d69c4608-aa35-47ea-8ffb-c11b46beaf9e",
         "ac9824b9-f01e-4080-93cf-e47c9dda1c10",
         "96bfb326-f42e-43df-bb00-eddceff7d0ff",

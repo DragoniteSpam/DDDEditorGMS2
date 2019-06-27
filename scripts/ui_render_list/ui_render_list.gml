@@ -59,7 +59,8 @@ if (n == 0) {
                 text = text + argument0.entries[| index].name;
                 break;
             case ListEntries.GUIDS:
-                text = text + guid_get(argument0.entries[| index]).name;
+                var data = guid_get(argument0.entries[| index]);
+                text = text + ((data != noone) ? data.name : " (null)");
                 break;
         }
         draw_text_colour(tx, tya, string(text), c, c, c, c, 1);
