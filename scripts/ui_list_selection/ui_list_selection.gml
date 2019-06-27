@@ -1,3 +1,4 @@
+/// @param UIList
 // this is only guaranteed to work if the list only supports single
 // selection. if multiple selection is enabled it'll just return a
 // random element.

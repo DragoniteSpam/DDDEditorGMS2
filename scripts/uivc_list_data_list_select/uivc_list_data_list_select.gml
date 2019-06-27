@@ -31,8 +31,8 @@ if (pselection >= 0) {
             ui_list_deselect(list);
             for (var i = 0; i < ds_list_size(list.entries); i++) {
                 if (list.entries[| i] == plist[| pselection]) {
-                    ds_map_add(list.selected_entries, i, i);
-                    list.index = clamp(i - floor(list.slots / 2), 0, ds_list_size(list.entries) - list.slots);
+                    ds_map_add(list.selected_entries, i, true);
+                    list.index = clamp(i - floor(list.slots / 2), 0, max(0, ds_list_size(list.entries) - list.slots - 1));
                     break;
                 }
             }

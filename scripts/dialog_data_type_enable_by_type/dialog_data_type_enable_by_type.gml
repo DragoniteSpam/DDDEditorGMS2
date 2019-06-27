@@ -8,7 +8,7 @@ argument0.el_remove_p.interactive = true;
 argument0.el_property_name.interactive = true;
 argument0.el_property_name.value = argument0.selected_property.name;
 
-argument0.el_property_type.interactive =! argument0.selected_data.is_enum;
+argument0.el_property_type.interactive = !argument0.selected_data.is_enum;
 
 if (argument0.selected_data.is_enum) {
     // nothing special for here
