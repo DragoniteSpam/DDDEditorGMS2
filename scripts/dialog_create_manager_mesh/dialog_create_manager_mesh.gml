@@ -24,7 +24,7 @@ el_load.render = ui_render_button_vrax;
 
 // we need to access this later, if you re-load the meshes
 var n = ds_list_size(Stuff.all_mesh_names);
-dg.el_list = create_list(16, 128, "Available meshes: " + string(n), "<no meshes>", dw/2-16, b_height, 5, uivc_list_view_mesh, false, dg);
+dg.el_list = create_list(16, 128, "Available meshes: " + string(n), "<no meshes>", dw / 2 - 16, b_height, 5, uivc_list_view_mesh, false, dg);
 for (var i = 0; i < n; i++) {
     create_list_entries(dg.el_list, Stuff.all_mesh_names[| i], c_black);
 }

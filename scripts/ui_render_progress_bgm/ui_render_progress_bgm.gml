@@ -6,15 +6,11 @@ if (Stuff.fmod_sound != noone) {
     argument0.value = FMODGMS_Chan_Get_Position(Stuff.fmod_channel) / FMODGMS_Snd_Get_Length(Stuff.fmod_sound);
 }
 
-if (Stuff.setting_alphabetize_lists) {
-    var listofthings = ds_list_sort_name_sucks(Stuff.all_bgm);
-} else {
-    var listofthings = Stuff.all_bgm;
-}
+// no alphabetize
 
 var selection = ui_list_selection(argument0.root.el_list);
-if (!ds_list_empty(listofthings) && selection !=noone) {
-    var thing = listofthings[| selection];
+if (!ds_list_empty(Stuff.all_bgm) && selection !=noone) {
+    var thing = Stuff.all_bgm[| selection];
     var length = FMODGMS_Snd_Get_Length(thing.fmod);
     
     var padding = 16;
@@ -31,10 +27,6 @@ if (!ds_list_empty(listofthings) && selection !=noone) {
     
     draw_line_width_color(loop_start_x, bar_y1, loop_start_x, bar_y2, 2, c_red, c_red);
     draw_line_width_color(loop_end_x, bar_y1, loop_end_x, bar_y2, 2, c_red, c_red);
-}
-            
-if (Stuff.setting_alphabetize_lists) {
-    ds_list_destroy(listofthings);
 }
 
 ui_render_progress_bar(argument0, argument1, argument2);
