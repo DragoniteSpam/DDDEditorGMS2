@@ -5994,7 +5994,7 @@
             "Key": "b0a08a78-85f8-4a5e-84a8-9c72390a8d8e",
             "Value": {
                 "id": "08f012f7-7faf-4c28-b5b0-739baca695dd",
-                "resourcePath": "scripts\\uivc_data_property_list_data\\uivc_data_property_list_data.yy",
+                "resourcePath": "scripts\\uivc_data_property_list_guid\\uivc_data_property_list_guid.yy",
                 "resourceType": "GMScript"
             }
         },

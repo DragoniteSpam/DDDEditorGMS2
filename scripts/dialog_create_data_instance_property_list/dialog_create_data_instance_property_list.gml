@@ -39,11 +39,28 @@ var el_list = create_list(16, yy, "Values (" + string(ds_list_size(plist)) + " /
     "<something went wrong>", ew, eh, 8, uivc_list_data_list_select, false, dg);
 el_list.numbered = true;
 el_list.key = argument0.key;
-// @todo when other data types are added that use guids like mesh or audio
-if (property.type == DataTypes.ENUM || property.type == DataTypes.DATA) {
-    el_list.entries_are = ListEntries.GUIDS;
-} else {
-    el_list.entries_are = ListEntries.STRINGS;
+
+switch (property.type) {
+    case DataTypes.ENUM:
+    case DataTypes.DATA:
+    case DataTypes.AUDIO_BGM:
+    case DataTypes.AUDIO_SE:
+    case DataTypes.AUTOTILE:
+    case DataTypes.MESH:
+    case DataTypes.TILESET:
+        el_list.entries_are = ListEntries.GUIDS;
+        break;
+    case DataTypes.TILE:
+        stack_trace();
+        break;
+    case DataTypes.COLOR:
+        // probably deal with this by just having the string "lorem ipsum" colorized however - probably
+        // with an outline, so you can see the bright colors - but not sure yet
+        stack_trace();
+        break;
+    default:
+        el_list.entries_are = ListEntries.STRINGS;
+        break;
 }
 dg.el_list_main = el_list;
 
@@ -93,7 +110,7 @@ switch (property.type) {
         break;
     case DataTypes.ENUM:
     case DataTypes.DATA:
-        var el_value = create_list(16, yy, "Select " + guid_get(property.type_guid).name + ":", "<no options>", ew, eh, 8, uivc_data_property_list_data, false, dg);
+        var el_value = create_list(16, yy, "Select " + guid_get(property.type_guid).name + ":", "<no options>", ew, eh, 8, uivc_data_property_list_guid, false, dg);
         el_value.entries_are = ListEntries.GUIDS;
         
         var base_type = guid_get(property.type_guid);
@@ -106,8 +123,9 @@ switch (property.type) {
         el_value.key = argument0.key;
         yy = yy + ui_get_list_height(el_value) + spacing;
         break;
+    // @todo find a way to streamline this. PLEASE.
     case DataTypes.AUDIO_BGM:
-        var el_value = create_list(16, yy, "Select a BGM resource:", "<no BGM>", ew, eh, 8, stack_trace, false, dg);
+        var el_value = create_list(16, yy, "Select a BGM resource:", "<no BGM>", ew, eh, 8, uivc_data_property_list_guid, false, dg);
         el_value.entries_are = ListEntries.GUIDS;
         
         for (var i = 0; i < ds_list_size(Stuff.all_bgm); i++) {
@@ -119,7 +137,7 @@ switch (property.type) {
         yy = yy + ui_get_list_height(el_value) + spacing;
         break;
     case DataTypes.AUDIO_SE:
-        var el_value = create_list(16, yy, "Select an SE resource:", "<no SE>", ew, eh, 8, stack_trace, false, dg);
+        var el_value = create_list(16, yy, "Select an SE resource:", "<no SE>", ew, eh, 8, uivc_data_property_list_guid, false, dg);
         el_value.entries_are = ListEntries.GUIDS;
         
         for (var i = 0; i < ds_list_size(Stuff.all_se); i++) {
@@ -131,7 +149,8 @@ switch (property.type) {
         yy = yy + ui_get_list_height(el_value) + spacing;
         break;
     case DataTypes.AUTOTILE:
-        var el_value = create_list(16, yy, "Select an Autotile resource:", "<no Autotiles>", ew, eh, 8, stack_trace, false, dg);
+        stack_trace();
+        var el_value = create_list(16, yy, "Select an Autotile resource:", "<no Autotiles>", ew, eh, 8, uivc_data_property_list_guid, false, dg);
         el_value.entries_are = ListEntries.GUIDS;
         /*
         for (var i = 0; i < ds_list_size(Stuff.all_se); i++) {
@@ -143,10 +162,13 @@ switch (property.type) {
         yy = yy + ui_get_list_height(el_value) + spacing;
         break;
     case DataTypes.COLOR:
-        stack_trace();
+        var el_value = create_button(16, yy, "Value", ew, eh, fa_left, stack_trace, dg);
+        el_value.key = argument0.key;
+        yy = yy + el_value.height + spacing;
         break;
     case DataTypes.MESH:
-        var el_value = create_list(16, yy, "Select a Mesh resource:", "<no Meshes>", ew, eh, 8, stack_trace, false, dg);
+        stack_trace();
+        var el_value = create_list(16, yy, "Select a Mesh resource:", "<no Meshes>", ew, eh, 8, uivc_data_property_list_guid, false, dg);
         el_value.entries_are = ListEntries.GUIDS;
         /*
         for (var i = 0; i < ds_list_size(Stuff.all_se); i++) {
@@ -158,7 +180,8 @@ switch (property.type) {
         yy = yy + ui_get_list_height(el_value) + spacing;
         break;
     case DataTypes.TILESET:
-        var el_value = create_list(16, yy, "Select a Tileset resource:", "<no Tilesets>", ew, eh, 8, stack_trace, false, dg);
+        stack_trace();
+        var el_value = create_list(16, yy, "Select a Tileset resource:", "<no Tilesets>", ew, eh, 8, uivc_data_property_list_guid, false, dg);
         el_value.entries_are = ListEntries.GUIDS;
         /*
         for (var i = 0; i < ds_list_size(Stuff.all_se); i++) {
