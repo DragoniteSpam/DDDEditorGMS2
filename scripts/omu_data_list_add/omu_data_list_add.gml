@@ -23,16 +23,20 @@ if (ds_list_size(plist) < property.max_size) {
             break;
         case DataTypes.ENUM:
         case DataTypes.DATA:
-            // no default
-            ds_list_add(plist, 0);
-            break;
         case DataTypes.AUDIO_BGM:
         case DataTypes.AUDIO_SE:
         case DataTypes.AUTOTILE:
-        case DataTypes.COLOR:
         case DataTypes.MESH:
         case DataTypes.TILESET:
+            // no default - this is just a null value
+            ds_list_add(plist, 0);
+            break;
+        case DataTypes.COLOR:
+            // no default - for now
+            ds_list_add(plist, c_black);
+            break;
         case DataTypes.TILE:
+            stack_trace();
             break;
     }
     if (argument0.root.el_list_main.entries_are == ListEntries.STRINGS) {

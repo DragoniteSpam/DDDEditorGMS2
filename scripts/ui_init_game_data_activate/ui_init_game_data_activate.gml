@@ -49,7 +49,7 @@ if (data != noone) {
         var element_header = noone;
         var element = create_input(spacing, yy, "Name:", ew, eh, uivc_data_set_name, "", "", "Instance name", validate_string, ui_value_string, 0, 1, 16, vx1, vy1, vx2, vy2, noone);
         yy = yy + element.height + spacing;
-        // if (element_header != noone)
+        
         ds_list_add(col_data.contents, element);
         Camera.ui_game_data.el_inst_name = element;
         
@@ -111,14 +111,40 @@ if (data != noone) {
                         hh = hh + element.height;
                         break;
                     case DataTypes.COLOR:
-                    case DataTypes.MESH:
+                        stack_trace();
+                        break;
+                    case DataTypes.MESH:           // list
+                        var element = create_list(spacing, yy, property.name, "<no Meshes>", ew, eh, 8, stack_trace, false, noone);
+                        element.key = i;
+                        element.entries_are = ListEntries.GUIDS;
+                        var hh = ui_get_list_height(element);
+                        break;
                     case DataTypes.TILE:
-                    case DataTypes.TILESET:
-                    case DataTypes.AUTOTILE:
-                    case DataTypes.AUDIO_BGM:
-                    case DataTypes.AUDIO_SE:
-                        var element = create_text(spacing, yy, "Not yet implemented", ew, eh, fa_left, ew, noone);
-                        var hh = element.height;
+                        stack_trace();
+                        break;
+                    case DataTypes.TILESET:           // list
+                        var element = create_list(spacing, yy, property.name, "<no Tilesets>", ew, eh, 8, stack_trace, false, noone);
+                        element.key = i;
+                        element.entries_are = ListEntries.GUIDS;
+                        var hh = ui_get_list_height(element);
+                        break;
+                    case DataTypes.AUTOTILE:           // list
+                        var element = create_list(spacing, yy, property.name, "<no Autotiles>", ew, eh, 8, stack_trace, false, noone);
+                        element.key = i;
+                        element.entries_are = ListEntries.GUIDS;
+                        var hh = ui_get_list_height(element);
+                        break;
+                    case DataTypes.AUDIO_BGM:           // list
+                        var element = create_list(spacing, yy, property.name, "<no BGM>", ew, eh, 8, stack_trace, false, noone);
+                        element.key = i;
+                        element.entries_are = ListEntries.GUIDS;
+                        var hh = ui_get_list_height(element);
+                        break;
+                    case DataTypes.AUDIO_SE:           // list
+                        var element = create_list(spacing, yy, property.name, "<no SE>", ew, eh, 8, stack_trace, false, noone);
+                        element.key = i;
+                        element.entries_are = ListEntries.GUIDS;
+                        var hh = ui_get_list_height(element);
                         break;
                 }
             } else {

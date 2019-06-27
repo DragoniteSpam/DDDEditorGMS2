@@ -82,5 +82,8 @@ if (argument0.selected_data.is_enum) {
             argument0.el_property_default_code.enabled = true;
             argument0.el_property_default_code.value = argument0.selected_property.default_code;
             break;
+        default:
+            stack_trace();
+            break;
     }
 }

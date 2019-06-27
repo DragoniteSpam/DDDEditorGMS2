@@ -54,7 +54,7 @@ for (var i = 0; i < ds_list_size(Stuff.original_data); i++) {
                         break;
                     case DataTypes.DATA:
                     case DataTypes.ENUM:
-                        buffer_write(missing_output, buffer_text, data_new.name + "." + property_new.name + " has been changed to a boolean. All instances will have their values set to null.\r\n");
+                        buffer_write(missing_output, buffer_text, data_new.name + "." + property_new.name + " has been changed to a data type. All instances will have their values set to null.\r\n");
                         missing_count++;
                         for (var k = 0; k < ds_list_size(data_old.instances); k++) {
                             var instance = data_old.instances[| k];
@@ -62,7 +62,6 @@ for (var i = 0; i < ds_list_size(Stuff.original_data); i++) {
                             ds_list_set(instance.values[| j], 0, 0);
                         }
                         break;
-                    // @todo data types
                     case DataTypes.CODE:
                         buffer_write(missing_output, buffer_text, data_new.name + "." + property_new.name + " has been changed to a code bit. All instances will have their values set to the default.\r\n");
                         missing_count++;
@@ -73,12 +72,27 @@ for (var i = 0; i < ds_list_size(Stuff.original_data); i++) {
                         }
                         break;
                     case DataTypes.COLOR:
+                        buffer_write(missing_output, buffer_text, data_new.name + "." + property_new.name + " has been changed to a color. All instances will have their values set to black.\r\n");
+                        missing_count++;
+                        for (var k = 0; k < ds_list_size(data_old.instances); k++) {
+                            var instance = data_old.instances[| k];
+                            // @todo the value list
+                            ds_list_set(instance.values[| j], 0, c_black);
+                        }
+                        break;
                     case DataTypes.MESH:
                     case DataTypes.TILE:
                     case DataTypes.TILESET:
                     case DataTypes.AUTOTILE:
                     case DataTypes.AUDIO_BGM:
                     case DataTypes.AUDIO_SE:
+                        buffer_write(missing_output, buffer_text, data_new.name + "." + property_new.name + " has been changed to a resource. All instances will have their values set to null.\r\n");
+                        missing_count++;
+                        for (var k = 0; k < ds_list_size(data_old.instances); k++) {
+                            var instance = data_old.instances[| k];
+                            // @todo the value list
+                            ds_list_set(instance.values[| j], 0, 0);
+                        }
                         break;
                 }
             }

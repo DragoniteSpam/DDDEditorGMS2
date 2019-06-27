@@ -120,8 +120,11 @@ for (var i = 0; i < ds_list_size(dynamic.contents); i++) {
                 case DataTypes.CODE:
                     thingy.value = property.default_code;
                     break;
-                // @todo data types
                 case DataTypes.COLOR:
+                    thingy.value = c_black;
+                    break;
+                // all of the following are guids; you can give them defaults if you want to
+                // but i'm not going to because that sounds awful
                 case DataTypes.MESH:
                 case DataTypes.TILE:
                 case DataTypes.TILESET:

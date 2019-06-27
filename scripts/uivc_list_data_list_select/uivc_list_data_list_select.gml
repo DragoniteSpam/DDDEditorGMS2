@@ -21,6 +21,11 @@ if (pselection >= 0) {
             break;
         case DataTypes.ENUM:
         case DataTypes.DATA:
+        case DataTypes.AUDIO_BGM:
+        case DataTypes.AUDIO_SE:
+        case DataTypes.AUTOTILE:
+        case DataTypes.MESH:
+        case DataTypes.TILESET:
             var found = -1;
             var list = argument0.root.el_value;
             ui_list_deselect(list);
@@ -32,13 +37,9 @@ if (pselection >= 0) {
                 }
             }
             break;
-        case DataTypes.AUDIO_BGM:
-        case DataTypes.AUDIO_SE:
-        case DataTypes.AUTOTILE:
         case DataTypes.COLOR:
-        case DataTypes.MESH:
-        case DataTypes.TILESET:
         case DataTypes.TILE:
+            stack_trace();
             break;
     }
 }

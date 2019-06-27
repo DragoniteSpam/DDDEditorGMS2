@@ -107,12 +107,70 @@ switch (property.type) {
         yy = yy + ui_get_list_height(el_value) + spacing;
         break;
     case DataTypes.AUDIO_BGM:
+        var el_value = create_list(16, yy, "Select a BGM resource:", "<no BGM>", ew, eh, 8, stack_trace, false, dg);
+        el_value.entries_are = ListEntries.GUIDS;
+        
+        for (var i = 0; i < ds_list_size(Stuff.all_bgm); i++) {
+            create_list_entries(el_value, Stuff.all_bgm[| i].GUID, c_black);
+        }
+        
+        dg.el_list_main = el_list;
+        el_value.key = argument0.key;
+        yy = yy + ui_get_list_height(el_value) + spacing;
+        break;
     case DataTypes.AUDIO_SE:
+        var el_value = create_list(16, yy, "Select an SE resource:", "<no SE>", ew, eh, 8, stack_trace, false, dg);
+        el_value.entries_are = ListEntries.GUIDS;
+        
+        for (var i = 0; i < ds_list_size(Stuff.all_se); i++) {
+            create_list_entries(el_value, Stuff.all_se[| i].GUID, c_black);
+        }
+        
+        dg.el_list_main = el_list;
+        el_value.key = argument0.key;
+        yy = yy + ui_get_list_height(el_value) + spacing;
+        break;
     case DataTypes.AUTOTILE:
+        var el_value = create_list(16, yy, "Select an Autotile resource:", "<no Autotiles>", ew, eh, 8, stack_trace, false, dg);
+        el_value.entries_are = ListEntries.GUIDS;
+        /*
+        for (var i = 0; i < ds_list_size(Stuff.all_se); i++) {
+            create_list_entries(el_value, Stuff.all_se[| i].GUID, c_black);
+        }
+        */
+        dg.el_list_main = el_list;
+        el_value.key = argument0.key;
+        yy = yy + ui_get_list_height(el_value) + spacing;
+        break;
     case DataTypes.COLOR:
+        stack_trace();
+        break;
     case DataTypes.MESH:
+        var el_value = create_list(16, yy, "Select a Mesh resource:", "<no Meshes>", ew, eh, 8, stack_trace, false, dg);
+        el_value.entries_are = ListEntries.GUIDS;
+        /*
+        for (var i = 0; i < ds_list_size(Stuff.all_se); i++) {
+            create_list_entries(el_value, Stuff.all_se[| i].GUID, c_black);
+        }
+        */
+        dg.el_list_main = el_list;
+        el_value.key = argument0.key;
+        yy = yy + ui_get_list_height(el_value) + spacing;
+        break;
     case DataTypes.TILESET:
+        var el_value = create_list(16, yy, "Select a Tileset resource:", "<no Tilesets>", ew, eh, 8, stack_trace, false, dg);
+        el_value.entries_are = ListEntries.GUIDS;
+        /*
+        for (var i = 0; i < ds_list_size(Stuff.all_se); i++) {
+            create_list_entries(el_value, Stuff.all_se[| i].GUID, c_black);
+        }
+        */
+        dg.el_list_main = el_list;
+        el_value.key = argument0.key;
+        yy = yy + ui_get_list_height(el_value) + spacing;
+        break;
     case DataTypes.TILE:
+        stack_trace();
         break;
 }
 

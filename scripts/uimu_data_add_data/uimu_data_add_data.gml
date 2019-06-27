@@ -30,6 +30,11 @@ if (data != noone) {
                 break;
             case DataTypes.ENUM:
             case DataTypes.DATA:
+            case DataTypes.MESH:
+            case DataTypes.TILESET:
+            case DataTypes.AUTOTILE:
+            case DataTypes.AUDIO_BGM:
+            case DataTypes.AUDIO_SE:
                 var plist = ds_list_create();
                 ds_list_add(plist, 0);
                 ds_list_add(instance.values, plist);
@@ -47,17 +52,6 @@ if (data != noone) {
             case DataTypes.CODE:
                 var plist = ds_list_create();
                 ds_list_add(plist, property.default_code);
-                ds_list_add(instance.values, plist);
-                break;
-            case DataTypes.COLOR:
-            case DataTypes.MESH:
-            case DataTypes.TILE:
-            case DataTypes.TILESET:
-            case DataTypes.AUTOTILE:
-            case DataTypes.AUDIO_BGM:
-            case DataTypes.AUDIO_SE:
-                var plist = ds_list_create();
-                ds_list_add(plist, 0);
                 ds_list_add(instance.values, plist);
                 break;
         }

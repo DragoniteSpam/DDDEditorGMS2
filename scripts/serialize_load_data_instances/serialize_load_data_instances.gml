@@ -28,6 +28,11 @@ for (var i = 0; i < n_datadata; i++) {
                         break;
                     case DataTypes.ENUM:
                     case DataTypes.DATA:
+                    case DataTypes.MESH:
+                    case DataTypes.TILESET:
+                    case DataTypes.AUTOTILE:
+                    case DataTypes.AUDIO_BGM:
+                    case DataTypes.AUDIO_SE:
                         var btype = buffer_u32;
                         break;
                     case DataTypes.FLOAT:
@@ -43,14 +48,11 @@ for (var i = 0; i < n_datadata; i++) {
                         // not as simple as just using pack/unpack
                         var btype = buffer_u8;
                         break;
-                    // @todo data types
                     case DataTypes.COLOR:
-                    case DataTypes.MESH:
+                        var btype = buffer_u32;
+                        break;
                     case DataTypes.TILE:
-                    case DataTypes.TILESET:
-                    case DataTypes.AUTOTILE:
-                    case DataTypes.AUDIO_BGM:
-                    case DataTypes.AUDIO_SE:
+                        stack_trace();
                         break;
                 }
                 var plist = ds_list_create();

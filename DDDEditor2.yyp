@@ -4863,6 +4863,14 @@
             }
         },
         {
+            "Key": "8f8403dd-07cf-47ef-91c7-02b16f6cc0bf",
+            "Value": {
+                "id": "2738597e-ba50-417c-81e9-3e31a445baa8",
+                "resourcePath": "scripts\\stack_trace\\stack_trace.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "8f8582cc-5dcc-4f8e-a43e-32c3c27000ed",
             "Value": {
                 "id": "0c7cd975-12bb-4511-9f55-4c7e9ff73f2f",
@@ -8704,6 +8712,7 @@
         "ee84cdd0-4643-4b35-b176-54a8a8fac56f",
         "08669f77-85ae-4c3a-9c44-aab81b2e6be1",
         "90218ce4-a6e8-423f-aa14-fd344fe31dc9",
+        "8f8403dd-07cf-47ef-91c7-02b16f6cc0bf",
         "fb95bfea-4498-42e0-be1e-f99993c59ca3",
         "e9b17934-34dd-48c3-8112-f88d75ca4ad6",
         "aedf3e39-9ff1-42b1-8d9a-8a0c5766bba5",
