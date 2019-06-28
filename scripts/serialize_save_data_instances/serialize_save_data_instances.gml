@@ -49,7 +49,6 @@ for (var i = 0; i < n_datadata; i++) {
                         // not as simple as just using pack/unpack
                         var btype = buffer_u8;
                         break;
-                    // @todo data types
                     case DataTypes.COLOR:
                         var btype = buffer_u32;
                         break;
@@ -58,7 +57,7 @@ for (var i = 0; i < n_datadata; i++) {
                         break;
                     
                 }
-                // @todo the value list
+                
                 var vlist = instance.values[| k];
                 var n_vlist = ds_list_size(vlist);
                 buffer_write(argument0, buffer_u8, n_vlist);

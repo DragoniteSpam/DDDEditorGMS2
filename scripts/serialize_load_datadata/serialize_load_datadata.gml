@@ -5,11 +5,7 @@ var n_datadata = buffer_read(argument0, buffer_u16);
 repeat (n_datadata) {
     var bools = buffer_read(argument0, buffer_u8);
     
-    if (unpack(bools, 0)) {
-        var data = instantiate(DataEnum);
-    } else {
-        var data = instantiate(DataData);
-    }
+    var data = instantiate(unpack(bools, 0) ? DataEnum : DataData);
     guid_remove(data.GUID);
     
     serialize_load_generic(argument0, data, argument1);
@@ -27,8 +23,6 @@ repeat (n_datadata) {
         guid_remove(property.GUID);
         
         serialize_load_generic(argument0, property, argument1);
-        
-        guid_set(property);
         
         var pbools = buffer_read(argument0, buffer_u8);
         property.deleted = unpack(pbools, 0);

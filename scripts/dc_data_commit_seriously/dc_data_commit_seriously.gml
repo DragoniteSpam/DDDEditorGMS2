@@ -21,8 +21,11 @@ for (var i = 0; i < ds_list_size(Stuff.original_data); i++) {
                         missing_count++;
                         for (var k = 0; k < ds_list_size(data_old.instances); k++) {
                             var instance = data_old.instances[| k];
-                            // @todo the value list
-                            ds_list_set(instance.values[| j], 0, property_new.default_int);
+                            var plist = instance.values[| j];
+                            
+                            for (var l = 0; l < ds_list_size(plist); l++) {
+                                plist[| l] = property_new.default_int;
+                            }
                         }
                         break;
                     case DataTypes.FLOAT:
@@ -30,8 +33,11 @@ for (var i = 0; i < ds_list_size(Stuff.original_data); i++) {
                         missing_count++;
                         for (var k = 0; k < ds_list_size(data_old.instances); k++) {
                             var instance = data_old.instances[| k];
-                            // @todo the value list
-                            ds_list_set(instance.values[| j], 0, property_new.default_real);
+                            var plist = instance.values[| j];
+                            
+                            for (var l = 0; l < ds_list_size(plist); l++) {
+                                plist[| l] = property_new.default_real;
+                            }
                         }
                         break;
                     case DataTypes.STRING:
@@ -39,8 +45,11 @@ for (var i = 0; i < ds_list_size(Stuff.original_data); i++) {
                         missing_count++;
                         for (var k = 0; k < ds_list_size(data_old.instances); k++) {
                             var instance = data_old.instances[| k];
-                            // @todo the value list
-                            ds_list_set(instance.values[| j], 0, property_new.default_string);
+                            var plist = instance.values[| j];
+                            
+                            for (var l = 0; l < ds_list_size(plist); l++) {
+                                plist[| l] = property_new.default_string;
+                            }
                         }
                         break;
                     case DataTypes.BOOL:
@@ -48,8 +57,11 @@ for (var i = 0; i < ds_list_size(Stuff.original_data); i++) {
                         missing_count++;
                         for (var k = 0; k < ds_list_size(data_old.instances); k++) {
                             var instance = data_old.instances[| k];
-                            // @todo the value list
-                            ds_list_set(instance.values[| j], 0, property_new.default_int);
+                            var plist = instance.values[| j];
+                            
+                            for (var l = 0; l < ds_list_size(plist); l++) {
+                                plist[| l] = property_new.default_int;
+                            }
                         }
                         break;
                     case DataTypes.DATA:
@@ -58,8 +70,11 @@ for (var i = 0; i < ds_list_size(Stuff.original_data); i++) {
                         missing_count++;
                         for (var k = 0; k < ds_list_size(data_old.instances); k++) {
                             var instance = data_old.instances[| k];
-                            // @todo the value list
-                            ds_list_set(instance.values[| j], 0, 0);
+                            var plist = instance.values[| j];
+                            
+                            for (var l = 0; l < ds_list_size(plist); l++) {
+                                plist[| l] = 0;
+                            }
                         }
                         break;
                     case DataTypes.CODE:
@@ -67,8 +82,11 @@ for (var i = 0; i < ds_list_size(Stuff.original_data); i++) {
                         missing_count++;
                         for (var k = 0; k < ds_list_size(data_old.instances); k++) {
                             var instance = data_old.instances[| k];
-                            // @todo the value list
-                            ds_list_set(instance.values[| j], 0, property_new.default_code);
+                            var plist = instance.values[| j];
+                            
+                            for (var l = 0; l < ds_list_size(plist); l++) {
+                                plist[| l] = property_new.default_code;
+                            }
                         }
                         break;
                     case DataTypes.COLOR:
@@ -76,8 +94,11 @@ for (var i = 0; i < ds_list_size(Stuff.original_data); i++) {
                         missing_count++;
                         for (var k = 0; k < ds_list_size(data_old.instances); k++) {
                             var instance = data_old.instances[| k];
-                            // @todo the value list
-                            ds_list_set(instance.values[| j], 0, c_black);
+                            var plist = instance.values[| j];
+                            
+                            for (var l = 0; l < ds_list_size(plist); l++) {
+                                plist[| l] = c_black;
+                            }
                         }
                         break;
                     case DataTypes.MESH:
@@ -90,8 +111,11 @@ for (var i = 0; i < ds_list_size(Stuff.original_data); i++) {
                         missing_count++;
                         for (var k = 0; k < ds_list_size(data_old.instances); k++) {
                             var instance = data_old.instances[| k];
-                            // @todo the value list
-                            ds_list_set(instance.values[| j], 0, 0);
+                            var plist = instance.values[| j];
+                            
+                            for (var l = 0; l < ds_list_size(plist); l++) {
+                                plist[| l] = 0;
+                            }
                         }
                         break;
                 }
