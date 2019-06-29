@@ -35,6 +35,8 @@ el_list.entries_are = ListEntries.INSTANCES;
 el_list.node = argument1;
 el_list.property_index = argument2;
 el_list.multi_index = argument3;
+// dynamic variables urgh
+el_list.type = type;
 
 dg.el_list_main = el_list;
 

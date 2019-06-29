@@ -15,7 +15,6 @@ if (selection >= 0) {
     
     argument0.root.el_property_name.value = property[EventNodeCustomData.NAME];
     argument0.root.el_property_type.value = property[EventNodeCustomData.TYPE];
-    argument0.root.el_property_type_guid.interactive = (property[EventNodeCustomData.TYPE] == DataTypes.DATA);
     argument0.root.el_property_max.value = string(property[EventNodeCustomData.MAX]);
     argument0.root.el_property_all.value = property[EventNodeCustomData.REQUIRED];
     
@@ -25,4 +24,21 @@ if (selection >= 0) {
     } else {
         argument0.root.el_property_type_guid.text = "Select";
     }
+    
+    // set the behavior of the button based on the data type
+    switch (argument0.root.el_property_type.value) {
+        case DataTypes.ENUM:
+            argument0.root.el_property_type_guid.interactive = true;
+            argument0.root.el_property_type_guid.onmouseup = omu_event_custom_enum_select;
+            break;
+        case DataTypes.DATA:
+            argument0.root.el_property_type_guid.interactive = true;
+            argument0.root.el_property_type_guid.onmouseup = omu_event_custom_data_select;
+            break;
+        default:
+            argument0.root.el_property_type_guid.interactive = false;
+            argument0.root.el_property_type_guid.onmouseup = null;
+            break;
+    }
+
 }

@@ -41,7 +41,7 @@ all_entities = ds_list_create();          // entities
 map_grid = map_create_grid(xx, yy, zz);
 
 frozen = vertex_create_buffer();          // everything that will be a single batch in
-                                        // the game
+                                          // the game
 
 population = [0, 0, 0, 0, 0, 0, 0];
 population_static = 0;

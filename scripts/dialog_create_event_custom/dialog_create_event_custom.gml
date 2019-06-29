@@ -1,7 +1,7 @@
 /// @param Dialog
 
 var dw = 720;
-var dh = 540;
+var dh = 560;
 
 // todo cache the custom event and only commit the changes when you're done
 var dg = dialog_create(dw, dh, "Custom Event Properties", dialog_note_changes, dc_close_no_questions_asked, argument0);
@@ -57,11 +57,17 @@ dg.el_property_name = el_property_name;
 yy = yy + el_property_name.height + spacing;
 
 var el_property_type = create_radio_array(col2_x, yy, "Type:", ew, eh, uivc_custom_data_property_type, 0, dg);
-create_radio_array_options(el_property_type, "Int", "Enum", "Float", "String", "Boolean", "Data");
+create_radio_array_options(el_property_type, "Int", "Enum", "Float", "String", "Boolean", "Data", "Code");
 el_property_type.interactive = false;
 dg.el_property_type = el_property_type;
 
 yy = yy + ui_get_radio_array_height(el_property_type) + spacing;
+
+var el_property_ext_type = create_button(col2_x, yy, "Other Data Type . . .", ew, eh, fa_middle, stack_trace, dg);
+el_property_ext_type.interactive = false;
+dg.el_property_ext_type = el_property_ext_type;
+
+yy = yy + el_property_ext_type.height + spacing;
 
 // selector is set when the radio button is messed with
 var el_property_type_guid = create_button(col2_x, yy, "Select Data Type", ew, eh, fa_center, null, dg);
@@ -85,7 +91,7 @@ yy = yy + el_property_all.height + spacing;
 el_confirm = create_button(dw / 2, dh - 32 - b_height/2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg, HelpPages.AUTOTILES, fa_center);
 
 ds_list_add(dg.contents, el_name, el_list, el_add, el_remove,
-    el_property_name, el_property_type, el_property_type_guid, el_property_max, el_property_all,
+    el_property_name, el_property_type, el_property_ext_type, el_property_type_guid, el_property_max, el_property_all,
     el_confirm);
 
 keyboard_string = "";
