@@ -13,7 +13,11 @@ argument0.entries = Stuff.all_event_custom;
 // do with getting the right values for the wrong reason. If anything else blows
 // up see if there are lines similar to the commented two anywhere that I didn't
 // remove.
-argument0.entries = argument0.type.instances;
+if (argument0.type.is_enum) {
+    argument0.entries = argument0.type.properties;
+} else {
+    argument0.entries = argument0.type.instances;
+}
 
 // todo alphabetize lists?
 

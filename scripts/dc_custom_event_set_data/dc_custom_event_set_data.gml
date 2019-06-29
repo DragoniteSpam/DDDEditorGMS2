@@ -8,7 +8,12 @@ if (selection >= 0) {
     var type = guid_get(property[EventNodeCustomData.TYPE_GUID]);
     
     var intermediate_list = list.node.custom_data[| list.property_index];
-    intermediate_list[| list.multi_index] = type.instances[| selection].GUID;
+    
+    if (type.is_enum) {
+        intermediate_list[| list.multi_index] = type.properties[| selection].GUID;
+    } else {
+        intermediate_list[| list.multi_index] = type.instances[| selection].GUID;
+    }
 }
 
 dialog_destroy();
