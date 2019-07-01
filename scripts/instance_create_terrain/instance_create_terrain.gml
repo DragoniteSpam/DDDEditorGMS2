@@ -1,7 +1,7 @@
 /// @param MeshName
 
 if (ds_map_exists(Stuff.vra_data, argument[0])) {
-    with (instantiate(EntityMesh)) {
+    with (instantiate(EntityMeshTerrain)) {
         name = argument[0];
         mesh_id = argument[0];
         mesh_data = Stuff.vra_data[? argument[0]];

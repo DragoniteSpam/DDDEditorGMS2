@@ -1,13 +1,12 @@
-/// @description void safc_fill_event(x, y, z, params array);
 /// @param x
 /// @param y
 /// @param z
-/// @param params array
+/// @param params
 
-var catch=argument0;
-var catch=argument1;
-var catch=argument2;
-var params=argument3;
+var catch = argument0;
+var catch = argument1;
+var catch = argument2;
+var params = argument3;
 
 /*
 var cell=map_get_grid_cell(argument0, argument1, argument2);

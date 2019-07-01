@@ -52,7 +52,8 @@ enum ETypes {
     ENTITY_MESH,
     ENTITY_PAWN,
     ENTITY_EFFECT,
-    ENTITY_EVENT
+    ENTITY_EVENT,
+    ENTITY_TERRAIN
 }
 
 enum ETypeFlags {
@@ -63,6 +64,7 @@ enum ETypeFlags {
     ENTITY_PAWN             = 1 << 4,
     ENTITY_EFFECT           = 1 << 5,
     ENTITY_EVENT            = 1 << 6,
+    ENTITY_TERRAIN          = 1 << 7,
 }
 
 etype_objects = [Entity,
@@ -71,7 +73,9 @@ etype_objects = [Entity,
     EntityMesh,
     EntityPawn,
     EntityEffect,
-    EntityEvent];
+    EntityEvent,
+    EntityMeshTerrain
+];
 
 var buffer = buffer_load(PATH_LUA + "map.lua");
 default_lua_map = buffer_read(buffer, buffer_text);

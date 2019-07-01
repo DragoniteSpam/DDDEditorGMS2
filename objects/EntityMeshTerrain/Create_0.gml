@@ -1,18 +1,12 @@
 event_inherited();
 
-save_script = serialize_save_entity_mesh;
-load_script = serialize_load_entity_mesh;
+save_script = serialize_save_entity_mesh_terrain;
+load_script = serialize_load_entity_mesh_terrain;
 
-name = "Mesh";
+name = "Terrain";
 etype = ETypes.ENTITY_MESH;
 
-ActiveMap.population[ETypes.ENTITY_MESH]++;
-
-// THIS REALLY SHOULD BE SWITCHED TO SOME KIND OF GUID THING
-// LATER. NOBODY WANTS NAME CONFLICTS EVERY TIME THEY RENAME
-// A MESH. THANK.
-
-mesh_id = "";
+terrain_id = 
 
 // other properties - inherited
 
@@ -32,3 +26,10 @@ batch = batch_mesh;
 render = render_mesh;
 selector = select_single;
 on_select = safc_on_mesh;
+
+enum ATMask {
+    NORTH       = 1 << 0,
+    WEST        = 1 << 1,
+    EAST        = 1 << 2,
+    SOUTH       = 1 << 3,
+}

@@ -20,7 +20,7 @@ pitch = ini_read_real("Camera", "pitch", 0);
 direction = ini_read_real("Camera", "direction", 0);
 ini_close();
 
-alarm[ALARM_CAMERA_SAVE]=room_speed*CAMERA_SAVE_FREQUENCY;
+alarm[ALARM_CAMERA_SAVE] = room_speed * CAMERA_SAVE_FREQUENCY;
 
 /*
  * Editor modes
@@ -192,9 +192,10 @@ enum FillTypes {
     PAWN,
     EFFECT,
     EVENT,
+    TERRAIN,
 }
 
-fill_types = [safc_fill_tile, safc_fill_autotile, safc_fill_mesh, safc_fill_pawn, safc_fill_effect, safc_fill_event];
+fill_types = [safc_fill_tile, safc_fill_autotile, safc_fill_mesh, safc_fill_pawn, safc_fill_effect, safc_fill_event, safc_fill_terrain];
 
 /*
  * the autotile shader
