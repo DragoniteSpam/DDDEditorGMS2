@@ -11,9 +11,8 @@ var size = buffer_get_size(sbuffer);
 buffer_get_surface(sbuffer, surface, 0, 0, 0);
 buffer_write(argument0, buffer_u16, sw);
 buffer_write(argument0, buffer_u16, sh);
-buffer_resize(argument0, buffer_get_size(argument0) + size);
-buffer_copy(sbuffer, 0, buffer_get_size(sbuffer), argument0, buffer_tell(argument0));
-buffer_seek(argument0, buffer_seek_relative, size);
+
+buffer_write_buffer(argument0, sbuffer);
     
 surface_free(surface);
 buffer_delete(sbuffer);

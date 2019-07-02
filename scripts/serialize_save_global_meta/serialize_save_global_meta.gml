@@ -31,3 +31,15 @@ ds_list_destroy(map_list);
 // VARIABLE_BATTLE
 
 buffer_write(argument0, buffer_u8, Stuff.game_battle_style);
+
+// MESH_AUTOTILE_INCLUSIONS
+
+for (var i = 0; i < array_length_1d(Stuff.mesh_autotile_raw); i++) {
+    var data = Stuff.mesh_autotile_raw[i];
+    if (data == noone) {
+        buffer_write(argument0, buffer_bool, false);
+    } else {
+        buffer_write(argument0, buffer_bool, true);
+        buffer_copy(data, 0, buffer_get_size(data), argument0, buffer_tell(argument0));
+    }
+}
