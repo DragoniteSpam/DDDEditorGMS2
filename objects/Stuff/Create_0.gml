@@ -248,6 +248,9 @@ vra_name = "";
 all_mesh_names = ds_list_create();
 data_load_vra();
 
+mesh_autotiles = array_create(48);
+array_clear(mesh_autotiles, noone);
+
 all_bgm = ds_list_create();
 all_se = ds_list_create();
 

@@ -3,7 +3,7 @@
 var dw = 512;
 var dh = 400;
 
-var dg = dialog_create(dw, dh, "Data: Availalbe BGM", dialog_default, dc_manager_mesh, argument0);
+var dg = dialog_create(dw, dh, "Data: Availalbe Meshes", dialog_default, dc_manager_mesh, argument0);
 
 var ew = (dw - 64) / 2;
 var eh = 24;

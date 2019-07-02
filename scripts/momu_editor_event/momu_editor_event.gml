@@ -1,9 +1,8 @@
-/// @description void momu_editor_event(MenuElement);
 /// @param MenuElement
 
-var catch=argument0;
+var catch = argument0;
 
-Camera.mode=EditorModes.EDITOR_EVENT;
+Camera.mode = EditorModes.EDITOR_EVENT;
 
 __view_set( e__VW.Visible, view_fullscreen, true );
 __view_set( e__VW.Visible, view_3d, false );

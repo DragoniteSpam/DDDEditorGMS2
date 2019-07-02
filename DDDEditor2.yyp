@@ -1703,6 +1703,14 @@
             }
         },
         {
+            "Key": "314b5433-7b59-4307-8bf8-0bf5d4f95406",
+            "Value": {
+                "id": "57b09959-46ba-45cb-bd5a-5039be9a11ee",
+                "resourcePath": "scripts\\dialog_create_manager_mesh_autotile\\dialog_create_manager_mesh_autotile.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "3158dfea-5381-41d9-a140-b5636ff6d446",
             "Value": {
                 "id": "a17fb5a2-994e-47fd-b965-92c2945ef958",
@@ -2923,6 +2931,14 @@
             "Value": {
                 "id": "ca868143-617f-4f76-b7dd-bade720b8ddf",
                 "resourcePath": "scripts\\ui_render_text_mesh_ymax\\ui_render_text_mesh_ymax.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "54a48ce1-facf-4ddd-b47c-3d0087ccfee1",
+            "Value": {
+                "id": "a3062281-1b75-4fde-b373-14387f22269c",
+                "resourcePath": "scripts\\momu_mesh_autotile\\momu_mesh_autotile.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -8943,6 +8959,7 @@
         "112a92b9-2ac2-400b-b92d-ab57211d250c",
         "c5f93cc5-cb1c-46af-9e46-7cf396f39038",
         "6e790340-5f1a-4a89-820c-901be2d727e1",
+        "314b5433-7b59-4307-8bf8-0bf5d4f95406",
         "cb438292-f61d-47d3-aa94-63e69acbca1b",
         "2c70626d-6b45-41a9-aa03-b92912dcbe11",
         "fc4662bb-11fc-46ed-a4e9-cfb814458882",
@@ -9036,6 +9053,7 @@
         "7645252a-52fa-4ad4-87c1-1341bb77fdb6",
         "df9f8e52-d39f-4d27-959e-cb48c4037340",
         "4abd6b03-8bce-4f3f-bbc8-4cfad49dc9a1",
+        "54a48ce1-facf-4ddd-b47c-3d0087ccfee1",
         "ef7e57cb-8661-4d54-b335-ab819f7369bd",
         "88f87ee3-86f8-43a3-9b22-3b1bdf750885",
         "26f2f886-5bd9-4255-ad27-dfe1a7d1f199",

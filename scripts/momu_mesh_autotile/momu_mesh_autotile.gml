@@ -4,4 +4,4 @@ var catch = argument0;
 
 menu_activate(noone);
 
-dialog_create_data_types(noone);
+dialog_create_manager_mesh_autotile(noone);
