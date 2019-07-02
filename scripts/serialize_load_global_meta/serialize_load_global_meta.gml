@@ -21,3 +21,18 @@ Stuff.game_map_starting = buffer_read(argument0, buffer_string);
 var bools = buffer_read(argument0, buffer_u32);
 Stuff.game_player_grid = unpack(bools, 0);
 Stuff.game_battle_style = buffer_read(argument0, buffer_u8);
+
+this should definitely be moved over to the assets file, becuase it's an asset type, whoops
+(just undo the changes instead of creating a new version of the data file)
+after that probably implement the drag-file-into-window thing because setting each of the files
+individually isn't going to be fun, or maybe just allow you to import a vrax, or both
+if (version >= DataVersions.MESH_AUTOTILE_INCLUSION) {
+    for (var i = 0; i < array_length_1d(Stuff.mesh_autotile_raw); i++) {
+        var exists = buffer_read(argument0, buffer_bool);
+        if (exists) {
+            var size = buffer_read(argument0, buffer_u32);
+            Stuff.mesh_autotile_raw[i] = buffer_read_buffer(argument0, size);
+            Stuff.mesh_autotiles[i] = vertex_create_buffer_from_buffer(Stuff.mesh_autotile_raw[i], Camera.vertex_format);
+        }
+    }
+}

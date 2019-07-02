@@ -8,5 +8,8 @@ if (file_exists(fn)) {
     }
     
     Stuff.mesh_autotiles[argument0.key] = data_import_d3d(fn);
+    Stuff.mesh_autotile_raw[argument0.key] = buffer_create_from_vertex_buffer(Stuff.mesh_autotiles[argument0.key], buffer_fixed, 1);
+    vertex_freeze(Stuff.mesh_autotiles[argument0.key]);
+    
     argument0.color = c_black;
 }

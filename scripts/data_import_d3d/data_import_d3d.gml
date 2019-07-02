@@ -1,5 +1,6 @@
 /// @param fname
 // I ripped the guts out of a compatibility script becuase I didn't feel like writing it on my own
+// it doesn't freeze the vertex buffer - that's on you
 
 if (!file_exists(argument0)) {
 	return -1;
@@ -50,7 +51,6 @@ while(thing < nthings) {
 	thing++;
 }
 
-vertex_freeze(buffer);
 file_text_close(f);
 
 return buffer;

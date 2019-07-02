@@ -40,6 +40,7 @@ for (var i = 0; i < array_length_1d(Stuff.mesh_autotile_raw); i++) {
         buffer_write(argument0, buffer_bool, false);
     } else {
         buffer_write(argument0, buffer_bool, true);
-        buffer_copy(data, 0, buffer_get_size(data), argument0, buffer_tell(argument0));
+        buffer_write(argument0, buffer_u32, buffer_get_size(data));
+        buffer_write_buffer(argument0, data);
     }
 }
