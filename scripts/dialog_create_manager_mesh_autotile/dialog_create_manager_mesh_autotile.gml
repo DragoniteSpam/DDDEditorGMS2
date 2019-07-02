@@ -22,14 +22,21 @@ var xx = 16;
 var yy = 96;
 var mbw = 64;
 var mbh = eh;
+
+dg.buttons = array_create(array_length_1d(Stuff.mesh_autotiles));
+array_clear(dg.buttons, noone);
+
 for (var i = 0; i < array_length_1d(Stuff.mesh_autotiles); i++) {
-    var button = create_button(xx, yy, "AT" + string(i), mbw, mbh, fa_center, null, dg);
+    var button = create_button(xx, yy, "AT" + string(i), mbw, mbh, fa_center, dmu_dialog_load_mesh_autotile, dg);
+    button.color = (Stuff.mesh_autotiles[i] == noone) ? c_gray : c_black;
+    button.key = i;
     yy = yy + button.height + spacing;
     if (yy > dh - (eh + spacing) * 2) {
         xx = xx + mbw;
         yy = 96;
     }
     ds_list_add(dg.contents, button);
+    dg.buttons[i] = button;
 }
 
 dg.el_preview = create_button(dw / 2 - b_width - 32, dh - 32 - b_height / 2, "Preview", b_width, b_height, fa_center, dmu_dialog_preview_mesh, dg);

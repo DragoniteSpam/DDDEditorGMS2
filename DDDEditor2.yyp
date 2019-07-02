@@ -1247,6 +1247,14 @@
             }
         },
         {
+            "Key": "22c17f64-7639-4a51-b5cb-8399db8e5261",
+            "Value": {
+                "id": "ff72c05c-97ea-4f3a-aee9-f4b81267533e",
+                "resourcePath": "views\\22c17f64-7639-4a51-b5cb-8399db8e5261.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "230073b8-040a-4e1c-967c-2756a4faba3a",
             "Value": {
                 "id": "485a04d2-832d-4251-bd54-be76cf22100c",
@@ -2171,6 +2179,14 @@
             "Value": {
                 "id": "d5dd4781-d3dc-4167-b0e0-6d0934d9f3dc",
                 "resourcePath": "scripts\\dmu_dialog_preview_mesh\\dmu_dialog_preview_mesh.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "421b75e0-45fa-46bd-9818-6df02b716307",
+            "Value": {
+                "id": "b6c295fa-60b5-4bdf-961c-a9541840e5d6",
+                "resourcePath": "scripts\\dmu_dialog_load_mesh_autotile\\dmu_dialog_load_mesh_autotile.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -4115,6 +4131,14 @@
             "Value": {
                 "id": "641bc2fa-202a-45b0-ac94-4a0c32745079",
                 "resourcePath": "scripts\\@d3d_set_projection_ext\\d3d_set_projection_ext.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "7874d997-3bb4-42ea-9d83-08436e7011ad",
+            "Value": {
+                "id": "b4073726-ed28-4c27-b428-b1c94878c26b",
+                "resourcePath": "scripts\\data_import_d3d\\data_import_d3d.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -8920,6 +8944,7 @@
         "72c8a6e4-9b33-4505-8f31-b6bc7620a015",
         "264290be-788b-4b72-a277-46569738402a",
         "5efe40e2-5099-4368-8ec4-d5d4d92d0bfc",
+        "7874d997-3bb4-42ea-9d83-08436e7011ad",
         "af334ca9-9e18-41e4-95dc-86fad4ff92dd",
         "247f6bc8-75c8-499d-af93-0f445669a68f",
         "a6d30fef-6445-4534-a529-edf6c041bd3a",
@@ -9001,6 +9026,7 @@
         "c0649b09-7522-4726-b33c-d2f2900224fc",
         "420cae21-00cc-44d0-8fb4-147ce2b02795",
         "5673a433-dfb8-411b-9713-47cc0ab299d8",
+        "421b75e0-45fa-46bd-9818-6df02b716307",
         "dd530bc5-b3be-4ad9-98cb-00e3c00bce71",
         "796df690-2228-4c77-b188-e46c05f22094",
         "2c8a3826-1fff-44d3-975d-a37ccd829943",
