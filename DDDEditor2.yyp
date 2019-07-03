@@ -431,6 +431,14 @@
             }
         },
         {
+            "Key": "09633a3f-60e0-4134-90cc-80961de6982c",
+            "Value": {
+                "id": "d84a9888-ec94-4391-a991-fb8dabe4a996",
+                "resourcePath": "scripts\\ds_stuff_registry\\ds_stuff_registry.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "09c3db56-cf0d-49de-be3f-5d7a532d4f90",
             "Value": {
                 "id": "3b9d99dc-1dc5-428f-9232-a3b855342571",
@@ -7847,6 +7855,14 @@
             }
         },
         {
+            "Key": "e55e6ef8-d1f7-44e0-965c-388eb3cf890d",
+            "Value": {
+                "id": "bd3bab72-55ab-48b1-a2ad-947a0f943cc9",
+                "resourcePath": "scripts\\ds_stuff_shell_execute\\ds_stuff_shell_execute.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "e574ab72-4703-41d7-a0a6-a68078d1b255",
             "Value": {
                 "id": "a28dd803-bfbd-4449-b0e5-b433013dfad9",
@@ -8747,6 +8763,7 @@
         "1307deea-cc84-4582-a088-f30484630054",
         "ef13a6e3-dc8f-4d79-80d5-83418c374fb0",
         "a9d5386c-2c72-439b-9704-f064874e708d",
+        "e55e6ef8-d1f7-44e0-965c-388eb3cf890d",
         "884078f3-1176-4148-9840-98f63d93924d",
         "ef5f58dd-4716-45e2-87ed-852cb32d0b67",
         "d398cca7-14cd-4125-8c92-6bea3110170b",
@@ -8757,6 +8774,7 @@
         "8dabfabd-6492-4961-ae4e-fa74df24de87",
         "884af337-59f0-4345-aa0b-02ca8702a81b",
         "6a971c31-99b2-4650-8227-a51e96e2bcf9",
+        "09633a3f-60e0-4134-90cc-80961de6982c",
         "6ea1b38b-2a12-4b05-9ab3-475e24c13c2f",
         "49af59d3-f74c-416b-ad61-eafc4a461838",
         "49bbef06-a307-4766-abe4-9dd1272bf6d3",
