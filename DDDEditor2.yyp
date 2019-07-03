@@ -3287,6 +3287,14 @@
             }
         },
         {
+            "Key": "5f874fc3-4343-4ac7-9a4c-56a04e17a103",
+            "Value": {
+                "id": "2d6397af-38bb-49f7-b8bd-f658a79ba7aa",
+                "resourcePath": "sprites\\spr_autotile_blueprint\\spr_autotile_blueprint.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "5f973c6b-80ad-43e9-b503-df3110df8bb1",
             "Value": {
                 "id": "8f1310f7-67ef-458d-8951-bcc32af736aa",
