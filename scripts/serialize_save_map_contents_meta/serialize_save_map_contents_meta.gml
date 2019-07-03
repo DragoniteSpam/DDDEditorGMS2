@@ -23,3 +23,16 @@ var bools = pack(ActiveMap.indoors, ActiveMap.draw_water, ActiveMap.fast_travel_
 
 buffer_write(argument0, buffer_u32, bools);
 buffer_write(argument0, buffer_string, ActiveMap.code);
+
+// MESH_AUTOTILE_INCLUSIONS
+
+for (var i = 0; i < array_length_1d(ActiveMap.mesh_autotile_raw); i++) {
+    var data = ActiveMap.mesh_autotile_raw[i];
+    if (data == noone) {
+        buffer_write(argument0, buffer_bool, false);
+    } else {
+        buffer_write(argument0, buffer_bool, true);
+        buffer_write(argument0, buffer_u32, buffer_get_size(data));
+        buffer_write_buffer(argument0, data);
+    }
+}

@@ -56,15 +56,16 @@ if (buffer < 0) {
                 ds_map_clear(Stuff.all_guids);
                 ds_map_clear(Stuff.all_internal_names);
                 ds_list_clear(Stuff.all_data);
-                for (var i = 0; i < array_length_1d(Stuff.mesh_autotiles); i++) {
-                    if (Stuff.mesh_autotiles[i] != noone) {
-                        vertex_delete_buffer(Stuff.mesh_autotiles[i]);
-                        vertex_delete_buffer(Stuff.mesh_autotile_raw[i]);
-                    }
-                }
-                array_clear(Stuff.mesh_autotiles, noone);
                 break;
             case SERIALIZE_MAP:
+                for (var i = 0; i < array_length_1d(ActiveMap.mesh_autotiles); i++) {
+                    if (ActiveMap.mesh_autotiles[i] != noone) {
+                        vertex_delete_buffer(ActiveMap.mesh_autotiles[i]);
+                        vertex_delete_buffer(ActiveMap.mesh_autotile_raw[i]);
+                    }
+                }
+                array_clear(ActiveMap.mesh_autotiles, noone);
+                array_clear(ActiveMap.mesh_autotile_raw, noone);
                 // todo clear editor map - IF entities get their own GUIDs eventually,
                 // they should go in a separate lookup which should be cleared in here
                 break;

@@ -30,3 +30,14 @@ ActiveMap.fast_travel_from = unpack(bools, 3);
 
 ActiveMap.is_3d = unpack(bools, 4);
 ActiveMap.code = buffer_read(argument0, buffer_string);
+
+if (version >= DataVersions.MESH_AUTOTILE_INCLUSION) {
+    for (var i = 0; i < array_length_1d(ActiveMap.mesh_autotile_raw); i++) {
+        var exists = buffer_read(argument0, buffer_bool);
+        if (exists) {
+            var size = buffer_read(argument0, buffer_u32);
+            ActiveMap.mesh_autotile_raw[i] = buffer_read_buffer(argument0, size);
+            ActiveMap.mesh_autotiles[i] = vertex_create_buffer_from_buffer(ActiveMap.mesh_autotile_raw[i], Camera.vertex_format);
+        }
+    }
+}
