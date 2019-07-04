@@ -10,18 +10,6 @@ var y2 = y1 + argument0.height;
 var active = dialog_is_active(argument0);
 var kill = false;
 
-draw_rectangle_colour(x1, y1, x2, y2, c_white, c_white, c_white, c_white, false);
-draw_rectangle_colour(x1, y1, x2, y2, c_black, c_black, c_black, c_black, true);
-
-if (active) {
-    var hc = Stuff.setting_color;
-} else {
-    var hc = merge_colour(Stuff.setting_color, c_white, 0.75);
-}
-
-draw_rectangle_colour(x1, y1, x2, y1 + header_height, hc, hc, hc, hc, false);
-draw_line_colour(x1, y1 + header_height, x2, y1 + header_height, c_black, c_black);
-
 var tx = x1 + 32;
 var ty = y1 + header_height / 2;
 
@@ -29,9 +17,6 @@ var cbs = sprite_get_width(spr_close) / 2;
 var cbx = x2 - cbs;
 var cby = ty;
 var cbi = 2;  // 0 is is available, 1 is hovering, 2 is unavailable
-
-draw_set_halign(fa_left);
-draw_text(tx, ty, string(argument0.text));
 
 if (active) {
     cbi = 0;
@@ -68,6 +53,21 @@ if (active) {
         argument0.cmy = Camera.MOUSE_Y;
     }
 }
+
+draw_rectangle_colour(x1, y1, x2, y2, c_white, c_white, c_white, c_white, false);
+draw_rectangle_colour(x1, y1, x2, y2, c_black, c_black, c_black, c_black, true);
+
+if (active) {
+    var hc = Stuff.setting_color;
+} else {
+    var hc = merge_colour(Stuff.setting_color, c_white, 0.75);
+}
+
+draw_rectangle_colour(x1, y1, x2, y1 + header_height, hc, hc, hc, hc, false);
+draw_line_colour(x1, y1 + header_height, x2, y1 + header_height, c_black, c_black);
+
+draw_set_halign(fa_left);
+draw_text(tx, ty, string(argument0.text));
 
 draw_sprite(spr_close, cbi, cbx, cby);
 
