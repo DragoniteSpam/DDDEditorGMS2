@@ -4,6 +4,7 @@ root = noone;
 enabled = true;
 
 interactive = true;
+outline = true;             // not used in all element types
 
 key = "key";
 

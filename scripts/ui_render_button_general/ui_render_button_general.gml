@@ -33,7 +33,10 @@ if (enabled) {
 }
 
 draw_rectangle_colour(x1, y1, x2, y2, c, c, c, c, false);
-draw_rectangle_colour(x1, y1, x2, y2, c_black, c_black, c_black, c_black, true);
+
+if (thing.outline) {
+    draw_rectangle_colour(x1, y1, x2, y2, c_black, c_black, c_black, c_black, true);
+}
 
 if (enabled) {
     if (mouse_within_rectangle(x1, y1, x2, y2)) {
