@@ -1,4 +1,3 @@
-/// @description c_object_create(shape, group, mask)
 /// @param shape
 /// @param group
 /// @param mask
@@ -11,4 +10,5 @@ A bitwise AND operation is performed with the group of one object and the mask o
 
 For a collision to occur between two objects, both objects' masks must include each other.
 */
+
 return external_call(global._c_object_create, argument0, argument1, argument2);

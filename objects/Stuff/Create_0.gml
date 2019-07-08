@@ -163,26 +163,67 @@ if (file_exists(PATH_PERMANENT + "b_at_default_grass_0.png")) {
 }
 available_autotiles[0] = [spr, "<default>", false, "", 1, 3];
 
-autotile_hashes = array_create(256);
-array_clear(autotile_hashes, AutotileSegments.CENTER);
-autotile_hashes[11] = AutotileSegments.LOWER_RIGHT;
-autotile_hashes[22] = AutotileSegments.LOWER_LEFT;
-autotile_hashes[31] = AutotileSegments.LOWER;
-autotile_hashes[104] = AutotileSegments.UPPER_RIGHT;
-autotile_hashes[107] = AutotileSegments.RIGHT;
-autotile_hashes[165] = AutotileSegments.INVERSE;
-autotile_hashes[208] = AutotileSegments.UPPER_LEFT;
-autotile_hashes[214] = AutotileSegments.LEFT;
-autotile_hashes[248] = AutotileSegments.UPPER;
-// this one's the default but
-//autotile_hashes[255]=AutotileSegments.CENTER;
-
 all_tilesets = ds_list_create();
 if (file_exists(PATH_PERMANENT + "b_tileset_overworld_0.png")) {
     var filename = PATH_PERMANENT + "b_tileset_overworld_0.png";
 } else {
     var filename = PATH_DUMMY + "b_tileset_dummy_overworld.png";
 }
+
+#region autotile map
+autotile_map = ds_map_create();
+autotile_map[? 2] = 1;
+autotile_map[? 8] = 2;
+autotile_map[? 10] = 3;
+autotile_map[? 11] = 4;
+autotile_map[? 16] = 5;
+autotile_map[? 18] = 6;
+autotile_map[? 22] = 7;
+autotile_map[? 24] = 8;
+autotile_map[? 26] = 9;
+autotile_map[? 27] = 10;
+autotile_map[? 30] = 11;
+autotile_map[? 31] = 12;
+
+autotile_map[? 64] = 13;
+autotile_map[? 66] = 14;
+autotile_map[? 72] = 15;
+autotile_map[? 74] = 16;
+autotile_map[? 75] = 17;
+autotile_map[? 80] = 18;
+autotile_map[? 82] = 19;
+autotile_map[? 86] = 20;
+autotile_map[? 88] = 21;
+autotile_map[? 90] = 22;
+autotile_map[? 91] = 23;
+autotile_map[? 94] = 24;
+
+autotile_map[? 95] = 25;
+autotile_map[? 104] = 26;
+autotile_map[? 106] = 27;
+autotile_map[? 107] = 28;
+autotile_map[? 120] = 29;
+autotile_map[? 122] = 30;
+autotile_map[? 123] = 31;
+autotile_map[? 126] = 32;
+autotile_map[? 127] = 33;
+autotile_map[? 208] = 34;
+autotile_map[? 210] = 35;
+autotile_map[? 214] = 36;
+
+autotile_map[? 216] = 37;
+autotile_map[? 218] = 38;
+autotile_map[? 219] = 39;
+autotile_map[? 222] = 40;
+autotile_map[? 223] = 41;
+autotile_map[? 248] = 42;
+autotile_map[? 250] = 43;
+
+autotile_map[? 251] = 44;
+autotile_map[? 254] = 45;
+autotile_map[? 255] = 46;
+autotile_map[? 0] = 47;
+#endregion
 
 ds_list_add(all_tilesets, tileset_create(filename,
     // this is somewhat hard-coded;

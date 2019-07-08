@@ -13,11 +13,12 @@ if (Camera.view_entities) {
         var tex = sprite_get_texture(b_tileset_textureless, 0)
     }
     
-    vertex_submit(mesh.mesh_data[@ MeshArrayData.VBUFF], pr_trianglelist, tex);
+    //vertex_submit(mesh.mesh_data[@ MeshArrayData.VBUFF], pr_trianglelist, tex);
+    vertex_submit(mesh.mesh_data, pr_trianglelist, tex);
 }
 
 if (Camera.view_wireframe) {
-    vertex_submit(mesh.mesh_data[@ MeshArrayData.VBUFF_WIREFRAME], pr_linelist, -1);
+    //vertex_submit(mesh.mesh_data[@ MeshArrayData.VBUFF_WIREFRAME], pr_linelist, -1);
 }
 
 transform_reset();

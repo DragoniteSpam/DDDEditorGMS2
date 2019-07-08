@@ -103,18 +103,3 @@ all_tile_terrain_tag_names = ["None",
     "Soot Grass",
     "Bridge"
 ];
-
-enum AutotileSegments {
-    SURROUNDED,     /*00*/
-    CLEAR,          /*01*/
-    INVERSE,        /*02*/
-    UPPER_LEFT,     /*03*/
-    UPPER,          /*04*/
-    UPPER_RIGHT,    /*05*/
-    LEFT,           /*06*/
-    CENTER,         /*07*/
-    RIGHT,          /*08*/
-    LOWER_LEFT,     /*09*/
-    LOWER,          /*10*/
-    LOWER_RIGHT     /*11*/
-}

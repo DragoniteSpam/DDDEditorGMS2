@@ -5,8 +5,6 @@
 
 var params = argument3;
 
-stack_trace();
-
 if (!ds_list_empty(Stuff.all_mesh_names)) {
     var cell = map_get_grid_cell(argument0, argument1, argument2);
     

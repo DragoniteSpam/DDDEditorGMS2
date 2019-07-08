@@ -6,7 +6,7 @@ load_script = serialize_load_entity_mesh_terrain;
 name = "Terrain";
 etype = ETypes.ENTITY_MESH;
 
-terrain_id = 
+terrain_id = 0;
 
 // other properties - inherited
 
@@ -15,21 +15,27 @@ ActiveMap.population_solid++;
 
 // editor properties
 
+// @todo something better than this
 mesh_data = noone;
+mesh_data_raw = noone;
 
 slot = MapCellContents.MESHMOB;
 rotateable = true;
 offsettable = true;
 scalable = true;
 
-batch = batch_mesh;
-render = render_mesh;
+batch = batch_mesh_terrain;
+render = render_mesh_terrain;
 selector = select_single;
 on_select = safc_on_mesh;
 
 enum ATMask {
-    NORTH       = 1 << 0,
-    WEST        = 1 << 1,
-    EAST        = 1 << 2,
-    SOUTH       = 1 << 3,
+    NORTHWEST   = 1 << 0,
+    NORTH       = 1 << 1,
+    NORTHEAST   = 1 << 2,
+    WEST        = 1 << 3,
+    EAST        = 1 << 4,
+    SOUTHWEST   = 1 << 5,
+    SOUTH       = 1 << 6,
+    SOUTHEAST   = 1 << 7,
 }

@@ -7,7 +7,8 @@
         "09096564-84a5-4547-b3e9-13eb83d5083e",
         "c90c974b-f766-4e1c-8510-7a8d4cb235c2",
         "0ba67cd4-8c88-46b5-98b0-6592fdf0f101",
-        "7388fa70-3d82-49cb-911d-fdf570820496"
+        "7388fa70-3d82-49cb-911d-fdf570820496",
+        "cabddee6-83fd-4635-a29d-8d1e4a5f3dfd"
     ],
     "filterType": "GMScript",
     "folderName": "rendering",

@@ -13,6 +13,8 @@ var zz = mesh.zz * TILE_DEPTH;
 var data = mesh.mesh_data[@ MeshArrayData.DATA];
 buffer_seek(data, buffer_seek_start, 0);
 
+// @todo overhaul mesh storage
+
 var vc = 0;
 
 var px = array_create(3);
@@ -55,3 +57,5 @@ while (buffer_tell(data) < buffer_get_size(data)) {
         vertex_point_line(wire, px[0], py[0], pz[0], c_white, 1);
     }
 }
+
+return [buffer, wire];

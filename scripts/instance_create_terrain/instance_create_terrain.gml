@@ -1,20 +1,11 @@
-/// @param MeshName
-
-if (ds_map_exists(Stuff.vra_data, argument[0])) {
-    with (instantiate(EntityMeshTerrain)) {
-        name = argument[0];
-        mesh_id = argument[0];
-        mesh_data = Stuff.vra_data[? argument[0]];
-
-        switch (argument_count) {
-            case 1:
-                break;
-        }
+with (instantiate(EntityMeshTerrain)) {
+    name = "Terrain";
+    
+    // @todo slopes i guess?
+    
+    cobject = c_object_create(Stuff.c_shape_block, 1, 1);
+    
+    // mesh data is assigned in sa_process_selection
         
-        entity_init_collision_mesh(id);
-        
-        return id;
-    }
+    return id;
 }
-
-return noone;
