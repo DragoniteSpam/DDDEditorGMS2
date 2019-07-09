@@ -8,11 +8,6 @@ var dg = dialog_create(dw, dh, "Data: Mesh Autotiles", dialog_default, dc_manage
 var ew = (dw - 64) / 2;
 var eh = 24;
 
-var vx1 = dw / 4 + 16;
-var vy1 = 0;
-var vx2 = vx1 + 80;
-var vy2 = vy1 + eh;
-
 var b_width = 128;
 var b_height = 32;
 

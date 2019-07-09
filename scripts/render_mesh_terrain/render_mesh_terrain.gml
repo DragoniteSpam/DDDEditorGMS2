@@ -10,9 +10,11 @@ if (Camera.view_entities) {
     if (Camera.view_texture) {
         var tex = sprite_get_texture(get_active_tileset().master, 0);
     } else {
-        var tex = sprite_get_texture(b_tileset_textureless, 0)
+        var tex = sprite_get_texture(b_tileset_textureless, 0);
     }
-    
+    the meshes exist, and you can see them if you turn the textures off. however, when the texture is on they
+    appear to be invisible, despite the texture coordinates being in the correct places, even when the noalpha
+    version of the texture is used.
     //vertex_submit(mesh.mesh_data[@ MeshArrayData.VBUFF], pr_trianglelist, tex);
     vertex_submit(mesh.mesh_data, pr_trianglelist, tex);
 }

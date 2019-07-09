@@ -8,7 +8,7 @@ var alphabetizer = ds_priority_create();
 
 var buffer = buffer_load(argument[0]);
 
-var conflicts_output =file_text_open_write("conflicts.txt");
+var conflicts_output = file_text_open_write("conflicts.txt");
 var conflicts_identified = false;
 
 var data = ds_map_create();

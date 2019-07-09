@@ -16,11 +16,6 @@ var columns = 1;
 var ew = (dw - columns * 32) / columns;
 var eh = 24;
 
-var vx1 = dw / (columns * 2) - 16;
-var vy1 = 0;
-var vx2 = vx1 + dw / (columns * 2) - 16;
-var vy2 = vy1 + eh;
-
 var b_width = 128;
 var b_height = 32;
 

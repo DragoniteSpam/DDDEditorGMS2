@@ -109,42 +109,42 @@ with (instantiate(UIMain)) {
     
     yy = yy + element.height+spacing;
     /*
-    element=create_checkbox(col2_x, yy, "View Selection Mask", col_width, element_height, uivc_check_view_selection_mask, "", Camera.view_wireframe, t_general);
+    element = create_checkbox(col2_x, yy, "View Selection Mask", col_width, element_height, uivc_check_view_selection_mask, "", Camera.view_wireframe, t_general);
     ds_list_add(t_general.contents, element);
     
-    yy=yy+element.height+spacing;
+    yy = yy + element.height + spacing;
     */
-    element=create_checkbox(col2_x, yy, "View Wireframes", col_width, element_height, uivc_check_view_wireframe, "", Camera.view_wireframe, t_general);
+    element = create_checkbox(col2_x, yy, "View Wireframes", col_width, element_height, uivc_check_view_wireframe, "", Camera.view_wireframe, t_general);
     ds_list_add(t_general.contents, element);
     
-    yy=yy+element.height+spacing;
+    yy = yy + element.height + spacing;
     
-    element=create_checkbox(col2_x, yy, "View Grid and Markers", col_width, element_height, uivc_check_view_grids, "", Camera.view_grid, t_general);
+    element = create_checkbox(col2_x, yy, "View Grid and Markers", col_width, element_height, uivc_check_view_grids, "", Camera.view_grid, t_general);
     ds_list_add(t_general.contents, element);
     
-    yy=yy+element.height+spacing;
+    yy = yy + element.height + spacing;
     
-    element=create_checkbox(col2_x, yy, "View Texture", col_width, element_height, uivc_check_view_texture, "", Camera.view_texture, t_general);
+    element = create_checkbox(col2_x, yy, "View Texture", col_width, element_height, uivc_check_view_texture, "", Camera.view_texture, t_general);
     ds_list_add(t_general.contents, element);
     
-    yy=yy+element.height+spacing;
+    yy = yy + element.height + spacing;
     
-    element=create_checkbox(col2_x, yy, "View Entities", col_width, element_height, uivc_check_view_entities, "", Camera.view_entities, t_general);
+    element = create_checkbox(col2_x, yy, "View Entities", col_width, element_height, uivc_check_view_entities, "", Camera.view_entities, t_general);
     ds_list_add(t_general.contents, element);
     
-    yy=yy+element.height+spacing;
+    yy = yy + element.height + spacing;
     
-    element=create_checkbox(col2_x, yy, "View Backfaces", col_width, element_height, uivc_check_view_backface, "", Camera.view_backface, t_general);
+    element = create_checkbox(col2_x, yy, "View Backfaces", col_width, element_height, uivc_check_view_backface, "", Camera.view_backface, t_general);
     ds_list_add(t_general.contents, element);
     
-    yy=yy+element.height+spacing;
+    yy = yy + element.height + spacing;
     
-    element=create_text(col2_x, yy, "Map Settings", col_width, element_height, fa_left, col_width, t_general);
+    element = create_text(col2_x, yy, "Map Settings", col_width, element_height, fa_left, col_width, t_general);
     ds_list_add(t_general.contents, element);
     
-    yy=yy+element.height+spacing;
+    yy = yy + element.height + spacing;
     
-    element=create_button(col2_x, yy, "Freeze Selected", col_width, element_height, fa_center, uimu_freeze_ask, t_general);
+    element = create_button(col2_x, yy, "Freeze Selected", col_width, element_height, fa_center, uimu_freeze_ask, t_general);
     ds_list_add(t_general.contents, element);
     
     /*

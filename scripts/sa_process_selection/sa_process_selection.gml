@@ -131,10 +131,15 @@ var terrain = selected_affected_terrain();
 for (var i = 0; i < ds_list_size(terrain); i++) {
     var thing = terrain[| i];
     thing.terrain_id = get_autotile_id(thing);
+    
     //terrain[| i].mesh_id = 
+    if (!ds_map_exists(Stuff.autotile_map, thing.terrain_id)) {
+        thing.terrain_id = 255;
+    }
+    
     var mapping = Stuff.autotile_map[? thing.terrain_id];
     thing.mesh_data = ActiveMap.mesh_autotiles[mapping];
-    thing.mesh_data = ActiveMap.mesh_autotile_raw[mapping];
+    thing.mesh_data_raw = ActiveMap.mesh_autotile_raw[mapping];
 }
 
 ds_list_destroy(terrain);
