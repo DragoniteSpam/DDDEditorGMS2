@@ -41,7 +41,7 @@ while(thing < nthings) {
 		case 9:
 			vertex_position_3d(buffer, args[0], args[1], args[2]);
 			vertex_normal(buffer, args[3], args[4], args[5]);
-			vertex_texcoord(buffer, args[6], args[7]);
+			vertex_texcoord(buffer, args[6] * TILESET_TEXTURE_WIDTH, args[7] * TILESET_TEXTURE_HEIGHT);
 			vertex_color(buffer, args[8], args[9]);
             // extra vec4 that doesn't do anything here
             vertex_color(buffer, c_white, 1);

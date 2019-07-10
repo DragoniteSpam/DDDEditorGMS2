@@ -37,6 +37,11 @@ if (version >= DataVersions.MESH_AUTOTILE_INCLUSION) {
         if (exists) {
             var size = buffer_read(argument0, buffer_u32);
             ActiveMap.mesh_autotile_raw[i] = buffer_read_buffer(argument0, size);
+            /*
+            for (var j = 0; j < buffer_get_size(ActiveMap.mesh_autotile_raw[i]); i++) {
+                
+            }
+            */
             ActiveMap.mesh_autotiles[i] = vertex_create_buffer_from_buffer(ActiveMap.mesh_autotile_raw[i], Camera.vertex_format);
             vertex_freeze(ActiveMap.mesh_autotiles[i]);
         }

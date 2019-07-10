@@ -14,8 +14,8 @@ for (var i = 0; i < n_tilesets; i++) {
     
     var sprite = buffer_read_sprite(argument0);
     // comment these out if you dont want to replace the tileset - for now
-    sprite_delete(sprite);
-    sprite = sprite_add(get_open_filename("*.png|*.png", ""), 0, false, false, 0, 0);
+    //sprite_delete(sprite);
+    //sprite = sprite_add(get_open_filename("*.png|*.png", ""), 0, false, false, 0, 0);
     
     // all of the other things
     var n_autotiles = buffer_read(argument0, buffer_u8);

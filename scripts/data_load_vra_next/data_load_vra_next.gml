@@ -1,5 +1,5 @@
 /// @param buffer
-/// @param grid size
+/// @param grid-size
 // the array that is returned takes the form of
 // [vbuff, buff, xmin, ymin, zmin, xmax, ymax, zmax]
 
@@ -28,8 +28,8 @@ repeat(n) {
     nx = buffer_read(argument0, T);
     ny = buffer_read(argument0, T);
     nz = buffer_read(argument0, T);
-    xtex = buffer_read(argument0, T)*TILESET_TEXTURE_WIDTH;
-    ytex = buffer_read(argument0, T)*TILESET_TEXTURE_HEIGHT;
+    xtex = buffer_read(argument0, T) * TILESET_TEXTURE_WIDTH;
+    ytex = buffer_read(argument0, T) * TILESET_TEXTURE_HEIGHT;
     color = buffer_read(argument0, T);
     alpha = buffer_read(argument0, T);
     
