@@ -9,6 +9,7 @@
     "option_windows_copy_exe_to_dest": false,
     "option_windows_copyright_info": "",
     "option_windows_description_info": "",
+    "option_windows_disable_sandbox": true,
     "option_windows_display_cursor": true,
     "option_windows_display_name": "DDD Editor",
     "option_windows_enable_steam": false,
@@ -26,6 +27,7 @@
     "option_windows_sleep_margin": 1,
     "option_windows_splash_screen": "${options_dir}\\windows\\splash.png",
     "option_windows_start_fullscreen": false,
+    "option_windows_steam_use_alternative_launcher": false,
     "option_windows_texture_page": "4096x4096",
     "option_windows_use_splash": false,
     "option_windows_version": {
