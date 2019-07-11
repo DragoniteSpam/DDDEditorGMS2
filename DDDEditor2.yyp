@@ -2343,6 +2343,14 @@
             }
         },
         {
+            "Key": "4454a6a9-99b9-42dd-bd75-4032290c3af7",
+            "Value": {
+                "id": "70e5e574-ab6f-425f-9397-34066a7560bd",
+                "resourcePath": "scripts\\dmu_dialog_save_tileset_main\\dmu_dialog_save_tileset_main.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "44759c7a-2d3b-4287-a695-5ef8dee30c0f",
             "Value": {
                 "id": "e0248a74-04bd-4263-86b1-a9f52aa440ff",
@@ -3603,6 +3611,14 @@
             "Value": {
                 "id": "98af8fe5-0bf3-45bf-8a31-5cbd167b8837",
                 "resourcePath": "scripts\\omu_mr_move_left\\omu_mr_move_left.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "6632e72e-3d90-4eed-bde9-d7220c475a3d",
+            "Value": {
+                "id": "eff835ea-15a8-4256-877e-eb9f0b16e357",
+                "resourcePath": "scripts\\dmu_dialog_load_tileset_main\\dmu_dialog_load_tileset_main.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -9157,6 +9173,8 @@
         "c0649b09-7522-4726-b33c-d2f2900224fc",
         "420cae21-00cc-44d0-8fb4-147ce2b02795",
         "5673a433-dfb8-411b-9713-47cc0ab299d8",
+        "6632e72e-3d90-4eed-bde9-d7220c475a3d",
+        "4454a6a9-99b9-42dd-bd75-4032290c3af7",
         "421b75e0-45fa-46bd-9818-6df02b716307",
         "7324b285-e9fb-485c-88e7-4fd30103c242",
         "e3cfc2d9-b0d4-4869-b141-4122b6ea9694",
