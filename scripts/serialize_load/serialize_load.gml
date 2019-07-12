@@ -48,13 +48,15 @@ if (buffer < 0) {
                 with (Data) if (deleteable) {
                     instance_destroy();
                 }
-                // clear all data - data has already been destroyed so you just have to
-                // clear them
+                // clear all data - data has already been destroyed so you just have to clear them
                 ds_list_clear(Stuff.all_events);
                 ds_list_clear(Stuff.all_event_custom);
                 ds_list_clear(Stuff.all_event_templates);
-                ds_map_clear(Stuff.all_guids);
-                ds_map_clear(Stuff.all_internal_names);
+                // these SHOULD already be cleared when you delete the data instances,
+                // but since there may be some data things that are not deleteable you can't
+                // clear the list anyway otherwise you lose them
+                //ds_map_clear(Stuff.all_guids);
+                //ds_map_clear(Stuff.all_internal_names);
                 ds_list_clear(Stuff.all_data);
                 break;
             case SERIALIZE_MAP:

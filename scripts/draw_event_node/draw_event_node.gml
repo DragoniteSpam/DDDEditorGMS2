@@ -16,6 +16,7 @@ var tolerance = 4;
 
 switch (argument0.type) {
     case EventNodeTypes.ENTRYPOINT:
+        #region entrypoint
         x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
         y2 = y1 + 16 + string_height(string(argument0.name));
         
@@ -28,8 +29,10 @@ switch (argument0.type) {
             
             draw_event_node_delete(x2, y1, argument0);
         }
+        #endregion
         break;
     case EventNodeTypes.TEXT:
+        #region text
         x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
         //y2=y1+24+string_height(argument0.name)+string_height_ext(argument0.data[| 0], -1, EVENT_NODE_CONTACT_WIDTH-16);
         // the above will be very painful for nodes with many data entries because loops so just assume
@@ -80,8 +83,10 @@ switch (argument0.type) {
                 draw_event_node_text_add(mean(x1, x2), y2, argument0);
             }
         }
+        #endregion
         break;
     case EventNodeTypes.CUSTOM:
+        #region custom
         var custom = guid_get(argument0.custom_guid);
         x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
         y2 = y1 + 24 + 32;
@@ -245,6 +250,7 @@ switch (argument0.type) {
                 entry_yy = entry_yy + eh;
             }
         }
+        #endregion
         break;
 }
 

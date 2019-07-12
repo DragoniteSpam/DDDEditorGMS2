@@ -222,7 +222,7 @@ with (instantiate(UIMain)) {
     element = create_text(legal_x + spacing, yy, "Timing", element_width, element_height, fa_left, element_width, t_list);
     ds_list_add(t_action1.contents, element);
     yy = yy + element_height + spacing;
-    element = create_button(legal_x + spacing, yy, "Wait", element_width, element_height, fa_left, stack_trace, t_action1);
+    element = create_button(legal_x + spacing, yy, "Wait", element_width, element_height, fa_left, omu_event_add_wait, t_action1);
     ds_list_add(t_action1.contents, element);
     yy = yy + element_height;
     

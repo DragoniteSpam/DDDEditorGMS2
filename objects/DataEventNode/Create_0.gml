@@ -34,5 +34,6 @@ parents = ds_map_create();
 enum EventNodeTypes {
     ENTRYPOINT,
     TEXT,
-    CUSTOM,
+    CUSTOM,     // eveything else is Custom
+    COMMENT
 }

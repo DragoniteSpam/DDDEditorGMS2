@@ -238,6 +238,10 @@ active_event = event_create("DefaultEvent");
 event_node_info = noone;
 ds_list_add(all_events, active_event);
 
+#region prefab events
+event_prefab_wait = create_event_node_prefab("Wait", [["Seconds", DataTypes.FLOAT, 0]]);
+#endregion
+
 // stuff i couldn't do in game maker so i did in c++ instead
 ds_stuff_init();
 
