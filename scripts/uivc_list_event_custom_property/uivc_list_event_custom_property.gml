@@ -40,5 +40,4 @@ if (selection >= 0) {
             argument0.root.el_property_type_guid.onmouseup = null;
             break;
     }
-
 }
