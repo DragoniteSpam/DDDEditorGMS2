@@ -75,5 +75,6 @@ enum DataVersions {
     DATADATA_DEFAULTS           = 27,
     DATADATA_SAVE_LISTS         = 28,
     MESH_AUTOTILE_INCLUSION     = 29,
+    EVENT_NODE_PREFAB           = 30,
     _CURRENT                    /* = whatever the last one is + 1 */
 }
