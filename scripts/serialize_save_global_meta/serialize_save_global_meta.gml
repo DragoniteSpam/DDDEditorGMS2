@@ -34,10 +34,10 @@ buffer_write(argument0, buffer_u8, Stuff.game_battle_style);
 
 // BASE_GAME_VARIABLES
 
-var n_switches = array_length_1d(Stuff.all_global_switches);
-var n_variables = array_length_1d(Stuff.all_global_variables);
-buffer_write(argument0, buffer_u8, n_switches);
-buffer_write(argument0, buffer_u8, n_variables);
+var n_switches = ds_list_size(Stuff.all_global_switches);
+var n_variables = ds_list_size(Stuff.all_global_variables);
+buffer_write(argument0, buffer_u16, n_switches);
+buffer_write(argument0, buffer_u16, n_variables);
 
 for (var i = 0; i < n_switches; i++) {
     var sw_data = Stuff.all_global_switches[| i];

@@ -33,7 +33,6 @@
 #macro MAP_Z_LIMIT 512
 #macro MAX_AUTOTILE_SHADER_POSITIONS 12 * 16 * 8 * 2
 #macro MAX_VISIBLE_MOVE_ROUTES 4
-#macro MILLION 1000000
 #macro mouse_x_view mouse_x + __view_get( e__VW.XView, view_current )
 #macro mouse_y_view mouse_y + __view_get( e__VW.YView, view_current )
 #macro PATH_AUTOTILE ".\\autotile\\"
@@ -69,6 +68,9 @@
 #macro WVIEW __view_get( e__VW.WView, view_current )
 #macro XVIEW __view_get( e__VW.XView, view_current )
 #macro YVIEW __view_get( e__VW.YView, view_current )
+
+#macro MILLION 1000000
+#macro BILLION 1000000000
 
 #macro AUDIO_BASE_FREQUENCY 48000
 

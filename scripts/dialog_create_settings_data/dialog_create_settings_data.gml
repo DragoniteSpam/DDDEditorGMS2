@@ -30,9 +30,9 @@ var el_global_title = create_text(16, yy, "Global Stuff", ew, eh, fa_left, dw / 
 yy = yy + el_global_title.height + spacing;
 var el_constants = create_button(16, yy, "Global Constants", ew, eh, fa_center, stack_trace, dg);
 yy = yy + el_constants.height + spacing;
-var el_variables = create_button(16, yy, "Global Variables", ew, eh, fa_center, stack_trace, dg);
+var el_variables = create_button(16, yy, "Global Variables", ew, eh, fa_center, dialog_create_settings_data_variables, dg);
 yy = yy + el_variables.height + spacing;
-var el_switches= create_button(16, yy, "Global Switches", ew, eh, fa_center, stack_trace, dg);
+var el_switches= create_button(16, yy, "Global Switches", ew, eh, fa_center, dialog_create_settings_data_switches, dg);
 yy = yy + el_switches.height + spacing;
 
 // second column
