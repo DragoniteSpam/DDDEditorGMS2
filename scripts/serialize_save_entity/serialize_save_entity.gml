@@ -41,3 +41,16 @@ buffer_write(argument0, buffer_u8, n_move_routes);
 for (var i = 0; i < n_move_routes; i++) {
     serialize_save_move_route(argument0, argument1.movement_routes[| i]);
 }
+
+// these two lists are the same size and won't really be changing sizes
+var n_variables = array_length_1d(argument1.switches);
+buffer_write(argument0, buffer_u8, n_variables);
+
+for (var i = 0; i < n_variables; i++) {
+    var sw_data = argument1.switches[| i];
+    var var_data = argument1.variables[| i];
+    buffer_write(argument0, buffer_string, sw_data[0]);
+    buffer_write(argument0, buffer_bool, sw_data[1]);
+    buffer_write(argument0, buffer_string, var_data[0]);
+    buffer_write(argument0, buffer_f32, var_data[1]);
+}

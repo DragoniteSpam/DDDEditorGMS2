@@ -1,4 +1,5 @@
 var fn = get_save_filename("DDD game data files|*" + EXPORT_EXTENSION_DATA, "game");
+
 if (string_length(fn) > 0) {
     Stuff.save_name_data=string_replace(filename_name(fn), EXPORT_EXTENSION_DATA, "");
     serialize_backup(PATH_BACKUP_DATA, Stuff.save_name_data, EXPORT_EXTENSION_DATA, fn);
@@ -76,5 +77,6 @@ enum DataVersions {
     DATADATA_SAVE_LISTS         = 28,
     MESH_AUTOTILE_INCLUSION     = 29,
     EVENT_NODE_PREFAB           = 30,
+    GAME_VARIABLES              = 31,
     _CURRENT                    /* = whatever the last one is + 1 */
 }

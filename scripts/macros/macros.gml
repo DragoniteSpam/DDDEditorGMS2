@@ -71,3 +71,6 @@
 #macro YVIEW __view_get( e__VW.YView, view_current )
 
 #macro AUDIO_BASE_FREQUENCY 48000
+
+#macro BASE_GAME_VARIABLES 100      // this also counts for switches
+#macro BASE_SELF_VARIABLES 4        // this also counts for switches

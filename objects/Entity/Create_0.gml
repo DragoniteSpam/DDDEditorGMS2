@@ -51,6 +51,13 @@ scale_zz = 1;     // f32
 
 object_events = ds_list_create();         // i'm imposing a hard limit of 10 of these
 
+switches = ds_list_create();         // [name, value]
+variables = ds_list_create();        // [name, value]
+for (var i = 0; i < BASE_SELF_VARIABLES; i++) {
+    ds_list_add(switches, ["SelfSwitch" + string(i), false]);
+    ds_list_add(variables, ["SelfVariable" + string(i), 0]);
+}
+
 // options
 
 animate_idle = false;

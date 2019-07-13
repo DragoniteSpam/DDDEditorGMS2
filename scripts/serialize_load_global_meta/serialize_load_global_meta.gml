@@ -21,3 +21,22 @@ Stuff.game_map_starting = buffer_read(argument0, buffer_string);
 var bools = buffer_read(argument0, buffer_u32);
 Stuff.game_player_grid = unpack(bools, 0);
 Stuff.game_battle_style = buffer_read(argument0, buffer_u8);
+
+if (argument1 >= DataVersions.GAME_VARIABLES) {
+    var n_switches = buffer_read(argument0, buffer_u8);
+    var n_variables = buffer_read(argument0, buffer_u8);
+    
+    for (var i = 0; i < n_switches; i++) {
+        var sw_data = ["", false];
+        sw_data[0] = buffer_read(argument0, buffer_string);
+        sw_data[1] = buffer_read(argument0, buffer_bool);
+        ds_list_add(Stuff.all_global_switches, sw_data);
+    }
+    
+    for (var i = 0; i < n_variables; i++) {
+        var var_data = ["", false];
+        var_data[0] = buffer_read(argument0, buffer_string);
+        var_data[1] = buffer_read(argument0, buffer_bool);
+        ds_list_add(Stuff.all_global_variables, var_data);
+    }
+}

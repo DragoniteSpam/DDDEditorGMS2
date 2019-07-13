@@ -14,6 +14,7 @@ var vx2 = vx1 + 80;
 var vy2 = vy1 + eh;
 
 var c2 = dw/2;
+var spacing = 16;
 
 var yy = 64;
 
@@ -24,6 +25,15 @@ yy = yy + eh;
 var el_battle_type = create_radio_array(16, yy, "Battle Style", ew, eh, uivc_settings_game_battle_style, Stuff.game_battle_style, dg);
 create_radio_array_options(el_battle_type, "Team-based", "Melee");
 yy = yy + ui_get_radio_array_height(el_battle_type) + eh;
+
+var el_global_title = create_text(16, yy, "Global Stuff", ew, eh, fa_left, dw / 2, dg);
+yy = yy + el_global_title.height + spacing;
+var el_constants = create_button(16, yy, "Global Constants", ew, eh, fa_center, stack_trace, dg);
+yy = yy + el_constants.height + spacing;
+var el_variables = create_button(16, yy, "Global Variables", ew, eh, fa_center, stack_trace, dg);
+yy = yy + el_variables.height + spacing;
+var el_switches= create_button(16, yy, "Global Switches", ew, eh, fa_center, stack_trace, dg);
+yy = yy + el_switches.height + spacing;
 
 // second column
 
@@ -37,11 +47,11 @@ dialog_create_settings_data_map_list(el_map_list);
 
 dg.el_map_list = el_map_list;
 
-yy = yy + eh + eh * 8 + eh / 2;
+yy = yy + eh + eh * 8 + spacing;
 
 var el_map_delete = create_button(c2 + 16, yy, "Dereference", ew, eh, fa_middle, dmu_data_dereference, dg);
 
-yy = yy + eh + eh / 2;
+yy = yy + eh + spacing;
 
 var el_map_starting = create_button(c2 + 16, yy, "Make Starting Map", ew, eh, fa_middle, dmu_data_starting_map, dg);
 
@@ -53,6 +63,7 @@ var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Do
 
 ds_list_add(dg.contents,
     el_gameplay_title, el_gameplay_grid, el_battle_type,
+    el_global_title, el_constants, el_variables, el_switches,
     el_map_list, el_map_delete, el_map_starting,
     el_confirm);
 

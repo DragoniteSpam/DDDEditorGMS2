@@ -61,5 +61,21 @@ repeat(n_move_routes) {
     serialize_load_move_route(argument0, argument1, argument2);
 }
 
+if (argument2 >= DataVersions.GAME_VARIABLES) {
+    ds_list_clear(argument1.switches);
+    ds_list_clear(argument1.variables);
+    
+    var n_variables = buffer_read(argument0, buffer_u8);
+    repeat (n_variables) {
+        var sw_name = buffer_read(argument0, buffer_string);
+        var sw_value = buffer_read(argument0, buffer_bool);
+        var var_name = buffer_read(argument0, buffer_string);
+        var var_value = buffer_read(argument0, buffer_f32);
+        
+        ds_list_add(argument1.switches, [sw_name, sw_value]);
+        ds_list_add(argument1.variables, [var_name, var_value]);
+    }
+}
+
 // this should not be instantiated on its own and does not
 // get collision information

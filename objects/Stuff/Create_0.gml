@@ -238,12 +238,19 @@ active_event = event_create("DefaultEvent");
 event_node_info = noone;
 ds_list_add(all_events, active_event);
 
+all_global_switches = ds_list_create();         // [name, value]
+all_global_variables = ds_list_create();        // [name, value]
+for (var i = 0; i < BASE_GAME_VARIABLES; i++) {
+    ds_list_add(all_global_switches, ["Switch" + string(i), false]);
+    ds_list_add(all_global_variables, ["Variable" + string(i), 0]);
+}
+
 #region prefab events
 enum EventNodePrefabs {
     WAIT,
 }
 
-event_prefab[EventNodePrefabs.WAIT] = create_event_node_prefab("Wait", -1000, [["Seconds", DataTypes.FLOAT, 0]]);
+event_prefab[EventNodePrefabs.WAIT] = create_event_node_prefab("Wait", [["Seconds", DataTypes.FLOAT, 0]]);
 #endregion
 
 // stuff i couldn't do in game maker so i did in c++ instead

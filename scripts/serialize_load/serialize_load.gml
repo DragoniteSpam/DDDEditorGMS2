@@ -58,6 +58,9 @@ if (buffer < 0) {
                 //ds_map_clear(Stuff.all_guids);
                 //ds_map_clear(Stuff.all_internal_names);
                 ds_list_clear(Stuff.all_data);
+                // these contain arrays, which are garbage collected
+                ds_list_clear(Stuff.all_global_variables);
+                ds_list_clear(Stuff.all_global_switches);
                 break;
             case SERIALIZE_MAP:
                 for (var i = 0; i < array_length_1d(ActiveMap.mesh_autotiles); i++) {
