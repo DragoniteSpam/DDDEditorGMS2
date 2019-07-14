@@ -1,28 +1,27 @@
-/// @description void dc_settings_map(Dialog);
 /// @param Dialog
 // Doesn't actually commit any settings, just a verification to see if there
 // would be any side effects (entities being orphaned by the grid, etc) and
 // if there are, pops up a confirmation asking if you want to (safely) do it anyway.
 
-var map=argument0.data;
+var map = argument0.data;
 
-var xx=ActiveMap.xx;
-var yy=ActiveMap.yy;
-var zz=ActiveMap.zz;
+var xx = ActiveMap.xx;
+var yy = ActiveMap.yy;
+var zz = ActiveMap.zz;
 if (ds_map_exists(map, "x")) {
-    xx=map[? "x"];
+    xx = map[? "x"];
 }
 if (ds_map_exists(map, "y")) {
-    yy=map[? "y"];
+    yy = map[? "y"];
 }
 if (ds_map_exists(map, "z")) {
-    zz=map[? "z"];
+    zz = map[? "z"];
 }
 
-var oob=ds_list_create();
-for (var i=0; i<ds_list_size(ActiveMap.all_entities); i++) {
-    var thing=ActiveMap.all_entities[| i];
-    if (thing.xx>=xx||thing.yy>=yy||thing.zz>=zz) {
+var oob = ds_list_create();
+for (var i = 0; i < ds_list_size(ActiveMap.all_entities); i++) {
+    var thing = ActiveMap.all_entities[| i];
+    if (thing.xx >= xx || thing.yy >= yy || thing.zz >= zz) {
         ds_list_add(oob, thing);
     }
 }

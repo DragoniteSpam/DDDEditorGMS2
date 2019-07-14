@@ -9,27 +9,15 @@
 // the required ones have to go at the beginning and the optional ones at the end
 
 var message = argument[1];
-var caption_message = "Important!";
-var confirm_message = "yep";
-var cancel_message = "nope";
-
 var action_confirm = argument[2];
-var action_cancel = dmu_dialog_cancel;
 
-switch (argument_count) {
-    case 7:
-        cancel_message = argument[6];
-    case 6:
-        action_cancel = argument[5];
-    case 5:
-        confirm_message = argument[4];
-    case 4:
-        caption_message = argument[3];
-        break;
-}
+var caption_message = (argument_count > 3) ? argument[3] : "Important!";
+var confirm_message = (argument_count > 4) ? argument[4] : "yep";
+var cancel_message = (argument_count > 5) ? argument[5] : "nope";
+var action_cancel = (argument_count > 6) ? argument[6] : dmu_dialog_cancel;
 
 var dw = 400;
-var dh = 240;
+var dh = 280;
 
 var dg = dialog_create(dw, dh, caption_message, dialog_default, action_cancel, argument[0]);
 

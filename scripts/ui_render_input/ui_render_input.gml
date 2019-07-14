@@ -15,8 +15,9 @@ var value = argument0.value;
 // this is not quite the same as ui_render_text
 draw_set_halign(argument0.alignment);
 draw_set_valign(argument0.valignment);
-draw_set_color(argument0.color);
-draw_text(tx, ty, string(argument0.text));
+var c = argument0.color;
+var prefix = argument0.require_enter ? "^" : "";
+draw_text_colour(tx, ty, prefix + string(argument0.text), c, c, c, c, 1);
 
 if (script_execute(argument0.validation, value)) {
     var c = argument0.color;
@@ -68,8 +69,10 @@ if (argument0.interactive && dialog_is_active(argument0.root)) {
         if (string_length(value) > argument0.value_limit) {
             value = string_copy(value, 1, argument0.value_limit);
         }
-        if (v0 != value) {
-            argument0.value = value;
+        
+        argument0.value = value;
+        var execute_value_change = (!argument0.require_enter && v0 != value) || (argument0.require_enter && keyboard_check_pressed(vk_enter));
+        if (execute_value_change) {
             script_execute(argument0.onvaluechange, argument0);
         }
     }

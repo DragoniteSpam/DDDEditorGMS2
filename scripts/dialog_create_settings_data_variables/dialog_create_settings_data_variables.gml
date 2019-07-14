@@ -29,7 +29,8 @@ dg.el_list = el_list;
 yy = yy + ui_get_list_height(el_list) + spacing;
 
 yy = yy_start;
-var el_max = create_input(c2 + 32, yy, "Maximum", ew, eh, null, 0, string(n_variables), "0...65535", validate_int, ui_value_real, 0, 65535, 5, vx1, vy1, vx2, vy2, dg);
+var el_max = create_input(c2 + 32, yy, "Maximum", ew, eh, dialog_create_commit_variable_resize, 0, string(n_variables), "0...65535", validate_int, ui_value_real, 0, 65535, 5, vx1, vy1, vx2, vy2, dg);
+el_max.require_enter = true;
 yy = yy + el_max.height + spacing;
 
 yy = yy + eh + spacing;

@@ -7,6 +7,7 @@ onvaluechange = null;
 render = ui_render_input;
 validation = validate_string;
 value_conversion = ui_value_string;
+require_enter = false;
 
 // you could determine this by looking at the validation script, but that's going
 // to get messy if too many more of them are added - and since you're not supposed
