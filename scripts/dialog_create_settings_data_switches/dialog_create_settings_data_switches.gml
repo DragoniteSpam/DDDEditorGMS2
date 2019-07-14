@@ -20,11 +20,12 @@ var yy = 64;
 var yy_start = 64;
 
 var n_switches = ds_list_size(Stuff.all_global_switches);
-var el_list = create_list(32, yy, "Global Switches (" + string(n_switches) + ")", "<no swiches>", ew, eh, 20, null, false, dg);
+var el_list = create_list(32, yy, "Global Switches (" + string(n_switches) + ")", "<no swiches>", ew, eh, 20, uivc_list_selection_global_switches, false, dg);
 for (var i = 0; i < n_switches; i++) {
     var sw_data = Stuff.all_global_switches[| i];
-    create_list_entries(el_list, sw_data[0], c_black);
+    create_list_entries(el_list, sw_data[0] + ": " + Stuff.tf[sw_data[1]], c_black);
 }
+el_list.numbered = true;
 dg.el_list = el_list;
 yy = yy + ui_get_list_height(el_list) + spacing;
 
@@ -35,10 +36,12 @@ yy = yy + el_max.height + spacing;
 
 yy = yy + eh + spacing;
 
-var el_name = create_input(c2 + 32, yy, "Switch name:", ew, eh, null, 0, "", "16 characters", validate_string, ui_value_string, 0, 1, 16, vx1, vy1, vx2, vy2, dg);
+var el_name = create_input(c2 + 32, yy, "Switch name:", ew, eh, uivc_global_switch_name, 0, "", "16 characters", validate_string, ui_value_string, 0, 1, 16, vx1, vy1, vx2, vy2, dg);
 yy = yy + el_name.height + spacing;
-var el_default = create_checkbox(c2 + 32, yy, "Default value", ew, eh, null, 0, false, dg);
+dg.el_name = el_name;
+var el_default = create_checkbox(c2 + 32, yy, "Default value", ew, eh, uivc_global_switch_default, 0, false, dg);
 yy = yy + el_default.height + spacing;
+dg.el_default = el_default;
 
 var b_width = 128;
 var b_height = 32;

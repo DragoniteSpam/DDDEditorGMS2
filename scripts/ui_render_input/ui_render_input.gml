@@ -71,9 +71,12 @@ if (argument0.interactive && dialog_is_active(argument0.root)) {
         }
         
         argument0.value = value;
-        var execute_value_change = (!argument0.require_enter && v0 != value) || (argument0.require_enter && keyboard_check_pressed(vk_enter));
-        if (execute_value_change) {
-            script_execute(argument0.onvaluechange, argument0);
+        
+        if (script_execute(argument0.validation, value)) {
+            var execute_value_change = (!argument0.require_enter && v0 != value) || (argument0.require_enter && keyboard_check_pressed(vk_enter));
+            if (execute_value_change) {
+                script_execute(argument0.onvaluechange, argument0);
+            }
         }
     }
     
