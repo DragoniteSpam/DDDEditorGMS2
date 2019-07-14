@@ -26,6 +26,7 @@ if (pselection >= 0) {
         case DataTypes.AUTOTILE:
         case DataTypes.MESH:
         case DataTypes.TILESET:
+        case DataTypes.ANIMATION:
             var found = -1;
             var list = argument0.root.el_value;
             ui_list_deselect(list);

@@ -18,7 +18,7 @@ var n_slots = 14;
 var yy = 64;
 
 var el_list = create_radio_array(16, yy, "All Data Types: ", ew, eh, uivc_input_data_property_type_ext, argument0.root.selected_property.type, dg);
-create_radio_array_options(el_list, "Int", "Enum", "Float", "String", "Boolean", "Data", "Code", "Color", "Mesh", "Tileset", "Tile", "Autotile", "Audio (BGM)", "Audio (SE)");
+create_radio_array_options(el_list, "Int", "Enum", "Float", "String", "Boolean", "Data", "Code", "Color", "Mesh", "Tileset", "Tile", "Autotile", "Audio (BGM)", "Audio (SE)", "Animation");
 
 dg.el_list = el_list;
 

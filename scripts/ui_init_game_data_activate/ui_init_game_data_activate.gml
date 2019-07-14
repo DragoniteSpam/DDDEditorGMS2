@@ -148,34 +148,17 @@ if (data != noone) {
                         element.entries_are = ListEntries.GUIDS;
                         var hh = ui_get_list_height(element);
                         break;
+                    case DataTypes.ANIMATION:          // list
+                        var element = create_list(spacing, yy, property.name, "<no Animation>", ew, eh, 8, stack_trace, false, noone);
+                        element.key = i;
+                        element.entries_are = ListEntries.GUIDS;
+                        var hh = ui_get_list_height(element);
+                        break;
                 }
             } else {
                 var element = create_button(spacing, yy, property.name + " (List)", ew, eh, fa_middle, dialog_create_data_instance_property_list, noone);
                 element.key = i;
                 var hh = element.height;
-                switch (property.type) {
-                    case DataTypes.INT:
-                        break;
-                    case DataTypes.FLOAT:
-                        break;
-                    case DataTypes.STRING:
-                        break;
-                    case DataTypes.ENUM:
-                    case DataTypes.DATA:
-                        break;
-                    case DataTypes.BOOL:
-                        break;
-                    case DataTypes.CODE:
-                        break;
-                    case DataTypes.COLOR:
-                    case DataTypes.MESH:
-                    case DataTypes.TILE:
-                    case DataTypes.TILESET:
-                    case DataTypes.AUTOTILE:
-                    case DataTypes.AUDIO_BGM:
-                    case DataTypes.AUDIO_SE:
-                        break;
-                }
             }
             
             if (yy + hh > room_height - 160) {

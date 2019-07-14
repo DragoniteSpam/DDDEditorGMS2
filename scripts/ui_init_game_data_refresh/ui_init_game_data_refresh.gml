@@ -1,6 +1,5 @@
 /*
- * 1. check to see if there are any lists of the selected type already created; if there are,
- *      refresh them
+ * 1. check to see if there are any lists of the selected type already created; if there are, refresh them
  * 2. assign values to the property field things
  */
 
@@ -131,6 +130,7 @@ for (var i = 0; i < ds_list_size(dynamic.contents); i++) {
                 case DataTypes.AUTOTILE:
                 case DataTypes.AUDIO_BGM:
                 case DataTypes.AUDIO_SE:
+                case DataTypes.ANIMATION:
                     thingy.value = 0;
                     break;
             }

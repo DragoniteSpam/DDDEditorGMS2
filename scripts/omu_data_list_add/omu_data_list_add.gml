@@ -28,6 +28,7 @@ if (ds_list_size(plist) < property.max_size) {
         case DataTypes.AUTOTILE:
         case DataTypes.MESH:
         case DataTypes.TILESET:
+        case DataTypes.ANIMATION:
             // no default - this is just a null value
             ds_list_add(plist, 0);
             break;

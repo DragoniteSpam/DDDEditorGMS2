@@ -118,6 +118,7 @@ switch (argument0.type) {
                 case DataTypes.AUTOTILE:
                 case DataTypes.AUDIO_BGM:
                 case DataTypes.AUDIO_SE:
+                case DataTypes.ANIMATION:
                     break;
             }
         }
@@ -162,6 +163,7 @@ switch (argument0.type) {
                     case DataTypes.AUTOTILE:
                     case DataTypes.AUDIO_BGM:
                     case DataTypes.AUDIO_SE:
+                    case DataTypes.ANIMATION:
                         break;
                 }
                 
@@ -201,6 +203,7 @@ switch (argument0.type) {
                                 case DataTypes.AUTOTILE:
                                 case DataTypes.AUDIO_BGM:
                                 case DataTypes.AUDIO_SE:
+                                case DataTypes.ANIMATION:
                                     break;
                             }
                         }
@@ -218,7 +221,7 @@ switch (argument0.type) {
                             message = message + "(float): " + string(custom_data_list[| 0]);
                             break;
                         case DataTypes.STRING:
-                            message = message + "(string):";
+                            message = message + "(string): ...";
                             break;
                         case DataTypes.BOOL:
                             message = message + "(boolean): " + Stuff.tf[custom_data_list[| 0]];
@@ -234,6 +237,26 @@ switch (argument0.type) {
                             } else {
                                 message = message + "(" + datadata.name+"): " + setdata.name;
                             }
+                            break;
+                        case DataTypes.CODE:
+                            message = message + "(code): ...";
+                            break;
+                        case DataTypes.COLOR:
+                            message = message + "(color): TBD";
+                        case DataTypes.MESH:
+                            message = message + "(mesh): TBD";
+                        case DataTypes.TILE:
+                            message = message + "(tile): TBD";
+                        case DataTypes.TILESET:
+                            message = message + "(tileset): TBD";
+                        case DataTypes.AUTOTILE:
+                            message = message + "(autotile): TBD";
+                        case DataTypes.AUDIO_BGM:
+                            message = message + "(bgm): " + guid_get(custom_data_list[| 0]).name;
+                        case DataTypes.AUDIO_SE:
+                            message = message + "(se): " + guid_get(custom_data_list[| 0]).name;
+                        case DataTypes.ANIMATION:
+                            message = message + "(animation): " + guid_get(custom_data_list[| 0]).name;
                             break;
                     }
                 } else {
