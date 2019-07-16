@@ -9,6 +9,6 @@ if (selection < 0) {
     var instance = guid_get(data.instances[| selection].GUID);
 }
 
-if (instance != noone) {
+if (instance) {
     instance.name = argument0.value;
 }

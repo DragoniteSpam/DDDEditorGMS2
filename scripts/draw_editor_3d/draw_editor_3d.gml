@@ -58,7 +58,7 @@ for (var i = 0; i < ds_list_size(ActiveMap.dynamic); i++) {
     script_execute(ent.render, ent);
     for (var j = 0; j < MAX_VISIBLE_MOVE_ROUTES; j++) {
         var route = guid_get(ent.visible_routes[j]);
-        if (route != noone && route.buffer != noone) {
+        if (route && route.buffer) {
             ds_list_add(list_routes, [route.buffer, (ent.xx + 0.5) * TILE_WIDTH, (ent.yy + 0.5) * TILE_HEIGHT, (ent.zz + 0.5) * TILE_DEPTH,
                 route.extra, route.extra_xx, route.extra_yy, route.extra_zz]);
         }

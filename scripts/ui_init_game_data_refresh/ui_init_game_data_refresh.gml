@@ -12,7 +12,7 @@ if (selection < 0) {
     var instance = guid_get(data.instances[| selection].GUID);
 }
 
-if (instance != noone) {
+if (instance) {
     Camera.ui_game_data.el_inst_name.value = instance.name;
     Camera.ui_game_data.el_inst_internal_name.value = instance.internal_name;
 } else {
@@ -58,7 +58,7 @@ for (var i = 0; i < ds_list_size(dynamic.contents); i++) {
             } // else it's a button
         } // enums can't have their members instantiated on this screen so they don't need to be refreshed
         
-        if (instance != noone) {
+        if (instance) {
             if (property.max_size == 1) {
                 // no need to mess with the list
                 if (property.type == DataTypes.BOOL) {

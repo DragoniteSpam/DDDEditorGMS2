@@ -3,7 +3,7 @@
 var fn = get_open_filename("Game Maker model files (*.d3d;*.gmmod)|*.d3d;*.gmmod", "");
 
 if (file_exists(fn)) {
-    if (ActiveMap.mesh_autotiles[argument0.key] != noone) {
+    if (ActiveMap.mesh_autotiles[argument0.key]) {
         vertex_delete_buffer(ActiveMap.mesh_autotiles[argument0.key]);
     }
     

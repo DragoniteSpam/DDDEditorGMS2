@@ -34,7 +34,7 @@ if (argument0.interactive && dialog_is_active(argument0.root)) {
     }
 }
 
-if (argument0.image == noone) {
+if (!argument0.image) {
     draw_set_halign(argument0.alignment);
     draw_set_valign(argument0.valignment);
     draw_set_color(argument0.color);

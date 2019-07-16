@@ -193,7 +193,7 @@ switch (argument0.type) {
                                     break;
                                 case DataTypes.ENUM:
                                 case DataTypes.DATA:
-                                    if (guid_get(type[EventNodeCustomData.TYPE_GUID]) != noone) {
+                                    if (guid_get(type[EventNodeCustomData.TYPE_GUID])) {
                                         dialog_create_event_node_custom_data(noone, argument0, i, 0);
                                     }
                                     break;
@@ -239,9 +239,9 @@ switch (argument0.type) {
                         case DataTypes.DATA:
                             var datadata = guid_get(type[EventNodeCustomData.TYPE_GUID]);
                             var setdata = guid_get(custom_data_list[| 0]);
-                            if (datadata == noone) {
+                            if (!datadata) {
                                 message = message + "(<no type set>)";
-                            } else if (setdata == noone) {
+                            } else if (!setdata) {
                                 message = message + "(" + datadata.name + "): <null>";
                             } else {
                                 message = message + "(" + datadata.name+"): " + setdata.name;
@@ -305,7 +305,7 @@ switch (argument0.type) {
         var i = 0;
         var outbound = argument0.outbound[| i];
         
-        if (outbound == noone) {
+        if (!outbound) {
             draw_event_node_outbound(x2, by, argument0, i, true);
         } else {
             var bx2 = outbound.x;
@@ -335,7 +335,7 @@ switch (argument0.type) {
         var i = 0;
         var outbound = argument0.outbound[| i];
         
-        if (outbound == noone) {
+        if (!outbound) {
             draw_event_node_outbound(x2, by, argument0, i, true);
         } else {
             var bx2 = outbound.x;
@@ -362,7 +362,7 @@ if (event_canvas_active_node == argument0) {
             event_canvas_active_node_index = 0;
             // if the mouse is contacting another entrypoint, connect it
             var contacted_node = event_seek_node();
-            if (contacted_node != noone) {
+            if (contacted_node) {
                 event_connect_node(argument0, contacted_node);
             }
         }

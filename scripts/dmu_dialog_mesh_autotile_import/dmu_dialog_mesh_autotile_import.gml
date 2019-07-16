@@ -10,7 +10,7 @@ var buffer = buffer_load(fn);
 var n = buffer_read(buffer, buffer_u8);
 
 for (var i = 0; i < n; i++) {
-    if (ActiveMap.mesh_autotiles[i] != noone) {
+    if (ActiveMap.mesh_autotiles[i]) {
         vertex_delete_buffer(ActiveMap.mesh_autotiles[i]);
         buffer_delete(ActiveMap.mesh_autotile_raw[i]);
     }

@@ -14,7 +14,7 @@ ds_list_destroy(parent_nodes);
 
 // outbound nodes which contain this as a parent
 for (var i = 0; i < ds_list_size(outbound); i++) {
-    if (outbound[| i] != noone) {
+    if (outbound[| i]) {
         ds_map_delete(outbound[| i].parents, id);
     }
 }

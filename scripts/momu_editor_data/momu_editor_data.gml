@@ -19,7 +19,7 @@ menu_activate(noone);
 
 // this may need to get stuffed off into its own script later
 
-if (Camera.ui_game_data != noone) {
+if (Camera.ui_game_data) {
     instance_activate_object(Camera.ui_game_data);
     instance_destroy(Camera.ui_game_data);
 }

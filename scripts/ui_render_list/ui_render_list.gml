@@ -60,7 +60,7 @@ if (n == 0) {
                 break;
             case ListEntries.GUIDS:
                 var data = guid_get(argument0.entries[| index]);
-                text = text + ((data != noone) ? data.name : " (null)");
+                text = text + (data ? data.name : " (null)");
                 break;
         }
         draw_text_colour(tx, tya, string(text), c, c, c, c, 1);

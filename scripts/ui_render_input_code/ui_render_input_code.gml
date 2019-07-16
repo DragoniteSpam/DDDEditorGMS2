@@ -26,7 +26,7 @@ var vy2 = y1 + argument0.value_y2;
 var vtx = vx1 + 12;
 var vty = mean(vy1, vy2);
 
-if (argument0.editor_handle != noone) {
+if (argument0.editor_handle) {
     if (ds_stuff_process_complete(argument0.editor_handle)) {
         argument0.editor_handle = noone;
         file_delete(get_temp_code_path(argument0));
@@ -35,12 +35,12 @@ if (argument0.editor_handle != noone) {
     script_execute(argument0.onvaluechange, argument0);
 }
 
-if (argument0.editor_handle == noone) {
-    var omu = argument0.onmouseup;
-    var interactable = argument0.interactive && dialog_is_active(argument0.root);
-} else {
+if (argument0.editor_handle) {
     var omu = null;
     var interactable = false;
+} else {
+    var omu = argument0.onmouseup;
+    var interactable = argument0.interactive && dialog_is_active(argument0.root);
 }
 
 var message = string_comma(string_length(argument0.value)) + " bytes (edit)";

@@ -28,11 +28,11 @@ buffer_write(argument0, buffer_string, ActiveMap.code);
 
 for (var i = 0; i < array_length_1d(ActiveMap.mesh_autotile_raw); i++) {
     var data = ActiveMap.mesh_autotile_raw[i];
-    if (data == noone) {
-        buffer_write(argument0, buffer_bool, false);
-    } else {
+    if (data) {
         buffer_write(argument0, buffer_bool, true);
         buffer_write(argument0, buffer_u32, buffer_get_size(data));
         buffer_write_buffer(argument0, data);
+    } else {
+        buffer_write(argument0, buffer_bool, false);
     }
 }

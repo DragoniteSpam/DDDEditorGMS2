@@ -19,7 +19,7 @@ if (selection >= 0) {
     argument0.root.el_property_all.value = property[EventNodeCustomData.REQUIRED];
     
     var datatype = guid_get(property[EventNodeCustomData.TYPE_GUID]);
-    if (datatype != noone) {
+    if (datatype) {
         argument0.root.el_property_type_guid.text = "Select (" + datatype.name + ")";
     } else {
         argument0.root.el_property_type_guid.text = "Select";

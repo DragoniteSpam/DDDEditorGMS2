@@ -2,14 +2,14 @@
 /// @param x
 /// @param y
 
-if (Stuff.fmod_sound != noone) {
+if (Stuff.fmod_sound) {
     argument0.value = FMODGMS_Chan_Get_Position(Stuff.fmod_channel) / FMODGMS_Snd_Get_Length(Stuff.fmod_sound);
 }
 
 // no alphabetize
 
 var selection = ui_list_selection(argument0.root.el_list);
-if (!ds_list_empty(Stuff.all_bgm) && selection !=noone) {
+if (!ds_list_empty(Stuff.all_bgm) && selection) {
     var thing = Stuff.all_bgm[| selection];
     var length = FMODGMS_Snd_Get_Length(thing.fmod);
     

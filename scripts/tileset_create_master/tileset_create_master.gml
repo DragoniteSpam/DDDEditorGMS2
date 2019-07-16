@@ -17,7 +17,7 @@ surface_set_target(surface);
 draw_sprite(argument0.picture, 0, 0, 0);
 
 for (var i = 0; i < AUTOTILE_MAX; i++) {
-    if (argument0.autotiles[i] != noone) {
+    if (argument0.autotiles[i]) {
         var atp = argument0.autotile_positions[i];
         var at_data = Stuff.available_autotiles[argument0.autotiles[i]];
         if (is_array(at_data)) {

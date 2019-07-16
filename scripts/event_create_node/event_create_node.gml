@@ -35,7 +35,7 @@ switch (argument[1]) {
         }
         
         var custom = guid_get(custom_guid);
-        if (custom != noone) {
+        if (custom) {
             node.custom_guid = custom_guid;
             node.name = custom.name;
             

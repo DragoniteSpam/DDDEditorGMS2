@@ -58,14 +58,14 @@ if (argument0.selected_data.is_enum) {
             argument0.el_property_type_guid.enabled = true;
             var type = guid_get(argument0.selected_property.type_guid);
             
-            if ((type != noone) && ((type.is_enum && argument0.selected_property.type == DataTypes.DATA)||
+            if (type && ((type.is_enum && argument0.selected_property.type == DataTypes.DATA)||
                     (!type.is_enum && argument0.selected_property.type == DataTypes.ENUM))) {
                 argument0.el_property_type_guid.color = c_red;
             } else {
                 argument0.el_property_type_guid.color = c_black;
             }
             
-            if (type == noone) {
+            if (!type) {
                 argument0.el_property_type_guid.text = "Select";
             } else {
                 argument0.el_property_type_guid.text = type.name + " (Select)";

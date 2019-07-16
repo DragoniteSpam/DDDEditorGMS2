@@ -156,7 +156,7 @@ for (var i=0; i<ds_list_size(steps); i++) {
         case MoveRouteActions.EVENT:
             var event=guid_get(data[@ 1]);
             var entrypoint=guid_get(data[@ 2]);
-            if (event==noone||entrypoint==noone) {
+            if (!event || !entrypoint) {
                 ds_list_add(argument0.entries, "Event: N/A");
             } else {
                 ds_list_add(argument0.entries, "Event: "+event.name+"/"+entrypoint.name);
@@ -167,4 +167,4 @@ for (var i=0; i<ds_list_size(steps); i++) {
 
 ui_render_list(argument0, argument1, argument2);
 
-argument0.text=otext;
+argument0.text = otext;

@@ -9,7 +9,7 @@ var original_color = argument0.color;
 if (selection >= 0) {
     var exists = internal_name_get(argument0.value);
     if (exists != data.instances[| selection]) {
-        if (exists != noone) {
+        if (exists) {
             argument0.color = c_red;
         }
     }

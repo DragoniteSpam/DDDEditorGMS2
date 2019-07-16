@@ -3,7 +3,7 @@
 var data = guid_get(argument0.root.active_type_guid);
 var selection = ui_list_selection(argument0.root.el_instances);
 
-if (data != noone && selection != noone) {
+if (data && selection) {
     // this list is never alphabetized so we don't have to account for that
     var instance = data.instances[| selection];
     instance_activate_object(instance);

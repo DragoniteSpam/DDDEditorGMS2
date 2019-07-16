@@ -64,7 +64,7 @@ if (buffer < 0) {
                 break;
             case SERIALIZE_MAP:
                 for (var i = 0; i < array_length_1d(ActiveMap.mesh_autotiles); i++) {
-                    if (ActiveMap.mesh_autotiles[i] != noone) {
+                    if (ActiveMap.mesh_autotiles[i]) {
                         vertex_delete_buffer(ActiveMap.mesh_autotiles[i]);
                         vertex_delete_buffer(ActiveMap.mesh_autotile_raw[i]);
                     }

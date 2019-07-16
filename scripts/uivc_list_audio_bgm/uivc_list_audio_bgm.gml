@@ -12,7 +12,7 @@ if (selection >= 0) {
     argument0.root.el_loop_end.value = string(what.loop_end);
     argument0.root.el_length.text = "Length: " + string(FMODGMS_Snd_Get_Length(what.fmod) / AUDIO_BASE_FREQUENCY) + " s";
     
-    if (Stuff.fmod_sound != noone) {
+    if (Stuff.fmod_sound) {
         FMODGMS_Chan_StopChannel(Stuff.fmod_channel);
     }
 } else {

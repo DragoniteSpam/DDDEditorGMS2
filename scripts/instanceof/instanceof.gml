@@ -1,7 +1,7 @@
 /// @param instance
 /// @param object
 
-if (argument0 == noone) {
+if (!argument0) {
     return false;
 }
 

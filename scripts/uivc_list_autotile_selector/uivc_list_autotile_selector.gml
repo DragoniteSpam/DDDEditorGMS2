@@ -3,7 +3,7 @@
 var value = ui_list_selection(argument0);
 var ts = get_active_tileset();
 
-if (value != noone) {
+if (value) {
     value = value - 1;
     if (value >= 0) {
         ts.autotiles[Camera.selection_fill_autotile] = value;

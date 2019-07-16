@@ -17,7 +17,7 @@ ui_list_deselect(Camera.ui_game_data.el_instances);
 // i'm really hoping UI elements are destroyed correctly now
 ds_list_clear_instances(container.contents);
 
-if (data != noone) {
+if (data) {
     // this caused some sort of null pointer exception somehow, and I haven't been able to replicate
     // it. wrapping it in this "if" should take care of it, though.
     Camera.ui_game_data.el_inst_add.interactive = !data.is_enum;
@@ -170,7 +170,7 @@ if (data != noone) {
                 ds_list_add(container.contents, col_data);
                 
                 element.y = yy_base;
-                if (element_header != noone) {
+                if (element_header) {
                     element_header.y = yy_base;
                     element.y = yy_base + element_header.height;
                 }
@@ -180,7 +180,7 @@ if (data != noone) {
             
             yy = yy + hh + spacing;
             
-            if (element_header != noone) {
+            if (element_header) {
                 element_header.is_aux = true;
                 ds_list_add(col_data.contents, element_header);
                 element_header = noone;

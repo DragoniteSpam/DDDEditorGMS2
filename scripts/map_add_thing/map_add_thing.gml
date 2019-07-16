@@ -12,7 +12,7 @@ var zz = (argument_count < 4) ? argument[0].zz : argument[3];
 var cell = map_get_grid_cell(xx, yy, zz);
 
 // only add thing if the space is not already occupied
-if (cell[@ argument[0].slot] == noone) {
+if (!cell[@ argument[0].slot]) {
     cell[@ argument[0].slot] = argument[0];
     
     argument[0].xx = xx;

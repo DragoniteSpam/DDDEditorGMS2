@@ -10,6 +10,7 @@ var buffer = buffer_create(1024, buffer_grow, 1);
 buffer_write(buffer, buffer_u8, array_length_1d(ActiveMap.mesh_autotiles));
 
 for (var i = 0; i < array_length_1d(ActiveMap.mesh_autotiles); i++) {
+    // explicit check required
     var exists = ActiveMap.mesh_autotile_raw[i] != noone;
     buffer_write(buffer, buffer_bool, exists);
     if (exists) {

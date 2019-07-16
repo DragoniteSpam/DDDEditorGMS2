@@ -1,5 +1,5 @@
 event_inherited();
 
-if (fmod != noone) {
+if (fmod) {
     FMODGMS_Snd_Unload(fmod);
 }

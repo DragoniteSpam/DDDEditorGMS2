@@ -44,10 +44,10 @@ if (zz < z) {
                 break;
         }
         
-        if (under_cursor == noone) {
-            var tz = 0;
-        } else {
+        if (under_cursor) {
             var tz = under_cursor.zz;
+        } else {
+            var tz = 0;
         }
         
         last_selection = instantiate(stype);
@@ -55,13 +55,13 @@ if (zz < z) {
         script_execute(last_selection.onmousedown, last_selection, floor_cx, floor_cy, tz);
     }
     if (Controller.mouse_left) {
-        if (last_selection != noone) {
+        if (last_selection) {
             script_execute(last_selection.onmousedrag, last_selection, floor_cx, floor_cy);
         }
     }
     if (Controller.release_left) {
         // selections of zero area are just deleted outright
-        if (last_selection != noone) {
+        if (last_selection) {
             if (script_execute(last_selection.area, last_selection) == 0) {
                 instance_activate_object(last_selection);
                 instance_destroy(last_selection);

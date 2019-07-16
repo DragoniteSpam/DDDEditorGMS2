@@ -1,4 +1,4 @@
-if (Stuff.active_event != noone) {
+if (Stuff.active_event) {
     draw_set_font(FDefault12);
     draw_set_halign(fa_left);
     draw_set_valign(fa_middle);
@@ -12,7 +12,7 @@ if (Stuff.active_event != noone) {
     
     // if you're hovering over an event to show info for, draw it at
     // the end otherwise another event might get drawn on top of it
-    if (Stuff.event_node_info != noone) {
+    if (Stuff.event_node_info) {
         var base = guid_get(Stuff.event_node_info.custom_guid);
         var n = ds_list_size(base.types);
         var x1 = Stuff.event_node_info.x;
@@ -48,10 +48,10 @@ if (Stuff.active_event != noone) {
                     case DataTypes.ENUM:
                     case DataTypes.DATA:
                         var datadata = guid_get(type[EventNodeCustomData.TYPE_GUID]);
-                        if (datadata == noone) {
-                            var type_name = "<no type set>";
-                        } else {
+                        if (datadata) {
                             var type_name = datadata.name;
+                        } else {
+                            var type_name = "<no type set>";
                         }
                         break;
                     case DataTypes.AUDIO_BGM:

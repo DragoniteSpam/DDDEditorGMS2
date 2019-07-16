@@ -130,7 +130,7 @@ for (var i = 0; i < ds_list_size(Stuff.all_event_custom); i++) {
     for (var j = 0; j < ds_list_size(cevent.types); j++) {
         var data = cevent.types[| j];
         if (data[EventNodeCustomData.TYPE] == DataTypes.DATA || data[EventNodeCustomData.TYPE] == DataTypes.ENUM) {
-            if (guid_get(data[EventNodeCustomData.TYPE_GUID]) == noone) {
+            if (!guid_get(data[EventNodeCustomData.TYPE_GUID])) {
                 // todo something
             }
         }

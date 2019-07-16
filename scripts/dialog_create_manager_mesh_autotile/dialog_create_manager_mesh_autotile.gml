@@ -25,7 +25,7 @@ array_clear(dg.buttons, noone);
 
 for (var i = 0; i < array_length_1d(ActiveMap.mesh_autotiles); i++) {
     var button = create_button(xx, yy, string(i), mbw, mbh, fa_center, dmu_dialog_load_mesh_autotile, dg);
-    button.color = (ActiveMap.mesh_autotiles[i] == noone) ? c_gray : c_black;
+    button.color = ActiveMap.mesh_autotiles[i] ? c_black : c_gray;
     button.key = i;
     ds_list_add(dg.contents, button);
     dg.buttons[i] = button;
