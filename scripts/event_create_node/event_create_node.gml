@@ -47,18 +47,10 @@ switch (argument[1]) {
                 
                 // initial value(s)
                 switch (type[1]) {
-                    case DataTypes.INT:
-                    case DataTypes.FLOAT:
-                        var value = 0;
-                        break;
-                    case DataTypes.BOOL:
-                        var value = false;
-                        break;
-                    case DataTypes.STRING:
-                        var value = "The quick brown fox jumped over the lazy game dev";
-                        break;
+                    //case DataTypes.INT:
+                    //case DataTypes.FLOAT:
                     default:
-                        var value = 0;
+                        var value = type[5];
                         break;
                 }
                 

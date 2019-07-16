@@ -2,7 +2,7 @@
 
 event_inherited();
 
-types = ds_list_create();         // [name, DataType, DataType guid, max = 1, all list elements required = false]
+types = ds_list_create();         // [name, DataType, DataType guid, max = 1, all elements required = false, default = 0]
 
 enum EventNodeCustomData {
     NAME,
