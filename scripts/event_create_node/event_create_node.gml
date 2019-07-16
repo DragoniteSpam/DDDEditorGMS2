@@ -29,6 +29,11 @@ switch (argument[1]) {
         node.name = "Text";
         break;
     case EventNodeTypes.CUSTOM:
+    default:
+        if (argument[1] != EventNodeTypes.CUSTOM) {
+            custom_guid = Stuff.event_prefab[argument[1]].GUID;
+        }
+        
         var custom = guid_get(custom_guid);
         if (custom != noone) {
             node.custom_guid = custom_guid;

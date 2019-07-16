@@ -87,6 +87,7 @@ switch (argument0.type) {
         #endregion
         break;
     case EventNodeTypes.CUSTOM:
+    default:
         #region custom
         custom = guid_get(argument0.custom_guid);
         x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
@@ -321,8 +322,7 @@ switch (argument0.type) {
             }
         }
         break;
-    case EventNodeTypes.TEXT:
-    case EventNodeTypes.CUSTOM:
+    default:
         var entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
         if (custom && ds_list_size(custom.types) == 0) {
             // if there are not types, vertical middle of the rectangle instead
