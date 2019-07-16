@@ -14,6 +14,8 @@ var entry_height = 4 * 16 + 32;
 var eh = 0;
 var tolerance = 4;
 
+var custom = noone;
+
 switch (argument0.type) {
     case EventNodeTypes.ENTRYPOINT:
         #region entrypoint
@@ -87,7 +89,7 @@ switch (argument0.type) {
         break;
     case EventNodeTypes.CUSTOM:
         #region custom
-        var custom = guid_get(argument0.custom_guid);
+        custom = guid_get(argument0.custom_guid);
         x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
         y2 = y1 + 24 + 32;
         
@@ -307,7 +309,7 @@ switch (argument0.type) {
             draw_event_node_outbound(x2, by, argument0, i);
             draw_sprite(spr_event_dot, 0, x2, by);
             
-            if (event_canvas_active_node != argument0||event_canvas_active_node_index != i) {
+            if (event_canvas_active_node != argument0 || event_canvas_active_node_index != i) {
                 if (bx2 > x2) {
                     draw_bezier(x2 + 8, by, bx2 - 8, by2);
                 } else {
@@ -318,9 +320,14 @@ switch (argument0.type) {
         break;
     case EventNodeTypes.TEXT:
     case EventNodeTypes.CUSTOM:
-        // vertical middle of the first data entry
         var entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
-        var by = mean(entry_yy, entry_yy+entry_height);
+        if (custom && ds_list_size(custom.types) == 0) {
+            // if there are not types, vertical middle of the rectangle instead
+            var by = mean(y1, y2);
+        } else {
+            // vertical middle of the first data entry
+            var by = mean(entry_yy, entry_yy + entry_height);
+        }
         var i = 0;
         var outbound = argument0.outbound[| i];
         
@@ -333,7 +340,7 @@ switch (argument0.type) {
             draw_event_node_outbound(x2, by, argument0, i);
             draw_sprite(spr_event_dot, 0, x2, by);
             
-            if (event_canvas_active_node != argument0||event_canvas_active_node_index != i) {
+            if (event_canvas_active_node != argument0 || event_canvas_active_node_index != i) {
                 if (bx2 > x2) {
                     draw_bezier(x2 + 8, by, bx2 - 8, by2);
                 } else {
@@ -343,10 +350,6 @@ switch (argument0.type) {
         }
         break;
     default:
-        // not used now but keep it as a template for later
-        for (var i = 0; i < ds_list_size(argument0.outbound); i++) {
-            
-        }
         break;
 }
 
