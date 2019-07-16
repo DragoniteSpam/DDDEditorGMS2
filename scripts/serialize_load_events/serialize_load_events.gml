@@ -62,9 +62,19 @@ repeat(n_events) {
             case EventNodeTypes.TEXT:
                 break;
             case EventNodeTypes.CUSTOM:
-                node.custom_guid = buffer_read(argument0, buffer_u32);
-                var custom = guid_get(node.custom_guid);
+            default:
+                if (node_type == EventNodeTypes.CUSTOM) {
+                    node.custom_guid = buffer_read(argument0, buffer_u32);
+                    var custom = guid_get(node.custom_guid);
+                } else {
+                    var custom = event_prefab[node_type];
+                }
+                
                 if (custom == noone) {
+                    
+                }
+                if (custom.name == "Wait") {
+                    custom = event_prefab[EventNodeTypes.WAIT];
                 }
                 for (var i = 0; i < ds_list_size(custom.types); i++) {
                     var sub_list = ds_list_create();
