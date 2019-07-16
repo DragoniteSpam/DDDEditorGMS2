@@ -2,14 +2,16 @@
 
 event_inherited();
 
-types = ds_list_create();         // [name, DataType, DataType guid, max = 1, all elements required = false, default = 0]
+types = ds_list_create();         // [name, DataType, DataType guid, max = 1, all elements required = false, default = 0, attainment = null]
 
 enum EventNodeCustomData {
     NAME,
     TYPE,
-    TYPE_GUID,
+    TYPE_GUID,                  // the ID of Item, or Skill, or Class, or whatever
     MAX,
-    REQUIRED
+    REQUIRED,
+    DEFAULT_VALUE,              // only relevant to primitives
+    ATTAINMENT,                 // script for fetching the value in the event editor; null (the script) means the default method will be used
 }
 
 // other values from data types like min, max and char limit are theoretically useful

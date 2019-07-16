@@ -4407,6 +4407,14 @@
             }
         },
         {
+            "Key": "79a317d9-c17d-49ff-bfcd-6ce6166c427b",
+            "Value": {
+                "id": "51c648b9-9099-4477-9335-cfbbb7484f91",
+                "resourcePath": "scripts\\omu_event_attain_switch_index\\omu_event_attain_switch_index.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "79a7d251-f945-4972-b0e0-7668e0407eda",
             "Value": {
                 "id": "82d8a9ee-7954-4aec-b8ff-cb0cb8b629c6",
@@ -6491,6 +6499,14 @@
             "Value": {
                 "id": "af51d1f9-4480-444b-89af-63e6569c2129",
                 "resourcePath": "scripts\\uivc_list_selection_autotile\\uivc_list_selection_autotile.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "b5d9d977-41d7-45b2-9398-85c360b0273e",
+            "Value": {
+                "id": "e2eaa098-967c-4adf-9fe4-789fdfe9a128",
+                "resourcePath": "scripts\\omu_event_add_global_switch\\omu_event_add_global_switch.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -8943,6 +8959,14 @@
             }
         },
         {
+            "Key": "fac6a4c5-0061-4d26-8e43-d16315310bc5",
+            "Value": {
+                "id": "1bb0f9a5-5915-4463-be1a-1b534fc93415",
+                "resourcePath": "views\\fac6a4c5-0061-4d26-8e43-d16315310bc5.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "fb4aa3ed-c4b4-42f0-9b38-124b50059e6a",
             "Value": {
                 "id": "7f49963f-0448-4233-928b-9ad4cc25b135",
@@ -9697,6 +9721,8 @@
         "50a859eb-8612-4fa1-bf19-6098e757c23a",
         "bbc8d6fa-7bc1-4174-9dcd-392707e650d4",
         "ca433690-4b11-4675-b165-30253bfc2837",
+        "b5d9d977-41d7-45b2-9398-85c360b0273e",
+        "79a317d9-c17d-49ff-bfcd-6ce6166c427b",
         "29571f03-3093-4ae5-b4dd-7e992bff680e",
         "df25b060-7862-47c7-ae07-f023cd701099",
         "f41b124d-b315-4143-a16e-98e14ea1429e",

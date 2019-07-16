@@ -67,7 +67,7 @@ repeat(n_events) {
                 if (node_type != EventNodeTypes.CUSTOM) {
                     // other types also save the custom guid, even though there's really no reason
                     // for them to do so
-                    node.custom_guid = event_prefab[node_type].GUID;
+                    node.custom_guid = Stuff.event_prefab[node_type].GUID;
                 }
                 var custom = guid_get(node.custom_guid);
                 

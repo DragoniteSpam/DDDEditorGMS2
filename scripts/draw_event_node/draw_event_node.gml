@@ -35,7 +35,6 @@ switch (argument0.type) {
     case EventNodeTypes.TEXT:
         #region text
         x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
-        //y2=y1+24+string_height(argument0.name)+string_height_ext(argument0.data[| 0], -1, EVENT_NODE_CONTACT_WIDTH-16);
         // the above will be very painful for nodes with many data entries because loops so just assume
         // each entry won't have more than four lines
         y2 = y1 + 24 + 32 + ds_list_size(argument0.data) * entry_height;
@@ -63,7 +62,7 @@ switch (argument0.type) {
                     }
                 }
                 
-                draw_text_ext(x1 + 16, mean(entry_yy, entry_yy + entry_height), string(argument0.data[| i]), -1, EVENT_NODE_CONTACT_WIDTH-16);
+                draw_text_ext(x1 + 16, mean(entry_yy, entry_yy + entry_height), string(argument0.data[| i]), -1, EVENT_NODE_CONTACT_WIDTH - 16);
                 var yy_center = mean(entry_yy, entry_yy + entry_height);
                 if (i > 0) {
                     // this works out nicely because the outbound node is going to be in the same place at index 0,
@@ -175,45 +174,50 @@ switch (argument0.type) {
                     if (mouse_within_rectangle_view(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + eh - tolerance)) {
                         draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + eh - tolerance, c, c, c, c, false);
                         if (get_release_left()) {
-                            switch (type[1]) {
-                                case DataTypes.INT:
-                                    custom_data_list[| 0] = get_integer(type[0] + "?", custom_data_list[| 0]);
-                                    break;
-                                case DataTypes.FLOAT:
-                                    var parse_me = get_string(type[0] + "?", string(custom_data_list[| 0]));
-                                    if (validate_double(parse_me)) {
-                                        custom_data_list[| 0] = real(parse_me);
-                                    }
-                                    break;
-                                case DataTypes.STRING:
-                                    custom_data_list[| 0] = get_string(type[0] + "?", string(custom_data_list[| 0]));
-                                    break;
-                                case DataTypes.BOOL:
-                                    custom_data_list[| 0] =! custom_data_list[| 0];
-                                    break;
-                                case DataTypes.ENUM:
-                                case DataTypes.DATA:
-                                    if (guid_get(type[EventNodeCustomData.TYPE_GUID])) {
-                                        dialog_create_event_node_custom_data(noone, argument0, i, 0);
-                                    }
-                                    break;
-                                case DataTypes.AUDIO_BGM:
-                                    dialog_create_event_node_audio_bgm(noone, argument0, i, 0);
-                                    break;
-                                case DataTypes.AUDIO_SE:
-                                    dialog_create_event_node_audio_se(noone, argument0, i, 0);
-                                    break;
-                                case DataTypes.ANIMATION:
-                                    dialog_create_event_node_animation(noone, argument0, i, 0);
-                                    break;
-                                // @todo data types
-                                case DataTypes.CODE:
-                                case DataTypes.COLOR:
-                                case DataTypes.MESH:
-                                case DataTypes.TILE:
-                                case DataTypes.TILESET:
-                                case DataTypes.AUTOTILE:
-                                    break;
+                            var attainment = type[EventNodeCustomData.ATTAINMENT];
+                            if (attainment == null) {
+                                switch (type[EventNodeCustomData.TYPE]) {
+                                    case DataTypes.INT:
+                                        custom_data_list[| 0] = get_integer(type[0] + "?", custom_data_list[| 0]);
+                                        break;
+                                    case DataTypes.FLOAT:
+                                        var parse_me = get_string(type[0] + "?", string(custom_data_list[| 0]));
+                                        if (validate_double(parse_me)) {
+                                            custom_data_list[| 0] = real(parse_me);
+                                        }
+                                        break;
+                                    case DataTypes.STRING:
+                                        custom_data_list[| 0] = get_string(type[0] + "?", string(custom_data_list[| 0]));
+                                        break;
+                                    case DataTypes.BOOL:
+                                        custom_data_list[| 0] =! custom_data_list[| 0];
+                                        break;
+                                    case DataTypes.ENUM:
+                                    case DataTypes.DATA:
+                                        if (guid_get(type[EventNodeCustomData.TYPE_GUID])) {
+                                            dialog_create_event_node_custom_data(noone, argument0, i, 0);
+                                        }
+                                        break;
+                                    case DataTypes.AUDIO_BGM:
+                                        dialog_create_event_node_audio_bgm(noone, argument0, i, 0);
+                                        break;
+                                    case DataTypes.AUDIO_SE:
+                                        dialog_create_event_node_audio_se(noone, argument0, i, 0);
+                                        break;
+                                    case DataTypes.ANIMATION:
+                                        dialog_create_event_node_animation(noone, argument0, i, 0);
+                                        break;
+                                    // @todo data types
+                                    case DataTypes.CODE:
+                                    case DataTypes.COLOR:
+                                    case DataTypes.MESH:
+                                    case DataTypes.TILE:
+                                    case DataTypes.TILESET:
+                                    case DataTypes.AUTOTILE:
+                                        break;
+                                }
+                            } else {
+                                script_execute(attainment, noone, i);
                             }
                         }
                     }

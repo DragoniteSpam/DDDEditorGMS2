@@ -17,7 +17,7 @@ repeat(n_custom) {
         
         // @todo if you decide to allow the user to define default values,
         // remember to save them here
-        ds_list_add(custom.types, [name, type, guid, max_size, required, 0]);
+        ds_list_add(custom.types, [name, type, guid, max_size, required, 0, null]);
     }
     
     ds_list_add(Stuff.all_event_custom, custom);
