@@ -100,6 +100,9 @@ switch (argument0.type) {
                 case DataTypes.BOOL:
                 case DataTypes.ENUM:
                 case DataTypes.DATA:
+                case DataTypes.AUDIO_BGM:
+                case DataTypes.AUDIO_SE:
+                case DataTypes.ANIMATION:
                     y2 = y2 + 32;
                     break;
                 case DataTypes.STRING:
@@ -116,9 +119,6 @@ switch (argument0.type) {
                 case DataTypes.TILE:
                 case DataTypes.TILESET:
                 case DataTypes.AUTOTILE:
-                case DataTypes.AUDIO_BGM:
-                case DataTypes.AUDIO_SE:
-                case DataTypes.ANIMATION:
                     break;
             }
         }
@@ -145,6 +145,10 @@ switch (argument0.type) {
                     case DataTypes.BOOL:
                     case DataTypes.ENUM:
                     case DataTypes.DATA:
+                    case DataTypes.AUDIO_BGM:
+                    case DataTypes.AUDIO_SE:
+                    case DataTypes.ANIMATION:
+                    case DataTypes.CODE:
                         eh = 32;
                         break;
                     case DataTypes.STRING:
@@ -154,16 +158,12 @@ switch (argument0.type) {
                             eh = 32;
                         }
                         break;
-                    // @todo data types
-                    case DataTypes.CODE:
                     case DataTypes.COLOR:
                     case DataTypes.MESH:
                     case DataTypes.TILE:
                     case DataTypes.TILESET:
                     case DataTypes.AUTOTILE:
-                    case DataTypes.AUDIO_BGM:
-                    case DataTypes.AUDIO_SE:
-                    case DataTypes.ANIMATION:
+                        eh = 32;
                         break;
                 }
                 
@@ -194,6 +194,11 @@ switch (argument0.type) {
                                         dialog_create_event_node_custom_data(noone, argument0, i, 0);
                                     }
                                     break;
+                                case DataTypes.AUDIO_BGM:
+                                case DataTypes.AUDIO_SE:
+                                case DataTypes.ANIMATION:
+                                    stack_trace();
+                                    break;
                                 // @todo data types
                                 case DataTypes.CODE:
                                 case DataTypes.COLOR:
@@ -201,9 +206,6 @@ switch (argument0.type) {
                                 case DataTypes.TILE:
                                 case DataTypes.TILESET:
                                 case DataTypes.AUTOTILE:
-                                case DataTypes.AUDIO_BGM:
-                                case DataTypes.AUDIO_SE:
-                                case DataTypes.ANIMATION:
                                     break;
                             }
                         }
@@ -243,20 +245,30 @@ switch (argument0.type) {
                             break;
                         case DataTypes.COLOR:
                             message = message + "(color): TBD";
+                            break;
                         case DataTypes.MESH:
                             message = message + "(mesh): TBD";
+                            break;
                         case DataTypes.TILE:
                             message = message + "(tile): TBD";
+                            break;
                         case DataTypes.TILESET:
                             message = message + "(tileset): TBD";
+                            break;
                         case DataTypes.AUTOTILE:
                             message = message + "(autotile): TBD";
+                            break;
                         case DataTypes.AUDIO_BGM:
-                            message = message + "(bgm): " + guid_get(custom_data_list[| 0]).name;
+                            var setdata = guid_get(custom_data_list[| 0]);
+                            message = message + "(bgm): " + (setdata ? setdata.name : "<null>");
+                            break;
                         case DataTypes.AUDIO_SE:
-                            message = message + "(se): " + guid_get(custom_data_list[| 0]).name;
+                            var setdata = guid_get(custom_data_list[| 0]);
+                            message = message + "(se): " + (setdata ? setdata.name : "<null>");
+                            break;
                         case DataTypes.ANIMATION:
-                            message = message + "(animation): " + guid_get(custom_data_list[| 0]).name;
+                            var setdata = guid_get(custom_data_list[| 0]);
+                            message = message + "(animation): " + (setdata ? setdata.name : "<null>");
                             break;
                     }
                 } else {
@@ -267,7 +279,7 @@ switch (argument0.type) {
                     draw_text(x1 + 16, entry_yy + 12, string(message));
                     draw_text_ext(x1 + 16, mean(entry_yy + 12, entry_yy + eh), string(custom_data_list[| 0]), -1, EVENT_NODE_CONTACT_WIDTH - 16);
                 } else {
-                    draw_text_ext(x1 + 16, mean(entry_yy, entry_yy+eh), string(message), -1, EVENT_NODE_CONTACT_WIDTH - 16);
+                    draw_text_ext(x1 + 16, mean(entry_yy, entry_yy + eh), string(message), -1, EVENT_NODE_CONTACT_WIDTH - 16);
                 }
                 
                 entry_yy = entry_yy + eh;

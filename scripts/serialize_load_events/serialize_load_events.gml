@@ -64,7 +64,9 @@ repeat(n_events) {
             case EventNodeTypes.CUSTOM:
                 node.custom_guid = buffer_read(argument0, buffer_u32);
                 var custom = guid_get(node.custom_guid);
-                
+                if (custom == noone) {
+                    
+                }
                 for (var i = 0; i < ds_list_size(custom.types); i++) {
                     var sub_list = ds_list_create();
                     var type = custom.types[| i];

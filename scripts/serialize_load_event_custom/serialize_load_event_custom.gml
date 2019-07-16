@@ -25,6 +25,9 @@ if (argument1 >= DataVersions.EVENT_NODE_PREFAB) {
     var n_prefabs = buffer_read(argument0, buffer_u16);
 
     for (var i = 0; i < n_prefabs; i++) {
+        // i dont really like this because it makes changing the prefabs a pain in the neck but
+        // it's the least bad way of making sure the custom event guids don't change every time
+        // you re-launch the editor
         var prefab = instantiate(DataEventNodeCustom);
         serialize_load_generic(argument0, prefab, argument1);
         

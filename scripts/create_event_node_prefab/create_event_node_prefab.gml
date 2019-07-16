@@ -14,7 +14,7 @@ with (instantiate(DataEventNodeCustom)) {
             case 4:
                 ds_list_add(types, [data[0], data[1], data[2], data[3], false]);
                 break;
-            default:
+            case 3:
                 ds_list_add(types, [data[0], data[1], data[2], 1, false]);
                 break;
         }

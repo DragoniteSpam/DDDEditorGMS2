@@ -247,10 +247,45 @@ for (var i = 0; i < BASE_GAME_VARIABLES; i++) {
 
 #region prefab events
 enum EventNodePrefabs {
-    WAIT,
+    INPUT_TEXT, SHOW_SCROLLING_TEXT,
+    CONTROL_SWITCHES, CONTROL_VARIABLES, CONTORL_SELF_SWITCHES, CONTROL_SELF_VARIABLES, CONTROL_TIME,
+    CONDITIONAL, INVOKE_EVENT, COMMENT, WAIT,
+    TRANSFER_PLAYER, SET_ENTITY_LOCATION, SCROLL_MAP, SET_MOVEMENT_ROUTE,
+    TINT_SCREEN, FLASH_SCREEN, SHAKE_SCREEN,
+    PLAY_BGM, FADE_BGM, PLAY_SE, STOP_SE,
+    RETURN_TO_TITLE, CHANGE_MAP_DISPLAY_NAME, CHANGE_MAP_TILESET, CHANGE_MAP_BATTLE_SCENE, CHANGE_MAP_PARALLAX,
+    SCRIPT, AUDIO_CONTORLS
 }
 
+event_prefab[EventNodePrefabs.INPUT_TEXT] = create_event_node_prefab("NotYetImplemented", []);
+event_prefab[EventNodePrefabs.SHOW_SCROLLING_TEXT] = create_event_node_prefab("NotYetImplemented", []);
+event_prefab[EventNodePrefabs.CONTROL_SWITCHES] = create_event_node_prefab("NotYetImplemented", []);
+event_prefab[EventNodePrefabs.CONTROL_VARIABLES] = create_event_node_prefab("NotYetImplemented", []);
+event_prefab[EventNodePrefabs.CONTORL_SELF_SWITCHES] = create_event_node_prefab("NotYetImplemented", []);
+event_prefab[EventNodePrefabs.CONTROL_SELF_VARIABLES] = create_event_node_prefab("NotYetImplemented", []);
+event_prefab[EventNodePrefabs.CONTROL_TIME] = create_event_node_prefab("NotYetImplemented", []);
+event_prefab[EventNodePrefabs.CONDITIONAL] = create_event_node_prefab("NotYetImplemented", []);
+event_prefab[EventNodePrefabs.INVOKE_EVENT] = create_event_node_prefab("NotYetImplemented", []);
+event_prefab[EventNodePrefabs.COMMENT] = create_event_node_prefab("NotYetImplemented", []);
 event_prefab[EventNodePrefabs.WAIT] = create_event_node_prefab("Wait", [["Seconds", DataTypes.FLOAT, 0]]);
+event_prefab[EventNodePrefabs.TRANSFER_PLAYER] = create_event_node_prefab("NotYetImplemented", []);
+event_prefab[EventNodePrefabs.SET_ENTITY_LOCATION] = create_event_node_prefab("NotYetImplemented", []);
+event_prefab[EventNodePrefabs.SCROLL_MAP] = create_event_node_prefab("NotYetImplemented", []);
+event_prefab[EventNodePrefabs.SET_MOVEMENT_ROUTE] = create_event_node_prefab("NotYetImplemented", []);
+event_prefab[EventNodePrefabs.TINT_SCREEN] = create_event_node_prefab("NotYetImplemented", []);
+event_prefab[EventNodePrefabs.FLASH_SCREEN] = create_event_node_prefab("NotYetImplemented", []);
+event_prefab[EventNodePrefabs.SHAKE_SCREEN] = create_event_node_prefab("NotYetImplemented", []);
+event_prefab[EventNodePrefabs.PLAY_BGM] = create_event_node_prefab("PlayBGM", [["BGM", DataTypes.AUDIO_BGM, 0], ["Volume", DataTypes.INT, 0], ["Pitch", DataTypes.INT, 0]]);
+event_prefab[EventNodePrefabs.FADE_BGM] = create_event_node_prefab("FadeBGM", [["Volume", DataTypes.INT, 0], ["Pitch", DataTypes.INT, 0]]);
+event_prefab[EventNodePrefabs.PLAY_SE] = create_event_node_prefab("PlaySoundEffect", [["SoundEffect", DataTypes.AUDIO_SE, 0], ["Volume", DataTypes.INT, 0], ["Pitch", DataTypes.INT, 0]]);
+event_prefab[EventNodePrefabs.STOP_SE] = create_event_node_prefab("StopAllSoundEffects", []);
+event_prefab[EventNodePrefabs.RETURN_TO_TITLE] = create_event_node_prefab("NotYetImplemented", []);
+event_prefab[EventNodePrefabs.CHANGE_MAP_DISPLAY_NAME] = create_event_node_prefab("NotYetImplemented", []);
+event_prefab[EventNodePrefabs.CHANGE_MAP_TILESET] = create_event_node_prefab("NotYetImplemented", []);
+event_prefab[EventNodePrefabs.CHANGE_MAP_BATTLE_SCENE] = create_event_node_prefab("NotYetImplemented", []);
+event_prefab[EventNodePrefabs.CHANGE_MAP_PARALLAX] = create_event_node_prefab("NotYetImplemented", []);
+event_prefab[EventNodePrefabs.SCRIPT] = create_event_node_prefab("NotYetImplemented", []);
+event_prefab[EventNodePrefabs.AUDIO_CONTORLS] = create_event_node_prefab("NotYetImplemented", []);
 #endregion
 
 // stuff i couldn't do in game maker so i did in c++ instead
@@ -406,3 +441,34 @@ if (setting_autosave && file_exists("auto" + EXPORT_EXTENSION_DATA)) {
     save_name_data = "";
     save_name_map = "";
 }
+
+
+event_prefab[EventNodePrefabs.INPUT_TEXT] = create_event_node_prefab("NotYetImplemented", []);
+event_prefab[EventNodePrefabs.SHOW_SCROLLING_TEXT] = create_event_node_prefab("NotYetImplemented", []);
+event_prefab[EventNodePrefabs.CONTROL_SWITCHES] = create_event_node_prefab("NotYetImplemented", []);
+event_prefab[EventNodePrefabs.CONTROL_VARIABLES] = create_event_node_prefab("NotYetImplemented", []);
+event_prefab[EventNodePrefabs.CONTORL_SELF_SWITCHES] = create_event_node_prefab("NotYetImplemented", []);
+event_prefab[EventNodePrefabs.CONTROL_SELF_VARIABLES] = create_event_node_prefab("NotYetImplemented", []);
+event_prefab[EventNodePrefabs.CONTROL_TIME] = create_event_node_prefab("NotYetImplemented", []);
+event_prefab[EventNodePrefabs.CONDITIONAL] = create_event_node_prefab("NotYetImplemented", []);
+event_prefab[EventNodePrefabs.INVOKE_EVENT] = create_event_node_prefab("NotYetImplemented", []);
+event_prefab[EventNodePrefabs.COMMENT] = create_event_node_prefab("NotYetImplemented", []);
+event_prefab[EventNodePrefabs.WAIT] = create_event_node_prefab("Wait", [["Seconds", DataTypes.FLOAT, 0]]);
+event_prefab[EventNodePrefabs.TRANSFER_PLAYER] = create_event_node_prefab("NotYetImplemented", []);
+event_prefab[EventNodePrefabs.SET_ENTITY_LOCATION] = create_event_node_prefab("NotYetImplemented", []);
+event_prefab[EventNodePrefabs.SCROLL_MAP] = create_event_node_prefab("NotYetImplemented", []);
+event_prefab[EventNodePrefabs.SET_MOVEMENT_ROUTE] = create_event_node_prefab("NotYetImplemented", []);
+event_prefab[EventNodePrefabs.TINT_SCREEN] = create_event_node_prefab("NotYetImplemented", []);
+event_prefab[EventNodePrefabs.FLASH_SCREEN] = create_event_node_prefab("NotYetImplemented", []);
+event_prefab[EventNodePrefabs.SHAKE_SCREEN] = create_event_node_prefab("NotYetImplemented", []);
+event_prefab[EventNodePrefabs.PLAY_BGM] = create_event_node_prefab("PlayBGM", [["BGM", DataTypes.AUDIO_BGM, 0], ["Volume", DataTypes.INT, 0], ["Pitch", DataTypes.INT, 0]]);
+event_prefab[EventNodePrefabs.FADE_BGM] = create_event_node_prefab("FadeBGM", [["Volume", DataTypes.INT, 0], ["Pitch", DataTypes.INT, 0]]);
+event_prefab[EventNodePrefabs.PLAY_SE] = create_event_node_prefab("PlaySoundEffect", [["SoundEffect", DataTypes.AUDIO_SE, 0], ["Volume", DataTypes.INT, 0], ["Pitch", DataTypes.INT, 0]]);
+event_prefab[EventNodePrefabs.STOP_SE] = create_event_node_prefab("StopAllSoundEffects", []);
+event_prefab[EventNodePrefabs.RETURN_TO_TITLE] = create_event_node_prefab("NotYetImplemented", []);
+event_prefab[EventNodePrefabs.CHANGE_MAP_DISPLAY_NAME] = create_event_node_prefab("NotYetImplemented", []);
+event_prefab[EventNodePrefabs.CHANGE_MAP_TILESET] = create_event_node_prefab("NotYetImplemented", []);
+event_prefab[EventNodePrefabs.CHANGE_MAP_BATTLE_SCENE] = create_event_node_prefab("NotYetImplemented", []);
+event_prefab[EventNodePrefabs.CHANGE_MAP_PARALLAX] = create_event_node_prefab("NotYetImplemented", []);
+event_prefab[EventNodePrefabs.SCRIPT] = create_event_node_prefab("NotYetImplemented", []);
+event_prefab[EventNodePrefabs.AUDIO_CONTORLS] = create_event_node_prefab("NotYetImplemented", []);

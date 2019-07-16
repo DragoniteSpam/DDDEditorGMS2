@@ -268,19 +268,16 @@ with (instantiate(UIMain)) {
     element = create_text(legal_x + spacing, yy, "Audio", element_width, element_height, fa_left, element_width, t_list);
     ds_list_add(t_action2.contents, element);
     yy = yy + element_height + spacing;
-    element = create_button(legal_x + spacing, yy, "Play BGM", element_width, element_height, fa_left, stack_trace, t_action2);
+    element = create_button(legal_x + spacing, yy, "Play BGM", element_width, element_height, fa_left, omu_event_add_play_bgm, t_action2);
     ds_list_add(t_action2.contents, element);
     yy = yy + element_height;
-    element = create_button(legal_x + spacing, yy, "Fade BGM", element_width, element_height, fa_left, stack_trace, t_action2);
+    element = create_button(legal_x + spacing, yy, "Fade BGM", element_width, element_height, fa_left, omu_event_add_fade_bgm, t_action2);
     ds_list_add(t_action2.contents, element);
     yy = yy + element_height;
-    element = create_button(legal_x + spacing, yy, "Stash BGM", element_width, element_height, fa_left, stack_trace, t_action2);
+    element = create_button(legal_x + spacing, yy, "Play SE", element_width, element_height, fa_left, omu_event_add_play_se, t_action2);
     ds_list_add(t_action2.contents, element);
     yy = yy + element_height;
-    element = create_button(legal_x + spacing, yy, "Play SE", element_width, element_height, fa_left, stack_trace, t_action2);
-    ds_list_add(t_action2.contents, element);
-    yy = yy + element_height;
-    element = create_button(legal_x + spacing, yy, "Stop All SE", element_width, element_height, fa_left, stack_trace, t_action2);
+    element = create_button(legal_x + spacing, yy, "Stop All SE", element_width, element_height, fa_left, omu_event_add_stop_se, t_action2);
     ds_list_add(t_action2.contents, element);
     yy = yy + element_height;
     

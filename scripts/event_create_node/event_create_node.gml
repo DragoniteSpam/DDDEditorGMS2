@@ -7,6 +7,7 @@
 // XVIEW and YVIEW won't work because this script may
 // be called from a script other than view_fullscreen and
 // that will make bad things happen
+
 var xx = __view_get( e__VW.XView, view_fullscreen ) + room_width / 2;
 var yy = __view_get( e__VW.YView, view_fullscreen ) + room_height / 2;
 
@@ -51,8 +52,7 @@ switch (argument[1]) {
                     case DataTypes.STRING:
                         var value = "The quick brown fox jumped over the lazy game dev";
                         break;
-                    case DataTypes.ENUM:
-                    case DataTypes.DATA:
+                    default:
                         var value = 0;
                         break;
                 }
