@@ -274,6 +274,9 @@ with (instantiate(UIMain)) {
     element = create_button(legal_x + spacing, yy, "Fade BGM", element_width, element_height, fa_left, omu_event_add_fade_bgm, t_action2);
     ds_list_add(t_action2.contents, element);
     yy = yy + element_height;
+    element = create_button(legal_x + spacing, yy, "Resume Automatic BGM", element_width, element_height, fa_left, omu_event_add_resume_bgm, t_action2);
+    ds_list_add(t_action2.contents, element);
+    yy = yy + element_height;
     element = create_button(legal_x + spacing, yy, "Play SE", element_width, element_height, fa_left, omu_event_add_play_se, t_action2);
     ds_list_add(t_action2.contents, element);
     yy = yy + element_height;

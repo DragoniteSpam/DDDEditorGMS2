@@ -256,7 +256,7 @@ enum EventNodeTypes {
     CONDITIONAL, INVOKE_EVENT, COMMENT, WAIT,
     TRANSFER_PLAYER, SET_ENTITY_LOCATION, SCROLL_MAP, SET_MOVEMENT_ROUTE,
     TINT_SCREEN, FLASH_SCREEN, SHAKE_SCREEN,
-    PLAY_BGM, FADE_BGM, PLAY_SE, STOP_SE,
+    PLAY_BGM, FADE_BGM, RESUME_BGM, PLAY_SE, STOP_SE,
     RETURN_TO_TITLE, CHANGE_MAP_DISPLAY_NAME, CHANGE_MAP_TILESET, CHANGE_MAP_BATTLE_SCENE, CHANGE_MAP_PARALLAX,
     SCRIPT, AUDIO_CONTORLS
 }
@@ -280,7 +280,8 @@ event_prefab[EventNodeTypes.TINT_SCREEN] = create_event_node_prefab("NotYetImple
 event_prefab[EventNodeTypes.FLASH_SCREEN] = create_event_node_prefab("NotYetImplemented", []);
 event_prefab[EventNodeTypes.SHAKE_SCREEN] = create_event_node_prefab("NotYetImplemented", []);
 event_prefab[EventNodeTypes.PLAY_BGM] = create_event_node_prefab("PlayBGM", [["BGM", DataTypes.AUDIO_BGM, 0], ["Volume", DataTypes.INT, 0, 1, false, 100], ["Pitch", DataTypes.INT, 0, 1, false, 100]]);
-event_prefab[EventNodeTypes.FADE_BGM] = create_event_node_prefab("FadeBGM", [["Volume", DataTypes.INT, 0, 1, false, 100], ["Time", DataTypes.FLOAT, 0, 1, false, 1]]);
+event_prefab[EventNodeTypes.FADE_BGM] = create_event_node_prefab("FadeBGM", [["Volume", DataTypes.INT, 0, 1, false, 0], ["Time", DataTypes.FLOAT, 0, 1, false, 1], ["Stop On Complete?", DataTypes.BOOL, 0, 1, false, true]]);
+event_prefab[EventNodeTypes.RESUME_BGM] = create_event_node_prefab("ResumeAutomaticBGM", []);
 // if you want fancier audio controls for sound effects, make an advanced event - i'm not going to write the FMOD effects into the basic one
 event_prefab[EventNodeTypes.PLAY_SE] = create_event_node_prefab("PlaySoundEffect", [["SoundEffect", DataTypes.AUDIO_SE, 0], ["Volume", DataTypes.INT, 0, 1, false, 100], ["Pitch", DataTypes.INT, 0, 1, false, 100]]);
 event_prefab[EventNodeTypes.STOP_SE] = create_event_node_prefab("StopAllSoundEffects", []);
