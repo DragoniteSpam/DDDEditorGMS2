@@ -92,6 +92,7 @@ switch (argument0.type) {
         custom = guid_get(argument0.custom_guid);
         x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
         y2 = y1 + 24 + 32;
+        var ncolor = (argument0.type == EventNodeTypes.CUSTOM) ? c_ev_custom : c_ev_basic;
         
         for (var i = 0; i < ds_list_size(custom.types); i++) {
             var custom_data_list = argument0.custom_data[| i];
@@ -126,9 +127,9 @@ switch (argument0.type) {
         }
         
         if (rectangle_within_view(view_current, x1, y1, x2, y2)) {
-            var c = colour_mute(c_ev_custom);
+            var c = colour_mute(ncolor);
             draw_event_drag_handle(argument0, x1 + 16, y1 - 16, x2 - 16, y1 + 16, c);
-            draw_roundrect_colour(x1, y1, x2, y2, c_ev_custom, c_ev_custom, false);
+            draw_roundrect_colour(x1, y1, x2, y2, ncolor, ncolor, false);
             draw_roundrect(x1, y1, x2, y2, true);
             draw_sprite(spr_event_outbound, 2, x1, y1 + 16);
             draw_event_node_title(argument0, c);
