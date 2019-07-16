@@ -67,7 +67,17 @@ for (var i = 0; i < n_events; i++) {
                             break; 
                         case DataTypes.ENUM:
                         case DataTypes.DATA:
+                        case DataTypes.AUDIO_BGM:
+                        case DataTypes.AUDIO_SE:
+                        case DataTypes.ANIMATION:
                             var save_type = buffer_u32;
+                            break;
+                        case DataTypes.COLOR:
+                        case DataTypes.MESH:
+                        case DataTypes.TILESET:
+                        case DataTypes.TILE:
+                        case DataTypes.AUTOTILE:
+                            stack_trace();
                             break;
                     }
                     var n_custom_data = ds_list_size(node.custom_data[| k]);

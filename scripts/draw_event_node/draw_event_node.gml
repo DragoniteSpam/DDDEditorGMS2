@@ -1,5 +1,4 @@
 /// @param DataEventNode
-// Recursive
 
 // color is set to black, font to FDefault12, alignment to left/middle
 // if you change any of these in this script, you need to change them
@@ -197,9 +196,13 @@ switch (argument0.type) {
                                     }
                                     break;
                                 case DataTypes.AUDIO_BGM:
+                                    dialog_create_event_node_audio_bgm(noone, argument0, i, 0);
+                                    break;
                                 case DataTypes.AUDIO_SE:
+                                    dialog_create_event_node_audio_se(noone, argument0, i, 0);
+                                    break;
                                 case DataTypes.ANIMATION:
-                                    stack_trace();
+                                    dialog_create_event_node_animation(noone, argument0, i, 0);
                                     break;
                                 // @todo data types
                                 case DataTypes.CODE:

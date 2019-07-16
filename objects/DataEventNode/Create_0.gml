@@ -29,11 +29,3 @@ offset_y = -1;
 // their outbound references set to zero.
 
 parents = ds_map_create();
-
-// could subclass this but i need to get this done in a hurry
-enum EventNodeTypes {
-    ENTRYPOINT,
-    TEXT,
-    CUSTOM,     // eveything else is Custom
-    COMMENT
-}

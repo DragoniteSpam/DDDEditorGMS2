@@ -65,7 +65,6 @@ repeat(n_events) {
                 node.custom_guid = buffer_read(argument0, buffer_u32);
                 var custom = guid_get(node.custom_guid);
                 if (custom == noone) {
-                    
                 }
                 for (var i = 0; i < ds_list_size(custom.types); i++) {
                     var sub_list = ds_list_create();
@@ -86,7 +85,17 @@ repeat(n_events) {
                             break;
                         case DataTypes.ENUM:
                         case DataTypes.DATA:
+                        case DataTypes.AUDIO_BGM:
+                        case DataTypes.AUDIO_SE:
+                        case DataTypes.ANIMATION:
                             var buffer_type = buffer_u32;
+                            break;
+                        case DataTypes.COLOR:
+                        case DataTypes.MESH:
+                        case DataTypes.TILESET:
+                        case DataTypes.TILE:
+                        case DataTypes.AUTOTILE:
+                            stack_trace();
                             break;
                     }
                     
