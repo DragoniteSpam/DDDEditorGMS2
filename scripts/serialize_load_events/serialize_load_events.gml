@@ -63,19 +63,14 @@ repeat(n_events) {
                 break;
             case EventNodeTypes.CUSTOM:
             default:
-                if (node_type == EventNodeTypes.CUSTOM) {
-                    node.custom_guid = buffer_read(argument0, buffer_u32);
-                    var custom = guid_get(node.custom_guid);
-                } else {
-                    var custom = event_prefab[node_type];
+                node.custom_guid = buffer_read(argument0, buffer_u32);
+                if (node_type != EventNodeTypes.CUSTOM) {
+                    // other types also save the custom guid, even though there's really no reason
+                    // for them to do so
+                    node.custom_guid = event_prefab[node_type].GUID;
                 }
+                var custom = guid_get(node.custom_guid);
                 
-                if (custom == noone) {
-                    
-                }
-                if (custom.name == "Wait") {
-                    custom = event_prefab[EventNodeTypes.WAIT];
-                }
                 for (var i = 0; i < ds_list_size(custom.types); i++) {
                     var sub_list = ds_list_create();
                     var type = custom.types[| i];
@@ -110,16 +105,27 @@ repeat(n_events) {
                     }
                     
                     var n_custom_data = buffer_read(argument0, buffer_u8);
-                    repeat(n_custom_data) {
-                        ds_list_add(sub_list, buffer_read(argument0, buffer_type));
+                    
+                    // custom event types don't seem to be pre-populated with values, for
+                    // some reason - although as far as i can tell they ought to be?
+                    if (node_type == EventNodeTypes.CUSTOM) {
+                        repeat(n_custom_data) {
+                            ds_list_add(sub_list, buffer_read(argument0, buffer_type));
+                        }
+                        ds_list_add(node.custom_data, sub_list);
+                    } else {
+                        var sub_list = node.custom_data[| i];
+                        ds_list_clear(sub_list);
+                        repeat(n_custom_data) {
+                            ds_list_add(sub_list, buffer_read(argument0, buffer_type));
+                        }
                     }
-                    ds_list_add(node.custom_data, sub_list);
                 }
                 break;
         }
         
         // don't add the node to event.nodes because it already does it for you
-        // in the constructor (how nice)
+        // in the constructor (how nice!)
     }
     
     for (var i = 0; i < n_nodes; i++) {

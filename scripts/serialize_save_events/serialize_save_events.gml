@@ -45,6 +45,7 @@ for (var i = 0; i < n_events; i++) {
             case EventNodeTypes.TEXT:
                 break;
             case EventNodeTypes.CUSTOM:
+            default:
                 buffer_write(argument0, buffer_u32, node.custom_guid);
                 // the size of this list should already be known by the custom
                 // event template
@@ -80,6 +81,7 @@ for (var i = 0; i < n_events; i++) {
                             stack_trace();
                             break;
                     }
+                    
                     var n_custom_data = ds_list_size(node.custom_data[| k]);
                     buffer_write(argument0, buffer_u8, n_custom_data);
                     for (var l = 0; l < n_custom_data; l++) {

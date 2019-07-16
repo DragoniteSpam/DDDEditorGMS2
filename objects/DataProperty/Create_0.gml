@@ -56,6 +56,7 @@ enum DataTypes {
  *  13. case in ui_init_game_data_refresh.gml
  *  14. text in the lists in dialog_create_data_types_ext and dialog_create_event_node_custom_data_ext
  *  15. case in draw_active_event
+ *  16. case in event_create_node - possibly, but the default is probably fine
  */
 
 enum NumberScales {
