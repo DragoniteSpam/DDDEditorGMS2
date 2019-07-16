@@ -295,7 +295,7 @@ switch (argument0.type) {
         break;
 }
 
-// different node types put the outbound nodes in different places - not all use more than
+// different node types may put the outbound nodes in different places - not all use more than
 // one output node
 switch (argument0.type) {
     case EventNodeTypes.ENTRYPOINT:
@@ -351,8 +351,6 @@ switch (argument0.type) {
                 }
             }
         }
-        break;
-    default:
         break;
 }
 
