@@ -307,7 +307,7 @@ switch (argument0.type) {
                         case DataTypes.ENTITY:
                             var setdata = refid_get(custom_data_list[| 0]);
                             message = message + "(entity): ";
-                            output_string = setdata ? setdata.name : "<null>";
+                            output_string = setdata ? setdata.name : "<calling entity>";
                             break;
                     }
                     

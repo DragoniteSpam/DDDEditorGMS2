@@ -67,13 +67,22 @@ if (argument2 >= DataVersions.GAME_VARIABLES) {
     
     var n_variables = buffer_read(argument0, buffer_u8);
     repeat (n_variables) {
-        var sw_name = buffer_read(argument0, buffer_string);
-        var sw_value = buffer_read(argument0, buffer_bool);
-        var var_name = buffer_read(argument0, buffer_string);
-        var var_value = buffer_read(argument0, buffer_f32);
+        if (argument1 < DataVersions.STRIPPED_SELF_VARIABLES) {
+            buffer_read(argument0, buffer_string);
+        }
+        ds_list_add(argument1.switches, buffer_read(argument0, buffer_bool));
         
-        ds_list_add(argument1.switches, [sw_name, sw_value]);
-        ds_list_add(argument1.variables, [var_name, var_value]);
+        if (argument1 < DataVersions.STRIPPED_SELF_VARIABLES) {
+            buffer_read(argument0, buffer_string);
+        }
+        ds_list_add(argument1.variables, buffer_read(argument0, buffer_f32));
+    }
+    
+    while (ds_list_size(argument1.switches) < BASE_SELF_VARIABLES) {
+        ds_list_add(argument1.switches, false);
+    }
+    while (ds_list_size(argument1.variables) < BASE_SELF_VARIABLES) {
+        ds_list_add(argument1.variables, 0);
     }
 }
 

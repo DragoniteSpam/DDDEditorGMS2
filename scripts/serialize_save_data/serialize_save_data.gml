@@ -78,5 +78,6 @@ enum DataVersions {
     MESH_AUTOTILE_INCLUSION     = 29,
     EVENT_NODE_PREFAB           = 30,
     GAME_VARIABLES              = 31,
+    STRIPPED_SELF_VARIABLES     = 32,
     _CURRENT                    /* = whatever the last one is + 1 */
 }

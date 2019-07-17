@@ -274,12 +274,12 @@ enum EventNodeTypes {
     ["Relative?", DataTypes.BOOL, 0, 1, false, false]
 ]);
 event_prefab[EventNodeTypes.CONTROL_SELF_SWITCHES] = create_event_node_prefab("ControlSelfSwitch", [
-    ["Entity", DataTypes.ENTITY, 0, 1, false, 0, null, null],
+    ["Entity", DataTypes.ENTITY, 0, 1, false, 0, omu_event_attain_self_switch_data],
     ["Index", DataTypes.INT, 0, 1, false, 0, omu_event_attain_self_switch_data, event_prefab_render_self_switch_name],
     ["State", DataTypes.BOOL, 0, 1, false, false]
 ]);
 event_prefab[EventNodeTypes.CONTROL_SELF_VARIABLES] = create_event_node_prefab("ControlSelfVariable", [
-    ["Entity", DataTypes.ENTITY, 0, 1, false, 0, null, null],
+    ["Entity", DataTypes.ENTITY, 0, 1, false, 0, omu_event_attain_self_variable_data],
     ["Index", DataTypes.INT, 0, 1, false, 0, omu_event_attain_self_variable_data, event_prefab_render_self_variable_name],
     ["Value", DataTypes.FLOAT, 0, 1, false, 0, omu_event_attain_self_variable_data],
     ["Relative?", DataTypes.BOOL, 0, 1, false, false]

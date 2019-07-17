@@ -16,8 +16,9 @@ var dg = dialog_create(dw, dh, "Modify Self Switch", dialog_default, dc_close_no
 dg.node = event_node;
 dg.index = data_index;
 
-var custom_data_switch = event_node.custom_data[| 0];
-var custom_data_state = event_node.custom_data[| 1];
+var custom_data_entity = event_node.custom_data[| 0];
+var custom_data_switch = event_node.custom_data[| 1];
+var custom_data_state = event_node.custom_data[| 2];
 
 var ew = dw - 64;
 var eh = 24;
