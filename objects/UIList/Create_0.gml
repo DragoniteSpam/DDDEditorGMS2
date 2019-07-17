@@ -17,6 +17,7 @@ onvaluechange = null;
 render = ui_render_list;
 
 allow_multi_select = false;
+allow_deselect = true;
 selected_entries = ds_map_create();
 
 // could probably use contents for this but those are for

@@ -95,6 +95,10 @@ if (argument0.interactive && active) {
             script_execute(argument0.onvaluechange, argument0);
         } else if (Controller.press_help) {
             //ds_stuff_help_auto(argument0);
+        } else if (Controller.press_right) {
+            if (argument0.allow_deselect) {
+                ui_list_deselect(argument0);
+            }
         }
         
         if (mouse_wheel_up()) {

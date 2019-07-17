@@ -1,32 +1,31 @@
-/// @description void ui_render_list_all_entities(UIList, x, y);
 /// @param UIList
 /// @param x
 /// @param y
 
 // this is a lot of the same code as ui_render_list which annoys me slightly, except it looks directly
-// at ActiveMap.all_entities in order to minimize code duplication.
+// at ActiveMap.all_entities in order to minimize code duplication. (Lol!)
 // as such, entries, entry_colors and entries_are_instances are not used in here
 
-var x1=argument0.x+argument1;
-var y1=argument0.y+argument2;
-var x2=x1+argument0.width;
-var y2=y1+argument0.height;
+var x1 = argument0.x + argument1;
+var y1 = argument0.y + argument2;
+var x2 = x1 + argument0.width;
+var y2 = y1 + argument0.height;
 
-var y3=y2+argument0.slots*argument0.height;
+var y3 = y2 + argument0.slots * argument0.height;
 
-var tx=ui_get_text_x(argument0, x1, x2);
-var ty=ui_get_text_y(argument0, y1, y2);
+var tx = ui_get_text_x(argument0, x1, x2);
+var ty = ui_get_text_y(argument0, y1, y2);
 
 draw_set_halign(argument0.alignment);
 draw_set_valign(argument0.valignment);
 draw_set_color(argument0.color);
 draw_text(tx, ty, string(argument0.text));
 
-var n=ds_list_size(ActiveMap.all_entities);
+var n = ds_list_size(ActiveMap.all_entities);
 
-var active=dialog_is_active(argument0.root);
+var active = dialog_is_active(argument0.root);
 
-if (n==0) {
+if (n == 0) {
     draw_rectangle_colour(x1, y2, x2, y2+argument0.height, c_ltgray, c_ltgray, c_ltgray, c_ltgray, false);
     ty=mean(y2, y2+argument0.height);
     draw_text(tx, ty, string(argument0.text_vacant));
@@ -176,4 +175,4 @@ if (n>argument0.slots) {
 
 draw_rectangle(x1, y2, x2, y3, true);
 
-argument0.index=clamp(argument0.index+move_direction, 0, max(0, n-argument0.slots));
+argument0.index = clamp(argument0.index + move_direction, 0, max(0, n-argument0.slots));
