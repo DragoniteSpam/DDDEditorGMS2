@@ -217,7 +217,7 @@ switch (argument0.type) {
                                         break;
                                 }
                             } else {
-                                script_execute(attainment, noone, i);
+                                script_execute(attainment, noone, argument0, i);
                             }
                         }
                     }

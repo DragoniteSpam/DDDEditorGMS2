@@ -263,8 +263,8 @@ enum EventNodeTypes {
 
 /* */ event_prefab[EventNodeTypes.INPUT_TEXT] = create_event_node_prefab("NotYetImplemented", []);
 /* */ event_prefab[EventNodeTypes.SHOW_SCROLLING_TEXT] = create_event_node_prefab("NotYetImplemented", []);
-/* */ event_prefab[EventNodeTypes.CONTROL_SWITCHES] = create_event_node_prefab("ControlGlobalSwitch", [["Index", DataTypes.INT, 0, 1, false, 0, omu_event_attain_switch_index], ["State", DataTypes.BOOL, 0, 1, false, false]]);
-/* */ event_prefab[EventNodeTypes.CONTROL_VARIABLES] = create_event_node_prefab("ControlGlobalVariable", [["Index", DataTypes.INT, 0, 1, false, 0], ["Value", DataTypes.FLOAT, 0, 1, false, 0], ["Relative?", DataTypes.BOOL, 0, 1, false, false]]);
+/* */ event_prefab[EventNodeTypes.CONTROL_SWITCHES] = create_event_node_prefab("ControlGlobalSwitch", [["Index", DataTypes.INT, 0, 1, false, -1, omu_event_attain_switch_data], ["State", DataTypes.BOOL, 0, 1, false, false]]);
+/* */ event_prefab[EventNodeTypes.CONTROL_VARIABLES] = create_event_node_prefab("ControlGlobalVariable", [["Index", DataTypes.INT, 0, 1, false, -1, omu_event_attain_variable_data], ["Value", DataTypes.FLOAT, 0, 1, false, 0], ["Relative?", DataTypes.BOOL, 0, 1, false, false]]);
 event_prefab[EventNodeTypes.CONTORL_SELF_SWITCHES] = create_event_node_prefab("NotYetImplemented", []);
 event_prefab[EventNodeTypes.CONTROL_SELF_VARIABLES] = create_event_node_prefab("NotYetImplemented", []);
 /* */ event_prefab[EventNodeTypes.CONTROL_TIME] = create_event_node_prefab("NotYetImplemented", []);
