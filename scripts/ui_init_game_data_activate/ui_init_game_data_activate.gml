@@ -154,6 +154,10 @@ if (data) {
                         element.entries_are = ListEntries.GUIDS;
                         var hh = ui_get_list_height(element);
                         break;
+                    case DataTypes.ENTITY:          // list
+                        var element = create_text(spacing, yy, property.name + " - invalid data type", ew, eh, fa_left, ew, noone);
+                        var hh = element.height;
+                        break;
                 }
             } else {
                 var element = create_button(spacing, yy, property.name + " (List)", ew, eh, fa_middle, dialog_create_data_instance_property_list, noone);

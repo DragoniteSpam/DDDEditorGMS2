@@ -18,7 +18,10 @@ var n_slots = 14;
 var yy = 64;
 
 var el_list = create_radio_array(16, yy, "All Data Types: ", ew, eh, uivc_input_data_property_type_ext, argument0.root.selected_property.type, dg);
-create_radio_array_options(el_list, "Int", "Enum", "Float", "String", "Boolean", "Data", "Code", "Color", "Mesh", "Tileset", "Tile", "Autotile", "Audio (BGM)", "Audio (SE)", "Animation");
+create_radio_array_options(el_list, "Int", "Enum", "Float", "String", "Boolean", "Data", "Code", "Color", "Mesh", "Tileset", "Tile", "Autotile", "Audio (BGM)", "Audio (SE)", "Animation", "Entity");
+// individual entities are disallowed by data types but they still need to be an entry here
+// so that any types that get added in the future aren't off-by-one in this menu
+el_list.contents[| DataTypes.ENTITY].interactive = false;
 
 dg.el_list = el_list;
 

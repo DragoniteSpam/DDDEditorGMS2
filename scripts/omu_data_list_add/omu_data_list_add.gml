@@ -37,6 +37,7 @@ if (ds_list_size(plist) < property.max_size) {
             ds_list_add(plist, c_black);
             break;
         case DataTypes.TILE:
+        case DataTypes.ENTITY:
             stack_trace();
             break;
     }

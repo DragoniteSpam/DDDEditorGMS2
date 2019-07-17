@@ -119,6 +119,8 @@ for (var i = 0; i < ds_list_size(Stuff.original_data); i++) {
                             }
                         }
                         break;
+                    case DataTypes.ENTITY:
+                        break;
                 }
             }
         }

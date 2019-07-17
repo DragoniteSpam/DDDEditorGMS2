@@ -54,6 +54,7 @@ switch (property.type) {
         stack_trace();
         break;
     case DataTypes.COLOR:
+    case DataTypes.ENTITY:
         // probably deal with this by just having the string "lorem ipsum" colorized however - probably
         // with an outline, so you can see the bright colors - but not sure yet
         stack_trace();

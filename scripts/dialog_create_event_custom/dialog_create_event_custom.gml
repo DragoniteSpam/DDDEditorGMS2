@@ -3,8 +3,7 @@
 var dw = 720;
 var dh = 560;
 
-// todo cache the custom event and only commit the changes when you're done
-var dg = dialog_create(dw, dh, "Custom Event Properties", dialog_note_changes, dc_close_no_questions_asked, argument0);
+var dg = dialog_create(dw, dh, "Custom Event Node Properties", dialog_note_changes, dc_close_no_questions_asked, argument0);
 dg.x = dg.x - 32;
 
 // later on this will be a clone; elements on the dialog should check this instead of the permenant one,

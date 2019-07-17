@@ -1751,6 +1751,14 @@
             }
         },
         {
+            "Key": "302dd6b4-1df3-4e41-8f35-a7d818e63201",
+            "Value": {
+                "id": "b03a7e64-5583-462d-81d7-4e3268098662",
+                "resourcePath": "scripts\\refid_get\\refid_get.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "30c49af6-489f-473f-b791-78e745f0d6e5",
             "Value": {
                 "id": "fde18969-5ad5-47cf-906e-3801339a8ff8",
@@ -3239,6 +3247,14 @@
             }
         },
         {
+            "Key": "592176f4-c858-47ae-ba6d-be477cc58dce",
+            "Value": {
+                "id": "ee065815-9b49-4009-9930-95befe8907ef",
+                "resourcePath": "scripts\\refid_set\\refid_set.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "5921e83a-ddd1-4533-8c27-17e6029e7c0b",
             "Value": {
                 "id": "7fb6a0e9-ee41-4505-bea3-cc42d6587468",
@@ -3836,6 +3852,14 @@
                 "id": "f3f2ab21-b70d-4fee-a020-0c0057aa37b3",
                 "resourcePath": "datafiles_yy\\data\\graphics\\dummy\\b_tileset_dummy_overworld.png.yy",
                 "resourceType": "GMIncludedFile"
+            }
+        },
+        {
+            "Key": "68df9fed-e75f-4c55-8399-ee2777422c63",
+            "Value": {
+                "id": "c539b36f-b10a-40b3-a27e-d1e4872a505b",
+                "resourcePath": "scripts\\refid_remove\\refid_remove.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -5787,6 +5811,14 @@
             "Value": {
                 "id": "3af9dd1e-7b3d-4477-b090-385d10e64121",
                 "resourcePath": "scripts\\omu_mr_direction_fix_on\\omu_mr_direction_fix_on.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "9dfdcbd1-bb7c-48ac-b6bd-4323726f7074",
+            "Value": {
+                "id": "50a2f868-89c6-4d55-9992-2abb48308358",
+                "resourcePath": "scripts\\refid_generate\\refid_generate.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -10087,13 +10119,17 @@
         "806b73cd-6cd7-4d92-8daa-94c4177690d7",
         "5cc71665-573c-4595-a2d9-6dd8c3706185",
         "c2797eb4-e094-4656-831c-d77d68434073",
+        "592176f4-c858-47ae-ba6d-be477cc58dce",
         "ccaf48d4-64d1-4944-8c76-944a73f317b7",
         "defc0a0a-9e2c-4f3f-abc8-e5e9d654f425",
         "4ea25dc4-334f-4ce3-abbc-894aa3228dbd",
         "1dad5f6e-3cab-47d3-89d4-fb23d99de196",
+        "302dd6b4-1df3-4e41-8f35-a7d818e63201",
         "eda421e6-0957-4159-8b01-a13dbd83a0f3",
+        "68df9fed-e75f-4c55-8399-ee2777422c63",
         "8d906a80-8ffc-4012-82df-e380581a43e2",
         "ee2648be-9945-42de-813a-f6210f5a5a46",
+        "9dfdcbd1-bb7c-48ac-b6bd-4323726f7074",
         "606cf9bf-a354-44d2-b00f-8861897ff5c9",
         "63b71293-f0b9-4b99-8738-9bb479ed6a11",
         "75e644ee-a05f-42e0-9c4e-1cfd7ae04e25",

@@ -71,6 +71,7 @@ for (var i = 0; i < n_events; i++) {
                         case DataTypes.AUDIO_BGM:
                         case DataTypes.AUDIO_SE:
                         case DataTypes.ANIMATION:
+                        case DataTypes.ENTITY:
                             var save_type = buffer_u32;
                             break;
                         case DataTypes.COLOR:

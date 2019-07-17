@@ -96,6 +96,7 @@ time_int = 0;
 frames = 0;
 
 all_guids = ds_map_create();
+all_refids = ds_map_create();           // it probably makes sense to make this a property of map, but i want to have all of the lookup maps in the same place
 all_internal_names = ds_map_create();
 
 tf = ["False", "True"];
@@ -270,16 +271,18 @@ enum EventNodeTypes {
 /* */ event_prefab[EventNodeTypes.CONTROL_VARIABLES] = create_event_node_prefab("ControlGlobalVariable", [
     ["Index", DataTypes.INT, 0, 1, false, -1, omu_event_attain_variable_data, event_prefab_render_variable_name],
     ["Value", DataTypes.FLOAT, 0, 1, false, 0, omu_event_attain_variable_data],
-    ["Relative?", DataTypes.BOOL, 0, 1, false, false, omu_event_attain_variable_data]
+    ["Relative?", DataTypes.BOOL, 0, 1, false, false]
 ]);
 event_prefab[EventNodeTypes.CONTROL_SELF_SWITCHES] = create_event_node_prefab("ControlSelfSwitch", [
+    ["Entity", DataTypes.ENTITY, 0, 1, false, 0, null, null],
     ["Index", DataTypes.INT, 0, 1, false, 0, omu_event_attain_self_switch_data, event_prefab_render_self_switch_name],
     ["State", DataTypes.BOOL, 0, 1, false, false]
 ]);
 event_prefab[EventNodeTypes.CONTROL_SELF_VARIABLES] = create_event_node_prefab("ControlSelfVariable", [
+    ["Entity", DataTypes.ENTITY, 0, 1, false, 0, null, null],
     ["Index", DataTypes.INT, 0, 1, false, 0, omu_event_attain_self_variable_data, event_prefab_render_self_variable_name],
     ["Value", DataTypes.FLOAT, 0, 1, false, 0, omu_event_attain_self_variable_data],
-    ["Relative?", DataTypes.BOOL, 0, 1, false, false, omu_event_attain_self_variable_data]
+    ["Relative?", DataTypes.BOOL, 0, 1, false, false]
 ]);
 /* */ event_prefab[EventNodeTypes.CONTROL_TIME] = create_event_node_prefab("NotYetImplemented", []);
 /* */ event_prefab[EventNodeTypes.CONDITIONAL] = create_event_node_prefab("NotYetImplemented", []);

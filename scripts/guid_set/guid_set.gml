@@ -2,15 +2,9 @@
 /// @param [value]
 /// @param [force]
 
-var addition = argument[0].GUID;
-var force = false;
-switch (argument_count) {
-    case 3:
-        force = argument[2];
-    case 2:
-        addition = argument[1];
-        break;
-}
+var data = argument[0];
+var addition = (argument_count > 1) ? argument[1] : data.GUID;
+var force = (argument_count > 2) ? argument[2] : false;
 
 // almost all data is automatically created with a GUID, so remove it
 if (ds_map_exists(Stuff.all_guids, addition)) {

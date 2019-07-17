@@ -121,6 +121,8 @@ switch (argument0.type) {
                 case DataTypes.TILE:
                 case DataTypes.TILESET:
                 case DataTypes.AUTOTILE:
+                case DataTypes.ENTITY:
+                    y2 = y2 + 32;
                     break;
             }
         }
@@ -165,6 +167,7 @@ switch (argument0.type) {
                     case DataTypes.TILE:
                     case DataTypes.TILESET:
                     case DataTypes.AUTOTILE:
+                    case DataTypes.ENTITY:
                         eh = 32;
                         break;
                 }
@@ -214,6 +217,8 @@ switch (argument0.type) {
                                     case DataTypes.TILE:
                                     case DataTypes.TILESET:
                                     case DataTypes.AUTOTILE:
+                                    case DataTypes.ENTITY:
+                                        stack_trace();
                                         break;
                                 }
                             } else {
@@ -297,6 +302,11 @@ switch (argument0.type) {
                         case DataTypes.ANIMATION:
                             var setdata = guid_get(custom_data_list[| 0]);
                             message = message + "(animation): ";
+                            output_string = setdata ? setdata.name : "<null>";
+                            break;
+                        case DataTypes.ENTITY:
+                            var setdata = refid_get(custom_data_list[| 0]);
+                            message = message + "(entity): ";
                             output_string = setdata ? setdata.name : "<null>";
                             break;
                     }

@@ -40,6 +40,7 @@ if (pselection >= 0) {
             break;
         case DataTypes.COLOR:
         case DataTypes.TILE:
+        case DataTypes.ENTITY:
             stack_trace();
             break;
     }

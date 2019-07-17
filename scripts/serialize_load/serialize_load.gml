@@ -69,6 +69,7 @@ if (buffer < 0) {
                         vertex_delete_buffer(ActiveMap.mesh_autotile_raw[i]);
                     }
                 }
+                ds_map_clear(Stuff.all_refids);
                 array_clear(ActiveMap.mesh_autotiles, noone);
                 array_clear(ActiveMap.mesh_autotile_raw, noone);
                 // todo clear editor map - IF entities get their own GUIDs eventually,

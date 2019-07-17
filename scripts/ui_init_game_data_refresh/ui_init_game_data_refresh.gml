@@ -133,6 +133,9 @@ for (var i = 0; i < ds_list_size(dynamic.contents); i++) {
                 case DataTypes.ANIMATION:
                     thingy.value = 0;
                     break;
+                case DataTypes.ENTITY:
+                    // not allowed
+                    break;
             }
         }
         
