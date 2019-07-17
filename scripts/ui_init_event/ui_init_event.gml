@@ -192,10 +192,10 @@ with (instantiate(UIMain)) {
     element = create_button(legal_x + spacing, yy, "Control Variables", element_width, element_height, fa_left, omu_event_add_global_variable, t_action1);
     ds_list_add(t_action1.contents, element);
     yy = yy + element_height;
-    element = create_button(legal_x + spacing, yy, "Control Self Switches", element_width, element_height, fa_left, stack_trace, t_action1);
+    element = create_button(legal_x + spacing, yy, "Control Self Switches", element_width, element_height, fa_left, omu_event_add_self_switch, t_action1);
     ds_list_add(t_action1.contents, element);
     yy = yy + element_height;
-    element = create_button(legal_x + spacing, yy, "Control Self Variables", element_width, element_height, fa_left, stack_trace, t_action1);
+    element = create_button(legal_x + spacing, yy, "Control Self Variables", element_width, element_height, fa_left, omu_event_add_self_variable, t_action1);
     ds_list_add(t_action1.contents, element);
     yy = yy + element_height;
     element = create_button(legal_x + spacing, yy, "Control Timer", element_width, element_height, fa_left, stack_trace, t_action1);

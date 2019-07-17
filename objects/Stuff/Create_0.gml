@@ -252,7 +252,7 @@ enum EventNodeTypes {
     TEXT,
     CUSTOM,
     INPUT_TEXT, SHOW_SCROLLING_TEXT,
-    CONTROL_SWITCHES, CONTROL_VARIABLES, CONTORL_SELF_SWITCHES, CONTROL_SELF_VARIABLES, CONTROL_TIME,
+    CONTROL_SWITCHES, CONTROL_VARIABLES, CONTROL_SELF_SWITCHES, CONTROL_SELF_VARIABLES, CONTROL_TIME,
     CONDITIONAL, INVOKE_EVENT, COMMENT, WAIT,
     TRANSFER_PLAYER, SET_ENTITY_LOCATION, SCROLL_MAP, SET_MOVEMENT_ROUTE,
     TINT_SCREEN, FLASH_SCREEN, SHAKE_SCREEN,
@@ -269,10 +269,18 @@ enum EventNodeTypes {
 ]);
 /* */ event_prefab[EventNodeTypes.CONTROL_VARIABLES] = create_event_node_prefab("ControlGlobalVariable", [
     ["Index", DataTypes.INT, 0, 1, false, -1, omu_event_attain_variable_data, event_prefab_render_variable_name],
-    ["Value", DataTypes.FLOAT, 0, 1, false, 0], ["Relative?", DataTypes.BOOL, 0, 1, false, false]
+    ["Value", DataTypes.FLOAT, 0, 1, false, 0, omu_event_attain_variable_data],
+    ["Relative?", DataTypes.BOOL, 0, 1, false, false, omu_event_attain_variable_data]
 ]);
-event_prefab[EventNodeTypes.CONTORL_SELF_SWITCHES] = create_event_node_prefab("NotYetImplemented", []);
-event_prefab[EventNodeTypes.CONTROL_SELF_VARIABLES] = create_event_node_prefab("NotYetImplemented", []);
+event_prefab[EventNodeTypes.CONTROL_SELF_SWITCHES] = create_event_node_prefab("ControlSelfSwitch", [
+    ["Index", DataTypes.INT, 0, 1, false, 0, omu_event_attain_self_switch_data, event_prefab_render_self_switch_name],
+    ["State", DataTypes.BOOL, 0, 1, false, false]
+]);
+event_prefab[EventNodeTypes.CONTROL_SELF_VARIABLES] = create_event_node_prefab("ControlSelfVariable", [
+    ["Index", DataTypes.INT, 0, 1, false, 0, omu_event_attain_self_variable_data, event_prefab_render_self_variable_name],
+    ["Value", DataTypes.FLOAT, 0, 1, false, 0, omu_event_attain_self_variable_data],
+    ["Relative?", DataTypes.BOOL, 0, 1, false, false, omu_event_attain_self_variable_data]
+]);
 /* */ event_prefab[EventNodeTypes.CONTROL_TIME] = create_event_node_prefab("NotYetImplemented", []);
 /* */ event_prefab[EventNodeTypes.CONDITIONAL] = create_event_node_prefab("NotYetImplemented", []);
 /* */ event_prefab[EventNodeTypes.INVOKE_EVENT] = create_event_node_prefab("NotYetImplemented", []);

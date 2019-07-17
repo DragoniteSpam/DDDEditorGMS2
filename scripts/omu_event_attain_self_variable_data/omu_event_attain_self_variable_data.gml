@@ -10,9 +10,9 @@ var data_index = argument2;
 // should make some things a bit easier
 
 var dw = 320;
-var dh = 560;
+var dh = 320;
 
-var dg = dialog_create(dw, dh, "Modify Global Variable", dialog_default, dc_close_no_questions_asked, thing);
+var dg = dialog_create(dw, dh, "Modify Self Variable", dialog_default, dc_close_no_questions_asked, thing);
 dg.node = event_node;
 dg.index = data_index;
 
@@ -31,18 +31,11 @@ var vy2 = vy1 + eh;
 var yy = 64;
 var spacing = 16;
 
-var el_list = create_list(16, yy, "Variables", "<no variables>", ew, eh, 14, uivc_list_event_attain_variable_index, false, dg);
-for (var i = 0; i < ds_list_size(Stuff.all_global_variables); i++) {
-    // @todo gml update
-    var data = Stuff.all_global_variables[| i];
-    create_list_entries(el_list, data[0], c_black);
-}
-if (custom_data_variable[| 0] > -1) {
-    ds_map_add(el_list.selected_entries, custom_data_variable[| 0], true);
-}
-dg.el_list = el_list;
+var el_choices = create_radio_array(16, yy, "Variables", ew, eh, uivc_list_event_attain_self_variable_index, custom_data_variable[| 0], dg);
+create_radio_array_options(el_choices, "A", "B", "C", "D");
+dg.el_choices = el_choices;
 
-yy = yy + ui_get_list_height(el_list) + spacing;
+yy = yy + ui_get_radio_array_height(el_choices) + spacing;
 
 var el_value = create_input(16, yy, "Value", ew, eh, uivc_check_event_attain_variable_value, 0, custom_data_value[|0], "float", validate_double, ui_value_real, -(1 << 31), (1 << 31) - 1, 11, vx1, vy1, vx2, vy2, dg);
 dg.el_value = el_value;
@@ -56,6 +49,6 @@ var b_width = 128;
 var b_height = 32;
 var el_close = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
 
-ds_list_add(dg.contents, el_list, el_value, el_relative, el_close);
+ds_list_add(dg.contents, el_choices, el_value, el_relative, el_close);
 
 return dg;
