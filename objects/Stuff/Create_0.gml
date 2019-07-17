@@ -263,8 +263,14 @@ enum EventNodeTypes {
 
 /* */ event_prefab[EventNodeTypes.INPUT_TEXT] = create_event_node_prefab("NotYetImplemented", []);
 /* */ event_prefab[EventNodeTypes.SHOW_SCROLLING_TEXT] = create_event_node_prefab("NotYetImplemented", []);
-/* */ event_prefab[EventNodeTypes.CONTROL_SWITCHES] = create_event_node_prefab("ControlGlobalSwitch", [["Index", DataTypes.INT, 0, 1, false, -1, omu_event_attain_switch_data], ["State", DataTypes.BOOL, 0, 1, false, false]]);
-/* */ event_prefab[EventNodeTypes.CONTROL_VARIABLES] = create_event_node_prefab("ControlGlobalVariable", [["Index", DataTypes.INT, 0, 1, false, -1, omu_event_attain_variable_data], ["Value", DataTypes.FLOAT, 0, 1, false, 0], ["Relative?", DataTypes.BOOL, 0, 1, false, false]]);
+/* */ event_prefab[EventNodeTypes.CONTROL_SWITCHES] = create_event_node_prefab("ControlGlobalSwitch", [
+    ["Index", DataTypes.INT, 0, 1, false, -1, omu_event_attain_switch_data, event_prefab_render_switch_name],
+    ["State", DataTypes.BOOL, 0, 1, false, false]
+]);
+/* */ event_prefab[EventNodeTypes.CONTROL_VARIABLES] = create_event_node_prefab("ControlGlobalVariable", [
+    ["Index", DataTypes.INT, 0, 1, false, -1, omu_event_attain_variable_data, event_prefab_render_variable_name],
+    ["Value", DataTypes.FLOAT, 0, 1, false, 0], ["Relative?", DataTypes.BOOL, 0, 1, false, false]
+]);
 event_prefab[EventNodeTypes.CONTORL_SELF_SWITCHES] = create_event_node_prefab("NotYetImplemented", []);
 event_prefab[EventNodeTypes.CONTROL_SELF_VARIABLES] = create_event_node_prefab("NotYetImplemented", []);
 /* */ event_prefab[EventNodeTypes.CONTROL_TIME] = create_event_node_prefab("NotYetImplemented", []);
@@ -279,11 +285,23 @@ event_prefab[EventNodeTypes.WAIT] = create_event_node_prefab("Wait", [["Seconds"
 /* */ event_prefab[EventNodeTypes.TINT_SCREEN] = create_event_node_prefab("NotYetImplemented", []);
 /* */ event_prefab[EventNodeTypes.FLASH_SCREEN] = create_event_node_prefab("NotYetImplemented", []);
 /* */ event_prefab[EventNodeTypes.SHAKE_SCREEN] = create_event_node_prefab("NotYetImplemented", []);
-event_prefab[EventNodeTypes.PLAY_BGM] = create_event_node_prefab("PlayBGM", [["BGM", DataTypes.AUDIO_BGM, 0], ["Volume", DataTypes.INT, 0, 1, false, 100], ["Pitch", DataTypes.INT, 0, 1, false, 100]]);
-event_prefab[EventNodeTypes.FADE_BGM] = create_event_node_prefab("FadeBGM", [["Volume", DataTypes.INT, 0, 1, false, 0], ["Time", DataTypes.FLOAT, 0, 1, false, 1], ["Stop On Complete?", DataTypes.BOOL, 0, 1, false, true]]);
+event_prefab[EventNodeTypes.PLAY_BGM] = create_event_node_prefab("PlayBGM", [
+    ["BGM", DataTypes.AUDIO_BGM, 0],
+    ["Volume", DataTypes.INT, 0, 1, false, 100],
+    ["Pitch", DataTypes.INT, 0, 1, false, 100]
+]);
+event_prefab[EventNodeTypes.FADE_BGM] = create_event_node_prefab("FadeBGM", [
+    ["Volume", DataTypes.INT, 0, 1, false, 0],
+    ["Time", DataTypes.FLOAT, 0, 1, false, 1],
+    ["Stop On Complete?", DataTypes.BOOL, 0, 1, false, true]
+]);
 event_prefab[EventNodeTypes.RESUME_BGM] = create_event_node_prefab("ResumeAutomaticBGM", []);
 // if you want fancier audio controls for sound effects, make an advanced event - i'm not going to write the FMOD effects into the basic one
-event_prefab[EventNodeTypes.PLAY_SE] = create_event_node_prefab("PlaySoundEffect", [["SoundEffect", DataTypes.AUDIO_SE, 0], ["Volume", DataTypes.INT, 0, 1, false, 100], ["Pitch", DataTypes.INT, 0, 1, false, 100]]);
+event_prefab[EventNodeTypes.PLAY_SE] = create_event_node_prefab("PlaySoundEffect", [
+    ["SoundEffect", DataTypes.AUDIO_SE, 0],
+    ["Volume", DataTypes.INT, 0, 1, false, 100],
+    ["Pitch", DataTypes.INT, 0, 1, false, 100]
+]);
 event_prefab[EventNodeTypes.STOP_SE] = create_event_node_prefab("StopAllSoundEffects", []);
 /* */ event_prefab[EventNodeTypes.RETURN_TO_TITLE] = create_event_node_prefab("NotYetImplemented", []);
 /* */ event_prefab[EventNodeTypes.CHANGE_MAP_DISPLAY_NAME] = create_event_node_prefab("NotYetImplemented", []);

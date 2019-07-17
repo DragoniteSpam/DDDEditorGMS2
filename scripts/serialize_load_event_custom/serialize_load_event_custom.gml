@@ -15,9 +15,9 @@ repeat(n_custom) {
         var max_size = buffer_read(argument0, buffer_u8);
         var required = buffer_read(argument0, buffer_u8);
         
-        // @todo if you decide to allow the user to define default values,
+        // @todo if you decide to allow the user to define default values, or other things,
         // remember to save them here
-        ds_list_add(custom.types, [name, type, guid, max_size, required, 0, null]);
+        ds_list_add(custom.types, [name, type, guid, max_size, required, 0, null, null]);
     }
     
     ds_list_add(Stuff.all_event_custom, custom);

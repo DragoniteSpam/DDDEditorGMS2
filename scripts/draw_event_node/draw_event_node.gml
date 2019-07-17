@@ -226,18 +226,25 @@ switch (argument0.type) {
                 var message = type[0] + " ";
                 
                 if (ds_list_size(custom_data_list) == 1) {
+                    var output_script = type[EventNodeCustomData.OUTPUT];
+                    var output_string = "";
+                    
                     switch (type[1]) {
                         case DataTypes.INT:
-                            message = message + "(int): " + string(custom_data_list[| 0]);
+                            message = message + "(int): ";
+                            output_string = string(custom_data_list[| 0]);
                             break;
                         case DataTypes.FLOAT:
-                            message = message + "(float): " + string(custom_data_list[| 0]);
+                            message = message + "(float): ";
+                            output_string = string(custom_data_list[| 0]);
                             break;
                         case DataTypes.STRING:
-                            message = message + "(string): ...";
+                            message = message + "(string): ";
+                            output_string = "...";
                             break;
                         case DataTypes.BOOL:
-                            message = message + "(boolean): " + Stuff.tf[custom_data_list[| 0]];
+                            message = message + "(boolean): ";
+                            output_string = Stuff.tf[custom_data_list[| 0]];
                             break;
                         case DataTypes.ENUM:
                         case DataTypes.DATA:
@@ -246,41 +253,58 @@ switch (argument0.type) {
                             if (!datadata) {
                                 message = message + "(<no type set>)";
                             } else if (!setdata) {
-                                message = message + "(" + datadata.name + "): <null>";
+                                message = message + "(" + datadata.name + "): ";
+                                output_string = "<null>";
                             } else {
-                                message = message + "(" + datadata.name+"): " + setdata.name;
+                                message = message + "(" + datadata.name+"): ";
+                                output_string = setdata.name;
                             }
                             break;
                         case DataTypes.CODE:
-                            message = message + "(code): ...";
+                            message = message + "(code): ";
+                            output_string = "...";
                             break;
                         case DataTypes.COLOR:
-                            message = message + "(color): TBD";
+                            message = message + "(color): ";
+                            output_string = "TBD";
                             break;
                         case DataTypes.MESH:
-                            message = message + "(mesh): TBD";
+                            message = message + "(mesh): ";
+                            output_string = "TBD";
                             break;
                         case DataTypes.TILE:
-                            message = message + "(tile): TBD";
+                            message = message + "(tile): ";
+                            output_string = "TBD";
                             break;
                         case DataTypes.TILESET:
-                            message = message + "(tileset): TBD";
+                            message = message + "(tileset): ";
+                            output_string = "TBD";
                             break;
                         case DataTypes.AUTOTILE:
-                            message = message + "(autotile): TBD";
+                            message = message + "(autotile): ";
+                            output_string = "TBD";
                             break;
                         case DataTypes.AUDIO_BGM:
                             var setdata = guid_get(custom_data_list[| 0]);
-                            message = message + "(bgm): " + (setdata ? setdata.name : "<null>");
+                            message = message + "(bgm): ";
+                            output_string = setdata ? setdata.name : "<null>";
                             break;
                         case DataTypes.AUDIO_SE:
                             var setdata = guid_get(custom_data_list[| 0]);
-                            message = message + "(se): " + (setdata ? setdata.name : "<null>");
+                            message = message + "(se): ";
+                            output_string = setdata ? setdata.name : "<null>";
                             break;
                         case DataTypes.ANIMATION:
                             var setdata = guid_get(custom_data_list[| 0]);
-                            message = message + "(animation): " + (setdata ? setdata.name : "<null>");
+                            message = message + "(animation): ";
+                            output_string = setdata ? setdata.name : "<null>";
                             break;
+                    }
+                    
+                    if (output_script == null) {
+                        message = message + output_string;
+                    } else {
+                        message = message + script_execute(output_script, argument0, i);
                     }
                 } else {
                     message = message + ": multiple values (" + string(ds_list_size(custom_data_list)) + ")";

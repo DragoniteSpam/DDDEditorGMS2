@@ -2,7 +2,7 @@
 
 event_inherited();
 
-types = ds_list_create();         // [name, DataType, DataType guid, max = 1, all elements required = false, default = 0, attainment = null]
+types = ds_list_create();
 
 enum EventNodeCustomData {
     NAME,
@@ -12,6 +12,7 @@ enum EventNodeCustomData {
     REQUIRED,
     DEFAULT_VALUE,              // only relevant to primitives
     ATTAINMENT,                 // script for fetching the value in the event editor; null (the script) means the default method will be used
+    OUTPUT,                     // script for how to display the text of this value; null (the script) means the default method will be used
 }
 
 // other values from data types like min, max and char limit are theoretically useful

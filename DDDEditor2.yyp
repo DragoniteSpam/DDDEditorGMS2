@@ -3471,6 +3471,14 @@
             }
         },
         {
+            "Key": "606cf9bf-a354-44d2-b00f-8861897ff5c9",
+            "Value": {
+                "id": "b46eaaeb-4ed8-4a58-84cf-fe958b7caa6d",
+                "resourcePath": "scripts\\event_prefab_render_switch_name\\event_prefab_render_switch_name.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "60e9a43f-c389-4d54-8bdb-72892cbcc85b",
             "Value": {
                 "id": "126dfb01-f9ea-4939-8d05-596e3a0587ec",
@@ -3900,6 +3908,14 @@
                 "id": "95022308-0f93-44e0-b081-e1c6c2be24c4",
                 "resourcePath": "views\\6aca9fdd-c0f9-4425-906d-e2d7a3bb0819.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "6b0ac3d9-9ca5-40bf-ad8d-6e82898d06f5",
+            "Value": {
+                "id": "469dd5b8-d913-4f60-b0ec-dff2e7b44152",
+                "resourcePath": "scripts\\event_prefab_render_variable_name\\event_prefab_render_variable_name.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -7271,6 +7287,14 @@
             }
         },
         {
+            "Key": "cba05aca-815d-4a5c-8fa1-7d2b3172287d",
+            "Value": {
+                "id": "7deab8e8-89ff-4d88-8570-ff28f081ec18",
+                "resourcePath": "views\\cba05aca-815d-4a5c-8fa1-7d2b3172287d.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "cbe4430f-d796-45b9-bf60-a484b4b355d5",
             "Value": {
                 "id": "f8734a3c-b837-4ddf-a777-df00d58cebbf",
@@ -10000,6 +10024,8 @@
         "eda421e6-0957-4159-8b01-a13dbd83a0f3",
         "8d906a80-8ffc-4012-82df-e380581a43e2",
         "ee2648be-9945-42de-813a-f6210f5a5a46",
+        "606cf9bf-a354-44d2-b00f-8861897ff5c9",
+        "6b0ac3d9-9ca5-40bf-ad8d-6e82898d06f5",
         "4ef4d916-562d-4362-b777-697ab3236fa1",
         "88a72ab1-34ee-4030-b06d-0468751727de",
         "ee359008-8b0a-4b60-98b1-6ccb0ec031bc",
