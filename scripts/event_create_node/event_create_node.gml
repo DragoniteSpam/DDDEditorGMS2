@@ -28,6 +28,11 @@ switch (argument[1]) {
     case EventNodeTypes.TEXT:
         node.name = "Text";
         break;
+    case EventNodeTypes.COMMENT:
+        node.name = "Comment";
+        node.data[| 0] = "This is a comment";
+        node.vaid_destination = true;
+        break;
     case EventNodeTypes.CUSTOM:
     default:
         if (argument[1] != EventNodeTypes.CUSTOM) {

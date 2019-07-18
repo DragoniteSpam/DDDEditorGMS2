@@ -7,12 +7,6 @@
 #macro AUTOTILE_MAX 16
 #macro BATCH_CACHE_SIZE 160
 #macro buffer_datatype buffer_u32
-#macro c_ev_basic $99ffcc
-#macro c_ev_custom $99ccff
-#macro c_ev_ghost $0099cc
-#macro c_ev_init $ffcc99
-#macro c_ui_select $ffb8ac
-#macro c_ui $ebebeb
 #macro CAMERA_SAVE_FREQUENCY 5
 #macro CH 900
 #macro CW 1080 /*these aren't meant to be used for view coordinates but window coordinates, otherwise i'd make them relative*/
@@ -68,6 +62,14 @@
 #macro WVIEW __view_get( e__VW.WView, view_current )
 #macro XVIEW __view_get( e__VW.XView, view_current )
 #macro YVIEW __view_get( e__VW.YView, view_current )
+
+#macro c_ev_basic $99ffcc
+#macro c_ev_comment $d8bfd8
+#macro c_ev_custom $99ccff
+#macro c_ev_ghost $0099cc
+#macro c_ev_init $ffcc99
+#macro c_ui_select $ffb8ac
+#macro c_ui $ebebeb
 
 #macro MILLION 1000000
 #macro BILLION 1000000000

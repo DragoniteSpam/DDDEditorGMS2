@@ -20,6 +20,7 @@ custom_data = ds_list_create();                                           // lis
 
 is_root = false;
 event = noone;
+valid_destination = true;                                                // can other nodes lead to this? basically here to denote comments
 
 offset_x = -1;
 offset_y = -1;

@@ -32,6 +32,38 @@ switch (argument0.type) {
         }
         #endregion
         break;
+    case EventNodeTypes.COMMENT:
+        #region comment
+        x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
+        // cut down version of Text
+        y2 = y1 + 24 + 32 + ds_list_size(argument0.data) * entry_height;
+        
+        if (rectangle_within_view(view_current, x1, y1, x2, y2)) {
+            var c = colour_mute(c_ev_comment);
+            draw_event_drag_handle(argument0, x1 + 16, y1 - 16, x2 - 16, y1 + 16, c);
+            draw_roundrect_colour(x1, y1, x2, y2, c_ev_comment, c_ev_comment, false);
+            draw_roundrect(x1, y1, x2, y2, true);
+            draw_event_node_title(argument0, c);
+            
+            var entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
+            
+            draw_line(x1 + 16, entry_yy, x2 - 16, entry_yy);
+            if (mouse_within_rectangle_view(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + entry_height - tolerance)) {
+                draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + entry_height - tolerance, c, c, c, c, false);
+                if (!dialog_exists()) {
+                    if (get_release_left()) {
+                        argument0.data[| 0] = get_string("Comment contents?", argument0.data[| 0]);
+                    }
+                }
+            }
+                
+            draw_text_ext(x1 + 16, mean(entry_yy, entry_yy + entry_height), string(argument0.data[| 0]), -1, EVENT_NODE_CONTACT_WIDTH - 16);
+        }
+        
+        draw_event_node_delete(x2, y1, argument0);
+            
+        #endregion
+        break;
     case EventNodeTypes.TEXT:
         #region text
         x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
@@ -334,8 +366,7 @@ switch (argument0.type) {
         break;
 }
 
-// different node types may put the outbound nodes in different places - not all use more than
-// one output node
+// different node types may put the outbound nodes in different places - not all use more than one output node
 switch (argument0.type) {
     case EventNodeTypes.ENTRYPOINT:
         // vertical middle of the box
@@ -360,6 +391,9 @@ switch (argument0.type) {
                 }
             }
         }
+        break;
+    case EventNodeTypes.COMMENT:
+        // no outbound node allowed
         break;
     default:
         var entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
