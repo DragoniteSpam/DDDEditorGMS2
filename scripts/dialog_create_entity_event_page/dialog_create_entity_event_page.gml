@@ -12,6 +12,8 @@ var entity = list[| 0];
 var page = entity.object_events[| index];
 var dg = dialog_create(dw, dh, "Event Page: " + page.name, dialog_default, dc_close_no_questions_asked, dialog);
 
+dg.page = page;
+
 var columns = 2;
 var ew = (dw - columns * 32) / columns;
 var eh = 24;
@@ -39,7 +41,7 @@ var el_condition_switch_global = create_button(16 + 64, yy, "Global Switch", ew 
 yy = yy + eh + spacing;
 // variable properties go in the form that pops up when you click the button
 var el_condition_variable_global_enabled = create_checkbox(16, yy, "", ucheck_width, eh, uivc_entity_event_enable_variable_global, "", page.condition_variable_global_enabled, dg);
-var el_condition_variable_global = create_button(16 + 64, yy, "Global Variable", ew - 64, eh, fa_center, null, dg);
+var el_condition_variable_global = create_button(16 + 64, yy, "Global Variable", ew - 64, eh, fa_center, omu_event_condition_attain_variable_data, dg);
 yy = yy + eh + spacing;
 
 var el_condition_switch_self_enabled = create_checkbox(16, yy, "", ucheck_width, eh, uivc_entity_event_enable_switch_self, "", page.condition_switch_self_enabled, dg);

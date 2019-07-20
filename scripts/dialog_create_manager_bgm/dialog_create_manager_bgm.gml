@@ -1,9 +1,11 @@
 /// @param Dialog
 
+var dialog = argument0;
+
 var dw = 768;
 var dh = 480;
 
-var dg = dialog_create(dw, dh, "Data: Availalbe Background Music", dialog_default, dc_default, argument0);
+var dg = dialog_create(dw, dh, "Data: Availalbe Background Music", dialog_default, dc_default, dialog);
 
 var columns = 3;
 var ew = (dw - 64) / columns;

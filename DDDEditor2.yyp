@@ -2599,6 +2599,14 @@
             }
         },
         {
+            "Key": "48522ca3-a7ef-4ad9-a00c-e918e4fba6f6",
+            "Value": {
+                "id": "7758e900-75a0-49af-822a-664642dec369",
+                "resourcePath": "scripts\\omu_event_condition_attain_variable_data\\omu_event_condition_attain_variable_data.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "48549768-b9fd-4451-b645-c0d3aeefa28b",
             "Value": {
                 "id": "783f8efb-9897-46af-86df-21e2fb134a67",
@@ -9638,6 +9646,7 @@
         "79a317d9-c17d-49ff-bfcd-6ce6166c427b",
         "97396d80-6194-452b-9f0b-df472b393880",
         "be082112-64dc-4e8b-a036-49634c7c4a30",
+        "48522ca3-a7ef-4ad9-a00c-e918e4fba6f6",
         "6f9e5b17-ab0b-452f-b6ee-f6b5c88ab1e5",
         "8c51d098-04e8-4711-bb41-f98098a4bdc7",
         "a2373338-b0ab-43af-97ea-95927ad0dcaa",

@@ -16,7 +16,7 @@ var dg = dialog_create(dw, dh, "Modify Global Variable", dialog_default, dc_clos
 dg.node = event_node;
 dg.index = data_index;
 
-var custom_data_variable= event_node.custom_data[| 0];
+var custom_data_variable = event_node.custom_data[| 0];
 var custom_data_value = event_node.custom_data[| 1];
 var custom_data_relative = event_node.custom_data[| 2];
 
