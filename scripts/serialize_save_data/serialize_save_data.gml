@@ -79,5 +79,6 @@ enum DataVersions {
     EVENT_NODE_PREFAB           = 30,
     GAME_VARIABLES              = 31,
     STRIPPED_SELF_VARIABLES     = 32,
-    _CURRENT                    /* = whatever the last one is + 1 */
+    EVENT_PAGE_CODE_CONDITION   = 33,
+    _CURRENT                 /* = whatever the last one is + 1 */
 }

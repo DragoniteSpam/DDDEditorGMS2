@@ -1,5 +1,7 @@
 /// @param Dialog
 
+var dialog = argument0;
+
 var dw = 640;
 var dh = 672;
 
@@ -8,7 +10,7 @@ var index = ui_list_selection(Camera.ui.element_entity_events);
 var list = Camera.selected_entities;
 var entity = list[| 0];
 var page = entity.object_events[| index];
-var dg = dialog_create(dw, dh, "Event Page: " + page.name, dialog_default, dc_close_no_questions_asked, argument0);
+var dg = dialog_create(dw, dh, "Event Page: " + page.name, dialog_default, dc_close_no_questions_asked, dialog);
 
 var columns = 2;
 var ew = (dw - columns * 32) / columns;
@@ -48,17 +50,13 @@ var el_condition_variable_self_enabled = create_checkbox(16, yy, "", ucheck_widt
 var el_condition_variable_self = create_button(16 + 64, yy, "Self Variable", ew - 64, eh, fa_center, null, dg);
 yy = yy + eh + spacing;
 
-var el_condition_item_enabled=create_checkbox(16, yy, "", ucheck_width, eh, uivc_entity_event_enable_item, "", page.condition_item_enabled, dg);
-var el_condition_item = create_button(16 + 64, yy, "Posseses Item", ew - 64, eh, fa_center, null, dg);
-yy = yy + eh + spacing;
 var el_condition_code_enabled = create_checkbox(16, yy, "", ucheck_width, eh, uivc_entity_event_enable_code, "", page.condition_code_enabled, dg);
 var el_condition_code = create_button(16 + 64, yy, "Code Evaluation", ew - 64, eh, fa_center, null, dg);
-yy = yy + eh + spacing;
+yy = yy + eh + spacing + 80;
 
-var el_option = create_text(16, yy, "Options", ew, eh, fa_left, ew, dg);
-yy = yy + eh + spacing;
+var el_condition_explanation = create_text(16, yy, "If no conditions are selected, the event will always execute when triggered.\n\nIf more than one are selected, " +
+    "the event will only execute when all of the conditions are met.", ew, eh, fa_left, ew, dg);
 
-var el_option_temp = create_text(16, yy, "(No options, currently)", ew, eh, fa_left, ew, dg);
 yy = yy + eh + spacing;
 
 var yy = 64;
@@ -95,6 +93,13 @@ dg.el_event_guid = el_event_guid;
 yy = yy + eh + spacing;
 var el_event_entrypoint = create_button(c2 + 16, yy, "Entrypoint: " + text_entrypoint, ew, eh, fa_left, null, dg);
 dg.el_event_entrypoint = el_event_entrypoint;
+yy = yy + eh + spacing;
+
+var el_option = create_text(c2 +16, yy, "Options", ew, eh, fa_left, ew, dg);
+yy = yy + eh + spacing;
+
+var el_option_temp = create_text(c2 +16, yy, "(No options, currently)", ew, eh, fa_left, ew, dg);
+yy = yy + eh + spacing;
 
 yy = yy + eh + spacing;
 
@@ -104,9 +109,8 @@ var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Do
 
 ds_list_add(dg.contents, el_name, el_enabled, el_condition,
     el_condition_switch_global_enabled, el_condition_switch_global, el_condition_variable_global_enabled, el_condition_variable_global,
-    el_condition_switch_self_enabled, el_condition_switch_self, el_condition_variable_self_enabled, el_condition_variable_self,
-    el_condition_item_enabled, el_condition_item, el_condition_code_enabled, el_condition_code,
-    el_option, el_option_temp,
+    el_condition_switch_self_enabled, el_condition_switch_self, el_condition_variable_self_enabled, el_condition_variable_self, el_condition_code_enabled, el_condition_code,
+    el_condition_explanation, el_option, el_option_temp,
     el_trigger,
     el_event, el_event_guid, el_event_entrypoint,
     el_confirm);
