@@ -1,14 +1,16 @@
 /// @param Dialog
 
+var dialog = argument0;
+
 var dw = 720;
 var dh = 560;
 
-var dg = dialog_create(dw, dh, "Custom Event Node Properties", dialog_note_changes, dc_close_no_questions_asked, argument0);
+var dg = dialog_create(dw, dh, "Custom Event Node Properties", dialog_note_changes, dc_close_no_questions_asked, dialog);
 dg.x = dg.x - 32;
 
 // later on this will be a clone; elements on the dialog should check this instead of the permenant one,
 // and it should be deleted when the dialog is closed
-dg.event = Stuff.all_event_custom[| ui_list_selection(argument0.root.el_list_custom)];
+dg.event = Stuff.all_event_custom[| ui_list_selection(dialog.root.el_list_custom)];
 
 var columns = 2;
 var ew = (dw - columns * 32) / columns;
@@ -75,22 +77,28 @@ dg.el_property_type_guid = el_property_type_guid;
 
 yy = yy + el_property_type_guid.height + spacing;
 
-var el_property_max = create_input(col2_x, yy, "Max list size:", ew, eh, uivc_custom_data_property_max, "", "", "1 - 255", validate_int, ui_value_real, 1, 255, 3, vx1, vy1, vx2, vy2, dg);
-el_property_max.interactive = false;
-dg.el_property_max = el_property_max;
+// Disabling these attributes of cutom nodes for now, although there's a chance they might be back in the future so i won't
+// get rid of them entirely - for now, i'm not entirely sure how they're going to be implemented, but there could be uses
 
-yy = yy + el_property_max.height + spacing;
+// if you re-enable them, remember to un-commented the associated lines in uivc_list_event_custom_property otherwise the
+// fields won't have their values set when you click on the properties
 
-var el_property_all = create_checkbox(col2_x, yy, "All required?", ew, eh, uivc_custom_data_property_required, "", false, dg);
-el_property_all.interactive = false;
-dg.el_property_all = el_property_all;
+//var el_property_max = create_input(col2_x, yy, "Max list size:", ew, eh, uivc_custom_data_property_max, "", "", "1 - 255", validate_int, ui_value_real, 1, 255, 3, vx1, vy1, vx2, vy2, dg);
+//el_property_max.interactive = false;
+//dg.el_property_max = el_property_max;
 
-yy = yy + el_property_all.height + spacing;
+//yy = yy + el_property_max.height + spacing;
 
-el_confirm = create_button(dw / 2, dh - 32 - b_height/2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg, HelpPages.AUTOTILES, fa_center);
+//var el_property_all = create_checkbox(col2_x, yy, "All required?", ew, eh, uivc_custom_data_property_required, "", false, dg);
+//el_property_all.interactive = false;
+//dg.el_property_all = el_property_all;
+
+//yy = yy + el_property_all.height + spacing;
+
+var el_confirm = create_button(dw / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg, HelpPages.AUTOTILES, fa_center);
 
 ds_list_add(dg.contents, el_name, el_list, el_add, el_remove,
-    el_property_name, el_property_type, el_property_ext_type, el_property_type_guid, el_property_max, el_property_all,
+    el_property_name, el_property_type, el_property_ext_type, el_property_type_guid, /* el_property_max, el_property_all,*/
     el_confirm);
 
 keyboard_string = "";

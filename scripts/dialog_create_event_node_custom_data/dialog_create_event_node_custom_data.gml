@@ -1,16 +1,21 @@
 /// @param Dialog
 /// @param DataNode
-/// @param property index
-/// @param multi index
+/// @param property-index
+/// @param multi-index?
 
-var property = guid_get(argument1.custom_guid).types[| argument2];
+var dialog = argument0;
+var node = argument1;
+var property_index = argument2;
+var multi_index = argument3;
+
+var property = guid_get(node.custom_guid).types[| property_index];
 var type = guid_get(property[EventNodeCustomData.TYPE_GUID]);
 
 var dw = 320;
 var dh = 640;
 
 // todo cache the custom event and only commit the changes when you're done
-var dg = dialog_create(dw, dh, "Data Type: " + type.name, dialog_default, dc_close_no_questions_asked, argument0);
+var dg = dialog_create(dw, dh, "Data Type: " + type.name, dialog_default, dc_close_no_questions_asked, dialog);
 
 var columns = 1;
 var ew = (dw - columns * 32) / columns;
@@ -27,9 +32,9 @@ var yy = 64;
 var el_list = create_list(16, yy, type.name, "<none found>", ew, eh, n_slots, null, false, dg);
 el_list.render = ui_render_list_event_custom_set_data;
 el_list.entries_are = ListEntries.INSTANCES;
-el_list.node = argument1;
-el_list.property_index = argument2;
-el_list.multi_index = argument3;
+el_list.node = node;
+el_list.property_index = property_index;
+el_list.multi_index = multi_index;
 // dynamic variables urgh
 el_list.type = type;
 
