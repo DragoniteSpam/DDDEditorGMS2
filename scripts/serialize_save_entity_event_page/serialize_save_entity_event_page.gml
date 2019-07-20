@@ -24,7 +24,6 @@ buffer_write(buffer, buffer_u16, event.condition_switch_global);
 buffer_write(buffer, buffer_u16, event.condition_variable_global);
 buffer_write(buffer, buffer_u16, event.condition_switch_self);
 buffer_write(buffer, buffer_u16, event.condition_variable_self);
-buffer_write(buffer, buffer_u16, event.condition_item);
 buffer_write(buffer, buffer_string, event.condition_code);
 
 buffer_write(buffer, buffer_u8, event.condition_variable_global_comparison);

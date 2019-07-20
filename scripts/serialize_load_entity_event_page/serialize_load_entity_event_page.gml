@@ -22,11 +22,11 @@ page.condition_switch_global = buffer_read(buffer, buffer_u16);
 page.condition_variable_global = buffer_read(buffer, buffer_u16);
 page.condition_switch_self = buffer_read(buffer, buffer_u16);
 page.condition_variable_self = buffer_read(buffer, buffer_u16);
-// this used to be item value, but we ditched that
-buffer_read(buffer, buffer_u16);
 
 if (version >= DataVersions.EVENT_PAGE_CODE_CONDITION) {
     page.condition_code = buffer_read(buffer, buffer_string);
+} else {
+    buffer_read(buffer, buffer_u16);
 }
 
 page.condition_variable_global_comparison = buffer_read(buffer, buffer_u8);
