@@ -4095,6 +4095,14 @@
             }
         },
         {
+            "Key": "6c759b34-fcd7-4766-bc57-c8f493581d65",
+            "Value": {
+                "id": "be644223-8e6b-4833-83cb-986a24af8e89",
+                "resourcePath": "datafiles_yy\\data\\lua\\event-page-condition.lua.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "6d08b675-dc55-4cbc-a9df-efd4e9e7e0a4",
             "Value": {
                 "id": "74e09401-3682-4c03-a305-8bfb7ba05f5e",
@@ -5595,6 +5603,14 @@
             "Value": {
                 "id": "9e70212e-884d-415d-b9c4-87f7ddb45b36",
                 "resourcePath": "scripts\\entity_set_option_direction_fix\\entity_set_option_direction_fix.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "95e4f225-2de3-462b-8e75-cfab87a5a353",
+            "Value": {
+                "id": "ac0cbc67-4513-4cbf-908e-09d7630189f1",
+                "resourcePath": "scripts\\uivc_event_condition_code\\uivc_event_condition_code.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -10005,6 +10021,7 @@
         "8781848a-dee5-4c42-9052-f8ba9985d848",
         "d18ad823-f821-4ab0-af2e-fbbcb454b8e5",
         "4182667f-9154-4529-b83f-0f642700c2e8",
+        "95e4f225-2de3-462b-8e75-cfab87a5a353",
         "5106ac6f-a982-47a3-830d-fc2f383ce828",
         "746909f1-67ac-4913-82a9-58e1dd809db9",
         "37ad1bcd-87d5-468c-8d32-8901ce1002b0",

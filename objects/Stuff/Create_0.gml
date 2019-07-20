@@ -80,6 +80,9 @@ etype_objects = [Entity,
 var buffer = buffer_load(PATH_LUA + "map.lua");
 default_lua_map = buffer_read(buffer, buffer_text);
 buffer_delete(buffer);
+var buffer = buffer_load(PATH_LUA + "event-page-condition.lua");
+default_lua_event_page_condition = buffer_read(buffer, buffer_text);
+buffer_delete(buffer);
 
 #endregion
 

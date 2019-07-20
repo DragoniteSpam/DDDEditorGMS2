@@ -25,7 +25,7 @@ condition_variable_self_comparison = Comparisons.EQUAL;
 condition_variable_self_value = 0;                                  // value to check against
 // no actor condition because I don't foresee those being used
 condition_code_enabled = false;
-condition_code = 0;
+condition_code = Stuff.default_lua_event_page_condition;
 
 enum Comparisons {
     LESS,

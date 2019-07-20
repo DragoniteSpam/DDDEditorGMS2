@@ -1,9 +1,11 @@
 /// @param Dialog
 
+var dialog = argument0;
+
 var dw = 960;
 var dh = 640;
 
-var dg = dialog_create(dw, dh, "Map Settings", dialog_default, dc_settings_map, argument0);
+var dg = dialog_create(dw, dh, "Map Settings", dialog_default, dc_settings_map, dialog);
 
 // three columns!
 var ew = (dw - 96) / 3;

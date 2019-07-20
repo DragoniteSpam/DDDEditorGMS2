@@ -20,9 +20,9 @@ var eh = 24;
 
 var c2 = dw / columns;
 
-var vx1 = dw / (columns * 2) - 16;
+var vx1 = dw / (columns * 2) - 96;
 var vy1 = 0;
-var vx2 = vx1 + dw / (columns * 2) - 16;
+var vx2 = vx1 + dw / (columns * 2);
 var vy2 = vy1 + eh;
 
 var yy = 64;
@@ -53,7 +53,8 @@ var el_condition_variable_self = create_button(16 + 64, yy, "Self Variable", ew 
 yy = yy + eh + spacing;
 
 var el_condition_code_enabled = create_checkbox(16, yy, "", ucheck_width, eh, uivc_entity_event_enable_code, "", page.condition_code_enabled, dg);
-var el_condition_code = create_button(16 + 64, yy, "Code Evaluation", ew - 64, eh, fa_center, null, dg);
+//var el_condition_code = create_button(16 + 64, yy, "Code Evaluation", ew - 64, eh, fa_center, null, dg);
+var el_condition_code = create_input_code(16 + 64, yy, "Code", ew - 64, eh, vx1, vy1, vx2, vy2, page.condition_code, uivc_event_condition_code, dg);
 yy = yy + eh + spacing + 80;
 
 var el_condition_explanation = create_text(16, yy, "If no conditions are selected, the event will always execute when triggered.\n\nIf more than one are selected, " +
