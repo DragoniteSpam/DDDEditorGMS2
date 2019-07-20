@@ -847,6 +847,14 @@
             }
         },
         {
+            "Key": "14ff12b1-b8eb-4617-af7b-29642c2e74e5",
+            "Value": {
+                "id": "accdb45a-eb40-45e4-a607-107f31180f62",
+                "resourcePath": "scripts\\uivc_event_condition_attain_switch_index\\uivc_event_condition_attain_switch_index.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "1503cbce-e73f-4617-9871-089097b60245",
             "Value": {
                 "id": "62af9540-36b8-4350-aa06-9d6438d70117",
@@ -3415,6 +3423,14 @@
             }
         },
         {
+            "Key": "5cbf87cc-5691-4453-b0d2-45003a5cacb1",
+            "Value": {
+                "id": "4317cf4d-b024-4e6c-8961-542aa8513097",
+                "resourcePath": "scripts\\uivc_event_condition_attain_variable_self_comp\\uivc_event_condition_attain_variable_self_comp.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "5cc71665-573c-4595-a2d9-6dd8c3706185",
             "Value": {
                 "id": "d653f650-29ba-4832-88e2-025b3a863798",
@@ -4427,6 +4443,14 @@
             "Value": {
                 "id": "144a68a5-3c4d-4c58-8167-6b129c6688e0",
                 "resourcePath": "scripts\\dialog_create_event_node_animation\\dialog_create_event_node_animation.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "76bd648a-cf24-4caf-95f2-fe83456e8afd",
+            "Value": {
+                "id": "62f33491-74ba-4632-9068-cab880dded65",
+                "resourcePath": "scripts\\omu_event_condition_attain_variable_self_data\\omu_event_condition_attain_variable_self_data.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -5783,6 +5807,14 @@
             }
         },
         {
+            "Key": "9a1e76d1-b2be-4cb8-9c44-7c2ede44cb9b",
+            "Value": {
+                "id": "890ba762-c6e9-4a66-9b43-847dc79c22b1",
+                "resourcePath": "scripts\\omu_event_condition_attain_switch_self_data\\omu_event_condition_attain_switch_self_data.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "9a26a8eb-c472-419a-a7d2-c18f44514dc2",
             "Value": {
                 "id": "2bec3159-7892-40d2-93d5-1dc873119a97",
@@ -7095,6 +7127,14 @@
             }
         },
         {
+            "Key": "c1de88c1-9de7-4ab0-a18e-330fb2006d26",
+            "Value": {
+                "id": "afda0862-935f-4dfd-ad10-e84a1ccbe42a",
+                "resourcePath": "scripts\\uivc_event_condition_attain_switch_self_index\\uivc_event_condition_attain_switch_self_index.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "c2797eb4-e094-4656-831c-d77d68434073",
             "Value": {
                 "id": "2ddec730-c105-401d-88b4-3d43e4ccc0d4",
@@ -7252,6 +7292,14 @@
                 "id": "7277cd85-d65e-4337-9b33-9e518e297c6e",
                 "resourcePath": "views\\c668a919-fcf2-4cdf-bbd2-4642596c2b0c.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "c715fb58-4f29-4566-b87c-eacf5927e7ef",
+            "Value": {
+                "id": "fbe1d7f7-b8d5-4d66-8ddc-08f94e76db28",
+                "resourcePath": "scripts\\uivc_event_condition_attain_variable_self_value\\uivc_event_condition_attain_variable_self_value.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -8111,6 +8159,14 @@
             }
         },
         {
+            "Key": "dc403c2a-027b-418a-87c9-91dd19465df8",
+            "Value": {
+                "id": "025169e7-996d-41cd-b854-5feeb59bf855",
+                "resourcePath": "scripts\\uivc_event_condition_attain_variable_self_index\\uivc_event_condition_attain_variable_self_index.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "dc91c40b-5001-4b4e-8026-b1b31af7d18a",
             "Value": {
                 "id": "c58114e7-5e76-44d1-8a4f-49699c87760e",
@@ -8935,6 +8991,14 @@
             }
         },
         {
+            "Key": "f1ea65ec-f504-477c-88cb-9c0596cfc3b9",
+            "Value": {
+                "id": "c3e73400-3a9b-4ccd-b954-533683650c1b",
+                "resourcePath": "scripts\\omu_event_condition_attain_switch_data\\omu_event_condition_attain_switch_data.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "f26b48dd-9135-4f6f-8c04-a03118600764",
             "Value": {
                 "id": "71145878-bb14-4913-aea5-f9a70ac73518",
@@ -9679,6 +9743,9 @@
         "97396d80-6194-452b-9f0b-df472b393880",
         "be082112-64dc-4e8b-a036-49634c7c4a30",
         "48522ca3-a7ef-4ad9-a00c-e918e4fba6f6",
+        "f1ea65ec-f504-477c-88cb-9c0596cfc3b9",
+        "9a1e76d1-b2be-4cb8-9c44-7c2ede44cb9b",
+        "76bd648a-cf24-4caf-95f2-fe83456e8afd",
         "6f9e5b17-ab0b-452f-b6ee-f6b5c88ab1e5",
         "8c51d098-04e8-4711-bb41-f98098a4bdc7",
         "a2373338-b0ab-43af-97ea-95927ad0dcaa",
@@ -9812,8 +9879,13 @@
         "8cab2817-9250-45bc-8939-8c9ec0831d18",
         "6ec3c188-90c0-46b5-ade3-f3ff9e0edafd",
         "3135aa96-c5d8-4ad7-9836-2f5976f052e0",
+        "14ff12b1-b8eb-4617-af7b-29642c2e74e5",
+        "dc403c2a-027b-418a-87c9-91dd19465df8",
+        "c1de88c1-9de7-4ab0-a18e-330fb2006d26",
         "56fd0e27-e702-4f2b-a345-7b37736e2996",
+        "5cbf87cc-5691-4453-b0d2-45003a5cacb1",
         "0835f01f-2d4f-425f-81cb-cc24696e4b54",
+        "c715fb58-4f29-4566-b87c-eacf5927e7ef",
         "bef778ed-9148-41df-a48b-1537b740ee20",
         "7c58e811-6eb6-4fee-9ce5-a1763a1845af",
         "a1ae38df-bd4f-4306-8f6b-e498ea2541f5",

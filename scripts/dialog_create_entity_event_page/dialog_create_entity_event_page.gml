@@ -37,7 +37,7 @@ var el_condition = create_text(16, yy, "Conditions", ew, eh, fa_left, ew, dg);
 yy = yy + eh + spacing;
 
 var el_condition_switch_global_enabled = create_checkbox(16, yy, "", ucheck_width, eh, uivc_entity_event_enable_switch_global, "", page.condition_switch_global_enabled, dg);
-var el_condition_switch_global = create_button(16 + 64, yy, "Global Switch", ew - 64, eh, fa_center, null, dg);
+var el_condition_switch_global = create_button(16 + 64, yy, "Global Switch", ew - 64, eh, fa_center, omu_event_condition_attain_switch_data, dg);
 yy = yy + eh + spacing;
 // variable properties go in the form that pops up when you click the button
 var el_condition_variable_global_enabled = create_checkbox(16, yy, "", ucheck_width, eh, uivc_entity_event_enable_variable_global, "", page.condition_variable_global_enabled, dg);
@@ -45,11 +45,11 @@ var el_condition_variable_global = create_button(16 + 64, yy, "Global Variable",
 yy = yy + eh + spacing;
 
 var el_condition_switch_self_enabled = create_checkbox(16, yy, "", ucheck_width, eh, uivc_entity_event_enable_switch_self, "", page.condition_switch_self_enabled, dg);
-var el_condition_switch_self = create_button(16 + 64, yy, "Self Switch", ew - 64, eh, fa_center, null, dg);
+var el_condition_switch_self = create_button(16 + 64, yy, "Self Switch", ew - 64, eh, fa_center, omu_event_condition_attain_switch_self_data, dg);
 yy = yy + eh + spacing;
 // variable properties go in the form that pops up when you click the button
 var el_condition_variable_self_enabled = create_checkbox(16, yy, "", ucheck_width, eh, uivc_entity_event_enable_variable_self, "", page.condition_variable_self_enabled, dg);
-var el_condition_variable_self = create_button(16 + 64, yy, "Self Variable", ew - 64, eh, fa_center, null, dg);
+var el_condition_variable_self = create_button(16 + 64, yy, "Self Variable", ew - 64, eh, fa_center, omu_event_condition_attain_variable_self_data, dg);
 yy = yy + eh + spacing;
 
 var el_condition_code_enabled = create_checkbox(16, yy, "", ucheck_width, eh, uivc_entity_event_enable_code, "", page.condition_code_enabled, dg);
