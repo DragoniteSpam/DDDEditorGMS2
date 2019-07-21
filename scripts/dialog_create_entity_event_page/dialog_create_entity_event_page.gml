@@ -20,7 +20,7 @@ var eh = 24;
 
 var c2 = dw / columns;
 
-var vx1 = dw / (columns * 2) - 96;
+var vx1 = dw / (columns * 2) - 32;
 var vy1 = 0;
 var vx2 = vx1 + dw / (columns * 2);
 var vy2 = vy1 + eh;
@@ -51,6 +51,11 @@ yy = yy + eh + spacing;
 var el_condition_variable_self_enabled = create_checkbox(16, yy, "", ucheck_width, eh, uivc_entity_event_enable_variable_self, "", page.condition_variable_self_enabled, dg);
 var el_condition_variable_self = create_button(16 + 64, yy, "Self Variable", ew - 64, eh, fa_center, omu_event_condition_attain_variable_self_data, dg);
 yy = yy + eh + spacing;
+
+vx1 = dw / (columns * 2) - 96;
+vy1 = 0;
+vx2 = vx1 + dw / (columns * 2);
+vy2 = vy1 + eh;
 
 var el_condition_code_enabled = create_checkbox(16, yy, "", ucheck_width, eh, uivc_entity_event_enable_code, "", page.condition_code_enabled, dg);
 //var el_condition_code = create_button(16 + 64, yy, "Code Evaluation", ew - 64, eh, fa_center, null, dg);
