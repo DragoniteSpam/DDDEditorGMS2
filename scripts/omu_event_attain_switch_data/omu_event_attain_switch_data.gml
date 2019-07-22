@@ -26,9 +26,9 @@ var yy = 64;
 var spacing = 16;
 
 var el_list = create_list(16, yy, "Switches", "<no switches>", ew, eh, 14, uivc_list_event_attain_switch_index, false, dg);
-for (var i = 0; i < ds_list_size(Stuff.all_global_switches); i++) {
+for (var i = 0; i < ds_list_size(Stuff.switches); i++) {
     // @todo gml update
-    var data = Stuff.all_global_switches[| i];
+    var data = Stuff.switches[| i];
     create_list_entries(el_list, data[0], c_black);
 }
 if (custom_data_switch[| 0] > -1) {

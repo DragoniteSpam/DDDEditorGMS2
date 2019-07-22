@@ -1,10 +1,10 @@
 /// @param Dialog
 
 var value = real(argument0.root.root.value);
-var times = ds_list_size(Stuff.all_global_variables) - value;
+var times = ds_list_size(Stuff.variables) - value;
 
 repeat (times) {
-    ds_list_pop(Stuff.all_global_variables);
+    ds_list_pop(Stuff.variables);
 }
 
 var base_dialog = argument0.root.root.root;

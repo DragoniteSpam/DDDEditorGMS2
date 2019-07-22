@@ -248,11 +248,11 @@ active_event = event_create("DefaultEvent");
 event_node_info = noone;
 ds_list_add(all_events, active_event);
 
-all_global_switches = ds_list_create();         // [name, value]
-all_global_variables = ds_list_create();        // [name, value]
+switches = ds_list_create();         // [name, value]
+variables = ds_list_create();        // [name, value]
 for (var i = 0; i < BASE_GAME_VARIABLES; i++) {
-    ds_list_add(all_global_switches, ["Switch" + string(i), false]);
-    ds_list_add(all_global_variables, ["Variable" + string(i), 0]);
+    ds_list_add(switches, ["Switch" + string(i), false]);
+    ds_list_add(variables, ["Variable" + string(i), 0]);
 }
 
 #region prefab events

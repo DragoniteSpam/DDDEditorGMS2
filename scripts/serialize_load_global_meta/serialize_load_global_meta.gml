@@ -30,13 +30,13 @@ if (argument1 >= DataVersions.GAME_VARIABLES) {
         var sw_data = ["", false];
         sw_data[0] = buffer_read(argument0, buffer_string);
         sw_data[1] = buffer_read(argument0, buffer_bool);
-        ds_list_add(Stuff.all_global_switches, sw_data);
+        ds_list_add(Stuff.switches, sw_data);
     }
     
     for (var i = 0; i < n_variables; i++) {
         var var_data = ["", false];
         var_data[0] = buffer_read(argument0, buffer_string);
         var_data[1] = buffer_read(argument0, buffer_f32);
-        ds_list_add(Stuff.all_global_variables, var_data);
+        ds_list_add(Stuff.variables, var_data);
     }
 }

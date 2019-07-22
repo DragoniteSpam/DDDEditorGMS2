@@ -3,7 +3,7 @@
 var selection = ui_list_selection(argument0);
 
 if (selection >= 0) {
-    var var_data = Stuff.all_global_variables[| selection];
+    var var_data = Stuff.variables[| selection];
     var base_dialog = argument0.root;
 
     base_dialog.el_name.value = var_data[0];

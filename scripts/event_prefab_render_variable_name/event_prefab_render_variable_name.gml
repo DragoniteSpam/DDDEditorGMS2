@@ -8,9 +8,9 @@ var index = argument1;
 var custom_data = event.custom_data[| 0];
 var raw = custom_data[| 0];
 
-if (!is_clamped(raw, 0, ds_list_size(Stuff.all_global_variables))) {
+if (!is_clamped(raw, 0, ds_list_size(Stuff.variables))) {
     return "n/a";
 }
 
-var data = Stuff.all_global_variables[| raw];
+var data = Stuff.variables[| raw];
 return data[0];

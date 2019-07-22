@@ -182,7 +182,7 @@ switch (node.type) {
                     case ConditionBasicTypes.SWITCH:
                         var index = list_index[| i];
                         if (index > -1) {
-                            var switch_data = Stuff.all_global_switches[| index];
+                            var switch_data = Stuff.switches[| index];
                             var str = "Switch " + switch_data[0] + " is " + Stuff.on_off[list_value[| i]];
                         } else {
                             var str = "Switch data not set";
@@ -191,7 +191,7 @@ switch (node.type) {
                     case ConditionBasicTypes.VARIABLE:
                         var index = list_index[| i];
                         if (index > -1) {
-                            var variable_data = Stuff.all_global_variables[| index];
+                            var variable_data = Stuff.variables[| index];
                             var str = "Variable " + variable_data[0] + " " + Stuff.comparison_text[list_comparison[| i]] + " " + string(list_value[| i]);
                         } else {
                             var str = "Variable data not set";

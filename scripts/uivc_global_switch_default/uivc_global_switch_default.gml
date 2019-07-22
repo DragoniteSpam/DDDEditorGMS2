@@ -4,7 +4,7 @@ var base_dialog = argument0.root;
 var selection = ui_list_selection(base_dialog.el_list);
 
 if (selection >= 0) {
-    var sw_data = Stuff.all_global_switches[| selection];
+    var sw_data = Stuff.switches[| selection];
     var value = base_dialog.el_default.value;
 
     sw_data[@ 1] = value;

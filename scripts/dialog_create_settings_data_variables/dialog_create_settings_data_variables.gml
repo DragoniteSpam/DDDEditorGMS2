@@ -19,10 +19,10 @@ var spacing = 16;
 var yy = 64;
 var yy_start = 64;
 
-var n_variables= ds_list_size(Stuff.all_global_variables);
+var n_variables= ds_list_size(Stuff.variables);
 var el_list = create_list(32, yy, "Global Variables (" + string(n_variables) + ")", "<no variables>", ew, eh, 18, uivc_list_selection_global_variables, false, dg);
 for (var i = 0; i < n_variables; i++) {
-    var var_data = Stuff.all_global_variables[| i];
+    var var_data = Stuff.variables[| i];
     create_list_entries(el_list, var_data[0] + ": " + string(var_data[1]), c_black);
 }
 el_list.numbered = true;

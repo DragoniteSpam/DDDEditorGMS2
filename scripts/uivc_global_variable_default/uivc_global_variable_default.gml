@@ -4,7 +4,7 @@ var base_dialog = argument0.root;
 var selection = ui_list_selection(base_dialog.el_list);
 
 if (selection >= 0) {
-    var var_data = Stuff.all_global_variables[| selection];
+    var var_data = Stuff.variables[| selection];
     var value = real(base_dialog.el_default.value);
 
     if (value >= argument0.value_lower && value <= argument0.value_upper) {
