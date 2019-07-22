@@ -125,7 +125,7 @@ switch (node.type) {
         eh = 32;
         var rh = ((ui_get_radio_array_height(node.ui_things[| 0]) div eh) * eh) + 16;
         x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
-        y2 = y1 + 24 + 32 + (16 + rh) * size;
+        y2 = y1 + 24 + 32 + (eh + rh) * size;
         
         if (rectangle_within_view(view_current, x1, y1, x2, y2)) {
             var ncolor = c_ev_basic;
@@ -150,7 +150,7 @@ switch (node.type) {
                 var list_value = node.custom_data[| 3];
                 var list_code = node.custom_data[| 4];
                 
-                var radio = node.ui_things[| 0];
+                var radio = node.ui_things[| i];
                 script_execute(radio.render, radio, x1, y1);
                 
                 // @todo put this in the onvaluechange script
@@ -181,7 +181,7 @@ switch (node.type) {
                     }
                 }
                 
-                if (node.editor_handle) {
+                if (node.editor_handle && list_type[| i] == ConditionBasicTypes.SCRIPT) {
                     list_code[| i] = uios_code_text(node, list_code[| i]);
                     draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance + rh, x2 - tolerance, entry_yy - tolerance + rh + eh, c, c, c, c, false);
                     if (ds_stuff_process_complete(node.editor_handle)) {
@@ -227,7 +227,7 @@ switch (node.type) {
                         }
                         break;
                     case ConditionBasicTypes.SCRIPT:
-                        var str = "Code: " + string_comma(string_length(list_code[| i])) + " bytes" + (!node.editor_handle ? "" : " *");
+                        var str = "Code: " + string_comma(string_length(list_code[| i])) + " bytes";
                         break;
                 }
                 
@@ -235,6 +235,12 @@ switch (node.type) {
                 #endregion
                 
                 entry_yy = entry_yy + rh + eh;
+            }
+            
+            draw_event_node_delete(x2, y1, node);
+            
+            if (ds_list_size(node.outbound) < 250) {
+                draw_event_node_condition_add(mean(x1, x2), y2, node);
             }
         }
         #endregion

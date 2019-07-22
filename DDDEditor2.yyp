@@ -6887,6 +6887,14 @@
             }
         },
         {
+            "Key": "b931e039-5e88-4c93-83e3-ca603f5aaa67",
+            "Value": {
+                "id": "c7e0bdc7-396d-4b80-ad41-00e94b65f4c3",
+                "resourcePath": "scripts\\draw_event_node_condition_add\\draw_event_node_condition_add.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "b9ead590-3667-4a92-bd26-35d8fe5317f0",
             "Value": {
                 "id": "ea57081e-0b87-4def-ab30-c882634e9d86",
@@ -10464,6 +10472,7 @@
         "6b7fa6b9-a917-4b44-9d72-268cf6b41244",
         "e4f9f484-840b-4dba-9369-2551ba73e40e",
         "a5c10f61-02fd-4c2a-b486-216c67295597",
+        "b931e039-5e88-4c93-83e3-ca603f5aaa67",
         "4ee9a5f8-7b34-43c9-8f72-c9d510d9da26",
         "ef62638d-1a2c-488c-b15f-40a10d885319",
         "0d948f4b-39f0-403b-8f6b-8c7d7e64fe46",
