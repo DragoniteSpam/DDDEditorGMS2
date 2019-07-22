@@ -506,21 +506,20 @@ switch (node.type) {
 var bezier_override = false;
 switch (node.type) {
     case EventNodeTypes.ENTRYPOINT:
-        // vertical middle of the box
-        var by = mean(y1, y2) - 16;
-        var i = 0;
-        var outbound = node.outbound[| i];
+        // vertical middle of the box; entrypoints will only ever have one outbound node so we can cheat
+        var by = mean(y1, y2);
+        var outbound = node.outbound[| 0];
         
         if (!outbound) {
-            draw_event_node_outbound(x2, by, node, i, true);
+            draw_event_node_outbound(x2, by, node, 0, true);
         } else {
             var bx2 = outbound.x;
             var by2 = outbound.y + 16;
             
-            draw_event_node_outbound(x2, by, node, i);
+            draw_event_node_outbound(x2, by, node);
             draw_sprite(spr_event_dot, 0, x2, by);
             
-            if (event_canvas_active_node != node || event_canvas_active_node_index != i) {
+            if (event_canvas_active_node != node) {
                 if (bx2 > x2) {
                     draw_bezier(x2 + 8, by, bx2 - 8, by2);
                 } else {

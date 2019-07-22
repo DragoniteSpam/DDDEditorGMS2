@@ -1,13 +1,13 @@
 /// @param x
 /// @param y
 /// @param node
-/// @param index
+/// @param [index]
 /// @param [terminal?]
 
 var xx = argument[0];
 var yy = argument[1];
 var node = argument[2];
-var index = argument[3];
+var index = (argument_count > 3) ? argument[3] : 0;
 var terminal = (argument_count > 4) ? argument[4] : false;
 
 if (terminal) {
