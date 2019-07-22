@@ -50,7 +50,7 @@ switch (type) {
         
         var radio = create_radio_array(16, 32, "Condition type:", EVENT_NODE_CONTACT_WIDTH - 32, 24, null, ConditionBasicTypes.SWITCH, node);
         radio.check_view = true;
-        create_radio_array_options(radio, "Switch", "Variable", "Self Switch", "Self Variable", "Code");
+        create_radio_array_options(radio, "Variable", "Switch", "Self Variable", "Self Switch", "Code");
         
         ds_list_add(node.ui_things, radio);
         break;

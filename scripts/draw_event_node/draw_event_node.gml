@@ -143,20 +143,38 @@ switch (node.type) {
                 var eh = 32;
                 draw_line(x1 + 16, entry_yy, x2 - 16, entry_yy);
                 
-                /*if (!dialog_exists() && mouse_y_view - entry_yy > rh) {
-                    if (mouse_within_rectangle_view(x1 + tolerance, entry_yy + tolerance + rh, x2 - tolerance, entry_yy + rh - tolerance)) {
+                if (!dialog_exists() && mouse_y_view - entry_yy > rh) {
+                    if (mouse_within_rectangle_view(x1 + tolerance, entry_yy + tolerance + rh, x2 - tolerance, entry_yy + eh + rh - tolerance)) {
                         draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance + rh, x2 - tolerance, entry_yy - tolerance + rh + eh, c, c, c, c, false);
-                        /*if (get_release_left()) {
+                        if (get_release_left()) {
                         }
                     }
-                }*/
+                }
                 
                 var radio = node.ui_things[| 0];
                 script_execute(radio.render, radio, x1, y1);
+                
+                var list_type = node.custom_data[| 0];
                 // @todo put this in the onvaluechange script
-                /*var list_type = node.custom_data[| 0];
-                list_type[| i] = radio.value;*/
-                draw_text_ext(x1 + 16, mean(entry_yy, entry_yy + eh) + rh, "Data: ", -1, EVENT_NODE_CONTACT_WIDTH - 16);
+                list_type[| i] = radio.value;
+                
+                switch (list_type[| i]) {
+                    case ConditionBasicTypes.SWITCH:
+                        draw_text_ext(x1 + 16, mean(entry_yy, entry_yy + eh) + rh, "Data: (switch - to do)", -1, EVENT_NODE_CONTACT_WIDTH - 16);
+                        break;
+                    case ConditionBasicTypes.VARIABLE:
+                        draw_text_ext(x1 + 16, mean(entry_yy, entry_yy + eh) + rh, "Data: (var - to do)", -1, EVENT_NODE_CONTACT_WIDTH - 16);
+                        break;
+                    case ConditionBasicTypes.SELF_SWITCH:
+                        draw_text_ext(x1 + 16, mean(entry_yy, entry_yy + eh) + rh, "Data: (self switch - to do)", -1, EVENT_NODE_CONTACT_WIDTH - 16);
+                        break;
+                    case ConditionBasicTypes.SELF_VARIABLE:
+                        draw_text_ext(x1 + 16, mean(entry_yy, entry_yy + eh) + rh, "Data: (self var - to do)", -1, EVENT_NODE_CONTACT_WIDTH - 16);
+                        break;
+                    case ConditionBasicTypes.SCRIPT:
+                        draw_text_ext(x1 + 16, mean(entry_yy, entry_yy + eh) + rh, "Data: (code - bytes)", -1, EVENT_NODE_CONTACT_WIDTH - 16);
+                        break;
+                }
                 
                 entry_yy = entry_yy + eh;
             }
