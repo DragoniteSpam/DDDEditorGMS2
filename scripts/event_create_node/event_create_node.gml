@@ -40,12 +40,18 @@ switch (type) {
         ds_list_add(node.outbound, noone);                      // there are always one more outbound nodes than the number of branches - the last one is for the final "else"
         var list_branch_types = ds_list_create();
         var list_branch_indices = ds_list_create();
+        var list_branch_comparisons = ds_list_create();
+        var list_branch_values = ds_list_create();
         var list_branch_code = ds_list_create();
         ds_list_add(list_branch_types, ConditionBasicTypes.SWITCH);
         ds_list_add(list_branch_indices, -1);
+        ds_list_add(list_branch_comparisons, Comparisons.EQUAL);
+        ds_list_add(list_branch_values, 1);
         ds_list_add(list_branch_code, Stuff.default_lua_event_node_conditional);
         ds_list_add(node.custom_data, list_branch_types);
         ds_list_add(node.custom_data, list_branch_indices);
+        ds_list_add(node.custom_data, list_branch_comparisons);
+        ds_list_add(node.custom_data, list_branch_values);
         ds_list_add(node.custom_data, list_branch_code);
         
         var radio = create_radio_array(16, 32, "Condition type:", EVENT_NODE_CONTACT_WIDTH - 32, 24, null, ConditionBasicTypes.SWITCH, node);

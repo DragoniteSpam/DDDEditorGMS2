@@ -106,6 +106,9 @@ all_refids = ds_map_create();           // it probably makes sense to make this 
 all_internal_names = ds_map_create();
 
 tf = ["False", "True"];
+on_off = ["Off", "On"];
+
+comparison_text = ["<", "<=", "==", ">=", ">", "!="];
 
 // local storage folders
 

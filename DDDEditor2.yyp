@@ -1999,6 +1999,14 @@
             }
         },
         {
+            "Key": "36398f4f-c580-4113-b607-37538dc87f1f",
+            "Value": {
+                "id": "80b21ffb-339f-49c4-b594-191c65df32ca",
+                "resourcePath": "scripts\\dialog_create_event_condition_switch\\dialog_create_event_condition_switch.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "364da752-5dc1-45b1-a2fa-1788b5faa013",
             "Value": {
                 "id": "8bb37299-ead7-49b2-8001-b939216006fb",
@@ -3068,6 +3076,14 @@
                 "id": "3087837f-3e4d-4dc2-b33f-9d7b133e915c",
                 "resourcePath": "objects\\EntityEffect\\EntityEffect.yy",
                 "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "51fef74c-ce4e-41b5-9ce0-12a41f03dedc",
+            "Value": {
+                "id": "aea79bf2-2199-439a-a0ca-0c13d4377fc7",
+                "resourcePath": "scripts\\uivc_check_event_condition_value\\uivc_check_event_condition_value.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -5892,6 +5908,14 @@
                 "id": "13c97af1-90e3-4545-8928-cbff5cc6b062",
                 "resourcePath": "objects\\EntityMeshTerrain\\EntityMeshTerrain.yy",
                 "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "9d217a8c-a352-45ad-b279-1107c7e48c16",
+            "Value": {
+                "id": "0fedc3a9-4d91-4499-8904-09f7d382ce87",
+                "resourcePath": "scripts\\uivc_list_event_condition_index\\uivc_list_event_condition_index.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -9781,6 +9805,7 @@
         "3ebce2ef-e1ea-49d0-91fd-7a341df0022f",
         "bcd1774a-005a-440c-b96a-c4e8d29065bc",
         "79a317d9-c17d-49ff-bfcd-6ce6166c427b",
+        "36398f4f-c580-4113-b607-37538dc87f1f",
         "97396d80-6194-452b-9f0b-df472b393880",
         "be082112-64dc-4e8b-a036-49634c7c4a30",
         "48522ca3-a7ef-4ad9-a00c-e918e4fba6f6",
@@ -9913,10 +9938,12 @@
         "3e051823-5ef9-4923-bb43-20dd4710b10f",
         "8ce47a97-7e64-4509-aa7c-e5615e5a15ac",
         "f1b48acb-f86f-4f6d-801a-02488a8cc4a7",
+        "9d217a8c-a352-45ad-b279-1107c7e48c16",
         "9b705e38-4708-402b-97f5-d625147af287",
         "b020c4f1-3a59-46d9-a69f-98e4609052a8",
         "bfb7483b-1ede-4897-8a63-c7e4bba13962",
         "faa8d6d0-56e9-4ff6-8be6-abe439eac4d8",
+        "51fef74c-ce4e-41b5-9ce0-12a41f03dedc",
         "8cab2817-9250-45bc-8939-8c9ec0831d18",
         "6ec3c188-90c0-46b5-ade3-f3ff9e0edafd",
         "3135aa96-c5d8-4ad7-9836-2f5976f052e0",

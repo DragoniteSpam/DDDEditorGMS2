@@ -122,9 +122,10 @@ switch (node.type) {
     case EventNodeTypes.CONDITIONAL:
         #region if-else if-else
         var size = ds_list_size(node.custom_data[| 0]);
-        var rh = ((ui_get_radio_array_height(node.ui_things[| 0]) div 32) * 32) + 16;
+        eh = 32;
+        var rh = ((ui_get_radio_array_height(node.ui_things[| 0]) div eh) * eh) + 16;
         x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
-        y2 = y1 + 24 + 32 + (32 + rh) * size;
+        y2 = y1 + 24 + 32 + (16 + rh) * size;
         
         if (rectangle_within_view(view_current, x1, y1, x2, y2)) {
             var ncolor = c_ev_basic;
@@ -143,40 +144,84 @@ switch (node.type) {
                 var eh = 32;
                 draw_line(x1 + 16, entry_yy, x2 - 16, entry_yy);
                 
-                if (!dialog_exists() && mouse_y_view - entry_yy > rh) {
-                    if (mouse_within_rectangle_view(x1 + tolerance, entry_yy + tolerance + rh, x2 - tolerance, entry_yy + eh + rh - tolerance)) {
-                        draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance + rh, x2 - tolerance, entry_yy - tolerance + rh + eh, c, c, c, c, false);
-                        if (get_release_left()) {
-                        }
-                    }
-                }
+                var list_type = node.custom_data[| 0];
+                var list_index = node.custom_data[| 1];
+                var list_comparison = node.custom_data[| 2];
+                var list_value = node.custom_data[| 3];
+                var list_code = node.custom_data[| 4];
                 
                 var radio = node.ui_things[| 0];
                 script_execute(radio.render, radio, x1, y1);
                 
-                var list_type = node.custom_data[| 0];
                 // @todo put this in the onvaluechange script
                 list_type[| i] = radio.value;
                 
+                if (!dialog_exists() && mouse_y_view - entry_yy > rh) {
+                    if (mouse_within_rectangle_view(x1 + tolerance, entry_yy + tolerance + rh, x2 - tolerance, entry_yy + eh + rh - tolerance)) {
+                        draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance + rh, x2 - tolerance, entry_yy - tolerance + rh + eh, c, c, c, c, false);
+                        if (get_release_left()) {
+                            switch (list_type[| i]) {
+                                case ConditionBasicTypes.SWITCH:
+                                    dialog_create_event_condition_switch(node, i);
+                                    break;
+                                case ConditionBasicTypes.VARIABLE:
+                                    break;
+                                case ConditionBasicTypes.SELF_SWITCH:
+                                    break;
+                                case ConditionBasicTypes.SELF_VARIABLE:
+                                    break;
+                                case ConditionBasicTypes.SCRIPT:
+                                    break;
+                            }
+                        }
+                    }
+                }
+                
+                #region what gets drawn in the Data spot
                 switch (list_type[| i]) {
                     case ConditionBasicTypes.SWITCH:
-                        draw_text_ext(x1 + 16, mean(entry_yy, entry_yy + eh) + rh, "Data: (switch - to do)", -1, EVENT_NODE_CONTACT_WIDTH - 16);
+                        var index = list_index[| i];
+                        if (index > -1) {
+                            var switch_data = Stuff.all_global_switches[| index];
+                            var str = "Switch " + switch_data[0] + " is " + Stuff.on_off[list_value[| i]];
+                        } else {
+                            var str = "Switch data not set";
+                        }
                         break;
                     case ConditionBasicTypes.VARIABLE:
-                        draw_text_ext(x1 + 16, mean(entry_yy, entry_yy + eh) + rh, "Data: (var - to do)", -1, EVENT_NODE_CONTACT_WIDTH - 16);
+                        var index = list_index[| i];
+                        if (index > -1) {
+                            var variable_data = Stuff.all_global_variables[| index];
+                            var str = "Variable " + variable_data[0] + " " + Stuff.comparison_text[list_comparison[| i]] + " " + string(list_value[| i]);
+                        } else {
+                            var str = "Variable data not set";
+                        }
                         break;
                     case ConditionBasicTypes.SELF_SWITCH:
-                        draw_text_ext(x1 + 16, mean(entry_yy, entry_yy + eh) + rh, "Data: (self switch - to do)", -1, EVENT_NODE_CONTACT_WIDTH - 16);
+                        var index = list_index[| i];
+                        if (index > -1) {
+                            var str = "Self switch " + chr("A" + index) + " is " + Stuff.on_off[list_value[| i]];
+                        } else {
+                            var str = "Self switch data not set";
+                        }
                         break;
                     case ConditionBasicTypes.SELF_VARIABLE:
-                        draw_text_ext(x1 + 16, mean(entry_yy, entry_yy + eh) + rh, "Data: (self var - to do)", -1, EVENT_NODE_CONTACT_WIDTH - 16);
+                        var index = list_index[| i];
+                        if (index > -1) {
+                            var str = "Self variable " + chr("A" + index) + " " + Stuff.comparison_text[list_comparison[| i]] + " " + string(list_value[| i]);
+                        } else {
+                            var str = "Self variable data not set";
+                        }
                         break;
                     case ConditionBasicTypes.SCRIPT:
-                        draw_text_ext(x1 + 16, mean(entry_yy, entry_yy + eh) + rh, "Data: (code - bytes)", -1, EVENT_NODE_CONTACT_WIDTH - 16);
+                        var str = "Code: " + string(string_length(list_code[| i])) + " bytes";
                         break;
                 }
                 
-                entry_yy = entry_yy + eh;
+                draw_text_ext(x1 + 16, mean(entry_yy, entry_yy + eh) + rh, str, -1, EVENT_NODE_CONTACT_WIDTH - 16);
+                #endregion
+                
+                entry_yy = entry_yy + rh + eh;
             }
         }
         #endregion
