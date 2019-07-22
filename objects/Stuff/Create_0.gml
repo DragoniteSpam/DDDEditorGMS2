@@ -83,6 +83,9 @@ buffer_delete(buffer);
 var buffer = buffer_load(PATH_LUA + "event-page-condition.lua");
 default_lua_event_page_condition = buffer_read(buffer, buffer_text);
 buffer_delete(buffer);
+var buffer = buffer_load(PATH_LUA + "event-node-conditional.lua");
+default_lua_event_node_conditional = buffer_read(buffer, buffer_text);
+buffer_delete(buffer);
 
 #endregion
 
@@ -267,11 +270,11 @@ enum EventNodeTypes {
 
 /* */ event_prefab[EventNodeTypes.INPUT_TEXT] = create_event_node_prefab("NotYetImplemented", []);
 /* */ event_prefab[EventNodeTypes.SHOW_SCROLLING_TEXT] = create_event_node_prefab("NotYetImplemented", []);
-/* */ event_prefab[EventNodeTypes.CONTROL_SWITCHES] = create_event_node_prefab("ControlGlobalSwitch", [
+event_prefab[EventNodeTypes.CONTROL_SWITCHES] = create_event_node_prefab("ControlGlobalSwitch", [
     ["Index", DataTypes.INT, 0, 1, false, -1, omu_event_attain_switch_data, event_prefab_render_switch_name],
     ["State", DataTypes.BOOL, 0, 1, false, false]
 ]);
-/* */ event_prefab[EventNodeTypes.CONTROL_VARIABLES] = create_event_node_prefab("ControlGlobalVariable", [
+event_prefab[EventNodeTypes.CONTROL_VARIABLES] = create_event_node_prefab("ControlGlobalVariable", [
     ["Index", DataTypes.INT, 0, 1, false, -1, omu_event_attain_variable_data, event_prefab_render_variable_name],
     ["Value", DataTypes.FLOAT, 0, 1, false, 0, omu_event_attain_variable_data],
     ["Relative?", DataTypes.BOOL, 0, 1, false, false]
@@ -288,7 +291,14 @@ event_prefab[EventNodeTypes.CONTROL_SELF_VARIABLES] = create_event_node_prefab("
     ["Relative?", DataTypes.BOOL, 0, 1, false, false]
 ]);
 /* */ event_prefab[EventNodeTypes.CONTROL_TIME] = create_event_node_prefab("NotYetImplemented", []);
-/* */ event_prefab[EventNodeTypes.CONDITIONAL] = create_event_node_prefab("NotYetImplemented", []);
+event_prefab[EventNodeTypes.CONDITIONAL] = create_event_node_prefab("Conditional", [
+    // conditional branch nodes are not actually handled as a prefab but i'm leaving this here for reference
+    ["Type", DataTypes.INT, 0, 1, false, 0, stack_trace, stack_trace],
+    ["Index", DataTypes.INT, 0, 1, false, 0, stack_trace, stack_trace],
+    ["Comparison", DataTypes.INT, 0, 1, false, 0, stack_trace, stack_trace],
+    ["Value", DataTypes.INT, 0, 1, false, 0, stack_trace, stack_trace],
+    ["Code", DataTypes.INT, 0, 1, false, 0, stack_trace, stack_trace],
+]);
 /* */ event_prefab[EventNodeTypes.INVOKE_EVENT] = create_event_node_prefab("NotYetImplemented", []);
 /* */ event_prefab[EventNodeTypes.COMMENT] = create_event_node_prefab("NotYetImplemented", []);
 event_prefab[EventNodeTypes.WAIT] = create_event_node_prefab("Wait", [["Seconds", DataTypes.FLOAT, 0, 1, false, 1]]);

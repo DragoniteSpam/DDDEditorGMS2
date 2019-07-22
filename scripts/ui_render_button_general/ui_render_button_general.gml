@@ -26,11 +26,7 @@ var enabled = argument10;
 var onmouseup = argument11;
 var thing = argument12;
 
-if (enabled) {
-    var c = c_white;
-} else {
-    var c = c_ltgray;
-}
+var c = enabled ? c_white : c_ltgray;
 
 draw_rectangle_colour(x1, y1, x2, y2, c, c, c, c, false);
 
@@ -39,7 +35,8 @@ if (thing.outline) {
 }
 
 if (enabled) {
-    if (mouse_within_rectangle(x1, y1, x2, y2)) {
+    var inbounds = thing.check_view ? mouse_within_rectangle_view(x1, y1, x2, y2) : mouse_within_rectangle(x1, y1, x2, y2);
+    if (inbounds) {
         draw_rectangle_colour(x1, y1, x2, y2, c_ui, c_ui, c_ui, c_ui, false);
         if (get_release_left()) {
             script_execute(onmouseup, thing);

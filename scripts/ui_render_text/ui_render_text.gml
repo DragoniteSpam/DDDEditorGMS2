@@ -1,17 +1,20 @@
-/// @description void ui_render_text(UIText, x, y);
 /// @param UIText
 /// @param x
 /// @param y
 
-var x1=argument0.x+argument1;
-var y1=argument0.y+argument2;
-var x2=x1+argument0.width;
-var y2=y1+argument0.height;
+var text = argument0;
+var xx = argument1;
+var yy = argument2;
 
-var tx=ui_get_text_x(argument0, x1, x2);
-var ty=ui_get_text_y(argument0, y1, y2);
+var x1 = text.x + xx;
+var y1 = text.y + yy;
+var x2 = x1 + text.width;
+var y2 = y1 + text.height;
 
-draw_set_halign(argument0.alignment);
-draw_set_valign(argument0.valignment);
-draw_set_color(argument0.color);
-draw_text_ext(tx, ty, string(argument0.text), -1, argument0.wrap_width);
+var tx = ui_get_text_x(text, x1, x2);
+var ty = ui_get_text_y(text, y1, y2);
+
+draw_set_halign(text.alignment);
+draw_set_valign(text.valignment);
+draw_set_color(text.color);
+draw_text_ext(tx, ty, string(text.text), -1, text.wrap_width);

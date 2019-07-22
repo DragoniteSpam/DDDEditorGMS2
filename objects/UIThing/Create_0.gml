@@ -2,6 +2,7 @@ render = ui_render;
 contents = ds_list_create();
 root = noone;
 enabled = true;
+check_view = false;
 
 interactive = true;
 outline = true;             // not used in all element types

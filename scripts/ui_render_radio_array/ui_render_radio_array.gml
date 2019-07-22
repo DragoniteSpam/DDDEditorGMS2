@@ -1,26 +1,30 @@
-/// @param Button
+/// @param RadioArray
 /// @param x
 /// @param y
 
-var x1 = argument0.x + argument1;
-var y1 = argument0.y + argument2;
-var x2 = x1 + argument0.width;
-var y2 = y1 + argument0.height * (1 + ds_list_size(argument0.contents));
+var array = argument0;
+var xx = argument1;
+var yy = argument2;
 
-var tx = ui_get_text_x(argument0, x1, x2);
-var ty = ui_get_text_y(argument0, y1, y1 + argument0.height);
+var x1 = array.x + xx;
+var y1 = array.y + yy;
+var x2 = x1 + array.width;
+var y2 = y1 + array.height * (1 + ds_list_size(array.contents));
 
-if (argument0.outline) {
+var tx = ui_get_text_x(array, x1, x2);
+var ty = ui_get_text_y(array, y1, y1 + array.height);
+
+if (array.outline) {
     draw_rectangle_colour(x1, y1, x2, y2, c_black, c_black, c_black, c_black, true);
 }
 
-draw_set_halign(argument0.alignment);
-draw_set_valign(argument0.valignment);
-draw_set_color(argument0.color);
-draw_text(tx, ty, string(argument0.text));
+draw_set_halign(array.alignment);
+draw_set_valign(array.valignment);
+draw_set_color(array.color);
+draw_text(tx, ty, string(array.text));
 
-for (var i = 0; i < ds_list_size(argument0.contents); i++) {
-    var thing = argument0.contents[| i];
+for (var i = 0; i < ds_list_size(array.contents); i++) {
+    var thing = array.contents[| i];
     // these are all part of the same UIThing so there's no point in turning them off
     script_execute(thing.render, thing, x1, y1);
 }

@@ -1,22 +1,26 @@
-/// @param Button
+/// @param RadioOption
 /// @param x
 /// @param y
 
-var x1 = argument0.x + argument1;
-var y1 = argument0.y + argument2;
-var x2 = x1 + argument0.width;
-var y2 = y1 + argument0.height;
+var option = argument0;
+var xx = argument1;
+var yy = argument2;
 
-var tx = ui_get_text_x(argument0, x1, x2);
-var ty = ui_get_text_y(argument0, y1, y2);
+var x1 = option.x + xx;
+var y1 = option.y + yy;
+var x2 = x1 + option.width;
+var y2 = y1 + option.height;
 
-var enabled = argument0.root.interactive && argument0.interactive;
+var tx = ui_get_text_x(option, x1, x2);
+var ty = ui_get_text_y(option, y1, y2);
+
+var enabled = option.root.interactive && option.interactive;
 
 // this is not quite the same as ui_render_text
-draw_set_halign(argument0.alignment);
-draw_set_valign(argument0.valignment);
-var c = enabled ? argument0.color : c_gray;
-draw_text_colour(tx + 32, ty, string(argument0.text), c, c, c, c, 1);
+draw_set_halign(option.alignment);
+draw_set_valign(option.valignment);
+var c = enabled ? option.color : c_gray;
+draw_text_colour(tx + 32, ty, string(option.text), c, c, c, c, 1);
 
 var router = 8;
 var rinner = 4;
@@ -26,7 +30,7 @@ if (!enabled) {
 }
 draw_circle(tx + 16, ty, router, true);
 
-if (argument0.root.value == argument0.value) {
+if (option.root.value == option.value) {
     if (!enabled) {
         draw_set_alpha(0.5);
     }
@@ -34,15 +38,16 @@ if (argument0.root.value == argument0.value) {
     draw_set_alpha(1);
 }
 
-// argument0.root is the radio array object that contains the element.
-// argument0.root.root is the panel that it lives on.
-if (enabled && dialog_is_active(argument0.root.root)) {
-    if (mouse_within_rectangle(x1, y1, x2, y2)) {
+// option.root is the radio array object that contains the element.
+// option.root.root is the panel that it lives on.
+if (enabled && dialog_is_active(option.root.root)) {
+    var inbounds = option.check_view ? mouse_within_rectangle_view(x1, y1, x2, y2) : mouse_within_rectangle(x1, y1, x2, y2);
+    if (inbounds) {
         if (get_release_left()) {
-            argument0.root.value = argument0.value;
-            script_execute(argument0.root.onvaluechange, argument0);
+            option.root.value = option.value;
+            script_execute(option.root.onvaluechange, option);
         } else if (Controller.press_help) {
-            //ds_stuff_help_auto(argument0);
+            //ds_stuff_help_auto(option);
         }
     }
 }

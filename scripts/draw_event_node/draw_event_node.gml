@@ -4,8 +4,10 @@
 // if you change any of these in this script, you need to change them
 // back when youre done
 
-var x1 = argument0.x;
-var y1 = argument0.y;
+var node = argument0;
+
+var x1 = node.x;
+var y1 = node.y;
 var x2 = x1;
 var y2 = y1;
 
@@ -15,20 +17,20 @@ var tolerance = 4;
 
 var custom = noone;
 
-switch (argument0.type) {
+switch (node.type) {
     case EventNodeTypes.ENTRYPOINT:
         #region entrypoint
         x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
-        y2 = y1 + 16 + string_height(string(argument0.name));
+        y2 = y1 + 16 + string_height(string(node.name));
         
         if (rectangle_within_view(view_current, x1, y1, x2, y2)) {
             var c = colour_mute(c_ev_init);
-            draw_event_drag_handle(argument0, x1+16, y1-16, x2-16, y1+16, c);
+            draw_event_drag_handle(node, x1+16, y1-16, x2-16, y1+16, c);
             draw_roundrect_colour(x1, y1, x2, y2, c_ev_init, c_ev_init, false);
             draw_roundrect(x1, y1, x2, y2, true);
-            draw_event_node_title(argument0, c);
+            draw_event_node_title(node, c);
             
-            draw_event_node_delete(x2, y1, argument0);
+            draw_event_node_delete(x2, y1, node);
         }
         #endregion
         break;
@@ -36,14 +38,14 @@ switch (argument0.type) {
         #region comment
         x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
         // cut down version of Text
-        y2 = y1 + 24 + 32 + ds_list_size(argument0.data) * entry_height;
+        y2 = y1 + 24 + 32 + ds_list_size(node.data) * entry_height;
         
         if (rectangle_within_view(view_current, x1, y1, x2, y2)) {
             var c = colour_mute(c_ev_comment);
-            draw_event_drag_handle(argument0, x1 + 16, y1 - 16, x2 - 16, y1 + 16, c);
+            draw_event_drag_handle(node, x1 + 16, y1 - 16, x2 - 16, y1 + 16, c);
             draw_roundrect_colour(x1, y1, x2, y2, c_ev_comment, c_ev_comment, false);
             draw_roundrect(x1, y1, x2, y2, true);
-            draw_event_node_title(argument0, c);
+            draw_event_node_title(node, c);
             
             var entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
             
@@ -52,15 +54,15 @@ switch (argument0.type) {
                 draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + entry_height - tolerance, c, c, c, c, false);
                 if (!dialog_exists()) {
                     if (get_release_left()) {
-                        argument0.data[| 0] = get_string("Comment contents?", argument0.data[| 0]);
+                        node.data[| 0] = get_string("Comment contents?", node.data[| 0]);
                     }
                 }
             }
                 
-            draw_text_ext(x1 + 16, mean(entry_yy, entry_yy + entry_height), string(argument0.data[| 0]), -1, EVENT_NODE_CONTACT_WIDTH - 16);
+            draw_text_ext(x1 + 16, mean(entry_yy, entry_yy + entry_height), string(node.data[| 0]), -1, EVENT_NODE_CONTACT_WIDTH - 16);
         }
         
-        draw_event_node_delete(x2, y1, argument0);
+        draw_event_node_delete(x2, y1, node);
             
         #endregion
         break;
@@ -69,50 +71,94 @@ switch (argument0.type) {
         x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
         // the above will be very painful for nodes with many data entries because loops so just assume
         // each entry won't have more than four lines
-        y2 = y1 + 24 + 32 + ds_list_size(argument0.data) * entry_height;
+        y2 = y1 + 24 + 32 + ds_list_size(node.data) * entry_height;
         
         if (rectangle_within_view(view_current, x1, y1, x2, y2)) {
             var c = colour_mute(c_ev_basic);
-            draw_event_drag_handle(argument0, x1 + 16, y1 - 16, x2 - 16, y1 + 16, c);
+            draw_event_drag_handle(node, x1 + 16, y1 - 16, x2 - 16, y1 + 16, c);
             draw_roundrect_colour(x1, y1, x2, y2, c_ev_basic, c_ev_basic, false);
             draw_roundrect(x1, y1, x2, y2, true);
             // this is the inbound node, which we don't really care about other than displaying
             // it so that the user knows which nodes can be attached to other nodes
             draw_sprite(spr_event_outbound, 2, x1, y1 + 16);
-            draw_event_node_title(argument0, c);
+            draw_event_node_title(node, c);
             
             var entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
             
-            for (var i = 0; i < ds_list_size(argument0.data); i++) {
+            for (var i = 0; i < ds_list_size(node.data); i++) {
                 draw_line(x1 + 16, entry_yy, x2 - 16, entry_yy);
                 if (mouse_within_rectangle_view(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + entry_height - tolerance)) {
                     draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + entry_height - tolerance, c, c, c, c, false);
                     if (!dialog_exists()) {
                         if (get_release_left()) {
-                            argument0.data[| i] = get_string("Data in this node?", argument0.data[| i]);
+                            node.data[| i] = get_string("Data in this node?", node.data[| i]);
                         }
                     }
                 }
                 
-                draw_text_ext(x1 + 16, mean(entry_yy, entry_yy + entry_height), string(argument0.data[| i]), -1, EVENT_NODE_CONTACT_WIDTH - 16);
+                draw_text_ext(x1 + 16, mean(entry_yy, entry_yy + entry_height), string(node.data[| i]), -1, EVENT_NODE_CONTACT_WIDTH - 16);
                 var yy_center = mean(entry_yy, entry_yy + entry_height);
                 if (i > 0) {
                     // this works out nicely because the outbound node is going to be in the same place at index 0,
                     // and the delete icon is going to be everywhere except index 0
-                    draw_event_node_text_remove(x2, yy_center, argument0, i);
-                    draw_event_node_text_move(x2, yy_center - 24, argument0, i, -1, 0);
+                    draw_event_node_text_remove(x2, yy_center, node, i);
+                    draw_event_node_text_move(x2, yy_center - 24, node, i, -1, 0);
                 }
-                if (i < ds_list_size(argument0.data) - 1) {
-                    draw_event_node_text_move(x2, yy_center + 24, argument0, i, 1, 2);
+                if (i < ds_list_size(node.data) - 1) {
+                    draw_event_node_text_move(x2, yy_center + 24, node, i, 1, 2);
                 }
                 
                 entry_yy = entry_yy + entry_height;
             }
             
-            draw_event_node_delete(x2, y1, argument0);
+            draw_event_node_delete(x2, y1, node);
             
-            if (ds_list_size(argument0.outbound) < 250) {
-                draw_event_node_text_add(mean(x1, x2), y2, argument0);
+            if (ds_list_size(node.outbound) < 250) {
+                draw_event_node_text_add(mean(x1, x2), y2, node);
+            }
+        }
+        #endregion
+        break;
+    case EventNodeTypes.CONDITIONAL:
+        #region if-else if-else
+        var size = ds_list_size(node.custom_data[| 0]);
+        var rh = ((ui_get_radio_array_height(node.ui_things[| 0]) div 32) * 32) + 16;
+        x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
+        y2 = y1 + 24 + 32 + (32 + rh) * size;
+        
+        if (rectangle_within_view(view_current, x1, y1, x2, y2)) {
+            var ncolor = c_ev_basic;
+            var c = colour_mute(ncolor);
+            draw_event_drag_handle(node, x1 + 16, y1 - 16, x2 - 16, y1 + 16, c);
+            draw_roundrect_colour(x1, y1, x2, y2, ncolor, ncolor, false);
+            draw_roundrect(x1, y1, x2, y2, true);
+            draw_sprite(spr_event_outbound, 2, x1, y1 + 16);
+            draw_event_node_title(node, c);
+            draw_event_node_custom_info(x2 - 24, y1, node);
+            draw_event_node_delete(x2, y1, node);
+            
+            var entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
+            
+            for (var i = 0; i < size; i++) {
+                var eh = 32;
+                draw_line(x1 + 16, entry_yy, x2 - 16, entry_yy);
+                
+                /*if (!dialog_exists() && mouse_y_view - entry_yy > rh) {
+                    if (mouse_within_rectangle_view(x1 + tolerance, entry_yy + tolerance + rh, x2 - tolerance, entry_yy + rh - tolerance)) {
+                        draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance + rh, x2 - tolerance, entry_yy - tolerance + rh + eh, c, c, c, c, false);
+                        /*if (get_release_left()) {
+                        }
+                    }
+                }*/
+                
+                var radio = node.ui_things[| 0];
+                script_execute(radio.render, radio, x1, y1);
+                // @todo put this in the onvaluechange script
+                /*var list_type = node.custom_data[| 0];
+                list_type[| i] = radio.value;*/
+                draw_text_ext(x1 + 16, mean(entry_yy, entry_yy + eh) + rh, "Data: ", -1, EVENT_NODE_CONTACT_WIDTH - 16);
+                
+                entry_yy = entry_yy + eh;
             }
         }
         #endregion
@@ -120,13 +166,13 @@ switch (argument0.type) {
     case EventNodeTypes.CUSTOM:
     default:
         #region custom
-        custom = guid_get(argument0.custom_guid);
+        custom = guid_get(node.custom_guid);
         x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
         y2 = y1 + 24 + 32;
-        var ncolor = (argument0.type == EventNodeTypes.CUSTOM) ? c_ev_custom : c_ev_basic;
+        var ncolor = (node.type == EventNodeTypes.CUSTOM) ? c_ev_custom : c_ev_basic;
         
         for (var i = 0; i < ds_list_size(custom.types); i++) {
-            var custom_data_list = argument0.custom_data[| i];
+            var custom_data_list = node.custom_data[| i];
             var type = custom.types[| i];
             switch (type[1]) {
                 case DataTypes.INT:
@@ -137,15 +183,6 @@ switch (argument0.type) {
                 case DataTypes.AUDIO_BGM:
                 case DataTypes.AUDIO_SE:
                 case DataTypes.ANIMATION:
-                    y2 = y2 + 32;
-                    break;
-                case DataTypes.STRING:
-                    if (ds_list_size(custom_data_list) == 1) {
-                        y2 = y2 + entry_height + 24;
-                    } else {
-                        y2 = y2 + 32;
-                    }
-                    break;
                 // @todo data types
                 case DataTypes.CODE:
                 case DataTypes.COLOR:
@@ -156,23 +193,30 @@ switch (argument0.type) {
                 case DataTypes.ENTITY:
                     y2 = y2 + 32;
                     break;
+                case DataTypes.STRING:
+                    if (ds_list_size(custom_data_list) == 1) {
+                        y2 = y2 + entry_height + 24;
+                    } else {
+                        y2 = y2 + 32;
+                    }
+                    break;
             }
         }
         
         if (rectangle_within_view(view_current, x1, y1, x2, y2)) {
             var c = colour_mute(ncolor);
-            draw_event_drag_handle(argument0, x1 + 16, y1 - 16, x2 - 16, y1 + 16, c);
+            draw_event_drag_handle(node, x1 + 16, y1 - 16, x2 - 16, y1 + 16, c);
             draw_roundrect_colour(x1, y1, x2, y2, ncolor, ncolor, false);
             draw_roundrect(x1, y1, x2, y2, true);
             draw_sprite(spr_event_outbound, 2, x1, y1 + 16);
-            draw_event_node_title(argument0, c);
-            draw_event_node_custom_info(x2 - 24, y1, argument0);
-            draw_event_node_delete(x2, y1, argument0);
+            draw_event_node_title(node, c);
+            draw_event_node_custom_info(x2 - 24, y1, node);
+            draw_event_node_delete(x2, y1, node);
             
             var entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
             
             for (var i = 0; i < ds_list_size(custom.types); i++) {
-                var custom_data_list = argument0.custom_data[| i];
+                var custom_data_list = node.custom_data[| i];
                 var type = custom.types[| i];
                 
                 switch (type[1]) {
@@ -230,17 +274,17 @@ switch (argument0.type) {
                                     case DataTypes.ENUM:
                                     case DataTypes.DATA:
                                         if (guid_get(type[EventNodeCustomData.TYPE_GUID])) {
-                                            dialog_create_event_node_custom_data(noone, argument0, i, 0);
+                                            dialog_create_event_node_custom_data(noone, node, i, 0);
                                         }
                                         break;
                                     case DataTypes.AUDIO_BGM:
-                                        dialog_create_event_node_audio_bgm(noone, argument0, i, 0);
+                                        dialog_create_event_node_audio_bgm(noone, node, i, 0);
                                         break;
                                     case DataTypes.AUDIO_SE:
-                                        dialog_create_event_node_audio_se(noone, argument0, i, 0);
+                                        dialog_create_event_node_audio_se(noone, node, i, 0);
                                         break;
                                     case DataTypes.ANIMATION:
-                                        dialog_create_event_node_animation(noone, argument0, i, 0);
+                                        dialog_create_event_node_animation(noone, node, i, 0);
                                         break;
                                     // @todo data types
                                     case DataTypes.CODE:
@@ -254,7 +298,7 @@ switch (argument0.type) {
                                         break;
                                 }
                             } else {
-                                script_execute(attainment, noone, argument0, i);
+                                script_execute(attainment, noone, node, i);
                             }
                         }
                     }
@@ -346,7 +390,7 @@ switch (argument0.type) {
                     if (output_script == null) {
                         message = message + output_string;
                     } else {
-                        message = message + script_execute(output_script, argument0, i);
+                        message = message + script_execute(output_script, node, i);
                     }
                 } else {
                     message = message + ": multiple values (" + string(ds_list_size(custom_data_list)) + ")";
@@ -367,23 +411,23 @@ switch (argument0.type) {
 }
 
 // different node types may put the outbound nodes in different places - not all use more than one output node
-switch (argument0.type) {
+switch (node.type) {
     case EventNodeTypes.ENTRYPOINT:
         // vertical middle of the box
         var by = mean(y1, y2);
         var i = 0;
-        var outbound = argument0.outbound[| i];
+        var outbound = node.outbound[| i];
         
         if (!outbound) {
-            draw_event_node_outbound(x2, by, argument0, i, true);
+            draw_event_node_outbound(x2, by, node, i, true);
         } else {
             var bx2 = outbound.x;
             var by2 = outbound.y + 16;
             
-            draw_event_node_outbound(x2, by, argument0, i);
+            draw_event_node_outbound(x2, by, node, i);
             draw_sprite(spr_event_dot, 0, x2, by);
             
-            if (event_canvas_active_node != argument0 || event_canvas_active_node_index != i) {
+            if (event_canvas_active_node != node || event_canvas_active_node_index != i) {
                 if (bx2 > x2) {
                     draw_bezier(x2 + 8, by, bx2 - 8, by2);
                 } else {
@@ -405,18 +449,18 @@ switch (argument0.type) {
             var by = mean(entry_yy, entry_yy + entry_height);
         }
         var i = 0;
-        var outbound = argument0.outbound[| i];
+        var outbound = node.outbound[| i];
         
         if (!outbound) {
-            draw_event_node_outbound(x2, by, argument0, i, true);
+            draw_event_node_outbound(x2, by, node, i, true);
         } else {
             var bx2 = outbound.x;
             var by2 = outbound.y + 16;
             
-            draw_event_node_outbound(x2, by, argument0, i);
+            draw_event_node_outbound(x2, by, node, i);
             draw_sprite(spr_event_dot, 0, x2, by);
             
-            if (event_canvas_active_node != argument0 || event_canvas_active_node_index != i) {
+            if (event_canvas_active_node != node || event_canvas_active_node_index != i) {
                 if (bx2 > x2) {
                     draw_bezier(x2 + 8, by, bx2 - 8, by2);
                 } else {
@@ -427,7 +471,7 @@ switch (argument0.type) {
         break;
 }
 
-if (event_canvas_active_node == argument0) {
+if (event_canvas_active_node == node) {
     if (!dialog_exists()) {
         if (get_release_left()) {
             event_canvas_active_node = noone;
@@ -435,7 +479,7 @@ if (event_canvas_active_node == argument0) {
             // if the mouse is contacting another entrypoint, connect it
             var contacted_node = event_seek_node();
             if (contacted_node) {
-                event_connect_node(argument0, contacted_node);
+                event_connect_node(node, contacted_node);
             }
         }
     }

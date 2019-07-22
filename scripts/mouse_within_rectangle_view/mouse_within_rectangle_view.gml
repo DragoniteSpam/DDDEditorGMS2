@@ -1,4 +1,3 @@
-/// @description boolean mouse_within_rectangle_view(x1, y1, x2, y2);
 /// @param x1
 /// @param y1
 /// @param x2

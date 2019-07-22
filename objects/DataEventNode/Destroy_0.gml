@@ -35,3 +35,11 @@ for (var i = 0; i < ds_list_size(custom_data); i++) {
     ds_list_destroy(custom_data[| i]);
 }
 ds_list_destroy(custom_data);
+
+// some special nodes may desire to have actual UI elements
+for (var i = 0; i < ds_list_size(ui_things); i++) {
+    instance_activate_object(ui_things[| i]);
+    instance_destroy(ui_things[| i]);
+}
+
+ds_list_destroy(ui_things);

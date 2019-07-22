@@ -1,48 +1,52 @@
-/// @param Button
+/// @param UIInputCode
 /// @param x
 /// @param y
 
-var x1 = argument0.x + argument1;
-var y1 = argument0.y + argument2;
-var x2 = x1 + argument0.width;
-var y2 = y1 + argument0.height;
+var code = argument0;
+var xx = argument1;
+var yy = argument2;
 
-var tx = ui_get_text_x(argument0, x1, x2);
-var ty = ui_get_text_y(argument0, y1, y2);
+var x1 = code.x + xx;
+var y1 = code.y + yy;
+var x2 = x1 + code.width;
+var y2 = y1 + code.height;
 
-var value = argument0.value;
+var tx = ui_get_text_x(code, x1, x2);
+var ty = ui_get_text_y(code, y1, y2);
+
+var value = code.value;
 
 // this is not quite the same as ui_render_text
-draw_set_halign(argument0.alignment);
-draw_set_valign(argument0.valignment);
-draw_set_color(argument0.color);
-draw_text(tx, ty, string(argument0.text));
+draw_set_halign(code.alignment);
+draw_set_valign(code.valignment);
+draw_set_color(code.color);
+draw_text(tx, ty, string(code.text));
 
-var vx1 = x1 + argument0.value_x1;
-var vy1 = y1 + argument0.value_y1;
-var vx2 = x1 + argument0.value_x2;
-var vy2 = y1 + argument0.value_y2;
+var vx1 = x1 + code.value_x1;
+var vy1 = y1 + code.value_y1;
+var vx2 = x1 + code.value_x2;
+var vy2 = y1 + code.value_y2;
 
 var vtx = vx1 + 12;
 var vty = mean(vy1, vy2);
 
-if (argument0.editor_handle) {
-    if (ds_stuff_process_complete(argument0.editor_handle)) {
-        argument0.editor_handle = noone;
-        file_delete(get_temp_code_path(argument0));
+if (code.editor_handle) {
+    if (ds_stuff_process_complete(code.editor_handle)) {
+        code.editor_handle = noone;
+        file_delete(get_temp_code_path(code));
     }
-    script_execute(argument0.onsave, argument0);
-    script_execute(argument0.onvaluechange, argument0);
+    script_execute(code.onsave, code);
+    script_execute(code.onvaluechange, code);
 }
 
-if (argument0.editor_handle) {
+if (code.editor_handle) {
     var omu = null;
     var interactable = false;
 } else {
-    var omu = argument0.onmouseup;
-    var interactable = argument0.interactive && dialog_is_active(argument0.root);
+    var omu = code.onmouseup;
+    var interactable = code.interactive && dialog_is_active(code.root);
 }
 
-var message = string_comma(string_length(argument0.value)) + " bytes (edit)";
+var message = string_comma(string_length(code.value)) + " bytes (edit)";
 
-ui_render_button_general(vx1, vy1, vx2, vy2, vtx, vty, message, fa_left, fa_middle, c_black, interactable, omu, argument0);
+ui_render_button_general(vx1, vy1, vx2, vy2, vtx, vty, message, fa_left, fa_middle, c_black, interactable, omu, code);

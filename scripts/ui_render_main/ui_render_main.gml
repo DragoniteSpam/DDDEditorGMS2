@@ -1,10 +1,13 @@
-/// @description void ui_render_main(UIMain);
 /// @param UIMain
 
-var ui_x=__view_get( e__VW.XView, view_hud );
-var ui_y=__view_get( e__VW.YView, view_hud );
-var ui_width=__view_get( e__VW.WView, view_hud );
-var ui_height=__view_get( e__VW.HView, view_hud );
+var ui = argument0;
+var xx = argument1;
+var yy = argument2;
+
+var ui_x = __view_get( e__VW.XView, view_hud );
+var ui_y = __view_get( e__VW.YView, view_hud );
+var ui_width = __view_get( e__VW.WView, view_hud );
+var ui_height = __view_get( e__VW.HView, view_hud );
 
 d3d_set_projection_ortho(ui_x, ui_y, ui_width, ui_height, 0);
 
@@ -16,7 +19,7 @@ draw_set_valign(fa_middle);
 // in this program there's going to be nothing in here, just
 // tabs that are handled separately, but if you want persistent
 // UI elements throw them in UIMain.contents
-ui_render(argument0, 0, 0);
+ui_render(ui, 0, 0);
 
 var xx = ui_x + 32;
 var yy = 96;
@@ -26,7 +29,7 @@ var y1 = yy;
 var x2 = x1 + ui_legal_width();
 var y2 = y1 + ui_legal_height();
 
-var trow = argument0.tabs[| argument0.active_tab.home_row];
+var trow = ui.tabs[| ui.active_tab.home_row];
 var ww = ui_legal_width() / ds_list_size(trow);
 for (var i=0; i<ds_list_size(trow); i++) {
     var thing = trow[| i];
@@ -36,11 +39,11 @@ for (var i=0; i<ds_list_size(trow); i++) {
     xx = xx + ww;
 }
 
-for (var i = 0; i < ds_list_size(argument0.tabs); i++) {
-    if (i != argument0.active_tab.home_row) {
-        trow = argument0.tabs[| i];
+for (var i = 0; i < ds_list_size(ui.tabs); i++) {
+    if (i != ui.active_tab.home_row) {
+        trow = ui.tabs[| i];
         xx = ui_x + 32;
-        yy = yy - argument0.element_height;
+        yy = yy - ui.element_height;
         ww = ui_legal_width() / ds_list_size(trow);
         for (var j = 0; j < ds_list_size(trow); j++) {
             var thing = trow[| j];
@@ -60,8 +63,8 @@ draw_line(x1, y2, x2, y2);
 // that they're laid out you can run into some issues where
 // their position updates before the rest have been drawn if
 // you click on them
-for (var i = 0; i < ds_list_size(argument0.tabs); i++) {
-    trow = argument0.tabs[| i];
+for (var i = 0; i < ds_list_size(ui.tabs); i++) {
+    trow = ui.tabs[| i];
     for (var j = 0; j < ds_list_size(trow); j++) {
         thing = trow[| j];
         // i think windows forms allow you to disable tabs, but i'm not
@@ -70,7 +73,7 @@ for (var i = 0; i < ds_list_size(argument0.tabs); i++) {
     }
 }
 
-script_execute(argument0.active_tab.render_contents, argument0.active_tab, 0, 0);
+script_execute(ui.active_tab.render_contents, ui.active_tab, 0, 0);
 
 // either this script needs to be generic-ized for the ui_event tab, or the ui_event tab needs to
 // be changed so that it also uses the view system (and things will still need to be generic-ized)

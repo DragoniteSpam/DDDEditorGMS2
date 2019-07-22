@@ -2,44 +2,49 @@
 /// @param x
 /// @param y
 
-var x1 = argument0.x + argument1;
-var y1 = argument0.y + argument2;
-var x2 = x1 + argument0.width;
-var y2 = y1 + argument0.height;
+var button = argument0;
+var xx = argument1;
+var yy = argument2;
 
-var tx = ui_get_text_x(argument0, x1, x2);
-var ty = ui_get_text_y(argument0, y1, y2);
+var x1 = button.x + xx;
+var y1 = button.y + yy;
+var x2 = x1 + button.width;
+var y2 = y1 + button.height;
 
-if (argument0.interactive) {
+var tx = ui_get_text_x(button, x1, x2);
+var ty = ui_get_text_y(button, y1, y2);
+
+if (button.interactive) {
     var c = c_white;
 } else {
     var c = c_ltgray;
 }
 draw_rectangle_colour(x1, y1, x2, y2, c, c, c, c, false);
 
-if (argument0.outline) {
+if (button.outline) {
     draw_rectangle_colour(x1, y1, x2, y2, c_black, c_black, c_black, c_black, true);
 }
 
 var color = c_white;
-if (argument0.interactive && dialog_is_active(argument0.root)) {
-    if (mouse_within_rectangle(x1, y1, x2, y2)) {
+if (button.interactive && dialog_is_active(button.root)) {
+    var inbounds = button.check_view ? mouse_within_rectangle_view(x1, y1, x2, y2) : mouse_within_rectangle(x1, y1, x2, y2);
+    if (inbounds) {
         draw_rectangle_colour(x1, y1, x2, y2, c_ui, c_ui, c_ui, c_ui, false);
         color = merge_color(c_white, c_ui, 0.5);
         if (get_release_left()) {
-            script_execute(argument0.onmouseup, argument0);
+            script_execute(button.onmouseup, button);
         } else if (Controller.press_help) {
-            //ds_stuff_help_auto(argument0);
+            //ds_stuff_help_auto(button);
         }
     }
 }
 
-if (!argument0.image) {
-    draw_set_halign(argument0.alignment);
-    draw_set_valign(argument0.valignment);
-    draw_set_color(argument0.color);
-    draw_text_ext(tx, ty, string(argument0.text), -1, argument0.width);
+if (!button.image) {
+    draw_set_halign(button.alignment);
+    draw_set_valign(button.valignment);
+    draw_set_color(button.color);
+    draw_text_ext(tx, ty, string(button.text), -1, button.width);
 } else {
-    draw_sprite_general(argument0.image, argument0.index, 0, 0, min(argument0.width, sprite_get_width(argument0.image)),
-        min(argument0.height, sprite_get_height(argument0.image)), x1, y1, 1, 1, 0, color, color, color, color, 1);
+    draw_sprite_general(button.image, button.index, 0, 0, min(button.width, sprite_get_width(button.image)),
+        min(button.height, sprite_get_height(button.image)), x1, y1, 1, 1, 0, color, color, color, color, 1);
 }

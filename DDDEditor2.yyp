@@ -1247,6 +1247,14 @@
             }
         },
         {
+            "Key": "20e33c5f-12e7-4489-826e-5f52202a8380",
+            "Value": {
+                "id": "90753d28-1dde-45f3-9870-aca39adc42bd",
+                "resourcePath": "datafiles_yy\\data\\lua\\event-node-conditional.lua.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "2107e2a3-1d58-44ef-9930-9da619cb2f23",
             "Value": {
                 "id": "c25ac172-b10c-4655-9d68-e8dcc46cd55d",
@@ -5587,6 +5595,14 @@
             "Value": {
                 "id": "5cb855d9-4fe3-42d7-8f3a-76e3cb52572b",
                 "resourcePath": "scripts\\array_to_list\\array_to_list.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "95424db4-7494-4804-a19a-69b9a43171f3",
+            "Value": {
+                "id": "fb3b1768-ec08-49da-af68-c35cf6b3eb07",
+                "resourcePath": "scripts\\omu_event_add_conditional\\omu_event_add_conditional.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -10051,6 +10067,7 @@
         "ca433690-4b11-4675-b165-30253bfc2837",
         "abbd567a-8c29-4074-a591-04f96ef9d207",
         "b5d9d977-41d7-45b2-9398-85c360b0273e",
+        "95424db4-7494-4804-a19a-69b9a43171f3",
         "2d96ee9f-6e81-4575-84ac-c6b78732c23a",
         "f4cf0162-1969-4bab-ba13-c0eb46223b81",
         "477b7cf3-43e7-4ea9-851a-44a9d8060e5b",

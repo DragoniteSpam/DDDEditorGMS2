@@ -36,6 +36,14 @@ enum Comparisons {
     NOT_EQUAL
 }
 
+enum ConditionBasicTypes {
+    VARIABLE,
+    SWITCH,
+    SELF_VARIABLE,
+    SELF_SWITCH,
+    SCRIPT
+}
+
 // trigger
 
 trigger = EventTriggers.ActionButton;
