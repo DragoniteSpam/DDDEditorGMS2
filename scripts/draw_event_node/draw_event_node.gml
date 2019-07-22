@@ -234,12 +234,17 @@ switch (node.type) {
                 draw_text_ext(x1 + 16, mean(entry_yy, entry_yy + eh) + rh, str, -1, EVENT_NODE_CONTACT_WIDTH - 16);
                 #endregion
                 
+                var entry_yy_previous = entry_yy;
                 entry_yy = entry_yy + rh + eh;
+                
+                if (i > 0) {
+                    draw_event_node_condition_remove(x2, mean(entry_yy_previous, entry_yy), node, i);
+                }
             }
             
-            draw_event_node_delete(x2, y1, node);
+            var n = ds_list_size(node.outbound);
             
-            if (ds_list_size(node.outbound) < 250) {
+            if (n < 250) {
                 draw_event_node_condition_add(mean(x1, x2), y2, node);
             }
         }
