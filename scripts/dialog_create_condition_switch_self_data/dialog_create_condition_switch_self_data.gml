@@ -1,16 +1,13 @@
 /// @param EventNode
-/// @param data-index
+/// @param index
 
 var node = argument0;
 var index = argument1;
 
-// going to just put all of the available properties in here, i think, because that
-// should make some things a bit easier
-
 var dw = 320;
-var dh = 560;
+var dh = 320;
 
-var dg = dialog_create(dw, dh, "Condition: Global Switch", dialog_default, dc_close_no_questions_asked, node);
+var dg = dialog_create(dw, dh, "Condition: Self Switch", dialog_default, dc_close_no_questions_asked, node);
 dg.node = node;
 dg.index = index;
 
@@ -20,25 +17,18 @@ var list_index = node.custom_data[| 1];
 var list_value = node.custom_data[| 3];
 // data[| 4] not used
 
-var ew = dw - 64;
+var columns = 1;
+var ew = (dw - 64) / columns;
 var eh = 24;
 
 var yy = 64;
 var spacing = 16;
 
-var el_list = create_list(16, yy, "Switches", "<no switches>", ew, eh, 14, uivc_list_event_condition_index, false, dg);
-for (var i = 0; i < ds_list_size(Stuff.switches); i++) {
-    // @todo gml update
-    var data = Stuff.switches[| i];
-    create_list_entries(el_list, data[0], c_black);
-}
-
-if (list_index[| index] > -1) {
-    ds_map_add(el_list.selected_entries, list_index[| index], true);
-}
+var el_list = create_radio_array(16, yy, "Self Switches:", ew, eh, uivc_list_event_condition_self_index, list_index[| index], dg);
+create_radio_array_options(el_list, "A", "B", "C", "D");
 dg.el_list = el_list;
 
-yy = yy + ui_get_list_height(el_list) + spacing;
+yy = yy + ui_get_radio_array_height(el_list) + spacing;
 
 var el_state = create_checkbox(16, yy, "Is enabled?", ew, eh, uivc_check_event_condition_value, 0, list_value[| index], dg);
 dg.el_state = el_state;

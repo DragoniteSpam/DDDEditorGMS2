@@ -165,10 +165,13 @@ switch (node.type) {
                                     dialog_create_event_condition_switch(node, i);
                                     break;
                                 case ConditionBasicTypes.VARIABLE:
+                                    dialog_create_event_condition_variable(node, i);
                                     break;
                                 case ConditionBasicTypes.SELF_SWITCH:
+                                    dialog_create_condition_switch_self_data(node, i);
                                     break;
                                 case ConditionBasicTypes.SELF_VARIABLE:
+                                    dialog_create_condition_variable_self_data(node, i);
                                     break;
                                 case ConditionBasicTypes.SCRIPT:
                                     break;
@@ -200,7 +203,7 @@ switch (node.type) {
                     case ConditionBasicTypes.SELF_SWITCH:
                         var index = list_index[| i];
                         if (index > -1) {
-                            var str = "Self switch " + chr("A" + index) + " is " + Stuff.on_off[list_value[| i]];
+                            var str = "Self switch " + chr(ord("A") + index) + " is " + Stuff.on_off[list_value[| i]];
                         } else {
                             var str = "Self switch data not set";
                         }
@@ -208,7 +211,7 @@ switch (node.type) {
                     case ConditionBasicTypes.SELF_VARIABLE:
                         var index = list_index[| i];
                         if (index > -1) {
-                            var str = "Self variable " + chr("A" + index) + " " + Stuff.comparison_text[list_comparison[| i]] + " " + string(list_value[| i]);
+                            var str = "Self variable " + chr(ord("A") + index) + " " + Stuff.comparison_text[list_comparison[| i]] + " " + string(list_value[| i]);
                         } else {
                             var str = "Self variable data not set";
                         }

@@ -1,7 +1,6 @@
-/// @description boolean validate_int(string);
 /// @param string
 
-if (string_length(argument0)==0) {
+if (!string_length(argument0)) {
     return false;
 }
 

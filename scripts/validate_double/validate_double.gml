@@ -1,11 +1,11 @@
-/// @description boolean validate_double(string);
 /// @param string
 
-if (string_length(argument0)==0) {
+if (!string_length(argument0)) {
     return false;
 }
 
-return regex("((\\+)|(\\-))?((\\d)*)((\\.)(\\d)+)?", argument0);
+// @todo gml update try-catch
+return regex("[-+]?[0-9]*\.?[0-9]+", argument0);
 
 // ((\+)|(\-))?
 //      optional + or -

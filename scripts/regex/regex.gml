@@ -1,4 +1,3 @@
-/// @description boolean regex(expression, string);
 /// @param expression
 /// @param string
 

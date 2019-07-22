@@ -1,5 +1,5 @@
 /// @param string
 
-var catch = argument0;
+var str = argument0;
 
 return true;
