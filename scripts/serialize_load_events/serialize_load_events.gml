@@ -1,17 +1,18 @@
 /// @param buffer
 /// @param version
 
+var buffer = argument0;
 var version = argument1;
-var n_events = buffer_read(argument0, buffer_u32);
+var n_events = buffer_read(buffer, buffer_u32);
 
 Stuff.active_event = noone;
 
 repeat(n_events) {
     // this was written in pieces before serialize_load_generic was
     // so don't use it here otherwise things will break
-    var event_name = buffer_read(argument0, buffer_string);
+    var event_name = buffer_read(buffer, buffer_string);
     var event = event_create(event_name);
-    guid_set(event, buffer_read(argument0, buffer_u32));
+    guid_set(event, buffer_read(buffer, buffer_u32));
     
     ds_list_add(Stuff.all_events, event);
     // events are created with an entrypoint by default - you could pass an optional
@@ -22,17 +23,17 @@ repeat(n_events) {
     
     var connections = ds_list_create();
     
-    var n_nodes = buffer_read(argument0, buffer_u32);
+    var n_nodes = buffer_read(buffer, buffer_u32);
     repeat(n_nodes) {
-        var node_name = buffer_read(argument0, buffer_string);
-        var node_type = buffer_read(argument0, buffer_u16);
-        var node_x = buffer_read(argument0, buffer_s32);
-        var node_y = buffer_read(argument0, buffer_s32);
+        var node_name = buffer_read(buffer, buffer_string);
+        var node_type = buffer_read(buffer, buffer_u16);
+        var node_x = buffer_read(buffer, buffer_s32);
+        var node_y = buffer_read(buffer, buffer_s32);
         var node = event_create_node(event, node_type, node_x, node_y);
         node.name = node_name;
         node.event = event;
         
-        guid_set(node, buffer_read(argument0, buffer_u32));
+        guid_set(node, buffer_read(buffer, buffer_u32));
         
         // some preliminary data may be created
         ds_list_clear(node.data);
@@ -45,14 +46,14 @@ repeat(n_events) {
         var node_connections = ds_list_create();
         ds_list_add(connections, node_connections);
         
-        var n_outbound = buffer_read(argument0, buffer_u8);
+        var n_outbound = buffer_read(buffer, buffer_u8);
         repeat(n_outbound) {
-            ds_list_add(node_connections, buffer_read(argument0, buffer_string));
+            ds_list_add(node_connections, buffer_read(buffer, buffer_string));
         }
         
-        var n_data = buffer_read(argument0, buffer_u8);
+        var n_data = buffer_read(buffer, buffer_u8);
         repeat(n_data) {
-            ds_list_add(node.data, buffer_read(argument0, buffer_string));
+            ds_list_add(node.data, buffer_read(buffer, buffer_string));
         }
         
         // special code for different node types
@@ -61,9 +62,39 @@ repeat(n_events) {
                 // is_root is set in the constructor already
             case EventNodeTypes.TEXT:
                 break;
+            case EventNodeTypes.CONDITIONAL:
+                var list_types = node.custom_data[| 0];
+                var list_indices = node.custom_data[| 1];
+                var list_comparisons = node.custom_data[| 2];
+                var list_values = node.custom_data[| 3];
+                var list_code = node.custom_data[| 4];
+                
+                ds_list_clear(list_types);
+                ds_list_clear(list_indices);
+                ds_list_clear(list_comparisons);
+                ds_list_clear(list_values);
+                ds_list_clear(list_code);
+                
+                var n = buffer_read(buffer, buffer_u8);
+                repeat (n) {
+                    ds_list_add(list_types, buffer_read(buffer, buffer_u8));
+                    ds_list_add(list_indices, buffer_read(buffer, buffer_u32));
+                    ds_list_add(list_comparisons, buffer_read(buffer, buffer_u8));
+                    ds_list_add(list_values, buffer_read(buffer, buffer_f32));
+                    ds_list_add(list_code, buffer_read(buffer, buffer_string));
+                    
+                    var eh = 32;
+                    var radio = create_radio_array(16, 32, "If condition:", EVENT_NODE_CONTACT_WIDTH - 32, 24, null, ConditionBasicTypes.SWITCH, node);
+                    radio.check_view = true;
+                    create_radio_array_options(radio, "Variable", "Switch", "Self Variable", "Self Switch", "Code");
+                    radio.y = radio.y + (((ui_get_radio_array_height(radio) div eh) * eh) + eh + 16) * ds_list_size(node.ui_things);
+        
+                    ds_list_add(node.ui_things, radio);
+                }
+                break;
             case EventNodeTypes.CUSTOM:
             default:
-                node.custom_guid = buffer_read(argument0, buffer_u32);
+                node.custom_guid = buffer_read(buffer, buffer_u32);
                 if (node_type != EventNodeTypes.CUSTOM) {
                     // other types also save the custom guid, even though there's really no reason
                     // for them to do so
@@ -105,20 +136,20 @@ repeat(n_events) {
                             break;
                     }
                     
-                    var n_custom_data = buffer_read(argument0, buffer_u8);
+                    var n_custom_data = buffer_read(buffer, buffer_u8);
                     
                     // custom event types don't seem to be pre-populated with values, for
                     // some reason - although as far as i can tell they ought to be?
                     if (node_type == EventNodeTypes.CUSTOM) {
                         repeat(n_custom_data) {
-                            ds_list_add(sub_list, buffer_read(argument0, buffer_type));
+                            ds_list_add(sub_list, buffer_read(buffer, buffer_type));
                         }
                         ds_list_add(node.custom_data, sub_list);
                     } else {
                         var sub_list = node.custom_data[| i];
                         ds_list_clear(sub_list);
                         repeat(n_custom_data) {
-                            ds_list_add(sub_list, buffer_read(argument0, buffer_type));
+                            ds_list_add(sub_list, buffer_read(buffer, buffer_type));
                         }
                     }
                 }

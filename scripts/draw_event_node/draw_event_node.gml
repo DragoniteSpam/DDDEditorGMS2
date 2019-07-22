@@ -158,7 +158,7 @@ switch (node.type) {
                 var radio = node.ui_things[| i];
                 script_execute(radio.render, radio, x1, y1);
                 
-                // @todo put this in the onvaluechange script
+                // this should be in an onvaluechange script but that's a huge hassle for something really minor
                 list_type[| i] = radio.value;
                 
                 if (!dialog_exists() && mouse_y_view - entry_yy > rh) {
