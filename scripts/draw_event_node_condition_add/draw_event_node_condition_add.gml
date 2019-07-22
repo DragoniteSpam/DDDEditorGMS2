@@ -32,6 +32,7 @@ if (mouse_within_rectangle_view(xx - tolerance, yy - tolerance, xx + tolerance, 
         radio.y = radio.y + (((ui_get_radio_array_height(radio) div eh) * eh) + eh + 16) * ds_list_size(node.ui_things);
         
         ds_list_add(node.ui_things, radio);
-        ds_list_add(node.outbound, noone);
+        // insert at the second to last position so that the "else" outbound node stays where it is
+        ds_list_insert(node.outbound, ds_list_size(node.outbound) - 1, noone);
     }
 }

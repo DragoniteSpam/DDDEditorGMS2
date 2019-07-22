@@ -4,7 +4,7 @@
 
 var source = argument[0];
 var destination = argument[1];
-var index = (argument_count > 3) ? argument[3] : 0;
+var index = (argument_count > 2) ? argument[2] : 0;
 
 // because this would be silly
 if (source != destination && destination.valid_destination) {

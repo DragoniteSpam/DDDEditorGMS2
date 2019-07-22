@@ -125,7 +125,7 @@ switch (node.type) {
         eh = 32;
         var rh = ((ui_get_radio_array_height(node.ui_things[| 0]) div eh) * eh) + 16;
         x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
-        y2 = y1 + 24 + 32 + (eh + rh) * size;
+        y2 = y1 + 24 + 32 + (eh + rh) * size + eh;
         
         if (rectangle_within_view(view_current, x1, y1, x2, y2)) {
             var ncolor = c_ev_basic;
@@ -140,9 +140,14 @@ switch (node.type) {
             
             var entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
             
-            for (var i = 0; i < size; i++) {
+            for (var i = 0; i < size + 1; i++) {
                 var eh = 32;
                 draw_line(x1 + 16, entry_yy, x2 - 16, entry_yy);
+                
+                if (i == size) {
+                    draw_text_ext(x1 + 16, mean(entry_yy, entry_yy + eh), "If all else fails, go here", -1, EVENT_NODE_CONTACT_WIDTH - 16);
+                    break;
+                }
                 
                 var list_type = node.custom_data[| 0];
                 var list_index = node.custom_data[| 1];
@@ -238,7 +243,7 @@ switch (node.type) {
                 entry_yy = entry_yy + rh + eh;
                 
                 if (i > 0) {
-                    draw_event_node_condition_remove(x2, mean(entry_yy_previous, entry_yy), node, i);
+                    draw_event_node_condition_remove(x2, mean(entry_yy_previous, entry_yy) + 16, node, i);
                 }
             }
             
@@ -498,10 +503,11 @@ switch (node.type) {
 }
 
 // different node types may put the outbound nodes in different places - not all use more than one output node
+var bezier_override = false;
 switch (node.type) {
     case EventNodeTypes.ENTRYPOINT:
         // vertical middle of the box
-        var by = mean(y1, y2);
+        var by = mean(y1, y2) - 16;
         var i = 0;
         var outbound = node.outbound[| i];
         
@@ -525,6 +531,59 @@ switch (node.type) {
         break;
     case EventNodeTypes.COMMENT:
         // no outbound node allowed
+        break;
+    case EventNodeTypes.CONDITIONAL:
+        // it'd be real nice if this could just be in the default case, but the outbound nodes
+        // are spaced slightly differently for this so it wouldn't really work
+        bezier_override = true;
+        var entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
+        var by = entry_yy + entry_height - 16;
+        var n = ds_list_size(node.outbound);
+        var bezier_y = 0;
+        
+        for (var i = 0; i < n; i++) {
+            var outbound = node.outbound[| i];
+            if (!outbound) {
+                draw_event_node_outbound(x2, by, node, i, true);
+            } else {
+                var bx2 = outbound.x;
+                var by2 = outbound.y + 16;
+                
+                draw_event_node_outbound(x2, by, node, i);
+                draw_sprite(spr_event_dot, 0, x2, by);
+                
+                if (event_canvas_active_node != node || event_canvas_active_node_index != i) {
+                    if (bx2 > x2) {
+                        draw_bezier(x2 + 8, by, bx2 - 8, by2);
+                    } else {
+                        draw_event_ghost(x2 + 8, by, x2 + 64, by, outbound);
+                    }
+                }
+            }
+            
+            if (event_canvas_active_node == node && event_canvas_active_node_index == i) {
+                bezier_y = by;
+            }
+            
+            // this is seriously screwing with scope but it works since nodes can't change type
+            by = by + eh + ((i < n - 2) ? rh : (rh + eh) / 2);
+        }
+        
+        if (event_canvas_active_node == node) {
+            if (!dialog_exists()) {
+                if (get_release_left()) {
+                    // if the mouse is contacting another entrypoint, connect it
+                    var contacted_node = event_seek_node();
+                    if (contacted_node) {
+                        event_connect_node(node, contacted_node, event_canvas_active_node_index);
+                    }
+                    event_canvas_active_node = noone;
+                    event_canvas_active_node_index = 0;
+                }
+            }
+            
+            draw_bezier(x2 + 8, bezier_y, mouse_x_view, mouse_y_view);
+        }
         break;
     default:
         var entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
@@ -558,17 +617,21 @@ switch (node.type) {
         break;
 }
 
-if (event_canvas_active_node == node) {
-    if (!dialog_exists()) {
-        if (get_release_left()) {
-            event_canvas_active_node = noone;
-            event_canvas_active_node_index = 0;
-            // if the mouse is contacting another entrypoint, connect it
-            var contacted_node = event_seek_node();
-            if (contacted_node) {
-                event_connect_node(node, contacted_node);
+// condition nodes have them located in strange places so i'm not going to try
+// to come up with a general solution
+if (!bezier_override) {
+    if (event_canvas_active_node == node) {
+        if (!dialog_exists()) {
+            if (get_release_left()) {
+                event_canvas_active_node = noone;
+                event_canvas_active_node_index = 0;
+                // if the mouse is contacting another entrypoint, connect it
+                var contacted_node = event_seek_node();
+                if (contacted_node) {
+                    event_connect_node(node, contacted_node);
+                }
             }
         }
+        draw_bezier(x2 + 8, by, mouse_x_view, mouse_y_view);
     }
-    draw_bezier(x2 + 8, by, mouse_x_view, mouse_y_view);
 }
