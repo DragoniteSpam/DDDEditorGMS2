@@ -83,7 +83,8 @@ if (input.interactive && dialog_is_active(input.root)) {
             }
         }
     }
-    var inbounds = input.check_view ? mouse_within_rectangle_view(vx1, vy1, vx2, vy2) : mouse_within_rectangle(vx1, vy1, vx2, vy2);
+    
+    var inbounds = mouse_within_rectangle_determine(input.check_view, vx1, vy1, vx2, vy2);
     if (inbounds) {
         if (get_release_left()) {
             ui_activate(input);

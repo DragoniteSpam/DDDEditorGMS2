@@ -2015,6 +2015,14 @@
             }
         },
         {
+            "Key": "36e843c0-600a-482e-ba93-5f450dddbad9",
+            "Value": {
+                "id": "57f6bdcb-252c-46f5-9b9b-aa12a973e654",
+                "resourcePath": "scripts\\mouse_within_rectangle_determine\\mouse_within_rectangle_determine.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "36eb45b8-adb1-437b-839f-8b78d4268813",
             "Value": {
                 "id": "e85a49a9-3f55-40e0-8821-1e52ff52b089",
@@ -9561,6 +9569,7 @@
         "82f5d587-a372-41de-bb2e-501f9c5980db",
         "f8a9c182-2fd5-48d9-bf71-cd91cc562d4f",
         "e3427b18-b9e4-42bd-adb7-c5f0a56ba4a3",
+        "36e843c0-600a-482e-ba93-5f450dddbad9",
         "9fc60d28-aec9-4790-8729-b6ef8b8d46b2",
         "39d8bec1-cc2c-4d92-a58d-50bcb7edac68",
         "6e0fa323-5993-4e2e-8f9d-1ab3d41654d4",

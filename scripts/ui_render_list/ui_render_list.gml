@@ -76,7 +76,7 @@ var offset = (n > list.slots) ? 16 : 0;
 var move_direction = 0;
 
 if (list.interactive && active) {
-    var inbounds = list.check_view ? mouse_within_rectangle_view(x1, y2, x2 - offset, y3) : mouse_within_rectangle(x1, y2, x2 - offset, y2);
+    var inbounds = mouse_within_rectangle_determine(list.check_view, x1, y2, x2 - offset, y3);
     if (inbounds) {
         if (Controller.press_left) {
             // if this ends up having a bounds problem it's probably because the list is empty and
@@ -140,7 +140,7 @@ if (n > list.slots) {
     var sby1 = sy - shalf;
     var sby2 = sy + shalf;
     if (list.interactive && active) {
-        var inbounds = list.check_view ? mouse_within_rectangle_view(x2 - sw, sby1, x2, sby2) : mouse_within_rectangle(x2 - sw, sby1, x2, sby2);
+        var inbounds = mouse_within_rectangle_determine(list.check_view, x2 - sw, sby1, x2, sby2);
         if (inbounds) {
             draw_rectangle_colour(x2 - sw + 1, sby1 + 1, x2 - 1, sby2 - 1, c_ui, c_ui, c_ui, c_ui, false);
             if (Controller.press_left) {
@@ -164,8 +164,8 @@ if (n > list.slots) {
     draw_line_colour(x2 - sw * 4 / 5, sy + 4, x2 - sw / 5, sy + 4, c_gray, c_gray);
     
     if (active) {
-        var inbounds_top = list.check_view ? mouse_within_rectangle_view(x2 - sw, y2, x2, y2 + sw) : mouse_within_rectangle(x2 - sw, y2, x2, y2 + sw);
-        var inbounds_bottom = list.check_view ? mouse_within_rectangle_view(x2 - sw, y3 - sw, x2, y3) : mouse_within_rectangle(x2 - sw, y3 - sw, x2, y3);
+        var inbounds_top = mouse_within_rectangle_determine(list.check_view, x2 - sw, y2, x2, y2 + sw);
+        var inbounds_bottom = mouse_within_rectangle_determine(list.check_view, x2 - sw, y3 - sw, x2, y3);
         if (inbounds_top) {
             draw_rectangle_colour(x2 - sw + 1, y2 + 1, x2 - 1, y2 + sw-1, c_ui, c_ui, c_ui, c_ui, false);
             if (Controller.press_left) {

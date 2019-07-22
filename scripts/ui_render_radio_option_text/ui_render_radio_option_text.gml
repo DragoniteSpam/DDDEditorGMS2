@@ -41,7 +41,7 @@ if (option.root.value == option.value) {
 // option.root is the radio array object that contains the element.
 // option.root.root is the panel that it lives on.
 if (enabled && dialog_is_active(option.root.root)) {
-    var inbounds = option.check_view ? mouse_within_rectangle_view(x1, y1, x2, y2) : mouse_within_rectangle(x1, y1, x2, y2);
+    var inbounds = mouse_within_rectangle_determine(option.check_view, x1, y1, x2, y2);
     if (inbounds) {
         if (get_release_left()) {
             option.root.value = option.value;

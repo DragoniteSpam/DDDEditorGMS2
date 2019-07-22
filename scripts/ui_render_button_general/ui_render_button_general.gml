@@ -35,7 +35,7 @@ if (thing.outline) {
 }
 
 if (enabled) {
-    var inbounds = thing.check_view ? mouse_within_rectangle_view(x1, y1, x2, y2) : mouse_within_rectangle(x1, y1, x2, y2);
+    var inbounds = mouse_within_rectangle_determine(thing.check_view, x1, y1, x2, y2);
     if (inbounds) {
         draw_rectangle_colour(x1, y1, x2, y2, c_ui, c_ui, c_ui, c_ui, false);
         if (get_release_left()) {

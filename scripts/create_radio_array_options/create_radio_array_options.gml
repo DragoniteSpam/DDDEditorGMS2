@@ -1,6 +1,6 @@
 /// @param UIRadioArray
 /// @param string0
-/// @param ..stringn
+/// @param [..stringn]
 
 for (var i = 1; i < argument_count; i++) {
     var n = ds_list_size(argument[0].contents);
@@ -9,6 +9,7 @@ for (var i = 1; i < argument_count; i++) {
     option.root = argument[0];
     option.height = argument[0].height;
     option.value = n;
+    option.check_view = argument[0].check_view;
     
     ds_list_add(argument[0].contents, option);
 }

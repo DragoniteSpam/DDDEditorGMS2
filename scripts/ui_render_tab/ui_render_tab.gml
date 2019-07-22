@@ -21,6 +21,7 @@ if (!tab.interactive) {
 draw_line(x1, y1, x2, y1);
 draw_line(x1, y1, x1, y2);
 draw_line(x2, y1, x2, y2);
+
 if (tab.root.active_tab != tab) {
     draw_line(x1, y2, x2, y2);
 }
@@ -34,7 +35,7 @@ draw_set_color(tab.color);
 draw_text(tx, ty, string(tab.text));
 
 if (tab.interactive && dialog_is_active(tab.root)) {
-    var inbounds = tab.check_view ? mouse_within_rectangle_view(x1, y1, x2, y2) : mouse_within_rectangle(x1, y1, x2, y2);
+    var inbounds = mouse_within_rectangle_determine(tab.check_view, x1, y1, x2, y2);
     if (inbounds) {
         if (get_release_left()) {
             script_execute(tab.onmouseup, tab);

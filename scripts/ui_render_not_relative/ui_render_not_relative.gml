@@ -8,9 +8,10 @@ var thing = argument0;
 var xx = argument1;
 var yy = argument2;
 
+var str = "";
 for (var i = 0; i < ds_list_size(thing.contents); i++) {
-    var thing = thing.contents[| i];
-    if (thing.enabled) {
-        script_execute(thing.render, thing, xx, yy);
+    var what = thing.contents[| i];
+    if (what.enabled) {
+        script_execute(what.render, what, xx, yy);
     }
 }

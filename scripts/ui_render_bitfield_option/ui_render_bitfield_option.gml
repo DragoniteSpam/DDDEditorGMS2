@@ -20,7 +20,7 @@ if (bitfield.state) {
 draw_rectangle_colour(x1 + 1, y1 + 1, x2 - 1, y2 - 1, c_black, c_black, c_black, c_black, true);
 
 if (bitfield.interactive && dialog_is_active(bitfield.root)) {
-    var inbounds = bitfield.check_view ? mouse_within_rectangle_view(x1, y1, x2, y2) : mouse_within_rectangle(x1, y1, x2, y2);
+    var inbounds = mouse_within_rectangle_determine(bitfield.check_view, x1, y1, x2, y2);
     if (inbounds) {
         if (get_release_left()) {
             script_execute(bitfield.onvaluechange, bitfield);

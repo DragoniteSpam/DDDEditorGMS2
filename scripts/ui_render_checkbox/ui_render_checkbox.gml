@@ -25,7 +25,7 @@ if (!checkbox.interactive) {
     draw_rectangle_colour(tx + 16 - s2, ty - s2, tx + 16 + s2, ty+s2, c_ltgray, c_ltgray, c_ltgray, c_ltgray, false);
 } else {
     if (dialog_is_active(checkbox.root)) {
-        var inbounds = checkbox.check_view ? mouse_within_rectangle_view(x1, y1, x2, y2) : mouse_within_rectangle(x1, y1, x2, y2);
+        var inbounds = mouse_within_rectangle_determine(checkbox.check_view, x1, y1, x2, y2);
         if (inbounds) {
             draw_rectangle_colour(tx + 16 - s2, ty - s2, tx + 16 + s2, ty + s2, c_ltgray, c_ltgray, c_ltgray, c_ltgray, false);
         }
