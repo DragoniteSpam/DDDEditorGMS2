@@ -161,22 +161,32 @@ switch (node.type) {
                         draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance + rh, x2 - tolerance, entry_yy - tolerance + rh + eh, c, c, c, c, false);
                         if (get_release_left()) {
                             switch (list_type[| i]) {
-                                case ConditionBasicTypes.SWITCH:
-                                    dialog_create_event_condition_switch(node, i);
-                                    break;
-                                case ConditionBasicTypes.VARIABLE:
-                                    dialog_create_event_condition_variable(node, i);
-                                    break;
-                                case ConditionBasicTypes.SELF_SWITCH:
-                                    dialog_create_condition_switch_self_data(node, i);
-                                    break;
-                                case ConditionBasicTypes.SELF_VARIABLE:
-                                    dialog_create_condition_variable_self_data(node, i);
-                                    break;
+                                case ConditionBasicTypes.SWITCH: dialog_create_event_condition_switch(node, i); break;
+                                case ConditionBasicTypes.VARIABLE: dialog_create_event_condition_variable(node, i); break;
+                                case ConditionBasicTypes.SELF_SWITCH: dialog_create_condition_switch_self_data(node, i); break;
+                                case ConditionBasicTypes.SELF_VARIABLE: dialog_create_condition_variable_self_data(node, i); break;
                                 case ConditionBasicTypes.SCRIPT:
+                                    if (node.editor_handle == noone) {
+                                        var location = get_temp_code_path(node);
+                                        var buffer = buffer_create(1, buffer_grow, 1);
+                                        buffer_write(buffer, buffer_text, list_code[| i]);
+                                        buffer_save_ext(buffer, location, 0, buffer_tell(buffer));
+                                        buffer_delete(buffer);
+                                    
+                                        node.editor_handle = ds_stuff_open_local(location);
+                                    }
                                     break;
                             }
                         }
+                    }
+                }
+                
+                if (node.editor_handle) {
+                    list_code[| i] = uios_code_text(node, list_code[| i]);
+                    draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance + rh, x2 - tolerance, entry_yy - tolerance + rh + eh, c, c, c, c, false);
+                    if (ds_stuff_process_complete(node.editor_handle)) {
+                        node.editor_handle = noone;
+                        file_delete(get_temp_code_path(node));
                     }
                 }
                 
@@ -217,7 +227,7 @@ switch (node.type) {
                         }
                         break;
                     case ConditionBasicTypes.SCRIPT:
-                        var str = "Code: " + string(string_length(list_code[| i])) + " bytes";
+                        var str = "Code: " + string_comma(string_length(list_code[| i])) + " bytes" + (!node.editor_handle ? "" : " *");
                         break;
                 }
                 

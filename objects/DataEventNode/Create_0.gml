@@ -32,3 +32,4 @@ offset_y = -1;
 parents = ds_map_create();
 
 ui_things = ds_list_create();
+editor_handle = noone;

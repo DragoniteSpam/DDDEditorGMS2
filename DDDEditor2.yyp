@@ -3575,6 +3575,14 @@
             }
         },
         {
+            "Key": "600b97a0-1074-4f9b-9eb4-e8ca421cdbe0",
+            "Value": {
+                "id": "37e19ab0-a801-44ba-8f25-df09f123435e",
+                "resourcePath": "scripts\\uios_code_text\\uios_code_text.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "6013a280-0bc6-4e7c-9ba7-1e5bd47d3427",
             "Value": {
                 "id": "c057df0f-d3e8-407a-9314-ce7909e4167d",
@@ -10117,6 +10125,7 @@
         "8f206002-6538-4576-9ab0-f7b262260530",
         "8781848a-dee5-4c42-9052-f8ba9985d848",
         "d18ad823-f821-4ab0-af2e-fbbcb454b8e5",
+        "600b97a0-1074-4f9b-9eb4-e8ca421cdbe0",
         "4182667f-9154-4529-b83f-0f642700c2e8",
         "95e4f225-2de3-462b-8e75-cfab87a5a353",
         "5106ac6f-a982-47a3-830d-fc2f383ce828",
