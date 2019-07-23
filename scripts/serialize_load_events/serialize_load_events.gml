@@ -59,9 +59,10 @@ repeat(n_events) {
         
         // special code for different node types
         switch (node_type) {
+            // is_root is set in the constructor already
             case EventNodeTypes.ENTRYPOINT:
-                // is_root is set in the constructor already
             case EventNodeTypes.TEXT:
+            case EventNodeTypes.SHOW_CHOICES:
                 break;
             case EventNodeTypes.CONDITIONAL:
                 var list_types = node.custom_data[| 0];

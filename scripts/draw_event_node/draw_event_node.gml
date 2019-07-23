@@ -278,7 +278,7 @@ switch (node.type) {
                 draw_line(x1 + 16, entry_yy, x2 - 16, entry_yy);
                 
                 if (i == size) {
-                    draw_text_ext(x1 + 16, mean(entry_yy, entry_yy + eh), "On Cancel button", -1, EVENT_NODE_CONTACT_WIDTH - 16);
+                    draw_text_ext(x1 + 16, mean(entry_yy, entry_yy + eh), "Default (cancel button, etc)?", -1, EVENT_NODE_CONTACT_WIDTH - 16);
                     break;
                 }
                 

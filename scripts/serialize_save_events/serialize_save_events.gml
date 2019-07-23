@@ -45,6 +45,7 @@ for (var i = 0; i < n_events; i++) {
         switch (node.type) {
             case EventNodeTypes.ENTRYPOINT:
             case EventNodeTypes.TEXT:
+            case EventNodeTypes.SHOW_CHOICES:
                 break;
             case EventNodeTypes.CONDITIONAL:
                 var list_types = node.custom_data[| 0];
