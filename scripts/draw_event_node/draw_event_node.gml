@@ -304,7 +304,7 @@ switch (node.type) {
             
             var n = ds_list_size(node.outbound);
             
-            if (n < 250) {
+            if (n < 16) {
                 draw_event_node_choice_add(mean(x1, x2), y2, node);
             }
         }
