@@ -275,14 +275,14 @@ enum EventNodeTypes {
 
 /* */ event_prefab[EventNodeTypes.INPUT_TEXT] = create_event_node_prefab("NotYetImplemented", []);
 /* */ event_prefab[EventNodeTypes.SHOW_SCROLLING_TEXT] = create_event_node_prefab("NotYetImplemented", []);
-event_prefab[EventNodeTypes.CONTROL_SWITCHES] = create_event_node_prefab("ControlGlobalSwitch", [
-    ["Index", DataTypes.INT, 0, 1, false, -1, omu_event_attain_switch_data, event_prefab_render_switch_name],
-    ["State", DataTypes.BOOL, 0, 1, false, false]
-]);
 event_prefab[EventNodeTypes.SHOW_CHOICES] = create_event_node_prefab("ShowChoices", [
     // conditional branch nodes are not actually handled as a prefab but i'm leaving this here for reference
     ["Message", DataTypes.STRING, 0, 16, false, "Option 1"],
     ["ID", DataTypes.INT, 0, 16, false, 0],
+]);
+event_prefab[EventNodeTypes.CONTROL_SWITCHES] = create_event_node_prefab("ControlGlobalSwitch", [
+    ["Index", DataTypes.INT, 0, 1, false, -1, omu_event_attain_switch_data, event_prefab_render_switch_name],
+    ["State", DataTypes.BOOL, 0, 1, false, false]
 ]);
 event_prefab[EventNodeTypes.CONTROL_VARIABLES] = create_event_node_prefab("ControlGlobalVariable", [
     ["Index", DataTypes.INT, 0, 1, false, -1, omu_event_attain_variable_data, event_prefab_render_variable_name],
