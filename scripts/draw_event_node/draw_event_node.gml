@@ -255,6 +255,64 @@ switch (node.type) {
         }
         #endregion
         break;
+    case EventNodeTypes.SHOW_CHOICES:
+        #region list of choices
+        var size = ds_list_size(node.data);
+        eh = 32;
+        x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
+        y2 = y1 + 24 + 32 + eh * size + eh;
+        
+        if (rectangle_within_view(view_current, x1, y1, x2, y2)) {
+            var ncolor = c_ev_basic;
+            var c = colour_mute(ncolor);
+            draw_event_drag_handle(node, x1 + 16, y1 - 16, x2 - 16, y1 + 16, c);
+            draw_roundrect_colour(x1, y1, x2, y2, ncolor, ncolor, false);
+            draw_roundrect(x1, y1, x2, y2, true);
+            draw_sprite(spr_event_outbound, 2, x1, y1 + 16);
+            draw_event_node_title(node, c);
+            draw_event_node_custom_info(x2 - 24, y1, node);
+            draw_event_node_delete(x2, y1, node);
+            
+            var entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
+            
+            for (var i = 0; i < size + 1; i++) {
+                var eh = 32;
+                draw_line(x1 + 16, entry_yy, x2 - 16, entry_yy);
+                
+                if (i == size) {
+                    draw_text_ext(x1 + 16, mean(entry_yy, entry_yy + eh), "On Cancel button", -1, EVENT_NODE_CONTACT_WIDTH - 16);
+                    break;
+                }
+                
+                var text = node.data[| i];
+                
+                if (mouse_within_rectangle_view(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + eh - tolerance)) {
+                    draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + eh - tolerance, c, c, c, c, false);
+                    if (!dialog_exists()) {
+                        if (get_release_left()) {
+                            node.data[| i] = get_string("Option text?", node.data[| i]);
+                        }
+                    }
+                }
+                
+                draw_text_ext(x1 + 16, mean(entry_yy, entry_yy + eh), node.data[| i], -1, EVENT_NODE_CONTACT_WIDTH - 16);
+                
+                var entry_yy_previous = entry_yy;
+                entry_yy = entry_yy + eh;
+                
+                if (i > 0) {
+                    draw_event_node_choice_remove(x2, mean(entry_yy_previous, entry_yy) + 16, node, i);
+                }
+            }
+            
+            var n = ds_list_size(node.outbound);
+            
+            if (n < 250) {
+                draw_event_node_choice_add(mean(x1, x2), y2, node);
+            }
+        }
+        #endregion
+        break;
     case EventNodeTypes.CUSTOM:
     default:
         #region custom

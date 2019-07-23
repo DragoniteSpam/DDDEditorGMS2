@@ -24,6 +24,7 @@ repeat(n_events) {
     var connections = ds_list_create();
     
     var n_nodes = buffer_read(buffer, buffer_u32);
+    
     repeat(n_nodes) {
         var node_name = buffer_read(buffer, buffer_string);
         var node_type = buffer_read(buffer, buffer_u16);

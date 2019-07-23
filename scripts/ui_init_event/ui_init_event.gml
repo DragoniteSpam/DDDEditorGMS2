@@ -171,7 +171,7 @@ with (instantiate(UIMain)) {
     element = create_button(legal_x + spacing, yy, "Show Text", element_width, element_height, fa_left, omu_event_add_text, t_action1);
     ds_list_add(t_action1.contents, element);
     yy = yy + element_height;
-    element = create_button(legal_x + spacing, yy, "Show Choices", element_width, element_height, fa_left, stack_trace, t_action1);
+    element = create_button(legal_x + spacing, yy, "Show Choices", element_width, element_height, fa_left, omu_event_add_choices, t_action1);
     ds_list_add(t_action1.contents, element);
     yy = yy + element_height;
     element = create_button(legal_x + spacing, yy, "Input Text", element_width, element_height, fa_left, stack_trace, t_action1);

@@ -35,6 +35,11 @@ switch (type) {
         node.data[| 0] = "This is a comment";
         node.valid_destination = false;
         break;
+    case EventNodeTypes.SHOW_CHOICES:
+        node.name = "Choose";
+        ds_list_add(node.outbound, noone);                      // there are always one more outbound nodes than the number of branches - the last one is for the final "if cancelled"
+        node.data[| 0] = "Option 0";
+        break;
     case EventNodeTypes.CONDITIONAL:
         node.name = "Branch";
         ds_list_add(node.outbound, noone);                      // there are always one more outbound nodes than the number of branches - the last one is for the final "else"

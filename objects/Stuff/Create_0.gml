@@ -268,7 +268,9 @@ enum EventNodeTypes {
     TINT_SCREEN, FLASH_SCREEN, SHAKE_SCREEN,
     PLAY_BGM, FADE_BGM, RESUME_BGM, PLAY_SE, STOP_SE,
     RETURN_TO_TITLE, CHANGE_MAP_DISPLAY_NAME, CHANGE_MAP_TILESET, CHANGE_MAP_BATTLE_SCENE, CHANGE_MAP_PARALLAX,
-    SCRIPT, AUDIO_CONTORLS
+    SCRIPT, AUDIO_CONTORLS, ADVANCED0, ADVANCED1, ADVANCED2, ADVANCED3, ADVANCED4, ADVANCED5, ADVANCED6, ADVANCED7,
+    // i forgot to put this one with the other text nodes
+    SHOW_CHOICES,
 }
 
 /* */ event_prefab[EventNodeTypes.INPUT_TEXT] = create_event_node_prefab("NotYetImplemented", []);
@@ -276,6 +278,11 @@ enum EventNodeTypes {
 event_prefab[EventNodeTypes.CONTROL_SWITCHES] = create_event_node_prefab("ControlGlobalSwitch", [
     ["Index", DataTypes.INT, 0, 1, false, -1, omu_event_attain_switch_data, event_prefab_render_switch_name],
     ["State", DataTypes.BOOL, 0, 1, false, false]
+]);
+event_prefab[EventNodeTypes.SHOW_CHOICES] = create_event_node_prefab("ShowChoices", [
+    // conditional branch nodes are not actually handled as a prefab but i'm leaving this here for reference
+    ["Message", DataTypes.STRING, 0, 16, false, "Option 1"],
+    ["ID", DataTypes.INT, 0, 16, false, 0],
 ]);
 event_prefab[EventNodeTypes.CONTROL_VARIABLES] = create_event_node_prefab("ControlGlobalVariable", [
     ["Index", DataTypes.INT, 0, 1, false, -1, omu_event_attain_variable_data, event_prefab_render_variable_name],
@@ -296,11 +303,11 @@ event_prefab[EventNodeTypes.CONTROL_SELF_VARIABLES] = create_event_node_prefab("
 /* */ event_prefab[EventNodeTypes.CONTROL_TIME] = create_event_node_prefab("NotYetImplemented", []);
 event_prefab[EventNodeTypes.CONDITIONAL] = create_event_node_prefab("Conditional", [
     // conditional branch nodes are not actually handled as a prefab but i'm leaving this here for reference
-    ["Type", DataTypes.INT, 0, 1, false, 0, stack_trace, stack_trace],
-    ["Index", DataTypes.INT, 0, 1, false, 0, stack_trace, stack_trace],
-    ["Comparison", DataTypes.INT, 0, 1, false, 0, stack_trace, stack_trace],
-    ["Value", DataTypes.INT, 0, 1, false, 0, stack_trace, stack_trace],
-    ["Code", DataTypes.INT, 0, 1, false, 0, stack_trace, stack_trace],
+    ["Type", DataTypes.INT, 0, 1, false, 0],
+    ["Index", DataTypes.INT, 0, 1, false, 0],
+    ["Comparison", DataTypes.INT, 0, 1, false, 0],
+    ["Value", DataTypes.INT, 0, 1, false, 0],
+    ["Code", DataTypes.INT, 0, 1, false, 0],
 ]);
 /* */ event_prefab[EventNodeTypes.INVOKE_EVENT] = create_event_node_prefab("NotYetImplemented", []);
 /* */ event_prefab[EventNodeTypes.COMMENT] = create_event_node_prefab("NotYetImplemented", []);
