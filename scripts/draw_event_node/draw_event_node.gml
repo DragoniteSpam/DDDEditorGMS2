@@ -141,7 +141,6 @@ switch (node.type) {
             var entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
             
             for (var i = 0; i < size + 1; i++) {
-                var eh = 32;
                 draw_line(x1 + 16, entry_yy, x2 - 16, entry_yy);
                 
                 if (i == size) {
@@ -258,7 +257,7 @@ switch (node.type) {
     case EventNodeTypes.SHOW_CHOICES:
         #region list of choices
         var size = ds_list_size(node.data);
-        eh = 32;
+        eh = 64;
         x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
         y2 = y1 + 24 + 32 + eh * size + eh;
         
@@ -276,7 +275,6 @@ switch (node.type) {
             var entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
             
             for (var i = 0; i < size + 1; i++) {
-                var eh = 32;
                 draw_line(x1 + 16, entry_yy, x2 - 16, entry_yy);
                 
                 if (i == size) {
@@ -297,12 +295,11 @@ switch (node.type) {
                 
                 draw_text_ext(x1 + 16, mean(entry_yy, entry_yy + eh), node.data[| i], -1, EVENT_NODE_CONTACT_WIDTH - 16);
                 
-                var entry_yy_previous = entry_yy;
-                entry_yy = entry_yy + eh;
-                
                 if (i > 0) {
-                    draw_event_node_choice_remove(x2, mean(entry_yy_previous, entry_yy) + 16, node, i);
+                    draw_event_node_choice_remove(x2, entry_yy + 16, node, i);
                 }
+                
+                entry_yy = entry_yy + eh;
             }
             
             var n = ds_list_size(node.outbound);
@@ -624,6 +621,56 @@ switch (node.type) {
             
             // this is seriously screwing with scope but it works since nodes can't change type
             by = by + eh + ((i < n - 2) ? rh : (rh + eh) / 2);
+        }
+        
+        if (event_canvas_active_node == node) {
+            if (!dialog_exists()) {
+                if (get_release_left()) {
+                    // if the mouse is contacting another entrypoint, connect it
+                    var contacted_node = event_seek_node();
+                    if (contacted_node) {
+                        event_connect_node(node, contacted_node, event_canvas_active_node_index);
+                    }
+                    event_canvas_active_node = noone;
+                    event_canvas_active_node_index = 0;
+                }
+            }
+            
+            draw_bezier(x2 + 8, bezier_y, mouse_x_view, mouse_y_view);
+        }
+        break;
+    case EventNodeTypes.SHOW_CHOICES:
+        bezier_override = true;
+        var entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
+        var by = entry_yy + eh / 2;
+        var n = ds_list_size(node.outbound);
+        var bezier_y = 0;
+        
+        for (var i = 0; i < n; i++) {
+            var outbound = node.outbound[| i];
+            if (!outbound) {
+                draw_event_node_outbound(x2, by, node, i, true);
+            } else {
+                var bx2 = outbound.x;
+                var by2 = outbound.y + 16;
+                
+                draw_event_node_outbound(x2, by, node, i);
+                draw_sprite(spr_event_dot, 0, x2, by);
+                
+                if (event_canvas_active_node != node || event_canvas_active_node_index != i) {
+                    if (bx2 > x2) {
+                        draw_bezier(x2 + 8, by, bx2 - 8, by2);
+                    } else {
+                        draw_event_ghost(x2 + 8, by, x2 + 64, by, outbound);
+                    }
+                }
+            }
+            
+            if (event_canvas_active_node == node && event_canvas_active_node_index == i) {
+                bezier_y = by;
+            }
+            
+            by = by + eh;
         }
         
         if (event_canvas_active_node == node) {
