@@ -57,7 +57,7 @@ for (var i = 0; i < n_events; i++) {
                 buffer_write(buffer, buffer_u8, ds_list_size(list_types));
                 for (var k = 0; k < ds_list_size(list_types); k++) {
                     buffer_write(buffer, buffer_u8, list_types[| k]);
-                    buffer_write(buffer, buffer_u32, list_indices[| k]);
+                    buffer_write(buffer, buffer_s32, list_indices[| k]);
                     buffer_write(buffer, buffer_u8, list_comparisons[| k]);
                     buffer_write(buffer, buffer_f32, list_values[| k]);
                     buffer_write(buffer, buffer_string, list_code[| k]);

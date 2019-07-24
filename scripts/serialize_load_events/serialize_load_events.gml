@@ -80,7 +80,7 @@ repeat(n_events) {
                 var n = buffer_read(buffer, buffer_u8);
                 repeat (n) {
                     ds_list_add(list_types, buffer_read(buffer, buffer_u8));
-                    ds_list_add(list_indices, buffer_read(buffer, buffer_u32));
+                    ds_list_add(list_indices, buffer_read(buffer, buffer_s32));
                     ds_list_add(list_comparisons, buffer_read(buffer, buffer_u8));
                     ds_list_add(list_values, buffer_read(buffer, buffer_f32));
                     ds_list_add(list_code, buffer_read(buffer, buffer_string));
