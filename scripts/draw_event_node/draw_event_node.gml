@@ -154,7 +154,10 @@ switch (node.type) {
                 var list_value = node.custom_data[| 3];
                 var list_code = node.custom_data[| 4];
                 
+                // not sure why the value of the radio array is getting reset somewhere that i can't find,
+                // but you need to do this if you want it to not be changed
                 var radio = node.ui_things[| i];
+                radio.value = list_type[| i];
                 script_execute(radio.render, radio, x1, y1);
                 
                 // this should be in an onvaluechange script but that's a huge hassle for something really minor

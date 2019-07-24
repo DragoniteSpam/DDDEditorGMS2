@@ -2,14 +2,16 @@
 /// @param string0
 /// @param [..stringn]
 
+var array = argument[0];
+
 for (var i = 1; i < argument_count; i++) {
-    var n = ds_list_size(argument[0].contents);
-    var option = instance_create_depth(0, argument[0].height * (1 + n), 0, UITextRadio);
+    var n = ds_list_size(array.contents);
+    var option = instance_create_depth(0, array.height * (1 + n), 0, UITextRadio);
     option.text = argument[i];
-    option.root = argument[0];
-    option.height = argument[0].height;
+    option.root = array;
+    option.height = array.height;
     option.value = n;
-    option.check_view = argument[0].check_view;
+    option.check_view = array.check_view;
     
-    ds_list_add(argument[0].contents, option);
+    ds_list_add(array.contents, option);
 }

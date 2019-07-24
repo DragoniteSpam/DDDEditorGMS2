@@ -79,18 +79,19 @@ repeat(n_events) {
                 
                 var n = buffer_read(buffer, buffer_u8);
                 repeat (n) {
-                    ds_list_add(list_types, buffer_read(buffer, buffer_u8));
+                    var condition_type = buffer_read(buffer, buffer_u8);
+                    ds_list_add(list_types, condition_type);
                     ds_list_add(list_indices, buffer_read(buffer, buffer_s32));
                     ds_list_add(list_comparisons, buffer_read(buffer, buffer_u8));
                     ds_list_add(list_values, buffer_read(buffer, buffer_f32));
                     ds_list_add(list_code, buffer_read(buffer, buffer_string));
                     
                     var eh = 32;
-                    var radio = create_radio_array(16, 32, "If condition:", EVENT_NODE_CONTACT_WIDTH - 32, 24, null, ConditionBasicTypes.SWITCH, node);
+                    var radio = create_radio_array(16, 32, "If condition:", EVENT_NODE_CONTACT_WIDTH - 32, 24, null, condition_type, node);
                     radio.check_view = true;
                     create_radio_array_options(radio, "Variable", "Switch", "Self Variable", "Self Switch", "Code");
                     radio.y = radio.y + (((ui_get_radio_array_height(radio) div eh) * eh) + eh + 16) * ds_list_size(node.ui_things);
-        
+                    
                     ds_list_add(node.ui_things, radio);
                 }
                 break;
