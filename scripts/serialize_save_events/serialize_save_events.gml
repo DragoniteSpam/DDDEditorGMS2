@@ -83,6 +83,7 @@ for (var i = 0; i < n_events; i++) {
                             var save_type = buffer_u8;
                             break;
                         case DataTypes.STRING:
+                        case DataTypes.CODE:
                             var save_type = buffer_string;
                             break; 
                         case DataTypes.ENUM:

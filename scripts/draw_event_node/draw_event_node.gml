@@ -433,8 +433,18 @@ switch (node.type) {
                                     case DataTypes.ANIMATION:
                                         dialog_create_event_node_animation(noone, node, i, 0);
                                         break;
-                                    // @todo data types
                                     case DataTypes.CODE:
+                                        if (node.editor_handle == noone) {
+                                            var location = get_temp_code_path(node);
+                                            var buffer = buffer_create(1, buffer_grow, 1);
+                                            buffer_write(buffer, buffer_text, custom_data_list[| i]);
+                                            buffer_save_ext(buffer, location, 0, buffer_tell(buffer));
+                                            buffer_delete(buffer);
+                                    
+                                            node.editor_handle = ds_stuff_open_local(location);
+                                        }
+                                        break;
+                                    // @todo data types
                                     case DataTypes.COLOR:
                                     case DataTypes.MESH:
                                     case DataTypes.TILE:
@@ -448,6 +458,15 @@ switch (node.type) {
                                 script_execute(attainment, noone, node, i);
                             }
                         }
+                    }
+                }
+                
+                if (node.editor_handle && type[EventNodeCustomData.TYPE] == DataTypes.CODE) {
+                    custom_data_list[| i] = uios_code_text(node, custom_data_list[| i]);
+                    draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy - tolerance + eh, c, c, c, c, false);
+                    if (ds_stuff_process_complete(node.editor_handle)) {
+                        node.editor_handle = noone;
+                        file_delete(get_temp_code_path(node));
                     }
                 }
                 

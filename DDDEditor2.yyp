@@ -791,6 +791,14 @@
             }
         },
         {
+            "Key": "13c3ebe1-818f-4062-b162-f6846e95cfbc",
+            "Value": {
+                "id": "c38f98ca-77c4-4007-864e-ca409fc627c2",
+                "resourcePath": "scripts\\omu_event_add_script\\omu_event_add_script.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "13d090da-6b30-4275-b2a9-69ce6775d5c3",
             "Value": {
                 "id": "d1ba448d-35cd-44f5-b3e9-c792bfbec34f",
@@ -9455,6 +9463,14 @@
             }
         },
         {
+            "Key": "fbce1065-91b7-44fe-bfc5-c1db96aad076",
+            "Value": {
+                "id": "1d42e907-f766-400c-98d5-4a5d680c5167",
+                "resourcePath": "datafiles_yy\\data\\lua\\event-script.lua.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "fc18b721-d580-40ac-9a3b-e600c6520e61",
             "Value": {
                 "id": "6a6e218f-bcee-4c73-8331-687c10048569",
@@ -10211,6 +10227,7 @@
         "f4cf0162-1969-4bab-ba13-c0eb46223b81",
         "477b7cf3-43e7-4ea9-851a-44a9d8060e5b",
         "8812a9cd-ec10-43e0-ae7a-0e338aeac248",
+        "13c3ebe1-818f-4062-b162-f6846e95cfbc",
         "29571f03-3093-4ae5-b4dd-7e992bff680e",
         "df25b060-7862-47c7-ae07-f023cd701099",
         "f41b124d-b315-4143-a16e-98e14ea1429e",

@@ -19,7 +19,8 @@
         "2d96ee9f-6e81-4575-84ac-c6b78732c23a",
         "f4cf0162-1969-4bab-ba13-c0eb46223b81",
         "477b7cf3-43e7-4ea9-851a-44a9d8060e5b",
-        "8812a9cd-ec10-43e0-ae7a-0e338aeac248"
+        "8812a9cd-ec10-43e0-ae7a-0e338aeac248",
+        "13c3ebe1-818f-4062-b162-f6846e95cfbc"
     ],
     "filterType": "GMScript",
     "folderName": "prefab",

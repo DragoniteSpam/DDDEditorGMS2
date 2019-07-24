@@ -119,6 +119,7 @@ repeat(n_events) {
                             var buffer_type = buffer_u8;
                             break;
                         case DataTypes.STRING:
+                        case DataTypes.CODE:
                             var buffer_type = buffer_string;
                             break;
                         case DataTypes.ENUM:

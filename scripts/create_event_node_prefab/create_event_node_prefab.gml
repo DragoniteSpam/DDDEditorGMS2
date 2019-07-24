@@ -24,4 +24,5 @@ with (instantiate(DataEventNodeCustom)) {
     return id;
 }
 
-// [name, DataType, DataType guid, max = 1, all list elements required = false, default-value = 0, value-attainment = null, output-string = null]
+// [name, DataType, DataType guid, max = 1, all list elements required = false, default-value = 0,
+//    value-attainment = null, output-string = null]

@@ -86,6 +86,9 @@ buffer_delete(buffer);
 var buffer = buffer_load(PATH_LUA + "event-node-conditional.lua");
 default_lua_event_node_conditional = buffer_read(buffer, buffer_text);
 buffer_delete(buffer);
+var buffer = buffer_load(PATH_LUA + "event-script.lua");
+default_lua_event_script = buffer_read(buffer, buffer_text);
+buffer_delete(buffer);
 
 #endregion
 
@@ -347,7 +350,9 @@ event_prefab[EventNodeTypes.STOP_SE] = create_event_node_prefab("StopAllSoundEff
 /* */ event_prefab[EventNodeTypes.CHANGE_MAP_TILESET] = create_event_node_prefab("NotYetImplemented", []);
 /* */ event_prefab[EventNodeTypes.CHANGE_MAP_BATTLE_SCENE] = create_event_node_prefab("NotYetImplemented", []);
 /* */ event_prefab[EventNodeTypes.CHANGE_MAP_PARALLAX] = create_event_node_prefab("NotYetImplemented", []);
-/* */ event_prefab[EventNodeTypes.SCRIPT] = create_event_node_prefab("NotYetImplemented", []);
+event_prefab[EventNodeTypes.SCRIPT] = create_event_node_prefab("Script", [
+    ["Code", DataTypes.CODE, 0, 1, true, default_lua_event_script]
+]);
 /* */ event_prefab[EventNodeTypes.AUDIO_CONTORLS] = create_event_node_prefab("NotYetImplemented", []);
 #endregion
 
