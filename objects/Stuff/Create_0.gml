@@ -300,7 +300,12 @@ event_prefab[EventNodeTypes.CONTROL_SELF_VARIABLES] = create_event_node_prefab("
     ["Value", DataTypes.FLOAT, 0, 1, false, 0, omu_event_attain_self_variable_data],
     ["Relative?", DataTypes.BOOL, 0, 1, false, false]
 ]);
-/* */ event_prefab[EventNodeTypes.CONTROL_TIME] = create_event_node_prefab("NotYetImplemented", []);
+event_prefab[EventNodeTypes.CONTROL_TIME] = create_event_node_prefab("ControlTimer", [
+    ["Counting Down?", DataTypes.BOOL, 0, 1, false, true],
+    ["Initial Time (seconds)", DataTypes.INT, 0, 1, false, 0],
+    ["Display?", DataTypes.BOOL, 0, 1, false, false],
+    ["Running?", DataTypes.BOOL, 0, 1, false, true],
+]);
 event_prefab[EventNodeTypes.CONDITIONAL] = create_event_node_prefab("Conditional", [
     // conditional branch nodes are not actually handled as a prefab but i'm leaving this here for reference
     ["Type", DataTypes.INT, 0, 1, false, 0],

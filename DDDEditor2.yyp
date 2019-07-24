@@ -5151,6 +5151,14 @@
             }
         },
         {
+            "Key": "8812a9cd-ec10-43e0-ae7a-0e338aeac248",
+            "Value": {
+                "id": "7aeede61-bfde-4402-9a6d-781ad50a6dc4",
+                "resourcePath": "scripts\\omu_event_add_timer\\omu_event_add_timer.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "884078f3-1176-4148-9840-98f63d93924d",
             "Value": {
                 "id": "7f8982cb-4e04-47f8-bcb8-461a65b7f0c0",
@@ -10202,6 +10210,7 @@
         "2d96ee9f-6e81-4575-84ac-c6b78732c23a",
         "f4cf0162-1969-4bab-ba13-c0eb46223b81",
         "477b7cf3-43e7-4ea9-851a-44a9d8060e5b",
+        "8812a9cd-ec10-43e0-ae7a-0e338aeac248",
         "29571f03-3093-4ae5-b4dd-7e992bff680e",
         "df25b060-7862-47c7-ae07-f023cd701099",
         "f41b124d-b315-4143-a16e-98e14ea1429e",
