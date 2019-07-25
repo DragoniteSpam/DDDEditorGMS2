@@ -26,6 +26,7 @@
 #macro MAP_Y_LIMIT 1024
 #macro MAP_Z_LIMIT 512
 #macro MAX_AUTOTILE_SHADER_POSITIONS 12 * 16 * 8 * 2
+#macro MAX_SELECTION_COUNT 32
 #macro MAX_VISIBLE_MOVE_ROUTES 4
 #macro mouse_x_view mouse_x + __view_get( e__VW.XView, view_current )
 #macro mouse_y_view mouse_y + __view_get( e__VW.YView, view_current )

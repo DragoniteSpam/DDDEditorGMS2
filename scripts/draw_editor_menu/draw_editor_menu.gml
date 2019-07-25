@@ -1,10 +1,6 @@
 // if you're using this in debug mode the overlay is going to be
 // shown and that's going to block out the first part of the menu
-if (DEBUG) {
-    var yy = 24;
-} else {
-    var yy = 0;
-}
+var yy = DEBUG ? 24 : 0;
 
 d3d_set_projection_ortho(0, 0, room_width, room_height, 0);
 gpu_set_cullmode(cull_noculling);

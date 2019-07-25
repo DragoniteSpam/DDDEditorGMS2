@@ -28,31 +28,29 @@ if (zz < z) {
     floor_cy = clamp(floor_y div TILE_HEIGHT, 0, ActiveMap.yy);
     
     if (Controller.press_left) {
-        if (!keyboard_check(input_selection_add) && !selection_addition) {
-            selection_clear();
-            keyboard_string = "";
-        }
-        switch (selection_mode) {
-            case SelectionModes.SINGLE:
-                var stype = SelectionSingle;
-                break;
-            case SelectionModes.RECTANGLE:
-                var stype = SelectionRectangle;
-                break;
-            case SelectionModes.CIRCLE:
-                var stype = SelectionCircle;
-                break;
-        }
+        if (ds_list_size(selection) < MAX_SELECTION_COUNT) {
+            if (!keyboard_check(input_selection_add) && !selection_addition) {
+                selection_clear();
+                keyboard_string = "";
+            }
+            switch (selection_mode) {
+                case SelectionModes.SINGLE:
+                    var stype = SelectionSingle;
+                    break;
+                case SelectionModes.RECTANGLE:
+                    var stype = SelectionRectangle;
+                    break;
+                case SelectionModes.CIRCLE:
+                    var stype = SelectionCircle;
+                    break;
+            }
         
-        if (under_cursor) {
-            var tz = under_cursor.zz;
-        } else {
-            var tz = 0;
-        }
+            var tz = under_cursor ? under_cursor.zz : 0;
         
-        last_selection = instantiate(stype);
-        ds_list_add(selection, last_selection);
-        script_execute(last_selection.onmousedown, last_selection, floor_cx, floor_cy, tz);
+            last_selection = instantiate(stype);
+            ds_list_add(selection, last_selection);
+            script_execute(last_selection.onmousedown, last_selection, floor_cx, floor_cy, tz);
+        }
     }
     if (Controller.mouse_left) {
         if (last_selection) {
