@@ -7,6 +7,7 @@ if (DEBUG) {
 }
 
 d3d_set_projection_ortho(0, 0, room_width, room_height, 0);
+gpu_set_cullmode(cull_noculling);
 
 script_execute(menu.render, menu, 0, yy);
 

@@ -22,6 +22,7 @@ switch (mode) {
         }
         break;
     case EditorModes.EDITOR_EVENT:
+        gpu_set_cullmode(cull_noculling);
         switch (view_current) {
             case view_fullscreen:
                 draw_editor_event();
@@ -35,6 +36,7 @@ switch (mode) {
         }
         break;
     case EditorModes.EDITOR_DATA:
+        gpu_set_cullmode(cull_noculling);
         switch (view_current) {
             case view_fullscreen:
                 draw_editor_data();

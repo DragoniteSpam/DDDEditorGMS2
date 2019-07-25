@@ -26,13 +26,9 @@ var enabled = argument10;
 var onmouseup = argument11;
 var thing = argument12;
 
+// the background goes before everything, because you want to draw over it on hover
 var c = enabled ? c_white : c_ltgray;
-
 draw_rectangle_colour(x1, y1, x2, y2, c, c, c, c, false);
-
-if (thing.outline) {
-    draw_rectangle_colour(x1, y1, x2, y2, c_black, c_black, c_black, c_black, true);
-}
 
 if (enabled) {
     var inbounds = mouse_within_rectangle_determine(thing.check_view, x1, y1, x2, y2);
@@ -44,6 +40,10 @@ if (enabled) {
             //ds_stuff_help_auto(thing);
         }
     }
+}
+
+if (thing.outline) {
+    draw_rectangle_colour(x1, y1, x2, y2, c_black, c_black, c_black, c_black, true);
 }
 
 draw_set_halign(halign);
