@@ -90,7 +90,7 @@ Properties: Map
  - tileset used
 
 Properties: Entity\Tile
- - u, v texture coordinates
+ - u, v texture coordinates - or just an x, y, tile?
 
 Properties: Entity\Mesh
  - mesh (name, id, or something else)
