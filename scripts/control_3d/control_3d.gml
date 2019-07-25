@@ -89,25 +89,25 @@ if (!keyboard_check(vk_control)) {
     var zspeed = 0;
     
     if (keyboard_check(vk_up) || keyboard_check(ord("W"))) {
-        xspeed = dcos(direction) * mspd * Stuff.dt;
-        yspeed = -dsin(direction) * mspd * Stuff.dt;
-        zspeed = -dsin(pitch) * mspd * Stuff.dt;
+        xspeed = xspeed + dcos(direction) * mspd * Stuff.dt;
+        yspeed = yspeed - dsin(direction) * mspd * Stuff.dt;
+        zspeed = zspeed - dsin(pitch) * mspd * Stuff.dt;
         keyboard_string = "";
     }
     if (keyboard_check(vk_down) || keyboard_check(ord("S"))) {
-        xspeed = -dcos(direction) * mspd * Stuff.dt;
-        yspeed = dsin(direction) * mspd * Stuff.dt;
-        zspeed = dsin(pitch) * mspd * Stuff.dt;
+        xspeed = xspeed - dcos(direction) * mspd * Stuff.dt;
+        yspeed = yspeed + dsin(direction) * mspd * Stuff.dt;
+        zspeed = zspeed + dsin(pitch) * mspd * Stuff.dt;
         keyboard_string = "";
     }
     if (keyboard_check(vk_left) || keyboard_check(ord("A"))) {
-        xspeed = -dsin(direction) * mspd * Stuff.dt;
-        yspeed = -dcos(direction) * mspd * Stuff.dt;
+        xspeed = xspeed - dsin(direction) * mspd * Stuff.dt;
+        yspeed = yspeed - dcos(direction) * mspd * Stuff.dt;
         keyboard_string = "";
     }
     if (keyboard_check(vk_right) || keyboard_check(ord("D"))) {
-        xspeed = dsin(direction) * mspd * Stuff.dt;
-        yspeed = dcos(direction) * mspd * Stuff.dt;
+        xspeed = xspeed + dsin(direction) * mspd * Stuff.dt;
+        yspeed = yspeed + dcos(direction) * mspd * Stuff.dt;
         keyboard_string = "";
     }
     if (Controller.mouse_right) {
