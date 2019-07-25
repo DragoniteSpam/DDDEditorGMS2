@@ -57,7 +57,7 @@
 #macro view_hud_width_3d 520
 #macro view_hud_width_event 320
 #macro view_hud 3
-#macro view_invisible 7
+#macro view_overlay 7
 #macro view_ribbon 2
 
 #macro WVIEW __view_get( e__VW.WView, view_current )

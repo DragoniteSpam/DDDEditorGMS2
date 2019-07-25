@@ -49,9 +49,10 @@ switch (mode) {
 }
 
 // these shouldn't be attached to any one view or anything
-if (view_current == view_invisible) {
-    if (!dialog_exists()) {
-        control_global();
+if (view_current == view_overlay) {
+    for (var i = 0; i < ds_list_size(dialogs); i++) {
+        var thing = dialogs[| i];
+        script_execute(thing.render, thing);
     }
 }
 
