@@ -70,11 +70,12 @@ var md_missing = create_menu_element("View Missing Data", momu_missing, menu_dat
 var md_3d = create_menu_element("3D Editor (F6)", momu_editor_3d, menu_data);
 var md_events = create_menu_element("Event Editor (F7)", momu_editor_event, menu_data);
 var md_data = create_menu_element("Game Data (F8)", momu_editor_data, menu_data);
+var md_animation = create_menu_element("Animations (F9)", momu_editor_animation, menu_data);
 ds_list_add(menu_data.contents, md_mesh, md_mesh_autotiles, md_ts, md_audio, md_data_types,
     m_separator,
     md_conflicts, md_missing,
     m_separator,
-    md_3d, md_events, md_data);
+    md_3d, md_events, md_data, md_animation);
 
 var md_aud_bgm = create_menu_element("Background Music (BGM)", momu_bgm, md_audio);
 var md_aud_se = create_menu_element("Sound Effects (SE)", momu_se, md_audio);

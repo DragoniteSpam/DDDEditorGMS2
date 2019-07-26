@@ -28,10 +28,13 @@ alarm[ALARM_CAMERA_SAVE] = room_speed * CAMERA_SAVE_FREQUENCY;
 
 mode = EditorModes.EDITOR_3D;
 
+// if / when you add more of these remember to also add another series of Draw
+// instructions to Camera.Draw
 enum EditorModes {
     EDITOR_3D,
     EDITOR_EVENT,
     EDITOR_DATA,
+    EDITOR_ANIMATION,
 }
 
 /*

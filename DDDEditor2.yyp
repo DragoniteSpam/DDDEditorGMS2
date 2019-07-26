@@ -543,6 +543,14 @@
             }
         },
         {
+            "Key": "0bc2521f-2dc0-4325-913e-77c33c0845e3",
+            "Value": {
+                "id": "22b0f510-5566-4447-a16a-6bf88c0c78c3",
+                "resourcePath": "scripts\\momu_editor_animation\\momu_editor_animation.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "0c0dec0b-433e-4da9-a905-e405b423977c",
             "Value": {
                 "id": "96ee95da-fb90-4e8e-8228-84ea02096af0",
@@ -9999,6 +10007,7 @@
         "154517c7-22de-4eca-8916-6716b8924f47",
         "0cd6b412-3802-483b-a7b0-8e7f15ca6433",
         "7645252a-52fa-4ad4-87c1-1341bb77fdb6",
+        "0bc2521f-2dc0-4325-913e-77c33c0845e3",
         "df9f8e52-d39f-4d27-959e-cb48c4037340",
         "4abd6b03-8bce-4f3f-bbc8-4cfad49dc9a1",
         "54a48ce1-facf-4ddd-b47c-3d0087ccfee1",

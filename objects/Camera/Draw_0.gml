@@ -46,6 +46,17 @@ switch (mode) {
                 break;
         }
         break;
+    case EditorModes.EDITOR_ANIMATION:
+        gpu_set_cullmode(cull_noculling);
+        switch (view_current) {
+            case view_fullscreen:
+                
+                break;
+            case view_ribbon:
+                draw_editor_menu();
+                break;
+        }
+        break;
 }
 
 // these shouldn't be attached to any one view or anything

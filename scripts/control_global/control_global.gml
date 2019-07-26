@@ -55,3 +55,6 @@ if (keyboard_check_pressed(vk_f7)) {
 if (keyboard_check_pressed(vk_f8)) {
     momu_editor_data(noone);
 }
+if (keyboard_check_pressed(vk_f9)) {
+    momu_editor_animation(noone);
+}
