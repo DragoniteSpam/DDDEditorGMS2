@@ -24,5 +24,5 @@ if (argument0.root.changed && ds_list_size(Stuff.original_data) > 0) {
 
 // but only if you're already in the data editor mode
 if (Camera.mode == EditorModes.EDITOR_DATA) {
-    momu_editor_data(noone);
+    momu_editor_3d(noone);
 }
