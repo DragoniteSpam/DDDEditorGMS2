@@ -108,12 +108,7 @@ with (instantiate(UIMain)) {
     ds_list_add(t_general.contents, element);
     
     yy = yy + element.height+spacing;
-    /*
-    element = create_checkbox(col2_x, yy, "View Selection Mask", col_width, element_height, uivc_check_view_selection_mask, "", Camera.view_wireframe, t_general);
-    ds_list_add(t_general.contents, element);
     
-    yy = yy + element.height + spacing;
-    */
     element = create_checkbox(col2_x, yy, "View Wireframes", col_width, element_height, uivc_check_view_wireframe, "", Camera.view_wireframe, t_general);
     ds_list_add(t_general.contents, element);
     
@@ -151,103 +146,103 @@ with (instantiate(UIMain)) {
      * stats tab
      */
     
-    yy=legal_y+spacing;
+    yy = legal_y + spacing;
     
-    element_all_entities=create_list(legal_x+spacing, yy, "All Entities", "<No entities>", col_width, element_height, 28, null, true, t_stats);
-    element_all_entities.render=ui_render_list_all_entities;
+    element_all_entities = create_list(legal_x + spacing, yy, "All Entities", "<No entities>", col_width, element_height, 28, null, true, t_stats);
+    element_all_entities.render = ui_render_list_all_entities;
     ds_list_add(t_stats.contents, element_all_entities);
     
     // second column
     
-    yy=legal_y+spacing;
+    yy = legal_y + spacing;
     
-    element=create_text(col2_x, yy, "Entity Stats", col_width, element_height, fa_left, col_width, t_stats);
+    element = create_text(col2_x, yy, "Entity Stats", col_width, element_height, fa_left, col_width, t_stats);
     ds_list_add(t_stats.contents, element);
     
-    yy=yy+element.height+spacing;
+    yy = yy + element.height + spacing;
     
-    var stat_x=col2_x+col_width*3/4;
+    var stat_x = col2_x + col_width * 3 / 4;
     
-    element=create_text(col2_x, yy, "Total Entities:", col_width, element_height, fa_left, col_width, t_stats);
+    element = create_text(col2_x, yy, "Total Entities:", col_width, element_height, fa_left, col_width, t_stats);
     ds_list_add(t_stats.contents, element);
     
-    element=create_text(stat_x, yy, "0", col_width, element_height, fa_left, col_width, t_stats);
-    element.render=ui_render_text_stats_entities;
+    element = create_text(stat_x, yy, "0", col_width, element_height, fa_left, col_width, t_stats);
+    element.render = ui_render_text_stats_entities;
     ds_list_add(t_stats.contents, element);
     
-    yy=yy+element.height+spacing+spacing;
+    yy = yy + element.height + spacing + spacing;
     
-    element=create_text(col2_x, yy, "     Static:", col_width, element_height, fa_left, col_width, t_stats);
+    element = create_text(col2_x, yy, "     Static:", col_width, element_height, fa_left, col_width, t_stats);
     ds_list_add(t_stats.contents, element);
     
-    element=create_text(stat_x, yy, "0", col_width, element_height, fa_left, col_width, t_stats);
-    element.render=ui_render_text_stats_static;
+    element = create_text(stat_x, yy, "0", col_width, element_height, fa_left, col_width, t_stats);
+    element.render = ui_render_text_stats_static;
     ds_list_add(t_stats.contents, element);
     
-    yy=yy+spacing;
+    yy = yy + spacing;
     
-    element=create_text(col2_x, yy, "     Solid:", col_width, element_height, fa_left, col_width, t_stats);
+    element = create_text(col2_x, yy, "     Solid:", col_width, element_height, fa_left, col_width, t_stats);
     ds_list_add(t_stats.contents, element);
     
-    element=create_text(stat_x, yy, "0", col_width, element_height, fa_left, col_width, t_stats);
+    element = create_text(stat_x, yy, "0", col_width, element_height, fa_left, col_width, t_stats);
     element.render=ui_render_text_stats_solid;
     ds_list_add(t_stats.contents, element);
     
-    yy=yy+element.height+spacing;
+    yy = yy + element.height + spacing;
     
-    element=create_text(col2_x, yy, "     Tiles:", col_width, element_height, fa_left, col_width, t_stats);
+    element = create_text(col2_x, yy, "     Tiles:", col_width, element_height, fa_left, col_width, t_stats);
     ds_list_add(t_stats.contents, element);
     
-    element=create_text(stat_x, yy, "0", col_width, element_height, fa_left, col_width, t_stats);
-    element.render=ui_render_text_stats_entities_tiles;
+    element = create_text(stat_x, yy, "0", col_width, element_height, fa_left, col_width, t_stats);
+    element.render = ui_render_text_stats_entities_tiles;
     ds_list_add(t_stats.contents, element);
     
-    yy=yy+spacing;
+    yy = yy + spacing;
     
-    element=create_text(col2_x, yy, "     Autotiles:", col_width, element_height, fa_left, col_width, t_stats);
+    element = create_text(col2_x, yy, "     Autotiles:", col_width, element_height, fa_left, col_width, t_stats);
     ds_list_add(t_stats.contents, element);
     
-    element=create_text(stat_x, yy, "0", col_width, element_height, fa_left, col_width, t_stats);
-    element.render=ui_render_text_stats_entities_tiles_auto;
+    element = create_text(stat_x, yy, "0", col_width, element_height, fa_left, col_width, t_stats);
+    element.render = ui_render_text_stats_entities_tiles_auto;
     ds_list_add(t_stats.contents, element);
     
-    yy=yy+spacing;
+    yy = yy + spacing;
     
-    element=create_text(col2_x, yy, "     Meshes:", col_width, element_height, fa_left, col_width, t_stats);
+    element = create_text(col2_x, yy, "     Meshes:", col_width, element_height, fa_left, col_width, t_stats);
     ds_list_add(t_stats.contents, element);
     
-    element=create_text(stat_x, yy, "0", col_width, element_height, fa_left, col_width, t_stats);
-    element.render=ui_render_text_stats_entities_meshes;
+    element = create_text(stat_x, yy, "0", col_width, element_height, fa_left, col_width, t_stats);
+    element.render = ui_render_text_stats_entities_meshes;
     ds_list_add(t_stats.contents, element);
     
-    yy=yy+spacing;
+    yy = yy + spacing;
     
-    element=create_text(col2_x, yy, "     Pawns:", col_width, element_height, fa_left, col_width, t_stats);
+    element = create_text(col2_x, yy, "     Pawns:", col_width, element_height, fa_left, col_width, t_stats);
     ds_list_add(t_stats.contents, element);
     
-    element=create_text(stat_x, yy, "0", col_width, element_height, fa_left, col_width, t_stats);
-    element.render=ui_render_text_stats_entities_pawns;
+    element = create_text(stat_x, yy, "0", col_width, element_height, fa_left, col_width, t_stats);
+    element.render = ui_render_text_stats_entities_pawns;
     ds_list_add(t_stats.contents, element);
     
-    yy=yy+spacing;
+    yy = yy + spacing;
     
-    element=create_text(col2_x, yy, "     Effects:", col_width, element_height, fa_left, col_width, t_stats);
+    element = create_text(col2_x, yy, "     Effects:", col_width, element_height, fa_left, col_width, t_stats);
     ds_list_add(t_stats.contents, element);
     
-    element=create_text(stat_x, yy, "0", col_width, element_height, fa_left, col_width, t_stats);
-    element.render=ui_render_text_stats_entities_effects;
+    element = create_text(stat_x, yy, "0", col_width, element_height, fa_left, col_width, t_stats);
+    element.render = ui_render_text_stats_entities_effects;
     ds_list_add(t_stats.contents, element);
     
-    yy=yy+spacing;
+    yy = yy + spacing;
     
-    element=create_text(col2_x, yy, "     Events:", col_width, element_height, fa_left, col_width, t_stats);
+    element = create_text(col2_x, yy, "     Events:", col_width, element_height, fa_left, col_width, t_stats);
     ds_list_add(t_stats.contents, element);
     
-    element=create_text(stat_x, yy, "0", col_width, element_height, fa_left, col_width, t_stats);
-    element.render=ui_render_text_stats_entities_events;
+    element = create_text(stat_x, yy, "0", col_width, element_height, fa_left, col_width, t_stats);
+    element.render = ui_render_text_stats_entities_events;
     ds_list_add(t_stats.contents, element);
     
-    yy=yy+spacing;
+    yy = yy + spacing;
     
     /*
      * entity tab
@@ -463,45 +458,45 @@ with (instantiate(UIMain)) {
      * tile tab
      */
     
-    yy=legal_y+spacing;
+    yy = legal_y + spacing;
     
-    element=create_text(legal_x+spacing, yy, "Select a tile to place down!", col_width, element_height, fa_left, col_width, t_p_tile_editor);
+    element = create_text(legal_x + spacing, yy, "Select a tile to place down!", col_width, element_height, fa_left, col_width, t_p_tile_editor);
     ds_list_add(t_p_tile_editor.contents, element);
     
-    element=create_button(col2_x+col_width/2, yy, "Tileset Data", button_width, element_height, fa_center, omu_manager_tileset, t_p_tile_editor, HelpPages.TAB_TILE_EDITOR, fa_middle, fa_top);
+    element = create_button(col2_x + col_width / 2, yy, "Tileset Data", button_width, element_height, fa_center, omu_manager_tileset, t_p_tile_editor, HelpPages.TAB_TILE_EDITOR, fa_middle, fa_top);
     ds_list_add(t_p_tile_editor.contents, element);
     
-    yy=yy+element.height+spacing;
+    yy = yy + element.height + spacing;
     
-    element=create_tile_selector(legal_x+spacing, yy, legal_width-spacing*2, (legal_width div Stuff.tile_width)*Stuff.tile_width-element_height, uivc_select_tile, uivc_select_tile_backwards, t_p_tile_editor);
+    element = create_tile_selector(legal_x + spacing, yy, legal_width - spacing * 2, (legal_width div Stuff.tile_width) * Stuff.tile_width - element_height, uivc_select_tile, uivc_select_tile_backwards, t_p_tile_editor);
     ds_list_add(t_p_tile_editor.contents, element);
     
-    yy=yy+element.height+spacing;
+    yy = yy + element.height + spacing;
     var yy_aftergrid=yy;
     
-    element=create_radio_array(legal_x+spacing, yy, "Data to View", col_width, element_height, uivc_tile_set_data_view, Camera.tile_data_view, t_p_tile_editor);
+    element = create_radio_array(legal_x + spacing, yy, "Data to View", col_width, element_height, uivc_tile_set_data_view, Camera.tile_data_view, t_p_tile_editor);
     create_radio_array_options(element, "Passage", "Priority", "Flags (off)", "Tags");
     ds_list_add(t_p_tile_editor.contents, element);
     
-    yy=yy+ui_get_radio_array_height(element)+spacing;
+    yy = yy + ui_get_radio_array_height(element) + spacing;
     
-    element=create_radio_array(legal_x+spacing, yy, "On Click", col_width, element_height, uivc_tile_set_on_click, Camera.tile_on_click, t_p_tile_editor);
+    element = create_radio_array(legal_x + spacing, yy, "On Click", col_width, element_height, uivc_tile_set_on_click, Camera.tile_on_click, t_p_tile_editor);
     create_radio_array_options(element, "Select", "Modify");
     ds_list_add(t_p_tile_editor.contents, element);
     
     // second column
     
-    yy=yy_aftergrid;
+    yy = yy_aftergrid;
     
-    element=create_text(col2_x, yy, "Tile Properties: x, y", col_width, element_height, fa_left, col_width, t_p_tile_editor);
-    element.render=ui_render_text_tile_label;
+    element = create_text(col2_x, yy, "Tile Properties: x, y", col_width, element_height, fa_left, col_width, t_p_tile_editor);
+    element.render = ui_render_text_tile_label;
     ds_list_add(t_p_tile_editor.contents, element);
     
-    yy=yy+element.height+spacing;
+    yy = yy + element.height + spacing;
     
-    var s=10;
+    var s = 10;
     
-    element=create_bitfield(col2_x, yy, "Passage:", 84, element_height, null, TILE_PASSABLE, t_p_tile_editor);
+    element = create_bitfield(col2_x, yy, "Passage:", 84, element_height, null, TILE_PASSABLE, t_p_tile_editor);
     create_bitfield_options(element, create_bitfield_option_data(TilePassability.UP, ui_render_bitfield_option_picture_tile_passability, uivc_bitfield_tile_passability, "", spr_direction, 0, s, s),
         create_bitfield_option_data(TilePassability.DOWN, ui_render_bitfield_option_picture_tile_passability, uivc_bitfield_tile_passability, "", spr_direction, 1, s, s),
         create_bitfield_option_data(TilePassability.LEFT, ui_render_bitfield_option_picture_tile_passability, uivc_bitfield_tile_passability, "", spr_direction, 2, s, s),
@@ -510,37 +505,37 @@ with (instantiate(UIMain)) {
         create_bitfield_option_data(0, ui_render_bitfield_option_text_passability_tile_solid, uivc_bitfield_tile_passability_solid, "X", spr_direction, 0, s, s));
     ds_list_add(t_p_tile_editor.contents, element);
     
-    yy=yy+element.height+spacing;
+    yy = yy + element.height + spacing;
     
-    element=create_input(col2_x, yy, "Priority:", col_width, element_height, uivc_input_tile_priority, "", 0, 0, validate_int, ui_value_real, 0, TILE_MAX_PRIORITY-1, 3, 84, 0, 84+64, element_height, t_p_tile_editor);
-    element.render=ui_render_input_tile_priority;
+    element = create_input(col2_x, yy, "Priority:", col_width, element_height, uivc_input_tile_priority, "", 0, 0, validate_int, ui_value_real, 0, TILE_MAX_PRIORITY - 1, 3, 84, 0, 84 + 64, element_height, t_p_tile_editor);
+    element.render = ui_render_input_tile_priority;
     ds_list_add(t_p_tile_editor.contents, element);
     
     // this is totally cheating but game maker allows me to do it so shut up
-    t_p_tile_editor.element_priority=element;
+    t_p_tile_editor.element_priority = element;
     
-    yy=yy+element.height+spacing;
+    yy = yy + element.height + spacing;
     
-    element=create_bitfield(col2_x, yy, "Flags:", 84, element_height, fa_left, col_width, t_p_tile_editor);
+    element = create_bitfield(col2_x, yy, "Flags:", 84, element_height, fa_left, col_width, t_p_tile_editor);
     create_bitfield_options(element, create_bitfield_option_data(TileFlags.BUSH, ui_render_bitfield_option_text_tile_flag, uivc_bitfield_tile_flag, "B", -1, 0, s, s),
         create_bitfield_option_data(TileFlags.COUNTER, ui_render_bitfield_option_text_tile_flag, uivc_bitfield_tile_flag, "C", -1, 0, s, s));
     ds_list_add(t_p_tile_editor.contents, element);
     
-    yy=yy+element.height+spacing;
+    yy = yy + element.height + spacing;
     
-    element=create_input(col2_x, yy, "Tag:", col_width, element_height, uivc_input_tile_tag, "", 0, 0, validate_int, ui_value_real, 0, TileTerrainTags.FINAL-1, 2, 84, 0, 84+64, element_height, t_p_tile_editor);
+    element = create_input(col2_x, yy, "Tag:", col_width, element_height, uivc_input_tile_tag, "", 0, 0, validate_int, ui_value_real, 0, TileTerrainTags.FINAL - 1, 2, 84, 0, 84 + 64, element_height, t_p_tile_editor);
     ds_list_add(t_p_tile_editor.contents, element);
     
-    t_p_tile_editor.element_tag=element;
+    t_p_tile_editor.element_tag = element;
     
-    yy=yy+element.height+spacing;
+    yy = yy + element.height + spacing;
     
-    element=create_button(col2_x+16, yy, "-", element_height, element_height, fa_center, uimu_tile_tag_down, t_p_tile_editor);
+    element = create_button(col2_x + 16, yy, "-", element_height, element_height, fa_center, uimu_tile_tag_down, t_p_tile_editor);
     ds_list_add(t_p_tile_editor.contents, element);
-    element=create_text(col2_x+48, yy, "tag name", col_width, element_height, fa_left, 128, t_p_tile_editor);
-    element.render=ui_render_text_tile_tag;
+    element = create_text(col2_x + 48, yy, "tag name", col_width, element_height, fa_left, 128, t_p_tile_editor);
+    element.render = ui_render_text_tile_tag;
     ds_list_add(t_p_tile_editor.contents, element);
-    element=create_button(col2_x+176, yy, "+", element_height, element_height, fa_center, uimu_tile_tag_up, t_p_tile_editor);
+    element = create_button(col2_x + 176, yy, "+", element_height, element_height, fa_center, uimu_tile_tag_up, t_p_tile_editor);
     ds_list_add(t_p_tile_editor.contents, element);
     
     /*

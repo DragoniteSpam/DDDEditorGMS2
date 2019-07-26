@@ -40,6 +40,7 @@ enum EditorModes {
 
 MOUSE_X = window_mouse_get_x();
 MOUSE_Y = window_mouse_get_y();
+mouse_3d_lock = false;
 
 mouse_vector = [1, 1, 1];
 

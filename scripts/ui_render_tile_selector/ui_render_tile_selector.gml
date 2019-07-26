@@ -112,22 +112,36 @@ if (inbounds) {
     }
 }
     
+var camera = view_get_camera(view_current);
+var base_x1 = selector.x;
+var base_y1 = selector.y;
+var base_x2 = base_x1 + selector.width;
+var base_y2 = base_y1 + selector.height;
+var mx = clamp(mouse_x, base_x1, base_x2);
+var my = clamp(mouse_y, base_y1, base_y2);
 // pan around
 if (Controller.mouse_right) {
+    // continuous
     if (selector.offset_x >- 1) {
         selector.tile_view_x = clamp(selector.tile_view_x + selector.offset_x - Camera.MOUSE_X, 0, tex_width - selector.width);
         selector.tile_view_y = clamp(selector.tile_view_y + selector.offset_y - Camera.MOUSE_Y, 0, tex_height - selector.height);
+        Camera.mouse_3d_lock = true;
     }
-    if (selector.offset_x > -1 || inbounds) {
+    // this is an "or" - don't try to squish it into the above block because it won't work
+    if (selector.offset_x >- 1 || inbounds) {
         selector.offset_x = Camera.MOUSE_X;
         selector.offset_y = Camera.MOUSE_Y;
-        draw_scroll();
+        // this stopped working when the new(ish) mouse / view system came in, apparently
+        //draw_scroll();
         window_set_cursor(cr_none);
+        draw_sprite(spr_scroll, 0, mx, my);
     }
 } else {
     if (selector.offset_x != -1) {
         window_set_cursor(cr_default);
+        Camera.mouse_3d_lock = false;
         selector.offset_x = -1;
         selector.offset_y = -1;
+        window_mouse_set(mx, my);
     }
 }
