@@ -6,13 +6,13 @@ var text = argument0;
 var xx = argument1;
 var yy = argument2;
 
-var data = guid_get(Camera.ui_game_data.active_type_guid);
-var selection = ui_list_selection(Camera.ui_game_data.el_instances);
+var data = text.root.active_animation;
+var selection = ui_list_selection(text.root.el_master);
 var original_color = text.color;
 
 if (selection >= 0) {
     var exists = internal_name_get(text.value);
-    if (exists && exists != data.instances[| selection]) {
+    if (exists && exists != data) {
         text.color = c_red;
     }
 }

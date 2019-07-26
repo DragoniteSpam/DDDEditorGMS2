@@ -23,7 +23,7 @@ with (instantiate(UIThing)) {
     active_animation = noone;
     
     /*
-     * the list on the side is pretty important
+     * these are pretty important
      */
     
     var this_column = 0;
@@ -44,25 +44,26 @@ with (instantiate(UIThing)) {
     var element = create_button(xx, yy, "Remove Animation", ew, eh, fa_middle, omu_animation_remove, id);
     ds_list_add(contents, element);
     
-    yy = yy + element.height + spacing;
+    yy = yy_base;
+    this_column = 1;
+    xx = this_column * cw + spacing;
     
-    /*
-     * administrative things
-     */
+    el_name = create_input(xx, yy, "Name:", ew, eh, uivc_animation_set_name, "", "", "Instance name", validate_string, ui_value_string, 0, 1, 16, vx1, vy1, vx2, vy2, id);
+    ds_list_add(contents, el_name);
     
-    var this_column = 1;
-    yy = yy_header;
+    yy = yy + el_name.height + spacing;
+        
+    el_internal_name = create_input(xx, yy, "Internal Name:", ew, eh, uivc_animation_set_internal_name, "", "", "Internal name", validate_string_internal_name, ui_value_string, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, id);
+    el_internal_name.render = ui_render_text_animation_internal_name;
+    ds_list_add(contents, el_internal_name);
     
-    var element = create_text(this_column * cw + spacing, yy, "Data Name", ew, eh, fa_left, ew, id);
-    element.render = ui_render_text_data_name;
-    ds_list_add(contents, element);
+    yy = yy + el_internal_name.height + spacing;
     
     /*
      * more important stuff that needs to be done?
      */
     
-    active_type_guid = 0;
-    instance_deactivate_object(UIThing);
+    instance_deactivate_object(id);
     
     return id;
 }

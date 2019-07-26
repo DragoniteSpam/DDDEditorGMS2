@@ -12,9 +12,11 @@ if (!ds_list_empty(Stuff.all_animations)) {
         } else {
             var listofthings = Stuff.all_animations;
         }
-        if (listofthings[| selection] != list.root.active_animation) {
-            list.root.active_animation = listofthings[| selection];
-        }
+        
+        list.root.active_animation = listofthings[| selection];
+        list.root.el_name.value = list.root.active_animation.name;
+        list.root.el_internal_name.value = list.root.active_animation.internal_name;
+        
         if (Stuff.setting_alphabetize_lists) {
             ds_list_destroy(listofthings);
         } else {

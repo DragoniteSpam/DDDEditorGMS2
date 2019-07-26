@@ -3935,6 +3935,14 @@
             }
         },
         {
+            "Key": "6791d4b8-f29e-4ddf-a6ce-480e847e6101",
+            "Value": {
+                "id": "c886c03c-2477-42c0-8955-6e49033e2912",
+                "resourcePath": "scripts\\uivc_animation_set_name\\uivc_animation_set_name.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "67ecd4e4-47a0-4455-adbb-6f77bde54d89",
             "Value": {
                 "id": "2de1ead1-ad6a-4dfd-8aee-8e3ab4a14dc1",
@@ -7623,6 +7631,14 @@
             }
         },
         {
+            "Key": "cade4bf0-07b6-4f4d-b27e-f913cad0085d",
+            "Value": {
+                "id": "52d75aa5-9c4f-4576-a51c-8d0ff69ee6fc",
+                "resourcePath": "scripts\\ui_render_text_animation_internal_name\\ui_render_text_animation_internal_name.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "cae6374b-8f37-4d1f-a9b2-e971176a3b62",
             "Value": {
                 "id": "ba234243-52e5-480a-9b35-920508226c8e",
@@ -9575,6 +9591,14 @@
             }
         },
         {
+            "Key": "fcb65bf3-305b-491e-9b10-b64f67d7dea7",
+            "Value": {
+                "id": "3feb8195-dac2-438c-aac3-499933672f2f",
+                "resourcePath": "scripts\\uivc_animation_set_internal_name\\uivc_animation_set_internal_name.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "fcbc3620-5731-43bc-8df5-437ff3c44e48",
             "Value": {
                 "id": "3d95ee07-75b5-4f89-8bef-b62d0de8be28",
@@ -10232,7 +10256,9 @@
         "e938bd97-716f-408c-b1d1-278f7242593f",
         "2be4bb41-d6da-4ba0-8d1b-fdba9e442881",
         "604533a3-0511-49c1-828b-78073e48665e",
+        "6791d4b8-f29e-4ddf-a6ce-480e847e6101",
         "1480a86d-bd00-430f-bd75-7bb2ae7889e4",
+        "fcb65bf3-305b-491e-9b10-b64f67d7dea7",
         "1235ef45-e6a4-49a0-8613-89ad4ea34e54",
         "49f2e1bd-b1cf-48c1-962c-6d801cede7dd",
         "30e6c2ce-5723-4c1b-84f4-b587eaf70d2e",
@@ -10470,6 +10496,7 @@
         "38605fcd-3b88-4729-bf05-0f7dc77f2813",
         "5ecf7524-d817-4120-b4d8-87765b5d8b80",
         "97aba9b8-8e90-4d82-9c36-f68f510de9de",
+        "cade4bf0-07b6-4f4d-b27e-f913cad0085d",
         "dff9c3b9-a6e4-423c-9001-70902ff41c5b",
         "15cdb7d9-0b40-4bbf-8a58-0877a0cab69f",
         "8780f730-a962-4fa8-96f8-68eb5902b5db",

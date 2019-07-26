@@ -11,6 +11,9 @@ if (selection >= 0) {
             instance_activate_object(thing.root.active_animation);
             instance_destroy(thing.root.active_animation);
             ui_list_deselect(thing.root.el_master);
+            thing.root.active_animation = noone;
+            thing.root.el_name.value = "";
+            thing.root.el_internal_name.value = "";
             break;
         }
     }
