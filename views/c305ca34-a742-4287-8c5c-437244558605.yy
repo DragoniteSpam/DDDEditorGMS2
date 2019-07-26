@@ -39,7 +39,8 @@
         "0bb0a405-f03c-48b1-b906-b9f0a7014a09",
         "952fd50c-692c-4932-86c3-8ff5bab58c04",
         "63ca5c1a-3416-4dc1-b669-43ab343cae7e",
-        "711232e1-9100-4b6d-bbf2-b4ce22433300"
+        "711232e1-9100-4b6d-bbf2-b4ce22433300",
+        "92bfcbec-17de-44f5-ad27-8060316e6988"
     ],
     "filterType": "GMScript",
     "folderName": "on value change and general interaction",

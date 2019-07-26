@@ -1,27 +1,33 @@
 /// @param UIList
+/// @param x
+/// @param y
 
-var otext = argument0.text;
-var oentries = argument0.entries;
+var list = argument0;
+var xx = argument0;
+var yy = argument0;
 
-argument0.text = otext + string(ds_list_size(Stuff.all_data));
+var otext = list.text;
+var oentries = list.entries;
+
+list.text = otext + string(ds_list_size(Stuff.all_data));
 
 if (Stuff.setting_alphabetize_lists) {
-    argument0.entries = ds_list_sort_name_sucks(Stuff.all_data);
+    list.entries = ds_list_sort_name_sucks(Stuff.all_data);
 } else {
-    argument0.entries = Stuff.all_data;
+    list.entries = Stuff.all_data;
 }
 
-argument0.colorize = true;
-ds_list_clear(argument0.entry_colors);
-for (var i = 0; i < ds_list_size(argument0.entries); i++) {
-    ds_list_add(argument0.entry_colors, instanceof(argument0.entries[| i], DataEnum) ? c_blue : c_black);
+list.colorize = true;
+ds_list_clear(list.entry_colors);
+for (var i = 0; i < ds_list_size(list.entries); i++) {
+    ds_list_add(list.entry_colors, instanceof(list.entries[| i], DataEnum) ? c_blue : c_black);
 }
 
-ui_render_list(argument0, argument1, argument2);
+ui_render_list(list, xx, yy);
 
 if (Stuff.setting_alphabetize_lists) {
-    ds_list_destroy(argument0.entries);
+    ds_list_destroy(list.entries);
 }
 
-argument0.text = otext;
-argument0.entries = oentries;
+list.text = otext;
+list.entries = oentries;

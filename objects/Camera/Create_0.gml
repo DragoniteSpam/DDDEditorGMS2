@@ -127,6 +127,7 @@ changes = ds_list_create();
 ui = ui_init_main();
 ui_event = ui_init_event();
 ui_game_data = noone;
+ui_animation = ui_init_animation();
 menu = instantiate(MenuMain);
 dialogs = ds_list_create();
 
