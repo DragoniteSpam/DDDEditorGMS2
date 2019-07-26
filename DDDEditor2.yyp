@@ -1279,6 +1279,14 @@
             }
         },
         {
+            "Key": "215c2fc3-cce9-430c-8459-dfbed959d63f",
+            "Value": {
+                "id": "f68e7290-b4b5-4ab9-85ab-71f4d2d4b33b",
+                "resourcePath": "scripts\\omu_animation_remove\\omu_animation_remove.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "21804de0-f799-4a38-b306-80feefd3e1c1",
             "Value": {
                 "id": "ecf41c17-151f-457d-b347-0c378c1abbc6",
@@ -2211,6 +2219,14 @@
             "Value": {
                 "id": "b34ea58a-318e-4d47-9a0f-e753bf790111",
                 "resourcePath": "scripts\\entity_pawn_destroy\\entity_pawn_destroy.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "3c8edd53-da0d-40ac-99a3-a5cdc10c1840",
+            "Value": {
+                "id": "d4e7949d-25bf-4188-8f4c-1ca3d338df49",
+                "resourcePath": "scripts\\omu_animation_add\\omu_animation_add.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -6719,6 +6735,14 @@
             }
         },
         {
+            "Key": "b160d72a-bf18-4a16-9146-44a80116863b",
+            "Value": {
+                "id": "81b385bd-a491-4dca-900c-8c8c58733b8d",
+                "resourcePath": "objects\\DataAnimation\\DataAnimation.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "b19f02e8-8b5e-45b3-842e-6fc5a52df295",
             "Value": {
                 "id": "ee3f875d-6f43-416d-9e6e-654d85c88308",
@@ -10346,6 +10370,8 @@
         "751917e4-1c0e-4642-a90b-2802f78d0c07",
         "1c187030-e1e3-49ad-ab61-97f8a80b3e2f",
         "0e26949e-30d7-4801-902e-e3aa4e2d441e",
+        "3c8edd53-da0d-40ac-99a3-a5cdc10c1840",
+        "215c2fc3-cce9-430c-8459-dfbed959d63f",
         "d31a1629-040f-4b39-8224-f42a5cfd98f1",
         "4fecdd3d-e55e-4415-9b9b-17f908c7851b",
         "74999b75-d5f0-4ef3-a3a5-86002705fae5",

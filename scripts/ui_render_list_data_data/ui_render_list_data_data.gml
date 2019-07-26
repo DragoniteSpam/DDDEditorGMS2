@@ -3,8 +3,8 @@
 /// @param y
 
 var list = argument0;
-var xx = argument0;
-var yy = argument0;
+var xx = argument1;
+var yy = argument2;
 
 var otext = list.text;
 var oentries = list.entries;
