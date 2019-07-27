@@ -64,6 +64,7 @@ with (instantiate(UIThing)) {
     
     el_layers = create_list(xx, yy_header, "Layers: ", "<no layers>", ew, eh, 10, uivc_list_animation_layers_editor, false, id);
     el_layers.render = ui_render_list_animation_layers;
+    el_layers.ondoubleclick = uidc_list_animation_layers_editor;
     el_layers.entries_are = ListEntries.INSTANCES;
     ds_list_add(contents, el_layers);
     

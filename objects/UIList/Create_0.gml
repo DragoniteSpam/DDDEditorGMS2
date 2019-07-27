@@ -14,6 +14,7 @@ click_x = -1;
 click_y = -1;
 
 onvaluechange = null;
+ondoubleclick = null;
 render = ui_render_list;
 
 allow_multi_select = false;
