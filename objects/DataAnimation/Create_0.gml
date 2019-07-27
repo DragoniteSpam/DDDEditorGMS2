@@ -8,4 +8,4 @@ base_layer.is_actor = true;
 ds_list_add(layers, base_layer);
 
 frames_per_second = 24;
-moments = frames_per_second * 1;
+moments = frames_per_second * 2;

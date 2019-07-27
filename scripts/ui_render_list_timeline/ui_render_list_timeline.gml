@@ -30,6 +30,7 @@ if (animation) {
 
     if (n > 0) {
         var c = c_ui_select;
+        // layer list's selected entries
         for (var i = 0; i < min(n, timeline.slots); i++) {
             var index = i + layer_list.index;
             var ya = y2 + timeline.height * i;
@@ -41,6 +42,7 @@ if (animation) {
             }
         }
         
+        // if the selection is out of bounds (layers deleted, etc) reset the selection
         if (timeline.selected_layer >= n) {
             timeline.selected_layer = -1;
         }
@@ -48,25 +50,30 @@ if (animation) {
             timeline.selected_moment = -1;
         }
         
-        if (is_clamped(timeline.selected_moment, timeline.moment_index, timeline.moment_index + timeline.moment_slots)) {
+        // draw the keyframe selection
+        if (is_clamped(timeline.selected_moment, timeline.moment_index, timeline.moment_index + timeline.moment_slots - 1)) {
             draw_set_alpha(0.5);
-            var mlx1 = x1 + timeline.moment_width * timeline.selected_moment;
-            var mlx2 = x1 + timeline.moment_width * (timeline.selected_moment + 1);
+            var mlx1 = x1 + timeline.moment_width * (timeline.selected_moment - timeline.moment_index);
+            var mlx2 = x1 + timeline.moment_width * (timeline.selected_moment - timeline.moment_index + 1);
             draw_rectangle_colour(mlx1, y2, mlx2, y3, c, c, c, c, false);
             draw_set_alpha(1);
         }
         
-        if (is_clamped(timeline.selected_layer, layer_list.index, layer_list.index + layer_list.slots)) {
-            var mlx = x1 + timeline.moment_width * (timeline.selected_moment + 0.5);
-            var mly = y2 + timeline.height * (timeline.selected_layer - layer_list.index + 0.5);
-            draw_sprite(spr_timeline_keyframe_selected, 0, mlx, mly);
+        if (is_clamped(timeline.selected_layer, layer_list.index, layer_list.index + layer_list.slots - 1)) {
+            if (is_clamped(timeline.selected_moment, timeline.moment_index, timeline.moment_index + timeline.moment_slots - 1)) {
+                var mlx = x1 + timeline.moment_width * (timeline.selected_moment - timeline.moment_index + 0.5);
+                var mly = y2 + timeline.height * (timeline.selected_layer - layer_list.index + 0.5);
+                draw_sprite(spr_timeline_keyframe_selected, 0, mlx, mly);
+            }
         }
         
+        // draw the keyframes
         var moment_start = timeline.moment_index;
         var moment_end = timeline.moment_index + timeline.moment_slots;
         
         for (var i = 0; i < min(n, timeline.slots); i++) {
-            var timeline_layer = timeline.root.active_animation.layers[| i];
+            var index = i + layer_list.index;
+            var timeline_layer = timeline.root.active_animation.layers[| index];
             var keyframes = ds_priority_create();
             ds_priority_copy(keyframes, timeline_layer.keyframes);
             
@@ -75,7 +82,7 @@ if (animation) {
             } until (!keyframe || keyframe.moment >= moment_start);
             
             while (keyframe && keyframe.moment < moment_end) {
-                var kfx = x1 + timeline.moment_width * (keyframe.moment + 0.5);
+                var kfx = x1 + timeline.moment_width * (keyframe.moment - timeline.moment_index + 0.5);
                 var kfy = y2 + timeline.height * (i + 0.5);
                 draw_sprite(spr_timeline_keyframe, 0, kfx, kfy);
                 keyframe = ds_priority_delete_min(keyframes);
@@ -88,6 +95,7 @@ if (animation) {
     var offset = (n > timeline.slots) ? 16 : 0;
 
     var move_direction = 0;
+    var move_horizontal_direction = 0;
 
     if (timeline.interactive && active) {
         var inbounds = mouse_within_rectangle_determine(timeline.check_view, x1, y2, x2 - offset, y3);
@@ -113,20 +121,19 @@ if (animation) {
                     timeline.selected_layer = -1;
                 }
             }
-        
+            
+            var control = keyboard_check(vk_shift);
             if (mouse_wheel_up()) {
-                move_direction = -1;
+                if (control) {
+                    move_horizontal_direction = -1;
+                } else {
+                    move_direction = -1;
+                }
             } else if (mouse_wheel_down()) {
-                move_direction = 1;
-            }
-        
-            if (timeline.allow_multi_select) {
-                if (keyboard_check(vk_control) && keyboard_check_pressed(ord("A"))) {
-                    for (var i = 0; i < ds_list_size(timeline.entries); i++) {
-                        if (!ds_map_exists(timeline.selected_entries, i)) {
-                            ds_map_add(timeline.selected_entries, i, true);
-                        }
-                    }
+                if (control) {
+                    move_horizontal_direction = 1;
+                } else {
+                    move_direction = 1;
                 }
             }
         }
@@ -198,15 +205,17 @@ if (animation) {
         draw_sprite_ext(spr_scroll_arrow, 0, x2 - sw, y3, 1, -1, 0, c_white, 1);
     }
     
-    timeline.index = clamp(timeline.index + move_direction, 0, max(0, n - timeline.slots));
+    layer_list.index = clamp(layer_list.index + move_direction, 0, max(0, n - layer_list.slots));
+    timeline.moment_index = clamp(timeline.moment_index + move_horizontal_direction, 0, max(0, animation.moments - timeline.moment_slots));
 }
 
+// draw the grid over everything else
 draw_rectangle(x1, y2, x2, y3, true);
 
-for (var i = timeline.moment_index; i < timeline.moment_index + timeline.moment_slots; i++) {
+for (var i = 0; i < timeline.moment_slots; i++) {
     var mhx = x1 + timeline.moment_width * (i + 0.5);
     var mlx = x1 + timeline.moment_width * (i + 1);
     var mhy = ty;
-    draw_text(mhx, mhy, string(i));
+    draw_text(mhx, mhy, string(i + timeline.moment_index));
     draw_line(mlx, y2, mlx, y3);
 }

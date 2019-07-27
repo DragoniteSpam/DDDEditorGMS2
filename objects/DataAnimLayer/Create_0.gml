@@ -5,16 +5,21 @@ is_actor = false;
 keyframes = ds_priority_create();
 
 var kf = instantiate(DataAnimKeyframe);
-kf.moment = choose(2, 3, 4);
+kf.moment = irandom_range(0, 9);
 
 ds_priority_add(keyframes, kf, kf.moment);
 
 var kf = instantiate(DataAnimKeyframe);
-kf.moment = choose(5, 6, 7);
+kf.moment = irandom_range(10, 19);
 
 ds_priority_add(keyframes, kf, kf.moment);
 
 var kf = instantiate(DataAnimKeyframe);
-kf.moment = choose(8, 9, 10);
+kf.moment = irandom_range(20, 29);
+
+ds_priority_add(keyframes, kf, kf.moment);
+
+var kf = instantiate(DataAnimKeyframe);
+kf.moment = irandom_range(30, 39);
 
 ds_priority_add(keyframes, kf, kf.moment);
