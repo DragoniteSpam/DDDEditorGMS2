@@ -73,22 +73,27 @@ if (animation) {
         
         for (var i = 0; i < min(n, timeline.slots); i++) {
             var index = i + layer_list.index;
-            var timeline_layer = timeline.root.active_animation.layers[| index];
-            var keyframes = ds_priority_create();
-            ds_priority_copy(keyframes, timeline_layer.keyframes);
             
-            do {
-                var keyframe = ds_priority_delete_min(keyframes);
-            } until (!keyframe || keyframe.moment >= moment_start);
+            // check that the timeline layer is inbounds - the layer list will resize itself later,
+            // but we need to check here just to be safe
+            if (index < ds_list_size(timeline.root.active_animation.layers)) {
+                var timeline_layer = timeline.root.active_animation.layers[| index];
+                var keyframes = ds_priority_create();
+                ds_priority_copy(keyframes, timeline_layer.keyframes);
             
-            while (keyframe && keyframe.moment < moment_end) {
-                var kfx = x1 + timeline.moment_width * (keyframe.moment - timeline.moment_index + 0.5);
-                var kfy = y2 + timeline.height * (i + 0.5);
-                draw_sprite(spr_timeline_keyframe, 0, kfx, kfy);
-                keyframe = ds_priority_delete_min(keyframes);
+                do {
+                    var keyframe = ds_priority_delete_min(keyframes);
+                } until (!keyframe || keyframe.moment >= moment_start);
+            
+                while (keyframe && keyframe.moment < moment_end) {
+                    var kfx = x1 + timeline.moment_width * (keyframe.moment - timeline.moment_index + 0.5);
+                    var kfy = y2 + timeline.height * (i + 0.5);
+                    draw_sprite(spr_timeline_keyframe, 0, kfx, kfy);
+                    keyframe = ds_priority_delete_min(keyframes);
+                }
+            
+                ds_priority_destroy(keyframes);
             }
-            
-            ds_priority_destroy(keyframes);
         }
     }
 
