@@ -169,7 +169,7 @@ if (n > list.slots) {
         var inbounds_top = mouse_within_rectangle_determine(list.check_view, x2 - sw, y2, x2, y2 + sw);
         var inbounds_bottom = mouse_within_rectangle_determine(list.check_view, x2 - sw, y3 - sw, x2, y3);
         if (inbounds_top) {
-            draw_rectangle_colour(x2 - sw + 1, y2 + 1, x2 - 1, y2 + sw-1, c_ui, c_ui, c_ui, c_ui, false);
+            draw_rectangle_colour(x2 - sw + 1, y2 + 1, x2 - 1, y2 + sw - 1, c_ui, c_ui, c_ui, c_ui, false);
             if (Controller.press_left) {
                 move_direction = -1;
             } else if (Controller.mouse_left) {
@@ -189,7 +189,7 @@ if (n > list.slots) {
         }
     }
     draw_sprite(spr_scroll_arrow, 0, x2 - sw, y2);
-    draw_sprite_ext(spr_scroll_arrow, 0, x2 - sw, y3, 1, -1, 0, c_white, 1);
+    draw_sprite(spr_scroll_arrow, 1, x2 - sw, y3 - sw);
 }
 
 draw_rectangle(x1, y2, x2, y3, true);

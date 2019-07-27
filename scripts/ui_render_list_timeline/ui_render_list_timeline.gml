@@ -139,25 +139,30 @@ if (animation) {
         }
     }
 
-    if (n > timeline.slots) {
+    if (animation.moments > timeline.moment_slots) {
+        // the horizontal slider goes below the list in this case, because there might be important
+        // information in the last row of the list that gets obscured - the normal lists should
+        // probably employ this strategy as well, but i think it's less of a big deal there because
+        // the information in them will typically be left-aligned
         var sw = 16;
-        var noutofrange = n - timeline.slots; // at minimum, one
-        draw_rectangle_colour(x2 - sw, y2, x2, y3, c_white, c_white, c_white, c_white, false);
-        draw_line(x2 - sw, y2 + sw, x2, y2 + sw);
-        draw_line(x2 - sw, y3 - sw, x2, y3 - sw);
-        draw_rectangle(x2 - sw, y2, x2, y3, true);
-        var shalf = 32 + (y3 - y2 - 32) / n;
-        var smin = y2 + sw + shalf;
-        var smax = y3 - sw - shalf;
+        var noutofrange = animation.moments - timeline.moment_slots; // at minimum, one
+        var y4 = y3 + sw;
+        var shalf = sw * 2 + 2.5 * (x2 - x1 - sw * 2) / animation.moments;
+        var smin = x1 + sw + shalf;
+        var smax = x2 - sw - shalf;
         var srange = smax - smin;
-        var sy = smin + srange * timeline.index / noutofrange;
-    
-        var sby1 = sy - shalf;
-        var sby2 = sy + shalf;
+        var sx = smin + srange * timeline.moment_index / noutofrange;
+        draw_rectangle_colour(x1, y3, x2, y4, c_white, c_white, c_white, c_white, false);
+        draw_line(x1 + sw, y3, x1 + sw, y4);
+        draw_line(x2 - sw, y3, x2 - sw, y4);
+        draw_rectangle(x1, y3, x2, y4, true);
+        
+        var sbx1 = sx - shalf;
+        var sbx2 = sx + shalf;
         if (timeline.interactive && active) {
-            var inbounds = mouse_within_rectangle_determine(timeline.check_view, x2 - sw, sby1, x2, sby2);
+            var inbounds = mouse_within_rectangle_determine(timeline.check_view, sbx1, y3, sbx2, y4);
             if (inbounds) {
-                draw_rectangle_colour(x2 - sw + 1, sby1 + 1, x2 - 1, sby2 - 1, c_ui, c_ui, c_ui, c_ui, false);
+                draw_rectangle_colour(sbx1 + 1, y3 + 1, sbx2 - 1, y4 - 1, c_ui, c_ui, c_ui, c_ui, false);
                 if (Controller.press_left) {
                     timeline.click_x = Camera.MOUSE_X;
                     timeline.click_y = Camera.MOUSE_Y;
@@ -165,7 +170,7 @@ if (animation) {
             }
             if (Controller.mouse_left) {
                 if (timeline.click_y > -1) {
-                    timeline.index = floor(noutofrange * clamp(Camera.MOUSE_Y - smin, 0, srange) / srange);
+                    timeline.moment_index = floor(noutofrange * clamp(Camera.MOUSE_X - smin, 0, srange) / srange);
                 }
             }
             if (Controller.release_left) {
@@ -173,36 +178,38 @@ if (animation) {
                 timeline.click_y = -1;
             }
         }
-        draw_rectangle(x2 - sw, sby1, x2, sby2, true);
-        draw_line_colour(x2 - sw * 4 / 5, sy - 4, x2 - sw / 5, sy - 4, c_gray, c_gray);
-        draw_line_colour(x2 - sw * 4 / 5, sy, x2 - sw / 5, sy, c_gray, c_gray);
-        draw_line_colour(x2 - sw * 4 / 5, sy + 4, x2 - sw / 5, sy + 4, c_gray, c_gray);
-    
+        
+        draw_rectangle(sbx1, y3, sbx2, y4, true);
+        draw_line_colour(sx - 4, y3 + sw / 5, sx - 4, y3 + sw * 4 / 5, c_gray, c_gray);
+        draw_line_colour(sx, y3 + sw / 5, sx, y3 + sw * 4 / 5, c_gray, c_gray);
+        draw_line_colour(sx + 4, y3 + sw / 5, sx + 4, y3 + sw * 4 / 5, c_gray, c_gray);
+        
         if (active) {
-            var inbounds_top = mouse_within_rectangle_determine(timeline.check_view, x2 - sw, y2, x2, y2 + sw);
-            var inbounds_bottom = mouse_within_rectangle_determine(timeline.check_view, x2 - sw, y3 - sw, x2, y3);
+            var inbounds_top = mouse_within_rectangle_determine(timeline.check_view, x1, y3, x1 + sw, y4);
+            var inbounds_bottom = mouse_within_rectangle_determine(timeline.check_view, x2 - sw, y3, x2, y4);
             if (inbounds_top) {
-                draw_rectangle_colour(x2 - sw + 1, y2 + 1, x2 - 1, y2 + sw-1, c_ui, c_ui, c_ui, c_ui, false);
+                draw_rectangle_colour(x1 + 1, y3 + 1, x1 + sw - 1, y4 - 1, c_ui, c_ui, c_ui, c_ui, false);
                 if (Controller.press_left) {
-                    move_direction = -1;
+                    move_horizontal_direction = -1;
                 } else if (Controller.mouse_left) {
                     if (control_duration_left() > 0.5) {
-                        move_direction = -1;
+                        move_horizontal_direction = -1;
                     }
                 }
             } else if (inbounds_bottom) {
-                draw_rectangle_colour(x2 - sw + 1, y3 - sw + 1, x2 - 1, y3 - 1, c_ui, c_ui, c_ui, c_ui, false);
+                draw_rectangle_colour(x2 - sw + 1, y3 + 1, x2 - 1, y4 - 1, c_ui, c_ui, c_ui, c_ui, false);
                 if (Controller.press_left) {
-                    move_direction = 1;
+                    move_horizontal_direction = 1;
                 } else if (Controller.mouse_left) {
                     if (control_duration_left() > 0.5) {
-                        move_direction = 1;
+                        move_horizontal_direction = 1;
                     }
                 }
             }
         }
-        draw_sprite(spr_scroll_arrow, 0, x2 - sw, y2);
-        draw_sprite_ext(spr_scroll_arrow, 0, x2 - sw, y3, 1, -1, 0, c_white, 1);
+        
+        draw_sprite(spr_scroll_arrow, 2, x1, y3);
+        draw_sprite(spr_scroll_arrow, 3, x2 - sw, y3);
     }
     
     layer_list.index = clamp(layer_list.index + move_direction, 0, max(0, n - layer_list.slots));
