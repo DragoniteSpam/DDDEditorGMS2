@@ -70,6 +70,16 @@ with (instantiate(UIThing)) {
     
     yy = yy + ui_get_list_height(el_layers) + spacing;
     
+    var element = create_button(xx, yy, "Add Layer", ew, eh, fa_middle, omu_animation_layer_add, id);
+    ds_list_add(contents, element);
+    
+    yy = yy + element.height + spacing;
+    
+    var element = create_button(xx, yy, "Remove Layer", ew, eh, fa_middle, omu_animation_layer_remove, id);
+    ds_list_add(contents, element);
+    
+    yy = yy + element.height + spacing;
+    
     /*
      * more important stuff that needs to be done?
      */

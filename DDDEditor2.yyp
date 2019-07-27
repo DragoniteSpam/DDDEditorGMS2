@@ -4863,6 +4863,14 @@
             }
         },
         {
+            "Key": "7e6ecd08-9f9f-401d-95c1-cea6f1201cc6",
+            "Value": {
+                "id": "774d6e71-55ce-4db2-aeff-c9bc79952782",
+                "resourcePath": "scripts\\omu_animation_layer_remove\\omu_animation_layer_remove.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "7ee198d3-685f-4bdb-8a0e-f386c474ae3d",
             "Value": {
                 "id": "ab40c1be-6964-4968-b12b-786338489a88",
@@ -6171,6 +6179,14 @@
             "Value": {
                 "id": "896586f1-33c0-47fe-a8e5-41dbd6c6238c",
                 "resourcePath": "scripts\\buffer_point_complete\\buffer_point_complete.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "a181276c-34c1-448d-a216-74dba3eae854",
+            "Value": {
+                "id": "c900ea2a-6be1-41eb-a0ba-3988e4bc1f7a",
+                "resourcePath": "scripts\\omu_animation_layer_add\\omu_animation_layer_add.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -10456,7 +10472,9 @@
         "1c187030-e1e3-49ad-ab61-97f8a80b3e2f",
         "0e26949e-30d7-4801-902e-e3aa4e2d441e",
         "3c8edd53-da0d-40ac-99a3-a5cdc10c1840",
+        "a181276c-34c1-448d-a216-74dba3eae854",
         "215c2fc3-cce9-430c-8459-dfbed959d63f",
+        "7e6ecd08-9f9f-401d-95c1-cea6f1201cc6",
         "d31a1629-040f-4b39-8224-f42a5cfd98f1",
         "4fecdd3d-e55e-4415-9b9b-17f908c7851b",
         "74999b75-d5f0-4ef3-a3a5-86002705fae5",

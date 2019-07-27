@@ -79,7 +79,11 @@ if (list.interactive && active) {
     var inbounds = mouse_within_rectangle_determine(list.check_view, x1, y2, x2 - offset, y3);
     if (inbounds) {
         if (Controller.double_left) {
+<<<<<<< HEAD
             script_execute(list.ondoubleclick, list);
+=======
+            show_message("!");
+>>>>>>> db1bc5f97500334374fac6abc5d708c1e2c7f921
         } else if (Controller.press_left) {
             // if this ends up having a bounds problem it's probably because the list is empty and
             // it's trying to access n-1 from the next line
