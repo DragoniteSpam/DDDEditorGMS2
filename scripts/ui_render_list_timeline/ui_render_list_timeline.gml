@@ -29,6 +29,7 @@ if (animation) {
     var n = ds_list_size(animation.layers);
 
     if (n > 0) {
+        var c = c_ui_select;
         for (var i = 0; i < min(n, timeline.slots); i++) {
             var index = i + layer_list.index;
             var ya = y2 + timeline.height * i;
@@ -36,9 +37,29 @@ if (animation) {
             var tya = mean(ya, yb);
             
             if (ds_map_exists(layer_list.selected_entries, index)) {
-                var c = c_ui_select;
                 draw_rectangle_colour(x1, ya, x2, yb, c, c, c, c, false);
             }
+        }
+        
+        if (timeline.selected_layer >= n) {
+            timeline.selected_layer = -1;
+        }
+        if (timeline.selected_moment > animation.moments) {
+            timeline.selected_moment = -1;
+        }
+        
+        if (is_clamped(timeline.selected_moment, timeline.moment_index, timeline.moment_index + timeline.moment_slots)) {
+            draw_set_alpha(0.5);
+            var mlx1 = x1 + timeline.moment_width * timeline.selected_moment;
+            var mlx2 = x1 + timeline.moment_width * (timeline.selected_moment + 1);
+            draw_rectangle_colour(mlx1, y2, mlx2, y3, c, c, c, c, false);
+            draw_set_alpha(1);
+        }
+        
+        if (is_clamped(timeline.selected_layer, layer_list.index, layer_list.index + layer_list.slots)) {
+            var mlx = x1 + timeline.moment_width * (timeline.selected_moment + 0.5);
+            var mly = y2 + timeline.height * (timeline.selected_layer - layer_list.index + 0.5);
+            draw_sprite(spr_timeline_keyframe_selected, 0, mlx, mly);
         }
         
         var moment_start = timeline.moment_index;
@@ -191,9 +212,9 @@ if (animation) {
 draw_rectangle(x1, y2, x2, y3, true);
 
 for (var i = timeline.moment_index; i < timeline.moment_index + timeline.moment_slots; i++) {
-    var mhx = x1 + timeline.moment_width * i + timeline.moment_width / 2;
-    var mlx = x1 + timeline.moment_width * i + timeline.moment_width;
-    var mhy = y1;
+    var mhx = x1 + timeline.moment_width * (i + 0.5);
+    var mlx = x1 + timeline.moment_width * (i + 1);
+    var mhy = ty;
     draw_text(mhx, mhy, string(i));
     draw_line(mlx, y2, mlx, y3);
 }

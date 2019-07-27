@@ -6,4 +6,8 @@ moment_index = 0;
 moment_width = 32;
 moment_slots = 16;
 
-selected_moments = ds_map_create();
+selected_moment = 8;
+selected_layer = 2;
+
+playing = false;
+playing_moment = 0;

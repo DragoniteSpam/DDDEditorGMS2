@@ -8415,6 +8415,14 @@
             }
         },
         {
+            "Key": "da4edada-c117-45cb-8dcb-ce54bd9e6a9e",
+            "Value": {
+                "id": "8bff443b-1fcc-465f-81b0-20c68241a1f3",
+                "resourcePath": "sprites\\spr_timeline_keyframe_selected\\spr_timeline_keyframe_selected.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "da695a53-d67e-4967-9ce8-3b1958efd81e",
             "Value": {
                 "id": "c2c76e34-ee0b-4348-b5bd-beeef6a309d1",
