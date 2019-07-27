@@ -65,7 +65,7 @@ if (animation) {
         var moment_start = timeline.moment_index;
         var moment_end = timeline.moment_index + timeline.moment_slots;
         
-        for (var i = 0; i < n; i++) {
+        for (var i = 0; i < min(n, timeline.slots); i++) {
             var timeline_layer = timeline.root.active_animation.layers[| i];
             var keyframes = ds_priority_create();
             ds_priority_copy(keyframes, timeline_layer.keyframes);
@@ -95,30 +95,22 @@ if (animation) {
             if (Controller.double_left) {
                 script_execute(timeline.ondoubleclick, timeline);
             } else if (Controller.press_left) {
-                // if this ends up having a bounds problem it's probably because the timeline is empty and
-                // it's trying to access n-1 from the next line
-                var mn = min(((Camera.MOUSE_Y - y2) div timeline.height) + timeline.index, n - 1);
-                if ((!keyboard_check(vk_control) && !keyboard_check(vk_shift)) || !timeline.allow_multi_select) {
-                    ds_map_clear(timeline.selected_entries);
-                }
-                if (timeline.allow_multi_select && keyboard_check(vk_shift)) {
-                    if (timeline.last_index > -1) {
-                        var d = clamp(mn - timeline.last_index, -1, 1);
-                        for (var i = timeline.last_index; i != mn; i = i + d) {
-                            if (!ds_map_exists(timeline.selected_entries, i)) {
-                                ds_map_add(timeline.selected_entries, i, true);
-                            }
-                        }
-                    }
-                }
-                timeline.last_index = mn;
-                ds_map_add(timeline.selected_entries, mn, true);
+                var mx = min(((Camera.MOUSE_X - x1) div timeline.moment_width) + timeline.moment_index, animation.moments - 1);
+                var my = min(((Camera.MOUSE_Y - y2) div timeline.height) + layer_list.index, n - 1);
+                
+                timeline.selected_moment = mx;
+                timeline.selected_layer = my;
+                
+                ui_list_deselect(layer_list);
+                ds_map_add(layer_list.selected_entries, my, true);
+                
                 script_execute(timeline.onvaluechange, timeline);
             } else if (Controller.press_help) {
                 //ds_stuff_help_auto(timeline);
             } else if (Controller.press_right) {
                 if (timeline.allow_deselect) {
-                    ui_list_deselect(timeline);
+                    timeline.selected_moment = -1;
+                    timeline.selected_layer = -1;
                 }
             }
         
