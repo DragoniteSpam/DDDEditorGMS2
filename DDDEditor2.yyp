@@ -911,6 +911,14 @@
             }
         },
         {
+            "Key": "15e2cdd9-0297-4773-886b-477ad3a4893e",
+            "Value": {
+                "id": "912a748d-e422-489f-bc62-10871d8794d4",
+                "resourcePath": "scripts\\uivc_list_animation_layers_editor\\uivc_list_animation_layers_editor.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "15fb5f4b-74a0-4e42-85d8-81287293819c",
             "Value": {
                 "id": "fad61ebe-4438-466d-bafb-146db04cfa19",
@@ -932,6 +940,14 @@
                 "id": "12bd391c-1128-4957-88bf-bdc2ac1fbc17",
                 "resourcePath": "scripts\\omu_mr_move_up\\omu_mr_move_up.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "170b37cd-d402-4b51-aba1-88b629aa481a",
+            "Value": {
+                "id": "0f7da6b3-1f65-4ab3-9b24-45f15125ab48",
+                "resourcePath": "objects\\DataAnimLayer\\DataAnimLayer.yy",
+                "resourceType": "GMObject"
             }
         },
         {
@@ -3035,6 +3051,14 @@
             "Value": {
                 "id": "27e09062-9cfe-4194-8520-be9700bbf80a",
                 "resourcePath": "scripts\\omu_mr_move_down\\omu_mr_move_down.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "4fb50796-4621-4222-914d-8f793ec9997b",
+            "Value": {
+                "id": "a44d9947-ada1-4f35-82f0-685b3839fe5b",
+                "resourcePath": "scripts\\ui_render_list_animation_layers\\ui_render_list_animation_layers.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -7887,6 +7911,14 @@
             }
         },
         {
+            "Key": "d0c59dea-73fa-44cf-9b58-c88a1f98fd63",
+            "Value": {
+                "id": "c7e321e1-09a2-4fee-8290-77e28bc10d76",
+                "resourcePath": "views\\d0c59dea-73fa-44cf-9b58-c88a1f98fd63.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "d0cbae9f-b1c2-4da3-9b24-b0c55bedfa4e",
             "Value": {
                 "id": "4e27a34f-2f77-4744-9342-ab16f2f86af8",
@@ -9391,6 +9423,14 @@
             }
         },
         {
+            "Key": "f700b2b9-9d76-49cb-aa79-1e05768d83da",
+            "Value": {
+                "id": "1eab745c-f91d-42c6-9050-3a9545b8a109",
+                "resourcePath": "objects\\DataAnimKeyframe\\DataAnimKeyframe.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "f74788fe-a1cb-40ec-8253-1eaf827c4029",
             "Value": {
                 "id": "199cb9e3-8375-4372-9e9a-dfdd756a7a55",
@@ -10307,6 +10347,7 @@
         "0c2010e1-757f-4b76-a7ca-e2334966222c",
         "83ed148f-dd8b-4151-b60e-58e7e50e40fa",
         "a37f8653-364f-4dff-bbe2-cd56bb7224ac",
+        "15e2cdd9-0297-4773-886b-477ad3a4893e",
         "2f5ce293-5d19-4961-957c-cb2d450ac92e",
         "6bf27b2c-c013-4fb1-9836-b95167ffd715",
         "7d1abbee-52fa-4e52-ad7b-5f30de25c5ce",
@@ -10501,6 +10542,7 @@
         "15cdb7d9-0b40-4bbf-8a58-0877a0cab69f",
         "8780f730-a962-4fa8-96f8-68eb5902b5db",
         "d34e77a8-b3e5-4018-b650-6e4747196dd0",
+        "4fb50796-4621-4222-914d-8f793ec9997b",
         "c37ecf28-8b0d-4b55-ad5e-e7c3ef5e5e0c",
         "7be262ef-2d7a-4cc8-85bb-446caf5592c9",
         "008f9998-5b4d-44c2-b795-eedcdadc9318",
