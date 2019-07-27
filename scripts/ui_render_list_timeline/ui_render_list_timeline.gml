@@ -147,7 +147,7 @@ if (animation) {
         var sw = 16;
         var noutofrange = animation.moments - timeline.moment_slots; // at minimum, one
         var y4 = y3 + sw;
-        var shalf = sw * 2 + 2.5 * (x2 - x1 - sw * 2) / animation.moments;
+        var shalf = sw * 2 + sqrt(animation.moments) * (x2 - x1 - sw * 2) / animation.moments;
         var smin = x1 + sw + shalf;
         var smax = x2 - sw - shalf;
         var srange = smax - smin;

@@ -129,15 +129,15 @@ if (list.interactive && active) {
 if (n > list.slots) {
     var sw = 16;
     var noutofrange = n - list.slots; // at minimum, one
-    draw_rectangle_colour(x2 - sw, y2, x2, y3, c_white, c_white, c_white, c_white, false);
-    draw_line(x2 - sw, y2 + sw, x2, y2 + sw);
-    draw_line(x2 - sw, y3 - sw, x2, y3 - sw);
-    draw_rectangle(x2 - sw, y2, x2, y3, true);
-    var shalf = 32 + (y3 - y2 - 32) / n;
+    var shalf = 32 + sqrt(n) * (y3 - y2 - 32) / n;
     var smin = y2 + sw + shalf;
     var smax = y3 - sw - shalf;
     var srange = smax - smin;
     var sy = smin + srange * list.index / noutofrange;
+    draw_rectangle_colour(x2 - sw, y2, x2, y3, c_white, c_white, c_white, c_white, false);
+    draw_line(x2 - sw, y2 + sw, x2, y2 + sw);
+    draw_line(x2 - sw, y3 - sw, x2, y3 - sw);
+    draw_rectangle(x2 - sw, y2, x2, y3, true);
     
     var sby1 = sy - shalf;
     var sby2 = sy + shalf;
