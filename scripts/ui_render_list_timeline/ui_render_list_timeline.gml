@@ -39,11 +39,28 @@ if (animation) {
                 var c = c_ui_select;
                 draw_rectangle_colour(x1, ya, x2, yb, c, c, c, c, false);
             }
+        }
         
-            var c = c_black;
-            var text = "...";
+        var moment_start = timeline.moment_index;
+        var moment_end = timeline.moment_index + timeline.moment_slots;
+        
+        for (var i = 0; i < n; i++) {
+            var timeline_layer = timeline.root.active_animation.layers[| i];
+            var keyframes = ds_priority_create();
+            ds_priority_copy(keyframes, timeline_layer.keyframes);
             
-            draw_text_colour(tx, tya, string(text), c, c, c, c, 1);
+            do {
+                var keyframe = ds_priority_delete_min(keyframes);
+            } until (!keyframe || keyframe.moment >= moment_start);
+            
+            while (keyframe && keyframe.moment < moment_end) {
+                var kfx = x1 + timeline.moment_width * (keyframe.moment + 0.5);
+                var kfy = y2 + timeline.height * (i + 0.5);
+                draw_sprite(spr_timeline_keyframe, 0, kfx, kfy);
+                keyframe = ds_priority_delete_min(keyframes);
+            }
+            
+            ds_priority_destroy(keyframes);
         }
     }
 

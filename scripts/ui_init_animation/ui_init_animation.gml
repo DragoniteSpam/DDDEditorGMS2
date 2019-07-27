@@ -79,6 +79,7 @@ with (instantiate(UIThing)) {
     ds_list_add(contents, element);
     
     yy = yy + element.height + spacing;
+    
     var tlx = el_layers.x + el_layers.width;
     
     el_timeline = create_timeline(tlx, el_layers.y, 32, eh, el_layers.slots, 30, null, id);

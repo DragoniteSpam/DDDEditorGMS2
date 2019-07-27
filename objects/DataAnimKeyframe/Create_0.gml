@@ -26,6 +26,8 @@ tween_zscale = AnimationTweens.NONE;
 tween_color = AnimationTweens.NONE;
 tween_alpha = AnimationTweens.NONE;
 
+moment = 0;
+
 enum AnimationTweens {
     NONE,
     INSTANT,
