@@ -5,3 +5,6 @@ layers = ds_list_create();
 var base_layer = instantiate(DataAnimLayer);
 instance_deactivate_object(base_layer);
 ds_list_add(layers, base_layer);
+
+frames_per_second = 24;
+moments = frames_per_second * 1;
