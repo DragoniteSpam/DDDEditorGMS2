@@ -5903,6 +5903,14 @@
             }
         },
         {
+            "Key": "972616bf-7f95-487c-b3c7-7697f566758d",
+            "Value": {
+                "id": "bfcb5b06-6b5a-42f5-8814-accb3b259b3d",
+                "resourcePath": "scripts\\animation_timeline_set_active_keyframe\\animation_timeline_set_active_keyframe.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "97396d80-6194-452b-9f0b-df472b393880",
             "Value": {
                 "id": "e9198403-5075-4f30-850b-0b96f6944d7a",
@@ -10848,6 +10856,7 @@
         "033198d3-79c8-40dc-a42c-8c473da95d16",
         "e95f0847-1dc7-4566-881f-26c0c1cec8fc",
         "90c139bf-bcdf-47f4-8e06-cf11657cc1d2",
+        "972616bf-7f95-487c-b3c7-7697f566758d",
         "33399fc3-a687-4125-be37-840cb18b9f0f"
     ],
     "tutorial": ""

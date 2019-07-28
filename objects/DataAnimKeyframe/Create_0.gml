@@ -8,6 +8,9 @@ xscale = 1;
 yscale = 1;
 zscale = 1;
 
+// the different color channels should probably all be tweened individually, instead of
+// just going from color1 to color2 as a whole, because that tends to not work very well
+// when you cross hues
 color = c_white;
 alpha = 1;
 
