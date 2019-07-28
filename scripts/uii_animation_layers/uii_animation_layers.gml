@@ -18,15 +18,13 @@ var y3 = y2 + timeline.slots * timeline.height;
 var inbounds = mouse_within_rectangle_determine(timeline.check_view, x1, y2, x2, y3);
 
 if (keyboard_check_pressed(vk_delete)) {
-    if (timeline.selected_layer < ds_list_size(animation.layers)) {
-        var timeline_layer = animation.layers[| timeline.selected_layer];
-        if (timeline_layer) {
-            var keyframe = timeline_layer.keyframes[| timeline.selected_moment];
-            timeline_layer.keyframes[| timeline.selected_moment] = noone;
-            if (keyframe) {
-                instance_activate_object(keyframe);
-                instance_destroy(keyframe);
-            }
+    var timeline_layer = animation_get_layer(animation, timeline.selected_layer);
+    if (timeline_layer) {
+        var keyframe = timeline_layer.keyframes[| timeline.selected_moment];
+        timeline_layer.keyframes[| timeline.selected_moment] = noone;
+        if (keyframe) {
+            instance_activate_object(keyframe);
+            instance_destroy(keyframe);
         }
     }
 }
@@ -34,17 +32,13 @@ if (keyboard_check_pressed(vk_delete)) {
 // anything that should only be handled if the cursor is in bounds
 if (inbounds) {
     if (Controller.double_left) {
-        if (timeline.selected_layer < ds_list_size(animation.layers)) {
-            var timeline_layer = animation.layers[| timeline.selected_layer];
-            if (timeline_layer) {
-                var keyframe = timeline_layer.keyframes[| timeline.selected_moment];
-                if (keyframe) {
-                    
-                } else {
-                    keyframe = instantiate(DataAnimKeyframe);
-                    keyframe.moment = timeline.selected_moment;
-                    timeline_layer.keyframes[| timeline.selected_moment] = keyframe;
-                }
+        var timeline_layer = animation_get_layer(animation, timeline.selected_layer);
+        if (timeline_layer) {
+            var keyframe = animation_get_keyframe(animation, timeline.selected_layer, timeline.selected_moment);
+            if (!keyframe) {
+                keyframe = instantiate(DataAnimKeyframe);
+                keyframe.moment = timeline.selected_moment;
+                timeline_layer.keyframes[| timeline.selected_moment] = keyframe;
             }
         }
     }
