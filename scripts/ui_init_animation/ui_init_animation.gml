@@ -35,7 +35,7 @@ with (instantiate(UIThing)) {
     el_master.entries_are = ListEntries.INSTANCES;
     ds_list_add(contents, el_master);
     
-    yy = yy + ui_get_list_height(el_master) + spacing;
+    yy = yy + ui_get_list_height(el_master);
     
     var element = create_button(xx, yy, "Add Animation", ew, eh, fa_middle, omu_animation_add, id);
     ds_list_add(contents, element);
@@ -68,7 +68,12 @@ with (instantiate(UIThing)) {
     el_layers.entries_are = ListEntries.INSTANCES;
     ds_list_add(contents, el_layers);
     
-    yy = yy + ui_get_list_height(el_layers) + spacing;
+    var tlx = el_layers.x + el_layers.width;
+    
+    el_timeline = create_timeline(tlx, el_layers.y, 32, eh, el_layers.slots, 30, null, uii_animation_layers, id);
+    ds_list_add(contents, el_timeline);
+    
+    yy = yy + ui_get_list_height(el_layers);
     
     var element = create_button(xx, yy, "Add Layer", ew, eh, fa_middle, omu_animation_layer_add, id);
     ds_list_add(contents, element);
@@ -80,10 +85,120 @@ with (instantiate(UIThing)) {
     
     yy = yy + element.height + spacing;
     
-    var tlx = el_layers.x + el_layers.width;
+    el_keyframe = instance_create_depth(xx, yy, 0, UIThing);
+    ds_list_add(contents, el_keyframe);
     
-    el_timeline = create_timeline(tlx, el_layers.y, 32, eh, el_layers.slots, 30, null, uii_animation_layers, id);
-    ds_list_add(contents, el_timeline);
+    {   // keyframes inner panel
+        var xx = 0;
+        var yy = 0;
+        var imgw = sprite_get_width(spr_timeline_keyframe_tween);
+        var imgh = sprite_get_height(spr_timeline_keyframe_tween);
+        
+        var element = create_text(xx, yy, "      Keyframe Translation", ew, eh, fa_left, ew, el_keyframe);
+        ds_list_add(el_keyframe.contents, element);
+        
+        yy = yy + element.height;
+    
+        var element = create_input(xx, yy, "      x:", ew, eh, null, 0, 0, "float", validate_double, ui_value_real, -MILLION, MILLION, 10, vx1, vy1, vx2, vy2, el_keyframe);
+        ds_list_add(el_keyframe.contents, element);
+        var element = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, null, el_keyframe);
+        ds_list_add(el_keyframe.contents, element);
+        
+        yy = yy + element.height;
+    
+        var element = create_input(xx, yy, "      y:", ew, eh, null, 0, 0, "float", validate_double, ui_value_real, -MILLION, MILLION, 10, vx1, vy1, vx2, vy2, el_keyframe);
+        ds_list_add(el_keyframe.contents, element);
+        var element = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, null, el_keyframe);
+        ds_list_add(el_keyframe.contents, element);
+        
+        yy = yy + element.height;
+    
+        var element = create_input(xx, yy, "      z:", ew, eh, null, 0, 0, "float", validate_double, ui_value_real, -MILLION, MILLION, 10, vx1, vy1, vx2, vy2, el_keyframe);
+        ds_list_add(el_keyframe.contents, element);
+        var element = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, null, el_keyframe);
+        ds_list_add(el_keyframe.contents, element);
+        
+        yy = yy + element.height;
+    
+        var element = create_text(xx, yy, "      Keyframe Rotation", ew, eh, fa_left, ew, el_keyframe);
+        ds_list_add(el_keyframe.contents, element);
+        
+        yy = yy + element.height;
+    
+        var element = create_input(xx, yy, "      x:", ew, eh, null, 0, 0, "float", validate_double, ui_value_real, -MILLION, MILLION, 10, vx1, vy1, vx2, vy2, el_keyframe);
+        ds_list_add(el_keyframe.contents, element);
+        var element = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, null, el_keyframe);
+        ds_list_add(el_keyframe.contents, element);
+        
+        yy = yy + element.height;
+    
+        var element = create_input(xx, yy, "      y:", ew, eh, null, 0, 0, "float", validate_double, ui_value_real, -MILLION, MILLION, 10, vx1, vy1, vx2, vy2, el_keyframe);
+        ds_list_add(el_keyframe.contents, element);
+        var element = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, null, el_keyframe);
+        ds_list_add(el_keyframe.contents, element);
+        
+        yy = yy + element.height;
+    
+        var element = create_input(xx, yy, "      z:", ew, eh, null, 0, 0, "float", validate_double, ui_value_real, -MILLION, MILLION, 10, vx1, vy1, vx2, vy2, el_keyframe);
+        ds_list_add(el_keyframe.contents, element);
+        var element = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, null, el_keyframe);
+        ds_list_add(el_keyframe.contents, element);
+        
+        yy = yy + element.height;
+    
+        var element = create_text(xx, yy, "      Keyframe Scale", ew, eh, fa_left, ew, el_keyframe);
+        ds_list_add(el_keyframe.contents, element);
+        
+        yy = yy + element.height;
+    
+        var element = create_input(xx, yy, "      x:", ew, eh, null, 0, 0, "float", validate_double, ui_value_real, -100, 100, 5, vx1, vy1, vx2, vy2, el_keyframe);
+        ds_list_add(el_keyframe.contents, element);
+        var element = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, null, el_keyframe);
+        ds_list_add(el_keyframe.contents, element);
+        
+        yy = yy + element.height;
+    
+        var element = create_input(xx, yy, "      y:", ew, eh, null, 0, 0, "float", validate_double, ui_value_real, -100, 100, 5, vx1, vy1, vx2, vy2, el_keyframe);
+        ds_list_add(el_keyframe.contents, element);
+        var element = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, null, el_keyframe);
+        ds_list_add(el_keyframe.contents, element);
+        
+        yy = yy + element.height;
+    
+        var element = create_input(xx, yy, "      z:", ew, eh, null, 0, 0, "float", validate_double, ui_value_real, -100, 100, 5, vx1, vy1, vx2, vy2, el_keyframe);
+        ds_list_add(el_keyframe.contents, element);
+        var element = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, null, el_keyframe);
+        ds_list_add(el_keyframe.contents, element);
+        
+        yy = yy + element.height + spacing;
+        
+        var element = create_text(xx, yy, "      Other Keyframe Properties", ew, eh, fa_left, ew, el_keyframe);
+        ds_list_add(el_keyframe.contents, element);
+        
+        yy = yy + element.height + spacing;
+    
+        var element = create_input(xx, yy, "      color:", ew, eh, null, 0, 0, "", validate_string, ui_value_string, 0, 1, 10, vx1, vy1, vx2, vy2, el_keyframe);
+        ds_list_add(el_keyframe.contents, element);
+        var element = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, null, el_keyframe);
+        ds_list_add(el_keyframe.contents, element);
+        
+        yy = yy + element.height;
+    
+        var element = create_input(xx, yy, "      alpha:", ew, eh, null, 0, 0, "float", validate_double, ui_value_real, 0, 1, 6, vx1, vy1, vx2, vy2, el_keyframe);
+        ds_list_add(el_keyframe.contents, element);
+        var element = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, null, el_keyframe);
+        ds_list_add(el_keyframe.contents, element);
+        
+        yy = yy + element.height + spacing;
+    
+        var element = create_button(xx, yy, "Event", ew, eh, fa_center, null, el_keyframe);
+        ds_list_add(el_keyframe.contents, element);
+        
+        yy = yy + element.height;
+    
+    }
+    
+    yy = yy_base;
     
     /*
      * more important stuff that needs to be done?

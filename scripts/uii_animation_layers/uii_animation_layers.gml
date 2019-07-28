@@ -39,7 +39,10 @@ if (inbounds) {
                 keyframe = instantiate(DataAnimKeyframe);
                 keyframe.moment = timeline.selected_moment;
                 timeline_layer.keyframes[| timeline.selected_moment] = keyframe;
+                timeline.selected_keyframe = keyframe;
             }
         }
+    } else if (Controller.press_left) {
+        timeline.selected_keyframe = animation_get_keyframe(animation, timeline.selected_layer, timeline.selected_moment);
     }
 }

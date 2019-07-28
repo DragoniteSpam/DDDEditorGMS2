@@ -6575,6 +6575,14 @@
             }
         },
         {
+            "Key": "a9975381-55a1-4ff6-9ba4-cf7fe1158f00",
+            "Value": {
+                "id": "fc9b8542-6dde-46f3-a22d-64dc7e6e81d2",
+                "resourcePath": "sprites\\spr_timeline_keyframe_tween\\spr_timeline_keyframe_tween.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "a9c1cbf4-a8e6-428e-9a36-2040df6f97a0",
             "Value": {
                 "id": "69b91a4a-66c0-495f-ac54-a7a8a28dfe67",

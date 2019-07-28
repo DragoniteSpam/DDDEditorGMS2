@@ -19,6 +19,8 @@ with (instance_create_depth(argument[0], argument[1], 0, UIButton)) {
     onmouseup = argument[6];
     root = argument[7];
     
+    help = (argument_count > 8) ? argument[8] : help;
+    
     switch (argument_count) {
         case 11:
             switch (argument[10]) {
@@ -42,8 +44,6 @@ with (instance_create_depth(argument[0], argument[1], 0, UIButton)) {
                     x = x - width;
                     break;
             }
-        case 9:
-            help = argument[8];
             break;
     }
     

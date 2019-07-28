@@ -8,6 +8,7 @@ moment_slots = 16;
 
 selected_moment = -1;
 selected_layer = -1;
+selected_keyframe = noone;
 
 playing = false;
 playing_moment = 0;
