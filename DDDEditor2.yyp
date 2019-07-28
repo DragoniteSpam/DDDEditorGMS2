@@ -7407,6 +7407,14 @@
             }
         },
         {
+            "Key": "c1b56d73-7fa5-45c0-9fff-8dd53da1d49a",
+            "Value": {
+                "id": "4778597c-efb4-4fe5-bbf7-c934824a7d2f",
+                "resourcePath": "scripts\\uii_animation_layers\\uii_animation_layers.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "c1d02e27-054e-4a58-979e-5ba90502fe2e",
             "Value": {
                 "id": "95133991-c1dc-4f26-878e-f2d617b25ad7",
@@ -10440,6 +10448,7 @@
         "72fed17c-a91f-40df-9134-afaee2a815af",
         "15e2cdd9-0297-4773-886b-477ad3a4893e",
         "dc7a51a2-b939-4531-b783-285fa2393c37",
+        "c1b56d73-7fa5-45c0-9fff-8dd53da1d49a",
         "2f5ce293-5d19-4961-957c-cb2d450ac92e",
         "6bf27b2c-c013-4fb1-9836-b95167ffd715",
         "7d1abbee-52fa-4e52-ad7b-5f30de25c5ce",

@@ -11,3 +11,5 @@ selected_layer = -1;
 
 playing = false;
 playing_moment = 0;
+
+oninteract = null;

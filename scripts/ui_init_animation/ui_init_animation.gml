@@ -82,7 +82,7 @@ with (instantiate(UIThing)) {
     
     var tlx = el_layers.x + el_layers.width;
     
-    el_timeline = create_timeline(tlx, el_layers.y, 32, eh, el_layers.slots, 30, null, id);
+    el_timeline = create_timeline(tlx, el_layers.y, 32, eh, el_layers.slots, 30, null, uii_animation_layers, id);
     ds_list_add(contents, el_timeline);
     
     /*

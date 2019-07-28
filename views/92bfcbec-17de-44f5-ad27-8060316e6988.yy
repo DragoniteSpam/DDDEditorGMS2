@@ -8,7 +8,8 @@
         "2ec13e12-c32e-490b-9a16-62571b40405d",
         "72fed17c-a91f-40df-9134-afaee2a815af",
         "15e2cdd9-0297-4773-886b-477ad3a4893e",
-        "dc7a51a2-b939-4531-b783-285fa2393c37"
+        "dc7a51a2-b939-4531-b783-285fa2393c37",
+        "c1b56d73-7fa5-45c0-9fff-8dd53da1d49a"
     ],
     "filterType": "GMScript",
     "folderName": "animations",

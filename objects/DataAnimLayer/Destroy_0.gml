@@ -1,7 +1,9 @@
-while (!ds_priority_empty(keyframes)) {
-    var keyframe = ds_priority_delete_max(keyframes);
-    instance_activate_object(keyframe);
-    instance_destroy(keyframe);
+for (var i = 0; i < ds_list_size(keyframes); i++) {
+    var keyframe = keyframes[| i];
+    if (keyframe) {
+        instance_activate_object(keyframe);
+        instance_destroy(keyframe);
+    }
 }
 
-ds_priority_destroy(keyframes);
+ds_list_destroy(keyframes);

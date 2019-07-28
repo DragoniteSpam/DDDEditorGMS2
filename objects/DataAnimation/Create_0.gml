@@ -9,3 +9,27 @@ ds_list_add(layers, base_layer);
 
 frames_per_second = 24;
 moments = frames_per_second * 2;
+
+repeat (moments) {
+    ds_list_add(base_layer.keyframes, noone);
+}
+
+var kf = instantiate(DataAnimKeyframe);
+kf.moment = irandom_range(0, 9);
+
+ds_list_set(base_layer.keyframes, kf.moment, kf);
+
+var kf = instantiate(DataAnimKeyframe);
+kf.moment = irandom_range(10, 19);
+
+ds_list_set(base_layer.keyframes, kf.moment, kf);
+
+var kf = instantiate(DataAnimKeyframe);
+kf.moment = irandom_range(20, 29);
+
+ds_list_set(base_layer.keyframes, kf.moment, kf);
+
+var kf = instantiate(DataAnimKeyframe);
+kf.moment = irandom_range(30, 39);
+
+ds_list_set(base_layer.keyframes, kf.moment, kf);

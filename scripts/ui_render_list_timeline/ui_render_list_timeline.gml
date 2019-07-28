@@ -11,6 +11,7 @@
 var timeline = argument0;
 var xx = argument1;
 var yy = argument2;
+
 var animation = timeline.root.active_animation;
 var active = dialog_is_active(timeline.root);
 var layer_list = timeline.root.el_layers;
@@ -78,21 +79,15 @@ if (animation) {
             // but we need to check here just to be safe
             if (index < ds_list_size(timeline.root.active_animation.layers)) {
                 var timeline_layer = timeline.root.active_animation.layers[| index];
-                var keyframes = ds_priority_create();
-                ds_priority_copy(keyframes, timeline_layer.keyframes);
-            
-                do {
-                    var keyframe = ds_priority_delete_min(keyframes);
-                } until (!keyframe || keyframe.moment >= moment_start);
-            
-                while (keyframe && keyframe.moment < moment_end) {
-                    var kfx = x1 + timeline.moment_width * (keyframe.moment - timeline.moment_index + 0.5);
-                    var kfy = y2 + timeline.height * (i + 0.5);
-                    draw_sprite(spr_timeline_keyframe, 0, kfx, kfy);
-                    keyframe = ds_priority_delete_min(keyframes);
+                
+                for (var j = moment_start; j < moment_end; j++) {
+                    var keyframe = timeline_layer.keyframes[| j];
+                    if (keyframe) {
+                        var kfx = x1 + timeline.moment_width * (keyframe.moment - timeline.moment_index + 0.5);
+                        var kfy = y2 + timeline.height * (i + 0.5);
+                        draw_sprite(spr_timeline_keyframe, 0, kfx, kfy);
+                    }
                 }
-            
-                ds_priority_destroy(keyframes);
             }
         }
     }
@@ -103,7 +98,11 @@ if (animation) {
     var move_horizontal_direction = 0;
 
     if (timeline.interactive && active) {
-        var inbounds = mouse_within_rectangle_determine(timeline.check_view, x1, y2, x2 - offset, y3);
+        // oninteract doesn't care if the mouse is inbounds so if you're going to run any code that
+        // might break in special circumstances you're going to need to check for that
+        script_execute(timeline.oninteract, timeline, xx, yy);
+        
+        var inbounds = mouse_within_rectangle_determine(timeline.check_view, x1, y2, x2, y3);
         if (inbounds) {
             if (Controller.double_left) {
                 script_execute(timeline.ondoubleclick, timeline);
