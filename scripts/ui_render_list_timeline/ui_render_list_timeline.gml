@@ -98,15 +98,10 @@ if (animation) {
     var move_horizontal_direction = 0;
 
     if (timeline.interactive && active) {
-        // oninteract doesn't care if the mouse is inbounds so if you're going to run any code that
-        // might break in special circumstances you're going to need to check for that
-        script_execute(timeline.oninteract, timeline, xx, yy);
-        
         var inbounds = mouse_within_rectangle_determine(timeline.check_view, x1, y2, x2, y3);
         if (inbounds) {
-            if (Controller.double_left) {
-                script_execute(timeline.ondoubleclick, timeline);
-            } else if (Controller.press_left) {
+            // double-left not used, that's to be handled by oninteract instead now
+            if (Controller.press_left) {
                 var mx = min(((Camera.MOUSE_X - x1) div timeline.moment_width) + timeline.moment_index, animation.moments - 1);
                 var my = min(((Camera.MOUSE_Y - y2) div timeline.height) + layer_list.index, n - 1);
                 
@@ -125,6 +120,11 @@ if (animation) {
                     timeline.selected_layer = -1;
                 }
             }
+            
+            // oninteract doesn't care if the mouse is inbounds so if you're going to run any code that
+            // might break in special circumstances you're going to need to check for that - but it might
+            // depend on the selected moment / layer being set, so we'll execute it at the end here
+            script_execute(timeline.oninteract, timeline, xx, yy);
             
             var control = keyboard_check(vk_shift);
             if (mouse_wheel_up()) {

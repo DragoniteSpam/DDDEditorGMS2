@@ -30,3 +30,22 @@ if (keyboard_check_pressed(vk_delete)) {
         }
     }
 }
+
+// anything that should only be handled if the cursor is in bounds
+if (inbounds) {
+    if (Controller.double_left) {
+        if (timeline.selected_layer < ds_list_size(animation.layers)) {
+            var timeline_layer = animation.layers[| timeline.selected_layer];
+            if (timeline_layer) {
+                var keyframe = timeline_layer.keyframes[| timeline.selected_moment];
+                if (keyframe) {
+                    
+                } else {
+                    keyframe = instantiate(DataAnimKeyframe);
+                    keyframe.moment = timeline.selected_moment;
+                    timeline_layer.keyframes[| timeline.selected_moment] = keyframe;
+                }
+            }
+        }
+    }
+}
