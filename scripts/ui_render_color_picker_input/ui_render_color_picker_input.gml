@@ -52,3 +52,32 @@ if (picker.interactive && dialog_is_active(picker.root)) {
         }
     }
 }
+
+vx1 = x1 + picker.color_x;
+vy1 = y1 + picker.color_y;
+vx2 = vx1 + picker.main_size;
+vy2 = vy1 + picker.main_size;
+
+draw_rectangle(vx1, vy1, vx2, vy2, true);
+
+vx1 = x1 + picker.axis_x;
+vy1 = y1 + picker.axis_y;
+vx2 = vx1 + picker.axis_width;
+vy2 = vy1 + picker.main_size;
+
+draw_rectangle(vx1, vy1, vx2, vy2, true);
+
+vx1 = x1 + picker.output_x;
+vy1 = y1 + picker.output_y;
+vx2 = vx1 + picker.main_size;
+vy2 = vy1 + picker.output_height;
+
+draw_rectangle(vx1, vy1, vx2, vy2, true);
+
+vx1 = x1 + picker.alpha_x;
+vy1 = y1 + picker.alpha_y;
+vx2 = vx1 + picker.main_size;
+vy2 = vy1 + picker.alpha_height;
+
+draw_text(tx, mean(vy1, vy2), "A");
+draw_rectangle(vx1, vy1, vx2, vy2, true);

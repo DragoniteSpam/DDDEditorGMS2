@@ -5,7 +5,7 @@ var dialog = argument0;
 var color = argument1;
 
 var dw = 320;
-var dh = 320;
+var dh = 400;
 
 var dg = dialog_create(dw, dh, "Pick a color", dialog_default, dc_close_no_questions_asked, dialog);
 

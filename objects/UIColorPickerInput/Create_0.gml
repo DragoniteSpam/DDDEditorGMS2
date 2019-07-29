@@ -18,20 +18,23 @@ alpha = 1;
 
 allow_alpha = true;
 
-color_x = x;
-color_y = y + height;
-main_size = 128;                    // side length
+color_x = 0;
+color_y = height + 16;
+main_size = 176;                    // side length
 
 axis_x = color_x + main_size + 16;
 axis_y = color_y;
-axis_width = 48;
+axis_width = 32;
+// axis_height is main_size
 
-output_x = color_x;
-output_y = color_y + main_size + 16;
+output_x = color_x + 48;
+output_y = color_y + main_size + 8;
+// output_width is main_size
 output_height = 16;
 
-alpha_x = output_x;
-alpha_y = output_y + main_size + 16;
+alpha_x = color_x + 48;
+alpha_y = output_y + output_height + 8;
+// alpha_width is main_size
 alpha_height = 16;
 
 axis_value = 0;
