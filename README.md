@@ -7,6 +7,40 @@ The original GMS1 project can be found [here](https://github.com/DragoniteSpam/D
  - DragoniteSpam
  - RatcheT2498
 
+## Media
+
+The main game editor: you can slap down entities of different types (characters, tiles, models, some other things). You can modify their properties, give them behaviors and some other things.
+
+![Main game editor](https://i.imgur.com/q13XVAf.png)
+
+Game data types can be created. Some generic stuff like "sound effects and music" is built-in, but game-specific things have to be defined in the editor first.
+
+![Define data types](https://i.imgur.com/97yrhiI.png)
+
+And then you can assign values to them.
+
+![Edit data types](https://i.imgur.com/SXZzsqJ.png)
+
+And then there's the event editor. It's essentially just a nodal version of the RPG Maker event editor. It took a lot of work to make but it works pretty well, and I'm happy with how it came out.
+
+![Event editor](https://i.imgur.com/vkEd3kt.png)
+
+There are some miscellaneous property editor form UI things.
+
+![I guess?](https://i.imgur.com/3Eqfov7.png)
+
+## Upcoming stuff
+
+ - Animation editor - for battle attacks and world effects and whatnot
+ - Autotiles (for both 2D tiles and 3D meshes)
+ - More map stuff, verticality, camera controls
+
+## Stuff I'm considering
+
+ - - Animated meshes (I won't be doing this myself but I know some people who have who I may ask)
+ - UI blueprints
+ - 2D mode for maps / game
+
 ### Original readme:
 Game data editor to go along with [DoOrDieDragonite](https://github.com/DragoniteSpam/PokemonDoOrDie).
 
