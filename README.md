@@ -9,25 +9,25 @@ The original GMS1 project can be found [here](https://github.com/DragoniteSpam/D
 
 ## Media
 
-The main game editor: you can slap down entities of different types (characters, tiles, models, some other things). You can modify their properties, give them behaviors and some other things.
+The main game editor: you can slap down entities of different types (characters, tiles, models, some other things). You can modify their properties, give them behaviors and some other things. (Click to expand the images.)
 
-![Main game editor](https://i.imgur.com/q13XVAf.png)
+![Main game editor](https://i.imgur.com/q13XVAf.png | height = 160)
 
 Game data types can be created. Some generic stuff like "sound effects and music" is built-in, but game-specific things have to be defined in the editor first.
 
-![Define data types](https://i.imgur.com/97yrhiI.png)
+![Define data types](https://i.imgur.com/97yrhiI.png | height = 160)
 
 And then you can assign values to them.
 
-![Edit data types](https://i.imgur.com/SXZzsqJ.png)
+![Edit data types](https://i.imgur.com/SXZzsqJ.png | height = 160)
 
 And then there's the event editor. It's essentially just a nodal version of the RPG Maker event editor. It took a lot of work to make but it works pretty well, and I'm happy with how it came out.
 
-![Event editor](https://i.imgur.com/vkEd3kt.png)
+![Event editor](https://i.imgur.com/vkEd3kt.png | height = 160)
 
 There are some miscellaneous property editor form UI things.
 
-![I guess?](https://i.imgur.com/3Eqfov7.png)
+![I guess?](https://i.imgur.com/3Eqfov7.png | height = 160)
 
 ## Upcoming stuff
 
