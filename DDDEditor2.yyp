@@ -495,6 +495,14 @@
             }
         },
         {
+            "Key": "09fe2145-2d56-4113-9267-814bf41e6030",
+            "Value": {
+                "id": "4e7d0506-1d4e-4e9f-ab41-123c7f2def63",
+                "resourcePath": "objects\\UIColorPickerInput\\UIColorPickerInput.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "0a078c95-d6af-446f-8827-5774ff5c7b30",
             "Value": {
                 "id": "5e471e13-fef9-474c-bf52-85cfc1b48272",
@@ -787,6 +795,14 @@
             "Value": {
                 "id": "91c53e06-22fe-4222-abbe-28856c2caf0c",
                 "resourcePath": "scripts\\uivc_data_set_property_boolean\\uivc_data_set_property_boolean.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "126e7ec6-2a46-46d7-8e2e-2cb71c514afa",
+            "Value": {
+                "id": "22899f1b-8e7d-4894-9956-717a92b56447",
+                "resourcePath": "scripts\\validate_hex\\validate_hex.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -4399,6 +4415,14 @@
             }
         },
         {
+            "Key": "7045a076-544c-4ce2-8e57-f67dbffedec2",
+            "Value": {
+                "id": "0d3ec6d2-664a-4a3f-b9f8-997ec8dbb62a",
+                "resourcePath": "scripts\\ui_render_color_picker\\ui_render_color_picker.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "70649bcd-a6b8-4c5c-84a4-d2a6a517021e",
             "Value": {
                 "id": "ef372495-af23-4501-8bf4-b7a175520b70",
@@ -4603,6 +4627,14 @@
             "Value": {
                 "id": "f8a26fb1-1fe3-4a12-a079-2bf07975a809",
                 "resourcePath": "scripts\\event_prefab_render_self_variable_name\\event_prefab_render_self_variable_name.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "75f1a516-2847-40f3-b44f-03781ed72a31",
+            "Value": {
+                "id": "961e0fa0-d78a-45da-ac78-39774e0d61d0",
+                "resourcePath": "scripts\\create_color_picker_input\\create_color_picker_input.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -4948,6 +4980,14 @@
                 "id": "d8269540-cc92-4b24-b623-7eb3c878cfe4",
                 "resourcePath": "views\\7d932a04-db90-4f98-a2f0-fd9d130062b0.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "7dc6db06-7b2a-4e3d-bb79-bd285a28ad93",
+            "Value": {
+                "id": "2ef5e093-55f8-4356-831e-b4ed07db7dbc",
+                "resourcePath": "scripts\\dialog_create_color_picker_options\\dialog_create_color_picker_options.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -6799,6 +6839,14 @@
             }
         },
         {
+            "Key": "acd49205-a75c-4c6f-8457-869b12ab4af2",
+            "Value": {
+                "id": "af7a1aca-96e5-4373-bb18-1f7bd808f5c8",
+                "resourcePath": "scripts\\ui_render_color_picker_input\\ui_render_color_picker_input.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "acd855e2-31cd-4856-8287-3d530f134693",
             "Value": {
                 "id": "d729c41e-23d4-4c04-82f7-9c99b3eae84e",
@@ -7659,6 +7707,14 @@
             "Value": {
                 "id": "aa3a2c6c-34c3-4795-9b49-9649c79d838c",
                 "resourcePath": "scripts\\serialize_load_entity_autotile\\serialize_load_entity_autotile.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "c569235d-ab8c-4d23-86a8-fda0b0124542",
+            "Value": {
+                "id": "b90977c0-e63a-4803-a036-685b0b657761",
+                "resourcePath": "scripts\\create_color_picker\\create_color_picker.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -8852,6 +8908,14 @@
                 "id": "59ac6023-8570-436e-9d5b-1a208472b870",
                 "resourcePath": "scripts\\omu_mr_move_right\\omu_mr_move_right.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "e27b8516-4ae1-4ba4-90d2-29d41671e0a3",
+            "Value": {
+                "id": "d6877934-7cbb-4cb3-b3c8-472f7edecc31",
+                "resourcePath": "objects\\UIColorPicker\\UIColorPicker.yy",
+                "resourceType": "GMObject"
             }
         },
         {
@@ -10092,6 +10156,7 @@
         "9e8d757e-109f-465d-8cb7-c2ea7492eb0e",
         "4fea7ff7-d725-4419-9070-283d9640487a",
         "442e4ae8-6ae1-4e3d-bc84-12b8d2dd0fa5",
+        "126e7ec6-2a46-46d7-8e2e-2cb71c514afa",
         "cdb3ea79-2378-4aaf-8a76-cc8c6fdda2b5",
         "33bbe902-5251-4d55-aaaf-b36e1864facb",
         "ef9ee99b-c2a3-4061-8667-52c026d8c84a",
@@ -10226,6 +10291,8 @@
         "bde998b1-975a-4d67-b8ec-0d2dffca1356",
         "e2706ff0-d4fa-414f-9cc5-ccc0f7ddaac5",
         "42c39c4e-f00b-46ad-99c5-4a6a168ae69c",
+        "75f1a516-2847-40f3-b44f-03781ed72a31",
+        "c569235d-ab8c-4d23-86a8-fda0b0124542",
         "cb756648-c7dc-4c53-abee-54399769b094",
         "178c8cd0-dd20-49ca-874d-d0b000d872be",
         "2e726a9b-e54f-4ded-8163-0582555f05ed",
@@ -10306,6 +10373,7 @@
         "76bd648a-cf24-4caf-95f2-fe83456e8afd",
         "a1b96f05-5454-42ea-b0d8-b1b714a0badc",
         "6f9e5b17-ab0b-452f-b6ee-f6b5c88ab1e5",
+        "7dc6db06-7b2a-4e3d-bb79-bd285a28ad93",
         "8c51d098-04e8-4711-bb41-f98098a4bdc7",
         "a2373338-b0ab-43af-97ea-95927ad0dcaa",
         "8e7beb43-6baa-4777-a9bb-2b531b7ca709",
@@ -10715,6 +10783,8 @@
         "4c28c119-32d3-4ece-b237-73b6f910f6d4",
         "7c6ecbf5-cadc-4614-a94a-7e2afa16d7d1",
         "0467c3f2-5118-4e5f-81fa-5799e212448f",
+        "7045a076-544c-4ce2-8e57-f67dbffedec2",
+        "acd49205-a75c-4c6f-8457-869b12ab4af2",
         "3b627150-6352-40d8-98e3-21641d9782c5",
         "a6e9b284-f5b1-449f-a867-c01238c2ed4f",
         "e1802c72-a7da-4ace-999f-cd8a452dbc1e",

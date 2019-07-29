@@ -178,7 +178,7 @@ with (instantiate(UIThing)) {
         
         yy = yy + element.height + spacing;
     
-        el_keyframe.color = create_input(xx, yy, "      color:", ew, eh, uivc_animation_keyframe_color, 0, 0, "", validate_string, ui_value_string, 0, 1, 10, vx1, vy1, vx2, vy2, el_keyframe);
+        el_keyframe.color = create_color_picker(xx, yy, "      color:", ew, eh, uivc_animation_keyframe_color, 0, c_black, vx1, vy1, vx2, vy2, el_keyframe);
         ds_list_add(el_keyframe.contents, el_keyframe.color);
         var element = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, null, el_keyframe);
         ds_list_add(el_keyframe.contents, element);

@@ -41,12 +41,7 @@ with (instance_create_depth(argument[0], argument[1], 0, UIInput)) {
     value_y2 = argument[17];
     
     root = argument[18];
-    
-    switch (argument_count) {
-        case 20:
-            help = argument[19];
-            break;
-    }
+    help = (argument_count > 19) ? argument[19] : help;
     
     switch (validation) {
         case validate_double:

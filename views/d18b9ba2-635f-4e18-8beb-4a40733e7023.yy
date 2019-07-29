@@ -25,7 +25,8 @@
         "52c02d7f-eb8d-41e3-92e5-5911d6de1674",
         "24303489-81e1-4ef3-a0e4-36317d34c0f7",
         "3e1e5df7-c05b-4b66-a16b-06f460e9e286",
-        "fac6a4c5-0061-4d26-8e43-d16315310bc5"
+        "fac6a4c5-0061-4d26-8e43-d16315310bc5",
+        "7dc6db06-7b2a-4e3d-bb79-bd285a28ad93"
     ],
     "filterType": "GMScript",
     "folderName": "creation",
