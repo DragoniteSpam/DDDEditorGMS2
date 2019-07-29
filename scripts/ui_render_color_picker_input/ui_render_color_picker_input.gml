@@ -42,8 +42,6 @@ if (string_length(value) == 0) {
     draw_text_ext_colour(vtx, vty, picker.allow_alpha ? "RRGGBBAA" : "RRGGBB", -1, (vx2 - 2 * vtx), c_dkgray, c_dkgray, c_dkgray, c_dkgray, 1);
 }
 
-to do - finish the color picker
-
 if (picker.interactive && dialog_is_active(picker.root)) {
     var inbounds = mouse_within_rectangle_determine(picker.check_view, vx1, vy1, vx2, vy2);
     if (inbounds) {
