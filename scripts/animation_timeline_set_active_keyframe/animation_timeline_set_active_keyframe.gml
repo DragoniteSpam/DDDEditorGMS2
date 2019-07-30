@@ -17,8 +17,7 @@ if (keyframe) {
     keyframe_panel.scale_x.value = string(keyframe.xscale);
     keyframe_panel.scale_y.value = string(keyframe.yscale);
     keyframe_panel.scale_z.value = string(keyframe.zscale);
-    //keyframe_panel.color.value = string(keyframe.color);
-    // when color pickers are finally implemented, it'll be slightly different
+    keyframe_panel.color.value = keyframe.color;
     keyframe_panel.alpha.value = string(keyframe.alpha);
     // events can't be tweened, and the UI is just a button
 }
