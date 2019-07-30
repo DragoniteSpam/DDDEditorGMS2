@@ -5,6 +5,7 @@
 var picker = argument0;
 var xx = argument1;
 var yy = argument2;
+var buckets = 8;            // for "not all colors" mode
 
 var x1 = picker.x + xx;
 var y1 = picker.y + yy;
@@ -91,7 +92,6 @@ if (active) {
 }
 
 if (picker.selecting_color) {
-    var buckets = 16;
     var axis = picker.axis_value;
     var ww = clamp((Camera.MOUSE_X - vx1) / w, 0, 1);
     var hh = 1 - clamp((Camera.MOUSE_Y - vy1) / h, 0, 1);
@@ -116,6 +116,7 @@ if (picker.selecting_color) {
 
 if (!picker.all_colors) {
     shader_set(shd_basic_colors);
+    shader_set_uniform_f(shader_get_uniform(shd_basic_colors, "buckets"), buckets);
 }
 
 draw_rectangle_colour(vx1, vy1, vx2, vy2, c1, c2, c3, c_black, false);
