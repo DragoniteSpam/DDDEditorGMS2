@@ -91,27 +91,26 @@ if (active) {
 }
 
 if (picker.selecting_color) {
-    var ww = clamp((Camera.MOUSE_X - vx1) / w, 0, 1) * 255;
-    var hh = clamp((Camera.MOUSE_Y - vy1) / h, 0, 1) * 255;
+    var buckets = 16;
+    var axis = picker.axis_value;
+    var ww = clamp((Camera.MOUSE_X - vx1) / w, 0, 1);
+    var hh = 1 - clamp((Camera.MOUSE_Y - vy1) / h, 0, 1);
     picker.selecting_color = Controller.mouse_left;
     
+    if (!picker.all_colors) {
+        axis = floor(axis * buckets) / buckets;
+        ww = floor(ww * buckets) / buckets;
+        hh = floor(hh * buckets) / buckets;
+    }
+    
+    axis = axis * 0xff;
+    ww = ww * 0xff;
+    hh = hh * 0xff;
+    
     switch (picker.axis_channel) {
-        case ColorChannels.R:
-            //picker.value = 
-            var c2 = colour_replace_red(c_white, picker.axis_value * 0xff);
-            var c1 = colour_replace_green(c2, 0);
-            var c3 = colour_replace_blue(c2, 0);;
-            break;
-        case ColorChannels.G:
-            var c2 = colour_replace_green(c_white, picker.axis_value * 0xff);
-            var c1 = colour_replace_blue(c2, 0);
-            var c3 = colour_replace_red(c2, 0);
-            break;
-        case ColorChannels.B:
-            var c2 = colour_replace_blue(c_white, picker.axis_value * 0xff);
-            var c1 = colour_replace_red(c2, 0);
-            var c3 = colour_replace_green(c2, 0);
-            break;
+        case ColorChannels.R: picker.value = (hh << 16) | (ww << 8) | axis; break;
+        case ColorChannels.G: picker.value = (ww << 16) | (axis << 8) | hh; break;
+        case ColorChannels.B: picker.value = (axis << 16) | (hh << 8) | ww; break;
     }
 }
 
