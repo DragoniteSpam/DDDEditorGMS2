@@ -62,21 +62,22 @@ vx1 = x1 + picker.color_x;
 vy1 = y1 + picker.color_y;
 vx2 = vx1 + picker.main_size;
 vy2 = vy1 + picker.main_size;
+var w = vx2 - vx1;
+var h = vy2 - vy1;
 
 switch (picker.axis_channel) {
     case ColorChannels.R:
-        //var c = colour_set_red(picker.value, picker.axis_channel);
-        var c2 = colour_replace_red(c_white, picker.axis_channel);
+        var c2 = colour_replace_red(c_white, picker.axis_value * 0xff);
         var c1 = colour_replace_green(c2, 0);
         var c3 = colour_replace_blue(c2, 0);;
         break;
     case ColorChannels.G:
-        var c2 = colour_replace_green(c_white, picker.axis_channel);
+        var c2 = colour_replace_green(c_white, picker.axis_value * 0xff);
         var c1 = colour_replace_blue(c2, 0);
         var c3 = colour_replace_red(c2, 0);
         break;
     case ColorChannels.B:
-        var c2 = colour_replace_blue(c_white, picker.axis_channel);
+        var c2 = colour_replace_blue(c_white, picker.axis_value * 0xff);
         var c1 = colour_replace_red(c2, 0);
         var c3 = colour_replace_green(c2, 0);
         break;
@@ -96,10 +97,35 @@ vx1 = x1 + picker.axis_x;
 vy1 = y1 + picker.axis_y;
 vx2 = vx1 + picker.axis_width;
 vy2 = vy1 + picker.main_size;
+var w = vx2 - vx1;
+var h = vy2 - vy1;
+
+if (active) {
+    var inbounds = mouse_within_rectangle_determine(picker.check_view, vx1, vy1, vx2, vy2);
+    if (inbounds && get_press_left()) {
+        picker.selecting_axis = true;
+    }
+}
+
+if (picker.selecting_axis) {
+    picker.axis_value = clamp((Camera.MOUSE_Y - vy1) / h, 0, 1);
+    picker.selecting_axis = Controller.mouse_left;
+}
+
+if (!picker.all_colors) {
+    shader_set(shd_basic_colors);
+}
 
 var c = Stuff.color_channels[picker.axis_channel];
 draw_rectangle_colour(vx1, vy1, vx2, vy2, c, c, c_black, c_black, false);
 draw_rectangle(vx1, vy1, vx2, vy2, true);
+shader_reset();
+draw_rectangle(vx1, vy1, vx2, vy2, true);
+
+var f = min(vy1 + h * picker.axis_value, vy2 - 1);
+var c_axis = (picker.axis_channel == ColorChannels.R) ? 0x00ff00 : c_red;
+draw_line_width_colour(vx1, f, vx2, f, 2, c_axis, c_axis);
+
 
 // OUTPUT COLOR
 
@@ -107,6 +133,8 @@ vx1 = x1 + picker.output_x;
 vy1 = y1 + picker.output_y;
 vx2 = vx1 + picker.main_size;
 vy2 = vy1 + picker.output_height;
+var w = vx2 - vx1;
+var h = vy2 - vy1;
 
 var c = picker.value;
 draw_checkerbox(vx1, vy1, vx2 - vx1, vy2 - vy1, 2.25, 2.25);
@@ -122,6 +150,7 @@ vy1 = y1 + picker.alpha_y;
 vx2 = vx1 + picker.main_size;
 vy2 = vy1 + picker.alpha_height;
 var w = vx2 - vx1;
+var h = vy2 - vy1;
 
 if (active) {
     var inbounds = mouse_within_rectangle_determine(picker.check_view, vx1, vy1, vx2, vy2);
@@ -140,6 +169,6 @@ draw_checkerbox(vx1, vy1, vx2 - vx1, vy2 - vy1, 2.25, 2.25);
 shader_set(shd_green_to_alpha);
 draw_rectangle_colour(vx1, vy1, vx2, vy2, c_black, 0x00ff00, 0x00ff00, c_black, false);
 shader_reset();
-var f = vx1 + w * picker.alpha;
-draw_line_width_colour(f, vy1, f, vy2, 2, c_red, c_red);
 draw_rectangle(vx1, vy1, vx2, vy2, true);
+var f = min(vx1 + w * picker.alpha, vx2 - 1);
+draw_line_width_colour(f, vy1, f, vy2, 2, c_red, c_red);
