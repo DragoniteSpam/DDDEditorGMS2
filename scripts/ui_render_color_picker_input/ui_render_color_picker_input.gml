@@ -63,9 +63,32 @@ vy1 = y1 + picker.color_y;
 vx2 = vx1 + picker.main_size;
 vy2 = vy1 + picker.main_size;
 
+switch (picker.axis_channel) {
+    case ColorChannels.R:
+        //var c = colour_set_red(picker.value, picker.axis_channel);
+        var c2 = colour_replace_red(c_white, picker.axis_channel);
+        var c1 = colour_replace_green(c2, 0);
+        var c3 = colour_replace_blue(c2, 0);;
+        break;
+    case ColorChannels.G:
+        var c2 = colour_replace_green(c_white, picker.axis_channel);
+        var c1 = colour_replace_blue(c2, 0);
+        var c3 = colour_replace_red(c2, 0);
+        break;
+    case ColorChannels.B:
+        var c2 = colour_replace_blue(c_white, picker.axis_channel);
+        var c1 = colour_replace_red(c2, 0);
+        var c3 = colour_replace_green(c2, 0);
+        break;
+}
+
+if (!picker.all_colors) {
+    shader_set(shd_basic_colors);
+}
+
+draw_rectangle_colour(vx1, vy1, vx2, vy2, c1, c2, c3, c_black, false);
+shader_reset();
 draw_rectangle(vx1, vy1, vx2, vy2, true);
-
-
 
 // COLOR AXIS
 
@@ -115,7 +138,7 @@ if (picker.selecting_alpha) {
 draw_text(tx, mean(vy1, vy2), "A");
 draw_checkerbox(vx1, vy1, vx2 - vx1, vy2 - vy1, 2.25, 2.25);
 shader_set(shd_green_to_alpha);
-draw_rectangle_colour(vx1, vy1, vx2, vy2, c_black, c_green, c_green, c_black, false);
+draw_rectangle_colour(vx1, vy1, vx2, vy2, c_black, 0x00ff00, 0x00ff00, c_black, false);
 shader_reset();
 var f = vx1 + w * picker.alpha;
 draw_line_width_colour(f, vy1, f, vy2, 2, c_red, c_red);
