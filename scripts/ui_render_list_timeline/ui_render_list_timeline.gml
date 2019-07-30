@@ -230,3 +230,10 @@ for (var i = 0; i < timeline.moment_slots; i++) {
     draw_text(mhx, mhy, string(i + timeline.moment_index));
     draw_line(mlx, y2, mlx, y3);
 }
+
+var sw = sprite_get_width(spr_play_controls);
+var spacing = 16;
+
+draw_sprite_ext(spr_play_controls, 0, x1 + spacing, y3 + spacing, 1, 1, 0, c_white, 1);
+draw_sprite_ext(spr_play_controls, 1, x1 + spacing + sw, y3 + spacing, 1, 1, 0, c_white, 1);
+draw_sprite_ext(spr_play_controls, 2, x1 + spacing + sw * 2, y3 + spacing, 1, 1, 0, c_white, 1);

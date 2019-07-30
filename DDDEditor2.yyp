@@ -9807,6 +9807,14 @@
             }
         },
         {
+            "Key": "f6a22ac5-278d-40b5-8d39-ace08b0f7de0",
+            "Value": {
+                "id": "6a161f4d-aeb0-42cc-b055-fb234031a3cb",
+                "resourcePath": "sprites\\spr_play_controls\\spr_play_controls.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "f6beb2d5-9dca-496c-947f-1539e4a21f33",
             "Value": {
                 "id": "f6fa3743-1645-4710-9be5-26b727530602",
