@@ -83,6 +83,38 @@ switch (picker.axis_channel) {
         break;
 }
 
+if (active) {
+    var inbounds = mouse_within_rectangle_determine(picker.check_view, vx1, vy1, vx2, vy2);
+    if (inbounds && get_press_left()) {
+        picker.selecting_color = true;
+    }
+}
+
+if (picker.selecting_color) {
+    var ww = clamp((Camera.MOUSE_X - vx1) / w, 0, 1) * 255;
+    var hh = clamp((Camera.MOUSE_Y - vy1) / h, 0, 1) * 255;
+    picker.selecting_color = Controller.mouse_left;
+    
+    switch (picker.axis_channel) {
+        case ColorChannels.R:
+            //picker.value = 
+            var c2 = colour_replace_red(c_white, picker.axis_value * 0xff);
+            var c1 = colour_replace_green(c2, 0);
+            var c3 = colour_replace_blue(c2, 0);;
+            break;
+        case ColorChannels.G:
+            var c2 = colour_replace_green(c_white, picker.axis_value * 0xff);
+            var c1 = colour_replace_blue(c2, 0);
+            var c3 = colour_replace_red(c2, 0);
+            break;
+        case ColorChannels.B:
+            var c2 = colour_replace_blue(c_white, picker.axis_value * 0xff);
+            var c1 = colour_replace_red(c2, 0);
+            var c3 = colour_replace_green(c2, 0);
+            break;
+    }
+}
+
 if (!picker.all_colors) {
     shader_set(shd_basic_colors);
 }
@@ -117,7 +149,7 @@ if (!picker.all_colors) {
 }
 
 var c = Stuff.color_channels[picker.axis_channel];
-draw_rectangle_colour(vx1, vy1, vx2, vy2, c, c, c_black, c_black, false);
+draw_rectangle_colour(vx1, vy1, vx2, vy2, c_black, c_black, c, c, false);
 draw_rectangle(vx1, vy1, vx2, vy2, true);
 shader_reset();
 draw_rectangle(vx1, vy1, vx2, vy2, true);
@@ -125,7 +157,6 @@ draw_rectangle(vx1, vy1, vx2, vy2, true);
 var f = min(vy1 + h * picker.axis_value, vy2 - 1);
 var c_axis = (picker.axis_channel == ColorChannels.R) ? 0x00ff00 : c_red;
 draw_line_width_colour(vx1, f, vx2, f, 2, c_axis, c_axis);
-
 
 // OUTPUT COLOR
 
