@@ -5847,6 +5847,14 @@
             }
         },
         {
+            "Key": "92b17bbf-2775-42b8-8b68-ef4fee93a40e",
+            "Value": {
+                "id": "dd52c62a-1a87-4340-9ede-ee853fb7ed5f",
+                "resourcePath": "scripts\\colour_fade\\colour_fade.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "92bfcbec-17de-44f5-ad27-8060316e6988",
             "Value": {
                 "id": "b1396e29-79c8-4910-bc01-142a0f959926",
@@ -11036,6 +11044,7 @@
         "88a72ab1-34ee-4030-b06d-0468751727de",
         "ee359008-8b0a-4b60-98b1-6ccb0ec031bc",
         "01059a2d-4cd0-417a-933b-d0a83ae8a37b",
+        "92b17bbf-2775-42b8-8b68-ef4fee93a40e",
         "69d4965f-b536-49b7-8234-317cb2f83f96",
         "3c551174-f3d9-4f24-8a1b-bc6344e9eac7",
         "9d6568ff-063d-48a4-8144-fd9148549732",

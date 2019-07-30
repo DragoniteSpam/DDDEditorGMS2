@@ -12,5 +12,6 @@ selected_keyframe = noone;
 
 playing = false;
 playing_moment = 0;
+playing_loop = false;
 
 oninteract = null;

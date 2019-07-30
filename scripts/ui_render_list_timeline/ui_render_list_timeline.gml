@@ -234,20 +234,40 @@ for (var i = 0; i < timeline.moment_slots; i++) {
 var sw = sprite_get_width(spr_play_controls);
 var sh = sprite_get_height(spr_play_controls);
 var spacing = 16;
+var c_greenish = merge_colour(c_lime, c_white, 0.5);
+var c_play = timeline.playing ? c_greenish : c_white;
+var c_loop = timeline.playing_loop ? c_greenish : c_white;
 
-draw_sprite_ext(spr_play_controls, 0, x1 + spacing, y3 + spacing, 1, 1, 0, c_white, 1);
+draw_sprite_ext(spr_play_controls, 0, x1 + spacing, y3 + spacing, 1, 1, 0, c_play, 1);
 draw_sprite_ext(spr_play_controls, 1, x1 + spacing + sw, y3 + spacing, 1, 1, 0, c_white, 1);
 draw_sprite_ext(spr_play_controls, 2, x1 + spacing + sw * 2, y3 + spacing, 1, 1, 0, c_white, 1);
+draw_sprite_ext(spr_play_controls, 3, x1 + spacing + sw * 3, y3 + spacing, 1, 1, 0, c_loop, 1);
 
-if (animation) {
-    var inbounds_play = mouse_within_rectangle_determine(timeline.check_view, x1 + spacing, y3 + spacing, x1 + spacing + sw, y3 + spacing + sh);
-    var inbounds_pause = mouse_within_rectangle_determine(timeline.check_view, x1 + spacing + sw, y3 + spacing, x1 + spacing + sw * 2, y3 + spacing + sh);
-    var inbounds_stop = mouse_within_rectangle_determine(timeline.check_view, x1 + spacing + sw * 2, y3 + spacing, x1 + spacing + sw * 3, y3 + spacing + sh);
-    if (inbounds_play) {
-        
-    } else if (inbounds_pause) {
-        
-    } else if (inbounds_stop) {
-        
+var inbounds_play = mouse_within_rectangle_determine(timeline.check_view, x1 + spacing, y3 + spacing, x1 + spacing + sw, y3 + spacing + sh);
+var inbounds_pause = mouse_within_rectangle_determine(timeline.check_view, x1 + spacing + sw, y3 + spacing, x1 + spacing + sw * 2, y3 + spacing + sh);
+var inbounds_stop = mouse_within_rectangle_determine(timeline.check_view, x1 + spacing + sw * 2, y3 + spacing, x1 + spacing + sw * 3, y3 + spacing + sh);
+var inbounds_loop = mouse_within_rectangle_determine(timeline.check_view, x1 + spacing + sw * 3, y3 + spacing, x1 + spacing + sw * 4, y3 + spacing + sh);
+if (inbounds_play) {
+    var c_play = timeline.playing ? merge_colour(c_greenish, c_ltgray, 0.5) : c_ltgray;
+    draw_sprite_ext(spr_play_controls, 0, x1 + spacing, y3 + spacing, 1, 1, 0, c_play, 1);
+    if (get_release_left() && animation) {
+        timeline.playing = true;
+    }
+} else if (inbounds_pause) {
+    draw_sprite_ext(spr_play_controls, 1, x1 + spacing + sw, y3 + spacing, 1, 1, 0, c_ltgray, 1);
+    if (get_release_left()) {
+        timeline.playing = false;
+    }
+} else if (inbounds_stop) {
+    draw_sprite_ext(spr_play_controls, 2, x1 + spacing + sw * 2, y3 + spacing, 1, 1, 0, c_ltgray, 1);
+    if (get_release_left()) {
+        timeline.playing = false;
+        timeline.playing_moment = 0;
+    }
+} else if (inbounds_loop) {
+    var c_loop = timeline.playing_loop ? merge_colour(c_greenish, c_ltgray, 0.5) : c_ltgray;
+    draw_sprite_ext(spr_play_controls, 3, x1 + spacing + sw * 3, y3 + spacing, 1, 1, 0, c_loop, 1);
+    if (get_release_left()) {
+        timeline.playing_loop = !timeline.playing_loop;
     }
 }
