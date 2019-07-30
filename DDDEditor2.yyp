@@ -4407,6 +4407,14 @@
             }
         },
         {
+            "Key": "6fc0e7c9-c44e-4958-b023-180eee2a9fc7",
+            "Value": {
+                "id": "b075cdd3-95c9-4a97-8b3b-e277940dce18",
+                "resourcePath": "scripts\\uivc_color_picker_all_colors\\uivc_color_picker_all_colors.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "6fdc37d3-ebe1-4e61-ab95-3b1cd89171b4",
             "Value": {
                 "id": "f96d8a68-413f-4533-a290-e0a6de038306",
@@ -10596,6 +10604,7 @@
         "e3549c19-e5f3-40b7-aedc-218bd79166eb",
         "5b4d6b39-cf59-434c-a196-ea615d1b006b",
         "e984880a-6282-4a6e-b12c-16431d49fb7a",
+        "6fc0e7c9-c44e-4958-b023-180eee2a9fc7",
         "512b5e6a-09ac-4dff-a6cf-b8b4d402de65",
         "2390c4d6-8c21-464c-b2b6-8fb05e3c5792",
         "6d7a1e63-600d-473b-92cb-c8e14912d84d",

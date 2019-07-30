@@ -65,6 +65,8 @@ vy2 = vy1 + picker.main_size;
 
 draw_rectangle(vx1, vy1, vx2, vy2, true);
 
+
+
 // COLOR AXIS
 
 vx1 = x1 + picker.axis_x;

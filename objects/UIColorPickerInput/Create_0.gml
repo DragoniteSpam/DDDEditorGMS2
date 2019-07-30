@@ -42,6 +42,7 @@ selecting_alpha = false;
 
 axis_value = 0;
 axis_channel = ColorChannels.R;
+all_colors = true;
 
 enum ColorChannels {
     R, G, B, A

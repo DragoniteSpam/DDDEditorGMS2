@@ -21,14 +21,16 @@ var yy = 64;
 var spacing = 16;
 
 dg.el_picker = create_color_picker_input(32, yy, ew, eh, null, 0, color, true, vx1, vy1, vx2, vy2, dg);
-dg.el_channels = create_radio_array(320, yy, "Channel", ew / 2, eh, uivc_radio_color_picker_channel, 0, dg);
+dg.el_channels = create_radio_array(320, yy, "Axis Channel", ew / 2, eh, uivc_radio_color_picker_channel, 0, dg);
 create_radio_array_options(dg.el_channels, "Red", "Green", "Blue");
+yy = yy + ui_get_radio_array_height(dg.el_channels) + spacing;
+dg.el_all = create_checkbox(320, yy, "All colors?", ew / 2, eh, uivc_color_picker_all_colors, 0, dg);
 
 var b_width = 128;
 var b_height = 32;
 var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Good", b_width, b_height, fa_center, dmu_dialog_commit_preferences, dg);
 
-ds_list_add(dg.contents, dg.el_picker, dg.el_channels,
+ds_list_add(dg.contents, dg.el_picker, dg.el_channels, dg.el_all,
     el_confirm);
 
 return dg;
