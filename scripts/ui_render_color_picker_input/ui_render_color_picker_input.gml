@@ -249,38 +249,40 @@ draw_rectangle(vx1, vy1, vx2, vy2, true);
 
 // ALPHA
 
-vx1 = x1 + picker.alpha_x;
-vy1 = y1 + picker.alpha_y;
-vx2 = vx1 + picker.main_size;
-vy2 = vy1 + picker.alpha_height;
-var w = vx2 - vx1;
-var h = vy2 - vy1;
+if (picker.allow_alpha) {
+    vx1 = x1 + picker.alpha_x;
+    vy1 = y1 + picker.alpha_y;
+    vx2 = vx1 + picker.main_size;
+    vy2 = vy1 + picker.alpha_height;
+    var w = vx2 - vx1;
+    var h = vy2 - vy1;
 
-if (active) {
-    var inbounds = mouse_within_rectangle_determine(picker.check_view, vx1, vy1, vx2, vy2);
-    if (inbounds && get_press_left()) {
-        picker.selecting_alpha = true;
+    if (active) {
+        var inbounds = mouse_within_rectangle_determine(picker.check_view, vx1, vy1, vx2, vy2);
+        if (inbounds && get_press_left()) {
+            picker.selecting_alpha = true;
+        }
     }
-}
 
-if (picker.selecting_alpha) {
-    picker.alpha = clamp((Camera.MOUSE_X - vx1) / w, 0, 1);
-    picker.selecting_alpha = Controller.mouse_left;
-}
+    if (picker.selecting_alpha) {
+        picker.alpha = clamp((Camera.MOUSE_X - vx1) / w, 0, 1);
+        picker.selecting_alpha = Controller.mouse_left;
+    }
 
-draw_text(tx, mean(vy1, vy2), "A");
-draw_checkerbox(vx1, vy1, vx2 - vx1, vy2 - vy1, 2.25, 2.25);
-draw_primitive_begin(pr_trianglelist);
-draw_vertex_colour(vx1, vy1, picker.value, 0);
-draw_vertex_colour(vx2, vy1, picker.value, 1);
-draw_vertex_colour(vx2, vy2, picker.value, 1);
-draw_vertex_colour(vx2, vy2, picker.value, 1);
-draw_vertex_colour(vx1, vy2, picker.value, 0);
-draw_vertex_colour(vx1, vy1, picker.value, 0);
-draw_primitive_end();
-draw_rectangle(vx1, vy1, vx2, vy2, true);
-var f = min(vx1 + w * picker.alpha, vx2 - 1);
-draw_line_width_colour(f, vy1, f, vy2, 2, c_white, c_white);
+    draw_text(tx, mean(vy1, vy2), "A");
+    draw_checkerbox(vx1, vy1, vx2 - vx1, vy2 - vy1, 2.25, 2.25);
+    draw_primitive_begin(pr_trianglelist);
+    draw_vertex_colour(vx1, vy1, picker.value, 0);
+    draw_vertex_colour(vx2, vy1, picker.value, 1);
+    draw_vertex_colour(vx2, vy2, picker.value, 1);
+    draw_vertex_colour(vx2, vy2, picker.value, 1);
+    draw_vertex_colour(vx1, vy2, picker.value, 0);
+    draw_vertex_colour(vx1, vy1, picker.value, 0);
+    draw_primitive_end();
+    draw_rectangle(vx1, vy1, vx2, vy2, true);
+    var f = min(vx1 + w * picker.alpha, vx2 - 1);
+    draw_line_width_colour(f, vy1, f, vy2, 2, c_white, c_white);
+}
 
 if (color_initial != picker.color) {
     script_execute(picker.onvaluechange, picker);
