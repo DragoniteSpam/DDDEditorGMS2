@@ -31,6 +31,7 @@ var vy2 = y1 + picker.value_y2;
 var vtx = vx1 + 12;
 var vty = mean(vy1, vy2);
 
+picker.value_text = string_hex(picker.value, 6);
 var c = validate_hex(picker.value_text) ? c_black : c_red;
 
 if (!picker.interactive) {

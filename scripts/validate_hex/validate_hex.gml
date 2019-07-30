@@ -4,8 +4,7 @@ if (!string_length(argument0)) {
     return false;
 }
 
-// @todo gml update try-catch
-return regex("[-+]?[0-9]*\.?[0-9]+", argument0);
+return regex("[-+]?[0-9A-Fa-f]+", argument0);
 
 // ((\+)|(\-))?
 //      optional + or -
