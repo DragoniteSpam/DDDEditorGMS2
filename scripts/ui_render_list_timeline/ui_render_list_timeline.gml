@@ -16,6 +16,29 @@ var animation = timeline.root.active_animation;
 var active = dialog_is_active(timeline.root);
 var layer_list = timeline.root.el_layers;
 
+// update the play head first
+
+if (animation && timeline.playing) {
+    var dt_scale = animation.frames_per_second / game_get_speed(gamespeed_fps);
+    timeline.playing_moment = timeline.playing_moment + dt_scale;
+    if (timeline.playing_moment > animation.moments - 1) {
+        if (timeline.playing_loop) {
+            timeline.playing_moment = timeline.playing_moment % animation.moments;
+        } else {
+            // don't reset the play position
+            timeline.playing = false;
+        }
+    }
+    var fmoment = floor(timeline.playing_moment);
+    if (fmoment >= timeline.moment_index + timeline.moment_slots - 1) {
+        timeline.moment_index = min(animation.moments - timeline.moment_slots, fmoment);
+    } else if (fmoment < timeline.moment_index) {
+        timeline.moment_index = fmoment;
+    }
+}
+
+// now actually draw it
+
 var x1 = timeline.x + xx;
 var y1 = timeline.y + yy;
 var x2 = x1 + timeline.moment_width * timeline.moment_slots;
@@ -222,13 +245,20 @@ if (animation) {
 
 // draw the grid over everything else
 draw_rectangle(x1, y2, x2, y3, true);
-
+draw_set_halign(fa_center);
 for (var i = 0; i < timeline.moment_slots; i++) {
     var mhx = x1 + timeline.moment_width * (i + 0.5);
     var mlx = x1 + timeline.moment_width * (i + 1);
     var mhy = ty;
     draw_text(mhx, mhy, string(i + timeline.moment_index));
     draw_line(mlx, y2, mlx, y3);
+}
+draw_set_halign(fa_left);
+
+if (is_clamped(timeline.playing_moment, timeline.moment_index, timeline.moment_index + timeline.moment_slots)) {
+    var fmoment = floor(timeline.playing_moment);
+    var phx = x1 + (fmoment - timeline.moment_index + 0.5) * timeline.moment_width;
+    draw_line_width_colour(phx, y2 - 6, phx, y3, 2, c_red, c_red);
 }
 
 var sw = sprite_get_width(spr_play_controls);
@@ -270,4 +300,13 @@ if (inbounds_play) {
     if (get_release_left()) {
         timeline.playing_loop = !timeline.playing_loop;
     }
+}
+
+if (keyboard_check_released(vk_space) && animation) {
+    timeline.playing = !timeline.playing;
+}
+
+if (keyboard_check_released(vk_enter)) {
+    timeline.playing = false;
+    timeline.playing_moment = 0;
 }
