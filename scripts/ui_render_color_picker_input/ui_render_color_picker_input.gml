@@ -65,6 +65,8 @@ vy1 = y1 + picker.axis_y;
 vx2 = vx1 + picker.axis_width;
 vy2 = vy1 + picker.main_size;
 
+var c = Stuff.color_channels[picker.axis_channel];
+draw_rectangle_colour(vx1, vy1, vx2, vy2, c, c, c_black, c_black, false);
 draw_rectangle(vx1, vy1, vx2, vy2, true);
 
 vx1 = x1 + picker.output_x;

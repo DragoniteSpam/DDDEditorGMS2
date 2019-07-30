@@ -110,6 +110,7 @@ all_internal_names = ds_map_create();
 
 tf = ["False", "True"];
 on_off = ["Off", "On"];
+color_channels = [c_red, c_green, c_blue];
 
 comparison_text = ["<", "<=", "==", ">=", ">", "!="];
 
