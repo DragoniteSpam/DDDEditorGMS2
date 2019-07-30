@@ -41,6 +41,8 @@ alpha_height = 16;
 selecting_alpha = false;
 
 axis_value = 0;
+axis_w = 0;
+axis_h = 0;
 axis_channel = ColorChannels.R;
 all_colors = true;
 

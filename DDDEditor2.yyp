@@ -615,6 +615,14 @@
             }
         },
         {
+            "Key": "0cd80a61-d632-4995-99b3-ce8267528197",
+            "Value": {
+                "id": "fbf64fad-3106-4713-ab17-349f64d18012",
+                "resourcePath": "sprites\\spr_crosshair_mask\\spr_crosshair_mask.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "0cf10e8e-e37f-4f4e-8d69-ac3955e5ccd6",
             "Value": {
                 "id": "fdcc46b9-9900-47a9-a499-5be705a36a15",
@@ -2108,14 +2116,6 @@
                 "id": "b9fc4291-d32a-4fd2-9b76-67074f80c0b5",
                 "resourcePath": "scripts\\momu_redo\\momu_redo.yy",
                 "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "35ab3910-49ce-41ae-bb04-e8d1d006ef8a",
-            "Value": {
-                "id": "3446bc76-dd45-4eaf-8cf1-4426981f5723",
-                "resourcePath": "shaders\\shd_green_to_alpha\\shd_green_to_alpha.yy",
-                "resourceType": "GMShader"
             }
         },
         {

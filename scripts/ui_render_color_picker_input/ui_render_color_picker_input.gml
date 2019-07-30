@@ -92,26 +92,29 @@ if (active) {
 }
 
 if (picker.selecting_color) {
-    var axis = picker.axis_value;
-    var ww = clamp((Camera.MOUSE_X - vx1) / w, 0, 1);
-    var hh = 1 - clamp((Camera.MOUSE_Y - vy1) / h, 0, 1);
+    picker.axis_w = clamp((Camera.MOUSE_X - vx1) / w, 0, 1);
+    picker.axis_h = 1 - clamp((Camera.MOUSE_Y - vy1) / h, 0, 1);
     picker.selecting_color = Controller.mouse_left;
-    
-    if (!picker.all_colors) {
-        axis = floor(axis * buckets) / buckets;
-        ww = floor(ww * buckets) / buckets;
-        hh = floor(hh * buckets) / buckets;
-    }
-    
-    axis = axis * 0xff;
-    ww = ww * 0xff;
-    hh = hh * 0xff;
-    
-    switch (picker.axis_channel) {
-        case ColorChannels.R: picker.value = (hh << 16) | (ww << 8) | axis; break;
-        case ColorChannels.G: picker.value = (ww << 16) | (axis << 8) | hh; break;
-        case ColorChannels.B: picker.value = (axis << 16) | (hh << 8) | ww; break;
-    }
+}
+
+var axis = picker.axis_value;
+var ww = picker.axis_w;
+var hh = picker.axis_h;
+
+if (!picker.all_colors) {
+    axis = floor(axis * buckets) / buckets;
+    ww = floor(ww * buckets) / buckets;
+    hh = floor(hh * buckets) / buckets;
+}
+
+axis = axis * 0xff;
+ww = ww * 0xff;
+hh = hh * 0xff;
+
+switch (picker.axis_channel) {
+    case ColorChannels.R: picker.value = (hh << 16) | (ww << 8) | axis; break;
+    case ColorChannels.G: picker.value = (ww << 16) | (axis << 8) | hh; break;
+    case ColorChannels.B: picker.value = (axis << 16) | (hh << 8) | ww; break;
 }
 
 if (!picker.all_colors) {
@@ -122,6 +125,12 @@ if (!picker.all_colors) {
 draw_rectangle_colour(vx1, vy1, vx2, vy2, c1, c2, c3, c_black, false);
 shader_reset();
 draw_rectangle(vx1, vy1, vx2, vy2, true);
+
+gpu_set_blendmode_ext(bm_inv_dest_color, bm_inv_src_color);
+var chx = vx1 + picker.axis_w * w;
+var chy = vy1 + (1 - picker.axis_h) * h;
+draw_sprite(spr_crosshair_mask, 0, chx, chy);
+gpu_set_blendmode(bm_normal);
 
 // COLOR AXIS
 
@@ -155,8 +164,9 @@ shader_reset();
 draw_rectangle(vx1, vy1, vx2, vy2, true);
 
 var f = min(vy1 + h * picker.axis_value, vy2 - 1);
-var c_axis = (picker.axis_channel == ColorChannels.R) ? 0x00ff00 : c_red;
-draw_line_width_colour(vx1, f, vx2, f, 2, c_axis, c_axis);
+gpu_set_blendmode_ext(bm_inv_dest_color, bm_inv_src_color);
+draw_line_width_colour(vx1, f, vx2, f, 2, c_white, c_white);
+gpu_set_blendmode(bm_normal);
 
 // OUTPUT COLOR
 
@@ -167,10 +177,9 @@ vy2 = vy1 + picker.output_height;
 var w = vx2 - vx1;
 var h = vy2 - vy1;
 
-var c = picker.value;
 draw_checkerbox(vx1, vy1, vx2 - vx1, vy2 - vy1, 2.25, 2.25);
 draw_set_alpha(picker.alpha);
-draw_rectangle_colour(vx1, vy1, vx2, vy2, c, c, c, c, false);
+draw_rectangle_colour(vx1, vy1, vx2, vy2, picker.value, picker.value, picker.value, picker.value, false);
 draw_set_alpha(1);
 draw_rectangle(vx1, vy1, vx2, vy2, true);
 
@@ -197,9 +206,14 @@ if (picker.selecting_alpha) {
 
 draw_text(tx, mean(vy1, vy2), "A");
 draw_checkerbox(vx1, vy1, vx2 - vx1, vy2 - vy1, 2.25, 2.25);
-shader_set(shd_green_to_alpha);
-draw_rectangle_colour(vx1, vy1, vx2, vy2, c_black, 0x00ff00, 0x00ff00, c_black, false);
-shader_reset();
+draw_primitive_begin(pr_trianglelist);
+draw_vertex_colour(vx1, vy1, picker.value, 0);
+draw_vertex_colour(vx2, vy1, picker.value, 1);
+draw_vertex_colour(vx2, vy2, picker.value, 1);
+draw_vertex_colour(vx2, vy2, picker.value, 1);
+draw_vertex_colour(vx1, vy2, picker.value, 0);
+draw_vertex_colour(vx1, vy1, picker.value, 0);
+draw_primitive_end();
 draw_rectangle(vx1, vy1, vx2, vy2, true);
 var f = min(vx1 + w * picker.alpha, vx2 - 1);
-draw_line_width_colour(f, vy1, f, vy2, 2, c_red, c_red);
+draw_line_width_colour(f, vy1, f, vy2, 2, c_white, c_white);
