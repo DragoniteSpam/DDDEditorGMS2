@@ -232,8 +232,22 @@ for (var i = 0; i < timeline.moment_slots; i++) {
 }
 
 var sw = sprite_get_width(spr_play_controls);
+var sh = sprite_get_height(spr_play_controls);
 var spacing = 16;
 
 draw_sprite_ext(spr_play_controls, 0, x1 + spacing, y3 + spacing, 1, 1, 0, c_white, 1);
 draw_sprite_ext(spr_play_controls, 1, x1 + spacing + sw, y3 + spacing, 1, 1, 0, c_white, 1);
 draw_sprite_ext(spr_play_controls, 2, x1 + spacing + sw * 2, y3 + spacing, 1, 1, 0, c_white, 1);
+
+if (animation) {
+    var inbounds_play = mouse_within_rectangle_determine(timeline.check_view, x1 + spacing, y3 + spacing, x1 + spacing + sw, y3 + spacing + sh);
+    var inbounds_pause = mouse_within_rectangle_determine(timeline.check_view, x1 + spacing + sw, y3 + spacing, x1 + spacing + sw * 2, y3 + spacing + sh);
+    var inbounds_stop = mouse_within_rectangle_determine(timeline.check_view, x1 + spacing + sw * 2, y3 + spacing, x1 + spacing + sw * 3, y3 + spacing + sh);
+    if (inbounds_play) {
+        
+    } else if (inbounds_pause) {
+        
+    } else if (inbounds_stop) {
+        
+    }
+}
