@@ -100,21 +100,21 @@ with (instantiate(UIThing)) {
         
         yy = yy + element.height;
     
-        el_keyframe.translate_x = create_input(xx, yy, "      x:", ew, eh, uivc_animation_keyframe_translation_x, 0, "", "float", validate_double, ui_value_real, -MILLION, MILLION, 10, vx1, vy1, vx2, vy2, el_keyframe);
+        el_keyframe.translate_x = create_input(xx, yy, "      x:", ew, eh, uivc_animation_keyframe_translation_x, 0, "0", "float", validate_double, ui_value_real, -MILLION, MILLION, 10, vx1, vy1, vx2, vy2, el_keyframe);
         ds_list_add(el_keyframe.contents, el_keyframe.translate_x);
         var element = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, null, el_keyframe);
         ds_list_add(el_keyframe.contents, element);
         
         yy = yy + el_keyframe.translate_x.height;
     
-        el_keyframe.translate_y = create_input(xx, yy, "      y:", ew, eh, uivc_animation_keyframe_translation_y, 0, "", "float", validate_double, ui_value_real, -MILLION, MILLION, 10, vx1, vy1, vx2, vy2, el_keyframe);
+        el_keyframe.translate_y = create_input(xx, yy, "      y:", ew, eh, uivc_animation_keyframe_translation_y, 0, "0", "float", validate_double, ui_value_real, -MILLION, MILLION, 10, vx1, vy1, vx2, vy2, el_keyframe);
         ds_list_add(el_keyframe.contents, el_keyframe.translate_y);
         var element = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, null, el_keyframe);
         ds_list_add(el_keyframe.contents, element);
         
         yy = yy + el_keyframe.translate_y.height;
     
-        el_keyframe.translate_z = create_input(xx, yy, "      z:", ew, eh, uivc_animation_keyframe_translation_z, 0, "", "float", validate_double, ui_value_real, -MILLION, MILLION, 10, vx1, vy1, vx2, vy2, el_keyframe);
+        el_keyframe.translate_z = create_input(xx, yy, "      z:", ew, eh, uivc_animation_keyframe_translation_z, 0, "0", "float", validate_double, ui_value_real, -MILLION, MILLION, 10, vx1, vy1, vx2, vy2, el_keyframe);
         ds_list_add(el_keyframe.contents, el_keyframe.translate_z);
         var element = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, null, el_keyframe);
         ds_list_add(el_keyframe.contents, element);
@@ -126,21 +126,21 @@ with (instantiate(UIThing)) {
         
         yy = yy + element.height;
     
-        el_keyframe.rotate_x = create_input(xx, yy, "      x:", ew, eh, uivc_animation_keyframe_rotation_x, 0, "", "float", validate_double, ui_value_real, -MILLION, MILLION, 10, vx1, vy1, vx2, vy2, el_keyframe);
+        el_keyframe.rotate_x = create_input(xx, yy, "      x:", ew, eh, uivc_animation_keyframe_rotation_x, 0, "0", "float", validate_double, ui_value_real, -MILLION, MILLION, 10, vx1, vy1, vx2, vy2, el_keyframe);
         ds_list_add(el_keyframe.contents, el_keyframe.rotate_x);
         var element = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, null, el_keyframe);
         ds_list_add(el_keyframe.contents, element);
         
         yy = yy + el_keyframe.rotate_x.height;
     
-        el_keyframe.rotate_y = create_input(xx, yy, "      y:", ew, eh, uivc_animation_keyframe_rotation_y, 0, "", "float", validate_double, ui_value_real, -MILLION, MILLION, 10, vx1, vy1, vx2, vy2, el_keyframe);
+        el_keyframe.rotate_y = create_input(xx, yy, "      y:", ew, eh, uivc_animation_keyframe_rotation_y, 0, "0", "float", validate_double, ui_value_real, -MILLION, MILLION, 10, vx1, vy1, vx2, vy2, el_keyframe);
         ds_list_add(el_keyframe.contents, el_keyframe.rotate_y);
         var element = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, null, el_keyframe);
         ds_list_add(el_keyframe.contents, element);
         
         yy = yy + el_keyframe.rotate_y.height;
     
-        el_keyframe.rotate_z = create_input(xx, yy, "      z:", ew, eh, uivc_animation_keyframe_rotation_z, 0, "", "float", validate_double, ui_value_real, -MILLION, MILLION, 10, vx1, vy1, vx2, vy2, el_keyframe);
+        el_keyframe.rotate_z = create_input(xx, yy, "      z:", ew, eh, uivc_animation_keyframe_rotation_z, 0, "0", "float", validate_double, ui_value_real, -MILLION, MILLION, 10, vx1, vy1, vx2, vy2, el_keyframe);
         ds_list_add(el_keyframe.contents, el_keyframe.rotate_z);
         var element = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, null, el_keyframe);
         ds_list_add(el_keyframe.contents, element);
@@ -152,21 +152,21 @@ with (instantiate(UIThing)) {
         
         yy = yy + element.height;
     
-        el_keyframe.scale_x = create_input(xx, yy, "      x:", ew, eh, uivc_animation_keyframe_scale_x, 0, "", "float", validate_double, ui_value_real, -100, 100, 5, vx1, vy1, vx2, vy2, el_keyframe);
+        el_keyframe.scale_x = create_input(xx, yy, "      x:", ew, eh, uivc_animation_keyframe_scale_x, 0, "1", "float", validate_double, ui_value_real, -100, 100, 5, vx1, vy1, vx2, vy2, el_keyframe);
         ds_list_add(el_keyframe.contents, el_keyframe.scale_x);
         var element = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, null, el_keyframe);
         ds_list_add(el_keyframe.contents, element);
         
         yy = yy + el_keyframe.scale_x.height;
     
-        el_keyframe.scale_y = create_input(xx, yy, "      y:", ew, eh, uivc_animation_keyframe_scale_y, 0, "", "float", validate_double, ui_value_real, -100, 100, 5, vx1, vy1, vx2, vy2, el_keyframe);
+        el_keyframe.scale_y = create_input(xx, yy, "      y:", ew, eh, uivc_animation_keyframe_scale_y, 0, "1", "float", validate_double, ui_value_real, -100, 100, 5, vx1, vy1, vx2, vy2, el_keyframe);
         ds_list_add(el_keyframe.contents, el_keyframe.scale_y);
         var element = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, null, el_keyframe);
         ds_list_add(el_keyframe.contents, element);
         
         yy = yy + el_keyframe.scale_y.height;
     
-        el_keyframe.scale_z = create_input(xx, yy, "      z:", ew, eh, uivc_animation_keyframe_scale_z, 0, "", "float", validate_double, ui_value_real, -100, 100, 5, vx1, vy1, vx2, vy2, el_keyframe);
+        el_keyframe.scale_z = create_input(xx, yy, "      z:", ew, eh, uivc_animation_keyframe_scale_z, 0, "1", "float", validate_double, ui_value_real, -100, 100, 5, vx1, vy1, vx2, vy2, el_keyframe);
         ds_list_add(el_keyframe.contents, el_keyframe.scale_z);
         var element = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, null, el_keyframe);
         ds_list_add(el_keyframe.contents, element);
@@ -178,14 +178,14 @@ with (instantiate(UIThing)) {
         
         yy = yy + element.height + spacing;
     
-        el_keyframe.color = create_color_picker(xx, yy, "      color:", ew, eh, uivc_animation_keyframe_color, 0, c_black, vx1, vy1, vx2, vy2, el_keyframe);
+        el_keyframe.color = create_color_picker(xx, yy, "      color:", ew, eh, uivc_animation_keyframe_color, 0, c_white, vx1, vy1, vx2, vy2, el_keyframe);
         ds_list_add(el_keyframe.contents, el_keyframe.color);
         var element = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, null, el_keyframe);
         ds_list_add(el_keyframe.contents, element);
         
         yy = yy + el_keyframe.color.height;
     
-        el_keyframe.alpha = create_input(xx, yy, "      alpha:", ew, eh, uivc_animation_keyframe_alpha, 0, "", "float", validate_double, ui_value_real, 0, 1, 6, vx1, vy1, vx2, vy2, el_keyframe);
+        el_keyframe.alpha = create_input(xx, yy, "      alpha:", ew, eh, uivc_animation_keyframe_alpha, 0, "1", "float", validate_double, ui_value_real, 0, 1, 6, vx1, vy1, vx2, vy2, el_keyframe);
         ds_list_add(el_keyframe.contents, el_keyframe.alpha);
         var element = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, null, el_keyframe);
         ds_list_add(el_keyframe.contents, element);
