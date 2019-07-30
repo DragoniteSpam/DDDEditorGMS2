@@ -17,6 +17,7 @@ var ty = ui_get_text_y(picker, y1, y2);
 
 var value = picker.value;
 var input_active = ui_is_active(picker);
+var color_initial = value;
 
 // this is not quite the same as ui_render_text
 draw_set_halign(picker.alignment);
@@ -84,7 +85,7 @@ if (active) {
         if (string_length(picker.value_text) > 6) {
             picker.value_text = string_copy(picker.value_text, 1, 6);
         }
-    
+        
         if (validate_hex(picker.value_text) && string_length(picker.value_text) == 6) {
             picker.value = colour_reverse(hex(picker.value_text));
             
@@ -280,3 +281,7 @@ draw_primitive_end();
 draw_rectangle(vx1, vy1, vx2, vy2, true);
 var f = min(vx1 + w * picker.alpha, vx2 - 1);
 draw_line_width_colour(f, vy1, f, vy2, 2, c_white, c_white);
+
+if (color_initial != picker.color) {
+    script_execute(picker.onvaluechange, picker);
+}

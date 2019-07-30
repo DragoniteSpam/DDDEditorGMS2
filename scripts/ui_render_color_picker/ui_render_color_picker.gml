@@ -38,7 +38,7 @@ if (picker.interactive && dialog_is_active(picker.root)) {
     var inbounds = mouse_within_rectangle_determine(picker.check_view, vx1, vy1, vx2, vy2);
     if (inbounds) {
         if (get_release_left()) {
-            dialog_create_color_picker_options(picker, picker.value);
+            dialog_create_color_picker_options(picker, picker.value, uivc_color_picker_reflect);
         } else if (Controller.press_help) {
             //ds_stuff_help_auto(picker);
         }

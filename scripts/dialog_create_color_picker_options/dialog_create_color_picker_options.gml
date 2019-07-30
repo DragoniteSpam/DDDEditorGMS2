@@ -1,8 +1,10 @@
 /// @param Dialog
 /// @param default-color
+/// @param [on-value-change]
 
-var dialog = argument0;
-var color = argument1;
+var dialog = argument[0];
+var color = argument[1];
+var onvaluechange = (argument_count > 2) ? argument[2] : null;
 
 var dw = 480;
 var dh = 400;
@@ -20,7 +22,7 @@ var vy2 = vy1 + eh;
 var yy = 64;
 var spacing = 16;
 
-dg.el_picker = create_color_picker_input(32, yy, ew, eh, null, 0, color, true, vx1, vy1, vx2, vy2, dg);
+dg.el_picker = create_color_picker_input(32, yy, ew, eh, onvaluechange, 0, color, false, vx1, vy1, vx2, vy2, dg);
 dg.el_channels = create_radio_array(320, yy, "Axis Channel", ew / 2, eh, uivc_radio_color_picker_channel, 0, dg);
 create_radio_array_options(dg.el_channels, "Red", "Green", "Blue");
 yy = yy + ui_get_radio_array_height(dg.el_channels) + spacing;
