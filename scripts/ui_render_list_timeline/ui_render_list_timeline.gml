@@ -91,10 +91,22 @@ if (animation) {
             }
         }
         
-        // draw the keyframes
+        // moments that are on exact seconds should be highlighted
         var moment_start = timeline.moment_index;
         var moment_end = timeline.moment_index + timeline.moment_slots;
         
+        if (animation) {
+            var c_interval = colour_fade(c_ui_select);
+            for (var i = moment_start; i < moment_end; i++) {
+                if (i % animation.frames_per_second == 0) {
+                    var kfx1 = x1 + timeline.moment_width * (i - timeline.moment_index);
+                    var kfx2 = x1 + timeline.moment_width * (i - timeline.moment_index + 1);
+                    draw_rectangle_colour(kfx1, y2, kfx2, y3, c_interval, c_interval, c_interval, c_interval, false);
+                }
+            }
+        }
+        
+        // draw the keyframes
         for (var i = 0; i < min(n, timeline.slots); i++) {
             var index = i + layer_list.index;
             
