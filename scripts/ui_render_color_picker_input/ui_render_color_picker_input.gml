@@ -42,7 +42,10 @@ if (string_length(value) == 0) {
     draw_text_ext_colour(vtx, vty, picker.allow_alpha ? "RRGGBBAA" : "RRGGBB", -1, (vx2 - 2 * vtx), c_dkgray, c_dkgray, c_dkgray, c_dkgray, 1);
 }
 
-if (picker.interactive && dialog_is_active(picker.root)) {
+// becasue this is going to get called several times, and it's not going to change
+var active = picker.interactive && dialog_is_active(picker.root);
+
+if (active) {
     var inbounds = mouse_within_rectangle_determine(picker.check_view, vx1, vy1, vx2, vy2);
     if (inbounds) {
         if (get_release_left()) {
@@ -53,12 +56,16 @@ if (picker.interactive && dialog_is_active(picker.root)) {
     }
 }
 
+// COLOR PICKER
+
 vx1 = x1 + picker.color_x;
 vy1 = y1 + picker.color_y;
 vx2 = vx1 + picker.main_size;
 vy2 = vy1 + picker.main_size;
 
 draw_rectangle(vx1, vy1, vx2, vy2, true);
+
+// COLOR AXIS
 
 vx1 = x1 + picker.axis_x;
 vy1 = y1 + picker.axis_y;
@@ -69,17 +76,45 @@ var c = Stuff.color_channels[picker.axis_channel];
 draw_rectangle_colour(vx1, vy1, vx2, vy2, c, c, c_black, c_black, false);
 draw_rectangle(vx1, vy1, vx2, vy2, true);
 
+// OUTPUT COLOR
+
 vx1 = x1 + picker.output_x;
 vy1 = y1 + picker.output_y;
 vx2 = vx1 + picker.main_size;
 vy2 = vy1 + picker.output_height;
 
+var c = picker.value;
+draw_checkerbox(vx1, vy1, vx2 - vx1, vy2 - vy1, 2.25, 2.25);
+draw_set_alpha(picker.alpha);
+draw_rectangle_colour(vx1, vy1, vx2, vy2, c, c, c, c, false);
+draw_set_alpha(1);
 draw_rectangle(vx1, vy1, vx2, vy2, true);
+
+// ALPHA
 
 vx1 = x1 + picker.alpha_x;
 vy1 = y1 + picker.alpha_y;
 vx2 = vx1 + picker.main_size;
 vy2 = vy1 + picker.alpha_height;
+var w = vx2 - vx1;
+
+if (active) {
+    var inbounds = mouse_within_rectangle_determine(picker.check_view, vx1, vy1, vx2, vy2);
+    if (inbounds && get_press_left()) {
+        picker.selecting_alpha = true;
+    }
+}
+
+if (picker.selecting_alpha) {
+    picker.alpha = clamp((Camera.MOUSE_X - vx1) / w, 0, 1);
+    picker.selecting_alpha = Controller.mouse_left;
+}
 
 draw_text(tx, mean(vy1, vy2), "A");
+draw_checkerbox(vx1, vy1, vx2 - vx1, vy2 - vy1, 2.25, 2.25);
+shader_set(shd_green_to_alpha);
+draw_rectangle_colour(vx1, vy1, vx2, vy2, c_black, c_green, c_green, c_black, false);
+shader_reset();
+var f = vx1 + w * picker.alpha;
+draw_line_width_colour(f, vy1, f, vy2, 2, c_red, c_red);
 draw_rectangle(vx1, vy1, vx2, vy2, true);

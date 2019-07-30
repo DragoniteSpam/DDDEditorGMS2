@@ -21,11 +21,13 @@ allow_alpha = true;
 color_x = 0;
 color_y = height + 16;
 main_size = 176;                    // side length
+selecting_color = false;
 
 axis_x = color_x + main_size + 16;
 axis_y = color_y;
 axis_width = 32;
 // axis_height is main_size
+selecting_axis = false;
 
 output_x = color_x + 48;
 output_y = color_y + main_size + 8;
@@ -36,6 +38,7 @@ alpha_x = color_x + 48;
 alpha_y = output_y + output_height + 8;
 // alpha_width is main_size
 alpha_height = 16;
+selecting_alpha = false;
 
 axis_value = 0;
 axis_channel = ColorChannels.R;

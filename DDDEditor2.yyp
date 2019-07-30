@@ -2103,6 +2103,14 @@
             }
         },
         {
+            "Key": "35ab3910-49ce-41ae-bb04-e8d1d006ef8a",
+            "Value": {
+                "id": "3446bc76-dd45-4eaf-8cf1-4426981f5723",
+                "resourcePath": "shaders\\shd_green_to_alpha\\shd_green_to_alpha.yy",
+                "resourceType": "GMShader"
+            }
+        },
+        {
             "Key": "35e68409-dde2-47c6-a70c-bffd5ece8045",
             "Value": {
                 "id": "c27d5470-fa87-46cc-bb99-af3b5dc77d7e",
