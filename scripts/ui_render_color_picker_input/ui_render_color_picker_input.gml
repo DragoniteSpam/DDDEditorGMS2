@@ -16,6 +16,7 @@ var tx = ui_get_text_x(picker, x1, x2);
 var ty = ui_get_text_y(picker, y1, y2);
 
 var value = picker.value;
+var input_active = ui_is_active(picker);
 
 // this is not quite the same as ui_render_text
 draw_set_halign(picker.alignment);
@@ -31,17 +32,21 @@ var vy2 = y1 + picker.value_y2;
 var vtx = vx1 + 12;
 var vty = mean(vy1, vy2);
 
-picker.value_text = string_hex(picker.value, 6);
+if (!input_active) {
+    picker.value_text = string_hex(colour_reverse(picker.value), 6);
+}
+
 var c = validate_hex(picker.value_text) ? c_black : c_red;
 
 if (!picker.interactive) {
     draw_rectangle_colour(vx1 + 1, vy1 + 1, vx2 - 1, vy2 - 1, c_ltgray, c_ltgray, c_ltgray, c_ltgray, false);
 }
+
 draw_rectangle(vx1, vy1, vx2, vy2, true);
 
 draw_text_ext_colour(vtx, vty, picker.value_text, -1, (vx2 - vtx), c, c, c, c, 1);
-if (string_length(value) == 0) {
-    draw_text_ext_colour(vtx, vty, picker.allow_alpha ? "RRGGBBAA" : "RRGGBB", -1, (vx2 - 2 * vtx), c_dkgray, c_dkgray, c_dkgray, c_dkgray, 1);
+if (string_length(picker.value_text) == 0) {
+    draw_text_ext_colour(vtx, vty, "RRGGBB", -1, (vx2 - 2 * vtx), c_dkgray, c_dkgray, c_dkgray, c_dkgray, 1);
 }
 
 // becasue this is going to get called several times, and it's not going to change
@@ -51,9 +56,62 @@ if (active) {
     var inbounds = mouse_within_rectangle_determine(picker.check_view, vx1, vy1, vx2, vy2);
     if (inbounds) {
         if (get_release_left()) {
-            
+            ui_activate(picker);
+            keyboard_string = "";
         } else if (Controller.press_help) {
             //ds_stuff_help_auto(picker);
+        }
+    } else {
+        if (Controller.press_left) {
+            ui_activate(noone);
+        }
+    }
+    
+    if (input_active) {
+        if (current_second % 2 == 0) {
+            var bx = vtx + string_width(picker.value_text) + 4;
+            draw_line_width(bx, ty - 7, bx, ty + 7, 2);
+        }
+    
+        picker.value_text = picker.value_text + keyboard_string;
+        keyboard_string = "";
+        if (keyboard_check_pressed(vk_backspace)) {
+            picker.value_text = string_backspace(picker.value_text);
+        }
+        if (get_release_escape()) {
+            picker.value_text = "";
+        }
+        if (string_length(picker.value_text) > 6) {
+            picker.value_text = string_copy(picker.value_text, 1, 6);
+        }
+    
+        if (validate_hex(picker.value_text) && string_length(picker.value_text) == 6) {
+            picker.value = colour_reverse(hex(picker.value_text));
+            
+            // bgr
+            switch (picker.axis_channel) {
+                case ColorChannels.R:
+                    picker.axis_value = (picker.value & 0xff0000) >> 16;
+                    picker.axis_w = (picker.value & 0x00ff00) >> 8;
+                    picker.axis_h = picker.value & 0x0000ff;
+                    break;
+                case ColorChannels.G:
+                    picker.axis_value = (picker.value & 0x00ff00) >> 8;
+                    picker.axis_w = picker.value & 0x0000ff;
+                    picker.axis_h = (picker.value & 0xff0000) >> 16;
+                    break;
+                case ColorChannels.B:
+                    picker.axis_value = picker.value & 0x0000ff;
+                    picker.axis_w = (picker.value & 0xff0000) >> 16;
+                    picker.axis_h = (picker.value & 0x00ff00) >> 8;
+                    break;
+            }
+            
+            picker.axis_value = picker.axis_value / 0xff;
+            picker.axis_w = picker.axis_w / 0xff;
+            picker.axis_h = picker.axis_h / 0xff;
+            
+            debug([picker.axis_value, picker.axis_w, picker.axis_h]);
         }
     }
 }
@@ -71,17 +129,20 @@ switch (picker.axis_channel) {
     case ColorChannels.R:
         var c2 = colour_replace_red(c_white, picker.axis_value * 0xff);
         var c1 = colour_replace_green(c2, 0);
-        var c3 = colour_replace_blue(c2, 0);;
+        var c3 = colour_replace_blue(c2, 0);
+        var c4 = picker.axis_value * 0xff;
         break;
     case ColorChannels.G:
         var c2 = colour_replace_green(c_white, picker.axis_value * 0xff);
         var c1 = colour_replace_blue(c2, 0);
         var c3 = colour_replace_red(c2, 0);
+        var c4 = (picker.axis_value * 0xff) << 8;
         break;
     case ColorChannels.B:
         var c2 = colour_replace_blue(c_white, picker.axis_value * 0xff);
         var c1 = colour_replace_red(c2, 0);
         var c3 = colour_replace_green(c2, 0);
+        var c4 = (picker.axis_value * 0xff) << 16;
         break;
 }
 
@@ -123,7 +184,7 @@ if (!picker.all_colors) {
     shader_set_uniform_f(shader_get_uniform(shd_basic_colors, "buckets"), buckets);
 }
 
-draw_rectangle_colour(vx1, vy1, vx2, vy2, c1, c2, c3, c_black, false);
+draw_rectangle_colour(vx1, vy1, vx2, vy2, c1, c2, c3, c4, false);
 shader_reset();
 draw_rectangle(vx1, vy1, vx2, vy2, true);
 
