@@ -88,30 +88,31 @@ if (active) {
         if (validate_hex(picker.value_text) && string_length(picker.value_text) == 6) {
             picker.value = colour_reverse(hex(picker.value_text));
             
-            // bgr
+            var rr = picker.value & 0x0000ff;
+            var gg = (picker.value & 0x00ff00) >> 8;
+            var bb = (picker.value & 0xff0000) >> 16;
+            
             switch (picker.axis_channel) {
                 case ColorChannels.R:
-                    picker.axis_value = (picker.value & 0xff0000) >> 16;
-                    picker.axis_w = (picker.value & 0x00ff00) >> 8;
-                    picker.axis_h = picker.value & 0x0000ff;
+                    picker.axis_value = rr;
+                    picker.axis_w = gg;
+                    picker.axis_h = bb;
                     break;
                 case ColorChannels.G:
-                    picker.axis_value = (picker.value & 0x00ff00) >> 8;
-                    picker.axis_w = picker.value & 0x0000ff;
-                    picker.axis_h = (picker.value & 0xff0000) >> 16;
+                    picker.axis_value = gg;
+                    picker.axis_w = bb;
+                    picker.axis_h = rr;
                     break;
                 case ColorChannels.B:
-                    picker.axis_value = picker.value & 0x0000ff;
-                    picker.axis_w = (picker.value & 0xff0000) >> 16;
-                    picker.axis_h = (picker.value & 0x00ff00) >> 8;
+                    picker.axis_value = bb;
+                    picker.axis_w = rr;
+                    picker.axis_h = gg;
                     break;
             }
             
             picker.axis_value = picker.axis_value / 0xff;
             picker.axis_w = picker.axis_w / 0xff;
             picker.axis_h = picker.axis_h / 0xff;
-            
-            debug([picker.axis_value, picker.axis_w, picker.axis_h]);
         }
     }
 }
