@@ -103,7 +103,7 @@ with (instantiate(UIThing)) {
         el_keyframe.translate_x = create_input(xx, yy, "      x:", ew, eh, uivc_animation_keyframe_translation_x, 0, "0", "float", validate_double, ui_value_real, -MILLION, MILLION, 10, vx1, vy1, vx2, vy2, el_keyframe);
         el_keyframe.translate_x.render = ui_render_animation_keyframe_translate_x;
         ds_list_add(el_keyframe.contents, el_keyframe.translate_x);
-        el_keyframe.tween_translate_x = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, omu_animation_keyframe_tween_trans_x, el_keyframe);
+        el_keyframe.tween_translate_x = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, omu_animation_keyframe_tween, el_keyframe);
         ds_list_add(el_keyframe.contents, el_keyframe.tween_translate_x);
         
         yy = yy + el_keyframe.translate_x.height;

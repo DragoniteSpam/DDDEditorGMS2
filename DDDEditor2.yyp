@@ -1426,7 +1426,7 @@
             "Key": "21c67df9-6a4c-42f3-bcd8-11d361ca41d2",
             "Value": {
                 "id": "2986d7fe-a40e-4ab2-9b07-f93d0dcdbd60",
-                "resourcePath": "scripts\\omu_animation_keyframe_tween_trans_x\\omu_animation_keyframe_tween_trans_x.yy",
+                "resourcePath": "scripts\\omu_animation_keyframe_tween\\omu_animation_keyframe_tween.yy",
                 "resourceType": "GMScript"
             }
         },

@@ -1,0 +1,38 @@
+/// @param UIThing
+
+var thing = argument0;
+var keyframe = thing.root.root.el_timeline.selected_keyframe;
+var type = keyframe.tween_xx;
+
+if (keyframe) {
+    var dw = 320;
+    var dh = 720;
+
+    var dg = dialog_create(dw, dh, "Animation Tweening", undefined, undefined, argument0);
+    
+    var ew = (dw - 64);
+    var eh = 24;
+    
+    var b_width = 128;
+    var b_height = 32;
+    
+    var yy = 64;
+    var spacing = 16;
+    
+    var el_type = create_radio_array(16, yy, "Type", ew, eh, null, type, dg);
+    create_radio_array_options(el_type, "Ignore", "None",
+        "Ease Quadratic In", "Ease Quadratic Out", "Ease Quadratic In / Out",
+        "Ease Cubic In", "Ease Cubic Out", "Ease Cubic In / Out",
+        "Ease Quartic In", "Ease Quartic Out", "Ease Quartic In / Out",
+        "Ease Quintic In", "Ease Quintic Out", "Ease Quintic In / Out",
+        "Ease Sine In", "Ease Sine Out", "Ease Sine In / Out",
+        "Ease Exponential In", "Ease Exponential Out", "Ease Exponential In / Out",
+        "Ease Circular In", "Ease Circular Out", "Ease Circular In / Out");
+    
+    var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
+
+    ds_list_add(dg.contents, el_type,
+        el_confirm);
+
+    keyboard_string = "";
+}
