@@ -16,7 +16,7 @@ alpha = 1;
 
 event = noone;
 
-tween_xx = AnimationTweens.EASE_IO_SINE;
+tween_xx = AnimationTweens.EASE_EXP_O;
 tween_yy = AnimationTweens.NONE;
 tween_zz = AnimationTweens.NONE;
 tween_xrot = AnimationTweens.NONE;
@@ -37,5 +37,25 @@ enum AnimationTweens {
     IGNORE,
     NONE,
     LINEAR,
-    EASE_IO_SINE,
+    EASE_QUAD_I,
+    EASE_QUAD_O,
+    EASE_QUAD_IO,
+    EASE_SINE_I,
+    EASE_SINE_O,
+    EASE_SINE_IO,
+    EASE_CUBE_I,
+    EASE_CUBE_O,
+    EASE_CUBE_IO,
+    EASE_QUART_I,
+    EASE_QUART_O,
+    EASE_QUART_IO,
+    EASE_QUINT_I,
+    EASE_QUINT_O,
+    EASE_QUINT_IO,
+    EASE_EXP_I,
+    EASE_EXP_O,
+    EASE_EXP_IO,
+    EASE_CIRC_I,
+    EASE_CIRC_O,
+    EASE_CIRC_IO,
 }

@@ -3,8 +3,10 @@
 /// @param f
 
 // weird arguments but they match the format used by http://www.gizma.com/easing
-var t = argument2;
+var t = argument2 * 2;
 var b = argument0;
 var c = argument1 - argument0;
 
-return -c / 2 * (cos(pi * t) - 1) + b;
+if (t < 1) return c / 2 * power(2, 10 * (t - 1)) + b;
+t--;
+return c / 2 * (-power(2, -10 * t) + 2) + b;
