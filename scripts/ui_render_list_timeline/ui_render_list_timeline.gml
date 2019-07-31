@@ -8,6 +8,23 @@
 // it's also SUPER hard-coded to work with the animation editor because i don't plan on it being
 // needed anywhere else; if it is, you'll want to make a more general solution for this
 
+/*
+before you do anything else -
+
+each of the layers should have "default translation rotation scale" values -
+they'll be used in both the editor preview AND the game, because getting things
+like move particles to automatically travel towards the attack target is going
+to mean writing even more very annoying code, which i don't feel like doing
+
+for the purposes of attack animations, the origin and orientation should be
+rooted on the USER and created so that it looks similar(ish) from both sides,
+so that one animation can serve both sides of the battlefield
+
+this will make it annoying if you want to do things like change the positioning
+of the things on the battlefield itself, though - maybe there's a better way?
+as the game maker people
+*/
+
 var timeline = argument0;
 var xx = argument1;
 var yy = argument2;

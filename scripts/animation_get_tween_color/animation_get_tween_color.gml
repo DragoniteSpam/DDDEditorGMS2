@@ -13,8 +13,9 @@ var type = kf_previous ? kf_previous.tween_color : AnimationTweens.NONE;
 
 // if no previous keyframe exists the value will always be the default (here, zero);
 // if not next keyframe exists the value will always be the previous value
-var value_now = kf_current ? kf_current.color : c_white;
-var value_previous = kf_previous ? kf_previous.color : c_white;
+var value_default = animation_get_layer(animation, timeline_layer).color;
+var value_now = kf_current ? kf_current.color : value_default;
+var value_previous = kf_previous ? kf_previous.color : value_default;
 var value_next = kf_next ? kf_next.color : value_previous;
 var moment_previous = kf_previous ? kf_previous.moment : 0;
 var moment_next = kf_next ? kf_next.moment : animation.moments;

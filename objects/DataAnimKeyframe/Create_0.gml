@@ -16,7 +16,7 @@ alpha = 1;
 
 event = noone;
 
-tween_xx = AnimationTweens.EASE_EXP_O;
+tween_xx = AnimationTweens.NONE;
 tween_yy = AnimationTweens.NONE;
 tween_zz = AnimationTweens.NONE;
 tween_xrot = AnimationTweens.NONE;
