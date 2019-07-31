@@ -13,7 +13,7 @@ var keyframe = (timeline_layer == noone) ? noone : animation_get_keyframe(animat
 
 // we must abuse truthiness wherever possible
 input.interactive = (keyframe && true);
-
+input.root.tween_rotate_x.interactive = input.interactive;
 
 if (animation && timeline_layer != noone && !ui_is_active(input)) {
     input.value = string(animation_get_tween_rotate_x(animation, timeline_layer, floor(timeline.playing_moment)));
