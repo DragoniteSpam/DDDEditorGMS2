@@ -74,15 +74,6 @@ if (animation) {
             timeline.selected_moment = -1;
         }
         
-        // draw the keyframe selection
-        if (is_clamped(timeline.selected_layer, layer_list.index, layer_list.index + layer_list.slots - 1)) {
-            if (is_clamped(timeline.selected_moment, timeline.moment_index, timeline.moment_index + timeline.moment_slots - 1)) {
-                var mlx = x1 + timeline.moment_width * (timeline.selected_moment - timeline.moment_index + 0.5);
-                var mly = y2 + timeline.height * (timeline.selected_layer - layer_list.index + 0.5);
-                draw_sprite(spr_timeline_keyframe_selected, 0, mlx, mly);
-            }
-        }
-        
         // moments that are on exact seconds should be highlighted
         var moment_start = timeline.moment_index;
         var moment_end = timeline.moment_index + timeline.moment_slots;
@@ -95,6 +86,15 @@ if (animation) {
                     var kfx2 = x1 + timeline.moment_width * (i - timeline.moment_index + 1);
                     draw_rectangle_colour(kfx1, y2, kfx2, y3, c_interval, c_interval, c_interval, c_interval, false);
                 }
+            }
+        }
+        
+        // draw the keyframe selection
+        if (is_clamped(timeline.selected_layer, layer_list.index, layer_list.index + layer_list.slots - 1)) {
+            if (is_clamped(timeline.selected_moment, timeline.moment_index, timeline.moment_index + timeline.moment_slots - 1)) {
+                var mlx = x1 + timeline.moment_width * (timeline.selected_moment - timeline.moment_index + 0.5);
+                var mly = y2 + timeline.height * (timeline.selected_layer - layer_list.index + 0.5);
+                draw_sprite(spr_timeline_keyframe_selected, 0, mlx, mly);
             }
         }
         
