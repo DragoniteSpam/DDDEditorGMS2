@@ -2951,6 +2951,14 @@
             }
         },
         {
+            "Key": "4880948e-f45f-4658-afa3-89699c41a8da",
+            "Value": {
+                "id": "6b2aec48-59f0-4b9a-8f27-24a8a9e1f84b",
+                "resourcePath": "scripts\\animation_add_keyframe\\animation_add_keyframe.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "48bc96c0-541f-4921-b472-55afc08bf4aa",
             "Value": {
                 "id": "9148ab2a-7db0-4e2d-854e-1e98cd51098b",
@@ -11631,7 +11639,8 @@
         "d6f5cca2-4e48-4c5c-ae4e-1070babf43ec",
         "8b19f8c1-f3c3-416b-a2f3-93e1c1c5734d",
         "39322df9-16c7-44e3-9fa0-b4e019c3d9cd",
-        "983276f7-9e77-42ed-b9d5-4bd68203f03d"
+        "983276f7-9e77-42ed-b9d5-4bd68203f03d",
+        "4880948e-f45f-4658-afa3-89699c41a8da"
     ],
     "tutorial": ""
 }

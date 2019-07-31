@@ -39,9 +39,7 @@ if (inbounds) {
         if (timeline_layer) {
             var keyframe = animation_get_keyframe(animation, timeline.selected_layer, timeline.selected_moment);
             if (!keyframe) {
-                keyframe = instantiate(DataAnimKeyframe);
-                keyframe.moment = timeline.selected_moment;
-                timeline_layer.keyframes[| timeline.selected_moment] = keyframe;
+                var keyframe = animation_add_keyframe(animation, timeline.selected_layer, timeline.selected_moment);
                 animation_timeline_set_active_keyframe(timeline, keyframe);
             }
         }
