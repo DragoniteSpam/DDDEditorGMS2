@@ -75,14 +75,6 @@ if (animation) {
         }
         
         // draw the keyframe selection
-        if (is_clamped(timeline.selected_moment, timeline.moment_index, timeline.moment_index + timeline.moment_slots - 1)) {
-            draw_set_alpha(0.5);
-            var mlx1 = x1 + timeline.moment_width * (timeline.selected_moment - timeline.moment_index);
-            var mlx2 = x1 + timeline.moment_width * (timeline.selected_moment - timeline.moment_index + 1);
-            draw_rectangle_colour(mlx1, y2, mlx2, y3, c, c, c, c, false);
-            draw_set_alpha(1);
-        }
-        
         if (is_clamped(timeline.selected_layer, layer_list.index, layer_list.index + layer_list.slots - 1)) {
             if (is_clamped(timeline.selected_moment, timeline.moment_index, timeline.moment_index + timeline.moment_slots - 1)) {
                 var mlx = x1 + timeline.moment_width * (timeline.selected_moment - timeline.moment_index + 0.5);
@@ -142,6 +134,7 @@ if (animation) {
                 
                 timeline.selected_moment = mx;
                 timeline.selected_layer = my;
+                timeline.playing_moment = mx;
                 
                 ui_list_deselect(layer_list);
                 ds_map_add(layer_list.selected_entries, my, true);
@@ -289,6 +282,7 @@ var inbounds_play = mouse_within_rectangle_determine(timeline.check_view, x1 + s
 var inbounds_pause = mouse_within_rectangle_determine(timeline.check_view, x1 + spacing + sw, y3 + spacing, x1 + spacing + sw * 2, y3 + spacing + sh);
 var inbounds_stop = mouse_within_rectangle_determine(timeline.check_view, x1 + spacing + sw * 2, y3 + spacing, x1 + spacing + sw * 3, y3 + spacing + sh);
 var inbounds_loop = mouse_within_rectangle_determine(timeline.check_view, x1 + spacing + sw * 3, y3 + spacing, x1 + spacing + sw * 4, y3 + spacing + sh);
+
 if (inbounds_play) {
     var c_play = timeline.playing ? merge_colour(c_greenish, c_ltgray, 0.5) : c_ltgray;
     draw_sprite_ext(spr_play_controls, 0, x1 + spacing, y3 + spacing, 1, 1, 0, c_play, 1);

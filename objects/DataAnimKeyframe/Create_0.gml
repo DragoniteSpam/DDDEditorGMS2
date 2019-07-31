@@ -33,7 +33,6 @@ moment = 0;
 
 enum AnimationTweens {
     NONE,
-    INSTANT,
     LINEAR,
     EASING
 }

@@ -29,7 +29,9 @@
         "7551d806-5c53-4bd5-a39c-d0b372a6eed0",
         "c1054c0a-9f9e-463e-9c53-7f786159dfa2",
         "9fb3d147-623e-45ae-a012-a1684f460b2d",
-        "b6f3b750-6196-4126-b7a8-633aadca2496"
+        "b6f3b750-6196-4126-b7a8-633aadca2496",
+        "0fde25fc-c19a-4747-ab6a-0c70922aec27",
+        "b5a8e487-d63c-4abe-839d-0b72f77b3401"
     ],
     "filterType": "GMScript",
     "folderName": "Math",
