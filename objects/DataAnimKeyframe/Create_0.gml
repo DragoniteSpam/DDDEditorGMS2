@@ -30,32 +30,3 @@ tween_color = AnimationTweens.NONE;
 tween_alpha = AnimationTweens.NONE;
 
 moment = 0;
-
-enum AnimationTweens {
-    // i MAY add an option to disable keyframes for properties entirely at some point (but probably not)
-    // but for now this is just going to just be the same as "none"
-    IGNORE,
-    NONE,
-    LINEAR,
-    EASE_QUAD_I,
-    EASE_QUAD_O,
-    EASE_QUAD_IO,
-    EASE_SINE_I,
-    EASE_SINE_O,
-    EASE_SINE_IO,
-    EASE_CUBE_I,
-    EASE_CUBE_O,
-    EASE_CUBE_IO,
-    EASE_QUART_I,
-    EASE_QUART_O,
-    EASE_QUART_IO,
-    EASE_QUINT_I,
-    EASE_QUINT_O,
-    EASE_QUINT_IO,
-    EASE_EXP_I,
-    EASE_EXP_O,
-    EASE_EXP_IO,
-    EASE_CIRC_I,
-    EASE_CIRC_O,
-    EASE_CIRC_IO,
-}
