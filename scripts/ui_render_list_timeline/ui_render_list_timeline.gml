@@ -299,6 +299,7 @@ if (inbounds_play) {
     if (get_release_left()) {
         timeline.playing = false;
         timeline.playing_moment = 0;
+        timeline.moment_index = 0;
     }
 } else if (inbounds_loop) {
     var c_loop = timeline.playing_loop ? merge_colour(c_greenish, c_ltgray, 0.5) : c_ltgray;
@@ -308,11 +309,12 @@ if (inbounds_play) {
     }
 }
 
-if (keyboard_check_released(vk_space) && animation) {
+if (keyboard_check_pressed(vk_space) && animation) {
     timeline.playing = !timeline.playing;
 }
 
-if (keyboard_check_released(vk_enter)) {
+if (keyboard_check_pressed(vk_enter)) {
     timeline.playing = false;
     timeline.playing_moment = 0;
+    timeline.moment_index = 0;
 }
