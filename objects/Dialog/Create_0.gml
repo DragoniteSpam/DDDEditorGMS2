@@ -6,8 +6,8 @@ close = dc_default;
 changed = false;
 
 // for dragging the dialog around with the mouse
-cmx=-1;
-cmy=-1;
+cmx = -1;
+cmy = -1;
 
 dialog_flags = 0;
 
