@@ -1631,6 +1631,14 @@
             }
         },
         {
+            "Key": "28f005ac-2e7a-4ab5-bc35-72f47202fe77",
+            "Value": {
+                "id": "8f7e8ace-30a8-46b4-8848-5d17e7bb1b88",
+                "resourcePath": "scripts\\ease_sine_io\\ease_sine_io.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "2919a8b5-cccb-423e-99a1-ff5901054343",
             "Value": {
                 "id": "38624238-c117-4478-8d38-b6888a2fe2a7",
@@ -2084,6 +2092,14 @@
                 "id": "c561fed6-d00e-4387-b98f-7a585223ee35",
                 "resourcePath": "scripts\\uivc_input_entity_rotate_x\\uivc_input_entity_rotate_x.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "34b4ba28-22fe-4aff-99a3-1f114c388d3c",
+            "Value": {
+                "id": "4ff7a98a-46c7-4d39-aa2a-e4623314ee81",
+                "resourcePath": "views\\34b4ba28-22fe-4aff-99a3-1f114c388d3c.yy",
+                "resourceType": "GMFolder"
             }
         },
         {
@@ -10517,6 +10533,7 @@
         "b6f3b750-6196-4126-b7a8-633aadca2496",
         "0fde25fc-c19a-4747-ab6a-0c70922aec27",
         "b5a8e487-d63c-4abe-839d-0b72f77b3401",
+        "28f005ac-2e7a-4ab5-bc35-72f47202fe77",
         "20d27ffc-0a4a-4c0a-a4f4-7e894afbfa95",
         "620d5d86-27a6-45ca-ae43-e24d460a2333",
         "72fa42c5-ca47-4b5d-9fae-f4143f2d9f1a",

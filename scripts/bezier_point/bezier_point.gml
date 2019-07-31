@@ -1,5 +1,4 @@
-/// @description array bezier_point(lerp, p0x, p0y, p1x, p1y, p2x, p2y, p3x, p3y)
-/// @param lerp
+/// @param f
 /// @param p0x
 /// @param p0y
 /// @param p1x

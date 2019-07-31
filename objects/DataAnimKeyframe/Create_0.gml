@@ -16,7 +16,7 @@ alpha = 1;
 
 event = noone;
 
-tween_xx = AnimationTweens.NONE;
+tween_xx = AnimationTweens.EASE_IO_SINE;
 tween_yy = AnimationTweens.NONE;
 tween_zz = AnimationTweens.NONE;
 tween_xrot = AnimationTweens.NONE;
@@ -32,7 +32,10 @@ tween_alpha = AnimationTweens.NONE;
 moment = 0;
 
 enum AnimationTweens {
+    // i MAY add an option to disable keyframes for properties entirely at some point (but probably not)
+    // but for now this is just going to just be the same as "none"
+    IGNORE,
     NONE,
     LINEAR,
-    EASING
+    EASE_IO_SINE,
 }

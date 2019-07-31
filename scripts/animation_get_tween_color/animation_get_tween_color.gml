@@ -6,17 +6,23 @@ var animation = argument0;
 var timeline_layer = argument1;
 var moment = argument2;
 
+var kf_current = animation_get_keyframe(animation, timeline_layer, moment);
 var kf_previous = animation_get_preivous_keyframe(animation, timeline_layer, moment);
 var kf_next = animation_get_next_keyframe(animation, timeline_layer, moment);
-var type = kf_previous[0] ? kf_previous[0].tween_zz : AnimationTweens.NONE;
+var type = kf_previous ? kf_previous.tween_color : AnimationTweens.NONE;
 
 // if no previous keyframe exists the value will always be the default (here, zero);
 // if not next keyframe exists the value will always be the previous value
-var value_previous = kf_previous[0] ? kf_previous[0].color : 0;
-var value_next = kf_next[0] ? kf_next[0].color : value_previous;
-var moment_previous = kf_previous[0] ? kf_previous[1] : 0;
-var moment_next = kf_next[0] ? kf_next[1] : animation.moments;
+var value_now = kf_current ? kf_current.color : c_white;
+var value_previous = kf_previous ? kf_previous.color : c_white;
+var value_next = kf_next ? kf_next.color : value_previous;
+var moment_previous = kf_previous ? kf_previous.moment : 0;
+var moment_next = kf_next ? kf_next.moment : animation.moments;
 var f = normalize(moment, moment_previous, moment_next);
+
+if (kf_current) {
+    return value_now;
+}
 
 // bgr
 var r_previous = value_previous & 0x0000ff;
