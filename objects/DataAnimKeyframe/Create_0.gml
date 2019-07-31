@@ -30,3 +30,10 @@ tween_color = AnimationTweens.NONE;
 tween_alpha = AnimationTweens.NONE;
 
 moment = 0;
+
+enum KeyframeParameters {
+    TRANS_X, TRANS_Y, TRANS_Z,
+    ROT_X, ROT_Y, ROT_Z,
+    SCALE_X, SCALE_Y, SCALE_Z,
+    COLOR, ALPHA
+}
