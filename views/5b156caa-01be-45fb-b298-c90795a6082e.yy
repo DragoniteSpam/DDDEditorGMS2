@@ -10,7 +10,8 @@
         "1822abda-6297-46bc-94d3-b91b2c8f6cea",
         "a03f7d51-8538-4c1f-8aa0-095f08ba99f0",
         "3dfd8333-ddb2-4f32-bc59-0dfe714bce2f",
-        "4f17daab-9243-43a0-b508-73468a70615a"
+        "4f17daab-9243-43a0-b508-73468a70615a",
+        "d4f1489a-ba86-493a-8e9e-6512f85bd03d"
     ],
     "filterType": "GMScript",
     "folderName": "onmouseup",

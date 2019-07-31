@@ -1423,6 +1423,14 @@
             }
         },
         {
+            "Key": "21c67df9-6a4c-42f3-bcd8-11d361ca41d2",
+            "Value": {
+                "id": "2986d7fe-a40e-4ab2-9b07-f93d0dcdbd60",
+                "resourcePath": "scripts\\omu_animation_keyframe_tween_trans_x\\omu_animation_keyframe_tween_trans_x.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "21cd3d6b-84cb-4d03-95ac-62d86a4168fc",
             "Value": {
                 "id": "cca32ef6-5380-4e02-8593-a6aed83a8d6a",
@@ -8815,6 +8823,14 @@
             }
         },
         {
+            "Key": "d4f1489a-ba86-493a-8e9e-6512f85bd03d",
+            "Value": {
+                "id": "33321289-9ecb-4c04-b339-ece55d7faff1",
+                "resourcePath": "views\\d4f1489a-ba86-493a-8e9e-6512f85bd03d.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "d527df31-a6b5-45fa-b136-e773b4420991",
             "Value": {
                 "id": "b9dedc5b-a084-4e53-b7bc-26143217ca0b",
@@ -11353,6 +11369,7 @@
         "a29d7679-9e69-44a1-bb5e-3a8dd119f452",
         "fd69df94-52ec-4dc4-ac67-39f1bbfee9b7",
         "c7d25588-cabb-4d28-9bf1-a467041bb5b4",
+        "21c67df9-6a4c-42f3-bcd8-11d361ca41d2",
         "43ae57f2-9a33-45c9-bb00-529bd505469d",
         "9fe42c44-3ba2-491e-a420-b440bfcd560f",
         "08190cb7-54fd-4af3-a3e4-b809b86b4ce5",
