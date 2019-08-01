@@ -51,14 +51,16 @@
 #macro TILE_WIDTH Stuff.tile_width
 #macro TILESET_TEXTURE_HEIGHT 0.5
 #macro TILESET_TEXTURE_WIDTH 0.5
-#macro view_3d_preview 4
-#macro view_3d 1
+
 #macro view_fullscreen 0
+#macro view_3d 1
+#macro view_ribbon 2
+#macro view_hud 3
+#macro view_3d_preview 4
+#macro view_overlay 7
+
 #macro view_hud_width_3d 520
 #macro view_hud_width_event 320
-#macro view_hud 3
-#macro view_overlay 7
-#macro view_ribbon 2
 
 #macro WVIEW __view_get( e__VW.WView, view_current )
 #macro XVIEW __view_get( e__VW.XView, view_current )

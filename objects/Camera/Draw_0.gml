@@ -52,6 +52,10 @@ switch (mode) {
             case view_fullscreen:
                 draw_editor_animation();
                 break;
+            case view_3d:
+                draw_clear(c_black);
+                draw_editor_3d();
+                break;
             case view_ribbon:
                 draw_editor_menu();
                 break;
