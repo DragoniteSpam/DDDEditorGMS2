@@ -68,7 +68,8 @@ vertex_format_add_colour();
 vertex_format_line = vertex_format_end();
 
 grid = noone;
-graphics_create_grid();
+grid_centered = noone;
+graphics_create_grids();
 
 /*
  * selection stuff
