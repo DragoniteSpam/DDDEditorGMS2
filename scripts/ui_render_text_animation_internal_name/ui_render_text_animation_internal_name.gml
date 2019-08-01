@@ -2,12 +2,14 @@
 /// @param x
 /// @param y
 
+// data types stored in different places need different internal name render scripts
+
 var text = argument0;
 var xx = argument1;
 var yy = argument2;
 
-var data = text.root.active_animation;
-var selection = ui_list_selection(text.root.el_master);
+var data = text.root.root.root.active_animation;
+var selection = ui_list_selection(text.root.root.root.el_master);
 var original_color = text.color;
 
 if (selection >= 0) {

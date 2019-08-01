@@ -30,7 +30,7 @@ with (instantiate(UIThing)) {
     var this_column = 0;
     var xx = this_column * cw + spacing;
     
-    el_master = create_list(xx, yy_header, "Animations: ", "<no animations>", ew, eh, 25, uivc_list_animation_editor, false, id);
+    el_master = create_list(xx, yy_header, "Animations: ", "<no animations>", ew, eh, 26, uivc_list_animation_editor, false, id);
     el_master.render = ui_render_list_animations;
     el_master.entries_are = ListEntries.INSTANCES;
     ds_list_add(contents, el_master);
@@ -47,6 +47,11 @@ with (instantiate(UIThing)) {
     
     yy = yy + element.height + spacing;
     
+    var element = create_button(xx, yy, "Edit Animation Properties", ew, eh, fa_middle, omu_animation_properties, id);
+    ds_list_add(contents, element);
+    
+    yy = yy + element.height + spacing;
+    /*
     el_name = create_input(xx, yy, "Name:", ew, eh, uivc_animation_set_name, "", "", "Instance name", validate_string, ui_value_string, 0, 1, 16, vx1, vy1, vx2, vy2, id);
     ds_list_add(contents, el_name);
     
@@ -57,14 +62,13 @@ with (instantiate(UIThing)) {
     ds_list_add(contents, el_internal_name);
     
     yy = yy + el_internal_name.height + spacing;
-    
+    */
     yy = yy_base;
     this_column = 1;
     xx = this_column * cw + spacing;
     
-    el_layers = create_list(xx, yy_header, "Layers: ", "<no layers>", ew, eh, 10, uivc_list_animation_layers_editor, false, id);
+    el_layers = create_list(xx, yy_header, "Layers: ", "<no layers>", ew, eh, 8, uivc_list_animation_layers_editor, false, id);
     el_layers.render = ui_render_list_animation_layers;
-    el_layers.ondoubleclick = uidc_list_animation_layers_editor;
     el_layers.entries_are = ListEntries.INSTANCES;
     ds_list_add(contents, el_layers);
     
@@ -81,6 +85,11 @@ with (instantiate(UIThing)) {
     yy = yy + element.height + spacing;
     
     var element = create_button(xx, yy, "Remove Layer", ew, eh, fa_middle, omu_animation_layer_remove, id);
+    ds_list_add(contents, element);
+    
+    yy = yy + element.height + spacing;
+    
+    var element = create_button(xx, yy, "Edit Layer Properties", ew, eh, fa_middle, uivc_animation_layer_properties, id);
     ds_list_add(contents, element);
     
     yy = yy + element.height + spacing;

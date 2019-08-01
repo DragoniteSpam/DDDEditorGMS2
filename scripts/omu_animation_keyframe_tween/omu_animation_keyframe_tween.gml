@@ -20,7 +20,7 @@ if (keyframe) {
     var spacing = 16;
     
     var el_type = create_radio_array(16, yy, "Type", ew, eh, uivc_animation_keyframe_set_tween, animation_get_keyframe_parameter_tween(keyframe, param), dg);
-    create_radio_array_options(el_type, "Ignore", "None",
+    create_radio_array_options(el_type, "Ignore", "None", "Linear",
         "Ease Quadratic In", "Ease Quadratic Out", "Ease Quadratic In / Out",
         "Ease Cubic In", "Ease Cubic Out", "Ease Cubic In / Out",
         "Ease Quartic In", "Ease Quartic Out", "Ease Quartic In / Out",
@@ -28,6 +28,8 @@ if (keyframe) {
         "Ease Sine In", "Ease Sine Out", "Ease Sine In / Out",
         "Ease Exponential In", "Ease Exponential Out", "Ease Exponential In / Out",
         "Ease Circular In", "Ease Circular Out", "Ease Circular In / Out");
+    // "Ignore" MAY be implemented later, but not now
+    el_type.contents[| 0].interactive = false;
     el_type.param = param;
     
     var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);

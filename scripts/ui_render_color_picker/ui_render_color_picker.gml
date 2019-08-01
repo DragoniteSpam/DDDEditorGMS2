@@ -27,10 +27,10 @@ var vy1 = y1 + picker.value_y1;
 var vx2 = x1 + picker.value_x2;
 var vy2 = y1 + picker.value_y2;
 
-if (picker.interactive) {
-    draw_rectangle_colour(vx1 + 1, vy1 + 1, vx2 - 1, vy2 - 1, picker.value, picker.value, picker.value, picker.value, false);
-} else {
-    draw_rectangle_colour(vx1 + 1, vy1 + 1, vx2 - 1, vy2 - 1, c_ltgray, c_ltgray, c_ltgray, c_ltgray, false);
+draw_rectangle_colour(vx1 + 1, vy1 + 1, vx2 - 1, vy2 - 1, picker.value, picker.value, picker.value, picker.value, false);
+if (!picker.interactive) {
+    draw_rectangle_colour(vx1 + 2, vy1 + 2, vx2 - 2, vy2 - 2, c_ltgray, c_ltgray, c_ltgray, c_ltgray, true);
+    draw_rectangle_colour(vx1 + 3, vy1 + 3, vx2 - 3, vy2 - 3, c_ltgray, c_ltgray, c_ltgray, c_ltgray, true);
 }
 draw_rectangle(vx1, vy1, vx2, vy2, true);
 

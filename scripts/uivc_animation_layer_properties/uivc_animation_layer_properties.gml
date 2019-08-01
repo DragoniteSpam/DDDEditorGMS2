@@ -1,10 +1,10 @@
-/// @param UIList
+/// @param UIThing
 
-var list = argument0;
-var selection = ui_list_selection(list);
+var thing = argument0;
+var selection = ui_list_selection(thing.root.el_layers);
 
 if (selection >= 0) {
-    var timeline_layer = list.root.active_animation.layers[| selection];
+    var timeline_layer = thing.root.active_animation.layers[| selection];
     var dw = 640;
     var dh = 480;
 
