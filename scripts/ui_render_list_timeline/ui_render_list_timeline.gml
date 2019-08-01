@@ -16,6 +16,10 @@ var animation = timeline.root.active_animation;
 var active = dialog_is_active(timeline.root);
 var layer_list = timeline.root.el_layers;
 
+if (animation) {
+    timeline.playing_moment = min(timeline.playing_moment, animation.moments - 1);
+}
+
 // update the play head first
 
 if (animation && timeline.playing) {
@@ -76,7 +80,7 @@ if (animation) {
         
         // moments that are on exact seconds should be highlighted
         var moment_start = timeline.moment_index;
-        var moment_end = timeline.moment_index + timeline.moment_slots;
+        var moment_end = min(timeline.moment_index + timeline.moment_slots, animation.moments);
         
         if (animation) {
             var c_interval = colour_fade(c_ui_select);
@@ -91,7 +95,7 @@ if (animation) {
         
         // draw the keyframe selection
         if (is_clamped(timeline.selected_layer, layer_list.index, layer_list.index + layer_list.slots - 1)) {
-            if (is_clamped(timeline.selected_moment, timeline.moment_index, timeline.moment_index + timeline.moment_slots - 1)) {
+            if (is_clamped(timeline.selected_moment, timeline.moment_index, min(timeline.moment_index + timeline.moment_slots - 1, animation.moments))) {
                 var mlx = x1 + timeline.moment_width * (timeline.selected_moment - timeline.moment_index + 0.5);
                 var mly = y2 + timeline.height * (timeline.selected_layer - layer_list.index + 0.5);
                 draw_sprite(spr_timeline_keyframe_selected, 0, mlx, mly);
@@ -252,10 +256,14 @@ if (animation) {
 draw_rectangle(x1, y2, x2, y3, true);
 draw_set_halign(fa_center);
 for (var i = 0; i < timeline.moment_slots; i++) {
+    var index = i + timeline.moment_index;
+    if (animation && index > animation.moments - 1) {
+        break;
+    }
     var mhx = x1 + timeline.moment_width * (i + 0.5);
     var mlx = x1 + timeline.moment_width * (i + 1);
     var mhy = ty;
-    draw_text(mhx, mhy, string(i + timeline.moment_index));
+    draw_text(mhx, mhy, string(index));
     draw_line(mlx, y2, mlx, y3);
 }
 draw_set_halign(fa_left);
