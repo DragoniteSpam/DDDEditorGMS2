@@ -111,11 +111,13 @@ if (!keyboard_check(vk_control)) {
         keyboard_string = "";
     }
     if (Controller.mouse_right) {
-        var dx = (MOUSE_X - CW / 2) / 16;
-        var dy = (MOUSE_Y - CH / 2) / 16;
+        var camera_cx = view_get_xport(view_current) + view_get_wport(view_current) / 2;
+        var camera_cy = view_get_yport(view_current) + view_get_hport(view_current) / 2;
+        var dx = (MOUSE_X - camera_cx) / 16;
+        var dy = (MOUSE_Y - camera_cy) / 16;
         direction = (360 + direction - dx) % 360;
         pitch = clamp(pitch + dy, -89, 89);
-        window_mouse_set(CW / 2, CH / 2);
+        window_mouse_set(camera_cx, camera_cy);
         xto = x + dcos(direction);
         yto = y - dsin(direction);
         zto = z - dsin(pitch);
