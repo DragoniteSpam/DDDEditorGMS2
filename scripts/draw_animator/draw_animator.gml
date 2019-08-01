@@ -3,7 +3,7 @@ if (!mouse_3d_lock && mouse_within_view(view_3d) && !dialog_exists()) {
 }
 
 d3d_start();
-gpu_set_cullmode(view_backface ? cull_noculling : cull_counterclockwise);
+//gpu_set_cullmode(view_backface ? cull_noculling : cull_counterclockwise);
 gpu_set_ztestenable(true);
 
 // todo GMS2 requires smooth shading to be handled by the shader(s) now,
@@ -23,6 +23,29 @@ if (ActiveMap.is_3d) {
 // anything in the world
 
 shader_set(shd_default);
+var animation = ui_animation.active_animation;
+
+gpu_set_cullmode(cull_noculling);
+
+if (animation) {
+    var moment = ui_animation.el_timeline.playing_moment;
+    for (var i = 0; i < ds_list_size(animation.layers); i++) {
+        var timeline_layer = animation.layers[| i];
+        var kx = animation_get_tween_translate_x(animation, i, moment);
+        var ky = animation_get_tween_translate_y(animation, i, moment);
+        var kz = animation_get_tween_translate_z(animation, i, moment);
+        var krx = animation_get_tween_rotate_x(animation, i, moment);
+        var kry = animation_get_tween_rotate_y(animation, i, moment);
+        var krz = animation_get_tween_rotate_z(animation, i, moment);
+        var ksx = animation_get_tween_scale_x(animation, i, moment);
+        var ksy = animation_get_tween_scale_y(animation, i, moment);
+        var ksz = animation_get_tween_scale_z(animation, i, moment);
+        var kcolor = animation_get_tween_color(animation, i, moment);
+        var kalpha = animation_get_tween_alpha(animation, i, moment);
+        transform_set(kx, ky, kz, krx, kry, krz, ksx, ksy, ksz);
+        draw_rectangle_colour(-32, -32, 32, 32, c_red, c_red, c_red, c_red, false);
+    }
+}
 
 shader_reset();
 

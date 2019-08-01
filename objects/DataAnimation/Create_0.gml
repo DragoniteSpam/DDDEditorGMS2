@@ -9,6 +9,7 @@ ds_list_add(layers, base_layer);
 
 frames_per_second = 24;
 moments = frames_per_second * 2;
+loops = true;
 
 repeat (moments) {
     ds_list_add(base_layer.keyframes, noone);

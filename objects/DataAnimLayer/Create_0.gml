@@ -19,3 +19,12 @@ zscale = 1;
 
 color = c_white;
 alpha = 1;
+
+graphic_type = GraphicTypes.NONE;
+graphic = noone;
+
+enum GraphicTypes {
+    NONE,
+    SPRITE,
+    MESH
+}
