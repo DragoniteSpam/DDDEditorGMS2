@@ -1039,6 +1039,14 @@
             }
         },
         {
+            "Key": "1698a2a3-74e7-4227-811d-2ab4c9c2516d",
+            "Value": {
+                "id": "2f940239-5b1b-4ed4-9506-e4ff8713cfff",
+                "resourcePath": "scripts\\omu_animation_clear_keyframes_execute\\omu_animation_clear_keyframes_execute.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "170b37cd-d402-4b51-aba1-88b629aa481a",
             "Value": {
                 "id": "0f7da6b3-1f65-4ab3-9b24-45f15125ab48",
@@ -10455,6 +10463,14 @@
             }
         },
         {
+            "Key": "fafbc45b-8ba9-4189-b593-3c474374ca40",
+            "Value": {
+                "id": "e39a8cb6-5427-48a3-bd4f-cca6b60ed953",
+                "resourcePath": "scripts\\omu_animation_clear_keyframes\\omu_animation_clear_keyframes.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "fb4aa3ed-c4b4-42f0-9b38-124b50059e6a",
             "Value": {
                 "id": "7f49963f-0448-4233-928b-9ad4cc25b135",
@@ -11437,6 +11453,8 @@
         "fd69df94-52ec-4dc4-ac67-39f1bbfee9b7",
         "c7d25588-cabb-4d28-9bf1-a467041bb5b4",
         "21c67df9-6a4c-42f3-bcd8-11d361ca41d2",
+        "fafbc45b-8ba9-4189-b593-3c474374ca40",
+        "1698a2a3-74e7-4227-811d-2ab4c9c2516d",
         "56680588-b308-4ea5-b55a-7fded968b626",
         "43ae57f2-9a33-45c9-bb00-529bd505469d",
         "9fe42c44-3ba2-491e-a420-b440bfcd560f",

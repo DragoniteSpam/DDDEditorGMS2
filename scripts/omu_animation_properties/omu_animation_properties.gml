@@ -47,7 +47,7 @@ if (animation) {
     
     yy = yy + el_seconds.height + spacing;
     
-    var el_clear = create_button(16, yy, "Clear Keyframes After End", ew, eh, fa_center, null, dg);
+    var el_clear = create_button(16, yy, "Clear Keyframes After End", ew, eh, fa_center, omu_animation_clear_keyframes, dg);
     
     yy = yy + el_seconds.height + spacing;
     
