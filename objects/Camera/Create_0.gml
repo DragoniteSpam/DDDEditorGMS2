@@ -18,6 +18,23 @@ zup = ini_read_real("Camera", "zup", 1);
 fov = ini_read_real("Camera", "fov", 50);
 pitch = ini_read_real("Camera", "pitch", 0);
 direction = ini_read_real("Camera", "direction", 0);
+
+anim_x = ini_read_real("Camera", "ax", 0);
+anim_y = ini_read_real("Camera", "ay", 100);
+anim_z = ini_read_real("Camera", "az", 100);
+
+anim_xto = ini_read_real("Camera", "axto", 0);
+anim_yto = ini_read_real("Camera", "ayto", 0);
+anim_zto = ini_read_real("Camera", "azto", 0);
+
+anim_xup = ini_read_real("Camera", "axup", 0);
+anim_yup = ini_read_real("Camera", "ayup", 0);
+anim_zup = ini_read_real("Camera", "azup", 1);
+
+anim_fov = ini_read_real("Camera", "afov", 50);
+anim_pitch = ini_read_real("Camera", "apitch", 0);
+anim_direction = ini_read_real("Camera", "adirection", 0);
+
 ini_close();
 
 alarm[ALARM_CAMERA_SAVE] = room_speed * CAMERA_SAVE_FREQUENCY;

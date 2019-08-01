@@ -13,11 +13,11 @@ gpu_set_ztestenable(true);
 draw_set_color(c_white);
 
 if (ActiveMap.is_3d) {
-    d3d_set_projection_ext(x, y, z, xto, yto, zto, xup, yup, zup, fov, CW/CH, 1, 32000);
+    d3d_set_projection_ext(anim_x, anim_y, anim_z, anim_xto, anim_yto, anim_zto, anim_xup, anim_yup, anim_zup, anim_fov, CW/CH, 1, 32000);
 } else {
     var cwidth = __view_get( e__VW.WView, view_3d );
     var cheight = __view_get( e__VW.HView, view_3d );
-    d3d_set_projection_ortho(x - cwidth / 2, y - cheight / 2, cwidth, cheight, 0);
+    d3d_set_projection_ortho(anim_x - cwidth / 2, anim_y - cheight / 2, cwidth, cheight, 0);
 }
 
 // anything in the world

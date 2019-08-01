@@ -52,20 +52,24 @@ with (Camera) {
     var yy = ActiveMap.yy / 2;
     
     for (var i = -xx; i <= xx; i++) {
-        vertex_point_line(grid_centered, i * TILE_WIDTH, -yy * TILE_HEIGHT, 0, c_white, 1);
-        vertex_point_line(grid_centered, i * TILE_WIDTH, yy * TILE_HEIGHT, 0, c_white, 1);
+        if (i != 0) {
+            vertex_point_line(grid_centered, i * TILE_WIDTH, -yy * TILE_HEIGHT, 0, c_white, 1);
+            vertex_point_line(grid_centered, i * TILE_WIDTH, yy * TILE_HEIGHT, 0, c_white, 1);
+        }
     }
     
     for (var i = -yy; i <= yy; i++) {
-        vertex_point_line(grid_centered, -xx * TILE_WIDTH, i * TILE_HEIGHT, 0, c_white, 1);
-        vertex_point_line(grid_centered, xx * TILE_WIDTH, i * TILE_HEIGHT, 0, c_white, 1);
+        if (i != 0) {
+            vertex_point_line(grid_centered, -xx * TILE_WIDTH, i * TILE_HEIGHT, 0, c_white, 1);
+            vertex_point_line(grid_centered, xx * TILE_WIDTH, i * TILE_HEIGHT, 0, c_white, 1);
+        }
     }
     
     // axes
-    vertex_point_line(grid_centered, 0, 0, 0, c_red, 1);
+    vertex_point_line(grid_centered, -MILLION, 0, 0, c_red, 1);
     vertex_point_line(grid_centered, MILLION, 0, 0, c_red, 1);
     
-    vertex_point_line(grid_centered, 0, 0, 0, c_green, 1);
+    vertex_point_line(grid_centered, 0, -MILLION, 0, c_green, 1);
     vertex_point_line(grid_centered, 0, MILLION, 0, c_green, 1);
     
     vertex_point_line(grid_centered, 0, 0, 0, c_blue, 1);
