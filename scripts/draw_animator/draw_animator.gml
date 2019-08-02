@@ -13,7 +13,9 @@ gpu_set_ztestenable(true);
 draw_set_color(c_white);
 
 if (ActiveMap.is_3d) {
-    d3d_set_projection_ext(anim_x, anim_y, anim_z, anim_xto, anim_yto, anim_zto, anim_xup, anim_yup, anim_zup, anim_fov, CW/CH, 1, 32000);
+    var vw = view_get_wport(view_current);
+    var vh = view_get_hport(view_current);
+    d3d_set_projection_ext(anim_x, anim_y, anim_z, anim_xto, anim_yto, anim_zto, anim_xup, anim_yup, anim_zup, anim_fov, vw / vh, 1, 32000);
 } else {
     var cwidth = __view_get( e__VW.WView, view_3d );
     var cheight = __view_get( e__VW.HView, view_3d );
