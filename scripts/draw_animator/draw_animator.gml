@@ -26,6 +26,7 @@ shader_set(shd_default);
 var animation = ui_animation.active_animation;
 
 gpu_set_cullmode(cull_noculling);
+shader_reset();
 
 if (animation) {
     var moment = ui_animation.el_timeline.playing_moment;
@@ -43,11 +44,9 @@ if (animation) {
         var kcolor = animation_get_tween_color(animation, i, moment);
         var kalpha = animation_get_tween_alpha(animation, i, moment);
         transform_set(kx, ky, kz, krx, kry, krz, ksx, ksy, ksz);
-        draw_rectangle_colour(-32, -32, 32, 32, c_red, c_red, c_red, c_red, false);
+        vertex_submit(grid_sphere, pr_linelist, -1);
     }
 }
-
-shader_reset();
 
 // "set" overwrites the previous transform anyway
 transform_set(0, 0, 0.5, 0, 0, 0, 1, 1, 1);

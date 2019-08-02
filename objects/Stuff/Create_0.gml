@@ -113,29 +113,6 @@ easing_equations = [
     ease_exp_i, ease_exp_o, ease_exp_io,
     ease_circ_i, ease_circ_o, ease_circ_io,
 ]
-#endregion
-
-alarm[0] = 1200;
-
-/// this is basically World/Settings
-
-randomize();
-
-// persistent stuff
-dt = 0;
-time = 0;
-time_int = 0;
-frames = 0;
-
-all_guids = ds_map_create();
-all_refids = ds_map_create();           // it probably makes sense to make this a property of map, but i want to have all of the lookup maps in the same place
-all_internal_names = ds_map_create();
-
-tf = ["False", "True"];
-on_off = ["Off", "On"];
-color_channels = [0x0000ff, 0x00ff00, 0xff0000];
-
-comparison_text = ["<", "<=", "==", ">=", ">", "!="];
 
 // local storage folders
 
@@ -166,6 +143,30 @@ if (!directory_exists(PATH_TEMP_CODE)) {
 if (!directory_exists(PATH_AUDIO)) {
     directory_create(PATH_AUDIO);
 }
+
+#endregion
+
+alarm[0] = 1200;
+
+/// this is basically World/Settings
+
+randomize();
+
+// persistent stuff
+dt = 0;
+time = 0;
+time_int = 0;
+frames = 0;
+
+all_guids = ds_map_create();
+all_refids = ds_map_create();           // it probably makes sense to make this a property of map, but i want to have all of the lookup maps in the same place
+all_internal_names = ds_map_create();
+
+tf = ["False", "True"];
+on_off = ["Off", "On"];
+color_channels = [0x0000ff, 0x00ff00, 0xff0000];
+
+comparison_text = ["<", "<=", "==", ">=", ">", "!="];
 
 // these are constants in DDD.gmx but we're allowed to change them here
 tile_width = 32;

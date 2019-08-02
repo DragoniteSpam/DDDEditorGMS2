@@ -17,7 +17,9 @@ var active = dialog_is_active(timeline.root);
 var layer_list = timeline.root.el_layers;
 
 if (animation) {
-    timeline.playing_moment = min(timeline.playing_moment, animation.moments - 1);
+    // this feels really gross but it works as a way to make sure the play head never goes one
+    // moment too far, since it floor()s the value before doing stuff with it
+    timeline.playing_moment = min(timeline.playing_moment, animation.moments - 0.0001);
 }
 
 // update the play head first

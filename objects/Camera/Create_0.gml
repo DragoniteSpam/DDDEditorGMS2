@@ -86,6 +86,8 @@ vertex_format_line = vertex_format_end();
 
 grid = noone;
 grid_centered = noone;
+
+grid_sphere = noone;
 graphics_create_grids();
 
 /*
