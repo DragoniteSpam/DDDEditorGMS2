@@ -18,7 +18,6 @@ with (instantiate(UIThing)) {
     var yy_header = 64;
     var yy = 64 + eh;
     var yy_base = yy;
-    var element;
     
     active_animation = noone;
     active_layer = noone;
@@ -51,18 +50,7 @@ with (instantiate(UIThing)) {
     ds_list_add(contents, element);
     
     yy = yy + element.height + spacing;
-    /*
-    el_name = create_input(xx, yy, "Name:", ew, eh, uivc_animation_set_name, "", "", "Instance name", validate_string, ui_value_string, 0, 1, 16, vx1, vy1, vx2, vy2, id);
-    ds_list_add(contents, el_name);
     
-    yy = yy + el_name.height + spacing;
-        
-    el_internal_name = create_input(xx, yy, "Internal Name:", ew, eh, uivc_animation_set_internal_name, "", "", "Internal name", validate_string_internal_name, ui_value_string, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, id);
-    el_internal_name.render = ui_render_text_animation_internal_name;
-    ds_list_add(contents, el_internal_name);
-    
-    yy = yy + el_internal_name.height + spacing;
-    */
     yy = yy_base;
     this_column = 1;
     xx = this_column * cw + spacing;
@@ -78,6 +66,7 @@ with (instantiate(UIThing)) {
     ds_list_add(contents, el_timeline);
     
     yy = yy + ui_get_list_height(el_layers);
+    var yy_beneath_timeline = yy - 16;
     
     var element = create_button(xx, yy, "Add Layer", ew, eh, fa_middle, omu_animation_layer_add, id);
     ds_list_add(contents, element);
@@ -230,7 +219,14 @@ with (instantiate(UIThing)) {
     
     }
     
-    yy = yy_base;
+    yy = yy_beneath_timeline;
+    
+    var sw = sprite_get_width(spr_camera_icons);
+    var sh = sprite_get_height(spr_camera_icons);
+    
+    var element = create_image_button(room_width - 32 - sw, yy, "", spr_camera_icons, sw, sh, fa_middle, omu_animation_reset_camera, id);
+    element.index = 0;
+    ds_list_add(contents, element);
     
     /*
      * more important stuff that needs to be done?

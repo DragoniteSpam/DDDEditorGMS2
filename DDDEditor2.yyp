@@ -3175,6 +3175,14 @@
             }
         },
         {
+            "Key": "4d64ace5-5c70-435d-b13b-1fdbfd767a86",
+            "Value": {
+                "id": "9c154967-b240-4662-888c-df14f5c7c816",
+                "resourcePath": "scripts\\omu_animation_reset_camera\\omu_animation_reset_camera.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "4d6d600c-14ea-42e7-bdb7-acd6a60dabbf",
             "Value": {
                 "id": "0250f609-d6d3-480f-8a5f-d8c577885d54",
@@ -7359,6 +7367,14 @@
             }
         },
         {
+            "Key": "afde6833-4f5e-49b8-bcb8-a79b879dc3da",
+            "Value": {
+                "id": "b4a13ac4-128c-4245-a777-1a040d5021f7",
+                "resourcePath": "sprites\\spr_camera_icons\\spr_camera_icons.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "aff645c1-ff62-4a29-8d66-fa9a02896b38",
             "Value": {
                 "id": "d0ff18e2-c718-47cf-b03d-87980b8e5942",
@@ -11481,6 +11497,7 @@
         "fafbc45b-8ba9-4189-b593-3c474374ca40",
         "1698a2a3-74e7-4227-811d-2ab4c9c2516d",
         "56680588-b308-4ea5-b55a-7fded968b626",
+        "4d64ace5-5c70-435d-b13b-1fdbfd767a86",
         "43ae57f2-9a33-45c9-bb00-529bd505469d",
         "9fe42c44-3ba2-491e-a420-b440bfcd560f",
         "08190cb7-54fd-4af3-a3e4-b809b86b4ce5",

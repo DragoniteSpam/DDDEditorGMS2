@@ -14,11 +14,8 @@ var y2 = y1 + button.height;
 var tx = ui_get_text_x(button, x1, x2);
 var ty = ui_get_text_y(button, y1, y2);
 
-if (button.interactive) {
-    var c = c_white;
-} else {
-    var c = c_ltgray;
-}
+var c = button.interactive ? c_white : c_ltgray;
+
 draw_rectangle_colour(x1, y1, x2, y2, c, c, c, c, false);
 
 if (button.outline) {
