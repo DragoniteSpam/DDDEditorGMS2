@@ -118,6 +118,13 @@ if (animation) {
                     if (keyframe) {
                         var kfx = x1 + timeline.moment_width * (keyframe.moment - timeline.moment_index + 0.5);
                         var kfy = y2 + timeline.height * (i + 0.5);
+                        
+                        if (animation_get_keyframe_has_tween(keyframe)) {
+                            var next = animation_get_next_keyframe(animation, index, j);
+                            var kfnx = next ? x1 + timeline.moment_width * (next.moment - timeline.moment_index + 0.5) : x2;
+                            draw_line_width_colour(kfx, kfy, kfnx, kfy, 2, c_blue, c_blue);
+                        }
+                        
                         draw_sprite(spr_timeline_keyframe, 0, kfx, kfy);
                     }
                 }
