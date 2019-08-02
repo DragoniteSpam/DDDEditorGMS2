@@ -77,18 +77,11 @@ etype_objects = [Entity,
     EntityMeshTerrain
 ];
 
-var buffer = buffer_load(PATH_LUA + "map.lua");
-default_lua_map = buffer_read(buffer, buffer_text);
-buffer_delete(buffer);
-var buffer = buffer_load(PATH_LUA + "event-page-condition.lua");
-default_lua_event_page_condition = buffer_read(buffer, buffer_text);
-buffer_delete(buffer);
-var buffer = buffer_load(PATH_LUA + "event-node-conditional.lua");
-default_lua_event_node_conditional = buffer_read(buffer, buffer_text);
-buffer_delete(buffer);
-var buffer = buffer_load(PATH_LUA + "event-script.lua");
-default_lua_event_script = buffer_read(buffer, buffer_text);
-buffer_delete(buffer);
+default_lua_map = file_get_contents(PATH_LUA + "map.lua");
+default_lua_event_page_condition = file_get_contents(PATH_LUA + "event-page-condition.lua");
+default_lua_event_node_conditional = file_get_contents(PATH_LUA + "event-node-conditional.lua");
+default_lua_event_script = file_get_contents(PATH_LUA + "event-script.lua");
+default_lua_animation = file_get_contents(PATH_LUA + "animation.lua");
 
 enum AnimationTweens {
     // i MAY add an option to disable keyframes for properties entirely at some point (but probably not)

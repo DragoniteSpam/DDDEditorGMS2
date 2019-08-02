@@ -5,7 +5,7 @@ var animation = thing.root.active_animation;
 
 if (animation) {
     var dw = 640;
-    var dh = 360;
+    var dh = 400;
 
     var dg = dialog_create(dw, dh, "Animation Properties", undefined, undefined, argument0);
     
@@ -49,7 +49,16 @@ if (animation) {
     
     var el_clear = create_button(16, yy, "Clear Keyframes After End", ew, eh, fa_center, omu_animation_clear_keyframes, dg);
     
-    yy = yy + el_seconds.height + spacing;
+    yy = yy + el_clear.height + spacing;
+    
+    var vx1 = ew / 2 - 16;
+    var vy1 = 0;
+    var vx2 = ew;
+    var vy2 = vy1 + eh;
+    
+    var el_code = create_input_code(16, yy, "Code", ew, eh, vx1, vy1, vx2, vy2, animation.code, uivc_animation_set_code, dg);
+    
+    yy = yy + el_code.height + spacing;
     
     yy = yy_base;
     
@@ -58,7 +67,7 @@ if (animation) {
     
     var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
 
-    ds_list_add(dg.contents, el_name, el_internal_name, el_frame_rate, el_moments, el_seconds, el_clear, el_explanation,
+    ds_list_add(dg.contents, el_name, el_internal_name, el_frame_rate, el_moments, el_seconds, el_clear, el_code, el_explanation,
         el_confirm);
 
     keyboard_string = "";

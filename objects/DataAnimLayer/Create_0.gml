@@ -21,7 +21,7 @@ color = c_white;
 alpha = 1;
 
 graphic_type = GraphicTypes.NONE;
-graphic = noone;
+graphic = noone; 
 
 enum GraphicTypes {
     NONE,

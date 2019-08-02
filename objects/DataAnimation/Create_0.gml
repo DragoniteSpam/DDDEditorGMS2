@@ -11,6 +11,8 @@ frames_per_second = 24;
 moments = frames_per_second * 2;
 loops = true;
 
+code = Stuff.default_lua_animation;
+
 repeat (moments) {
     ds_list_add(base_layer.keyframes, noone);
 }
