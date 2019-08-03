@@ -1,54 +1,56 @@
-/// @description void dialog_create_entity_move_route(Dialog, DataMoveRoute);
 /// @param Dialog
 /// @param DataMoveRoute
 
-var dw=1024;
-var dh=560;
+var dialog = argument0;
+var route = argument1;
+
+var dw = 1024;
+var dh = 560;
 
 // you can assume that this is valid data because this won't be called otherwise
-var list=Camera.selected_entities;
-var entity=list[| 0];
-var dg=dialog_create(dw, dh, "Edit Move Route", dialog_default, dc_close_no_questions_asked, argument0);
-dg.x=dg.x-160;
-dg.route=argument1;
+var list = Camera.selected_entities;
+var entity = list[| 0];
+var dg = dialog_create(dw, dh, "Edit Move Route", dialog_default, dc_close_no_questions_asked, dialog);
+dg.x = dg.x - 160;
+dg.route = route;
 
-var columns=4;
-var ew=(dw-columns*32)/columns;
-var eh=24;
-var eh2=20;
+var columns = 4;
+var ew = (dw - columns * 32) / columns;
+var eh = 24;
+var eh2 = 20;
 
-var c2=dw/columns;
-var c3=dw*2/columns;
-var c4=dw*3/columns;
+var c2 = dw / columns;
+var c3 = dw * 2 / columns;
+var c4 = dw * 3 / columns;
 
-var vx1=dw/(columns*2)-16;
-var vy1=0;
-var vx2=vx1+dw/(columns*2)-16;
-var vy2=vy1+eh;
+var vx1 = ew / 2;
+var vy1 = 0;
+var vx2 = ew;
+var vy2 = vy1 + eh;
 
-var yy=64;
-var spacing=16;
-var spacing2=0;
+var yy = 64;
+var spacing = 16;
+var spacing2 = 0;
 
-var n=10;
+var n = 10;
 
-var el_name=create_input(16, yy, "Name:", ew*2, eh, uivc_entity_move_route_name, "", argument1.name, "16 chars", validate_string, ui_value_string, 0, 1, 16, vx1, vy1, vx2+c2, vy2, dg);
+var el_name = create_input(16, yy, "Name:", ew*2, eh, uivc_entity_move_route_name, "", argument1.name, "16 chars", validate_string, ui_value_string, 0, 1, 16, vx1, vy1, vx2 + c2, vy2, dg);
 
-yy=yy+el_name.height+spacing;
+yy = yy + el_name.height + spacing;
 
-var yy_grid=yy;
+var yy_grid = yy;
 
-var el_steps=create_list(16, yy, "Steps: ", "<No move route steps>", ew, eh2, n, null, false, dg);
-el_steps.numbered=true;
-el_steps.render=ui_render_list_move_route_steps;
-yy=yy+ui_get_list_height(el_steps)+spacing;
-dg.el_steps=el_steps;
+var el_steps = create_list(16, yy, "Steps: ", "<No move route steps>", ew, eh2, n, null, false, dg);
+el_steps.numbered = true;
+el_steps.render = ui_render_list_move_route_steps;
+yy = yy + ui_get_list_height(el_steps) + spacing;
+dg.el_steps = el_steps;
 
-var el_step_edit=create_button(16, yy, "Edit Step", ew, eh, fa_center, null, dg);
-yy=yy+el_step_edit.height+spacing;
+var el_step_edit = create_button(16, yy, "Edit Step", ew, eh, fa_center, null, dg);
+yy = yy + el_step_edit.height + spacing;
 
-var el_step_remove=create_button(16, yy, "Remove Step", ew, eh, fa_center, omu_entity_remove_move_route_step, dg);
-yy=yy+el_step_remove.height+spacing;
+var el_step_remove = create_button(16, yy, "Remove Step", ew, eh, fa_center, omu_entity_remove_move_route_step, dg);
+yy = yy + el_step_remove.height + spacing;
 
 var el_repeat=create_checkbox(16, yy, "Loop Route", ew, eh, uivc_entity_move_route_loop, "", argument1.repeat_action, dg);
 yy=yy+el_repeat.height+spacing;
