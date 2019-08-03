@@ -141,7 +141,7 @@ if (animation) {
         var inbounds = mouse_within_rectangle_determine(timeline.check_view, x1, y2, x2, y3);
         if (inbounds) {
             // double-left not used, that's to be handled by oninteract instead now
-            if (Controller.press_left) {
+            if (Controller.mouse_left) {
                 var mx = min(((Camera.MOUSE_X - x1) div timeline.moment_width) + timeline.moment_index, animation.moments - 1);
                 var my = min(((Camera.MOUSE_Y - y2) div timeline.height) + layer_list.index, n - 1);
                 

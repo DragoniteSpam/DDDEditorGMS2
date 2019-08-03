@@ -44,6 +44,14 @@ if (inbounds) {
             }
         }
     } else if (Controller.press_left) {
-        animation_timeline_set_active_keyframe(timeline, animation_get_keyframe(animation, timeline.selected_layer, timeline.selected_moment));
+        if (!keyboard_check(vk_control)) {
+            animation_timeline_set_active_keyframe(timeline, animation_get_keyframe(animation, timeline.selected_layer, timeline.selected_moment));
+        }
+    } else if (Controller.mouse_left) {
+        if (keyboard_check(vk_control)) {
+            if (timeline.selected_keyframe && (timeline.selected_keyframe.timeline_layer == timeline.selected_layer)) {
+                animation_set_keyframe_position(animation, timeline.selected_keyframe, timeline.selected_layer, timeline.selected_moment);
+            }
+        }
     }
 }

@@ -25,6 +25,7 @@ keyframe.color = animation_get_tween_color(animation, timeline_layer, moment);
 keyframe.alpha = animation_get_tween_alpha(animation, timeline_layer, moment);
 
 keyframe.moment = moment;
+keyframe.timeline_layer = timeline_layer;
 inst_layer.keyframes[| moment] = keyframe;
 
 return keyframe;
