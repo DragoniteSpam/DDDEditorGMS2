@@ -14,7 +14,10 @@
         "88191f5a-ca49-44ba-82f3-a889732cb833",
         "6911da54-4863-4747-bf10-66512e9fdab8",
         "b5d23ad5-4c02-4e93-8600-5152ae820a98",
-        "7c2b12eb-5a37-45b6-a519-084dd2de0d0e"
+        "7c2b12eb-5a37-45b6-a519-084dd2de0d0e",
+        "d4d8f7f3-3113-4dcd-90b9-9d930c772de7",
+        "bc75a45d-3356-4060-bfc8-710a0b31879c",
+        "a2ff5dfd-36ee-4e99-a40c-4899182ffbbd"
     ],
     "filterType": "GMScript",
     "folderName": "keyframe data",

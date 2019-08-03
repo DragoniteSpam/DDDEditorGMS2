@@ -20,11 +20,13 @@ zscale = 1;
 color = c_white;
 alpha = 1;
 
-graphic_type = GraphicTypes.NONE;
-graphic = noone; 
+graphic_type = GraphicTypes.NO_CHANGE;
+graphic = noone;
+graphic_speed = 1;
 
 enum GraphicTypes {
     NONE,
+    NO_CHANGE,
     SPRITE,
     MESH
 }

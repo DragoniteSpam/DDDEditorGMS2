@@ -14,7 +14,15 @@ zscale = 1;
 color = c_white;
 alpha = 1;
 
-event = noone;
+audio = noone;
+
+graphic_type = GraphicTypes.NO_CHANGE;
+graphic = noone; 
+graphic_speed = 1;
+
+event = "Invoke";     // lua function name
+
+// tweens
 
 tween_xx = AnimationTweens.NONE;
 tween_yy = AnimationTweens.NONE;

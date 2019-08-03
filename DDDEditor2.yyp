@@ -6895,6 +6895,14 @@
             }
         },
         {
+            "Key": "a2ff5dfd-36ee-4e99-a40c-4899182ffbbd",
+            "Value": {
+                "id": "6db44c8d-b765-4ddb-845f-890cf5aa5e48",
+                "resourcePath": "scripts\\uivc_animation_keyframe_function\\uivc_animation_keyframe_function.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "a3178a78-d8b3-40f7-bdcb-2e83d257526f",
             "Value": {
                 "id": "59d20266-9658-4dcd-88b4-8d8f5331bbec",
@@ -7035,6 +7043,14 @@
             "Value": {
                 "id": "90b55491-933e-4591-af0d-85b990437cd9",
                 "resourcePath": "scripts\\omu_mr_turn_right\\omu_mr_turn_right.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "a6bf9709-cf24-48f2-ba15-ec4fd31b6722",
+            "Value": {
+                "id": "86ebaf4a-3435-40fd-a150-1aa97d174c6b",
+                "resourcePath": "scripts\\omu_animation_keyframe_event\\omu_animation_keyframe_event.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -7835,6 +7851,14 @@
             "Value": {
                 "id": "db8b56c2-2c1b-4c65-a79a-b3c15e0d9c69",
                 "resourcePath": "scripts\\sa_foreach_global\\sa_foreach_global.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "bc75a45d-3356-4060-bfc8-710a0b31879c",
+            "Value": {
+                "id": "0b3b7628-31ea-435a-bc57-47fa8497ab1e",
+                "resourcePath": "scripts\\uivc_animation_keyframe_graphic_speed\\uivc_animation_keyframe_graphic_speed.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -8923,6 +8947,14 @@
             "Value": {
                 "id": "5a72eed9-ff51-4e45-b3a6-f06cc4727a5a",
                 "resourcePath": "scripts\\omu_mr_turn_left\\omu_mr_turn_left.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "d4d8f7f3-3113-4dcd-90b9-9d930c772de7",
+            "Value": {
+                "id": "6f62b101-d486-4665-8ba3-11cbd8ac8930",
+                "resourcePath": "scripts\\uivc_animation_keyframe_graphic_type\\uivc_animation_keyframe_graphic_type.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -11413,6 +11445,9 @@
         "6911da54-4863-4747-bf10-66512e9fdab8",
         "b5d23ad5-4c02-4e93-8600-5152ae820a98",
         "7c2b12eb-5a37-45b6-a519-084dd2de0d0e",
+        "d4d8f7f3-3113-4dcd-90b9-9d930c772de7",
+        "bc75a45d-3356-4060-bfc8-710a0b31879c",
+        "a2ff5dfd-36ee-4e99-a40c-4899182ffbbd",
         "fcb65bf3-305b-491e-9b10-b64f67d7dea7",
         "6609e13b-9512-4e1c-867d-85609e8619c6",
         "67a7a7dc-f0c7-4670-8c86-913ac7387c87",
@@ -11528,6 +11563,7 @@
         "fd69df94-52ec-4dc4-ac67-39f1bbfee9b7",
         "c7d25588-cabb-4d28-9bf1-a467041bb5b4",
         "21c67df9-6a4c-42f3-bcd8-11d361ca41d2",
+        "a6bf9709-cf24-48f2-ba15-ec4fd31b6722",
         "fafbc45b-8ba9-4189-b593-3c474374ca40",
         "1698a2a3-74e7-4227-811d-2ab4c9c2516d",
         "56680588-b308-4ea5-b55a-7fded968b626",
