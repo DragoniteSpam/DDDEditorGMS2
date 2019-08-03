@@ -9975,6 +9975,14 @@
             }
         },
         {
+            "Key": "eb8eaa24-d857-48ea-9349-f15191981e48",
+            "Value": {
+                "id": "b9de0f19-f202-4d86-b929-f778bca37401",
+                "resourcePath": "scripts\\uivc_animation_keyframe_audio\\uivc_animation_keyframe_audio.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "ebf97910-5b9e-4cca-9051-0c5d5ae3f7db",
             "Value": {
                 "id": "8e1043df-f354-49ff-b1f4-43e7e95aeed8",
@@ -11448,6 +11456,7 @@
         "d4d8f7f3-3113-4dcd-90b9-9d930c772de7",
         "bc75a45d-3356-4060-bfc8-710a0b31879c",
         "a2ff5dfd-36ee-4e99-a40c-4899182ffbbd",
+        "eb8eaa24-d857-48ea-9349-f15191981e48",
         "fcb65bf3-305b-491e-9b10-b64f67d7dea7",
         "6609e13b-9512-4e1c-867d-85609e8619c6",
         "67a7a7dc-f0c7-4670-8c86-913ac7387c87",

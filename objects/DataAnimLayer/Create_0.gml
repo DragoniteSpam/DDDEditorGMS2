@@ -21,7 +21,9 @@ color = c_white;
 alpha = 1;
 
 graphic_type = GraphicTypes.NO_CHANGE;
-graphic = noone;
+// becuase i'm a dumbass
+graphic_sprite = noone;
+graphic_mesh = noone;
 graphic_speed = 1;
 
 enum GraphicTypes {
