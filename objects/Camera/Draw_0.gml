@@ -55,6 +55,7 @@ switch (mode) {
             case view_3d:
                 draw_clear(c_black);
                 draw_animator();
+                draw_animator_overlay();
                 break;
             case view_ribbon:
                 draw_editor_menu();

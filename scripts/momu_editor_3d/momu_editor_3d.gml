@@ -24,7 +24,4 @@ __view_set( e__VW.YPort, view_3d, 0);
 __view_set( e__VW.WPort, view_3d, 1080 );
 __view_set( e__VW.HPort, view_3d, 900 );
 
-__view_set( e__VW.XView, view_fullscreen, 0 );
-__view_set( e__VW.YView, view_fullscreen, 0 );
-
 menu_activate(noone);
