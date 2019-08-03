@@ -7807,6 +7807,14 @@
             }
         },
         {
+            "Key": "ba5bd488-1f90-4a66-8b8c-db3e15a46cf6",
+            "Value": {
+                "id": "51daa26a-c690-4d7d-9cbe-c2b57c0a4aa9",
+                "resourcePath": "scripts\\serialize_save_animations\\serialize_save_animations.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "ba686f42-3501-4de2-98c3-002f52541333",
             "Value": {
                 "id": "8ca38236-45ba-4d42-91e3-bbf232e3492f",
@@ -11802,6 +11810,7 @@
         "b683c3c7-a016-4194-a7d5-387032c9c021",
         "8f227378-ffca-47bc-81b8-3b294e2d7a10",
         "7a5d15d6-9cab-4f51-bd03-2381dd75c70a",
+        "ba5bd488-1f90-4a66-8b8c-db3e15a46cf6",
         "2005a99e-35bc-41e3-bf5a-8f035ddd6cb8",
         "43d930be-eb66-4f68-b4c3-43195056d4e1",
         "622f843a-bea6-4aaf-8127-baf651794e9f",

@@ -38,7 +38,7 @@ if (animation) {
     
     yy = yy + el_frame_rate.height + spacing;
     
-    var el_moments = create_input(16, yy, "Moments:", ew, eh, uivc_animation_set_moments, 0, string(animation.moments), "integer", validate_int, ui_value_real, 1, 255, 3, vx1, vy1, vx2, vy2, dg);
+    var el_moments = create_input(16, yy, "Moments:", ew, eh, uivc_animation_set_moments, 0, string(animation.moments), "integer", validate_int, ui_value_real, 1, 65535, 3, vx1, vy1, vx2, vy2, dg);
     
     yy = yy + el_moments.height + spacing;
     
