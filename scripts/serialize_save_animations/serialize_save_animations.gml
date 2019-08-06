@@ -16,18 +16,17 @@ for (var i = 0; i < n_animations; i++) {
     buffer_write(buffer, buffer_string, animation.code);
     
     var bools = pack(animation.loops);
-    
     buffer_write(buffer, buffer_u32, bools);
     
     var n_layers = ds_list_size(animation.layers);
     buffer_write(buffer, buffer_u8, n_layers);
+    
     for (var j = 0; j < n_layers; j++) {
         var timeline_layer = animation.layers[| j];
         
         buffer_write(buffer, buffer_string, timeline_layer.name);
         
         var bools = pack(timeline_layer.is_actor);
-        
         buffer_write(buffer, buffer_u8, bools);
         
         buffer_write(buffer, buffer_f32, timeline_layer.xx);
@@ -41,7 +40,7 @@ for (var i = 0; i < n_animations; i++) {
         buffer_write(buffer, buffer_f32, timeline_layer.zscale);
         
         buffer_write(buffer, buffer_u32, timeline_layer.color);
-        buffer_write(buffer, buffer_f16, timeline_layer.alpha);
+        buffer_write(buffer, buffer_f32, timeline_layer.alpha);
         
         buffer_write(buffer, buffer_u8, timeline_layer.graphic_type);
         buffer_write(buffer, buffer_datatype, timeline_layer.graphic_sprite);
@@ -52,45 +51,49 @@ for (var i = 0; i < n_animations; i++) {
         // of the animation - or, the list might not be the same size as the animation in general
         var n_keyframes = ds_list_size(timeline_layer.keyframes);
         buffer_write(buffer, buffer_u16, n_keyframes);
-        
+        show_message(n_keyframes);
         for (var k = 0; k < n_keyframes; k++) {
             var keyframe = timeline_layer.keyframes[| k];
+            buffer_write(buffer, buffer_bool, keyframe && true);
             
-            buffer_write(buffer, buffer_f32, keyframe.xx);
-            buffer_write(buffer, buffer_f32, keyframe.yy);
-            buffer_write(buffer, buffer_f32, keyframe.zz);
-            buffer_write(buffer, buffer_f32, keyframe.xrot);
-            buffer_write(buffer, buffer_f32, keyframe.yrot);
-            buffer_write(buffer, buffer_f32, keyframe.zrot);
-            buffer_write(buffer, buffer_f32, keyframe.xscale);
-            buffer_write(buffer, buffer_f32, keyframe.yscale);
-            buffer_write(buffer, buffer_f32, keyframe.zscale);
+            if (keyframe) {
+                buffer_write(buffer, buffer_u16, keyframe.moment);
+                buffer_write(buffer, buffer_u8, keyframe.timeline_layer);
+                
+                buffer_write(buffer, buffer_f32, keyframe.xx);
+                buffer_write(buffer, buffer_f32, keyframe.yy);
+                buffer_write(buffer, buffer_f32, keyframe.zz);
+                buffer_write(buffer, buffer_f32, keyframe.xrot);
+                buffer_write(buffer, buffer_f32, keyframe.yrot);
+                buffer_write(buffer, buffer_f32, keyframe.zrot);
+                buffer_write(buffer, buffer_f32, keyframe.xscale);
+                buffer_write(buffer, buffer_f32, keyframe.yscale);
+                buffer_write(buffer, buffer_f32, keyframe.zscale);
             
-            buffer_write(buffer, buffer_u32, keyframe.color);
-            buffer_write(buffer, buffer_f16, keyframe.alpha);
+                buffer_write(buffer, buffer_u32, keyframe.color);
+                buffer_write(buffer, buffer_f32, keyframe.alpha);
             
-            buffer_write(buffer, buffer_u8, keyframe.graphic_type);
-            buffer_write(buffer, buffer_datatype, keyframe.graphic_sprite);
-            buffer_write(buffer, buffer_datatype, keyframe.graphic_mesh);
-            buffer_write(buffer, buffer_f32, keyframe.graphic_speed);
-            buffer_write(buffer, buffer_datatype, keyframe.audio);
-            buffer_write(buffer, buffer_string, keyframe.event);
+                buffer_write(buffer, buffer_u8, keyframe.graphic_type);
+                buffer_write(buffer, buffer_datatype, keyframe.graphic_sprite);
+                buffer_write(buffer, buffer_datatype, keyframe.graphic_mesh);
+                buffer_write(buffer, buffer_f32, keyframe.graphic_speed);
+                
+                buffer_write(buffer, buffer_datatype, keyframe.audio);
+                buffer_write(buffer, buffer_string, keyframe.event);
             
-            buffer_write(buffer, buffer_u16, keyframe.tween_xx);
-            buffer_write(buffer, buffer_u16, keyframe.tween_yy);
-            buffer_write(buffer, buffer_u16, keyframe.tween_zz);
-            buffer_write(buffer, buffer_u16, keyframe.tween_xrot);
-            buffer_write(buffer, buffer_u16, keyframe.tween_yrot);
-            buffer_write(buffer, buffer_u16, keyframe.tween_zrot);
-            buffer_write(buffer, buffer_u16, keyframe.tween_xscale);
-            buffer_write(buffer, buffer_u16, keyframe.tween_yscale);
-            buffer_write(buffer, buffer_u16, keyframe.tween_zscale);
+                buffer_write(buffer, buffer_u16, keyframe.tween_xx);
+                buffer_write(buffer, buffer_u16, keyframe.tween_yy);
+                buffer_write(buffer, buffer_u16, keyframe.tween_zz);
+                buffer_write(buffer, buffer_u16, keyframe.tween_xrot);
+                buffer_write(buffer, buffer_u16, keyframe.tween_yrot);
+                buffer_write(buffer, buffer_u16, keyframe.tween_zrot);
+                buffer_write(buffer, buffer_u16, keyframe.tween_xscale);
+                buffer_write(buffer, buffer_u16, keyframe.tween_yscale);
+                buffer_write(buffer, buffer_u16, keyframe.tween_zscale);
             
-            buffer_write(buffer, buffer_u16, keyframe.tween_color);
-            buffer_write(buffer, buffer_f16, keyframe.tween_alpha);
-            
-            // moment and layer are set automatically when the keyframe is loaded,
-            // you don't need to save those values manually
+                buffer_write(buffer, buffer_u16, keyframe.tween_color);
+                buffer_write(buffer, buffer_u16, keyframe.tween_alpha);
+            }
         }
     }
 }

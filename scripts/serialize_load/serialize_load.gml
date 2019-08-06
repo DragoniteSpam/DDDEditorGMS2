@@ -89,47 +89,22 @@ if (buffer < 0) {
             var datatype = buffer_read(buffer, buffer_datatype);
             switch (datatype) {
                 // game stuff
-                case SerializeThings.AUTOTILES:
-                    serialize_load_autotiles(buffer, version);
-                    break;
-                case SerializeThings.TILESET:
-                    serialize_load_tilesets(buffer, version);
-                    break;
-                case SerializeThings.AUDIO_BGM:
-                    serialize_load_audio_bgm(buffer, version);
-                    break;
-                case SerializeThings.AUDIO_SE:
-                    serialize_load_audio_se(buffer, version);
-                    break;
-                case SerializeThings.EVENTS:
-                    serialize_load_events(buffer, version);
-                    break;
-                case SerializeThings.MISC_MAP_META:
-                    serialize_load_global_meta(buffer, version);
-                    break;
-                case SerializeThings.DATADATA:
-                    serialize_load_datadata(buffer, version);
-                    break;
-                case SerializeThings.DATA_INSTANCES:
-                    serialize_load_data_instances(buffer, version);
-                    break;
-                case SerializeThings.EVENT_CUSTOM:
-                    serialize_load_event_custom(buffer, version);
-                    break;
+                case SerializeThings.AUTOTILES: serialize_load_autotiles(buffer, version); break;
+                case SerializeThings.TILESET: serialize_load_tilesets(buffer, version); break;
+                case SerializeThings.AUDIO_BGM: serialize_load_audio_bgm(buffer, version); break;
+                case SerializeThings.AUDIO_SE: serialize_load_audio_se(buffer, version); break;
+                case SerializeThings.EVENTS: serialize_load_events(buffer, version); break;
+                case SerializeThings.MISC_MAP_META: serialize_load_global_meta(buffer, version); break;
+                case SerializeThings.DATADATA: serialize_load_datadata(buffer, version); break;
+                case SerializeThings.DATA_INSTANCES: serialize_load_data_instances(buffer, version); break;
+                case SerializeThings.EVENT_CUSTOM: serialize_load_event_custom(buffer, version); break;
+                case SerializeThings.ANIMATIONS: serialize_load_animations(buffer, version); break;
                 // map stuff
-                case SerializeThings.MAP_META:
-                    serialize_load_map_contents_meta(buffer, version); 
-                    break;
-                case SerializeThings.MAP_BATCH:
-                    serialize_load_map_contents_batch(buffer, version);
-                    break;
-                case SerializeThings.MAP_DYNAMIC:
-                    serialize_load_map_contents_dynamic(buffer, version);
-                    break;
+                case SerializeThings.MAP_META: serialize_load_map_contents_meta(buffer, version);  break;
+                case SerializeThings.MAP_BATCH: serialize_load_map_contents_batch(buffer, version); break;
+                case SerializeThings.MAP_DYNAMIC: serialize_load_map_contents_dynamic(buffer, version); break;
                 // end of file
-                case SerializeThings.END_OF_FILE:
-                    stop = true;
-                    break;
+                case SerializeThings.END_OF_FILE: stop = true; break;
             }
             
             if (stop) {

@@ -2,9 +2,11 @@
 /// @param Data
 /// @param version
 
+var buffer = argument0;
+var data = argument1;
 var version = argument2;
 
-argument1.name = buffer_read(argument0, buffer_string);
-internal_name_set(argument1, buffer_read(argument0, buffer_string));
-argument1.flags = buffer_read(argument0, buffer_u32);
-guid_set(argument1, buffer_read(argument0, buffer_u32));
+data.name = buffer_read(buffer, buffer_string);
+internal_name_set(data, buffer_read(buffer, buffer_string));
+data.flags = buffer_read(buffer, buffer_u32);
+guid_set(data, buffer_read(buffer, buffer_u32));
