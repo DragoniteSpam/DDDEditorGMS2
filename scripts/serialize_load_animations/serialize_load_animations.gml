@@ -24,7 +24,6 @@ repeat (n_animations) {
     var n_layers = buffer_read(buffer, buffer_u8);
     repeat (n_layers) {
         var layer_name = buffer_read(buffer, buffer_string);
-        show_message(layer_name);
         var timeline_layer = animation_layer_create(animation, layer_name);
         
         var layer_bools = buffer_read(buffer, buffer_u8);

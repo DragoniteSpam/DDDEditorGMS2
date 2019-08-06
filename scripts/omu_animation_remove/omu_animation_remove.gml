@@ -12,6 +12,12 @@ if (selection >= 0) {
             instance_destroy(thing.root.active_animation);
             ui_list_deselect(thing.root.el_master);
             thing.root.active_animation = noone;
+            
+            thing.root.active_animation = noone;
+            thing.root.active_layer = noone;
+            thing.root.el_layers.selected_keyframe = noone;
+            ui_list_deselect(thing.root.el_layers);
+            ui_list_deselect(thing.root.el_master);
             break;
         }
     }
