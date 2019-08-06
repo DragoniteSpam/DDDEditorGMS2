@@ -100,6 +100,17 @@ for (var i = 0; i < ds_list_size(dynamic.contents); i++) {
                             thingy.editor_handle = noone;
                         }
                         break;
+                    case DataTypes.ANIMATION:
+                        ui_list_deselect(thingy);
+                        for (var k = 0; k < ds_list_size(Stuff.all_animations); k++) {
+                            // still no need to mess with the list
+                            if (Stuff.all_animations[| k].GUID == ds_list_find_value(instance.values[| n], 0)) {
+                                ds_map_add(thingy.selected_entries, k, true);
+                                thingy.index = max(0, k - thingy.slots + 1);
+                                break;
+                            }
+                        }
+                        break;
                 }
             } // else it's just a button
         } else {

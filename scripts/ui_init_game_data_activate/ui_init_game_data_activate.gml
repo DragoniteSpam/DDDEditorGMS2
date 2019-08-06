@@ -149,9 +149,12 @@ if (data) {
                         var hh = ui_get_list_height(element);
                         break;
                     case DataTypes.ANIMATION:          // list
-                        var element = create_list(spacing, yy, property.name, "<no Animation>", ew, eh, 8, stack_trace, false, noone);
+                        var element = create_list(spacing, yy, property.name, "<no Animations>", ew, eh, 8, uivc_data_set_property_list, false, noone);
                         element.key = i;
-                        element.entries_are = ListEntries.GUIDS;
+                        for (var j = 0; j < ds_list_size(Stuff.all_animations); j++) {
+                            create_list_entries(element, Stuff.all_animations[| j], c_black);
+                        }
+                        element.entries_are = ListEntries.INSTANCES;
                         var hh = ui_get_list_height(element);
                         break;
                     case DataTypes.ENTITY:          // list
