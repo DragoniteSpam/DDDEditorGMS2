@@ -37,7 +37,7 @@ There are some miscellaneous property editor form UI things.
 
 ## Stuff I'm considering
 
- - - Animated meshes (I won't be doing this myself but I know some people who have who I may ask)
+ - Animated meshes (I won't be doing this myself but I know some people who have who I may ask)
  - UI blueprints
  - 2D mode for maps / game
 
