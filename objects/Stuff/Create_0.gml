@@ -106,7 +106,7 @@ easing_equations = [
     ease_sine_i, ease_sine_o, ease_sine_io,
     ease_exp_i, ease_exp_o, ease_exp_io,
     ease_circ_i, ease_circ_o, ease_circ_io,
-]
+];
 
 // local storage folders
 

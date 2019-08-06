@@ -2,6 +2,8 @@
 /// @param v1
 /// @param f
 
+// ease quintic out
+
 // weird arguments but they match the format used by http://www.gizma.com/easing
 var t = argument2 - 1;
 var b = argument0;

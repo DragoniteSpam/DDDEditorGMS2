@@ -51,7 +51,7 @@ for (var i = 0; i < n_animations; i++) {
         // of the animation - or, the list might not be the same size as the animation in general
         var n_keyframes = ds_list_size(timeline_layer.keyframes);
         buffer_write(buffer, buffer_u16, n_keyframes);
-        show_message(n_keyframes);
+        
         for (var k = 0; k < n_keyframes; k++) {
             var keyframe = timeline_layer.keyframes[| k];
             buffer_write(buffer, buffer_bool, keyframe && true);
