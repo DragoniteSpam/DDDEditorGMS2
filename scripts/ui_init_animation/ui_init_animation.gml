@@ -93,6 +93,17 @@ with (instantiate(UIThing)) {
         var imgw = sprite_get_width(spr_timeline_keyframe_tween);
         var imgh = sprite_get_height(spr_timeline_keyframe_tween);
         
+        var el_rectangle_inner = create_rectangle(xx - 8, yy - 8, ew + 16, yy + 8, 0xf0f0f0, false);
+        ds_list_add(el_keyframe.contents, el_rectangle_inner);
+        var el_rectangle = create_rectangle(xx - 8, yy - 8, ew + 16, yy + 8);
+        ds_list_add(el_keyframe.contents, el_rectangle);
+        
+        el_keyframe.relative = create_button(xx, yy, "Relative to: ", ew, eh, fa_center, omu_animation_keyframe_relative, el_keyframe);
+        el_keyframe.relative.render = ui_render_animation_keyframe_other;
+        ds_list_add(el_keyframe.contents, el_keyframe.relative);
+        
+        yy = yy + el_keyframe.relative.height + spacing;
+        
         var element = create_text(xx, yy, "      Keyframe Translation", ew, eh, fa_left, ew, el_keyframe);
         ds_list_add(el_keyframe.contents, element);
         
@@ -187,12 +198,12 @@ with (instantiate(UIThing)) {
         el_keyframe.tween_scale_z.parameter = KeyframeParameters.SCALE_Z;
         ds_list_add(el_keyframe.contents, el_keyframe.tween_scale_z);
         
-        yy = yy + el_keyframe.scale_z.height + spacing;
+        yy = yy + el_keyframe.scale_z.height;
         
         var element = create_text(xx, yy, "      Other Keyframe Properties", ew, eh, fa_left, ew, el_keyframe);
         ds_list_add(el_keyframe.contents, element);
         
-        yy = yy + element.height + spacing;
+        yy = yy + element.height;
     
         el_keyframe.color = create_color_picker(xx, yy, "      color:", ew, eh, uivc_animation_keyframe_color, 0, c_white, vx1, vy1, vx2, vy2, el_keyframe);
         el_keyframe.color.render = ui_render_animation_keyframe_color;
@@ -213,9 +224,13 @@ with (instantiate(UIThing)) {
         yy = yy + el_keyframe.alpha.height + spacing;
     
         var element = create_button(xx, yy, "Other Data", ew, eh, fa_center, omu_animation_keyframe_event, el_keyframe);
+        element.render = ui_render_animation_keyframe_other;
         ds_list_add(el_keyframe.contents, element);
         
         yy = yy + element.height;
+        
+        el_rectangle.y2 = yy + 8;
+        el_rectangle_inner.y2 = el_rectangle.y2;
     
     }
     

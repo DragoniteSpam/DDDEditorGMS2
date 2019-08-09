@@ -14,7 +14,8 @@
         "cfb26dd1-e44f-48e7-9f15-2398eeb4012c",
         "99eee12e-5c45-4732-bc50-35d3827a0f2f",
         "02762144-a040-411b-90f2-3b6d9b913caf",
-        "64a593ba-b9a3-4eb1-afba-23dce9d09679"
+        "64a593ba-b9a3-4eb1-afba-23dce9d09679",
+        "e9bafafb-ea09-4d2a-95c3-60428a6c1248"
     ],
     "filterType": "GMScript",
     "folderName": "keyframes",

@@ -1,3 +1,5 @@
+relative = noone;
+
 xx = 0;
 yy = 0;
 zz = 0;
