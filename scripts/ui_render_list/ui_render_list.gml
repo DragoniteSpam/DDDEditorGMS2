@@ -105,6 +105,7 @@ if (list.interactive && active) {
         } else if (Controller.press_right) {
             if (list.allow_deselect) {
                 ui_list_deselect(list);
+                script_execute(list.onvaluechange, list);
             }
         }
         
