@@ -81,5 +81,6 @@ enum DataVersions {
     GAME_VARIABLES              = 31,
     STRIPPED_SELF_VARIABLES     = 32,
     EVENT_PAGE_CODE_CONDITION   = 33,
+    ANIMATION_RELATIVE_DATA     = 34,
     _CURRENT                 /* = whatever the last one is + 1 */
 }
