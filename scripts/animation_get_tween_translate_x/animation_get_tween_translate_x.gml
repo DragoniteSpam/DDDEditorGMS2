@@ -6,9 +6,17 @@ var animation = argument0;
 var timeline_layer = argument1;
 var moment = argument2;
 
-var kf_current = animation_get_keyframe(animation, timeline_layer, moment);
-var kf_previous = animation_get_preivous_keyframe(animation, timeline_layer, moment);
-var kf_next = animation_get_next_keyframe(animation, timeline_layer, moment);
+var kf_current = noone;
+var kf_previous = noone;
+var kf_next = noone;
+
+kf_current = animation_get_keyframe(animation, timeline_layer, moment);
+do {
+    kf_previous = animation_get_preivous_keyframe(animation, timeline_layer, kf_previous ? kf_previous.moment : moment);
+} until (!kf_previous || kf_previous.tween_xx != AnimationTweens.IGNORE);
+do {
+    kf_next = animation_get_next_keyframe(animation, timeline_layer, kf_next ? kf_next.moment : moment);
+} until (!kf_next || kf_next.tween_xx != AnimationTweens.IGNORE);
     
 // if no previous keyframe exists the value will always be the default (here, zero);
 // if not next keyframe exists the value will always be the previous value
@@ -20,7 +28,7 @@ var moment_previous = kf_previous ? kf_previous.moment : 0;
 var moment_next = kf_next ? kf_next.moment : animation.moments;
 var f = normalize(moment, moment_previous, moment_next);
 
-if (kf_current) {
+if (kf_current && kf_current.tween_xx != AnimationTweens.IGNORE) {
     return value_now;
 }
 

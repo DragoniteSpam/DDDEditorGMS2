@@ -28,8 +28,6 @@ if (keyframe) {
         "Ease Sine In", "Ease Sine Out", "Ease Sine In / Out",
         "Ease Exponential In", "Ease Exponential Out", "Ease Exponential In / Out",
         "Ease Circular In", "Ease Circular Out", "Ease Circular In / Out");
-    // "Ignore" MAY be implemented later, but not now
-    el_type.contents[| 0].interactive = false;
     el_type.param = param;
     
     var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
