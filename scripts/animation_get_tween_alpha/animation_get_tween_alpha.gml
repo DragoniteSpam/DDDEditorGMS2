@@ -25,9 +25,9 @@ var rel_next = (kf_next && kf_next.relative > -1) ? animation.layers[| kf_next.r
 // if no previous keyframe exists the value will always be the default (here, zero);
 // if not next keyframe exists the value will always be the previous value
 var value_default = animation_get_layer(animation, timeline_layer).alpha;
-var value_now = (kf_current ? kf_current.alpha : value_default) + (rel_current ? rel_current.alpha : 0);
-var value_previous = (kf_previous ? kf_previous.alpha : value_default) + (rel_previous ? rel_previous.alpha : 0);
-var value_next = (kf_next ? kf_next.alpha : (animation.loops ? value_default : value_previous)) + (rel_next ? rel_next.alpha : 0);
+var value_now = (kf_current ? kf_current.alpha : value_default) * (rel_current ? rel_current.alpha : 1);
+var value_previous = (kf_previous ? kf_previous.alpha : value_default) * (rel_previous ? rel_previous.alpha : 1);
+var value_next = (kf_next ? kf_next.alpha : (animation.loops ? value_default : value_previous)) * (rel_next ? rel_next.alpha : 1);
 var moment_previous = kf_previous ? kf_previous.moment : 0;
 var moment_next = kf_next ? kf_next.moment : animation.moments;
 var f = normalize(moment, moment_previous, moment_next);
