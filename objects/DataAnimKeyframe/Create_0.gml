@@ -23,7 +23,7 @@ graphic_sprite = noone;
 graphic_mesh = noone;
 graphic_speed = 1;
 
-event = "Invoke";     // lua function name
+event = "";     // lua function name (i.e. "invoke")
 
 // tweens
 

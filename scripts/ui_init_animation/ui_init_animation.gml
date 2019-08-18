@@ -99,7 +99,7 @@ with (instantiate(UIThing)) {
         ds_list_add(el_keyframe.contents, el_rectangle);
         
         el_keyframe.relative = create_button(xx, yy, "Relative to: ", ew, eh, fa_center, omu_animation_keyframe_relative, el_keyframe);
-        el_keyframe.relative.render = ui_render_animation_keyframe_other;
+        el_keyframe.relative.render = ui_render_animation_keyframe_relative;
         ds_list_add(el_keyframe.contents, el_keyframe.relative);
         
         yy = yy + el_keyframe.relative.height + spacing;
