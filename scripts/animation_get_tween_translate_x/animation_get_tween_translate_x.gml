@@ -17,13 +17,17 @@ do {
 do {
     kf_next = animation_get_next_keyframe(animation, timeline_layer, kf_next ? kf_next.moment : moment);
 } until (!kf_next || kf_next.tween_xx != AnimationTweens.IGNORE);
-    
+
+var rel_current = (kf_current && kf_current.relative > -1) ? animation.layers[| kf_current.relative] : noone;
+var rel_previous = (kf_previous && kf_previous.relative > -1) ? animation.layers[| kf_previous.relative] : noone;
+var rel_next = (kf_next && kf_next.relative > -1) ? animation.layers[| kf_next.relative] : noone;
+
 // if no previous keyframe exists the value will always be the default (here, zero);
 // if not next keyframe exists the value will always be the previous value
 var value_default = animation_get_layer(animation, timeline_layer).xx;
-var value_now = kf_current ? kf_current.xx : value_default;
-var value_previous = kf_previous ? kf_previous.xx : value_default;
-var value_next = kf_next ? kf_next.xx : (animation.loops ? value_default : value_previous);
+var value_now = (kf_current ? kf_current.xx : value_default) + (rel_current ? rel_current.xx : 0);
+var value_previous = (kf_previous ? kf_previous.xx : value_default) + (rel_previous ? rel_previous.xx : 0);
+var value_next = (kf_next ? kf_next.xx : (animation.loops ? value_default : value_previous)) + (rel_next ? rel_next.xx : 0);
 var moment_previous = kf_previous ? kf_previous.moment : 0;
 var moment_next = kf_next ? kf_next.moment : animation.moments;
 var f = normalize(moment, moment_previous, moment_next);
