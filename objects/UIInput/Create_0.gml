@@ -21,6 +21,7 @@ value_y2 = y + height;
 value_limit = 10;
 value = "";
 value_default = "";
+back_color = c_white;
 
 // these are not checked automatically because they don't apply to strings;
 // you need to check them in the uivc_* scripts
