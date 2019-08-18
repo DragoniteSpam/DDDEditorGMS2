@@ -25,21 +25,18 @@ if (animation) {
 // update the play head first
 
 if (animation && timeline.playing) {
+    var old_moment = timeline.playing_moment;
     var dt_scale = animation.frames_per_second / game_get_speed(gamespeed_fps);
     timeline.playing_moment = timeline.playing_moment + dt_scale;
-    if (timeline.playing_moment > animation.moments - 1) {
-        if (timeline.playing_loop) {
-            timeline.playing_moment = timeline.playing_moment % animation.moments;
-        } else {
-            // don't reset the play position
-            timeline.playing = false;
-        }
-    }
+    timeline.playing_moment = timeline.playing_moment % animation.moments;
     var fmoment = floor(timeline.playing_moment);
     if (fmoment >= timeline.moment_index + timeline.moment_slots - 1) {
         timeline.moment_index = min(animation.moments - timeline.moment_slots, fmoment);
     } else if (fmoment < timeline.moment_index) {
         timeline.moment_index = fmoment;
+    }
+    if (!timeline.playing_loop && old_moment > timeline.playing_moment) {
+        timeline.playing = false;
     }
 }
 
