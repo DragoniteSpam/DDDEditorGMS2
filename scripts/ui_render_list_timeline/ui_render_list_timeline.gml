@@ -327,6 +327,16 @@ if (keyboard_check_pressed(vk_space) && animation) {
     timeline.playing = !timeline.playing;
 }
 
+if (keyboard_check_pressed(vk_left) && animation) {
+    timeline.playing = false;
+    timeline.playing_moment = (--timeline.playing_moment + animation.moments) % animation.moments;
+}
+
+if (keyboard_check_pressed(vk_right) && animation) {
+    timeline.playing = false;
+    timeline.playing_moment = ++timeline.playing_moment % animation.moments;
+}
+
 if (keyboard_check_pressed(vk_enter)) {
     timeline.playing = false;
     timeline.playing_moment = 0;
