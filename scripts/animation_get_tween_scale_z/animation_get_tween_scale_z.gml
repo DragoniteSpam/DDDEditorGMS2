@@ -32,7 +32,7 @@ var moment_previous = kf_previous ? kf_previous.moment : 0;
 var moment_next = kf_next ? kf_next.moment : animation.moments;
 var f = normalize(moment, moment_previous, moment_next);
 
-if (kf_current) {
+if (kf_current && kf_current.tween_zscale != AnimationTweens.IGNORE) {
     return value_now;
 }
 
