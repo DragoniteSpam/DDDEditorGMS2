@@ -1,12 +1,7 @@
 name = "Entity";
 etype = ETypes.ENTITY;
 
-do {
-    // range: [1, 2147483647] - 0 is "null"
-    GUID = irandom((1 << 31) - 2) + 1;
-} until(!ds_map_exists(Stuff.all_guids, GUID));
-
-ds_map_add(Stuff.all_guids, GUID, id);
+refid_set(id, refid_generate());
 
 ActiveMap.population[ETypes.ENTITY]++;
 

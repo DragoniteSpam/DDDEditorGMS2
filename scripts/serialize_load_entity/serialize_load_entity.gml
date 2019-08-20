@@ -6,7 +6,7 @@ argument1.name = buffer_read(argument0, buffer_string);
 argument1.xx = buffer_read(argument0, buffer_u32);
 argument1.yy = buffer_read(argument0, buffer_u32);
 argument1.zz = buffer_read(argument0, buffer_u32);
-guid_set(argument1, buffer_read(argument0, buffer_u32));
+refid_set(argument1, buffer_read(argument0, buffer_u32));
 
 var state_solid = argument1.am_solid;
 var state_static = argument1.static;

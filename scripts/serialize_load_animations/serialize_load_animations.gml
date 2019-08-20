@@ -86,7 +86,7 @@ repeat (n_animations) {
                 keyframe.tween_xscale = buffer_read(buffer, buffer_u16);
                 keyframe.tween_yscale = buffer_read(buffer, buffer_u16);
                 keyframe.tween_zscale = buffer_read(buffer, buffer_u16);
-        
+                
                 keyframe.tween_color = buffer_read(buffer, buffer_u16);
                 keyframe.tween_alpha = buffer_read(buffer, buffer_u16);
                 

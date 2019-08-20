@@ -8,7 +8,7 @@ if (keyframe) {
     var dw = 640;
     var dh = 560;
 
-    var dg = dialog_create(dw, dh, "Other Keyframe Events", undefined, undefined, argument0);
+    var dg = dialog_create(dw, dh, "More Keyframe Events", undefined, undefined, argument0);
     
     var columns = 2;
     var ew = (dw - 64) / columns;

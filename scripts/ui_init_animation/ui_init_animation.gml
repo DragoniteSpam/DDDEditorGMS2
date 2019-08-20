@@ -223,7 +223,7 @@ with (instantiate(UIThing)) {
         
         yy = yy + el_keyframe.alpha.height + spacing;
     
-        var element = create_button(xx, yy, "Other Data", ew, eh, fa_center, omu_animation_keyframe_event, el_keyframe);
+        var element = create_button(xx, yy, "More Data", ew, eh, fa_center, omu_animation_keyframe_event, el_keyframe);
         element.render = ui_render_animation_keyframe_other;
         ds_list_add(el_keyframe.contents, element);
         

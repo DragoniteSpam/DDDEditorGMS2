@@ -18,6 +18,6 @@ ds_list_destroy(object_events);
 ds_list_destroy(switches);
 ds_list_destroy(variables);
 
-ds_map_delete(Stuff.all_guids, GUID);
+refid_remove(REFID);
 
 ds_list_destroy_instances(movement_routes);

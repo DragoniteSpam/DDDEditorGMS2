@@ -16,7 +16,7 @@ zscale = 1;
 color = c_white;
 alpha = 1;
 
-audio = noone;
+audio = 0;
 
 graphic_type = GraphicTypes.NO_CHANGE;
 graphic_sprite = noone; 
