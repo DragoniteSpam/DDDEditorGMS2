@@ -1,4 +1,3 @@
-/// @description c_shape_load_trimesh(filename)
 /// @param filename
 /*
 Loads a trimesh from a GameMaker model file.

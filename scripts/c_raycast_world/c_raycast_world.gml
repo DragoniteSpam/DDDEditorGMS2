@@ -1,4 +1,3 @@
-/// @description c_raycast_world(xfrom, yfrom, zfrom, xto, yto, zto, mask)
 /// @param xfrom
 /// @param yfrom
 /// @param zfrom

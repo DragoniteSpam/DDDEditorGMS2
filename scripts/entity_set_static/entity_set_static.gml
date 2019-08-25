@@ -1,12 +1,14 @@
-/// @description boolean entity_set_static(Entity, solid?);
 /// @param Entity
 /// @param solid?
 
-var state=argument0.static;
-argument0.static=argument1;
+var entity = argument0;
+var am_solid = argument1;
 
-if (state!=argument1) {
-    if (argument1) {
+var state = entity.static;
+entity.static = am_solid;
+
+if (state != am_solid) {
+    if (am_solid) {
         ActiveMap.population_static++;
     } else {
         ActiveMap.population_static--;

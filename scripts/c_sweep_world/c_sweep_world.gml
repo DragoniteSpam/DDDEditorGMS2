@@ -1,4 +1,3 @@
-/// @description c_sweep_world(shape, xfrom, yfrom, zfrom, xto, yto, zto, mask)
 /// @param shape
 /// @param xfrom
 /// @param yfrom

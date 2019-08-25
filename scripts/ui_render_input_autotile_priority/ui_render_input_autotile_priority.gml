@@ -1,4 +1,3 @@
-/// @description void ui_render_input_autotile_priority(Button, x, y);
 /// @param Button
 /// @param x
 /// @param y

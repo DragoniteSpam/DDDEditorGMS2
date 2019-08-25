@@ -1,4 +1,3 @@
-/// @description c_transform_rotation(xrot, yrot, zrot)
 /// @param xrot
 /// @param yrot
 /// @param zrot
