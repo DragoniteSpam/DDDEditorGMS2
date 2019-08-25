@@ -2,87 +2,91 @@
 /// @param Entity
 /// @param version
 
-argument1.name = buffer_read(argument0, buffer_string);
-argument1.xx = buffer_read(argument0, buffer_u32);
-argument1.yy = buffer_read(argument0, buffer_u32);
-argument1.zz = buffer_read(argument0, buffer_u32);
-refid_set(argument1, buffer_read(argument0, buffer_u32));
+var buffer = argument0;
+var entity = argument1;
+var version = argument2;
 
-var state_solid = argument1.am_solid;
-var state_static = argument1.static;
+entity.name = buffer_read(buffer, buffer_string);
+entity.xx = buffer_read(buffer, buffer_u32);
+entity.yy = buffer_read(buffer, buffer_u32);
+entity.zz = buffer_read(buffer, buffer_u32);
+refid_set(entity, buffer_read(buffer, buffer_u32));
 
-var entity_bools = buffer_read(argument0, buffer_u32);
-argument1.am_solid = unpack(entity_bools, 0);
-argument1.static = unpack(entity_bools, 1);
-argument1.animate_idle = unpack(entity_bools, 2);
-argument1.animate_movement = unpack(entity_bools, 3);
-argument1.direction_fix = unpack(entity_bools, 4);
+var state_solid = entity.am_solid;
+var state_static = entity.static;
+
+var entity_bools = buffer_read(buffer, buffer_u32);
+entity.am_solid = unpack(entity_bools, 0);
+entity.static = unpack(entity_bools, 1);
+entity.animate_idle = unpack(entity_bools, 2);
+entity.animate_movement = unpack(entity_bools, 3);
+entity.direction_fix = unpack(entity_bools, 4);
+entity.reset_position = unpack(entity_bools, 5);
 
 // meshes and pawns are solid by default, so if the state of their
-// solidness changes, this needs to be reflected in the map stats
-// counter
-if (state_solid && !argument1.am_solid) {
+// solidness changes, this needs to be reflected in the map stats counter
+if (state_solid && !entity.am_solid) {
     ActiveMap.population_solid--;
-} else if (!state_solid && argument1.am_solid) {
+} else if (!state_solid && entity.am_solid) {
     ActiveMap.population_solid++;
 }
 
 // same for statics
-if (state_static && !argument1.static) {
+if (state_static && !entity.static) {
     ActiveMap.population_static--;
-} else if (!state_static && argument1.static) {
+} else if (!state_static && entity.static) {
     ActiveMap.population_static++;
 }
 
-var n_events = buffer_read(argument0, buffer_u8);
+var n_events = buffer_read(buffer, buffer_u8);
 repeat(n_events) {
-    serialize_load_entity_event_page(argument0, argument1, argument2);
+    serialize_load_entity_event_page(buffer, entity, version);
 }
 
-argument1.off_xx = buffer_read(argument0, buffer_f32);
-argument1.off_yy = buffer_read(argument0, buffer_f32);
-argument1.off_zz = buffer_read(argument0, buffer_f32);
+entity.off_xx = buffer_read(buffer, buffer_f32);
+entity.off_yy = buffer_read(buffer, buffer_f32);
+entity.off_zz = buffer_read(buffer, buffer_f32);
     
-argument1.rot_xx = buffer_read(argument0, buffer_u16);
-argument1.rot_yy = buffer_read(argument0, buffer_u16);
-argument1.rot_zz = buffer_read(argument0, buffer_u16);
+entity.rot_xx = buffer_read(buffer, buffer_u16);
+entity.rot_yy = buffer_read(buffer, buffer_u16);
+entity.rot_zz = buffer_read(buffer, buffer_u16);
     
-argument1.scale_xx = buffer_read(argument0, buffer_f32);
-argument1.scale_yy = buffer_read(argument0, buffer_f32);
-argument1.scale_zz = buffer_read(argument0, buffer_f32);
+entity.scale_xx = buffer_read(buffer, buffer_f32);
+entity.scale_yy = buffer_read(buffer, buffer_f32);
+entity.scale_zz = buffer_read(buffer, buffer_f32);
 
-argument1.autonomous_movement = buffer_read(argument0, buffer_u8);
-argument1.autonomous_movement_speed = buffer_read(argument0, buffer_u8);
-argument1.autonomous_movement_frequency = buffer_read(argument0, buffer_u8);
-argument1.autonomous_movement_route = buffer_read(argument0, buffer_u32);
+entity.autonomous_movement = buffer_read(buffer, buffer_u8);
+entity.autonomous_movement_speed = buffer_read(buffer, buffer_u8);
+entity.autonomous_movement_frequency = buffer_read(buffer, buffer_u8);
+entity.autonomous_movement_route = buffer_read(buffer, buffer_u32);
     
-var n_move_routes = buffer_read(argument0, buffer_u8);
+var n_move_routes = buffer_read(buffer, buffer_u8);
 repeat(n_move_routes) {
-    serialize_load_move_route(argument0, argument1, argument2);
+    serialize_load_move_route(buffer, entity, version);
 }
 
-if (argument2 >= DataVersions.GAME_VARIABLES) {
-    ds_list_clear(argument1.switches);
-    ds_list_clear(argument1.variables);
+if (version >= DataVersions.GAME_VARIABLES) {
+    ds_list_clear(entity.switches);
+    ds_list_clear(entity.variables);
     
-    var n_variables = buffer_read(argument0, buffer_u8);
+    var n_variables = buffer_read(buffer, buffer_u8);
     repeat (n_variables) {
-        if (argument1 < DataVersions.STRIPPED_SELF_VARIABLES) {
-            buffer_read(argument0, buffer_string);
+        if (entity < DataVersions.STRIPPED_SELF_VARIABLES) {
+            buffer_read(buffer, buffer_string);
         }
-        ds_list_add(argument1.switches, buffer_read(argument0, buffer_bool));
+        ds_list_add(entity.switches, buffer_read(buffer, buffer_bool));
         
-        if (argument1 < DataVersions.STRIPPED_SELF_VARIABLES) {
-            buffer_read(argument0, buffer_string);
+        if (entity < DataVersions.STRIPPED_SELF_VARIABLES) {
+            buffer_read(buffer, buffer_string);
         }
-        ds_list_add(argument1.variables, buffer_read(argument0, buffer_f32));
+        ds_list_add(entity.variables, buffer_read(buffer, buffer_f32));
     }
     
-    while (ds_list_size(argument1.switches) < BASE_SELF_VARIABLES) {
-        ds_list_add(argument1.switches, false);
+    while (ds_list_size(entity.switches) < BASE_SELF_VARIABLES) {
+        ds_list_add(entity.switches, false);
     }
-    while (ds_list_size(argument1.variables) < BASE_SELF_VARIABLES) {
-        ds_list_add(argument1.variables, 0);
+    while (ds_list_size(entity.variables) < BASE_SELF_VARIABLES) {
+        ds_list_add(entity.variables, 0);
     }
 }
 

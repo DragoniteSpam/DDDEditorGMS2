@@ -1,5 +1,4 @@
-/// @description boolean entity_set_option_direction_fix(Entity, solid?);
 /// @param Entity
-/// @param solid?
+/// @param direction-fix?
 
-argument0.direction_fix=argument1;
+argument0.direction_fix = argument1;

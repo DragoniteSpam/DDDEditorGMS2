@@ -18,7 +18,8 @@ if (ds_list_size(list) == 0) {
     Camera.ui.element_entity_option_animate_idle.interactive = false;
     Camera.ui.element_entity_option_animate_movement.interactive = false;
     Camera.ui.element_entity_option_direction_fix.interactive = false;
-    Camera.ui.element_entity_autonomous_movement.interactive = false;
+    Camera.ui.element_entity_option_reset_position.interactive = false;
+    Camera.ui.element_entity_option_autonomous_movement.interactive = false;
     
     ds_map_clear(Camera.ui.element_entity_events.selected_entries);
     
@@ -67,12 +68,13 @@ if (ds_list_size(list) == 0) {
     Camera.ui.element_entity_option_animate_idle.value = 2;
     Camera.ui.element_entity_option_animate_movement.value = 2;
     Camera.ui.element_entity_option_direction_fix.value = 2;
+    Camera.ui.element_entity_option_reset_position.value = 2;
     
     Camera.ui.element_entity_option_animate_idle.interactive = true;
     Camera.ui.element_entity_option_animate_movement.interactive = true;
     Camera.ui.element_entity_option_direction_fix.interactive = true;
-    
-    Camera.ui.element_entity_autonomous_movement.interactive = false;
+    Camera.ui.element_entity_option_reset_position.interactive = true;
+    Camera.ui.element_entity_option_autonomous_movement.interactive = false;
     
     // transform - position is disabled when multiple entities are selected because
     // you do NOT want to pile everything into the same cell

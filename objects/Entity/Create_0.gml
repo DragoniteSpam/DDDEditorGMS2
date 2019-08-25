@@ -58,6 +58,7 @@ for (var i = 0; i < BASE_SELF_VARIABLES; i++) {
 animate_idle = false;
 animate_movement = false;
 direction_fix = true;
+reset_position = false;
 
 // autonomous movement - only useful for things not marked as "static"
 
@@ -85,7 +86,7 @@ previous_zz = zz;
 // serialize: don't want to use the built-in "solid" variable since that might
 // cause things to break unexpectedly
 am_solid = false;
-static = false;           // anything that isn't intended to move - if batchable
+static = false;         // anything that isn't intended to move - if batchable
                         // is true, this can be turned on or off, otherwise it can't
 
 // editor properties
