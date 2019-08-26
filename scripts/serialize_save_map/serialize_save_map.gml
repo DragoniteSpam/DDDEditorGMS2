@@ -25,11 +25,6 @@ if (string_length(fn) > 0) {
     buffer_write(buffer, buffer_u8, SERIALIZE_MAP);
     buffer_write(buffer, buffer_u32, 0);
     
-    
-    // for each entity, this gets written in first, and the result is used
-    // to determine the type of object to create
-    //buffer_write(argument0, buffer_u16, argument1.etype);
-    
     /*
      * data
      */

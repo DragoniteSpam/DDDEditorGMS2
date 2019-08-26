@@ -17,6 +17,8 @@ buffer_write(argument0, buffer_u8, ActiveMap.tileset);
 
 buffer_write(argument0, buffer_f32, ActiveMap.fog_start);
 buffer_write(argument0, buffer_f32, ActiveMap.fog_end);
+buffer_write(argument0, buffer_u32, ActiveMap.base_encounter_rate);
+buffer_write(argument0, buffer_u32, ActiveMap.base_encounter_deviation);
 
 var bools = pack(ActiveMap.indoors, ActiveMap.draw_water, ActiveMap.fast_travel_to, ActiveMap.fast_travel_from,
     ActiveMap.is_3d);

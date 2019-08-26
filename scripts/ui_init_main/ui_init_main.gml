@@ -522,7 +522,8 @@ with (instantiate(UIMain)) {
     
     element = create_bitfield(col2_x, yy, "Flags:", 84, element_height, fa_left, col_width, t_p_tile_editor);
     create_bitfield_options(element, create_bitfield_option_data(TileFlags.BUSH, ui_render_bitfield_option_text_tile_flag, uivc_bitfield_tile_flag, "B", -1, 0, s, s),
-        create_bitfield_option_data(TileFlags.COUNTER, ui_render_bitfield_option_text_tile_flag, uivc_bitfield_tile_flag, "C", -1, 0, s, s));
+        create_bitfield_option_data(TileFlags.COUNTER, ui_render_bitfield_option_text_tile_flag, uivc_bitfield_tile_flag, "C", -1, 0, s, s),
+        create_bitfield_option_data(TileFlags.SAFER, ui_render_bitfield_option_text_tile_flag, uivc_bitfield_tile_flag, "S", -1, 0, s, s));
     ds_list_add(t_p_tile_editor.contents, element);
     
     yy = yy + element.height + spacing;
@@ -580,7 +581,8 @@ with (instantiate(UIMain)) {
     
     element = create_bitfield(col2_x, yy, "Flags:", 84, element_height, fa_left, col_width, t_p_mesh_editor);
     create_bitfield_options(element, create_bitfield_option_data(TileFlags.BUSH, ui_render_bitfield_option_text_mesh_flag, uivc_bitfield_mesh_flag, "B", -1, 0, s, s),
-        create_bitfield_option_data(TileFlags.COUNTER, ui_render_bitfield_option_text_mesh_flag, uivc_bitfield_mesh_flag, "C", -1, 0, s, s));
+        create_bitfield_option_data(TileFlags.COUNTER, ui_render_bitfield_option_text_mesh_flag, uivc_bitfield_mesh_flag, "C", -1, 0, s, s),
+        create_bitfield_option_data(TileFlags.SAFER, ui_render_bitfield_option_text_mesh_flag, uivc_bitfield_mesh_flag, "S", -1, 0, s, s));
     ds_list_add(t_p_mesh_editor.contents, element);
     
     yy = yy + element.height + spacing;
@@ -687,7 +689,8 @@ with (instantiate(UIMain)) {
     
     element = create_bitfield(col2_x, yy, "Flags:", 84, element_height, fa_left, col_width, t_p_autotile_editor);
     create_bitfield_options(element, create_bitfield_option_data(TileFlags.BUSH, ui_render_bitfield_option_autotext_tile_flag, uivc_bitfield_autotile_flag, "B", -1, 0, s, s),
-        create_bitfield_option_data(TileFlags.COUNTER, ui_render_bitfield_option_text_autotile_flag, uivc_bitfield_autotile_flag, "C", -1, 0, s, s));
+        create_bitfield_option_data(TileFlags.COUNTER, ui_render_bitfield_option_text_autotile_flag, uivc_bitfield_autotile_flag, "C", -1, 0, s, s),
+        create_bitfield_option_data(TileFlags.SAFER, ui_render_bitfield_option_text_autotile_flag, uivc_bitfield_autotile_flag, "S", -1, 0, s, s));
     ds_list_add(t_p_autotile_editor.contents, element);
     
     yy = yy + element.height + spacing;

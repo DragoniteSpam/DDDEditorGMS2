@@ -57,28 +57,29 @@ enum TilePassability {
 }
 
 enum TileFlags {
-    BUSH = 1 << 0,
-    COUNTER = 1 << 1,
+    BUSH = 1 << 0,      /* bush animation(?) */
+    COUNTER = 1 << 1,   /* counter */
+    SAFER = 1 << 2,     /* reduced encounter rate */
 }
 
 enum TileTerrainTags {
-    NONE,               /*00*/
-    LEDGE,              /*01*/
-    GRASS,              /*02*/
-    SAND,               /*03*/
-    ROCK,               /*04*/
-    DEEPWATER,          /*05*/
-    STILLWATER,         /*06*/
-    WATER,              /*07*/
-    WATERFALL,          /*08*/
-    WATERFALLCREST,     /*09*/
-    TALLGRASS,          /*10*/
-    UNDERWATERGRASS,    /*11*/
-    ICE,                /*12*/
-    NEUTRAL,            /*13*/
-    SOOTGRASS,          /*14*/
-    BRIDGE,             /*15*/
-    FINAL       // this is not for anything just modulo division
+    NONE,               /* 00 */
+    LEDGE,              /* 01 */
+    GRASS,              /* 02 */
+    SAND,               /* 03 */
+    ROCK,               /* 04 */
+    DEEPWATER,          /* 05 */
+    STILLWATER,         /* 06 */
+    WATER,              /* 07 */
+    WATERFALL,          /* 08 */
+    WATERFALLCREST,     /* 09 */
+    TALLGRASS,          /* 10 */
+    UNDERWATERGRASS,    /* 11 */
+    ICE,                /* 12 */
+    NEUTRAL,            /* 13 */
+    SOOTGRASS,          /* 14 */
+    BRIDGE,             /* 15 */
+    FINAL
 }
 
 // this technically will get redefined every time you create a new tileset

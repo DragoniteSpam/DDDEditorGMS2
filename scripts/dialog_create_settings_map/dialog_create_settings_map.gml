@@ -73,6 +73,13 @@ yy = yy_column_start;
 var el_code_heading = create_text(c3, yy, "Update Code", ew, eh, fa_left, ew, dg);
 yy = yy + 32;
 var el_code = create_input_code(c3, yy, "", ew, eh, 0, vy1, vx2, vy2, ActiveMap.code, uivc_map_code, dg);
+yy = yy + 32;
+var el_encounter_heading = create_text(c3, yy, "Settings: Encounter Stuff", ew, eh, fa_left, ew, dg);
+yy = yy + 32;
+var el_encounter_base = create_input(c3, yy, "Base Encounter Rate", ew, eh, uivc_settings_map_encounter_base, 0, ActiveMap.base_encounter_rate, "Probably steps", validate_int, ui_value_real, 0, 1000000, 7, vx1, vy1, vx2, vy2, dg);
+yy = yy + 32;
+var el_encounter_deviation = create_input(c3, yy, "Encounter Deviation", ew, eh, uivc_settings_map_encounter_deviation, 0, ActiveMap.base_encounter_deviation, "Probably steps", validate_int, ui_value_real, 0, 1000000, 7, vx1, vy1, vx2, vy2, dg);
+yy = yy + 32;
 
 var b_width = 128;
 var b_height = 32;
@@ -82,6 +89,7 @@ ds_list_add(dg.contents, el_name_text, el_name, el_name_internal, el_summary,
     el_dim_text, el_width, el_height, el_depth,
     el_other, el_other_3d, el_other_fog_start, el_other_fog_end, el_other_indoors, el_other_water, el_other_fast_travel_to, el_other_fast_travel_from,
     el_code_heading, el_code,
+    el_encounter_heading, el_encounter_base, el_encounter_deviation,
     el_confirm);
 
 keyboard_string = "";
