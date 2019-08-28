@@ -60,6 +60,7 @@ enum TileFlags {
     BUSH = 1 << 0,      /* bush animation(?) */
     COUNTER = 1 << 1,   /* counter */
     SAFER = 1 << 2,     /* reduced encounter rate */
+    DANGER = 1 << 3,    /* increased encounter rate */
 }
 
 enum TileTerrainTags {
