@@ -21,7 +21,7 @@ indoors = false;                          // bool
 draw_water = true;                        // bool
 fast_travel_to = true;                    // bool
 fast_travel_from = true;                  // bool
-base_encounter_rate = 10;                 // steps?
+base_encounter_rate = 8;                  // steps?
 base_encounter_deviation = 4;             // ehh
 
 is_3d = true;
@@ -42,8 +42,7 @@ all_entities = ds_list_create();          // entities
 
 map_grid = map_create_grid(xx, yy, zz);
 
-frozen = vertex_create_buffer();          // everything that will be a single batch in
-                                          // the game
+frozen = vertex_create_buffer();          // everything that will be a single batch in the game
 
 mesh_autotiles = array_create(48);
 mesh_autotile_raw = array_create(48);

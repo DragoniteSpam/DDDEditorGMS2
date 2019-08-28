@@ -2,7 +2,7 @@
 
 var thing = argument0;
 
-if (ds_list_size(Stuff.all_data) < 1000) {
+if (ds_list_size(Stuff.all_data) < 10000) {
     instance_deactivate_object(instantiate(DataData));
     ds_map_clear(thing.root.el_list_main.selected_entries);
     thing.root.selected_data = noone;
@@ -12,5 +12,5 @@ if (ds_list_size(Stuff.all_data) < 1000) {
     
     dialog_data_type_disable(thing.root);
 } else {
-    dialog_create_notice(thing.root, "Please don't try to create more than a thousand generic data types. Bad things will happen. Why do you even want that many?", "Hey!");
+    dialog_create_notice(thing.root, "Please don't try to create more than ten thousand generic data types. Bad things will happen. Why do you even want that many?", "Hey!");
 }

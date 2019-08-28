@@ -1,6 +1,8 @@
 /// @param UIList
 
-var selection = ui_list_selection(argument0);
+var list = argument0;
+
+var selection = ui_list_selection(list);
 
 if (selection >= 0) {
     if (Stuff.setting_alphabetize_lists) {
@@ -8,21 +10,21 @@ if (selection >= 0) {
     } else {
         var listofthings = Stuff.all_data;
     }
-    if (listofthings[| selection] != argument0.root.selected_data) {
-        argument0.root.selected_data = listofthings[| selection];
-        argument0.root.selected_property = noone;
+    if (listofthings[| selection] != list.root.selected_data) {
+        list.root.selected_data = listofthings[| selection];
+        list.root.selected_property = noone;
         
-        ds_map_clear(argument0.root.el_list_p.selected_entries);
+        ds_map_clear(list.root.el_list_p.selected_entries);
         
-        dialog_data_type_disable(argument0.root);
+        dialog_data_type_disable(list.root);
         
-        argument0.root.el_data_name.interactive = true;
-        argument0.root.el_add_p.interactive = true;
-        argument0.root.el_remove_p.interactive = true;
+        list.root.el_data_name.interactive = true;
+        list.root.el_add_p.interactive = true;
+        list.root.el_remove_p.interactive = true;
         
-        argument0.root.el_data_name.value = argument0.root.selected_data.name;
+        list.root.el_data_name.value = list.root.selected_data.name;
         
-        argument0.root.el_list_p.index = 0;
+        list.root.el_list_p.index = 0;
     }
     if (Stuff.setting_alphabetize_lists) {
         ds_list_destroy(listofthings);

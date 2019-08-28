@@ -33,8 +33,8 @@ ActiveMap.indoors = unpack(bools, 0);
 ActiveMap.draw_water = unpack(bools, 1);
 ActiveMap.fast_travel_to = unpack(bools, 2);
 ActiveMap.fast_travel_from = unpack(bools, 3);
-
 ActiveMap.is_3d = unpack(bools, 4);
+
 ActiveMap.code = buffer_read(buffer, buffer_string);
 
 if (version >= DataVersions.MESH_AUTOTILE_INCLUSION) {
