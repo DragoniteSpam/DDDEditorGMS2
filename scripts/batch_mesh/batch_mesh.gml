@@ -10,10 +10,12 @@ var xx = mesh.xx * TILE_WIDTH;
 var yy = mesh.yy * TILE_HEIGHT;
 var zz = mesh.zz * TILE_DEPTH;
 
-var data = mesh.mesh_data[@ MeshArrayData.DATA];
+var data = guid_get(mesh.mesh); // lol
 buffer_seek(data, buffer_seek_start, 0);
 
-// @todo overhaul mesh storage
+// Use the vertex_create_from_buffer instead of the buffer that I built, because
+// the one that i built sucks
+stack_trace();
 
 var vc = 0;
 

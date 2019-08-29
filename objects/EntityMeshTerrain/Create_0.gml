@@ -15,9 +15,11 @@ ActiveMap.population_solid++;
 
 // editor properties
 
-// @todo something better than this
-mesh_data = noone;
-mesh_data_raw = noone;
+// make this a GUID the same way normal meshes do
+stack_trace();
+mesh_id = 0;
+// find and deal with variables named "mesh_data_raw" because that was here
+// and i dont know what it was for
 
 slot = MapCellContents.MESHMOB;
 rotateable = true;

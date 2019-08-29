@@ -8,11 +8,8 @@ etype = ETypes.ENTITY_MESH;
 
 ActiveMap.population[ETypes.ENTITY_MESH]++;
 
-// THIS REALLY SHOULD BE SWITCHED TO SOME KIND OF GUID THING
-// LATER. NOBODY WANTS NAME CONFLICTS EVERY TIME THEY RENAME
-// A MESH. THANK.
-
-mesh_id = "";
+// GUID
+mesh = 0;
 
 // other properties - inherited
 
@@ -20,8 +17,6 @@ am_solid = true;
 ActiveMap.population_solid++;
 
 // editor properties
-
-mesh_data = noone;
 
 slot = MapCellContents.MESHMOB;
 rotateable = true;

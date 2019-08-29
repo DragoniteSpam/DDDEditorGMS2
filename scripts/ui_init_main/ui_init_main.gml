@@ -562,7 +562,7 @@ with (instantiate(UIMain)) {
     yy = yy + element.height + spacing;
     
     element = create_text(col2_x, yy, "<Name>", col_width, element_height, fa_left, col_width, t_p_mesh_editor);
-    element.render=ui_render_text_mesh_label;
+    element.render = ui_render_text_mesh_name;
     ds_list_add(t_p_mesh_editor.contents, element);
     
     var s = 10;
@@ -614,32 +614,32 @@ with (instantiate(UIMain)) {
     
     yy = yy + element.height + spacing;
     
-    element = create_text(bounds_x, yy, "", col_width / 2, element_height, fa_left, col_width / 2, t_p_mesh_editor);
-    element.render = ui_render_text_mesh_xmin;
+    element = create_text(bounds_x, yy, "N/A", col_width / 2, element_height, fa_left, col_width / 2, t_p_mesh_editor);
+    //element.render = ui_render_text_mesh_xmin;
     ds_list_add(t_p_mesh_editor.contents, element);
     
-    element = create_text(bounds_x_2, yy, "", col_width / 2, element_height, fa_left, col_width / 2, t_p_mesh_editor);
-    element.render = ui_render_text_mesh_xmax;
-    ds_list_add(t_p_mesh_editor.contents, element);
-    
-    yy = yy + element.height + spacing;
-    
-    element = create_text(bounds_x, yy, "", col_width / 2, element_height, fa_left, col_width / 2, t_p_mesh_editor);
-    element.render = ui_render_text_mesh_ymin;
-    ds_list_add(t_p_mesh_editor.contents, element);
-    
-    element = create_text(bounds_x_2, yy, "", col_width / 2, element_height, fa_left, col_width / 2, t_p_mesh_editor);
-    element.render = ui_render_text_mesh_ymax;
+    element = create_text(bounds_x_2, yy, "N/A", col_width / 2, element_height, fa_left, col_width / 2, t_p_mesh_editor);
+    //element.render = ui_render_text_mesh_xmax;
     ds_list_add(t_p_mesh_editor.contents, element);
     
     yy = yy + element.height + spacing;
     
-    element = create_text(bounds_x, yy, "", col_width/2, element_height, fa_left, col_width/2, t_p_mesh_editor);
-    element.render = ui_render_text_mesh_zmin;
+    element = create_text(bounds_x, yy, "N/A", col_width / 2, element_height, fa_left, col_width / 2, t_p_mesh_editor);
+    //element.render = ui_render_text_mesh_ymin;
     ds_list_add(t_p_mesh_editor.contents, element);
     
-    element = create_text(bounds_x_2, yy, "", col_width/2, element_height, fa_left, col_width/2, t_p_mesh_editor);
-    element.render = ui_render_text_mesh_zmax;
+    element = create_text(bounds_x_2, yy, "N/A", col_width / 2, element_height, fa_left, col_width / 2, t_p_mesh_editor);
+    //element.render = ui_render_text_mesh_ymax;
+    ds_list_add(t_p_mesh_editor.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
+    element = create_text(bounds_x, yy, "N/A", col_width/2, element_height, fa_left, col_width/2, t_p_mesh_editor);
+    //element.render = ui_render_text_mesh_zmin;
+    ds_list_add(t_p_mesh_editor.contents, element);
+    
+    element = create_text(bounds_x_2, yy, "N/A", col_width/2, element_height, fa_left, col_width/2, t_p_mesh_editor);
+    //element.render = ui_render_text_mesh_zmax;
     ds_list_add(t_p_mesh_editor.contents, element);
     
     yy = yy + element.height + spacing;
@@ -678,7 +678,7 @@ with (instantiate(UIMain)) {
     yy = yy + element.height + spacing;
     
     element = create_input(col2_x, yy, "Priority:", col_width, element_height, uivc_input_autotile_priority, "", 0, 0, validate_int, ui_value_real, 0, TILE_MAX_PRIORITY - 1, 3, 84, 0, 84 + 64, element_height, t_p_autotile_editor);
-    element.render=ui_render_input_tile_priority;
+    element.render = ui_render_input_tile_priority;
     ds_list_add(t_p_autotile_editor.contents, element);
     
     // this is totally cheating but game maker allows me to do it so shut up

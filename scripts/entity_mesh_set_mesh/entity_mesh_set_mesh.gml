@@ -1,6 +1,13 @@
 /// @param EntityMesh
 /// @param name
 
+var mesh = argument0;
+var mesh_data = guid_get(mesh.mesh);
+var name = argument1;
+
+// everything below this line is gross and needs to go probably
+stack_trace();
+
 if (ds_map_exists(Stuff.vra_data, argument[1])) {
     argument[0].name = argument[1];
     argument[0].mesh_id = argument[1];
