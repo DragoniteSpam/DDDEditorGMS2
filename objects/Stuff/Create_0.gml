@@ -384,6 +384,7 @@ ds_stuff_init();
 c_init();
 c_world_create();
 
+#region collision stuff
 c_shape_tile = c_shape_create();
 c_shape_begin_trimesh();
 c_shape_add_triangle(0, 0, 0, tile_width, 0, 0, tile_width, tile_height, 0);
@@ -410,6 +411,7 @@ c_shape_add_triangle(tile_width, 0, tile_height, tile_width, 0, 0, 0, 0, 0);
 c_shape_add_triangle(0, tile_height, 0, 0, tile_height, tile_depth, tile_width, tile_height, tile_height);
 c_shape_add_triangle(tile_width, tile_height, tile_height, tile_width, tile_height, 0, 0, tile_height, 0);
 c_shape_end_trimesh(c_shape_block);
+#endregion
 
 // at some point there shouldn't necessarily need to be an active
 // map in existence for this to work, but for now there does

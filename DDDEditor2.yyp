@@ -1855,6 +1855,14 @@
             }
         },
         {
+            "Key": "2bfa313b-88e4-45ae-8fe4-80dfb1a3af6a",
+            "Value": {
+                "id": "60e54514-efea-4546-b422-2e40943b8e6b",
+                "resourcePath": "objects\\DataMesh\\DataMesh.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "2c2ddde1-6fdc-4af4-be10-51ad22be04ba",
             "Value": {
                 "id": "9ae13840-f20d-4174-8607-876d59b501a8",
