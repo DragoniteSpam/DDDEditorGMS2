@@ -83,5 +83,6 @@ enum DataVersions {
     EVENT_PAGE_CODE_CONDITION   = 33,
     ANIMATION_RELATIVE_DATA     = 34,
     MAP_ENCOUNTER_STUFF         = 35,
+	NEW_MESH_SYSTEM				= 36,
     _CURRENT                 /* = whatever the last one is + 1 */
 }

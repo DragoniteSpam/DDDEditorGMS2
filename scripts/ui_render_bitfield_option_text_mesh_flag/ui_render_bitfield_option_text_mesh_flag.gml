@@ -7,7 +7,8 @@ var xx = argument1;
 var yy = argument2;
 
 if (data_vra_exists()) {
-    var data = Stuff.vra_data[? Stuff.all_mesh_names[| Camera.selection_fill_mesh]];
+    var data = noone;
+	stack_trace();
     thing.state = data[@ MeshArrayData.FLAGS] & thing.value;
 }
 

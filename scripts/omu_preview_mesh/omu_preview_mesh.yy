@@ -1,8 +1,8 @@
 {
-    "id": "6ec0c69f-1aa8-4f7c-b534-9535213c89bd",
+    "id": "420cae21-00cc-44d0-8fb4-147ce2b02795",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "ui_render_text_mesh_label",
+    "name": "omu_preview_mesh",
     "IsCompatibility": false,
     "IsDnD": false
 }

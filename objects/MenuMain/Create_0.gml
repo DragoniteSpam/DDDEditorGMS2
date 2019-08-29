@@ -60,7 +60,6 @@ ds_list_add(menu_edit.contents, me_undo, me_redo,
  * Data stuff
  */
 
-var md_mesh = create_menu_element("Meshes", momu_mesh, menu_data);
 var md_mesh_autotiles = create_menu_element("Autotile Meshes", momu_mesh_autotile, menu_data);
 var md_ts = create_menu_element("Tileset", momu_tileset, menu_data);
 var md_audio = create_menu_element("Audio", momu_expand, menu_data);
@@ -71,7 +70,7 @@ var md_3d = create_menu_element("3D Editor (F6)", momu_editor_3d, menu_data);
 var md_events = create_menu_element("Event Editor (F7)", momu_editor_event, menu_data);
 var md_data = create_menu_element("Game Data (F8)", momu_editor_data, menu_data);
 var md_animation = create_menu_element("Animations (F9)", momu_editor_animation, menu_data);
-ds_list_add(menu_data.contents, md_mesh, md_mesh_autotiles, md_ts, md_audio, md_data_types,
+ds_list_add(menu_data.contents, md_mesh_autotiles, md_ts, md_audio, md_data_types,
     m_separator,
     md_conflicts, md_missing,
     m_separator,

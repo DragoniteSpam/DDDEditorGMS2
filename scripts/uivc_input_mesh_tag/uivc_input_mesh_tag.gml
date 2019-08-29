@@ -1,9 +1,12 @@
 /// @param UIInput
 
+var input = argument0;
+
 if (data_vra_exists()) {
-    var rv = real(argument0.value);
-    if (is_clamped(rv, argument0.value_lower, argument0.value_upper)) {
-        var data = Stuff.vra_data[? Stuff.all_mesh_names[| Camera.selection_fill_mesh]];
+    var rv = real(input.value);
+    if (is_clamped(rv, input.value_lower, input.value_upper)) {
+        var data = noone;
+		stack_trace();
         data[@ MeshArrayData.TAGS] = rv;
     }
 }

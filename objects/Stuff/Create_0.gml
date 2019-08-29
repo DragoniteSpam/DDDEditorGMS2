@@ -424,9 +424,7 @@ instantiate(Camera);
 // data that gets loaded: needs the camera (and vertex formats) to be
 // defined before running
 vra_data = ds_map_create();
-vra_name = "";
-all_mesh_names = ds_list_create();
-data_load_vra();
+//data_import_vra();
 
 all_bgm = ds_list_create();
 all_se = ds_list_create();

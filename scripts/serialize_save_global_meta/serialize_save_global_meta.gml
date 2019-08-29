@@ -13,10 +13,6 @@ for (var i = 0; i < n_maps; i++) {
     buffer_write(argument0, buffer_string, map_list[| i]);
 }
 
-// VRAX_REFERENCE
-
-buffer_write(argument0, buffer_string, Stuff.vra_name);
-
 // STARTING_MAP
 
 buffer_write(argument0, buffer_string, Stuff.game_map_starting);
