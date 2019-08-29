@@ -4,17 +4,11 @@
 /// @param [y]
 /// @param [custom-guid]
 
-// XVIEW and YVIEW won't work because this script may
-// be called from a script other than view_fullscreen and
-// that will make bad things happen
-
-var xx = __view_get( e__VW.XView, view_fullscreen ) + room_width / 2;
-var yy = __view_get( e__VW.YView, view_fullscreen ) + room_height / 2;
-
+var camera = view_get_camera(view_fullscreen);
 var event = argument[0];
 var type = argument[1];
-var xx = (argument_count > 2 && argument[2] != undefined) ? argument[2] : xx;
-var yy = (argument_count > 3 && argument[3] != undefined) ? argument[3] : yy;
+var xx = (argument_count > 2 && argument[2] != undefined) ? argument[2] : camera_get_view_x(camera) + room_width / 2;
+var yy = (argument_count > 3 && argument[3] != undefined) ? argument[3] : camera_get_view_y(camera) + room_height / 2;
 var custom_guid = (argument_count > 4) ? argument[4] : 0;
 
 var node = instance_create_depth(xx, yy, 0, DataEventNode);
@@ -42,7 +36,8 @@ switch (type) {
         break;
     case EventNodeTypes.CONDITIONAL:
         node.name = "Branch";
-        ds_list_add(node.outbound, noone);                      // there are always one more outbound nodes than the number of branches - the last one is for the final "else"
+		// there are always one more outbound nodes than the number of branches - the last one is for the final "else"
+        ds_list_add(node.outbound, noone);
         var list_branch_types = ds_list_create();
         var list_branch_indices = ds_list_create();
         var list_branch_comparisons = ds_list_create();

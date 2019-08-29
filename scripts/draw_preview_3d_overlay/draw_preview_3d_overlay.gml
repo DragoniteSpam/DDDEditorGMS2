@@ -1,5 +1,7 @@
-var w = __view_get( e__VW.WView, view_3d_preview );
-var h = __view_get( e__VW.HView, view_3d_preview );
+var camera = view_get_camera(view_3d_preview);
+
+var w = camera_get_view_width(camera);
+var h = camera_get_view_height(camera);
 var lw = 4;
 
 d3d_set_projection_ortho(0, 0, w, h, 0);

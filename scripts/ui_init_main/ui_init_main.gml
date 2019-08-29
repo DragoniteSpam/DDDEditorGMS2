@@ -644,9 +644,6 @@ with (instantiate(UIMain)) {
     
     yy = yy + element.height + spacing;
     
-    element = create_button(col2_x+col_width/2, yy, "Mesh Data", button_width, element_height, fa_center, omu_manager_mesh, t_p_mesh_editor, HelpPages.TAB_MESH_EDITOR, fa_middle, fa_top);
-    ds_list_add(t_p_mesh_editor.contents, element);
-    
     #endregion
     
     #region tab: autotiles

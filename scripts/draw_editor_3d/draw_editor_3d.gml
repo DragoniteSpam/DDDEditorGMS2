@@ -17,8 +17,9 @@ if (ActiveMap.is_3d) {
     var vh = view_get_hport(view_current);
     d3d_set_projection_ext(x, y, z, xto, yto, zto, xup, yup, zup, fov, vw / vh, 1, 32000);
 } else {
-    var cwidth = __view_get( e__VW.WView, view_3d );
-    var cheight = __view_get( e__VW.HView, view_3d );
+	var camera = view_get_camera(view_current);
+    var cwidth = camera_get_view_width(camera);
+	var cheight = camera_get_view_height(camera);
     d3d_set_projection_ortho(x - cwidth / 2, y - cheight / 2, cwidth, cheight, 0);
 }
 

@@ -18,7 +18,6 @@
 #macro EXPORT_EXTENSION_MAP ".dddm"
 #macro EXPORT_EXTENSION_ASSETS ".ddda"
 #macro HH 900
-#macro HVIEW __view_get( e__VW.HView, view_current )
 #macro HW 520
 #macro INTERNAL_NAME_LENGTH 20
 #macro LIMIT_TILESET 255
@@ -28,8 +27,8 @@
 #macro MAX_AUTOTILE_SHADER_POSITIONS 12 * 16 * 8 * 2
 #macro MAX_SELECTION_COUNT 32
 #macro MAX_VISIBLE_MOVE_ROUTES 4
-#macro mouse_x_view mouse_x + __view_get( e__VW.XView, view_current )
-#macro mouse_y_view mouse_y + __view_get( e__VW.YView, view_current )
+#macro mouse_x_view mouse_x + camera_get_view_x(view_get_camera(view_current))
+#macro mouse_y_view mouse_y + camera_get_view_y(view_get_camera(view_current))
 #macro PATH_AUTOTILE ".\\autotile\\"
 #macro PATH_BACKUP_DATA ".\\backups\\data\\"
 #macro PATH_BACKUP_MAP ".\\backups\\maps\\"
@@ -61,10 +60,6 @@
 
 #macro view_hud_width_3d 520
 #macro view_hud_width_event 320
-
-#macro WVIEW __view_get( e__VW.WView, view_current )
-#macro XVIEW __view_get( e__VW.XView, view_current )
-#macro YVIEW __view_get( e__VW.YView, view_current )
 
 #macro c_ev_basic $99ffcc
 #macro c_ev_comment $d8bfd8

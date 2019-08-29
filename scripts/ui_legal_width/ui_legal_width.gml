@@ -1,3 +1,2 @@
-/// @description double ui_legal_width();
-
-return __view_get( e__VW.WView, view_hud )-64;
+var camera = view_get_camera(view_hud);
+return camera_get_view_width(camera) - 64;

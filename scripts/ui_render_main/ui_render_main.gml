@@ -4,10 +4,11 @@ var ui = argument0;
 var xx = argument1;
 var yy = argument2;
 
-var ui_x = __view_get( e__VW.XView, view_hud );
-var ui_y = __view_get( e__VW.YView, view_hud );
-var ui_width = __view_get( e__VW.WView, view_hud );
-var ui_height = __view_get( e__VW.HView, view_hud );
+var camera = view_get_camera(view_hud);
+var ui_x = camera_get_view_x(camera);
+var ui_y = camera_get_view_x(camera);
+var ui_width = camera_get_view_width(camera);
+var ui_height = camera_get_view_height(camera);
 
 d3d_set_projection_ortho(ui_x, ui_y, ui_width, ui_height, 0);
 

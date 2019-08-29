@@ -4,20 +4,20 @@ var catch = argument0;
 
 Camera.mode = EditorModes.EDITOR_EVENT;
 
-__view_set( e__VW.Visible, view_fullscreen, true );
-__view_set( e__VW.Visible, view_3d, false );
-__view_set( e__VW.Visible, view_ribbon, true );
-__view_set( e__VW.Visible, view_hud, true );
-__view_set( e__VW.Visible, view_3d_preview, false );
+view_set_visible(view_3d, false);
+view_set_visible(view_ribbon, true);
+view_set_visible(view_hud, true);
+view_set_visible(view_3d_preview, false);
 
-__view_set( e__VW.XView, view_hud, room_width - view_hud_width_event );
-__view_set( e__VW.WView, view_hud, view_hud_width_event );
-__view_set( e__VW.XPort, view_hud, room_width - view_hud_width_event );
-__view_set( e__VW.WPort, view_hud, view_hud_width_event );
+var camera = view_get_camera(view_hud);
+camera_set_view_pos(camera, room_width - view_hud_width_event, camera_get_view_y(camera));
+camera_set_view_size(camera, view_hud_width_event, camera_get_view_height(camera));
+view_set_xport(view_hud, room_width - view_hud_width_event);
+view_set_wport(view_hud, view_hud_width_event);
 
-__view_set( e__VW.WView, view_fullscreen, room_width - view_hud_width_event );
-__view_set( e__VW.WPort, view_fullscreen, room_width - view_hud_width_event );
-__view_set( e__VW.XView, view_fullscreen, 0 );
-__view_set( e__VW.YView, view_fullscreen, 0 );
+var camera = view_get_camera(view_fullscreen);
+camera_set_view_pos(camera, 0, 0);
+camera_set_view_size(camera, room_width - view_hud_width_event, camera_get_view_height(camera));
+view_set_wport(view_hud, room_width - view_hud_width_event);
 
 menu_activate(noone);

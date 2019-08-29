@@ -8,7 +8,7 @@ var map = noone;
 
 if (ds_map_size(map) == 1) {
     // this only works if exactly one thing is selected
-    __view_set( e__VW.Visible, view_3d_preview, true );
+    view_set_visible(view_3d_preview, true);
     Camera.mesh_preview = noone;
     Camera.mesh_x = 0;
     Camera.mesh_y = 0;

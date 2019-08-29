@@ -1,9 +1,11 @@
-/// @description boolean point_within_view(view, x, y);
 /// @param view
-/// @param x
-/// @param y
+/// @param x1
+/// @param y1
 
-return point_in_rectangle(argument1, argument2,
-    __view_get( e__VW.XPort, argument0 ), __view_get( e__VW.YPort, argument0 ),
-    __view_get( e__VW.XPort, argument0 )+__view_get( e__VW.WPort, argument0 ),
-    __view_get( e__VW.YPort, argument0 )+__view_get( e__VW.HPort, argument0 ));
+var camera = view_get_camera(argument0);
+var xx = argument1;
+var yy = argument2;
+
+return point_in_rectangle(xx, yy, camera_get_view_x(camera), camera_get_view_y(camera),
+	camera_get_view_x(camera) + camera_get_view_width(camera),
+	camera_get_view_y(camera) + camera_get_view_height(camera));

@@ -1,3 +1,2 @@
-// also returns true if the 3D preview is enabled. i should rename this.
-
-return !ds_list_empty(Camera.dialogs) || __view_get( e__VW.Visible, view_3d_preview );
+// the 3D preview counts as a dialog (for now?)
+return !ds_list_empty(Camera.dialogs) || view_get_visible(view_3d_preview);
