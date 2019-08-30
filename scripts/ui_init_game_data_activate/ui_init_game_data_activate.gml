@@ -111,39 +111,39 @@ if (data) {
                         hh = hh + element.height;
                         break;
                     case DataTypes.COLOR:           // @todo color box
-                        var element = create_button(spacing, yy, property.name, ew, eh, fa_left, stack_trace, noone);
+                        var element = create_button(spacing, yy, property.name, ew, eh, fa_left, not_yet_implemented, noone);
                         element.key = i;
                         var hh = element.height;
                         break;
                     case DataTypes.MESH:           // list
-                        var element = create_list(spacing, yy, property.name, "<no Meshes>", ew, eh, 8, stack_trace, false, noone);
+                        var element = create_list(spacing, yy, property.name, "<no Meshes>", ew, eh, 8, not_yet_implemented, false, noone);
                         element.key = i;
                         element.entries_are = ListEntries.GUIDS;
                         var hh = ui_get_list_height(element);
                         break;
                     case DataTypes.TILE:
-                        stack_trace();
+                        not_yet_implemented();
                         break;
                     case DataTypes.TILESET:           // list
-                        var element = create_list(spacing, yy, property.name, "<no Tilesets>", ew, eh, 8, stack_trace, false, noone);
+                        var element = create_list(spacing, yy, property.name, "<no Tilesets>", ew, eh, 8, not_yet_implemented, false, noone);
                         element.key = i;
                         element.entries_are = ListEntries.GUIDS;
                         var hh = ui_get_list_height(element);
                         break;
                     case DataTypes.AUTOTILE:           // list
-                        var element = create_list(spacing, yy, property.name, "<no Autotiles>", ew, eh, 8, stack_trace, false, noone);
+                        var element = create_list(spacing, yy, property.name, "<no Autotiles>", ew, eh, 8, not_yet_implemented, false, noone);
                         element.key = i;
                         element.entries_are = ListEntries.GUIDS;
                         var hh = ui_get_list_height(element);
                         break;
                     case DataTypes.AUDIO_BGM:           // list
-                        var element = create_list(spacing, yy, property.name, "<no BGM>", ew, eh, 8, stack_trace, false, noone);
+                        var element = create_list(spacing, yy, property.name, "<no BGM>", ew, eh, 8, not_yet_implemented, false, noone);
                         element.key = i;
                         element.entries_are = ListEntries.GUIDS;
                         var hh = ui_get_list_height(element);
                         break;
                     case DataTypes.AUDIO_SE:           // list
-                        var element = create_list(spacing, yy, property.name, "<no SE>", ew, eh, 8, stack_trace, false, noone);
+                        var element = create_list(spacing, yy, property.name, "<no SE>", ew, eh, 8, not_yet_implemented, false, noone);
                         element.key = i;
                         element.entries_are = ListEntries.GUIDS;
                         var hh = ui_get_list_height(element);

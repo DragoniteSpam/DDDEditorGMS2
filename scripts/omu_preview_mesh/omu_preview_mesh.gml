@@ -2,7 +2,7 @@
 
 var button = argument0;
 
-stack_trace();
+not_yet_implemented();
 var map = noone;
 // this needs to look for the selected mesh in the Mesh Editor tab of the general UI
 

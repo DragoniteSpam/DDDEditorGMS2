@@ -13,16 +13,12 @@ var zz = mesh.zz * TILE_DEPTH;
 var data = guid_get(mesh.mesh); // lol
 buffer_seek(data.buffer, buffer_seek_start, 0);
 
-// Use the vertex_create_from_buffer instead of the buffer that I built, because
-// the one that i built sucks
-stack_trace();
-
 var vc = 0;
 
 var px = array_create(3);
 var py = array_create(3);
 var pz = array_create(3);
-var nx, ny, nz, xtex, ytex, color, alpha;
+var nx, ny, nz, xtex, ytex, color, alpha, extra;
 
 while (buffer_tell(data.buffer) < buffer_get_size(data.buffer)) {
     // script arguments are parsed backwards and i don't think there's a way to
@@ -41,6 +37,7 @@ while (buffer_tell(data.buffer) < buffer_get_size(data.buffer)) {
     xtex = buffer_read(data.buffer, T);
     ytex = buffer_read(data.buffer, T);
     color = buffer_read(data.buffer, buffer_u32);
+    extra = buffer_read(data.buffer, buffer_u32);
     
     alpha = color >> 24;
     color = color | 0xffffff;

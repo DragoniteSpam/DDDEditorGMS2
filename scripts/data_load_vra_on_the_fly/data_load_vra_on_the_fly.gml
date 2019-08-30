@@ -4,4 +4,4 @@
 var thing = argument0;
 var filename = argument1;
 
-stack_trace("This needs doing, I guess");
+not_yet_implemented("This needs doing, I guess");

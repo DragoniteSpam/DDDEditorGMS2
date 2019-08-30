@@ -3,5 +3,5 @@
 var thing = argument0;
 
 var data = noone;
-stack_trace();
+not_yet_implemented();
 data.flags = data.flags ^ thing.value;

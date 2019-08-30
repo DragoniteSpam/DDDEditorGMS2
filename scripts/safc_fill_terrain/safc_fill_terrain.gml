@@ -5,7 +5,7 @@
 
 var params = argument3;
 
-stack_trace();
+not_yet_implemented();
 
 var cell = map_get_grid_cell(argument0, argument1, argument2);
     

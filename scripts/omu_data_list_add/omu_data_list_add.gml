@@ -38,7 +38,7 @@ if (ds_list_size(plist) < property.max_size) {
             break;
         case DataTypes.TILE:
         case DataTypes.ENTITY:
-            stack_trace();
+            not_yet_implemented();
             break;
     }
     if (argument0.root.el_list_main.entries_are == ListEntries.STRINGS) {

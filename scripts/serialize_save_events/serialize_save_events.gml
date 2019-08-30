@@ -99,7 +99,7 @@ for (var i = 0; i < n_events; i++) {
                         case DataTypes.TILESET:
                         case DataTypes.TILE:
                         case DataTypes.AUTOTILE:
-                            stack_trace();
+                            not_yet_implemented();
                             break;
                     }
                     

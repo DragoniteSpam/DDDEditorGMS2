@@ -24,7 +24,7 @@ if (version >= DataVersions.NEW_MESH_SYSTEM) {
 
 if (entity.mesh == 0) {
     // error handling of some sort, if needed
-    stack_trace();
+    not_yet_implemented();
 }
 
 entity_init_collision_mesh(entity);

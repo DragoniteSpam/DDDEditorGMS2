@@ -51,13 +51,13 @@ switch (property.type) {
         el_list.entries_are = ListEntries.GUIDS;
         break;
     case DataTypes.TILE:
-        stack_trace();
+        not_yet_implemented();
         break;
     case DataTypes.COLOR:
     case DataTypes.ENTITY:
         // probably deal with this by just having the string "lorem ipsum" colorized however - probably
         // with an outline, so you can see the bright colors - but not sure yet
-        stack_trace();
+        not_yet_implemented();
         break;
     default:
         el_list.entries_are = ListEntries.STRINGS;
@@ -150,7 +150,7 @@ switch (property.type) {
         yy = yy + ui_get_list_height(el_value) + spacing;
         break;
     case DataTypes.AUTOTILE:
-        stack_trace();
+        not_yet_implemented();
         var el_value = create_list(16, yy, "Select an Autotile resource:", "<no Autotiles>", ew, eh, 8, uivc_data_property_list_guid, false, dg);
         el_value.entries_are = ListEntries.GUIDS;
         dg.el_list_main = el_list;
@@ -158,12 +158,12 @@ switch (property.type) {
         yy = yy + ui_get_list_height(el_value) + spacing;
         break;
     case DataTypes.COLOR:
-        var el_value = create_button(16, yy, "Value", ew, eh, fa_left, stack_trace, dg);
+        var el_value = create_button(16, yy, "Value", ew, eh, fa_left, not_yet_implemented, dg);
         el_value.key = argument0.key;
         yy = yy + el_value.height + spacing;
         break;
     case DataTypes.MESH:
-        stack_trace();
+        not_yet_implemented();
         var el_value = create_list(16, yy, "Select a Mesh resource:", "<no Meshes>", ew, eh, 8, uivc_data_property_list_guid, false, dg);
         el_value.entries_are = ListEntries.GUIDS;
         dg.el_list_main = el_list;
@@ -171,7 +171,7 @@ switch (property.type) {
         yy = yy + ui_get_list_height(el_value) + spacing;
         break;
     case DataTypes.TILESET:
-        stack_trace();
+        not_yet_implemented();
         var el_value = create_list(16, yy, "Select a Tileset resource:", "<no Tilesets>", ew, eh, 8, uivc_data_property_list_guid, false, dg);
         el_value.entries_are = ListEntries.GUIDS;
         dg.el_list_main = el_list;
@@ -179,10 +179,10 @@ switch (property.type) {
         yy = yy + ui_get_list_height(el_value) + spacing;
         break;
     case DataTypes.TILE:
-        stack_trace();
+        not_yet_implemented();
         break;
     case DataTypes.ANIMATION:
-        stack_trace();
+        not_yet_implemented();
         var el_value = create_list(16, yy, "Select an Animation resource:", "<no Animation>", ew, eh, 8, uivc_data_property_list_guid, false, dg);
         el_value.entries_are = ListEntries.GUIDS;
         dg.el_list_main = el_list;

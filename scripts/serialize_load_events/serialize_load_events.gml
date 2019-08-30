@@ -136,7 +136,7 @@ repeat(n_events) {
                         case DataTypes.TILESET:
                         case DataTypes.TILE:
                         case DataTypes.AUTOTILE:
-                            stack_trace();
+                            not_yet_implemented();
                             break;
                     }
                     

@@ -5,6 +5,6 @@ var input = argument0;
 var rv = real(input.value);
 if (is_clamped(rv, input.value_lower, input.value_upper)) {
     var data = noone;
-	stack_trace();
+	not_yet_implemented();
     data.tags = rv;
 }

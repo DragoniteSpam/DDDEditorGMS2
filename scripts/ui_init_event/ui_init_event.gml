@@ -174,10 +174,10 @@ with (instantiate(UIMain)) {
     element = create_button(legal_x + spacing, yy, "Show Choices", element_width, element_height, fa_left, omu_event_add_choices, t_action1);
     ds_list_add(t_action1.contents, element);
     yy = yy + element_height;
-    element = create_button(legal_x + spacing, yy, "Input Text", element_width, element_height, fa_left, stack_trace, t_action1);
+    element = create_button(legal_x + spacing, yy, "Input Text", element_width, element_height, fa_left, not_yet_implemented, t_action1);
     ds_list_add(t_action1.contents, element);
     yy = yy + element_height;
-    element = create_button(legal_x + spacing, yy, "Show Scrolling Text", element_width, element_height, fa_left, stack_trace, t_action1);
+    element = create_button(legal_x + spacing, yy, "Show Scrolling Text", element_width, element_height, fa_left, not_yet_implemented, t_action1);
     ds_list_add(t_action1.contents, element);
     yy = yy + element_height;
     
@@ -210,7 +210,7 @@ with (instantiate(UIMain)) {
     element = create_button(legal_x + spacing, yy, "Conditional Branch", element_width, element_height, fa_left, omu_event_add_conditional, t_action1);
     ds_list_add(t_action1.contents, element);
     yy = yy + element_height;
-    element = create_button(legal_x + spacing, yy, "Invoke Other Event", element_width, element_height, fa_left, stack_trace, t_action1);
+    element = create_button(legal_x + spacing, yy, "Invoke Other Event", element_width, element_height, fa_left, not_yet_implemented, t_action1);
     ds_list_add(t_action1.contents, element);
     yy = yy + element_height;
     element = create_button(legal_x + spacing, yy, "Comment", element_width, element_height, fa_left, omu_event_add_comment, t_action1);
@@ -231,16 +231,16 @@ with (instantiate(UIMain)) {
     element = create_text(legal_x + spacing, yy, "Movement", element_width, element_height, fa_left, element_width, t_list);
     ds_list_add(t_action1.contents, element);
     yy = yy + element_height + spacing;
-    element = create_button(legal_x + spacing, yy, "Transfer Player", element_width, element_height, fa_left, stack_trace, t_action1);
+    element = create_button(legal_x + spacing, yy, "Transfer Player", element_width, element_height, fa_left, not_yet_implemented, t_action1);
     ds_list_add(t_action1.contents, element);
     yy = yy + element_height;
-    element = create_button(legal_x + spacing, yy, "Set Entity Location", element_width, element_height, fa_left, stack_trace, t_action1);
+    element = create_button(legal_x + spacing, yy, "Set Entity Location", element_width, element_height, fa_left, not_yet_implemented, t_action1);
     ds_list_add(t_action1.contents, element);
     yy = yy + element_height;
-    element = create_button(legal_x + spacing, yy, "Scroll Map", element_width, element_height, fa_left, stack_trace, t_action1);
+    element = create_button(legal_x + spacing, yy, "Scroll Map", element_width, element_height, fa_left, not_yet_implemented, t_action1);
     ds_list_add(t_action1.contents, element);
     yy = yy + element_height;
-    element = create_button(legal_x + spacing, yy, "Set Movement Route", element_width, element_height, fa_left, stack_trace, t_action1);
+    element = create_button(legal_x + spacing, yy, "Set Movement Route", element_width, element_height, fa_left, not_yet_implemented, t_action1);
     ds_list_add(t_action1.contents, element);
     yy = yy + element_height;
     
@@ -253,13 +253,13 @@ with (instantiate(UIMain)) {
     element = create_text(legal_x + spacing, yy, "Screen", element_width, element_height, fa_left, element_width, t_list);
     ds_list_add(t_action2.contents, element);
     yy = yy + element_height + spacing;
-    element = create_button(legal_x + spacing, yy, "Tint Screen", element_width, element_height, fa_left, stack_trace, t_action2);
+    element = create_button(legal_x + spacing, yy, "Tint Screen", element_width, element_height, fa_left, not_yet_implemented, t_action2);
     ds_list_add(t_action2.contents, element);
     yy = yy + element_height;
-    element = create_button(legal_x + spacing, yy, "Flash Screen", element_width, element_height, fa_left, stack_trace, t_action2);
+    element = create_button(legal_x + spacing, yy, "Flash Screen", element_width, element_height, fa_left, not_yet_implemented, t_action2);
     ds_list_add(t_action2.contents, element);
     yy = yy + element_height;
-    element = create_button(legal_x + spacing, yy, "Shake Screen", element_width, element_height, fa_left, stack_trace, t_action2);
+    element = create_button(legal_x + spacing, yy, "Shake Screen", element_width, element_height, fa_left, not_yet_implemented, t_action2);
     ds_list_add(t_action2.contents, element);
     yy = yy + element_height;
     
@@ -289,7 +289,7 @@ with (instantiate(UIMain)) {
     element = create_text(legal_x + spacing, yy, "Scene", element_width, element_height, fa_left, element_width, t_list);
     ds_list_add(t_action2.contents, element);
     yy = yy + element_height + spacing;
-    element = create_button(legal_x + spacing, yy, "Return to Title Screen", element_width, element_height, fa_left, stack_trace, t_action2);
+    element = create_button(legal_x + spacing, yy, "Return to Title Screen", element_width, element_height, fa_left, not_yet_implemented, t_action2);
     ds_list_add(t_action2.contents, element);
     yy = yy + element_height;
     
@@ -298,16 +298,16 @@ with (instantiate(UIMain)) {
     element = create_text(legal_x + spacing, yy, "Map", element_width, element_height, fa_left, element_width, t_list);
     ds_list_add(t_action2.contents, element);
     yy = yy + element_height + spacing;
-    element = create_button(legal_x + spacing, yy, "Change Map Display Name", element_width, element_height, fa_left, stack_trace, t_action2);
+    element = create_button(legal_x + spacing, yy, "Change Map Display Name", element_width, element_height, fa_left, not_yet_implemented, t_action2);
     ds_list_add(t_action2.contents, element);
     yy = yy + element_height;
-    element = create_button(legal_x + spacing, yy, "Change Map Tileset", element_width, element_height, fa_left, stack_trace, t_action2);
+    element = create_button(legal_x + spacing, yy, "Change Map Tileset", element_width, element_height, fa_left, not_yet_implemented, t_action2);
     ds_list_add(t_action2.contents, element);
     yy = yy + element_height;
-    element = create_button(legal_x + spacing, yy, "Change Map Battle Scene", element_width, element_height, fa_left, stack_trace, t_action2);
+    element = create_button(legal_x + spacing, yy, "Change Map Battle Scene", element_width, element_height, fa_left, not_yet_implemented, t_action2);
     ds_list_add(t_action2.contents, element);
     yy = yy + element_height;
-    element = create_button(legal_x + spacing, yy, "Change Map Parallax", element_width, element_height, fa_left, stack_trace, t_action2);
+    element = create_button(legal_x + spacing, yy, "Change Map Parallax", element_width, element_height, fa_left, not_yet_implemented, t_action2);
     ds_list_add(t_action2.contents, element);
     yy = yy + element_height;
     
@@ -319,7 +319,7 @@ with (instantiate(UIMain)) {
     element = create_button(legal_x + spacing, yy, "Script", element_width, element_height, fa_left, omu_event_add_script, t_action2);
     ds_list_add(t_action2.contents, element);
     yy = yy + element_height;
-    element = create_button(legal_x + spacing, yy, "Audio Controls", element_width, element_height, fa_left, stack_trace, t_action2);
+    element = create_button(legal_x + spacing, yy, "Audio Controls", element_width, element_height, fa_left, not_yet_implemented, t_action2);
     ds_list_add(t_action2.contents, element);
     yy = yy + element_height;
     

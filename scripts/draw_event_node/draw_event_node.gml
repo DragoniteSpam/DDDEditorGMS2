@@ -454,7 +454,7 @@ switch (node.type) {
                                     case DataTypes.TILESET:
                                     case DataTypes.AUTOTILE:
                                     case DataTypes.ENTITY:
-                                        stack_trace();
+                                        not_yet_implemented();
                                         break;
                                 }
                             } else {

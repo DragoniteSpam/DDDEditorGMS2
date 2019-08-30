@@ -7,7 +7,7 @@ var xx = argument1;
 var yy = argument2;
 
 var data = noone;
-stack_trace();
+not_yet_implemented();
 option.state = (data.passage == TILE_PASSABLE);
 
 ui_render_bitfield_option_text(option, xx, yy);

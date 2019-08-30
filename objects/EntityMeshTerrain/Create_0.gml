@@ -16,7 +16,7 @@ ActiveMap.population_solid++;
 // editor properties
 
 // make this a GUID the same way normal meshes do
-stack_trace();
+not_yet_implemented();
 mesh_id = 0;
 // find and deal with variables named "mesh_data_raw" because that was here
 // and i dont know what it was for

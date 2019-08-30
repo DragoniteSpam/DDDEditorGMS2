@@ -4,7 +4,7 @@
 var entity = argument0;
 var mesh_data = guid_get(argument1);
 
-stack_trace();
+not_yet_implemented();
 
 if (mesh_data) {
     entity.name = mesh_data.name;

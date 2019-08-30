@@ -41,7 +41,7 @@ if (pselection >= 0) {
         case DataTypes.COLOR:
         case DataTypes.TILE:
         case DataTypes.ENTITY:
-            stack_trace();
+            not_yet_implemented();
             break;
     }
 }

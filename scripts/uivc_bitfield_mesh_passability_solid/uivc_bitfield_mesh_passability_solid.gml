@@ -1,5 +1,5 @@
 /// @param UIThing
 
 var data = noone;
-stack_trace();
+not_yet_implemented();
 data.passage = 0;

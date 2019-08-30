@@ -54,7 +54,7 @@ for (var i = 0; i < n_datadata; i++) {
                         var btype = buffer_u32;
                         break;
                     case DataTypes.TILE:
-                        stack_trace();
+                        not_yet_implemented();
                         break;
                     case DataTypes.ENTITY:
                         // not sure how this happened but

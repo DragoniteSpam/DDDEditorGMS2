@@ -7,7 +7,7 @@ var xx = argument1;
 var yy = argument2;
 
 var data = noone;
-stack_trace();
+not_yet_implemented();
 thing.state = data.flags & thing.value;
 
 ui_render_bitfield_option_text(thing, xx, yy);

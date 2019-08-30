@@ -28,7 +28,7 @@ yy = yy + ui_get_radio_array_height(el_battle_type) + eh;
 
 var el_global_title = create_text(16, yy, "Global Stuff", ew, eh, fa_left, dw / 2, dg);
 yy = yy + el_global_title.height + spacing;
-var el_constants = create_button(16, yy, "Global Constants", ew, eh, fa_center, stack_trace, dg);
+var el_constants = create_button(16, yy, "Global Constants", ew, eh, fa_center, not_yet_implemented, dg);
 yy = yy + el_constants.height + spacing;
 var el_variables = create_button(16, yy, "Global Variables", ew, eh, fa_center, dialog_create_settings_data_variables, dg);
 yy = yy + el_variables.height + spacing;
