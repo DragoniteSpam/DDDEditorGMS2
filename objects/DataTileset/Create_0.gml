@@ -83,25 +83,10 @@ enum TileTerrainTags {
     FINAL
 }
 
-// this technically will get redefined every time you create a new tileset
-// which is a total waste of time but hopefully that doesn't happen too
-// often, so i won't bother to put it somewhere more logical
-globalvar all_tile_terrain_tag_names;
-
-all_tile_terrain_tag_names = ["None",
-    "Ledge",
-    "Grass",
-    "Sand",
-    "Rock",
-    "Deep Water",
-    "StilL Water",
-    "Water",
-    "Waterfall",
-    "Waterfall Crest",
-    "Tall Grass",
-    "Underwater Grass",
-    "Ice",
-    "Neutral",
-    "Soot Grass",
-    "Bridge"
-];
+// this used to be global but now if you want to define different tags for each tileset,
+// you're allowed
+terrain_tag_names = ds_list_create();
+ds_list_add(terrain_tag_names, "None", "Ledge", "Grass", "Sand", "Rock", "Deep Water",
+    "StilL Water", "Water", "Waterfall", "Waterfall Crest", "Tall Grass",
+    "Underwater Grass", "Ice", "Neutral", "Soot Grass", "Bridge"
+);

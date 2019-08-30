@@ -84,5 +84,6 @@ enum DataVersions {
     ANIMATION_RELATIVE_DATA     = 34,
     MAP_ENCOUNTER_STUFF         = 35,
 	NEW_MESH_SYSTEM				= 36,
+    INDIVIDUAL_TERRAIN_TAGS     = 37,
     _CURRENT                 /* = whatever the last one is + 1 */
 }

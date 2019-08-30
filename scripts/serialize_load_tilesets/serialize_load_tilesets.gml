@@ -1,24 +1,25 @@
 /// @param buffer
 /// @param version
 
+var buffer = argument0;
 var version = argument1;
 
 // junk - embed settings removed
-buffer_read(argument0, buffer_u8);
+buffer_read(buffer, buffer_u8);
 
 ds_list_clear_instances(Stuff.all_tilesets);
 
-var n_tilesets = buffer_read(argument0, buffer_u16);
+var n_tilesets = buffer_read(buffer, buffer_u16);
 for (var i = 0; i < n_tilesets; i++) {
-    var ts_name = buffer_read(argument0, buffer_string);
+    var ts_name = buffer_read(buffer, buffer_string);
     
-    var sprite = buffer_read_sprite(argument0);
+    var sprite = buffer_read_sprite(buffer);
     // comment these out if you dont want to replace the tileset - for now
     //sprite_delete(sprite);
     //sprite = sprite_add(get_open_filename("*.png|*.png", ""), 0, false, false, 0, 0);
     
     // all of the other things
-    var n_autotiles = buffer_read(argument0, buffer_u8);
+    var n_autotiles = buffer_read(buffer, buffer_u8);
     var at_array = array_create(n_autotiles);
     var at_passage = array_create(n_autotiles);
     var at_priority = array_create(n_autotiles);
@@ -27,11 +28,11 @@ for (var i = 0; i < n_tilesets; i++) {
     
     for (var j = 0; j < n_autotiles; j++) {
         // s16 because no tile is "noone"
-        at_array[j] = buffer_read(argument0, buffer_s16);
-        at_passage[j] = buffer_read(argument0, buffer_u8);
-        at_priority[j] = buffer_read(argument0, buffer_u8);
-        at_flags[j] = buffer_read(argument0, buffer_u8);
-        at_tags[j] = buffer_read(argument0, buffer_u8);
+        at_array[j] = buffer_read(buffer, buffer_s16);
+        at_passage[j] = buffer_read(buffer, buffer_u8);
+        at_priority[j] = buffer_read(buffer, buffer_u8);
+        at_flags[j] = buffer_read(buffer, buffer_u8);
+        at_tags[j] = buffer_read(buffer, buffer_u8);
     }
     
     var ts = tileset_create(ts_name, at_array, sprite);
@@ -43,8 +44,8 @@ for (var i = 0; i < n_tilesets; i++) {
     ts.at_flags = at_flags;
     ts.at_tags = at_tags;
     
-    var t_grid_width = buffer_read(argument0, buffer_u16);
-    var t_grid_height = buffer_read(argument0, buffer_u16);
+    var t_grid_width = buffer_read(buffer, buffer_u16);
+    var t_grid_height = buffer_read(buffer, buffer_u16);
     
     // the way i did this is a little weird and i don't know why - the grids
     // (and autotile arrays, for that matter) already exist so there's no point
@@ -52,14 +53,20 @@ for (var i = 0; i < n_tilesets; i++) {
     
     for (var j = 0; j < t_grid_width; j++) {
         for (var k = 0; k < t_grid_height; k++) {
-            ts.passage[# j, k] = buffer_read(argument0, buffer_u8);
-            ts.priority[# j, k] = buffer_read(argument0, buffer_u8);
-            ts.flags[# j, k] = buffer_read(argument0, buffer_u8);
-            ts.tags[# j, k] = buffer_read(argument0, buffer_u8);
+            ts.passage[# j, k] = buffer_read(buffer, buffer_u8);
+            ts.priority[# j, k] = buffer_read(buffer, buffer_u8);
+            ts.flags[# j, k] = buffer_read(buffer, buffer_u8);
+            ts.tags[# j, k] = buffer_read(buffer, buffer_u8);
         }
     }
     
     ds_list_add(Stuff.all_tilesets, ts);
+    
+    if (version >= DataVersions.INDIVIDUAL_TERRAIN_TAGS) {
+        ds_list_clear(ts.terrain_tag_names);
+        var n = buffer_read(buffer, buffer_u8);
+        repeat (n) {
+            ds_list_add(ts.terrain_tag_names, buffer_read(buffer, buffer_string));
+        }
+    }
 }
-
-//uivc_select_autotile_refresh(/*Camera.selection_fill_autotile*/);
