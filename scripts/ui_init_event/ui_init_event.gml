@@ -25,7 +25,7 @@ with (instantiate(UIMain)) {
     
     var element;
     var spacing = 16;
-    var legal_x = room_width - view_hud_width_event + 32;
+    var legal_x = 32;
     var legal_y = 128;
     var element_width = view_hud_width_event - 96;
     

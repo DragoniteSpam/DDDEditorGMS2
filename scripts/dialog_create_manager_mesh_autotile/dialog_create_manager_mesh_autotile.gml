@@ -3,7 +3,7 @@
 var dw = 540;
 var dh = 640;
 
-var dg = dialog_create(dw, dh, "Data: Mesh Autotiles", dialog_default, dc_manager_mesh, argument0);
+var dg = dialog_create(dw, dh, "Data: Mesh Autotiles", undefined, undefined, argument0);
 
 var ew = (dw - 64) / 2;
 var eh = 24;

@@ -8,8 +8,9 @@
 #macro BATCH_CACHE_SIZE 160
 #macro buffer_datatype buffer_u32
 #macro CAMERA_SAVE_FREQUENCY 5
+// these aren't meant to be used for view coordinates but window coordinates, otherwise i'd make them relative
 #macro CH 900
-#macro CW 1080 /*these aren't meant to be used for view coordinates but window coordinates, otherwise i'd make them relative*/
+#macro CW 1080
 #macro DATA_INI "data.ini"
 #macro DEBUG true
 #macro EVENT_NODE_CONTACT_HEIGHT 32
@@ -56,6 +57,8 @@
 #macro view_ribbon 2
 #macro view_hud 3
 #macro view_3d_preview 4
+
+
 #macro view_overlay 7
 
 #macro view_hud_width_3d 520

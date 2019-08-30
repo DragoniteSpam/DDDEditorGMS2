@@ -40,7 +40,7 @@ with (instantiate(UIMain)) {
     // for two. everything will go very badly if you try three or more.
     var element;
     var spacing = 16;
-    var legal_x = CW + 32;
+    var legal_x = 32;
     var legal_y = 128;
     var legal_width = ui_legal_width();
     var col_width = legal_width / 2 - spacing * 1.5;

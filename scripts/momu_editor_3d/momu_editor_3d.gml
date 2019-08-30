@@ -11,7 +11,6 @@ view_set_visible(view_hud, true);
 view_set_visible(view_3d_preview, false);
 
 var camera = view_get_camera(view_hud);
-camera_set_view_pos(camera, room_width - view_hud_width_3d, camera_get_view_y(camera));
 camera_set_view_size(camera, view_hud_width_3d, camera_get_view_height(camera));
 view_set_xport(view_hud, room_width - view_hud_width_3d);
 view_set_wport(view_hud, view_hud_width_3d);
@@ -20,9 +19,10 @@ view_set_wport(view_hud, view_hud_width_3d);
 // resized, but i'll deal with that when i have to
 var camera = view_get_camera(view_3d);
 camera_set_view_pos(camera, 0, 0);
+camera_set_view_size(camera, CW, CH);
 view_set_xport(view_3d, 0);
 view_set_yport(view_3d, 0);
-view_set_wport(view_3d, 1080);
-view_set_hport(view_3d, 900);
+view_set_wport(view_3d, CW);
+view_set_hport(view_3d, CH);
 
 menu_activate(noone);
