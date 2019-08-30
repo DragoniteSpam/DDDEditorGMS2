@@ -6,7 +6,6 @@ var buffer = argument0;
 var wire = argument1;
 var mesh = argument2;
 
-//var data = mesh.mesh_data[@ MeshArrayData.DATA];
 var data = mesh.mesh_data_raw;
 
 var base_buffer = buffer_create_from_vertex_buffer(buffer, buffer_grow, 1);

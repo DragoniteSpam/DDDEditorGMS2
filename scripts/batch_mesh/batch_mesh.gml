@@ -11,7 +11,7 @@ var yy = mesh.yy * TILE_HEIGHT;
 var zz = mesh.zz * TILE_DEPTH;
 
 var data = guid_get(mesh.mesh); // lol
-buffer_seek(data, buffer_seek_start, 0);
+buffer_seek(data.buffer, buffer_seek_start, 0);
 
 // Use the vertex_create_from_buffer instead of the buffer that I built, because
 // the one that i built sucks
@@ -24,25 +24,26 @@ var py = array_create(3);
 var pz = array_create(3);
 var nx, ny, nz, xtex, ytex, color, alpha;
 
-while (buffer_tell(data) < buffer_get_size(data)) {
-    // script arguments are parsed backwards and i don't think
-    // there's a way to turn that off, and in any case it's a
-    // better idea to just fetch the values first and *then*
-    // pass them all to the script
-    var npx = buffer_read(data, T);
-    var npy = buffer_read(data, T);
-    var npz = buffer_read(data, T);
+while (buffer_tell(data.buffer) < buffer_get_size(data.buffer)) {
+    // script arguments are parsed backwards and i don't think there's a way to
+    // turn that off, and in any case it's a better idea to just fetch the
+    // values first and *then* pass them all to the script. it's quite annoying.
+    var npx = buffer_read(data.buffer, T);
+    var npy = buffer_read(data.buffer, T);
+    var npz = buffer_read(data.buffer, T);
     var transformed = transform_entity_point(mesh, npx, npy, npz);
     px[vc] = transformed[vec3.xx];
     py[vc] = transformed[vec3.yy];
     pz[vc] = transformed[vec3.zz];
-    nx = buffer_read(data, T);
-    ny = buffer_read(data, T);
-    nz = buffer_read(data, T);
-    xtex = buffer_read(data, T);
-    ytex = buffer_read(data, T);
-    color = buffer_read(data, T);
-    alpha = buffer_read(data, T);
+    nx = buffer_read(data.buffer, T);
+    ny = buffer_read(data.buffer, T);
+    nz = buffer_read(data.buffer, T);
+    xtex = buffer_read(data.buffer, T);
+    ytex = buffer_read(data.buffer, T);
+    color = buffer_read(data.buffer, buffer_u32);
+    
+    alpha = color >> 24;
+    color = color | 0xffffff;
     
     vertex_point_complete(buffer, px[vc], py[vc], pz[vc], nx, ny, nz, xtex, ytex, color, alpha);
     

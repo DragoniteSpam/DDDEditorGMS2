@@ -1,8 +1,10 @@
 /// @param buffer
 /// @param grid-size
+/// @param name
 
 var data_buffer = argument0;
-var gird_size = argument1;
+var grid_size = argument1;
+var name = argument2;
 var n = buffer_read(data_buffer, T);
 var mesh = instance_create_depth(0, 0, 0, DataMesh);
 
@@ -64,12 +66,13 @@ vertex_end(vbuffer);
 vertex_end(wbuffer);
 c_shape_end_trimesh(cdata);
 
-vertex_freeze(vbuffer);
-vertex_freeze(wbuffer);
-
+mesh.name = name;
 mesh.buffer = buffer_create_from_vertex_buffer(vbuffer, buffer_fixed, 1);
 mesh.vbuffer = vbuffer;
 mesh.wbuffer = wbuffer;
 mesh.cshape = cdata;
+
+vertex_freeze(vbuffer);
+vertex_freeze(wbuffer);
 
 return mesh;

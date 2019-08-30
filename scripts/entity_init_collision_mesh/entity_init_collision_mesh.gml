@@ -1,3 +1,5 @@
-/// @param EntityTile
+/// @param EntityMesh
 
-argument0.cobject = c_object_create(argument0.mesh_data[@ MeshArrayData.CDATA], 1, 1);
+var entity = argument0;
+
+entity.cobject = c_object_create(guid_get(entity.mesh).cshape, 1, 1);

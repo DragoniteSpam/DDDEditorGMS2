@@ -1,5 +1,7 @@
 event_inherited();
 
+deleteable = false;
+
 buffer = noone;
 vbuffer = noone;
 wbuffer = noone;

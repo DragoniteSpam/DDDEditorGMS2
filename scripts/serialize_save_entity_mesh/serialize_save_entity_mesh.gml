@@ -1,9 +1,11 @@
-/// @description void serialize_save_entity_mesh(buffer, EntityTile);
 /// @param buffer
-/// @param EntityTile
+/// @param EntityMesh
 
-serialize_save_entity(argument0, argument1);
+var buffer = argument0;
+var entity = argument1;
 
-buffer_write(argument0, buffer_string, argument1.mesh_id);
+serialize_save_entity(buffer, entity);
+
+buffer_write(buffer, buffer_datatype, entity.mesh);
 
 // no bools

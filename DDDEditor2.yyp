@@ -3847,14 +3847,6 @@
             }
         },
         {
-            "Key": "5bef624a-3a63-4a1d-a8e5-2829962631b4",
-            "Value": {
-                "id": "c74109de-060b-4ffb-939c-0828251255eb",
-                "resourcePath": "scripts\\data_vra_exists\\data_vra_exists.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "5c1ab52a-b91a-4638-b11e-3ddeb81646f6",
             "Value": {
                 "id": "86fa836e-cd58-4d31-b59f-cc3f35b9ce78",
@@ -11801,7 +11793,6 @@
         "025e7494-68e7-4a58-a082-1d288d3ba4dc",
         "d691f305-0202-40ad-a4ed-81cae33c6477",
         "68818a31-464c-4fb2-a840-1cccfff60f24",
-        "5bef624a-3a63-4a1d-a8e5-2829962631b4",
         "20ae4024-a8cc-4f6d-a02d-51fff19c8806",
         "806b73cd-6cd7-4d92-8daa-94c4177690d7",
         "5cc71665-573c-4595-a2d9-6dd8c3706185",

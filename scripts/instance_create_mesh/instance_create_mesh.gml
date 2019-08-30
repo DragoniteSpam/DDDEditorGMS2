@@ -1,15 +1,12 @@
-/// @param MeshName
+/// @param GUID
 
-if (ds_map_exists(Stuff.vra_data, argument[0])) {
-    with (instantiate(EntityMesh)) {
-        name = argument[0];
-        mesh_id = argument[0];
-        mesh_data = Stuff.vra_data[? argument[0]];
+var mesh_data = guid_get(argument0);
+
+with (instantiate(EntityMesh)) {
+    name = mesh_data.name;
+    mesh = mesh_data;
         
-        entity_init_collision_mesh(id);
+    entity_init_collision_mesh(id);
         
-        return id;
-    }
+    return id;
 }
-
-return noone;

@@ -421,16 +421,8 @@ instantiate(Controller);
 // this depends on activemap
 instantiate(Camera);
 
-// data that gets loaded: needs the camera (and vertex formats) to be
-// defined before running
-vra_data = ds_map_create();
-//data_import_vra();
-In the phase of cleaning up, currently hunting for instances of "MeshArrayData"
-and replacing them with the new thing, after that, get rid of the remaining references
-to "vra_data" because we won't be needing that
+data_import_vra(get_open_filename("*.vrax", "mesh archive"));
 
-It'll probably help to run this without the auto.ddd* files first, until you now that
-it gets through setup okay, and THEN work on the data loaded into the world
 all_bgm = ds_list_create();
 all_se = ds_list_create();
 

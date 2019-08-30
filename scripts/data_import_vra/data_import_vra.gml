@@ -15,10 +15,10 @@ var ui_list = Camera.ui.element_mesh_list;
 
 repeat(n) {
     var mesh_name = buffer_read_string(buffer);
-    var mesh = data_load_vra_next(buffer, grid_size);
-	create_list_entries(ui_list, mesh);
+    var mesh = data_load_vra_next(buffer, grid_size, mesh_name);
+	create_list_entries(ui_list, mesh, c_black);
 }
 
-ui_list.text = "Available meshes: " + string(ds_list_size(ui_list));
+ui_list.text = "Available meshes: " + string(ds_list_size(ui_list.entries));
 
 buffer_delete(buffer);

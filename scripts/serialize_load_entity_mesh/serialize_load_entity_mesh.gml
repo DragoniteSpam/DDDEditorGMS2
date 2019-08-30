@@ -8,7 +8,23 @@ var version = argument2;
 
 serialize_load_entity(buffer, entity, version);
 
-entity.mesh_id = buffer_read(buffer, buffer_string);
-entity.mesh_data = Stuff.vra_data[? entity.mesh_id];
+if (version >= DataVersions.NEW_MESH_SYSTEM) {
+    entity.mesh = guid_get(buffer_read(buffer, buffer_datatype));
+} else {
+    // can't wait for this to be removed from the working version, honestly
+    var mesh_name = buffer_read(buffer, buffer_string);
+    var entries = Camera.ui.element_mesh_list.entries;
+    for (var i = 0; i < ds_list_size(entries); i++) {
+        if (entries[| i].name == mesh_name) {
+            entity.mesh = entries[| i].GUID;
+            break;
+        }
+    }
+}
+
+if (entity.mesh == 0) {
+    // error handling of some sort, if needed
+    stack_trace();
+}
 
 entity_init_collision_mesh(entity);
