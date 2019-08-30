@@ -3,12 +3,10 @@
 /// @param [other]
 
 with (instantiate(EntityTile)) {
-    switch (argument_count) {
-        case 2:
-            tile_y = argument[1];
-            tile_x = argument[0];
-            break;
-    }
+    tile_x = argument[0];
+    tile_y = argument[1];
+    
+    var other_data = (argument_count > 2) ? argument[2] : undefined;
     
     entity_init_collision_tile(id);
     

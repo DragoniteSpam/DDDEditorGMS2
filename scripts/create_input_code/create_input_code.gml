@@ -28,13 +28,8 @@ with (instance_create_depth(argument[0], argument[1], 0, UIInputCode)) {
     
     root = argument[11];
     
-    switch (argument_count) {
-        case 14:
-            help = argument[13];
-        case 13:
-            key = argument[12];
-            break;
-    }
+    key = (argument_count > 12) ? argument[12] : key;
+    help = (argument_count > 13) ? argument[13] : help;
     
     return id;
 }

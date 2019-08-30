@@ -3,47 +3,26 @@
 switch (mode) {
     case EditorModes.EDITOR_3D:
         switch (view_current) {
-            case view_3d:
-                draw_clear(c_black);
-                draw_editor_3d();
-                break;
-            case view_ribbon:
-                draw_editor_menu();
-                break;
-            case view_hud:
-                draw_editor_hud();
-                break;
-            case view_3d_preview:
-                // the pop-out window that isn't really a pop-out window
-                draw_clear(c_black);
-                draw_preview_3d();
-                draw_preview_3d_overlay();
-                break;
+            case view_3d: draw_editor_3d(); break;
+            case view_ribbon: draw_editor_menu(); break;
+            case view_hud: draw_editor_hud(); break;
+            // the pop-out window that isn't really a pop-out window
+            case view_3d_preview: draw_preview_3d(); draw_preview_3d_overlay(); break;
         }
         break;
     case EditorModes.EDITOR_EVENT:
         gpu_set_cullmode(cull_noculling);
         switch (view_current) {
-            case view_fullscreen:
-                draw_editor_event();
-                break;
-            case view_ribbon:
-                draw_editor_menu();
-                break;
-            case view_hud:
-                draw_editor_event_hud();
-                break;
+            case view_fullscreen: draw_editor_event(); break;
+            case view_ribbon: draw_editor_menu(); break;
+            case view_hud: draw_editor_event_hud(); break;
         }
         break;
     case EditorModes.EDITOR_DATA:
         gpu_set_cullmode(cull_noculling);
         switch (view_current) {
-            case view_fullscreen:
-                draw_editor_data();
-                break;
-            case view_ribbon:
-                draw_editor_menu();
-                break;
+            case view_fullscreen: draw_editor_data(); break;
+            case view_ribbon: draw_editor_menu(); break;
         }
         break;
     case EditorModes.EDITOR_ANIMATION:
@@ -52,14 +31,8 @@ switch (mode) {
             case view_fullscreen:
                 draw_editor_animation();
                 break;
-            case view_3d:
-                draw_clear(c_black);
-                draw_animator();
-                draw_animator_overlay();
-                break;
-            case view_ribbon:
-                draw_editor_menu();
-                break;
+            case view_3d: draw_animator(); draw_animator_overlay(); break;
+            case view_ribbon: draw_editor_menu(); break;
         }
         break;
 }

@@ -34,15 +34,9 @@ if (zz < z) {
                 keyboard_string = "";
             }
             switch (selection_mode) {
-                case SelectionModes.SINGLE:
-                    var stype = SelectionSingle;
-                    break;
-                case SelectionModes.RECTANGLE:
-                    var stype = SelectionRectangle;
-                    break;
-                case SelectionModes.CIRCLE:
-                    var stype = SelectionCircle;
-                    break;
+                case SelectionModes.SINGLE: var stype = SelectionSingle; break;
+                case SelectionModes.RECTANGLE: var stype = SelectionRectangle; break;
+                case SelectionModes.CIRCLE: var stype = SelectionCircle; break;
             }
         
             var tz = under_cursor ? under_cursor.zz : 0;

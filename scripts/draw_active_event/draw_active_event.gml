@@ -65,57 +65,25 @@ if (Stuff.active_event) {
                     for (var i = 0; i < n; i++) {
                         var type = base.types[| i];
                         switch (type[1]) {
-                            case DataTypes.INT:
-                                var type_name = "int";
-                                break;
-                            case DataTypes.FLOAT:
-                                var type_name = "float";
-                                break;
-                            case DataTypes.STRING:
-                                var type_name = "string";
-                                break;
-                            case DataTypes.BOOL:
-                                var type_name = "boolean";
-                                break;
+                            case DataTypes.INT: var type_name = "int"; break;
+                            case DataTypes.FLOAT: var type_name = "float"; break;
+                            case DataTypes.STRING: var type_name = "string"; break;
+                            case DataTypes.BOOL: var type_name = "boolean"; break;
                             case DataTypes.ENUM:
                             case DataTypes.DATA:
                                 var datadata = guid_get(type[EventNodeCustomData.TYPE_GUID]);
-                                if (datadata) {
-                                    var type_name = datadata.name;
-                                } else {
-                                    var type_name = "<no type set>";
-                                }
+                                var type_name = datadata ? datadata.name : "<no type set>";
                                 break;
-                            case DataTypes.AUDIO_BGM:
-                                var type_name = "background music";
-                                break;
-                            case DataTypes.AUDIO_SE:
-                                var type_name = "sound effect";
-                                break;
-                            case DataTypes.ANIMATION:
-                                var type_name = "animation";
-                                break;
-                            case DataTypes.CODE:
-                                var type_name = "code";
-                                break;
-                            case DataTypes.COLOR:
-                                var type_name = "color";
-                                break;
-                            case DataTypes.MESH:
-                                var type_name = "mesh";
-                                break;
-                            case DataTypes.TILE:
-                                var type_name = "tile";
-                                break;
-                            case DataTypes.TILESET:
-                                var type_name = "tileset";
-                                break;
-                            case DataTypes.AUTOTILE:
-                                var type_name = "autotile";
-                                break;
-                            case DataTypes.ENTITY:
-                                var type_name = "entity";
-                                break;
+                            case DataTypes.AUDIO_BGM: var type_name = "background music"; break;
+                            case DataTypes.AUDIO_SE: var type_name = "sound effect"; break;
+                            case DataTypes.ANIMATION: var type_name = "animation"; break;
+                            case DataTypes.CODE: var type_name = "code"; break;
+                            case DataTypes.COLOR: var type_name = "color"; break;
+                            case DataTypes.MESH: var type_name = "mesh"; break;
+                            case DataTypes.TILE: var type_name = "tile"; break;
+                            case DataTypes.TILESET: var type_name = "tileset"; break;
+                            case DataTypes.AUTOTILE: var type_name = "autotile"; break;
+                            case DataTypes.ENTITY: var type_name = "entity"; break;
                         }
                         draw_text(x1 + 16, y1 + 40 + i * 16, string(string(i + 1) + ". " + type[EventNodeCustomData.NAME] + " (" + type_name + ")"));
                     }

@@ -1,10 +1,8 @@
 /// @param [other]
 
 with (instantiate(EntityPawn)) {
-    switch (argument_count) {
-        case 1:
-            break;
-    }
+    // this feels very dumb
+    var other_data = (argument_count > 0) ? argument[0] : undefined;
     
     entity_init_collision_pawn(id);
     

@@ -1,3 +1,5 @@
+draw_clear(c_black);
+
 control_3d_preview();
 
 d3d_start();

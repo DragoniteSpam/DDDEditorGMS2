@@ -2,11 +2,9 @@
 /// @param [other]
 
 with (instantiate(EntityAutoTile)) {
-    switch (argument_count) {
-        case 1:
-            autotile_id = argument[0];
-            break;
-    }
+    autotile_id = argument[0];
+    
+    var other_data = (argument_count > 1) ? argument[1] : undefined;
     
     entity_init_collision_tile(id);
     

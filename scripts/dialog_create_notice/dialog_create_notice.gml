@@ -6,31 +6,10 @@
 /// @param [height]
 
 var message = argument[1];
-var caption_message = "Important!";
-var confirm_message = "sure";
-
-var dw = 400;
-var dh = 240;
-
-switch (argument_count) {
-    case 6:
-        if (!is_undefined(argument[5])) {
-            dh = argument[5];
-        }
-    case 5:
-        if (!is_undefined(argument[4])) {
-            dw = argument[4];
-        }
-    case 4:
-        if (!is_undefined(argument[3])) {
-            confirm_message = argument[3];
-        }
-    case 3:
-        if (!is_undefined(argument[2])) {
-            caption_message = argument[2];
-        }
-        break;
-}
+var caption_message = (argument_count > 2 && argument[2] != undefined) ? argument[2] : "Important!";
+var confirm_message = (argument_count > 3 && argument[3] != undefined) ? argument[3] : "sure";
+var dw = (argument_count > 4 && argument[4] != undefined) ? argument[4] : 400;
+var dh = (argument_count > 5 && argument[5] != undefined) ? argument[5] : 240;
 
 var dg = dialog_create(dw, dh, caption_message, dialog_default, dc_close_no_questions_asked, argument[0]);
 

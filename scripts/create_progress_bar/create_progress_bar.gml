@@ -17,11 +17,7 @@ with (instance_create_depth(argument[0], argument[1], 0, UIProgressBar)) {
     
     root = argument[7];
     
-    switch (argument_count) {
-        case 9:
-            help = argument[8];
-            break;
-    }
+    help = (argument_count > 8) ? argument[8] : help;
     
     return id;
 }

@@ -56,12 +56,8 @@ if (n == 0) {
             var text = "";
         }
         switch (list.entries_are) {
-            case ListEntries.STRINGS:
-                text = text + list.entries[| index];
-                break;
-            case ListEntries.INSTANCES:
-                text = text + list.entries[| index].name;
-                break;
+            case ListEntries.STRINGS: text = text + list.entries[| index]; break;
+            case ListEntries.INSTANCES: text = text + list.entries[| index].name; break;
             case ListEntries.GUIDS:
                 var data = guid_get(list.entries[| index]);
                 text = text + (data ? data.name : " (null)");
