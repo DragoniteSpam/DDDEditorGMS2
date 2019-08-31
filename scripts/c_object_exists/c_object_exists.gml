@@ -1,4 +1,3 @@
-/// @description c_object_exists(object)
 /// @param object
 /*
 Returns true if the collision object exists, and false otherwise.

@@ -1,4 +1,3 @@
-/// @description c_world_remove_object(object)
 /// @param object
 /*
 Removes a collision object from the world. Does not destroy the object, it only removes it from the world.

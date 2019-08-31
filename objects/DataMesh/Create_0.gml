@@ -2,18 +2,18 @@ event_inherited();
 
 deleteable = false;
 
-buffer = noone;
+/* s */ buffer = noone;
 vbuffer = noone;
 wbuffer = noone;
 cshape = noone;
 
-xmin = 0;
-ymin = 0;
-zmin = 0;
-xmax = 1;
-ymax = 1;
-zmax = 1;
+/* s */ xmin = 0;
+/* s */ ymin = 0;
+/* s */ zmin = 0;
+/* s */ xmax = 1;
+/* s */ ymax = 1;
+/* s */ zmax = 1;
 
-passage = TILE_PASSABLE;
-flags = 0;
-tags = 0;
+/* s */ passage = TILE_PASSABLE;
+/* s */ flags = 0;          // overrides Data.flags
+/* s */ tags = 0;

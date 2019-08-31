@@ -1,4 +1,3 @@
-/// @description c_world_exists()
 /*
 Retuns true if the collision world exists, and false otherwise.
 */

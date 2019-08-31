@@ -1,4 +1,3 @@
-/// @description c_object_set_shape(object, group, mask)
 /// @param object
 /// @param group
 /// @param mask

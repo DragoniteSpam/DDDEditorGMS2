@@ -1,4 +1,3 @@
-/// @description c_shape_add_plane(shape, nx, ny, nz, distance)
 /// @param shape
 /// @param nx
 /// @param ny

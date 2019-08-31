@@ -1,4 +1,3 @@
-/// @description c_shape_add_box(shape, x_half_size, y_half_size, z_half_size)
 /// @param shape
 /// @param x_half_size
 /// @param y_half_size

@@ -1,4 +1,3 @@
-/// @description c_world_destroy()
 /*
 Destroys the world and all the collision objects in it. Shapes are not destroyed.
 */

@@ -4,14 +4,18 @@ var buffer = argument0;
 
 buffer_write(buffer, buffer_datatype, SerializeThings.TILESET);
 
-// junk - embed settings were removed
-buffer_write(buffer, buffer_u8, 0);
-
 var n_tilesets = ds_list_size(Stuff.all_tilesets);
 buffer_write(buffer, buffer_u16, n_tilesets);
 
 for (var i = 0; i < n_tilesets; i++) {
     var ts = Stuff.all_tilesets[| i];
+    
+    // don't use save_generic here because flags is overridden and is now
+    // an array, which will break things
+    buffer_write(buffer, buffer_string, ts.name);
+    buffer_write(buffer, buffer_string, ts.internal_name);
+    buffer_write(buffer, buffer_string, ts.summary);
+    buffer_write(buffer, buffer_u32, ts.GUID);
     
     buffer_write(buffer, buffer_string, ts.picture_name);
     

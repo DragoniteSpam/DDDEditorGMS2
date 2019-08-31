@@ -1,8 +1,11 @@
-/// @description void ui_render_bitfield_option_text_tile_flag(UIBitFieldOption, x, y);
 /// @param UIBitFieldOption
 /// @param x
 /// @param y
 
-argument0.state=get_active_tileset().flags[# Camera.selection_fill_tile_x, Camera.selection_fill_tile_y]&argument0.value;
+var bitfield = argument0;
+var xx = argument1;
+var yy = argument2;
 
-ui_render_bitfield_option_text(argument0, argument1, argument2);
+bitfield.state = get_active_tileset().flags[# Camera.selection_fill_tile_x, Camera.selection_fill_tile_y] & bitfield.value;
+
+ui_render_bitfield_option_text(bitfield, xx, yy);

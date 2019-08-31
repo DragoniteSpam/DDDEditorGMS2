@@ -65,7 +65,7 @@ enum DataVersions {
     MOVE_ROUTES                 = 15,
     ENTITY_GUID                 = 16,
     MOVE_ROUTE_MOVE_PARAMS      = 17,
-	__UNUSED_00			        = 18, // not used, i don't think, but i can't remove it now
+	__UNUSED_00			        = 18,
     ENTITY_MAP_OPTIONS_WHOOPS   = 19,
     VARIABLE_BATTLE             = 20,
     MAP_WEATHER_CODE            = 21,
@@ -85,5 +85,6 @@ enum DataVersions {
     MAP_ENCOUNTER_STUFF         = 35,
 	NEW_MESH_SYSTEM				= 36,
     INDIVIDUAL_TERRAIN_TAGS     = 37,
+    SUMMARY_GENERIC_DATA        = 38,   // this also included the removal of some other extranneous / redundant pieces of data
     _CURRENT                 /* = whatever the last one is + 1 */
 }

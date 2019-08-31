@@ -11,7 +11,6 @@ for (var i = 0; i < n_datadata; i++) {
     // is_enum is looked at to determine if you're a data type or enum, so save it first
     buffer_write(argument0, buffer_u8, pack(datadata.is_enum, datadata.deleted));
     serialize_save_generic(argument0, datadata);
-    buffer_write(argument0, buffer_string, datadata.summary);
     
     var n_properties = ds_list_size(datadata.properties);
     buffer_write(argument0, buffer_u16, n_properties);

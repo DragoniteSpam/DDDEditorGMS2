@@ -1,4 +1,3 @@
-/// @description c_object_apply_transform(object)
 /// @param object
 /*
 Sets the transformation of the collision object to the currently defined transform.

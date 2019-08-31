@@ -1,7 +1,11 @@
 /// @param buffer
 /// @param Data
 
-buffer_write(argument0, buffer_string, argument1.name);
-buffer_write(argument0, buffer_string, argument1.internal_name);
-buffer_write(argument0, buffer_u32, argument1.flags);
-buffer_write(argument0, buffer_u32, argument1.GUID);
+var buffer = argument0;
+var data = argument1;
+
+buffer_write(buffer, buffer_string, data.name);
+buffer_write(buffer, buffer_string, data.internal_name);
+buffer_write(buffer, buffer_u32, data.flags);
+buffer_write(buffer, buffer_u32, data.GUID);
+buffer_write(buffer, buffer_string, data.summary);

@@ -23,7 +23,7 @@ var yy = [0, 0, 0];
 var zz = [0, 0, 0];
 var nx, ny, nz, xtex, ytex, color, alpha;
 
-repeat(n) {
+repeat (n) {
     xx[vc] = buffer_read(data_buffer, T);
     yy[vc] = buffer_read(data_buffer, T);
     zz[vc] = buffer_read(data_buffer, T);

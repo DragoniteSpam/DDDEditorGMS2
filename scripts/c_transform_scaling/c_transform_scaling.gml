@@ -1,4 +1,3 @@
-/// @description c_transform_scaling(xs, ys, zs)
 /// @param xs
 /// @param ys
 /// @param zs

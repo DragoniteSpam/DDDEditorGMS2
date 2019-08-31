@@ -1,4 +1,3 @@
-/// @description c_shape_add_sphere(shape, radius)
 /// @param shape
 /// @param radius
 /*

@@ -9,7 +9,7 @@ var version = argument2;
 serialize_load_entity(buffer, entity, version);
 
 if (version >= DataVersions.NEW_MESH_SYSTEM) {
-    entity.mesh = guid_get(buffer_read(buffer, buffer_datatype));
+    entity.mesh = buffer_read(buffer, buffer_datatype);
 } else {
     // can't wait for this to be removed from the working version, honestly
     var mesh_name = buffer_read(buffer, buffer_string);

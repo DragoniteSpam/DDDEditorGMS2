@@ -1,4 +1,3 @@
-/// @description c_hit_z()
 /*
 Returns the z position of the last hit.
 */

@@ -1,4 +1,3 @@
-/// @description c_object_destroy(object)
 /// @param object
 /*
 Destroys the collision object, freeing the memory used.

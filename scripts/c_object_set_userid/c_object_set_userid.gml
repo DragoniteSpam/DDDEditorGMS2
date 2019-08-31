@@ -1,4 +1,3 @@
-/// @description c_object_set_userid(object, number)
 /// @param object
 /// @param number
 /*

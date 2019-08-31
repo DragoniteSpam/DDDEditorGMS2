@@ -1,4 +1,3 @@
-/// @description c_shape_add_cone(shape, radius, height)
 /// @param shape
 /// @param radius
 /// @param height

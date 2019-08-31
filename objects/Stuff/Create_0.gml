@@ -4,25 +4,25 @@
 enum SerializeThings {
     ERROR                   = 0x00000000,
     // basic stuff
-    MESHES_META             = 0x00000001,
-    MESHES_REF              = 0x00000002,
+    // 01
+    // 02
     MESHES                  = 0x00000003,
     ANIMATIONS              = 0x00000004,
-    x0000005                = 0x00000005,
-    x0000006                = 0x00000006,
+    // 05
+    // 06
     TILESET                 = 0x00000007,
     PARTICLES               = 0x00000008,
     NPCS                    = 0x00000009,
-    x000000A                = 0x0000000A,
+    // 0a
     FOLLOWERS               = 0x0000000B,
-    x000000C                = 0x0000000C,
+    // 0c
     MISC_GRAPHICS           = 0x0000000D,
-    x000000E                = 0x0000000E,
+    // 0e
     UI_GRAPHICS             = 0x0000000F,
-    x0000010                = 0x00000010,
+    // 10
     GLOBAL_GRAPHICS         = 0x00000011,
     AUDIO_SE                = 0x00000012,
-    x0000013                = 0x00000013,
+    // 13
     AUDIO_BGM               = 0x00000014,
     MAP_BATCH               = 0x00000015,
     MAP_DYNAMIC             = 0x00000016,
@@ -421,12 +421,13 @@ instantiate(Controller);
 // this depends on activemap
 instantiate(Camera);
 
-data_import_vra(get_open_filename("*.vrax", "mesh archive"));
-
 all_bgm = ds_list_create();
 all_se = ds_list_create();
+all_meshes = ds_list_create();
 
 all_animations = ds_list_create();
+
+//data_import_vra(get_open_filename("*.vrax", "mesh archive"));
 
 FMODGMS_Sys_Create();
 FMODGMS_Sys_Initialize(32);

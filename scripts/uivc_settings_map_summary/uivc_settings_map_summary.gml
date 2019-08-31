@@ -1,4 +1,4 @@
-/// @description void uivc_settings_map_summary(UIThing);
 /// @param UIThing
 
-ActiveMap.summary=argument0.value;
+var thing = argument0;
+ActiveMap.summary = thing.value;

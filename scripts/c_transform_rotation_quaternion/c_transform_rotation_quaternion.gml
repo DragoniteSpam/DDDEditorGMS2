@@ -1,4 +1,3 @@
-/// @description c_transform_rotation_quaternion(x, y, z, w)
 /// @param x
 /// @param y
 /// @param z

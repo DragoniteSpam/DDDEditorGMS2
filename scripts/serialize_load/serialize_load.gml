@@ -88,11 +88,13 @@ if (buffer < 0) {
         repeat(things) {
             var datatype = buffer_read(buffer, buffer_datatype);
             switch (datatype) {
-                // game stuff
+                // assets
                 case SerializeThings.AUTOTILES: serialize_load_autotiles(buffer, version); break;
                 case SerializeThings.TILESET: serialize_load_tilesets(buffer, version); break;
                 case SerializeThings.AUDIO_BGM: serialize_load_audio_bgm(buffer, version); break;
                 case SerializeThings.AUDIO_SE: serialize_load_audio_se(buffer, version); break;
+                case SerializeThings.MESHES: serialize_load_meshes(buffer, version); break;
+                // game stuff
                 case SerializeThings.EVENTS: serialize_load_events(buffer, version); break;
                 case SerializeThings.MISC_MAP_META: serialize_load_global_meta(buffer, version); break;
                 case SerializeThings.DATADATA: serialize_load_datadata(buffer, version); break;

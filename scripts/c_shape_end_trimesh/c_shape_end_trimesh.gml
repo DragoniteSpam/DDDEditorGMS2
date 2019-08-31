@@ -1,4 +1,3 @@
-/// @description c_shape_end_trimesh(shape)
 /// @param shape
 /*
 Call this when done adding triangles to a trimesh. This function adds the trimesh to the shape.

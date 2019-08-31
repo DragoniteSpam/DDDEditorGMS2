@@ -1,4 +1,3 @@
-/// @description c_overlap_object(object1, object2)
 /// @param object1
 /// @param object2
 /*

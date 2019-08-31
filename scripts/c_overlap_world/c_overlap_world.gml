@@ -1,4 +1,3 @@
-/// @description c_overlap_world(object)
 /// @param object
 /*
 Checks if the object overlaps any other object in the world. The object does not need to be in the world.

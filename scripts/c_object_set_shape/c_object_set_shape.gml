@@ -1,4 +1,3 @@
-/// @description c_object_set_shape(object, shape)
 /// @param object
 /// @param shape
 /*

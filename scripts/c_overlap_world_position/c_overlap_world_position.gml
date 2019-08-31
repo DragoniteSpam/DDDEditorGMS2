@@ -1,4 +1,3 @@
-/// @description c_overlap_world_position(object, x, y, z)
 /// @param object
 /// @param x
 /// @param y

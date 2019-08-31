@@ -1,4 +1,3 @@
-/// @description c_world_destroy_object(object)
 /// @param object
 /*
 Removes the object from the world and then destroys it, freeing the memory used.

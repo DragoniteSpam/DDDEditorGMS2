@@ -1,4 +1,3 @@
-/// @description c_hit_x()
 /*
 Returns the x position of the last hit.
 */

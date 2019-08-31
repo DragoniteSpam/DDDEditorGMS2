@@ -1,4 +1,3 @@
-/// @description c_transform_rotation_axis(xa, ya, za, angle)
 /// @param xa
 /// @param ya
 /// @param za

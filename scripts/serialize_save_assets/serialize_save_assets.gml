@@ -4,7 +4,7 @@ if (string_length(fn) > 0) {
     serialize_backup(PATH_BACKUP_DATA, Stuff.save_name_data, EXPORT_EXTENSION_ASSETS, fn);
     game_auto_title();
     
-    var buffer = buffer_create(2, buffer_grow, 1);
+    var buffer = buffer_create(65536, buffer_grow, 1);
     
     /*
      * Header
@@ -25,6 +25,7 @@ if (string_length(fn) > 0) {
     serialize_save_tilesets(buffer);
     serialize_save_bgm(buffer);
     serialize_save_se(buffer);
+    serialize_save_meshes(buffer);
     
     buffer_write(buffer, buffer_datatype, SerializeThings.END_OF_FILE);
     

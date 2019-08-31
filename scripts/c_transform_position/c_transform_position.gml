@@ -1,4 +1,3 @@
-/// @description c_transform_position(x, y, z)
 /// @param x
 /// @param y
 /// @param z

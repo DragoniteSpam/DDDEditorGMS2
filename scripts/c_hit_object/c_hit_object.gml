@@ -1,4 +1,3 @@
-/// @description c_hit_object(n)
 /// @param n
 /*
 Returns the id's of the collision objects that were hit.

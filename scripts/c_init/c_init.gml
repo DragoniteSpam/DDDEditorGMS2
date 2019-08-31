@@ -1,4 +1,3 @@
-/// @description c_init()
 /*
 Call this script once to initialize the collision system before using any of the other scripts. Game start is a good place to do this.
 */

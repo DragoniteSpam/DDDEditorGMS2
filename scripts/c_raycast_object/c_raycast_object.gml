@@ -1,4 +1,3 @@
-/// @description c_raycast_object(object, xfrom, yfrom, zfrom, xto, yto, zto, mask)
 /// @param object
 /// @param xfrom
 /// @param yfrom
