@@ -427,8 +427,6 @@ all_meshes = ds_list_create();
 
 all_animations = ds_list_create();
 
-//data_import_vra(get_open_filename("*.vrax", "mesh archive"));
-
 FMODGMS_Sys_Create();
 FMODGMS_Sys_Initialize(32);
 
