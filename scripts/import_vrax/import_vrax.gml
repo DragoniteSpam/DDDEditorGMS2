@@ -14,7 +14,7 @@ var n = buffer_read(buffer, T);
 
 repeat (n) {
     var mesh_name = buffer_read_string(buffer);
-    var mesh = data_load_vra_next(buffer, grid_size, mesh_name);
+    var mesh = import_vrax_next(buffer, grid_size, mesh_name);
     ds_list_add(Stuff.all_meshes, mesh);
 }
 

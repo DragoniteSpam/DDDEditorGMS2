@@ -1,8 +1,8 @@
 {
-    "id": "9026b3d4-6e7b-477f-a593-dcc517725bf2",
+    "id": "025e7494-68e7-4a58-a082-1d288d3ba4dc",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "data_import_vra",
+    "name": "import_vrax_next",
     "IsCompatibility": false,
     "IsDnD": false
 }

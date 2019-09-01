@@ -1,4 +1,6 @@
 /// @param fname
+// this is for mesh autotiles specifically - more general ones can be
+// found in import_d3d
 // I ripped the guts out of a compatibility script becuase I didn't feel like writing it on my own
 // it doesn't freeze the vertex buffer - that's on you
 
