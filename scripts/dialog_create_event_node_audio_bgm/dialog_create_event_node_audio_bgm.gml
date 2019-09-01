@@ -22,7 +22,7 @@ var yy = 64;
 
 var el_list = create_list(16, yy, "All BGM", "<no bgm>", ew, eh, n_slots, null, false, dg);
 for (var i = 0; i < ds_list_size(Stuff.all_bgm); i++) {
-    create_list_entries(el_list, Stuff.all_bgm[| i], c_black);
+    create_list_entries(el_list, Stuff.all_bgm[| i]);
 }
 el_list.entries_are = ListEntries.INSTANCES;
 el_list.node = argument1;

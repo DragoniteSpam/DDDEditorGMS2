@@ -52,7 +52,7 @@ for (var i = 0; i < ds_list_size(dynamic.contents); i++) {
                     // element
                     ui_list_clear(thingy);
                     for (var k = 0; k < ds_list_size(data.instances); k++) {
-                        create_list_entries(thingy, data.instances[| k], c_black);
+                        create_list_entries(thingy, data.instances[| k]);
                     }
                 }
             } // else it's a button

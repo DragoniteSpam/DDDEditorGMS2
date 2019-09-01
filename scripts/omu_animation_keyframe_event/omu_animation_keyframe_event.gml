@@ -44,7 +44,7 @@ if (keyframe) {
     var el_audio = create_list(16, yy, "Sound Effect", "<no sound effects>", ew, eh, 8, uivc_animation_keyframe_audio, false, dg);
     el_audio.entries_are = ListEntries.GUIDS;
     for (var i = 0; i < ds_list_size(Stuff.all_se); i++) {
-        create_list_entries(el_audio, Stuff.all_se[| i].GUID, c_black);
+        create_list_entries(el_audio, Stuff.all_se[| i].GUID);
         if (keyframe.audio == Stuff.all_se[| i].GUID) {
             ds_map_add(el_audio.selected_entries, i, true);
         }

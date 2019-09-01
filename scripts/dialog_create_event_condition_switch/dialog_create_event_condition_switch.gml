@@ -30,7 +30,7 @@ var el_list = create_list(16, yy, "Switches", "<no switches>", ew, eh, 14, uivc_
 for (var i = 0; i < ds_list_size(Stuff.switches); i++) {
     // @todo gml update
     var data = Stuff.switches[| i];
-    create_list_entries(el_list, data[0], c_black);
+    create_list_entries(el_list, data[0]);
 }
 
 if (list_index[| index] > -1) {

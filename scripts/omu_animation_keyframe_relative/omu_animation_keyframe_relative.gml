@@ -30,7 +30,7 @@ if (keyframe) {
     
     var el_list = create_list(16, yy, "Other Layer", "No Layers", ew, eh, 12, uivc_animation_keyframe_relative, false, dg);
     for (var i = 0; i < ds_list_size(thing.root.root.active_animation.layers); i++) {
-        create_list_entries(el_list, thing.root.root.active_animation.layers[| i].name, c_black);
+        create_list_entries(el_list, thing.root.root.active_animation.layers[| i].name);
     }
     ds_map_add(el_list.selected_entries, keyframe.relative, true);
     // i should probably be doing this in more places so that i can find stuff easily

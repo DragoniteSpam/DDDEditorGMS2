@@ -1,4 +1,4 @@
-if (get_release_escape()) {
+if (get_press_escape()) {
     view_set_visible(view_3d_preview, false);
     return 0;
 }

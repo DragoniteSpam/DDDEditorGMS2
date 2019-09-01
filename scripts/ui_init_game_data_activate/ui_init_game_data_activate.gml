@@ -89,11 +89,11 @@ if (data) {
                         var element = create_list(spacing, yy, property.name, "<no options: "+datadata.name+">", ew, eh, 8, uivc_data_set_property_list, false, noone);
                         if (datadata.is_enum) {
                             for (var j = 0; j < ds_list_size(datadata.properties); j++) {
-                                create_list_entries(element, datadata.properties[| j], c_black);
+                                create_list_entries(element, datadata.properties[| j]);
                             }
                         } else {
                             for (var j = 0; j < ds_list_size(datadata.instances); j++) {
-                                create_list_entries(element, datadata.instances[| j], c_black);
+                                create_list_entries(element, datadata.instances[| j]);
                             }
                         }
                         element.key = i;
@@ -152,7 +152,7 @@ if (data) {
                         var element = create_list(spacing, yy, property.name, "<no Animations>", ew, eh, 8, uivc_data_set_property_list, false, noone);
                         element.key = i;
                         for (var j = 0; j < ds_list_size(Stuff.all_animations); j++) {
-                            create_list_entries(element, Stuff.all_animations[| j], c_black);
+                            create_list_entries(element, Stuff.all_animations[| j]);
                         }
                         element.entries_are = ListEntries.INSTANCES;
                         var hh = ui_get_list_height(element);

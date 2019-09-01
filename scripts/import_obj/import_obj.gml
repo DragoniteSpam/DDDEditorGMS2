@@ -17,6 +17,7 @@ if (file_exists(fn)) {
     if (file_exists(mfn)) {
         var matfile = file_text_open_read(mfn);
         var mtl_name = "";
+        
         while (!file_text_eof(matfile)) {
             var line = file_text_read_string(matfile);
             file_text_readln(matfile);
@@ -315,7 +316,6 @@ if (file_exists(fn)) {
         
         vertex_freeze(vbuffer);
         vertex_freeze(wbuffer);
-        
     }
     
     ds_list_destroy(temp_vertices);

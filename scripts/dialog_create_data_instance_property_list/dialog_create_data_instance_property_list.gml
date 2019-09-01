@@ -67,9 +67,9 @@ dg.el_list_main = el_list;
 
 for (var i = 0; i < ds_list_size(plist); i++) {
     if (el_list.entries_are == ListEntries.STRINGS) {
-        create_list_entries(el_list, string(plist[| i]), c_black);
+        create_list_entries(el_list, string(plist[| i]));
     } else {
-        create_list_entries(el_list, plist[| i], c_black);
+        create_list_entries(el_list, plist[| i]);
     }
 }
 
@@ -117,7 +117,7 @@ switch (property.type) {
         var base_type = guid_get(property.type_guid);
         var base_list = (property.type == DataTypes.ENUM) ? base_type.properties : base_type.instances;
         for (var i = 0; i < ds_list_size(base_list); i++) {
-            create_list_entries(el_value, base_list[| i].GUID, c_black);
+            create_list_entries(el_value, base_list[| i].GUID);
         }
         
         dg.el_list_main = el_list;
@@ -130,7 +130,7 @@ switch (property.type) {
         el_value.entries_are = ListEntries.GUIDS;
         
         for (var i = 0; i < ds_list_size(Stuff.all_bgm); i++) {
-            create_list_entries(el_value, Stuff.all_bgm[| i].GUID, c_black);
+            create_list_entries(el_value, Stuff.all_bgm[| i].GUID);
         }
         
         dg.el_list_main = el_list;
@@ -142,7 +142,7 @@ switch (property.type) {
         el_value.entries_are = ListEntries.GUIDS;
         
         for (var i = 0; i < ds_list_size(Stuff.all_se); i++) {
-            create_list_entries(el_value, Stuff.all_se[| i].GUID, c_black);
+            create_list_entries(el_value, Stuff.all_se[| i].GUID);
         }
         
         dg.el_list_main = el_list;

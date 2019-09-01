@@ -23,7 +23,7 @@ var n_switches = ds_list_size(Stuff.switches);
 var el_list = create_list(32, yy, "Global Switches (" + string(n_switches) + ")", "<no swiches>", ew, eh, 20, uivc_list_selection_global_switches, false, dg);
 for (var i = 0; i < n_switches; i++) {
     var sw_data = Stuff.switches[| i];
-    create_list_entries(el_list, sw_data[0] + ": " + Stuff.tf[sw_data[1]], c_black);
+    create_list_entries(el_list, sw_data[0] + ": " + Stuff.tf[sw_data[1]]);
 }
 el_list.numbered = true;
 dg.el_list = el_list;
