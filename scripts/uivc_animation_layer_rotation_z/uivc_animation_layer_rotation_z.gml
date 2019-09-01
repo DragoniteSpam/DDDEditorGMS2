@@ -2,6 +2,4 @@
 
 var input = argument0;
 
-if (script_execute(input.validation, input.value)) {
-    input.root.timeline_layer.zrot = real(input.value);
-}
+input.root.timeline_layer.zrot = real(input.value);

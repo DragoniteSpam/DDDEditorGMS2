@@ -1,4 +1,5 @@
 /// @param UIThing
 
-Stuff.setting_backups = clamp(script_execute(argument0.value_conversion, argument0.value),
-    argument0.value_lower, argument0.value_upper);
+var thing = argument0;
+
+Stuff.setting_backups = clamp(real(thing.value), thing.value_lower, thing.value_upper);
