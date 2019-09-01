@@ -6783,6 +6783,14 @@
             }
         },
         {
+            "Key": "9cac7357-a445-4351-8332-eae174fe50e5",
+            "Value": {
+                "id": "f40225e5-09d8-43d1-b7b8-6119b610ae3f",
+                "resourcePath": "scripts\\split\\split.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "9cbae765-a3c4-4280-a0a2-64e983d507e3",
             "Value": {
                 "id": "13c97af1-90e3-4545-8928-cbff5cc6b062",
@@ -11132,6 +11140,7 @@
         "a5fe27fa-0f6f-42ed-b743-6ab1a0d8ce6e",
         "978aa21e-f7d4-4382-921a-0918b53c3121",
         "bb2239c9-ac82-4164-af82-f9eb0adadb67",
+        "9cac7357-a445-4351-8332-eae174fe50e5",
         "20d27ffc-0a4a-4c0a-a4f4-7e894afbfa95",
         "620d5d86-27a6-45ca-ae43-e24d460a2333",
         "72fa42c5-ca47-4b5d-9fae-f4143f2d9f1a",

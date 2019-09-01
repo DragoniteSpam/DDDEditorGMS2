@@ -1,7 +1,6 @@
 /// @param filename
 
 var fn = argument0;
-var mesh = instance_create_depth(0, 0, 0, DataMesh);
 
 var f = file_text_open_read(fn);
 file_text_readln(f);
@@ -141,15 +140,12 @@ while (!file_text_eof(f)){
     xtex = xtex * TILESET_TEXTURE_WIDTH;
     ytex = ytex * TILESET_TEXTURE_HEIGHT;
     
-    // bounds
     minx = min(minx, xx[vc]);
     miny = min(miny, yy[vc]);
     minz = min(minz, zz[vc]);
     maxx = max(maxx, xx[vc]);
     maxy = max(maxy, yy[vc]);
     maxz = max(maxz, zz[vc]);
-    
-    debug([xx[vc], yy[vc], zz[vc]])
     
     vertex_point_complete(vbuffer, xx[vc], yy[vc], zz[vc], nx, ny, nz, xtex, ytex, color, alpha);
     
@@ -171,6 +167,9 @@ while (!file_text_eof(f)){
 
 vertex_end(vbuffer);
 vertex_end(wbuffer);
+c_shape_end_trimesh(cshape);
+
+var mesh = instance_create_depth(0, 0, 0, DataMesh);
 
 mesh.xmin = round(minx / IMPORT_GRID_SIZE);
 mesh.ymin = round(miny / IMPORT_GRID_SIZE);
@@ -179,7 +178,7 @@ mesh.xmax = round(maxx / IMPORT_GRID_SIZE);
 mesh.ymax = round(maxy / IMPORT_GRID_SIZE);
 mesh.zmax = round(maxz / IMPORT_GRID_SIZE);
 
-var base_name = string_replace_all(filename_name(fn), filename_ext(fn), "");
+var base_name = filename_change_ext(filename_name(fn), "");
 mesh.name = base_name;
 var internal_name = string_lettersdigits(base_name);
 while (internal_name_get(internal_name)) {
