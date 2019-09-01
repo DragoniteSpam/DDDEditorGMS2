@@ -25,9 +25,6 @@ for (var i = 0; i < n_tilesets; i++) {
     var ts_name = buffer_read(buffer, buffer_string);
     
     var sprite = buffer_read_sprite(buffer);
-    // comment these out if you dont want to replace the tileset - for now
-    //sprite_delete(sprite);
-    //sprite = sprite_add(get_open_filename("*.png|*.png", ""), 0, false, false, 0, 0);
     
     // all of the other things
     var n_autotiles = buffer_read(buffer, buffer_u8);

@@ -22,3 +22,5 @@ cshape = noone;
 var ui_list = Camera.ui.element_mesh_list;
 create_list_entries(ui_list, id, c_black);
 ui_list.text = "Available meshes: " + string(ds_list_size(ui_list.entries));
+
+ds_list_add(Stuff.all_meshes, id);

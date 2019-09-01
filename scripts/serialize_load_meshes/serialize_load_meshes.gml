@@ -70,6 +70,4 @@ repeat (n_meshes) {
     c_shape_end_trimesh(mesh.cshape);
     vertex_end(mesh.wbuffer);
     buffer_seek(mesh.buffer, buffer_seek_start, 0);
-    
-    ds_list_add(Stuff.all_meshes, mesh);
 }

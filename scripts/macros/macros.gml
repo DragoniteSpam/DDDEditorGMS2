@@ -20,6 +20,7 @@
 #macro EXPORT_EXTENSION_ASSETS ".ddda"
 #macro HH 900
 #macro HW 520
+#macro IMPORT_GRID_SIZE 32          // for setting the bounds of imported meshes, and possibly other things
 #macro INTERNAL_NAME_LENGTH 20
 #macro LIMIT_TILESET 255
 #macro MAP_X_LIMIT 1024
