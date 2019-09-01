@@ -506,8 +506,6 @@ setting_code_extension = ini_read_real("config", "code-ext", 0);            // 0
 setting_code_extension_map = [".txt", ".lua"];
 ini_close();
 
-//ds_stuff_registry();
-
 // the autosave/load is nice, BUT it will make the game break if there's an error
 // in either of them. so either do a LOT of validation or have a way to clear the
 // autosaves if problems happen.

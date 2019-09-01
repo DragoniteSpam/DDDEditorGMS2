@@ -645,6 +645,12 @@ with (instantiate(UIMain)) {
     
     yy = yy + element.height + spacing;
     
+    element = create_button(col2_x, yy, "Delete", col_width, element_height, fa_center, omu_mesh_remove, t_p_mesh_editor);
+    element.color = c_red;
+    ds_list_add(t_p_mesh_editor.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
     #endregion
     
     #region tab: autotiles
