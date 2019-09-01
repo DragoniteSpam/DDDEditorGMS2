@@ -4,7 +4,6 @@ var fn = argument0;
 var mfn = filename_change_ext(fn, ".mtl");
 
 if (file_exists(fn)) {
-    var mtl_name = "";
     var active_mtl = "None";
     var mtl_alpha = ds_map_create();
     var mtl_color_r = ds_map_create();
@@ -17,37 +16,34 @@ if (file_exists(fn)) {
     
     if (file_exists(mfn)) {
         var matfile = file_text_open_read(mfn);
+        var mtl_name = "";
         while (!file_text_eof(matfile)) {
             var line = file_text_read_string(matfile);
             file_text_readln(matfile);
             var spl = split(line, " ");
             switch (ds_queue_dequeue(spl)) {
                 case "newmtl":
-                    // Set the material name
                     mtl_name = ds_queue_dequeue(spl);
                     break;
-                case "Kd":
-                    // Diffuse color (the color we're concerned with)
-                    ds_map_set(mtl_color_r, mtl_name, real(ds_queue_dequeue(spl)) * 255);
-                    ds_map_set(mtl_color_g, mtl_name, real(ds_queue_dequeue(spl)) * 255);
-                    ds_map_set(mtl_color_b, mtl_name, real(ds_queue_dequeue(spl)) * 255);
+                case "Kd":  // Diffuse color (the color we're concerned with)
+                    mtl_color_r[? mtl_name] = real(ds_queue_dequeue(spl)) * 255;
+                    mtl_color_g[? mtl_name] = real(ds_queue_dequeue(spl)) * 255;
+                    mtl_color_b[? mtl_name] = real(ds_queue_dequeue(spl)) * 255;
                     break;
-                case "d":
-                    // "dissolved" (alpha)
-                    ds_map_set(mtl_alpha, mtl_name, real(ds_queue_dequeue(spl)));
+                case "d":   // "dissolved" (alpha)
+                    mtl_alpha[? mtl_name] = real(ds_queue_dequeue(spl));
                     break;
-                case "Tr":
-                    // "transparent" (alpha) - (1 - d)
-                    ds_map_set(mtl_alpha, mtl_name, 1 - real(ds_queue_dequeue(spl)));
+                case "Tr":  // "transparent" (1 - alpha)
+                    mtl_alpha[? mtl_name] = 1 - real(ds_queue_dequeue(spl));
                     break;
-                default:
-                    // There are way more attributes available than I'm going to use later - maybe
+                default:    // There are way more attributes available than I'm going to use later - maybe
                     break;
             }
             ds_queue_destroy(spl);
         }
         file_text_close(matfile);
     }
+    
     var f = file_text_open_read(fn);
     var illegal = false;
     var line_number = 0;
@@ -79,11 +75,8 @@ if (file_exists(fn)) {
     while (!file_text_eof(f) && !illegal) {
         line_number++;
         var str = file_text_read_string(f);
-        file_text_readln(f);
-        if (string_length(string_lettersdigits(str)) == 0 || string_char_at(str, 1) = "#") {
-            continue;
-        }
         var q = split(str, " ", false, false);
+        file_text_readln(f);
         
         switch (ds_queue_dequeue(q)) {
             case "v":
@@ -137,10 +130,10 @@ if (file_exists(fn)) {
                                 ny[i] = 1;
                                 xtex[i] = 0;
                                 ytex[i] = 0;
-                                r[i] = ds_map_exists(mtl_color_r, active_mtl) ? ds_map_find_value(mtl_color_r, active_mtl) : 255;
-                                g[i] = ds_map_exists(mtl_color_g, active_mtl) ? ds_map_find_value(mtl_color_g, active_mtl) : 255;
-                                b[i] = ds_map_exists(mtl_color_b, active_mtl) ? ds_map_find_value(mtl_color_b, active_mtl) : 255;
-                                a[i] = ds_map_exists(mtl_alpha, active_mtl) ? ds_map_find_value(mtl_alpha, active_mtl) : 1;
+                                r[i] = ds_map_exists(mtl_color_r, active_mtl) ? mtl_color_r[? active_mtl] : 255;
+                                g[i] = ds_map_exists(mtl_color_g, active_mtl) ? mtl_color_g[? active_mtl] : 255;
+                                b[i] = ds_map_exists(mtl_color_b, active_mtl) ? mtl_color_b[? active_mtl] : 255;
+                                a[i] = ds_map_exists(mtl_alpha, active_mtl) ? mtl_alpha[? active_mtl] : 1;
                                 break;
                             case 2:
                                 var vert = real(ds_queue_dequeue(vertex_q)) - 1;
@@ -153,10 +146,10 @@ if (file_exists(fn)) {
                                 nx[i] = 0;
                                 ny[i] = 0;
                                 ny[i] = 1;
-                                r[i] = ds_map_exists(mtl_color_r, active_mtl) ? ds_map_find_value(mtl_color_r, active_mtl) : 255;
-                                g[i] = ds_map_exists(mtl_color_g, active_mtl) ? ds_map_find_value(mtl_color_g, active_mtl) : 255;
-                                b[i] = ds_map_exists(mtl_color_b, active_mtl) ? ds_map_find_value(mtl_color_b, active_mtl) : 255;
-                                a[i] = ds_map_exists(mtl_alpha, active_mtl) ? ds_map_find_value(mtl_alpha, active_mtl) : 1;
+                                r[i] = ds_map_exists(mtl_color_r, active_mtl) ? mtl_color_r[? active_mtl] : 255;
+                                g[i] = ds_map_exists(mtl_color_g, active_mtl) ? mtl_color_g[? active_mtl] : 255;
+                                b[i] = ds_map_exists(mtl_color_b, active_mtl) ? mtl_color_b[? active_mtl] : 255;
+                                a[i] = ds_map_exists(mtl_alpha, active_mtl) ? mtl_alpha[? active_mtl] : 1;
                                 break;
                             case 3:
                                 var vert = real(ds_queue_dequeue(vertex_q)) - 1;
@@ -170,18 +163,18 @@ if (file_exists(fn)) {
                                 nz[i] = v_nz[| normal];
                                 xtex[i] = v_xtex[| tex];
                                 ytex[i] = v_ytex[| tex];
-                                r[i] = ds_map_exists(mtl_color_r, active_mtl) ? ds_map_find_value(mtl_color_r, active_mtl) : 255;
-                                g[i] = ds_map_exists(mtl_color_g, active_mtl) ? ds_map_find_value(mtl_color_g, active_mtl) : 255;
-                                b[i] = ds_map_exists(mtl_color_b, active_mtl) ? ds_map_find_value(mtl_color_b, active_mtl) : 255;
-                                a[i] = ds_map_exists(mtl_alpha, active_mtl) ? ds_map_find_value(mtl_alpha, active_mtl) : 1;
+                                r[i] = ds_map_exists(mtl_color_r, active_mtl) ? mtl_color_r[? active_mtl] : 255;
+                                g[i] = ds_map_exists(mtl_color_g, active_mtl) ? mtl_color_g[? active_mtl] : 255;
+                                b[i] = ds_map_exists(mtl_color_b, active_mtl) ? mtl_color_b[? active_mtl] : 255;
+                                a[i] = ds_map_exists(mtl_alpha, active_mtl) ? mtl_alpha[? active_mtl] : 1;
                                 break;
                         }
                     }
                     // Only the first triangle of a face will be added because i can't be bothered with complex faces
                     for (var i = 1; i < array_length_1d(xx) - 1; i++){
-                        ds_list_add(temp_vertices, [xx[0], yy[0], zz[0], nx[0], ny[0], nz[0], xtex[0], ytex[0], r[0], g[0], b[0], a[0]]);
-                        ds_list_add(temp_vertices, [xx[i], yy[i], zz[i], nx[i], ny[i], nz[i], xtex[i], ytex[i], r[i], g[i], b[i], a[i]]);
-                        ds_list_add(temp_vertices, [xx[i + 1], yy[i + 1], zz[i + 1], nx[i + 1], ny[i + 1], nz[i + 1], xtex[i + 1], ytex[i + 1], r[i + 1], g[i + 1], b[i + 1], a[i + 1]]);
+                        ds_list_add(temp_vertices, [xx[0], yy[0], zz[0], nx[0], ny[0], nz[0], xtex[0], ytex[0], (b[0] << 16) | (g[0] << 8) | r[0], a[0]]);
+                        ds_list_add(temp_vertices, [xx[i], yy[i], zz[i], nx[i], ny[i], nz[i], xtex[i], ytex[i], (b[i] << 16) | (g[i] << 8) | r[i], a[i]]);
+                        ds_list_add(temp_vertices, [xx[i + 1], yy[i + 1], zz[i + 1], nx[i + 1], ny[i + 1], nz[i + 1], xtex[i + 1], ytex[i + 1], (b[i + 1] << 16) | (g[i + i] << 8) | r[i + 1], a[i + 1]]);
                     }
                     ds_queue_destroy(vertex_q);
                 } else {
@@ -192,13 +185,15 @@ if (file_exists(fn)) {
                 break;
             case "s":   // surface something
                 break;
-            case "mtllib":
+            case "mtllib":  // use a different material file - probably won't be supporting
                 break;
             case "g":   // group
                 break;
             case "o":   // object name
                 break;
             case "l":   // line
+                break;
+            case "#":   // comment
                 break;
             default:
                 // @todo gml update try-catch
