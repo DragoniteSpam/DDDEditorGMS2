@@ -1,0 +1,4 @@
+*.dddd filter=lfs diff=lfs merge=lfs -text
+*.dddm filter=lfs diff=lfs merge=lfs -text
+*.ddda filter=lfs diff=lfs merge=lfs -text
+*.vrax filter=lfs diff=lfs merge=lfs -text

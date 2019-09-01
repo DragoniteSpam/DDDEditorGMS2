@@ -17,3 +17,8 @@ cshape = noone;
 /* s */ passage = TILE_PASSABLE;
 /* s */ flags = 0;          // overrides Data.flags
 /* s */ tags = 0;
+
+// we want to be in the list automatically
+var ui_list = Camera.ui.element_mesh_list;
+create_list_entries(ui_list, id, c_black);
+ui_list.text = "Available meshes: " + string(ds_list_size(ui_list.entries));

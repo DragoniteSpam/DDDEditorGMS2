@@ -553,6 +553,7 @@ with (instantiate(UIMain)) {
     // this is an object variable
     element_mesh_list = create_list(legal_x + spacing, yy, "Available meshes: ", "<no meshes>", col_width, element_height, 28, uivc_list_selection_mesh, false, t_p_mesh_editor);
     ds_map_add(element_mesh_list.selected_entries, 0, true);
+    element_mesh_list.entries_are = ListEntries.INSTANCES;
     // NOT POPULATED YET. the meshes haven't been loaded in yet. it gets populated when that happens.
     ds_list_add(t_p_mesh_editor.contents, element_mesh_list);
     
@@ -634,11 +635,11 @@ with (instantiate(UIMain)) {
     
     yy = yy + element.height + spacing;
     
-    element = create_text(bounds_x, yy, "N/A", col_width/2, element_height, fa_left, col_width/2, t_p_mesh_editor);
+    element = create_text(bounds_x, yy, "N/A", col_width / 2, element_height, fa_left, col_width / 2, t_p_mesh_editor);
     //element.render = ui_render_text_mesh_zmin;
     ds_list_add(t_p_mesh_editor.contents, element);
     
-    element = create_text(bounds_x_2, yy, "N/A", col_width/2, element_height, fa_left, col_width/2, t_p_mesh_editor);
+    element = create_text(bounds_x_2, yy, "N/A", col_width / 2, element_height, fa_left, col_width / 2, t_p_mesh_editor);
     //element.render = ui_render_text_mesh_zmax;
     ds_list_add(t_p_mesh_editor.contents, element);
     

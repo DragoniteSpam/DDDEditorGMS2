@@ -40,6 +40,9 @@ if (buffer < 0) {
                 while (!ds_list_empty(Stuff.all_se)) {
                     audio_remove_bgm(ds_list_top(Stuff.all_se));
                 }
+                instance_activate_object(DataMesh);
+                instance_destroy(DataMesh);
+                ds_list_clear(Camera.ui.element_mesh_list.entries);
                 break;
             case SERIALIZE_DATA:
                 // this may cause things to break, but it shouldn't;
@@ -52,11 +55,6 @@ if (buffer < 0) {
                 ds_list_clear(Stuff.all_events);
                 ds_list_clear(Stuff.all_event_custom);
                 ds_list_clear(Stuff.all_event_templates);
-                // these SHOULD already be cleared when you delete the data instances,
-                // but since there may be some data things that are not deleteable you can't
-                // clear the list anyway otherwise you lose them
-                //ds_map_clear(Stuff.all_guids);
-                //ds_map_clear(Stuff.all_internal_names);
                 ds_list_clear(Stuff.all_data);
                 // these contain arrays, which are garbage collected
                 ds_list_clear(Stuff.variables);

@@ -1,5 +1,4 @@
 /// @param UIThing
 
-var data = noone;
-not_yet_implemented();
+var data = Stuff.all_meshes[| Camera.selection_fill_mesh];
 data.passage = 0;
