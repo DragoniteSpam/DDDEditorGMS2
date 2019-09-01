@@ -759,6 +759,14 @@
             }
         },
         {
+            "Key": "0f57fa50-b4b4-4fd3-832c-6c615f96fd98",
+            "Value": {
+                "id": "96bd480f-5edd-4d16-b9f9-b581b460a3de",
+                "resourcePath": "scripts\\ui_render_text_mesh_xmin\\ui_render_text_mesh_xmin.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "0f67b905-b2ee-49eb-ba96-763eb27af16c",
             "Value": {
                 "id": "7a2d810d-30eb-4d24-8d41-b7480665dc11",
@@ -1967,6 +1975,14 @@
             }
         },
         {
+            "Key": "2e679221-b264-4b61-bd41-3284bab6feb3",
+            "Value": {
+                "id": "5575a84c-3fc2-4078-a252-c1b98109577a",
+                "resourcePath": "views\\2e679221-b264-4b61-bd41-3284bab6feb3.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "2e726a9b-e54f-4ded-8163-0582555f05ed",
             "Value": {
                 "id": "1baff2f0-63c8-4045-abc1-8524bc008cc4",
@@ -2879,6 +2895,14 @@
             }
         },
         {
+            "Key": "44c7ec21-e0e4-4100-8c97-3c2416aba963",
+            "Value": {
+                "id": "705308bf-b6aa-483d-8cf8-9a747ee2ab27",
+                "resourcePath": "scripts\\ui_render_text_mesh_zmax\\ui_render_text_mesh_zmax.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "44d71946-80fa-4528-99d6-31c4681a5cf1",
             "Value": {
                 "id": "c10ba354-1711-4d44-8b15-840019561699",
@@ -3283,6 +3307,14 @@
             "Value": {
                 "id": "69c9761e-c8a3-4d67-ba28-7a29e0e5f544",
                 "resourcePath": "scripts\\uivc_entity_event_enable_switch_global\\uivc_entity_event_enable_switch_global.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "4e080d15-f133-447d-abe5-ab7f29a05427",
+            "Value": {
+                "id": "55de14fb-57e2-4b34-a563-1c058a0dfcd1",
+                "resourcePath": "scripts\\ui_render_text_mesh_xmax\\ui_render_text_mesh_xmax.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -3899,6 +3931,14 @@
             "Value": {
                 "id": "ecc54413-0565-4fed-a5bb-5a1d3f4f3e63",
                 "resourcePath": "scripts\\uivc_select_tile\\uivc_select_tile.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "5d169634-0236-40d0-b5f8-e3e97e6aca0b",
+            "Value": {
+                "id": "6a6edeb1-1cc8-4660-88bc-a8142bf8de54",
+                "resourcePath": "scripts\\ui_render_text_mesh_ymin\\ui_render_text_mesh_ymin.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -5004,6 +5044,14 @@
                 "id": "8c8d9736-ac33-412d-a52e-ce424e22752d",
                 "resourcePath": "objects\\UIInput\\UIInput.yy",
                 "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "7590d481-d7ae-4951-a29e-7616fde64f5a",
+            "Value": {
+                "id": "85d9acd6-1ce6-4d48-b768-ade3e094d7d5",
+                "resourcePath": "scripts\\ui_render_text_mesh_ymax\\ui_render_text_mesh_ymax.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -8067,6 +8115,14 @@
             "Value": {
                 "id": "c0db7611-a058-48ca-a77f-372f0ebb7754",
                 "resourcePath": "scripts\\omu_event_attain_variable_data\\omu_event_attain_variable_data.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "be4e1b2c-5610-43d0-a28b-5584ef7124c7",
+            "Value": {
+                "id": "9abd0dbb-79cb-4624-b17c-24f00e75a797",
+                "resourcePath": "scripts\\ui_render_text_mesh_zmin\\ui_render_text_mesh_zmin.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -11784,6 +11840,12 @@
         "e9bafafb-ea09-4d2a-95c3-60428a6c1248",
         "257305ac-2e07-4f5a-9891-06b3db9d576c",
         "4229cf21-1502-4221-b23b-1111acb38d06",
+        "44c7ec21-e0e4-4100-8c97-3c2416aba963",
+        "be4e1b2c-5610-43d0-a28b-5584ef7124c7",
+        "7590d481-d7ae-4951-a29e-7616fde64f5a",
+        "5d169634-0236-40d0-b5f8-e3e97e6aca0b",
+        "4e080d15-f133-447d-abe5-ab7f29a05427",
+        "0f57fa50-b4b4-4fd3-832c-6c615f96fd98",
         "c37ecf28-8b0d-4b55-ad5e-e7c3ef5e5e0c",
         "7be262ef-2d7a-4cc8-85bb-446caf5592c9",
         "008f9998-5b4d-44c2-b795-eedcdadc9318",

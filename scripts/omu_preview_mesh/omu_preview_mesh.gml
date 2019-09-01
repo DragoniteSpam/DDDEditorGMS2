@@ -2,14 +2,11 @@
 
 var button = argument0;
 
-not_yet_implemented();
-var map = noone;
-// this needs to look for the selected mesh in the Mesh Editor tab of the general UI
+var data = Stuff.all_meshes[| Camera.selection_fill_mesh];
 
-if (ds_map_size(map) == 1) {
-    // this only works if exactly one thing is selected
+if (data) {
     view_set_visible(view_3d_preview, true);
-    Camera.mesh_preview = noone;
+    Camera.mesh_preview = data;
     Camera.mesh_x = 0;
     Camera.mesh_y = 0;
     Camera.mesh_z = 0;

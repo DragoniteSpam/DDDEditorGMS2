@@ -616,31 +616,46 @@ with (instantiate(UIMain)) {
     yy = yy + element.height + spacing;
     
     element = create_text(bounds_x, yy, "N/A", col_width / 2, element_height, fa_left, col_width / 2, t_p_mesh_editor);
-    //element.render = ui_render_text_mesh_xmin;
+    element.render = ui_render_text_mesh_xmin;
     ds_list_add(t_p_mesh_editor.contents, element);
     
     element = create_text(bounds_x_2, yy, "N/A", col_width / 2, element_height, fa_left, col_width / 2, t_p_mesh_editor);
-    //element.render = ui_render_text_mesh_xmax;
+    element.render = ui_render_text_mesh_xmax;
     ds_list_add(t_p_mesh_editor.contents, element);
     
     yy = yy + element.height + spacing;
     
     element = create_text(bounds_x, yy, "N/A", col_width / 2, element_height, fa_left, col_width / 2, t_p_mesh_editor);
-    //element.render = ui_render_text_mesh_ymin;
+    element.render = ui_render_text_mesh_ymin;
     ds_list_add(t_p_mesh_editor.contents, element);
     
     element = create_text(bounds_x_2, yy, "N/A", col_width / 2, element_height, fa_left, col_width / 2, t_p_mesh_editor);
-    //element.render = ui_render_text_mesh_ymax;
+    element.render = ui_render_text_mesh_ymax;
     ds_list_add(t_p_mesh_editor.contents, element);
     
     yy = yy + element.height + spacing;
     
     element = create_text(bounds_x, yy, "N/A", col_width / 2, element_height, fa_left, col_width / 2, t_p_mesh_editor);
-    //element.render = ui_render_text_mesh_zmin;
+    element.render = ui_render_text_mesh_zmin;
     ds_list_add(t_p_mesh_editor.contents, element);
     
     element = create_text(bounds_x_2, yy, "N/A", col_width / 2, element_height, fa_left, col_width / 2, t_p_mesh_editor);
-    //element.render = ui_render_text_mesh_zmax;
+    element.render = ui_render_text_mesh_zmax;
+    ds_list_add(t_p_mesh_editor.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
+    element = create_button(col2_x, yy, "Preview", col_width, element_height, fa_center, omu_preview_mesh, t_p_mesh_editor);
+    ds_list_add(t_p_mesh_editor.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
+    element = create_text(col2_x, yy, "General Mesh Things", col_width, element_height, fa_left, col_width, t_p_mesh_editor);
+    ds_list_add(t_p_mesh_editor.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
+    element = create_button(col2_x, yy, "Import", col_width, element_height, fa_center, null, t_p_mesh_editor);
     ds_list_add(t_p_mesh_editor.contents, element);
     
     yy = yy + element.height + spacing;
