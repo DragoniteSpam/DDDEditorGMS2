@@ -3,13 +3,13 @@
 /// @param [force]
 
 var data = argument[0];
-var addition = data.internal_name;
-if (string_length(addition) > 0) {
-    ds_map_delete(Stuff.all_internal_names, addition);
+
+if (string_length(data.internal_name) > 0) {
+    ds_map_delete(Stuff.all_internal_names, data.internal_name);
 }
 
-var force = (argument_count > 3) ? argument[3] : false;
-var addition = (argument_count > 2) ? argument[2] : addition;
+var force = (argument_count > 2) ? argument[2] : false;
+var addition = (argument_count > 1) ? argument[1] : data.internal_name;
 
 // almost all data is automatically created with an internal name, so remove it
 if (ds_map_exists(Stuff.all_internal_names, addition)) {

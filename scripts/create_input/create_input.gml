@@ -12,10 +12,10 @@
 /// @param lower-bound
 /// @param upper-bound
 /// @param character-limit
-/// @param value-x1
-/// @param value-y1
-/// @param value-x2
-/// @param value-y2
+/// @param vx1
+/// @param vy1
+/// @param vx2
+/// @param vy2
 /// @param root
 /// @param [help]
 

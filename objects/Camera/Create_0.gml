@@ -106,7 +106,7 @@ selection_addition = ini_read_real("selection", "addition", false);
 selection_fill_type = ini_read_real("selection", "fill-type", FillTypes.TILE);
 selection_mask = ini_read_real("selection", "mask", SELECTION_MASK_ALL);
 
-selection_fill_mesh = 0;
+selection_fill_mesh = 0;        // list index
 selection_fill_tile_x = 4;
 selection_fill_tile_y = 0;
 selection_fill_autotile = 0;

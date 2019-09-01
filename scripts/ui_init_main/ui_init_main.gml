@@ -48,7 +48,7 @@ with (instantiate(UIMain)) {
     
     var vx1 = legal_width / 4 + 16;
     var vy1 = 0;
-    var vx2 = vx1 + 80;
+    var vx2 = col_width;
     var vy2 = vy1 + 24;
     
     var button_width = 128;
@@ -552,9 +552,7 @@ with (instantiate(UIMain)) {
     
     // this is an object variable
     element_mesh_list = create_list(legal_x + spacing, yy, "Available meshes: ", "<no meshes>", col_width, element_height, 28, uivc_list_selection_mesh, false, t_p_mesh_editor);
-    ds_map_add(element_mesh_list.selected_entries, 0, true);
     element_mesh_list.entries_are = ListEntries.INSTANCES;
-    // NOT POPULATED YET. the meshes haven't been loaded in yet. it gets populated when that happens.
     ds_list_add(t_p_mesh_editor.contents, element_mesh_list);
     
     element = create_text(col2_x, yy, "Mesh Properties:", col_width, element_height, fa_left, col_width, t_p_mesh_editor);
@@ -562,13 +560,15 @@ with (instantiate(UIMain)) {
     
     yy = yy + element.height + spacing;
     
-    element = create_text(col2_x, yy, "<Name>", col_width, element_height, fa_left, col_width, t_p_mesh_editor);
-    element.render = ui_render_text_mesh_name;
+    element = create_input(col2_x, yy, "Name:", col_width, element_height, uivc_input_mesh_name, 0, "", "Internal Name", validate_string_internal_name, ui_value_string, 0, 1, 16,
+        64, vy1, vx2, vy2, t_p_mesh_editor);
     ds_list_add(t_p_mesh_editor.contents, element);
+    
+    t_p_mesh_editor.mesh_name = element;
     
     var s = 10;
     
-    yy = yy + element.height + spacing;
+    yy = yy + t_p_mesh_editor.mesh_name.height + spacing;
     
     element = create_bitfield(col2_x, yy, "Passage:", 84, element_height, null, TILE_PASSABLE, t_p_mesh_editor);
     create_bitfield_options(element, create_bitfield_option_data(TilePassability.UP, ui_render_bitfield_option_picture_mesh_passability, uivc_bitfield_mesh_passability, "", spr_direction, 0, s, s),
@@ -590,10 +590,10 @@ with (instantiate(UIMain)) {
     
     yy = yy + element.height + spacing;
     
-    element = create_input(col2_x, yy, "Tag:", col_width, element_height, uivc_input_mesh_tag, "", 0, 0, validate_int, ui_value_real, 0, TileTerrainTags.FINAL-1, 2, 84, 0, 84+64, element_height, t_p_mesh_editor);
+    element = create_input(col2_x, yy, "Tag:", col_width, element_height, uivc_input_mesh_tag, "", 0, 0, validate_int, ui_value_real, 0, TileTerrainTags.FINAL - 1, 2, 84, 0, 84 + 64, element_height, t_p_mesh_editor);
     ds_list_add(t_p_mesh_editor.contents, element);
     
-    t_p_mesh_editor.element_tag=element;
+    t_p_mesh_editor.element_tag = element;
     
     yy = yy + element.height + spacing;
     

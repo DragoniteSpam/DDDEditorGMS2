@@ -1,12 +1,16 @@
-/// @param GUID
+/// @param instance-id
 
-var mesh_data = guid_get(argument0);
+var mesh_data = argument0;
 
-with (instantiate(EntityMesh)) {
-    name = mesh_data.name;
-    mesh = mesh_data;
+if (mesh_data) {
+    with (instantiate(EntityMesh)) {
+        name = mesh_data.name;
+        mesh = mesh_data.GUID;
         
-    entity_init_collision_mesh(id);
+        entity_init_collision_mesh(id);
         
-    return id;
+        return id;
+    }
 }
+
+return noone;

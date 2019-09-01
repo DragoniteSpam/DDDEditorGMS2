@@ -5,8 +5,10 @@
 
 // if nothing is selected it returns noone instead.
 
-if (ds_map_size(argument0.selected_entries) == 0) {
+var list = argument0;
+
+if (ds_map_size(list.selected_entries) == 0) {
     return noone;
 }
 
-return ds_map_find_first(argument0.selected_entries);
+return ds_map_find_first(list.selected_entries);

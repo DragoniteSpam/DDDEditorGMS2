@@ -2,7 +2,14 @@
 /// @param x
 /// @param y
 
-var data = Stuff.all_meshes[| Camera.selection_fill_mesh];
-argument0.text = get_active_tileset().terrain_tag_names[| data.tags];
+var text = argument0;
+var xx = argument1;
+var yy = argument2;
 
-ui_render_text(argument0, argument1, argument2);
+var data = Stuff.all_meshes[| Camera.selection_fill_mesh];
+
+if (data) {
+    text.text = get_active_tileset().terrain_tag_names[| data.tags];
+}
+
+ui_render_text(text, xx, yy);

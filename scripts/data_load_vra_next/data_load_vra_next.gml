@@ -67,6 +67,11 @@ vertex_end(wbuffer);
 c_shape_end_trimesh(cdata);
 
 mesh.name = name;
+var internal_name = name;
+while (internal_name_get(internal_name)) {
+    internal_name = name + string(random(65535));
+}
+internal_name_set(mesh, internal_name);
 mesh.buffer = buffer_create_from_vertex_buffer(vbuffer, buffer_fixed, 1);
 mesh.vbuffer = vbuffer;
 mesh.wbuffer = wbuffer;
