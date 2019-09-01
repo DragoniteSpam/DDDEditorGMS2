@@ -1,8 +1,8 @@
 {
-    "id": "44c7ec21-e0e4-4100-8c97-3c2416aba963",
+    "id": "0f57fa50-b4b4-4fd3-832c-6c615f96fd98",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "ui_render_text_mesh_zmax",
+    "name": "uivc_mesh_set_zmax",
     "IsCompatibility": false,
     "IsDnD": false
 }

@@ -615,33 +615,39 @@ with (instantiate(UIMain)) {
     
     yy = yy + element.height + spacing;
     
-    element = create_text(bounds_x, yy, "N/A", col_width / 2, element_height, fa_left, col_width / 2, t_p_mesh_editor);
-    element.render = ui_render_text_mesh_xmin;
+    element = create_input(bounds_x, yy, "xmin:", col_width / 2, element_height, uivc_mesh_set_xmin, 0, 0, "integer", validate_int, ui_value_real,
+        -128, 127, 4, 64, vy1, col_width / 2, vy2, t_p_mesh_editor);
     ds_list_add(t_p_mesh_editor.contents, element);
+    t_p_mesh_editor.xmin = element;
     
-    element = create_text(bounds_x_2, yy, "N/A", col_width / 2, element_height, fa_left, col_width / 2, t_p_mesh_editor);
-    element.render = ui_render_text_mesh_xmax;
+    element = create_input(bounds_x_2, yy, "xmax:", col_width / 2, element_height, uivc_mesh_set_xmax, 0, 0, "integer", validate_int, ui_value_real,
+        -128, 127, 4, 64, vy1, col_width / 2, vy2, t_p_mesh_editor);
     ds_list_add(t_p_mesh_editor.contents, element);
+    t_p_mesh_editor.xmax = element;
     
     yy = yy + element.height + spacing;
     
-    element = create_text(bounds_x, yy, "N/A", col_width / 2, element_height, fa_left, col_width / 2, t_p_mesh_editor);
-    element.render = ui_render_text_mesh_ymin;
+    element = create_input(bounds_x, yy, "ymin:", col_width / 2, element_height, uivc_mesh_set_ymin, 0, 0, "integer", validate_int, ui_value_real,
+        -128, 127, 4, 64, vy1, col_width / 2, vy2, t_p_mesh_editor);
     ds_list_add(t_p_mesh_editor.contents, element);
+    t_p_mesh_editor.ymin = element;
     
-    element = create_text(bounds_x_2, yy, "N/A", col_width / 2, element_height, fa_left, col_width / 2, t_p_mesh_editor);
-    element.render = ui_render_text_mesh_ymax;
+    element = create_input(bounds_x_2, yy, "ymax:", col_width / 2, element_height, uivc_mesh_set_ymax, 0, 0, "integer", validate_int, ui_value_real,
+        -128, 127, 4, 64, vy1, col_width / 2, vy2, t_p_mesh_editor);
     ds_list_add(t_p_mesh_editor.contents, element);
+    t_p_mesh_editor.ymax = element;
     
     yy = yy + element.height + spacing;
     
-    element = create_text(bounds_x, yy, "N/A", col_width / 2, element_height, fa_left, col_width / 2, t_p_mesh_editor);
-    element.render = ui_render_text_mesh_zmin;
+    element = create_input(bounds_x, yy, "zmin:", col_width / 2, element_height, uivc_mesh_set_zmin, 0, 0, "integer", validate_int, ui_value_real,
+        -128, 127, 4, 64, vy1, col_width / 2, vy2, t_p_mesh_editor);
     ds_list_add(t_p_mesh_editor.contents, element);
+    t_p_mesh_editor.zmin = element;
     
-    element = create_text(bounds_x_2, yy, "N/A", col_width / 2, element_height, fa_left, col_width / 2, t_p_mesh_editor);
-    element.render = ui_render_text_mesh_zmax;
+    element = create_input(bounds_x_2, yy, "zmax:", col_width / 2, element_height, uivc_mesh_set_zmax, 0, 0, "integer", validate_int, ui_value_real,
+        -128, 127, 4, 64, vy1, col_width / 2, vy2, t_p_mesh_editor);
     ds_list_add(t_p_mesh_editor.contents, element);
+    t_p_mesh_editor.zmax= element;
     
     yy = yy + element.height + spacing;
     

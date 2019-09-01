@@ -24,7 +24,7 @@ repeat (n_meshes) {
     mesh.xmin = buffer_read(buffer, buffer_f32);
     mesh.ymin = buffer_read(buffer, buffer_f32);
     mesh.zmin = buffer_read(buffer, buffer_f32);
-    mesh.xmin = buffer_read(buffer, buffer_f32);
+    mesh.xmax = buffer_read(buffer, buffer_f32);
     mesh.ymax = buffer_read(buffer, buffer_f32);
     mesh.zmax = buffer_read(buffer, buffer_f32);
     

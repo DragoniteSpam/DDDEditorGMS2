@@ -1,8 +1,8 @@
 {
-    "id": "5d169634-0236-40d0-b5f8-e3e97e6aca0b",
+    "id": "be4e1b2c-5610-43d0-a28b-5584ef7124c7",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "ui_render_text_mesh_ymin",
+    "name": "uivc_mesh_set_xmax",
     "IsCompatibility": false,
     "IsDnD": false
 }
