@@ -10,7 +10,7 @@ if (data) {
     // @todo try catch
     if (string_length(fn) > 0) {
         switch (filename_ext(fn)) {
-            case ".obj": /*export_obj(fn)*/; break;
+            case ".obj": export_obj(fn); break;
             case ".d3d": case ".gmmod": export_d3d(fn, data); break;
         }
     }

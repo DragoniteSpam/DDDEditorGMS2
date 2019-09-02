@@ -1,58 +1,35 @@
 /// @param fname
-// this is for mesh autotiles specifically - more general ones can be
-// found in import_d3d
-// I ripped the guts out of a compatibility script becuase I didn't feel like writing it on my own
-// it doesn't freeze the vertex buffer - that's on you
+/// @param mesh
 
-if (!file_exists(argument0)) {
-	return -1;
+var fn = argument0;
+var mesh = argument1;
+
+not_yet_implemented();
+
+var buffer = buffer_create(1024, buffer_grow, 1);
+buffer_write(buffer, buffer_text, "100\r\n");
+buffer_write(buffer, buffer_text, string(buffer_get_size(mesh.buffer) / VERTEX_FORMAT_SIZE) + "\r\n");
+buffer_write(buffer, buffer_text, "0 4\r\n");
+
+buffer_seek(mesh.buffer, buffer_seek_start, 0);
+
+while (buffer_tell(mesh.buffer) < buffer_get_size(mesh.buffer)) {
+    var xx = buffer_read(mesh.buffer, buffer_f32);
+    var yy = buffer_read(mesh.buffer, buffer_f32);
+    var zz = buffer_read(mesh.buffer, buffer_f32);
+    var nx = buffer_read(mesh.buffer, buffer_f32);
+    var ny = buffer_read(mesh.buffer, buffer_f32);
+    var nz = buffer_read(mesh.buffer, buffer_f32);
+    var xtex = buffer_read(mesh.buffer, buffer_f32) / TILESET_TEXTURE_WIDTH;
+    var ytex = buffer_read(mesh.buffer, buffer_f32) / TILESET_TEXTURE_HEIGHT;
+    var color = buffer_read(mesh.buffer, buffer_u32);
+    buffer_read(mesh.buffer, buffer_u32);
+    
+    buffer_write(buffer, buffer_text, "9 " + decimal(xx) + " " + decimal(yy) + " " + decimal(zz) +
+        " " + decimal(nx) + " " + decimal(ny) + " " + decimal(nz) + " " + decimal(xtex) + " " +
+        decimal(ytex) + " " + decimal(color & 0xffffff) + " " + decimal(((color >> 24) & 0xff) / 255) + "\r\n");
 }
 
-var f = file_text_open_read(argument0);
-
-var v = file_text_read_real(f);
-if (v != 100) {
-	file_text_close(f);
-	return - 1;
-}
-
-file_text_readln(f);
-
-var nthings = file_text_read_real(f);
-file_text_readln(f);
-var buffer = vertex_create_buffer();
-var thing = 0;
-
-while(thing < nthings) {
-	// Every entry is 11 values - 1 'command' and 10 parameters
-	var type = round(file_text_read_real(f));
-	var args;
-	var i = 0;
-	repeat (10) {
-		args[i++] = file_text_read_real(f);
-	}
-	file_text_readln(f);
-	
-	switch(type) {
-		case 0:
-			vertex_begin(buffer, Camera.vertex_format);
-			break;
-		case 1:
-			vertex_end(buffer);
-			break;
-		case 9:
-			vertex_position_3d(buffer, args[0], args[1], args[2]);
-			vertex_normal(buffer, args[3], args[4], args[5]);
-			vertex_texcoord(buffer, args[6] * TILESET_TEXTURE_WIDTH, args[7] * TILESET_TEXTURE_HEIGHT);
-			vertex_color(buffer, args[8], args[9]);
-            // extra vec4 that doesn't do anything here
-            vertex_color(buffer, c_white, 1);
-			break;
-	}
-	
-	thing++;
-}
-
-file_text_close(f);
-
-return buffer;
+buffer_write(buffer, buffer_text, "1\r\n");
+buffer_save(buffer, fn);
+buffer_delete(buffer);
