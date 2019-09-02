@@ -29,5 +29,5 @@ while (buffer_tell(mesh.buffer) < buffer_get_size(mesh.buffer)) {
 }
 
 buffer_write(buffer, buffer_text, "1\r\n");
-buffer_save(buffer, fn);
+buffer_save_ext(buffer, fn, 0, buffer_tell(buffer));
 buffer_delete(buffer);
