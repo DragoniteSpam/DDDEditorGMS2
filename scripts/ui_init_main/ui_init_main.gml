@@ -666,6 +666,16 @@ with (instantiate(UIMain)) {
     
     yy = yy + element.height + spacing;
     
+    element = create_button(col2_x, yy, "Export Selected", col_width, element_height, fa_center, omu_mesh_export_selected, t_p_mesh_editor);
+    ds_list_add(t_p_mesh_editor.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
+    element = create_button(col2_x, yy, "Export All", col_width, element_height, fa_center, null, t_p_mesh_editor);
+    ds_list_add(t_p_mesh_editor.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
     element = create_button(col2_x, yy, "Delete", col_width, element_height, fa_center, omu_mesh_remove, t_p_mesh_editor);
     element.color = c_red;
     ds_list_add(t_p_mesh_editor.contents, element);

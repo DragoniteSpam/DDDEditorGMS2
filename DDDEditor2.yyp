@@ -623,6 +623,14 @@
             }
         },
         {
+            "Key": "0c7e97ce-bd7a-4acd-bdfd-196304e389b2",
+            "Value": {
+                "id": "93fe9b06-5ee6-4c6c-9349-a7aaaa63d104",
+                "resourcePath": "scripts\\decimal\\decimal.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "0c8b0bb3-97ad-42ec-8a2a-40d3f2dde3fc",
             "Value": {
                 "id": "a5ae79d9-f5d6-45a9-8388-0c39e36da95a",
@@ -3595,6 +3603,14 @@
             "Value": {
                 "id": "85ca7a1c-7639-4069-a4b0-76a50279e4e0",
                 "resourcePath": "scripts\\ui_render_bitfield_option_text_passability_mesh_passable\\ui_render_bitfield_option_text_passability_mesh_passable.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "53c6399e-5d8a-4575-9563-2b1e13fc390a",
+            "Value": {
+                "id": "8a1b1f07-a350-4ccd-9042-3bf0d2e91829",
+                "resourcePath": "scripts\\omu_mesh_export_selected\\omu_mesh_export_selected.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -7519,6 +7535,14 @@
             }
         },
         {
+            "Key": "af1e57cd-c701-4655-baa3-e5ca28c70e99",
+            "Value": {
+                "id": "c284055c-f2e8-4213-aa3f-dadc953c80d3",
+                "resourcePath": "scripts\\export_obj\\export_obj.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "af334ca9-9e18-41e4-95dc-86fad4ff92dd",
             "Value": {
                 "id": "f963f9ef-8efc-4ce0-b4b2-239edbbfa49a",
@@ -10063,6 +10087,14 @@
             }
         },
         {
+            "Key": "e9c50412-ecb6-4bfa-a617-66e7d1c75859",
+            "Value": {
+                "id": "c79099e9-f8e3-468f-94e8-81b68a6bbcaf",
+                "resourcePath": "scripts\\export_d3d\\export_d3d.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "e9cb9b86-36d9-452f-b73d-675411eb190b",
             "Value": {
                 "id": "70f2e387-f083-4cb6-936e-2bf6a3f66ff2",
@@ -11109,6 +11141,7 @@
         "978aa21e-f7d4-4382-921a-0918b53c3121",
         "bb2239c9-ac82-4164-af82-f9eb0adadb67",
         "9cac7357-a445-4351-8332-eae174fe50e5",
+        "0c7e97ce-bd7a-4acd-bdfd-196304e389b2",
         "20d27ffc-0a4a-4c0a-a4f4-7e894afbfa95",
         "620d5d86-27a6-45ca-ae43-e24d460a2333",
         "72fa42c5-ca47-4b5d-9fae-f4143f2d9f1a",
@@ -11739,6 +11772,7 @@
         "c895647a-2050-458e-9410-d05541d95e56",
         "e8680be4-b527-4311-9f1f-8573c3fe63cb",
         "5347a46d-a10a-470e-b7a3-df916ad35144",
+        "53c6399e-5d8a-4575-9563-2b1e13fc390a",
         "d527df31-a6b5-45fa-b136-e773b4420991",
         "bf235b75-8c4e-4cb8-b0a5-3b63a9de09a3",
         "75c2f1f4-1099-4906-a686-49a8b91603b7",
@@ -11909,6 +11943,8 @@
         "9026b3d4-6e7b-477f-a593-dcc517725bf2",
         "025e7494-68e7-4a58-a082-1d288d3ba4dc",
         "7874d997-3bb4-42ea-9d83-08436e7011ad",
+        "e9c50412-ecb6-4bfa-a617-66e7d1c75859",
+        "af1e57cd-c701-4655-baa3-e5ca28c70e99",
         "4ef4d916-562d-4362-b777-697ab3236fa1",
         "88a72ab1-34ee-4030-b06d-0468751727de",
         "ee359008-8b0a-4b60-98b1-6ccb0ec031bc",
