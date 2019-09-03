@@ -759,6 +759,14 @@
             }
         },
         {
+            "Key": "0e914666-5b00-4ec7-aac1-acca6ddcb0e2",
+            "Value": {
+                "id": "fa6071cb-f287-457a-8ef0-048045dcb8df",
+                "resourcePath": "scripts\\dialog_create_mesh_advanced\\dialog_create_mesh_advanced.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "0ea2db3c-0c2a-41b6-a304-3a4a776ec989",
             "Value": {
                 "id": "39e8b5e9-40f6-43c9-9f57-e4e1eccb3e71",
@@ -11383,6 +11391,7 @@
         "cb438292-f61d-47d3-aa94-63e69acbca1b",
         "2c70626d-6b45-41a9-aa03-b92912dcbe11",
         "fc4662bb-11fc-46ed-a4e9-cfb814458882",
+        "0e914666-5b00-4ec7-aac1-acca6ddcb0e2",
         "a400e1c0-9760-4330-9ecf-46ad03a58824",
         "46bfc71d-cff8-4ab3-bbce-fe7d4c90d165",
         "90d7fb1d-27d3-4d99-89e5-94e7318f7257",

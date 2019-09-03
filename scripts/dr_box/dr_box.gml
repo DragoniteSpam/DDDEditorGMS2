@@ -79,7 +79,7 @@ draw_rectangle_colour(x1, y1, x2, y1 + header_height, hc, hc, hc, hc, false);
 draw_line_colour(x1, y1 + header_height, x2, y1 + header_height, c_black, c_black);
 
 draw_set_halign(fa_left);
-draw_text(tx, ty, string(argument0.text));
+draw_text_colour(tx, ty, string(argument0.text), c_black, c_black, c_black, c_black, 1);
 
 draw_sprite(spr_close, cbi, cbx, cby);
 
