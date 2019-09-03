@@ -5,6 +5,7 @@
 var surface = surface_create(TEXTURE_SIZE, TEXTURE_SIZE);
 
 surface_set_target(surface);
+draw_clear_alpha(c_white, 0);
 
 /*
  * draw stuff
@@ -32,7 +33,7 @@ for (var i = 0; i < AUTOTILE_MAX; i++) {
 
 surface_reset_target();
 
-var back = sprite_create_from_surface(surface, 0, 0, TEXTURE_SIZE, TEXTURE_SIZE, false, false, 0, 0);
+var sprite = sprite_create_from_surface(surface, 0, 0, TEXTURE_SIZE, TEXTURE_SIZE, false, false, 0, 0);
 surface_free(surface);
 
-return back;
+return sprite;

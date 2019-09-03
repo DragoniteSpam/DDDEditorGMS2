@@ -31,11 +31,7 @@ var color = tile.tile_color;
 var alpha = tile.tile_alpha;
 
 if (Camera.view_entities) {
-    if (Camera.view_texture) {
-        var tex = sprite_get_texture(ts.master, 0);
-    } else {
-        var tex = sprite_get_texture(b_tileset_textureless, 0)
-    }
+    var tex = Camera.view_texture ? sprite_get_texture(ts.master, 0) : sprite_get_texture(b_tileset_textureless, 0)
     
     d3d_primitive_begin_texture(pr_trianglelist, tex);
     
