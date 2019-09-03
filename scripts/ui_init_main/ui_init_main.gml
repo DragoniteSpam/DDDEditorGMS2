@@ -465,16 +465,17 @@ with (instantiate(UIMain)) {
     
     yy = legal_y + spacing;
     
-    element = create_text(legal_x + spacing, yy, "Select a tile to place down!", col_width, element_height, fa_left, col_width, t_p_tile_editor);
+	element = create_button(legal_x + spacing, yy, "Change Tileset", 128, element_height, fa_center, omu_manager_tileset, t_p_tile_editor);
     ds_list_add(t_p_tile_editor.contents, element);
     
-	//element = create_button(legal_x + spacing, yy, "Change Tileset", 160, element_height, fa_center, null, t_p_tile_editor);
-	
-    element = create_button(col2_x + col_width / 2, yy, "Tileset Data", button_width, element_height, fa_center, omu_manager_tileset, t_p_tile_editor, fa_middle, fa_top);
+	element = create_button(legal_x + spacing + (spacing + 128), yy, "Import Main", 128, element_height, fa_center, dmu_dialog_load_tileset_main, t_p_tile_editor);
+    ds_list_add(t_p_tile_editor.contents, element);
+    
+	element = create_button(legal_x + spacing + (spacing + 128) * 2, yy, "Export Main", 128, element_height, fa_center, dmu_dialog_save_tileset_main, t_p_tile_editor);
     ds_list_add(t_p_tile_editor.contents, element);
     
     yy = yy + element.height + spacing;
-    
+	
     element = create_tile_selector(legal_x + spacing, yy, legal_width - spacing * 2, (legal_width div Stuff.tile_width) * Stuff.tile_width - element_height, uivc_select_tile, uivc_select_tile_backwards, t_p_tile_editor);
     ds_list_add(t_p_tile_editor.contents, element);
     
