@@ -2183,6 +2183,14 @@
             }
         },
         {
+            "Key": "32bf6ff7-0669-405b-bd51-d386d3080e78",
+            "Value": {
+                "id": "e5975883-a710-4b1d-935c-06ae60b566be",
+                "resourcePath": "scripts\\normals\\normals.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "33399fc3-a687-4125-be37-840cb18b9f0f",
             "Value": {
                 "id": "ac0f1146-b5b4-4f95-a1fc-31217ecb9f5f",
@@ -6251,6 +6259,14 @@
             "Value": {
                 "id": "10d16425-8a86-4fc4-a340-2c3dd3f1c5f8",
                 "resourcePath": "scripts\\omu_mr_solid_off\\omu_mr_solid_off.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "8fdb53a7-e93d-4c4b-b5c6-1671ad96a1cb",
+            "Value": {
+                "id": "c2c0b8d7-af8a-4cee-85de-b69f7165f0c8",
+                "resourcePath": "scripts\\omu_mesh_auto_bounds\\omu_mesh_auto_bounds.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -11223,6 +11239,7 @@
         "bb2239c9-ac82-4164-af82-f9eb0adadb67",
         "9cac7357-a445-4351-8332-eae174fe50e5",
         "0c7e97ce-bd7a-4acd-bdfd-196304e389b2",
+        "32bf6ff7-0669-405b-bd51-d386d3080e78",
         "20d27ffc-0a4a-4c0a-a4f4-7e894afbfa95",
         "620d5d86-27a6-45ca-ae43-e24d460a2333",
         "72fa42c5-ca47-4b5d-9fae-f4143f2d9f1a",
@@ -11868,6 +11885,7 @@
         "fd69df94-52ec-4dc4-ac67-39f1bbfee9b7",
         "c7d25588-cabb-4d28-9bf1-a467041bb5b4",
         "420cae21-00cc-44d0-8fb4-147ce2b02795",
+        "8fdb53a7-e93d-4c4b-b5c6-1671ad96a1cb",
         "064fd29e-7ed0-4201-87c9-355fde51e08a",
         "3e49996d-9ebc-4cbf-986e-bd66e3440cc6",
         "21c67df9-6a4c-42f3-bcd8-11d361ca41d2",

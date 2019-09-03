@@ -6,6 +6,7 @@ var buffer = buffer_create(1024, buffer_grow, 4);
 
 var data = ds_map_create();
 data[? "version"] = 1;
+// @todo not hard-coding this
 data[? "grid_size"] = 32;
 
 buffer_write_string(buffer, ds_map_write(data));
