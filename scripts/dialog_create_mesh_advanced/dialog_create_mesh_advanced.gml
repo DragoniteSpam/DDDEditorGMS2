@@ -35,7 +35,7 @@ var el_normal_flat = create_button(16, yy, "Normals: Flat", ew, eh, fa_center, o
 yy = yy + el_normal_flat.height + spacing;
 var el_normal_smooth = create_button(16, yy, "Normals: Smooth", ew, eh, fa_center, omu_mesh_normal_smooth, dg);
 yy = yy + el_normal_smooth.height + spacing;
-var el_up_axis = create_button(16, yy, "Rotate Up Axis", ew, eh, fa_center, null, dg);
+var el_up_axis = create_button(16, yy, "Rotate Up Axis", ew, eh, fa_center, omu_mesh_rotate_axis, dg);
 yy = yy + el_up_axis.height + spacing;
 
 yy = yy_base;
