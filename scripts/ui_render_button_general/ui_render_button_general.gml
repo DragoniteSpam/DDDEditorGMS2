@@ -31,7 +31,7 @@ var c = enabled ? c_white : c_ltgray;
 draw_rectangle_colour(x1, y1, x2, y2, c, c, c, c, false);
 
 if (enabled) {
-    var inbounds = mouse_within_rectangle_determine(thing.check_view, x1, y1, x2, y2);
+    var inbounds = mouse_within_rectangle_determine(x1, y1, x2, y2);
     if (inbounds) {
         draw_rectangle_colour(x1, y1, x2, y2, c_ui, c_ui, c_ui, c_ui, false);
         if (get_release_left()) {

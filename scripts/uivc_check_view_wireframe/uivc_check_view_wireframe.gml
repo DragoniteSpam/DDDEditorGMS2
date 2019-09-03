@@ -1,5 +1,5 @@
-/// @description uivc_check_view_wireframe(UIThing);
 /// @param UIThing
 
-Camera.view_wireframe=argument0.value;
+var thing = argument0;
+Camera.view_wireframe = thing.value;
 setting_save_real("view", "wireframe", Camera.view_wireframe);

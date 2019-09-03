@@ -96,7 +96,7 @@ draw_set_font(FDefault12);
 
 // theoretically you should check to see if dialog is active but please just never
 // put one of these in a dialog box, that would be awful
-var inbounds = mouse_within_rectangle_determine(selector.check_view, x1, y1, x2 - 1, y2 - 1);
+var inbounds = mouse_within_rectangle_determine(x1, y1, x2 - 1, y2 - 1);
 if (inbounds) {
     // select a tile
     var tx = (Camera.MOUSE_X - x1 + selector.tile_view_x) div Stuff.tile_size;
@@ -112,7 +112,6 @@ if (inbounds) {
     }
 }
     
-var camera = view_get_camera(view_current);
 var base_x1 = selector.x;
 var base_y1 = selector.y;
 var base_x2 = base_x1 + selector.width;

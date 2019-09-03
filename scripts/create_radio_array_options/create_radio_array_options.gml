@@ -11,7 +11,6 @@ for (var i = 1; i < argument_count; i++) {
     option.root = array;
     option.height = array.height;
     option.value = n;
-    option.check_view = array.check_view;
     
     ds_list_add(array.contents, option);
 }

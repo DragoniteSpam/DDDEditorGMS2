@@ -54,7 +54,7 @@ if (string_length(picker.value_text) == 0) {
 var active = picker.interactive && dialog_is_active(picker.root);
 
 if (active) {
-    var inbounds = mouse_within_rectangle_determine(picker.check_view, vx1, vy1, vx2, vy2);
+    var inbounds = mouse_within_rectangle_determine(vx1, vy1, vx2, vy2);
     if (inbounds) {
         if (get_release_left()) {
             ui_activate(picker);
@@ -149,7 +149,7 @@ switch (picker.axis_channel) {
 }
 
 if (active) {
-    var inbounds = mouse_within_rectangle_determine(picker.check_view, vx1, vy1, vx2, vy2);
+    var inbounds = mouse_within_rectangle_determine(vx1, vy1, vx2, vy2);
     if (inbounds && get_press_left()) {
         picker.selecting_color = true;
     }
@@ -206,7 +206,7 @@ var w = vx2 - vx1;
 var h = vy2 - vy1;
 
 if (active) {
-    var inbounds = mouse_within_rectangle_determine(picker.check_view, vx1, vy1, vx2, vy2);
+    var inbounds = mouse_within_rectangle_determine(vx1, vy1, vx2, vy2);
     if (inbounds && get_press_left()) {
         picker.selecting_axis = true;
     }
@@ -258,7 +258,7 @@ if (picker.allow_alpha) {
     var h = vy2 - vy1;
 
     if (active) {
-        var inbounds = mouse_within_rectangle_determine(picker.check_view, vx1, vy1, vx2, vy2);
+        var inbounds = mouse_within_rectangle_determine(vx1, vy1, vx2, vy2);
         if (inbounds && get_press_left()) {
             picker.selecting_alpha = true;
         }

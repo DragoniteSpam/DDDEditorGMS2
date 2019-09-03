@@ -1,5 +1,6 @@
-/// @description uivc_check_view_entities(UIThing);
 /// @param UIThing
 
-Camera.view_entities=argument0.value;
+var thing = argument0;
+
+Camera.view_entities = thing.value;
 setting_save_real("view", "entities", Camera.view_entities);

@@ -135,7 +135,7 @@ if (animation) {
     var move_horizontal_direction = 0;
 
     if (timeline.interactive && active) {
-        var inbounds = mouse_within_rectangle_determine(timeline.check_view, x1, y2, x2, y3);
+        var inbounds = mouse_within_rectangle_determine(x1, y2, x2, y3);
         if (inbounds) {
             // double-left not used, that's to be handled by oninteract instead now
             if (Controller.mouse_left) {
@@ -202,7 +202,7 @@ if (animation) {
         var sbx1 = sx - shalf;
         var sbx2 = sx + shalf;
         if (timeline.interactive && active) {
-            var inbounds = mouse_within_rectangle_determine(timeline.check_view, sbx1, y3, sbx2, y4);
+            var inbounds = mouse_within_rectangle_determine(sbx1, y3, sbx2, y4);
             if (inbounds) {
                 draw_rectangle_colour(sbx1 + 1, y3 + 1, sbx2 - 1, y4 - 1, c_ui, c_ui, c_ui, c_ui, false);
                 if (Controller.press_left) {
@@ -227,8 +227,8 @@ if (animation) {
         draw_line_colour(sx + 4, y3 + sw / 5, sx + 4, y3 + sw * 4 / 5, c_gray, c_gray);
         
         if (active) {
-            var inbounds_top = mouse_within_rectangle_determine(timeline.check_view, x1, y3, x1 + sw, y4);
-            var inbounds_bottom = mouse_within_rectangle_determine(timeline.check_view, x2 - sw, y3, x2, y4);
+            var inbounds_top = mouse_within_rectangle_determine(x1, y3, x1 + sw, y4);
+            var inbounds_bottom = mouse_within_rectangle_determine(x2 - sw, y3, x2, y4);
             if (inbounds_top) {
                 draw_rectangle_colour(x1 + 1, y3 + 1, x1 + sw - 1, y4 - 1, c_ui, c_ui, c_ui, c_ui, false);
                 if (Controller.press_left) {
@@ -292,10 +292,10 @@ draw_sprite_ext(spr_play_controls, 1, x1 + spacing + sw, y3 + spacing, 1, 1, 0, 
 draw_sprite_ext(spr_play_controls, 2, x1 + spacing + sw * 2, y3 + spacing, 1, 1, 0, c_white, 1);
 draw_sprite_ext(spr_play_controls, 3, x1 + spacing + sw * 3, y3 + spacing, 1, 1, 0, c_loop, 1);
 
-var inbounds_play = mouse_within_rectangle_determine(timeline.check_view, x1 + spacing, y3 + spacing, x1 + spacing + sw, y3 + spacing + sh);
-var inbounds_pause = mouse_within_rectangle_determine(timeline.check_view, x1 + spacing + sw, y3 + spacing, x1 + spacing + sw * 2, y3 + spacing + sh);
-var inbounds_stop = mouse_within_rectangle_determine(timeline.check_view, x1 + spacing + sw * 2, y3 + spacing, x1 + spacing + sw * 3, y3 + spacing + sh);
-var inbounds_loop = mouse_within_rectangle_determine(timeline.check_view, x1 + spacing + sw * 3, y3 + spacing, x1 + spacing + sw * 4, y3 + spacing + sh);
+var inbounds_play = mouse_within_rectangle_determine(x1 + spacing, y3 + spacing, x1 + spacing + sw, y3 + spacing + sh);
+var inbounds_pause = mouse_within_rectangle_determine(x1 + spacing + sw, y3 + spacing, x1 + spacing + sw * 2, y3 + spacing + sh);
+var inbounds_stop = mouse_within_rectangle_determine(x1 + spacing + sw * 2, y3 + spacing, x1 + spacing + sw * 3, y3 + spacing + sh);
+var inbounds_loop = mouse_within_rectangle_determine(x1 + spacing + sw * 3, y3 + spacing, x1 + spacing + sw * 4, y3 + spacing + sh);
 
 if (inbounds_play) {
     var c_play = timeline.playing ? merge_colour(c_greenish, c_ltgray, 0.5) : c_ltgray;
