@@ -5,6 +5,7 @@
 var data_buffer = argument0;
 var grid_size = argument1;
 var name = argument2;
+
 var n = buffer_read(data_buffer, T);
 var mesh = instance_create_depth(0, 0, 0, DataMesh);
 
@@ -69,7 +70,7 @@ c_shape_end_trimesh(cdata);
 mesh.name = name;
 var internal_name = name;
 while (internal_name_get(internal_name)) {
-    internal_name = name + string(random(65535));
+    internal_name = name + string(irandom(65535));
 }
 internal_name_set(mesh, internal_name);
 mesh.buffer = buffer_create_from_vertex_buffer(vbuffer, buffer_fixed, 1);

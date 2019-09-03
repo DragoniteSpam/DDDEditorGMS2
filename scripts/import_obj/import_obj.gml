@@ -306,7 +306,7 @@ if (file_exists(fn)) {
         mesh.name = base_name;
         var internal_name = string_lettersdigits(base_name);
         while (internal_name_get(internal_name)) {
-            internal_name = string_lettersdigits(base_name) + string(random(65535));
+            internal_name = string_lettersdigits(base_name) + string(irandom(65535));
         }
         internal_name_set(mesh, internal_name);
         mesh.buffer = buffer_create_from_vertex_buffer(vbuffer, buffer_fixed, 1);
