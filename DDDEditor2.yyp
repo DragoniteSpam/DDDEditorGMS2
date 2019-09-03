@@ -263,6 +263,14 @@
             }
         },
         {
+            "Key": "064fd29e-7ed0-4201-87c9-355fde51e08a",
+            "Value": {
+                "id": "006079e0-6fa7-42f1-8b6d-a0dc786ea3e1",
+                "resourcePath": "scripts\\omu_mesh_advanced\\omu_mesh_advanced.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "0657dd0d-6793-40d4-9667-d8b3da8ffe19",
             "Value": {
                 "id": "f09f5b24-5f48-4850-947b-e7602170fd68",
@@ -2623,6 +2631,14 @@
             }
         },
         {
+            "Key": "3e49996d-9ebc-4cbf-986e-bd66e3440cc6",
+            "Value": {
+                "id": "8dd5e819-8616-40ac-80b4-2e969d32779e",
+                "resourcePath": "scripts\\omu_mesh_alphabetize\\omu_mesh_alphabetize.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "3e5a7097-5818-4b55-afcc-6d71ee1833c6",
             "Value": {
                 "id": "85a5b9ce-8809-4ecd-8ec1-19a0c7737e27",
@@ -2714,7 +2730,7 @@
             "Key": "420cae21-00cc-44d0-8fb4-147ce2b02795",
             "Value": {
                 "id": "d5dd4781-d3dc-4167-b0e0-6d0934d9f3dc",
-                "resourcePath": "scripts\\omu_preview_mesh\\omu_preview_mesh.yy",
+                "resourcePath": "scripts\\omu_mesh_preview\\omu_mesh_preview.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -11834,6 +11850,9 @@
         "a29d7679-9e69-44a1-bb5e-3a8dd119f452",
         "fd69df94-52ec-4dc4-ac67-39f1bbfee9b7",
         "c7d25588-cabb-4d28-9bf1-a467041bb5b4",
+        "420cae21-00cc-44d0-8fb4-147ce2b02795",
+        "064fd29e-7ed0-4201-87c9-355fde51e08a",
+        "3e49996d-9ebc-4cbf-986e-bd66e3440cc6",
         "21c67df9-6a4c-42f3-bcd8-11d361ca41d2",
         "a6bf9709-cf24-48f2-ba15-ec4fd31b6722",
         "9956063f-0414-4638-a61b-123080bab628",
@@ -11842,7 +11861,6 @@
         "56680588-b308-4ea5-b55a-7fded968b626",
         "4d64ace5-5c70-435d-b13b-1fdbfd767a86",
         "5d9b0da8-e3f1-48f9-9372-368b2600a1c5",
-        "420cae21-00cc-44d0-8fb4-147ce2b02795",
         "43ae57f2-9a33-45c9-bb00-529bd505469d",
         "d991b300-f8bd-492f-b7fb-3c931798fc68",
         "9fe42c44-3ba2-491e-a420-b440bfcd560f",

@@ -28,7 +28,10 @@
         "58c47e9d-ecab-4472-b7a8-97668439288d",
         "a29d7679-9e69-44a1-bb5e-3a8dd119f452",
         "fd69df94-52ec-4dc4-ac67-39f1bbfee9b7",
-        "c7d25588-cabb-4d28-9bf1-a467041bb5b4"
+        "c7d25588-cabb-4d28-9bf1-a467041bb5b4",
+        "420cae21-00cc-44d0-8fb4-147ce2b02795",
+        "064fd29e-7ed0-4201-87c9-355fde51e08a",
+        "3e49996d-9ebc-4cbf-986e-bd66e3440cc6"
     ],
     "filterType": "GMScript",
     "folderName": "data etc",

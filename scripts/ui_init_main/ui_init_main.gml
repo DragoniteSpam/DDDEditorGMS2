@@ -651,12 +651,22 @@ with (instantiate(UIMain)) {
     
     yy = yy + element.height + spacing;
     
-    element = create_button(col2_x, yy, "Preview", col_width, element_height, fa_center, omu_preview_mesh, t_p_mesh_editor);
+    element = create_button(col2_x, yy, "Preview", col_width, element_height, fa_center, omu_mesh_preview, t_p_mesh_editor);
+    ds_list_add(t_p_mesh_editor.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
+    element = create_button(col2_x, yy, "Advanced", col_width, element_height, fa_center, omu_mesh_advanced, t_p_mesh_editor);
     ds_list_add(t_p_mesh_editor.contents, element);
     
     yy = yy + element.height + spacing;
     
     element = create_text(col2_x, yy, "General Mesh Things", col_width, element_height, fa_left, col_width, t_p_mesh_editor);
+    ds_list_add(t_p_mesh_editor.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
+    element = create_button(col2_x, yy, "Alphabetize", col_width, element_height, fa_center, omu_mesh_alphabetize, t_p_mesh_editor);
     ds_list_add(t_p_mesh_editor.contents, element);
     
     yy = yy + element.height + spacing;
