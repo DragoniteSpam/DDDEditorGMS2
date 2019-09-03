@@ -1,7 +1,7 @@
 # DDDEditorGMS2
 Migrating to GMS2, or attempting to
 
-The original GMS1 project can be found [here](https://github.com/DragoniteSpam/DDDEditor), but I probably won't be updating it a whole lot after this
+The original GMS1 project can be found [here](https://github.com/DragoniteSpam/DDDEditor), but I probably won't be updating it a whole lot after this because GMS2 is really good and I don't plan on going back
 
 ### Contributors
  - DragoniteSpam
@@ -31,9 +31,9 @@ There are some miscellaneous property editor form UI things.
 
 ## Upcoming stuff
 
- - Animation editor - for battle attacks and world effects and whatnot
  - Autotiles (for both 2D tiles and 3D meshes)
  - More map stuff, verticality, camera controls
+ - Certain data structures inside the editor are garbage so i'm going to spend a bit of time refactoring
 
 ## Stuff I'm considering
 
