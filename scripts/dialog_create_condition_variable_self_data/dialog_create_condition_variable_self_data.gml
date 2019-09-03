@@ -32,13 +32,13 @@ var yy = 64;
 var spacing = 16;
 
 var el_list = create_radio_array(16, yy, "Self Variables:", ew, eh, uivc_list_event_condition_self_index, list_index[| index], dg);
-create_radio_array_options(el_list, "A", "B", "C", "D");
+create_radio_array_options(el_list, ["A", "B", "C", "D"]);
 dg.el_list = el_list;
 
 // reset yy, except there's no point, since it's already at the top
 
 var el_comparison = create_radio_array(c2 + 16, yy, "Comparison", ew, eh, uivc_check_event_condition_comparison, list_comparison[| index], dg);
-create_radio_array_options(el_comparison, "Less (<)", "Less or Equal (<=)", "Equal (==)", "Greater or Equal (>=)", "Greater (>)", "Not Equal (!=)");
+create_radio_array_options(el_comparison, ["Less (<)", "Less or Equal (<=)", "Equal (==)", "Greater or Equal (>=)", "Greater (>)", "Not Equal (!=)"]);
 
 yy = yy + ui_get_radio_array_height(el_comparison) + spacing;
 

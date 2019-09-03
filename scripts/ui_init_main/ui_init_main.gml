@@ -58,7 +58,7 @@ with (instantiate(UIMain)) {
     var yy = legal_y + spacing;
     
     element = create_radio_array(legal_x + spacing, yy, "Selection mode", col_width, element_height, uivc_radio_selection_mode, Camera.selection_mode, t_general);
-    create_radio_array_options(element, "Single", "Rectangle", "Circle");
+    create_radio_array_options(element, ["Single", "Rectangle", "Circle"]);
     ds_list_add(t_general.contents, element);
     
     yy = yy + ui_get_radio_array_height(element) + spacing;
@@ -69,7 +69,7 @@ with (instantiate(UIMain)) {
     yy = yy + element.height + spacing;
     
     element = create_radio_array(legal_x + spacing, yy, "Fill Type", col_width, element_height, uivc_radio_fill_type, Camera.selection_fill_type, t_general);
-    create_radio_array_options(element, "Tile", "Autotile", "Mesh", "Mob", "Effect", "Event", "Terrain");
+    create_radio_array_options(element, ["Tile", "Autotile", "Mesh", "Mob", "Effect", "Event", "Terrain"]);
     ds_list_add(t_general.contents, element);
     
     yy = yy + ui_get_radio_array_height(element) + spacing;
@@ -449,7 +449,7 @@ with (instantiate(UIMain)) {
     yy = yy + element_entity_mob_frame.height + spacing;
     
     element_entity_mob_direction = create_radio_array(legal_x + spacing, yy, "Direction", col_width, element_height, uivc_entity_mob_direction, 0, t_p_mob);
-    create_radio_array_options(element_entity_mob_direction, "Down", "Left", "Right", "Up");
+    create_radio_array_options(element_entity_mob_direction, ["Down", "Left", "Right", "Up"]);
     ds_list_add(t_p_mob.contents, element_entity_mob_direction);
     
     yy = yy + ui_get_radio_array_height(element_entity_mob_direction) + spacing;
@@ -480,13 +480,13 @@ with (instantiate(UIMain)) {
     var yy_aftergrid = yy;
     
     element = create_radio_array(legal_x + spacing, yy, "Data to View", col_width, element_height, uivc_tile_set_data_view, Camera.tile_data_view, t_p_tile_editor);
-    create_radio_array_options(element, "Passage", "Priority", "Flags (off)", "Tags");
+    create_radio_array_options(element, ["Passage", "Priority", "Flags (off)", "Tags"]);
     ds_list_add(t_p_tile_editor.contents, element);
     
     yy = yy + ui_get_radio_array_height(element) + spacing;
     
     element = create_radio_array(legal_x + spacing, yy, "On Click", col_width, element_height, uivc_tile_set_on_click, Camera.tile_on_click, t_p_tile_editor);
-    create_radio_array_options(element, "Select", "Modify");
+    create_radio_array_options(element, ["Select", "Modify"]);
     ds_list_add(t_p_tile_editor.contents, element);
     
     // second column

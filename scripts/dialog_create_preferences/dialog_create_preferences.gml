@@ -36,7 +36,7 @@ var el_code_ext_text = create_text(16, yy, "This only really affects the text ed
     "Plain text files will open with Notepad by default, but if you have another editor set you can use that instead.", ew, eh * 8, fa_left, ew, dg);
 yy = yy + eh * 8 + spacing;
 var el_code_ext = create_radio_array(16, yy, "Code File Extension:", ew, eh, uivc_code_extension, Stuff.setting_code_extension, dg);
-create_radio_array_options(el_code_ext, "*.txt", "*.lua");
+create_radio_array_options(el_code_ext, ["*.txt", "*.lua"]);
 
 var b_width = 128;
 var b_height = 32;

@@ -27,7 +27,7 @@ var yy = 64;
 var spacing = 16;
 
 var el_choices = create_radio_array(16, yy, "Switches", ew, eh, uivc_list_event_attain_self_switch_index, custom_data_switch[| 0], dg);
-create_radio_array_options(el_choices, "A", "B", "C", "D");
+create_radio_array_options(el_choices, ["A", "B", "C", "D"]);
 dg.el_choices = el_choices;
 
 yy = yy + ui_get_radio_array_height(el_choices) + spacing;

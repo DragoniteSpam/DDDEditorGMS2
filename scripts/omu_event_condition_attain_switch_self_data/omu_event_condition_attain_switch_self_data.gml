@@ -19,7 +19,7 @@ var yy = 64;
 var spacing = 16;
 
 var el_list = create_radio_array(16, yy, "Switches", ew, eh, uivc_event_condition_attain_switch_self_index, index, dg);
-create_radio_array_options(el_list, "A", "B", "C", "D");
+create_radio_array_options(el_list, ["A", "B", "C", "D"]);
 dg.el_list = el_list;
 
 var b_width = 128;

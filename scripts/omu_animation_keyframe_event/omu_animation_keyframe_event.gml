@@ -29,7 +29,7 @@ if (keyframe) {
     var spacing = 16;
     
     var el_graphic_type = create_radio_array(16, yy, "Graphic Type", ew, eh, uivc_animation_keyframe_graphic_type, keyframe.graphic_type, dg);
-    create_radio_array_options(el_graphic_type, "None", "No Change", "Sprite", "Mesh");
+    create_radio_array_options(el_graphic_type, ["None", "No Change", "Sprite", "Mesh"]);
     
     yy = yy + ui_get_radio_array_height(el_graphic_type) + spacing;
     

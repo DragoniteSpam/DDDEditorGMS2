@@ -23,7 +23,7 @@ yy = yy + eh;
 var el_gameplay_grid = create_checkbox(16, yy, "Snap Player to Grid", ew, eh, uivc_settings_game_grid, "", Stuff.game_player_grid, dg);
 yy = yy + eh;
 var el_battle_type = create_radio_array(16, yy, "Battle Style", ew, eh, uivc_settings_game_battle_style, Stuff.game_battle_style, dg);
-create_radio_array_options(el_battle_type, "Team-based", "Melee");
+create_radio_array_options(el_battle_type, ["Team-based", "Melee"]);
 yy = yy + ui_get_radio_array_height(el_battle_type) + eh;
 
 var el_global_title = create_text(16, yy, "Global Stuff", ew, eh, fa_left, dw / 2, dg);

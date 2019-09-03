@@ -25,7 +25,7 @@ if (mouse_within_rectangle_view(xx - tolerance, yy - tolerance, xx + tolerance, 
         ds_list_add(list_branch_code, Stuff.default_lua_event_node_conditional);
         
         var radio = create_radio_array(16, 32, "Else if:", EVENT_NODE_CONTACT_WIDTH - 32, 24, null, ConditionBasicTypes.SWITCH, node);
-        create_radio_array_options(radio, "Variable", "Switch", "Self Variable", "Self Switch", "Code");
+        create_radio_array_options(radio, ["Variable", "Switch", "Self Variable", "Self Switch", "Code"]);
         
         var eh = 32;
         radio.y = radio.y + (((ui_get_radio_array_height(radio) div eh) * eh) + eh + 16) * ds_list_size(node.ui_things);

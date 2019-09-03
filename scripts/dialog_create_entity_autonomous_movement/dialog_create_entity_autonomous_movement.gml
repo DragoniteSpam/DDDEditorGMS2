@@ -27,15 +27,15 @@ var spacing = 16;
 var ucheck_width = 64;        // unlabeled check boxes shouldn't have as wide of a hitbox
 
 var el_movement = create_radio_array(16, yy, "Autonomous Movement", ew, eh, uivc_entity_auto_move, entity.autonomous_movement, dg);
-create_radio_array_options(el_movement, "Fixed", "Random", "Approach", "Custom");
+create_radio_array_options(el_movement, ["Fixed", "Random", "Approach", "Custom"]);
 yy = yy + ui_get_radio_array_height(el_movement) + spacing;
 
 var el_movement_speed = create_radio_array(16, yy, "Move Speed", ew, eh, uivc_entity_auto_speed, entity.autonomous_movement_speed, dg);
-create_radio_array_options(el_movement_speed, "1/8x", "1/4x", "1/2x", "1x", "2x", "4x");
+create_radio_array_options(el_movement_speed, ["1/8x", "1/4x", "1/2x", "1x", "2x", "4x"]);
 yy = yy + ui_get_radio_array_height(el_movement_speed) + spacing;
 
 var el_movement_frequency = create_radio_array(16, yy, "Move Frequency", ew, eh, uivc_entity_auto_frequency, entity.autonomous_movement_frequency, dg);
-create_radio_array_options(el_movement_frequency, "Slowest", "Slow", "Normal", "Fast", "Fastest");
+create_radio_array_options(el_movement_frequency, ["Slowest", "Slow", "Normal", "Fast", "Fastest"]);
 yy = yy + ui_get_radio_array_height(el_movement_frequency) + spacing;
 
 yy = 64;
