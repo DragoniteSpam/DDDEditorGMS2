@@ -1,4 +1,3 @@
-/// @description void setting_save_string(section, key, value);
 /// @param section
 /// @param key
 /// @param value

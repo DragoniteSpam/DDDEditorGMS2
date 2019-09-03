@@ -31,6 +31,8 @@
         "c7d25588-cabb-4d28-9bf1-a467041bb5b4",
         "420cae21-00cc-44d0-8fb4-147ce2b02795",
         "8fdb53a7-e93d-4c4b-b5c6-1671ad96a1cb",
+        "cf04a616-2403-4a32-8ea0-86a71adfc81c",
+        "de12a3bf-7b99-4621-bdec-4715ee4965c4",
         "064fd29e-7ed0-4201-87c9-355fde51e08a",
         "3e49996d-9ebc-4cbf-986e-bd66e3440cc6"
     ],

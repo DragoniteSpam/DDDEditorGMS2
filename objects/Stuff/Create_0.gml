@@ -502,6 +502,7 @@ setting_autosave = ini_read_real("config", "autosave", true);               // b
 setting_alphabetize_lists = ini_read_real("config", "alphabetize", true);   // bool
 setting_npc_animate_rate = ini_read_real("config", "npc-speed", 4); // bool
 setting_code_extension = ini_read_real("config", "code-ext", 0);            // 0 = txt, 1 = lua
+setting_normal_threshold = ini_read_real("config", "normal-threshold", 30); // degrees
 
 setting_code_extension_map = [".txt", ".lua"];
 
