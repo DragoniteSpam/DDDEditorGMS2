@@ -38,9 +38,9 @@ dg.el_preview.render = ui_render_image_button_autotile_preview;
 
 yy = yy + dg.el_preview.height + 16;
 
-dg.el_load = create_button(dw * 3 / 4, yy, "Load Autotile", b_width, b_height, fa_center, null, dg, HelpPages.AUTOTILES, fa_center, fa_top);
+dg.el_load = create_button(dw * 3 / 4, yy, "Load Autotile", b_width, b_height, fa_center, null, dg, fa_center, fa_top);
 
-dg.el_confirm = create_button(dw / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg, HelpPages.AUTOTILES, fa_center);
+dg.el_confirm = create_button(dw / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg, fa_center);
 
 ds_list_add(dg.contents, dg.el_list, dg.el_confirm, dg.el_preview, dg.el_load);
 

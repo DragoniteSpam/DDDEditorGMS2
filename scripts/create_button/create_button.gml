@@ -20,7 +20,7 @@ with (instance_create_depth(argument[0], argument[1], 0, UIButton)) {
     
     switch (argument_count) {
         case 10:
-            switch (argument[11]) {
+            switch (argument[9]) {
                 case fa_top: break;
                 case fa_middle: y = y - height / 2; break;
                 case fa_bottom: y = y - height; break;

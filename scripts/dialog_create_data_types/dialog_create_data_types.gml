@@ -163,7 +163,7 @@ yy = yy_base;
 
 yy = yy + eh + spacing;
 
-el_confirm = create_button(dw / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dc_data_commit, dg, HelpPages.AUTOTILES, fa_center);
+el_confirm = create_button(dw / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dc_data_commit, dg, fa_center);
 
 ds_list_add(dg.contents, el_list, el_add, el_add_enum, el_remove,
     el_data_name, el_list_p, el_add_p, el_remove_p,

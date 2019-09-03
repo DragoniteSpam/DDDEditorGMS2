@@ -6,21 +6,21 @@ with (instantiate(UIMain)) {
     
     // it would be best if you don't ask to access these later but if you need to these are just
     // object variables so you can look them up
-    t_general = create_tab("General", 0, id, HelpPages.TAB_GENERAL);
+    t_general = create_tab("General", 0, id);
     t_stats = create_tab("Stats", 0, id);
     t_2 = create_tab("ehh", 0, id);
     
-    t_p_tile_editor = create_tab("Tile Ed.", 1, id, HelpPages.TAB_TILE_EDITOR);
-    t_p_autotile_editor = create_tab("Autotile Ed.", 1, id, HelpPages.TAB_AUTOTILE_EDITOR);
-    t_p_mesh_editor = create_tab("Mesh Ed.", 1, id, HelpPages.TAB_MESH_EDITOR);
+    t_p_tile_editor = create_tab("Tile Ed.", 1, id);
+    t_p_autotile_editor = create_tab("Autotile Ed.", 1, id);
+    t_p_mesh_editor = create_tab("Mesh Ed.", 1, id);
     t_p_other_editor = create_tab("Other Ed.", 1, id);
     
-    t_p_entity = create_tab("Entity", 2, id, HelpPages.TAB_ENTITY);
-    t_p_tile = create_tab("Tile", 2, id, HelpPages.TAB_TILE);
-    t_p_mesh = create_tab("Mesh", 2, id, HelpPages.TAB_MESH);
-    t_p_mob = create_tab("Mob", 2, id, HelpPages.TAB_MOB);
-    t_p_effect = create_tab("Effect", 2, id, HelpPages.TAB_EFFECT);
-    t_p_event = create_tab("Event", 2, id, HelpPages.TAB_EVENT);
+    t_p_entity = create_tab("Entity", 2, id);
+    t_p_tile = create_tab("Tile", 2, id);
+    t_p_mesh = create_tab("Mesh", 2, id);
+    t_p_mob = create_tab("Mob", 2, id);
+    t_p_effect = create_tab("Effect", 2, id);
+    t_p_event = create_tab("Event", 2, id);
     
     // the game will crash if you create a tab row with zero width.
     var tr_general = ds_list_create();
@@ -468,7 +468,9 @@ with (instantiate(UIMain)) {
     element = create_text(legal_x + spacing, yy, "Select a tile to place down!", col_width, element_height, fa_left, col_width, t_p_tile_editor);
     ds_list_add(t_p_tile_editor.contents, element);
     
-    element = create_button(col2_x + col_width / 2, yy, "Tileset Data", button_width, element_height, fa_center, omu_manager_tileset, t_p_tile_editor, HelpPages.TAB_TILE_EDITOR, fa_middle, fa_top);
+	//element = create_button(legal_x + spacing, yy, "Change Tileset", 160, element_height, fa_center, null, t_p_tile_editor);
+	
+    element = create_button(col2_x + col_width / 2, yy, "Tileset Data", button_width, element_height, fa_center, omu_manager_tileset, t_p_tile_editor, fa_middle, fa_top);
     ds_list_add(t_p_tile_editor.contents, element);
     
     yy = yy + element.height + spacing;
