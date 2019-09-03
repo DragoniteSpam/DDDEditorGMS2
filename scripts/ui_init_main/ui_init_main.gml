@@ -553,6 +553,8 @@ with (instantiate(UIMain)) {
     // this is an object variable
     element_mesh_list = create_list(legal_x + spacing, yy, "Available meshes: ", "<no meshes>", col_width, element_height, 28, uivc_list_selection_mesh, false, t_p_mesh_editor);
     element_mesh_list.entries_are = ListEntries.INSTANCES;
+    element_mesh_list.colorize = false;
+    element_mesh_list.render = ui_render_list_all_meshes;
     ds_list_add(t_p_mesh_editor.contents, element_mesh_list);
     
     element = create_text(col2_x, yy, "Mesh Properties:", col_width, element_height, fa_left, col_width, t_p_mesh_editor);

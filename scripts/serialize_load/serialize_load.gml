@@ -42,7 +42,7 @@ if (buffer < 0) {
                 }
                 instance_activate_object(DataMesh);
                 instance_destroy(DataMesh);
-                ds_list_clear(Camera.ui.element_mesh_list.entries);
+                ds_list_clear(Stuff.all_meshes);
                 break;
             case SERIALIZE_DATA:
                 // this may cause things to break, but it shouldn't;

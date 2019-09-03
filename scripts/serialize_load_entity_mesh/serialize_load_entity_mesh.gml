@@ -13,10 +13,9 @@ if (version >= DataVersions.NEW_MESH_SYSTEM) {
 } else {
     // can't wait for this to be removed from the working version, honestly
     var mesh_name = buffer_read(buffer, buffer_string);
-    var entries = Camera.ui.element_mesh_list.entries;
-    for (var i = 0; i < ds_list_size(entries); i++) {
-        if (entries[| i].name == mesh_name) {
-            entity.mesh = entries[| i].GUID;
+    for (var i = 0; i < ds_list_size(Stuff.all_meshes); i++) {
+        if (Stuff.all_meshes[| i].name == mesh_name) {
+            entity.mesh = Stuff.all_meshes[| i].GUID;
             break;
         }
     }

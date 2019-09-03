@@ -85,17 +85,8 @@ for (var mtl = ds_map_find_first(mtl_alpha); mtl != undefined; mtl = ds_map_find
 buffer_save_ext(buffer, filename_change_ext(fn, ".mtl"), 0, buffer_tell(buffer));
 buffer_delete(buffer);
 /*
-(alphabetize the exported meshes before you put them in the vrax)
-
 and then the other properties - probably woudl be a good idea to add sub-tabs to organize things
 like "smooth normals" and "flip UVs" and "rotate around axis" and all that stuff
-
-also, an Alphabetize List button
-
-not related to 3D data but put a "i am not responsible for fixing any Lua errors you might create"
-in the UIInputCode click event (with an option to disable warning)
-
-and a "reset warnings" button in Preferences
 
 mesh list(s) - just sub in the all meshes list, why did you even think keeping track of two
 identical lists would be the best way to do it?

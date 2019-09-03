@@ -36,25 +36,13 @@ if (n == 0) {
         var yb = ya + list.height;
         var tya = mean(ya, yb);
         if (ds_map_exists(list.selected_entries, index)) {
-            if (list.interactive) {
-                var c = c_ui_select;
-            } else {
-                var c = c_ltgray;
-            }
+            var c = list.interactive ? c_ui_select : c_ltgray;
             draw_rectangle_colour(x1, ya, x2, yb, c, c, c, c, false);
         }
         
-        if (list.colorize && ds_list_size(list.entry_colors) > i) {
-            var c = list.entry_colors[| index];
-        } else {
-            var c = c_black;
-        }
+        var c = (list.colorize && ds_list_size(list.entry_colors) > i) ? list.entry_colors[| index] : c_black;
+        var text = list.numbered ? string(index) + ". " : "";
         
-        if (list.numbered) {
-            var text = string(index) + ". ";
-        } else {
-            var text = "";
-        }
         switch (list.entries_are) {
             case ListEntries.STRINGS: text = text + list.entries[| index]; break;
             case ListEntries.INSTANCES: text = text + list.entries[| index].name; break;
