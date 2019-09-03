@@ -79,11 +79,6 @@ vertex_format_add_colour();
 vertex_format_add_colour();     // second color information is for extra data
 vertex_format = vertex_format_end();
 
-vertex_format_begin();
-vertex_format_add_position_3d();
-vertex_format_add_colour();
-vertex_format_line = vertex_format_end();
-
 grid = noone;
 grid_centered = noone;
 
@@ -171,7 +166,7 @@ mesh_zrot = 0;
 mesh_scale = 1;
 
 mesh_preview_grid = vertex_create_buffer();
-vertex_begin(mesh_preview_grid, vertex_format_line);
+vertex_begin(mesh_preview_grid, vertex_format);
 
 var x1 = -6 * TILE_WIDTH;
 var y1 = -6 * TILE_HEIGHT;

@@ -8,7 +8,7 @@ if (ds_list_size(list) > 0) {
     var buffer = vertex_create_buffer();
     var buffer_wire = vertex_create_buffer();
     vertex_begin(buffer, Camera.vertex_format);
-    vertex_begin(buffer_wire, Camera.vertex_format_line);
+    vertex_begin(buffer_wire, Camera.vertex_format);
     
     for (var i = 0; i < ds_list_size(list); i++) {
         // in case the buffer gets recreated, you need to return it in every

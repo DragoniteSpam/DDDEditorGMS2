@@ -17,7 +17,7 @@ var c = Stuff.color_lookup[argument0.GUID % array_length_1d(Stuff.color_lookup)]
 var cube_size = 2;
 
 var buffer = vertex_create_buffer();
-vertex_begin(buffer, Camera.vertex_format_line);
+vertex_begin(buffer, Camera.vertex_format);
 
 vertex_cube_line(buffer, 0, 0, 0, c, 1, cube_size);
 

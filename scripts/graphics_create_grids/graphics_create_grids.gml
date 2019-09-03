@@ -9,7 +9,7 @@ with (Camera) {
     
     grid = vertex_create_buffer();
     
-    vertex_begin(grid, vertex_format_line);
+    vertex_begin(grid, vertex_format);
     
     // grid
     for (var i = 0; i <= ActiveMap.xx; i++) {
@@ -45,7 +45,7 @@ with (Camera) {
     
     grid_centered = vertex_create_buffer();
     
-    vertex_begin(grid_centered, vertex_format_line);
+    vertex_begin(grid_centered, vertex_format);
     
     // grid
     var xx = ActiveMap.xx / 2;
@@ -88,7 +88,7 @@ with (Camera) {
     
     grid_sphere = vertex_create_buffer();
     
-    vertex_begin(grid_sphere, vertex_format_line);
+    vertex_begin(grid_sphere, vertex_format);
     
     var radius = 16;
     var segments = 16;

@@ -19,7 +19,7 @@ repeat (n_meshes) {
     mesh.cshape = c_shape_create();
     c_shape_begin_trimesh();
     mesh.wbuffer = vertex_create_buffer();
-    vertex_begin(mesh.wbuffer, Camera.vertex_format_line);
+    vertex_begin(mesh.wbuffer, Camera.vertex_format);
     
     mesh.xmin = buffer_read(buffer, buffer_f32);
     mesh.ymin = buffer_read(buffer, buffer_f32);

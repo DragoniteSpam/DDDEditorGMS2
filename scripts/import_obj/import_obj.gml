@@ -230,7 +230,7 @@ if (file_exists(fn)) {
         
         c_shape_begin_trimesh();
         vertex_begin(vbuffer, Camera.vertex_format);
-        vertex_begin(wbuffer, Camera.vertex_format_line);
+        vertex_begin(wbuffer, Camera.vertex_format);
         var vc = 0;
         
         var bxx = [0, 0, 0];

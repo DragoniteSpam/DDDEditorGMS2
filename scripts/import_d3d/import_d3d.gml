@@ -13,7 +13,7 @@ var cshape = c_shape_create();
 
 c_shape_begin_trimesh();
 vertex_begin(vbuffer, Camera.vertex_format);
-vertex_begin(wbuffer, Camera.vertex_format_line);
+vertex_begin(wbuffer, Camera.vertex_format);
 
 var vc = 0;
 

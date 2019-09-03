@@ -19,4 +19,4 @@ vertex_normal(argument[0], argument[4], argument[5], argument[6]);
 vertex_texcoord(argument[0], argument[7], argument[8]);
 vertex_colour(argument[0], argument[9], argument[10]);
 // todo this - extra 32 bits for whatever you want
-vertex_colour(argument[0], make_colour_rgb(0, 0, 0), 1);
+vertex_colour(argument[0], 0x000000, 1);

@@ -30,7 +30,7 @@ vertex_freeze(mesh.vbuffer);
 
 vertex_delete_buffer(mesh.wbuffer);
 mesh.wbuffer = vertex_create_buffer();
-vertex_begin(mesh.wbuffer, Camera.vertex_format_line);
+vertex_begin(mesh.wbuffer, Camera.vertex_format);
 while (buffer_tell(mesh.buffer) < buffer_get_size(mesh.buffer)) {
     var x1 = buffer_read(mesh.buffer, buffer_f32);
     var y1 = buffer_read(mesh.buffer, buffer_f32);
