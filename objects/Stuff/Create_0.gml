@@ -504,6 +504,8 @@ setting_npc_animate_rate = ini_read_real("config", "npc-speed", 4); // bool
 setting_code_extension = ini_read_real("config", "code-ext", 0);            // 0 = txt, 1 = lua
 
 setting_code_extension_map = [".txt", ".lua"];
+
+setting_hide_warnings = ds_map_create();
 ini_close();
 
 // the autosave/load is nice, BUT it will make the game break if there's an error

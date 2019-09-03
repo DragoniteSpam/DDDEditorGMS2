@@ -1,10 +1,12 @@
-/// @param UIThing
+/// @param UIInputCode
 
-var location = get_temp_code_path(argument0);
+var code = argument0;
+
+var location = get_temp_code_path(code);
 
 var buffer = buffer_create(1, buffer_grow, 1);
-buffer_write(buffer, buffer_text, argument0.value);
+buffer_write(buffer, buffer_text, code.value);
 buffer_save_ext(buffer, location, 0, buffer_tell(buffer));
 buffer_delete(buffer);
 
-argument0.editor_handle = ds_stuff_open_local(location);
+code.editor_handle = ds_stuff_open_local(location);

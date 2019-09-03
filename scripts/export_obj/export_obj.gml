@@ -84,3 +84,25 @@ for (var mtl = ds_map_find_first(mtl_alpha); mtl != undefined; mtl = ds_map_find
 
 buffer_save_ext(buffer, filename_change_ext(fn, ".mtl"), 0, buffer_tell(buffer));
 buffer_delete(buffer);
+/*
+exporting a vrax shouldn't be too hard, just borrow the specification from the old project
+theyre still okay for combining multiple models into one file, just not much else
+
+probably allow multi-select in the mesh list so you can export selected instead of export all
+ - but if you try to add something to the world with multiple selected, i will show a dialog
+and not allow you to do it
+
+(alphabetize the exported meshes before you put them in the vrax)
+
+and then the other properties - probably woudl be a good idea to add sub-tabs to organize things
+like "smooth normals" and "flip UVs" and "rotate around axis" and all that stuff
+
+also, an Alphabetize List button
+
+not related to 3D data but put a "i am not responsible for fixing any Lua errors you might create"
+in the UIInputCode click event (with an option to disable warning)
+
+and a "reset warnings" button in Preferences
+
+mesh list(s) - just sub in the all meshes list, why did you even think keeping track of two
+identical lists would be the best way to do it?
