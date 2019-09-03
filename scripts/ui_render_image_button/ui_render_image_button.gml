@@ -30,8 +30,6 @@ if (button.interactive && dialog_is_active(button.root)) {
         color = merge_color(c_white, c_ui, 0.5);
         if (get_release_left()) {
             script_execute(button.onmouseup, button);
-        } else if (Controller.press_help) {
-            //ds_stuff_help_auto(button);
         }
     }
 }

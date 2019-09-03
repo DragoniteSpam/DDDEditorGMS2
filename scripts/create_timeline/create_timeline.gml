@@ -7,7 +7,6 @@
 /// @param onvaluechange
 /// @param oninteract
 /// @param root
-/// @param [help]
 
 with (instance_create_depth(argument[0], argument[1], 0, UIListTimeline)) {
     moment_width = argument[2];
@@ -17,8 +16,6 @@ with (instance_create_depth(argument[0], argument[1], 0, UIListTimeline)) {
     onvaluechange = argument[6];
     oninteract = argument[7];
     root = argument[8];
-    
-    help = (argument_count > 9) ? argument[9] : help;
     
     if (slots * height < 128) {
         debug("ListTimeline: " + text + " has a total height less than 128 (" + string(slots) + " slots of height " + string(height) + "). The scroll bar may not behave as intended.");

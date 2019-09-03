@@ -88,8 +88,6 @@ if (input.interactive && dialog_is_active(input.root)) {
         if (get_release_left()) {
             ui_activate(input);
             keyboard_string = "";
-        } else if (Controller.press_help) {
-            //ds_stuff_help_auto(input);
         }
     } else {
         if (Controller.release_left) {

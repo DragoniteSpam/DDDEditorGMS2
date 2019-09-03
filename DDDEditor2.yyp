@@ -5967,14 +5967,6 @@
             }
         },
         {
-            "Key": "884af337-59f0-4345-aa0b-02ca8702a81b",
-            "Value": {
-                "id": "b57a5731-e690-410e-b7eb-d3366a4d4ec1",
-                "resourcePath": "scripts\\ds_stuff_help_auto\\ds_stuff_help_auto.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "888f2b10-10fb-47eb-a4a5-ea43dd9b0564",
             "Value": {
                 "id": "b69bddd2-d9e7-489c-bca0-97e689081a63",
@@ -11132,7 +11124,6 @@
         "6c74c3c7-3e1b-450f-8fbb-ad588f17dc89",
         "f4ab2647-facc-496d-8b09-0c8e8e5efa34",
         "8dabfabd-6492-4961-ae4e-fa74df24de87",
-        "884af337-59f0-4345-aa0b-02ca8702a81b",
         "6a971c31-99b2-4650-8227-a51e96e2bcf9",
         "09633a3f-60e0-4134-90cc-80961de6982c",
         "6ea1b38b-2a12-4b05-9ab3-475e24c13c2f",

@@ -47,8 +47,6 @@ if (checkbox.interactive && dialog_is_active(checkbox.root)) {
         if (get_release_left()) {
             checkbox.value = !checkbox.value;
             script_execute(checkbox.onvaluechange, checkbox);
-        } else if (Controller.press_help) {
-            //ds_stuff_help_auto(checkbox);
         }
     }
 }

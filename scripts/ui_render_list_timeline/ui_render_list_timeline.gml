@@ -150,8 +150,6 @@ if (animation) {
                 ds_map_add(layer_list.selected_entries, my, true);
                 
                 script_execute(timeline.onvaluechange, timeline);
-            } else if (Controller.press_help) {
-                //ds_stuff_help_auto(timeline);
             } else if (Controller.press_right) {
                 if (timeline.allow_deselect) {
                     timeline.selected_moment = -1;

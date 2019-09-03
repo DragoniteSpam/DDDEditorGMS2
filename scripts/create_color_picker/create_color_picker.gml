@@ -11,7 +11,6 @@
 /// @param value-x2
 /// @param value-y2
 /// @param root
-/// @param [help]
 
 with (instance_create_depth(argument[0], argument[1], 0, UIColorPicker)) {
     text = argument[2];
@@ -28,7 +27,6 @@ with (instance_create_depth(argument[0], argument[1], 0, UIColorPicker)) {
     value_y2 = argument[11];
     
     root = argument[12];
-    help = (argument_count > 13) ? argument[13] : help;
-    
+	
     return id;
 }

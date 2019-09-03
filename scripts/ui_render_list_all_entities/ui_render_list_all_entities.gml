@@ -88,8 +88,6 @@ if (argument0.interactive&&active) {
             argument0.last_index=mn;
             ds_map_add(argument0.selected_entries, mn, true);
             script_execute(argument0.onvaluechange, argument0);
-        } else if (Controller.press_help) {
-            //ds_stuff_help_auto(argument0);
         }
         
         if (mouse_wheel_up()) {

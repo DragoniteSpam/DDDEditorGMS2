@@ -46,8 +46,6 @@ if (enabled && dialog_is_active(option.root.root)) {
         if (get_release_left()) {
             option.root.value = option.value;
             script_execute(option.root.onvaluechange, option);
-        } else if (Controller.press_help) {
-            //ds_stuff_help_auto(option);
         }
     }
 }

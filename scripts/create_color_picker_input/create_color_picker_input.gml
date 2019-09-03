@@ -12,7 +12,6 @@
 /// @param value-y2
 /// @param root
 /// @param [text]
-/// @param [help]
 
 // there's a bunch more positioning properties you can mess with;
 // i expect them to be required less often than these though, so they can
@@ -33,7 +32,6 @@ with (instance_create_depth(argument[0], argument[1], 0, UIColorPickerInput)) {
     
     root = argument[12];
     text = (argument_count > 13) ? argument[13] : text;
-    help = (argument_count > 14) ? argument[14] : help;
     
     return id;
 }

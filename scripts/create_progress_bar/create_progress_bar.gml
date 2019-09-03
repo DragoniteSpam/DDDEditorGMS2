@@ -6,7 +6,6 @@
 /// @param thickness
 /// @param progress
 /// @param root
-/// @param [help]
 
 with (instance_create_depth(argument[0], argument[1], 0, UIProgressBar)) {
     width = argument[2];
@@ -16,8 +15,6 @@ with (instance_create_depth(argument[0], argument[1], 0, UIProgressBar)) {
     progress = argument[6];
     
     root = argument[7];
-    
-    help = (argument_count > 8) ? argument[8] : help;
     
     return id;
 }

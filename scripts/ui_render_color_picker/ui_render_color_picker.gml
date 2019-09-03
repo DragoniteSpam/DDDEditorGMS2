@@ -39,8 +39,6 @@ if (picker.interactive && dialog_is_active(picker.root)) {
     if (inbounds) {
         if (get_release_left()) {
             dialog_create_color_picker_options(picker, picker.value, uivc_color_picker_reflect);
-        } else if (Controller.press_help) {
-            //ds_stuff_help_auto(picker);
         }
     }
 }

@@ -36,8 +36,6 @@ if (enabled) {
         draw_rectangle_colour(x1, y1, x2, y2, c_ui, c_ui, c_ui, c_ui, false);
         if (get_release_left()) {
             script_execute(onmouseup, thing);
-        } else if (Controller.press_help) {
-            //ds_stuff_help_auto(thing);
         }
     }
 }

@@ -1,6 +1,6 @@
 /// @param UIList
-/// @param thing0,[color0]
-/// @param [...thingn,[colorn]]
+/// @param thing[value,[color]]
+/// @param [...thing[value,[color]]
 
 // the entries can be just values or arrays, the script will try to work it
 // out automatically

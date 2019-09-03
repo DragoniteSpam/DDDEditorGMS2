@@ -3,7 +3,6 @@
 /// @param width
 /// @param height
 /// @param [color]
-/// @param [outline]
 
 with (instance_create_depth(argument[0], argument[1], 0, UIRectangle)) {
     x1 = argument[0];

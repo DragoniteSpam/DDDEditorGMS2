@@ -84,8 +84,6 @@ if (list.interactive && active) {
             list.last_index = mn;
             ds_map_add(list.selected_entries, mn, true);
             script_execute(list.onvaluechange, list);
-        } else if (Controller.press_help) {
-            //ds_stuff_help_auto(list);
         } else if (Controller.press_right) {
             if (list.allow_deselect) {
                 ui_list_deselect(list);

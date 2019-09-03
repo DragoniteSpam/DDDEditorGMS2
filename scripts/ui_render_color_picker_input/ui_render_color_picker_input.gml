@@ -59,8 +59,6 @@ if (active) {
         if (get_release_left()) {
             ui_activate(picker);
             keyboard_string = "";
-        } else if (Controller.press_help) {
-            //ds_stuff_help_auto(picker);
         }
     } else {
         if (Controller.press_left) {

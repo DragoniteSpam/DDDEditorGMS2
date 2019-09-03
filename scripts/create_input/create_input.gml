@@ -17,7 +17,6 @@
 /// @param vx2
 /// @param vy2
 /// @param root
-/// @param [help]
 
 with (instance_create_depth(argument[0], argument[1], 0, UIInput)) {
     text = argument[2];
@@ -41,8 +40,7 @@ with (instance_create_depth(argument[0], argument[1], 0, UIInput)) {
     value_y2 = argument[17];
     
     root = argument[18];
-    help = (argument_count > 19) ? argument[19] : help;
-    
+	
     switch (validation) {
         case validate_double:
         case validate_int: real_value = true; break;

@@ -93,10 +93,6 @@ for (var i = 0; i < ds_list_size(argument0.contents); i++) {
 // do this at the end in case some inner element needs to use the escape key
 kill = kill || (active && get_release_escape());
 
-if (Controller.press_help) {
-    ds_stuff_help_auto(argument0);
-}
-
 // the x button/escape key does not commit changes
 if (kill) {
     script_execute(argument0.close, argument0);

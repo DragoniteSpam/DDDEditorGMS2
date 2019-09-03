@@ -5,7 +5,6 @@
 /// @param onvaluechange
 /// @param onvaluechangebackwards
 /// @param root
-/// @param [help]
 
 with (instance_create_depth(argument[0], argument[1], 0, UITileSelector)) {
     width = argument[2];
@@ -14,8 +13,6 @@ with (instance_create_depth(argument[0], argument[1], 0, UITileSelector)) {
     onvaluechange = argument[4];
     onvaluechangebackwards = argument[5];
     root = argument[6];
-    
-    help = (argument_count > 7) ? argument[7] : help;
     
     return id;
 }

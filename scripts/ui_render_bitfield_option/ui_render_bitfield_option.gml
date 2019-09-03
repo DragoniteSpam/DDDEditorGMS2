@@ -24,8 +24,6 @@ if (bitfield.interactive && dialog_is_active(bitfield.root)) {
     if (inbounds) {
         if (get_release_left()) {
             script_execute(bitfield.onvaluechange, bitfield);
-        } else if (Controller.press_help) {
-            //ds_stuff_help_auto(bitfield);
         }
     }
 }

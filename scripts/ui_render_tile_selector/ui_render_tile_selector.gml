@@ -107,8 +107,6 @@ if (inbounds) {
         script_execute(selector.onvaluechange, selector, tx, ty);
     } else if (Controller.press_right) {
         script_execute(selector.onvaluechangebackwards, selector, tx, ty);
-    } else if (Controller.press_help) {
-        //ds_stuff_help_auto(selector);
     }
 }
     
