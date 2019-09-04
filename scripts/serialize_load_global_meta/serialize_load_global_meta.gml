@@ -7,7 +7,7 @@ var version = argument1;
 var n_maps = buffer_read(buffer, buffer_u16);
 ds_map_clear(Stuff.all_maps);
 
-repeat(n_maps) {
+repeat (n_maps) {
     ds_map_add(Stuff.all_maps, buffer_read(buffer, buffer_string), true);
 }
 
@@ -20,7 +20,7 @@ var bools = buffer_read(buffer, buffer_u32);
 Stuff.game_player_grid = unpack(bools, 0);
 Stuff.game_battle_style = buffer_read(buffer, buffer_u8);
 
-if (argument1 >= DataVersions.GAME_VARIABLES) {
+if (version >= DataVersions.GAME_VARIABLES) {
     var n_switches = buffer_read(buffer, buffer_u16);
     var n_variables = buffer_read(buffer, buffer_u16);
     

@@ -79,11 +79,8 @@ if (buffer < 0) {
          * data types
          */
         
-        // you will never have this many Things
-        things = 100000000;
-        
         var stop = false;
-        repeat(things) {
+        while (!stop) {
             var datatype = buffer_read(buffer, buffer_datatype);
             switch (datatype) {
                 // assets
@@ -105,10 +102,6 @@ if (buffer < 0) {
                 case SerializeThings.MAP_DYNAMIC: serialize_load_map_contents_dynamic(buffer, version); break;
                 // end of file
                 case SerializeThings.END_OF_FILE: stop = true; break;
-            }
-            
-            if (stop) {
-                break;
             }
         }
         

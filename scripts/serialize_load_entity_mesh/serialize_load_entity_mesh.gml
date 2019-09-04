@@ -22,7 +22,7 @@ if (version >= DataVersions.NEW_MESH_SYSTEM) {
 }
 
 if (entity.mesh == 0) {
-    // error handling of some sort, if needed
+    // @togo gml try catch
     not_yet_implemented();
 }
 
