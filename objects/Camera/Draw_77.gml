@@ -64,8 +64,8 @@ if (ds_list_size(ActiveMap.batch_in_the_future) > BATCH_CACHE_SIZE) {
 
 // this is important, but gets turned back on when the 3D stuff gets dealt
 // with in the next frame
-d3d_end();
 gpu_set_ztestenable(false);
+gpu_set_zwriteenable(false);
 
 var ts = get_active_tileset();
 
@@ -99,7 +99,7 @@ if (schedule_save_assets) {
 }
 
 if (schedule_open) {
-    var fn = get_open_filename("DDD game files (" + EXPORT_EXTENSION_DATA + ", " + EXPORT_EXTENSION_MAP + ")|*" + EXPORT_EXTENSION_DATA+";*" + EXPORT_EXTENSION_MAP, "");
+    var fn = get_open_filename("DDD game files (" + EXPORT_EXTENSION_DATA + ", " + EXPORT_EXTENSION_MAP + ", " + EXPORT_EXTENSION_ASSETS + ")|*" + EXPORT_EXTENSION_DATA + ";*" + EXPORT_EXTENSION_MAP + ";*" + EXPORT_EXTENSION_ASSETS, "");
     
     if (file_exists(fn)) {
         serialize_load(fn);
