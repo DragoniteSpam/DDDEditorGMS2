@@ -23,8 +23,8 @@ if (buffer < 0) {
         
         var version = buffer_read(buffer, buffer_u32);
         
-        if (version < DataVersions.MAP_CODE_SINGLE) {
-            show_error("We stopped supporting versions of the data file before MAP_CODE_SINGLE (" + string(DataVersions.MAP_CODE_SINGLE) +
+        if (version < DataVersions.SUMMARY_GENERIC_DATA) {
+            show_error("We stopped supporting versions of the data file before SUMMARY_GENERIC_DATA (" + string(DataVersions.SUMMARY_GENERIC_DATA) +
                 "). This current version is " + string(version) + ". Please open and save " + filename_name(argument0) +
                 " through Version 0.1.0.9 of the editor.", true);
         }
