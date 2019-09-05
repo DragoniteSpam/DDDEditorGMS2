@@ -12,7 +12,7 @@ if (!dialog_exists()) {
     // this tolerance is slightly less than the outbound nodes because the consequences
     // of doing it wrong are more dire
     var tolerance = 8;
-    if (mouse_within_rectangle_view(xx - tolerance, yy - tolerance, xx + tolerance, yy + tolerance)) {
+    if (mouse_within_rectangle_adjusted(xx - tolerance, yy - tolerance, xx + tolerance, yy + tolerance)) {
         draw_sprite(spr_event_delete, 1, xx, yy);
         if (get_release_left()) {
             if (show_question("Delete?")) {

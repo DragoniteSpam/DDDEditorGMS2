@@ -50,7 +50,7 @@ switch (node.type) {
             var entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
             
             draw_line(x1 + 16, entry_yy, x2 - 16, entry_yy);
-            if (mouse_within_rectangle_view(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + entry_height - tolerance)) {
+            if (mouse_within_rectangle_adjusted(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + entry_height - tolerance)) {
                 draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + entry_height - tolerance, c, c, c, c, false);
                 if (!dialog_exists()) {
                     if (get_release_left()) {
@@ -87,7 +87,7 @@ switch (node.type) {
             
             for (var i = 0; i < ds_list_size(node.data); i++) {
                 draw_line(x1 + 16, entry_yy, x2 - 16, entry_yy);
-                if (mouse_within_rectangle_view(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + entry_height - tolerance)) {
+                if (mouse_within_rectangle_adjusted(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + entry_height - tolerance)) {
                     draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + entry_height - tolerance, c, c, c, c, false);
                     if (!dialog_exists()) {
                         if (get_release_left()) {
@@ -164,7 +164,7 @@ switch (node.type) {
                 list_type[| i] = radio.value;
                 
                 if (!dialog_exists() && mouse_y_view - entry_yy > rh) {
-                    if (mouse_within_rectangle_view(x1 + tolerance, entry_yy + tolerance + rh, x2 - tolerance, entry_yy + eh + rh - tolerance)) {
+                    if (mouse_within_rectangle_adjusted(x1 + tolerance, entry_yy + tolerance + rh, x2 - tolerance, entry_yy + eh + rh - tolerance)) {
                         draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance + rh, x2 - tolerance, entry_yy - tolerance + rh + eh, c, c, c, c, false);
                         if (get_release_left()) {
                             switch (list_type[| i]) {
@@ -287,7 +287,7 @@ switch (node.type) {
                 
                 var text = node.data[| i];
                 
-                if (mouse_within_rectangle_view(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + eh - tolerance)) {
+                if (mouse_within_rectangle_adjusted(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + eh - tolerance)) {
                     draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + eh - tolerance, c, c, c, c, false);
                     if (!dialog_exists()) {
                         if (get_release_left()) {
@@ -400,7 +400,7 @@ switch (node.type) {
                 
                 draw_line(x1 + 16, entry_yy, x2 - 16, entry_yy);
                 if (!dialog_exists()) {
-                    if (mouse_within_rectangle_view(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + eh - tolerance)) {
+                    if (mouse_within_rectangle_adjusted(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + eh - tolerance)) {
                         draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + eh - tolerance, c, c, c, c, false);
                         if (get_release_left()) {
                             var attainment = type[EventNodeCustomData.ATTAINMENT];

@@ -19,7 +19,7 @@ if (terminal) {
 var tolerance = 12;
 
 if (!dialog_exists()) {
-    if (mouse_within_rectangle_view(xx - tolerance, yy - tolerance, xx + tolerance, yy + tolerance) && get_press_left()) {
+    if (mouse_within_rectangle_adjusted(xx - tolerance, yy - tolerance, xx + tolerance, yy + tolerance) && get_press_left()) {
         Camera.event_canvas_active_node = node;
         Camera.event_canvas_active_node_index = index;
     }

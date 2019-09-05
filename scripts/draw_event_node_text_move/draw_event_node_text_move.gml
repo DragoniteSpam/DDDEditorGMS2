@@ -1,20 +1,26 @@
-/// @description void draw_event_node_text_move(x, y, node, index, direction, image index);
 /// @param x
 /// @param y
 /// @param node
 /// @param index
 /// @param direction
-/// @param image index
+/// @param image-index
 
-draw_sprite(spr_scroll_arrow_enclosed, argument5, argument0, argument1);
+var xx = argument0;
+var yy = argument1;
+var node = argument2;
+var index = argument3;
+var dir = argument4;
+var i_index = argument5;
 
-var tolerance=8;
-if (mouse_within_rectangle_view(argument0-tolerance, argument1-tolerance, argument0+tolerance, argument1+tolerance)) {
-    draw_sprite(spr_scroll_arrow_enclosed, argument5+1, argument0, argument1);
+draw_sprite(spr_scroll_arrow_enclosed, i_index, xx, yy);
+
+var tolerance = 8;
+if (mouse_within_rectangle_adjusted(xx - tolerance, yy - tolerance, xx + tolerance, yy + tolerance)) {
+    draw_sprite(spr_scroll_arrow_enclosed, index + 1, xx, yy);
     if (get_release_left()) {
         // no need to shuffle the outbound things, in this case
-        var t=argument2.data[| argument3+argument4];
-        argument2.data[| argument3+argument4]=argument2.data[| argument3];
-        argument2.data[| argument3]=t;
+        var t = node.data[| index + dir];
+        node.data[| index + dir] = node.data[| index];
+        node.data[| index] = t;
     }
 }

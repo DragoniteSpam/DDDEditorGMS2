@@ -6986,7 +6986,7 @@
             "Key": "9fc60d28-aec9-4790-8729-b6ef8b8d46b2",
             "Value": {
                 "id": "6ef93134-f668-4c6a-b48e-d7fc5c69b080",
-                "resourcePath": "scripts\\mouse_within_rectangle_abs\\mouse_within_rectangle_abs.yy",
+                "resourcePath": "scripts\\mouse_within_rectangle_adjusted\\mouse_within_rectangle_adjusted.yy",
                 "resourceType": "GMScript"
             }
         },

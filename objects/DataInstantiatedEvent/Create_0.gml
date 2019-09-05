@@ -45,7 +45,6 @@ enum ConditionBasicTypes {
 }
 
 // trigger
-
 trigger = EventTriggers.ActionButton;
 
 enum EventTriggers {
