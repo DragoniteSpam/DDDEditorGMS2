@@ -40,7 +40,7 @@ while (buffer_tell(data.buffer) < buffer_get_size(data.buffer)) {
     extra = buffer_read(data.buffer, buffer_u32);
     
     alpha = color >> 24;
-    color = color | 0xffffff;
+    color = color & 0xffffff;
     
     vertex_point_complete(buffer, px[vc], py[vc], pz[vc], nx, ny, nz, xtex, ytex, color, alpha);
     

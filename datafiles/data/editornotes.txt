@@ -24,8 +24,6 @@ themselves during runtime but some of them may need to be animated.
 
 Loading Assets
 
-Loading meshes/images/audio should stay in the Data menu to make them harder to accidentally modify
-
 Loadable Assets
 
  - Meshes (global)
@@ -39,16 +37,6 @@ Loadable Assets
 Game Maker texture pages can go up to 8192x8192, although i'd rather not because those will decompress
 	to up to 250 mb each (the 4192x4192 texture pages will only be 67 mb, much better) - all four
 	of the main texture pages combined will be about 250 mb instead
-
-Map Texture (1) - local
-
-created when a new map is entered - perhaps these should be cached in temporary storage if computing
-	this takes a long time
-
-tileset images should not be more than 2048x2048 (25% of each map's 4096x4096 texture)
-autotiles should not be more than sixteen 1024x256 (2048x2048 total, 25% of map's texture)
-50% of map's texture still remains - you COULD have up to 48 autotiles to fill the space but that
-	seems excessive and if there are other map-specific graphics they would go there anyway
 
 Global Texture (2) - global
 
@@ -89,34 +77,7 @@ Properties: Map
  - width, height, depth
  - tileset used
 
-Properties: Entity\Tile
- - u, v texture coordinates - or just an x, y, tile?
-
-Properties: Entity\Mesh
- - mesh (name, id, or something else)
-
 Now:
- - every mesh entity should store the name string of its mesh and not its
-	index or id or something, because when they're loaded into the
-	game itself they're supposed to be random-access and should only
-	need to be looked up on map load or entity change
- - in the editor, names should be sorted into an alphabetized list
-	(tree) to make it easy to display in the editor's ui, but
-	there should probably also be a hash map of the names the
-	same way the game has?
- - if you remove a vrax or close the editor, modify a required one and
-	reopen the editor, mesh entities that use meshes that can no
-	longer be identified should have some kind of warning symbol at
-	their position in 3D space (probably for their origin plus any
-	cells which they occupy as "solid"), and there should be a nice
-	warning dialog immediately as the program starts
- - when adding a new vrax there should be a notice that if you modify
-	the original vrax the changes won't be known to the editor until
-	you re-load it, since it's going to have to be copied to the
-	appdata folder in order to comply with the game maker sandbox;
-	it may be nice to have a "do not show this warning again" option,
-	and by extension a "reset warnings" button somewhere
-
  - when you change selection from mesh to something that is not mesh,
 hide the mesh selector and swap in the appropriate options (tile picker
 for tiles, mob type probably, effect type probably)
@@ -127,8 +88,3 @@ the footprint; mobs and particles should probably be similar
 
  - better deleting mechanism (instead of ds_list_delete-ing constantly, it
 would probably be faster to re-create the list)
-
- - control+a for select all (this will be more complicated than it sounds
-owing to the different entity types), and likely other keyboard shortcuts
-	 - detection of the control key should override detection of wasd
-	for moving around
