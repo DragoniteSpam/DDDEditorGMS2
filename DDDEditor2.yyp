@@ -719,14 +719,6 @@
             }
         },
         {
-            "Key": "0dcf9f15-38d7-44e9-8742-f73e1a67c867",
-            "Value": {
-                "id": "cdbf9aad-a0ae-4d05-8891-dec70f4c5b1a",
-                "resourcePath": "scripts\\safc_fill_event\\safc_fill_event.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "0dfb932b-1db9-4fb8-a8d7-b336ae6df1f9",
             "Value": {
                 "id": "5ef5161e-5560-424c-9652-60eb80d31d0e",
@@ -4340,14 +4332,6 @@
                 "id": "99509faa-7b6e-4dc0-94e4-ae891d6f08fe",
                 "resourcePath": "views\\63ca5c1a-3416-4dc1-b669-43ab343cae7e.yy",
                 "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "642616ad-d5d9-4ab4-8d22-3153eb2fdd1f",
-            "Value": {
-                "id": "47d0daf2-a296-4f67-b9b1-2ae287aa218d",
-                "resourcePath": "scripts\\ui_render_text_stats_entities_events\\ui_render_text_stats_entities_events.yy",
-                "resourceType": "GMScript"
             }
         },
         {
@@ -9143,14 +9127,6 @@
             }
         },
         {
-            "Key": "d2e90ef3-eb32-46ab-82ab-b72201a83dd6",
-            "Value": {
-                "id": "f9cc0f6e-30ca-4520-a717-dfb3d2b467d8",
-                "resourcePath": "objects\\EntityEvent\\EntityEvent.yy",
-                "resourceType": "GMObject"
-            }
-        },
-        {
             "Key": "d2ef1923-7354-4655-9f79-fa2fd4984630",
             "Value": {
                 "id": "66d1185a-56b2-411a-89e8-d735bab592e0",
@@ -10639,14 +10615,6 @@
             }
         },
         {
-            "Key": "f434b8e8-332f-4ec9-ad68-238dbdeee467",
-            "Value": {
-                "id": "57d50f7f-8cfe-49ed-994e-9f693657bbdf",
-                "resourcePath": "scripts\\safc_on_event\\safc_on_event.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "f47b40fe-8520-4436-8953-057fce08b702",
             "Value": {
                 "id": "95498d78-caa7-4590-8556-19739f3344ce",
@@ -11282,7 +11250,6 @@
         "a6efb929-007d-444d-b808-d4e1af8032ef",
         "991d7842-2f5f-47fb-bcfb-5a1b4b52dc9e",
         "d71e7cab-561d-4a12-8992-2cbd9ef43a8b",
-        "0dcf9f15-38d7-44e9-8742-f73e1a67c867",
         "4b0665c3-4aa8-48fc-844c-604a3f1582b3",
         "c4aa438f-71f7-43ca-ab4b-4ba125a9b04e",
         "c578333b-c949-4c7a-a2c2-5b31b8b69853",
@@ -11291,7 +11258,6 @@
         "40eb65ac-3223-4a64-b780-87a78ac430eb",
         "ed209c0f-e467-4743-a690-ae533fdb32be",
         "daae4ad3-122a-4bb4-a7c2-953f02f14e69",
-        "f434b8e8-332f-4ec9-ad68-238dbdeee467",
         "e2e9ab2d-4135-43f7-a086-2001e494654e",
         "aff645c1-ff62-4a29-8d66-fa9a02896b38",
         "d88f69f4-4e91-47f3-bfd5-f7a19764568c",
@@ -11994,7 +11960,6 @@
         "79a7d251-f945-4972-b0e0-7668e0407eda",
         "dadb731a-73bd-4dbe-8d62-ba002ee3af80",
         "ab4dc1de-410d-4017-96ef-716a1d515073",
-        "642616ad-d5d9-4ab4-8d22-3153eb2fdd1f",
         "871784e6-6046-407c-b249-80a9fa27b7ff",
         "5bd96e0c-ff98-4c9e-b0ef-f92f13ce8865",
         "38605fcd-3b88-4729-bf05-0f7dc77f2813",
