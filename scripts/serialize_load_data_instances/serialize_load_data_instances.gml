@@ -1,6 +1,7 @@
 /// @param buffer
 /// @param version
 
+var buffer = argument0;
 var version = argument1;
 
 var n_datadata = ds_list_size(Stuff.all_data);
@@ -10,13 +11,13 @@ for (var i = 0; i < n_datadata; i++) {
     
     if (!datadata.is_enum) {
         var n_properties = ds_list_size(datadata.properties);
-        var n_instances = buffer_read(argument0, buffer_u16);
+        var n_instances = buffer_read(buffer, buffer_u16);
         
         for (var j = 0; j < n_instances; j++) {
             var instance = instantiate(DataInstantiated);
             ds_list_add(datadata.instances, instance);
             
-            serialize_load_generic(argument0, instance, version);
+            serialize_load_generic(buffer, instance, version);
             
             for (var k = 0; k < n_properties; k++) {
                 var property = datadata.properties[| k];
@@ -61,13 +62,9 @@ for (var i = 0; i < n_datadata; i++) {
                         break;
                 }
                 var plist = ds_list_create();
-                if (argument1 >= DataVersions.DATADATA_SAVE_LISTS) {
-                    var n = buffer_read(argument0, buffer_u8);
-                    repeat (n) {
-                        ds_list_add(plist, buffer_read(argument0, btype));
-                    }
-                } else {
-                    ds_list_add(plist, buffer_read(argument0, btype));
+                var n = buffer_read(buffer, buffer_u8);
+                repeat (n) {
+                    ds_list_add(plist, buffer_read(buffer, btype));
                 }
                 ds_list_add(instance.values, plist);
             }

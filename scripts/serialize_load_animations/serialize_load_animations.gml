@@ -90,9 +90,7 @@ repeat (n_animations) {
                 keyframe.tween_color = buffer_read(buffer, buffer_u16);
                 keyframe.tween_alpha = buffer_read(buffer, buffer_u16);
                 
-                if (version >= DataVersions.ANIMATION_RELATIVE_DATA) {
-                    keyframe.relative = buffer_read(buffer, buffer_s16);
-                }
+                keyframe.relative = buffer_read(buffer, buffer_s16);
             }
         }
     }

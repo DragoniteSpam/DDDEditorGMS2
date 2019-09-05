@@ -94,7 +94,6 @@ for (var i = 0; i < n_animations; i++) {
                 buffer_write(buffer, buffer_u16, keyframe.tween_color);
                 buffer_write(buffer, buffer_u16, keyframe.tween_alpha);
                 
-                // DataVersions.ANIMATION_RELATIVE_DATA
                 buffer_write(buffer, buffer_s16, keyframe.relative);
             }
         }

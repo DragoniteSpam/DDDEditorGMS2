@@ -12,9 +12,6 @@ repeat (n_datadata) {
     guid_remove(data.GUID);
     
     serialize_load_generic(buffer, data, version);
-    if (version < DataVersions.SUMMARY_GENERIC_DATA) {
-        data.summary = buffer_read(buffer, buffer_string);
-    }
     
     data.deleted = unpack(bools, 1);
     
@@ -43,15 +40,10 @@ repeat (n_datadata) {
             property.type_guid = buffer_read(buffer, buffer_u32);
             property.default_code = buffer_read(buffer, buffer_string);
             
-            if (version >= DataVersions.DATADATA_LISTS) {
-                property.max_size = buffer_read(buffer, buffer_u8);
-                property.default_string = buffer_read(buffer, buffer_string);
-                // whoops
-                if (version >= DataVersions.DATADATA_DEFAULTS) {
-                    property.default_int = buffer_read(buffer, buffer_s32);
-                }
-                property.default_real = buffer_read(buffer, buffer_f32);
-            }
+            property.max_size = buffer_read(buffer, buffer_u8);
+            property.default_string = buffer_read(buffer, buffer_string);
+            property.default_int = buffer_read(buffer, buffer_s32);
+            property.default_real = buffer_read(buffer, buffer_f32);
         }
     }
 }

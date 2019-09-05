@@ -4,23 +4,16 @@
 var buffer = argument0;
 var version = argument1;
 
-if (version < DataVersions.SUMMARY_GENERIC_DATA) {
-    // junk - embed settings removed
-    buffer_read(buffer, buffer_u8);
-}
-
 ds_list_clear_instances(Stuff.all_tilesets);
 
 var n_tilesets = buffer_read(buffer, buffer_u16);
 for (var i = 0; i < n_tilesets; i++) {
-    if (version >= DataVersions.SUMMARY_GENERIC_DATA) {
-        // don't use load_generic here because flags is now an array and that
-        // will break things
-        var name = buffer_read(buffer, buffer_string);
-        var internal_name = buffer_read(buffer, buffer_string);
-        var summary = buffer_read(buffer, buffer_string);
-        var guid = buffer_read(buffer, buffer_u32);
-    }
+    // don't use load_generic here because flags is now an array and that
+    // will break things
+    var name = buffer_read(buffer, buffer_string);
+    var internal_name = buffer_read(buffer, buffer_string);
+    var summary = buffer_read(buffer, buffer_string);
+    var guid = buffer_read(buffer, buffer_u32);
     
     var ts_name = buffer_read(buffer, buffer_string);
     
@@ -45,12 +38,10 @@ for (var i = 0; i < n_tilesets; i++) {
     
     var ts = tileset_create(ts_name, at_array, sprite);
     
-    if (version >= DataVersions.SUMMARY_GENERIC_DATA) {
-        ts.name = name;
-        ts.internal_name = internal_name;
-        ts.summary = summary;
-        guid_set(ts, guid, true);
-    }
+    ts.name = name;
+    ts.internal_name = internal_name;
+    ts.summary = summary;
+    guid_set(ts, guid, true);
     
     // i really hope the garbage collector is doing its job with the old arrays
     
@@ -77,11 +68,9 @@ for (var i = 0; i < n_tilesets; i++) {
     
     ds_list_add(Stuff.all_tilesets, ts);
     
-    if (version >= DataVersions.INDIVIDUAL_TERRAIN_TAGS) {
-        ds_list_clear(ts.terrain_tag_names);
-        var n = buffer_read(buffer, buffer_u8);
-        repeat (n) {
-            ds_list_add(ts.terrain_tag_names, buffer_read(buffer, buffer_string));
-        }
+    ds_list_clear(ts.terrain_tag_names);
+    var n = buffer_read(buffer, buffer_u8);
+    repeat (n) {
+        ds_list_add(ts.terrain_tag_names, buffer_read(buffer, buffer_string));
     }
 }

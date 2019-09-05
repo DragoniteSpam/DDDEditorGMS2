@@ -15,7 +15,8 @@ page.condition_switch_global_enabled = unpack(bools, 1);
 page.condition_variable_global_enabled = unpack(bools, 2);
 page.condition_switch_self_enabled = unpack(bools, 3);
 page.condition_variable_self_enabled = unpack(bools, 4);
-// bools[5] used to be item enabled, but we ditched that
+// bools[5] used to be item enabled, but we ditched that so you're
+// free to recycle it now
 page.condition_code_enabled = unpack(bools, 6);
 
 page.condition_switch_global = buffer_read(buffer, buffer_u16);
@@ -23,11 +24,7 @@ page.condition_variable_global = buffer_read(buffer, buffer_u16);
 page.condition_switch_self = buffer_read(buffer, buffer_u16);
 page.condition_variable_self = buffer_read(buffer, buffer_u16);
 
-if (version >= DataVersions.EVENT_PAGE_CODE_CONDITION) {
-    page.condition_code = buffer_read(buffer, buffer_string);
-} else {
-    buffer_read(buffer, buffer_u16);
-}
+page.condition_code = buffer_read(buffer, buffer_string);
 
 page.condition_variable_global_comparison = buffer_read(buffer, buffer_u8);
 page.condition_variable_global_value = buffer_read(buffer, buffer_f32);

@@ -23,10 +23,8 @@ data_resize_map(xx, yy, zz);
 ActiveMap.fog_start = buffer_read(buffer, buffer_f32);
 ActiveMap.fog_end = buffer_read(buffer, buffer_f32);
 
-if (version >= DataVersions.MAP_ENCOUNTER_STUFF) {
-    ActiveMap.base_encounter_rate = buffer_read(buffer, buffer_u32);
-    ActiveMap.base_encounter_deviation = buffer_read(buffer, buffer_u32);
-}
+ActiveMap.base_encounter_rate = buffer_read(buffer, buffer_u32);
+ActiveMap.base_encounter_deviation = buffer_read(buffer, buffer_u32);
 
 var bools = buffer_read(buffer, buffer_u32);
 ActiveMap.indoors = unpack(bools, 0);
@@ -37,14 +35,12 @@ ActiveMap.is_3d = unpack(bools, 4);
 
 ActiveMap.code = buffer_read(buffer, buffer_string);
 
-if (version >= DataVersions.MESH_AUTOTILE_INCLUSION) {
-    for (var i = 0; i < array_length_1d(ActiveMap.mesh_autotile_raw); i++) {
-        var exists = buffer_read(buffer, buffer_bool);
-        if (exists) {
-            var size = buffer_read(buffer, buffer_u32);
-            ActiveMap.mesh_autotile_raw[i] = buffer_read_buffer(buffer, size);
-            ActiveMap.mesh_autotiles[i] = vertex_create_buffer_from_buffer(ActiveMap.mesh_autotile_raw[i], Camera.vertex_format);
-            vertex_freeze(ActiveMap.mesh_autotiles[i]);
-        }
+for (var i = 0; i < array_length_1d(ActiveMap.mesh_autotile_raw); i++) {
+    var exists = buffer_read(buffer, buffer_bool);
+    if (exists) {
+        var size = buffer_read(buffer, buffer_u32);
+        ActiveMap.mesh_autotile_raw[i] = buffer_read_buffer(buffer, size);
+        ActiveMap.mesh_autotiles[i] = vertex_create_buffer_from_buffer(ActiveMap.mesh_autotile_raw[i], Camera.vertex_format);
+        vertex_freeze(ActiveMap.mesh_autotiles[i]);
     }
 }

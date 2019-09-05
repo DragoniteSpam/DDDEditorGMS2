@@ -65,29 +65,20 @@ repeat(n_move_routes) {
     serialize_load_move_route(buffer, entity, version);
 }
 
-if (version >= DataVersions.GAME_VARIABLES) {
-    ds_list_clear(entity.switches);
-    ds_list_clear(entity.variables);
-    
-    var n_variables = buffer_read(buffer, buffer_u8);
-    repeat (n_variables) {
-        if (entity < DataVersions.STRIPPED_SELF_VARIABLES) {
-            buffer_read(buffer, buffer_string);
-        }
-        ds_list_add(entity.switches, buffer_read(buffer, buffer_bool));
-        
-        if (entity < DataVersions.STRIPPED_SELF_VARIABLES) {
-            buffer_read(buffer, buffer_string);
-        }
-        ds_list_add(entity.variables, buffer_read(buffer, buffer_f32));
-    }
-    
-    while (ds_list_size(entity.switches) < BASE_SELF_VARIABLES) {
-        ds_list_add(entity.switches, false);
-    }
-    while (ds_list_size(entity.variables) < BASE_SELF_VARIABLES) {
-        ds_list_add(entity.variables, 0);
-    }
+ds_list_clear(entity.switches);
+ds_list_clear(entity.variables);
+
+var n_variables = buffer_read(buffer, buffer_u8);
+repeat (n_variables) {
+    ds_list_add(entity.switches, buffer_read(buffer, buffer_bool));
+    ds_list_add(entity.variables, buffer_read(buffer, buffer_f32));
+}
+
+while (ds_list_size(entity.switches) < BASE_SELF_VARIABLES) {
+    ds_list_add(entity.switches, false);
+}
+while (ds_list_size(entity.variables) < BASE_SELF_VARIABLES) {
+    ds_list_add(entity.variables, 0);
 }
 
 // this should not be instantiated on its own and does not
