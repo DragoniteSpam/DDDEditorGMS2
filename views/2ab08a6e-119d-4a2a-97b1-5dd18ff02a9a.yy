@@ -10,8 +10,7 @@
         "97801301-916e-4488-99d1-d8ae346ba9cd",
         "9cbae765-a3c4-4280-a0a2-64e983d507e3",
         "934cb342-7163-49a0-8abe-cee2e7c7f837",
-        "51b1af28-249b-4dfc-a8ca-a5a30fcdb11e",
-        "d2e90ef3-eb32-46ab-82ab-b72201a83dd6"
+        "51b1af28-249b-4dfc-a8ca-a5a30fcdb11e"
     ],
     "filterType": "GMObject",
     "folderName": "3D stuff",

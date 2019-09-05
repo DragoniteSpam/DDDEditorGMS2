@@ -4,8 +4,8 @@ if (!mouse_3d_lock && mouse_within_view(view_3d) && !dialog_exists()) {
     control_animator();
 }
 
-d3d_start();
-//gpu_set_cullmode(view_backface ? cull_noculling : cull_counterclockwise);
+gpu_set_zwriteenable(true);
+gpu_set_cullmode(view_backface ? cull_noculling : cull_counterclockwise);
 gpu_set_ztestenable(true);
 
 // todo GMS2 requires smooth shading to be handled by the shader(s) now,
@@ -13,16 +13,20 @@ gpu_set_ztestenable(true);
 // do it that way here at some point in the future too
 
 draw_set_color(c_white);
+var camera = view_get_camera(view_camera);
 
 if (ActiveMap.is_3d) {
     var vw = view_get_wport(view_current);
     var vh = view_get_hport(view_current);
-    d3d_set_projection_ext(anim_x, anim_y, anim_z, anim_xto, anim_yto, anim_zto, anim_xup, anim_yup, anim_zup, anim_fov, vw / vh, 1, 32000);
+    camera_set_view_mat(camera, matrix_build_lookat(anim_x, anim_y, anim_z, anim_xto, anim_yto, anim_zto, anim_xup, anim_yup, anim_zup));
+    camera_set_proj_mat(camera, matrix_build_projection_perspective_fov(-anim_fov, -vw / vh, 1, 32000));
+    camera_apply(camera);
 } else {
-	var camera = view_get_camera(view_current);
     var cwidth = camera_get_view_width(camera);
 	var cheight = camera_get_view_height(camera);
-    d3d_set_projection_ortho(anim_x - cwidth / 2, anim_y - cheight / 2, cwidth, cheight, 0);
+    camera_set_view_mat(camera, matrix_build_lookat(anim_x + cwidth / 2, anim_y + cheight / 2, -16000,  anim_x + cwidth / 2, anim_y + cheight / 2, 0, 0, 1, 0));
+    camera_set_proj_mat(camera, matrix_build_projection_ortho(cwidth, cheight, 1, 32000));
+    camera_apply(camera);
 }
 
 // anything in the world

@@ -1,4 +1,5 @@
-d3d_end();
+gpu_set_ztestenable(false);
+gpu_set_zwriteenable(false);
 
 draw_set_color(c_white);
 draw_set_font(FDefault12);

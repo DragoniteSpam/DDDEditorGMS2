@@ -20,7 +20,6 @@ with (instantiate(UIMain)) {
     t_p_mesh = create_tab("Mesh", 2, id);
     t_p_mob = create_tab("Mob", 2, id);
     t_p_effect = create_tab("Effect", 2, id);
-    t_p_event = create_tab("Event", 2, id);
     
     // the game will crash if you create a tab row with zero width.
     var tr_general = ds_list_create();
@@ -28,7 +27,7 @@ with (instantiate(UIMain)) {
     var tr_editor = ds_list_create();
     ds_list_add(tr_editor, t_p_tile_editor, t_p_autotile_editor, t_p_mesh_editor, t_p_other_editor);
     var tr_world = ds_list_create();
-    ds_list_add(tr_world, t_p_entity, t_p_tile, t_p_mesh, t_p_mob, t_p_effect, t_p_event);
+    ds_list_add(tr_world, t_p_entity, t_p_tile, t_p_mesh, t_p_mob, t_p_effect);
     
     ds_list_add(tabs, tr_general, tr_editor, tr_world);
     
@@ -69,7 +68,7 @@ with (instantiate(UIMain)) {
     yy = yy + element.height + spacing;
     
     element = create_radio_array(legal_x + spacing, yy, "Fill Type", col_width, element_height, uivc_radio_fill_type, Camera.selection_fill_type, t_general);
-    create_radio_array_options(element, ["Tile", "Autotile", "Mesh", "Mob", "Effect", "Event", "Terrain"]);
+    create_radio_array_options(element, ["Tile", "Autotile", "Mesh", "Mob", "Effect", "Terrain"]);
     ds_list_add(t_general.contents, element);
     
     yy = yy + ui_get_radio_array_height(element) + spacing;
@@ -92,7 +91,6 @@ with (instantiate(UIMain)) {
         create_bitfield_option_data(ETypeFlags.ENTITY_MESH, ui_render_bitfield_option_text_selection_mask, uivc_bitfield_selection_mask, "Mesh", -1, 0, col_width / 2, s),
         create_bitfield_option_data(ETypeFlags.ENTITY_PAWN, ui_render_bitfield_option_text_selection_mask, uivc_bitfield_selection_mask, "Pawn", -1, 0, col_width / 2, s),
         create_bitfield_option_data(ETypeFlags.ENTITY_EFFECT, ui_render_bitfield_option_text_selection_mask, uivc_bitfield_selection_mask, "Effect", -1, 0, col_width / 2, s),
-        create_bitfield_option_data(ETypeFlags.ENTITY_EVENT, ui_render_bitfield_option_text_selection_mask, uivc_bitfield_selection_mask, "Event", -1, 0, col_width / 2, s),
         create_bitfield_option_data(SELECTION_MASK_ALL, ui_render_bitfield_option_text_selection_mask_all, uivc_bitfield_selection_mask_all, "All", -1, 0, col_width / 2, s),
         create_bitfield_option_data(0, ui_render_bitfield_option_text_selection_mask_none, uivc_bitfield_selection_mask_none, "None", -1, 0, col_width / 2, s)]);
     ds_list_add(t_general.contents, element);
@@ -230,15 +228,6 @@ with (instantiate(UIMain)) {
     
     element = create_text(stat_x, yy, "0", col_width, element_height, fa_left, col_width, t_stats);
     element.render = ui_render_text_stats_entities_effects;
-    ds_list_add(t_stats.contents, element);
-    
-    yy = yy + spacing;
-    
-    element = create_text(col2_x, yy, "     Events:", col_width, element_height, fa_left, col_width, t_stats);
-    ds_list_add(t_stats.contents, element);
-    
-    element = create_text(stat_x, yy, "0", col_width, element_height, fa_left, col_width, t_stats);
-    element.render = ui_render_text_stats_entities_events;
     ds_list_add(t_stats.contents, element);
     
     yy = yy + spacing;

@@ -4,13 +4,15 @@ var ui = argument0;
 var xx = argument1;
 var yy = argument2;
 
-var camera = view_get_camera(view_hud);
+var camera = view_get_camera(view_current);
 var ui_x = camera_get_view_x(camera);
 var ui_y = camera_get_view_x(camera);
 var ui_width = camera_get_view_width(camera);
 var ui_height = camera_get_view_height(camera);
 
-d3d_set_projection_ortho(ui_x, ui_y, ui_width, ui_height, 0);
+camera_set_view_mat(camera, matrix_build_lookat(ui_x + ui_width / 2, ui_y + ui_height / 2, -16000,  ui_x + ui_width / 2, ui_y + ui_height / 2, 0, 0, 1, 0));
+camera_set_proj_mat(camera, matrix_build_projection_ortho(ui_width, ui_height, 1, 32000));
+camera_apply(camera);
 
 draw_clear(c_white);
 draw_set_color(c_black);

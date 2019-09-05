@@ -5,26 +5,36 @@
 /// @param y2
 /// @param color
 
-draw_roundrect_colour(argument1, argument2, argument3, argument4, argument5, argument5, false);
-draw_roundrect(argument1, argument2, argument3, argument4, true);
+var node = argument0;
+var x1 = argument1;
+var y1 = argument2;
+var x2 = argument3;
+var y2 = argument4;
+var color = argument5;
+
+draw_roundrect_colour(x1, y1, x2, y2, color, color, false);
+draw_roundrect(x1, y1, x2, y2, true);
 
 if (!dialog_exists()) {
     // i don't like this but it works
-    if (mouse_within_rectangle_view(argument1, argument2, argument3, argument4) || argument0.offset_x > -1) {
+    if (mouse_within_rectangle_adjusted(x1, y1, x2, y2) || node.dragging) {
         if (get_press_left()) {
-            argument0.offset_x = mouse_x_view-argument0.x;
-            argument0.offset_y = mouse_y_view-argument0.y;
+            node.offset_x = mouse_x_view - node.x;
+            node.offset_y = mouse_y_view - node.y;
+            node.dragging = true;
         } else if (Controller.mouse_left) {
-            if (argument0.offset_x > -1) {
-                argument0.x = mouse_x_view - argument0.offset_x;
-                argument0.y = mouse_y_view - argument0.offset_y;
+            if (node.dragging) {
+                node.x = mouse_x_view - node.offset_x;
+                node.y = mouse_y_view - node.offset_y;
             }
         } else {
-            argument0.offset_x = -1;
-            argument0.offset_y = -1;
+            node.offset_x = -1;
+            node.offset_y = -1;
+            node.dragging = false;
         }
     } else {
-        argument0.offset_x = -1;
-        argument0.offset_y = -1;
+        node.offset_x = -1;
+        node.offset_y = -1;
+        node.dragging = false;
     }
 }

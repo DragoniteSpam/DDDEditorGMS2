@@ -27,7 +27,8 @@ if (!mouse_within_view(view_fullscreen)) {
     Controller.release_middle = false;
 }
 
-d3d_end();
+gpu_set_ztestenable(false);
+gpu_set_zwriteenable(false);
 
 draw_set_color(c_white);
 draw_set_font(FDefault12);
@@ -56,7 +57,7 @@ if (Controller.mouse_right) {
         window_set_cursor(cr_none);
         draw_scroll();
 		
-        camera_set_view_pos(view_get_camera(view_current), xview - (mouse_x - Controller.mouse_x_previous), yview - (mouse_y - Controller.mouse_y_previous));
+        camera_set_view_pos(camera, xview - (mouse_x - Controller.mouse_x_previous), yview - (mouse_y - Controller.mouse_y_previous));
     }
 } else {
     window_set_cursor(cr_default);

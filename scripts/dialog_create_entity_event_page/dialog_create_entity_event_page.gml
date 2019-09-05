@@ -71,6 +71,7 @@ var yy = 64;
 
 var el_trigger = create_radio_array(c2 + 16, yy, "Trigger Method", ew, eh, uivc_entity_event_trigger, page.trigger, dg);
 create_radio_array_options(el_trigger, ["Action Button", "Player Touch", "Event Touch", "Autorun", "Parallel"]);
+el_trigger.contents[| EventTriggers.Parallel].interactive = false;
 yy = yy + ui_get_radio_array_height(el_trigger) + spacing;
 
 // i don't like this ridiculous validation chain but if you try to refer to a nonexistent

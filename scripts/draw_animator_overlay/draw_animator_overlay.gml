@@ -2,7 +2,10 @@ var w = view_get_wport(view_current)
 var h = view_get_hport(view_current);
 var lw = 4;
 
-d3d_set_projection_ortho(0, 0, w, h, 0);
+var camera = view_get_camera(view_current);
+camera_set_view_mat(camera, matrix_build_lookat(w / 2, h / 2, -16000,  w / 2, h / 2, 0, 0, 1, 0));
+camera_set_proj_mat(camera, matrix_build_projection_ortho(w, h, 1, 32000));
+camera_apply(camera);
 
 gpu_set_cullmode(cull_noculling);
 draw_set_alpha(0.75);

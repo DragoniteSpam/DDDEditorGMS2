@@ -46,6 +46,8 @@ enum SerializeThings {
     END_OF_FILE             = 0x00002000,
 }
 
+// Note: event entites have been removed, owing to the fact that every entity
+// can carry event information now
 enum ETypes {
     ENTITY,
     ENTITY_TILE,
@@ -74,7 +76,7 @@ etype_objects = [Entity,
     EntityMesh,
     EntityPawn,
     EntityEffect,
-    EntityEvent,
+    noone,
     EntityMeshTerrain
 ];
 

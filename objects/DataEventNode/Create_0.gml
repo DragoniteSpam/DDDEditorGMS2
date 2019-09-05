@@ -22,6 +22,7 @@ is_root = false;
 event = noone;
 valid_destination = true;                                                // can other nodes lead to this? basically here to denote comments
 
+dragging = false;
 offset_x = -1;
 offset_y = -1;
 

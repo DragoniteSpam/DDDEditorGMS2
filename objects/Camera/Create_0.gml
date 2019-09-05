@@ -211,11 +211,10 @@ enum FillTypes {
     MESH,
     PAWN,
     EFFECT,
-    EVENT,
     TERRAIN,
 }
 
-fill_types = [safc_fill_tile, safc_fill_autotile, safc_fill_mesh, safc_fill_pawn, safc_fill_effect, safc_fill_event, safc_fill_terrain];
+fill_types = [safc_fill_tile, safc_fill_autotile, safc_fill_mesh, safc_fill_pawn, safc_fill_effect, safc_fill_terrain];
 
 /*
  * the autotile shader

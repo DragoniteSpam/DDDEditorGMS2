@@ -2,7 +2,11 @@
 // shown and that's going to block out the first part of the menu
 var yy = DEBUG ? 24 : 0;
 
-d3d_set_projection_ortho(0, 0, room_width, room_height, 0);
+var camera = view_get_camera(view_current);
+camera_set_view_mat(camera, matrix_build_lookat(room_width / 2, room_height / 2, -16000,  room_width / 2, room_height / 2, 0, 0, 1, 0));
+camera_set_proj_mat(camera, matrix_build_projection_ortho(room_width, room_height, 1, 32000));
+camera_apply(camera);
+
 gpu_set_cullmode(cull_noculling);
 
 script_execute(menu.render, menu, 0, yy);
