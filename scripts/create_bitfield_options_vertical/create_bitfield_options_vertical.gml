@@ -6,7 +6,7 @@
 var bitfield = argument[0];
 var things = argument[1];
 
-for (var i = 1; i < array_length_1d(things); i++) {
+for (var i = 0; i < array_length_1d(things); i++) {
     var n = ds_list_size(bitfield.contents);
     var data = things[i];
 	var yy = (n == 0) ? bitfield.height : ds_list_top(bitfield.contents).y + ds_list_top(bitfield.contents).height;

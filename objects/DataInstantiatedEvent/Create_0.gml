@@ -44,7 +44,9 @@ enum ConditionBasicTypes {
     SCRIPT
 }
 
-// trigger
+// trigger is a mask in-game so that you can check any ones you want in a single
+// operation, but because you don't actually want to allow any arbitrary combination
+// of triggers the editor acts as if they aren't
 trigger = EventTriggers.ActionButton;
 
 enum EventTriggers {

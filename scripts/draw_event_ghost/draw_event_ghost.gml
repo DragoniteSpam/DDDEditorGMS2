@@ -4,8 +4,8 @@
 /// @param y2
 /// @param outbound
 
-var x1 = argument0;
-var y1 = argument1;
+var xx = argument0;
+var yy = argument1;
 var x1 = argument2;
 var y1 = argument3 - 12;
 var x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
@@ -26,5 +26,6 @@ if (mouse_within_rectangle_adjusted(x1, y1, x2, y2)) {
     }
 }
 
-draw_text(x1 + 16, y2, string(outbound.name));
-draw_line(x1, y1, x2, y2);
+draw_text(x1 + 16, mean(y1, y2), string(outbound.name));
+// this is sort of a bezier but not really
+draw_line(xx, yy, x1, mean(y1, y2));

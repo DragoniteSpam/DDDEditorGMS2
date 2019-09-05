@@ -17,21 +17,24 @@ draw_roundrect(x1, y1, x2, y2, true);
 
 if (!dialog_exists()) {
     // i don't like this but it works
-    if (mouse_within_rectangle_adjusted(x1, y1, x2, y2) || node.offset_x > -1) {
+    if (mouse_within_rectangle_adjusted(x1, y1, x2, y2) || node.dragging) {
         if (get_press_left()) {
             node.offset_x = mouse_x_view - node.x;
             node.offset_y = mouse_y_view - node.y;
+            node.dragging = true;
         } else if (Controller.mouse_left) {
-            if (node.offset_x > -1) {
+            if (node.dragging) {
                 node.x = mouse_x_view - node.offset_x;
                 node.y = mouse_y_view - node.offset_y;
             }
         } else {
             node.offset_x = -1;
             node.offset_y = -1;
+            node.dragging = false;
         }
     } else {
         node.offset_x = -1;
         node.offset_y = -1;
+        node.dragging = false;
     }
 }

@@ -56,7 +56,7 @@ if (Controller.mouse_right) {
         window_set_cursor(cr_none);
         draw_scroll();
 		
-        camera_set_view_pos(view_get_camera(view_current), xview - (mouse_x - Controller.mouse_x_previous), yview - (mouse_y - Controller.mouse_y_previous));
+        camera_set_view_pos(camera, xview - (mouse_x - Controller.mouse_x_previous), yview - (mouse_y - Controller.mouse_y_previous));
     }
 } else {
     window_set_cursor(cr_default);
