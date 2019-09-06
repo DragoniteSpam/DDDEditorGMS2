@@ -163,7 +163,7 @@ switch (node.type) {
                 // this should be in an onvaluechange script but that's a huge hassle for something really minor
                 list_type[| i] = radio.value;
                 
-                if (!dialog_exists() && mouse_y_view - entry_yy > rh) {
+                if (!dialog_exists()) {
                     if (mouse_within_rectangle_adjusted(x1 + tolerance, entry_yy + tolerance + rh, x2 - tolerance, entry_yy + eh + rh - tolerance)) {
                         draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance + rh, x2 - tolerance, entry_yy - tolerance + rh + eh, c, c, c, c, false);
                         if (get_release_left()) {
