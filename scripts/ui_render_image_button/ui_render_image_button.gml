@@ -24,7 +24,7 @@ if (button.outline) {
 
 var color = c_white;
 if (button.interactive && dialog_is_active(button.root)) {
-    var inbounds = mouse_within_rectangle_determine(x1, y1, x2, y2);
+    var inbounds = mouse_within_rectangle_determine(x1, y1, x2, y2, button.adjust_view);
     if (inbounds) {
         draw_rectangle_colour(x1, y1, x2, y2, c_ui, c_ui, c_ui, c_ui, false);
         color = merge_color(c_white, c_ui, 0.5);

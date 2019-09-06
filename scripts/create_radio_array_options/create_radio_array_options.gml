@@ -10,6 +10,7 @@ for (var i = 0; i < array_length_1d(strings); i++) {
     option.root = array;
     option.height = array.height;
     option.value = i;
+    option.adjust_view = array.adjust_view;
     
     ds_list_add(array.contents, option);
 }

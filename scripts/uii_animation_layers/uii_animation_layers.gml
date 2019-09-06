@@ -15,7 +15,7 @@ var y2 = y1 + timeline.height;
 
 var y3 = y2 + timeline.slots * timeline.height;
 
-var inbounds = mouse_within_rectangle_determine(x1, y2, x2, y3);
+var inbounds = mouse_within_rectangle_determine(x1, y2, x2, y3, timeline.adjust_view);
 
 if (keyboard_check_pressed(vk_delete)) {
     var timeline_layer = animation_get_layer(animation, timeline.selected_layer);

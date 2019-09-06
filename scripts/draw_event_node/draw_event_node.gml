@@ -759,6 +759,6 @@ if (!bezier_override) {
             }
         }
         var camera = view_get_camera(view_current);
-        draw_bezier(x2 + 8, by, mouse_x_view - camera_get_view_x(camera), mouse_y_view - camera_get_view_y(camera));
+        draw_bezier(x2 + 8, by, mouse_x_view + camera_get_view_x(camera), mouse_y_view + camera_get_view_y(camera));
     }
 }

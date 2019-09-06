@@ -2,5 +2,12 @@
 /// @param y1
 /// @param x2
 /// @param y2
+/// @param adjust?
 
-return mouse_within_rectangle_view(argument0, argument1, argument2, argument3);
+var x1 = argument[0];
+var y1 = argument[1];
+var x2 = argument[2];
+var y2 = argument[3];
+var adjust = argument[4];
+
+return adjust ? mouse_within_rectangle_adjusted(x1, y1, x2, y2) : mouse_within_rectangle_view(x1, y1, x2, y2);

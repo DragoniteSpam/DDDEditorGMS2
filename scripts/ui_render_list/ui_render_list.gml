@@ -60,7 +60,7 @@ var offset = (n > list.slots) ? 16 : 0;
 var move_direction = 0;
 
 if (list.interactive && active) {
-    var inbounds = mouse_within_rectangle_determine(x1, y2, x2 - offset, y3);
+    var inbounds = mouse_within_rectangle_determine(x1, y2, x2 - offset, y3, list.adjust_view);
     if (inbounds) {
         if (Controller.double_left) {
             script_execute(list.ondoubleclick, list);
@@ -125,7 +125,7 @@ if (n > list.slots) {
     var sby1 = sy - shalf;
     var sby2 = sy + shalf;
     if (list.interactive && active) {
-        var inbounds = mouse_within_rectangle_determine(x2 - sw, sby1, x2, sby2);
+        var inbounds = mouse_within_rectangle_determine(x2 - sw, sby1, x2, sby2, list.adjust_view);
         if (inbounds) {
             draw_rectangle_colour(x2 - sw + 1, sby1 + 1, x2 - 1, sby2 - 1, c_ui, c_ui, c_ui, c_ui, false);
             if (Controller.press_left) {
@@ -149,8 +149,8 @@ if (n > list.slots) {
     draw_line_colour(x2 - sw * 4 / 5, sy + 4, x2 - sw / 5, sy + 4, c_gray, c_gray);
     
     if (active) {
-        var inbounds_top = mouse_within_rectangle_determine(x2 - sw, y2, x2, y2 + sw);
-        var inbounds_bottom = mouse_within_rectangle_determine(x2 - sw, y3 - sw, x2, y3);
+        var inbounds_top = mouse_within_rectangle_determine(x2 - sw, y2, x2, y2 + sw, list.adjust_view);
+        var inbounds_bottom = mouse_within_rectangle_determine(x2 - sw, y3 - sw, x2, y3, list.adjust_view);
         if (inbounds_top) {
             draw_rectangle_colour(x2 - sw + 1, y2 + 1, x2 - 1, y2 + sw - 1, c_ui, c_ui, c_ui, c_ui, false);
             if (Controller.press_left) {

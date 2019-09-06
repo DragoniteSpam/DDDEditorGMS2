@@ -83,7 +83,7 @@ if (input.interactive && dialog_is_active(input.root)) {
         }
     }
     
-    var inbounds = mouse_within_rectangle_determine(vx1, vy1, vx2, vy2);
+    var inbounds = mouse_within_rectangle_determine(vx1, vy1, vx2, vy2, input.adjust_view);
     if (inbounds) {
         if (get_release_left()) {
             ui_activate(input);

@@ -35,7 +35,7 @@ draw_set_color(tab.color);
 draw_text(tx, ty, string(tab.text));
 
 if (tab.interactive && dialog_is_active(tab.root)) {
-    var inbounds = mouse_within_rectangle_determine(x1, y1, x2, y2);
+    var inbounds = mouse_within_rectangle_determine(x1, y1, x2, y2, tab.adjust_view);
     if (inbounds) {
         if (get_release_left()) {
             script_execute(tab.onmouseup, tab);

@@ -35,7 +35,7 @@ if (!picker.interactive) {
 draw_rectangle(vx1, vy1, vx2, vy2, true);
 
 if (picker.interactive && dialog_is_active(picker.root)) {
-    var inbounds = mouse_within_rectangle_determine(vx1, vy1, vx2, vy2);
+    var inbounds = mouse_within_rectangle_determine(vx1, vy1, vx2, vy2, picker.adjust_view);
     if (inbounds) {
         if (get_release_left()) {
             dialog_create_color_picker_options(picker, picker.value, uivc_color_picker_reflect);
