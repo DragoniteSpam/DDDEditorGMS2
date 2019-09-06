@@ -181,19 +181,11 @@ switch (node.type) {
                                         buffer_delete(buffer);
                                     
                                         node.editor_handle = ds_stuff_open_local(location);
+                                        node.editor_handle_index = i;
                                     }
                                     break;
                             }
                         }
-                    }
-                }
-                
-                if (node.editor_handle && list_type[| i] == ConditionBasicTypes.SCRIPT) {
-                    list_code[| i] = uios_code_text(node, list_code[| i]);
-                    draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance + rh, x2 - tolerance, entry_yy - tolerance + rh + eh, c, c, c, c, false);
-                    if (ds_stuff_process_complete(node.editor_handle)) {
-                        node.editor_handle = noone;
-                        file_delete(get_temp_code_path(node));
                     }
                 }
                 
@@ -235,6 +227,10 @@ switch (node.type) {
                         break;
                     case ConditionBasicTypes.SCRIPT:
                         var str = "Code: " + string_comma(string_length(list_code[| i])) + " bytes";
+                        
+                        if (node.editor_handle_index == i) {
+                            draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance + rh, x2 - tolerance, entry_yy - tolerance + rh + eh, c, c, c, c, false);
+                        }
                         break;
                 }
                 
@@ -246,6 +242,15 @@ switch (node.type) {
                 
                 if (i > 0) {
                     draw_event_node_condition_remove(x2, mean(entry_yy_previous, entry_yy) + 16, node, i);
+                }
+            }
+            
+            if (node.editor_handle) {
+                list_code[| node.editor_handle_index] = uios_code_text(node, list_code[| node.editor_handle_index]);
+                if (ds_stuff_process_complete(node.editor_handle)) {
+                    node.editor_handle = noone;
+                    node.editor_handle_index = -1;
+                    file_delete(get_temp_code_path(node));
                 }
             }
             

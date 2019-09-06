@@ -34,3 +34,4 @@ parents = ds_map_create();
 
 ui_things = ds_list_create();
 editor_handle = noone;
+editor_handle_index = -1;       // because sometimes the same node might want to spawn multiple editors and want to tell them apart
