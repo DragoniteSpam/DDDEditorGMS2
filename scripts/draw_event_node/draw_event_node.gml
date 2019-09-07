@@ -346,14 +346,11 @@ switch (node.type) {
                 case DataTypes.TILESET:
                 case DataTypes.AUTOTILE:
                 case DataTypes.ENTITY:
+                case DataTypes.MAP:
                     y2 = y2 + 32;
                     break;
                 case DataTypes.STRING:
-                    if (ds_list_size(custom_data_list) == 1) {
-                        y2 = y2 + entry_height + 24;
-                    } else {
-                        y2 = y2 + 32;
-                    }
+                    y2 = y2 + (ds_list_size(custom_data_list) == 1) ? entry_height + 24 : 32;
                     break;
             }
         }
@@ -387,11 +384,7 @@ switch (node.type) {
                         eh = 32;
                         break;
                     case DataTypes.STRING:
-                        if (ds_list_size(custom_data_list) == 1) {
-                            eh = entry_height + 24;
-                        } else {
-                            eh = 32;
-                        }
+                        eh = (ds_list_size(custom_data_list) == 1) ? entry_height + 24 : 32;
                         break;
                     case DataTypes.COLOR:
                     case DataTypes.MESH:
@@ -399,6 +392,7 @@ switch (node.type) {
                     case DataTypes.TILESET:
                     case DataTypes.AUTOTILE:
                     case DataTypes.ENTITY:
+                    case DataTypes.MAP:
                         eh = 32;
                         break;
                 }
@@ -460,6 +454,9 @@ switch (node.type) {
                                     case DataTypes.AUTOTILE:
                                     case DataTypes.ENTITY:
                                         not_yet_implemented();
+                                        break;
+                                    case DataTypes.MAP:
+                                        show_error("okay you actually need to implement this soon, please", true);
                                         break;
                                 }
                             } else {
@@ -558,6 +555,11 @@ switch (node.type) {
                             var setdata = refid_get(custom_data_list[| 0]);
                             message = message + "(entity): ";
                             output_string = setdata ? setdata.name : "<calling entity>";
+                            break;
+                        case DataTypes.MAP:
+                            var setdata = guid_get(custom_data_list[| 0]);
+                            message = message + "(map): ";
+                            output_string = setdata ? setdata.name : "<null>";
                             break;
                     }
                     

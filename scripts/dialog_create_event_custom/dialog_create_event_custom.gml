@@ -58,7 +58,7 @@ dg.el_property_name = el_property_name;
 yy = yy + el_property_name.height + spacing;
 
 var el_property_type = create_radio_array(col2_x, yy, "Type:", ew, eh, uivc_custom_data_property_type, 0, dg);
-create_radio_array_options(el_property_type, ["Int", "Enum", "Float", "String", "Boolean", "Data", "Code"]);
+create_radio_array_options(el_property_type, ["Int", "Enum", "Float", "String", "Boolean", "Data", "Code" /* this is only the first couple of types, the rest are hidden behind a button */]);
 el_property_type.interactive = false;
 dg.el_property_type = el_property_type;
 

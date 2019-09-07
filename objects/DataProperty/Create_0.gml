@@ -38,6 +38,7 @@ enum DataTypes {
     AUDIO_SE,
     ANIMATION,
     ENTITY,
+    MAP,
 }
 
 /*
@@ -50,13 +51,13 @@ enum DataTypes {
  *  6. case in dialog_create_data_instance_property_list
  *  7. case in dc_data_commit_seriously - in two different switch statements
  *  8. case in serialize_load_data_instances
- *  9. case in serialize_load_events
- *  10. case in serialize_save_events
- *  11. case in serialize_save_data_instances
+ *  9. case in serialize_save_data_instances
+ *  10. case in serialize_load_events
+ *  11. case in serialize_save_events
  *  12. case in ui_init_game_data_refresh
- *  13. text in the lists in dialog_create_data_types_ext and dialog_create_event_node_custom_data_ext
- *  14. case in draw_active_event
- *  15. case in event_create_node - possibly, but the default is probably fine
+ *  13. text in the lists in dialog_create_data_types_ext
+ *  14. text in dialog_create_event_node_custom_data_ext
+ *  15. case in draw_active_event
  */
 
 enum NumberScales {

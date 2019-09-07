@@ -84,6 +84,7 @@ if (Stuff.active_event) {
                             case DataTypes.TILESET: var type_name = "tileset"; break;
                             case DataTypes.AUTOTILE: var type_name = "autotile"; break;
                             case DataTypes.ENTITY: var type_name = "entity"; break;
+                            case DataTypes.MAP: var type_name = "map"; break;
                         }
                         draw_text(x1 + 16, y1 + 40 + i * 16, string(string(i + 1) + ". " + type[EventNodeCustomData.NAME] + " (" + type_name + ")"));
                     }

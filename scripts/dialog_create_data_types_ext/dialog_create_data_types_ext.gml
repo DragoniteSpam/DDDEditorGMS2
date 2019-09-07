@@ -1,9 +1,11 @@
 /// @param Dialog
 
+var dialog = argument0;
+
 var dw = 320;
 var dh = 560;
 
-var dg = dialog_create(dw, dh, "Other Data Types", dialog_default, dc_close_no_questions_asked, argument0);
+var dg = dialog_create(dw, dh, "Other Data Types", dialog_default, dc_close_no_questions_asked, dialog);
 
 var columns = 1;
 var ew = (dw - columns * 32) / columns;
@@ -17,8 +19,8 @@ var n_slots = 14;
 
 var yy = 64;
 
-var el_list = create_radio_array(16, yy, "All Data Types: ", ew, eh, uivc_input_data_property_type_ext, argument0.root.selected_property.type, dg);
-create_radio_array_options(el_list, ["Int", "Enum", "Float", "String", "Boolean", "Data", "Code", "Color", "Mesh", "Tileset", "Tile", "Autotile", "Audio (BGM)", "Audio (SE)", "Animation", "Entity"]);
+var el_list = create_radio_array(16, yy, "All Data Types: ", ew, eh, uivc_input_data_property_type_ext, dialog.root.selected_property.type, dg);
+create_radio_array_options(el_list, ["Int", "Enum", "Float", "String", "Boolean", "Data", "Code", "Color", "Mesh", "Tileset", "Tile", "Autotile", "Audio (BGM)", "Audio (SE)", "Animation", "Entity", "Map"]);
 // individual entities are disallowed by data types but they still need to be an entry here
 // so that any types that get added in the future aren't off-by-one in this menu
 el_list.contents[| DataTypes.ENTITY].interactive = false;

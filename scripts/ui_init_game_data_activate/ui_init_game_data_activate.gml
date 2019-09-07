@@ -39,7 +39,7 @@ if (data) {
         var b_width = 128;
         var b_height = 32;
         
-        var yy = 32/*64 + eh*/;
+        var yy = 32;
         var yy_base = yy;
         
         var col_yy = yy;
@@ -158,6 +158,10 @@ if (data) {
                         var hh = ui_get_list_height(element);
                         break;
                     case DataTypes.ENTITY:          // list
+                        var element = create_text(spacing, yy, property.name + " - invalid data type", ew, eh, fa_left, ew, noone);
+                        var hh = element.height;
+                        break;
+                    case DataTypes.MAP:             // list
                         var element = create_text(spacing, yy, property.name + " - invalid data type", ew, eh, fa_left, ew, noone);
                         var hh = element.height;
                         break;

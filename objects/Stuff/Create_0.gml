@@ -344,8 +344,8 @@ event_prefab[EventNodeTypes.CONDITIONAL] = create_event_node_prefab("Conditional
     ["Value", DataTypes.INT, 0, 1, false, 0],
     ["Code", DataTypes.INT, 0, 1, false, 0],
 ]);
-/* */ event_prefab[EventNodeTypes.INVOKE_EVENT] = create_event_node_prefab("NotYetImplemented", []);
-/* */ event_prefab[EventNodeTypes.COMMENT] = create_event_node_prefab("NotYetImplemented", []);
+event_prefab[EventNodeTypes.INVOKE_EVENT] = create_event_node_prefab("WillNotBeImplemented", []);
+event_prefab[EventNodeTypes.COMMENT] = create_event_node_prefab("ImplementedElsewhere", []);
 event_prefab[EventNodeTypes.WAIT] = create_event_node_prefab("Wait", [["Seconds", DataTypes.FLOAT, 0, 1, false, 1]]);
 /* */ event_prefab[EventNodeTypes.TRANSFER_PLAYER] = create_event_node_prefab("NotYetImplemented", []);
 /* */ event_prefab[EventNodeTypes.SET_ENTITY_LOCATION] = create_event_node_prefab("NotYetImplemented", []);

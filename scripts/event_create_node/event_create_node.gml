@@ -76,17 +76,7 @@ switch (type) {
                 var new_list = ds_list_create();
                 var type = custom.types[| i];
                 ds_list_add(node.custom_data, new_list);
-                
-                // initial value(s)
-                switch (type[1]) {
-                    //case DataTypes.INT:
-                    //case DataTypes.FLOAT:
-                    default:
-                        var value = type[5];
-                        break;
-                }
-                
-                ds_list_add(new_list, value);
+                ds_list_add(new_list, type[5]);
                 
                 // if all values are required, populate them with defaults
                 // (adding and deleting will be disabled)

@@ -28,9 +28,7 @@ switch (mode) {
     case EditorModes.EDITOR_ANIMATION:
         gpu_set_cullmode(cull_noculling);
         switch (view_current) {
-            case view_fullscreen:
-                draw_editor_animation();
-                break;
+            case view_fullscreen: draw_editor_animation(); break;
             case view_3d: draw_animator(); draw_animator_overlay(); break;
             case view_ribbon: draw_editor_menu(); break;
         }

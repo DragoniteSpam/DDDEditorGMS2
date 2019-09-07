@@ -41,6 +41,7 @@ if (pselection >= 0) {
         case DataTypes.COLOR:
         case DataTypes.TILE:
         case DataTypes.ENTITY:
+        case DataTypes.MAP:
             not_yet_implemented();
             break;
     }

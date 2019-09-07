@@ -35,6 +35,7 @@ for (var i = 0; i < n_datadata; i++) {
                     case DataTypes.AUDIO_BGM:
                     case DataTypes.AUDIO_SE:
                     case DataTypes.ANIMATION:
+                    case DataTypes.MAP:
                         var btype = buffer_u32;
                         break;
                     case DataTypes.FLOAT:

@@ -129,6 +129,7 @@ repeat(n_events) {
                         case DataTypes.AUDIO_SE:
                         case DataTypes.ANIMATION:
                         case DataTypes.ENTITY:
+                        case DataTypes.MAP:
                             var buffer_type = buffer_u32;
                             break;
                         case DataTypes.COLOR:

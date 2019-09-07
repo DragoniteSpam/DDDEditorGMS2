@@ -1,5 +1,6 @@
 /// @param Dialog
 
+var dialog = argument0;
 var selection = ui_list_selection(Camera.ui_game_data.el_instances);
 
 // this is honestly easier than disabling/enabling interface elements when stuff is deselected
@@ -13,10 +14,10 @@ var dw = 320;
 var dh = 64;
 
 var data = guid_get(Camera.ui_game_data.active_type_guid);
-var property = data.properties[| argument0.key];
+var property = data.properties[| dialog.key];
 var instance = guid_get(data.instances[| selection].GUID);
 
-var dg = dialog_create(dw, dh, instance.name + "." + property.name, dialog_default, dc_close_no_questions_asked, argument0);
+var dg = dialog_create(dw, dh, instance.name + "." + property.name, dialog_default, dc_close_no_questions_asked, dialog);
 
 var columns = 1;
 var ew = (dw - columns * 32) / columns;
@@ -34,11 +35,11 @@ var spacing = 16;
 
 var yy = 64;
 
-var plist = instance.values[| argument0.key];
+var plist = instance.values[| dialog.key];
 var el_list = create_list(16, yy, "Values (" + string(ds_list_size(plist)) + " / " + string(property.max_size) + ")",
     "<something went wrong>", ew, eh, 8, uivc_list_data_list_select, false, dg);
 el_list.numbered = true;
-el_list.key = argument0.key;
+el_list.key = dialog.key;
 
 switch (property.type) {
     case DataTypes.ENUM:
@@ -55,6 +56,7 @@ switch (property.type) {
         break;
     case DataTypes.COLOR:
     case DataTypes.ENTITY:
+    case DataTypes.MAP:
         // probably deal with this by just having the string "lorem ipsum" colorized however - probably
         // with an outline, so you can see the bright colors - but not sure yet
         not_yet_implemented();
@@ -76,37 +78,37 @@ for (var i = 0; i < ds_list_size(plist); i++) {
 yy = yy + ui_get_list_height(el_list) + spacing;
 
 var el_add = create_button(16, yy, "Add", ew, eh, fa_center, omu_data_list_add, dg);
-el_add.key = argument0.key;
+el_add.key = dialog.key;
 dg.el_add = el_add;
 yy = yy + el_add.height + spacing;
 var el_remove = create_button(16, yy, "Remove", ew, eh, fa_center, omu_data_list_remove, dg);
-el_remove.key = argument0.key;
+el_remove.key = dialog.key;
 dg.el_remove = el_remove;
 yy = yy + el_remove.height + spacing;
 
 switch (property.type) {
     case DataTypes.INT:
-        var el_value = create_input(16, yy, "Value: ", ew, eh, uivc_data_property_list_number, argument0.key, "0", string(property.range_min) + "..." + string(property.range_max),
+        var el_value = create_input(16, yy, "Value: ", ew, eh, uivc_data_property_list_number, dialog.key, "0", string(property.range_min) + "..." + string(property.range_max),
             validate_int, ui_value_real, property.range_min, property.range_max, log10(property.range_max) + 2, vx1, vy1, vx2, vy2, dg);
         yy = yy + el_value.height + spacing;
         break;
     case DataTypes.FLOAT:
-        var el_value = create_input(16, yy, "Value: ", ew, eh, uivc_data_property_list_number, argument0.key, "0", string(property.range_min) + "..." + string(property.range_max),
+        var el_value = create_input(16, yy, "Value: ", ew, eh, uivc_data_property_list_number, dialog.key, "0", string(property.range_min) + "..." + string(property.range_max),
             validate_double, ui_value_real, property.range_min, property.range_max, 12, vx1, vy1, vx2, vy2, dg);
         yy = yy + el_value.height + spacing;
         break;
     case DataTypes.STRING:
-        var el_value = create_input(16, yy, "Value: ", ew, eh, uivc_data_property_list_string, argument0.key, "0", "text", validate_string, ui_value_string, 0, 1, property.char_limit, vx1, vy1, vx2, vy2, dg);
+        var el_value = create_input(16, yy, "Value: ", ew, eh, uivc_data_property_list_string, dialog.key, "0", "text", validate_string, ui_value_string, 0, 1, property.char_limit, vx1, vy1, vx2, vy2, dg);
         yy = yy + el_value.height + spacing;
         break;
     case DataTypes.BOOL:
         // this onvaluechange just copies the value without casting it so we can do this even though it's designed for strings and
         // bools are decidedly not strings
-        var el_value = create_checkbox(16, yy, "Value", ew, eh, uivc_data_property_list_string, argument0.key, false, dg);
+        var el_value = create_checkbox(16, yy, "Value", ew, eh, uivc_data_property_list_string, dialog.key, false, dg);
         yy = yy + el_value.height + spacing;
         break;
     case DataTypes.CODE:
-        var el_value = create_input_code(16, yy, "Code: ", ew, eh, vx1, vy1, vx2, vy2, "-- write Lua here", uivc_data_property_list_string, dg, argument0.key);
+        var el_value = create_input_code(16, yy, "Code: ", ew, eh, vx1, vy1, vx2, vy2, "-- write Lua here", uivc_data_property_list_string, dg, dialog.key);
         yy = yy + el_value.height + spacing;
         break;
     case DataTypes.ENUM:
@@ -121,7 +123,7 @@ switch (property.type) {
         }
         
         dg.el_list_main = el_list;
-        el_value.key = argument0.key;
+        el_value.key = dialog.key;
         yy = yy + ui_get_list_height(el_value) + spacing;
         break;
     // @todo find a way to streamline this. PLEASE.
@@ -134,7 +136,7 @@ switch (property.type) {
         }
         
         dg.el_list_main = el_list;
-        el_value.key = argument0.key;
+        el_value.key = dialog.key;
         yy = yy + ui_get_list_height(el_value) + spacing;
         break;
     case DataTypes.AUDIO_SE:
@@ -146,7 +148,7 @@ switch (property.type) {
         }
         
         dg.el_list_main = el_list;
-        el_value.key = argument0.key;
+        el_value.key = dialog.key;
         yy = yy + ui_get_list_height(el_value) + spacing;
         break;
     case DataTypes.AUTOTILE:
@@ -154,12 +156,12 @@ switch (property.type) {
         var el_value = create_list(16, yy, "Select an Autotile resource:", "<no Autotiles>", ew, eh, 8, uivc_data_property_list_guid, false, dg);
         el_value.entries_are = ListEntries.GUIDS;
         dg.el_list_main = el_list;
-        el_value.key = argument0.key;
+        el_value.key = dialog.key;
         yy = yy + ui_get_list_height(el_value) + spacing;
         break;
     case DataTypes.COLOR:
         var el_value = create_button(16, yy, "Value", ew, eh, fa_left, not_yet_implemented, dg);
-        el_value.key = argument0.key;
+        el_value.key = dialog.key;
         yy = yy + el_value.height + spacing;
         break;
     case DataTypes.MESH:
@@ -167,7 +169,7 @@ switch (property.type) {
         var el_value = create_list(16, yy, "Select a Mesh resource:", "<no Meshes>", ew, eh, 8, uivc_data_property_list_guid, false, dg);
         el_value.entries_are = ListEntries.GUIDS;
         dg.el_list_main = el_list;
-        el_value.key = argument0.key;
+        el_value.key = dialog.key;
         yy = yy + ui_get_list_height(el_value) + spacing;
         break;
     case DataTypes.TILESET:
@@ -175,7 +177,7 @@ switch (property.type) {
         var el_value = create_list(16, yy, "Select a Tileset resource:", "<no Tilesets>", ew, eh, 8, uivc_data_property_list_guid, false, dg);
         el_value.entries_are = ListEntries.GUIDS;
         dg.el_list_main = el_list;
-        el_value.key = argument0.key;
+        el_value.key = dialog.key;
         yy = yy + ui_get_list_height(el_value) + spacing;
         break;
     case DataTypes.TILE:
@@ -186,7 +188,7 @@ switch (property.type) {
         var el_value = create_list(16, yy, "Select an Animation resource:", "<no Animation>", ew, eh, 8, uivc_data_property_list_guid, false, dg);
         el_value.entries_are = ListEntries.GUIDS;
         dg.el_list_main = el_list;
-        el_value.key = argument0.key;
+        el_value.key = dialog.key;
         yy = yy + ui_get_list_height(el_value) + spacing;
         break;
 }

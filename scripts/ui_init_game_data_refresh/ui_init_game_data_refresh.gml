@@ -142,6 +142,7 @@ for (var i = 0; i < ds_list_size(dynamic.contents); i++) {
                 case DataTypes.AUDIO_BGM:
                 case DataTypes.AUDIO_SE:
                 case DataTypes.ANIMATION:
+                case DataTypes.MAP:
                     thingy.value = 0;
                     break;
                 case DataTypes.ENTITY:
