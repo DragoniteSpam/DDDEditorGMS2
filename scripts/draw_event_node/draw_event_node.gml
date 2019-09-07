@@ -495,7 +495,7 @@ switch (node.type) {
                             break;
                         case DataTypes.STRING:
                             message = message + "(string): ";
-                            output_string = "...";
+                            output_string = "";
                             break;
                         case DataTypes.BOOL:
                             message = message + "(boolean): ";
