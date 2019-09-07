@@ -22,11 +22,12 @@ draw_set_color(list.color);
 draw_text(tx, ty, string(list.text));
 
 var n = ds_list_size(list.entries);
+list.index = clamp(n - list.slots, 0, list.index);
 
 var active = dialog_is_active(list.root);
 
 if (n == 0) {
-    draw_rectangle_colour(x1, y2, x2, y2+list.height, c_ltgray, c_ltgray, c_ltgray, c_ltgray, false);
+    draw_rectangle_colour(x1, y2, x2, y2 + list.height, c_ltgray, c_ltgray, c_ltgray, c_ltgray, false);
     ty = mean(y2, y2 + list.height);
     draw_text(tx, ty, string(list.text_vacant));
 } else {
