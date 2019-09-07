@@ -3,6 +3,7 @@
 var thing = argument0;
 
 var selection = ui_list_selection(thing.root.el_master);
+ui_list_deselect(thing.root.el_master);
 
 if (selection >= 0) {
     for (var i = 0; i < ds_list_size(Stuff.all_animations); i++) {
@@ -17,7 +18,6 @@ if (selection >= 0) {
             thing.root.active_layer = noone;
             thing.root.el_layers.selected_keyframe = noone;
             ui_list_deselect(thing.root.el_layers);
-            ui_list_deselect(thing.root.el_master);
             break;
         }
     }
