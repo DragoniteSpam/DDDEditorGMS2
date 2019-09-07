@@ -5383,6 +5383,14 @@
             }
         },
         {
+            "Key": "7a53d4b0-34de-48a4-b519-e9e4d83fa71a",
+            "Value": {
+                "id": "87458de7-6461-4fd6-a20a-a69ea1c0f0d3",
+                "resourcePath": "scripts\\omu_event_add_change_map_name\\omu_event_add_change_map_name.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "7a5809a2-a450-49bc-8898-4a26c6594b59",
             "Value": {
                 "id": "240f5576-28e4-452d-8798-dcf27d422e37",
@@ -11801,6 +11809,7 @@
         "3b7341af-a6f2-4c54-b540-6abff4e0be96",
         "29dd4d57-87e2-43ef-b58d-cc327092f224",
         "26e70d38-59c5-4f43-8d78-d4cf27af15cc",
+        "7a53d4b0-34de-48a4-b519-e9e4d83fa71a",
         "50a859eb-8612-4fa1-bf19-6098e757c23a",
         "bbc8d6fa-7bc1-4174-9dcd-392707e650d4",
         "ca433690-4b11-4675-b165-30253bfc2837",

@@ -367,13 +367,16 @@ event_prefab[EventNodeTypes.FADE_BGM] = create_event_node_prefab("FadeBGM", [
 event_prefab[EventNodeTypes.RESUME_BGM] = create_event_node_prefab("ResumeAutomaticBGM", []);
 // if you want fancier audio controls for sound effects, make an advanced event - i'm not going to write the FMOD effects into the basic one
 event_prefab[EventNodeTypes.PLAY_SE] = create_event_node_prefab("PlaySoundEffect", [
-    ["SoundEffect", DataTypes.AUDIO_SE, 0],
+    ["Sound Effect", DataTypes.AUDIO_SE, 0],
     ["Volume", DataTypes.INT, 0, 1, false, 100],
     ["Pitch", DataTypes.INT, 0, 1, false, 100]
 ]);
 event_prefab[EventNodeTypes.STOP_SE] = create_event_node_prefab("StopAllSoundEffects", []);
 /* */ event_prefab[EventNodeTypes.RETURN_TO_TITLE] = create_event_node_prefab("NotYetImplemented", []);
-/* */ event_prefab[EventNodeTypes.CHANGE_MAP_DISPLAY_NAME] = create_event_node_prefab("NotYetImplemented", []);
+event_prefab[EventNodeTypes.CHANGE_MAP_DISPLAY_NAME] = create_event_node_prefab("ChangeMapDisplayName", [
+    ["Map", DataTypes.MAP, 0, 1, false, 0],
+    ["New Name", DataTypes.STRING, 0, 1, false, "Whatever the new name is"],
+]);
 /* */ event_prefab[EventNodeTypes.CHANGE_MAP_TILESET] = create_event_node_prefab("NotYetImplemented", []);
 /* */ event_prefab[EventNodeTypes.CHANGE_MAP_BATTLE_SCENE] = create_event_node_prefab("NotYetImplemented", []);
 /* */ event_prefab[EventNodeTypes.CHANGE_MAP_PARALLAX] = create_event_node_prefab("NotYetImplemented", []);

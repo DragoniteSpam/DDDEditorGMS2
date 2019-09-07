@@ -295,7 +295,7 @@ with (instantiate(UIMain)) {
     element = create_text(legal_x + spacing, yy, "Map", element_width, element_height, fa_left, element_width, t_list);
     ds_list_add(t_action2.contents, element);
     yy = yy + element_height + spacing;
-    element = create_button(legal_x + spacing, yy, "Change Map Display Name", element_width, element_height, fa_left, not_yet_implemented, t_action2);
+    element = create_button(legal_x + spacing, yy, "Change Map Display Name", element_width, element_height, fa_left, omu_event_add_change_map_name, t_action2);
     ds_list_add(t_action2.contents, element);
     yy = yy + element_height;
     element = create_button(legal_x + spacing, yy, "Change Map Tileset", element_width, element_height, fa_left, not_yet_implemented, t_action2);

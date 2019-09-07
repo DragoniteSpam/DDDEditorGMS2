@@ -350,7 +350,7 @@ switch (node.type) {
                     y2 = y2 + 32;
                     break;
                 case DataTypes.STRING:
-                    y2 = y2 + (ds_list_size(custom_data_list) == 1) ? entry_height + 24 : 32;
+                    y2 = y2 + ((ds_list_size(custom_data_list) == 1) ? entry_height + 24 : 32);
                     break;
             }
         }
