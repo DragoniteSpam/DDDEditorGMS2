@@ -743,6 +743,14 @@
             }
         },
         {
+            "Key": "0e558d8c-50e3-48dc-84f5-9b1f3a9e5aef",
+            "Value": {
+                "id": "9a7b0a83-c963-44bd-a79a-5a87d8ed4960",
+                "resourcePath": "scripts\\uivc_list_event_attain_input_variable_index\\uivc_list_event_attain_input_variable_index.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "0e79c6cb-1e72-44b2-be6c-578e59396601",
             "Value": {
                 "id": "0a2dc4ca-5558-4d4b-ab81-da96c82411b4",
@@ -1171,6 +1179,14 @@
             "Value": {
                 "id": "c76fd8b7-a6a6-48b3-bfa1-dac132747389",
                 "resourcePath": "scripts\\ease_quart_io\\ease_quart_io.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "1a5bca77-3da3-43e2-b0de-7b57fd3fc964",
+            "Value": {
+                "id": "a3af9f19-d71f-46a4-80f5-1f7d8e7b033d",
+                "resourcePath": "scripts\\omu_event_add_input_text\\omu_event_add_input_text.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -1771,6 +1787,14 @@
             "Value": {
                 "id": "38624238-c117-4478-8d38-b6888a2fe2a7",
                 "resourcePath": "scripts\\ds_list_top\\ds_list_top.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "2931ee96-138f-4da1-939b-063de174aea3",
+            "Value": {
+                "id": "c2402e5e-47bf-44f0-b2d9-096aefe9e560",
+                "resourcePath": "scripts\\uivc_list_event_attain_input_type_index\\uivc_list_event_attain_input_type_index.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -2483,6 +2507,14 @@
             "Value": {
                 "id": "e09e0d2b-d6bc-43da-b227-caf074a14e5a",
                 "resourcePath": "scripts\\animation_get_tween_color\\animation_get_tween_color.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "394a6698-6d78-4135-80f7-1366ef1ee8ab",
+            "Value": {
+                "id": "a87c192e-47ef-4ffd-b02f-c483980d6ff9",
+                "resourcePath": "scripts\\event_prefab_render_input_type_name\\event_prefab_render_input_type_name.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -8495,6 +8527,14 @@
             }
         },
         {
+            "Key": "c554eaa9-0c53-447c-afea-5e66e79b01d2",
+            "Value": {
+                "id": "b834973e-9ae5-460b-8f52-9eb02727b2b2",
+                "resourcePath": "scripts\\omu_event_attain_input_type_data\\omu_event_attain_input_type_data.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "c569235d-ab8c-4d23-86a8-fda0b0124542",
             "Value": {
                 "id": "b90977c0-e63a-4803-a036-685b0b657761",
@@ -11400,6 +11440,7 @@
         "79a317d9-c17d-49ff-bfcd-6ce6166c427b",
         "36398f4f-c580-4113-b607-37538dc87f1f",
         "97396d80-6194-452b-9f0b-df472b393880",
+        "c554eaa9-0c53-447c-afea-5e66e79b01d2",
         "be082112-64dc-4e8b-a036-49634c7c4a30",
         "eac77429-56f8-43a4-91e2-b2db49b328d3",
         "48522ca3-a7ef-4ad9-a00c-e918e4fba6f6",
@@ -11537,6 +11578,8 @@
         "9d217a8c-a352-45ad-b279-1107c7e48c16",
         "fb7229dd-96b3-4598-8481-db24e5c08845",
         "9b705e38-4708-402b-97f5-d625147af287",
+        "0e558d8c-50e3-48dc-84f5-9b1f3a9e5aef",
+        "2931ee96-138f-4da1-939b-063de174aea3",
         "b020c4f1-3a59-46d9-a69f-98e4609052a8",
         "bfb7483b-1ede-4897-8a63-c7e4bba13962",
         "faa8d6d0-56e9-4ff6-8be6-abe439eac4d8",
@@ -11745,6 +11788,7 @@
         "ccdf2510-9280-4575-bb15-edf7a776e95a",
         "269f3b92-fa6b-4d88-a725-0f609daa3680",
         "fa31b88b-b12a-42bb-bf30-0babc2bd6536",
+        "1a5bca77-3da3-43e2-b0de-7b57fd3fc964",
         "3b7341af-a6f2-4c54-b540-6abff4e0be96",
         "29dd4d57-87e2-43ef-b58d-cc327092f224",
         "26e70d38-59c5-4f43-8d78-d4cf27af15cc",
@@ -11999,6 +12043,7 @@
         "ee2648be-9945-42de-813a-f6210f5a5a46",
         "9dfdcbd1-bb7c-48ac-b6bd-4323726f7074",
         "606cf9bf-a354-44d2-b00f-8861897ff5c9",
+        "394a6698-6d78-4135-80f7-1366ef1ee8ab",
         "63b71293-f0b9-4b99-8738-9bb479ed6a11",
         "75e644ee-a05f-42e0-9c4e-1cfd7ae04e25",
         "6b0ac3d9-9ca5-40bf-ad8d-6e82898d06f5",

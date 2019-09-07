@@ -11,7 +11,7 @@ with (instantiate(DataEventNodeCustom)) {
         
         var data_name = data[0];
         var data_type = data[1];
-        var data_guid = (len > 2) ? data[2] : 0;
+        var data_guid = (len > 2) ? data[2] : 0;    // only useful for Data types
         var data_max = (len > 3) ? data[3] : 1;
         var data_required = (len > 4) ? data[4] : false;
         var data_default = (len > 5) ? data[5] : 0;
