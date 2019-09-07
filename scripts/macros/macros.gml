@@ -22,6 +22,7 @@
 #macro HW 520
 #macro IMPORT_GRID_SIZE 32          // for setting the bounds of imported meshes, and possibly other things
 #macro INTERNAL_NAME_LENGTH 20
+#macro VISIBLE_NAME_LENGTH 32
 #macro LIMIT_TILESET 255
 #macro MAP_X_LIMIT 1024
 #macro MAP_Y_LIMIT 1024

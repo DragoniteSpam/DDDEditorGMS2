@@ -24,9 +24,9 @@ var vx2 = dw - 32;
 
 var el_name_text = create_text(16, yy, "Settings: Text", ew, eh, fa_left, ew, dg);
 yy = yy + 32;
-var el_name = create_input(16, yy, "Name: ", ew, eh, uivc_settings_map_name, "", ActiveMap.name, "Map name goes here", validate_string, ui_value_string, 0, 0, 32, vx1, vy1, vx2, vy2, dg);
+var el_name = create_input(16, yy, "Name: ", ew, eh, uivc_settings_map_name, "", ActiveMap.name, "Map name goes here", validate_string, ui_value_string, 0, 0, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
 yy = yy + 32;
-var el_name_internal = create_input(16, yy, "Internal name: ", ew, eh, uivc_settings_map_internal, "", ActiveMap.internal_name, "[A-Za-z0-9_]+", validate_string_internal_name, ui_value_string, 0, 0, 32, vx1, vy1, vx2, vy2, dg);
+var el_name_internal = create_input(16, yy, "Internal name: ", ew, eh, uivc_settings_map_internal, "", ActiveMap.internal_name, "[A-Za-z0-9_]+", validate_string_internal_name, ui_value_string, 0, 0, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
 
 yy = yy + 32;
 

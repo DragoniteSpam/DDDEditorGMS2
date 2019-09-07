@@ -25,7 +25,7 @@ if (animation) {
     var yy_base = yy;
     var spacing = 16;
     
-    var el_name = create_input(16, yy, "Name:", ew, eh, uivc_animation_set_name, 0, animation.name, "text", validate_string, ui_value_string, 0, 1, 16, vx1, vy1, vx2, vy2, dg);
+    var el_name = create_input(16, yy, "Name:", ew, eh, uivc_animation_set_name, 0, animation.name, "text", validate_string, ui_value_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
     
     yy = yy + el_name.height + spacing;
     

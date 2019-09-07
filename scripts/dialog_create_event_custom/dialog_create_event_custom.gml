@@ -29,7 +29,7 @@ var n_slots = 10;
 
 var yy = 64;
 
-var el_name = create_input(16, yy, "Name:", ew, eh, uivc_input_custom_event_name, "", dg.event.name, "[A-Za-z0-9_]+", validate_string_internal_name, ui_value_string, 0, 1, 16, vx1, vy1, vx2, vy2, dg);
+var el_name = create_input(16, yy, "Name:", ew, eh, uivc_input_custom_event_name, "", dg.event.name, "[A-Za-z0-9_]+", validate_string_internal_name, ui_value_string, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
 yy = yy + el_name.height + spacing;
 
 var yy_top = yy;
@@ -51,7 +51,7 @@ var el_remove = create_button(16, yy, "Remove Property", ew, eh, fa_center, omu_
 yy = yy_top;
 var col2_x = dw / columns + 16;
 
-var el_property_name = create_input(col2_x, yy, "Property Name:", ew, eh, uivc_input_custom_data_property_name, "", "", "Value name", validate_string, ui_value_string, 0, 1, 12, vx1, vy1, vx2, vy2, dg);
+var el_property_name = create_input(col2_x, yy, "Property Name:", ew, eh, uivc_input_custom_data_property_name, "", "", "Value name", validate_string, ui_value_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
 el_property_name.interactive = false;
 dg.el_property_name = el_property_name;
 

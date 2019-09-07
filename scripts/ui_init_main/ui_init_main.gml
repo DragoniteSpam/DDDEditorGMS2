@@ -554,8 +554,7 @@ with (instantiate(UIMain)) {
     
     yy = yy + element.height + spacing;
     
-    element = create_input(col2_x, yy, "Name:", col_width, element_height, uivc_input_mesh_name, 0, "", "Internal Name", validate_string_internal_name, ui_value_string, 0, 1, 16,
-        64, vy1, vx2, vy2, t_p_mesh_editor);
+    element = create_input(col2_x, yy, "Name:", col_width, element_height, uivc_input_mesh_name, 0, "", "Internal Name", validate_string_internal_name, ui_value_string, 0, 1, INTERNAL_NAME_LENGTH, 64, vy1, vx2, vy2, t_p_mesh_editor);
     ds_list_add(t_p_mesh_editor.contents, element);
     
     t_p_mesh_editor.mesh_name = element;

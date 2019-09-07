@@ -36,7 +36,7 @@ yy = yy + el_max.height + spacing;
 
 yy = yy + eh + spacing;
 
-var el_name = create_input(c2 + 32, yy, "Variable name:", ew, eh, uivc_global_variable_name, 0, "", "16 characters", validate_string, ui_value_string, 0, 1, 16, vx1, vy1, vx2, vy2, dg);
+var el_name = create_input(c2 + 32, yy, "Variable name:", ew, eh, uivc_global_variable_name, 0, "", "", validate_string, ui_value_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
 yy = yy + el_name.height + spacing;
 dg.el_name = el_name;
 var el_default = create_input(c2 + 32, yy, "Default value", ew, eh, uivc_global_variable_default, 0, 0, "number", validate_double, ui_value_real, -BILLION, BILLION, 12, vx1, vy1, vx2, vy2, dg);

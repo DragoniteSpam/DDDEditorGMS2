@@ -34,7 +34,7 @@ var spacing2 = 0;
 
 var n = 10;
 
-var el_name = create_input(16, yy, "Name:", ew*2, eh, uivc_entity_move_route_name, "", argument1.name, "16 chars", validate_string, ui_value_string, 0, 1, 16, vx1, vy1, vx2 + c2, vy2, dg);
+var el_name = create_input(16, yy, "Name:", ew*2, eh, uivc_entity_move_route_name, "", argument1.name, "", validate_string, ui_value_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2 + c2, vy2, dg);
 
 yy = yy + el_name.height + spacing;
 

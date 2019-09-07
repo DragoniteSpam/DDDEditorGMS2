@@ -34,7 +34,7 @@ yy = yy + el_remove.height + spacing;
 
 var el_name_text = create_text(c2 + 16, yy, "Name:", ew, eh, fa_left, ew, dg);
 yy = yy + el_name_text.height + spacing;
-var el_name = create_input(c2 + 16, yy, "", ew, eh, uivc_input_audio_se_name, "", "", "", validate_string, ui_value_string, 0, 1, 20, vx1, vy1, vx2, vy2, dg);
+var el_name = create_input(c2 + 16, yy, "", ew, eh, uivc_input_audio_se_name, "", "", "", validate_string, ui_value_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
 dg.el_name = el_name;
 yy = yy + el_name.height + spacing;
 var el_name_internal_text = create_text(c2 + 16, yy, "Internal Name:", ew, eh, fa_left, ew, dg);

@@ -47,7 +47,7 @@ if (data) {
         ds_list_add(container.contents, col_data);
         
         var element_header = noone;
-        var element = create_input(spacing, yy, "Name:", ew, eh, uivc_data_set_name, "", "", "Instance name", validate_string, ui_value_string, 0, 1, 16, vx1, vy1, vx2, vy2, noone);
+        var element = create_input(spacing, yy, "Name:", ew, eh, uivc_data_set_name, "", "", "Instance name", validate_string, ui_value_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, noone);
         yy = yy + element.height + spacing;
         
         ds_list_add(col_data.contents, element);

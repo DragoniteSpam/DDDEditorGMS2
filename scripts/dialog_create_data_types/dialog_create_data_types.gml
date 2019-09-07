@@ -52,7 +52,7 @@ el_remove = create_button(16, yy, "Remove", ew, eh, fa_center, omu_data_remove, 
 yy = 64;
 var col2_x = dw / 3 + 16;
 
-var el_data_name = create_input(col2_x, yy, "Data Name:", ew, eh, uivc_input_data_name, "", "", "[A-Za-z0-9_]+", validate_string_internal_name, ui_value_string, 0, 1, 16, vx1, vy1, vx2, vy2, dg);
+var el_data_name = create_input(col2_x, yy, "Data Name:", ew, eh, uivc_input_data_name, "", "", "[A-Za-z0-9_]+", validate_string_internal_name, ui_value_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
 el_data_name.interactive = false;
 dg.el_data_name = el_data_name;
 
@@ -79,7 +79,7 @@ dg.el_remove_p = el_remove_p;
 yy = 64;
 var col3_x = dw * 2 / 3 + 16;
 
-var el_property_name = create_input(col3_x, yy, "Name:", ew, eh, uivc_input_data_property_name, "", "", "[A-Za-z0-9_]+", validate_string_internal_name, ui_value_string, 0, 1, 16, vx1, vy1, vx2, vy2, dg);
+var el_property_name = create_input(col3_x, yy, "Name:", ew, eh, uivc_input_data_property_name, "", "", "[A-Za-z0-9_]+", validate_string_internal_name, ui_value_string, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
 el_property_name.interactive = false;
 dg.el_property_name = el_property_name;
 
