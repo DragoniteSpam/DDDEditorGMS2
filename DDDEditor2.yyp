@@ -5415,6 +5415,14 @@
             }
         },
         {
+            "Key": "7ad44d48-83c5-4ce9-9797-6856ee782bc4",
+            "Value": {
+                "id": "58de49aa-ce4b-4cd1-8107-7d8191da2cc6",
+                "resourcePath": "scripts\\uivc_list_event_attain_input_char_limit\\uivc_list_event_attain_input_char_limit.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "7b118df1-68d3-462c-b77d-8ccec1515acf",
             "Value": {
                 "id": "cce0bb72-1302-45aa-9b2c-931f3b4fd6b6",
@@ -11596,6 +11604,7 @@
         "9b705e38-4708-402b-97f5-d625147af287",
         "0e558d8c-50e3-48dc-84f5-9b1f3a9e5aef",
         "2931ee96-138f-4da1-939b-063de174aea3",
+        "7ad44d48-83c5-4ce9-9797-6856ee782bc4",
         "b020c4f1-3a59-46d9-a69f-98e4609052a8",
         "bfb7483b-1ede-4897-8a63-c7e4bba13962",
         "faa8d6d0-56e9-4ff6-8be6-abe439eac4d8",
