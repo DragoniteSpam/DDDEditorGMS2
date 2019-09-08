@@ -292,7 +292,7 @@ enum EventNodeTypes {
     TINT_SCREEN, FLASH_SCREEN, SHAKE_SCREEN,
     PLAY_BGM, FADE_BGM, RESUME_BGM, PLAY_SE, STOP_SE,
     RETURN_TO_TITLE, CHANGE_MAP_DISPLAY_NAME, CHANGE_MAP_TILESET, CHANGE_MAP_BATTLE_SCENE, CHANGE_MAP_PARALLAX,
-    SCRIPT, AUDIO_CONTORLS, ADVANCED0, ADVANCED1, ADVANCED2, ADVANCED3, ADVANCED4, ADVANCED5, ADVANCED6, ADVANCED7,
+    SCRIPT, AUDIO_CONTORLS, DEACTIVATE_EVENT, ADVANCED1, ADVANCED2, ADVANCED3, ADVANCED4, ADVANCED5, ADVANCED6, ADVANCED7,
     // i forgot to put this one with the other text nodes
     SHOW_CHOICES,
 }
@@ -385,6 +385,7 @@ event_prefab[EventNodeTypes.SCRIPT] = create_event_node_prefab("Script", [
     ["Code", DataTypes.CODE, 0, 1, true, default_lua_event_script]
 ]);
 /* */ event_prefab[EventNodeTypes.AUDIO_CONTORLS] = create_event_node_prefab("NotYetImplemented", []);
+event_prefab[EventNodeTypes.DEACTIVATE_EVENT] = create_event_node_prefab("Deactivate This Event", []);
 #endregion
 
 // stuff i couldn't do in game maker so i did in c++ instead
