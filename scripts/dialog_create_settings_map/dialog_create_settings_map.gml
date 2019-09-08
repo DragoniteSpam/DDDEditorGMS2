@@ -23,22 +23,16 @@ var yy = 64;
 var vx2 = dw - 32;
 
 var el_name_text = create_text(16, yy, "Settings: Text", ew, eh, fa_left, ew, dg);
-yy = yy + 32;
+yy = yy + el_name_text.height + 16;
 var el_name = create_input(16, yy, "Name: ", ew, eh, uivc_settings_map_name, "", ActiveMap.name, "Map name goes here", validate_string, ui_value_string, 0, 0, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
-yy = yy + 32;
+yy = yy + el_name.height + 16;
 var el_name_internal = create_input(16, yy, "Internal name: ", ew, eh, uivc_settings_map_internal, "", ActiveMap.internal_name, "[A-Za-z0-9_]+", validate_string_internal_name, ui_value_string, 0, 0, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
-
-yy = yy + 32;
-
-var eh_long = 120;
-var vy2 = vy1 + eh_long;
-
-var el_summary = create_input(16, yy, "Summary: ", ew, eh_long, uivc_settings_map_summary, "", ActiveMap.summary, "Write a summary here", validate_string, ui_value_string, 0, 0, 400, vx1, vy1, vx2, vy2, dg);
+yy = yy + el_name_internal.height + 16;
+var el_summary = create_input(16, yy, "Summary: ", ew, eh, uivc_settings_map_summary, "", ActiveMap.summary, "Write a summary here", validate_string, ui_value_string, 0, 0, 400, vx1, vy1, vx2, vy2, dg);
 
 var vx2 = ew;
-var vy2 = vy1 + eh;
 
-var yy_column_start = yy + eh_long + 32;
+var yy_column_start = yy + el_summary.height + 32;
 yy = yy_column_start;
 var el_dim_text = create_text(16, yy, "Settings: Dimensions", ew, eh, fa_left, ew, dg);
 yy = yy + 32;

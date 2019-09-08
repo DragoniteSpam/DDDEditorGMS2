@@ -1,9 +1,11 @@
 /// @param Dialog
 
+var dialog = argument0;
+
 var dw = 512;
 var dh = 640;
 
-var dg = dialog_create(dw, dh, "Data Settings", dialog_default, dc_close_no_questions_asked, argument0);
+var dg = dialog_create(dw, dh, "Data Settings", dialog_default, dc_close_no_questions_asked, dialog);
 
 var ew = (dw - 64) / 2;
 var eh = 24;
@@ -39,11 +41,9 @@ yy = yy + el_switches.height + spacing;
 
 yy = 64;
 
-// todo some kind of indication of which map is supposed to be the starting map - perhaps give each
-// element a "color" which the text is drawn with too
-
 var el_map_list = create_list(c2 + 16, yy, "Identified Maps", "<no maps>", ew, eh, 8, null, false, dg);
 dialog_create_settings_data_map_list(el_map_list);
+//el_map_list.entries_are = ListEntries.INSTANCES;
 
 dg.el_map_list = el_map_list;
 

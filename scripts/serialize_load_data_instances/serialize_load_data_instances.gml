@@ -18,7 +18,7 @@ for (var i = 0; i < n_datadata; i++) {
             ds_list_add(datadata.instances, instance);
             
             serialize_load_generic(buffer, instance, version);
-            debug([instance.name, buffer_tell(buffer)]);
+            
             for (var k = 0; k < n_properties; k++) {
                 var property = datadata.properties[| k];
                 switch (property.type) {
