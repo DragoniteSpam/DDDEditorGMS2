@@ -1,7 +1,7 @@
 var fn = get_save_filename("DDD game data files|*" + EXPORT_EXTENSION_DATA, "game");
 
 if (string_length(fn) > 0) {
-    Stuff.save_name_data=string_replace(filename_name(fn), EXPORT_EXTENSION_DATA, "");
+    Stuff.save_name_data = string_replace(filename_name(fn), EXPORT_EXTENSION_DATA, "");
     serialize_backup(PATH_BACKUP_DATA, Stuff.save_name_data, EXPORT_EXTENSION_DATA, fn);
     game_auto_title();
     
@@ -30,8 +30,9 @@ if (string_length(fn) > 0) {
     // events may depend on some other data being initialized and i don't feel like
     // going back and doing validation because that sounds terrible
     serialize_save_events(buffer);
-    
     serialize_save_data_instances(buffer);
+	
+	serialize_save_maps(buffer);
     
     buffer_write(buffer, buffer_datatype, SerializeThings.END_OF_FILE);
     
@@ -48,5 +49,6 @@ if (string_length(fn) > 0) {
 
 enum DataVersions {
     SUMMARY_GENERIC_DATA        = 38,
+    MAPS_NUKED                  = 39,
     _CURRENT                 /* = whatever the last one is + 1 */
 }

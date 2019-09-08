@@ -10,8 +10,6 @@ ActiveMap.name = buffer_read(buffer, buffer_string);
 ActiveMap.internal_name = buffer_read(buffer, buffer_string);
 ActiveMap.summary = buffer_read(buffer, buffer_string);
 
-Stuff.save_name_map = ActiveMap.internal_name + EXPORT_EXTENSION_MAP;
-
 var xx = buffer_read(buffer, buffer_u16);
 var yy = buffer_read(buffer, buffer_u16);
 var zz = buffer_read(buffer, buffer_u16);

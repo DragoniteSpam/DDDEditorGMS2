@@ -1,22 +1,17 @@
-/// @description void game_auto_title();
+var displayname = "";
 
-var displayname="";
-
-if (string_length(Stuff.save_name_data)>0) {
-    displayname=Stuff.save_name_data+" [data]";
+if (string_length(Stuff.save_name_data) > 0) {
+    displayname = Stuff.save_name_data + " [data]";
 }
 
-if (string_length(Stuff.save_name_data)>0&&string_length(Stuff.save_name_map)>0) {
-    displayname=": "+displayname+" / ";
+// @todo fill this in once the new system is in place
+var map_name = "";
+if (string_length(Stuff.save_name_data) > 0 && string_length(map_name) > 0) {
+    displayname = ": " + displayname + " / ";
 }
 
-if (string_length(Stuff.save_name_map)>0) {
-    if (ActiveMap.is_3d) {
-        var is3d="3D";
-    } else {
-        var is3d="2D";
-    }
-    displayname=displayname+Stuff.save_name_map+" [map: "+is3d+"]";
+if (string_length(map_name) > 0) {
+    displayname = displayname + map_name + " [map: " + ActiveMap.is_3d ? "3D" : "2D" + "]";
 }
 
-window_set_caption("DDD Editor - "+displayname);
+window_set_caption("DDD Editor - " + displayname);

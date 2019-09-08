@@ -5,6 +5,8 @@ event_inherited();
 deactivateable = false;
 deleteable = false;
 
+data_buffer = noone;
+
 xx = 64;                                  // dimensions
 yy = 64;
 zz = 8;

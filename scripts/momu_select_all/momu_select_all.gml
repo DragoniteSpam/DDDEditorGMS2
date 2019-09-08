@@ -1,6 +1,5 @@
-/// @description void momu_select_all(MenuElement);
 /// @param MenuElement
 
-var catch=argument0;
+var element = argument0;
 
 selection_clear();

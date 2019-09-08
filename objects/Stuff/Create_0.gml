@@ -4,7 +4,7 @@
 enum SerializeThings {
     ERROR                   = 0x00000000,
     // basic stuff
-    // 01
+    MAPS					= 0x00000001,
     // 02
     MESHES                  = 0x00000003,
     ANIMATIONS              = 0x00000004,
@@ -460,6 +460,7 @@ enum AvailableAutotileProperties {
 // this gets populated when you save or load something, and also using a map to
 // store maps is funny for some reason
 all_maps = ds_map_create();
+active_map = instance_create_depth(0, 0, 0, ActiveMap);
 
 all_data = ds_list_create();
 original_data = noone;            // when you're modifying the data types and want to stash the old ones
@@ -502,7 +503,6 @@ game_battle_style = BattleStyles.TEAM_BASED;
 
 // save settings
 
-save_name_map = "";
 save_name_data = "";
 save_name_assets = "";
 
@@ -538,5 +538,4 @@ if (setting_autosave && file_exists("auto" + EXPORT_EXTENSION_DATA)) {
     }
     save_name_assets = "";
     save_name_data = "";
-    save_name_map = "";
 }

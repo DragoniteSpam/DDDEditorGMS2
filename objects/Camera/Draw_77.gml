@@ -88,11 +88,6 @@ if (schedule_save_data) {
     schedule_save_data = false;
 }
 
-if (schedule_save_map) {
-    serialize_save_map();
-    schedule_save_map = false;
-}
-
 if (schedule_save_assets) {
     serialize_save_assets();
     schedule_save_assets = false;

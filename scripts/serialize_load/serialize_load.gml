@@ -1,6 +1,8 @@
 /// @param filename
 
-var original = buffer_load(argument0);
+var filename = argument0;
+
+var original = buffer_load(filename);
 var erroneous = false;
 var header = chr(buffer_read(original, buffer_u8)) + chr(buffer_read(original, buffer_u8)) + chr(buffer_read(original, buffer_u8));
 
@@ -19,13 +21,13 @@ if (buffer < 0) {
     var header = chr(buffer_read(buffer, buffer_u8)) + chr(buffer_read(buffer, buffer_u8)) + chr(buffer_read(buffer, buffer_u8));
     
     if (header == "DDD") {
-        Stuff.save_name_data = string_replace(filename_name(argument0), EXPORT_EXTENSION_DATA, "");
+        Stuff.save_name_data = string_replace(filename_name(filename), EXPORT_EXTENSION_DATA, "");
         
         var version = buffer_read(buffer, buffer_u32);
         
         if (version < DataVersions.SUMMARY_GENERIC_DATA) {
             show_error("We stopped supporting versions of the data file before SUMMARY_GENERIC_DATA (" + string(DataVersions.SUMMARY_GENERIC_DATA) +
-                "). This current version is " + string(version) + ". Please open and save " + filename_name(argument0) +
+                "). This current version is " + string(version) + ". Please open and save " + filename_name(filename) +
                 " through Version 0.1.0.9 of the editor.", true);
         }
         
@@ -61,17 +63,8 @@ if (buffer < 0) {
                 ds_list_clear(Stuff.switches);
                 break;
             case SERIALIZE_MAP:
-                for (var i = 0; i < array_length_1d(ActiveMap.mesh_autotiles); i++) {
-                    if (ActiveMap.mesh_autotiles[i]) {
-                        vertex_delete_buffer(ActiveMap.mesh_autotiles[i]);
-                        vertex_delete_buffer(ActiveMap.mesh_autotile_raw[i]);
-                    }
-                }
-                ds_map_clear(Stuff.all_refids);
-                array_clear(ActiveMap.mesh_autotiles, noone);
-                array_clear(ActiveMap.mesh_autotile_raw, noone);
-                // todo clear editor map - IF entities get their own GUIDs eventually,
-                // they should go in a separate lookup which should be cleared in here
+				instance_activate_object(ActiveMap);
+				instance_destroy(ActiveMap);
                 break;
         }
         
@@ -96,6 +89,7 @@ if (buffer < 0) {
                 case SerializeThings.DATA_INSTANCES: serialize_load_data_instances(buffer, version); break;
                 case SerializeThings.EVENT_CUSTOM: serialize_load_event_custom(buffer, version); break;
                 case SerializeThings.ANIMATIONS: serialize_load_animations(buffer, version); break;
+                case SerializeThings.MAPS: serialize_load_maps(buffer, version); break;
                 // map stuff
                 case SerializeThings.MAP_META: serialize_load_map_contents_meta(buffer, version);  break;
                 case SerializeThings.MAP_BATCH: serialize_load_map_contents_batch(buffer, version); break;

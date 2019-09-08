@@ -20,3 +20,5 @@ ds_list_destroy_instances/*_scheduled*/(all_entities);
 ds_grid_destroy(map_grid);
 
 vertex_delete_buffer(frozen);
+
+if (data_buffer) buffer_delete(data_buffer);
