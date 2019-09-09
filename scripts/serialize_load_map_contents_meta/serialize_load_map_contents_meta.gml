@@ -4,8 +4,6 @@
 var buffer = argument0;
 var version = argument1;
 
-data_clear_map();
-
 ActiveMap.name = buffer_read(buffer, buffer_string);
 ActiveMap.internal_name = buffer_read(buffer, buffer_string);
 ActiveMap.summary = buffer_read(buffer, buffer_string);

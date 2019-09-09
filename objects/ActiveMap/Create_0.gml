@@ -11,6 +11,8 @@ xx = 64;                                  // dimensions
 yy = 64;
 zz = 8;
 
+graphics_create_grids();
+
 name = "Map";                             // visible to the player
 internal_name = "MAP";                    // the name of the file that the map attaches to
 summary = "It's a map, that does map things";

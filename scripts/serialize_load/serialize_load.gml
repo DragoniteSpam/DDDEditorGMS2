@@ -9,6 +9,7 @@ var header = chr(buffer_read(original, buffer_u8)) + chr(buffer_read(original, b
 var buffer = buffer_decompress(original);
 
 // if the decompressed buffer is bad, cancel - try catch will make this so much nicer
+// @todo gml update try catch
 if (buffer < 0) {
     erroneous = true;
 } else {
@@ -65,6 +66,7 @@ if (buffer < 0) {
             case SERIALIZE_MAP:
 				instance_activate_object(ActiveMap);
 				instance_destroy(ActiveMap);
+				Stuff.active_map = instance_create_depth(0, 0, 0, ActiveMap);
                 break;
         }
         
@@ -97,13 +99,6 @@ if (buffer < 0) {
                 // end of file
                 case SerializeThings.END_OF_FILE: stop = true; break;
             }
-        }
-        
-        switch (what) {
-            case SERIALIZE_MAP:
-                Stuff.all_maps[? ActiveMap.internal_name] = true;
-                uivc_select_autotile_refresh();
-                break;
         }
         
         with (Data) if (deactivateable) {

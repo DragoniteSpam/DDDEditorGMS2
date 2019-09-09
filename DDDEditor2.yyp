@@ -5671,14 +5671,6 @@
             }
         },
         {
-            "Key": "806b73cd-6cd7-4d92-8daa-94c4177690d7",
-            "Value": {
-                "id": "eb590a08-46ae-464c-93cb-54992817b1c9",
-                "resourcePath": "scripts\\data_clear_map\\data_clear_map.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "806dc63e-433e-48cc-b9fe-647ee46fa288",
             "Value": {
                 "id": "19b36109-9c34-402b-b3be-852f188ecddf",
@@ -12071,7 +12063,6 @@
         "0c8b0bb3-97ad-42ec-8a2a-40d3f2dde3fc",
         "321a891d-82b7-45ad-a9cf-af99e5109987",
         "20ae4024-a8cc-4f6d-a02d-51fff19c8806",
-        "806b73cd-6cd7-4d92-8daa-94c4177690d7",
         "5cc71665-573c-4595-a2d9-6dd8c3706185",
         "c2797eb4-e094-4656-831c-d77d68434073",
         "592176f4-c858-47ae-ba6d-be477cc58dce",

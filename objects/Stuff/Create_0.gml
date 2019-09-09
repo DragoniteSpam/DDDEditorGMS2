@@ -428,9 +428,9 @@ c_shape_end_trimesh(c_shape_block);
 
 // at some point there shouldn't necessarily need to be an active
 // map in existence for this to work, but for now there does
-data_clear_map();
 instantiate(Controller);
 
+active_map = instance_create_depth(0, 0, 0, ActiveMap);
 // this depends on activemap
 instantiate(Camera);
 
@@ -457,10 +457,9 @@ enum AvailableAutotileProperties {
     // sprite index, display name, true for built-in graphics and false otherwise, filename, animation frames, horizontal segments
 }
 
-// this gets populated when you save or load something, and also using a map to
-// store maps is funny for some reason
-all_maps = ds_map_create();
-active_map = instance_create_depth(0, 0, 0, ActiveMap);
+all_maps = ds_list_create();
+// active_map is defined at the top because i screwed some things up and made it
+// order-dependant
 
 all_data = ds_list_create();
 original_data = noone;            // when you're modifying the data types and want to stash the old ones

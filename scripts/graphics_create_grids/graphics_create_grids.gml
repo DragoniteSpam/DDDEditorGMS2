@@ -3,9 +3,7 @@ with (Camera) {
      * mild spaghetti - grid with origin in the corner
      */
 
-    if (grid) {
-        vertex_delete_buffer(grid);
-    }
+    if (grid) vertex_delete_buffer(grid);
     
     grid = vertex_create_buffer();
     
@@ -39,9 +37,7 @@ with (Camera) {
      * mild spaghetti - grid with origin in the center
      */
 
-    if (grid_centered) {
-        vertex_delete_buffer(grid_centered);
-    }
+    if (grid_centered) vertex_delete_buffer(grid_centered);
     
     grid_centered = vertex_create_buffer();
     
@@ -82,9 +78,7 @@ with (Camera) {
      * mild spaghetti - grid with origin in the center
      */
 
-    if (grid_sphere) {
-        vertex_delete_buffer(grid_sphere);
-    }
+    if (grid_sphere) vertex_delete_buffer(grid_sphere);
     
     grid_sphere = vertex_create_buffer();
     

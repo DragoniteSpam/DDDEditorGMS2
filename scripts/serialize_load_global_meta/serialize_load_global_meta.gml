@@ -5,10 +5,9 @@ var buffer = argument0;
 var version = argument1;
 
 var n_maps = buffer_read(buffer, buffer_u16);
-ds_map_clear(Stuff.all_maps);
 
 repeat (n_maps) {
-    ds_map_add(Stuff.all_maps, buffer_read(buffer, buffer_string), true);
+    buffer_read(buffer, buffer_string);
 }
 
 Stuff.game_map_starting = buffer_read(buffer, buffer_string);

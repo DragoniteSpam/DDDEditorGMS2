@@ -40,5 +40,3 @@ for (var i = 0; i < array_length_1d(ActiveMap.mesh_autotile_raw); i++) {
         buffer_write(buffer, buffer_bool, false);
     }
 }
-
-this is a jumbled mess but i want to sleep now so figure out where to start in the morning
