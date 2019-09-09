@@ -67,6 +67,7 @@ if (buffer < 0) {
 				instance_activate_object(ActiveMap);
 				instance_destroy(ActiveMap);
 				Stuff.active_map = instance_create_depth(0, 0, 0, ActiveMap);
+				ds_list_add(Stuff.all_maps, Stuff.active_map);
                 break;
         }
         

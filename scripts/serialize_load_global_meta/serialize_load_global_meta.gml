@@ -11,6 +11,7 @@ repeat (n_maps) {
 }
 
 Stuff.game_map_starting = buffer_read(buffer, buffer_string);
+
 var bools = buffer_read(buffer, buffer_u32);
 Stuff.game_player_grid = unpack(bools, 0);
 Stuff.game_battle_style = buffer_read(buffer, buffer_u8);
