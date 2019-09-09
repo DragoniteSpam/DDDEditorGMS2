@@ -1,4 +1,5 @@
-/// @description void uivc_settings_map_name(UIThing);
 /// @param UIThing
 
-ActiveMap.name=argument0.value;
+var thing = argument0;
+
+Stuff.active_map.name = thing.value;

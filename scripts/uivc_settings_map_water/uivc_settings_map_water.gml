@@ -1,3 +1,5 @@
 /// @param UIThing
 
-ActiveMap.draw_water = argument0.value;
+var thing = argument0;
+
+Stuff.active_map.draw_water = thing.value;

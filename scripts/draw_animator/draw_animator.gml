@@ -1,4 +1,5 @@
 draw_clear(c_black);
+var map = Stuff.active_map;
 
 if (!mouse_3d_lock && mouse_within_view(view_3d) && !dialog_exists()) {
     control_animator();
@@ -15,7 +16,7 @@ gpu_set_ztestenable(true);
 draw_set_color(c_white);
 var camera = view_get_camera(view_camera);
 
-if (ActiveMap.is_3d) {
+if (map.is_3d) {
     var vw = view_get_wport(view_current);
     var vh = view_get_hport(view_current);
     camera_set_view_mat(camera, matrix_build_lookat(anim_x, anim_y, anim_z, anim_xto, anim_yto, anim_zto, anim_xup, anim_yup, anim_zup));

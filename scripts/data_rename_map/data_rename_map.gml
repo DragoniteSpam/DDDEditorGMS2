@@ -1,4 +1,4 @@
-/// @param ActiveMap
+/// @param DataMap
 /// @param new_name
 
 var map = argument0;

@@ -1,4 +1,3 @@
-/// @description void map_move_thing(Entity, xx, yy, zz);
 /// @param Entity
 /// @param xx
 /// @param yy
@@ -10,7 +9,13 @@
 // if the destination is not free, don't try to move, since the default
 // behavior for map_add_free trying to add to an occupied location is to
 // delete it
-if (map_get_free_at(argument1, argument2, argument3, argument0.slot)) {
-    map_remove_thing(argument0);
-    map_add_thing(argument0, argument1, argument2, argument3);
+
+var entity = argument0;
+var xx = argument1;
+var yy = argument2;
+var zz = argument3;
+
+if (map_get_free_at(xx, yy, zz, entity.slot)) {
+    map_remove_thing(entity);
+    map_add_thing(entity, xx, yy, zz);
 }

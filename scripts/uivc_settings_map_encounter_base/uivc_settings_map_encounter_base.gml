@@ -1,5 +1,5 @@
 /// @param UIThing
 
-if (validate_int(argument0.value)) {
-    ActiveMap.base_encounter_rate = real(argument0.value);
-}
+var thing = argument0;
+
+Stuff.active_map.base_encounter_rate = real(thing.value);

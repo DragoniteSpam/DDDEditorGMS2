@@ -1,3 +1,5 @@
+var map = Stuff.active_map;
+
 draw_clear(c_black);
 
 if (!mouse_3d_lock && mouse_within_view(view_3d) && !dialog_exists()) {
@@ -6,7 +8,7 @@ if (!mouse_3d_lock && mouse_within_view(view_3d) && !dialog_exists()) {
 
 gpu_set_zwriteenable(true);
 gpu_set_cullmode(view_backface ? cull_noculling : cull_counterclockwise);
-gpu_set_ztestenable(ActiveMap.is_3d);        // this will make things rather odd with the wrong setting
+gpu_set_ztestenable(map.is_3d);        // this will make things rather odd with the wrong setting
 
 // todo GMS2 requires smooth shading to be handled by the shader(s) now,
 // so to make porting this to GMS2 as pain-free as possible I'd like to
@@ -16,7 +18,7 @@ draw_set_color(c_white);
 
 var camera = view_get_camera(view_current);
 
-if (ActiveMap.is_3d) {
+if (map.is_3d) {
     var vw = view_get_wport(view_current);
     var vh = view_get_hport(view_current);
     camera_set_view_mat(camera, matrix_build_lookat(x, y, z, xto, yto, zto, xup, yup, zup));
@@ -47,24 +49,24 @@ if (view_texture) {
 }
 // todo separate batches for Tiles (including autotiles) and Meshes so that they can
 // be masked correctly
-for (var i = 0; i < ds_list_size(ActiveMap.batches); i++) {
+for (var i = 0; i < ds_list_size(map.batches); i++) {
     if (view_entities) {
-        vertex_submit(ActiveMap.batches[| i], pr_trianglelist, tex);
+        vertex_submit(map.batches[| i], pr_trianglelist, tex);
     }
     if (view_wireframe) {
-        vertex_submit(ActiveMap.batches_wire[| i], pr_linelist, -1);
+        vertex_submit(map.batches_wire[| i], pr_linelist, -1);
     }
 }
-for (var i = 0; i < ds_list_size(ActiveMap.batch_in_the_future); i++) {
-    var ent = ActiveMap.batch_in_the_future[| i];
+for (var i = 0; i < ds_list_size(map.batch_in_the_future); i++) {
+    var ent = map.batch_in_the_future[| i];
     script_execute(ent.render, ent);
     // batchable entities don't make use of move routes, so don't bother
 }
 
 var list_routes = ds_list_create();       // [buffer, x, y, z, extra?, extra x, extra y, extra z], positions are absolute
 
-for (var i = 0; i < ds_list_size(ActiveMap.dynamic); i++) {
-    var ent = ActiveMap.dynamic[| i];
+for (var i = 0; i < ds_list_size(map.dynamic); i++) {
+    var ent = map.dynamic[| i];
     script_execute(ent.render, ent);
     for (var j = 0; j < MAX_VISIBLE_MOVE_ROUTES; j++) {
         var route = guid_get(ent.visible_routes[j]);

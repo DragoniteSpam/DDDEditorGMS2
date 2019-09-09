@@ -11,7 +11,7 @@ if (string_length(Stuff.save_name_data) > 0 && string_length(map_name) > 0) {
 }
 
 if (string_length(map_name) > 0) {
-    displayname = displayname + map_name + " [map: " + ActiveMap.is_3d ? "3D" : "2D" + "]";
+    displayname = displayname + map_name + " [map: " + Stuff.active_map.is_3d ? "3D" : "2D" + "]";
 }
 
 window_set_caption("DDD Editor - " + displayname);

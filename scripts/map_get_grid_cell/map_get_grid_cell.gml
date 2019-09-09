@@ -3,5 +3,9 @@
 /// @param zz
 // Does not do a bounds check. That is your job.
 
-var thing = ActiveMap.map_grid[# argument0, argument1];
-return thing[@ argument2];
+var xx = argument0;
+var yy = argument1;
+var zz = argument2;
+
+var thing = Stuff.active_map.map_grid[# xx, yy];
+return thing[@ zz];

@@ -1,4 +1,3 @@
-/// @description void map_remove_thing(Entity);
 /// @param Entity
 
 // this is INSANELY slow for large numbers of entities, and I'm
@@ -18,24 +17,28 @@
 
 // this NEEDS to be worked on sooner rather than later because i
 // imagine Delete All is going to be a somewhat common operation.
-if (argument0.listed) {
-    if (argument0.batchable) {
-        if (argument0.batch_index==-1) {
-            var future=ActiveMap.batch_in_the_future;
-            ds_list_delete(future, ds_list_find_index(future, argument0));
+
+var entity = argument0;
+var map = Stuff.active_map;
+
+if (entity.listed) {
+    if (entity.batchable) {
+        if (entity.batch_index == -1) {
+            var future = map.batch_in_the_future;
+            ds_list_delete(future, ds_list_find_index(future, entity));
         } else {
-            var bl=ActiveMap.batch_instances[| argument0.batch_index];
-            ds_list_delete(bl, ds_list_find_index(bl, argument0));
-            batch_again(argument0.batch_index);
+            var bl = map.batch_instances[| entity.batch_index];
+            ds_list_delete(bl, ds_list_find_index(bl, entity));
+            batch_again(entity.batch_index);
         }
     } else {
-        ds_list_delete(ActiveMap.dynamic, ds_list_find_index(ActiveMap.dynamic, argument0));
+        ds_list_delete(map.dynamic, ds_list_find_index(map.dynamic, entity));
     }
     
-    ds_list_delete(ActiveMap.all_entities, ds_list_find_index(ActiveMap.all_entities, argument0));
+    ds_list_delete(map.all_entities, ds_list_find_index(map.all_entities, entity));
 }
 
-var cell=map_get_grid_cell(argument0.xx, argument0.yy, argument0.zz);
-if (cell[@ argument0.slot]==argument0) {
-    cell[@ argument0.slot]=noone;
+var cell = map_get_grid_cell(entity.xx, entity.yy, entity.zz);
+if (cell[@ entity.slot] == entity) {
+    cell[@ entity.slot] = noone;
 }

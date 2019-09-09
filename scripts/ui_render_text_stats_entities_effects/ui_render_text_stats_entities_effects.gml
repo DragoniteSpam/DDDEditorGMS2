@@ -1,8 +1,11 @@
-/// @description void ui_render_text_stats_entities_effects(UIText, x, y);
 /// @param UIText
 /// @param x
 /// @param y
 
-argument0.text=string(ActiveMap.population[ETypes.ENTITY_EFFECT]);
+var text = argument0;
+var xx = argument1;
+var yy = argument2;
 
-ui_render_text(argument0, argument1, argument2);
+text.text = string(Stuff.active_map.population[ETypes.ENTITY_EFFECT]);
+
+ui_render_text(text, xx, yy);

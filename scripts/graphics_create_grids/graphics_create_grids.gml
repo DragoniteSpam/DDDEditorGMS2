@@ -2,7 +2,9 @@ with (Camera) {
     /*
      * mild spaghetti - grid with origin in the corner
      */
-
+	
+	var map = Stuff.active_map;
+	
     if (grid) vertex_delete_buffer(grid);
     
     grid = vertex_create_buffer();
@@ -10,14 +12,14 @@ with (Camera) {
     vertex_begin(grid, vertex_format);
     
     // grid
-    for (var i = 0; i <= ActiveMap.xx; i++) {
+    for (var i = 0; i <= map.xx; i++) {
         vertex_point_line(grid, i * TILE_WIDTH, 0, 0, c_white, 1);
-        vertex_point_line(grid, i * TILE_WIDTH, ActiveMap.yy * TILE_HEIGHT, 0, c_white, 1);
+        vertex_point_line(grid, i * TILE_WIDTH, map.yy * TILE_HEIGHT, 0, c_white, 1);
     }
     
-    for (var i = 0; i <= ActiveMap.yy; i++) {
+    for (var i = 0; i <= map.yy; i++) {
         vertex_point_line(grid, 0, i * TILE_HEIGHT, 0, c_white, 1);
-        vertex_point_line(grid, ActiveMap.xx * TILE_WIDTH, i * TILE_HEIGHT, 0, c_white, 1);
+        vertex_point_line(grid, map.xx * TILE_WIDTH, i * TILE_HEIGHT, 0, c_white, 1);
     }
     
     // axes
@@ -44,8 +46,8 @@ with (Camera) {
     vertex_begin(grid_centered, vertex_format);
     
     // grid
-    var xx = ActiveMap.xx / 2;
-    var yy = ActiveMap.yy / 2;
+    var xx = map.xx / 2;
+    var yy = map.yy / 2;
     
     for (var i = -xx; i <= xx; i++) {
         if (i != 0) {

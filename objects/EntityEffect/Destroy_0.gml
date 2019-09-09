@@ -1,4 +1,3 @@
 entity_destroy();
 
-ActiveMap.population[ETypes.ENTITY_EFFECT]--;
-
+Stuff.active_map.population[ETypes.ENTITY_EFFECT]--;

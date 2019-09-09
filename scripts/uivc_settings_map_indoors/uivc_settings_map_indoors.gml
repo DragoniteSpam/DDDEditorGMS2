@@ -1,3 +1,4 @@
 /// @param UIThing
 
-ActiveMap.indoors = argument0.value;
+var thing = argument0;
+Stuff.active_map.indoors = thing.value;

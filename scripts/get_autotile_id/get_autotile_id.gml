@@ -1,74 +1,76 @@
 /// @param EntityTerrain
 
+var terrain = argument0;
 var mask = 0;
+var map = Stuff.active_map;
 
 // northwest
-if (argument0.xx > 0 && argument0.yy > 0) {
+if (terrain.xx > 0 && terrain.yy > 0) {
     // @todo gml update
-    var what = map_get_grid_cell(argument0.xx - 1, argument0.yy - 1, argument0.zz);
+    var what = map_get_grid_cell(terrain.xx - 1, terrain.yy - 1, terrain.zz);
     if (instanceof(what[MapCellContents.MESHMOB], EntityMeshTerrain)) {
         mask = mask | ATMask.NORTHWEST;
     }
 }
 
 // north
-if (argument0.yy > 0) {
+if (terrain.yy > 0) {
     // @todo gml update
-    var what = map_get_grid_cell(argument0.xx, argument0.yy - 1, argument0.zz);
+    var what = map_get_grid_cell(terrain.xx, terrain.yy - 1, terrain.zz);
     if (instanceof(what[MapCellContents.MESHMOB], EntityMeshTerrain)) {
         mask = mask | ATMask.NORTH;
     }
 }
 
 // northeast
-if (argument0.xx < ActiveMap.xx - 1 && argument0.yy > 0) {
+if (terrain.xx < map.xx - 1 && terrain.yy > 0) {
     // @todo gml update
-    var what = map_get_grid_cell(argument0.xx + 1, argument0.yy - 1, argument0.zz);
+    var what = map_get_grid_cell(terrain.xx + 1, terrain.yy - 1, terrain.zz);
     if (instanceof(what[MapCellContents.MESHMOB], EntityMeshTerrain)) {
         mask = mask | ATMask.NORTHEAST;
     }
 }
 
 // west
-if (argument0.xx > 0) {
+if (terrain.xx > 0) {
     // @todo gml update
-    var what = map_get_grid_cell(argument0.xx - 1, argument0.yy, argument0.zz);
+    var what = map_get_grid_cell(terrain.xx - 1, terrain.yy, terrain.zz);
     if (instanceof(what[MapCellContents.MESHMOB], EntityMeshTerrain)) {
         mask = mask | ATMask.WEST;
     }
 }
 
 // east
-if (argument0.xx < ActiveMap.xx - 1) {
+if (terrain.xx < map.xx - 1) {
     // @todo gml update
-    var what = map_get_grid_cell(argument0.xx + 1, argument0.yy, argument0.zz);
+    var what = map_get_grid_cell(terrain.xx + 1, terrain.yy, terrain.zz);
     if (instanceof(what[MapCellContents.MESHMOB], EntityMeshTerrain)) {
         mask = mask | ATMask.EAST;
     }
 }
 
 // southwest
-if (argument0.xx > 0 && argument0.yy < ActiveMap.yy - 1) {
+if (terrain.xx > 0 && terrain.yy < map.yy - 1) {
     // @todo gml update
-    var what = map_get_grid_cell(argument0.xx - 1, argument0.yy + 1, argument0.zz);
+    var what = map_get_grid_cell(terrain.xx - 1, terrain.yy + 1, terrain.zz);
     if (instanceof(what[MapCellContents.MESHMOB], EntityMeshTerrain)) {
         mask = mask | ATMask.SOUTHWEST;
     }
 }
 
 // south
-if (argument0.yy < ActiveMap.yy - 1) {
+if (terrain.yy < map.yy - 1) {
     // @todo gml update
-    var what = map_get_grid_cell(argument0.xx, argument0.yy + 1, argument0.zz);
+    var what = map_get_grid_cell(terrain.xx, terrain.yy + 1, terrain.zz);
     if (instanceof(what[MapCellContents.MESHMOB], EntityMeshTerrain)) {
         mask = mask | ATMask.SOUTH;
     }
 }
 
 // southeast
-if (argument0.xx < ActiveMap.xx - 1 && argument0.yy < ActiveMap.yy - 1) {
+if (terrain.xx < map.xx - 1 && terrain.yy < map.yy - 1) {
     // @todo gml update
-    var what = map_get_grid_cell(argument0.xx + 1, argument0.yy + 1, argument0.zz);
+    var what = map_get_grid_cell(terrain.xx + 1, terrain.yy + 1, terrain.zz);
     if (instanceof(what[MapCellContents.MESHMOB], EntityMeshTerrain)) {
         mask = mask | ATMask.SOUTHEAST;
     }

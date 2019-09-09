@@ -1,6 +1,7 @@
 /// @param Dialog
 
 var dialog = argument0;
+var map = Stuff.active_map;
 
 var dw = 960;
 var dh = 640;
@@ -24,11 +25,11 @@ var vx2 = dw - 32;
 
 var el_name_text = create_text(16, yy, "Settings: Text", ew, eh, fa_left, ew, dg);
 yy = yy + el_name_text.height + 16;
-var el_name = create_input(16, yy, "Name: ", ew, eh, uivc_settings_map_name, "", ActiveMap.name, "Map name goes here", validate_string, ui_value_string, 0, 0, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
+var el_name = create_input(16, yy, "Name: ", ew, eh, uivc_settings_map_name, "", map.name, "Map name goes here", validate_string, ui_value_string, 0, 0, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
 yy = yy + el_name.height + 16;
-var el_name_internal = create_input(16, yy, "Internal name: ", ew, eh, uivc_settings_map_internal, "", ActiveMap.internal_name, "[A-Za-z0-9_]+", validate_string_internal_name, ui_value_string, 0, 0, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
+var el_name_internal = create_input(16, yy, "Internal name: ", ew, eh, uivc_settings_map_internal, "", map.internal_name, "[A-Za-z0-9_]+", validate_string_internal_name, ui_value_string, 0, 0, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
 yy = yy + el_name_internal.height + 16;
-var el_summary = create_input(16, yy, "Summary: ", ew, eh, uivc_settings_map_summary, "", ActiveMap.summary, "Write a summary here", validate_string, ui_value_string, 0, 0, 400, vx1, vy1, vx2, vy2, dg);
+var el_summary = create_input(16, yy, "Summary: ", ew, eh, uivc_settings_map_summary, "", map.summary, "Write a summary here", validate_string, ui_value_string, 0, 0, 400, vx1, vy1, vx2, vy2, dg);
 
 var vx2 = ew;
 
@@ -36,43 +37,43 @@ var yy_column_start = yy + el_summary.height + 32;
 yy = yy_column_start;
 var el_dim_text = create_text(16, yy, "Settings: Dimensions", ew, eh, fa_left, ew, dg);
 yy = yy + 32;
-var el_width = create_input(16, yy, "Map Width (X): ", ew, eh, uivc_stash, "x", ActiveMap.xx, "64", validate_int, ui_value_real, 1, MAP_X_LIMIT, 4, vx1, vy1, vx2, vy2, dg);
+var el_width = create_input(16, yy, "Map Width (X): ", ew, eh, uivc_stash, "x", map.xx, "64", validate_int, ui_value_real, 1, MAP_X_LIMIT, 4, vx1, vy1, vx2, vy2, dg);
 yy = yy + 32;
-var el_height = create_input(16, yy, "Map Height (Y): ", ew, eh, uivc_stash, "y", ActiveMap.yy, "64", validate_int, ui_value_real, 1, MAP_Y_LIMIT, 4, vx1, vy1, vx2, vy2, dg);
+var el_height = create_input(16, yy, "Map Height (Y): ", ew, eh, uivc_stash, "y", map.yy, "64", validate_int, ui_value_real, 1, MAP_Y_LIMIT, 4, vx1, vy1, vx2, vy2, dg);
 yy = yy + 32;
-var el_depth = create_input(16, yy, "Map Depth (Z): ", ew, eh, uivc_stash, "z", ActiveMap.zz, "8", validate_int, ui_value_real, 1, MAP_Y_LIMIT, 4, vx1, vy1, vx2, vy2, dg);
+var el_depth = create_input(16, yy, "Map Depth (Z): ", ew, eh, uivc_stash, "z", map.zz, "8", validate_int, ui_value_real, 1, MAP_Y_LIMIT, 4, vx1, vy1, vx2, vy2, dg);
 
 yy = yy_column_start;
 var el_other = create_text(c2, yy, "Settings: Other", ew, eh, fa_left, ew, dg);
 yy = yy + 32;
-var el_other_3d = create_checkbox(c2, yy, "Is 3D?", ew, eh, uivc_settings_map_3d, "", ActiveMap.is_3d, dg);
+var el_other_3d = create_checkbox(c2, yy, "Is 3D?", ew, eh, uivc_settings_map_3d, "", map.is_3d, dg);
 yy = yy + 32;
-var el_other_fog_start = create_input(c2, yy, "3D Fog Start: ", ew, eh, uivc_settings_map_fog_start, "", ActiveMap.fog_start, "256", validate_int, ui_value_real, 1, (1 << 16) - 1, 5, vx1, vy1, vx2, vy2, dg);
-el_other_fog_start.interactive = ActiveMap.is_3d;
+var el_other_fog_start = create_input(c2, yy, "3D Fog Start: ", ew, eh, uivc_settings_map_fog_start, "", map.fog_start, "256", validate_int, ui_value_real, 1, (1 << 16) - 1, 5, vx1, vy1, vx2, vy2, dg);
+el_other_fog_start.interactive = map.is_3d;
 dg.el_other_fog_start = el_other_fog_start;
 yy = yy + 32;
-var el_other_fog_end = create_input(c2, yy, "3D Fog End: ", ew, eh, uivc_settings_map_fog_end, "", ActiveMap.fog_end, "1024", validate_int, ui_value_real, 1, (1 << 16) - 1, 5, vx1, vy1, vx2, vy2, dg);
-el_other_fog_end.interactive = ActiveMap.is_3d;
+var el_other_fog_end = create_input(c2, yy, "3D Fog End: ", ew, eh, uivc_settings_map_fog_end, "", map.fog_end, "1024", validate_int, ui_value_real, 1, (1 << 16) - 1, 5, vx1, vy1, vx2, vy2, dg);
+el_other_fog_end.interactive = map.is_3d;
 dg.el_other_fog_end = el_other_fog_end;
 yy = yy + 32;
-var el_other_indoors = create_checkbox(c2, yy, "Is indoors?", ew, eh, uivc_settings_map_indoors, "", ActiveMap.indoors, dg);
+var el_other_indoors = create_checkbox(c2, yy, "Is indoors?", ew, eh, uivc_settings_map_indoors, "", map.indoors, dg);
 yy = yy + 32;
-var el_other_water = create_checkbox(c2, yy, "Render water?", ew, eh, uivc_settings_map_water, "", ActiveMap.draw_water, dg);
+var el_other_water = create_checkbox(c2, yy, "Render water?", ew, eh, uivc_settings_map_water, "", map.draw_water, dg);
 yy = yy + 32;
-var el_other_fast_travel_to = create_checkbox(c2, yy, "Can fast travel to?", ew, eh, uivc_settings_map_fast_travel_to, "", ActiveMap.fast_travel_to, dg);
+var el_other_fast_travel_to = create_checkbox(c2, yy, "Can fast travel to?", ew, eh, uivc_settings_map_fast_travel_to, "", map.fast_travel_to, dg);
 yy = yy + 32;
-var el_other_fast_travel_from = create_checkbox(c2, yy, "Can fast travel from?", ew, eh, uivc_settings_map_fast_travel_from, "", ActiveMap.fast_travel_from, dg);
+var el_other_fast_travel_from = create_checkbox(c2, yy, "Can fast travel from?", ew, eh, uivc_settings_map_fast_travel_from, "", map.fast_travel_from, dg);
 
 yy = yy_column_start;
 var el_code_heading = create_text(c3, yy, "Update Code", ew, eh, fa_left, ew, dg);
 yy = yy + 32;
-var el_code = create_input_code(c3, yy, "", ew, eh, 0, vy1, vx2, vy2, ActiveMap.code, uivc_map_code, dg);
+var el_code = create_input_code(c3, yy, "", ew, eh, 0, vy1, vx2, vy2, map.code, uivc_map_code, dg);
 yy = yy + 32;
 var el_encounter_heading = create_text(c3, yy, "Settings: Encounter Stuff", ew, eh, fa_left, ew, dg);
 yy = yy + 32;
-var el_encounter_base = create_input(c3, yy, "Base Encounter Rate", ew, eh, uivc_settings_map_encounter_base, 0, ActiveMap.base_encounter_rate, "0 for off", validate_int, ui_value_real, 0, 1000000, 7, vx1, vy1, vx2, vy2, dg);
+var el_encounter_base = create_input(c3, yy, "Base Encounter Rate", ew, eh, uivc_settings_map_encounter_base, 0, map.base_encounter_rate, "0 for off", validate_int, ui_value_real, 0, 1000000, 7, vx1, vy1, vx2, vy2, dg);
 yy = yy + 32;
-var el_encounter_deviation = create_input(c3, yy, "Encounter Deviation", ew, eh, uivc_settings_map_encounter_deviation, 0, ActiveMap.base_encounter_deviation, "Probably steps", validate_int, ui_value_real, 0, 1000000, 7, vx1, vy1, vx2, vy2, dg);
+var el_encounter_deviation = create_input(c3, yy, "Encounter Deviation", ew, eh, uivc_settings_map_encounter_deviation, 0, map.base_encounter_deviation, "Probably steps", validate_int, ui_value_real, 0, 1000000, 7, vx1, vy1, vx2, vy2, dg);
 yy = yy + 32;
 
 var b_width = 128;

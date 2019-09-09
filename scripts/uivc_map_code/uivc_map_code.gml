@@ -1,5 +1,5 @@
 /// @param UIThing
 
-if (validate_code(argument0.value)) {
-    ActiveMap.code = argument0.value;
-}
+var thing = argument0;
+
+Stuff.active_map.code = thing.value;

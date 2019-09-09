@@ -1,4 +1,4 @@
-if (!ActiveMap.is_3d) {
+if (!Stuff.active_map.is_3d) {
     show_error("hey so yeah you haven't implemented the 2D controls yet, you probably should though", true);
 }
 
@@ -24,8 +24,8 @@ if (zz < z) {
     floor_x = x + xx * f;
     floor_y = y + yy * f;
     
-    floor_cx = clamp(floor_x div TILE_WIDTH, 0, ActiveMap.xx);
-    floor_cy = clamp(floor_y div TILE_HEIGHT, 0, ActiveMap.yy);
+    floor_cx = clamp(floor_x div TILE_WIDTH, 0, Stuff.active_map.xx);
+    floor_cy = clamp(floor_y div TILE_HEIGHT, 0, Stuff.active_map.yy);
     
     if (Controller.press_left) {
         if (ds_list_size(selection) < MAX_SELECTION_COUNT) {

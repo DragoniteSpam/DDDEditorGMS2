@@ -1,14 +1,12 @@
-/// @description boolean entity_set_solid(Entity, solid?);
 /// @param Entity
 /// @param solid?
 
-var state=argument0.am_solid;
-argument0.am_solid=argument1;
+var entity = argument0;
+var is_solid = argument1;
 
-if (state!=argument1) {
-    if (argument1) {
-        ActiveMap.population_solid++;
-    } else {
-        ActiveMap.population_solid--;
-    }
+var state = entity.am_solid;
+entity.am_solid = is_solid;
+
+if (state != is_solid) {
+	Stuff.active_map.population_solid = Stuff.active_map.population_solid + is_solid ? 1 : -1;
 }

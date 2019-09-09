@@ -1,4 +1,3 @@
 entity_pawn_destroy();
 
-ActiveMap.population[ETypes.ENTITY_PAWN]--;
-
+Stuff.active_map.population[ETypes.ENTITY_PAWN]--;

@@ -2,7 +2,7 @@
     "id": "24023242-eb13-40b6-bcf5-02ba62597caa",
     "modelName": "GMObject",
     "mvc": "1.0",
-    "name": "ActiveMap",
+    "name": "DataMap",
     "eventList": [
         {
             "id": "7f5014e6-fc00-49c0-8c26-1ae1b340d675",

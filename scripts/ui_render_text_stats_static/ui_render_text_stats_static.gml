@@ -1,8 +1,11 @@
-/// @description void ui_render_text_stats_static(UIText, x, y);
 /// @param UIText
 /// @param x
 /// @param y
 
-argument0.text=string(ActiveMap.population_static);
+var text = argument0;
+var xx = argument1;
+var yy = argument2;
 
-ui_render_text(argument0, argument1, argument2);
+text.text = string(Stuff.active_map.population_static);
+
+ui_render_text(text, xx, yy);

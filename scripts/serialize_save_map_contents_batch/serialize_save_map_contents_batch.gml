@@ -1,7 +1,5 @@
-/// @description void serialize_save_map_contents_batch(buffer);
 /// @param buffer
 
-buffer_write(argument0, buffer_datatype, SerializeThings.MAP_BATCH);
+var buffer = argument0;
 
-// todo convert ActiveMap.frozen to a regular buffer and write it
-// into the save buffe
+buffer_write(buffer, buffer_datatype, SerializeThings.MAP_BATCH);

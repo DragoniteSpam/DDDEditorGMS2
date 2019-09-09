@@ -2,6 +2,10 @@
 /// @param x
 /// @param y
 
-argument0.text = string(ActiveMap.population[ETypes.ENTITY_PAWN]);
+var text = argument0;
+var xx = argument1;
+var yy = argument2;
 
-ui_render_text(argument0, argument1, argument2);
+text.text = string(Stuff.active_map.population[ETypes.ENTITY_PAWN]);
+
+ui_render_text(text, xx, yy);

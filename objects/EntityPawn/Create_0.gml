@@ -11,7 +11,7 @@ map_direction = 0;
 frame = 0;
 is_animating = false;
 
-ActiveMap.population[ETypes.ENTITY_PAWN]++;
+Stuff.active_map.population[ETypes.ENTITY_PAWN]++;
 
 // other properties - inherited
 
@@ -19,7 +19,7 @@ name = "Pawn";
 etype = ETypes.ENTITY_PAWN;
 
 am_solid = true;
-ActiveMap.population_solid++;
+Stuff.active_map.population_solid++;
 direction_fix = false;              // because it would be weird to have this off by default
 
 // editor properties

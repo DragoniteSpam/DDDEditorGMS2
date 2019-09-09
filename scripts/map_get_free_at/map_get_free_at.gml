@@ -3,7 +3,12 @@
 /// @param zz
 /// @param slot
 
-var thing = ActiveMap.map_grid[# argument0, argument1];
-var cell = thing[@ argument2];
+var xx = argument0;
+var yy = argument1;
+var zz = argument2;
+var slot = argument3;
 
-return cell[@ argument3] == noone;
+var thing = Stuff.active_map.map_grid[# xx, yy];
+var cell = thing[@ zz];
+
+return cell[@ slot] == noone;

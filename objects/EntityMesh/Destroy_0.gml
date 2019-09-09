@@ -1,3 +1,3 @@
 entity_destroy();
 
-ActiveMap.population[ETypes.ENTITY_MESH]--;
+Stuff.active_map.population[ETypes.ENTITY_MESH]--;

@@ -64,9 +64,9 @@ if (buffer < 0) {
                 ds_list_clear(Stuff.switches);
                 break;
             case SERIALIZE_MAP:
-				instance_activate_object(ActiveMap);
-				instance_destroy(ActiveMap);
-				Stuff.active_map = instance_create_depth(0, 0, 0, ActiveMap);
+				instance_activate_object(DataMap);
+				instance_destroy(DataMap);
+				Stuff.active_map = instance_create_depth(0, 0, 0, DataMap);
 				ds_list_add(Stuff.all_maps, Stuff.active_map);
                 break;
         }

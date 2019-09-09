@@ -1,3 +1,5 @@
 /// @param UIThing
 
-ActiveMap.fast_travel_to = argument0.value;
+var thing = argument0;
+
+Stuff.active_map.fast_travel_to = thing.value;

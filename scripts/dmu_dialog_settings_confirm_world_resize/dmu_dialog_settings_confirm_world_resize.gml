@@ -1,23 +1,25 @@
 /// @param UIThing
 
-var map = argument0.root.data;
+var thing = argument0;
+var data_map = thing.root.data;
+var map = Stuff.active_map;
 
-var xx = ActiveMap.xx;
-var yy = ActiveMap.yy;
-var zz = ActiveMap.zz;
+var xx = map.xx;
+var yy = map.yy;
+var zz = map.zz;
 
-if (ds_map_exists(map, "x")) {
-    xx = map[? "x"];
+if (ds_map_exists(data_map, "x")) {
+    xx = data_map[? "x"];
 }
-if (ds_map_exists(map, "y")) {
-    yy = map[? "y"];
+if (ds_map_exists(data_map, "y")) {
+    yy = data_map[? "y"];
 }
-if (ds_map_exists(map, "z")) {
-    zz = map[? "z"];
+if (ds_map_exists(data_map, "z")) {
+    zz = data_map[? "z"];
 }
 
-for (var i = 0; i < ds_list_size(ActiveMap.all_entities); i++) {
-    var thing = ActiveMap.all_entities[| i];
+for (var i = 0; i < ds_list_size(map.all_entities); i++) {
+    var thing = map.all_entities[| i];
     if (thing.xx >= xx || thing.yy >= yy || thing.zz >= zz) {
         safa_delete(thing);
     }
@@ -26,4 +28,4 @@ for (var i = 0; i < ds_list_size(ActiveMap.all_entities); i++) {
 dialog_destroy();
 dialog_destroy();
 
-dc_settings_execute(argument0.root.root);
+dc_settings_execute(thing.root.root);

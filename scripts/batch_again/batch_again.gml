@@ -1,8 +1,11 @@
 /// @param index
 
-vertex_delete_buffer(ActiveMap.batches[| argument0]);
-vertex_delete_buffer(ActiveMap.batches_wire[| argument0]);
-var list = ActiveMap.batch_instances[| argument0];
+var index = argument0;
+var map = Stuff.active_map;
+
+vertex_delete_buffer(map.batches[| index]);
+vertex_delete_buffer(map.batches_wire[| index]);
+var list = map.batch_instances[| index];
 
 if (ds_list_size(list) > 0) {
     var buffer = vertex_create_buffer();
@@ -24,17 +27,17 @@ if (ds_list_size(list) > 0) {
     vertex_end(buffer_wire);
     vertex_freeze(buffer_wire);
     
-    ActiveMap.batches[| argument0] = buffer;
-    ActiveMap.batches_wire[| argument0] = buffer_wire;
+    map.batches[| index] = buffer;
+    map.batches_wire[| index] = buffer_wire;
 } else {
     ds_list_destroy(list);
-    ds_list_delete(ActiveMap.batches, argument0);
-    ds_list_delete(ActiveMap.batches_wire, argument0);
-    ds_list_delete(ActiveMap.batch_instances, argument0);
+    ds_list_delete(map.batches, index);
+    ds_list_delete(map.batches_wire, index);
+    ds_list_delete(map.batch_instances, index);
     
-    for (var i = 0; i < ds_list_size(ActiveMap.all_entities); i++) {
-        var thing = ActiveMap.all_entities[| i];
-        if (thing.batch_index > argument0) {
+    for (var i = 0; i < ds_list_size(map.all_entities); i++) {
+        var thing = map.all_entities[| i];
+        if (thing.batch_index > index) {
             thing.batch_index--;
         }
     }

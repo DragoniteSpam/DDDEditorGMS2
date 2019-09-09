@@ -1,5 +1,7 @@
 /// @param Dialog
 
+var map = Stuff.active_map;
+
 var dw = 540;
 var dh = 640;
 
@@ -19,13 +21,13 @@ var yy_start = yy;
 var mbw = 64 - spacing;
 var mbh = eh;
 
-dg.buttons = array_create(array_length_1d(ActiveMap.mesh_autotiles));
-dg.icons = array_create(array_length_1d(ActiveMap.mesh_autotiles));
+dg.buttons = array_create(array_length_1d(map.mesh_autotiles));
+dg.icons = array_create(array_length_1d(map.mesh_autotiles));
 array_clear(dg.buttons, noone);
 
-for (var i = 0; i < array_length_1d(ActiveMap.mesh_autotiles); i++) {
+for (var i = 0; i < array_length_1d(map.mesh_autotiles); i++) {
     var button = create_button(xx, yy, string(i), mbw, mbh, fa_center, dmu_dialog_load_mesh_autotile, dg);
-    button.color = ActiveMap.mesh_autotiles[i] ? c_black : c_gray;
+    button.color = map.mesh_autotiles[i] ? c_black : c_gray;
     button.key = i;
     ds_list_add(dg.contents, button);
     dg.buttons[i] = button;

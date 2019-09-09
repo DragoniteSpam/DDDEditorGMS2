@@ -1,3 +1,5 @@
 /// @param UIThing
 
-ActiveMap.internal_name = argument0.value;
+var thing = argument0;
+
+Stuff.active_map.internal_name = thing.value;

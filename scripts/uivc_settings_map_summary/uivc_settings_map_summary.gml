@@ -1,4 +1,5 @@
 /// @param UIThing
 
 var thing = argument0;
-ActiveMap.summary = thing.value;
+
+Stuff.active_map.summary = thing.value;
