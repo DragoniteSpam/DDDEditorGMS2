@@ -20,6 +20,8 @@ event_inherited();
  * * * * * * * * * * * * * * * * * *
  */
 
+file_location = DataFileLocations.ASSET;
+
 // this should only be instantiated in tileset_create so don't worry
 // about populating the values right now
 picture_name = "";

@@ -37,21 +37,17 @@ if (buffer < 0) {
         
         switch (what) {
             case SERIALIZE_ASSETS:
-                while (!ds_list_empty(Stuff.all_bgm)) {
-                    audio_remove_bgm(ds_list_top(Stuff.all_bgm));
+                instance_activate_object(Data);
+                with (Data) if (file_location = DataFileLocations.ASSET) {
+                    instance_destroy();
                 }
-                while (!ds_list_empty(Stuff.all_se)) {
-                    audio_remove_bgm(ds_list_top(Stuff.all_se));
-                }
-                instance_activate_object(DataMesh);
-                instance_destroy(DataMesh);
                 ds_list_clear(Stuff.all_meshes);
+				ds_list_clear(Stuff.all_bgm);
+				ds_list_clear(Stuff.all_se);
                 break;
             case SERIALIZE_DATA:
-                // this may cause things to break, but it shouldn't;
-                // includes data, events, generics and everything else
                 instance_activate_object(Data);
-                with (Data) if (deleteable) {
+                with (Data) if (file_location = DataFileLocations.DATA) {
                     instance_destroy();
                 }
                 // clear all data - data has already been destroyed so you just have to clear them
@@ -66,8 +62,10 @@ if (buffer < 0) {
             case SERIALIZE_MAP:
 				instance_activate_object(DataMapContainer);
 				instance_destroy(DataMapContainer);
-				Stuff.active_map.contents = instance_create_depth(0, 0, 0, DataMapContainer);
-				ds_list_add(Stuff.all_maps, Stuff.active_map.contents);
+				Stuff.active_map = instance_create_depth(0, 0, 0, DataMapContainer);
+				ds_list_add(Stuff.all_maps, Stuff.active_map);
+				Stuff.active_map.contents = instance_create_depth(0, 0, 0, MapContents);
+				instance_deactivate_object(Stuff.active_map.contents);
                 break;
         }
         
@@ -94,15 +92,24 @@ if (buffer < 0) {
                 case SerializeThings.ANIMATIONS: serialize_load_animations(buffer, version); break;
                 case SerializeThings.MAPS: serialize_load_maps(buffer, version); break;
                 // map stuff
-                case SerializeThings.MAP_META: serialize_load_map_contents_meta(buffer, version);  break;
-                case SerializeThings.MAP_BATCH: serialize_load_map_contents_batch(buffer, version); break;
-                case SerializeThings.MAP_DYNAMIC: serialize_load_map_contents_dynamic(buffer, version); break;
+                case SerializeThings.MAP_META: serialize_load_map_contents_meta(buffer, version, Stuff.active_map);  break;
+                case SerializeThings.MAP_BATCH: serialize_load_map_contents_batch(buffer, version, Stuff.active_map); break;
+                case SerializeThings.MAP_DYNAMIC: serialize_load_map_contents_dynamic(buffer, version, Stuff.active_map); break;
                 // end of file
                 case SerializeThings.END_OF_FILE: stop = true; break;
             }
         }
-        
-        instance_deactivate_object(id);
+		
+        switch (what) {
+            case SERIALIZE_MAP:
+				if (version >= DataVersions.MAPS_NUKED) {
+					Stuff.active_map = guid_get(Stuff.game_map_starting);
+				} else {
+					Stuff.active_map = internal_name_get(Stuff.game_map_starting);
+					Stuff.game_map_starting = Stuff.active_map.GUID;
+				}
+				break;
+		}
         
         error_show();
         

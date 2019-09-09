@@ -8,8 +8,6 @@ xx = 64;                                  // dimensions
 yy = 64;
 zz = 8;
 
-graphics_create_grids();
-
 summary = "It's a map, that does map things";
 
 tileset = 0;                              // index

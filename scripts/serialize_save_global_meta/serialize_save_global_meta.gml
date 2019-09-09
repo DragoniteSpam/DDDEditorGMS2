@@ -13,7 +13,7 @@ for (var i = 0; i < n_maps; i++) {
 
 // STARTING_MAP
 
-buffer_write(buffer, buffer_string, Stuff.game_map_starting);
+buffer_write(buffer, buffer_datatype, Stuff.game_map_starting);
 
 // GAMEPLAY_GRID
 

@@ -10,7 +10,11 @@ repeat (n_maps) {
     buffer_read(buffer, buffer_string);
 }
 
-Stuff.game_map_starting = buffer_read(buffer, buffer_string);
+if (version >= DataVersions.MAPS_NUKED) {
+	Stuff.game_map_starting = buffer_read(buffer, buffer_datatype);
+} else {
+	Stuff.game_map_starting = buffer_read(buffer, buffer_string);
+}
 
 var bools = buffer_read(buffer, buffer_u32);
 Stuff.game_player_grid = unpack(bools, 0);

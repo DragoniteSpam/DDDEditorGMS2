@@ -2,8 +2,8 @@
 
 var buffer = argument0;
 
-if (Stuff.active_map.contents.data_buffer) buffer_delete(Stuff.active_map.contents.data_buffer);
-Stuff.active_map.contents.data_buffer = serialize_save_current_map();
+if (Stuff.active_map.data_buffer) buffer_delete(Stuff.active_map.data_buffer);
+Stuff.active_map.data_buffer = serialize_save_current_map();
 
 buffer_write(buffer, buffer_datatype, SerializeThings.MAPS);
 

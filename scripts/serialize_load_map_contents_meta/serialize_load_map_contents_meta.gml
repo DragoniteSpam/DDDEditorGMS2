@@ -1,14 +1,18 @@
 /// @param buffer
 /// @param version
+/// @param DataMapContainer
 
 var buffer = argument0;
 var version = argument1;
+var map_base = argument2;
+var map = argument2.contents;
 
-var map = instance_create_depth(0, 0, 0, DataMapContainer);
-
-map.name = buffer_read(buffer, buffer_string);
-map.internal_name = buffer_read(buffer, buffer_string);
-map.summary = buffer_read(buffer, buffer_string);
+if (version < DataVersions.MAPS_NUKED) {
+	map_base.name = buffer_read(buffer, buffer_string);
+	map_base.internal_name = buffer_read(buffer, buffer_string);
+	map_base.summary = buffer_read(buffer, buffer_string);
+	internal_name_set(map_base);
+}
 
 var xx = buffer_read(buffer, buffer_u16);
 var yy = buffer_read(buffer, buffer_u16);

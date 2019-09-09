@@ -2,6 +2,6 @@
 
 event_inherited();
 
-deleteable = false;
+file_location = DataFileLocations.ASSET;
 data_buffer = noone;
 contents = noone;

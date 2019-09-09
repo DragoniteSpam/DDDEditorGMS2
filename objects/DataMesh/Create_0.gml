@@ -1,6 +1,6 @@
 event_inherited();
 
-deleteable = false;
+file_location = DataFileLocations.ASSET;
 
 /* s */ buffer = noone;
 vbuffer = noone;

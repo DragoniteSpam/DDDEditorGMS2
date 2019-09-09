@@ -5,13 +5,6 @@ var map = Stuff.active_map.contents;
 
 buffer_write(buffer, buffer_datatype, SerializeThings.MAP_META);
 
-// unlike most other data types we don't save in a loop here because
-// there can only be one map loaded at a time
-
-buffer_write(buffer, buffer_string, map.name);
-buffer_write(buffer, buffer_string, map.internal_name);
-buffer_write(buffer, buffer_string, map.summary);
-
 buffer_write(buffer, buffer_u16, map.xx);
 buffer_write(buffer, buffer_u16, map.yy);
 buffer_write(buffer, buffer_u16, map.zz);

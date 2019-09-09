@@ -1,28 +1,26 @@
-/// @description void map_fill_grid(grid, zz);
 /// @param grid
 /// @param zz
 
-for (var i=0; i<ds_grid_width(argument0); i++) {
-    for (var j=0; j<ds_grid_height(argument0); j++) {
+var grid = argument0;
+var zz = argument1;
+
+for (var i = 0; i < ds_grid_width(grid); i++) {
+    for (var j = 0; j < ds_grid_height(grid); j++) {
         // if something already exists, use its data
-        if (is_array(argument0[# i, j])) {
-            var existing_array=argument0[# i, j];
-            var le=array_length_1d(existing_array);
-            var contents=array_create(argument1);
-            for (var k=0; k<argument1; k++) {
-                if (k<le) {
-                    contents[k]=existing_array[k];
-                } else {
-                    contents[k]=[noone, noone, noone, noone];
-                }
+        if (is_array(grid[# i, j])) {
+            var existing_array = grid[# i, j];
+            var le = array_length_1d(existing_array);
+            var contents = array_create(zz);
+            for (var k = 0; k < zz; k++) {
+                contents[k] = (k < le) ? existing_array[k] : [noone, noone, noone, noone];
             }
         } else {
-            var contents=array_create(argument1);
-            for (var k=0; k<argument1; k++) {
-                contents[k]=[noone, noone, noone, noone];
+            var contents = array_create(zz);
+            for (var k = 0; k < zz; k++) {
+                contents[k] = [noone, noone, noone, noone];
             }
         }
-        argument0[# i, j]=contents;
+        grid[# i, j] = contents;
     }
 }
 

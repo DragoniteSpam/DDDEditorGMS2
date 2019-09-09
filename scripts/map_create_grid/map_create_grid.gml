@@ -1,11 +1,12 @@
-/// @description ds_grid map_create_grid(xx, yy, zz);
 /// @param xx
 /// @param yy
 /// @param zz
 
-var grid=ds_grid_create(argument0, argument1);
-ds_grid_clear(grid, noone);
+var xx = argument0;
+var yy = argument1;
+var zz = argument2;
 
-map_fill_grid(grid, argument2);
+var grid = ds_grid_create(xx, yy);
+map_fill_grid(grid, zz);
 
 return grid;

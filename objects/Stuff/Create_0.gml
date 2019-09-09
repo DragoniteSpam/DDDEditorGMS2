@@ -449,9 +449,6 @@ fmod_sound = noone;
 fmod_playing = false;
 fmod_paused = false;
 
-// this depends on activemap existing
-uivc_select_autotile_refresh();
-
 enum AvailableAutotileProperties {
     PICTURE, NAME, DELETEABLE, FILENAME, FRAMES, WIDTH
     // sprite index, display name, true for built-in graphics and false otherwise, filename, animation frames, horizontal segments
@@ -526,15 +523,18 @@ ini_close();
 // autosaves if problems happen.
 
 if (setting_autosave && file_exists("auto" + EXPORT_EXTENSION_DATA)) {
-    // data's got to come first because it's the one that gets to decide to delete
-    // existing data istances - this is messy and ought to be redone later
+	serialize_load("auto" + EXPORT_EXTENSION_ASSETS);
     serialize_load("auto" + EXPORT_EXTENSION_DATA);
-    serialize_load("auto" + EXPORT_EXTENSION_ASSETS);
+	
     if (file_exists("auto" + EXPORT_EXTENSION_MAP)) {
         // no need to store the map name in a variable since that's set based
         // on the internal name
-        serialize_load("auto" + EXPORT_EXTENSION_MAP);
+        //serialize_load("auto" + EXPORT_EXTENSION_MAP);
     }
     save_name_assets = "";
     save_name_data = "";
 }
+
+// this depends on activemap existing
+graphics_create_grids();
+uivc_select_autotile_refresh();
