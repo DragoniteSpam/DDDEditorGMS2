@@ -2,4 +2,4 @@
 
 var thing = argument0;
 
-Stuff.active_map.base_encounter_deviation = real(thing.value);
+Stuff.active_map.contents.base_encounter_deviation = real(thing.value);

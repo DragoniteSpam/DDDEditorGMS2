@@ -4,7 +4,7 @@
 var buffer = argument0;
 var version = argument1;
 
-var map = instance_create_depth(0, 0, 0, DataMap);
+var map = instance_create_depth(0, 0, 0, DataMapContainer);
 
 map.name = buffer_read(buffer, buffer_string);
 map.internal_name = buffer_read(buffer, buffer_string);

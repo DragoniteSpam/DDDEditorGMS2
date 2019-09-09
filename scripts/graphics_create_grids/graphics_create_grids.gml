@@ -3,7 +3,7 @@ with (Camera) {
      * mild spaghetti - grid with origin in the corner
      */
 	
-	var map = Stuff.active_map;
+	var map = Stuff.active_map.contents;
 	
     if (grid) vertex_delete_buffer(grid);
     

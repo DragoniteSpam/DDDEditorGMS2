@@ -1,7 +1,7 @@
 /// @param UIThing
 
 var thing = argument0;
-var map = Stuff.active_map;
+var map = Stuff.active_map.contents;
 var fn = get_open_filename("Mesh Autotile files (*.ddd_atm)|*.ddd_atm", "");
 
 if (!file_exists(fn)) {

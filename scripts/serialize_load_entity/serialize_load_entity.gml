@@ -26,16 +26,16 @@ entity.reset_position = unpack(entity_bools, 5);
 // meshes and pawns are solid by default, so if the state of their
 // solidness changes, this needs to be reflected in the map stats counter
 if (state_solid && !entity.am_solid) {
-    Stuff.active_map.population_solid--;
+    Stuff.active_map.contents.population_solid--;
 } else if (!state_solid && entity.am_solid) {
-    Stuff.active_map.population_solid++;
+    Stuff.active_map.contents.population_solid++;
 }
 
 // same for statics
 if (state_static && !entity.static) {
-    Stuff.active_map.population_static--;
+    Stuff.active_map.contents.population_static--;
 } else if (!state_static && entity.static) {
-    Stuff.active_map.population_static++;
+    Stuff.active_map.contents.population_static++;
 }
 
 var n_events = buffer_read(buffer, buffer_u8);

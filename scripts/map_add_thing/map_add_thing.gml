@@ -9,7 +9,7 @@ var entity = argument[0];
 var xx = (argument_count < 4) ? entity.xx : argument[1];
 var yy = (argument_count < 4) ? entity.yy : argument[2];
 var zz = (argument_count < 4) ? entity.zz : argument[3];
-var map = Stuff.active_map;
+var map = Stuff.active_map.contents;
 
 var cell = map_get_grid_cell(xx, yy, zz);
 

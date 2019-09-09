@@ -1,7 +1,7 @@
 /// @param Dialog
 
 var dialog = argument0;
-var map = Stuff.active_map;
+var map = Stuff.active_map.contents;
 
 var dw = 960;
 var dh = 640;

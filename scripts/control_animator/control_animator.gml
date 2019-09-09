@@ -1,4 +1,4 @@
-var map = Stuff.active_map;
+var map = Stuff.active_map.contents;
 
 if (!map.is_3d) {
     show_error("hey so yeah you haven't implemented the 2D controls yet, you probably should though", true);

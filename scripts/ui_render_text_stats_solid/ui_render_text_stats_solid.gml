@@ -6,6 +6,6 @@ var text = argument0;
 var xx = argument1;
 var yy = argument2;
 
-text.text = string(Stuff.active_map.population_solid);
+text.text = string(Stuff.active_map.contents.population_solid);
 
 ui_render_text(text, xx, yy);

@@ -6,6 +6,6 @@
 var script = argument0;
 var params = argument1;
 
-for (var i = 0; i < ds_list_size(Stuff.active_map.all_entities); i++) {
-    script_execute(script, Stuff.active_map.all_entities[| i], params);
+for (var i = 0; i < ds_list_size(Stuff.active_map.contents.all_entities); i++) {
+    script_execute(script, Stuff.active_map.contents.all_entities[| i], params);
 }

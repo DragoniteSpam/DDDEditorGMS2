@@ -1,5 +1,5 @@
-/// @param DataMap
-/// @param new_name
+/// @param DataMapContainer
+/// @param new-name
 
 var map = argument0;
 var new_name = argument1;

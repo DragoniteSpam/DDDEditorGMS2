@@ -11,7 +11,7 @@ terrain_id = 0;
 // other properties - inherited
 
 am_solid = true;
-Stuff.active_map.population_solid++;
+Stuff.active_map.contents.population_solid++;
 
 // editor properties
 

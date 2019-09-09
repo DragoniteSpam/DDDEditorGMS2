@@ -5,7 +5,7 @@ var thing = argument0;
 var fn = get_open_filename("Game Maker model files (*.d3d;*.gmmod)|*.d3d;*.gmmod", "");
 
 if (file_exists(fn)) {
-	var map = Stuff.active_map;
+	var map = Stuff.active_map.contents;
     if (map.mesh_autotiles[thing.key]) {
         vertex_delete_buffer(map.mesh_autotiles[thing.key]);
     }

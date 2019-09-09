@@ -430,7 +430,7 @@ c_shape_end_trimesh(c_shape_block);
 // map in existence for this to work, but for now there does
 instantiate(Controller);
 
-active_map = instance_create_depth(0, 0, 0, DataMap);
+active_map = instance_create_depth(0, 0, 0, DataMapContainer);
 // this depends on activemap
 instantiate(Camera);
 
@@ -496,7 +496,7 @@ color_lookup = [c_red, c_green, c_blue, c_orange, c_aqua, c_fuchsia, c_purple, c
 
 // global game settings
 
-game_map_starting = "";
+game_map_starting = 0;
 game_player_grid = true;
 game_battle_style = BattleStyles.TEAM_BASED;
 

@@ -140,8 +140,8 @@ for (var i = 0; i < ds_list_size(terrain); i++) {
     }
     
     var mapping = Stuff.autotile_map[? thing.terrain_id];
-    thing.mesh_data = Stuff.active_map.mesh_autotiles[mapping];
-    thing.mesh_data_raw = Stuff.active_map.mesh_autotile_raw[mapping];
+    thing.mesh_data = Stuff.active_map.contents.mesh_autotiles[mapping];
+    thing.mesh_data_raw = Stuff.active_map.contents.mesh_autotile_raw[mapping];
 }
 
 ds_list_destroy(terrain);

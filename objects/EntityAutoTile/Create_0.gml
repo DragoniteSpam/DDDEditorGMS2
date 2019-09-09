@@ -6,10 +6,10 @@ load_script = serialize_load_entity_autotile;
 name = "AutoTile";
 etype = ETypes.ENTITY_TILE_AUTO;
 
-Stuff.active_map.population[ETypes.ENTITY_TILE]++;
-Stuff.active_map.population[ETypes.ENTITY_TILE_AUTO]++;
+Stuff.active_map.contents.population[ETypes.ENTITY_TILE]++;
+Stuff.active_map.contents.population[ETypes.ENTITY_TILE_AUTO]++;
 
-autotile_id = 0;  // Stuff.active_map.tileset.autotiles[]
+autotile_id = 0;  // Stuff.active_map.contents.tileset.autotiles[]
 segment_id = 0;
 
 // possibly some animation properties?

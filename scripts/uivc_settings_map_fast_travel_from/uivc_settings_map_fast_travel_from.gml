@@ -2,4 +2,4 @@
 
 var thing = argument0;
 
-Stuff.active_map.fast_travel_from = thing.value;
+Stuff.active_map.contents.fast_travel_from = thing.value;

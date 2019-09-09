@@ -6,7 +6,7 @@ load_script = serialize_load_entity_mesh;
 name = "Mesh";
 etype = ETypes.ENTITY_MESH;
 
-Stuff.active_map.population[ETypes.ENTITY_MESH]++;
+Stuff.active_map.contents.population[ETypes.ENTITY_MESH]++;
 
 // GUID
 mesh = 0;
@@ -14,7 +14,7 @@ mesh = 0;
 // other properties - inherited
 
 am_solid = true;
-Stuff.active_map.population_solid++;
+Stuff.active_map.contents.population_solid++;
 
 // editor properties
 

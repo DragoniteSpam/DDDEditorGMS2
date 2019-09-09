@@ -2,7 +2,7 @@
 
 var terrain = argument0;
 var mask = 0;
-var map = Stuff.active_map;
+var map = Stuff.active_map.contents;
 
 // northwest
 if (terrain.xx > 0 && terrain.yy > 0) {

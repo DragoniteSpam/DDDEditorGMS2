@@ -2,7 +2,6 @@ name = "data";
 flags = 0;
 summary = "";
 
-deactivateable = true;
 deleteable = true;
 
 GUID = 0;

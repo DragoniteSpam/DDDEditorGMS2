@@ -1,7 +1,7 @@
 /// @param index
 
 var index = argument0;
-var map = Stuff.active_map;
+var map = Stuff.active_map.contents;
 
 vertex_delete_buffer(map.batches[| index]);
 vertex_delete_buffer(map.batches_wire[| index]);

@@ -19,7 +19,7 @@
 // imagine Delete All is going to be a somewhat common operation.
 
 var entity = argument0;
-var map = Stuff.active_map;
+var map = Stuff.active_map.contents;
 
 if (entity.listed) {
     if (entity.batchable) {

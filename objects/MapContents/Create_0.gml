@@ -1,9 +1,6 @@
 /// @description map properties
-
-event_inherited();
-
-deactivateable = false;
-deleteable = false;
+// this does NOT extend Data, since all of the Data properties are
+// stored in the DataMapContainer
 
 data_buffer = noone;
 
@@ -13,8 +10,6 @@ zz = 8;
 
 graphics_create_grids();
 
-name = "Map";                             // visible to the player
-internal_name = "MAP";                    // the name of the file that the map attaches to
 summary = "It's a map, that does map things";
 
 tileset = 0;                              // index

@@ -1602,7 +1602,7 @@
             "Key": "24023242-eb13-40b6-bcf5-02ba62597caa",
             "Value": {
                 "id": "2dc50340-4b6c-407d-8514-7364de47b551",
-                "resourcePath": "objects\\DataMap\\DataMap.yy",
+                "resourcePath": "objects\\MapContents\\MapContents.yy",
                 "resourceType": "GMObject"
             }
         },
@@ -10900,6 +10900,14 @@
                 "id": "88b78f25-e469-4bd0-9da3-4b50dd457066",
                 "resourcePath": "scripts\\serialize_load_entity_effect\\serialize_load_entity_effect.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "fab273a2-0cef-4da3-a536-99b5c5374bfd",
+            "Value": {
+                "id": "0dc1321a-7555-42fb-9514-06710f76f151",
+                "resourcePath": "objects\\DataMapContainer\\DataMapContainer.yy",
+                "resourceType": "GMObject"
             }
         },
         {

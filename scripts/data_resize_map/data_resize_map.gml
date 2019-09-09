@@ -6,7 +6,7 @@ var xx = argument0;
 var yy = argument1;
 var zz = argument2;
 
-var map = Stuff.active_map;
+var map = Stuff.active_map.contents;
 
 map.xx = xx;
 map.yy = yy;

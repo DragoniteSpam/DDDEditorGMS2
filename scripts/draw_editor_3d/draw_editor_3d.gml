@@ -1,4 +1,4 @@
-var map = Stuff.active_map;
+var map = Stuff.active_map.contents;
 
 draw_clear(c_black);
 

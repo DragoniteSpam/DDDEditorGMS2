@@ -8,5 +8,5 @@ var state = entity.static;
 entity.static = am_solid;
 
 if (state != am_solid) {
-	Stuff.active_map.population_static = Stuff.active_map.population_static + am_solid ? 1 : -1;
+	Stuff.active_map.contents.population_static = Stuff.active_map.contents.population_static + am_solid ? 1 : -1;
 }

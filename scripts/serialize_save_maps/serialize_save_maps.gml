@@ -2,8 +2,8 @@
 
 var buffer = argument0;
 
-if (Stuff.active_map.data_buffer) buffer_delete(Stuff.active_map.data_buffer);
-Stuff.active_map.data_buffer = serialize_save_current_map();
+if (Stuff.active_map.contents.data_buffer) buffer_delete(Stuff.active_map.contents.data_buffer);
+Stuff.active_map.contents.data_buffer = serialize_save_current_map();
 
 buffer_write(buffer, buffer_datatype, SerializeThings.MAPS);
 
@@ -12,7 +12,7 @@ buffer_write(buffer, buffer_u16, n_maps);
 
 for (var i = 0; i < n_maps; i++) {
 	var map = Stuff.all_maps[| i];
-	buffer_write(buffer, buffer_string, map.internal_name);;
+	serialize_save_generic(buffer, map);
 	buffer_write(buffer, buffer_u32, buffer_get_size(map.data_buffer));
 	buffer_write_buffer(buffer, map.data_buffer);
 }

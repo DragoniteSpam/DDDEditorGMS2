@@ -1,5 +1,5 @@
 draw_clear(c_black);
-var map = Stuff.active_map;
+var map = Stuff.active_map.contents;
 
 if (!mouse_3d_lock && mouse_within_view(view_3d) && !dialog_exists()) {
     control_animator();

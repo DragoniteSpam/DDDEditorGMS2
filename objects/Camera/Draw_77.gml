@@ -16,8 +16,7 @@ while (!ds_queue_empty(stuff_to_destroy)) {
 
 // batch updates
 
-var future = Stuff.active_map.batch_in_the_future;
-
+var future = Stuff.active_map.contents.batch_in_the_future;
 var cindex = 0;
 
 // the list may still be appended to while it's being looped over - which is a
@@ -58,7 +57,7 @@ ds_list_clear(changes);
 
 // you may add/delete/move stuff in bulk and doing this for each
 // entity that was changed would slow the editor down quite a lot
-if (ds_list_size(Stuff.active_map.batch_in_the_future) > BATCH_CACHE_SIZE) {
+if (ds_list_size(Stuff.active_map.contents.batch_in_the_future) > BATCH_CACHE_SIZE) {
     batch_cache();
 }
 

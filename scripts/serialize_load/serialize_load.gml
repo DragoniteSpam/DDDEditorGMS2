@@ -64,10 +64,10 @@ if (buffer < 0) {
                 ds_list_clear(Stuff.switches);
                 break;
             case SERIALIZE_MAP:
-				instance_activate_object(DataMap);
-				instance_destroy(DataMap);
-				Stuff.active_map = instance_create_depth(0, 0, 0, DataMap);
-				ds_list_add(Stuff.all_maps, Stuff.active_map);
+				instance_activate_object(DataMapContainer);
+				instance_destroy(DataMapContainer);
+				Stuff.active_map.contents = instance_create_depth(0, 0, 0, DataMapContainer);
+				ds_list_add(Stuff.all_maps, Stuff.active_map.contents);
                 break;
         }
         
@@ -102,9 +102,7 @@ if (buffer < 0) {
             }
         }
         
-        with (Data) if (deactivateable) {
-            instance_deactivate_object(id);
-        }
+        instance_deactivate_object(id);
         
         error_show();
         

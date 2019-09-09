@@ -2,7 +2,7 @@
 
 var thing = argument0;
 var data_map = thing.root.data;
-var map = Stuff.active_map;
+var map = Stuff.active_map.contents;
 
 var xx = map.xx;
 var yy = map.yy;

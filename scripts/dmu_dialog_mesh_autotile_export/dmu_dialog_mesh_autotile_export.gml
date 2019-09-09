@@ -6,7 +6,7 @@ if (fn == "") {
     return false;
 }
 
-var map = Stuff.active_map;
+var map = Stuff.active_map.contents;
 
 var buffer = buffer_create(1024, buffer_grow, 1);
 buffer_write(buffer, buffer_u8, array_length_1d(map.mesh_autotiles));

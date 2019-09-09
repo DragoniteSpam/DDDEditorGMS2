@@ -1,5 +1,3 @@
-/// @param index
-
 var ts = get_active_tileset();
 
 // refresh values that don't like to do it on their own
