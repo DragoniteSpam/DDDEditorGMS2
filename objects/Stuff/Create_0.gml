@@ -431,6 +431,7 @@ c_shape_end_trimesh(c_shape_block);
 instantiate(Controller);
 
 active_map = instance_create_depth(0, 0, 0, DataMapContainer);
+active_map.contents = instance_create_depth(0, 0, 0, MapContents);
 // this depends on activemap
 instantiate(Camera);
 
