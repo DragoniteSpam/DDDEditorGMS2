@@ -34,7 +34,7 @@ yy = yy + el_name.height + spacing;
 
 var yy_top = yy;
 
-var el_list = create_list(16, yy, "Properties Types: ", "<no properties>", ew, eh, n_slots, uivc_list_event_custom_property, false, dg);
+var el_list = create_list(16, yy, "Properties Types: ", "<no properties>", ew, eh, n_slots, uivc_list_event_custom_property, false, dg, noone);
 el_list.render = ui_render_list_event_custom_properties;
 el_list.colorize = false;
 el_list.numbered = true;

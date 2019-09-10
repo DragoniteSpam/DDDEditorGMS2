@@ -44,7 +44,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element_height + spacing;
     
-    element = create_list(legal_x + spacing, yy, "Event Nodes", "No nodes available!", element_width, spacing, slots, uivc_list_selection_event_node, false, t_list);
+    element = create_list(legal_x + spacing, yy, "Event Nodes", "No nodes available!", element_width, spacing, slots, uivc_list_selection_event_node, false, t_list, noone);
     element.entries_are = ListEntries.INSTANCES;
     element.render = ui_render_list_event_node;
     ds_list_add(t_list.contents, element);
@@ -81,8 +81,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element_height+spacing;
     
-    el_list_custom = create_list(legal_x + spacing, yy, "Custom Nodes", "<none>", element_width, spacing, slots, null, false, t_custom);
-    el_list_custom.render = ui_render_list_event_custom;
+    el_list_custom = create_list(legal_x + spacing, yy, "Custom Nodes", "<none>", element_width, spacing, slots, null, false, t_custom, Stuff.all_event_custom);
     el_list_custom.entries_are = ListEntries.INSTANCES;
     el_list_custom.colorized = false;
     ds_list_add(t_custom.contents, el_list_custom);

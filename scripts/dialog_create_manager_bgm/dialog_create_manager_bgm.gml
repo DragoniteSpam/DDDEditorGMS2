@@ -26,8 +26,7 @@ var yy = 64;
 var yy_base = yy;
 var spacing = 16;
 
-var el_list = create_list(16, yy, "Background Music", "<no music>", ew, eh, 12, uivc_list_audio_bgm, false, dg);
-el_list.render = ui_render_list_bgm;
+var el_list = create_list(16, yy, "Background Music", "<no music>", ew, eh, 12, uivc_list_audio_bgm, false, dg, Stuff.all_bgm);
 el_list.entries_are = ListEntries.INSTANCES;
 el_list.numbered = true;
 dg.el_list = el_list;

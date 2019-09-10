@@ -21,8 +21,7 @@ var b_height = 32;
 var yy = 64;
 var spacing = 16;
 
-var el_list = create_list(16, yy, "Sound Effects", "<no sound effects>", ew, eh, 12, uivc_list_audio_se, false, dg);
-el_list.render = ui_render_list_se;
+var el_list = create_list(16, yy, "Sound Effects", "<no sound effects>", ew, eh, 12, uivc_list_audio_se, false, dg, Stuff.all_se);
 el_list.entries_are = ListEntries.INSTANCES;
 el_list.numbered = true;
 dg.el_list = el_list;

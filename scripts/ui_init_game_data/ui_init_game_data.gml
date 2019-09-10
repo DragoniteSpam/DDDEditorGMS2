@@ -26,7 +26,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     
     var this_column = 0;
     
-    /*var */el_master = create_list(this_column * cw + spacing, yy_header, "All Game Data Types: ", "<Click to define some.>", ew, eh, 32, uivc_list_data_editor, false, id);
+    /*var */el_master = create_list(this_column * cw + spacing, yy_header, "All Game Data Types: ", "<Click to define some.>", ew, eh, 32, uivc_list_data_editor, false, id, noone);
     el_master.render = ui_render_list_data_data;
     el_master.entries_are = ListEntries.INSTANCES;
     ds_list_add(contents, el_master);
@@ -51,7 +51,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     
     yy = yy + spacing + element.height;
     
-    el_instances = create_list(this_column * cw + spacing, yy, "Instances: ", "<No instances>", ew, eh, 27, ui_init_game_data_refresh, false, id);
+    el_instances = create_list(this_column * cw + spacing, yy, "Instances: ", "<No instances>", ew, eh, 27, ui_init_game_data_refresh, false, id, noone);
     el_instances.render = ui_render_list_data_instances;
     el_instances.numbered = true;
     el_instances.entries_are = ListEntries.INSTANCES;

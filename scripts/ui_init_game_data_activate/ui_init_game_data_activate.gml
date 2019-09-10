@@ -1,11 +1,5 @@
 var container = Camera.ui_game_data.el_dynamic;
-if (Stuff.setting_alphabetize_lists) {
-    var sorted = ds_list_sort_name_sucks(Stuff.all_data);
-    Camera.ui_game_data.active_type_guid = sorted[| ui_list_selection(Camera.ui_game_data.el_master)].GUID;
-    ds_list_destroy(sorted);
-} else {
-    Camera.ui_game_data.active_type_guid = Stuff.all_data[| ui_list_selection(Camera.ui_game_data.el_master)].GUID;
-}
+Camera.ui_game_data.active_type_guid = Stuff.all_data[| ui_list_selection(Camera.ui_game_data.el_master)].GUID;
 
 var data = guid_get(Camera.ui_game_data.active_type_guid);
 
@@ -86,19 +80,19 @@ if (data) {
                     case DataTypes.ENUM:           // list
                     case DataTypes.DATA:           // list
                         var datadata = guid_get(property.type_guid);
-                        var element = create_list(spacing, yy, property.name, "<no options: "+datadata.name+">", ew, eh, 8, uivc_data_set_property_list, false, noone);
-                        if (datadata.is_enum) {
-                            for (var j = 0; j < ds_list_size(datadata.properties); j++) {
-                                create_list_entries(element, datadata.properties[| j]);
-                            }
-                        } else {
-                            for (var j = 0; j < ds_list_size(datadata.instances); j++) {
-                                create_list_entries(element, datadata.instances[| j]);
-                            }
-                        }
-                        element.key = i;
-                        element.entries_are = ListEntries.INSTANCES;
-                        var hh = ui_get_list_height(element);
+	                    var element = create_list(spacing, yy, property.name, "<no options: "+datadata.name+">", ew, eh, 8, uivc_data_set_property_list, false, noone);
+	                    if (datadata.is_enum) {
+	                        for (var j = 0; j < ds_list_size(datadata.properties); j++) {
+	                            create_list_entries(element, datadata.properties[| j]);
+	                        }
+	                    } else {
+	                        for (var j = 0; j < ds_list_size(datadata.instances); j++) {
+	                            create_list_entries(element, datadata.instances[| j]);
+	                        }
+	                    }
+	                    element.key = i;
+	                    element.entries_are = ListEntries.INSTANCES;
+	                    var hh = ui_get_list_height(element);
                         break;
                     case DataTypes.BOOL:           // checkbox
                         var element = create_checkbox(spacing, yy, property.name, ew, eh, uivc_data_set_property_boolean, i, false, noone);

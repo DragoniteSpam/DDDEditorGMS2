@@ -23,8 +23,7 @@ var n_slots = 20;
 
 var yy = 64;
 
-var el_list = create_list(16, yy, "Custom Node Types:", "<no custom nodes>", ew, eh, n_slots, null, false, dg);
-el_list.render = ui_render_list_event_custom;
+var el_list = create_list(16, yy, "Custom Node Types:", "<no custom nodes>", ew, eh, n_slots, null, false, dg, Stuff.all_event_custom);
 el_list.entries_are = ListEntries.INSTANCES;
 
 dg.el_list_main = el_list;

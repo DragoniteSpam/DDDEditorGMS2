@@ -1,19 +1,21 @@
 /// @param UIList
+/// @param xx
+/// @param yy
 
-var otext = argument0.text;
-var oentries = argument0.entries;
+var list = argument0;
+var xx = argument1;
+var yy = argument2;
 
-var datadata = argument0.root.selected_data;
+var otext = list.text;
 
-if (datadata) {
-    argument0.text = otext + string(ds_list_size(datadata.properties));
-    // no alphabetize - it's not useful and it's slow(er) anyway
-    argument0.entries = datadata.properties;
-}
-
-ui_render_list(argument0, argument1, argument2);
+var datadata = list.root.selected_data;
 
 if (datadata) {
-    argument0.text = otext;
-    argument0.entries = oentries;
+    list.text = otext + string(ds_list_size(datadata.properties));
+    list.entries = datadata.properties;
+} else {
+	list.entries = Stuff.empty_list;
 }
+
+ui_render_list(list, xx, yy);
+list.text = otext;

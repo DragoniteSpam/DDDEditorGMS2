@@ -1,22 +1,23 @@
 /// @param UIList
 
-var otext = argument0.text;
-var oentries = argument0.entries;
-var otextvacant = argument0.text_vacant;
+var list = argument0;
+var xx = argument1;
+var yy = argument2;
 
-var data = guid_get(argument0.root.active_type_guid);
+var otext = list.text;
+var otextvacant = list.text_vacant;
 
-// don't alphabetize this list, please
+var data = guid_get(list.root.active_type_guid);
+
 if (data) {
     if (data.is_enum) {
-        argument0.text_vacant = "<Enums can't be instantiated>"
+        list.text_vacant = "<Enums can't be instantiated>"
     } else {
-        argument0.entries = data.instances;
+        list.entries = data.instances;
     }
 }
 
-ui_render_list(argument0, argument1, argument2);
+ui_render_list(list, xx, yy);
 
-argument0.text = otext;
-argument0.entries = oentries;
-argument0.text_vacant = otextvacant;
+list.text = otext;
+list.text_vacant = otextvacant;

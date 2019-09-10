@@ -58,7 +58,7 @@ dg.el_data_name = el_data_name;
 
 yy = yy + el_data_name.height + spacing;
 
-var el_list_p = create_list(col2_x, yy, "Properties: ", "<name is implicit>", ew, eh, n_slots, uivc_list_data_property, false, dg);
+var el_list_p = create_list(col2_x, yy, "Properties: ", "<name is implicit>", ew, eh, n_slots, uivc_list_data_property, false, dg, noone);
 el_list_p.render = ui_render_list_data_properties;
 el_list_p.entries_are = ListEntries.INSTANCES;
 dg.el_list_p = el_list_p;

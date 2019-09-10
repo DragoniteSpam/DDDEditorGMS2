@@ -140,6 +140,9 @@ if (!directory_exists(PATH_AUDIO)) {
     directory_create(PATH_AUDIO);
 }
 
+// dummy list that will always exist and be empty
+empty_list = ds_list_create();
+
 #endregion
 
 alarm[0] = 1200;
@@ -507,7 +510,6 @@ setting_color = ini_read_real("config", "color", c_green);                  // B
 setting_bezier_precision = ini_read_real("config", "bezier", 6);            // preferably keep this between like 4 and 16ish?
 setting_backups = ini_read_real("config", "backups", 2);                    // 0 (none) through 9 (why would you keep that many backups)
 setting_autosave = ini_read_real("config", "autosave", true);               // bool
-setting_alphabetize_lists = ini_read_real("config", "alphabetize", true);   // bool
 setting_npc_animate_rate = ini_read_real("config", "npc-speed", 4); // bool
 setting_code_extension = ini_read_real("config", "code-ext", 0);            // 0 = txt, 1 = lua
 setting_normal_threshold = ini_read_real("config", "normal-threshold", 30); // degrees

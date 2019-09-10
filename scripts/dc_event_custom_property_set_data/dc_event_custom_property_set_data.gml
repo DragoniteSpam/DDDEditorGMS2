@@ -1,8 +1,10 @@
 /// @param UIThing
 
-var pselection = ui_list_selection(argument0.root.root.root.el_list);
-var property = argument0.root.root.root.event.types[| pselection];
-var selection = ui_list_selection(argument0.root.el_list_main);
+var thing = argument0;
+
+var pselection = ui_list_selection(thing.root.root.root.el_list);
+var property = thing.root.root.root.event.types[| pselection];
+var selection = ui_list_selection(thing.root.el_list_main);
 
 if (selection >= 0) {
     var list_data = ds_list_create();
@@ -15,24 +17,18 @@ if (selection >= 0) {
     
     var list_sorted = ds_list_sort_name_sucks(list_data);
     
-    // this list is always alphabetized - for now
-    //if (Stuff.setting_alphabetize_lists) {
-    if (true) {
-        var data = list_sorted[| selection];
-    } else {
-        var data = list_data[| selection];
-    }
+    var data = list_sorted[| selection];
     
     property[@ EventNodeCustomData.TYPE_GUID] = data.GUID;
-    argument0.root.root.root.event.types[| pselection] = property;
+    thing.root.root.root.event.types[| pselection] = property;
     
     ds_list_destroy(list_data);
     ds_list_destroy(list_sorted);
     
-    argument0.root.root.root.el_property_type_guid.text = "Select (" + data.name + ")";
-    argument0.root.root.root.el_property_type_guid.color = c_black;
+    thing.root.root.root.el_property_type_guid.text = "Select (" + data.name + ")";
+    thing.root.root.root.el_property_type_guid.color = c_black;
     
-    argument0.root.root.root.changed = true;
+    thing.root.root.root.changed = true;
 }
 
 dialog_destroy();

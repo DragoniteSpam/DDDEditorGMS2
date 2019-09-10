@@ -659,11 +659,6 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element.height + spacing;
     
-    element = create_button(col2_x, yy, "Alphabetize", col_width, element_height, fa_center, omu_mesh_alphabetize, t_p_mesh_editor);
-    ds_list_add(t_p_mesh_editor.contents, element);
-    
-    yy = yy + element.height + spacing;
-    
     element = create_button(col2_x, yy, "Import", col_width, element_height, fa_center, omu_mesh_import, t_p_mesh_editor);
     ds_list_add(t_p_mesh_editor.contents, element);
     

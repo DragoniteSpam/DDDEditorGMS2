@@ -1,7 +1,10 @@
 /// @param UIList
 
-var otext = argument0.text;
-var oentries = argument0.entries;
+var list = argument0;
+var xx = argument1;
+var yy = argument2;
+
+var otext = list.text;
 var list_enum = ds_list_create();
 
 for (var i = 0; i < ds_list_size(Stuff.all_data); i++) {
@@ -10,14 +13,12 @@ for (var i = 0; i < ds_list_size(Stuff.all_data); i++) {
     }
 }
 
-// this is always alphabetized
-argument0.text = otext + string(ds_list_size(list_enum));
-argument0.entries = ds_list_sort_name_sucks(list_enum);
+list.text = otext + string(ds_list_size(list_enum));
+list.entries = ds_list_sort_name_sucks(list_enum);
 
-ui_render_list(argument0, argument1, argument2);
+ui_render_list(list, xx, yy);
 
-ds_list_destroy(argument0.entries);
+ds_list_destroy(list.entries);
 ds_list_destroy(list_enum);
 
-argument0.text = otext;
-argument0.entries = oentries;
+list.text = otext;

@@ -5,11 +5,7 @@ var list = argument0;
 var selection = ui_list_selection(list);
 
 if (selection >= 0) {
-    if (Stuff.setting_alphabetize_lists) {
-        var listofthings = ds_list_sort_name_sucks(Stuff.all_data);
-    } else {
-        var listofthings = Stuff.all_data;
-    }
+    var listofthings = Stuff.all_data;
     if (listofthings[| selection] != list.root.selected_data) {
         list.root.selected_data = listofthings[| selection];
         list.root.selected_property = noone;
@@ -25,11 +21,5 @@ if (selection >= 0) {
         list.root.el_data_name.value = list.root.selected_data.name;
         
         list.root.el_list_p.index = 0;
-    }
-    if (Stuff.setting_alphabetize_lists) {
-        ds_list_destroy(listofthings);
-    } else {
-        // if it's not alphabetized the list is just all_data[] which you DEFINITELY DO
-        // NOT WANT TO DELETE.
     }
 }

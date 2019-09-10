@@ -1,10 +1,11 @@
 /// @param UIInput
 
-var rv = real(argument0.value);
-if (is_clamped(rv, argument0.value_lower, argument0.value_upper)) {
-    var selection = ui_list_selection(argument0.root.el_list);
+var input = argument0;
+var rv = real(input.value);
+
+if (is_clamped(rv, input.value_lower, input.value_upper)) {
+    var selection = ui_list_selection(input.root.el_list);
     if (selection >= 0) {
-        // no alphabetize
         if (!ds_list_empty(Stuff.all_bgm)) {
             var thing = Stuff.all_bgm[| selection];
             thing.loop_start = rv;

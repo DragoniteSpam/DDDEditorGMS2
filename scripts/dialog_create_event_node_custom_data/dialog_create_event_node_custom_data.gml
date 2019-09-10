@@ -29,7 +29,7 @@ var n_slots = 20;
 
 var yy = 64;
 
-var el_list = create_list(16, yy, type.name, "<none found>", ew, eh, n_slots, null, false, dg);
+var el_list = create_list(16, yy, type.name, "<none found>", ew, eh, n_slots, null, false, dg, noone);
 el_list.render = ui_render_list_event_custom_set_data;
 el_list.entries_are = ListEntries.INSTANCES;
 el_list.node = node;
