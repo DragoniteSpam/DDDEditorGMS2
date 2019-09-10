@@ -847,14 +847,6 @@
             }
         },
         {
-            "Key": "10debbc2-5ab0-40c2-b4cf-fa2e9d43b3a8",
-            "Value": {
-                "id": "2034af53-2190-4a90-b707-ba7ac2c65da6",
-                "resourcePath": "scripts\\dialog_create_settings_data_map_list\\dialog_create_settings_data_map_list.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "10edd558-0f2b-49ff-b16c-788cf96bf9c2",
             "Value": {
                 "id": "ec703a61-ed0a-4666-8b87-06b346ea2d48",
@@ -3395,6 +3387,14 @@
             "Value": {
                 "id": "0d214256-281a-4f37-bbb0-c955e82828e5",
                 "resourcePath": "scripts\\notification_render\\notification_render.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "4dabc89d-9bac-4749-8233-324055ddef86",
+            "Value": {
+                "id": "6543da14-f790-4724-8255-3a1bb3146733",
+                "resourcePath": "scripts\\ui_render_list_all_maps\\ui_render_list_all_maps.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -11461,7 +11461,6 @@
         "5735e5b9-2cfa-4498-b97a-f431252d3283",
         "88a9c6cb-0745-4267-8551-51a8433b43e7",
         "ee7d0f5c-58b8-48f6-86b6-fdf55a5b14e9",
-        "10debbc2-5ab0-40c2-b4cf-fa2e9d43b3a8",
         "cc8c2e48-12d3-4866-872d-b7dfc6b02780",
         "4eacf829-3bff-4404-878c-5214bbde3f84",
         "c9591af3-357f-4843-b8da-596d9e9072da",
@@ -12005,6 +12004,7 @@
         "0ef8d062-94f6-4c9c-8026-f63601f28916",
         "1503cbce-e73f-4617-9871-089097b60245",
         "3d2bbbd0-968a-44c8-b1fa-7a3898debaa2",
+        "4dabc89d-9bac-4749-8233-324055ddef86",
         "310a4e8e-a8cb-4a48-9e82-dfc2cecb33bf",
         "aaee8de7-e29b-49c3-b6fb-edc4188c2be9",
         "b02c90ba-74cc-435f-a415-750aedc6bebe",

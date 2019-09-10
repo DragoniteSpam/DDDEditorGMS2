@@ -21,10 +21,9 @@ allow_multi_select = false;
 allow_deselect = true;
 selected_entries = ds_map_create();
 
-// could probably use contents for this but those are for
-// instances which get destroyed when the ui element is
-// destroyed, and i dont know what will happen if you try
-// to destroy a string and i dont want to find out
+// you may own your own entry list, in which case it'll be destroyed when the UIList is
+// destroyed, or it may use someone else's list instead, in which case it won't be
+own_entries = true;
 entries = ds_list_create();
 entry_colors = ds_list_create();
 colorize = true;

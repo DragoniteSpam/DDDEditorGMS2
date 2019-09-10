@@ -41,9 +41,9 @@ yy = yy + el_switches.height + spacing;
 
 yy = 64;
 
-var el_map_list = create_list(c2 + 16, yy, "Identified Maps", "<no maps>", ew, eh, 8, null, false, dg);
-dialog_create_settings_data_map_list(el_map_list);
-//el_map_list.entries_are = ListEntries.INSTANCES;
+var el_map_list = create_list(c2 + 16, yy, "Identified Maps", "<no maps>", ew, eh, 8, null, false, dg, Stuff.all_maps);
+el_map_list.render = ui_render_list_all_maps;
+el_map_list.entries_are = ListEntries.INSTANCES;
 
 dg.el_map_list = el_map_list;
 

@@ -8,6 +8,7 @@
 /// @param onvaluechange
 /// @param allow-multi-select?
 /// @param root
+/// @param [list]
 
 with (instance_create_depth(argument[0], argument[1], 0, UIList)) {
     text = argument[2];
@@ -24,6 +25,11 @@ with (instance_create_depth(argument[0], argument[1], 0, UIList)) {
     if (slots * height < 128) {
         debug("List: " + text + " has a total height less than 128 (" + string(slots) + " slots of height " + string(height) + "). The scroll bar may not behave as intended.");
     }
+	
+	if (argument_count > 10) {
+		ds_list_destroy(entries);
+		entries = argument[10];
+	}
     
     return id;
 }
