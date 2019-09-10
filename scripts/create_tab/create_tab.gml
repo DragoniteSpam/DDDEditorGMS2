@@ -2,7 +2,7 @@
 /// @param home-row
 /// @param root
 
-with (instantiate(UITab)) {
+with (instance_create_depth(0, 0, 0, UITab)) {
     text = argument[0];
     home_row = argument[1];
     

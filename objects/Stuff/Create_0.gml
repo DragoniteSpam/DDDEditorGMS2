@@ -428,12 +428,14 @@ c_shape_end_trimesh(c_shape_block);
 
 // at some point there shouldn't necessarily need to be an active
 // map in existence for this to work, but for now there does
-instantiate(Controller);
+instance_create_depth(0, 0, 0, Controller);
 
+// this is order-dependant, and it SUCKS, so re-write it later when there's time
+all_maps = ds_list_create();
 active_map = instance_create_depth(0, 0, 0, DataMapContainer);
 active_map.contents = instance_create_depth(0, 0, 0, MapContents);
 // this depends on activemap
-instantiate(Camera);
+instance_create_depth(0, 0, 0, Camera);
 
 all_bgm = ds_list_create();
 all_se = ds_list_create();
@@ -454,10 +456,6 @@ enum AvailableAutotileProperties {
     PICTURE, NAME, DELETEABLE, FILENAME, FRAMES, WIDTH
     // sprite index, display name, true for built-in graphics and false otherwise, filename, animation frames, horizontal segments
 }
-
-all_maps = ds_list_create();
-// active_map is defined at the top because i screwed some things up and made it
-// order-dependant
 
 all_data = ds_list_create();
 original_data = noone;            // when you're modifying the data types and want to stash the old ones
@@ -519,6 +517,9 @@ setting_code_extension_map = [".txt", ".lua"];
 setting_hide_warnings = ds_map_create();
 ini_close();
 
+// hacky workaround
+maps_included = false;
+
 // the autosave/load is nice, BUT it will make the game break if there's an error
 // in either of them. so either do a LOT of validation or have a way to clear the
 // autosaves if problems happen.
@@ -527,11 +528,10 @@ if (setting_autosave && file_exists("auto" + EXPORT_EXTENSION_DATA)) {
 	serialize_load("auto" + EXPORT_EXTENSION_ASSETS);
     serialize_load("auto" + EXPORT_EXTENSION_DATA);
 	
-    if (file_exists("auto" + EXPORT_EXTENSION_MAP)) {
-        // no need to store the map name in a variable since that's set based
-        // on the internal name
-        //serialize_load("auto" + EXPORT_EXTENSION_MAP);
+    if (!maps_included && file_exists("auto" + EXPORT_EXTENSION_MAP)) {
+        serialize_load("auto" + EXPORT_EXTENSION_MAP);
     }
+	
     save_name_assets = "";
     save_name_data = "";
 }

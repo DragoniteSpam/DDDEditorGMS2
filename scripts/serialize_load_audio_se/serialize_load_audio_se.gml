@@ -7,7 +7,7 @@ ds_list_clear_instances(Stuff.all_se);
 var n_se = buffer_read(argument0, buffer_u16);
 
 for (var i = 0; i < n_se; i++) {
-    var se = instantiate(DataAudio);
+    var se = instance_create_depth(0, 0, 0, DataAudio);
     
     serialize_load_generic(argument0, se, version);
     

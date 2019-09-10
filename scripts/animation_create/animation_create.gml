@@ -4,7 +4,7 @@
 var name = (argument_count > 0) ? argument[0] : "";
 var internal_name = (argument_count > 1) ? argument[1] : "";
 
-var animation = instantiate(DataAnimation);
+var animation = instance_create_depth(0, 0, 0, DataAnimation);
 if (argument_count > 0) {
     animation.name = name;
 }

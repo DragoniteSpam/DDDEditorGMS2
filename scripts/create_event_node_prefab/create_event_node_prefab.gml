@@ -1,7 +1,7 @@
 /// @param name
 /// @param data[][]
 
-with (instantiate(DataEventNodeCustom)) {
+with (instance_create_depth(0, 0, 0, DataEventNodeCustom)) {
     name = argument0;
     deleteable = false;
     

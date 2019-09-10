@@ -3,7 +3,7 @@
 var data = guid_get(argument0.root.active_type_guid);
 
 if (data) {
-    var instance = instantiate(DataInstantiated);
+    var instance = instance_create_depth(0, 0, 0, DataInstantiated);
     
     var n = ds_list_size(data.instances);
     while (internal_name_get(string_upper(data.name) + string(n))) {

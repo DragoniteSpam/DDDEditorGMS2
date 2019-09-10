@@ -34,6 +34,8 @@ if (buffer < 0) {
         
         var what = buffer_read(buffer, buffer_u8);
         var things = buffer_read(buffer, buffer_u32);
+		
+		Stuff.maps_included = (what == SERIALIZE_DATA_AND_MAP);
         
         switch (what) {
             case SERIALIZE_ASSETS:
@@ -45,6 +47,7 @@ if (buffer < 0) {
 				ds_list_clear(Stuff.all_bgm);
 				ds_list_clear(Stuff.all_se);
                 break;
+			case SERIALIZE_DATA_AND_MAP:
             case SERIALIZE_DATA:
                 instance_activate_object(Data);
                 with (Data) if (file_location = DataFileLocations.DATA) {
@@ -58,12 +61,15 @@ if (buffer < 0) {
                 // these contain arrays, which are garbage collected
                 ds_list_clear(Stuff.variables);
                 ds_list_clear(Stuff.switches);
+				// migrating the stuff in the next case to this one
+				Stuff.active_map = instance_create_depth(0, 0, 0, DataMapContainer);
+				Stuff.active_map.contents = instance_create_depth(0, 0, 0, MapContents);
+				instance_deactivate_object(Stuff.active_map.contents);
                 break;
             case SERIALIZE_MAP:
 				instance_activate_object(DataMapContainer);
 				instance_destroy(DataMapContainer);
 				Stuff.active_map = instance_create_depth(0, 0, 0, DataMapContainer);
-				ds_list_add(Stuff.all_maps, Stuff.active_map);
 				Stuff.active_map.contents = instance_create_depth(0, 0, 0, MapContents);
 				instance_deactivate_object(Stuff.active_map.contents);
                 break;

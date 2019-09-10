@@ -41,7 +41,7 @@ if (zz < z) {
         
             var tz = under_cursor ? under_cursor.zz : 0;
         
-            last_selection = instantiate(stype);
+            last_selection = instance_create_depth(0, 0, 0, stype);
             ds_list_add(selection, last_selection);
             script_execute(last_selection.onmousedown, last_selection, floor_cx, floor_cy, tz);
         }

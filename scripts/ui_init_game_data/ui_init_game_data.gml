@@ -1,5 +1,5 @@
 // this one's not tabbed, it's just a bunch of elements floating in space
-with (instantiate(UIThing)) {
+with (instance_create_depth(0, 0, 0, UIThing)) {
     var columns = 5;
     var spacing = 16;
     

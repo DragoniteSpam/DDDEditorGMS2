@@ -1,4 +1,4 @@
-with (instantiate(UIMain)) {
+with (instance_create_depth(0, 0, 0, UIMain)) {
     /*
      * tab system setup
      */

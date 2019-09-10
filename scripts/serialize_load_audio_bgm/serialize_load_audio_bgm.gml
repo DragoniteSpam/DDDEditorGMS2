@@ -7,7 +7,7 @@ ds_list_clear_instances(Stuff.all_bgm);
 var n_bgm = buffer_read(argument0, buffer_u16);
 
 for (var i = 0; i < n_bgm; i++) {
-    var bgm = instantiate(DataAudio);
+    var bgm = instance_create_depth(0, 0, 0, DataAudio);
     
     serialize_load_generic(argument0, bgm, version);
     

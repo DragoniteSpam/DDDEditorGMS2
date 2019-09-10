@@ -3,7 +3,7 @@
 /// @param height
 /// @param root
 
-with (instantiate(MenuMenu)) {
+with (instance_create_depth(0, 0, 0, MenuMenu)) {
     text = argument0;
     width = argument1;
     height = argument2;

@@ -9,7 +9,7 @@ var inst_layer = animation_get_layer(animation, timeline_layer);
 var moment = argument[2];
 var auto_fill = (argument_count > 3) ? argument[3] : false;
 
-var keyframe = instantiate(DataAnimKeyframe);
+var keyframe = instance_create_depth(0, 0, 0, DataAnimKeyframe);
 
 if (auto_fill) {
     // you need to set the values before adding the keyframe to the timeline, because

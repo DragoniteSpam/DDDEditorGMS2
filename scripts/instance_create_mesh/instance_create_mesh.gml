@@ -3,7 +3,7 @@
 var mesh_data = argument0;
 
 if (mesh_data) {
-    with (instantiate(EntityMesh)) {
+    with (instance_create_depth(0, 0, 0, EntityMesh)) {
         name = mesh_data.name;
         mesh = mesh_data.GUID;
         

@@ -1,4 +1,4 @@
-with (instantiate(EntityMeshTerrain)) {
+with (instance_create_depth(0, 0, 0, EntityMeshTerrain)) {
     name = "Terrain";
     
     // @todo slopes i guess?

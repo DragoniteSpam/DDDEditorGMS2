@@ -3,7 +3,7 @@
 var datadata = argument0.root.selected_data;
 
 if (ds_list_size(datadata.properties) < 1000) {
-    var property = instantiate(DataProperty);
+    var property = instance_create_depth(0, 0, 0, DataProperty);
     property.name = "Property" + string(ds_list_size(datadata.properties));
     ds_list_add(datadata.properties, property);
     ds_map_clear(argument0.root.el_list_p.selected_entries);

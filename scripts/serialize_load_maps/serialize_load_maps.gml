@@ -12,8 +12,6 @@ repeat (n_maps) {
 	
 	var size = buffer_read(buffer, buffer_u32);
 	map.data_buffer = buffer_read_buffer(buffer, size);
-	
-	ds_list_add(Stuff.all_maps, map);
 }
 
 // this needs to be read after Game Global Meta, since that stores the

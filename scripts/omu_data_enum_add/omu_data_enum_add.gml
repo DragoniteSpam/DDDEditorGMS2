@@ -3,7 +3,7 @@
 var thing = argument0;
 
 if (ds_list_size(Stuff.all_data) < 10000) {
-    instance_deactivate_object(instantiate(DataEnum));
+    instance_deactivate_object(instance_create_depth(0, 0, 0, DataEnum));
     ds_map_clear(thing.root.el_list_main.selected_entries);
     thing.root.selected_data = noone;
     thing.root.selected_property = noone;

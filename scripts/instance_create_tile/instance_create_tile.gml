@@ -2,7 +2,7 @@
 /// @param tile y
 /// @param [other]
 
-with (instantiate(EntityTile)) {
+with (instance_create_depth(0, 0, 0, EntityTile)) {
     tile_x = argument[0];
     tile_y = argument[1];
     

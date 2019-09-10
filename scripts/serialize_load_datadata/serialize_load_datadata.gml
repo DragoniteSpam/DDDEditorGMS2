@@ -8,7 +8,7 @@ var n_datadata = buffer_read(buffer, buffer_u16);
 repeat (n_datadata) {
     var bools = buffer_read(buffer, buffer_u8);
     
-    var data = instantiate(unpack(bools, 0) ? DataEnum : DataData);
+    var data = instance_create_depth(0, 0, 0, unpack(bools, 0) ? DataEnum : DataData);
     guid_remove(data.GUID);
     
     serialize_load_generic(buffer, data, version);
@@ -20,7 +20,7 @@ repeat (n_datadata) {
     var n_properties = buffer_read(buffer, buffer_u16);
     
     repeat (n_properties) {
-        var property = instantiate(DataProperty);
+        var property = instance_create_depth(0, 0, 0, DataProperty);
         ds_list_add(data.properties, property);
         guid_remove(property.GUID);
         
