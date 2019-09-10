@@ -4,10 +4,13 @@
 var buffer = argument0;
 var version = argument1;
 
-var n_maps = buffer_read(buffer, buffer_u16);
-
-repeat (n_maps) {
-    buffer_read(buffer, buffer_string);
+// this used to be for when maps were their own files and we needed to know what they were named
+if (version < DataVersions.DATA_TRIMMED) {
+	var n_maps = buffer_read(buffer, buffer_u16);
+	
+	repeat (n_maps) {
+	    buffer_read(buffer, buffer_string);
+	}
 }
 
 if (version >= DataVersions.MAPS_NUKED) {

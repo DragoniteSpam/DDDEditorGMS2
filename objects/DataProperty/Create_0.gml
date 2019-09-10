@@ -29,16 +29,16 @@ enum DataTypes {
     BOOL,           // checkbox
     DATA,           // list
     CODE,           // opens in text editor
-    COLOR,
-    MESH,
+    COLOR,			// color picker
+    MESH,			// list
     TILESET,
     TILE,
     AUTOTILE,
-    AUDIO_BGM,
-    AUDIO_SE,
-    ANIMATION,
+    AUDIO_BGM,		// list
+    AUDIO_SE,		// list
+    ANIMATION,		// list
     ENTITY,
-    MAP,
+    MAP,			// list
 }
 
 /*

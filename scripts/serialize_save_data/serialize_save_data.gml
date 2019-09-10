@@ -50,5 +50,6 @@ if (string_length(fn) > 0) {
 enum DataVersions {
     SUMMARY_GENERIC_DATA        = 38,
     MAPS_NUKED                  = 39,
+	DATA_TRIMMED				= 40,
     _CURRENT                 /* = whatever the last one is + 1 */
 }
