@@ -1,18 +1,27 @@
-/// @description void ui_render_list_event_custom_properties(List);
-/// @param List
+/// @param UIList
+/// @param x
+/// @param y
 
-var otext=argument0.text;
+// this is a lot of the same code as ui_render_list which annoys me slightly, except it looks directly
+// at DataMapContainer.all_entities in order to minimize code duplication. (Lol!)
+// as such, entries, entry_colors and entries_are_instances are not used in here
 
-argument0.text=argument0.text+" ("+string(ds_list_size(argument0.root.event.types))+")";
-ds_list_clear(argument0.entries);
+var list = argument0;
+var xx = argument1;
+var yy = argument2;
+
+var otext = list.text;
+
+list.text = list.text + " (" + string(ds_list_size(list.root.event.types)) + ")";
+ds_list_clear(list.entries);
 
 // since these are just arrays and not instances we have to do this the hard way
-for (var i=0; i<ds_list_size(argument0.root.event.types); i++) {
+for (var i = 0; i < ds_list_size(list.root.event.types); i++) {
     // don't alphabetize these
-    var property=argument0.root.event.types[| i];
-    ds_list_add(argument0.entries, property[EventNodeCustomData.NAME]);
+    var property = list.root.event.types[| i];
+    ds_list_add(list.entries, property[EventNodeCustomData.NAME]);
 }
 
-ui_render_list(argument0, argument1, argument2);
+ui_render_list(list, xx, yy);
 
-argument0.text=otext;
+list.text = otext;
