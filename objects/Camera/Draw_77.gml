@@ -57,11 +57,16 @@ if (ds_list_size(deletions) > 0) {
 		}
 		debug("deletingn stuff the old way");
 	} else {
+		var original_batch_sizes = ds_list_create();
 		var clone_dynamic = ds_list_clone(map.dynamic);
 		var clone_all = ds_list_clone(map.all_entities);
 		ds_list_clear(map.dynamic);
 		ds_list_clear(map.all_entities);
-	
+		
+		for (var i = 0; i < ds_list_size(map.batch_instances); i++) {
+			ds_list_add(original_batch_sizes, ds_list_size(map.batch_instances[| i]));
+		}
+		
 		for (var i = 0; i < ds_list_size(clone_all); i++) {
 			var thing = clone_all[| i];
 			if (thing.modification != Modifications.REMOVE) {
@@ -88,11 +93,17 @@ if (ds_list_size(deletions) > 0) {
 		    instance_activate_object(thing);
 		    instance_destroy(thing);
 		}
-	
+		
+		for (var i = 0; i < ds_list_size(map.batch_instances); i++) {
+			if (original_batch_sizes[| i] != ds_list_size(map.batch_instances[| i])) {
+				batch_again(i);
+			}
+		}
+		
 		ds_list_destroy(clone_dynamic);
 		ds_list_destroy(clone_all);
-	
-		batch_again();
+		ds_list_destroy(original_batch_sizes);
+		
 		debug("deletingn stuff the new way");
 	}
 }

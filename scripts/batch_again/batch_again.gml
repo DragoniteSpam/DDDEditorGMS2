@@ -1,4 +1,7 @@
 /// @param [index]
+// If no index is provided, it just rebatches EVERYTHING. (I thought I already
+// had a script that does that. Weird.) This is very slow. Please don't use it
+// constantly otherwise the program will become very unenjoyable to use.
 
 var map = Stuff.active_map.contents;
 

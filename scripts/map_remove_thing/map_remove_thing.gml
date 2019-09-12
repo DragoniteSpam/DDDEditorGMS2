@@ -5,6 +5,10 @@ var entity = argument[0];
 var from_lists = (argument_count > 1) ? argument[1] : false;
 var map = Stuff.active_map.contents;
 
+// You can request the entity be removed from lists automatically; this will be fine
+// if you're only deleting a few things, but on large maps with long lists this will
+// be slow. When deleting, the editor will automatically pick a fast(er) method if
+// there are many, many things that need to be removed.
 if (from_lists && entity.listed) {
     if (entity.batchable) {
         if (entity.batch_index == -1) {

@@ -21,12 +21,7 @@ if (!cell[@ entity.slot]) {
     entity.yy = yy;
     entity.zz = zz;
     
-    if (entity.batchable) {
-        ds_list_add(map.batch_in_the_future, entity);
-    } else {
-        ds_list_add(map.dynamic, entity);
-    }
-    
+	ds_list_add(entity.batchable? map.batch_in_the_future : map.dynamic, entity);
     ds_list_add(map.all_entities, entity);
     
     map_transform_thing(entity);
