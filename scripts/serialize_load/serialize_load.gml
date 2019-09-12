@@ -22,15 +22,16 @@ if (buffer < 0) {
     var header = chr(buffer_read(buffer, buffer_u8)) + chr(buffer_read(buffer, buffer_u8)) + chr(buffer_read(buffer, buffer_u8));
     
     if (header == "DDD") {
-        Stuff.save_name_data = string_replace(filename_name(filename), EXPORT_EXTENSION_DATA, "");
-        
+		Stuff.save_name_data = string_replace(filename_name(filename), EXPORT_EXTENSION_DATA, "");
+		
         var version = buffer_read(buffer, buffer_u32);
-        
-        if (version < DataVersions.SUMMARY_GENERIC_DATA) {
-            show_error("We stopped supporting versions of the data file before SUMMARY_GENERIC_DATA (" + string(DataVersions.SUMMARY_GENERIC_DATA) +
-                "). This current version is " + string(version) + ". Please open and save " + filename_name(filename) +
-                " through Version 0.1.0.9 of the editor.", true);
-        }
+        var last_safe_version = DataVersions.MAPS_NUKED;
+		
+        if (version < last_safe_version) {
+            show_error("We stopped supporting versions of the data file before " + string(last_safe_version) +
+                ". This current version is " + string(version) + ". Please find a version of " + filename_name(filename) +
+                " made with a more up-to-date version of the editor.", true);
+		}
         
         var what = buffer_read(buffer, buffer_u8);
         var things = buffer_read(buffer, buffer_u32);
