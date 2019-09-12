@@ -38,14 +38,14 @@ if (ds_list_size(list) == 0) {
     Camera.ui.element_entity_scale_y.interactive = false;
     Camera.ui.element_entity_scale_z.interactive = false;
     
-    // entity-mob
+    // entity-pawn
     
-    Camera.ui.element_entity_mob_frame.value = "0";
-    Camera.ui.element_entity_mob_frame.interactive = false;
-    Camera.ui.element_entity_mob_direction.value = 0;
-    Camera.ui.element_entity_mob_direction.interactive = false;
-    Camera.ui.element_entity_mob_animating.value = false;
-    Camera.ui.element_entity_mob_animating.interactive = false;
+    Camera.ui.element_entity_pawn_frame.value = "0";
+    Camera.ui.element_entity_pawn_frame.interactive = false;
+    Camera.ui.element_entity_pawn_direction.value = 0;
+    Camera.ui.element_entity_pawn_direction.interactive = false;
+    Camera.ui.element_entity_pawn_animating.value = false;
+    Camera.ui.element_entity_pawn_animating.interactive = false;
 } else if (ds_list_size(list) == 1) {
     safa_on_select(list[| 0]);
 } else {
@@ -110,21 +110,21 @@ if (ds_list_size(list) == 0) {
     Camera.ui.element_entity_scale_z.value  = "";
     
     if (selection_all_pawn()) {
-        Camera.ui.element_entity_mob_frame.value = "0";
-        Camera.ui.element_entity_mob_direction.value = 0;
-        Camera.ui.element_entity_mob_animating.value = 2;
+        Camera.ui.element_entity_pawn_frame.value = "0";
+        Camera.ui.element_entity_pawn_direction.value = 0;
+        Camera.ui.element_entity_pawn_animating.value = 2;
         
-        Camera.ui.element_entity_mob_frame.interactive = true;
-        Camera.ui.element_entity_mob_direction.interactive = true;
-        Camera.ui.element_entity_mob_animating.interactive = true;
+        Camera.ui.element_entity_pawn_frame.interactive = true;
+        Camera.ui.element_entity_pawn_direction.interactive = true;
+        Camera.ui.element_entity_pawn_animating.interactive = true;
     } else {
-        Camera.ui.element_entity_mob_frame.value = "0";
-        Camera.ui.element_entity_mob_direction.value = 0;
-        Camera.ui.element_entity_mob_animating.value = 0;
+        Camera.ui.element_entity_pawn_frame.value = "0";
+        Camera.ui.element_entity_pawn_direction.value = 0;
+        Camera.ui.element_entity_pawn_animating.value = 0;
         
-        Camera.ui.element_entity_mob_frame.interactive = false;
-        Camera.ui.element_entity_mob_direction.interactive = false;
-        Camera.ui.element_entity_mob_animating.interactive = false;
+        Camera.ui.element_entity_pawn_frame.interactive = false;
+        Camera.ui.element_entity_pawn_direction.interactive = false;
+        Camera.ui.element_entity_pawn_animating.interactive = false;
     }
 }
 

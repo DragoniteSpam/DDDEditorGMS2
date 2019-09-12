@@ -1,12 +1,13 @@
-/// @description void safc_on_pawn(EntityPawn);
 /// @param EntityPawn
 
-safc_on_entity(argument0);
+var pawn = argument0;
 
-Camera.ui.element_entity_mob_frame.value=string(argument0.frame);
-Camera.ui.element_entity_mob_direction.value=argument0.map_direction;
-Camera.ui.element_entity_mob_animating.value=argument0.is_animating;
+safc_on_entity(pawn);
 
-Camera.ui.element_entity_mob_frame.interactive=true;
-Camera.ui.element_entity_mob_direction.interactive=true;
-Camera.ui.element_entity_mob_animating.interactive=true;
+Camera.ui.element_entity_pawn_frame.value = string(pawn.frame);
+Camera.ui.element_entity_pawn_direction.value = pawn.map_direction;
+Camera.ui.element_entity_pawn_animating.value = pawn.is_animating;
+
+Camera.ui.element_entity_pawn_frame.interactive = true;
+Camera.ui.element_entity_pawn_direction.interactive = true;
+Camera.ui.element_entity_pawn_animating.interactive = true;

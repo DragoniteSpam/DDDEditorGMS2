@@ -18,7 +18,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     t_p_entity = create_tab("Entity", 2, id);
     t_p_tile = create_tab("Tile", 2, id);
     t_p_mesh = create_tab("Mesh", 2, id);
-    t_p_mob = create_tab("Mob", 2, id);
+    t_p_pawn = create_tab("Pawn", 2, id);
     t_p_effect = create_tab("Effect", 2, id);
     
     // the game will crash if you create a tab row with zero width.
@@ -27,7 +27,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     var tr_editor = ds_list_create();
     ds_list_add(tr_editor, t_p_tile_editor, t_p_autotile_editor, t_p_mesh_editor, t_p_other_editor);
     var tr_world = ds_list_create();
-    ds_list_add(tr_world, t_p_entity, t_p_tile, t_p_mesh, t_p_mob, t_p_effect);
+    ds_list_add(tr_world, t_p_entity, t_p_tile, t_p_mesh, t_p_pawn, t_p_effect);
     
     ds_list_add(tabs, tr_general, tr_editor, tr_world);
     
@@ -68,7 +68,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy = yy + element.height + spacing;
     
     element = create_radio_array(legal_x + spacing, yy, "Fill Type", col_width, element_height, uivc_radio_fill_type, Camera.selection_fill_type, t_general);
-    create_radio_array_options(element, ["Tile", "Autotile", "Mesh", "Mob", "Effect", "Terrain"]);
+    create_radio_array_options(element, ["Tile", "Autotile", "Mesh", "Pawn", "Effect", "Terrain"]);
     ds_list_add(t_general.contents, element);
     
     yy = yy + ui_get_radio_array_height(element) + spacing;
@@ -428,25 +428,25 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     #endregion
     
-    #region tab: entity-mob
+    #region tab: entity-pawn
     
     yy = legal_y + spacing;
     
-    element_entity_mob_frame = create_input(legal_x + spacing, yy, "Editor frame:", col_width, element_height, uivc_entity_mob_editor_frame, "", 0, "0...3", validate_int, ui_value_real, 0, 3, 1, vx1, vy1, vx2, vy2, t_p_mob);
-    ds_list_add(t_p_mob.contents, element_entity_mob_frame);
+    element_entity_pawn_frame = create_input(legal_x + spacing, yy, "Editor frame:", col_width, element_height, uivc_entity_pawn_editor_frame, "", 0, "0...3", validate_int, ui_value_real, 0, 3, 1, vx1, vy1, vx2, vy2, t_p_pawn);
+    ds_list_add(t_p_pawn.contents, element_entity_pawn_frame);
     
-    yy = yy + element_entity_mob_frame.height + spacing;
+    yy = yy + element_entity_pawn_frame.height + spacing;
     
-    element_entity_mob_direction = create_radio_array(legal_x + spacing, yy, "Direction", col_width, element_height, uivc_entity_mob_direction, 0, t_p_mob);
-    create_radio_array_options(element_entity_mob_direction, ["Down", "Left", "Right", "Up"]);
-    ds_list_add(t_p_mob.contents, element_entity_mob_direction);
+    element_entity_pawn_direction = create_radio_array(legal_x + spacing, yy, "Direction", col_width, element_height, uivc_entity_pawn_direction, 0, t_p_pawn);
+    create_radio_array_options(element_entity_pawn_direction, ["Down", "Left", "Right", "Up"]);
+    ds_list_add(t_p_pawn.contents, element_entity_pawn_direction);
     
-    yy = yy + ui_get_radio_array_height(element_entity_mob_direction) + spacing;
+    yy = yy + ui_get_radio_array_height(element_entity_pawn_direction) + spacing;
     
-    element_entity_mob_animating = create_checkbox(legal_x + spacing, yy, "Animating", col_width, element_height, uivc_entity_mob_animating, "", false, t_p_mob);
-    ds_list_add(t_p_mob.contents, element_entity_mob_animating);
+    element_entity_pawn_animating = create_checkbox(legal_x + spacing, yy, "Animating", col_width, element_height, uivc_entity_pawn_animating, "", false, t_p_pawn);
+    ds_list_add(t_p_pawn.contents, element_entity_pawn_animating);
     
-    yy = yy + element_entity_mob_animating.height + spacing;
+    yy = yy + element_entity_pawn_animating.height + spacing;
     
     #endregion
     

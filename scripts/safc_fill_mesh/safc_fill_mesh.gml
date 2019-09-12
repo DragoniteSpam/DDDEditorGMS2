@@ -10,7 +10,7 @@ var params = argument3;
 
 var cell = map_get_grid_cell(xx, yy, zz);
     
-if (!cell[@ MapCellContents.MESHMOB]) {
+if (!cell[@ MapCellContents.MESHPAWN]) {
     var addition = instance_create_mesh(Stuff.all_meshes[| Camera.selection_fill_mesh]);
     
     if (addition) {

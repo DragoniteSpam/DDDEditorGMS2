@@ -26,7 +26,7 @@ for (var i = 0; i < ds_grid_width(grid); i++) {
 
 enum MapCellContents {
     TILE,
-    MESHMOB,
+    MESHPAWN,
     EFFECT,
     EVENT
 }

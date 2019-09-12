@@ -470,14 +470,14 @@ error_log_messages = ds_list_create();
 enum HelpPages {
     OVERVIEW, WHATSNEW, GETTINGSTARTED, SYSTEMREQUIREMENTS,
     EDITORCOMPONENTS, TABS, MENUS,
-    TAB_GENERAL, TAB_ENTITY, TAB_TILE, TAB_MESH, TAB_MOB, TAB_EFFECT, TAB_EVENT,
+    TAB_GENERAL, TAB_ENTITY, TAB_TILE, TAB_MESH, TAB_PAWN, TAB_EFFECT, TAB_EVENT,
     TAB_MESH_EDITOR, TAB_TILE_EDITOR, TAB_AUTOTILE_EDITOR,
     AUTOTILES,
 }
 
 help_pages = ["overview", "whatsnew", "gettingstarted", "systemrequirements",
     "editorcomponents", "tabs", "menus",
-    "general", "entityinstances", "tileinstances", "meshinstances", "mobinstances", "effectinstances", "eventinstances",
+    "general", "entityinstances", "tileinstances", "meshinstances", "pawninstances", "effectinstances", "eventinstances",
     "mesheditor", "tileeditor", "autotileeditor",
     "autotiles",];
 

@@ -1,8 +1,8 @@
 {
-    "id": "5691eae2-f00c-4cc2-ac52-8adce4e87b25",
+    "id": "b19f02e8-8b5e-45b3-842e-6fc5a52df295",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "uivc_entity_mob_direction",
+    "name": "uivc_entity_pawn_animating",
     "IsCompatibility": false,
     "IsDnD": false
 }

@@ -3778,7 +3778,7 @@
             "Key": "5691eae2-f00c-4cc2-ac52-8adce4e87b25",
             "Value": {
                 "id": "ee9e4d65-fbc1-4441-92cc-2a74c57ef2f2",
-                "resourcePath": "scripts\\uivc_entity_mob_direction\\uivc_entity_mob_direction.yy",
+                "resourcePath": "scripts\\uivc_entity_pawn_direction\\uivc_entity_pawn_direction.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -7714,7 +7714,7 @@
             "Key": "b19f02e8-8b5e-45b3-842e-6fc5a52df295",
             "Value": {
                 "id": "ee3f875d-6f43-416d-9e6e-654d85c88308",
-                "resourcePath": "scripts\\uivc_entity_mob_animating\\uivc_entity_mob_animating.yy",
+                "resourcePath": "scripts\\uivc_entity_pawn_animating\\uivc_entity_pawn_animating.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -9434,7 +9434,7 @@
             "Key": "d8f3a396-1c81-4c03-a661-1f05756107da",
             "Value": {
                 "id": "7636aca3-7d83-432e-aa32-b69079ddd7bd",
-                "resourcePath": "scripts\\uivc_entity_mob_editor_frame\\uivc_entity_mob_editor_frame.yy",
+                "resourcePath": "scripts\\uivc_entity_pawn_editor_frame\\uivc_entity_pawn_editor_frame.yy",
                 "resourceType": "GMScript"
             }
         },

@@ -24,7 +24,7 @@ direction_fix = false;              // because it would be weird to have this of
 
 // editor properties
 
-slot = MapCellContents.MESHMOB;
+slot = MapCellContents.MESHPAWN;
 batchable = false;
 
 // there will be other things here probably

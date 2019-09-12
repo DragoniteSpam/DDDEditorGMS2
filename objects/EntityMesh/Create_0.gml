@@ -18,7 +18,7 @@ Stuff.active_map.contents.population_solid++;
 
 // editor properties
 
-slot = MapCellContents.MESHMOB;
+slot = MapCellContents.MESHPAWN;
 rotateable = true;
 offsettable = true;
 scalable = true;
