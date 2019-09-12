@@ -23,7 +23,8 @@
         "724d1969-1a87-46ce-8ea7-2be633456f8a",
         "4ca43fc3-2b36-4c78-9444-f725f6a54adb",
         "1898ae10-5aa3-44a3-beaf-ba54bc90fb1d",
-        "d71698f7-92d6-4c8d-80a3-9abdd0f0004e"
+        "d71698f7-92d6-4c8d-80a3-9abdd0f0004e",
+        "fb5bcc30-46d5-4258-b190-0eb5b9c25574"
     ],
     "filterType": "GMScript",
     "folderName": "Data Structures",

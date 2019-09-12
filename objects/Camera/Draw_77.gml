@@ -6,6 +6,8 @@ if (!dialog_exists()) {
     control_global();
 }
 
+var map = Stuff.active_map.contents;
+
 // dialogs (or other things) to be killed
 
 while (!ds_queue_empty(stuff_to_destroy)) {
@@ -16,15 +18,12 @@ while (!ds_queue_empty(stuff_to_destroy)) {
 
 // batch updates
 
-var future = Stuff.active_map.contents.batch_in_the_future;
-var cindex = 0;
-
 // the list may still be appended to while it's being looped over - which is a
 // TERRIBLE idea, but i don't have the time to come up with something that will
 // appease the stackoverflow gods so too bad for them
 
-while (cindex < ds_list_size(changes)) {
-    var thing = changes[| cindex++];
+for (var i = 0; i < ds_list_size(changes); i++) {
+    var thing = changes[| i];
     switch (thing.modification) {
         case Modifications.CREATE:
             instance_deactivate_object(thing);
@@ -41,19 +40,64 @@ while (cindex < ds_list_size(changes)) {
             thing.modification = Modifications.NONE;
             break;
         case Modifications.REMOVE:
-            map_remove_thing(thing);
-            
-            instance_activate_object(thing);
-            instance_destroy(thing);
-            
-            // no point changing thing.modification now
+			ds_list_add(deletions, thing);
             break;
     }
-    // it turns out you can't put any mode code involving thing here because if it
-    // was deleted it'll break things
 }
 
 ds_list_clear(changes);
+
+if (ds_list_size(deletions) > 0) {
+	if (ds_list_size(deletions) < 25) {
+		for (var i = 0; i < ds_list_size(deletions); i++) {
+			var thing = deletions[| i];
+		    map_remove_thing(thing, true);
+		    instance_activate_object(thing);
+		    instance_destroy(thing);
+		}
+		debug("deletingn stuff the old way");
+	} else {
+		var clone_dynamic = ds_list_clone(map.dynamic);
+		var clone_all = ds_list_clone(map.all_entities);
+		ds_list_clear(map.dynamic);
+		ds_list_clear(map.all_entities);
+	
+		for (var i = 0; i < ds_list_size(clone_all); i++) {
+			var thing = clone_all[| i];
+			if (thing.modification != Modifications.REMOVE) {
+				ds_list_add(map.all_entities, thing);
+			}
+		}
+	
+		for (var i = 0; i < ds_list_size(clone_dynamic); i++) {
+			var thing = clone_dynamic[| i];
+			if (thing.modification != Modifications.REMOVE) {
+				ds_list_add(map.dynamic, thing);
+			}
+		}
+	
+		for (var i = 0; i < ds_list_size(deletions); i++) {
+			var thing = deletions[| i];
+			
+			if (thing.batchable && thing.batch_index > -1) {
+				var batch_list = map.batch_instances[| thing.batch_index];
+				ds_list_delete(batch_list, ds_list_find_index(batch_list, thing));
+			}
+			
+		    map_remove_thing(thing, false);
+		    instance_activate_object(thing);
+		    instance_destroy(thing);
+		}
+	
+		ds_list_destroy(clone_dynamic);
+		ds_list_destroy(clone_all);
+	
+		batch_again();
+		debug("deletingn stuff the new way");
+	}
+}
+
+ds_list_clear(deletions);
 
 // you may add/delete/move stuff in bulk and doing this for each
 // entity that was changed would slow the editor down quite a lot

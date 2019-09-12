@@ -1,27 +1,11 @@
 /// @param Entity
+/// @param [from-lists?]
 
-// this is INSANELY slow for large numbers of entities, and I'm
-// actually not sure how long it would take to carry out if you
-// did something like select all+delete. long enough that most
-// people would get frusturated and restart the program.
-
-// this is thanks to the ds_list_find_index and NEEDS to be
-// worked on. a starting point would be to assign each instance
-// a variable storing the location in the future list or batch
-// instance list. however, that will also be slow due to the
-// need to update the stored index of each other entity in the
-// lists: it would probably be better to zero out the indices
-// instead of deleteting them first, and then at the end make a
-// second pass over each of the lists, removing the zeroes and
-// updating the variables storing the indices for the entities.
-
-// this NEEDS to be worked on sooner rather than later because i
-// imagine Delete All is going to be a somewhat common operation.
-
-var entity = argument0;
+var entity = argument[0];
+var from_lists = (argument_count > 1) ? argument[1] : false;
 var map = Stuff.active_map.contents;
 
-if (entity.listed) {
+if (from_lists && entity.listed) {
     if (entity.batchable) {
         if (entity.batch_index == -1) {
             var future = map.batch_in_the_future;
