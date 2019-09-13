@@ -27,8 +27,8 @@ if (map.is_3d) {
 } else {
     var cwidth = camera_get_view_width(camera);
 	var cheight = camera_get_view_height(camera);
-    camera_set_view_mat(camera, matrix_build_lookat(x, y, -16000,  x, y, 0, 0, 1, 0));
-    camera_set_proj_mat(camera, matrix_build_projection_ortho(cwidth, cheight, 1, 32000));
+    camera_set_view_mat(camera, matrix_build_lookat(x, y, 16000,  x, y, -16000, 0, 1, 0));
+    camera_set_proj_mat(camera, matrix_build_projection_ortho(-cwidth, cheight, 1, 32000));
     camera_apply(camera);
 }
 
