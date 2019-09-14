@@ -167,7 +167,7 @@ color_channels = [0x0000ff, 0x00ff00, 0xff0000];
 
 comparison_text = ["<", "<=", "==", ">=", ">", "!="];
 
-// these are constants in DDD.gmx but we're allowed to change them here
+// these are constants but we're allowed to change them here
 tile_width = 32;
 tile_height = 32;
 tile_depth = 32;
@@ -306,7 +306,7 @@ event_prefab[EventNodeTypes.INPUT_TEXT] = create_event_node_prefab("InputText", 
     ["Kind", DataTypes.INT, 0, 1, false, 0, omu_event_attain_input_type_data, event_prefab_render_input_type_name],
     ["Char Limit", DataTypes.INT, 0, 1, false, 16, omu_event_attain_input_type_data]
 ]);
-event_prefab[EventNodeTypes.SHOW_SCROLLING_TEXT] = create_event_node_prefab("ScrollingText", [
+event_prefab[EventNodeTypes.SHOW_SCROLLING_TEXT] = create_event_node_prefab("TextCrawl", [
     ["Text", DataTypes.STRING, 0, 1, false, "Text that is shown in the ext crawl goes here"],
 ]);
 event_prefab[EventNodeTypes.SHOW_CHOICES] = create_event_node_prefab("ShowChoices", [
