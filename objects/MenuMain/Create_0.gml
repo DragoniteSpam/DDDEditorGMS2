@@ -3,6 +3,7 @@ event_inherited();
 render = menu_render_main;
 root = noone;
 active_element = noone;
+extra_element = noone;
 
 element_height = 16;
 element_width = 96;

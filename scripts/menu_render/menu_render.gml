@@ -22,7 +22,7 @@ if (!menu.invisible) {
 	// click on the header
 	if (mouse_within_rectangle(x1, y1, x2, y2)) {
 	    draw_rectangle_colour(x1, y1, x2, y2, c_ui, c_ui, c_ui, c_ui, false);
-	    if (get_release_left() && !dialog_exists()) {
+	    if (get_press_left() && !dialog_exists()) {
 	        menu_activate(menu);
 	    }
 	}
@@ -68,7 +68,3 @@ if (menu_is_active(menu)) {
     draw_line_colour(xx + ww, yy, xx + ww, yy + hh, c_black, c_black);
     draw_line_colour(xx, yy + hh, xx + ww, yy + hh, c_black, c_black);
 }
-
-// if this is not the active menu element, you need to let the program know
-// so it can render it separately
-return menu_is_active(menu);

@@ -126,13 +126,12 @@ if (!keyboard_check(vk_control)) {
 	if (get_press_right()) {
 		if (selection_empty()) {
             var tz = under_cursor ? under_cursor.zz : 0;
-        
             last_selection = instance_create_depth(0, 0, 0, SelectionSingle);
             ds_list_add(selection, last_selection);
             script_execute(last_selection.onmousedown, last_selection, floor_cx, floor_cy, tz);
 		}
 		var menu = Camera.menu.menu_right_click;
-		menu_activate(menu);
+		menu_activate_extra(menu);
 		menu.x = Camera.MOUSE_X;
 		menu.y = Camera.MOUSE_Y;
 	}
