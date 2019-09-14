@@ -92,7 +92,7 @@ ds_list_add(menu_help.contents, mh_help, mh_about);
  */
 
 menu_right_click = create_menu("right-click", element_width, element_height, id, true);
-var mrc_player = create_menu_element("Set Player Start", null, menu_right_click);
+var mrc_player = create_menu_element("Set Player Start", momu_set_starting_position, menu_right_click);
 var mrc_fill = create_menu_element("Fill", momu_expand, menu_right_click);
 	var mrc_fill_tile = create_menu_element("Tile", null, mrc_fill);
 	var mrc_fill_autotile = create_menu_element("Autotile", null, mrc_fill);

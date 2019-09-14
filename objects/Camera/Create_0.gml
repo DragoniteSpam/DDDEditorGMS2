@@ -221,7 +221,6 @@ fill_types = [safc_fill_tile, safc_fill_autotile, safc_fill_mesh, safc_fill_pawn
 
 shd_uniform_at_tex_offset = shader_get_uniform(shd_default_autotile, "texoffset");
 shd_value_at_tex_offset = array_create(MAX_AUTOTILE_SHADER_POSITIONS);
-//array_clear(shd_value_at_tex_offset, 2/(Stuff.tile_size/TEXTURE_SIZE))
 
 /*
  * Event editor

@@ -400,7 +400,18 @@ ds_stuff_init();
 c_init();
 c_world_create();
 
-#region collision stuff
+// at some point there shouldn't necessarily need to be an active
+// map in existence for this to work, but for now there does
+instance_create_depth(0, 0, 0, Controller);
+
+// this is order-dependant, and it SUCKS, so re-write it later when there's time
+all_maps = ds_list_create();
+active_map = instance_create_depth(0, 0, 0, DataMapContainer);
+active_map.contents = instance_create_depth(0, 0, 0, MapContents);
+// this depends on activemap
+instance_create_depth(0, 0, 0, Camera);
+
+#region collision stuff plus basic shapes
 c_shape_tile = c_shape_create();
 c_shape_begin_trimesh();
 c_shape_add_triangle(0, 0, 0, tile_width, 0, 0, tile_width, tile_height, 0);
@@ -427,18 +438,9 @@ c_shape_add_triangle(tile_width, 0, tile_height, tile_width, 0, 0, 0, 0, 0);
 c_shape_add_triangle(0, tile_height, 0, 0, tile_height, tile_depth, tile_width, tile_height, tile_height);
 c_shape_add_triangle(tile_width, tile_height, tile_height, tile_width, tile_height, 0, 0, tile_height, 0);
 c_shape_end_trimesh(c_shape_block);
+
+basic_cage = import_d3d("data\\basic\\cage.d3d", false);
 #endregion
-
-// at some point there shouldn't necessarily need to be an active
-// map in existence for this to work, but for now there does
-instance_create_depth(0, 0, 0, Controller);
-
-// this is order-dependant, and it SUCKS, so re-write it later when there's time
-all_maps = ds_list_create();
-active_map = instance_create_depth(0, 0, 0, DataMapContainer);
-active_map.contents = instance_create_depth(0, 0, 0, MapContents);
-// this depends on activemap
-instance_create_depth(0, 0, 0, Camera);
 
 all_bgm = ds_list_create();
 all_se = ds_list_create();
@@ -495,7 +497,10 @@ color_lookup = [c_red, c_green, c_blue, c_orange, c_aqua, c_fuchsia, c_purple, c
 
 // global game settings
 
-game_map_starting = 0;
+game_starting_map = 0;
+game_starting_x = 0;
+game_starting_y = 0;
+game_starting_z = 0;
 game_player_grid = true;
 game_battle_style = BattleStyles.TEAM_BASED;
 

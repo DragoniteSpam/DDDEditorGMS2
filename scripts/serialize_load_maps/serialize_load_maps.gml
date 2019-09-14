@@ -14,7 +14,7 @@ repeat (n_maps) {
 	map.data_buffer = buffer_read_buffer(buffer, size);
 }
 
-Stuff.active_map = guid_get(Stuff.game_map_starting);
+Stuff.active_map = guid_get(Stuff.game_starting_map);
 
 serialize_load_current_map(Stuff.active_map, version);
 

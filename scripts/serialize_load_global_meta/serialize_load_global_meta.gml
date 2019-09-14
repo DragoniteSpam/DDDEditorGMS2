@@ -4,7 +4,13 @@
 var buffer = argument0;
 var version = argument1;
 
-Stuff.game_map_starting = buffer_read(buffer, buffer_datatype);
+Stuff.game_starting_map = buffer_read(buffer, buffer_datatype);
+
+if (version >= DataVersions.STARTING_POSITION) {
+	Stuff.game_starting_x = buffer_read(buffer, buffer_u16);
+	Stuff.game_starting_y = buffer_read(buffer, buffer_u16);
+	Stuff.game_starting_z = buffer_read(buffer, buffer_u16);
+}
 
 var bools = buffer_read(buffer, buffer_u32);
 Stuff.game_player_grid = unpack(bools, 0);

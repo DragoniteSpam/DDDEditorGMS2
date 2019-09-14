@@ -6,7 +6,11 @@ buffer_write(buffer, buffer_datatype, SerializeThings.MISC_MAP_META);
 
 // STARTING_MAP
 
-buffer_write(buffer, buffer_datatype, Stuff.game_map_starting);
+buffer_write(buffer, buffer_datatype, Stuff.game_starting_map);
+// STARTING_POSITION
+buffer_write(buffer, buffer_u16, Stuff.game_starting_x);
+buffer_write(buffer, buffer_u16, Stuff.game_starting_y);
+buffer_write(buffer, buffer_u16, Stuff.game_starting_z);
 
 // GAMEPLAY_GRID
 

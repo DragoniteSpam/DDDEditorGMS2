@@ -51,5 +51,6 @@ enum DataVersions {
     SUMMARY_GENERIC_DATA        = 38,
     MAPS_NUKED                  = 39,
 	DATA_TRIMMED				= 40,
+	STARTING_POSITION			= 41,
     _CURRENT                 /* = whatever the last one is + 1 */
 }

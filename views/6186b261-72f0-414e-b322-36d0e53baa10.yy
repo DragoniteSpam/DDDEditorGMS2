@@ -8,7 +8,8 @@
         "c034993b-2386-46ba-9c56-e455e28efb2a",
         "6949b6b9-d9ff-4ab9-8d27-461a748b4583",
         "b3601659-564c-4931-a30a-60c0e672f0e0",
-        "c6107909-18aa-4a7a-b536-1f60d0772e8e"
+        "c6107909-18aa-4a7a-b536-1f60d0772e8e",
+        "ef6c3e01-5b56-4dd5-9741-90bff94b258b"
     ],
     "filterType": "GMScript",
     "folderName": "onmouseup",

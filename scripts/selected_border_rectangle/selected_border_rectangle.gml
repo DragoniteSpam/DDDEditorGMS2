@@ -4,12 +4,12 @@
 var selection = argument0;
 var entity = argument1;
 
-var minx = min(selection.x1, selection.x2) - 1;
-var miny = min(selection.y1, selection.y2) - 1;
-var minz = min(selection.z1, selection.z2) - 1;
-var maxx = max(selection.x1, selection.x2) + 1;
-var maxy = max(selection.y1, selection.y2) + 1;
-var maxz = max(selection.z1, selection.z2) + 1;
+var minx = min(selection.x, selection.x2) - 1;
+var miny = min(selection.y, selection.y2) - 1;
+var minz = min(selection.z, selection.z2) - 1;
+var maxx = max(selection.x, selection.x2) + 1;
+var maxy = max(selection.y, selection.y2) + 1;
+var maxz = max(selection.z, selection.z2) + 1;
 
 // exclude the outer edge but don't have a negative area
 var maxex = max(minx, maxx - 1);

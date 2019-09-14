@@ -106,6 +106,11 @@ for (var i = 0; i < ds_list_size(selection); i++) {
     script_execute(sel.render, sel);
 }
 
-transform_reset();
-
 ds_list_destroy(list_routes);
+
+if (Stuff.game_starting_map == Stuff.active_map.GUID) {
+	transform_set(Stuff.game_starting_x * TILE_WIDTH, Stuff.game_starting_y * TILE_HEIGHT, Stuff.game_starting_z * TILE_DEPTH, 0, 0, 0, 1, 1, 1);
+	vertex_submit(Stuff.basic_cage, pr_trianglelist, -1);
+}
+
+transform_reset();
