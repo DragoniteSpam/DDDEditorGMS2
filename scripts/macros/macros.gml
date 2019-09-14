@@ -30,8 +30,8 @@
 #macro MAX_AUTOTILE_SHADER_POSITIONS 12 * 16 * 8 * 2
 #macro MAX_SELECTION_COUNT 32
 #macro MAX_VISIBLE_MOVE_ROUTES 4
-#macro mouse_x_view Camera.MOUSE_X - view_get_xport(view_current)
-#macro mouse_y_view Camera.MOUSE_Y - view_get_yport(view_current)
+#macro mouse_x_view (Camera.MOUSE_X - view_get_xport(view_current))
+#macro mouse_y_view (Camera.MOUSE_Y - view_get_yport(view_current))
 #macro PATH_AUTOTILE ".\\autotile\\"
 #macro PATH_BACKUP_DATA ".\\backups\\data\\"
 #macro PATH_BACKUP_MAP ".\\backups\\maps\\"
@@ -40,7 +40,7 @@
 #macro PATH_PERMANENT ".\\data\\graphics\\permanent\\"
 #macro PATH_TEMP_CODE "temp\\"              // local storage - no leading punctuation - used for opening files
 #macro PATH_AUDIO "audio\\"                 // local storage - no leading punctuation - used for opening files
-#macro SELECTION_MASK_ALL ETypeFlags.ENTITY_TILE | ETypeFlags.ENTITY_TILE_AUTO | ETypeFlags.ENTITY_EVENT | ETypeFlags.ENTITY_PAWN | ETypeFlags.ENTITY_MESH | ETypeFlags.ENTITY_EFFECT
+#macro SELECTION_MASK_ALL ~0
 #macro SERIALIZE_ASSETS 2
 #macro SERIALIZE_DATA 1
 #macro SERIALIZE_DATA_AND_MAP 3
@@ -50,7 +50,7 @@
 #macro TILE_DEPTH Stuff.tile_depth
 #macro TILE_HEIGHT Stuff.tile_height
 #macro TILE_MAX_PRIORITY 256
-#macro TILE_PASSABLE TilePassability.UP | TilePassability.DOWN | TilePassability.LEFT | TilePassability.RIGHT
+#macro TILE_PASSABLE ~0
 #macro TILE_WIDTH Stuff.tile_width
 #macro TILESET_TEXTURE_HEIGHT 0.5
 #macro TILESET_TEXTURE_WIDTH 0.5

@@ -1,7 +1,3 @@
-if (!Stuff.active_map.contents.is_3d) {
-    show_error("hey so yeah you haven't implemented the 2D controls yet, you probably should though", true);
-}
-
 mouse_vector = update_mouse_vector(x, y, z, xto, yto, zto, xup, yup, zup, fov, CW / CH);
 
 var xx = mouse_vector[vec3.xx] * MILLION;
@@ -48,7 +44,7 @@ if (zz < z) {
     }
     if (Controller.mouse_left) {
         if (last_selection) {
-            script_execute(last_selection.onmousedrag, last_selection, floor_cx, floor_cy);
+            script_execute(last_selection.onmousedrag, last_selection, floor_cx + 1, floor_cy + 1);
         }
     }
     if (Controller.release_left) {

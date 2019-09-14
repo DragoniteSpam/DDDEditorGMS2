@@ -10,13 +10,13 @@ var xx = map.xx;
 var yy = map.yy;
 var zz = map.zz;
 
-if (ds_map_exists(map, "x")) {
+if (ds_map_exists(data_map, "x")) {
     xx = data_map[? "x"];
 }
-if (ds_map_exists(map, "y")) {
+if (ds_map_exists(data_map, "y")) {
     yy = data_map[? "y"];
 }
-if (ds_map_exists(map, "z")) {
+if (ds_map_exists(data_map, "z")) {
     zz = data_map[? "z"];
 }
 

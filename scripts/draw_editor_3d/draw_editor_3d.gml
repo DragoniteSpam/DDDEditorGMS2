@@ -3,16 +3,16 @@ var map = Stuff.active_map.contents;
 draw_clear(c_black);
 
 if (!mouse_3d_lock && mouse_within_view(view_3d) && !dialog_exists()) {
-    control_3d();
+	if (map.is_3d) {
+	    control_3d();
+	} else {
+		control_2d();
+	}
 }
 
 gpu_set_zwriteenable(true);
 gpu_set_cullmode(view_backface ? cull_noculling : cull_counterclockwise);
 gpu_set_ztestenable(map.is_3d);        // this will make things rather odd with the wrong setting
-
-// todo GMS2 requires smooth shading to be handled by the shader(s) now,
-// so to make porting this to GMS2 as pain-free as possible I'd like to
-// do it that way here at some point in the future too
 
 draw_set_color(c_white);
 

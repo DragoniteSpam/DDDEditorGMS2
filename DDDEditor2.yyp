@@ -3623,6 +3623,14 @@
             }
         },
         {
+            "Key": "5262238b-6f10-4ee8-9117-8d5c0cd70f83",
+            "Value": {
+                "id": "956cf762-b119-499b-878f-a4ab4690136b",
+                "resourcePath": "scripts\\control_2d\\control_2d.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "5264ec02-3b15-43ce-8364-c580befdb8a7",
             "Value": {
                 "id": "8d73e207-2b34-4623-bb2d-adae5211442e",
@@ -12036,6 +12044,7 @@
         "0cfb1fd0-9684-4668-a8c7-89ed8ab9e02d",
         "9895d401-4337-4f0f-9cf0-d6a8e38f5bbb",
         "2014825b-a570-47e1-8600-19c965a6afcb",
+        "5262238b-6f10-4ee8-9117-8d5c0cd70f83",
         "f99fa76c-f1be-44a0-a900-27fc9778a457",
         "ba4a8101-af2b-497e-907d-7a331adf03b6",
         "b3c13d94-1e6e-4632-b6b5-a72df87da442",

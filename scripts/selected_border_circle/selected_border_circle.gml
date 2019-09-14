@@ -1,11 +1,14 @@
 /// @param selection
 /// @param Entity
 
-var minx = argument0.x - 1 - radius;
-var miny = argument0.y - 1 - radius;
-var minz = argument0.z - 1 - radius;
-var maxx = argument0.x + 1 + radius;
-var maxy = argument0.y + 1 + radius;
-var maxz = argument0.z + 1 + radius;
+var selection = argument0;
+var entity = argument1;
 
-return is_clamped(argument1.xx, minx, maxx) && is_clamped(argument1.yy, miny, maxy) && is_clamped(argument1.zz, minz, maxz);
+var minx = selection.x - 1 - selection.radius;
+var miny = selection.y - 1 - selection.radius;
+var minz = selection.z - 1 - selection.radius;
+var maxx = selection.x + 1 + selection.radius;
+var maxy = selection.y + 1 + selection.radius;
+var maxz = selection.z + 1 + selection.radius;
+
+return is_clamped(entity.xx, minx, maxx) && is_clamped(entity.yy, miny, maxy) && (!Stuff.active_map.contents.is_3d && is_clamped(entity.zz, minz, maxz));

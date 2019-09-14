@@ -1,4 +1,7 @@
 /// @param selection
 /// @param Entity
 
-return argument0.x == argument1.xx && argument0.y == argument1.yy && argument0.z == argument1.zz;
+var selection = argument0;
+var entity = argument1;
+
+return (selection.x == entity.xx && selection.y == entity.yy) && (!Stuff.active_map.contents.is_3d || selection.z == entity.zz);
