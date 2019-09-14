@@ -4,20 +4,7 @@
 var buffer = argument0;
 var version = argument1;
 
-// this used to be for when maps were their own files and we needed to know what they were named
-if (version < DataVersions.DATA_TRIMMED) {
-	var n_maps = buffer_read(buffer, buffer_u16);
-	
-	repeat (n_maps) {
-	    buffer_read(buffer, buffer_string);
-	}
-}
-
-if (version >= DataVersions.MAPS_NUKED) {
-	Stuff.game_map_starting = buffer_read(buffer, buffer_datatype);
-} else {
-	Stuff.game_map_starting = buffer_read(buffer, buffer_string);
-}
+Stuff.game_map_starting = buffer_read(buffer, buffer_datatype);
 
 var bools = buffer_read(buffer, buffer_u32);
 Stuff.game_player_grid = unpack(bools, 0);

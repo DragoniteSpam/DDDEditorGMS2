@@ -4,13 +4,6 @@ var buffer = argument0;
 
 buffer_write(buffer, buffer_datatype, SerializeThings.MISC_MAP_META);
 
-var n_maps = ds_list_size(Stuff.all_maps);
-buffer_write(buffer, buffer_u16, n_maps);
-
-for (var i = 0; i < n_maps; i++) {
-    buffer_write(buffer, buffer_string, Stuff.all_maps[| i]);
-}
-
 // STARTING_MAP
 
 buffer_write(buffer, buffer_datatype, Stuff.game_map_starting);

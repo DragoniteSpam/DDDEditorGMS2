@@ -307,7 +307,7 @@ event_prefab[EventNodeTypes.INPUT_TEXT] = create_event_node_prefab("InputText", 
     ["Char Limit", DataTypes.INT, 0, 1, false, 16, omu_event_attain_input_type_data]
 ]);
 event_prefab[EventNodeTypes.SHOW_SCROLLING_TEXT] = create_event_node_prefab("TextCrawl", [
-    ["Text", DataTypes.STRING, 0, 1, false, "Text that is shown in the ext crawl goes here"],
+    ["Text", DataTypes.STRING, 0, 250, false, "Text that is shown in the text crawl goes here"],
 ]);
 event_prefab[EventNodeTypes.SHOW_CHOICES] = create_event_node_prefab("ShowChoices", [
     // conditional branch nodes are not actually handled as a prefab but i'm leaving this here for reference
