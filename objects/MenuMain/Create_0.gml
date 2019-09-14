@@ -62,6 +62,9 @@ ds_list_add(menu_edit.contents, me_undo, me_redo,
 var md_mesh_autotiles = create_menu_element("Autotile Meshes", momu_mesh_autotile, menu_data);
 var md_ts = create_menu_element("Tileset", momu_tileset, menu_data);
 var md_audio = create_menu_element("Audio", momu_expand, menu_data);
+	var md_aud_bgm = create_menu_element("Background Music (BGM)", momu_bgm, md_audio);
+	var md_aud_se = create_menu_element("Sound Effects (SE)", momu_se, md_audio);
+	ds_list_add(md_audio.contents, md_aud_bgm, md_aud_se);
 var md_data_types = create_menu_element("Define Data Types", momu_data_types, menu_data);
 var md_conflicts = create_menu_element("View Mesh Conflicts", momu_conflicts, menu_data);
 var md_missing = create_menu_element("View Missing Data", momu_missing, menu_data);
@@ -75,10 +78,6 @@ ds_list_add(menu_data.contents, md_mesh_autotiles, md_ts, md_audio, md_data_type
     m_separator,
     md_3d, md_events, md_data, md_animation);
 
-var md_aud_bgm = create_menu_element("Background Music (BGM)", momu_bgm, md_audio);
-var md_aud_se = create_menu_element("Sound Effects (SE)", momu_se, md_audio);
-ds_list_add(md_audio.contents, md_aud_bgm, md_aud_se);
-
 /*
  * Help stuff
  */
@@ -86,3 +85,31 @@ ds_list_add(md_audio.contents, md_aud_bgm, md_aud_se);
 var mh_help = create_menu_element("Contents", momu_help, menu_help);
 var mh_about = create_menu_element("Credits", momu_about, menu_help);
 ds_list_add(menu_help.contents, mh_help, mh_about);
+
+/*
+ *
+ */
+
+menu_right_click = create_menu("right-click", element_width, element_height, id, true);
+var mrc_player = create_menu_element("Set Player Start", null, menu_right_click);
+var mrc_fill = create_menu_element("Fill", momu_expand, menu_right_click);
+	var mrc_fill_tile = create_menu_element("Tile", null, mrc_fill);
+	var mrc_fill_autotile = create_menu_element("Autotile", null, mrc_fill);
+	var mrc_fill_mesh = create_menu_element("Mesh", null, mrc_fill);
+	var mrc_fill_pawn = create_menu_element("Pawn", null, mrc_fill);
+	var mrc_fill_effect = create_menu_element("Effect", null, mrc_fill);
+	var mrc_fill_terrain = create_menu_element("Terrain", null, mrc_fill);
+	ds_list_add(mrc_fill.contents, mrc_fill_tile, mrc_fill_autotile, mrc_fill_mesh, mrc_fill_pawn,
+		mrc_fill_effect, mrc_fill_terrain);
+var mrc_delete = create_menu_element("Delete", null, menu_right_click);
+var mrc_cut = create_menu_element("Cut", null, menu_right_click);
+var mrc_copy = create_menu_element("Copy", null, menu_right_click);
+var mrc_paste = create_menu_element("Paste", null, menu_right_click);
+var mrc_prefab = create_menu_element("Save as Prefrab", null, menu_right_click);
+ds_list_add(menu_right_click.contents, mrc_player,
+	m_separator,
+	mrc_fill, mrc_delete,
+	m_separator,
+	mrc_cut, mrc_copy, mrc_paste,
+	m_separator,
+	mrc_prefab);

@@ -101,16 +101,16 @@ if (!keyboard_check(vk_control)) {
         keyboard_string = "";
     }
     if (Controller.mouse_right) {
-        var camera_cx = view_get_xport(view_current) + view_get_wport(view_current) / 2;
-        var camera_cy = view_get_yport(view_current) + view_get_hport(view_current) / 2;
-        var dx = (MOUSE_X - camera_cx) / 16;
-        var dy = (MOUSE_Y - camera_cy) / 16;
-        direction = (360 + direction - dx) % 360;
-        pitch = clamp(pitch + dy, -89, 89);
-        window_mouse_set(camera_cx, camera_cy);
-        xto = x + dcos(direction);
-        yto = y - dsin(direction);
-        zto = z - dsin(pitch);
+	    var camera_cx = view_get_xport(view_current) + view_get_wport(view_current) / 2;
+	    var camera_cy = view_get_yport(view_current) + view_get_hport(view_current) / 2;
+	    var dx = (MOUSE_X - camera_cx) / 16;
+	    var dy = (MOUSE_Y - camera_cy) / 16;
+	    direction = (360 + direction - dx) % 360;
+	    pitch = clamp(pitch + dy, -89, 89);
+	    window_mouse_set(camera_cx, camera_cy);
+	    xto = x + dcos(direction);
+	    yto = y - dsin(direction);
+	    zto = z - dsin(pitch);
     }
     
     x += xspeed;
@@ -122,4 +122,18 @@ if (!keyboard_check(vk_control)) {
     xup = 0;
     yup = 0;
     zup = 1;
+} else {
+	if (get_press_right()) {
+		if (selection_empty()) {
+            var tz = under_cursor ? under_cursor.zz : 0;
+        
+            last_selection = instance_create_depth(0, 0, 0, SelectionSingle);
+            ds_list_add(selection, last_selection);
+            script_execute(last_selection.onmousedown, last_selection, floor_cx, floor_cy, tz);
+		}
+		var menu = Camera.menu.menu_right_click;
+		menu_activate(menu);
+		menu.x = Camera.MOUSE_X;
+		menu.y = Camera.MOUSE_Y;
+	}
 }
