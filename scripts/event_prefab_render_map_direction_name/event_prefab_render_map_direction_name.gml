@@ -5,7 +5,7 @@ var event = argument0;
 var index = argument1;
 
 // @todo gml update
-var custom_data = event.custom_data[| 1];
+var custom_data = event.custom_data[| 4];
 var raw = custom_data[| 0];
 
 switch (raw) {

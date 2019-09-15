@@ -23,7 +23,6 @@ var cbi = 2;  // 0 is is available, 1 is hovering, 2 is unavailable
 if (active) {
     cbi = 0;
     if (mouse_within_rectangle_determine(x1, y1, x2, y1 + header_height, true)) {
-		debug(".,");
         // close box
         var cbx1 = cbx - cbs;
         var cby1 = cby - cbs;

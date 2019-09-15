@@ -31,17 +31,25 @@ var vy2 = ew;
 var yy = 64;
 var spacing = 16;
 
-var el_maps = create_list(16, yy, "Maps", "no maps", ew, eh, null, custom_data_map[| 0], false, dg, Stuff.all_maps);
+var el_maps = create_list(16, yy, "Maps", "no maps", ew, eh, 8, uivc_list_event_attain_map_index, false, dg, Stuff.all_maps);
+for (var i = 0; i < ds_list_size(Stuff.all_maps); i++) {
+	if (Stuff.all_maps[| i].GUID == custom_data_map[| 0]) {
+		ds_map_add(el_maps.selected_entries, i, true);
+		break;
+	}
+}
+el_maps.allow_deselect = false;
 el_maps.entries_are = ListEntries.INSTANCES;
 dg.el_maps = el_maps;
 
-yy = yy + ui_get_list_height(el_maps) + spacing * 4;
+yy = yy + ui_get_list_height(el_maps) + spacing * 2;
 
 var el_text = create_text(16, yy, "Click on a location in one of the maps to set the destination", ew, eh, fa_left, ew, dg);
 
-yy = yy + el_text.height + spacing * 4;
+yy = yy + el_text.height + spacing * 2;
 
-var el_direction = create_radio_array(16, yy, "Direction", ew, eh, null, custom_data_direction[| 0], dg);
+var el_direction = create_radio_array(16, yy, "Direction", ew, eh, uivc_list_event_attain_transfer_direction, custom_data_direction[| 0], dg);
+create_radio_array_options(el_direction, ["Down", "Left", "Right", "Up"]);
 dg.el_direction = el_direction;
 
 var b_width = 128;
