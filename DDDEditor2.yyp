@@ -975,6 +975,14 @@
             }
         },
         {
+            "Key": "13cbc365-cd0b-416c-a256-9d7a196af4d3",
+            "Value": {
+                "id": "11a63385-45b4-441f-9bbf-8adeb58c1e26",
+                "resourcePath": "scripts\\omu_event_attain_map_data\\omu_event_attain_map_data.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "13d090da-6b30-4275-b2a9-69ce6775d5c3",
             "Value": {
                 "id": "d1ba448d-35cd-44f5-b3e9-c792bfbec34f",
@@ -1875,6 +1883,14 @@
             "Value": {
                 "id": "bc28cf3d-22b4-4e74-8100-f139b5f59b80",
                 "resourcePath": "scripts\\instance_create_terrain\\instance_create_terrain.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "2b1277cb-9224-4c7b-bc2a-267fb598b6f3",
+            "Value": {
+                "id": "7ecc21b6-4b02-4991-8e07-fad362760dcc",
+                "resourcePath": "scripts\\event_prefab_render_map_direction_name\\event_prefab_render_map_direction_name.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -6671,6 +6687,14 @@
             }
         },
         {
+            "Key": "9758a967-ad93-4213-9fba-dfa2617a8834",
+            "Value": {
+                "id": "bd78d93c-096f-4ab5-9ad1-f183a0b71293",
+                "resourcePath": "scripts\\omu_event_add_transfer_player\\omu_event_add_transfer_player.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "97712004-d86d-4104-82f9-886060b28495",
             "Value": {
                 "id": "cb459998-9d2b-4d0c-807e-aea47f5e82a2",
@@ -8499,6 +8523,14 @@
             "Value": {
                 "id": "1c3d20e7-9b7f-4800-b004-b0707bd1adad",
                 "resourcePath": "scripts\\omu_mr_move_random\\omu_mr_move_random.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "c3f5eb49-d64e-4071-842a-8f27771e9035",
+            "Value": {
+                "id": "722dbcd0-358c-47c5-81e1-0b2e3567da71",
+                "resourcePath": "scripts\\event_prefab_render_map_name\\event_prefab_render_map_name.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -11514,6 +11546,7 @@
         "76bd648a-cf24-4caf-95f2-fe83456e8afd",
         "a1b96f05-5454-42ea-b0d8-b1b714a0badc",
         "6f9e5b17-ab0b-452f-b6ee-f6b5c88ab1e5",
+        "13cbc365-cd0b-416c-a256-9d7a196af4d3",
         "7dc6db06-7b2a-4e3d-bb79-bd285a28ad93",
         "8c51d098-04e8-4711-bb41-f98098a4bdc7",
         "a2373338-b0ab-43af-97ea-95927ad0dcaa",
@@ -11862,6 +11895,7 @@
         "50a859eb-8612-4fa1-bf19-6098e757c23a",
         "bbc8d6fa-7bc1-4174-9dcd-392707e650d4",
         "ca433690-4b11-4675-b165-30253bfc2837",
+        "9758a967-ad93-4213-9fba-dfa2617a8834",
         "abbd567a-8c29-4074-a591-04f96ef9d207",
         "b5d9d977-41d7-45b2-9398-85c360b0273e",
         "95424db4-7494-4804-a19a-69b9a43171f3",
@@ -12111,6 +12145,8 @@
         "394a6698-6d78-4135-80f7-1366ef1ee8ab",
         "63b71293-f0b9-4b99-8738-9bb479ed6a11",
         "75e644ee-a05f-42e0-9c4e-1cfd7ae04e25",
+        "c3f5eb49-d64e-4071-842a-8f27771e9035",
+        "2b1277cb-9224-4c7b-bc2a-267fb598b6f3",
         "6b0ac3d9-9ca5-40bf-ad8d-6e82898d06f5",
         "cd56789a-f283-426f-9073-df9733a81253",
         "a13e6f93-d36b-43b5-91a8-dd5e11f4573e",

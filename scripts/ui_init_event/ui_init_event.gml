@@ -230,7 +230,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     element = create_text(legal_x + spacing, yy, "Movement", element_width, element_height, fa_left, element_width, t_list);
     ds_list_add(t_action1.contents, element);
     yy = yy + element_height + spacing;
-    element = create_button(legal_x + spacing, yy, "Transfer Player", element_width, element_height, fa_left, not_yet_implemented, t_action1);
+    element = create_button(legal_x + spacing, yy, "Transfer Player", element_width, element_height, fa_left, omu_event_add_transfer_player, t_action1);
     ds_list_add(t_action1.contents, element);
     yy = yy + element_height;
     element = create_button(legal_x + spacing, yy, "Set Entity Location", element_width, element_height, fa_left, not_yet_implemented, t_action1);
