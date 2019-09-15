@@ -8823,6 +8823,14 @@
             }
         },
         {
+            "Key": "ca31a73d-737d-49c7-9886-3a1b35650ccc",
+            "Value": {
+                "id": "2dd0dd67-e3ab-41fc-a029-1d8c8bc9de03",
+                "resourcePath": "scripts\\ui_render_surface_control_map\\ui_render_surface_control_map.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "ca433690-4b11-4675-b165-30253bfc2837",
             "Value": {
                 "id": "f4c2076a-8fb7-4016-8594-19e65c300636",
@@ -12157,6 +12165,7 @@
         "257305ac-2e07-4f5a-9891-06b3db9d576c",
         "4229cf21-1502-4221-b23b-1111acb38d06",
         "14379ae6-3478-43af-9e2a-db113b917ebd",
+        "ca31a73d-737d-49c7-9886-3a1b35650ccc",
         "c37ecf28-8b0d-4b55-ad5e-e7c3ef5e5e0c",
         "7be262ef-2d7a-4cc8-85bb-446caf5592c9",
         "008f9998-5b4d-44c2-b795-eedcdadc9318",

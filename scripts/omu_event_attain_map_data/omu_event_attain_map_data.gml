@@ -59,7 +59,7 @@ dg.el_direction = el_direction;
 
 yy = yy_start;
 
-var el_render = create_render_surface(c2 + 16, yy, dw * 3 / 4 - 32, dh - 96, ui_render_surface_render_map, null, dg);
+var el_render = create_render_surface(c2 + 16, yy, dw * 3 / 4 - 32, dh - 96, ui_render_surface_render_map, ui_render_surface_control_map, dg);
 
 var b_width = 128;
 var b_height = 32;

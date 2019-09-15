@@ -7,7 +7,6 @@ var map_contents = map.contents;
 var camera = view_get_camera(view_current);
 var active_view_mat = camera_get_view_mat(camera);
 var active_proj_mat = camera_get_proj_mat(camera);
-var active_cull_mode = gpu_get_cullmode();
 draw_clear(c_black);
 
 gpu_set_zwriteenable(true);
@@ -40,14 +39,10 @@ if (Camera.view_grid) {
     vertex_submit(Camera.grid, pr_linelist, -1);
 }
 
-if (Stuff.game_starting_map == Stuff.active_map.GUID) {
-	transform_set(Stuff.game_starting_x * TILE_WIDTH, Stuff.game_starting_y * TILE_HEIGHT, Stuff.game_starting_z * TILE_DEPTH, 0, 0, 0, 1, 1, 1);
-	vertex_submit(Stuff.basic_cage, pr_trianglelist, -1);
-}
-
 transform_reset();
 
 camera_set_view_mat(camera, active_view_mat);
 camera_set_proj_mat(camera, active_proj_mat);
 camera_apply(camera);
-gpu_set_cullmode(active_cull_mode);
+gpu_set_cullmode(cull_noculling);
+shader_reset();

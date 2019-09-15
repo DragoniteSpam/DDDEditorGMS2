@@ -26,9 +26,9 @@ var router = 8;
 var rinner = 4;
 
 if (!enabled) {
-    draw_circle_colour(tx + 16, ty, router, c_ltgray, c_ltgray, false);
+    draw_circle_colour(tx + 16, ty, router, c, c, false);
 }
-draw_circle(tx + 16, ty, router, true);
+draw_circle_colour(tx + 16, ty, router, c_black, c_black, true);
 
 if (option.root.value == option.value) {
     if (!enabled) {
