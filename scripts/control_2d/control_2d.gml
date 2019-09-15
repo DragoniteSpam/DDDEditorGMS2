@@ -1,3 +1,7 @@
+if (Camera.menu.active_element) {
+	return false;
+}
+
 var camera = view_get_camera(view_current);
 var cwidth = camera_get_view_width(camera);
 var cheight = camera_get_view_height(camera);
@@ -7,8 +11,8 @@ var y1 = y - cheight / 2;
 var x2 = x + cwidth / 2;
 var y2 = y + cheight / 2;
 
-var floor_cx = floor(((mouse_x_view - x1) / view_get_wport(view_current)) * cwidth / TILE_WIDTH);
-var floor_cy = floor(((mouse_y_view - y1) / view_get_hport(view_current)) * cheight / TILE_HEIGHT);
+var floor_cx = floor(((mouse_x_view + x1) / view_get_wport(view_current)) * cwidth / TILE_WIDTH);
+var floor_cy = floor(((mouse_y_view + y1) / view_get_hport(view_current)) * cheight / TILE_HEIGHT);
 
 if (Controller.press_left) {
     if (ds_list_size(selection) < MAX_SELECTION_COUNT) {
