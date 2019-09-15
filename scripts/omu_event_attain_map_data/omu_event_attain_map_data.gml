@@ -6,52 +6,48 @@ var thing = argument0;
 var event_node = argument1;
 var data_index = argument2;
 
-not_yet_implemented();
-
-// going to just put all of the available properties in here, i think, because that
-// should make some things a bit easier
-
-var dw = 320;
-var dh = 320;
+var dw = 1440;
+var dh = 800;
 
 var dg = dialog_create(dw, dh, "Map Transfer", dialog_default, dc_close_no_questions_asked, thing);
 dg.node = event_node;
 dg.index = data_index;
 
-var custom_data_entity = event_node.custom_data[| 0];
-var custom_data_variable = event_node.custom_data[| 1];
-var custom_data_value = event_node.custom_data[| 2];
-var custom_data_relative = event_node.custom_data[| 3];
+var custom_data_map = event_node.custom_data[| 0];
+var custom_data_x = event_node.custom_data[| 1];
+var custom_data_y = event_node.custom_data[| 2];
+var custom_data_z = event_node.custom_data[| 3];
+var custom_data_direction = event_node.custom_data[| 4];
 
-var ew = dw - 64;
+var columns = 4;
+var ew = dw / columns;
 var eh = 24;
 
-var vx1 = dw / 4 + 16;
+var vx1 = ew / 2;
 var vy1 = 0;
 var vx2 = vx1 + (ew - vx1);
-var vy2 = vy1 + eh;
+var vy2 = ew;
 
 var yy = 64;
 var spacing = 16;
 
-var el_choices = create_radio_array(16, yy, "Variables", ew, eh, uivc_list_event_attain_self_variable_index, custom_data_variable[| 0], dg);
-create_radio_array_options(el_choices, ["A", "B", "C", "D"]);
-dg.el_choices = el_choices;
+var el_maps = create_list(16, yy, "Maps", "no maps", ew, eh, null, custom_data_map[| 0], false, dg, Stuff.all_maps);
+el_maps.entries_are = ListEntries.INSTANCES;
+dg.el_maps = el_maps;
 
-yy = yy + ui_get_radio_array_height(el_choices) + spacing;
+yy = yy + ui_get_list_height(el_maps) + spacing * 4;
 
-var el_value = create_input(16, yy, "Value", ew, eh, uivc_check_event_attain_variable_value, 0, custom_data_value[|0], "float", validate_double, ui_value_real, -(1 << 31), (1 << 31) - 1, 11, vx1, vy1, vx2, vy2, dg);
-dg.el_value = el_value;
+var el_text = create_text(16, yy, "Click on a location in one of the maps to set the destination", ew, eh, fa_left, ew, dg);
 
-yy = yy + el_value.height + spacing;
+yy = yy + el_text.height + spacing * 4;
 
-var el_relative = create_checkbox(16, yy, "Relative?", ew, eh, uivc_check_event_attain_variable_relative, 0, custom_data_relative[|0], dg);
-dg.el_relative = el_relative;
+var el_direction = create_radio_array(16, yy, "Direction", ew, eh, null, custom_data_direction[| 0], dg);
+dg.el_direction = el_direction;
 
 var b_width = 128;
 var b_height = 32;
-var el_close = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
+var el_close = create_button(ew / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
 
-ds_list_add(dg.contents, el_choices, el_value, el_relative, el_close);
+ds_list_add(dg.contents, el_maps, el_text, el_direction, el_close);
 
 return dg;

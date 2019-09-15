@@ -22,7 +22,8 @@ if (!menu.invisible) {
 	// click on the header
 	if (mouse_within_rectangle(x1, y1, x2, y2)) {
 	    draw_rectangle_colour(x1, y1, x2, y2, c_ui, c_ui, c_ui, c_ui, false);
-	    if (get_press_left() && !dialog_exists()) {
+		// lazy evaluation
+	    if (!dialog_exists() && get_press_left()) {
 	        menu_activate(menu);
 	    }
 	}
