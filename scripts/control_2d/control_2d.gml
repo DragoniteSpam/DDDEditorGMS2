@@ -27,7 +27,6 @@ if (Controller.press_left) {
         last_selection = instance_create_depth(0, 0, 0, stype);
         ds_list_add(selection, last_selection);
         script_execute(last_selection.onmousedown, last_selection, floor_cx, floor_cy, tz);
-		
     }
 }
 if (Controller.mouse_left) {
@@ -90,4 +89,21 @@ if (!keyboard_check(vk_control)) {
     
     x += xspeed;
     y += yspeed;
+} else {
+	if (get_press_right()) {
+		// if there is no selection, select the single square under the cursor. Otherwise you might
+		// want to do operations on large swaths of entities, so don't clear it or anythign like that.
+		
+		if (selection_empty()) {
+            var tz = under_cursor ? under_cursor.zz : 0;
+            last_selection = instance_create_depth(0, 0, 0, SelectionSingle);
+            ds_list_add(selection, last_selection);
+            script_execute(last_selection.onmousedown, last_selection, floor_cx, floor_cy, tz);
+		}
+		
+		var menu = Camera.menu.menu_right_click;
+		menu_activate_extra(menu);
+		menu.x = Camera.MOUSE_X;
+		menu.y = Camera.MOUSE_Y;
+	}
 }

@@ -45,14 +45,14 @@ ds_list_add(menu_file.contents, mf_new, mf_save_data, mf_save_assets, mf_open, m
 
 var me_undo = create_menu_element("Undo (Ctrl+Z)", momu_undo, menu_edit);
 var me_redo = create_menu_element("Redo (Ctrl+Y)", momu_redo, menu_edit);
-var me_copy = create_menu_element("Copy (Ctrl+C)", momu_copy, menu_edit);
 var me_cut = create_menu_element("Cut (Ctrl+X)", momu_cut, menu_edit);
+var me_copy = create_menu_element("Copy (Ctrl+C)", momu_copy, menu_edit);
 var me_paste = create_menu_element("Paste (Ctrl+V)", momu_paste, menu_edit);
 var me_select_all =create_menu_element("Select All (Ctrl+A)", momu_select_all, menu_edit);
 var me_deselect = create_menu_element("Deselect (Ctrl+D)", momu_deselect, menu_edit);
 ds_list_add(menu_edit.contents, me_undo, me_redo,
     m_separator,
-    me_copy, me_cut, me_paste,
+    me_cut, me_copy, me_paste,
     m_separator,
     me_select_all, me_deselect);
 
@@ -103,9 +103,9 @@ var mrc_fill = create_menu_element("Fill", momu_expand, menu_right_click);
 	ds_list_add(mrc_fill.contents, mrc_fill_tile, mrc_fill_autotile, mrc_fill_mesh, mrc_fill_pawn,
 		mrc_fill_effect, mrc_fill_terrain);
 var mrc_delete = create_menu_element("Delete", null, menu_right_click);
-var mrc_cut = create_menu_element("Cut", null, menu_right_click);
-var mrc_copy = create_menu_element("Copy", null, menu_right_click);
-var mrc_paste = create_menu_element("Paste", null, menu_right_click);
+var mrc_cut = create_menu_element("Cut", momu_cut, menu_right_click);
+var mrc_copy = create_menu_element("Copy", momu_copy, menu_right_click);
+var mrc_paste = create_menu_element("Paste", momu_paste, menu_right_click);
 var mrc_prefab = create_menu_element("Save as Prefrab", null, menu_right_click);
 ds_list_add(menu_right_click.contents, mrc_player,
 	m_separator,

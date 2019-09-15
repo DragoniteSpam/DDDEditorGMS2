@@ -23,42 +23,44 @@ if (zz < z) {
     floor_cx = clamp(floor_x div TILE_WIDTH, 0, Stuff.active_map.contents.xx);
     floor_cy = clamp(floor_y div TILE_HEIGHT, 0, Stuff.active_map.contents.yy);
     
-    if (Controller.press_left) {
-        if (ds_list_size(selection) < MAX_SELECTION_COUNT) {
-            if (!keyboard_check(input_selection_add) && !selection_addition) {
-                selection_clear();
-                keyboard_string = "";
-            }
-            switch (selection_mode) {
-                case SelectionModes.SINGLE: var stype = SelectionSingle; break;
-                case SelectionModes.RECTANGLE: var stype = SelectionRectangle; break;
-                case SelectionModes.CIRCLE: var stype = SelectionCircle; break;
-            }
+	if (Camera.menu.active_element == noone) {
+	    if (Controller.press_left) {
+	        if (ds_list_size(selection) < MAX_SELECTION_COUNT) {
+	            if (!keyboard_check(input_selection_add) && !selection_addition) {
+	                selection_clear();
+	                keyboard_string = "";
+	            }
+	            switch (selection_mode) {
+	                case SelectionModes.SINGLE: var stype = SelectionSingle; break;
+	                case SelectionModes.RECTANGLE: var stype = SelectionRectangle; break;
+	                case SelectionModes.CIRCLE: var stype = SelectionCircle; break;
+	            }
         
-            var tz = under_cursor ? under_cursor.zz : 0;
+	            var tz = under_cursor ? under_cursor.zz : 0;
         
-            last_selection = instance_create_depth(0, 0, 0, stype);
-            ds_list_add(selection, last_selection);
-            script_execute(last_selection.onmousedown, last_selection, floor_cx, floor_cy, tz);
-        }
-    }
-    if (Controller.mouse_left) {
-        if (last_selection) {
-            script_execute(last_selection.onmousedrag, last_selection, floor_cx + 1, floor_cy + 1);
-        }
-    }
-    if (Controller.release_left) {
-        // selections of zero area are just deleted outright
-        if (last_selection) {
-            if (script_execute(last_selection.area, last_selection) == 0) {
-                instance_activate_object(last_selection);
-                instance_destroy(last_selection);
-                ds_list_pop(selection);
-                last_selection = noone;
-                sa_process_selection();
-            }
-        }
-    }
+	            last_selection = instance_create_depth(0, 0, 0, stype);
+	            ds_list_add(selection, last_selection);
+	            script_execute(last_selection.onmousedown, last_selection, floor_cx, floor_cy, tz);
+	        }
+	    }
+	    if (Controller.mouse_left) {
+	        if (last_selection) {
+	            script_execute(last_selection.onmousedrag, last_selection, floor_cx + 1, floor_cy + 1);
+	        }
+	    }
+	    if (Controller.release_left) {
+	        // selections of zero area are just deleted outright
+	        if (last_selection) {
+	            if (script_execute(last_selection.area, last_selection) == 0) {
+	                instance_activate_object(last_selection);
+	                instance_destroy(last_selection);
+	                ds_list_pop(selection);
+	                last_selection = noone;
+	                sa_process_selection();
+	            }
+	        }
+	    }
+	}
 }
 
 if (keyboard_check_pressed(vk_space)) {
@@ -124,12 +126,16 @@ if (!keyboard_check(vk_control)) {
     zup = 1;
 } else {
 	if (get_press_right()) {
+		// if there is no selection, select the single square under the cursor. Otherwise you might
+		// want to do operations on large swaths of entities, so don't clear it or anythign like that.
+		
 		if (selection_empty()) {
             var tz = under_cursor ? under_cursor.zz : 0;
             last_selection = instance_create_depth(0, 0, 0, SelectionSingle);
             ds_list_add(selection, last_selection);
             script_execute(last_selection.onmousedown, last_selection, floor_cx, floor_cy, tz);
 		}
+		
 		var menu = Camera.menu.menu_right_click;
 		menu_activate_extra(menu);
 		menu.x = Camera.MOUSE_X;

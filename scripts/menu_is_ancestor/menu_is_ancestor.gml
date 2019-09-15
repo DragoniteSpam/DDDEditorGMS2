@@ -1,16 +1,15 @@
 /// @param test
 /// @param root
 
-// check this first because if the root turns out to be noone
-// it'll always return true because everything's super root is
-// noone.
+var test = argument0;
+var root = argument1;
 
-if (!argument0) {
+if (!test || !root) {
     return false;
 }
 
-if (argument0 == argument1) {
+if (test == root) {
     return true;
 }
 
-return menu_is_ancestor(argument0.root, argument1);
+return menu_is_ancestor(test.root, root);
