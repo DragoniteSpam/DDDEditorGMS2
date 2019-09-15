@@ -9,8 +9,8 @@ outline = true;             // not used in all element types
 key = "key";
 
 text = "thing";
-height = 24;
 width = 128;
+height = 24;
 
 color = c_black;
 alignment = fa_left;

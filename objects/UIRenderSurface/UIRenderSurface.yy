@@ -1,23 +1,33 @@
 {
-    "id": "80f6c6b7-adfa-4b8e-a2c6-85ae18338dbc",
+    "id": "b2e02807-5d06-40aa-b41c-f4c3b4a774ea",
     "modelName": "GMObject",
     "mvc": "1.0",
-    "name": "MenuMain",
+    "name": "UIRenderSurface",
     "eventList": [
         {
-            "id": "0a4e59eb-c73e-4489-b85b-30141fa3b74e",
+            "id": "c2f9d99b-ec62-48e7-8c7b-fb907dc54496",
             "modelName": "GMEvent",
             "mvc": "1.0",
             "IsDnD": false,
             "collisionObjectId": "00000000-0000-0000-0000-000000000000",
             "enumb": 0,
             "eventtype": 0,
-            "m_owner": "80f6c6b7-adfa-4b8e-a2c6-85ae18338dbc"
+            "m_owner": "b2e02807-5d06-40aa-b41c-f4c3b4a774ea"
+        },
+        {
+            "id": "4eed2106-d772-4685-a2c3-2b052762a0e1",
+            "modelName": "GMEvent",
+            "mvc": "1.0",
+            "IsDnD": false,
+            "collisionObjectId": "00000000-0000-0000-0000-000000000000",
+            "enumb": 0,
+            "eventtype": 1,
+            "m_owner": "b2e02807-5d06-40aa-b41c-f4c3b4a774ea"
         }
     ],
     "maskSpriteId": "00000000-0000-0000-0000-000000000000",
     "overriddenProperties": null,
-    "parentObjectId": "26dc01bc-c44e-4013-9842-ad85bf22ff67",
+    "parentObjectId": "a8c3d597-b250-4644-90d6-f3cdc7eb6c15",
     "persistent": false,
     "physicsAngularDamping": 0.1,
     "physicsDensity": 0.5,

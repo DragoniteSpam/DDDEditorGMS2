@@ -2671,6 +2671,14 @@
             }
         },
         {
+            "Key": "3de4c250-1bc2-4e17-ba7a-ac78c483f159",
+            "Value": {
+                "id": "41c06ad1-6433-4f17-be6c-9680efd612ab",
+                "resourcePath": "scripts\\create_render_surface\\create_render_surface.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "3deb6177-e085-4e84-94a9-c50fd662c6af",
             "Value": {
                 "id": "a1e6c6d4-b5c1-434f-aa99-7a1e4e66814e",
@@ -3835,6 +3843,14 @@
             "Value": {
                 "id": "2ba1e10b-5390-4e59-af2d-7f0f15262f78",
                 "resourcePath": "scripts\\dc_settings_variable_resize\\dc_settings_variable_resize.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "56c93652-467f-4190-8019-3ba9cf862fab",
+            "Value": {
+                "id": "3b51f4f4-6e22-4aba-9ba7-ed6b5884cfac",
+                "resourcePath": "scripts\\ui_render_render_surface\\ui_render_render_surface.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -7815,6 +7831,14 @@
             }
         },
         {
+            "Key": "b2e02807-5d06-40aa-b41c-f4c3b4a774ea",
+            "Value": {
+                "id": "6a7a4e7f-56f4-4f62-9b83-3940d58564af",
+                "resourcePath": "objects\\UIRenderSurface\\UIRenderSurface.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "b2f42062-ace8-472f-9801-b8e66b5cc981",
             "Value": {
                 "id": "24fe0456-a98d-4581-bd26-96cb1ad42c0e",
@@ -11480,6 +11504,7 @@
         "bde998b1-975a-4d67-b8ec-0d2dffca1356",
         "7c5e53b9-c6d1-4ba8-a330-61829173c3ff",
         "e2706ff0-d4fa-414f-9cc5-ccc0f7ddaac5",
+        "3de4c250-1bc2-4e17-ba7a-ac78c483f159",
         "42c39c4e-f00b-46ad-99c5-4a6a168ae69c",
         "75f1a516-2847-40f3-b44f-03781ed72a31",
         "c569235d-ab8c-4d23-86a8-fda0b0124542",
@@ -12027,6 +12052,7 @@
         "cd6942b8-df11-43ae-9b19-a6925d958efd",
         "70fbfb15-2cdd-4309-9035-a4f22b2ba44e",
         "8fa9751d-593d-483c-93a8-04a1412d68f2",
+        "56c93652-467f-4190-8019-3ba9cf862fab",
         "4c28c119-32d3-4ece-b237-73b6f910f6d4",
         "7c6ecbf5-cadc-4614-a94a-7e2afa16d7d1",
         "0467c3f2-5118-4e5f-81fa-5799e212448f",

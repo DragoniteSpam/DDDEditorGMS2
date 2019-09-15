@@ -20,8 +20,12 @@ var custom_data_z = event_node.custom_data[| 3];
 var custom_data_direction = event_node.custom_data[| 4];
 
 var columns = 4;
-var ew = dw / columns;
+var ew = dw / columns - 32;
 var eh = 24;
+
+var c2 = dw / 4;
+var c3 = dw / 2;
+var c4 = dw * 3 / 4;
 
 var vx1 = ew / 2;
 var vy1 = 0;
@@ -29,6 +33,7 @@ var vx2 = vx1 + (ew - vx1);
 var vy2 = ew;
 
 var yy = 64;
+var yy_start = yy;
 var spacing = 16;
 
 var el_maps = create_list(16, yy, "Maps", "no maps", ew, eh, 8, uivc_list_event_attain_map_index, false, dg, Stuff.all_maps);
@@ -52,10 +57,14 @@ var el_direction = create_radio_array(16, yy, "Direction", ew, eh, uivc_list_eve
 create_radio_array_options(el_direction, ["Down", "Left", "Right", "Up"]);
 dg.el_direction = el_direction;
 
+yy = yy_start;
+
+var el_render = create_render_surface(c2 + 16, yy, dw * 3 / 4 - 32, dh - 96, null, null, dg);
+
 var b_width = 128;
 var b_height = 32;
 var el_close = create_button(ew / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
 
-ds_list_add(dg.contents, el_maps, el_text, el_direction, el_close);
+ds_list_add(dg.contents, el_maps, el_text, el_direction, el_render, el_close);
 
 return dg;
