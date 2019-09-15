@@ -18,7 +18,7 @@ var xx = buffer_read(buffer, buffer_u16);
 var yy = buffer_read(buffer, buffer_u16);
 var zz = buffer_read(buffer, buffer_u16);
 
-map.tileset = buffer_read(buffer, buffer_u8);
+map_base.tileset = buffer_read(buffer, buffer_u8);
 
 data_resize_map(xx, yy, zz);
 
@@ -33,7 +33,7 @@ map.indoors = unpack(bools, 0);
 map.draw_water = unpack(bools, 1);
 map.fast_travel_to = unpack(bools, 2);
 map.fast_travel_from = unpack(bools, 3);
-map.is_3d = unpack(bools, 4);
+map_base.is_3d = unpack(bools, 4);
 
 map.code = buffer_read(buffer, buffer_string);
 

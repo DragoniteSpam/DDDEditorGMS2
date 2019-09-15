@@ -1007,6 +1007,14 @@
             }
         },
         {
+            "Key": "14379ae6-3478-43af-9e2a-db113b917ebd",
+            "Value": {
+                "id": "6830ca66-7ee4-4f4e-8923-527a976decf7",
+                "resourcePath": "scripts\\ui_render_surface_render_map\\ui_render_surface_render_map.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "1444c5ba-c228-47dd-b22d-5c1c819f1223",
             "Value": {
                 "id": "bd47e1c8-a07b-48cb-9904-b38c261ba523",
@@ -10639,6 +10647,14 @@
             }
         },
         {
+            "Key": "f0a7dc15-e6dd-4604-8473-21068d3f2684",
+            "Value": {
+                "id": "b94788bc-2cc0-4d40-a153-267490d07739",
+                "resourcePath": "views\\f0a7dc15-e6dd-4604-8473-21068d3f2684.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "f1134af7-c55f-4b8b-b3f3-e52fa779b91f",
             "Value": {
                 "id": "3df85ed6-2c9c-46ec-97fe-6d784a5c3676",
@@ -12140,6 +12156,7 @@
         "e9bafafb-ea09-4d2a-95c3-60428a6c1248",
         "257305ac-2e07-4f5a-9891-06b3db9d576c",
         "4229cf21-1502-4221-b23b-1111acb38d06",
+        "14379ae6-3478-43af-9e2a-db113b917ebd",
         "c37ecf28-8b0d-4b55-ad5e-e7c3ef5e5e0c",
         "7be262ef-2d7a-4cc8-85bb-446caf5592c9",
         "008f9998-5b4d-44c2-b795-eedcdadc9318",

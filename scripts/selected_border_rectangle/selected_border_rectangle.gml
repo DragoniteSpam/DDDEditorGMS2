@@ -16,4 +16,4 @@ var maxex = max(minx, maxx - 1);
 var maxey = max(miny, maxy - 1);
 var maxez = max(minz, maxz - 1);
 
-return (is_clamped(entity.xx, minx, maxex) && is_clamped(entity.yy, miny, maxey)) && (!Stuff.active_map.contents.is_3d || is_clamped(entity.zz, minz, maxez));
+return (is_clamped(entity.xx, minx, maxex) && is_clamped(entity.yy, miny, maxey)) && (!Stuff.active_map.is_3d || is_clamped(entity.zz, minz, maxez));

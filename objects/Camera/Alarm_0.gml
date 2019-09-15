@@ -3,6 +3,7 @@
 alarm[ALARM_CAMERA_SAVE] = room_speed * CAMERA_SAVE_FREQUENCY;
 
 ini_open(DATA_INI);
+// normal camera
 ini_write_real("Camera", "x", x);
 ini_write_real("Camera", "y", y);
 ini_write_real("Camera", "z", z);
@@ -18,7 +19,7 @@ ini_write_real("Camera", "zup", zup);
 ini_write_real("Camera", "fov", fov);
 ini_write_real("Camera", "pitch", pitch);
 ini_write_real("Camera", "direction", direction);
-
+// event camera
 ini_write_real("Camera", "ax", anim_x);
 ini_write_real("Camera", "ay", anim_y);
 ini_write_real("Camera", "az", anim_z);
@@ -34,4 +35,20 @@ ini_write_real("Camera", "azup", anim_zup);
 ini_write_real("Camera", "afov", anim_fov);
 ini_write_real("Camera", "apitch", anim_pitch);
 ini_write_real("Camera", "adirection", anim_direction);
+// map transfer event camera
+ini_write_real("Camera", "ex", event_x);
+ini_write_real("Camera", "ey", event_y);
+ini_write_real("Camera", "ez", event_z);
+
+ini_write_real("Camera", "exto", event_xto);
+ini_write_real("Camera", "eyto", event_yto);
+ini_write_real("Camera", "ezto", event_zto);
+
+ini_write_real("Camera", "exup", event_xup);
+ini_write_real("Camera", "eyup", event_yup);
+ini_write_real("Camera", "ezup", event_zup);
+
+ini_write_real("Camera", "efov", event_fov);
+ini_write_real("Camera", "epitch", event_pitch);
+ini_write_real("Camera", "edirection", event_direction);
 ini_close();

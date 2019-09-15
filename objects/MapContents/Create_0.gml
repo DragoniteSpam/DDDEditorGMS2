@@ -10,8 +10,6 @@ zz = 8;
 
 summary = "It's a map, that does map things";
 
-tileset = 0;                              // index
-
 fog_start = 256;                          // float
 fog_end = 1024;                           // float
 indoors = false;                          // bool
@@ -20,8 +18,6 @@ fast_travel_to = true;                    // bool
 fast_travel_from = true;                  // bool
 base_encounter_rate = 8;                  // steps?
 base_encounter_deviation = 4;             // ehh
-
-is_3d = true;
 
 discovery = 0;                            // index
 

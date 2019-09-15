@@ -35,8 +35,6 @@ anim_fov = ini_read_real("Camera", "afov", 50);
 anim_pitch = ini_read_real("Camera", "apitch", 0);
 anim_direction = ini_read_real("Camera", "adirection", 0);
 
-ini_close();
-
 alarm[ALARM_CAMERA_SAVE] = room_speed * CAMERA_SAVE_FREQUENCY;
 
 /*
@@ -94,7 +92,6 @@ selection = ds_list_create();
 selected_entities = ds_list_create();
 last_selection = noone;
 
-ini_open(DATA_INI);
 selection_mode = ini_read_real("selection", "mode", SelectionModes.RECTANGLE);
 selection_addition = ini_read_real("selection", "addition", false);
 selection_fill_type = ini_read_real("selection", "fill-type", FillTypes.TILE);
@@ -109,8 +106,7 @@ view_wireframe = ini_read_real("view", "wireframe", false);
 view_grid = ini_read_real("view", "grid", true);
 view_backface = ini_read_real("view", "backface", false);
 view_texture = ini_read_real("view", "texture", true);
-view_entities = ini_read_real("view", "entities", true); /* this sounds dumb */
-ini_close();
+view_entities = ini_read_real("view", "entities", true);
 
 tile_data_view = TileSelectorDisplayMode.PASSAGE;
 tile_on_click = TileSelectorOnClick.SELECT;
@@ -228,3 +224,23 @@ shd_value_at_tex_offset = array_create(MAX_AUTOTILE_SHADER_POSITIONS);
 
 event_canvas_active_node = noone;
 event_canvas_active_node_index = 0;
+
+event_x = ini_read_real("Camera", "ex", 0);
+event_y = ini_read_real("Camera", "ey", 100);
+event_z = ini_read_real("Camera", "ez", 100);
+
+event_xto = ini_read_real("Camera", "exto", 0);
+event_yto = ini_read_real("Camera", "eyto", 0);
+event_zto = ini_read_real("Camera", "ezto", 0);
+
+event_xup = ini_read_real("Camera", "exup", 0);
+event_yup = ini_read_real("Camera", "eyup", 0);
+event_zup = ini_read_real("Camera", "ezup", 1);
+
+event_fov = ini_read_real("Camera", "efov", 50);
+event_pitch = ini_read_real("Camera", "epitch", 0);
+event_direction = ini_read_real("Camera", "edirection", 0);
+
+event_map = noone;
+
+ini_close();
