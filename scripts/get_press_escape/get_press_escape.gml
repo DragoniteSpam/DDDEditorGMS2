@@ -1,7 +1,7 @@
 /// @param [clear?]
 /// @param [override?]
 
-var clear = (argument_count > 0) ? argument[0] : true;
+var clear = (argument_count > 0) ? argument[0] : false;
 var override = (argument_count > 1) ? argument[1] : false;
 
 var s = Controller.press_escape;

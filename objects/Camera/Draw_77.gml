@@ -157,21 +157,8 @@ if (schedule_open) {
     schedule_open = false;
 }
 
-/*for (var i=0; i<ds_list_size(schedule_list_kill); i++) {
-    var data = schedule_list_kill[| i];
-    var victim = data[@ 0];
-    var current = data[@ 1];
-    for (var j = current; j<min(current + 100, ds_list_size(victim)); j++) {
-        instance_activate_object(victim[| j]);
-        instance_destroy(victim[| j]);
-    }
-    if (j == ds_list_size(victim)) {
-        ds_list_destroy(victim);
-        ds_list_delete(schedule_list_kill, i--);
-    }
-}*/
-
-// controller is invisible so
+// this needs to be updated at the very end, and the controller is invisible so its
+// end draw events won't actually fire
 
 Controller.mouse_x_previous = mouse_x;
 Controller.mouse_y_previous = mouse_y;

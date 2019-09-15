@@ -37,12 +37,11 @@ var sely1 = y1 + Stuff.tile_size * Camera.selection_fill_tile_y - selector.tile_
 var selx2 = x1 + Stuff.tile_size * (Camera.selection_fill_tile_x + 1) - selector.tile_view_x;
 var sely2 = y1 + Stuff.tile_size * (Camera.selection_fill_tile_y + 1) - selector.tile_view_y;
 
-draw_rectangle_colour(clamp(selx1, x1, x2), clamp(sely1, y1, y2), clamp(selx2, x1, x2), clamp(sely2, y1, y2),
-    c_purple, c_purple, c_purple, c_purple, true);
-draw_rectangle_colour(clamp(selx1 + 1, x1, x2), clamp(sely1 + 1, y1, y2), clamp(selx2 - 1, x1, x2), clamp(sely2 - 1, y1, y2),
-    c_purple, c_purple, c_purple, c_purple, true);
-draw_rectangle_colour(clamp(selx1 - 1, x1, x2), clamp(sely1 - 1, y1, y2), clamp(selx2 + 1, x1, x2), clamp(sely2 + 1, y1, y2),
-    c_purple, c_purple, c_purple, c_purple, true);
+var c = c_purple;
+
+draw_rectangle_colour(clamp(selx1, x1, x2), clamp(sely1, y1, y2), clamp(selx2, x1, x2), clamp(sely2, y1, y2), c, c, c, c, true);
+draw_rectangle_colour(clamp(selx1 + 1, x1, x2), clamp(sely1 + 1, y1, y2), clamp(selx2 - 1, x1, x2), clamp(sely2 - 1, y1, y2), c, c, c, c, true);
+draw_rectangle_colour(clamp(selx1 - 1, x1, x2), clamp(sely1 - 1, y1, y2), clamp(selx2 + 1, x1, x2), clamp(sely2 + 1, y1, y2), c, c, c, c, true);
 
 draw_rectangle_colour(x1, y1, x2 - 1, y2 - 1, c_black, c_black, c_black, c_black, true);
 
@@ -99,8 +98,8 @@ draw_set_font(FDefault12);
 var inbounds = mouse_within_rectangle_determine(x1, y1, x2 - 1, y2 - 1, selector.adjust_view);
 if (inbounds) {
     // select a tile
-    var tx = (Camera.MOUSE_X - x1 + selector.tile_view_x) div Stuff.tile_size;
-    var ty = (Camera.MOUSE_Y - y1 + selector.tile_view_y) div Stuff.tile_size;
+    var tx = (mouse_x_view - x1 + selector.tile_view_x) div Stuff.tile_size;
+    var ty = (mouse_y_view - y1 + selector.tile_view_y) div Stuff.tile_size;
     if (Controller.press_left) {
         // this is kinda dumb because realistically you're not going to be doing anything besides this with the
         // tileset picker, but for now make it look the same as the other value change code
@@ -114,22 +113,22 @@ var base_x1 = selector.x;
 var base_y1 = selector.y;
 var base_x2 = base_x1 + selector.width;
 var base_y2 = base_y1 + selector.height;
-var mx = clamp(mouse_x, base_x1, base_x2);
-var my = clamp(mouse_y, base_y1, base_y2);
+var mx = clamp(mouse_x_view, base_x1, base_x2);
+var my = clamp(mouse_y_view, base_y1, base_y2);
+
 // pan around
 if (Controller.mouse_right) {
     // continuous
     if (selector.offset_x >- 1) {
-        selector.tile_view_x = clamp(selector.tile_view_x + selector.offset_x - Camera.MOUSE_X, 0, tex_width - selector.width);
-        selector.tile_view_y = clamp(selector.tile_view_y + selector.offset_y - Camera.MOUSE_Y, 0, tex_height - selector.height);
+        selector.tile_view_x = clamp(selector.tile_view_x + selector.offset_x - mouse_x_view, 0, tex_width - selector.width);
+        selector.tile_view_y = clamp(selector.tile_view_y + selector.offset_y - mouse_y_view, 0, tex_height - selector.height);
         Camera.mouse_3d_lock = true;
     }
     // this is an "or" - don't try to squish it into the above block because it won't work
     if (selector.offset_x >- 1 || inbounds) {
-        selector.offset_x = Camera.MOUSE_X;
-        selector.offset_y = Camera.MOUSE_Y;
-        // this stopped working when the new(ish) mouse / view system came in, apparently
-        //draw_scroll();
+        selector.offset_x = mouse_x_view;
+        selector.offset_y = mouse_y_view;
+        
         window_set_cursor(cr_none);
         draw_sprite(spr_scroll, 0, mx, my);
     }
@@ -139,6 +138,6 @@ if (Controller.mouse_right) {
         Camera.mouse_3d_lock = false;
         selector.offset_x = -1;
         selector.offset_y = -1;
-        window_mouse_set(mx, my);
+        window_mouse_set(mx + view_get_xport(view_current), my + view_get_yport(view_current));
     }
 }

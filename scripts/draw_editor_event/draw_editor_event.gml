@@ -55,7 +55,7 @@ draw_text_colour(xview + 16, yview + hview - 8, string("Canvas at (" + string(xv
 if (Controller.mouse_right) {
     if (!dialog_exists()) {
         window_set_cursor(cr_none);
-        draw_scroll();
+		draw_sprite(spr_scroll, 0, Camera.MOUSE_X, Camera.MOUSE_Y);
 		
         camera_set_view_pos(camera, xview - (mouse_x - Controller.mouse_x_previous), yview - (mouse_y - Controller.mouse_y_previous));
     }
