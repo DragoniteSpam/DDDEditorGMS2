@@ -24,6 +24,7 @@ offsettable = true;
 scalable = true;
 
 batch = batch_mesh;
+batch_collision = batch_collision_mesh;
 render = render_mesh;
 selector = select_single;
 on_select = safc_on_mesh;

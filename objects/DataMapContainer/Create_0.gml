@@ -9,6 +9,8 @@ version = 0;
 
 preview = noone;
 wpreview = noone;
+cspreview = noone;
+cpreview = noone;
 
 // A lot of the map metadata is stored in the MapContents object here, even
 // though they're in the MapContainer in the game so that you can access

@@ -10,7 +10,9 @@
         "3f15425f-e08b-466e-ae9b-3b5e601a567e",
         "db53ac99-44eb-4cd5-bf09-833aa01808a1",
         "4a75c93e-a7d4-47af-a01a-a4e195fae967",
-        "80b4314f-45e9-472a-adac-f4e7fd5355a1"
+        "80b4314f-45e9-472a-adac-f4e7fd5355a1",
+        "60c20c64-f0b8-47dd-8915-ea8f056d085d",
+        "214533a4-bdc3-4319-8c84-dfb628a5143e"
     ],
     "filterType": "GMScript",
     "folderName": "batching",

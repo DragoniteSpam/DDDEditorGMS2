@@ -12,6 +12,9 @@ visible_routes = array_create(MAX_VISIBLE_MOVE_ROUTES);
 // individually
 batch = null;
 
+// when creating one giant collision shape
+batch_collision = null;
+
 // for things that don't fit into the above category, including but not limited
 // to NPCs, things that animate, things that move and things that need special
 // shaders

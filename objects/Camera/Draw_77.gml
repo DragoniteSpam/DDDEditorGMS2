@@ -55,7 +55,6 @@ if (ds_list_size(deletions) > 0) {
 		    instance_activate_object(thing);
 		    instance_destroy(thing);
 		}
-		debug("deletingn stuff the old way");
 	} else {
 		var original_batch_sizes = ds_list_create();
 		var clone_dynamic = ds_list_clone(map.dynamic);
@@ -103,8 +102,6 @@ if (ds_list_size(deletions) > 0) {
 		ds_list_destroy(clone_dynamic);
 		ds_list_destroy(clone_all);
 		ds_list_destroy(original_batch_sizes);
-		
-		debug("deletingn stuff the new way");
 	}
 }
 

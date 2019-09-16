@@ -1471,6 +1471,14 @@
             }
         },
         {
+            "Key": "214533a4-bdc3-4319-8c84-dfb628a5143e",
+            "Value": {
+                "id": "5519fd0f-a1a3-4c69-82f4-c341e74da7d2",
+                "resourcePath": "scripts\\batch_collision_mesh\\batch_collision_mesh.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "215c2fc3-cce9-430c-8459-dfbed959d63f",
             "Value": {
                 "id": "f68e7290-b4b5-4ab9-85ab-71f4d2d4b33b",
@@ -4235,6 +4243,14 @@
             "Value": {
                 "id": "b46eaaeb-4ed8-4a58-84cf-fe958b7caa6d",
                 "resourcePath": "scripts\\event_prefab_render_switch_name\\event_prefab_render_switch_name.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "60c20c64-f0b8-47dd-8915-ea8f056d085d",
+            "Value": {
+                "id": "1618eda9-fc4a-4f5a-b941-5cd5493ef8de",
+                "resourcePath": "scripts\\batch_collision_tile\\batch_collision_tile.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -11405,6 +11421,8 @@
         "db53ac99-44eb-4cd5-bf09-833aa01808a1",
         "4a75c93e-a7d4-47af-a01a-a4e195fae967",
         "80b4314f-45e9-472a-adac-f4e7fd5355a1",
+        "60c20c64-f0b8-47dd-8915-ea8f056d085d",
+        "214533a4-bdc3-4319-8c84-dfb628a5143e",
         "09096564-84a5-4547-b3e9-13eb83d5083e",
         "c90c974b-f766-4e1c-8510-7a8d4cb235c2",
         "0ba67cd4-8c88-46b5-98b0-6592fdf0f101",
