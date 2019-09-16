@@ -32,7 +32,8 @@ if (map.is_3d) {
 
 shader_set(shd_default);
 
-//vertex_submit(Camera.event_map.preview, pr_trianglelist, Camera.event_map.tileset.texture);
+// @todo tileset update
+vertex_submit(Camera.event_map.preview, pr_trianglelist, sprite_get_texture(Stuff.all_tilesets[| Camera.event_map.tileset].master, 0));
 
 if (Camera.view_grid) {
 	transform_set(0, 0, 0.5, 0, 0, 0, 1, 1, 1);

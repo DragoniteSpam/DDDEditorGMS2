@@ -6,9 +6,9 @@
 /// @param root
 /// @param [close]
 
-var base_x = 128;
-var base_y = 96;
-var offset = 64;
+var base_x = 64;
+var base_y = 64;
+var offset = 48;
 var n = ds_list_size(Camera.dialogs);
 
 var dg = instance_create_depth(base_x + n * offset, base_y + n * offset, 0, Dialog);

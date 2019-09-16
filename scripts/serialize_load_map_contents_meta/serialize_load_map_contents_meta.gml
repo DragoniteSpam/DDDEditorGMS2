@@ -42,7 +42,7 @@ for (var i = 0; i < array_length_1d(map.mesh_autotile_raw); i++) {
     if (exists) {
         var size = buffer_read(buffer, buffer_u32);
         map.mesh_autotile_raw[i] = buffer_read_buffer(buffer, size);
-        map.mesh_autotiles[i] = vertex_create_buffer_from_buffer(map.mesh_autotile_raw[i], Camera.vertex_format);
-        vertex_freeze(map.mesh_autotiles[i]);
+	    map.mesh_autotiles[i] = vertex_create_buffer_from_buffer(map.mesh_autotile_raw[i], Camera.vertex_format);
+	    vertex_freeze(map.mesh_autotiles[i]);
     }
 }

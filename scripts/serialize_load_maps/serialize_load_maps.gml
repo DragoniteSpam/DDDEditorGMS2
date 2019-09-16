@@ -8,6 +8,7 @@ var n_maps = buffer_read(buffer, buffer_u16);
 
 repeat (n_maps) {
 	var map = instance_create_depth(0, 0, 0, DataMapContainer);
+	map.version = version;
 	serialize_load_generic(buffer, map, version);
 	
 	var size = buffer_read(buffer, buffer_u32);

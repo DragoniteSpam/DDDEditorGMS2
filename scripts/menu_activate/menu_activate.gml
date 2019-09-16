@@ -6,5 +6,3 @@ Camera.menu.active_element = menu;
 if (!menu) {
 	Camera.menu.extra_element = noone;
 }
-
-debug(debug_get_callstack());

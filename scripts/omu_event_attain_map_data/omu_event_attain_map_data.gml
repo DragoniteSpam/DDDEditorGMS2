@@ -60,6 +60,15 @@ dg.el_direction = el_direction;
 yy = yy_start;
 
 var el_render = create_render_surface(c2 + 16, yy, dw * 3 / 4 - 32, dh - 96, ui_render_surface_render_map, ui_render_surface_control_map, dg);
+// let's be honest, if you somehow manage to make a data file with zero maps you
+// have bigger problems than the error this is going to generate
+var visible_map = guid_get(custom_data_map[| 0]);
+if (visible_map.preview) {
+	vertex_delete_buffer(visible_map.preview);
+	vertex_delete_buffer(visible_map.wpreview);
+}
+batch_all_preview(visible_map);
+Camera.event_map = visible_map;
 
 var b_width = 128;
 var b_height = 32;
