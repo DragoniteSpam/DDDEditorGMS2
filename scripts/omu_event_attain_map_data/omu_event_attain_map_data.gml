@@ -66,7 +66,7 @@ var visible_map = guid_get(custom_data_map[| 0]);
 if (visible_map.preview) {
 	vertex_delete_buffer(visible_map.preview);
 	vertex_delete_buffer(visible_map.wpreview);
-	c_world_destroy_object(Camera.event_map.cpreview);
+	c_object_destroy(Camera.event_map.cpreview);
 	c_shape_destroy(Camera.event_map.cspreview);
 }
 

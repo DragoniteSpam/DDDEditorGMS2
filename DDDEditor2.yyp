@@ -5783,6 +5783,14 @@
             }
         },
         {
+            "Key": "81d689e1-223f-4bb6-b7ed-7089fb93af86",
+            "Value": {
+                "id": "6142d977-1102-491b-a2ca-4e1842a33d38",
+                "resourcePath": "datafiles_yy\\data\\basic\\ctile.d3d.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "820aac31-21d2-429a-b06e-34225a018af7",
             "Value": {
                 "id": "d58fc228-4632-493a-8753-9725f1df3932",
@@ -11108,6 +11116,14 @@
                 "id": "d115c4c3-3d3c-493f-be69-3b5197f33d21",
                 "resourcePath": "scripts\\selected_rectangle\\selected_rectangle.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "fcc7d4ae-cd26-4100-8d60-61259f8e6c06",
+            "Value": {
+                "id": "bad1bc9f-e30e-4817-b158-0e16c23e5f48",
+                "resourcePath": "datafiles_yy\\data\\basic\\ccube.d3d.yy",
+                "resourceType": "GMIncludedFile"
             }
         },
         {

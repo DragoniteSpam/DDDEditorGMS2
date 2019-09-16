@@ -418,32 +418,16 @@ active_map.contents = instance_create_depth(0, 0, 0, MapContents);
 instance_create_depth(0, 0, 0, Camera);
 
 #region collision stuff plus basic shapes
+c_transform_scaling(tile_width, tile_height, tile_depth);
 c_shape_tile = c_shape_create();
 c_shape_begin_trimesh();
-c_shape_add_triangle(0, 0, 0, tile_width, 0, 0, tile_width, tile_height, 0);
-c_shape_add_triangle(tile_width, tile_height, 0, 0, tile_height, 0, 0, 0, 0);
+c_shape_load_trimesh("data/basic/ctile.d3d");
 c_shape_end_trimesh(c_shape_tile);
 c_shape_block = c_shape_create();
 c_shape_begin_trimesh();
-// bottom
-c_shape_add_triangle(0, 0, 0, tile_width, 0, 0, tile_width, tile_height, 0);
-c_shape_add_triangle(tile_width, tile_height, 0, 0, tile_height, 0, 0, 0, 0);
-// top
-c_shape_add_triangle(0, 0, tile_depth, tile_width, 0, 0, tile_width, tile_height, tile_depth);
-c_shape_add_triangle(tile_width, tile_height, tile_depth, 0, tile_height, 0, 0, 0, tile_depth);
-// left
-c_shape_add_triangle(0, 0, 0, 0, 0, tile_depth, 0, tile_height, tile_depth);
-c_shape_add_triangle(0, tile_height, tile_depth, 0, tile_height, 0, 0, 0, 0);
-// right
-c_shape_add_triangle(tile_width, 0, 0, tile_width, 0, tile_depth, tile_width, tile_height, tile_depth);
-c_shape_add_triangle(tile_width, tile_height, tile_depth, tile_width, tile_height, 0, tile_width, 0, 0);
-// front
-c_shape_add_triangle(0, 0, 0, 0, 0, tile_depth, tile_width, 0, tile_height);
-c_shape_add_triangle(tile_width, 0, tile_height, tile_width, 0, 0, 0, 0, 0);
-// back
-c_shape_add_triangle(0, tile_height, 0, 0, tile_height, tile_depth, tile_width, tile_height, tile_height);
-c_shape_add_triangle(tile_width, tile_height, tile_height, tile_width, tile_height, 0, 0, tile_height, 0);
+c_shape_load_trimesh("data/basic/ccube.d3d");
 c_shape_end_trimesh(c_shape_block);
+c_transform_identity();
 
 basic_cage = import_d3d("data\\basic\\cage.d3d", false);
 #endregion

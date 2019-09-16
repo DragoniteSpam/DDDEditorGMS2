@@ -8,7 +8,7 @@ if (Camera.event_map != Stuff.all_maps[| ui_list_selection(list)]) {
 	if (Camera.event_map) {
 		vertex_delete_buffer(Camera.event_map.preview);
 		vertex_delete_buffer(Camera.event_map.wpreview);
-		c_world_destroy_object(Camera.event_map.cpreview);
+		c_object_destroy(Camera.event_map.cpreview);
 		c_shape_destroy(Camera.event_map.cspreview);
 	}
 	

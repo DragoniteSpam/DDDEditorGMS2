@@ -40,7 +40,6 @@ vertex_freeze(map_container.wpreview);
 
 c_shape_end_trimesh(map_container.cspreview);
 map_container.cpreview = c_object_create(map_container.cspreview, 1, 1);
-c_world_add_object(map_container.cpreview);
 
 if (!exists) {
 	instance_destroy(MapContents);

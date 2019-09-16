@@ -4,28 +4,17 @@ var mesh = argument0;
 var data = guid_get(mesh.mesh);
 
 // You can't add anything other than triangles here, since this script is called
-// in the middle of a trimesh.
+// in the middle of a trimesh. You can approximate with meshes, though.
 
-var x1 = (mesh.xx + data.xmin) * TILE_WIDTH;
-var y1 = (mesh.yy + data.ymin) * TILE_HEIGHT;
-var z1 = (mesh.zz + data.zmin) * TILE_DEPTH;
-var x2 = (mesh.xx + data.xmax) * TILE_WIDTH;
-var y2 = (mesh.yy + data.ymax) * TILE_HEIGHT;
-var z2 = (mesh.zz + data.zmax) * TILE_DEPTH;
+var xx = (mesh.xx + data.xmin) * TILE_WIDTH;
+var yy = (mesh.yy + data.ymin) * TILE_HEIGHT;
+var zz = (mesh.zz + data.zmin) * TILE_DEPTH;
 
-// @todo other transformations?
+var xscale = (data.xmax - data.xmin) * TILE_WIDTH;
+var yscale = (data.ymax - data.ymin) * TILE_HEIGHT;
+var zscale = (data.zmax - data.zmin) * TILE_DEPTH;
 
-c_shape_add_triangle(x1, y1, z1, x1, y2, z1, x2, y1, z1);
-c_shape_add_triangle(x2, y1, z1, x1, y2, z1, x2, y2, z1);
-c_shape_add_triangle(x1, y1, z2, x1, y2, z2, x2, y1, z2);
-c_shape_add_triangle(x2, y1, z2, x1, y2, z2, x2, y2, z2);
-
-c_shape_add_triangle(x1, y1, z1, x1, y1, z2, x2, y1, z1);
-c_shape_add_triangle(x2, y1, z1, x1, y1, z2, x2, y1, z2);
-c_shape_add_triangle(x1, y2, z1, x1, y2, z2, x2, y2, z1);
-c_shape_add_triangle(x2, y2, z1, x1, y2, z2, x2, y2, z2);
-
-c_shape_add_triangle(x1, y1, z1, x2, y1, z1, x1, y2, z1);
-c_shape_add_triangle(x1, y2, z1, x2, y1, z1, x2, y2, z1);
-c_shape_add_triangle(x1, y1, z2, x2, y1, z2, x1, y2, z2);
-c_shape_add_triangle(x1, y2, z2, x2, y1, z2, x2, y2, z2);
+c_transform_scaling(xscale, yscale, zscale);
+c_transform_position(xx, yy, zz);
+c_shape_load_trimesh("data/basic/ccube.d3d");
+c_transform_identity();
