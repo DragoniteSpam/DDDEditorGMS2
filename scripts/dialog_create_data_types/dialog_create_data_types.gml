@@ -32,7 +32,7 @@ var n_slots = 14;
 
 var yy = 64;
 
-var el_list = create_list(16, yy, "Data Types: ", "<no data types>", ew, eh, n_slots, uivc_list_data_data, false, dg);
+var el_list = create_list(16, yy, "Data Types: ", "<no data types>", ew, eh, n_slots, uivc_list_data_data, false, dg, Stuff.all_data);
 el_list.render = ui_render_list_data_data;
 el_list.entries_are = ListEntries.INSTANCES;
 

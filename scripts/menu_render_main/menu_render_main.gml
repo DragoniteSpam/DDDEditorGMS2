@@ -26,7 +26,6 @@ if (element) {
 	script_execute(element.render, element, element.x, element.y);
 }
 
-
 if ((!dialog_exists() && !mouse_within_rectangle_view(0, 0, xx + room_width, yy + menu.element_height))) {
 	if (Controller.press_left || Controller.press_right) {
 		menu_activate(noone);

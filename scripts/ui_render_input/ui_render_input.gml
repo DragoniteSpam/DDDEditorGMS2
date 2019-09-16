@@ -66,7 +66,8 @@ if (input.interactive && dialog_is_active(input.root)) {
         if (keyboard_check_pressed(vk_backspace)) {
             value = string_backspace(value);
         }
-        if (Controller.release_escape) {
+        if (Controller.press_escape) {
+			Controller.press_escape = false;
             value = "";
         }
         if (string_length(value) > input.value_limit) {

@@ -128,6 +128,7 @@ if (!keyboard_check(vk_control)) {
 	zup = 1;
 } else {
 	if (Controller.press_right) {
+		Controller.press_right = false;
 		// if there is no selection, select the single square under the cursor. Otherwise you might
 		// want to do operations on large swaths of entities, so don't clear it or anythign like that.
 		
