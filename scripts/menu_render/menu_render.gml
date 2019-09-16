@@ -23,7 +23,7 @@ if (!menu.invisible) {
 	if (mouse_within_rectangle(x1, y1, x2, y2)) {
 	    draw_rectangle_colour(x1, y1, x2, y2, c_ui, c_ui, c_ui, c_ui, false);
 		// lazy evaluation
-	    if (!dialog_exists() && get_press_left()) {
+	    if (!dialog_exists() && Controller.press_left) {
 	        menu_activate(menu);
 	    }
 	}

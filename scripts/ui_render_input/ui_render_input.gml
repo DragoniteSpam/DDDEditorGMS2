@@ -66,7 +66,7 @@ if (input.interactive && dialog_is_active(input.root)) {
         if (keyboard_check_pressed(vk_backspace)) {
             value = string_backspace(value);
         }
-        if (get_release_escape()) {
+        if (Controller.release_escape) {
             value = "";
         }
         if (string_length(value) > input.value_limit) {
@@ -85,7 +85,7 @@ if (input.interactive && dialog_is_active(input.root)) {
     
     var inbounds = mouse_within_rectangle_determine(vx1, vy1, vx2, vy2, input.adjust_view);
     if (inbounds) {
-        if (get_release_left()) {
+        if (Controller.release_left) {
             ui_activate(input);
             keyboard_string = "";
         }

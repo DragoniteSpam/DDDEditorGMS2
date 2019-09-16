@@ -12,7 +12,7 @@ gpu_set_cullmode(cull_noculling);
 script_execute(menu.render, menu, 0, yy);
 
 // lazy evaluation
-if ((!dialog_exists() && (get_press_left() || get_press_right()))) {
+if ((!dialog_exists() && (Controller.press_left || Controller.press_right))) {
     menu_activate(noone);
 }
 

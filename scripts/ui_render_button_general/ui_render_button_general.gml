@@ -34,7 +34,7 @@ if (enabled) {
     var inbounds = mouse_within_rectangle_determine(x1, y1, x2, y2, thing.adjust_view);
     if (inbounds) {
         draw_rectangle_colour(x1, y1, x2, y2, c_ui, c_ui, c_ui, c_ui, false);
-        if (get_release_left()) {
+        if (Controller.release_left) {
             script_execute(onmouseup, thing);
         }
     }

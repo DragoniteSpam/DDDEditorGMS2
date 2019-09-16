@@ -94,7 +94,7 @@ if (!keyboard_check(vk_control)) {
     x += xspeed;
     y += yspeed;
 } else {
-	if (get_press_right()) {
+	if (Controller.press_right) {
 		// if there is no selection, select the single square under the cursor. Otherwise you might
 		// want to do operations on large swaths of entities, so don't clear it or anythign like that.
 		

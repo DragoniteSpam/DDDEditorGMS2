@@ -43,7 +43,7 @@ if (option.root.value == option.value) {
 if (enabled && dialog_is_active(option.root.root)) {
     var inbounds = mouse_within_rectangle_determine(x1, y1, x2, y2, option.adjust_view);
     if (inbounds) {
-        if (get_release_left()) {
+        if (Controller.release_left) {
             option.root.value = option.value;
             script_execute(option.root.onvaluechange, option);
         }

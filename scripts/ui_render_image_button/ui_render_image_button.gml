@@ -28,7 +28,7 @@ if (button.interactive && dialog_is_active(button.root)) {
     if (inbounds) {
         draw_rectangle_colour(x1, y1, x2, y2, c_ui, c_ui, c_ui, c_ui, false);
         color = merge_color(c_white, c_ui, 0.5);
-        if (get_release_left()) {
+        if (Controller.release_left) {
             script_execute(button.onmouseup, button);
         }
     }

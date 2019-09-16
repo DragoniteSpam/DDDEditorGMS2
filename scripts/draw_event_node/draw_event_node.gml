@@ -53,7 +53,7 @@ switch (node.type) {
             if (mouse_within_rectangle_adjusted(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + entry_height - tolerance)) {
                 draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + entry_height - tolerance, c, c, c, c, false);
                 if (!dialog_exists()) {
-                    if (get_release_left()) {
+                    if (Controller.release_left) {
                         node.data[| 0] = get_string("Comment contents?", node.data[| 0]);
                     }
                 }
@@ -92,7 +92,7 @@ switch (node.type) {
                 if (mouse_within_rectangle_adjusted(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + entry_height - tolerance)) {
                     draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + entry_height - tolerance, c, c, c, c, false);
                     if (!dialog_exists()) {
-                        if (get_release_left()) {
+                        if (Controller.release_left) {
                             node.data[| i] = get_string("Data in this node?", node.data[| i]);
                         }
                     }
@@ -168,7 +168,7 @@ switch (node.type) {
                 if (!dialog_exists()) {
                     if (mouse_within_rectangle_adjusted(x1 + tolerance, entry_yy + tolerance + rh, x2 - tolerance, entry_yy + eh + rh - tolerance)) {
                         draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance + rh, x2 - tolerance, entry_yy - tolerance + rh + eh, c, c, c, c, false);
-                        if (get_release_left()) {
+                        if (Controller.release_left) {
                             switch (list_type[| i]) {
                                 case ConditionBasicTypes.SWITCH: dialog_create_event_condition_switch(node, i); break;
                                 case ConditionBasicTypes.VARIABLE: dialog_create_event_condition_variable(node, i); break;
@@ -297,7 +297,7 @@ switch (node.type) {
                 if (mouse_within_rectangle_adjusted(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + eh - tolerance)) {
                     draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + eh - tolerance, c, c, c, c, false);
                     if (!dialog_exists()) {
-                        if (get_release_left()) {
+                        if (Controller.release_left) {
                             node.data[| i] = get_string("Option text?", node.data[| i]);
                         }
                     }
@@ -403,7 +403,7 @@ switch (node.type) {
                 if (!dialog_exists()) {
                     if (mouse_within_rectangle_adjusted(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + eh - tolerance)) {
                         draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + eh - tolerance, c, c, c, c, false);
-                        if (get_release_left()) {
+                        if (Controller.release_left) {
                             var attainment = type[EventNodeCustomData.ATTAINMENT];
                             if (attainment == null) {
                                 switch (type[EventNodeCustomData.TYPE]) {
@@ -656,7 +656,7 @@ switch (node.type) {
         
         if (event_canvas_active_node == node) {
             if (!dialog_exists()) {
-                if (get_release_left()) {
+                if (Controller.release_left) {
                     // if the mouse is contacting another entrypoint, connect it
                     var contacted_node = event_seek_node();
                     if (contacted_node) {
@@ -706,7 +706,7 @@ switch (node.type) {
         
         if (event_canvas_active_node == node) {
             if (!dialog_exists()) {
-                if (get_release_left()) {
+                if (Controller.release_left) {
                     // if the mouse is contacting another entrypoint, connect it
                     var contacted_node = event_seek_node();
                     if (contacted_node) {
@@ -757,7 +757,7 @@ switch (node.type) {
 if (!bezier_override) {
     if (event_canvas_active_node == node) {
         if (!dialog_exists()) {
-            if (get_release_left()) {
+            if (Controller.release_left) {
                 event_canvas_active_node = noone;
                 event_canvas_active_node_index = 0;
                 // if the mouse is contacting another entrypoint, connect it

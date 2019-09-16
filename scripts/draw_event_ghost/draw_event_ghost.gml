@@ -20,7 +20,7 @@ var c = colour_mute(c_ev_ghost);
 if (mouse_within_rectangle_adjusted(x1, y1, x2, y2)) {
     draw_rectangle_colour(x1 + padding, y1 + padding, x2 - padding, y2 - padding, c, c, c, c, false);
     if (!dialog_exists()) {
-        if (get_release_left()) {
+        if (Controller.release_left) {
             event_view_node(outbound);
         }
     }

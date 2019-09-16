@@ -22,7 +22,7 @@ draw_rectangle_colour(x1 + 1, y1 + 1, x2 - 1, y2 - 1, c_black, c_black, c_black,
 if (bitfield.interactive && dialog_is_active(bitfield.root)) {
     var inbounds = mouse_within_rectangle_determine(x1, y1, x2, y2, bitfield.adjust_view);
     if (inbounds) {
-        if (get_release_left()) {
+        if (Controller.release_left) {
             script_execute(bitfield.onvaluechange, bitfield);
         }
     }

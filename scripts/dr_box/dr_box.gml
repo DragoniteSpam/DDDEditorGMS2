@@ -30,7 +30,7 @@ if (active) {
         var cby2 = cby + cbs;
         if (mouse_within_rectangle_determine(cbx1, cby1, cbx2, cby2, true)) {
             cbi = 1;
-            if (get_release_left()) {
+            if (Controller.release_left) {
                 kill = true;
             }
         } else {
@@ -92,7 +92,7 @@ for (var i = 0; i < ds_list_size(dialog.contents); i++) {
 }
 
 // do this at the end in case some inner element needs to use the escape key
-kill = kill || (active && get_release_escape());
+kill = kill || (active && Controller.release_escape);
 
 // the x button/escape key does not commit changes
 if (kill) {

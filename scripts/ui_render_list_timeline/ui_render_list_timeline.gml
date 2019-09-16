@@ -298,17 +298,17 @@ var inbounds_loop = mouse_within_rectangle_determine(x1 + spacing + sw * 3, y3 +
 if (inbounds_play) {
     var c_play = timeline.playing ? merge_colour(c_greenish, c_ltgray, 0.5) : c_ltgray;
     draw_sprite_ext(spr_play_controls, 0, x1 + spacing, y3 + spacing, 1, 1, 0, c_play, 1);
-    if (get_release_left() && animation) {
+    if (Controller.release_left && animation) {
         timeline.playing = true;
     }
 } else if (inbounds_pause) {
     draw_sprite_ext(spr_play_controls, 1, x1 + spacing + sw, y3 + spacing, 1, 1, 0, c_ltgray, 1);
-    if (get_release_left()) {
+    if (Controller.release_left) {
         timeline.playing = false;
     }
 } else if (inbounds_stop) {
     draw_sprite_ext(spr_play_controls, 2, x1 + spacing + sw * 2, y3 + spacing, 1, 1, 0, c_ltgray, 1);
-    if (get_release_left()) {
+    if (Controller.release_left) {
         timeline.playing = false;
         timeline.playing_moment = 0;
         timeline.moment_index = 0;
@@ -316,7 +316,7 @@ if (inbounds_play) {
 } else if (inbounds_loop) {
     var c_loop = timeline.playing_loop ? merge_colour(c_greenish, c_ltgray, 0.5) : c_ltgray;
     draw_sprite_ext(spr_play_controls, 3, x1 + spacing + sw * 3, y3 + spacing, 1, 1, 0, c_loop, 1);
-    if (get_release_left()) {
+    if (Controller.release_left) {
         timeline.playing_loop = !timeline.playing_loop;
     }
 }

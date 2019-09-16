@@ -14,7 +14,7 @@ if (!dialog_exists()) {
     var tolerance = 8;
     if (mouse_within_rectangle_adjusted(xx - tolerance, yy - tolerance, xx + tolerance, yy + tolerance)) {
         draw_sprite(spr_event_delete, 1, xx, yy);
-        if (get_release_left()) {
+        if (Controller.release_left) {
             if (show_question("Delete?")) {
                 instance_destroy_later(node);
             }

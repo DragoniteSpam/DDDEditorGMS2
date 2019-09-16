@@ -14,7 +14,7 @@ if (!dialog_exists() && !event_canvas_active_node) {
         draw_rectangle_colour(x1 + tolerance, y1 + tolerance, x2 - tolerance, y2 - tolerance, color, color, color, color, false);
         
         // i don't like this either but it also works
-        if (get_release_left()) {
+        if (Controller.release_left) {
             var new_name = get_string("New name for this node?", node.name);
             if (new_name != node.name) {
                 if (string_length(new_name) == 0) {

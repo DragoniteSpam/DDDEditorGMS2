@@ -56,7 +56,7 @@ var active = picker.interactive && dialog_is_active(picker.root);
 if (active) {
     var inbounds = mouse_within_rectangle_determine(vx1, vy1, vx2, vy2, picker.adjust_view);
     if (inbounds) {
-        if (get_release_left()) {
+        if (Controller.release_left) {
             ui_activate(picker);
             keyboard_string = "";
         }
@@ -77,7 +77,7 @@ if (active) {
         if (keyboard_check_pressed(vk_backspace)) {
             picker.value_text = string_backspace(picker.value_text);
         }
-        if (get_release_escape()) {
+        if (Controller.release_escape) {
             picker.value_text = "";
         }
         if (string_length(picker.value_text) > 6) {
@@ -148,7 +148,7 @@ switch (picker.axis_channel) {
 
 if (active) {
     var inbounds = mouse_within_rectangle_determine(vx1, vy1, vx2, vy2, picker.adjust_view);
-    if (inbounds && get_press_left()) {
+    if (inbounds && Controller.press_left) {
         picker.selecting_color = true;
     }
 }
@@ -205,7 +205,7 @@ var h = vy2 - vy1;
 
 if (active) {
     var inbounds = mouse_within_rectangle_determine(vx1, vy1, vx2, vy2, picker.adjust_view);
-    if (inbounds && get_press_left()) {
+    if (inbounds && Controller.press_left) {
         picker.selecting_axis = true;
     }
 }
@@ -257,7 +257,7 @@ if (picker.allow_alpha) {
 
     if (active) {
         var inbounds = mouse_within_rectangle_determine(vx1, vy1, vx2, vy2, picker.adjust_view);
-        if (inbounds && get_press_left()) {
+        if (inbounds && Controller.press_left) {
             picker.selecting_alpha = true;
         }
     }
