@@ -1,7 +1,14 @@
-// no arguments - this should run without any knowledge that it's being
-// controlled by a UI element
+/// @param x1
+/// @param y1
+/// @param x2
+/// @param y2
 
-var map = Stuff.active_map;
+var x1 = argument0;
+var y1 = argument1;
+var x2 = argument2;
+var y2 = argument3;
+
+var map = Camera.event_map;
 var map_contents = map.contents;
 
 var camera = view_get_camera(view_current);
@@ -16,8 +23,8 @@ gpu_set_ztestenable(map.is_3d);        // this will make things rather odd with 
 draw_set_color(c_white);
 
 if (map.is_3d) {
-    var vw = view_get_wport(view_current);
-    var vh = view_get_hport(view_current);
+    var vw = x2 - x1;
+    var vh = y2 - y1;
     camera_set_view_mat(camera, matrix_build_lookat(Camera.event_x, Camera.event_y, Camera.event_z, Camera.event_xto,
 		Camera.event_yto, Camera.event_zto, Camera.event_xup, Camera.event_yup, Camera.event_zup));
     camera_set_proj_mat(camera, matrix_build_projection_perspective_fov(-Camera.event_fov, -vw / vh, 1, 32000));
@@ -33,8 +40,8 @@ if (map.is_3d) {
 shader_set(shd_default);
 
 // @todo tileset update
-vertex_submit(Camera.event_map.preview, pr_trianglelist, sprite_get_texture(Stuff.all_tilesets[| Camera.event_map.tileset].master, 0));
-vertex_submit(Camera.event_map.wpreview, pr_linelist, -1);
+vertex_submit(map.preview, pr_trianglelist, sprite_get_texture(Stuff.all_tilesets[| Camera.event_map.tileset].master, 0));
+vertex_submit(map.wpreview, pr_linelist, -1);
 
 if (Camera.view_grid) {
 	transform_set(0, 0, 0.5, 0, 0, 0, 1, 1, 1);
