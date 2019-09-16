@@ -24,6 +24,7 @@ if (!menu.invisible) {
 	    draw_rectangle_colour(x1, y1, x2, y2, c_ui, c_ui, c_ui, c_ui, false);
 		// lazy evaluation
 	    if (!dialog_exists() && Controller.press_left) {
+			Controller.press_left = false;
 	        menu_activate(menu);
 	    }
 	}

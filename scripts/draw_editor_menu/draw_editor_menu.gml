@@ -11,13 +11,7 @@ gpu_set_cullmode(cull_noculling);
 
 script_execute(menu.render, menu, 0, yy);
 
-// lazy evaluation
-if ((!dialog_exists() && (Controller.press_left || Controller.press_right))) {
-    menu_activate(noone);
-}
-
-// these are going to be uncommon and short-lived, so don't
-// bother deactivating them.
+// these are going to be uncommon and short-lived, so don't bother deactivating them.
 with (UINotification) {
     script_execute(render);
 }

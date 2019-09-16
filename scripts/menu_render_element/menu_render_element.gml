@@ -29,6 +29,7 @@ if (mouse_within_rectangle(x1, y1, x2, y2) || active) {
 if (mouse_within_rectangle(x1, y1, x2, y2)) {
     if (Controller.press_left && !dialog_exists()) {
         script_execute(menumenu.onmouseup, menumenu);
+		Controller.press_left = false;
     }
 }
 

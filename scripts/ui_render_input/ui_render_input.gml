@@ -89,9 +89,5 @@ if (input.interactive && dialog_is_active(input.root)) {
             ui_activate(input);
             keyboard_string = "";
         }
-    } else {
-        if (Controller.release_left) {
-            ui_activate(noone);
-        }
     }
 }
