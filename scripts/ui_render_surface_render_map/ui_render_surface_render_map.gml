@@ -43,8 +43,10 @@ shader_set(shd_default);
 transform_reset();
 
 // @todo tileset update
-vertex_submit(map.preview, pr_trianglelist, sprite_get_texture(Stuff.all_tilesets[| Camera.event_map.tileset].master, 0));
-vertex_submit(map.wpreview, pr_linelist, -1);
+if (map.preview) {
+	vertex_submit(map.preview, pr_trianglelist, sprite_get_texture(Stuff.all_tilesets[| Camera.event_map.tileset].master, 0));
+	vertex_submit(map.wpreview, pr_linelist, -1);
+}
 
 if (Camera.view_grid) {
 	transform_set(0, 0, 0.5, 0, 0, 0, 1, 1, 1);
