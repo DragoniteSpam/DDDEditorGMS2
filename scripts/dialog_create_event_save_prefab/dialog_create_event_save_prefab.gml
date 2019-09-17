@@ -27,8 +27,14 @@ var n_slots = 10;
 
 var yy = 64;
 
-var el_name = create_input(16, yy, "Name:", ew, eh, null, 0, "ehh", "", validate_string, ui_value_string, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
+var base_name = node.name;
+var position = string_pos("$", base_name);
+if (position) {
+	base_name = string_copy(base_name, 1, position - 1);
+}
+var el_name = create_input(16, yy, "Name:", ew, eh, null, 0, base_name, "", validate_string, ui_value_string, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
 yy = yy + el_name.height + spacing;
+dg.el_name = el_name;
 
 var el_nope = create_button(dw / 3, dh - 32 - b_height / 2, "Nope", b_width, b_height, fa_center, dmu_dialog_commit, dg, fa_center);
 var el_yeah = create_button(dw * 2 / 3, dh - 32 - b_height / 2, "Yeah", b_width, b_height, fa_center, dmu_dialog_event_save_prefab, dg, fa_center);

@@ -5943,6 +5943,14 @@
             }
         },
         {
+            "Key": "85e2f090-df61-438e-ab75-f59bb73114e5",
+            "Value": {
+                "id": "e14f7e7c-2416-4f3a-b581-6222236f9065",
+                "resourcePath": "sprites\\spr_event_prefab_revert\\spr_event_prefab_revert.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "866aebb3-1e12-407d-b60b-0edf7a950e7d",
             "Value": {
                 "id": "cab74179-c335-4364-812b-462ac6129f5d",
@@ -8427,6 +8435,14 @@
             "Value": {
                 "id": "d8ac15c0-c689-4ee0-98ad-8c4a8d3ce6a2",
                 "resourcePath": "scripts\\omu_event_custom_add_property\\omu_event_custom_add_property.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "bf5f7b71-4d7d-4a10-a138-831983887757",
+            "Value": {
+                "id": "fed25df9-d5e5-416b-8bfc-28784643735d",
+                "resourcePath": "scripts\\dmu_dialog_event_revert_prefab\\dmu_dialog_event_revert_prefab.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -11713,6 +11729,7 @@
         "0cff5256-af2b-47c1-ad06-efac5d560271",
         "d05f037f-6c61-4ff9-849f-6461d3349975",
         "84cced54-1e4d-4202-8a14-e68b86bf0ec1",
+        "bf5f7b71-4d7d-4a10-a138-831983887757",
         "b14c9b7e-324d-44e8-a397-56912e7bfbe0",
         "6c193149-d9a6-4e26-804b-579d9c731103",
         "4afd2cd1-23ad-423a-80d4-f4827e6734f2",

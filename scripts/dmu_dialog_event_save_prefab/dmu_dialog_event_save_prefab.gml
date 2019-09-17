@@ -7,7 +7,7 @@ var prefab = instance_create_depth(0, 0, 0, DataEventNode);
 ds_list_add(Stuff.all_event_prefabs, prefab);
 
 #region big fat variable copy
-prefab.name = node.name;
+prefab.name = thing.root.el_name.value;
 prefab.type = node.type;
 ds_list_copy(prefab.data, node.data);
 ds_list_clear(prefab.outbound);
