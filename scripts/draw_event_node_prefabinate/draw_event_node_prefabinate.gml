@@ -13,7 +13,7 @@ if (!dialog_exists()) {
     if (mouse_within_rectangle_adjusted(xx - tolerance, yy - tolerance, xx + tolerance, yy + tolerance)) {
         draw_sprite(spr_event_prefab, 1, xx, yy);
         if (Controller.release_left) {
-            
+            dialog_create_event_save_prefab(noone, node);
         }
     }
 }

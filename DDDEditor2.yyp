@@ -4863,6 +4863,14 @@
             }
         },
         {
+            "Key": "6c7cfe19-4cef-4073-91b7-6b5fad1c89ae",
+            "Value": {
+                "id": "433416f8-eda5-4461-ab07-5890d0dac273",
+                "resourcePath": "scripts\\dialog_create_event_save_prefab\\dialog_create_event_save_prefab.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "6d08b675-dc55-4cbc-a9df-efd4e9e7e0a4",
             "Value": {
                 "id": "74e09401-3682-4c03-a305-8bfb7ba05f5e",
@@ -5868,6 +5876,14 @@
                 "id": "197a40ff-c963-4d29-b927-2c1b9be65197",
                 "resourcePath": "scripts\\c_overlap_world_position\\c_overlap_world_position.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "83aa07ca-500e-4f06-9f3e-b7c6d90e98d9",
+            "Value": {
+                "id": "c7a54cca-7cab-4340-b48a-2f0be7365800",
+                "resourcePath": "views\\83aa07ca-500e-4f06-9f3e-b7c6d90e98d9.yy",
+                "resourceType": "GMFolder"
             }
         },
         {
@@ -9143,6 +9159,14 @@
             }
         },
         {
+            "Key": "d05f037f-6c61-4ff9-849f-6461d3349975",
+            "Value": {
+                "id": "009093e6-34be-4017-95e6-cd66480435e0",
+                "resourcePath": "scripts\\dmu_dialog_event_save_prefab\\dmu_dialog_event_save_prefab.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "d066e656-3571-450b-a31e-b1966976707b",
             "Value": {
                 "id": "d74b7f88-5625-4b7b-8cb5-54b53f3e190e",
@@ -11613,6 +11637,7 @@
         "d7fb72e6-d314-446f-baa2-6ddafabe3553",
         "76a6e696-72f5-4664-8160-45f6b16fcb73",
         "2acbddf9-dfcf-4bad-b31c-09d7d29e226e",
+        "6c7cfe19-4cef-4073-91b7-6b5fad1c89ae",
         "c071ad5b-640d-45e2-b4b4-9bc7d40bac64",
         "3ebce2ef-e1ea-49d0-91fd-7a341df0022f",
         "bcd1774a-005a-440c-b96a-c4e8d29065bc",
@@ -11662,6 +11687,7 @@
         "a61fc529-6b87-43ac-9347-b3af90e13277",
         "e680d418-bff4-4913-9284-dff1653b6d50",
         "0cff5256-af2b-47c1-ad06-efac5d560271",
+        "d05f037f-6c61-4ff9-849f-6461d3349975",
         "6c193149-d9a6-4e26-804b-579d9c731103",
         "4afd2cd1-23ad-423a-80d4-f4827e6734f2",
         "1209ebac-835c-4394-af5a-f1d135c930fc",
