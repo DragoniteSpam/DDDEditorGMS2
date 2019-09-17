@@ -82,12 +82,12 @@ shader_reset();
 gpu_set_cullmode(cull_noculling);
 
 // because apparently you can't do color with a passthrough shader even though it has a color attribute
-for (var i = 0; i<ds_list_size(list_routes); i++) {
+for (var i = 0; i < ds_list_size(list_routes); i++) {
     var data = list_routes[| i];
     transform_set(data[@ 1], data[@ 2], data[@ 3], 0, 0, 0, 1, 1, 1);
     vertex_submit(data[@ 0], pr_linestrip, -1);
     if (data[@ 4]) {
-        transform_set(0, 0, 0, 90, 0, point_direction(x, y, data[@ 1] + data[@ 5], data[@ 2] + data[@ 6])-90, 1, 1, 1);
+        transform_set(0, 0, 0, 90, 0, point_direction(x, y, data[@ 1] + data[@ 5], data[@ 2] + data[@ 6]) - 90, 1, 1, 1);
         transform_add(data[@ 1] + data[@ 5], data[@ 2] + data[@ 6], data[@ 3] + data[@ 7], 0, 0, 0, 1, 1, 1);
         draw_sprite_ext(spr_plus_minus, 0, 0, 0, 0.25, 0.25, 0, c_lime, 1);
     }

@@ -16,5 +16,6 @@ if (!dialog_exists()) {
 			var dialog = dialog_create_yes_or_no(noone, "Do you actually want to delete " + node.name + "?", dmu_dialog_event_node_delete);
 			dialog.node = node;
         }
+		draw_tooltip(xx, yy + 16, "Delete Node");
     }
 }
