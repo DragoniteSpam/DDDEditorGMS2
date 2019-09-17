@@ -35,6 +35,10 @@ repeat(n_events) {
         node.event = event;
         
         guid_set(node, buffer_read(buffer, buffer_u32));
+		
+		if (version >= DataVersions.EVENT_PREFABS) {
+			node.prefab_guid = buffer_read(buffer, buffer_datatype);
+		}
         
         // some preliminary data may be created
         ds_list_clear(node.data);

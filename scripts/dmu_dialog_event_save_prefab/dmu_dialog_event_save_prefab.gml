@@ -16,6 +16,8 @@ prefab.custom_guid = node.custom_guid;
 for (var i = 0; i < ds_list_size(node.custom_data); i++) {
 	ds_list_add(prefab.custom_data, ds_list_clone(node.custom_data[| i]));
 }
+
+node.prefab_guid = prefab.GUID;
 #endregion
 
 script_execute(thing.root.commit, thing.root);

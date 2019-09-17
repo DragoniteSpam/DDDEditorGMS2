@@ -52,5 +52,6 @@ enum DataVersions {
     MAPS_NUKED                  = 39,
 	DATA_TRIMMED				= 40,
 	STARTING_POSITION			= 41,
+	EVENT_PREFABS				= 42,
     _CURRENT                 /* = whatever the last one is + 1 */
 }
