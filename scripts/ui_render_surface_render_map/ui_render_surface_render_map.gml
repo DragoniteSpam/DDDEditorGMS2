@@ -38,6 +38,7 @@ if (map.is_3d) {
 }
 
 shader_set(shd_default);
+transform_reset();
 
 // @todo tileset update
 vertex_submit(map.preview, pr_trianglelist, sprite_get_texture(Stuff.all_tilesets[| Camera.event_map.tileset].master, 0));

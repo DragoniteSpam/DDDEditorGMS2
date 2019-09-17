@@ -15,44 +15,35 @@ var mfx = (Camera.MOUSE_X - x1) / (x2 - x1);
 var mfy = (Camera.MOUSE_Y - y1) / (y2 - y1);
 
 if (is_clamped(mfx, 0, 1) && is_clamped(mfy, 0, 1)) {
-	var camera = view_get_camera(view_current);
-	
-	mouse_vector = update_mouse_vector(Camera.event_x, Camera.event_y, Camera.event_z, Camera.event_xto, Camera.event_yto, Camera.event_zto,
-		Camera.event_xup, Camera.event_yup, Camera.event_zup, Camera.event_fov, CW / CH, mfx, mfy);
+	// please stop trying to use the (xto - x) trick, that only works if you want the vector
+	// coming out of the center of the camera
+	var mouse_vector = update_mouse_vector(Camera.event_x, Camera.event_y, Camera.event_z, Camera.event_xto, Camera.event_yto, Camera.event_zto,
+		Camera.event_xup, Camera.event_yup, Camera.event_zup, Camera.event_fov, (x2 - x1) / (y2 - y1), mfx, mfy);
 	
 	var xx = mouse_vector[vec3.xx] * MILLION;
 	var yy = mouse_vector[vec3.yy] * MILLION;
 	var zz = mouse_vector[vec3.zz] * MILLION;
 	
 	if (Controller.press_left) {
-		if (c_raycast_object(map.cpreview, Camera.event_x, Camera.event_y, Camera.event_z, Camera.event_x + xx, Camera.event_y + yy, Camera.event_z + zz, 1)) {
-			show_message([c_hit_x(), c_hit_y(), c_hit_z()]);
-		} else {
-			show_message("nothing hit");
-		}
-		/*
-		var f = abs(Camera.event_z / zz);
-		floor_x = Camera.event_x + xx * f;
-		floor_y = Camera.event_y + yy * f;
-    
-		floor_cx = clamp(floor_x div TILE_WIDTH, 0, Stuff.active_map.contents.xx);
-		floor_cy = clamp(floor_y div TILE_HEIGHT, 0, Stuff.active_map.contents.yy);
-		if (ds_list_size(selection) < MAX_SELECTION_COUNT) {
-			if (!keyboard_check(input_selection_add) && !selection_addition) {
-			    selection_clear();
-			    keyboard_string = "";
-			}
-		    
-			// replace this with something that isnt a selection in a bit
-			var stype = SelectionSingle;
+		if (c_raycast_world(Camera.event_x, Camera.event_y, Camera.event_z, Camera.event_x + xx, Camera.event_y + yy, Camera.event_z + zz, CollisionMasks.SURFACE)) {
+			var cell_x = floor(c_hit_x()) div TILE_WIDTH;
+			var cell_y = floor(c_hit_y()) div TILE_HEIGHT;
+			var cell_z = floor(c_hit_z()) div TILE_DEPTH;
 			
-			var tz = under_cursor ? under_cursor.zz : 0;
-        
-			last_selection = instance_create_depth(0, 0, 0, stype);
-			ds_list_add(selection, last_selection);
-			script_execute(last_selection.onmousedown, last_selection, floor_cx, floor_cy, tz);
+			var cell_nx = c_hit_nx();
+			var cell_ny = c_hit_ny();
+			var cell_nz = c_hit_nz();
+			
+			if (cell_nz != 0) {
+				cell_z = cell_z + (cell_nz > 0) ? 1 : -1;
+			} else if (cell_ny != 0) {
+				cell_y = cell_y + (cell_ny > 0) ? 1 : -1;
+			} else {
+				cell_x = cell_x + (cell_nx > 0) ? 1 : -1;
+			}
+			
+			
 		}
-		*/
 	}
 }
 
@@ -89,8 +80,8 @@ if (!keyboard_check(vk_control)) {
 	if (Controller.mouse_right) {
 		var camera_cx = view_get_xport(view_current) + view_get_wport(view_current) / 2;
 		var camera_cy = view_get_yport(view_current) + view_get_hport(view_current) / 2;
-		var dx = (MOUSE_X - camera_cx) / 16;
-		var dy = (MOUSE_Y - camera_cy) / 16;
+		var dx = (Camera.MOUSE_X - camera_cx) / 16;
+		var dy = (Camera.MOUSE_Y - camera_cy) / 16;
 		Camera.event_direction = (360 + Camera.event_direction - dx) % 360;
 		Camera.event_pitch = clamp(Camera.event_pitch + dy, -89, 89);
 		window_mouse_set(camera_cx, camera_cy);

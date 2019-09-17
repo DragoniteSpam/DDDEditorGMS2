@@ -5786,7 +5786,7 @@
             "Key": "81d689e1-223f-4bb6-b7ed-7089fb93af86",
             "Value": {
                 "id": "6142d977-1102-491b-a2ca-4e1842a33d38",
-                "resourcePath": "datafiles_yy\\data\\basic\\ctile.d3d.yy",
+                "resourcePath": "datafiles_yy\\data\\ctile.d3d.yy",
                 "resourceType": "GMIncludedFile"
             }
         },

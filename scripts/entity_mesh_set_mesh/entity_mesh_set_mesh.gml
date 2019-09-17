@@ -14,7 +14,7 @@ if (mesh_data) {
         c_world_destroy_object(entity.cobject);
     }
     
-    entity.cobject = c_object_create(mesh_data.cshape, 1, 1);
+    entity.cobject = c_object_create(mesh_data.cshape, CollisionMasks.MAIN, CollisionMasks.MAIN);
     
     map_transform_thing(entity);
 	entity.modification = Modifications.UPDATE;

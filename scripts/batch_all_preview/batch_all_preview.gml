@@ -24,13 +24,16 @@ map_container.wpreview = vertex_create_buffer();
 vertex_begin(map_container.preview, Camera.vertex_format);
 vertex_begin(map_container.wpreview, Camera.vertex_format);
 map_container.cspreview = c_shape_create();
-c_shape_add_plane(map_container.cspreview, 0, 0, 1, MILLION);
-c_shape_begin_trimesh();
+
+c_transform_identity();
+c_transform_position(map.xx * TILE_WIDTH / 2, map.yy * TILE_HEIGHT / 2, 0);
+c_shape_add_box(map_container.cspreview, map.xx * TILE_WIDTH / 2, map.yy * TILE_HEIGHT / 2, 0);
+c_transform_identity();
 
 for (var i = 0; i < ds_list_size(map.all_entities); i++) {
 	var thing = map.all_entities[| i];
 	script_execute(thing.batch, map_container.preview, map_container.wpreview, thing);
-	script_execute(thing.batch_collision, thing);
+	script_execute(thing.batch_collision, map_container.cspreview, thing);
 }
 
 vertex_end(map_container.preview);
@@ -38,8 +41,11 @@ vertex_end(map_container.wpreview);
 vertex_freeze(map_container.preview);
 vertex_freeze(map_container.wpreview);
 
-c_shape_end_trimesh(map_container.cspreview);
-map_container.cpreview = c_object_create(map_container.cspreview, 1, 1);
+map_container.cpreview = c_object_create(map_container.cspreview, CollisionMasks.SURFACE, CollisionMasks.SURFACE);
+c_object_set_userid(map_container.cpreview, 1337);
+c_transform_identity();
+c_object_apply_transform(map_container.cpreview);
+c_world_add_object(map_container.cpreview);
 
 if (!exists) {
 	instance_destroy(MapContents);

@@ -2,4 +2,4 @@
 
 var entity = argument0;
 
-entity.cobject = c_object_create(guid_get(entity.mesh).cshape, 1, 1);
+entity.cobject = c_object_create(guid_get(entity.mesh).cshape, CollisionMasks.MAIN, CollisionMasks.MAIN);

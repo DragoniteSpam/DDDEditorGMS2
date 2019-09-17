@@ -1,15 +1,13 @@
+/// @param shape
 /// @param EntityTile
 
-var tile = argument0;
-
-// You can't add anything other than triangles here, since this script is called
-// in the middle of a trimesh. You can approximate with meshes, though.
+var shape = argument0;
+var tile = argument1;
 
 var xx = tile.xx * TILE_WIDTH;
 var yy = tile.yy * TILE_HEIGHT;
 var zz = tile.zz * TILE_WIDTH;
 
-c_transform_scaling(TILE_WIDTH, TILE_HEIGHT, TILE_DEPTH);
-c_transform_position(xx, yy, zz);
-c_shape_load_trimesh("data/basic/ctile.d3d");
+c_transform_position(xx + TILE_WIDTH / 2, yy + TILE_HEIGHT / 2, zz);
+c_shape_add_box(shape, TILE_WIDTH / 2, TILE_HEIGHT / 2, 0);
 c_transform_identity();

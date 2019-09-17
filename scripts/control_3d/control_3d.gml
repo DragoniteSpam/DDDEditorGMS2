@@ -2,13 +2,13 @@ if (Camera.menu.active_element) {
 	return false;
 }
 
-mouse_vector = update_mouse_vector(x, y, z, xto, yto, zto, xup, yup, zup, fov, CW / CH);
+var mouse_vector = update_mouse_vector(x, y, z, xto, yto, zto, xup, yup, zup, fov, CW / CH);
 
 var xx = mouse_vector[vec3.xx] * MILLION;
 var yy = mouse_vector[vec3.yy] * MILLION;
 var zz = mouse_vector[vec3.zz] * MILLION;
 
-if (c_raycast_world(x, y, z, x + xx, y + yy, z + zz, ~0)) {
+if (false && c_raycast_world(x, y, z, x + xx, y + yy, z + zz, CollisionMasks.MAIN)) {
     under_cursor = c_object_get_userid(c_hit_object(0));
 } else {
     under_cursor = noone;
