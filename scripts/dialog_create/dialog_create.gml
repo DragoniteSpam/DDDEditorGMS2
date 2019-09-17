@@ -18,7 +18,7 @@ dg.text = argument[2];
 dg.render = (argument[3] != undefined) ? argument[3] : dialog_default;
 dg.commit = (argument[4] != undefined) ? argument[4] : dc_default;
 dg.root = argument[5];
-
+// "close" can be noone if you want to hide the button entirely.
 dg.close = (argument_count > 6) ? argument[6] : dg.close;
 
 ds_list_add(Camera.dialogs, dg);

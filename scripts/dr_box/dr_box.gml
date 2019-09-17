@@ -65,11 +65,6 @@ var y2 = y1 + dialog.height;
 var tx = x1 + 32;
 var ty = y1 + header_height / 2;
 
-var cbs = sprite_get_width(spr_close) / 2;
-var cbx = x2 - cbs;
-var cby = ty;
-var cbi = 2;  // 0 is is available, 1 is hovering, 2 is unavailable
-
 // NOW you're allowed to draw stuff
 draw_rectangle_colour(x1, y1, x2, y2, c_white, c_white, c_white, c_white, false);
 draw_rectangle_colour(x1, y1, x2, y2, c_black, c_black, c_black, c_black, true);
@@ -82,7 +77,9 @@ draw_line_colour(x1, y1 + header_height, x2, y1 + header_height, c_black, c_blac
 draw_set_halign(fa_left);
 draw_text_colour(tx, ty, string(dialog.text), c_black, c_black, c_black, c_black, 1);
 
-draw_sprite(spr_close, cbi, cbx, cby);
+if (dialog.close) {
+	draw_sprite(spr_close, cbi, cbx, cby);
+}
 
 for (var i = 0; i < ds_list_size(dialog.contents); i++) {
     var thing = dialog.contents[| i];
@@ -95,6 +92,6 @@ for (var i = 0; i < ds_list_size(dialog.contents); i++) {
 kill = kill || (active && Controller.release_escape);
 
 // the x button/escape key does not commit changes
-if (kill) {
+if (kill && dialog.close) {
     script_execute(dialog.close, dialog);
 }

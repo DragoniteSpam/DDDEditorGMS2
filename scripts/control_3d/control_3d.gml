@@ -24,8 +24,8 @@ if (zz < z) {
 	floor_x = x + xx * f;
 	floor_y = y + yy * f;
     
-	floor_cx = clamp(floor_x div TILE_WIDTH, 0, Stuff.active_map.contents.xx);
-	floor_cy = clamp(floor_y div TILE_HEIGHT, 0, Stuff.active_map.contents.yy);
+	floor_cx = clamp(floor_x div TILE_WIDTH, 0, Stuff.active_map.xx);
+	floor_cy = clamp(floor_y div TILE_HEIGHT, 0, Stuff.active_map.yy);
     
 	if (Controller.press_left) {
 		if (ds_list_size(selection) < MAX_SELECTION_COUNT) {

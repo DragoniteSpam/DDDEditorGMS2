@@ -1,12 +1,14 @@
+/// @param UIRenderSurface
 /// @param x1
 /// @param y1
 /// @param x2
 /// @param y2
 
-var x1 = argument0;
-var y1 = argument1;
-var x2 = argument2;
-var y2 = argument3;
+var surface = argument0;
+var x1 = argument1;
+var y1 = argument2;
+var x2 = argument3;
+var y2 = argument4;
 
 var map = Camera.event_map;
 var map_contents = map.contents;
@@ -15,6 +17,7 @@ var mfx = (Camera.MOUSE_X - x1) / (x2 - x1);
 var mfy = (Camera.MOUSE_Y - y1) / (y2 - y1);
 
 if (is_clamped(mfx, 0, 1) && is_clamped(mfy, 0, 1)) {
+	ui_activate(noone);
 	// please stop trying to use the (xto - x) trick, that only works if you want the vector
 	// coming out of the center of the camera
 	var mouse_vector = update_mouse_vector(Camera.event_x, Camera.event_y, Camera.event_z, Camera.event_xto, Camera.event_yto, Camera.event_zto,
@@ -34,15 +37,24 @@ if (is_clamped(mfx, 0, 1) && is_clamped(mfy, 0, 1)) {
 			var cell_ny = c_hit_ny();
 			var cell_nz = c_hit_nz();
 			
-			if (cell_nz != 0) {
+			// this will probably need to be revisited at some point but for now i'm going to leave it
+			/*if (cell_nz != 0) {
 				cell_z = cell_z + (cell_nz > 0) ? 1 : -1;
 			} else if (cell_ny != 0) {
 				cell_y = cell_y + (cell_ny > 0) ? 1 : -1;
 			} else {
 				cell_x = cell_x + (cell_nx > 0) ? 1 : -1;
-			}
+			}*/
 			
-			
+			var data_x = surface.root.node.custom_data[| 1];
+			var data_y = surface.root.node.custom_data[| 2];
+			var data_z = surface.root.node.custom_data[| 3];
+			data_x[| 0] = cell_x;
+			data_y[| 0] = cell_y;
+			data_z[| 0] = cell_z;
+			surface.root.el_input_x.value = string(cell_x);
+			surface.root.el_input_y.value = string(cell_y);
+			surface.root.el_input_z.value = string(cell_z);
 		}
 	}
 }

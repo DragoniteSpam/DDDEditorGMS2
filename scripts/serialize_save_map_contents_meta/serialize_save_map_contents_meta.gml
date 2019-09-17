@@ -6,9 +6,9 @@ var map_contents = map.contents;
 
 buffer_write(buffer, buffer_datatype, SerializeThings.MAP_META);
 
-buffer_write(buffer, buffer_u16, map_contents.xx);
-buffer_write(buffer, buffer_u16, map_contents.yy);
-buffer_write(buffer, buffer_u16, map_contents.zz);
+buffer_write(buffer, buffer_u16, map.xx);
+buffer_write(buffer, buffer_u16, map.yy);
+buffer_write(buffer, buffer_u16, map.zz);
 
 buffer_write(buffer, buffer_u8, map.tileset);
 

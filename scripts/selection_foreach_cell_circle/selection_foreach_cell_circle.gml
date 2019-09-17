@@ -10,8 +10,8 @@ var params = argument3;
 
 var minx = max(selection.x - selection.radius, 0);
 var miny = max(selection.y - selection.radius, 0);
-var maxx = min(selection.x + selection.radius, Stuff.active_map.contents.xx - 1);
-var maxy = min(selection.y + selection.radius, Stuff.active_map.contents.yy - 1);
+var maxx = min(selection.x + selection.radius, Stuff.active_map.xx - 1);
+var maxy = min(selection.y + selection.radius, Stuff.active_map.yy - 1);
 // no check for z - this only goes over cells in the layer that the that the selection exists on
 
 for (var i = minx; i < maxx; i++) {

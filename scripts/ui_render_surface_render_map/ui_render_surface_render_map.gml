@@ -1,12 +1,14 @@
+/// @param UIRenderSurface
 /// @param x1
 /// @param y1
 /// @param x2
 /// @param y2
 
-var x1 = argument0;
-var y1 = argument1;
-var x2 = argument2;
-var y2 = argument3;
+var surface = argument0;
+var x1 = argument1;
+var y1 = argument2;
+var x2 = argument3;
+var y2 = argument4;
 
 var map = Camera.event_map;
 var map_contents = map.contents;
@@ -48,6 +50,16 @@ if (Camera.view_grid) {
 	transform_set(0, 0, 0.5, 0, 0, 0, 1, 1, 1);
     vertex_submit(Camera.grid, pr_linelist, -1);
 }
+
+var dest_x = surface.root.node.custom_data[| 1];
+var dest_y = surface.root.node.custom_data[| 2];
+var dest_z = surface.root.node.custom_data[| 3];
+dest_x = dest_x[| 0];
+dest_y = dest_y[| 0];
+dest_z = dest_z[| 0];
+
+transform_set(dest_x * TILE_WIDTH, dest_y * TILE_HEIGHT, dest_z * TILE_DEPTH, 0, 0, 0, 1, 1, 1);
+vertex_submit(Stuff.basic_cage, pr_trianglelist, -1);
 
 transform_reset();
 

@@ -9,7 +9,9 @@ var data_index = argument2;
 var dw = 1440;
 var dh = 800;
 
-var dg = dialog_create(dw, dh, "Map Transfer", dialog_default, dc_close_no_questions_asked, thing);
+// Hide the close button, because if the map preview stuff isn't deleted it'll just sit in memory
+// wasting space (although it won't leak because it'll be cleaned up next time this is opened)
+var dg = dialog_create(dw, dh, "Map Transfer", dialog_default, dc_close_no_questions_asked, thing, noone);
 dg.node = event_node;
 dg.index = data_index;
 
@@ -18,6 +20,9 @@ var custom_data_x = event_node.custom_data[| 1];
 var custom_data_y = event_node.custom_data[| 2];
 var custom_data_z = event_node.custom_data[| 3];
 var custom_data_direction = event_node.custom_data[| 4];
+
+var map = guid_get(custom_data_map[| 0]);
+var map_contents = map.contents;
 
 var columns = 4;
 var ew = dw / columns - 32;
@@ -29,8 +34,8 @@ var c4 = dw * 3 / 4;
 
 var vx1 = ew / 2;
 var vy1 = 0;
-var vx2 = vx1 + (ew - vx1);
-var vy2 = ew;
+var vx2 = ew;
+var vy2 = eh;
 
 var yy = 64;
 var yy_start = yy;
@@ -38,7 +43,7 @@ var spacing = 16;
 
 var el_maps = create_list(16, yy, "Maps", "no maps", ew, eh, 8, uivc_list_event_attain_map_index, false, dg, Stuff.all_maps);
 for (var i = 0; i < ds_list_size(Stuff.all_maps); i++) {
-	if (Stuff.all_maps[| i].GUID == custom_data_map[| 0]) {
+	if (Stuff.all_maps[| i] == map) {
 		ds_map_add(el_maps.selected_entries, i, true);
 		break;
 	}
@@ -52,6 +57,18 @@ yy = yy + ui_get_list_height(el_maps) + spacing * 2;
 var el_text = create_text(16, yy, "Click on a location in one of the maps to set the destination", ew, eh, fa_left, ew, dg);
 
 yy = yy + el_text.height + spacing * 2;
+
+var el_input_x = create_input(16, yy, "X:", ew, eh, uivc_input_event_attain_transfer_x, 0, custom_data_x[| 0], "", validate_int, ui_value_real, 0, map.xx - 1, 5, vx1, vy1, vx2, vy2, dg);
+yy = yy + el_input_x.height + spacing;
+dg.el_input_x = el_input_x;
+
+var el_input_y = create_input(16, yy, "Y:", ew, eh, uivc_input_event_attain_transfer_y, 0, custom_data_y[| 0], "", validate_int, ui_value_real, 0, map.yy - 1, 5, vx1, vy1, vx2, vy2, dg);
+yy = yy + el_input_y.height + spacing;
+dg.el_input_y = el_input_y;
+
+var el_input_z = create_input(16, yy, "Z:", ew, eh, uivc_input_event_attain_transfer_z, 0, custom_data_z[| 0], "", validate_int, ui_value_real, 0, map.zz - 1, 5, vx1, vy1, vx2, vy2, dg);
+yy = yy + el_input_z.height + spacing;
+dg.el_input_z = el_input_z;
 
 var el_direction = create_radio_array(16, yy, "Direction", ew, eh, uivc_list_event_attain_transfer_direction, custom_data_direction[| 0], dg);
 create_radio_array_options(el_direction, ["Down", "Left", "Right", "Up"]);
@@ -79,6 +96,6 @@ var b_width = 128;
 var b_height = 32;
 var el_close = create_button(ew / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
 
-ds_list_add(dg.contents, el_maps, el_text, el_direction, el_render, el_close);
+ds_list_add(dg.contents, el_maps, el_text, el_input_x, el_input_y, el_input_z, el_direction, el_render, el_close);
 
 return dg;

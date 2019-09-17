@@ -5815,6 +5815,14 @@
             }
         },
         {
+            "Key": "82639ab5-204e-49fe-8c53-f1ad8d5498d9",
+            "Value": {
+                "id": "9a3d55e1-0cab-4a6f-bfa4-e33b7edfb1f7",
+                "resourcePath": "scripts\\uivc_input_event_attain_transfer_x\\uivc_input_event_attain_transfer_x.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "82c0c3d2-24b7-4ea1-bbae-e3edde71839e",
             "Value": {
                 "id": "f54ba52f-6608-45ff-bad2-cca146a2bd73",
@@ -9823,6 +9831,14 @@
             }
         },
         {
+            "Key": "decd2b00-c7dc-40fc-a1fa-e06192db3de3",
+            "Value": {
+                "id": "1a01f94c-e8c3-4334-a810-add7bbedec09",
+                "resourcePath": "scripts\\uivc_input_event_attain_transfer_y\\uivc_input_event_attain_transfer_y.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "defc0a0a-9e2c-4f3f-abc8-e5e9d654f425",
             "Value": {
                 "id": "b1f4d3fd-0e1f-4f53-8a1c-dfb4a52832f0",
@@ -10532,6 +10548,14 @@
                 "id": "f12b128c-e284-437d-a7a3-5eb3599a5c6b",
                 "resourcePath": "datafiles_yy\\data\\graphics\\permanent\\git-dont-delete-this-folder-please.txt.yy",
                 "resourceType": "GMIncludedFile"
+            }
+        },
+        {
+            "Key": "ef27b90a-f8be-4379-91fc-c1e153dbbc50",
+            "Value": {
+                "id": "865bae9c-9219-47e6-8d5f-a28c8b2648c1",
+                "resourcePath": "scripts\\uivc_input_event_attain_transfer_z\\uivc_input_event_attain_transfer_z.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -11731,6 +11755,9 @@
         "d31b50f7-e4ad-40a5-8316-83b00d3636c3",
         "8cab2817-9250-45bc-8939-8c9ec0831d18",
         "6ec3c188-90c0-46b5-ade3-f3ff9e0edafd",
+        "82639ab5-204e-49fe-8c53-f1ad8d5498d9",
+        "decd2b00-c7dc-40fc-a1fa-e06192db3de3",
+        "ef27b90a-f8be-4379-91fc-c1e153dbbc50",
         "3135aa96-c5d8-4ad7-9836-2f5976f052e0",
         "14ff12b1-b8eb-4617-af7b-29642c2e74e5",
         "dc403c2a-027b-418a-87c9-91dd19465df8",

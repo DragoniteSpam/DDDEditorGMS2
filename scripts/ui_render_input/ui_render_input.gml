@@ -56,7 +56,7 @@ if (input.interactive && dialog_is_active(input.root)) {
     if (ui_is_active(input)) {
         // this will not work correctly if there are line breaks, but fixing that is
         // like the bottom of the priority queue right now
-        if (current_second % 2 == 0) {
+        if (floor((current_second * 1.25) % 2) == 0) {
             var bx = tx + input.value_x1 + string_width(string(value)) + 4;
             draw_line_width(bx, ty - 7, bx, ty + 7, 2);
         }
@@ -79,7 +79,12 @@ if (input.interactive && dialog_is_active(input.root)) {
         if (script_execute(input.validation, value)) {
             var execute_value_change = (!input.require_enter && v0 != value) || (input.require_enter && keyboard_check_pressed(vk_enter));
             if (execute_value_change) {
-                script_execute(input.onvaluechange, input);
+				if (input.real_value) {
+			        var n = script_execute(input.value_conversion, value);
+			        if (is_clamped(n, input.value_lower, input.value_upper)) {
+			            script_execute(input.onvaluechange, input);
+			        }
+			    }
             }
         }
     }

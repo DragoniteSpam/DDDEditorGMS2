@@ -20,6 +20,10 @@ cpreview = noone;
 
 // but there are some things that aren't.
 
+xx = 64;                                  // dimensions
+yy = 64;
+zz = 8;
+
 tileset = 0;                              // index
 is_3d = true;
 

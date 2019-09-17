@@ -4,7 +4,8 @@
 
 var dialog = argument0;
 var data_map = dialog.data;
-var map = Stuff.active_map.contents;
+var map = Stuff.active_map;
+var map_contents = map.contents;
 
 var xx = map.xx;
 var yy = map.yy;
@@ -20,4 +21,4 @@ if (ds_map_exists(data_map, "z")) {
     zz = data_map[? "z"];
 }
 
-data_resize_map(xx, yy, zz);
+data_resize_map(map, xx, yy, zz);

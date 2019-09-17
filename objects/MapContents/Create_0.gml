@@ -4,10 +4,6 @@
 
 data_buffer = noone;
 
-xx = 64;                                  // dimensions
-yy = 64;
-zz = 8;
-
 summary = "It's a map, that does map things";
 
 fog_start = 256;                          // float
@@ -33,7 +29,7 @@ dynamic = ds_list_create();               // entities
 
 all_entities = ds_list_create();          // entities
 
-map_grid = map_create_grid(xx, yy, zz);
+map_grid = map_create_grid(10, 10, 10);		// this just needs to exist for now, it'll get resized when stuff is loaded
 
 frozen = vertex_create_buffer();          // everything that will be a single batch in the game
 

@@ -2,7 +2,8 @@
 
 var thing = argument0;
 var data_map = thing.root.data;
-var map = Stuff.active_map.contents;
+var map = Stuff.active_map;
+var map_contents = map.contents;
 
 var xx = map.xx;
 var yy = map.yy;
@@ -18,8 +19,8 @@ if (ds_map_exists(data_map, "z")) {
     zz = data_map[? "z"];
 }
 
-for (var i = 0; i < ds_list_size(map.all_entities); i++) {
-    var thing = map.all_entities[| i];
+for (var i = 0; i < ds_list_size(map_contents.all_entities); i++) {
+    var thing = map_contents.all_entities[| i];
     if (thing.xx >= xx || thing.yy >= yy || thing.zz >= zz) {
         safa_delete(thing);
     }

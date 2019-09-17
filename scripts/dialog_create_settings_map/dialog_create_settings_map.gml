@@ -38,11 +38,11 @@ var yy_column_start = yy + el_summary.height + 32;
 yy = yy_column_start;
 var el_dim_text = create_text(16, yy, "Settings: Dimensions", ew, eh, fa_left, ew, dg);
 yy = yy + 32;
-var el_width = create_input(16, yy, "Map Width (X): ", ew, eh, uivc_stash, "x", map_contents.xx, "64", validate_int, ui_value_real, 1, MAP_X_LIMIT, 4, vx1, vy1, vx2, vy2, dg);
+var el_width = create_input(16, yy, "Map Width (X): ", ew, eh, uivc_stash, "x", map.xx, "64", validate_int, ui_value_real, 1, MAP_X_LIMIT, 4, vx1, vy1, vx2, vy2, dg);
 yy = yy + 32;
-var el_height = create_input(16, yy, "Map Height (Y): ", ew, eh, uivc_stash, "y", map_contents.yy, "64", validate_int, ui_value_real, 1, MAP_Y_LIMIT, 4, vx1, vy1, vx2, vy2, dg);
+var el_height = create_input(16, yy, "Map Height (Y): ", ew, eh, uivc_stash, "y", map.yy, "64", validate_int, ui_value_real, 1, MAP_Y_LIMIT, 4, vx1, vy1, vx2, vy2, dg);
 yy = yy + 32;
-var el_depth = create_input(16, yy, "Map Depth (Z): ", ew, eh, uivc_stash, "z", map_contents.zz, "8", validate_int, ui_value_real, 1, MAP_Y_LIMIT, 4, vx1, vy1, vx2, vy2, dg);
+var el_depth = create_input(16, yy, "Map Depth (Z): ", ew, eh, uivc_stash, "z", map.zz, "8", validate_int, ui_value_real, 1, MAP_Y_LIMIT, 4, vx1, vy1, vx2, vy2, dg);
 
 yy = yy_column_start;
 var el_other = create_text(c2, yy, "Settings: Other", ew, eh, fa_left, ew, dg);

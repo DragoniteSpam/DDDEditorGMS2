@@ -12,8 +12,8 @@ var x2 = x1 + surface.width;
 var y2 = y1 + surface.height;
 
 surface_set_target(surface.surface);
-script_execute(surface.script_render, x1, y1, x2, y2);
+script_execute(surface.script_render, surface, x1, y1, x2, y2);
 surface_reset_target();
-script_execute(surface.script_control, x1, y1, x2, y2);
+script_execute(surface.script_control, surface, x1, y1, x2, y2);
 
 draw_surface(surface.surface, x1, y1);
