@@ -1,8 +1,5 @@
-/// @param UIThing
+/// @param UIInput
 
-var thing = argument0;
-var rv = real(thing.value);
+var input = argument0;
 
-if (is_clamped(rv, thing.value_lower, thing.value_upper)) {
-    Stuff.active_map.contents.fog_start = rv;
-}
+Stuff.active_map.contents.fog_start = real(input.value);

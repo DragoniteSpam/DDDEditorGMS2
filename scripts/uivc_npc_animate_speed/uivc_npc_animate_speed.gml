@@ -1,3 +1,4 @@
 /// @param UIThing
 
-Stuff.setting_npc_animate_rate = clamp(real(argument0.value), argument0.value_lower, argument0.value_upper);
+var input = argument0;
+Stuff.setting_npc_animate_rate = real(input.value);

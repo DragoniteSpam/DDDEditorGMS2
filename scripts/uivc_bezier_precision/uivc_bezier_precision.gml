@@ -1,3 +1,5 @@
-/// @param UIThing
+/// @param UIInput
 
-Stuff.setting_bezier_precision = clamp(real(argument0.value), argument0.value_lower, argument0.value_upper);
+var input = argument0;
+
+Stuff.setting_bezier_precision = real(input.value);

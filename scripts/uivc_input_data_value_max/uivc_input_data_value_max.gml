@@ -1,7 +1,6 @@
 /// @param UIInput
 
-var rv = real(argument0.value);
-if (is_clamped(rv, argument0.value_lower, argument0.value_upper)) {
-    argument0.root.selected_property.range_max = rv;
-    argument0.root.changed = true;
-}
+var input = argument0;
+
+input.root.selected_property.range_max = real(input.value);
+input.root.changed = true;

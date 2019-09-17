@@ -1,5 +1,6 @@
-/// @param UIThing
+/// @param UIInput
 
+var input = argument0;
 var list = Camera.selected_entities;
 
 for (var i = 0; i < ds_list_size(list); i++) {
@@ -8,6 +9,6 @@ for (var i = 0; i < ds_list_size(list); i++) {
         // you could probably do a Modification thing here but since you need
         // to deal with removing and re-adding Things into the grid this is
         // way easier
-        map_move_thing(thing, clamp(real(argument0.value), argument0.value_lower, argument0.value_upper), thing.yy, thing.zz);
+        map_move_thing(thing, real(input.value), thing.yy, thing.zz);
     }
 }

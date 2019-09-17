@@ -1,5 +1,5 @@
-/// @param UIThing
+/// @param UIInput
 
-var thing = argument0;
+var input = argument0;
 
-Stuff.setting_backups = clamp(real(thing.value), thing.value_lower, thing.value_upper);
+Stuff.setting_backups = real(input.value);
