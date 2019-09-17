@@ -3,8 +3,8 @@
 /// @param confirm-action
 /// @param [caption-message]
 /// @param [confirm-message]
-/// @param [cancel-action]
 /// @param [cancel-message]
+/// @param [cancel-action]
 // if the order of these parameters seems a little weird, it's because all of
 // the required ones have to go at the beginning and the optional ones at the end
 
