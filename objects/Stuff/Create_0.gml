@@ -32,7 +32,7 @@ enum SerializeThings {
     MAP_META                = 0x0000001A,
     DATADATA                = 0x0000001B,
     EVENT_CUSTOM            = 0x0000001C,
-    EVENT_TEMPLATE          = 0x0000001D,
+    EVENT_PREFAB            = 0x0000001D,
     MAP_STATIC_TERRAIN      = 0x0000001E,
     // game data
     DATA_ERROR              = 0x00000100,
@@ -270,7 +270,7 @@ ds_list_add(all_tilesets, tileset_create(filename,
 
 all_events = ds_list_create();
 all_event_custom = ds_list_create();
-all_event_templates = ds_list_create();
+all_event_prefabs = ds_list_create();
 active_event = event_create("DefaultEvent");
 event_node_info = noone;
 ds_list_add(all_events, active_event);

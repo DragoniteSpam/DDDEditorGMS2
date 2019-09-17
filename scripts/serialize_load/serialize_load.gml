@@ -59,7 +59,7 @@ if (buffer < 0) {
                 // clear all data - data has already been destroyed so you just have to clear them
                 ds_list_clear(Stuff.all_events);
                 ds_list_clear(Stuff.all_event_custom);
-                ds_list_clear(Stuff.all_event_templates);
+                ds_list_clear(Stuff.all_event_prefabs);
                 ds_list_clear(Stuff.all_data);
                 // these contain arrays, which are garbage collected
                 ds_list_clear(Stuff.variables);

@@ -8159,6 +8159,14 @@
             }
         },
         {
+            "Key": "ba6b3063-e93c-411f-b570-2028a01abdf5",
+            "Value": {
+                "id": "30c94ffb-a246-466d-8468-aba6f5c39f7c",
+                "resourcePath": "scripts\\draw_event_node_prefabinate\\draw_event_node_prefabinate.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "ba748655-de6d-4224-811b-e7df3a9c6e90",
             "Value": {
                 "id": "ddfe9515-9f16-4424-8940-0baf8dfabf34",
@@ -8316,6 +8324,14 @@
                 "id": "9abd0dbb-79cb-4624-b17c-24f00e75a797",
                 "resourcePath": "scripts\\uivc_mesh_set_xmax\\uivc_mesh_set_xmax.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "be96e3c6-ced9-4104-8676-25b866bccf2d",
+            "Value": {
+                "id": "a97247f1-e7d5-4bb8-a742-755a2a0fd4f8",
+                "resourcePath": "sprites\\spr_event_prefab\\spr_event_prefab.yy",
+                "resourceType": "GMSprite"
             }
         },
         {
@@ -12325,6 +12341,7 @@
         "8f608ca7-459d-4d32-9ccf-cabfa74a9a94",
         "ef62638d-1a2c-488c-b15f-40a10d885319",
         "0d948f4b-39f0-403b-8f6b-8c7d7e64fe46",
+        "ba6b3063-e93c-411f-b570-2028a01abdf5",
         "9634706a-435b-43d3-b5d1-636b7b71a5bd",
         "64e65ce0-a807-4972-b4d2-41ce97f943dc",
         "4dff44a5-e5dd-4dbe-b3f8-370e24537352",

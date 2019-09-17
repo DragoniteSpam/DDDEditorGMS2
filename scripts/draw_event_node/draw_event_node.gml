@@ -84,6 +84,7 @@ switch (node.type) {
             draw_sprite(spr_event_outbound, 2, x1, y1 + 16);
             draw_event_node_title(node, c);
             draw_event_node_custom_info(x2 - 24, y1, node);
+			draw_event_node_prefabinate(x2 - 48, y1, node);
             
             var entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
             
@@ -138,6 +139,7 @@ switch (node.type) {
             draw_sprite(spr_event_outbound, 2, x1, y1 + 16);
             draw_event_node_title(node, c);
             draw_event_node_custom_info(x2 - 24, y1, node);
+			draw_event_node_prefabinate(x2 - 48, y1, node);
             draw_event_node_delete(x2, y1, node);
             
             var entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
@@ -280,6 +282,7 @@ switch (node.type) {
             draw_sprite(spr_event_outbound, 2, x1, y1 + 16);
             draw_event_node_title(node, c);
             draw_event_node_custom_info(x2 - 24, y1, node);
+			draw_event_node_prefabinate(x2 - 48, y1, node);
             draw_event_node_delete(x2, y1, node);
             
             var entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
@@ -365,6 +368,7 @@ switch (node.type) {
             draw_sprite(spr_event_outbound, 2, x1, y1 + 16);
             draw_event_node_title(node, c);
             draw_event_node_custom_info(x2 - 24, y1, node);
+			draw_event_node_prefabinate(x2 - 48, y1, node);
             draw_event_node_delete(x2, y1, node);
             
             var entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;

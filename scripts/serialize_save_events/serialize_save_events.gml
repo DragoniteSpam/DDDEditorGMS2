@@ -66,8 +66,7 @@ for (var i = 0; i < n_events; i++) {
             case EventNodeTypes.CUSTOM:
             default:
                 buffer_write(buffer, buffer_u32, node.custom_guid);
-                // the size of this list should already be known by the custom
-                // event template
+                // the size of this list should already be known by the custom event node
                 var custom = guid_get(node.custom_guid);
                 
                 for (var k = 0; k < ds_list_size(node.custom_data); k++) {

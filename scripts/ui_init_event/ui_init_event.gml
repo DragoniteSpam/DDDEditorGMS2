@@ -104,22 +104,22 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy = yy + element_height + spacing;
     
     // todo all these
-    element = create_list(legal_x + spacing, yy, "Node Templates", "<none>", element_width, spacing, slots, null, false, t_custom);
+    element = create_list(legal_x + spacing, yy, "Node Prefabs", "<none>", element_width, spacing, slots, null, false, t_custom);
     ds_list_add(t_custom.contents, element);
     
     yy = yy + ui_get_list_height(element) + spacing;
     
-    element = create_button(legal_x + spacing, yy, "Add Template", element_width, element_height, fa_center, null, t_custom);
+    element = create_button(legal_x + spacing, yy, "Add Prefab", element_width, element_height, fa_center, null, t_custom);
     ds_list_add(t_custom.contents, element);
     
     yy = yy + element_height + spacing;
     
-    element = create_button(legal_x + spacing, yy, "Remove Template", element_width, element_height, fa_center, null, t_custom);
+    element = create_button(legal_x + spacing, yy, "Remove Prefab", element_width, element_height, fa_center, null, t_custom);
     ds_list_add(t_custom.contents, element);
     
     yy = yy + element_height + spacing;
     
-    element = create_button(legal_x + spacing, yy, "Edit Template", element_width, element_height, fa_center, null, t_custom);
+    element = create_button(legal_x + spacing, yy, "Edit Prefab", element_width, element_height, fa_center, null, t_custom);
     ds_list_add(t_custom.contents, element);
     
     /*
