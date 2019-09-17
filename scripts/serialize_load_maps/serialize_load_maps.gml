@@ -19,11 +19,6 @@ repeat (n_maps) {
 	buffer_read(map.data_buffer, buffer_datatype);
 	// @todo when all of the map contents variables have been moved over to regular map
 	//serialize_load_map_contents_meta(map.data_buffer, version, map);
-	if (version < DataVersions.MAPS_NUKED) {
-		buffer_read(map.data_buffer, buffer_string);
-		buffer_read(map.data_buffer, buffer_string);
-		buffer_read(map.data_buffer, buffer_string);
-	}
 
 	map.xx = buffer_read(map.data_buffer, buffer_u16);
 	map.yy = buffer_read(map.data_buffer, buffer_u16);

@@ -25,7 +25,7 @@ if (buffer < 0) {
 		Stuff.save_name_data = string_replace(filename_name(filename), EXPORT_EXTENSION_DATA, "");
 		
         var version = buffer_read(buffer, buffer_u32);
-        var last_safe_version = DataVersions.MAPS_NUKED;
+        var last_safe_version = DataVersions.STARTING_POSITION;
 		
 		show_message(version);
 		
@@ -107,12 +107,7 @@ if (buffer < 0) {
 		
         switch (what) {
             case SERIALIZE_MAP:
-				if (version >= DataVersions.MAPS_NUKED) {
-					Stuff.active_map = guid_get(Stuff.game_starting_map);
-				} else {
-					Stuff.active_map = internal_name_get(Stuff.game_starting_map);
-					Stuff.game_starting_map = Stuff.active_map.GUID;
-				}
+				Stuff.active_map = guid_get(Stuff.game_starting_map);
 				break;
 		}
         

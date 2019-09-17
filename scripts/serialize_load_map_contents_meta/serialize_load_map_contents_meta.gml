@@ -7,13 +7,6 @@ var version = argument1;
 var map = argument2;
 var map_contents = map.contents;
 
-if (version < DataVersions.MAPS_NUKED) {
-	map.name = buffer_read(buffer, buffer_string);
-	map.internal_name = buffer_read(buffer, buffer_string);
-	map.summary = buffer_read(buffer, buffer_string);
-	internal_name_set(map);
-}
-
 var xx = buffer_read(buffer, buffer_u16);
 var yy = buffer_read(buffer, buffer_u16);
 var zz = buffer_read(buffer, buffer_u16);
