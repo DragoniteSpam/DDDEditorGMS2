@@ -12,6 +12,7 @@ var x2 = x1;
 var y2 = y1;
 
 var entry_height = 4 * 16 + 32;
+var entry_offset = 16;
 var eh = 0;
 var tolerance = 4;
 
@@ -21,7 +22,7 @@ switch (node.type) {
     case EventNodeTypes.ENTRYPOINT:
         #region entrypoint
         x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
-        y2 = y1 + 16 + string_height(string(node.name));
+        y2 = y1 + 16 + string_height(string(node.name)) + entry_offset;
         
         if (rectangle_within_view(view_current, x1, y1, x2, y2)) {
             var c = colour_mute(c_ev_init);
@@ -38,7 +39,7 @@ switch (node.type) {
         #region comment
         x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
         // cut down version of Text
-        y2 = y1 + 24 + 32 + ds_list_size(node.data) * entry_height;
+        y2 = y1 + 24 + 32 + ds_list_size(node.data) * entry_height + entry_offset;
         
         if (rectangle_within_view(view_current, x1, y1, x2, y2)) {
             var c = colour_mute(c_ev_comment);
@@ -72,7 +73,7 @@ switch (node.type) {
         x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
         // the above will be very painful for nodes with many data entries because loops so just assume
         // each entry won't have more than four lines
-        y2 = y1 + 24 + 32 + ds_list_size(node.data) * entry_height;
+        y2 = y1 + 24 + 32 + ds_list_size(node.data) * entry_height + entry_offset;
         
         if (rectangle_within_view(view_current, x1, y1, x2, y2)) {
             var c = colour_mute(c_ev_basic);
@@ -128,7 +129,7 @@ switch (node.type) {
         eh = 32;
         var rh = ((ui_get_radio_array_height(node.ui_things[| 0]) div eh) * eh) + 16;
         x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
-        y2 = y1 + 24 + 32 + (eh + rh) * size + eh;
+        y2 = y1 + 24 + 32 + (eh + rh) * size + eh + entry_offset;
         
         if (rectangle_within_view(view_current, x1, y1, x2, y2)) {
             var ncolor = c_ev_basic;
@@ -271,7 +272,7 @@ switch (node.type) {
         var size = ds_list_size(node.data);
         eh = 64;
         x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
-        y2 = y1 + 24 + 32 + eh * size + eh;
+        y2 = y1 + 24 + 32 + eh * size + eh + entry_offset;
         
         if (rectangle_within_view(view_current, x1, y1, x2, y2)) {
             var ncolor = c_ev_basic;
@@ -328,7 +329,7 @@ switch (node.type) {
         #region custom
         custom = guid_get(node.custom_guid);
         x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
-        y2 = y1 + 24 + 32;
+        y2 = y1 + 24 + 32 + entry_offset;
         var ncolor = (node.type == EventNodeTypes.CUSTOM) ? c_ev_custom : c_ev_basic;
         
         for (var i = 0; i < ds_list_size(custom.types); i++) {

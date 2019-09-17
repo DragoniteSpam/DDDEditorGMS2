@@ -29,7 +29,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     var legal_y = 128;
     var element_width = view_hud_width_event - 96;
     
-    var slots = 30;
+    var slots = 28;
     // element_height is an object variable that's already been defined
     
     /*
@@ -68,6 +68,11 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     element = create_button(legal_x + spacing, yy, "Custom", element_width, element_height, fa_left, omu_event_custom_dialog, t_list);
     ds_list_add(t_list.contents, element);
+	
+	yy = yy + element_height + spacing;
+    
+    element = create_button(legal_x + spacing, yy, "Prefab", element_width, element_height, fa_left, null, t_list);
+    ds_list_add(t_list.contents, element);
     
     /*
      * Custom Nodes
@@ -104,12 +109,14 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy = yy + element_height + spacing;
     
     // todo all these
-    element = create_list(legal_x + spacing, yy, "Node Prefabs", "<none>", element_width, spacing, slots, null, false, t_custom);
-    ds_list_add(t_custom.contents, element);
+     el_list_prefabs = create_list(legal_x + spacing, yy, "Node Prefabs", "<none>", element_width, spacing, slots, null, false, t_custom, Stuff.all_event_prefabs);
+    el_list_prefabs.entries_are = ListEntries.INSTANCES;
+    el_list_prefabs.colorized = false;
+    ds_list_add(t_custom.contents, el_list_prefabs);
     
-    yy = yy + ui_get_list_height(element) + spacing;
+    yy = yy + ui_get_list_height(el_list_prefabs) + spacing;
     
-    element = create_button(legal_x + spacing, yy, "Add Prefab", element_width, element_height, fa_center, null, t_custom);
+	element = create_text(legal_x + spacing, yy, "Click the button on an existing node to save it as a prefab", element_width, element_height, fa_left, element_width, t_custom);
     ds_list_add(t_custom.contents, element);
     
     yy = yy + element_height + spacing;
