@@ -90,7 +90,7 @@ repeat (n_events) {
                     ds_list_add(list_code, buffer_read(buffer, buffer_string));
                     
                     var eh = 32;
-                    var radio = create_radio_array(16, 32, "If condition:", EVENT_NODE_CONTACT_WIDTH - 32, 24, null, condition_type, node);
+                    var radio = create_radio_array(16, 48, "If condition:", EVENT_NODE_CONTACT_WIDTH - 32, 24, null, condition_type, node);
                     radio.adjust_view = true;
                     create_radio_array_options(radio, ["Variable", "Switch", "Self Variable", "Self Switch", "Code"]);
                     radio.y = radio.y + (((ui_get_radio_array_height(radio) div eh) * eh) + eh + 16) * ds_list_size(node.ui_things);
