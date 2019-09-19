@@ -5823,6 +5823,14 @@
             }
         },
         {
+            "Key": "8177f210-129d-42a9-a6a8-a901f939882e",
+            "Value": {
+                "id": "db01e02f-070c-49a3-8434-2a20c0f0f6a7",
+                "resourcePath": "scripts\\omu_event_add_shake_screen\\omu_event_add_shake_screen.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "81a4c64f-2825-4e3f-a4f6-657455af20fc",
             "Value": {
                 "id": "b6e297dd-7a90-4896-b69a-f55431baf3bc",
@@ -6203,6 +6211,14 @@
             "Value": {
                 "id": "698d430d-f932-4034-ac49-d47c03acc8e5",
                 "resourcePath": "scripts\\ui_init_animation\\ui_init_animation.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "8b10e9c5-9141-4b95-8bdd-5eadf31517f3",
+            "Value": {
+                "id": "0c6f5d8c-8d35-4d1f-a49a-a35f46a575b7",
+                "resourcePath": "scripts\\omu_event_add_tint_screen\\omu_event_add_tint_screen.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -8675,6 +8691,14 @@
             "Value": {
                 "id": "95a2f840-460f-4448-9140-f01ec7f74402",
                 "resourcePath": "scripts\\ui_activate\\ui_activate.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "c38758d5-9b96-4d65-a72b-887e195954ad",
+            "Value": {
+                "id": "47f4d3fe-2161-4a25-9fad-fc7e59f583dd",
+                "resourcePath": "scripts\\uivc_color_picker_event_node\\uivc_color_picker_event_node.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -11984,6 +12008,7 @@
         "5b4d6b39-cf59-434c-a196-ea615d1b006b",
         "e984880a-6282-4a6e-b12c-16431d49fb7a",
         "edc14103-d69e-445c-ae7a-bd3a32e276ab",
+        "c38758d5-9b96-4d65-a72b-887e195954ad",
         "6fc0e7c9-c44e-4958-b023-180eee2a9fc7",
         "512b5e6a-09ac-4dff-a6cf-b8b4d402de65",
         "2390c4d6-8c21-464c-b2b6-8fb05e3c5792",
@@ -12115,6 +12140,8 @@
         "1a5bca77-3da3-43e2-b0de-7b57fd3fc964",
         "106ffab1-4246-40cb-92e2-ac2b438b9639",
         "3b7341af-a6f2-4c54-b540-6abff4e0be96",
+        "8b10e9c5-9141-4b95-8bdd-5eadf31517f3",
+        "8177f210-129d-42a9-a6a8-a901f939882e",
         "29dd4d57-87e2-43ef-b58d-cc327092f224",
         "26e70d38-59c5-4f43-8d78-d4cf27af15cc",
         "7a53d4b0-34de-48a4-b519-e9e4d83fa71a",

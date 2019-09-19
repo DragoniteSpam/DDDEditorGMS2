@@ -259,13 +259,10 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     element = create_text(legal_x + spacing, yy, "Screen", element_width, element_height, fa_left, element_width, t_list);
     ds_list_add(t_action2.contents, element);
     yy = yy + element_height + spacing;
-    element = create_button(legal_x + spacing, yy, "Tint Screen", element_width, element_height, fa_left, not_yet_implemented, t_action2);
+    element = create_button(legal_x + spacing, yy, "Tint Screen", element_width, element_height, fa_left, omu_event_add_tint_screen, t_action2);
     ds_list_add(t_action2.contents, element);
     yy = yy + element_height;
-    element = create_button(legal_x + spacing, yy, "Flash Screen", element_width, element_height, fa_left, not_yet_implemented, t_action2);
-    ds_list_add(t_action2.contents, element);
-    yy = yy + element_height;
-    element = create_button(legal_x + spacing, yy, "Shake Screen", element_width, element_height, fa_left, not_yet_implemented, t_action2);
+    element = create_button(legal_x + spacing, yy, "Shake Screen", element_width, element_height, fa_left, omu_event_add_shake_screen, t_action2);
     ds_list_add(t_action2.contents, element);
     yy = yy + element_height;
     

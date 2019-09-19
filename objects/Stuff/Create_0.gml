@@ -363,9 +363,20 @@ event_prefab[EventNodeTypes.TRANSFER_PLAYER] = create_event_node_basic("Transfer
 /* */ event_prefab[EventNodeTypes.SET_ENTITY_LOCATION] = create_event_node_basic("NotYetImplemented", []);
 /* */ event_prefab[EventNodeTypes.SCROLL_MAP] = create_event_node_basic("NotYetImplemented", []);
 /* */ event_prefab[EventNodeTypes.SET_MOVEMENT_ROUTE] = create_event_node_basic("NotYetImplemented", []);
-/* */ event_prefab[EventNodeTypes.TINT_SCREEN] = create_event_node_basic("NotYetImplemented", []);
-/* */ event_prefab[EventNodeTypes.FLASH_SCREEN] = create_event_node_basic("NotYetImplemented", []);
-/* */ event_prefab[EventNodeTypes.SHAKE_SCREEN] = create_event_node_basic("NotYetImplemented", []);
+event_prefab[EventNodeTypes.TINT_SCREEN] = create_event_node_basic("TintScreen", [
+	["Color", DataTypes.COLOR, 0, 1, false, c_white],
+	["Alpha", DataTypes.FLOAT, 0, 1, false, 1],
+	["Time", DataTypes.FLOAT, 0, 1, false, 1],
+	["Wait?", DataTypes.BOOL, 0, 1, false, true],
+]);
+event_prefab[EventNodeTypes.FLASH_SCREEN] = create_event_node_basic("WillNotBeImplemented", []);
+event_prefab[EventNodeTypes.SHAKE_SCREEN] = create_event_node_basic("ShakeScreen", [
+	["PowerX", DataTypes.FLOAT, 0, 1, false, 0.25],
+	["PowerY", DataTypes.FLOAT, 0, 1, false, 0.25],
+	["Speed", DataTypes.FLOAT, 0, 1, false, 0.25],
+	["Duration", DataTypes.FLOAT, 0, 1, false, 1],
+	["Wait?", DataTypes.BOOL, 0, 1, false, true],
+]);
 event_prefab[EventNodeTypes.PLAY_BGM] = create_event_node_basic("PlayBGM", [
     ["BGM", DataTypes.AUDIO_BGM, 0],
     ["Volume", DataTypes.INT, 0, 1, false, 100],

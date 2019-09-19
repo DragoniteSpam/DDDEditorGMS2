@@ -453,8 +453,12 @@ switch (node.type) {
                                             node.editor_handle = ds_stuff_open_local(location);
                                         }
                                         break;
-                                    // @todo data types
                                     case DataTypes.COLOR:
+										var picker = dialog_create_color_picker_options(node, custom_data_list[| 0], uivc_color_picker_event_node);
+										picker.node = node;
+										picker.index = i;
+										break;
+                                    // @todo data types
                                     case DataTypes.MESH:
                                     case DataTypes.TILE:
                                     case DataTypes.TILESET:
