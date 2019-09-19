@@ -22,7 +22,9 @@
         "6ec3c188-90c0-46b5-ade3-f3ff9e0edafd",
         "82639ab5-204e-49fe-8c53-f1ad8d5498d9",
         "decd2b00-c7dc-40fc-a1fa-e06192db3de3",
-        "ef27b90a-f8be-4379-91fc-c1e153dbbc50"
+        "ef27b90a-f8be-4379-91fc-c1e153dbbc50",
+        "9f73a2c5-7c49-4fd5-84ae-38932dd3984d",
+        "7c9c06cd-38c2-4aec-b187-8c6e481225da"
     ],
     "filterType": "GMScript",
     "folderName": "attainment",

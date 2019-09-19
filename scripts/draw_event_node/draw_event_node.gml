@@ -525,9 +525,9 @@ switch (node.type) {
                             break;
                         case DataTypes.COLOR:
                             message = message + "(color): ";
-							var c = custom_data_list[| 0];
+							var color_value = custom_data_list[| 0];
                             output_string = "#" + string_hex(c, 6);
-							draw_rectangle_colour(x2 - 64, entry_yy + 8, x2 - 32, entry_yy + eh - 8, c, c, c, c, false);
+							draw_rectangle_colour(x2 - 64, entry_yy + 8, x2 - 32, entry_yy + eh - 8, color_value, color_value, color_value, color_value, false);
 							draw_rectangle_colour(x2 - 64, entry_yy + 8, x2 - 32, entry_yy + eh - 8, c_black, c_black, c_black, c_black, true);
                             break;
                         case DataTypes.MESH:

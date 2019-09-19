@@ -45,7 +45,7 @@ var vty = mean(vy1, vy2);
 
 var c_back = input.interactive ? input.back_color : c_ltgray;
 draw_rectangle_colour(vx1 + 1, vy1 + 1, vx2 - 1, vy2 - 1, c_back, c_back, c_back, c_back, false);
-draw_rectangle(vx1, vy1, vx2, vy2, true);
+draw_rectangle_colour(vx1, vy1, vx2, vy2, c_black, c_black, c_black, c_black, true);
 
 draw_text_ext_colour(vtx, vty, string(value), -1, vx2 - vtx, c, c, c, c, 1);
 if (string_length(value) == 0) {
@@ -58,7 +58,7 @@ if (input.interactive && dialog_is_active(input.root)) {
         // like the bottom of the priority queue right now
         if (floor((current_second * 1.25) % 2) == 0) {
             var bx = tx + input.value_x1 + string_width(string(value)) + 4;
-            draw_line_width(bx, ty - 7, bx, ty + 7, 2);
+            draw_line_width_colour(bx, ty - 7, bx, ty + 7, 2, c_black, c_black);
         }
         var v0 = value;
         value = value + keyboard_string;
