@@ -6,6 +6,11 @@ var original = buffer_load(filename);
 var erroneous = false;
 var header = chr(buffer_read(original, buffer_u8)) + chr(buffer_read(original, buffer_u8)) + chr(buffer_read(original, buffer_u8));
 
+var autoname = "auto" + filename_ext(filename);
+if (!file_exists(autoname)) {
+	file_copy(filename, autoname);
+}
+
 var buffer = buffer_decompress(original);
 
 // if the decompressed buffer is bad, cancel - try catch will make this so much nicer
