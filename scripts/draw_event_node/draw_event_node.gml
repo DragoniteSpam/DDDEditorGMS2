@@ -681,7 +681,7 @@ switch (node.type) {
         var by = entry_yy + eh / 2;
         var n = ds_list_size(node.outbound);
         var bezier_y = 0;
-        debug([node.name, n]);
+        
         for (var i = 0; i < n; i++) {
             var outbound = node.outbound[| i];
             if (!outbound) {

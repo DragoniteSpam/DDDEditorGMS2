@@ -357,6 +357,8 @@ event_prefab[EventNodeTypes.TRANSFER_PLAYER] = create_event_node_basic("Transfer
 	["Y", DataTypes.INT, 0, 1, false, 0, omu_event_attain_map_data],
 	["A", DataTypes.INT, 0, 1, false, 0, omu_event_attain_map_data],
 	["Direction", DataTypes.INT, 0, 1, false, 0, omu_event_attain_map_data, event_prefab_render_map_direction_name],
+	["FadeColor", DataTypes.COLOR, 0, 1, false, c_black, omu_event_attain_map_data],
+	["FadeTime", DataTypes.FLOAT, 0, 1, false, 1, omu_event_attain_map_data],
 ]);
 /* */ event_prefab[EventNodeTypes.SET_ENTITY_LOCATION] = create_event_node_basic("NotYetImplemented", []);
 /* */ event_prefab[EventNodeTypes.SCROLL_MAP] = create_event_node_basic("NotYetImplemented", []);
