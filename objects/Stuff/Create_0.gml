@@ -300,47 +300,47 @@ enum EventNodeTypes {
     SHOW_CHOICES,
 }
 
-event_prefab[EventNodeTypes.INPUT_TEXT] = create_event_node_prefab("InputText", [
+event_prefab[EventNodeTypes.INPUT_TEXT] = create_event_node_basic("InputText", [
     ["Help Text", DataTypes.STRING, 0, 1, false, "For example, \"Please enter your name\""],
     ["Index", DataTypes.INT, 0, 1, false, -1, omu_event_attain_input_type_data, event_prefab_render_variable_name],
     ["Kind", DataTypes.INT, 0, 1, false, 0, omu_event_attain_input_type_data, event_prefab_render_input_type_name],
     ["Char Limit", DataTypes.INT, 0, 1, false, 16, omu_event_attain_input_type_data]
 ]);
-event_prefab[EventNodeTypes.SHOW_SCROLLING_TEXT] = create_event_node_prefab("TextCrawl", [
+event_prefab[EventNodeTypes.SHOW_SCROLLING_TEXT] = create_event_node_basic("TextCrawl", [
     ["Text", DataTypes.STRING, 0, 250, false, "Text that is shown in the text crawl goes here"],
 ]);
-event_prefab[EventNodeTypes.SHOW_CHOICES] = create_event_node_prefab("ShowChoices", [
+event_prefab[EventNodeTypes.SHOW_CHOICES] = create_event_node_basic("ShowChoices", [
     // conditional branch nodes are not actually handled as a prefab but i'm leaving this here for reference
     ["Message", DataTypes.STRING, 0, 16, false, "Option 1"],
     ["ID", DataTypes.INT, 0, 16, false, 0],
 ]);
-event_prefab[EventNodeTypes.CONTROL_SWITCHES] = create_event_node_prefab("ControlGlobalSwitch", [
+event_prefab[EventNodeTypes.CONTROL_SWITCHES] = create_event_node_basic("ControlGlobalSwitch", [
     ["Index", DataTypes.INT, 0, 1, false, -1, omu_event_attain_switch_data, event_prefab_render_switch_name],
     ["State", DataTypes.BOOL, 0, 1, false, false]
 ]);
-event_prefab[EventNodeTypes.CONTROL_VARIABLES] = create_event_node_prefab("ControlGlobalVariable", [
+event_prefab[EventNodeTypes.CONTROL_VARIABLES] = create_event_node_basic("ControlGlobalVariable", [
     ["Index", DataTypes.INT, 0, 1, false, -1, omu_event_attain_variable_data, event_prefab_render_variable_name],
     ["Value", DataTypes.FLOAT, 0, 1, false, 0, omu_event_attain_variable_data],
     ["Relative?", DataTypes.BOOL, 0, 1, false, false]
 ]);
-event_prefab[EventNodeTypes.CONTROL_SELF_SWITCHES] = create_event_node_prefab("ControlSelfSwitch", [
+event_prefab[EventNodeTypes.CONTROL_SELF_SWITCHES] = create_event_node_basic("ControlSelfSwitch", [
     ["Entity", DataTypes.ENTITY, 0, 1, false, 0, omu_event_attain_self_switch_data],
     ["Index", DataTypes.INT, 0, 1, false, 0, omu_event_attain_self_switch_data, event_prefab_render_self_switch_name],
     ["State", DataTypes.BOOL, 0, 1, false, false]
 ]);
-event_prefab[EventNodeTypes.CONTROL_SELF_VARIABLES] = create_event_node_prefab("ControlSelfVariable", [
+event_prefab[EventNodeTypes.CONTROL_SELF_VARIABLES] = create_event_node_basic("ControlSelfVariable", [
     ["Entity", DataTypes.ENTITY, 0, 1, false, 0, omu_event_attain_self_variable_data],
     ["Index", DataTypes.INT, 0, 1, false, 0, omu_event_attain_self_variable_data, event_prefab_render_self_variable_name],
     ["Value", DataTypes.FLOAT, 0, 1, false, 0, omu_event_attain_self_variable_data],
     ["Relative?", DataTypes.BOOL, 0, 1, false, false]
 ]);
-event_prefab[EventNodeTypes.CONTROL_TIME] = create_event_node_prefab("ControlTimer", [
+event_prefab[EventNodeTypes.CONTROL_TIME] = create_event_node_basic("ControlTimer", [
     ["Counting Down?", DataTypes.BOOL, 0, 1, false, true],
     ["Initial Time (seconds)", DataTypes.INT, 0, 1, false, 0],
     ["Display?", DataTypes.BOOL, 0, 1, false, false],
     ["Running?", DataTypes.BOOL, 0, 1, false, true],
 ]);
-event_prefab[EventNodeTypes.CONDITIONAL] = create_event_node_prefab("Conditional", [
+event_prefab[EventNodeTypes.CONDITIONAL] = create_event_node_basic("Conditional", [
     // conditional branch nodes are not actually handled as a prefab but i'm leaving this here for reference
     ["Type", DataTypes.INT, 0, 1, false, 0],
     ["Index", DataTypes.INT, 0, 1, false, 0],
@@ -348,53 +348,53 @@ event_prefab[EventNodeTypes.CONDITIONAL] = create_event_node_prefab("Conditional
     ["Value", DataTypes.INT, 0, 1, false, 0],
     ["Code", DataTypes.INT, 0, 1, false, 0],
 ]);
-event_prefab[EventNodeTypes.INVOKE_EVENT] = create_event_node_prefab("WillNotBeImplemented", []);
-event_prefab[EventNodeTypes.COMMENT] = create_event_node_prefab("ImplementedElsewhere", []);
-event_prefab[EventNodeTypes.WAIT] = create_event_node_prefab("Wait", [["Seconds", DataTypes.FLOAT, 0, 1, false, 1]]);
-event_prefab[EventNodeTypes.TRANSFER_PLAYER] = create_event_node_prefab("TransferPlayer", [
+event_prefab[EventNodeTypes.INVOKE_EVENT] = create_event_node_basic("WillNotBeImplemented", []);
+event_prefab[EventNodeTypes.COMMENT] = create_event_node_basic("ImplementedElsewhere", []);
+event_prefab[EventNodeTypes.WAIT] = create_event_node_basic("Wait", [["Seconds", DataTypes.FLOAT, 0, 1, false, 1]]);
+event_prefab[EventNodeTypes.TRANSFER_PLAYER] = create_event_node_basic("TransferPlayer", [
 	["Map", DataTypes.MAP, 0, 1, false, 0, omu_event_attain_map_data, event_prefab_render_map_name],
 	["X", DataTypes.INT, 0, 1, false, 0, omu_event_attain_map_data],
 	["Y", DataTypes.INT, 0, 1, false, 0, omu_event_attain_map_data],
 	["A", DataTypes.INT, 0, 1, false, 0, omu_event_attain_map_data],
 	["Direction", DataTypes.INT, 0, 1, false, 0, omu_event_attain_map_data, event_prefab_render_map_direction_name],
 ]);
-/* */ event_prefab[EventNodeTypes.SET_ENTITY_LOCATION] = create_event_node_prefab("NotYetImplemented", []);
-/* */ event_prefab[EventNodeTypes.SCROLL_MAP] = create_event_node_prefab("NotYetImplemented", []);
-/* */ event_prefab[EventNodeTypes.SET_MOVEMENT_ROUTE] = create_event_node_prefab("NotYetImplemented", []);
-/* */ event_prefab[EventNodeTypes.TINT_SCREEN] = create_event_node_prefab("NotYetImplemented", []);
-/* */ event_prefab[EventNodeTypes.FLASH_SCREEN] = create_event_node_prefab("NotYetImplemented", []);
-/* */ event_prefab[EventNodeTypes.SHAKE_SCREEN] = create_event_node_prefab("NotYetImplemented", []);
-event_prefab[EventNodeTypes.PLAY_BGM] = create_event_node_prefab("PlayBGM", [
+/* */ event_prefab[EventNodeTypes.SET_ENTITY_LOCATION] = create_event_node_basic("NotYetImplemented", []);
+/* */ event_prefab[EventNodeTypes.SCROLL_MAP] = create_event_node_basic("NotYetImplemented", []);
+/* */ event_prefab[EventNodeTypes.SET_MOVEMENT_ROUTE] = create_event_node_basic("NotYetImplemented", []);
+/* */ event_prefab[EventNodeTypes.TINT_SCREEN] = create_event_node_basic("NotYetImplemented", []);
+/* */ event_prefab[EventNodeTypes.FLASH_SCREEN] = create_event_node_basic("NotYetImplemented", []);
+/* */ event_prefab[EventNodeTypes.SHAKE_SCREEN] = create_event_node_basic("NotYetImplemented", []);
+event_prefab[EventNodeTypes.PLAY_BGM] = create_event_node_basic("PlayBGM", [
     ["BGM", DataTypes.AUDIO_BGM, 0],
     ["Volume", DataTypes.INT, 0, 1, false, 100],
     ["Pitch", DataTypes.INT, 0, 1, false, 100]
 ]);
-event_prefab[EventNodeTypes.FADE_BGM] = create_event_node_prefab("FadeBGM", [
+event_prefab[EventNodeTypes.FADE_BGM] = create_event_node_basic("FadeBGM", [
     ["Volume", DataTypes.INT, 0, 1, false, 0],
     ["Time", DataTypes.FLOAT, 0, 1, false, 1],
     ["Stop On Complete?", DataTypes.BOOL, 0, 1, false, true]
 ]);
-event_prefab[EventNodeTypes.RESUME_BGM] = create_event_node_prefab("ResumeAutomaticBGM", []);
+event_prefab[EventNodeTypes.RESUME_BGM] = create_event_node_basic("ResumeAutomaticBGM", []);
 // if you want fancier audio controls for sound effects, make an advanced event - i'm not going to write the FMOD effects into the basic one
-event_prefab[EventNodeTypes.PLAY_SE] = create_event_node_prefab("PlaySoundEffect", [
+event_prefab[EventNodeTypes.PLAY_SE] = create_event_node_basic("PlaySoundEffect", [
     ["Sound Effect", DataTypes.AUDIO_SE, 0],
     ["Volume", DataTypes.INT, 0, 1, false, 100],
     ["Pitch", DataTypes.INT, 0, 1, false, 100]
 ]);
-event_prefab[EventNodeTypes.STOP_SE] = create_event_node_prefab("StopAllSoundEffects", []);
-/* */ event_prefab[EventNodeTypes.RETURN_TO_TITLE] = create_event_node_prefab("NotYetImplemented", []);
-event_prefab[EventNodeTypes.CHANGE_MAP_DISPLAY_NAME] = create_event_node_prefab("ChangeMapDisplayName", [
+event_prefab[EventNodeTypes.STOP_SE] = create_event_node_basic("StopAllSoundEffects", []);
+/* */ event_prefab[EventNodeTypes.RETURN_TO_TITLE] = create_event_node_basic("NotYetImplemented", []);
+event_prefab[EventNodeTypes.CHANGE_MAP_DISPLAY_NAME] = create_event_node_basic("ChangeMapDisplayName", [
     ["Map", DataTypes.MAP, 0, 1, false, 0],
     ["New Name", DataTypes.STRING, 0, 1, false, "Whatever the new name is"],
 ]);
-/* */ event_prefab[EventNodeTypes.CHANGE_MAP_TILESET] = create_event_node_prefab("NotYetImplemented", []);
-/* */ event_prefab[EventNodeTypes.CHANGE_MAP_BATTLE_SCENE] = create_event_node_prefab("NotYetImplemented", []);
-/* */ event_prefab[EventNodeTypes.CHANGE_MAP_PARALLAX] = create_event_node_prefab("NotYetImplemented", []);
-event_prefab[EventNodeTypes.SCRIPT] = create_event_node_prefab("Script", [
+/* */ event_prefab[EventNodeTypes.CHANGE_MAP_TILESET] = create_event_node_basic("NotYetImplemented", []);
+/* */ event_prefab[EventNodeTypes.CHANGE_MAP_BATTLE_SCENE] = create_event_node_basic("NotYetImplemented", []);
+/* */ event_prefab[EventNodeTypes.CHANGE_MAP_PARALLAX] = create_event_node_basic("NotYetImplemented", []);
+event_prefab[EventNodeTypes.SCRIPT] = create_event_node_basic("Script", [
     ["Code", DataTypes.CODE, 0, 1, true, default_lua_event_script]
 ]);
-/* */ event_prefab[EventNodeTypes.AUDIO_CONTORLS] = create_event_node_prefab("NotYetImplemented", []);
-event_prefab[EventNodeTypes.DEACTIVATE_EVENT] = create_event_node_prefab("Deactivate This Event", []);
+/* */ event_prefab[EventNodeTypes.AUDIO_CONTORLS] = create_event_node_basic("NotYetImplemented", []);
+event_prefab[EventNodeTypes.DEACTIVATE_EVENT] = create_event_node_basic("Deactivate This Event", []);
 #endregion
 
 // stuff i couldn't do in game maker so i did in c++ instead

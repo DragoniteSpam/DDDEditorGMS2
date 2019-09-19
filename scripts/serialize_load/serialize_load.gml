@@ -92,6 +92,7 @@ if (buffer < 0) {
                 case SerializeThings.DATADATA: serialize_load_datadata(buffer, version); break;
                 case SerializeThings.DATA_INSTANCES: serialize_load_data_instances(buffer, version); break;
                 case SerializeThings.EVENT_CUSTOM: serialize_load_event_custom(buffer, version); break;
+				case SerializeThings.EVENT_PREFAB: serialize_load_event_prefabs(buffer, version); break;
                 case SerializeThings.ANIMATIONS: serialize_load_animations(buffer, version); break;
                 case SerializeThings.MAPS: serialize_load_maps(buffer, version); break;
                 // map stuff

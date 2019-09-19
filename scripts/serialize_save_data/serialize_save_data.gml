@@ -29,6 +29,7 @@ if (string_length(fn) > 0) {
     
     // events may depend on some other data being initialized and i don't feel like
     // going back and doing validation because that sounds terrible
+	serialize_save_event_prefabs(buffer);
     serialize_save_events(buffer);
     serialize_save_data_instances(buffer);
 	

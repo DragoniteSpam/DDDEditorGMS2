@@ -90,14 +90,16 @@ switch (type) {
         break;
 }
 
-// this used to be a # but that was screwing with game maker's newline thing because
-// old game maker still used the stupid version of newlines and now that i'm on the
-// new version i don't feel like changing it
-node.name = node.name + "$" + string(ds_list_size(event.nodes));
+if (event) {
+	// this used to be a # but that was screwing with game maker's newline thing because
+	// old game maker still used the stupid version of newlines and now that i'm on the
+	// new version i don't feel like changing it
+	node.name = node.name + "$" + string(ds_list_size(event.nodes));
+
+	ds_list_add(event.nodes, node);
+	ds_map_add(event.name_map, node.name, node);
+}
 
 instance_deactivate_object(node);
-
-ds_list_add(event.nodes, node);
-ds_map_add(event.name_map, node.name, node);
 
 return node;
