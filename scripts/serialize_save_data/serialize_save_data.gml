@@ -55,5 +55,6 @@ enum DataVersions {
 	STARTING_POSITION			= 41,
 	EVENT_PREFABS				= 42,
 	STARTING_DIRECTION			= 43,
+	TMX_ID						= 44,
     _CURRENT                 /* = whatever the last one is + 1 */
 }

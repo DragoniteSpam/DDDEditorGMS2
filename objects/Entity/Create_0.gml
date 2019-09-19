@@ -3,6 +3,8 @@ etype = ETypes.ENTITY;
 
 refid_set(id, refid_generate());
 
+tmx_id = 0;
+
 Stuff.active_map.contents.population[ETypes.ENTITY]++;
 
 visible_routes = array_create(MAX_VISIBLE_MOVE_ROUTES);
