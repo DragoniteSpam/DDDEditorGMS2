@@ -1,6 +1,6 @@
 event_inherited();
 
-if (buffer) buffer_delete(buffer);
+if (buffer_exists(buffer)) buffer_delete(buffer);
 if (vbuffer) vertex_delete_buffer(vbuffer);
 if (wbuffer) vertex_delete_buffer(wbuffer);
 if (cshape) c_shape_destroy(cshape);

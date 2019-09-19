@@ -6,6 +6,9 @@ var thing = argument0;
 var event_node = argument1;
 var data_index = argument2;
 
+if (Stuff.active_map.data_buffer) buffer_delete(Stuff.active_map.data_buffer);
+Stuff.active_map.data_buffer = serialize_save_current_map();
+
 var dw = 1440;
 var dh = 800;
 
@@ -80,6 +83,7 @@ var el_render = create_render_surface(c2 + 16, yy, dw * 3 / 4 - 32, dh - 96, ui_
 // let's be honest, if you somehow manage to make a data file with zero maps you
 // have bigger problems than the error this is going to generate
 var visible_map = guid_get(custom_data_map[| 0]);
+
 if (visible_map.preview) {
 	vertex_delete_buffer(visible_map.preview);
 	vertex_delete_buffer(visible_map.wpreview);

@@ -17,16 +17,14 @@ map_container.cspreview = c_shape_create();
 
 var buffer = map_container.data_buffer;
 
-if (buffer) {
-	buffer_seek(buffer, buffer_seek_start, 0);
+buffer_seek(buffer, buffer_seek_start, 0);
 
-	buffer_read(buffer, buffer_datatype);
-	serialize_load_map_contents_meta(buffer, map_container.version, map_container);
-	buffer_read(buffer, buffer_datatype);
-	serialize_load_map_contents_batch(buffer, map_container.version, map_container);
-	buffer_read(buffer, buffer_datatype);
-	serialize_load_map_contents_dynamic(buffer, map_container.version, map_container);
-}
+buffer_read(buffer, buffer_datatype);
+serialize_load_map_contents_meta(buffer, map_container.version, map_container);
+buffer_read(buffer, buffer_datatype);
+serialize_load_map_contents_batch(buffer, map_container.version, map_container);
+buffer_read(buffer, buffer_datatype);
+serialize_load_map_contents_dynamic(buffer, map_container.version, map_container);
 
 c_transform_identity();
 c_transform_position(map_container.xx * TILE_WIDTH / 2, map_container.yy * TILE_HEIGHT / 2, 0);
@@ -43,7 +41,7 @@ vertex_end(map_container.preview);
 vertex_end(map_container.wpreview);
 
 // if nothing gets added, the computer will complain
-if (buffer) {
+if (buffer_exists(buffer)) {
 	vertex_freeze(map_container.preview);
 	vertex_freeze(map_container.wpreview);
 } else {
