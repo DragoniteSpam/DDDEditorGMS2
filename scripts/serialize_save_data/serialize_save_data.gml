@@ -53,5 +53,6 @@ enum DataVersions {
 	DATA_TRIMMED				= 40,
 	STARTING_POSITION			= 41,
 	EVENT_PREFABS				= 42,
+	STARTING_DIRECTION			= 43,
     _CURRENT                 /* = whatever the last one is + 1 */
 }

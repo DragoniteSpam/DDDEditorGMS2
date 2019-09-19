@@ -17,8 +17,8 @@ buffer_write(buffer, buffer_f32, map_contents.fog_end);
 buffer_write(buffer, buffer_u32, map_contents.base_encounter_rate);
 buffer_write(buffer, buffer_u32, map_contents.base_encounter_deviation);
 
-var bools = pack(map_contents.indoors, map_contents.draw_water, map_contents.fast_travel_to, map_contents.fast_travel_from,
-    map.is_3d);
+var bools = pack(map_contents.indoors, map_contents.draw_water, map_contents.fast_travel_to,
+	map_contents.fast_travel_from, map.is_3d);
 
 buffer_write(buffer, buffer_u32, bools);
 buffer_write(buffer, buffer_string, map_contents.code);

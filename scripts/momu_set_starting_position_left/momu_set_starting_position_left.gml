@@ -9,6 +9,7 @@ if (ds_list_size(self.selection) == 1) {
 		Stuff.game_starting_x = selection.x;
 		Stuff.game_starting_y = selection.y;
 		Stuff.game_starting_z = selection.z;
+		Stuff.game_starting_direction = 1;
 	}
 }
 

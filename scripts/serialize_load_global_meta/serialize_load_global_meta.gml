@@ -10,6 +10,9 @@ if (version >= DataVersions.STARTING_POSITION) {
 	Stuff.game_starting_x = buffer_read(buffer, buffer_u16);
 	Stuff.game_starting_y = buffer_read(buffer, buffer_u16);
 	Stuff.game_starting_z = buffer_read(buffer, buffer_u16);
+	if (version >= DataVersions.STARTING_DIRECTION) {
+		Stuff.game_starting_direction = buffer_read(buffer, buffer_u8);
+	}
 }
 
 var bools = buffer_read(buffer, buffer_u32);

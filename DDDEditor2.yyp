@@ -1191,6 +1191,14 @@
             }
         },
         {
+            "Key": "1a6841f0-01b4-4971-8189-8daa820254f6",
+            "Value": {
+                "id": "87ba22e4-a05a-4d47-97b9-56a553892b82",
+                "resourcePath": "scripts\\momu_set_starting_position_left\\momu_set_starting_position_left.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "1aaa6354-fcdd-4251-8494-6dff10635795",
             "Value": {
                 "id": "becfc9ff-05b6-4e11-abd5-4e65da3992b0",
@@ -1962,7 +1970,7 @@
             "Key": "2ca3ca53-1f59-48ed-b886-ed7b622a31a5",
             "Value": {
                 "id": "17a96aeb-e7f3-4aa6-94b4-97b86b7fc5fd",
-                "resourcePath": "scripts\\momu_set_starting_position\\momu_set_starting_position.yy",
+                "resourcePath": "scripts\\momu_set_starting_position_down\\momu_set_starting_position_down.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -3636,6 +3644,14 @@
                 "id": "3087837f-3e4d-4dc2-b33f-9d7b133e915c",
                 "resourcePath": "objects\\EntityEffect\\EntityEffect.yy",
                 "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "51d6d22f-926d-4b4f-a93f-15b52bb999fc",
+            "Value": {
+                "id": "ed827938-42d3-45d9-9684-cf2b82615ff1",
+                "resourcePath": "scripts\\momu_set_starting_position_right\\momu_set_starting_position_right.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -5467,6 +5483,14 @@
             "Value": {
                 "id": "58de49aa-ce4b-4cd1-8107-7d8191da2cc6",
                 "resourcePath": "scripts\\uivc_list_event_attain_input_char_limit\\uivc_list_event_attain_input_char_limit.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "7b015c3a-050e-4def-aa74-39e53212f8cc",
+            "Value": {
+                "id": "079fbf99-4e56-44db-a264-fcc3af9c1822",
+                "resourcePath": "scripts\\momu_set_starting_position_up\\momu_set_starting_position_up.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -11784,6 +11808,9 @@
         "26f2f886-5bd9-4255-ad27-dfe1a7d1f199",
         "66a69a30-5cfd-40a6-a951-b7ce1ce7fd42",
         "2ca3ca53-1f59-48ed-b886-ed7b622a31a5",
+        "1a6841f0-01b4-4971-8189-8daa820254f6",
+        "51d6d22f-926d-4b4f-a93f-15b52bb999fc",
+        "7b015c3a-050e-4def-aa74-39e53212f8cc",
         "9b866866-188a-4334-94d3-9012482b37af",
         "925069a1-d6f4-41e6-a08f-7afb4f3a1a9e",
         "4233e147-592a-48e3-b713-ab7c92ab7a42",

@@ -92,7 +92,12 @@ ds_list_add(menu_help.contents, mh_help, mh_about);
  */
 
 menu_right_click = create_menu("right-click", element_width, element_height, id, true);
-var mrc_player = create_menu_element("Set Player Start", momu_set_starting_position, menu_right_click);
+var mrc_player = create_menu_element("Set Player Start", momu_expand, menu_right_click);
+	var mrc_player_down = create_menu_element("Facing Down", momu_set_starting_position_down, mrc_player);
+	var mrc_player_left = create_menu_element("Facing Left", momu_set_starting_position_left, mrc_player);
+	var mrc_player_right = create_menu_element("Facing Right", momu_set_starting_position_right, mrc_player);
+	var mrc_player_up = create_menu_element("Facing Up", momu_set_starting_position_up, mrc_player);
+	ds_list_add(mrc_player.contents, mrc_player_down, mrc_player_left, mrc_player_right, mrc_player_up);
 var mrc_fill = create_menu_element("Fill", momu_expand, menu_right_click);
 	var mrc_fill_tile = create_menu_element("Tile", null, mrc_fill);
 	var mrc_fill_autotile = create_menu_element("Autotile", null, mrc_fill);
