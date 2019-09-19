@@ -109,14 +109,14 @@ repeat (n_prefabs) {
                 // custom event types don't seem to be pre-populated with values, for
                 // some reason - although as far as i can tell they ought to be?
                 if (prefab.type == EventNodeTypes.CUSTOM) {
-                    repeat(n_custom_data) {
+                    repeat (n_custom_data) {
                         ds_list_add(sub_list, buffer_read(buffer, buffer_type));
                     }
                     ds_list_add(prefab.custom_data, sub_list);
                 } else {
                     var sub_list = prefab.custom_data[| i];
                     ds_list_clear(sub_list);
-                    repeat(n_custom_data) {
+                    repeat (n_custom_data) {
                         ds_list_add(sub_list, buffer_read(buffer, buffer_type));
                     }
                 }

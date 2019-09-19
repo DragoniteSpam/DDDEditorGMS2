@@ -3,12 +3,12 @@
 
 var n_custom = buffer_read(argument0, buffer_u16);
 
-repeat(n_custom) {
+repeat (n_custom) {
     var custom = instance_create_depth(0, 0, 0, DataEventNodeCustom);
     serialize_load_generic(argument0, custom, argument1);
     
     var n_types = buffer_read(argument0, buffer_u8);
-    repeat(n_types) {
+    repeat (n_types) {
         var name = buffer_read(argument0, buffer_string);
         var type = buffer_read(argument0, buffer_u8);
         var guid = buffer_read(argument0, buffer_u32);

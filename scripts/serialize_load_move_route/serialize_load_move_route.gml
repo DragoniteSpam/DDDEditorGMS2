@@ -15,7 +15,7 @@ route.wait = unpack(bools, 2);
 
 var n_steps = buffer_read(argument0, buffer_u16);
 
-repeat(n_steps) {
+repeat (n_steps) {
     var type = buffer_read(argument0, buffer_u16);
     
     switch (type) {

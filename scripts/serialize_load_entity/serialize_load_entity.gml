@@ -39,7 +39,7 @@ if (state_static && !entity.static) {
 }
 
 var n_events = buffer_read(buffer, buffer_u8);
-repeat(n_events) {
+repeat (n_events) {
     serialize_load_entity_event_page(buffer, entity, version);
 }
 
@@ -61,7 +61,7 @@ entity.autonomous_movement_frequency = buffer_read(buffer, buffer_u8);
 entity.autonomous_movement_route = buffer_read(buffer, buffer_u32);
     
 var n_move_routes = buffer_read(buffer, buffer_u8);
-repeat(n_move_routes) {
+repeat (n_move_routes) {
     serialize_load_move_route(buffer, entity, version);
 }
 

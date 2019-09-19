@@ -7,7 +7,7 @@ var n_events = buffer_read(buffer, buffer_u32);
 
 Stuff.active_event = noone;
 
-repeat(n_events) {
+repeat (n_events) {
     // this was written in pieces before serialize_load_generic was
     // so don't use it here otherwise things will break
     var event_name = buffer_read(buffer, buffer_string);
@@ -25,7 +25,7 @@ repeat(n_events) {
     
     var n_nodes = buffer_read(buffer, buffer_u32);
     
-    repeat(n_nodes) {
+    repeat (n_nodes) {
         var node_name = buffer_read(buffer, buffer_string);
         var node_type = buffer_read(buffer, buffer_u16);
         var node_x = buffer_read(buffer, buffer_s32);
@@ -42,8 +42,7 @@ repeat(n_events) {
         
         // some preliminary data may be created
         ds_list_clear(node.data);
-        // don't clear outbound - it's noone anyway, and if outbound.size == 0,
-        // bad things happen
+		ds_list_clear(node.outbound);
         
         // node connections are stored until all of the nodes (and their names)
         // have been read out of the file
@@ -52,12 +51,12 @@ repeat(n_events) {
         ds_list_add(connections, node_connections);
         
         var n_outbound = buffer_read(buffer, buffer_u8);
-        repeat(n_outbound) {
+        repeat (n_outbound) {
             ds_list_add(node_connections, buffer_read(buffer, buffer_string));
         }
         
         var n_data = buffer_read(buffer, buffer_u8);
-        repeat(n_data) {
+        repeat (n_data) {
             ds_list_add(node.data, buffer_read(buffer, buffer_string));
         }
         
@@ -151,14 +150,14 @@ repeat(n_events) {
                     // custom event types don't seem to be pre-populated with values, for
                     // some reason - although as far as i can tell they ought to be?
                     if (node_type == EventNodeTypes.CUSTOM) {
-                        repeat(n_custom_data) {
+                        repeat (n_custom_data) {
                             ds_list_add(sub_list, buffer_read(buffer, buffer_type));
                         }
                         ds_list_add(node.custom_data, sub_list);
                     } else {
                         var sub_list = node.custom_data[| i];
                         ds_list_clear(sub_list);
-                        repeat(n_custom_data) {
+                        repeat (n_custom_data) {
                             ds_list_add(sub_list, buffer_read(buffer, buffer_type));
                         }
                     }
@@ -175,6 +174,7 @@ repeat(n_events) {
         var node_connection = connections[| i];
         
         for (var j = 0; j < ds_list_size(node_connection); j++) {
+			ds_list_add(node.outbound, noone);
             if (string_length(node_connection[| j]) > 0) {
                 event_connect_node(node, event_get_node(event, node_connection[| j]), j);
             }

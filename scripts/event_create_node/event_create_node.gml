@@ -81,7 +81,7 @@ switch (type) {
                 // if all values are required, populate them with defaults
                 // (adding and deleting will be disabled)
                 if (type[4]) {
-                    repeat(type[3] - 1) {
+                    repeat (type[3] - 1) {
                         ds_list_add(new_list, value);
                     }
                 }
