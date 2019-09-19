@@ -56,11 +56,14 @@ if (Camera.view_grid) {
 var dest_x = surface.root.node.custom_data[| 1];
 var dest_y = surface.root.node.custom_data[| 2];
 var dest_z = surface.root.node.custom_data[| 3];
+var dest_direction = surface.root.node.custom_data[| 4];
 dest_x = dest_x[| 0];
 dest_y = dest_y[| 0];
 dest_z = dest_z[| 0];
+dest_direction = dest_direction[| 0];
 
-transform_set(dest_x * TILE_WIDTH, dest_y * TILE_HEIGHT, dest_z * TILE_DEPTH, 0, 0, 0, 1, 1, 1);
+transform_set(0, 0, 0, 0, 0, Stuff.direction_lookup[dest_direction], 1, 1, 1);
+transform_add((dest_x + 0.5) * TILE_WIDTH, (dest_y + 0.5) * TILE_HEIGHT, dest_z * TILE_DEPTH, 0, 0, 0, 1, 1, 1);
 vertex_submit(Stuff.basic_cage, pr_trianglelist, -1);
 
 transform_reset();

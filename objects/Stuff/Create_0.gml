@@ -491,8 +491,11 @@ game_starting_map = 0;
 game_starting_x = 0;
 game_starting_y = 0;
 game_starting_z = 0;
+game_starting_direction = 0;
 game_player_grid = true;
 game_battle_style = BattleStyles.TEAM_BASED;
+
+direction_lookup = [270, 180, 0, 90];
 
 // save settings
 

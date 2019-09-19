@@ -27,8 +27,6 @@ if (buffer < 0) {
         var version = buffer_read(buffer, buffer_u32);
         var last_safe_version = DataVersions.STARTING_POSITION;
 		
-		show_message(version);
-		
         if (version < last_safe_version) {
             show_error("We stopped supporting versions of the data file before " + string(last_safe_version) +
                 ". This current version is " + string(version) + ". Please find a version of " + filename_name(filename) +
