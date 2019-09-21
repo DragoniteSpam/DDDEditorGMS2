@@ -13,6 +13,13 @@ map.xx = xx;
 map.yy = yy;
 map.zz = zz;
 
+for (var i = 0; i < ds_list_size(map_contents.all_entities); i++) {
+    var thing = map_contents.all_entities[| i];
+    if (thing.xx >= xx || thing.yy >= yy || thing.zz >= zz) {
+        safa_delete(thing);
+    }
+}
+
 graphics_create_grids();
 
 ds_grid_resize(map_contents.map_grid, xx, yy);

@@ -238,7 +238,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
 	
 	yy = legal_y + spacing;
 	
-	element = create_list(legal_x + spacing, yy, "Maps: ", "no maps. (how?!)", col_width, element_height, 16, null, false, t_maps, Stuff.all_maps);
+	element = create_list(legal_x + spacing, yy, "Maps: ", "no maps. (how?!)", col_width, element_height, 16, uivc_list_maps, false, t_maps, Stuff.all_maps);
 	element.render = ui_render_list_all_maps;
 	element.entries_are = ListEntries.INSTANCES;
 	t_maps.el_map_list = element;
@@ -266,37 +266,71 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
 	
 	yy = legal_y + spacing;
 	
-	element = create_input(col2_x, yy, "Name: ", col_width, element_height, uivc_settings_map_name, "", "", "Name", validate_string, ui_value_string, 0, 0, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, t_maps);
+	element = create_text(col2_x, yy, "Name:", col_width, element_height, fa_left, col_width, t_maps);
 	ds_list_add(t_maps.contents, element);
 	
 	yy = yy + element.height + spacing;
 	
-	element = create_input(col2_x, yy, "Internal Name: ", col_width, element_height, uivc_settings_map_internal, "", "", "[A-Za-z0-9_]+", validate_string_internal_name, ui_value_string, 0, 0, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, t_maps);
+	element = create_input(col2_x, yy, "", col_width, element_height, uivc_settings_map_name, "", "", "Name", validate_string, ui_value_string, 0, 0, VISIBLE_NAME_LENGTH, 0, vy1, vx2, vy2, t_maps);
+	ds_list_add(t_maps.contents, element);
+	t_maps.el_name = element;
+	
+	yy = yy + element.height + spacing;
+	
+	element = create_text(col2_x, yy, "Internal name:", col_width, element_height, fa_left, col_width, t_maps);
 	ds_list_add(t_maps.contents, element);
 	
 	yy = yy + element.height + spacing;
 	
-	element = create_input(col2_x, yy, "Summary: ", col_width, element_height, uivc_settings_map_summary, "", "", "Words", validate_string, ui_value_string, 0, 0, 400, vx1, vy1, vx2, vy2, t_maps);
+	element = create_input(col2_x, yy, "", col_width, element_height, uivc_settings_map_internal, "", "", "[A-Za-z0-9_]+", validate_string_internal_name, ui_value_string, 0, 0, INTERNAL_NAME_LENGTH, 0, vy1, vx2, vy2, t_maps);
+	ds_list_add(t_maps.contents, element);
+	t_maps.el_internal_name = element;
+	
+	yy = yy + element.height + spacing;
+	
+	element = create_text(col2_x, yy, "Summary:", col_width, element_height, fa_left, col_width, t_maps);
 	ds_list_add(t_maps.contents, element);
 	
 	yy = yy + element.height + spacing;
 	
-	yy = yy + spacing;
+	element = create_input(col2_x, yy, "", col_width, element_height, uivc_settings_map_summary, "", "", "Words", validate_string, ui_value_string, 0, 0, 400, 0, vy1, vx2, vy2, t_maps);
+	ds_list_add(t_maps.contents, element);
+	t_maps.el_summary = element;
+	
+	yy = yy + element.height + spacing;
+	
+	element = create_text(col2_x, yy, "Dimensions", col_width, element_height, fa_left, col_width, t_maps);
+	ds_list_add(t_maps.contents, element);
+	
+	yy = yy + element.height + spacing;
 	
 	element = create_input(col2_x, yy, "Width (X): ", col_width, element_height, null, "", 64, "width", validate_int, ui_value_real, 1, MAP_X_LIMIT, 3, vx1, vy1, vx2, vy2, t_maps);
 	element.require_enter = true;
 	ds_list_add(t_maps.contents, element);
+	t_maps.el_dim_x = element;
 	
 	yy = yy + element.height + spacing;
 	
 	element = create_input(col2_x, yy, "Height (Y): ", col_width, element_height, null, "", 64, "height", validate_int, ui_value_real, 1, MAP_Y_LIMIT, 3, vx1, vy1, vx2, vy2, t_maps);
 	element.require_enter = true;
 	ds_list_add(t_maps.contents, element);
+	t_maps.el_dim_y = element;
 	
 	yy = yy + element.height + spacing;
 	
 	element = create_input(col2_x, yy, "Depth (Z): ", col_width, element_height, null, "", 8, "depth", validate_int, ui_value_real, 1, MAP_Y_LIMIT, 3, vx1, vy1, vx2, vy2, t_maps);
 	element.require_enter = true;
+	ds_list_add(t_maps.contents, element);
+	t_maps.el_dim_z = element;
+	
+	yy = yy + element.height + spacing;
+	
+	element = create_text(col2_x, yy, "Other Settings", col_width, element_height, fa_left, col_width, t_maps);
+	ds_list_add(t_maps.contents, element);
+	
+	yy = yy + element.height + spacing;
+	
+	element = create_button(col2_x, yy,  "Other Settings", col_width, element_height, fa_center, null, t_maps);
 	ds_list_add(t_maps.contents, element);
 	
 	#endregion
