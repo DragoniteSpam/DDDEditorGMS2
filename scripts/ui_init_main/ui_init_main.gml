@@ -8,7 +8,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     // object variables so you can look them up
     t_general = create_tab("General", 0, id);
     t_stats = create_tab("Stats", 0, id);
-    t_2 = create_tab("ehh", 0, id);
+	t_maps = create_tab("Maps", 0, id);
     
     t_p_tile_editor = create_tab("Tile Ed.", 1, id);
     t_p_autotile_editor = create_tab("Autotile Ed.", 1, id);
@@ -23,7 +23,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     // the game will crash if you create a tab row with zero width.
     var tr_general = ds_list_create();
-    ds_list_add(tr_general, t_general, t_stats, t_2);
+    ds_list_add(tr_general, t_general, t_stats, t_maps);
     var tr_editor = ds_list_create();
     ds_list_add(tr_editor, t_p_tile_editor, t_p_autotile_editor, t_p_mesh_editor, t_p_other_editor);
     var tr_world = ds_list_create();
@@ -234,6 +234,40 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     #endregion
     
+	#region tab: map
+	
+	yy = legal_y + spacing;
+	
+	element = create_list(legal_x + spacing, yy, "Maps: ", "no maps. (how?!)", col_width, element_height, 16, null, false, t_maps, Stuff.all_maps);
+	element.render = ui_render_list_all_maps;
+	element.entries_are = ListEntries.INSTANCES;
+	t_maps.el_map_list = element;
+	ds_list_add(t_maps.contents, element);
+	
+	yy = yy + ui_get_list_height(element) + spacing;
+	
+	element = create_button(legal_x + spacing, yy, "Add Map", col_width, element_height, fa_center, null, t_maps);
+	ds_list_add(t_maps.contents, element);
+	
+	yy = yy + element.height + spacing;
+	
+	element = create_button(legal_x + spacing, yy, "Remove Map", col_width, element_height, fa_center, null, t_maps);
+	ds_list_add(t_maps.contents, element);
+	
+	yy = yy + element.height + spacing;
+	
+	element = create_button(legal_x + spacing, yy, "Open Map", col_width, element_height, fa_center, null, t_maps);
+	ds_list_add(t_maps.contents, element);
+	
+	yy = yy + element.height + spacing;
+	
+	element = create_button(legal_x + spacing, yy, "Make Starting Map", col_width, element_height, fa_center, dmu_data_starting_map, t_maps);
+	ds_list_add(t_maps.contents, element);
+	
+	yy = yy + element.height + spacing;
+	
+	#endregion
+	
     #region tab: entity
     
     yy = legal_y + spacing;
@@ -688,7 +722,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     element = create_list(legal_x + spacing, yy, "Defined Autotiles: ", "<something is wrong>", col_width, element_height, 28, uivc_list_selection_autotile, false, t_p_autotile_editor);
     ds_map_add(element.selected_entries, 0, true);
-    for (var i = 0; i<AUTOTILE_MAX; i++) {
+    for (var i = 0; i < AUTOTILE_MAX; i++) {
         create_list_entries(element, string(i) + ". <none set>");
     }
     ds_list_add(t_p_autotile_editor.contents, element);
@@ -718,7 +752,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     ds_list_add(t_p_autotile_editor.contents, element);
     
     // this is totally cheating but game maker allows me to do it so shut up
-    t_p_autotile_editor.element_priority=element;
+    t_p_autotile_editor.element_priority = element;
     
     yy = yy + element.height + spacing;
     
@@ -763,6 +797,6 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     ds_list_add(t_p_other_editor.contents, element);
     
     #endregion
-    
+	
     return id;
 }

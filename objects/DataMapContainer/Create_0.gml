@@ -7,6 +7,8 @@ data_buffer = noone;
 contents = noone;
 version = 0;
 
+tiled_map_id = "";
+
 preview = noone;
 wpreview = noone;
 cspreview = noone;

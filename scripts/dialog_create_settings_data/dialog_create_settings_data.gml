@@ -41,20 +41,6 @@ yy = yy + el_switches.height + spacing;
 
 yy = 64;
 
-var el_map_list = create_list(c2 + 16, yy, "Identified Maps", "<no maps>", ew, eh, 8, null, false, dg, Stuff.all_maps);
-el_map_list.render = ui_render_list_all_maps;
-el_map_list.entries_are = ListEntries.INSTANCES;
-
-dg.el_map_list = el_map_list;
-
-yy = yy + eh + eh * 8 + spacing;
-
-var el_map_delete = create_button(c2 + 16, yy, "Dereference", ew, eh, fa_middle, dmu_data_dereference, dg);
-
-yy = yy + eh + spacing;
-
-var el_map_starting = create_button(c2 + 16, yy, "Make Starting Map", ew, eh, fa_middle, dmu_data_starting_map, dg);
-
 // confirm
 
 var b_width = 128;
