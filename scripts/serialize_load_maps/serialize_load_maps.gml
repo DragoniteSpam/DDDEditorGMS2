@@ -32,3 +32,12 @@ Stuff.active_map = guid_get(Stuff.game_starting_map);
 serialize_load_current_map(Stuff.active_map, version);
 
 uivc_select_autotile_refresh();
+
+var list = Camera.ui.t_maps.el_map_list;
+for (var i = 0; i < ds_list_size(Stuff.all_maps); i++) {
+	if (Stuff.all_maps[| i] == Stuff.active_map) {
+		ds_map_add(list.selected_entries, i, true);
+		script_execute(list.onvaluechange, list);
+		break;
+	}
+}
