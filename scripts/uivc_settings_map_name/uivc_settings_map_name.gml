@@ -2,4 +2,4 @@
 
 var thing = argument0;
 
-Stuff.active_map.contents.name = thing.value;
+Stuff.active_map.name = thing.value;

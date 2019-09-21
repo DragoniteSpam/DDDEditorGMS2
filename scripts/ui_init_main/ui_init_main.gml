@@ -45,7 +45,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     var col_width = legal_width / 2 - spacing * 1.5;
     var col2_x = legal_x + col_width + spacing * 2;
     
-    var vx1 = legal_width / 4 + 16;
+    var vx1 = col_width / 2;
     var vy1 = 0;
     var vx2 = col_width;
     var vy2 = vy1 + 24;
@@ -262,6 +262,21 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
 	yy = yy + element.height + spacing;
 	
 	element = create_button(legal_x + spacing, yy, "Make Starting Map", col_width, element_height, fa_center, dmu_data_starting_map, t_maps);
+	ds_list_add(t_maps.contents, element);
+	
+	yy = legal_y + spacing;
+	
+	element = create_input(col2_x, yy, "Name: ", col_width, element_height, uivc_settings_map_name, "", "", "Name", validate_string, ui_value_string, 0, 0, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, t_maps);
+	ds_list_add(t_maps.contents, element);
+	//the map properties aren't updating the lists because ???
+	yy = yy + element.height + spacing;
+	
+	element = create_input(col2_x, yy, "Internal Name: ", col_width, element_height, uivc_settings_map_internal, "", "", "[A-Za-z0-9_]+", validate_string_internal_name, ui_value_string, 0, 0, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, t_maps);
+	ds_list_add(t_maps.contents, element);
+	
+	yy = yy + element.height + spacing;
+	
+	element = create_input(col2_x, yy, "Summary: ", col_width, element_height, uivc_settings_map_summary, "", "", "Words", validate_string, ui_value_string, 0, 0, 400, vx1, vy1, vx2, vy2, t_maps);
 	ds_list_add(t_maps.contents, element);
 	
 	yy = yy + element.height + spacing;

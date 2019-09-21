@@ -81,10 +81,11 @@ if (input.interactive && dialog_is_active(input.root)) {
             if (execute_value_change) {
 				if (input.real_value) {
 			        var n = script_execute(input.value_conversion, value);
-			        if (is_clamped(n, input.value_lower, input.value_upper)) {
-			            script_execute(input.onvaluechange, input);
-			        }
+			        execute_value_change = execute_value_change && is_clamped(n, input.value_lower, input.value_upper);
 			    }
+				if (execute_value_change) {
+					script_execute(input.onvaluechange, input);
+				}
             }
         }
     }
