@@ -50,7 +50,6 @@ var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Do
 ds_list_add(dg.contents,
     el_gameplay_title, el_gameplay_grid, el_battle_type,
     el_global_title, el_constants, el_variables, el_switches,
-    el_map_list, el_map_delete, el_map_starting,
     el_confirm);
 
 keyboard_string = "";

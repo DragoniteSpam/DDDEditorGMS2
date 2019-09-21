@@ -20,8 +20,7 @@ var value = input.value;
 draw_set_halign(input.alignment);
 draw_set_valign(input.valignment);
 var c = input.color;
-var prefix = input.require_enter ? "^" : "";
-draw_text_colour(tx, ty, prefix + string(input.text), c, c, c, c, 1);
+draw_text_colour(tx, ty, string(input.text), c, c, c, c, 1);
 
 if (script_execute(input.validation, value)) {
     var c = input.color;
@@ -50,6 +49,10 @@ draw_rectangle_colour(vx1, vy1, vx2, vy2, c_black, c_black, c_black, c_black, tr
 draw_text_ext_colour(vtx, vty, string(value), -1, vx2 - vtx, c, c, c, c, 1);
 if (string_length(value) == 0) {
     draw_text_ext_colour(vtx, vty, string(string(input.value_default)), -1, vx2 - vtx, c_dkgray, c_dkgray, c_dkgray, c_dkgray, 1);
+}
+
+if (input.require_enter) {
+	draw_sprite(spr_enter, 0, vx2 - sprite_get_width(spr_enter) - 4, mean(vy1, vy2) - sprite_get_height(spr_enter) / 2);
 }
 
 if (input.interactive && dialog_is_active(input.root)) {

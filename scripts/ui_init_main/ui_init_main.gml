@@ -268,7 +268,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
 	
 	element = create_input(col2_x, yy, "Name: ", col_width, element_height, uivc_settings_map_name, "", "", "Name", validate_string, ui_value_string, 0, 0, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, t_maps);
 	ds_list_add(t_maps.contents, element);
-	//the map properties aren't updating the lists because ???
+	
 	yy = yy + element.height + spacing;
 	
 	element = create_input(col2_x, yy, "Internal Name: ", col_width, element_height, uivc_settings_map_internal, "", "", "[A-Za-z0-9_]+", validate_string_internal_name, ui_value_string, 0, 0, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, t_maps);
@@ -280,6 +280,24 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
 	ds_list_add(t_maps.contents, element);
 	
 	yy = yy + element.height + spacing;
+	
+	yy = yy + spacing;
+	
+	element = create_input(col2_x, yy, "Width (X): ", col_width, element_height, null, "", 64, "width", validate_int, ui_value_real, 1, MAP_X_LIMIT, 3, vx1, vy1, vx2, vy2, t_maps);
+	element.require_enter = true;
+	ds_list_add(t_maps.contents, element);
+	
+	yy = yy + element.height + spacing;
+	
+	element = create_input(col2_x, yy, "Height (Y): ", col_width, element_height, null, "", 64, "height", validate_int, ui_value_real, 1, MAP_Y_LIMIT, 3, vx1, vy1, vx2, vy2, t_maps);
+	element.require_enter = true;
+	ds_list_add(t_maps.contents, element);
+	
+	yy = yy + element.height + spacing;
+	
+	element = create_input(col2_x, yy, "Depth (Z): ", col_width, element_height, null, "", 8, "depth", validate_int, ui_value_real, 1, MAP_Y_LIMIT, 3, vx1, vy1, vx2, vy2, t_maps);
+	element.require_enter = true;
+	ds_list_add(t_maps.contents, element);
 	
 	#endregion
 	
