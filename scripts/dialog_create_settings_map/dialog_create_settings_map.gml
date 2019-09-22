@@ -7,7 +7,7 @@ var map_contents = map.contents;
 var dw = 960;
 var dh = 640;
 
-var dg = dialog_create(dw, dh, "Map Settings", dialog_default, dc_settings_map, dialog);
+var dg = dialog_create(dw, dh, "Map Settings", dialog_default, undefined, dialog);
 
 // three columns!
 var ew = (dw - 96) / 3;

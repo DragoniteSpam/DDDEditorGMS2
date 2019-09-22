@@ -24,6 +24,7 @@ for (var i = 0; i < ds_grid_width(grid); i++) {
     }
 }
 
+// @todo gml update LWO - these may need to be destroyed manually in the data_resize_map script
 enum MapCellContents {
     TILE,
     MESHPAWN,
