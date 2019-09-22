@@ -20,3 +20,10 @@ ds_list_destroy_instances(all_entities);
 ds_grid_destroy(map_grid);
 
 vertex_delete_buffer(frozen);
+
+for (var i = 0; i < array_length_1d(mesh_autotile_raw); i++) {
+	if (mesh_autotile_raw[i]) {
+		buffer_delete(mesh_autotile_raw[i]);
+		vertex_delete_buffer(mesh_autotiles[i]);
+	}
+}

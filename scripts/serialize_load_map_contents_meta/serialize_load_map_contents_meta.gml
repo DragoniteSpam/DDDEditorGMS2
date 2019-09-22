@@ -30,12 +30,12 @@ map.is_3d = unpack(bools, 4);
 
 map.code = buffer_read(buffer, buffer_string);
 
-for (var i = 0; i < array_length_1d(map.mesh_autotile_raw); i++) {
+for (var i = 0; i < array_length_1d(map_contents.mesh_autotile_raw); i++) {
     var exists = buffer_read(buffer, buffer_bool);
     if (exists) {
         var size = buffer_read(buffer, buffer_u32);
-        map.mesh_autotile_raw[i] = buffer_read_buffer(buffer, size);
-	    map.mesh_autotiles[i] = vertex_create_buffer_from_buffer(map.mesh_autotile_raw[i], Camera.vertex_format);
-	    vertex_freeze(map.mesh_autotiles[i]);
+        map_contents.mesh_autotile_raw[i] = buffer_read_buffer(buffer, size);
+	    map_contents.mesh_autotiles[i] = vertex_create_buffer_from_buffer(map_contents.mesh_autotile_raw[i], Camera.vertex_format);
+	    vertex_freeze(map_contents.mesh_autotiles[i]);
     }
 }

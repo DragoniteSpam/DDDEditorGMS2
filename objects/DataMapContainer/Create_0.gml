@@ -38,9 +38,4 @@ discovery = 0;								// index
 
 code = Stuff.default_lua_map;				// code
 
-mesh_autotiles = array_create(48);
-mesh_autotile_raw = array_create(48);
-array_clear(mesh_autotiles, noone);
-array_clear(mesh_autotile_raw, noone);
-
 ds_list_add(Stuff.all_maps, id);

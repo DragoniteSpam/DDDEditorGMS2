@@ -16,6 +16,11 @@ map_grid = map_create_grid(10, 10, 10);		// this just needs to exist for now, it
 
 frozen = vertex_create_buffer();          // everything that will be a single batch in the game
 
+mesh_autotiles = array_create(48);
+mesh_autotile_raw = array_create(48);
+array_clear(mesh_autotiles, noone);
+array_clear(mesh_autotile_raw, noone);
+
 population = [0, 0, 0, 0, 0, 0, 0];
 population_static = 0;
 population_solid = 0;
