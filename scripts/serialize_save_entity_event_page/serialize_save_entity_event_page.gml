@@ -7,13 +7,14 @@ var event = argument1;
 // name, guid, flags
 serialize_save_generic(buffer, event);
 
-var bools=pack(event.enabled,
+var bools = pack(event.enabled,
     event.condition_switch_global_enabled,
     event.condition_variable_global_enabled,
     event.condition_switch_self_enabled,
     event.condition_variable_self_enabled,
     0,                                              // used to be condition_item_enabled, now just blank
-    event.condition_code_enabled);
+    event.condition_code_enabled
+);
 
 // the u16 is just future-proofing - i somewhat doubt that other
 // condition types are going to be added but just in case they are

@@ -7,9 +7,7 @@ with (Camera) {
 	var map_contents = map.contents;
 	
     if (grid) vertex_delete_buffer(grid);
-    
     grid = vertex_create_buffer();
-    
     vertex_begin(grid, vertex_format);
     
     // grid
@@ -41,9 +39,7 @@ with (Camera) {
      */
 
     if (grid_centered) vertex_delete_buffer(grid_centered);
-    
     grid_centered = vertex_create_buffer();
-    
     vertex_begin(grid_centered, vertex_format);
     
     // grid
@@ -82,9 +78,7 @@ with (Camera) {
      */
 
     if (grid_sphere) vertex_delete_buffer(grid_sphere);
-    
     grid_sphere = vertex_create_buffer();
-    
     vertex_begin(grid_sphere, vertex_format);
     
     var radius = 16;

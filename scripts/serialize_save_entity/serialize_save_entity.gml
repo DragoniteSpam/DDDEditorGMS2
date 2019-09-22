@@ -13,7 +13,8 @@ buffer_write(buffer, buffer_u32, entity.REFID);
 
 var entity_bools = pack(entity.am_solid, entity.static,
     entity.animate_idle, entity.animate_movement, entity.direction_fix,
-    entity.reset_position);
+    entity.reset_position
+);
 buffer_write(buffer, buffer_u32, entity_bools);
 
 var n_events = ds_list_size(entity.object_events);

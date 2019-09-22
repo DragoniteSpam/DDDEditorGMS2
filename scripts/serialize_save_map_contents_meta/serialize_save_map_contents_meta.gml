@@ -3,6 +3,7 @@
 var buffer = argument0;
 var map = Stuff.active_map;
 var map_contents = map.contents;
+map.version = DataVersions._CURRENT;
 
 buffer_write(buffer, buffer_datatype, SerializeThings.MAP_META);
 
@@ -10,7 +11,7 @@ buffer_write(buffer, buffer_u16, map.xx);
 buffer_write(buffer, buffer_u16, map.yy);
 buffer_write(buffer, buffer_u16, map.zz);
 
-buffer_write(buffer, buffer_u8, map.tileset);
+buffer_write(buffer, buffer_datatype, map.tileset);
 
 buffer_write(buffer, buffer_f32, map.fog_start);
 buffer_write(buffer, buffer_f32, map.fog_end);
@@ -22,6 +23,7 @@ var bools = pack(map.indoors, map.draw_water, map.fast_travel_to, map.fast_trave
 buffer_write(buffer, buffer_u32, bools);
 buffer_write(buffer, buffer_string, map.code);
 
+debug([map.name, buffer_tell(buffer)]);
 for (var i = 0; i < array_length_1d(map_contents.mesh_autotile_raw); i++) {
     var data = map_contents.mesh_autotile_raw[i];
     if (data) {

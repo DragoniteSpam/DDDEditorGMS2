@@ -1,10 +1,13 @@
-/// @description void serialize_load_entity_pawn(buffer, Entity, version);
 /// @param buffer
-/// @param Entity
+/// @param EntityPawn
 /// @param version
 
-serialize_load_entity(argument0, argument1, argument2);
+var buffer = argument0;
+var pawn = argument1;
+var version = argument2;
 
-argument1.map_direction=buffer_read(argument0, buffer_u8);
+serialize_load_entity(buffer, pawn, version);
 
-entity_init_collision_pawn(argument1);
+pawn.map_direction = buffer_read(buffer, buffer_u8);
+
+entity_init_collision_pawn(pawn);

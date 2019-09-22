@@ -1,7 +1,9 @@
 /// @param Entity
 
-c_world_add_object(argument0.cobject);
-c_object_set_userid(argument0.cobject, argument0);
-c_transform_position(argument0.xx * TILE_WIDTH, argument0.yy * TILE_HEIGHT, argument0.zz * TILE_DEPTH);
-c_object_apply_transform(argument0.cobject);
+var entity = argument0;
+
+c_world_add_object(entity.cobject);
+c_object_set_userid(entity.cobject, entity);
+c_transform_position(entity.xx * TILE_WIDTH, entity.yy * TILE_HEIGHT, entity.zz * TILE_DEPTH);
+c_object_apply_transform(entity.cobject);
 c_transform_identity();

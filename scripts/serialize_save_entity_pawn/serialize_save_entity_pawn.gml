@@ -1,8 +1,10 @@
-/// @description void serialize_save_entity_pawn(buffer, EntityTile);
 /// @param buffer
-/// @param EntityTile
+/// @param EntityPawn
 
-serialize_save_entity(argument0, argument1);
+var buffer = argument0;
+var tile = argument1;
 
-buffer_write(argument0, buffer_u8, argument1.map_direction);
-// overworld sprite, etc
+serialize_save_entity(buffer, tile);
+
+buffer_write(buffer, buffer_u8, tile.map_direction);
+// overworld sprite, etc?

@@ -1,13 +1,16 @@
-/// @description void serialize_load_entity_tile(buffer, Entity, version);
 /// @param buffer
-/// @param Entity
+/// @param EntityTile
 /// @param version
 
-serialize_load_entity(argument0, argument1, argument2);
+var buffer = argument0;
+var tile = argument1;
+var version = argument2;
 
-argument1.tile_x=buffer_read(argument0, buffer_u8);
-argument1.tile_y=buffer_read(argument0, buffer_u8);
-argument1.tile_color=buffer_read(argument0, buffer_u32);
-argument1.tile_alpha=buffer_read(argument0, buffer_u8)/255;
+serialize_load_entity(buffer, tile, version);
 
-entity_init_collision_tile(argument1);
+tile.tile_x = buffer_read(buffer, buffer_u8);
+tile.tile_y = buffer_read(buffer, buffer_u8);
+tile.tile_color = buffer_read(buffer, buffer_u32);
+tile.tile_alpha = buffer_read(buffer, buffer_u8)/255;
+
+entity_init_collision_tile(tile);
