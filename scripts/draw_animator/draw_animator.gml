@@ -15,7 +15,9 @@ gpu_set_ztestenable(true);
 // do it that way here at some point in the future too
 
 draw_set_color(c_white);
-var camera = view_get_camera(view_camera);
+var camera = view_get_camera(view_current);
+var view_mat = camera_get_view_mat(camera);
+var proj_mat = camera_get_proj_mat(camera);
 
 if (map.is_3d) {
     var vw = view_get_wport(view_current);
