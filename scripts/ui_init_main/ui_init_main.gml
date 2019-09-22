@@ -332,6 +332,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
 	
 	element = create_button(col2_x, yy,  "Other Settings", col_width, element_height, fa_center, null, t_maps);
 	ds_list_add(t_maps.contents, element);
+	t_maps.el_other= element;
 	
 	#endregion
 	
