@@ -36,7 +36,6 @@ map.is_3d = unpack(bools, 4);
 
 map.code = buffer_read(buffer, buffer_string);
 
-debug([map.name, buffer_tell(buffer)]);
 for (var i = 0; i < array_length_1d(map_contents.mesh_autotile_raw); i++) {
     var exists = buffer_read(buffer, buffer_bool);
     if (exists) {
