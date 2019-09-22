@@ -311,14 +311,14 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
 	
 	yy = yy + element.height + spacing;
 	
-	element = create_input(col2_x, yy, "Height (Y): ", col_width, element_height, uivc_input_map_size_x, "", 64, "height", validate_int, ui_value_real, 1, MAP_Y_LIMIT, 3, vx1, vy1, vx2, vy2, t_maps);
+	element = create_input(col2_x, yy, "Height (Y): ", col_width, element_height, uivc_input_map_size_y, "", 64, "height", validate_int, ui_value_real, 1, MAP_Y_LIMIT, 3, vx1, vy1, vx2, vy2, t_maps);
 	element.require_enter = true;
 	ds_list_add(t_maps.contents, element);
 	t_maps.el_dim_y = element;
 	
 	yy = yy + element.height + spacing;
 	
-	element = create_input(col2_x, yy, "Depth (Z): ", col_width, element_height, uivc_input_map_size_x, "", 8, "depth", validate_int, ui_value_real, 1, MAP_Y_LIMIT, 3, vx1, vy1, vx2, vy2, t_maps);
+	element = create_input(col2_x, yy, "Depth (Z): ", col_width, element_height, uivc_input_map_size_z, "", 8, "depth", validate_int, ui_value_real, 1, MAP_Y_LIMIT, 3, vx1, vy1, vx2, vy2, t_maps);
 	element.require_enter = true;
 	ds_list_add(t_maps.contents, element);
 	t_maps.el_dim_z = element;
