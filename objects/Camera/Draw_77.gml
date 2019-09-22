@@ -6,7 +6,8 @@ if (!dialog_exists()) {
     control_global();
 }
 
-var map = Stuff.active_map.contents;
+var base_map = Stuff.active_map;
+var map = base_map.contents;
 
 // dialogs (or other things) to be killed
 
@@ -51,7 +52,9 @@ if (ds_list_size(deletions) > 0) {
 	if (ds_list_size(deletions) < 25) {
 		for (var i = 0; i < ds_list_size(deletions); i++) {
 			var thing = deletions[| i];
-		    map_remove_thing(thing, true);
+			if (thing.xx < base_map.xx && thing.yy < base_map.yy && thing.zz < base_map.zz) {
+				map_remove_thing(thing, true);
+			}
 		    instance_activate_object(thing);
 		    instance_destroy(thing);
 		}
@@ -88,7 +91,10 @@ if (ds_list_size(deletions) > 0) {
 				ds_list_delete(batch_list, ds_list_find_index(batch_list, thing));
 			}
 			
-		    map_remove_thing(thing, false);
+			if (thing.xx < base_map.xx && thing.yy < base_map.yy && thing.zz < base_map.zz) {
+				map_remove_thing(thing, false);
+			}
+			
 		    instance_activate_object(thing);
 		    instance_destroy(thing);
 		}

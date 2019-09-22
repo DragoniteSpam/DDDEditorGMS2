@@ -14,6 +14,10 @@ if (selection >= 0) {
 	if (clear) {
 		data_resize_map(map, xx, map.yy, map.zz);
 	} else {
-		dialog_create_yes_or_no(input, "If you do this, entities will be deleted and you will not be able to get them back. Is this okay?", null);
+		var dialog = dialog_create_yes_or_no(input, "If you do this, entities will be deleted and you will not be able to get them back. Is this okay?", dc_map_resize);
+		dialog.map = map;
+		dialog.xx = xx;
+		dialog.yy = map.yy;
+		dialog.zz = map.zz;
 	}
 }

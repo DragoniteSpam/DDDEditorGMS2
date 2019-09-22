@@ -25,6 +25,12 @@ graphics_create_grids();
 ds_grid_resize(map_contents.map_grid, xx, yy);
 map_fill_grid(map_contents.map_grid, zz);
 
+if (Stuff.game_starting_map == map.GUID) {
+	Stuff.game_starting_x = min(Stuff.game_starting_x, xx - 1);
+	Stuff.game_starting_y = min(Stuff.game_starting_y, yy - 1);
+	Stuff.game_starting_z = min(Stuff.game_starting_z, zz - 1);
+}
+
 Camera.ui.element_entity_pos_x.value_upper = xx - 1;
 Camera.ui.element_entity_pos_y.value_upper = yy - 1;
 Camera.ui.element_entity_pos_z.value_upper = zz - 1;
