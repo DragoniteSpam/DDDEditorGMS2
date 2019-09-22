@@ -1,5 +1,9 @@
 /// @param UIThing
 
 var thing = argument0;
+var selection = ui_list_selection(thing.root.el_map_list);
 
-Stuff.active_map.name = thing.value;
+if (selection >= 0) {
+	var map = Stuff.all_maps[| selection];
+	map.name = thing.value;
+}

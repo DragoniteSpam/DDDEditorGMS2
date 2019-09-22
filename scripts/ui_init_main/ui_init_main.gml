@@ -325,14 +325,14 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
 	
 	yy = yy + element.height + spacing;
 	
-	element = create_text(col2_x, yy, "Other Settings", col_width, element_height, fa_left, col_width, t_maps);
+	element = create_text(col2_x, yy, "More Settings", col_width, element_height, fa_left, col_width, t_maps);
 	ds_list_add(t_maps.contents, element);
 	
 	yy = yy + element.height + spacing;
 	
-	element = create_button(col2_x, yy,  "Other Settings", col_width, element_height, fa_center, null, t_maps);
+	element = create_button(col2_x, yy,  "More Settings", col_width, element_height, fa_center, dialog_create_settings_map, t_maps);
 	ds_list_add(t_maps.contents, element);
-	t_maps.el_other= element;
+	t_maps.el_other = element;
 	
 	#endregion
 	
