@@ -2,6 +2,9 @@
 
 event_inherited();
 
+name = "Map";
+summary = "it does map things";
+
 file_location = DataFileLocations.DATA;
 data_buffer = noone;
 contents = noone;

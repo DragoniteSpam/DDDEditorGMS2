@@ -6,10 +6,13 @@
     "children": [
         "8bc49c02-d5a7-41a6-9b0d-9573c2b2beb1",
         "4373c906-fe17-4608-af97-8721dadcb184",
-        "c0649b09-7522-4726-b33c-d2f2900224fc"
+        "c0649b09-7522-4726-b33c-d2f2900224fc",
+        "be638e68-a97e-4a0c-afe8-b8b38eb934c0",
+        "3524668f-fce9-47ef-a727-b1f72a682462",
+        "ef88187a-f578-4d1f-b954-17d87c453441"
     ],
     "filterType": "GMScript",
-    "folderName": "settings",
+    "folderName": "map and settings",
     "isDefaultView": false,
     "localisedFolderName": ""
 }

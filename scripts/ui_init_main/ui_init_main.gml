@@ -246,17 +246,17 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
 	
 	yy = yy + ui_get_list_height(element) + spacing;
 	
-	element = create_button(legal_x + spacing, yy, "Add Map", col_width, element_height, fa_center, null, t_maps);
+	element = create_button(legal_x + spacing, yy, "Add Map", col_width, element_height, fa_center, dmu_data_add_map, t_maps);
 	ds_list_add(t_maps.contents, element);
 	
 	yy = yy + element.height + spacing;
 	
-	element = create_button(legal_x + spacing, yy, "Remove Map", col_width, element_height, fa_center, null, t_maps);
+	element = create_button(legal_x + spacing, yy, "Remove Map", col_width, element_height, fa_center, dmu_data_remove_map, t_maps);
 	ds_list_add(t_maps.contents, element);
 	
 	yy = yy + element.height + spacing;
 	
-	element = create_button(legal_x + spacing, yy, "Open Map", col_width, element_height, fa_center, null, t_maps);
+	element = create_button(legal_x + spacing, yy, "Open Map", col_width, element_height, fa_center, dmu_data_open_map, t_maps);
 	ds_list_add(t_maps.contents, element);
 	
 	yy = yy + element.height + spacing;

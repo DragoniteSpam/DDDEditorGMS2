@@ -2343,6 +2343,14 @@
             }
         },
         {
+            "Key": "3524668f-fce9-47ef-a727-b1f72a682462",
+            "Value": {
+                "id": "b613f770-d3d1-4c62-a55f-8898ddc283cf",
+                "resourcePath": "scripts\\dmu_data_remove_map\\dmu_data_remove_map.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "35250001-4554-4444-90d5-b30d13ca12cf",
             "Value": {
                 "id": "122cd4e1-a18a-430f-a602-a0a0996f9b48",
@@ -8447,6 +8455,14 @@
             }
         },
         {
+            "Key": "be638e68-a97e-4a0c-afe8-b8b38eb934c0",
+            "Value": {
+                "id": "c4bf632e-1041-4599-9701-6650002fa413",
+                "resourcePath": "scripts\\dmu_data_add_map\\dmu_data_add_map.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "be96e3c6-ced9-4104-8676-25b866bccf2d",
             "Value": {
                 "id": "a97247f1-e7d5-4bb8-a742-755a2a0fd4f8",
@@ -10791,6 +10807,14 @@
             }
         },
         {
+            "Key": "ef88187a-f578-4d1f-b954-17d87c453441",
+            "Value": {
+                "id": "7fedd594-137f-4acf-a2b4-def5f83c8e67",
+                "resourcePath": "scripts\\dmu_data_open_map\\dmu_data_open_map.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "ef9ee99b-c2a3-4061-8667-52c026d8c84a",
             "Value": {
                 "id": "cd7ed351-8ffc-4210-99ef-08366922c012",
@@ -11803,6 +11827,9 @@
         "8bc49c02-d5a7-41a6-9b0d-9573c2b2beb1",
         "4373c906-fe17-4608-af97-8721dadcb184",
         "c0649b09-7522-4726-b33c-d2f2900224fc",
+        "be638e68-a97e-4a0c-afe8-b8b38eb934c0",
+        "3524668f-fce9-47ef-a727-b1f72a682462",
+        "ef88187a-f578-4d1f-b954-17d87c453441",
         "6632e72e-3d90-4eed-bde9-d7220c475a3d",
         "421b75e0-45fa-46bd-9818-6df02b716307",
         "7324b285-e9fb-485c-88e7-4fd30103c242",
