@@ -67,6 +67,8 @@ if (buffer < 0) {
                 // these contain arrays, which are garbage collected
                 ds_list_clear(Stuff.variables);
                 ds_list_clear(Stuff.switches);
+				// anything else?
+				Stuff.active_map = noone;
                 break;
             case SERIALIZE_MAP:
 				instance_activate_object(DataMapContainer);

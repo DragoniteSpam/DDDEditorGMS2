@@ -8,7 +8,7 @@ summary = "it does map things";
 file_location = DataFileLocations.DATA;
 data_buffer = buffer_create(1, buffer_grow, 1);
 contents = noone;
-version = 0;
+version = DataVersions._CURRENT;
 
 tiled_map_id = "";
 

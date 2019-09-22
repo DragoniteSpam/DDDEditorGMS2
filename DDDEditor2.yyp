@@ -3082,7 +3082,7 @@
             "Key": "465938a3-586d-4f13-ae7a-8b7f3fe035b5",
             "Value": {
                 "id": "3c8f7647-6cf4-4a6e-8a2a-e0a7141a91d7",
-                "resourcePath": "scripts\\serialize_load_current_map\\serialize_load_current_map.yy",
+                "resourcePath": "scripts\\load_a_map\\load_a_map.yy",
                 "resourceType": "GMScript"
             }
         },
