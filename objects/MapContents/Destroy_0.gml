@@ -15,10 +15,8 @@ ds_list_destroy(dynamic);
 
 // the last three lists are not guaranteed to have all
 // entities in the map in them. this one is.
-ds_list_destroy_instances/*_scheduled*/(all_entities);
+ds_list_destroy_instances(all_entities);
 
 ds_grid_destroy(map_grid);
 
 vertex_delete_buffer(frozen);
-
-if (data_buffer) buffer_delete(data_buffer);

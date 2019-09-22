@@ -1,8 +1,6 @@
-/// @description map properties
+/// @description some of the more physical stuff in a map
 // this does NOT extend Data, since all of the Data properties are
 // stored in the DataMapContainer
-
-data_buffer = noone;
 
 // internal stuff
 batches = ds_list_create();          // vertex buffers

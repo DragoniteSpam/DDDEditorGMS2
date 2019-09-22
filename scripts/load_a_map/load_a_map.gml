@@ -8,7 +8,31 @@ var buffer = map.data_buffer;
 if (Stuff.active_map) {
 	buffer_delete(Stuff.active_map.data_buffer);
 	Stuff.active_map.data_buffer = serialize_save_current_map();
-	if (Stuff.active_map.contents) instance_destroy(Stuff.active_map.contents);
+	if (Stuff.active_map.contents) {
+		instance_activate_object(Stuff.active_map.contents);
+		instance_destroy(Stuff.active_map.contents);
+		Stuff.active_map.contents = noone;
+	}
+	if (Stuff.active_map.preview) {
+		buffer_delete(Stuff.active_map.preview);
+		Stuff.active_map.preview = noone;
+	}
+	if (Stuff.active_map.wpreview) {
+		buffer_delete(Stuff.active_map.wpreview);
+		Stuff.active_map.wpreview = noone;
+	}
+	if (Stuff.active_map.cpreview) {
+		c_world_remove_object(Stuff.active_map.cpreview);
+		Stuff.active_map.cpreview = noone;
+	}
+	if (Stuff.active_map.cpreview) {
+		c_object_destroy(Stuff.active_map.cpreview);
+		Stuff.active_map.cpreview = noone;
+	}
+	if (Stuff.active_map.cspreview) {
+		c_shape_destroy(Stuff.active_map.cspreview);
+		Stuff.active_map.cspreview = noone;
+	}
 }
 
 Stuff.active_map = map;
