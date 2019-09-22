@@ -2,4 +2,4 @@
 
 var input = argument0;
 
-Stuff.active_map.contents.fog_start = real(input.value);
+input.root.map.fog_start = real(input.value);

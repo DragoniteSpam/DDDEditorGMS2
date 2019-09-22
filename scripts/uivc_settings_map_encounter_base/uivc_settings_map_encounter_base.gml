@@ -1,5 +1,5 @@
-/// @param UIThing
+/// @param UIInput
 
-var thing = argument0;
+var input = argument0;
 
-Stuff.active_map.contents.base_encounter_rate = real(thing.value);
+input.root.map.base_encounter_rate = real(input.value);

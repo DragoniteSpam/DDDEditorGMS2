@@ -1,4 +1,5 @@
-/// @param UIThing
+/// @param UICheckbox
 
-var thing = argument0;
-Stuff.active_map.contents.indoors = thing.value;
+var checkbox = argument0;
+
+checkbox.root.map.indoors = checkbox.value;

@@ -1,5 +1,5 @@
-/// @param UIThing
+/// @param UICheckbox
 
-var thing = argument0;
+var checkbox = argument0;
 
-Stuff.active_map.contents.fast_travel_from = thing.value;
+checkbox.root.map.fast_travel_from = checkbox.value;

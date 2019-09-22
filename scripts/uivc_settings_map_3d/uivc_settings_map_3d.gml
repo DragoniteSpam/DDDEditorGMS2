@@ -1,7 +1,5 @@
-/// @param UIThing
+/// @param UICheckbox
 
-var thing = argument0;
+var checkbox = argument0;
 
-Stuff.active_map.is_3d = thing.value;
-thing.root.el_other_fog_start.interactive = thing.value;
-thing.root.el_other_fog_end.interactive = thing.value;
+checkbox.root.map.is_3d = checkbox.value;

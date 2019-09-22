@@ -1,5 +1,5 @@
-/// @param UIThing
+/// @param UICheckbox
 
-var thing = argument0;
+var checkbox = argument0;
 
-Stuff.active_map.contents.draw_water = thing.value;
+checkbox.root.map.draw_water = checkbox.value;

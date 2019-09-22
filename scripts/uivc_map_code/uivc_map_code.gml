@@ -1,5 +1,5 @@
-/// @param UIThing
+/// @param UIInputCode
 
-var thing = argument0;
+var input = argument0;
 
-Stuff.active_map.contents.code = thing.value;
+input.root.map.code = input.value;
