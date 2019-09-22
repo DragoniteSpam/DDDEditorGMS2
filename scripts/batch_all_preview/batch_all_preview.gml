@@ -27,6 +27,8 @@ c_transform_position(map_container.xx * TILE_WIDTH / 2, map_container.yy * TILE_
 c_shape_add_box(map_container.cspreview, map_container.xx * TILE_WIDTH / 2, map_container.yy * TILE_HEIGHT / 2, 0);
 c_transform_identity();
 
+// @todo this will still cause issues if the map only contains things that don't
+// get batched. however, fixing that is very low on the priority list.
 if (ds_list_size(map.all_entities) > 0) {
 	map_container.preview = vertex_create_buffer();
 	map_container.wpreview = vertex_create_buffer();

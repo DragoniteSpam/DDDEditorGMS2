@@ -240,6 +240,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
 	
 	element = create_list(legal_x + spacing, yy, "Maps: ", "no maps. (how?!)", col_width, element_height, 16, uivc_list_maps, false, t_maps, Stuff.all_maps);
 	element.render = ui_render_list_all_maps;
+	element.ondoubleclick = dmu_data_open_map;
 	element.entries_are = ListEntries.INSTANCES;
 	t_maps.el_map_list = element;
 	ds_list_add(t_maps.contents, element);
