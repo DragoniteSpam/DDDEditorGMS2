@@ -3,7 +3,6 @@
 var buffer = argument0;
 var map = Stuff.active_map;
 var map_contents = map.contents;
-map.version = DataVersions._CURRENT;
 
 buffer_write(buffer, buffer_datatype, SerializeThings.MAP_META);
 

@@ -7,5 +7,5 @@ var map = Stuff.all_maps[| index];
 
 if (map != Stuff.active_map) {
 	selection_clear();
-	load_a_map(map, map.version);
+	load_a_map(map);
 }

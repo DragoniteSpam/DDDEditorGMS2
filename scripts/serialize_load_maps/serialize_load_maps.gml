@@ -8,8 +8,13 @@ var n_maps = buffer_read(buffer, buffer_u16);
 
 repeat (n_maps) {
 	var map = instance_create_depth(0, 0, 0, DataMapContainer);
-	map.version = version;
 	serialize_load_generic(buffer, map, version);
+	
+	if (version >= DataVersions.MAP_VERSIONING) {
+		map.version = buffer_read(buffer, buffer_u32);
+	} else {
+		map.version = version;
+	}
 	
 	var size = buffer_read(buffer, buffer_u32);
 	buffer_delete(map.data_buffer);
@@ -30,4 +35,4 @@ repeat (n_maps) {
 	} // else the map has not been initialized yet and it just uses its default values
 }
 
-load_a_map(guid_get(Stuff.game_starting_map), version);
+load_a_map(guid_get(Stuff.game_starting_map));

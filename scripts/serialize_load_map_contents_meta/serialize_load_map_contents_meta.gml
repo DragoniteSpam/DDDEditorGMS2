@@ -7,6 +7,8 @@ var version = argument1;
 var map = argument2;
 var map_contents = map.contents;
 
+version = map.version;
+
 var xx = buffer_read(buffer, buffer_u16);
 var yy = buffer_read(buffer, buffer_u16);
 var zz = buffer_read(buffer, buffer_u16);
