@@ -46,7 +46,7 @@ while (buffer_tell(mesh.buffer) < buffer_get_size(mesh.buffer)) {
     
     var mtl_name = string(floor((color[0] + color[1] + color[2]) / 4));
     
-    if (!ds_map_exists(mtl_alpha, mtl_name)){
+    if (!ds_map_exists(mtl_alpha, mtl_name)) {
         mtl_alpha[? mtl_name] = a;
         mtl_r[? mtl_name] = (c & 0x0000ff) / 255;
         mtl_g[? mtl_name] = ((c & 0x00ff00) >> 8) / 255;
@@ -55,7 +55,7 @@ while (buffer_tell(mesh.buffer) < buffer_get_size(mesh.buffer)) {
     
     active_mtl = mtl_name;
     
-    if (string_length(active_mtl) > 0){
+    if (string_length(active_mtl) > 0) {
         buffer_write(buffer, buffer_text, "usemtl " + active_mtl + "\r\n");
     }
         

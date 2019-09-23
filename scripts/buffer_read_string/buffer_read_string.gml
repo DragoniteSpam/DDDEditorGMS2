@@ -9,6 +9,6 @@ var str = "";
 do {
     char = buffer_read(buffer, T);
     str = str + chr(char);
-} until(char == 0);
+} until (char == 0);
 
 return str;

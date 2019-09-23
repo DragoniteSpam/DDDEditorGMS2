@@ -15,7 +15,7 @@ for (var i = 1; i <= string_length(base); i++) {
     var c = string_char_at(base, i);
     var previous = string_char_at(base, i - 1);
     var is_break_char = false;
-    for (var j = 1; j <= string_length(delimiter); j++){
+    for (var j = 1; j <= string_length(delimiter); j++) {
         if (string_char_at(delimiter, j) == c && previous != "\\") {
             if (string_length(tn) > 0 || enqueue_blank) {
                 ds_queue_enqueue(queue, tn);
@@ -28,13 +28,13 @@ for (var i = 1; i <= string_length(base); i++) {
             break;
         }
     }
-    if (!is_break_char){
+    if (!is_break_char) {
         tn = tn + c;
     }
 }
 
 // because i did a dumb way of adding the first term
-if (ds_queue_size(queue) == 1 && string_length(ds_queue_head(queue)) == 0){
+if (ds_queue_size(queue) == 1 && string_length(ds_queue_head(queue)) == 0) {
     ds_queue_clear(queue);
 }
 

@@ -172,7 +172,7 @@ if (file_exists(fn)) {
                         }
                     }
                     // Only the first triangle of a face will be added because i can't be bothered with complex faces
-                    for (var i = 1; i < array_length_1d(xx) - 1; i++){
+                    for (var i = 1; i < array_length_1d(xx) - 1; i++) {
                         ds_list_add(temp_vertices, [xx[0], yy[0], zz[0], nx[0], ny[0], nz[0], xtex[0], ytex[0], (b[0] << 16) | (g[0] << 8) | r[0], a[0]]);
                         ds_list_add(temp_vertices, [xx[i], yy[i], zz[i], nx[i], ny[i], nz[i], xtex[i], ytex[i], (b[i] << 16) | (g[i] << 8) | r[i], a[i]]);
                         ds_list_add(temp_vertices, [xx[i + 1], yy[i + 1], zz[i + 1], nx[i + 1], ny[i + 1], nz[i + 1], xtex[i + 1], ytex[i + 1], (b[i + 1] << 16) | (g[i + i] << 8) | r[i + 1], a[i + 1]]);
@@ -245,7 +245,7 @@ if (file_exists(fn)) {
         var maxy = 0;
         var maxz = 0;
         
-        for (var i = 0; i < n; i++){
+        for (var i = 0; i < n; i++) {
             var v = temp_vertices[| i];
             
             bxx[vc] = v[0];

@@ -46,6 +46,7 @@ if (n == 0) {
         
         switch (list.entries_are) {
             case ListEntries.STRINGS: text = text + list.entries[| index]; break;
+			case ListEntries.INSTANCES_REFID: text = text + +"<" + string_hex(list.entries[| index].REFID) + "> "; /* cascades */
             case ListEntries.INSTANCES: text = text + list.entries[| index].name; break;
             case ListEntries.GUIDS:
                 var data = guid_get(list.entries[| index]);

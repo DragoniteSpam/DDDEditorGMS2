@@ -33,7 +33,7 @@ while(thing < nthings) {
 	}
 	file_text_readln(f);
 	
-	switch(type) {
+	switch (type) {
 		case 0:
 			vertex_begin(buffer, Camera.vertex_format);
 			break;

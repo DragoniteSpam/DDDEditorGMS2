@@ -21,7 +21,7 @@ var cz = v1x * v2y - v1y * v2x;
 
 var cpl = sqrt(cx * cx + cy * cy + cz * cz);
 
-if (cpl != 0){
+if (cpl != 0) {
     return [cx / cpl, cy / cpl, cz / cpl];
 }
 

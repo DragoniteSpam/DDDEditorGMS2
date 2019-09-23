@@ -27,7 +27,7 @@ var spacing = 16;
 
 dg.el_list = create_list(16, yy, "All Entities: " + string(ds_list_size(Stuff.active_map.contents.all_entities)),
 	"<no entities>", ew, eh, 20, onvaluechange, false, dg, Stuff.active_map.contents.all_entities);
-dg.el_list.entries_are = ListEntries.INSTANCES;
+dg.el_list.entries_are = ListEntries.INSTANCES_REFID;
 
 var el_text = create_text(c2 + 16, dh / 2, "Only references to entities in the current map can be set.\n\n" +
 "If you try to access an entity reference that is not in the current map during the game, the node will be skipped.\n\n" +

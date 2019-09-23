@@ -569,14 +569,16 @@ switch (node.type) {
                             output_string = setdata ? setdata.name : "<null>";
                             break;
                         case DataTypes.ENTITY:
-                            var setdata = refid_get(custom_data_list[| 0]);
+							var refid = custom_data_list[| 0];
+                            var setdata = refid_get(refid);
+							var strh = string_hex(refid);
                             message = message + "(entity): ";
 							// If the value is 0, it's automatically "this". If it has a value, it's
 							// an entity reference somewhere (which could also be self, but probably not)
 							if (custom_data_list[| 0]) {
-								output_string = setdata ? setdata.name : "<ref:" + string(custom_data_list[| 0]) + ">";
+								output_string = (setdata ? setdata.name : "<not loaded>") + ":" + strh;
 							} else {
-								output_string = "<calling entity>";
+								output_string = "<self>:" + strh;
 							}
                             break;
                         case DataTypes.MAP:

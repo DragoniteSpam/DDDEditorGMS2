@@ -33,5 +33,7 @@ numbered = false;
 enum ListEntries {
     STRINGS,
     INSTANCES,
+	// behaves the same as instances, but also draws the ref ID as an extra way to differentiate
+	INSTANCES_REFID,
     GUIDS
 }

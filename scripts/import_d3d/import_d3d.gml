@@ -39,7 +39,7 @@ var maxx = 0;
 var maxy = 0;
 var maxz = 0;
 
-while (!file_text_eof(f)){
+while (!file_text_eof(f)) {
     type = file_text_read_real(f);
     
     nx = 0;
@@ -52,7 +52,7 @@ while (!file_text_eof(f)){
     
     skip = false;
     
-    switch (type){
+    switch (type) {
         case 0:
         case 1:
             file_text_readln(f);
