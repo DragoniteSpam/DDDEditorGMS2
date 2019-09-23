@@ -158,7 +158,6 @@ time_int = 0;
 frames = 0;
 
 all_guids = ds_map_create();
-all_refids = ds_map_create();           // it probably makes sense to make this a property of map, but i want to have all of the lookup maps in the same place
 all_internal_names = ds_map_create();
 
 tf = ["False", "True"];

@@ -6,6 +6,7 @@ var version = argument1;
 var buffer = map.data_buffer;
 
 if (Stuff.active_map) {
+	ds_map_clear(Stuff.active_map.contents.all_refids);
 	buffer_delete(Stuff.active_map.data_buffer);
 	Stuff.active_map.data_buffer = serialize_save_current_map();
 	if (Stuff.active_map.contents) {

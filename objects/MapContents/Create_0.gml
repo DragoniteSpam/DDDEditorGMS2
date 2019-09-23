@@ -12,6 +12,8 @@ dynamic = ds_list_create();               // entities
 
 all_entities = ds_list_create();          // entities
 
+all_refids = ds_map_create();				// entities (mapped onto refids)
+
 map_grid = map_create_grid(10, 10, 10);		// this just needs to exist for now, it'll get resized when stuff is loaded
 
 frozen = vertex_create_buffer();          // everything that will be a single batch in the game
