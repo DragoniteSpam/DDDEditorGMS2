@@ -463,8 +463,11 @@ switch (node.type) {
                                     case DataTypes.TILE:
                                     case DataTypes.TILESET:
                                     case DataTypes.AUTOTILE:
+										not_yet_implemented();
                                     case DataTypes.ENTITY:
-                                        not_yet_implemented();
+										var dialog = dialog_create_refid_list(node, custom_data_list[| 0], uivc_refid_picker_event_node);
+										dialog.node = node;
+										dialog.index = i;
                                         break;
                                     case DataTypes.MAP:
                                         show_error("okay you actually need to implement this soon, please", true);
@@ -568,7 +571,13 @@ switch (node.type) {
                         case DataTypes.ENTITY:
                             var setdata = refid_get(custom_data_list[| 0]);
                             message = message + "(entity): ";
-                            output_string = setdata ? setdata.name : "<calling entity>";
+							// If the value is 0, it's automatically "this". If it has a value, it's
+							// an entity reference somewhere (which could also be self, but probably not)
+							if (custom_data_list[| 0]) {
+								output_string = setdata ? setdata.name : "<ref:" + string(custom_data_list[| 0]) + ">";
+							} else {
+								output_string = "<calling entity>";
+							}
                             break;
                         case DataTypes.MAP:
                             var setdata = guid_get(custom_data_list[| 0]);

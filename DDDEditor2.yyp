@@ -2303,6 +2303,14 @@
             }
         },
         {
+            "Key": "344d7e58-3710-41c6-86d0-86c4ffcc7ed3",
+            "Value": {
+                "id": "896347a8-158a-4cf6-816a-c34077b55e48",
+                "resourcePath": "scripts\\dialog_create_refid_list\\dialog_create_refid_list.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "34ad9dde-c427-4645-bdbc-3d03e9cf1316",
             "Value": {
                 "id": "c561fed6-d00e-4387-b98f-7a585223ee35",
@@ -10735,6 +10743,14 @@
             }
         },
         {
+            "Key": "ef0b3e01-48f5-4db7-88a8-fa60a6aef07d",
+            "Value": {
+                "id": "4696e77c-c5df-4675-a87f-6b87c6d9550f",
+                "resourcePath": "scripts\\uivc_refid_picker_event_node\\uivc_refid_picker_event_node.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "ef13a6e3-dc8f-4d79-80d5-83418c374fb0",
             "Value": {
                 "id": "d02c68b3-4de5-4b63-af35-e1b696023ffc",
@@ -11814,6 +11830,7 @@
         "6f9e5b17-ab0b-452f-b6ee-f6b5c88ab1e5",
         "13cbc365-cd0b-416c-a256-9d7a196af4d3",
         "7dc6db06-7b2a-4e3d-bb79-bd285a28ad93",
+        "344d7e58-3710-41c6-86d0-86c4ffcc7ed3",
         "8c51d098-04e8-4711-bb41-f98098a4bdc7",
         "a2373338-b0ab-43af-97ea-95927ad0dcaa",
         "8e7beb43-6baa-4777-a9bb-2b531b7ca709",
@@ -12040,6 +12057,7 @@
         "e984880a-6282-4a6e-b12c-16431d49fb7a",
         "edc14103-d69e-445c-ae7a-bd3a32e276ab",
         "c38758d5-9b96-4d65-a72b-887e195954ad",
+        "ef0b3e01-48f5-4db7-88a8-fa60a6aef07d",
         "6fc0e7c9-c44e-4958-b023-180eee2a9fc7",
         "512b5e6a-09ac-4dff-a6cf-b8b4d402de65",
         "2390c4d6-8c21-464c-b2b6-8fb05e3c5792",
