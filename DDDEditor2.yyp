@@ -11471,6 +11471,14 @@
             }
         },
         {
+            "Key": "ff19100d-1bce-4d50-b8b4-be08133a38d2",
+            "Value": {
+                "id": "f93829ca-3019-4cbb-8e3f-858fc37edb0d",
+                "resourcePath": "scripts\\dc_close_destroy_map_preview\\dc_close_destroy_map_preview.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "ff28a471-b69c-4494-8924-7d1f8b06de7d",
             "Value": {
                 "id": "fff19d3d-6425-46ba-ac3d-e6171b1c9787",
@@ -11803,6 +11811,7 @@
         "77207114-ebe4-4501-b3c9-ba4aa8b2674e",
         "479409b7-6d78-4db1-bc30-2c6fdbc427c6",
         "75305ef4-8c7e-477a-9133-83fb8931ce5e",
+        "ff19100d-1bce-4d50-b8b4-be08133a38d2",
         "984f8cff-9aff-466f-9ef9-a904d2a85c30",
         "a1937e05-0cc0-4e52-a3e7-4fa9cf29a21b",
         "d0be8157-fa9e-464f-85b4-fc599436f66b",

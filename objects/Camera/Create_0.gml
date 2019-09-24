@@ -144,7 +144,7 @@ stuff_to_destroy = ds_queue_create();
 
 instance_deactivate_object(UIThing);
 
-gpu_set_tex_repeat (true);
+gpu_set_tex_repeat(true);
 
 /*
  * preview stuff

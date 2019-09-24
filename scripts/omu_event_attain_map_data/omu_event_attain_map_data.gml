@@ -14,7 +14,7 @@ var dh = 800;
 
 // Hide the close button, because if the map preview stuff isn't deleted it'll just sit in memory
 // wasting space (although it won't leak because it'll be cleaned up next time this is opened)
-var dg = dialog_create(dw, dh, "Map Transfer", dialog_default, dc_close_no_questions_asked, thing, noone);
+var dg = dialog_create(dw, dh, "Map Transfer", dialog_default, dc_close_destroy_map_preview, thing, noone);
 dg.node = event_node;
 dg.index = data_index;
 

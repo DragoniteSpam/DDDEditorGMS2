@@ -1,10 +1,12 @@
 /// @param buffer
 /// @param version
 /// @param DataMapContainer
+/// @param [is-temp?]
 
-var buffer = argument0;
-var version = argument1;
-var map = argument2.contents;
+var buffer = argument[0];
+var version = argument[1];
+var map_container = argument[2];
+var is_temp = (argument_count > 3) ? argument[3] : false;
 
 var n_things = buffer_read(buffer, buffer_u32);
 
@@ -15,6 +17,6 @@ repeat (n_things) {
 		thing.tmx_id = buffer_read(buffer, buffer_u32);
 	}
     script_execute(thing.load_script, buffer, thing, version);
-    
-    map_add_thing(thing);
+	
+    map_add_thing(thing, thing.xx, thing.yy, thing.zz, map_container, is_temp);
 }
