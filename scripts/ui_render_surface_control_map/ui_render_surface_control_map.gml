@@ -16,6 +16,10 @@ var map_contents = map.contents;
 var mfx = (Camera.MOUSE_X - x1) / (x2 - x1);
 var mfy = (Camera.MOUSE_Y - y1) / (y2 - y1);
 
+var data_x = real(surface.root.el_input_x.value);
+var data_y = real(surface.root.el_input_y.value);
+var data_z = real(surface.root.el_input_z.value);
+
 if (is_clamped(mfx, 0, 1) && is_clamped(mfy, 0, 1)) {
 	ui_activate(noone);
 	// please stop trying to use the (xto - x) trick, that only works if you want the vector
@@ -46,15 +50,9 @@ if (is_clamped(mfx, 0, 1) && is_clamped(mfy, 0, 1)) {
 				cell_x = cell_x + (cell_nx > 0) ? 1 : -1;
 			}*/
 			
-			var data_x = surface.root.node.custom_data[| 1];
-			var data_y = surface.root.node.custom_data[| 2];
-			var data_z = surface.root.node.custom_data[| 3];
-			data_x[| 0] = cell_x;
-			data_y[| 0] = cell_y;
-			data_z[| 0] = cell_z;
-			surface.root.el_input_x.value = string(cell_x);
-			surface.root.el_input_y.value = string(cell_y);
-			surface.root.el_input_z.value = string(cell_z);
+			data_x = cell_x;
+			data_y = cell_y;
+			data_z = cell_z;
 		}
 	}
 }
@@ -67,24 +65,24 @@ if (!keyboard_check(vk_control)) {
 	var yspeed = 0;
 	var zspeed = 0;
     
-	if (keyboard_check(vk_up) || keyboard_check(ord("W"))) {
+	if (keyboard_check(ord("W"))) {
 	    xspeed = xspeed + dcos(Camera.event_direction) * mspd * Stuff.dt;
 	    yspeed = yspeed - dsin(Camera.event_direction) * mspd * Stuff.dt;
 	    zspeed = zspeed - dsin(Camera.event_pitch) * mspd * Stuff.dt;
 	    keyboard_string = "";
 	}
-	if (keyboard_check(vk_down) || keyboard_check(ord("S"))) {
+	if (keyboard_check(ord("S"))) {
 	    xspeed = xspeed - dcos(Camera.event_direction) * mspd * Stuff.dt;
 	    yspeed = yspeed + dsin(Camera.event_direction) * mspd * Stuff.dt;
 	    zspeed = zspeed + dsin(Camera.event_pitch) * mspd * Stuff.dt;
 	    keyboard_string = "";
 	}
-	if (keyboard_check(vk_left) || keyboard_check(ord("A"))) {
+	if (keyboard_check(ord("A"))) {
 	    xspeed = xspeed - dsin(Camera.event_direction) * mspd * Stuff.dt;
 	    yspeed = yspeed - dcos(Camera.event_direction) * mspd * Stuff.dt;
 	    keyboard_string = "";
 	}
-	if (keyboard_check(vk_right) || keyboard_check(ord("D"))) {
+	if (keyboard_check(ord("D"))) {
 	    xspeed = xspeed + dsin(Camera.event_direction) * mspd * Stuff.dt;
 	    yspeed = yspeed + dcos(Camera.event_direction) * mspd * Stuff.dt;
 	    keyboard_string = "";
@@ -112,3 +110,43 @@ if (!keyboard_check(vk_control)) {
 	Camera.event_yup = 0;
 	Camera.event_zup = 1;
 }
+
+if (keyboard_check(vk_space)) {
+	if (keyboard_check_pressed(vk_left)) {
+		data_x = max(--data_x, 0);
+	}
+	if (keyboard_check_pressed(vk_right)) {
+		data_x = min(++data_x, map.xx - 1);
+	}
+	if (keyboard_check_pressed(vk_up)) {
+		data_z = max(--data_z, 0);
+	}
+	if (keyboard_check_pressed(vk_down)) {
+		data_z = min(++data_z, map.zz - 1);
+	}
+} else {
+	if (keyboard_check_pressed(vk_left)) {
+		data_x = max(--data_x, 0);
+	}
+	if (keyboard_check_pressed(vk_right)) {
+		data_x = min(++data_x, map.xx - 1);
+	}
+	if (keyboard_check_pressed(vk_down)) {
+		data_y = max(--data_y, 0);
+	}
+	if (keyboard_check_pressed(vk_up)) {
+		data_y = min(++data_y, map.yy - 1);
+	}
+}
+
+// @todo gml update chained accessors
+var ed_x = surface.root.node.custom_data[| 1];
+var ed_y = surface.root.node.custom_data[| 2];
+var ed_z = surface.root.node.custom_data[| 3];
+ed_x[| 0] = data_x;
+ed_y[| 0] = data_y;
+ed_z[| 0] = data_z;
+
+surface.root.el_input_x.value = string(data_x);
+surface.root.el_input_y.value = string(data_y);
+surface.root.el_input_z.value = string(data_z);
