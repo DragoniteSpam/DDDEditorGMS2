@@ -8,7 +8,7 @@ var xx = mouse_vector[vec3.xx] * MILLION;
 var yy = mouse_vector[vec3.yy] * MILLION;
 var zz = mouse_vector[vec3.zz] * MILLION;
 
-if (false && c_raycast_world(x, y, z, x + xx, y + yy, z + zz, CollisionMasks.MAIN)) {
+if (c_raycast_world(x, y, z, x + xx, y + yy, z + zz, CollisionMasks.MAIN)) {
     under_cursor = c_object_get_userid(c_hit_object(0));
 } else {
     under_cursor = noone;
@@ -24,8 +24,8 @@ if (zz < z) {
 	floor_x = x + xx * f;
 	floor_y = y + yy * f;
     
-	floor_cx = clamp(floor_x div TILE_WIDTH, 0, Stuff.active_map.xx);
-	floor_cy = clamp(floor_y div TILE_HEIGHT, 0, Stuff.active_map.yy);
+	floor_cx = clamp(floor_x div TILE_WIDTH, 0, Stuff.active_map.xx - 1);
+	floor_cy = clamp(floor_y div TILE_HEIGHT, 0, Stuff.active_map.yy - 1);
     
 	if (Controller.press_left) {
 		if (ds_list_size(selection) < MAX_SELECTION_COUNT) {
