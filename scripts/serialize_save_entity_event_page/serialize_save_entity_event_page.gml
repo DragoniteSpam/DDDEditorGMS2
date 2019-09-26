@@ -37,7 +37,7 @@ var bools = 0;
 // more future-proofing
 buffer_write(buffer, buffer_u16, bools);
 
-buffer_write(buffer, buffer_u8, event.trigger);
+buffer_write(buffer, buffer_u32, event.trigger);
 
 buffer_write(buffer, buffer_u32, event.event_guid);
 buffer_write(buffer, buffer_u32, event.event_entrypoint);

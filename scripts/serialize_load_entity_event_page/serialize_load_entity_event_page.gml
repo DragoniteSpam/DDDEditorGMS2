@@ -33,7 +33,12 @@ page.condition_variable_self_value = buffer_read(buffer, buffer_f32);
 
 var bools = buffer_read(buffer, buffer_u16);
 
-page.trigger = buffer_read(buffer, buffer_u8);
+if (version >= DataVersions.CUSTOM_EVENT_TRIGGERS) {
+	page.trigger = buffer_read(buffer, buffer_u32);
+} else {
+	// because it used to be just an index
+	page.trigger = 1 << buffer_read(buffer, buffer_u8);
+}
 
 page.event_guid = buffer_read(buffer, buffer_u32);
 page.event_entrypoint = buffer_read(buffer, buffer_u32);

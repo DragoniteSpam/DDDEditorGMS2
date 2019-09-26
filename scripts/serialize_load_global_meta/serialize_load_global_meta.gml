@@ -35,3 +35,11 @@ for (var i = 0; i < n_variables; i++) {
     var_data[1] = buffer_read(buffer, buffer_f32);
     ds_list_add(Stuff.variables, var_data);
 }
+
+if (version >= DataVersions.CUSTOM_EVENT_TRIGGERS) {
+	var n_triggers = buffer_read(buffer, buffer_u8);
+	ds_list_clear(Stuff.all_event_triggers);
+	repeat (n_triggers) {
+		ds_list_add(Stuff.all_event_triggers, buffer_read(buffer, buffer_string));
+	}
+}
