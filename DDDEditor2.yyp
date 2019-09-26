@@ -4039,6 +4039,14 @@
             }
         },
         {
+            "Key": "59f2270c-7041-4d8a-8913-facb42d036ba",
+            "Value": {
+                "id": "c7779df6-a551-4825-9396-935d030368eb",
+                "resourcePath": "scripts\\omu_entity_add_event_trigger\\omu_entity_add_event_trigger.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "5a207fea-7a61-448e-918a-e51e94bd9430",
             "Value": {
                 "id": "a9bba499-a6da-4347-a956-b55051af44fb",
@@ -9119,6 +9127,14 @@
             }
         },
         {
+            "Key": "cb3e44bc-bafb-4080-a1f1-ed514e8c4961",
+            "Value": {
+                "id": "70b13f0b-9091-4495-b494-71d1ce092e82",
+                "resourcePath": "scripts\\omu_entity_remove_event_trigger\\omu_entity_remove_event_trigger.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "cb438292-f61d-47d3-aa94-63e69acbca1b",
             "Value": {
                 "id": "0c7b56ad-55c6-4c9d-b754-5b6dae047ed4",
@@ -12301,6 +12317,8 @@
         "4c8f4937-43bf-4c7b-b106-38ab0daa449e",
         "13c3ebe1-818f-4062-b162-f6846e95cfbc",
         "29571f03-3093-4ae5-b4dd-7e992bff680e",
+        "59f2270c-7041-4d8a-8913-facb42d036ba",
+        "cb3e44bc-bafb-4080-a1f1-ed514e8c4961",
         "df25b060-7862-47c7-ae07-f023cd701099",
         "f41b124d-b315-4143-a16e-98e14ea1429e",
         "f7d081f7-aac1-4a20-947b-eed86e1005dd",

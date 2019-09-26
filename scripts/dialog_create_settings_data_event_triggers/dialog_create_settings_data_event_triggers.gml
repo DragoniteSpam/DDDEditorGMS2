@@ -20,6 +20,8 @@ var yy_start = 64;
 
 var el_list = create_list(32, yy, "Event Triggers (max 32)", "<no swiches>", ew, eh, 16, null, false, dg, Stuff.all_event_triggers);
 el_list.numbered = true;
+el_list.allow_deselect = false;
+ds_map_add(el_list.selected_entries, 0, true);
 dg.el_list = el_list;
 
 yy = yy + ui_get_list_height(el_list) + spacing;
@@ -28,12 +30,12 @@ var el_name = create_input(32, yy, "Trigger name:", ew, eh, uivc_global_trigger_
 yy = yy + el_name.height + spacing;
 dg.el_name = el_name;
 
-var el_add = create_button(32, yy, "Add Trigger", ew, eh, fa_center, null, dg);
+var el_add = create_button(32, yy, "Add Trigger", ew, eh, fa_center, omu_entity_add_event_trigger, dg);
 dg.el_add = el_add;
 
 yy = yy + el_add.height + spacing;
 
-var el_remove = create_button(32, yy, "Remove Trigger", ew, eh, fa_center, null, dg);
+var el_remove = create_button(32, yy, "Remove Trigger", ew, eh, fa_center, omu_entity_remove_event_trigger, dg);
 dg.el_remove = el_remove;
 
 yy = yy + el_remove.height + spacing;
