@@ -10,20 +10,12 @@ if (selection >= 0) {
     list.root.el_property_type.interactive = true;
     list.root.el_property_ext_type.interactive = true;
     list.root.el_property_type_guid.interactive = (property[EventNodeCustomData.TYPE] == DataTypes.DATA);
-    //list.root.el_property_max.interactive = true;
-    //list.root.el_property_all.interactive = true;
     
     list.root.el_property_name.value = property[EventNodeCustomData.NAME];
     list.root.el_property_type.value = property[EventNodeCustomData.TYPE];
-    //list.root.el_property_max.value = string(property[EventNodeCustomData.MAX]);
-    //list.root.el_property_all.value = property[EventNodeCustomData.REQUIRED];
     
     var datatype = guid_get(property[EventNodeCustomData.TYPE_GUID]);
-    if (datatype) {
-        list.root.el_property_type_guid.text = "Select (" + datatype.name + ")";
-    } else {
-        list.root.el_property_type_guid.text = "Select";
-    }
+	list.root.el_property_type_guid.text = datatype? "Select (" + datatype.name + ")" : list.root.el_property_type_guid.text = "Select";
     
     // set the behavior of the button based on the data type
     switch (list.root.el_property_type.value) {

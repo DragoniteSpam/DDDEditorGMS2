@@ -8,8 +8,10 @@ ds_list_delete(Stuff.all_event_triggers, index);
 
 if (index >= ds_list_size(Stuff.all_event_triggers)) {
 	ui_list_deselect(list);
-	ds_map_add(list.selected_entries, index - 1, true);
+	ds_map_add(list.selected_entries, --index, true);
 }
+
+button.root.el_name.value = Stuff.all_event_triggers[| index];
 
 button.root.el_add.interactive = ds_list_size(Stuff.all_event_triggers) < 32;
 button.interactive = ds_list_size(Stuff.all_event_triggers) > 4;
