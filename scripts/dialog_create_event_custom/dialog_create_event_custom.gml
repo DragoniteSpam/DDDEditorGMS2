@@ -84,6 +84,7 @@ yy = yy_base;
 
 var el_outbound = create_list(col3_x + 16, yy, "Outbound Nodes (max 10):", "what?", ew, eh, 10, uivc_list_event_custom_outbound, false, dg, dg.event.outbound);
 ds_map_add(el_outbound.selected_entries, 0, true);
+el_outbound.render = ui_render_list_event_custom_outbound;
 dg.el_outbound = el_outbound;
 yy = yy + ui_get_list_height(el_outbound) + spacing;
 var el_outbound_name = create_input(col3_x + 16, yy, "Name:", ew, eh, uivc_input_event_custom_outbound_name, "", "", "Name", validate_string, ui_value_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
