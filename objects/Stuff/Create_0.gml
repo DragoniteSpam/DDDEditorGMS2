@@ -176,12 +176,6 @@ tile_size = 32;
 
 dimensions = Dimensions.THREED;
 
-// ALL DATA THAT DOES NOT DEPEND ON ANYTHING ELSE!
-// (except the other data defined in this section)
-
-// This will cause a problem with texture pages later. They ought to be batched properly - and also,
-// loaded from files
-
 if (file_exists(PATH_PERMANENT + "b_chr_default.png")) {
     spr_character_default = sprite_add(PATH_PERMANENT + "b_chr_default.png", 0, false, false, 0, 0);
 } else {
@@ -280,6 +274,9 @@ for (var i = 0; i < BASE_GAME_VARIABLES; i++) {
     ds_list_add(switches, ["Switch" + string(i), false]);
     ds_list_add(variables, ["Variable" + string(i), 0]);
 }
+
+all_event_triggers = ds_list_create();
+ds_list_add(all_event_triggers, "Action Button", "Player Touch", "Event Touch", "Autorun");
 
 #region prefab events
 // could subclass this but i need to get this done in a hurry
