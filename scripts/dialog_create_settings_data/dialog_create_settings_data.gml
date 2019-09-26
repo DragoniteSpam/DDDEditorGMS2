@@ -22,25 +22,25 @@ var yy = 64;
 var yy_base = yy;
 
 var el_gameplay_title = create_text(16, yy, "General Game Settings", ew, eh, fa_left, dw / 2, dg);
-yy = yy + eh;
+yy = yy + el_gameplay_title.height + spacing;
 var el_gameplay_grid = create_checkbox(16, yy, "Snap Player to Grid", ew, eh, uivc_settings_game_grid, "", Stuff.game_player_grid, dg);
-yy = yy + eh;
+yy = yy + el_gameplay_grid.height + spacing;
 var el_battle_type = create_radio_array(16, yy, "Battle Style", ew, eh, uivc_settings_game_battle_style, Stuff.game_battle_style, dg);
-create_radio_array_options(el_battle_type, ["Team-based", "Melee"]);
-yy = yy + ui_get_radio_array_height(el_battle_type) + eh;
+create_radio_array_options(el_battle_type, ["Team-based", "Grid-based"]);
+yy = yy + ui_get_radio_array_height(el_battle_type) + spacing;
 
-var el_global_title = create_text(16, yy, "Global Stuff", ew, eh, fa_left, dw / 2, dg);
+yy = yy_base;
+
+var el_global_title = create_text(c2 + 16, yy, "Variables and Stuff", ew, eh, fa_left, dw / 2, dg);
 yy = yy + el_global_title.height + spacing;
-var el_constants = create_button(16, yy, "Global Constants", ew, eh, fa_center, not_yet_implemented, dg);
+var el_constants = create_button(c2 + 16, yy, "Global Constants", ew, eh, fa_center, not_yet_implemented, dg);
 yy = yy + el_constants.height + spacing;
-var el_variables = create_button(16, yy, "Global Variables", ew, eh, fa_center, dialog_create_settings_data_variables, dg);
+var el_variables = create_button(c2 + 16, yy, "Global Variables", ew, eh, fa_center, dialog_create_settings_data_variables, dg);
 yy = yy + el_variables.height + spacing;
-var el_switches = create_button(16, yy, "Global Switches", ew, eh, fa_center, dialog_create_settings_data_switches, dg);
+var el_switches = create_button(c2 + 16, yy, "Global Switches", ew, eh, fa_center, dialog_create_settings_data_switches, dg);
 yy = yy + el_switches.height + spacing;
-var el_event_triggers = create_button(16, yy, "Event Triggers", ew, eh, fa_center, dialog_create_settings_data_event_triggers, dg);
+var el_event_triggers = create_button(c2 + 16, yy, "Event Triggers", ew, eh, fa_center, dialog_create_settings_data_event_triggers, dg);
 yy = yy + el_event_triggers.height + spacing;
-
-// second column
 
 yy = yy_base;
 

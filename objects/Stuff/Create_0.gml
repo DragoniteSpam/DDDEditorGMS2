@@ -489,7 +489,7 @@ enum Dimensions {
 
 enum BattleStyles {
     TEAM_BASED,             // everyone stays on their own side
-    MELEE,                  // boundaries are not respected
+    GRID_BASED,             // boundaries are not respected
 }
 
 color_lookup = [c_red, c_green, c_blue, c_orange, c_aqua, c_fuchsia, c_purple, c_teal];

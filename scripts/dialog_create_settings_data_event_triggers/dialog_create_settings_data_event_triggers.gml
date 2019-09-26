@@ -8,7 +8,7 @@ var dg = dialog_create(dw, dh, "Data Settings: Global Switches", dialog_default,
 var ew = dw - 64;
 var eh = 24;
 
-var vx1 = ew / 2 + 16;
+var vx1 = ew / 3;
 var vy1 = 0;
 var vx2 = ew;
 var vy2 = vy1 + eh;
@@ -26,7 +26,8 @@ dg.el_list = el_list;
 
 yy = yy + ui_get_list_height(el_list) + spacing;
 
-var el_name = create_input(32, yy, "Trigger name:", ew, eh, uivc_global_trigger_name, 0, "", "16 characters", validate_string, ui_value_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
+var el_name = create_input(32, yy, "Name:", ew, eh, uivc_global_trigger_name, 0, "", "16 characters", validate_string, ui_value_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
+el_name.value = Stuff.all_event_triggers[| 0];
 yy = yy + el_name.height + spacing;
 dg.el_name = el_name;
 
