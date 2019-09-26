@@ -2199,6 +2199,14 @@
             }
         },
         {
+            "Key": "31388404-1cce-4438-b952-86c0aebc4460",
+            "Value": {
+                "id": "ee456a7a-de69-4c62-9a40-fe18dad3a3e0",
+                "resourcePath": "scripts\\uivc_entity_event_trigger_method\\uivc_entity_event_trigger_method.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "314b5433-7b59-4307-8bf8-0bf5d4f95406",
             "Value": {
                 "id": "57b09959-46ba-45cb-bd5a-5039be9a11ee",
@@ -12024,6 +12032,7 @@
         "6c42f9a6-d491-4faf-a2c0-51d9d2321eaa",
         "e23468d1-947c-4f94-b201-2c213607e75e",
         "b4ce533b-1699-422b-ae11-2e40df84a363",
+        "31388404-1cce-4438-b952-86c0aebc4460",
         "0d24ee18-fe7b-42e0-beab-e92cf97bedf3",
         "6a588569-a211-4eff-9772-1f9410b9e7e4",
         "e6a554f2-dc48-4855-8dc8-c539adb32157",

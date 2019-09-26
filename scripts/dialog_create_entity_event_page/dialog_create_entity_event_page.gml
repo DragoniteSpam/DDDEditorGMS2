@@ -69,9 +69,16 @@ yy = yy + el_condition_explanation.height + spacing;
 
 var yy = 64;
 
-var el_trigger = create_list(c2 + 16, yy, "Trigger Method(s)", "<please define some>", ew, eh, 8, null, true, dg, Stuff.all_event_triggers);
+var el_trigger = create_list(c2 + 16, yy, "Trigger Method(s)", "<please define some>", ew, eh, 8, uivc_entity_event_trigger_method, true, dg, Stuff.all_event_triggers);
 el_trigger.select_toggle = true;
 dg.el_trigger = el_trigger;
+
+for (var i = 0; i < ds_list_size(Stuff.all_event_triggers); i++) {
+	debug(page.trigger & (1 << i));
+	if (page.trigger & (1 << i)) {
+		ds_map_add(el_trigger.selected_entries, i, true);
+	}
+}
 
 yy = yy + ui_get_list_height(el_trigger) + spacing;
 
