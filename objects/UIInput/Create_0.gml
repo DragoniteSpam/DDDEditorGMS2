@@ -3,6 +3,8 @@ event_inherited();
 width = 128;
 height = 24;
 
+override_escape = true;
+
 onvaluechange = null;
 render = ui_render_input;
 validation = validate_string;
