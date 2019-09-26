@@ -1879,6 +1879,14 @@
             }
         },
         {
+            "Key": "2a46d36e-677b-41ae-88df-106ca0f80758",
+            "Value": {
+                "id": "10872f03-780f-4c94-a0ba-0a2254a67468",
+                "resourcePath": "scripts\\omu_event_custom_remove_outbound\\omu_event_custom_remove_outbound.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "2a6837e7-9351-4828-b0c8-f7f6095d2e09",
             "Value": {
                 "id": "619135b7-ab77-42e2-b9e5-5ef5121e0608",
@@ -3355,6 +3363,14 @@
             "Value": {
                 "id": "418bbeb2-8cda-403b-8872-c9325f264a1c",
                 "resourcePath": "scripts\\safc_fill_effect\\safc_fill_effect.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "4bb11eb2-931c-421e-81a4-de9aabbe9497",
+            "Value": {
+                "id": "920db4dd-05a0-4923-aad2-58769a014f19",
+                "resourcePath": "scripts\\omu_event_custom_add_outbound\\omu_event_custom_add_outbound.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -12384,6 +12400,8 @@
         "43546424-d0e5-4972-a6e4-8849659c1b8d",
         "d527df31-a6b5-45fa-b136-e773b4420991",
         "bf235b75-8c4e-4cb8-b0a5-3b63a9de09a3",
+        "4bb11eb2-931c-421e-81a4-de9aabbe9497",
+        "2a46d36e-677b-41ae-88df-106ca0f80758",
         "75c2f1f4-1099-4906-a686-49a8b91603b7",
         "30c49af6-489f-473f-b791-78e745f0d6e5",
         "54920234-5e1f-419d-ba29-7e4cf13a8121",

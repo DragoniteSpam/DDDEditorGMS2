@@ -37,6 +37,7 @@ dg.el_add = el_add;
 yy = yy + el_add.height + spacing;
 
 var el_remove = create_button(32, yy, "Remove Trigger", ew, eh, fa_center, omu_entity_remove_event_trigger, dg);
+el_remove.interactive = ds_list_size(Stuff.all_event_triggers) > 4;
 dg.el_remove = el_remove;
 
 yy = yy + el_remove.height + spacing;
