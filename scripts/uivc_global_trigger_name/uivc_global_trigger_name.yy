@@ -1,8 +1,8 @@
 {
-    "id": "e043a0c7-cc49-4dae-adec-26f7556b874b",
+    "id": "26ce2308-a8f1-46cb-9181-9bf4f4fe7ce4",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "ui_render_list_event_trigger_type",
+    "name": "uivc_global_trigger_name",
     "IsCompatibility": false,
     "IsDnD": false
 }

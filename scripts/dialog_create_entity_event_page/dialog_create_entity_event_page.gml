@@ -71,8 +71,8 @@ var yy = 64;
 
 var el_trigger = create_radio_array(c2 + 16, yy, "Trigger Method", ew, eh, uivc_entity_event_trigger, page.trigger, dg);
 dg.el_trigger = el_trigger;
-var trigger_array = ["<none>", "<none>", "<none>", "<none>", "<none>"];
-for (var i = 0; i < min(ds_list_size(Stuff.all_event_triggers), 5); i++) {
+var trigger_array = array_create(min(ds_list_size(Stuff.all_event_triggers), 8));
+for (var i = 0; i < array_length_1d(trigger_array); i++) {
 	trigger_array[i] = Stuff.all_event_triggers[| i];
 }
 create_radio_array_options(el_trigger, trigger_array);

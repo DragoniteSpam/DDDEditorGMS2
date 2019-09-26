@@ -19,6 +19,7 @@ var c2 = dw/2;
 var spacing = 16;
 
 var yy = 64;
+var yy_base = yy;
 
 var el_gameplay_title = create_text(16, yy, "General Game Settings", ew, eh, fa_left, dw / 2, dg);
 yy = yy + eh;
@@ -41,7 +42,7 @@ yy = yy + el_event_triggers.height + spacing;
 
 // second column
 
-yy = 64;
+yy = yy_base;
 
 // confirm
 

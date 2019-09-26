@@ -26,8 +26,7 @@ var vy2 = vy1 + eh;
 var yy = 64;
 var spacing = 16;
 
-var el_list = create_list(16, yy, "Select a trigger type", "<you should define some>", ew, eh, 20, null, false, dg);
-el_list.render = ui_render_list_event_trigger_type;
+var el_list = create_list(16, yy, "Select a trigger type", "<you should define some>", ew, eh, 20, null, false, dg, Stuff.all_event_triggers);
 el_list.entries_are = ListEntries.STRINGS;
 dg.el_list = el_list;
 
