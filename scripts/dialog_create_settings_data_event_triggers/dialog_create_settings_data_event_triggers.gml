@@ -3,7 +3,7 @@
 var dw = 320;
 var dh = 680;
 
-var dg = dialog_create(dw, dh, "Data Settings: Global Switches", dialog_default, dc_close_no_questions_asked, argument0);
+var dg = dialog_create(dw, dh, "Data Settings: Event Triggers", dialog_default, dc_close_no_questions_asked, argument0);
 
 var ew = dw - 64;
 var eh = 24;

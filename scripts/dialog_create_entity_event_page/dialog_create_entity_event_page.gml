@@ -69,17 +69,8 @@ yy = yy + eh + spacing;
 
 var yy = 64;
 
-var el_trigger = create_radio_array(c2 + 16, yy, "Trigger Method", ew, eh, uivc_entity_event_trigger, page.trigger, dg);
+var el_trigger = create_list(c2 + 16, yy, "Trigger Method(s)", "<please define some>", ew, eh, 8, null, true, dg, Stuff.all_event_triggers);
 dg.el_trigger = el_trigger;
-var trigger_array = array_create(min(ds_list_size(Stuff.all_event_triggers), 8));
-for (var i = 0; i < array_length_1d(trigger_array); i++) {
-	trigger_array[i] = Stuff.all_event_triggers[| i];
-}
-create_radio_array_options(el_trigger, trigger_array);
-yy = yy + ui_get_radio_array_height(el_trigger) + spacing;
-
-var el_more_triggers = create_button(c2 + 16, yy, "More Triggers...", ew, eh, fa_center, omu_entity_get_event_trigger_method, dg);
-yy = yy + el_more_triggers.height + spacing;
 
 // i don't like this ridiculous validation chain but if you try to refer to a nonexistent
 // event/entrypoint without checking it's going to explode violently
@@ -127,7 +118,7 @@ ds_list_add(dg.contents, el_name, el_enabled, el_condition,
     el_condition_switch_global_enabled, el_condition_switch_global, el_condition_variable_global_enabled, el_condition_variable_global,
     el_condition_switch_self_enabled, el_condition_switch_self, el_condition_variable_self_enabled, el_condition_variable_self, el_condition_code_enabled, el_condition_code,
     el_condition_explanation, el_option, el_option_temp,
-    el_trigger, el_more_triggers,
+    el_trigger,
     el_event, el_event_guid, el_event_entrypoint,
     el_confirm);
 
