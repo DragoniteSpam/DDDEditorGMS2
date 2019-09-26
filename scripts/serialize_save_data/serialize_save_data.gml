@@ -59,5 +59,6 @@ enum DataVersions {
 	TS_ID						= 45,
 	MAP_VERSIONING				= 46,
 	CUSTOM_EVENT_TRIGGERS		= 47,
+	CUSTOM_EVENT_OUTBOUND		= 48,
     _CURRENT                 /* = whatever the last one is + 1 */
 }
