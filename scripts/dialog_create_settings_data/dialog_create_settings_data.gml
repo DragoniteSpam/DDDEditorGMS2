@@ -34,8 +34,10 @@ var el_constants = create_button(16, yy, "Global Constants", ew, eh, fa_center, 
 yy = yy + el_constants.height + spacing;
 var el_variables = create_button(16, yy, "Global Variables", ew, eh, fa_center, dialog_create_settings_data_variables, dg);
 yy = yy + el_variables.height + spacing;
-var el_switches= create_button(16, yy, "Global Switches", ew, eh, fa_center, dialog_create_settings_data_switches, dg);
+var el_switches = create_button(16, yy, "Global Switches", ew, eh, fa_center, dialog_create_settings_data_switches, dg);
 yy = yy + el_switches.height + spacing;
+var el_event_triggers = create_button(16, yy, "Event Triggers", ew, eh, fa_center, dialog_create_settings_data_event_triggers, dg);
+yy = yy + el_event_triggers.height + spacing;
 
 // second column
 
@@ -49,7 +51,7 @@ var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Do
 
 ds_list_add(dg.contents,
     el_gameplay_title, el_gameplay_grid, el_battle_type,
-    el_global_title, el_constants, el_variables, el_switches,
+    el_global_title, el_constants, el_variables, el_switches, el_event_triggers,
     el_confirm);
 
 keyboard_string = "";
