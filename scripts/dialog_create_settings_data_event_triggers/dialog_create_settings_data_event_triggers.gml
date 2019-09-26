@@ -18,7 +18,7 @@ var spacing = 16;
 var yy = 64;
 var yy_start = 64;
 
-var el_list = create_list(32, yy, "Event Triggers (max 32)", "<no swiches>", ew, eh, 16, null, false, dg, Stuff.all_event_triggers);
+var el_list = create_list(32, yy, "Event Triggers (max 32)", "<no swiches>", ew, eh, 16, uivc_list_selection_event_triggers, false, dg, Stuff.all_event_triggers);
 el_list.numbered = true;
 el_list.allow_deselect = false;
 ds_map_add(el_list.selected_entries, 0, true);

@@ -7615,6 +7615,14 @@
             }
         },
         {
+            "Key": "a83bc325-b80d-4dfb-9842-dee8d6484fa8",
+            "Value": {
+                "id": "58b5328b-2731-44a4-b545-f8d7bea530b7",
+                "resourcePath": "scripts\\uivc_list_selection_event_triggers\\uivc_list_selection_event_triggers.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "a859f308-6098-492e-b011-add66efafae6",
             "Value": {
                 "id": "bafe1fcb-6698-4fca-bb43-a40db8f1aad3",
@@ -12230,6 +12238,7 @@
         "95e4f225-2de3-462b-8e75-cfab87a5a353",
         "5106ac6f-a982-47a3-830d-fc2f383ce828",
         "746909f1-67ac-4913-82a9-58e1dd809db9",
+        "a83bc325-b80d-4dfb-9842-dee8d6484fa8",
         "37ad1bcd-87d5-468c-8d32-8901ce1002b0",
         "2e3d411a-44d2-496b-acc8-03bcb719d623",
         "26ce2308-a8f1-46cb-9181-9bf4f4fe7ce4",
