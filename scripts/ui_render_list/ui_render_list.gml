@@ -70,7 +70,7 @@ if (list.interactive && active) {
             // if this ends up having a bounds problem it's probably because the list is empty and
             // it's trying to access n-1 from the next line
             var mn = min(((Camera.MOUSE_Y - y2) div list.height) + list.index, n - 1);
-            if ((!keyboard_check(vk_control) && !keyboard_check(vk_shift)) || !list.allow_multi_select) {
+            if ((!keyboard_check(vk_control) && !keyboard_check(vk_shift) && !list.select_toggle) || !list.allow_multi_select) {
                 ds_map_clear(list.selected_entries);
             }
             if (list.allow_multi_select && keyboard_check(vk_shift)) {
@@ -79,12 +79,20 @@ if (list.interactive && active) {
                     for (var i = list.last_index; i != mn; i = i + d) {
                         if (!ds_map_exists(list.selected_entries, i)) {
                             ds_map_add(list.selected_entries, i, true);
-                        }
+                        } else if (list.select_toggle) {
+							ds_map_delete(list.selected_entries, i);
+						}
                     }
                 }
-            }
+            } else {
+				if (!ds_map_exists(list.selected_entries, mn)) {
+					ds_map_add(list.selected_entries, mn, true);
+				} else if (list.select_toggle) {
+					ds_map_delete(list.selected_entries, mn);
+				}
+			}
+			
             list.last_index = mn;
-            ds_map_add(list.selected_entries, mn, true);
             script_execute(list.onvaluechange, list);
         } else if (Controller.press_right) {
             if (list.allow_deselect) {
@@ -104,7 +112,9 @@ if (list.interactive && active) {
                 for (var i = 0; i < ds_list_size(list.entries); i++) {
                     if (!ds_map_exists(list.selected_entries, i)) {
                         ds_map_add(list.selected_entries, i, true);
-                    }
+                    } else if (list.select_toggle) {
+						ds_map_delete(list.selected_entries, i);
+					}
                 }
             }
         }

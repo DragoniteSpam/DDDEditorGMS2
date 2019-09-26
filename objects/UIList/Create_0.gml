@@ -19,6 +19,7 @@ render = ui_render_list;
 
 allow_multi_select = false;
 allow_deselect = true;
+select_toggle = false;					// clicking on an entry will toggle its selected-ness
 selected_entries = ds_map_create();
 
 // you may own your own entry list, in which case it'll be destroyed when the UIList is
