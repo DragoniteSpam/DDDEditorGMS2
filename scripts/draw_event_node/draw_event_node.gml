@@ -17,7 +17,7 @@ var eh = 0;
 var tolerance = 4;
 
 var custom = noone;
-custom outbound nodes not handled yet
+
 switch (node.type) {
     case EventNodeTypes.ENTRYPOINT:
         #region entrypoint

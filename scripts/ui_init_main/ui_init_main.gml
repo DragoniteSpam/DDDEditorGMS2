@@ -265,6 +265,11 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
 	element = create_button(legal_x + spacing, yy, "Make Starting Map", col_width, element_height, fa_center, dmu_data_starting_map, t_maps);
 	ds_list_add(t_maps.contents, element);
 	
+	yy = yy + element.height + spacing;
+	
+	element = create_button(legal_x + spacing, yy, "Import Tiled", col_width, element_height, fa_center, dmu_data_import_map, t_maps);
+	ds_list_add(t_maps.contents, element);
+	
 	yy = legal_y + spacing;
 	
 	element = create_text(col2_x, yy, "Name:", col_width, element_height, fa_left, col_width, t_maps);

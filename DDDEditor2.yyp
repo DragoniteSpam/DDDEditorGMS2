@@ -10127,6 +10127,14 @@
             }
         },
         {
+            "Key": "deb89310-0580-4a12-85dc-0523f7cc5284",
+            "Value": {
+                "id": "4a4bf6c0-9cf7-41b3-9229-d4b53b31fd3d",
+                "resourcePath": "scripts\\dmu_data_import_map\\dmu_data_import_map.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "decd2b00-c7dc-40fc-a1fa-e06192db3de3",
             "Value": {
                 "id": "1a01f94c-e8c3-4334-a810-add7bbedec09",
@@ -11978,6 +11986,7 @@
         "4373c906-fe17-4608-af97-8721dadcb184",
         "c0649b09-7522-4726-b33c-d2f2900224fc",
         "be638e68-a97e-4a0c-afe8-b8b38eb934c0",
+        "deb89310-0580-4a12-85dc-0523f7cc5284",
         "3524668f-fce9-47ef-a727-b1f72a682462",
         "ef88187a-f578-4d1f-b954-17d87c453441",
         "6632e72e-3d90-4eed-bde9-d7220c475a3d",
