@@ -97,7 +97,6 @@ if (input.interactive && dialog_is_active(input.root)) {
     if (inbounds) {
         if (Controller.release_left) {
             ui_activate(input);
-            keyboard_string = "";
         }
     }
 }

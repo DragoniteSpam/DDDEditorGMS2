@@ -69,6 +69,4 @@ if (animation) {
 
     ds_list_add(dg.contents, el_name, el_internal_name, el_frame_rate, el_moments, el_seconds, el_clear, el_code, el_explanation,
         el_confirm);
-
-    keyboard_string = "";
 }

@@ -105,6 +105,4 @@ ds_list_add(dg.contents, el_name, el_list, el_add, el_remove,
 	el_outbound, el_outbound_name, el_outbound_add, el_outbound_remove,
     el_confirm);
 
-keyboard_string = "";
-
 return dg;

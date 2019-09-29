@@ -48,6 +48,4 @@ dg.el_confirm = create_button(dw / 2, dh - 32 - b_height / 2, "Done", b_width, b
 
 ds_list_add(dg.contents, dg.el_list, dg.el_confirm, dg.el_explanation, dg.el_preview, dg.el_manager);
 
-keyboard_string = "";
-
 return dg;

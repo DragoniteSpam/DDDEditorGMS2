@@ -40,6 +40,4 @@ if (keyframe) {
     
     ds_list_add(dg.contents, el_list,
         el_confirm);
-
-    keyboard_string = "";
 }

@@ -41,6 +41,4 @@ var el_yeah = create_button(dw * 2 / 3, dh - 32 - b_height / 2, "Yeah", b_width,
 
 ds_list_add(dg.contents, el_name, el_yeah, el_nope);
 
-keyboard_string = "";
-
 return dg;

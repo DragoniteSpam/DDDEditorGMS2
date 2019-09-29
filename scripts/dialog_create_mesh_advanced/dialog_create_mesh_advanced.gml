@@ -52,6 +52,4 @@ var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Do
 ds_list_add(dg.contents, el_text_single, el_auto_bounds, el_normal_flat, el_normal_smooth, el_up_axis,
     el_text_all, el_all_normal_flat, el_all_normal_smooth, el_confirm);
 
-keyboard_string = "";
-
 return dg;

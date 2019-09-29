@@ -319,13 +319,18 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     element = create_text(legal_x + spacing, yy, "Advanced", element_width, element_height, fa_left, element_width, t_list);
     ds_list_add(t_action2.contents, element);
     yy = yy + element_height;
-    element = create_button(legal_x + spacing, yy, "Custom", element_width, element_height, fa_left, omu_event_custom_dialog, t_list);
-    ds_list_add(t_action2.contents, element);
-    yy = yy + element_height;
     element = create_button(legal_x + spacing, yy, "Script", element_width, element_height, fa_left, omu_event_add_script, t_action2);
     ds_list_add(t_action2.contents, element);
     yy = yy + element_height;
     element = create_button(legal_x + spacing, yy, "Audio Controls", element_width, element_height, fa_left, not_yet_implemented, t_action2);
+    ds_list_add(t_action2.contents, element);
+    yy = yy + element_height;
+	// these are last
+	yy = yy + element_height;
+    element = create_button(legal_x + spacing, yy, "Custom", element_width, element_height, fa_left, omu_event_custom_dialog, t_list);
+    ds_list_add(t_action2.contents, element);
+	yy = yy + element_height;
+    element = create_button(legal_x + spacing, yy, "Prefab", element_width, element_height, fa_left, null, t_list);
     ds_list_add(t_action2.contents, element);
     yy = yy + element_height;
     

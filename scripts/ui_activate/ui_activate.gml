@@ -2,4 +2,7 @@
 // this will most likely be used mainly for input dialogs but can be used
 // for other UIThings also
 
-Camera.ui.active_element = argument0;
+var thing = argument0;
+
+Camera.ui.active_element = thing;
+keyboard_string = "";

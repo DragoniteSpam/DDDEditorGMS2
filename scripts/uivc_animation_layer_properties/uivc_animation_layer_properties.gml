@@ -76,6 +76,4 @@ if (selection >= 0) {
         el_def_scale, el_scale_x, el_scale_y, el_scale_z,
         el_def_color, el_color, el_alpha,
         el_confirm);
-
-    keyboard_string = "";
 }

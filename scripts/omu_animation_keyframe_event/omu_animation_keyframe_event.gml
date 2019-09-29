@@ -81,6 +81,4 @@ if (keyframe) {
     ds_list_add(dg.contents, el_graphic_type, el_graphic_speed, el_event, el_audio,
         el_graphic_none, el_graphic_no_change, el_graphic_sprite_list, el_graphic_mesh_list,
         el_confirm);
-
-    keyboard_string = "";
 }

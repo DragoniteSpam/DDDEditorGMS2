@@ -51,6 +51,4 @@ ds_list_add(dg.contents,
     el_list, el_name, el_default, el_max,
     el_confirm);
 
-keyboard_string = "";
-
 return dg;

@@ -29,6 +29,4 @@ dg.el_confirm = el_confirm;
 ds_list_add(dg.contents, el_list,
     el_confirm);
 
-keyboard_string = "";
-
 return dg;

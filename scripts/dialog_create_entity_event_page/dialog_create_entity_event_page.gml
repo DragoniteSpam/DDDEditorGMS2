@@ -131,6 +131,4 @@ ds_list_add(dg.contents, el_name, el_enabled, el_condition,
     el_event, el_event_guid, el_event_entrypoint,
     el_confirm);
 
-keyboard_string = "";
-
 return dg;

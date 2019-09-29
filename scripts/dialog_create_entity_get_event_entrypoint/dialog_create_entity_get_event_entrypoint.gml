@@ -46,6 +46,4 @@ var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Co
 ds_list_add(dg.contents, el_list,
     el_confirm);
 
-keyboard_string = "";
-
 return dg;

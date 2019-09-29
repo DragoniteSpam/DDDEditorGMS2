@@ -51,6 +51,4 @@ ds_list_add(dg.contents, el_bezier, el_backups, el_autosave, el_npc_animation, e
     el_code_ext_text, el_code_ext,
     el_confirm);
 
-keyboard_string = "";
-
 return dg;

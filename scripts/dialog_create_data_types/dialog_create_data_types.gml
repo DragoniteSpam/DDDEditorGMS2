@@ -174,6 +174,4 @@ ds_list_add(dg.contents, el_list, el_add, el_add_enum, el_remove,
     el_property_default_bool, el_property_default_int, el_property_default_na,
     el_confirm);
 
-keyboard_string = "";
-
 return dg;

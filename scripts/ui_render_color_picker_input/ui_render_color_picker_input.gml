@@ -58,7 +58,6 @@ if (active) {
     if (inbounds) {
         if (Controller.release_left) {
             ui_activate(picker);
-            keyboard_string = "";
         }
     } else {
         if (Controller.press_left) {

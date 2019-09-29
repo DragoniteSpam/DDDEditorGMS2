@@ -78,6 +78,4 @@ ds_list_add(dg.contents, el_other, el_other_3d, el_other_fog_start, el_other_fog
     el_encounter_heading, el_encounter_base, el_encounter_deviation,
     el_confirm);
 
-keyboard_string = "";
-
 return dg;
