@@ -15,8 +15,17 @@ draw_sprite(spr_event_outbound, terminal ? 0 : 1, xx, yy);
 var tolerance = 12;
 
 if (!dialog_exists()) {
-    if (mouse_within_rectangle_adjusted(xx - tolerance, yy - tolerance, xx + tolerance, yy + tolerance) && Controller.press_left) {
-        Camera.event_canvas_active_node = node;
-        Camera.event_canvas_active_node_index = index;
+    if (mouse_within_rectangle_adjusted(xx - tolerance, yy - tolerance, xx + tolerance, yy + tolerance)) {
+		var custom = guid_get(node.custom_guid);
+		if (custom) {
+			var str = custom.outbound[| index];
+			if (string_length(str) > 0) {
+				draw_tooltip(xx - 16 - string_width(str) / 2 - 4, yy - string_height(str) / 2 - 4, str);
+			}
+		}
+		if (Controller.press_left) {
+	        Camera.event_canvas_active_node = node;
+	        Camera.event_canvas_active_node_index = index;
+		}
     }
 }
