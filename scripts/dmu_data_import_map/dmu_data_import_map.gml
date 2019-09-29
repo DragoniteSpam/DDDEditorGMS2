@@ -13,6 +13,19 @@ if (file_exists(filename)) {
 		
 		var json_layers = json[? "layers"];
 		
+		var json_properties = json[? "properties"];
+		var map_id = -1;
+		
+		for (var i = 0; i < ds_list_size(json_properties); i++) {
+			var property_name = ds_map_find_value(json_properties[| i], "name");
+			var property_type = ds_map_find_value(json_properties[| i], "type");
+			var property_value = ds_map_find_value(json_properties[| i], "value");
+			
+			if (property_name = "id") {
+				map_id = property_value;
+			}
+		}
+		
 		var json_width = json[? "width"];
 		var json_height = json[? "height"];
 		
@@ -20,8 +33,11 @@ if (file_exists(filename)) {
 		for (var i = 0; i < ds_list_size(json_tilesets); i++) {
 			var tileset_data = json_tilesets[| i];
 			var tileset_file = tileset_data[? "source"];
-			
-			debug(tileset_file);
+		}
+		
+		var json_layers = json[? "layers"];
+		for (var i = 0; i < ds_list_size(json_layers); i++) {
+			var layer_data = json_layers[| i];
 		}
 	}
 	

@@ -10,11 +10,7 @@ var node = argument[2];
 var index = (argument_count > 3) ? argument[3] : 0;
 var terminal = (argument_count > 4) ? argument[4] : false;
 
-if (terminal) {
-    draw_sprite(spr_event_outbound, 0, xx, yy);
-} else {
-    draw_sprite(spr_event_outbound, 1, xx, yy);
-}
+draw_sprite(spr_event_outbound, terminal ? 0 : 1, xx, yy);
 
 var tolerance = 12;
 

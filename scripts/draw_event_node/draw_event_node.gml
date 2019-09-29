@@ -20,7 +20,7 @@ var custom = noone;
 
 switch (node.type) {
     case EventNodeTypes.ENTRYPOINT:
-        #region entrypoint
+    #region entrypoint
         x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
         y2 = y1 + 16 + string_height(string(node.name)) + entry_offset;
         
@@ -33,10 +33,10 @@ switch (node.type) {
             
             draw_event_node_delete(x2, y1, node);
         }
-        #endregion
         break;
+    #endregion
     case EventNodeTypes.COMMENT:
-        #region comment
+    #region comment
         x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
         // cut down version of Text
         y2 = y1 + 24 + 32 + ds_list_size(node.data) * entry_height + entry_offset;
@@ -64,12 +64,11 @@ switch (node.type) {
         }
         
         draw_event_node_delete(x2, y1, node);
-            
-        #endregion
         break;
+    #endregion
     case EventNodeTypes.TEXT:
 	case EventNodeTypes.SHOW_SCROLLING_TEXT:
-        #region text
+    #region text
         x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
         // the above will be very painful for nodes with many data entries because loops so just assume
         // each entry won't have more than four lines
@@ -121,10 +120,10 @@ switch (node.type) {
                 draw_event_node_text_add(mean(x1, x2), y2, node);
             }
         }
-        #endregion
         break;
+    #endregion
     case EventNodeTypes.CONDITIONAL:
-        #region if-else if-else
+    #region if-else if-else
         var size = ds_list_size(node.custom_data[| 0]);
         eh = 32;
         var rh = ((ui_get_radio_array_height(node.ui_things[| 0]) div eh) * eh) + 16;
@@ -265,10 +264,10 @@ switch (node.type) {
                 draw_event_node_condition_add(mean(x1, x2), y2, node);
             }
         }
-        #endregion
         break;
+    #endregion
     case EventNodeTypes.SHOW_CHOICES:
-        #region list of choices
+    #region list of choices
         var size = ds_list_size(node.data);
         eh = 64;
         x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
@@ -322,14 +321,14 @@ switch (node.type) {
                 draw_event_node_choice_add(mean(x1, x2), y2, node);
             }
         }
-        #endregion
         break;
+    #endregion
     case EventNodeTypes.CUSTOM:
     default:
-        #region custom
+    #region everything else
         custom = guid_get(node.custom_guid);
         x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
-        y2 = y1 + 24 + 32 + entry_offset;
+        y2 = y1 + max(24 + 32 + entry_offset, ds_list_size(node.outbound) * EVENT_NODE_CONTACT_HEIGHT * 2 / 3);
         var ncolor = (node.type == EventNodeTypes.CUSTOM) ? c_ev_custom : c_ev_basic;
         
         for (var i = 0; i < ds_list_size(custom.types); i++) {
@@ -588,11 +587,7 @@ switch (node.type) {
                             break;
                     }
                     
-                    if (output_script == null) {
-                        message = message + output_string;
-                    } else {
-                        message = message + script_execute(output_script, node, i);
-                    }
+                    message = message + ((output_script == null) ? output_string : script_execute(output_script, node, i));
                 } else {
                     message = message + ": multiple values (" + string(ds_list_size(custom_data_list)) + ")";
                 }
@@ -607,14 +602,15 @@ switch (node.type) {
                 entry_yy = entry_yy + eh;
             }
         }
-        #endregion
         break;
+    #endregion
 }
 
 // different node types may put the outbound nodes in different places - not all use more than one output node
 var bezier_override = false;
 switch (node.type) {
     case EventNodeTypes.ENTRYPOINT:
+	#region Entrypoint
         // vertical middle of the box; entrypoints will only ever have one outbound node so we can cheat
         var by = mean(y1, y2);
         var outbound = node.outbound[| 0];
@@ -637,10 +633,12 @@ switch (node.type) {
             }
         }
         break;
+	#endregion
     case EventNodeTypes.COMMENT:
         // no outbound node allowed
         break;
     case EventNodeTypes.CONDITIONAL:
+	#region Conditional
         // it'd be real nice if this could just be in the default case, but the outbound nodes
         // are spaced slightly differently for this so it wouldn't really work
         bezier_override = true;
@@ -693,7 +691,9 @@ switch (node.type) {
             draw_bezier(x2 + 8, bezier_y, mouse_x_view, mouse_y_view);
         }
         break;
+	#endregion
     case EventNodeTypes.SHOW_CHOICES:
+	#region Choices
         bezier_override = true;
         var entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
         var by = entry_yy + eh / 2;
@@ -743,54 +743,53 @@ switch (node.type) {
             draw_bezier(x2 + 8, bezier_y, mouse_x_view, mouse_y_view);
         }
         break;
+	#endregion
     default:
+	#region Custom (usually)
         var entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
-        if (custom && ds_list_size(custom.types) == 0) {
-            // if there are not types, vertical middle of the rectangle instead
-            var by = mean(y1, y2);
-        } else {
-            // vertical middle of the first data entry
-            var by = mean(entry_yy, entry_yy + entry_height);
-        }
-        var i = 0;
-        var outbound = node.outbound[| i];
-        
-        if (!outbound) {
-            draw_event_node_outbound(x2, by, node, i, true);
-        } else {
-            var bx2 = outbound.x;
-            var by2 = outbound.y + 16;
-            
-            draw_event_node_outbound(x2, by, node, i);
-            draw_sprite(spr_event_dot, 0, x2, by);
-            
-            if (event_canvas_active_node != node || event_canvas_active_node_index != i) {
-                if (bx2 > x2) {
-                    draw_bezier(x2 + 8, by, bx2 - 8, by2);
-                } else {
-                    draw_event_ghost(x2 + 8, by, x2 + 64, by, outbound);
-                }
-            }
-        }
+		
+		for (var i = 0; i < ds_list_size(node.outbound); i++) {
+	        var outbound = node.outbound[| i];
+			var by = entry_yy + i * EVENT_NODE_CONTACT_HEIGHT * 2 / 3;
+			
+	        if (!outbound) {
+	            draw_event_node_outbound(x2, by, node, i, true);
+	        } else {
+	            var bnx = outbound.x;
+	            var bny = outbound.y + 16;
+				
+	            draw_event_node_outbound(x2, by, node, i);
+	            draw_sprite(spr_event_dot, 0, x2, by);
+				
+	            if (event_canvas_active_node != node || event_canvas_active_node_index != i) {
+	                if (bnx > x2) {
+	                    draw_bezier(x2 + 8, by, bnx - 8, bny);
+	                } else {
+	                    draw_event_ghost(x2 + 8, by, x2 + 64, by, outbound);
+	                }
+	            }
+	        }
+		}
         break;
+	#endregion
 }
 
 // condition nodes have them located in strange places so i'm not going to try
 // to come up with a general solution
 if (!bezier_override) {
     if (event_canvas_active_node == node) {
+	    var camera = view_get_camera(view_current);
+	    draw_bezier(x2 + 8, entry_yy + event_canvas_active_node_index * EVENT_NODE_CONTACT_HEIGHT * 2 / 3, mouse_x_view + camera_get_view_x(camera), mouse_y_view + camera_get_view_y(camera));
         if (!dialog_exists()) {
             if (Controller.release_left) {
-                event_canvas_active_node = noone;
-                event_canvas_active_node_index = 0;
                 // if the mouse is contacting another entrypoint, connect it
                 var contacted_node = event_seek_node();
                 if (contacted_node) {
-                    event_connect_node(node, contacted_node);
+                    event_connect_node(node, contacted_node, event_canvas_active_node_index);
                 }
+                event_canvas_active_node = noone;
+                event_canvas_active_node_index = 0;
             }
         }
-        var camera = view_get_camera(view_current);
-        draw_bezier(x2 + 8, by, mouse_x_view + camera_get_view_x(camera), mouse_y_view + camera_get_view_y(camera));
     }
 }
