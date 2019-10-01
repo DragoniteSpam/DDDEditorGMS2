@@ -10,5 +10,6 @@ if (!ds_list_empty(Stuff.all_animations)) {
     
     if (selection >= 0) {
         list.root.active_animation = Stuff.all_animations[| selection];
+		ui_list_deselect(list.root.el_layers);
     }
 }
