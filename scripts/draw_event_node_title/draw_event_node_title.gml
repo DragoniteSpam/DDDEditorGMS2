@@ -8,7 +8,6 @@ var y1 = node.y;
 var x2 = node.x + EVENT_NODE_CONTACT_WIDTH;
 var y2 = node.y + EVENT_NODE_CONTACT_HEIGHT;
 var tolerance = 8;
-
 if (!dialog_exists() && !event_canvas_active_node) {
     if (mouse_within_rectangle_adjusted(x1 + tolerance, y1 + tolerance, x2 - tolerance, y2 - tolerance)) {
         draw_rectangle_colour(x1 + tolerance, y1 + tolerance, x2 - tolerance, y2 - tolerance, color, color, color, color, false);
@@ -30,5 +29,5 @@ if (!dialog_exists() && !event_canvas_active_node) {
         }
     }
 }
-    
+
 draw_text(x1 + 16, mean(y1, y2), string(node.name));

@@ -61,7 +61,7 @@ if (selection) {
 	            if (property.max_size == 1) {
 	                switch (property.type) {
 	                    case DataTypes.INT:            // input
-	                        var char_limit = log10(max(abs(property.range_min), abs(property.range_max)) + 1);
+	                        var char_limit = log10(max(1, max(abs(property.range_min), abs(property.range_max)))) + 1;
 	                        if (property.range_min < 0 || property.range_max < 0) {
 	                            char_limit++;
 	                        }

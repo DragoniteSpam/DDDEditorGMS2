@@ -271,7 +271,7 @@ switch (node.type) {
         var size = ds_list_size(node.data);
         eh = 64;
         x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
-		y2 = y1 + max(24 + 32 + eh * size + entry_offset, ds_list_size(node.outbound) * EVENT_NODE_CONTACT_HEIGHT * 2 / 3);
+		y2 = y1 + max(24 + 32 + eh * (size + 1) + entry_offset, ds_list_size(node.outbound) * EVENT_NODE_CONTACT_HEIGHT * 2 / 3);
         
         if (rectangle_within_view(view_current, x1, y1, x2, y2)) {
             var ncolor = c_ev_basic;
@@ -779,7 +779,7 @@ switch (node.type) {
 if (!bezier_override) {
     if (event_canvas_active_node == node) {
 	    var camera = view_get_camera(view_current);
-	    draw_bezier(x2 + 8, entry_yy + event_canvas_active_node_index * EVENT_NODE_CONTACT_HEIGHT * 2 / 3, mouse_x_view + camera_get_view_x(camera), mouse_y_view + camera_get_view_y(camera));
+	    draw_bezier(x2 + 8, entry_yy + event_canvas_active_node_index * EVENT_NODE_CONTACT_HEIGHT * 2 / 3, Camera.MOUSE_X + camera_get_view_x(camera), Camera.MOUSE_Y + camera_get_view_y(camera));
         if (!dialog_exists()) {
             if (Controller.release_left) {
                 // if the mouse is contacting another entrypoint, connect it
@@ -789,6 +789,7 @@ if (!bezier_override) {
                 }
                 event_canvas_active_node = noone;
                 event_canvas_active_node_index = 0;
+				Controller.release_left = false;
             }
         }
     }
