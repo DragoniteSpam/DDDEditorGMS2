@@ -11,7 +11,7 @@ var keyframe = noone;
 var timeline = input.root.root.el_timeline;
 var timeline_layer = ui_list_selection(input.root.root.el_layers);
 
-if (animation && timeline_layer) {
+if (animation && (timeline_layer + 1)) {
 	keyframe = animation_get_keyframe(animation, timeline_layer, timeline.playing_moment);
 	
 	if (!ui_is_active(input)) {
