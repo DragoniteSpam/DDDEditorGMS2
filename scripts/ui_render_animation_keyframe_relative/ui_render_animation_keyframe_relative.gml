@@ -12,7 +12,7 @@ var timeline = button.root.root.el_timeline;
 var timeline_layer = ui_list_selection(button.root.root.el_layers);
 var original_text = button.text;
 
-if (animation && timeline_layer) {
+if (animation && (timeline_layer + 1)) {
 	keyframe = animation_get_keyframe(animation, timeline_layer, timeline.playing_moment);
 	button.text = button.text + ((keyframe && keyframe.relative && keyframe.relative < ds_list_size(animation.layers)) ? " " + animation.layers[| keyframe.relative].name : " (None)");
 }
@@ -20,6 +20,6 @@ if (animation && timeline_layer) {
 // we must abuse truthiness wherever possible
 button.interactive = (keyframe && true);
 
-ui_render_animation_keyframe_other(button, xx, yy);
+ui_render_button(button, xx, yy);
 
 button.text = original_text;
