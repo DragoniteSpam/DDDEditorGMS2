@@ -19,6 +19,7 @@ if (data) {
         var property = data.properties[| i];
         switch (property.type) {
             case DataTypes.INT:
+			case DataTypes.COLOR:
                 var plist = ds_list_create();
                 ds_list_add(plist, property.default_int);
                 ds_list_add(instance.values, plist);
@@ -35,6 +36,8 @@ if (data) {
             case DataTypes.AUTOTILE:
             case DataTypes.AUDIO_BGM:
             case DataTypes.AUDIO_SE:
+			case DataTypes.ANIMATION:
+			case DataTypes.MAP:
                 var plist = ds_list_create();
                 ds_list_add(plist, 0);
                 ds_list_add(instance.values, plist);
@@ -53,7 +56,11 @@ if (data) {
                 var plist = ds_list_create();
                 ds_list_add(plist, property.default_code);
                 ds_list_add(instance.values, plist);
-                break;
+				break;
+			case DataTypes.TILE:
+			case DataTypes.ENTITY:
+				not_yet_implemented();
+				break;
         }
     }
 }

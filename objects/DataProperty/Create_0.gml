@@ -58,6 +58,7 @@ enum DataTypes {
  *  13. text in the lists in dialog_create_data_types_ext
  *  14. text in dialog_create_event_node_custom_data_ext
  *  15. case in draw_active_event
+ *. 16. case in uimu_data_add_data
  */
 
 enum NumberScales {
