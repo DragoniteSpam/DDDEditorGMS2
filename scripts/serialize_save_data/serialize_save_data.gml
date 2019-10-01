@@ -17,7 +17,7 @@ if (string_length(fn) > 0) {
     buffer_write(buffer, buffer_u32, DataVersions._CURRENT - 1);
     buffer_write(buffer, buffer_u8, SERIALIZE_DATA_AND_MAP);
     buffer_write(buffer, buffer_u32, 0);
-    
+	
     /*
      * data
      */
@@ -60,5 +60,6 @@ enum DataVersions {
 	MAP_VERSIONING				= 46,
 	CUSTOM_EVENT_TRIGGERS		= 47,
 	CUSTOM_EVENT_OUTBOUND		= 48,
+	CODE_OPTIONS				= 49,
     _CURRENT                 /* = whatever the last one is + 1 */
 }

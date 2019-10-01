@@ -1,14 +1,16 @@
 /// @param UIList
 
-var selection = ui_list_selection(argument0);
+var list = argument0;
+
+var selection = ui_list_selection(list);
 
 if (selection >= 0) {
-    var listofthings = argument0.root.selected_data.properties;
+    var listofthings = list.root.selected_data.properties;
     
-    if (listofthings[| selection] != argument0.root.selected_property) {
-        argument0.root.selected_property = listofthings[| selection];
+    if (listofthings[| selection] != list.root.selected_property) {
+        list.root.selected_property = listofthings[| selection];
         
-        dialog_data_type_disable(argument0.root);
-        dialog_data_type_enable_by_type(argument0.root);
+        dialog_data_type_disable(list.root);
+        dialog_data_type_enable_by_type(list.root);
     }
 }

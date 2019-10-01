@@ -44,6 +44,12 @@ repeat (n_datadata) {
             property.default_string = buffer_read(buffer, buffer_string);
             property.default_int = buffer_read(buffer, buffer_s32);
             property.default_real = buffer_read(buffer, buffer_f32);
+			
+			if (version >= DataVersions.CODE_OPTIONS) {
+				var bools = buffer_read(buffer, buffer_u32);
+				property.code_precompile = unpack(bools, 0);
+				property.code_allrefs= unpack(bools, 1);
+			}
         }
     }
 }

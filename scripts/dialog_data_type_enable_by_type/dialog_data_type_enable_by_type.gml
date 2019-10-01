@@ -1,86 +1,96 @@
 /// @param Dialog
+
+var dialog = argument0;
+
 // turns off all of the UI elements associated with properties of data
 
-argument0.el_data_name.interactive = true;
-argument0.el_add_p.interactive = true;
-argument0.el_remove_p.interactive = true;
+dialog.el_data_name.interactive = true;
+dialog.el_add_p.interactive = true;
+dialog.el_remove_p.interactive = true;
 
-argument0.el_property_name.interactive = true;
-argument0.el_property_name.value = argument0.selected_property.name;
+dialog.el_property_name.interactive = true;
+dialog.el_property_name.value = dialog.selected_property.name;
 
-argument0.el_property_type.interactive = !argument0.selected_data.is_enum;
+dialog.el_property_type.interactive = !dialog.selected_data.is_enum;
 
-if (argument0.selected_data.is_enum) {
+if (dialog.selected_data.is_enum) {
     // nothing special for here
 } else {
-    argument0.el_property_type.interactive = true;
-    argument0.el_property_ext_type.interactive = true;
-    argument0.el_property_size.interactive = true;
-    argument0.el_property_size.value = string(argument0.selected_property.max_size);
+    dialog.el_property_type.interactive = true;
+    dialog.el_property_ext_type.interactive = true;
+    dialog.el_property_size.interactive = true;
+    dialog.el_property_size.value = string(dialog.selected_property.max_size);
     
-    argument0.el_property_type.value = argument0.selected_property.type;
+    dialog.el_property_type.value = dialog.selected_property.type;
     
-    switch (argument0.selected_property.type) {
+    switch (dialog.selected_property.type) {
         case DataTypes.INT:
         case DataTypes.FLOAT:
-            argument0.el_property_min.interactive = true;
-            argument0.el_property_max.interactive = true;
-            argument0.el_property_scale.interactive = true;
-            argument0.el_property_min.enabled = true;
-            argument0.el_property_max.enabled = true;
-            argument0.el_property_scale.enabled = true;
-            argument0.el_property_min.value = string(argument0.selected_property.range_min);
-            argument0.el_property_max.value = string(argument0.selected_property.range_max);
-            argument0.el_property_scale.value = argument0.selected_property.number_scale;
+            dialog.el_property_min.interactive = true;
+            dialog.el_property_max.interactive = true;
+            dialog.el_property_scale.interactive = true;
+            dialog.el_property_min.enabled = true;
+            dialog.el_property_max.enabled = true;
+            dialog.el_property_scale.enabled = true;
+            dialog.el_property_min.value = string(dialog.selected_property.range_min);
+            dialog.el_property_max.value = string(dialog.selected_property.range_max);
+            dialog.el_property_scale.value = dialog.selected_property.number_scale;
             
-            if (argument0.selected_property.type == DataTypes.INT) {
-                argument0.el_property_default_int.enabled = true;
-                argument0.el_property_default_int.value = string(argument0.selected_property.default_int);
-            } else if (argument0.selected_property.type == DataTypes.FLOAT) {
-                argument0.el_property_default_real.enabled = true;
-                argument0.el_property_default_real.value = string(argument0.selected_property.default_real);
+            if (dialog.selected_property.type == DataTypes.INT) {
+                dialog.el_property_default_int.enabled = true;
+                dialog.el_property_default_int.value = string(dialog.selected_property.default_int);
+            } else if (dialog.selected_property.type == DataTypes.FLOAT) {
+                dialog.el_property_default_real.enabled = true;
+                dialog.el_property_default_real.value = string(dialog.selected_property.default_real);
             }
             break;
         case DataTypes.STRING:
-            argument0.el_property_char_limit.interactive = true;
-            argument0.el_property_char_limit.enabled = true;
-            argument0.el_property_char_limit.value = string(argument0.selected_property.char_limit);
-            argument0.el_property_default_string.enabled = true;
-            argument0.el_property_default_string.value = argument0.selected_property.default_string;
+            dialog.el_property_char_limit.interactive = true;
+            dialog.el_property_char_limit.enabled = true;
+            dialog.el_property_char_limit.value = string(dialog.selected_property.char_limit);
+            dialog.el_property_default_string.enabled = true;
+            dialog.el_property_default_string.value = dialog.selected_property.default_string;
             break;
         case DataTypes.BOOL:
-            argument0.el_property_default_bool.enabled = true;
-            argument0.el_property_default_bool.value = clamp(argument0.selected_property.default_int, 0, 1);
+            dialog.el_property_default_bool.enabled = true;
+            dialog.el_property_default_bool.value = clamp(dialog.selected_property.default_int, 0, 1);
             break;
         case DataTypes.ENUM:
         case DataTypes.DATA:
-            argument0.el_property_type_guid.interactive = true;
-            argument0.el_property_type_guid.enabled = true;
-            var type = guid_get(argument0.selected_property.type_guid);
+            dialog.el_property_type_guid.interactive = true;
+            dialog.el_property_type_guid.enabled = true;
+            var type = guid_get(dialog.selected_property.type_guid);
             
-            if (type && ((type.is_enum && argument0.selected_property.type == DataTypes.DATA)||
-                    (!type.is_enum && argument0.selected_property.type == DataTypes.ENUM))) {
-                argument0.el_property_type_guid.color = c_red;
+            if (type && ((type.is_enum && dialog.selected_property.type == DataTypes.DATA)||
+                    (!type.is_enum && dialog.selected_property.type == DataTypes.ENUM))) {
+                dialog.el_property_type_guid.color = c_red;
             } else {
-                argument0.el_property_type_guid.color = c_black;
+                dialog.el_property_type_guid.color = c_black;
             }
             
             if (!type) {
-                argument0.el_property_type_guid.text = "Select";
+                dialog.el_property_type_guid.text = "Select";
             } else {
-                argument0.el_property_type_guid.text = type.name + " (Select)";
+                dialog.el_property_type_guid.text = type.name + " (Select)";
             }
             
-            if (argument0.selected_property.type == DataTypes.ENUM) {
-                argument0.el_property_type_guid.onmouseup = omu_data_enum_select;
+            if (dialog.selected_property.type == DataTypes.ENUM) {
+                dialog.el_property_type_guid.onmouseup = omu_data_enum_select;
             } else  {
-                argument0.el_property_type_guid.onmouseup = omu_data_data_select;
+                dialog.el_property_type_guid.onmouseup = omu_data_data_select;
             }
-            argument0.el_property_default_na.enabled = true;
+            dialog.el_property_default_na.enabled = true;
             break;
         case DataTypes.CODE:
-            argument0.el_property_default_code.enabled = true;
-            argument0.el_property_default_code.value = argument0.selected_property.default_code;
+            dialog.el_property_default_code.enabled = true;
+            dialog.el_property_default_code.value = dialog.selected_property.default_code;
+			dialog.el_property_code_precomile.enabled = false;
+			dialog.el_property_code_precomile.value = dialog.selected_property.code_allrefs;
+			dialog.el_property_code_all_ref.enabled = false;
+			dialog.el_property_code_all_ref.value = dialog.selected_property.code_precompile;
+			these new ones are not showing up when activated - please find out why;
+			after that their onvaluechange scripts need to be made (ie cloned from the other ones)
+			and the game's data format needs to be updated
             break;
         default:
             // pretty sure the others don't have anything special
