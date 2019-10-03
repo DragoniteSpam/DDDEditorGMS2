@@ -30,6 +30,7 @@ if (auto_fill) {
 
 keyframe.moment = moment;
 keyframe.timeline_layer = timeline_layer;
+keyframe.relative = timeline_layer;
 inst_layer.keyframes[| moment] = keyframe;
 
 return keyframe;
