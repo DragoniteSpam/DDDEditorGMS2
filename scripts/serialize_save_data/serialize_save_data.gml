@@ -43,6 +43,10 @@ if (string_length(fn) > 0) {
     
     var compressed = buffer_compress(buffer, 0, buffer_tell(buffer));
     buffer_save(compressed, fn);
+    The autosave / load location should instead be inside PATH_PROJECTS, the asset and data
+    files should be saved in pairs, and when you control + s you should save both the data
+    and asset files; when you load the editor, you should have the option to load a project
+    or create a blank one; manually loading files should work the same as before
     buffer_save(compressed, "auto" + EXPORT_EXTENSION_DATA);
     buffer_delete(compressed);
     buffer_delete(buffer);

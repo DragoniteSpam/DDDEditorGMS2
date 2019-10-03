@@ -124,20 +124,16 @@ if (!directory_exists(PATH_BACKUP_ASSET)) {
     directory_create(PATH_BACKUP_ASSET);
 }
 
-if (!directory_exists(PATH_VRA)) {
-    directory_create(PATH_VRA);
-}
-
-if (!directory_exists(PATH_RESOURCES)) {
-    directory_create(PATH_RESOURCES);
-}
-
 if (!directory_exists(PATH_TEMP_CODE)) {
     directory_create(PATH_TEMP_CODE);
 }
 
 if (!directory_exists(PATH_AUDIO)) {
     directory_create(PATH_AUDIO);
+}
+
+if (!directory_exists(PATH_PROJECTS)) {
+    directory_create(PATH_PROJECTS);
 }
 
 // dummy list that will always exist and be empty
