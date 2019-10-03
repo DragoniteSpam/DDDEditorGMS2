@@ -88,9 +88,6 @@ if (dialog.selected_data.is_enum) {
 			dialog.el_property_code_precomile.value = dialog.selected_property.code_allrefs;
 			dialog.el_property_code_all_ref.enabled = false;
 			dialog.el_property_code_all_ref.value = dialog.selected_property.code_precompile;
-			these new ones are not showing up when activated - please find out why;
-			after that their onvaluechange scripts need to be made (ie cloned from the other ones)
-			and the game's data format needs to be updated
             break;
         default:
             // pretty sure the others don't have anything special

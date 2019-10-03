@@ -34,6 +34,7 @@ for (var i = 0; i < n_datadata; i++) {
                     case DataTypes.AUTOTILE:
                     case DataTypes.AUDIO_BGM:
                     case DataTypes.AUDIO_SE:
+                    case DataTypes.COLOR:
                     case DataTypes.ANIMATION:
                     case DataTypes.MAP:
                         var btype = buffer_u32;
@@ -51,15 +52,12 @@ for (var i = 0; i < n_datadata; i++) {
                         // not as simple as just using pack/unpack
                         var btype = buffer_u8;
                         break;
-                    case DataTypes.COLOR:
+                    case DataTypes.ENTITY:
+                        // not sure how this happened but
                         var btype = buffer_u32;
                         break;
                     case DataTypes.TILE:
                         not_yet_implemented();
-                        break;
-                    case DataTypes.ENTITY:
-                        // not sure how this happened but
-                        var btype = buffer_u32;
                         break;
                 }
                 var plist = ds_list_create();
