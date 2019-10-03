@@ -47,8 +47,6 @@ repeat (n_datadata) {
 			
 			if (version >= DataVersions.CODE_OPTIONS) {
 				var bools = buffer_read(buffer, buffer_u32);
-				property.code_precompile = unpack(bools, 0);
-				property.code_allrefs= unpack(bools, 1);
 			}
         }
     }

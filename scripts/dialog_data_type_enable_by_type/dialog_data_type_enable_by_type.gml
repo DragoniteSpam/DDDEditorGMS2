@@ -84,10 +84,6 @@ if (dialog.selected_data.is_enum) {
         case DataTypes.CODE:
             dialog.el_property_default_code.enabled = true;
             dialog.el_property_default_code.value = dialog.selected_property.default_code;
-			dialog.el_property_code_precomile.enabled = false;
-			dialog.el_property_code_precomile.value = dialog.selected_property.code_allrefs;
-			dialog.el_property_code_all_ref.enabled = false;
-			dialog.el_property_code_all_ref.value = dialog.selected_property.code_precompile;
             break;
         default:
             // pretty sure the others don't have anything special

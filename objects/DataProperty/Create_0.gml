@@ -12,8 +12,6 @@ range_max = 10;                       // int, float
 number_scale = NumberScales.LINEAR;   // int, float
 char_limit = 20;                      // string
 type_guid = 0;                        // Data, enum
-code_precompile = true;				// bool
-code_allrefs = true;				// bool
 
 max_size = 1;
 

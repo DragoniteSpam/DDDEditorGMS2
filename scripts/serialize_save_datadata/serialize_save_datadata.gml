@@ -38,7 +38,7 @@ for (var i = 0; i < n_datadata; i++) {
             buffer_write(buffer, buffer_s32, property.default_int);
             buffer_write(buffer, buffer_f32, property.default_real);
 			
-			var bools = pack(property.code_precompile, property.code_allrefs);
+			var bools = 0;
 			
 			buffer_write(buffer, buffer_u32, bools);
         }

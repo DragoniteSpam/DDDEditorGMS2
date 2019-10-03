@@ -18,8 +18,6 @@ dialog.el_property_max.interactive = false;
 dialog.el_property_char_limit.interactive = false;
 dialog.el_property_scale.interactive = false;
 
-dialog.el_property_code_precomile.enabled = false;
-dialog.el_property_code_all_ref.enabled = false;
 dialog.el_property_scale.interactive = false;
 
 dialog.el_property_min.enabled = false;

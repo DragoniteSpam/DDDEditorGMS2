@@ -145,22 +145,12 @@ var el_property_char_limit = create_input(col3_x, yy, "Char. Limit:", ew, eh, ui
 el_property_char_limit.enabled = false;
 dg.el_property_char_limit = el_property_char_limit;
 
-// code only
-var el_property_code_precomile = create_checkbox(col3_x, yy, "Precompile", ew, eh, null, "", true, dg);
-el_property_code_precomile.enabled = false;
-dg.el_property_code_precomile = el_property_code_precomile;
-
 yy = yy + eh + spacing;
 
 // int and float only
 var el_property_max = create_input(col3_x, yy, "Max. Value:", ew, eh, uivc_input_data_value_max, "", "0", "+"+string(-1 << 31 - 1), validate_double, ui_value_real, -1 << 31, 1 << 31 - 1, 10, vx1, vy1, vx2, vy2, dg);
 el_property_max.enabled = false;
 dg.el_property_max = el_property_max;
-
-// code only
-var el_property_code_all_ref = create_checkbox(col3_x, yy, "All Ref Scripts?", ew, eh, null, "", true, dg);
-el_property_code_all_ref.enabled = false;
-dg.el_property_code_all_ref = el_property_code_all_ref;
 
 yy = yy + eh + spacing;
 
@@ -178,8 +168,8 @@ el_confirm = create_button(dw / 2, dh - 32 - b_height / 2, "Done", b_width, b_he
 ds_list_add(dg.contents, el_list, el_add, el_add_enum, el_remove,
     el_data_name, el_list_p, el_add_p, el_remove_p,
     el_property_name, el_property_type, el_property_ext_type,
-    el_property_size, el_property_type_guid, el_property_min, el_property_char_limit, el_property_code_precomile,
-    el_property_max, el_property_scale, el_property_code_all_ref,
+    el_property_size, el_property_type_guid, el_property_min, el_property_char_limit,
+    el_property_max, el_property_scale,
     el_property_default_code, el_property_default_string, el_property_default_real,
     el_property_default_bool, el_property_default_int, el_property_default_na,
     el_confirm);
