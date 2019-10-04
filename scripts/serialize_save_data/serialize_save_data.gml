@@ -44,11 +44,24 @@ if (string_length(fn) > 0) {
     var compressed = buffer_compress(buffer, 0, buffer_tell(buffer));
     buffer_save(compressed, fn);
     
-    buffer_save(compressed, "auto" + EXPORT_EXTENSION_DATA);
+	var auto_folder = PATH_PROJECTS + filename_change_ext(filename_name(fn), "") + "\\";
+	if (!directory_exists(auto_folder)) {
+		directory_create(auto_folder);
+	}
+    buffer_save(compressed, auto_folder + "auto" + EXPORT_EXTENSION_DATA);
     buffer_delete(compressed);
     buffer_delete(buffer);
 	
 	serialize_save_assets(filename_change_ext(fn, EXPORT_EXTENSION_ASSETS));
+	
+	if (ds_list_find_index(Stuff.all_projects[? "projects"], filename_name(fn)) == -1) {
+		ds_list_add(Stuff.all_projects[? "projects"], filename_change_ext(filename_name(fn), ""));
+	}
+	
+	var buffer = buffer_create(32, buffer_grow, 1);
+	buffer_write(buffer, buffer_text, json_encode(Stuff.all_projects));
+	buffer_save_ext(buffer, "projects.json", 0, buffer_tell(buffer));
+	buffer_delete(buffer);
 }
 
 enum DataVersions {

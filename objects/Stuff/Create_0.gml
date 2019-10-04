@@ -506,6 +506,15 @@ direction_lookup = [270, 180, 0, 90];
 
 save_name = "";
 
+if (file_exists("projects.json")) {
+	var buffer = buffer_load("projects.json");
+	all_projects = json_decode(buffer_read(buffer, buffer_text));
+	buffer_delete(buffer);
+} else {
+	all_projects = ds_map_create();
+	ds_map_add_list(all_projects, "projects", ds_list_create());
+}
+
 // user settings
 ini_open(DATA_INI);
 setting_color = ini_read_real("config", "color", c_green);                  // BGR
