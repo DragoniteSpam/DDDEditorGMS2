@@ -23,8 +23,8 @@ var layer_data_y = json[? "y"];
 
 if (layer_visible) {
 	for (var i = 0; i < ds_list_size(layer_data); i++) {
-		var tile_x = i div layer_width;
-		var tile_y = i mod layer_height;
+		var tile_x = i mod layer_width;
+		var tile_y = i div layer_height;
 		var tile_value = layer_data[| i];
 		
 		if (tile_value) {

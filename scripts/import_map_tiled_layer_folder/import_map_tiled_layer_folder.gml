@@ -25,9 +25,9 @@ if (group_visible) {
 		var layer_type = layer_data[? "type"];
 			
 		switch (layer_type) {
-			case "group": import_map_tiled_layer_folder(layer_data, columns, alpha * group_alpha, xx, yy); break;
-			case "objectgroup": import_map_tiled_layer_object(layer_data, columns, alpha * group_alpha, xx, yy); break;
-			case "tilelayer": import_map_tiled_layer_tile(layer_data, columns, alpha * group_alpha, xx, yy); break;
+			case "group": z = import_map_tiled_layer_folder(layer_data, columns, z, alpha * group_alpha, xx, yy); break;
+			case "objectgroup": z = import_map_tiled_layer_object(layer_data, columns, z, alpha * group_alpha, xx, yy); break;
+			case "tilelayer": z = import_map_tiled_layer_tile(layer_data, columns, z, alpha * group_alpha, xx, yy); break;
 		}
 	}
 }
