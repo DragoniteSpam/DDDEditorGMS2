@@ -31,6 +31,11 @@ if (layer_visible) {
 			tile_value--;
 			var tile_tex_x = tile_value mod columns;
 			var tile_tex_y = tile_value div columns;
+			
+			if (is_clamped(tile_x, 0, Stuff.active_map.xx - 1) && is_clamped(tile_y, 0, Stuff.active_map.yy - 1) && is_clamped(z, 0, Stuff.active_map.zz - 1)) {
+				var tile = instance_create_tile(tile_tex_x, tile_tex_y);
+				map_add_thing(tile, tile_x, tile_y, z);
+			}
 		}
 	}
 }

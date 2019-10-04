@@ -3,10 +3,13 @@
 /// @param z
 /// @param params
 
+var xx = argument0;
+var yy = argument1;
+var zz = argument2;
 var params = argument3;
-var cell = map_get_grid_cell(argument0, argument1, argument2);
+var cell = map_get_grid_cell(xx, yy, zz);
 
 if (!cell[@ MapCellContents.TILE]) {
     var addition = instance_create_tile(Camera.selection_fill_tile_x, Camera.selection_fill_tile_y);
-    map_add_thing(addition, argument0, argument1, argument2);
+    map_add_thing(addition, xx, yy, zz);
 }

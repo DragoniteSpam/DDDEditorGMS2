@@ -1,5 +1,5 @@
-/// @param tile x
-/// @param tile y
+/// @param tile-x
+/// @param tile-y
 /// @param [other]
 
 with (instance_create_depth(0, 0, 0, EntityTile)) {

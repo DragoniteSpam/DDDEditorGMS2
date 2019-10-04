@@ -41,6 +41,8 @@ Stuff.active_map = map;
 map.contents = instance_create_depth(0, 0, 0, MapContents);
 instance_deactivate_object(map.contents);
 
+data_resize_map(map, map.xx, map.yy, map.zz);
+
 if (buffer_md5(buffer, 0, buffer_get_size(buffer)) != EMPTY_BUFFER_MD5) {
 	buffer_seek(buffer, buffer_seek_start, 0);
 
