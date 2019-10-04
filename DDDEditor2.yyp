@@ -10055,14 +10055,6 @@
             }
         },
         {
-            "Key": "dd433588-de2c-4d3d-b5dc-bb19c962e1bf",
-            "Value": {
-                "id": "d9fa399b-a763-4bd6-a4a3-4d1585650f4e",
-                "resourcePath": "scripts\\momu_save_assets\\momu_save_assets.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "dd530bc5-b3be-4ad9-98cb-00e3c00bce71",
             "Value": {
                 "id": "d89e7c9b-e382-47ad-af94-b5ae7f44f5c5",
@@ -12030,7 +12022,6 @@
         "3735bf84-9ed3-419a-b53b-ee22b65585dd",
         "a8a40114-8596-4303-ae35-010640460505",
         "0ffbe5fd-ba68-4d52-84b4-f0a4a5b74a6e",
-        "dd433588-de2c-4d3d-b5dc-bb19c962e1bf",
         "94140bab-087a-44e1-bec5-d86bf60ea9c3",
         "1c985d94-2df4-4d39-b91c-ad4d818b58ea",
         "b075af14-3781-42cf-8d1b-0b108dce787c",

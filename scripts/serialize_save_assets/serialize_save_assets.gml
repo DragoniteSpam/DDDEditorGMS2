@@ -1,7 +1,10 @@
-var fn = get_save_filename("DDD game asset files|*" + EXPORT_EXTENSION_ASSETS, "assets");
+/// @param filename
+
+var fn = argument0;
+
 if (string_length(fn) > 0) {
-    Stuff.save_name_data = string_replace(filename_name(fn), EXPORT_EXTENSION_ASSETS, "");
-    serialize_backup(PATH_BACKUP_DATA, Stuff.save_name_data, EXPORT_EXTENSION_ASSETS, fn);
+    Stuff.save_name = string_replace(filename_name(fn), EXPORT_EXTENSION_ASSETS, "");
+    serialize_backup(PATH_BACKUP_DATA, Stuff.save_name, EXPORT_EXTENSION_ASSETS, fn);
     game_auto_title();
     
     var buffer = buffer_create(65536, buffer_grow, 1);

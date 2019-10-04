@@ -504,8 +504,7 @@ direction_lookup = [270, 180, 0, 90];
 
 // save settings
 
-save_name_data = "";
-save_name_assets = "";
+save_name = "";
 
 // user settings
 ini_open(DATA_INI);
@@ -530,15 +529,13 @@ maps_included = false;
 // autosaves if problems happen.
 
 if (setting_autosave && file_exists("auto" + EXPORT_EXTENSION_DATA)) {
-	serialize_load("auto" + EXPORT_EXTENSION_ASSETS);
     serialize_load("auto" + EXPORT_EXTENSION_DATA);
 	
     if (!maps_included && file_exists("auto" + EXPORT_EXTENSION_MAP)) {
         serialize_load("auto" + EXPORT_EXTENSION_MAP);
     }
 	
-    save_name_assets = "";
-    save_name_data = "";
+    save_name = "";
 }
 
 // this depends on activemap existing

@@ -11,6 +11,13 @@ if (!file_exists(autoname)) {
 	file_copy(filename, autoname);
 }
 
+if (filename_ext(filename) == EXPORT_EXTENSION_DATA) {
+	var assetname = filename_change_ext(filename, EXPORT_EXTENSION_ASSETS);
+	if (file_exists(assetname)) {
+		serialize_load(assetname);
+	}
+}
+
 var buffer = buffer_decompress(original);
 
 // if the decompressed buffer is bad, cancel - try catch will make this so much nicer
@@ -27,7 +34,7 @@ if (buffer < 0) {
     var header = chr(buffer_read(buffer, buffer_u8)) + chr(buffer_read(buffer, buffer_u8)) + chr(buffer_read(buffer, buffer_u8));
     
     if (header == "DDD") {
-		Stuff.save_name_data = string_replace(filename_name(filename), EXPORT_EXTENSION_DATA, "");
+		Stuff.save_name = string_replace(filename_name(filename), EXPORT_EXTENSION_DATA, "");
 		
         var version = buffer_read(buffer, buffer_u32);
         var last_safe_version = DataVersions.STARTING_POSITION;

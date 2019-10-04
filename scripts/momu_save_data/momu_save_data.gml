@@ -1,7 +1,7 @@
 /// @param MenuElement
 
-var catch = argument0;
+var element = argument0;
 
 menu_activate(noone);
 
-Camera.schedule_save_data = true;
+Camera.schedule_save = true;

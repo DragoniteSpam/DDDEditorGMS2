@@ -27,13 +27,12 @@ var m_separator = create_menu_element("----------", null, id);
 
 var mf_new = create_menu_element("New (Ctrl+N)", momu_new, menu_file);
 var mf_save_data = create_menu_element("Save Data (Ctrl+S)", momu_save_data, menu_file);
-var mf_save_assets = create_menu_element("Save Assets (Ctrl+Shift+S)", momu_save_assets, menu_file);
 var mf_open = create_menu_element("Open (Ctrl+O)", momu_open, menu_file);
 var mf_backup = create_menu_element("View Backups", momu_backup, menu_file);
 var mf_settings_data = create_menu_element("Global Data Settings", momu_settings_data, menu_file);
 var mf_preferences = create_menu_element("Preferences", momu_preferences, menu_file);
 var mf_exit = create_menu_element("Exit (Alt+F4)", momu_exit, menu_file);
-ds_list_add(menu_file.contents, mf_new, mf_save_data, mf_save_assets, mf_open, mf_backup,
+ds_list_add(menu_file.contents, mf_new, mf_save_data, mf_open, mf_backup,
     m_separator,
     mf_settings_data, mf_preferences,
     mf_exit);

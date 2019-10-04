@@ -9,13 +9,7 @@ if (keyboard_check(vk_control)) {
         momu_new(noone);
     }
     if (keyboard_check_pressed(ord("S"))) {
-        if (keyboard_check(vk_shift)) {
-            momu_save_assets(noone);
-        } else if (keyboard_check(vk_alt)) {
-            // reserved
-        } else {
-            momu_save_data(noone);
-        }
+        momu_save_data(noone);
     }
     if (keyboard_check_pressed(ord("O"))) {
         momu_open(noone);

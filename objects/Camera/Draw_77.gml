@@ -140,14 +140,9 @@ if (schedule_view_master_texture) {
     schedule_view_master_texture = false;
 }
 
-if (schedule_save_data) {
+if (schedule_save) {
     serialize_save_data();
-    schedule_save_data = false;
-}
-
-if (schedule_save_assets) {
-    serialize_save_assets();
-    schedule_save_assets = false;
+    schedule_save = false;
 }
 
 if (schedule_open) {
