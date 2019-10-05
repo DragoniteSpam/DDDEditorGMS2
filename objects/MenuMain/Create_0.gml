@@ -26,13 +26,12 @@ ds_list_add(contents, menu_file, menu_edit, menu_data, menu_help);
 var m_separator = create_menu_element("----------", null, id);
 
 var mf_new = create_menu_element("New (Ctrl+N)", momu_new, menu_file);
-var mf_save_data = create_menu_element("Save Data (Ctrl+S)", momu_save_data, menu_file);
+var mf_save_data = create_menu_element("Save (Ctrl+S)", momu_save_data, menu_file);
 var mf_open = create_menu_element("Open (Ctrl+O)", momu_open, menu_file);
-var mf_backup = create_menu_element("View Backups", momu_backup, menu_file);
 var mf_settings_data = create_menu_element("Global Data Settings", momu_settings_data, menu_file);
 var mf_preferences = create_menu_element("Preferences", momu_preferences, menu_file);
 var mf_exit = create_menu_element("Exit (Alt+F4)", momu_exit, menu_file);
-ds_list_add(menu_file.contents, mf_new, mf_save_data, mf_open, mf_backup,
+ds_list_add(menu_file.contents, mf_new, mf_save_data, mf_open,
     m_separator,
     mf_settings_data, mf_preferences,
     mf_exit);
@@ -67,10 +66,10 @@ var md_audio = create_menu_element("Audio", momu_expand, menu_data);
 var md_data_types = create_menu_element("Define Data Types", momu_data_types, menu_data);
 var md_conflicts = create_menu_element("View Mesh Conflicts", momu_conflicts, menu_data);
 var md_missing = create_menu_element("View Missing Data", momu_missing, menu_data);
-var md_3d = create_menu_element("3D Editor (F6)", momu_editor_3d, menu_data);
+var md_3d = create_menu_element("Map Editor (F6)", momu_editor_3d, menu_data);
 var md_events = create_menu_element("Event Editor (F7)", momu_editor_event, menu_data);
-var md_data = create_menu_element("Game Data (F8)", momu_editor_data, menu_data);
-var md_animation = create_menu_element("Animations (F9)", momu_editor_animation, menu_data);
+var md_data = create_menu_element("Game Data Editor (F8)", momu_editor_data, menu_data);
+var md_animation = create_menu_element("Animation Editor (F9)", momu_editor_animation, menu_data);
 ds_list_add(menu_data.contents, md_mesh_autotiles, md_ts, md_audio, md_data_types,
     m_separator,
     md_conflicts, md_missing,
