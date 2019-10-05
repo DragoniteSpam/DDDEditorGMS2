@@ -18,9 +18,9 @@ var b_height = 32;
 
 var yy = 64;
 
-el_notes = create_text(16, yy, "I'll put something in here later probably", ew, eh, fa_left, dw - 32, dg);
+var el_notes = create_text(16, yy, "I'll put something in here later probably", ew, eh, fa_left, dw - 32, dg);
 
-el_confirm = create_button(dw * 3 / 4 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
+var el_confirm = create_button(dw * 3 / 4 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
 
 ds_list_add(dg.contents, el_notes, el_confirm);
 
