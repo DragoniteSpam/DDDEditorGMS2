@@ -2,7 +2,7 @@
 
 var buffer = argument0;
 
-buffer_write(buffer, buffer_datatype, SerializeThings.MISC_MAP_META);
+buffer_write(buffer, buffer_datatype, SerializeThings.GLOBAL_METADATA);
 
 buffer_write(buffer, buffer_datatype, Stuff.game_starting_map);
 buffer_write(buffer, buffer_u16, Stuff.game_starting_x);

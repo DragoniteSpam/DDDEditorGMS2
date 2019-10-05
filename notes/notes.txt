@@ -38,3 +38,6 @@ Old data versions:
     MAP_ENCOUNTER_STUFF         = 35,
 	NEW_MESH_SYSTEM				= 36,
     INDIVIDUAL_TERRAIN_TAGS     = 37,
+
+Serialization:
+	https://docs.google.com/spreadsheets/d/1DTndzzZdpPexH84J0dcIUruJ7ZU1wQcL0JFjPu09yK4/edit#gid=0

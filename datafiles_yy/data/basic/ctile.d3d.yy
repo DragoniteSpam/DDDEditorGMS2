@@ -8,7 +8,7 @@
     "exportAction": 0,
     "exportDir": "",
     "fileName": "ctile.d3d",
-    "filePath": "datafiles\\data",
+    "filePath": "datafiles\\data\\basic",
     "freeData": false,
     "origName": "",
     "overwrite": false,

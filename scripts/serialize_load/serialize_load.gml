@@ -102,7 +102,7 @@ if (buffer < 0) {
                 case SerializeThings.MESHES: serialize_load_meshes(buffer, version); break;
                 // game stuff
                 case SerializeThings.EVENTS: serialize_load_events(buffer, version); break;
-                case SerializeThings.MISC_MAP_META: serialize_load_global_meta(buffer, version); break;
+                case SerializeThings.GLOBAL_METADATA: serialize_load_global_meta(buffer, version); break;
                 case SerializeThings.DATADATA: serialize_load_datadata(buffer, version); break;
                 case SerializeThings.DATA_INSTANCES: serialize_load_data_instances(buffer, version); break;
                 case SerializeThings.EVENT_CUSTOM: serialize_load_event_custom(buffer, version); break;

@@ -27,21 +27,24 @@ enum SerializeThings {
     MAP_BATCH               = 0x00000015,
     MAP_DYNAMIC             = 0x00000016,
     EVENTS                  = 0x00000017,
-    MAP_OTHER               = 0x00000018,
+    // 18
     AUTOTILES               = 0x00000019,
     MAP_META                = 0x0000001A,
     DATADATA                = 0x0000001B,
     EVENT_CUSTOM            = 0x0000001C,
     EVENT_PREFAB            = 0x0000001D,
     MAP_STATIC_TERRAIN      = 0x0000001E,
+	
     // game data
     DATA_ERROR              = 0x00000100,
     DATA_INSTANCES          = 0x00000101,
+	
     // misc
     MISC_ERROR              = 0x00001000,
-    MISC_MAP_META           = 0x00001001,
+    GLOBAL_METADATA         = 0x00001001,
     MISC_GLOBAL             = 0x00001002,
     MISC_UI                 = 0x00001003,
+	
     // the last one i think
     END_OF_FILE             = 0x00002000,
 }
@@ -428,11 +431,11 @@ instance_create_depth(0, 0, 0, Camera);
 c_transform_scaling(tile_width, tile_height, tile_depth);
 c_shape_tile = c_shape_create();
 c_shape_begin_trimesh();
-c_shape_load_trimesh("data/basic/ctile.d3d");
+c_shape_load_trimesh("data\\basic\\ctile.d3d");
 c_shape_end_trimesh(c_shape_tile);
 c_shape_block = c_shape_create();
 c_shape_begin_trimesh();
-c_shape_load_trimesh("data/basic/ccube.d3d");
+c_shape_load_trimesh("data\\basic\\ccube.d3d");
 c_shape_end_trimesh(c_shape_block);
 c_transform_identity();
 

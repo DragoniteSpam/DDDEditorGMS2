@@ -1863,14 +1863,6 @@
             }
         },
         {
-            "Key": "29eef703-72fc-4b9a-b1da-83b3a5e00310",
-            "Value": {
-                "id": "493fcfe3-c146-4ee0-9ca5-6d7590d943cf",
-                "resourcePath": "datafiles_yy\\data\\editornotes.txt.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "2a2dc1ca-1f01-46b7-a91b-4495ca602c34",
             "Value": {
                 "id": "ff4db0a7-1353-4373-a69b-dd800711dbae",
@@ -2716,14 +2708,6 @@
                 "id": "d4e7949d-25bf-4188-8f4c-1ca3d338df49",
                 "resourcePath": "scripts\\omu_animation_add\\omu_animation_add.yy",
                 "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "3c9ef8bd-904c-4371-b399-0c4b96df04e8",
-            "Value": {
-                "id": "f62e9648-2e86-4571-b25f-ecb70f1bfe18",
-                "resourcePath": "views\\3c9ef8bd-904c-4371-b399-0c4b96df04e8.yy",
-                "resourceType": "GMFolder"
             }
         },
         {
@@ -5986,7 +5970,7 @@
             "Key": "81d689e1-223f-4bb6-b7ed-7089fb93af86",
             "Value": {
                 "id": "6142d977-1102-491b-a2ca-4e1842a33d38",
-                "resourcePath": "datafiles_yy\\data\\ctile.d3d.yy",
+                "resourcePath": "datafiles_yy\\data\\basic\\ctile.d3d.yy",
                 "resourceType": "GMIncludedFile"
             }
         },
@@ -9367,14 +9351,6 @@
             }
         },
         {
-            "Key": "cde2b0fa-bce8-48fa-87fc-06ef4ab10f66",
-            "Value": {
-                "id": "09ac42c5-7938-4cb1-9626-c854058ee98c",
-                "resourcePath": "datafiles_yy\\data\\vra\\assets.vrax.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "cdf56ccf-7846-4c0b-a147-ec6281583885",
             "Value": {
                 "id": "06c28575-71c7-4f46-8e0a-8ce11f4e0b1f",
@@ -11095,14 +11071,6 @@
             }
         },
         {
-            "Key": "f164ce78-6383-46ef-8eb9-4ff3d61fc226",
-            "Value": {
-                "id": "303ed1ca-f670-4dae-a3b4-887474c022db",
-                "resourcePath": "scripts\\dc_vrax\\dc_vrax.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "f1b48acb-f86f-4f6d-801a-02488a8cc4a7",
             "Value": {
                 "id": "b4be8aa9-c25f-484b-be81-99813f8715c7",
@@ -11974,7 +11942,6 @@
         "624b8175-418a-45dc-8a79-de4fff6925b0",
         "87f10f17-db87-413e-bd45-3fe51100e49c",
         "50c361df-9cf2-4149-a3fe-c730fa87f563",
-        "f164ce78-6383-46ef-8eb9-4ff3d61fc226",
         "b412a263-2002-467f-bed8-aa852b14e3bc",
         "f47b40fe-8520-4436-8953-057fce08b702",
         "cab3fb86-9a7d-4630-9c42-9b83e309043c",
