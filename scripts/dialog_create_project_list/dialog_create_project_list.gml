@@ -31,7 +31,7 @@ dg.el_list = el_list;
 
 yy = yy + ui_get_list_height(el_list) + spacing;
 
-var el_load = create_button(16, yy, "Load", ew, eh, fa_center, null, dg);
+var el_load = create_button(16, yy, "Load", ew, eh, fa_center, omu_project_load, dg);
 yy = yy + el_load.height + spacing;
 var el_remove = create_button(16, yy, "Remove", ew, eh, fa_center, omu_project_remove, dg);
 yy = yy + el_remove.height + spacing;
