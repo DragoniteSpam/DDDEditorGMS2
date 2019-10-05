@@ -54,8 +54,9 @@ if (string_length(fn) > 0) {
 	
 	serialize_save_assets(filename_change_ext(fn, EXPORT_EXTENSION_ASSETS));
 	
-	if (ds_list_find_index(Stuff.all_projects[? "projects"], filename_name(fn)) == -1) {
-		ds_list_add(Stuff.all_projects[? "projects"], filename_change_ext(filename_name(fn), ""));
+	var project_name = filename_change_ext(filename_name(fn), "")
+	if (ds_list_find_index(Stuff.all_projects[? "projects"], project_name) == -1) {
+		ds_list_add(Stuff.all_projects[? "projects"], project_name);
 	}
 	
 	var buffer = buffer_create(32, buffer_grow, 1);

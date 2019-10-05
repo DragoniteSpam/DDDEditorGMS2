@@ -507,9 +507,7 @@ direction_lookup = [270, 180, 0, 90];
 save_name = "";
 
 if (file_exists("projects.json")) {
-	var buffer = buffer_load("projects.json");
-	all_projects = json_decode(buffer_read(buffer, buffer_text));
-	buffer_delete(buffer);
+	all_projects = json_decode(file_get_contents("projects.json"));
 } else {
 	all_projects = ds_map_create();
 	ds_map_add_list(all_projects, "projects", ds_list_create());
@@ -537,7 +535,14 @@ maps_included = false;
 // in either of them. so either do a LOT of validation or have a way to clear the
 // autosaves if problems happen.
 
-if (setting_autosave && file_exists("auto" + EXPORT_EXTENSION_DATA)) {
+if (setting_autosave) {
+	var project_list = all_projects[? "projects"];
+	if (project_list != undefined) {
+		dialog_create_project_list(noone);
+	}
+}
+
+/*&& file_exists("auto" + EXPORT_EXTENSION_DATA)) {
     serialize_load("auto" + EXPORT_EXTENSION_DATA);
 	
     if (!maps_included && file_exists("auto" + EXPORT_EXTENSION_MAP)) {
@@ -545,7 +550,7 @@ if (setting_autosave && file_exists("auto" + EXPORT_EXTENSION_DATA)) {
     }
 	
     save_name = "";
-}
+}*/
 
 // this depends on activemap existing
 graphics_create_grids();
