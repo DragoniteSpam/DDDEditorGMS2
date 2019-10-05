@@ -1,14 +1,16 @@
-/// @description void selection_foreach_cell_single(selection, processed, script, params array);
 /// @param selection
 /// @param processed
 /// @param script
-/// @param params array
+/// @param params[]
 
-var catch=argument1;
+var selection = argument0;
+var processed = argument1;
+var script = argument2;
+var params = argument3;
 
-var str=string(argument0.x)+","+string(argument0.y)+","+string(argument0.z);
+var str = string(selection.x) + "," + string(selection.y) + "," + string(selection.z);
 
-if (!ds_map_exists(argument1, str)) {
-    ds_map_add(argument1, str, true);
-    script_execute(argument2, argument0.x, argument0.y, argument0.z, argument3);
+if (!ds_map_exists(processed, str)) {
+    ds_map_add(processed, str, true);
+    script_execute(script, selection.x, selection.y, selection.z, params);
 }

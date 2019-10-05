@@ -1,8 +1,11 @@
-/// @description void sme_drag_circle(Selection, x, y);
 /// @param Selection
 /// @param x
 /// @param y
 
-argument0.radius=floor(point_distance(argument0.x, argument0.y, argument1, argument2));
+var selection = argument0;
+var xx = argument1;
+var yy = argument2;
+
+selection.radius = floor(point_distance(selection.x, selection.y, xx, yy));
 
 sa_process_selection();

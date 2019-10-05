@@ -5,7 +5,11 @@
 // to expand the selection on the x axis too, but deal with
 // that later.
 
-argument0.x2 = argument1;
-argument0.y2 = argument2;
+var selection = argument0;
+var xx = argument1;
+var yy = argument2;
+
+selection.x2 = xx;
+selection.y2 = yy;
 
 sa_process_selection();

@@ -24,8 +24,11 @@ if (zz < z) {
 	floor_x = x + xx * f;
 	floor_y = y + yy * f;
     
-	floor_cx = clamp(floor_x div TILE_WIDTH, 0, Stuff.active_map.xx - 1);
-	floor_cy = clamp(floor_y div TILE_HEIGHT, 0, Stuff.active_map.yy - 1);
+	// the bounds on this are weird - in some places the cell needs to be rounded up and in others it
+	// needs to be rounded down, so the minimum allowed "cell" is (-1, -1) - be sure to max() this later
+	// if it would cause issues
+	floor_cx = clamp(floor_x div TILE_WIDTH, -1, Stuff.active_map.xx - 1);
+	floor_cy = clamp(floor_y div TILE_HEIGHT, -1, Stuff.active_map.yy - 1);
     
 	if (Controller.press_left) {
 		if (ds_list_size(selection) < MAX_SELECTION_COUNT) {
@@ -43,7 +46,7 @@ if (zz < z) {
         
 		    last_selection = instance_create_depth(0, 0, 0, stype);
 		    ds_list_add(selection, last_selection);
-		    script_execute(last_selection.onmousedown, last_selection, floor_cx, floor_cy, tz);
+		    script_execute(last_selection.onmousedown, last_selection, max(0, floor_cx), max(0, floor_cy), tz);
 		}
 	}
 	if (Controller.mouse_left) {
