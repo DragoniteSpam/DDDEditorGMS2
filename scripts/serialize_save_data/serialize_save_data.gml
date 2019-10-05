@@ -1,4 +1,4 @@
-var fn = get_save_filename("DDD game data files|*" + EXPORT_EXTENSION_DATA, "game");
+var fn = get_save_filename("DDD game data files|*" + EXPORT_EXTENSION_DATA, Stuff.save_name);
 
 if (string_length(fn) > 0) {
     Stuff.save_name = string_replace(filename_name(fn), EXPORT_EXTENSION_DATA, "");

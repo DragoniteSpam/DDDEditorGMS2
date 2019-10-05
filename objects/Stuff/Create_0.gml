@@ -506,7 +506,7 @@ direction_lookup = [270, 180, 0, 90];
 
 // save settings
 
-save_name = "";
+save_name = "game";
 
 if (file_exists("projects.json")) {
 	all_projects = json_decode(file_get_contents("projects.json"));
@@ -543,16 +543,6 @@ if (setting_autosave) {
 		dialog_create_project_list(noone);
 	}
 }
-
-/*&& file_exists("auto" + EXPORT_EXTENSION_DATA)) {
-    serialize_load("auto" + EXPORT_EXTENSION_DATA);
-	
-    if (!maps_included && file_exists("auto" + EXPORT_EXTENSION_MAP)) {
-        serialize_load("auto" + EXPORT_EXTENSION_MAP);
-    }
-	
-    save_name = "";
-}*/
 
 // this depends on activemap existing
 graphics_create_grids();
