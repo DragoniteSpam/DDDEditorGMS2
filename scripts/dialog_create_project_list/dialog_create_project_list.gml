@@ -5,7 +5,7 @@ var dialog = argument0;
 var dw = 640;
 var dh = 480;
 
-var dg = dialog_create(dw, dh, "Projects", dialog_default, dc_default, dialog);
+var dg = dialog_create(dw, dh, "Open Project", dialog_default, dc_default, dialog);
 
 var columns = 2;
 var ew = (dw - 64) / columns;
@@ -25,8 +25,9 @@ var yy = 64;
 var yy_base = yy;
 var spacing = 16;
 
-var el_list = create_list(16, yy, "Projects", "<no projects>", ew, eh, 10, null, false, dg, Stuff.all_projects[? "projects"]);
+var el_list = create_list(16, yy, "Recent Projects", "<no projects>", ew, eh, 10, null, false, dg, Stuff.all_projects[? "projects"]);
 el_list.entries_are = ListEntries.STRINGS;
+el_list.ondoubleclick = omu_project_load;
 dg.el_list = el_list;
 
 yy = yy + ui_get_list_height(el_list) + spacing;
