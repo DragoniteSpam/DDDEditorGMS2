@@ -6,6 +6,10 @@
 var data = guid_get(Camera.ui_game_data.active_type_guid);
 var selection = ui_list_selection(Camera.ui_game_data.el_instances);
 
+if (!data) {
+	return false;
+}
+
 if (selection < 0) {
     var instance = noone;
 } else {

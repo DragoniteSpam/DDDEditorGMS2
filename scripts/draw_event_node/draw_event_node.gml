@@ -15,6 +15,7 @@ var entry_height = 4 * 16 + 32;
 var entry_offset = 16;
 var eh = 0;
 var tolerance = 4;
+var entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
 
 var custom = noone;
 
@@ -47,8 +48,6 @@ switch (node.type) {
             draw_roundrect_colour(x1, y1, x2, y2, c_ev_comment, c_ev_comment, false);
             draw_roundrect(x1, y1, x2, y2, true);
             draw_event_node_title(node, c);
-            
-            var entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
             
             draw_line(x1 + 16, entry_yy, x2 - 16, entry_yy);
             if (mouse_within_rectangle_adjusted(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + entry_height - tolerance)) {
@@ -85,8 +84,6 @@ switch (node.type) {
             draw_event_node_title(node, c);
             draw_event_node_custom_info(x2 - 24, y1, node);
 			draw_event_node_prefabinate(x2 - 48, y1, node);
-            
-            var entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
             
             for (var i = 0; i < ds_list_size(node.data); i++) {
                 draw_line(x1 + 16, entry_yy, x2 - 16, entry_yy);
@@ -141,8 +138,6 @@ switch (node.type) {
             draw_event_node_custom_info(x2 - 24, y1, node);
 			draw_event_node_prefabinate(x2 - 48, y1, node);
             draw_event_node_delete(x2, y1, node);
-            
-            var entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
             
             for (var i = 0; i < size + 1; i++) {
                 draw_line(x1 + 16, entry_yy, x2 - 16, entry_yy);
@@ -284,8 +279,6 @@ switch (node.type) {
             draw_event_node_custom_info(x2 - 24, y1, node);
 			draw_event_node_prefabinate(x2 - 48, y1, node);
             draw_event_node_delete(x2, y1, node);
-            
-            var entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
             
             for (var i = 0; i < size + 1; i++) {
                 draw_line(x1 + 16, entry_yy, x2 - 16, entry_yy);
@@ -612,7 +605,7 @@ switch (node.type) {
     case EventNodeTypes.ENTRYPOINT:
 	#region Entrypoint
         // vertical middle of the box; entrypoints will only ever have one outbound node so we can cheat
-        var by = mean(y1, y2);
+        var by = entry_yy + eh / 2;
         var outbound = node.outbound[| 0];
         
         if (!outbound) {
@@ -642,7 +635,6 @@ switch (node.type) {
         // it'd be real nice if this could just be in the default case, but the outbound nodes
         // are spaced slightly differently for this so it wouldn't really work
         bezier_override = true;
-        var entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
         var by = entry_yy + entry_height - 16;
         var n = ds_list_size(node.outbound);
         var bezier_y = 0;
@@ -695,7 +687,6 @@ switch (node.type) {
     case EventNodeTypes.SHOW_CHOICES:
 	#region Choices
         bezier_override = true;
-        var entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
         var by = entry_yy + eh / 2;
         var n = ds_list_size(node.outbound);
         var bezier_y = 0;

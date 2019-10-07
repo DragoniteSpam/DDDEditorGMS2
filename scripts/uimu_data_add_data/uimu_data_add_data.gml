@@ -1,6 +1,8 @@
 /// @param UIThing
 
-var data = guid_get(argument0.root.active_type_guid);
+var thing = argument0;
+
+var data = guid_get(thing.root.active_type_guid);
 
 if (data) {
     var instance = instance_create_depth(0, 0, 0, DataInstantiated);

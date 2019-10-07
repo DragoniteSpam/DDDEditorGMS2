@@ -145,6 +145,8 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = legal_y + spacing;
     
+	// if you really want the color-coded entities, maybe make the entry color feature a script instead 
+	// of just a list of colors - later, though
     element_all_entities = create_list(legal_x + spacing, yy, "All Entities", "<No entities>", col_width, element_height, 28, null, true, t_stats, noone);
     element_all_entities.render = ui_render_list_all_entities;
 	element_all_entities.entries_are = ListEntries.INSTANCES;

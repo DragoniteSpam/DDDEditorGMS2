@@ -7,9 +7,9 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     var ew = cw - spacing * 2;
     var eh = 24;
     
-    var vx1 = room_width / (columns * 2) - 16;
+    var vx1 = cw / 2;
     var vy1 = 0;
-    var vx2 = vx1 + room_width / (columns * 2) - 16;
+    var vx2 = cw;
     var vy2 = vy1 + eh;
     
     var b_width = 128;
@@ -28,6 +28,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     
     el_master = create_list(this_column * cw + spacing, yy_header, "All Game Data Types: ", "<Click to define some.>", ew, eh, 32, uivc_list_data_editor, false, id, noone);
     el_master.render = ui_render_list_data_data;
+	el_master.allow_deselect = false;
     el_master.entries_are = ListEntries.INSTANCES;
     ds_list_add(contents, el_master);
     
