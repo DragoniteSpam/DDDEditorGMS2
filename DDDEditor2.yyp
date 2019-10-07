@@ -1143,6 +1143,14 @@
             }
         },
         {
+            "Key": "18786131-510b-4707-8e4d-588e193c7d76",
+            "Value": {
+                "id": "c26b3263-0411-4edc-9c1d-802a3c32a215",
+                "resourcePath": "scripts\\batch_tile_raw\\batch_tile_raw.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "1898ae10-5aa3-44a3-beaf-ba54bc90fb1d",
             "Value": {
                 "id": "0f0ec827-56c7-4a0b-b5af-1a2b761d560d",
@@ -6831,6 +6839,14 @@
             }
         },
         {
+            "Key": "95df9841-2a5d-4510-a304-f9874c62ff02",
+            "Value": {
+                "id": "5a42868a-34a0-4d8e-a05d-7c9a87240016",
+                "resourcePath": "scripts\\vertex_point_line_raw\\vertex_point_line_raw.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "95e4f225-2de3-462b-8e75-cfab87a5a353",
             "Value": {
                 "id": "ac0cbc67-4513-4cbf-908e-09d7630189f1",
@@ -11127,6 +11143,14 @@
             }
         },
         {
+            "Key": "f32c4ca1-0737-433a-b8f5-f9fcc729837d",
+            "Value": {
+                "id": "f3ea3da1-98cf-4ad2-b333-e0ca29f18399",
+                "resourcePath": "scripts\\vertex_point_complete_raw\\vertex_point_complete_raw.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "f387d8c0-9179-4525-bb0c-c38f3948dc9c",
             "Value": {
                 "id": "48fc2bf9-284e-41b9-a25d-a20715564747",
@@ -11839,9 +11863,12 @@
         "c47eb346-aee3-4689-9279-3a45fe8f9112",
         "7d50df32-f6b5-46c0-8e4c-814b3b87f1c4",
         "7ee198d3-685f-4bdb-8a0e-f386c474ae3d",
+        "f32c4ca1-0737-433a-b8f5-f9fcc729837d",
         "2ae255d2-161f-4f86-aa5d-cda175c529d7",
+        "95df9841-2a5d-4510-a304-f9874c62ff02",
         "487b8e5f-545c-4adb-b2c0-ab94876342bd",
         "3158dfea-5381-41d9-a140-b5636ff6d446",
+        "18786131-510b-4707-8e4d-588e193c7d76",
         "152b84a9-070e-4224-9042-a3292fd1486b",
         "cebd8530-1c25-4844-bb64-ebbbef72f168",
         "3f15425f-e08b-466e-ae9b-3b5e601a567e",

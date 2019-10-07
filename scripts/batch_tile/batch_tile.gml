@@ -11,17 +11,12 @@ var TEXEL = 1 / TEXTURE_SIZE;
 
 var xx = tile.xx * TILE_WIDTH;
 var yy = tile.yy * TILE_HEIGHT;
-var zz = tile.zz * TILE_WIDTH;
+var zz = tile.zz * TILE_DEPTH;
 
-// todo correct normal calculation, and MAYBE normal smoothing, although
-// i'm pretty sure that's going to be really expensive unless you bake it
-// into the likely future map editing tool
 var nx = 0;
 var ny = 0;
 var nz = 1;
 
-//var tile_horizontal_count = TEXTURE_SIZE / Stuff.tile_size;
-//var tile_vertical_count = TEXTURE_SIZE / Stuff.tile_size;
 var tile_horizontal_count = TEXTURE_SIZE / Stuff.tile_size;
 var tile_vertical_count = TEXTURE_SIZE / Stuff.tile_size;
 

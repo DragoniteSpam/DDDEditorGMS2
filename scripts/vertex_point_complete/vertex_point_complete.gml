@@ -12,11 +12,22 @@
 /// @param [id]
 // Assume vbuff is a vertex buffer created using the correct format.
 
+var buffer = argument0;
+var xx = argument1;
+var yy = argument2;
+var zz = argument3;
+var nx = argument4;
+var ny = argument5;
+var nz = argument6;
+var xtex = argument7;
+var ytex = argument8;
+var color = argument9;
+var alpha = argument10;
 var atid = (argument_count > 11) ? argument[11] : 0;
 
-vertex_position_3d(argument[0], argument[1], argument[2], argument[3]);
-vertex_normal(argument[0], argument[4], argument[5], argument[6]);
-vertex_texcoord(argument[0], argument[7], argument[8]);
-vertex_colour(argument[0], argument[9], argument[10]);
+vertex_position_3d(buffer, xx, yy, zz);
+vertex_normal(buffer, nx, ny, nz);
+vertex_texcoord(buffer, xtex, ytex);
+vertex_colour(buffer, color, alpha);
 // todo this - extra 32 bits for whatever you want
-vertex_colour(argument[0], 0x000000, 1);
+vertex_colour(buffer, 0x000000, 1);

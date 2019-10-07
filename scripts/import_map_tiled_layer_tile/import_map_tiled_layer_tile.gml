@@ -11,6 +11,8 @@ var z = argument[2];
 var alpha = (argument_count > 3) ? argument[3] : 1;
 var xx = (argument_count > 4) ? argument[4] : 0;
 var yy = (argument_count > 5) ? argument[5] : 0;
+var map = Stuff.active_map;
+var map_contents = map.contents;
 
 var layer_data = json[? "data"];
 var layer_name = json[? "name"];
@@ -33,8 +35,7 @@ if (layer_visible) {
 			var tile_tex_y = tile_value div columns;
 			
 			if (is_clamped(tile_x, 0, Stuff.active_map.xx - 1) && is_clamped(tile_y, 0, Stuff.active_map.yy - 1) && is_clamped(z, 0, Stuff.active_map.zz - 1)) {
-				var tile = instance_create_tile(tile_tex_x, tile_tex_y);
-				map_add_thing(tile, tile_x, tile_y, z);
+				batch_tile_raw(map_contents.frozen_data, map_contents.frozen_data_wire, tile_x, tile_y, z, tile_tex_x, tile_tex_y, c_white, layer_alpha);
 			}
 		}
 	}

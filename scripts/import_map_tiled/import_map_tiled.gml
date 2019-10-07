@@ -1,5 +1,8 @@
 var filename = get_open_filename("Tiled JSON files (*.json)|*.json", "");
 
+var map = Stuff.active_map;
+var map_contents = map.contents;
+
 if (file_exists(filename)) {
 	var json_buffer = buffer_load(filename);
 	var json = json_decode(buffer_read(json_buffer, buffer_text));
@@ -43,13 +46,7 @@ if (file_exists(filename)) {
 				ds_map_destroy(tileset_json);
 			}
 		}
-		
-		/*for (var i = 0; i < ds_list_size(json_tilesets); i++) {
-			var tileset_data = json_tilesets[| i];
-			var tileset_file = tileset_data[? "source"];
-			import_map_tiled_tileset(tileset_data);
-		}*/
-		
+        
 		if (tileset_columns) {
 			var json_layers = json[? "layers"];
 			var layer_z = 0;
@@ -63,6 +60,19 @@ if (file_exists(filename)) {
 					case "tilelayer": layer_z = import_map_tiled_layer_tile(layer_data, tileset_columns, layer_z); break;
 				}
 			}
+            
+            if (map_contents.frozen) vertex_delete_buffer(map_contents.frozen);
+            if (map_contents.frozen_wire) vertex_delete_buffer(map_contents.frozen_wire);
+            
+            if (buffer_get_size(map_contents.frozen_data) - 1) {
+                map_contents.frozen = vertex_create_buffer_from_buffer(map_contents.frozen_data, Camera.vertex_format);
+                vertex_freeze(map_contents.frozen);
+            }
+            if (buffer_get_size(map_contents.frozen_data_wire) - 1) {
+                map_contents.frozen_wire = vertex_create_buffer_from_buffer(map_contents.frozen_data_wire, Camera.vertex_format);
+                vertex_freeze(map_contents.frozen_wire);
+            }
+            
 		} else {
 			dialog_create_notice(noone, "No valid tileset file found for " + filename_name(filename) + ". Please find one.");
 		}

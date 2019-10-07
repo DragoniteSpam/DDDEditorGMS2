@@ -20,7 +20,10 @@ ds_map_destroy(all_refids);
 
 ds_grid_destroy(map_grid);
 
-vertex_delete_buffer(frozen);
+if (frozen) vertex_delete_buffer(frozen);
+if (frozen_wire) vertex_delete_buffer(frozen_wire);
+buffer_delete(frozen_data);
+buffer_delete(frozen_data_wire);
 
 for (var i = 0; i < array_length_1d(mesh_autotile_raw); i++) {
 	if (mesh_autotile_raw[i]) {
