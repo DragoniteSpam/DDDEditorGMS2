@@ -40,7 +40,6 @@ if (map.is_3d) {
 //shader_set_uniform_f_array(shd_uniform_at_tex_offset, shd_value_at_tex_offset);
 
 shader_set(shd_default);
-//shader_reset();
 
 // this will need to be dynamic at some point
 if (view_texture) {
@@ -48,8 +47,14 @@ if (view_texture) {
 } else {
     var tex = sprite_get_texture(b_tileset_textureless, 0);
 }
-// todo separate batches for Tiles (including autotiles) and Meshes so that they can
-// be masked correctly
+
+if (map_contents.frozen && view_entities) {
+    vertex_submit(map_contents.frozen, pr_trianglelist, tex);
+}
+if (map_contents.frozen_wire && view_wireframe) {
+    vertex_submit(map_contents.frozen_wire, pr_linelist, -1);
+}
+
 for (var i = 0; i < ds_list_size(map_contents.batches); i++) {
     if (view_entities) {
         vertex_submit(map_contents.batches[| i], pr_trianglelist, tex);

@@ -30,5 +30,5 @@ buffer_write(buffer, buffer_f32, ny);
 buffer_write(buffer, buffer_f32, nz);
 buffer_write(buffer, buffer_f32, xtex);
 buffer_write(buffer, buffer_f32, ytex);
-buffer_write(buffer, buffer_f32, ny);
 buffer_write(buffer, buffer_u32, (floor(alpha * 255) << 24) | colour_reverse(color));
+buffer_write(buffer, buffer_u32, 0x00000000);
