@@ -170,7 +170,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     element.render = ui_render_text_stats_entities;
     ds_list_add(t_stats.contents, element);
     
-    yy = yy + element.height + spacing + spacing;
+    yy = yy + element.height + spacing;
     
     element = create_text(col2_x, yy, "     Static:", col_width, element_height, fa_left, col_width, t_stats);
     ds_list_add(t_stats.contents, element);
@@ -179,7 +179,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     element.render = ui_render_text_stats_static;
     ds_list_add(t_stats.contents, element);
     
-    yy = yy + spacing;
+    yy = yy + element.height;
     
     element = create_text(col2_x, yy, "     Solid:", col_width, element_height, fa_left, col_width, t_stats);
     ds_list_add(t_stats.contents, element);
@@ -197,7 +197,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     element.render = ui_render_text_stats_entities_tiles;
     ds_list_add(t_stats.contents, element);
     
-    yy = yy + spacing;
+    yy = yy + element.height;
     
     element = create_text(col2_x, yy, "     Autotiles:", col_width, element_height, fa_left, col_width, t_stats);
     ds_list_add(t_stats.contents, element);
@@ -206,7 +206,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     element.render = ui_render_text_stats_entities_tiles_auto;
     ds_list_add(t_stats.contents, element);
     
-    yy = yy + spacing;
+    yy = yy + element.height;
     
     element = create_text(col2_x, yy, "     Meshes:", col_width, element_height, fa_left, col_width, t_stats);
     ds_list_add(t_stats.contents, element);
@@ -215,7 +215,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     element.render = ui_render_text_stats_entities_meshes;
     ds_list_add(t_stats.contents, element);
     
-    yy = yy + spacing;
+    yy = yy + element.height;
     
     element = create_text(col2_x, yy, "     Pawns:", col_width, element_height, fa_left, col_width, t_stats);
     ds_list_add(t_stats.contents, element);
@@ -224,7 +224,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     element.render = ui_render_text_stats_entities_pawns;
     ds_list_add(t_stats.contents, element);
     
-    yy = yy + spacing;
+    yy = yy + element.height;
     
     element = create_text(col2_x, yy, "     Effects:", col_width, element_height, fa_left, col_width, t_stats);
     ds_list_add(t_stats.contents, element);
@@ -233,12 +233,20 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     element.render = ui_render_text_stats_entities_effects;
     ds_list_add(t_stats.contents, element);
     
-    yy = yy + spacing;
+    yy = yy + element.height + spacing;
     
     element = create_text(col2_x, yy, "Frozen terrain data:", col_width, element_height, fa_left, col_width, t_stats);
     ds_list_add(t_stats.contents, element);
     
-    element = create_text(stat_x, yy, "- kb", col_width, element_height, fa_left, col_width, t_stats);
+    yy = yy + spacing;
+    
+    element = create_text(col2_x, yy, "    - kb", col_width, element_height, fa_left, col_width, t_stats);
+    element.render = ui_render_text_stats_entities_frozen_size_kb;
+    ds_list_add(t_stats.contents, element);
+    
+    yy = yy + spacing;
+    
+    element = create_text(col2_x, yy, "    ( - bytes)", col_width, element_height, fa_left, col_width, t_stats);
     element.render = ui_render_text_stats_entities_frozen_size;
     ds_list_add(t_stats.contents, element);
     

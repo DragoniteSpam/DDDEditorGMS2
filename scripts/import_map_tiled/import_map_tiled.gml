@@ -58,6 +58,9 @@ if (file_exists(filename)) {
 		}
         
 		if (tileset_columns) {
+            buffer_seek(map_contents.frozen_data, buffer_seek_start, map_contents.frozen_data_size);
+            buffer_seek(map_contents.frozen_data_wire, buffer_seek_start, map_contents.frozen_data_wire_size);
+            
 			var json_layers = json[? "layers"];
 			var layer_z = 0;
 			for (var i = 0; i < ds_list_size(json_layers); i++) {
@@ -75,7 +78,7 @@ if (file_exists(filename)) {
             if (map_contents.frozen_wire) vertex_delete_buffer(map_contents.frozen_wire);
             
             map_contents.frozen_data_size = buffer_tell(map_contents.frozen_data);
-            map_contents.frozen_data_size_wire = buffer_tell(map_contents.frozen_data_wire);
+            map_contents.frozen_data_wire_size = buffer_tell(map_contents.frozen_data_wire);
             
             if (buffer_get_size(map_contents.frozen_data) - 1) {
                 map_contents.frozen = vertex_create_buffer_from_buffer(map_contents.frozen_data, Camera.vertex_format);
