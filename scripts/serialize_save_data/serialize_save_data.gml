@@ -78,5 +78,6 @@ enum DataVersions {
 	CUSTOM_EVENT_TRIGGERS		= 47,
 	CUSTOM_EVENT_OUTBOUND		= 48,
 	CODE_OPTIONS				= 49,
+    MAP_BATCH_DATA              = 50,
     _CURRENT                 /* = whatever the last one is + 1 */
 }
