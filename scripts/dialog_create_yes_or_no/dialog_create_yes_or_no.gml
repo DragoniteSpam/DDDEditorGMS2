@@ -11,10 +11,10 @@
 var message = argument[1];
 var action_confirm = argument[2];
 
-var caption_message = (argument_count > 3) ? argument[3] : "Important!";
-var confirm_message = (argument_count > 4) ? argument[4] : "yep";
-var cancel_message = (argument_count > 5) ? argument[5] : "nope";
-var action_cancel = (argument_count > 6) ? argument[6] : dmu_dialog_cancel;
+var caption_message = (argument_count > 3 && argument[3] != undefined) ? argument[3] : "Important!";
+var confirm_message = (argument_count > 4 && argument[4] != undefined) ? argument[4] : "yep";
+var cancel_message = (argument_count > 5 && argument[5] != undefined) ? argument[5] : "nope";
+var action_cancel = (argument_count > 6 && argument[6] != undefined) ? argument[6] : dmu_dialog_cancel;
 
 var dw = 400;
 var dh = 280;

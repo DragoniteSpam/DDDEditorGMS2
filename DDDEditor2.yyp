@@ -1359,6 +1359,14 @@
             }
         },
         {
+            "Key": "1d100cb4-9c3a-4e27-850a-78c42be67980",
+            "Value": {
+                "id": "7110748d-66f1-4426-bf2c-fed5f0099f52",
+                "resourcePath": "scripts\\ui_render_text_stats_entities_frozen_size\\ui_render_text_stats_entities_frozen_size.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "1d153cd0-80a1-4711-b08c-1824427e29fd",
             "Value": {
                 "id": "63eaf2dc-597e-4497-99cb-f5cf6169fd81",
@@ -5791,6 +5799,14 @@
             }
         },
         {
+            "Key": "7e842895-6f90-469d-a5a5-1a4b1b4714c6",
+            "Value": {
+                "id": "497a33df-0c14-45a9-a7a1-0f7bb2c72d11",
+                "resourcePath": "scripts\\dmu_data_import_map_no_clear\\dmu_data_import_map_no_clear.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "7ee198d3-685f-4bdb-8a0e-f386c474ae3d",
             "Value": {
                 "id": "ab40c1be-6964-4968-b12b-786338489a88",
@@ -8435,6 +8451,14 @@
             "Value": {
                 "id": "ddfe9515-9f16-4424-8940-0baf8dfabf34",
                 "resourcePath": "scripts\\update_autotile\\update_autotile.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "bafd5400-cfb9-4014-9997-1edaa5aeaa6f",
+            "Value": {
+                "id": "13edd76e-be8a-4b8b-98fc-fde1228f6524",
+                "resourcePath": "scripts\\dmu_data_import_map_clear\\dmu_data_import_map_clear.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -12051,6 +12075,8 @@
         "c0649b09-7522-4726-b33c-d2f2900224fc",
         "be638e68-a97e-4a0c-afe8-b8b38eb934c0",
         "deb89310-0580-4a12-85dc-0523f7cc5284",
+        "bafd5400-cfb9-4014-9997-1edaa5aeaa6f",
+        "7e842895-6f90-469d-a5a5-1a4b1b4714c6",
         "3524668f-fce9-47ef-a727-b1f72a682462",
         "ef88187a-f578-4d1f-b954-17d87c453441",
         "6632e72e-3d90-4eed-bde9-d7220c475a3d",
@@ -12598,6 +12624,7 @@
         "79a7d251-f945-4972-b0e0-7668e0407eda",
         "dadb731a-73bd-4dbe-8d62-ba002ee3af80",
         "ab4dc1de-410d-4017-96ef-716a1d515073",
+        "1d100cb4-9c3a-4e27-850a-78c42be67980",
         "871784e6-6046-407c-b249-80a9fa27b7ff",
         "5bd96e0c-ff98-4c9e-b0ef-f92f13ce8865",
         "38605fcd-3b88-4729-bf05-0f7dc77f2813",

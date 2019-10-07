@@ -1,3 +1,13 @@
+/// @param [ask-clear-frozen?]
+
+var ask_clear = (argument_count > 0) ? argument[0] : false;
+
+if (ask_clear) {
+    dialog_create_yes_or_no(noone, "Would you like to clear the frozen terrain first? (This is recommended before importing Tiled maps.",
+        dmu_data_import_map_clear, undefined, undefined, undefined, dmu_data_import_map_no_clear);
+    return;
+}
+
 var filename = get_open_filename("Tiled JSON files (*.json)|*.json", "");
 
 var map = Stuff.active_map;
@@ -7,7 +17,7 @@ if (file_exists(filename)) {
 	var json_buffer = buffer_load(filename);
 	var json = json_decode(buffer_read(json_buffer, buffer_text));
 	buffer_delete(json_buffer);
-	
+    
 	var json_type = json[? "type"];
 	if (json_type == "map") {
 		
@@ -63,6 +73,9 @@ if (file_exists(filename)) {
             
             if (map_contents.frozen) vertex_delete_buffer(map_contents.frozen);
             if (map_contents.frozen_wire) vertex_delete_buffer(map_contents.frozen_wire);
+            
+            map_contents.frozen_data_size = buffer_tell(map_contents.frozen_data);
+            map_contents.frozen_data_size_wire = buffer_tell(map_contents.frozen_data_wire);
             
             if (buffer_get_size(map_contents.frozen_data) - 1) {
                 map_contents.frozen = vertex_create_buffer_from_buffer(map_contents.frozen_data, Camera.vertex_format);

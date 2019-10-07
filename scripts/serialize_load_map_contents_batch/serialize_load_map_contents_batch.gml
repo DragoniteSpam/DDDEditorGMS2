@@ -12,8 +12,10 @@ if (version >= DataVersions.MAP_BATCH_DATA) {
     buffer_delete(map_contents.frozen_data_wire);
 
     var length = buffer_read(buffer, buffer_u64);
+    map_contents.frozen_data_size = buffer_read(buffer, buffer_u64);
     map_contents.frozen_data = buffer_read_buffer(buffer, length);
     var length = buffer_read(buffer, buffer_u64);
+    map_contents.frozen_data_wire_size = buffer_read(buffer, buffer_u64);
     map_contents.frozen_data_wire = buffer_read_buffer(buffer, length);
     
     if (buffer_get_size(map_contents.frozen_data_wire) - 1) {
@@ -25,7 +27,7 @@ if (version >= DataVersions.MAP_BATCH_DATA) {
         vertex_freeze(map_contents.frozen_wire);
     }
 }
-
+/*
 Please:
  - Passability of frozen tiles in the world should be based on the passability of the tiles in the tileset
     and saved as a non-object of some sort to the contents grid (probably just by giving it the passability
@@ -34,4 +36,4 @@ Please:
     file
  - update the game to use this new information
  - figure out why it takes a good ten seconds to load a mostly-empty dddd file - the profiler is breaking
-    after trying to profile a single frame for multiple seconds so youll need to do it the sucky way
+    after trying to profile a single frame for multiple seconds so youll need to do it the sucky way*/

@@ -235,6 +235,15 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + spacing;
     
+    element = create_text(col2_x, yy, "Frozen terrain data:", col_width, element_height, fa_left, col_width, t_stats);
+    ds_list_add(t_stats.contents, element);
+    
+    element = create_text(stat_x, yy, "- kb", col_width, element_height, fa_left, col_width, t_stats);
+    element.render = ui_render_text_stats_entities_frozen_size;
+    ds_list_add(t_stats.contents, element);
+    
+    yy = yy + spacing;
+    
     #endregion
     
 	#region tab: map

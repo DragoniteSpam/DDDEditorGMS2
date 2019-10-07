@@ -19,7 +19,9 @@ map_grid = map_create_grid(10, 10, 10);		// this just needs to exist for now, it
 frozen = noone;								// everything that will be a single batch in the game
 frozen_wire = noone;						// the wireframe for the frozen vertex buffer
 frozen_data = buffer_create(1, buffer_grow, 1);						// the raw data in the frozen vertex buffer
+frozen_data_size = 0;
 frozen_data_wire = buffer_create(1, buffer_grow, 1);					// the raw data in the frozen wireframe vertex buffer
+frozen_data_wire_size = 0;
 
 mesh_autotiles = array_create(48);
 mesh_autotile_raw = array_create(48);
