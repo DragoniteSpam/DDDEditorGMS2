@@ -31,3 +31,10 @@ array_clear(mesh_autotile_raw, noone);
 population = [0, 0, 0, 0, 0, 0, 0];
 population_static = 0;
 population_solid = 0;
+
+enum MapCellContents {
+    TILE,
+    MESHPAWN,
+    EFFECT,
+    EVENT
+}

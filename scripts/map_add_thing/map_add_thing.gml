@@ -3,7 +3,7 @@
 /// @param [yy]
 /// @param [zz]
 /// @param [map]
-/// @param [is_temp]
+/// @param [is-temp?]
 // Does not check to see if the specified coordinates are in bounds.
 // You are responsible for that.
 
