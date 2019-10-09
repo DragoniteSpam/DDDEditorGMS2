@@ -139,6 +139,14 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     element = create_button(col2_x, yy, "Freeze Selected", col_width, element_height, fa_center, uimu_freeze_ask, t_general);
     ds_list_add(t_general.contents, element);
     
+    yy = yy + element.height + spacing;
+    
+    element = create_radio_array(col2_x, yy, "Mouse Drag Action", col_width, element_height, uivc_radio_mouse_drag_behavior, Camera.mouse_drag_behavior, t_general);
+    create_radio_array_options(element, ["Default", "Translate Selection", "Offset Selection", "Rotate Selection", "Scale Selection"]);
+    ds_list_add(t_general.contents, element);
+    
+    yy = yy + ui_get_radio_array_height(element) + spacing;
+    
     #endregion
     
     #region tab: stats

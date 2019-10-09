@@ -1,4 +1,5 @@
-/// @description uimu_view_master_texture(UIThing);
 /// @param UIThing
 
-Camera.schedule_view_master_texture=true;
+var thing = argument0;
+
+Camera.schedule_view_master_texture = true;

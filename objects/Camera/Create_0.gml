@@ -106,6 +106,8 @@ view_backface = ini_read_real("view", "backface", false);
 view_texture = ini_read_real("view", "texture", true);
 view_entities = ini_read_real("view", "entities", true);
 
+mouse_drag_behavior = ini_read_real("mouse", "drag-behavior", 0);
+
 tile_data_view = TileSelectorDisplayMode.PASSAGE;
 tile_on_click = TileSelectorOnClick.SELECT;
 
