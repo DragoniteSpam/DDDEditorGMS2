@@ -14,6 +14,31 @@ var y2 = y + cheight / 2;
 var floor_cx = floor(((mouse_x_view + x1) / view_get_wport(view_current)) * cwidth / TILE_WIDTH);
 var floor_cy = floor(((mouse_y_view + y1) / view_get_hport(view_current)) * cheight / TILE_HEIGHT);
 
+// these will override everything else
+if (ds_list_size(selection) && Controller.mouse_left) {
+    var dx = round(clamp(mouse_x - Controller.mouse_x_previous, -1, 1));
+    var dy = round(clamp(mouse_y - Controller.mouse_y_previous, -1, 1));
+    
+    switch (Camera.mouse_drag_behavior) {
+        case 1:
+            var sel = selection_all();
+            for (var i = 0; i < ds_list_size(sel); i++) {
+                var  thing = sel[| i];
+                map_move_thing(thing, thing.xx + dx, thing.yy + dy, thing.zz);
+            }
+            The selection needs to be moved too, otherwise it'll stop working when the formerly selected stuff goes out of range
+            remember, this is the 2D control script
+            ds_list_destroy(sel);
+            return 0;
+        case 2:
+            return 0;
+        case 3:
+            return 0;
+        case 4:
+            return 0;
+    }
+}
+
 if (Controller.press_left) {
     if (ds_list_size(selection) < MAX_SELECTION_COUNT) {
         if (!keyboard_check(input_selection_add) && !selection_addition) {
