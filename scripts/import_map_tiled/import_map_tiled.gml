@@ -26,15 +26,17 @@ if (file_exists(filename)) {
 		var json_properties = json[? "properties"];
 		var map_id = -1;
 		
-		for (var i = 0; i < ds_list_size(json_properties); i++) {
-			var property_name = ds_map_find_value(json_properties[| i], "name");
-			var property_type = ds_map_find_value(json_properties[| i], "type");
-			var property_value = ds_map_find_value(json_properties[| i], "value");
+        if (json_properties) {
+    		for (var i = 0; i < ds_list_size(json_properties); i++) {
+    			var property_name = ds_map_find_value(json_properties[| i], "name");
+    			var property_type = ds_map_find_value(json_properties[| i], "type");
+    			var property_value = ds_map_find_value(json_properties[| i], "value");
 			
-			if (property_name = "id") {
-				map_id = property_value;
-			}
-		}
+    			if (property_name = "id") {
+    				map_id = property_value;
+    			}
+    		}
+        }
 		
 		var json_width = json[? "width"];
 		var json_height = json[? "height"];

@@ -1,7 +1,7 @@
 {
     "id": "edfc6778-ab3b-4ddb-8396-c7302741b8c3",
     "modelName": "GMExtension",
-    "mvc": "1.2",
+    "mvc": "1.0",
     "name": "FMODGMS",
     "IncludedResources": [
         "Scripts\\FMODGMS\\FMODGMS_Util_BeatsToSamples",
@@ -28,7 +28,6 @@
     "copyToTargets": 202375362,
     "date": "2019-08-17 01:06:51",
     "description": "",
-    "exportToGame": true,
     "extensionName": "",
     "files": [
         {
@@ -2010,12 +2009,9 @@
     "maccompilerflags": "",
     "maclinkerflags": "",
     "macsourcedir": "",
-    "options": null,
-    "optionsFile": "options.json",
     "packageID": "",
     "productID": "ACBD3CFF4E539AD869A0E8E3B4B022DD",
     "sourcedir": "",
-    "supportedTargets": 202375362,
     "tvosProps": false,
     "tvosSystemFrameworkEntries": [
         

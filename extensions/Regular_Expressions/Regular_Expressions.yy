@@ -1,7 +1,7 @@
 {
     "id": "5ab35ae1-cd04-4495-8136-244dba06a562",
     "modelName": "GMExtension",
-    "mvc": "1.2",
+    "mvc": "1.0",
     "name": "Regular_Expressions",
     "IncludedResources": [
         
@@ -20,7 +20,6 @@
     "copyToTargets": 9223372036854775807,
     "date": "2019-38-06 11:05:29",
     "description": "",
-    "exportToGame": true,
     "extensionName": "",
     "files": [
         {
@@ -448,12 +447,9 @@
     "maccompilerflags": "",
     "maclinkerflags": "",
     "macsourcedir": "",
-    "options": null,
-    "optionsFile": "options.json",
     "packageID": "com.binskifiedentertainment.regex",
     "productID": "",
     "sourcedir": "",
-    "supportedTargets": 9223372036854775807,
     "tvosProps": false,
     "tvosSystemFrameworkEntries": [
         

@@ -25,5 +25,5 @@ if (!cell[@ slot]) {
 } else if (cell[@ slot] < 100000) {
     cell[@ slot] = ((cell[@ slot] - 1000) & (mask - 1000)) + 1000;
 }
-this is not working but im officially too tired, figure it out tomorrow
+
 if (cell[@ slot] < 1255) debug([xx, yy, zz, cell[slot]]);
