@@ -41,7 +41,10 @@ if (layer_visible) {
             
 			if (is_clamped(tile_x, 0, Stuff.active_map.xx - 1) && is_clamped(tile_y, 0, Stuff.active_map.yy - 1) && is_clamped(z, 0, Stuff.active_map.zz - 1)) {
 				batch_tile_raw(map_contents.frozen_data, map_contents.frozen_data_wire, tile_x, tile_y, z, tile_tex_x, tile_tex_y, c_white, layer_alpha);
-                map_add_thing_anonymous(ts.passage[# tile_tex_x, tile_tex_y], tile_x, tile_y, layer_base_z, map, MapCellContents.TILE);
+                // the solidness is applied to each of the layers; entities will most likely only exist on Layer 1, but solidness will be applied to any
+                for (var j = 0; j < TILED_MAP_LAYERS_PER_BASE_LAYER; j++) {
+                    map_add_thing_anonymous(ts.passage[# tile_tex_x, tile_tex_y], tile_x, tile_y, layer_base_z + j, map, MapCellContents.TILE);
+                }
 			}
 		}
 	}
