@@ -24,9 +24,7 @@ var layer_visible = json[? "visible"];
 var layer_data_x = json[? "x"];
 var layer_data_y = json[? "y"];
 
-var layer_base_z = z div TILED_MAP_LAYERS_PER_BASE_LAYER;
-
-#macro TILED_MAP_LAYERS_PER_BASE_LAYER 4
+var layer_base_z = get_2D_base_layer(z);;
 
 if (layer_visible) {
 	for (var i = 0; i < ds_list_size(layer_data); i++) {
