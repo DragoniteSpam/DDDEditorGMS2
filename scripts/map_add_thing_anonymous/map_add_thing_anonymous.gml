@@ -17,7 +17,12 @@ var map_contents = map.contents;
 
 var cell = map_get_grid_cell(xx, yy, zz, map);
 
-// only add thing if the space is not already occupied
+// Zero is a totally empty cell which you can put whatever you want into
 if (!cell[@ slot]) {
     cell[@ slot] = mask;
+// If there's no intsance ID where you're trying to add, AND the mask with
+// whatever's already there, since one blockage will override any passability
+} else if (cell[@ slot] < 100000) {
+    debug([cell[@ slot] - 1000, mask - 1000]);
+    cell[@ slot] = ((cell[@ slot] - 1000) & (mask - 1000)) + 1000;
 }

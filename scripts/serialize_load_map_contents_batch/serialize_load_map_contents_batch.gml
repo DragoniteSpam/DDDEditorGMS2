@@ -14,6 +14,7 @@ if (version >= DataVersions.MAP_BATCH_DATA) {
     var length = buffer_read(buffer, buffer_u64);
     map_contents.frozen_data_size = buffer_read(buffer, buffer_u64);
     map_contents.frozen_data = buffer_read_buffer(buffer, length);
+    
     var length = buffer_read(buffer, buffer_u64);
     map_contents.frozen_data_wire_size = buffer_read(buffer, buffer_u64);
     map_contents.frozen_data_wire = buffer_read_buffer(buffer, length);
@@ -40,9 +41,3 @@ if (version >= DataVersions.MAP_BATCH_SOLIDNESS_DATA) {
         map_add_thing_anonymous(mask, xx, yy, zz, map, slot);
     }
 }
-
-/*
-Please:
- - update the game to use this new information
- - figure out why it takes a good ten seconds to load a mostly-empty dddd file - the profiler is breaking
-    after trying to profile a single frame for multiple seconds so youll need to do it the sucky way*/

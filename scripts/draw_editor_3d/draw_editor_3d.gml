@@ -51,7 +51,7 @@ if (view_texture) {
 if (map_contents.frozen && view_entities) {
     vertex_submit(map_contents.frozen, pr_trianglelist, tex);
 }
-if (map_contents.frozen_wire && view_wireframe) {
+if (map_contents.frozen_wire && view_entities && view_wireframe) {
     vertex_submit(map_contents.frozen_wire, pr_linelist, -1);
 }
 
@@ -101,7 +101,6 @@ for (var i = 0; i < ds_list_size(list_routes); i++) {
 // "set" overwrites the previous transform anyway
 transform_set(0, 0, 0.5, 0, 0, 0, 1, 1, 1);
 
-// the grid, which you may want an option to turn this off if it gets annoying
 if (view_grid) {
     vertex_submit(grid, pr_linelist, -1);
 }

@@ -24,12 +24,16 @@ var layer_visible = json[? "visible"];
 var layer_data_x = json[? "x"];
 var layer_data_y = json[? "y"];
 
+var layer_base_z = z div TILED_MAP_LAYERS_PER_BASE_LAYER;
+
+#macro TILED_MAP_LAYERS_PER_BASE_LAYER 4
+
 if (layer_visible) {
 	for (var i = 0; i < ds_list_size(layer_data); i++) {
 		var tile_x = i mod layer_width;
 		var tile_y = i div layer_height;
 		var tile_value = layer_data[| i];
-		
+        
 		if (tile_value) {
 			tile_value--;
 			var tile_tex_x = tile_value mod columns;
@@ -37,7 +41,7 @@ if (layer_visible) {
             
 			if (is_clamped(tile_x, 0, Stuff.active_map.xx - 1) && is_clamped(tile_y, 0, Stuff.active_map.yy - 1) && is_clamped(z, 0, Stuff.active_map.zz - 1)) {
 				batch_tile_raw(map_contents.frozen_data, map_contents.frozen_data_wire, tile_x, tile_y, z, tile_tex_x, tile_tex_y, c_white, layer_alpha);
-                map_add_thing_anonymous(ts.passage[# tile_tex_x, tile_tex_y], tile_x, tile_y, z, map, MapCellContents.TILE);
+                map_add_thing_anonymous(ts.passage[# tile_tex_x, tile_tex_y], tile_x, tile_y, layer_base_z, map, MapCellContents.TILE);
 			}
 		}
 	}
