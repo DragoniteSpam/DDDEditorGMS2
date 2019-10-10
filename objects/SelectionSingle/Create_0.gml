@@ -7,6 +7,8 @@ onmousedown = sme_down_single;
 area = selected_area_single;
 render = selection_render_single;
 
+onmove = selection_move_single;
+
 foreach_cell = selection_foreach_cell_single;
 
 selected_determination = selected_single;

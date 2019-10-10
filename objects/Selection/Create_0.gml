@@ -1,6 +1,8 @@
 onmousedown = null;
 onmousedrag = null;
 
+onmove = null;
+
 render = null;
 area = null;
 

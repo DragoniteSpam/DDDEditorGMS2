@@ -8,6 +8,8 @@ onmousedrag = sme_drag_circle;
 area = selected_area_circle;
 render = selection_render_circle;
 
+onmove = selection_move_circle;
+
 foreach_cell = selection_foreach_cell_circle;
 
 selected_determination = selected_circle;

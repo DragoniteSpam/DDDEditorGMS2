@@ -12,6 +12,8 @@ onmousedrag = sme_drag_rectangle;
 area = selected_area_rectangle;
 render = selection_render_rectangle;
 
+onmove = selection_move_rectangle;
+
 foreach_cell = selection_foreach_cell_rectangle;
 
 selected_determination = selected_rectangle;

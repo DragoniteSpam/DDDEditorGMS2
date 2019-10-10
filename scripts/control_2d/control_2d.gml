@@ -14,27 +14,29 @@ var y2 = y + cheight / 2;
 var floor_cx = floor(((mouse_x_view + x1) / view_get_wport(view_current)) * cwidth / TILE_WIDTH);
 var floor_cy = floor(((mouse_y_view + y1) / view_get_hport(view_current)) * cheight / TILE_HEIGHT);
 
-// these will override everything else
-if (ds_list_size(selection) && Controller.mouse_left) {
-    var dx = round(clamp(mouse_x - Controller.mouse_x_previous, -1, 1));
-    var dy = round(clamp(mouse_y - Controller.mouse_y_previous, -1, 1));
+// these will override everything else, but it's commented out because i dont like how it works
+if (false && ds_list_size(selection) && Controller.mouse_left) {
+    var dx = clamp((mouse_x - Controller.mouse_x_previous) div 4, -1, 1);
+    var dy = clamp((mouse_y - Controller.mouse_y_previous) div 4, -1, 1);
     
     switch (Camera.mouse_drag_behavior) {
-        case 1:
+        case 1:             // translate
             var sel = selection_all();
             for (var i = 0; i < ds_list_size(sel); i++) {
-                var  thing = sel[| i];
+                var thing = sel[| i];
                 map_move_thing(thing, thing.xx + dx, thing.yy + dy, thing.zz);
             }
-            The selection needs to be moved too, otherwise it'll stop working when the formerly selected stuff goes out of range
-            remember, this is the 2D control script
             ds_list_destroy(sel);
+            for (var i = 0; i < ds_list_size(selection); i++) {
+                var sel = selection[| i];
+                script_execute(sel.onmove, sel, dx, dy, 0);
+            }
             return 0;
-        case 2:
+        case 2:             // offset
             return 0;
-        case 3:
+        case 3:             // rotate
             return 0;
-        case 4:
+        case 4:             // scale
             return 0;
     }
 }
