@@ -17,17 +17,20 @@ var eh = 0;
 var tolerance = 4;
 var entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
 
+var entrypoint_height = 48;
+var ext_outbound_width = 16;
+
 var custom = noone;
 
 switch (node.type) {
     case EventNodeTypes.ENTRYPOINT:
     #region entrypoint
         x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
-		y2 = y1 + max(16 + string_height(string(node.name)) + entry_offset, ds_list_size(node.outbound) * EVENT_NODE_CONTACT_HEIGHT * 2 / 3);
+		y2 = y1 + entrypoint_height;
         
         if (rectangle_within_view(view_current, x1, y1, x2, y2)) {
             var c = colour_mute(c_ev_init);
-            draw_event_drag_handle(node, x1+16, y1-16, x2-16, y1+16, c);
+            draw_event_drag_handle(node, x1 + 16, y1 - 16, x2 - 16, y1 + 16, c);
             draw_roundrect_colour(x1, y1, x2, y2, c_ev_init, c_ev_init, false);
             draw_roundrect(x1, y1, x2, y2, true);
             draw_event_node_title(node, c);
@@ -76,6 +79,8 @@ switch (node.type) {
         if (rectangle_within_view(view_current, x1, y1, x2, y2)) {
             var c = colour_mute(c_ev_basic);
             draw_event_drag_handle(node, x1 + 16, y1 - 16, x2 - 16, y1 + 16, c);
+            draw_roundrect_colour(x2 - 16, y1 + 16, x2 + ext_outbound_width, y2 - 16, c, c, false);
+            draw_roundrect(x2 - 16, y1 + 16, x2 + ext_outbound_width, y2 - 16, true);
             draw_roundrect_colour(x1, y1, x2, y2, c_ev_basic, c_ev_basic, false);
             draw_roundrect(x1, y1, x2, y2, true);
             // this is the inbound node, which we don't really care about other than displaying
@@ -236,12 +241,11 @@ switch (node.type) {
                 draw_text_ext(x1 + 16, mean(entry_yy, entry_yy + eh) + rh, str, -1, EVENT_NODE_CONTACT_WIDTH - 16);
                 #endregion
                 
-                var entry_yy_previous = entry_yy;
-                entry_yy = entry_yy + rh + eh;
-                
                 if (i > 0) {
-                    draw_event_node_condition_remove(x2, mean(entry_yy_previous, entry_yy) + 16, node, i);
+                    draw_event_node_condition_remove(x2, entry_yy + 32, node, i);
                 }
+                
+                entry_yy = entry_yy + rh + eh;
             }
             
             if (node.editor_handle) {
@@ -356,6 +360,8 @@ switch (node.type) {
         if (rectangle_within_view(view_current, x1, y1, x2, y2)) {
             var c = colour_mute(ncolor);
             draw_event_drag_handle(node, x1 + 16, y1 - 16, x2 - 16, y1 + 16, c);
+            draw_roundrect_colour(x2 - 16, y1 + 16, x2 + ext_outbound_width, y2 - 16, c, c, false);
+            draw_roundrect(x2 - 16, y1 + 16, x2 + ext_outbound_width, y2 - 16, true);
             draw_roundrect_colour(x1, y1, x2, y2, ncolor, ncolor, false);
             draw_roundrect(x1, y1, x2, y2, true);
             draw_sprite(spr_event_outbound, 2, x1, y1 + 16);
@@ -599,13 +605,15 @@ switch (node.type) {
     #endregion
 }
 
+var entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
+
 // different node types may put the outbound nodes in different places - not all use more than one output node
 var bezier_override = false;
 switch (node.type) {
     case EventNodeTypes.ENTRYPOINT:
 	#region Entrypoint
         // vertical middle of the box; entrypoints will only ever have one outbound node so we can cheat
-        var by = entry_yy + eh / 2;
+        var by = y1 + entrypoint_height / 2;
         var outbound = node.outbound[| 0];
         
         if (!outbound) {
@@ -687,12 +695,13 @@ switch (node.type) {
     case EventNodeTypes.SHOW_CHOICES:
 	#region Choices
         bezier_override = true;
-        var by = entry_yy + eh / 2;
         var n = ds_list_size(node.outbound);
         var bezier_y = 0;
         
         for (var i = 0; i < n; i++) {
             var outbound = node.outbound[| i];
+            var by = entry_yy + eh / 2;
+            
             if (!outbound) {
                 draw_event_node_outbound(x2, by, node, i, true);
             } else {
@@ -712,10 +721,10 @@ switch (node.type) {
             }
             
             if (event_canvas_active_node == node && event_canvas_active_node_index == i) {
-                bezier_y = by;
+                bezier_y = entry_yy + eh / 2;
             }
             
-            by = by + eh;
+            entry_yy = entry_yy + eh;
         }
         
         if (event_canvas_active_node == node) {
@@ -738,25 +747,26 @@ switch (node.type) {
     default:
 	#region Custom (usually)
         var entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
+        var outbound_offset = 16;
 		
 		for (var i = 0; i < ds_list_size(node.outbound); i++) {
 	        var outbound = node.outbound[| i];
-			var by = entry_yy + i * EVENT_NODE_CONTACT_HEIGHT * 2 / 3;
+			var by = entry_yy + 32 * i;
 			
 	        if (!outbound) {
-	            draw_event_node_outbound(x2, by, node, i, true);
+	            draw_event_node_outbound(x2 + outbound_offset, by, node, i, true);
 	        } else {
 	            var bnx = outbound.x;
 	            var bny = outbound.y + 16;
 				
-	            draw_event_node_outbound(x2, by, node, i);
-	            draw_sprite(spr_event_dot, 0, x2, by);
+	            draw_event_node_outbound(x2 + outbound_offset, by, node, i);
+	            draw_sprite(spr_event_dot, 0, x2 + outbound_offset, by);
 				
 	            if (event_canvas_active_node != node || event_canvas_active_node_index != i) {
-	                if (bnx > x2) {
-	                    draw_bezier(x2 + 8, by, bnx - 8, bny);
+	                if (bnx > x2 + outbound_offset) {
+	                    draw_bezier(x2 + 8 + outbound_offset, by, bnx - 8, bny);
 	                } else {
-	                    draw_event_ghost(x2 + 8, by, x2 + 64, by, outbound);
+	                    draw_event_ghost(x2 + 8 + outbound_offset, by, x2 + 64, by, outbound);
 	                }
 	            }
 	        }
