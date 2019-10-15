@@ -4,4 +4,4 @@
 var list = argument0;
 var index = argument1;
 
-return list.entry_colors[| index]
+return (ds_list_size(list.entry_colors) > index) ? list.entry_colors[| index] : c_black;

@@ -8,7 +8,6 @@ var yy = argument2;
 
 var oldentries = list.entries;
 list.entries = Stuff.all_meshes;
-list.colorize = false;
 
 var oldtext = list.text;
 list.text = list.text + string(ds_list_size(list.entries));
