@@ -11,7 +11,7 @@ var ui_width = camera_get_view_width(camera);
 var ui_height = camera_get_view_height(camera);
 
 camera_set_view_mat(camera, matrix_build_lookat(ui_x + ui_width / 2, ui_y + ui_height / 2, -16000,  ui_x + ui_width / 2, ui_y + ui_height / 2, 0, 0, 1, 0));
-camera_set_proj_mat(camera, matrix_build_projection_ortho(ui_width, ui_height, 1, 32000));
+camera_set_proj_mat(camera, matrix_build_projection_ortho(ui_width, ui_height, CAMERA_ZNEAR, CAMERA_ZFAR));
 camera_apply(camera);
 
 draw_clear(c_white);

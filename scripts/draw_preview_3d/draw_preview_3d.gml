@@ -13,7 +13,7 @@ var camera = view_get_camera(view_current);
 var vw = view_get_wport(view_current);
 var vh = view_get_hport(view_current);
 camera_set_view_mat(camera, matrix_build_lookat(0, s, s / 2, 0, 0, 0, 0, 0, 1));
-camera_set_proj_mat(camera, matrix_build_projection_perspective_fov(-fov, -vw / vh, 1, s * s));
+camera_set_proj_mat(camera, matrix_build_projection_perspective_fov(-fov, -vw / vh, CAMERA_ZNEAR, CAMERA_ZFAR));
 camera_apply(camera);
 
 // draw the grid, and any other reference points

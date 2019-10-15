@@ -29,13 +29,13 @@ if (map.is_3d) {
     var vh = y2 - y1;
     camera_set_view_mat(camera, matrix_build_lookat(Camera.event_x, Camera.event_y, Camera.event_z, Camera.event_xto,
 		Camera.event_yto, Camera.event_zto, Camera.event_xup, Camera.event_yup, Camera.event_zup));
-    camera_set_proj_mat(camera, matrix_build_projection_perspective_fov(-Camera.event_fov, -vw / vh, 1, 32000));
+    camera_set_proj_mat(camera, matrix_build_projection_perspective_fov(-Camera.event_fov, -vw / vh, CAMERA_ZNEAR, CAMERA_ZFAR));
     camera_apply(camera);
 } else {
     var cwidth = camera_get_view_width(camera);
 	var cheight = camera_get_view_height(camera);
     camera_set_view_mat(camera, matrix_build_lookat(Camera.event_x, Camera.event_y, 16000,  Camera.event_x, Camera.event_y, -16000, 0, 1, 0));
-    camera_set_proj_mat(camera, matrix_build_projection_ortho(-cwidth, cheight, 1, 32000));
+    camera_set_proj_mat(camera, matrix_build_projection_ortho(-cwidth, cheight, CAMERA_ZNEAR, CAMERA_ZFAR));
     camera_apply(camera);
 }
 

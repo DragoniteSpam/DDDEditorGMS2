@@ -4,7 +4,7 @@ var lw = 4;
 
 var camera = view_get_camera(view_current);
 camera_set_view_mat(camera, matrix_build_lookat(w / 2, h / 2, -16000,  w / 2, h / 2, 0, 0, 1, 0));
-camera_set_proj_mat(camera, matrix_build_projection_ortho(w, h, 1, 32000));
+camera_set_proj_mat(camera, matrix_build_projection_ortho(w, h, CAMERA_ZNEAR, CAMERA_ZFAR));
 camera_apply(camera);
 
 gpu_set_cullmode(cull_noculling);

@@ -37,10 +37,6 @@ anim_direction = ini_read_real("Camera", "adirection", 0);
 
 alarm[ALARM_CAMERA_SAVE] = room_speed * CAMERA_SAVE_FREQUENCY;
 
-var vw = view_get_wport(view_3d);
-var vh = view_get_hport(view_3d);
-camera_smf = smf_camera_create(view_3d, fov, vw / vh, 1, 32000);
-smf_camera_set_viewmat(camera_smf, x, y, z, 0, 0, 10, 0, 0, 1);
 smf_test_model = smf_model_load(get_open_filename("", "smf"));
 smf_test_animation = smf_model_load(get_open_filename("", "smf"));
 smf_light_add_direction(smf_vector_normalize([-1, -1, -1]), c_white, 1);

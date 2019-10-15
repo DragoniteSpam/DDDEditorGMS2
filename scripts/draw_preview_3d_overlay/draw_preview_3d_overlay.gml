@@ -5,7 +5,7 @@ var h = camera_get_view_height(camera);
 var lw = 4;
 
 camera_set_view_mat(camera, matrix_build_lookat(w / 2, h / 2, -16000,  w / 2, h / 2, 0, 0, 1, 0));
-camera_set_proj_mat(camera, matrix_build_projection_ortho(w, h, 1, 32000));
+camera_set_proj_mat(camera, matrix_build_projection_ortho(w, h, CAMERA_ZNEAR, CAMERA_ZFAR));
 camera_apply(camera);
 
 draw_set_alpha(0.5);
