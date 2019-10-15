@@ -111,6 +111,14 @@
             }
         },
         {
+            "Key": "011034bf-db78-40b3-b64a-d0199b3f03f8",
+            "Value": {
+                "id": "7d0adb1b-c8c4-42d2-87c8-436cc3b19e2b",
+                "resourcePath": "scripts\\import_smf\\import_smf.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "01187694-4179-4bba-8d32-9cc6302150f1",
             "Value": {
                 "id": "b4c87f7b-014b-43e4-95fb-ea001cfbcc3b",
@@ -1292,6 +1300,14 @@
                 "id": "bbad1c4b-ea2b-4072-b634-8c52ae510fe1",
                 "resourcePath": "scripts\\omu_entity_autonomous_movement\\omu_entity_autonomous_movement.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "182b596f-0bd1-4281-bc8f-e597a3c7e82e",
+            "Value": {
+                "id": "eb44a960-ae06-4f2e-96c2-47ac16959969",
+                "resourcePath": "notes\\smf changes.yy",
+                "resourceType": "GMNotes"
             }
         },
         {
@@ -14607,6 +14623,7 @@
         "cd56789a-f283-426f-9073-df9733a81253",
         "a13e6f93-d36b-43b5-91a8-dd5e11f4573e",
         "9026b3d4-6e7b-477f-a593-dcc517725bf2",
+        "011034bf-db78-40b3-b64a-d0199b3f03f8",
         "025e7494-68e7-4a58-a082-1d288d3ba4dc",
         "7874d997-3bb4-42ea-9d83-08436e7011ad",
         "e9c50412-ecb6-4bfa-a617-66e7d1c75859",

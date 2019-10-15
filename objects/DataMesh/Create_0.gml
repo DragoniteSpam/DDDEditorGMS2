@@ -1,6 +1,7 @@
 event_inherited();
 
 file_location = DataFileLocations.ASSET;
+type = MeshTypes.RAW;
 
 /* s */ buffer = noone;
 vbuffer = noone;
@@ -19,3 +20,8 @@ cshape = noone;
 /* s */ tags = 0;
 
 ds_list_add(Stuff.all_meshes, id);
+
+enum MeshTypes {
+    RAW,
+    SMF
+}

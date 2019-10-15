@@ -39,6 +39,7 @@ var maxx = 0;
 var maxy = 0;
 var maxz = 0;
 
+#region big fat loop
 while (!file_text_eof(f)) {
     type = file_text_read_real(f);
     
@@ -176,6 +177,7 @@ while (!file_text_eof(f)) {
 		}
     }
 }
+#endregion
 
 vertex_end(vbuffer);
 
