@@ -41,7 +41,7 @@ if (n == 0) {
             draw_rectangle_colour(x1, ya, x2, yb, c, c, c, c, false);
         }
         
-        var c = (list.colorize && ds_list_size(list.entry_colors) > i) ? list.entry_colors[| index] : c_black;
+        var c = (list.colorize && ds_list_size(list.entry_colors) > i) ? script_execute(list.render_colors, list, i) : c_black;
         var text = list.numbered ? string(index) + ". " : "";
         
         switch (list.entries_are) {
