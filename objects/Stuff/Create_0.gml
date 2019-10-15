@@ -142,6 +142,8 @@ if (!directory_exists(PATH_PROJECTS)) {
 // dummy list that will always exist and be empty
 empty_list = ds_list_create();
 
+smf_init();
+
 #endregion
 
 alarm[0] = 1200;

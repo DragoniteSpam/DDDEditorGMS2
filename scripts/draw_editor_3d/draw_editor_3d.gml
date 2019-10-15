@@ -120,3 +120,10 @@ if (Stuff.game_starting_map == Stuff.active_map.GUID) {
 }
 
 transform_reset();
+
+matrix_set(matrix_world, matrix_build(512, 512, 0, 0, 0, 0, 4, 4, 4));
+smf_model_draw(smf_test_model);
+matrix_set(matrix_world, matrix_build(512 + 128, 512, 0, 0, 0, 270, 4, 4, 4));
+var sample = smf_sample_create(smf_test_animation, 0, 0, current_time / 1000);
+smf_model_draw(smf_test_animation, sample);
+matrix_set(matrix_world, SMF_MATIDENTITY);
