@@ -10,6 +10,7 @@ Stuff.active_map.contents.population[ETypes.ENTITY_MESH]++;
 
 // GUID
 mesh = 0;
+animated = false;
 
 // other properties - inherited
 

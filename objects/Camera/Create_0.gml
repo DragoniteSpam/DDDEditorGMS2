@@ -36,11 +36,11 @@ anim_pitch = ini_read_real("Camera", "apitch", 0);
 anim_direction = ini_read_real("Camera", "adirection", 0);
 
 alarm[ALARM_CAMERA_SAVE] = room_speed * CAMERA_SAVE_FREQUENCY;
-
+/*
 smf_test_model = smf_model_load(get_open_filename("", "smf"));
 smf_test_model = smf_test_model[1];
 smf_test_animation = smf_model_load(get_open_filename("", "smf"));
-smf_test_animation = smf_test_animation[1];
+smf_test_animation = smf_test_animation[1];*/
 smf_light_add_direction(smf_vector_normalize([-1, -1, -1]), c_white, 1);
 
 /*
