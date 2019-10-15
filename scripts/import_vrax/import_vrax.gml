@@ -10,7 +10,7 @@ var grid_size = ds_map_exists(data, "grid_size") ? data[? "grid_size"] : 0;
 
 ds_map_destroy(data);
 
-var n = buffer_read(buffer, T);
+var n = buffer_read(buffer, buffer_f32);
 
 repeat (n) {
     var mesh_name = buffer_read_string(buffer);

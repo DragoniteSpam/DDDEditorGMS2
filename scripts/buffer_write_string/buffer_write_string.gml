@@ -8,7 +8,7 @@ var buffer = argument0;
 var str = argument1;
 
 for (var i = 1; i <= string_length(str); i++) {
-    buffer_write(buffer, T, ord(string_char_at(str, i)));
+    buffer_write(buffer, buffer_f32, ord(string_char_at(str, i)));
 }
 
-buffer_write(buffer, T, 0);
+buffer_write(buffer, buffer_f32, 0);

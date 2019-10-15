@@ -6,7 +6,7 @@ var data_buffer = argument0;
 var grid_size = argument1;
 var name = argument2;
 
-var n = buffer_read(data_buffer, T);
+var n = buffer_read(data_buffer, buffer_f32);
 var mesh = instance_create_depth(0, 0, 0, DataMesh);
 
 var vbuffer = vertex_create_buffer();
@@ -25,16 +25,16 @@ var zz = [0, 0, 0];
 var nx, ny, nz, xtex, ytex, color, alpha;
 
 repeat (n) {
-    xx[vc] = buffer_read(data_buffer, T);
-    yy[vc] = buffer_read(data_buffer, T);
-    zz[vc] = buffer_read(data_buffer, T);
-    nx = buffer_read(data_buffer, T);
-    ny = buffer_read(data_buffer, T);
-    nz = buffer_read(data_buffer, T);
-    xtex = buffer_read(data_buffer, T) * TILESET_TEXTURE_WIDTH;
-    ytex = buffer_read(data_buffer, T) * TILESET_TEXTURE_HEIGHT;
-    color = buffer_read(data_buffer, T);
-    alpha = buffer_read(data_buffer, T);
+    xx[vc] = buffer_read(data_buffer, buffer_f32);
+    yy[vc] = buffer_read(data_buffer, buffer_f32);
+    zz[vc] = buffer_read(data_buffer, buffer_f32);
+    nx = buffer_read(data_buffer, buffer_f32);
+    ny = buffer_read(data_buffer, buffer_f32);
+    nz = buffer_read(data_buffer, buffer_f32);
+    xtex = buffer_read(data_buffer, buffer_f32) * TILESET_TEXTURE_WIDTH;
+    ytex = buffer_read(data_buffer, buffer_f32) * TILESET_TEXTURE_HEIGHT;
+    color = buffer_read(data_buffer, buffer_f32);
+    alpha = buffer_read(data_buffer, buffer_f32);
     
     vertex_point_complete(vbuffer, xx[vc], yy[vc], zz[vc], nx, ny, nz, xtex, ytex, color, alpha);
     
@@ -55,12 +55,12 @@ repeat (n) {
 }
 
 if (grid_size > 0) {
-    mesh.xmin = buffer_read(data_buffer, T);
-    mesh.ymin = buffer_read(data_buffer, T);
-    mesh.zmin = buffer_read(data_buffer, T);
-    mesh.xmax = buffer_read(data_buffer, T);
-    mesh.ymax = buffer_read(data_buffer, T);
-    mesh.zmax = buffer_read(data_buffer, T);
+    mesh.xmin = buffer_read(data_buffer, buffer_f32);
+    mesh.ymin = buffer_read(data_buffer, buffer_f32);
+    mesh.zmin = buffer_read(data_buffer, buffer_f32);
+    mesh.xmax = buffer_read(data_buffer, buffer_f32);
+    mesh.ymax = buffer_read(data_buffer, buffer_f32);
+    mesh.zmax = buffer_read(data_buffer, buffer_f32);
 }
 
 vertex_end(vbuffer);

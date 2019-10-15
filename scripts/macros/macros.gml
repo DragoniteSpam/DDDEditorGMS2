@@ -42,7 +42,6 @@
 #macro SERIALIZE_DATA 1
 #macro SERIALIZE_DATA_AND_MAP 3
 #macro SERIALIZE_MAP 0
-#macro T buffer_f32
 #macro TEXTURE_SIZE 4096
 #macro TILE_DEPTH Stuff.tile_depth
 #macro TILE_HEIGHT Stuff.tile_height

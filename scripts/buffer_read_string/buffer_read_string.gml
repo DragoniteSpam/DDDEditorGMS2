@@ -7,7 +7,7 @@ var char;
 var str = "";
 
 do {
-    char = buffer_read(buffer, T);
+    char = buffer_read(buffer, buffer_f32);
     str = str + chr(char);
 } until (char == 0);
 

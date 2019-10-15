@@ -20,13 +20,20 @@ var el_author_2 = create_text(32, 128, "    Github: https://github.com/Dragonite
 var el_author_3 = create_text(32, 144, "    YouTube: https://www.youtube.com/c/DragoniteSpam", ew, eh, fa_left, dw - 32, dg);
 var el_ex = create_text(16, 176, "Some extensions were used", ew, eh, fa_left, dw - 32, dg);
 var el_ex_venomous = create_text(16, 192, "    3D collisions (mostly raycasting): Venomous Bullet implementation", ew, eh, fa_left, dw - 32, dg);
-var el_ex_regex = create_text(16, 208, "    There's a really great regex extension but it appears to have been taken down", ew, eh, fa_left, dw - 32, dg);
-var el_ex_fmod = create_text(16, 224, "    FMODGMS by quadolorgames: https://quadolorgames.itch.io/fmodgms", ew, eh, fa_left, dw - 32, dg);
+var el_ex_venomous_url = create_text(16, 208, "        http://gmc.yoyogames.com/index.php?showtopic=632606", ew, eh, fa_left, dw - 32, dg);
+var el_ex_regex = create_text(16, 224, "    There's a really great regex extension by Upset Baby Games", ew, eh, fa_left, dw - 32, dg);
+var el_ex_regex_url = create_text(16, 240, "        but it appears to have been delisted", ew, eh, fa_left, dw - 32, dg);
+var el_ex_fmod = create_text(16, 256, "    FMODGMS by quadolorgames:", ew, eh, fa_left, dw - 32, dg);
+var el_ex_fmod_url = create_text(16, 272, "        https://quadolorgames.itch.io/fmodgms", ew, eh, fa_left, dw - 32, dg);
+var el_ex_smf = create_text(16, 288, "    Snidr's Model Format by himself:", ew, eh, fa_left, dw - 32, dg);
+var el_ex_smf_url = create_text(16, 304, "        https://marketplace.yoyogames.com/assets/5256/smf-3d-skeletal-animation", ew, eh, fa_left, dw - 32, dg);
 
 var b_width = 128;
 var b_height = 32;
 var el_close = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Thanks I guess", b_width, b_height, fa_center, dmu_dialog_commit, dg);
 
-ds_list_add(dg.contents, el_text, el_author, el_author_1, el_author_2, el_author_3, el_ex, el_ex_venomous, el_ex_regex, el_ex_fmod, el_close);
+ds_list_add(dg.contents, el_text, el_author, el_author_1, el_author_2, el_author_3,
+    el_ex, el_ex_venomous, el_ex_venomous_url, el_ex_regex, el_ex_regex_url, el_ex_fmod, el_ex_fmod_url, el_ex_smf, el_ex_smf_url,
+    el_close);
 
 return dg;

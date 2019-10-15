@@ -24,18 +24,18 @@ while (buffer_tell(data.buffer) < buffer_get_size(data.buffer)) {
     // script arguments are parsed backwards and i don't think there's a way to
     // turn that off, and in any case it's a better idea to just fetch the
     // values first and *then* pass them all to the script. it's quite annoying.
-    var npx = buffer_read(data.buffer, T);
-    var npy = buffer_read(data.buffer, T);
-    var npz = buffer_read(data.buffer, T);
+    var npx = buffer_read(data.buffer, buffer_f32);
+    var npy = buffer_read(data.buffer, buffer_f32);
+    var npz = buffer_read(data.buffer, buffer_f32);
     var transformed = transform_entity_point(mesh, npx, npy, npz);
     px[vc] = transformed[vec3.xx];
     py[vc] = transformed[vec3.yy];
     pz[vc] = transformed[vec3.zz];
-    nx = buffer_read(data.buffer, T);
-    ny = buffer_read(data.buffer, T);
-    nz = buffer_read(data.buffer, T);
-    xtex = buffer_read(data.buffer, T);
-    ytex = buffer_read(data.buffer, T);
+    nx = buffer_read(data.buffer, buffer_f32);
+    ny = buffer_read(data.buffer, buffer_f32);
+    nz = buffer_read(data.buffer, buffer_f32);
+    xtex = buffer_read(data.buffer, buffer_f32);
+    ytex = buffer_read(data.buffer, buffer_f32);
     color = buffer_read(data.buffer, buffer_u32);
     extra = buffer_read(data.buffer, buffer_u32);
     
