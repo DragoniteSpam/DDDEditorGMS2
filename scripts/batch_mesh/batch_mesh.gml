@@ -6,6 +6,11 @@ var buffer = argument0;
 var wire = argument1;
 var mesh = argument2;
 
+switch (mesh.type) {
+    case MeshTypes.RAW: break;
+    case MeshTypes.SMF: return [buffer, wire];
+}
+
 var xx = mesh.xx * TILE_WIDTH;
 var yy = mesh.yy * TILE_HEIGHT;
 var zz = mesh.zz * TILE_DEPTH;

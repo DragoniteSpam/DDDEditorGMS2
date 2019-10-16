@@ -569,6 +569,17 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     #endregion
     
+    #region tab: entity-mesh
+    
+    yy = legal_y + spacing;
+    
+    element_entity_mesh_animated = create_checkbox(legal_x + spacing, yy, "Animated:", col_width, element_height, uivc_entity_mesh_animated, "", false, t_p_mesh);
+    ds_list_add(t_p_pawn.contents, element_entity_mesh_animated);
+    
+    yy = yy + element_entity_mesh_animated.height + spacing;
+    
+    #endregion
+    
     #region tab: entity-pawn
     
     yy = legal_y + spacing;

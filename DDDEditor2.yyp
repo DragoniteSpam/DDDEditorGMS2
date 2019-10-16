@@ -991,6 +991,14 @@
             }
         },
         {
+            "Key": "11c05109-0444-4b59-8190-7f35b59284a8",
+            "Value": {
+                "id": "0d958b8a-14fd-4dff-8e96-3e217b3e10d4",
+                "resourcePath": "views\\11c05109-0444-4b59-8190-7f35b59284a8.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "11ee69f8-32c3-4af5-a819-5a9be659bf55",
             "Value": {
                 "id": "46b25598-e3a2-46b5-a80e-3a2c35a40953",
@@ -6199,6 +6207,14 @@
             }
         },
         {
+            "Key": "75a5fec3-1002-4533-940c-f2a25fca9722",
+            "Value": {
+                "id": "28a3f241-b263-403e-9bf7-96a35207bec3",
+                "resourcePath": "scripts\\uivc_entity_mesh_animated\\uivc_entity_mesh_animated.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "75c2f1f4-1099-4906-a686-49a8b91603b7",
             "Value": {
                 "id": "7f94244b-d3e0-4d7a-83ae-a19debebce6e",
@@ -6315,6 +6331,14 @@
             "Value": {
                 "id": "f375908d-85df-409e-bc25-1cab72faba72",
                 "resourcePath": "scripts\\serialize_save_map_contents_meta\\serialize_save_map_contents_meta.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "772052e5-03b5-4ccb-a03e-90ec6c3b735b",
+            "Value": {
+                "id": "37ccef5f-60ef-4de2-b6d6-785d1ec865c2",
+                "resourcePath": "scripts\\selection_all_mesh\\selection_all_mesh.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -13809,6 +13833,7 @@
         "aff645c1-ff62-4a29-8d66-fa9a02896b38",
         "d88f69f4-4e91-47f3-bfd5-f7a19764568c",
         "3e5a7097-5818-4b55-afcc-6d71ee1833c6",
+        "772052e5-03b5-4ccb-a03e-90ec6c3b735b",
         "6d08b675-dc55-4cbc-a9df-efd4e9e7e0a4",
         "1bfbc1cf-3ca2-4798-88b1-718e6007232c",
         "ee2e95e9-41a1-4f77-a28c-131addccdc81",
@@ -14144,6 +14169,7 @@
         "d8f3a396-1c81-4c03-a661-1f05756107da",
         "5691eae2-f00c-4cc2-ac52-8adce4e87b25",
         "b19f02e8-8b5e-45b3-842e-6fc5a52df295",
+        "75a5fec3-1002-4533-940c-f2a25fca9722",
         "3e051823-5ef9-4923-bb43-20dd4710b10f",
         "8ce47a97-7e64-4509-aa7c-e5615e5a15ac",
         "f1b48acb-f86f-4f6d-801a-02488a8cc4a7",

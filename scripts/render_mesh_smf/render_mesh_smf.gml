@@ -21,13 +21,11 @@ if (Camera.view_entities) {
 
 transform_reset();
 
-Some obvious things to do next:
+/*Some obvious things to do next:
  - Lights can be added
     o as such, the terrain and NPCs and normally drawn stuff should have the smf light code reflectd (lol)
         in their shader, and they should be able to use the smf lights, so that it looks consistent
  - SMF meshes still can't be saved properly; be sure to save both the buffer (which is just a buffer),
     the type (which is probably a u8 and should be saved before everything else so the program knows what
     it needs to load) and the animation parameter - there will probably be more of these in the future,
-    but the boolean is fine for now
- - Animation checkbox in the EntityMesh tab - it won't do anything for raw meshes, but will for animated
-    smf meshes
+    but the boolean is fine for now*/

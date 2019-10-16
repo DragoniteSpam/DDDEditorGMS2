@@ -38,6 +38,11 @@ if (ds_list_size(list) == 0) {
     Camera.ui.element_entity_scale_y.interactive = false;
     Camera.ui.element_entity_scale_z.interactive = false;
     
+    // entity-mesh
+    
+    Camera.ui.element_entity_mesh_animated.value = false;
+    Camera.ui.element_entity_mesh_animated.interactive = false;
+    
     // entity-pawn
     
     Camera.ui.element_entity_pawn_frame.value = "0";
@@ -117,14 +122,10 @@ if (ds_list_size(list) == 0) {
         Camera.ui.element_entity_pawn_frame.interactive = true;
         Camera.ui.element_entity_pawn_direction.interactive = true;
         Camera.ui.element_entity_pawn_animating.interactive = true;
-    } else {
-        Camera.ui.element_entity_pawn_frame.value = "0";
-        Camera.ui.element_entity_pawn_direction.value = 0;
-        Camera.ui.element_entity_pawn_animating.value = 0;
+    } else if (selection_all_mesh()) {
+        Camera.ui.element_entity_mesh_animated.value = 2;
         
-        Camera.ui.element_entity_pawn_frame.interactive = false;
-        Camera.ui.element_entity_pawn_direction.interactive = false;
-        Camera.ui.element_entity_pawn_animating.interactive = false;
+        Camera.ui.element_entity_mesh_animated.interactive = false;
     }
 }
 
