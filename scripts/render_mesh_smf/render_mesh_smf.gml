@@ -8,7 +8,7 @@ transform_add(0, 0, 0, 0, 0, 0, entity.scale_xx, entity.scale_yy, entity.scale_z
 transform_add((entity.xx + entity.off_xx) * TILE_WIDTH, (entity.yy + entity.off_yy) * TILE_HEIGHT, (entity.zz + entity.off_zz) * TILE_DEPTH, 0, 0, 0, 1, 1, 1);
 
 if (Camera.view_entities) {
-    if (entity.animated || true) {
+    if (entity.animated) {
         var animation_index = 0;
         var animation_type = 0;
         var sample = smf_sample_create(mesh.vbuffer, animation_index, animation_type, current_time / 1000);
