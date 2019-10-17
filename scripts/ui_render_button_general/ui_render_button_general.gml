@@ -35,6 +35,7 @@ if (enabled) {
     if (inbounds) {
         draw_rectangle_colour(x1, y1, x2, y2, c_ui, c_ui, c_ui, c_ui, false);
         if (Controller.release_left) {
+            Controller.release_left = false;
             script_execute(onmouseup, thing);
         }
     }
