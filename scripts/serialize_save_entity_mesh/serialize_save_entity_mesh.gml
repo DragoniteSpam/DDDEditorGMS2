@@ -8,4 +8,9 @@ serialize_save_entity(buffer, entity);
 
 buffer_write(buffer, buffer_datatype, entity.mesh);
 
-// no bools
+var bools = pack(entity.animated);
+
+buffer_write(buffer, buffer_u32, bools);
+
+buffer_write(buffer, buffer_u32, entity.animation_index);
+buffer_write(buffer, buffer_u8, entity.animation_type);

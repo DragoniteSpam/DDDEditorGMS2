@@ -14,4 +14,12 @@ if (entity.mesh == 0) {
     not_yet_implemented();
 }
 
+if (version >= DataVersions.SMF_MESH_ANIMATIONS) {
+    var bools = buffer_read(buffer, buffer_u32);
+
+    entity.animated = unpack(bools, 0);
+    entity.animation_index = buffer_read(buffer, buffer_u32);
+    entity.animation_type = buffer_read(buffer, buffer_u8);
+}
+
 entity_init_collision_mesh(entity);

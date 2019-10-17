@@ -21,6 +21,8 @@ if (smf != undefined) {
 	mesh.vbuffer = smf[1];
     
     mesh.type = MeshTypes.SMF;
+    
+    data_smf_optimize_mesh(mesh);
 	
 	return mesh;
 }

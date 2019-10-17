@@ -81,5 +81,6 @@ enum DataVersions {
     MAP_BATCH_DATA              = 50,
     MAP_BATCH_SOLIDNESS_DATA    = 51,
     SMF_MESH_TYPE               = 52,
+    SMF_MESH_ANIMATIONS         = 53,
     _CURRENT                 /* = whatever the last one is + 1 */
 }

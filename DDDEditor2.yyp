@@ -7999,6 +7999,14 @@
             }
         },
         {
+            "Key": "95462ff4-4366-445e-8e38-518a1442ffae",
+            "Value": {
+                "id": "4b83d395-9cc1-452b-9a3c-6e1d30508d89",
+                "resourcePath": "scripts\\data_smf_optimize_mesh\\data_smf_optimize_mesh.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "9575cbd6-6bb5-462a-8131-22219bf20317",
             "Value": {
                 "id": "991904d5-d453-44e5-a430-0ac97ae70d16",
@@ -14690,6 +14698,7 @@
         "e9c50412-ecb6-4bfa-a617-66e7d1c75859",
         "af1e57cd-c701-4655-baa3-e5ca28c70e99",
         "75fdb47b-99b6-4312-a3c3-207f72372850",
+        "95462ff4-4366-445e-8e38-518a1442ffae",
         "4ef4d916-562d-4362-b777-697ab3236fa1",
         "d8ad5fef-aec7-44ad-84b6-786151956008",
         "88a72ab1-34ee-4030-b06d-0468751727de",
