@@ -9,8 +9,8 @@ transform_add((entity.xx + entity.off_xx) * TILE_WIDTH, (entity.yy + entity.off_
 
 if (Camera.view_entities) {
     if (entity.animated) {
-        var animation_index = 0;
-        var animation_type = 0;
+        var animation_index = entity.animation_index;
+        var animation_type = entity.animation_type;
         var sample = smf_sample_create(mesh.vbuffer, animation_index, animation_type, current_time / 1000);
         smf_model_draw(mesh.vbuffer, sample);
     } else {

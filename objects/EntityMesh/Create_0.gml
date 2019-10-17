@@ -11,6 +11,8 @@ Stuff.active_map.contents.population[ETypes.ENTITY_MESH]++;
 // GUID
 mesh = 0;
 animated = false;
+animation_index = 0;
+animation_type = SMF_loop_linear;
 
 // other properties - inherited
 
