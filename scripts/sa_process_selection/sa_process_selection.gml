@@ -114,8 +114,8 @@ if (ds_list_size(list) == 0) {
     Camera.ui.element_entity_scale_y.value  = "";
     Camera.ui.element_entity_scale_z.value  = "";
     
-    // @todo You can calculate the type that all of these entities are
-    // once and save the result
+    /*@todo You can calculate the type that all of these entities are
+    once and save the result*/
     if (selection_all_pawn()) {
         Camera.ui.element_entity_pawn_frame.value = "0";
         Camera.ui.element_entity_pawn_direction.value = 0;

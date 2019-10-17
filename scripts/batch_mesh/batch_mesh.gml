@@ -6,7 +6,9 @@ var buffer = argument0;
 var wire = argument1;
 var mesh = argument2;
 
-switch (mesh.type) {
+var data = guid_get(mesh.mesh); // lol
+
+switch (data.type) {
     case MeshTypes.RAW: break;
     case MeshTypes.SMF: return [buffer, wire];
 }
@@ -15,7 +17,6 @@ var xx = mesh.xx * TILE_WIDTH;
 var yy = mesh.yy * TILE_HEIGHT;
 var zz = mesh.zz * TILE_DEPTH;
 
-var data = guid_get(mesh.mesh); // lol
 buffer_seek(data.buffer, buffer_seek_start, 0);
 
 var vc = 0;
