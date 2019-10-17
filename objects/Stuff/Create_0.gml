@@ -177,29 +177,20 @@ tile_size = 32;
 
 dimensions = Dimensions.THREED;
 
-if (file_exists(PATH_PERMANENT + "b_chr_default.png")) {
-    spr_character_default = sprite_add(PATH_PERMANENT + "b_chr_default.png", 0, false, false, 0, 0);
-} else {
-    spr_character_default = sprite_add(PATH_DUMMY + "b_chr_dummy.png", 0, false, false, 0, 0);
-}
+spr_character_default = file_exists(PATH_PERMANENT + "b_chr_default.png") ? sprite_add(PATH_PERMANENT + "b_chr_default.png", 0, false, false, 0, 0) : sprite_add(PATH_DUMMY + "b_chr_dummy.png", 0, false, false, 0, 0);
 
 // this sounds like a reasonable limit, it's not based on anything though
 available_autotiles = array_create(AUTOTILE_AVAILABLE_MAX);
 array_clear(available_autotiles, noone);
 
-if (file_exists(PATH_PERMANENT + "b_at_default_grass_0.png")) {
-    var spr = sprite_add(PATH_PERMANENT + "b_at_default_grass_0.png", 0, false, false, 0, 0);
-} else {
-    var spr = sprite_add(PATH_DUMMY + "b_at_dummy_grass.png", 0, false, false, 0, 0);
-}
+var spr = file_exists(PATH_PERMANENT + "b_at_default_grass_0.png") ? sprite_add(PATH_PERMANENT + "b_at_default_grass_0.png", 0, false, false, 0, 0) : sprite_add(PATH_DUMMY + "b_at_dummy_grass.png", 0, false, false, 0, 0);
 available_autotiles[0] = [spr, "<default>", false, "", 1, 3];
 
 all_tilesets = ds_list_create();
-if (file_exists(PATH_PERMANENT + "b_tileset_overworld_0.png")) {
-    var filename = PATH_PERMANENT + "b_tileset_overworld_0.png";
-} else {
-    var filename = PATH_DUMMY + "b_tileset_dummy_overworld.png";
-}
+all_graphic_overworlds = ds_list_create();
+all_graphic_battlers = ds_list_create();
+all_graphic_particles = ds_list_create();
+all_graphic_ui = ds_list_create();
 
 #region autotile map
 autotile_map = ds_map_create();
@@ -255,6 +246,7 @@ autotile_map[? 254] = 45;
 autotile_map[? 255] = 46;
 autotile_map[? 0] = 47;
 #endregion
+var filename = file_exists(PATH_PERMANENT + "b_tileset_overworld_0.png") ? PATH_PERMANENT + "b_tileset_overworld_0.png" : PATH_DUMMY + "b_tileset_dummy_overworld.png";
 
 ds_list_add(all_tilesets, tileset_create(filename,
     // this is somewhat hard-coded;
