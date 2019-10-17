@@ -3,8 +3,6 @@ event_inherited();
 file_location = DataFileLocations.ASSET;
 type = MeshTypes.RAW;
 
-animations = ds_map_create();           // this should map an animation name onto an index
-
 /* s */ buffer = noone;
 vbuffer = noone;
 wbuffer = noone;
