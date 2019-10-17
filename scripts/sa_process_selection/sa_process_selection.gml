@@ -114,20 +114,31 @@ if (ds_list_size(list) == 0) {
     Camera.ui.element_entity_scale_y.value  = "";
     Camera.ui.element_entity_scale_z.value  = "";
     
-    /*@todo You can calculate the type that all of these entities are
-    once and save the result*/
-    if (selection_all_pawn()) {
-        Camera.ui.element_entity_pawn_frame.value = "0";
-        Camera.ui.element_entity_pawn_direction.value = 0;
-        Camera.ui.element_entity_pawn_animating.value = 2;
-        
-        Camera.ui.element_entity_pawn_frame.interactive = true;
-        Camera.ui.element_entity_pawn_direction.interactive = true;
-        Camera.ui.element_entity_pawn_animating.interactive = true;
-    } else if (selection_all_mesh()) {
-        Camera.ui.element_entity_mesh_animated.value = 2;
-        
-        Camera.ui.element_entity_mesh_animated.interactive = true;
+    var type = selection_all_type();
+    
+    switch (type) {
+        case EntityAutoTile:
+            // fallthrough
+        case EntityTile:
+            break;
+        case EntityMeshTerrain:
+            // fallthrough
+        case EntityMesh:
+            Camera.ui.element_entity_mesh_animated.value = 2;
+            
+            Camera.ui.element_entity_mesh_animated.interactive = true;
+            break;
+        case EntityPawn:
+            Camera.ui.element_entity_pawn_frame.value = "0";
+            Camera.ui.element_entity_pawn_direction.value = 0;
+            Camera.ui.element_entity_pawn_animating.value = 2;
+            
+            Camera.ui.element_entity_pawn_frame.interactive = true;
+            Camera.ui.element_entity_pawn_direction.interactive = true;
+            Camera.ui.element_entity_pawn_animating.interactive = true;
+            break;
+        case EntityEffect:
+            break;
     }
 }
 

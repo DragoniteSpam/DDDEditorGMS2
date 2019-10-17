@@ -584,7 +584,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = legal_y + spacing;
     
-    element_entity_pawn_frame = create_input(legal_x + spacing, yy, "Editor frame:", col_width, element_height, uivc_entity_pawn_editor_frame, "", 0, "0...3", validate_int, ui_value_real, 0, 3, 1, vx1, vy1, vx2, vy2, t_p_pawn);
+    element_entity_pawn_frame = create_input(legal_x + spacing, yy, "Frame:", col_width, element_height, uivc_entity_pawn_editor_frame, "", 0, "0...3", validate_int, ui_value_real, 0, 3, 1, vx1, vy1, vx2, vy2, t_p_pawn);
     ds_list_add(t_p_pawn.contents, element_entity_pawn_frame);
     
     yy = yy + element_entity_pawn_frame.height + spacing;
