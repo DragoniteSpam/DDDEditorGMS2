@@ -1,7 +1,7 @@
 /// @param UIRadioArray
 
 var radio = argument0;
-var offset = 0;
+var offset = 12;
 var value = radio.value + offset;
 
 var base_dialog = radio.root.root.root.root;
@@ -12,4 +12,4 @@ property[@ 1] = value;
 
 uivc_list_event_custom_property(base_dialog.el_list);
 
-radio.root.root.el_list_2.value = -1;
+radio.root.root.el_list_1.value = -1;
