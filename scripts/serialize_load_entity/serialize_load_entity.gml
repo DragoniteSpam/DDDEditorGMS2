@@ -80,6 +80,3 @@ while (ds_list_size(entity.switches) < BASE_SELF_VARIABLES) {
 while (ds_list_size(entity.variables) < BASE_SELF_VARIABLES) {
     ds_list_add(entity.variables, 0);
 }
-
-// this should not be instantiated on its own and does not
-// get collision information

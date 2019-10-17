@@ -29,8 +29,13 @@ if (!cell[@ entity.slot]) {
     ds_list_add(map.all_entities, entity);
 	
 	if (!is_temp) {
-		ds_list_add(entity.batchable ? map.batch_in_the_future : map.dynamic, entity);
-		
+        var list = entity.batchable ? map.batch_in_the_future : map.dynamic;
+        // smf meshes simply aren't allowed to be batched, or static, so exert your authority over them
+        if (instanceof(entity, EntityMesh) && guid_get(entity.mesh).type == MeshTypes.SMF) {
+            list = map.dynamic;
+        }
+        
+		ds_list_add(list, entity);
 	    entity.listed = true;
 	    ds_list_add(Camera.changes, entity);
 	}

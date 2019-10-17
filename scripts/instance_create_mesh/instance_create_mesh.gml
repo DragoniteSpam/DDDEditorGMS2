@@ -7,6 +7,14 @@ if (mesh_data) {
         name = mesh_data.name;
         mesh = mesh_data.GUID;
         
+        switch (mesh_data.type) {
+            case MeshTypes.RAW:
+                break;
+            case MeshTypes.SMF:
+                static = false;
+                break;
+        }
+        
         entity_init_collision_mesh(id);
         
         return id;
