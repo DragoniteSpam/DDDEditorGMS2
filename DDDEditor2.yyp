@@ -4767,6 +4767,14 @@
             }
         },
         {
+            "Key": "58f6b340-c4ea-427b-99b5-0386ecf6ac77",
+            "Value": {
+                "id": "cdf73ab7-944b-45e3-89ac-bcd99433c408",
+                "resourcePath": "views\\58f6b340-c4ea-427b-99b5-0386ecf6ac77.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "592176f4-c858-47ae-ba6d-be477cc58dce",
             "Value": {
                 "id": "ee065815-9b49-4009-9930-95befe8907ef",
@@ -12991,6 +12999,14 @@
             }
         },
         {
+            "Key": "edab9c32-e11d-48b1-b144-165537289ae0",
+            "Value": {
+                "id": "5ff352fe-c613-4cbc-a52e-8be4c1490ae1",
+                "resourcePath": "scripts\\graphics_add_battler\\graphics_add_battler.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "edc14103-d69e-445c-ae7a-bd3a32e276ab",
             "Value": {
                 "id": "795a91f1-f282-4b8a-8199-42761d52ee5d",
@@ -13831,6 +13847,14 @@
             }
         },
         {
+            "Key": "fd103320-5aed-45a7-a57a-e09907e387ba",
+            "Value": {
+                "id": "bf842db0-9211-4907-b8c9-6e2c91b303ad",
+                "resourcePath": "scripts\\graphics_remove_battler\\graphics_remove_battler.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "fd19019c-347c-46e3-89fc-39bcbed4af31",
             "Value": {
                 "id": "c38e1061-a247-4d39-acb5-f724dad4c462",
@@ -14281,6 +14305,8 @@
         "6e16cdf1-eb57-4011-8629-938cfc0111c7",
         "2e5dcb3f-b72d-4719-bdcd-2fccb646b7d9",
         "3786d7f9-8f5e-47f0-aa5f-4c7883bced0f",
+        "edab9c32-e11d-48b1-b144-165537289ae0",
+        "fd103320-5aed-45a7-a57a-e09907e387ba",
         "af334ca9-9e18-41e4-95dc-86fad4ff92dd",
         "247f6bc8-75c8-499d-af93-0f445669a68f",
         "a6d30fef-6445-4534-a529-edf6c041bd3a",

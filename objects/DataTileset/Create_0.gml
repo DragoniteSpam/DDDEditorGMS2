@@ -20,6 +20,8 @@ event_inherited();
  * * * * * * * * * * * * * * * * * *
  */
 
+// filename
+picture_name = "";
 // the entire image is stored here
 master = -1;
 
