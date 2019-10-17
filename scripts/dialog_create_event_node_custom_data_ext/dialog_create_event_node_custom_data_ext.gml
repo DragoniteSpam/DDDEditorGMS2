@@ -26,7 +26,10 @@ var selection = ui_list_selection(dialog.root.el_list);
 var property = dialog.root.event.types[| selection];
 
 var el_list = create_radio_array(16, yy, "All Data Types: ", ew, eh, uivc_input_event_node_custom_data_ext, property[1], dg);
-create_radio_array_options(el_list, ["Int", "Enum", "Float", "String", "Boolean", "Data", "Code", "Color", "Mesh", "Tileset", "Tile", "Autotile", "Audio (BGM)", "Audio (SE)", "Animation", "Entity", "Map"]);
+create_radio_array_options(el_list, ["Int", "Enum", "Float", "String", "Boolean", "Data", "Code", "Color", "Mesh", "Tileset",
+    "Tile", "Autotile", "Audio (BGM)", "Audio (SE)", "Animation", "Entity", "Map", "Battler sprite", "Overworld sprite", "Particle",
+    "UI image", "Misc. image"
+]);
 
 dg.el_list = el_list;
 

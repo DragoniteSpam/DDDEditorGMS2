@@ -29,7 +29,12 @@ if (ds_list_size(plist) < property.max_size) {
         case DataTypes.AUDIO_SE:
         case DataTypes.AUTOTILE:
         case DataTypes.MESH:
-        case DataTypes.TILESET:
+        case DataTypes.IMG_TILESET:
+        case DataTypes.IMG_BATTLER:
+        case DataTypes.IMG_OVERWORLD:
+        case DataTypes.IMG_PARTICLE:
+        case DataTypes.IMG_UI:
+        case DataTypes.IMG_ETC:
         case DataTypes.ANIMATION:
             // no default - this is just a null value
             ds_list_add(plist, 0);

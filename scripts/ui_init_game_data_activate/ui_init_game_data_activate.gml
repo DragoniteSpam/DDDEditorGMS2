@@ -121,8 +121,38 @@ if (selection) {
 	                    case DataTypes.TILE:
 	                        not_yet_implemented();
 	                        break;
-	                    case DataTypes.TILESET:           // list
+	                    case DataTypes.IMG_TILESET:           // list
 	                        var element = create_list(spacing, yy, property.name, "<no Tilesets>", ew, eh, 8, not_yet_implemented, false, noone);
+	                        element.key = i;
+	                        element.entries_are = ListEntries.GUIDS;
+	                        var hh = ui_get_list_height(element);
+	                        break;
+                        case DataTypes.IMG_BATTLER:           // list
+	                        var element = create_list(spacing, yy, property.name, "<no Battler sprites>", ew, eh, 8, not_yet_implemented, false, noone);
+	                        element.key = i;
+	                        element.entries_are = ListEntries.GUIDS;
+	                        var hh = ui_get_list_height(element);
+	                        break;
+                        case DataTypes.IMG_OVERWORLD:           // list
+	                        var element = create_list(spacing, yy, property.name, "<no Overworld sprites>", ew, eh, 8, not_yet_implemented, false, noone);
+	                        element.key = i;
+	                        element.entries_are = ListEntries.GUIDS;
+	                        var hh = ui_get_list_height(element);
+	                        break;
+                        case DataTypes.IMG_PARTICLE:           // list
+	                        var element = create_list(spacing, yy, property.name, "<no Particle sprites>", ew, eh, 8, not_yet_implemented, false, noone);
+	                        element.key = i;
+	                        element.entries_are = ListEntries.GUIDS;
+	                        var hh = ui_get_list_height(element);
+	                        break;
+                        case DataTypes.IMG_UI:           // list
+	                        var element = create_list(spacing, yy, property.name, "<no UI images>", ew, eh, 8, not_yet_implemented, false, noone);
+	                        element.key = i;
+	                        element.entries_are = ListEntries.GUIDS;
+	                        var hh = ui_get_list_height(element);
+	                        break;
+                        case DataTypes.IMG_ETC:           // list
+	                        var element = create_list(spacing, yy, property.name, "<no Misc images>", ew, eh, 8, not_yet_implemented, false, noone);
 	                        element.key = i;
 	                        element.entries_are = ListEntries.GUIDS;
 	                        var hh = ui_get_list_height(element);

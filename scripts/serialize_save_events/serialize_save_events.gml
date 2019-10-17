@@ -91,6 +91,12 @@ for (var i = 0; i < n_events; i++) {
                         case DataTypes.DATA:
                         case DataTypes.AUDIO_BGM:
                         case DataTypes.AUDIO_SE:
+                        case DataTypes.IMG_TILESET:
+                        case DataTypes.IMG_BATTLER:
+                        case DataTypes.IMG_OVERWORLD:
+                        case DataTypes.IMG_PARTICLE:
+                        case DataTypes.IMG_UI:
+                        case DataTypes.IMG_ETC:
                         case DataTypes.ANIMATION:
                         case DataTypes.COLOR:
                         case DataTypes.ENTITY:
@@ -98,7 +104,6 @@ for (var i = 0; i < n_events; i++) {
                         case DataTypes.MESH:
                             var save_type = buffer_u32;
                             break;
-                        case DataTypes.TILESET:
                         case DataTypes.TILE:
                         case DataTypes.AUTOTILE:
                             not_yet_implemented();

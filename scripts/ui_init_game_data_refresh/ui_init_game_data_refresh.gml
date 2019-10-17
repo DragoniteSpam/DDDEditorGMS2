@@ -141,7 +141,12 @@ for (var i = 0; i < ds_list_size(dynamic.contents); i++) {
                 // but i'm not going to because that sounds awful
                 case DataTypes.MESH:
                 case DataTypes.TILE:
-                case DataTypes.TILESET:
+                case DataTypes.IMG_TILESET:
+                case DataTypes.IMG_BATTLER:
+                case DataTypes.IMG_OVERWORLD:
+                case DataTypes.IMG_PARTICLE:
+                case DataTypes.IMG_UI:
+                case DataTypes.IMG_ETC:
                 case DataTypes.AUTOTILE:
                 case DataTypes.AUDIO_BGM:
                 case DataTypes.AUDIO_SE:

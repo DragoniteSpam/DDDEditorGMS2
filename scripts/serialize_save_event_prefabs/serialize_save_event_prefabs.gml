@@ -81,7 +81,7 @@ for (var i = 0; i < n_prefabs; i++) {
                         break;
                     case DataTypes.COLOR:
                     case DataTypes.MESH:
-                    case DataTypes.TILESET:
+                    case DataTypes.IMG_TILESET:
                     case DataTypes.TILE:
                     case DataTypes.AUTOTILE:
                         not_yet_implemented();

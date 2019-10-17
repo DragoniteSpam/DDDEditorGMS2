@@ -4,11 +4,9 @@ var dialog = argument0;
 var selection = ui_list_selection(Camera.ui_game_data.el_instances);
 
 // this is honestly easier than disabling/enabling interface elements when stuff is deselected
-if (selection < 0) {
+if (!(selection + 1)) {
     return noone;
 }
-
-// only create the dialog if something's selected
 
 var dw = 320;
 var dh = 64;
@@ -48,7 +46,12 @@ switch (property.type) {
     case DataTypes.AUDIO_SE:
     case DataTypes.AUTOTILE:
     case DataTypes.MESH:
-    case DataTypes.TILESET:
+    case DataTypes.IMG_TILESET:
+    case DataTypes.IMG_BATTLER:
+    case DataTypes.IMG_OVERWORLD:
+    case DataTypes.IMG_PARTICLE:
+    case DataTypes.IMG_UI:
+    case DataTypes.IMG_ETC:
         el_list.entries_are = ListEntries.GUIDS;
         break;
     case DataTypes.TILE:
@@ -172,9 +175,49 @@ switch (property.type) {
         el_value.key = dialog.key;
         yy = yy + ui_get_list_height(el_value) + spacing;
         break;
-    case DataTypes.TILESET:
+    case DataTypes.IMG_TILESET:
         not_yet_implemented();
         var el_value = create_list(16, yy, "Select a Tileset resource:", "<no Tilesets>", ew, eh, 8, uivc_data_property_list_guid, false, dg);
+        el_value.entries_are = ListEntries.GUIDS;
+        dg.el_list_main = el_list;
+        el_value.key = dialog.key;
+        yy = yy + ui_get_list_height(el_value) + spacing;
+        break;
+    case DataTypes.IMG_BATTLER:
+        not_yet_implemented();
+        var el_value = create_list(16, yy, "Select a Battler sprite:", "<no Battlers>", ew, eh, 8, uivc_data_property_list_guid, false, dg);
+        el_value.entries_are = ListEntries.GUIDS;
+        dg.el_list_main = el_list;
+        el_value.key = dialog.key;
+        yy = yy + ui_get_list_height(el_value) + spacing;
+        break;
+    case DataTypes.IMG_OVERWORLD:
+        not_yet_implemented();
+        var el_value = create_list(16, yy, "Select am Overworld sprite:", "<no Overworlds>", ew, eh, 8, uivc_data_property_list_guid, false, dg);
+        el_value.entries_are = ListEntries.GUIDS;
+        dg.el_list_main = el_list;
+        el_value.key = dialog.key;
+        yy = yy + ui_get_list_height(el_value) + spacing;
+        break;
+    case DataTypes.IMG_PARTICLE:
+        not_yet_implemented();
+        var el_value = create_list(16, yy, "Select a Particle sprite:", "<no Particles>", ew, eh, 8, uivc_data_property_list_guid, false, dg);
+        el_value.entries_are = ListEntries.GUIDS;
+        dg.el_list_main = el_list;
+        el_value.key = dialog.key;
+        yy = yy + ui_get_list_height(el_value) + spacing;
+        break;
+    case DataTypes.IMG_UI:
+        not_yet_implemented();
+        var el_value = create_list(16, yy, "Select a UI images:", "<no UI images>", ew, eh, 8, uivc_data_property_list_guid, false, dg);
+        el_value.entries_are = ListEntries.GUIDS;
+        dg.el_list_main = el_list;
+        el_value.key = dialog.key;
+        yy = yy + ui_get_list_height(el_value) + spacing;
+        break;
+    case DataTypes.IMG_ETC:
+        not_yet_implemented();
+        var el_value = create_list(16, yy, "Select a misc. image:", "<no misc. images>", ew, eh, 8, uivc_data_property_list_guid, false, dg);
         el_value.entries_are = ListEntries.GUIDS;
         dg.el_list_main = el_list;
         el_value.key = dialog.key;

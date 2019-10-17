@@ -345,7 +345,12 @@ switch (node.type) {
                 case DataTypes.COLOR:
                 case DataTypes.MESH:
                 case DataTypes.TILE:
-                case DataTypes.TILESET:
+                case DataTypes.IMG_TILESET:
+                case DataTypes.IMG_BATTLER:
+                case DataTypes.IMG_OVERWORLD:
+                case DataTypes.IMG_PARTICLE:
+                case DataTypes.IMG_UI:
+                case DataTypes.IMG_ETC:
                 case DataTypes.AUTOTILE:
                 case DataTypes.ENTITY:
                 case DataTypes.MAP:
@@ -394,7 +399,12 @@ switch (node.type) {
                     case DataTypes.COLOR:
                     case DataTypes.MESH:
                     case DataTypes.TILE:
-                    case DataTypes.TILESET:
+                    case DataTypes.IMG_TILESET:
+                    case DataTypes.IMG_BATTLER:
+                    case DataTypes.IMG_OVERWORLD:
+                    case DataTypes.IMG_PARTICLE:
+                    case DataTypes.IMG_UI:
+                    case DataTypes.IMG_ETC:
                     case DataTypes.AUTOTILE:
                     case DataTypes.ENTITY:
                     case DataTypes.MAP:
@@ -459,7 +469,12 @@ switch (node.type) {
                                     // @todo data types
                                     case DataTypes.MESH:
                                     case DataTypes.TILE:
-                                    case DataTypes.TILESET:
+                                    case DataTypes.IMG_TILESET:
+                                    case DataTypes.IMG_BATTLER:
+                                    case DataTypes.IMG_OVERWORLD:
+                                    case DataTypes.IMG_PARTICLE:
+                                    case DataTypes.IMG_UI:
+                                    case DataTypes.IMG_ETC:
                                     case DataTypes.AUTOTILE:
 										not_yet_implemented();
                                     case DataTypes.ENTITY:
@@ -543,8 +558,28 @@ switch (node.type) {
                             message = message + "(tile): ";
                             output_string = "TBD";
                             break;
-                        case DataTypes.TILESET:
+                        case DataTypes.IMG_TILESET:
                             message = message + "(tileset): ";
+                            output_string = "TBD";
+                            break;
+                        case DataTypes.IMG_BATTLER:
+                            message = message + "(battler): ";
+                            output_string = "TBD";
+                            break;
+                        case DataTypes.IMG_OVERWORLD:
+                            message = message + "(overworld): ";
+                            output_string = "TBD";
+                            break;
+                        case DataTypes.IMG_PARTICLE:
+                            message = message + "(particle): ";
+                            output_string = "TBD";
+                            break;
+                        case DataTypes.IMG_UI:
+                            message = message + "(UI): ";
+                            output_string = "TBD";
+                            break;
+                        case DataTypes.IMG_ETC:
+                            message = message + "(misc): ";
                             output_string = "TBD";
                             break;
                         case DataTypes.AUTOTILE:

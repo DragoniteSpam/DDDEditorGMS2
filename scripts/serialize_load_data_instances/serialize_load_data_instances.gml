@@ -30,7 +30,12 @@ for (var i = 0; i < n_datadata; i++) {
                     case DataTypes.ENUM:
                     case DataTypes.DATA:
                     case DataTypes.MESH:
-                    case DataTypes.TILESET:
+                    case DataTypes.IMG_TILESET:
+                    case DataTypes.IMG_BATTLER:
+                    case DataTypes.IMG_OVERWORLD:
+                    case DataTypes.IMG_PARTICLE:
+                    case DataTypes.IMG_UI:
+                    case DataTypes.IMG_ETC:
                     case DataTypes.AUTOTILE:
                     case DataTypes.AUDIO_BGM:
                     case DataTypes.AUDIO_SE:

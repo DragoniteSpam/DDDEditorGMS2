@@ -113,7 +113,12 @@ if (Stuff.active_event) {
                             case DataTypes.COLOR: var type_name = "color"; break;
                             case DataTypes.MESH: var type_name = "mesh"; break;
                             case DataTypes.TILE: var type_name = "tile"; break;
-                            case DataTypes.TILESET: var type_name = "tileset"; break;
+                            case DataTypes.IMG_TILESET: var type_name = "tileset"; break;
+                            case DataTypes.IMG_BATTLER: var type_name = "battler"; break;
+                            case DataTypes.IMG_OVERWORLD: var type_name = "overworld"; break;
+                            case DataTypes.IMG_PARTICLE: var type_name = "particle"; break;
+                            case DataTypes.IMG_UI: var type_name = "UI"; break;
+                            case DataTypes.IMG_ETC: var type_name = "misc"; break;
                             case DataTypes.AUTOTILE: var type_name = "autotile"; break;
                             case DataTypes.ENTITY: var type_name = "entity"; break;
                             case DataTypes.MAP: var type_name = "map"; break;
