@@ -22,7 +22,6 @@ if (!menu.invisible) {
 	// click on the header
 	if (mouse_within_rectangle(x1, y1, x2, y2)) {
 	    draw_rectangle_colour(x1, y1, x2, y2, c_ui, c_ui, c_ui, c_ui, false);
-		// lazy evaluation
 	    if (!dialog_exists() && Controller.press_left) {
 			Controller.press_left = false;
 	        menu_activate(menu);
@@ -60,7 +59,7 @@ if (menu_is_active(menu)) {
         if (thing.enabled) {
             var mx1 = xx;
             var my1 = yy + menu.height * i + separation;
-            var mx2 = mx1 + ww;
+            var mx2 = mx1 + ww + 2;
             var my2 = my1 + menu.height;
             script_execute(thing.render, thing, mx1, my1, mx2, my2);
         }
