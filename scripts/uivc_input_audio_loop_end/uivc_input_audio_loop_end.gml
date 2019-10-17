@@ -3,7 +3,7 @@
 var input = argument0;
 
 var selection = ui_list_selection(input.root.el_list);
-if (selection >= 0) {
+if (selection + 1) {
     if (!ds_list_empty(Stuff.all_bgm)) {
         var thing = Stuff.all_bgm[| selection];
         thing.loop_end = real(input.value);

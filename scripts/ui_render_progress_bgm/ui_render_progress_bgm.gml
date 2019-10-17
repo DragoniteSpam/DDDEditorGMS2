@@ -6,12 +6,12 @@ var progress = argument0;
 var xx = argument1;
 var yy = argument2;
 
-if (Stuff.fmod_sound) {
+if (Stuff.fmod_sound + 1) {
     progress.value = FMODGMS_Chan_Get_Position(Stuff.fmod_channel) / FMODGMS_Snd_Get_Length(Stuff.fmod_sound);
 }
 
 var selection = ui_list_selection(progress.root.el_list);
-if (!ds_list_empty(Stuff.all_bgm) && selection) {
+if (!ds_list_empty(Stuff.all_bgm) && (selection + 1)) {
     var thing = Stuff.all_bgm[| selection];
     var length = FMODGMS_Snd_Get_Length(thing.fmod);
     
