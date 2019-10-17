@@ -3,7 +3,7 @@
 var dialog = argument0;
 
 var dw = 640;
-var dh = 480;
+var dh = 512;
 
 var dg = dialog_create(dw, dh, "Open Project", dialog_default, dc_default, dialog);
 
@@ -36,6 +36,8 @@ var el_load = create_button(16, yy, "Load", ew, eh, fa_center, omu_project_load,
 yy = yy + el_load.height + spacing;
 var el_remove = create_button(16, yy, "Remove", ew, eh, fa_center, omu_project_remove, dg);
 yy = yy + el_remove.height + spacing;
+var el_other = create_button(16, yy, "Open Other", ew, eh, fa_center, omu_project_open, dg);
+yy = yy + el_other.height + spacing;
 
 yy = yy_base;
 
@@ -48,7 +50,7 @@ yy = yy + el_summary_todo.height + spacing;
 var el_never_mind = create_button(dw /2 - b_width / 2, dh - 32 - b_height / 2, "Create New", b_width, b_height, fa_center, dmu_dialog_commit, dg);
 
 ds_list_add(dg.contents, el_list,
-    el_load, el_remove,
+    el_load, el_remove, el_other,
 	el_summary, el_summary_todo,
 	el_never_mind);
 

@@ -9239,6 +9239,14 @@
             }
         },
         {
+            "Key": "abe49b7e-34e7-4375-83a1-15f5afa50fac",
+            "Value": {
+                "id": "0d82479d-d404-4e8c-997d-721385a7af7c",
+                "resourcePath": "scripts\\omu_project_open\\omu_project_open.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "abf11ddd-583d-48e7-ac1c-68bf23d1d2e2",
             "Value": {
                 "id": "0512afb3-4c43-4566-b5fd-6684141cd832",
@@ -14404,6 +14412,7 @@
         "2f5ce293-5d19-4961-957c-cb2d450ac92e",
         "6bf27b2c-c013-4fb1-9836-b95167ffd715",
         "9ed4cda8-bf21-4add-a93f-e406872945a1",
+        "abe49b7e-34e7-4375-83a1-15f5afa50fac",
         "6c828586-91e0-4d8a-9ae5-b3dd4447f824",
         "ee00f2ab-35ab-4b25-823a-78ad1e706766",
         "7d1abbee-52fa-4e52-ad7b-5f30de25c5ce",

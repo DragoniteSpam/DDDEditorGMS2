@@ -20,8 +20,8 @@ if (Camera.view_entities) {
 }
 
 transform_reset();
-
+/*
 Some obvious things to do next:
  - Lights can be added
     o as such, the terrain and NPCs and normally drawn stuff should have the smf light code reflectd (lol)
-        in their shader, and they should be able to use the smf lights, so that it looks consistent
+        in their shader, and they should be able to use the smf lights, so that it looks consistent*/
