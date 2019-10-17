@@ -4,11 +4,11 @@ var buffer = argument0;
 
 buffer_write(buffer, buffer_datatype, SerializeThings.TILESET);
 
-var n_tilesets = ds_list_size(Stuff.all_tilesets);
+var n_tilesets = ds_list_size(Stuff.all_graphic_tilesets);
 buffer_write(buffer, buffer_u16, n_tilesets);
 
 for (var i = 0; i < n_tilesets; i++) {
-    var ts = Stuff.all_tilesets[| i];
+    var ts = Stuff.all_graphic_tilesets[| i];
     
     // don't use save_generic here because flags is overridden and is now
     // an array, which will break things
@@ -24,7 +24,7 @@ for (var i = 0; i < n_tilesets; i++) {
     
     // all of the other things
     
-    // THESE ARE INDICES IN Stuff.available_autotiles!
+    // THESE ARE INDICES IN Stuff.all_graphic_autotiles!
     // THOSE NEED TO BE SAVED AS WELL! Do it later though.
     // with that in mind, saving these are trivially easy.
     var n_autotiles = array_length_1d(ts.autotiles);

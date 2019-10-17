@@ -24,7 +24,7 @@ dg.el_list.key = "list";
 create_list_entries(dg.el_list, "<none>");
 
 for (var i = 0; i < AUTOTILE_AVAILABLE_MAX; i++) {
-    var at_data = Stuff.available_autotiles[i];
+    var at_data = Stuff.all_graphic_autotiles[i];
     if (is_array(at_data)) {
         create_list_entries(dg.el_list, string(i) + ". " + at_data[AvailableAutotileProperties.NAME]);
     } else {

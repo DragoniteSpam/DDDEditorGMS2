@@ -180,13 +180,13 @@ dimensions = Dimensions.THREED;
 spr_character_default = file_exists(PATH_PERMANENT + "b_chr_default.png") ? sprite_add(PATH_PERMANENT + "b_chr_default.png", 0, false, false, 0, 0) : sprite_add(PATH_DUMMY + "b_chr_dummy.png", 0, false, false, 0, 0);
 
 // this sounds like a reasonable limit, it's not based on anything though
-available_autotiles = array_create(AUTOTILE_AVAILABLE_MAX);
-array_clear(available_autotiles, noone);
+all_graphic_autotiles = array_create(AUTOTILE_AVAILABLE_MAX);
+array_clear(all_graphic_autotiles, noone);
 
 var spr = file_exists(PATH_PERMANENT + "b_at_default_grass_0.png") ? sprite_add(PATH_PERMANENT + "b_at_default_grass_0.png", 0, false, false, 0, 0) : sprite_add(PATH_DUMMY + "b_at_dummy_grass.png", 0, false, false, 0, 0);
-available_autotiles[0] = [spr, "<default>", false, "", 1, 3];
+all_graphic_autotiles[0] = [spr, "<default>", false, "", 1, 3];
 
-all_tilesets = ds_list_create();
+all_graphic_tilesets = ds_list_create();
 all_graphic_overworlds = ds_list_create();
 all_graphic_battlers = ds_list_create();
 all_graphic_particles = ds_list_create();
@@ -248,7 +248,7 @@ autotile_map[? 0] = 47;
 #endregion
 var filename = file_exists(PATH_PERMANENT + "b_tileset_overworld_0.png") ? PATH_PERMANENT + "b_tileset_overworld_0.png" : PATH_DUMMY + "b_tileset_dummy_overworld.png";
 
-ds_list_add(all_tilesets, tileset_create(filename,
+ds_list_add(all_graphic_tilesets, tileset_create(filename,
     // this is somewhat hard-coded;
     // the zeroth available tileset is automatically default_grass
     [0, noone, noone, noone, noone, noone, noone, noone,

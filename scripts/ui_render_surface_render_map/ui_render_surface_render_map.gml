@@ -44,7 +44,7 @@ transform_reset();
 
 // @todo tileset update
 if (map.preview) {
-	vertex_submit(map.preview, pr_trianglelist, sprite_get_texture(Stuff.all_tilesets[| Camera.event_map.tileset].master, 0));
+	vertex_submit(map.preview, pr_trianglelist, sprite_get_texture(Stuff.all_graphic_tilesets[| Camera.event_map.tileset].master, 0));
 	vertex_submit(map.wpreview, pr_linelist, -1);
 }
 

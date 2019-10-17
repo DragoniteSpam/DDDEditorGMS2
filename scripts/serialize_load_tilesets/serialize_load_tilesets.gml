@@ -4,7 +4,7 @@
 var buffer = argument0;
 var version = argument1;
 
-ds_list_clear_instances(Stuff.all_tilesets);
+ds_list_clear_instances(Stuff.all_graphic_tilesets);
 
 var n_tilesets = buffer_read(buffer, buffer_u16);
 for (var i = 0; i < n_tilesets; i++) {
@@ -66,7 +66,7 @@ for (var i = 0; i < n_tilesets; i++) {
         }
     }
     
-    ds_list_add(Stuff.all_tilesets, ts);
+    ds_list_add(Stuff.all_graphic_tilesets, ts);
     
     ds_list_clear(ts.terrain_tag_names);
     var n = buffer_read(buffer, buffer_u8);

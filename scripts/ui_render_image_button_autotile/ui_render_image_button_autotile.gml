@@ -6,7 +6,7 @@ argument0.image = noone;
 var index = get_active_tileset().autotiles[Camera.selection_fill_autotile];
 
 if (index) {
-    var data = Stuff.available_autotiles[index];
+    var data = Stuff.all_graphic_autotiles[index];
     if (is_array(data)) {
         argument0.image = data[AvailableAutotileProperties.PICTURE];
     }

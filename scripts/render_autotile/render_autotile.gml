@@ -25,7 +25,7 @@ var texture_height=1/tile_vertical_count;
 var ts=get_active_tileset();
 
 var ati=argument0.autotile_id;
-var at_data=Stuff.available_autotiles[ati];
+var at_data=Stuff.all_graphic_autotiles[ati];
 var at_position=ts.autotile_positions[ati];
 // DO NOT TOUCH
 var xtex=at_position[vec2.xx]+(argument0.segment_id mod at_data[AvailableAutotileProperties.WIDTH])*Stuff.tile_size/TEXTURE_SIZE;

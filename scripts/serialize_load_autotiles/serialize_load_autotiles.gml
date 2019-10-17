@@ -5,7 +5,7 @@ var version = argument1;
 
 var n_autotiles = buffer_read(argument0, buffer_u16);
 // garbage collection is great
-Stuff.available_autotiles = array_create(n_autotiles);
+Stuff.all_graphic_autotiles = array_create(n_autotiles);
 
 for (var i = 0; i < n_autotiles; i++) {
     var exists = buffer_read(argument0, buffer_u8);
@@ -19,8 +19,8 @@ for (var i = 0; i < n_autotiles; i++) {
         var at_frames = buffer_read(argument0, buffer_u8);
         var at_width = buffer_read(argument0, buffer_u8);
         
-        Stuff.available_autotiles[i] = [at_picture, at_name, at_deleteable, at_filename, at_frames, at_width];
+        Stuff.all_graphic_autotiles[i] = [at_picture, at_name, at_deleteable, at_filename, at_frames, at_width];
     } else {
-        Stuff.available_autotiles[i] = noone;
+        Stuff.all_graphic_autotiles[i] = noone;
     }
 }
