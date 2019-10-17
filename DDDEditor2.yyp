@@ -4450,7 +4450,7 @@
             "Key": "54a48ce1-facf-4ddd-b47c-3d0087ccfee1",
             "Value": {
                 "id": "a3062281-1b75-4fde-b373-14387f22269c",
-                "resourcePath": "scripts\\momu_mesh_autotile\\momu_mesh_autotile.yy",
+                "resourcePath": "scripts\\momu_autotile\\momu_autotile.yy",
                 "resourceType": "GMScript"
             }
         },

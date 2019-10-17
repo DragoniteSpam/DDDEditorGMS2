@@ -57,8 +57,16 @@ ds_list_add(menu_edit.contents, me_undo, me_redo,
  * Data stuff
  */
 
-var md_mesh_autotiles = create_menu_element("Autotile Meshes", momu_mesh_autotile, menu_data);
-var md_ts = create_menu_element("Tileset", momu_tileset, menu_data);
+var md_graphics = create_menu_element("Graphics", momu_expand, menu_data);
+	var md_graphic_ts = create_menu_element("Tilesets", momu_tileset, md_graphics);
+	var md_graphic_at = create_menu_element("Autotiles", momu_autotile, md_graphics);
+    var md_graphic_battle = create_menu_element("Battler Sprites", momu_autotile, md_graphics);
+    var md_graphic_ow = create_menu_element("Overworld Sprites", momu_autotile, md_graphics);
+    var md_graphic_part = create_menu_element("Particles", momu_autotile, md_graphics);
+    var md_graphic_ui = create_menu_element("User Interface", momu_autotile, md_graphics);
+    var md_graphic_etc = create_menu_element("Misc", momu_autotile, md_graphics);
+	ds_list_add(md_graphics.contents, md_graphic_ts, md_graphic_at,
+        md_graphic_battle, md_graphic_ow, md_graphic_part, md_graphic_ui, md_graphic_etc);
 var md_audio = create_menu_element("Audio", momu_expand, menu_data);
 	var md_aud_bgm = create_menu_element("Background Music (BGM)", momu_bgm, md_audio);
 	var md_aud_se = create_menu_element("Sound Effects (SE)", momu_se, md_audio);
@@ -70,7 +78,7 @@ var md_3d = create_menu_element("Map Editor (F6)", momu_editor_3d, menu_data);
 var md_events = create_menu_element("Event Editor (F7)", momu_editor_event, menu_data);
 var md_data = create_menu_element("Game Data Editor (F8)", momu_editor_data, menu_data);
 var md_animation = create_menu_element("Animation Editor (F9)", momu_editor_animation, menu_data);
-ds_list_add(menu_data.contents, md_mesh_autotiles, md_ts, md_audio, md_data_types,
+ds_list_add(menu_data.contents, md_graphics, md_audio, md_data_types,
     m_separator,
     md_conflicts, md_missing,
     m_separator,

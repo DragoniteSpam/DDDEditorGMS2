@@ -191,6 +191,7 @@ all_graphic_overworlds = ds_list_create();
 all_graphic_battlers = ds_list_create();
 all_graphic_particles = ds_list_create();
 all_graphic_ui = ds_list_create();
+all_graphic_etc = ds_list_create();
 
 #region autotile map
 autotile_map = ds_map_create();
