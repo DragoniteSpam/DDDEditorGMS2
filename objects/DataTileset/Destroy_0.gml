@@ -6,3 +6,6 @@ if (passage) ds_grid_destroy(passage);
 if (priority) ds_grid_destroy(priority);
 if (flags) ds_grid_destroy(flags);
 if (tags) ds_grid_destroy(tags);
+
+if (picture) sprite_delete(picture);
+if (master) sprite_delete(master);

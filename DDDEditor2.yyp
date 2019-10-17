@@ -4399,6 +4399,14 @@
             }
         },
         {
+            "Key": "51e937d2-5da9-4d44-9579-4916234bde3d",
+            "Value": {
+                "id": "108fafc6-e245-4aca-a8cb-dfb672d1520c",
+                "resourcePath": "objects\\DataImage\\DataImage.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "51fef74c-ce4e-41b5-9ce0-12a41f03dedc",
             "Value": {
                 "id": "aea79bf2-2199-439a-a0ca-0c13d4377fc7",

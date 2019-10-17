@@ -22,11 +22,10 @@ event_inherited();
 
 file_location = DataFileLocations.ASSET;
 
-// the picture is the sprite of the main tileset image (it doesn't have the autotiles and stuff)
+// this should only be instantiated in tileset_create so don't worry
+// about populating the values right now
 picture_name = "";
 picture = -1;
-// the entire image is stored here
-master = -1;
 
 // these are just the indices, the actual autotiles are stored in Stuff
 autotiles = array_create(AUTOTILE_MAX);
@@ -38,6 +37,9 @@ for (var i = 0; i < AUTOTILE_MAX; i++) {
     autotile_positions[i] = vector2(0.5 + (i div (AUTOTILE_MAX / 2)) * 0.25, (i mod (AUTOTILE_MAX / 2)) / 16);
     autotile_sizes[i] = vector2(32 / TEXTURE_SIZE, 32 / TEXTURE_SIZE);
 }
+
+// the main picture and all of the autotiles are stored on here
+master = noone;
 
 passage = noone;
 priority = noone;
