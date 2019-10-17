@@ -20,11 +20,6 @@ event_inherited();
  * * * * * * * * * * * * * * * * * *
  */
 
-file_location = DataFileLocations.ASSET;
-
-// the picture is the sprite of the main tileset image (it doesn't have the autotiles and stuff)
-picture_name = "";
-picture = -1;
 // the entire image is stored here
 master = -1;
 
