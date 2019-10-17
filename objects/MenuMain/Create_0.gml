@@ -58,13 +58,13 @@ ds_list_add(menu_edit.contents, me_undo, me_redo,
  */
 
 var md_graphics = create_menu_element("Graphics", momu_expand, menu_data);
-	var md_graphic_ts = create_menu_element("Tilesets", momu_tileset, md_graphics);
-	var md_graphic_at = create_menu_element("Autotiles", momu_autotile, md_graphics);
-    var md_graphic_battle = create_menu_element("Battler Sprites", momu_autotile, md_graphics);
-    var md_graphic_ow = create_menu_element("Overworld Sprites", momu_autotile, md_graphics);
-    var md_graphic_part = create_menu_element("Particles", momu_autotile, md_graphics);
-    var md_graphic_ui = create_menu_element("User Interface", momu_autotile, md_graphics);
-    var md_graphic_etc = create_menu_element("Misc", momu_autotile, md_graphics);
+	var md_graphic_ts = create_menu_element("Tilesets", momu_graphic_tileset, md_graphics);
+	var md_graphic_at = create_menu_element("Autotiles", momu_graphic_autotile, md_graphics);
+    var md_graphic_battle = create_menu_element("Battler Sprites", momu_graphic_battle, md_graphics);
+    var md_graphic_ow = create_menu_element("Overworld Sprites", momu_graphic_overworld, md_graphics);
+    var md_graphic_part = create_menu_element("Particles", momu_graphic_particle, md_graphics);
+    var md_graphic_ui = create_menu_element("User Interface", momu_graphic_ui, md_graphics);
+    var md_graphic_etc = create_menu_element("Misc", momu_graphic_etc, md_graphics);
 	ds_list_add(md_graphics.contents, md_graphic_ts, md_graphic_at,
         md_graphic_battle, md_graphic_ow, md_graphic_part, md_graphic_ui, md_graphic_etc);
 var md_audio = create_menu_element("Audio", momu_expand, menu_data);

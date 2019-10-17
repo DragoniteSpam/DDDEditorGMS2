@@ -1,8 +1,8 @@
 {
-    "id": "66a69a30-5cfd-40a6-a951-b7ce1ce7fd42",
+    "id": "023ec952-0ab5-4f20-b5f6-7641eac12396",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "momu_tileset",
+    "name": "uivc_list_graphic_battlers",
     "IsCompatibility": false,
     "IsDnD": false
 }

@@ -10,11 +10,8 @@
         "7645252a-52fa-4ad4-87c1-1341bb77fdb6",
         "0bc2521f-2dc0-4325-913e-77c33c0845e3",
         "df9f8e52-d39f-4d27-959e-cb48c4037340",
-        "54a48ce1-facf-4ddd-b47c-3d0087ccfee1",
-        "ef7e57cb-8661-4d54-b335-ab819f7369bd",
-        "88f87ee3-86f8-43a3-9b22-3b1bdf750885",
         "26f2f886-5bd9-4255-ad27-dfe1a7d1f199",
-        "66a69a30-5cfd-40a6-a951-b7ce1ce7fd42"
+        "e094e586-2a7f-41ef-bba9-4d9355e7814c"
     ],
     "filterType": "GMScript",
     "folderName": "data",
