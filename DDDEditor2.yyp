@@ -6703,6 +6703,14 @@
             }
         },
         {
+            "Key": "7de30827-aa0d-4769-8954-fa0c4e77d129",
+            "Value": {
+                "id": "1995e4ec-4d59-4a75-9d6b-80228d8f79e0",
+                "resourcePath": "scripts\\serialize_load_mesh_raw\\serialize_load_mesh_raw.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "7e6ecd08-9f9f-401d-95c1-cea6f1201cc6",
             "Value": {
                 "id": "774d6e71-55ce-4db2-aeff-c9bc79952782",
@@ -13415,6 +13423,14 @@
             }
         },
         {
+            "Key": "fc68c907-a6a1-43de-aa9c-9b2ab4d661b3",
+            "Value": {
+                "id": "5f26c7c4-3fe0-4ef4-b35f-a2c0fa9ea083",
+                "resourcePath": "scripts\\serialize_load_mesh_smf\\serialize_load_mesh_smf.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "fc73463a-bd0b-45a1-89c7-6dd138677089",
             "Value": {
                 "id": "fcfec52f-c9bf-462c-a414-4c7a82dbb112",
@@ -14726,6 +14742,8 @@
         "444482e5-bf9b-4222-94cc-b0ad9ab5efc8",
         "38a16940-bb58-409d-9a17-767b3f1c50b6",
         "e5cefd88-b674-4dff-a235-f59e68ab675f",
+        "7de30827-aa0d-4769-8954-fa0c4e77d129",
+        "fc68c907-a6a1-43de-aa9c-9b2ab4d661b3",
         "09c3db56-cf0d-49de-be3f-5d7a532d4f90",
         "25d7e07b-cbd5-4039-af63-3fb8193314f3",
         "ff28a471-b69c-4494-8924-7d1f8b06de7d",

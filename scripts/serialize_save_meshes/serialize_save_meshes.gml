@@ -12,6 +12,8 @@ for (var i = 0; i < n_meshes; i++) {
     
     serialize_save_generic(buffer, mesh);
     
+    buffer_write(buffer, buffer_u8, mesh.type);
+    
     buffer_write(buffer, buffer_u32, buffer_get_size(mesh.buffer));
     buffer_write_buffer(buffer, mesh.buffer);
     // don't bother saving the wireframe buffer - we need to re-create the collision
