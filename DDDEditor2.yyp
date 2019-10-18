@@ -1410,7 +1410,7 @@
             "Key": "19fa2ef9-9c3f-4073-be76-9ea24070ee3c",
             "Value": {
                 "id": "1a427756-2377-4be6-8da2-98ccf81b3ab4",
-                "resourcePath": "scripts\\serialize_load_autotiles\\serialize_load_autotiles.yy",
+                "resourcePath": "scripts\\serialize_load_image_autotiles\\serialize_load_image_autotiles.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -1690,7 +1690,7 @@
             "Key": "1e7b1bcf-3901-470a-a81b-b02751e9b314",
             "Value": {
                 "id": "a621a6d5-1e3a-49b8-a812-9954e2daefb0",
-                "resourcePath": "scripts\\serialize_save_autotiles\\serialize_save_autotiles.yy",
+                "resourcePath": "scripts\\serialize_save_image_autotiles\\serialize_save_image_autotiles.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -2579,6 +2579,14 @@
             "Value": {
                 "id": "3767217d-23ec-4fb6-ad53-e691daf6096b",
                 "resourcePath": "scripts\\uivc_animation_layer_name\\uivc_animation_layer_name.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "2f4382d9-ac82-4529-8956-751d9d969fce",
+            "Value": {
+                "id": "4de75524-d669-4dad-bf4d-1b1916ea4575",
+                "resourcePath": "scripts\\serialize_save_image_overworlds\\serialize_save_image_overworlds.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -3586,7 +3594,7 @@
             "Key": "43d930be-eb66-4f68-b4c3-43195056d4e1",
             "Value": {
                 "id": "dd2ba054-a433-4950-8bea-ec1cc028adb3",
-                "resourcePath": "scripts\\serialize_save_tilesets\\serialize_save_tilesets.yy",
+                "resourcePath": "scripts\\serialize_save_image_tilesets\\serialize_save_image_tilesets.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -6130,7 +6138,7 @@
             "Key": "7093dcaa-32d8-44e3-a978-d76f954b1b1b",
             "Value": {
                 "id": "1c9c42ee-61d7-4ae1-84fa-201938c81841",
-                "resourcePath": "scripts\\serialize_load_tilesets\\serialize_load_tilesets.yy",
+                "resourcePath": "scripts\\serialize_load_image_tilesets\\serialize_load_image_tilesets.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -9495,6 +9503,14 @@
             }
         },
         {
+            "Key": "ab6d0dd3-660d-44a0-8631-afc34e4883f8",
+            "Value": {
+                "id": "e492c403-23d8-4767-813e-c89f8c18decf",
+                "resourcePath": "scripts\\serialize_save_image_ui\\serialize_save_image_ui.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "ab82420f-5431-4acb-a965-ac8c62794a7a",
             "Value": {
                 "id": "00bcbc34-50ea-4698-9fad-6c4ac69a8fff",
@@ -10228,6 +10244,14 @@
                 "id": "3db09324-cec2-458d-bb98-9800989e4e74",
                 "resourcePath": "objects\\UIListTimeline\\UIListTimeline.yy",
                 "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "b8ce4686-b304-4ae4-8a85-bf5fe32c93c9",
+            "Value": {
+                "id": "a23a7cd4-ea5c-4fed-b4d9-b695338190e2",
+                "resourcePath": "scripts\\serialize_save_image_etc\\serialize_save_image_etc.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -12543,6 +12567,14 @@
             }
         },
         {
+            "Key": "e4b43768-a260-46d2-92a7-9c2e6bc81074",
+            "Value": {
+                "id": "fde95578-8269-4eb4-a3cf-1f26ee4e1e28",
+                "resourcePath": "scripts\\serialize_save_image_battlers\\serialize_save_image_battlers.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "e4c36724-691c-4a78-8102-6445943a0ebb",
             "Value": {
                 "id": "f12581e6-c119-4424-871d-3bd74164e16d",
@@ -13700,6 +13732,14 @@
                 "id": "b24f9462-313b-45d0-bb62-d184b69a13a4",
                 "resourcePath": "views\\f9bd2553-5743-4bb4-b648-cd3285518155.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "f9d648a8-077e-47de-97d9-a2d8679c79ca",
+            "Value": {
+                "id": "2ba99bed-ac52-4b75-b0f1-10ba05159f82",
+                "resourcePath": "scripts\\serialize_save_image_particles\\serialize_save_image_particles.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -15268,6 +15308,11 @@
         "ba5bd488-1f90-4a66-8b8c-db3e15a46cf6",
         "2005a99e-35bc-41e3-bf5a-8f035ddd6cb8",
         "43d930be-eb66-4f68-b4c3-43195056d4e1",
+        "e4b43768-a260-46d2-92a7-9c2e6bc81074",
+        "2f4382d9-ac82-4529-8956-751d9d969fce",
+        "f9d648a8-077e-47de-97d9-a2d8679c79ca",
+        "ab6d0dd3-660d-44a0-8631-afc34e4883f8",
+        "b8ce4686-b304-4ae4-8a85-bf5fe32c93c9",
         "7f872584-6856-443e-964d-ae7a82301666",
         "622f843a-bea6-4aaf-8127-baf651794e9f",
         "0ea2db3c-0c2a-41b6-a304-3a4a776ec989",

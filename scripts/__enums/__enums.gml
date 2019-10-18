@@ -7,15 +7,15 @@ enum SerializeThings {
     ANIMATIONS              = 0x00000004,
     // 05
     // 06
-    TILESET                 = 0x00000007,
-    PARTICLES               = 0x00000008, //
-    NPCS                    = 0x00000009, //
+    IMAGE_TILESET           = 0x00000007,
+    IMAGE_PARTICLES         = 0x00000008, //+
+    IMAGE_OVERWORLD         = 0x00000009, //+
     // 0a
-    BATTLERS                = 0x0000000B, //
+    IMAGE_BATTLERS          = 0x0000000B, //+
     // 0c
-    MISC_GRAPHICS           = 0x0000000D, //
+    IMAGE_MISC              = 0x0000000D, //+
     // 0e
-    UI_GRAPHICS             = 0x0000000F, //
+    IMAGE_UI                = 0x0000000F, //+
     // 10
     GLOBAL_GRAPHICS         = 0x00000011,
     AUDIO_SE                = 0x00000012,
@@ -25,7 +25,7 @@ enum SerializeThings {
     MAP_DYNAMIC             = 0x00000016,
     EVENTS                  = 0x00000017,
     // 18
-    AUTOTILES               = 0x00000019,
+    IMAGE_AUTOTILES         = 0x00000019,
     MAP_META                = 0x0000001A,
     DATADATA                = 0x0000001B,
     EVENT_CUSTOM            = 0x0000001C,

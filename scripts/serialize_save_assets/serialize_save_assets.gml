@@ -24,8 +24,13 @@ if (string_length(fn) > 0) {
      * data
      */
     
-    serialize_save_autotiles(buffer);
-    serialize_save_tilesets(buffer);
+    serialize_save_image_autotiles(buffer);
+    serialize_save_image_tilesets(buffer);
+    serialize_save_image_battlers(buffer);
+    serialize_save_image_overworlds(buffer);
+    serialize_save_image_particles(buffer);
+    serialize_save_image_ui(buffer);
+    serialize_save_image_etc(buffer);
     serialize_save_bgm(buffer);
     serialize_save_se(buffer);
     serialize_save_meshes(buffer);

@@ -1,8 +1,8 @@
 {
-    "id": "1e7b1bcf-3901-470a-a81b-b02751e9b314",
+    "id": "19fa2ef9-9c3f-4073-be76-9ea24070ee3c",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "serialize_save_autotiles",
+    "name": "serialize_load_image_autotiles",
     "IsCompatibility": false,
     "IsDnD": false
 }
