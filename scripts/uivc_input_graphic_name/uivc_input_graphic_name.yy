@@ -1,8 +1,8 @@
 {
-    "id": "b412c097-788b-471b-b24b-bab3ae6b716a",
+    "id": "aff7b86e-04fa-43c3-b3a2-206a2d46c04f",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "uivc_input_graphic_overworld_name",
+    "name": "uivc_input_graphic_name",
     "IsCompatibility": false,
     "IsDnD": false
 }

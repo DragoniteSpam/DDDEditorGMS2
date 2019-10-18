@@ -1,8 +1,8 @@
 {
-    "id": "a28ba3a7-f452-4e1c-b33a-573a7dc53e86",
+    "id": "b951b2b9-b4be-4e20-9b86-6f0df7cf41e9",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "uivc_input_graphic_ui_name",
+    "name": "dialog_create_big_picture",
     "IsCompatibility": false,
     "IsDnD": false
 }

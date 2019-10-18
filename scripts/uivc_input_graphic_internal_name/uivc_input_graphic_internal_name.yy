@@ -1,8 +1,8 @@
 {
-    "id": "13d3fbb8-97da-4411-8d6e-647815135260",
+    "id": "ce519de6-170d-4f15-b160-5502c85aaf48",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "dmu_dialog_remove_graphic_ui",
+    "name": "uivc_input_graphic_internal_name",
     "IsCompatibility": false,
     "IsDnD": false
 }
