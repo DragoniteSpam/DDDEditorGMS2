@@ -33,8 +33,10 @@ dg.el_list = el_list;
 
 var el_add = create_button(c2 + 16, yy, "Add Image", ew, eh, fa_center, dmu_dialog_load_graphic_etc, dg);
 yy = yy + el_add.height + spacing;
-var el_remove = create_button(c2 + 16, yy, "Remove Image", ew, eh, fa_center, dmu_dialog_remove_graphic, dg);
+var el_remove = create_button(c2 + 16, yy, "Remove Image", ew, eh, fa_center, dmu_dialog_remove_graphic_general, dg);
 yy = yy + el_remove.height + spacing;
+var el_change = create_button(c2 + 16, yy, "Change Image", ew, eh, fa_center, dmu_dialog_change_graphic_general, dg);
+yy = yy + el_change.height + spacing;
 
 var el_name_text = create_text(c2 + 16, yy, "Name:", ew, eh, fa_left, ew, dg);
 yy = yy + el_name_text.height + spacing;
@@ -58,15 +60,19 @@ yy = yy + el_frames_vertical.height + spacing;
 
 yy = yy_base;
 
-var el_image = create_image_button(c3 + 16, yy, "image", -1, ew, ew, fa_center, null, dg);
+var el_image = create_image_button(c3 + 16, yy, "image", -1, ew, ew, fa_center, dmu_dialog_show_big_picture, dg);
 el_image.interactive = false;
 dg.el_image = el_image;
 yy = yy + el_image.height + spacing;
 
+var el_dimensions = create_text(c3 + 16, yy, "Dimensions:", ew, eh, fa_left, ew, dg);
+dg.el_dimensions = el_dimensions;
+yy = yy + el_dimensions.height + spacing;
+
 var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
 
 ds_list_add(dg.contents, el_list,
-    el_add, el_remove,
+    el_add, el_remove, el_change,
     el_name_text, el_name, el_name_internal_text, el_name_internal,
     el_confirm);
 

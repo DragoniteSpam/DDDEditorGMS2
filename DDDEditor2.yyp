@@ -5618,7 +5618,7 @@
             "Key": "6741bdc7-6fa8-45dd-82af-ef512e335d52",
             "Value": {
                 "id": "b390fa80-4d70-4291-a9db-df5cb0280438",
-                "resourcePath": "scripts\\dmu_dialog_remove_graphic\\dmu_dialog_remove_graphic.yy",
+                "resourcePath": "scripts\\dmu_dialog_remove_graphic_general\\dmu_dialog_remove_graphic_general.yy",
                 "resourceType": "GMScript"
             }
         },

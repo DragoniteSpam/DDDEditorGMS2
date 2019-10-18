@@ -33,7 +33,7 @@ dg.el_list = el_list;
 
 var el_add = create_button(c2 + 16, yy, "Add Battler", ew, eh, fa_center, dmu_dialog_load_graphic_battler, dg);
 yy = yy + el_add.height + spacing;
-var el_remove = create_button(c2 + 16, yy, "Remove Battler", ew, eh, fa_center, dmu_dialog_remove_graphic, dg);
+var el_remove = create_button(c2 + 16, yy, "Remove Battler", ew, eh, fa_center, dmu_dialog_remove_graphic_general, dg);
 yy = yy + el_remove.height + spacing;
 var el_change = create_button(c2 + 16, yy, "Change Battler", ew, eh, fa_center, dmu_dialog_change_graphic_general, dg);
 yy = yy + el_change.height + spacing;
@@ -49,10 +49,6 @@ var el_name_internal = create_input(c2 + 16, yy, "", ew, eh, uivc_input_graphic_
 dg.el_name_internal = el_name_internal;
 yy = yy + el_name_internal.height + spacing;
 
-var el_dimensions = create_text(c2 + 16, yy, "Dimensions:", ew, eh, fa_left, ew, dg);
-dg.el_dimensions = el_dimensions;
-yy = yy + el_dimensions.height + spacing;
-
 vx1 = ew / 2;
 
 var el_frames_horizontal = create_input(c2 + 16, yy, "X frames:", ew, eh, uivc_input_graphic_set_frames_h, "", "1", "0...255", validate_int, ui_value_real, 0, 255, 3, vx1, vy1, vx2, vy2, dg);
@@ -67,6 +63,10 @@ yy = yy_base;
 var el_image = create_image_button(c3 + 16, yy, "image", -1, ew, ew, fa_center, dmu_dialog_show_big_picture, dg);
 dg.el_image = el_image;
 yy = yy + el_image.height + spacing;
+
+var el_dimensions = create_text(c3 + 16, yy, "Dimensions:", ew, eh, fa_left, ew, dg);
+dg.el_dimensions = el_dimensions;
+yy = yy + el_dimensions.height + spacing;
 
 var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
 
