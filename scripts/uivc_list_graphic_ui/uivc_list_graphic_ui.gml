@@ -3,7 +3,7 @@
 var list = argument0;
 var selection = ui_list_selection(list);
 
-if (selection >= 0) {
+if (selection + 1) {
     var what = Stuff.all_graphic_ui[| selection];
     
     list.root.el_name.value = what.name;

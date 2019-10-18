@@ -18,7 +18,9 @@
         "bc2a1ad1-e802-41f2-b066-cad6544bdc08",
         "d7a984e0-56c9-41fd-973c-1e1449e63bff",
         "79dc0ff4-3240-41ab-87f9-dc1a1f0d0c2e",
-        "9b7af90d-ad56-4bd4-8c98-0019da809c2c"
+        "9b7af90d-ad56-4bd4-8c98-0019da809c2c",
+        "234b025b-0da6-443a-923d-afc560c8d694",
+        "e4734c49-2efe-484f-86f8-905a518e3425"
     ],
     "filterType": "GMScript",
     "folderName": "images",

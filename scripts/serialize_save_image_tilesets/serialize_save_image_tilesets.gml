@@ -2,7 +2,7 @@
 
 var buffer = argument0;
 
-buffer_write(buffer, buffer_datatype, SerializeThings.TILESET);
+buffer_write(buffer, buffer_datatype, SerializeThings.IMAGE_TILESET);
 
 var n_tilesets = ds_list_size(Stuff.all_graphic_tilesets);
 buffer_write(buffer, buffer_u16, n_tilesets);

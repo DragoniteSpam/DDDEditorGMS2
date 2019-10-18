@@ -1,6 +1,6 @@
 /// @param buffer
 
-buffer_write(argument0, buffer_datatype, SerializeThings.AUTOTILES);
+buffer_write(argument0, buffer_datatype, SerializeThings.IMAGE_AUTOTILES);
 
 var n_autotiles = array_length_1d(Stuff.all_graphic_autotiles);
 buffer_write(argument0, buffer_u16, n_autotiles);

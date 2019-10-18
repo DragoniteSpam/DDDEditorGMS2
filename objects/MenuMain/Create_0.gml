@@ -93,7 +93,7 @@ var mh_about = create_menu_element("Credits", momu_about, menu_help);
 ds_list_add(menu_help.contents, mh_help, mh_about);
 
 /*
- *
+ * Right-click menu
  */
 
 menu_right_click = create_menu("right-click", element_width, element_height, id, true);

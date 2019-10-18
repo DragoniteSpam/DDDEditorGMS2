@@ -47,11 +47,26 @@ var el_name_internal = create_input(c2 + 16, yy, "", ew, eh, uivc_input_graphic_
 dg.el_name_internal = el_name_internal;
 yy = yy + el_name_internal.height + spacing;
 
+var el_frames_horizontal = create_input(c2 + 16, yy, "", ew, eh, uivc_input_graphic_set_frames_h, "", "", "A-Za-z0-9_", validate_int, ui_value_real, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
+dg.el_frames_horizontal = el_frames_horizontal;
+yy = yy + el_name_internal.height + spacing;
+var el_frames_vertical = create_input(c2 + 16, yy, "", ew, eh, uivc_input_graphic_set_frames_v, "", "", "A-Za-z0-9_", validate_int, ui_value_real, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
+dg.el_frames_vertical = el_frames_vertical;
+yy = yy + el_frames_vertical.height + spacing;
+
+yy = yy_base;
+
+var el_image = create_image_button(c3 + 16, yy, "image", -1, ew, ew, fa_center, null, dg);
+el_image.interactive = false;
+dg.el_image = el_image;
+yy = yy + el_image.height + spacing;
+
 var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
 
 ds_list_add(dg.contents, el_list,
     el_add, el_remove,
     el_name_text, el_name, el_name_internal_text, el_name_internal,
+    el_frames_horizontal, el_frames_vertical, el_image,
     el_confirm);
 
 return dg;

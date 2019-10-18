@@ -7,7 +7,7 @@ var list = Stuff.all_graphic_etc;
 
 ds_list_clear_instances(list);
 
-var n_images = buffer_read(buffer, buffer_u16);
+var n_images = buffer_read(buffer, buffer_u32);
 
 repeat (n_images) {
     var data = instance_create_depth(0, 0, 0, DataImage);

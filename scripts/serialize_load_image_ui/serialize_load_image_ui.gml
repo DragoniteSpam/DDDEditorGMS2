@@ -7,7 +7,7 @@ var list = Stuff.all_graphic_ui;
 
 ds_list_clear_instances(list);
 
-var n_images = buffer_read(buffer, buffer_u16);
+var n_images = buffer_read(buffer, buffer_u32);
 var individual_images = buffer_read(buffer, buffer_u8);
 
 repeat (n_images) {
