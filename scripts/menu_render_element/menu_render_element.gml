@@ -20,17 +20,19 @@ var tx = ui_get_text_x(menumenu, x1, x2);
 var ty = ui_get_text_y(menumenu, y1, y2);
 
 var active = menu_is_active(menumenu);
+var mouse_inbounds = mouse_within_rectangle(x1, y1, x2, y2);
 
 // click on the element
-if (mouse_within_rectangle(x1, y1, x2, y2) || active) {
+if (mouse_inbounds || active) {
     draw_rectangle_colour(x1, y1, x2, y2, c_ui, c_ui, c_ui, c_ui, false);
 }
 
-if (mouse_within_rectangle(x1, y1, x2, y2)) {
-    if (Controller.press_left && !dialog_exists()) {
+if (mouse_inbounds) {
+    if (Controller.release_left && !dialog_exists()) {
+        Controller.release_left = false;
         script_execute(menumenu.onmouseup, menumenu);
-		Controller.press_left = false;
     }
+    Camera.menu.mouse_over = menumenu;
 }
 
 draw_set_halign(menumenu.alignment);

@@ -8,6 +8,8 @@ extra_element = noone;
 element_height = 16;
 element_width = 96;
 
+mouse_over = noone;
+
 /*
  * top-level stuff
  */

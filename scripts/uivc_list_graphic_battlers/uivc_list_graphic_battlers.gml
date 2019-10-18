@@ -11,4 +11,5 @@ if (selection + 1) {
     list.root.el_frames_horizontal.value = string(what.hframes);
     list.root.el_frames_vertical.value = string(what.vframes);
     list.root.el_image.image = what.picture;
+    list.root.el_dimensions.text = "Dimensions: " + string(sprite_get_width(what.picture)) + " x " + string(sprite_get_height(what.picture));
 }

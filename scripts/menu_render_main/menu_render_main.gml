@@ -12,6 +12,8 @@ draw_set_color(c_black);
 draw_set_font(FDefault12);
 draw_set_valign(fa_middle);
 
+menu.mouse_over = noone;
+
 for (var i = 0; i < ds_list_size(menu.contents); i++) {
     var thing = menu.contents[| i];
     if (thing.enabled) {
@@ -27,7 +29,7 @@ if (element) {
 }
 
 if ((!dialog_exists() && !mouse_within_rectangle_view(0, 0, xx + room_width, yy + menu.element_height))) {
-	if (Controller.press_left || Controller.press_right) {
+	if (!menu.mouse_over && (Controller.press_left || Controller.press_right)) {
 		menu_activate(noone);
 	}
 }
