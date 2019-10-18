@@ -11735,6 +11735,14 @@
             }
         },
         {
+            "Key": "d526fbee-9fd7-4e24-846d-67168517db6f",
+            "Value": {
+                "id": "b0ae0f45-4b91-4c69-a492-db5606e90e78",
+                "resourcePath": "scripts\\dmu_dialog_change_graphic_general\\dmu_dialog_change_graphic_general.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "d527df31-a6b5-45fa-b136-e773b4420991",
             "Value": {
                 "id": "b9dedc5b-a084-4e53-b7bc-26143217ca0b",
@@ -14572,6 +14580,7 @@
         "fd509475-e535-4be9-8fc7-de4c581e0250",
         "2e013630-e3f1-4f01-b173-f9acbddf7050",
         "6741bdc7-6fa8-45dd-82af-ef512e335d52",
+        "d526fbee-9fd7-4e24-846d-67168517db6f",
         "a61fc529-6b87-43ac-9347-b3af90e13277",
         "e680d418-bff4-4913-9284-dff1653b6d50",
         "0cff5256-af2b-47c1-ad06-efac5d560271",
