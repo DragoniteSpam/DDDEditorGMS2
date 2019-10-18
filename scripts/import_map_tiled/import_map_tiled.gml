@@ -8,7 +8,7 @@ if (ask_clear) {
     return;
 }
 
-var filename = get_open_filename("Tiled JSON files (*.json)|*.json", "");
+var filename = get_open_filename_tiled();
 
 var map = Stuff.active_map;
 var map_contents = map.contents;

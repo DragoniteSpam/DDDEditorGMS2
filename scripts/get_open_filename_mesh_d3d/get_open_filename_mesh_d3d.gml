@@ -1,0 +1,1 @@
+return get_open_filename("Game Maker model files (*.d3d;*.gmmod)|*.d3d;*.gmmod", "");

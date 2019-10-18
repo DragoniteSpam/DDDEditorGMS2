@@ -2,7 +2,7 @@
 
 var thing = argument0;
 
-var fn = get_open_filename("Anything valid|*.d3d;*.gmmod;*.obj;*.vrax;*.smf|Game Maker model files|*.d3d;*.gmmod|Object files|*.obj|drago's old file format|*.vrax|SMF files (advanced)|*.smf", "");
+var fn = get_open_filename_mesh();
 
 // @todo try catch
 if (file_exists(fn)) {

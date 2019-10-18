@@ -1,6 +1,6 @@
 /// @param UIThing
 
-var fn = get_open_filename("images (*.bmp, *.png)|*.bmp;*.png", "");
+var fn = get_open_filename_image();
 
 if (file_exists(fn)) {
     var ts = get_active_tileset();

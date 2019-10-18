@@ -5,7 +5,7 @@ var list = button.root.el_list;
 var selection = ui_list_selection(list);
 
 if (selection + 1) {
-    var fn = get_open_filename("Image files (*.png)|*.png", "");
+    var fn = get_open_filename_image();
     if (file_exists(fn)) {
         var what = list.entries[| selection];
         sprite_delete(what.picture);

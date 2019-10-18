@@ -839,6 +839,14 @@
             }
         },
         {
+            "Key": "0d675d95-ba6b-44c0-8859-dae1079c74ca",
+            "Value": {
+                "id": "152ea6c5-5e69-4fa1-ae6b-17428dfb9a27",
+                "resourcePath": "scripts\\get_open_filename_tiled\\get_open_filename_tiled.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "0d8e1e30-e491-48d9-9c1f-137df4ec287e",
             "Value": {
                 "id": "6f4dc713-8dac-438f-b47d-5c2ca84549c5",
@@ -2015,6 +2023,14 @@
             }
         },
         {
+            "Key": "2442b934-8bdf-45bf-a3b6-0256b7d2937c",
+            "Value": {
+                "id": "355ca313-a1bc-4c25-aaf1-4ec52c35ad75",
+                "resourcePath": "scripts\\get_open_filename_mesh\\get_open_filename_mesh.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "245147cf-3514-4ba7-bf77-557f6a21a26e",
             "Value": {
                 "id": "91974c7a-4b3f-475f-a894-1cd30dde2b14",
@@ -2415,6 +2431,14 @@
             }
         },
         {
+            "Key": "2c66ec5e-56de-4eaa-be40-88d2d1520e26",
+            "Value": {
+                "id": "25862d56-971c-4bf6-8b2d-56493985abee",
+                "resourcePath": "scripts\\get_save_filename_mesh_autotile\\get_save_filename_mesh_autotile.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "2c6dbe9a-52f9-4f1d-951e-fb16d6a448c0",
             "Value": {
                 "id": "e9b91425-8cd2-4ebf-949c-fb26998865a7",
@@ -2631,6 +2655,14 @@
             }
         },
         {
+            "Key": "2fde95c8-c2d3-4cc8-87fa-db7d3e3d69a1",
+            "Value": {
+                "id": "fa543d56-637b-44c4-a0dd-a54f0d91bed3",
+                "resourcePath": "views\\2fde95c8-c2d3-4cc8-87fa-db7d3e3d69a1.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "302dd6b4-1df3-4e41-8f35-a7d818e63201",
             "Value": {
                 "id": "b03a7e64-5583-462d-81d7-4e3268098662",
@@ -2731,6 +2763,14 @@
             "Value": {
                 "id": "bd000e3d-3229-4b77-a75b-609c6d5471ca",
                 "resourcePath": "scripts\\control_global\\control_global.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "322539f4-2f11-4529-b0fd-b85bcab08e7e",
+            "Value": {
+                "id": "3214a7b3-97d5-49bc-9b8b-17fdfdfa8daf",
+                "resourcePath": "scripts\\get_save_filename_mesh\\get_save_filename_mesh.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -3711,6 +3751,14 @@
             }
         },
         {
+            "Key": "45c78931-f3da-42a1-a393-2b6797bc03c8",
+            "Value": {
+                "id": "e5c76a93-3eaa-4d65-a7a3-8010c6f762d1",
+                "resourcePath": "scripts\\get_open_filename_mesh_d3d\\get_open_filename_mesh_d3d.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "4604b911-d32a-493c-b6f9-b22c613f6c55",
             "Value": {
                 "id": "87529e30-e8d8-40e0-ac13-c7461df16ebf",
@@ -4316,6 +4364,14 @@
                 "id": "7b79baf0-b87f-4007-a0b1-d8d4c8121fbd",
                 "resourcePath": "scripts\\omu_data_enum_add\\omu_data_enum_add.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "4ffbdd56-d25d-4c77-be70-6cf548d024c3",
+            "Value": {
+                "id": "03d1a276-cdfe-4898-b016-cd4309123eec",
+                "resourcePath": "views\\4ffbdd56-d25d-4c77-be70-6cf548d024c3.yy",
+                "resourceType": "GMFolder"
             }
         },
         {
@@ -7103,6 +7159,14 @@
             }
         },
         {
+            "Key": "8150e7f4-f941-4ca2-8cf9-2ff203af1d60",
+            "Value": {
+                "id": "cd24e66c-e8f6-425f-b064-43c06580011a",
+                "resourcePath": "scripts\\get_save_filename_dddd\\get_save_filename_dddd.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "815d57ce-2623-4a40-8231-11a46e096611",
             "Value": {
                 "id": "8b8ec088-eaa4-4f01-8107-7fe36c7bba63",
@@ -7412,6 +7476,14 @@
                 "id": "a068a7f8-0e13-4bce-8031-c502d7705680",
                 "resourcePath": "views\\87407c13-7bc9-4588-9fba-8a74ab6d3f9c.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "87579f79-441c-400c-b97a-20c4c8e4838c",
+            "Value": {
+                "id": "1decaadb-01da-43ff-9f3d-5bdede7cc084",
+                "resourcePath": "scripts\\get_open_filename_image\\get_open_filename_image.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -9751,6 +9823,14 @@
             }
         },
         {
+            "Key": "b1109ac8-21e0-4988-9a8f-3009b35d717d",
+            "Value": {
+                "id": "3e49a365-10d6-4717-b39b-b31d54c23266",
+                "resourcePath": "views\\b1109ac8-21e0-4988-9a8f-3009b35d717d.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "b1395a0e-fe1e-4346-918a-a460c19458cf",
             "Value": {
                 "id": "fd9ffe96-248e-4440-91a7-ea3c22f10586",
@@ -9980,6 +10060,14 @@
                 "id": "b94ea5cb-a052-4523-afcf-dce8afcc242b",
                 "resourcePath": "views\\b52591dc-aa07-48cc-b754-89b23b63e6ad.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "b566f7a4-e347-4e1c-95d8-2dc016d31808",
+            "Value": {
+                "id": "1b1fa163-ae84-4b3d-ac28-3e9a65170fde",
+                "resourcePath": "scripts\\get_open_filename_ddd\\get_open_filename_ddd.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -11671,6 +11759,14 @@
             }
         },
         {
+            "Key": "d4959a77-c35a-4241-9801-d39b2e181c17",
+            "Value": {
+                "id": "b85674b9-dc8e-4763-9f1a-258107736fb8",
+                "resourcePath": "scripts\\get_open_filename_audio_effect\\get_open_filename_audio_effect.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "d4d8f7f3-3113-4dcd-90b9-9d930c772de7",
             "Value": {
                 "id": "6f62b101-d486-4665-8ba3-11cbd8ac8930",
@@ -12919,6 +13015,14 @@
             }
         },
         {
+            "Key": "eafb66d1-299d-499a-b90d-dd706d2bcb31",
+            "Value": {
+                "id": "8f779543-b783-4e50-b011-603844c72839",
+                "resourcePath": "scripts\\get_save_filename_mesh_vrax\\get_save_filename_mesh_vrax.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "eb329f9c-4b52-4016-aab8-6c095e9cfdf1",
             "Value": {
                 "id": "2988bfd8-6f17-454d-b250-63807f3622aa",
@@ -13131,6 +13235,14 @@
             "Value": {
                 "id": "e1d0ecee-0ac0-479c-9970-a2b6f5339b4b",
                 "resourcePath": "scripts\\uivc_settings_game_battle_style\\uivc_settings_game_battle_style.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "eef8b573-f5e6-4b2b-8bff-06132ca23570",
+            "Value": {
+                "id": "f935b7d3-a415-4bf4-b7cb-bd7c0675c88a",
+                "resourcePath": "scripts\\get_open_filename_mesh_autotile\\get_open_filename_mesh_autotile.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -13687,6 +13799,14 @@
             }
         },
         {
+            "Key": "fa5b79cb-e8e1-4f81-b77c-66d53cc9b808",
+            "Value": {
+                "id": "f1585210-b05f-46f3-bd72-88f3b45dbecd",
+                "resourcePath": "scripts\\get_open_filename_audio_fmod\\get_open_filename_audio_fmod.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "fa7566a6-9508-4f85-a7d6-fece9c899a40",
             "Value": {
                 "id": "ef24ee2d-2f60-43e2-b673-41926205591d",
@@ -13892,6 +14012,14 @@
                 "id": "688b6b1f-7729-42ce-aa01-acdfdb464f0f",
                 "resourcePath": "datafiles_yy\\data\\lua\\map.lua.yy",
                 "resourceType": "GMIncludedFile"
+            }
+        },
+        {
+            "Key": "fcf970ff-305d-4ebe-9975-49961903f151",
+            "Value": {
+                "id": "1743c838-72ff-40c7-8f90-2893f804154a",
+                "resourcePath": "scripts\\get_save_filename_image\\get_save_filename_image.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -15149,6 +15277,19 @@
         "af1e57cd-c701-4655-baa3-e5ca28c70e99",
         "75fdb47b-99b6-4312-a3c3-207f72372850",
         "95462ff4-4366-445e-8e38-518a1442ffae",
+        "87579f79-441c-400c-b97a-20c4c8e4838c",
+        "eef8b573-f5e6-4b2b-8bff-06132ca23570",
+        "2442b934-8bdf-45bf-a3b6-0256b7d2937c",
+        "45c78931-f3da-42a1-a393-2b6797bc03c8",
+        "0d675d95-ba6b-44c0-8859-dae1079c74ca",
+        "fa5b79cb-e8e1-4f81-b77c-66d53cc9b808",
+        "d4959a77-c35a-4241-9801-d39b2e181c17",
+        "b566f7a4-e347-4e1c-95d8-2dc016d31808",
+        "8150e7f4-f941-4ca2-8cf9-2ff203af1d60",
+        "2c66ec5e-56de-4eaa-be40-88d2d1520e26",
+        "322539f4-2f11-4529-b0fd-b85bcab08e7e",
+        "eafb66d1-299d-499a-b90d-dd706d2bcb31",
+        "fcf970ff-305d-4ebe-9975-49961903f151",
         "4ef4d916-562d-4362-b777-697ab3236fa1",
         "d8ad5fef-aec7-44ad-84b6-786151956008",
         "88a72ab1-34ee-4030-b06d-0468751727de",

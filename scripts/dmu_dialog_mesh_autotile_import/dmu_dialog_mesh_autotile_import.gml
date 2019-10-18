@@ -3,7 +3,7 @@
 var thing = argument0;
 var map = Stuff.active_map
 var map_contents = map.contents;
-var fn = get_open_filename("Mesh Autotile files (*.ddd_atm)|*.ddd_atm", "");
+var fn = get_open_filename_mesh_autotile();
 
 if (!file_exists(fn)) {
     return false;

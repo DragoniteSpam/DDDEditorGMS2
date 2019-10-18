@@ -1,0 +1,1 @@
+return get_open_filename("Anything valid|*.d3d;*.gmmod;*.obj;*.vrax;*.smf|Game Maker model files|*.d3d;*.gmmod|Object files|*.obj|drago's old file format|*.vrax|SMF files (advanced)|*.smf", "");

@@ -1,6 +1,6 @@
 /// @param UIThing
 
-var fn = get_save_filename("Mesh Autotile files (*.ddd_atm)|*.ddd_atm", "");
+var fn = get_save_filename_mesh_autotile();
 
 if (fn == "") {
     return false;

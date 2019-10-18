@@ -2,7 +2,7 @@
 
 var thing = argument0;
 
-var fn = get_open_filename("Game Maker model files (*.d3d;*.gmmod)|*.d3d;*.gmmod", "");
+var fn = get_open_filename_mesh_d3d();
 
 if (file_exists(fn)) {
 	var map = Stuff.active_map;

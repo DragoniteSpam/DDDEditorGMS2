@@ -1,0 +1,1 @@
+return get_open_filename("Tiled JSON files (*.json)|*.json", "");
