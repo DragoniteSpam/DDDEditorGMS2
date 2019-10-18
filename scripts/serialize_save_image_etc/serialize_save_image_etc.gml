@@ -6,7 +6,7 @@ buffer_write(buffer, buffer_datatype, SerializeThings.IMAGE_MISC);
 var list = Stuff.all_graphic_etc;
 
 var n_images = ds_list_size(list);
-buffer_write(buffer, buffer_u16, n_images);
+buffer_write(buffer, buffer_u32, n_images);
 
 for (var i = 0; i < n_images; i++) {
     var data = list[| i];

@@ -95,8 +95,13 @@ if (header == "DDD") {
         var datatype = buffer_read(buffer, buffer_datatype);
         switch (datatype) {
             // assets
-            case SerializeThings.AUTOTILES: serialize_load_image_autotiles(buffer, version); break;
-            case SerializeThings.TILESET: serialize_load_image_tilesets(buffer, version); break;
+            case SerializeThings.IMAGE_AUTOTILES: serialize_load_image_autotiles(buffer, version); break;
+            case SerializeThings.IMAGE_TILESET: serialize_load_image_tilesets(buffer, version); break;
+            case SerializeThings.IMAGE_BATTLERS: serialize_load_image_battlers(buffer, version); break;
+            case SerializeThings.IMAGE_OVERWORLD: serialize_load_image_overworlds(buffer, version); break;
+            case SerializeThings.IMAGE_PARTICLES: serialize_load_image_particles(buffer, version); break;
+            case SerializeThings.IMAGE_UI: serialize_load_image_ui(buffer, version); break;
+            case SerializeThings.IMAGE_MISC: serialize_load_image_etc(buffer, version); break;
             case SerializeThings.AUDIO_BGM: serialize_load_audio_bgm(buffer, version); break;
             case SerializeThings.AUDIO_SE: serialize_load_audio_se(buffer, version); break;
             case SerializeThings.MESHES: serialize_load_meshes(buffer, version); break;
