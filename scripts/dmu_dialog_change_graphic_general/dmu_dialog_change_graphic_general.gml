@@ -10,6 +10,6 @@ if (selection + 1) {
         var what = list.entries[| selection];
         sprite_delete(what.picture);
         what.picture = sprite_add(fn, 0, false, false, 0, 0);
-        uivc_list_graphic_battlers(list);
+        uivc_list_graphic_generic(list);
     }
 }

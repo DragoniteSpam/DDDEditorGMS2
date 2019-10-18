@@ -1,16 +1,19 @@
 /// @param filename
+/// @param list
 /// @param [name]
 
 var filename = argument[0];
-var name = (argument_count > 1) ? argument[1] : filename_name(filename);
+var prefix = argument[1];
+var list = argument[2];
+var name = (argument_count > 3) ? argument[3] : filename_name(filename);
 var internal_name = string_lettersdigits(string_replace_all(name, filename_ext(filename), ""));
 
 var data = instance_create_depth(0, 0, 0, DataImage);
 data.name = name;
 data.picture = sprite_add(filename, 0, false, false, 0, 0);
 
-internal_name_generate(data, PREFIX_GRAPHIC_UI + internal_name);
+internal_name_generate(data, prefix + internal_name);
 
-ds_list_add(Stuff.all_graphic_ui, data);
+ds_list_add(list, data);
 
 return data;

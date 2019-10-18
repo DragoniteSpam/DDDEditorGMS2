@@ -1,8 +1,8 @@
 {
-    "id": "b429a042-c0bc-4aa4-a4ac-fcb544eb7248",
+    "id": "8d0bf6f9-3664-4503-8318-caa3f1cbcb4e",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "graphics_add_overworld",
+    "name": "graphics_add_generic",
     "IsCompatibility": false,
     "IsDnD": false
 }

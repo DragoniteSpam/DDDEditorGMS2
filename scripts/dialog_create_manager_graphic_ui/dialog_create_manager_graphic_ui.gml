@@ -26,7 +26,7 @@ var yy = 64;
 var yy_base = yy;
 var spacing = 16;
 
-var el_list = create_list(16, yy, "UI Graphics", "<no UI graphics>", ew, eh, 12, uivc_list_graphic_ui, false, dg, Stuff.all_graphic_ui);
+var el_list = create_list(16, yy, "UI Graphics", "<no UI graphics>", ew, eh, 12, uivc_list_graphic_generic, false, dg, Stuff.all_graphic_ui);
 el_list.entries_are = ListEntries.INSTANCES;
 el_list.numbered = true;
 dg.el_list = el_list;
@@ -51,12 +51,15 @@ yy = yy + el_name_internal.height + spacing;
 
 vx1 = ew / 2;
 
+// these are disabled here and they don't modify yy, but they're still added to the list
+// so that (1) they exist and can be accessed, if not do anything, and (b) will still be
+// cleaned up when the dialog is closed
 var el_frames_horizontal = create_input(c2 + 16, yy, "X frames:", ew, eh, uivc_input_graphic_set_frames_h, "", "1", "0...255", validate_int, ui_value_real, 0, 255, 3, vx1, vy1, vx2, vy2, dg);
+el_frames_horizontal.enabled = false;
 dg.el_frames_horizontal = el_frames_horizontal;
-yy = yy + el_name_internal.height + spacing;
 var el_frames_vertical = create_input(c2 + 16, yy, "Y frames:", ew, eh, uivc_input_graphic_set_frames_v, "", "1", "0...255", validate_int, ui_value_real, 0, 255, 3, vx1, vy1, vx2, vy2, dg);
+el_frames_vertical.enabled = false;
 dg.el_frames_vertical = el_frames_vertical;
-yy = yy + el_frames_vertical.height + spacing;
 
 yy = yy_base;
 
