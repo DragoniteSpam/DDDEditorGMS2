@@ -14,7 +14,7 @@ data.loop_start = 0;
 data.loop_end = FMODGMS_Snd_Get_Length(data.fmod) / AUDIO_BASE_FREQUENCY;
 FMODGMS_Snd_Set_LoopPoints(data.fmod, 0, data.loop_end * AUDIO_BASE_FREQUENCY);
 
-internal_name_set(data, internal_name);
+internal_name_generate(data, PREFIX_AUDIO_BGM + internal_name);
 
 data.temp_name = PATH_AUDIO + string(data.GUID) + filename_ext(filename);
 file_copy(filename, data.temp_name);

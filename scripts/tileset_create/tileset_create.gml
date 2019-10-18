@@ -6,6 +6,8 @@
 with (instance_create_depth(0, 0, 0, DataTileset)) {
     picture_name = argument[0];
     
+    internal_name_generate(id, PREFIX_GRAPHIC_TILESET + string_lettersdigits(picture_name));
+    
     if (argument_count > 2) {
         picture = argument[2];
     } else {

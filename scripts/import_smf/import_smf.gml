@@ -12,11 +12,7 @@ if (smf != undefined) {
 	
 	var base_name = filename_change_ext(filename_name(fn), "");
 	mesh.name = base_name;
-	var internal_name = "Ms" + string_lettersdigits(base_name);
-	while (internal_name_get(internal_name)) {
-	    internal_name = "Ms" + string_lettersdigits(base_name) + string(irandom(65535));
-	}
-	internal_name_set(mesh, internal_name);
+	internal_name_generate(mesh, PREFIX_MESH + string_lettersdigits(base_name));
 	mesh.buffer = smf[0];
 	mesh.vbuffer = smf[1];
     

@@ -55,6 +55,17 @@
 #macro TILESET_TEXTURE_WIDTH 0.5
 #macro VERTEX_FORMAT_SIZE 40 /* bytes */
 
+#macro PREFIX_GRAPHIC_BATTLER "GBat"
+#macro PREFIX_GRAPHIC_OVERWORLD "GOv"
+#macro PREFIX_GRAPHIC_PARTICLE "GPart"
+#macro PREFIX_GRAPHIC_UI "GUI"
+#macro PREFIX_GRAPHIC_ETC "GEtc"
+#macro PREFIX_GRAPHIC_AUTOTILE "GAt"
+#macro PREFIX_GRAPHIC_TILESET "GTs"
+#macro PREFIX_AUDIO_SE "Se"
+#macro PREFIX_AUDIO_BGM "Bgm"
+#macro PREFIX_MESH "Msh"
+
 #macro view_fullscreen 0
 #macro view_3d 1
 #macro view_ribbon 2
