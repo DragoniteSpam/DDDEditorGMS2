@@ -21,6 +21,7 @@ draw_set_halign(input.alignment);
 draw_set_valign(input.valignment);
 var c = input.color;
 draw_text_colour(tx, ty, string(input.text), c, c, c, c, 1);
+draw_set_valign(fa_middle);
 
 if (script_execute(input.validation, value)) {
     var c = input.color;
@@ -52,7 +53,7 @@ if (string_length(value) == 0) {
 }
 
 if (input.require_enter) {
-	draw_sprite(spr_enter, 0, vx2 - sprite_get_width(spr_enter) - 4, mean(vy1, vy2) - sprite_get_height(spr_enter) / 2);
+	draw_sprite(spr_enter, 0, vx2 - sprite_get_width(spr_enter) - 4, vty - sprite_get_height(spr_enter) / 2);
 }
 
 if (input.interactive && dialog_is_active(input.root)) {
