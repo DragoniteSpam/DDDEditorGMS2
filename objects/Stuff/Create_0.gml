@@ -105,6 +105,9 @@ all_graphic_particles = ds_list_create();
 all_graphic_ui = ds_list_create();
 all_graphic_etc = ds_list_create();
 
+all_graphic_particle_texture = -1;
+all_graphic_ui_texture = -1;
+
 #region autotile map
 autotile_map = ds_map_create();
 autotile_map[? 2] = 1;
@@ -397,7 +400,7 @@ if (file_exists("projects.json")) {
 ini_open(DATA_INI);
 setting_color = ini_read_real("config", "color", c_green);                  // BGR
 setting_bezier_precision = ini_read_real("config", "bezier", 6);            // preferably keep this between like 4 and 16ish?
-setting_backups = ini_read_real("config", "backups", 2);                    // 0 (none) through 9 (why would you keep that many backups)
+setting_backups = ini_read_real("config", "backups", 2);                    // 0 (none) through 9 (why would you keep that many backups?)
 setting_autosave = ini_read_real("config", "autosave", true);               // bool
 setting_npc_animate_rate = ini_read_real("config", "npc-speed", 4);         // bool
 setting_code_extension = ini_read_real("config", "code-ext", 0);            // 0 = txt, 1 = lua
@@ -423,6 +426,7 @@ maps_included = false;
 
 if (setting_autosave) {
 	var project_list = all_projects[? "projects"];
+    // @todo gml update try catch
 	if (project_list != undefined) {
 		dialog_create_project_list(noone);
 	}

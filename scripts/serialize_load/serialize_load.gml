@@ -56,9 +56,6 @@ if (header == "DDD") {
             with (Data) if (file_location = DataFileLocations.ASSET) {
                 instance_destroy();
             }
-            ds_list_clear(Stuff.all_meshes);
-			ds_list_clear(Stuff.all_bgm);
-			ds_list_clear(Stuff.all_se);
             break;
 		case SERIALIZE_DATA_AND_MAP:
         case SERIALIZE_DATA:

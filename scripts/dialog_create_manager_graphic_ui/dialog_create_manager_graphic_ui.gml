@@ -8,7 +8,7 @@ var dh = 480;
 var dg = dialog_create(dw, dh, "Data: Availalbe UI Graphics", dialog_default, dc_default, dialog);
 
 var columns = 3;
-var ew = (dw - 64) / columns;
+var ew = (dw - columns * 64) / columns;
 var eh = 24;
 
 var c2 = dw / columns;
@@ -72,11 +72,17 @@ var el_dimensions = create_text(c3 + 16, yy, "Dimensions:", ew, eh, fa_left, ew,
 dg.el_dimensions = el_dimensions;
 yy = yy + el_dimensions.height + spacing;
 
+var el_texture_page = create_button(c3 + 16, yy, "View Texture Page", ew, eh, fa_center, null, dg);
+yy = yy + el_texture_page.height + spacing;
+
 var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
 
 ds_list_add(dg.contents, el_list,
     el_add, el_remove, el_change,
     el_name_text, el_name, el_name_internal_text, el_name_internal,
-    el_confirm);
+    el_dimensions, el_frames_horizontal, el_frames_vertical, el_image,
+    el_texture_page,
+    el_confirm
+);
 
 return dg;
