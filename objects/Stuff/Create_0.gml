@@ -399,9 +399,15 @@ setting_color = ini_read_real("config", "color", c_green);                  // B
 setting_bezier_precision = ini_read_real("config", "bezier", 6);            // preferably keep this between like 4 and 16ish?
 setting_backups = ini_read_real("config", "backups", 2);                    // 0 (none) through 9 (why would you keep that many backups)
 setting_autosave = ini_read_real("config", "autosave", true);               // bool
-setting_npc_animate_rate = ini_read_real("config", "npc-speed", 4); // bool
+setting_npc_animate_rate = ini_read_real("config", "npc-speed", 4);         // bool
 setting_code_extension = ini_read_real("config", "code-ext", 0);            // 0 = txt, 1 = lua
 setting_normal_threshold = ini_read_real("config", "normal-threshold", 30); // degrees
+
+setting_location_ddd = ini_read_string("locations", "ddd", "./");
+setting_location_mesh = ini_read_string("locations", "mesh", "./");
+setting_location_image = ini_read_string("locations", "image", "./");
+setting_location_audio = ini_read_string("locations", "audio", "./");
+setting_location_tiled = ini_read_string("locations", "tiled", "./");
 
 setting_code_extension_map = [".txt", ".lua"];
 

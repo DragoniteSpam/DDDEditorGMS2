@@ -2,4 +2,12 @@
 
 var name = (argument_count > 0) ? argument[0] : "";
 
-return get_save_filename("Image files (*.png)|*.png", name);
+var path = get_save_filename_ext("Image files (*.png)|*.png", name, Stuff.setting_location_image, "Select an image");
+var dir = filename_dir(path);
+
+if (string_length(dir) > 0) {
+    Stuff.setting_location_image = dir;
+    setting_save_string("location", "image", dir);
+}
+
+return path;
