@@ -19,8 +19,18 @@ repeat (n_images) {
     data.x = buffer_read(buffer, buffer_f32);
     data.y = buffer_read(buffer, buffer_f32);
     
+    if (version >= DataVersions.IMAGE_SPRITE_SIZES) {
+        data.width = buffer_read(buffer, buffer_f32);
+        data.height = buffer_read(buffer, buffer_f32);
+    }
+    
     if (individual_images) {
         data.picture = buffer_read_sprite(buffer);
+        
+        if (!data.width) {
+            data.width = sprite_get_width(data.picture);
+            data.height = sprite_get_height(data.picture);
+        }
     }
     
     ds_list_add(list, data);

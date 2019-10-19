@@ -18,5 +18,8 @@ repeat (n_images) {
     data.vframes = buffer_read(buffer, buffer_u16);
     data.picture = buffer_read_sprite(buffer);
     
+    data.width = sprite_get_width(data.picture);
+    data.height = sprite_get_height(data.picture);
+    
     ds_list_add(list, data);
 }

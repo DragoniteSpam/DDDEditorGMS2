@@ -19,6 +19,8 @@ for (var i = 0; i < n_images; i++) {
     buffer_write(buffer, buffer_u16, data.vframes);
     buffer_write(buffer, buffer_f32, data.x);
     buffer_write(buffer, buffer_f32, data.y);
+    buffer_write(buffer, buffer_f32, data.width);
+    buffer_write(buffer, buffer_f32, data.height);
     
     if (individual_images) {
         buffer_write_sprite(buffer, data.picture);
@@ -26,5 +28,5 @@ for (var i = 0; i < n_images; i++) {
 }
 
 if (!individual_images) {
-    not_yet_implemented();
+    buffer_write_sprite(buffer, Stuff.all_graphic_particle_texture);
 }
