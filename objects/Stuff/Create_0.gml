@@ -105,8 +105,12 @@ all_graphic_particles = ds_list_create();
 all_graphic_ui = ds_list_create();
 all_graphic_etc = ds_list_create();
 
-all_graphic_particle_texture = -1;
-all_graphic_ui_texture = -1;
+var surface = surface_create(2048, 2048);
+all_graphic_particle_texture = sprite_create_from_surface(surface, 0, 0, surface_get_width(surface), surface_get_width(surface), false, false, 0, 0);
+surface_free(surface);
+var surface = surface_create(4096, 4096);
+all_graphic_ui_texture = sprite_create_from_surface(surface, 0, 0, surface_get_width(surface), surface_get_width(surface), false, false, 0, 0);;
+surface_free(surface);
 
 #region autotile map
 autotile_map = ds_map_create();

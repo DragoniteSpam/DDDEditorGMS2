@@ -72,7 +72,7 @@ var el_dimensions = create_text(c3 + 16, yy, "Dimensions:", ew, eh, fa_left, ew,
 dg.el_dimensions = el_dimensions;
 yy = yy + el_dimensions.height + spacing;
 
-var el_texture_page = create_button(c3 + 16, yy, "View Texture Page", ew, eh, fa_center, null, dg);
+var el_texture_page = create_button(c3 + 16, yy, "View Texture Page", ew, eh, fa_center, dmu_dialog_show_ui_texture, dg);
 yy = yy + el_texture_page.height + spacing;
 
 var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);

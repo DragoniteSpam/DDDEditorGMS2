@@ -188,6 +188,8 @@ vertex_freeze(mesh_preview_grid);
 
 schedule_rebuild_master_texture = false;
 schedule_view_master_texture = false;
+schedule_view_particle_texture = false;
+schedule_view_ui_texture = false;
 schedule_save = false;
 schedule_open = false;
 

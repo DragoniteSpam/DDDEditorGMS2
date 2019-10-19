@@ -140,6 +140,18 @@ if (schedule_view_master_texture) {
     schedule_view_master_texture = false;
 }
 
+if (schedule_view_particle_texture) {
+    sprite_save_fixed(Stuff.all_graphic_particle_texture, 0, "particle-preview.png");
+    ds_stuff_open_local("particle-preview.png");
+    schedule_view_particle_texture = false;
+}
+
+if (schedule_view_ui_texture) {
+    sprite_save_fixed(Stuff.all_graphic_ui_texture, 0, "ui-preview.png");
+    ds_stuff_open_local("ui-preview.png");
+    schedule_view_ui_texture = false;
+}
+
 if (schedule_save) {
     serialize_save_data();
     schedule_save = false;

@@ -3999,6 +3999,14 @@
             }
         },
         {
+            "Key": "49fb1d41-24d8-426d-b2f6-ead4da6eac10",
+            "Value": {
+                "id": "695ea4dd-34e7-4d7a-94ef-78d6aa6d0ead",
+                "resourcePath": "scripts\\dmu_dialog_show_ui_texture\\dmu_dialog_show_ui_texture.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "4a17f1b7-c1b5-4e32-ac70-491121e06364",
             "Value": {
                 "id": "df6843bf-8d05-4027-b1b6-632b65d6f64b",
@@ -8275,6 +8283,14 @@
             "Value": {
                 "id": "4b83d395-9cc1-452b-9a3c-6e1d30508d89",
                 "resourcePath": "scripts\\data_smf_optimize_mesh\\data_smf_optimize_mesh.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "954b9d3a-704f-403c-89d8-a87de5387d9b",
+            "Value": {
+                "id": "99b2d538-0398-424d-8936-b4a562fda4ad",
+                "resourcePath": "scripts\\dmu_dialog_show_particle_texture\\dmu_dialog_show_particle_texture.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -14634,6 +14650,8 @@
         "98dd4377-dad0-420c-bac3-2d7d480854a4",
         "4454a6a9-99b9-42dd-bd75-4032290c3af7",
         "a34664c5-89bc-4bc9-93c5-37a4c24dfc9f",
+        "954b9d3a-704f-403c-89d8-a87de5387d9b",
+        "49fb1d41-24d8-426d-b2f6-ead4da6eac10",
         "d20b943e-a6f2-4ba3-8744-b4476ee0d608",
         "21066338-6a38-4cca-a8dd-72e788b45b2d",
         "024e26cf-64d8-4bb8-bb2b-8e611a5bfee0",

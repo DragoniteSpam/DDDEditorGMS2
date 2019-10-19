@@ -1,4 +1,3 @@
-/// @description surface sprite_to_surface(sprite, subimg)
 /// @param sprite
 /// @param subimg
 // by yellowafterlife
