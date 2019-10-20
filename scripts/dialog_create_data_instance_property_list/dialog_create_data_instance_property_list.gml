@@ -15,7 +15,7 @@ var data = guid_get(Camera.ui_game_data.active_type_guid);
 var property = data.properties[| dialog.key];
 var instance = guid_get(data.instances[| selection].GUID);
 
-var dg = dialog_create(dw, dh, instance.name + "." + property.name, dialog_default, dc_close_no_questions_asked, dialog);
+var dg = dialog_create(dw, dh, instance.name + ": " + property.name, dialog_default, dc_close_no_questions_asked, dialog);
 
 var columns = 1;
 var ew = (dw - columns * 32) / columns;

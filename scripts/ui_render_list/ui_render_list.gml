@@ -45,7 +45,10 @@ if (n == 0) {
         var text = list.numbered ? string(index) + ". " : "";
         
         switch (list.entries_are) {
-            case ListEntries.STRINGS: text = text + list.entries[| index]; break;
+            // i resisted casting to string for a while because i wanted them to be
+            // actual strings, but now that lists are allowed to reference other ds_lists
+            // which may not necessarily contain strings that's not really a viable option
+            case ListEntries.STRINGS: text = text + string(list.entries[| index]); break;
 			case ListEntries.INSTANCES_REFID: text = text + +"<" + string_hex(list.entries[| index].REFID) + "> "; /* cascades */
             case ListEntries.INSTANCES: text = text + list.entries[| index].name; break;
             case ListEntries.GUIDS:

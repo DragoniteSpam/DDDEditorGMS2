@@ -1,5 +1,3 @@
-/// @description ui_init_main();
-
 with (instance_create_depth(0, 0, 0, UIMain)) {
     
     #region setup

@@ -61,8 +61,8 @@ if (input.interactive && dialog_is_active(input.root)) {
         // this will not work correctly if there are line breaks, but fixing that is
         // like the bottom of the priority queue right now
         if (floor((current_second * 1.25) % 2) == 0) {
-            var bx = tx + input.value_x1 + string_width(string(value)) + 4;
-            draw_line_width_colour(bx, ty - 7, bx, ty + 7, 2, c_black, c_black);
+            var bx = vtx + string_width(string(value)) + 4;
+            draw_line_width_colour(bx, vty - 7, bx, vty + 7, 2, c_black, c_black);
         }
         var v0 = value;
         value = keyboard_string;

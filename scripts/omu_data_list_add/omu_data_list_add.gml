@@ -49,10 +49,4 @@ if (ds_list_size(plist) < property.max_size) {
             not_yet_implemented();
             break;
     }
-    if (thing.root.el_list_main.entries_are == ListEntries.STRINGS) {
-        create_list_entries(thing.root.el_list_main, string(plist[| ds_list_size(plist) - 1]));
-    } else {
-        // these are IDs and can't be cast to string otherwise theyll explode
-        create_list_entries(thing.root.el_list_main, plist[| ds_list_size(plist) - 1]);
-    }
 }
