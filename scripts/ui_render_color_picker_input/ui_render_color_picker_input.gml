@@ -70,15 +70,13 @@ if (active) {
             var bx = vtx + string_width(picker.value_text) + 4;
             draw_line_width(bx, ty - 7, bx, ty + 7, 2);
         }
-    
-        picker.value_text = picker.value_text + keyboard_string;
-        keyboard_string = "";
-        if (keyboard_check_pressed(vk_backspace)) {
-            picker.value_text = string_backspace(picker.value_text);
-        }
+        picker.value_text = keyboard_string;
         if (Controller.release_escape) {
             picker.value_text = "";
         }
+        
+        keyboard_string = picker.value_text;
+        
         if (string_length(picker.value_text) > 6) {
             picker.value_text = string_copy(picker.value_text, 1, 6);
         }

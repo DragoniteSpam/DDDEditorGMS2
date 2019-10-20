@@ -65,11 +65,7 @@ if (input.interactive && dialog_is_active(input.root)) {
             draw_line_width_colour(bx, ty - 7, bx, ty + 7, 2, c_black, c_black);
         }
         var v0 = value;
-        value = value + keyboard_string;
-        keyboard_string = "";
-        if (keyboard_check_pressed(vk_backspace)) {
-            value = string_backspace(value);
-        }
+        value = keyboard_string;
         if (Controller.press_escape) {
 			Controller.press_escape = false;
             value = "";
@@ -79,6 +75,7 @@ if (input.interactive && dialog_is_active(input.root)) {
         }
         
         input.value = value;
+        keyboard_string = value;
         
         if (script_execute(input.validation, value)) {
             var execute_value_change = (!input.require_enter && v0 != value) || (input.require_enter && keyboard_check_pressed(vk_enter));
@@ -97,6 +94,7 @@ if (input.interactive && dialog_is_active(input.root)) {
     var inbounds = mouse_within_rectangle_determine(vx1, vy1, vx2, vy2, input.adjust_view);
     if (inbounds) {
         if (Controller.release_left) {
+            keyboard_string = input.value;
             ui_activate(input);
         }
     }

@@ -17,23 +17,19 @@ if (!keyboard_check(vk_control)) {
         xspeed = xspeed + dcos(anim_direction) * mspd * Stuff.dt;
         yspeed = yspeed - dsin(anim_direction) * mspd * Stuff.dt;
         zspeed = zspeed - dsin(anim_pitch) * mspd * Stuff.dt;
-        keyboard_string = "";
     }
     if (keyboard_check(vk_down) || keyboard_check(ord("S"))) {
         xspeed = xspeed - dcos(anim_direction) * mspd * Stuff.dt;
         yspeed = yspeed + dsin(anim_direction) * mspd * Stuff.dt;
         zspeed = zspeed + dsin(anim_pitch) * mspd * Stuff.dt;
-        keyboard_string = "";
     }
     if (keyboard_check(vk_left) || keyboard_check(ord("A"))) {
         xspeed = xspeed - dsin(anim_direction) * mspd * Stuff.dt;
         yspeed = yspeed - dcos(anim_direction) * mspd * Stuff.dt;
-        keyboard_string = "";
     }
     if (keyboard_check(vk_right) || keyboard_check(ord("D"))) {
         xspeed = xspeed + dsin(anim_direction) * mspd * Stuff.dt;
         yspeed = yspeed + dcos(anim_direction) * mspd * Stuff.dt;
-        keyboard_string = "";
     }
     if (Controller.mouse_right) {
         var camera_cx = view_get_xport(view_current) + view_get_wport(view_current) / 2;

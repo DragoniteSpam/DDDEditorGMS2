@@ -5,4 +5,3 @@
 var thing = argument0;
 
 Camera.ui.active_element = thing;
-keyboard_string = "";

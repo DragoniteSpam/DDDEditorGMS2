@@ -34,7 +34,6 @@ if (zz < z) {
 		if (ds_list_size(selection) < MAX_SELECTION_COUNT) {
 		    if (!keyboard_check(input_selection_add) && !selection_addition) {
 		        selection_clear();
-		        keyboard_string = "";
 		    }
 		    switch (selection_mode) {
 		        case SelectionModes.SINGLE: var stype = SelectionSingle; break;
@@ -70,11 +69,9 @@ if (zz < z) {
 
 if (keyboard_check_pressed(vk_space)) {
 	sa_fill();
-	keyboard_string = "";
 }
 if (keyboard_check_pressed(vk_delete)) {
 	sa_delete();
-	keyboard_string = "";
 }
 
 // move the camera
@@ -89,23 +86,19 @@ if (!keyboard_check(vk_control)) {
 	    xspeed = xspeed + dcos(direction) * mspd * Stuff.dt;
 	    yspeed = yspeed - dsin(direction) * mspd * Stuff.dt;
 	    zspeed = zspeed - dsin(pitch) * mspd * Stuff.dt;
-	    keyboard_string = "";
 	}
 	if (keyboard_check(vk_down) || keyboard_check(ord("S"))) {
 	    xspeed = xspeed - dcos(direction) * mspd * Stuff.dt;
 	    yspeed = yspeed + dsin(direction) * mspd * Stuff.dt;
 	    zspeed = zspeed + dsin(pitch) * mspd * Stuff.dt;
-	    keyboard_string = "";
 	}
 	if (keyboard_check(vk_left) || keyboard_check(ord("A"))) {
 	    xspeed = xspeed - dsin(direction) * mspd * Stuff.dt;
 	    yspeed = yspeed - dcos(direction) * mspd * Stuff.dt;
-	    keyboard_string = "";
 	}
 	if (keyboard_check(vk_right) || keyboard_check(ord("D"))) {
 	    xspeed = xspeed + dsin(direction) * mspd * Stuff.dt;
 	    yspeed = yspeed + dcos(direction) * mspd * Stuff.dt;
-	    keyboard_string = "";
 	}
 	if (Controller.mouse_right) {
 		var camera_cx = view_get_xport(view_current) + view_get_wport(view_current) / 2;
