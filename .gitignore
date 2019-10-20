@@ -1,7 +1,0 @@
-# potentially pocket monster-y data
-
-datafiles/data/graphics/permanent/**/*.png
-datafiles/data/graphics/permanent/**/*.bmp
-datafiles/data/graphics/permanent/**/*.gif
-# the dummy files are allowed
-# please never use jpeg for game graphics

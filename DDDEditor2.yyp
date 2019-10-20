@@ -391,14 +391,6 @@
             }
         },
         {
-            "Key": "06971d30-02f4-4890-8a34-c527ceea51bf",
-            "Value": {
-                "id": "8b020788-44e7-4989-b24a-5d56b49b85a3",
-                "resourcePath": "datafiles_yy\\data\\graphics\\dummy\\b_chr_dummy.png.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "06d7513a-3652-41d1-84de-29ba4485bce9",
             "Value": {
                 "id": "936a3a7f-7388-4490-ac65-e5c8ab574c78",
@@ -428,14 +420,6 @@
                 "id": "f4e6b581-c48c-4019-ae31-520906c0dd2b",
                 "resourcePath": "scripts\\dc_data_why\\dc_data_why.yy",
                 "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "070bae10-e720-418c-82ac-3d370ce8a79c",
-            "Value": {
-                "id": "751b48f9-1a26-4d45-96bb-0f4a653a2979",
-                "resourcePath": "views\\070bae10-e720-418c-82ac-3d370ce8a79c.yy",
-                "resourceType": "GMFolder"
             }
         },
         {
@@ -2868,14 +2852,6 @@
                 "id": "f622c896-e75e-43b0-bd9e-7f890a36d55d",
                 "resourcePath": "scripts\\smf_collision_cast_ray_model\\smf_collision_cast_ray_model.yy",
                 "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "33f0a295-6095-4378-a6a4-aad38a113203",
-            "Value": {
-                "id": "25435b00-d02c-4799-a2ae-6d530bdd4751",
-                "resourcePath": "datafiles_yy\\data\\graphics\\dummy\\b_at_dummy_grass.png.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -5751,14 +5727,6 @@
             }
         },
         {
-            "Key": "68a956b2-88a6-484a-9f9e-a114e7eea47a",
-            "Value": {
-                "id": "f3f2ab21-b70d-4fee-a020-0c0057aa37b3",
-                "resourcePath": "datafiles_yy\\data\\graphics\\dummy\\b_tileset_dummy_overworld.png.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "68bb6c90-4ddd-4320-b658-bd2574a72268",
             "Value": {
                 "id": "54a55caa-20df-44b0-8160-3a2c790eaa80",
@@ -6754,7 +6722,7 @@
             "Key": "7a596099-debe-4704-b32b-8e49bb9aaa96",
             "Value": {
                 "id": "727681aa-7080-4d87-ad3c-a46636b796a1",
-                "resourcePath": "datafiles_yy\\data\\graphics\\permanent\\b_at_default_grass_0.png.yy",
+                "resourcePath": "datafiles_yy\\data\\graphics\\b_at_default_grass_0.png.yy",
                 "resourceType": "GMIncludedFile"
             }
         },
@@ -11978,7 +11946,7 @@
             "Key": "d73d898b-a02c-4ece-8226-2e332cd7c332",
             "Value": {
                 "id": "1086a7c8-fa41-4795-aedc-1f761a4fc9d3",
-                "resourcePath": "datafiles_yy\\data\\graphics\\permanent\\b_chr_default.png.yy",
+                "resourcePath": "datafiles_yy\\data\\graphics\\b_chr_default.png.yy",
                 "resourceType": "GMIncludedFile"
             }
         },
@@ -12858,7 +12826,7 @@
             "Key": "e8c1d5c4-fe6d-4f44-8e8c-69ede795a882",
             "Value": {
                 "id": "7bd01aa6-f8f3-43ee-bc59-88391ca370db",
-                "resourcePath": "datafiles_yy\\data\\graphics\\permanent\\b_tileset_overworld_0.png.yy",
+                "resourcePath": "datafiles_yy\\data\\graphics\\b_tileset_overworld_0.png.yy",
                 "resourceType": "GMIncludedFile"
             }
         },
@@ -13279,14 +13247,6 @@
             }
         },
         {
-            "Key": "ef235518-c42b-447e-8470-4af8311f20d8",
-            "Value": {
-                "id": "f12b128c-e284-437d-a7a3-5eb3599a5c6b",
-                "resourcePath": "datafiles_yy\\data\\graphics\\permanent\\git-dont-delete-this-folder-please.txt.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "ef27b90a-f8be-4379-91fc-c1e153dbbc50",
             "Value": {
                 "id": "865bae9c-9219-47e6-8d5f-a28c8b2648c1",
@@ -13468,14 +13428,6 @@
                 "id": "7e67399b-878e-4691-a016-4588ed95e08b",
                 "resourcePath": "scripts\\uivc_settings_game_start_x\\uivc_settings_game_start_x.yy",
                 "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "f26b48dd-9135-4f6f-8c04-a03118600764",
-            "Value": {
-                "id": "71145878-bb14-4913-aea5-f9a70ac73518",
-                "resourcePath": "views\\f26b48dd-9135-4f6f-8c04-a03118600764.yy",
-                "resourceType": "GMFolder"
             }
         },
         {

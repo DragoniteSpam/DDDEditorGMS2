@@ -33,10 +33,9 @@
 #macro PATH_BACKUP_DATA ".\\backups\\data\\"
 #macro PATH_BACKUP_MAP ".\\backups\\maps\\"
 #macro PATH_BACKUP_ASSET ".\\backups\\assets\\"
-#macro PATH_DUMMY ".\\data\\graphics\\dummy\\"
+#macro PATH_GRAPHICS ".\\data\\graphics\\"
 #macro PATH_LUA ".\\data\\lua\\"
 #macro PATH_PROJECTS ".\\projects\\"
-#macro PATH_PERMANENT ".\\data\\graphics\\permanent\\"
 #macro PATH_TEMP_CODE "temp\\"              // local storage - no leading punctuation - used for opening files
 #macro PATH_AUDIO "audio\\"                 // local storage - no leading punctuation - used for opening files
 #macro SELECTION_MASK_ALL ~0

@@ -8,7 +8,7 @@
     "exportAction": 2,
     "exportDir": "",
     "fileName": "b_chr_default.png",
-    "filePath": "datafiles\\data\\graphics\\permanent",
+    "filePath": "datafiles\\data\\graphics",
     "freeData": true,
     "origName": "b_chr_default.png",
     "overwrite": false,
