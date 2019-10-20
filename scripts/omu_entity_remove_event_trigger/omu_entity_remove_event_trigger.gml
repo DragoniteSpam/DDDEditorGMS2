@@ -11,7 +11,7 @@ if (index >= ds_list_size(Stuff.all_event_triggers)) {
 	ds_map_add(list.selected_entries, --index, true);
 }
 
-button.root.el_name.value = Stuff.all_event_triggers[| index];
+ui_input_set_value(button.root.el_name, Stuff.all_event_triggers[| index]);
 
 button.root.el_add.interactive = ds_list_size(Stuff.all_event_triggers) < 32;
 button.interactive = ds_list_size(Stuff.all_event_triggers) > 4;

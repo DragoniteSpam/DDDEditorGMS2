@@ -7,13 +7,13 @@ Camera.ui.t_p_mesh_editor.element_tag = (data && true);
 
 if (data) {
     var thing = Camera.ui.t_p_mesh_editor;
-    thing.element_tag.value = string(data.tags);
-    thing.mesh_name.value = data.internal_name;
+    ui_input_set_value(thing.element_tag, string(data.tags));
+    ui_input_set_value(thing.mesh_name, data.internal_name);
     
-    thing.xmin.value = string(data.xmin);
-    thing.xmax.value = string(data.xmax);
-    thing.ymin.value = string(data.ymin);
-    thing.ymax.value = string(data.ymax);
-    thing.zmin.value = string(data.zmin);
-    thing.zmax.value = string(data.zmax);
+    ui_input_set_value(thing.xmin, string(data.xmin));
+    ui_input_set_value(thing.xmax, string(data.xmax));
+    ui_input_set_value(thing.ymin, string(data.ymin));
+    ui_input_set_value(thing.ymax, string(data.ymax));
+    ui_input_set_value(thing.zmin, string(data.zmin));
+    ui_input_set_value(thing.zmax, string(data.zmax));
 }

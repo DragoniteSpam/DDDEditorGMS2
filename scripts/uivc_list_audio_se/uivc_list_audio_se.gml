@@ -4,8 +4,8 @@ var list = argument0;
 var selection = ui_list_selection(list);
 
 if (selection >= 0) {
-    list.root.el_name.value = Stuff.all_se[| selection].name;
-    list.root.el_name_internal.value = Stuff.all_se[| selection].internal_name;
+    ui_input_set_value(list.root.el_name, Stuff.all_se[| selection].name);
+    ui_input_set_value(list.root.el_name_internal, Stuff.all_se[| selection].internal_name);
     
     FMODGMS_Chan_StopChannel(Stuff.fmod_channel);
 }

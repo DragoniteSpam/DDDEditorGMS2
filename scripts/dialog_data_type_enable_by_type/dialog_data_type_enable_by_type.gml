@@ -9,7 +9,7 @@ dialog.el_add_p.interactive = true;
 dialog.el_remove_p.interactive = true;
 
 dialog.el_property_name.interactive = true;
-dialog.el_property_name.value = dialog.selected_property.name;
+ui_input_set_value(dialog.el_property_name, dialog.selected_property.name);
 
 dialog.el_property_type.interactive = !dialog.selected_data.is_enum;
 
@@ -19,7 +19,7 @@ if (dialog.selected_data.is_enum) {
     dialog.el_property_type.interactive = true;
     dialog.el_property_ext_type.interactive = true;
     dialog.el_property_size.interactive = true;
-    dialog.el_property_size.value = string(dialog.selected_property.max_size);
+    ui_input_set_value(dialog.el_property_size, string(dialog.selected_property.max_size));
     
     dialog.el_property_type.value = dialog.selected_property.type;
     
@@ -32,24 +32,24 @@ if (dialog.selected_data.is_enum) {
             dialog.el_property_min.enabled = true;
             dialog.el_property_max.enabled = true;
             dialog.el_property_scale.enabled = true;
-            dialog.el_property_min.value = string(dialog.selected_property.range_min);
-            dialog.el_property_max.value = string(dialog.selected_property.range_max);
+            ui_input_set_value(dialog.el_property_min, string(dialog.selected_property.range_min));
+            ui_input_set_value(dialog.el_property_max, string(dialog.selected_property.range_max));
             dialog.el_property_scale.value = dialog.selected_property.number_scale;
             
             if (dialog.selected_property.type == DataTypes.INT) {
                 dialog.el_property_default_int.enabled = true;
-                dialog.el_property_default_int.value = string(dialog.selected_property.default_int);
+                ui_input_set_value(dialog.el_property_default_int, string(dialog.selected_property.default_int));
             } else if (dialog.selected_property.type == DataTypes.FLOAT) {
                 dialog.el_property_default_real.enabled = true;
-                dialog.el_property_default_real.value = string(dialog.selected_property.default_real);
+                ui_input_set_value(dialog.el_property_default_real, string(dialog.selected_property.default_real));
             }
             break;
         case DataTypes.STRING:
             dialog.el_property_char_limit.interactive = true;
             dialog.el_property_char_limit.enabled = true;
-            dialog.el_property_char_limit.value = string(dialog.selected_property.char_limit);
+            ui_input_set_value(dialog.el_property_char_limit, string(dialog.selected_property.char_limit));
             dialog.el_property_default_string.enabled = true;
-            dialog.el_property_default_string.value = dialog.selected_property.default_string;
+            ui_input_set_value(dialog.el_property_default_string, dialog.selected_property.default_string);
             break;
         case DataTypes.BOOL:
             dialog.el_property_default_bool.enabled = true;

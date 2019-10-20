@@ -1,3 +1,5 @@
-/// @param UIThing
+/// @param UIInputCode
 
-argument0.value = uios_code_text(argument0, argument0.value);
+var code = argument0;
+
+code.value = uios_code_text(code, code.value);

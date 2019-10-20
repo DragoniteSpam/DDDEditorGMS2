@@ -13,6 +13,6 @@ Stuff.game_starting_x = min(map.xx - 1, Stuff.game_starting_x);
 Stuff.game_starting_y = min(map.yy - 1, Stuff.game_starting_y);
 Stuff.game_starting_z = min(map.zz - 1, Stuff.game_starting_z);
 
-thing.root.el_x.value = string(Stuff.game_starting_x);
-thing.root.el_y.value = string(Stuff.game_starting_y);
-thing.root.el_z.value = string(Stuff.game_starting_z);
+ui_input_set_value(thing.root.el_x, string(Stuff.game_starting_x));
+ui_input_set_value(thing.root.el_y, string(Stuff.game_starting_y));
+ui_input_set_value(thing.root.el_z, string(Stuff.game_starting_z));

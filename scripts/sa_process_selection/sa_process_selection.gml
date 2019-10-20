@@ -45,7 +45,7 @@ if (ds_list_size(list) == 0) {
     
     // entity-pawn
     
-    Camera.ui.element_entity_pawn_frame.value = "0";
+    ui_input_set_value(Camera.ui.element_entity_pawn_frame, "0");
     Camera.ui.element_entity_pawn_frame.interactive = false;
     Camera.ui.element_entity_pawn_direction.value = 0;
     Camera.ui.element_entity_pawn_direction.interactive = false;
@@ -55,7 +55,7 @@ if (ds_list_size(list) == 0) {
     safa_on_select(list[| 0]);
 } else {
     // populate the UI elements with a nice ¯\_(ツ)_/¯
-    Camera.ui.element_entity_name.value = "";
+    ui_input_set_value(Camera.ui.element_entity_name, "");
     Camera.ui.element_entity_solid.value = 2;
     Camera.ui.element_entity_static.value = 2;
     
@@ -101,18 +101,18 @@ if (ds_list_size(list) == 0) {
     Camera.ui.element_entity_scale_y.interactive = true;
     Camera.ui.element_entity_scale_z.interactive = true;
     
-    Camera.ui.element_entity_pos_x.value  = "";
-    Camera.ui.element_entity_pos_y.value  = "";
-    Camera.ui.element_entity_pos_z.value  = "";
-    Camera.ui.element_entity_offset_x.value  = "";
-    Camera.ui.element_entity_offset_y.value  = "";
-    Camera.ui.element_entity_offset_z.value  = "";
-    Camera.ui.element_entity_rot_x.value  = "";
-    Camera.ui.element_entity_rot_y.value  = "";
-    Camera.ui.element_entity_rot_z.value  = "";
-    Camera.ui.element_entity_scale_x.value  = "";
-    Camera.ui.element_entity_scale_y.value  = "";
-    Camera.ui.element_entity_scale_z.value  = "";
+    ui_input_set_value(Camera.ui.element_entity_pos_x, "");
+    ui_input_set_value(Camera.ui.element_entity_pos_y, "");
+    ui_input_set_value(Camera.ui.element_entity_pos_z, "");
+    ui_input_set_value(Camera.ui.element_entity_offset_x, "");
+    ui_input_set_value(Camera.ui.element_entity_offset_y, "");
+    ui_input_set_value(Camera.ui.element_entity_offset_z, "");
+    ui_input_set_value(Camera.ui.element_entity_rot_x, "");
+    ui_input_set_value(Camera.ui.element_entity_rot_y, "");
+    ui_input_set_value(Camera.ui.element_entity_rot_z, "");
+    ui_input_set_value(Camera.ui.element_entity_scale_x, "");
+    ui_input_set_value(Camera.ui.element_entity_scale_y, "");
+    ui_input_set_value(Camera.ui.element_entity_scale_z, "");
     
     var type = selection_all_type();
     

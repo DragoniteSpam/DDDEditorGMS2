@@ -18,7 +18,7 @@ if (selection >= 0) {
         list.root.el_add_p.interactive = true;
         list.root.el_remove_p.interactive = true;
         
-        list.root.el_data_name.value = list.root.selected_data.name;
+        ui_input_set_value(list.root.el_data_name, list.root.selected_data.name);
         
         list.root.el_list_p.index = 0;
     }

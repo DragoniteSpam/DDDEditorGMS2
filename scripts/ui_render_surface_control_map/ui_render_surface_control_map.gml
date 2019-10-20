@@ -143,6 +143,6 @@ ed_x[| 0] = data_x;
 ed_y[| 0] = data_y;
 ed_z[| 0] = data_z;
 
-surface.root.el_input_x.value = string(data_x);
-surface.root.el_input_y.value = string(data_y);
-surface.root.el_input_z.value = string(data_z);
+ui_input_set_value(surface.root.el_input_x, string(data_x));
+ui_input_set_value(surface.root.el_input_y, string(data_y));
+ui_input_set_value(surface.root.el_input_z, string(data_z));

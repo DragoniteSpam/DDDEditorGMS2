@@ -15,7 +15,7 @@ if (pselection + 1) {
         case DataTypes.FLOAT:
         case DataTypes.STRING:
         case DataTypes.CODE:
-            list.root.el_value.value = string(plist[| pselection]);
+            ui_input_set_value(list.root.el_value, string(plist[| pselection]));
             break;
         case DataTypes.BOOL:
             list.root.el_value.value = plist[| pselection];

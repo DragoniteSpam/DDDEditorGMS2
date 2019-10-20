@@ -30,9 +30,9 @@ while (buffer_tell(mesh.buffer) < buffer_get_size(mesh.buffer)) {
 
 buffer_seek(mesh.buffer, buffer_seek_start, 0);
 
-Camera.ui.t_p_mesh_editor.xmin.value = string(mesh.xmin);
-Camera.ui.t_p_mesh_editor.ymin.value = string(mesh.ymin);
-Camera.ui.t_p_mesh_editor.zmin.value = string(mesh.zmin);
-Camera.ui.t_p_mesh_editor.xmax.value = string(mesh.xmax);
-Camera.ui.t_p_mesh_editor.ymax.value = string(mesh.ymax);
-Camera.ui.t_p_mesh_editor.zmax.value = string(mesh.zmax);
+ui_input_set_value(Camera.ui.t_p_mesh_editor.xmin, string(mesh.xmin));
+ui_input_set_value(Camera.ui.t_p_mesh_editor.ymin, string(mesh.ymin));
+ui_input_set_value(Camera.ui.t_p_mesh_editor.zmin, string(mesh.zmin));
+ui_input_set_value(Camera.ui.t_p_mesh_editor.xmax, string(mesh.xmax));
+ui_input_set_value(Camera.ui.t_p_mesh_editor.ymax, string(mesh.ymax));
+ui_input_set_value(Camera.ui.t_p_mesh_editor.zmax, string(mesh.zmax));

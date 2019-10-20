@@ -4,7 +4,7 @@ var entity  =  argument0;
 
 // basic stuff
 
-Camera.ui.element_entity_name.value = entity.name;
+ui_input_set_value(Camera.ui.element_entity_name, entity.name);
 Camera.ui.element_entity_solid.value = entity.am_solid;
 Camera.ui.element_entity_static.value = entity.static;
 
@@ -43,15 +43,15 @@ Camera.ui.element_entity_scale_x.interactive = entity.scalable;
 Camera.ui.element_entity_scale_y.interactive = entity.scalable;
 Camera.ui.element_entity_scale_z.interactive = entity.scalable;
 
-Camera.ui.element_entity_pos_x.value = string(entity.xx);
-Camera.ui.element_entity_pos_y.value = string(entity.yy);
-Camera.ui.element_entity_pos_z.value = string(entity.zz);
-Camera.ui.element_entity_offset_x.value = string(entity.off_xx);
-Camera.ui.element_entity_offset_y.value = string(entity.off_yy);
-Camera.ui.element_entity_offset_z.value = string(entity.off_zz);
-Camera.ui.element_entity_rot_x.value = string(entity.rot_xx);
-Camera.ui.element_entity_rot_y.value = string(entity.rot_yy);
-Camera.ui.element_entity_rot_z.value = string(entity.rot_zz);
-Camera.ui.element_entity_scale_x.value = string(entity.scale_xx);
-Camera.ui.element_entity_scale_y.value = string(entity.scale_yy);
-Camera.ui.element_entity_scale_z.value = string(entity.scale_zz);
+ui_input_set_value(Camera.ui.element_entity_pos_x, string(entity.xx));
+ui_input_set_value(Camera.ui.element_entity_pos_y, string(entity.yy));
+ui_input_set_value(Camera.ui.element_entity_pos_z, string(entity.zz));
+ui_input_set_value(Camera.ui.element_entity_offset_x, string(entity.off_xx));
+ui_input_set_value(Camera.ui.element_entity_offset_y, string(entity.off_yy));
+ui_input_set_value(Camera.ui.element_entity_offset_z, string(entity.off_zz));
+ui_input_set_value(Camera.ui.element_entity_rot_x, string(entity.rot_xx));
+ui_input_set_value(Camera.ui.element_entity_rot_y, string(entity.rot_yy));
+ui_input_set_value(Camera.ui.element_entity_rot_z, string(entity.rot_zz));
+ui_input_set_value(Camera.ui.element_entity_scale_x, string(entity.scale_xx));
+ui_input_set_value(Camera.ui.element_entity_scale_y, string(entity.scale_yy));
+ui_input_set_value(Camera.ui.element_entity_scale_z, string(entity.scale_zz));

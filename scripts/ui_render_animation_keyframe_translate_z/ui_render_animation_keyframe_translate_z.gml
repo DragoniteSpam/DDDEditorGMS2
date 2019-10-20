@@ -20,7 +20,7 @@ if (animation && (timeline_layer + 1)) {
 	input.back_color = rel_current ? c_ui_select : c_white;
 	
 	if (!ui_is_active(input)) {
-	    input.value = string(animation_get_tween_translate_z(animation, timeline_layer, floor(timeline.playing_moment)) - (rel_current ? rel_current.zz : 0));
+	    ui_input_set_value(input, string(animation_get_tween_translate_z(animation, timeline_layer, floor(timeline.playing_moment)) - (rel_current ? rel_current.zz : 0)));
 	}
 }
 

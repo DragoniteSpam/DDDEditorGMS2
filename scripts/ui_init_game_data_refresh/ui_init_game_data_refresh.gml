@@ -16,13 +16,8 @@ if (selection < 0) {
     var instance = guid_get(data.instances[| selection].GUID);
 }
 
-if (instance) {
-    Camera.ui_game_data.el_inst_name.value = instance.name;
-    Camera.ui_game_data.el_inst_internal_name.value = instance.internal_name;
-} else {
-    Camera.ui_game_data.el_inst_name.value = "";
-    Camera.ui_game_data.el_inst_internal_name.value = "";
-}
+ui_input_set_value(Camera.ui_game_data.el_inst_name, instance ? instance.name : "");
+ui_input_set_value(Camera.ui_game_data.el_inst_internal_name, instance ? instance.internal_name : "");
 
 // if you got to this point, you already know data has a value
 // container
@@ -68,7 +63,7 @@ for (var i = 0; i < ds_list_size(dynamic.contents); i++) {
                 if (property.type == DataTypes.BOOL) {
                     thingy.value = ds_list_find_value(instance.values[| n], 0);
                 } else {
-                    thingy.value = string(ds_list_find_value(instance.values[| n], 0));
+                    ui_input_set_value(thingy, string(ds_list_find_value(instance.values[| n], 0)));
                 }
                 // if you re-select a data that already has one of these fields set, it should
                 // be re-selected when you re-select the instance - there should be some indication
@@ -123,13 +118,13 @@ for (var i = 0; i < ds_list_size(dynamic.contents); i++) {
                 case DataTypes.FLOAT:
                 case DataTypes.ENUM:
                 case DataTypes.DATA:
-                    thingy.value = "0";
+                    ui_input_set_value(thingy,  "0");
                     break;
                 case DataTypes.STRING:
-                    thingy.value = "";
+                    ui_input_set_value(thingy, "");
                     break;
                 case DataTypes.BOOL:
-                    thingy.value = "0";
+                    thingy.value = false;
                     break;
                 case DataTypes.CODE:
                     thingy.value = property.default_code;

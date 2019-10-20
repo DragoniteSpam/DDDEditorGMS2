@@ -11,7 +11,7 @@ if (selection >= 0) {
     list.root.el_property_ext_type.interactive = true;
     list.root.el_property_type_guid.interactive = (property[EventNodeCustomData.TYPE] == DataTypes.DATA);
     
-    list.root.el_property_name.value = property[EventNodeCustomData.NAME];
+    ui_input_set_value(list.root.el_property_name, property[EventNodeCustomData.NAME]);
     list.root.el_property_type.value = property[EventNodeCustomData.TYPE];
     
     var datatype = guid_get(property[EventNodeCustomData.TYPE_GUID]);

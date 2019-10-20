@@ -1,8 +1,10 @@
 /// @param UIList
 
-var selection = ui_list_selection(argument0);
-var sw_data = Stuff.switches[| selection];
-var base_dialog = argument0.root;
+var list = argument0;
 
-base_dialog.el_name.value = sw_data[0];
+var selection = ui_list_selection(list);
+var sw_data = Stuff.switches[| selection];
+var base_dialog = list.root;
+
+ui_input_set_value(base_dialog.el_name, sw_data[0]);
 base_dialog.el_default.value = sw_data[1];
