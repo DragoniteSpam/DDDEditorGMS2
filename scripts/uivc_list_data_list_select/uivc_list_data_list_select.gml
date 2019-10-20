@@ -1,23 +1,24 @@
 /// @param UIList
 
-var pselection = ui_list_selection(argument0);
+var list = argument0;
+var pselection = ui_list_selection(list);
 
-if (pselection >= 0) {
+if (pselection + 1) {
     var selection = ui_list_selection(Camera.ui_game_data.el_instances);
     var data = guid_get(Camera.ui_game_data.active_type_guid);
-    var property = data.properties[| argument0.key];
-    var instance = guid_get(data.instances[| selection].GUID);
-    var plist = instance.values[| argument0.key];
+    var property = data.properties[| list.key];
+    var instance = data.instances[| selection];
+    var plist = instance.values[| list.key];
     
     switch (property.type) {
         case DataTypes.INT:
         case DataTypes.FLOAT:
         case DataTypes.STRING:
         case DataTypes.CODE:
-            argument0.root.el_value.value = string(plist[| pselection]);
+            list.root.el_value.value = string(plist[| pselection]);
             break;
         case DataTypes.BOOL:
-            argument0.root.el_value.value = plist[| pselection];
+            list.root.el_value.value = plist[| pselection];
             break;
         case DataTypes.ENUM:
         case DataTypes.DATA:
@@ -33,12 +34,12 @@ if (pselection >= 0) {
         case DataTypes.IMG_ETC:
         case DataTypes.ANIMATION:
             var found = -1;
-            var list = argument0.root.el_value;
-            ui_list_deselect(list);
-            for (var i = 0; i < ds_list_size(list.entries); i++) {
-                if (list.entries[| i] == plist[| pselection]) {
-                    ds_map_add(list.selected_entries, i, true);
-                    list.index = clamp(i - floor(list.slots / 2), 0, max(0, ds_list_size(list.entries) - list.slots - 1));
+            var data_list = list.root.el_value;
+            ui_list_deselect(data_list);
+            for (var i = 0; i < ds_list_size(data_list.entries); i++) {
+                if (data_list.entries[| i].GUID == plist[| pselection]) {
+                    ds_map_add(data_list.selected_entries, i, true);
+                    data_list.index = clamp(i - floor(data_list.slots / 2), 0, max(0, ds_list_size(data_list.entries) - data_list.slots - 1));
                     break;
                 }
             }
