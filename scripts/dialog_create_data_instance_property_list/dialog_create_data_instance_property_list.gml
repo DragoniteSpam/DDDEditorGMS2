@@ -129,7 +129,6 @@ switch (property.type) {
         el_value.key = dialog.key;
         yy = yy + ui_get_list_height(el_value) + spacing;
         break;
-    // @todo find a way to streamline this. PLEASE.
     case DataTypes.AUDIO_BGM:
         var el_value = create_list(16, yy, "Select a BGM resource:", "<no BGM>", ew, eh, 8, uivc_data_property_list_guid, false, dg);
         el_value.entries_are = ListEntries.GUIDS;
@@ -155,9 +154,8 @@ switch (property.type) {
         yy = yy + ui_get_list_height(el_value) + spacing;
         break;
     case DataTypes.AUTOTILE:
-        not_yet_implemented();
-        var el_value = create_list(16, yy, "Select an Autotile resource:", "<no Autotiles>", ew, eh, 8, uivc_data_property_list_guid, false, dg);
-        el_value.entries_are = ListEntries.GUIDS;
+        var el_value = create_list(16, yy, "Select an Autotile resource:", "<no Autotiles>", ew, eh, 8, uivc_data_property_list_guid, false, dg, Stuff.all_graphic_autotiles);
+        el_value.entries_are = ListEntries.INSTANCES;
         dg.el_list_main = el_list;
         el_value.key = dialog.key;
         yy = yy + ui_get_list_height(el_value) + spacing;
@@ -168,9 +166,8 @@ switch (property.type) {
         yy = yy + el_value.height + spacing;
         break;
     case DataTypes.MESH:
-        not_yet_implemented();
-        var el_value = create_list(16, yy, "Select a Mesh resource:", "<no Meshes>", ew, eh, 8, uivc_data_property_list_guid, false, dg);
-        el_value.entries_are = ListEntries.GUIDS;
+        var el_value = create_list(16, yy, "Select a Mesh resource:", "<no Meshes>", ew, eh, 8, uivc_data_property_list_guid, false, dg, Stuff.all_meshes);
+        el_value.entries_are = ListEntries.INSTANCES;
         dg.el_list_main = el_list;
         el_value.key = dialog.key;
         yy = yy + ui_get_list_height(el_value) + spacing;
@@ -178,47 +175,42 @@ switch (property.type) {
     case DataTypes.IMG_TILESET:
         not_yet_implemented();
         var el_value = create_list(16, yy, "Select a Tileset resource:", "<no Tilesets>", ew, eh, 8, uivc_data_property_list_guid, false, dg);
-        el_value.entries_are = ListEntries.GUIDS;
+        el_value.entries_are = ListEntries.INSTANCES;
         dg.el_list_main = el_list;
         el_value.key = dialog.key;
         yy = yy + ui_get_list_height(el_value) + spacing;
         break;
     case DataTypes.IMG_BATTLER:
-        not_yet_implemented();
-        var el_value = create_list(16, yy, "Select a Battler sprite:", "<no Battlers>", ew, eh, 8, uivc_data_property_list_guid, false, dg);
-        el_value.entries_are = ListEntries.GUIDS;
+        var el_value = create_list(16, yy, "Select a Battler sprite:", "<no Battlers>", ew, eh, 8, uivc_data_property_list_guid, false, dg, Stuff.all_graphic_battlers);
+        el_value.entries_are = ListEntries.INSTANCES;
         dg.el_list_main = el_list;
         el_value.key = dialog.key;
         yy = yy + ui_get_list_height(el_value) + spacing;
         break;
     case DataTypes.IMG_OVERWORLD:
-        not_yet_implemented();
-        var el_value = create_list(16, yy, "Select am Overworld sprite:", "<no Overworlds>", ew, eh, 8, uivc_data_property_list_guid, false, dg);
-        el_value.entries_are = ListEntries.GUIDS;
+        var el_value = create_list(16, yy, "Select am Overworld sprite:", "<no Overworlds>", ew, eh, 8, uivc_data_property_list_guid, false, dg, Stuff.all_graphic_overworlds);
+        el_value.entries_are = ListEntries.INSTANCES;
         dg.el_list_main = el_list;
         el_value.key = dialog.key;
         yy = yy + ui_get_list_height(el_value) + spacing;
         break;
     case DataTypes.IMG_PARTICLE:
-        not_yet_implemented();
-        var el_value = create_list(16, yy, "Select a Particle sprite:", "<no Particles>", ew, eh, 8, uivc_data_property_list_guid, false, dg);
-        el_value.entries_are = ListEntries.GUIDS;
+        var el_value = create_list(16, yy, "Select a Particle sprite:", "<no Particles>", ew, eh, 8, uivc_data_property_list_guid, false, dg, Stuff.all_graphic_particles);
+        el_value.entries_are = ListEntries.INSTANCES;
         dg.el_list_main = el_list;
         el_value.key = dialog.key;
         yy = yy + ui_get_list_height(el_value) + spacing;
         break;
     case DataTypes.IMG_UI:
-        not_yet_implemented();
-        var el_value = create_list(16, yy, "Select a UI images:", "<no UI images>", ew, eh, 8, uivc_data_property_list_guid, false, dg);
-        el_value.entries_are = ListEntries.GUIDS;
+        var el_value = create_list(16, yy, "Select a UI images:", "<no UI images>", ew, eh, 8, uivc_data_property_list_guid, false, dg, Stuff.all_graphic_ui);
+        el_value.entries_are = ListEntries.INSTANCES;
         dg.el_list_main = el_list;
         el_value.key = dialog.key;
         yy = yy + ui_get_list_height(el_value) + spacing;
         break;
     case DataTypes.IMG_ETC:
-        not_yet_implemented();
-        var el_value = create_list(16, yy, "Select a misc. image:", "<no misc. images>", ew, eh, 8, uivc_data_property_list_guid, false, dg);
-        el_value.entries_are = ListEntries.GUIDS;
+        var el_value = create_list(16, yy, "Select a misc. image:", "<no misc. images>", ew, eh, 8, uivc_data_property_list_guid, false, dg, Stuff.all_graphic_etc);
+        el_value.entries_are = ListEntries.INSTANCES;
         dg.el_list_main = el_list;
         el_value.key = dialog.key;
         yy = yy + ui_get_list_height(el_value) + spacing;
