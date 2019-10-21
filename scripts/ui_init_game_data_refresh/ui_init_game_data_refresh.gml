@@ -15,7 +15,8 @@ if (selection < 0) {
 } else {
     var instance = guid_get(data.instances[| selection].GUID);
 }
-
+/*Everything is suddenly broken, go into github to see if you can find what the latest changes to
+this and ui_init_game_data_activate and ui_init_game_data were because i'm way too tired for that now*/
 ui_input_set_value(Camera.ui_game_data.el_inst_name, instance ? instance.name : "");
 ui_input_set_value(Camera.ui_game_data.el_inst_internal_name, instance ? instance.internal_name : "");
 

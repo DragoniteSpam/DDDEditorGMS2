@@ -1,7 +1,7 @@
 var container = Camera.ui_game_data.el_dynamic;
 var selection = ui_list_selection(Camera.ui_game_data.el_master);
 
-if (selection) {
+if (selection + 1) {
 	Camera.ui_game_data.active_type_guid = Stuff.all_data[| selection].GUID;
 
 	var data = guid_get(Camera.ui_game_data.active_type_guid);

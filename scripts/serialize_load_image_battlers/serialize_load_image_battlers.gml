@@ -8,7 +8,7 @@ var list = Stuff.all_graphic_battlers;
 ds_list_clear_instances(list);
 
 var n_images = buffer_read(buffer, buffer_u32);
-draw_texture_flush();
+
 repeat (n_images) {
     var data = instance_create_depth(0, 0, 0, DataImage);
     
