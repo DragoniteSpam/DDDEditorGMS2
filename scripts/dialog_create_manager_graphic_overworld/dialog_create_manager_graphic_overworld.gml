@@ -3,7 +3,7 @@
 var dialog = argument0;
 
 var dw = 768;
-var dh = 480;
+var dh = 512;
 
 var dg = dialog_create(dw, dh, "Data: Availalbe Overworld Graphics", dialog_default, dc_default, dialog);
 
@@ -31,12 +31,18 @@ el_list.entries_are = ListEntries.INSTANCES;
 el_list.numbered = true;
 dg.el_list = el_list;
 
-var el_add = create_button(c2 + 16, yy, "Add Overworld", ew, eh, fa_center, dmu_dialog_load_graphic_overworld, dg);
+yy = yy + ui_get_list_height(el_list) + spacing;
+
+var el_add = create_button(16, yy, "Add Overworld", ew, eh, fa_center, dmu_dialog_load_graphic_overworld, dg);
 yy = yy + el_add.height + spacing;
-var el_remove = create_button(c2 + 16, yy, "Remove Overworld", ew, eh, fa_center, dmu_dialog_remove_graphic_general, dg);
-yy = yy + el_remove.height + spacing;
+var el_remove = create_button(16, yy, "Remove Overworld", ew, eh, fa_center, dmu_dialog_remove_graphic_general, dg);
+
+yy = yy_base;
+
 var el_change = create_button(c2 + 16, yy, "Change Overworld", ew, eh, fa_center, dmu_dialog_change_graphic_general, dg);
 yy = yy + el_change.height + spacing;
+var el_export = create_button(c2 + 16, yy, "Export Overworld", ew, eh, fa_center, dmu_dialog_export_graphic, dg);
+yy = yy + el_export.height + spacing;
 
 var el_name_text = create_text(c2 + 16, yy, "Name:", ew, eh, fa_left, ew, dg);
 yy = yy + el_name_text.height + spacing;
@@ -72,7 +78,7 @@ yy = yy + el_dimensions.height + spacing;
 var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
 
 ds_list_add(dg.contents, el_list,
-    el_add, el_remove, el_change,
+    el_add, el_remove, el_change, el_export,
     el_name_text, el_name, el_name_internal_text, el_name_internal,
     el_dimensions, el_frames_horizontal, el_frames_vertical, el_image,
     el_confirm

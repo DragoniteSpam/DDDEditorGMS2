@@ -8,7 +8,7 @@ var list = Stuff.all_graphic_battlers;
 ds_list_clear_instances(list);
 
 var n_images = buffer_read(buffer, buffer_u32);
-
+draw_texture_flush();
 repeat (n_images) {
     var data = instance_create_depth(0, 0, 0, DataImage);
     
@@ -16,7 +16,10 @@ repeat (n_images) {
     
     data.hframes = buffer_read(buffer, buffer_u16);
     data.vframes = buffer_read(buffer, buffer_u16);
+    
     data.picture = buffer_read_sprite(buffer);
+    
+    sprite_save(data.picture, 0, "load-" + data.name + "-" + string(current_minute) + ".png");
     
     data.width = sprite_get_width(data.picture);
     data.height = sprite_get_height(data.picture);
