@@ -2,7 +2,7 @@ enum SerializeThings {
     ERROR                   = 0x00000000,
     // basic stuff
     MAPS					= 0x00000001,
-    // 02
+    VARIABLES				= 0x00000002,
     MESHES                  = 0x00000003,
     ANIMATIONS              = 0x00000004,
     // 05

@@ -43,6 +43,8 @@ var el_switches = create_button(c2 + 16, yy, "Global Switches", ew, eh, fa_cente
 yy = yy + el_switches.height + spacing;
 var el_event_triggers = create_button(c2 + 16, yy, "Event Triggers", ew, eh, fa_center, dialog_create_settings_data_event_triggers, dg);
 yy = yy + el_event_triggers.height + spacing;
+var el_game_variables = create_button(c2 + 16, yy, "Game Variables", ew, eh, fa_center, null, dg);
+yy = yy + el_game_variables.height + spacing;
 
 yy = yy_base;
 
@@ -54,7 +56,7 @@ var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Do
 
 ds_list_add(dg.contents,
     el_gameplay_title, el_gameplay_grid, el_player_start, el_battle_type,
-    el_global_title, el_constants, el_variables, el_switches, el_event_triggers,
+    el_global_title, el_constants, el_variables, el_switches, el_event_triggers, el_game_variables,
     el_confirm);
 
 return dg;

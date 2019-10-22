@@ -343,6 +343,8 @@ all_meshes = ds_list_create();
 
 all_animations = ds_list_create();
 
+all_game_variables = ds_list_create();
+
 FMODGMS_Sys_Create();
 FMODGMS_Sys_Initialize(32);
 

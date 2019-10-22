@@ -73,6 +73,10 @@ var md_audio = create_menu_element("Audio", momu_expand, menu_data);
 	var md_aud_bgm = create_menu_element("Background Music (BGM)", momu_bgm, md_audio);
 	var md_aud_se = create_menu_element("Sound Effects (SE)", momu_se, md_audio);
 	ds_list_add(md_audio.contents, md_aud_bgm, md_aud_se);
+var md_scenes = create_menu_element("Scenes", momu_expand, menu_data);
+	var md_scene_battle = create_menu_element("Battle Scene", null, md_audio);
+	var md_scene_skybox = create_menu_element("Map Skybox", null, md_audio);
+	ds_list_add(md_scenes.contents, md_scene_battle, md_scene_skybox);
 var md_data_types = create_menu_element("Define Data Types", momu_data_types, menu_data);
 var md_conflicts = create_menu_element("View Mesh Conflicts", momu_conflicts, menu_data);
 var md_missing = create_menu_element("View Missing Data", momu_missing, menu_data);
@@ -80,7 +84,8 @@ var md_3d = create_menu_element("Map Editor (F6)", momu_editor_3d, menu_data);
 var md_events = create_menu_element("Event Editor (F7)", momu_editor_event, menu_data);
 var md_data = create_menu_element("Game Data Editor (F8)", momu_editor_data, menu_data);
 var md_animation = create_menu_element("Animation Editor (F9)", momu_editor_animation, menu_data);
-ds_list_add(menu_data.contents, md_graphics, md_audio, md_data_types,
+
+ds_list_add(menu_data.contents, md_graphics, md_audio, md_data_types, md_scenes,
     m_separator,
     md_conflicts, md_missing,
     m_separator,
