@@ -11,5 +11,3 @@ var property = base_dialog.event.types[| selection];
 property[@ 1] = value;
 
 uivc_list_event_custom_property(base_dialog.el_list);
-
-radio.root.root.el_list_2.value = -1;

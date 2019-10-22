@@ -43,7 +43,8 @@ enum DataTypes {
     IMG_OVERWORLD,
     IMG_PARTICLE,
     IMG_UI,
-    IMG_ETC
+    IMG_ETC,
+    _COUNT
 }
 
 /*

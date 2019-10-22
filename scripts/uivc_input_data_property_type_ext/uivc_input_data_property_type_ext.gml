@@ -11,5 +11,3 @@ base_dialog.changed = true;
 
 dialog_data_type_disable(base_dialog);
 dialog_data_type_enable_by_type(base_dialog);
-
-radio.root.root.el_list_2.value = -1;

@@ -1,8 +1,8 @@
 {
-    "id": "3b3b1ba3-ea2c-4645-a952-bdf67d73aa35",
+    "id": "efa8b832-dc18-41d0-90af-48ba7b030301",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "uivc_input_constant_type_ext_2",
+    "name": "create_radio_array_option_column",
     "IsCompatibility": false,
     "IsDnD": false
 }
