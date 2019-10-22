@@ -2,7 +2,7 @@
     "id": "e75338f0-43b5-4111-b0fe-75cc8af6f3d6",
     "modelName": "GMObject",
     "mvc": "1.0",
-    "name": "DataSet",
+    "name": "DataConstant",
     "eventList": [
         {
             "id": "817e301d-1fc2-41a9-ab9b-42fad67640a7",

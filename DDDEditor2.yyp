@@ -7007,6 +7007,14 @@
             }
         },
         {
+            "Key": "7f7cd14c-2b12-429a-96a5-4f96a5750dd1",
+            "Value": {
+                "id": "24c67ad4-bf8f-462f-9ce9-58e926685b51",
+                "resourcePath": "scripts\\omu_global_constant_add\\omu_global_constant_add.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "7f872584-6856-443e-964d-ae7a82301666",
             "Value": {
                 "id": "e734be7f-5607-4202-9373-6f2cc1903c3c",
@@ -8363,6 +8371,14 @@
             "Value": {
                 "id": "d5977ca7-a060-463f-94a9-06295aedabea",
                 "resourcePath": "scripts\\selected_circle\\selected_circle.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "96d595e6-0e3d-4a5c-8708-ef99f3670e2d",
+            "Value": {
+                "id": "9c3365d4-9600-475e-b258-a6949457d878",
+                "resourcePath": "scripts\\uivc_global_constant_name\\uivc_global_constant_name.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -12778,7 +12794,7 @@
             "Key": "e75338f0-43b5-4111-b0fe-75cc8af6f3d6",
             "Value": {
                 "id": "1f190f51-4662-45f8-8439-74a4f675b7c4",
-                "resourcePath": "objects\\DataSet\\DataSet.yy",
+                "resourcePath": "objects\\DataConstant\\DataConstant.yy",
                 "resourceType": "GMObject"
             }
         },
@@ -13935,6 +13951,14 @@
             }
         },
         {
+            "Key": "fbe2a448-7cad-4280-bc8d-ff1ea3d4362b",
+            "Value": {
+                "id": "87c7aa3d-d4e2-4304-b378-b13d881a42be",
+                "resourcePath": "scripts\\omu_global_constant_remove\\omu_global_constant_remove.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "fc18b721-d580-40ac-9a3b-e600c6520e61",
             "Value": {
                 "id": "6a6e218f-bcee-4c73-8331-687c10048569",
@@ -14935,6 +14959,7 @@
         "37ad1bcd-87d5-468c-8d32-8901ce1002b0",
         "2e3d411a-44d2-496b-acc8-03bcb719d623",
         "26ce2308-a8f1-46cb-9181-9bf4f4fe7ce4",
+        "96d595e6-0e3d-4a5c-8708-ef99f3670e2d",
         "0c2010e1-757f-4b76-a7ca-e2334966222c",
         "83ed148f-dd8b-4151-b60e-58e7e50e40fa",
         "a37f8653-364f-4dff-bbe2-cd56bb7224ac",
@@ -14989,6 +15014,8 @@
         "ee00f2ab-35ab-4b25-823a-78ad1e706766",
         "7d1abbee-52fa-4e52-ad7b-5f30de25c5ce",
         "1822abda-6297-46bc-94d3-b91b2c8f6cea",
+        "7f7cd14c-2b12-429a-96a5-4f96a5750dd1",
+        "fbe2a448-7cad-4280-bc8d-ff1ea3d4362b",
         "33774c6e-309c-4d7c-b28f-19e8c16b0f97",
         "43235d98-3145-4fa2-88f9-0b9925e7cf45",
         "e4e4d918-e6c9-4be3-8f64-1e8276ebfa37",

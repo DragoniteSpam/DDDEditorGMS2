@@ -20,20 +20,21 @@ var yy_start = 64;
 
 var el_list = create_list(32, yy, "Constants", "<no constants>", ew, eh, 16, null, false, dg, Stuff.all_game_constants);
 el_list.numbered = true;
+el_list.instances_are = ListEntries.INSTANCES;
 dg.el_list = el_list;
 
 yy = yy + ui_get_list_height(el_list) + spacing;
 
-var el_name = create_input(32, yy, "Name:", ew, eh, null, 0, "", "16 characters", validate_string, ui_value_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
+var el_name = create_input(32, yy, "Name:", ew, eh, uivc_global_constant_name, 0, "", "16 characters", validate_string, ui_value_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
 yy = yy + el_name.height + spacing;
 dg.el_name = el_name;
 
-var el_add = create_button(32, yy, "Add Constant", ew, eh, fa_center, null, dg);
+var el_add = create_button(32, yy, "Add Constant", ew, eh, fa_center, omu_global_constant_add, dg);
 dg.el_add = el_add;
 
 yy = yy + el_add.height + spacing;
 
-var el_remove = create_button(32, yy, "Remove Constant", ew, eh, fa_center, null, dg);
+var el_remove = create_button(32, yy, "Remove Constant", ew, eh, fa_center, omu_global_constant_remove, dg);
 dg.el_remove = el_remove;
 
 yy = yy + el_remove.height + spacing;
