@@ -2191,6 +2191,14 @@
             }
         },
         {
+            "Key": "271909d4-05f4-4190-a879-85bb565af302",
+            "Value": {
+                "id": "56363a7c-ee24-40d9-be39-e4265524068c",
+                "resourcePath": "scripts\\uivc_list_selection_constant\\uivc_list_selection_constant.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "27a87c1d-e2bb-46af-9bf6-c260bd11f882",
             "Value": {
                 "id": "2bac79b7-860b-4a2e-a0f6-654c4ca6c6b6",
@@ -3231,6 +3239,14 @@
             }
         },
         {
+            "Key": "3b3b1ba3-ea2c-4645-a952-bdf67d73aa35",
+            "Value": {
+                "id": "2bc68d3b-12ea-490e-9da1-d5e7196a1b4b",
+                "resourcePath": "scripts\\uivc_input_constant_type_ext_2\\uivc_input_constant_type_ext_2.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "3b627150-6352-40d8-98e3-21641d9782c5",
             "Value": {
                 "id": "9dfa2f71-4a38-406d-9153-f12e0c59de20",
@@ -3371,6 +3387,14 @@
             "Value": {
                 "id": "52207623-28de-4153-b9f9-c9e823cae74f",
                 "resourcePath": "scripts\\batch_mesh_terrain\\batch_mesh_terrain.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "4080920d-17d9-4646-8dbe-6c26d72cba16",
+            "Value": {
+                "id": "6203bcf1-a41c-4af8-a52d-63ce2fafdebd",
+                "resourcePath": "scripts\\uivc_input_constant_type_ext\\uivc_input_constant_type_ext.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -6671,6 +6695,14 @@
             }
         },
         {
+            "Key": "797ec61c-0c81-4f7f-ad1b-d66dd95f1342",
+            "Value": {
+                "id": "10c76c83-f673-4925-876b-d91c7cd73d6b",
+                "resourcePath": "scripts\\dialog_create_constant_types_ext\\dialog_create_constant_types_ext.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "79a317d9-c17d-49ff-bfcd-6ce6166c427b",
             "Value": {
                 "id": "51c648b9-9099-4477-9335-cfbbb7484f91",
@@ -8659,6 +8691,14 @@
             "Value": {
                 "id": "2bec3159-7892-40d2-93d5-1dc873119a97",
                 "resourcePath": "scripts\\c_init\\c_init.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "9a612036-cb8d-4d9f-828b-6400b68503f6",
+            "Value": {
+                "id": "c98ce139-5b7f-41c0-9475-15c2991f6e7b",
+                "resourcePath": "scripts\\uivc_input_constant_type\\uivc_input_constant_type.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -14589,6 +14629,7 @@
         "2107e2a3-1d58-44ef-9930-9da619cb2f23",
         "329dedb8-c748-4f59-bcec-4d7abea690e6",
         "6208e905-3727-4b29-885e-c847f82cb8e3",
+        "797ec61c-0c81-4f7f-ad1b-d66dd95f1342",
         "aa449905-5b34-4d33-9620-969e17c09db4",
         "8f5840c1-a78f-45d4-a0dc-4238136eb9b6",
         "d7fb72e6-d314-446f-baa2-6ddafabe3553",
@@ -14911,7 +14952,10 @@
         "f6270395-5624-4800-b97b-6d5df55a440a",
         "81a4c64f-2825-4e3f-a4f6-657455af20fc",
         "fea538e4-af49-4ffa-a053-bcfecd463372",
+        "9a612036-cb8d-4d9f-828b-6400b68503f6",
         "866aebb3-1e12-407d-b60b-0edf7a950e7d",
+        "4080920d-17d9-4646-8dbe-6c26d72cba16",
+        "3b3b1ba3-ea2c-4645-a952-bdf67d73aa35",
         "ad8b7f2f-3d5e-4140-9bc0-46cecab443b8",
         "aff6adc1-159f-4774-adc0-1c819e03722d",
         "727483a5-9264-4905-b2d4-7759850c6410",
@@ -14956,6 +15000,7 @@
         "5106ac6f-a982-47a3-830d-fc2f383ce828",
         "746909f1-67ac-4913-82a9-58e1dd809db9",
         "a83bc325-b80d-4dfb-9842-dee8d6484fa8",
+        "271909d4-05f4-4190-a879-85bb565af302",
         "37ad1bcd-87d5-468c-8d32-8901ce1002b0",
         "2e3d411a-44d2-496b-acc8-03bcb719d623",
         "26ce2308-a8f1-46cb-9181-9bf4f4fe7ce4",

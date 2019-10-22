@@ -1,12 +1,15 @@
 /// @param Dialog
 
-var dw = 320;
-var dh = 680;
+var dw = 640;
+var dh = 720;
 
 var dg = dialog_create(dw, dh, "Data Settings: Game Constants", dialog_default, dc_close_no_questions_asked, argument0);
 
-var ew = dw - 64;
+var columns = 2;
+var ew = dw / columns - 64;
 var eh = 24;
+
+var c2 = dw / columns;
 
 var vx1 = ew / 3;
 var vy1 = 0;
@@ -16,18 +19,14 @@ var vy2 = vy1 + eh;
 var spacing = 16;
 
 var yy = 64;
-var yy_start = 64;
+var yy_base = 64;
 
-var el_list = create_list(32, yy, "Constants", "<no constants>", ew, eh, 16, null, false, dg, Stuff.all_game_constants);
+var el_list = create_list(32, yy, "Constants", "<no constants>", ew, eh, 20, uivc_list_selection_constant, false, dg, Stuff.all_game_constants);
 el_list.numbered = true;
-el_list.instances_are = ListEntries.INSTANCES;
+el_list.entries_are = ListEntries.INSTANCES;
 dg.el_list = el_list;
 
 yy = yy + ui_get_list_height(el_list) + spacing;
-
-var el_name = create_input(32, yy, "Name:", ew, eh, uivc_global_constant_name, 0, "", "16 characters", validate_string, ui_value_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
-yy = yy + el_name.height + spacing;
-dg.el_name = el_name;
 
 var el_add = create_button(32, yy, "Add Constant", ew, eh, fa_center, omu_global_constant_add, dg);
 dg.el_add = el_add;
@@ -39,12 +38,30 @@ dg.el_remove = el_remove;
 
 yy = yy + el_remove.height + spacing;
 
+yy = yy_base;
+
+var el_name = create_input(c2 + 32, yy, "Name:", ew, eh, uivc_global_constant_name, 0, "", "16 characters", validate_string, ui_value_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
+dg.el_name = el_name;
+
+yy = yy + el_name.height + spacing;
+
+var el_type = create_radio_array(c2 + 32, yy, "Type:", ew, eh, uivc_input_constant_type, 0, dg);
+create_radio_array_options(el_type, ["Int", "Enum", "Float", "String", "Boolean", "Data", "Code"]);
+dg.el_type = el_type;
+
+yy = yy + ui_get_radio_array_height(el_type) + spacing;
+
+var el_type_ext = create_button(c2 + 32, yy, "Other Data Types", ew, eh, fa_middle, dialog_create_constant_types_ext, dg);
+
+yy = yy + el_type_ext.height + spacing;
+dg.el_type_ext = el_type_ext;
+
 var b_width = 128;
 var b_height = 32;
 var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
 
 ds_list_add(dg.contents,
-    el_list, el_name, el_add, el_remove,
+    el_list, el_name, el_add, el_remove, el_type, el_type_ext,
     el_confirm);
 
 return dg;
