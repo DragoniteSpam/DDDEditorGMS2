@@ -8495,6 +8495,14 @@
             }
         },
         {
+            "Key": "98737f29-3c9d-431b-a59e-f2100418da5d",
+            "Value": {
+                "id": "f2105350-fedb-4077-b5cb-0c39e115d7b9",
+                "resourcePath": "scripts\\dialog_create_settings_data_game_constants\\dialog_create_settings_data_game_constants.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "98c2c50f-0ecb-4d0a-8dca-b6bf08a7b794",
             "Value": {
                 "id": "ee3ed01d-a176-4a54-ad17-36bf6efb43c6",
@@ -12767,6 +12775,14 @@
             }
         },
         {
+            "Key": "e75338f0-43b5-4111-b0fe-75cc8af6f3d6",
+            "Value": {
+                "id": "1f190f51-4662-45f8-8439-74a4f675b7c4",
+                "resourcePath": "objects\\DataSet\\DataSet.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "e77340a2-7dc4-4302-af55-831ec666cb32",
             "Value": {
                 "id": "0783e5ff-8b1c-49e3-9a6a-ea49f2a91a31",
@@ -14530,6 +14546,7 @@
         "5735e5b9-2cfa-4498-b97a-f431252d3283",
         "88a9c6cb-0745-4267-8551-51a8433b43e7",
         "1df0aabd-dc8d-4ad0-a207-de685d8d796a",
+        "98737f29-3c9d-431b-a59e-f2100418da5d",
         "ee7d0f5c-58b8-48f6-86b6-fdf55a5b14e9",
         "cea3d119-83f1-4607-a92f-d04eb6ec6ce3",
         "cc8c2e48-12d3-4866-872d-b7dfc6b02780",

@@ -68,7 +68,7 @@ if (header == "DDD") {
             ds_list_clear(Stuff.all_event_custom);
             ds_list_clear(Stuff.all_event_prefabs);
             ds_list_clear(Stuff.all_data);
-			ds_list_clear(Stuff.all_game_variables);
+			ds_list_clear(Stuff.all_game_constants);
             // these contain arrays, which are garbage collected
             ds_list_clear(Stuff.variables);
             ds_list_clear(Stuff.switches);
@@ -135,7 +135,7 @@ if (header == "DDD") {
 }
 
 if (erroneous) {
-    dialog_create_notice(null, "this is a ddd* file but the contents are no good?");
+    dialog_create_notice(noone, "this is a ddd* file but the contents are no good?");
 }
 
 /*
