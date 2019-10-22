@@ -54,6 +54,7 @@ yy = yy + ui_get_radio_array_height(el_type) + spacing;
 
 var el_type_ext = create_button(c2 + 32, yy, "Other Data Types", ew, eh, fa_middle, dialog_create_constant_types_ext, dg);
 el_type_ext.interactive = false;
+dg.el_type_ext = el_type_ext;
 
 yy = yy + el_type_ext.height + spacing;
 
@@ -72,16 +73,17 @@ dg.el_value_int = el_value_int;
 var el_value_bool = create_checkbox(c2 + 32, yy, "Value", ew, eh, uivc_input_constant_value, "", false, dg);
 el_value_bool.enabled = false;
 dg.el_value_bool = el_value_bool;
-
-yy = yy + el_type_ext.height + spacing;
-dg.el_type_ext = el_type_ext;
+var el_type_guid = create_list(c2 + 32, yy, "Select a Type", "<no types>", ew, eh, 8, uivc_input_constant_type_guid, false, dg);
+el_type_guid.enabled = false;
+el_type_guid.entries_are = ListEntries.INSTANCES;
+dg.el_type_guid = el_type_guid;
 
 var b_width = 128;
 var b_height = 32;
 var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
 
 ds_list_add(dg.contents,
-    el_list, el_name, el_add, el_remove, el_type, el_type_ext,
+    el_list, el_name, el_add, el_remove, el_type, el_type_ext, el_type_guid,
     el_value_code, el_value_string, el_value_real, el_value_int, el_value_bool,
     el_confirm);
 

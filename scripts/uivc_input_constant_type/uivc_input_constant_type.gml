@@ -8,5 +8,5 @@ if (selection + 1) {
     var what = Stuff.all_game_constants[| selection];
     what.type = option.value;
     
-    ui_constant_data_activate(base_dialog, what.type);
+    ui_constant_data_activate(base_dialog, what);
 }

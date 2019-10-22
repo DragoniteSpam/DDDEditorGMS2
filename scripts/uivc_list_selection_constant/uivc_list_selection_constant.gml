@@ -10,5 +10,5 @@ if (selection + 1) {
     base_dialog.el_type.value = what.type;
     base_dialog.el_type_ext.interactive = true;
     
-    ui_constant_data_activate(base_dialog, what.type);
+    ui_constant_data_activate(base_dialog, what);
 }

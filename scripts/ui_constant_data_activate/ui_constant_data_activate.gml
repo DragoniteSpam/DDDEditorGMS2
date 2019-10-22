@@ -1,22 +1,40 @@
 /// @param base-dialog
-/// @param DataType
+/// @param DataConstant
+
 var base_dialog = argument[0];
-var type = argument[1];
+var what = argument[1];
 
 base_dialog.el_value_code.enabled = false;
 base_dialog.el_value_string.enabled = false;
 base_dialog.el_value_real.enabled = false;
 base_dialog.el_value_int.enabled = false;
 base_dialog.el_value_bool.enabled = false;
+base_dialog.el_type_guid.enabled = false;
 
-switch (type) {
+switch (what.type) {
     case DataTypes.INT: base_dialog.el_value_int.enabled = true; break;
     case DataTypes.FLOAT: base_dialog.el_value_real.enabled = true; break;
     case DataTypes.STRING: base_dialog.el_value_string.enabled = true; break;
     case DataTypes.BOOL: base_dialog.el_value_bool.enabled = true; break;
-    case DataTypes.ENUM: break;
-    case DataTypes.DATA: break;
     case DataTypes.CODE: base_dialog.el_value_code.enabled = true; break;
+    case DataTypes.ENUM:
+    case DataTypes.DATA:
+        var list = base_dialog.el_type_guid;
+        var type = guid_get(what.type_guid);
+        list.enabled = true;
+        ui_list_clear(list);
+        
+        for (var i = 0; i < ds_list_size(Stuff.all_data); i++) {
+            var datadata = Stuff.all_data[| i];
+            if ((what.type == DataTypes.DATA && !datadata.is_enum) || (what.type == DataTypes.ENUM && datadata.is_enum)) {
+                ds_list_add(list.entries, datadata);
+            }
+        }
+        
+        if (type) {
+            ds_map_add(list.selected_entries, ds_list_find_index(list.entries, type), true);
+        }
+        break;
     case DataTypes.COLOR:
     case DataTypes.MESH:
     case DataTypes.IMG_TILESET:

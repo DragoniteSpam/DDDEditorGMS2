@@ -2,8 +2,10 @@
 // this clears EVERYTHING in the list - including the entries. most likely,
 // you actually want ui_list_deselect.
 
-ds_list_clear(argument0.entries);
-ds_list_clear(argument0.entry_colors);
-ds_map_clear(argument0.selected_entries);
-argument0.index = 0;
-argument0.last_index = -1;
+var list = argument0;
+
+ds_list_clear(list.entries);
+ds_list_clear(list.entry_colors);
+ds_map_clear(list.selected_entries);
+list.index = 0;
+list.last_index = -1;
