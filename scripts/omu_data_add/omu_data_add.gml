@@ -4,7 +4,7 @@ var thing = argument0;
 
 if (ds_list_size(Stuff.all_data) < 10000) {
     instance_deactivate_object(instance_create_depth(0, 0, 0, DataData));
-    ds_map_clear(thing.root.el_list_main.selected_entries);
+    ui_list_deselect(thing.root.el_list_main);
     thing.root.selected_data = noone;
     thing.root.selected_property = noone;
     

@@ -32,7 +32,7 @@ switch (what.type) {
         }
         
         if (type) {
-            ds_map_add(list.selected_entries, ds_list_find_index(list.entries, type), true);
+            ui_list_select(list, ds_list_find_index(list.entries, type));
         }
         break;
     case DataTypes.COLOR:

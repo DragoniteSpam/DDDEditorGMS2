@@ -32,12 +32,13 @@ if (keyframe) {
     for (var i = 0; i < ds_list_size(thing.root.root.active_animation.layers); i++) {
         create_list_entries(el_list, thing.root.root.active_animation.layers[| i].name);
     }
-    ds_map_add(el_list.selected_entries, keyframe.relative, true);
+    ui_list_select(el_list, keyframe.relative);
     // i should probably be doing this in more places so that i can find stuff easily
     el_list.keyframe = keyframe;
 
     var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
     
     ds_list_add(dg.contents, el_list,
-        el_confirm);
+        el_confirm
+    );
 }

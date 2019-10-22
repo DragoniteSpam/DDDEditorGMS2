@@ -38,7 +38,7 @@ for (var i = 0; i < ds_list_size(Stuff.variables); i++) {
     create_list_entries(el_list, data[0]);
 }
 if (custom_data_variable[| 0] > -1) {
-    ds_map_add(el_list.selected_entries, custom_data_variable[| 0], true);
+    ui_list_select(el_list, custom_data_variable[| 0]);
 }
 dg.el_list = el_list;
 

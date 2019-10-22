@@ -10,7 +10,7 @@ if (selection >= 0) {
         list.root.selected_data = listofthings[| selection];
         list.root.selected_property = noone;
         
-        ds_map_clear(list.root.el_list_p.selected_entries);
+        ui_list_deselect(list.root.el_list_p);
         
         dialog_data_type_disable(list.root);
         

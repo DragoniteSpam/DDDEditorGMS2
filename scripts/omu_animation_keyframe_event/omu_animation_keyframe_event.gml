@@ -46,7 +46,7 @@ if (keyframe) {
     for (var i = 0; i < ds_list_size(Stuff.all_se); i++) {
         create_list_entries(el_audio, Stuff.all_se[| i].GUID);
         if (keyframe.audio == Stuff.all_se[| i].GUID) {
-            ds_map_add(el_audio.selected_entries, i, true);
+            ui_list_select(el_audio, i);
         }
     }
     

@@ -76,7 +76,7 @@ for (var i = 0; i < ds_list_size(dynamic.contents); i++) {
                         for (var k = 0; k < ds_list_size(datatype.instances); k++) {
                             // still no need to mess with the list
                             if (datatype.instances[| k].GUID == ds_list_find_value(instance.values[| n], 0)) {
-                                ds_map_add(thingy.selected_entries, k, true);
+                                ui_list_select(thingy, k);
                                 thingy.index = max(0, k - thingy.slots + 1);
                                 break;
                             }
@@ -87,7 +87,7 @@ for (var i = 0; i < ds_list_size(dynamic.contents); i++) {
                         var datatype = guid_get(property.type_guid);
                         for (var k = 0; k < ds_list_size(datatype.properties); k++) {
                             if (datatype.properties[| k].GUID == ds_list_find_value(instance.values[| n], 0)) {
-                                ds_map_add(thingy.selected_entries, k, true);
+                                ui_list_select(thingy, k);
                                 thingy.index = max(0, k - thingy.slots + 1);
                                 break;
                             }
@@ -105,7 +105,7 @@ for (var i = 0; i < ds_list_size(dynamic.contents); i++) {
                         for (var k = 0; k < ds_list_size(Stuff.all_animations); k++) {
                             // still no need to mess with the list
                             if (Stuff.all_animations[| k].GUID == ds_list_find_value(instance.values[| n], 0)) {
-                                ds_map_add(thingy.selected_entries, k, true);
+                                ui_list_select(thingy, k);
                                 thingy.index = max(0, k - thingy.slots + 1);
                                 break;
                             }

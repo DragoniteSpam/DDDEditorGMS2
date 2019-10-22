@@ -27,7 +27,7 @@ if (Camera.ui_game_data) {
 Camera.ui_game_data = ui_init_game_data();
 
 if (ds_list_size(Stuff.all_data) > 0) {
-    ds_map_add(Camera.ui_game_data.el_master.selected_entries, 0, true);
+    ui_list_select(Camera.ui_game_data.el_master, 0);
 }
 
 ui_init_game_data_activate();

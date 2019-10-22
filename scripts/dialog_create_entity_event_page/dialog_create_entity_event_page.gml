@@ -75,7 +75,7 @@ dg.el_trigger = el_trigger;
 
 for (var i = 0; i < ds_list_size(Stuff.all_event_triggers); i++) {
 	if (page.trigger & (1 << i)) {
-		ds_map_add(el_trigger.selected_entries, i, true);
+		ui_list_select(el_trigger, i);
 	}
 }
 

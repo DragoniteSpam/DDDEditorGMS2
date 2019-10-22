@@ -34,7 +34,7 @@ for (var i = 0; i<ds_list_size(event.nodes); i++) {
     }
 }
 
-ds_map_add(el_list.selected_entries, 0, true);
+ui_list_select(el_list, 0);
 el_list.entries_are = ListEntries.GUIDS;
 el_list.colorize = false;
 dg.el_list = el_list;

@@ -19,4 +19,4 @@ if (map == Stuff.active_map) {
 }
 
 ui_list_deselect(button.root.el_map_list);
-ds_map_add(button.root.el_map_list.selected_entries, ds_list_find_index(Stuff.all_maps, Stuff.active_map), true);
+ui_list_select(button.root.el_map_list, ds_list_find_index(Stuff.all_maps, Stuff.active_map));

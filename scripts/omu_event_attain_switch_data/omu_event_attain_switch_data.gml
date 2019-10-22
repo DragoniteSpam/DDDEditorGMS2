@@ -32,7 +32,7 @@ for (var i = 0; i < ds_list_size(Stuff.switches); i++) {
     create_list_entries(el_list, data[0]);
 }
 if (custom_data_switch[| 0] > -1) {
-    ds_map_add(el_list.selected_entries, custom_data_switch[| 0], true);
+    ui_list_select(el_list, custom_data_switch[| 0]);
 }
 dg.el_list = el_list;
 
@@ -45,6 +45,8 @@ var b_width = 128;
 var b_height = 32;
 var el_close = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
 
-ds_list_add(dg.contents, el_list, el_state, el_close);
+ds_list_add(dg.contents,
+    el_list, el_state, el_close
+);
 
 return dg;

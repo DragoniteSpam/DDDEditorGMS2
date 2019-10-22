@@ -25,7 +25,7 @@ var starting = guid_get(Stuff.game_starting_map);
 var el_list_map = create_list(32, yy, "Map:", "<how did you manage that?>", ew, eh, 16, uivc_settings_game_start_map, false, dg, Stuff.all_maps);
 for (var i = 0; i < ds_list_size(Stuff.all_maps); i++) {
     if (Stuff.game_starting_map == Stuff.all_maps[| i].GUID) {
-        ds_map_add(el_list_map.selected_entries, i, true);
+        ui_list_select(el_list_map, i);
         break;
     }
 }

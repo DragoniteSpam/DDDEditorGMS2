@@ -83,7 +83,7 @@ yy = yy + el_property_type_guid.height + spacing;
 yy = yy_base;
 
 var el_outbound = create_list(col3_x + 16, yy, "Outbound Nodes (max 10):", "what?", ew, eh, 10, uivc_list_event_custom_outbound, false, dg, dg.event.outbound);
-ds_map_add(el_outbound.selected_entries, 0, true);
+ui_list_select(el_outbound, 0);
 el_outbound.render = ui_render_list_event_custom_outbound;
 dg.el_outbound = el_outbound;
 yy = yy + ui_get_list_height(el_outbound) + spacing;

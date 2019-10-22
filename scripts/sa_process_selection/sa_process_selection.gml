@@ -21,7 +21,7 @@ if (ds_list_size(list) == 0) {
     Camera.ui.element_entity_option_reset_position.interactive = false;
     Camera.ui.element_entity_option_autonomous_movement.interactive = false;
     
-    ds_map_clear(Camera.ui.element_entity_events.selected_entries);
+    ui_list_deselect(Camera.ui.element_entity_events);
     
     // transform
     
@@ -59,7 +59,7 @@ if (ds_list_size(list) == 0) {
     Camera.ui.element_entity_solid.value = 2;
     Camera.ui.element_entity_static.value = 2;
     
-    ds_map_clear(Camera.ui.element_entity_events.selected_entries);
+    ui_list_deselect(Camera.ui.element_entity_events);
     
     Camera.ui.element_entity_name.interactive = true;
     Camera.ui.element_entity_solid.interactive = true;

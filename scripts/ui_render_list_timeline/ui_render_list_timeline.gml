@@ -64,7 +64,7 @@ if (animation) {
             var yb = ya + timeline.height;
             var tya = mean(ya, yb);
             
-            if (ds_map_exists(layer_list.selected_entries, index)) {
+            if (ui_list_is_selected(layer_list, index)) {
                 draw_rectangle_colour(x1, ya, x2, yb, c, c, c, c, false);
             }
         }
@@ -147,7 +147,7 @@ if (animation) {
                 timeline.playing_moment = mx;
                 
                 ui_list_deselect(layer_list);
-                ds_map_add(layer_list.selected_entries, my, true);
+                ui_list_select(layer_list, my);
                 
                 script_execute(timeline.onvaluechange, timeline);
             } else if (Controller.press_right) {

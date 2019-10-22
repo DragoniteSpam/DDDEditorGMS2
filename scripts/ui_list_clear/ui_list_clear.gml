@@ -6,6 +6,6 @@ var list = argument0;
 
 ds_list_clear(list.entries);
 ds_list_clear(list.entry_colors);
-ds_map_clear(list.selected_entries);
+ui_list_deselect(list);
 list.index = 0;
 list.last_index = -1;

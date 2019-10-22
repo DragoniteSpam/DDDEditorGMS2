@@ -32,7 +32,7 @@ dg.el_list = el_list;
 
 for (var i = 0; i < ds_list_size(Stuff.all_events); i++) {
     if (Stuff.all_events[| i].GUID == page.event_guid) {
-        ds_map_add(el_list.selected_entries, i, true);
+        ui_list_select(el_list, i);
         break;
     }
 }

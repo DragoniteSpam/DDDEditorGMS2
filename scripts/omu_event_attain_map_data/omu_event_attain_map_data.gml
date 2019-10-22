@@ -49,7 +49,7 @@ var spacing = 16;
 var el_maps = create_list(16, yy, "Maps", "no maps", ew, eh, 8, uivc_list_event_attain_map_index, false, dg, Stuff.all_maps);
 for (var i = 0; i < ds_list_size(Stuff.all_maps); i++) {
 	if (Stuff.all_maps[| i] == map) {
-		ds_map_add(el_maps.selected_entries, i, true);
+		ui_list_select(el_maps, i);
 		break;
 	}
 }

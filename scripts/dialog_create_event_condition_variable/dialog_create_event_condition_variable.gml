@@ -41,7 +41,7 @@ for (var i = 0; i < ds_list_size(Stuff.variables); i++) {
     create_list_entries(el_list, data[0]);
 }
 if (list_index[| 0] > -1) {
-    ds_map_add(el_list.selected_entries, list_index[| index], true);
+    ui_list_select(el_list, list_index[| index]);
 }
 dg.el_list = el_list;
 

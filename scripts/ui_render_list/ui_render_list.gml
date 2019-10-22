@@ -36,7 +36,7 @@ if (n == 0) {
         var ya = y2 + list.height * i;
         var yb = ya + list.height;
         var tya = mean(ya, yb);
-        if (ds_map_exists(list.selected_entries, index)) {
+        if (ui_list_is_selected(list, index)) {
             var c = list.interactive ? c_ui_select : c_ltgray;
             draw_rectangle_colour(x1, ya, x2, yb, c, c, c, c, false);
         }
@@ -74,22 +74,22 @@ if (list.interactive && active) {
             // it's trying to access n-1 from the next line
             var mn = min(((Camera.MOUSE_Y - y2) div list.height) + list.index, n - 1);
             if ((!keyboard_check(vk_control) && !keyboard_check(vk_shift) && !list.select_toggle) || !list.allow_multi_select) {
-                ds_map_clear(list.selected_entries);
+                ui_list_deselect(list);
             }
             if (list.allow_multi_select && keyboard_check(vk_shift)) {
                 if (list.last_index > -1) {
                     var d = clamp(mn - list.last_index, -1, 1);
                     for (var i = list.last_index; i != mn; i = i + d) {
-                        if (!ds_map_exists(list.selected_entries, i)) {
-                            ds_map_add(list.selected_entries, i, true);
+                        if (!ui_list_is_selected(list, i)) {
+                            ui_list_select(list, i);
                         } else if (list.select_toggle) {
 							ds_map_delete(list.selected_entries, i);
 						}
                     }
                 }
             } else {
-				if (!ds_map_exists(list.selected_entries, mn)) {
-					ds_map_add(list.selected_entries, mn, true);
+				if (!ui_list_is_selected(list, mn)) {
+					ui_list_select(list, mn);
 				} else if (list.select_toggle) {
 					ds_map_delete(list.selected_entries, mn);
 				}
@@ -113,8 +113,8 @@ if (list.interactive && active) {
         if (list.allow_multi_select) {
             if (keyboard_check(vk_control) && keyboard_check_pressed(ord("A"))) {
                 for (var i = 0; i < ds_list_size(list.entries); i++) {
-                    if (!ds_map_exists(list.selected_entries, i)) {
-                        ds_map_add(list.selected_entries, i, true);
+                    if (!ui_list_is_selected(list, i)) {
+                        ui_list_select(list, i);
                     } else if (list.select_toggle) {
 						ds_map_delete(list.selected_entries, i);
 					}
