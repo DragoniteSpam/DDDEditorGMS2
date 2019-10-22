@@ -11,11 +11,9 @@ dialog.el_remove_p.interactive = true;
 dialog.el_property_name.interactive = true;
 ui_input_set_value(dialog.el_property_name, dialog.selected_property.name);
 
-dialog.el_property_type.interactive = !dialog.selected_data.is_enum;
+dialog.el_property_type.interactive = (dialog.selected_data.type == DataTypes.DATA);
 
-if (dialog.selected_data.is_enum) {
-    // nothing special for here
-} else {
+if (dialog.selected_data.type == DataTypes.DATA) {
     dialog.el_property_type.interactive = true;
     dialog.el_property_ext_type.interactive = true;
     dialog.el_property_size.interactive = true;
@@ -61,8 +59,7 @@ if (dialog.selected_data.is_enum) {
             dialog.el_property_type_guid.enabled = true;
             var type = guid_get(dialog.selected_property.type_guid);
             
-            if (type && ((type.is_enum && dialog.selected_property.type == DataTypes.DATA)||
-                    (!type.is_enum && dialog.selected_property.type == DataTypes.ENUM))) {
+            if (type && (type.type != dialog.selected_property.type)) {
                 dialog.el_property_type_guid.color = c_red;
             } else {
                 dialog.el_property_type_guid.color = c_black;
@@ -89,4 +86,6 @@ if (dialog.selected_data.is_enum) {
             // pretty sure the others don't have anything special
             break;
     }
+} else {
+    // nothing special for here
 }

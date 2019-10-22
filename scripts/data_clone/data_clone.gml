@@ -13,11 +13,11 @@ for (var i = 0; i < ds_list_size(Stuff.all_data); i++) {
         
         name = data.name;
         summary = data.summary;
-        is_enum = data.is_enum;
+        type = data.type;
         
         GUID = data.GUID;
         
-        if (!data.is_enum) {
+        if (data.type == DataTypes.DATA) {
             // pass-by-reference; we need to know these later . . . probably
             instances = data.instances;
             is_cached = true;

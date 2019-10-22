@@ -10,11 +10,11 @@ var otextvacant = list.text_vacant;
 var data = guid_get(list.root.active_type_guid);
 
 if (data) {
-    if (data.is_enum) {
+    if (data.type == DataTypes.DATA) {
+        list.entries = data.instances;
+    } else {
         list.text_vacant = "<Enums can't be instantiated>"
 		list.entries = Stuff.empty_list;
-    } else {
-        list.entries = data.instances;
     }
 } else {
 	list.entries = Stuff.empty_list;

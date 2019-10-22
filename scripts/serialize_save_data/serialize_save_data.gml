@@ -83,5 +83,6 @@ enum DataVersions {
     SMF_MESH_TYPE               = 52,
     SMF_MESH_ANIMATIONS         = 53,
     IMAGE_SPRITE_SIZES          = 54,
+    ENUM_SAVED_AS_TYPE          = 55,
     _CURRENT                 /* = whatever the last one is + 1 */
 }

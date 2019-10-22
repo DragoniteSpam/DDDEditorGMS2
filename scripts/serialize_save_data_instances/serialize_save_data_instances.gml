@@ -9,7 +9,7 @@ var n_datadata = ds_list_size(Stuff.all_data);
 for (var i = 0; i < n_datadata; i++) {
     var datadata = Stuff.all_data[| i];
     
-    if (!datadata.is_enum) {
+    if (datadata.type == DataTypes.DATA) {
         var n_properties = ds_list_size(datadata.properties);
         var n_instances = ds_list_size(datadata.instances);
         

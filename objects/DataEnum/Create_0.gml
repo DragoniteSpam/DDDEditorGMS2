@@ -5,4 +5,4 @@ summary = "";
 
 properties = ds_list_create();
 
-is_enum = true;
+type = DataTypes.ENUM;

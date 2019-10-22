@@ -8,7 +8,7 @@ for (var i = 0; i < ds_list_size(Stuff.original_data); i++) {
     var data_old = Stuff.original_data[| i];
     var data_new = Stuff.all_data[| i];
     
-    if (!data_old.is_enum) {
+    if (data_old.type == DataTypes.DATA) {
         for (var j = 0; j < ds_list_size(data_old.properties); j++) {
             var property_old = data_old.properties[| j];
             var property_new = data_new.properties[| j];
@@ -156,7 +156,7 @@ var n_data = ds_list_size(Stuff.all_data);
 for (var i = 0; i < n_data; i++) {
     var data = Stuff.all_data[| i];
     
-    if (!data.is_enum) {
+    if (data.type == DataTypes.DATA) {
         var n_properties = ds_list_size(data.properties);
         for (var j = 0; j < ds_list_size(data.instances); j++) {
             var instance = data.instances[| j];

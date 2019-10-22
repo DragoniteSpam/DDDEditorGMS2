@@ -9,10 +9,9 @@ if (selection >= 0) {
     
     var intermediate_list = list.node.custom_data[| list.property_index];
     
-    if (type.is_enum) {
-        intermediate_list[| list.multi_index] = type.properties[| selection].GUID;
-    } else {
-        intermediate_list[| list.multi_index] = type.instances[| selection].GUID;
+    switch (type.type) {
+        case DataTypes.ENUM: intermediate_list[| list.multi_index] = type.properties[| selection].GUID; break;
+        case DataTypes.DATA: intermediate_list[| list.multi_index] = type.instances[| selection].GUID; break;
     }
 }
 

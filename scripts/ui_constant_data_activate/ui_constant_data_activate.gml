@@ -26,7 +26,7 @@ switch (what.type) {
         
         for (var i = 0; i < ds_list_size(Stuff.all_data); i++) {
             var datadata = Stuff.all_data[| i];
-            if ((what.type == DataTypes.DATA && !datadata.is_enum) || (what.type == DataTypes.ENUM && datadata.is_enum)) {
+            if (what.type == datadata.type) {
                 ds_list_add(list.entries, datadata);
             }
         }

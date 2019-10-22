@@ -17,10 +17,10 @@ if (selection + 1) {
 	if (data) {
 	    // this caused some sort of null pointer exception somehow, and I haven't been able to replicate
 	    // it. wrapping it in this "if" should take care of it, though.
-	    Camera.ui_game_data.el_inst_add.interactive = !data.is_enum;
-	    Camera.ui_game_data.el_inst_remove.interactive = !data.is_enum;
+	    Camera.ui_game_data.el_inst_add.interactive = (data.type == DataTypes.DATA);
+	    Camera.ui_game_data.el_inst_remove.interactive = (data.type == DataTypes.DATA);
         
-	    if (!data.is_enum) {
+	    if (data.type == DataTypes.DATA) {
 	        var columns = 5;
 	        var spacing = 16;
             
@@ -91,13 +91,13 @@ if (selection + 1) {
 	                    case DataTypes.DATA:           // list
 	                        var datadata = guid_get(property.type_guid);
 		                    var element = create_list(spacing, yy, property.name, "<no options: " + datadata.name + ">", ew, eh, 8, uivc_data_set_property_list, false, noone);
-		                    if (datadata.is_enum) {
-		                        for (var j = 0; j < ds_list_size(datadata.properties); j++) {
-		                            create_list_entries(element, datadata.properties[| j]);
-		                        }
-		                    } else {
+		                    if (datadata.type == DataTypes.DATA) {
 		                        for (var j = 0; j < ds_list_size(datadata.instances); j++) {
 		                            create_list_entries(element, datadata.instances[| j]);
+		                        }
+                            } else {
+		                        for (var j = 0; j < ds_list_size(datadata.properties); j++) {
+		                            create_list_entries(element, datadata.properties[| j]);
 		                        }
 		                    }
 		                    element.key = i;

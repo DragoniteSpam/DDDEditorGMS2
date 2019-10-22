@@ -8,7 +8,7 @@ var otext = list.text;
 var list_enum = ds_list_create();
 
 for (var i = 0; i < ds_list_size(Stuff.all_data); i++) {
-    if (Stuff.all_data[| i].is_enum) {
+    if (Stuff.all_data[| i].type == DataTypes.ENUM) {
         ds_list_add(list_enum, Stuff.all_data[| i]);
     }
 }

@@ -163,7 +163,7 @@ yy = yy_base;
 
 yy = yy + eh + spacing;
 
-el_confirm = create_button(dw / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dc_data_commit, dg, fa_center);
+var el_confirm = create_button(dw / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dc_data_commit, dg, fa_center);
 
 ds_list_add(dg.contents, el_list, el_add, el_add_enum, el_remove,
     el_data_name, el_list_p, el_add_p, el_remove_p,
@@ -172,6 +172,7 @@ ds_list_add(dg.contents, el_list, el_add, el_add_enum, el_remove,
     el_property_max, el_property_scale,
     el_property_default_code, el_property_default_string, el_property_default_real,
     el_property_default_bool, el_property_default_int, el_property_default_na,
-    el_confirm);
+    el_confirm
+);
 
 return dg;
