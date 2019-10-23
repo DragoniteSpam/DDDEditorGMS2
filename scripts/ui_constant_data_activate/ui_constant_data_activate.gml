@@ -9,18 +9,36 @@ base_dialog.el_value_string.enabled = false;
 base_dialog.el_value_real.enabled = false;
 base_dialog.el_value_int.enabled = false;
 base_dialog.el_value_bool.enabled = false;
+base_dialog.el_value_color.enabled = false;
+base_dialog.el_value_other.enabled = false;
+
 base_dialog.el_type_guid.enabled = false;
-base_dialog.el_type_data.enabled = false;
+base_dialog.el_value_data.enabled = false;
 
 switch (what.type) {
-    case DataTypes.INT: base_dialog.el_value_int.enabled = true; break;
-    case DataTypes.FLOAT: base_dialog.el_value_real.enabled = true; break;
-    case DataTypes.STRING: base_dialog.el_value_string.enabled = true; break;
-    case DataTypes.BOOL: base_dialog.el_value_bool.enabled = true; break;
-    case DataTypes.CODE: base_dialog.el_value_code.enabled = true; break;
+    case DataTypes.INT:
+        base_dialog.el_value_int.enabled = true;
+        what.value = 0;
+        break;
+    case DataTypes.FLOAT:
+        base_dialog.el_value_real.enabled = true;
+        what.value = 0;
+        break;
+    case DataTypes.STRING:
+        base_dialog.el_value_string.enabled = true;
+        what.value = "";
+        break;
+    case DataTypes.BOOL:
+        base_dialog.el_value_bool.enabled = true;
+        what.value = false;
+        break;
+    case DataTypes.CODE:
+        base_dialog.el_value_code.enabled = true;
+        what.value = "";
+        break;
     case DataTypes.ENUM:
     case DataTypes.DATA:
-        base_dialog.el_type_data.enabled = true;
+        base_dialog.el_value_data.enabled = true;
         var list = base_dialog.el_type_guid;
         var type = guid_get(what.type_guid);
         list.enabled = true;
@@ -34,22 +52,117 @@ switch (what.type) {
         }
         
         if (type) {
-            ui_list_select(list, ds_list_find_index(list.entries, type));
+            var index = ds_list_find_index(list.entries, type);
+            ui_list_select(list, index);
+            list.index = clamp(index, 0, ds_list_size(list.entries) - list.slots);
         }
+        what.value = 0;
+        break;
+    case DataTypes.MESH:
+        var list = base_dialog.el_value_other;
+        ui_list_deselect(list);
+        list.enabled = true;
+        list.index = 0;
+        list.entries = Stuff.all_meshes;
+        what.value = 0;
+        break;
+    case DataTypes.IMG_TILESET:
+        var list = base_dialog.el_value_other;
+        ui_list_deselect(list);
+        list.enabled = true;
+        list.index = 0;
+        list.entries = Stuff.all_graphic_tilesets;
+        what.value = 0;
+        break;
+        break;
+    case DataTypes.TILE:
+        not_yet_implemented();
+        break;
+    case DataTypes.AUTOTILE:
+        var list = base_dialog.el_value_other;
+        ui_list_deselect(list);
+        list.enabled = true;
+        list.index = 0;
+        list.entries = Stuff.all_graphic_autotiles;
+        what.value = 0;
+        break;
+    case DataTypes.AUDIO_BGM:
+        var list = base_dialog.el_value_other;
+        ui_list_deselect(list);
+        list.enabled = true;
+        list.index = 0;
+        list.entries = Stuff.all_bgm;
+        what.value = 0;
+        break;
+    case DataTypes.AUDIO_SE:
+        var list = base_dialog.el_value_other;
+        ui_list_deselect(list);
+        list.enabled = true;
+        list.index = 0;
+        list.entries = Stuff.all_se;
+        what.value = 0;
+        break;
+    case DataTypes.ANIMATION:
+        var list = base_dialog.el_value_other;
+        ui_list_deselect(list);
+        list.enabled = true;
+        list.index = 0;
+        list.entries = Stuff.all_animations;
+        what.value = 0;
+        break;
+    case DataTypes.MAP:
+        var list = base_dialog.el_value_other;
+        ui_list_deselect(list);
+        list.enabled = true;
+        list.index = 0;
+        list.entries = Stuff.all_maps;
+        what.value = 0;
+        break;
+    case DataTypes.IMG_BATTLER:
+        var list = base_dialog.el_value_other;
+        ui_list_deselect(list);
+        list.enabled = true;
+        list.index = 0;
+        list.entries = Stuff.all_graphic_battlers;
+        what.value = 0;
+        break;
+    case DataTypes.IMG_OVERWORLD:
+        var list = base_dialog.el_value_other;
+        ui_list_deselect(list);
+        list.enabled = true;
+        list.index = 0;
+        list.entries = Stuff.all_graphic_overworlds;
+        what.value = 0;
+        break;
+    case DataTypes.IMG_PARTICLE:
+        var list = base_dialog.el_value_other;
+        ui_list_deselect(list);
+        list.enabled = true;
+        list.index = 0;
+        list.entries = Stuff.all_graphic_particles;
+        what.value = 0;
+        break;
+    case DataTypes.IMG_UI:
+        var list = base_dialog.el_value_other;
+        ui_list_deselect(list);
+        list.enabled = true;
+        list.index = 0;
+        list.entries = Stuff.all_graphic_ui;
+        what.value = 0;
+        break;
+    case DataTypes.IMG_ETC:
+        var list = base_dialog.el_value_other;
+        ui_list_deselect(list);
+        list.enabled = true;
+        list.index = 0;
+        list.entries = Stuff.all_graphic_etc;
+        what.value = 0;
         break;
     case DataTypes.COLOR:
-    case DataTypes.MESH:
-    case DataTypes.IMG_TILESET:
-    case DataTypes.TILE:
-    case DataTypes.AUTOTILE:
-    case DataTypes.AUDIO_BGM:
-    case DataTypes.AUDIO_SE:
-    case DataTypes.ANIMATION:
+        base_dialog.el_value_color.enabled = true;
+        what.value = c_black;
+        break;
     case DataTypes.ENTITY:
-    case DataTypes.MAP:
-    case DataTypes.IMG_BATTLER:
-    case DataTypes.IMG_OVERWORLD:
-    case DataTypes.IMG_PARTICLE:
-    case DataTypes.IMG_UI:
-    case DataTypes.IMG_ETC:
+        show_error("How did you get here?", false);
+        break;
 }

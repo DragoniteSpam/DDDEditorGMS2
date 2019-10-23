@@ -75,15 +75,22 @@ dg.el_value_int = el_value_int;
 var el_value_bool = create_checkbox(c3 + 32, yy, "Value", ew, eh, uivc_input_constant_value, "", false, dg);
 el_value_bool.enabled = false;
 dg.el_value_bool = el_value_bool;
-var el_type_guid = create_list(c3 + 32, yy, "Select a Type", "<no types>", ew, eh, 6, uivc_input_constant_type_guid, false, dg);
+var el_value_color = create_color_picker(c3 + 32, yy, "Color", ew, eh, uivc_input_constant_value, "", c_black, vx1, vy1, vx2, vy2, dg);
+el_value_color.enabled = false;
+dg.el_value_color = el_value_color;
+var el_type_guid = create_list(c3 + 32, yy, "Select a Type", "<no types>", ew, eh, 8, uivc_input_constant_type_guid, false, dg);
 el_type_guid.enabled = false;
 el_type_guid.entries_are = ListEntries.INSTANCES;
 dg.el_type_guid = el_type_guid;
+var el_value_other = create_list(c3 + 32, yy, "Data:", "<no data>", ew, eh, 20, null, false, dg);
+el_value_other.enabled = false;
+el_value_other.entries_are = ListEntries.INSTANCES;
+dg.el_value_other = el_value_other;
 
-var el_type_data = create_list(c3 + 32, yy + ui_get_list_height(el_type_guid) + spacing, "Instance:", "<no data>", ew, eh, 6, null, false, dg);
-el_type_data.enabled = false;
-el_type_data.entries_are = ListEntries.INSTANCES;
-dg.el_type_data = el_type_data;
+var el_value_data = create_list(c3 + 32, yy + ui_get_list_height(el_type_guid) + spacing, "Instance:", "<no data>", ew, eh, 8, null, false, dg);
+el_value_data.enabled = false;
+el_value_data.entries_are = ListEntries.INSTANCES;
+dg.el_value_data = el_value_data;
 
 var b_width = 128;
 var b_height = 32;
@@ -91,7 +98,8 @@ var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Do
 
 ds_list_add(dg.contents,
     el_list, el_name, el_add, el_remove, el_type, el_type_ext, el_type_guid,
-    el_value_code, el_value_string, el_value_real, el_value_int, el_value_bool, el_type_data,
-    el_confirm);
+    el_value_code, el_value_string, el_value_real, el_value_int, el_value_bool, el_value_color, el_value_other, el_value_data,
+    el_confirm
+);
 
 return dg;
