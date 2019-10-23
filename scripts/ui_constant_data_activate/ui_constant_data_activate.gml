@@ -10,6 +10,7 @@ base_dialog.el_value_real.enabled = false;
 base_dialog.el_value_int.enabled = false;
 base_dialog.el_value_bool.enabled = false;
 base_dialog.el_type_guid.enabled = false;
+base_dialog.el_type_data.enabled = false;
 
 switch (what.type) {
     case DataTypes.INT: base_dialog.el_value_int.enabled = true; break;
@@ -19,6 +20,7 @@ switch (what.type) {
     case DataTypes.CODE: base_dialog.el_value_code.enabled = true; break;
     case DataTypes.ENUM:
     case DataTypes.DATA:
+        base_dialog.el_type_data.enabled = true;
         var list = base_dialog.el_type_guid;
         var type = guid_get(what.type_guid);
         list.enabled = true;

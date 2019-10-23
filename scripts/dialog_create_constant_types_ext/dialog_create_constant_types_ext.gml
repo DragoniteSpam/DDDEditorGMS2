@@ -27,7 +27,8 @@ if (selection + 1) {
     
     var el_list = create_radio_array(32, yy, "All Data Types: ", ew, eh, uivc_input_constant_type_ext, dg.constant.type, dg);
     create_radio_array_options(el_list, ["Int", "Enum", "Float", "String", "Boolean", "Data", "Code", "Color", "Mesh", "Tileset", "Tile", "Autotile",
-        "Audio (BGM)", "Audio (SE)", "Animation", "Entity", "Map", "Battler sprite", "Overworld sprite", "Particle", "UI image", "Misc. image"]);
+        "Audio (BGM)", "Audio (SE)", "Animation", "Entity (RefID)", "Map", "Battler sprite", "Overworld sprite", "Particle", "UI image", "Misc. image"]);
+    el_list.contents[| DataTypes.ENTITY].interactive = false;
     
     create_radio_array_option_column(el_list, DataTypes.AUDIO_BGM, c2 + 32);
     

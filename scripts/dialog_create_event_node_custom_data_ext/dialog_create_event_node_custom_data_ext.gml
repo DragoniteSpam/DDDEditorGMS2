@@ -30,7 +30,7 @@ var offset = DataTypes.AUDIO_BGM;
 
 var el_list = create_radio_array(32, yy, "All Data Types: ", ew, eh, uivc_input_event_node_custom_data_ext, property[1], dg);
 create_radio_array_options(el_list, ["Int", "Enum", "Float", "String", "Boolean", "Data", "Code", "Color", "Mesh", "Tileset", "Tile", "Autotile",
-    "Audio (BGM)", "Audio (SE)", "Animation", "Entity", "Map", "Battler sprite", "Overworld sprite", "Particle", "UI image", "Misc. image"]);
+    "Audio (BGM)", "Audio (SE)", "Animation", "Entity (RefID)", "Map", "Battler sprite", "Overworld sprite", "Particle", "UI image", "Misc. image"]);
 
 create_radio_array_option_column(el_list, DataTypes.AUDIO_BGM, c2 + 32)
 
