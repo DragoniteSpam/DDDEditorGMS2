@@ -127,7 +127,9 @@ if (list.interactive && active) {
 if (n > list.slots) {
     var sw = 16;
     var noutofrange = n - list.slots; // at minimum, one
-    var shalf = 32 + sqrt(n) * (y3 - y2 - 32) / n;
+    // the minimum slider height will never be below 20, but it'll scale up for longer lists;
+    // otherwise it's simply proportional to the fraction of the entries that are visible in the list
+    var shalf = max(20 + 20 * log10(list.slots), (y3 - y2 - sw * 2) * list.slots / n) / 2;
     var smin = y2 + sw + shalf;
     var smax = y3 - sw - shalf;
     var srange = smax - smin;

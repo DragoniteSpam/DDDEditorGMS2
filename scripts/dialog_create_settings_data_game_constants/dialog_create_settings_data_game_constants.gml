@@ -46,7 +46,7 @@ dg.el_name = el_name;
 yy = yy + el_name.height + spacing;
 
 var el_type = create_radio_array(c2 + 32, yy, "Type:", ew, eh, uivc_input_constant_type, 0, dg);
-create_radio_array_options(el_type, ["Int", "Enum", "Float", "String", "Boolean", "Data", "Code"]);
+create_radio_array_options(el_type, ["Int", "Enum", "Float", "String", "Boolean", "Data"]);
 el_type.interactive = false;
 dg.el_type = el_type;
 
@@ -73,7 +73,7 @@ dg.el_value_int = el_value_int;
 var el_value_bool = create_checkbox(c2 + 32, yy, "Value", ew, eh, uivc_input_constant_value, "", false, dg);
 el_value_bool.enabled = false;
 dg.el_value_bool = el_value_bool;
-var el_type_guid = create_list(c2 + 32, yy, "Select a Type", "<no types>", ew, eh, 8, uivc_input_constant_type_guid, false, dg);
+var el_type_guid = create_list(c2 + 32, yy, "Select a Type", "<no types>", ew, eh, 6, uivc_input_constant_type_guid, false, dg);
 el_type_guid.enabled = false;
 el_type_guid.entries_are = ListEntries.INSTANCES;
 dg.el_type_guid = el_type_guid;
