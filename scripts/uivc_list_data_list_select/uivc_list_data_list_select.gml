@@ -38,8 +38,7 @@ if (pselection + 1) {
             ui_list_deselect(data_list);
             for (var i = 0; i < ds_list_size(data_list.entries); i++) {
                 if (data_list.entries[| i].GUID == plist[| pselection]) {
-                    ui_list_select(data_list, i);
-                    data_list.index = clamp(i - floor(data_list.slots / 2), 0, max(0, ds_list_size(data_list.entries) - data_list.slots - 1));
+                    ui_list_select(data_list, i, true);
                     break;
                 }
             }

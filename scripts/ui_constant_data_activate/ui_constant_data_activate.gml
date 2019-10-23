@@ -53,8 +53,7 @@ switch (what.type) {
         
         if (type) {
             var index = ds_list_find_index(list.entries, type);
-            ui_list_select(list, index);
-            list.index = clamp(index, 0, ds_list_size(list.entries) - list.slots);
+            ui_list_select(list, index, true);
         }
         what.value = 0;
         break;
