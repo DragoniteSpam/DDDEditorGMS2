@@ -29,29 +29,12 @@ easing_equations = [
 
 // local storage folders
 
-if (!directory_exists(PATH_BACKUP_DATA)) {
-    directory_create(PATH_BACKUP_DATA);
-}
-
-if (!directory_exists(PATH_BACKUP_MAP)) {
-    directory_create(PATH_BACKUP_MAP);
-}
-
-if (!directory_exists(PATH_BACKUP_ASSET)) {
-    directory_create(PATH_BACKUP_ASSET);
-}
-
-if (!directory_exists(PATH_TEMP_CODE)) {
-    directory_create(PATH_TEMP_CODE);
-}
-
-if (!directory_exists(PATH_AUDIO)) {
-    directory_create(PATH_AUDIO);
-}
-
-if (!directory_exists(PATH_PROJECTS)) {
-    directory_create(PATH_PROJECTS);
-}
+if (!directory_exists(PATH_BACKUP_DATA)) directory_create(PATH_BACKUP_DATA);
+if (!directory_exists(PATH_BACKUP_MAP)) directory_create(PATH_BACKUP_MAP);
+if (!directory_exists(PATH_BACKUP_ASSET)) directory_create(PATH_BACKUP_ASSET);
+if (!directory_exists(PATH_TEMP_CODE)) directory_create(PATH_TEMP_CODE);
+if (!directory_exists(PATH_AUDIO)) directory_create(PATH_AUDIO);
+if (!directory_exists(PATH_PROJECTS)) directory_create(PATH_PROJECTS);
 
 // dummy list that will always exist and be empty
 empty_list = ds_list_create();
@@ -173,7 +156,8 @@ ds_list_add(all_graphic_tilesets, tileset_create(PATH_GRAPHICS + "b_tileset_over
     // this is somewhat hard-coded;
     // the zeroth available tileset is automatically default_grass
     [0, noone, noone, noone, noone, noone, noone, noone,
-        noone, noone, noone, noone, noone, noone, noone, noone]));
+        noone, noone, noone, noone, noone, noone, noone, noone])
+);
 
 all_events = ds_list_create();
 all_event_custom = ds_list_create();
