@@ -9,4 +9,10 @@ if (selection + 1) {
     var what = Stuff.all_game_constants[| selection];
     what.type_guid = datadata.GUID;
     what.value_guid = 0;
+    
+    var type = guid_get(what.type_guid);
+    var list_data = base_dialog.el_value_data;
+    
+    list_data.entries = (what.type == DataTypes.DATA) ? type.instances : type.properties;
+    ui_list_deselect(list_data);
 }

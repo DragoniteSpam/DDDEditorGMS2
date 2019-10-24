@@ -32,9 +32,9 @@ switch (what.type) {
         base_dialog.el_value_string.value = "";
         break;
     case DataTypes.BOOL:
-        what.el_value_real = clamp(floor(what.el_value_real), 0, 1);
+        what.value_real = clamp(floor(what.value_real), 0, 1);
         base_dialog.el_value_bool.enabled = true;
-        base_dialog.el_value_bool.value = what.el_value_real;
+        base_dialog.el_value_bool.value = what.value_real;
         break;
     case DataTypes.CODE:
         what.value_string = "";
@@ -43,7 +43,6 @@ switch (what.type) {
         break;
     case DataTypes.ENUM:
     case DataTypes.DATA:
-        what.value_guid = 0;
         var list_data = base_dialog.el_value_data;
         var list = base_dialog.el_type_guid;
         var type = guid_get(what.type_guid);
@@ -51,6 +50,12 @@ switch (what.type) {
         list.enabled = true;
         ui_list_clear(list);
         ui_list_deselect(list_data);
+        
+        if (type && (what.type != type.type)) {
+            what.value_guid = 0;
+            what.type_guid = 0;
+            type = noone;
+        }
         
         for (var i = 0; i < ds_list_size(Stuff.all_data); i++) {
             var datadata = Stuff.all_data[| i];
@@ -60,128 +65,138 @@ switch (what.type) {
         }
         
         if (type) {
+            // select the type in the type list, if there is one
             var index = ds_list_find_index(list.entries, type);
             ui_list_select(list, index, true);
+            // set the data in the data list
             list_data.entries = (what.type == DataTypes.DATA) ? type.instances : type.properties;
+            
+            var data = guid_get(what.value_guid);
+            
+            if (data) {
+                ui_list_select(list_data, ds_list_find_index(list_data.entries, data), true);
+            }
+        } else {
+            list_data.entries = noone;
         }
         
         list_data.index = 0;
         break;
     case DataTypes.MESH:
         var list = base_dialog.el_value_other;
+        list.entries = Stuff.all_meshes;
+        what.value_guid = 0;
         ui_list_deselect(list);
-        ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value)), true);
+        ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value_guid)), true);
         list.enabled = true;
         list.index = 0;
-        list.entries = Stuff.all_meshes;
-        what.value = 0;
         break;
     case DataTypes.IMG_TILESET:
         var list = base_dialog.el_value_other;
+        list.entries = Stuff.all_graphic_tilesets;
+        what.value_guid = 0;
         ui_list_deselect(list);
-        ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value)), true);
+        ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value_guid)), true);
         list.enabled = true;
         list.index = 0;
-        list.entries = Stuff.all_graphic_tilesets;
-        what.value = 0;
-        break;
         break;
     case DataTypes.TILE:
         not_yet_implemented();
         break;
     case DataTypes.AUTOTILE:
         var list = base_dialog.el_value_other;
+        list.entries = Stuff.all_graphic_autotiles;
+        what.value_guid = 0;
         ui_list_deselect(list);
-        ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value)), true);
+        ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value_guid)), true);
         list.enabled = true;
         list.index = 0;
-        list.entries = Stuff.all_graphic_autotiles;
-        what.value = 0;
         break;
     case DataTypes.AUDIO_BGM:
         var list = base_dialog.el_value_other;
+        list.entries = Stuff.all_bgm;
+        what.value_guid = 0;
         ui_list_deselect(list);
-        ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value)), true);
+        ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value_guid)), true);
         list.enabled = true;
         list.index = 0;
-        list.entries = Stuff.all_bgm;
-        what.value = 0;
         break;
     case DataTypes.AUDIO_SE:
         var list = base_dialog.el_value_other;
+        list.entries = Stuff.all_se;
+        what.value_guid = 0;
         ui_list_deselect(list);
-        ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value)), true);
+        ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value_guid)), true);
         list.enabled = true;
         list.index = 0;
-        list.entries = Stuff.all_se;
-        what.value = 0;
         break;
     case DataTypes.ANIMATION:
         var list = base_dialog.el_value_other;
+        list.entries = Stuff.all_animations;
+        what.value_guid = 0;
         ui_list_deselect(list);
-        ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value)), true);
+        ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value_guid)), true);
         list.enabled = true;
         list.index = 0;
-        list.entries = Stuff.all_animations;
-        what.value = 0;
         break;
     case DataTypes.MAP:
         var list = base_dialog.el_value_other;
+        list.entries = Stuff.all_maps;
+        what.value_guid = 0;
         ui_list_deselect(list);
-        ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value)), true);
+        ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value_guid)), true);
         list.enabled = true;
         list.index = 0;
-        list.entries = Stuff.all_maps;
-        what.value = 0;
         break;
     case DataTypes.IMG_BATTLER:
         var list = base_dialog.el_value_other;
+        list.entries = Stuff.all_graphic_battlers;
+        what.value_guid = 0;
         ui_list_deselect(list);
-        ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value)), true);
+        ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value_guid)), true);
         list.enabled = true;
         list.index = 0;
-        list.entries = Stuff.all_graphic_battlers;
-        what.value = 0;
         break;
     case DataTypes.IMG_OVERWORLD:
         var list = base_dialog.el_value_other;
+        list.entries = Stuff.all_graphic_overworlds;
+        what.value_guid = 0;
         ui_list_deselect(list);
-        ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value)), true);
+        ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value_guid)), true);
         list.enabled = true;
         list.index = 0;
-        list.entries = Stuff.all_graphic_overworlds;
-        what.value = 0;
         break;
     case DataTypes.IMG_PARTICLE:
         var list = base_dialog.el_value_other;
+        list.entries = Stuff.all_graphic_particles;
+        what.value_guid = 0;
         ui_list_deselect(list);
-        ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value)), true);
+        ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value_guid)), true);
         list.enabled = true;
         list.index = 0;
-        list.entries = Stuff.all_graphic_particles;
-        what.value = 0;
         break;
     case DataTypes.IMG_UI:
         var list = base_dialog.el_value_other;
+        list.entries = Stuff.all_graphic_ui;
+        what.value_guid = 0;
         ui_list_deselect(list);
-        ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value)), true);
+        ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value_guid)), true);
         list.enabled = true;
         list.index = 0;
-        list.entries = Stuff.all_graphic_ui;
-        what.value = 0;
         break;
     case DataTypes.IMG_ETC:
         var list = base_dialog.el_value_other;
+        list.entries = Stuff.all_graphic_etc;
+        what.value_guid = 0;
         ui_list_deselect(list);
-        ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value)), true);
+        ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value_guid)), true);
         list.enabled = true;
         list.index = 0;
-        list.entries = Stuff.all_graphic_etc;
-        what.value = 0;
         break;
     case DataTypes.COLOR:
+        what.value_real = c_black;
         base_dialog.el_value_color.enabled = true;
-        what.value = c_black;
+        base_dialog.el_value_color.value = c_black;
         break;
     case DataTypes.ENTITY:
         show_error("How did you get here?", false);

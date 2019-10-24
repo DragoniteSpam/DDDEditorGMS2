@@ -80,12 +80,12 @@ var el_value_color = create_color_picker(c3 + 32, yy, "Color", ew, eh, uivc_inpu
 el_value_color.enabled = false;
 dg.el_value_color = el_value_color;
 // this is for selecting the datadata type
-var el_type_guid = create_list(c3 + 32, yy, "Select a Type", "<no types>", ew, eh, 8, uivc_input_constant_type_guid, false, dg);
+var el_type_guid = create_list(c3 + 32, yy, "Select a Type", "<no types>", ew, eh, 8, uivc_input_constant_type_guid, false, dg, /* no external entry list */);
 el_type_guid.enabled = false;
 el_type_guid.entries_are = ListEntries.INSTANCES;
 dg.el_type_guid = el_type_guid;
 // this is for non-datadata data - meshes, battlers, audio, etc
-var el_value_other = create_list(c3 + 32, yy, "Data:", "<no data>", ew, eh, 20, uivc_input_constant_value_guid, false, dg /* no external entry list */);
+var el_value_other = create_list(c3 + 32, yy, "Data:", "<no data>", ew, eh, 20, uivc_input_constant_value_guid, false, dg, noone);
 el_value_other.enabled = false;
 el_value_other.entries_are = ListEntries.INSTANCES;
 dg.el_value_other = el_value_other;
