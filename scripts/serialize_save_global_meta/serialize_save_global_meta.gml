@@ -37,3 +37,16 @@ buffer_write(buffer, buffer_u8, n_triggers);
 for (var i = 0; i < n_triggers; i++) {
 	buffer_write(buffer, buffer_string, Stuff.all_event_triggers[| i]);
 }
+
+var n_constants = ds_list_size(Stuff.all_game_constants);
+buffer_write(buffer, buffer_u16, n_constants);
+for (var i = 0; i < n_constants; i++) {
+    var what = Stuff.all_game_constants[| i];
+    serialize_save_generic(buffer, what);
+    
+    buffer_write(buffer, buffer_u16, what.type);
+    buffer_write(buffer, buffer_datatype, what.type_guid);
+    buffer_write(buffer, buffer_f32, what.value_real);
+    buffer_write(buffer, buffer_string, what.value_string);
+    buffer_write(buffer, buffer_datatype, what.value_guid);
+}

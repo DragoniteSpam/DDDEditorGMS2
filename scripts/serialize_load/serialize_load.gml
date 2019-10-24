@@ -72,6 +72,8 @@ if (header == "DDD") {
             // these contain arrays, which are garbage collected
             ds_list_clear(Stuff.variables);
             ds_list_clear(Stuff.switches);
+            // graphics
+            ds_list_clear(Stuff.all_graphic_autotiles);
 			// anything else?
 			Stuff.active_map = noone;
             break;
