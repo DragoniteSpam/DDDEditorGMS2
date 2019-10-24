@@ -29,6 +29,7 @@ if (selection + 1) {
     create_radio_array_options(el_list, ["Int", "Enum", "Float", "String", "Boolean", "Data", "Code", "Color", "Mesh", "Tileset", "Tile", "Autotile",
         "Audio (BGM)", "Audio (SE)", "Animation", "Entity (RefID)", "Map", "Battler sprite", "Overworld sprite", "Particle", "UI image", "Misc. image"]);
     el_list.contents[| DataTypes.ENTITY].interactive = false;
+    el_list.contents[| DataTypes.TILE].interactive = false;
     
     create_radio_array_option_column(el_list, DataTypes.AUDIO_BGM, c2 + 32);
     

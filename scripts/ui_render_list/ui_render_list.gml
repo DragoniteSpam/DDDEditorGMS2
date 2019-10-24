@@ -21,7 +21,7 @@ draw_set_valign(list.valignment);
 draw_set_color(list.color);
 draw_text(tx, ty, string(list.text));
 
-var n = ds_list_size(list.entries);
+var n = list.entries ? ds_list_size(list.entries) : 0;
 list.index = clamp(n - list.slots, 0, list.index);
 
 var active = dialog_is_active(list.root);
