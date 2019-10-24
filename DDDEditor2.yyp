@@ -5567,6 +5567,14 @@
             }
         },
         {
+            "Key": "64faf918-5aba-4d29-a75a-7b2c08dede5e",
+            "Value": {
+                "id": "8e57c922-32bd-4072-8739-a3340830ba41",
+                "resourcePath": "scripts\\uivc_settings_map_fog_enabled\\uivc_settings_map_fog_enabled.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "651603fe-de68-412e-89e4-d9728e2ccd4b",
             "Value": {
                 "id": "ee01bd48-d661-4e2a-9a23-316d5d002b20",
@@ -8739,6 +8747,14 @@
             "Value": {
                 "id": "9a7395df-9ee9-4f06-8650-524632eac782",
                 "resourcePath": "scripts\\uivc_animation_keyframe_translation_z\\uivc_animation_keyframe_translation_z.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "9a989da1-37be-4088-a7aa-fb94e9afeb27",
+            "Value": {
+                "id": "f9bde7b7-22f3-40c2-95b2-0f29d46b76ca",
+                "resourcePath": "scripts\\uivc_settings_map_fog_colour\\uivc_settings_map_fog_colour.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -14908,7 +14924,9 @@
         "dfb2dc65-547f-4f7a-a9c4-fd1a02a98bd5",
         "eff72cf9-0b33-4695-ae3e-45b5a2c21435",
         "0a90ab39-7f07-416c-acd1-644afe1d1b96",
+        "9a989da1-37be-4088-a7aa-fb94e9afeb27",
         "245147cf-3514-4ba7-bf77-557f6a21a26e",
+        "64faf918-5aba-4d29-a75a-7b2c08dede5e",
         "47b54fcf-16f1-4f46-b5b5-e1c1e44239fb",
         "c07186bb-4bc3-449b-886e-448d85708dc7",
         "9064f1f1-760b-4f2e-a55a-b4d027ab5ac9",

@@ -85,5 +85,6 @@ enum DataVersions {
     IMAGE_SPRITE_SIZES          = 54,
     ENUM_SAVED_AS_TYPE          = 55,
     GLOBAL_CONSTANTS            = 56,
+	EXTRA_FOG_PROPERTIES		= 57,
     _CURRENT                 /* = whatever the last one is + 1 */
 }
