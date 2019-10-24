@@ -92,10 +92,13 @@ dimensions = Dimensions.THREED;
 spr_character_default = sprite_add(PATH_GRAPHICS + "b_chr_default.png", 0, false, false, 0, 0);
 
 // this sounds like a reasonable limit, it's not based on anything though
-all_graphic_autotiles = array_create(AUTOTILE_AVAILABLE_MAX);
-array_clear(all_graphic_autotiles, noone);
-
-all_graphic_autotiles[0] = [sprite_add(PATH_GRAPHICS + "b_at_default_grass_0.png", 0, false, false, 0, 0), "<default>", false, "", 1, 3];
+all_graphic_autotiles = ds_list_create();
+// also this is going to be really treated like an array, but it's going to be implemented
+// as a list so that it can be swapped into things with the se and mesh and whatever lists
+repeat (AUTOTILE_AVAILABLE_MAX) {
+    ds_list_add(all_graphic_autotiles, noone);
+}
+all_graphic_autotiles[| 0] = [sprite_add(PATH_GRAPHICS + "b_at_default_grass_0.png", 0, false, false, 0, 0), "<default>", false, "", 1, 3];
 
 all_graphic_tilesets = ds_list_create();
 all_graphic_overworlds = ds_list_create();

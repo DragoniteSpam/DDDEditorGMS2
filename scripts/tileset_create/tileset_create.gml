@@ -21,8 +21,7 @@ with (instance_create_depth(0, 0, 0, DataTileset)) {
     
     array_clear(autotiles, noone);
     
-    // these should be indices in Stuff.all_graphic_autotiles, not the
-    // sprite asset itself!
+    // these should be indices in Stuff.all_graphic_autotiles, not the sprite asset itself!
     autotiles = argument[1];
     
     passage = tileset_create_grid(picture, TILE_PASSABLE);

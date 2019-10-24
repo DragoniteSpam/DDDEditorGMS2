@@ -22,10 +22,10 @@ var yy = 64;
 
 // much of this was cannibalized from dialog_create_autotile_selector
 
-var n = AUTOTILE_AVAILABLE_MAX;
-dg.el_list = create_list(16, yy, "Available autotiles: " + string(n), "", dw / 2 - 16, b_height, 7, null, false, dg);
-for (var i = 0; i < AUTOTILE_AVAILABLE_MAX; i++) {
-    var at_data = Stuff.all_graphic_autotiles[i];
+var n = ds_list_size(Stuff.all_graphic_autotiles);
+dg.el_list = create_list(16, yy, "Available autotiles: " + string(n) + " / ", "", dw / 2 - 16, b_height, 7, null, false, dg);
+for (var i = 0; i < n; i++) {
+    var at_data = Stuff.all_graphic_autotiles[| i];
     if (is_array(at_data)) {
         create_list_entries(dg.el_list, string(i) + ". " + at_data[AvailableAutotileProperties.NAME]);
     } else {

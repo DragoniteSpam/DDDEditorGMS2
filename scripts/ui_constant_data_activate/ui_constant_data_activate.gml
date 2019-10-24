@@ -104,6 +104,7 @@ switch (what.type) {
         not_yet_implemented();
         break;
     case DataTypes.AUTOTILE:
+        show_error("autotile data is still just an array, they really need to be changed to LWO-ish things soon", true);
         var list = base_dialog.el_value_other;
         list.entries = Stuff.all_graphic_autotiles;
         what.value_guid = 0;

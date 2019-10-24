@@ -1,5 +1,7 @@
 /// @param tileset
 
+var tileset = argument0;
+
 // 3D and gpu_set_ztestenable have to be turned OFF when you do this otherwise things start acting broken
 
 var surface = surface_create(TEXTURE_SIZE, TEXTURE_SIZE);
@@ -15,12 +17,12 @@ draw_clear_alpha(c_white, 0);
 // if it's larger than 2048x2048 you may end up overlapping the autotiles, and also things may not
 // line up properly. please try to use 2048x2048.
 
-draw_sprite(argument0.picture, 0, 0, 0);
+draw_sprite(tileset.picture, 0, 0, 0);
 
 for (var i = 0; i < AUTOTILE_MAX; i++) {
-    if (argument0.autotiles[i]) {
-        var atp = argument0.autotile_positions[i];
-        var at_data = Stuff.all_graphic_autotiles[argument0.autotiles[i]];
+    if (tileset.autotiles[i]) {
+        var atp = tileset.autotile_positions[i];
+        var at_data = Stuff.all_graphic_autotiles[| tileset.autotiles[i]];
         if (is_array(at_data)) {
             draw_sprite(at_data[AvailableAutotileProperties.PICTURE], 0, atp[vec2.xx] * TEXTURE_SIZE, atp[vec2.yy] * TEXTURE_SIZE);
         }
