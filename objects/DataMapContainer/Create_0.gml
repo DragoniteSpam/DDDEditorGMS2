@@ -17,6 +17,8 @@ wpreview = noone;
 cspreview = noone;
 cpreview = noone;
 
+on_grid = true;
+
 // all of the map properties have finally been moved over to the map container
 
 xx = 64;									// dimensions

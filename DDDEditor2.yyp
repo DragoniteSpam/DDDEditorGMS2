@@ -4,7 +4,8 @@
     "mvc": "1.0",
     "IsDnDProject": false,
     "configs": [
-        
+        "default",
+        "default;YYC"
     ],
     "option_ecma": false,
     "parentProject": {

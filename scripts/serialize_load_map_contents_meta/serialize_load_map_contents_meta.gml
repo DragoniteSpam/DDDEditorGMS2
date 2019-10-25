@@ -44,6 +44,10 @@ if (version >= DataVersions.EXTRA_FOG_PROPERTIES) {
 	map.fog_enabled = unpack(bools, 5);
 }
 
+if (version >= DataVersions.MAP_GRID_PROPERTY) {
+	map.on_grid = unpack(bools, 5);
+}
+
 map.code = buffer_read(buffer, buffer_string);
 
 for (var i = 0; i < array_length_1d(map_contents.mesh_autotile_raw); i++) {
