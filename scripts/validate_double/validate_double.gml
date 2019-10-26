@@ -1,11 +1,15 @@
 /// @param string
+/// @param UIInput
 
-if (!string_length(argument0)) {
+var str = argument[0];
+var input = argument[1];
+
+if (!string_length(str)) {
     return false;
 }
 
 // @todo gml update try-catch
-return regex("[-+]?[0-9]*\.?[0-9]+", argument0);
+return regex("[-+]?[0-9]*\.?[0-9]+", str);
 
 // ((\+)|(\-))?
 //      optional + or -

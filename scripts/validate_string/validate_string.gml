@@ -1,5 +1,7 @@
 /// @param string
+/// @param UIInput
 
-var str = argument0;
+var str = argument[0];
+var input = argument[1];
 
 return true;

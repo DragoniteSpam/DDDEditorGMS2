@@ -23,7 +23,7 @@ var c = input.color;
 draw_text_colour(tx, ty, string(input.text), c, c, c, c, 1);
 draw_set_valign(fa_middle);
 
-if (script_execute(input.validation, value)) {
+if (script_execute(input.validation, value, input)) {
     var c = input.color;
     if (input.real_value) {
         var n = script_execute(input.value_conversion, value);
@@ -77,7 +77,7 @@ if (input.interactive && dialog_is_active(input.root)) {
         input.value = value;
         keyboard_string = value;
         
-        if (script_execute(input.validation, value)) {
+        if (script_execute(input.validation, value, input)) {
             var execute_value_change = (!input.require_enter && v0 != value) || (input.require_enter && keyboard_check_pressed(vk_enter));
             if (execute_value_change) {
 				if (input.real_value) {

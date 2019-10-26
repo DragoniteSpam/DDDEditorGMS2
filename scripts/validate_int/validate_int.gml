@@ -1,7 +1,11 @@
 /// @param string
+/// @param UIInput
 
-if (!string_length(argument0)) {
+var str = argument[0];
+var input = argument[1];
+
+if (!string_length(str)) {
     return false;
 }
 
-return regex("((\\+)|(\\-))?(\\d)+", argument0);
+return regex("((\\+)|(\\-))?(\\d)+", str);

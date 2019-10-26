@@ -1,13 +1,13 @@
 /// @param string
+/// @param UIInput
 
-if (!string_length(argument0)) {
+var str = argument[0];
+var input = argument[1];
+
+if (!validate_int(str, input)) {
     return false;
 }
 
-if (!regex("((\\+)|(\\-))?(\\d)+", argument0)) {
-	return false;
-}
-
-var value = real(argument0);
+var value = real(str);
 
 return (value * Stuff.active_map.yy * Stuff.active_map.zz) <= MAP_VOLUME_LIMIT;

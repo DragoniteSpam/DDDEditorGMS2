@@ -357,7 +357,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
 	
 	yy = yy + element.height + spacing * 4;
 	
-	element = create_text(col2_x, yy, "Any map dimension can go up to " + string(MAP_AXIS_LIMIT) + " in any dimension, but the total volume must be lower than " + string_comma(MAP_VOLUME_LIMIT) + ".", col_width, element_height, fa_left, col_width, t_maps);
+	element = create_text(col2_x, yy, "Maps can go up to " + string(MAP_AXIS_LIMIT) + " in any dimension, but the total volume must be lower than " + string_comma(MAP_VOLUME_LIMIT) + ".", col_width, element_height, fa_left, col_width, t_maps);
 	ds_list_add(t_maps.contents, element);
 	
 	yy = yy + element.height + spacing * 4;
