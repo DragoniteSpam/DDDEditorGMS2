@@ -1200,6 +1200,14 @@
             }
         },
         {
+            "Key": "1463a253-2c9b-48c6-8428-954e21d6ff63",
+            "Value": {
+                "id": "a17af3f7-61c5-416a-8f75-94fab76781f0",
+                "resourcePath": "scripts\\dmu_map_add\\dmu_map_add.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "1480a86d-bd00-430f-bd75-7bb2ae7889e4",
             "Value": {
                 "id": "24f2042b-f4b2-495c-997f-6a7551e34126",
@@ -3411,7 +3419,7 @@
             "Key": "406db1cc-6498-4da0-8807-482b2b36baea",
             "Value": {
                 "id": "2b2e3c7d-2198-43be-88f5-e53e574d133e",
-                "resourcePath": "scripts\\validate_int_create_map_size_x\\validate_int_create_map_size_x.yy",
+                "resourcePath": "scripts\\validate_int_create_map_size\\validate_int_create_map_size.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -14761,6 +14769,7 @@
         "7e842895-6f90-469d-a5a5-1a4b1b4714c6",
         "3524668f-fce9-47ef-a727-b1f72a682462",
         "ef88187a-f578-4d1f-b954-17d87c453441",
+        "1463a253-2c9b-48c6-8428-954e21d6ff63",
         "6632e72e-3d90-4eed-bde9-d7220c475a3d",
         "421b75e0-45fa-46bd-9818-6df02b716307",
         "7324b285-e9fb-485c-88e7-4fd30103c242",
