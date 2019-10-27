@@ -15,17 +15,16 @@ var xx = mouse_vector[vec3.xx] * MILLION;
 var yy = mouse_vector[vec3.yy] * MILLION;
 var zz = mouse_vector[vec3.zz] * MILLION;
 
-var floor_x = -1;
-var floor_y = -1;
-var floor_cx = -1;
-var floor_cy = -1;
+terrain.cursor_position = undefined;
 
 if (zz < Camera.z) {
 	var f = abs(Camera.z / zz);
-	floor_x = x + xx * f;
-	floor_y = y + yy * f;
-	floor_cx = clamp(floor_x div terrain.view_scale, -1, terrain.width - 1);
-	floor_cy = clamp(floor_y div terrain.view_scale, -1, terrain.height - 1);
+    
+    // @todo gml update lwo
+    terrain.cursor_position = [
+	    clamp((Camera.x + xx * f) / terrain.view_scale, -1, terrain.width - 1),
+	    clamp((Camera.y + yy * f) / terrain.view_scale, -1, terrain.height - 1)
+    ];
     
 	if (Controller.press_left) {
 

@@ -10288,6 +10288,14 @@
             }
         },
         {
+            "Key": "b561c380-05fe-45ec-9e81-1b784193a847",
+            "Value": {
+                "id": "05a8ccb7-5784-4d10-a20e-0a38088a135e",
+                "resourcePath": "datafiles_yy\\data\\basic\\cylinder.d3d.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "b566f7a4-e347-4e1c-95d8-2dc016d31808",
             "Value": {
                 "id": "1b1fa163-ae84-4b3d-ac28-3e9a65170fde",

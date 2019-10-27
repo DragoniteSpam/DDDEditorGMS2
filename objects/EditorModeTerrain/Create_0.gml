@@ -9,10 +9,14 @@ vertex_format_add_texcoord();
 vertex_format_add_colour();
 vertex_format = vertex_format_end();
 
+cylinder = import_d3d("data\\basic\\cylinder.d3d", false);
+
+cursor_position = undefined;
+
 height = 1024;
 width = 1024;
 
-view_scale = 32;
+view_scale = 8;
 save_scale = 1;
 
 texture_size = 32 / 2048;
