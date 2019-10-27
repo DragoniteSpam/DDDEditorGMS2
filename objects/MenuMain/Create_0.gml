@@ -17,9 +17,10 @@ mouse_over = noone;
 var menu_file = create_menu("File", element_width, element_height, id);
 var menu_edit = create_menu("Edit", element_width, element_height, id);
 var menu_data = create_menu("Data", element_width, element_height, id);
+var menu_beta = create_menu("Beta", element_width, element_height, id);
 var menu_help = create_menu("Help", element_width, element_height, id);
 contents = ds_list_create();
-ds_list_add(contents, menu_file, menu_edit, menu_data, menu_help);
+ds_list_add(contents, menu_file, menu_edit, menu_data, menu_beta, menu_help);
 
 /*
  * File menu
@@ -95,6 +96,15 @@ ds_list_add(menu_data.contents,
     md_conflicts, md_missing,
     m_separator,
     md_3d, md_events, md_data, md_animation
+);
+
+/*
+ * Beta stuff
+ */
+
+var mb_heightmap = create_menu_element("Heightmap", momu_editor_heightmap, menu_help);
+ds_list_add(menu_beta.contents,
+    mb_heightmap
 );
 
 /*

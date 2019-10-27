@@ -2,6 +2,6 @@
 
 var element = argument0;
 
-editor_mode_animation();
+editor_mode_heightmap();
 
 menu_activate(noone);

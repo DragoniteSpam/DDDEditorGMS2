@@ -41,14 +41,14 @@ if (keyboard_check(vk_control)) {
 }
 
 if (keyboard_check_pressed(vk_f6)) {
-    momu_editor_3d(noone);
+    editor_mode_3d();
 }
 if (keyboard_check_pressed(vk_f7)) {
-    momu_editor_event(noone);
+    editor_mode_event();
 }
 if (keyboard_check_pressed(vk_f8)) {
-    momu_editor_data(noone);
+    editor_mode_data();
 }
 if (keyboard_check_pressed(vk_f9)) {
-    momu_editor_animation(noone);
+    editor_mode_animation();
 }

@@ -52,6 +52,7 @@ enum EditorModes {
     EDITOR_EVENT,
     EDITOR_DATA,
     EDITOR_ANIMATION,
+    EDITOR_HEIGHTMAP,
 }
 
 /*
