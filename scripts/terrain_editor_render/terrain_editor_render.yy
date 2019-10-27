@@ -1,8 +1,8 @@
 {
-    "id": "5262238b-6f10-4ee8-9117-8d5c0cd70f83",
+    "id": "85cb0072-cfc5-47b6-a769-1d18a1ca582c",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "control_2d",
+    "name": "terrain_editor_render",
     "IsCompatibility": false,
     "IsDnD": false
 }

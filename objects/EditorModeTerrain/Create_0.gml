@@ -1,6 +1,6 @@
 event_inherited();
-var t = get_timer()
-render = null;
+var t = get_timer();
+render = terrain_editor_render;
 
 vertex_format_begin();
 vertex_format_add_position_3d();
@@ -12,7 +12,8 @@ vertex_format = vertex_format_end();
 height = 1024;
 width = 1024;
 
-scale = 1;
+view_scale = 32;
+save_scale = 1;
 
 texture_size = 32 / 2048;
 texel = 1 / 2048;

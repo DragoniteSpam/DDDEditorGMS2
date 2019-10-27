@@ -5,9 +5,9 @@ draw_clear(c_black);
 
 if (!mouse_3d_lock && mouse_within_view(view_3d) && !dialog_exists()) {
 	if (map.is_3d) {
-	    control_3d();
+	    control_map_3d();
 	} else {
-		control_2d();
+		control_map_2d();
 	}
 }
 

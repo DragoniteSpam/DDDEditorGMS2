@@ -1779,7 +1779,7 @@
             "Key": "2014825b-a570-47e1-8600-19c965a6afcb",
             "Value": {
                 "id": "30b482fb-b09e-4eb6-ba5c-ed2015b2df25",
-                "resourcePath": "scripts\\control_3d\\control_3d.yy",
+                "resourcePath": "scripts\\control_map_3d\\control_map_3d.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -4579,7 +4579,7 @@
             "Key": "5262238b-6f10-4ee8-9117-8d5c0cd70f83",
             "Value": {
                 "id": "956cf762-b119-499b-878f-a4ab4690136b",
-                "resourcePath": "scripts\\control_2d\\control_2d.yy",
+                "resourcePath": "scripts\\control_map_2d\\control_map_2d.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -7536,6 +7536,14 @@
             }
         },
         {
+            "Key": "85cb0072-cfc5-47b6-a769-1d18a1ca582c",
+            "Value": {
+                "id": "3972cfab-2ecb-4948-abb7-4f5366b8696b",
+                "resourcePath": "scripts\\terrain_editor_render\\terrain_editor_render.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "85ce39a2-00a7-4a54-9100-278e094a6270",
             "Value": {
                 "id": "0eeb45ef-ccd5-49b2-9d0a-0a3db4d84868",
@@ -9836,6 +9844,14 @@
             "Value": {
                 "id": "cd524307-834e-49ea-aaaa-a81d2edd501e",
                 "resourcePath": "scripts\\serialize_save_map_contents_batch\\serialize_save_map_contents_batch.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "ae2be7f6-e7b0-45e5-aff6-edeed2e31f40",
+            "Value": {
+                "id": "79673f0d-6151-4d82-a14d-ba62069e5099",
+                "resourcePath": "scripts\\control_terrain_3d\\control_terrain_3d.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -15529,6 +15545,7 @@
         "065e1055-2daf-442e-8e46-d73791f85972",
         "c5b646ec-c93b-43e3-84e9-e2060705dcbe",
         "2014825b-a570-47e1-8600-19c965a6afcb",
+        "ae2be7f6-e7b0-45e5-aff6-edeed2e31f40",
         "5262238b-6f10-4ee8-9117-8d5c0cd70f83",
         "f99fa76c-f1be-44a0-a900-27fc9778a457",
         "ba4a8101-af2b-497e-907d-7a331adf03b6",
@@ -15923,7 +15940,8 @@
         "027688c8-77c1-40f5-b0c2-9fa7454e4f1b",
         "54e82075-777f-48c5-9db5-9d5896ed45ad",
         "31bf1c76-3d34-4e06-9612-6b0e3544324e",
-        "df3fa51b-fa8b-48de-b8a9-64532b479d43"
+        "df3fa51b-fa8b-48de-b8a9-64532b479d43",
+        "85cb0072-cfc5-47b6-a769-1d18a1ca582c"
     ],
     "tutorial": ""
 }
