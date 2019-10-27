@@ -1,6 +1,7 @@
 /// @description setup
 
-etype_objects = [Entity,
+etype_objects = [
+    Entity,
     EntityTile,
     EntityAutoTile,
     EntityMesh,
@@ -152,12 +153,12 @@ autotile_map[? 255] = 46;
 autotile_map[? 0] = 47;
 #endregion
 
-ds_list_add(all_graphic_tilesets, tileset_create(PATH_GRAPHICS + "b_tileset_overworld_0.png",
+ds_list_add(all_graphic_tilesets, tileset_create(PATH_GRAPHICS + "b_tileset_overworld_0.png", [
     // this is somewhat hard-coded;
     // the zeroth available tileset is automatically default_grass
-    [0, noone, noone, noone, noone, noone, noone, noone,
-        noone, noone, noone, noone, noone, noone, noone, noone])
-);
+    0, noone, noone, noone, noone, noone, noone, noone,
+    noone, noone, noone, noone, noone, noone, noone, noone
+]));
 
 all_events = ds_list_create();
 all_event_custom = ds_list_create();
@@ -308,6 +309,9 @@ ds_grid_resize(active_map.contents.map_grid, active_map.xx, active_map.yy);
 map_fill_grid(active_map.contents.map_grid, active_map.zz);
 // this depends on activemap
 instance_create_depth(0, 0, 0, Camera);
+
+terrain = instance_create_depth(0, 0, 0, EditorModeTerrain);
+instance_deactivate_object(terrain);
 
 #region collision stuff plus basic shapes
 c_transform_scaling(tile_width, tile_height, tile_depth);

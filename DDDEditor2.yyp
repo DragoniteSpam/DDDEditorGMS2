@@ -4656,6 +4656,14 @@
             }
         },
         {
+            "Key": "539296d4-c023-424e-9dde-087da12d539e",
+            "Value": {
+                "id": "4a8fbd64-9e6a-483c-95f8-32c0da1adb4c",
+                "resourcePath": "scripts\\draw_editor_terrain_hud\\draw_editor_terrain_hud.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "53c3a20b-35da-4d9a-a45c-a0bd8ca276b0",
             "Value": {
                 "id": "85ca7a1c-7639-4069-a4b0-76a50279e4e0",
@@ -7112,6 +7120,14 @@
             }
         },
         {
+            "Key": "7f20ec16-813e-40ff-84ed-b924fec4984c",
+            "Value": {
+                "id": "f7f9639d-42f1-406c-9cfe-430d1ac583e3",
+                "resourcePath": "views\\7f20ec16-813e-40ff-84ed-b924fec4984c.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "7f518f9b-deb2-49a1-8093-5eb45e60c260",
             "Value": {
                 "id": "20522959-d007-4a9a-913d-c2486c080f11",
@@ -7789,6 +7805,14 @@
                 "id": "ff299f42-df61-40e9-87d0-2676ef5e5fd9",
                 "resourcePath": "scripts\\map_fill_grid\\map_fill_grid.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "8a308cc5-cbdc-4e6a-a399-5d4811d53b12",
+            "Value": {
+                "id": "370d1228-322d-48e5-a935-5fceb9fa68a7",
+                "resourcePath": "views\\8a308cc5-cbdc-4e6a-a399-5d4811d53b12.yy",
+                "resourceType": "GMFolder"
             }
         },
         {
@@ -9264,6 +9288,14 @@
             }
         },
         {
+            "Key": "a3d97ff3-e8c7-49db-813e-acdf38c20935",
+            "Value": {
+                "id": "898e9ffc-f846-478d-983a-bb01808e70f3",
+                "resourcePath": "shaders\\shd_basic\\shd_basic.yy",
+                "resourceType": "GMShader"
+            }
+        },
+        {
             "Key": "a400e1c0-9760-4330-9ecf-46ad03a58824",
             "Value": {
                 "id": "f3a4fa24-c2ce-4629-80f7-c7922feb2616",
@@ -9732,6 +9764,14 @@
             "Value": {
                 "id": "0512afb3-4c43-4566-b5fd-6684141cd832",
                 "resourcePath": "scripts\\smf_vector_length\\smf_vector_length.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "abf63469-3f87-430c-a61c-e96d63dad92c",
+            "Value": {
+                "id": "a69712b5-1f18-42b5-beec-2fd1342006fa",
+                "resourcePath": "scripts\\draw_editor_terrain\\draw_editor_terrain.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -10917,6 +10957,14 @@
                 "id": "a2d171a5-9e6b-42f9-b03a-622a2055ab0b",
                 "resourcePath": "scripts\\uivc_check_view_backface\\uivc_check_view_backface.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "c16f04ae-34bc-40ea-90eb-deaf7df7ca01",
+            "Value": {
+                "id": "5706eb2b-5078-4554-b310-98477fbe248a",
+                "resourcePath": "objects\\EditorModeTerrain\\EditorModeTerrain.yy",
+                "resourceType": "GMObject"
             }
         },
         {
@@ -12568,6 +12616,14 @@
             }
         },
         {
+            "Key": "df3fa51b-fa8b-48de-b8a9-64532b479d43",
+            "Value": {
+                "id": "ac3ee22e-b623-47b7-b88b-49d667d33e67",
+                "resourcePath": "scripts\\terrain_create_square\\terrain_create_square.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "df7ea5ce-47a0-4c02-9830-fbe1997967fc",
             "Value": {
                 "id": "373b5be1-bb02-46a5-ab21-283d98e6758e",
@@ -13061,6 +13117,14 @@
                 "id": "e9034186-4748-451b-96a2-0d359cd28f3e",
                 "resourcePath": "scripts\\uivc_custom_data_property_required\\uivc_custom_data_property_required.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "e957180f-e97b-4fde-bbd7-c3189908caf2",
+            "Value": {
+                "id": "7a57896b-f3aa-4b82-a6ef-b69452629b26",
+                "resourcePath": "objects\\EditorMode\\EditorMode.yy",
+                "resourceType": "GMObject"
             }
         },
         {
@@ -14634,6 +14698,7 @@
         "83918601-76a4-41ce-a370-e149f8357773",
         "cabddee6-83fd-4635-a29d-8d1e4a5f3dfd",
         "820aac31-21d2-429a-b06e-34225a018af7",
+        "abf63469-3f87-430c-a61c-e96d63dad92c",
         "05f66cfa-680b-4901-9b20-2fb0708664df",
         "443815a0-a726-47e4-9ea3-6ab8f8337970",
         "b734f3cb-b0a8-4180-9605-b2ccabc2b3ec",
@@ -14641,6 +14706,7 @@
         "d0cbae9f-b1c2-4da3-9b24-b0c55bedfa4e",
         "5077cefa-97da-4ef6-880c-32a5dfa7c059",
         "e98c9e1c-1587-4303-85b5-314ab3c45363",
+        "539296d4-c023-424e-9dde-087da12d539e",
         "908f9a52-7470-4e76-9808-402f4acb9d67",
         "2a6837e7-9351-4828-b0c8-f7f6095d2e09",
         "d8652093-8c63-4067-92d4-453d3bfe32c0",
@@ -15856,7 +15922,8 @@
         "cd32215f-9241-4130-bb8e-7050945ed0d9",
         "027688c8-77c1-40f5-b0c2-9fa7454e4f1b",
         "54e82075-777f-48c5-9db5-9d5896ed45ad",
-        "31bf1c76-3d34-4e06-9612-6b0e3544324e"
+        "31bf1c76-3d34-4e06-9612-6b0e3544324e",
+        "df3fa51b-fa8b-48de-b8a9-64532b479d43"
     ],
     "tutorial": ""
 }
