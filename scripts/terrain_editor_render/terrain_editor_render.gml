@@ -4,8 +4,12 @@ var terrain = argument0;
 
 control_terrain_3d(terrain);
 
+draw_set_lighting(true)
+draw_light_define_direction(0, 512, 512, -100, c_white);
+this is not working yet, please make it work
 transform_set(0, 0, 0, 0, 0, 0, terrain.view_scale, terrain.view_scale, terrain.view_scale);
 vertex_submit(terrain.terrain_buffer, pr_trianglelist, sprite_get_texture(get_active_tileset().master, 1));
+draw_set_lighting(false)
 
 if (terrain.cursor_position != undefined) {
     var scale = terrain.view_scale * terrain.radius;
