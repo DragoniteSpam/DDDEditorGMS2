@@ -2,6 +2,7 @@ event_inherited();
 var t = get_timer();
 render = terrain_editor_render;
 
+vertices_per_square = 6;
 format_size = 0;
 
 vertex_format_begin();
@@ -18,7 +19,7 @@ vertex_format = vertex_format_end();
 cylinder = import_d3d("data\\basic\\cylinder.d3d", false);
 
 cursor_position = undefined;
-rate = 1;
+rate = 0.125;
 radius = 4;
 mode = TerrainModes.Z;
 submode = TerrainSubmodes.MOUND;
@@ -33,12 +34,14 @@ save_scale = 1;
 texture_size = 32 / 2048;
 texel = 1 / 2048;
 
+height_data = buffer_create(4 * width * height, buffer_fixed, 1);
+
 terrain_buffer = vertex_create_buffer();
 vertex_begin(terrain_buffer, vertex_format);
 
 for (var i = 0; i < width; i++) {
     for (var j = 0; j < height; j++) {
-        terrain_create_square(terrain_buffer, i, j, 0, 0, texture_size, texel);
+        terrain_create_square(terrain_buffer, i, j, buffer_peek(height_data, i * height + j, buffer_f32), 0, 0, texture_size, texel);
     }
 }
 

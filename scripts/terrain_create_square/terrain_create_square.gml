@@ -1,6 +1,7 @@
 /// @param buffer
 /// @param x
 /// @param y
+/// @param z
 /// @param tx
 /// @param ty
 /// @param tsize
@@ -9,10 +10,11 @@
 var buffer = argument0;
 var xx = argument1;
 var yy = argument2;
-var tx = argument3;
-var ty = argument4;
-var tsize = argument5;
-var texel = argument6;
+var zz = argument3;
+var tx = argument4;
+var ty = argument5;
+var tsize = argument6;
+var texel = argument7;
 
 // (0, 0)
 vertex_position_3d(buffer, xx, yy, 0);
