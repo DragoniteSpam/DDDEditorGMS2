@@ -3056,6 +3056,14 @@
             }
         },
         {
+            "Key": "3609cd39-28ea-4548-81db-a484f2b93086",
+            "Value": {
+                "id": "daf52c95-8843-4c00-a344-ab7ad8d826f7",
+                "resourcePath": "scripts\\terrain_sub_sharp\\terrain_sub_sharp.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "361fa843-14b9-43a0-bdff-9c6b8485502e",
             "Value": {
                 "id": "6d485ea3-33bf-4522-8ec0-c285c523ae70",
@@ -3976,6 +3984,14 @@
             }
         },
         {
+            "Key": "48e2c604-2326-4266-881f-3cfd5dbd1904",
+            "Value": {
+                "id": "67a99b3a-ce3e-4333-bb1c-272ba89d0685",
+                "resourcePath": "scripts\\terrain_mode_texture\\terrain_mode_texture.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "48ed5b09-a5e2-496c-841c-e4344abfa24c",
             "Value": {
                 "id": "d070f5aa-53a7-4a18-ab66-db5b83e709fa",
@@ -4549,6 +4565,14 @@
                 "id": "108fafc6-e245-4aca-a8cb-dfb672d1520c",
                 "resourcePath": "objects\\DataImage\\DataImage.yy",
                 "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "51f57e8e-0de7-4927-ae07-f2dd06274548",
+            "Value": {
+                "id": "f5eafe4c-1e6c-4d76-acbe-ec6582888d49",
+                "resourcePath": "scripts\\terrain_get_z\\terrain_get_z.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -7176,6 +7200,14 @@
             }
         },
         {
+            "Key": "7ff626d0-d91f-42a1-90a4-0e8d3603122f",
+            "Value": {
+                "id": "20154d40-22ec-46ae-b4df-cb53210b3403",
+                "resourcePath": "scripts\\terrain_sub_flat\\terrain_sub_flat.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "7ffc85e3-ea46-4255-b83a-d72fed3feaf1",
             "Value": {
                 "id": "c21590ce-0360-4d14-b029-c600e8a38e41",
@@ -8092,6 +8124,14 @@
             "Value": {
                 "id": "12ecbcdd-d037-4e1c-b5fc-0dea05b75306",
                 "resourcePath": "scripts\\dialog_create_event_node_audio_bgm\\dialog_create_event_node_audio_bgm.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "8f5ae678-b96a-48d6-8cee-c0d720a550d2",
+            "Value": {
+                "id": "dd110da0-6643-4aed-9b5a-1c34dabc6435",
+                "resourcePath": "scripts\\terrain_add_z\\terrain_add_z.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -9052,6 +9092,14 @@
             "Value": {
                 "id": "200572f5-3ff3-44ce-bafb-eb5b1ca95454",
                 "resourcePath": "scripts\\hex\\hex.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "9fc0ef76-9233-4a03-adcc-5e409a8bf53d",
+            "Value": {
+                "id": "324ea98c-18cb-4b7c-8852-dd1d3750e0fb",
+                "resourcePath": "scripts\\terrain_sub_zero\\terrain_sub_zero.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -10744,6 +10792,14 @@
             }
         },
         {
+            "Key": "bdb18c2c-16b5-4536-960b-e225982550a6",
+            "Value": {
+                "id": "df9d4aa7-31a9-4641-bf7b-5b1eae4b6dbf",
+                "resourcePath": "views\\bdb18c2c-16b5-4536-960b-e225982550a6.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "bde998b1-975a-4d67-b8ec-0d2dffca1356",
             "Value": {
                 "id": "e618547d-2758-4f34-a357-4e5e6e3aaf39",
@@ -12000,6 +12056,14 @@
             }
         },
         {
+            "Key": "d45cbbf5-14a9-4435-bc46-72cdac5276a8",
+            "Value": {
+                "id": "a8143168-0cc9-4161-96e4-5bfd9e9c005d",
+                "resourcePath": "scripts\\terrain_sub_mound\\terrain_sub_mound.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "d472f96a-b85a-47a9-b4b3-d28416a2dcd9",
             "Value": {
                 "id": "9a7386cd-d367-45f7-b030-967dd1ae443d",
@@ -12244,6 +12308,14 @@
             "Value": {
                 "id": "7ca2fbd6-9618-43f7-927d-ca424e8bf7b7",
                 "resourcePath": "scripts\\select_single\\select_single.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "d783aed3-d083-4585-ace5-28e0c2f12138",
+            "Value": {
+                "id": "621b9575-8c9d-4ac3-bb82-80fc6fd19f58",
+                "resourcePath": "scripts\\terrain_set_z\\terrain_set_z.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -12816,6 +12888,14 @@
             }
         },
         {
+            "Key": "e427d3bd-3945-48a4-8ac5-097e3f41e14e",
+            "Value": {
+                "id": "06493e14-6195-40a7-b629-f4bf10f695ac",
+                "resourcePath": "scripts\\terrain_mode_z\\terrain_mode_z.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "e42de6e2-aedc-4d8a-ba9e-4d179718b813",
             "Value": {
                 "id": "5cd2df52-7a05-46cf-8595-78f283c34711",
@@ -13332,6 +13412,14 @@
             "Value": {
                 "id": "b9de0f19-f202-4d86-b929-f778bca37401",
                 "resourcePath": "scripts\\uivc_animation_keyframe_audio\\uivc_animation_keyframe_audio.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "eb99f114-7399-4367-8e02-8a14f63da342",
+            "Value": {
+                "id": "f282c533-b2d4-4a5e-ad23-c03a9a086ae1",
+                "resourcePath": "scripts\\terrain_sub_avg\\terrain_sub_avg.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -14080,6 +14168,14 @@
             }
         },
         {
+            "Key": "fa4c8bc5-45a9-4b3d-a099-954036690cc6",
+            "Value": {
+                "id": "27db9643-e183-402b-8631-59389cb284d6",
+                "resourcePath": "scripts\\terrain_mode_color\\terrain_mode_color.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "fa5b79cb-e8e1-4f81-b77c-66d53cc9b808",
             "Value": {
                 "id": "f1585210-b05f-46f3-bd72-88f3b45dbecd",
@@ -14461,6 +14557,14 @@
                 "id": "710bd09c-b678-40db-85a6-863592d339ad",
                 "resourcePath": "scripts\\uivc_bitfield_tile_passability_passable\\uivc_bitfield_tile_passability_passable.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "ff0155df-5dc3-4495-ad8c-9cc043c9e511",
+            "Value": {
+                "id": "74193979-8be0-402e-a278-cff7046cddc4",
+                "resourcePath": "views\\ff0155df-5dc3-4495-ad8c-9cc043c9e511.yy",
+                "resourceType": "GMFolder"
             }
         },
         {
@@ -15949,7 +16053,18 @@
         "54e82075-777f-48c5-9db5-9d5896ed45ad",
         "31bf1c76-3d34-4e06-9612-6b0e3544324e",
         "df3fa51b-fa8b-48de-b8a9-64532b479d43",
-        "85cb0072-cfc5-47b6-a769-1d18a1ca582c"
+        "85cb0072-cfc5-47b6-a769-1d18a1ca582c",
+        "d45cbbf5-14a9-4435-bc46-72cdac5276a8",
+        "3609cd39-28ea-4548-81db-a484f2b93086",
+        "eb99f114-7399-4367-8e02-8a14f63da342",
+        "7ff626d0-d91f-42a1-90a4-0e8d3603122f",
+        "9fc0ef76-9233-4a03-adcc-5e409a8bf53d",
+        "d783aed3-d083-4585-ace5-28e0c2f12138",
+        "51f57e8e-0de7-4927-ae07-f2dd06274548",
+        "8f5ae678-b96a-48d6-8cee-c0d720a550d2",
+        "e427d3bd-3945-48a4-8ac5-097e3f41e14e",
+        "48e2c604-2326-4266-881f-3cfd5dbd1904",
+        "fa4c8bc5-45a9-4b3d-a099-954036690cc6"
     ],
     "tutorial": ""
 }

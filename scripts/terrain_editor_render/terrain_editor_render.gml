@@ -8,7 +8,8 @@ transform_set(0, 0, 0, 0, 0, 0, terrain.view_scale, terrain.view_scale, terrain.
 vertex_submit(terrain.terrain_buffer, pr_trianglelist, sprite_get_texture(get_active_tileset().master, 1));
 
 if (terrain.cursor_position != undefined) {
-    transform_set(0, 0, 0, 0, 0, 0, terrain.view_scale, terrain.view_scale, terrain.view_scale);
+    var scale = terrain.view_scale * terrain.radius;
+    transform_set(0, 0, 0, 0, 0, 0, scale, scale, scale);
     transform_add(
         terrain.cursor_position[vec2.xx] * terrain.view_scale, terrain.cursor_position[vec2.yy] * terrain.view_scale, 0,
         0, 0, 0, 1, 1, 1

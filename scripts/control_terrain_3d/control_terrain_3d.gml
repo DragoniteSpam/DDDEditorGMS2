@@ -26,15 +26,20 @@ if (zz < Camera.z) {
 	    clamp((Camera.y + yy * f) / terrain.view_scale, -1, terrain.height - 1)
     ];
     
-	if (Controller.press_left) {
-
-	}
 	if (Controller.mouse_left) {
-
+        switch (terrain.mode) {
+            case TerrainModes.Z: terrain_mode_z(terrain, terrain.cursor_position, 1); break;
+            case TerrainModes.TEXTURE: terrain_mode_texture(terrain, terrain.cursor_position); break;
+            case TerrainModes.COLOR: terrain_mode_color(terrain, terrain.cursor_position) break;
+        }
 	}
-	if (Controller.release_left) {
-
-	}
+    if (false && Controller.mouse_right) {
+        switch (terrain.mode) {
+            case TerrainModes.Z: terrain_mode_z(terrain, terrain.cursor_position, -1); break;
+            case TerrainModes.TEXTURE: terrain_mode_texture(terrain, terrain.cursor_position); break;
+            case TerrainModes.COLOR: terrain_mode_color(terrain, terrain.cursor_position) break;
+        }
+    }
 }
 
 if (keyboard_check_pressed(vk_space)) {

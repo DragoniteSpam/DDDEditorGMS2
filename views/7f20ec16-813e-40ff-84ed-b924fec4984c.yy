@@ -5,7 +5,12 @@
     "name": "7f20ec16-813e-40ff-84ed-b924fec4984c",
     "children": [
         "df3fa51b-fa8b-48de-b8a9-64532b479d43",
-        "85cb0072-cfc5-47b6-a769-1d18a1ca582c"
+        "85cb0072-cfc5-47b6-a769-1d18a1ca582c",
+        "ff0155df-5dc3-4495-ad8c-9cc043c9e511",
+        "d783aed3-d083-4585-ace5-28e0c2f12138",
+        "51f57e8e-0de7-4927-ae07-f2dd06274548",
+        "8f5ae678-b96a-48d6-8cee-c0d720a550d2",
+        "bdb18c2c-16b5-4536-960b-e225982550a6"
     ],
     "filterType": "GMScript",
     "folderName": "terrain",
