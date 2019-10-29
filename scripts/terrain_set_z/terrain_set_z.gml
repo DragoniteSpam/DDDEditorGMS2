@@ -54,47 +54,47 @@ buffer_poke(terrain.terrain_buffer_data, index_se_a[0] + 8, buffer_f32, value);
 buffer_poke(terrain.terrain_buffer_data, index_se_b[2] + 8, buffer_f32, value);
 
 var values_nw_a = [
-    buffer_peek(terrain.terrain_buffer_data, index_nw_a[0], buffer_f32),
-    buffer_peek(terrain.terrain_buffer_data, index_nw_a[1], buffer_f32),
+    buffer_peek(terrain.terrain_buffer_data, index_nw_a[0] + 8, buffer_f32),
+    buffer_peek(terrain.terrain_buffer_data, index_nw_a[1] + 8, buffer_f32),
     value,
 ];
 
 var values_nw_b = [
     value,
-    buffer_peek(terrain.terrain_buffer_data, index_nw_b[1], buffer_f32),
-    buffer_peek(terrain.terrain_buffer_data, index_nw_b[2], buffer_f32),
+    buffer_peek(terrain.terrain_buffer_data, index_nw_b[1] + 8, buffer_f32),
+    buffer_peek(terrain.terrain_buffer_data, index_nw_b[2] + 8, buffer_f32),
 ];
 
 var values_ne = [
-    buffer_peek(terrain.terrain_buffer_data, index_ne[0], buffer_f32),
+    buffer_peek(terrain.terrain_buffer_data, index_ne[0] + 8, buffer_f32),
     value,
-    buffer_peek(terrain.terrain_buffer_data, index_ne[2], buffer_f32),
+    buffer_peek(terrain.terrain_buffer_data, index_ne[2] + 8, buffer_f32),
 ];
 
 var values_sw = [
-    buffer_peek(terrain.terrain_buffer_data, index_sw[0], buffer_f32),
+    buffer_peek(terrain.terrain_buffer_data, index_sw[0] + 8, buffer_f32),
     value,
-    buffer_peek(terrain.terrain_buffer_data, index_sw[2], buffer_f32),
+    buffer_peek(terrain.terrain_buffer_data, index_sw[2] + 8, buffer_f32),
 ];
 
 var values_se_a = [
     value,
-    buffer_peek(terrain.terrain_buffer_data, index_se_a[1], buffer_f32),
-    buffer_peek(terrain.terrain_buffer_data, index_se_a[2], buffer_f32),
+    buffer_peek(terrain.terrain_buffer_data, index_se_a[1] + 8, buffer_f32),
+    buffer_peek(terrain.terrain_buffer_data, index_se_a[2] + 8, buffer_f32),
 ];
 
 var values_se_b = [
-    buffer_peek(terrain.terrain_buffer_data, index_se_b[1], buffer_f32),
-    buffer_peek(terrain.terrain_buffer_data, index_se_b[2], buffer_f32),
+    buffer_peek(terrain.terrain_buffer_data, index_se_b[0] + 8, buffer_f32),
+    buffer_peek(terrain.terrain_buffer_data, index_se_b[1] + 8, buffer_f32),
     value,
 ];
 
-var normal_nw_a = triangle_normal(xx - 1, yy - 1, values_nw_a[0], xx, yy - 1, values_nw_a[1], xx, yy, values_nw_a[2]);
-var normal_nw_b = triangle_normal(xx, yy, values_nw_b[0], xx - 1, yy, values_nw_b[1], xx - 1, yy - 1, values_nw_b[2]);
-var normal_ne = triangle_normal(xx + 1, yy, values_ne[0], xx, yy, values_ne[1], xx, yy - 1, values_ne[2]);
-var normal_sw = triangle_normal(xx - 1, yy, values_sw[0], xx, yy, values_sw[1], xx, yy + 1, values_sw[2]);
-var normal_se_a = triangle_normal(xx, yy, values_se_a[0], xx + 1, yy, values_se_a[1], xx + 1, yy + 1, values_se_a[2]);
-var normal_se_b = triangle_normal(xx + 1, yy + 1, values_se_b[0], xx, yy + 1, values_se_b[1], xx, yy, values_se_b[2]);
+var normal_nw_a =   triangle_normal(xx - 1, yy - 1, values_nw_a[0], xx,     yy - 1, values_nw_a[1], xx,     yy,     values_nw_a[2]);
+var normal_nw_b =   triangle_normal(xx,     yy,     values_nw_b[0], xx - 1, yy,     values_nw_b[1], xx - 1, yy - 1, values_nw_b[2]);
+var normal_ne =     triangle_normal(xx + 1, yy,     values_ne[0],   xx,     yy,     values_ne[1],   xx,     yy - 1, values_ne[2]);
+var normal_sw =     triangle_normal(xx - 1, yy,     values_sw[0],   xx,     yy,     values_sw[1],   xx,     yy + 1, values_sw[2]);
+var normal_se_a =   triangle_normal(xx,     yy,     values_se_a[0], xx + 1, yy,     values_se_a[1], xx + 1, yy + 1, values_se_a[2]);
+var normal_se_b =   triangle_normal(xx + 1, yy + 1, values_se_b[0], xx,     yy + 1, values_se_b[1], xx,     yy,     values_se_b[2]);
 
 buffer_poke(terrain.terrain_buffer_data, index_nw_a[0] + 12, buffer_f32, normal_nw_a[vec3.xx]);
 buffer_poke(terrain.terrain_buffer_data, index_nw_a[0] + 16, buffer_f32, normal_nw_a[vec3.yy]);
