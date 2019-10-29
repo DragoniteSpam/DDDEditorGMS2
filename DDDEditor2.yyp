@@ -5936,6 +5936,14 @@
             }
         },
         {
+            "Key": "693b91c1-dc01-4f64-a6e6-83b180ff8334",
+            "Value": {
+                "id": "ab789c42-ac6f-40ad-a883-f5a861dad2fc",
+                "resourcePath": "scripts\\terrain_get_vertex_index\\terrain_get_vertex_index.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "6949b6b9-d9ff-4ab9-8d27-461a748b4583",
             "Value": {
                 "id": "9ed280fe-6a9e-4509-8006-093c1cf6e852",
@@ -6996,6 +7004,14 @@
             "Value": {
                 "id": "52f1f82e-887b-49d9-af67-c07546733f9d",
                 "resourcePath": "scripts\\ui_render_tile_selector\\ui_render_tile_selector.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "7c88f4e2-7d53-460f-9b74-d58877664758",
+            "Value": {
+                "id": "0d860311-5268-46fa-b5b6-d71be01dce4a",
+                "resourcePath": "scripts\\terrain_get_data_index\\terrain_get_data_index.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -16064,7 +16080,9 @@
         "8f5ae678-b96a-48d6-8cee-c0d720a550d2",
         "e427d3bd-3945-48a4-8ac5-097e3f41e14e",
         "48e2c604-2326-4266-881f-3cfd5dbd1904",
-        "fa4c8bc5-45a9-4b3d-a099-954036690cc6"
+        "fa4c8bc5-45a9-4b3d-a099-954036690cc6",
+        "693b91c1-dc01-4f64-a6e6-83b180ff8334",
+        "7c88f4e2-7d53-460f-9b74-d58877664758"
     ],
     "tutorial": ""
 }
