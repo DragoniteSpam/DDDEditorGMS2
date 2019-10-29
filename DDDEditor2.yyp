@@ -1592,6 +1592,14 @@
             }
         },
         {
+            "Key": "1bd4d9e1-b458-4356-b112-dff67b924523",
+            "Value": {
+                "id": "da536240-9105-4e60-9f22-618e5f6cfd97",
+                "resourcePath": "scripts\\triangle_smooth\\triangle_smooth.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "1bdacbe1-7047-48c8-ba5e-ddc2a07a12f1",
             "Value": {
                 "id": "3613c3da-dc6e-4988-b6c8-656f86801013",
@@ -14765,6 +14773,7 @@
         "9cac7357-a445-4351-8332-eae174fe50e5",
         "0c7e97ce-bd7a-4acd-bdfd-196304e389b2",
         "32bf6ff7-0669-405b-bd51-d386d3080e78",
+        "1bd4d9e1-b458-4356-b112-dff67b924523",
         "20d27ffc-0a4a-4c0a-a4f4-7e894afbfa95",
         "620d5d86-27a6-45ca-ae43-e24d460a2333",
         "72fa42c5-ca47-4b5d-9fae-f4143f2d9f1a",

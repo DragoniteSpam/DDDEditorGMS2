@@ -7,11 +7,8 @@ control_terrain_3d(terrain);
 shader_set(shd_basic);
 shader_set_uniform_i(shader_get_uniform(shd_basic, "lightEnabled"), true);
 shader_set_uniform_i(shader_get_uniform(shd_basic, "lightCount"), 1);
-shader_set_uniform_f_array(shader_get_uniform(shd_basic, "lightPosition"), vector3(0, 1, 1));
-/*shader_reset();
-draw_set_lighting(true)
-draw_light_enable(1, true)
-draw_light_define_direction(1, 1, 1, -1, c_white);*/
+shader_set_uniform_f_array(shader_get_uniform(shd_basic, "lightPosition"), vector3(1, 1, -1));
+
 transform_set(0, 0, 0, 0, 0, 0, terrain.view_scale, terrain.view_scale, terrain.view_scale);
 vertex_submit(terrain.terrain_buffer, pr_trianglelist, sprite_get_texture(get_active_tileset().master, 1));
 
