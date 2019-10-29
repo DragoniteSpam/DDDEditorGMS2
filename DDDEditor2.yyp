@@ -13176,6 +13176,14 @@
             }
         },
         {
+            "Key": "e7ab194a-3359-4c5b-9cb5-f8276cb316bd",
+            "Value": {
+                "id": "1e626d8a-f687-4084-88b9-337797ad697e",
+                "resourcePath": "scripts\\terrain_set_normals\\terrain_set_normals.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "e843ade0-f396-4d4c-85c5-f19eaa707c0c",
             "Value": {
                 "id": "28940a02-5f22-4df1-a69a-65e3d57581a7",
@@ -16091,7 +16099,8 @@
         "48e2c604-2326-4266-881f-3cfd5dbd1904",
         "fa4c8bc5-45a9-4b3d-a099-954036690cc6",
         "693b91c1-dc01-4f64-a6e6-83b180ff8334",
-        "7c88f4e2-7d53-460f-9b74-d58877664758"
+        "7c88f4e2-7d53-460f-9b74-d58877664758",
+        "e7ab194a-3359-4c5b-9cb5-f8276cb316bd"
     ],
     "tutorial": ""
 }

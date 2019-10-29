@@ -9,31 +9,35 @@ var xx = floor(position[vec3.xx]);
 var yy = floor(position[vec3.yy]);
 var radius = terrain.radius;
 
-var n = 0;
 var t = 0;
+
+var list_range = ds_list_create();
 
 for (var i = max(0, xx - radius); i < min(terrain.width - 1, xx + radius); i++) {
     for (var j = max(0, yy - radius); j < min(terrain.height - 1, yy + radius); j++) {
         var d = point_distance(xx, yy, i, j);
         if (d <= radius * terrain.style_radius_coefficient[terrain.style]) {
             t = t + terrain_get_z(terrain, i, j);
-            n++;
+            ds_list_add(list_range, vector2(i, j));
         }
     }
 }
 
-var avg = t / n;
+var avg = t / ds_list_size(list_range);
 
-for (var i = max(0, xx - radius); i < min(terrain.width - 1, xx + radius); i++) {
-    for (var j = max(0, yy - radius); j < min(terrain.height - 1, yy + radius); j++) {
-        var d = point_distance(xx, yy, i, j);
-        if (d <= radius * terrain.style_radius_coefficient[terrain.style]) {
-            script_execute(terrain.submode_equation[terrain.submode], terrain, i, j, dir, avg, d);
-        }
-    }
+for (var i = 0; i < ds_list_size(list_range); i++) {
+	var coordinates = list_range[| i];
+	script_execute(terrain.submode_equation[terrain.submode], terrain, coordinates[vec2.xx], coordinates[vec2.yy], dir, avg, d);
 }
 
-if (n) {
+for (var i = 0; i < ds_list_size(list_range); i++) {
+	var coordinates = list_range[| i];
+	terrain_set_normals(terrain, coordinates[vec2.xx], coordinates[vec2.yy], xx, yy, radius);
+}
+
+if (!ds_list_empty(list_range)) {
     vertex_delete_buffer(terrain.terrain_buffer);
     terrain.terrain_buffer = vertex_create_buffer_from_buffer(terrain.terrain_buffer_data, terrain.vertex_format);
 }
+
+ds_list_destroy(list_range);

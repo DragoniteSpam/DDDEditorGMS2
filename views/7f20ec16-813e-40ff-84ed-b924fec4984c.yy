@@ -12,7 +12,8 @@
         "8f5ae678-b96a-48d6-8cee-c0d720a550d2",
         "bdb18c2c-16b5-4536-960b-e225982550a6",
         "693b91c1-dc01-4f64-a6e6-83b180ff8334",
-        "7c88f4e2-7d53-460f-9b74-d58877664758"
+        "7c88f4e2-7d53-460f-9b74-d58877664758",
+        "e7ab194a-3359-4c5b-9cb5-f8276cb316bd"
     ],
     "filterType": "GMScript",
     "folderName": "terrain",
