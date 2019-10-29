@@ -11,7 +11,7 @@ var yy = argument[2];
 var ox = argument[3];
 var oy = argument[4];
 var radius = argument[5];
-var smooth = false;
+var smooth = true;
 var threshold = 0.3;
 
 // @todo gml update when lwos come around i think an "add" method would be pretty handy here

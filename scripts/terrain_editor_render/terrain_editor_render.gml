@@ -6,8 +6,11 @@ control_terrain_3d(terrain);
 
 shader_set(shd_basic);
 shader_set_uniform_i(shader_get_uniform(shd_basic, "lightEnabled"), true);
-shader_set_uniform_i(shader_get_uniform(shd_basic, "lightCount"), 1);
-shader_set_uniform_f_array(shader_get_uniform(shd_basic, "lightPosition"), vector3(1, 1, -1));
+shader_set_uniform_i(shader_get_uniform(shd_basic, "lightCount"), 2);
+shader_set_uniform_f_array(shader_get_uniform(shd_basic, "lightPositions"), [
+	1, 1, 0, 0,
+	1000, 1000, 32, 1.02
+]);
 
 transform_set(0, 0, 0, 0, 0, 0, terrain.view_scale, terrain.view_scale, terrain.view_scale);
 vertex_submit(terrain.terrain_buffer, pr_trianglelist, sprite_get_texture(get_active_tileset().master, 1));
@@ -18,8 +21,8 @@ if (terrain.cursor_position != undefined) {
     var scale = terrain.view_scale * terrain.radius;
     transform_set(0, 0, 0, 0, 0, 0, scale, scale, scale);
     transform_add(
-        terrain.cursor_position[vec2.xx] * terrain.view_scale, terrain.cursor_position[vec2.yy] * terrain.view_scale, 0,
-        0, 0, 0, 1, 1, 1
+        terrain.cursor_position[vec2.xx] * terrain.view_scale, terrain.cursor_position[vec2.yy] * terrain.view_scale,
+		0, 0, 0, 0, 1, 1, 1
     );
     vertex_submit(terrain.cylinder, pr_trianglelist, -1);
 }
