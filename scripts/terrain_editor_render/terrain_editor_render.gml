@@ -4,13 +4,14 @@ var terrain = argument0;
 
 control_terrain_3d(terrain);
 
-draw_set_lighting(true)
 shader_set(shd_basic);
-draw_light_define_direction(0, 512, 512, -100, c_white);
+shader_set_uniform_i(shader_get_uniform(shd_basic, "lightEnabled"), true);
+shader_set_uniform_i(shader_get_uniform(shd_basic, "lightCount"), 1);
+shader_set_uniform_f_array(shader_get_uniform(shd_basic, "lightPosition"), vector3(1, 1, -1));
 
 transform_set(0, 0, 0, 0, 0, 0, terrain.view_scale, terrain.view_scale, terrain.view_scale);
 vertex_submit(terrain.terrain_buffer, pr_trianglelist, sprite_get_texture(get_active_tileset().master, 1));
-draw_set_lighting(false)
+
 shader_reset();
 
 if (terrain.cursor_position != undefined) {

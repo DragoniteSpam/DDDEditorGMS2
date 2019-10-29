@@ -6,6 +6,11 @@ attribute vec4 in_Colour;                   // (r,g,b,a)
 varying vec2 v_vTexcoord;
 varying vec4 v_vColour;
 
+#define MAXLIGHTS 8
+uniform int lightEnabled;
+uniform vec3 lightPosition;
+uniform int lightCount;
+
 vec4 ApplyDirLight(vec3 ws_normal, vec4 dir, vec4 diffusecol);
 vec4 ApplyPointLight(vec3 ws_pos, vec3 ws_normal, vec4 posrange, vec4 diffusecol);
 vec4 ApplyLighting(vec4 vertexcolour, vec4 objectspacepos, vec3 objectspacenormal);
@@ -45,7 +50,7 @@ vec4 ApplyPointLight(vec3 ws_pos, vec3 ws_normal, vec4 posrange, vec4 diffusecol
 }
 
 vec4 ApplyLighting(vec4 vertexcolour, vec4 objectspacepos, vec3 objectspacenormal) {
-	if (gm_LightingEnabled) {
+	if (lightEnabled == 1) {
 		// Normally we'd have the light positions\\directions back-transformed from world to object space
 		// But to keep things simple for the moment we'll just transform the normal to world space
 		vec4 objectspacenormal4 = vec4(objectspacenormal, 0.0);
@@ -58,16 +63,17 @@ vec4 ApplyLighting(vec4 vertexcolour, vec4 objectspacepos, vec3 objectspacenorma
         
 		// Accumulate lighting from different light types
 		vec4 accumcol = vec4(0.0, 0.0, 0.0, 0.0);		
-		for(int i = 0; i < MAX_VS_LIGHTS; i++) {
-			accumcol += ApplyDirLight(ws_normal, gm_Lights_Direction[i], gm_Lights_Colour[i]);
+		for (int i = 0; i < MAXLIGHTS; i++) {
+			//accumcol += ApplyDirLight(ws_normal, lightArray[i], vec4(1., 1., 1., 1.));
 		}
+        accumcol += ApplyDirLight(ws_normal, vec4(lightPosition.xyz, 1.), vec4(1., 1., 1., 1.));
         
 		for(int i = 0; i < MAX_VS_LIGHTS; i++) {
-			accumcol += ApplyPointLight(ws_pos, ws_normal, gm_Lights_PosRange[i], gm_Lights_Colour[i]);
+			//accumcol += ApplyPointLight(ws_pos, ws_normal, gm_Lights_PosRange[i], gm_Lights_Colour[i]);
 		}
         
 		accumcol *= vertexcolour;
-		accumcol += gm_AmbientColour;
+		accumcol += vec4(0., 0., 0., 0.);
 		accumcol = min(vec4(1.0, 1.0, 1.0, 1.0), accumcol);
 		accumcol.a = vertexcolour.a;
 		return accumcol;
