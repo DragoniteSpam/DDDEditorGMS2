@@ -34,7 +34,7 @@ if (terrain.cursor_position != undefined) {
         terrain.cursor_position[vec2.xx] * terrain.view_scale, terrain.cursor_position[vec2.yy] * terrain.view_scale,
 		0, 0, 0, 0, 1, 1, 1
     );
-    vertex_submit(terrain.cylinder, pr_trianglelist, -1);
+    vertex_submit(Stuff.basic_cylinder, pr_trianglelist, -1);
 }
 
 transform_reset();

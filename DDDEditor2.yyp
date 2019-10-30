@@ -3456,6 +3456,14 @@
             }
         },
         {
+            "Key": "3f64e116-940e-4ebf-8405-7aee7df73e21",
+            "Value": {
+                "id": "4321196b-500a-48fc-ab93-58eea35dfe8c",
+                "resourcePath": "scripts\\ui_input_terrain_draw_water\\ui_input_terrain_draw_water.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "406db1cc-6498-4da0-8807-482b2b36baea",
             "Value": {
                 "id": "2b2e3c7d-2198-43be-88f5-e53e574d133e",
@@ -4816,6 +4824,14 @@
             }
         },
         {
+            "Key": "5656b456-17b8-4e68-9143-706fd7ae1c64",
+            "Value": {
+                "id": "f6264999-9521-4f4e-9657-06374d1aa58e",
+                "resourcePath": "views\\5656b456-17b8-4e68-9143-706fd7ae1c64.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "56680588-b308-4ea5-b55a-7fded968b626",
             "Value": {
                 "id": "7ed22323-8771-4a30-a14c-7317408c96da",
@@ -4996,6 +5012,14 @@
             "Value": {
                 "id": "5f369586-7469-4384-8861-f470823ab730",
                 "resourcePath": "scripts\\smf__collision_get_region_quadtree\\smf__collision_get_region_quadtree.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "593f954d-3829-4886-95db-814c4bd5aca0",
+            "Value": {
+                "id": "9723e8b1-acd7-4af7-b1d8-871638d6df2a",
+                "resourcePath": "scripts\\ui_input_terrain_export_below_z\\ui_input_terrain_export_below_z.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -12736,6 +12760,14 @@
             }
         },
         {
+            "Key": "df041495-c198-4b7b-bffc-6efdf79a23df",
+            "Value": {
+                "id": "c45216ce-70f9-4ac7-84a0-e8e62b1140ca",
+                "resourcePath": "scripts\\ui_input_terrain_set_mode\\ui_input_terrain_set_mode.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "df25b060-7862-47c7-ae07-f023cd701099",
             "Value": {
                 "id": "9742790f-0a8b-4d02-a272-f33698ce7716",
@@ -13444,6 +13476,14 @@
             "Value": {
                 "id": "c2285db7-86d4-48ac-bacc-47371b91202b",
                 "resourcePath": "scripts\\serialize_backup\\serialize_backup.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "eb73929f-33f1-4a01-8746-6f01a9e117a9",
+            "Value": {
+                "id": "403888d4-b94f-45fa-b76d-d5a64a767d50",
+                "resourcePath": "scripts\\ui_input_terrain_save_scale\\ui_input_terrain_save_scale.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -16109,7 +16149,11 @@
         "fa4c8bc5-45a9-4b3d-a099-954036690cc6",
         "693b91c1-dc01-4f64-a6e6-83b180ff8334",
         "7c88f4e2-7d53-460f-9b74-d58877664758",
-        "e7ab194a-3359-4c5b-9cb5-f8276cb316bd"
+        "e7ab194a-3359-4c5b-9cb5-f8276cb316bd",
+        "eb73929f-33f1-4a01-8746-6f01a9e117a9",
+        "593f954d-3829-4886-95db-814c4bd5aca0",
+        "3f64e116-940e-4ebf-8405-7aee7df73e21",
+        "df041495-c198-4b7b-bffc-6efdf79a23df"
     ],
     "tutorial": ""
 }

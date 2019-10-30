@@ -1,3 +1,5 @@
-/// @param UIThing
+/// @param UITab
 
-argument0.root.active_tab = argument0;
+var tab = argument0;
+
+tab.root.active_tab = tab;

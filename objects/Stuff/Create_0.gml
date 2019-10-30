@@ -300,6 +300,9 @@ c_world_create();
 // at some point there shouldn't necessarily need to be an active
 // map in existence for this to work, but for now there does
 instance_create_depth(0, 0, 0, Controller);
+// various types of editors
+terrain = instance_create_depth(0, 0, 0, EditorModeTerrain);
+instance_deactivate_object(terrain);
 
 // this is order-dependant, and it SUCKS, so re-write it later when there's time
 all_maps = ds_list_create();
@@ -309,9 +312,6 @@ ds_grid_resize(active_map.contents.map_grid, active_map.xx, active_map.yy);
 map_fill_grid(active_map.contents.map_grid, active_map.zz);
 // this depends on activemap
 instance_create_depth(0, 0, 0, Camera);
-
-terrain = instance_create_depth(0, 0, 0, EditorModeTerrain);
-instance_deactivate_object(terrain);
 
 #region collision stuff plus basic shapes
 c_transform_scaling(tile_width, tile_height, tile_depth);
@@ -326,6 +326,7 @@ c_shape_end_trimesh(c_shape_block);
 c_transform_identity();
 
 basic_cage = import_d3d("data\\basic\\cage.d3d", false);
+basic_cylinder = import_d3d("data\\basic\\cylinder.d3d", false);
 #endregion
 
 all_bgm = ds_list_create();

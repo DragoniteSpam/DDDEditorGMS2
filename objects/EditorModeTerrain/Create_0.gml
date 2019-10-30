@@ -16,8 +16,6 @@ vertex_format_add_colour();
 format_size = format_size + 4;
 vertex_format = vertex_format_end();
 
-cylinder = import_d3d("data\\basic\\cylinder.d3d", false);
-
 cursor_position = undefined;
 rate = 0.125;
 radius = 4;
@@ -30,6 +28,8 @@ width = 256;
 
 view_scale = 32;
 save_scale = 1;
+save_under_z_0 = true;
+view_water = true;
 
 texture_size = 32 / 2048;
 texel = 1 / 2048;
