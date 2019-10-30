@@ -8,9 +8,12 @@ if (mouse_within_view(view_3d) && !dialog_exists()) {
 
 shader_set(shd_basic);
 shader_set_uniform_i(shader_get_uniform(shd_basic, "lightEnabled"), true);
-shader_set_uniform_i(shader_get_uniform(shd_basic, "lightCount"), 4);
+shader_set_uniform_i(shader_get_uniform(shd_basic, "lightCount"), 1);
 shader_set_uniform_f_array(shader_get_uniform(shd_basic, "lightData"), [
-	1000, 1000, 256, 1,
+	1, 1, -1, 0,
+		0, 0, 0, 0,
+		1, 1, 1, 0,
+	/*1000, 1000, 256, 1,
 		2048, 0, 0, 0,
 		0.8, 0, 0, 1,
 	1600, 1000, 320, 1,
@@ -21,7 +24,7 @@ shader_set_uniform_f_array(shader_get_uniform(shd_basic, "lightData"), [
 		0.8, 0, 0.8, 1,
 	1960, 1800, 240, 1,
 		2048, 0, 0, 0,
-		0.5, 0.5, 1, 1,
+		0.5, 0.5, 1, 1,*/
 ]);
 
 transform_set(0, 0, 0, 0, 0, 0, terrain.view_scale, terrain.view_scale, terrain.view_scale);

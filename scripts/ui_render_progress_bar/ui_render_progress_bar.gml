@@ -28,14 +28,13 @@ draw_rectangle_colour(x1, bar_y1, x2, bar_y2, c_black, c_black, c_black, c_black
 draw_sprite(spr_slider, 0, bar_x, mid_yy);
 
 if (bar.interactive && dialog_is_active(bar.root)) {
-    var mouse_padding = 24;
-    var inbounds = mouse_within_rectangle_determine(x1 - mouse_padding, y1 - mouse_padding, x2 + mouse_padding, y2 + mouse_padding, bar.adjust_view);
+    var inbounds = mouse_within_rectangle_determine(x1, y1, x2, y2, bar.adjust_view);
     
     if (Controller.press_left && inbounds) {
         bar.clicked = true;
     }
     
-    if (Controller.mouse_left) {
+    if (Controller.mouse_left && bar.clicked) {
         bar.value = clamp((mouse_x_view - x1) / (x2 - x1), 0, 1);
         script_execute(bar.onvaluechange, bar);
     } else {
