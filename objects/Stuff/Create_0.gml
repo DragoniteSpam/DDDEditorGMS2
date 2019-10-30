@@ -360,11 +360,13 @@ enum HelpPages {
     AUTOTILES,
 }
 
-help_pages = ["overview", "whatsnew", "gettingstarted", "systemrequirements",
+help_pages = [
+    "overview", "whatsnew", "gettingstarted", "systemrequirements",
     "editorcomponents", "tabs", "menus",
     "general", "entityinstances", "tileinstances", "meshinstances", "pawninstances", "effectinstances", "eventinstances",
     "mesheditor", "tileeditor", "autotileeditor",
-    "autotiles",];
+    "autotiles",
+];
 
 color_lookup = [c_red, c_green, c_blue, c_orange, c_aqua, c_fuchsia, c_purple, c_teal];
 

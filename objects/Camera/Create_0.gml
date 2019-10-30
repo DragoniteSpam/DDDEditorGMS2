@@ -142,6 +142,7 @@ ui = ui_init_main();
 ui_event = ui_init_event();
 ui_game_data = noone;
 ui_animation = ui_init_animation();
+ui_terrain = ui_init_terrain();
 menu = instance_create_depth(0, 0, 0, MenuMain);
 dialogs = ds_list_create();
 

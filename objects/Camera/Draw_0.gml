@@ -36,9 +36,9 @@ switch (mode) {
     case EditorModes.EDITOR_HEIGHTMAP:
         gpu_set_cullmode(cull_noculling);
         switch (view_current) {
-            case view_fullscreen: draw_editor_terrain_hud(); break;
             case view_3d: draw_editor_terrain();
             case view_ribbon: draw_editor_menu(); break;
+            case view_hud: draw_editor_terrain_hud(); break;
         }
         break;
 }

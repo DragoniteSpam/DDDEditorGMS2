@@ -25,12 +25,12 @@ draw_set_valign(fa_middle);
 ui_render(ui, 0, 0);
 
 var xx = ui_x + 32;
-var yy = 96;
+var yy = ui.home_row_y;
 
 var x1 = xx;
 var y1 = yy;
 var x2 = x1 + ui_legal_width();
-var y2 = y1 + ui_legal_height();
+var y2 = y1 + ui_legal_height(ui);
 
 var trow = ui.tabs[| ui.active_tab.home_row];
 var ww = ui_legal_width() / ds_list_size(trow);

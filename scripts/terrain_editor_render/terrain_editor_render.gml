@@ -6,17 +6,20 @@ control_terrain_3d(terrain);
 
 shader_set(shd_basic);
 shader_set_uniform_i(shader_get_uniform(shd_basic, "lightEnabled"), true);
-shader_set_uniform_i(shader_get_uniform(shd_basic, "lightCount"), 2);
+shader_set_uniform_i(shader_get_uniform(shd_basic, "lightCount"), 4);
 shader_set_uniform_f_array(shader_get_uniform(shd_basic, "lightData"), [
-	1, 1, -1, 0,
-		0, 0, 0, 0,
-		1, 1, 1, 1,
-	1000, 1000, 32, 1,
+	1000, 1000, 256, 1,
 		2048, 0, 0, 0,
 		0.8, 0, 0, 1,
-	/*2000, 1000, 32, 2,
-		0.5, 0.5, -1, 30,
-		0, 1, 1, 1,*/
+	1600, 1000, 320, 1,
+		2048, 0, 0, 0,
+		0, 0.8, 0, 1,
+	1400, 1200, 360, 1,
+		2048, 0, 0, 0,
+		0.8, 0, 0.8, 1,
+	1960, 1800, 240, 1,
+		2048, 0, 0, 0,
+		0.5, 0.5, 1, 1,
 ]);
 
 transform_set(0, 0, 0, 0, 0, 0, terrain.view_scale, terrain.view_scale, terrain.view_scale);

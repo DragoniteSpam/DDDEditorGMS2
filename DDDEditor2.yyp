@@ -11488,6 +11488,14 @@
             }
         },
         {
+            "Key": "ca80636b-0497-4858-bc95-568e1edebd32",
+            "Value": {
+                "id": "9b7002b3-829a-428a-8ef9-cb78dd891ecd",
+                "resourcePath": "scripts\\ui_init_terrain\\ui_init_terrain.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "caa20e44-8c55-4ed0-9855-8afaa2128c65",
             "Value": {
                 "id": "e946e1f9-57bc-40c4-99ed-b5ff522a592c",
@@ -15682,6 +15690,7 @@
         "b0db091f-1804-4c49-b772-a0411ae55c33",
         "1bba0706-d1c5-40ff-8b9c-6947224ecf75",
         "fd796d95-e335-4355-8f3e-512fb7d1ae61",
+        "ca80636b-0497-4858-bc95-568e1edebd32",
         "dd6822dc-8d2d-43b6-9e9f-ad86173f1faf",
         "8ace29c2-4ddb-49ca-92fd-0c37a93e02b8",
         "97712004-d86d-4104-82f9-886060b28495",
