@@ -42,7 +42,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element.height + spacing;
     
-    element = create_checkbox(legal_x + spacing, yy, "Export all?", col_width, element_height, ui_input_terrain_export_below_z, 0, Stuff.terrain.save_under_z_0, t_general);
+    element = create_checkbox(legal_x + spacing, yy, "Export all faces?", col_width, element_height, ui_input_terrain_export_below_z, 0, Stuff.terrain.save_all, t_general);
     ds_list_add(t_general.contents, element);
     
     yy = yy + element.height + spacing;

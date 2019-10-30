@@ -34,7 +34,7 @@ width = 256;
 
 view_scale = 32;
 save_scale = 1;
-save_under_z_0 = true;
+save_all = false;
 view_water = true;
 
 texture_size = 32 / 2048;
