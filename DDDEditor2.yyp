@@ -2152,6 +2152,14 @@
             }
         },
         {
+            "Key": "257bf034-805c-456b-9643-af5628f2218e",
+            "Value": {
+                "id": "97769f91-6ec5-414b-aca8-4e1185bf594a",
+                "resourcePath": "scripts\\ui_input_terrain_export_swap_uvs\\ui_input_terrain_export_swap_uvs.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "2583358d-7c67-4820-8b16-e043989ebb4a",
             "Value": {
                 "id": "b16f445e-54ea-4e2a-b43e-8243eb11a868",
@@ -5035,7 +5043,7 @@
             "Key": "593f954d-3829-4886-95db-814c4bd5aca0",
             "Value": {
                 "id": "9723e8b1-acd7-4af7-b1d8-871638d6df2a",
-                "resourcePath": "scripts\\ui_input_terrain_export_below_z\\ui_input_terrain_export_below_z.yy",
+                "resourcePath": "scripts\\ui_input_terrain_export_all\\ui_input_terrain_export_all.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -8948,6 +8956,14 @@
             "Value": {
                 "id": "2bec3159-7892-40d2-93d5-1dc873119a97",
                 "resourcePath": "scripts\\c_init\\c_init.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "9a5ad8d0-459d-415b-bcf0-11df54472a6c",
+            "Value": {
+                "id": "6638bc20-2214-4807-8473-d3896ce6c97d",
+                "resourcePath": "scripts\\ui_input_terrain_export_swap_zup\\ui_input_terrain_export_swap_zup.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -16216,6 +16232,8 @@
         "e7ab194a-3359-4c5b-9cb5-f8276cb316bd",
         "eb73929f-33f1-4a01-8746-6f01a9e117a9",
         "593f954d-3829-4886-95db-814c4bd5aca0",
+        "9a5ad8d0-459d-415b-bcf0-11df54472a6c",
+        "257bf034-805c-456b-9643-af5628f2218e",
         "3f64e116-940e-4ebf-8405-7aee7df73e21",
         "df041495-c198-4b7b-bffc-6efdf79a23df",
         "46967aa9-7520-44ac-ab9b-df1bd70a3df2",

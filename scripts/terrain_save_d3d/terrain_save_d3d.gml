@@ -19,7 +19,7 @@ for (var i = 0; i < bytes; i = i + terrain.format_size * 3) {
     var z1 = buffer_peek(terrain.terrain_buffer_data, i + 8 + terrain.format_size, buffer_f32);
     var z2 = buffer_peek(terrain.terrain_buffer_data, i + 8 + terrain.format_size * 2, buffer_f32);
     
-    if (terrain.save_all || z0 > 0 || z1 > 0 || z2 > 0) {
+    if (terrain.export_all || z0 > 0 || z1 > 0 || z2 > 0) {
         for (var j = 0; j < terrain.format_size * 3; j = j + terrain.format_size) {
             var xx = buffer_peek(terrain.terrain_buffer_data, j + i, buffer_f32);
             var yy = buffer_peek(terrain.terrain_buffer_data, j + i + 4, buffer_f32);

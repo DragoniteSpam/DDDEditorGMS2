@@ -2,4 +2,4 @@
 
 var checkbox = argument0;
 
-Stuff.terrain.save_all = checkbox.value;
+Stuff.terrain.export_all = checkbox.value;

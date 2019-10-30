@@ -34,8 +34,10 @@ width = 256;
 
 view_scale = 32;
 save_scale = 1;
-save_all = false;
+export_all = false;
 view_water = true;
+export_swap_uvs = false;
+export_swap_zup = false;
 
 texture_size = 32 / 2048;
 texel = 1 / 2048;

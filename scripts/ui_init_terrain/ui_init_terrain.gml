@@ -42,11 +42,6 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element.height + spacing;
     
-    element = create_checkbox(legal_x + spacing, yy, "Export all faces?", col_width, element_height, ui_input_terrain_export_below_z, 0, Stuff.terrain.save_all, t_general);
-    ds_list_add(t_general.contents, element);
-    
-    yy = yy + element.height + spacing;
-    
     element = create_checkbox(legal_x + spacing, yy, "Draw water?", col_width, element_height, ui_input_terrain_draw_water, 0, Stuff.terrain.view_water, t_general);
     ds_list_add(t_general.contents, element);
     
@@ -80,6 +75,21 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy = legal_y + spacing;
     
     element = create_button(col2_x, yy, "Export", col_width, element_height, fa_center, uivc_terrain_export, t_general);
+    ds_list_add(t_general.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
+    element = create_checkbox(col2_x, yy, "Export: all faces?", col_width, element_height, ui_input_terrain_export_all, 0, Stuff.terrain.export_all, t_general);
+    ds_list_add(t_general.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
+    element = create_checkbox(col2_x, yy, "OBJ: swap Z up?", col_width, element_height, ui_input_terrain_export_swap_zup, 0, Stuff.terrain.export_swap_zup, t_general);
+    ds_list_add(t_general.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
+    element = create_checkbox(col2_x, yy, "OBJ: swap texture UVs?", col_width, element_height, ui_input_terrain_export_swap_uvs, 0, Stuff.terrain.export_swap_uvs, t_general);
     ds_list_add(t_general.contents, element);
     
     yy = yy + element.height + spacing;

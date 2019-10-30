@@ -10,8 +10,8 @@ var vertices = 0;
 var mediump = 3;
 var highp = 8;
 
-var vzswap = false;
-var uvswap = false;
+var zupswap = terrain.export_swap_zup;
+var uvswap = terrain.export_swap_uvs;
 
 var active_mtl = "c-" + string(0xffffffff);
 var mtl_warning = false;
@@ -39,7 +39,7 @@ for (var i = 0; i < bytes; i = i + terrain.format_size * 3) {
     var c1 = buffer_peek(terrain.terrain_buffer_data, i + 32 + terrain.format_size, buffer_u32);
     var c2 = buffer_peek(terrain.terrain_buffer_data, i + 32 + terrain.format_size * 2, buffer_u32);
     
-    if (terrain.save_all || z0 > 0 || z1 > 0 || z2 > 0) {
+    if (terrain.export_all || z0 > 0 || z1 > 0 || z2 > 0) {
         for (var j = 0; j < terrain.format_size * 3; j = j + terrain.format_size) {
             var xx = buffer_peek(terrain.terrain_buffer_data, j + i, buffer_f32);
             var yy = buffer_peek(terrain.terrain_buffer_data, j + i + 4, buffer_f32);
@@ -50,6 +50,17 @@ for (var i = 0; i < bytes; i = i + terrain.format_size * 3) {
             var xtex = buffer_peek(terrain.terrain_buffer_data, j + i + 24, buffer_f32);
             var ytex = buffer_peek(terrain.terrain_buffer_data, j + i + 28, buffer_f32);
             var color = buffer_peek(terrain.terrain_buffer_data, j + i + 32, buffer_u32);
+            
+            if (zupswap) {
+                var t = xx;
+                xx = yy;
+                yy = zz;
+                zz = t;
+            }
+            
+            if (uvswap) {
+                ytex = 1 - ytex;
+            }
             
             buffer_write(buffer, buffer_text,
                 "v " + string_format(xx, 1, mediump) + " " + string_format(yy, 1, mediump) + " " + string_format(zz, 1, mediump) + "\n" +
@@ -65,6 +76,7 @@ for (var i = 0; i < bytes; i = i + terrain.format_size * 3) {
             dialog_create_notice(noone, "The Wavefront OBJ file format does not supprt per-vertex color / alpha values (only per-face) - see the Material Termplate Library specification for more information. The average value will be used instead for each face.",
                 "Hey!", "Okay", 540, 240
             );
+            mtl_warning = true;
         }
         
         var mtl_name = "c-" + string(color_final);
