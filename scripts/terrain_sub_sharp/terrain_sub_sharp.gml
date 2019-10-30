@@ -12,4 +12,4 @@ var dir = argument3;
 var avg = argument4;
 var dist = argument5;
 
-terrain_add_z(terrain, xx, yy, dir * (terrain.rate * terrain.rate + 1) * max(1, dist));
+terrain_add_z(terrain, xx, yy, dir * (power(terrain.rate, 1.25) + 0.5) * max(1, dist));

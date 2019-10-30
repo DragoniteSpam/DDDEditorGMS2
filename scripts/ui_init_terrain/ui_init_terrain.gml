@@ -35,7 +35,6 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     var button_width = 128;
     
     #region tab: general
-    
     var yy = legal_y + spacing;
     
     element = create_input(legal_x + spacing, yy, "Save scale:", col_width, element_height, ui_input_terrain_save_scale, 0, Stuff.terrain.save_scale, "0.01...100", validate_double, ui_value_real, 0.01, 100, 4, vx1, vy1, vx2, vy2, t_general);
@@ -58,11 +57,24 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     ds_list_add(t_general.contents, element);
     
     yy = yy + ui_get_radio_array_height(element) + spacing;
-    // second column
     
-    yy = legal_y + spacing;
+    element = create_radio_array(legal_x + spacing, yy, "Brush shape:", col_width, element_height, ui_input_terrain_set_brush_shape, Stuff.terrain.style, t_general);
+    create_radio_array_options(element, ["Block", "Circle", "Round Block"]);
+    ds_list_add(t_general.contents, element);
+    
+    yy = yy + ui_get_radio_array_height(element) + spacing;
     
     #endregion
     
+    #region tab: heightmap
+    var yy = legal_y + spacing;
+    
+    element = create_radio_array(legal_x + spacing, yy, "Deformation mode:", col_width, element_height, ui_input_terrain_set_deform_mode, Stuff.terrain.submode, t_general);
+    create_radio_array_options(element, ["Mound", "Spike", "Average", "Flat Average", "Zero"]);
+    ds_list_add(t_heightmap.contents, element);
+    
+    yy = yy + ui_get_radio_array_height(element) + spacing;
+    
+    #endregion
     return id;
 }

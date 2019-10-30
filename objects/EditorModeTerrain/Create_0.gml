@@ -62,14 +62,14 @@ enum TerrainSubmodes {
     SHARP,
     AVERAGE,
     AVG_FLAT,
+    ZERO,
     TEXTURE,
     COLOR,
-    ZERO,
 }
 
 enum TerrainStyles {
-    CIRCLE,
     BLOCK,
+    CIRCLE,
     ROUND_BLOCK,
 }
 

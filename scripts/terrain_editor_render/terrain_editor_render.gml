@@ -2,7 +2,9 @@
 
 var terrain = argument0;
 
-control_terrain_3d(terrain);
+if (mouse_within_view(view_3d) && !dialog_exists()) {
+    control_terrain_3d(terrain);
+}
 
 shader_set(shd_basic);
 shader_set_uniform_i(shader_get_uniform(shd_basic, "lightEnabled"), true);

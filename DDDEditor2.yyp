@@ -3872,6 +3872,14 @@
             }
         },
         {
+            "Key": "46967aa9-7520-44ac-ab9b-df1bd70a3df2",
+            "Value": {
+                "id": "3ae7121d-9d5a-4ac3-9119-219b2723807d",
+                "resourcePath": "scripts\\ui_input_terrain_set_deform_mode\\ui_input_terrain_set_deform_mode.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "46bfc71d-cff8-4ab3-bbce-fe7d4c90d165",
             "Value": {
                 "id": "45987cec-5a78-4106-bf49-49d1cf8ec07b",
@@ -11120,6 +11128,14 @@
             }
         },
         {
+            "Key": "c1c8a104-06b3-4229-bb6d-ac5c3cc744db",
+            "Value": {
+                "id": "f7eef236-a559-49e3-8fb9-51cb6b9a8c2c",
+                "resourcePath": "scripts\\ui_input_terrain_set_brush_shape\\ui_input_terrain_set_brush_shape.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "c1d02e27-054e-4a58-979e-5ba90502fe2e",
             "Value": {
                 "id": "95133991-c1dc-4f26-878e-f2d617b25ad7",
@@ -16153,7 +16169,9 @@
         "eb73929f-33f1-4a01-8746-6f01a9e117a9",
         "593f954d-3829-4886-95db-814c4bd5aca0",
         "3f64e116-940e-4ebf-8405-7aee7df73e21",
-        "df041495-c198-4b7b-bffc-6efdf79a23df"
+        "df041495-c198-4b7b-bffc-6efdf79a23df",
+        "46967aa9-7520-44ac-ab9b-df1bd70a3df2",
+        "c1c8a104-06b3-4229-bb6d-ac5c3cc744db"
     ],
     "tutorial": ""
 }
