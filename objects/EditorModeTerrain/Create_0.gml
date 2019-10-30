@@ -19,6 +19,9 @@ vertex_format = vertex_format_end();
 brush_min = 2;
 brush_max = 8;
 
+rate_min = 0.02;
+rate_max = 1;
+
 cursor_position = undefined;
 rate = 0.125;
 radius = 4;
@@ -64,7 +67,6 @@ enum TerrainModes {
 
 enum TerrainSubmodes {
     MOUND,
-    SHARP,
     AVERAGE,
     AVG_FLAT,
     ZERO,
@@ -79,7 +81,6 @@ enum TerrainStyles {
 }
 
 submode_equation[TerrainSubmodes.MOUND] = terrain_sub_mound;
-submode_equation[TerrainSubmodes.SHARP] = terrain_sub_sharp;
 submode_equation[TerrainSubmodes.AVERAGE] = terrain_sub_avg;
 submode_equation[TerrainSubmodes.AVG_FLAT] = terrain_sub_flat;
 submode_equation[TerrainSubmodes.ZERO] = terrain_sub_zero;

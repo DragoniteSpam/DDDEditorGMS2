@@ -80,11 +80,22 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     #region tab: heightmap
     var yy = legal_y + spacing;
     
-    element = create_radio_array(legal_x + spacing, yy, "Deformation mode:", col_width, element_height, ui_input_terrain_set_deform_mode, Stuff.terrain.submode, t_general);
-    create_radio_array_options(element, ["Mound", "Spike", "Average", "Flat Average", "Zero"]);
+    element = create_radio_array(legal_x + spacing, yy, "Deformation mode:", col_width, element_height, ui_input_terrain_set_deform_mode, Stuff.terrain.submode, t_heightmap);
+    create_radio_array_options(element, ["Mound", "Average", "Flat Average", "Zero"]);
     ds_list_add(t_heightmap.contents, element);
     
     yy = yy + ui_get_radio_array_height(element) + spacing;
+    
+    element = create_text(legal_x + spacing, yy, "Deformation rate: " + string_format(Stuff.terrain.rate, 1, 3), col_width, element_height, fa_left, col_width, t_heightmap);
+    t_heightmap.element_rate = element;
+    ds_list_add(t_heightmap.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
+    element = create_progress_bar(legal_x + spacing, yy, col_width, element_height, ui_input_terrain_set_deformation_rate, 4, normalize_correct(Stuff.terrain.rate, 0, 1, Stuff.terrain.rate_min, Stuff.terrain.rate_max), t_heightmap);
+    ds_list_add(t_heightmap.contents, element);
+    
+    yy = yy + element.height + spacing;
     
     #endregion
     return id;

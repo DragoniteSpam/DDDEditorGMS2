@@ -3064,14 +3064,6 @@
             }
         },
         {
-            "Key": "3609cd39-28ea-4548-81db-a484f2b93086",
-            "Value": {
-                "id": "daf52c95-8843-4c00-a344-ab7ad8d826f7",
-                "resourcePath": "scripts\\terrain_sub_sharp\\terrain_sub_sharp.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "361fa843-14b9-43a0-bdff-9c6b8485502e",
             "Value": {
                 "id": "6d485ea3-33bf-4522-8ec0-c285c523ae70",
@@ -9744,6 +9736,14 @@
             }
         },
         {
+            "Key": "aa087457-cf7d-4538-8501-dce0df98cfc4",
+            "Value": {
+                "id": "a00cd78f-b32f-46ef-8f11-44021f101f2a",
+                "resourcePath": "scripts\\ui_input_terrain_set_deformation_rate\\ui_input_terrain_set_deformation_rate.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "aa2178cb-acf3-4f57-8a29-df0427a6a4f8",
             "Value": {
                 "id": "bc0a114e-ea4a-4334-827c-789acd54936e",
@@ -16170,7 +16170,6 @@
         "df3fa51b-fa8b-48de-b8a9-64532b479d43",
         "85cb0072-cfc5-47b6-a769-1d18a1ca582c",
         "d45cbbf5-14a9-4435-bc46-72cdac5276a8",
-        "3609cd39-28ea-4548-81db-a484f2b93086",
         "eb99f114-7399-4367-8e02-8a14f63da342",
         "7ff626d0-d91f-42a1-90a4-0e8d3603122f",
         "9fc0ef76-9233-4a03-adcc-5e409a8bf53d",
@@ -16189,7 +16188,8 @@
         "df041495-c198-4b7b-bffc-6efdf79a23df",
         "46967aa9-7520-44ac-ab9b-df1bd70a3df2",
         "c1c8a104-06b3-4229-bb6d-ac5c3cc744db",
-        "532a68cf-522c-4673-898d-6ad8891e321e"
+        "532a68cf-522c-4673-898d-6ad8891e321e",
+        "aa087457-cf7d-4538-8501-dce0df98cfc4"
     ],
     "tutorial": ""
 }

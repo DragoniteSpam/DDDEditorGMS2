@@ -10,7 +10,8 @@
         "df041495-c198-4b7b-bffc-6efdf79a23df",
         "46967aa9-7520-44ac-ab9b-df1bd70a3df2",
         "c1c8a104-06b3-4229-bb6d-ac5c3cc744db",
-        "532a68cf-522c-4673-898d-6ad8891e321e"
+        "532a68cf-522c-4673-898d-6ad8891e321e",
+        "aa087457-cf7d-4538-8501-dce0df98cfc4"
     ],
     "filterType": "GMScript",
     "folderName": "ui",
