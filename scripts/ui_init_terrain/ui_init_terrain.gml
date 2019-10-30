@@ -64,6 +64,16 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + ui_get_radio_array_height(element) + spacing;
     
+    element = create_text(legal_x + spacing, yy, "Brush radius:", col_width, element_height, fa_left, col_width, t_general);
+    ds_list_add(t_general.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
+    element = create_progress_bar(legal_x + spacing, yy, col_width, element_height, ui_input_terrain_set_brush_radius, 4, normalize_correct(Stuff.terrain.radius, 0, 1, Stuff.terrain.brush_min, Stuff.terrain.brush_max), t_general);
+    ds_list_add(t_general.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
     #endregion
     
     #region tab: heightmap

@@ -1,5 +1,5 @@
 event_inherited();
-var t = get_timer();
+
 render = terrain_editor_render;
 
 vertices_per_square = 6;
@@ -15,6 +15,9 @@ format_size = format_size + 4 * 2;
 vertex_format_add_colour();
 format_size = format_size + 4;
 vertex_format = vertex_format_end();
+
+brush_min = 2;
+brush_max = 24;
 
 cursor_position = undefined;
 rate = 0.125;
@@ -33,6 +36,8 @@ view_water = true;
 
 texture_size = 32 / 2048;
 texel = 1 / 2048;
+
+var t = get_timer();
 
 height_data = buffer_create(4 * width * height, buffer_fixed, 1);
 

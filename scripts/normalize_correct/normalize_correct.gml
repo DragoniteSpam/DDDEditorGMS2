@@ -3,9 +3,6 @@
 /// @param max
 /// @param [original-min]
 /// @param [original-max]
-// I strongly suspect this is broken, but it's used in a bunch of places
-// in the code so i dont want to touch it. Use normalize_correct if you
-// need a version that does what you think it does.
 
 var n = argument[0];
 var mn = argument[1];
@@ -17,4 +14,4 @@ if (mn == mx && mn == n) {
     return mn;
 }
 
-return omin + ((n - mn) / (mx - mn)) * (omax - omin);
+return mn + ((n - omin) / (omax - omin)) * (mx - mn);
