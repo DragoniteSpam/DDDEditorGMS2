@@ -64,7 +64,8 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + ui_get_radio_array_height(element) + spacing;
     
-    element = create_text(legal_x + spacing, yy, "Brush radius:", col_width, element_height, fa_left, col_width, t_general);
+    element = create_text(legal_x + spacing, yy, "Brush radius: " + string(Stuff.terrain.radius) + " cells", col_width, element_height, fa_left, col_width, t_general);
+    t_general.element_brush_radius = element;
     ds_list_add(t_general.contents, element);
     
     yy = yy + element.height + spacing;

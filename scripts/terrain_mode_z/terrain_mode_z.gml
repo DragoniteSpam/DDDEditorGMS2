@@ -7,7 +7,7 @@ var position = argument1;
 var dir = argument2;
 var xx = floor(position[vec3.xx]);
 var yy = floor(position[vec3.yy]);
-var radius = terrain.radius;
+var radius = floor(terrain.radius);
 
 var t = 0;
 

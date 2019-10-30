@@ -17,7 +17,7 @@ format_size = format_size + 4;
 vertex_format = vertex_format_end();
 
 brush_min = 2;
-brush_max = 24;
+brush_max = 8;
 
 cursor_position = undefined;
 rate = 0.125;
