@@ -42,7 +42,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element.height + spacing;
     
-    element = create_checkbox(legal_x + spacing, yy, "Export squares below z = 0?", col_width, element_height, ui_input_terrain_export_below_z, 0, Stuff.terrain.save_under_z_0, t_general);
+    element = create_checkbox(legal_x + spacing, yy, "Export all?", col_width, element_height, ui_input_terrain_export_below_z, 0, Stuff.terrain.save_under_z_0, t_general);
     ds_list_add(t_general.contents, element);
     
     yy = yy + element.height + spacing;
@@ -75,13 +75,22 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element.height + spacing;
     
+    // second column
+    
+    yy = legal_y + spacing;
+    
+    element = create_button(col2_x, yy, "Export", col_width, element_height, fa_center, uivc_terrain_export, t_general);
+    ds_list_add(t_general.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
     #endregion
     
     #region tab: heightmap
     var yy = legal_y + spacing;
     
     element = create_radio_array(legal_x + spacing, yy, "Deformation mode:", col_width, element_height, ui_input_terrain_set_deform_mode, Stuff.terrain.submode, t_heightmap);
-    create_radio_array_options(element, ["Mound", "Average", "Flat Average", "Zero"]);
+    create_radio_array_options(element, ["Mound", "Average", "Flat Average", "Zero (Erase)"]);
     ds_list_add(t_heightmap.contents, element);
     
     yy = yy + ui_get_radio_array_height(element) + spacing;

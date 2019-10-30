@@ -2,7 +2,7 @@
 /// @param char
 /// @param n
 
-var value = argument[0];
+var value = string(argument[0]);
 var char = argument[1];
 var padding = (argument_count > 2) ? argument[2] : 0;
 

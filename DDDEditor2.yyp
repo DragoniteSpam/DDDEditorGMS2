@@ -2192,6 +2192,14 @@
             }
         },
         {
+            "Key": "268602b2-5e20-4551-ac37-49fd3061039a",
+            "Value": {
+                "id": "38b15f44-dc6c-4f5d-9e32-0e5b7d9b7104",
+                "resourcePath": "views\\268602b2-5e20-4551-ac37-49fd3061039a.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "269f3b92-fa6b-4d88-a725-0f609daa3680",
             "Value": {
                 "id": "bb581a4e-e925-4234-9ec7-68675cea9a33",
@@ -7088,6 +7096,14 @@
             }
         },
         {
+            "Key": "7ce9b3cf-7081-4b06-96c5-9df5af141ba2",
+            "Value": {
+                "id": "897fe5ab-9dec-4262-81b4-94877505a97f",
+                "resourcePath": "scripts\\uivc_terrain_export\\uivc_terrain_export.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "7d1abbee-52fa-4e52-ad7b-5f30de25c5ce",
             "Value": {
                 "id": "64ee8294-6357-49c3-b164-6797e08c39b9",
@@ -8588,6 +8604,14 @@
             "Value": {
                 "id": "fbf842fc-fe02-4276-8f8f-f241a49bb351",
                 "resourcePath": "scripts\\draw_event_node_custom_info\\draw_event_node_custom_info.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "9681e57f-9faa-4e7c-99bb-0339c5066433",
+            "Value": {
+                "id": "5656a09d-0406-4b48-b92f-c4f2c0e56ada",
+                "resourcePath": "scripts\\terrain_save_d3d\\terrain_save_d3d.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -12904,6 +12928,14 @@
             }
         },
         {
+            "Key": "e18cf426-a3fb-480c-a371-16b8c8e85693",
+            "Value": {
+                "id": "f8cd91a3-1d44-421b-92a8-442b0e0b197a",
+                "resourcePath": "scripts\\terrain_save_obj\\terrain_save_obj.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "e2244e54-8b55-472c-9a21-9cc13749cbef",
             "Value": {
                 "id": "af4c6596-aea3-443b-b517-7b14be50991d",
@@ -16189,7 +16221,10 @@
         "46967aa9-7520-44ac-ab9b-df1bd70a3df2",
         "c1c8a104-06b3-4229-bb6d-ac5c3cc744db",
         "532a68cf-522c-4673-898d-6ad8891e321e",
-        "aa087457-cf7d-4538-8501-dce0df98cfc4"
+        "aa087457-cf7d-4538-8501-dce0df98cfc4",
+        "7ce9b3cf-7081-4b06-96c5-9df5af141ba2",
+        "9681e57f-9faa-4e7c-99bb-0339c5066433",
+        "e18cf426-a3fb-480c-a371-16b8c8e85693"
     ],
     "tutorial": ""
 }
