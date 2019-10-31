@@ -1312,6 +1312,14 @@
             }
         },
         {
+            "Key": "165f4086-fa91-493f-a242-dd8d93ec2b7d",
+            "Value": {
+                "id": "bd329b02-9392-443e-a144-3caac1a5f4e5",
+                "resourcePath": "scripts\\terrain_get_color\\terrain_get_color.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "1687335c-d210-4957-b4b2-37f9ac911dc5",
             "Value": {
                 "id": "12bd391c-1128-4957-88bf-bdc2ac1fbc17",
@@ -3773,6 +3781,14 @@
                 "id": "79628306-ba9a-4244-be56-2b1776b9149a",
                 "resourcePath": "views\\44983e9d-7854-4315-9385-8714a6849a13.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "44aa9b6c-d56e-4b21-86e2-58821906d85c",
+            "Value": {
+                "id": "3b827a4e-9539-42e6-9d4b-099d0f94e2bd",
+                "resourcePath": "scripts\\terrain_get_color_index\\terrain_get_color_index.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -6480,6 +6496,14 @@
             }
         },
         {
+            "Key": "71c7cc6d-21a0-40d0-adae-ccf9e2a0b3fa",
+            "Value": {
+                "id": "e1cede0f-708a-48b9-a50c-a0b837f3ffc5",
+                "resourcePath": "scripts\\terrain_set_color\\terrain_set_color.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "724d1969-1a87-46ce-8ea7-2be633456f8a",
             "Value": {
                 "id": "5166e00d-aa60-4ce9-b669-9704f42d75f8",
@@ -7036,6 +7060,14 @@
             "Value": {
                 "id": "f11c8c33-dfde-42e4-aaf3-872d1dd58904",
                 "resourcePath": "scripts\\ui_button_down\\ui_button_down.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "7c1a54b1-fcf3-4396-b39e-60eebb51628c",
+            "Value": {
+                "id": "abd88886-5ae0-4735-adc1-363cef477f73",
+                "resourcePath": "scripts\\terrain_add_color\\terrain_add_color.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -16248,11 +16280,15 @@
         "d783aed3-d083-4585-ace5-28e0c2f12138",
         "51f57e8e-0de7-4927-ae07-f2dd06274548",
         "8f5ae678-b96a-48d6-8cee-c0d720a550d2",
+        "71c7cc6d-21a0-40d0-adae-ccf9e2a0b3fa",
+        "165f4086-fa91-493f-a242-dd8d93ec2b7d",
+        "7c1a54b1-fcf3-4396-b39e-60eebb51628c",
         "e427d3bd-3945-48a4-8ac5-097e3f41e14e",
         "48e2c604-2326-4266-881f-3cfd5dbd1904",
         "fa4c8bc5-45a9-4b3d-a099-954036690cc6",
         "693b91c1-dc01-4f64-a6e6-83b180ff8334",
         "7c88f4e2-7d53-460f-9b74-d58877664758",
+        "44aa9b6c-d56e-4b21-86e2-58821906d85c",
         "e7ab194a-3359-4c5b-9cb5-f8276cb316bd",
         "eb73929f-33f1-4a01-8746-6f01a9e117a9",
         "593f954d-3829-4886-95db-814c4bd5aca0",

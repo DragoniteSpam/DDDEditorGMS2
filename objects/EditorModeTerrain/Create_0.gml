@@ -7,13 +7,13 @@ format_size = 0;
 
 vertex_format_begin();
 vertex_format_add_position_3d();
-format_size = format_size + 4 * 3;
+format_size = format_size + buffer_sizeof(buffer_f32) * 3;
 vertex_format_add_normal();
-format_size = format_size + 4 * 3;
+format_size = format_size + buffer_sizeof(buffer_f32) * 3;
 vertex_format_add_texcoord();
-format_size = format_size + 4 * 2;
+format_size = format_size + buffer_sizeof(buffer_f32) * 2;
 vertex_format_add_colour();
-format_size = format_size + 4;
+format_size = format_size + buffer_sizeof(buffer_u32);
 vertex_format = vertex_format_end();
 
 brush_min = 2;
@@ -53,7 +53,8 @@ texel = 1 / 2048;
 
 var t = get_timer();
 
-height_data = buffer_create(4 * width * height, buffer_fixed, 1);
+height_data = buffer_create(buffer_sizeof(buffer_f32) * width * height, buffer_fixed, 1);
+color_data = buffer_create(buffer_sizeof(buffer_u32) * width * height, buffer_fixed, 1);
 
 terrain_buffer = vertex_create_buffer();
 vertex_begin(terrain_buffer, vertex_format);
