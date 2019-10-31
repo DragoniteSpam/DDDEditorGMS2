@@ -4,6 +4,7 @@ var fn = argument0;
 var terrain = Stuff.terrain;
 var bytes = buffer_get_size(terrain.terrain_buffer_data);
 var vertices = 0;
+var scale = terrain.save_scale;
 
 // I guess you can implement uv and zup flipping here as well, but game maker models don't
 // typically use a different up vector or texture coordinate system
@@ -18,15 +19,15 @@ var addr_capacity = buffer_tell(buffer);
 buffer_write(buffer, buffer_text, "00000000\n0 4\n");
 
 for (var i = 0; i < bytes; i = i + terrain.format_size * 3) {
-    var z0 = buffer_peek(terrain.terrain_buffer_data, i + 8, buffer_f32);
-    var z1 = buffer_peek(terrain.terrain_buffer_data, i + 8 + terrain.format_size, buffer_f32);
-    var z2 = buffer_peek(terrain.terrain_buffer_data, i + 8 + terrain.format_size * 2, buffer_f32);
+    var z0 = buffer_peek(terrain.terrain_buffer_data, i + 8, buffer_f32) * scale;
+    var z1 = buffer_peek(terrain.terrain_buffer_data, i + 8 + terrain.format_size, buffer_f32) * scale;
+    var z2 = buffer_peek(terrain.terrain_buffer_data, i + 8 + terrain.format_size * 2, buffer_f32) * scale;
     
     if (terrain.export_all || z0 > 0 || z1 > 0 || z2 > 0) {
         for (var j = 0; j < terrain.format_size * 3; j = j + terrain.format_size) {
-            var xx = buffer_peek(terrain.terrain_buffer_data, j + i, buffer_f32);
-            var yy = buffer_peek(terrain.terrain_buffer_data, j + i + 4, buffer_f32);
-            var zz = buffer_peek(terrain.terrain_buffer_data, j + i + 8, buffer_f32);
+            var xx = buffer_peek(terrain.terrain_buffer_data, j + i, buffer_f32) * scale;
+            var yy = buffer_peek(terrain.terrain_buffer_data, j + i + 4, buffer_f32) * scale;
+            var zz = buffer_peek(terrain.terrain_buffer_data, j + i + 8, buffer_f32) * scale;
             var nx = buffer_peek(terrain.terrain_buffer_data, j + i + 12, buffer_f32);
             var ny = buffer_peek(terrain.terrain_buffer_data, j + i + 16, buffer_f32);
             var nz = buffer_peek(terrain.terrain_buffer_data, j + i + 20, buffer_f32);
