@@ -12,3 +12,5 @@ value_y1 = y;
 value_x2 = x + height;
 value_y2 = y + height;
 value = c_black;
+alpha = 1;
+allow_alpha = false;

@@ -1288,6 +1288,14 @@
             }
         },
         {
+            "Key": "15606cd6-dd9c-4600-bfc5-8b7160735fcc",
+            "Value": {
+                "id": "d78cb521-f2ab-44db-8d23-134264558464",
+                "resourcePath": "scripts\\merge_colour_ds\\merge_colour_ds.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "15e2cdd9-0297-4773-886b-477ad3a4893e",
             "Value": {
                 "id": "912a748d-e422-489f-bc62-10871d8794d4",
@@ -14967,6 +14975,7 @@
         "0c7e97ce-bd7a-4acd-bdfd-196304e389b2",
         "32bf6ff7-0669-405b-bd51-d386d3080e78",
         "1bd4d9e1-b458-4356-b112-dff67b924523",
+        "15606cd6-dd9c-4600-bfc5-8b7160735fcc",
         "20d27ffc-0a4a-4c0a-a4f4-7e894afbfa95",
         "620d5d86-27a6-45ca-ae43-e24d460a2333",
         "72fa42c5-ca47-4b5d-9fae-f4143f2d9f1a",

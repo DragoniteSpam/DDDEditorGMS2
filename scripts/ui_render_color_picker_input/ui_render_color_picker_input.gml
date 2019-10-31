@@ -18,11 +18,12 @@ var ty = ui_get_text_y(picker, y1, y2);
 var value = picker.value;
 var input_active = ui_is_active(picker);
 var color_initial = value;
+var alpha_initial = picker.alpha;
 
 // this is not quite the same as ui_render_text
 draw_set_halign(picker.alignment);
 draw_set_valign(picker.valignment);
-var c = picker.color;
+var c = picker.color; /* the ui element color, not the value */
 draw_text_colour(tx, ty, picker.text, c, c, c, c, 1);
 
 var vx1 = x1 + picker.value_x1;
@@ -279,6 +280,6 @@ if (picker.allow_alpha) {
     draw_line_width_colour(f, vy1, f, vy2, 2, c_white, c_white);
 }
 
-if (color_initial != picker.color) {
+if (color_initial != picker.value || alpha_initial != picker.alpha) {
     script_execute(picker.onvaluechange, picker);
 }

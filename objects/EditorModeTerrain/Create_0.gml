@@ -35,7 +35,8 @@ submode = TerrainSubmodes.MOUND;
 style = TerrainStyles.ROUND_BLOCK;
 tile_brush_x = 0;
 tile_brush_y = 0;
-paint_color = c_white;
+paint_color = 0xffffffff;
+
 paint_strength = 0.025;
 
 height = 256;
@@ -55,6 +56,7 @@ var t = get_timer();
 
 height_data = buffer_create(buffer_sizeof(buffer_f32) * width * height, buffer_fixed, 1);
 color_data = buffer_create(buffer_sizeof(buffer_u32) * width * height, buffer_fixed, 1);
+buffer_fill(color_data, 0, buffer_u32, 0xffffffff, buffer_get_size(color_data));
 
 terrain_buffer = vertex_create_buffer();
 vertex_begin(terrain_buffer, vertex_format);

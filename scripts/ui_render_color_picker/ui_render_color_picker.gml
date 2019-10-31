@@ -27,7 +27,12 @@ var vy1 = y1 + picker.value_y1;
 var vx2 = x1 + picker.value_x2;
 var vy2 = y1 + picker.value_y2;
 
-draw_rectangle_colour(vx1 + 1, vy1 + 1, vx2 - 1, vy2 - 1, picker.value, picker.value, picker.value, picker.value, false);
+draw_checkerbox(vx1, vy1, (vx2 - vx1), (vy2 - vy1));
+draw_set_alpha(picker.alpha);
+draw_set_colour(picker.value);
+draw_rectangle(vx1 + 1, vy1 + 1, vx2 - 1, vy2 - 1, false);
+draw_set_colour(c_black);
+draw_set_alpha(1);
 if (!picker.interactive) {
     draw_rectangle_colour(vx1 + 2, vy1 + 2, vx2 - 2, vy2 - 2, c_ltgray, c_ltgray, c_ltgray, c_ltgray, true);
     draw_rectangle_colour(vx1 + 3, vy1 + 3, vx2 - 3, vy2 - 3, c_ltgray, c_ltgray, c_ltgray, c_ltgray, true);
@@ -38,7 +43,9 @@ if (picker.interactive && dialog_is_active(picker.root)) {
     var inbounds = mouse_within_rectangle_determine(vx1, vy1, vx2, vy2, picker.adjust_view);
     if (inbounds) {
         if (Controller.release_left) {
-            dialog_create_color_picker_options(picker, picker.value, uivc_color_picker_reflect);
+            var dialog = dialog_create_color_picker_options(picker, picker.value, uivc_color_picker_reflect);
+            dialog.el_picker.alpha = picker.alpha;
+            dialog.el_picker.allow_alpha = picker.allow_alpha;
         }
     }
 }

@@ -11,4 +11,4 @@ var color = argument3;
 var strength = argument4;
 var existing = terrain_get_color(terrain, xx, yy);
 
-terrain_set_color(terrain, xx, yy, existing + value);
+terrain_set_color(terrain, xx, yy, merge_colour_ds(existing, color, strength));

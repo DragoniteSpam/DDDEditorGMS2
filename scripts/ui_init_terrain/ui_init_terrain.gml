@@ -151,6 +151,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy = yy + element.height + spacing;
     
     element = create_color_picker(legal_x + spacing, yy, "Color:", col_width, element_height, ui_input_terrain_set_paint_color, 0, Stuff.terrain.paint_color, vx1, vy1, vx2, vy2, t_paint);
+    element.allow_alpha = true;
     ds_list_add(t_paint.contents, element);
     
     yy = yy + element.height + spacing;
