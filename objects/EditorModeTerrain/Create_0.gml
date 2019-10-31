@@ -25,17 +25,18 @@ rate_max = 1;
 paint_strength_min = 0.01;
 paint_strength_max = 1;
 
-tile_size = 1 / 2048;
-
 cursor_position = undefined;
 rate = 0.125;
 radius = 4;
 mode = TerrainModes.Z;
 submode = TerrainSubmodes.MOUND;
 style = TerrainStyles.ROUND_BLOCK;
-tile_brush_x = 0;
-tile_brush_y = 0;
+tile_brush_x = 32 / 4096;
+tile_brush_y = 32 / 4096;
 paint_color = 0xffffffff;
+
+tile_size = 32 / 4096;
+texel = 1 / 4096;
 
 paint_strength = 0.025;
 
@@ -49,21 +50,19 @@ view_water = true;
 export_swap_uvs = false;
 export_swap_zup = false;
 
-texture_size = 32 / 2048;
-texel = 1 / 2048;
-
 var t = get_timer();
 
 height_data = buffer_create(buffer_sizeof(buffer_f32) * width * height, buffer_fixed, 1);
 color_data = buffer_create(buffer_sizeof(buffer_u32) * width * height, buffer_fixed, 1);
 buffer_fill(color_data, 0, buffer_u32, 0xffffffff, buffer_get_size(color_data));
+// you don't need a texture UV buffer, since that will only be set and not mutated
 
 terrain_buffer = vertex_create_buffer();
 vertex_begin(terrain_buffer, vertex_format);
 
 for (var i = 0; i < width; i++) {
     for (var j = 0; j < height; j++) {
-        terrain_create_square(terrain_buffer, i, j, buffer_peek(height_data, i * height + j, buffer_f32), 0, 0, texture_size, texel);
+        terrain_create_square(terrain_buffer, i, j, buffer_peek(height_data, i * height + j, buffer_f32), 0, 0, tile_size, texel);
     }
 }
 

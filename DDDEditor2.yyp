@@ -448,6 +448,14 @@
             }
         },
         {
+            "Key": "0723d177-e8f5-43d3-8372-64278212ad59",
+            "Value": {
+                "id": "ce023f18-aa77-4b76-b101-fa4262111ce6",
+                "resourcePath": "scripts\\terrain_set_texture\\terrain_set_texture.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "07540433-7a47-4959-a352-f53adb45af48",
             "Value": {
                 "id": "927e1c36-dda6-43b1-93e9-14ab951248a8",
@@ -16290,6 +16298,7 @@
         "51f57e8e-0de7-4927-ae07-f2dd06274548",
         "8f5ae678-b96a-48d6-8cee-c0d720a550d2",
         "71c7cc6d-21a0-40d0-adae-ccf9e2a0b3fa",
+        "0723d177-e8f5-43d3-8372-64278212ad59",
         "165f4086-fa91-493f-a242-dd8d93ec2b7d",
         "7c1a54b1-fcf3-4396-b39e-60eebb51628c",
         "e427d3bd-3945-48a4-8ac5-097e3f41e14e",
