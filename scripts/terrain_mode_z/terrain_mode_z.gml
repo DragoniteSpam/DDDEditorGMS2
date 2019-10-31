@@ -15,7 +15,7 @@ var list_range = ds_list_create();
 
 for (var i = max(0, xx - radius + 1); i < min(terrain.width - 1, xx + radius + 1); i++) {
     for (var j = max(0, yy - radius + 1); j < min(terrain.height - 1, yy + radius + 1); j++) {
-        var d = point_distance(xx, yy, i, j);
+        var d = point_distance(xx, yy, i + 0.5, j + 0.5);
         if (d <= radius * terrain.style_radius_coefficient[terrain.style]) {
             t = t + terrain_get_z(terrain, i, j);
             ds_list_add(list_range, vector2(i, j));
