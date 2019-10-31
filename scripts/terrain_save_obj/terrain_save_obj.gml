@@ -94,6 +94,7 @@ for (var i = 0; i < bytes; i = i + terrain.format_size * 3) {
         gg = (gg >> precision) << precision;
         bb = (bb >> precision) << precision;
         aa = (aa >> precision) << precision;*/
+        This isn't spitting out the right numbers, why is this not spitting out the right numbers?
         color_final = rr | (gg << 8) | (bb << 16) | (aa << 24);
         
         if (!mtl_warning && color_final != c0) {
