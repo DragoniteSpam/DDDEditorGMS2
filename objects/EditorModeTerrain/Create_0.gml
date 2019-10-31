@@ -16,30 +16,7 @@ vertex_format_add_colour();
 format_size = format_size + buffer_sizeof(buffer_u32);
 vertex_format = vertex_format_end();
 
-brush_min = 2;
-brush_max = 8;
-
-rate_min = 0.02;
-rate_max = 1;
-
-paint_strength_min = 0.01;
-paint_strength_max = 1;
-
-cursor_position = undefined;
-rate = 0.125;
-radius = 4;
-mode = TerrainModes.Z;
-submode = TerrainSubmodes.MOUND;
-style = TerrainStyles.ROUND_BLOCK;
-tile_brush_x = 32 / 4096;
-tile_brush_y = 32 / 4096;
-paint_color = 0xffffffff;
-
-tile_size = 32 / 4096;
-texel = 1 / 4096;
-
-paint_strength = 0.025;
-
+// general settings
 height = 256;
 width = 256;
 
@@ -50,6 +27,34 @@ export_all = false;
 view_water = true;
 export_swap_uvs = false;
 export_swap_zup = false;
+
+cursor_position = undefined;
+// height defaults
+brush_min = 2;
+brush_max = 8;
+rate_min = 0.02;
+rate_max = 1;
+// height settings
+rate = 0.125;
+radius = 4;
+mode = TerrainModes.Z;
+submode = TerrainSubmodes.MOUND;
+style = TerrainStyles.ROUND_BLOCK;
+// texture defautls
+tile_size = 32 / 4096;
+texel = 1 / 4096;
+// texture settings
+tile_brush_x = 32 / 4096;
+tile_brush_y = 32 / 4096;
+// paint defaults
+paint_strength_min = 0.01;
+paint_strength_max = 1;
+paint_precision_min = 4;
+paint_precision_max = 0xff;
+// paint settings
+paint_color = 0xffffffff;
+paint_strength = 0.025;
+paint_precision = paint_precision_max;
 
 var t = get_timer();
 

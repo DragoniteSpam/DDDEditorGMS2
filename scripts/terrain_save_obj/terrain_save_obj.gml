@@ -95,8 +95,8 @@ for (var i = 0; i < bytes; i = i + terrain.format_size * 3) {
             buffer_write(buffer, buffer_text, "usemtl " + mtl_name + "\n");
             buffer_write(buffer_mtl, buffer_text,
                 "newmtl " + mtl_name + "\n" +
-                "Kd " + string(rr) + " " + string(gg) + " " + string(bb) + "\n" +
-                "d " + string(aa) + "\nillum 2\n\n"
+                "Kd " + string_format(rr, 1, mediump) + " " + string_format(gg, 1, mediump) + " " + string_format(bb, 1, mediump) + "\n" +
+                "d " + string_format(aa, 1, mediump) + "\nillum 2\n\n"
             );
         }
         

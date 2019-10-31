@@ -155,6 +155,17 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element.height + spacing;
     
+    element = create_text(legal_x + spacing, yy, "Precision: " + string(Stuff.terrain.paint_precision), col_width, element_height, fa_left, col_width, t_paint);
+    t_paint.element_paint_precision = element;
+    ds_list_add(t_paint.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
+    element = create_progress_bar(legal_x + spacing, yy, col_width, element_height, ui_input_terrain_set_paint_precision, 4, normalize_correct(Stuff.terrain.paint_precision, 0, 1, Stuff.terrain.paint_precision_min, Stuff.terrain.paint_precision_max), t_paint);
+    ds_list_add(t_paint.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
     element = create_color_picker(legal_x + spacing, yy, "Color:", col_width, element_height, ui_input_terrain_set_paint_color, 0, Stuff.terrain.paint_color, vx1, vy1, vx2, vy2, t_paint);
     element.allow_alpha = true;
     ds_list_add(t_paint.contents, element);
