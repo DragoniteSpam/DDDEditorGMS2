@@ -43,6 +43,7 @@ paint_strength = 0.025;
 height = 256;
 width = 256;
 
+view_cylinder = true;
 view_scale = 32;
 save_scale = 1;
 export_all = false;

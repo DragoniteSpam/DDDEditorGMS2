@@ -47,6 +47,11 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element.height + spacing;
     
+    element = create_checkbox(legal_x + spacing, yy, "Draw cylinder?", col_width, element_height, ui_input_terrain_draw_cylinder, 0, Stuff.terrain.view_cylinder, t_general);
+    ds_list_add(t_general.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
     element = create_radio_array(legal_x + spacing, yy, "Mode:", col_width, element_height, ui_input_terrain_set_mode, Stuff.terrain.mode, t_general);
     create_radio_array_options(element, ["Heightmap", "Texture", "Paint"]);
     ds_list_add(t_general.contents, element);

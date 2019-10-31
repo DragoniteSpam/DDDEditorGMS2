@@ -20,7 +20,7 @@ vertex_submit(terrain.terrain_buffer, pr_trianglelist, sprite_get_texture(get_ac
 
 shader_reset();
 
-if (terrain.cursor_position != undefined) {
+if (terrain.cursor_position != undefined && terrain.view_cylinder) {
     var scale = terrain.view_scale * terrain.radius;
     transform_set(0, 0, 0, 0, 0, 0, scale, scale, scale);
     transform_add(
