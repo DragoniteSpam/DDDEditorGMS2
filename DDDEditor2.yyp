@@ -3880,6 +3880,14 @@
             }
         },
         {
+            "Key": "4680b9c5-8420-4fd3-8270-b0d594e93133",
+            "Value": {
+                "id": "6df3f0cc-3a33-4fc8-9618-2d89cffaf329",
+                "resourcePath": "scripts\\ui_input_terrain_set_paint_strength\\ui_input_terrain_set_paint_strength.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "46967aa9-7520-44ac-ab9b-df1bd70a3df2",
             "Value": {
                 "id": "3ae7121d-9d5a-4ac3-9119-219b2723807d",
@@ -4677,6 +4685,14 @@
                 "id": "906cafe4-31fd-46a2-99a3-015e09b646c9",
                 "resourcePath": "views\\52e77b1c-836e-4bc9-9721-53f166d31be7.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "52e823ae-ae18-4852-98cf-28eff8f21c09",
+            "Value": {
+                "id": "c89620c1-0376-4a75-82aa-ef21c6f31443",
+                "resourcePath": "scripts\\ui_input_terrain_set_paint_color\\ui_input_terrain_set_paint_color.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -11888,6 +11904,14 @@
             }
         },
         {
+            "Key": "cf3e6074-68cf-4a7d-b7b2-983008efbc4c",
+            "Value": {
+                "id": "4ee22f0c-d572-4b31-a749-c2ce413d4df7",
+                "resourcePath": "scripts\\uivc_select_terrain_tile\\uivc_select_terrain_tile.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "cf908ac6-9c29-4b01-8cf7-5e4074a2b949",
             "Value": {
                 "id": "ad4a516a-32c2-4996-a7c2-f7a44458c794",
@@ -16239,8 +16263,11 @@
         "46967aa9-7520-44ac-ab9b-df1bd70a3df2",
         "c1c8a104-06b3-4229-bb6d-ac5c3cc744db",
         "532a68cf-522c-4673-898d-6ad8891e321e",
+        "4680b9c5-8420-4fd3-8270-b0d594e93133",
+        "52e823ae-ae18-4852-98cf-28eff8f21c09",
         "aa087457-cf7d-4538-8501-dce0df98cfc4",
         "7ce9b3cf-7081-4b06-96c5-9df5af141ba2",
+        "cf3e6074-68cf-4a7d-b7b2-983008efbc4c",
         "9681e57f-9faa-4e7c-99bb-0339c5066433",
         "e18cf426-a3fb-480c-a371-16b8c8e85693"
     ],

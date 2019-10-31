@@ -5,6 +5,9 @@ var terrain = Stuff.terrain;
 var bytes = buffer_get_size(terrain.terrain_buffer_data);
 var vertices = 0;
 
+// I guess you can implement uv and zup flipping here as well, but game maker models don't
+// typically use a different up vector or texture coordinate system
+
 // because regular string() doesn't give you very good precision
 var mediump = 3;
 var highp = 8;

@@ -22,12 +22,21 @@ brush_max = 8;
 rate_min = 0.02;
 rate_max = 1;
 
+paint_strength_min = 0.01;
+paint_strength_max = 1;
+
+tile_size = 1 / 2048;
+
 cursor_position = undefined;
 rate = 0.125;
 radius = 4;
 mode = TerrainModes.Z;
 submode = TerrainSubmodes.MOUND;
 style = TerrainStyles.ROUND_BLOCK;
+tile_brush_x = 0;
+tile_brush_y = 0;
+paint_color = c_white;
+paint_strength = 0.025;
 
 height = 256;
 width = 256;

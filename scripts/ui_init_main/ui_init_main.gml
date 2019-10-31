@@ -616,6 +616,8 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy = yy + element.height + spacing;
 	
     element = create_tile_selector(legal_x + spacing, yy, legal_width - spacing * 2, (legal_width div Stuff.tile_width) * Stuff.tile_width - element_height, uivc_select_tile, uivc_select_tile_backwards, t_p_tile_editor);
+    element.tile_x = Camera.selection_fill_tile_x;
+    element.tile_y = Camera.selection_fill_tile_y;
     ds_list_add(t_p_tile_editor.contents, element);
     
     yy = yy + element.height + spacing;

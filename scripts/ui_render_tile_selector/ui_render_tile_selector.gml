@@ -32,10 +32,10 @@ for (var i = selector.tile_view_y; i < selector.tile_view_y + selector.height; i
 
 // drawing the selection is a pain
 
-var selx1 = x1 + Stuff.tile_size * Camera.selection_fill_tile_x - selector.tile_view_x;
-var sely1 = y1 + Stuff.tile_size * Camera.selection_fill_tile_y - selector.tile_view_y;
-var selx2 = x1 + Stuff.tile_size * (Camera.selection_fill_tile_x + 1) - selector.tile_view_x;
-var sely2 = y1 + Stuff.tile_size * (Camera.selection_fill_tile_y + 1) - selector.tile_view_y;
+var selx1 = x1 + Stuff.tile_size * selector.tile_x - selector.tile_view_x;
+var sely1 = y1 + Stuff.tile_size * selector.tile_y - selector.tile_view_y;
+var selx2 = x1 + Stuff.tile_size * (selector.tile_x + 1) - selector.tile_view_x;
+var sely2 = y1 + Stuff.tile_size * (selector.tile_y + 1) - selector.tile_view_y;
 
 var c = c_purple;
 

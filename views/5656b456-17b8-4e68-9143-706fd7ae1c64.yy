@@ -13,8 +13,11 @@
         "46967aa9-7520-44ac-ab9b-df1bd70a3df2",
         "c1c8a104-06b3-4229-bb6d-ac5c3cc744db",
         "532a68cf-522c-4673-898d-6ad8891e321e",
+        "4680b9c5-8420-4fd3-8270-b0d594e93133",
+        "52e823ae-ae18-4852-98cf-28eff8f21c09",
         "aa087457-cf7d-4538-8501-dce0df98cfc4",
-        "7ce9b3cf-7081-4b06-96c5-9df5af141ba2"
+        "7ce9b3cf-7081-4b06-96c5-9df5af141ba2",
+        "cf3e6074-68cf-4a7d-b7b2-983008efbc4c"
     ],
     "filterType": "GMScript",
     "folderName": "ui",

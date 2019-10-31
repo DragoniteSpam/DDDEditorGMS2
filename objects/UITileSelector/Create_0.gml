@@ -5,6 +5,8 @@ tile_view_x = 0;
 tile_view_y = 0;
 width = 256;
 height = 256;
+tile_x = 0;
+tile_y = 0;
 
 // for panning around
 offset_x = -1;

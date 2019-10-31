@@ -117,5 +117,44 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy = yy + element.height + spacing;
     
     #endregion
+    
+    #region tab: texture
+    var yy = legal_y + spacing;
+    
+	element = create_button(legal_x + spacing, yy, "Change Tileset", 128, element_height, fa_center, omu_manager_tileset, t_texture);
+    ds_list_add(t_texture.contents, element);
+    
+    yy = yy + element.height + spacing;
+	
+    element = create_tile_selector(legal_x + spacing, yy, legal_width - spacing * 2, legal_width - spacing * 2, uivc_select_terrain_tile, null, t_texture);
+    element.tile_x = Stuff.terrain.tile_brush_x;
+    element.tile_y = Stuff.terrain.tile_brush_y;
+    ds_list_add(t_texture.contents, element);
+    
+    yy = yy + element.height + spacing;
+    var yy_aftergrid = yy;
+    
+    #endregion
+    
+    #region tab: painting
+    var yy = legal_y + spacing;
+    
+    element = create_text(legal_x + spacing, yy, "Paint strength: " + string(Stuff.terrain.paint_strength), col_width, element_height, fa_left, col_width, t_paint);
+    t_paint.element_paint_strength = element;
+    ds_list_add(t_paint.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
+    element = create_progress_bar(legal_x + spacing, yy, col_width, element_height, ui_input_terrain_set_paint_strength, 4, normalize_correct(Stuff.terrain.paint_strength, 0, 1, Stuff.terrain.paint_strength_min, Stuff.terrain.paint_strength_max), t_paint);
+    ds_list_add(t_paint.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
+    element = create_color_picker(legal_x + spacing, yy, "Color:", col_width, element_height, ui_input_terrain_set_paint_color, 0, Stuff.terrain.paint_color, vx1, vy1, vx2, vy2, t_paint);
+    ds_list_add(t_paint.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
+    #endregion
     return id;
 }
