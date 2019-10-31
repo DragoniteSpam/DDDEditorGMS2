@@ -155,7 +155,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element.height + spacing;
     
-    element = create_text(legal_x + spacing, yy, "Precision: " + string(Stuff.terrain.paint_precision), col_width, element_height, fa_left, col_width, t_paint);
+    element = create_text(legal_x + spacing, yy, "Paint precision: " + string(Stuff.terrain.paint_precision), col_width, element_height, fa_left, col_width, t_paint);
     t_paint.element_paint_precision = element;
     ds_list_add(t_paint.contents, element);
     

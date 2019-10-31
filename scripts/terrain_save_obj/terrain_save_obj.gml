@@ -6,6 +6,7 @@ var terrain = Stuff.terrain;
 var bytes = buffer_get_size(terrain.terrain_buffer_data);
 var vertices = 0;
 var scale = terrain.save_scale;
+var precision = 256 - terrain.paint_precision;
 
 // because regular string() doesn't give you very good precision
 var mediump = 3;
@@ -72,6 +73,28 @@ for (var i = 0; i < bytes; i = i + terrain.format_size * 3) {
         
         // If the color changes, you need to set the material accordingly (this may happen often with terrain that has been painted)
         var color_final = mean(c0, c1, c2);
+        
+        // you could easily end up exporting a million materials if you use the full range of colors,
+        // so you may wish to not use the full range of colors
+
+        // essentially, only the greatest x bits are used to store color information, since you're less
+        // likely to notice if the lower one or two is off by one.
+        //  - a precision of 8 means color channels can be described with eight bits (i.e. the full range),
+        //  - a precision of 4 means color channels can be described with four bits (this would be 16-bit
+        //      color depth,
+        //  - a precision of 1 means color channels can be described with just one bit (i.e. just black,
+        //      white, cyan, magenta, yellow, red, green and blue)
+        // (this does not apply to d3d, since each individual vertex has its own color)
+        
+        var rr = round_ext((color_final & 0x000000ff), precision);
+        var gg = round_ext((color_final & 0x0000ff00) >> 8, precision);
+        var bb = round_ext((color_final & 0x00ff0000) >> 16, precision);
+        var aa = round_ext((color_final & 0xff000000) >> 24, precision);
+        /*rr = (rr >> precision) << precision;
+        gg = (gg >> precision) << precision;
+        bb = (bb >> precision) << precision;
+        aa = (aa >> precision) << precision;*/
+        color_final = rr | (gg << 8) | (bb << 16) | (aa << 24);
         
         if (!mtl_warning && color_final != c0) {
             dialog_create_notice(noone, "The Wavefront OBJ file format does not supprt per-vertex color / alpha values (only per-face) - see the Material Termplate Library specification for more information. The average value will be used instead for each face.",
