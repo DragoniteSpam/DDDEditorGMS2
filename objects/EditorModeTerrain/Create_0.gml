@@ -98,6 +98,6 @@ submode_equation[TerrainSubmodes.AVERAGE] = terrain_sub_avg;
 submode_equation[TerrainSubmodes.AVG_FLAT] = terrain_sub_flat;
 submode_equation[TerrainSubmodes.ZERO] = terrain_sub_zero;
 
-style_radius_coefficient[TerrainStyles.CIRCLE] = 1.0;
-style_radius_coefficient[TerrainStyles.BLOCK] = 2.0;
-style_radius_coefficient[TerrainStyles.ROUND_BLOCK] = 1.2;
+style_radius_coefficient[TerrainStyles.CIRCLE] = 1.0;       // an exact circle
+style_radius_coefficient[TerrainStyles.BLOCK] = 2.0;        // this will effectively fill the entire space
+style_radius_coefficient[TerrainStyles.ROUND_BLOCK] = 1.2;  // a circle but with the extremities cut off

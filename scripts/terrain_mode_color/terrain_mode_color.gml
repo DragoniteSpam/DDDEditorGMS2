@@ -11,8 +11,8 @@ var strength = terrain.paint_strength;
 
 var n = 0;
 
-for (var i = max(0, xx - radius); i < min(terrain.width - 1, xx + radius); i++) {
-    for (var j = max(0, yy - radius); j < min(terrain.height - 1, yy + radius); j++) {
+for (var i = max(0, xx - radius + 1); i < min(terrain.width - 1, xx + radius + 1); i++) {
+    for (var j = max(0, yy - radius + 1); j < min(terrain.height - 1, yy + radius + 1); j++) {
         var d = point_distance(xx, yy, i, j);
         if (d <= radius * terrain.style_radius_coefficient[terrain.style]) {
             terrain_add_color(terrain, i, j, color, strength);
