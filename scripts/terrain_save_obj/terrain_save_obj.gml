@@ -41,6 +41,19 @@ for (var i = 0; i < bytes; i = i + terrain.format_size * 3) {
     var c1 = buffer_peek(terrain.terrain_buffer_data, i + 32 + terrain.format_size, buffer_u32);
     var c2 = buffer_peek(terrain.terrain_buffer_data, i + 32 + terrain.format_size * 2, buffer_u32);
     
+    var rr0 = round_ext((c0 & 0x000000ff), precision);
+    var gg0 = round_ext((c0 & 0x0000ff00) >> 8, precision);
+    var bb0 = round_ext((c0 & 0x00ff0000) >> 16, precision);
+    var aa0 = round_ext((c0 & 0xff000000) >> 24, precision);
+    var rr1 = round_ext((c1 & 0x000000ff), precision);
+    var gg1 = round_ext((c1 & 0x0000ff00) >> 8, precision);
+    var bb1 = round_ext((c1 & 0x00ff0000) >> 16, precision);
+    var aa1 = round_ext((c1 & 0xff000000) >> 24, precision);
+    var rr2 = round_ext((c2 & 0x000000ff), precision);
+    var gg2 = round_ext((c2 & 0x0000ff00) >> 8, precision);
+    var bb2 = round_ext((c2 & 0x00ff0000) >> 16, precision);
+    var aa2 = round_ext((c2 & 0xff000000) >> 24, precision);
+    
     if (terrain.export_all || z0 > 0 || z1 > 0 || z2 > 0) {
         for (var j = 0; j < terrain.format_size * 3; j = j + terrain.format_size) {
             var xx = buffer_peek(terrain.terrain_buffer_data, j + i, buffer_f32) * scale;
@@ -71,9 +84,6 @@ for (var i = 0; i < bytes; i = i + terrain.format_size * 3) {
             );
         }
         
-        // If the color changes, you need to set the material accordingly (this may happen often with terrain that has been painted)
-        var color_final = mean(c0, c1, c2);
-        
         // you could easily end up exporting a million materials if you use the full range of colors,
         // so you may wish to not use the full range of colors
 
@@ -86,16 +96,12 @@ for (var i = 0; i < bytes; i = i + terrain.format_size * 3) {
         //      white, cyan, magenta, yellow, red, green and blue)
         // (this does not apply to d3d, since each individual vertex has its own color)
         
-        var rr = round_ext((color_final & 0x000000ff), precision);
-        var gg = round_ext((color_final & 0x0000ff00) >> 8, precision);
-        var bb = round_ext((color_final & 0x00ff0000) >> 16, precision);
-        var aa = round_ext((color_final & 0xff000000) >> 24, precision);
-        /*rr = (rr >> precision) << precision;
-        gg = (gg >> precision) << precision;
-        bb = (bb >> precision) << precision;
-        aa = (aa >> precision) << precision;*/
-        This isn't spitting out the right numbers, why is this not spitting out the right numbers?
-        color_final = rr | (gg << 8) | (bb << 16) | (aa << 24);
+        var rr = mean(rr0, rr1, rr2);
+        var gg = mean(gg0, gg1, gg2);
+        var bb = mean(bb0, bb1, bb2);
+        var aa = mean(aa0, aa1, aa2);
+        
+        var color_final = rr | (gg << 8) | (bb << 16) | (aa << 24);
         
         if (!mtl_warning && color_final != c0) {
             dialog_create_notice(noone, "The Wavefront OBJ file format does not supprt per-vertex color / alpha values (only per-face) - see the Material Termplate Library specification for more information. The average value will be used instead for each face.",

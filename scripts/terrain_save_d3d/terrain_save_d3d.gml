@@ -34,10 +34,11 @@ for (var i = 0; i < bytes; i = i + terrain.format_size * 3) {
             var xtex = buffer_peek(terrain.terrain_buffer_data, j + i + 24, buffer_f32);
             var ytex = buffer_peek(terrain.terrain_buffer_data, j + i + 28, buffer_f32);
             var color = buffer_peek(terrain.terrain_buffer_data, j + i + 32, buffer_u32);
+            
             buffer_write(buffer, buffer_text, "9 " +
-                string_format(xx, 1, mediump) + " " + string_format(yy, 1, mediump) + " " + string_format(zz, 1, mediump) +
-                string_format(nx, 1, mediump) + " " + string_format(ny, 1, mediump) + " " + string_format(nz, 1, mediump) +
-                string_format(xtex, 1, highp) + " " + string_format(ytex, 1, highp) +
+                string_format(xx, 1, mediump) + " " + string_format(yy, 1, mediump) + " " + string_format(zz, 1, mediump) + " " +
+                string_format(nx, 1, mediump) + " " + string_format(ny, 1, mediump) + " " + string_format(nz, 1, mediump) + " " +
+                string_format(xtex, 1, highp) + " " + string_format(ytex, 1, highp) + " " +
                 string(color & 0xffffff) + " " +
                 string_format(((color >> 24) & 0xff) / 255, 1, mediump) + "\n"
             );
