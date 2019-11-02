@@ -22,7 +22,5 @@ for (var i = max(0, xx - radius + 1); i < min(terrain.width - 1, xx + radius + 1
 }
 
 if (n) {
-    vertex_delete_buffer(terrain.terrain_buffer);
-    terrain.terrain_buffer = vertex_create_buffer_from_buffer(terrain.terrain_buffer_data, terrain.vertex_format);
-	vertex_freeze(terrain.terrain_buffer);
+    terrain_refresh_vertex_buffer(terrain);
 }

@@ -146,7 +146,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element.height + spacing;
     
-    element = create_button(legal_x + spacing, yy, "Reset Height", col_width, element_height, fa_center, null, t_general);
+    element = create_button(legal_x + spacing, yy, "Reset Height", col_width, element_height, fa_center, uivc_terrain_reset_z, t_general);
     ds_list_add(t_heightmap.contents, element);
     
     yy = yy + element.height + spacing;

@@ -6600,6 +6600,14 @@
             }
         },
         {
+            "Key": "729995d4-2411-4560-bfde-4d072a4adcfe",
+            "Value": {
+                "id": "e3a2465c-1574-4715-a33c-c11eb8923cc4",
+                "resourcePath": "scripts\\terrain_refresh_vertex_buffer\\terrain_refresh_vertex_buffer.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "72ae9e2f-d2aa-44b9-9284-a22412196b0a",
             "Value": {
                 "id": "edb8a85e-5141-4299-b4e6-6c8203b2e536",
@@ -14728,6 +14736,14 @@
             }
         },
         {
+            "Key": "fbe599e7-663c-4eb3-8dc9-8bf0cb2f663d",
+            "Value": {
+                "id": "c3e4f243-f23c-41ed-9788-cfa39379eecb",
+                "resourcePath": "scripts\\uivc_terrain_reset_z\\uivc_terrain_reset_z.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "fc18b721-d580-40ac-9a3b-e600c6520e61",
             "Value": {
                 "id": "6a6e218f-bcee-4c73-8331-687c10048569",
@@ -16512,10 +16528,12 @@
         "77bcf0a4-59a3-43aa-9b69-d5692ca22274",
         "89f3af14-c5cc-46e0-9305-7d6f19a8758a",
         "5c1b1817-7df1-4269-ab12-3631a4f94cee",
+        "fbe599e7-663c-4eb3-8dc9-8bf0cb2f663d",
         "9681e57f-9faa-4e7c-99bb-0339c5066433",
         "c94956a3-deb9-49e4-af38-a2cdc53e0dd9",
         "db59ae15-86be-4839-ab51-582bfaaf94c4",
-        "e18cf426-a3fb-480c-a371-16b8c8e85693"
+        "e18cf426-a3fb-480c-a371-16b8c8e85693",
+        "729995d4-2411-4560-bfde-4d072a4adcfe"
     ],
     "tutorial": ""
 }

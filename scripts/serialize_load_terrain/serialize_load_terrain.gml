@@ -61,7 +61,6 @@ repeat (n_terrain) {
     
     buffer_delete(terrain.height_data);
     buffer_delete(terrain.color_data);
-    vertex_delete_buffer(terrain.terrain_buffer);
     buffer_delete(terrain.terrain_buffer_data);
     
     var height_length = buffer_read(buffer, buffer_u32);
@@ -71,7 +70,5 @@ repeat (n_terrain) {
     terrain.color_data = buffer_read_buffer(buffer, color_length);
     terrain.terrain_buffer_data = buffer_read_buffer(buffer, data_length);
     
-    terrain.terrain_buffer = vertex_create_buffer_from_buffer(terrain.terrain_buffer_data, terrain.vertex_format);
-    terrain.terrain_buffer_data = buffer_create_from_vertex_buffer(terrain.terrain_buffer, buffer_fixed, 1);
-    vertex_freeze(terrain.terrain_buffer);
+    terrain_refresh_vertex_buffer(terrain);
 }
