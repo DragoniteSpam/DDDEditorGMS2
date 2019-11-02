@@ -752,6 +752,14 @@
             }
         },
         {
+            "Key": "0b9ecc08-acdf-4786-9c96-193e4aaafe13",
+            "Value": {
+                "id": "0dbf5da7-fb45-4957-82f5-dc5d5180340b",
+                "resourcePath": "scripts\\terrain_create_texture_sprite\\terrain_create_texture_sprite.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "0ba67cd4-8c88-46b5-98b0-6592fdf0f101",
             "Value": {
                 "id": "fbc7c133-a87c-42c7-bed3-e41f956ab648",
@@ -1428,6 +1436,14 @@
             "Value": {
                 "id": "237ef59c-3a98-476f-9c4e-49a5e1a2e936",
                 "resourcePath": "scripts\\smf__collision_get_triangle_fast_buffer\\smf__collision_get_triangle_fast_buffer.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "181468e7-f186-4bec-b4dd-7008d34585cc",
+            "Value": {
+                "id": "e86920ee-591a-4fe5-aafc-a48086449c7f",
+                "resourcePath": "scripts\\uivc_terrain_change_texture\\uivc_terrain_change_texture.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -16608,12 +16624,14 @@
         "d7daedd5-1cb6-4e17-897f-57fe8a0cf890",
         "1964af12-12b5-4633-ae91-53f1536d79dc",
         "a87d128e-a6f0-49f2-9520-282a6cdd62a8",
+        "181468e7-f186-4bec-b4dd-7008d34585cc",
         "9681e57f-9faa-4e7c-99bb-0339c5066433",
         "d06bf045-abbb-450c-bb7d-5d2a4a991c4f",
         "57046ca0-eb7a-4df3-8947-1051ad32be6d",
         "c94956a3-deb9-49e4-af38-a2cdc53e0dd9",
         "db59ae15-86be-4839-ab51-582bfaaf94c4",
         "e18cf426-a3fb-480c-a371-16b8c8e85693",
+        "0b9ecc08-acdf-4786-9c96-193e4aaafe13",
         "729995d4-2411-4560-bfde-4d072a4adcfe"
     ],
     "tutorial": ""

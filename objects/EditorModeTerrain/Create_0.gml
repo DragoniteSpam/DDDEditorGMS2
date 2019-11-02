@@ -2,6 +2,8 @@ event_inherited();
 
 render = terrain_editor_render;
 
+texture = terrain_create_texture_sprite(PATH_GRAPHICS + "b_tileset_overworld_0.png");
+
 vertices_per_square = 6;
 format_size = 0;
 

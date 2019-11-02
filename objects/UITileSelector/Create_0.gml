@@ -15,3 +15,5 @@ offset_y = -1;
 onvaluechange = null;
 onvaluechangebackwards = null;
 render = ui_render_tile_selector;
+
+tileset = -1;

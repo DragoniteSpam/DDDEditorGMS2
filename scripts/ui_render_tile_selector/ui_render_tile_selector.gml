@@ -11,15 +11,16 @@ var y1 = selector.y + yy;
 var x2 = selector.x + selector.width;
 var y2 = selector.y + selector.height;
 
-var ts = get_active_tileset();
+var ts = (selector.tileset + 1) ? noone: get_active_tileset();
+var image = (selector.tileset + 1) ? selector.tileset : get_active_tileset().picture;
 
-var tex_width = sprite_get_width(ts.picture);
-var tex_height = sprite_get_height(ts.picture);
+var tex_width = sprite_get_width(image);
+var tex_height = sprite_get_height(image);
 
 draw_set_color(c_white);
 draw_checkerbox(selector.x, selector.y, selector.width, selector.height);
 
-draw_sprite_part(ts.picture, 0, selector.tile_view_x, selector.tile_view_y,
+draw_sprite_part(image, 0, selector.tile_view_x, selector.tile_view_y,
     selector.width, selector.height, selector.x, selector.y);
 
 for (var i = selector.tile_view_x; i < selector.tile_view_x + selector.width; i = (i div Stuff.tile_size) * Stuff.tile_size + Stuff.tile_size) {
@@ -45,53 +46,55 @@ draw_rectangle_colour(clamp(selx1 - 1, x1, x2), clamp(sely1 - 1, y1, y2), clamp(
 
 draw_rectangle_colour(x1, y1, x2 - 1, y2 - 1, c_black, c_black, c_black, c_black, true);
 
-// drawing the data on the tile is also a pain
-
-draw_set_font(FDefault12Bold);
-draw_set_halign(fa_center);
-// the current valign is middle already
-
-var dx1 = selector.tile_view_x div Stuff.tile_size;
-var dy1 = selector.tile_view_y div Stuff.tile_size;
-var dx2 = ((selector.tile_view_x + selector.width) div Stuff.tile_size) + 1;
-var dy2 = ((selector.tile_view_y + selector.height) div Stuff.tile_size) + 1;
-var da = 0.75;
-
-for (var i = dx1; i < dx2; i++) {
-    for (var j = dy1; j < dy2; j++) {
-        var textx = x1 + i * Stuff.tile_size - selector.tile_view_x + Stuff.tile_size / 2;
-        var texty = y1 + j * Stuff.tile_size - selector.tile_view_y + Stuff.tile_size / 2;
-        // the 8s here are magic numbers, do not touch anything or everything will explode violently
-        if ((textx - 8) >= x1 && (textx + 8) <= x2 && (texty - 8) >= y1 && (texty + 8) <= y2) {
-            // could make this outside of the for loop except it displays something different
-            // for the passage data than the numbers, since the numbers are meaningless
-            switch (Camera.tile_data_view) {
-                case TileSelectorDisplayMode.PASSAGE:
-                    var value = ts.passage[# i, j];
-                    if (value == 0) {
-                        draw_text_colour(textx, texty, string("X"), c_black, c_black, c_black, c_black, da);
-                    } else if (value == TILE_PASSABLE) {
-                        draw_text_colour(textx, texty, string("O"), c_black, c_black, c_black, c_black, da);
-                    } else {
-                        draw_text_colour(textx, texty, string("*"), c_black, c_black, c_black, c_black, da);
-                    }
-                    break;
-                case TileSelectorDisplayMode.PRIORITY:
-                    draw_text_colour(textx, texty, string(ts.priority[# i, j]), c_black, c_black, c_black, c_black, da);
-                    break;
-                case TileSelectorDisplayMode.FLAGS:
-                    draw_text_colour(textx, texty, string(ts.flags[# i, j]), c_black, c_black, c_black, c_black, da);
-                    break;
-                case TileSelectorDisplayMode.TAGS:
-                    draw_text_colour(textx, texty, string(ts.tags[# i, j]), c_black, c_black, c_black, c_black, da);
-                    break;
+// drawing the data on the tile is also a pain, although you only need to do it if
+// the selector represents a tileset and not just a single image
+if (ts) {
+    draw_set_font(FDefault12Bold);
+    draw_set_halign(fa_center);
+    // the current valign is middle already
+    
+    var dx1 = selector.tile_view_x div Stuff.tile_size;
+    var dy1 = selector.tile_view_y div Stuff.tile_size;
+    var dx2 = ((selector.tile_view_x + selector.width) div Stuff.tile_size) + 1;
+    var dy2 = ((selector.tile_view_y + selector.height) div Stuff.tile_size) + 1;
+    var da = 0.75;
+    
+    for (var i = dx1; i < dx2; i++) {
+        for (var j = dy1; j < dy2; j++) {
+            var textx = x1 + i * Stuff.tile_size - selector.tile_view_x + Stuff.tile_size / 2;
+            var texty = y1 + j * Stuff.tile_size - selector.tile_view_y + Stuff.tile_size / 2;
+            // the 8s here are magic numbers, do not touch anything or everything will explode violently
+            if ((textx - 8) >= x1 && (textx + 8) <= x2 && (texty - 8) >= y1 && (texty + 8) <= y2) {
+                // could make this outside of the for loop except it displays something different
+                // for the passage data than the numbers, since the numbers are meaningless
+                switch (Camera.tile_data_view) {
+                    case TileSelectorDisplayMode.PASSAGE:
+                        var value = ts.passage[# i, j];
+                        if (value == 0) {
+                            draw_text_colour(textx, texty, string("X"), c_black, c_black, c_black, c_black, da);
+                        } else if (value == TILE_PASSABLE) {
+                            draw_text_colour(textx, texty, string("O"), c_black, c_black, c_black, c_black, da);
+                        } else {
+                            draw_text_colour(textx, texty, string("*"), c_black, c_black, c_black, c_black, da);
+                        }
+                        break;
+                    case TileSelectorDisplayMode.PRIORITY:
+                        draw_text_colour(textx, texty, string(ts.priority[# i, j]), c_black, c_black, c_black, c_black, da);
+                        break;
+                    case TileSelectorDisplayMode.FLAGS:
+                        draw_text_colour(textx, texty, string(ts.flags[# i, j]), c_black, c_black, c_black, c_black, da);
+                        break;
+                    case TileSelectorDisplayMode.TAGS:
+                        draw_text_colour(textx, texty, string(ts.tags[# i, j]), c_black, c_black, c_black, c_black, da);
+                        break;
+                }
             }
         }
     }
-}
 
-draw_set_halign(fa_left);
-draw_set_font(FDefault12);
+    draw_set_halign(fa_left);
+    draw_set_font(FDefault12);
+}
 
 // theoretically you should check to see if dialog is active but please just never
 // put one of these in a dialog box, that would be awful

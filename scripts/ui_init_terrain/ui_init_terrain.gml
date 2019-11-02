@@ -209,9 +209,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     element = create_button(legal_x + spacing, yy, "Set Mode: Texture", col_width, element_height, fa_center, uivc_terrain_set_mode_texture, t_general);
     ds_list_add(t_texture.contents, element);
     
-    yy = yy + element.height + spacing;
-    
-	element = create_button(legal_x + spacing, yy, "Change Tileset", 128, element_height, fa_center, omu_manager_tileset, t_texture);
+	element = create_button(col2_x, yy, "Change Texture", col_width, element_height, fa_center, uivc_terrain_change_texture, t_texture);
     ds_list_add(t_texture.contents, element);
     
     yy = yy + element.height + spacing;
@@ -219,6 +217,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     element = create_tile_selector(legal_x + spacing, yy, legal_width - spacing * 2, legal_width - spacing * 2, uivc_select_terrain_tile, null, t_texture);
     element.tile_x = terrain.tile_brush_x;
     element.tile_y = terrain.tile_brush_y;
+    element.tileset = terrain.texture;
     t_texture.element_tile_selector = element;
     ds_list_add(t_texture.contents, element);
     
