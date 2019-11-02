@@ -117,7 +117,7 @@ var mx = clamp(mouse_x_view, base_x1, base_x2);
 var my = clamp(mouse_y_view, base_y1, base_y2);
 
 // pan around
-if (Controller.mouse_right) {
+if (CONTORL_3D_LOOK) {
     // continuous
     if (selector.offset_x >- 1) {
         selector.tile_view_x = clamp(selector.tile_view_x + selector.offset_x - mouse_x_view, 0, tex_width - selector.width);

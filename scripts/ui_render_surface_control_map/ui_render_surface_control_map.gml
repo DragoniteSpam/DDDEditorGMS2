@@ -83,7 +83,7 @@ if (!keyboard_check(vk_control)) {
 	    xspeed = xspeed + dsin(Camera.event_direction) * mspd * Stuff.dt;
 	    yspeed = yspeed + dcos(Camera.event_direction) * mspd * Stuff.dt;
 	}
-	if (Controller.mouse_right) {
+	if (CONTORL_3D_LOOK) {
 		var camera_cx = view_get_xport(view_current) + view_get_wport(view_current) / 2;
 		var camera_cy = view_get_yport(view_current) + view_get_hport(view_current) / 2;
 		var dx = (Camera.MOUSE_X - camera_cx) / 16;

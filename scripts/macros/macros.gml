@@ -65,6 +65,8 @@
 #macro PREFIX_AUDIO_BGM "Bgm"
 #macro PREFIX_MESH "Msh"
 
+#macro CONTORL_3D_LOOK Controller.mouse_middle
+
 #macro view_fullscreen 0
 #macro view_3d 1
 #macro view_ribbon 2

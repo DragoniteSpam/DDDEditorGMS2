@@ -52,7 +52,7 @@ draw_rectangle_colour(xview, yview + hview - 16, xview + wview, yview + hview, c
 draw_text_colour(xview + 16, yview + hview - 8, string("Canvas at (" + string(xview) + ", " + string(yview) + "); mouse at (" +
     string(mouse_x_view) + ", " + string(mouse_y_view) + ")"), c_black, c_black, c_black, c_black, 1);
 
-if (Controller.mouse_right) {
+if (CONTORL_3D_LOOK) {
     if (!dialog_exists()) {
         window_set_cursor(cr_none);
 		draw_sprite(spr_scroll, 0, Camera.MOUSE_X, Camera.MOUSE_Y);

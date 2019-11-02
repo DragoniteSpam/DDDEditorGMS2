@@ -33,7 +33,7 @@ if (zz < Camera.z) {
             case TerrainModes.COLOR: terrain_mode_color(terrain, terrain.cursor_position) break;
         }
 	}
-    if (false && Controller.mouse_right) {
+    if (Controller.mouse_right) {
         switch (terrain.mode) {
             case TerrainModes.Z: terrain_mode_z(terrain, terrain.cursor_position, -1); break;
             case TerrainModes.TEXTURE: terrain_mode_texture(terrain, terrain.cursor_position); break;
@@ -75,7 +75,7 @@ if (!keyboard_check(vk_control)) {
 	    xspeed = xspeed + dsin(Camera.direction) * mspd * Stuff.dt;
 	    yspeed = yspeed + dcos(Camera.direction) * mspd * Stuff.dt;
 	}
-	if (Controller.mouse_right) {
+	if (CONTORL_3D_LOOK) {
 		var camera_cx = view_get_xport(view_current) + view_get_wport(view_current) / 2;
 		var camera_cy = view_get_yport(view_current) + view_get_hport(view_current) / 2;
 		var dx = (Camera.MOUSE_X - camera_cx) / 16;

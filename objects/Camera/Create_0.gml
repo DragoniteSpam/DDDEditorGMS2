@@ -134,12 +134,6 @@ enum TileSelectorOnClick {
 }
 
 /*
- * inputs; maybe these can be rebound though a menu, but that's not important now
- */
-
-input_selection_add = vk_control;
-
-/*
  * other stuff
  */
 
