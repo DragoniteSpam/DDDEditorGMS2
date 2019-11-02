@@ -57,12 +57,12 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element.height + spacing;
     
-    element = create_checkbox(legal_x + spacing, yy, "Dual layers: ", col_width, element_height, null, 0, terrain.dual_layer, t_general);
+    element = create_checkbox(legal_x + spacing, yy, "Dual layers", col_width, element_height, null, 0, terrain.dual_layer, t_general);
     t_general.element_dual = element;
     t_general.element_dual.interactive = false;
-    ds_list_add(t_general.contents, element);
+    //ds_list_add(t_general.contents, element);
     
-    yy = yy + element.height + spacing;
+    //yy = yy + element.height + spacing;
     
     element = create_checkbox(legal_x + spacing, yy, "Draw water?", col_width, element_height, ui_input_terrain_draw_water, 0, terrain.view_water, t_general);
     t_general.element_draw_water = element;

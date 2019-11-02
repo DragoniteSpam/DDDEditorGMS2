@@ -3,6 +3,13 @@
 var fn = argument0;
 var image = sprite_add(fn, 0, false, false, 0, 0);
 var terrain = Stuff.terrain;
+var dual = thing.root.el_dual_layer.value;
+
+var el_confirm = create_button(dw * 2 / 7 - b_width / 2, dh - 32 - b_height / 2, "Create", b_width, b_height, fa_center, dmu_dialog_commit_terrain_create, dg);
+
+terrain.dual_layer = dual;
+Camera.ui_terrain.t_general.element_dual.value = dual;
+
 terrain.width = sprite_get_width(image);
 terrain.height = sprite_get_height(image);
 
