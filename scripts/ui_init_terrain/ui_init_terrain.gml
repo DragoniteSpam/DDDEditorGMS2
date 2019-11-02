@@ -155,6 +155,16 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element.height + spacing;
     
+    element = create_button(col2_x, yy, "Export Heightmap", col_width, element_height, fa_center, uivc_terrain_export_heightmap, t_general);
+    ds_list_add(t_general.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
+    element = create_button(col2_x, yy, "Import Heightmap", col_width, element_height, fa_center, uivc_terrain_export_heightmap, t_general);
+    ds_list_add(t_general.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
     #endregion
     
     #region tab: heightmap
