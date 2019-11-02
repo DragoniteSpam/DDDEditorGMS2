@@ -1,6 +1,6 @@
-/// @description void momu_help(MenuElement);
 /// @param MenuElement
 
-var catch=argument0;
+var element = argument0;
 
-ds_stuff_help();
+//ds_stuff_help();
+dialog_create_notice(noone, "I'll write this Soon, I promise");

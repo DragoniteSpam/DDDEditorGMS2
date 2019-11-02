@@ -1,12 +1,6 @@
-/// @description double ds_stuff_help([file]);
 /// @param [file]
 
-var where="Overview";
-switch (argument_count) {
-    case 1:
-        where=argument[0];
-        break;
-}
+var where = (argument_count > 0) ? argument[0] : "Overview";
 
 /*
  * almost the same thing as ds_stuff_open, but it specifically targets the help file
