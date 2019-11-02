@@ -4,7 +4,6 @@ var filename = argument0;
 
 var original = buffer_load(filename);
 var erroneous = false;
-var header = chr(buffer_read(original, buffer_u8)) + chr(buffer_read(original, buffer_u8)) + chr(buffer_read(original, buffer_u8));
 
 var autoname = "auto" + filename_ext(filename);
 if (!file_exists(autoname)) {
@@ -42,7 +41,8 @@ if (header == "DDD") {
     if (version < last_safe_version) {
         show_error("We stopped supporting versions of the data file before " + string(last_safe_version) +
             ". This current version is " + string(version) + ". Please find a version of " + filename_name(filename) +
-            " made with a more up-to-date version of the editor.", true);
+            " made with a more up-to-date version of the editor.", true
+        );
 	}
         
     var what = buffer_read(buffer, buffer_u8);
@@ -145,4 +145,6 @@ if (erroneous) {
  */
 
 buffer_delete(buffer);
-buffer_delete(original);
+if (buffer != original) {
+    buffer_delete(original);
+}

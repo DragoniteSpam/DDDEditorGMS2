@@ -1,9 +1,6 @@
 /// @param filename
 
 var fn = argument0;
-var terrain = Stuff.terrain;
-var vertices = 0;
-var scale = terrain.save_scale;
 
 // this is a DDD file but 
 

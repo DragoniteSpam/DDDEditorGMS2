@@ -66,9 +66,9 @@ buffer_fill(color_data, 0, buffer_u32, 0xffffffff, buffer_get_size(color_data));
 terrain_buffer = vertex_create_buffer();
 vertex_begin(terrain_buffer, vertex_format);
 
-for (var i = 0; i < width; i++) {
-    for (var j = 0; j < height; j++) {
-        terrain_create_square(terrain_buffer, i, j, 0, 1, 0, 0, tile_size, texel);
+for (var i = 0; i < width - 1; i++) {
+    for (var j = 0; j < height - 1; j++) {
+        terrain_create_square(terrain_buffer, i, j, 1, 0, 0, tile_size, texel);
     }
 }
 

@@ -5,6 +5,9 @@ var terrain = Stuff.terrain;
 
 buffer_write(buffer, buffer_datatype, SerializeThings.TERRAIN_HEIGHTMAP);
 
+var addr_end = buffer_tell(buffer);
+buffer_write(buffer, buffer_u32, 0);
+
 // in the event that i set this up so it can have more than one terrain - although i probably
 // won't because they're fairly memory-intensive
 buffer_write(buffer, buffer_u16, 1);
@@ -33,5 +36,9 @@ buffer_write(buffer, buffer_u8, terrain.paint_precision);
 
 // the actual data
 
+buffer_write(buffer, buffer_u32, buffer_get_size(terrain.height_data));
+buffer_write(buffer, buffer_u32, buffer_get_size(terrain.color_data));
 buffer_write_buffer(buffer, terrain.height_data);
 buffer_write_buffer(buffer, terrain.color_data);
+
+buffer_poke(buffer, addr_end, buffer_u32, buffer_tell(buffer));
