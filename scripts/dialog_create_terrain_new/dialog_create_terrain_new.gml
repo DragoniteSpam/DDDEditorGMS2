@@ -47,7 +47,7 @@ dg.el_dual_layer = el_dual_layer;
 
 yy = yy + el_dual_layer.height + spacing;
 
-var el_import_heightmap = create_button(dw / 2, dh - 32 - b_height, "Import Heightmap", ew, eh, fa_center, dmu_terrain_import_heightmap, dg);
+var el_import_heightmap = create_button(dw / 2 - ew / 2, dh - 32 - b_height - eh / 2 - spacing, "Import Heightmap", ew, b_height, fa_center, dmu_terrain_import_heightmap, dg);
 
 var el_confirm = create_button(dw * 2 / 7 - b_width / 2, dh - 32 - b_height / 2, "Create", b_width, b_height, fa_center, dmu_dialog_commit_terrain_create, dg);
 var el_never_mind = create_button(dw * 5 / 7 - b_width / 2, dh - 32 - b_height / 2, "Cancel", b_width, b_height, fa_center, dmu_dialog_commit, dg);
