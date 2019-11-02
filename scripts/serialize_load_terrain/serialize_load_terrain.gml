@@ -24,6 +24,8 @@ repeat (n_terrain) {
     Camera.ui_terrain.t_general.element_swap_uvs.value = terrain.export_swap_uvs;
     terrain.export_swap_zup = unpack(bools, 4);
     Camera.ui_terrain.t_general.element_swap_zup.value = terrain.export_swap_zup;
+    terrain.smooth_shading = unpack(bools, 5);
+    Camera.ui_terrain.t_general.element_smooth_shading.value = terrain.smooth_shading;
     
     terrain.view_scale = buffer_read(buffer, buffer_f32);
     // not available as a value you can change currently

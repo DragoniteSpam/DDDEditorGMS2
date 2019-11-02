@@ -27,6 +27,7 @@ export_all = false;
 view_water = true;
 export_swap_uvs = false;
 export_swap_zup = false;
+smooth_shading = false;
 
 cursor_position = undefined;
 // height defaults

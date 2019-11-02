@@ -37,18 +37,8 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     #region tab: general
     var yy = legal_y + spacing;
     
-    element = create_button(legal_x + spacing, yy, "Save Terrain", col_width, element_height, fa_center, uivc_terrain_save, t_general);
-    ds_list_add(t_general.contents, element);
-    
-    yy = yy + element.height + spacing;
-    
-    element = create_button(legal_x + spacing, yy, "Load Terrain", col_width, element_height, fa_center, uivc_terrain_load, t_general);
-    ds_list_add(t_general.contents, element);
-    
-    yy = yy + element.height + spacing * 2 + element_height;
-    
-    element = create_input(legal_x + spacing, yy, "Save scale:", col_width, element_height, ui_input_terrain_save_scale, 0, Stuff.terrain.save_scale, "0.01...100", validate_double, ui_value_real, 0.01, 100, 4, vx1, vy1, vx2, vy2, t_general);
-    t_general.element_save_scale = element;
+    element = create_text(legal_x + spacing, yy, "General Settings", col_width, element_height, fa_left, col_width, t_general);
+    element.color = c_blue;
     ds_list_add(t_general.contents, element);
     
     yy = yy + element.height + spacing;
@@ -61,6 +51,18 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     element = create_checkbox(legal_x + spacing, yy, "Draw cylinder?", col_width, element_height, ui_input_terrain_draw_cylinder, 0, Stuff.terrain.view_cylinder, t_general);
     t_general.element_draw_cylinder = element;
+    ds_list_add(t_general.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
+    element = create_checkbox(legal_x + spacing, yy, "Smooth shading?", col_width, element_height, ui_input_terrain_smooth_shading, 0, Stuff.terrain.smooth_shading, t_general);
+    t_general.element_smooth_shading = element;
+    //ds_list_add(t_general.contents, element);
+    
+    //yy = yy + element.height + spacing;
+    
+    element = create_text(legal_x + spacing, yy, "Editor Settings", col_width, element_height, fa_left, col_width, t_general);
+    element.color = c_blue;
     ds_list_add(t_general.contents, element);
     
     yy = yy + element.height + spacing;
@@ -95,7 +97,23 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = legal_y + spacing;
     
-    element = create_button(col2_x, yy, "Export", col_width, element_height, fa_center, uivc_terrain_export, t_general);
+    element = create_button(col2_x, yy, "Save Terrain", col_width, element_height, fa_center, uivc_terrain_save, t_general);
+    ds_list_add(t_general.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
+    element = create_button(col2_x, yy, "Load Terrain", col_width, element_height, fa_center, uivc_terrain_load, t_general);
+    ds_list_add(t_general.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
+    element = create_button(col2_x, yy, "Export Terrain", col_width, element_height, fa_center, uivc_terrain_export, t_general);
+    ds_list_add(t_general.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
+    element = create_input(col2_x, yy, "Export scale:", col_width, element_height, ui_input_terrain_save_scale, 0, Stuff.terrain.save_scale, "0.01...100", validate_double, ui_value_real, 0.01, 100, 4, vx1 + 32, vy1, vx2, vy2, t_general);
+    t_general.element_save_scale = element;
     ds_list_add(t_general.contents, element);
     
     yy = yy + element.height + spacing;
