@@ -6,7 +6,9 @@ if (mouse_within_view(view_3d) && !dialog_exists()) {
     control_terrain_3d(terrain);
 }
 
-graphics_draw_water();
+if (terrain.view_water) {
+    graphics_draw_water();
+}
 
 shader_set(shd_basic);
 shader_set_uniform_i(shader_get_uniform(shd_basic, "lightEnabled"), true);
