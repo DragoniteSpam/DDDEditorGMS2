@@ -11,7 +11,9 @@ var n_terrain = buffer_read(buffer, buffer_u16);
 
 repeat (n_terrain) {
     terrain.height = buffer_read(buffer, buffer_u16);
+    Camera.ui_terrain.t_general.element_height.text = "Height: " + string(terrain.height);
     terrain.width = buffer_read(buffer, buffer_u16);
+    Camera.ui_terrain.t_general.element_width.text = "Width: " + string(terrain.width);
     
     var bools = buffer_read(buffer, buffer_u32);
     terrain.view_cylinder = unpack(bools, 0);
