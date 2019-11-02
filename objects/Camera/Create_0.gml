@@ -43,7 +43,12 @@ smf_light_add_direction(smf_vector_normalize([-1, -1, -1]), c_white, 1);
  * Editor modes
  */
 
-mode = EditorModes.EDITOR_3D;
+switch (EDITOR_BASE_MODE) {
+    case EditorModes.EDITOR_HEIGHTMAP: editor_mode_heightmap(); break;
+    default: editor_mode_3d(); break;
+}
+
+mode = EDITOR_BASE_MODE;
 
 // if / when you add more of these remember to also add another series of Draw
 // instructions to Camera.Draw
