@@ -195,7 +195,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     var yy_aftergrid = yy;
     
-    element = create_button(legal_x + spacing, yy, "Clear Texture", col_width, element_height, fa_center, null, t_general);
+    element = create_button(legal_x + spacing, yy, "Clear Texture", col_width, element_height, fa_center, uivc_terrain_clear_texture, t_general);
     ds_list_add(t_texture.contents, element);
     
     yy = yy + element.height + spacing;
