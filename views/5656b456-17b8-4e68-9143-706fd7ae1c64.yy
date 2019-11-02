@@ -26,7 +26,8 @@
         "77bcf0a4-59a3-43aa-9b69-d5692ca22274",
         "89f3af14-c5cc-46e0-9305-7d6f19a8758a",
         "5c1b1817-7df1-4269-ab12-3631a4f94cee",
-        "fbe599e7-663c-4eb3-8dc9-8bf0cb2f663d"
+        "fbe599e7-663c-4eb3-8dc9-8bf0cb2f663d",
+        "245b3a73-3daa-4d9d-904e-946de0b715e6"
     ],
     "filterType": "GMScript",
     "folderName": "ui",

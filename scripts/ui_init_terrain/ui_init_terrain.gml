@@ -241,7 +241,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element.height + spacing;
     
-    element = create_button(legal_x + spacing, yy, "Clear Color", col_width, element_height, fa_center, null, t_general);
+    element = create_button(legal_x + spacing, yy, "Clear Color", col_width, element_height, fa_center, uivc_terrain_clear_color, t_general);
     ds_list_add(t_paint.contents, element);
     
     yy = yy + element.height + spacing;

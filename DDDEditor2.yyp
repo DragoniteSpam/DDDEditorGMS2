@@ -2128,6 +2128,14 @@
             }
         },
         {
+            "Key": "245b3a73-3daa-4d9d-904e-946de0b715e6",
+            "Value": {
+                "id": "c621dbc0-2887-44f5-a4df-a9088b5c2a0c",
+                "resourcePath": "scripts\\uivc_terrain_clear_color\\uivc_terrain_clear_color.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "246192a0-2a44-4f69-a064-7776364444f4",
             "Value": {
                 "id": "b7a04d56-d42c-4a6f-b1cb-a378e25409fb",
@@ -16529,6 +16537,7 @@
         "89f3af14-c5cc-46e0-9305-7d6f19a8758a",
         "5c1b1817-7df1-4269-ab12-3631a4f94cee",
         "fbe599e7-663c-4eb3-8dc9-8bf0cb2f663d",
+        "245b3a73-3daa-4d9d-904e-946de0b715e6",
         "9681e57f-9faa-4e7c-99bb-0339c5066433",
         "c94956a3-deb9-49e4-af38-a2cdc53e0dd9",
         "db59ae15-86be-4839-ab51-582bfaaf94c4",
