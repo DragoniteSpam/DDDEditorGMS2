@@ -32,7 +32,7 @@ for (var i = 0; i < ds_list_size(list_range); i++) {
 
 for (var i = 0; i < ds_list_size(list_range); i++) {
 	var coordinates = list_range[| i];
-	terrain_set_normals(terrain, coordinates[vec2.xx], coordinates[vec2.yy], xx, yy, radius);
+	terrain_set_normals(terrain, coordinates[vec2.xx], coordinates[vec2.yy]);
 }
 
 if (!ds_list_empty(list_range)) {

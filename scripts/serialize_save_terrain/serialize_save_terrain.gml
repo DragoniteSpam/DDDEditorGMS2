@@ -38,7 +38,9 @@ buffer_write(buffer, buffer_u8, terrain.paint_precision);
 
 buffer_write(buffer, buffer_u32, buffer_get_size(terrain.height_data));
 buffer_write(buffer, buffer_u32, buffer_get_size(terrain.color_data));
+buffer_write(buffer, buffer_u32, buffer_get_size(terrain.terrain_buffer_data));
 buffer_write_buffer(buffer, terrain.height_data);
 buffer_write_buffer(buffer, terrain.color_data);
+buffer_write_buffer(buffer, terrain.terrain_buffer_data);
 
 buffer_poke(buffer, addr_end, buffer_u32, buffer_tell(buffer));

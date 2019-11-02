@@ -1,16 +1,10 @@
 /// @param terrain
 /// @param xx
 /// @param yy
-/// @param originx
-/// @param originy
-/// @param radius
 
 var terrain = argument[0];
 var xx = argument[1];
 var yy = argument[2];
-var ox = argument[3];
-var oy = argument[4];
-var radius = argument[5];
 var smooth = true;
 var threshold = 0.3;
 

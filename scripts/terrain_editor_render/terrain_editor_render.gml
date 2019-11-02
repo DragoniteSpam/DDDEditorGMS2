@@ -6,6 +6,8 @@ if (mouse_within_view(view_3d) && !dialog_exists()) {
     control_terrain_3d(terrain);
 }
 
+graphics_draw_water();
+
 shader_set(shd_basic);
 shader_set_uniform_i(shader_get_uniform(shd_basic, "lightEnabled"), true);
 shader_set_uniform_i(shader_get_uniform(shd_basic, "lightCount"), 1);
@@ -16,8 +18,7 @@ shader_set_uniform_f_array(shader_get_uniform(shd_basic, "lightData"), [
 ]);
 
 transform_set(0, 0, 0, 0, 0, 0, terrain.view_scale, terrain.view_scale, terrain.view_scale);
-//vertex_submit(terrain.terrain_buffer, pr_trianglelist, sprite_get_texture(get_active_tileset().master, 1));
-vertex_submit(terrain.terrain_buffer, pr_trianglelist, -1);
+vertex_submit(terrain.terrain_buffer, pr_trianglelist, sprite_get_texture(get_active_tileset().master, 1));
 
 shader_reset();
 
@@ -32,5 +33,3 @@ if (terrain.cursor_position != undefined && terrain.view_cylinder) {
 }
 
 transform_reset();
-
-graphics_draw_water();

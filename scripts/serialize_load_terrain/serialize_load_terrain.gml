@@ -15,55 +15,61 @@ repeat (n_terrain) {
     
     var bools = buffer_read(buffer, buffer_u32);
     terrain.view_cylinder = unpack(bools, 0);
-    terrain.export_all = unpack(bools, 0);
-    terrain.view_water = unpack(bools, 0);
-    terrain.export_swap_uvs = unpack(bools, 0);
-    terrain.export_swap_zup = unpack(bools, 0);
+    Camera.ui_terrain.t_general.element_draw_cylinder.value = terrain.view_cylinder;
+    terrain.export_all = unpack(bools, 1);
+    Camera.ui_terrain.t_general.element_save_all_faces.value = terrain.export_all;
+    terrain.view_water = unpack(bools, 2);
+    Camera.ui_terrain.t_general.element_draw_water.value = terrain.view_water;
+    terrain.export_swap_uvs = unpack(bools, 3);
+    Camera.ui_terrain.t_general.element_swap_uvs.value = terrain.export_swap_uvs;
+    terrain.export_swap_zup = unpack(bools, 4);
+    Camera.ui_terrain.t_general.element_swap_zup.value = terrain.export_swap_zup;
     
     terrain.view_scale = buffer_read(buffer, buffer_f32);
+    // not available as a value you can change currently
     terrain.save_scale = buffer_read(buffer, buffer_f32);
+    Camera.ui_terrain.t_general.element_save_scale.value = string(terrain.save_scale);
     
     terrain.rate = buffer_read(buffer, buffer_f32);
+    Camera.ui_terrain.t_heightmap.element_deform_rate.value = string(terrain.rate);
+    Camera.ui_terrain.t_heightmap.element_deform_rate.value = normalize(terrain.rate, 0, 1, terrain.rate_min, terrain.rate_max);
     terrain.radius = buffer_read(buffer, buffer_f32);
+    Camera.ui_terrain.t_general.element_brush_radius.value = string(terrain.radius);
+    Camera.ui_terrain.t_general.element_brush_radius_bar.value = normalize(terrain.radius, 0, 1, terrain.brush_min, terrain.brush_max);
     terrain.mode = buffer_read(buffer, buffer_u8);
+    Camera.ui_terrain.t_general.element_mode.value = terrain.mode;
     terrain.submode = buffer_read(buffer, buffer_u8);
+    Camera.ui_terrain.t_heightmap.element_deform_mode.value = terrain.submode;
     terrain.style = buffer_read(buffer, buffer_u8);
+    Camera.ui_terrain.t_general.element_brush_shape.value = terrain.style;
     
     terrain.tile_brush_x = buffer_read(buffer, buffer_f32);
+    Camera.ui_terrain.t_texture.element_tile_selector.tile_x = terrain.tile_brush_x;
     terrain.tile_brush_y = buffer_read(buffer, buffer_f32);
+    Camera.ui_terrain.t_texture.element_tile_selector.tile_y = terrain.tile_brush_y;
+    
     terrain.paint_color = buffer_read(buffer, buffer_u32);
+    Camera.ui_terrain.t_paint.element_paint_color.value = terrain.paint_color;
     terrain.paint_strength = buffer_read(buffer, buffer_f32);
+    Camera.ui_terrain.t_paint.element_paint_strength.value = string(terrain.paint_strength);
+    Camera.ui_terrain.t_paint.element_paint_strength_bar.value = normalize(terrain.paint_strength, 0, 1, terrain.paint_strength_min, terrain.paint_strength_max);
     terrain.paint_precision = buffer_read(buffer, buffer_u8);
+    Camera.ui_terrain.t_paint.element_paint_precision.value = string(terrain.paint_precision);
+    Camera.ui_terrain.t_paint.element_paint_precision_bar.value = normalize(terrain.paint_precision, 0, 1, terrain.paint_precision_min, terrain.paint_precision_max);
     
     buffer_delete(terrain.height_data);
     buffer_delete(terrain.color_data);
-    
-    var height_length = buffer_read(buffer, buffer_u32);
-    var color_length = buffer_read(buffer, buffer_u32);
-    terrain.height_data = buffer_read_buffer(buffer, height_length);
-    terrain.color_data = buffer_read_buffer(buffer, color_length);
-    
     vertex_delete_buffer(terrain.terrain_buffer);
     buffer_delete(terrain.terrain_buffer_data);
     
-    terrain.terrain_buffer = vertex_create_buffer();
-    vertex_begin(terrain.terrain_buffer, terrain.vertex_format);
+    var height_length = buffer_read(buffer, buffer_u32);
+    var color_length = buffer_read(buffer, buffer_u32);
+    var data_length = buffer_read(buffer, buffer_u32);
+    terrain.height_data = buffer_read_buffer(buffer, height_length);
+    terrain.color_data = buffer_read_buffer(buffer, color_length);
+    terrain.terrain_buffer_data = buffer_read_buffer(buffer, data_length);
     
-    for (var i = 0; i < terrain.width - 1; i++) {
-        for (var j = 0; j < terrain.height - 1; j++) {
-            var z0 = terrain_get_z(terrain, i, j);
-            var z1 = terrain_get_z(terrain, i + 1, j);
-            var z2 = terrain_get_z(terrain, i + 1, j + 1);
-            var z3 = terrain_get_z(terrain, i, j + 1);
-            var c0 = terrain_get_color(terrain, i, j);
-            var c1 = terrain_get_color(terrain, i + 1, j);
-            var c2 = terrain_get_color(terrain, i + 1, j + 1);
-            var c3 = terrain_get_color(terrain, i, j + 1);
-            terrain_create_square(terrain.terrain_buffer, i, j, 1, 0, 0, terrain.tile_size, terrain.texel, z0, z1, z2, z3, c0, c1, c2, c3);
-        }
-    }
-    
-    vertex_end(terrain.terrain_buffer);
+    terrain.terrain_buffer = vertex_create_buffer_from_buffer(terrain.terrain_buffer_data, terrain.vertex_format);
     terrain.terrain_buffer_data = buffer_create_from_vertex_buffer(terrain.terrain_buffer, buffer_fixed, 1);
     vertex_freeze(terrain.terrain_buffer);
 }
