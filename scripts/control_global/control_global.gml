@@ -11,9 +11,6 @@ if (keyboard_check(vk_control)) {
     if (keyboard_check_pressed(ord("S"))) {
         momu_save_data(noone);
     }
-    if (keyboard_check_pressed(ord("O"))) {
-        momu_open(noone);
-    }
     /*
      * edit
      */
@@ -51,4 +48,7 @@ if (keyboard_check_pressed(vk_f8)) {
 }
 if (keyboard_check_pressed(vk_f9)) {
     editor_mode_animation();
+}
+if (keyboard_check_pressed(vk_f10)) {
+    editor_mode_heightmap();
 }

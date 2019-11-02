@@ -30,12 +30,11 @@ var m_separator = create_menu_element("----------", null, id);
 
 var mf_new = create_menu_element("New (Ctrl+N)", momu_new, menu_file);
 var mf_save_data = create_menu_element("Save (Ctrl+S)", momu_save_data, menu_file);
-var mf_open = create_menu_element("Open (Ctrl+O)", momu_open, menu_file);
 var mf_settings_data = create_menu_element("Global Data Settings", momu_settings_data, menu_file);
 var mf_preferences = create_menu_element("Preferences", momu_preferences, menu_file);
 var mf_exit = create_menu_element("Exit (Alt+F4)", momu_exit, menu_file);
 ds_list_add(menu_file.contents,
-    mf_new, mf_save_data, mf_open,
+    mf_new, mf_save_data,
     m_separator,
     mf_settings_data, mf_preferences,
     mf_exit
@@ -89,22 +88,23 @@ var md_3d = create_menu_element("Map Editor (F6)", momu_editor_3d, menu_data);
 var md_events = create_menu_element("Event Editor (F7)", momu_editor_event, menu_data);
 var md_data = create_menu_element("Game Data Editor (F8)", momu_editor_data, menu_data);
 var md_animation = create_menu_element("Animation Editor (F9)", momu_editor_animation, menu_data);
+var md_heightmap = create_menu_element("Terrain Editor (F10)", momu_editor_heightmap, menu_help);
 
 ds_list_add(menu_data.contents,
     md_graphics, md_audio, md_data_types,
     m_separator,
     md_conflicts, md_missing,
     m_separator,
-    md_3d, md_events, md_data, md_animation
+    md_3d, md_events, md_data, md_animation, md_heightmap,
 );
 
 /*
  * Beta stuff
  */
 
-var mb_heightmap = create_menu_element("Heightmap", momu_editor_heightmap, menu_help);
+var mb_no_beta = create_menu_element("(No beta features, currently)", null, menu_help);
 ds_list_add(menu_beta.contents,
-    mb_heightmap
+    mb_no_beta
 );
 
 /*
