@@ -5296,6 +5296,14 @@
             }
         },
         {
+            "Key": "5c1b1817-7df1-4269-ab12-3631a4f94cee",
+            "Value": {
+                "id": "5d9fe08d-6b6d-4e51-96c9-e9cf026816dd",
+                "resourcePath": "scripts\\uivc_terrain_set_mode_paint\\uivc_terrain_set_mode_paint.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "5c3ded4f-47dd-4844-8d69-f5576cac0492",
             "Value": {
                 "id": "6d636414-2e41-42c0-94c8-82a342dbb6a0",
@@ -6904,6 +6912,14 @@
             }
         },
         {
+            "Key": "77bcf0a4-59a3-43aa-9b69-d5692ca22274",
+            "Value": {
+                "id": "1c415e6d-460b-44da-87fd-bea76a5dc369",
+                "resourcePath": "scripts\\uivc_terrain_set_mode_heightmap\\uivc_terrain_set_mode_heightmap.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "77dd205b-f3ec-446b-9bc8-818e5c4b5e20",
             "Value": {
                 "id": "c323aef6-8f3a-40bd-9d24-84c3d21124d5",
@@ -8028,6 +8044,14 @@
             "Value": {
                 "id": "12ca0851-e1cd-4363-a895-b3b521405325",
                 "resourcePath": "scripts\\smf_matrix_create_from_dualquat\\smf_matrix_create_from_dualquat.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "89f3af14-c5cc-46e0-9305-7d6f19a8758a",
+            "Value": {
+                "id": "f8341a0d-d49f-440e-bc8b-dd61a3581b21",
+                "resourcePath": "scripts\\uivc_terrain_set_mode_texture\\uivc_terrain_set_mode_texture.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -16485,6 +16509,9 @@
         "e1c9b602-b195-4635-bb55-63fb67e57e95",
         "6798e392-6cab-44ad-9f4b-8ed33d61778b",
         "cf3e6074-68cf-4a7d-b7b2-983008efbc4c",
+        "77bcf0a4-59a3-43aa-9b69-d5692ca22274",
+        "89f3af14-c5cc-46e0-9305-7d6f19a8758a",
+        "5c1b1817-7df1-4269-ab12-3631a4f94cee",
         "9681e57f-9faa-4e7c-99bb-0339c5066433",
         "c94956a3-deb9-49e4-af38-a2cdc53e0dd9",
         "db59ae15-86be-4839-ab51-582bfaaf94c4",

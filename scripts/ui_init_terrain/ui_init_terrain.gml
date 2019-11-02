@@ -3,7 +3,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     #region setup
     t_general = create_tab("General", 0, id);
-    t_heightmap = create_tab("Heightmap", 0, id);
+    t_heightmap = create_tab("Deform", 0, id);
     t_texture = create_tab("Texture", 0, id);
     t_paint = create_tab("Paint", 0, id);
     
@@ -68,7 +68,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy = yy + element.height + spacing;
     
     element = create_radio_array(legal_x + spacing, yy, "Mode:", col_width, element_height, ui_input_terrain_set_mode, Stuff.terrain.mode, t_general);
-    create_radio_array_options(element, ["Heightmap", "Texture", "Paint"]);
+    create_radio_array_options(element, ["Deform", "Texture", "Paint"]);
     t_general.element_mode = element;
     ds_list_add(t_general.contents, element);
     
@@ -141,6 +141,16 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     #region tab: heightmap
     var yy = legal_y + spacing;
     
+    element = create_button(legal_x + spacing, yy, "Set Mode: Deform", col_width, element_height, fa_center, uivc_terrain_set_mode_heightmap, t_general);
+    ds_list_add(t_heightmap.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
+    element = create_button(legal_x + spacing, yy, "Reset Height", col_width, element_height, fa_center, null, t_general);
+    ds_list_add(t_heightmap.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
     element = create_radio_array(legal_x + spacing, yy, "Deformation mode:", col_width, element_height, ui_input_terrain_set_deform_mode, Stuff.terrain.submode, t_heightmap);
     create_radio_array_options(element, ["Mound", "Average", "Flat Average", "Zero (Erase)"]);
     t_heightmap.element_deform_mode = element;
@@ -165,6 +175,11 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     #region tab: texture
     var yy = legal_y + spacing;
     
+    element = create_button(legal_x + spacing, yy, "Set Mode: Texture", col_width, element_height, fa_center, uivc_terrain_set_mode_texture, t_general);
+    ds_list_add(t_texture.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
 	element = create_button(legal_x + spacing, yy, "Change Tileset", 128, element_height, fa_center, omu_manager_tileset, t_texture);
     ds_list_add(t_texture.contents, element);
     
@@ -177,12 +192,23 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     ds_list_add(t_texture.contents, element);
     
     yy = yy + element.height + spacing;
+    
     var yy_aftergrid = yy;
+    
+    element = create_button(legal_x + spacing, yy, "Clear Texture", col_width, element_height, fa_center, null, t_general);
+    ds_list_add(t_texture.contents, element);
+    
+    yy = yy + element.height + spacing;
     
     #endregion
     
     #region tab: painting
     var yy = legal_y + spacing;
+    
+    element = create_button(legal_x + spacing, yy, "Set Mode: Paint", col_width, element_height, fa_center, uivc_terrain_set_mode_paint, t_general);
+    ds_list_add(t_paint.contents, element);
+    
+    yy = yy + element.height + spacing;
     
     element = create_text(legal_x + spacing, yy, "Paint strength: " + string(Stuff.terrain.paint_strength), col_width, element_height, fa_left, col_width, t_paint);
     t_paint.element_paint_strength = element;
@@ -211,6 +237,11 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     element = create_color_picker(legal_x + spacing, yy, "Color:", col_width, element_height, ui_input_terrain_set_paint_color, 0, Stuff.terrain.paint_color, vx1, vy1, vx2, vy2, t_paint);
     element.allow_alpha = true;
     t_paint.element_paint_color = element;
+    ds_list_add(t_paint.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
+    element = create_button(legal_x + spacing, yy, "Clear Color", col_width, element_height, fa_center, null, t_general);
     ds_list_add(t_paint.contents, element);
     
     yy = yy + element.height + spacing;
