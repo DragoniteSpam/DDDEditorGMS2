@@ -421,6 +421,7 @@ setting_normal_threshold = ini_read_real("config", "normal-threshold", 30); // d
 
 setting_location_ddd = ini_read_string("locations", "ddd", "./");
 setting_location_mesh = ini_read_string("locations", "mesh", "./");
+setting_location_terrain = ini_read_string("locations", "terrain", "./");
 setting_location_image = ini_read_string("locations", "image", "./");
 setting_location_audio = ini_read_string("locations", "audio", "./");
 setting_location_tiled = ini_read_string("locations", "tiled", "./");

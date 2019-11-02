@@ -5,7 +5,7 @@ if (string_length(fn) > 0) {
     serialize_backup(PATH_BACKUP_DATA, Stuff.save_name, EXPORT_EXTENSION_DATA, fn);
     game_auto_title();
     
-    var buffer = buffer_create(2, buffer_grow, 1);
+    var buffer = buffer_create(1024, buffer_grow, 1);
     
     /*
      * Header

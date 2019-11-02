@@ -37,6 +37,16 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     #region tab: general
     var yy = legal_y + spacing;
     
+    element = create_button(legal_x + spacing, yy, "Save Terrain", col_width, element_height, fa_center, uivc_terrain_save, t_general);
+    ds_list_add(t_general.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
+    element = create_button(legal_x + spacing, yy, "Load Terrain", col_width, element_height, fa_center, uivc_terrain_export, t_general);
+    ds_list_add(t_general.contents, element);
+    
+    yy = yy + element.height + spacing * 2 + element_height;
+    
     element = create_input(legal_x + spacing, yy, "Save scale:", col_width, element_height, ui_input_terrain_save_scale, 0, Stuff.terrain.save_scale, "0.01...100", validate_double, ui_value_real, 0.01, 100, 4, vx1, vy1, vx2, vy2, t_general);
     ds_list_add(t_general.contents, element);
     

@@ -1,0 +1,25 @@
+/// @param filename
+
+var fn = argument0;
+var terrain = Stuff.terrain;
+var vertices = 0;
+var scale = terrain.save_scale;
+
+// this is a DDD file but 
+
+var buffer = buffer_create(1000000, buffer_grow, 1);
+buffer_write(buffer, buffer_u8, $44);
+buffer_write(buffer, buffer_u8, $44);
+buffer_write(buffer, buffer_u8, $44);
+buffer_write(buffer, buffer_u32, DataVersions._CURRENT - 1);
+buffer_write(buffer, buffer_u8, SERIALIZE_DATA_AND_MAP);
+buffer_write(buffer, buffer_u32, 0);
+
+serialize_save_terrain(buffer);
+
+buffer_write(buffer, buffer_datatype, SerializeThings.END_OF_FILE);
+
+var compressed = buffer_compress(buffer, 0, buffer_tell(buffer));
+buffer_save(compressed, fn);
+buffer_delete(compressed);
+buffer_delete(buffer);

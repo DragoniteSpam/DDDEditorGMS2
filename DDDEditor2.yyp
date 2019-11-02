@@ -448,6 +448,14 @@
             }
         },
         {
+            "Key": "07126765-3877-42ca-baff-58d4e37fc259",
+            "Value": {
+                "id": "87e7e01d-2c51-462d-b9c8-362bf29938e8",
+                "resourcePath": "scripts\\get_save_filename_terrain\\get_save_filename_terrain.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "071ef4d1-cf81-4829-8d4d-693a114059f6",
             "Value": {
                 "id": "6f8498b0-a044-4111-909b-56c12246d581",
@@ -1084,6 +1092,14 @@
             "Value": {
                 "id": "91c53e06-22fe-4222-abbe-28856c2caf0c",
                 "resourcePath": "scripts\\uivc_data_set_property_boolean\\uivc_data_set_property_boolean.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "123893fd-b998-4838-bd15-b1d868630e4a",
+            "Value": {
+                "id": "339fdc7a-e080-488c-8ed1-0701783d251a",
+                "resourcePath": "scripts\\get_open_filename_terrain\\get_open_filename_terrain.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -11648,6 +11664,14 @@
             }
         },
         {
+            "Key": "c94956a3-deb9-49e4-af38-a2cdc53e0dd9",
+            "Value": {
+                "id": "c4f78fc6-a483-4bc8-9a6c-db604b36077e",
+                "resourcePath": "scripts\\terrain_save\\terrain_save.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "c9591af3-357f-4843-b8da-596d9e9072da",
             "Value": {
                 "id": "73c44b87-b52c-4452-a7d0-1ff127dd80ff",
@@ -12076,6 +12100,14 @@
             "Value": {
                 "id": "d74b7f88-5625-4b7b-8cb5-54b53f3e190e",
                 "resourcePath": "scripts\\momu_help\\momu_help.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "d06743d6-72a4-4f5e-b34a-903366ffb586",
+            "Value": {
+                "id": "aa3de79c-1205-4ec9-bb3a-117d33dc9863",
+                "resourcePath": "scripts\\serialize_save_terrain\\serialize_save_terrain.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -13076,6 +13108,14 @@
             "Value": {
                 "id": "f8cd91a3-1d44-421b-92a8-442b0e0b197a",
                 "resourcePath": "scripts\\terrain_save_obj\\terrain_save_obj.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "e1c9b602-b195-4635-bb55-63fb67e57e95",
+            "Value": {
+                "id": "02ffdcd3-f824-48e9-89ba-bca9c1901f2c",
+                "resourcePath": "scripts\\uivc_terrain_save\\uivc_terrain_save.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -16018,6 +16058,7 @@
         "87579f79-441c-400c-b97a-20c4c8e4838c",
         "eef8b573-f5e6-4b2b-8bff-06132ca23570",
         "2442b934-8bdf-45bf-a3b6-0256b7d2937c",
+        "123893fd-b998-4838-bd15-b1d868630e4a",
         "45c78931-f3da-42a1-a393-2b6797bc03c8",
         "0d675d95-ba6b-44c0-8859-dae1079c74ca",
         "fa5b79cb-e8e1-4f81-b77c-66d53cc9b808",
@@ -16025,6 +16066,7 @@
         "b566f7a4-e347-4e1c-95d8-2dc016d31808",
         "8150e7f4-f941-4ca2-8cf9-2ff203af1d60",
         "2c66ec5e-56de-4eaa-be40-88d2d1520e26",
+        "07126765-3877-42ca-baff-58d4e37fc259",
         "322539f4-2f11-4529-b0fd-b85bcab08e7e",
         "eafb66d1-299d-499a-b90d-dd706d2bcb31",
         "fcf970ff-305d-4ebe-9975-49961903f151",
@@ -16105,6 +16147,7 @@
         "7a5d15d6-9cab-4f51-bd03-2381dd75c70a",
         "ba5bd488-1f90-4a66-8b8c-db3e15a46cf6",
         "2005a99e-35bc-41e3-bf5a-8f035ddd6cb8",
+        "d06743d6-72a4-4f5e-b34a-903366ffb586",
         "43d930be-eb66-4f68-b4c3-43195056d4e1",
         "e4b43768-a260-46d2-92a7-9c2e6bc81074",
         "2f4382d9-ac82-4529-8956-751d9d969fce",
@@ -16405,8 +16448,10 @@
         "52e823ae-ae18-4852-98cf-28eff8f21c09",
         "aa087457-cf7d-4538-8501-dce0df98cfc4",
         "7ce9b3cf-7081-4b06-96c5-9df5af141ba2",
+        "e1c9b602-b195-4635-bb55-63fb67e57e95",
         "cf3e6074-68cf-4a7d-b7b2-983008efbc4c",
         "9681e57f-9faa-4e7c-99bb-0339c5066433",
+        "c94956a3-deb9-49e4-af38-a2cdc53e0dd9",
         "e18cf426-a3fb-480c-a371-16b8c8e85693"
     ],
     "tutorial": ""
