@@ -12,6 +12,8 @@ if (fn != "") {
         terrain.texture = sprite;
         button.root.element_tile_selector.tileset = sprite;
         terrain.texture_name = filename_name(fn);
-        button.root.element_texture_name.text = terrain.texture_name;
+        terrain.texture_width = sprite_get_width(sprite);
+        terrain.texture_height = sprite_get_height(sprite);
+        button.root.element_texture_name.text = terrain.texture_name + " (" + string(terrain.texture_width) + " x " + string(terrain.texture_height) + ")";
     }
 }

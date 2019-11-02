@@ -219,7 +219,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element.height + spacing;
 	
-    element = create_text(legal_x + spacing, yy, terrain.texture_name, col_width, element_height, fa_left, col_width, t_texture);
+    element = create_text(legal_x + spacing, yy, terrain.texture_name + " (" + string(terrain.texture_width) + " x " + string(terrain.texture_height) + ")", legal_width, element_height, fa_left, legal_width, t_texture);
     t_texture.element_texture_name = element;
     ds_list_add(t_texture.contents, element);
     

@@ -4,6 +4,8 @@ render = terrain_editor_render;
 
 texture_name = "b_tileset_overworld_0.png";
 texture = terrain_create_texture_sprite(PATH_GRAPHICS + texture_name);
+texture_width = 2048;
+texture_height = 2048;
 
 vertices_per_square = 6;
 format_size = 0;
