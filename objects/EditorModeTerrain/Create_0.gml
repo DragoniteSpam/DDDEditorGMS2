@@ -68,7 +68,7 @@ vertex_begin(terrain_buffer, vertex_format);
 
 for (var i = 0; i < width; i++) {
     for (var j = 0; j < height; j++) {
-        terrain_create_square(terrain_buffer, i, j, buffer_peek(height_data, i * height + j, buffer_f32), 0, 0, tile_size, texel);
+        terrain_create_square(terrain_buffer, i, j, 0, 1, 0, 0, tile_size, texel);
     }
 }
 

@@ -40,6 +40,14 @@
             }
         },
         {
+            "Key": "001c5c16-5098-4d13-ba10-af4cefd37eea",
+            "Value": {
+                "id": "9317b801-68d5-4e17-b33d-84379a921715",
+                "resourcePath": "sprites\\spr_water_base\\spr_water_base.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "003896dc-96eb-44fb-acc7-9bca3d1bf0d4",
             "Value": {
                 "id": "25446bb9-1974-4540-b277-72c7c9ce1b2a",
@@ -1300,6 +1308,14 @@
             "Value": {
                 "id": "d78cb521-f2ab-44db-8d23-134264558464",
                 "resourcePath": "scripts\\merge_colour_ds\\merge_colour_ds.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "15ab5199-66ae-4863-96ee-9fb150a0291e",
+            "Value": {
+                "id": "8d0210fa-372a-4ba8-87b4-40c3e3e3d38a",
+                "resourcePath": "scripts\\graphics_draw_water\\graphics_draw_water.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -2765,6 +2781,14 @@
                 "id": "be1b4e2c-d6cc-45e8-b616-9702f690fc63",
                 "resourcePath": "scripts\\ease_linear\\ease_linear.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "309412fd-8316-494d-9505-42f395e9f039",
+            "Value": {
+                "id": "23277208-9137-40ef-bc3a-9fa234eb8d7f",
+                "resourcePath": "shaders\\shd_water_base\\shd_water_base.yy",
+                "resourceType": "GMShader"
             }
         },
         {
@@ -4861,6 +4885,14 @@
                 "id": "1b8d5d65-f1f0-42f2-a659-44e84e3c9716",
                 "resourcePath": "scripts\\dmu_dialog_export_graphic\\dmu_dialog_export_graphic.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "552c9697-c037-482f-98c7-915f422c7da7",
+            "Value": {
+                "id": "857f1d55-8667-42ae-86b5-f19e496bb6fe",
+                "resourcePath": "sprites\\spr_water_displacement\\spr_water_displacement.yy",
+                "resourceType": "GMSprite"
             }
         },
         {
@@ -8352,6 +8384,14 @@
             }
         },
         {
+            "Key": "8ffd57e5-d65b-4967-b476-bdc681082f64",
+            "Value": {
+                "id": "91d7d43a-ec88-454b-b002-80b60c22886e",
+                "resourcePath": "sprites\\spr_water_bright\\spr_water_bright.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "90218ce4-a6e8-423f-aa14-fd344fe31dc9",
             "Value": {
                 "id": "be0ce1f3-8d0b-4acb-b7d7-34dad1281fad",
@@ -10741,6 +10781,14 @@
                 "id": "c7e0bdc7-396d-4b80-ad41-00e94b65f4c3",
                 "resourcePath": "scripts\\draw_event_node_condition_add\\draw_event_node_condition_add.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "b937c7e0-75b2-4300-bf00-a62b0d572993",
+            "Value": {
+                "id": "1d104385-b429-49bd-b7e2-af3052670116",
+                "resourcePath": "shaders\\shd_water_bright\\shd_water_bright.yy",
+                "resourceType": "GMShader"
             }
         },
         {
@@ -14168,6 +14216,14 @@
             }
         },
         {
+            "Key": "f44a4b38-c433-4ded-a68e-8eab30309e25",
+            "Value": {
+                "id": "157c182d-9fc1-4e73-87a9-11e01ef25cd6",
+                "resourcePath": "views\\f44a4b38-c433-4ded-a68e-8eab30309e25.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "f47b40fe-8520-4436-8953-057fce08b702",
             "Value": {
                 "id": "95498d78-caa7-4590-8556-19739f3344ce",
@@ -15098,6 +15154,7 @@
         "908f9a52-7470-4e76-9808-402f4acb9d67",
         "2a6837e7-9351-4828-b0c8-f7f6095d2e09",
         "d8652093-8c63-4067-92d4-453d3bfe32c0",
+        "15ab5199-66ae-4863-96ee-9fb150a0291e",
         "ef6793cd-a331-44e5-bd38-6920300a558a",
         "1323b8f5-37af-401b-9d1c-ec25fbc023c7",
         "0657dd0d-6793-40d4-9667-d8b3da8ffe19",

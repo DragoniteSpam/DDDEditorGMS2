@@ -94,7 +94,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element.height + spacing;
     
-    element = create_checkbox(col2_x, yy, "OBJ: swap texture UVs?", col_width, element_height, ui_input_terrain_export_swap_uvs, 0, Stuff.terrain.export_swap_uvs, t_general);
+    element = create_checkbox(col2_x, yy, "OBJ: swap UVs?", col_width, element_height, ui_input_terrain_export_swap_uvs, 0, Stuff.terrain.export_swap_uvs, t_general);
     ds_list_add(t_general.contents, element);
     
     yy = yy + element.height + spacing;

@@ -31,3 +31,5 @@ if (terrain.cursor_position != undefined && terrain.view_cylinder) {
 }
 
 transform_reset();
+
+graphics_draw_water();

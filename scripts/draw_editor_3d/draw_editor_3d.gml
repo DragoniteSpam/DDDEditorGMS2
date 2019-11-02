@@ -33,6 +33,8 @@ if (map.is_3d) {
     camera_apply(camera);
 }
 
+graphics_draw_water();
+
 // anything in the world
 
 // the autotile shader doesn't work yet and it's annoying

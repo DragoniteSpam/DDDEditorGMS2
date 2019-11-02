@@ -327,6 +327,21 @@ c_transform_identity();
 
 basic_cage = import_d3d("data\\basic\\cage.d3d", false);
 basic_cylinder = import_d3d("data\\basic\\cylinder.d3d", false);
+
+water_tile_size = 0x8fff;
+water_reptition = 256;
+
+mesh_water_base = vertex_create_buffer();
+mesh_water_bright = vertex_create_buffer();
+
+vertex_begin(mesh_water_base, Camera.vertex_format_basic);
+vertex_begin(mesh_water_bright, Camera.vertex_format_basic);
+
+terrain_create_square(mesh_water_base, -water_tile_size / 2, -water_tile_size / 2, -10, water_tile_size, 0, 0, water_tile_size / water_reptition, 0);
+terrain_create_square(mesh_water_bright, -water_tile_size / 2, -water_tile_size / 2, -9, water_tile_size, 0, 0, water_tile_size / water_reptition, 0);
+
+vertex_end(mesh_water_base);
+vertex_end(mesh_water_bright);
 #endregion
 
 all_bgm = ds_list_create();
