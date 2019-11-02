@@ -5048,6 +5048,14 @@
             }
         },
         {
+            "Key": "57046ca0-eb7a-4df3-8947-1051ad32be6d",
+            "Value": {
+                "id": "b76216a7-e9ca-4653-ab9e-886823c1f36f",
+                "resourcePath": "scripts\\terrain_import_heightmap\\terrain_import_heightmap.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "5735e5b9-2cfa-4498-b97a-f431252d3283",
             "Value": {
                 "id": "568bcfe8-cca1-4b87-96fc-37476f27de5d",
@@ -11864,6 +11872,14 @@
             }
         },
         {
+            "Key": "cae0cdfe-88a4-4819-b5f1-e7ba84bc0055",
+            "Value": {
+                "id": "ddf75068-1fbc-4588-9d9f-40c770a8cd1d",
+                "resourcePath": "scripts\\dmu_terrain_import_heightmap\\dmu_terrain_import_heightmap.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "cae6374b-8f37-4d1f-a9b2-e971176a3b62",
             "Value": {
                 "id": "ba234243-52e5-480a-9b35-920508226c8e",
@@ -16579,6 +16595,7 @@
         "aa087457-cf7d-4538-8501-dce0df98cfc4",
         "7ce9b3cf-7081-4b06-96c5-9df5af141ba2",
         "2d4cde59-e7cc-4103-b4f6-409f20c12e83",
+        "cae0cdfe-88a4-4819-b5f1-e7ba84bc0055",
         "e1c9b602-b195-4635-bb55-63fb67e57e95",
         "a6d9ec6f-9ccd-4ee6-9a9b-1472cef3ffe2",
         "6798e392-6cab-44ad-9f4b-8ed33d61778b",
@@ -16593,6 +16610,7 @@
         "a87d128e-a6f0-49f2-9520-282a6cdd62a8",
         "9681e57f-9faa-4e7c-99bb-0339c5066433",
         "d06bf045-abbb-450c-bb7d-5d2a4a991c4f",
+        "57046ca0-eb7a-4df3-8947-1051ad32be6d",
         "c94956a3-deb9-49e4-af38-a2cdc53e0dd9",
         "db59ae15-86be-4839-ab51-582bfaaf94c4",
         "e18cf426-a3fb-480c-a371-16b8c8e85693",

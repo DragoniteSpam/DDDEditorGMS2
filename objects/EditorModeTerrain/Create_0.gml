@@ -28,6 +28,7 @@ view_water = true;
 export_swap_uvs = false;
 export_swap_zup = false;
 smooth_shading = false;
+dual_layer = false;
 
 cursor_position = undefined;
 // height defaults
