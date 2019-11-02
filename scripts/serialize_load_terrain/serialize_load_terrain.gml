@@ -32,7 +32,7 @@ repeat (n_terrain) {
     terrain.tile_brush_x = buffer_read(buffer, buffer_f32);
     terrain.tile_brush_y = buffer_read(buffer, buffer_f32);
     terrain.paint_color = buffer_read(buffer, buffer_u32);
-    terrain.paint_strength = buffer_read(buffer, buffer_u8);
+    terrain.paint_strength = buffer_read(buffer, buffer_f32);
     terrain.paint_precision = buffer_read(buffer, buffer_u8);
     
     buffer_delete(terrain.height_data);

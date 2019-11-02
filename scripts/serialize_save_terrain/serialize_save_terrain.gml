@@ -31,7 +31,7 @@ buffer_write(buffer, buffer_u8, terrain.style);
 buffer_write(buffer, buffer_f32, terrain.tile_brush_x);
 buffer_write(buffer, buffer_f32, terrain.tile_brush_y);
 buffer_write(buffer, buffer_u32, terrain.paint_color);
-buffer_write(buffer, buffer_u8, terrain.paint_strength);
+buffer_write(buffer, buffer_f32, terrain.paint_strength);
 buffer_write(buffer, buffer_u8, terrain.paint_precision);
 
 // the actual data
