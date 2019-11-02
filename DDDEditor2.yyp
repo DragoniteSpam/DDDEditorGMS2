@@ -14472,6 +14472,14 @@
             }
         },
         {
+            "Key": "f53b0440-3d32-4039-90fe-8d8f548954ca",
+            "Value": {
+                "id": "5f0efc04-04a6-43d8-981e-f834e74b58f1",
+                "resourcePath": "scripts\\uivc_terrain_export_texture\\uivc_terrain_export_texture.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "f5580333-4bb6-4b78-bbba-6f31bd4f15eb",
             "Value": {
                 "id": "42451e5a-f484-49bc-a554-4064e35b4a3f",
@@ -16625,6 +16633,7 @@
         "1964af12-12b5-4633-ae91-53f1536d79dc",
         "a87d128e-a6f0-49f2-9520-282a6cdd62a8",
         "181468e7-f186-4bec-b4dd-7008d34585cc",
+        "f53b0440-3d32-4039-90fe-8d8f548954ca",
         "9681e57f-9faa-4e7c-99bb-0339c5066433",
         "d06bf045-abbb-450c-bb7d-5d2a4a991c4f",
         "57046ca0-eb7a-4df3-8947-1051ad32be6d",

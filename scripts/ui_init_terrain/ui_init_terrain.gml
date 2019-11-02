@@ -209,7 +209,18 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     element = create_button(legal_x + spacing, yy, "Set Mode: Texture", col_width, element_height, fa_center, uivc_terrain_set_mode_texture, t_general);
     ds_list_add(t_texture.contents, element);
     
+    yy = yy + element.height + spacing;
+    
+	element = create_button(legal_x + spacing, yy, "Save Texture", col_width, element_height, fa_center, uivc_terrain_export_texture, t_texture);
+    ds_list_add(t_texture.contents, element);
+    
 	element = create_button(col2_x, yy, "Change Texture", col_width, element_height, fa_center, uivc_terrain_change_texture, t_texture);
+    ds_list_add(t_texture.contents, element);
+    
+    yy = yy + element.height + spacing;
+	
+    element = create_text(legal_x + spacing, yy, terrain.texture_name, col_width, element_height, fa_left, col_width, t_texture);
+    t_texture.element_texture_name = element;
     ds_list_add(t_texture.contents, element);
     
     yy = yy + element.height + spacing;
