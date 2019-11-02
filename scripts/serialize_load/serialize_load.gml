@@ -113,6 +113,7 @@ if (header == "DDD") {
             case SerializeThings.EVENT_CUSTOM: serialize_load_event_custom(buffer, version); break;
 			case SerializeThings.EVENT_PREFAB: serialize_load_event_prefabs(buffer, version); break;
             case SerializeThings.ANIMATIONS: serialize_load_animations(buffer, version); break;
+            case SerializeThings.TERRAIN_HEIGHTMAP: serialize_load_terrain(buffer, version); break;
             case SerializeThings.MAPS: serialize_load_maps(buffer, version); break;
             // map stuff
             case SerializeThings.MAP_META: serialize_load_map_contents_meta(buffer, version, Stuff.active_map);  break;
