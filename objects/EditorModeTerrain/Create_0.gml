@@ -17,8 +17,8 @@ format_size = format_size + buffer_sizeof(buffer_u32);
 vertex_format = vertex_format_end();
 
 // general settings
-height = 256;
-width = 256;
+height = DEFAULT_TERRAIN_HEIGHT;
+width = DEFAULT_TERRAIN_WIDTH;
 
 view_cylinder = true;
 view_scale = 32;

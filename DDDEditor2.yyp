@@ -1480,6 +1480,14 @@
             }
         },
         {
+            "Key": "1964af12-12b5-4633-ae91-53f1536d79dc",
+            "Value": {
+                "id": "3211eea4-4a90-49b9-9989-4de8b4e857a8",
+                "resourcePath": "scripts\\dialog_create_terrain_new\\dialog_create_terrain_new.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "19acc22e-bc74-405c-9a96-633eecb7ff54",
             "Value": {
                 "id": "1a43955e-5439-4be3-874d-395bb4cfd5e1",
@@ -9808,6 +9816,14 @@
             }
         },
         {
+            "Key": "a6d9ec6f-9ccd-4ee6-9a9b-1472cef3ffe2",
+            "Value": {
+                "id": "90ec86ac-769f-48c9-8673-0c97b9c872d4",
+                "resourcePath": "scripts\\ui_terrain_new\\ui_terrain_new.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "a6e9b284-f5b1-449f-a867-c01238c2ed4f",
             "Value": {
                 "id": "581b2f93-1fbe-4713-8350-3fcbf63afbad",
@@ -9908,6 +9924,14 @@
             "Value": {
                 "id": "bafe1fcb-6698-4fca-bb43-a40db8f1aad3",
                 "resourcePath": "scripts\\vector3\\vector3.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "a87d128e-a6f0-49f2-9520-282a6cdd62a8",
+            "Value": {
+                "id": "eb0f501d-d80a-4702-a49b-a753670f5b8a",
+                "resourcePath": "scripts\\dmu_dialog_commit_terrain_create\\dmu_dialog_commit_terrain_create.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -16539,6 +16563,7 @@
         "aa087457-cf7d-4538-8501-dce0df98cfc4",
         "7ce9b3cf-7081-4b06-96c5-9df5af141ba2",
         "e1c9b602-b195-4635-bb55-63fb67e57e95",
+        "a6d9ec6f-9ccd-4ee6-9a9b-1472cef3ffe2",
         "6798e392-6cab-44ad-9f4b-8ed33d61778b",
         "cf3e6074-68cf-4a7d-b7b2-983008efbc4c",
         "77bcf0a4-59a3-43aa-9b69-d5692ca22274",
@@ -16547,6 +16572,8 @@
         "fbe599e7-663c-4eb3-8dc9-8bf0cb2f663d",
         "245b3a73-3daa-4d9d-904e-946de0b715e6",
         "d7daedd5-1cb6-4e17-897f-57fe8a0cf890",
+        "1964af12-12b5-4633-ae91-53f1536d79dc",
+        "a87d128e-a6f0-49f2-9520-282a6cdd62a8",
         "9681e57f-9faa-4e7c-99bb-0339c5066433",
         "c94956a3-deb9-49e4-af38-a2cdc53e0dd9",
         "db59ae15-86be-4839-ab51-582bfaaf94c4",

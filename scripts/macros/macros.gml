@@ -7,7 +7,7 @@
 #macro buffer_datatype buffer_u32
 #macro CAMERA_SAVE_FREQUENCY 5
 #macro CAMERA_ZNEAR 1
-#macro CAMERA_ZFAR 32000
+#macro CAMERA_ZFAR 0x4000
 // these aren't meant to be used for view coordinates but window coordinates, otherwise i'd make them relative
 #macro CH 900
 #macro CW 1080
@@ -68,6 +68,13 @@
 #macro PREFIX_MESH "Msh"
 
 #macro CONTORL_3D_LOOK Controller.mouse_middle
+
+#macro DEFAULT_TERRAIN_HEIGHT 256
+#macro DEFAULT_TERRAIN_WIDTH 256
+#macro MAX_TERRAIN_HEIGHT 512
+#macro MAX_TERRAIN_WIDTH 512
+#macro MIN_TERRAIN_HEIGHT 32
+#macro MIN_TERRAIN_WIDTH 32
 
 #macro view_fullscreen 0
 #macro view_3d 1

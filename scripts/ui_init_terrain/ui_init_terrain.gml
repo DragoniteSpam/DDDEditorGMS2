@@ -111,6 +111,11 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = legal_y + spacing;
     
+    element = create_button(col2_x, yy, "New Terrain", col_width, element_height, fa_center, ui_terrain_new, t_general);
+    ds_list_add(t_general.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
     element = create_button(col2_x, yy, "Save Terrain", col_width, element_height, fa_center, uivc_terrain_save, t_general);
     ds_list_add(t_general.contents, element);
     
