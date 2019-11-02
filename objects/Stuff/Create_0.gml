@@ -337,8 +337,8 @@ mesh_water_bright = vertex_create_buffer();
 vertex_begin(mesh_water_base, Camera.vertex_format_basic);
 vertex_begin(mesh_water_bright, Camera.vertex_format_basic);
 
-terrain_create_square(mesh_water_base, -water_tile_size / 2, -water_tile_size / 2, -10, water_tile_size, 0, 0, water_tile_size / water_reptition, 0);
-terrain_create_square(mesh_water_bright, -water_tile_size / 2, -water_tile_size / 2, -9, water_tile_size, 0, 0, water_tile_size / water_reptition, 0);
+terrain_create_square(mesh_water_base, -water_tile_size / 2, -water_tile_size / 2, water_tile_size, 0, 0, water_tile_size / water_reptition, 0, -10, -10, -10, -10);
+terrain_create_square(mesh_water_bright, -water_tile_size / 2, -water_tile_size / 2, water_tile_size, 0, 0, water_tile_size / water_reptition, 0, -9, -9, -9, -9);
 
 vertex_end(mesh_water_base);
 vertex_end(mesh_water_bright);
