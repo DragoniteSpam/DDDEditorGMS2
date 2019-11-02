@@ -1,13 +1,14 @@
 /// @param EditorModeTerrain
 /// @param cursor-position[]
+/// @param [color]
 
-var terrain = argument0;
-var position = argument1;
+var terrain = argument[0];
+var position = argument[1];
+var color = (argument_count > 2) ? argument[2] : terrain.paint_color;
+var strength = (argument_count > 2) ? 1 : terrain.paint_strength;
 var xx = floor(position[vec3.xx]);
 var yy = floor(position[vec3.yy]);
 var radius = floor(terrain.radius);
-var color = terrain.paint_color;
-var strength = terrain.paint_strength;
 
 var n = 0;
 

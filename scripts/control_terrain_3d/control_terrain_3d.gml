@@ -37,7 +37,7 @@ if (zz < Camera.z) {
         switch (terrain.mode) {
             case TerrainModes.Z: terrain_mode_z(terrain, terrain.cursor_position, -1); break;
             case TerrainModes.TEXTURE: terrain_mode_texture(terrain, terrain.cursor_position); break;
-            case TerrainModes.COLOR: terrain_mode_color(terrain, terrain.cursor_position) break;
+            case TerrainModes.COLOR: terrain_mode_color(terrain, terrain.cursor_position, 0xffffffff) break;
         }
     }
 }
