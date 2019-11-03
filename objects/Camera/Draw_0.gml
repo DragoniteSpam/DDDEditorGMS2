@@ -4,7 +4,7 @@ switch (mode) {
     case EditorModes.EDITOR_3D:
         switch (view_current) {
             case view_3d: draw_editor_3d(); break;
-            case view_ribbon: draw_editor_menu(); break;
+            case view_ribbon: draw_editor_menu(true); break;
             case view_hud: draw_editor_hud(); break;
             // the pop-out window that isn't really a pop-out window
             case view_3d_preview: draw_preview_3d(); draw_preview_3d_overlay(); break;
@@ -37,7 +37,7 @@ switch (mode) {
         gpu_set_cullmode(cull_noculling);
         switch (view_current) {
             case view_3d: draw_editor_terrain(); break;
-            case view_ribbon: draw_editor_menu(); break;
+            case view_ribbon: draw_editor_menu(true); break;
             case view_hud: draw_editor_terrain_hud(); break;
         }
         break;

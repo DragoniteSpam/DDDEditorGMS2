@@ -8680,6 +8680,14 @@
             }
         },
         {
+            "Key": "93e79cca-6db9-4bd6-8dde-4a0390784c1e",
+            "Value": {
+                "id": "c6d2b0b0-f997-487e-8182-e62a15fd71a2",
+                "resourcePath": "scripts\\draw_camera_controls_overlay\\draw_camera_controls_overlay.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "9412247b-d768-43ce-a2a1-6019b6690da4",
             "Value": {
                 "id": "ba5cc19c-4b81-4ed7-931c-117eedddca2a",
@@ -15378,6 +15386,7 @@
         "908f9a52-7470-4e76-9808-402f4acb9d67",
         "2a6837e7-9351-4828-b0c8-f7f6095d2e09",
         "d8652093-8c63-4067-92d4-453d3bfe32c0",
+        "93e79cca-6db9-4bd6-8dde-4a0390784c1e",
         "15ab5199-66ae-4863-96ee-9fb150a0291e",
         "ef6793cd-a331-44e5-bd38-6920300a558a",
         "1323b8f5-37af-401b-9d1c-ec25fbc023c7",

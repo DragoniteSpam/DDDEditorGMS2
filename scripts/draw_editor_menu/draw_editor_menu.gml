@@ -1,3 +1,7 @@
+/// @param [camera-controls?]
+
+var camera_controls = (argument_count > 0) ? argument[0] : false;
+
 // if you're using this in debug mode the overlay is going to be
 // shown and that's going to block out the first part of the menu
 var yy = DEBUG ? 24 : 0;
@@ -6,6 +10,10 @@ var camera = view_get_camera(view_current);
 camera_set_view_mat(camera, matrix_build_lookat(room_width / 2, room_height / 2, -16000,  room_width / 2, room_height / 2, 0, 0, 1, 0));
 camera_set_proj_mat(camera, matrix_build_projection_ortho(room_width, room_height, CAMERA_ZNEAR, CAMERA_ZFAR));
 camera_apply(camera);
+
+if (camera_controls) {
+    draw_camera_controls_overlay();
+}
 
 gpu_set_cullmode(cull_noculling);
 
