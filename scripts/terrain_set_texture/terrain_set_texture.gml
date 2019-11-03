@@ -34,7 +34,7 @@ if (xx > 0 && yy > 0) {
     buffer_poke(terrain.terrain_buffer_data, index5 + 28, buffer_f32, ytex);
 }
 
-if (xx < terrain.width - 1 && yy > 0) {
+if (xx < terrain.width && yy > 0) {
     var index3 = terrain_get_vertex_index(terrain, xx - 1, yy - 1, 3);
     var index4 = index3 + terrain.format_size;
     var index5 = index4 + terrain.format_size;
@@ -47,7 +47,7 @@ if (xx < terrain.width - 1 && yy > 0) {
     buffer_poke(terrain.terrain_buffer_data, index5 + 28, buffer_f32, ytex);
 }
 
-if (xx > 0 && yy < terrain.height - 1) {
+if (xx > 0 && yy < terrain.height) {
     var index0 = terrain_get_vertex_index(terrain, xx - 1, yy - 1, 0);
     var index1 = index0 + terrain.format_size;
     var index2 = index1 + terrain.format_size;
@@ -60,7 +60,7 @@ if (xx > 0 && yy < terrain.height - 1) {
     buffer_poke(terrain.terrain_buffer_data, index2 + 28, buffer_f32, ytex2);
 }
 
-if (xx < terrain.width - 1 && yy < terrain.height - 1) {
+if (xx < terrain.width && yy < terrain.height) {
     var index0 = terrain_get_vertex_index(terrain, xx - 1, yy - 1, 0);
     var index1 = index0 + terrain.format_size;
     var index2 = index1 + terrain.format_size;
