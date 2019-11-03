@@ -8496,14 +8496,6 @@
             }
         },
         {
-            "Key": "8ffd57e5-d65b-4967-b476-bdc681082f64",
-            "Value": {
-                "id": "91d7d43a-ec88-454b-b002-80b60c22886e",
-                "resourcePath": "sprites\\spr_water_bright\\spr_water_bright.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
             "Key": "90218ce4-a6e8-423f-aa14-fd344fe31dc9",
             "Value": {
                 "id": "be0ce1f3-8d0b-4acb-b7d7-34dad1281fad",
@@ -9493,6 +9485,14 @@
                 "id": "0c11404b-3893-4e99-b7f0-e507ba2a206f",
                 "resourcePath": "scripts\\import_d3d\\import_d3d.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "a15f8b22-838c-48a0-8a74-6dc387745147",
+            "Value": {
+                "id": "0d1eea6b-d124-4415-9924-fa76df3b7285",
+                "resourcePath": "views\\a15f8b22-838c-48a0-8a74-6dc387745147.yy",
+                "resourceType": "GMFolder"
             }
         },
         {

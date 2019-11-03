@@ -6,7 +6,8 @@
     "children": [
         "c928dbbc-e9e5-4706-a864-8e0dcd9da316",
         "e9e3162f-24bf-4594-8dcf-1b751e0e4305",
-        "36f7a4ce-a061-421a-b797-cdeaeba21494"
+        "36f7a4ce-a061-421a-b797-cdeaeba21494",
+        "5f874fc3-4343-4ac7-9a4c-56a04e17a103"
     ],
     "filterType": "GMSprite",
     "folderName": "ts",
