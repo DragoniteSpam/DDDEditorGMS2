@@ -21,10 +21,11 @@ if (zz < Camera.z) {
 	var f = abs(Camera.z / zz);
     
     // @todo gml update lwo
-    terrain.cursor_position = [
+    /*terrain.cursor_position = [
 	    clamp((Camera.x + xx * f) / terrain.view_scale, -1, terrain.width - 1),
 	    clamp((Camera.y + yy * f) / terrain.view_scale, -1, terrain.height - 1)
-    ];
+    ];*/
+    terrain.cursor_position = [(Camera.x + xx * f) / terrain.view_scale, (Camera.y + yy * f) / terrain.view_scale];
     
 	if (Controller.mouse_left) {
         switch (terrain.mode) {
