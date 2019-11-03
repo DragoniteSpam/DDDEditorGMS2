@@ -3,7 +3,11 @@
 var terrain = argument0;
 
 if (mouse_within_view(view_3d) && !dialog_exists()) {
-    control_terrain_3d(terrain);
+    if (terrain.orthographic) {
+        control_terrain_3d_ortho(terrain);
+    } else {
+        control_terrain_3d(terrain);
+    }
 }
 
 if (terrain.view_water) {

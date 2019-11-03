@@ -64,6 +64,11 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     //yy = yy + element.height + spacing;
     
+    element = create_checkbox(legal_x + spacing, yy, "Orthographic projection?", col_width, element_height, ui_input_terrain_orthographic, 0, terrain.orthographic, t_general);
+    ds_list_add(t_general.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
     element = create_checkbox(legal_x + spacing, yy, "Draw water?", col_width, element_height, ui_input_terrain_draw_water, 0, terrain.view_water, t_general);
     t_general.element_draw_water = element;
     ds_list_add(t_general.contents, element);

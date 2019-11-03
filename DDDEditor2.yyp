@@ -8200,6 +8200,14 @@
             }
         },
         {
+            "Key": "8bb911fe-e169-4600-88d0-560c6d77bc9c",
+            "Value": {
+                "id": "7b3d1d5f-480b-445d-bd4f-ad1d22c7801b",
+                "resourcePath": "scripts\\control_terrain_3d_ortho\\control_terrain_3d_ortho.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "8bc49c02-d5a7-41a6-9b0d-9573c2b2beb1",
             "Value": {
                 "id": "3473ea04-096b-466b-9fe4-08aba9694978",
@@ -8316,6 +8324,14 @@
             "Value": {
                 "id": "f0a7d798-92e1-46d2-b82c-2bb230c97284",
                 "resourcePath": "scripts\\internal_name_remove\\internal_name_remove.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "8d969df7-5f17-4056-a105-ed69f3d22c52",
+            "Value": {
+                "id": "70296417-2265-4232-b3d0-02e78ebd0d9f",
+                "resourcePath": "scripts\\ui_input_terrain_orthographic\\ui_input_terrain_orthographic.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -16184,6 +16200,7 @@
         "c5b646ec-c93b-43e3-84e9-e2060705dcbe",
         "2014825b-a570-47e1-8600-19c965a6afcb",
         "ae2be7f6-e7b0-45e5-aff6-edeed2e31f40",
+        "8bb911fe-e169-4600-88d0-560c6d77bc9c",
         "5262238b-6f10-4ee8-9117-8d5c0cd70f83",
         "f99fa76c-f1be-44a0-a900-27fc9778a457",
         "ba4a8101-af2b-497e-907d-7a331adf03b6",
@@ -16607,6 +16624,7 @@
         "9a5ad8d0-459d-415b-bcf0-11df54472a6c",
         "257bf034-805c-456b-9643-af5628f2218e",
         "3f64e116-940e-4ebf-8405-7aee7df73e21",
+        "8d969df7-5f17-4056-a105-ed69f3d22c52",
         "ed798771-caa9-4ee3-b7d0-91afc1745c4a",
         "c0bde925-00bd-43ff-9d9e-5edd4da45423",
         "df041495-c198-4b7b-bffc-6efdf79a23df",
