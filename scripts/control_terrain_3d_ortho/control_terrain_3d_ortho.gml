@@ -9,7 +9,10 @@ if (Camera.menu.active_element) {
 var vw = view_get_wport(view_current);
 var vh = view_get_hport(view_current);
 // @todo gml update lwo
-terrain.cursor_position = [(Camera.x + mouse_x_view - vw / 2) / terrain.view_scale, (Camera.y + mouse_y_view - vh / 2) / terrain.view_scale];
+terrain.cursor_position = [
+    (Camera.x + (mouse_x_view - vw / 2) * terrain.orthographic_scale) / terrain.view_scale,
+    (Camera.y + (mouse_y_view - vh / 2) * terrain.orthographic_scale) / terrain.view_scale
+];
 
 if (Controller.mouse_left) {
     switch (terrain.mode) {
@@ -52,6 +55,11 @@ if (!keyboard_check(vk_control)) {
 	if (keyboard_check(vk_right) || keyboard_check(ord("D"))) {
 	    xspeed = xspeed + mspd * Stuff.dt;
 	}
+    if (mouse_wheel_up()) {
+        terrain.orthographic_scale = max(0.5, terrain.orthographic_scale * 0.95);
+    } else if (mouse_wheel_down()) {
+        terrain.orthographic_scale = min(10, terrain.orthographic_scale * 1.05);
+    }
     
 	Camera.x += xspeed;
 	Camera.y += yspeed;

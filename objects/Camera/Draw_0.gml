@@ -42,13 +42,7 @@ switch (mode) {
         }
         break;
 }
-/*Default texture really should not be pokémon anymore since I'm now releasing it
-So at least find a few basic grasses and whatever and make that the default thing instead
 
-Also it needs to be clear how the user can save (or load) a tileset from the main UI,
-and it really should not be tied to the map's active tileset
-
-Documentation maybe?*/
 // these shouldn't be attached to any one view or anything
 if (view_current == view_overlay) {
     for (var i = 0; i < ds_list_size(dialogs); i++) {

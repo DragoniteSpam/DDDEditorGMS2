@@ -35,6 +35,7 @@ export_swap_zup = false;
 smooth_shading = false;
 dual_layer = false;
 orthographic = false;
+orthographic_scale = 1;
 
 cursor_position = undefined;
 // height defaults

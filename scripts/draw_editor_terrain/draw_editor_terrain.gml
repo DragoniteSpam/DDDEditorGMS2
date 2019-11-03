@@ -12,7 +12,7 @@ var terrain = Stuff.terrain;
 
 if (terrain.orthographic) {
     camera_set_view_mat(camera, matrix_build_lookat(x, y, CAMERA_ZFAR - 256, x, y, 0, 0, 1, 0));
-    camera_set_proj_mat(camera, matrix_build_projection_ortho(-vw, vh, CAMERA_ZNEAR, CAMERA_ZFAR));
+    camera_set_proj_mat(camera, matrix_build_projection_ortho(-vw * terrain.orthographic_scale, vh * terrain.orthographic_scale, CAMERA_ZNEAR, CAMERA_ZFAR));
 } else {
     camera_set_view_mat(camera, matrix_build_lookat(x, y, z, xto, yto, zto, xup, yup, zup));
     camera_set_proj_mat(camera, matrix_build_projection_perspective_fov(-fov, -vw / vh, CAMERA_ZNEAR, CAMERA_ZFAR));
