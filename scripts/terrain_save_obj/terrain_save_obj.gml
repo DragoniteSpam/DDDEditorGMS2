@@ -12,7 +12,7 @@ var fx = sprite_get_width(terrain.texture) / terrain.texture_width;
 var fy = sprite_get_height(terrain.texture) / terrain.texture_height;
 
 // because regular string() doesn't give you very good precision
-var mediump = 3;
+var mediump = 4;
 var highp = 8;
 
 var zupswap = terrain.export_swap_zup;
