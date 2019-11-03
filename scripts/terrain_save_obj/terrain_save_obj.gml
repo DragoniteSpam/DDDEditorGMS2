@@ -8,6 +8,9 @@ var vertices = 0;
 var scale = terrain.save_scale;
 var precision = 256 - terrain.paint_precision;
 
+var fx = sprite_get_width(terrain.texture) / terrain.texture_width;
+var fy = sprite_get_height(terrain.texture) / terrain.texture_height;
+
 // because regular string() doesn't give you very good precision
 var mediump = 3;
 var highp = 8;
@@ -62,8 +65,8 @@ for (var i = 0; i < bytes; i = i + terrain.format_size * 3) {
             var nx = buffer_peek(terrain.terrain_buffer_data, j + i + 12, buffer_f32);
             var ny = buffer_peek(terrain.terrain_buffer_data, j + i + 16, buffer_f32);
             var nz = buffer_peek(terrain.terrain_buffer_data, j + i + 20, buffer_f32);
-            var xtex = buffer_peek(terrain.terrain_buffer_data, j + i + 24, buffer_f32);
-            var ytex = buffer_peek(terrain.terrain_buffer_data, j + i + 28, buffer_f32);
+            var xtex = buffer_peek(terrain.terrain_buffer_data, j + i + 24, buffer_f32) * fx;
+            var ytex = buffer_peek(terrain.terrain_buffer_data, j + i + 28, buffer_f32) * fy;
             var color = buffer_peek(terrain.terrain_buffer_data, j + i + 32, buffer_u32);
             
             if (zupswap) {
@@ -126,7 +129,10 @@ for (var i = 0; i < bytes; i = i + terrain.format_size * 3) {
             buffer_write(buffer_mtl, buffer_text,
                 "newmtl " + mtl_name + "\n" +
                 "Kd " + string_format(rr, 1, mediump) + " " + string_format(gg, 1, mediump) + " " + string_format(bb, 1, mediump) + "\n" +
-                "d " + string_format(aa, 1, mediump) + "\nillum 2\n\n"
+                "d " + string_format(aa, 1, mediump) + "\n" +
+                "map_Ka " + terrain.texture_name + "\n" +
+                "map_Kd " + terrain.texture_name + "\n" +
+                "illum 2\n\n"
             );
         }
         
@@ -147,6 +153,7 @@ buffer_poke(buffer_mtl, addr_mtl_count, buffer_text, string_pad(ds_map_size(mtl_
 
 buffer_save_ext(buffer, fn, 1, buffer_tell(buffer));
 buffer_save_ext(buffer_mtl, matfn, 1, buffer_tell(buffer_mtl));
+sprite_save_fixed(terrain.texture, 0, filename_dir(fn) + "\\" + terrain.texture_name, terrain.texture_width, terrain.texture_height);
 
 buffer_delete(buffer);
 buffer_delete(buffer_mtl);
