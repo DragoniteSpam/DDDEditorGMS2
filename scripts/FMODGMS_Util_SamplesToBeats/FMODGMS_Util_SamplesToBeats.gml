@@ -1,10 +1,11 @@
-/// @description FMODGMS_Util_SamplesToBeats(samples, bpm, samplingRate)
 /// @param samples
-/// @param  bpm
-/// @param  samplingRate
+/// @param bpm
+/// @param samplingRate
+
+var samples = argument0;
+var bpm = argument1;
+var rate = argument2;
 
 // Converts time measured in samples to beats, assuming a constant BPM.
 
-{
-    return argument[0] / argument[2] * argument[1] / 60;
-}
+return samples / bpm * rate / 60;

@@ -1,9 +1,9 @@
-/// @description FMODGMS_Util_SamplesToSeconds(samples, samplingRate)
 /// @param samples
-/// @param  samplingRate
+/// @param samplingRate
+
+var samples = argument0;
+var rate = argument1;
 
 // Converts time measured in samples to seconds.
 
-{
-    return argument[0] / argument[1];
-}
+return samples * rate;
