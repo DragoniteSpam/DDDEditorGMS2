@@ -8,6 +8,8 @@
 /// @param y3
 /// @param z3
 
+gml_pragma("forceinline");
+
 var v1x = argument3 - argument0;
 var v1y = argument4 - argument1;
 var v1z = argument5 - argument2;
@@ -19,7 +21,7 @@ var cx = v1y * v2z - v1z * v2y;
 var cy = -v1x * v2z + v1z * v2x;
 var cz = v1x * v2y - v1y * v2x;
 
-var cpl = sqrt(cx * cx + cy * cy + cz * cz);
+var cpl = point_distance_3d(0, 0, 0, cx, cy, cz);
 
 if (cpl != 0) {
     return [cx / cpl, cy / cpl, cz / cpl];

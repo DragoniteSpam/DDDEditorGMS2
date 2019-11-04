@@ -4,6 +4,8 @@
 /// @param [original-min]
 /// @param [original-max]
 
+gml_pragma("forceinline");
+
 var n = argument[0];
 var mn = argument[1];
 var mx = argument[2];

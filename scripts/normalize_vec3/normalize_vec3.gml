@@ -1,4 +1,7 @@
 /// @param vec3
+
+gml_pragma("forceinline");
+
 // @todo gml update this will be part of the vec3 object
 
 var v = argument0;
@@ -8,4 +11,4 @@ if (l != 0) {
     return [v[0] / l, v[1] / l, v[2] / l];
 }
 
-return [0, 0, 1];
+return vector3(0, 0, 1);

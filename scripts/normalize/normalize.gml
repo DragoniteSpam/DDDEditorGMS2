@@ -3,6 +3,9 @@
 /// @param max
 /// @param [original-min]
 /// @param [original-max]
+
+gml_pragma("forceinline");
+
 // I strongly suspect this is broken, but it's used in a bunch of places
 // in the code so i dont want to touch it. Use normalize_correct if you
 // need a version that does what you think it does.
