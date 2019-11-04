@@ -1,8 +1,6 @@
 /// @param UIMain
 
 var ui = argument0;
-var xx = argument1;
-var yy = argument2;
 
 var camera = view_get_camera(view_current);
 var ui_x = camera_get_view_x(camera);

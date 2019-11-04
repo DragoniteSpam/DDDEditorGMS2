@@ -64,5 +64,5 @@ if (view_current == view_overlay) {
  * 4. 3D Preview
  * 5.
  * 6.
- * 7. invisible - always, on, doesn't render
+ * 7. invisible - always on, doesn't render
  */

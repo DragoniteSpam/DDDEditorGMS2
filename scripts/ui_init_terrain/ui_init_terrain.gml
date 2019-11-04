@@ -298,5 +298,6 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy = yy + element.height + spacing;
     
     #endregion
+    
     return id;
 }
