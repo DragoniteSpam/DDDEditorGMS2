@@ -48,7 +48,7 @@ rate = 0.125;
 radius = 4;
 mode = TerrainModes.Z;
 submode = TerrainSubmodes.MOUND;
-style = TerrainStyles.ROUND_BLOCK;
+style = TerrainStyles.CIRCLE;
 // texture defautls
 tile_size = 32 / 4096;
 texel = 1 / 4096;
@@ -105,7 +105,6 @@ enum TerrainSubmodes {
 enum TerrainStyles {
     BLOCK,
     CIRCLE,
-    ROUND_BLOCK,
 }
 
 submode_equation[TerrainSubmodes.MOUND] = terrain_sub_mound;
@@ -113,6 +112,5 @@ submode_equation[TerrainSubmodes.AVERAGE] = terrain_sub_avg;
 submode_equation[TerrainSubmodes.AVG_FLAT] = terrain_sub_flat;
 submode_equation[TerrainSubmodes.ZERO] = terrain_sub_zero;
 
-style_radius_coefficient[TerrainStyles.CIRCLE] = 1.0;       // an exact circle
 style_radius_coefficient[TerrainStyles.BLOCK] = 2.0;        // this will effectively fill the entire space
-style_radius_coefficient[TerrainStyles.ROUND_BLOCK] = 1.2;  // a circle but with the extremities cut off
+style_radius_coefficient[TerrainStyles.CIRCLE] = 1.0;       // an exact circle

@@ -27,7 +27,7 @@ transform_set(0, 0, 0, 0, 0, 0, terrain.view_scale, terrain.view_scale, terrain.
 vertex_submit(terrain.terrain_buffer, pr_trianglelist, sprite_get_texture(terrain.texture, 0));
 
 shader_reset();
-
+/*
 if (terrain.cursor_position != undefined && terrain.view_cylinder) {
     var scale = terrain.view_scale * terrain.radius;
     transform_set(0, 0, 0, 0, 0, 0, scale, scale, scale);
@@ -37,5 +37,5 @@ if (terrain.cursor_position != undefined && terrain.view_cylinder) {
     );
     vertex_submit(Stuff.basic_cylinder, pr_trianglelist, -1);
 }
-
+*/
 transform_reset();
