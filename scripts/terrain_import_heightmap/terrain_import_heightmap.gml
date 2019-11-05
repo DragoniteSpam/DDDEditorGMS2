@@ -45,7 +45,7 @@ terrain.terrain_buffer_data = buffer_create_from_vertex_buffer(terrain.terrain_b
 
 for (var i = 0; i < terrain.width; i++) {
     for (var j = 0; j < terrain.width; j++) {
-        var zz = (buffer_read(buffer, buffer_u32) & 0x00ffffff) / DEFAULT_TERRAIN_HEIGHTMAP_SCALE;
+        var zz = (buffer_read(buffer, buffer_u32) & 0x00ffffff) / DEFAULT_TERRAIN_HEIGHTMAP_SCALE - 256;
         buffer_write(terrain.height_data, buffer_f32, zz);
         terrain_set_z(terrain, i, j, zz);
         terrain_set_normals(terrain, i, j);

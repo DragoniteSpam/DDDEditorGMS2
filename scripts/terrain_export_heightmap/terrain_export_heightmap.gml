@@ -9,7 +9,7 @@ for (var i = 0; i < terrain.width; i++) {
     for (var j = 0; j < terrain.width; j++) {
         // if you want the image to be visible the alpha channel should be ignored, since you're not
         // going to make terrain high enough to actually reach those kinds of values
-        var zz = min(floor(terrain_get_z(terrain, i, j) * DEFAULT_TERRAIN_HEIGHTMAP_SCALE), 0x00ffffff) | 0xff000000;
+        var zz = (min(floor((terrain_get_z(terrain, i, j) + 256) * DEFAULT_TERRAIN_HEIGHTMAP_SCALE), 0x00ffffff) | 0xff000000);
         buffer_write(buffer, buffer_u32, zz);
     }
 }
