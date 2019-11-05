@@ -43,11 +43,19 @@ for (var i = 0; i < terrain.width - 1; i++) {
 vertex_end(terrain.terrain_buffer);
 terrain.terrain_buffer_data = buffer_create_from_vertex_buffer(terrain.terrain_buffer, buffer_fixed, 1);
 
+// the first pass is reading out the data
 for (var i = 0; i < terrain.width; i++) {
-    for (var j = 0; j < terrain.width; j++) {
+    for (var j = 0; j < terrain.height; j++) {
         var zz = (buffer_read(buffer, buffer_u32) & 0x00ffffff) / DEFAULT_TERRAIN_HEIGHTMAP_SCALE - 256;
         buffer_write(terrain.height_data, buffer_f32, zz);
         terrain_set_z(terrain, i, j, zz);
+    }
+}
+
+// you need a second pass for normals because the z value of the outer corners could be
+// changed when they're read in
+for (var i = 0; i < terrain.width; i++) {
+    for (var j = 0; j < terrain.height; j++) {
         terrain_set_normals(terrain, i, j);
     }
 }
