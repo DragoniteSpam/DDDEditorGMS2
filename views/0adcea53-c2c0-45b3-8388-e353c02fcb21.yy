@@ -6,8 +6,7 @@
     "children": [
         "aca1e17d-f71a-4f0b-bcbd-bf8d116647da",
         "fcc7d4ae-cd26-4100-8d60-61259f8e6c06",
-        "81d689e1-223f-4bb6-b7ed-7089fb93af86",
-        "b561c380-05fe-45ec-9e81-1b784193a847"
+        "81d689e1-223f-4bb6-b7ed-7089fb93af86"
     ],
     "filterType": "GMIncludedFile",
     "folderName": "basic",

@@ -2,4 +2,4 @@
 
 var checkbox = argument0;
 
-Stuff.terrain.view_cylinder = checkbox.value;
+Stuff.terrain.smooth_shading = checkbox.value;

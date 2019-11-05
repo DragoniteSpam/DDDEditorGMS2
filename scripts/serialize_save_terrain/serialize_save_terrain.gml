@@ -17,7 +17,7 @@ buffer_write(buffer, buffer_u16, terrain.width);
 
 // i'm also going to save the settings, just in case - i decided not to read most of
 // them back out but still
-var bools = pack(terrain.view_cylinder, terrain.export_all, terrain.view_water, terrain.export_swap_uvs, terrain.export_swap_zup, terrain.smooth_shading, terrain.dual_layer);
+var bools = pack(0, terrain.export_all, terrain.view_water, terrain.export_swap_uvs, terrain.export_swap_zup, terrain.smooth_shading, terrain.dual_layer);
 buffer_write(buffer, buffer_u32, bools);
 buffer_write(buffer, buffer_f32, terrain.view_scale);
 buffer_write(buffer, buffer_f32, terrain.save_scale);

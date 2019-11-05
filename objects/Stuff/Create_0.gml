@@ -326,7 +326,6 @@ c_shape_end_trimesh(c_shape_block);
 c_transform_identity();
 
 basic_cage = import_d3d("data\\basic\\cage.d3d", false);
-basic_cylinder = import_d3d("data\\basic\\cylinder.d3d", false);
 
 water_tile_size = 0xffff;
 water_reptition = 256;

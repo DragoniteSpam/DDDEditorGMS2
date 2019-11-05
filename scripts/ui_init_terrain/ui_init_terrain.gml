@@ -74,13 +74,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     ds_list_add(t_general.contents, element);
     
     yy = yy + element.height + spacing;
-    /*
-    element = create_checkbox(legal_x + spacing, yy, "Draw cylinder?", col_width, element_height, ui_input_terrain_draw_cylinder, 0, terrain.view_cylinder, t_general);
-    t_general.element_draw_cylinder = element;
-    ds_list_add(t_general.contents, element);
     
-    yy = yy + element.height + spacing;
-    */
     element = create_checkbox(legal_x + spacing, yy, "Smooth shading?", col_width, element_height, ui_input_terrain_smooth_shading, 0, terrain.smooth_shading, t_general);
     t_general.element_smooth_shading = element;
     //ds_list_add(t_general.contents, element);

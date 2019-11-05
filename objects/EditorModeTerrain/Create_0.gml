@@ -25,7 +25,6 @@ vertex_format = vertex_format_end();
 height = DEFAULT_TERRAIN_HEIGHT;
 width = DEFAULT_TERRAIN_WIDTH;
 
-view_cylinder = true;
 view_scale = 32;
 save_scale = 1;
 export_all = false;
