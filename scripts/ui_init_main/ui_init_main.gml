@@ -385,7 +385,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     ds_list_add(t_p_entity.contents, element_entity_name);
     element_entity_name.interactive = false;
     
-    vx2 = vx1 + 80;
+    vx2 = col_width;
     yy = yy + element_entity_name.height + spacing;
     
     element = create_text(legal_x + spacing, yy, "Basic Properties", col_width, element_height, fa_left, col_width, t_p_entity);
@@ -706,7 +706,8 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     element_mesh_list.render_colors = ui_list_color_smf;
     ds_list_add(t_p_mesh_editor.contents, element_mesh_list);
     
-    element = create_text(col2_x, yy, "Mesh Properties:", col_width, element_height, fa_left, col_width, t_p_mesh_editor);
+    element = create_text(col2_x, yy, "Mesh Properties", col_width, element_height, fa_left, col_width, t_p_mesh_editor);
+    element.color = c_blue;
     ds_list_add(t_p_mesh_editor.contents, element);
     
     yy = yy + element.height + spacing;
@@ -718,7 +719,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + t_p_mesh_editor.mesh_name.height + spacing;
     
-    element = create_input(col2_x, yy, "Internal:", col_width, element_height, uivc_input_mesh_internal_name, "", "Internal Name", validate_string_internal_name, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, t_p_mesh_editor);
+    element = create_input(col2_x, yy, "Internal:", col_width, element_height, uivc_input_mesh_internal_name, "", "A-Za-z0-9_", validate_string_internal_name, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, t_p_mesh_editor);
     ds_list_add(t_p_mesh_editor.contents, element);
     
     t_p_mesh_editor.mesh_name_internal = element;
@@ -771,7 +772,8 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     var bounds_x = col2_x;
     var bounds_x_2 = bounds_x + col_width / 2;
     
-    element = create_text(bounds_x, yy, "Bounds:", col_width, element_height, fa_left, col_width, t_p_mesh_editor);
+    element = create_text(bounds_x, yy, "Bounds", col_width, element_height, fa_left, col_width, t_p_mesh_editor);
+    element.color = c_blue;
     ds_list_add(t_p_mesh_editor.contents, element);
     
     yy = yy + element.height + spacing;
@@ -817,6 +819,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy = yy + element.height + spacing;
     
     element = create_text(col2_x, yy, "General Mesh Things", col_width, element_height, fa_left, col_width, t_p_mesh_editor);
+    element.color = c_blue;
     ds_list_add(t_p_mesh_editor.contents, element);
     
     yy = yy + element.height + spacing;
@@ -857,7 +860,8 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     t_p_autotile_editor.element_list = element;
     
-    element = create_text(col2_x, yy, "Autotile Properties:", col_width, element_height, fa_left, col_width, t_p_autotile_editor);
+    element = create_text(col2_x, yy, "Autotile Properties", col_width, element_height, fa_left, col_width, t_p_autotile_editor);
+    element.color = c_blue;
     ds_list_add(t_p_autotile_editor.contents, element);
     
     yy = yy + element.height + spacing;
