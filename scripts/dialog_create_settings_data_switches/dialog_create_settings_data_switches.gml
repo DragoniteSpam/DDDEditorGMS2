@@ -30,13 +30,13 @@ dg.el_list = el_list;
 yy = yy + ui_get_list_height(el_list) + spacing;
 
 yy = yy_start;
-var el_max = create_input(c2 + 32, yy, "Maximum", ew, eh, dialog_create_commit_switches_resize, 0, string(n_switches), "0...65535", validate_int, ui_value_real, 0, 65535, 5, vx1, vy1, vx2, vy2, dg);
+var el_max = create_input(c2 + 32, yy, "Maximum", ew, eh, dialog_create_commit_switches_resize, string(n_switches), "0...65535", validate_int, 0, 65535, 5, vx1, vy1, vx2, vy2, dg);
 el_max.require_enter = true;
 yy = yy + el_max.height + spacing;
 
 yy = yy + eh + spacing;
 
-var el_name = create_input(c2 + 32, yy, "Switch name:", ew, eh, uivc_global_switch_name, 0, "", "16 characters", validate_string, ui_value_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
+var el_name = create_input(c2 + 32, yy, "Switch name:", ew, eh, uivc_global_switch_name, "", "16 characters", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
 yy = yy + el_name.height + spacing;
 dg.el_name = el_name;
 var el_default = create_checkbox(c2 + 32, yy, "Default value", ew, eh, uivc_global_switch_default, false, dg);

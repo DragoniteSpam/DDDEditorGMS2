@@ -81,17 +81,20 @@ yy = yy + el_remove.height + spacing;
 
 switch (property.type) {
     case DataTypes.INT:
-        var el_value = create_input(16, yy, "Value: ", ew, eh, uivc_data_property_list_number, dialog.key, "0", string(property.range_min) + "..." + string(property.range_max),
-            validate_int, ui_value_real, property.range_min, property.range_max, log10(property.range_max) + 2, vx1, vy1, vx2, vy2, dg);
+        var el_value = create_input(16, yy, "Value: ", ew, eh, uivc_data_property_list_number, "0", string(property.range_min) + "..." + string(property.range_max),
+            validate_int, property.range_min, property.range_max, log10(property.range_max) + 2, vx1, vy1, vx2, vy2, dg);
+        el_value.key = dialog.key;
         yy = yy + el_value.height + spacing;
         break;
     case DataTypes.FLOAT:
-        var el_value = create_input(16, yy, "Value: ", ew, eh, uivc_data_property_list_number, dialog.key, "0", string(property.range_min) + "..." + string(property.range_max),
-            validate_double, ui_value_real, property.range_min, property.range_max, 12, vx1, vy1, vx2, vy2, dg);
+        var el_value = create_input(16, yy, "Value: ", ew, eh, uivc_data_property_list_number, "0", string(property.range_min) + "..." + string(property.range_max),
+            validate_double, property.range_min, property.range_max, 12, vx1, vy1, vx2, vy2, dg);
+        el_value.key = dialog.key;
         yy = yy + el_value.height + spacing;
         break;
     case DataTypes.STRING:
-        var el_value = create_input(16, yy, "Value: ", ew, eh, uivc_data_property_list_string, dialog.key, "0", "text", validate_string, ui_value_string, 0, 1, property.char_limit, vx1, vy1, vx2, vy2, dg);
+        var el_value = create_input(16, yy, "Value: ", ew, eh, uivc_data_property_list_string, "0", "text", validate_string, 0, 1, property.char_limit, vx1, vy1, vx2, vy2, dg);
+        el_value.key = dialog.key;
         yy = yy + el_value.height + spacing;
         break;
     case DataTypes.BOOL:

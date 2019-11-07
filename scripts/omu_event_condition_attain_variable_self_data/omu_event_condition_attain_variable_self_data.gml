@@ -38,7 +38,7 @@ create_radio_array_options(el_comparison, ["Less (<)", "Less or Equal (<=)", "Eq
 
 yy = yy + ui_get_radio_array_height(el_comparison) + spacing;
 
-var el_value = create_input(c2 + 16, yy, "Value:", ew, eh, uivc_event_condition_attain_variable_self_value, 0, value, "float", validate_double, ui_value_real, -(1 << 31), (1 << 31) - 1, 11, vx1, vy1, vx2, vy2, dg);
+var el_value = create_input(c2 + 16, yy, "Value:", ew, eh, uivc_event_condition_attain_variable_self_value, value, "float", validate_double, -(1 << 31), (1 << 31) - 1, 11, vx1, vy1, vx2, vy2, dg);
 dg.el_value = el_value;
 
 var b_width = 128;

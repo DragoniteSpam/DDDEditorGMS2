@@ -25,20 +25,20 @@ if (animation) {
     var yy_base = yy;
     var spacing = 16;
     
-    var el_name = create_input(16, yy, "Name:", ew, eh, uivc_animation_set_name, 0, animation.name, "text", validate_string, ui_value_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
+    var el_name = create_input(16, yy, "Name:", ew, eh, uivc_animation_set_name, animation.name, "text", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
     
     yy = yy + el_name.height + spacing;
     
-    var el_internal_name = create_input(16, yy, "Internal Name:", ew, eh, uivc_animation_set_internal_name, 0, animation.internal_name, "Internal name", validate_string_internal_name, ui_value_string, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
+    var el_internal_name = create_input(16, yy, "Internal Name:", ew, eh, uivc_animation_set_internal_name, animation.internal_name, "Internal name", validate_string_internal_name, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
     el_internal_name.render = ui_render_text_animation_internal_name;
     
     yy = yy + el_internal_name.height + spacing;
     
-    var el_frame_rate = create_input(16, yy, "Moment rate:", ew, eh, uivc_animation_set_frame_rate, 0, string(animation.frames_per_second), "integer", validate_int, ui_value_real, 1, 96, 2, vx1, vy1, vx2, vy2, dg);
+    var el_frame_rate = create_input(16, yy, "Moment rate:", ew, eh, uivc_animation_set_frame_rate, string(animation.frames_per_second), "integer", validate_int, 1, 96, 2, vx1, vy1, vx2, vy2, dg);
     
     yy = yy + el_frame_rate.height + spacing;
     
-    var el_moments = create_input(16, yy, "Moments:", ew, eh, uivc_animation_set_moments, 0, string(animation.moments), "integer", validate_int, ui_value_real, 1, 65535, 3, vx1, vy1, vx2, vy2, dg);
+    var el_moments = create_input(16, yy, "Moments:", ew, eh, uivc_animation_set_moments, string(animation.moments), "integer", validate_int, 1, 65535, 3, vx1, vy1, vx2, vy2, dg);
     
     yy = yy + el_moments.height + spacing;
     

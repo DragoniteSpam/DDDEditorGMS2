@@ -33,11 +33,11 @@ if (keyframe) {
     
     yy = yy + ui_get_radio_array_height(el_graphic_type) + spacing;
     
-    var el_graphic_speed = create_input(16, yy, "Animation Speed", ew, eh, uivc_animation_keyframe_graphic_speed, 0, keyframe.graphic_speed, "float", validate_double, ui_value_real, 0, 16, 4, vx1, vy1, vx2, vy2, dg);
+    var el_graphic_speed = create_input(16, yy, "Animation Speed", ew, eh, uivc_animation_keyframe_graphic_speed, keyframe.graphic_speed, "float", validate_double, 0, 16, 4, vx1, vy1, vx2, vy2, dg);
     
     yy = yy + el_graphic_speed.height + spacing;
     
-    var el_event = create_input(16, yy, "Function call", ew, eh, uivc_animation_keyframe_function, 0, keyframe.event, "string", validate_string, ui_value_string, 0, 1, 16, vx1, vy1, vx2, vy2, dg);
+    var el_event = create_input(16, yy, "Function call", ew, eh, uivc_animation_keyframe_function, keyframe.event, "string", validate_string, 0, 1, 16, vx1, vy1, vx2, vy2, dg);
     
     yy = yy + el_event.height + spacing;
     

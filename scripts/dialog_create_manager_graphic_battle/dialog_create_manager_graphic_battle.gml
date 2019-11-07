@@ -46,21 +46,21 @@ yy = yy + el_export.height + spacing;
 
 var el_name_text = create_text(c2 + 16, yy, "Name:", ew, eh, fa_left, ew, dg);
 yy = yy + el_name_text.height + spacing;
-var el_name = create_input(c2 + 16, yy, "", ew, eh, uivc_input_graphic_name, "", "", "", validate_string, ui_value_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
+var el_name = create_input(c2 + 16, yy, "", ew, eh, uivc_input_graphic_name, "", "", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
 dg.el_name = el_name;
 yy = yy + el_name.height + spacing;
 var el_name_internal_text = create_text(c2 + 16, yy, "Internal Name:", ew, eh, fa_left, ew, dg);
 yy = yy + el_name_internal_text.height + spacing;
-var el_name_internal = create_input(c2 + 16, yy, "", ew, eh, uivc_input_graphic_internal_name, "", "", "A-Za-z0-9_", validate_string_internal_name, ui_value_string, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
+var el_name_internal = create_input(c2 + 16, yy, "", ew, eh, uivc_input_graphic_internal_name, "", "A-Za-z0-9_", validate_string_internal_name, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
 dg.el_name_internal = el_name_internal;
 yy = yy + el_name_internal.height + spacing;
 
 vx1 = ew / 2;
 
-var el_frames_horizontal = create_input(c2 + 16, yy, "X frames:", ew, eh, uivc_input_graphic_set_frames_h, "", "1", "0...255", validate_int, ui_value_real, 0, 255, 3, vx1, vy1, vx2, vy2, dg);
+var el_frames_horizontal = create_input(c2 + 16, yy, "X frames:", ew, eh, uivc_input_graphic_set_frames_h, "1", "0...255", validate_int, 0, 255, 3, vx1, vy1, vx2, vy2, dg);
 dg.el_frames_horizontal = el_frames_horizontal;
 yy = yy + el_name_internal.height + spacing;
-var el_frames_vertical = create_input(c2 + 16, yy, "Y frames:", ew, eh, uivc_input_graphic_set_frames_v, "", "1", "0...255", validate_int, ui_value_real, 0, 255, 3, vx1, vy1, vx2, vy2, dg);
+var el_frames_vertical = create_input(c2 + 16, yy, "Y frames:", ew, eh, uivc_input_graphic_set_frames_v, "1", "0...255", validate_int, 0, 255, 3, vx1, vy1, vx2, vy2, dg);
 dg.el_frames_vertical = el_frames_vertical;
 yy = yy + el_frames_vertical.height + spacing;
 

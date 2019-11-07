@@ -109,7 +109,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
         
         yy = yy + element.height;
         
-        el_keyframe.translate_x = create_input(xx, yy, "      x:", ew, eh, uivc_animation_keyframe_translation_x, 0, "0", "float", validate_double, ui_value_real, -MILLION, MILLION, 10, vx1, vy1, vx2, vy2, el_keyframe);
+        el_keyframe.translate_x = create_input(xx, yy, "      x:", ew, eh, uivc_animation_keyframe_translation_x, "0", "float", validate_double, -MILLION, MILLION, 10, vx1, vy1, vx2, vy2, el_keyframe);
         el_keyframe.translate_x.render = ui_render_animation_keyframe_translate_x;
         ds_list_add(el_keyframe.contents, el_keyframe.translate_x);
         el_keyframe.tween_translate_x = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, omu_animation_keyframe_tween, el_keyframe);
@@ -118,7 +118,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
         
         yy = yy + el_keyframe.translate_x.height;
     
-        el_keyframe.translate_y = create_input(xx, yy, "      y:", ew, eh, uivc_animation_keyframe_translation_y, 0, "0", "float", validate_double, ui_value_real, -MILLION, MILLION, 10, vx1, vy1, vx2, vy2, el_keyframe);
+        el_keyframe.translate_y = create_input(xx, yy, "      y:", ew, eh, uivc_animation_keyframe_translation_y, "0", "float", validate_double, -MILLION, MILLION, 10, vx1, vy1, vx2, vy2, el_keyframe);
         el_keyframe.translate_y.render = ui_render_animation_keyframe_translate_y;
         ds_list_add(el_keyframe.contents, el_keyframe.translate_y);
         el_keyframe.tween_translate_y = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, omu_animation_keyframe_tween, el_keyframe);
@@ -127,7 +127,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
         
         yy = yy + el_keyframe.translate_y.height;
     
-        el_keyframe.translate_z = create_input(xx, yy, "      z:", ew, eh, uivc_animation_keyframe_translation_z, 0, "0", "float", validate_double, ui_value_real, -MILLION, MILLION, 10, vx1, vy1, vx2, vy2, el_keyframe);
+        el_keyframe.translate_z = create_input(xx, yy, "      z:", ew, eh, uivc_animation_keyframe_translation_z, "0", "float", validate_double, -MILLION, MILLION, 10, vx1, vy1, vx2, vy2, el_keyframe);
         el_keyframe.translate_z.render = ui_render_animation_keyframe_translate_z;
         ds_list_add(el_keyframe.contents, el_keyframe.translate_z);
         el_keyframe.tween_translate_z = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, omu_animation_keyframe_tween, el_keyframe);
@@ -141,7 +141,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
         
         yy = yy + element.height;
     
-        el_keyframe.rotate_x = create_input(xx, yy, "      x:", ew, eh, uivc_animation_keyframe_rotation_x, 0, "0", "float", validate_double, ui_value_real, -MILLION, MILLION, 10, vx1, vy1, vx2, vy2, el_keyframe);
+        el_keyframe.rotate_x = create_input(xx, yy, "      x:", ew, eh, uivc_animation_keyframe_rotation_x, "0", "float", validate_double, -MILLION, MILLION, 10, vx1, vy1, vx2, vy2, el_keyframe);
         el_keyframe.rotate_x.render = ui_render_animation_keyframe_rotate_x;
         ds_list_add(el_keyframe.contents, el_keyframe.rotate_x);
         el_keyframe.tween_rotate_x = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, omu_animation_keyframe_tween, el_keyframe);
@@ -150,7 +150,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
         
         yy = yy + el_keyframe.rotate_x.height;
     
-        el_keyframe.rotate_y = create_input(xx, yy, "      y:", ew, eh, uivc_animation_keyframe_rotation_y, 0, "0", "float", validate_double, ui_value_real, -MILLION, MILLION, 10, vx1, vy1, vx2, vy2, el_keyframe);
+        el_keyframe.rotate_y = create_input(xx, yy, "      y:", ew, eh, uivc_animation_keyframe_rotation_y, "0", "float", validate_double, -MILLION, MILLION, 10, vx1, vy1, vx2, vy2, el_keyframe);
         el_keyframe.rotate_y.render = ui_render_animation_keyframe_rotate_y;
         ds_list_add(el_keyframe.contents, el_keyframe.rotate_y);
         el_keyframe.tween_rotate_y = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, omu_animation_keyframe_tween, el_keyframe);
@@ -159,7 +159,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
         
         yy = yy + el_keyframe.rotate_y.height;
     
-        el_keyframe.rotate_z = create_input(xx, yy, "      z:", ew, eh, uivc_animation_keyframe_rotation_z, 0, "0", "float", validate_double, ui_value_real, -MILLION, MILLION, 10, vx1, vy1, vx2, vy2, el_keyframe);
+        el_keyframe.rotate_z = create_input(xx, yy, "      z:", ew, eh, uivc_animation_keyframe_rotation_z, "0", "float", validate_double, -MILLION, MILLION, 10, vx1, vy1, vx2, vy2, el_keyframe);
         el_keyframe.rotate_z.render = ui_render_animation_keyframe_rotate_z;
         ds_list_add(el_keyframe.contents, el_keyframe.rotate_z);
         el_keyframe.tween_rotate_z = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, omu_animation_keyframe_tween, el_keyframe);
@@ -173,7 +173,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
         
         yy = yy + element.height;
         
-        el_keyframe.scale_x = create_input(xx, yy, "      x:", ew, eh, uivc_animation_keyframe_scale_x, 0, "1", "float", validate_double, ui_value_real, -100, 100, 5, vx1, vy1, vx2, vy2, el_keyframe);
+        el_keyframe.scale_x = create_input(xx, yy, "      x:", ew, eh, uivc_animation_keyframe_scale_x, "1", "float", validate_double, -100, 100, 5, vx1, vy1, vx2, vy2, el_keyframe);
         el_keyframe.scale_x.render = ui_render_animation_keyframe_scale_x;
         ds_list_add(el_keyframe.contents, el_keyframe.scale_x);
         el_keyframe.tween_scale_x = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, omu_animation_keyframe_tween, el_keyframe);
@@ -182,7 +182,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
         
         yy = yy + el_keyframe.scale_x.height;
     
-        el_keyframe.scale_y = create_input(xx, yy, "      y:", ew, eh, uivc_animation_keyframe_scale_y, 0, "1", "float", validate_double, ui_value_real, -100, 100, 5, vx1, vy1, vx2, vy2, el_keyframe);
+        el_keyframe.scale_y = create_input(xx, yy, "      y:", ew, eh, uivc_animation_keyframe_scale_y, "1", "float", validate_double, -100, 100, 5, vx1, vy1, vx2, vy2, el_keyframe);
         el_keyframe.scale_y.render = ui_render_animation_keyframe_scale_y;
         ds_list_add(el_keyframe.contents, el_keyframe.scale_y);
         el_keyframe.tween_scale_y = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, omu_animation_keyframe_tween, el_keyframe);
@@ -191,7 +191,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
         
         yy = yy + el_keyframe.scale_y.height;
     
-        el_keyframe.scale_z = create_input(xx, yy, "      z:", ew, eh, uivc_animation_keyframe_scale_z, 0, "1", "float", validate_double, ui_value_real, -100, 100, 5, vx1, vy1, vx2, vy2, el_keyframe);
+        el_keyframe.scale_z = create_input(xx, yy, "      z:", ew, eh, uivc_animation_keyframe_scale_z, "1", "float", validate_double, -100, 100, 5, vx1, vy1, vx2, vy2, el_keyframe);
         el_keyframe.scale_z.render = ui_render_animation_keyframe_scale_z;
         ds_list_add(el_keyframe.contents, el_keyframe.scale_z);
         el_keyframe.tween_scale_z = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, omu_animation_keyframe_tween, el_keyframe);
@@ -214,7 +214,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
         
         yy = yy + el_keyframe.color.height;
     
-        el_keyframe.alpha = create_input(xx, yy, "      alpha:", ew, eh, uivc_animation_keyframe_alpha, 0, "1", "float", validate_double, ui_value_real, 0, 1, 6, vx1, vy1, vx2, vy2, el_keyframe);
+        el_keyframe.alpha = create_input(xx, yy, "      alpha:", ew, eh, uivc_animation_keyframe_alpha, "1", "float", validate_double, 0, 1, 6, vx1, vy1, vx2, vy2, el_keyframe);
         el_keyframe.alpha.render = ui_render_animation_keyframe_alpha;
         ds_list_add(el_keyframe.contents, el_keyframe.alpha);
         el_keyframe.tween_alpha = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, omu_animation_keyframe_tween, el_keyframe);

@@ -46,12 +46,12 @@ yy = yy + el_export.height + spacing;
 
 var el_name_text = create_text(c2 + 16, yy, "Name:", ew, eh, fa_left, ew, dg);
 yy = yy + el_name_text.height + spacing;
-var el_name = create_input(c2 + 16, yy, "", ew, eh, uivc_input_graphic_name, "", "", "", validate_string, ui_value_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
+var el_name = create_input(c2 + 16, yy, "", ew, eh, uivc_input_graphic_name, "", "", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
 dg.el_name = el_name;
 yy = yy + el_name.height + spacing;
 var el_name_internal_text = create_text(c2 + 16, yy, "Internal Name:", ew, eh, fa_left, ew, dg);
 yy = yy + el_name_internal_text.height + spacing;
-var el_name_internal = create_input(c2 + 16, yy, "", ew, eh, uivc_input_graphic_internal_name, "", "", "A-Za-z0-9_", validate_string_internal_name, ui_value_string, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
+var el_name_internal = create_input(c2 + 16, yy, "", ew, eh, uivc_input_graphic_internal_name, "", "A-Za-z0-9_", validate_string_internal_name, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
 dg.el_name_internal = el_name_internal;
 yy = yy + el_name_internal.height + spacing;
 
@@ -60,10 +60,10 @@ vx1 = ew / 2;
 // these are disabled here and they don't modify yy, but they're still added to the list
 // so that (1) they exist and can be accessed, if not do anything, and (b) will still be
 // cleaned up when the dialog is closed
-var el_frames_horizontal = create_input(c2 + 16, yy, "X frames:", ew, eh, uivc_input_graphic_set_frames_h, "", "1", "0...255", validate_int, ui_value_real, 0, 255, 3, vx1, vy1, vx2, vy2, dg);
+var el_frames_horizontal = create_input(c2 + 16, yy, "X frames:", ew, eh, uivc_input_graphic_set_frames_h, "1", "0...255", validate_int, 0, 255, 3, vx1, vy1, vx2, vy2, dg);
 el_frames_horizontal.enabled = false;
 dg.el_frames_horizontal = el_frames_horizontal;
-var el_frames_vertical = create_input(c2 + 16, yy, "Y frames:", ew, eh, uivc_input_graphic_set_frames_v, "", "1", "0...255", validate_int, ui_value_real, 0, 255, 3, vx1, vy1, vx2, vy2, dg);
+var el_frames_vertical = create_input(c2 + 16, yy, "Y frames:", ew, eh, uivc_input_graphic_set_frames_v, "1", "0...255", validate_int, 0, 255, 3, vx1, vy1, vx2, vy2, dg);
 el_frames_vertical.enabled = false;
 dg.el_frames_vertical = el_frames_vertical;
 
@@ -83,7 +83,8 @@ yy = yy + el_texture_page.height + spacing;
 
 var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
 
-ds_list_add(dg.contents, el_list,
+ds_list_add(dg.contents,
+    el_list,
     el_add, el_remove, el_change, el_export,
     el_name_text, el_name, el_name_internal_text, el_name_internal,
     el_dimensions, el_frames_horizontal, el_frames_vertical, el_image,

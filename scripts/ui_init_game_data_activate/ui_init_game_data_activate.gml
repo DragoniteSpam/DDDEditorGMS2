@@ -49,14 +49,14 @@ if (selection + 1) {
 	        ds_list_add(container.contents, col_data);
             
 	        var element_header = noone;
-	        var element = create_input(spacing, yy, "Name:", ew, eh * 2, uivc_data_set_name, "", "", "Instance name", validate_string, ui_value_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, noone);
+	        var element = create_input(spacing, yy, "Name:", ew, eh * 2, uivc_data_set_name, "", "Instance name", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, noone);
             element.valignment = fa_top;
 	        yy = yy + element.height + spacing;
             
 	        ds_list_add(col_data.contents, element);
 	        Camera.ui_game_data.el_inst_name = element;
             
-	        var element = create_input(spacing, yy, "Internal Name:", ew, eh * 2, uivc_data_set_internal_name, "", "", "Internal name", validate_string_internal_name, ui_value_string, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, noone);
+	        var element = create_input(spacing, yy, "Internal Name:", ew, eh * 2, uivc_data_set_internal_name, "", "Internal name", validate_string_internal_name, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, noone);
             element.valignment = fa_top;
 	        element.render = ui_render_text_data_internal_name;
 	        yy = yy + element.height + spacing + eh / 2;
@@ -72,19 +72,22 @@ if (selection + 1) {
 	                        if (property.range_min < 0 || property.range_max < 0) {
 	                            char_limit++;
 	                        }
-	                        var element = create_input(spacing, yy, property.name, ew, eh, uivc_data_set_property_input, i, property.range_min, string(property.range_min) + " - " + string(property.range_max), validate_int, ui_value_real,
+	                        var element = create_input(spacing, yy, property.name, ew, eh, uivc_data_set_property_input, property.range_min, string(property.range_min) + " - " + string(property.range_max), validate_int,
 	                            property.range_min, property.range_max, char_limit, vx1n, vy1n, vx2n, vy2n, noone);
+                            element.key = i;
 	                        var hh = element.height;
 	                        break;
 	                    case DataTypes.FLOAT:          // input
-	                        var element = create_input(spacing, yy, property.name, ew, eh, uivc_data_set_property_input, i, property.range_min, string(property.range_min) + " - " + string(property.range_max), validate_double, ui_value_real,
+	                        var element = create_input(spacing, yy, property.name, ew, eh, uivc_data_set_property_input, property.range_min, string(property.range_min) + " - " + string(property.range_max), validate_double,
 	                            property.range_min, property.range_max, 10 /* hard-coded, please do not touch */, vx1n, vy1n, vx2n, vy2n, noone);
+                            element.key = i;
 	                        var hh = element.height;
 	                        break;
 	                    case DataTypes.STRING:         // input
-	                        var element = create_input(spacing, yy, property.name, ew, eh * 2, uivc_data_set_property_input, i, "", "string", validate_string, ui_value_string,
+	                        var element = create_input(spacing, yy, property.name, ew, eh * 2, uivc_data_set_property_input, "", "string", validate_string,
 	                            0, 1, property.char_limit, vx1, vy1, vx2, vy2, noone);
                             element.valignment = fa_top;
+                            element.key = i;
 	                        var hh = element.height + eh / 2;
 	                        break;
 	                    case DataTypes.ENUM:           // list

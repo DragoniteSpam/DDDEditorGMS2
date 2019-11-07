@@ -33,12 +33,12 @@ yy = yy + el_remove.height + spacing;
 
 var el_name_text = create_text(c2 + 16, yy, "Name:", ew, eh, fa_left, ew, dg);
 yy = yy + el_name_text.height + spacing;
-var el_name = create_input(c2 + 16, yy, "", ew, eh, uivc_input_audio_se_name, "", "", "", validate_string, ui_value_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
+var el_name = create_input(c2 + 16, yy, "", ew, eh, uivc_input_audio_se_name, "", "", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
 dg.el_name = el_name;
 yy = yy + el_name.height + spacing;
 var el_name_internal_text = create_text(c2 + 16, yy, "Internal Name:", ew, eh, fa_left, ew, dg);
 yy = yy + el_name_internal_text.height + spacing;
-var el_name_internal = create_input(c2 + 16, yy, "", ew, eh, uivc_input_audio_se_internal_name, "", "", "A-Za-z0-9_", validate_string_internal_name, ui_value_string, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
+var el_name_internal = create_input(c2 + 16, yy, "", ew, eh, uivc_input_audio_se_internal_name, "", "A-Za-z0-9_", validate_string_internal_name, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
 dg.el_name_internal = el_name_internal;
 yy = yy + el_name_internal.height + spacing;
 
@@ -56,10 +56,11 @@ var el_effects = create_text(c2 + 16, yy, "Effects such as volume, pitch, etc ca
 
 var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
 
-ds_list_add(dg.contents, el_list,
-    el_add, el_remove,
+ds_list_add(dg.contents,
+    el_list, el_add, el_remove,
     el_play, el_pause, el_resume, el_stop,
     el_name_text, el_name, el_name_internal_text, el_name_internal, el_effects,
-    el_confirm);
+    el_confirm
+);
 
 return dg;

@@ -29,7 +29,7 @@ var yy = 64;
 var spacing = 16;
 var ucheck_width = 64;        // unlabeled check boxes shouldn't have as wide of a hitbox
 
-var el_name = create_input(16, yy, "Name:", ew, eh, uivc_entity_event_name, "", page.name, "Name of the event", validate_string, ui_value_string, 0, 1, VISIBLE_NAME_LENGTH, vx1 - 64, vy1, vx2, vy2, dg);
+var el_name = create_input(16, yy, "Name:", ew, eh, uivc_entity_event_name, page.name, "Name of the event", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1 - 64, vy1, vx2, vy2, dg);
 yy = yy + eh + spacing;
 var el_enabled = create_checkbox(16, yy, "Enabled", ew, eh, uivc_entity_event_enable, page.enabled, dg);
 yy = yy + eh + spacing;

@@ -52,7 +52,7 @@ var el_remove = create_button(16, yy, "Remove", ew, eh, fa_center, omu_data_remo
 yy = 64;
 var col2_x = dw / 3 + 16;
 
-var el_data_name = create_input(col2_x, yy, "Data Name:", ew, eh, uivc_input_data_name, "", "", "[A-Za-z0-9_]+", validate_string_internal_name, ui_value_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
+var el_data_name = create_input(col2_x, yy, "Data Name:", ew, eh, uivc_input_data_name, "", "[A-Za-z0-9_]+", validate_string_internal_name, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
 el_data_name.interactive = false;
 dg.el_data_name = el_data_name;
 
@@ -79,7 +79,7 @@ dg.el_remove_p = el_remove_p;
 yy = 64;
 var col3_x = dw * 2 / 3 + 16;
 
-var el_property_name = create_input(col3_x, yy, "Name:", ew, eh, uivc_input_data_property_name, "", "", "[A-Za-z0-9_]+", validate_string_internal_name, ui_value_string, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
+var el_property_name = create_input(col3_x, yy, "Name:", ew, eh, uivc_input_data_property_name, "", "[A-Za-z0-9_]+", validate_string_internal_name, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
 el_property_name.interactive = false;
 dg.el_property_name = el_property_name;
 
@@ -101,7 +101,7 @@ dg.el_property_ext_type = el_property_ext_type;
 var yy_top = yy;
 
 // anything common to all data types
-var el_property_size = create_input(col3_x, yy, "Capacity:", ew, eh, uivc_input_data_max_size, "", "1", "1...255", validate_int, ui_value_real, 1, 255, 3, vx1, vy1, vx2, vy2, dg);
+var el_property_size = create_input(col3_x, yy, "Capacity:", ew, eh, uivc_input_data_max_size, "1", "1...255", validate_int, 1, 255, 3, vx1, vy1, vx2, vy2, dg);
 el_property_size.interactive = false;
 dg.el_property_size = el_property_size;
 
@@ -110,13 +110,13 @@ yy = yy + eh + spacing;
 var el_property_default_code = create_input_code(col3_x, yy, "Default:", ew, eh, vx1, vy1, vx2, vy2, "", uivc_input_data_default_code, dg);
 el_property_default_code.enabled = false;
 dg.el_property_default_code = el_property_default_code;
-var el_property_default_string = create_input(col3_x, yy, "Default:", ew, eh, uivc_input_data_default_string, "", "", "text", validate_string, ui_value_string, 0, 1, 160, vx1, vy1, vx2, vy2, dg);
+var el_property_default_string = create_input(col3_x, yy, "Default:", ew, eh, uivc_input_data_default_string, "", "text", validate_string, 0, 1, 160, vx1, vy1, vx2, vy2, dg);
 el_property_default_string.enabled = false;
 dg.el_property_default_string = el_property_default_string;
-var el_property_default_real = create_input(col3_x, yy, "Default:", ew, eh, uivc_input_data_default_real, "", "0", "number", validate_double, ui_value_real, -1 << 31, 1 << 31 - 1, 10, vx1, vy1, vx2, vy2, dg);
+var el_property_default_real = create_input(col3_x, yy, "Default:", ew, eh, uivc_input_data_default_real, "0", "number", validate_double, -1 << 31, 1 << 31 - 1, 10, vx1, vy1, vx2, vy2, dg);
 el_property_default_real.enabled = false;
 dg.el_property_default_real = el_property_default_real;
-var el_property_default_int = create_input(col3_x, yy, "Default:", ew, eh, uivc_input_data_default_int, "", "0", "int", validate_int, ui_value_real, -1 << 31, 1 << 31 - 1, 11, vx1, vy1, vx2, vy2, dg);
+var el_property_default_int = create_input(col3_x, yy, "Default:", ew, eh, uivc_input_data_default_int, "0", "int", validate_int, -1 << 31, 1 << 31 - 1, 11, vx1, vy1, vx2, vy2, dg);
 el_property_default_int.enabled = false;
 dg.el_property_default_int = el_property_default_int;
 var el_property_default_bool = create_checkbox(col3_x, yy, "Default", ew, eh, uivc_check_data_default_bool, false, dg);
@@ -136,19 +136,19 @@ el_property_type_guid.enabled = false;
 dg.el_property_type_guid = el_property_type_guid;
 
 // int only
-var el_property_min = create_input(col3_x, yy, "Min. Value:", ew, eh, uivc_input_data_value_min, "", "0", "+" + string(-1 << 31), validate_double, ui_value_real, -1 << 31, 1 << 31 - 1, 10, vx1, vy1, vx2, vy2, dg);
+var el_property_min = create_input(col3_x, yy, "Min. Value:", ew, eh, uivc_input_data_value_min, "0", "+" + string(-1 << 31), validate_double, -1 << 31, 1 << 31 - 1, 10, vx1, vy1, vx2, vy2, dg);
 el_property_min.enabled = false;
 dg.el_property_min = el_property_min;
 
 // string only
-var el_property_char_limit = create_input(col3_x, yy, "Char. Limit:", ew, eh, uivc_input_data_char_limit, "", "20", "1000", validate_int, ui_value_real, 1, 1000, 4, vx1, vy1, vx2, vy2, dg);
+var el_property_char_limit = create_input(col3_x, yy, "Char. Limit:", ew, eh, uivc_input_data_char_limit, "20", "1000", validate_int, 1, 1000, 4, vx1, vy1, vx2, vy2, dg);
 el_property_char_limit.enabled = false;
 dg.el_property_char_limit = el_property_char_limit;
 
 yy = yy + eh + spacing;
 
 // int and float only
-var el_property_max = create_input(col3_x, yy, "Max. Value:", ew, eh, uivc_input_data_value_max, "", "0", "+"+string(-1 << 31 - 1), validate_double, ui_value_real, -1 << 31, 1 << 31 - 1, 10, vx1, vy1, vx2, vy2, dg);
+var el_property_max = create_input(col3_x, yy, "Max. Value:", ew, eh, uivc_input_data_value_max, "0", "+" + string(-1 << 31 - 1), validate_double, -1 << 31, 1 << 31 - 1, 10, vx1, vy1, vx2, vy2, dg);
 el_property_max.enabled = false;
 dg.el_property_max = el_property_max;
 
@@ -165,7 +165,8 @@ yy = yy + eh + spacing;
 
 var el_confirm = create_button(dw / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dc_data_commit, dg, fa_center);
 
-ds_list_add(dg.contents, el_list, el_add, el_add_enum, el_remove,
+ds_list_add(dg.contents,
+    el_list, el_add, el_add_enum, el_remove,
     el_data_name, el_list_p, el_add_p, el_remove_p,
     el_property_name, el_property_type, el_property_ext_type,
     el_property_size, el_property_type_guid, el_property_min, el_property_char_limit,

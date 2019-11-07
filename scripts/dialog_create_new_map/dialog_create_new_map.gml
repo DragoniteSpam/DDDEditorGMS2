@@ -29,17 +29,17 @@ var el_size_note = create_text(32, yy, "Maps can go up to " + string(MAP_AXIS_LI
 
 yy = yy + el_size_note.height + spacing * 2;
 
-var el_x = create_input(32, yy, "Width (X):", ew, eh, null, 0, 64, "", validate_int_create_map_size, ui_value_real, 1, MAP_AXIS_LIMIT, 4, vx1, vy1, vx2, vy2, dg);
+var el_x = create_input(32, yy, "Width (X):", ew, eh, null, 64, "", validate_int_create_map_size, 1, MAP_AXIS_LIMIT, 4, vx1, vy1, vx2, vy2, dg);
 dg.el_x = el_x;
 
 yy = yy + el_x.height + spacing;
 
-var el_y = create_input(32, yy, "Height (Y):", ew, eh, null, 0, 64, "", validate_int_create_map_size, ui_value_real, 1, MAP_AXIS_LIMIT, 4, vx1, vy1, vx2, vy2, dg);
+var el_y = create_input(32, yy, "Height (Y):", ew, eh, null, 64, "", validate_int_create_map_size, 1, MAP_AXIS_LIMIT, 4, vx1, vy1, vx2, vy2, dg);
 dg.el_y = el_y;
 
 yy = yy + el_y.height + spacing;
 
-var el_z = create_input(32, yy, "Depth (Z):", ew, eh, null, 0, 8, "", validate_int_create_map_size, ui_value_real, 1, MAP_AXIS_LIMIT, 4, vx1, vy1, vx2, vy2, dg);
+var el_z = create_input(32, yy, "Depth (Z):", ew, eh, null, 8, "", validate_int_create_map_size, 1, MAP_AXIS_LIMIT, 4, vx1, vy1, vx2, vy2, dg);
 dg.el_z = el_z;
 
 yy = yy + el_z.height + spacing;

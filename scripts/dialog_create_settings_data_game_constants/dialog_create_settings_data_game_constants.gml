@@ -41,7 +41,7 @@ yy = yy + el_remove.height + spacing;
 
 yy = yy_base;
 
-var el_name = create_input(c2 + 32, yy, "Name:", ew, eh, uivc_global_constant_name, 0, "", "16 characters", validate_string, ui_value_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
+var el_name = create_input(c2 + 32, yy, "Name:", ew, eh, uivc_global_constant_name, "", "16 characters", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
 dg.el_name = el_name;
 
 yy = yy + el_name.height + spacing;
@@ -64,13 +64,13 @@ yy = yy_base;
 var el_value_code = create_input_code(c3 + 32, yy, "Value:", ew, eh, vx1, vy1, vx2, vy2, "", uivc_input_constant_value_string, dg);
 el_value_code.enabled = false;
 dg.el_value_code = el_value_code;
-var el_value_string = create_input(c3 + 32, yy, "Value:", ew, eh, uivc_input_constant_value_string, "", "", "text", validate_string, ui_value_string, 0, 1, 160, vx1, vy1, vx2, vy2, dg);
+var el_value_string = create_input(c3 + 32, yy, "Value:", ew, eh, uivc_input_constant_value_string, "", "text", validate_string, 0, 1, 160, vx1, vy1, vx2, vy2, dg);
 el_value_string.enabled = false;
 dg.el_value_string = el_value_string;
-var el_value_real = create_input(c3 + 32, yy, "Value:", ew, eh, uivc_input_constant_value_real, "", "0", "number", validate_double, ui_value_real, -1 << 31, 1 << 31 - 1, 10, vx1, vy1, vx2, vy2, dg);
+var el_value_real = create_input(c3 + 32, yy, "Value:", ew, eh, uivc_input_constant_value_real, "0", "number", validate_double, -1 << 31, 1 << 31 - 1, 10, vx1, vy1, vx2, vy2, dg);
 el_value_real.enabled = false;
 dg.el_value_real = el_value_real;
-var el_value_int = create_input(c3 + 32, yy, "Value:", ew, eh, uivc_input_constant_value_real, "", "0", "int", validate_int, ui_value_real, -1 << 31, 1 << 31 - 1, 11, vx1, vy1, vx2, vy2, dg);
+var el_value_int = create_input(c3 + 32, yy, "Value:", ew, eh, uivc_input_constant_value_real, "0", "int", validate_int, -1 << 31, 1 << 31 - 1, 11, vx1, vy1, vx2, vy2, dg);
 el_value_int.enabled = false;
 dg.el_value_int = el_value_int;
 var el_value_bool = create_checkbox(c3 + 32, yy, "Value", ew, eh, uivc_input_constant_value_real, false, dg);

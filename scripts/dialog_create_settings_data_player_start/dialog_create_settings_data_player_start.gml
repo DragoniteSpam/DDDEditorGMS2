@@ -34,15 +34,15 @@ yy = yy + ui_get_list_height(el_list_map) + spacing;
 
 yy = yy_start;
 
-var el_x = create_input(c2 + 32, yy, "X:", ew, eh, uivc_settings_game_start_x, 0, Stuff.game_starting_x, "x coordinate", validate_int, ui_value_real, 0, starting.xx, 5, vx1, vy1, vx2, vy2, dg);
+var el_x = create_input(c2 + 32, yy, "X:", ew, eh, uivc_settings_game_start_x, Stuff.game_starting_x, "x coordinate", validate_int, 0, starting.xx, 5, vx1, vy1, vx2, vy2, dg);
 dg.el_x = el_x;
 yy = yy + el_x.height + spacing;
 
-var el_y = create_input(c2 + 32, yy, "Y:", ew, eh, uivc_settings_game_start_y, 0, Stuff.game_starting_y, "y coordinate", validate_int, ui_value_real, 0, starting.yy, 5, vx1, vy1, vx2, vy2, dg);
+var el_y = create_input(c2 + 32, yy, "Y:", ew, eh, uivc_settings_game_start_y, Stuff.game_starting_y, "y coordinate", validate_int, 0, starting.yy, 5, vx1, vy1, vx2, vy2, dg);
 dg.el_y = el_y;
 yy = yy + el_y.height + spacing;
 
-var el_z = create_input(c2 + 32, yy, "Z:", ew, eh, uivc_settings_game_start_z, 0, Stuff.game_starting_z, "z coordinate", validate_int, ui_value_real, 0, starting.zz, 5, vx1, vy1, vx2, vy2, dg);
+var el_z = create_input(c2 + 32, yy, "Z:", ew, eh, uivc_settings_game_start_z, Stuff.game_starting_z, "z coordinate", validate_int, 0, starting.zz, 5, vx1, vy1, vx2, vy2, dg);
 dg.el_z = el_z;
 yy = yy + el_z.height + spacing;
 
@@ -55,6 +55,7 @@ var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Do
 
 ds_list_add(dg.contents,
     el_list_map, el_x, el_y, el_z, el_direction,
-    el_confirm);
+    el_confirm
+);
 
 return dg;

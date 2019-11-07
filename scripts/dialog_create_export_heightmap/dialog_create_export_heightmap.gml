@@ -20,7 +20,7 @@ var yy = 64;
 var yy_base = yy;
 var spacing = 16;
 
-var el_scale = create_input(16, yy, "Heightmap scale:", ew, eh, null, "", "16", "1...255", validate_int, ui_value_real, 1, 255, 3, vx1, vy1, vx2, vy2, dg);
+var el_scale = create_input(16, yy, "Heightmap scale:", ew, eh, null, "16", "1...255", validate_int, 1, 255, 3, vx1, vy1, vx2, vy2, dg);
 dg.el_scale = el_scale;
 
 yy = yy + el_scale.height + spacing;

@@ -303,7 +303,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
 	
 	yy = yy + element.height + spacing;
 	
-	element = create_input(col2_x, yy, "", col_width, element_height, uivc_settings_map_name, "", "", "Name", validate_string, ui_value_string, 0, 0, VISIBLE_NAME_LENGTH, 0, vy1, vx2, vy2, t_maps);
+	element = create_input(col2_x, yy, "", col_width, element_height, uivc_settings_map_name, "", "Name", validate_string, 0, 0, VISIBLE_NAME_LENGTH, 0, vy1, vx2, vy2, t_maps);
 	ds_list_add(t_maps.contents, element);
 	t_maps.el_name = element;
 	
@@ -314,7 +314,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
 	
 	yy = yy + element.height + spacing;
 	
-	element = create_input(col2_x, yy, "", col_width, element_height, uivc_settings_map_internal, "", "", "[A-Za-z0-9_]+", validate_string_internal_name, ui_value_string, 0, 0, INTERNAL_NAME_LENGTH, 0, vy1, vx2, vy2, t_maps);
+	element = create_input(col2_x, yy, "", col_width, element_height, uivc_settings_map_internal, "", "[A-Za-z0-9_]+", validate_string_internal_name, 0, 0, INTERNAL_NAME_LENGTH, 0, vy1, vx2, vy2, t_maps);
 	ds_list_add(t_maps.contents, element);
 	t_maps.el_internal_name = element;
 	
@@ -325,7 +325,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
 	
 	yy = yy + element.height + spacing;
 	
-	element = create_input(col2_x, yy, "", col_width, element_height, uivc_settings_map_summary, "", "", "Words", validate_string, ui_value_string, 0, 0, 400, 0, vy1, vx2, vy2, t_maps);
+	element = create_input(col2_x, yy, "", col_width, element_height, uivc_settings_map_summary, "", "Words", validate_string, 0, 0, 400, 0, vy1, vx2, vy2, t_maps);
 	ds_list_add(t_maps.contents, element);
 	t_maps.el_summary = element;
 	
@@ -336,21 +336,21 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
 	
 	yy = yy + element.height + spacing;
 	
-	element = create_input(col2_x, yy, "Width (X): ", col_width, element_height, uivc_input_map_size_x, "", 64, "width", validate_int_map_size_x, ui_value_real, 1, MAP_AXIS_LIMIT, 4, vx1, vy1, vx2, vy2, t_maps);
+	element = create_input(col2_x, yy, "Width (X): ", col_width, element_height, uivc_input_map_size_x, "64", "width", validate_int_map_size_x, 1, MAP_AXIS_LIMIT, 4, vx1, vy1, vx2, vy2, t_maps);
 	element.require_enter = true;
 	ds_list_add(t_maps.contents, element);
 	t_maps.el_dim_x = element;
 	
 	yy = yy + element.height + spacing;
 	
-	element = create_input(col2_x, yy, "Height (Y): ", col_width, element_height, uivc_input_map_size_y, "", 64, "height", validate_int_map_size_y, ui_value_real, 1, MAP_AXIS_LIMIT, 4, vx1, vy1, vx2, vy2, t_maps);
+	element = create_input(col2_x, yy, "Height (Y): ", col_width, element_height, uivc_input_map_size_y, "64", "height", validate_int_map_size_y, 1, MAP_AXIS_LIMIT, 4, vx1, vy1, vx2, vy2, t_maps);
 	element.require_enter = true;
 	ds_list_add(t_maps.contents, element);
 	t_maps.el_dim_y = element;
 	
 	yy = yy + element.height + spacing;
 	
-	element = create_input(col2_x, yy, "Depth (Z): ", col_width, element_height, uivc_input_map_size_z, "", 8, "depth", validate_int_map_size_z, ui_value_real, 1, MAP_AXIS_LIMIT, 4, vx1, vy1, vx2, vy2, t_maps);
+	element = create_input(col2_x, yy, "Depth (Z): ", col_width, element_height, uivc_input_map_size_z, "8", "depth", validate_int_map_size_z, 1, MAP_AXIS_LIMIT, 4, vx1, vy1, vx2, vy2, t_maps);
 	element.require_enter = true;
 	ds_list_add(t_maps.contents, element);
 	t_maps.el_dim_z = element;
@@ -381,7 +381,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     var max_characters = 18;
     vx2 = vx1 + string_width(string("m")) * max_characters + 32;
     
-    element_entity_name = create_input(legal_x + spacing, yy, "Name: ", legal_width, element_height, uivc_input_entity_name, "", "", "Helpful if unique", validate_string, ui_value_string, 0, 1, max_characters, vx1, vy1, vx2, vy2, t_p_entity);
+    element_entity_name = create_input(legal_x + spacing, yy, "Name: ", legal_width, element_height, uivc_input_entity_name, "", "Helpful if unique", validate_string, 0, 1, max_characters, vx1, vy1, vx2, vy2, t_p_entity);
     ds_list_add(t_p_entity.contents, element_entity_name);
     element_entity_name.interactive = false;
     
@@ -478,19 +478,19 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element_height + spacing;
     
-    element_entity_pos_x = create_input(col2_x, yy, "   X: ", col_width, element_height, uivc_input_entity_pos_x, "", "", "Cell", validate_int, ui_value_real, 0, 64, 5, vx1, vy1, vx2, vy2, t_p_entity);
+    element_entity_pos_x = create_input(col2_x, yy, "   X: ", col_width, element_height, uivc_input_entity_pos_x, "", "Cell", validate_int, 0, 64, 5, vx1, vy1, vx2, vy2, t_p_entity);
     ds_list_add(t_p_entity.contents, element_entity_pos_x);
     element_entity_pos_x.interactive = false;
     
     yy = yy + element_height + spacing / 2;
     
-    element_entity_pos_y = create_input(col2_x, yy, "   Y: ", col_width, element_height, uivc_input_entity_pos_y, "", "", "Cell", validate_int, ui_value_real, 0, 64, 5, vx1, vy1, vx2, vy2, t_p_entity);
+    element_entity_pos_y = create_input(col2_x, yy, "   Y: ", col_width, element_height, uivc_input_entity_pos_y, "", "Cell", validate_int, 0, 64, 5, vx1, vy1, vx2, vy2, t_p_entity);
     ds_list_add(t_p_entity.contents, element_entity_pos_y);
     element_entity_pos_y.interactive = false;
     
     yy = yy + element_height + spacing / 2;
     
-    element_entity_pos_z = create_input(col2_x, yy, "   Z: ", col_width, element_height, uivc_input_entity_pos_z, "", "", "Cell", validate_int, ui_value_real, 0, 64, 5, vx1, vy1, vx2, vy2, t_p_entity);
+    element_entity_pos_z = create_input(col2_x, yy, "   Z: ", col_width, element_height, uivc_input_entity_pos_z, "", "Cell", validate_int, 0, 64, 5, vx1, vy1, vx2, vy2, t_p_entity);
     ds_list_add(t_p_entity.contents, element_entity_pos_z);
     element_entity_pos_z.interactive = false;
     
@@ -501,19 +501,19 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element_height + spacing;
     
-    element_entity_offset_x = create_input(col2_x, yy, "   X: ", col_width, element_height, uivc_input_entity_off_x, "", "", "0...1", validate_double, ui_value_real, 0, 1, 4, vx1, vy1, vx2, vy2, t_p_entity);
+    element_entity_offset_x = create_input(col2_x, yy, "   X: ", col_width, element_height, uivc_input_entity_off_x, "", "0...1", validate_double, 0, 1, 4, vx1, vy1, vx2, vy2, t_p_entity);
     ds_list_add(t_p_entity.contents, element_entity_offset_x);
     element_entity_offset_x.interactive = false;
     
     yy = yy + element_height + spacing / 2;
     
-    element_entity_offset_y = create_input(col2_x, yy, "   Y: ", col_width, element_height, uivc_input_entity_off_y, "", "", "0...1", validate_double, ui_value_real, 0, 1, 4, vx1, vy1, vx2, vy2, t_p_entity);
+    element_entity_offset_y = create_input(col2_x, yy, "   Y: ", col_width, element_height, uivc_input_entity_off_y, "", "0...1", validate_double, 0, 1, 4, vx1, vy1, vx2, vy2, t_p_entity);
     ds_list_add(t_p_entity.contents, element_entity_offset_y);
     element_entity_offset_y.interactive = false;
     
     yy = yy + element_height + spacing / 2;
     
-    element_entity_offset_z = create_input(col2_x, yy, "   Z: ", col_width, element_height, uivc_input_entity_off_z, "", "", "0...1", validate_double, ui_value_real, 0, 1, 4, vx1, vy1, vx2, vy2, t_p_entity);
+    element_entity_offset_z = create_input(col2_x, yy, "   Z: ", col_width, element_height, uivc_input_entity_off_z, "", "0...1", validate_double, 0, 1, 4, vx1, vy1, vx2, vy2, t_p_entity);
     ds_list_add(t_p_entity.contents, element_entity_offset_z);
     element_entity_offset_z.interactive = false;
     
@@ -524,19 +524,19 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element_height + spacing;
     
-    element_entity_rot_x = create_input(col2_x, yy, "   X: ", col_width, element_height, uivc_input_entity_rotate_x, "", "", "Degrees", validate_int, ui_value_real, 0, 359, 3, vx1, vy1, vx2, vy2, t_p_entity);
+    element_entity_rot_x = create_input(col2_x, yy, "   X: ", col_width, element_height, uivc_input_entity_rotate_x, "", "Degrees", validate_int, 0, 359, 3, vx1, vy1, vx2, vy2, t_p_entity);
     ds_list_add(t_p_entity.contents, element_entity_rot_x);
     element_entity_rot_x.interactive = false;
     
     yy = yy + element_height + spacing / 2;
     
-    element_entity_rot_y = create_input(col2_x, yy, "   Y: ", col_width, element_height, uivc_input_entity_rotate_y, "", "", "Degrees", validate_int, ui_value_real, 0, 359, 3, vx1, vy1, vx2, vy2, t_p_entity);
+    element_entity_rot_y = create_input(col2_x, yy, "   Y: ", col_width, element_height, uivc_input_entity_rotate_y, "", "Degrees", validate_int, 0, 359, 3, vx1, vy1, vx2, vy2, t_p_entity);
     ds_list_add(t_p_entity.contents, element_entity_rot_y);
     element_entity_rot_y.interactive = false;
     
     yy = yy + element_height + spacing / 2;
     
-    element_entity_rot_z = create_input(col2_x, yy, "   Z: ", col_width, element_height, uivc_input_entity_rotate_z, "", "", "Degrees", validate_int, ui_value_real, 0, 359, 3, vx1, vy1, vx2, vy2, t_p_entity);
+    element_entity_rot_z = create_input(col2_x, yy, "   Z: ", col_width, element_height, uivc_input_entity_rotate_z, "", "Degrees", validate_int, 0, 359, 3, vx1, vy1, vx2, vy2, t_p_entity);
     ds_list_add(t_p_entity.contents, element_entity_rot_z);
     element_entity_rot_z.interactive = false;
     
@@ -547,19 +547,19 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element_height + spacing;
     
-    element_entity_scale_x = create_input(col2_x, yy, "   X: ", col_width, element_height, uivc_input_entity_scale_x, "", "", "0.1...10", validate_double, ui_value_real, 0.1, 10, 5, vx1, vy1, vx2, vy2, t_p_entity);
+    element_entity_scale_x = create_input(col2_x, yy, "   X: ", col_width, element_height, uivc_input_entity_scale_x, "", "0.1...10", validate_double, 0.1, 10, 5, vx1, vy1, vx2, vy2, t_p_entity);
     ds_list_add(t_p_entity.contents, element_entity_scale_x);
     element_entity_scale_x.interactive = false;
     
     yy = yy + element_height + spacing / 2;
     
-    element_entity_scale_y = create_input(col2_x, yy, "   Y: ", col_width, element_height, uivc_input_entity_scale_y, "", "", "0.1...10", validate_double, ui_value_real, 0.1, 10, 5, vx1, vy1, vx2, vy2, t_p_entity);
+    element_entity_scale_y = create_input(col2_x, yy, "   Y: ", col_width, element_height, uivc_input_entity_scale_y, "", "0.1...10", validate_double, 0.1, 10, 5, vx1, vy1, vx2, vy2, t_p_entity);
     ds_list_add(t_p_entity.contents, element_entity_scale_y);
     element_entity_scale_y.interactive = false;
     
     yy = yy + element_height + spacing / 2;
     
-    element_entity_scale_z = create_input(col2_x, yy, "   Z: ", col_width, element_height, uivc_input_entity_scale_z, "", "", "0.1...10", validate_double, ui_value_real, 0.1, 10, 5, vx1, vy1, vx2, vy2, t_p_entity);
+    element_entity_scale_z = create_input(col2_x, yy, "   Z: ", col_width, element_height, uivc_input_entity_scale_z, "", "0.1...10", validate_double, 0.1, 10, 5, vx1, vy1, vx2, vy2, t_p_entity);
     ds_list_add(t_p_entity.contents, element_entity_scale_z);
     element_entity_scale_z.interactive = false;
     
@@ -582,7 +582,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = legal_y + spacing;
     
-    element_entity_pawn_frame = create_input(legal_x + spacing, yy, "Frame:", col_width, element_height, uivc_entity_pawn_editor_frame, "", 0, "0...3", validate_int, ui_value_real, 0, 3, 1, vx1, vy1, vx2, vy2, t_p_pawn);
+    element_entity_pawn_frame = create_input(legal_x + spacing, yy, "Frame:", col_width, element_height, uivc_entity_pawn_editor_frame, 0, "0...3", validate_int, 0, 3, 1, vx1, vy1, vx2, vy2, t_p_pawn);
     ds_list_add(t_p_pawn.contents, element_entity_pawn_frame);
     
     yy = yy + element_entity_pawn_frame.height + spacing;
@@ -646,17 +646,19 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     var s = 10;
     
     element = create_bitfield(col2_x, yy, "Passage:", 84, element_height, null, TILE_PASSABLE, t_p_tile_editor);
-    create_bitfield_options(element, [create_bitfield_option_data(TilePassability.UP, ui_render_bitfield_option_picture_tile_passability, uivc_bitfield_tile_passability, "", spr_direction, 0, s, s),
+    create_bitfield_options(element, [
+        create_bitfield_option_data(TilePassability.UP, ui_render_bitfield_option_picture_tile_passability, uivc_bitfield_tile_passability, "", spr_direction, 0, s, s),
         create_bitfield_option_data(TilePassability.DOWN, ui_render_bitfield_option_picture_tile_passability, uivc_bitfield_tile_passability, "", spr_direction, 1, s, s),
         create_bitfield_option_data(TilePassability.LEFT, ui_render_bitfield_option_picture_tile_passability, uivc_bitfield_tile_passability, "", spr_direction, 2, s, s),
         create_bitfield_option_data(TilePassability.RIGHT, ui_render_bitfield_option_picture_tile_passability, uivc_bitfield_tile_passability, "", spr_direction, 3, s, s),
         create_bitfield_option_data(TILE_PASSABLE, ui_render_bitfield_option_text_passability_tile_passable, uivc_bitfield_tile_passability_passable, "O", spr_direction, 0, s, s),
-        create_bitfield_option_data(0, ui_render_bitfield_option_text_passability_tile_solid, uivc_bitfield_tile_passability_solid, "X", spr_direction, 0, s, s)]);
+        create_bitfield_option_data(0, ui_render_bitfield_option_text_passability_tile_solid, uivc_bitfield_tile_passability_solid, "X", spr_direction, 0, s, s)
+    ]);
     ds_list_add(t_p_tile_editor.contents, element);
     
     yy = yy + element.height + spacing;
     
-    element = create_input(col2_x, yy, "Priority:", col_width, element_height, uivc_input_tile_priority, "", 0, 0, validate_int, ui_value_real, 0, TILE_MAX_PRIORITY - 1, 3, 84, 0, 84 + 64, element_height, t_p_tile_editor);
+    element = create_input(col2_x, yy, "Priority:", col_width, element_height, uivc_input_tile_priority, 0, 0, validate_int, 0, TILE_MAX_PRIORITY - 1, 3, 84, 0, 84 + 64, element_height, t_p_tile_editor);
     element.render = ui_render_input_tile_priority;
     ds_list_add(t_p_tile_editor.contents, element);
     
@@ -665,15 +667,17 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy = yy + element.height + spacing;
     
     element = create_bitfield(col2_x, yy, "Flags:", 84, element_height, fa_left, col_width, t_p_tile_editor);
-    create_bitfield_options(element, [create_bitfield_option_data(TileFlags.BUSH, ui_render_bitfield_option_text_tile_flag, uivc_bitfield_tile_flag, "B", -1, 0, s, s),
+    create_bitfield_options(element, [
+        create_bitfield_option_data(TileFlags.BUSH, ui_render_bitfield_option_text_tile_flag, uivc_bitfield_tile_flag, "B", -1, 0, s, s),
         create_bitfield_option_data(TileFlags.COUNTER, ui_render_bitfield_option_text_tile_flag, uivc_bitfield_tile_flag, "C", -1, 0, s, s),
         create_bitfield_option_data(TileFlags.DANGER, ui_render_bitfield_option_text_tile_flag, uivc_bitfield_tile_flag, "D", -1, 0, s, s),
-        create_bitfield_option_data(TileFlags.SAFER, ui_render_bitfield_option_text_tile_flag, uivc_bitfield_tile_flag, "S", -1, 0, s, s)]);
+        create_bitfield_option_data(TileFlags.SAFER, ui_render_bitfield_option_text_tile_flag, uivc_bitfield_tile_flag, "S", -1, 0, s, s)
+    ]);
     ds_list_add(t_p_tile_editor.contents, element);
     
     yy = yy + element.height + spacing;
     
-    element = create_input(col2_x, yy, "Tag:", col_width, element_height, uivc_input_tile_tag, "", 0, 0, validate_int, ui_value_real, 0, TileTerrainTags.FINAL - 1, 2, 84, 0, 84 + 64, element_height, t_p_tile_editor);
+    element = create_input(col2_x, yy, "Tag:", col_width, element_height, uivc_input_tile_tag, 0, 0, validate_int, 0, TileTerrainTags.FINAL - 1, 2, 84, 0, 84 + 64, element_height, t_p_tile_editor);
     ds_list_add(t_p_tile_editor.contents, element);
     
     t_p_tile_editor.element_tag = element;
@@ -707,7 +711,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element.height + spacing;
     
-    element = create_input(col2_x, yy, "Name:", col_width, element_height, uivc_input_mesh_name, 0, "", "Internal Name", validate_string_internal_name, ui_value_string, 0, 1, INTERNAL_NAME_LENGTH, 64, vy1, vx2, vy2, t_p_mesh_editor);
+    element = create_input(col2_x, yy, "Name:", col_width, element_height, uivc_input_mesh_name, 0, "Internal Name", validate_string_internal_name, 0, 1, INTERNAL_NAME_LENGTH, 64, vy1, vx2, vy2, t_p_mesh_editor);
     ds_list_add(t_p_mesh_editor.contents, element);
     
     t_p_mesh_editor.mesh_name = element;
@@ -717,26 +721,30 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy = yy + t_p_mesh_editor.mesh_name.height + spacing;
     
     element = create_bitfield(col2_x, yy, "Passage:", 84, element_height, null, TILE_PASSABLE, t_p_mesh_editor);
-    create_bitfield_options(element, [create_bitfield_option_data(TilePassability.UP, ui_render_bitfield_option_picture_mesh_passability, uivc_bitfield_mesh_passability, "", spr_direction, 0, s, s),
+    create_bitfield_options(element, [
+        create_bitfield_option_data(TilePassability.UP, ui_render_bitfield_option_picture_mesh_passability, uivc_bitfield_mesh_passability, "", spr_direction, 0, s, s),
         create_bitfield_option_data(TilePassability.DOWN, ui_render_bitfield_option_picture_mesh_passability, uivc_bitfield_mesh_passability, "", spr_direction, 1, s, s),
         create_bitfield_option_data(TilePassability.LEFT, ui_render_bitfield_option_picture_mesh_passability, uivc_bitfield_mesh_passability, "", spr_direction, 2, s, s),
         create_bitfield_option_data(TilePassability.RIGHT, ui_render_bitfield_option_picture_mesh_passability, uivc_bitfield_mesh_passability, "", spr_direction, 3, s, s),
         create_bitfield_option_data(TILE_PASSABLE, ui_render_bitfield_option_text_passability_mesh_passable, uivc_bitfield_mesh_passability_passable, "O", spr_direction, 0, s, s),
-        create_bitfield_option_data(0, ui_render_bitfield_option_text_passability_mesh_solid, uivc_bitfield_mesh_passability_solid, "X", spr_direction, 0, s, s)]);
+        create_bitfield_option_data(0, ui_render_bitfield_option_text_passability_mesh_solid, uivc_bitfield_mesh_passability_solid, "X", spr_direction, 0, s, s)
+    ]);
     ds_list_add(t_p_mesh_editor.contents, element);
     
     yy = yy + element.height + spacing;
     
     element = create_bitfield(col2_x, yy, "Flags:", 84, element_height, null, col_width, t_p_mesh_editor);
-    create_bitfield_options(element, [create_bitfield_option_data(TileFlags.BUSH, ui_render_bitfield_option_text_mesh_flag, uivc_bitfield_mesh_flag, "B", -1, 0, s, s),
+    create_bitfield_options(element, [
+        create_bitfield_option_data(TileFlags.BUSH, ui_render_bitfield_option_text_mesh_flag, uivc_bitfield_mesh_flag, "B", -1, 0, s, s),
         create_bitfield_option_data(TileFlags.COUNTER, ui_render_bitfield_option_text_mesh_flag, uivc_bitfield_mesh_flag, "C", -1, 0, s, s),
         create_bitfield_option_data(TileFlags.DANGER, ui_render_bitfield_option_text_mesh_flag, uivc_bitfield_mesh_flag, "D", -1, 0, s, s),
-        create_bitfield_option_data(TileFlags.SAFER, ui_render_bitfield_option_text_mesh_flag, uivc_bitfield_mesh_flag, "S", -1, 0, s, s)]);
+        create_bitfield_option_data(TileFlags.SAFER, ui_render_bitfield_option_text_mesh_flag, uivc_bitfield_mesh_flag, "S", -1, 0, s, s)
+    ]);
     ds_list_add(t_p_mesh_editor.contents, element);
     
     yy = yy + element.height + spacing;
     
-    element = create_input(col2_x, yy, "Tag:", col_width, element_height, uivc_input_mesh_tag, "", 0, 0, validate_int, ui_value_real, 0, TileTerrainTags.FINAL - 1, 2, 84, 0, 84 + 64, element_height, t_p_mesh_editor);
+    element = create_input(col2_x, yy, "Tag:", col_width, element_height, uivc_input_mesh_tag, 0, 0, validate_int, 0, TileTerrainTags.FINAL - 1, 2, 84, 0, 84 + 64, element_height, t_p_mesh_editor);
     ds_list_add(t_p_mesh_editor.contents, element);
     
     t_p_mesh_editor.element_tag = element;
@@ -761,37 +769,31 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element.height + spacing;
     
-    element = create_input(bounds_x, yy, "xmin:", col_width / 2, element_height, uivc_mesh_set_xmin, 0, 0, "integer", validate_int, ui_value_real,
-        -128, 127, 4, 64, vy1, col_width / 2, vy2, t_p_mesh_editor);
+    element = create_input(bounds_x, yy, "xmin:", col_width / 2, element_height, uivc_mesh_set_xmin, 0, "integer", validate_int, -128, 127, 4, 64, vy1, col_width / 2, vy2, t_p_mesh_editor);
     ds_list_add(t_p_mesh_editor.contents, element);
     t_p_mesh_editor.xmin = element;
     
-    element = create_input(bounds_x_2, yy, "xmax:", col_width / 2, element_height, uivc_mesh_set_xmax, 0, 0, "integer", validate_int, ui_value_real,
-        -128, 127, 4, 64, vy1, col_width / 2, vy2, t_p_mesh_editor);
+    element = create_input(bounds_x_2, yy, "xmax:", col_width / 2, element_height, uivc_mesh_set_xmax, 0, "integer", validate_int, -128, 127, 4, 64, vy1, col_width / 2, vy2, t_p_mesh_editor);
     ds_list_add(t_p_mesh_editor.contents, element);
     t_p_mesh_editor.xmax = element;
     
     yy = yy + element.height + spacing;
     
-    element = create_input(bounds_x, yy, "ymin:", col_width / 2, element_height, uivc_mesh_set_ymin, 0, 0, "integer", validate_int, ui_value_real,
-        -128, 127, 4, 64, vy1, col_width / 2, vy2, t_p_mesh_editor);
+    element = create_input(bounds_x, yy, "ymin:", col_width / 2, element_height, uivc_mesh_set_ymin, 0, "integer", validate_int, -128, 127, 4, 64, vy1, col_width / 2, vy2, t_p_mesh_editor);
     ds_list_add(t_p_mesh_editor.contents, element);
     t_p_mesh_editor.ymin = element;
     
-    element = create_input(bounds_x_2, yy, "ymax:", col_width / 2, element_height, uivc_mesh_set_ymax, 0, 0, "integer", validate_int, ui_value_real,
-        -128, 127, 4, 64, vy1, col_width / 2, vy2, t_p_mesh_editor);
+    element = create_input(bounds_x_2, yy, "ymax:", col_width / 2, element_height, uivc_mesh_set_ymax, 0, "integer", validate_int, -128, 127, 4, 64, vy1, col_width / 2, vy2, t_p_mesh_editor);
     ds_list_add(t_p_mesh_editor.contents, element);
     t_p_mesh_editor.ymax = element;
     
     yy = yy + element.height + spacing;
     
-    element = create_input(bounds_x, yy, "zmin:", col_width / 2, element_height, uivc_mesh_set_zmin, 0, 0, "integer", validate_int, ui_value_real,
-        -128, 127, 4, 64, vy1, col_width / 2, vy2, t_p_mesh_editor);
+    element = create_input(bounds_x, yy, "zmin:", col_width / 2, element_height, uivc_mesh_set_zmin, 0, "integer", validate_int, -128, 127, 4, 64, vy1, col_width / 2, vy2, t_p_mesh_editor);
     ds_list_add(t_p_mesh_editor.contents, element);
     t_p_mesh_editor.zmin = element;
     
-    element = create_input(bounds_x_2, yy, "zmax:", col_width / 2, element_height, uivc_mesh_set_zmax, 0, 0, "integer", validate_int, ui_value_real,
-        -128, 127, 4, 64, vy1, col_width / 2, vy2, t_p_mesh_editor);
+    element = create_input(bounds_x_2, yy, "zmax:", col_width / 2, element_height, uivc_mesh_set_zmax, 0, "integer", validate_int, -128, 127, 4, 64, vy1, col_width / 2, vy2, t_p_mesh_editor);
     ds_list_add(t_p_mesh_editor.contents, element);
     t_p_mesh_editor.zmax= element;
     
@@ -856,17 +858,19 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     var s = 10;
     
     element = create_bitfield(col2_x, yy, "Passage:", 84, element_height, null, TILE_PASSABLE, t_p_autotile_editor);
-    create_bitfield_options(element, [create_bitfield_option_data(TilePassability.UP, ui_render_bitfield_option_picture_autotile_passability, uivc_bitfield_autotile_passability, "", spr_direction, 0, s, s),
+    create_bitfield_options(element, [
+        create_bitfield_option_data(TilePassability.UP, ui_render_bitfield_option_picture_autotile_passability, uivc_bitfield_autotile_passability, "", spr_direction, 0, s, s),
         create_bitfield_option_data(TilePassability.DOWN, ui_render_bitfield_option_picture_autotile_passability, uivc_bitfield_autotile_passability, "", spr_direction, 1, s, s),
         create_bitfield_option_data(TilePassability.LEFT, ui_render_bitfield_option_picture_autotile_passability, uivc_bitfield_autotile_passability, "", spr_direction, 2, s, s),
         create_bitfield_option_data(TilePassability.RIGHT, ui_render_bitfield_option_picture_autotile_passability, uivc_bitfield_autotile_passability, "", spr_direction, 3, s, s),
         create_bitfield_option_data(TILE_PASSABLE, ui_render_bitfield_option_text_passability_autotile_passable, uivc_bitfield_autotile_passability_passable, "O", spr_direction, 0, s, s),
-        create_bitfield_option_data(0, ui_render_bitfield_option_text_passability_autotile_solid, uivc_bitfield_autotile_passability_solid, "X", spr_direction, 0, s, s)]);
+        create_bitfield_option_data(0, ui_render_bitfield_option_text_passability_autotile_solid, uivc_bitfield_autotile_passability_solid, "X", spr_direction, 0, s, s)
+    ]);
     ds_list_add(t_p_autotile_editor.contents, element);
     
     yy = yy + element.height + spacing;
     
-    element = create_input(col2_x, yy, "Priority:", col_width, element_height, uivc_input_autotile_priority, "", 0, 0, validate_int, ui_value_real, 0, TILE_MAX_PRIORITY - 1, 3, 84, 0, 84 + 64, element_height, t_p_autotile_editor);
+    element = create_input(col2_x, yy, "Priority:", col_width, element_height, uivc_input_autotile_priority, 0, 0, validate_int, 0, TILE_MAX_PRIORITY - 1, 3, 84, 0, 84 + 64, element_height, t_p_autotile_editor);
     element.render = ui_render_input_tile_priority;
     ds_list_add(t_p_autotile_editor.contents, element);
     
@@ -876,14 +880,16 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy = yy + element.height + spacing;
     
     element = create_bitfield(col2_x, yy, "Flags:", 84, element_height, fa_left, col_width, t_p_autotile_editor);
-    create_bitfield_options(element, [create_bitfield_option_data(TileFlags.BUSH, ui_render_bitfield_option_autotext_tile_flag, uivc_bitfield_autotile_flag, "B", -1, 0, s, s),
+    create_bitfield_options(element, [
+        create_bitfield_option_data(TileFlags.BUSH, ui_render_bitfield_option_autotext_tile_flag, uivc_bitfield_autotile_flag, "B", -1, 0, s, s),
         create_bitfield_option_data(TileFlags.COUNTER, ui_render_bitfield_option_text_autotile_flag, uivc_bitfield_autotile_flag, "C", -1, 0, s, s),
-        create_bitfield_option_data(TileFlags.SAFER, ui_render_bitfield_option_text_autotile_flag, uivc_bitfield_autotile_flag, "S", -1, 0, s, s)]);
+        create_bitfield_option_data(TileFlags.SAFER, ui_render_bitfield_option_text_autotile_flag, uivc_bitfield_autotile_flag, "S", -1, 0, s, s)
+    ]);
     ds_list_add(t_p_autotile_editor.contents, element);
     
     yy = yy + element.height + spacing;
     
-    element = create_input(col2_x, yy, "Tag:", col_width, element_height, uivc_input_autotile_tag, "", 0, 0, validate_int, ui_value_real, 0, TileTerrainTags.FINAL - 1, 2, 84, 0, 84 + 64, element_height, t_p_autotile_editor);
+    element = create_input(col2_x, yy, "Tag:", col_width, element_height, uivc_input_autotile_tag, 0, 0, validate_int, 0, TileTerrainTags.FINAL - 1, 2, 84, 0, 84 + 64, element_height, t_p_autotile_editor);
     ds_list_add(t_p_autotile_editor.contents, element);
     
     t_p_autotile_editor.element_tag = element;

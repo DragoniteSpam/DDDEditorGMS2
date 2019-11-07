@@ -55,7 +55,7 @@ dg.el_type = el_type;
 
 yy = yy + ui_get_radio_array_height(el_type) + spacing;
 
-var el_limit = create_input(16, yy, "Char. Limit:", ew, eh, uivc_list_event_attain_input_char_limit, "", custom_data_limit[| 0], "probably 16", validate_int, ui_value_real, 0, 120, 3, vx1, vy1, vx2, vy2, dg);
+var el_limit = create_input(16, yy, "Char. Limit:", ew, eh, uivc_list_event_attain_input_char_limit, custom_data_limit[| 0], "probably 16", validate_int, 0, 120, 3, vx1, vy1, vx2, vy2, dg);
 
 var b_width = 128;
 var b_height = 32;

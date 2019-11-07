@@ -143,7 +143,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element.height + spacing;
     
-    element = create_input(col2_x, yy, "Export scale:", col_width, element_height, ui_input_terrain_save_scale, 0, terrain.save_scale, "0.01...100", validate_double, ui_value_real, 0.01, 100, 4, vx1 + 32, vy1, vx2, vy2, t_general);
+    element = create_input(col2_x, yy, "Export scale:", col_width, element_height, ui_input_terrain_save_scale, terrain.save_scale, "0.01...100", validate_double, 0.01, 100, 4, vx1 + 32, vy1, vx2, vy2, t_general);
     t_general.element_save_scale = element;
     ds_list_add(t_general.contents, element);
     

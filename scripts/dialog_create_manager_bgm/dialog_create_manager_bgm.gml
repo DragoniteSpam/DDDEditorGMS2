@@ -38,12 +38,12 @@ yy = yy + el_remove.height + spacing;
 
 var el_name_text = create_text(c2 + 16, yy, "Name:", ew, eh, fa_left, ew, dg);
 yy = yy + el_name_text.height + spacing;
-var el_name = create_input(c2 + 16, yy, "", ew, eh, uivc_input_audio_bgm_name, "", "", "", validate_string, ui_value_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
+var el_name = create_input(c2 + 16, yy, "", ew, eh, uivc_input_audio_bgm_name, "", "", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
 dg.el_name = el_name;
 yy = yy + el_name.height + spacing;
 var el_name_internal_text = create_text(c2 + 16, yy, "Internal Name:", ew, eh, fa_left, ew, dg);
 yy = yy + el_name_internal_text.height + spacing;
-var el_name_internal = create_input(c2 + 16, yy, "", ew, eh, uivc_input_audio_bgm_internal_name, "", "", "A-Za-z0-9_", validate_string_internal_name, ui_value_string, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
+var el_name_internal = create_input(c2 + 16, yy, "", ew, eh, uivc_input_audio_bgm_internal_name, "", "A-Za-z0-9_", validate_string_internal_name, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
 dg.el_name_internal = el_name_internal;
 yy = yy + el_name_internal.height + spacing;
 
@@ -69,10 +69,10 @@ yy = yy_base;
 var el_length = create_text(c3 + 16, yy, "Length: N/A", ew, eh, fa_left, ew, dg);
 dg.el_length = el_length;
 yy = yy + el_length.height + spacing;
-var el_loop_start = create_input(c3 + 16, yy, "Loop Start:", ew, eh, uivc_input_audio_loop_start, "", 0, "seconds", validate_double, ui_value_real, 0, 10000, 5, vx1, vy1, vx2, vy2, dg);
+var el_loop_start = create_input(c3 + 16, yy, "Loop Start:", ew, eh, uivc_input_audio_loop_start, 0, "seconds", validate_double, 0, 10000, 5, vx1, vy1, vx2, vy2, dg);
 dg.el_loop_start = el_loop_start;
 yy = yy + el_loop_start.height + spacing;
-var el_loop_end = create_input(c3 + 16, yy, "Loop End:", ew, eh, uivc_input_audio_loop_end, "", 0, "seconds", validate_double, ui_value_real, 0, 10000, 5, vx1, vy1, vx2, vy2, dg);
+var el_loop_end = create_input(c3 + 16, yy, "Loop End:", ew, eh, uivc_input_audio_loop_end, 0, "seconds", validate_double, 0, 10000, 5, vx1, vy1, vx2, vy2, dg);
 dg.el_loop_end = el_loop_end;
 yy = yy + el_loop_end.height + spacing;
 var el_loop_progress = create_progress_bar(c3 + 16, yy, ew, eh, uivc_audio_bgm_loop_point, 8, 0, dg);

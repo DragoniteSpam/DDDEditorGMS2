@@ -32,7 +32,7 @@ var n_slots = 10;
 
 var yy = 64;
 
-var el_name = create_input(16, yy, "Name:", ew, eh, uivc_input_custom_event_name, "", dg.event.name, "[A-Za-z0-9_]+", validate_string_internal_name, ui_value_string, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
+var el_name = create_input(16, yy, "Name:", ew, eh, uivc_input_custom_event_name, dg.event.name, "[A-Za-z0-9_]+", validate_string_internal_name, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
 yy = yy + el_name.height + spacing;
 
 var yy_base = yy;
@@ -53,7 +53,7 @@ var el_remove = create_button(16, yy, "Remove Property", ew, eh, fa_center, omu_
 // COLUMN 2
 yy = yy_base;
 
-var el_property_name = create_input(col2_x, yy, "Name:", ew, eh, uivc_input_custom_data_property_name, "", "", "Value name", validate_string, ui_value_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
+var el_property_name = create_input(col2_x, yy, "Name:", ew, eh, uivc_input_custom_data_property_name, "", "Value name", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
 el_property_name.interactive = false;
 dg.el_property_name = el_property_name;
 
@@ -87,7 +87,7 @@ ui_list_select(el_outbound, 0);
 el_outbound.render = ui_render_list_event_custom_outbound;
 dg.el_outbound = el_outbound;
 yy = yy + ui_get_list_height(el_outbound) + spacing;
-var el_outbound_name = create_input(col3_x + 16, yy, "Name:", ew, eh, uivc_input_event_custom_outbound_name, "", "", "Name", validate_string, ui_value_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
+var el_outbound_name = create_input(col3_x + 16, yy, "Name:", ew, eh, uivc_input_event_custom_outbound_name, "", "Name", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
 dg.el_outbound_name = el_outbound_name;
 yy = yy + el_outbound_name.height + spacing;
 var el_outbound_add = create_button(col3_x + 16, yy, "Add", ew, eh, fa_center, omu_event_custom_add_outbound, dg);
@@ -100,9 +100,11 @@ yy = yy + el_outbound_remove.height + spacing;
 
 var el_confirm = create_button(dw / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg, fa_center);
 
-ds_list_add(dg.contents, el_name, el_list, el_add, el_remove,
+ds_list_add(dg.contents,
+    el_name, el_list, el_add, el_remove,
     el_property_name, el_property_type, el_property_ext_type, el_property_type_guid,
 	el_outbound, el_outbound_name, el_outbound_add, el_outbound_remove,
-    el_confirm);
+    el_confirm
+);
 
 return dg;
