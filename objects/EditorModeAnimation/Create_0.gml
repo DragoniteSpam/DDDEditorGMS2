@@ -1,6 +1,22 @@
 event_inherited();
 
-render = editor_render_terrain;
+x = setting_get("Animation", "x", 0);
+y = setting_get("Animation", "y", 100);
+z = setting_get("Animation", "z", 100);
+
+xto = setting_get("Animation", "xto", 0);
+yto = setting_get("Animation", "yto", 0);
+zto = setting_get("Animation", "zto", 0);
+
+xup = setting_get("Animation", "xup", 0);
+yup = setting_get("Animation", "yup", 0);
+zup = setting_get("Animation", "zup", 1);
+
+fov = setting_get("Animation", "fov", 50);
+pitch = setting_get("Animation", "pitch", 0);
+direction = setting_get("Animation", "direction", 0);
+not_yet_implemented();
+render = editor_render_map;
 
 texture_name = "b_tileset_overworld_0.png";
 texture = terrain_create_texture_sprite(PATH_GRAPHICS + texture_name);

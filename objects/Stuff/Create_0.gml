@@ -409,26 +409,49 @@ if (file_exists("projects.json")) {
 }
 
 // user settings
-ini_open(DATA_INI);
-setting_color = ini_read_real("config", "color", c_green);                  // BGR
-setting_bezier_precision = ini_read_real("config", "bezier", 6);            // preferably keep this between like 4 and 16ish?
-setting_backups = ini_read_real("config", "backups", 2);                    // 0 (none) through 9 (why would you keep that many backups?)
-setting_autosave = ini_read_real("config", "autosave", true);               // bool
-setting_npc_animate_rate = ini_read_real("config", "npc-speed", 4);         // bool
-setting_code_extension = ini_read_real("config", "code-ext", 0);            // 0 = txt, 1 = lua
-setting_normal_threshold = ini_read_real("config", "normal-threshold", 30); // degrees
+// @todo gml update try catch
+if (file_exists(FILE_SETTINGS)) {
+    var json_buffer = buffer_load(FILE_SETTINGS);
+    settings = json_decode(buffer_read(json_buffer, buffer_string));
+    buffer_delete(json_buffer);
+} else {
+    settings = ds_map_create();
+    var settings_map = ds_map_create();
+    var settings_animation = ds_map_create();
+    var settings_terrain = ds_map_create();
+    var settings_event = ds_map_create();
+    var settings_data = ds_map_create();
+    var settings_config = ds_map_create();
+    var settings_location = ds_map_create();
+    ds_map_add_map(settings, "Map", settings_map);
+    ds_map_add_map(settings, "Animation", settings_animation);
+    ds_map_add_map(settings, "Terrain", settings_terrain);
+    ds_map_add_map(settings, "Event", settings_event);
+    ds_map_add_map(settings, "Data", settings_data);
+    ds_map_add_map(settings, "Config", settings_config);
+    ds_map_add_map(settings, "Location", settings_location);
+}
 
-setting_location_ddd = ini_read_string("locations", "ddd", "./");
-setting_location_mesh = ini_read_string("locations", "mesh", "./");
-setting_location_terrain = ini_read_string("locations", "terrain", "./");
-setting_location_image = ini_read_string("locations", "image", "./");
-setting_location_audio = ini_read_string("locations", "audio", "./");
-setting_location_tiled = ini_read_string("locations", "tiled", "./");
+setting_color = setting_get("Config", "color", c_green);                  // BGR
+setting_bezier_precision = setting_get("Config", "bezier", 6);            // preferably keep this between like 4 and 16ish?
+setting_backups = setting_get("Config", "backups", 2);                    // 0 (none) through 9 (why would you keep that many backups?)
+setting_autosave = setting_get("Config", "autosave", true);               // bool
+setting_npc_animate_rate = setting_get("Config", "npc-speed", 4);         // bool
+setting_code_extension = setting_get("Config", "code-ext", 0);            // 0 = txt, 1 = lua
+setting_normal_threshold = setting_get("Config", "normal-threshold", 30); // degrees
+
+setting_location_ddd = setting_get("Location", "ddd", "./");
+setting_location_mesh = setting_get("Location", "mesh", "./");
+setting_location_terrain = setting_get("Location", "terrain", "./");
+setting_location_image = setting_get("Location", "image", "./");
+setting_location_audio = setting_get("Location", "audio", "./");
+setting_location_tiled = setting_get("Location", "tiled", "./");
 
 setting_code_extension_map = [".txt", ".lua"];
 
 setting_hide_warnings = ds_map_create();
-ini_close();
+
+alarm[ALARM_SETTINGS_SAVE] = room_speed * CAMERA_SAVE_FREQUENCY;
 
 // hacky workaround
 maps_included = false;
