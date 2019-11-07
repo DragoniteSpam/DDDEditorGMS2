@@ -2,7 +2,7 @@
 
 var dialog = argument0;
 
-var dw = 320;
+var dw = 360;
 var dh = 320;
 
 var dg = dialog_create(dw, dh, "New Terrain", dialog_default, dc_default, dialog);
@@ -47,13 +47,18 @@ dg.el_dual_layer = el_dual_layer;
 
 yy = yy + el_dual_layer.height + spacing;
 
+var el_scale = create_input(col1_x, yy, "Heightmap Scale:", ew, eh, null, 0, 16, "1...255", validate_int, ui_value_real, 1, 255, 3, vx1, vy1, vx2, vy2, dg);
+dg.el_scale = el_scale;
+
+yy = yy + el_height.height + spacing;
+
 var el_import_heightmap = create_button(dw / 2 - ew / 2, dh - 32 - b_height - eh / 2 - spacing, "Import Heightmap", ew, b_height, fa_center, dmu_terrain_import_heightmap, dg);
 
 var el_confirm = create_button(dw * 2 / 7 - b_width / 2, dh - 32 - b_height / 2, "Create", b_width, b_height, fa_center, dmu_dialog_commit_terrain_create, dg);
 var el_never_mind = create_button(dw * 5 / 7 - b_width / 2, dh - 32 - b_height / 2, "Cancel", b_width, b_height, fa_center, dmu_dialog_commit, dg);
 
 ds_list_add(dg.contents,
-    el_width, el_height, el_dual_layer,
+    el_width, el_height, el_dual_layer, el_scale,
 	el_import_heightmap, el_confirm, el_never_mind
 );
 
