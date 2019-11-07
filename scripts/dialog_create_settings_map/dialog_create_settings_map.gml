@@ -46,7 +46,7 @@ var el_other_fog_end = create_input(16, yy, "      Fog End:", ew, eh, uivc_setti
 dg.el_other_fog_end = el_other_fog_end;
 yy = yy + el_other_fog_end.height + spacing;
 
-var el_other_fog_colour = create_color_picker(16, yy, "      Fog Color:", ew, eh, uivc_settings_map_fog_colour, "", map.fog_colour, vx1, vy1, vx2, vy2, dg);
+var el_other_fog_colour = create_color_picker(16, yy, "      Fog Color:", ew, eh, uivc_settings_map_fog_colour, map.fog_colour, vx1, vy1, vx2, vy2, dg);
 dg.el_other_fog_colour = el_other_fog_colour;
 yy = yy + el_other_fog_colour.height + spacing;
 

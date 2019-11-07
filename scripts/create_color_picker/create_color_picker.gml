@@ -4,7 +4,6 @@
 /// @param width
 /// @param height
 /// @param onvaluechange
-/// @param key
 /// @param value
 /// @param value-x1
 /// @param value-y1
@@ -18,15 +17,14 @@ with (instance_create_depth(argument[0], argument[1], 0, UIColorPicker)) {
     height = argument[4];
     
     onvaluechange = argument[5];
-    key = argument[6];
-    value = argument[7];
+    value = argument[6];
     
-    value_x1 = argument[8];
-    value_y1 = argument[9];
-    value_x2 = argument[10];
-    value_y2 = argument[11];
+    value_x1 = argument[7];
+    value_y1 = argument[8];
+    value_x2 = argument[9];
+    value_y2 = argument[10];
     
-    root = argument[12];
+    root = argument[11];
 	
     return id;
 }

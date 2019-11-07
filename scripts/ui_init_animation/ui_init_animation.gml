@@ -205,7 +205,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
         
         yy = yy + element.height;
     
-        el_keyframe.color = create_color_picker(xx, yy, "      color:", ew, eh, uivc_animation_keyframe_color, 0, c_white, vx1, vy1, vx2, vy2, el_keyframe);
+        el_keyframe.color = create_color_picker(xx, yy, "      color:", ew, eh, uivc_animation_keyframe_color, c_white, vx1, vy1, vx2, vy2, el_keyframe);
         el_keyframe.color.render = ui_render_animation_keyframe_color;
         ds_list_add(el_keyframe.contents, el_keyframe.color);
         el_keyframe.tween_color = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, omu_animation_keyframe_tween, el_keyframe);

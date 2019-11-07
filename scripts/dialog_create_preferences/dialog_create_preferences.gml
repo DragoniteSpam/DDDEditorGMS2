@@ -29,7 +29,7 @@ var el_autosave = create_checkbox(16, yy, "Automatic Backups", ew, eh, uivc_auto
 yy = yy + el_autosave.height + spacing;
 var el_npc_animation = create_input(16, yy, "NPC speed:", ew, eh, uivc_bezier_precision, Stuff.setting_npc_animate_rate, "0...9", validate_int, 1, 16, 2, vx1, vy1, vx2, vy2, dg);
 yy = yy + el_npc_animation.height + spacing;
-var el_ui_color = create_color_picker(16, yy, "UI Color:", ew, eh, uivc_ui_color, "", Stuff.setting_color, vx1, vy1, vx2, vy2, dg);
+var el_ui_color = create_color_picker(16, yy, "UI Color:", ew, eh, uivc_ui_color, Stuff.setting_color, vx1, vy1, vx2, vy2, dg);
 yy = yy + el_ui_color.height + spacing;
 
 yy = yy_base;

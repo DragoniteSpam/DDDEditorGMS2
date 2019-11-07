@@ -3,7 +3,6 @@
 /// @param width
 /// @param height
 /// @param onvaluechange
-/// @param key
 /// @param value
 /// @param allow-alpha?
 /// @param value-x1
@@ -21,17 +20,16 @@ with (instance_create_depth(argument[0], argument[1], 0, UIColorPickerInput)) {
     height = argument[3];
     
     onvaluechange = argument[4];
-    key = argument[5];
-    value = argument[6];
-    allow_alpha = argument[7];
+    value = argument[5];
+    allow_alpha = argument[6];
     
-    value_x1 = argument[8];
-    value_y1 = argument[9];
-    value_x2 = argument[10];
-    value_y2 = argument[11];
+    value_x1 = argument[7];
+    value_y1 = argument[8];
+    value_x2 = argument[9];
+    value_y2 = argument[10];
     
-    root = argument[12];
-    text = (argument_count > 13) ? argument[13] : text;
+    root = argument[11];
+    text = (argument_count > 12) ? argument[12] : text;
 	
 	value_text = string_hex(colour_reverse(value), 6);
 	

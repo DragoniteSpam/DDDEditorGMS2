@@ -22,7 +22,7 @@ var vy2 = vy1 + eh;
 var yy = 64;
 var spacing = 16;
 
-dg.el_picker = create_color_picker_input(32, yy, ew, eh, onvaluechange, 0, color, false, vx1, vy1, vx2, vy2, dg);
+dg.el_picker = create_color_picker_input(32, yy, ew, eh, onvaluechange, color, false, vx1, vy1, vx2, vy2, dg);
 dg.el_picker.axis_value = (color & 0x0000ff) / 0xff;
 dg.el_picker.axis_w = ((color & 0x00ff00) >> 8) / 0xff;
 dg.el_picker.axis_h = ((color & 0xff0000) >> 16) / 0xff;

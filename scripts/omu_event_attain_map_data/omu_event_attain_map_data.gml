@@ -80,7 +80,7 @@ create_radio_array_options(el_direction, ["Down", "Left", "Right", "Up"]);
 dg.el_direction = el_direction;
 yy = yy + ui_get_radio_array_height(el_direction) + spacing;
 
-var el_color = create_color_picker(16, yy, "Fade Color", ew, eh, uivc_input_event_attain_transfer_color, 0, custom_data_color[| 0], vx1, vy1, vx2, vy2, dg);
+var el_color = create_color_picker(16, yy, "Fade Color", ew, eh, uivc_input_event_attain_transfer_color, custom_data_color[| 0], vx1, vy1, vx2, vy2, dg);
 dg.el_color = el_color;
 yy = yy + el_color.height + spacing;
 

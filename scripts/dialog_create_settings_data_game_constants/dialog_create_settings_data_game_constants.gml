@@ -76,7 +76,7 @@ dg.el_value_int = el_value_int;
 var el_value_bool = create_checkbox(c3 + 32, yy, "Value", ew, eh, uivc_input_constant_value_real, false, dg);
 el_value_bool.enabled = false;
 dg.el_value_bool = el_value_bool;
-var el_value_color = create_color_picker(c3 + 32, yy, "Color", ew, eh, uivc_input_constant_value_real, "", c_black, vx1, vy1, vx2, vy2, dg);
+var el_value_color = create_color_picker(c3 + 32, yy, "Color", ew, eh, uivc_input_constant_value_real, c_black, vx1, vy1, vx2, vy2, dg);
 el_value_color.enabled = false;
 dg.el_value_color = el_value_color;
 // this is for selecting the datadata type
