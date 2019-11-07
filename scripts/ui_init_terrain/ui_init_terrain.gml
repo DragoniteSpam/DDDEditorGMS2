@@ -57,25 +57,25 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element.height + spacing;
     
-    element = create_checkbox(legal_x + spacing, yy, "Dual layers", col_width, element_height, null, 0, terrain.dual_layer, t_general);
+    element = create_checkbox(legal_x + spacing, yy, "Dual layers", col_width, element_height, null, terrain.dual_layer, t_general);
     t_general.element_dual = element;
     t_general.element_dual.interactive = false;
     //ds_list_add(t_general.contents, element);
     
     //yy = yy + element.height + spacing;
     
-    element = create_checkbox(legal_x + spacing, yy, "Orthographic?", col_width, element_height, ui_input_terrain_orthographic, 0, terrain.orthographic, t_general);
+    element = create_checkbox(legal_x + spacing, yy, "Orthographic?", col_width, element_height, ui_input_terrain_orthographic, terrain.orthographic, t_general);
     ds_list_add(t_general.contents, element);
     
     yy = yy + element.height + spacing;
     
-    element = create_checkbox(legal_x + spacing, yy, "Draw water?", col_width, element_height, ui_input_terrain_draw_water, 0, terrain.view_water, t_general);
+    element = create_checkbox(legal_x + spacing, yy, "Draw water?", col_width, element_height, ui_input_terrain_draw_water, terrain.view_water, t_general);
     t_general.element_draw_water = element;
     ds_list_add(t_general.contents, element);
     
     yy = yy + element.height + spacing;
     
-    element = create_checkbox(legal_x + spacing, yy, "Smooth shading?", col_width, element_height, ui_input_terrain_smooth_shading, 0, terrain.smooth_shading, t_general);
+    element = create_checkbox(legal_x + spacing, yy, "Smooth shading?", col_width, element_height, ui_input_terrain_smooth_shading, terrain.smooth_shading, t_general);
     t_general.element_smooth_shading = element;
     //ds_list_add(t_general.contents, element);
     
@@ -149,19 +149,19 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element.height + spacing;
     
-    element = create_checkbox(col2_x, yy, "Export: all faces?", col_width, element_height, ui_input_terrain_export_all, 0, terrain.export_all, t_general);
+    element = create_checkbox(col2_x, yy, "Export: all faces?", col_width, element_height, ui_input_terrain_export_all, terrain.export_all, t_general);
     t_general.element_save_all_faces = element;
     ds_list_add(t_general.contents, element);
     
     yy = yy + element.height + spacing;
     
-    element = create_checkbox(col2_x, yy, "OBJ: swap Z up?", col_width, element_height, ui_input_terrain_export_swap_zup, 0, terrain.export_swap_zup, t_general);
+    element = create_checkbox(col2_x, yy, "OBJ: swap Z up?", col_width, element_height, ui_input_terrain_export_swap_zup, terrain.export_swap_zup, t_general);
     t_general.element_swap_zup = element;
     ds_list_add(t_general.contents, element);
     
     yy = yy + element.height + spacing;
     
-    element = create_checkbox(col2_x, yy, "OBJ: swap UVs?", col_width, element_height, ui_input_terrain_export_swap_uvs, 0, terrain.export_swap_uvs, t_general);
+    element = create_checkbox(col2_x, yy, "OBJ: swap UVs?", col_width, element_height, ui_input_terrain_export_swap_uvs, terrain.export_swap_uvs, t_general);
     t_general.element_swap_uvs = element;
     ds_list_add(t_general.contents, element);
     

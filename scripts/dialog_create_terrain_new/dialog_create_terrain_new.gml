@@ -41,7 +41,7 @@ dg.el_height = el_height;
 
 yy = yy + el_height.height + spacing;
 
-var el_dual_layer = create_checkbox(col1_x, yy, "Dual layer?", ew, eh, null, 0, false, dg);
+var el_dual_layer = create_checkbox(col1_x, yy, "Dual layer?", ew, eh, null, false, dg);
 el_dual_layer.enabled = false;
 dg.el_dual_layer = el_dual_layer;
 

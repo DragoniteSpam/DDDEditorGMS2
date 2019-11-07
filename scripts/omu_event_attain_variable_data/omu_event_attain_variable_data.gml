@@ -49,7 +49,7 @@ dg.el_value = el_value;
 
 yy = yy + el_value.height + spacing;
 
-var el_relative = create_checkbox(16, yy, "Relative?", ew, eh, uivc_check_event_attain_variable_relative, 0, custom_data_relative[|0], dg);
+var el_relative = create_checkbox(16, yy, "Relative?", ew, eh, uivc_check_event_attain_variable_relative, custom_data_relative[|0], dg);
 dg.el_relative = el_relative;
 
 var b_width = 128;

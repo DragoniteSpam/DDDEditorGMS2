@@ -60,7 +60,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + ui_get_radio_array_height(element) + spacing;
     
-    element = create_checkbox(legal_x + spacing, yy, "Additive Selection", col_width, element_height, uivc_check_selection_addition, "", Camera.selection_addition, t_general);
+    element = create_checkbox(legal_x + spacing, yy, "Additive Selection", col_width, element_height, uivc_check_selection_addition, Camera.selection_addition, t_general);
     ds_list_add(t_general.contents, element);
     
     yy = yy + element.height + spacing;
@@ -104,27 +104,27 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element.height + spacing;
     
-    element = create_checkbox(col2_x, yy, "View Wireframes", col_width, element_height, uivc_check_view_wireframe, "", Camera.view_wireframe, t_general);
+    element = create_checkbox(col2_x, yy, "View Wireframes", col_width, element_height, uivc_check_view_wireframe, Camera.view_wireframe, t_general);
     ds_list_add(t_general.contents, element);
     
     yy = yy + element.height + spacing;
     
-    element = create_checkbox(col2_x, yy, "View Grid and Markers", col_width, element_height, uivc_check_view_grids, "", Camera.view_grid, t_general);
+    element = create_checkbox(col2_x, yy, "View Grid and Markers", col_width, element_height, uivc_check_view_grids, Camera.view_grid, t_general);
     ds_list_add(t_general.contents, element);
     
     yy = yy + element.height + spacing;
     
-    element = create_checkbox(col2_x, yy, "View Texture", col_width, element_height, uivc_check_view_texture, "", Camera.view_texture, t_general);
+    element = create_checkbox(col2_x, yy, "View Texture", col_width, element_height, uivc_check_view_texture, Camera.view_texture, t_general);
     ds_list_add(t_general.contents, element);
     
     yy = yy + element.height + spacing;
     
-    element = create_checkbox(col2_x, yy, "View Entities", col_width, element_height, uivc_check_view_entities, "", Camera.view_entities, t_general);
+    element = create_checkbox(col2_x, yy, "View Entities", col_width, element_height, uivc_check_view_entities, Camera.view_entities, t_general);
     ds_list_add(t_general.contents, element);
     
     yy = yy + element.height + spacing;
     
-    element = create_checkbox(col2_x, yy, "View Backfaces", col_width, element_height, uivc_check_view_backface, "", Camera.view_backface, t_general);
+    element = create_checkbox(col2_x, yy, "View Backfaces", col_width, element_height, uivc_check_view_backface, Camera.view_backface, t_general);
     ds_list_add(t_general.contents, element);
     
     yy = yy + element.height + spacing;
@@ -393,13 +393,13 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element.height + spacing;
     
-    element_entity_solid = create_checkbox(legal_x + spacing, yy, "Solid", col_width, element_height, uivc_check_entity_solid, "", false, t_p_entity);
+    element_entity_solid = create_checkbox(legal_x + spacing, yy, "Solid", col_width, element_height, uivc_check_entity_solid, false, t_p_entity);
     ds_list_add(t_p_entity.contents, element_entity_solid);
     element_entity_solid.interactive = false;
     
     yy = yy + element_entity_solid.height;
     
-    element_entity_static = create_checkbox(legal_x + spacing, yy, "Static", col_width, element_height, uivc_check_entity_static, "", false, t_p_entity);
+    element_entity_static = create_checkbox(legal_x + spacing, yy, "Static", col_width, element_height, uivc_check_entity_static, false, t_p_entity);
     ds_list_add(t_p_entity.contents, element_entity_static);
     element_entity_static.interactive = false;
     
@@ -439,25 +439,25 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element.height + spacing;
     
-    element_entity_option_animate_idle = create_checkbox(legal_x + spacing, yy, "Animate Idle", col_width, element_height, uivc_check_entity_option_animate_idle, "", false, t_p_entity);
+    element_entity_option_animate_idle = create_checkbox(legal_x + spacing, yy, "Animate Idle", col_width, element_height, uivc_check_entity_option_animate_idle, false, t_p_entity);
     ds_list_add(t_p_entity.contents, element_entity_option_animate_idle);
     element_entity_option_animate_idle.interactive = false;
     
     yy = yy + element_entity_option_animate_idle.height;
     
-    element_entity_option_animate_movement = create_checkbox(legal_x + spacing, yy, "Animate Movement", col_width, element_height, uivc_check_entity_option_animate_movement, "", false, t_p_entity);
+    element_entity_option_animate_movement = create_checkbox(legal_x + spacing, yy, "Animate Movement", col_width, element_height, uivc_check_entity_option_animate_movement, false, t_p_entity);
     ds_list_add(t_p_entity.contents, element_entity_option_animate_movement);
     element_entity_option_animate_movement.interactive = false;
     
     yy = yy + element_entity_option_animate_movement.height;
     
-    element_entity_option_direction_fix = create_checkbox(legal_x + spacing, yy, "Direction Fix", col_width, element_height, uivc_check_entity_option_direction_fix, "", false, t_p_entity);
+    element_entity_option_direction_fix = create_checkbox(legal_x + spacing, yy, "Direction Fix", col_width, element_height, uivc_check_entity_option_direction_fix, false, t_p_entity);
     ds_list_add(t_p_entity.contents, element_entity_option_direction_fix);
     element_entity_option_direction_fix.interactive = false;
     
     yy = yy + element_entity_option_direction_fix.height;
     
-    element_entity_option_reset_position = create_checkbox(legal_x + spacing, yy, "Reset Position", col_width, element_height, uivc_check_entity_option_reset_position, "", false, t_p_entity);
+    element_entity_option_reset_position = create_checkbox(legal_x + spacing, yy, "Reset Position", col_width, element_height, uivc_check_entity_option_reset_position, false, t_p_entity);
     ds_list_add(t_p_entity.contents, element_entity_option_reset_position);
     element_entity_option_reset_position.interactive = false;
     
@@ -571,7 +571,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = legal_y + spacing;
     
-    element_entity_mesh_animated = create_checkbox(legal_x + spacing, yy, "Animated", col_width, element_height, uivc_entity_mesh_animated, "", false, t_p_mesh);
+    element_entity_mesh_animated = create_checkbox(legal_x + spacing, yy, "Animated", col_width, element_height, uivc_entity_mesh_animated, false, t_p_mesh);
     ds_list_add(t_p_mesh.contents, element_entity_mesh_animated);
     
     yy = yy + element_entity_mesh_animated.height + spacing;
@@ -593,7 +593,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + ui_get_radio_array_height(element_entity_pawn_direction) + spacing;
     
-    element_entity_pawn_animating = create_checkbox(legal_x + spacing, yy, "Animating", col_width, element_height, uivc_entity_pawn_animating, "", false, t_p_pawn);
+    element_entity_pawn_animating = create_checkbox(legal_x + spacing, yy, "Animating", col_width, element_height, uivc_entity_pawn_animating, false, t_p_pawn);
     ds_list_add(t_p_pawn.contents, element_entity_pawn_animating);
     
     yy = yy + element_entity_pawn_animating.height + spacing;

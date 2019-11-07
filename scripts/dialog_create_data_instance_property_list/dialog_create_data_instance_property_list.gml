@@ -97,7 +97,8 @@ switch (property.type) {
     case DataTypes.BOOL:
         // this onvaluechange just copies the value without casting it so we can do this even though it's designed for strings and
         // bools are decidedly not strings
-        var el_value = create_checkbox(16, yy, "Value", ew, eh, uivc_data_property_list_string, dialog.key, false, dg);
+        var el_value = create_checkbox(16, yy, "Value", ew, eh, uivc_data_property_list_string, false, dg);
+        el_value.key = dialog.key;
         yy = yy + el_value.height + spacing;
         break;
     case DataTypes.CODE:

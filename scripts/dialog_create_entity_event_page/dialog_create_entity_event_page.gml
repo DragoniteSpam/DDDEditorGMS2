@@ -31,24 +31,24 @@ var ucheck_width = 64;        // unlabeled check boxes shouldn't have as wide of
 
 var el_name = create_input(16, yy, "Name:", ew, eh, uivc_entity_event_name, "", page.name, "Name of the event", validate_string, ui_value_string, 0, 1, VISIBLE_NAME_LENGTH, vx1 - 64, vy1, vx2, vy2, dg);
 yy = yy + eh + spacing;
-var el_enabled = create_checkbox(16, yy, "Enabled", ew, eh, uivc_entity_event_enable, "", page.enabled, dg);
+var el_enabled = create_checkbox(16, yy, "Enabled", ew, eh, uivc_entity_event_enable, page.enabled, dg);
 yy = yy + eh + spacing;
 var el_condition = create_text(16, yy, "Conditions", ew, eh, fa_left, ew, dg);
 yy = yy + eh + spacing;
 
-var el_condition_switch_global_enabled = create_checkbox(16, yy, "", ucheck_width, eh, uivc_entity_event_enable_switch_global, "", page.condition_switch_global_enabled, dg);
+var el_condition_switch_global_enabled = create_checkbox(16, yy, "", ucheck_width, eh, uivc_entity_event_enable_switch_global, page.condition_switch_global_enabled, dg);
 var el_condition_switch_global = create_button(16 + 64, yy, "Global Switch", ew - 64, eh, fa_center, omu_event_condition_attain_switch_data, dg);
 yy = yy + eh + spacing;
 // variable properties go in the form that pops up when you click the button
-var el_condition_variable_global_enabled = create_checkbox(16, yy, "", ucheck_width, eh, uivc_entity_event_enable_variable_global, "", page.condition_variable_global_enabled, dg);
+var el_condition_variable_global_enabled = create_checkbox(16, yy, "", ucheck_width, eh, uivc_entity_event_enable_variable_global, page.condition_variable_global_enabled, dg);
 var el_condition_variable_global = create_button(16 + 64, yy, "Global Variable", ew - 64, eh, fa_center, omu_event_condition_attain_variable_data, dg);
 yy = yy + eh + spacing;
 
-var el_condition_switch_self_enabled = create_checkbox(16, yy, "", ucheck_width, eh, uivc_entity_event_enable_switch_self, "", page.condition_switch_self_enabled, dg);
+var el_condition_switch_self_enabled = create_checkbox(16, yy, "", ucheck_width, eh, uivc_entity_event_enable_switch_self, page.condition_switch_self_enabled, dg);
 var el_condition_switch_self = create_button(16 + 64, yy, "Self Switch", ew - 64, eh, fa_center, omu_event_condition_attain_switch_self_data, dg);
 yy = yy + eh + spacing;
 // variable properties go in the form that pops up when you click the button
-var el_condition_variable_self_enabled = create_checkbox(16, yy, "", ucheck_width, eh, uivc_entity_event_enable_variable_self, "", page.condition_variable_self_enabled, dg);
+var el_condition_variable_self_enabled = create_checkbox(16, yy, "", ucheck_width, eh, uivc_entity_event_enable_variable_self, page.condition_variable_self_enabled, dg);
 var el_condition_variable_self = create_button(16 + 64, yy, "Self Variable", ew - 64, eh, fa_center, omu_event_condition_attain_variable_self_data, dg);
 yy = yy + eh + spacing;
 
@@ -57,7 +57,7 @@ vy1 = 0;
 vx2 = vx1 + dw / (columns * 2);
 vy2 = vy1 + eh;
 
-var el_condition_code_enabled = create_checkbox(16, yy, "", ucheck_width, eh, uivc_entity_event_enable_code, "", page.condition_code_enabled, dg);
+var el_condition_code_enabled = create_checkbox(16, yy, "", ucheck_width, eh, uivc_entity_event_enable_code, page.condition_code_enabled, dg);
 //var el_condition_code = create_button(16 + 64, yy, "Code Evaluation", ew - 64, eh, fa_center, null, dg);
 var el_condition_code = create_input_code(16 + 64, yy, "Code", ew - 64, eh, vx1, vy1, vx2, vy2, page.condition_code, uivc_event_condition_code, dg);
 yy = yy + el_condition_code.height + spacing + 80;

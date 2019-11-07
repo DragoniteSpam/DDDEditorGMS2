@@ -6,8 +6,6 @@ enabled = true;
 interactive = true;
 outline = true;             // not used in all element types
 
-key = "key";
-
 text = "thing";
 width = 128;
 height = 24;

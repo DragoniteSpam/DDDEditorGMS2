@@ -34,7 +34,7 @@ var spacing2 = 0;
 
 var n = 10;
 
-var el_name = create_input(16, yy, "Name:", ew*2, eh, uivc_entity_move_route_name, "", argument1.name, "", validate_string, ui_value_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2 + c2, vy2, dg);
+var el_name = create_input(16, yy, "Name:", ew*2, eh, uivc_entity_move_route_name, "", route.name, "", validate_string, ui_value_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2 + c2, vy2, dg);
 
 yy = yy + el_name.height + spacing;
 
@@ -52,16 +52,16 @@ yy = yy + el_step_edit.height + spacing;
 var el_step_remove = create_button(16, yy, "Remove Step", ew, eh, fa_center, omu_entity_remove_move_route_step, dg);
 yy = yy + el_step_remove.height + spacing;
 
-var el_repeat=create_checkbox(16, yy, "Loop Route", ew, eh, uivc_entity_move_route_loop, "", argument1.repeat_action, dg);
-yy=yy+el_repeat.height+spacing;
+var el_repeat = create_checkbox(16, yy, "Loop Route", ew, eh, uivc_entity_move_route_loop, route.repeat_action, dg);
+yy = yy + el_repeat.height + spacing;
 
-var el_skip=create_checkbox(16, yy, "Skip If Blocked", ew, eh, uivc_entity_move_route_skip, "", argument1.skip, dg);
-yy=yy+el_skip.height+spacing;
+var el_skip = create_checkbox(16, yy, "Skip If Blocked", ew, eh, uivc_entity_move_route_skip, route.skip, dg);
+yy = yy + el_skip.height + spacing;
 
-var el_wait=create_checkbox(16, yy, "Wait For Completion", ew, eh, uivc_entity_move_route_wait, "", argument1.wait, dg);
-yy=yy+el_wait.height+spacing;
+var el_wait = create_checkbox(16, yy, "Wait For Completion", ew, eh, uivc_entity_move_route_wait, route.wait, dg);
+yy = yy + el_wait.height + spacing;
 
-yy=yy_grid;
+yy = yy_grid;
 
 var el_cmd_move_down=create_button(c2+16, yy, "Move Down", ew, eh, fa_center, omu_mr_move_down, dg);
 yy=yy+el_cmd_move_down.height+spacing2;

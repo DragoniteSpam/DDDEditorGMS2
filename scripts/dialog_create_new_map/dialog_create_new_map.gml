@@ -44,7 +44,7 @@ dg.el_z = el_z;
 
 yy = yy + el_z.height + spacing;
 
-var el_grid = create_checkbox(32, yy, "Aligned to Grid?", ew, eh, null, 0, true, dg);
+var el_grid = create_checkbox(32, yy, "Aligned to Grid?", ew, eh, null, true, dg);
 dg.el_grid = el_grid;
 
 yy = yy + el_grid.height + spacing;

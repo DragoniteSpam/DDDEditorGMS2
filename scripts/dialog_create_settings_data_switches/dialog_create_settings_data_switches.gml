@@ -39,7 +39,7 @@ yy = yy + eh + spacing;
 var el_name = create_input(c2 + 32, yy, "Switch name:", ew, eh, uivc_global_switch_name, 0, "", "16 characters", validate_string, ui_value_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
 yy = yy + el_name.height + spacing;
 dg.el_name = el_name;
-var el_default = create_checkbox(c2 + 32, yy, "Default value", ew, eh, uivc_global_switch_default, 0, false, dg);
+var el_default = create_checkbox(c2 + 32, yy, "Default value", ew, eh, uivc_global_switch_default, false, dg);
 yy = yy + el_default.height + spacing;
 dg.el_default = el_default;
 

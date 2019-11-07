@@ -23,7 +23,7 @@ var yy_base = yy;
 
 var el_gameplay_title = create_text(16, yy, "General Game Settings", ew, eh, fa_left, dw / 2, dg);
 yy = yy + el_gameplay_title.height + spacing;
-var el_gameplay_grid = create_checkbox(16, yy, "Snap Player to Grid", ew, eh, uivc_settings_game_grid, "", Stuff.game_player_grid, dg);
+var el_gameplay_grid = create_checkbox(16, yy, "Snap Player to Grid", ew, eh, uivc_settings_game_grid, Stuff.game_player_grid, dg);
 yy = yy + el_gameplay_grid.height + spacing;
 var el_player_start = create_button(16, yy, "Player Starting Position", ew, eh, fa_center, dialog_create_settings_data_player_start, dg);
 yy = yy + el_player_start.height + spacing;

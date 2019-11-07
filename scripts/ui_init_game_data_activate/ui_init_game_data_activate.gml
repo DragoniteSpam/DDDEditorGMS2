@@ -105,7 +105,8 @@ if (selection + 1) {
 		                    var hh = ui_get_list_height(element);
 	                        break;
 	                    case DataTypes.BOOL:           // checkbox
-	                        var element = create_checkbox(spacing, yy, property.name, ew, eh, uivc_data_set_property_boolean, i, false, noone);
+	                        var element = create_checkbox(spacing, yy, property.name, ew, eh, uivc_data_set_property_boolean, false, noone);
+                            element.key = i;
 	                        var hh = element.height;
 	                        break;
 	                    case DataTypes.CODE:

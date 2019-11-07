@@ -40,7 +40,7 @@ dg.el_list = el_list;
 
 yy = yy + ui_get_list_height(el_list) + spacing;
 
-var el_state = create_checkbox(16, yy, "Is enabled?", ew, eh, uivc_check_event_condition_value, 0, list_value[| index], dg);
+var el_state = create_checkbox(16, yy, "Is enabled?", ew, eh, uivc_check_event_condition_value, list_value[| index], dg);
 dg.el_state = el_state;
 
 var b_width = 128;

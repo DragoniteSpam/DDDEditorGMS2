@@ -30,7 +30,7 @@ if (selection >= 0) {
     
     var el_name = create_input(16, yy, "Name:", ew, eh, uivc_animation_layer_name, 0, timeline_layer.name, "text", validate_string, ui_value_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
     yy = yy + el_name.height + spacing;
-    var el_actor = create_checkbox(16, yy, "Is Actor?", ew, eh, uivc_animation_layer_is_actor, 0, timeline_layer.is_actor, dg);
+    var el_actor = create_checkbox(16, yy, "Is Actor?", ew, eh, uivc_animation_layer_is_actor, timeline_layer.is_actor, dg);
     yy = yy + el_actor.height + spacing;
     
     var yy_base = yy;

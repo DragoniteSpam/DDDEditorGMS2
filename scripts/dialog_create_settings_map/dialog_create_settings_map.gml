@@ -28,14 +28,14 @@ var yy_base = 64;
 var el_other = create_text(16, yy, "Settings: Other", ew, eh, fa_left, ew, dg);
 yy = yy + el_other.height + spacing;
 
-var el_other_grid = create_checkbox(16, yy, "Grid aligned?", ew, eh, null, "", map.on_grid, dg);
+var el_other_grid = create_checkbox(16, yy, "Grid aligned?", ew, eh, null, map.on_grid, dg);
 el_other_grid.interactive = false;
 yy = yy + el_other_grid.height + spacing;
 
-var el_other_3d = create_checkbox(16, yy, "Is 3D?", ew, eh, uivc_settings_map_3d, "", map.is_3d, dg);
+var el_other_3d = create_checkbox(16, yy, "Is 3D?", ew, eh, uivc_settings_map_3d, map.is_3d, dg);
 yy = yy + el_other_3d.height + spacing;
 
-var el_other_fog_enabled = create_checkbox(16, yy, "Fog Enabled?", ew, eh, uivc_settings_map_fog_enabled, "", map.fog_enabled, dg);
+var el_other_fog_enabled = create_checkbox(16, yy, "Fog Enabled?", ew, eh, uivc_settings_map_fog_enabled, map.fog_enabled, dg);
 yy = yy + el_other_fog_enabled.height + spacing;
 
 var el_other_fog_start = create_input(16, yy, "      Fog Start:", ew, eh, uivc_settings_map_fog_start, "", map.fog_start, "512?", validate_int, ui_value_real, 1, 0xffff, 5, vx1, vy1, vx2, vy2, dg);
@@ -50,16 +50,16 @@ var el_other_fog_colour = create_color_picker(16, yy, "      Fog Color:", ew, eh
 dg.el_other_fog_colour = el_other_fog_colour;
 yy = yy + el_other_fog_colour.height + spacing;
 
-var el_other_indoors = create_checkbox(16, yy, "Is indoors?", ew, eh, uivc_settings_map_indoors, "", map.indoors, dg);
+var el_other_indoors = create_checkbox(16, yy, "Is indoors?", ew, eh, uivc_settings_map_indoors, map.indoors, dg);
 yy = yy + el_other_indoors.height + spacing;
 
-var el_other_water = create_checkbox(16, yy, "Render water?", ew, eh, uivc_settings_map_water, "", map.draw_water, dg);
+var el_other_water = create_checkbox(16, yy, "Render water?", ew, eh, uivc_settings_map_water, map.draw_water, dg);
 yy = yy + el_other_water.height + spacing;
 
-var el_other_fast_travel_to = create_checkbox(16, yy, "Can fast travel to?", ew, eh, uivc_settings_map_fast_travel_to, "", map.fast_travel_to, dg);
+var el_other_fast_travel_to = create_checkbox(16, yy, "Can fast travel to?", ew, eh, uivc_settings_map_fast_travel_to, map.fast_travel_to, dg);
 yy = yy + el_other_fast_travel_to.height + spacing;
 
-var el_other_fast_travel_from = create_checkbox(16, yy, "Can fast travel from?", ew, eh, uivc_settings_map_fast_travel_from, "", map.fast_travel_from, dg);
+var el_other_fast_travel_from = create_checkbox(16, yy, "Can fast travel from?", ew, eh, uivc_settings_map_fast_travel_from, map.fast_travel_from, dg);
 yy = yy + el_other_fast_travel_from.height + spacing;
 
 yy = yy_base;
