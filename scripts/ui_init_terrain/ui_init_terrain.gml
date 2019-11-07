@@ -117,6 +117,12 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = legal_y + spacing;
     
+    element = create_text(col2_x, yy, "Exporting Terrain", col_width, element_height, fa_left, col_width, t_general);
+    element.color = c_blue;
+    ds_list_add(t_general.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
     element = create_button(col2_x, yy, "New Terrain", col_width, element_height, fa_center, ui_terrain_new, t_general);
     ds_list_add(t_general.contents, element);
     
@@ -167,6 +173,18 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy = yy + element.height + spacing;
     
     element = create_button(col2_x, yy, "Export Heightmap", col_width, element_height, fa_center, uivc_terrain_export_heightmap, t_general);
+    ds_list_add(t_general.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
+    element = create_text(col2_x, yy, "DDD Stuff", col_width, element_height, fa_left, col_width, t_general);
+    element.color = c_blue;
+    ds_list_add(t_general.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
+    element = create_button(col2_x, yy, "Add to Project", col_width, element_height, fa_center, null, t_general);
+    element.interactive = false;
     ds_list_add(t_general.contents, element);
     
     yy = yy + element.height + spacing;
