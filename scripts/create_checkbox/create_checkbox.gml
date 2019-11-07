@@ -20,4 +20,4 @@ with (instance_create_depth(argument[0], argument[1], 0, UICheckbox)) {
     return id;
 }
 
-Key parameter removed - do this for the rest of the input types next (plus make the validate script for inputs implicit)
+//Key parameter removed - do this for the rest of the input types next (plus make the validate script for inputs implicit)
