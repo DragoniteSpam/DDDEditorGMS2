@@ -8320,6 +8320,14 @@
             }
         },
         {
+            "Key": "8d44cf9d-dc94-463f-9388-c195bf86123d",
+            "Value": {
+                "id": "f54a0894-dab6-4876-87d8-c964f67cb89e",
+                "resourcePath": "scripts\\uivc_input_mesh_internal_name\\uivc_input_mesh_internal_name.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "8d7fd218-d150-4210-accd-0356b94bcd14",
             "Value": {
                 "id": "21cf18c7-4f0f-476e-8141-7719311b0445",
@@ -15802,6 +15810,7 @@
         "b5682671-9746-4f4f-b1e1-d2d555d33563",
         "f1134af7-c55f-4b8b-b3f3-e52fa779b91f",
         "475fea07-3156-454a-9836-b74adbabb5b4",
+        "8d44cf9d-dc94-463f-9388-c195bf86123d",
         "5b4d6b39-cf59-434c-a196-ea615d1b006b",
         "e984880a-6282-4a6e-b12c-16431d49fb7a",
         "edc14103-d69e-445c-ae7a-bd3a32e276ab",

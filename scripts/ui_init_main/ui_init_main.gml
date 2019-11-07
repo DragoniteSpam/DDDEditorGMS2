@@ -711,14 +711,21 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element.height + spacing;
     
-    element = create_input(col2_x, yy, "Name:", col_width, element_height, uivc_input_mesh_name, 0, "Internal Name", validate_string_internal_name, 0, 1, INTERNAL_NAME_LENGTH, 64, vy1, vx2, vy2, t_p_mesh_editor);
+    element = create_input(col2_x, yy, "Name:", col_width, element_height, uivc_input_mesh_name, "", "Name", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, t_p_mesh_editor);
     ds_list_add(t_p_mesh_editor.contents, element);
     
     t_p_mesh_editor.mesh_name = element;
     
-    var s = 10;
-    
     yy = yy + t_p_mesh_editor.mesh_name.height + spacing;
+    
+    element = create_input(col2_x, yy, "Internal:", col_width, element_height, uivc_input_mesh_internal_name, "", "Internal Name", validate_string_internal_name, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, t_p_mesh_editor);
+    ds_list_add(t_p_mesh_editor.contents, element);
+    
+    t_p_mesh_editor.mesh_name_internal = element;
+    
+    yy = yy + t_p_mesh_editor.mesh_name_internal.height + spacing;
+    
+    var s = 10;
     
     element = create_bitfield(col2_x, yy, "Passage:", 84, element_height, null, TILE_PASSABLE, t_p_mesh_editor);
     create_bitfield_options(element, [
