@@ -2,7 +2,7 @@
 
 var dialog = argument0;
 
-var dw = 360;
+var dw = 400;
 var dh = 320;
 
 var dg = dialog_create(dw, dh, "New Terrain", dialog_default, dc_default, dialog);
@@ -47,7 +47,7 @@ dg.el_dual_layer = el_dual_layer;
 
 yy = yy + el_dual_layer.height + spacing;
 
-var el_scale = create_input(col1_x, yy, "Heightmap Scale:", ew, eh, null, 0, 16, "1...255", validate_int, ui_value_real, 1, 255, 3, vx1, vy1, vx2, vy2, dg);
+var el_scale = create_input(col1_x, yy, "Heightmap Scale:", ew, eh, null, 0, "16", "1...255", validate_int, ui_value_real, 1, 255, 3, vx1, vy1, vx2, vy2, dg);
 dg.el_scale = el_scale;
 
 yy = yy + el_height.height + spacing;

@@ -5,5 +5,6 @@ var button = argument0;
 var fn = get_save_filename_image();
 
 if (fn != "") {
-    terrain_export_heightmap(fn);
+    var dg = dialog_create_export_heightmap(button.root);
+    dg.filename = fn;
 }

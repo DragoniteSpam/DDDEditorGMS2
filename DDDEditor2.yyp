@@ -4856,6 +4856,14 @@
             }
         },
         {
+            "Key": "53b58453-7604-4862-b3b6-9e65ff4f8861",
+            "Value": {
+                "id": "fb095b21-a288-418d-a7cd-49bb4a82d127",
+                "resourcePath": "scripts\\dialog_create_export_heightmap\\dialog_create_export_heightmap.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "53c3a20b-35da-4d9a-a45c-a0bd8ca276b0",
             "Value": {
                 "id": "85ca7a1c-7639-4069-a4b0-76a50279e4e0",
@@ -11680,6 +11688,14 @@
             }
         },
         {
+            "Key": "c6256dff-e995-4ad8-8fdc-89db4bdfab7d",
+            "Value": {
+                "id": "66fb530e-9c99-4ea0-a162-96adbb61f04a",
+                "resourcePath": "scripts\\dmu_dialog_export_heightmap\\dmu_dialog_export_heightmap.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "c668a919-fcf2-4cdf-bbd2-4642596c2b0c",
             "Value": {
                 "id": "7277cd85-d65e-4337-9b33-9e518e297c6e",
@@ -16644,6 +16660,8 @@
         "a87d128e-a6f0-49f2-9520-282a6cdd62a8",
         "181468e7-f186-4bec-b4dd-7008d34585cc",
         "f53b0440-3d32-4039-90fe-8d8f548954ca",
+        "c6256dff-e995-4ad8-8fdc-89db4bdfab7d",
+        "53b58453-7604-4862-b3b6-9e65ff4f8861",
         "9681e57f-9faa-4e7c-99bb-0339c5066433",
         "d06bf045-abbb-450c-bb7d-5d2a4a991c4f",
         "57046ca0-eb7a-4df3-8947-1051ad32be6d",
