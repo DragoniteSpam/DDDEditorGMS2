@@ -7,7 +7,7 @@
 var xx = argument[0];
 var yy = argument[1];
 var zz = argument[2];
-var map_container = (argument_count > 3) ? argument[3] : Stuff.active_map;
+var map_container = (argument_count > 3) ? argument[3] : Stuff.map.active_map;
 
 var thing = map_container.contents.map_grid[# xx, yy];
 

@@ -4,54 +4,54 @@ var entity  =  argument0;
 
 // basic stuff
 
-ui_input_set_value(Camera.ui.element_entity_name, entity.name);
-Camera.ui.element_entity_solid.value = entity.am_solid;
-Camera.ui.element_entity_static.value = entity.static;
+ui_input_set_value(Stuff.map.ui.element_entity_name, entity.name);
+Stuff.map.ui.element_entity_solid.value = entity.am_solid;
+Stuff.map.ui.element_entity_static.value = entity.static;
 
-Camera.ui.element_entity_name.interactive = true;
-Camera.ui.element_entity_solid.interactive = true;
-Camera.ui.element_entity_static.interactive = true;
+Stuff.map.ui.element_entity_name.interactive = true;
+Stuff.map.ui.element_entity_solid.interactive = true;
+Stuff.map.ui.element_entity_static.interactive = true;
 
-Camera.ui.element_entity_events.interactive = true;
-Camera.ui.element_entity_event_add.interactive = true;
-Camera.ui.element_entity_event_remove.interactive = true;
-Camera.ui.element_entity_event_edit.interactive = true;
+Stuff.map.ui.element_entity_events.interactive = true;
+Stuff.map.ui.element_entity_event_add.interactive = true;
+Stuff.map.ui.element_entity_event_remove.interactive = true;
+Stuff.map.ui.element_entity_event_edit.interactive = true;
     
-Camera.ui.element_entity_option_animate_idle.value = entity.animate_idle;
-Camera.ui.element_entity_option_animate_movement.value = entity.animate_movement;
-Camera.ui.element_entity_option_direction_fix.value = entity.direction_fix;
-Camera.ui.element_entity_option_reset_position.value = entity.reset_position;
+Stuff.map.ui.element_entity_option_animate_idle.value = entity.animate_idle;
+Stuff.map.ui.element_entity_option_animate_movement.value = entity.animate_movement;
+Stuff.map.ui.element_entity_option_direction_fix.value = entity.direction_fix;
+Stuff.map.ui.element_entity_option_reset_position.value = entity.reset_position;
     
-Camera.ui.element_entity_option_animate_idle.interactive = true;
-Camera.ui.element_entity_option_animate_movement.interactive = true;
-Camera.ui.element_entity_option_direction_fix.interactive = true;
-Camera.ui.element_entity_option_reset_position.interactive = true;
-Camera.ui.element_entity_option_autonomous_movement.interactive = true;
+Stuff.map.ui.element_entity_option_animate_idle.interactive = true;
+Stuff.map.ui.element_entity_option_animate_movement.interactive = true;
+Stuff.map.ui.element_entity_option_direction_fix.interactive = true;
+Stuff.map.ui.element_entity_option_reset_position.interactive = true;
+Stuff.map.ui.element_entity_option_autonomous_movement.interactive = true;
 
 // transform
 
-Camera.ui.element_entity_pos_x.interactive = entity.translateable;
-Camera.ui.element_entity_pos_y.interactive = entity.translateable;
-Camera.ui.element_entity_pos_z.interactive = entity.translateable;
-Camera.ui.element_entity_offset_x.interactive = entity.offsettable;
-Camera.ui.element_entity_offset_y.interactive = entity.offsettable;
-Camera.ui.element_entity_offset_z.interactive = entity.offsettable;
-Camera.ui.element_entity_rot_x.interactive = entity.rotateable;
-Camera.ui.element_entity_rot_y.interactive = entity.rotateable;
-Camera.ui.element_entity_rot_z.interactive = entity.rotateable;
-Camera.ui.element_entity_scale_x.interactive = entity.scalable;
-Camera.ui.element_entity_scale_y.interactive = entity.scalable;
-Camera.ui.element_entity_scale_z.interactive = entity.scalable;
+Stuff.map.ui.element_entity_pos_x.interactive = entity.translateable;
+Stuff.map.ui.element_entity_pos_y.interactive = entity.translateable;
+Stuff.map.ui.element_entity_pos_z.interactive = entity.translateable;
+Stuff.map.ui.element_entity_offset_x.interactive = entity.offsettable;
+Stuff.map.ui.element_entity_offset_y.interactive = entity.offsettable;
+Stuff.map.ui.element_entity_offset_z.interactive = entity.offsettable;
+Stuff.map.ui.element_entity_rot_x.interactive = entity.rotateable;
+Stuff.map.ui.element_entity_rot_y.interactive = entity.rotateable;
+Stuff.map.ui.element_entity_rot_z.interactive = entity.rotateable;
+Stuff.map.ui.element_entity_scale_x.interactive = entity.scalable;
+Stuff.map.ui.element_entity_scale_y.interactive = entity.scalable;
+Stuff.map.ui.element_entity_scale_z.interactive = entity.scalable;
 
-ui_input_set_value(Camera.ui.element_entity_pos_x, string(entity.xx));
-ui_input_set_value(Camera.ui.element_entity_pos_y, string(entity.yy));
-ui_input_set_value(Camera.ui.element_entity_pos_z, string(entity.zz));
-ui_input_set_value(Camera.ui.element_entity_offset_x, string(entity.off_xx));
-ui_input_set_value(Camera.ui.element_entity_offset_y, string(entity.off_yy));
-ui_input_set_value(Camera.ui.element_entity_offset_z, string(entity.off_zz));
-ui_input_set_value(Camera.ui.element_entity_rot_x, string(entity.rot_xx));
-ui_input_set_value(Camera.ui.element_entity_rot_y, string(entity.rot_yy));
-ui_input_set_value(Camera.ui.element_entity_rot_z, string(entity.rot_zz));
-ui_input_set_value(Camera.ui.element_entity_scale_x, string(entity.scale_xx));
-ui_input_set_value(Camera.ui.element_entity_scale_y, string(entity.scale_yy));
-ui_input_set_value(Camera.ui.element_entity_scale_z, string(entity.scale_zz));
+ui_input_set_value(Stuff.map.ui.element_entity_pos_x, string(entity.xx));
+ui_input_set_value(Stuff.map.ui.element_entity_pos_y, string(entity.yy));
+ui_input_set_value(Stuff.map.ui.element_entity_pos_z, string(entity.zz));
+ui_input_set_value(Stuff.map.ui.element_entity_offset_x, string(entity.off_xx));
+ui_input_set_value(Stuff.map.ui.element_entity_offset_y, string(entity.off_yy));
+ui_input_set_value(Stuff.map.ui.element_entity_offset_z, string(entity.off_zz));
+ui_input_set_value(Stuff.map.ui.element_entity_rot_x, string(entity.rot_xx));
+ui_input_set_value(Stuff.map.ui.element_entity_rot_y, string(entity.rot_yy));
+ui_input_set_value(Stuff.map.ui.element_entity_rot_z, string(entity.rot_zz));
+ui_input_set_value(Stuff.map.ui.element_entity_scale_x, string(entity.scale_xx));
+ui_input_set_value(Stuff.map.ui.element_entity_scale_y, string(entity.scale_yy));
+ui_input_set_value(Stuff.map.ui.element_entity_scale_z, string(entity.scale_zz));

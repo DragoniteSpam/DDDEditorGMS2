@@ -12,11 +12,11 @@ if (ds_list_empty(Stuff.all_maps)) {
 	dmu_data_add_map(button);
 }
 
-if (map == Stuff.active_map) {
+if (map == Stuff.map.active_map) {
 	selection_clear();
-	Stuff.active_map = noone;
+	Stuff.map.active_map = noone;
 	load_a_map(Stuff.all_maps[| 0]);
 }
 
 ui_list_deselect(button.root.el_map_list);
-ui_list_select(button.root.el_map_list, ds_list_find_index(Stuff.all_maps, Stuff.active_map));
+ui_list_select(button.root.el_map_list, ds_list_find_index(Stuff.all_maps, Stuff.map.active_map));

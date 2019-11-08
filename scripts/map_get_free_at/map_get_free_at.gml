@@ -8,7 +8,7 @@ var yy = argument1;
 var zz = argument2;
 var slot = argument3;
 
-var thing = Stuff.active_map.contents.map_grid[# xx, yy];
+var thing = Stuff.map.active_map.contents.map_grid[# xx, yy];
 var cell = thing[@ zz];
 
 return cell[@ slot] == noone;

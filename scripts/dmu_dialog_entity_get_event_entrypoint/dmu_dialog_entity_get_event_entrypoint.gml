@@ -8,7 +8,7 @@ var selection_index = ui_list_selection(button.root.el_list);
 var entrypoint_guid = button.root.el_list.entries[| selection_index];
 
 // safe
-var index = ui_list_selection(Camera.ui.element_entity_events);
+var index = ui_list_selection(Stuff.map.ui.element_entity_events);
 var list = Stuff.map.selected_entities;
 var entity = list[| 0];
 var page = entity.object_events[| index];

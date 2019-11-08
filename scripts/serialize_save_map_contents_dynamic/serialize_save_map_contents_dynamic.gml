@@ -9,11 +9,11 @@ var buffer = argument0;
 
 buffer_write(buffer, buffer_datatype, SerializeThings.MAP_DYNAMIC);
 
-var n_things = ds_list_size(Stuff.active_map.contents.all_entities);
+var n_things = ds_list_size(Stuff.map.active_map.contents.all_entities);
 buffer_write(buffer, buffer_u32, n_things);
 
 for (var i = 0; i < n_things; i++) {
-    var thing = Stuff.active_map.contents.all_entities[| i];
+    var thing = Stuff.map.active_map.contents.all_entities[| i];
     buffer_write(buffer, buffer_u16, thing.etype);
 	buffer_write(buffer, buffer_u32, thing.tmx_id);
     script_execute(thing.save_script, buffer, thing);

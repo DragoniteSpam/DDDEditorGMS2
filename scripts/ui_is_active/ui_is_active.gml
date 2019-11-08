@@ -1,3 +1,3 @@
 /// @param UIThing
 
-return Camera.ui.active_element == argument0;
+return Stuff.map.ui.active_element == argument0;

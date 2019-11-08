@@ -3,10 +3,10 @@
 var index = argument0;
 
 var data = Stuff.all_meshes[| Stuff.map.selection_fill_mesh];
-Camera.ui.t_p_mesh_editor.element_tag = (data && true);
+Stuff.map.ui.t_p_mesh_editor.element_tag = (data && true);
 
 if (data) {
-    var thing = Camera.ui.t_p_mesh_editor;
+    var thing = Stuff.map.ui.t_p_mesh_editor;
     ui_input_set_value(thing.element_tag, string(data.tags));
     ui_input_set_value(thing.mesh_name, data.name);
     ui_input_set_value(thing.mesh_name_internal, data.internal_name);

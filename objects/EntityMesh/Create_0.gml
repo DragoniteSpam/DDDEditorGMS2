@@ -6,7 +6,7 @@ load_script = serialize_load_entity_mesh;
 name = "Mesh";
 etype = ETypes.ENTITY_MESH;
 
-Stuff.active_map.contents.population[ETypes.ENTITY_MESH]++;
+Stuff.map.active_map.contents.population[ETypes.ENTITY_MESH]++;
 
 // GUID
 mesh = 0;
@@ -17,7 +17,7 @@ animation_type = SMF_loop_linear;
 // other properties - inherited
 
 am_solid = true;
-Stuff.active_map.contents.population_solid++;
+Stuff.map.active_map.contents.population_solid++;
 
 // editor properties
 

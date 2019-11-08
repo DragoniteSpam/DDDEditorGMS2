@@ -314,14 +314,11 @@ graphics = instance_create_depth(0, 0, 0, EditorModeGraphics);
 
 instance_deactivate_object(EditorMode);
 
-// this is order-dependant, and it SUCKS, so re-write it later when there's time
+#region stuff related to garbage collection
+stuff_to_destroy = ds_queue_create();
+#endregion
+
 all_maps = ds_list_create();
-active_map = instance_create_depth(0, 0, 0, DataMapContainer);
-active_map.contents = instance_create_depth(0, 0, 0, MapContents);
-ds_grid_resize(active_map.contents.map_grid, active_map.xx, active_map.yy);
-map_fill_grid(active_map.contents.map_grid, active_map.zz);
-// this depends on activemap
-instance_create_depth(0, 0, 0, Camera);
 
 #region collision stuff plus basic shapes
 c_transform_scaling(tile_width, tile_height, tile_depth);
@@ -397,7 +394,7 @@ color_lookup = [c_red, c_green, c_blue, c_orange, c_aqua, c_fuchsia, c_purple, c
 
 // global game settings
 
-game_starting_map = active_map.GUID;
+game_starting_map = map.active_map.GUID;
 game_starting_x = 0;
 game_starting_y = 0;
 game_starting_z = 0;

@@ -10,6 +10,6 @@ var list = argument0;
 var xx = argument1;
 var yy = argument2;
 
-list.entries = Stuff.active_map.contents.all_entities;
+list.entries = Stuff.map.active_map.contents.all_entities;
 
 ui_render_list(list, xx, yy);

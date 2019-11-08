@@ -9,8 +9,8 @@ var all_mesh_terrain = true;
 var all_pawn = true;
 var all_effect = true;
 
-for (var i = 0; i < ds_list_size(Stuff.active_map.contents.all_entities); i++) {
-    var thing = Stuff.active_map.contents.all_entities[| i];
+for (var i = 0; i < ds_list_size(Stuff.map.active_map.contents.all_entities); i++) {
+    var thing = Stuff.map.active_map.contents.all_entities[| i];
     if (selected(thing)) {
         if (!instanceof(thing, EntityAutoTile)) all_tile_auto = false;
         if (!instanceof(thing, EntityTile)) all_tile = false;

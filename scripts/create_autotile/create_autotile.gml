@@ -2,8 +2,8 @@
 
 var autotile = argument0;
 
-for (var i = 0; i < ds_list_size(Stuff.active_map.contents.all_entities); i++) {
-    var thing = Stuff.active_map.contents.all_entities[| i];
+for (var i = 0; i < ds_list_size(Stuff.map.active_map.contents.all_entities); i++) {
+    var thing = Stuff.map.active_map.contents.all_entities[| i];
     if (thing.modification == Modifications.NONE) {
         if (instanceof(thing, EntityAutoTile)) {
             var dx = thing.xx - autotile.xx;

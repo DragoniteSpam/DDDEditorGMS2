@@ -1,7 +1,7 @@
 /// @param EditorMode
 
 var mode = argument0;
-var base_map = Stuff.active_map;
+var base_map = Stuff.map.active_map;
 var map = base_map.contents;
 var deletions = ds_list_create();
 
@@ -90,3 +90,9 @@ if (ds_list_size(deletions) > 0) {
 }
 
 ds_list_clear(deletions);
+
+// you may add/delete/move stuff in bulk and doing this for each
+// entity that was changed would slow the editor down quite a lot
+if (ds_list_size(Stuff.map.active_map.contents.batch_in_the_future) > BATCH_CACHE_SIZE) {
+    batch_cache();
+}

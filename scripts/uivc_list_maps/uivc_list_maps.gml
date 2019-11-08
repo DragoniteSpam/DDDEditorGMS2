@@ -12,11 +12,11 @@ if (selection + 1) {
 	ui_input_set_value(list.root.el_internal_name, what.internal_name);
 	list.root.el_summary.interactive = true;
 	ui_input_set_value(list.root.el_summary, what.summary);
-	list.root.el_dim_x.interactive = (what == Stuff.active_map);
+	list.root.el_dim_x.interactive = (what == Stuff.map.active_map);
 	ui_input_set_value(list.root.el_dim_x, string(what.xx));
-	list.root.el_dim_y.interactive = (what == Stuff.active_map);
+	list.root.el_dim_y.interactive = (what == Stuff.map.active_map);
 	ui_input_set_value(list.root.el_dim_y, string(what.yy));
-	list.root.el_dim_z.interactive = (what == Stuff.active_map);
+	list.root.el_dim_z.interactive = (what == Stuff.map.active_map);
 	ui_input_set_value(list.root.el_dim_z, string(what.zz));
 	list.root.el_other.interactive = true;
 } else {

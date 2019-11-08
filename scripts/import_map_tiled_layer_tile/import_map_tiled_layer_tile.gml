@@ -11,7 +11,7 @@ var z = argument[2];
 var alpha = (argument_count > 3) ? argument[3] : 1;
 var xx = (argument_count > 4) ? argument[4] : 0;
 var yy = (argument_count > 5) ? argument[5] : 0;
-var map = Stuff.active_map;
+var map = Stuff.map.active_map;
 var map_contents = map.contents;
 var ts = get_active_tileset();
 
@@ -37,7 +37,7 @@ if (layer_visible) {
 			var tile_tex_x = tile_value mod columns;
 			var tile_tex_y = tile_value div columns;
             
-			if (is_clamped(tile_x, 0, Stuff.active_map.xx - 1) && is_clamped(tile_y, 0, Stuff.active_map.yy - 1) && is_clamped(z, 0, Stuff.active_map.zz - 1)) {
+			if (is_clamped(tile_x, 0, Stuff.map.active_map.xx - 1) && is_clamped(tile_y, 0, Stuff.map.active_map.yy - 1) && is_clamped(z, 0, Stuff.map.active_map.zz - 1)) {
 				batch_tile_raw(map_contents.frozen_data, map_contents.frozen_data_wire, tile_x, tile_y, z, tile_tex_x, tile_tex_y, c_white, layer_alpha);
                 // the solidness is applied to each of the layers; entities will most likely only exist on Layer 1, but solidness will be applied to any
                 for (var j = 0; j < TILED_MAP_LAYERS_PER_BASE_LAYER; j++) {

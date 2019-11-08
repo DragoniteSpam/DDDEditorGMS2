@@ -1,7 +1,7 @@
 /// @param UIThing
 
 var thing = argument0;
-var map = Stuff.active_map
+var map = Stuff.map.active_map
 var map_contents = map.contents;
 var fn = get_open_filename_mesh_autotile();
 

@@ -19,10 +19,10 @@ var dir = pawn.map_direction;
 var frame_width = sprite_get_width(pawn.overworld_sprite) / spritesheet_frames;
 var frame_height = sprite_get_height(pawn.overworld_sprite) / spritesheet_height;
 
-var angle = Stuff.active_map.is_3d ? 60 : 0;
+var angle = Stuff.map.active_map.is_3d ? 60 : 0;
 var xoffset = 0;
-var yoffset = Stuff.active_map.is_3d ? TILE_HEIGHT / 2 : TILE_HEIGHT;
-var zoffset = Stuff.active_map.is_3d ? 0 : 1;
+var yoffset = Stuff.map.active_map.is_3d ? TILE_HEIGHT / 2 : TILE_HEIGHT;
+var zoffset = Stuff.map.active_map.is_3d ? 0 : 1;
 transform_set(0, -TILE_HEIGHT, 0, 0, 0, 0, 1, 1, 1);
 transform_add(0, 0, 0, angle, 0, 0, 1, 1, 1);
 transform_add(xx * TILE_WIDTH + xoffset, yy * TILE_HEIGHT + yoffset, zz * TILE_DEPTH + zoffset, 0, 0, 0, 1, 1, 1);

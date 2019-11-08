@@ -31,8 +31,8 @@ if (zz < mode.z) {
 	// the bounds on this are weird - in some places the cell needs to be rounded up and in others it
 	// needs to be rounded down, so the minimum allowed "cell" is (-1, -1) - be sure to max() this later
 	// if it would cause issues
-	floor_cx = clamp(floor_x div TILE_WIDTH, -1, Stuff.active_map.xx - 1);
-	floor_cy = clamp(floor_y div TILE_HEIGHT, -1, Stuff.active_map.yy - 1);
+	floor_cx = clamp(floor_x div TILE_WIDTH, -1, Stuff.map.active_map.xx - 1);
+	floor_cy = clamp(floor_y div TILE_HEIGHT, -1, Stuff.map.active_map.yy - 1);
     
 	if (Controller.press_left) {
 		if (ds_list_size(mode.selection) < MAX_SELECTION_COUNT) {

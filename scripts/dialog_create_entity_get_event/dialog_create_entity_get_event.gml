@@ -6,7 +6,7 @@ var dw = 320;
 var dh = 640;
 
 // you can assume that this is valid data because this won't be called otherwise
-var index = ui_list_selection(Camera.ui.element_entity_events);
+var index = ui_list_selection(Stuff.map.ui.element_entity_events);
 var list = Stuff.map.selected_entities;
 var entity = list[| 0];
 

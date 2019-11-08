@@ -10,4 +10,4 @@ if (!validate_int(str, input)) {
 
 var value = real(str);
 
-return (value * Stuff.active_map.yy * Stuff.active_map.zz) <= MAP_VOLUME_LIMIT;
+return (value * Stuff.map.active_map.yy * Stuff.map.active_map.zz) <= MAP_VOLUME_LIMIT;

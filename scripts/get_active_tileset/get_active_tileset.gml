@@ -1,1 +1,1 @@
-return Stuff.all_graphic_tilesets[| Stuff.active_map.tileset];
+return Stuff.all_graphic_tilesets[| Stuff.map.active_map.tileset];

@@ -75,14 +75,14 @@ if (header == "DDD") {
             // graphics
             ds_list_clear(Stuff.all_graphic_autotiles);
 			// anything else?
-			Stuff.active_map = noone;
+			Stuff.map.active_map = noone;
             break;
         case SERIALIZE_MAP:
 			instance_activate_object(DataMapContainer);
 			instance_destroy(DataMapContainer);
-			Stuff.active_map = instance_create_depth(0, 0, 0, DataMapContainer);
-			Stuff.active_map.contents = instance_create_depth(0, 0, 0, MapContents);
-			instance_deactivate_object(Stuff.active_map.contents);
+			Stuff.map.active_map = instance_create_depth(0, 0, 0, DataMapContainer);
+			Stuff.map.active_map.contents = instance_create_depth(0, 0, 0, MapContents);
+			instance_deactivate_object(Stuff.map.active_map.contents);
             break;
     }
         
@@ -116,9 +116,9 @@ if (header == "DDD") {
             case SerializeThings.TERRAIN_HEIGHTMAP: serialize_load_terrain(buffer, version); break;
             case SerializeThings.MAPS: serialize_load_maps(buffer, version); break;
             // map stuff
-            case SerializeThings.MAP_META: serialize_load_map_contents_meta(buffer, version, Stuff.active_map);  break;
-            case SerializeThings.MAP_BATCH: serialize_load_map_contents_batch(buffer, version, Stuff.active_map); break;
-            case SerializeThings.MAP_DYNAMIC: serialize_load_map_contents_dynamic(buffer, version, Stuff.active_map); break;
+            case SerializeThings.MAP_META: serialize_load_map_contents_meta(buffer, version, Stuff.map.active_map);  break;
+            case SerializeThings.MAP_BATCH: serialize_load_map_contents_batch(buffer, version, Stuff.map.active_map); break;
+            case SerializeThings.MAP_DYNAMIC: serialize_load_map_contents_dynamic(buffer, version, Stuff.map.active_map); break;
             // end of file
             case SerializeThings.END_OF_FILE: stop = true; break;
         }
@@ -126,7 +126,7 @@ if (header == "DDD") {
 	
     switch (what) {
         case SERIALIZE_MAP:
-			Stuff.active_map = guid_get(Stuff.game_starting_map);
+			Stuff.map.active_map = guid_get(Stuff.game_starting_map);
 			break;
 	}
         

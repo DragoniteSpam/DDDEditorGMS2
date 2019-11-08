@@ -10,7 +10,7 @@ if (ask_clear) {
 
 var filename = get_open_filename_tiled();
 
-var map = Stuff.active_map;
+var map = Stuff.map.active_map;
 var map_contents = map.contents;
 
 if (file_exists(filename)) {

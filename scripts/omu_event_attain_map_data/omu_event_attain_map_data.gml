@@ -6,8 +6,8 @@ var thing = argument0;
 var event_node = argument1;
 var data_index = argument2;
 
-if (Stuff.active_map.data_buffer) buffer_delete(Stuff.active_map.data_buffer);
-Stuff.active_map.data_buffer = serialize_save_current_map();
+if (Stuff.map.active_map.data_buffer) buffer_delete(Stuff.map.active_map.data_buffer);
+Stuff.map.active_map.data_buffer = serialize_save_current_map();
 
 var dw = 1440;
 var dh = 800;

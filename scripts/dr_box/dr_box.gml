@@ -89,7 +89,7 @@ for (var i = 0; i < ds_list_size(dialog.contents); i++) {
 }
 
 // do this at the end in case some inner element needs to use the escape key
-kill = kill || (active && Controller.release_escape && (!Camera.ui.active_element || !Camera.ui.active_element.override_escape));
+kill = kill || (active && Controller.release_escape && (!Stuff.map.ui.active_element || !Stuff.map.ui.active_element.override_escape));
 
 // the x button/escape key does not commit changes
 if (kill && dialog.close) {

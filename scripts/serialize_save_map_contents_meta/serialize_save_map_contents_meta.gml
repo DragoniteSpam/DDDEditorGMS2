@@ -1,7 +1,7 @@
 /// @param buffer
 
 var buffer = argument0;
-var map = Stuff.active_map;
+var map = Stuff.map.active_map;
 var map_contents = map.contents;
 
 buffer_write(buffer, buffer_datatype, SerializeThings.MAP_META);

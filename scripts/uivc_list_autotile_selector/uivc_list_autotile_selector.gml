@@ -10,10 +10,10 @@ if (value) {
         ts.autotiles[Stuff.map.selection_fill_autotile] = value;
         var at_data = Stuff.all_graphic_autotiles[| value];
         if (is_array(at_data)) {
-            Camera.ui.t_p_autotile_editor.element_list.entries[| Stuff.map.selection_fill_autotile] = string(Stuff.map.selection_fill_autotile) + ". " + at_data[AvailableAutotileProperties.NAME];
+            Stuff.map.ui.t_p_autotile_editor.element_list.entries[| Stuff.map.selection_fill_autotile] = string(Stuff.map.selection_fill_autotile) + ". " + at_data[AvailableAutotileProperties.NAME];
         }
     } else {
         ts.autotiles[Stuff.map.selection_fill_autotile] = noone;
-        Camera.ui.t_p_autotile_editor.element_list.entries[| Stuff.map.selection_fill_autotile] = string(Stuff.map.selection_fill_autotile) + ". <none set>";
+        Stuff.map.ui.t_p_autotile_editor.element_list.entries[| Stuff.map.selection_fill_autotile] = string(Stuff.map.selection_fill_autotile) + ". <none set>";
     }
 }

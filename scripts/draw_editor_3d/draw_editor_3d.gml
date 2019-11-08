@@ -2,16 +2,16 @@
 
 var mode = argument0;
 
-var map = Stuff.active_map;
+var map = Stuff.map.active_map;
 var map_contents = map.contents;
 
 draw_clear(c_black);
 
 if (!Stuff.mouse_3d_lock && mouse_within_view(view_3d) && !dialog_exists()) {
 	if (map.is_3d) {
-	    control_map_3d();
+	    control_map_3d(mode);
 	} else {
-		control_map_2d();
+		control_map_2d(mode);
 	}
 }
 
@@ -119,7 +119,7 @@ for (var i = 0; i < ds_list_size(selection); i++) {
 
 ds_list_destroy(list_routes);
 
-if (Stuff.game_starting_map == Stuff.active_map.GUID) {
+if (Stuff.game_starting_map == Stuff.map.active_map.GUID) {
 	transform_set(0, 0, 0, 0, 0, Stuff.direction_lookup[Stuff.game_starting_direction], 1, 1, 1);
 	transform_add((Stuff.game_starting_x + 0.5) * TILE_WIDTH, (Stuff.game_starting_y + 0.5) * TILE_HEIGHT, Stuff.game_starting_z * TILE_DEPTH, 0, 0, 0, 1, 1, 1);
 	vertex_submit(Stuff.basic_cage, pr_trianglelist, -1);

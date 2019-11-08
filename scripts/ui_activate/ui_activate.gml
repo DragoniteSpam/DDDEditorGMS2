@@ -4,4 +4,4 @@
 
 var thing = argument0;
 
-Camera.ui.active_element = thing;
+Stuff.map.ui.active_element = thing;

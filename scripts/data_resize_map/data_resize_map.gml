@@ -31,6 +31,6 @@ if (Stuff.game_starting_map == map.GUID) {
 	Stuff.game_starting_z = min(Stuff.game_starting_z, zz - 1);
 }
 
-Camera.ui.element_entity_pos_x.value_upper = xx - 1;
-Camera.ui.element_entity_pos_y.value_upper = yy - 1;
-Camera.ui.element_entity_pos_z.value_upper = zz - 1;
+Stuff.map.ui.element_entity_pos_x.value_upper = xx - 1;
+Stuff.map.ui.element_entity_pos_y.value_upper = yy - 1;
+Stuff.map.ui.element_entity_pos_z.value_upper = zz - 1;

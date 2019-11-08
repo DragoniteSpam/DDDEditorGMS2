@@ -1,19 +1,5 @@
 
 
-// dialogs (or other things) to be killed
-
-while (!ds_queue_empty(stuff_to_destroy)) {
-    var thing = ds_queue_dequeue(stuff_to_destroy);
-    instance_activate_object(thing);
-    instance_destroy(thing);
-}
-
-// you may add/delete/move stuff in bulk and doing this for each
-// entity that was changed would slow the editor down quite a lot
-if (ds_list_size(Stuff.active_map.contents.batch_in_the_future) > BATCH_CACHE_SIZE) {
-    batch_cache();
-}
-
 // this is important if textures and stuff need to be exported, but gets turned back
 // on when the 3D stuff gets dealt with in the next frame
 gpu_set_ztestenable(false);

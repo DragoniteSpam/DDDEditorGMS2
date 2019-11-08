@@ -11,7 +11,7 @@ var entity = argument[0];
 var xx = (argument_count < 4) ? entity.xx : argument[1];
 var yy = (argument_count < 4) ? entity.yy : argument[2];
 var zz = (argument_count < 4) ? entity.zz : argument[3];
-var map_container = (argument_count > 4) ? argument[4] : Stuff.active_map;
+var map_container = (argument_count > 4) ? argument[4] : Stuff.map.active_map;
 var is_temp = (argument_count > 5) ? argument[5] : false;
 var map = map_container.contents;
 

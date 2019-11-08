@@ -6,7 +6,7 @@ var force = (argument_count > 1) ? argument[1] : false;
 
 var map = Camera.event_map;
 
-if (map != Stuff.active_map) {
+if (map != Stuff.map.active_map) {
 	instance_destroy(map.contents);
 }
 

@@ -11,4 +11,4 @@ var maxx = selection.x + 1;
 var maxy = selection.y + 1;
 var maxz = selection.z + 1;
 
-return is_clamped(entity.xx, minx, maxx) && is_clamped(entity.yy, miny, maxy) && (!Stuff.active_map.is_3d || is_clamped(entity.zz, minz, maxz));
+return is_clamped(entity.xx, minx, maxx) && is_clamped(entity.yy, miny, maxy) && (!Stuff.map.active_map.is_3d || is_clamped(entity.zz, minz, maxz));

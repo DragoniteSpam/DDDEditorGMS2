@@ -1,7 +1,7 @@
 var n = 0;
 
-for (var i = 0; i < ds_list_size(Stuff.active_map.contents.all_entities); i++) {
-    if (selected(Stuff.active_map.contents.all_entities[| i])) {
+for (var i = 0; i < ds_list_size(Stuff.map.active_map.contents.all_entities); i++) {
+    if (selected(Stuff.map.active_map.contents.all_entities[| i])) {
         if (++n > 1) {
             return SelectionCounts.MULTIPLE;
         }

@@ -11,7 +11,7 @@ var mask = 1000 + argument[0];
 var xx = argument[1];
 var yy = argument[2];
 var zz = argument[3];
-var map = (argument_count > 4) ? argument[4] : Stuff.active_map;
+var map = (argument_count > 4) ? argument[4] : Stuff.map.active_map;
 var slot = (argument_count > 5) ? argument[5] : MapCellContents.TILE;
 var map_contents = map.contents;
 

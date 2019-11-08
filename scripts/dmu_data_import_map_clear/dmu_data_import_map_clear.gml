@@ -1,7 +1,7 @@
 /// @param UIButton
 
 var button = argument0;
-var map = Stuff.active_map;
+var map = Stuff.map.active_map;
 var map_contents = map.contents;
 
 buffer_delete(map_contents.frozen_data);

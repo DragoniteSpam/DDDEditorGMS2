@@ -3,7 +3,7 @@
 // had a script that does that. Weird.) This is very slow. Please don't use it
 // constantly otherwise the program will become very unenjoyable to use.
 
-var map = Stuff.active_map.contents;
+var map = Stuff.map.active_map.contents;
 
 if (argument_count > 0) {
 	var index = argument[0];

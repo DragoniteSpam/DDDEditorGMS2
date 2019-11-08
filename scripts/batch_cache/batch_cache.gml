@@ -1,4 +1,4 @@
-var map = Stuff.active_map.contents;
+var map = Stuff.map.active_map.contents;
 
 var buffer = vertex_create_buffer();
 var buffer_wire = vertex_create_buffer();

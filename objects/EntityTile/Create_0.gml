@@ -6,7 +6,7 @@ load_script = serialize_load_entity_tile;
 name = "Tile";
 etype = ETypes.ENTITY_TILE;
 
-Stuff.active_map.contents.population[ETypes.ENTITY_TILE]++;
+Stuff.map.active_map.contents.population[ETypes.ENTITY_TILE]++;
 
 // serialize
 tile_x = 0;
@@ -21,7 +21,7 @@ tile_alpha = 1;
 // other properties
 
 static = true;
-Stuff.active_map.contents.population_static++;
+Stuff.map.active_map.contents.population_static++;
 
 // editor properties
 

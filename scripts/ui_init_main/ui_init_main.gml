@@ -934,5 +934,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     #endregion
 	
+    instance_deactivate_object(id);
+    
     return id;
 }

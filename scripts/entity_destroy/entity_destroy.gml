@@ -5,13 +5,13 @@ if (cobject) {
     c_world_destroy_object(cobject);
 }
 
-Stuff.active_map.contents.population[ETypes.ENTITY]--;
+Stuff.map.active_map.contents.population[ETypes.ENTITY]--;
 
 if (am_solid) {
-    Stuff.active_map.contents.population_solid--;
+    Stuff.map.active_map.contents.population_solid--;
 }
 if (static) {
-    Stuff.active_map.contents.population_static--;
+    Stuff.map.active_map.contents.population_static--;
 }
 
 ds_list_destroy(object_events);

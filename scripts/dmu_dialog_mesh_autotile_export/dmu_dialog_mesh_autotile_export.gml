@@ -6,7 +6,7 @@ if (fn == "") {
     return false;
 }
 
-var map = Stuff.active_map;
+var map = Stuff.map.active_map;
 var map_contents = map.contents;
 
 var buffer = buffer_create(1024, buffer_grow, 1);

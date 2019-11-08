@@ -2,9 +2,9 @@
 
 var buffer = argument0;
 
-buffer_delete(Stuff.active_map.data_buffer);
-Stuff.active_map.version = DataVersions._CURRENT - 1;
-Stuff.active_map.data_buffer = serialize_save_current_map();
+buffer_delete(Stuff.map.active_map.data_buffer);
+Stuff.map.active_map.version = DataVersions._CURRENT - 1;
+Stuff.map.active_map.data_buffer = serialize_save_current_map();
 
 buffer_write(buffer, buffer_datatype, SerializeThings.MAPS);
 
