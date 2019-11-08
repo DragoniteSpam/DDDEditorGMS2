@@ -1,3 +1,7 @@
+/// @param EditorModeMap
+
+var mode = argument0;
+
 draw_clear(c_black);
 
 control_3d_preview();

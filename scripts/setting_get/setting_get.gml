@@ -11,6 +11,10 @@ if (domain) {
     if (ds_map_exists(domain, name)) {
         return domain[? name];
     }
+    
+    return def
 }
+
+show_error("Setting object not found: " + object, false);
 
 return def;

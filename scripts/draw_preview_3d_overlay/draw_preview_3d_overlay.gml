@@ -1,3 +1,7 @@
+/// @param EditorModeMap
+
+var mode = argument0;
+
 var camera = view_get_camera(view_3d_preview);
 
 var w = camera_get_view_width(camera);

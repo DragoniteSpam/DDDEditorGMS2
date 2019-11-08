@@ -3,7 +3,7 @@ var dir = filename_dir(path);
 
 if (string_length(dir) > 0) {
     Stuff.setting_location_tiled = dir;
-    setting_save_string("location", "tiled", dir);
+    setting_set("Location", "tiled", dir);
 }
 
 return path;

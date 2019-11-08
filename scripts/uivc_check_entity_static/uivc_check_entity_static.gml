@@ -1,7 +1,7 @@
 /// @param UICheckbox
 
 var checkbox = argument0;
-var list = Camera.selected_entities;
+var list = Stuff.map.selected_entities;
 
 // for things like this that are more specific than Entity check to
 // make sure that they're instanceof whatever before setting/modifying

@@ -7,7 +7,7 @@ var dir = filename_dir(path);
 
 if (string_length(dir) > 0) {
     Stuff.setting_location_mesh = dir;
-    setting_save_string("location", "mesh", dir);
+    setting_set("Location", "mesh", dir);
 }
 
 return path;

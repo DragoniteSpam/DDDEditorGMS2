@@ -1,6 +1,8 @@
+/// @param EditorMode
 /// @param [camera-controls?]
 
-var camera_controls = (argument_count > 0) ? argument[0] : false;
+var mode = argument[0];
+var camera_controls = (argument_count > 1) ? argument[1] : false;
 
 // if you're using this in debug mode the overlay is going to be
 // shown and that's going to block out the first part of the menu

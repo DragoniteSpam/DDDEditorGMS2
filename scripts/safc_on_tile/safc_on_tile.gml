@@ -1,3 +1,5 @@
 /// @param EntityTile
 
-safc_on_entity(argument0);
+var tile = argument0;
+
+safc_on_entity(tile);

@@ -2,7 +2,7 @@
 
 var list = argument0;
 var index = ui_list_selection(Camera.ui.element_entity_events);
-var entity = Camera.selected_entities[| 0];
+var entity = Stuff.map.selected_entities[| 0];
 var page = entity.object_events[| index];
 
 var flag = 0;

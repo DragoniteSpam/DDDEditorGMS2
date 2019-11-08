@@ -12,24 +12,13 @@ var all_effect = true;
 for (var i = 0; i < ds_list_size(Stuff.active_map.contents.all_entities); i++) {
     var thing = Stuff.active_map.contents.all_entities[| i];
     if (selected(thing)) {
-        if (!instanceof(thing, EntityAutoTile)) {
-            all_tile_auto = false;
-        }
-        if (!instanceof(thing, EntityTile)) {
-            all_tile = false;
-        }
-        if (!instanceof(thing, EntityMeshTerrain)) {
-            all_mesh_terrain = false;
-        }
-        if (!instanceof(thing, EntityMesh)) {
-            all_mesh = false;
-        }
-        if (!instanceof(thing, EntityPawn)) {
-            all_pawn = false;
-        }
-        if (!instanceof(thing, EntityEffect)) {
-            all_effect = false;
-        }
+        if (!instanceof(thing, EntityAutoTile)) all_tile_auto = false;
+        if (!instanceof(thing, EntityTile)) all_tile = false;
+        if (!instanceof(thing, EntityMeshTerrain)) all_mesh_terrain = false;
+        if (!instanceof(thing, EntityMesh)) all_mesh = false;
+        if (!instanceof(thing, EntityPawn)) all_pawn = false;
+        if (!instanceof(thing, EntityEffect)) all_effect = false;
+        
         if (!(all_effect || all_pawn || all_mesh || all_mesh_terrain || all_tile || all_tile_auto)) {
             return Entity;
         }

@@ -1,7 +1,7 @@
 /// @param x
 /// @param y
 /// @param z
-/// @param params
+/// @param params[]
 
 var xx = argument0;
 var yy = argument1;

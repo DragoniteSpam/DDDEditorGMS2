@@ -6,7 +6,7 @@ var dw = 640;
 var dh = 640;
 
 // you can assume that this is valid data because this won't be called otherwise
-var list = Camera.selected_entities;
+var list = Stuff.map.selected_entities;
 var entity = list[| 0];
 var dg = dialog_create(dw, dh, "Autonomous Movement", dialog_default, dc_close_no_questions_asked, dialog);
 dg.entity = entity;

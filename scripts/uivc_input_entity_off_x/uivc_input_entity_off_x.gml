@@ -1,7 +1,7 @@
 /// @param UIInput
 
 var input = argument0;
-var list = Camera.selected_entities;
+var list = Stuff.map.selected_entities;
 
 for (var i = 0; i < ds_list_size(list); i++) {
     var thing = list[| i];

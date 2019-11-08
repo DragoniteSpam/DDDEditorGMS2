@@ -1,1 +1,1 @@
-return ds_list_empty(selection);
+return ds_list_empty(Stuff.map.selection);

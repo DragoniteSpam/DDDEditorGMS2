@@ -1,4 +1,5 @@
-/// @description void safc_on_effect(EntityEffect);
 /// @param EntityEffect
 
-safc_on_entity(argument0);
+var effect = argument0;
+
+safc_on_entity(effect);

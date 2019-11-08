@@ -3,4 +3,4 @@
 var radio = argument0;
 
 Stuff.setting_selection_mode = radio.value;
-setting_save("Selection", "mode", Stuff.selection_mode);
+setting_set("Selection", "mode", Stuff.selection_mode);

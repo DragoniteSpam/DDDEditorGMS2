@@ -3,7 +3,7 @@ var dir = filename_dir(path);
 
 if (string_length(dir) > 0) {
     Stuff.setting_location_terrain = dir;
-    setting_save_string("location", "terrain", dir);
+    setting_set("Location", "terrain", dir);
 }
 
 return path;

@@ -3,7 +3,7 @@ var dir = filename_dir(path);
 
 if (string_length(dir) > 0) {
     Stuff.setting_location_audio = dir;
-    setting_save_string("location", "audio", dir);
+    setting_set("Location", "audio", dir);
 }
 
 return path;

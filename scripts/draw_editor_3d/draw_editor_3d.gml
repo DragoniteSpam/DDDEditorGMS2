@@ -1,3 +1,7 @@
+/// @param EditorModeMap
+
+var mode = argument0;
+
 var map = Stuff.active_map;
 var map_contents = map.contents;
 
@@ -22,13 +26,13 @@ var camera = view_get_camera(view_current);
 if (map.is_3d) {
     var vw = view_get_wport(view_current);
     var vh = view_get_hport(view_current);
-    camera_set_view_mat(camera, matrix_build_lookat(x, y, z, xto, yto, zto, xup, yup, zup));
-    camera_set_proj_mat(camera, matrix_build_projection_perspective_fov(-fov, -vw / vh, CAMERA_ZNEAR, CAMERA_ZFAR));
+    camera_set_view_mat(camera, matrix_build_lookat(mode.x, mode.y, mode.z, mode.xto, mode.yto, mode.zto, mode.xup, mode.yup, mode.zup));
+    camera_set_proj_mat(camera, matrix_build_projection_perspective_fov(-mode.fov, -vw / vh, CAMERA_ZNEAR, CAMERA_ZFAR));
     camera_apply(camera);
 } else {
     var cwidth = camera_get_view_width(camera);
 	var cheight = camera_get_view_height(camera);
-    camera_set_view_mat(camera, matrix_build_lookat(x, y, 16000,  x, y, -16000, 0, 1, 0));
+    camera_set_view_mat(camera, matrix_build_lookat(mode.x, mode.y, 16000,  mode.x, mode.y, -16000, 0, 1, 0));
     camera_set_proj_mat(camera, matrix_build_projection_ortho(-cwidth, cheight, CAMERA_ZNEAR, CAMERA_ZFAR));
     camera_apply(camera);
 }
@@ -94,7 +98,7 @@ for (var i = 0; i < ds_list_size(list_routes); i++) {
     transform_set(data[@ 1], data[@ 2], data[@ 3], 0, 0, 0, 1, 1, 1);
     vertex_submit(data[@ 0], pr_linestrip, -1);
     if (data[@ 4]) {
-        transform_set(0, 0, 0, 90, 0, point_direction(x, y, data[@ 1] + data[@ 5], data[@ 2] + data[@ 6]) - 90, 1, 1, 1);
+        transform_set(0, 0, 0, 90, 0, point_direction(mode.x, mode.y, data[@ 1] + data[@ 5], data[@ 2] + data[@ 6]) - 90, 1, 1, 1);
         transform_add(data[@ 1] + data[@ 5], data[@ 2] + data[@ 6], data[@ 3] + data[@ 7], 0, 0, 0, 1, 1, 1);
         draw_sprite_ext(spr_plus_minus, 0, 0, 0, 0.25, 0.25, 0, c_lime, 1);
     }
@@ -104,7 +108,7 @@ for (var i = 0; i < ds_list_size(list_routes); i++) {
 transform_set(0, 0, 0.5, 0, 0, 0, 1, 1, 1);
 
 if (Stuff.setting_view_grid) {
-    vertex_submit(grid, pr_linelist, -1);
+    vertex_submit(Stuff.graphics.grid, pr_linelist, -1);
 }
 
 // tried using ztestenable for this - didn't look good. at all.

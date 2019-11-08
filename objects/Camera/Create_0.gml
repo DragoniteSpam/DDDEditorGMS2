@@ -1,25 +1,5 @@
 
 
-
-
-/*
- * selection stuff
- */
-
-under_cursor = noone;
-
-selection = ds_list_create();
-selected_entities = ds_list_create();
-last_selection = noone;
-
-selection_fill_mesh = -1;       // list index
-selection_fill_tile_x = 4;
-selection_fill_tile_y = 0;
-selection_fill_autotile = 0;
-
-tile_data_view = TileSelectorDisplayMode.PASSAGE;
-tile_on_click = TileSelectorOnClick.SELECT;
-
 enum TileSelectorDisplayMode {
     PASSAGE,
     PRIORITY,

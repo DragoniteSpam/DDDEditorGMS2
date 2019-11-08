@@ -1,4 +1,4 @@
 /// @param SelectionSingle
-// volume can be zero if it's just a flat plane, just area can't
+// volume can be zero if it's just a flat plane, but area can't
 
 return 1;

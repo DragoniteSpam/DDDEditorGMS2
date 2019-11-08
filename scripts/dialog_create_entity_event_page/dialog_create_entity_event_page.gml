@@ -7,7 +7,7 @@ var dh = 672;
 
 // you can assume that this is valid data because this won't be called otherwise
 var index = ui_list_selection(Camera.ui.element_entity_events);
-var list = Camera.selected_entities;
+var list = Stuff.map.selected_entities;
 var entity = list[| 0];
 var page = entity.object_events[| index];
 var dg = dialog_create(dw, dh, "Event Page: " + page.name, dialog_default, dc_close_no_questions_asked, dialog);
