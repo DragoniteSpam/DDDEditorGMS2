@@ -13,8 +13,8 @@ var y2 = argument4;
 var map = Camera.event_map;
 var map_contents = map.contents;
 
-var mfx = (Camera.MOUSE_X - x1) / (x2 - x1);
-var mfy = (Camera.MOUSE_Y - y1) / (y2 - y1);
+var mfx = (Stuff.MOUSE_X - x1) / (x2 - x1);
+var mfy = (Stuff.MOUSE_Y - y1) / (y2 - y1);
 
 var data_x = real(surface.root.el_input_x.value);
 var data_y = real(surface.root.el_input_y.value);
@@ -86,8 +86,8 @@ if (!keyboard_check(vk_control)) {
 	if (CONTORL_3D_LOOK) {
 		var camera_cx = view_get_xport(view_current) + view_get_wport(view_current) / 2;
 		var camera_cy = view_get_yport(view_current) + view_get_hport(view_current) / 2;
-		var dx = (Camera.MOUSE_X - camera_cx) / 16;
-		var dy = (Camera.MOUSE_Y - camera_cy) / 16;
+		var dx = (Stuff.MOUSE_X - camera_cx) / 16;
+		var dy = (Stuff.MOUSE_Y - camera_cy) / 16;
 		Camera.event_direction = (360 + Camera.event_direction - dx) % 360;
 		Camera.event_pitch = clamp(Camera.event_pitch + dy, -89, 89);
 		window_mouse_set(camera_cx, camera_cy);

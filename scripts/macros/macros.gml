@@ -29,8 +29,8 @@
 #macro MAX_AUTOTILE_SHADER_POSITIONS 12 * 16 * 8 * 2
 #macro MAX_SELECTION_COUNT 32
 #macro MAX_VISIBLE_MOVE_ROUTES 4
-#macro mouse_x_view (Camera.MOUSE_X - view_get_xport(view_current))
-#macro mouse_y_view (Camera.MOUSE_Y - view_get_yport(view_current))
+#macro mouse_x_view (Stuff.MOUSE_X - view_get_xport(view_current))
+#macro mouse_y_view (Stuff.MOUSE_Y - view_get_yport(view_current))
 #macro PATH_AUTOTILE ".\\autotile\\"
 #macro PATH_BACKUP_DATA ".\\backups\\data\\"
 #macro PATH_BACKUP_MAP ".\\backups\\maps\\"

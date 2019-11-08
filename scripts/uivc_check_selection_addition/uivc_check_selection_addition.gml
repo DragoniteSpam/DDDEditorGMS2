@@ -1,5 +1,6 @@
-/// @description uivc_check_selection_addition(UIThing);
-/// @param UIThing
+/// @param UICheckbox
 
-Camera.selection_addition=argument0.value;
-setting_save_real("selection", "addition", Camera.selection_addition);
+var checkbox = argument0;
+
+Stuff.setting_selection_addition = checkbox.value;
+setting_save("Selection", "addition", Stuff.setting_selection_addition);

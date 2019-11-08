@@ -54,18 +54,18 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     var yy = legal_y + spacing;
     
-    element = create_radio_array(legal_x + spacing, yy, "Selection mode", col_width, element_height, uivc_radio_selection_mode, Camera.selection_mode, t_general);
+    element = create_radio_array(legal_x + spacing, yy, "Selection mode", col_width, element_height, uivc_radio_selection_mode, Stuff.setting_selection_mode, t_general);
     create_radio_array_options(element, ["Single", "Rectangle", "Circle"]);
     ds_list_add(t_general.contents, element);
     
     yy = yy + ui_get_radio_array_height(element) + spacing;
     
-    element = create_checkbox(legal_x + spacing, yy, "Additive Selection", col_width, element_height, uivc_check_selection_addition, Camera.selection_addition, t_general);
+    element = create_checkbox(legal_x + spacing, yy, "Additive Selection", col_width, element_height, uivc_check_selection_addition, Stuff.setting_selection_addition, t_general);
     ds_list_add(t_general.contents, element);
     
     yy = yy + element.height + spacing;
     
-    element = create_radio_array(legal_x + spacing, yy, "Fill Type", col_width, element_height, uivc_radio_fill_type, Camera.selection_fill_type, t_general);
+    element = create_radio_array(legal_x + spacing, yy, "Fill Type", col_width, element_height, uivc_radio_fill_type, Stuff.setting_selection_fill_type, t_general);
     create_radio_array_options(element, ["Tile", "Autotile", "Mesh", "Pawn", "Effect", "Terrain"]);
     ds_list_add(t_general.contents, element);
     
@@ -104,27 +104,27 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element.height + spacing;
     
-    element = create_checkbox(col2_x, yy, "View Wireframes", col_width, element_height, uivc_check_view_wireframe, Camera.view_wireframe, t_general);
+    element = create_checkbox(col2_x, yy, "View Wireframes", col_width, element_height, uivc_check_view_wireframe, Stuff.setting_view_wireframe, t_general);
     ds_list_add(t_general.contents, element);
     
     yy = yy + element.height + spacing;
     
-    element = create_checkbox(col2_x, yy, "View Grid and Markers", col_width, element_height, uivc_check_view_grids, Camera.view_grid, t_general);
+    element = create_checkbox(col2_x, yy, "View Grid and Markers", col_width, element_height, uivc_check_view_grids, Stuff.setting_view_grid, t_general);
     ds_list_add(t_general.contents, element);
     
     yy = yy + element.height + spacing;
     
-    element = create_checkbox(col2_x, yy, "View Texture", col_width, element_height, uivc_check_view_texture, Camera.view_texture, t_general);
+    element = create_checkbox(col2_x, yy, "View Texture", col_width, element_height, uivc_check_view_texture, Stuff.setting_view_texture, t_general);
     ds_list_add(t_general.contents, element);
     
     yy = yy + element.height + spacing;
     
-    element = create_checkbox(col2_x, yy, "View Entities", col_width, element_height, uivc_check_view_entities, Camera.view_entities, t_general);
+    element = create_checkbox(col2_x, yy, "View Entities", col_width, element_height, uivc_check_view_entities, Stuff.setting_view_entities, t_general);
     ds_list_add(t_general.contents, element);
     
     yy = yy + element.height + spacing;
     
-    element = create_checkbox(col2_x, yy, "View Backfaces", col_width, element_height, uivc_check_view_backface, Camera.view_backface, t_general);
+    element = create_checkbox(col2_x, yy, "View Backfaces", col_width, element_height, uivc_check_view_backface, Stuff.setting_view_backface, t_general);
     ds_list_add(t_general.contents, element);
     
     yy = yy + element.height + spacing;
@@ -139,7 +139,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element.height + spacing;
     
-    element = create_radio_array(col2_x, yy, "Mouse Drag Action", col_width, element_height, uivc_radio_mouse_drag_behavior, Camera.mouse_drag_behavior, t_general);
+    element = create_radio_array(col2_x, yy, "Mouse Drag Action", col_width, element_height, uivc_radio_mouse_drag_behavior, Stuff.setting_mouse_drag_behavior, t_general);
     create_radio_array_options(element, ["Default", "Translate Selection", "Offset Selection", "Rotate Selection", "Scale Selection"]);
     ds_list_add(t_general.contents, element);
     

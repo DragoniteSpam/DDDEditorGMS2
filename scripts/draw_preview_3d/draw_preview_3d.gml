@@ -4,7 +4,7 @@ control_3d_preview();
 
 gpu_set_ztestenable(true);
 gpu_set_zwriteenable(true);
-gpu_set_cullmode(view_backface ? cull_noculling : cull_counterclockwise);
+gpu_set_cullmode(Stuff.setting_view_backface ? cull_noculling : cull_counterclockwise);
 draw_set_color(c_white);
 
 var s = 128;

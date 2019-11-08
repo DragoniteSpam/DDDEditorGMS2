@@ -1,6 +1,6 @@
-/// @param UIThing
+/// @param UICheckbox
 
-var thing = argument0;
+var checkbox = argument0;
 
-Camera.view_grid = thing.value;
-setting_save_real("view", "grid", Camera.view_grid);
+Stuff.setting_view_grid = checkbox.value;
+setting_save("View", "grid", Camera.setting_view_grid);

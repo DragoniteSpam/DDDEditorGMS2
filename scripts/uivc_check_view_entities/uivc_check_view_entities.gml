@@ -1,6 +1,6 @@
-/// @param UIThing
+/// @param UICheckbox
 
-var thing = argument0;
+var checkbox = argument0;
 
-Camera.view_entities = thing.value;
-setting_save_real("view", "entities", Camera.view_entities);
+Stuff.setting_view_entities = checkbox.value;
+setting_save("View", "entities", Stuff.setting_view_entities);

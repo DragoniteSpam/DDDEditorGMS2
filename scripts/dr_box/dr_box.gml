@@ -36,8 +36,8 @@ if (active) {
         } else {
             // dragging things around
             if (Controller.press_left) {
-                dialog.cmx = Camera.MOUSE_X;
-                dialog.cmy = Camera.MOUSE_Y;
+                dialog.cmx = Stuff.MOUSE_X;
+                dialog.cmy = Stuff.MOUSE_Y;
             }
             if (Controller.release_left) {
                 dialog.cmx = -1;
@@ -47,12 +47,12 @@ if (active) {
     }
     
     if (Controller.mouse_left && dialog.cmx > -1) {
-        var dx = Camera.MOUSE_X - dialog.cmx;
-        var dy = Camera.MOUSE_Y - dialog.cmy;
+        var dx = Stuff.MOUSE_X - dialog.cmx;
+        var dy = Stuff.MOUSE_Y - dialog.cmy;
         dialog.x = dialog.x + dx;
         dialog.y = dialog.y + dy;
-        dialog.cmx = Camera.MOUSE_X;
-        dialog.cmy = Camera.MOUSE_Y;
+        dialog.cmx = Stuff.MOUSE_X;
+        dialog.cmy = Stuff.MOUSE_Y;
     }
 }
 

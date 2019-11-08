@@ -1,6 +1,6 @@
-/// @param UIThing
+/// @param UICheckbox
 
-var thing = argument0;
+var checkbox = argument0;
 
-Camera.view_texture = thing.value;
-setting_save_real("view", "texture", Camera.view_texture);
+Stuff.setting_view_texture = checkbox.value;
+setting_save("View", "texture", Stuff.setting_view_texture);

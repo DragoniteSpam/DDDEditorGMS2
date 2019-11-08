@@ -1,4 +1,4 @@
-/// @param UIThing
+/// @param UICheckbox
 
-var thing = argument0;
-Camera.selection_mask = thing.value;
+var checkbox = argument0;
+Stuff.setting_selection_mask = checkbox.value;

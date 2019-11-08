@@ -815,7 +815,7 @@ switch (node.type) {
 if (!bezier_override) {
     if (event_canvas_active_node == node) {
 	    var camera = view_get_camera(view_current);
-	    draw_bezier(x2 + 8, entry_yy + event_canvas_active_node_index * EVENT_NODE_CONTACT_HEIGHT * 2 / 3, Camera.MOUSE_X + camera_get_view_x(camera), Camera.MOUSE_Y + camera_get_view_y(camera));
+	    draw_bezier(x2 + 8, entry_yy + event_canvas_active_node_index * EVENT_NODE_CONTACT_HEIGHT * 2 / 3, Stuff.MOUSE_X + camera_get_view_x(camera), Stuff.MOUSE_Y + camera_get_view_y(camera));
         if (!dialog_exists()) {
             if (Controller.release_left) {
                 // if the mouse is contacting another entrypoint, connect it

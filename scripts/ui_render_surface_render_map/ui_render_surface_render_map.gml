@@ -19,7 +19,7 @@ var active_proj_mat = camera_get_proj_mat(camera);
 draw_clear(c_black);
 
 gpu_set_zwriteenable(true);
-gpu_set_cullmode(Camera.view_backface ? cull_noculling : cull_counterclockwise);
+gpu_set_cullmode(Stuff.setting_view_backface ? cull_noculling : cull_counterclockwise);
 gpu_set_ztestenable(map.is_3d);        // this will make things rather odd with the wrong setting
 
 draw_set_color(c_white);
@@ -48,7 +48,7 @@ if (map.preview) {
 	vertex_submit(map.wpreview, pr_linelist, -1);
 }
 
-if (Camera.view_grid) {
+if (Stuff.view_grid) {
 	transform_set(0, 0, 0.5, 0, 0, 0, 1, 1, 1);
     vertex_submit(Camera.grid, pr_linelist, -1);
 }

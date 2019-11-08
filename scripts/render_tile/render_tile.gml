@@ -30,8 +30,8 @@ var ytex = tile.tile_y * texture_height;
 var color = tile.tile_color;
 var alpha = tile.tile_alpha;
 
-if (Camera.view_entities) {
-    var tex = Camera.view_texture ? sprite_get_texture(ts.master, 0) : sprite_get_texture(b_tileset_textureless, 0)
+if (Stuff.setting_view_entities) {
+    var tex = Stuff.setting_view_texture ? sprite_get_texture(ts.master, 0) : sprite_get_texture(b_tileset_textureless, 0)
     
     d3d_primitive_begin_texture(pr_trianglelist, tex);
     
@@ -46,7 +46,7 @@ if (Camera.view_entities) {
     d3d_primitive_end();
 }
 
-if (Camera.view_wireframe) {
+if (Stuff.setting_view_wireframe) {
     d3d_primitive_begin_texture(pr_linelist, -1);
     
     d3d_vertex(xx, yy, zz);

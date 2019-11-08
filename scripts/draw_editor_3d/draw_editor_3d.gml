@@ -3,7 +3,7 @@ var map_contents = map.contents;
 
 draw_clear(c_black);
 
-if (!mouse_3d_lock && mouse_within_view(view_3d) && !dialog_exists()) {
+if (!Stuff.mouse_3d_lock && mouse_within_view(view_3d) && !dialog_exists()) {
 	if (map.is_3d) {
 	    control_map_3d();
 	} else {
@@ -12,7 +12,7 @@ if (!mouse_3d_lock && mouse_within_view(view_3d) && !dialog_exists()) {
 }
 
 gpu_set_zwriteenable(true);
-gpu_set_cullmode(view_backface ? cull_noculling : cull_counterclockwise);
+gpu_set_cullmode(Stuff.setting_view_backface ? cull_noculling : cull_counterclockwise);
 gpu_set_ztestenable(map.is_3d);        // this will make things rather odd with the wrong setting
 
 draw_set_color(c_white);
@@ -44,24 +44,24 @@ graphics_draw_water();
 shader_set(shd_default);
 
 // this will need to be dynamic at some point
-if (view_texture) {
+if (Stuff.setting_view_texture) {
     var tex = sprite_get_texture(get_active_tileset().master, 0);
 } else {
     var tex = sprite_get_texture(b_tileset_textureless, 0);
 }
 
-if (map_contents.frozen && view_entities) {
+if (map_contents.frozen && Stuff.setting_view_entities) {
     vertex_submit(map_contents.frozen, pr_trianglelist, tex);
 }
-if (map_contents.frozen_wire && view_entities && view_wireframe) {
+if (map_contents.frozen_wire && Stuff.setting_view_entities && Stuff.setting_view_wireframe) {
     vertex_submit(map_contents.frozen_wire, pr_linelist, -1);
 }
 
 for (var i = 0; i < ds_list_size(map_contents.batches); i++) {
-    if (view_entities) {
+    if (Stuff.setting_view_entities) {
         vertex_submit(map_contents.batches[| i], pr_trianglelist, tex);
     }
-    if (view_wireframe) {
+    if (Stuff.setting_view_wireframe) {
         vertex_submit(map_contents.batches_wire[| i], pr_linelist, -1);
     }
 }
@@ -103,7 +103,7 @@ for (var i = 0; i < ds_list_size(list_routes); i++) {
 // "set" overwrites the previous transform anyway
 transform_set(0, 0, 0.5, 0, 0, 0, 1, 1, 1);
 
-if (view_grid) {
+if (Stuff.setting_view_grid) {
     vertex_submit(grid, pr_linelist, -1);
 }
 

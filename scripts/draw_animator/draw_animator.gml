@@ -2,12 +2,12 @@ draw_clear(c_black);
 var map = Stuff.active_map;
 var map_contents = map.contents;
 
-if (!mouse_3d_lock && mouse_within_view(view_3d) && !dialog_exists()) {
+if (!Stuff.mouse_3d_lock && mouse_within_view(view_3d) && !dialog_exists()) {
     control_animator();
 }
 
 gpu_set_zwriteenable(true);
-gpu_set_cullmode(view_backface ? cull_noculling : cull_counterclockwise);
+gpu_set_cullmode(Stuff.setting_view_backface ? cull_noculling : cull_counterclockwise);
 gpu_set_ztestenable(true);
 
 // todo GMS2 requires smooth shading to be handled by the shader(s) now,

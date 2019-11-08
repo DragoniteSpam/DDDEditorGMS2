@@ -9,12 +9,12 @@ transform_add((entity.xx + entity.off_xx) * TILE_WIDTH, (entity.yy + entity.off_
 
 var ts = get_active_tileset();
 
-if (Camera.view_entities) {
-    var tex = Camera.view_texture ? sprite_get_texture(ts.master, 0) : sprite_get_texture(b_tileset_textureless, 0);
+if (Stuff.setting_view_entities) {
+    var tex = Stuff.setting_view_texture ? sprite_get_texture(ts.master, 0) : sprite_get_texture(b_tileset_textureless, 0);
     vertex_submit(mesh.vbuffer, pr_trianglelist, tex);
 }
 
-if (Camera.view_wireframe) {
+if (Stuff.setting_view_wireframe) {
     vertex_submit(mesh.wbuffer, pr_linelist, -1);
 }
 

@@ -13048,6 +13048,14 @@
             }
         },
         {
+            "Key": "dbe99185-b4f6-4aa6-a66c-9ccbe9054b34",
+            "Value": {
+                "id": "add5ab14-c4f6-4fb5-bb83-8e27001a310e",
+                "resourcePath": "objects\\EditorGraphics\\EditorGraphics.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "dbea3bee-1433-4e08-9b07-2af15232b811",
             "Value": {
                 "id": "175f179f-15c6-4363-87c5-1ed2f1d4ffd9",

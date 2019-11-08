@@ -26,8 +26,8 @@ var yup = argument[7];
 var zup = argument[8];
 var fov = argument[9];
 var aspect = argument[10];
-var fw = (argument_count > 11) ? argument[11] : (Camera.MOUSE_X / CW);
-var fh = (argument_count > 12) ? argument[12] : (Camera.MOUSE_Y / CH);
+var fw = (argument_count > 11) ? argument[11] : (Stuff.MOUSE_X / CW);
+var fh = (argument_count > 12) ? argument[12] : (Stuff.MOUSE_Y / CH);
 
 var asp = argument[10];
 
@@ -64,7 +64,7 @@ vX *= tFOV * asp;
 vY *= tFOV * asp;
 vZ *= tFOV * asp;
 
-// add UP * MOUSE_Y and X * MOUSE_X vector to TO vector
+// add UP * Stuff.MOUSE_Y and X * Stuff.MOUSE_X vector to TO vector
 var mX = dX + xup * (1 - 2 * fh) + vX * (2 * fw - 1);
 var mY = dY + yup * (1 - 2 * fh) + vY * (2 * fw - 1);
 var mZ = dZ + zup * (1 - 2 * fh) + vZ * (2 * fw - 1);

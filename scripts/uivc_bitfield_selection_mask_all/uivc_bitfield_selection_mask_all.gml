@@ -1,4 +1,5 @@
-/// @description uivc_bitfield_selection_mask_all(UIThing);
-/// @param UIThing
+/// @param UIBitfieldOption
 
-Camera.selection_mask=SELECTION_MASK_ALL;
+var bitfield = argument0;
+
+Stuff.setting_selection_mask = SELECTION_MASK_ALL;

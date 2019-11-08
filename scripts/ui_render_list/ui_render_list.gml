@@ -72,7 +72,7 @@ if (list.interactive && active) {
         } else if (Controller.press_left) {
             // if this ends up having a bounds problem it's probably because the list is empty and
             // it's trying to access n-1 from the next line
-            var mn = min(((Camera.MOUSE_Y - y2) div list.height) + list.index, n - 1);
+            var mn = min(((Stuff.MOUSE_Y - y2) div list.height) + list.index, n - 1);
             if ((!keyboard_check(vk_control) && !keyboard_check(vk_shift) && !list.select_toggle) || !list.allow_multi_select) {
                 ui_list_deselect(list);
             }
@@ -146,13 +146,13 @@ if (n > list.slots) {
         if (inbounds) {
             draw_rectangle_colour(x2 - sw + 1, sby1 + 1, x2 - 1, sby2 - 1, c_ui, c_ui, c_ui, c_ui, false);
             if (Controller.press_left) {
-                list.click_x = Camera.MOUSE_X;
-                list.click_y = Camera.MOUSE_Y;
+                list.click_x = Stuff.MOUSE_X;
+                list.click_y = Stuff.MOUSE_Y;
             }
         }
         if (Controller.mouse_left) {
             if (list.click_y > -1) {
-                list.index = floor(noutofrange * clamp(Camera.MOUSE_Y - smin, 0, srange) / srange);
+                list.index = floor(noutofrange * clamp(Stuff.MOUSE_Y - smin, 0, srange) / srange);
             }
         }
         if (Controller.release_left) {

@@ -19,7 +19,7 @@ if (false && ds_list_size(selection) && Controller.mouse_left) {
     var dx = clamp((mouse_x - Controller.mouse_x_previous) div 4, -1, 1);
     var dy = clamp((mouse_y - Controller.mouse_y_previous) div 4, -1, 1);
     
-    switch (Camera.mouse_drag_behavior) {
+    switch (Stuff.setting_mouse_drag_behavior) {
         case 1:             // translate
             var sel = selection_all();
             for (var i = 0; i < ds_list_size(sel); i++) {
@@ -43,10 +43,10 @@ if (false && ds_list_size(selection) && Controller.mouse_left) {
 
 if (Controller.press_left) {
     if (ds_list_size(selection) < MAX_SELECTION_COUNT) {
-        if (!keyboard_check(Controller.input_selection_add) && !selection_addition) {
+        if (!keyboard_check(Controller.input_selection_add) && !Stuff.setting_selection_addition) {
             selection_clear();
         }
-        switch (selection_mode) {
+        switch (Stuff.setting_selection_mode) {
             case SelectionModes.SINGLE: var stype = SelectionSingle; break;
             case SelectionModes.RECTANGLE: var stype = SelectionRectangle; break;
             case SelectionModes.CIRCLE: var stype = SelectionCircle; break;
@@ -106,8 +106,8 @@ if (!keyboard_check(vk_control)) {
     if (CONTORL_3D_LOOK) {
         var camera_cx = view_get_xport(view_current) + view_get_wport(view_current) / 2;
         var camera_cy = view_get_yport(view_current) + view_get_hport(view_current) / 2;
-        var dx = (MOUSE_X - camera_cx) / 16;
-        var dy = (MOUSE_Y - camera_cy) / 16;
+        var dx = (Stuff.MOUSE_X - camera_cx) / 16;
+        var dy = (Stuff.MOUSE_Y - camera_cy) / 16;
         window_mouse_set(camera_cx, camera_cy);
     }
     
@@ -129,6 +129,6 @@ if (Controller.press_right) {
 	
 	var menu = Camera.menu.menu_right_click;
 	menu_activate_extra(menu);
-	menu.x = Camera.MOUSE_X;
-	menu.y = Camera.MOUSE_Y;
+	menu.x = Stuff.MOUSE_X;
+	menu.y = Stuff.MOUSE_Y;
 }

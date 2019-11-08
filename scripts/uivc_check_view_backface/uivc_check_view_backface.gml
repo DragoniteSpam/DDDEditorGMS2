@@ -1,6 +1,6 @@
-/// @param UIThing
+/// @param UICheckbox
 
-var thing = argument0;
+var checkbox = argument0;
 
-Camera.view_backface = thing.value;
-setting_save_real("view", "backface", Camera.view_backface);
+Stuff.setting_view_backface = checkbox.value;
+setting_save("View", "backface", Stuff.setting_view_backface);

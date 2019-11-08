@@ -54,6 +54,10 @@ time = 0;
 time_int = 0;
 frames = 0;
 
+MOUSE_X = window_mouse_get_x();
+MOUSE_Y = window_mouse_get_y();
+mouse_3d_lock = false;
+
 all_guids = ds_map_create();
 all_internal_names = ds_map_create();
 
@@ -408,7 +412,7 @@ if (file_exists("projects.json")) {
 	ds_map_add_list(all_projects, "projects", ds_list_create());
 }
 
-// user settings
+#region user settings
 // @todo gml update try catch
 if (file_exists(FILE_SETTINGS)) {
     var json_buffer = buffer_load(FILE_SETTINGS);
@@ -430,6 +434,8 @@ if (file_exists(FILE_SETTINGS)) {
     ds_map_add_map(settings, "Data", settings_data);
     ds_map_add_map(settings, "Config", settings_config);
     ds_map_add_map(settings, "Location", settings_location);
+    ds_map_add_map(settings, "Selection", settings_config);
+    ds_map_add_map(settings, "View", settings_location);
 }
 
 setting_color = setting_get("Config", "color", c_green);                  // BGR
@@ -447,14 +453,48 @@ setting_location_image = setting_get("Location", "image", "./");
 setting_location_audio = setting_get("Location", "audio", "./");
 setting_location_tiled = setting_get("Location", "tiled", "./");
 
+setting_selection_mode = setting_get("Selection", "mode", SelectionModes.RECTANGLE);
+setting_selection_addition = setting_get("Selection", "addition", false);
+setting_selection_fill_type = setting_get("Selection", "fill-type", FillTypes.TILE);
+setting_selection_mask = setting_get("Selection", "mask", SELECTION_MASK_ALL);
+setting_mouse_drag_behavior = setting_get("Selection", "drag-behavior", 0);
+
+setting_view_wireframe = setting_get("View", "wireframe", false);
+setting_view_grid = setting_get("View", "grid", true);
+setting_view_backface = setting_get("View", "backface", false);
+setting_view_texture = setting_get("View", "texture", true);
+setting_view_entities = setting_get("View", "entities", true);
+
 setting_code_extension_map = [".txt", ".lua"];
 
 setting_hide_warnings = ds_map_create();
+#endregion
 
 alarm[ALARM_SETTINGS_SAVE] = room_speed * CAMERA_SAVE_FREQUENCY;
 
 // hacky workaround
 maps_included = false;
+
+/*
+ * Editor modes
+ */
+
+switch (EDITOR_BASE_MODE) {
+    case EditorModes.EDITOR_HEIGHTMAP: editor_mode_heightmap(); break;
+    default: editor_mode_3d(); break;
+}
+
+mode = EDITOR_BASE_MODE;
+
+// if / when you add more of these remember to also add another series of Draw
+// instructions to Camera.Draw
+enum EditorModes {
+    EDITOR_3D,
+    EDITOR_EVENT,
+    EDITOR_DATA,
+    EDITOR_ANIMATION,
+    EDITOR_HEIGHTMAP,
+}
 
 // the autosave/load is nice, BUT it will make the game break if there's an error
 // in either of them. so either do a LOT of validation or have a way to clear the

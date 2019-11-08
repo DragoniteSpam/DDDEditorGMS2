@@ -1,61 +1,6 @@
-/*
- * Editor modes
- */
 
-switch (EDITOR_BASE_MODE) {
-    case EditorModes.EDITOR_HEIGHTMAP: editor_mode_heightmap(); break;
-    default: editor_mode_3d(); break;
-}
 
-mode = EDITOR_BASE_MODE;
 
-// if / when you add more of these remember to also add another series of Draw
-// instructions to Camera.Draw
-enum EditorModes {
-    EDITOR_3D,
-    EDITOR_EVENT,
-    EDITOR_DATA,
-    EDITOR_ANIMATION,
-    EDITOR_HEIGHTMAP,
-}
-Alllllllllllll of the modes are going to be changed so that they exist in their own objects now -
-that's going to be a lot of work, and probably a lot of things are going to break, but it's going
-to make a lot of things easier going forward when not everything is tethered to either the camera,
-Stuff, or both
-/*
- * Raycasting stuff
- */
-
-MOUSE_X = window_mouse_get_x();
-MOUSE_Y = window_mouse_get_y();
-mouse_3d_lock = false;
-
-/*
- * Vertex formats
- */
-
-gpu_set_alphatestenable(true);
-gpu_set_alphatestref(20);
-
-vertex_format_begin();
-vertex_format_add_position_3d();
-vertex_format_add_normal();
-vertex_format_add_texcoord();
-vertex_format_add_colour();
-vertex_format_add_colour();     // second color information is for extra data
-vertex_format = vertex_format_end();
-
-vertex_format_begin();
-vertex_format_add_position_3d();
-vertex_format_add_normal();
-vertex_format_add_texcoord();
-vertex_format_add_colour();
-vertex_format_basic = vertex_format_end();
-
-grid = noone;
-grid_centered = noone;
-
-grid_sphere = noone;
 
 /*
  * selection stuff
@@ -67,23 +12,10 @@ selection = ds_list_create();
 selected_entities = ds_list_create();
 last_selection = noone;
 
-selection_mode = ini_read_real("selection", "mode", SelectionModes.RECTANGLE);
-selection_addition = ini_read_real("selection", "addition", false);
-selection_fill_type = ini_read_real("selection", "fill-type", FillTypes.TILE);
-selection_mask = ini_read_real("selection", "mask", SELECTION_MASK_ALL);
-
 selection_fill_mesh = -1;       // list index
 selection_fill_tile_x = 4;
 selection_fill_tile_y = 0;
 selection_fill_autotile = 0;
-
-view_wireframe = ini_read_real("view", "wireframe", false);
-view_grid = ini_read_real("view", "grid", true);
-view_backface = ini_read_real("view", "backface", false);
-view_texture = ini_read_real("view", "texture", true);
-view_entities = ini_read_real("view", "entities", true);
-
-mouse_drag_behavior = ini_read_real("mouse", "drag-behavior", 0);
 
 tile_data_view = TileSelectorDisplayMode.PASSAGE;
 tile_on_click = TileSelectorOnClick.SELECT;

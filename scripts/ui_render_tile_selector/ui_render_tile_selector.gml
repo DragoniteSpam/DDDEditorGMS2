@@ -125,7 +125,7 @@ if (CONTORL_3D_LOOK) {
     if (selector.offset_x >- 1) {
         selector.tile_view_x = clamp(selector.tile_view_x + selector.offset_x - mouse_x_view, 0, tex_width - selector.width);
         selector.tile_view_y = clamp(selector.tile_view_y + selector.offset_y - mouse_y_view, 0, tex_height - selector.height);
-        Camera.mouse_3d_lock = true;
+        Stuff.mouse_3d_lock = true;
     }
     // this is an "or" - don't try to squish it into the above block because it won't work
     if (selector.offset_x >- 1 || inbounds) {
@@ -138,7 +138,7 @@ if (CONTORL_3D_LOOK) {
 } else {
     if (selector.offset_x != -1) {
         window_set_cursor(cr_default);
-        Camera.mouse_3d_lock = false;
+        Stuff.mouse_3d_lock = false;
         selector.offset_x = -1;
         selector.offset_y = -1;
         window_mouse_set(mx + view_get_xport(view_current), my + view_get_yport(view_current));

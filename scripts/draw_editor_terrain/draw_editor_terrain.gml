@@ -2,7 +2,7 @@ draw_clear(c_black);
 
 draw_set_color(c_white);
 gpu_set_zwriteenable(true);
-gpu_set_cullmode(view_backface ? cull_noculling : cull_counterclockwise);
+gpu_set_cullmode(Stuff.setting_view_backface ? cull_noculling : cull_counterclockwise);
 gpu_set_ztestenable(true);
 
 var camera = view_get_camera(view_current);

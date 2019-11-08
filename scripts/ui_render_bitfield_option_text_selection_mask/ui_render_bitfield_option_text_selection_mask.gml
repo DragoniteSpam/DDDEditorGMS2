@@ -1,8 +1,11 @@
-/// @description void ui_render_bitfield_option_text_selection_mask(UIBitFieldOption, x, y);
 /// @param UIBitFieldOption
 /// @param x
 /// @param y
 
-argument0.state=Camera.selection_mask&argument0.value;
+var bitfield = argument0;
+var xx = argument1;
+var yy = argument2;
 
-ui_render_bitfield_option_text(argument0, argument1, argument2);
+bitfield.state = Stuff.setting_selection_mask & bitfield.value;
+
+ui_render_bitfield_option_text(bitfield, xx, yy);
