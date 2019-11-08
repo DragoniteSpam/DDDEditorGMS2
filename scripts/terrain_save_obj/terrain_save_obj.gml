@@ -36,13 +36,13 @@ buffer_write(buffer_mtl, buffer_text, "00000000\n\n");
 buffer_write(buffer, buffer_text, "usemtl " + active_mtl + "\n");
 buffer_write(buffer_mtl, buffer_text, "newmtl " + active_mtl + "\nKd 1 1 1\nd 1\nillum 2\n\n");
 
-for (var i = 0; i < bytes; i = i + terrain.format_size * 3) {
+for (var i = 0; i < bytes; i = i + Stuff.graphics.format_size_basic * 3) {
     var z0 = buffer_peek(terrain.terrain_buffer_data, i + 8, buffer_f32) * scale;
-    var z1 = buffer_peek(terrain.terrain_buffer_data, i + 8 + terrain.format_size, buffer_f32) * scale;
-    var z2 = buffer_peek(terrain.terrain_buffer_data, i + 8 + terrain.format_size * 2, buffer_f32) * scale;
+    var z1 = buffer_peek(terrain.terrain_buffer_data, i + 8 + Stuff.graphics.format_size_basic, buffer_f32) * scale;
+    var z2 = buffer_peek(terrain.terrain_buffer_data, i + 8 + Stuff.graphics.format_size_basic * 2, buffer_f32) * scale;
     var c0 = buffer_peek(terrain.terrain_buffer_data, i + 32, buffer_u32);
-    var c1 = buffer_peek(terrain.terrain_buffer_data, i + 32 + terrain.format_size, buffer_u32);
-    var c2 = buffer_peek(terrain.terrain_buffer_data, i + 32 + terrain.format_size * 2, buffer_u32);
+    var c1 = buffer_peek(terrain.terrain_buffer_data, i + 32 + Stuff.graphics.format_size_basic, buffer_u32);
+    var c2 = buffer_peek(terrain.terrain_buffer_data, i + 32 + Stuff.graphics.format_size_basic * 2, buffer_u32);
     
     var rr0 = round_ext((c0 & 0x000000ff), precision);
     var gg0 = round_ext((c0 & 0x0000ff00) >> 8, precision);
@@ -58,7 +58,7 @@ for (var i = 0; i < bytes; i = i + terrain.format_size * 3) {
     var aa2 = round_ext((c2 & 0xff000000) >> 24, precision);
     
     if (terrain.export_all || z0 > 0 || z1 > 0 || z2 > 0) {
-        for (var j = 0; j < terrain.format_size * 3; j = j + terrain.format_size) {
+        for (var j = 0; j < Stuff.graphics.format_size_basic * 3; j = j + Stuff.graphics.format_size_basic) {
             var xx = buffer_peek(terrain.terrain_buffer_data, j + i, buffer_f32) * scale;
             var yy = buffer_peek(terrain.terrain_buffer_data, j + i + 4, buffer_f32) * scale;
             var zz = buffer_peek(terrain.terrain_buffer_data, j + i + 8, buffer_f32) * scale;

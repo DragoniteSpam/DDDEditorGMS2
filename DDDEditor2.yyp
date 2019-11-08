@@ -1080,6 +1080,14 @@
             }
         },
         {
+            "Key": "11e2b2bc-d1dc-4e8e-932d-1f29460d9dea",
+            "Value": {
+                "id": "91ea0025-1222-4575-ba8f-65c5a48acc7a",
+                "resourcePath": "scripts\\editor_cleanup_map\\editor_cleanup_map.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "11ead8d7-db1e-4c63-8dd3-3bee2b71c458",
             "Value": {
                 "id": "a9fe8cd0-e252-446b-8ef4-b123cea5eb95",
@@ -16753,7 +16761,8 @@
         "e18cf426-a3fb-480c-a371-16b8c8e85693",
         "0b9ecc08-acdf-4786-9c96-193e4aaafe13",
         "729995d4-2411-4560-bfde-4d072a4adcfe",
-        "11ead8d7-db1e-4c63-8dd3-3bee2b71c458"
+        "11ead8d7-db1e-4c63-8dd3-3bee2b71c458",
+        "11e2b2bc-d1dc-4e8e-932d-1f29460d9dea"
     ],
     "tutorial": ""
 }

@@ -7,7 +7,7 @@ var xx = argument1;
 var yy = argument2;
 
 button.image = noone;
-var index = get_active_tileset().autotiles[Camera.selection_fill_autotile];
+var index = get_active_tileset().autotiles[Stuff.map.selection_fill_autotile];
 
 if (index) {
     var data = Stuff.all_graphic_autotiles[| index];

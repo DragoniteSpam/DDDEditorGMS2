@@ -8,18 +8,6 @@ texture_width = 2048;
 texture_height = 2048;
 
 vertices_per_square = 6;
-format_size = 0;
-
-vertex_format_begin();
-vertex_format_add_position_3d();
-format_size = format_size + buffer_sizeof(buffer_f32) * 3;
-vertex_format_add_normal();
-format_size = format_size + buffer_sizeof(buffer_f32) * 3;
-vertex_format_add_texcoord();
-format_size = format_size + buffer_sizeof(buffer_f32) * 2;
-vertex_format_add_colour();
-format_size = format_size + buffer_sizeof(buffer_u32);
-vertex_format = vertex_format_end();
 
 // general settings
 height = DEFAULT_TERRAIN_HEIGHT;

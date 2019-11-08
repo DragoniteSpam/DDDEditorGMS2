@@ -33,7 +33,7 @@ terrain.height_data = buffer_create(buffer_sizeof(buffer_f32) * terrain.width * 
 terrain.color_data = buffer_create(buffer_sizeof(buffer_u32) * terrain.width * terrain.height, buffer_fixed, 1);
 buffer_fill(terrain.color_data, 0, buffer_u32, 0xffffffff, buffer_get_size(terrain.color_data));
 terrain.terrain_buffer = vertex_create_buffer();
-vertex_begin(terrain.terrain_buffer, terrain.vertex_format);
+vertex_begin(terrain.terrain_buffer, Stuff.graphics.vertex_format_basic);
 
 for (var i = 0; i < terrain.width - 1; i++) {
     for (var j = 0; j < terrain.height - 1; j++) {

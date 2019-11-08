@@ -3,4 +3,4 @@
 var entity = argument0;
 
 entity.modification = Modifications.REMOVE;
-ds_list_add(Camera.changes, entity);
+ds_list_add(Stuff.map.changes, entity);

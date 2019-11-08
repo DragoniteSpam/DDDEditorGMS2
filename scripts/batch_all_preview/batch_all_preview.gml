@@ -29,8 +29,8 @@ c_transform_identity();
 if (ds_list_size(map.all_entities) > 0) {
 	map.preview = vertex_create_buffer();
 	map.wpreview = vertex_create_buffer();
-	vertex_begin(map.preview, Camera.vertex_format);
-	vertex_begin(map.wpreview, Camera.vertex_format);
+	vertex_begin(map.preview, Stuff.graphics.vertex_format);
+	vertex_begin(map.wpreview, Stuff.graphics.vertex_format);
 	map.cspreview = c_shape_create();
 	
 	for (var i = 0; i < ds_list_size(map.all_entities); i++) {

@@ -2,7 +2,7 @@
 
 var button = argument0;
 
-var data = Stuff.all_meshes[| Camera.selection_fill_mesh];
+var data = Stuff.all_meshes[| Stuff.map.selection_fill_mesh];
 
 if (data) {
     view_set_visible(view_3d_preview, true);

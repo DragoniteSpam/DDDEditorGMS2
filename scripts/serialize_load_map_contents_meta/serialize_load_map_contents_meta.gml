@@ -55,7 +55,7 @@ for (var i = 0; i < array_length_1d(map_contents.mesh_autotile_raw); i++) {
     if (exists) {
         var size = buffer_read(buffer, buffer_u32);
         map_contents.mesh_autotile_raw[i] = buffer_read_buffer(buffer, size);
-	    map_contents.mesh_autotiles[i] = vertex_create_buffer_from_buffer(map_contents.mesh_autotile_raw[i], Camera.vertex_format);
+	    map_contents.mesh_autotiles[i] = vertex_create_buffer_from_buffer(map_contents.mesh_autotile_raw[i], Stuff.graphics.vertex_format);
 	    vertex_freeze(map_contents.mesh_autotiles[i]);
     }
 }

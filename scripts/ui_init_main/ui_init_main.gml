@@ -616,20 +616,20 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy = yy + element.height + spacing;
 	
     element = create_tile_selector(legal_x + spacing, yy, legal_width - spacing * 2, (legal_width div Stuff.tile_width) * Stuff.tile_width - element_height, uivc_select_tile, uivc_select_tile_backwards, t_p_tile_editor);
-    element.tile_x = Camera.selection_fill_tile_x;
-    element.tile_y = Camera.selection_fill_tile_y;
+    element.tile_x = Stuff.map.selection_fill_tile_x;
+    element.tile_y = Stuff.map.selection_fill_tile_y;
     ds_list_add(t_p_tile_editor.contents, element);
     
     yy = yy + element.height + spacing;
     var yy_aftergrid = yy;
     
-    element = create_radio_array(legal_x + spacing, yy, "Data to View", col_width, element_height, uivc_tile_set_data_view, Camera.tile_data_view, t_p_tile_editor);
+    element = create_radio_array(legal_x + spacing, yy, "Data to View", col_width, element_height, uivc_tile_set_data_view, Stuff.map.tile_data_view, t_p_tile_editor);
     create_radio_array_options(element, ["Passage", "Priority", "Flags (off)", "Tags"]);
     ds_list_add(t_p_tile_editor.contents, element);
     
     yy = yy + ui_get_radio_array_height(element) + spacing;
     
-    element = create_radio_array(legal_x + spacing, yy, "On Click", col_width, element_height, uivc_tile_set_on_click, Camera.tile_on_click, t_p_tile_editor);
+    element = create_radio_array(legal_x + spacing, yy, "On Click", col_width, element_height, uivc_tile_set_on_click, Stuff.map.tile_on_click, t_p_tile_editor);
     create_radio_array_options(element, ["Select", "Modify"]);
     ds_list_add(t_p_tile_editor.contents, element);
     

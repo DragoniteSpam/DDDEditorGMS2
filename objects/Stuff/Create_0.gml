@@ -305,8 +305,14 @@ c_world_create();
 // map in existence for this to work, but for now there does
 instance_create_depth(0, 0, 0, Controller);
 // various types of editors
+map = instance_create_depth(0, 0, 0, EditorModeMap);
+data = instance_create_depth(0, 0, 0, EditorModeData);
+event = instance_create_depth(0, 0, 0, EditorModeEvent);
+animation = instance_create_depth(0, 0, 0, EditorModeAnimation);
 terrain = instance_create_depth(0, 0, 0, EditorModeTerrain);
-instance_deactivate_object(terrain);
+graphics = instance_create_depth(0, 0, 0, EditorModeGraphics);
+
+instance_deactivate_object(EditorMode);
 
 // this is order-dependant, and it SUCKS, so re-write it later when there's time
 all_maps = ds_list_create();

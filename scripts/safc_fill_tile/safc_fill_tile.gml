@@ -10,6 +10,6 @@ var params = argument3;
 var cell = map_get_grid_cell(xx, yy, zz);
 
 if (!cell[@ MapCellContents.TILE]) {
-    var addition = instance_create_tile(Camera.selection_fill_tile_x, Camera.selection_fill_tile_y);
+    var addition = instance_create_tile(Stuff.map.selection_fill_tile_x, Stuff.map.selection_fill_tile_y);
     map_add_thing(addition, xx, yy, zz);
 }

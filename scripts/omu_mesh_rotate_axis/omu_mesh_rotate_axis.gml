@@ -19,31 +19,31 @@ while (buffer_tell(mesh.buffer) < buffer_get_size(mesh.buffer)) {
     buffer_poke(mesh.buffer, position + 4, buffer_f32, zz);
     buffer_poke(mesh.buffer, position + 8, buffer_f32, xx);
     
-    buffer_seek(mesh.buffer, buffer_seek_relative, VERTEX_FORMAT_SIZE);
+    buffer_seek(mesh.buffer, buffer_seek_relative, Stuff.graphics.format_size);
 }
 
 buffer_seek(mesh.buffer, buffer_seek_start, 0);
 
 vertex_delete_buffer(mesh.vbuffer);
-mesh.vbuffer = vertex_create_buffer_from_buffer(mesh.buffer, Camera.vertex_format);
+mesh.vbuffer = vertex_create_buffer_from_buffer(mesh.buffer, Stuff.graphics.vertex_format);
 vertex_freeze(mesh.vbuffer);
 
 vertex_delete_buffer(mesh.wbuffer);
 mesh.wbuffer = vertex_create_buffer();
-vertex_begin(mesh.wbuffer, Camera.vertex_format);
+vertex_begin(mesh.wbuffer, Stuff.graphics.vertex_format);
 while (buffer_tell(mesh.buffer) < buffer_get_size(mesh.buffer)) {
     var x1 = buffer_read(mesh.buffer, buffer_f32);
     var y1 = buffer_read(mesh.buffer, buffer_f32);
     var z1 = buffer_read(mesh.buffer, buffer_f32);
-    buffer_seek(mesh.buffer, buffer_seek_relative, VERTEX_FORMAT_SIZE - 12);
+    buffer_seek(mesh.buffer, buffer_seek_relative, Stuff.graphics.format_size - 12);
     var x2 = buffer_read(mesh.buffer, buffer_f32);
     var y2 = buffer_read(mesh.buffer, buffer_f32);
     var z2 = buffer_read(mesh.buffer, buffer_f32);
-    buffer_seek(mesh.buffer, buffer_seek_relative, VERTEX_FORMAT_SIZE - 12);
+    buffer_seek(mesh.buffer, buffer_seek_relative, Stuff.graphics.format_size - 12);
     var x3 = buffer_read(mesh.buffer, buffer_f32);
     var y3 = buffer_read(mesh.buffer, buffer_f32);
     var z3 = buffer_read(mesh.buffer, buffer_f32);
-    buffer_seek(mesh.buffer, buffer_seek_relative, VERTEX_FORMAT_SIZE - 12);
+    buffer_seek(mesh.buffer, buffer_seek_relative, Stuff.graphics.format_size - 12);
     
     vertex_point_line(mesh.wbuffer, x1, y1, z1, c_white, 1);
     vertex_point_line(mesh.wbuffer, x2, y2, z2, c_white, 1);

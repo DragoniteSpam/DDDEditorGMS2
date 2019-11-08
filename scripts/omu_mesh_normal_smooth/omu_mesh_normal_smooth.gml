@@ -14,14 +14,14 @@ while (buffer_tell(mesh.buffer) < buffer_get_size(mesh.buffer)) {
     var position = buffer_tell(mesh.buffer);
     
     var xx = [buffer_peek(mesh.buffer, position, buffer_f32),
-        buffer_peek(mesh.buffer, position + VERTEX_FORMAT_SIZE, buffer_f32),
-        buffer_peek(mesh.buffer, position + VERTEX_FORMAT_SIZE * 2, buffer_f32)];
+        buffer_peek(mesh.buffer, position + Stuff.graphics.format_size, buffer_f32),
+        buffer_peek(mesh.buffer, position + Stuff.graphics.format_size * 2, buffer_f32)];
     var yy = [buffer_peek(mesh.buffer, position + 4, buffer_f32),
-        buffer_peek(mesh.buffer, position + VERTEX_FORMAT_SIZE + 4, buffer_f32),
-        buffer_peek(mesh.buffer, position + VERTEX_FORMAT_SIZE * 2 + 4, buffer_f32)];
+        buffer_peek(mesh.buffer, position + Stuff.graphics.format_size + 4, buffer_f32),
+        buffer_peek(mesh.buffer, position + Stuff.graphics.format_size * 2 + 4, buffer_f32)];
     var zz = [buffer_peek(mesh.buffer, position + 8, buffer_f32),
-        buffer_peek(mesh.buffer, position + VERTEX_FORMAT_SIZE + 8, buffer_f32),
-        buffer_peek(mesh.buffer, position + VERTEX_FORMAT_SIZE * 2 + 8, buffer_f32)];
+        buffer_peek(mesh.buffer, position + Stuff.graphics.format_size + 8, buffer_f32),
+        buffer_peek(mesh.buffer, position + Stuff.graphics.format_size * 2 + 8, buffer_f32)];
     
     var normals = triangle_normal(xx[0], yy[0], zz[0], xx[1], yy[1], zz[1], xx[2], yy[2], zz[2]);
     
@@ -35,7 +35,7 @@ while (buffer_tell(mesh.buffer) < buffer_get_size(mesh.buffer)) {
         }
     }
     
-    buffer_seek(mesh.buffer, buffer_seek_relative, VERTEX_FORMAT_SIZE * 3);
+    buffer_seek(mesh.buffer, buffer_seek_relative, Stuff.graphics.format_size * 3);
 }
 
 buffer_seek(mesh.buffer, buffer_seek_start, 0);
@@ -57,13 +57,13 @@ while (buffer_tell(mesh.buffer) < buffer_get_size(mesh.buffer)) {
     buffer_poke(mesh.buffer, position + 16, buffer_f32, n[1]);
     buffer_poke(mesh.buffer, position + 20, buffer_f32, n[2]);
     
-    buffer_seek(mesh.buffer, buffer_seek_relative, VERTEX_FORMAT_SIZE);
+    buffer_seek(mesh.buffer, buffer_seek_relative, Stuff.graphics.format_size);
 }
 
 ds_map_destroy(normal_map);
 
 vertex_delete_buffer(mesh.vbuffer);
-mesh.vbuffer = vertex_create_buffer_from_buffer(mesh.buffer, Camera.vertex_format);
+mesh.vbuffer = vertex_create_buffer_from_buffer(mesh.buffer, Stuff.graphics.vertex_format);
 vertex_freeze(mesh.vbuffer);
 
 if (rebatch) {

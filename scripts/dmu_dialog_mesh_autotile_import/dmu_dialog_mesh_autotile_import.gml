@@ -22,7 +22,7 @@ for (var i = 0; i < n; i++) {
     if (exists) {
         var len = buffer_read(buffer, buffer_u32);
         map_contents.mesh_autotile_raw[i] = buffer_read_buffer(buffer, len);
-        map_contents.mesh_autotiles[i] = vertex_create_buffer_from_buffer(map_contents.mesh_autotile_raw[i], Camera.vertex_format);
+        map_contents.mesh_autotiles[i] = vertex_create_buffer_from_buffer(map_contents.mesh_autotile_raw[i], Stuff.graphics.vertex_format);
     } else {
         map_contents.mesh_autotiles[i] = noone;
         map_contents.mesh_autotiles_raw[i] = noone;

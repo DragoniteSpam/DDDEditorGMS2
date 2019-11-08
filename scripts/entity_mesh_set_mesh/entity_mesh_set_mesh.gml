@@ -18,7 +18,7 @@ if (mesh_data) {
     
     map_transform_thing(entity);
 	entity.modification = Modifications.UPDATE;
-    ds_list_add(Camera.changes, entity);
+    ds_list_add(Stuff.map.changes, entity);
     
     return true;
 }

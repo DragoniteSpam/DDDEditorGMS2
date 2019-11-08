@@ -2,7 +2,7 @@
 
 var index = argument0;
 
-var data = Stuff.all_meshes[| Camera.selection_fill_mesh];
+var data = Stuff.all_meshes[| Stuff.map.selection_fill_mesh];
 Camera.ui.t_p_mesh_editor.element_tag = (data && true);
 
 if (data) {

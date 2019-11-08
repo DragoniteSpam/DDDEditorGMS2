@@ -1,3 +1,5 @@
-/// @param UIThing
+/// @param UIRadioArray
 
-Camera.tile_data_view = argument0.value;
+var radio = argument0;
+
+Stuff.map.tile_data_view = radio.value;

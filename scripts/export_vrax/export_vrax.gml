@@ -19,7 +19,7 @@ for (var i = 0; i < n_meshes; i++) {
     var mesh = Stuff.all_meshes[| i];
     buffer_write_string(buffer, mesh.name);
     
-    var n_vertices = buffer_get_size(mesh.buffer) / VERTEX_FORMAT_SIZE;
+    var n_vertices = buffer_get_size(mesh.buffer) / Stuff.graphics.format_size;
     buffer_write(buffer, buffer_f32, n_vertices);
     
     buffer_seek(mesh.buffer, buffer_seek_start, 0);

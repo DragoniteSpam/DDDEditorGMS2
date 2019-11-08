@@ -11,8 +11,8 @@ var mesh = instance_create_depth(0, 0, 0, DataMesh);
 
 var vbuffer = vertex_create_buffer();
 var wbuffer = vertex_create_buffer();
-vertex_begin(vbuffer, Camera.vertex_format);
-vertex_begin(wbuffer, Camera.vertex_format);
+vertex_begin(vbuffer, Stuff.graphics.vertex_format);
+vertex_begin(wbuffer, Stuff.graphics.vertex_format);
 
 var cdata = c_shape_create();
 c_shape_begin_trimesh();

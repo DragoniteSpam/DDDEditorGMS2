@@ -19,9 +19,9 @@ if (everything) {
 	var cshape = c_shape_create();
 }
 
-vertex_begin(vbuffer, Camera.vertex_format);
+vertex_begin(vbuffer, Stuff.graphics.vertex_format);
 if (everything) {
-	vertex_begin(wbuffer, Camera.vertex_format);
+	vertex_begin(wbuffer, Stuff.graphics.vertex_format);
 	c_shape_begin_trimesh();
 }
 

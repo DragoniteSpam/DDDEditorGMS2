@@ -229,8 +229,8 @@ if (file_exists(fn)) {
         var cshape = c_shape_create();
         
         c_shape_begin_trimesh();
-        vertex_begin(vbuffer, Camera.vertex_format);
-        vertex_begin(wbuffer, Camera.vertex_format);
+        vertex_begin(vbuffer, Stuff.graphics.vertex_format);
+        vertex_begin(wbuffer, Stuff.graphics.vertex_format);
         var vc = 0;
         
         var bxx = [0, 0, 0];

@@ -1,23 +1,7 @@
-
-
-enum TileSelectorDisplayMode {
-    PASSAGE,
-    PRIORITY,
-    FLAGS,
-    TAGS,
-}
-
-enum TileSelectorOnClick {
-    SELECT,
-    MODIFY,
-}
-
 /*
  * other stuff
  */
 
-changes = ds_list_create();
-deletions = ds_list_create();
 ui = ui_init_main();
 ui_event = ui_init_event();
 ui_game_data = noone;

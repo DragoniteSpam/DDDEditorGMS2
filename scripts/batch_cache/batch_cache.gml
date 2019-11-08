@@ -2,8 +2,8 @@ var map = Stuff.active_map.contents;
 
 var buffer = vertex_create_buffer();
 var buffer_wire = vertex_create_buffer();
-vertex_begin(buffer, Camera.vertex_format);
-vertex_begin(buffer_wire, Camera.vertex_format);
+vertex_begin(buffer, Stuff.graphics.vertex_format);
+vertex_begin(buffer_wire, Stuff.graphics.vertex_format);
 var list = ds_list_create();
 
 for (var i = 0; i < ds_list_size(map.batch_in_the_future); i++) {

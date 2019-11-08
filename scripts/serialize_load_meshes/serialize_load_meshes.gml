@@ -18,12 +18,12 @@ repeat (n_meshes) {
     
     var size = buffer_read(buffer, buffer_u32);
     mesh.buffer = buffer_read_buffer(buffer, size);
-    mesh.vbuffer = vertex_create_buffer_from_buffer(mesh.buffer, Camera.vertex_format);
+    mesh.vbuffer = vertex_create_buffer_from_buffer(mesh.buffer, Stuff.graphics.vertex_format);
     
     mesh.cshape = c_shape_create();
     c_shape_begin_trimesh();
     mesh.wbuffer = vertex_create_buffer();
-    vertex_begin(mesh.wbuffer, Camera.vertex_format);
+    vertex_begin(mesh.wbuffer, Stuff.graphics.vertex_format);
     
     mesh.xmin = buffer_read(buffer, buffer_f32);
     mesh.ymin = buffer_read(buffer, buffer_f32);

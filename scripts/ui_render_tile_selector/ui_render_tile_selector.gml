@@ -67,7 +67,7 @@ if (ts) {
             if ((textx - 8) >= x1 && (textx + 8) <= x2 && (texty - 8) >= y1 && (texty + 8) <= y2) {
                 // could make this outside of the for loop except it displays something different
                 // for the passage data than the numbers, since the numbers are meaningless
-                switch (Camera.tile_data_view) {
+                switch (Stuff.map.tile_data_view) {
                     case TileSelectorDisplayMode.PASSAGE:
                         var value = ts.passage[# i, j];
                         if (value == 0) {

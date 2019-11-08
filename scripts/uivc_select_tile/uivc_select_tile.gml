@@ -8,16 +8,16 @@ var ty = argument[2];
 
 var ts = get_active_tileset();
 
-switch (Camera.tile_on_click) {
+switch (Stuff.map.tile_on_click) {
     case TileSelectorOnClick.SELECT:
-        Camera.selection_fill_tile_x = tx;
-        Camera.selection_fill_tile_y = ty;
+        Stuff.map.selection_fill_tile_x = tx;
+        Stuff.map.selection_fill_tile_y = ty;
         selector.tile_x = tx;
         selector.tile_y = ty;
         uivc_select_tile_refresh(tx, ty);
         break;
     case TileSelectorOnClick.MODIFY:
-        switch (Camera.tile_data_view) {
+        switch (Stuff.map.tile_data_view) {
             case TileSelectorDisplayMode.PASSAGE:
                 var data = ts.passage;
                 data[# tx, ty] = (data[# tx, ty] == 0) ? TILE_PASSABLE : 0;

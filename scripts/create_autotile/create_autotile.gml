@@ -34,7 +34,7 @@ for (var i = 0; i < ds_list_size(Stuff.active_map.contents.all_entities); i++) {
                 thing.neighbors[index_alt] = autotile;
             
                 thing.modification = Modifications.UPDATE;
-                ds_list_add(Camera.changes, thing);
+                ds_list_add(Stuff.map.changes, thing);
             }
         }
     }

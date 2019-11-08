@@ -2,9 +2,9 @@
 
 var ts = get_active_tileset();
 
-if (ts.autotiles[Camera.selection_fill_autotile]) {
-    var tt = ts.at_tags[Camera.selection_fill_autotile];
+if (ts.autotiles[Stuff.map.selection_fill_autotile]) {
+    var tt = ts.at_tags[Stuff.map.selection_fill_autotile];
     tt = (--tt + TileTerrainTags.FINAL) % TileTerrainTags.FINAL;
-    ts.at_tags[Camera.selection_fill_autotile] = tt;
-    uivc_select_autotile_refresh(/*Camera.selection_fill_autotile*/);
+    ts.at_tags[Stuff.map.selection_fill_autotile] = tt;
+    uivc_select_autotile_refresh(/*Stuff.map.selection_fill_autotile*/);
 }

@@ -6,7 +6,7 @@ var text = argument0;
 var xx = argument1;
 var yy = argument2;
 
-var data = Stuff.all_meshes[| Camera.selection_fill_mesh];
+var data = Stuff.all_meshes[| Stuff.map.selection_fill_mesh];
 
 if (data) {
     text.text = get_active_tileset().terrain_tag_names[| data.tags];

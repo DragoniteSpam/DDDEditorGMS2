@@ -1,6 +1,6 @@
-/// @param UIThing
+/// @param UIButton
 
-var thing = argument0;
+var button = argument0;
 var terrain = Stuff.terrain;
 
 var width = real(thing.root.el_width.value);
@@ -24,7 +24,7 @@ terrain.color_data = buffer_create(buffer_sizeof(buffer_u32) * width * height, b
 buffer_fill(terrain.color_data, 0, buffer_u32, 0xffffffff, buffer_get_size(terrain.color_data));
 
 terrain.terrain_buffer = vertex_create_buffer();
-vertex_begin(terrain.terrain_buffer, terrain.vertex_format);
+vertex_begin(terrain.terrain_buffer, Stuff.graphics.vertex_format_basic);
 
 for (var i = 0; i < width - 1; i++) {
     for (var j = 0; j < height - 1; j++) {

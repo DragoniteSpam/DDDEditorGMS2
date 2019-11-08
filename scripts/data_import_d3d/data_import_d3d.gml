@@ -4,11 +4,13 @@
 // I ripped the guts out of a compatibility script becuase I didn't feel like writing it on my own
 // it doesn't freeze the vertex buffer - that's on you
 
-if (!file_exists(argument0)) {
+var filename = argument0;
+
+if (!file_exists(filename)) {
 	return -1;
 }
 
-var f = file_text_open_read(argument0);
+var f = file_text_open_read(filename);
 
 var v = file_text_read_real(f);
 if (v != 100) {
@@ -35,7 +37,7 @@ while(thing < nthings) {
 	
 	switch (type) {
 		case 0:
-			vertex_begin(buffer, Camera.vertex_format);
+			vertex_begin(buffer, Stuff.graphics.vertex_format);
 			break;
 		case 1:
 			vertex_end(buffer);

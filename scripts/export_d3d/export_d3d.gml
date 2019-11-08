@@ -6,7 +6,7 @@ var mesh = argument1;
 
 var buffer = buffer_create(1024, buffer_grow, 1);
 buffer_write(buffer, buffer_text, "100\r\n");
-buffer_write(buffer, buffer_text, string(buffer_get_size(mesh.buffer) / VERTEX_FORMAT_SIZE) + "\r\n");
+buffer_write(buffer, buffer_text, string(buffer_get_size(mesh.buffer) / Stuff.graphics.format_size) + "\r\n");
 buffer_write(buffer, buffer_text, "0 4\r\n");
 
 buffer_seek(mesh.buffer, buffer_seek_start, 0);

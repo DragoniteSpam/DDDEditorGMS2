@@ -6,7 +6,7 @@ var bitfield = argument0;
 var xx = argument1;
 var yy = argument2;
 
-var data = Stuff.all_meshes[| Camera.selection_fill_mesh];
+var data = Stuff.all_meshes[| Stuff.map.selection_fill_mesh];
 bitfield.interactive = (data && true);
 
 if (data) {

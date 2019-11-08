@@ -19,7 +19,7 @@ while (buffer_tell(mesh.buffer) < buffer_get_size(mesh.buffer)) {
     var xx = round(buffer_read(mesh.buffer, buffer_f32) / grid_size);
     var yy = round(buffer_read(mesh.buffer, buffer_f32) / grid_size);
     var zz = round(buffer_read(mesh.buffer, buffer_f32) / grid_size);
-    buffer_seek(mesh.buffer, buffer_seek_relative, VERTEX_FORMAT_SIZE - 12);
+    buffer_seek(mesh.buffer, buffer_seek_relative, Stuff.graphics.format_size - 12);
     mesh.xmin = min(mesh.xmin, xx);
     mesh.ymin = min(mesh.ymin, yy);
     mesh.zmin = min(mesh.zmin, zz);

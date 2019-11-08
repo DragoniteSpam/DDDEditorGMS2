@@ -9,6 +9,6 @@ for (var i = 0; i < ds_list_size(list); i++) {
     if (thing.offsettable) {        
         thing.off_zz = real(input.value);
         thing.modification = Modifications.UPDATE;
-        ds_list_add(Camera.changes, thing);
+        ds_list_add(Stuff.map.changes, thing);
     }
 }

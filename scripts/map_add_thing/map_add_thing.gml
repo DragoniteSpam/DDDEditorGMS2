@@ -37,7 +37,7 @@ if (!cell[@ entity.slot]) {
         
 		ds_list_add(list, entity);
 	    entity.listed = true;
-	    ds_list_add(Camera.changes, entity);
+	    ds_list_add(Stuff.map.changes, entity);
 	}
 } else {
     safa_delete(entity);

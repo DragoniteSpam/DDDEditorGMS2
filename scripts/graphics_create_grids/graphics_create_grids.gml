@@ -8,7 +8,7 @@ with (Camera) {
 	
     if (grid) vertex_delete_buffer(grid);
     grid = vertex_create_buffer();
-    vertex_begin(grid, vertex_format);
+    vertex_begin(grid, Stuff.graphics.vertex_format);
     
     // grid
     for (var i = 0; i <= map.xx; i++) {
@@ -40,7 +40,7 @@ with (Camera) {
 
     if (grid_centered) vertex_delete_buffer(grid_centered);
     grid_centered = vertex_create_buffer();
-    vertex_begin(grid_centered, vertex_format);
+    vertex_begin(grid_centered, Stuff.graphicsvertex_format);
     
     // grid
     var xx = map.xx / 2;
@@ -79,7 +79,7 @@ with (Camera) {
 
     if (grid_sphere) vertex_delete_buffer(grid_sphere);
     grid_sphere = vertex_create_buffer();
-    vertex_begin(grid_sphere, vertex_format);
+    vertex_begin(grid_sphere, Stuff.graphicsvertex_format);
     
     var radius = 16;
     var segments = 16;

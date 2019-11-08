@@ -6,7 +6,7 @@ var thing = argument0;
 var xx = argument1;
 var yy = argument2;
 
-var data = Stuff.all_meshes[| Camera.selection_fill_mesh];
+var data = Stuff.all_meshes[| Stuff.map.selection_fill_mesh];
 thing.interactive = (data && true);
 
 if (data) {

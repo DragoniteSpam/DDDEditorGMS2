@@ -20,11 +20,11 @@ if (version >= DataVersions.MAP_BATCH_DATA) {
     map_contents.frozen_data_wire = buffer_read_buffer(buffer, length);
     
     if (buffer_get_size(map_contents.frozen_data) - 1) {
-        map_contents.frozen = vertex_create_buffer_from_buffer(map_contents.frozen_data, Camera.vertex_format);
+        map_contents.frozen = vertex_create_buffer_from_buffer(map_contents.frozen_data, Stuff.graphics.vertex_format);
         vertex_freeze(map_contents.frozen);
     }
     if (buffer_get_size(map_contents.frozen_data_wire) - 1) {
-        map_contents.frozen_wire = vertex_create_buffer_from_buffer(map_contents.frozen_data_wire, Camera.vertex_format);
+        map_contents.frozen_wire = vertex_create_buffer_from_buffer(map_contents.frozen_data_wire, Stuff.graphics.vertex_format);
         vertex_freeze(map_contents.frozen_wire);
     }
 }

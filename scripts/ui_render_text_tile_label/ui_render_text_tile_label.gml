@@ -3,6 +3,6 @@
 /// @param x
 /// @param y
 
-argument0.text="Tile Properties: "+string(Camera.selection_fill_tile_x)+", "+string(Camera.selection_fill_tile_y);
+argument0.text="Tile Properties: "+string(Stuff.map.selection_fill_tile_x)+", "+string(Stuff.map.selection_fill_tile_y);
 
 ui_render_text(argument0, argument1, argument2);

@@ -54,7 +54,6 @@
 #macro TILED_MAP_LAYERS_PER_BASE_LAYER 4
 #macro TILESET_TEXTURE_HEIGHT 0.5
 #macro TILESET_TEXTURE_WIDTH 0.5
-#macro VERTEX_FORMAT_SIZE 40 /* bytes */
 
 #macro FILE_ERRORS "errors.log"
 #macro FILE_SETTINGS "settings.json"

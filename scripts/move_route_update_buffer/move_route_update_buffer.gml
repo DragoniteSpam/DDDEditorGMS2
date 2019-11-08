@@ -1,8 +1,10 @@
 /// @param DataMoveRoute
 
-if (argument0.buffer) {
-    vertex_delete_buffer(argument0.buffer);
-    argument0.buffer = noone;
+var route = argument0;
+
+if (route.buffer) {
+    vertex_delete_buffer(route.buffer);
+    route.buffer = noone;
 }
 
 var xx = 0;
@@ -10,19 +12,19 @@ var yy = 0;
 var zz = 0;         // this will not work well with sloped terrain
 var n_actions = 0;
 
-argument0.extra = false;
+route.extra = false;
 
 // essentailly the rng seed
-var c = Stuff.color_lookup[argument0.GUID % array_length_1d(Stuff.color_lookup)];
+var c = Stuff.color_lookup[route.GUID % array_length_1d(Stuff.color_lookup)];
 var cube_size = 2;
 
 var buffer = vertex_create_buffer();
-vertex_begin(buffer, Camera.vertex_format);
+vertex_begin(buffer, Stuff.graphics.vertex_format);
 
 vertex_cube_line(buffer, 0, 0, 0, c, 1, cube_size);
 
-for (var i = 0; i < ds_list_size(argument0.steps); i++) {
-    var data = argument0.steps[| i];
+for (var i = 0; i < ds_list_size(route.steps); i++) {
+    var data = route.steps[| i];
     var stop = false;
     
     switch (data[@ 0]) {
@@ -35,10 +37,10 @@ for (var i = 0; i < ds_list_size(argument0.steps); i++) {
         case MoveRouteActions.MOVE_BACKWARD:
         case MoveRouteActions.MOVE_TO:
         case MoveRouteActions.MOVE_JUMP:
-            argument0.extra = true;
-            argument0.extra_xx = xx;
-            argument0.extra_yy = yy;
-            argument0.extra_zz = zz;
+            route.extra = true;
+            route.extra_xx = xx;
+            route.extra_yy = yy;
+            route.extra_zz = zz;
             stop = true;
             break;
         // actual things
@@ -109,7 +111,7 @@ for (var i = 0; i < ds_list_size(argument0.steps); i++) {
 if (n_actions > 0) {
     vertex_end(buffer);
     vertex_freeze(buffer);
-    argument0.buffer = buffer;
+    route.buffer = buffer;
 } else {
     vertex_delete_buffer(buffer);
 }

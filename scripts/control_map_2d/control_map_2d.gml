@@ -1,3 +1,7 @@
+/// @param mode
+
+var mode = argument0;
+
 if (Camera.menu.active_element) {
 	return false;
 }
@@ -15,7 +19,7 @@ var floor_cx = floor(((mouse_x_view + x1) / view_get_wport(view_current)) * cwid
 var floor_cy = floor(((mouse_y_view + y1) / view_get_hport(view_current)) * cheight / TILE_HEIGHT);
 
 // these will override everything else, but it's commented out because i dont like how it works
-if (false && ds_list_size(selection) && Controller.mouse_left) {
+if (false && ds_list_size(mode.selection) && Controller.mouse_left) {
     var dx = clamp((mouse_x - Controller.mouse_x_previous) div 4, -1, 1);
     var dy = clamp((mouse_y - Controller.mouse_y_previous) div 4, -1, 1);
     
@@ -27,8 +31,8 @@ if (false && ds_list_size(selection) && Controller.mouse_left) {
                 map_move_thing(thing, thing.xx + dx, thing.yy + dy, thing.zz);
             }
             ds_list_destroy(sel);
-            for (var i = 0; i < ds_list_size(selection); i++) {
-                var sel = selection[| i];
+            for (var i = 0; i < ds_list_size(mode.selection); i++) {
+                var sel = mode.selection[| i];
                 script_execute(sel.onmove, sel, dx, dy, 0);
             }
             return 0;
@@ -52,26 +56,26 @@ if (Controller.press_left) {
             case SelectionModes.CIRCLE: var stype = SelectionCircle; break;
         }
         
-        var tz = under_cursor ? under_cursor.zz : 0;
+        var tz = mode.under_cursor ? mode.under_cursor.zz : 0;
         
-        last_selection = instance_create_depth(0, 0, 0, stype);
-        ds_list_add(selection, last_selection);
-        script_execute(last_selection.onmousedown, last_selection, floor_cx, floor_cy, tz);
+        mode.last_selection = instance_create_depth(0, 0, 0, stype);
+        ds_list_add(mode.selection, mode.last_selection);
+        script_execute(mode.last_selection.onmousedown, mode.last_selection, floor_cx, floor_cy, tz);
     }
 }
 if (Controller.mouse_left) {
-    if (last_selection) {
-        script_execute(last_selection.onmousedrag, last_selection, floor_cx + 1, floor_cy + 1);
+    if (mode.last_selection) {
+        script_execute(mode.last_selection.onmousedrag, mode.last_selection, floor_cx + 1, floor_cy + 1);
     }
 }
 if (Controller.release_left) {
     // selections of zero area are just deleted outright
-    if (last_selection) {
-        if (script_execute(last_selection.area, last_selection) == 0) {
-            instance_activate_object(last_selection);
-            instance_destroy(last_selection);
-            ds_list_pop(selection);
-            last_selection = noone;
+    if (mode.last_selection) {
+        if (script_execute(mode.last_selection.area, mode.last_selection) == 0) {
+            instance_activate_object(mode.last_selection);
+            instance_destroy(mode.last_selection);
+            ds_list_pop(mode.selection);
+            mode.last_selection = noone;
             sa_process_selection();
         }
     }
@@ -111,8 +115,8 @@ if (!keyboard_check(vk_control)) {
         window_mouse_set(camera_cx, camera_cy);
     }
     
-    x += xspeed;
-    y += yspeed;
+    mode.x += xspeed;
+    mode.y += yspeed;
 }
 
 if (Controller.press_right) {
@@ -121,10 +125,10 @@ if (Controller.press_right) {
 	// want to do operations on large swaths of entities, so don't clear it or anythign like that.
 	
 	if (selection_empty()) {
-        var tz = under_cursor ? under_cursor.zz : 0;
-        last_selection = instance_create_depth(0, 0, 0, SelectionSingle);
-        ds_list_add(selection, last_selection);
-        script_execute(last_selection.onmousedown, last_selection, floor_cx, floor_cy, tz);
+        var tz = mode.under_cursor ? mode.under_cursor.zz : 0;
+        mode.last_selection = instance_create_depth(0, 0, 0, SelectionSingle);
+        ds_list_add(mode.selection, mode.last_selection);
+        script_execute(mode.last_selection.onmousedown, mode.last_selection, floor_cx, floor_cy, tz);
 	}
 	
 	var menu = Camera.menu.menu_right_click;
