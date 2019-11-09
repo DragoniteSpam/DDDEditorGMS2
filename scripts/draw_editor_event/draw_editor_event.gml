@@ -1,3 +1,7 @@
+/// @param EditorModeEvent
+
+var mode = argument0;
+
 var controller_left = Controller.mouse_left;
 var controller_right = Controller.mouse_right;
 var controller_middle = Controller.mouse_middle;

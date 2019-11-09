@@ -13,15 +13,15 @@ view_set_wport(view_fullscreen, room_width);
 
 // this may need to get stuffed off into its own script later
 
-if (Camera.ui_game_data) {
-    instance_activate_object(Camera.ui_game_data);
-    instance_destroy(Camera.ui_game_data);
+if (Camera.Stuff.data.ui) {
+    instance_activate_object(Camera.Stuff.data.ui);
+    instance_destroy(Camera.Stuff.data.ui);
 }
 
-Camera.ui_game_data = ui_init_game_data();
+Camera.Stuff.data.ui = ui_init_game_data();
 
 if (ds_list_size(Stuff.all_data) > 0) {
-    ui_list_select(Camera.ui_game_data.el_master, 0);
+    ui_list_select(Camera.Stuff.data.ui.el_master, 0);
 }
 
 ui_init_game_data_activate();

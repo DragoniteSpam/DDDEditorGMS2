@@ -1,6 +1,9 @@
 /// @description setup
 
 #region basic setup
+
+randomize();
+
 etype_objects = [
     Entity,
     EntityTile,
@@ -41,7 +44,22 @@ if (!directory_exists(PATH_PROJECTS)) directory_create(PATH_PROJECTS);
 // dummy list that will always exist and be empty
 empty_list = ds_list_create();
 
-randomize();
+dt = 0;
+time = 0;
+time_int = 0;
+frames = 0;
+
+MOUSE_X = window_mouse_get_x();
+MOUSE_Y = window_mouse_get_y();
+mouse_3d_lock = false;
+mode = EDITOR_BASE_MODE;
+
+tf = ["False", "True"];
+on_off = ["Off", "On"];
+color_channels = vector4(0x000000ff, 0x0000ff00, 0x00ff0000, 0xff000000);
+
+comparison_text = ["<", "<=", "==", ">=", ">", "!="];
+
 #endregion
 
 #region user settings
@@ -128,24 +146,8 @@ fmod_playing = false;
 fmod_paused = false;
 #endregion
 
-// persistent stuff
-dt = 0;
-time = 0;
-time_int = 0;
-frames = 0;
-
-MOUSE_X = window_mouse_get_x();
-MOUSE_Y = window_mouse_get_y();
-mouse_3d_lock = false;
-
 all_guids = ds_map_create();
 all_internal_names = ds_map_create();
-
-tf = ["False", "True"];
-on_off = ["Off", "On"];
-color_channels = vector4(0x000000ff, 0x0000ff00, 0x00ff0000, 0xff000000);
-
-comparison_text = ["<", "<=", "==", ">=", ">", "!="];
 
 // these are constants but we're allowed to change them here
 tile_width = 32;
@@ -384,7 +386,7 @@ data = instance_create_depth(0, 0, 0, EditorModeData);
 event = instance_create_depth(0, 0, 0, EditorModeEvent);
 animation = instance_create_depth(0, 0, 0, EditorModeAnimation);
 terrain = instance_create_depth(0, 0, 0, EditorModeTerrain);
-graphics = instance_create_depth(0, 0, 0, EditorModeGraphics);
+graphics = instance_create_depth(0, 0, 0, EditorGraphics);
 menu = menu_init_main();
 dialogs = ds_list_create();
 
@@ -500,12 +502,10 @@ maps_included = false;
  * Editor modes
  */
 
-switch (EDITOR_BASE_MODE) {
+switch (mode) {
     case EditorModes.EDITOR_HEIGHTMAP: editor_mode_heightmap(); break;
     default: editor_mode_3d(); break;
 }
-
-mode = EDITOR_BASE_MODE;
 
 // if / when you add more of these remember to also add another series of Draw
 // instructions to Camera.Draw

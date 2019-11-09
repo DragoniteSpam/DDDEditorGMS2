@@ -1,6 +1,6 @@
 event_inherited();
 
-render = editor_render_terrain;
+render = editor_render_event;
 ui = ui_init_event();
 
 canvas_active_node = noone;

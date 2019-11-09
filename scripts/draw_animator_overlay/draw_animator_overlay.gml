@@ -1,3 +1,7 @@
+/// @param EditorModeAnimation
+
+var mode = argument0;
+
 var w = view_get_wport(view_current)
 var h = view_get_hport(view_current);
 var lw = 4;

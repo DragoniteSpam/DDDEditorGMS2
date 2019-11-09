@@ -4,6 +4,14 @@ if (!dialog_exists()) {
     control_global();
 }
 
+switch (mode) {
+    case EditorModes.EDITOR_3D: script_execute(map.cleanup, map); break;
+    case EditorModes.EDITOR_EVENT: script_execute(event.cleanup, map); break;
+    case EditorModes.EDITOR_DATA: script_execute(data.cleanup, map); break;
+    case EditorModes.EDITOR_ANIMATION: script_execute(animation.cleanup, map); break;
+    case EditorModes.EDITOR_HEIGHTMAP: script_execute(terrain.cleanup, map); break;
+}
+
 // dialogs (or other things) to be killed
 
 while (!ds_queue_empty(stuff_to_destroy)) {

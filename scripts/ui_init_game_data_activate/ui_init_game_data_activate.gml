@@ -1,15 +1,15 @@
-var container = Camera.ui_game_data.el_dynamic;
-var selection = ui_list_selection(Camera.ui_game_data.el_master);
+var container = Camera.Stuff.data.ui.el_dynamic;
+var selection = ui_list_selection(Camera.Stuff.data.ui.el_master);
 
 if (selection + 1) {
-	Camera.ui_game_data.active_type_guid = Stuff.all_data[| selection].GUID;
+	Camera.Stuff.data.ui.active_type_guid = Stuff.all_data[| selection].GUID;
 
-	var data = guid_get(Camera.ui_game_data.active_type_guid);
+	var data = guid_get(Camera.Stuff.data.ui.active_type_guid);
 
-	Camera.ui_game_data.el_inst_add.interactive = false;
-	Camera.ui_game_data.el_inst_remove.interactive = false;
+	Camera.Stuff.data.ui.el_inst_add.interactive = false;
+	Camera.Stuff.data.ui.el_inst_remove.interactive = false;
 
-	ui_list_deselect(Camera.ui_game_data.el_instances);
+	ui_list_deselect(Camera.Stuff.data.ui.el_instances);
 
 	// i'm really hoping UI elements are destroyed correctly now
 	ds_list_clear_instances(container.contents);
@@ -17,8 +17,8 @@ if (selection + 1) {
 	if (data) {
 	    // this caused some sort of null pointer exception somehow, and I haven't been able to replicate
 	    // it. wrapping it in this "if" should take care of it, though.
-	    Camera.ui_game_data.el_inst_add.interactive = (data.type == DataTypes.DATA);
-	    Camera.ui_game_data.el_inst_remove.interactive = (data.type == DataTypes.DATA);
+	    Camera.Stuff.data.ui.el_inst_add.interactive = (data.type == DataTypes.DATA);
+	    Camera.Stuff.data.ui.el_inst_remove.interactive = (data.type == DataTypes.DATA);
         
 	    if (data.type == DataTypes.DATA) {
 	        var columns = 5;
@@ -54,13 +54,13 @@ if (selection + 1) {
 	        yy = yy + element.height + spacing;
             
 	        ds_list_add(col_data.contents, element);
-	        Camera.ui_game_data.el_inst_name = element;
+	        Camera.Stuff.data.ui.el_inst_name = element;
             
 	        var element = create_input(spacing, yy, "Internal Name:", ew, eh * 2, uivc_data_set_internal_name, "", "Internal name", validate_string_internal_name, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, noone);
             element.valignment = fa_top;
 	        element.render = ui_render_text_data_internal_name;
 	        yy = yy + element.height + spacing + eh / 2;
-	        Camera.ui_game_data.el_inst_internal_name = element;
+	        Camera.Stuff.data.ui.el_inst_internal_name = element;
 	        ds_list_add(col_data.contents, element);
             
 	        for (var i = 0; i < ds_list_size(data.properties); i++) {
@@ -238,9 +238,9 @@ if (selection + 1) {
 	        }
             
 	        var pages = ds_list_size(container.contents);
-	        Camera.ui_game_data.el_pages.text = "Page 1 / " + string(max(1, pages - 2));
-	        Camera.ui_game_data.el_previous.interactive = pages > 2;
-	        Camera.ui_game_data.el_next.interactive = pages > 2;
+	        Camera.Stuff.data.ui.el_pages.text = "Page 1 / " + string(max(1, pages - 2));
+	        Camera.Stuff.data.ui.el_previous.interactive = pages > 2;
+	        Camera.Stuff.data.ui.el_next.interactive = pages > 2;
 	    }
 	}
 }

@@ -1248,6 +1248,14 @@
             }
         },
         {
+            "Key": "140218bc-2d31-4f40-bcfa-2d3437628ce3",
+            "Value": {
+                "id": "6c492e43-e2f9-42d6-bf42-cd388fa2dd70",
+                "resourcePath": "objects\\EditorModeData\\EditorModeData.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "1412f209-e335-43d6-9808-19678f4d12ff",
             "Value": {
                 "id": "fceed05b-21b8-489b-8816-c0572023c3e9",
@@ -4648,6 +4656,14 @@
             }
         },
         {
+            "Key": "5025d585-a4b7-45a6-99fc-15b1f361dbb0",
+            "Value": {
+                "id": "bdd626b6-c66b-40f1-971e-82ad6156c18d",
+                "resourcePath": "scripts\\editor_render_data\\editor_render_data.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "5040d673-9f33-4ef0-b27a-6d6f51b0fb65",
             "Value": {
                 "id": "f5f9dac4-af4c-46c8-94ff-bba12a3e4d8c",
@@ -5285,14 +5301,6 @@
                 "id": "c7779df6-a551-4825-9396-935d030368eb",
                 "resourcePath": "scripts\\omu_entity_add_event_trigger\\omu_entity_add_event_trigger.yy",
                 "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "5a207fea-7a61-448e-918a-e51e94bd9430",
-            "Value": {
-                "id": "a9bba499-a6da-4347-a956-b55051af44fb",
-                "resourcePath": "objects\\Camera\\Camera.yy",
-                "resourceType": "GMObject"
             }
         },
         {
@@ -6564,6 +6572,14 @@
             "Value": {
                 "id": "100c26bf-c8c5-493b-a06b-8d918cc88c42",
                 "resourcePath": "scripts\\uimu_selection_fill\\uimu_selection_fill.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "701fa8f4-d25e-4441-a55d-33688cfea7da",
+            "Value": {
+                "id": "06da3519-2db5-4948-9f0f-70cb8b856f55",
+                "resourcePath": "scripts\\editor_render_animation\\editor_render_animation.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -9364,6 +9380,14 @@
             "Value": {
                 "id": "0fedc3a9-4d91-4499-8904-09f7d382ce87",
                 "resourcePath": "scripts\\uivc_list_event_condition_index\\uivc_list_event_condition_index.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "9d24b09c-db9d-42f5-ad40-13ece28c350d",
+            "Value": {
+                "id": "8fe1ecd8-b350-4272-8a23-0e7c5eb86b4b",
+                "resourcePath": "scripts\\editor_render_event\\editor_render_event.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -16787,6 +16811,9 @@
         "0b9ecc08-acdf-4786-9c96-193e4aaafe13",
         "729995d4-2411-4560-bfde-4d072a4adcfe",
         "11ead8d7-db1e-4c63-8dd3-3bee2b71c458",
+        "701fa8f4-d25e-4441-a55d-33688cfea7da",
+        "5025d585-a4b7-45a6-99fc-15b1f361dbb0",
+        "9d24b09c-db9d-42f5-ad40-13ece28c350d",
         "11e2b2bc-d1dc-4e8e-932d-1f29460d9dea"
     ],
     "tutorial": ""

@@ -2,8 +2,8 @@
 
 var thing = argument0;
 
-var data = guid_get(Camera.ui_game_data.active_type_guid);
-var selection = ui_list_selection(Camera.ui_game_data.el_instances);
+var data = guid_get(Camera.Stuff.data.ui.active_type_guid);
+var selection = ui_list_selection(Camera.Stuff.data.ui.el_instances);
 
 if (selection >= 0) {
     var instance = data.instances[| selection];
