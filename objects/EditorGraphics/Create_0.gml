@@ -61,8 +61,8 @@ c_shape_load_trimesh("data\\basic\\ccube.d3d");
 c_shape_end_trimesh(c_shape_block);
 c_transform_identity();
 
-var water_tile_size = 0xffff;
-var water_reptition = 256;
+water_tile_size = 0xffff;
+water_reptition = 256;
 
 mesh_water_base = vertex_create_buffer();
 mesh_water_bright = vertex_create_buffer();

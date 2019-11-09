@@ -22,8 +22,6 @@ dg.el_list = create_list(16, yy, "Available autotiles:", "<none>", dw / 2 - 16, 
 dg.el_list.entries_are = ListEntries.INSTANCES;
 dg.el_list.key = "list";
 
-yy = yy + dg.el_explanation.height;
-
 dg.el_preview = create_image_button(dw / 2 + 16, yy, "If an autotile was loaded into this slot it would be previewed here", noone, dw / 2 - 32, dw / 2 - 32, fa_center, null, dg);
 dg.el_preview.render = ui_render_image_button_autotile_preview;
 

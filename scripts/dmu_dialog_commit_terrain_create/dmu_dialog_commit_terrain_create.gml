@@ -3,9 +3,9 @@
 var button = argument0;
 var terrain = Stuff.terrain;
 
-var width = real(thing.root.el_width.value);
-var height = real(thing.root.el_height.value);
-var dual = thing.root.el_dual_layer.value;
+var width = real(button.root.el_width.value);
+var height = real(button.root.el_height.value);
+var dual = button.root.el_dual_layer.value;
 
 terrain.width = width;
 Stuff.terrain.ui.t_general.element_width.text = "Width: " + string(width);
@@ -38,4 +38,4 @@ terrain.terrain_buffer_data = buffer_create_from_vertex_buffer(terrain.terrain_b
 
 vertex_freeze(terrain.terrain_buffer);
 
-script_execute(thing.root.commit, thing.root);
+script_execute(button.root.commit, button.root);

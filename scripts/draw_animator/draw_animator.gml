@@ -26,13 +26,13 @@ var proj_mat = camera_get_proj_mat(camera);
 if (map.is_3d) {
     var vw = view_get_wport(view_current);
     var vh = view_get_hport(view_current);
-    camera_set_view_mat(camera, matrix_build_lookat(anim_x, anim_y, anim_z, anim_xto, anim_yto, anim_zto, anim_xup, anim_yup, anim_zup));
-    camera_set_proj_mat(camera, matrix_build_projection_perspective_fov(-anim_fov, -vw / vh, CAMERA_ZNEAR, CAMERA_ZFAR));
+    camera_set_view_mat(camera, matrix_build_lookat(mode.x, mode.y, mode.z, mode.xto, mode.yto, mode.zto, mode.xup, mode.yup, mode.zup));
+    camera_set_proj_mat(camera, matrix_build_projection_perspective_fov(-mode.fov, -vw / vh, CAMERA_ZNEAR, CAMERA_ZFAR));
     camera_apply(camera);
 } else {
     var cwidth = camera_get_view_width(camera);
 	var cheight = camera_get_view_height(camera);
-    camera_set_view_mat(camera, matrix_build_lookat(anim_x + cwidth / 2, anim_y + cheight / 2, -16000,  anim_x + cwidth / 2, anim_y + cheight / 2, 0, 0, 1, 0));
+    camera_set_view_mat(camera, matrix_build_lookat(mode.x + cwidth / 2, mode.y + cheight / 2, -16000,  mode.x + cwidth / 2, mode.y + cheight / 2, 0, 0, 1, 0));
     camera_set_proj_mat(camera, matrix_build_projection_ortho(cwidth, cheight, CAMERA_ZNEAR, CAMERA_ZFAR));
     camera_apply(camera);
 }

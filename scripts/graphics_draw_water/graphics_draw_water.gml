@@ -1,4 +1,4 @@
-var modulo = Stuff.water_reptition;
+var modulo = Stuff.graphics.water_reptition;
 
 shader_set(shd_water_base);
 transform_set(0, 0, -8, 0, 0, 0, 1, 1, 1);

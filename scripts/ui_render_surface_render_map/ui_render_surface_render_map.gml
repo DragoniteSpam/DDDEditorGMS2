@@ -48,9 +48,9 @@ if (map.preview) {
 	vertex_submit(map.wpreview, pr_linelist, -1);
 }
 
-if (Stuff.view_grid) {
+if (Stuff.setting_view_grid) {
 	transform_set(0, 0, 0.5, 0, 0, 0, 1, 1, 1);
-    vertex_submit(Stuff.grid, pr_linelist, -1);
+    vertex_submit(Stuff.graphics.grid, pr_linelist, -1);
 }
 
 var dest_x = surface.root.node.custom_data[| 1];

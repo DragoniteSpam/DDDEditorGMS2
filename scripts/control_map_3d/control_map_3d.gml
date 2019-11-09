@@ -39,7 +39,7 @@ if (zz < mode.z) {
 		    if (!keyboard_check(Controller.input_selection_add) && !Stuff.setting_selection_addition) {
 		        selection_clear();
 		    }
-		    switch (Stuff.selection_mode) {
+		    switch (Stuff.setting_selection_mode) {
 		        case SelectionModes.SINGLE: var stype = SelectionSingle; break;
 		        case SelectionModes.RECTANGLE: var stype = SelectionRectangle; break;
 		        case SelectionModes.CIRCLE: var stype = SelectionCircle; break;
