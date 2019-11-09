@@ -253,11 +253,5 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     element.interactive = false;
     ds_list_add(contents, element);
     
-    /*
-     * more important stuff that needs to be done?
-     */
-    
-    instance_deactivate_object(id);
-    
     return id;
 }

@@ -333,7 +333,5 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy = yy + element_height;
     #endregion
     
-    instance_deactivate_object(id);
-    
     return id;
 }

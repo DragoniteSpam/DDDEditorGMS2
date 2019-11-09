@@ -402,6 +402,10 @@ terrain = instance_create_depth(0, 0, 0, EditorModeTerrain);
 menu = menu_init_main();
 
 instance_deactivate_object(EditorMode);
+
+graphics_create_grids();
+instance_deactivate_object(UIThing);
+
 #endregion
 
 #region stuff related to garbage collection

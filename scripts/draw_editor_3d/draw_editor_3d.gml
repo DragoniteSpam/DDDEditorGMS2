@@ -112,8 +112,8 @@ if (Stuff.setting_view_grid) {
 }
 
 // tried using ztestenable for this - didn't look good. at all.
-for (var i = 0; i < ds_list_size(selection); i++) {
-    var sel = selection[| i];
+for (var i = 0; i < ds_list_size(mode.selection); i++) {
+    var sel = mode.selection[| i];
     script_execute(sel.render, sel);
 }
 

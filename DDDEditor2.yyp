@@ -4688,14 +4688,6 @@
             }
         },
         {
-            "Key": "5077cefa-97da-4ef6-880c-32a5dfa7c059",
-            "Value": {
-                "id": "2e62a62e-163a-43da-8422-72d75b3388d3",
-                "resourcePath": "scripts\\draw_editor_event_hud\\draw_editor_event_hud.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "50a859eb-8612-4fa1-bf19-6098e757c23a",
             "Value": {
                 "id": "60ec8fd8-bae3-48d4-af8d-ae289c2d172a",
@@ -4908,14 +4900,6 @@
             "Value": {
                 "id": "9f712733-f23e-4239-9811-0c8fcc2ecf2e",
                 "resourcePath": "scripts\\move_route_update_buffer\\move_route_update_buffer.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "539296d4-c023-424e-9dde-087da12d539e",
-            "Value": {
-                "id": "4a8fbd64-9e6a-483c-95f8-32c0da1adb4c",
-                "resourcePath": "scripts\\draw_editor_terrain_hud\\draw_editor_terrain_hud.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -15540,9 +15524,7 @@
         "b734f3cb-b0a8-4180-9605-b2ccabc2b3ec",
         "22b0aa7e-8a78-4b56-9f3f-c73312863525",
         "d0cbae9f-b1c2-4da3-9b24-b0c55bedfa4e",
-        "5077cefa-97da-4ef6-880c-32a5dfa7c059",
         "e98c9e1c-1587-4303-85b5-314ab3c45363",
-        "539296d4-c023-424e-9dde-087da12d539e",
         "908f9a52-7470-4e76-9808-402f4acb9d67",
         "2a6837e7-9351-4828-b0c8-f7f6095d2e09",
         "d8652093-8c63-4067-92d4-453d3bfe32c0",

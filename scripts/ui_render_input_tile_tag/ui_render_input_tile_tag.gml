@@ -7,7 +7,6 @@ var xx = argument1;
 var yy = argument2;
 
 var ts = get_active_tileset();
-
-input.value = string(ts.tag[# Stuff.map.selection_fill_tile_x, Stuff.map.selection_fill_tile_y]);
+input.value = string(ts.tags[# Stuff.map.selection_fill_tile_x, Stuff.map.selection_fill_tile_y]);
 
 ui_render_input(input, xx, yy);
