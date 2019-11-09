@@ -1,3 +1,7 @@
+/// @param EditorMode
+
+var mode = argument0;
+
 var iconx = 32;
 var icony = view_get_yport(view_current) + view_get_hport(view_current) - 32;
 var iconlength = 16;
@@ -9,15 +13,15 @@ draw_roundrect_colour(iconx - iconlength, icony - iconlength, iconx + iconlength
 draw_sprite(spr_camera_icons, 2, iconx - sprite_get_width(spr_camera_icons) / 2, icony - sprite_get_height(spr_camera_icons) / 2);
 
 if ((inbounds && Controller.release_left) || keyboard_check(vk_f1)) {
-    Camera.x = 0;
-    Camera.y = 0;
-    Camera.z = 100;
+    mode.x = 0;
+    mode.y = 0;
+    mode.z = 100;
     
-    Camera.xto = 512;
-    Camera.yto = 512;
-    Camera.zto = 0;
+    mode.xto = 512;
+    mode.yto = 512;
+    mode.zto = 0;
     
-    Camera.xup = 0;
-    Camera.yup = 0;
-    Camera.zup = 1;
+    mode.xup = 0;
+    mode.yup = 0;
+    mode.zup = 1;
 }

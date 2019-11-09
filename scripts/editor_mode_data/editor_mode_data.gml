@@ -1,4 +1,4 @@
-Camera.mode = EditorModes.EDITOR_DATA;
+Stuff.mode = EditorModes.EDITOR_DATA;
 
 view_set_visible(view_fullscreen, true);
 view_set_visible(view_3d, false);
@@ -13,15 +13,15 @@ view_set_wport(view_fullscreen, room_width);
 
 // this may need to get stuffed off into its own script later
 
-if (Camera.Stuff.data.ui) {
-    instance_activate_object(Camera.Stuff.data.ui);
-    instance_destroy(Camera.Stuff.data.ui);
+if (Stuff.data.ui) {
+    instance_activate_object(Stuff.data.ui);
+    instance_destroy(Stuff.data.ui);
 }
 
-Camera.Stuff.data.ui = ui_init_game_data();
+Stuff.data.ui = ui_init_game_data();
 
 if (ds_list_size(Stuff.all_data) > 0) {
-    ui_list_select(Camera.Stuff.data.ui.el_master, 0);
+    ui_list_select(Stuff.data.ui.el_master, 0);
 }
 
 ui_init_game_data_activate();

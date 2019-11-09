@@ -9,7 +9,7 @@ var dual = button.root.el_dual_layer.value;
 var scale = string(button.root.el_scale.value);
 
 terrain.dual_layer = dual;
-Camera.Stuff.terrain.ui.t_general.element_dual.value = dual;
+Stuff.terrain.ui.t_general.element_dual.value = dual;
 
 terrain.width = sprite_get_width(image);
 terrain.height = sprite_get_height(image);

@@ -2,29 +2,29 @@
 
 var list = argument0;
 
-if (Camera.event_map != Stuff.all_maps[| ui_list_selection(list)]) {
+if (Stuff.event.map != Stuff.all_maps[| ui_list_selection(list)]) {
 	var visible_map = Stuff.all_maps[| ui_list_selection(list)];
 	
-	if (Camera.event_map) {
-		if (Camera.event_map.preview) {
-			vertex_delete_buffer(Camera.event_map.preview);
-			Camera.event_map.preview = noone;
+	if (Stuff.event.map) {
+		if (Stuff.event.map.preview) {
+			vertex_delete_buffer(Stuff.event.map.preview);
+			Stuff.event.map.preview = noone;
 		}
-		if (Camera.event_map.wpreview) {
-			vertex_delete_buffer(Camera.event_map.wpreview);
-			Camera.event_map.wpreview = noone;
+		if (Stuff.event.map.wpreview) {
+			vertex_delete_buffer(Stuff.event.map.wpreview);
+			Stuff.event.map.wpreview = noone;
 		}
-		if (Camera.event_map.cpreview) {
-			c_world_remove_object(Camera.event_map.cpreview);
-			Camera.event_map.cpreview = noone;
+		if (Stuff.event.map.cpreview) {
+			c_world_remove_object(Stuff.event.map.cpreview);
+			Stuff.event.map.cpreview = noone;
 		}
-		if (Camera.event_map.cpreview) {
-			c_object_destroy(Camera.event_map.cpreview);
-			Camera.event_map.cpreview = noone;
+		if (Stuff.event.map.cpreview) {
+			c_object_destroy(Stuff.event.map.cpreview);
+			Stuff.event.map.cpreview = noone;
 		}
-		if (Camera.event_map.cspreview) {
-			c_shape_destroy(Camera.event_map.cspreview);
-			Camera.event_map.cspreview = noone;
+		if (Stuff.event.map.cspreview) {
+			c_shape_destroy(Stuff.event.map.cspreview);
+			Stuff.event.map.cspreview = noone;
 		}
 	}
 	
@@ -38,5 +38,5 @@ if (Camera.event_map != Stuff.all_maps[| ui_list_selection(list)]) {
 	
 	batch_all_preview(visible_map);
 	
-	Camera.event_map = visible_map;
+	Stuff.event.map = visible_map;
 }

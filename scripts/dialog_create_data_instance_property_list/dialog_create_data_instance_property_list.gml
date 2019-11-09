@@ -1,7 +1,7 @@
 /// @param Dialog
 
 var dialog = argument0;
-var selection = ui_list_selection(Camera.Stuff.data.ui.el_instances);
+var selection = ui_list_selection(Stuff.data.ui.el_instances);
 
 // this is honestly easier than disabling/enabling interface elements when stuff is deselected
 if (!(selection + 1)) {
@@ -11,7 +11,7 @@ if (!(selection + 1)) {
 var dw = 320;
 var dh = 64;
 
-var data = guid_get(Camera.Stuff.data.ui.active_type_guid);
+var data = guid_get(Stuff.data.ui.active_type_guid);
 var property = data.properties[| dialog.key];
 var instance = guid_get(data.instances[| selection].GUID);
 

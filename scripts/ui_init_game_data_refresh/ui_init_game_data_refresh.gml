@@ -3,8 +3,8 @@
  * 2. assign values to the property field things
  */
 
-var data = guid_get(Camera.Stuff.data.ui.active_type_guid);
-var selection = ui_list_selection(Camera.Stuff.data.ui.el_instances);
+var data = guid_get(Stuff.data.ui.active_type_guid);
+var selection = ui_list_selection(Stuff.data.ui.el_instances);
 
 if (!data) {
 	return false;
@@ -17,12 +17,12 @@ if (selection < 0) {
 }
 /*Everything is suddenly broken, go into github to see if you can find what the latest changes to
 this and ui_init_game_data_activate and ui_init_game_data were because i'm way too tired for that now*/
-ui_input_set_value(Camera.Stuff.data.ui.el_inst_name, instance ? instance.name : "");
-ui_input_set_value(Camera.Stuff.data.ui.el_inst_internal_name, instance ? instance.internal_name : "");
+ui_input_set_value(Stuff.data.ui.el_inst_name, instance ? instance.name : "");
+ui_input_set_value(Stuff.data.ui.el_inst_internal_name, instance ? instance.internal_name : "");
 
 // if you got to this point, you already know data has a value
 // container
-var dynamic = Camera.Stuff.data.ui.el_dynamic;
+var dynamic = Stuff.data.ui.el_dynamic;
 var n = 0;
 for (var i = 0; i < ds_list_size(dynamic.contents); i++) {
     // another container

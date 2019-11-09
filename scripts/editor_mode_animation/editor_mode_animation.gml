@@ -1,4 +1,4 @@
-Camera.mode = EditorModes.EDITOR_ANIMATION;
+Stuff.mode = EditorModes.EDITOR_ANIMATION;
 
 view_set_visible(view_fullscreen, true);
 view_set_visible(view_3d, true);

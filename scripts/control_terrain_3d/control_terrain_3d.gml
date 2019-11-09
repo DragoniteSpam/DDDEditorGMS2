@@ -7,8 +7,8 @@ if (Stuff.menu.active_element) {
 }
 
 var mouse_vector = update_mouse_vector(
-    Camera.x, Camera.y, Camera.z, Camera.xto, Camera.yto, Camera.zto,
-    Camera.xup, Camera.yup, Camera.zup, Camera.fov, CW / CH
+    Stuff.terrain.x, Stuff.terrain.y, Stuff.terrain.z, Stuff.terrain.xto, Stuff.terrain.yto, Stuff.terrain.zto,
+    Stuff.terrain.xup, Stuff.terrain.yup, Stuff.terrain.zup, Stuff.terrain.fov, CW / CH
 );
 
 var xx = mouse_vector[vec3.xx] * MILLION;
@@ -17,11 +17,11 @@ var zz = mouse_vector[vec3.zz] * MILLION;
 
 terrain.cursor_position = undefined;
 
-if (zz < Camera.z) {
-	var f = abs(Camera.z / zz);
+if (zz < Stuff.terrain.z) {
+	var f = abs(Stuff.terrain.z / zz);
     
     // @todo gml update lwo
-    terrain.cursor_position = [(Camera.x + xx * f) / terrain.view_scale, (Camera.y + yy * f) / terrain.view_scale];
+    terrain.cursor_position = [(Stuff.terrain.x + xx * f) / terrain.view_scale, (Stuff.terrain.y + yy * f) / terrain.view_scale];
     
 	if (Controller.mouse_left) {
         switch (terrain.mode) {
@@ -49,51 +49,51 @@ if (keyboard_check_pressed(vk_delete)) {
 // move the camera
 
 if (!keyboard_check(vk_control)) {
-	var mspd = (min(log10(max(abs(Camera.z), 1)) * 4, 320) + 1) / Stuff.dt;
+	var mspd = (min(log10(max(abs(Stuff.terrain.z), 1)) * 4, 320) + 1) / Stuff.dt;
 	var xspeed = 0;
 	var yspeed = 0;
 	var zspeed = 0;
     
 	if (keyboard_check(vk_up) || keyboard_check(ord("W"))) {
-	    xspeed = xspeed + dcos(Camera.direction) * mspd * Stuff.dt;
-	    yspeed = yspeed - dsin(Camera.direction) * mspd * Stuff.dt;
-	    zspeed = zspeed - dsin(Camera.pitch) * mspd * Stuff.dt;
+	    xspeed = xspeed + dcos(Stuff.terrain.direction) * mspd * Stuff.dt;
+	    yspeed = yspeed - dsin(Stuff.terrain.direction) * mspd * Stuff.dt;
+	    zspeed = zspeed - dsin(Stuff.terrain.pitch) * mspd * Stuff.dt;
 	}
 	if (keyboard_check(vk_down) || keyboard_check(ord("S"))) {
-	    xspeed = xspeed - dcos(Camera.direction) * mspd * Stuff.dt;
-	    yspeed = yspeed + dsin(Camera.direction) * mspd * Stuff.dt;
-	    zspeed = zspeed + dsin(Camera.pitch) * mspd * Stuff.dt;
+	    xspeed = xspeed - dcos(Stuff.terrain.direction) * mspd * Stuff.dt;
+	    yspeed = yspeed + dsin(Stuff.terrain.direction) * mspd * Stuff.dt;
+	    zspeed = zspeed + dsin(Stuff.terrain.pitch) * mspd * Stuff.dt;
 	}
 	if (keyboard_check(vk_left) || keyboard_check(ord("A"))) {
-	    xspeed = xspeed - dsin(Camera.direction) * mspd * Stuff.dt;
-	    yspeed = yspeed - dcos(Camera.direction) * mspd * Stuff.dt;
+	    xspeed = xspeed - dsin(Stuff.terrain.direction) * mspd * Stuff.dt;
+	    yspeed = yspeed - dcos(Stuff.terrain.direction) * mspd * Stuff.dt;
 	}
 	if (keyboard_check(vk_right) || keyboard_check(ord("D"))) {
-	    xspeed = xspeed + dsin(Camera.direction) * mspd * Stuff.dt;
-	    yspeed = yspeed + dcos(Camera.direction) * mspd * Stuff.dt;
+	    xspeed = xspeed + dsin(Stuff.terrain.direction) * mspd * Stuff.dt;
+	    yspeed = yspeed + dcos(Stuff.terrain.direction) * mspd * Stuff.dt;
 	}
 	if (CONTORL_3D_LOOK) {
 		var camera_cx = view_get_xport(view_current) + view_get_wport(view_current) / 2;
 		var camera_cy = view_get_yport(view_current) + view_get_hport(view_current) / 2;
 		var dx = (Stuff.MOUSE_X - camera_cx) / 16;
 		var dy = (Stuff.MOUSE_Y - camera_cy) / 16;
-		Camera.direction = (360 + Camera.direction - dx) % 360;
-		Camera.pitch = clamp(Camera.pitch + dy, -89, 89);
+		Stuff.terrain.direction = (360 + Stuff.terrain.direction - dx) % 360;
+		Stuff.terrain.pitch = clamp(Stuff.terrain.pitch + dy, -89, 89);
 		window_mouse_set(camera_cx, camera_cy);
-		Camera.xto = Camera.x + dcos(Camera.direction);
-		Camera.yto = Camera.y - dsin(Camera.direction);
-		Camera.zto = Camera.z - dsin(Camera.pitch);
+		Stuff.terrain.xto = Stuff.terrain.x + dcos(Stuff.terrain.direction);
+		Stuff.terrain.yto = Stuff.terrain.y - dsin(Stuff.terrain.direction);
+		Stuff.terrain.zto = Stuff.terrain.z - dsin(Stuff.terrain.pitch);
 	}
     
-	Camera.x += xspeed;
-	Camera.y += yspeed;
-	Camera.z += zspeed;
-	Camera.xto += xspeed;
-	Camera.yto += yspeed;
-	Camera.zto += zspeed;
-	Camera.xup = 0;
-	Camera.yup = 0;
-	Camera.zup = 1;
+	Stuff.terrain.x += xspeed;
+	Stuff.terrain.y += yspeed;
+	Stuff.terrain.z += zspeed;
+	Stuff.terrain.xto += xspeed;
+	Stuff.terrain.yto += yspeed;
+	Stuff.terrain.zto += zspeed;
+	Stuff.terrain.xup = 0;
+	Stuff.terrain.yup = 0;
+	Stuff.terrain.zup = 1;
 } else {
 	if (Controller.press_right) {
 

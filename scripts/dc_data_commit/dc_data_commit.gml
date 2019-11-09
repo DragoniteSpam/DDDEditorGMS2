@@ -1,11 +1,13 @@
 /// @param UIButton
-// if there will be any conflicts, panic and explode. i mean, confirm them
+// if there will be any conflicts, panic and explode. i mean, confirm them.
 
-if (argument0.root.changed && ds_list_size(Stuff.original_data) > 0) {
+var button = argument0;
+
+if (button.root.changed && ds_list_size(Stuff.original_data) > 0) {
     var dw = 560;
     var dh = 440;
     
-    var dg = dialog_create(dw, dh, "this is important", dialog_default, dc_close_no_questions_asked, argument0);
+    var dg = dialog_create(dw, dh, "this is important", dialog_default, dc_close_no_questions_asked, button);
     
     var b_width = 128;
     var b_height = 32;
@@ -19,10 +21,10 @@ if (argument0.root.changed && ds_list_size(Stuff.original_data) > 0) {
 } else {
     // if you're okay, discard the cache
     ds_list_destroy_instances(Stuff.original_data);
-    dc_close_no_questions_asked(argument0);
+    dc_close_no_questions_asked(button);
 }
 
 // but only if you're already in the data editor mode
-if (Camera.mode == EditorModes.EDITOR_DATA) {
+if (Stuff.mode == EditorModes.EDITOR_DATA) {
     editor_mode_3d();
 }

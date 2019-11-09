@@ -61,6 +61,14 @@ comparison_text = ["<", "<=", "==", ">=", ">", "!="];
 color_lookup = [c_red, c_green, c_blue, c_orange, c_aqua, c_fuchsia, c_purple, c_teal];
 direction_lookup = [270, 180, 0, 90];
 
+// these are constants but we're allowed to change them here
+tile_width = 32;
+tile_height = 32;
+tile_depth = 32;
+
+// uv size, not 3D size
+tile_size = 32;
+
 #endregion
 
 #region user settings
@@ -146,14 +154,6 @@ fmod_sound = noone;
 fmod_playing = false;
 fmod_paused = false;
 #endregion
-
-// these are constants but we're allowed to change them here
-tile_width = 32;
-tile_height = 32;
-tile_depth = 32;
-
-// uv size, not 3D size
-tile_size = 32;
 
 #region asset lists
 

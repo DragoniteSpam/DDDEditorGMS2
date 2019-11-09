@@ -4,4 +4,4 @@ var element = argument0;
 
 menu_activate(noone);
 
-Camera.schedule_save = true;
+Stuff.schedule_save = true;

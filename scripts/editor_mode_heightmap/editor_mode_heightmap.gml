@@ -1,4 +1,4 @@
-Camera.mode = EditorModes.EDITOR_HEIGHTMAP;
+Stuff.mode = EditorModes.EDITOR_HEIGHTMAP;
 
 view_set_visible(view_fullscreen, false);
 view_set_visible(view_3d, true);

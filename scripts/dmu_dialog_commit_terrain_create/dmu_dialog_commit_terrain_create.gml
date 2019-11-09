@@ -8,11 +8,11 @@ var height = real(thing.root.el_height.value);
 var dual = thing.root.el_dual_layer.value;
 
 terrain.width = width;
-Camera.Stuff.terrain.ui.t_general.element_width.text = "Width: " + string(width);
+Stuff.terrain.ui.t_general.element_width.text = "Width: " + string(width);
 terrain.height = height;
-Camera.Stuff.terrain.ui.t_general.element_height.text = "Height: " + string(height);
+Stuff.terrain.ui.t_general.element_height.text = "Height: " + string(height);
 terrain.dual_layer = dual;
-Camera.Stuff.terrain.ui.t_general.element_dual.value = dual;
+Stuff.terrain.ui.t_general.element_dual.value = dual;
 
 buffer_delete(terrain.height_data);
 buffer_delete(terrain.color_data);

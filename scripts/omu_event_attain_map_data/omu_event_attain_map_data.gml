@@ -97,14 +97,14 @@ var visible_map = guid_get(custom_data_map[| 0]);
 if (visible_map.preview) {
 	vertex_delete_buffer(visible_map.preview);
 	vertex_delete_buffer(visible_map.wpreview);
-	c_world_remove_object(Camera.event_map.cpreview);
-	c_object_destroy(Camera.event_map.cpreview);
-	c_shape_destroy(Camera.event_map.cspreview);
+	c_world_remove_object(Stuff.event.map.cpreview);
+	c_object_destroy(Stuff.event.map.cpreview);
+	c_shape_destroy(Stuff.event.map.cspreview);
 }
 
 batch_all_preview(visible_map);
 
-Camera.event_map = visible_map;
+Stuff.event.map = visible_map;
 
 var b_width = 128;
 var b_height = 32;

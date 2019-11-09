@@ -6,8 +6,8 @@ var text = argument0;
 var xx = argument1;
 var yy = argument2;
 
-var data = guid_get(Camera.Stuff.data.ui.active_type_guid);
-var selection = ui_list_selection(Camera.Stuff.data.ui.el_instances);
+var data = guid_get(Stuff.data.ui.active_type_guid);
+var selection = ui_list_selection(Stuff.data.ui.el_instances);
 var original_color = text.color;
 
 if (selection >= 0) {

@@ -50,7 +50,7 @@ if (map.preview) {
 
 if (Stuff.view_grid) {
 	transform_set(0, 0, 0.5, 0, 0, 0, 1, 1, 1);
-    vertex_submit(Camera.grid, pr_linelist, -1);
+    vertex_submit(Stuff.grid, pr_linelist, -1);
 }
 
 var dest_x = surface.root.node.custom_data[| 1];

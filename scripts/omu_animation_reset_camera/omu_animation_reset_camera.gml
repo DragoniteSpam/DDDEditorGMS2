@@ -2,18 +2,18 @@
 
 var thing = argument0;
 
-Camera.anim_x = 0;
-Camera.anim_y = 160;
-Camera.anim_z = 80;
+Stuff.animation.x = 0;
+Stuff.animation.y = 160;
+Stuff.animation.z = 80;
 
-Camera.anim_xto = 0;
-Camera.anim_yto = 0;
-Camera.anim_zto = 0;
+Stuff.animation.xto = 0;
+Stuff.animation.yto = 0;
+Stuff.animation.zto = 0;
 
-Camera.anim_xup = 0;
-Camera.anim_yup = 0;
-Camera.anim_zp = 1;
+Stuff.animation.xup = 0;
+Stuff.animation.yup = 0;
+Stuff.animation.zp = 1;
 
-Camera.anim_fov = 50;
-Camera.anim_pitch = 0;
-Camera.anima_direction = 0;
+Stuff.animation.fov = 50;
+Stuff.animation.pitch = 0;
+Stuff.animation.direction = 0;
