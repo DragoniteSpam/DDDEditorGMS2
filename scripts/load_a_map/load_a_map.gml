@@ -67,3 +67,5 @@ for (var i = 0; i < ds_list_size(Stuff.all_maps); i++) {
 		break;
 	}
 }
+
+graphics_create_grids();

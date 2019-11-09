@@ -1,3 +1,5 @@
 /// @param EntityTile
 
-argument0.cobject = c_object_create(Stuff.c_shape_tile, CollisionMasks.MAIN, CollisionMasks.MAIN);
+var tile = argument0;
+
+tile.cobject = c_object_create(Stuff.graphics.c_shape_tile, CollisionMasks.MAIN, CollisionMasks.MAIN);

@@ -18,14 +18,13 @@ draw_clear_alpha(c_white, 0);
 // line up properly. please try to use 2048x2048.
 
 draw_sprite(tileset.picture, 0, 0, 0);
+var count = ds_list_size(Stuff.all_graphic_autotiles);
 
 for (var i = 0; i < AUTOTILE_MAX; i++) {
-    if (tileset.autotiles[i]) {
-        var atp = tileset.autotile_positions[i];
-        var at_data = Stuff.all_graphic_autotiles[| tileset.autotiles[i]];
-        if (is_array(at_data)) {
-            draw_sprite(at_data[AvailableAutotileProperties.PICTURE], 0, atp[vec2.xx] * TEXTURE_SIZE, atp[vec2.yy] * TEXTURE_SIZE);
-        }
+    if (tileset.autotiles[i] <= count) {
+        var xx = i div (AUTOTILE_MAX / 2);
+        var yy = (i mod 2) / 4;
+        draw_sprite(Stuff.all_graphic_autotiles[| tileset.autotiles[i]].picture, 0, xx * TEXTURE_SIZE, yy * TEXTURE_SIZE);
     }
 }
 

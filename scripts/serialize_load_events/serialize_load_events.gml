@@ -5,7 +5,7 @@ var buffer = argument0;
 var version = argument1;
 var n_events = buffer_read(buffer, buffer_u32);
 
-Stuff.active_event = noone;
+Stuff.event.active = noone;
 
 repeat (n_events) {
     // this was written in pieces before serialize_load_generic was
@@ -196,4 +196,4 @@ if (ds_list_empty(Stuff.all_events)) {
     ds_list_add(all_events, event_create("DefaultEvent"));
 }
 
-Stuff.active_event = Stuff.all_events[| 0];
+Stuff.event.active = Stuff.all_events[| 0];

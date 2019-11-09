@@ -1,25 +1,25 @@
-if (Stuff.active_event) {
+if (Stuff.event.active) {
     draw_set_font(FDefault12);
     draw_set_halign(fa_left);
     draw_set_valign(fa_middle);
     draw_set_color(c_black);
     
-    Stuff.event_node_info = noone;
+    Stuff.event.node_info = noone;
     
-    for (var i = 0; i < ds_list_size(Stuff.active_event.nodes); i++) {
-        draw_event_node(Stuff.active_event.nodes[| i]);
+    for (var i = 0; i < ds_list_size(Stuff.event.active.nodes); i++) {
+        draw_event_node(Stuff.event.active.nodes[| i]);
     }
     
     // if you're hovering over an event to show info for, draw it at
     // the end otherwise another event might get drawn on top of it
-    if (Stuff.event_node_info) {
-        switch (Stuff.event_node_info.type) {
+    if (Stuff.event.node_info) {
+        switch (Stuff.event.node_info.type) {
             case EventNodeTypes.CONDITIONAL:
                 var n = 3;
-                var x1 = Stuff.event_node_info.x;
-                var y1 = Stuff.event_node_info.y - 64 - 16 * max(n, 1);
+                var x1 = Stuff.event.node_info.x;
+                var y1 = Stuff.event.node_info.y - 64 - 16 * max(n, 1);
                 var x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
-                var y2 = Stuff.event_node_info.y - 32;
+                var y2 = Stuff.event.node_info.y - 32;
                 var vertical_padding = 8;
         
                 draw_roundrect_colour(x1, y1 - vertical_padding, x2, y2 + vertical_padding, c_white, c_white, false);
@@ -31,10 +31,10 @@ if (Stuff.active_event) {
                 break;
             case EventNodeTypes.SHOW_CHOICES:
 				var n = 3;
-                var x1 = Stuff.event_node_info.x;
-                var y1 = Stuff.event_node_info.y - 64 - 16 * n;
+                var x1 = Stuff.event.node_info.x;
+                var y1 = Stuff.event.node_info.y - 64 - 16 * n;
                 var x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
-                var y2 = Stuff.event_node_info.y - 32;
+                var y2 = Stuff.event.node_info.y - 32;
                 var vertical_padding = 8;
         
                 draw_roundrect_colour(x1, y1 - vertical_padding, x2, y2 + vertical_padding, c_white, c_white, false);
@@ -46,10 +46,10 @@ if (Stuff.active_event) {
                 break;
 			case EventNodeTypes.TEXT:
 				var n = 5;
-                var x1 = Stuff.event_node_info.x;
-                var y1 = Stuff.event_node_info.y - 64 - 16 * n;
+                var x1 = Stuff.event.node_info.x;
+                var y1 = Stuff.event.node_info.y - 64 - 16 * n;
                 var x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
-                var y2 = Stuff.event_node_info.y - 32;
+                var y2 = Stuff.event.node_info.y - 32;
                 var vertical_padding = 8;
         
                 draw_roundrect_colour(x1, y1 - vertical_padding, x2, y2 + vertical_padding, c_white, c_white, false);
@@ -63,10 +63,10 @@ if (Stuff.active_event) {
 				break;
 			case EventNodeTypes.SHOW_SCROLLING_TEXT:
 				var n = 3;
-                var x1 = Stuff.event_node_info.x;
-                var y1 = Stuff.event_node_info.y - 64 - 16 * n;
+                var x1 = Stuff.event.node_info.x;
+                var y1 = Stuff.event.node_info.y - 64 - 16 * n;
                 var x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
-                var y2 = Stuff.event_node_info.y - 32;
+                var y2 = Stuff.event.node_info.y - 32;
                 var vertical_padding = 8;
 				
                 draw_roundrect_colour(x1, y1 - vertical_padding, x2, y2 + vertical_padding, c_white, c_white, false);
@@ -77,12 +77,12 @@ if (Stuff.active_event) {
 				"paragraph");
 				break;
             default:
-                var base = guid_get(Stuff.event_node_info.custom_guid);
+                var base = guid_get(Stuff.event.node_info.custom_guid);
                 var n = ds_list_size(base.types);
-                var x1 = Stuff.event_node_info.x;
-                var y1 = Stuff.event_node_info.y - 64 - 16 * max(n, 1);
+                var x1 = Stuff.event.node_info.x;
+                var y1 = Stuff.event.node_info.y - 64 - 16 * max(n, 1);
                 var x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
-                var y2 = Stuff.event_node_info.y - 32;
+                var y2 = Stuff.event.node_info.y - 32;
                 var vertical_padding = 8;
         
                 draw_roundrect_colour(x1, y1 - vertical_padding, x2, y2 + vertical_padding, c_white, c_white, false);

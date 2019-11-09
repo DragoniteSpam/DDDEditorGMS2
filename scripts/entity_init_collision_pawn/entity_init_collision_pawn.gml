@@ -1,3 +1,5 @@
 /// @param EntityPawn
 
-argument0.cobject = c_object_create(Stuff.c_shape_block, CollisionMasks.MAIN, CollisionMasks.MAIN);
+var pawn = argument0;
+
+pawn.cobject = c_object_create(Stuff.graphics.c_shape_block, CollisionMasks.MAIN, CollisionMasks.MAIN);

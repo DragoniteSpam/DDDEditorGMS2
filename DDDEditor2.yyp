@@ -13696,6 +13696,14 @@
             }
         },
         {
+            "Key": "e6a999fd-30df-42d0-beeb-ecabeae890c5",
+            "Value": {
+                "id": "ad339045-c236-4962-ac2e-6ff401a3fc5b",
+                "resourcePath": "objects\\DataImageAutotile\\DataImageAutotile.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "e6b08f7b-d456-46f9-b000-01592b4a5598",
             "Value": {
                 "id": "63bba3a8-2146-49c9-87c8-d9ac97782ab7",

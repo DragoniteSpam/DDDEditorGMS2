@@ -2,7 +2,7 @@
 
 #macro ALARM_SETTINGS_SAVE 0
 #macro AUTOTILE_AVAILABLE_MAX 100
-#macro AUTOTILE_MAX 16
+#macro AUTOTILE_MAX 32
 #macro BATCH_CACHE_SIZE 160
 #macro buffer_datatype buffer_u32
 #macro CAMERA_SAVE_FREQUENCY 5
@@ -91,13 +91,14 @@
 #macro view_hud_width_3d 520
 #macro view_hud_width_event 320
 
-#macro c_ev_basic $99ffcc
-#macro c_ev_comment $d8bfd8
-#macro c_ev_custom $99ccff
-#macro c_ev_ghost $0099cc
-#macro c_ev_init $ffcc99
-#macro c_ui_select $ffb8ac
-#macro c_ui $ebebeb
+#macro c_ev_basic 0x99ffcc
+#macro c_ev_comment 0xd8bfd8
+#macro c_ev_custom 0x99ccff
+#macro c_ev_ghost 0x0099cc
+#macro c_ev_init 0xffcc99
+#macro c_magenta 0xff00ff
+#macro c_ui_select 0xffb8ac
+#macro c_ui 0xebebeb
 
 #macro AUDIO_BASE_FREQUENCY 48000
 #macro BILLION 1000000000

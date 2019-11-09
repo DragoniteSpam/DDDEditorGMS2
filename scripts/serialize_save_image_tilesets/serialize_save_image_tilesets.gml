@@ -22,11 +22,7 @@ for (var i = 0; i < n_tilesets; i++) {
     // stash the sprite in the buffer (via surface)
     buffer_write_sprite(buffer, ts.picture);
     
-    // all of the other things
-    
-    // THESE ARE INDICES IN Stuff.all_graphic_autotiles!
-    // THOSE NEED TO BE SAVED AS WELL! Do it later though.
-    // with that in mind, saving these are trivially easy.
+    // @todo passage and stuff should probably be a property of the tileset now
     var n_autotiles = array_length_1d(ts.autotiles);
     buffer_write(buffer, buffer_u8, n_autotiles);
     

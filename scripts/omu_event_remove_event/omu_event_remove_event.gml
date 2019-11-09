@@ -13,8 +13,8 @@ if (!index) {
         instance_activate_object(event);
         instance_destroy(event);
         ds_list_delete(Stuff.all_events, index);
-        if (event == Stuff.active_event) {
-            Stuff.active_event = Stuff.all_events[| 0];
+        if (event == Stuff.event.active) {
+            Stuff.event.active = Stuff.all_events[| 0];
         }
     }
 }

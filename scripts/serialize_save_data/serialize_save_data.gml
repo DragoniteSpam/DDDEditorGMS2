@@ -88,5 +88,6 @@ enum DataVersions {
     GLOBAL_CONSTANTS            = 56,
 	EXTRA_FOG_PROPERTIES		= 57,
     MAP_GRID_PROPERTY           = 58,
+    AT_OVERHAUL                 = 59,
     _CURRENT                 /* = whatever the last one is + 1 */
 }

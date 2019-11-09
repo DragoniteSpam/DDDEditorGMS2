@@ -73,6 +73,9 @@ if (header == "DDD") {
             ds_list_clear(Stuff.variables);
             ds_list_clear(Stuff.switches);
             // graphics
+            for (var i = 0; i < ds_list_size(Stuff.all_graphic_autotiles); i++) {
+                instance_destroy(Stuff.all_graphic_autotiles[| i]);
+            }
             ds_list_clear(Stuff.all_graphic_autotiles);
 			// anything else?
 			Stuff.map.active_map = noone;

@@ -1,23 +1,24 @@
 event_inherited();
 
 /*
- * * * * * * * * * * * * * * * * * *
- *                 * AT0    AT8    *
- *                 * AT1    AT9    *
- *       Map       * AT2    AT10   *
- *      Tiles      * AT3    AT11   *
- *                 * AT4    AT12   *
- *                 * AT5    AT13   *
- *                 * AT6    AT14   *
- * * * * * * * * * * AT7    AT15   *
- *                                 *
- *                                 *
- *                                 *
- *                                 *
- *                                 *
- *                                 *
- *                                 *
- * * * * * * * * * * * * * * * * * *
+ * * * * * * * * * * AT00 * * AT16 * *
+ *                 * AT00     AT17   *
+ *                 * AT01     AT18   *
+ *       Map       * AT02     AT19   *
+ *      Tiles      * AT03     AT20   *
+ *                 * AT04     AT21   *
+ *                 * AT05     AT22   *
+ *                 * AT06     AT23   *
+ * * * * * * * * * * AT07     AT24   *
+ *                   AT08     AT25   *
+ *                   AT09     AT26   *
+ *                   AT10     AT27   *
+ *                   AT11     AT28   *
+ *                   AT12     AT29   *
+ *                   AT13     AT30   *
+ *                   AT14     AT31   *
+ *                   AT15     AT32   *
+ * * * * * * * * * * * * * * * * * * *
  */
 
 // filename
@@ -28,13 +29,6 @@ master = -1;
 // these are just the indices, the actual autotiles are stored in Stuff
 autotiles = array_create(AUTOTILE_MAX);
 array_clear(autotiles, noone);
-
-autotile_positions = array_create(AUTOTILE_MAX);
-autotile_sizes = array_create(AUTOTILE_MAX);
-for (var i = 0; i < AUTOTILE_MAX; i++) {
-    autotile_positions[i] = vector2(0.5 + (i div (AUTOTILE_MAX / 2)) * 0.25, (i mod (AUTOTILE_MAX / 2)) / 16);
-    autotile_sizes[i] = vector2(32 / TEXTURE_SIZE, 32 / TEXTURE_SIZE);
-}
 
 passage = noone;
 priority = noone;

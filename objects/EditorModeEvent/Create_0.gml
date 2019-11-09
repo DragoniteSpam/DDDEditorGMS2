@@ -6,6 +6,9 @@ ui = ui_init_event();
 canvas_active_node = noone;
 canvas_active_node_index = 0;
 
+active = event_create("DefaultEvent");
+node_info = noone;
+
 x = setting_get("Event", "x", 0);
 y = setting_get("Event", "y", 100);
 z = setting_get("Event", "z", 100);

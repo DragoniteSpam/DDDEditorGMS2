@@ -1,5 +1,5 @@
 /// @param file/name
-/// @param autotile[]
+/// @param [autotiles]
 /// @param [sprite-index]
 
 // don't instantiate these outside of this script
@@ -7,6 +7,8 @@ with (instance_create_depth(0, 0, 0, DataTileset)) {
     picture_name = argument[0];
     
     internal_name_generate(id, PREFIX_GRAPHIC_TILESET + string_lettersdigits(picture_name));
+    
+    autotiles = (argument_count > 1) ? argument[1] : autotiles;
     
     if (argument_count > 2) {
         picture = argument[2];
@@ -20,9 +22,6 @@ with (instance_create_depth(0, 0, 0, DataTileset)) {
     }
     
     array_clear(autotiles, noone);
-    
-    // these should be indices in Stuff.all_graphic_autotiles, not the sprite asset itself!
-    autotiles = argument[1];
     
     passage = tileset_create_grid(picture, TILE_PASSABLE);
     priority = tileset_create_grid(picture, 0);

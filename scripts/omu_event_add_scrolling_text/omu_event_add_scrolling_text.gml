@@ -2,4 +2,4 @@
 
 var catch = argument0;
 
-var node = event_create_node(Stuff.active_event, EventNodeTypes.SHOW_SCROLLING_TEXT);
+var node = event_create_node(Stuff.event.active, EventNodeTypes.SHOW_SCROLLING_TEXT);

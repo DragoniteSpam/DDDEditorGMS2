@@ -21,14 +21,13 @@ var tile_vertical_count = TEXTURE_SIZE / Stuff.tile_size;
 var texture_width = 1 / tile_horizontal_count;
 var texture_height = 1 / tile_vertical_count;
 
-var ts=get_active_tileset();
+var ts = get_active_tileset();
 
-var ati = tile.autotile_id;
-var at_data = Stuff.all_graphic_autotiles[| ati];
-var at_position = ts.autotile_positions[ati];
-// DO NOT TOUCH
-var xtex = at_position[vec2.xx] + (tile.segment_id mod at_data[AvailableAutotileProperties.WIDTH]) * Stuff.tile_size / TEXTURE_SIZE;
-var ytex = at_position[vec2.yy] + (tile.segment_id div at_data[AvailableAutotileProperties.WIDTH]) * Stuff.tile_size / TEXTURE_SIZE;
+var index = tile.autotile_id;
+var at_data = guid_get(Stuff.all_graphic_autotiles[| index]);
+
+var xtex = (index div (AUTOTILE_MAX / 2)) + (tile.segment_id mod at_data.width) * Stuff.tile_size / TEXTURE_SIZE;
+var ytex = 0.5 + (index mod 2) / 4 + (tile.segment_id div at_data.width) * Stuff.tile_size / TEXTURE_SIZE;
 
 var color = tile.tile_color;
 var alpha = tile.tile_alpha;

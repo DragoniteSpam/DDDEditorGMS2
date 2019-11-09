@@ -853,6 +853,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     element = create_list(legal_x + spacing, yy, "Defined Autotiles: ", "<something is wrong>", col_width, element_height, 28, uivc_list_selection_autotile, false, t_p_autotile_editor);
     ui_list_select(element, 0);
+    element.numbered = true;
     for (var i = 0; i < AUTOTILE_MAX; i++) {
         create_list_entries(element, string(i) + ". <none set>");
     }

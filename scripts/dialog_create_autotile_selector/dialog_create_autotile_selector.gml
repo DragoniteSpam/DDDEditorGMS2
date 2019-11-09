@@ -18,22 +18,9 @@ var b_height = 32;
 
 var yy = 64;
 
-var n = AUTOTILE_AVAILABLE_MAX;
-dg.el_list = create_list(16, yy, "Available autotiles: " + string(n), "", dw / 2 - 16, b_height, 12, uivc_list_autotile_selector, false, dg);
+dg.el_list = create_list(16, yy, "Available autotiles:", "<none>", dw / 2 - 16, b_height, 12, uivc_list_autotile_selector, false, dg, Stuff.all_graphic_autotiles);
+dg.el_list.entries_are = ListEntries.INSTANCES;
 dg.el_list.key = "list";
-create_list_entries(dg.el_list, "<none>");
-
-for (var i = 0; i < AUTOTILE_AVAILABLE_MAX; i++) {
-    var at_data = Stuff.all_graphic_autotiles[| i];
-    if (is_array(at_data)) {
-        create_list_entries(dg.el_list, string(i) + ". " + at_data[AvailableAutotileProperties.NAME]);
-    } else {
-        create_list_entries(dg.el_list, string(i) + ". <none set>");
-    }
-}
-
-dg.el_explanation = create_text(dw / 2 + 16, yy, "Each map can use up to 16 autotile sets. That sounds like a lot, but they can fill up quickly. Choose wisely.",
-    dw / 2 - 32, b_height * 4, fa_left, dw / 2 - 32, dg);
 
 yy = yy + dg.el_explanation.height;
 
@@ -46,6 +33,6 @@ dg.el_manager = create_button(dw * 3 / 4, yy, "Autotile Data", b_width, b_height
 
 dg.el_confirm = create_button(dw / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg, fa_center);
 
-ds_list_add(dg.contents, dg.el_list, dg.el_confirm, dg.el_explanation, dg.el_preview, dg.el_manager);
+ds_list_add(dg.contents, dg.el_list, dg.el_confirm, dg.el_preview, dg.el_manager);
 
 return dg;

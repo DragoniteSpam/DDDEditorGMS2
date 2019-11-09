@@ -64,7 +64,7 @@ dest_direction = dest_direction[| 0];
 
 transform_set(0, 0, 0, 0, 0, Stuff.direction_lookup[dest_direction], 1, 1, 1);
 transform_add((dest_x + 0.5) * TILE_WIDTH, (dest_y + 0.5) * TILE_HEIGHT, dest_z * TILE_DEPTH, 0, 0, 0, 1, 1, 1);
-vertex_submit(Stuff.basic_cage, pr_trianglelist, -1);
+vertex_submit(Stuff.graphics.basic_cage, pr_trianglelist, -1);
 
 transform_reset();
 

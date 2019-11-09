@@ -97,11 +97,6 @@ enum EventNodeTypes {
     SHOW_CHOICES,
 }
 
-enum AvailableAutotileProperties {
-    // sprite index, display name, true for built-in graphics and false otherwise, filename, animation frames, horizontal segments
-    PICTURE, NAME, DELETEABLE, FILENAME, FRAMES, WIDTH
-}
-
 enum Dimensions {
     TWOD,
     THREED
@@ -110,4 +105,25 @@ enum Dimensions {
 enum BattleStyles {
     TEAM_BASED,             // everyone stays on their own side
     GRID_BASED,             // boundaries are not respected
+}
+
+enum EditorModes {
+    EDITOR_3D,
+    EDITOR_EVENT,
+    EDITOR_DATA,
+    EDITOR_ANIMATION,
+    EDITOR_HEIGHTMAP,
+}
+
+
+enum TileSelectorDisplayMode {
+    PASSAGE,
+    PRIORITY,
+    FLAGS,
+    TAGS,
+}
+
+enum TileSelectorOnClick {
+    SELECT,
+    MODIFY,
 }

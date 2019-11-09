@@ -57,8 +57,9 @@ mode = EDITOR_BASE_MODE;
 tf = ["False", "True"];
 on_off = ["Off", "On"];
 color_channels = vector4(0x000000ff, 0x0000ff00, 0x00ff0000, 0xff000000);
-
 comparison_text = ["<", "<=", "==", ">=", ">", "!="];
+color_lookup = [c_red, c_green, c_blue, c_orange, c_aqua, c_fuchsia, c_purple, c_teal];
+direction_lookup = [270, 180, 0, 90];
 
 #endregion
 
@@ -146,9 +147,6 @@ fmod_playing = false;
 fmod_paused = false;
 #endregion
 
-all_guids = ds_map_create();
-all_internal_names = ds_map_create();
-
 // these are constants but we're allowed to change them here
 tile_width = 32;
 tile_height = 32;
@@ -157,18 +155,21 @@ tile_depth = 32;
 // uv size, not 3D size
 tile_size = 32;
 
-dimensions = Dimensions.THREED;
+#region asset lists
+
+all_guids = ds_map_create();
+all_internal_names = ds_map_create();
 
 spr_character_default = sprite_add(PATH_GRAPHICS + "b_chr_default.png", 0, false, false, 0, 0);
 
-// this sounds like a reasonable limit, it's not based on anything though
+// @todo gml update lwos
 all_graphic_autotiles = ds_list_create();
-// also this is going to be really treated like an array, but it's going to be implemented
-// as a list so that it can be swapped into things with the se and mesh and whatever lists
-repeat (AUTOTILE_AVAILABLE_MAX) {
-    ds_list_add(all_graphic_autotiles, noone);
-}
-all_graphic_autotiles[| 0] = [sprite_add(PATH_GRAPHICS + "b_at_default_grass_0.png", 0, false, false, 0, 0), "<default>", false, "", 1, 3];
+var default_autotile = instance_create_depth(0, 0, 0, DataImageAutotile);
+default_autotile.name = "Grass";
+default_autotile.picture = sprite_add(PATH_GRAPHICS + "b_at_default_grass_0.png", 0, true, false, 0, 0);
+default_autotile.width = sprite_get_width(default_autotile.picture);
+default_autotile.height = sprite_get_height(default_autotile.picture);
+ds_list_add(all_graphic_autotiles, default_autotile);
 
 all_graphic_tilesets = ds_list_create();
 all_graphic_overworlds = ds_list_create();
@@ -183,6 +184,37 @@ surface_free(surface);
 var surface = surface_create(4096, 4096);
 all_graphic_ui_texture = sprite_create_from_surface(surface, 0, 0, surface_get_width(surface), surface_get_width(surface), false, false, 0, 0);
 surface_free(surface);
+
+ds_list_add(all_graphic_tilesets, tileset_create(PATH_GRAPHICS + "b_tileset_overworld_0.png"));
+
+all_events = ds_list_create();
+all_event_custom = ds_list_create();
+all_event_prefabs = ds_list_create();
+
+switches = ds_list_create();         // [name, value]
+variables = ds_list_create();        // [name, value]
+for (var i = 0; i < BASE_GAME_VARIABLES; i++) {
+    ds_list_add(switches, ["Switch" + string(i), false]);
+    ds_list_add(variables, ["Variable" + string(i), 0]);
+}
+
+all_event_triggers = ds_list_create();
+ds_list_add(all_event_triggers, "Action Button", "Player Touch", "Event Touch", "Autorun");
+
+all_maps = ds_list_create();
+
+all_bgm = ds_list_create();
+all_se = ds_list_create();
+all_meshes = ds_list_create();
+
+all_animations = ds_list_create();
+
+all_game_constants = ds_list_create();
+
+all_data = ds_list_create();
+original_data = noone;            // when you're modifying the data types and want to stash the old ones
+
+#endregion
 
 #region autotile settings
 autotile_map = ds_map_create();
@@ -241,30 +273,6 @@ autotile_map[? 0] = 47;
 shd_uniform_at_tex_offset = shader_get_uniform(shd_default_autotile, "texoffset");
 shd_value_at_tex_offset = array_create(MAX_AUTOTILE_SHADER_POSITIONS);
 #endregion
-
-ds_list_add(all_graphic_tilesets, tileset_create(PATH_GRAPHICS + "b_tileset_overworld_0.png", [
-    // this is somewhat hard-coded;
-    // the zeroth available tileset is automatically default_grass
-    0, noone, noone, noone, noone, noone, noone, noone,
-    noone, noone, noone, noone, noone, noone, noone, noone
-]));
-
-all_events = ds_list_create();
-all_event_custom = ds_list_create();
-all_event_prefabs = ds_list_create();
-active_event = event_create("DefaultEvent");
-event_node_info = noone;
-ds_list_add(all_events, active_event);
-
-switches = ds_list_create();         // [name, value]
-variables = ds_list_create();        // [name, value]
-for (var i = 0; i < BASE_GAME_VARIABLES; i++) {
-    ds_list_add(switches, ["Switch" + string(i), false]);
-    ds_list_add(variables, ["Variable" + string(i), 0]);
-}
-
-all_event_triggers = ds_list_create();
-ds_list_add(all_event_triggers, "Action Button", "Player Touch", "Event Touch", "Autorun");
 
 #region prefab events
 event_prefab[EventNodeTypes.INPUT_TEXT] = create_event_node_basic("InputText", [
@@ -377,6 +385,7 @@ event_prefab[EventNodeTypes.SCRIPT] = create_event_node_basic("Script", [
 event_prefab[EventNodeTypes.DEACTIVATE_EVENT] = create_event_node_basic("Deactivate This Event", []);
 #endregion
 
+#region editor modes (and similar things)
 // at some point there shouldn't necessarily need to be an active
 // map in existence for this to work, but for now there does
 instance_create_depth(0, 0, 0, Controller);
@@ -388,73 +397,15 @@ animation = instance_create_depth(0, 0, 0, EditorModeAnimation);
 terrain = instance_create_depth(0, 0, 0, EditorModeTerrain);
 graphics = instance_create_depth(0, 0, 0, EditorGraphics);
 menu = menu_init_main();
-dialogs = ds_list_create();
 
 instance_deactivate_object(EditorMode);
-
-// it'd be nice to put this in EditorModeMap but it could also be summoned from
-// elsewhere, so it's going here for now; it's not impossible that the deep future
-// will contain a 3D model editor mode but that's at like the bottom of the
-// priority list now
-mesh_preview = noone;
-mesh_x = 0;
-mesh_y = 0;
-mesh_z = 0;
-mesh_xrot = 0;
-mesh_yrot = 0;
-mesh_zrot = 0;
-mesh_scale = 1;
+#endregion
 
 #region stuff related to garbage collection
 stuff_to_destroy = ds_queue_create();
 #endregion
 
-all_maps = ds_list_create();
-
-#region collision stuff plus basic shapes
-c_transform_scaling(tile_width, tile_height, tile_depth);
-c_shape_tile = c_shape_create();
-c_shape_begin_trimesh();
-c_shape_load_trimesh("data\\basic\\ctile.d3d");
-c_shape_end_trimesh(c_shape_tile);
-c_shape_block = c_shape_create();
-c_shape_begin_trimesh();
-c_shape_load_trimesh("data\\basic\\ccube.d3d");
-c_shape_end_trimesh(c_shape_block);
-c_transform_identity();
-
-basic_cage = import_d3d("data\\basic\\cage.d3d", false);
-
-water_tile_size = 0xffff;
-water_reptition = 256;
-
-mesh_water_base = vertex_create_buffer();
-mesh_water_bright = vertex_create_buffer();
-
-vertex_begin(mesh_water_base, Camera.vertex_format_basic);
-vertex_begin(mesh_water_bright, Camera.vertex_format_basic);
-
-terrain_create_square(mesh_water_base, -water_tile_size / 2, -water_tile_size / 2, water_tile_size, 0, 0, water_tile_size / water_reptition, 0, -32, -32, -32, -32);
-terrain_create_square(mesh_water_bright, -water_tile_size / 2, -water_tile_size / 2, water_tile_size, 0, 0, water_tile_size / water_reptition, 0, -16, -16, -16, -16);
-
-vertex_end(mesh_water_base);
-vertex_end(mesh_water_bright);
-#endregion
-
-all_bgm = ds_list_create();
-all_se = ds_list_create();
-all_meshes = ds_list_create();
-
-all_animations = ds_list_create();
-
-all_game_constants = ds_list_create();
-
-all_data = ds_list_create();
-original_data = noone;            // when you're modifying the data types and want to stash the old ones
-
-error_log_messages = ds_list_create();
-
-// help contents
+#region help contents
 
 enum HelpPages {
     OVERVIEW, WHATSNEW, GETTINGSTARTED, SYSTEMREQUIREMENTS,
@@ -471,20 +422,7 @@ help_pages = [
     "mesheditor", "tileeditor", "autotileeditor",
     "autotiles",
 ];
-
-color_lookup = [c_red, c_green, c_blue, c_orange, c_aqua, c_fuchsia, c_purple, c_teal];
-
-// global game settings
-
-game_starting_map = map.active_map.GUID;
-game_starting_x = 0;
-game_starting_y = 0;
-game_starting_z = 0;
-game_starting_direction = 0;
-game_player_grid = true;
-game_battle_style = BattleStyles.TEAM_BASED;
-
-direction_lookup = [270, 180, 0, 90];
+#endregion
 
 #region end of step actions
 schedule_rebuild_master_texture = false;
@@ -495,26 +433,41 @@ schedule_save = false;
 schedule_open = false;
 #endregion
 
-// hacky workaround
+// it'd be nice to put this in EditorModeMap but it could also be summoned from
+// elsewhere, so it's going here for now; it's not impossible that the deep future
+// will contain a 3D model editor mode but that's at like the bottom of the
+// priority list now
+mesh_preview = noone;
+mesh_x = 0;
+mesh_y = 0;
+mesh_z = 0;
+mesh_xrot = 0;
+mesh_yrot = 0;
+mesh_zrot = 0;
+mesh_scale = 1;
+
+error_log_messages = ds_list_create();
+dialogs = ds_list_create();
+
+// global game settings
+
+dimensions = Dimensions.THREED;
+
+game_starting_map = map.active_map.GUID;
+game_starting_x = 0;
+game_starting_y = 0;
+game_starting_z = 0;
+game_starting_direction = 0;
+game_player_grid = true;
+game_battle_style = BattleStyles.TEAM_BASED;
+
+// hacky workarounds
 maps_included = false;
 
-/*
- * Editor modes
- */
-
+// default editor mode
 switch (mode) {
     case EditorModes.EDITOR_HEIGHTMAP: editor_mode_heightmap(); break;
     default: editor_mode_3d(); break;
-}
-
-// if / when you add more of these remember to also add another series of Draw
-// instructions to Camera.Draw
-enum EditorModes {
-    EDITOR_3D,
-    EDITOR_EVENT,
-    EDITOR_DATA,
-    EDITOR_ANIMATION,
-    EDITOR_HEIGHTMAP,
 }
 
 // the autosave/load is nice, BUT it will make the game break if there's an error
@@ -530,5 +483,4 @@ if (setting_autosave) {
 }
 
 // this depends on activemap existing
-graphics_create_grids();
 uivc_select_autotile_refresh();

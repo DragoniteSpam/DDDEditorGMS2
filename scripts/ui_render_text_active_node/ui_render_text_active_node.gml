@@ -3,5 +3,5 @@
 /// @param x
 /// @param y
 
-argument0.text=Stuff.active_event.name;
+argument0.text=Stuff.event.active.name;
 ui_render_text(argument0, argument1, argument2);

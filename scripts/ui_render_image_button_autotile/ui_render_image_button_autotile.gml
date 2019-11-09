@@ -7,13 +7,10 @@ var xx = argument1;
 var yy = argument2;
 
 button.image = noone;
-var index = get_active_tileset().autotiles[Stuff.map.selection_fill_autotile];
+var data = guid_get(get_active_tileset().autotiles[Stuff.map.selection_fill_autotile]);
 
-if (index) {
-    var data = Stuff.all_graphic_autotiles[| index];
-    if (is_array(data)) {
-        button.image = data[AvailableAutotileProperties.PICTURE];
-    }
+if (data) {
+    button.image = data.picture;
 }
 
 ui_render_image_button(button, xx, yy);

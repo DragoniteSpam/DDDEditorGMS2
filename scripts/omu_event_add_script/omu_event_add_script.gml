@@ -2,4 +2,4 @@
 
 var thing = argument0;
 
-var node = event_create_node(Stuff.active_event, EventNodeTypes.SCRIPT);
+var node = event_create_node(Stuff.event.active, EventNodeTypes.SCRIPT);
