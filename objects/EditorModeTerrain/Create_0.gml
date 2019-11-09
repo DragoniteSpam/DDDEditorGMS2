@@ -1,6 +1,7 @@
 event_inherited();
 
 render = editor_render_terrain;
+ui = ui_init_terrain();
 
 texture_name = "b_tileset_overworld_0.png";
 texture = terrain_create_texture_sprite(PATH_GRAPHICS + texture_name);

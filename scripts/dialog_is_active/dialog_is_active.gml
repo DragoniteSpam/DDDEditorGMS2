@@ -9,8 +9,8 @@ if (view_get_visible(view_3d_preview)) {
     return false;
 }
 
-if (ds_list_empty(Camera.dialogs)) {
+if (ds_list_empty(Stuff.dialogs)) {
     return true;
 }
 
-return (ds_list_top(Camera.dialogs) == dialog);
+return (ds_list_top(Stuff.dialogs) == dialog);

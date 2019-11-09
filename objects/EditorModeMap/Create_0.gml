@@ -33,6 +33,27 @@ selection_fill_tile_x = 4;
 selection_fill_tile_y = 0;
 selection_fill_autotile = 0;
 
+fill_types = [
+    safc_fill_tile, safc_fill_autotile,
+    safc_fill_mesh, safc_fill_pawn,
+    safc_fill_effect, safc_fill_terrain
+];
+
+enum SelectionModes {
+    SINGLE,
+    RECTANGLE,
+    CIRCLE
+}
+
+enum FillTypes {
+    TILE,
+    AUTOTILE,
+    MESH,
+    PAWN,
+    EFFECT,
+    TERRAIN,
+}
+
 tile_data_view = TileSelectorDisplayMode.PASSAGE;
 tile_on_click = TileSelectorOnClick.SELECT;
 

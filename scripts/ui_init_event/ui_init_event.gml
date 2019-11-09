@@ -1,8 +1,4 @@
 with (instance_create_depth(0, 0, 0, UIMain)) {
-    /*
-     * tab system setup
-     */
-    
     t_events = create_tab("Events", 0, id);
     t_list = create_tab("Node List", 0, id);
     t_custom = create_tab("Custom", 0, id);
@@ -32,9 +28,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     var slots = 28;
     // element_height is an object variable that's already been defined
     
-    /*
-     * Node list
-     */
+    #region node list
     
     var yy = legal_y;
     
@@ -74,9 +68,9 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     element = create_button(legal_x + spacing, yy, "Prefab", element_width, element_height, fa_left, null, t_list);
     ds_list_add(t_list.contents, element);
     
-    /*
-     * Custom Nodes
-     */
+    #endregion
+    
+    #region custom nodes
     
     var yy = legal_y;
     var slots = 12;
@@ -129,9 +123,9 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     element = create_button(legal_x + spacing, yy, "Rename Prefab", element_width, element_height, fa_center, null, t_custom);
     ds_list_add(t_custom.contents, element);
     
-    /*
-     * Event list
-     */
+    #endregion
+    
+    #region event list
     
     var yy = legal_y;
     
@@ -165,9 +159,9 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element_height + spacing;
     
-    /*
-     * Event list 1
-     */
+    #endregion
+    
+    #region event list 1
     
     yy = legal_y;
     
@@ -250,9 +244,9 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     ds_list_add(t_action1.contents, element);
     yy = yy + element_height;
     
-    /*
-     * Event list 2
-     */
+    #endregion
+    
+    #region event list 2
     
     yy = legal_y;
     
@@ -333,6 +327,9 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     element = create_button(legal_x + spacing, yy, "Prefab", element_width, element_height, fa_left, null, t_list);
     ds_list_add(t_action2.contents, element);
     yy = yy + element_height;
+    #endregion
+    
+    instance_deactivate_object(id);
     
     return id;
 }

@@ -23,7 +23,7 @@ var status = ds_stuff_fetch_status();
 
 if (status == WINDOW_CLOSE) {
     view_set_visible(view_3d_preview, false);
-    var top = ds_list_top(Camera.dialogs);
+    var top = ds_list_top(Stuff.dialogs);
     if (top && (top.dialog_flags & (1 << DialogFlags.IS_QUIT))) {
         game_end();
     } else {

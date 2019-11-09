@@ -1,5 +1,6 @@
 /// @description setup
 
+#region basic setup
 etype_objects = [
     Entity,
     EntityTile,
@@ -40,13 +41,92 @@ if (!directory_exists(PATH_PROJECTS)) directory_create(PATH_PROJECTS);
 // dummy list that will always exist and be empty
 empty_list = ds_list_create();
 
-smf_init();
-
-alarm[0] = 1200;
-
-/// this is basically World/Settings
-
 randomize();
+#endregion
+
+#region user settings
+save_name = "game";
+
+if (file_exists("projects.json")) {
+	all_projects = json_decode(file_get_contents("projects.json"));
+} else {
+	all_projects = ds_map_create();
+	ds_map_add_list(all_projects, "projects", ds_list_create());
+}
+// @todo gml update try catch
+if (file_exists(FILE_SETTINGS)) {
+    var json_buffer = buffer_load(FILE_SETTINGS);
+    settings = json_decode(buffer_read(json_buffer, buffer_string));
+    buffer_delete(json_buffer);
+} else {
+    settings = ds_map_create();
+    var settings_map = ds_map_create();
+    var settings_animation = ds_map_create();
+    var settings_terrain = ds_map_create();
+    var settings_event = ds_map_create();
+    var settings_data = ds_map_create();
+    var settings_config = ds_map_create();
+    var settings_location = ds_map_create();
+    ds_map_add_map(settings, "Map", settings_map);
+    ds_map_add_map(settings, "Animation", settings_animation);
+    ds_map_add_map(settings, "Terrain", settings_terrain);
+    ds_map_add_map(settings, "Event", settings_event);
+    ds_map_add_map(settings, "Data", settings_data);
+    ds_map_add_map(settings, "Config", settings_config);
+    ds_map_add_map(settings, "Location", settings_location);
+    ds_map_add_map(settings, "Selection", settings_config);
+    ds_map_add_map(settings, "View", settings_location);
+}
+
+setting_color = setting_get("Config", "color", c_green);                  // BGR
+setting_bezier_precision = setting_get("Config", "bezier", 6);            // preferably keep this between like 4 and 16ish?
+setting_backups = setting_get("Config", "backups", 2);                    // 0 (none) through 9 (why would you keep that many backups?)
+setting_autosave = setting_get("Config", "autosave", true);               // bool
+setting_npc_animate_rate = setting_get("Config", "npc-speed", 4);         // bool
+setting_code_extension = setting_get("Config", "code-ext", 0);            // 0 = txt, 1 = lua
+setting_normal_threshold = setting_get("Config", "normal-threshold", 30); // degrees
+
+setting_location_ddd = setting_get("Location", "ddd", "./");
+setting_location_mesh = setting_get("Location", "mesh", "./");
+setting_location_terrain = setting_get("Location", "terrain", "./");
+setting_location_image = setting_get("Location", "image", "./");
+setting_location_audio = setting_get("Location", "audio", "./");
+setting_location_tiled = setting_get("Location", "tiled", "./");
+
+setting_selection_mode = setting_get("Selection", "mode", SelectionModes.RECTANGLE);
+setting_selection_addition = setting_get("Selection", "addition", false);
+setting_selection_fill_type = setting_get("Selection", "fill-type", FillTypes.TILE);
+setting_selection_mask = setting_get("Selection", "mask", SELECTION_MASK_ALL);
+setting_mouse_drag_behavior = setting_get("Selection", "drag-behavior", 0);
+
+setting_view_wireframe = setting_get("View", "wireframe", false);
+setting_view_grid = setting_get("View", "grid", true);
+setting_view_backface = setting_get("View", "backface", false);
+setting_view_texture = setting_get("View", "texture", true);
+setting_view_entities = setting_get("View", "entities", true);
+
+setting_code_extension_map = [".txt", ".lua"];
+
+setting_hide_warnings = ds_map_create();
+
+alarm[ALARM_SETTINGS_SAVE] = room_speed * CAMERA_SAVE_FREQUENCY;
+#endregion
+
+#region initialize standalone systems
+smf_init();
+ds_stuff_init();
+c_init();
+c_world_create();
+
+FMODGMS_Sys_Create();
+FMODGMS_Sys_Initialize(32);
+
+fmod_channel = FMODGMS_Chan_CreateChannel();
+FMODGMS_Chan_Set_Frequency(fmod_channel, AUDIO_BASE_FREQUENCY);
+fmod_sound = noone;
+fmod_playing = false;
+fmod_paused = false;
+#endregion
 
 // persistent stuff
 dt = 0;
@@ -63,7 +143,7 @@ all_internal_names = ds_map_create();
 
 tf = ["False", "True"];
 on_off = ["Off", "On"];
-color_channels = [0x0000ff, 0x00ff00, 0xff0000];
+color_channels = vector4(0x000000ff, 0x0000ff00, 0x00ff0000, 0xff000000);
 
 comparison_text = ["<", "<=", "==", ">=", ">", "!="];
 
@@ -99,10 +179,10 @@ var surface = surface_create(2048, 2048);
 all_graphic_particle_texture = sprite_create_from_surface(surface, 0, 0, surface_get_width(surface), surface_get_width(surface), false, false, 0, 0);
 surface_free(surface);
 var surface = surface_create(4096, 4096);
-all_graphic_ui_texture = sprite_create_from_surface(surface, 0, 0, surface_get_width(surface), surface_get_width(surface), false, false, 0, 0);;
+all_graphic_ui_texture = sprite_create_from_surface(surface, 0, 0, surface_get_width(surface), surface_get_width(surface), false, false, 0, 0);
 surface_free(surface);
 
-#region autotile map
+#region autotile settings
 autotile_map = ds_map_create();
 autotile_map[? 2] = 1;
 autotile_map[? 8] = 2;
@@ -155,6 +235,9 @@ autotile_map[? 251] = 44;
 autotile_map[? 254] = 45;
 autotile_map[? 255] = 46;
 autotile_map[? 0] = 47;
+
+shd_uniform_at_tex_offset = shader_get_uniform(shd_default_autotile, "texoffset");
+shd_value_at_tex_offset = array_create(MAX_AUTOTILE_SHADER_POSITIONS);
 #endregion
 
 ds_list_add(all_graphic_tilesets, tileset_create(PATH_GRAPHICS + "b_tileset_overworld_0.png", [
@@ -292,15 +375,6 @@ event_prefab[EventNodeTypes.SCRIPT] = create_event_node_basic("Script", [
 event_prefab[EventNodeTypes.DEACTIVATE_EVENT] = create_event_node_basic("Deactivate This Event", []);
 #endregion
 
-// stuff i couldn't do in game maker so i did in c++ instead
-ds_stuff_init();
-
-// camera setup may depend on some stuff existing in here, which
-// is bad design, but this is just supposed to work and doesnt have
-// to be well-designed
-c_init();
-c_world_create();
-
 // at some point there shouldn't necessarily need to be an active
 // map in existence for this to work, but for now there does
 instance_create_depth(0, 0, 0, Controller);
@@ -311,8 +385,23 @@ event = instance_create_depth(0, 0, 0, EditorModeEvent);
 animation = instance_create_depth(0, 0, 0, EditorModeAnimation);
 terrain = instance_create_depth(0, 0, 0, EditorModeTerrain);
 graphics = instance_create_depth(0, 0, 0, EditorModeGraphics);
+menu = menu_init_main();
+dialogs = ds_list_create();
 
 instance_deactivate_object(EditorMode);
+
+// it'd be nice to put this in EditorModeMap but it could also be summoned from
+// elsewhere, so it's going here for now; it's not impossible that the deep future
+// will contain a 3D model editor mode but that's at like the bottom of the
+// priority list now
+mesh_preview = noone;
+mesh_x = 0;
+mesh_y = 0;
+mesh_z = 0;
+mesh_xrot = 0;
+mesh_yrot = 0;
+mesh_zrot = 0;
+mesh_scale = 1;
 
 #region stuff related to garbage collection
 stuff_to_destroy = ds_queue_create();
@@ -358,15 +447,6 @@ all_animations = ds_list_create();
 
 all_game_constants = ds_list_create();
 
-FMODGMS_Sys_Create();
-FMODGMS_Sys_Initialize(32);
-
-fmod_channel = FMODGMS_Chan_CreateChannel();
-FMODGMS_Chan_Set_Frequency(fmod_channel, AUDIO_BASE_FREQUENCY);
-fmod_sound = noone;
-fmod_playing = false;
-fmod_paused = false;
-
 all_data = ds_list_create();
 original_data = noone;            // when you're modifying the data types and want to stash the old ones
 
@@ -404,76 +484,14 @@ game_battle_style = BattleStyles.TEAM_BASED;
 
 direction_lookup = [270, 180, 0, 90];
 
-// save settings
-
-save_name = "game";
-
-if (file_exists("projects.json")) {
-	all_projects = json_decode(file_get_contents("projects.json"));
-} else {
-	all_projects = ds_map_create();
-	ds_map_add_list(all_projects, "projects", ds_list_create());
-}
-
-#region user settings
-// @todo gml update try catch
-if (file_exists(FILE_SETTINGS)) {
-    var json_buffer = buffer_load(FILE_SETTINGS);
-    settings = json_decode(buffer_read(json_buffer, buffer_string));
-    buffer_delete(json_buffer);
-} else {
-    settings = ds_map_create();
-    var settings_map = ds_map_create();
-    var settings_animation = ds_map_create();
-    var settings_terrain = ds_map_create();
-    var settings_event = ds_map_create();
-    var settings_data = ds_map_create();
-    var settings_config = ds_map_create();
-    var settings_location = ds_map_create();
-    ds_map_add_map(settings, "Map", settings_map);
-    ds_map_add_map(settings, "Animation", settings_animation);
-    ds_map_add_map(settings, "Terrain", settings_terrain);
-    ds_map_add_map(settings, "Event", settings_event);
-    ds_map_add_map(settings, "Data", settings_data);
-    ds_map_add_map(settings, "Config", settings_config);
-    ds_map_add_map(settings, "Location", settings_location);
-    ds_map_add_map(settings, "Selection", settings_config);
-    ds_map_add_map(settings, "View", settings_location);
-}
-
-setting_color = setting_get("Config", "color", c_green);                  // BGR
-setting_bezier_precision = setting_get("Config", "bezier", 6);            // preferably keep this between like 4 and 16ish?
-setting_backups = setting_get("Config", "backups", 2);                    // 0 (none) through 9 (why would you keep that many backups?)
-setting_autosave = setting_get("Config", "autosave", true);               // bool
-setting_npc_animate_rate = setting_get("Config", "npc-speed", 4);         // bool
-setting_code_extension = setting_get("Config", "code-ext", 0);            // 0 = txt, 1 = lua
-setting_normal_threshold = setting_get("Config", "normal-threshold", 30); // degrees
-
-setting_location_ddd = setting_get("Location", "ddd", "./");
-setting_location_mesh = setting_get("Location", "mesh", "./");
-setting_location_terrain = setting_get("Location", "terrain", "./");
-setting_location_image = setting_get("Location", "image", "./");
-setting_location_audio = setting_get("Location", "audio", "./");
-setting_location_tiled = setting_get("Location", "tiled", "./");
-
-setting_selection_mode = setting_get("Selection", "mode", SelectionModes.RECTANGLE);
-setting_selection_addition = setting_get("Selection", "addition", false);
-setting_selection_fill_type = setting_get("Selection", "fill-type", FillTypes.TILE);
-setting_selection_mask = setting_get("Selection", "mask", SELECTION_MASK_ALL);
-setting_mouse_drag_behavior = setting_get("Selection", "drag-behavior", 0);
-
-setting_view_wireframe = setting_get("View", "wireframe", false);
-setting_view_grid = setting_get("View", "grid", true);
-setting_view_backface = setting_get("View", "backface", false);
-setting_view_texture = setting_get("View", "texture", true);
-setting_view_entities = setting_get("View", "entities", true);
-
-setting_code_extension_map = [".txt", ".lua"];
-
-setting_hide_warnings = ds_map_create();
+#region end of step actions
+schedule_rebuild_master_texture = false;
+schedule_view_master_texture = false;
+schedule_view_particle_texture = false;
+schedule_view_ui_texture = false;
+schedule_save = false;
+schedule_open = false;
 #endregion
-
-alarm[ALARM_SETTINGS_SAVE] = room_speed * CAMERA_SAVE_FREQUENCY;
 
 // hacky workaround
 maps_included = false;

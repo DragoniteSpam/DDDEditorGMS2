@@ -4,5 +4,5 @@
 // Draw event which still reference it, because my code is spaghetti.
 
 if (dialog_exists()) {
-    instance_destroy_later(ds_list_pop(Camera.dialogs));
+    instance_destroy_later(ds_list_pop(Stuff.dialogs));
 }

@@ -10,7 +10,7 @@ var y1 = argument2;
 var x2 = argument3;
 var y2 = argument4;
 
-var map = Camera.event_map;
+var map = Stuff.event.map;
 var map_contents = map.contents;
 
 var camera = view_get_camera(view_current);
@@ -27,14 +27,14 @@ draw_set_color(c_white);
 if (map.is_3d) {
     var vw = x2 - x1;
     var vh = y2 - y1;
-    camera_set_view_mat(camera, matrix_build_lookat(Camera.event_x, Camera.event_y, Camera.event_z, Camera.event_xto,
-		Camera.event_yto, Camera.event_zto, Camera.event_xup, Camera.event_yup, Camera.event_zup));
-    camera_set_proj_mat(camera, matrix_build_projection_perspective_fov(-Camera.event_fov, -vw / vh, CAMERA_ZNEAR, CAMERA_ZFAR));
+    camera_set_view_mat(camera, matrix_build_lookat(Stuff.event.x, Stuff.event.y, Stuff.event.z, Stuff.event.xto,
+		Stuff.event.yto, Stuff.event.zto, Stuff.event.xup, Stuff.event.yup, Stuff.event.zup));
+    camera_set_proj_mat(camera, matrix_build_projection_perspective_fov(-Stuff.event.fov, -vw / vh, CAMERA_ZNEAR, CAMERA_ZFAR));
     camera_apply(camera);
 } else {
     var cwidth = camera_get_view_width(camera);
 	var cheight = camera_get_view_height(camera);
-    camera_set_view_mat(camera, matrix_build_lookat(Camera.event_x, Camera.event_y, 16000,  Camera.event_x, Camera.event_y, -16000, 0, 1, 0));
+    camera_set_view_mat(camera, matrix_build_lookat(Stuff.event.x, Stuff.event.y, 16000,  Stuff.event.x, Stuff.event.y, -16000, 0, 1, 0));
     camera_set_proj_mat(camera, matrix_build_projection_ortho(-cwidth, cheight, CAMERA_ZNEAR, CAMERA_ZFAR));
     camera_apply(camera);
 }
@@ -44,7 +44,7 @@ transform_reset();
 
 // @todo tileset update
 if (map.preview) {
-	vertex_submit(map.preview, pr_trianglelist, sprite_get_texture(Stuff.all_graphic_tilesets[| Camera.event_map.tileset].master, 0));
+	vertex_submit(map.preview, pr_trianglelist, sprite_get_texture(Stuff.all_graphic_tilesets[| Stuff.event.map.tileset].master, 0));
 	vertex_submit(map.wpreview, pr_linelist, -1);
 }
 

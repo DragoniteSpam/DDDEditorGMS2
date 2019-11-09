@@ -23,7 +23,7 @@ for (var i = 0; i < ds_list_size(menu.contents); i++) {
 
 draw_line_colour(0, yy + menu.element_height, xx + room_width, yy + menu.element_height, c_black, c_black);
 
-var element = Camera.menu.extra_element;
+var element = Stuff.menu.extra_element;
 if (element) {
 	script_execute(element.render, element, element.x, element.y);
 }

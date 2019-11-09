@@ -20,58 +20,58 @@ var scale_rate = 1.01;
 
 if (keyboard_check(vk_shift)) {
     if (keyboard_check(vk_up) || keyboard_check(ord("W"))) {
-        Camera.mesh_z = Camera.mesh_z - translation_rate;
+        Stuff.mesh_z = Stuff.mesh_z - translation_rate;
     }
     if (keyboard_check(vk_down) || keyboard_check(ord("S"))) {
-        Camera.mesh_z = Camera.mesh_z + translation_rate;
+        Stuff.mesh_z = Stuff.mesh_z + translation_rate;
     }
     if (keyboard_check(vk_left) || keyboard_check(ord("A"))) {
-        Camera.mesh_zrot = Camera.mesh_zrot - rotation_rate;
+        Stuff.mesh_zrot = Stuff.mesh_zrot - rotation_rate;
     }
     if (keyboard_check(vk_right) || keyboard_check(ord("D"))) {
-        Camera.mesh_zrot = Camera.mesh_zrot + rotation_rate;
+        Stuff.mesh_zrot = Stuff.mesh_zrot + rotation_rate;
     }
 } else if (keyboard_check(vk_control)) {
     if (keyboard_check(vk_up) || keyboard_check(ord("W"))) {
-        Camera.mesh_yrot = Camera.mesh_yrot - translation_rate;
+        Stuff.mesh_yrot = Stuff.mesh_yrot - translation_rate;
     }
     if (keyboard_check(vk_down) || keyboard_check(ord("S"))) {
-        Camera.mesh_yrot = Camera.mesh_yrot + translation_rate;
+        Stuff.mesh_yrot = Stuff.mesh_yrot + translation_rate;
     }
     if (keyboard_check(vk_left) || keyboard_check(ord("A"))) {
-        Camera.mesh_xrot = Camera.mesh_xrot - rotation_rate;
+        Stuff.mesh_xrot = Stuff.mesh_xrot - rotation_rate;
     }
     if (keyboard_check(vk_right) || keyboard_check(ord("D"))) {
-        Camera.mesh_xrot = Camera.mesh_xrot + rotation_rate;
+        Stuff.mesh_xrot = Stuff.mesh_xrot + rotation_rate;
     }
 } else if (keyboard_check(vk_alt)) {
     if (keyboard_check(vk_up) || keyboard_check(ord("W"))) {
-        Camera.mesh_scale = min(Camera.mesh_scale * scale_rate, 10);
+        Stuff.mesh_scale = min(Stuff.mesh_scale * scale_rate, 10);
     }
     if (keyboard_check(vk_down) || keyboard_check(ord("S"))) {
-        Camera.mesh_scale = max(Camera.mesh_scale / scale_rate, 0.1);
+        Stuff.mesh_scale = max(Stuff.mesh_scale / scale_rate, 0.1);
     }
 } else {
     if (keyboard_check(vk_up) || keyboard_check(ord("W"))) {
-        Camera.mesh_y = Camera.mesh_y - translation_rate;
+        Stuff.mesh_y = Stuff.mesh_y - translation_rate;
     }
     if (keyboard_check(vk_down) || keyboard_check(ord("S"))) {
-        Camera.mesh_y = Camera.mesh_y + translation_rate;
+        Stuff.mesh_y = Stuff.mesh_y + translation_rate;
     }
     if (keyboard_check(vk_left) || keyboard_check(ord("A"))) {
-        Camera.mesh_x = Camera.mesh_x - translation_rate;
+        Stuff.mesh_x = Stuff.mesh_x - translation_rate;
     }
     if (keyboard_check(vk_right) || keyboard_check(ord("D"))) {
-        Camera.mesh_x = Camera.mesh_x + translation_rate;
+        Stuff.mesh_x = Stuff.mesh_x + translation_rate;
     }
 }
 
 if (keyboard_check(vk_backspace) || keyboard_check(vk_delete)) {
-    Camera.mesh_x = 0;
-    Camera.mesh_y = 0;
-    Camera.mesh_z = 0;
-    Camera.mesh_xrot = 0;
-    Camera.mesh_yrot = 0;
-    Camera.mesh_zrot = 0;
-    Camera.mesh_scale = 1;
+    Stuff.mesh_x = 0;
+    Stuff.mesh_y = 0;
+    Stuff.mesh_z = 0;
+    Stuff.mesh_xrot = 0;
+    Stuff.mesh_yrot = 0;
+    Stuff.mesh_zrot = 0;
+    Stuff.mesh_scale = 1;
 }

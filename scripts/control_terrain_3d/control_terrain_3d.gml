@@ -2,7 +2,7 @@
 
 var terrain = argument0;
 
-if (Camera.menu.active_element) {
+if (Stuff.menu.active_element) {
 	return false;
 }
 

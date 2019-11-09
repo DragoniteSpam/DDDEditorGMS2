@@ -1,3 +1,3 @@
 gpu_set_cullmode(cull_noculling);
 
-script_execute(ui_terrain.render, ui_terrain);
+script_execute(Stuff.terrain.ui.render, Stuff.terrain.ui);

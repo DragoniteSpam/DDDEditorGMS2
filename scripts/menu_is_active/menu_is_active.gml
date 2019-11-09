@@ -1,3 +1,3 @@
 /// @param MenuMenu
 
-return menu_is_ancestor(Camera.menu.active_element, argument0);
+return menu_is_ancestor(Stuff.menu.active_element, argument0);

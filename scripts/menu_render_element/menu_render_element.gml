@@ -32,7 +32,7 @@ if (mouse_inbounds) {
         Controller.release_left = false;
         script_execute(menumenu.onmouseup, menumenu);
     }
-    Camera.menu.mouse_over = menumenu;
+    Stuff.menu.mouse_over = menumenu;
 }
 
 draw_set_halign(menumenu.alignment);

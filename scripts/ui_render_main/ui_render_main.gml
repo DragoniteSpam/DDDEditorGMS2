@@ -75,6 +75,3 @@ for (var i = 0; i < ds_list_size(ui.tabs); i++) {
 }
 
 script_execute(ui.active_tab.render_contents, ui.active_tab, 0, 0);
-
-// either this script needs to be generic-ized for the ui_event tab, or the ui_event tab needs to
-// be changed so that it also uses the view system (and things will still need to be generic-ized)

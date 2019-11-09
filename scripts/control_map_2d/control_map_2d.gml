@@ -2,7 +2,7 @@
 
 var mode = argument0;
 
-if (Camera.menu.active_element) {
+if (Stuff.menu.active_element) {
 	return false;
 }
 
@@ -131,7 +131,7 @@ if (Controller.press_right) {
         script_execute(mode.last_selection.onmousedown, mode.last_selection, floor_cx, floor_cy, tz);
 	}
 	
-	var menu = Camera.menu.menu_right_click;
+	var menu = Stuff.menu.menu_right_click;
 	menu_activate_extra(menu);
 	menu.x = Stuff.MOUSE_X;
 	menu.y = Stuff.MOUSE_Y;

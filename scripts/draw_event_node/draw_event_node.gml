@@ -660,7 +660,7 @@ switch (node.type) {
             draw_event_node_outbound(x2, by, node);
             draw_sprite(spr_event_dot, 0, x2, by);
             
-            if (event_canvas_active_node != node) {
+            if (Stuff.event.canvas_active_node != node) {
                 if (bx2 > x2) {
                     draw_bezier(x2 + 8, by, bx2 - 8, by2);
                 } else {
@@ -693,7 +693,7 @@ switch (node.type) {
                 draw_event_node_outbound(x2, by, node, i);
                 draw_sprite(spr_event_dot, 0, x2, by);
                 
-                if (event_canvas_active_node != node || event_canvas_active_node_index != i) {
+                if (Stuff.event.canvas_active_node != node || Stuff.event.canvas_active_node_index != i) {
                     if (bx2 > x2) {
                         draw_bezier(x2 + 8, by, bx2 - 8, by2);
                     } else {
@@ -702,7 +702,7 @@ switch (node.type) {
                 }
             }
             
-            if (event_canvas_active_node == node && event_canvas_active_node_index == i) {
+            if (Stuff.event.canvas_active_node == node && Stuff.event.canvas_active_node_index == i) {
                 bezier_y = by;
             }
             
@@ -710,16 +710,16 @@ switch (node.type) {
             by = by + eh + ((i < n - 2) ? rh : (rh + eh) / 2);
         }
         
-        if (event_canvas_active_node == node) {
+        if (Stuff.event.canvas_active_node == node) {
             if (!dialog_exists()) {
                 if (Controller.release_left) {
                     // if the mouse is contacting another entrypoint, connect it
                     var contacted_node = event_seek_node();
                     if (contacted_node) {
-                        event_connect_node(node, contacted_node, event_canvas_active_node_index);
+                        event_connect_node(node, contacted_node, Stuff.event.canvas_active_node_index);
                     }
-                    event_canvas_active_node = noone;
-                    event_canvas_active_node_index = 0;
+                    Stuff.event.canvas_active_node = noone;
+                    Stuff.event.canvas_active_node_index = 0;
                 }
             }
             
@@ -746,7 +746,7 @@ switch (node.type) {
                 draw_event_node_outbound(x2, by, node, i);
                 draw_sprite(spr_event_dot, 0, x2, by);
                 
-                if (event_canvas_active_node != node || event_canvas_active_node_index != i) {
+                if (Stuff.event.canvas_active_node != node || Stuff.event.canvas_active_node_index != i) {
                     if (bx2 > x2) {
                         draw_bezier(x2 + 8, by, bx2 - 8, by2);
                     } else {
@@ -755,23 +755,23 @@ switch (node.type) {
                 }
             }
             
-            if (event_canvas_active_node == node && event_canvas_active_node_index == i) {
+            if (Stuff.event.canvas_active_node == node && Stuff.event.canvas_active_node_index == i) {
                 bezier_y = entry_yy + eh / 2;
             }
             
             entry_yy = entry_yy + eh;
         }
         
-        if (event_canvas_active_node == node) {
+        if (Stuff.event.canvas_active_node == node) {
             if (!dialog_exists()) {
                 if (Controller.release_left) {
                     // if the mouse is contacting another entrypoint, connect it
                     var contacted_node = event_seek_node();
                     if (contacted_node) {
-                        event_connect_node(node, contacted_node, event_canvas_active_node_index);
+                        event_connect_node(node, contacted_node, Stuff.event.canvas_active_node_index);
                     }
-                    event_canvas_active_node = noone;
-                    event_canvas_active_node_index = 0;
+                    Stuff.event.canvas_active_node = noone;
+                    Stuff.event.canvas_active_node_index = 0;
                 }
             }
             
@@ -797,7 +797,7 @@ switch (node.type) {
 	            draw_event_node_outbound(x2 + outbound_offset, by, node, i);
 	            draw_sprite(spr_event_dot, 0, x2 + outbound_offset, by);
 				
-	            if (event_canvas_active_node != node || event_canvas_active_node_index != i) {
+	            if (Stuff.event.canvas_active_node != node || Stuff.event.canvas_active_node_index != i) {
 	                if (bnx > x2 + outbound_offset) {
 	                    draw_bezier(x2 + 8 + outbound_offset, by, bnx - 8, bny);
 	                } else {
@@ -813,18 +813,18 @@ switch (node.type) {
 // condition nodes have them located in strange places so i'm not going to try
 // to come up with a general solution
 if (!bezier_override) {
-    if (event_canvas_active_node == node) {
+    if (Stuff.event.canvas_active_node == node) {
 	    var camera = view_get_camera(view_current);
-	    draw_bezier(x2 + 8, entry_yy + event_canvas_active_node_index * EVENT_NODE_CONTACT_HEIGHT * 2 / 3, Stuff.MOUSE_X + camera_get_view_x(camera), Stuff.MOUSE_Y + camera_get_view_y(camera));
+	    draw_bezier(x2 + 8, entry_yy + Stuff.event.canvas_active_node_index * EVENT_NODE_CONTACT_HEIGHT * 2 / 3, Stuff.MOUSE_X + camera_get_view_x(camera), Stuff.MOUSE_Y + camera_get_view_y(camera));
         if (!dialog_exists()) {
             if (Controller.release_left) {
                 // if the mouse is contacting another entrypoint, connect it
                 var contacted_node = event_seek_node();
                 if (contacted_node) {
-                    event_connect_node(node, contacted_node, event_canvas_active_node_index);
+                    event_connect_node(node, contacted_node, Stuff.event.canvas_active_node_index);
                 }
-                event_canvas_active_node = noone;
-                event_canvas_active_node_index = 0;
+                Stuff.event.canvas_active_node = noone;
+                Stuff.event.canvas_active_node_index = 0;
 				Controller.release_left = false;
             }
         }

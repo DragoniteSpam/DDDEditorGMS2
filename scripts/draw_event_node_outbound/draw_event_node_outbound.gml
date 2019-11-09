@@ -24,8 +24,8 @@ if (!dialog_exists()) {
 			}
 		}
 		if (Controller.press_left) {
-	        Camera.event_canvas_active_node = node;
-	        Camera.event_canvas_active_node_index = index;
+	        Stuff.event.canvas_active_node = node;
+	        Stuff.event.canvas_active_node_index = index;
 		}
     }
 }

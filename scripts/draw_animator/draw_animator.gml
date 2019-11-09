@@ -1,3 +1,7 @@
+/// @param EditorModeAnimation
+
+var mode = argument0;
+
 draw_clear(c_black);
 var map = Stuff.map.active_map;
 var map_contents = map.contents;
@@ -36,13 +40,13 @@ if (map.is_3d) {
 // anything in the world
 
 shader_set(shd_default);
-var animation = ui_animation.active_animation;
+var animation = mode.ui.active_animation;
 
 gpu_set_cullmode(cull_noculling);
 shader_reset();
 
 if (animation) {
-    var moment = ui_animation.el_timeline.playing_moment;
+    var moment = mode.ui.el_timeline.playing_moment;
     for (var i = 0; i < ds_list_size(animation.layers); i++) {
         var timeline_layer = animation.layers[| i];
         var kx = animation_get_tween_translate_x(animation, i, moment);

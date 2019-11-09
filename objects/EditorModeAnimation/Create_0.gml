@@ -17,3 +17,4 @@ pitch = setting_get("Animation", "pitch", 0);
 direction = setting_get("Animation", "direction", 0);
 
 render = editor_render_map;
+ui = ui_init_animation();
