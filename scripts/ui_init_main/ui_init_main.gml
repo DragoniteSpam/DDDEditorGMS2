@@ -682,6 +682,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy = yy + element.height + spacing;
     
     element = create_input(col2_x, yy, "Tag:", col_width, element_height, uivc_input_tile_tag, 0, 0, validate_int, 0, TileTerrainTags.FINAL - 1, 2, 84, 0, 84 + 64, element_height, t_p_tile_editor);
+    element.render = ui_render_input_tile_tag;
     ds_list_add(t_p_tile_editor.contents, element);
     
     t_p_tile_editor.element_tag = element;
@@ -856,10 +857,11 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy = legal_y + spacing;
     
     element = create_list(legal_x + spacing, yy, "Defined Autotiles: ", "<something is wrong>", col_width, element_height, 28, uivc_list_selection_autotile, false, t_p_autotile_editor);
+    element.render = ui_render_list_autotiles;
     ui_list_select(element, 0);
     element.numbered = true;
     for (var i = 0; i < AUTOTILE_MAX; i++) {
-        create_list_entries(element, string(i) + ". <none set>");
+        create_list_entries(element, "<none set>");
     }
     ds_list_add(t_p_autotile_editor.contents, element);
     
@@ -887,7 +889,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy = yy + element.height + spacing;
     
     element = create_input(col2_x, yy, "Priority:", col_width, element_height, uivc_input_autotile_priority, 0, 0, validate_int, 0, TILE_MAX_PRIORITY - 1, 3, 84, 0, 84 + 64, element_height, t_p_autotile_editor);
-    element.render = ui_render_input_tile_priority;
+    element.render = ui_render_input_autotile_priority;
     ds_list_add(t_p_autotile_editor.contents, element);
     
     // this is totally cheating but game maker allows me to do it so shut up
@@ -906,18 +908,19 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy = yy + element.height + spacing;
     
     element = create_input(col2_x, yy, "Tag:", col_width, element_height, uivc_input_autotile_tag, 0, 0, validate_int, 0, TileTerrainTags.FINAL - 1, 2, 84, 0, 84 + 64, element_height, t_p_autotile_editor);
+    element.render = ui_render_input_autotile_tag;
     ds_list_add(t_p_autotile_editor.contents, element);
     
     t_p_autotile_editor.element_tag = element;
     
     yy = yy + element.height + spacing;
     
-    element = create_button(col2_x+16, yy, "-", element_height, element_height, fa_center, uimu_autotile_tag_down, t_p_autotile_editor);
+    element = create_button(col2_x + 16, yy, "-", element_height, element_height, fa_center, uimu_autotile_tag_down, t_p_autotile_editor);
     ds_list_add(t_p_autotile_editor.contents, element);
-    element = create_text(col2_x+48, yy, "tag name", col_width, element_height, fa_left, 128, t_p_autotile_editor);
+    element = create_text(col2_x + 48, yy, "tag name", col_width, element_height, fa_left, 128, t_p_autotile_editor);
     element.render = ui_render_text_autotile_tag;
     ds_list_add(t_p_autotile_editor.contents, element);
-    element = create_button(col2_x+176, yy, "+", element_height, element_height, fa_center, uimu_autotile_tag_up, t_p_autotile_editor);
+    element = create_button(col2_x + 176, yy, "+", element_height, element_height, fa_center, uimu_autotile_tag_up, t_p_autotile_editor);
     ds_list_add(t_p_autotile_editor.contents, element);
     
     yy = yy + element.height + spacing;

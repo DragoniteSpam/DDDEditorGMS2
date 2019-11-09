@@ -10,6 +10,6 @@ var domain = Stuff.settings[? object];
 
 if (domain) {
     domain[? name] = value;
+} else {
+    show_error("Setting object not found: " + object, false);
 }
-
-show_error("Setting object not found: " + object, false);

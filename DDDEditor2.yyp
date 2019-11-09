@@ -3312,6 +3312,14 @@
             }
         },
         {
+            "Key": "3745418b-0351-42db-b006-8f251c0017c3",
+            "Value": {
+                "id": "58792139-0e30-4395-be83-863349c93e66",
+                "resourcePath": "scripts\\ui_render_input_tile_tag\\ui_render_input_tile_tag.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "3786d7f9-8f5e-47f0-aa5f-4c7883bced0f",
             "Value": {
                 "id": "73061d2e-12bd-4f9b-b2cd-53a3d90ccecc",
@@ -3732,6 +3740,14 @@
             "Value": {
                 "id": "ea6321cb-3dd6-457f-bc76-817f7c4fd1a5",
                 "resourcePath": "scripts\\menu_activate\\menu_activate.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "4242d52a-6e3f-49ec-ba3d-9b7b2f99cfb7",
+            "Value": {
+                "id": "628a530a-7d11-4c02-ac4d-29664d254f95",
+                "resourcePath": "scripts\\ui_render_list_autotiles\\ui_render_list_autotiles.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -6460,14 +6476,6 @@
             "Value": {
                 "id": "6bf2a421-dca4-47a6-8e59-cc553f182b58",
                 "resourcePath": "scripts\\ui_render_animation_keyframe_translate_x\\ui_render_animation_keyframe_translate_x.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "6d7a1e63-600d-473b-92cb-c8e14912d84d",
-            "Value": {
-                "id": "771ae678-1f66-4465-832b-bd41499cd099",
-                "resourcePath": "scripts\\uivc_select_autotile_refresh\\uivc_select_autotile_refresh.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -10268,6 +10276,14 @@
             "Value": {
                 "id": "a20e8e78-4244-43c7-937c-101384db0e77",
                 "resourcePath": "scripts\\omu_event_add_comment\\omu_event_add_comment.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "abdfe03c-d0df-4440-b934-5a80285feefa",
+            "Value": {
+                "id": "dbd955ce-2bbb-4087-b5fb-52e4d788b1f2",
+                "resourcePath": "scripts\\ui_render_input_autotile_tag\\ui_render_input_autotile_tag.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -15955,7 +15971,6 @@
         "6fc0e7c9-c44e-4958-b023-180eee2a9fc7",
         "512b5e6a-09ac-4dff-a6cf-b8b4d402de65",
         "2390c4d6-8c21-464c-b2b6-8fb05e3c5792",
-        "6d7a1e63-600d-473b-92cb-c8e14912d84d",
         "aecbb8ee-fed9-4fb8-a933-b609c8d9eea1",
         "5cf72a25-8319-4e9b-8aca-55e960eccb1e",
         "25daa208-4e50-4632-aa58-57f0179f62c5",
@@ -16269,6 +16284,9 @@
         "d74cbdf3-9271-481a-bd75-0bbb6aaee613",
         "a00fb88c-37fd-472d-97a5-88d7cd763e7f",
         "c1d02e27-054e-4a58-979e-5ba90502fe2e",
+        "4242d52a-6e3f-49ec-ba3d-9b7b2f99cfb7",
+        "abdfe03c-d0df-4440-b934-5a80285feefa",
+        "3745418b-0351-42db-b006-8f251c0017c3",
         "2a2dc1ca-1f01-46b7-a91b-4495ca602c34",
         "77dd205b-f3ec-446b-9bc8-818e5c4b5e20",
         "d32ea813-a8d1-4cc2-9e3d-34b66d78cf8e",

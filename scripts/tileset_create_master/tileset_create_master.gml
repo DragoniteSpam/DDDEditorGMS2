@@ -15,7 +15,7 @@ draw_clear_alpha(c_white, 0);
 
 draw_sprite(tileset.picture, 0, 0, 0);
 
-for (var i = 0; i < AUTOTILE_MAX; i++) {
+for (var i = 0; i < array_length_1d(tileset.autotiles); i++) {
     var data = guid_get(tileset.autotiles[i]);
     if (data) {
         var xx = i div (AUTOTILE_MAX / 2);

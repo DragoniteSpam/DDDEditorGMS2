@@ -1,8 +1,8 @@
 {
-    "id": "6d7a1e63-600d-473b-92cb-c8e14912d84d",
+    "id": "4242d52a-6e3f-49ec-ba3d-9b7b2f99cfb7",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "uivc_select_autotile_refresh",
+    "name": "ui_render_list_autotiles",
     "IsCompatibility": false,
     "IsDnD": false
 }

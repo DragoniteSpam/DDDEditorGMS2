@@ -6,7 +6,7 @@ var json = json_encode(settings);
 var json_buffer = buffer_create(1000, buffer_grow, 1);
 buffer_write(json_buffer, buffer_string, json);
 buffer_save_ext(json_buffer, FILE_SETTINGS, 0, buffer_tell(json_buffer));
-buffer_delete(json);
+buffer_delete(json_buffer);
 
 var buffer = buffer_create(1000, buffer_grow, 1);
 for (var i = 0; i < ds_list_size(error_log_messages); i++) {

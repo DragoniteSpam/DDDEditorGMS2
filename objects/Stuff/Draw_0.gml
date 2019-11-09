@@ -1,9 +1,9 @@
 switch (mode) {
     case EditorModes.EDITOR_3D: script_execute(map.render, map); break;
-    case EditorModes.EDITOR_EVENT: script_execute(event.render, map); break;
-    case EditorModes.EDITOR_DATA: script_execute(data.render, map); break;
-    case EditorModes.EDITOR_ANIMATION: script_execute(animation.render, map); break;
-    case EditorModes.EDITOR_HEIGHTMAP: script_execute(terrain.render, map); break;
+    case EditorModes.EDITOR_EVENT: script_execute(event.render, event); break;
+    case EditorModes.EDITOR_DATA: script_execute(data.render, data); break;
+    case EditorModes.EDITOR_ANIMATION: script_execute(animation.render, animation); break;
+    case EditorModes.EDITOR_HEIGHTMAP: script_execute(terrain.render, terrain); break;
 }
 
 // these shouldn't be attached to any one view or anything

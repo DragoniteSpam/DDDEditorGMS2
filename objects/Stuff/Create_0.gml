@@ -484,6 +484,3 @@ if (setting_autosave) {
 		dialog_create_project_list(noone);
 	}
 }
-
-// this depends on activemap existing
-uivc_select_autotile_refresh();

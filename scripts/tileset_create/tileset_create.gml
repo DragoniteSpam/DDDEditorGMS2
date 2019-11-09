@@ -40,8 +40,6 @@ with (instance_create_depth(0, 0, 0, DataTileset)) {
     
     master = tileset_create_master(id);
     
-    // don't do uivc_select_autotile_refresh here, the UI may not have been created yet
-
     instance_deactivate_object(id);
     return id;
 }

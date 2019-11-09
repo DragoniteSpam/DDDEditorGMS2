@@ -8,7 +8,6 @@ var yy = argument2;
 
 var ts = get_active_tileset();
 
-input.value = string(ts.priority[# Stuff.map.selection_fill_tile_x, Stuff.map.selection_fill_tile_y]);
-input.interactive = (Stuff.dimensions == Dimensions.TWOD);
+input.value = string(ts.tag[# Stuff.map.selection_fill_tile_x, Stuff.map.selection_fill_tile_y]);
 
 ui_render_input(input, xx, yy);

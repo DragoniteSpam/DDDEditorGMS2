@@ -56,8 +56,6 @@ if (buffer_md5(buffer, 0, buffer_get_size(buffer)) != EMPTY_BUFFER_MD5) {
 	//gpu_set_fog(true, c_white, map.fog_start, map.fog_end);
 } // else the map has not been initialized yet and it just uses its default values
 
-// @todo this shouldn't be here, but in the actual UI code
-uivc_select_autotile_refresh();
 // this also
 var list = Stuff.map.ui.t_maps.el_map_list;
 for (var i = 0; i < ds_list_size(Stuff.all_maps); i++) {
