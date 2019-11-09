@@ -1,4 +1,6 @@
-var terrain = Stuff.terrain;
+/// @param EditorModeTerrain
+
+var mode = argument0;
 
 with (instance_create_depth(0, 0, 0, UIMain)) {
     home_row_y = 32;
@@ -45,37 +47,37 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element.height + spacing;
     
-    element = create_text(legal_x + spacing, yy, "Width: " + string(terrain.width), col_width, element_height, fa_left, col_width, t_general);
+    element = create_text(legal_x + spacing, yy, "Width: " + string(mode.width), col_width, element_height, fa_left, col_width, t_general);
     t_general.element_width = element;
     ds_list_add(t_general.contents, element);
     
     yy = yy + element.height + spacing;
     
-    element = create_text(legal_x + spacing, yy, "Height: " + string(terrain.height), col_width, element_height, fa_left, col_width, t_general);
+    element = create_text(legal_x + spacing, yy, "Height: " + string(mode.height), col_width, element_height, fa_left, col_width, t_general);
     t_general.element_height = element;
     ds_list_add(t_general.contents, element);
     
     yy = yy + element.height + spacing;
     
-    element = create_checkbox(legal_x + spacing, yy, "Dual layers", col_width, element_height, null, terrain.dual_layer, t_general);
+    element = create_checkbox(legal_x + spacing, yy, "Dual layers", col_width, element_height, null, mode.dual_layer, t_general);
     t_general.element_dual = element;
     t_general.element_dual.interactive = false;
     //ds_list_add(t_general.contents, element);
     
     //yy = yy + element.height + spacing;
     
-    element = create_checkbox(legal_x + spacing, yy, "Orthographic?", col_width, element_height, ui_input_terrain_orthographic, terrain.orthographic, t_general);
+    element = create_checkbox(legal_x + spacing, yy, "Orthographic?", col_width, element_height, ui_input_terrain_orthographic, mode.orthographic, t_general);
     ds_list_add(t_general.contents, element);
     
     yy = yy + element.height + spacing;
     
-    element = create_checkbox(legal_x + spacing, yy, "Draw water?", col_width, element_height, ui_input_terrain_draw_water, terrain.view_water, t_general);
+    element = create_checkbox(legal_x + spacing, yy, "Draw water?", col_width, element_height, ui_input_terrain_draw_water, mode.view_water, t_general);
     t_general.element_draw_water = element;
     ds_list_add(t_general.contents, element);
     
     yy = yy + element.height + spacing;
     
-    element = create_checkbox(legal_x + spacing, yy, "Smooth shading?", col_width, element_height, ui_input_terrain_smooth_shading, terrain.smooth_shading, t_general);
+    element = create_checkbox(legal_x + spacing, yy, "Smooth shading?", col_width, element_height, ui_input_terrain_smooth_shading, mode.smooth_shading, t_general);
     t_general.element_smooth_shading = element;
     //ds_list_add(t_general.contents, element);
     
@@ -87,27 +89,27 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element.height + spacing;
     
-    element = create_radio_array(legal_x + spacing, yy, "Mode:", col_width, element_height, ui_input_terrain_set_mode, terrain.mode, t_general);
+    element = create_radio_array(legal_x + spacing, yy, "Mode:", col_width, element_height, ui_input_terrain_set_mode, mode.mode, t_general);
     create_radio_array_options(element, ["Deform", "Texture", "Paint"]);
     t_general.element_mode = element;
     ds_list_add(t_general.contents, element);
     
     yy = yy + ui_get_radio_array_height(element) + spacing;
     
-    element = create_radio_array(legal_x + spacing, yy, "Brush shape:", col_width, element_height, ui_input_terrain_set_brush_shape, terrain.style, t_general);
+    element = create_radio_array(legal_x + spacing, yy, "Brush shape:", col_width, element_height, ui_input_terrain_set_brush_shape, mode.style, t_general);
     create_radio_array_options(element, ["Block", "Circle"]);
     t_general.element_brush_shape = element;
     ds_list_add(t_general.contents, element);
     
     yy = yy + ui_get_radio_array_height(element) + spacing;
     
-    element = create_text(legal_x + spacing, yy, "Brush radius: " + string(terrain.radius) + " cells", col_width, element_height, fa_left, col_width, t_general);
+    element = create_text(legal_x + spacing, yy, "Brush radius: " + string(mode.radius) + " cells", col_width, element_height, fa_left, col_width, t_general);
     t_general.element_brush_radius = element;
     ds_list_add(t_general.contents, element);
     
     yy = yy + element.height + spacing;
     
-    element = create_progress_bar(legal_x + spacing, yy, col_width, element_height, ui_input_terrain_set_brush_radius, 4, normalize_correct(terrain.radius, 0, 1, terrain.brush_min, terrain.brush_max), t_general);
+    element = create_progress_bar(legal_x + spacing, yy, col_width, element_height, ui_input_terrain_set_brush_radius, 4, normalize_correct(mode.radius, 0, 1, mode.brush_min, mode.brush_max), t_general);
     t_general.element_brush_radius_bar = element;
     ds_list_add(t_general.contents, element);
     
@@ -143,25 +145,25 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element.height + spacing;
     
-    element = create_input(col2_x, yy, "Export scale:", col_width, element_height, ui_input_terrain_save_scale, terrain.save_scale, "0.01...100", validate_double, 0.01, 100, 4, vx1 + 32, vy1, vx2, vy2, t_general);
+    element = create_input(col2_x, yy, "Export scale:", col_width, element_height, ui_input_terrain_save_scale, mode.save_scale, "0.01...100", validate_double, 0.01, 100, 4, vx1 + 32, vy1, vx2, vy2, t_general);
     t_general.element_save_scale = element;
     ds_list_add(t_general.contents, element);
     
     yy = yy + element.height + spacing;
     
-    element = create_checkbox(col2_x, yy, "Export: all faces?", col_width, element_height, ui_input_terrain_export_all, terrain.export_all, t_general);
+    element = create_checkbox(col2_x, yy, "Export: all faces?", col_width, element_height, ui_input_terrain_export_all, mode.export_all, t_general);
     t_general.element_save_all_faces = element;
     ds_list_add(t_general.contents, element);
     
     yy = yy + element.height + spacing;
     
-    element = create_checkbox(col2_x, yy, "OBJ: swap Z up?", col_width, element_height, ui_input_terrain_export_swap_zup, terrain.export_swap_zup, t_general);
+    element = create_checkbox(col2_x, yy, "OBJ: swap Z up?", col_width, element_height, ui_input_terrain_export_swap_zup, mode.export_swap_zup, t_general);
     t_general.element_swap_zup = element;
     ds_list_add(t_general.contents, element);
     
     yy = yy + element.height + spacing;
     
-    element = create_checkbox(col2_x, yy, "OBJ: swap UVs?", col_width, element_height, ui_input_terrain_export_swap_uvs, terrain.export_swap_uvs, t_general);
+    element = create_checkbox(col2_x, yy, "OBJ: swap UVs?", col_width, element_height, ui_input_terrain_export_swap_uvs, mode.export_swap_uvs, t_general);
     t_general.element_swap_uvs = element;
     ds_list_add(t_general.contents, element);
     
@@ -204,20 +206,20 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element.height + spacing;
     
-    element = create_radio_array(legal_x + spacing, yy, "Deformation mode:", col_width, element_height, ui_input_terrain_set_deform_mode, terrain.submode, t_heightmap);
+    element = create_radio_array(legal_x + spacing, yy, "Deformation mode:", col_width, element_height, ui_input_terrain_set_deform_mode, mode.submode, t_heightmap);
     create_radio_array_options(element, ["Mound", "Average", "Flat Average", "Zero (Erase)"]);
     t_heightmap.element_deform_mode = element;
     ds_list_add(t_heightmap.contents, element);
     
     yy = yy + ui_get_radio_array_height(element) + spacing;
     
-    element = create_text(legal_x + spacing, yy, "Deformation rate: " + string_format(terrain.rate, 1, 3), col_width, element_height, fa_left, col_width, t_heightmap);
+    element = create_text(legal_x + spacing, yy, "Deformation rate: " + string_format(mode.rate, 1, 3), col_width, element_height, fa_left, col_width, t_heightmap);
     t_heightmap.element_deform_rate = element;
     ds_list_add(t_heightmap.contents, element);
     
     yy = yy + element.height + spacing;
     
-    element = create_progress_bar(legal_x + spacing, yy, col_width, element_height, ui_input_terrain_set_deformation_rate, 4, normalize_correct(terrain.rate, 0, 1, terrain.rate_min, terrain.rate_max), t_heightmap);
+    element = create_progress_bar(legal_x + spacing, yy, col_width, element_height, ui_input_terrain_set_deformation_rate, 4, normalize_correct(mode.rate, 0, 1, mode.rate_min, mode.rate_max), t_heightmap);
     t_heightmap.element_deform_rate_bar = element;
     ds_list_add(t_heightmap.contents, element);
     
@@ -241,16 +243,16 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element.height + spacing;
 	
-    element = create_text(legal_x + spacing, yy, terrain.texture_name + " (" + string(terrain.texture_width) + " x " + string(terrain.texture_height) + ")", legal_width, element_height, fa_left, legal_width, t_texture);
+    element = create_text(legal_x + spacing, yy, mode.texture_name + " (" + string(mode.texture_width) + " x " + string(mode.texture_height) + ")", legal_width, element_height, fa_left, legal_width, t_texture);
     t_texture.element_texture_name = element;
     ds_list_add(t_texture.contents, element);
     
     yy = yy + element.height + spacing;
 	
     element = create_tile_selector(legal_x + spacing, yy, legal_width - spacing * 2, legal_width - spacing * 2, uivc_select_terrain_tile, null, t_texture);
-    element.tile_x = terrain.tile_brush_x;
-    element.tile_y = terrain.tile_brush_y;
-    element.tileset = terrain.texture;
+    element.tile_x = mode.tile_brush_x;
+    element.tile_y = mode.tile_brush_y;
+    element.tileset = mode.texture;
     t_texture.element_tile_selector = element;
     ds_list_add(t_texture.contents, element);
     
@@ -273,31 +275,31 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element.height + spacing;
     
-    element = create_text(legal_x + spacing, yy, "Paint strength: " + string(terrain.paint_strength), col_width, element_height, fa_left, col_width, t_paint);
+    element = create_text(legal_x + spacing, yy, "Paint strength: " + string(mode.paint_strength), col_width, element_height, fa_left, col_width, t_paint);
     t_paint.element_paint_strength = element;
     ds_list_add(t_paint.contents, element);
     
     yy = yy + element.height + spacing;
     
-    element = create_progress_bar(legal_x + spacing, yy, col_width, element_height, ui_input_terrain_set_paint_strength, 4, normalize_correct(terrain.paint_strength, 0, 1, terrain.paint_strength_min, terrain.paint_strength_max), t_paint);
+    element = create_progress_bar(legal_x + spacing, yy, col_width, element_height, ui_input_terrain_set_paint_strength, 4, normalize_correct(mode.paint_strength, 0, 1, mode.paint_strength_min, mode.paint_strength_max), t_paint);
     t_paint.element_paint_strength_bar = element;
     ds_list_add(t_paint.contents, element);
     
     yy = yy + element.height + spacing;
     
-    element = create_text(legal_x + spacing, yy, "Paint precision: " + string(terrain.paint_precision), col_width, element_height, fa_left, col_width, t_paint);
+    element = create_text(legal_x + spacing, yy, "Paint precision: " + string(mode.paint_precision), col_width, element_height, fa_left, col_width, t_paint);
     t_paint.element_paint_precision = element;
     ds_list_add(t_paint.contents, element);
     
     yy = yy + element.height + spacing;
     
-    element = create_progress_bar(legal_x + spacing, yy, col_width, element_height, ui_input_terrain_set_paint_precision, 4, normalize_correct(terrain.paint_precision, 0, 1, terrain.paint_precision_min, terrain.paint_precision_max), t_paint);
+    element = create_progress_bar(legal_x + spacing, yy, col_width, element_height, ui_input_terrain_set_paint_precision, 4, normalize_correct(mode.paint_precision, 0, 1, mode.paint_precision_min, mode.paint_precision_max), t_paint);
     t_paint.element_paint_precision_bar = element;
     ds_list_add(t_paint.contents, element);
     
     yy = yy + element.height + spacing;
     
-    element = create_color_picker(legal_x + spacing, yy, "Color:", col_width, element_height, ui_input_terrain_set_paint_color, terrain.paint_color, vx1, vy1, vx2, vy2, t_paint);
+    element = create_color_picker(legal_x + spacing, yy, "Color:", col_width, element_height, ui_input_terrain_set_paint_color, mode.paint_color, vx1, vy1, vx2, vy2, t_paint);
     element.allow_alpha = true;
     t_paint.element_paint_color = element;
     ds_list_add(t_paint.contents, element);

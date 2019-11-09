@@ -1,3 +1,7 @@
+/// @param EditorModeMap
+
+var mode = argument0;
+
 // this one's not tabbed, it's just a bunch of elements floating in space
 with (instance_create_depth(0, 0, 0, UIThing)) {
     var columns = 5;

@@ -57,9 +57,9 @@ enum FillTypes {
 tile_data_view = TileSelectorDisplayMode.PASSAGE;
 tile_on_click = TileSelectorOnClick.SELECT;
 
-ui = ui_init_main();
-
 active_map = instance_create_depth(0, 0, 0, DataMapContainer);
 active_map.contents = instance_create_depth(0, 0, 0, MapContents);
 ds_grid_resize(active_map.contents.map_grid, active_map.xx, active_map.yy);
 map_fill_grid(active_map.contents.map_grid, active_map.zz);
+
+ui = ui_init_main(id);

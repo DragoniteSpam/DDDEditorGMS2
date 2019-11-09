@@ -1,5 +1,5 @@
 /// @param filename
-/// @param [everything?]
+/// @param [complete_object?]
 
 // this is VERY bad but i don't want to write two d3d importers, or to offload the d3d code to
 // somewhere else, so it stays like this for now

@@ -1,7 +1,6 @@
 event_inherited();
 
 render = editor_render_terrain;
-ui = ui_init_terrain();
 
 texture_name = "b_tileset_overworld_0.png";
 texture = terrain_create_texture_sprite(PATH_GRAPHICS + texture_name);
@@ -61,7 +60,7 @@ buffer_fill(color_data, 0, buffer_u32, 0xffffffff, buffer_get_size(color_data));
 // you don't need a texture UV buffer, since that will only be set and not mutated
 
 terrain_buffer = vertex_create_buffer();
-vertex_begin(terrain_buffer, vertex_format);
+vertex_begin(terrain_buffer, Stuff.graphics.vertex_format_basic);
 
 for (var i = 0; i < width - 1; i++) {
     for (var j = 0; j < height - 1; j++) {
@@ -102,3 +101,5 @@ submode_equation[TerrainSubmodes.ZERO] = terrain_sub_zero;
 
 style_radius_coefficient[TerrainStyles.BLOCK] = 2.0;        // this will effectively fill the entire space
 style_radius_coefficient[TerrainStyles.CIRCLE] = 1.0;       // an exact circle
+
+ui = ui_init_terrain(id);

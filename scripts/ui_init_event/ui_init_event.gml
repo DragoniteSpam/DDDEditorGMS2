@@ -1,3 +1,7 @@
+/// @param EditorModeEvent
+
+var mode = argument0;
+
 with (instance_create_depth(0, 0, 0, UIMain)) {
     t_events = create_tab("Events", 0, id);
     t_list = create_tab("Node List", 0, id);

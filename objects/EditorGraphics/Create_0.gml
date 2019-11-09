@@ -61,8 +61,6 @@ c_shape_load_trimesh("data\\basic\\ccube.d3d");
 c_shape_end_trimesh(c_shape_block);
 c_transform_identity();
 
-basic_cage = import_d3d("data\\basic\\cage.d3d", false);
-
 var water_tile_size = 0xffff;
 var water_reptition = 256;
 
@@ -79,7 +77,7 @@ vertex_end(mesh_water_base);
 vertex_end(mesh_water_bright);
 
 grid_sphere = vertex_create_buffer();
-vertex_begin(grid_sphere, Stuff.graphics.vertex_format);
+vertex_begin(grid_sphere, vertex_format);
 
 var radius = 16;
 var segments = 16;
@@ -114,5 +112,3 @@ vertex_freeze(grid_sphere);
 
 grid = noone;
 grid_centered = noone;
-
-graphics_create_grids();

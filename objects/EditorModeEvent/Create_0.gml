@@ -1,7 +1,6 @@
 event_inherited();
 
 render = editor_render_event;
-ui = ui_init_event();
 
 canvas_active_node = noone;
 canvas_active_node_index = 0;
@@ -26,3 +25,5 @@ pitch = setting_get("Event", "pitch", 0);
 direction = setting_get("Event", "direction", 0);
 
 map = noone;
+
+ui = ui_init_event(id);

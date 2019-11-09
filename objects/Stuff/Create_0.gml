@@ -389,13 +389,16 @@ event_prefab[EventNodeTypes.DEACTIVATE_EVENT] = create_event_node_basic("Deactiv
 // at some point there shouldn't necessarily need to be an active
 // map in existence for this to work, but for now there does
 instance_create_depth(0, 0, 0, Controller);
+// this feels really weird but import_d3d references Stuff.graphics so it needs
+// the variable to have already been set for it to work
+graphics = instance_create_depth(0, 0, 0, EditorGraphics);
+graphics.basic_cage = import_d3d("data\\basic\\cage.d3d", false);
 // various types of editors
 map = instance_create_depth(0, 0, 0, EditorModeMap);
 data = instance_create_depth(0, 0, 0, EditorModeData);
 event = instance_create_depth(0, 0, 0, EditorModeEvent);
 animation = instance_create_depth(0, 0, 0, EditorModeAnimation);
 terrain = instance_create_depth(0, 0, 0, EditorModeTerrain);
-graphics = instance_create_depth(0, 0, 0, EditorGraphics);
 menu = menu_init_main();
 
 instance_deactivate_object(EditorMode);
