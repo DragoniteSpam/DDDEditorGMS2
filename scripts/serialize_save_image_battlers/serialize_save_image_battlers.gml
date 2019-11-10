@@ -15,8 +15,6 @@ for (var i = 0; i < n_images; i++) {
     buffer_write(buffer, buffer_u16, data.hframes);
     buffer_write(buffer, buffer_u16, data.vframes);
     
-    sprite_save(data.picture, 0, "save-" + data.name + "-" + string(current_minute) + ".png");
-    
     buffer_write_sprite(buffer, data.picture);
     // battlers and overworlds aren't stored on a texture page ahead
     // of time - those are created for each map when the map is loaded

@@ -19,8 +19,6 @@ repeat (n_images) {
     
     data.picture = buffer_read_sprite(buffer);
     
-    sprite_save(data.picture, 0, "load-" + data.name + "-" + string(current_minute) + ".png");
-    
     data.width = sprite_get_width(data.picture);
     data.height = sprite_get_height(data.picture);
     
