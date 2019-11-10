@@ -59,25 +59,21 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element.height + spacing;
     
-    element = create_checkbox(legal_x + spacing, yy, "Dual layers", col_width, element_height, null, mode.dual_layer, t_general);
-    t_general.element_dual = element;
-    t_general.element_dual.interactive = false;
-    //ds_list_add(t_general.contents, element);
-    
-    //yy = yy + element.height + spacing;
-    
     element = create_checkbox(legal_x + spacing, yy, "Orthographic?", col_width, element_height, ui_input_terrain_orthographic, mode.orthographic, t_general);
+    element.tooltip = "View the terrain from 2D top-down perspective, as opposed to a 3D one";
     ds_list_add(t_general.contents, element);
     
     yy = yy + element.height + spacing;
     
     element = create_checkbox(legal_x + spacing, yy, "Draw water?", col_width, element_height, ui_input_terrain_draw_water, mode.view_water, t_general);
+    element.tooltip = "Toggles the the water layer under the terrain";
     t_general.element_draw_water = element;
     ds_list_add(t_general.contents, element);
     
     yy = yy + element.height + spacing;
     
     element = create_checkbox(legal_x + spacing, yy, "Smooth shading?", col_width, element_height, ui_input_terrain_smooth_shading, mode.smooth_shading, t_general);
+    element.tooltip = "Toggles smooth vs flat shading on the terrain";
     t_general.element_smooth_shading = element;
     //ds_list_add(t_general.contents, element);
     

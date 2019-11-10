@@ -48,7 +48,7 @@ if (header == "DDD") {
 }
 
 if (erroneous) {
-    dialog_create_notice(noone, "this is a ddd_terra file but the contents are no good?");
+    dialog_create_notice(noone, "this is a dddt file but the contents are no good?");
 }
 
 /*

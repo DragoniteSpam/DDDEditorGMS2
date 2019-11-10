@@ -25,7 +25,6 @@ repeat (n_terrain) {
     terrain.smooth_shading = unpack(bools, 5);
     Stuff.terrain.ui.t_general.element_smooth_shading.value = terrain.smooth_shading;
     terrain.dual_layer  = unpack(bools, 6);
-    Stuff.terrain.ui.t_general.element_dual.value = terrain.dual_layer;
     
     terrain.view_scale = buffer_read(buffer, buffer_f32);
     // not available as a value you can change currently
