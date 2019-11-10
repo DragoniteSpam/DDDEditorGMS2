@@ -27,8 +27,7 @@ if (status == WINDOW_CLOSE) {
     if (top && (top.dialog_flags & (1 << DialogFlags.IS_QUIT))) {
         game_end();
     } else {
-        var dg = dialog_create_yes_or_no(noone, "Do you want to close the program?", dmu_dialog_quit);
-        dg.dialog_flags = dg.dialog_flags | (1 << DialogFlags.IS_QUIT);
+        momu_exit(noone);
     }
 }
 
