@@ -96,6 +96,7 @@ if (list.interactive && active) {
 			}
 			
             list.last_index = mn;
+            ui_activate(list);
             script_execute(list.onvaluechange, list);
         } else if (Controller.press_right) {
             if (list.allow_deselect) {

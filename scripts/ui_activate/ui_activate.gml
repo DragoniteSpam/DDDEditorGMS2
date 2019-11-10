@@ -4,4 +4,4 @@
 
 var thing = argument0;
 
-Stuff.map.ui.active_element = thing;
+Stuff.mode.ui.active_element = thing;

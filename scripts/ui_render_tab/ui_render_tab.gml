@@ -38,6 +38,7 @@ if (tab.interactive && dialog_is_active(tab.root)) {
     var inbounds = mouse_within_rectangle_determine(x1, y1, x2, y2, tab.adjust_view);
     if (inbounds) {
         if (Controller.release_left) {
+            ui_activate(tab);
             script_execute(tab.onmouseup, tab);
         }
         Stuff.element_tooltip = tab;

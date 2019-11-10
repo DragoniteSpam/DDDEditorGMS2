@@ -39,6 +39,7 @@ if (bar.interactive && dialog_is_active(bar.root)) {
     
     if (Controller.mouse_left && bar.clicked) {
         bar.value = clamp((mouse_x_view - x1) / (x2 - x1), 0, 1);
+        ui_activate(bar);
         script_execute(bar.onvaluechange, bar);
     } else {
         bar.clicked = false;

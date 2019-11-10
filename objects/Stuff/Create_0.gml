@@ -52,7 +52,7 @@ frames = 0;
 MOUSE_X = window_mouse_get_x();
 MOUSE_Y = window_mouse_get_y();
 mouse_3d_lock = false;
-mode = EDITOR_BASE_MODE;
+mode = noone;
 
 tf = ["False", "True"];
 on_off = ["Off", "On"];
@@ -458,10 +458,7 @@ game_battle_style = BattleStyles.TEAM_BASED;
 maps_included = false;
 
 // default editor mode
-switch (mode) {
-    case EditorModes.EDITOR_HEIGHTMAP: editor_mode_heightmap(); break;
-    default: editor_mode_3d(); break;
-}
+mode = EDITOR_BASE_MODE;
 
 // the autosave/load is nice, BUT it will make the game break if there's an error
 // in either of them. so either do a LOT of validation or have a way to clear the

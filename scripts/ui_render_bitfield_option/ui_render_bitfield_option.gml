@@ -23,6 +23,7 @@ if (bitfield.interactive && dialog_is_active(bitfield.root)) {
     var inbounds = mouse_within_rectangle_determine(x1, y1, x2, y2, bitfield.adjust_view);
     if (inbounds) {
         if (Controller.release_left) {
+            ui_activate(bitfield);
             script_execute(bitfield.onvaluechange, bitfield);
         }
         Stuff.element_tooltip = bitfield;

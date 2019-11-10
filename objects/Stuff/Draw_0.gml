@@ -1,10 +1,4 @@
-switch (mode) {
-    case EditorModes.EDITOR_3D: script_execute(map.render, map); break;
-    case EditorModes.EDITOR_EVENT: script_execute(event.render, event); break;
-    case EditorModes.EDITOR_DATA: script_execute(data.render, data); break;
-    case EditorModes.EDITOR_ANIMATION: script_execute(animation.render, animation); break;
-    case EditorModes.EDITOR_HEIGHTMAP: script_execute(terrain.render, terrain); break;
-}
+script_execute(mode.render, mode);
 
 // these shouldn't be attached to any one view or anything
 // would put this in the draw gui event except i dont know what would

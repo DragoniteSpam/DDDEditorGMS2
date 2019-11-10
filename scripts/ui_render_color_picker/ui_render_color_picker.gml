@@ -43,6 +43,7 @@ if (picker.interactive && dialog_is_active(picker.root)) {
     var inbounds = mouse_within_rectangle_determine(vx1, vy1, vx2, vy2, picker.adjust_view);
     if (inbounds) {
         if (Controller.release_left) {
+            ui_activate(picker);
             var dialog = dialog_create_color_picker_options(picker, picker.value, uivc_color_picker_reflect);
             dialog.el_picker.alpha = picker.alpha;
             dialog.el_picker.allow_alpha = picker.allow_alpha;

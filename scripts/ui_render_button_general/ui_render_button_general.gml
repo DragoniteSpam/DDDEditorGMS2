@@ -36,6 +36,7 @@ if (enabled) {
         draw_rectangle_colour(x1, y1, x2, y2, c_ui, c_ui, c_ui, c_ui, false);
         if (Controller.release_left) {
             Controller.release_left = false;
+            ui_activate(thing);
             script_execute(onmouseup, thing);
         }
         Stuff.element_tooltip = thing;

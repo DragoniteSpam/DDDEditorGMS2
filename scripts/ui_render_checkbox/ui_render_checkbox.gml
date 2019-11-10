@@ -46,6 +46,7 @@ if (checkbox.interactive && dialog_is_active(checkbox.root)) {
     if (inbounds) {
         if (Controller.release_left) {
             checkbox.value = !checkbox.value;
+            ui_activate(checkbox);
             script_execute(checkbox.onvaluechange, checkbox);
         }
         Stuff.element_tooltip = checkbox;

@@ -45,6 +45,7 @@ if (enabled && dialog_is_active(option.root.root)) {
     if (inbounds) {
         if (Controller.release_left) {
             option.root.value = option.value;
+            ui_activate(option);
             script_execute(option.root.onvaluechange, option);
         }
         Stuff.element_tooltip = option.root;

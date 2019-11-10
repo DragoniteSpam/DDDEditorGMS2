@@ -1,3 +1,3 @@
 /// @param UIThing
 
-return Stuff.map.ui.active_element == argument0;
+return Stuff.mode.ui.active_element == argument0;
