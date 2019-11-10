@@ -1,13 +1,5 @@
 event_inherited();
 
-render = editor_render_event;
-
-canvas_active_node = noone;
-canvas_active_node_index = 0;
-
-active = event_create("DefaultEvent");
-node_info = noone;
-
 x = setting_get("Event", "x", 0);
 y = setting_get("Event", "y", 100);
 z = setting_get("Event", "z", 100);
@@ -23,6 +15,15 @@ zup = setting_get("Event", "zup", 1);
 fov = setting_get("Event", "fov", 50);
 pitch = setting_get("Event", "pitch", 0);
 direction = setting_get("Event", "direction", 0);
+
+render = editor_render_event;
+save = editor_save_setting_event;
+
+canvas_active_node = noone;
+canvas_active_node_index = 0;
+
+active = event_create("DefaultEvent");
+node_info = noone;
 
 map = noone;
 

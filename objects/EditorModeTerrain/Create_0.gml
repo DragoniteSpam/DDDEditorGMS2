@@ -1,7 +1,5 @@
 event_inherited();
 
-render = editor_render_terrain;
-
 x = setting_get("Terrain", "x", 0);
 y = setting_get("Terrain", "y", 0);
 z = setting_get("Terrain", "z", 100);
@@ -17,6 +15,9 @@ zup = setting_get("Terrain", "zup", 1);
 fov = setting_get("Terrain", "fov", 50);
 pitch = setting_get("Terrain", "pitch", 0);
 direction = setting_get("Terrain", "direction", 0);
+
+render = editor_render_terrain;
+save = editor_save_setting_terrain;
 
 texture_name = "b_tileset_overworld_0.png";
 texture = terrain_create_texture_sprite(PATH_GRAPHICS + texture_name);

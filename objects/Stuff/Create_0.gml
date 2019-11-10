@@ -94,6 +94,7 @@ if (file_exists(FILE_SETTINGS)) {
     var settings_data = ds_map_create();
     var settings_config = ds_map_create();
     var settings_location = ds_map_create();
+    var settings_view = ds_map_create();
     ds_map_add_map(settings, "Map", settings_map);
     ds_map_add_map(settings, "Animation", settings_animation);
     ds_map_add_map(settings, "Terrain", settings_terrain);
@@ -102,7 +103,7 @@ if (file_exists(FILE_SETTINGS)) {
     ds_map_add_map(settings, "Config", settings_config);
     ds_map_add_map(settings, "Location", settings_location);
     ds_map_add_map(settings, "Selection", settings_config);
-    ds_map_add_map(settings, "View", settings_location);
+    ds_map_add_map(settings, "View", settings_view);
 }
 
 setting_color = setting_get("Config", "color", c_green);                    // BGR

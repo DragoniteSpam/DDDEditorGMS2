@@ -20,6 +20,7 @@ smf_light_add_direction(smf_vector_normalize([-1, -1, -1]), c_white, 1);
 
 render = editor_render_map;
 cleanup = editor_cleanup_map;
+save = editor_save_setting_map;
 changes = ds_list_create();
 
 under_cursor = noone;
