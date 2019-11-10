@@ -105,13 +105,14 @@ if (file_exists(FILE_SETTINGS)) {
     ds_map_add_map(settings, "View", settings_location);
 }
 
-setting_color = setting_get("Config", "color", c_green);                  // BGR
-setting_bezier_precision = setting_get("Config", "bezier", 6);            // preferably keep this between like 4 and 16ish?
-setting_backups = setting_get("Config", "backups", 2);                    // 0 (none) through 9 (why would you keep that many backups?)
-setting_autosave = setting_get("Config", "autosave", true);               // bool
-setting_npc_animate_rate = setting_get("Config", "npc-speed", 4);         // bool
-setting_code_extension = setting_get("Config", "code-ext", 0);            // 0 = txt, 1 = lua
-setting_normal_threshold = setting_get("Config", "normal-threshold", 30); // degrees
+setting_color = setting_get("Config", "color", c_green);                    // BGR
+setting_bezier_precision = setting_get("Config", "bezier", 6);              // preferably keep this between like 4 and 16ish?
+setting_backups = setting_get("Config", "backups", 2);                      // 0 (none) through 9 (why would you keep that many backups?)
+setting_autosave = setting_get("Config", "autosave", true);                 // bool
+setting_npc_animate_rate = setting_get("Config", "npc-speed", 4);           // bool
+setting_code_extension = setting_get("Config", "code-ext", 0);              // 0 = txt, 1 = lua
+setting_normal_threshold = setting_get("Config", "normal-threshold", 30);   // degrees
+setting_tooltip = setting_get("Config", "tooltip", true);                  // bool
 
 setting_location_ddd = setting_get("Location", "ddd", "./");
 setting_location_mesh = setting_get("Location", "mesh", "./");

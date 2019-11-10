@@ -23,6 +23,9 @@ var spacing = 16;
 
 var el_bezier = create_input(16, yy, "Bezier precision:", ew, eh, uivc_bezier_precision, Stuff.setting_bezier_precision, "0...9", validate_int, 1, 16, 2, vx1, vy1, vx2, vy2, dg);
 yy = yy + el_bezier.height + spacing;
+var el_tooltips = create_checkbox(16, yy, "Show Tooltips:", ew, eh, uivc_show_tooltips, Stuff.setting_tooltip, dg);
+el_tooltips.tooltip = "These things";
+yy = yy + el_tooltips.height + spacing;
 var el_backups = create_input(16, yy, "Backups: ", ew, eh, uivc_backups, Stuff.setting_backups, "0...9", validate_int, 1, 16, 2, vx1, vy1, vx2, vy2, dg);
 yy = yy + el_backups.height + spacing;
 var el_autosave = create_checkbox(16, yy, "Automatic Backups", ew, eh, uivc_autosave, Stuff.setting_autosave, dg);
@@ -45,7 +48,7 @@ var b_height = 32;
 var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Commit", b_width, b_height, fa_center, dmu_dialog_commit_preferences, dg);
 
 ds_list_add(dg.contents,
-    el_bezier, el_backups, el_autosave, el_npc_animation, el_ui_color,
+    el_bezier, el_tooltips, el_backups, el_autosave, el_npc_animation, el_ui_color,
     el_code_ext_text, el_code_ext,
     el_confirm
 );

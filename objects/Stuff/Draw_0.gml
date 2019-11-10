@@ -16,7 +16,7 @@ if (view_current == view_overlay) {
     }
     
     // @todo gml update try-catch, oh my god
-    if (Stuff.element_tooltip) {
+    if (Stuff.setting_tooltip && Stuff.element_tooltip) {
         instance_activate_object(Stuff.element_tooltip);
         if (instance_exists(Stuff.element_tooltip) && string_length(Stuff.element_tooltip.tooltip) > 0) {
             var str = Stuff.element_tooltip.tooltip;
@@ -32,6 +32,10 @@ if (view_current == view_overlay) {
             draw_rectangle_colour(
                 tooltip_x, tooltip_y, tooltip_x + str_width, tooltip_y + str_height,
                 c_tooltip, c_tooltip, c_tooltip, c_tooltip, false
+            );
+            draw_rectangle_colour(
+                tooltip_x, tooltip_y, tooltip_x + str_width, tooltip_y + str_height,
+                c_black, c_black, c_black, c_black, true
             );
             draw_text_ext(tooltip_x + str_buffer, tooltip_y + str_buffer, str, -1, str_width);
             draw_set_halign(halign);
