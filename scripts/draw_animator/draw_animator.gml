@@ -61,12 +61,12 @@ if (animation) {
         var kcolor = animation_get_tween_color(animation, i, moment);
         var kalpha = animation_get_tween_alpha(animation, i, moment);
         transform_set(kx, ky, kz, krx, kry, krz, ksx, ksy, ksz);
-        vertex_submit(grid_sphere, pr_linelist, -1);
+        vertex_submit(Stuff.graphics.grid_sphere, pr_linelist, -1);
     }
 }
 
 // "set" overwrites the previous transform anyway
 transform_set(0, 0, 0.5, 0, 0, 0, 1, 1, 1);
-vertex_submit(grid_centered, pr_linelist, -1);
+vertex_submit(Stuff.graphics.grid_centered, pr_linelist, -1);
 
 transform_reset();
