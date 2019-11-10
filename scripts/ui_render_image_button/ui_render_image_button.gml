@@ -31,6 +31,7 @@ if (button.interactive && dialog_is_active(button.root)) {
         if (Controller.release_left) {
             script_execute(button.onmouseup, button);
         }
+        Stuff.element_tooltip = button;
     }
 }
 
@@ -40,6 +41,8 @@ if (!button.image) {
     draw_set_color(button.color);
     draw_text_ext(tx, ty, string(button.text), -1, button.width);
 } else {
-    draw_sprite_general(button.image, button.index, 0, 0, min(button.width, sprite_get_width(button.image)),
-        min(button.height, sprite_get_height(button.image)), x1, y1, 1, 1, 0, color, color, color, color, 1);
+    draw_sprite_general(
+        button.image, button.index, 0, 0, min(button.width, sprite_get_width(button.image)),
+        min(button.height, sprite_get_height(button.image)), x1, y1, 1, 1, 0, color, color, color, color, 1
+    );
 }

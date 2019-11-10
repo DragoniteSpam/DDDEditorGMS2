@@ -25,5 +25,6 @@ if (bitfield.interactive && dialog_is_active(bitfield.root)) {
         if (Controller.release_left) {
             script_execute(bitfield.onvaluechange, bitfield);
         }
+        Stuff.element_tooltip = bitfield;
     }
 }

@@ -60,6 +60,7 @@ if (active) {
         if (Controller.release_left) {
             ui_activate(picker);
         }
+        Stuff.element_tooltip = picker;
     } else {
         if (Controller.press_left) {
             ui_activate(noone);

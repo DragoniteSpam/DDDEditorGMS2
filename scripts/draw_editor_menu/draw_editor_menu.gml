@@ -19,7 +19,7 @@ if (camera_controls) {
 
 gpu_set_cullmode(cull_noculling);
 
-script_execute(menu.render, menu, 0, yy);
+script_execute(Stuff.menu.render, Stuff.menu, 0, yy);
 
 // these are going to be uncommon and short-lived, so don't bother deactivating them.
 with (UINotification) {

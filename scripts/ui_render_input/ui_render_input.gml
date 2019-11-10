@@ -97,5 +97,6 @@ if (input.interactive && dialog_is_active(input.root)) {
             keyboard_string = input.value;
             ui_activate(input);
         }
+        Stuff.element_tooltip = input;
     }
 }

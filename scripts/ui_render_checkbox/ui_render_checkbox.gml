@@ -48,5 +48,6 @@ if (checkbox.interactive && dialog_is_active(checkbox.root)) {
             checkbox.value = !checkbox.value;
             script_execute(checkbox.onvaluechange, checkbox);
         }
+        Stuff.element_tooltip = checkbox;
     }
 }

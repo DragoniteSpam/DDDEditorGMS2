@@ -47,5 +47,6 @@ if (picker.interactive && dialog_is_active(picker.root)) {
             dialog.el_picker.alpha = picker.alpha;
             dialog.el_picker.allow_alpha = picker.allow_alpha;
         }
+        Stuff.element_tooltip = picker;
     }
 }

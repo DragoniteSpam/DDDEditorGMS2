@@ -30,8 +30,11 @@ draw_sprite(spr_slider, 0, bar_x, mid_yy);
 if (bar.interactive && dialog_is_active(bar.root)) {
     var inbounds = mouse_within_rectangle_determine(x1, y1, x2, y2, bar.adjust_view);
     
-    if (Controller.press_left && inbounds) {
-        bar.clicked = true;
+    if (inbounds) {
+        if (Controller.press_left) {
+            bar.clicked = true;
+        }
+        Stuff.element_tooltip = bar;
     }
     
     if (Controller.mouse_left && bar.clicked) {

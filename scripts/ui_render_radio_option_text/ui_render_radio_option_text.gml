@@ -47,5 +47,6 @@ if (enabled && dialog_is_active(option.root.root)) {
             option.root.value = option.value;
             script_execute(option.root.onvaluechange, option);
         }
+        Stuff.element_tooltip = option;
     }
 }

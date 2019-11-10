@@ -40,5 +40,6 @@ if (tab.interactive && dialog_is_active(tab.root)) {
         if (Controller.release_left) {
             script_execute(tab.onmouseup, tab);
         }
+        Stuff.element_tooltip = tab;
     }
 }

@@ -48,6 +48,7 @@ dg.el_dual_layer = el_dual_layer;
 yy = yy + el_dual_layer.height + spacing;
 
 var el_scale = create_input(col1_x, yy, "Heightmap Scale:", ew, eh, null, "16", "1...255", validate_int, 1, 255, 3, vx1, vy1, vx2, vy2, dg);
+el_scale.tooltip = "The brightest point on the heightmap will correspond to this value (in most cases a value of 10 or 16 will be sufficient)";
 dg.el_scale = el_scale;
 
 yy = yy + el_height.height + spacing;

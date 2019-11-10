@@ -110,6 +110,7 @@ if (inbounds) {
     } else if (Controller.press_right) {
         script_execute(selector.onvaluechangebackwards, selector, tx, ty);
     }
+    Stuff.element_tooltip = selector;
 }
     
 var base_x1 = selector.x;

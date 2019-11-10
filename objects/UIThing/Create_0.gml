@@ -2,9 +2,9 @@ render = ui_render;
 contents = ds_list_create();
 root = noone;
 enabled = true;
-
 interactive = true;
 outline = true;             // not used in all element types
+tooltip = "";               // not used by all element types
 
 text = "thing";
 width = 128;

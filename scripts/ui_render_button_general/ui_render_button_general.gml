@@ -38,6 +38,7 @@ if (enabled) {
             Controller.release_left = false;
             script_execute(onmouseup, thing);
         }
+        Stuff.element_tooltip = thing;
     }
 }
 

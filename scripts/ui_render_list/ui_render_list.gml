@@ -121,6 +121,7 @@ if (list.interactive && active) {
                 }
             }
         }
+        Stuff.element_tooltip = list;
     }
 }
 

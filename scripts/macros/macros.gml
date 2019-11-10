@@ -97,6 +97,7 @@
 #macro c_ev_ghost 0x0099cc
 #macro c_ev_init 0xffcc99
 #macro c_magenta 0xff00ff
+#macro c_tooltip 0xccffff
 #macro c_ui_select 0xffb8ac
 #macro c_ui 0xebebeb
 
