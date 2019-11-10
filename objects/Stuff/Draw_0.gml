@@ -16,7 +16,7 @@ if (view_current == view_overlay) {
     }
     
     // @todo gml update try-catch, oh my god
-    if (Stuff.setting_tooltip && Stuff.element_tooltip) {
+    if (Stuff.setting_tooltip && Stuff.element_tooltip && (Stuff.element_tooltip_t > -1 && (Stuff.time - Stuff.element_tooltip_t > 1))) {
         instance_activate_object(Stuff.element_tooltip);
         if (instance_exists(Stuff.element_tooltip) && string_length(Stuff.element_tooltip.tooltip) > 0) {
             var str = Stuff.element_tooltip.tooltip;
@@ -44,6 +44,13 @@ if (view_current == view_overlay) {
         }
     }
     
+    if (Stuff.element_tooltip_previous && !Stuff.element_tooltip_t) {
+        Stuff.element_tooltip_t = -1;
+    } else if (!Stuff.element_tooltip_previous && Stuff.element_tooltip) {
+        Stuff.element_tooltip_t = Stuff.time;
+    }
+    
+    Stuff.element_tooltip_previous = Stuff.element_tooltip;
     Stuff.element_tooltip = noone;
 }
 

@@ -23,7 +23,7 @@ var spacing = 16;
 
 var el_bezier = create_input(16, yy, "Bezier precision:", ew, eh, uivc_bezier_precision, Stuff.setting_bezier_precision, "0...9", validate_int, 1, 16, 2, vx1, vy1, vx2, vy2, dg);
 yy = yy + el_bezier.height + spacing;
-var el_tooltips = create_checkbox(16, yy, "Show Tooltips:", ew, eh, uivc_show_tooltips, Stuff.setting_tooltip, dg);
+var el_tooltips = create_checkbox(16, yy, "Show Tooltips", ew, eh, uivc_show_tooltips, Stuff.setting_tooltip, dg);
 el_tooltips.tooltip = "These things";
 yy = yy + el_tooltips.height + spacing;
 var el_backups = create_input(16, yy, "Backups: ", ew, eh, uivc_backups, Stuff.setting_backups, "0...9", validate_int, 1, 16, 2, vx1, vy1, vx2, vy2, dg);

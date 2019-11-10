@@ -439,6 +439,8 @@ mesh_scale = 1;
 error_log_messages = ds_list_create();
 dialogs = ds_list_create();
 element_tooltip = noone;
+element_tooltip_previous = noone;
+element_tooltip_t = -1;
 
 // global game settings
 
