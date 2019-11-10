@@ -414,25 +414,6 @@ instance_deactivate_object(UIThing);
 stuff_to_destroy = ds_queue_create();
 #endregion
 
-#region help contents
-
-enum HelpPages {
-    OVERVIEW, WHATSNEW, GETTINGSTARTED, SYSTEMREQUIREMENTS,
-    EDITORCOMPONENTS, TABS, MENUS,
-    TAB_GENERAL, TAB_ENTITY, TAB_TILE, TAB_MESH, TAB_PAWN, TAB_EFFECT, TAB_EVENT,
-    TAB_MESH_EDITOR, TAB_TILE_EDITOR, TAB_AUTOTILE_EDITOR,
-    AUTOTILES,
-}
-
-help_pages = [
-    "overview", "whatsnew", "gettingstarted", "systemrequirements",
-    "editorcomponents", "tabs", "menus",
-    "general", "entityinstances", "tileinstances", "meshinstances", "pawninstances", "effectinstances", "eventinstances",
-    "mesheditor", "tileeditor", "autotileeditor",
-    "autotiles",
-];
-#endregion
-
 #region end of step actions
 schedule_rebuild_master_texture = false;
 schedule_view_master_texture = false;
