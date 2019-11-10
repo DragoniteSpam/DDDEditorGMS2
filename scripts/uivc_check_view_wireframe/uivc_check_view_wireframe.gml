@@ -1,6 +1,6 @@
-/// @param UIThing
+/// @param UICheckbox
 
-var thing = argument0;
+var checkbox = argument0;
 
-Stuff.setting_view_wireframe = thing.value;
+Stuff.setting_view_wireframe = checkbox.value;
 setting_set("View", "wireframe", Stuff.setting_view_wireframe);
