@@ -86,6 +86,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy = yy + element.height + spacing;
     
     element = create_radio_array(legal_x + spacing, yy, "Mode:", col_width, element_height, ui_input_terrain_set_mode, mode.mode, t_general);
+    element.tooltip = "Edit the terrain's shape, texture or color. You may also set the mode by clicking the button at the top of each of the respective tabs.";
     create_radio_array_options(element, ["Deform", "Texture", "Paint"]);
     t_general.element_mode = element;
     ds_list_add(t_general.contents, element);
@@ -93,6 +94,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy = yy + ui_get_radio_array_height(element) + spacing;
     
     element = create_radio_array(legal_x + spacing, yy, "Brush shape:", col_width, element_height, ui_input_terrain_set_brush_shape, mode.style, t_general);
+    element.tooltip = "In case you want to use a different shape to edit terrain.";
     create_radio_array_options(element, ["Block", "Circle"]);
     t_general.element_brush_shape = element;
     ds_list_add(t_general.contents, element);
@@ -106,6 +108,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy = yy + element.height + spacing;
     
     element = create_progress_bar(legal_x + spacing, yy, col_width, element_height, ui_input_terrain_set_brush_radius, 4, normalize_correct(mode.radius, 0, 1, mode.brush_min, mode.brush_max), t_general);
+    element.tooltip = "A larger brush will allow you to edit more terrain at once, and a smaller one will give you more precision.";
     t_general.element_brush_radius_bar = element;
     ds_list_add(t_general.contents, element);
     
@@ -142,24 +145,28 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy = yy + element.height + spacing;
     
     element = create_input(col2_x, yy, "Export scale:", col_width, element_height, ui_input_terrain_save_scale, mode.save_scale, "0.01...100", validate_double, 0.01, 100, 4, vx1 + 32, vy1, vx2, vy2, t_general);
+    element.tooltip = "If you want to export final models with a different scale, use this option.";
     t_general.element_save_scale = element;
     ds_list_add(t_general.contents, element);
     
     yy = yy + element.height + spacing;
     
     element = create_checkbox(col2_x, yy, "Export: all faces?", col_width, element_height, ui_input_terrain_export_all, mode.export_all, t_general);
+    element.tooltip = "Most of the time you probably only want to export triangles that aren't flat on the ground, but you can force it to export all of them instead. Note: this will produce very large files and will take quite a lot longer to process, for obvious reasons.";
     t_general.element_save_all_faces = element;
     ds_list_add(t_general.contents, element);
     
     yy = yy + element.height + spacing;
     
-    element = create_checkbox(col2_x, yy, "OBJ: swap Z up?", col_width, element_height, ui_input_terrain_export_swap_zup, mode.export_swap_zup, t_general);
+    element = create_checkbox(col2_x, yy, "OBJ: use Y up?", col_width, element_height, ui_input_terrain_export_swap_zup, mode.export_swap_zup, t_general);
+    element.tooltip = "Some 3D model programs (cough cough, Blender) use the +Y axis as the Up vector by default.";
     t_general.element_swap_zup = element;
     ds_list_add(t_general.contents, element);
     
     yy = yy + element.height + spacing;
     
     element = create_checkbox(col2_x, yy, "OBJ: swap UVs?", col_width, element_height, ui_input_terrain_export_swap_uvs, mode.export_swap_uvs, t_general);
+    element.tooltip = "Game Maker maps UV coordinates upside-down, compared to some 3D model programs. Use this option to convert to that.";
     t_general.element_swap_uvs = element;
     ds_list_add(t_general.contents, element);
     
@@ -189,7 +196,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     #endregion
     
-    #region tab: heightmap
+    #region tab: deform
     var yy = legal_y + spacing;
     
     element = create_button(legal_x + spacing, yy, "Set Mode: Deform", col_width, element_height, fa_center, uivc_terrain_set_mode_heightmap, t_general);
@@ -203,6 +210,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy = yy + element.height + spacing;
     
     element = create_radio_array(legal_x + spacing, yy, "Deformation mode:", col_width, element_height, ui_input_terrain_set_deform_mode, mode.submode, t_heightmap);
+    element.tooltip = "The method which you would like to use to mold the terrain.";
     create_radio_array_options(element, ["Mound", "Average", "Flat Average", "Zero (Erase)"]);
     t_heightmap.element_deform_mode = element;
     ds_list_add(t_heightmap.contents, element);
@@ -216,6 +224,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy = yy + element.height + spacing;
     
     element = create_progress_bar(legal_x + spacing, yy, col_width, element_height, ui_input_terrain_set_deformation_rate, 4, normalize_correct(mode.rate, 0, 1, mode.rate_min, mode.rate_max), t_heightmap);
+    element.tooltip = "A smaller rate will give you more precision, and a larger rate will make the deformation more dramatic.";
     t_heightmap.element_deform_rate_bar = element;
     ds_list_add(t_heightmap.contents, element);
     
@@ -278,6 +287,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy = yy + element.height + spacing;
     
     element = create_progress_bar(legal_x + spacing, yy, col_width, element_height, ui_input_terrain_set_paint_strength, 4, normalize_correct(mode.paint_strength, 0, 1, mode.paint_strength_min, mode.paint_strength_max), t_paint);
+    element.tooltip = "A lower strength value will cause the color to blend with the existing color, and a greater one will cause it to replace the existing color.";
     t_paint.element_paint_strength_bar = element;
     ds_list_add(t_paint.contents, element);
     
@@ -290,12 +300,14 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy = yy + element.height + spacing;
     
     element = create_progress_bar(legal_x + spacing, yy, col_width, element_height, ui_input_terrain_set_paint_precision, 4, normalize_correct(mode.paint_precision, 0, 1, mode.paint_precision_min, mode.paint_precision_max), t_paint);
+    element.tooltip = "Exporting OBJ will save each paint color as a different Material (even ones that are only slightly different); you may instead wish to group similar colors together into one Material.";
     t_paint.element_paint_precision_bar = element;
     ds_list_add(t_paint.contents, element);
     
     yy = yy + element.height + spacing;
     
     element = create_color_picker(legal_x + spacing, yy, "Color:", col_width, element_height, ui_input_terrain_set_paint_color, mode.paint_color, vx1, vy1, vx2, vy2, t_paint);
+    element.tooltip = "I really hope you enjoy this color picker because it was probably my favorite UI element to work on.";
     element.allow_alpha = true;
     t_paint.element_paint_color = element;
     ds_list_add(t_paint.contents, element);
