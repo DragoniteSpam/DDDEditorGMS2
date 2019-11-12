@@ -27,7 +27,7 @@ with (instance_create_depth(argument[0], argument[1], 0, UIInputCode)) {
     
     root = argument[11];
     
-    key = (argument_count > 12) ? argument[12] : key;
+    key = (argument_count > 12) ? argument[12] : "";
     
     return id;
 }

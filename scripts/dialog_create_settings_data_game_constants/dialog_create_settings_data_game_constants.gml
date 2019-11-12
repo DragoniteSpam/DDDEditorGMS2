@@ -47,8 +47,10 @@ dg.el_name = el_name;
 yy = yy + el_name.height + spacing;
 
 var el_type = create_radio_array(c2 + 32, yy, "Type:", ew, eh, uivc_input_constant_type, 0, dg);
-create_radio_array_options(el_type, ["Int", "Enum", "Float", "String", "Boolean", "Data", "Code", "Color", "Mesh", "Tileset", "Tile", "Autotile",
-    "Audio (BGM)", "Audio (SE)", "Animation"]);
+create_radio_array_options(el_type, [
+    "Int", "Enum", "Float", "String", "Boolean", "Data", "Code", "Color", "Mesh", "Tileset", "Tile", "Autotile",
+    "Audio (BGM)", "Audio (SE)", "Animation"
+]);
 el_type.contents[| DataTypes.TILE].interactive = false;
 el_type.interactive = false;
 dg.el_type = el_type;

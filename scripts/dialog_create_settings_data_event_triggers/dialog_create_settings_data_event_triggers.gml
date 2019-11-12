@@ -48,6 +48,7 @@ var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Do
 
 ds_list_add(dg.contents,
     el_list, el_name, el_add, el_remove,
-    el_confirm);
+    el_confirm
+);
 
 return dg;
