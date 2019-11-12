@@ -1,3 +1,5 @@
-/// @param UIThing
+/// @param UICheckbox
 
-Stuff.game_battle_style = argument0.value;
+var checkbox = argument0;
+
+Stuff.game_battle_style = checkbox.value;

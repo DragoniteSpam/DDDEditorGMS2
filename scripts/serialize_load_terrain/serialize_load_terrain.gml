@@ -1,8 +1,10 @@
 /// @param buffer
 /// @param version
+/// @param [set-include-terrain?]
 
-var buffer = argument0;
-var version = argument1;
+var buffer = argument[0];
+var version = argument[1];
+var set_include_terrain = (argument_count > 2) ? argument[2] : false;
 var terrain = Stuff.terrain;
 
 buffer_read(buffer, buffer_u32);
@@ -57,4 +59,8 @@ repeat (n_terrain) {
     terrain.terrain_buffer_data = buffer_read_buffer(buffer, data_length);
     
     terrain_refresh_vertex_buffer(terrain);
+}
+
+if (set_include_terrain) {
+    Stuff.game_include_terrain = true;
 }

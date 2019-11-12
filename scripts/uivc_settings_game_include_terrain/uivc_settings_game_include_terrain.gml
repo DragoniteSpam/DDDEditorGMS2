@@ -2,4 +2,4 @@
 
 var checkbox = argument0;
 
-Stuff.game_player_grid = checkbox.value;
+Stuff.game_include_terrain = checkbox.value;

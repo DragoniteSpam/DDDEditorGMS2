@@ -454,6 +454,8 @@ game_starting_direction = 0;
 game_player_grid = true;
 game_battle_style = BattleStyles.TEAM_BASED;
 
+game_include_terrain = false;
+
 // hacky workarounds
 maps_included = false;
 

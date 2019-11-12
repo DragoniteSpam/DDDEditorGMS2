@@ -26,7 +26,7 @@ if (string_length(fn) > 0) {
     serialize_save_global_meta(buffer);
     serialize_save_datadata(buffer);
     serialize_save_animations(buffer);
-    serialize_save_terrain(buffer);
+    if (Stuff.game_include_terrain) serialize_save_terrain(buffer);
     
     // events may depend on some other data being initialized and i don't feel like
     // going back and doing validation because that sounds terrible
