@@ -46,6 +46,7 @@ if (!surface_exists(mode.depth_surface_base) || surface_get_width(mode.depth_sur
 }
 
 // base terrain layer
+
 surface_set_target(mode.depth_surface_base);
 
 camera_set_view_mat(camera, view);
@@ -66,6 +67,7 @@ transform_set(0, 0, 0, 0, 0, 0, mode.view_scale, mode.view_scale, mode.view_scal
 vertex_submit(mode.terrain_buffer, pr_trianglelist, sprite_get_texture(mode.texture, 0));
 
 // top terrain layer
+/*
 surface_set_target(mode.depth_surface_top);
 
 camera_set_view_mat(camera, view);
@@ -83,9 +85,9 @@ shader_set_uniform_f_array(shader_get_uniform(shd_basic, "lightData"), [
 ]);
 
 vertex_submit(mode.terrain_buffer, pr_trianglelist, sprite_get_texture(mode.texture, 0));
-
+*/
 surface_reset_target();
-surface_reset_target();
+//surface_reset_target();
 
 shader_reset();
 transform_reset();
