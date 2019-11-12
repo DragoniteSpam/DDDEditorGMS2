@@ -9,4 +9,3 @@ home_row_y = 96;
 tabs = ds_list_create();
 
 active_tab = noone;
-active_element = noone;

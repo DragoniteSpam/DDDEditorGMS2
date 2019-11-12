@@ -1,4 +1,4 @@
-Stuff.mode = EditorModes.EDITOR_DATA;
+Stuff.mode = Stuff.data;
 
 view_set_visible(view_fullscreen, true);
 view_set_visible(view_3d, false);

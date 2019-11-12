@@ -25,6 +25,6 @@ if (button.root.changed && ds_list_size(Stuff.original_data) > 0) {
 }
 
 // but only if you're already in the data editor mode
-if (Stuff.mode == EditorModes.EDITOR_DATA) {
+if (Stuff.mode == Stuff.data) {
     editor_mode_3d();
 }

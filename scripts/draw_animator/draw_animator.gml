@@ -7,7 +7,7 @@ var map = Stuff.map.active_map;
 var map_contents = map.contents;
 
 if (!Stuff.mouse_3d_lock && mouse_within_view(view_3d) && !dialog_exists()) {
-    control_animator();
+    control_animator(mode);
 }
 
 gpu_set_zwriteenable(true);

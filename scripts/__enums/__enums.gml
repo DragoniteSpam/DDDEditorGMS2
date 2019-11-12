@@ -107,15 +107,6 @@ enum BattleStyles {
     GRID_BASED,             // boundaries are not respected
 }
 
-enum EditorModes {
-    EDITOR_3D,
-    EDITOR_EVENT,
-    EDITOR_DATA,
-    EDITOR_ANIMATION,
-    EDITOR_HEIGHTMAP,
-}
-
-
 enum TileSelectorDisplayMode {
     PASSAGE,
     PRIORITY,
