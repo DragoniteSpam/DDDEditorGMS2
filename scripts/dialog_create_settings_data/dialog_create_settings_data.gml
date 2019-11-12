@@ -45,9 +45,6 @@ yy = yy_base;
 
 var el_global_title = create_text(col2_x, yy, "Variables and Stuff", ew, eh, fa_left, dw / 2, dg);
 yy = yy + el_global_title.height + spacing;
-var el_constants = create_button(col2_x, yy, "Global Constants", ew, eh, fa_center, not_yet_implemented, dg);
-el_constants.tooltip = "";
-yy = yy + el_constants.height + spacing;
 var el_variables = create_button(col2_x, yy, "Global Variables", ew, eh, fa_center, dialog_create_settings_data_variables, dg);
 el_variables.tooltip = "A list of built-in variables which you may wish to modify during the game. You may set their default values here.";
 yy = yy + el_variables.height + spacing;
@@ -72,7 +69,7 @@ var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Do
 ds_list_add(dg.contents,
     el_gameplay_title, el_gameplay_grid, el_player_start, el_battle_type,
     el_edit_title, el_edit_include_terrain,
-    el_global_title, el_constants, el_variables, el_switches, el_event_triggers, el_game_constants,
+    el_global_title, el_variables, el_switches, el_event_triggers, el_game_constants,
     el_confirm
 );
 
