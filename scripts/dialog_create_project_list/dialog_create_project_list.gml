@@ -33,10 +33,13 @@ dg.el_list = el_list;
 yy = yy + ui_get_list_height(el_list) + spacing;
 
 var el_load = create_button(16, yy, "Load", ew, eh, fa_center, omu_project_load, dg);
+el_load.tooltip = "Alternatively, double-click on the entry in the list.";
 yy = yy + el_load.height + spacing;
 var el_remove = create_button(16, yy, "Remove", ew, eh, fa_center, omu_project_remove, dg);
+el_remove.tooltip = "Removes the project from this list. If you still have it saved on your computer it will not be deleted, but you will need to use Open Other if you want to edit it again.";
 yy = yy + el_remove.height + spacing;
 var el_other = create_button(16, yy, "Open Other", ew, eh, fa_center, omu_project_open, dg);
+el_other.tooltip = "Open a .dddd game data file somehwere on your computer.";
 yy = yy + el_other.height + spacing;
 
 yy = yy_base;
