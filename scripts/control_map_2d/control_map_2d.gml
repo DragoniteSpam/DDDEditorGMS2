@@ -96,16 +96,16 @@ if (!keyboard_check(vk_control)) {
     var yspeed = 0;
     
     if (keyboard_check(vk_up) || keyboard_check(ord("W"))) {
-        yspeed = yspeed - mspd * Stuff.dt;
+        yspeed = yspeed - mspd;
     }
     if (keyboard_check(vk_down) || keyboard_check(ord("S"))) {
-        yspeed = yspeed + mspd * Stuff.dt;
+        yspeed = yspeed + mspd;
     }
     if (keyboard_check(vk_left) || keyboard_check(ord("A"))) {
-        xspeed = xspeed - mspd * Stuff.dt;
+        xspeed = xspeed - mspd;
     }
     if (keyboard_check(vk_right) || keyboard_check(ord("D"))) {
-        xspeed = xspeed + mspd * Stuff.dt;
+        xspeed = xspeed + mspd;
     }
     if (CONTORL_3D_LOOK) {
         var camera_cx = view_get_xport(view_current) + view_get_wport(view_current) / 2;

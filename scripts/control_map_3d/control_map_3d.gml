@@ -87,22 +87,22 @@ if (!keyboard_check(vk_control)) {
 	var zspeed = 0;
     
 	if (keyboard_check(vk_up) || keyboard_check(ord("W"))) {
-	    xspeed = xspeed + dcos(mode.direction) * mspd * Stuff.dt;
-	    yspeed = yspeed - dsin(mode.direction) * mspd * Stuff.dt;
-	    zspeed = zspeed - dsin(mode.pitch) * mspd * Stuff.dt;
+	    xspeed = xspeed + dcos(mode.direction) * mspd;
+	    yspeed = yspeed - dsin(mode.direction) * mspd;
+	    zspeed = zspeed - dsin(mode.pitch) * mspd;
 	}
 	if (keyboard_check(vk_down) || keyboard_check(ord("S"))) {
-	    xspeed = xspeed - dcos(mode.direction) * mspd * Stuff.dt;
-	    yspeed = yspeed + dsin(mode.direction) * mspd * Stuff.dt;
-	    zspeed = zspeed + dsin(mode.pitch) * mspd * Stuff.dt;
+	    xspeed = xspeed - dcos(mode.direction) * mspd;
+	    yspeed = yspeed + dsin(mode.direction) * mspd;
+	    zspeed = zspeed + dsin(mode.pitch) * mspd;
 	}
 	if (keyboard_check(vk_left) || keyboard_check(ord("A"))) {
-	    xspeed = xspeed - dsin(mode.direction) * mspd * Stuff.dt;
-	    yspeed = yspeed - dcos(mode.direction) * mspd * Stuff.dt;
+	    xspeed = xspeed - dsin(mode.direction) * mspd;
+	    yspeed = yspeed - dcos(mode.direction) * mspd;
 	}
 	if (keyboard_check(vk_right) || keyboard_check(ord("D"))) {
-	    xspeed = xspeed + dsin(mode.direction) * mspd * Stuff.dt;
-	    yspeed = yspeed + dcos(mode.direction) * mspd * Stuff.dt;
+	    xspeed = xspeed + dsin(mode.direction) * mspd;
+	    yspeed = yspeed + dcos(mode.direction) * mspd;
 	}
 	if (CONTORL_3D_LOOK) {
 		var camera_cx = view_get_xport(view_current) + view_get_wport(view_current) / 2;

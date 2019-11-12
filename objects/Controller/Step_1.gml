@@ -23,50 +23,36 @@ double_right = false;
 double_middle = false;
 double_wasd = false;
 
+time_wasd_seconds = (t - time_wasd) / MILLION;
+
 if (press_left) {
-    if ((t - last_time_left) < double_click_threshold) {
+    if ((t - time_left) < double_click_threshold) {
         double_left = true;
     }
     time_left = t;
-    last_time_left = t;
 }
 if (press_right) {
-    if ((t - last_time_right) < double_click_threshold) {
+    if ((t - time_right) < double_click_threshold) {
         double_right = true;
     }
     time_right = t;
-    last_time_right = t;
 }
 if (press_middle) {
-    if ((t - last_time_middle) < double_click_threshold) {
+    if ((t - time_middle) < double_click_threshold) {
         double_middle = true;
     }
     time_middle = t;
-    last_time_middle = t;
 }
 if (press_wasd) {
-    if ((t - last_time_wasd) < double_click_threshold) {
-        double_wasd = true;
-    }
     time_wasd = t;
-    last_time_wasd = t;
 }
 
-time_wasd_seconds = max(0, t - last_time_wasd) / MILLION;
+if (release_left) time_left = -1;
+if (release_right) time_right = -1;
+if (release_middle) time_middle = -1;
+if (release_wasd) time_wasd = -1;
 
-if (release_left) {
-    time_left = -1;
-}
-if (release_right) {
-    time_right = -1;
-}
-if (release_middle) {
-    time_middle = -1;
-}
-if (release_wasd) {
-    time_wasd = -1;
-    time_wasd_seconds = -1;
-}
+if (!wasd) time_wasd_seconds = -1;
 
 escape = keyboard_check(vk_escape);
 press_escape = keyboard_check_pressed(vk_escape);

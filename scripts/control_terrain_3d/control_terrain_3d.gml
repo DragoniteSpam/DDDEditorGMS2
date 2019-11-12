@@ -53,7 +53,7 @@ if (!keyboard_check(vk_control)) {
 	var xspeed = 0;
 	var yspeed = 0;
 	var zspeed = 0;
-    debug(mspd)
+    //debug(mspd)
 	if (keyboard_check(vk_up) || keyboard_check(ord("W"))) {
 	    xspeed = xspeed + dcos(Stuff.terrain.direction) * mspd;
 	    yspeed = yspeed - dsin(Stuff.terrain.direction) * mspd;
