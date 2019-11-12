@@ -3000,14 +3000,6 @@
             }
         },
         {
-            "Key": "324e9aae-7c56-4986-bf51-924b1cb32e70",
-            "Value": {
-                "id": "72a1218e-e47e-47ff-b054-311394ee84dd",
-                "resourcePath": "scripts\\setting_save_string\\setting_save_string.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "327803e3-4032-4de1-9a4a-831df9458b0a",
             "Value": {
                 "id": "5fad73ef-eaed-4c76-b810-e28758ddc9b5",
@@ -9312,14 +9304,6 @@
             }
         },
         {
-            "Key": "9a116c33-54c1-47ba-aef5-073528f84351",
-            "Value": {
-                "id": "3cea4662-0f69-48bc-8a47-09690333d8b8",
-                "resourcePath": "scripts\\setting_save_real\\setting_save_real.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "9a1e76d1-b2be-4cb8-9c44-7c2ede44cb9b",
             "Value": {
                 "id": "890ba762-c6e9-4a66-9b43-847dc79c22b1",
@@ -11396,14 +11380,6 @@
             "Value": {
                 "id": "3c3c3131-ba80-43ab-83ba-ee990cf06b22",
                 "resourcePath": "scripts\\uivc_bitfield_selection_mask\\uivc_bitfield_selection_mask.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "bef7adaa-60e2-4931-8a93-06ce7ebac3ba",
-            "Value": {
-                "id": "cfd2adb5-ef41-4924-8e99-e0787b1389ca",
-                "resourcePath": "scripts\\dmu_dialog_commit_preferences\\dmu_dialog_commit_preferences.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -15774,7 +15750,6 @@
         "1bdacbe1-7047-48c8-ba5e-ddc2a07a12f1",
         "1ab00827-899f-4239-afaf-2282f797fb49",
         "fd0bf1e1-e02f-45d5-bd76-b9b20ea8c104",
-        "bef7adaa-60e2-4931-8a93-06ce7ebac3ba",
         "7ffc85e3-ea46-4255-b83a-d72fed3feaf1",
         "8bc49c02-d5a7-41a6-9b0d-9573c2b2beb1",
         "4373c906-fe17-4608-af97-8721dadcb184",
@@ -16500,8 +16475,6 @@
         "97e4658f-44e8-460b-b750-05c209938cc2",
         "3959eac7-bfba-4fe1-b308-9ab3604fb077",
         "d6d1a264-816c-460f-91db-254dbe0f3701",
-        "9a116c33-54c1-47ba-aef5-073528f84351",
-        "324e9aae-7c56-4986-bf51-924b1cb32e70",
         "75df0e3b-97ec-40cd-be24-05864fea5888",
         "589affe2-ae43-4754-8bc0-898c03bc332d",
         "809c965f-b63e-45a5-beac-da1abeba927b",
