@@ -12,7 +12,7 @@
         "fcf970ff-305d-4ebe-9975-49961903f151"
     ],
     "filterType": "GMScript",
-    "folderName": "load",
+    "folderName": "save",
     "isDefaultView": false,
     "localisedFolderName": ""
 }

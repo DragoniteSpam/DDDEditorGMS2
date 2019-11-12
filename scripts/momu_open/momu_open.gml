@@ -1,6 +1,6 @@
 /// @param MenuElement
 
-var catch = argument0;
+var element = argument0;
 
 menu_activate(noone);
 

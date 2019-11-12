@@ -49,9 +49,11 @@ yy = yy + el_summary_todo.height + spacing;
 
 var el_never_mind = create_button(dw /2 - b_width / 2, dh - 32 - b_height / 2, "Create New", b_width, b_height, fa_center, dmu_dialog_commit, dg);
 
-ds_list_add(dg.contents, el_list,
+ds_list_add(dg.contents,
+    el_list,
     el_load, el_remove, el_other,
 	el_summary, el_summary_todo,
-	el_never_mind);
+	el_never_mind
+);
 
 return dg;
