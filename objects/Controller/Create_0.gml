@@ -24,6 +24,11 @@ time_middle = -1;
 time_wasd = -1;
 time_wasd_seconds = -1;
 
+// for measuring time between clicks
+last_time_left = -1;
+last_time_right = -1;
+last_time_middle = -1;
+
 // special keys that get special treatment
 escape = false;
 press_escape = false;

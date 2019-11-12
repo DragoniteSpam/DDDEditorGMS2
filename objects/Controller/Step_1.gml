@@ -24,19 +24,19 @@ double_middle = false;
 double_wasd = false;
 
 if (press_left) {
-    if ((t - time_left) < double_click_threshold) double_left = true;
+    if ((t - last_time_left) < double_click_threshold) double_left = true;
     time_left = t;
+    last_time_left = t;
 }
 if (press_right) {
-    if ((t - time_right) < double_click_threshold) double_right = true;
+    if ((t - last_time_right) < double_click_threshold) double_right = true;
     time_right = t;
+    last_time_right = t;
 }
 if (press_middle) {
-    if ((t - time_middle) < double_click_threshold) double_middle = true;
+    if ((t - last_time_middle) < double_click_threshold) double_middle = true;
     time_middle = t;
-}
-if (press_wasd) {
-    time_wasd = t;
+    last_time_middle = t;
 }
 
 time_wasd_seconds = (t - time_wasd) / MILLION;
