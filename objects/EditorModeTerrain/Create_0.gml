@@ -1,5 +1,9 @@
 event_inherited();
 
+var camera = view_get_camera(view_3d);
+depth_surface_base = surface_create(camera_get_view_width(camera), camera_get_view_height(camera));
+depth_surface_top = surface_create(camera_get_view_width(camera), camera_get_view_height(camera));
+
 x = setting_get("Terrain", "x", 0);
 y = setting_get("Terrain", "y", 0);
 z = setting_get("Terrain", "z", 100);

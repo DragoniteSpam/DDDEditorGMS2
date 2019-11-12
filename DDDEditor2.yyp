@@ -4928,6 +4928,14 @@
             }
         },
         {
+            "Key": "53b4a8ca-ad8f-4dec-be4b-9236d94a283c",
+            "Value": {
+                "id": "ef742db8-285f-417b-92fb-b3a013424296",
+                "resourcePath": "scripts\\draw_editor_terrain_menu\\draw_editor_terrain_menu.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "53b58453-7604-4862-b3b6-9e65ff4f8861",
             "Value": {
                 "id": "fb095b21-a288-418d-a7cd-49bb4a82d127",
@@ -15574,6 +15582,7 @@
         "d0cbae9f-b1c2-4da3-9b24-b0c55bedfa4e",
         "e98c9e1c-1587-4303-85b5-314ab3c45363",
         "908f9a52-7470-4e76-9808-402f4acb9d67",
+        "53b4a8ca-ad8f-4dec-be4b-9236d94a283c",
         "2a6837e7-9351-4828-b0c8-f7f6095d2e09",
         "d8652093-8c63-4067-92d4-453d3bfe32c0",
         "93e79cca-6db9-4bd6-8dde-4a0390784c1e",
