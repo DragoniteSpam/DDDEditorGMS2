@@ -47,3 +47,5 @@ for (var i = 0; i < n_datadata; i++) {
     
     // instances are saved in a loop later
 }
+
+return buffer_tell(buffer);

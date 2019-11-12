@@ -14,3 +14,5 @@ for (var i = 0; i < n_autotiles; i++) {
     buffer_write(buffer, buffer_string, data.name);
     buffer_write(buffer, buffer_u8, data.aframes);
 }
+
+return buffer_tell(buffer);

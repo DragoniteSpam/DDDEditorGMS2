@@ -99,3 +99,5 @@ for (var i = 0; i < n_animations; i++) {
         }
     }
 }
+
+return buffer_tell(buffer);

@@ -18,3 +18,5 @@ for (var i = 0; i < n_maps; i++) {
 	buffer_write(buffer, buffer_u32, buffer_get_size(map.data_buffer));
 	buffer_write_buffer(buffer, map.data_buffer);
 }
+
+return buffer_tell(buffer);

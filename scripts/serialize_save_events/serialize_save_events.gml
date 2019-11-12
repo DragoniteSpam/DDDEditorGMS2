@@ -120,3 +120,5 @@ for (var i = 0; i < n_events; i++) {
         }
     }
 }
+
+return buffer_tell(buffer);

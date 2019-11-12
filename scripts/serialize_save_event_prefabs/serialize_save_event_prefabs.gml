@@ -99,3 +99,5 @@ for (var i = 0; i < n_prefabs; i++) {
 }
 
 buffer_poke(buffer, address_address, buffer_u32, buffer_tell(buffer));
+
+return buffer_tell(buffer);

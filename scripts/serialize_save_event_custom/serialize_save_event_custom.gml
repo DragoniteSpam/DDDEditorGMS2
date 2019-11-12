@@ -28,3 +28,5 @@ for (var i = 0; i < n_custom; i++) {
         buffer_write(buffer, buffer_string, custom.outbound[| j]);
     }
 }
+
+return buffer_tell(buffer);

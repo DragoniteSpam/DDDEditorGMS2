@@ -7,40 +7,67 @@ if (string_length(fn) > 0) {
     
     var buffer = buffer_create(1024, buffer_grow, 1);
     
-    /*
-     * Header
-     */
-    
+    #region header and index
     buffer_write(buffer, buffer_u8, $44);
     buffer_write(buffer, buffer_u8, $44);
     buffer_write(buffer, buffer_u8, $44);
     buffer_write(buffer, buffer_u32, DataVersions._CURRENT - 1);
     buffer_write(buffer, buffer_u8, SERIALIZE_DATA_AND_MAP);
     buffer_write(buffer, buffer_u32, 0);
-	
-    /*
-     * data
-     */
     
-    serialize_save_event_custom(buffer);
-    serialize_save_global_meta(buffer);
-    serialize_save_datadata(buffer);
-    serialize_save_animations(buffer);
-    if (Stuff.game_include_terrain) serialize_save_terrain(buffer);
+    var index_addr_event_custom = buffer_tell(buffer);
+    buffer_write(buffer, buffer_u32, 0);
+    var index_addr_global_meta = buffer_tell(buffer);
+    buffer_write(buffer, buffer_u32, 0);
+    var index_addr_datadata = buffer_tell(buffer);
+    buffer_write(buffer, buffer_u32, 0);
+    var index_addr_animations = buffer_tell(buffer);
+    buffer_write(buffer, buffer_u32, 0);
+    var index_addr_terrain = buffer_tell(buffer);
+    buffer_write(buffer, buffer_u32, 0);
+    
+    var index_addr_event_prefabs = buffer_tell(buffer);
+    buffer_write(buffer, buffer_u32, 0);
+    var index_addr_events = buffer_tell(buffer);
+    buffer_write(buffer, buffer_u32, 0);
+    var index_addr_data_instances = buffer_tell(buffer);
+    buffer_write(buffer, buffer_u32, 0);
+    
+    var index_addr_maps = buffer_tell(buffer);
+    buffer_write(buffer, buffer_u32, 0);
+    #endregion
+	
+    #region data
+    var addr_event_custom = serialize_save_event_custom(buffer);
+    var addr_global_meta = serialize_save_global_meta(buffer);
+    var addr_datadata = serialize_save_datadata(buffer);
+    var addr_animations = serialize_save_animations(buffer);
+    var addr_terrain = Stuff.game_include_terrain ? serialize_save_terrain(buffer) : 0;
     
     // events may depend on some other data being initialized and i don't feel like
     // going back and doing validation because that sounds terrible
-	serialize_save_event_prefabs(buffer);
-    serialize_save_events(buffer);
-    serialize_save_data_instances(buffer);
+	var addr_event_prefabs = serialize_save_event_prefabs(buffer);
+    var addr_events = serialize_save_events(buffer);
+    var addr_data_instances = serialize_save_data_instances(buffer);
 	
-	serialize_save_maps(buffer);
+	var addr_maps = serialize_save_maps(buffer);
+    #endregion
+    Both assets and data save these now - but they still need to save the "next chunk"
+    index at the beginning of the chunks themselves (i think one or two already do that)
+    and it all needs to be read out on load
+    #region addresses
+    buffer_poke(buffer, index_addr_event_custom, buffer_u32, addr_event_custom);
+    buffer_poke(buffer, index_addr_global_meta, buffer_u32, addr_global_meta);
+    buffer_poke(buffer, index_addr_datadata, buffer_u32, addr_datadata);
+    buffer_poke(buffer, index_addr_animations, buffer_u32, addr_animations);
+    buffer_poke(buffer, index_addr_terrain, buffer_u32, addr_terrain);
+    buffer_poke(buffer, index_addr_event_prefabs, buffer_u32, addr_event_prefabs);
+    buffer_poke(buffer, index_addr_events, buffer_u32, addr_events);
+    buffer_poke(buffer, index_addr_data_instances, buffer_u32, addr_data_instances);
+    buffer_poke(buffer, index_addr_maps, buffer_u32, addr_maps);
+    #endregion
     
     buffer_write(buffer, buffer_datatype, SerializeThings.END_OF_FILE);
-    
-    /*
-     * that's it!
-     */
     
     var compressed = buffer_compress(buffer, 0, buffer_tell(buffer));
     buffer_save(compressed, fn);
@@ -89,5 +116,6 @@ enum DataVersions {
 	EXTRA_FOG_PROPERTIES		= 57,
     MAP_GRID_PROPERTY           = 58,
     AT_OVERHAUL                 = 59,
+    DATA_CHUNK_ADDRESSES        = 60,
     _CURRENT                 /* = whatever the last one is + 1 */
 }

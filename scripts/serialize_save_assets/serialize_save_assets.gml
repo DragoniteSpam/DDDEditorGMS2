@@ -9,10 +9,7 @@ if (string_length(fn) > 0) {
     
     var buffer = buffer_create(65536, buffer_grow, 1);
     
-    /*
-     * Header
-     */
-    
+    #region header and index
     buffer_write(buffer, buffer_u8, $44);
     buffer_write(buffer, buffer_u8, $44);
     buffer_write(buffer, buffer_u8, $44);
@@ -20,26 +17,55 @@ if (string_length(fn) > 0) {
     buffer_write(buffer, buffer_u8, SERIALIZE_ASSETS);
     buffer_write(buffer, buffer_u32, 0);
     
-    /*
-     * data
-     */
+    var index_addr_autotiles = buffer_tell(buffer);
+    buffer_write(buffer, buffer_u32, 0);
+    var index_addr_tilesets = buffer_tell(buffer);
+    buffer_write(buffer, buffer_u32, 0);
+    var index_addr_battlers = buffer_tell(buffer);
+    buffer_write(buffer, buffer_u32, 0);
+    var index_addr_overworlds = buffer_tell(buffer);
+    buffer_write(buffer, buffer_u32, 0);
+    var index_addr_particles = buffer_tell(buffer);
+    buffer_write(buffer, buffer_u32, 0);
+    var index_addr_ui = buffer_tell(buffer);
+    buffer_write(buffer, buffer_u32, 0);
+    var index_addr_etc = buffer_tell(buffer);
+    buffer_write(buffer, buffer_u32, 0);
+    var index_addr_bgm = buffer_tell(buffer);
+    buffer_write(buffer, buffer_u32, 0);
+    var index_addr_se = buffer_tell(buffer);
+    buffer_write(buffer, buffer_u32, 0);
+    var index_addr_meshes = buffer_tell(buffer);
+    buffer_write(buffer, buffer_u32, 0);
+    #endregion
     
-    serialize_save_image_autotiles(buffer);
-    serialize_save_image_tilesets(buffer);
-    serialize_save_image_battlers(buffer);
-    serialize_save_image_overworlds(buffer);
-    serialize_save_image_particles(buffer);
-    serialize_save_image_ui(buffer);
-    serialize_save_image_etc(buffer);
-    serialize_save_bgm(buffer);
-    serialize_save_se(buffer);
-    serialize_save_meshes(buffer);
+    #region data
+    var addr_autotiles = serialize_save_image_autotiles(buffer);
+    var addr_tilesets = serialize_save_image_tilesets(buffer);
+    var addr_battlers = serialize_save_image_battlers(buffer);
+    var addr_overworlds = serialize_save_image_overworlds(buffer);
+    var addr_particles = serialize_save_image_particles(buffer);
+    var addr_ui = serialize_save_image_ui(buffer);
+    var addr_etc = serialize_save_image_etc(buffer);
+    var addr_bgm = serialize_save_bgm(buffer);
+    var addr_se = serialize_save_se(buffer);
+    var addr_meshes = serialize_save_meshes(buffer);
+    #endregion
+    
+    #region addresses
+    buffer_poke(buffer, index_addr_autotiles, buffer_u32, addr_autotiles);
+    buffer_poke(buffer, index_addr_tilesets, buffer_u32, addr_tilesets);
+    buffer_poke(buffer, index_addr_battlers, buffer_u32, addr_battlers);
+    buffer_poke(buffer, index_addr_overworlds, buffer_u32, addr_overworlds);
+    buffer_poke(buffer, index_addr_particles, buffer_u32, addr_particles);
+    buffer_poke(buffer, index_addr_ui, buffer_u32, addr_ui);
+    buffer_poke(buffer, index_addr_etc, buffer_u32, addr_etc);
+    buffer_poke(buffer, index_addr_bgm, buffer_u32, addr_bgm);
+    buffer_poke(buffer, index_addr_se, buffer_u32, addr_se);
+    buffer_poke(buffer, index_addr_meshes, buffer_u32, addr_meshes);
+    #endregion
     
     buffer_write(buffer, buffer_datatype, SerializeThings.END_OF_FILE);
-    
-    /*
-     * that's it!
-     */
     
     var compressed = buffer_compress(buffer, 0, buffer_tell(buffer));
     buffer_save(compressed, fn);

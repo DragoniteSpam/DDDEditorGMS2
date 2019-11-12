@@ -19,3 +19,5 @@ for (var i = 0; i < n_images; i++) {
     // of time - those are created for each map when the map is loaded
     // or when the battle starts
 }
+
+return buffer_tell(buffer);

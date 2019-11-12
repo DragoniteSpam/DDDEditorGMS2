@@ -18,3 +18,5 @@ for (var i = 0; i < n_images; i++) {
     // misc images may need to be summoned on-the-fly; in the future they may be
     // slapped onto one single texture page but for now they won't be
 }
+
+return buffer_tell(buffer);

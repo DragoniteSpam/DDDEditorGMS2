@@ -30,3 +30,5 @@ for (var i = 0; i < n_images; i++) {
 if (!individual_images) {
     buffer_write_sprite(buffer, Stuff.all_graphic_particle_texture);
 }
+
+return buffer_tell(buffer);

@@ -50,3 +50,5 @@ for (var i = 0; i < n_constants; i++) {
     buffer_write(buffer, buffer_string, what.value_string);
     buffer_write(buffer, buffer_datatype, what.value_guid);
 }
+
+return buffer_tell(buffer);

@@ -44,3 +44,5 @@ buffer_write_buffer(buffer, terrain.color_data);
 buffer_write_buffer(buffer, terrain.terrain_buffer_data);
 
 buffer_poke(buffer, addr_end, buffer_u32, buffer_tell(buffer));
+
+return buffer_tell(buffer);

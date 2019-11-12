@@ -2,7 +2,9 @@
 // i'd do this in serialize_save_datadata but i'd prefer to keep these things
 // separated - for now
 
-buffer_write(argument0, buffer_datatype, SerializeThings.DATA_INSTANCES);
+var buffer = argument0;
+
+buffer_write(buffer, buffer_datatype, SerializeThings.DATA_INSTANCES);
 
 var n_datadata = ds_list_size(Stuff.all_data);
 
@@ -13,11 +15,11 @@ for (var i = 0; i < n_datadata; i++) {
         var n_properties = ds_list_size(datadata.properties);
         var n_instances = ds_list_size(datadata.instances);
         
-        buffer_write(argument0, buffer_u16, n_instances);
+        buffer_write(buffer, buffer_u16, n_instances);
         for (var j = 0; j < n_instances; j++) {
             var instance = datadata.instances[| j];
             
-            serialize_save_generic(argument0, instance);
+            serialize_save_generic(buffer, instance);
             
             for (var k = 0; k < n_properties; k++) {
                 var property = datadata.properties[| k];
@@ -71,12 +73,14 @@ for (var i = 0; i < n_datadata; i++) {
                 
                 var vlist = instance.values[| k];
                 var n_vlist = ds_list_size(vlist);
-                buffer_write(argument0, buffer_u8, n_vlist);
+                buffer_write(buffer, buffer_u8, n_vlist);
                 
                 for (var l = 0; l < ds_list_size(vlist); l++) {
-                    buffer_write(argument0, btype, ds_list_find_value(vlist, l));
+                    buffer_write(buffer, btype, ds_list_find_value(vlist, l));
                 }
             }
         }
     }
 }
+
+return buffer_tell(buffer);

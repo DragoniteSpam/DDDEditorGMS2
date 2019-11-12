@@ -59,3 +59,5 @@ for (var i = 0; i < n_tilesets; i++) {
         buffer_write(buffer, buffer_string, ts.terrain_tag_names[| j]);
     }
 }
+
+return buffer_tell(buffer);
