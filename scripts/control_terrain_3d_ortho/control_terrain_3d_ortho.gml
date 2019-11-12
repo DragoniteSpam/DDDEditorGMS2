@@ -39,7 +39,7 @@ if (keyboard_check_pressed(vk_delete)) {
 // move the camera
 
 if (!keyboard_check(vk_control)) {
-	var mspd = (min(log10(max(abs(Stuff.terrain.z), 1)) * 4, 320) + 1) / Stuff.dt;
+	var mspd = get_camera_speed(terrain.z);
 	var xspeed = 0;
 	var yspeed = 0;
     

@@ -6824,6 +6824,14 @@
             }
         },
         {
+            "Key": "73ea1e4c-f6a8-43a4-8274-8d5ea48e5762",
+            "Value": {
+                "id": "21072872-c0e6-4d37-97ab-83cced51c2f1",
+                "resourcePath": "scripts\\get_camera_speed\\get_camera_speed.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "73fbe5f9-e7cb-4c07-a3ad-722ea58734f8",
             "Value": {
                 "id": "4583b499-a0c4-4c0f-8b7f-421907c2f203",
@@ -15497,6 +15505,7 @@
         "1bd4d9e1-b458-4356-b112-dff67b924523",
         "15606cd6-dd9c-4600-bfc5-8b7160735fcc",
         "59930c7d-d3a1-4b78-99c3-4463a6188365",
+        "73ea1e4c-f6a8-43a4-8274-8d5ea48e5762",
         "20d27ffc-0a4a-4c0a-a4f4-7e894afbfa95",
         "620d5d86-27a6-45ca-ae43-e24d460a2333",
         "72fa42c5-ca47-4b5d-9fae-f4143f2d9f1a",

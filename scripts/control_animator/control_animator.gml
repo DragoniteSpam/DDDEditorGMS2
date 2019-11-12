@@ -11,7 +11,7 @@ if (!map.is_3d) {
 // move the camera
 
 if (!keyboard_check(vk_control)) {
-    var mspd = (min(log10(max(abs(mode.z), 1)) * 4, 320) + 1) / Stuff.dt;
+    var mspd = get_camera_speed(mode.z);
     var xspeed = 0;
     var yspeed = 0;
     var zspeed = 0;

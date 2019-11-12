@@ -49,28 +49,28 @@ if (keyboard_check_pressed(vk_delete)) {
 // move the camera
 
 if (!keyboard_check(vk_control)) {
-	var mspd = (min(log10(max(abs(Stuff.terrain.z), 1)) * 4, 320) + 1) / Stuff.dt * min(Controller.time_wasd_seconds, 10);
+	var mspd = get_camera_speed(terrain.z);
 	var xspeed = 0;
 	var yspeed = 0;
 	var zspeed = 0;
-    
+    debug(mspd)
 	if (keyboard_check(vk_up) || keyboard_check(ord("W"))) {
-	    xspeed = xspeed + dcos(Stuff.terrain.direction) * mspd * Stuff.dt;
-	    yspeed = yspeed - dsin(Stuff.terrain.direction) * mspd * Stuff.dt;
-	    zspeed = zspeed - dsin(Stuff.terrain.pitch) * mspd * Stuff.dt;
+	    xspeed = xspeed + dcos(Stuff.terrain.direction) * mspd;
+	    yspeed = yspeed - dsin(Stuff.terrain.direction) * mspd;
+	    zspeed = zspeed - dsin(Stuff.terrain.pitch) * mspd;
 	}
 	if (keyboard_check(vk_down) || keyboard_check(ord("S"))) {
-	    xspeed = xspeed - dcos(Stuff.terrain.direction) * mspd * Stuff.dt;
-	    yspeed = yspeed + dsin(Stuff.terrain.direction) * mspd * Stuff.dt;
-	    zspeed = zspeed + dsin(Stuff.terrain.pitch) * mspd * Stuff.dt;
+	    xspeed = xspeed - dcos(Stuff.terrain.direction) * mspd;
+	    yspeed = yspeed + dsin(Stuff.terrain.direction) * mspd;
+	    zspeed = zspeed + dsin(Stuff.terrain.pitch) * mspd;
 	}
 	if (keyboard_check(vk_left) || keyboard_check(ord("A"))) {
-	    xspeed = xspeed - dsin(Stuff.terrain.direction) * mspd * Stuff.dt;
-	    yspeed = yspeed - dcos(Stuff.terrain.direction) * mspd * Stuff.dt;
+	    xspeed = xspeed - dsin(Stuff.terrain.direction) * mspd;
+	    yspeed = yspeed - dcos(Stuff.terrain.direction) * mspd;
 	}
 	if (keyboard_check(vk_right) || keyboard_check(ord("D"))) {
-	    xspeed = xspeed + dsin(Stuff.terrain.direction) * mspd * Stuff.dt;
-	    yspeed = yspeed + dcos(Stuff.terrain.direction) * mspd * Stuff.dt;
+	    xspeed = xspeed + dsin(Stuff.terrain.direction) * mspd;
+	    yspeed = yspeed + dcos(Stuff.terrain.direction) * mspd;
 	}
 	if (CONTORL_3D_LOOK) {
 		var camera_cx = view_get_xport(view_current) + view_get_wport(view_current) / 2;

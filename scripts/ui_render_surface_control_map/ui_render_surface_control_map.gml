@@ -10,6 +10,7 @@ var y1 = argument2;
 var x2 = argument3;
 var y2 = argument4;
 
+// this is hard-coded for event use now, but shouldn't be later
 var map = Stuff.event.map;
 var map_contents = map.contents;
 
@@ -60,7 +61,7 @@ if (is_clamped(mfx, 0, 1) && is_clamped(mfy, 0, 1)) {
 // move the camera
 
 if (!keyboard_check(vk_control)) {
-	var mspd = (min(log10(max(abs(Stuff.event.z), 1)) * 4, 320) + 1) / Stuff.dt;
+	var mspd = get_camera_speed(Stuff.event.z);
 	var xspeed = 0;
 	var yspeed = 0;
 	var zspeed = 0;

@@ -1,22 +1,22 @@
 var t = get_timer();
 
+var last_wasd = wasd;
+
 mouse_left = mouse_check_button(mb_left);
 mouse_right = mouse_check_button(mb_right);
 mouse_middle = mouse_check_button(mb_middle);
-wasd = keyboard_check(ord("A")) || keyboard_check(ord("S")) | keyboard_check(ord("D")) | keyboard_check(ord("W")) ||
-    keyboard_check(vk_down) || keyboard_check(vk_left) | keyboard_check(vk_right) | keyboard_check(vk_up);
+wasd = keyboard_check(ord("A")) || keyboard_check(ord("S")) || keyboard_check(ord("D")) || keyboard_check(ord("W")) ||
+    keyboard_check(vk_down) || keyboard_check(vk_left) || keyboard_check(vk_right) || keyboard_check(vk_up);
 
 press_left = mouse_check_button_pressed(mb_left);
 press_right = mouse_check_button_pressed(mb_right);
 press_middle = mouse_check_button_pressed(mb_middle);
-release_wasd = keyboard_check_pressed(ord("A")) || keyboard_check_pressed(ord("S")) | keyboard_check_pressed(ord("D")) | keyboard_check_pressed(ord("W")) ||
-    keyboard_check_pressed(vk_down) || keyboard_check_pressed(vk_left) | keyboard_check_pressed(vk_right) | keyboard_check_pressed(vk_up);
+press_wasd = wasd && !last_wasd;
 
 release_left = mouse_check_button_released(mb_left);
 release_right = mouse_check_button_released(mb_right);
 release_middle = mouse_check_button_released(mb_middle);
-release_wasd = keyboard_check_released(ord("A")) || keyboard_check_released(ord("S")) | keyboard_check_released(ord("D")) | keyboard_check_released(ord("W")) ||
-    keyboard_check_released(vk_down) || keyboard_check_released(vk_left) | keyboard_check_released(vk_right) | keyboard_check_released(vk_up);
+release_wasd = last_wasd && !wasd;
 
 double_left = false;
 double_right = false;
@@ -52,7 +52,7 @@ if (press_wasd) {
     last_time_wasd = t;
 }
 
-time_wasd_seconds = max(0, t - last_time_wasd);
+time_wasd_seconds = max(0, t - last_time_wasd) / MILLION;
 
 if (release_left) {
     time_left = -1;
