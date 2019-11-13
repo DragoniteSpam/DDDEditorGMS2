@@ -40,7 +40,8 @@ if (mode.view_water) {
 // This is officially the worst solution to z fighting ever, but to effectively reset the depth buffer
 // the terrain layer(s) go on their own surface(s).
 if (!surface_exists(mode.depth_surface_base) || surface_get_width(mode.depth_surface_base) != camera_get_view_width(camera) || surface_get_height(mode.depth_surface_base) != camera_get_view_height(camera)) {
-    surface_free(mode.depth_surface);
+    surface_free(mode.depth_surface_base);
+    surface_free(mode.depth_surface_top);
     mode.depth_surface_base = surface_create(camera_get_view_width(camera), camera_get_view_height(camera));
     mode.depth_surface_top = surface_create(camera_get_view_width(camera), camera_get_view_height(camera));
 }
