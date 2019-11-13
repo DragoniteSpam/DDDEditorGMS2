@@ -7,7 +7,7 @@ var params = argument1;
 
 var processed = ds_map_create();
 
-for (var s = 0; s < ds_list_size(selection); s++) {
+for (var s = 0; s < ds_list_size(Stuff.map.selection); s++) {
     var sel = Stuff.map.selection[| s];
     script_execute(sel.foreach_cell, sel, processed, script, params);
 }
