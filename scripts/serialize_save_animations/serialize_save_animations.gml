@@ -7,6 +7,7 @@ var addr_next = buffer_tell(buffer);
 buffer_write(buffer, buffer_u64, 0);
 
 var n_animations = ds_list_size(Stuff.all_animations);
+
 buffer_write(buffer, buffer_u16, n_animations);
 
 for (var i = 0; i < n_animations; i++) {

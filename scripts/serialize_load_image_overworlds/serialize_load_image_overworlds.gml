@@ -5,6 +5,10 @@ var buffer = argument0;
 var version = argument1;
 var list = Stuff.all_graphic_overworlds;
 
+if (version >= DataVersions.DATA_CHUNK_ADDRESSES) {
+    var addr_next = buffer_read(buffer, buffer_u64);
+}
+
 ds_list_clear_instances(list);
 
 var n_images = buffer_read(buffer, buffer_u32);

@@ -90,6 +90,12 @@ if (header == "DDD") {
             break;
     }
     
+    // the editor doesn't care that much about the addresses of each chunk
+    if (version >= DataVersions.DATA_CHUNK_ADDRESSES) {
+        var addr_content = buffer_read(buffer, buffer_u64);
+        buffer_seek(buffer, buffer_seek_start, addr_content);
+    }
+    
     #region content
     var stop = false;
     while (!stop) {

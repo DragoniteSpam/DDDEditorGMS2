@@ -4,6 +4,10 @@
 var buffer = argument0;
 var version = argument1;
 
+if (version >= DataVersions.DATA_CHUNK_ADDRESSES) {
+    var addr_next = buffer_read(buffer, buffer_u64);
+}
+
 var n_custom = buffer_read(buffer, buffer_u16);
 
 repeat (n_custom) {

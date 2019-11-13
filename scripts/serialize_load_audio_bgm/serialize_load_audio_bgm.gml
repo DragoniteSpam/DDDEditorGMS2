@@ -1,24 +1,30 @@
 /// @param buffer
 /// @param version
 
+var buffer = argument0;
 var version = argument1;
 
+if (version >= DataVersions.DATA_CHUNK_ADDRESSES) {
+    var addr_next = buffer_read(buffer, buffer_u64);
+}
+
 ds_list_clear_instances(Stuff.all_bgm);
-var n_bgm = buffer_read(argument0, buffer_u16);
+
+var n_bgm = buffer_read(buffer, buffer_u16);
 
 for (var i = 0; i < n_bgm; i++) {
     var bgm = instance_create_depth(0, 0, 0, DataAudio);
     
-    serialize_load_generic(argument0, bgm, version);
+    serialize_load_generic(buffer, bgm, version);
     
-    bgm.temp_name = buffer_read(argument0, buffer_string);
-    bgm.loop_start = buffer_read(argument0, buffer_f32);
-    bgm.loop_end = buffer_read(argument0, buffer_f32);
+    bgm.temp_name = buffer_read(buffer, buffer_string);
+    bgm.loop_start = buffer_read(buffer, buffer_f32);
+    bgm.loop_end = buffer_read(buffer, buffer_f32);
     
-    var length = buffer_read(argument0, buffer_u32);
+    var length = buffer_read(buffer, buffer_u32);
     var fbuffer = buffer_create(length, buffer_fixed, 1);
-    buffer_copy(argument0, buffer_tell(argument0), length, fbuffer, 0);
-    buffer_seek(argument0, buffer_seek_relative, length);
+    buffer_copy(buffer, buffer_tell(buffer), length, fbuffer, 0);
+    buffer_seek(buffer, buffer_seek_relative, length);
     buffer_save(fbuffer, bgm.temp_name);
     buffer_delete(fbuffer);
     

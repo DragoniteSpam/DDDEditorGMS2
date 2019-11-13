@@ -4,9 +4,14 @@
 var buffer = argument0;
 var version = argument1;
 
+if (version >= DataVersions.DATA_CHUNK_ADDRESSES) {
+    var addr_next = buffer_read(buffer, buffer_u64);
+}
+
 ds_list_clear_instances(Stuff.all_graphic_tilesets);
 
 var n_tilesets = buffer_read(buffer, buffer_u16);
+
 for (var i = 0; i < n_tilesets; i++) {
     // don't use load_generic here because flags is now an array and that
     // will break things

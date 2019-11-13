@@ -7,7 +7,11 @@ var version = argument[1];
 var set_include_terrain = (argument_count > 2) ? argument[2] : false;
 var terrain = Stuff.terrain;
 
-buffer_read(buffer, buffer_u32);
+if (version >= DataVersions.DATA_CHUNK_ADDRESSES) {
+    var addr_next = buffer_read(buffer, buffer_u64);
+} else {
+    buffer_read(buffer, buffer_u32);
+}
 
 var n_terrain = buffer_read(buffer, buffer_u16);
 

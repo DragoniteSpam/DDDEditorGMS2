@@ -4,6 +4,10 @@
 var buffer = argument0;
 var version = argument1;
 
+if (version >= DataVersions.DATA_CHUNK_ADDRESSES) {
+    var addr_next = buffer_read(buffer, buffer_u64);
+}
+
 var n_autotiles = buffer_read(buffer, buffer_u16);
 
 for (var i = 0; i < n_autotiles; i++) {

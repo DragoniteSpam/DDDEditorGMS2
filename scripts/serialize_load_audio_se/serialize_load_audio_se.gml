@@ -1,21 +1,27 @@
 /// @param buffer
 /// @param version
 
+var buffer = argument0;
 var version = argument1;
 
+if (version >= DataVersions.DATA_CHUNK_ADDRESSES) {
+    var addr_next = buffer_read(buffer, buffer_u64);
+}
+
 ds_list_clear_instances(Stuff.all_se);
-var n_se = buffer_read(argument0, buffer_u16);
+
+var n_se = buffer_read(buffer, buffer_u16);
 
 for (var i = 0; i < n_se; i++) {
     var se = instance_create_depth(0, 0, 0, DataAudio);
     
-    serialize_load_generic(argument0, se, version);
+    serialize_load_generic(buffer, se, version);
     
-    se.temp_name = buffer_read(argument0, buffer_string);
-    var length = buffer_read(argument0, buffer_u32);
+    se.temp_name = buffer_read(buffer, buffer_string);
+    var length = buffer_read(buffer, buffer_u32);
     var fbuffer = buffer_create(length, buffer_fixed, 1);
-    buffer_copy(argument0, buffer_tell(argument0), length, fbuffer, 0);
-    buffer_seek(argument0, buffer_seek_relative, length);
+    buffer_copy(buffer, buffer_tell(buffer), length, fbuffer, 0);
+    buffer_seek(buffer, buffer_seek_relative, length);
     buffer_save(fbuffer, se.temp_name);
     buffer_delete(fbuffer);
     
