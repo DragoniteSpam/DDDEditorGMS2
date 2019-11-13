@@ -3,6 +3,8 @@
 var buffer = argument0;
 
 buffer_write(buffer, buffer_datatype, SerializeThings.AUDIO_SE);
+var addr_next = buffer_tell(buffer);
+buffer_write(buffer, buffer_u64, 0);
 
 var n_se = ds_list_size(Stuff.all_se);
 buffer_write(buffer, buffer_u16, n_se);
@@ -26,5 +28,7 @@ for (var i = 0; i < n_se; i++) {
         debug("Audio file not found: " + string(se.GUID) + " [" + se.name + "]");
     }
 }
+
+buffer_poke(buffer, addr_next, buffer_u64, buffer_tell(buffer));
 
 return buffer_tell(buffer);

@@ -3,6 +3,8 @@
 var buffer = argument0;
 
 buffer_write(buffer, buffer_datatype, SerializeThings.EVENT_CUSTOM);
+var addr_next = buffer_tell(buffer);
+buffer_write(buffer, buffer_u64, 0);
 
 var n_custom = ds_list_size(Stuff.all_event_custom);
 buffer_write(buffer, buffer_u16, n_custom);
@@ -28,5 +30,7 @@ for (var i = 0; i < n_custom; i++) {
         buffer_write(buffer, buffer_string, custom.outbound[| j]);
     }
 }
+
+buffer_poke(buffer, addr_next, buffer_u64, buffer_tell(buffer));
 
 return buffer_tell(buffer);

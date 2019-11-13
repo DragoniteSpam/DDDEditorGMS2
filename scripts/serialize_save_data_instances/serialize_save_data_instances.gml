@@ -5,6 +5,8 @@
 var buffer = argument0;
 
 buffer_write(buffer, buffer_datatype, SerializeThings.DATA_INSTANCES);
+var addr_next = buffer_tell(buffer);
+buffer_write(buffer, buffer_u64, 0);
 
 var n_datadata = ds_list_size(Stuff.all_data);
 
@@ -82,5 +84,7 @@ for (var i = 0; i < n_datadata; i++) {
         }
     }
 }
+
+buffer_poke(buffer, addr_next, buffer_u64, buffer_tell(buffer));
 
 return buffer_tell(buffer);

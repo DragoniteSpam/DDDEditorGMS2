@@ -3,11 +3,8 @@
 var buffer = argument0;
 
 buffer_write(buffer, buffer_datatype, SerializeThings.EVENT_PREFAB);
-
-// we'll come back to this - this is the address where this block ends,
-// because the game won't care about it and can skip it
-var address_address = buffer_tell(buffer);
-buffer_write(buffer, buffer_u32, 0);
+var addr_next = buffer_tell(buffer);
+buffer_write(buffer, buffer_u64, 0);
 
 var n_prefabs = ds_list_size(Stuff.all_event_prefabs);
 buffer_write(buffer, buffer_u32, n_prefabs);
@@ -98,6 +95,6 @@ for (var i = 0; i < n_prefabs; i++) {
     }
 }
 
-buffer_poke(buffer, address_address, buffer_u32, buffer_tell(buffer));
+buffer_poke(buffer, addr_next, buffer_u64, buffer_tell(buffer));
 
 return buffer_tell(buffer);

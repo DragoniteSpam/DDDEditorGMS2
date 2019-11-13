@@ -1,9 +1,11 @@
 /// @param buffer
 
 var buffer = argument0;
+var list = Stuff.all_graphic_particles;
 
 buffer_write(buffer, buffer_datatype, SerializeThings.IMAGE_PARTICLES);
-var list = Stuff.all_graphic_particles;
+var addr_next = buffer_tell(buffer);
+buffer_write(buffer, buffer_u64, 0);
 
 var n_images = ds_list_size(list);
 buffer_write(buffer, buffer_u32, n_images);
@@ -30,5 +32,7 @@ for (var i = 0; i < n_images; i++) {
 if (!individual_images) {
     buffer_write_sprite(buffer, Stuff.all_graphic_particle_texture);
 }
+
+buffer_poke(buffer, addr_next, buffer_u64, buffer_tell(buffer));
 
 return buffer_tell(buffer);

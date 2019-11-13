@@ -3,6 +3,8 @@
 var buffer = argument0;
 
 buffer_write(buffer, buffer_datatype, SerializeThings.GLOBAL_METADATA);
+var addr_next = buffer_tell(buffer);
+buffer_write(buffer, buffer_u64, 0);
 
 buffer_write(buffer, buffer_datatype, Stuff.game_starting_map);
 buffer_write(buffer, buffer_u16, Stuff.game_starting_x);
@@ -50,5 +52,7 @@ for (var i = 0; i < n_constants; i++) {
     buffer_write(buffer, buffer_string, what.value_string);
     buffer_write(buffer, buffer_datatype, what.value_guid);
 }
+
+buffer_poke(buffer, addr_next, buffer_u64, buffer_tell(buffer));
 
 return buffer_tell(buffer);

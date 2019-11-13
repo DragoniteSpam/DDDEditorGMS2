@@ -15,56 +15,60 @@ if (string_length(fn) > 0) {
     buffer_write(buffer, buffer_u8, SERIALIZE_DATA_AND_MAP);
     buffer_write(buffer, buffer_u32, 0);
     
+    // lol
+    var index_addr_content = buffer_tell(buffer);
+    buffer_write(buffer, buffer_u64, 0);
+    
     var index_addr_event_custom = buffer_tell(buffer);
-    buffer_write(buffer, buffer_u32, 0);
+    buffer_write(buffer, buffer_u64, 0);
     var index_addr_global_meta = buffer_tell(buffer);
-    buffer_write(buffer, buffer_u32, 0);
+    buffer_write(buffer, buffer_u64, 0);
     var index_addr_datadata = buffer_tell(buffer);
-    buffer_write(buffer, buffer_u32, 0);
+    buffer_write(buffer, buffer_u64, 0);
     var index_addr_animations = buffer_tell(buffer);
-    buffer_write(buffer, buffer_u32, 0);
+    buffer_write(buffer, buffer_u64, 0);
     var index_addr_terrain = buffer_tell(buffer);
-    buffer_write(buffer, buffer_u32, 0);
+    buffer_write(buffer, buffer_u64, 0);
     
     var index_addr_event_prefabs = buffer_tell(buffer);
-    buffer_write(buffer, buffer_u32, 0);
+    buffer_write(buffer, buffer_u64, 0);
     var index_addr_events = buffer_tell(buffer);
-    buffer_write(buffer, buffer_u32, 0);
+    buffer_write(buffer, buffer_u64, 0);
     var index_addr_data_instances = buffer_tell(buffer);
-    buffer_write(buffer, buffer_u32, 0);
+    buffer_write(buffer, buffer_u64, 0);
     
     var index_addr_maps = buffer_tell(buffer);
-    buffer_write(buffer, buffer_u32, 0);
+    buffer_write(buffer, buffer_u64, 0);
     #endregion
 	
+    buffer_poke(buffer, index_addr_content, buffer_u64, buffer_tell(buffer));
+    
     #region data
-    var addr_event_custom = serialize_save_event_custom(buffer);
-    var addr_global_meta = serialize_save_global_meta(buffer);
-    var addr_datadata = serialize_save_datadata(buffer);
-    var addr_animations = serialize_save_animations(buffer);
-    var addr_terrain = Stuff.game_include_terrain ? serialize_save_terrain(buffer) : 0;
+    var addr_event_custom =         serialize_save_event_custom(buffer);
+    var addr_global_meta =          serialize_save_global_meta(buffer);
+    var addr_datadata =             serialize_save_datadata(buffer);
+    var addr_animations =           serialize_save_animations(buffer);
+    var addr_terrain =              Stuff.game_include_terrain ? serialize_save_terrain(buffer) : 0;
     
     // events may depend on some other data being initialized and i don't feel like
     // going back and doing validation because that sounds terrible
-	var addr_event_prefabs = serialize_save_event_prefabs(buffer);
-    var addr_events = serialize_save_events(buffer);
-    var addr_data_instances = serialize_save_data_instances(buffer);
+	var addr_event_prefabs =        serialize_save_event_prefabs(buffer);
+    var addr_events =               serialize_save_events(buffer);
+    var addr_data_instances =       serialize_save_data_instances(buffer);
 	
-	var addr_maps = serialize_save_maps(buffer);
+	var addr_maps =                 serialize_save_maps(buffer);
     #endregion
-    Both assets and data save these now - but they still need to save the "next chunk"
-    index at the beginning of the chunks themselves (i think one or two already do that)
-    and it all needs to be read out on load
+    
     #region addresses
-    buffer_poke(buffer, index_addr_event_custom, buffer_u32, addr_event_custom);
-    buffer_poke(buffer, index_addr_global_meta, buffer_u32, addr_global_meta);
-    buffer_poke(buffer, index_addr_datadata, buffer_u32, addr_datadata);
-    buffer_poke(buffer, index_addr_animations, buffer_u32, addr_animations);
-    buffer_poke(buffer, index_addr_terrain, buffer_u32, addr_terrain);
-    buffer_poke(buffer, index_addr_event_prefabs, buffer_u32, addr_event_prefabs);
-    buffer_poke(buffer, index_addr_events, buffer_u32, addr_events);
-    buffer_poke(buffer, index_addr_data_instances, buffer_u32, addr_data_instances);
-    buffer_poke(buffer, index_addr_maps, buffer_u32, addr_maps);
+    buffer_poke(buffer, index_addr_event_custom, buffer_u64, addr_event_custom);
+    buffer_poke(buffer, index_addr_global_meta, buffer_u64, addr_global_meta);
+    buffer_poke(buffer, index_addr_datadata, buffer_u64, addr_datadata);
+    buffer_poke(buffer, index_addr_animations, buffer_u64, addr_animations);
+    buffer_poke(buffer, index_addr_terrain, buffer_u64, addr_terrain);
+    buffer_poke(buffer, index_addr_event_prefabs, buffer_u64, addr_event_prefabs);
+    buffer_poke(buffer, index_addr_events, buffer_u64, addr_events);
+    buffer_poke(buffer, index_addr_data_instances, buffer_u64, addr_data_instances);
+    buffer_poke(buffer, index_addr_maps, buffer_u64, addr_maps);
     #endregion
     
     buffer_write(buffer, buffer_datatype, SerializeThings.END_OF_FILE);

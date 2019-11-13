@@ -3,6 +3,8 @@
 var buffer = argument0;
 
 buffer_write(buffer, buffer_datatype, SerializeThings.EVENTS);
+var addr_next = buffer_tell(buffer);
+buffer_write(buffer, buffer_u64, 0);
 
 var n_events = ds_list_size(Stuff.all_events);
 buffer_write(buffer, buffer_u32, n_events);
@@ -120,5 +122,7 @@ for (var i = 0; i < n_events; i++) {
         }
     }
 }
+
+buffer_poke(buffer, addr_next, buffer_u64, buffer_tell(buffer));
 
 return buffer_tell(buffer);

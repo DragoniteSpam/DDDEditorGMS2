@@ -89,11 +89,8 @@ if (header == "DDD") {
 			instance_deactivate_object(Stuff.map.active_map.contents);
             break;
     }
-        
-    /*
-        * data types
-        */
-        
+    
+    #region content
     var stop = false;
     while (!stop) {
         var datatype = buffer_read(buffer, buffer_datatype);
@@ -127,6 +124,7 @@ if (header == "DDD") {
             case SerializeThings.END_OF_FILE: stop = true; break;
         }
     }
+    #endregion
 	
     switch (what) {
         case SERIALIZE_MAP:

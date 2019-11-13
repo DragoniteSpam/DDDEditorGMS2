@@ -38,7 +38,7 @@ yy = yy + ui_get_radio_array_height(el_battle_type) + spacing;
 var el_edit_title = create_text(col1_x, yy, "Other Settings", ew, eh, fa_left, ew, dg);
 yy = yy + el_edit_title.height + spacing;
 var el_edit_include_terrain = create_checkbox(col1_x, yy, "Include Terrain?", ew, eh, uivc_settings_game_include_terrain, Stuff.game_include_terrain, dg);
-el_edit_include_terrain.tooltip = "It can be handy to save the terrain you are working on to the data file, but this can be very expensive space-wise. By default, this is off.";
+el_edit_include_terrain.tooltip = "It can be handy to save the terrain you are working on to the data file, but this can be very expensive space-wise. Feel free to turn this off if you're not making a game that uses this.";
 yy = yy + el_edit_include_terrain.height + spacing;
 
 yy = yy_base;
