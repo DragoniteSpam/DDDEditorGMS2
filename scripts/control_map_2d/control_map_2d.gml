@@ -46,7 +46,7 @@ if (false && ds_list_size(mode.selection) && Controller.mouse_left) {
 }
 
 if (Controller.press_left) {
-    if (ds_list_size(selection) < MAX_SELECTION_COUNT) {
+    if (ds_list_size(mode.selection) < MAX_SELECTION_COUNT) {
         if (!keyboard_check(Controller.input_selection_add) && !Stuff.setting_selection_addition) {
             selection_clear();
         }
@@ -91,7 +91,7 @@ if (keyboard_check_pressed(vk_delete)) {
 // move the camera
 
 if (!keyboard_check(vk_control)) {
-    var mspd = 240;
+    var mspd = get_camera_speed(100);
     var xspeed = 0;
     var yspeed = 0;
     
