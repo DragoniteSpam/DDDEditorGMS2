@@ -411,7 +411,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     var n = 8;
     
-    element_entity_events = create_list(legal_x + spacing, yy, "Event Pages", "<No events>", col_width, element_height, n, null, false, t_p_entity);
+    element_entity_events = create_list(legal_x + spacing, yy, "Event Pages", "<No events>", col_width, element_height, n, null, false, t_p_entity, noone);
     element_entity_events.colorize = false;
     element_entity_events.render = ui_render_list_entity_events;
     element_entity_events.entries_are = ListEntries.INSTANCES;

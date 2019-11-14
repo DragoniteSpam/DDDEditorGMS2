@@ -53,7 +53,7 @@ if (ds_list_size(deletions) > 0) {
 				ds_list_add(map.all_entities, thing);
 			}
 		}
-	
+	    
 		for (var i = 0; i < ds_list_size(clone_dynamic); i++) {
 			var thing = clone_dynamic[| i];
 			if (thing.modification != Modifications.REMOVE) {
