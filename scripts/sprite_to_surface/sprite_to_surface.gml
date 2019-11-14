@@ -1,13 +1,11 @@
 /// @param sprite
 /// @param subimg
-/// @param [width]
-/// @param [height]
 // by yellowafterlife
 
 var sprite = argument[0];
 var frame = argument[1];
-var qw = (argument_count > 2) ? argument[2] : sprite_get_width(sprite);
-var qh = (argument_count > 3) ? argument[3] : sprite_get_height(sprite);
+var qw = sprite_get_width(sprite);
+var qh = sprite_get_height(sprite);
 var qx = sprite_get_xoffset(sprite);
 var qy = sprite_get_yoffset(sprite);
 

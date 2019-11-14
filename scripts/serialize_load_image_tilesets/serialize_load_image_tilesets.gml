@@ -9,7 +9,7 @@ if (version >= DataVersions.DATA_CHUNK_ADDRESSES) {
 }
 
 ds_list_clear_instances(Stuff.all_graphic_tilesets);
-
+gpu_set_state(Stuff.gpu_base_state);
 var n_tilesets = buffer_read(buffer, buffer_u16);
 
 for (var i = 0; i < n_tilesets; i++) {
@@ -42,6 +42,8 @@ for (var i = 0; i < n_tilesets; i++) {
     }
     
     var ts = tileset_create(ts_name, at_array, sprite);
+    sprite_save(sprite, 0, string(sprite) + "-l.png");
+    sprite_save(ts.master, 0, string(ts.master) + "-l.png");
     
     ts.name = name;
     ts.internal_name = internal_name;

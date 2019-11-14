@@ -25,8 +25,8 @@ var tile_vertical_count = TEXTURE_SIZE / Stuff.tile_size;
 var texture_width = 1 / tile_horizontal_count;
 var texture_height = 1 / tile_vertical_count;
 
-var xtex = tile.tile_x * texture_width;
-var ytex = tile.tile_y * texture_width;
+var xtex = tile.tile_x / TEXTURE_SIZE;
+var ytex = tile.tile_y / TEXTURE_SIZE;
 
 var color = tile.tile_color;
 var alpha = tile.tile_alpha;

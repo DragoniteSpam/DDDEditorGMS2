@@ -14,10 +14,7 @@ while (!ds_queue_empty(stuff_to_destroy)) {
     instance_destroy(thing);
 }
 
-// this is important if textures and stuff need to be exported, but gets turned back
-// on when the 3D stuff gets dealt with in the next frame
-gpu_set_ztestenable(false);
-gpu_set_zwriteenable(false);
+gpu_set_state(gpu_base_state);
 
 var ts = get_active_tileset();
 
@@ -54,7 +51,6 @@ if (schedule_save) {
 
 if (schedule_open) {
     var fn = get_open_filename_ddd();
-    
     if (file_exists(fn)) {
         serialize_load(fn);
     }
@@ -62,5 +58,8 @@ if (schedule_open) {
     schedule_open = false;
 }
 
+draw_sprite(spr_enter, 0, 32, 32);
+sprite_save_fixed(spr_enter, 0, "z.png");
+what even is going on with this
 Controller.mouse_x_previous = mouse_x;
 Controller.mouse_y_previous = mouse_y;

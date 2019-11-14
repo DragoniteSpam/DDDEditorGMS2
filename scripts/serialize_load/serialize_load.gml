@@ -4,8 +4,8 @@ var filename = argument0;
 
 var original = buffer_load(filename);
 var erroneous = false;
-
 var autoname = "auto" + filename_ext(filename);
+
 if (!file_exists(autoname)) {
 	file_copy(filename, autoname);
 }
@@ -25,19 +25,16 @@ if (buffer < 0) {
 }
 
 buffer_seek(buffer, buffer_seek_start, 0);
-    
-/*
-    * Header
-    */
-    
+
+// header
 var header = chr(buffer_read(buffer, buffer_u8)) + chr(buffer_read(buffer, buffer_u8)) + chr(buffer_read(buffer, buffer_u8));
-    
+
 if (header == "DDD") {
 	Stuff.save_name = string_replace(filename_name(filename), EXPORT_EXTENSION_DATA, "");
-		
+	
     var version = buffer_read(buffer, buffer_u32);
     var last_safe_version = DataVersions.STARTING_POSITION;
-		
+	
     if (version < last_safe_version) {
         show_error("We stopped supporting versions of the data file before " + string(last_safe_version) +
             ". This current version is " + string(version) + ". Please find a version of " + filename_name(filename) +
