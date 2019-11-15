@@ -16,6 +16,7 @@ fov = setting_get("Animation", "fov", 50);
 pitch = setting_get("Animation", "pitch", 0);
 direction = setting_get("Animation", "direction", 0);
 
+update = editor_update_animation;
 render = editor_render_animation;
 save = editor_save_setting_animation;
 

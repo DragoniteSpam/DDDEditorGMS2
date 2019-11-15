@@ -6,10 +6,6 @@ draw_clear(c_black);
 var map = Stuff.map.active_map;
 var map_contents = map.contents;
 
-if (!Stuff.mouse_3d_lock && mouse_within_view(view_3d) && !dialog_exists()) {
-    control_animator(mode);
-}
-
 gpu_set_zwriteenable(true);
 gpu_set_cullmode(Stuff.setting_view_backface ? cull_noculling : cull_counterclockwise);
 gpu_set_ztestenable(true);

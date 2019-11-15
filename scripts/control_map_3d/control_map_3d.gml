@@ -1,4 +1,4 @@
-/// @param EditorModeTerrain
+/// @param EditorModeMap
 
 var mode = argument0;
 

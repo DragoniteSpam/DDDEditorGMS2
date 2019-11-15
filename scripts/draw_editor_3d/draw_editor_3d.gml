@@ -7,14 +7,6 @@ var map_contents = map.contents;
 
 draw_clear(c_black);
 
-if (!Stuff.mouse_3d_lock && mouse_within_view(view_3d) && !dialog_exists()) {
-	if (map.is_3d) {
-	    control_map_3d(mode);
-	} else {
-		control_map_2d(mode);
-	}
-}
-
 gpu_set_zwriteenable(true);
 gpu_set_cullmode(Stuff.setting_view_backface ? cull_noculling : cull_counterclockwise);
 gpu_set_ztestenable(map.is_3d);        // this will make things rather odd with the wrong setting
