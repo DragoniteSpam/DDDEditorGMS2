@@ -17,16 +17,13 @@ var nx = 0;
 var ny = 0;
 var nz = 1;
 
-var tile_horizontal_count = TEXTURE_SIZE / Stuff.tile_size;
-var tile_vertical_count = TEXTURE_SIZE / Stuff.tile_size;
-
 // texture coordinates go from 0...1, not 0...n, where n is the dimension
 // of the image in pixels
-var texture_width = 1 / tile_horizontal_count;
-var texture_height = 1 / tile_vertical_count;
+var texture_width = Stuff.tile_size / TEXTURE_SIZE;
+var texture_height = Stuff.tile_size / TEXTURE_SIZE;
 
-var xtex = tile.tile_x / TEXTURE_SIZE;
-var ytex = tile.tile_y / TEXTURE_SIZE;
+var xtex = tile.tile_x * texture_width;
+var ytex = tile.tile_y * texture_height;
 
 var color = tile.tile_color;
 var alpha = tile.tile_alpha;
