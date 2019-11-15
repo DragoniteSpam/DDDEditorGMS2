@@ -1,8 +1,8 @@
 {
-    "id": "d7998c22-268f-4dee-93c2-90d47de8da95",
+    "id": "e6caee2a-f7c6-4df3-aeb8-436ca863445d",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "draw_sprite_flipped",
+    "name": "editor_update_terrain",
     "IsCompatibility": false,
     "IsDnD": false
 }

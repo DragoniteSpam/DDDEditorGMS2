@@ -58,5 +58,7 @@ if (schedule_open) {
     schedule_open = false;
 }
 
+sprite_save_fixed(spr_enter, 0, "z.png");
+
 Controller.mouse_x_previous = mouse_x;
 Controller.mouse_y_previous = mouse_y;

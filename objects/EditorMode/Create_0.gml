@@ -1,3 +1,4 @@
+update = null;
 render = null;
 cleanup = null;
 save = null;

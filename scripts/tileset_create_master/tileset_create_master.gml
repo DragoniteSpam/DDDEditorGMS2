@@ -13,20 +13,14 @@ draw_clear_alpha(c_white, 0);
 // if it's larger than 2048x2048 you may end up overlapping the autotiles, and also things may not
 // line up properly. please try to use 2048x2048.
 
-// I don't know why this is suddenly upside-down; it started rendering weirdly
-// around when I refactored the editor modes and I haven't been able to figure
-// out why. It probably has something to do with a camera setting somewhere (it
-// seems to be originating in the 3D views). I need to move on to other stuff so
-// instead of fixing it, sprites are just going to be written out upside-down instead.
-// same goes for the autotile part.
-draw_sprite_flipped(tileset.picture, 0, 0, TEXTURE_SIZE / 2);
+draw_sprite(tileset.picture, 0, 0, 0);
 
 for (var i = 0; i < array_length_1d(tileset.autotiles); i++) {
     var data = guid_get(tileset.autotiles[i]);
     if (data) {
         var xx = i div (AUTOTILE_MAX / 2);
-        var yy = ((i + 1) mod 2) / 4;
-        draw_sprite_flipped(data.picture, 0, xx * TEXTURE_SIZE, yy * TEXTURE_SIZE);
+        var yy = (i mod 2) / 4;
+        draw_sprite(data.picture, 0, xx * TEXTURE_SIZE, yy * TEXTURE_SIZE);
     }
 }
 

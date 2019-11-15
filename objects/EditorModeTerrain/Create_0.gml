@@ -20,6 +20,7 @@ fov = setting_get("Terrain", "fov", 50);
 pitch = setting_get("Terrain", "pitch", 0);
 direction = setting_get("Terrain", "direction", 0);
 
+update = editor_update_terrain;
 render = editor_render_terrain;
 save = editor_save_setting_terrain;
 

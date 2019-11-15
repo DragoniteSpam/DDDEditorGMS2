@@ -12912,14 +12912,6 @@
             }
         },
         {
-            "Key": "d7998c22-268f-4dee-93c2-90d47de8da95",
-            "Value": {
-                "id": "529bfa78-bf0f-40c7-acbd-c701a1c14f42",
-                "resourcePath": "scripts\\draw_sprite_flipped\\draw_sprite_flipped.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "d7daedd5-1cb6-4e17-897f-57fe8a0cf890",
             "Value": {
                 "id": "e5cbbe4a-4ad3-4843-b414-0933dd8c2ba5",
@@ -13764,6 +13756,14 @@
             "Value": {
                 "id": "24835e0e-1973-41e6-a6e9-a509a3747502",
                 "resourcePath": "scripts\\serialize_load_global_meta\\serialize_load_global_meta.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "e6caee2a-f7c6-4df3-aeb8-436ca863445d",
+            "Value": {
+                "id": "3151ab2a-f449-4e28-8384-4a941fd6e34f",
+                "resourcePath": "scripts\\editor_update_terrain\\editor_update_terrain.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -16474,7 +16474,6 @@
         "88a72ab1-34ee-4030-b06d-0468751727de",
         "01059a2d-4cd0-417a-933b-d0a83ae8a37b",
         "92b17bbf-2775-42b8-8b68-ef4fee93a40e",
-        "d7998c22-268f-4dee-93c2-90d47de8da95",
         "69d4965f-b536-49b7-8234-317cb2f83f96",
         "3c551174-f3d9-4f24-8a1b-bc6344e9eac7",
         "9d6568ff-063d-48a4-8144-fd9148549732",
@@ -16816,6 +16815,7 @@
         "31bf1c76-3d34-4e06-9612-6b0e3544324e",
         "df3fa51b-fa8b-48de-b8a9-64532b479d43",
         "85cb0072-cfc5-47b6-a769-1d18a1ca582c",
+        "e6caee2a-f7c6-4df3-aeb8-436ca863445d",
         "d45cbbf5-14a9-4435-bc46-72cdac5276a8",
         "eb99f114-7399-4367-8e02-8a14f63da342",
         "7ff626d0-d91f-42a1-90a4-0e8d3603122f",
