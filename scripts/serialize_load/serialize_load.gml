@@ -1,14 +1,16 @@
 /// @param filename
+/// @param project-name
 
-var filename = argument0;
+var fn = argument[0];
+var proj_name = (argument_count > 1) ? argument[1] : filename_change_ext(filename_name(fn), "");
 
-var original = buffer_load(filename);
+var original = buffer_load(fn);
 var erroneous = false;
 
-if (filename_ext(filename) == EXPORT_EXTENSION_DATA) {
-	var assetname = filename_change_ext(filename, EXPORT_EXTENSION_ASSETS);
+if (filename_ext(fn) == EXPORT_EXTENSION_DATA) {
+	var assetname = filename_change_ext(fn, EXPORT_EXTENSION_ASSETS);
 	if (file_exists(assetname)) {
-		serialize_load(assetname);
+		serialize_load(assetname, proj_name);
 	}
 }
 
@@ -25,18 +27,18 @@ buffer_seek(buffer, buffer_seek_start, 0);
 var header = chr(buffer_read(buffer, buffer_u8)) + chr(buffer_read(buffer, buffer_u8)) + chr(buffer_read(buffer, buffer_u8));
 
 if (header == "DDD") {
-	Stuff.save_name = string_replace(filename_name(filename), EXPORT_EXTENSION_DATA, "");
+	Stuff.save_name = string_replace(filename_name(fn), EXPORT_EXTENSION_DATA, "");
 	
     var version = buffer_read(buffer, buffer_u32);
     var last_safe_version = DataVersions.STARTING_POSITION;
 	
     if (version < last_safe_version) {
         show_error("We stopped supporting versions of the data file before " + string(last_safe_version) +
-            ". This current version is " + string(version) + ". Please find a version of " + filename_name(filename) +
+            ". This current version is " + string(version) + ". Please find a version of " + filename_name(fn) +
             " made with a more up-to-date version of the editor.", true
         );
 	}
-        
+    
     var what = buffer_read(buffer, buffer_u8);
     var things = buffer_read(buffer, buffer_u32);
 		
@@ -131,7 +133,9 @@ if (header == "DDD") {
 	}
     
     error_show();
-        
+    
+	setting_project_add(proj_name);
+    setting_project_create_local(proj_name, original, filename_ext(fn));
     game_auto_title();
 } else {
     erroneous = true;

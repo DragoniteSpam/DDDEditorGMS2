@@ -3008,6 +3008,14 @@
             }
         },
         {
+            "Key": "32532c1d-bb0c-4099-a799-aa3a02ea92fa",
+            "Value": {
+                "id": "b3347bf4-abfb-4df6-8998-19eb78eb6343",
+                "resourcePath": "scripts\\setting_project_add\\setting_project_add.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "327803e3-4032-4de1-9a4a-831df9458b0a",
             "Value": {
                 "id": "5fad73ef-eaed-4c76-b810-e28758ddc9b5",
@@ -13232,6 +13240,14 @@
             }
         },
         {
+            "Key": "dcc7d7f6-5712-44b5-bcc4-b2b0108ac52e",
+            "Value": {
+                "id": "e3a4557f-4f20-483c-877d-dbea462b5bc7",
+                "resourcePath": "scripts\\setting_project_create_local\\setting_project_create_local.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "dcd025a9-1012-4013-bddd-dd0aedfcaef1",
             "Value": {
                 "id": "433a8efc-2c51-47b2-8d81-4b8bd769444c",
@@ -16518,6 +16534,8 @@
         "0b98fe8d-3e31-4aba-a6a1-b73158c9402e",
         "35fea9ef-8798-416d-a84f-4aec2fe2c799",
         "6596a2a4-d00a-4257-9918-a29ce395a0a2",
+        "32532c1d-bb0c-4099-a799-aa3a02ea92fa",
+        "dcc7d7f6-5712-44b5-bcc4-b2b0108ac52e",
         "8232738a-b358-48e5-9da6-d0f3db4d7698",
         "c504c050-69e0-4c3b-bfe4-ece3e679e3c5",
         "faae0bf2-d5cb-4fc7-9e96-3817f3567427",
