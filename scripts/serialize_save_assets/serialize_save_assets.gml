@@ -4,7 +4,7 @@ var fn = argument0;
 
 if (string_length(fn) > 0) {
     Stuff.save_name = string_replace(filename_name(fn), EXPORT_EXTENSION_ASSETS, "");
-    serialize_backup(PATH_BACKUP_DATA, Stuff.save_name, EXPORT_EXTENSION_ASSETS, fn);
+    serialize_backup(PATH_BACKUP, Stuff.save_name, EXPORT_EXTENSION_ASSETS, fn);
     game_auto_title();
     
     var buffer = buffer_create(65536, buffer_grow, 1);

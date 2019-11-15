@@ -34,9 +34,7 @@ easing_equations = [
 
 // local storage folders
 
-if (!directory_exists(PATH_BACKUP_DATA)) directory_create(PATH_BACKUP_DATA);
-if (!directory_exists(PATH_BACKUP_MAP)) directory_create(PATH_BACKUP_MAP);
-if (!directory_exists(PATH_BACKUP_ASSET)) directory_create(PATH_BACKUP_ASSET);
+if (!directory_exists(PATH_BACKUP)) directory_create(PATH_BACKUP);
 if (!directory_exists(PATH_TEMP_CODE)) directory_create(PATH_TEMP_CODE);
 if (!directory_exists(PATH_AUDIO)) directory_create(PATH_AUDIO);
 if (!directory_exists(PATH_PROJECTS)) directory_create(PATH_PROJECTS);

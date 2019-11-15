@@ -2,7 +2,7 @@ var fn = get_save_filename_dddd(Stuff.save_name);
 
 if (string_length(fn) > 0) {
     Stuff.save_name = string_replace(filename_name(fn), EXPORT_EXTENSION_DATA, "");
-    serialize_backup(PATH_BACKUP_DATA, Stuff.save_name, EXPORT_EXTENSION_DATA, fn);
+    serialize_backup(PATH_BACKUP, Stuff.save_name, EXPORT_EXTENSION_DATA, fn);
     game_auto_title();
     
     var buffer = buffer_create(1024, buffer_grow, 1);

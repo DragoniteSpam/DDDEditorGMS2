@@ -31,10 +31,8 @@
 #macro mouse_x_view (Stuff.MOUSE_X - view_get_xport(view_current))
 #macro mouse_y_view (Stuff.MOUSE_Y - view_get_yport(view_current))
 #macro PATH_AUTOTILE ".\\autotile\\"
-#macro PATH_BACKUP_DATA ".\\backups\\data\\"
-#macro PATH_BACKUP_MAP ".\\backups\\maps\\"
-#macro PATH_BACKUP_ASSET ".\\backups\\assets\\"
-#macro PATH_GRAPHICS ".\\data\\graphics\\"
+#macro PATH_BACKUP "backups\\"
+#macro PATH_GRAPHICS ".\\data\\graphics\\"  // local storage - no leading punctuation - used for opening files
 #macro PATH_LUA ".\\data\\lua\\"
 #macro PATH_PROJECTS ".\\projects\\"
 #macro PATH_TEMP_CODE "temp\\"              // local storage - no leading punctuation - used for opening files
