@@ -17,7 +17,5 @@ buffer_write(buffer, buffer_u16, sh);
 
 buffer_write_buffer(buffer, sbuffer);
 
-surface_save(surface, string(sprite) + "-s.png");
-
 surface_free(surface);
 buffer_delete(sbuffer);

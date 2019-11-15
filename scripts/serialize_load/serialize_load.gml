@@ -4,11 +4,6 @@ var filename = argument0;
 
 var original = buffer_load(filename);
 var erroneous = false;
-var autoname = "auto" + filename_ext(filename);
-
-if (!file_exists(autoname)) {
-	file_copy(filename, autoname);
-}
 
 if (filename_ext(filename) == EXPORT_EXTENSION_DATA) {
 	var assetname = filename_change_ext(filename, EXPORT_EXTENSION_ASSETS);
@@ -134,7 +129,7 @@ if (header == "DDD") {
 			Stuff.map.active_map = guid_get(Stuff.game_starting_map);
 			break;
 	}
-        
+    
     error_show();
         
     game_auto_title();
