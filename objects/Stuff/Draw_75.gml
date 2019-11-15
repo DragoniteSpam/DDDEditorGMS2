@@ -58,8 +58,5 @@ if (schedule_open) {
     schedule_open = false;
 }
 
-draw_sprite(spr_enter, 0, 32, 32);
-sprite_save_fixed(spr_enter, 0, "z.png");
-what even is going on with this
 Controller.mouse_x_previous = mouse_x;
 Controller.mouse_y_previous = mouse_y;

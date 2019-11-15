@@ -65,9 +65,10 @@ direction_lookup = [270, 180, 0, 90];
 tile_width = 32;
 tile_height = 32;
 tile_depth = 32;
-
 // uv size, not 3D size
 tile_size = 32;
+
+default_camera = camera_get_default();
 
 #endregion
 

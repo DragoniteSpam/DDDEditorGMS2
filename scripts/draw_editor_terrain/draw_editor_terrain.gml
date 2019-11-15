@@ -25,7 +25,7 @@ camera_set_view_mat(camera, view);
 camera_set_proj_mat(camera, proj);
 camera_apply(camera);
 
-if (mouse_within_view(view_3d) && !dialog_exists()) {
+if (mouse_within_view(view_current) && !dialog_exists()) {
     if (mode.orthographic) {
         control_terrain_3d_ortho(terrain);
     } else {

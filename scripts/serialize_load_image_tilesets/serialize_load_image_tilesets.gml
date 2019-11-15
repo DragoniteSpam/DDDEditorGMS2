@@ -42,8 +42,6 @@ for (var i = 0; i < n_tilesets; i++) {
     }
     
     var ts = tileset_create(ts_name, at_array, sprite);
-    sprite_save(sprite, 0, string(sprite) + "-l.png");
-    sprite_save(ts.master, 0, string(ts.master) + "-l.png");
     
     ts.name = name;
     ts.internal_name = internal_name;

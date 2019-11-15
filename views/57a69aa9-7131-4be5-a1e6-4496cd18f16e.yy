@@ -8,7 +8,8 @@
         "d8ad5fef-aec7-44ad-84b6-786151956008",
         "88a72ab1-34ee-4030-b06d-0468751727de",
         "01059a2d-4cd0-417a-933b-d0a83ae8a37b",
-        "92b17bbf-2775-42b8-8b68-ef4fee93a40e"
+        "92b17bbf-2775-42b8-8b68-ef4fee93a40e",
+        "d7998c22-268f-4dee-93c2-90d47de8da95"
     ],
     "filterType": "GMScript",
     "folderName": "misc graphics",

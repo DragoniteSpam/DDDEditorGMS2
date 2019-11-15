@@ -1,8 +1,6 @@
 /// @param sprite
 /// @param subimg
 /// @param path
-/// @param [width]
-/// @param [height]
 // by yellowafterlife
 
 var sprite = argument[0];
