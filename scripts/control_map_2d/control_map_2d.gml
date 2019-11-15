@@ -6,7 +6,7 @@ if (Stuff.menu.active_element) {
 	return false;
 }
 
-var camera = view_get_camera(view_current);
+var camera = view_get_camera(view_3d);
 var cwidth = camera_get_view_width(camera);
 var cheight = camera_get_view_height(camera);
 
@@ -15,8 +15,8 @@ var y1 = y - cheight / 2;
 var x2 = x + cwidth / 2;
 var y2 = y + cheight / 2;
 
-var floor_cx = floor(((mouse_x_view + x1) / view_get_wport(view_current)) * cwidth / TILE_WIDTH);
-var floor_cy = floor(((mouse_y_view + y1) / view_get_hport(view_current)) * cheight / TILE_HEIGHT);
+var floor_cx = floor(((mouse_x_view + x1) / view_get_wport(view_3d)) * cwidth / TILE_WIDTH);
+var floor_cy = floor(((mouse_y_view + y1) / view_get_hport(view_3d)) * cheight / TILE_HEIGHT);
 
 // these will override everything else, but it's commented out because i dont like how it works
 if (false && ds_list_size(mode.selection) && Controller.mouse_left) {
@@ -108,8 +108,8 @@ if (!keyboard_check(vk_control)) {
         xspeed = xspeed + mspd;
     }
     if (CONTORL_3D_LOOK) {
-        var camera_cx = view_get_xport(view_current) + view_get_wport(view_current) / 2;
-        var camera_cy = view_get_yport(view_current) + view_get_hport(view_current) / 2;
+        var camera_cx = view_get_xport(view_3d) + view_get_wport(view_3d) / 2;
+        var camera_cy = view_get_yport(view_3d) + view_get_hport(view_3d) / 2;
         var dx = (Stuff.MOUSE_X - camera_cx) / 16;
         var dy = (Stuff.MOUSE_Y - camera_cy) / 16;
         window_mouse_set(camera_cx, camera_cy);

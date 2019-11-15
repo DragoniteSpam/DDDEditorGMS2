@@ -6,8 +6,8 @@ if (Stuff.menu.active_element) {
 	return false;
 }
 
-var vw = view_get_wport(view_current);
-var vh = view_get_hport(view_current);
+var vw = view_get_wport(view_3d);
+var vh = view_get_hport(view_3d);
 // @todo gml update lwo
 terrain.cursor_position = [
     (Stuff.terrain.x + (mouse_x_view - vw / 2) * terrain.orthographic_scale) / terrain.view_scale,
