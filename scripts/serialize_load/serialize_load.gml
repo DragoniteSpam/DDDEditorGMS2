@@ -13,12 +13,7 @@ if (root) {
     if (filename_ext(fn) == EXPORT_EXTENSION_DATA) {
     	var assetname = filename_change_ext(fn, EXPORT_EXTENSION_ASSETS);
     	if (file_exists(assetname)) {
-    		serialize_load(assetname);
-    	}
-    } else {
-    	var dataname = filename_change_ext(fn, EXPORT_EXTENSION_DATA);
-    	if (file_exists(dataname)) {
-    		serialize_load(dataname);
+    		serialize_load(assetname, proj_name);
     	}
     }
 }
@@ -145,6 +140,15 @@ if (header == "DDD") {
 	setting_project_add(proj_name);
     setting_project_create_local(proj_name, original, filename_ext(fn));
     game_auto_title();
+    
+    if (root) {
+        if (filename_ext(fn) == EXPORT_EXTENSION_ASSETS) {
+        	var dataname = filename_change_ext(fn, EXPORT_EXTENSION_DATA);
+        	if (file_exists(dataname)) {
+        		serialize_load(dataname, proj_name);
+        	}
+        }
+    }
 } else {
     erroneous = true;
 }

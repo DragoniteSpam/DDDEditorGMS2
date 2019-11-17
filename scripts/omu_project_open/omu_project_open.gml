@@ -2,8 +2,9 @@
 
 var button = argument0;
 
-// don't do it right here because you may do things with tileset surfaces and that makes
-// bad things happen if you're in the middle of drawing
-Stuff.schedule_open = true;
+var fn = get_open_filename_ddd();
+if (file_exists(fn)) {
+    serialize_load(fn, filename_name(filename_change_ext(fn, "")), true);
+}
 
 dialog_destroy();
