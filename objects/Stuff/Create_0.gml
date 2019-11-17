@@ -469,11 +469,11 @@ maps_included = false;
 
 // default editor mode
 switch (stashed_mode) {
-    case ModeIDs.MAP: mode = map; break;
-    case ModeIDs.EVENT: mode = event; break;
-    case ModeIDs.DATA: mode = data; break;
-    case ModeIDs.ANIMATION: mode = animation; break;
-    case ModeIDs.TERRAIN: mode = terrain; break;
+    case ModeIDs.MAP: editor_mode_3d(); break;
+    case ModeIDs.EVENT: editor_mode_event(); break;
+    case ModeIDs.DATA: editor_mode_data(); break;
+    case ModeIDs.ANIMATION: editor_mode_animation(); break;
+    case ModeIDs.TERRAIN: editor_mode_heightmap(); break;
 }
 
 // the autosave/load is nice, BUT it will make the game break if there's an error
