@@ -8,6 +8,9 @@ var yy = argument1;
 var zz = argument2;
 var params = argument3;
 
+show_error("Autotiles are in need of a big-time overhaul, so you should probably do that", false);
+return noone;
+
 var cell = map_get_grid_cell(xx, yy, zz);
 
 if (!cell[@ MapCellContents.TILE]) {
