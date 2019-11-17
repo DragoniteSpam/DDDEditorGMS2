@@ -10,9 +10,12 @@ var maxz = max(selection.z, selection.z2);
 var x1 = minx * TILE_WIDTH;
 var y1 = miny * TILE_HEIGHT;
 var z1 = minz * TILE_DEPTH;
-var x2 = (maxx - 1) * TILE_WIDTH;
-var y2 = (maxy - 1) * TILE_HEIGHT;
-var z2 = (maxz - 1) * TILE_DEPTH;
+// the outer corner of the cube is already at (32, 32, 32) so we need to
+// compensate for that
+var cube_bound = 32;
+var x2 = maxx * TILE_WIDTH - cube_bound;
+var y2 = maxy * TILE_HEIGHT - cube_bound;
+var z2 = maxz * TILE_DEPTH - cube_bound;
 
 shader_set(shd_bounding_box);
 shader_set_uniform_f_array(shader_get_uniform(shd_bounding_box, "actual_color"), [1, 0, 0, 1]);
