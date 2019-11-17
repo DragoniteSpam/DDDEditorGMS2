@@ -40,8 +40,7 @@ if (header == "DDD") {
 	}
     
     var what = buffer_read(buffer, buffer_u8);
-    var things = buffer_read(buffer, buffer_u32);
-		
+    
 	Stuff.maps_included = (what == SERIALIZE_DATA_AND_MAP);
         
     switch (what) {

@@ -126,8 +126,8 @@ var my = clamp(mouse_y_view, base_y1, base_y2);
 if (CONTORL_3D_LOOK) {
     // continuous
     if (selector.offset_x >- 1) {
-        selector.tile_view_x = clamp(selector.tile_view_x + selector.offset_x - mouse_x_view, 0, tex_width - selector.width);
-        selector.tile_view_y = clamp(selector.tile_view_y + selector.offset_y - mouse_y_view, 0, tex_height - selector.height);
+        selector.tile_view_x = clamp(selector.tile_view_x + selector.offset_x - mouse_x_view, 0, max(0, tex_width - selector.width));
+        selector.tile_view_y = clamp(selector.tile_view_y + selector.offset_y - mouse_y_view, 0, max(0, tex_height - selector.height));
         Stuff.mouse_3d_lock = true;
     }
     // this is an "or" - don't try to squish it into the above block because it won't work
