@@ -1,5 +1,10 @@
 event_inherited();
 
+// this is a very bad workaround and i feel bad about writing it but it
+// makes a lot of things easier, like when import_d3d tries to access
+// the vertex formats belonging to Stuff.graphics
+Stuff.graphics = id;
+
 gpu_set_alphatestenable(true);
 gpu_set_alphatestref(20);
 gpu_set_tex_repeat(true);
@@ -60,6 +65,9 @@ c_shape_begin_trimesh();
 c_shape_load_trimesh("data\\basic\\ccube.d3d");
 c_shape_end_trimesh(c_shape_block);
 c_transform_identity();
+
+basic_cage = import_d3d("data\\basic\\cage.d3d", false);
+indexed_cage = import_d3d("data\\basic\\cage-indexed.d3d", false);
 
 water_tile_size = 0xffff;
 water_reptition = 256;

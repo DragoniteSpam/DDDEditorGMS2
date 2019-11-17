@@ -2512,6 +2512,14 @@
             }
         },
         {
+            "Key": "2a65013a-ee4f-4d11-9049-d4d3d65d856a",
+            "Value": {
+                "id": "5e0f6e0b-da93-4417-ac54-5da3db7af389",
+                "resourcePath": "datafiles_yy\\data\\basic\\cage-indexed.d3d.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "2a6837e7-9351-4828-b0c8-f7f6095d2e09",
             "Value": {
                 "id": "619135b7-ab77-42e2-b9e5-5ef5121e0608",
@@ -7845,6 +7853,14 @@
                 "id": "f54ba52f-6608-45ff-bad2-cca146a2bd73",
                 "resourcePath": "scripts\\uivc_check_entity_solid\\uivc_check_entity_solid.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "82c9e93d-7f20-4286-b9c0-3b73c6cb331d",
+            "Value": {
+                "id": "afbcfaca-88f7-4442-ab09-5b63182a96c2",
+                "resourcePath": "shaders\\shd_bounding_box\\shd_bounding_box.yy",
+                "resourceType": "GMShader"
             }
         },
         {

@@ -6,7 +6,7 @@ attribute vec4 extra;                        // (autotile id or 0, na, na, na)
 varying vec2 v_vTexcoord;
 varying vec4 v_vColour;
 
-const int maxpositions=12*16*8*2;
+const int maxpositions = 12 * 16 * 8 * 2;
 uniform float texoffset[maxpositions];
 
 void main() {

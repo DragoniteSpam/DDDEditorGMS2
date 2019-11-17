@@ -1,9 +1,5 @@
-//
-// Simple passthrough fragment shader
-//
 uniform vec4 Colour;
 
-void main()
-{
+void main() {
     gl_FragColor = Colour;
 }
