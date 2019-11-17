@@ -36,7 +36,7 @@ if (header == "DDD") {
 	
     var datatype = buffer_read(buffer, buffer_datatype);
     
-    if (datatype == SerializeThings.TERRAIN_HEIGHTMAP) {
+    if (datatype == SerializeThings.TERRAIN) {
         serialize_load_terrain(buffer, version);
     } else {
         erroneous = true;

@@ -1,17 +1,26 @@
 /// @param filename
-/// @param project-name
+/// @param [project-name]
+/// @param [root?]
 
 var fn = argument[0];
-var proj_name = (argument_count > 1) ? argument[1] : filename_change_ext(filename_name(fn), "");
+var proj_name = (argument_count > 1 && argument[1] != undefined) ? argument[1] : filename_change_ext(filename_name(fn), "");
+var root = (argument_count > 2) ? argument[2] : false;
 
 var original = buffer_load(fn);
 var erroneous = false;
 
-if (filename_ext(fn) == EXPORT_EXTENSION_DATA) {
-	var assetname = filename_change_ext(fn, EXPORT_EXTENSION_ASSETS);
-	if (file_exists(assetname)) {
-		serialize_load(assetname, proj_name);
-	}
+if (root) {
+    if (filename_ext(fn) == EXPORT_EXTENSION_DATA) {
+    	var assetname = filename_change_ext(fn, EXPORT_EXTENSION_ASSETS);
+    	if (file_exists(assetname)) {
+    		serialize_load(assetname);
+    	}
+    } else {
+    	var dataname = filename_change_ext(fn, EXPORT_EXTENSION_DATA);
+    	if (file_exists(dataname)) {
+    		serialize_load(dataname);
+    	}
+    }
 }
 
 var buffer = buffer_decompress(original);
@@ -113,7 +122,7 @@ if (header == "DDD") {
             case SerializeThings.EVENT_CUSTOM: serialize_load_event_custom(buffer, version); break;
 			case SerializeThings.EVENT_PREFAB: serialize_load_event_prefabs(buffer, version); break;
             case SerializeThings.ANIMATIONS: serialize_load_animations(buffer, version); break;
-            case SerializeThings.TERRAIN_HEIGHTMAP: serialize_load_terrain(buffer, version, true); break;
+            case SerializeThings.TERRAIN: serialize_load_terrain(buffer, version, true); break;
             case SerializeThings.MAPS: serialize_load_maps(buffer, version); break;
             // map stuff
             case SerializeThings.MAP_META: serialize_load_map_contents_meta(buffer, version, Stuff.map.active_map);  break;
@@ -144,10 +153,7 @@ if (erroneous) {
     dialog_create_notice(noone, "this is a ddd* file but the contents are no good?");
 }
 
-/*
- * that's it!
- */
-
+// project name
 buffer_delete(buffer);
 if (buffer != original) {
     buffer_delete(original);

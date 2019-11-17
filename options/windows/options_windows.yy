@@ -13,7 +13,7 @@
     "option_windows_display_cursor": true,
     "option_windows_display_name": "DDD Editor",
     "option_windows_enable_steam": false,
-    "option_windows_executable_name": "${project_name}",
+    "option_windows_executable_name": "ddd",
     "option_windows_icon": "${options_dir}\\windows\\runner_icon.ico",
     "option_windows_installer_finished": "${options_dir}\\windows\\Runner_finish.bmp",
     "option_windows_installer_header": "${options_dir}\\windows\\Runner_header.bmp",

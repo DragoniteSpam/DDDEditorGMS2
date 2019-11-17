@@ -5,7 +5,7 @@ enum SerializeThings {
     CONSTANTS               = 0x00000002,
     MESHES                  = 0x00000003,
     ANIMATIONS              = 0x00000004,
-    TERRAIN_HEIGHTMAP       = 0x00000005,
+    TERRAIN                 = 0x00000005,
     // 06
     IMAGE_TILESET           = 0x00000007,
     IMAGE_PARTICLES         = 0x00000008, //+

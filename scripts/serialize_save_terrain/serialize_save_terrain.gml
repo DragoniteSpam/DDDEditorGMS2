@@ -3,7 +3,7 @@
 var buffer = argument0;
 var terrain = Stuff.terrain;
 
-buffer_write(buffer, buffer_datatype, SerializeThings.TERRAIN_HEIGHTMAP);
+buffer_write(buffer, buffer_datatype, SerializeThings.TERRAIN);
 var addr_next = buffer_tell(buffer);
 buffer_write(buffer, buffer_u64, 0);
 

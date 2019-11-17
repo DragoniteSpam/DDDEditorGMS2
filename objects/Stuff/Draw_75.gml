@@ -52,7 +52,7 @@ if (schedule_save) {
 if (schedule_open) {
     var fn = get_open_filename_ddd();
     if (file_exists(fn)) {
-        serialize_load(fn);
+        serialize_load(fn, undefined, true);
     }
     
     schedule_open = false;
