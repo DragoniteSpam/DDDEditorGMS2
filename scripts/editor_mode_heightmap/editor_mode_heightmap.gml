@@ -1,4 +1,5 @@
 Stuff.mode = Stuff.terrain;
+setting_set("Config", "mode", ModeIDs.TERRAIN);
 
 view_set_visible(view_fullscreen, false);
 view_set_visible(view_3d, true);

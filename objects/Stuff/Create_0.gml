@@ -52,6 +52,14 @@ MOUSE_Y = window_mouse_get_y();
 mouse_3d_lock = false;
 mode = noone;
 
+enum ModeIDs {
+    MAP,
+    EVENT,
+    DATA,
+    ANIMATION,
+    TERRAIN
+}
+
 tf = ["False", "True"];
 on_off = ["Off", "On"];
 color_channels = vector4(0x000000ff, 0x0000ff00, 0x00ff0000, 0xff000000);
@@ -132,6 +140,8 @@ setting_view_grid = setting_get("View", "grid", true);
 setting_view_backface = setting_get("View", "backface", false);
 setting_view_texture = setting_get("View", "texture", true);
 setting_view_entities = setting_get("View", "entities", true);
+
+var stashed_mode = setting_get("Config", "mode", EDITOR_BASE_MODE);
 
 setting_code_extension_map = [".txt", ".lua"];
 
@@ -458,7 +468,13 @@ game_include_terrain = true;
 maps_included = false;
 
 // default editor mode
-mode = EDITOR_BASE_MODE;
+switch (stashed_mode) {
+    case ModeIDs.MAP: mode = map; break;
+    case ModeIDs.EVENT: mode = event; break;
+    case ModeIDs.DATA: mode = data; break;
+    case ModeIDs.ANIMATION: mode = animation; break;
+    case ModeIDs.TERRAIN: mode = terrain; break;
+}
 
 // the autosave/load is nice, BUT it will make the game break if there's an error
 // in either of them. so either do a LOT of validation or have a way to clear the

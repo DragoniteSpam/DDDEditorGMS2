@@ -28,3 +28,4 @@ node_info = noone;
 map = noone;
 
 ui = ui_init_event(id);
+mode_id = ModeIDs.EVENT;

@@ -4,3 +4,4 @@ render = editor_render_data;
 save = editor_save_setting_data;
 
 ui = noone;
+mode_id = ModeIDs.DATA;

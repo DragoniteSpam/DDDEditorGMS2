@@ -65,3 +65,4 @@ ds_grid_resize(active_map.contents.map_grid, active_map.xx, active_map.yy);
 map_fill_grid(active_map.contents.map_grid, active_map.zz);
 
 ui = ui_init_main(id);
+mode_id = ModeIDs.MAP;

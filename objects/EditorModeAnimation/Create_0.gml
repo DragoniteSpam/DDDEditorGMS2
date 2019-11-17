@@ -21,3 +21,4 @@ render = editor_render_animation;
 save = editor_save_setting_animation;
 
 ui = ui_init_animation(id);
+mode_id = ModeIDs.ANIMATION;

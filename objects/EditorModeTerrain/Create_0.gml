@@ -125,3 +125,4 @@ style_radius_coefficient[TerrainStyles.BLOCK] = 2.0;        // this will effecti
 style_radius_coefficient[TerrainStyles.CIRCLE] = 1.0;       // an exact circle
 
 ui = ui_init_terrain(id);
+mode_id = ModeIDs.TERRAIN;
