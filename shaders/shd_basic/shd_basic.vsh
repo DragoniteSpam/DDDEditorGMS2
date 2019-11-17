@@ -17,12 +17,10 @@ void main() {
     vec3 worldPosition = vec3(gm_Matrices[MATRIX_WORLD] * vec4(in_Position, 1.));
 	
 	vec4 finalColor = vec4(0.);
-	
-	for (int i = 0; i < MAX_LIGHTS; i++) {
-		if (i >= lightCount) {
-			break;
-		}
-		
+    // min isn't overloaded to work with ints, that's interesting
+	int n = int(min(float(lightCount), float(MAX_LIGHTS)));
+    
+	for (int i = 0; i < n; i++) {
 		vec3 lightPosition = lightData[i * 3].xyz;
         float type = lightData[i * 3].w;
         vec4 lightExt = lightData[i * 3 + 1];
