@@ -60,27 +60,3 @@ if (schedule_open) {
 
 Controller.mouse_x_previous = mouse_x;
 Controller.mouse_y_previous = mouse_y;
-
-/*Resize grids when importing a tileset image of a new size
-/*
-Search for references to Stuff.selection, since it's no longer there
-___________________________________________
-############################################################################################
-FATAL ERROR in
-action number 1
-of Draw Event
-for object Stuff:
-
-Variable Stuff.selection(100088, -2147483648) not set before reading it.
- at gml_Script_momu_set_starting_position_down (line 5) - if (ds_list_size(self.selection) == 1) {
-############################################################################################
---------------------------------------------------------------------------------------------
-stack frame is
-gml_Script_momu_set_starting_position_down (line 5)
-called from - gml_Script_menu_render_element (line 33) -         script_execute(menumenu.onmouseup, menumenu);
-called from - gml_Script_menu_render_element (line 76) -             script_execute(thing.render, thing, mx1, my1, mx2, my2);
-called from - gml_Script_menu_render (line 64) -             script_execute(thing.render, thing, mx1, my1, mx2, my2);
-called from - gml_Script_menu_render_main (line 28) -        script_execute(element.render, element, element.x, element.y);
-called from - gml_Script_draw_editor_menu (line 22) - script_execute(Stuff.menu.render, Stuff.menu, 0, yy);
-called from - gml_Script_editor_render_map (line 7) -     case view_ribbon: draw_editor_menu(mode, true); break;
-called from - gml_Object_Stuff_Draw_0 (line 1) - script_execute(mode.render, mode);*/

@@ -1,8 +1,5 @@
 with (instance_create_depth(0, 0, 0, MenuMain)) {
-    /*
-     * top-level stuff
-     */
-    
+    // top-level stuff
     var menu_file = create_menu("File", element_width, element_height, id);
     var menu_edit = create_menu("Edit", element_width, element_height, id);
     var menu_data = create_menu("Data", element_width, element_height, id);
@@ -10,17 +7,15 @@ with (instance_create_depth(0, 0, 0, MenuMain)) {
     var menu_help = create_menu("Help", element_width, element_height, id);
     ds_list_add(contents, menu_file, menu_edit, menu_data, menu_beta, menu_help);
     
-    #region file stuff
     var m_separator = create_menu_element("----------", null, id);
     
-    var mf_new = create_menu_element("New (Ctrl+N)", momu_new, menu_file);
+    #region file stuff
     var mf_save_data = create_menu_element("Save (Ctrl+S)", momu_save_data, menu_file);
     var mf_settings_data = create_menu_element("Global Data Settings", momu_settings_data, menu_file);
     var mf_preferences = create_menu_element("Preferences", momu_preferences, menu_file);
     var mf_exit = create_menu_element("Exit (Alt+F4)", momu_exit, menu_file);
     ds_list_add(menu_file.contents,
-        mf_new, mf_save_data,
-        m_separator,
+        mf_save_data,
         mf_settings_data, mf_preferences,
         mf_exit
     );

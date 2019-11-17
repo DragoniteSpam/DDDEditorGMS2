@@ -8840,14 +8840,6 @@
             }
         },
         {
-            "Key": "94140bab-087a-44e1-bec5-d86bf60ea9c3",
-            "Value": {
-                "id": "52b7ce18-84ce-4fef-a448-d15242e640f2",
-                "resourcePath": "scripts\\momu_new\\momu_new.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "94304602-fc59-4978-891d-dd3f84a34a58",
             "Value": {
                 "id": "86ed265d-f450-4bf6-9979-a3376541e5cc",
@@ -10740,14 +10732,6 @@
             "Value": {
                 "id": "96648a01-629c-4a17-85b3-a96b22ee6ba6",
                 "resourcePath": "scripts\\animation_set_keyframe_parameter\\animation_set_keyframe_parameter.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "b30a4bfe-7eb2-4b19-a081-6c83a7f966c7",
-            "Value": {
-                "id": "27ae9a41-c12f-4709-bda8-97070ed00963",
-                "resourcePath": "scripts\\momu_open\\momu_open.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -15872,11 +15856,9 @@
         "c91a91c6-262a-463b-8a0c-c1ed1a8182eb",
         "b5ec7a52-2aa0-408c-a61b-19972e62386f",
         "235f416d-662b-4b56-95ad-660d96b2ee29",
-        "b30a4bfe-7eb2-4b19-a081-6c83a7f966c7",
         "3735bf84-9ed3-419a-b53b-ee22b65585dd",
         "a8a40114-8596-4303-ae35-010640460505",
         "0ffbe5fd-ba68-4d52-84b4-f0a4a5b74a6e",
-        "94140bab-087a-44e1-bec5-d86bf60ea9c3",
         "1c985d94-2df4-4d39-b91c-ad4d818b58ea",
         "b075af14-3781-42cf-8d1b-0b108dce787c",
         "3590db0f-ffea-453f-bab7-a0b8532933d3",

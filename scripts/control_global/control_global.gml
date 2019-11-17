@@ -2,18 +2,11 @@
  * General keyboard shortcuts
  */
 if (keyboard_check(vk_control)) {
-    /*
-     * file
-     */
-    if (keyboard_check_pressed(ord("N"))) {
-        momu_new(noone);
-    }
+    // file
     if (keyboard_check_pressed(ord("S"))) {
         momu_save_data(noone);
     }
-    /*
-     * edit
-     */
+    // edit
     if (keyboard_check_pressed(ord("A"))) {
         momu_select_all(noone);
     }
