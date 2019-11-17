@@ -426,7 +426,6 @@ schedule_view_master_texture = false;
 schedule_view_particle_texture = false;
 schedule_view_ui_texture = false;
 schedule_save = false;
-schedule_open = false;
 
 gpu_base_state = gpu_get_state();
 #endregion

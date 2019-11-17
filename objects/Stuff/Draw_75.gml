@@ -49,14 +49,5 @@ if (schedule_save) {
     schedule_save = false;
 }
 
-if (schedule_open) {
-    var fn = get_open_filename_ddd();
-    if (file_exists(fn)) {
-        serialize_load(fn, undefined, true);
-    }
-    
-    schedule_open = false;
-}
-
 Controller.mouse_x_previous = mouse_x;
 Controller.mouse_y_previous = mouse_y;
