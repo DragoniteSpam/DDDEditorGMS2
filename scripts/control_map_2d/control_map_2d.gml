@@ -10,10 +10,10 @@ var camera = view_get_camera(view_3d);
 var cwidth = camera_get_view_width(camera);
 var cheight = camera_get_view_height(camera);
 
-var x1 = x - cwidth / 2;
-var y1 = y - cheight / 2;
-var x2 = x + cwidth / 2;
-var y2 = y + cheight / 2;
+var x1 = mode.x - cwidth / 2;
+var y1 = mode.y - cheight / 2;
+var x2 = mode.x + cwidth / 2;
+var y2 = mode.y + cheight / 2;
 
 var floor_cx = floor(((mouse_x_view + x1) / view_get_wport(view_3d)) * cwidth / TILE_WIDTH);
 var floor_cy = floor(((mouse_y_view + y1) / view_get_hport(view_3d)) * cheight / TILE_HEIGHT);
