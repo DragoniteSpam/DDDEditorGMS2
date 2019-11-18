@@ -45,7 +45,7 @@ if (version >= DataVersions.EXTRA_FOG_PROPERTIES) {
 }
 
 if (version >= DataVersions.MAP_GRID_PROPERTY) {
-	map.on_grid = unpack(bools, 5);
+	map.on_grid = unpack(bools, 6);
 }
 
 map.code = buffer_read(buffer, buffer_string);
