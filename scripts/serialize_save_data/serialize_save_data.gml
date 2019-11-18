@@ -80,7 +80,7 @@ if (string_length(fn) > 0) {
     
     var proj_name = filename_change_ext(filename_name(fn), "");
 	setting_project_add(proj_name);
-    setting_project_create_local(proj_name, compressed, filename_ext(fn));
+    setting_project_create_local(proj_name, undefined, compressed);
     
     buffer_delete(compressed);
     buffer_delete(buffer);

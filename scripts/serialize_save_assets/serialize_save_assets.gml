@@ -76,10 +76,10 @@ if (string_length(fn) > 0) {
     var compressed = buffer_compress(buffer, 0, buffer_tell(buffer));
     buffer_save(compressed, fn);
     //buffer_save(buffer, fn);
+    var proj_name = filename_change_ext(filename_name(fn), "");
+	setting_project_add(proj_name);
+    setting_project_create_local(proj_name, compressed, undefined);
     
-	var auto_folder = PATH_PROJECTS + filename_change_ext(filename_name(fn), "") + "\\";
-    buffer_save(compressed, auto_folder + "auto" + EXPORT_EXTENSION_ASSETS);
-    //buffer_save(buffer, auto_folder + "auto" + EXPORT_EXTENSION_ASSETS);
     buffer_delete(compressed);
     buffer_delete(buffer);
 }

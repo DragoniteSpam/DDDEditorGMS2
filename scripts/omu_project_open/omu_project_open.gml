@@ -4,7 +4,7 @@ var button = argument0;
 
 var fn = get_open_filename_ddd();
 if (file_exists(fn)) {
-    serialize_load(fn, filename_name(filename_change_ext(fn, "")), true);
+    if (serialize_load_base(fn, filename_name(filename_change_ext(fn, "")))) {
+        dialog_destroy();
+    } // else the files could not be loaded
 }
-
-dialog_destroy();
