@@ -19,10 +19,17 @@ var dir = pawn.map_direction;
 var frame_width = sprite_get_width(pawn.overworld_sprite) / spritesheet_frames;
 var frame_height = sprite_get_height(pawn.overworld_sprite) / spritesheet_height;
 
-var angle = Stuff.map.active_map.is_3d ? 60 : 0;
+// i'd much rather do this with a conditional operator, but the YYC was complaining about that for reasons unknown
 var xoffset = 0;
-var yoffset = Stuff.map.active_map.is_3d ? TILE_HEIGHT / 2 : TILE_HEIGHT;
-var zoffset = Stuff.map.active_map.is_3d ? 0 : 1;
+if (Stuff.map.active_map.is_3d) {
+    var angle = 60;
+    var yoffset = Stuff.tile_height / 2;
+    var zoffset = 0;
+} else {
+    var angle = 0;
+    var yoffset = Stuff.tile_height;
+    var zoffset = 1;
+}
 transform_set(0, -TILE_HEIGHT, 0, 0, 0, 0, 1, 1, 1);
 transform_add(0, 0, 0, angle, 0, 0, 1, 1, 1);
 transform_add(xx * TILE_WIDTH + xoffset, yy * TILE_HEIGHT + yoffset, zz * TILE_DEPTH + zoffset, 0, 0, 0, 1, 1, 1);

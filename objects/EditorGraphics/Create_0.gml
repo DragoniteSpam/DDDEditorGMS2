@@ -118,5 +118,20 @@ for (var i = 0; i < segments; i++) {
 vertex_end(grid_sphere);
 vertex_freeze(grid_sphere);
 
+axes = vertex_create_buffer();
+vertex_begin(axes, vertex_format);
+
+vertex_point_line(axes, 0, 0, 0, c_red, 1);
+vertex_point_line(axes, MILLION, 0, 0, c_red, 1);
+
+vertex_point_line(axes, 0, 0, 0, c_green, 1);
+vertex_point_line(axes, 0, MILLION, 0, c_green, 1);
+
+vertex_point_line(axes, 0, 0, 0, c_blue, 1);
+vertex_point_line(axes, 0, 0, MILLION, c_blue, 1);
+    
+vertex_end(axes);
+vertex_freeze(axes);
+
 grid = noone;
 grid_centered = noone;

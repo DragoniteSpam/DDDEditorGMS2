@@ -7,7 +7,6 @@ if (Stuff.graphics.grid) vertex_delete_buffer(Stuff.graphics.grid);
 Stuff.graphics.grid = vertex_create_buffer();
 vertex_begin(Stuff.graphics.grid, Stuff.graphics.vertex_format);
 
-// grid
 for (var i = 0; i <= map.xx; i++) {
     vertex_point_line(Stuff.graphics.grid, i * TILE_WIDTH, 0, 0, c_white, 1);
     vertex_point_line(Stuff.graphics.grid, i * TILE_WIDTH, map.yy * TILE_HEIGHT, 0, c_white, 1);
@@ -17,16 +16,6 @@ for (var i = 0; i <= map.yy; i++) {
     vertex_point_line(Stuff.graphics.grid, 0, i * TILE_HEIGHT, 0, c_white, 1);
     vertex_point_line(Stuff.graphics.grid, map.xx * TILE_WIDTH, i * TILE_HEIGHT, 0, c_white, 1);
 }
-
-// axes
-vertex_point_line(Stuff.graphics.grid, 0, 0, 0, c_red, 1);
-vertex_point_line(Stuff.graphics.grid, MILLION, 0, 0, c_red, 1);
-
-vertex_point_line(Stuff.graphics.grid, 0, 0, 0, c_green, 1);
-vertex_point_line(Stuff.graphics.grid, 0, MILLION, 0, c_green, 1);
-
-vertex_point_line(Stuff.graphics.grid, 0, 0, 0, c_blue, 1);
-vertex_point_line(Stuff.graphics.grid, 0, 0, MILLION, c_blue, 1);
     
 vertex_end(Stuff.graphics.grid);
 vertex_freeze(Stuff.graphics.grid);

@@ -101,6 +101,7 @@ transform_set(0, 0, 0.5, 0, 0, 0, 1, 1, 1);
 
 if (Stuff.setting_view_grid) {
     vertex_submit(Stuff.graphics.grid, pr_linelist, -1);
+    vertex_submit(Stuff.graphics.axes, pr_linelist, -1);
 }
 
 // tried using ztestenable for this - didn't look good. at all.

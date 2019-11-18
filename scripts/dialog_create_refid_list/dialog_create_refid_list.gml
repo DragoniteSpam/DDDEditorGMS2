@@ -37,9 +37,11 @@ var el_text = create_text(c2 + 16, dh / 2, "Only references to entities in the c
 
 var b_width = 128;
 var b_height = 32;
-var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Good", b_width, b_height, fa_center, dmu_dialog_commit_preferences, dg);
+var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Good", b_width, b_height, fa_center, dmu_dialog_commit, dg);
 
-ds_list_add(dg.contents, dg.el_list, el_text,
-    el_confirm);
+ds_list_add(
+    dg.contents, dg.el_list, el_text,
+    el_confirm
+);
 
 return dg;
