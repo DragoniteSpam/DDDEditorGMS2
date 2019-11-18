@@ -22,15 +22,6 @@ if (mode.orthographic) {
     var proj = matrix_build_projection_perspective_fov(-mode.fov, -vw / vh, CAMERA_ZNEAR, CAMERA_ZFAR);
 }
 
-// base terrain layer
-
-surface_set_target(mode.depth_surface_base);
-
-camera_set_view_mat(camera, view);
-camera_set_proj_mat(camera, proj);
-camera_apply(camera);
-
-draw_clear_alpha(c_black, 0);
 shader_set(shd_basic);
 shader_set_uniform_i(shader_get_uniform(shd_basic, "lightEnabled"), true);
 shader_set_uniform_i(shader_get_uniform(shd_basic, "lightCount"), 1);
@@ -41,9 +32,18 @@ shader_set_uniform_f_array(shader_get_uniform(shd_basic, "lightData"), [
 ]);
 
 transform_set(0, 0, 0, 0, 0, 0, mode.view_scale, mode.view_scale, mode.view_scale);
+
+// base terrain layer
+
+surface_set_target(mode.depth_surface_base);
+
+camera_set_view_mat(camera, view);
+camera_set_proj_mat(camera, proj);
+camera_apply(camera);
+
+draw_clear_alpha(c_black, 0);
 vertex_submit(mode.terrain_buffer, pr_trianglelist, sprite_get_texture(mode.texture, 0));
-gpu_set_ztestenable(false);
-gpu_set_zwriteenable(false);
+vertex_submit(Stuff.graphics.axes, pr_linelist, -1);
 surface_reset_target();
 
 // top terrain layer
@@ -55,16 +55,8 @@ camera_set_proj_mat(camera, proj);
 camera_apply(camera);
 
 draw_clear_alpha(c_black, 0);
-shader_set(shd_basic);
-shader_set_uniform_i(shader_get_uniform(shd_basic, "lightEnabled"), true);
-shader_set_uniform_i(shader_get_uniform(shd_basic, "lightCount"), 1);
-shader_set_uniform_f_array(shader_get_uniform(shd_basic, "lightData"), [
-	1, 1, -1, 0,
-		0, 0, 0, 0,
-		1, 1, 1, 0,
-]);
-
 vertex_submit(mode.terrain_buffer, pr_trianglelist, sprite_get_texture(mode.texture, 0));
+vertex_submit(Stuff.graphics.axes, pr_linelist, -1);
 */
 //surface_reset_target();
 
