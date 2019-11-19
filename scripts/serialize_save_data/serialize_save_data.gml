@@ -13,7 +13,6 @@ if (string_length(fn) > 0) {
     buffer_write(buffer, buffer_u8, $44);
     buffer_write(buffer, buffer_u32, DataVersions._CURRENT - 1);
     buffer_write(buffer, buffer_u8, SERIALIZE_DATA_AND_MAP);
-    buffer_write(buffer, buffer_u32, 0);
     
     // lol
     var index_addr_content = buffer_tell(buffer);
@@ -110,5 +109,6 @@ enum DataVersions {
     MAP_GRID_PROPERTY           = 58,
     AT_OVERHAUL                 = 59,
     DATA_CHUNK_ADDRESSES        = 60,
+	REMOVE_UNUSED_DATA			= 61,
     _CURRENT                 /* = whatever the last one is + 1 */
 }

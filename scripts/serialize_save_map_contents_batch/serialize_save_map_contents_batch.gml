@@ -15,7 +15,7 @@ buffer_write_buffer(buffer, map_contents.frozen_data_wire);
 
 var passage_count = 0;
 var passage_address = buffer_tell(buffer);
-buffer_write(buffer, buffer_u32, 0);
+buffer_write(buffer, buffer_u32, 0 /* address */);
 
 for (var i = 0; i < map.xx; i++) {
     for (var j = 0; j < map.yy; j++) {

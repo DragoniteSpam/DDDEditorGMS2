@@ -5,7 +5,7 @@ var index = ui_list_selection(button.root.el_event_list);
 
 if (index + 1 && ds_list_size(Stuff.all_events) > index) {
     if (ds_list_size(Stuff.all_events) == 1) {
-        show_message("Can't delete the only event!");
+        dialog_create_notice(noone, "Can't delete the only event!");
     } else {
         var event = Stuff.all_events[| index];
         
@@ -19,5 +19,5 @@ if (index + 1 && ds_list_size(Stuff.all_events) > index) {
         }
     }
 } else {
-    show_message("select an event first!");
+    dialog_create_notice(noone, "select an event first!");
 }

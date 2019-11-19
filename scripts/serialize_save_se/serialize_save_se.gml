@@ -23,8 +23,8 @@ for (var i = 0; i < n_se; i++) {
         buffer_seek(buffer, buffer_seek_relative, len);
         buffer_delete(fbuffer);
     } else {
-        buffer_write(buffer, buffer_u32, 0);
-        buffer_write(buffer, buffer_u32, 0);
+        buffer_write(buffer, buffer_u32, 0 /* length */);
+        buffer_write(buffer, buffer_u32, 0 /* this is important for something i think */);
         debug("Audio file not found: " + string(se.GUID) + " [" + se.name + "]");
     }
 }

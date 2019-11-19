@@ -32,7 +32,10 @@ if (header == "DDD") {
 	}
     
     buffer_read(buffer, buffer_u8);
-    buffer_read(buffer, buffer_u32);
+	if (version >= DataVersions.REMOVE_UNUSED_DATA) {
+    } else {
+        buffer_read(buffer, buffer_u32);
+	}
 	
     var datatype = buffer_read(buffer, buffer_datatype);
     

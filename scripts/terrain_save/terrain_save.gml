@@ -10,7 +10,6 @@ buffer_write(buffer, buffer_u8, $44);
 buffer_write(buffer, buffer_u8, $44);
 buffer_write(buffer, buffer_u32, DataVersions._CURRENT - 1);
 buffer_write(buffer, buffer_u8, SERIALIZE_DATA_AND_MAP);
-buffer_write(buffer, buffer_u32, 0);
 
 serialize_save_terrain(buffer);
 

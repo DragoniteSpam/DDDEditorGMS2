@@ -12,6 +12,10 @@ buffer_read(buffer, buffer_u8);
 
 var version = buffer_read(buffer, buffer_u32);
 var what = buffer_read(buffer, buffer_u8);
+if (version >= DataVersions.REMOVE_UNUSED_DATA) {
+} else {
+    buffer_read(buffer, buffer_u32);
+}
 
 Stuff.maps_included = (what == SERIALIZE_DATA_AND_MAP);
 
@@ -66,7 +70,7 @@ while (true) {
     if (datatype == SerializeThings.END_OF_FILE) {
         break;
     }
-    
+    debug(datatype);
     switch (datatype) {
         // assets
         case SerializeThings.IMAGE_AUTOTILES: serialize_load_image_autotiles(buffer, version); break;

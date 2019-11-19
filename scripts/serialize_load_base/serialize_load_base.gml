@@ -72,9 +72,6 @@ if (outcome) {
             outcome = false;
         }
         
-        buffer_read(buffer_asset, buffer_u8);
-        buffer_read(buffer_data, buffer_u8);
-        
         if (outcome) {
             serialize_load(buffer_asset);
             serialize_load(buffer_data);
