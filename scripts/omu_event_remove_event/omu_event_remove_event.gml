@@ -3,7 +3,7 @@
 var button = argument0;
 var index = ui_list_selection(button.root.el_event_list);
 
-if (index + 1) {
+if (index + 1 && ds_list_size(Stuff.all_events) > index) {
     if (ds_list_size(Stuff.all_events) == 1) {
         show_message("Can't delete the only event!");
     } else {
