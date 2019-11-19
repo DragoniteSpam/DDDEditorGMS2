@@ -43,6 +43,8 @@ if (zz < mode.z) {
 		        case SelectionModes.SINGLE: var stype = SelectionSingle; break;
 		        case SelectionModes.RECTANGLE: var stype = SelectionRectangle; break;
 		        case SelectionModes.CIRCLE: var stype = SelectionCircle; break;
+                // not sure why it broke once, but just in case
+                default: Stuff.setting_selection_mode = SelectionModes.RECTANGLE; var stype = SelectionRectangle; break;
 		    }
 			
 		    var tz = mode.under_cursor ? mode.under_cursor.zz : 0;
