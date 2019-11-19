@@ -1784,6 +1784,14 @@
             }
         },
         {
+            "Key": "1cc25413-44c2-47b7-bacc-59879be8d440",
+            "Value": {
+                "id": "65a15883-7988-4c03-94be-18df8801f74c",
+                "resourcePath": "scripts\\dialog_create_entity_generic_data\\dialog_create_entity_generic_data.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "1cf98de9-7ec9-469e-a493-8ac2e4476b10",
             "Value": {
                 "id": "f860a42d-6373-44fb-9756-407458367eb1",
@@ -4020,6 +4028,14 @@
             "Value": {
                 "id": "934ea5ad-e4c2-4d2a-a84d-cb727d52ea11",
                 "resourcePath": "scripts\\uivc_list_autotile_selector\\uivc_list_autotile_selector.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "4534a1e2-51d3-4f9c-b458-2559ac0b95ca",
+            "Value": {
+                "id": "ead6a447-87fd-4dfd-b2e1-5309ac5fcd9b",
+                "resourcePath": "scripts\\omu_entity_generic_data\\omu_entity_generic_data.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -15760,6 +15776,7 @@
         "d43ca1ce-3ce5-4d40-bb40-212a2fa0ffa5",
         "c8736cfb-78a8-4bc9-a235-beaf6ededc85",
         "68759c59-2f2b-415b-9734-598286337221",
+        "1cc25413-44c2-47b7-bacc-59879be8d440",
         "7c1ef097-00b2-4e65-9c99-321a6b4159f0",
         "c860d3f6-2162-40d2-bdc1-ca6ff27de699",
         "42776e3f-7464-497d-a257-499c90363d5a",
@@ -16203,6 +16220,7 @@
         "ee00f2ab-35ab-4b25-823a-78ad1e706766",
         "7d1abbee-52fa-4e52-ad7b-5f30de25c5ce",
         "1822abda-6297-46bc-94d3-b91b2c8f6cea",
+        "4534a1e2-51d3-4f9c-b458-2559ac0b95ca",
         "7f7cd14c-2b12-429a-96a5-4f96a5750dd1",
         "fbe2a448-7cad-4280-bc8d-ff1ea3d4362b",
         "ab72af93-f320-4bcb-b6f9-232cc709b3f1",

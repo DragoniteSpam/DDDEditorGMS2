@@ -1,5 +1,5 @@
-/// @param UIThing
+/// @param UIButton
 
-var catch = argument0;
+var button = argument0;
 
 dialog_create_entity_autonomous_movement(noone);

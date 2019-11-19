@@ -462,7 +462,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element_entity_option_reset_position.height + spacing;
     
-    element_entity_generic = create_button(legal_x + spacing, yy, "Generic Data", col_width, element_height, fa_center, null, t_p_entity);
+    element_entity_generic = create_button(legal_x + spacing, yy, "Generic Data", col_width, element_height, fa_center, omu_entity_generic_data, t_p_entity);
     ds_list_add(t_p_entity.contents, element_entity_generic);
     element_entity_generic.interactive = false;
     
