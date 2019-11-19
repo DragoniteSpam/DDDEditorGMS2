@@ -18,14 +18,14 @@ Stuff.maps_included = (what == SERIALIZE_DATA_AND_MAP);
 switch (what) {
     case SERIALIZE_ASSETS:
         instance_activate_object(Data);
-        with (Data) if (file_location = DataFileLocations.ASSET) {
+        with (Data) if (file_location == DataFileLocations.ASSET) {
             instance_destroy();
         }
         break;
 	case SERIALIZE_DATA_AND_MAP:
     case SERIALIZE_DATA:
         instance_activate_object(Data);
-        with (Data) if (file_location = DataFileLocations.DATA) {
+        with (Data) if (file_location == DataFileLocations.DATA) {
             instance_destroy();
         }
         // clear all data - data has already been destroyed so you just have to clear them
