@@ -83,7 +83,7 @@ if (outcome) {
             setting_project_create_local(proj_name, original_asset, original_data);
             game_auto_title();
     
-            Stuff.save_name = filename_change_ext(filename_name(fn), "");
+            Stuff.save_name = proj_name;
         }
     }
 }
