@@ -33,7 +33,14 @@ shader_set_uniform_f_array(shader_get_uniform(shd_basic, "lightData"), [
 
 transform_set(0, 0, 0, 0, 0, 0, mode.view_scale, mode.view_scale, mode.view_scale);
 
+gpu_set_ztestenable(true);
+gpu_set_zwriteenable(true);
+
 // base terrain layer
+
+if (!surface_exists(mode.depth_surface_base)) {
+	mode.depth_surface_base = surface_create(camera_get_view_width(camera), camera_get_view_height(camera));
+}
 
 surface_set_target(mode.depth_surface_base);
 
@@ -48,6 +55,10 @@ surface_reset_target();
 
 // top terrain layer
 /*
+if (!surface_exists(mode.depth_surface_top)) {
+	mode.depth_surface_top = surface_create(camera_get_view_width(camera), camera_get_view_height(camera));
+}
+
 surface_set_target(mode.depth_surface_top);
 
 camera_set_view_mat(camera, view);
