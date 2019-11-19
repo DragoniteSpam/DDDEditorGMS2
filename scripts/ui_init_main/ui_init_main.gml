@@ -366,11 +366,6 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
 	
 	yy = yy + element.height + spacing * 4;
 	
-	element = create_text(col2_x, yy, "More Settings", col_width, element_height, fa_left, col_width, t_maps);
-	ds_list_add(t_maps.contents, element);
-	
-	yy = yy + element.height + spacing;
-	
 	element = create_button(col2_x, yy,  "More Settings", col_width, element_height, fa_center, dialog_create_settings_map, t_maps);
 	ds_list_add(t_maps.contents, element);
 	t_maps.el_other = element;
@@ -466,6 +461,12 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     element_entity_option_reset_position.interactive = false;
     
     yy = yy + element_entity_option_reset_position.height + spacing;
+    
+    element_entity_generic = create_button(legal_x + spacing, yy, "Generic Data", col_width, element_height, fa_center, null, t_p_entity);
+    ds_list_add(t_p_entity.contents, element_entity_generic);
+    element_entity_generic.interactive = false;
+    
+    yy = yy + element_height + spacing;
     
     element_entity_option_autonomous_movement = create_button(legal_x + spacing, yy, "Autonomous Movement", col_width, element_height, fa_center, omu_entity_autonomous_movement, t_p_entity);
     ds_list_add(t_p_entity.contents, element_entity_option_autonomous_movement);

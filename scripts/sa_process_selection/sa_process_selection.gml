@@ -10,6 +10,7 @@ if (ds_list_size(list) == 0) {
     Stuff.map.ui.element_entity_name.interactive = false;
     Stuff.map.ui.element_entity_solid.interactive = false;
     Stuff.map.ui.element_entity_static.interactive = false;
+    Stuff.map.ui.element_entity_generic.interactive = false;
     Stuff.map.ui.element_entity_events.interactive = false;
     Stuff.map.ui.element_entity_event_add.interactive = false;
     Stuff.map.ui.element_entity_event_remove.interactive = false;
@@ -63,6 +64,7 @@ if (ds_list_size(list) == 0) {
     
     Stuff.map.ui.element_entity_name.interactive = true;
     Stuff.map.ui.element_entity_solid.interactive = true;
+    Stuff.map.ui.element_entity_generic.interactive = true;
     Stuff.map.ui.element_entity_static.interactive = true;
     
     Stuff.map.ui.element_entity_events.interactive = false;

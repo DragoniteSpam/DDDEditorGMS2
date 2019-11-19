@@ -11,7 +11,6 @@ var dh = 560;
 var list = Stuff.map.selected_entities;
 var entity = list[| 0];
 var dg = dialog_create(dw, dh, "Edit Move Route", dialog_default, dc_close_no_questions_asked, dialog);
-dg.x = dg.x - 160;
 dg.route = route;
 
 var columns = 4;

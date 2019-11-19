@@ -65,6 +65,8 @@ animate_movement = false;
 direction_fix = true;
 reset_position = false;
 
+generic = ds_list_create();
+
 // autonomous movement - only useful for things not marked as "static"
 
 autonomous_movement = AutonomousMovementTypes.FIXED;

@@ -70,7 +70,7 @@ while (true) {
     if (datatype == SerializeThings.END_OF_FILE) {
         break;
     }
-    debug(datatype);
+    
     switch (datatype) {
         // assets
         case SerializeThings.IMAGE_AUTOTILES: serialize_load_image_autotiles(buffer, version); break;

@@ -11,6 +11,7 @@ Stuff.map.ui.element_entity_static.value = entity.static;
 Stuff.map.ui.element_entity_name.interactive = true;
 Stuff.map.ui.element_entity_solid.interactive = true;
 Stuff.map.ui.element_entity_static.interactive = true;
+Stuff.map.ui.element_entity_generic.interactive = true;
 
 Stuff.map.ui.element_entity_events.interactive = true;
 Stuff.map.ui.element_entity_event_add.interactive = true;
