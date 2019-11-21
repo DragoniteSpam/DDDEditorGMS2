@@ -1,4 +1,5 @@
-/// @description void omu_data_enum_select(UIThing);
-/// @param UIThing
+/// @param UIButton
 
-dialog_create_data_enum_select(argument0);
+var button = argument0;
+
+dialog_create_data_enum_select(button);

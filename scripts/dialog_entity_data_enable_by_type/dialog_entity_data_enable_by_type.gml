@@ -45,5 +45,22 @@ switch (data.type) {
         dialog.el_data_type_guid.enabled = true;
         dialog.el_data_list.interactive = true;
         dialog.el_data_type_guid.interactive = true;
+        
+        var type = guid_get(data.value_type_guid);
+        
+        if (type) {
+            dialog.el_data_type_guid.text = type.name + " (Select)";
+            dialog.el_data_type_guid.color = (data.type == type.type) ? c_black : c_red;
+        } else {
+            dialog.el_data_type_guid.text = "Select";
+            dialog.el_data_type_guid.color = c_black;
+        }
+        
+        if (data.type == DataTypes.ENUM) {
+            dialog.el_data_type_guid.onmouseup = omu_entity_data_enum_select;
+        } else  {
+            dialog.el_data_type_guid.onmouseup = omu_entity_data_data_select;
+        }
+        
         break;
 }

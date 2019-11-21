@@ -83,7 +83,7 @@ el_data_property_bool.enabled = false;
 dg.el_data_property_bool = el_data_property_bool;
 
 //should probably take inspiration from dialog_create_data_types
-var el_data_type_guid = create_button(col2_x, yy, "Select Data Type", ew, eh, fa_center, null, dg);
+var el_data_type_guid = create_button(col2_x, yy, "Select", ew, eh, fa_center, null, dg);
 el_data_type_guid.interactive = false;
 el_data_type_guid.enabled = false;
 dg.el_data_type_guid = el_data_type_guid;
