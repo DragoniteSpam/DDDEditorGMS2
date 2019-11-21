@@ -2,7 +2,7 @@
 /// @param y
 /// @param text
 /// @param vacant-text
-/// @param width
+/// @param element-width
 /// @param element-height
 /// @param content-slots
 /// @param onvaluechange

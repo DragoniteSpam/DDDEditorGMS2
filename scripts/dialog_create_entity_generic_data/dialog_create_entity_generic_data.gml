@@ -60,30 +60,40 @@ var el_data_property_code = create_input_code(col2_x, yy, "Code:", ew, eh, vx1, 
 el_data_property_code.interactive = false;
 el_data_property_code.enabled = false;
 dg.el_data_property_code = el_data_property_code;
-var el_data_property_string = create_input(col2_x, yy, "String:", ew, eh, uivc_input_entity_data_string, "", "text", validate_string, 0, 1, 160, vx1, vy1, vx2, vy2, dg);
+
+var el_data_property_string = create_input(col2_x, yy, "Value:", ew, eh, uivc_input_entity_data_string, "", "text", validate_string, 0, 1, 160, vx1, vy1, vx2, vy2, dg);
 el_data_property_string.is_code = false;
 el_data_property_string.interactive = false;
 el_data_property_string.enabled = false;
 dg.el_data_property_string = el_data_property_string;
-var el_data_property_real = create_input(col2_x, yy, "Float:", ew, eh, uivc_input_entity_data_real, "0", "number", validate_double, -1 << 31, 1 << 31 - 1, 10, vx1, vy1, vx2, vy2, dg);
+
+var el_data_property_real = create_input(col2_x, yy, "Value:", ew, eh, uivc_input_entity_data_real, "0", "number", validate_double, -1 << 31, 1 << 31 - 1, 10, vx1, vy1, vx2, vy2, dg);
 el_data_property_real.interactive = false;
 el_data_property_real.enabled = false;
 dg.el_data_property_real = el_data_property_real;
-var el_data_property_int = create_input(col2_x, yy, "Int:", ew, eh, uivc_input_entity_data_int, "0", "int", validate_int, -1 << 31, 1 << 31 - 1, 11, vx1, vy1, vx2, vy2, dg);
+
+var el_data_property_int = create_input(col2_x, yy, "Value:", ew, eh, uivc_input_entity_data_int, "0", "int", validate_int, -1 << 31, 1 << 31 - 1, 11, vx1, vy1, vx2, vy2, dg);
 el_data_property_int.interactive = false;
 el_data_property_int.enabled = false;
 dg.el_data_property_int = el_data_property_int;
-var el_data_property_bool = create_checkbox(col2_x, yy, "Bool", ew, eh, uivc_input_entity_data_bool, false, dg);
+
+var el_data_property_bool = create_checkbox(col2_x, yy, "Value", ew, eh, uivc_input_entity_data_bool, false, dg);
 el_data_property_bool.interactive = false;
 el_data_property_bool.enabled = false;
 dg.el_data_property_bool = el_data_property_bool;
+
 //should probably take inspiration from dialog_create_data_types
 var el_data_type_guid = create_button(col2_x, yy, "Select Data Type", ew, eh, fa_center, null, dg);
 el_data_type_guid.interactive = false;
 el_data_type_guid.enabled = false;
 dg.el_data_type_guid = el_data_type_guid;
 yy = yy + el_data_type_guid.height + spacing;
-yy = yy + eh + spacing;
+
+var el_data_list = create_list(col2_x, yy, "Data", "<none>", ew, eh, 6, null, false, dg, noone);
+el_data_list.interactive = false;
+el_data_list.enabled = false;
+dg.el_data_list = el_data_list;
+yy = yy + ui_get_list_height(el_data_list) + spacing;
 
 var yy_base = yy;
 
@@ -93,7 +103,7 @@ var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Do
 
 ds_list_add(dg.contents,
     el_list, el_data_add, el_data_remove,
-    el_name, el_data_type, el_data_ext_type, el_data_type_guid,
+    el_name, el_data_type, el_data_ext_type, el_data_type_guid, el_data_list,
     el_data_property_code, el_data_property_string, el_data_property_real, el_data_property_int, el_data_property_bool,
     el_confirm
 );

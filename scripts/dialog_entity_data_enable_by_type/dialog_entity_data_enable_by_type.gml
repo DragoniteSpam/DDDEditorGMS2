@@ -39,4 +39,11 @@ switch (data.type) {
         dialog.el_data_property_bool.enabled = true;
         dialog.el_data_property_bool.value = data.value_bool;
         break;
+    case DataTypes.ENUM:
+    case DataTypes.DATA:
+        dialog.el_data_list.enabled = true;
+        dialog.el_data_type_guid.enabled = true;
+        dialog.el_data_list.interactive = true;
+        dialog.el_data_type_guid.interactive = true;
+        break;
 }

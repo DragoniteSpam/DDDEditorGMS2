@@ -13,9 +13,13 @@ dialog.el_data_property_string.interactive = false;
 dialog.el_data_property_real.interactive = false;
 dialog.el_data_property_int.interactive = false;
 dialog.el_data_property_bool.interactive = false;
+dialog.el_data_list.interactive = false;
+dialog.el_data_type_guid.interactive = false;
 
 dialog.el_data_property_code.enabled = false;
 dialog.el_data_property_string.enabled = false;
 dialog.el_data_property_real.enabled = false;
 dialog.el_data_property_int.enabled = false;
 dialog.el_data_property_bool.enabled = false;
+dialog.el_data_list.enabled = false;
+dialog.el_data_type_guid.enabled = false;
