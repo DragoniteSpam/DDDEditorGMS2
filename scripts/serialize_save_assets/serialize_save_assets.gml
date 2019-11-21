@@ -76,7 +76,7 @@ if (string_length(fn) > 0) {
     buffer_save(compressed, fn);
     //buffer_save(buffer, fn);
     var proj_name = filename_change_ext(filename_name(fn), "");
-	setting_project_add(proj_name);
+    setting_project_add(proj_name);
     setting_project_create_local(proj_name, compressed, undefined);
     
     buffer_delete(compressed);

@@ -30,8 +30,8 @@ with (instance_create_depth(argument[0], argument[1], 0, UIColorPickerInput)) {
     
     root = argument[11];
     text = (argument_count > 12) ? argument[12] : text;
-	
-	value_text = string_hex(colour_reverse(value), 6);
-	
+    
+    value_text = string_hex(colour_reverse(value), 6);
+    
     return id;
 }

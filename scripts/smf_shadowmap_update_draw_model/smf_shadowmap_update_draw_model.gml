@@ -11,13 +11,13 @@ uni = SMF_uniforms[? sh_smf_shadowmap];
 
 if argument_count > 1 and !Static
 {
-	sample = argument[1];
-	animate = true;
-	shader_set_uniform_f_array(uni[SMF_uni.Sample], sample);
+    sample = argument[1];
+    animate = true;
+    shader_set_uniform_f_array(uni[SMF_uni.Sample], sample);
 }
 shader_set_uniform_i(uni[SMF_uni.Animate], animate);
 for (m = 0; m < array_length_1d(modArray); m ++)
 {
-	if !Visible[m]{continue;}
-	vertex_submit(modArray[m], pr_trianglelist, -1);
+    if !Visible[m]{continue;}
+    vertex_submit(modArray[m], pr_trianglelist, -1);
 }

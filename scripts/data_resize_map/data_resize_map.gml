@@ -26,9 +26,9 @@ ds_grid_resize(map_contents.map_grid, xx, yy);
 map_fill_grid(map_contents.map_grid, zz);
 
 if (Stuff.game_starting_map == map.GUID) {
-	Stuff.game_starting_x = min(Stuff.game_starting_x, xx - 1);
-	Stuff.game_starting_y = min(Stuff.game_starting_y, yy - 1);
-	Stuff.game_starting_z = min(Stuff.game_starting_z, zz - 1);
+    Stuff.game_starting_x = min(Stuff.game_starting_x, xx - 1);
+    Stuff.game_starting_y = min(Stuff.game_starting_y, yy - 1);
+    Stuff.game_starting_z = min(Stuff.game_starting_z, zz - 1);
 }
 
 Stuff.map.ui.element_entity_pos_x.value_upper = xx - 1;

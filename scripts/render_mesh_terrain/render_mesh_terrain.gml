@@ -18,7 +18,7 @@ if (Stuff.setting_view_entities) {
 }
 
 if (Stuff.setting_view_wireframe) {
-	vertex_submit(mesh_data.wbuffer, pr_linelist, -1);
+    vertex_submit(mesh_data.wbuffer, pr_linelist, -1);
 }
 
 transform_reset();

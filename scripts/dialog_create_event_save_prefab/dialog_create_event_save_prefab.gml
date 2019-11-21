@@ -30,7 +30,7 @@ var yy = 64;
 var base_name = node.name;
 var position = string_pos("$", base_name);
 if (position) {
-	base_name = string_copy(base_name, 1, position - 1);
+    base_name = string_copy(base_name, 1, position - 1);
 }
 var el_name = create_input(16, yy, "Name:", ew, eh, null, base_name, "", validate_string, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
 yy = yy + el_name.height + spacing;

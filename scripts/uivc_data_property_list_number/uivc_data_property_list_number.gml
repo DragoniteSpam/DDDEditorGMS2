@@ -10,7 +10,7 @@ if (pselection >= 0) {
     var instance = guid_get(data.instances[| selection].GUID);
     var plist = instance.values[| input.key];
     
-	var rv = real(input.value);
+    var rv = real(input.value);
     plist[| pselection] = rv;
     
     input.root.el_list_main.entries[| pselection] = string(rv);

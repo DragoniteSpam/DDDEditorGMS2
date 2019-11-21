@@ -3,9 +3,9 @@
 var i = ds_list_find_index(SMF_textureList, argument0);
 if i != -1
 {
-	return sprite_get_texture(SMF_textureList[| i - 1], 0);
+    return sprite_get_texture(SMF_textureList[| i - 1], 0);
 }
 else
 {
-	return -1;
+    return -1;
 }

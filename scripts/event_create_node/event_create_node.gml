@@ -36,7 +36,7 @@ switch (type) {
         break;
     case EventNodeTypes.CONDITIONAL:
         node.name = "Branch";
-		// there are always one more outbound nodes than the number of branches - the last one is for the final "else"
+        // there are always one more outbound nodes than the number of branches - the last one is for the final "else"
         ds_list_add(node.outbound, noone);
         var list_branch_types = ds_list_create();
         var list_branch_indices = ds_list_create();
@@ -86,22 +86,22 @@ switch (type) {
                     }
                 }
             }
-			
-			for (var i = 0; i < ds_list_size(custom.outbound); i++) {
-				node.outbound[| i] = noone;
-			}
+            
+            for (var i = 0; i < ds_list_size(custom.outbound); i++) {
+                node.outbound[| i] = noone;
+            }
         }
         break;
 }
 
 if (event) {
-	// this used to be a # but that was screwing with game maker's newline thing because
-	// old game maker still used the stupid version of newlines and now that i'm on the
-	// new version i don't feel like changing it
-	node.name = node.name + "$" + string(ds_list_size(event.nodes));
+    // this used to be a # but that was screwing with game maker's newline thing because
+    // old game maker still used the stupid version of newlines and now that i'm on the
+    // new version i don't feel like changing it
+    node.name = node.name + "$" + string(ds_list_size(event.nodes));
 
-	ds_list_add(event.nodes, node);
-	ds_map_add(event.name_map, node.name, node);
+    ds_list_add(event.nodes, node);
+    ds_map_add(event.name_map, node.name, node);
 }
 
 instance_deactivate_object(node);

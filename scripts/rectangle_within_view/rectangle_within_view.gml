@@ -11,6 +11,6 @@ var x2 = argument3;
 var y2 = argument4;
 
 return rectangle_in_rectangle(x1, y1, x2, y2,
-	camera_get_view_x(camera), camera_get_view_y(camera),
-	camera_get_view_x(camera) + camera_get_view_width(camera),
-	camera_get_view_y(camera) + camera_get_view_height(camera));
+    camera_get_view_x(camera), camera_get_view_y(camera),
+    camera_get_view_x(camera) + camera_get_view_width(camera),
+    camera_get_view_y(camera) + camera_get_view_height(camera));

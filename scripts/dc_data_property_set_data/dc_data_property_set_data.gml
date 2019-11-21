@@ -17,7 +17,7 @@ if (selection >= 0) {
     var list_sorted = ds_list_sort_name_sucks(list_data);
     
     property.type_guid = list_sorted[| selection].GUID;
-	
+    
     ds_list_destroy(list_data);
     ds_list_destroy(list_sorted);
     

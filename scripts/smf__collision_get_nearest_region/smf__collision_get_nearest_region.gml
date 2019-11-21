@@ -15,20 +15,20 @@ s = octList[| 4];
 r = octList[| 0];
 while r
 {
-	s /= 2;
-	if (argument1 >= s){argument1 -= s; r += 1;}
-	if (argument2 >= s){argument2 -= s; r += 2;}
-	if (argument3 >= s){argument3 -= s; r += 4;}
-	r = octList[| r];
+    s /= 2;
+    if (argument1 >= s){argument1 -= s; r += 1;}
+    if (argument2 >= s){argument2 -= s; r += 2;}
+    if (argument3 >= s){argument3 -= s; r += 4;}
+    r = octList[| r];
 }
 r = -r;
 n = octList[| r];
 if !n
 {
-	n = octList[| octList[| r+1]];
+    n = octList[| octList[| r+1]];
 }
 for (var i = 0; i < n; i ++)
 {
-	ret[i] = octList[| 1 + i + r];
+    ret[i] = octList[| 1 + i + r];
 }
 return ret;

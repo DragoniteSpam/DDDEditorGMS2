@@ -11,11 +11,11 @@ var l2 = array_length_1d(arr2);
 var l = l1;
 if l2 < l1
 {
-	ret = arr1;
-	l = l2;
+    ret = arr1;
+    l = l2;
 }
 for (var i = 0; i < l; i ++)
 {
-	ret[i] = lerp(arr1[i], arr2[i], amount);
+    ret[i] = lerp(arr1[i], arr2[i], amount);
 }
 return ret;

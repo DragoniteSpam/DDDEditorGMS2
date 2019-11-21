@@ -17,6 +17,6 @@ animationList[| 3 * animIndex + 2] = -1;
 var animArray = [];
 for (var i = 0; i <= steps; i ++)
 {
-	animArray[i] = smf_sample_create(modelIndex, animIndex, animType, i / steps);
+    animArray[i] = smf_sample_create(modelIndex, animIndex, animType, i / steps);
 }
 animationList[| 3 * animIndex + 2] = animArray;

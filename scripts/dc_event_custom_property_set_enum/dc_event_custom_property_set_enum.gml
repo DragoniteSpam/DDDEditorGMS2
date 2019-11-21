@@ -19,7 +19,7 @@ if (selection >= 0) {
     var list_sorted = ds_list_sort_name_sucks(list_data);
     
     var data = list_sorted[| selection];
-	
+    
     property[@ EventNodeCustomData.TYPE_GUID] = data.GUID;
     thing.root.root.root.event.types[| pselection] = property;
     

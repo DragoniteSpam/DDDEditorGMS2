@@ -25,8 +25,8 @@ for (var i = 0; i < n_events; i++) {
         buffer_write(buffer, buffer_s32, floor(node.x));
         buffer_write(buffer, buffer_s32, floor(node.y));
         buffer_write(buffer, buffer_u32, node.GUID);
-		
-		buffer_write(buffer, buffer_datatype, node.prefab_guid);
+        
+        buffer_write(buffer, buffer_datatype, node.prefab_guid);
         
         var n_outbound = ds_list_size(node.outbound);
         buffer_write(buffer, buffer_u8, n_outbound);

@@ -13,7 +13,7 @@ draw_sprite(spr_plus_minus, 2, xx, yy);
 var tolerance = 8;
 if (mouse_within_rectangle_adjusted(xx - tolerance, yy - tolerance, xx + tolerance, yy + tolerance)) {
     draw_sprite(spr_plus_minus, 3, xx, yy);
-	draw_tooltip(xx, yy + 16, "Remove Data");
+    draw_tooltip(xx, yy + 16, "Remove Data");
     if (Controller.release_left) {
         for (var i = 0; i < ds_list_size(node.custom_data); i++) {
             ds_list_delete(node.custom_data[| i], index);

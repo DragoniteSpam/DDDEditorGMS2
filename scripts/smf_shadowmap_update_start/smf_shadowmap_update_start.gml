@@ -6,8 +6,8 @@ var size = shadowmap[| SMF_shadowmap.size];
 
 //Set surface target
 if !surface_exists(surface){
-	surface = surface_create(size, size);
-	shadowmap[| SMF_shadowmap.surface] = surface;}
+    surface = surface_create(size, size);
+    shadowmap[| SMF_shadowmap.surface] = surface;}
 surface_set_target(surface);
 draw_clear_alpha(c_white, 1);
 

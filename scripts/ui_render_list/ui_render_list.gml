@@ -49,7 +49,7 @@ if (n == 0) {
             // actual strings, but now that lists are allowed to reference other ds_lists
             // which may not necessarily contain strings that's not really a viable option
             case ListEntries.STRINGS: text = text + string(list.entries[| index]); break;
-			case ListEntries.INSTANCES_REFID: text = text + +"<" + string_hex(list.entries[| index].REFID) + "> "; /* cascades */
+            case ListEntries.INSTANCES_REFID: text = text + +"<" + string_hex(list.entries[| index].REFID) + "> "; /* cascades */
             case ListEntries.INSTANCES: text = text + list.entries[| index].name; break;
             case ListEntries.GUIDS:
                 var data = guid_get(list.entries[| index]);
@@ -83,18 +83,18 @@ if (list.interactive && active) {
                         if (!ui_list_is_selected(list, i)) {
                             ui_list_select(list, i);
                         } else if (list.select_toggle) {
-							ds_map_delete(list.selected_entries, i);
-						}
+                            ds_map_delete(list.selected_entries, i);
+                        }
                     }
                 }
             } else {
-				if (!ui_list_is_selected(list, mn)) {
-					ui_list_select(list, mn);
-				} else if (list.select_toggle) {
-					ds_map_delete(list.selected_entries, mn);
-				}
-			}
-			
+                if (!ui_list_is_selected(list, mn)) {
+                    ui_list_select(list, mn);
+                } else if (list.select_toggle) {
+                    ds_map_delete(list.selected_entries, mn);
+                }
+            }
+            
             list.last_index = mn;
             ui_activate(list);
             script_execute(list.onvaluechange, list);
@@ -117,8 +117,8 @@ if (list.interactive && active) {
                     if (!ui_list_is_selected(list, i)) {
                         ui_list_select(list, i);
                     } else if (list.select_toggle) {
-						ds_map_delete(list.selected_entries, i);
-					}
+                        ds_map_delete(list.selected_entries, i);
+                    }
                 }
             }
         }

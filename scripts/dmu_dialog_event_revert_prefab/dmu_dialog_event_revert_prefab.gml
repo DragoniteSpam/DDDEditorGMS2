@@ -9,7 +9,7 @@ var prefab = guid_get(node.prefab_guid);
 ds_list_copy(node.data, prefab.data);
 
 for (var i = 0; i < ds_list_size(node.custom_data); i++) {
-	ds_list_copy(node.custom_data[| i], prefab.custom_data[| i]);
+    ds_list_copy(node.custom_data[| i], prefab.custom_data[| i]);
 }
 
 script_execute(thing.root.commit, thing.root);

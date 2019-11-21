@@ -8,7 +8,7 @@ var buffer_data = argument2;
 
 var auto_folder = PATH_PROJECTS + name + "\\";
 if (!directory_exists(auto_folder)) {
-	directory_create(auto_folder);
+    directory_create(auto_folder);
 }
 
 if (buffer_asset != undefined) {

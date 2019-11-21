@@ -19,16 +19,16 @@ draw_set_valign(menu.valignment);
 draw_set_color(menu.color);
 
 if (!menu.invisible) {
-	// click on the header
-	if (mouse_within_rectangle(x1, y1, x2, y2)) {
-	    draw_rectangle_colour(x1, y1, x2, y2, c_ui, c_ui, c_ui, c_ui, false);
-	    if (!dialog_exists() && Controller.press_left) {
-			Controller.press_left = false;
-	        menu_activate(menu);
-	    }
-	}
-	
-	draw_text(tx, ty, string(menu.text));
+    // click on the header
+    if (mouse_within_rectangle(x1, y1, x2, y2)) {
+        draw_rectangle_colour(x1, y1, x2, y2, c_ui, c_ui, c_ui, c_ui, false);
+        if (!dialog_exists() && Controller.press_left) {
+            Controller.press_left = false;
+            menu_activate(menu);
+        }
+    }
+    
+    draw_text(tx, ty, string(menu.text));
 }
 
 if (menu_is_active(menu)) {

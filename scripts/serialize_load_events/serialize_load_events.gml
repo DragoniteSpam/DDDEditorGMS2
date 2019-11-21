@@ -18,7 +18,7 @@ repeat (n_events) {
     var event_name = buffer_read(buffer, buffer_string);
     var event = event_create(event_name);
     guid_set(event, buffer_read(buffer, buffer_u32));
-	
+    
     // events are created with an entrypoint by default - you could pass an optional
     // parameter to the constructor to have it not do this, but this is the only place
     // where it's going to happen, so there's not really a point
@@ -39,14 +39,14 @@ repeat (n_events) {
         node.event = event;
         
         guid_set(node, buffer_read(buffer, buffer_u32));
-		
-		if (version >= DataVersions.EVENT_PREFABS) {
-			node.prefab_guid = buffer_read(buffer, buffer_datatype);
-		}
+        
+        if (version >= DataVersions.EVENT_PREFABS) {
+            node.prefab_guid = buffer_read(buffer, buffer_datatype);
+        }
         
         // some preliminary data may be created
         ds_list_clear(node.data);
-		ds_list_clear(node.outbound);
+        ds_list_clear(node.outbound);
         
         // node connections are stored until all of the nodes (and their names)
         // have been read out of the file
@@ -105,7 +105,7 @@ repeat (n_events) {
             case EventNodeTypes.CUSTOM:
             default:
                 node.custom_guid = buffer_read(buffer, buffer_u32);
-				
+                
                 if (node_type != EventNodeTypes.CUSTOM) {
                     // other types also save the custom guid, even though there's really no reason
                     // for them to do so
@@ -183,7 +183,7 @@ repeat (n_events) {
         var node_connection = connections[| i];
         
         for (var j = 0; j < ds_list_size(node_connection); j++) {
-			ds_list_add(node.outbound, noone);
+            ds_list_add(node.outbound, noone);
             if (string_length(node_connection[| j]) > 0) {
                 event_connect_node(node, event_get_node(event, node_connection[| j]), j);
             }

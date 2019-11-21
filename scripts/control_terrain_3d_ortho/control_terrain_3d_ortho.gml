@@ -3,7 +3,7 @@
 var terrain = argument0;
 
 if (Stuff.menu.active_element) {
-	return false;
+    return false;
 }
 
 var vw = view_get_wport(view_3d);
@@ -30,43 +30,43 @@ if (Controller.mouse_right) {
 }
 
 if (keyboard_check_pressed(vk_space)) {
-	
+    
 }
 if (keyboard_check_pressed(vk_delete)) {
-	
+    
 }
 
 // move the camera
 
 if (!keyboard_check(vk_control)) {
-	var mspd = get_camera_speed(terrain.z);
-	var xspeed = 0;
-	var yspeed = 0;
+    var mspd = get_camera_speed(terrain.z);
+    var xspeed = 0;
+    var yspeed = 0;
     
-	if (keyboard_check(vk_up) || keyboard_check(ord("W"))) {
-	    yspeed = yspeed - mspd;
-	}
-	if (keyboard_check(vk_down) || keyboard_check(ord("S"))) {
-	    yspeed = yspeed + mspd;
-	}
-	if (keyboard_check(vk_left) || keyboard_check(ord("A"))) {
-	    xspeed = xspeed - mspd;
-	}
-	if (keyboard_check(vk_right) || keyboard_check(ord("D"))) {
-	    xspeed = xspeed + mspd;
-	}
+    if (keyboard_check(vk_up) || keyboard_check(ord("W"))) {
+        yspeed = yspeed - mspd;
+    }
+    if (keyboard_check(vk_down) || keyboard_check(ord("S"))) {
+        yspeed = yspeed + mspd;
+    }
+    if (keyboard_check(vk_left) || keyboard_check(ord("A"))) {
+        xspeed = xspeed - mspd;
+    }
+    if (keyboard_check(vk_right) || keyboard_check(ord("D"))) {
+        xspeed = xspeed + mspd;
+    }
     if (mouse_wheel_up()) {
         terrain.orthographic_scale = max(0.5, terrain.orthographic_scale * 0.95);
     } else if (mouse_wheel_down()) {
         terrain.orthographic_scale = min(10, terrain.orthographic_scale * 1.05);
     }
     
-	Stuff.terrain.x += xspeed;
-	Stuff.terrain.y += yspeed;
-	Stuff.terrain.xto += xspeed;
-	Stuff.terrain.yto += yspeed;
+    Stuff.terrain.x += xspeed;
+    Stuff.terrain.y += yspeed;
+    Stuff.terrain.xto += xspeed;
+    Stuff.terrain.yto += yspeed;
 } else {
-	if (Controller.press_right) {
+    if (Controller.press_right) {
 
-	}
+    }
 }

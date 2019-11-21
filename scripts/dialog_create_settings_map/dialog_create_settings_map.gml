@@ -85,7 +85,7 @@ var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Co
 
 ds_list_add(dg.contents,
     el_other, el_other_grid, el_other_3d, el_other_fog_enabled, el_other_fog_start, el_other_fog_end, el_other_fog_colour,
-	el_other_indoors, el_other_water, el_other_fast_travel_to, el_other_fast_travel_from,
+    el_other_indoors, el_other_water, el_other_fast_travel_to, el_other_fast_travel_from,
     el_code_heading, el_code,
     el_encounter_heading, el_encounter_base, el_encounter_deviation,
     el_confirm

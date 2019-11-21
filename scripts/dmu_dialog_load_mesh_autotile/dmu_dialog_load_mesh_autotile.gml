@@ -5,8 +5,8 @@ var thing = argument0;
 var fn = get_open_filename_mesh_d3d();
 
 if (file_exists(fn)) {
-	var map = Stuff.map.active_map;
-	var map_contents = map.contents;
+    var map = Stuff.map.active_map;
+    var map_contents = map.contents;
     if (map_contents.mesh_autotiles[thing.key]) {
         vertex_delete_buffer(map_contents.mesh_autotiles[thing.key]);
     }

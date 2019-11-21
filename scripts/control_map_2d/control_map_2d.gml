@@ -3,7 +3,7 @@
 var mode = argument0;
 
 if (Stuff.menu.active_element) {
-	return false;
+    return false;
 }
 
 var camera = view_get_camera(view_3d);
@@ -120,19 +120,19 @@ if (!keyboard_check(vk_control)) {
 }
 
 if (Controller.press_right) {
-	Controller.press_right = false;
-	// if there is no selection, select the single square under the cursor. Otherwise you might
-	// want to do operations on large swaths of entities, so don't clear it or anythign like that.
-	
-	if (selection_empty()) {
+    Controller.press_right = false;
+    // if there is no selection, select the single square under the cursor. Otherwise you might
+    // want to do operations on large swaths of entities, so don't clear it or anythign like that.
+    
+    if (selection_empty()) {
         var tz = mode.under_cursor ? mode.under_cursor.zz : 0;
         mode.last_selection = instance_create_depth(0, 0, 0, SelectionSingle);
         ds_list_add(mode.selection, mode.last_selection);
         script_execute(mode.last_selection.onmousedown, mode.last_selection, floor_cx, floor_cy, tz);
-	}
-	
-	var menu = Stuff.menu.menu_right_click;
-	menu_activate_extra(menu);
-	menu.x = Stuff.MOUSE_X;
-	menu.y = Stuff.MOUSE_Y;
+    }
+    
+    var menu = Stuff.menu.menu_right_click;
+    menu_activate_extra(menu);
+    menu.x = Stuff.MOUSE_X;
+    menu.y = Stuff.MOUSE_Y;
 }

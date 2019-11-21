@@ -7,32 +7,32 @@ var version = argument1;
 if (version >= DataVersions.DATA_CHUNK_ADDRESSES) {
     var addr_next = buffer_read(buffer, buffer_u64);
 } else {
-    buffer_read(buffer, buffer_u32);		// address of the end - not useful here
+    buffer_read(buffer, buffer_u32);        // address of the end - not useful here
 }
 
 var n_prefabs = buffer_read(buffer, buffer_u32);
 
 repeat (n_prefabs) {
-	var prefab = instance_create_depth(0, 0, 0, DataEventNode);
-	// serialize_load_generic needs to be unwrapped here
-	var name = buffer_read(buffer, buffer_string);
-	buffer_read(buffer, buffer_string);
-	buffer_read(buffer, buffer_u32);
-	var guid = buffer_read(buffer, buffer_u32);
-	buffer_read(buffer, buffer_string);
-	
-	var type = buffer_read(buffer, buffer_u16);
-	
-	var prefab = event_create_node(noone, type);
-	prefab.name = name;
-	guid_set(prefab, guid);
-	prefab.type = type;
-	ds_list_add(Stuff.all_event_prefabs, prefab);
-	
-	var n_data = buffer_read(buffer, buffer_u8);
-	for (var i = 0; i < n_data; i++) {
-		ds_list_add(prefab.data, buffer_read(buffer, buffer_string));
-	}
+    var prefab = instance_create_depth(0, 0, 0, DataEventNode);
+    // serialize_load_generic needs to be unwrapped here
+    var name = buffer_read(buffer, buffer_string);
+    buffer_read(buffer, buffer_string);
+    buffer_read(buffer, buffer_u32);
+    var guid = buffer_read(buffer, buffer_u32);
+    buffer_read(buffer, buffer_string);
+    
+    var type = buffer_read(buffer, buffer_u16);
+    
+    var prefab = event_create_node(noone, type);
+    prefab.name = name;
+    guid_set(prefab, guid);
+    prefab.type = type;
+    ds_list_add(Stuff.all_event_prefabs, prefab);
+    
+    var n_data = buffer_read(buffer, buffer_u8);
+    for (var i = 0; i < n_data; i++) {
+        ds_list_add(prefab.data, buffer_read(buffer, buffer_string));
+    }
         
     switch (prefab.type) {
         // is_root is set in the constructor already
@@ -70,7 +70,7 @@ repeat (n_prefabs) {
                 // for them to do so
                 prefab.custom_guid = Stuff.event_prefab[prefab.type].GUID;
             }
-			
+            
             var custom = guid_get(prefab.custom_guid);
                 
             for (var i = 0; i < ds_list_size(custom.types); i++) {

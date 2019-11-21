@@ -15,14 +15,14 @@ var external = argument2;
 var i = ds_list_find_index(SMF_textureList, name);
 if i != -1
 {
-	show_debug_message("Trying to add a sprite " + string(name) + " that already exists! The sprite has been replaced instead");
-	if sprite_exists(SMF_textureList[| i - 1]) and SMF_textureList[| i - 1] != spr{
-		sprite_delete(SMF_textureList[| i - 1]);}
-	SMF_textureList[| i - 1] = spr;
-	return i - 1;
+    show_debug_message("Trying to add a sprite " + string(name) + " that already exists! The sprite has been replaced instead");
+    if sprite_exists(SMF_textureList[| i - 1]) and SMF_textureList[| i - 1] != spr{
+        sprite_delete(SMF_textureList[| i - 1]);}
+    SMF_textureList[| i - 1] = spr;
+    return i - 1;
 }
 else
 {
-	ds_list_add(SMF_textureList, spr, name, external);
+    ds_list_add(SMF_textureList, spr, name, external);
 }
 return ds_list_size(SMF_textureList) - 3;

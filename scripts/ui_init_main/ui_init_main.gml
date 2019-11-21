@@ -10,7 +10,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     // object variables so you can look them up
     t_general = create_tab("General", 0, id);
     t_stats = create_tab("Stats", 0, id);
-	t_maps = create_tab("Maps", 0, id);
+    t_maps = create_tab("Maps", 0, id);
     
     t_p_tile_editor = create_tab("Tile Ed.", 1, id);
     t_p_autotile_editor = create_tab("Autotile Ed.", 1, id);
@@ -155,11 +155,11 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = legal_y + spacing;
     
-	// if you really want the color-coded entities, maybe make the entry color feature a script instead 
-	// of just a list of colors - later, though
+    // if you really want the color-coded entities, maybe make the entry color feature a script instead 
+    // of just a list of colors - later, though
     element_all_entities = create_list(legal_x + spacing, yy, "All Entities", "<No entities>", col_width, element_height, 28, null, true, t_stats, noone);
     element_all_entities.render = ui_render_list_all_entities;
-	element_all_entities.entries_are = ListEntries.INSTANCES;
+    element_all_entities.entries_are = ListEntries.INSTANCES;
     ds_list_add(t_stats.contents, element_all_entities);
     
     // second column
@@ -264,114 +264,114 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     #endregion
     
-	#region tab: map
-	
-	yy = legal_y + spacing;
-	
-	element = create_list(legal_x + spacing, yy, "Maps: ", "no maps. (how?!)", col_width, element_height, 16, uivc_list_maps, false, t_maps, Stuff.all_maps);
-	element.render = ui_render_list_all_maps;
-	element.ondoubleclick = dmu_data_open_map;
-	element.entries_are = ListEntries.INSTANCES;
-	t_maps.el_map_list = element;
-	ds_list_add(t_maps.contents, element);
-	
-	yy = yy + ui_get_list_height(element) + spacing;
-	
-	element = create_button(legal_x + spacing, yy, "Add Map", col_width, element_height, fa_center, dmu_data_add_map, t_maps);
-	ds_list_add(t_maps.contents, element);
-	
-	yy = yy + element.height + spacing;
-	
-	element = create_button(legal_x + spacing, yy, "Remove Map", col_width, element_height, fa_center, dmu_data_remove_map, t_maps);
-	ds_list_add(t_maps.contents, element);
-	
-	yy = yy + element.height + spacing;
-	
-	element = create_button(legal_x + spacing, yy, "Open Map", col_width, element_height, fa_center, dmu_data_open_map, t_maps);
-	ds_list_add(t_maps.contents, element);
-	
-	yy = yy + element.height + spacing;
-	
-	element = create_button(legal_x + spacing, yy, "Make Starting Map", col_width, element_height, fa_center, dmu_data_starting_map, t_maps);
-	ds_list_add(t_maps.contents, element);
-	
-	yy = yy + element.height + spacing;
-	
-	element = create_button(legal_x + spacing, yy, "Import Tiled", col_width, element_height, fa_center, dmu_data_import_map, t_maps);
-	ds_list_add(t_maps.contents, element);
-	
-	yy = legal_y + spacing;
-	
-	element = create_text(col2_x, yy, "Name:", col_width, element_height, fa_left, col_width, t_maps);
-	ds_list_add(t_maps.contents, element);
-	
-	yy = yy + element.height + spacing;
-	
-	element = create_input(col2_x, yy, "", col_width, element_height, uivc_settings_map_name, "", "Name", validate_string, 0, 0, VISIBLE_NAME_LENGTH, 0, vy1, vx2, vy2, t_maps);
-	ds_list_add(t_maps.contents, element);
-	t_maps.el_name = element;
-	
-	yy = yy + element.height + spacing;
-	
-	element = create_text(col2_x, yy, "Internal name:", col_width, element_height, fa_left, col_width, t_maps);
-	ds_list_add(t_maps.contents, element);
-	
-	yy = yy + element.height + spacing;
-	
-	element = create_input(col2_x, yy, "", col_width, element_height, uivc_settings_map_internal, "", "[A-Za-z0-9_]+", validate_string_internal_name, 0, 0, INTERNAL_NAME_LENGTH, 0, vy1, vx2, vy2, t_maps);
-	ds_list_add(t_maps.contents, element);
-	t_maps.el_internal_name = element;
-	
-	yy = yy + element.height + spacing;
-	
-	element = create_text(col2_x, yy, "Summary:", col_width, element_height, fa_left, col_width, t_maps);
-	ds_list_add(t_maps.contents, element);
-	
-	yy = yy + element.height + spacing;
-	
-	element = create_input(col2_x, yy, "", col_width, element_height, uivc_settings_map_summary, "", "Words", validate_string, 0, 0, 400, 0, vy1, vx2, vy2, t_maps);
-	ds_list_add(t_maps.contents, element);
-	t_maps.el_summary = element;
-	
-	yy = yy + element.height + spacing;
-	
-	element = create_text(col2_x, yy, "Dimensions", col_width, element_height, fa_left, col_width, t_maps);
-	ds_list_add(t_maps.contents, element);
-	
-	yy = yy + element.height + spacing;
-	
-	element = create_input(col2_x, yy, "Width (X): ", col_width, element_height, uivc_input_map_size_x, "64", "width", validate_int_map_size_x, 1, MAP_AXIS_LIMIT, 4, vx1, vy1, vx2, vy2, t_maps);
-	element.require_enter = true;
-	ds_list_add(t_maps.contents, element);
-	t_maps.el_dim_x = element;
-	
-	yy = yy + element.height + spacing;
-	
-	element = create_input(col2_x, yy, "Height (Y): ", col_width, element_height, uivc_input_map_size_y, "64", "height", validate_int_map_size_y, 1, MAP_AXIS_LIMIT, 4, vx1, vy1, vx2, vy2, t_maps);
-	element.require_enter = true;
-	ds_list_add(t_maps.contents, element);
-	t_maps.el_dim_y = element;
-	
-	yy = yy + element.height + spacing;
-	
-	element = create_input(col2_x, yy, "Depth (Z): ", col_width, element_height, uivc_input_map_size_z, "8", "depth", validate_int_map_size_z, 1, MAP_AXIS_LIMIT, 4, vx1, vy1, vx2, vy2, t_maps);
-	element.require_enter = true;
-	ds_list_add(t_maps.contents, element);
-	t_maps.el_dim_z = element;
-	
-	yy = yy + element.height + spacing * 4;
-	
-	element = create_text(col2_x, yy, "Maps can go up to " + string(MAP_AXIS_LIMIT) + " in any dimension, but the total volume must be lower than " + string_comma(MAP_VOLUME_LIMIT) + ".", col_width, element_height, fa_left, col_width, t_maps);
-	ds_list_add(t_maps.contents, element);
-	
-	yy = yy + element.height + spacing * 4;
-	
-	element = create_button(col2_x, yy,  "More Settings", col_width, element_height, fa_center, dialog_create_settings_map, t_maps);
-	ds_list_add(t_maps.contents, element);
-	t_maps.el_other = element;
-	
-	#endregion
-	
+    #region tab: map
+    
+    yy = legal_y + spacing;
+    
+    element = create_list(legal_x + spacing, yy, "Maps: ", "no maps. (how?!)", col_width, element_height, 16, uivc_list_maps, false, t_maps, Stuff.all_maps);
+    element.render = ui_render_list_all_maps;
+    element.ondoubleclick = dmu_data_open_map;
+    element.entries_are = ListEntries.INSTANCES;
+    t_maps.el_map_list = element;
+    ds_list_add(t_maps.contents, element);
+    
+    yy = yy + ui_get_list_height(element) + spacing;
+    
+    element = create_button(legal_x + spacing, yy, "Add Map", col_width, element_height, fa_center, dmu_data_add_map, t_maps);
+    ds_list_add(t_maps.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
+    element = create_button(legal_x + spacing, yy, "Remove Map", col_width, element_height, fa_center, dmu_data_remove_map, t_maps);
+    ds_list_add(t_maps.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
+    element = create_button(legal_x + spacing, yy, "Open Map", col_width, element_height, fa_center, dmu_data_open_map, t_maps);
+    ds_list_add(t_maps.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
+    element = create_button(legal_x + spacing, yy, "Make Starting Map", col_width, element_height, fa_center, dmu_data_starting_map, t_maps);
+    ds_list_add(t_maps.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
+    element = create_button(legal_x + spacing, yy, "Import Tiled", col_width, element_height, fa_center, dmu_data_import_map, t_maps);
+    ds_list_add(t_maps.contents, element);
+    
+    yy = legal_y + spacing;
+    
+    element = create_text(col2_x, yy, "Name:", col_width, element_height, fa_left, col_width, t_maps);
+    ds_list_add(t_maps.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
+    element = create_input(col2_x, yy, "", col_width, element_height, uivc_settings_map_name, "", "Name", validate_string, 0, 0, VISIBLE_NAME_LENGTH, 0, vy1, vx2, vy2, t_maps);
+    ds_list_add(t_maps.contents, element);
+    t_maps.el_name = element;
+    
+    yy = yy + element.height + spacing;
+    
+    element = create_text(col2_x, yy, "Internal name:", col_width, element_height, fa_left, col_width, t_maps);
+    ds_list_add(t_maps.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
+    element = create_input(col2_x, yy, "", col_width, element_height, uivc_settings_map_internal, "", "[A-Za-z0-9_]+", validate_string_internal_name, 0, 0, INTERNAL_NAME_LENGTH, 0, vy1, vx2, vy2, t_maps);
+    ds_list_add(t_maps.contents, element);
+    t_maps.el_internal_name = element;
+    
+    yy = yy + element.height + spacing;
+    
+    element = create_text(col2_x, yy, "Summary:", col_width, element_height, fa_left, col_width, t_maps);
+    ds_list_add(t_maps.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
+    element = create_input(col2_x, yy, "", col_width, element_height, uivc_settings_map_summary, "", "Words", validate_string, 0, 0, 400, 0, vy1, vx2, vy2, t_maps);
+    ds_list_add(t_maps.contents, element);
+    t_maps.el_summary = element;
+    
+    yy = yy + element.height + spacing;
+    
+    element = create_text(col2_x, yy, "Dimensions", col_width, element_height, fa_left, col_width, t_maps);
+    ds_list_add(t_maps.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
+    element = create_input(col2_x, yy, "Width (X): ", col_width, element_height, uivc_input_map_size_x, "64", "width", validate_int_map_size_x, 1, MAP_AXIS_LIMIT, 4, vx1, vy1, vx2, vy2, t_maps);
+    element.require_enter = true;
+    ds_list_add(t_maps.contents, element);
+    t_maps.el_dim_x = element;
+    
+    yy = yy + element.height + spacing;
+    
+    element = create_input(col2_x, yy, "Height (Y): ", col_width, element_height, uivc_input_map_size_y, "64", "height", validate_int_map_size_y, 1, MAP_AXIS_LIMIT, 4, vx1, vy1, vx2, vy2, t_maps);
+    element.require_enter = true;
+    ds_list_add(t_maps.contents, element);
+    t_maps.el_dim_y = element;
+    
+    yy = yy + element.height + spacing;
+    
+    element = create_input(col2_x, yy, "Depth (Z): ", col_width, element_height, uivc_input_map_size_z, "8", "depth", validate_int_map_size_z, 1, MAP_AXIS_LIMIT, 4, vx1, vy1, vx2, vy2, t_maps);
+    element.require_enter = true;
+    ds_list_add(t_maps.contents, element);
+    t_maps.el_dim_z = element;
+    
+    yy = yy + element.height + spacing * 4;
+    
+    element = create_text(col2_x, yy, "Maps can go up to " + string(MAP_AXIS_LIMIT) + " in any dimension, but the total volume must be lower than " + string_comma(MAP_VOLUME_LIMIT) + ".", col_width, element_height, fa_left, col_width, t_maps);
+    ds_list_add(t_maps.contents, element);
+    
+    yy = yy + element.height + spacing * 4;
+    
+    element = create_button(col2_x, yy,  "More Settings", col_width, element_height, fa_center, dialog_create_settings_map, t_maps);
+    ds_list_add(t_maps.contents, element);
+    t_maps.el_other = element;
+    
+    #endregion
+    
     #region tab: entity
     
     yy = legal_y + spacing;
@@ -609,17 +609,17 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = legal_y + spacing;
     
-	element = create_button(legal_x + spacing, yy, "Change Tileset", 128, element_height, fa_center, omu_manager_tileset, t_p_tile_editor);
+    element = create_button(legal_x + spacing, yy, "Change Tileset", 128, element_height, fa_center, omu_manager_tileset, t_p_tile_editor);
     ds_list_add(t_p_tile_editor.contents, element);
     
-	element = create_button(legal_x + spacing + (spacing + 128), yy, "Import Main", 128, element_height, fa_center, dmu_dialog_load_tileset_main, t_p_tile_editor);
+    element = create_button(legal_x + spacing + (spacing + 128), yy, "Import Main", 128, element_height, fa_center, dmu_dialog_load_tileset_main, t_p_tile_editor);
     ds_list_add(t_p_tile_editor.contents, element);
     
-	element = create_button(legal_x + spacing + (spacing + 128) * 2, yy, "Export Main", 128, element_height, fa_center, dmu_dialog_save_tileset_main, t_p_tile_editor);
+    element = create_button(legal_x + spacing + (spacing + 128) * 2, yy, "Export Main", 128, element_height, fa_center, dmu_dialog_save_tileset_main, t_p_tile_editor);
     ds_list_add(t_p_tile_editor.contents, element);
     
     yy = yy + element.height + spacing;
-	
+    
     element = create_tile_selector(legal_x + spacing, yy, legal_width - spacing * 2, (legal_width div Stuff.tile_width) * Stuff.tile_width - element_height, uivc_select_tile, uivc_select_tile_backwards, t_p_tile_editor);
     element.tile_x = mode.selection_fill_tile_x;
     element.tile_y = mode.selection_fill_tile_y;
@@ -942,6 +942,6 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     ds_list_add(t_p_other_editor.contents, element);
     
     #endregion
-	
+    
     return id;
 }

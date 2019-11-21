@@ -9,7 +9,7 @@ var things = argument[1];
 for (var i = 0; i < array_length_1d(things); i++) {
     var n = ds_list_size(bitfield.contents);
     var data = things[i];
-	var yy = (n == 0) ? bitfield.height : ds_list_top(bitfield.contents).y + ds_list_top(bitfield.contents).height;
+    var yy = (n == 0) ? bitfield.height : ds_list_top(bitfield.contents).y + ds_list_top(bitfield.contents).height;
     
     var option = instance_create_depth(0, yy, 0, UIBitFieldOption);
     option.value = data[0];

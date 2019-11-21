@@ -58,14 +58,14 @@ rad = fe[1] * boxhalfsize[0] + fe[0] * boxhalfsize[1];
 if(min(p1, p2) > rad || max(p1, p2) <- rad) return 0;
 
 fe = [abs(e1[0]), abs(e1[1])];
-	
+    
 p0 = e1[1]*v0[0] - e1[0]*v0[1];
 p1 = e1[1]*v1[0] - e1[0]*v1[1];
 rad = fe[1] * boxhalfsize[0] + fe[0] * boxhalfsize[1];
 if(min(p0, p1) > rad || max(p0, p1) <- rad) return 0;
 
 fe = [abs(e2[0]), abs(e2[1])];
-	
+    
 p1 = e2[1]*v1[0] - e2[0]*v1[1];
 p2 = e2[1]*v2[0] - e2[0]*v2[1];
 rad = fe[1] * boxhalfsize[0] + fe[0] * boxhalfsize[1];

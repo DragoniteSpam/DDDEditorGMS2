@@ -26,7 +26,7 @@ switch (node.type) {
     case EventNodeTypes.ENTRYPOINT:
     #region entrypoint
         x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
-		y2 = y1 + entrypoint_height;
+        y2 = y1 + entrypoint_height;
         
         if (rectangle_within_view(view_current, x1, y1, x2, y2)) {
             var c = colour_mute(c_ev_init);
@@ -43,7 +43,7 @@ switch (node.type) {
     #region comment
         // cut down version of Text
         x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
-		y2 = y1 + max(24 + 32 + ds_list_size(node.data) * entry_height + entry_offset, ds_list_size(node.outbound) * EVENT_NODE_CONTACT_HEIGHT * 2 / 3);
+        y2 = y1 + max(24 + 32 + ds_list_size(node.data) * entry_height + entry_offset, ds_list_size(node.outbound) * EVENT_NODE_CONTACT_HEIGHT * 2 / 3);
         
         if (rectangle_within_view(view_current, x1, y1, x2, y2)) {
             var c = colour_mute(c_ev_comment);
@@ -69,12 +69,12 @@ switch (node.type) {
         break;
     #endregion
     case EventNodeTypes.TEXT:
-	case EventNodeTypes.SHOW_SCROLLING_TEXT:
+    case EventNodeTypes.SHOW_SCROLLING_TEXT:
     #region text
         x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
         // the above will be very painful for nodes with many data entries because loops so just assume
         // each entry won't have more than four lines
-		y2 = y1 + max(24 + 32 + ds_list_size(node.data) * entry_height + entry_offset, ds_list_size(node.outbound) * EVENT_NODE_CONTACT_HEIGHT * 2 / 3);
+        y2 = y1 + max(24 + 32 + ds_list_size(node.data) * entry_height + entry_offset, ds_list_size(node.outbound) * EVENT_NODE_CONTACT_HEIGHT * 2 / 3);
         
         if (rectangle_within_view(view_current, x1, y1, x2, y2)) {
             var c = colour_mute(c_ev_basic);
@@ -88,7 +88,7 @@ switch (node.type) {
             draw_sprite(spr_event_outbound, 2, x1, y1 + 16);
             draw_event_node_title(node, c);
             draw_event_node_custom_info(x2 - 24, y1, node);
-			draw_event_node_prefabinate(x2 - 48, y1, node);
+            draw_event_node_prefabinate(x2 - 48, y1, node);
             
             for (var i = 0; i < ds_list_size(node.data); i++) {
                 draw_line(x1 + 16, entry_yy, x2 - 16, entry_yy);
@@ -130,7 +130,7 @@ switch (node.type) {
         eh = 32;
         var rh = ((ui_get_radio_array_height(node.ui_things[| 0]) div eh) * eh) + 16;
         x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
-		y2 = y1 + max(24 + 32 + (eh + rh + 1) * size + entry_offset, ds_list_size(node.outbound) * EVENT_NODE_CONTACT_HEIGHT * 2 / 3);
+        y2 = y1 + max(24 + 32 + (eh + rh + 1) * size + entry_offset, ds_list_size(node.outbound) * EVENT_NODE_CONTACT_HEIGHT * 2 / 3);
         
         if (rectangle_within_view(view_current, x1, y1, x2, y2)) {
             var ncolor = c_ev_basic;
@@ -141,7 +141,7 @@ switch (node.type) {
             draw_sprite(spr_event_outbound, 2, x1, y1 + 16);
             draw_event_node_title(node, c);
             draw_event_node_custom_info(x2 - 24, y1, node);
-			draw_event_node_prefabinate(x2 - 48, y1, node);
+            draw_event_node_prefabinate(x2 - 48, y1, node);
             draw_event_node_delete(x2, y1, node);
             
             for (var i = 0; i < size + 1; i++) {
@@ -270,7 +270,7 @@ switch (node.type) {
         var size = ds_list_size(node.data);
         eh = 64;
         x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
-		y2 = y1 + max(24 + 32 + eh * (size + 1) + entry_offset, ds_list_size(node.outbound) * EVENT_NODE_CONTACT_HEIGHT * 2 / 3);
+        y2 = y1 + max(24 + 32 + eh * (size + 1) + entry_offset, ds_list_size(node.outbound) * EVENT_NODE_CONTACT_HEIGHT * 2 / 3);
         
         if (rectangle_within_view(view_current, x1, y1, x2, y2)) {
             var ncolor = c_ev_basic;
@@ -281,7 +281,7 @@ switch (node.type) {
             draw_sprite(spr_event_outbound, 2, x1, y1 + 16);
             draw_event_node_title(node, c);
             draw_event_node_custom_info(x2 - 24, y1, node);
-			draw_event_node_prefabinate(x2 - 48, y1, node);
+            draw_event_node_prefabinate(x2 - 48, y1, node);
             draw_event_node_delete(x2, y1, node);
             
             for (var i = 0; i < size + 1; i++) {
@@ -372,7 +372,7 @@ switch (node.type) {
             draw_sprite(spr_event_outbound, 2, x1, y1 + 16);
             draw_event_node_title(node, c);
             draw_event_node_custom_info(x2 - 24, y1, node);
-			draw_event_node_prefabinate(x2 - 48, y1, node);
+            draw_event_node_prefabinate(x2 - 48, y1, node);
             draw_event_node_delete(x2, y1, node);
             
             var entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
@@ -462,10 +462,10 @@ switch (node.type) {
                                         }
                                         break;
                                     case DataTypes.COLOR:
-										var picker = dialog_create_color_picker_options(node, custom_data_list[| 0], uivc_color_picker_event_node);
-										picker.node = node;
-										picker.index = i;
-										break;
+                                        var picker = dialog_create_color_picker_options(node, custom_data_list[| 0], uivc_color_picker_event_node);
+                                        picker.node = node;
+                                        picker.index = i;
+                                        break;
                                     // @todo data types
                                     case DataTypes.MESH:
                                     case DataTypes.TILE:
@@ -476,11 +476,11 @@ switch (node.type) {
                                     case DataTypes.IMG_UI:
                                     case DataTypes.IMG_ETC:
                                     case DataTypes.AUTOTILE:
-										not_yet_implemented();
+                                        not_yet_implemented();
                                     case DataTypes.ENTITY:
-										var dialog = dialog_create_refid_list(node, custom_data_list[| 0], uivc_refid_picker_event_node);
-										dialog.node = node;
-										dialog.index = i;
+                                        var dialog = dialog_create_refid_list(node, custom_data_list[| 0], uivc_refid_picker_event_node);
+                                        dialog.node = node;
+                                        dialog.index = i;
                                         break;
                                     case DataTypes.MAP:
                                         show_error("okay you actually need to implement this soon, please", true);
@@ -545,10 +545,10 @@ switch (node.type) {
                             break;
                         case DataTypes.COLOR:
                             message = message + "(color): ";
-							var color_value = custom_data_list[| 0];
+                            var color_value = custom_data_list[| 0];
                             output_string = "#" + string_hex(color_value, 6);
-							draw_rectangle_colour(x2 - 64, entry_yy + 8, x2 - 32, entry_yy + eh - 8, color_value, color_value, color_value, color_value, false);
-							draw_rectangle_colour(x2 - 64, entry_yy + 8, x2 - 32, entry_yy + eh - 8, c_black, c_black, c_black, c_black, true);
+                            draw_rectangle_colour(x2 - 64, entry_yy + 8, x2 - 32, entry_yy + eh - 8, color_value, color_value, color_value, color_value, false);
+                            draw_rectangle_colour(x2 - 64, entry_yy + 8, x2 - 32, entry_yy + eh - 8, c_black, c_black, c_black, c_black, true);
                             break;
                         case DataTypes.MESH:
                             message = message + "(mesh): ";
@@ -602,17 +602,17 @@ switch (node.type) {
                             output_string = setdata ? setdata.name : "<null>";
                             break;
                         case DataTypes.ENTITY:
-							var refid = custom_data_list[| 0];
+                            var refid = custom_data_list[| 0];
                             var setdata = refid_get(refid);
-							var strh = string_hex(refid);
+                            var strh = string_hex(refid);
                             message = message + "(entity): ";
-							// If the value is 0, it's automatically "this". If it has a value, it's
-							// an entity reference somewhere (which could also be self, but probably not)
-							if (custom_data_list[| 0]) {
-								output_string = (setdata ? setdata.name : "<not loaded>") + ":" + strh;
-							} else {
-								output_string = "<self>:" + strh;
-							}
+                            // If the value is 0, it's automatically "this". If it has a value, it's
+                            // an entity reference somewhere (which could also be self, but probably not)
+                            if (custom_data_list[| 0]) {
+                                output_string = (setdata ? setdata.name : "<not loaded>") + ":" + strh;
+                            } else {
+                                output_string = "<self>:" + strh;
+                            }
                             break;
                         case DataTypes.MAP:
                             var setdata = guid_get(custom_data_list[| 0]);
@@ -646,7 +646,7 @@ var entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
 var bezier_override = false;
 switch (node.type) {
     case EventNodeTypes.ENTRYPOINT:
-	#region Entrypoint
+    #region Entrypoint
         // vertical middle of the box; entrypoints will only ever have one outbound node so we can cheat
         var by = y1 + entrypoint_height / 2;
         var outbound = node.outbound[| 0];
@@ -669,12 +669,12 @@ switch (node.type) {
             }
         }
         break;
-	#endregion
+    #endregion
     case EventNodeTypes.COMMENT:
         // no outbound node allowed
         break;
     case EventNodeTypes.CONDITIONAL:
-	#region Conditional
+    #region Conditional
         // it'd be real nice if this could just be in the default case, but the outbound nodes
         // are spaced slightly differently for this so it wouldn't really work
         bezier_override = true;
@@ -726,9 +726,9 @@ switch (node.type) {
             draw_bezier(x2 + 8, bezier_y, mouse_x_view, mouse_y_view);
         }
         break;
-	#endregion
+    #endregion
     case EventNodeTypes.SHOW_CHOICES:
-	#region Choices
+    #region Choices
         bezier_override = true;
         var n = ds_list_size(node.outbound);
         var bezier_y = 0;
@@ -778,44 +778,44 @@ switch (node.type) {
             draw_bezier(x2 + 8, bezier_y, mouse_x_view, mouse_y_view);
         }
         break;
-	#endregion
+    #endregion
     default:
-	#region Custom (usually)
+    #region Custom (usually)
         var entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
         var outbound_offset = 16;
-		
-		for (var i = 0; i < ds_list_size(node.outbound); i++) {
-	        var outbound = node.outbound[| i];
-			var by = entry_yy + 32 * i;
-			
-	        if (!outbound) {
-	            draw_event_node_outbound(x2 + outbound_offset, by, node, i, true);
-	        } else {
-	            var bnx = outbound.x;
-	            var bny = outbound.y + 16;
-				
-	            draw_event_node_outbound(x2 + outbound_offset, by, node, i);
-	            draw_sprite(spr_event_dot, 0, x2 + outbound_offset, by);
-				
-	            if (Stuff.event.canvas_active_node != node || Stuff.event.canvas_active_node_index != i) {
-	                if (bnx > x2 + outbound_offset) {
-	                    draw_bezier(x2 + 8 + outbound_offset, by, bnx - 8, bny);
-	                } else {
-	                    draw_event_ghost(x2 + 8 + outbound_offset, by, x2 + 64, by, outbound);
-	                }
-	            }
-	        }
-		}
+        
+        for (var i = 0; i < ds_list_size(node.outbound); i++) {
+            var outbound = node.outbound[| i];
+            var by = entry_yy + 32 * i;
+            
+            if (!outbound) {
+                draw_event_node_outbound(x2 + outbound_offset, by, node, i, true);
+            } else {
+                var bnx = outbound.x;
+                var bny = outbound.y + 16;
+                
+                draw_event_node_outbound(x2 + outbound_offset, by, node, i);
+                draw_sprite(spr_event_dot, 0, x2 + outbound_offset, by);
+                
+                if (Stuff.event.canvas_active_node != node || Stuff.event.canvas_active_node_index != i) {
+                    if (bnx > x2 + outbound_offset) {
+                        draw_bezier(x2 + 8 + outbound_offset, by, bnx - 8, bny);
+                    } else {
+                        draw_event_ghost(x2 + 8 + outbound_offset, by, x2 + 64, by, outbound);
+                    }
+                }
+            }
+        }
         break;
-	#endregion
+    #endregion
 }
 
 // condition nodes have them located in strange places so i'm not going to try
 // to come up with a general solution
 if (!bezier_override) {
     if (Stuff.event.canvas_active_node == node) {
-	    var camera = view_get_camera(view_current);
-	    draw_bezier(x2 + 8, entry_yy + Stuff.event.canvas_active_node_index * EVENT_NODE_CONTACT_HEIGHT * 2 / 3, Stuff.MOUSE_X + camera_get_view_x(camera), Stuff.MOUSE_Y + camera_get_view_y(camera));
+        var camera = view_get_camera(view_current);
+        draw_bezier(x2 + 8, entry_yy + Stuff.event.canvas_active_node_index * EVENT_NODE_CONTACT_HEIGHT * 2 / 3, Stuff.MOUSE_X + camera_get_view_x(camera), Stuff.MOUSE_Y + camera_get_view_y(camera));
         if (!dialog_exists()) {
             if (Controller.release_left) {
                 // if the mouse is contacting another entrypoint, connect it
@@ -825,7 +825,7 @@ if (!bezier_override) {
                 }
                 Stuff.event.canvas_active_node = noone;
                 Stuff.event.canvas_active_node_index = 0;
-				Controller.release_left = false;
+                Controller.release_left = false;
             }
         }
     }

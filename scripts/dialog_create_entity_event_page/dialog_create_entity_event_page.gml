@@ -74,9 +74,9 @@ el_trigger.select_toggle = true;
 dg.el_trigger = el_trigger;
 
 for (var i = 0; i < ds_list_size(Stuff.all_event_triggers); i++) {
-	if (page.trigger & (1 << i)) {
-		ui_list_select(el_trigger, i);
-	}
+    if (page.trigger & (1 << i)) {
+        ui_list_select(el_trigger, i);
+    }
 }
 
 yy = yy + ui_get_list_height(el_trigger) + spacing;

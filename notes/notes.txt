@@ -18,7 +18,7 @@ Old data versions:
     MOVE_ROUTES                 = 15,
     ENTITY_GUID                 = 16,
     MOVE_ROUTE_MOVE_PARAMS      = 17,
-	unused			            = 18,
+    unused                        = 18,
     ENTITY_MAP_OPTIONS_WHOOPS   = 19,
     VARIABLE_BATTLE             = 20,
     MAP_WEATHER_CODE            = 21,
@@ -36,8 +36,8 @@ Old data versions:
     EVENT_PAGE_CODE_CONDITION   = 33,
     ANIMATION_RELATIVE_DATA     = 34,
     MAP_ENCOUNTER_STUFF         = 35,
-	NEW_MESH_SYSTEM				= 36,
+    NEW_MESH_SYSTEM                = 36,
     INDIVIDUAL_TERRAIN_TAGS     = 37,
 
 Serialization:
-	https://docs.google.com/spreadsheets/d/1DTndzzZdpPexH84J0dcIUruJ7ZU1wQcL0JFjPu09yK4/edit#gid=0
+    https://docs.google.com/spreadsheets/d/1DTndzzZdpPexH84J0dcIUruJ7ZU1wQcL0JFjPu09yK4/edit#gid=0

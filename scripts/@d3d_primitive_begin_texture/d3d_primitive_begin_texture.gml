@@ -3,7 +3,7 @@
 /// @param tex Texture Index
 
 if (global.__d3dPrimKind != -1) {
-	show_debug_message( "ERROR : cannot begin a primitive before end called on previous")
+    show_debug_message( "ERROR : cannot begin a primitive before end called on previous")
 }
 
 global.__d3dPrimKind = argument0;

@@ -14,10 +14,10 @@ if (data) {
         list.entries = data.instances;
     } else {
         list.text_vacant = "<Enums can't be instantiated>"
-		list.entries = Stuff.empty_list;
+        list.entries = Stuff.empty_list;
     }
 } else {
-	list.entries = Stuff.empty_list;
+    list.entries = Stuff.empty_list;
 }
 
 ui_render_list(list, xx, yy);

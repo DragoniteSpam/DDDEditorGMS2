@@ -16,6 +16,6 @@ vUp = smf_vector_normalize(argument4);
 vTo = smf_vector_normalize(smf_vector_orthogonalize(vUp, argument3));
 vSi = smf_vector_normalize(smf_vector_cross_product(vUp, vTo));
 return [vTo[0], vTo[1], vTo[2], 0,
-		vSi[0], vSi[1], vSi[2], 0,
-		vUp[0], vUp[1], vUp[2], 0,
-		argument0, argument1, argument2, 1];
+        vSi[0], vSi[1], vSi[2], 0,
+        vUp[0], vUp[1], vUp[2], 0,
+        argument0, argument1, argument2, 1];

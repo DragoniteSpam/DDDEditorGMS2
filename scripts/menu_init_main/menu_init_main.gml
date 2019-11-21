@@ -41,21 +41,21 @@ with (instance_create_depth(0, 0, 0, MenuMain)) {
     
     #region data stuff
     var md_graphics = create_menu_element("Graphics", momu_expand, menu_data);
-    	var md_graphic_ts = create_menu_element("Tilesets", momu_graphic_tileset, md_graphics);
-    	var md_graphic_at = create_menu_element("Autotiles", momu_graphic_autotile, md_graphics);
+        var md_graphic_ts = create_menu_element("Tilesets", momu_graphic_tileset, md_graphics);
+        var md_graphic_at = create_menu_element("Autotiles", momu_graphic_autotile, md_graphics);
         var md_graphic_battle = create_menu_element("Battler Sprites", momu_graphic_battle, md_graphics);
         var md_graphic_ow = create_menu_element("Overworld Sprites", momu_graphic_overworld, md_graphics);
         var md_graphic_part = create_menu_element("Particles", momu_graphic_particle, md_graphics);
         var md_graphic_ui = create_menu_element("User Interface", momu_graphic_ui, md_graphics);
         var md_graphic_etc = create_menu_element("Misc", momu_graphic_etc, md_graphics);
-    	ds_list_add(md_graphics.contents,
+        ds_list_add(md_graphics.contents,
             md_graphic_ts, md_graphic_at,
             md_graphic_battle, md_graphic_ow, md_graphic_part, md_graphic_ui, md_graphic_etc
         );
     var md_audio = create_menu_element("Audio", momu_expand, menu_data);
-    	var md_aud_bgm = create_menu_element("Background Music (BGM)", momu_bgm, md_audio);
-    	var md_aud_se = create_menu_element("Sound Effects (SE)", momu_se, md_audio);
-    	ds_list_add(md_audio.contents,
+        var md_aud_bgm = create_menu_element("Background Music (BGM)", momu_bgm, md_audio);
+        var md_aud_se = create_menu_element("Sound Effects (SE)", momu_se, md_audio);
+        ds_list_add(md_audio.contents,
             md_aud_bgm, md_aud_se
         );
     var md_data_types = create_menu_element("Define Data Types", momu_data_types, menu_data);
@@ -94,23 +94,23 @@ with (instance_create_depth(0, 0, 0, MenuMain)) {
     #region right-click stuff
     menu_right_click = create_menu("right-click", element_width, element_height, id, true);
     var mrc_player = create_menu_element("Set Player Start", momu_expand, menu_right_click);
-    	var mrc_player_down = create_menu_element("Facing Down", momu_set_starting_position_down, mrc_player);
-    	var mrc_player_left = create_menu_element("Facing Left", momu_set_starting_position_left, mrc_player);
-    	var mrc_player_right = create_menu_element("Facing Right", momu_set_starting_position_right, mrc_player);
-    	var mrc_player_up = create_menu_element("Facing Up", momu_set_starting_position_up, mrc_player);
-    	ds_list_add(mrc_player.contents,
+        var mrc_player_down = create_menu_element("Facing Down", momu_set_starting_position_down, mrc_player);
+        var mrc_player_left = create_menu_element("Facing Left", momu_set_starting_position_left, mrc_player);
+        var mrc_player_right = create_menu_element("Facing Right", momu_set_starting_position_right, mrc_player);
+        var mrc_player_up = create_menu_element("Facing Up", momu_set_starting_position_up, mrc_player);
+        ds_list_add(mrc_player.contents,
             mrc_player_down, mrc_player_left, mrc_player_right, mrc_player_up
         );
     var mrc_fill = create_menu_element("Fill", momu_expand, menu_right_click);
-    	var mrc_fill_tile = create_menu_element("Tile", null, mrc_fill);
-    	var mrc_fill_autotile = create_menu_element("Autotile", null, mrc_fill);
-    	var mrc_fill_mesh = create_menu_element("Mesh", null, mrc_fill);
-    	var mrc_fill_pawn = create_menu_element("Pawn", null, mrc_fill);
-    	var mrc_fill_effect = create_menu_element("Effect", null, mrc_fill);
-    	var mrc_fill_terrain = create_menu_element("Terrain", null, mrc_fill);
-    	ds_list_add(mrc_fill.contents,
+        var mrc_fill_tile = create_menu_element("Tile", null, mrc_fill);
+        var mrc_fill_autotile = create_menu_element("Autotile", null, mrc_fill);
+        var mrc_fill_mesh = create_menu_element("Mesh", null, mrc_fill);
+        var mrc_fill_pawn = create_menu_element("Pawn", null, mrc_fill);
+        var mrc_fill_effect = create_menu_element("Effect", null, mrc_fill);
+        var mrc_fill_terrain = create_menu_element("Terrain", null, mrc_fill);
+        ds_list_add(mrc_fill.contents,
             mrc_fill_tile, mrc_fill_autotile, mrc_fill_mesh, mrc_fill_pawn,
-    		mrc_fill_effect, mrc_fill_terrain
+            mrc_fill_effect, mrc_fill_terrain
         );
     var mrc_delete = create_menu_element("Delete", null, menu_right_click);
     var mrc_cut = create_menu_element("Cut", momu_cut, menu_right_click);
@@ -119,12 +119,12 @@ with (instance_create_depth(0, 0, 0, MenuMain)) {
     var mrc_prefab = create_menu_element("Save as Prefrab", null, menu_right_click);
     ds_list_add(menu_right_click.contents,
         mrc_player,
-    	m_separator,
-    	mrc_fill, mrc_delete,
-    	m_separator,
-    	mrc_cut, mrc_copy, mrc_paste,
-    	m_separator,
-    	mrc_prefab
+        m_separator,
+        mrc_fill, mrc_delete,
+        m_separator,
+        mrc_cut, mrc_copy, mrc_paste,
+        m_separator,
+        mrc_prefab
     );
     #endregion
     

@@ -39,7 +39,7 @@ if (string_length(fn) > 0) {
     var index_addr_maps = buffer_tell(buffer);
     buffer_write(buffer, buffer_u64, 0);
     #endregion
-	
+    
     buffer_poke(buffer, index_addr_content, buffer_u64, buffer_tell(buffer));
     
     #region data
@@ -51,11 +51,11 @@ if (string_length(fn) > 0) {
     
     // events may depend on some other data being initialized and i don't feel like
     // going back and doing validation because that sounds terrible
-	var addr_event_prefabs =        serialize_save_event_prefabs(buffer);
+    var addr_event_prefabs =        serialize_save_event_prefabs(buffer);
     var addr_events =               serialize_save_events(buffer);
     var addr_data_instances =       serialize_save_data_instances(buffer);
-	
-	var addr_maps =                 serialize_save_maps(buffer);
+    
+    var addr_maps =                 serialize_save_maps(buffer);
     #endregion
     
     #region addresses
@@ -75,10 +75,10 @@ if (string_length(fn) > 0) {
     var compressed = buffer_compress(buffer, 0, buffer_tell(buffer));
     buffer_save(compressed, fn);
     
-	serialize_save_assets(filename_change_ext(fn, EXPORT_EXTENSION_ASSETS));
+    serialize_save_assets(filename_change_ext(fn, EXPORT_EXTENSION_ASSETS));
     
     var proj_name = filename_change_ext(filename_name(fn), "");
-	setting_project_add(proj_name);
+    setting_project_add(proj_name);
     setting_project_create_local(proj_name, undefined, compressed);
     
     buffer_delete(compressed);
@@ -88,16 +88,16 @@ if (string_length(fn) > 0) {
 enum DataVersions {
     SUMMARY_GENERIC_DATA        = 38,
     MAPS_NUKED                  = 39,
-	DATA_TRIMMED				= 40,
-	STARTING_POSITION			= 41,
-	EVENT_PREFABS				= 42,
-	STARTING_DIRECTION			= 43,
-	TMX_ID						= 44,
-	TS_ID						= 45,
-	MAP_VERSIONING				= 46,
-	CUSTOM_EVENT_TRIGGERS		= 47,
-	CUSTOM_EVENT_OUTBOUND		= 48,
-	CODE_OPTIONS				= 49,
+    DATA_TRIMMED                = 40,
+    STARTING_POSITION            = 41,
+    EVENT_PREFABS                = 42,
+    STARTING_DIRECTION            = 43,
+    TMX_ID                        = 44,
+    TS_ID                        = 45,
+    MAP_VERSIONING                = 46,
+    CUSTOM_EVENT_TRIGGERS        = 47,
+    CUSTOM_EVENT_OUTBOUND        = 48,
+    CODE_OPTIONS                = 49,
     MAP_BATCH_DATA              = 50,
     MAP_BATCH_SOLIDNESS_DATA    = 51,
     SMF_MESH_TYPE               = 52,
@@ -105,10 +105,10 @@ enum DataVersions {
     IMAGE_SPRITE_SIZES          = 54,
     ENUM_SAVED_AS_TYPE          = 55,
     GLOBAL_CONSTANTS            = 56,
-	EXTRA_FOG_PROPERTIES		= 57,
+    EXTRA_FOG_PROPERTIES        = 57,
     MAP_GRID_PROPERTY           = 58,
     AT_OVERHAUL                 = 59,
     DATA_CHUNK_ADDRESSES        = 60,
-	REMOVE_UNUSED_DATA			= 61,
+    REMOVE_UNUSED_DATA            = 61,
     _CURRENT                 /* = whatever the last one is + 1 */
 }

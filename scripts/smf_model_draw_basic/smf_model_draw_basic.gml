@@ -7,5 +7,5 @@ var texInd = modelIndex[| SMF_model.TextureIndex];
 var num = array_length_1d(modArray);
 for (var m = 0; m < num; m ++)
 {
-	vertex_submit(modArray[m], pr_trianglelist, argument1);
+    vertex_submit(modArray[m], pr_trianglelist, argument1);
 }

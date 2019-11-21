@@ -11,12 +11,12 @@ www.TheSnidr.com
 globalvar SMF_format, SMF_format_bytes;
 SMF_format_bytes = 0;
 vertex_format_begin();
-vertex_format_add_position_3d();    SMF_format_bytes += 3 * 4;		//Adds three f32
-vertex_format_add_normal();         SMF_format_bytes += 3 * 4;		//Adds three f32
-vertex_format_add_texcoord();		SMF_format_bytes += 2 * 4;		//Adds two f32 - Texture coordinates
-vertex_format_add_color();          SMF_format_bytes += 1 * 4;		//Adds four u8 - Tangent
-vertex_format_add_color();          SMF_format_bytes += 1 * 4;		//Adds four u8 - Bone indices
-vertex_format_add_color();          SMF_format_bytes += 1 * 4;		//Adds four u8 - Bone weights
+vertex_format_add_position_3d();    SMF_format_bytes += 3 * 4;        //Adds three f32
+vertex_format_add_normal();         SMF_format_bytes += 3 * 4;        //Adds three f32
+vertex_format_add_texcoord();        SMF_format_bytes += 2 * 4;        //Adds two f32 - Texture coordinates
+vertex_format_add_color();          SMF_format_bytes += 1 * 4;        //Adds four u8 - Tangent
+vertex_format_add_color();          SMF_format_bytes += 1 * 4;        //Adds four u8 - Bone indices
+vertex_format_add_color();          SMF_format_bytes += 1 * 4;        //Adds four u8 - Bone weights
 SMF_format = vertex_format_end();
 
 globalvar SMF_modelList;

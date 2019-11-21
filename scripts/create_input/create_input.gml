@@ -25,20 +25,20 @@ with (instance_create_depth(argument[0], argument[1], 0, UIInput)) {
     value = string(argument[6]);
     value_default = string(argument[7]);
     validation = argument[8];
-	
-	switch (validation) {
-		case validate_code: value_conversion = ui_value_string; break;
-		case validate_double: value_conversion = ui_value_real; break;
-		case validate_hex: value_conversion = ui_value_string; break;
-		case validate_int: value_conversion = ui_value_real; break;
-		case validate_int_create_map_size: value_conversion = ui_value_real; break;
-		case validate_int_map_size_x: value_conversion = ui_value_real; break;
-		case validate_int_map_size_y: value_conversion = ui_value_real; break;
-		case validate_int_map_size_z: value_conversion = ui_value_real; break;
-		case validate_string: value_conversion = ui_value_string; break;
-		case validate_string_event_name: value_conversion = ui_value_string; break;
-		case validate_string_internal_name: value_conversion = ui_value_string; break;
-	}
+    
+    switch (validation) {
+        case validate_code: value_conversion = ui_value_string; break;
+        case validate_double: value_conversion = ui_value_real; break;
+        case validate_hex: value_conversion = ui_value_string; break;
+        case validate_int: value_conversion = ui_value_real; break;
+        case validate_int_create_map_size: value_conversion = ui_value_real; break;
+        case validate_int_map_size_x: value_conversion = ui_value_real; break;
+        case validate_int_map_size_y: value_conversion = ui_value_real; break;
+        case validate_int_map_size_z: value_conversion = ui_value_real; break;
+        case validate_string: value_conversion = ui_value_string; break;
+        case validate_string_event_name: value_conversion = ui_value_string; break;
+        case validate_string_internal_name: value_conversion = ui_value_string; break;
+    }
     
     value_lower = argument[9];
     value_upper = argument[10];
@@ -50,7 +50,7 @@ with (instance_create_depth(argument[0], argument[1], 0, UIInput)) {
     value_y2 = argument[15];
     
     root = argument[16];
-	
+    
     switch (validation) {
         case validate_double: case validate_int: real_value = true; break;
         default: real_value = false; break;

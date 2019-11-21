@@ -59,8 +59,8 @@ draw_text_colour(xview + 16, yview + hview - 8, string("Canvas at (" + string(xv
 if (CONTORL_3D_LOOK) {
     if (!dialog_exists()) {
         window_set_cursor(cr_none);
-		draw_sprite(spr_scroll, 0, Stuff.MOUSE_X, Stuff.MOUSE_Y);
-		
+        draw_sprite(spr_scroll, 0, Stuff.MOUSE_X, Stuff.MOUSE_Y);
+        
         camera_set_view_pos(camera, xview - (mouse_x - Controller.mouse_x_previous), yview - (mouse_y - Controller.mouse_y_previous));
     }
 } else {

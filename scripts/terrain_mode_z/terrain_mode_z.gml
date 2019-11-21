@@ -30,13 +30,13 @@ for (var i = max(0, xx - radius + 1); i < min(terrain.width, xx + radius + 1); i
 var avg = t / ds_list_size(list_range);
 
 for (var i = 0; i < ds_list_size(list_range); i++) {
-	var coordinates = list_range[| i];
-	script_execute(terrain.submode_equation[terrain.submode], terrain, coordinates[vec3.xx], coordinates[vec3.yy], dir, avg, coordinates[vec3.zz]);
+    var coordinates = list_range[| i];
+    script_execute(terrain.submode_equation[terrain.submode], terrain, coordinates[vec3.xx], coordinates[vec3.yy], dir, avg, coordinates[vec3.zz]);
 }
 
 for (var i = 0; i < ds_list_size(list_range); i++) {
-	var coordinates = list_range[| i];
-	terrain_set_normals(terrain, coordinates[vec3.xx], coordinates[vec3.yy]);
+    var coordinates = list_range[| i];
+    terrain_set_normals(terrain, coordinates[vec3.xx], coordinates[vec3.yy]);
 }
 
 if (!ds_list_empty(list_range)) {

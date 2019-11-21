@@ -15,6 +15,6 @@ buffer_write(buffer, buffer_u32, n_things);
 for (var i = 0; i < n_things; i++) {
     var thing = Stuff.map.active_map.contents.all_entities[| i];
     buffer_write(buffer, buffer_u16, thing.etype);
-	buffer_write(buffer, buffer_u32, thing.tmx_id);
+    buffer_write(buffer, buffer_u32, thing.tmx_id);
     script_execute(thing.save_script, buffer, thing);
 }

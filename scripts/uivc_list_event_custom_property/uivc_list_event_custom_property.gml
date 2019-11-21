@@ -15,7 +15,7 @@ if (selection >= 0) {
     list.root.el_property_type.value = property[EventNodeCustomData.TYPE];
     
     var datatype = guid_get(property[EventNodeCustomData.TYPE_GUID]);
-	list.root.el_property_type_guid.text = datatype? "Select (" + datatype.name + ")" : list.root.el_property_type_guid.text = "Select";
+    list.root.el_property_type_guid.text = datatype? "Select (" + datatype.name + ")" : list.root.el_property_type_guid.text = "Select";
     
     // set the behavior of the button based on the data type
     switch (list.root.el_property_type.value) {

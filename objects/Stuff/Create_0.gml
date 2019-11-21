@@ -82,10 +82,10 @@ default_camera = camera_get_default();
 save_name = "game";
 
 if (file_exists("projects.json")) {
-	all_projects = json_decode(file_get_contents("projects.json"));
+    all_projects = json_decode(file_get_contents("projects.json"));
 } else {
-	all_projects = ds_map_create();
-	ds_map_add_list(all_projects, "projects", ds_list_create());
+    all_projects = ds_map_create();
+    ds_map_add_list(all_projects, "projects", ds_list_create());
 }
 // @todo gml update try catch
 if (file_exists(FILE_SETTINGS)) {
@@ -338,30 +338,30 @@ event_prefab[EventNodeTypes.INVOKE_EVENT] = create_event_node_basic("WillNotBeIm
 event_prefab[EventNodeTypes.COMMENT] = create_event_node_basic("ImplementedElsewhere", []);
 event_prefab[EventNodeTypes.WAIT] = create_event_node_basic("Wait", [["Seconds", DataTypes.FLOAT, 0, 1, false, 1]]);
 event_prefab[EventNodeTypes.TRANSFER_PLAYER] = create_event_node_basic("TransferPlayer", [
-	["Map", DataTypes.MAP, 0, 1, false, 0, omu_event_attain_map_data, event_prefab_render_map_name],
-	["X", DataTypes.INT, 0, 1, false, 0, omu_event_attain_map_data],
-	["Y", DataTypes.INT, 0, 1, false, 0, omu_event_attain_map_data],
-	["A", DataTypes.INT, 0, 1, false, 0, omu_event_attain_map_data],
-	["Direction", DataTypes.INT, 0, 1, false, 0, omu_event_attain_map_data, event_prefab_render_map_direction_name],
-	["FadeColor", DataTypes.COLOR, 0, 1, false, c_black, omu_event_attain_map_data],
-	["FadeTime", DataTypes.FLOAT, 0, 1, false, 1, omu_event_attain_map_data],
+    ["Map", DataTypes.MAP, 0, 1, false, 0, omu_event_attain_map_data, event_prefab_render_map_name],
+    ["X", DataTypes.INT, 0, 1, false, 0, omu_event_attain_map_data],
+    ["Y", DataTypes.INT, 0, 1, false, 0, omu_event_attain_map_data],
+    ["A", DataTypes.INT, 0, 1, false, 0, omu_event_attain_map_data],
+    ["Direction", DataTypes.INT, 0, 1, false, 0, omu_event_attain_map_data, event_prefab_render_map_direction_name],
+    ["FadeColor", DataTypes.COLOR, 0, 1, false, c_black, omu_event_attain_map_data],
+    ["FadeTime", DataTypes.FLOAT, 0, 1, false, 1, omu_event_attain_map_data],
 ]);
 /* */ event_prefab[EventNodeTypes.SET_ENTITY_LOCATION] = create_event_node_basic("NotYetImplemented", []);
 /* */ event_prefab[EventNodeTypes.SCROLL_MAP] = create_event_node_basic("NotYetImplemented", []);
 /* */ event_prefab[EventNodeTypes.SET_MOVEMENT_ROUTE] = create_event_node_basic("NotYetImplemented", []);
 event_prefab[EventNodeTypes.TINT_SCREEN] = create_event_node_basic("TintScreen", [
-	["Color", DataTypes.COLOR, 0, 1, false, c_white],
-	["Alpha", DataTypes.FLOAT, 0, 1, false, 1],
-	["Time", DataTypes.FLOAT, 0, 1, false, 1],
-	["Wait?", DataTypes.BOOL, 0, 1, false, true],
+    ["Color", DataTypes.COLOR, 0, 1, false, c_white],
+    ["Alpha", DataTypes.FLOAT, 0, 1, false, 1],
+    ["Time", DataTypes.FLOAT, 0, 1, false, 1],
+    ["Wait?", DataTypes.BOOL, 0, 1, false, true],
 ]);
 event_prefab[EventNodeTypes.FLASH_SCREEN] = create_event_node_basic("WillNotBeImplemented", []);
 event_prefab[EventNodeTypes.SHAKE_SCREEN] = create_event_node_basic("ShakeScreen", [
-	["PowerX", DataTypes.FLOAT, 0, 1, false, 0.25],
-	["PowerY", DataTypes.FLOAT, 0, 1, false, 0.25],
-	["Speed", DataTypes.FLOAT, 0, 1, false, 0.25],
-	["Duration", DataTypes.FLOAT, 0, 1, false, 1],
-	["Wait?", DataTypes.BOOL, 0, 1, false, true],
+    ["PowerX", DataTypes.FLOAT, 0, 1, false, 0.25],
+    ["PowerY", DataTypes.FLOAT, 0, 1, false, 0.25],
+    ["Speed", DataTypes.FLOAT, 0, 1, false, 0.25],
+    ["Duration", DataTypes.FLOAT, 0, 1, false, 1],
+    ["Wait?", DataTypes.BOOL, 0, 1, false, true],
 ]);
 event_prefab[EventNodeTypes.PLAY_BGM] = create_event_node_basic("PlayBGM", [
     ["BGM", DataTypes.AUDIO_BGM, 0],
@@ -480,9 +480,9 @@ switch (stashed_mode) {
 // autosaves if problems happen.
 
 if (setting_autosave) {
-	var project_list = all_projects[? "projects"];
+    var project_list = all_projects[? "projects"];
     // @todo gml update try catch
-	if (project_list != undefined) {
-		dialog_create_project_list(noone);
-	}
+    if (project_list != undefined) {
+        dialog_create_project_list(noone);
+    }
 }

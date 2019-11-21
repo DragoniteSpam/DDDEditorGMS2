@@ -26,14 +26,14 @@ var yy = 64;
 var spacing = 16;
 
 dg.el_list = create_list(16, yy, "All Entities: " + string(ds_list_size(Stuff.map.active_map.contents.all_entities)),
-	"<no entities>", ew, eh, 20, onvaluechange, false, dg, Stuff.map.active_map.contents.all_entities);
+    "<no entities>", ew, eh, 20, onvaluechange, false, dg, Stuff.map.active_map.contents.all_entities);
 dg.el_list.entries_are = ListEntries.INSTANCES_REFID;
 
 var el_text = create_text(c2 + 16, dh / 2, "Only references to entities in the current map can be set.\n\n" +
 "If you try to access an entity reference that is not in the current map during the game, the node will be skipped.\n\n" +
 "If you set a reference in one map and edit the property while another is loaded, the value will be preserved but will not be named or appear in this list.\n\n" +
 "It is recommended that events that reference specific entities only be called from the maps which the entities exist in.",
-	ew, eh, fa_left, ew, dg);
+    ew, eh, fa_left, ew, dg);
 
 var b_width = 128;
 var b_height = 32;

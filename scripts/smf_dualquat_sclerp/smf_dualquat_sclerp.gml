@@ -14,8 +14,8 @@ t = argument2;
 
 // Shortest path
 if (smf_quat_dot(Q1, Q2) < 0){
-	for (var i = 0; i < 8; i ++){Q2[i] *= -1;}}
-	 
+    for (var i = 0; i < 8; i ++){Q2[i] *= -1;}}
+     
 // ScLERP = qa(qa^-1 qb)^t
 diff = smf_dualquat_multiply(smf_dualquat_get_conjugate(Q1), Q2);
 vr[0] = diff[0];
@@ -37,11 +37,11 @@ dir[2] = vr[2] * invR;
 moment[0] = (vd[0] - dir[0] * pitch * diff[3] * 0.5) * invR;
 moment[1] = (vd[1] - dir[1] * pitch * diff[3] * 0.5) * invR;
 moment[2] = (vd[2] - dir[2] * pitch * diff[3] * 0.5) * invR;
-	
+    
 // Exponential power
 angle *= t;
 pitch *= t;
-	
+    
 // Convert back to dual-quaternion
 sinAngle = sin(0.5 * angle);
 cosAngle = cos(0.5 * angle);

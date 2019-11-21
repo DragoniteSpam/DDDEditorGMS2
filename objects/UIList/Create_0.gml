@@ -20,7 +20,7 @@ render_colors = ui_list_colors;
 
 allow_multi_select = false;
 allow_deselect = true;
-select_toggle = false;					// clicking on an entry will toggle its selected-ness
+select_toggle = false;                    // clicking on an entry will toggle its selected-ness
 selected_entries = ds_map_create();
 
 // you may own your own entry list, in which case it'll be destroyed when the UIList is
@@ -35,7 +35,7 @@ numbered = false;
 enum ListEntries {
     STRINGS,
     INSTANCES,
-	// behaves the same as instances, but also draws the ref ID as an extra way to differentiate
-	INSTANCES_REFID,
+    // behaves the same as instances, but also draws the ref ID as an extra way to differentiate
+    INSTANCES_REFID,
     GUIDS
 }

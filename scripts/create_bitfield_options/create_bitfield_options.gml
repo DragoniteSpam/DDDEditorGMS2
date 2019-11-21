@@ -24,7 +24,7 @@ var things = argument[1];
 for (var i = 0; i < array_length_1d(things); i++) {
     var n = ds_list_size(bitfield.contents);
     var data = things[i];
-	var xx = (n == 0) ? bitfield.width : ds_list_top(bitfield.contents).x + ds_list_top(bitfield.contents).width;
+    var xx = (n == 0) ? bitfield.width : ds_list_top(bitfield.contents).x + ds_list_top(bitfield.contents).width;
     
     var option = instance_create_depth(xx, bitfield.height / 2 - data[7], 0, UIBitFieldOption);
     option.value = data[0];

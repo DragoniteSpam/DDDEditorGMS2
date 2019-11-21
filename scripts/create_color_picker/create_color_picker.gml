@@ -25,6 +25,6 @@ with (instance_create_depth(argument[0], argument[1], 0, UIColorPicker)) {
     value_y2 = argument[10];
     
     root = argument[11];
-	
+    
     return id;
 }

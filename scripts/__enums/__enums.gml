@@ -1,7 +1,7 @@
 enum SerializeThings {
     ERROR                   = 0x00000000,
     // basic stuff
-    MAPS					= 0x00000001,
+    MAPS                    = 0x00000001,
     CONSTANTS               = 0x00000002,
     MESHES                  = 0x00000003,
     ANIMATIONS              = 0x00000004,
@@ -31,17 +31,17 @@ enum SerializeThings {
     EVENT_CUSTOM            = 0x0000001C,
     EVENT_PREFAB            = 0x0000001D,
     MAP_STATIC_TERRAIN      = 0x0000001E,
-	
+    
     // game data
     DATA_ERROR              = 0x00000100,
     DATA_INSTANCES          = 0x00000101,
-	
+    
     // misc
     MISC_ERROR              = 0x00001000,
     GLOBAL_METADATA         = 0x00001001,
     MISC_GLOBAL             = 0x00001002,
     MISC_UI                 = 0x00001003,
-	
+    
     // the last one i think
     END_OF_FILE             = 0x00002000,
 }

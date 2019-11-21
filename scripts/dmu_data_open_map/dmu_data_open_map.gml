@@ -6,6 +6,6 @@ var index = ui_list_selection(list);
 var map = Stuff.all_maps[| index];
 
 if (map != Stuff.map.active_map) {
-	selection_clear();
-	load_a_map(map);
+    selection_clear();
+    load_a_map(map);
 }

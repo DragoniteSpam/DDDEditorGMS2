@@ -38,10 +38,10 @@ for (var i = 0; i < n_datadata; i++) {
             buffer_write(buffer, buffer_string, property.default_string);
             buffer_write(buffer, buffer_s32, property.default_int);
             buffer_write(buffer, buffer_f32, property.default_real);
-			
-			var bools = 0;
-			
-			buffer_write(buffer, buffer_u32, bools);
+            
+            var bools = 0;
+            
+            buffer_write(buffer, buffer_u32, bools);
         } else {
             // then nothing else matters besides the name and other basic things
         }

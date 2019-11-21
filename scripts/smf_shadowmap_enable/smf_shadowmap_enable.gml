@@ -8,5 +8,5 @@ SMF_shadowmapEnabled[0] = argument[1];
 
 if argument_count > 2
 {
-	SMF_shadowmapEnabled[1] = argument[2];
+    SMF_shadowmapEnabled[1] = argument[2];
 }

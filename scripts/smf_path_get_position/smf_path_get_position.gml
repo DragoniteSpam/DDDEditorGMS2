@@ -15,15 +15,15 @@ a = floor(position * pthNum);
 position *= length;
 repeat pthNum
 {
-	aPos = smf_path_get_point_position(pthIndex, a);
-	if position < aPos{a --; continue;}
-	if closed{b = (a + 1) mod pthNum;}
-	else{b = min(a + 1, pthNum - 1);}
-	bPos = smf_path_get_point_position(pthIndex, b);
-	if b == 0{bPos += length;}
-	if position > bPos{a ++; continue;}
-	amount = (position - aPos) / (bPos - aPos);
-	A = smf_path_get_point(pthIndex, a);
-	B = smf_path_get_point(pthIndex, b);
-	return [lerp(A[SMF_X], B[SMF_X], amount), lerp(A[SMF_Y], B[SMF_Y], amount), lerp(A[SMF_Z], B[SMF_Z], amount)];
+    aPos = smf_path_get_point_position(pthIndex, a);
+    if position < aPos{a --; continue;}
+    if closed{b = (a + 1) mod pthNum;}
+    else{b = min(a + 1, pthNum - 1);}
+    bPos = smf_path_get_point_position(pthIndex, b);
+    if b == 0{bPos += length;}
+    if position > bPos{a ++; continue;}
+    amount = (position - aPos) / (bPos - aPos);
+    A = smf_path_get_point(pthIndex, a);
+    B = smf_path_get_point(pthIndex, b);
+    return [lerp(A[SMF_X], B[SMF_X], amount), lerp(A[SMF_Y], B[SMF_Y], amount), lerp(A[SMF_Z], B[SMF_Z], amount)];
 }

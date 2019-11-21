@@ -14,11 +14,11 @@ var n_maps = ds_list_size(Stuff.all_maps);
 buffer_write(buffer, buffer_u16, n_maps);
 
 for (var i = 0; i < n_maps; i++) {
-	var map = Stuff.all_maps[| i];
-	serialize_save_generic(buffer, map);
-	buffer_write(buffer, buffer_u32, map.version);
-	buffer_write(buffer, buffer_u32, buffer_get_size(map.data_buffer));
-	buffer_write_buffer(buffer, map.data_buffer);
+    var map = Stuff.all_maps[| i];
+    serialize_save_generic(buffer, map);
+    buffer_write(buffer, buffer_u32, map.version);
+    buffer_write(buffer, buffer_u32, buffer_get_size(map.data_buffer));
+    buffer_write_buffer(buffer, map.data_buffer);
 }
 
 buffer_poke(buffer, addr_next, buffer_u64, buffer_tell(buffer));

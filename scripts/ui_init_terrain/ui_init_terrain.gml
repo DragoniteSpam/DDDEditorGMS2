@@ -240,20 +240,20 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element.height + spacing;
     
-	element = create_button(legal_x + spacing, yy, "Save Texture", col_width, element_height, fa_center, uivc_terrain_export_texture, t_texture);
+    element = create_button(legal_x + spacing, yy, "Save Texture", col_width, element_height, fa_center, uivc_terrain_export_texture, t_texture);
     ds_list_add(t_texture.contents, element);
     
-	element = create_button(col2_x, yy, "Change Texture", col_width, element_height, fa_center, uivc_terrain_change_texture, t_texture);
+    element = create_button(col2_x, yy, "Change Texture", col_width, element_height, fa_center, uivc_terrain_change_texture, t_texture);
     ds_list_add(t_texture.contents, element);
     
     yy = yy + element.height + spacing;
-	
+    
     element = create_text(legal_x + spacing, yy, mode.texture_name + " (" + string(mode.texture_width) + " x " + string(mode.texture_height) + ")", legal_width, element_height, fa_left, legal_width, t_texture);
     t_texture.element_texture_name = element;
     ds_list_add(t_texture.contents, element);
     
     yy = yy + element.height + spacing;
-	
+    
     element = create_tile_selector(legal_x + spacing, yy, legal_width - spacing * 2, legal_width - spacing * 2, uivc_select_terrain_tile, null, t_texture);
     element.tile_x = mode.tile_brush_x;
     element.tile_y = mode.tile_brush_y;

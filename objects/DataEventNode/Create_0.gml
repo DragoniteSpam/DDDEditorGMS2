@@ -16,7 +16,7 @@ ds_list_add(outbound, noone);                                           // seria
 custom_guid = 0;                                                          // serialize: buffer_u32
 custom_data = ds_list_create();                                           // list of lists - contents determined by custom_guid
 
-prefab_guid = 0;														// serialize: buffer_u32
+prefab_guid = 0;                                                        // serialize: buffer_u32
 
 // editor only - set upon creation, or reset upon loading
 

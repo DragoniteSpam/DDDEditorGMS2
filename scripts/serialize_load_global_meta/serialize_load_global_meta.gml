@@ -11,12 +11,12 @@ if (version >= DataVersions.DATA_CHUNK_ADDRESSES) {
 Stuff.game_starting_map = buffer_read(buffer, buffer_datatype);
 
 if (version >= DataVersions.STARTING_POSITION) {
-	Stuff.game_starting_x = buffer_read(buffer, buffer_u16);
-	Stuff.game_starting_y = buffer_read(buffer, buffer_u16);
-	Stuff.game_starting_z = buffer_read(buffer, buffer_u16);
-	if (version >= DataVersions.STARTING_DIRECTION) {
-		Stuff.game_starting_direction = buffer_read(buffer, buffer_u8);
-	}
+    Stuff.game_starting_x = buffer_read(buffer, buffer_u16);
+    Stuff.game_starting_y = buffer_read(buffer, buffer_u16);
+    Stuff.game_starting_z = buffer_read(buffer, buffer_u16);
+    if (version >= DataVersions.STARTING_DIRECTION) {
+        Stuff.game_starting_direction = buffer_read(buffer, buffer_u8);
+    }
 }
 
 var bools = buffer_read(buffer, buffer_u32);
@@ -41,11 +41,11 @@ for (var i = 0; i < n_variables; i++) {
 }
 
 if (version >= DataVersions.CUSTOM_EVENT_TRIGGERS) {
-	var n_triggers = buffer_read(buffer, buffer_u8);
-	ds_list_clear(Stuff.all_event_triggers);
-	repeat (n_triggers) {
-		ds_list_add(Stuff.all_event_triggers, buffer_read(buffer, buffer_string));
-	}
+    var n_triggers = buffer_read(buffer, buffer_u8);
+    ds_list_clear(Stuff.all_event_triggers);
+    repeat (n_triggers) {
+        ds_list_add(Stuff.all_event_triggers, buffer_read(buffer, buffer_string));
+    }
 }
 
 if (version >= DataVersions.GLOBAL_CONSTANTS) {

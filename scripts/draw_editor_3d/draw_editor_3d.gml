@@ -23,7 +23,7 @@ if (map.is_3d) {
     camera_apply(camera);
 } else {
     var cwidth = camera_get_view_width(camera);
-	var cheight = camera_get_view_height(camera);
+    var cheight = camera_get_view_height(camera);
     camera_set_view_mat(camera, matrix_build_lookat(mode.x, mode.y, 16000,  mode.x, mode.y, -16000, 0, 1, 0));
     camera_set_proj_mat(camera, matrix_build_projection_ortho(-cwidth, cheight, CAMERA_ZNEAR, CAMERA_ZFAR));
     camera_apply(camera);
@@ -113,9 +113,9 @@ for (var i = 0; i < ds_list_size(mode.selection); i++) {
 ds_list_destroy(list_routes);
 
 if (Stuff.game_starting_map == Stuff.map.active_map.GUID) {
-	transform_set(0, 0, 0, 0, 0, Stuff.direction_lookup[Stuff.game_starting_direction], 1, 1, 1);
-	transform_add((Stuff.game_starting_x + 0.5) * TILE_WIDTH, (Stuff.game_starting_y + 0.5) * TILE_HEIGHT, Stuff.game_starting_z * TILE_DEPTH, 0, 0, 0, 1, 1, 1);
-	vertex_submit(Stuff.graphics.basic_cage, pr_trianglelist, -1);
+    transform_set(0, 0, 0, 0, 0, Stuff.direction_lookup[Stuff.game_starting_direction], 1, 1, 1);
+    transform_add((Stuff.game_starting_x + 0.5) * TILE_WIDTH, (Stuff.game_starting_y + 0.5) * TILE_HEIGHT, Stuff.game_starting_z * TILE_DEPTH, 0, 0, 0, 1, 1, 1);
+    vertex_submit(Stuff.graphics.basic_cage, pr_trianglelist, -1);
 }
 
 transform_reset();

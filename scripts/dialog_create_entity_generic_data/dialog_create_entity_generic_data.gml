@@ -72,7 +72,7 @@ dg.el_data_property_int = el_data_property_int;
 var el_data_property_bool = create_checkbox(col2_x, yy, "Bool", ew, eh, null, false, dg);
 el_data_property_bool.enabled = false;
 dg.el_data_property_bool = el_data_property_bool;
-should probably take inspiration from dialog_create_data_types
+//should probably take inspiration from dialog_create_data_types
 yy = yy + eh + spacing;
 
 var yy_base = yy;

@@ -34,46 +34,46 @@ ds_grid_destroy(materials);
 //Delete vertex buffers
 var modelNum = array_length_1d(modArray);
 for (var m = 0; m < modelNum; m ++){
-	vertex_delete_buffer(modArray[m]);
-	if bufArray[m] >= 0{buffer_delete(bufArray[m])};}
+    vertex_delete_buffer(modArray[m]);
+    if bufArray[m] >= 0{buffer_delete(bufArray[m])};}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Delete nodes
 var nodeNum = ds_list_size(nodeList) / 4;
-for (var i = 0; i < nodeNum; i ++){	
-	var propertyList = nodeList[| i*4 + 3];
-	//Write properties
-	for (var j = 0; j < ds_list_size(propertyList) / 2; j ++)
-	{
-		if propertyList[| j*2] == 2
-		{
-			smf_path_destroy(propertyList[| j*2 + 1]);
-		}
-	}
+for (var i = 0; i < nodeNum; i ++){    
+    var propertyList = nodeList[| i*4 + 3];
+    //Write properties
+    for (var j = 0; j < ds_list_size(propertyList) / 2; j ++)
+    {
+        if propertyList[| j*2] == 2
+        {
+            smf_path_destroy(propertyList[| j*2 + 1]);
+        }
+    }
 }
 ds_list_destroy(nodeList);
 ds_map_destroy(nodeType);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Delete collision buffer
 if colBuff >= 0 and octBuff >= 0{
-	buffer_delete(colBuff);
-	buffer_delete(octBuff);}
+    buffer_delete(colBuff);
+    buffer_delete(octBuff);}
 if colList >= 0 and octList >= 0{
-	ds_list_destroy(colList);
-	ds_list_destroy(octList);}
+    ds_list_destroy(colList);
+    ds_list_destroy(octList);}
 if quadBuff >= 0{
-	buffer_delete(quadBuff);}
+    buffer_delete(quadBuff);}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Delete rig
 if bindPose != -1{
-	ds_list_destroy(bindPose);
+    ds_list_destroy(bindPose);
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Delete animations
 var frameNum, frameGrid;
 var animationNum = ds_list_size(animationList) / 3;
 for (var a = 0; a < animationNum; a ++){
-	frameGrid = animationList[| a * 3 + 1];
-	ds_grid_destroy(frameGrid);
+    frameGrid = animationList[| a * 3 + 1];
+    ds_grid_destroy(frameGrid);
 }
 if animationNum{ds_list_destroy(animationList);}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////

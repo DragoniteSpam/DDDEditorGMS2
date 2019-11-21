@@ -13,5 +13,5 @@ var state = entity.static;
 entity.static = am_solid;
 
 if (state != am_solid) {
-	Stuff.map.active_map.contents.population_static = Stuff.map.active_map.contents.population_static + am_solid ? 1 : -1;
+    Stuff.map.active_map.contents.population_static = Stuff.map.active_map.contents.population_static + am_solid ? 1 : -1;
 }

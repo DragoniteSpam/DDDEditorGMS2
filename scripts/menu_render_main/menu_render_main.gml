@@ -25,18 +25,18 @@ draw_line_colour(0, yy + menu.element_height, xx + room_width, yy + menu.element
 
 var element = Stuff.menu.extra_element;
 if (element) {
-	script_execute(element.render, element, element.x, element.y);
+    script_execute(element.render, element, element.x, element.y);
 }
 
 if ((!dialog_exists() && !mouse_within_rectangle_view(0, 0, xx + room_width, yy + menu.element_height))) {
-	if (!menu.mouse_over && (Controller.press_left || Controller.press_right)) {
-		menu_activate(noone);
-	}
+    if (!menu.mouse_over && (Controller.press_left || Controller.press_right)) {
+        menu_activate(noone);
+    }
 }
 
 // if the cursor is in the menu bar just disable clicking, because it'll be more
 // trouble than it's worth
 if (mouse_within_rectangle_view(0, 0, xx + room_width, yy + menu.element_height)) {
-	Controller.press_left = false;
-	Controller.press_right = false;
+    Controller.press_left = false;
+    Controller.press_right = false;
 }

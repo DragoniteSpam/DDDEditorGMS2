@@ -9,8 +9,8 @@ var custom_data = event.custom_data[| 4];
 var raw = custom_data[| 0];
 
 switch (raw) {
-	case 0: return "Down";
-	case 1: return "Left";
-	case 2: return "Right";
-	case 3: return "Up";
+    case 0: return "Down";
+    case 1: return "Left";
+    case 2: return "Right";
+    case 3: return "Up";
 }

@@ -36,7 +36,7 @@ for (j = 0; j < 9; j += 3)
     vx = tri[k] - tri[j];
     vy = tri[k+1] - tri[j+1];
     vz = tri[k+2] - tri[j+2];
-	
+    
     if dot_product_3d(tz * vy - ty * vz, tx * vz - tz * vx, ty * vx - tx * vy, tri[9], tri[10], tri[11]) < 0
     {
         return false;

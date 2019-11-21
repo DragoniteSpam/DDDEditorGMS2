@@ -37,10 +37,10 @@ else {// Column 2:
 
 if Q[0] < 0
 {
-	Q[0] = -Q[0];
-	Q[1] = -Q[1];
-	Q[2] = -Q[2];
-	Q[3] = -Q[3];
+    Q[0] = -Q[0];
+    Q[1] = -Q[1];
+    Q[2] = -Q[2];
+    Q[3] = -Q[3];
 }
 
 //---------------Create translation quaternion

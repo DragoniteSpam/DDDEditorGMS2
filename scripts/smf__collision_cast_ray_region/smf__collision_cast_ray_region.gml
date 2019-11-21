@@ -21,24 +21,24 @@ readPos = -argument1;
 n = octList[| readPos];
 for (i = 0; i < n; i ++)
 {   //Find intersection with triangle plane
-	V = octList[| 1 + i + readPos];
-	t = dot_product_3d(colGrid[# V, 9], colGrid[# V, 10], colGrid[# V, 11], lEnd[0] - lStart[0], lEnd[1] - lStart[1], lEnd[2] - lStart[2]);
-	if (t == 0) continue;
-	t = dot_product_3d(colGrid[# V, 9], colGrid[# V, 10], colGrid[# V, 11], colGrid[# V, 0] - lStart[0], colGrid[# V, 1] - lStart[1], colGrid[# V, 2] - lStart[2]) / t;
-	if (t <= 0 or t >= 1) continue;
-	its = [lerp(lStart[0], lEnd[0], t), lerp(lStart[1], lEnd[1], t), lerp(lStart[2], lEnd[2], t)];
-	//Check if the intersection is inside the triangle. If not, discard and continue.
-	a = [its[0] - colGrid[# V, 0], its[1] - colGrid[# V, 1], its[2] - colGrid[# V, 2]];
-	b = [colGrid[# V, 3] - colGrid[# V, 0], colGrid[# V, 4] - colGrid[# V, 1], colGrid[# V, 5] - colGrid[# V, 2]];
-	if (dot_product_3d(colGrid[# V, 9], colGrid[# V, 10], colGrid[# V, 11], a[2] * b[1] - a[1] * b[2], a[0] * b[2] - a[2] * b[0], a[1] * b[0] - a[0] * b[1]) <= 0) continue;
-	a = [its[0] - colGrid[# V, 3], its[1] - colGrid[# V, 4], its[2] - colGrid[# V, 5]];
-	b = [colGrid[# V, 6] - colGrid[# V, 3], colGrid[# V, 7] - colGrid[# V, 4], colGrid[# V, 8] - colGrid[# V, 5]];
-	if (dot_product_3d(colGrid[# V, 9], colGrid[# V, 10], colGrid[# V, 11], a[2] * b[1] - a[1] * b[2], a[0] * b[2] - a[2] * b[0], a[1] * b[0] - a[0] * b[1]) <= 0) continue;
-	a = [its[0] - colGrid[# V, 6], its[1] - colGrid[# V, 7], its[2] - colGrid[# V, 8]];
-	b = [colGrid[# V, 0] - colGrid[# V, 6], colGrid[# V, 1] - colGrid[# V, 7], colGrid[# V, 2] - colGrid[# V, 8]];
-	if (dot_product_3d(colGrid[# V, 9], colGrid[# V, 10], colGrid[# V, 11], a[2] * b[1] - a[1] * b[2], a[0] * b[2] - a[2] * b[0], a[1] * b[0] - a[0] * b[1]) <= 0) continue;
-	//The line intersects the triangle. Save the triangle normal and intersection.
-	retN = [colGrid[# V, 9], colGrid[# V, 10], colGrid[# V, 11]];
-	lEnd = [its[0], its[1], its[2]];
-	success = true;
+    V = octList[| 1 + i + readPos];
+    t = dot_product_3d(colGrid[# V, 9], colGrid[# V, 10], colGrid[# V, 11], lEnd[0] - lStart[0], lEnd[1] - lStart[1], lEnd[2] - lStart[2]);
+    if (t == 0) continue;
+    t = dot_product_3d(colGrid[# V, 9], colGrid[# V, 10], colGrid[# V, 11], colGrid[# V, 0] - lStart[0], colGrid[# V, 1] - lStart[1], colGrid[# V, 2] - lStart[2]) / t;
+    if (t <= 0 or t >= 1) continue;
+    its = [lerp(lStart[0], lEnd[0], t), lerp(lStart[1], lEnd[1], t), lerp(lStart[2], lEnd[2], t)];
+    //Check if the intersection is inside the triangle. If not, discard and continue.
+    a = [its[0] - colGrid[# V, 0], its[1] - colGrid[# V, 1], its[2] - colGrid[# V, 2]];
+    b = [colGrid[# V, 3] - colGrid[# V, 0], colGrid[# V, 4] - colGrid[# V, 1], colGrid[# V, 5] - colGrid[# V, 2]];
+    if (dot_product_3d(colGrid[# V, 9], colGrid[# V, 10], colGrid[# V, 11], a[2] * b[1] - a[1] * b[2], a[0] * b[2] - a[2] * b[0], a[1] * b[0] - a[0] * b[1]) <= 0) continue;
+    a = [its[0] - colGrid[# V, 3], its[1] - colGrid[# V, 4], its[2] - colGrid[# V, 5]];
+    b = [colGrid[# V, 6] - colGrid[# V, 3], colGrid[# V, 7] - colGrid[# V, 4], colGrid[# V, 8] - colGrid[# V, 5]];
+    if (dot_product_3d(colGrid[# V, 9], colGrid[# V, 10], colGrid[# V, 11], a[2] * b[1] - a[1] * b[2], a[0] * b[2] - a[2] * b[0], a[1] * b[0] - a[0] * b[1]) <= 0) continue;
+    a = [its[0] - colGrid[# V, 6], its[1] - colGrid[# V, 7], its[2] - colGrid[# V, 8]];
+    b = [colGrid[# V, 0] - colGrid[# V, 6], colGrid[# V, 1] - colGrid[# V, 7], colGrid[# V, 2] - colGrid[# V, 8]];
+    if (dot_product_3d(colGrid[# V, 9], colGrid[# V, 10], colGrid[# V, 11], a[2] * b[1] - a[1] * b[2], a[0] * b[2] - a[2] * b[0], a[1] * b[0] - a[0] * b[1]) <= 0) continue;
+    //The line intersects the triangle. Save the triangle normal and intersection.
+    retN = [colGrid[# V, 9], colGrid[# V, 10], colGrid[# V, 11]];
+    lEnd = [its[0], its[1], its[2]];
+    success = true;
 }

@@ -14,32 +14,32 @@ var tempPath = ds_list_create();
 //First loop through the path and create a bunch of new path points
 for (var i = 0; i < pathNum; i += stepSize)
 {
-	var ii = floor(i);
-	b = (ii + pathNum) mod pathNum;
-	if closed
-	{
-		a = (ii - 1 + pathNum) mod pathNum;
-		c = (ii + 1 + pathNum) mod pathNum;
-	}
-	else
-	{
-		a = max(ii - 1, 0);
-		c = min(ii + 1, pathNum - 1);
-	}
-	A = smf_path_get_point(pthIndex, a);
-	B = smf_path_get_point(pthIndex, b);
-	C = smf_path_get_point(pthIndex, c);
-	for (var j = 0; j < 16; j ++)
-	{
-		interpolatedMatrix[j] = smf_quadratic_bezier(A[j], B[j], C[j], frac(i));
-	}
-	ds_list_add(tempPath, interpolatedMatrix);
-	if i > 0
-	{
-		pathLength += point_distance_3d(prevMatrix[SMF_X], prevMatrix[SMF_Y], prevMatrix[SMF_Z], interpolatedMatrix[SMF_X], interpolatedMatrix[SMF_Y], interpolatedMatrix[SMF_Z]);
-	}
-	prevMatrix = interpolatedMatrix;
-	interpolatedMatrix = -1;
+    var ii = floor(i);
+    b = (ii + pathNum) mod pathNum;
+    if closed
+    {
+        a = (ii - 1 + pathNum) mod pathNum;
+        c = (ii + 1 + pathNum) mod pathNum;
+    }
+    else
+    {
+        a = max(ii - 1, 0);
+        c = min(ii + 1, pathNum - 1);
+    }
+    A = smf_path_get_point(pthIndex, a);
+    B = smf_path_get_point(pthIndex, b);
+    C = smf_path_get_point(pthIndex, c);
+    for (var j = 0; j < 16; j ++)
+    {
+        interpolatedMatrix[j] = smf_quadratic_bezier(A[j], B[j], C[j], frac(i));
+    }
+    ds_list_add(tempPath, interpolatedMatrix);
+    if i > 0
+    {
+        pathLength += point_distance_3d(prevMatrix[SMF_X], prevMatrix[SMF_Y], prevMatrix[SMF_Z], interpolatedMatrix[SMF_X], interpolatedMatrix[SMF_Y], interpolatedMatrix[SMF_Z]);
+    }
+    prevMatrix = interpolatedMatrix;
+    interpolatedMatrix = -1;
 }
 
 //Then loop through the path again, but this time making sure each point is evenly distanced from the previous point
@@ -50,39 +50,39 @@ var stepLength = pathLength / pathNum;
 var dist = 0;
 for (var i = 0; i < pathNum; i += stepSize)
 {
-	var ii = floor(i);
-	b = (ii + pathNum) mod pathNum;
-	if closed
-	{
-		a = (ii - 1 + pathNum) mod pathNum;
-		c = (ii + 1 + pathNum) mod pathNum;
-	}
-	else
-	{
-		a = max(ii - 1, 0);
-		c = min(ii + 1, pathNum - 1);
-		if ii == pathNum{break;}
-	}
-	A = smf_path_get_point(pthIndex, a);
-	B = smf_path_get_point(pthIndex, b);
-	C = smf_path_get_point(pthIndex, c);
-	for (var j = 0; j < 16; j ++)
-	{
-		interpolatedMatrix[j] = smf_quadratic_bezier(A[j], B[j], C[j], frac(i));
-	}
-	if i > 0
-	{
-		dist = point_distance_3d(prevMatrix[SMF_X], prevMatrix[SMF_Y], prevMatrix[SMF_Z], interpolatedMatrix[SMF_X], interpolatedMatrix[SMF_Y], interpolatedMatrix[SMF_Z]);
-		ratio = stepLength / dist;
-		if ratio < 0.999 or  ratio > 1.001
-		{
-			i -= stepSize;
-			stepSize *= ratio;
-			continue;
-		}
-	}
-	stepSize = 1;
-	smf_path_add_point(pth, interpolatedMatrix[j]);
-	prevMatrix = interpolatedMatrix;
-	interpolatedMatrix = -1;
+    var ii = floor(i);
+    b = (ii + pathNum) mod pathNum;
+    if closed
+    {
+        a = (ii - 1 + pathNum) mod pathNum;
+        c = (ii + 1 + pathNum) mod pathNum;
+    }
+    else
+    {
+        a = max(ii - 1, 0);
+        c = min(ii + 1, pathNum - 1);
+        if ii == pathNum{break;}
+    }
+    A = smf_path_get_point(pthIndex, a);
+    B = smf_path_get_point(pthIndex, b);
+    C = smf_path_get_point(pthIndex, c);
+    for (var j = 0; j < 16; j ++)
+    {
+        interpolatedMatrix[j] = smf_quadratic_bezier(A[j], B[j], C[j], frac(i));
+    }
+    if i > 0
+    {
+        dist = point_distance_3d(prevMatrix[SMF_X], prevMatrix[SMF_Y], prevMatrix[SMF_Z], interpolatedMatrix[SMF_X], interpolatedMatrix[SMF_Y], interpolatedMatrix[SMF_Z]);
+        ratio = stepLength / dist;
+        if ratio < 0.999 or  ratio > 1.001
+        {
+            i -= stepSize;
+            stepSize *= ratio;
+            continue;
+        }
+    }
+    stepSize = 1;
+    smf_path_add_point(pth, interpolatedMatrix[j]);
+    prevMatrix = interpolatedMatrix;
+    interpolatedMatrix = -1;
 }

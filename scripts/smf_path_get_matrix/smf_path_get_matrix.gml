@@ -14,17 +14,17 @@ a = floor(position * pthNum);
 position *= length;
 repeat pthNum
 {
-	aPos = smf_path_get_point_position(pth, a);
-	if position < aPos{a --; continue;}
-	if closed{b = (a + 1) mod pthNum;}
-	else{b = min(a + 1, pthNum - 1);}
-	bPos = smf_path_get_point_position(pth, b);
-	if b == 0{bPos += length;}
-	if position > bPos{a ++; continue;}
-	amount = (position - aPos) / (bPos - aPos);
-	A = smf_path_get_point(pth, a);
-	B = smf_path_get_point(pth, b);
-	R = smf_array_lerp(A, B, amount);
-	smf_matrix_orthogonalize(R);
-	return R;
+    aPos = smf_path_get_point_position(pth, a);
+    if position < aPos{a --; continue;}
+    if closed{b = (a + 1) mod pthNum;}
+    else{b = min(a + 1, pthNum - 1);}
+    bPos = smf_path_get_point_position(pth, b);
+    if b == 0{bPos += length;}
+    if position > bPos{a ++; continue;}
+    amount = (position - aPos) / (bPos - aPos);
+    A = smf_path_get_point(pth, a);
+    B = smf_path_get_point(pth, b);
+    R = smf_array_lerp(A, B, amount);
+    smf_matrix_orthogonalize(R);
+    return R;
 }

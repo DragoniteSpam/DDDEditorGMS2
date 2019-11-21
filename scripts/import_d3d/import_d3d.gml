@@ -15,14 +15,14 @@ file_text_readln(f);
 
 var vbuffer = vertex_create_buffer();
 if (everything) {
-	var wbuffer = vertex_create_buffer();
-	var cshape = c_shape_create();
+    var wbuffer = vertex_create_buffer();
+    var cshape = c_shape_create();
 }
 
 vertex_begin(vbuffer, Stuff.graphics.vertex_format);
 if (everything) {
-	vertex_begin(wbuffer, Stuff.graphics.vertex_format);
-	c_shape_begin_trimesh();
+    vertex_begin(wbuffer, Stuff.graphics.vertex_format);
+    c_shape_begin_trimesh();
 }
 
 var vc = 0;
@@ -163,18 +163,18 @@ while (!file_text_eof(f)) {
     vc = (++vc) % 3;
     
     if (vc == 0) {
-		if (everything) {
-	        vertex_point_line(wbuffer, xx[0], yy[0], zz[0], c_white, 1);
-	        vertex_point_line(wbuffer, xx[1], yy[1], zz[1], c_white, 1);
+        if (everything) {
+            vertex_point_line(wbuffer, xx[0], yy[0], zz[0], c_white, 1);
+            vertex_point_line(wbuffer, xx[1], yy[1], zz[1], c_white, 1);
         
-	        vertex_point_line(wbuffer, xx[1], yy[1], zz[1], c_white, 1);
-	        vertex_point_line(wbuffer, xx[2], yy[2], zz[2], c_white, 1);
+            vertex_point_line(wbuffer, xx[1], yy[1], zz[1], c_white, 1);
+            vertex_point_line(wbuffer, xx[2], yy[2], zz[2], c_white, 1);
         
-	        vertex_point_line(wbuffer, xx[2], yy[2], zz[2], c_white, 1);
-	        vertex_point_line(wbuffer, xx[0], yy[0], zz[0], c_white, 1);
+            vertex_point_line(wbuffer, xx[2], yy[2], zz[2], c_white, 1);
+            vertex_point_line(wbuffer, xx[0], yy[0], zz[0], c_white, 1);
         
-	        c_shape_add_triangle(xx[0], yy[0], zz[0], xx[1], yy[1], zz[1], xx[2], yy[2], zz[2]);
-		}
+            c_shape_add_triangle(xx[0], yy[0], zz[0], xx[1], yy[1], zz[1], xx[2], yy[2], zz[2]);
+        }
     }
 }
 #endregion
@@ -182,30 +182,30 @@ while (!file_text_eof(f)) {
 vertex_end(vbuffer);
 
 if (everything) {
-	vertex_end(wbuffer);
-	c_shape_end_trimesh(cshape);
-	
-	var mesh = instance_create_depth(0, 0, 0, DataMesh);
-	
-	mesh.xmin = round(minx / IMPORT_GRID_SIZE);
-	mesh.ymin = round(miny / IMPORT_GRID_SIZE);
-	mesh.zmin = round(minz / IMPORT_GRID_SIZE);
-	mesh.xmax = round(maxx / IMPORT_GRID_SIZE);
-	mesh.ymax = round(maxy / IMPORT_GRID_SIZE);
-	mesh.zmax = round(maxz / IMPORT_GRID_SIZE);
-	
-	var base_name = filename_change_ext(filename_name(fn), "");
-	mesh.name = base_name;
-	internal_name_generate(mesh, PREFIX_MESH + string_lettersdigits(base_name));
-	mesh.buffer = buffer_create_from_vertex_buffer(vbuffer, buffer_fixed, 1);
-	mesh.vbuffer = vbuffer;
-	mesh.wbuffer = wbuffer;
-	mesh.cshape = cshape;
-	
-	vertex_freeze(vbuffer);
-	vertex_freeze(wbuffer);
-	
-	return mesh;
+    vertex_end(wbuffer);
+    c_shape_end_trimesh(cshape);
+    
+    var mesh = instance_create_depth(0, 0, 0, DataMesh);
+    
+    mesh.xmin = round(minx / IMPORT_GRID_SIZE);
+    mesh.ymin = round(miny / IMPORT_GRID_SIZE);
+    mesh.zmin = round(minz / IMPORT_GRID_SIZE);
+    mesh.xmax = round(maxx / IMPORT_GRID_SIZE);
+    mesh.ymax = round(maxy / IMPORT_GRID_SIZE);
+    mesh.zmax = round(maxz / IMPORT_GRID_SIZE);
+    
+    var base_name = filename_change_ext(filename_name(fn), "");
+    mesh.name = base_name;
+    internal_name_generate(mesh, PREFIX_MESH + string_lettersdigits(base_name));
+    mesh.buffer = buffer_create_from_vertex_buffer(vbuffer, buffer_fixed, 1);
+    mesh.vbuffer = vbuffer;
+    mesh.wbuffer = wbuffer;
+    mesh.cshape = cshape;
+    
+    vertex_freeze(vbuffer);
+    vertex_freeze(wbuffer);
+    
+    return mesh;
 }
 
 return vbuffer;

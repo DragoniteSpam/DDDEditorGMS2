@@ -103,7 +103,7 @@ var el_confirm = create_button(dw / 2, dh - 32 - b_height / 2, "Done", b_width, 
 ds_list_add(dg.contents,
     el_name, el_list, el_add, el_remove,
     el_property_name, el_property_type, el_property_ext_type, el_property_type_guid,
-	el_outbound, el_outbound_name, el_outbound_add, el_outbound_remove,
+    el_outbound, el_outbound_name, el_outbound_add, el_outbound_remove,
     el_confirm
 );
 

@@ -10,20 +10,20 @@ if pthNum == 0{exit;}
 vertex_begin(SMF_pathModel, SMF_wireframe);
 for (var i = 0; i <= pthNum; i ++)
 {
-	if closed
-	{
-		b = floor(i) mod pthNum;
-	}
-	else
-	{
-		b = min(floor(i), pthNum - 1);
-	}
-	B = smf_path_get_point(pth, b);
-	_x = B[SMF_X];
-	_y = B[SMF_Y];
-	_z = B[SMF_Z];
-	
-	vertex_position_3d(SMF_pathModel, _x, _y, _z);
+    if closed
+    {
+        b = floor(i) mod pthNum;
+    }
+    else
+    {
+        b = min(floor(i), pthNum - 1);
+    }
+    B = smf_path_get_point(pth, b);
+    _x = B[SMF_X];
+    _y = B[SMF_Y];
+    _z = B[SMF_Z];
+    
+    vertex_position_3d(SMF_pathModel, _x, _y, _z);
 }
 vertex_end(SMF_pathModel);
 shader_set(sh_wireframe);

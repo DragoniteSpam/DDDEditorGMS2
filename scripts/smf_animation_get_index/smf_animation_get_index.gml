@@ -7,9 +7,9 @@ var animationList = modelIndex[| SMF_model.Animation];
 var ind = ds_list_find_index(animationList, argument1);
 if ind >= 0
 {
-	return ind / 3;
+    return ind / 3;
 }
 else
 {
-	return -1;
+    return -1;
 }

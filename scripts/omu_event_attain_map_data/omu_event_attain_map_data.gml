@@ -48,10 +48,10 @@ var spacing = 16;
 
 var el_maps = create_list(16, yy, "Maps", "no maps", ew, eh, 8, uivc_list_event_attain_map_index, false, dg, Stuff.all_maps);
 for (var i = 0; i < ds_list_size(Stuff.all_maps); i++) {
-	if (Stuff.all_maps[| i] == map) {
-		ui_list_select(el_maps, i);
-		break;
-	}
+    if (Stuff.all_maps[| i] == map) {
+        ui_list_select(el_maps, i);
+        break;
+    }
 }
 el_maps.allow_deselect = false;
 el_maps.entries_are = ListEntries.INSTANCES;
@@ -95,11 +95,11 @@ var el_render = create_render_surface(c2 + 16, yy, dw * 3 / 4 - 32, dh - 96, ui_
 var visible_map = guid_get(custom_data_map[| 0]);
 
 if (visible_map.preview) {
-	vertex_delete_buffer(visible_map.preview);
-	vertex_delete_buffer(visible_map.wpreview);
-	c_world_remove_object(Stuff.event.map.cpreview);
-	c_object_destroy(Stuff.event.map.cpreview);
-	c_shape_destroy(Stuff.event.map.cspreview);
+    vertex_delete_buffer(visible_map.preview);
+    vertex_delete_buffer(visible_map.wpreview);
+    c_world_remove_object(Stuff.event.map.cpreview);
+    c_object_destroy(Stuff.event.map.cpreview);
+    c_shape_destroy(Stuff.event.map.cspreview);
 }
 
 batch_all_preview(visible_map);

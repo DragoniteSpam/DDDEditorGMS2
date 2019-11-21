@@ -23,20 +23,20 @@ var header = chr(buffer_read(buffer, buffer_u8)) + chr(buffer_read(buffer, buffe
 if (header == "DDD") {
     var version = buffer_read(buffer, buffer_u32);
     var last_safe_version = DataVersions.STARTING_POSITION;
-	
+    
     if (version < last_safe_version) {
         show_error("We stopped supporting versions of the data file before " + string(last_safe_version) +
             ". This current version is " + string(version) + ". Please find a version of " + filename_name(filename) +
             " made with a more up-to-date version of the editor.", true
         );
-	}
+    }
     
     buffer_read(buffer, buffer_u8);
-	if (version >= DataVersions.REMOVE_UNUSED_DATA) {
+    if (version >= DataVersions.REMOVE_UNUSED_DATA) {
     } else {
         buffer_read(buffer, buffer_u32);
-	}
-	
+    }
+    
     var datatype = buffer_read(buffer, buffer_datatype);
     
     if (datatype == SerializeThings.TERRAIN) {

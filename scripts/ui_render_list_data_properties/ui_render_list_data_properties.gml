@@ -14,7 +14,7 @@ if (datadata) {
     list.text = otext + string(ds_list_size(datadata.properties));
     list.entries = datadata.properties;
 } else {
-	list.entries = Stuff.empty_list;
+    list.entries = Stuff.empty_list;
 }
 
 ui_render_list(list, xx, yy);

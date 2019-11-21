@@ -26,7 +26,7 @@ switch (what) {
             instance_destroy();
         }
         break;
-	case SERIALIZE_DATA_AND_MAP:
+    case SERIALIZE_DATA_AND_MAP:
     case SERIALIZE_DATA:
         instance_activate_object(Data);
         with (Data) if (file_location == DataFileLocations.DATA) {
@@ -37,7 +37,7 @@ switch (what) {
         ds_list_clear(Stuff.all_event_custom);
         ds_list_clear(Stuff.all_event_prefabs);
         ds_list_clear(Stuff.all_data);
-		ds_list_clear(Stuff.all_game_constants);
+        ds_list_clear(Stuff.all_game_constants);
         // these contain arrays, which are garbage collected
         ds_list_clear(Stuff.variables);
         ds_list_clear(Stuff.switches);
@@ -46,16 +46,16 @@ switch (what) {
             instance_destroy(Stuff.all_graphic_autotiles[| i]);
         }
         ds_list_clear(Stuff.all_graphic_autotiles);
-		// anything else?
-		Stuff.map.active_map = noone;
+        // anything else?
+        Stuff.map.active_map = noone;
         Stuff.game_include_terrain = false;
         break;
     case SERIALIZE_MAP:
-		instance_activate_object(DataMapContainer);
-		instance_destroy(DataMapContainer);
-		Stuff.map.active_map = instance_create_depth(0, 0, 0, DataMapContainer);
-		Stuff.map.active_map.contents = instance_create_depth(0, 0, 0, MapContents);
-		instance_deactivate_object(Stuff.map.active_map.contents);
+        instance_activate_object(DataMapContainer);
+        instance_destroy(DataMapContainer);
+        Stuff.map.active_map = instance_create_depth(0, 0, 0, DataMapContainer);
+        Stuff.map.active_map.contents = instance_create_depth(0, 0, 0, MapContents);
+        instance_deactivate_object(Stuff.map.active_map.contents);
         break;
 }
 
@@ -89,7 +89,7 @@ while (true) {
         case SerializeThings.DATADATA: serialize_load_datadata(buffer, version); break;
         case SerializeThings.DATA_INSTANCES: serialize_load_data_instances(buffer, version); break;
         case SerializeThings.EVENT_CUSTOM: serialize_load_event_custom(buffer, version); break;
-		case SerializeThings.EVENT_PREFAB: serialize_load_event_prefabs(buffer, version); break;
+        case SerializeThings.EVENT_PREFAB: serialize_load_event_prefabs(buffer, version); break;
         case SerializeThings.ANIMATIONS: serialize_load_animations(buffer, version); break;
         case SerializeThings.TERRAIN: serialize_load_terrain(buffer, version, true); break;
         case SerializeThings.MAPS: serialize_load_maps(buffer, version); break;
@@ -102,8 +102,8 @@ while (true) {
 
 switch (what) {
     case SERIALIZE_MAP:
-		Stuff.map.active_map = guid_get(Stuff.game_starting_map);
-		break;
+        Stuff.map.active_map = guid_get(Stuff.game_starting_map);
+        break;
 }
 
 error_show();

@@ -64,7 +64,7 @@ var el_never_mind = create_button(dw * 5 / 7 - b_width / 2, dh - 32 - b_height /
 
 ds_list_add(dg.contents,
     el_width, el_height, el_dual_layer, el_scale,
-	el_import_heightmap, el_confirm, el_never_mind
+    el_import_heightmap, el_confirm, el_never_mind
 );
 
 return dg;

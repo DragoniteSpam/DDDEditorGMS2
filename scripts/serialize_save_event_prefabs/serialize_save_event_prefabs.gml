@@ -11,19 +11,19 @@ buffer_write(buffer, buffer_u32, n_prefabs);
 
 for (var i = 0; i < n_prefabs; i++) {
     var prefab = Stuff.all_event_prefabs[| i];
-	serialize_save_generic(buffer, prefab);
-	
-	buffer_write(buffer, buffer_u16, prefab.type);
-	
-	var n_data = ds_list_size(prefab.data);
-	
-	buffer_write(buffer, buffer_u8, n_data);
-	for (var j = 0; j < n_data; j++) {
-		buffer_write(buffer, buffer_string, prefab.data[| i]);
-	}
+    serialize_save_generic(buffer, prefab);
+    
+    buffer_write(buffer, buffer_u16, prefab.type);
+    
+    var n_data = ds_list_size(prefab.data);
+    
+    buffer_write(buffer, buffer_u8, n_data);
+    for (var j = 0; j < n_data; j++) {
+        buffer_write(buffer, buffer_string, prefab.data[| i]);
+    }
     
     // I like the event prefab idea less than i did before i realized
-	// that i was going to have to do this
+    // that i was going to have to do this
     switch (prefab.type) {
         case EventNodeTypes.ENTRYPOINT:
         case EventNodeTypes.TEXT:

@@ -27,18 +27,18 @@ if (!cell[@ entity.slot]) {
     
     map_transform_thing(entity);
     ds_list_add(map.all_entities, entity);
-	
-	if (!is_temp) {
+    
+    if (!is_temp) {
         var list = entity.batchable ? map.batch_in_the_future : map.dynamic;
         // smf meshes simply aren't allowed to be batched, or static, so exert your authority over them
         if (instanceof(entity, EntityMesh) && guid_get(entity.mesh).type == MeshTypes.SMF) {
             list = map.dynamic;
         }
         
-		ds_list_add(list, entity);
-	    entity.listed = true;
-	    ds_list_add(Stuff.map.changes, entity);
-	}
+        ds_list_add(list, entity);
+        entity.listed = true;
+        ds_list_add(Stuff.map.changes, entity);
+    }
 } else {
     safa_delete(entity);
 }

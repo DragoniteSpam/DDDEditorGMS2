@@ -53,7 +53,7 @@ if (string_length(value) == 0) {
 }
 
 if (input.require_enter) {
-	draw_sprite(spr_enter, 0, vx2 - sprite_get_width(spr_enter) - 4, vty - sprite_get_height(spr_enter) / 2);
+    draw_sprite(spr_enter, 0, vx2 - sprite_get_width(spr_enter) - 4, vty - sprite_get_height(spr_enter) / 2);
 }
 
 if (input.interactive && dialog_is_active(input.root)) {
@@ -67,7 +67,7 @@ if (input.interactive && dialog_is_active(input.root)) {
         var v0 = value;
         value = keyboard_string;
         if (Controller.press_escape) {
-			Controller.press_escape = false;
+            Controller.press_escape = false;
             value = "";
         }
         if (string_length(value) > input.value_limit) {
@@ -80,13 +80,13 @@ if (input.interactive && dialog_is_active(input.root)) {
         if (script_execute(input.validation, value, input)) {
             var execute_value_change = (!input.require_enter && v0 != value) || (input.require_enter && keyboard_check_pressed(vk_enter));
             if (execute_value_change) {
-				if (input.real_value) {
-			        var n = script_execute(input.value_conversion, value);
-			        execute_value_change = execute_value_change && is_clamped(n, input.value_lower, input.value_upper);
-			    }
-				if (execute_value_change) {
-					script_execute(input.onvaluechange, input);
-				}
+                if (input.real_value) {
+                    var n = script_execute(input.value_conversion, value);
+                    execute_value_change = execute_value_change && is_clamped(n, input.value_lower, input.value_upper);
+                }
+                if (execute_value_change) {
+                    script_execute(input.onvaluechange, input);
+                }
             }
         }
     }

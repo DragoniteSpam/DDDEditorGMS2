@@ -13,9 +13,9 @@ if (!dialog_exists()) {
     if (mouse_within_rectangle_adjusted(xx - tolerance, yy - tolerance, xx + tolerance, yy + tolerance)) {
         draw_sprite(spr_event_delete, 1, xx, yy);
         if (Controller.release_left) {
-			var dialog = dialog_create_yes_or_no(noone, "Do you actually want to delete " + node.name + "?", dmu_dialog_event_node_delete);
-			dialog.node = node;
+            var dialog = dialog_create_yes_or_no(noone, "Do you actually want to delete " + node.name + "?", dmu_dialog_event_node_delete);
+            dialog.node = node;
         }
-		draw_tooltip(xx, yy + 16, "Delete Node");
+        draw_tooltip(xx, yy + 16, "Delete Node");
     }
 }

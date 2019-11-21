@@ -14,5 +14,5 @@ n = argument0;
 v = argument1;
 l = n[0] * v[0] + n[1] * v[1] + n[2] * v[2];
 return [v[0] - n[0] * l,
-		v[1] - n[1] * l,
-		v[2] - n[2] * l];
+        v[1] - n[1] * l,
+        v[2] - n[2] * l];

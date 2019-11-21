@@ -9,7 +9,7 @@ with (instance_create_depth(0, 0, 0, MenuMenu)) {
     width = argument[1];
     height = argument[2];
     root = argument[3];
-	invisible = (argument_count > 4) ? argument[4] : invisible;
+    invisible = (argument_count > 4) ? argument[4] : invisible;
     
     return id;
 }

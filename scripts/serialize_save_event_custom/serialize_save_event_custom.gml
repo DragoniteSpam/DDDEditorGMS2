@@ -23,10 +23,10 @@ for (var i = 0; i < n_custom; i++) {
         buffer_write(buffer, buffer_u8, type[3]);        // max list size
         buffer_write(buffer, buffer_u8, type[4]);        // all elements required?
     }
-	
-	var n_outbound = ds_list_size(custom.outbound);
-	buffer_write(buffer, buffer_u8, n_outbound);
-	for (var j = 0; j < n_outbound; j++) {
+    
+    var n_outbound = ds_list_size(custom.outbound);
+    buffer_write(buffer, buffer_u8, n_outbound);
+    for (var j = 0; j < n_outbound; j++) {
         buffer_write(buffer, buffer_string, custom.outbound[| j]);
     }
 }

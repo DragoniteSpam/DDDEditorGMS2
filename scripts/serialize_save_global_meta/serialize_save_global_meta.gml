@@ -37,7 +37,7 @@ for (var i = 0; i < n_variables; i++) {
 var n_triggers = ds_list_size(Stuff.all_event_triggers);
 buffer_write(buffer, buffer_u8, n_triggers);
 for (var i = 0; i < n_triggers; i++) {
-	buffer_write(buffer, buffer_string, Stuff.all_event_triggers[| i]);
+    buffer_write(buffer, buffer_string, Stuff.all_event_triggers[| i]);
 }
 
 var n_constants = ds_list_size(Stuff.all_game_constants);

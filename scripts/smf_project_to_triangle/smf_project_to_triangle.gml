@@ -20,8 +20,8 @@ t = [pos[0] - tri[0], pos[1] - tri[1], pos[2] - tri[2]];
 u = [tri[3] - tri[0], tri[4] - tri[1], tri[5] - tri[2]];
 if (dot_product_3d(t[2] * u[1] - t[1] * u[2], t[0] * u[2] - t[2] * u[0], t[1] * u[0] - t[0] * u[1], tri[9], tri[10], tri[11]) <= 0)
 {
-	dp = clamp(dot_product_3d(u[0], u[1], u[2], t[0], t[1], t[2]) / (sqr(u[0]) + sqr(u[1]) + sqr(u[2])), 0, 1);
-	return [tri[0] + u[0] * dp, tri[1] + u[1] * dp, tri[2] + u[2] * dp];
+    dp = clamp(dot_product_3d(u[0], u[1], u[2], t[0], t[1], t[2]) / (sqr(u[0]) + sqr(u[1]) + sqr(u[2])), 0, 1);
+    return [tri[0] + u[0] * dp, tri[1] + u[1] * dp, tri[2] + u[2] * dp];
 }
 //////////////////////////////////////////////////////////////////
 //Check second triangle vector
@@ -29,8 +29,8 @@ t = [pos[0] - tri[3], pos[1] - tri[4], pos[2] - tri[5]];
 u = [tri[6] - tri[3], tri[7] - tri[4], tri[8] - tri[5]];
 if (dot_product_3d(t[2] * u[1] - t[1] * u[2], t[0] * u[2] - t[2] * u[0], t[1] * u[0] - t[0] * u[1], tri[9], tri[10], tri[11]) <= 0)
 {
-	dp = clamp(dot_product_3d(u[0], u[1], u[2], t[0], t[1], t[2]) / (sqr(u[0]) + sqr(u[1]) + sqr(u[2])), 0, 1);
-	return [tri[3] + u[0] * dp, tri[4] + u[1] * dp, tri[5] + u[2] * dp];
+    dp = clamp(dot_product_3d(u[0], u[1], u[2], t[0], t[1], t[2]) / (sqr(u[0]) + sqr(u[1]) + sqr(u[2])), 0, 1);
+    return [tri[3] + u[0] * dp, tri[4] + u[1] * dp, tri[5] + u[2] * dp];
 }
 //////////////////////////////////////////////////////////////////
 //Check third triangle vector
@@ -38,8 +38,8 @@ t = [pos[0] - tri[6], pos[1] - tri[7], pos[2] - tri[8]];
 u = [tri[0] - tri[6], tri[1] - tri[7], tri[2] - tri[8]];
 if (dot_product_3d(t[2] * u[1] - t[1] * u[2], t[0] * u[2] - t[2] * u[0], t[1] * u[0] - t[0] * u[1], tri[9], tri[10], tri[11]) <= 0)
 {
-	dp = clamp(dot_product_3d(u[0], u[1], u[2], t[0], t[1], t[2]) / (sqr(u[0]) + sqr(u[1]) + sqr(u[2])), 0, 1);
-	return [tri[6] + u[0] * dp, tri[7] + u[1] * dp, tri[8] + u[2] * dp];
+    dp = clamp(dot_product_3d(u[0], u[1], u[2], t[0], t[1], t[2]) / (sqr(u[0]) + sqr(u[1]) + sqr(u[2])), 0, 1);
+    return [tri[6] + u[0] * dp, tri[7] + u[1] * dp, tri[8] + u[2] * dp];
 }
 //////////////////////////////////////////////////////////////////
 //Project the coordinates to the plane defined by the triangle

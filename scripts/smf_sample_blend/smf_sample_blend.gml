@@ -21,7 +21,7 @@ num = array_length_1d(sample1);
 returnSample = -1;
 for (i = 0; i < num - 2; i ++)
 {
-	returnSample[i] = sample1[i] * t1 + sample2[i] * t2;
+    returnSample[i] = sample1[i] * t1 + sample2[i] * t2;
 }
 returnSample[num - 2] = sample1[num - 2];
 returnSample[num - 1] = sample1[num - 1];

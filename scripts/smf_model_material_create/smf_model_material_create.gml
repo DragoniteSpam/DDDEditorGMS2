@@ -32,7 +32,7 @@ material[# mat, SMF_mat.OutlineThickness] = 0.2;
 material[# mat, SMF_mat.OutlineRed] = 0;
 material[# mat, SMF_mat.OutlineGreen] = 0;
 material[# mat, SMF_mat.OutlineBlue] = 0;
-	
+    
 //Reflection
 material[# mat, SMF_mat.ReflectionsEnabled] = false;
 material[# mat, SMF_mat.ReflectionMap] = smf_texture_get_index("TexDefault");

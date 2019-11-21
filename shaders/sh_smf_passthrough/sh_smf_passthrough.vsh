@@ -15,10 +15,10 @@ uniform vec4 texUVs;
 
 void main()
 {
-	vec3 newPosition = in_Position;
-	vec3 newNormal = in_Normal;
-	vec3 newTangent = in_Colour.xyz * 2.0 - 1.0;
-	
+    vec3 newPosition = in_Position;
+    vec3 newNormal = in_Normal;
+    vec3 newTangent = in_Colour.xyz * 2.0 - 1.0;
+    
     v_vTexcoord = texUVs.xy + vec2(texUVs.z, texUVs.w) * in_TextureCoord;
     gl_Position = gm_Matrices[MATRIX_WORLD_VIEW_PROJECTION] * vec4(in_Position, 1.0);
 }

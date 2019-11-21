@@ -46,10 +46,10 @@ terrain.terrain_buffer_data = buffer_create_from_vertex_buffer(terrain.terrain_b
 // the first pass is reading out the data
 for (var i = 0; i < terrain.width; i++) {
     for (var j = 0; j < terrain.height; j++) {
-		var color = buffer_read(buffer, buffer_u32);
-		var rr = color & 0x0000ff;
-		var gg = (color & 0x00ff00) >> 8;
-		var bb = (color & 0xff0000) >> 16;
+        var color = buffer_read(buffer, buffer_u32);
+        var rr = color & 0x0000ff;
+        var gg = (color & 0x00ff00) >> 8;
+        var bb = (color & 0xff0000) >> 16;
         var zz = mean(rr, gg, bb) / scale;
         buffer_write(terrain.height_data, buffer_f32, zz);
         terrain_set_z(terrain, i, j, zz);

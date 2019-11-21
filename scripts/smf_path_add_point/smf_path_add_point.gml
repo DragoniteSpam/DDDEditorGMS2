@@ -7,8 +7,8 @@ var num = smf_path_get_number(argument0);
 var position = 0;
 if num > 0
 {
-	position = smf_path_get_point_position(pth, num - 1);
-	prevPoint = smf_path_get_point(argument0, num - 1);
-	position += point_distance_3d(prevPoint[SMF_X], prevPoint[SMF_Y], prevPoint[SMF_Z], M[SMF_X], M[SMF_Y], M[SMF_Z]);
+    position = smf_path_get_point_position(pth, num - 1);
+    prevPoint = smf_path_get_point(argument0, num - 1);
+    position += point_distance_3d(prevPoint[SMF_X], prevPoint[SMF_Y], prevPoint[SMF_Z], M[SMF_X], M[SMF_Y], M[SMF_Z]);
 }
 return smf_path_add_point_ext(pth, M, position);

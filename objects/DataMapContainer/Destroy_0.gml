@@ -1,6 +1,6 @@
 if (contents) {
-	instance_activate_object(contents);
-	instance_destroy(contents);
+    instance_activate_object(contents);
+    instance_destroy(contents);
 }
 
 buffer_delete(data_buffer);

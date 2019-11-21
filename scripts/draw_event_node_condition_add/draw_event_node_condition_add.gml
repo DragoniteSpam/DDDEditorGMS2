@@ -11,7 +11,7 @@ draw_sprite(spr_plus_minus, 0, xx, yy);
 var tolerance = 8;
 if (mouse_within_rectangle_adjusted(xx - tolerance, yy - tolerance, xx + tolerance, yy + tolerance)) {
     draw_sprite(spr_plus_minus, 1, xx, yy);
-	draw_tooltip(xx, yy + 16, "Add Data");
+    draw_tooltip(xx, yy + 16, "Add Data");
     if (Controller.release_left) {
         var list_branch_types = node.custom_data[| 0];
         var list_branch_indices = node.custom_data[| 1];

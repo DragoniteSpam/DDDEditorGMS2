@@ -78,7 +78,7 @@ draw_set_halign(fa_left);
 draw_text_colour(tx, ty, string(dialog.text), c_black, c_black, c_black, c_black, 1);
 
 if (dialog.close) {
-	draw_sprite(spr_close, cbi, cbx, cby);
+    draw_sprite(spr_close, cbi, cbx, cby);
 }
 
 for (var i = 0; i < ds_list_size(dialog.contents); i++) {

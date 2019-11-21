@@ -22,12 +22,12 @@ returnSample = -1;
 var Q, ii;
 for (i = 0; i < num div 8; i ++)
 {
-	ii = i*8;
-	Q = -1;
-	for (var j = 0; j < 8; j ++){
-		Q[j] = sample1[ii+j] * t1 + sample2[ii+j] * t2;}
-	Q = smf_dualquat_normalize(Q);
-	for (var j = 0; j < 8; j ++){
-		returnSample[ii+j] = Q[j];}
+    ii = i*8;
+    Q = -1;
+    for (var j = 0; j < 8; j ++){
+        Q[j] = sample1[ii+j] * t1 + sample2[ii+j] * t2;}
+    Q = smf_dualquat_normalize(Q);
+    for (var j = 0; j < 8; j ++){
+        returnSample[ii+j] = Q[j];}
 }
 return returnSample;

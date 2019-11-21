@@ -19,7 +19,7 @@ argument2 *= s;
 argument3 *= s;
 
 return [argument1, argument2, argument3, c,
-		0.5 * (argument4 * c + argument5 * argument3 - argument6 * argument1),
-		0.5 * (argument5 * c + argument6 * argument1 - argument4 * argument3),
-		0.5 * (argument6 * c + argument4 * argument2 - argument5 * argument1),
-		0.5 * (- argument4 * argument1 - argument5 * argument2 - argument6 * argument3)];
+        0.5 * (argument4 * c + argument5 * argument3 - argument6 * argument1),
+        0.5 * (argument5 * c + argument6 * argument1 - argument4 * argument3),
+        0.5 * (argument6 * c + argument4 * argument2 - argument5 * argument1),
+        0.5 * (- argument4 * argument1 - argument5 * argument2 - argument6 * argument3)];

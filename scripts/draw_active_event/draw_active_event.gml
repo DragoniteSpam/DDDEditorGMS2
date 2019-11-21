@@ -30,7 +30,7 @@ if (Stuff.event.active) {
                 "some code");
                 break;
             case EventNodeTypes.SHOW_CHOICES:
-				var n = 3;
+                var n = 3;
                 var x1 = Stuff.event.node_info.x;
                 var y1 = Stuff.event.node_info.y - 64 - 16 * n;
                 var x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
@@ -44,8 +44,8 @@ if (Stuff.event.active) {
                 "each choice can link to a different node;\n" +
                 "if no node is selected the default is used");
                 break;
-			case EventNodeTypes.TEXT:
-				var n = 5;
+            case EventNodeTypes.TEXT:
+                var n = 5;
                 var x1 = Stuff.event.node_info.x;
                 var y1 = Stuff.event.node_info.y - 64 - 16 * n;
                 var x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
@@ -54,28 +54,28 @@ if (Stuff.event.active) {
         
                 draw_roundrect_colour(x1, y1 - vertical_padding, x2, y2 + vertical_padding, c_white, c_white, false);
                 draw_roundrect(x1, y1 - vertical_padding, x2, y2 + vertical_padding, true);
-				
+                
                 draw_text(x1 + 16, mean(y1, y2), "Show text -\n" +
                 "each block of text will be shown in its\n" +
-				"own box (this way you can write long\n" +
-				"conversations without having a million\n" +
-				"Show Text actions");
-				break;
-			case EventNodeTypes.SHOW_SCROLLING_TEXT:
-				var n = 3;
+                "own box (this way you can write long\n" +
+                "conversations without having a million\n" +
+                "Show Text actions");
+                break;
+            case EventNodeTypes.SHOW_SCROLLING_TEXT:
+                var n = 3;
                 var x1 = Stuff.event.node_info.x;
                 var y1 = Stuff.event.node_info.y - 64 - 16 * n;
                 var x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
                 var y2 = Stuff.event.node_info.y - 32;
                 var vertical_padding = 8;
-				
+                
                 draw_roundrect_colour(x1, y1 - vertical_padding, x2, y2 + vertical_padding, c_white, c_white, false);
                 draw_roundrect(x1, y1 - vertical_padding, x2, y2 + vertical_padding, true);
-				
+                
                 draw_text(x1 + 16, mean(y1, y2), "Show text crawl -\n" +
                 "each block of text will be its own\n" +
-				"paragraph");
-				break;
+                "paragraph");
+                break;
             default:
                 var base = guid_get(Stuff.event.node_info.custom_guid);
                 var n = ds_list_size(base.types);

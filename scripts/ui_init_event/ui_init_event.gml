@@ -66,8 +66,8 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     element = create_button(legal_x + spacing, yy, "Custom", element_width, element_height, fa_left, omu_event_custom_dialog, t_list);
     ds_list_add(t_list.contents, element);
-	
-	yy = yy + element_height + spacing;
+    
+    yy = yy + element_height + spacing;
     
     element = create_button(legal_x + spacing, yy, "Prefab", element_width, element_height, fa_left, null, t_list);
     ds_list_add(t_list.contents, element);
@@ -114,7 +114,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + ui_get_list_height(el_list_prefabs) + spacing;
     
-	element = create_text(legal_x + spacing, yy, "Click the button on an existing node to save it as a prefab", element_width, element_height, fa_left, element_width, t_custom);
+    element = create_text(legal_x + spacing, yy, "Click the button on an existing node to save it as a prefab", element_width, element_height, fa_left, element_width, t_custom);
     ds_list_add(t_custom.contents, element);
     
     yy = yy + element_height + spacing;
@@ -322,11 +322,11 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     element = create_button(legal_x + spacing, yy, "Audio Controls", element_width, element_height, fa_left, not_yet_implemented, t_action2);
     ds_list_add(t_action2.contents, element);
     yy = yy + element_height;
-	// these are last
-	yy = yy + element_height;
+    // these are last
+    yy = yy + element_height;
     element = create_button(legal_x + spacing, yy, "Custom", element_width, element_height, fa_left, omu_event_custom_dialog, t_list);
     ds_list_add(t_action2.contents, element);
-	yy = yy + element_height;
+    yy = yy + element_height;
     element = create_button(legal_x + spacing, yy, "Prefab", element_width, element_height, fa_left, null, t_list);
     ds_list_add(t_action2.contents, element);
     yy = yy + element_height;

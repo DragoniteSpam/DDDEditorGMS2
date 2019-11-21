@@ -68,7 +68,7 @@ rad = fe[1] * boxhalfsize[0] + fe[0] * boxhalfsize[1];
 if(min(p1, p2) > rad || max(p1, p2) <- rad) return 0;
 
 fe = [abs(e1[0]), abs(e1[1]), abs(e1[2])];
-	      
+          
 p0 = e1[2]*v0[1] - e1[1]*v0[2];
 p2 = e1[2]*v2[1] - e1[1]*v2[2];
 rad = fe[2] * boxhalfsize[1] + fe[1] * boxhalfsize[2];
@@ -78,7 +78,7 @@ p0 = -e1[2]*v0[0] + e1[0]*v0[2];
 p2 = -e1[2]*v2[0] + e1[0]*v2[2];
 rad = fe[2] * boxhalfsize[0] + fe[0] * boxhalfsize[2];
 if(min(p0, p2) > rad || max(p0, p2) <- rad) return 0;
-	
+    
 p0 = e1[1]*v0[0] - e1[0]*v0[1];
 p1 = e1[1]*v1[0] - e1[0]*v1[1];
 rad = fe[1] * boxhalfsize[0] + fe[0] * boxhalfsize[1];
@@ -95,7 +95,7 @@ p0 = -e2[2]*v0[0] + e2[0]*v0[2];
 p1 = -e2[2]*v1[0] + e2[0]*v1[2];
 rad = fe[2] * boxhalfsize[0] + fe[0] * boxhalfsize[2];
 if(min(p0, p1) > rad || max(p0, p1) <- rad) return 0;
-	
+    
 p1 = e2[1]*v1[0] - e2[0]*v1[1];
 p2 = e2[1]*v2[0] - e2[0]*v2[1];
 rad = fe[1] * boxhalfsize[0] + fe[0] * boxhalfsize[1];
@@ -122,19 +122,19 @@ if(min(v0[2], v1[2], v2[2]) > boxhalfsize[2] || max(v0[2], v1[2], v2[2]) < -boxh
 //CROSS(normal,e0,e1);
 normal = [e0[1] * e1[2] - e0[2] * e1[1], e0[2] * e1[0] - e0[0] * e1[2], e0[0] * e1[1] - e0[1] * e1[0]];
 d = -dot_product_3d(normal[0], normal[1], normal[2], v0[0], v0[1], v0[2]);
-	  
+      
 for(var q = 0; q < 3; q++)
 {
-	if (normal[q] > 0)
-	{
-		vmin[q] = -boxhalfsize[q];
-		vmax[q] = boxhalfsize[q];
-	}
-	else
-	{
-		vmin[q] = boxhalfsize[q];
-		vmax[q] = -boxhalfsize[q];
-	}
+    if (normal[q] > 0)
+    {
+        vmin[q] = -boxhalfsize[q];
+        vmax[q] = boxhalfsize[q];
+    }
+    else
+    {
+        vmin[q] = boxhalfsize[q];
+        vmax[q] = -boxhalfsize[q];
+    }
 }
 if(dot_product_3d(normal[0], normal[1], normal[2], vmin[0], vmin[1], vmin[2]) + d > 0) return 0;
 if(dot_product_3d(normal[0], normal[1], normal[2], vmax[0], vmax[1], vmax[2]) + d >= 0) return 1;

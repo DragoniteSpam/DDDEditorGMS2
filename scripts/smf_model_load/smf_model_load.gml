@@ -12,8 +12,8 @@ var fname = argument0;
 var buff = buffer_load(fname);
 if buff < 0
 {
-	show_debug_message("Could not load model " + string(fname));
-	return undefined;
+    show_debug_message("Could not load model " + string(fname));
+    return undefined;
 }
 var modelIndex = smf_model_load_from_buffer(buff, filename_name(fname));
 return [buff, modelIndex];

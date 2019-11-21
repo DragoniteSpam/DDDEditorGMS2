@@ -28,9 +28,9 @@ camera_set_proj_mat(camera, camSettings[| SMF_cam.pmat]);
 
 if camSettings[| SMF_cam.view] >= 0
 {
-	view_enabled = true;
-	view_set_visible(camSettings[| SMF_cam.view], true);
-	view_set_camera(camSettings[| SMF_cam.view], camera);
+    view_enabled = true;
+    view_set_visible(camSettings[| SMF_cam.view], true);
+    view_set_camera(camSettings[| SMF_cam.view], camera);
 }
 
 return camera;

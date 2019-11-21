@@ -33,7 +33,7 @@ newZ = transformScale * (argument3 - modelZ);
 var tris = smf__collision_get_nearest_region(colBuffer, newX, newY, newZ);
 for (i = 0; i < array_length_1d(tris); i ++)
 {
-	vert = smf__collision_get_triangle(colBuffer, tris[i]);
+    vert = smf__collision_get_triangle(colBuffer, tris[i]);
     //----------------------------------Check if the object is inside the triangle (we need to check each line in the triangle)
     for (j = 0; j < 9; j += 3)
     {

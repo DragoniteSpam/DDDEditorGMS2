@@ -11,6 +11,6 @@ var i = 0, vert;
 var colGrid = argument0;
 for (var i = 0; i < 12; i ++)
 {
-	vert[i] = colGrid[# argument1, i];
+    vert[i] = colGrid[# argument1, i];
 }
 return vert;

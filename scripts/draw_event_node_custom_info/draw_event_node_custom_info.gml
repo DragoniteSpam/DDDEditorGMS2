@@ -13,7 +13,7 @@ if (!dialog_exists()) {
     if (mouse_within_rectangle_adjusted(xx - tolerance, yy - tolerance, xx + tolerance, yy + tolerance)) {
         draw_sprite(spr_event_info, 1, xx, yy);
         Stuff.event.node_info = node;
-		// No need to show tooltip because of the effect of mousing over this becomes
-		// obvious immediately
+        // No need to show tooltip because of the effect of mousing over this becomes
+        // obvious immediately
     }
 }
