@@ -68,4 +68,69 @@ switch (data.type) {
         }
         
         break;
+    case DataTypes.COLOR:
+        not_yet_implemented();
+        break;
+    case DataTypes.MESH:
+        dialog.el_data_builtin_list.interactive = true;
+        dialog.el_data_builtin_list.enabled = true;
+        dialog.el_data_builtin_list.entries = Stuff.all_meshes;
+        break;
+    case DataTypes.IMG_TILESET:
+        dialog.el_data_builtin_list.interactive = true;
+        dialog.el_data_builtin_list.enabled = true;
+        dialog.el_data_builtin_list.entries = Stuff.all_graphic_tilesets;
+        break;
+    case DataTypes.TILE:
+    case DataTypes.AUTOTILE:
+        not_yet_implemented();
+        break;
+    case DataTypes.AUDIO_BGM:
+        dialog.el_data_builtin_list.interactive = true;
+        dialog.el_data_builtin_list.enabled = true;
+        dialog.el_data_builtin_list.entries = Stuff.all_bgm;
+        break;
+    case DataTypes.AUDIO_SE:
+        dialog.el_data_builtin_list.interactive = true;
+        dialog.el_data_builtin_list.enabled = true;
+        dialog.el_data_builtin_list.entries = Stuff.all_se;
+        break;
+    case DataTypes.ANIMATION:
+        dialog.el_data_builtin_list.interactive = true;
+        dialog.el_data_builtin_list.enabled = true;
+        dialog.el_data_builtin_list.entries = Stuff.all_animations;
+        break;
+    case DataTypes.ENTITY:
+        not_yet_implemented();
+        break;
+    case DataTypes.MAP:
+        dialog.el_data_builtin_list.interactive = true;
+        dialog.el_data_builtin_list.enabled = true;
+        dialog.el_data_builtin_list.entries = Stuff.all_maps;
+        break;
+    case DataTypes.IMG_BATTLER:
+        dialog.el_data_builtin_list.interactive = true;
+        dialog.el_data_builtin_list.enabled = true;
+        dialog.el_data_builtin_list.entries = Stuff.all_graphic_battlers;
+        break;
+    case DataTypes.IMG_OVERWORLD:
+        dialog.el_data_builtin_list.interactive = true;
+        dialog.el_data_builtin_list.enabled = true;
+        dialog.el_data_builtin_list.entries = Stuff.all_graphic_overworlds;
+        break;
+    case DataTypes.IMG_PARTICLE:
+        dialog.el_data_builtin_list.interactive = true;
+        dialog.el_data_builtin_list.enabled = true;
+        dialog.el_data_builtin_list.entries = Stuff.all_graphic_particles;
+        break;
+    case DataTypes.IMG_UI:
+        dialog.el_data_builtin_list.interactive = true;
+        dialog.el_data_builtin_list.enabled = true;
+        dialog.el_data_builtin_list.entries = Stuff.all_graphic_ui;
+        break;
+    case DataTypes.IMG_ETC:
+        dialog.el_data_builtin_list.interactive = true;
+        dialog.el_data_builtin_list.enabled = true;
+        dialog.el_data_builtin_list.entries = Stuff.all_graphic_etc;
+        break;
 }

@@ -82,6 +82,15 @@ el_data_property_bool.interactive = false;
 el_data_property_bool.enabled = false;
 dg.el_data_property_bool = el_data_property_bool;
 
+// for built-in data types the Select button won't appear, so the list can be slightly bigger
+// and moved up on space; everything else is basically the same
+var el_data_builtin_list = create_list(col2_x, yy, "Data", "<none>", ew, eh, 6, not_yet_implemented, false, dg, noone);
+el_data_builtin_list.interactive = false;
+el_data_builtin_list.enabled = false;
+el_data_builtin_list.entries_are = ListEntries.INSTANCES;
+dg.el_data_builtin_list = el_data_builtin_list;
+yy = yy + ui_get_list_height(el_data_builtin_list) + spacing;
+
 //should probably take inspiration from dialog_create_data_types
 var el_data_type_guid = create_button(col2_x, yy, "Select", ew, eh, fa_center, null, dg);
 el_data_type_guid.interactive = false;
@@ -104,7 +113,7 @@ var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Do
 
 ds_list_add(dg.contents,
     el_list, el_data_add, el_data_remove,
-    el_name, el_data_type, el_data_ext_type, el_data_type_guid, el_data_list,
+    el_name, el_data_type, el_data_ext_type, el_data_type_guid, el_data_list, el_data_builtin_list,
     el_data_property_code, el_data_property_string, el_data_property_real, el_data_property_int, el_data_property_bool,
     el_confirm
 );
