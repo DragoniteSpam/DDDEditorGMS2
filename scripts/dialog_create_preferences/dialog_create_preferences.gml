@@ -57,8 +57,16 @@ yy = yy + el_ui_color.height + spacing;
 yy = yy_base;
 
 var el_code_ext = create_radio_array(col2_x + col1_x, yy, "Code File Extension:", ew, eh, uivc_code_extension, Stuff.setting_code_extension, dg);
-el_code_ext.tooltip = "This only really affects the text editor you want to be able to edit Lua code with. Plain text files will open with Notepad by default, but if you have another editor set you can use that instead.";
+el_code_ext.tooltip = "This only really affects the text editor you want to be able to edit Lua code with. Plain text files will open with Notepad by default, but if you have another editor set such as Notepad++ you can use that instead.";
 create_radio_array_options(el_code_ext, ["*.txt", "*.lua"]);
+
+yy = yy + ui_get_radio_array_height(el_code_ext) + spacing;
+
+var el_text_ext = create_radio_array(col2_x + col1_x, yy, "Text File Extension:", ew, eh, uivc_text_extension, Stuff.setting_text_extension, dg);
+el_text_ext.tooltip = "This only really affects the text editor you want to be able to edit text files with. Plain text files will open with Notepad by default, but if you have another editor set such as Notepad++ you can use that instead.";
+create_radio_array_options(el_text_ext, ["*.txt", "*.md"]);
+
+yy = yy + ui_get_radio_array_height(el_text_ext) + spacing;
 
 var b_width = 128;
 var b_height = 32;
@@ -67,7 +75,7 @@ var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Co
 ds_list_add(dg.contents,
     el_bezier, el_tooltips, el_backups, el_autosave, el_npc_animation, el_ui_color,
     el_clear_backups, el_view_backups,
-    el_code_ext,
+    el_code_ext, el_text_ext,
     el_confirm
 );
 

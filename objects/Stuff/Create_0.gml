@@ -118,7 +118,8 @@ setting_bezier_precision = setting_get("Config", "bezier", 6);              // p
 setting_backups = setting_get("Config", "backups", 2);                      // 0 (none) through 9 (why would you keep that many backups?)
 setting_autosave = setting_get("Config", "autosave", true);                 // bool
 setting_npc_animate_rate = setting_get("Config", "npc-speed", 4);           // bool
-setting_code_extension = setting_get("Config", "code-ext", 0);              // 0 = txt, 1 = lua
+setting_code_extension = setting_get("Config", "code-ext", 1);              // 0 = txt, 1 = lua
+setting_text_extension = setting_get("Config", "text-ext", 0);              // 0 = txt, 1 = md
 setting_normal_threshold = setting_get("Config", "normal-threshold", 30);   // degrees
 setting_tooltip = setting_get("Config", "tooltip", true);                  // bool
 
@@ -144,6 +145,7 @@ setting_view_entities = setting_get("View", "entities", true);
 var stashed_mode = setting_get("Config", "mode", EDITOR_BASE_MODE);
 
 setting_code_extension_map = [".txt", ".lua"];
+setting_text_extension_map = [".txt", ".md"];
 
 setting_hide_warnings = ds_map_create();
 
