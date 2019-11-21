@@ -30,8 +30,24 @@ var offset = DataTypes.AUDIO_BGM;
 var el_list = create_radio_array(16, yy, "All Data Types: ", ew, eh, onvaluechange, value, dg);
 create_radio_array_options(el_list, [
     "Int", "Enum", "Float", "String", "Boolean", "Data", "Code", "Color", "Mesh", "Tileset", "Tile", "Autotile",
-    "Audio (BGM)", "Audio (SE)", "Animation", "Entity (RefID)", "Map", "Battler sprite", "Overworld sprite", "Particle", "UI image", "Misc. image"
+    "Audio (BGM)", "Audio (SE)", "Animation", "Entity (RefID)", "Map", "Battler sprite", "Overworld sprite",
+    "Particle", "UI image", "Misc. image"
 ]);
+
+el_list.contents[| DataTypes.AUDIO_BGM].color = c_green;
+el_list.contents[| DataTypes.AUDIO_SE].color = c_green;
+el_list.contents[| DataTypes.IMG_BATTLER].color = c_purple;
+el_list.contents[| DataTypes.IMG_ETC].color = c_purple;
+el_list.contents[| DataTypes.IMG_OVERWORLD].color = c_purple;
+el_list.contents[| DataTypes.IMG_PARTICLE].color = c_purple;
+el_list.contents[| DataTypes.IMG_TILESET].color = c_purple;
+el_list.contents[| DataTypes.IMG_UI].color = c_purple;
+el_list.contents[| DataTypes.MESH].color = c_blue;
+el_list.contents[| DataTypes.TILE].color = c_blue;
+el_list.contents[| DataTypes.AUTOTILE].color = c_blue;
+el_list.contents[| DataTypes.MAP].color = c_blue;
+el_list.contents[| DataTypes.ENTITY].color = c_blue;
+el_list.contents[| DataTypes.ANIMATION].color = c_blue;
 
 create_radio_array_option_column(el_list, DataTypes.AUDIO_BGM, c2 + 32);
 
