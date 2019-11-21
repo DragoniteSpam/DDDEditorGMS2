@@ -1,7 +1,9 @@
-/// @param UIThing
+/// @param UIRadio
 
-argument0.root.root.selected_property.type = argument0.value;
-argument0.root.root.changed = true;
+var radio = argument0;
 
-dialog_data_type_disable(argument0.root.root);
-dialog_data_type_enable_by_type(argument0.root.root);
+radio.root.root.selected_property.type = radio.value;
+radio.root.root.changed = true;
+
+dialog_data_type_disable(radio.root.root);
+dialog_data_type_enable_by_type(radio.root.root);

@@ -27,7 +27,7 @@ var yy = 64;
 var spacing = 16;
 var slots = 16;
 
-var el_list = create_list(col1_x, yy, "Generic Data: " + entity.name, "<No data>", ew, eh, slots, null, false, dg, entity.generic_data);
+var el_list = create_list(col1_x, yy, "Generic Data: " + entity.name, "<No data>", ew, eh, slots, uivc_list_entity_data, false, dg, entity.generic_data);
 el_list.entries_are = ListEntries.INSTANCES;
 dg.el_list = el_list;
 yy = yy + ui_get_list_height(el_list) + spacing;
@@ -41,9 +41,10 @@ yy = yy + el_data_remove.height + spacing;
 yy = 64;
 
 var el_name = create_input(col2_x, yy, "Name:", ew, eh, null, "", "[A-Za-z0-9_]+", validate_string_internal_name, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
+dg.el_name = el_name;
 yy = yy + el_name.height + spacing;
 
-var el_data_type = create_radio_array(col2_x, yy, "Type:", ew, eh, null, 0, dg);
+var el_data_type = create_radio_array(col2_x, yy, "Type:", ew, eh, uivc_input_entity_data_type, 0, dg);
 create_radio_array_options(el_data_type, ["Int", "Enum", "Float", "String", "Boolean", "Data", "Code" /* this is only the first couple of types, the rest are hidden behind a button */]);
 dg.el_data_type = el_data_type;
 yy = yy + ui_get_radio_array_height(el_data_type) + spacing;

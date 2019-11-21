@@ -3,12 +3,13 @@
 // however, in this case, i've decided that a few lines of redundant code is better than
 // the spaghetti that i had before.
 
+var dialog = argument0;
 Stuff.original_data = data_clone();
 
 var dw = 960;
 var dh = 640;
 
-var dg = dialog_create(dw, dh, "Data: Data", dialog_note_changes, dc_close_data_discard, argument0, dc_close_data_discard);
+var dg = dialog_create(dw, dh, "Data: Data", dialog_note_changes, dc_close_data_discard, dialog, dc_close_data_discard);
 dg.x = dg.x - 32;
 
 dg.selected_data = noone;
@@ -34,6 +35,7 @@ var yy = 64;
 
 var el_list = create_list(16, yy, "Data Types: ", "<no data types>", ew, eh, n_slots, uivc_list_data_data, false, dg, Stuff.all_data);
 el_list.render = ui_render_list_data_data;
+el_list.render_colors = ui_list_color_data_type;
 el_list.entries_are = ListEntries.INSTANCES;
 
 dg.el_list_main = el_list;
