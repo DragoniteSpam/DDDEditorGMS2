@@ -69,7 +69,9 @@ switch (data.type) {
         
         break;
     case DataTypes.COLOR:
-        not_yet_implemented();
+        dialog.el_data_property_color.interactive = true;
+        dialog.el_data_property_color.enabled = true;
+        dialog.el_data_property_bool.value = data.value_color;
         break;
     case DataTypes.MESH:
         dialog.el_data_builtin_list.interactive = true;

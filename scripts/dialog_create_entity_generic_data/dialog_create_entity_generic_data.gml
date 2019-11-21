@@ -82,6 +82,11 @@ el_data_property_bool.interactive = false;
 el_data_property_bool.enabled = false;
 dg.el_data_property_bool = el_data_property_bool;
 
+var el_data_property_color = create_color_picker(col2_x, yy, "Color:", ew, eh, uivc_input_entity_data_color, c_black, vx1, vy1, vx2, vy2, dg);
+el_data_property_color.interactive = false;
+el_data_property_color.enabled = false;
+dg.el_data_property_color = el_data_property_color;
+
 // for built-in data types the Select button won't appear, so the list can be slightly bigger
 // and moved up on space; everything else is basically the same
 var el_data_builtin_list = create_list(col2_x, yy, "Data", "<none>", ew, eh, 6, not_yet_implemented, false, dg, noone);
@@ -89,7 +94,6 @@ el_data_builtin_list.interactive = false;
 el_data_builtin_list.enabled = false;
 el_data_builtin_list.entries_are = ListEntries.INSTANCES;
 dg.el_data_builtin_list = el_data_builtin_list;
-yy = yy + ui_get_list_height(el_data_builtin_list) + spacing;
 
 //should probably take inspiration from dialog_create_data_types
 var el_data_type_guid = create_button(col2_x, yy, "Select", ew, eh, fa_center, null, dg);
@@ -114,7 +118,7 @@ var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Do
 ds_list_add(dg.contents,
     el_list, el_data_add, el_data_remove,
     el_name, el_data_type, el_data_ext_type, el_data_type_guid, el_data_list, el_data_builtin_list,
-    el_data_property_code, el_data_property_string, el_data_property_real, el_data_property_int, el_data_property_bool,
+    el_data_property_code, el_data_property_string, el_data_property_real, el_data_property_int, el_data_property_bool, el_data_property_color,
     el_confirm
 );
 
