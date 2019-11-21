@@ -84,7 +84,7 @@ el_data_type_guid.enabled = false;
 dg.el_data_type_guid = el_data_type_guid;
 yy = yy + el_data_type_guid.height + spacing;
 yy = yy + eh + spacing;
-Next implement the data type data
+
 var yy_base = yy;
 
 var b_width = 128;

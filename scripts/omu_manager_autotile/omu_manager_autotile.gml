@@ -1,6 +1,5 @@
-/// @description void omu_manager_autotile(UIThing);
-/// @param UIThing
+/// @param UIButton
 
-var catch=argument0;
+var button = argument0;
 
 dialog_create_manager_autotile(noone);

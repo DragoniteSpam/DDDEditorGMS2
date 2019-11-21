@@ -1,4 +1,3 @@
-/// @description void ui_button_down(UIThing);
-/// @param UIThing
+/// @param UIButton
 
-var catch=argument0;
+var button = argument0;

@@ -1,6 +1,5 @@
-/// @description void omu_autotile_selector(UIThing);
-/// @param UIThing
+/// @param UIButton
 
-var catch=argument0;
+var button = argument0;
 
 dialog_create_autotile_selector(noone);

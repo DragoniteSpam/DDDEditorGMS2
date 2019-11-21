@@ -1,6 +1,5 @@
-/// @description void omu_event_add_entrypoint(UIThing);
-/// @param UIThing
+/// @param UIButton
 
-var catch=argument0;
+var button = argument0;
 
-var node=event_create_node(Stuff.event.active, EventNodeTypes.ENTRYPOINT);
+var node = event_create_node(Stuff.event.active, EventNodeTypes.ENTRYPOINT);
