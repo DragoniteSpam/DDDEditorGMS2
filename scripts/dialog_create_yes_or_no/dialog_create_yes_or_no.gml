@@ -15,16 +15,14 @@ var caption_message = (argument_count > 3 && argument[3] != undefined) ? argumen
 var confirm_message = (argument_count > 4 && argument[4] != undefined) ? argument[4] : "yep";
 var cancel_message = (argument_count > 5 && argument[5] != undefined) ? argument[5] : "nope";
 var action_cancel = (argument_count > 6 && argument[6] != undefined) ? argument[6] : dmu_dialog_cancel;
-
 var dw = 400;
 var dh = 280;
-
-var dg = dialog_create(dw, dh, caption_message, dialog_default, action_cancel, argument[0]);
-
 var b_width = 128;
 var b_height = 32;
 
-var el_text = create_text(dw / 2, dh * 2 / 5, message, 0, 0, fa_center, dw - 96, dg);
+var dg = dialog_create(dw, dh, caption_message, dialog_default, action_cancel, argument[0]);
+
+var el_text = create_text(dw / 2, 32 + (dh - 32 - b_height) / 2, message, 0, 0, fa_center, dw - 96, dg);
 var el_cancel = create_button(dw / 3 - b_width / 2, dh - 32 - b_height / 2, cancel_message, b_width, b_height, fa_center, action_cancel, dg);
 var el_confirm = create_button(dw * 2 / 3 - b_width / 2, dh - 32 - b_height / 2, confirm_message, b_width, b_height, fa_center, action_confirm, dg);
 

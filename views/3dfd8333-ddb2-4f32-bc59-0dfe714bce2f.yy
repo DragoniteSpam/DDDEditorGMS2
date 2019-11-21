@@ -17,7 +17,9 @@
         "1be4f680-f1b8-48b0-b06a-3d566ee76a77",
         "2081dc13-e4ce-40f5-9a05-1583fdc3230a",
         "48bc96c0-541f-4921-b472-55afc08bf4aa",
-        "f90db033-04e2-446f-b9f2-23fc44310846"
+        "f90db033-04e2-446f-b9f2-23fc44310846",
+        "f8bbf3ad-3818-4d73-b61e-13d32f8defc1",
+        "cd0f5c71-6190-4713-8dca-9688509bd935"
     ],
     "filterType": "GMScript",
     "folderName": "entities",

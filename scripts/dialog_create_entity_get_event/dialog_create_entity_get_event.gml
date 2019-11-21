@@ -26,7 +26,6 @@ var yy = 64;
 var spacing = 16;
 
 var el_list = create_list(16, yy, "Select an event", "<should never see this>", ew, eh, 20, null, false, dg);
-el_list.render = ui_render_list_event;
 el_list.entries_are = ListEntries.INSTANCES;
 dg.el_list = el_list;
 

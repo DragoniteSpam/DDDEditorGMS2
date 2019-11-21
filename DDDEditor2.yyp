@@ -8744,6 +8744,14 @@
             }
         },
         {
+            "Key": "90e7dad9-5c1b-4ad1-8ec8-c267b2fbe159",
+            "Value": {
+                "id": "6527a7f5-2664-484f-afa4-5371b2c04aff",
+                "resourcePath": "objects\\DataAnonymous\\DataAnonymous.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "90ff35c8-0755-4e46-9bfa-25b4898b535d",
             "Value": {
                 "id": "8ee1af7f-4b63-4300-8e67-e1dcebfb7993",
@@ -12264,6 +12272,14 @@
             }
         },
         {
+            "Key": "cd0f5c71-6190-4713-8dca-9688509bd935",
+            "Value": {
+                "id": "1b2f4283-c261-4dbb-b3f0-60290d5e8e59",
+                "resourcePath": "scripts\\omu_entity_data_remove\\omu_entity_data_remove.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "cd32215f-9241-4130-bb8e-7050945ed0d9",
             "Value": {
                 "id": "f9264c2a-6d12-48a3-9ccd-1f6f02903ef5",
@@ -14912,6 +14928,14 @@
             }
         },
         {
+            "Key": "f8bbf3ad-3818-4d73-b61e-13d32f8defc1",
+            "Value": {
+                "id": "3db7edf6-bd56-443d-b2dd-e0556d349cc8",
+                "resourcePath": "scripts\\omu_entity_data_add\\omu_entity_data_add.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "f90db033-04e2-446f-b9f2-23fc44310846",
             "Value": {
                 "id": "147ab7a5-646e-447d-bb04-7c8bc20380e9",
@@ -16318,6 +16342,8 @@
         "e4ecbc35-799f-4f97-87df-62ad9ef86b99",
         "751917e4-1c0e-4642-a90b-2802f78d0c07",
         "1c187030-e1e3-49ad-ab61-97f8a80b3e2f",
+        "f8bbf3ad-3818-4d73-b61e-13d32f8defc1",
+        "cd0f5c71-6190-4713-8dca-9688509bd935",
         "0e26949e-30d7-4801-902e-e3aa4e2d441e",
         "3c8edd53-da0d-40ac-99a3-a5cdc10c1840",
         "a181276c-34c1-448d-a216-74dba3eae854",
