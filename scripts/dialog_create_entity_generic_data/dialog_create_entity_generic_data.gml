@@ -92,6 +92,7 @@ yy = yy + el_data_type_guid.height + spacing;
 var el_data_list = create_list(col2_x, yy, "Data", "<none>", ew, eh, 6, null, false, dg, noone);
 el_data_list.interactive = false;
 el_data_list.enabled = false;
+el_data_list.entries_are = ListEntries.INSTANCES;
 dg.el_data_list = el_data_list;
 yy = yy + ui_get_list_height(el_data_list) + spacing;
 

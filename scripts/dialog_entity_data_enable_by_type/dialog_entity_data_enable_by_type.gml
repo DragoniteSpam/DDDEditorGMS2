@@ -41,16 +41,21 @@ switch (data.type) {
         break;
     case DataTypes.ENUM:
     case DataTypes.DATA:
-        dialog.el_data_list.enabled = true;
+        dialog.el_data_type_guid.interactive = true;
         dialog.el_data_type_guid.enabled = true;
         dialog.el_data_list.interactive = true;
-        dialog.el_data_type_guid.interactive = true;
+        dialog.el_data_list.enabled = true;
         
         var type = guid_get(data.value_type_guid);
         
         if (type) {
             dialog.el_data_type_guid.text = type.name + " (Select)";
             dialog.el_data_type_guid.color = (data.type == type.type) ? c_black : c_red;
+            if (type.type == data.type) {
+                dialog.el_data_list.entries = (data.type == DataTypes.ENUM) ? type.properties : type.instances;
+            } else {
+                dialog.el_data_list.entries = -1;
+            }
         } else {
             dialog.el_data_type_guid.text = "Select";
             dialog.el_data_type_guid.color = c_black;

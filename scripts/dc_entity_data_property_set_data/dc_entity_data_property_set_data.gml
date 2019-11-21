@@ -1,11 +1,12 @@
-/// @param UIThing
+/// @param UIButton
 
-var thing = argument0;
-var selection_index = ui_list_selection(thing.root.el_list_main);
-var data_index = ui_list_selection(thing.root.root.root.el_list);
+var button = argument0;
+var base_dialog = button.root.root.root;
+var selection_index = ui_list_selection(button.root.el_list_main);
+var data_index = ui_list_selection(base_dialog.el_list);
 
 if (selection_index + 1) {
-    var data = thing.root.root.root.entity.generic_data[| data_index];
+    var data = base_dialog.entity.generic_data[| data_index];
     
     var list_enum = ds_list_create();
     
@@ -23,8 +24,10 @@ if (selection_index + 1) {
     ds_list_destroy(list_enum);
     ds_list_destroy(list_sorted);
     
-    thing.root.root.root.el_data_type_guid.text = type.name + "(Select)";
-    thing.root.root.root.el_data_type_guid.color = c_black;
+    base_dialog.el_data_type_guid.text = type.name + "(Select)";
+    base_dialog.el_data_type_guid.color = c_black;
+    
+    dialog_entity_data_enable_by_type(base_dialog);
 }
 
 dialog_destroy();
