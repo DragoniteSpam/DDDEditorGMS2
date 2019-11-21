@@ -61,6 +61,7 @@ el_data_property_code.interactive = false;
 el_data_property_code.enabled = false;
 dg.el_data_property_code = el_data_property_code;
 var el_data_property_string = create_input(col2_x, yy, "String:", ew, eh, uivc_input_entity_data_string, "", "text", validate_string, 0, 1, 160, vx1, vy1, vx2, vy2, dg);
+el_data_property_string.is_code = false;
 el_data_property_string.interactive = false;
 el_data_property_string.enabled = false;
 dg.el_data_property_string = el_data_property_string;
@@ -83,7 +84,7 @@ el_data_type_guid.enabled = false;
 dg.el_data_type_guid = el_data_type_guid;
 yy = yy + el_data_type_guid.height + spacing;
 yy = yy + eh + spacing;
-
+Next implement the data type data
 var yy_base = yy;
 
 var b_width = 128;
