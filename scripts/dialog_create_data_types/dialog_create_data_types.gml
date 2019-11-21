@@ -94,7 +94,7 @@ dg.el_property_type = el_property_type;
 
 yy = yy + ui_get_radio_array_height(el_property_type) + spacing;
 
-var el_property_ext_type = create_button(col3_x, yy, "Other Data Types", ew, eh, fa_middle, dialog_create_data_types_ext, dg);
+var el_property_ext_type = create_button(col3_x, yy, "Other Data Types", ew, eh, fa_middle, omu_datadata_select_type, dg);
 el_property_ext_type.interactive = false;
 
 yy = yy + el_property_ext_type.height + spacing;

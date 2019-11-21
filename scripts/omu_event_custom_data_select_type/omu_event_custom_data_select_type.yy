@@ -1,8 +1,8 @@
 {
-    "id": "797ec61c-0c81-4f7f-ad1b-d66dd95f1342",
+    "id": "a23bff63-ae19-45b2-aaf1-e5d1ad8aab2f",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "dialog_create_constant_types_ext",
+    "name": "omu_event_custom_data_select_type",
     "IsCompatibility": false,
     "IsDnD": false
 }

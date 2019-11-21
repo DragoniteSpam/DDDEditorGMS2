@@ -57,7 +57,7 @@ dg.el_type = el_type;
 
 yy = yy + ui_get_radio_array_height(el_type) + spacing;
 
-var el_type_ext = create_button(c2 + 32, yy, "Other Data Types", ew, eh, fa_middle, dialog_create_constant_types_ext, dg);
+var el_type_ext = create_button(c2 + 32, yy, "Other Data Types", ew, eh, fa_middle, omu_global_data_select_type, dg);
 el_type_ext.interactive = false;
 dg.el_type_ext = el_type_ext;
 
