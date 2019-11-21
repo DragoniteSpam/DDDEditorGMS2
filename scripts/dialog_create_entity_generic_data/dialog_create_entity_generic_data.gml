@@ -40,40 +40,48 @@ yy = yy + el_data_remove.height + spacing;
 
 yy = 64;
 
-var el_name = create_input(col2_x, yy, "Name:", ew, eh, null, "", "[A-Za-z0-9_]+", validate_string_internal_name, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
+var el_name = create_input(col2_x, yy, "Name:", ew, eh, uivc_input_entity_data_name, "", "[A-Za-z0-9_]+", validate_string_internal_name, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
+el_name.interactive = false;
 dg.el_name = el_name;
 yy = yy + el_name.height + spacing;
 
-var el_data_type = create_radio_array(col2_x, yy, "Type:", ew, eh, uivc_input_entity_data_type, 0, dg);
+var el_data_type = create_radio_array(col2_x, yy, "Type:", ew, eh, uivc_radio_entity_data_type, 0, dg);
 create_radio_array_options(el_data_type, ["Int", "Enum", "Float", "String", "Boolean", "Data", "Code" /* this is only the first couple of types, the rest are hidden behind a button */]);
+el_data_type.interactive = false;
 dg.el_data_type = el_data_type;
 yy = yy + ui_get_radio_array_height(el_data_type) + spacing;
 
-var el_data_ext_type = create_button(col2_x, yy, "Other Data Types", ew, eh, fa_middle, null, dg);
+var el_data_ext_type = create_button(col2_x, yy, "Other Data Types", ew, eh, fa_middle, dialog_create_entity_data_types_ext, dg);
+el_data_ext_type.interactive = false;
 dg.el_data_ext_type = el_data_ext_type;
 yy = yy + el_data_ext_type.height + spacing;
 
-// selector is set when the radio button is messed with
-var el_data_type_guid = create_button(col2_x, yy, "Select Data Type", ew, eh, fa_center, null, dg);
-dg.el_data_type_guid = el_data_type_guid;
-yy = yy + el_data_type_guid.height + spacing;
-
-var el_data_property_code = create_input_code(col2_x, yy, "Code:", ew, eh, vx1, vy1, vx2, vy2, "", null, dg);
+var el_data_property_code = create_input_code(col2_x, yy, "Code:", ew, eh, vx1, vy1, vx2, vy2, "", uivc_input_entity_data_code, dg);
+el_data_property_code.interactive = false;
 el_data_property_code.enabled = false;
 dg.el_data_property_code = el_data_property_code;
-var el_data_property_string = create_input(col2_x, yy, "String:", ew, eh, null, "", "text", validate_string, 0, 1, 160, vx1, vy1, vx2, vy2, dg);
+var el_data_property_string = create_input(col2_x, yy, "String:", ew, eh, uivc_input_entity_data_string, "", "text", validate_string, 0, 1, 160, vx1, vy1, vx2, vy2, dg);
+el_data_property_string.interactive = false;
 el_data_property_string.enabled = false;
 dg.el_data_property_string = el_data_property_string;
-var el_data_property_real = create_input(col2_x, yy, "Float:", ew, eh, null, "0", "number", validate_double, -1 << 31, 1 << 31 - 1, 10, vx1, vy1, vx2, vy2, dg);
+var el_data_property_real = create_input(col2_x, yy, "Float:", ew, eh, uivc_input_entity_data_real, "0", "number", validate_double, -1 << 31, 1 << 31 - 1, 10, vx1, vy1, vx2, vy2, dg);
+el_data_property_real.interactive = false;
 el_data_property_real.enabled = false;
 dg.el_data_property_real = el_data_property_real;
-var el_data_property_int = create_input(col2_x, yy, "Int:", ew, eh, null, "0", "int", validate_int, -1 << 31, 1 << 31 - 1, 11, vx1, vy1, vx2, vy2, dg);
+var el_data_property_int = create_input(col2_x, yy, "Int:", ew, eh, uivc_input_entity_data_int, "0", "int", validate_int, -1 << 31, 1 << 31 - 1, 11, vx1, vy1, vx2, vy2, dg);
+el_data_property_int.interactive = false;
 el_data_property_int.enabled = false;
 dg.el_data_property_int = el_data_property_int;
-var el_data_property_bool = create_checkbox(col2_x, yy, "Bool", ew, eh, null, false, dg);
+var el_data_property_bool = create_checkbox(col2_x, yy, "Bool", ew, eh, uivc_input_entity_data_bool, false, dg);
+el_data_property_bool.interactive = false;
 el_data_property_bool.enabled = false;
 dg.el_data_property_bool = el_data_property_bool;
 //should probably take inspiration from dialog_create_data_types
+var el_data_type_guid = create_button(col2_x, yy, "Select Data Type", ew, eh, fa_center, null, dg);
+el_data_type_guid.interactive = false;
+el_data_type_guid.enabled = false;
+dg.el_data_type_guid = el_data_type_guid;
+yy = yy + el_data_type_guid.height + spacing;
 yy = yy + eh + spacing;
 
 var yy_base = yy;

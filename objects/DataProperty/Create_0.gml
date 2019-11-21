@@ -66,6 +66,12 @@ enum DataTypes {
  *  15. case in draw_active_event
  *  16. case in uimu_data_add_data
  *  17. case in uivc_list_selection_constant
+ *  18. case in dialog_entity_data_enable_by_type
+ *  19. lists:
+ *          - dialog_create_entity_data_types_ext
+ *          - dialog_create_event_node_custom_data_ext
+ *          - dialog_create_constant_types_ext
+ *          - dialog_create_data_types_ext
  */
 
 enum NumberScales {

@@ -1,6 +1,8 @@
 /// @param Dialog
 
 var dialog = argument0;
+var entity = dialog.root.entity;
+var selection = ui_list_selection(dialog.root.el_list);
 
 var dw = 560;
 var dh = 480;
@@ -23,7 +25,7 @@ var yy = 64;
 
 var offset = DataTypes.AUDIO_BGM;
 
-var el_list = create_radio_array(16, yy, "All Data Types: ", ew, eh, uivc_radio_data_type_ext, dialog.root.selected_property.type, dg);
+var el_list = create_radio_array(16, yy, "All Data Types: ", ew, eh, uivc_radio_entity_data_type_ext, entity.generic_data[| selection].type, dg);
 create_radio_array_options(el_list, [
     "Int", "Enum", "Float", "String", "Boolean", "Data", "Code", "Color", "Mesh", "Tileset", "Tile", "Autotile",
     "Audio (BGM)", "Audio (SE)", "Animation", "Entity (RefID)", "Map", "Battler sprite", "Overworld sprite", "Particle", "UI image", "Misc. image"
@@ -35,7 +37,9 @@ dg.el_list = el_list;
 
 var el_confirm = create_button(dw / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dc_close_no_questions_asked, dg, fa_center);
 
-ds_list_add(dg.contents, el_list,
-    el_confirm);
+ds_list_add(dg.contents,
+    el_list,
+    el_confirm
+);
 
 return dg;
