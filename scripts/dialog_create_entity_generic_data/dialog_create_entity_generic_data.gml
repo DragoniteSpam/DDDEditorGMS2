@@ -67,12 +67,12 @@ el_data_property_string.interactive = false;
 el_data_property_string.enabled = false;
 dg.el_data_property_string = el_data_property_string;
 
-var el_data_property_real = create_input(col2_x, yy, "Value:", ew, eh, uivc_input_entity_data_real, "0", "number", validate_double, -1 << 31, 1 << 31 - 1, 10, vx1, vy1, vx2, vy2, dg);
+var el_data_property_real = create_input(col2_x, yy, "Value:", ew, eh, uivc_input_entity_data_real, "0", "number", validate_double, -0x80000000, 0x7fffffff, 10, vx1, vy1, vx2, vy2, dg);
 el_data_property_real.interactive = false;
 el_data_property_real.enabled = false;
 dg.el_data_property_real = el_data_property_real;
 
-var el_data_property_int = create_input(col2_x, yy, "Value:", ew, eh, uivc_input_entity_data_int, "0", "int", validate_int, -1 << 31, 1 << 31 - 1, 11, vx1, vy1, vx2, vy2, dg);
+var el_data_property_int = create_input(col2_x, yy, "Value:", ew, eh, uivc_input_entity_data_int, "0", "int", validate_int, -0x80000000, 0x7fffffff, 11, vx1, vy1, vx2, vy2, dg);
 el_data_property_int.interactive = false;
 el_data_property_int.enabled = false;
 dg.el_data_property_int = el_data_property_int;

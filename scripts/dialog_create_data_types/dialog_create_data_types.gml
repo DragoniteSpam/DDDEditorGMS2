@@ -115,10 +115,10 @@ dg.el_property_default_code = el_property_default_code;
 var el_property_default_string = create_input(col3_x, yy, "Default:", ew, eh, uivc_input_data_default_string, "", "text", validate_string, 0, 1, 160, vx1, vy1, vx2, vy2, dg);
 el_property_default_string.enabled = false;
 dg.el_property_default_string = el_property_default_string;
-var el_property_default_real = create_input(col3_x, yy, "Default:", ew, eh, uivc_input_data_default_real, "0", "number", validate_double, -1 << 31, 1 << 31 - 1, 10, vx1, vy1, vx2, vy2, dg);
+var el_property_default_real = create_input(col3_x, yy, "Default:", ew, eh, uivc_input_data_default_real, "0", "number", validate_double, -0x80000000, 0x7fffffff, 10, vx1, vy1, vx2, vy2, dg);
 el_property_default_real.enabled = false;
 dg.el_property_default_real = el_property_default_real;
-var el_property_default_int = create_input(col3_x, yy, "Default:", ew, eh, uivc_input_data_default_int, "0", "int", validate_int, -1 << 31, 1 << 31 - 1, 11, vx1, vy1, vx2, vy2, dg);
+var el_property_default_int = create_input(col3_x, yy, "Default:", ew, eh, uivc_input_data_default_int, "0", "int", validate_int, -0x80000000, 0x7fffffff, 11, vx1, vy1, vx2, vy2, dg);
 el_property_default_int.enabled = false;
 dg.el_property_default_int = el_property_default_int;
 var el_property_default_bool = create_checkbox(col3_x, yy, "Default", ew, eh, uivc_check_data_default_bool, false, dg);
@@ -138,7 +138,7 @@ el_property_type_guid.enabled = false;
 dg.el_property_type_guid = el_property_type_guid;
 
 // int only
-var el_property_min = create_input(col3_x, yy, "Min. Value:", ew, eh, uivc_input_data_value_min, "0", "+" + string(-1 << 31), validate_double, -1 << 31, 1 << 31 - 1, 10, vx1, vy1, vx2, vy2, dg);
+var el_property_min = create_input(col3_x, yy, "Min. Value:", ew, eh, uivc_input_data_value_min, "0", "+" + string(0x80000000), validate_double, -0x80000000, 0x7fffffff, 10, vx1, vy1, vx2, vy2, dg);
 el_property_min.enabled = false;
 dg.el_property_min = el_property_min;
 
@@ -150,7 +150,7 @@ dg.el_property_char_limit = el_property_char_limit;
 yy = yy + eh + spacing;
 
 // int and float only
-var el_property_max = create_input(col3_x, yy, "Max. Value:", ew, eh, uivc_input_data_value_max, "0", "+" + string(-1 << 31 - 1), validate_double, -1 << 31, 1 << 31 - 1, 10, vx1, vy1, vx2, vy2, dg);
+var el_property_max = create_input(col3_x, yy, "Max. Value:", ew, eh, uivc_input_data_value_max, "0", "+" + string(-0x7fffffff), validate_double, -0x80000000, 0x7fffffff, 10, vx1, vy1, vx2, vy2, dg);
 el_property_max.enabled = false;
 dg.el_property_max = el_property_max;
 

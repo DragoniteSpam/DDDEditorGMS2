@@ -60,14 +60,14 @@ enum ETypes {
 }
 
 enum ETypeFlags {
-    ENTITY                  = 1 << 0,
-    ENTITY_TILE             = 1 << 1,
-    ENTITY_TILE_AUTO        = 1 << 2,
-    ENTITY_MESH             = 1 << 3,
-    ENTITY_PAWN             = 1 << 4,
-    ENTITY_EFFECT           = 1 << 5,
-    ENTITY_EVENT            = 1 << 6,
-    ENTITY_TERRAIN          = 1 << 7,
+    ENTITY                  = 0x001,
+    ENTITY_TILE             = 0x002,
+    ENTITY_TILE_AUTO        = 0x004,
+    ENTITY_MESH             = 0x008,
+    ENTITY_PAWN             = 0x010,
+    ENTITY_EFFECT           = 0x020,
+    ENTITY_EVENT            = 0x040,
+    ENTITY_TERRAIN          = 0x080,
 }
 
 enum AnimationTweens {

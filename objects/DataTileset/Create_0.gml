@@ -41,17 +41,17 @@ at_flags = noone;
 at_tags = noone;
 
 enum TilePassability {
-    UP = 1 << 0,
-    DOWN = 1 << 1,
-    LEFT = 1 << 2,
-    RIGHT = 1 << 3
+    UP          = 0x01,
+    DOWN        = 0x02,
+    LEFT        = 0x04,
+    RIGHT       = 0x08
 }
 
 enum TileFlags {
-    BUSH = 1 << 0,      /* bush animation(?) */
-    COUNTER = 1 << 1,   /* counter */
-    SAFER = 1 << 2,     /* reduced encounter rate */
-    DANGER = 1 << 3,    /* increased encounter rate */
+    BUSH        = 0x01,     /* bush animation(?) */
+    COUNTER     = 0x02,     /* counter */
+    SAFER       = 0x04,     /* reduced encounter rate */
+    DANGER      = 0x08,     /* increased encounter rate */
 }
 
 enum TileTerrainTags {

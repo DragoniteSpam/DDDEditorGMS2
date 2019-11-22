@@ -21,6 +21,6 @@ enum EventNodeCustomData {
 // but i really want to get this out the door so i'm not implementing them here
 
 // for now:
-// min: -1 << 31
-// max:  1 << 31 - 1
+// min: -0x80000000
+// max:  0x7fffffff
 // char limit (universal): 100

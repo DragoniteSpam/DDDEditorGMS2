@@ -32,12 +32,12 @@ selector = select_single;
 on_select = safc_on_mesh;
 
 enum ATMask {
-    NORTHWEST   = 1 << 0,
-    NORTH       = 1 << 1,
-    NORTHEAST   = 1 << 2,
-    WEST        = 1 << 3,
-    EAST        = 1 << 4,
-    SOUTHWEST   = 1 << 5,
-    SOUTH       = 1 << 6,
-    SOUTHEAST   = 1 << 7,
+    NORTHWEST   = 0x0001,
+    NORTH       = 0x0002,
+    NORTHEAST   = 0x0004,
+    WEST        = 0x0008,
+    EAST        = 0x0010,
+    SOUTHWEST   = 0x0020,
+    SOUTH       = 0x0040,
+    SOUTHEAST   = 0x0080,
 }
