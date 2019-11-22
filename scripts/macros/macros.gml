@@ -1,5 +1,9 @@
 #macro EDITOR_BASE_MODE ModeIDs.TERRAIN
 
+// game maker buffer_compress uses medium-level compression; the first two bytes you'll see are
+// "78" and "9c" but buffer_read is little endian so they'll be in reverse order
+#macro MAGIC_ZLIB_HEADER 0x9c78
+
 #macro ALARM_SETTINGS_SAVE 0
 #macro AUTOTILE_AVAILABLE_MAX 100
 #macro AUTOTILE_MAX 32

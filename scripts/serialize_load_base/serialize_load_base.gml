@@ -29,12 +29,22 @@ if (outcome) {
     var original_asset = buffer_load(fn_asset);
     var original_data = buffer_load(fn_data);
     
-    var decompressed_asset = buffer_decompress(original_asset);
-    var decompressed_data = buffer_decompress(original_data);
+    var header_zlib_asset = buffer_peek(original_asset, 0, buffer_u16);
+    var header_zlib_data = buffer_peek(original_data, 0, buffer_u16);
     
-    // if the files won't decompress, they're probably not compressed
-    var buffer_asset = (decompressed_asset < 0) ? original_asset : decompressed_asset;
-    var buffer_data = (decompressed_data < 0) ? original_data : decompressed_data;
+    if (header_zlib_asset == MAGIC_ZLIB_HEADER) {
+        var decompressed_asset = buffer_decompress(original_asset);
+        var buffer_asset = decompressed_asset;
+    } else {
+        var buffer_asset = original_asset;
+    }
+    
+    if (header_zlib_data == MAGIC_ZLIB_HEADER) {
+        var decompressed_data = buffer_decompress(original_data);
+        var buffer_data = decompressed_data;
+    } else {
+        var buffer_data = original_data;
+    }
     
     // header
     var header_asset = chr(buffer_read(buffer_asset, buffer_u8)) + chr(buffer_read(buffer_asset, buffer_u8)) + chr(buffer_read(buffer_asset, buffer_u8));
@@ -63,6 +73,7 @@ if (outcome) {
             );
             outcome = false;
         }
+        
         if (version_data < last_safe_version) {
             dialog_create_notice(noone, "We stopped supporting versions of the data file before " + string(last_safe_version) +
                 ". This file's version is " + string(version_asset) + ". Please find a version of " + filename_name(fn_data) +
