@@ -136,3 +136,25 @@ switch (data.type) {
         dialog.el_data_builtin_list.entries = Stuff.all_graphic_etc;
         break;
 }
+
+// this is occasionally not needed because it'll run both of these every time,
+// but it's way cleaner than trying to only do it when necessary
+if (dialog.el_data_builtin_list.entries) {
+    for (var i = 0; i < ds_list_size(dialog.el_data_builtin_list.entries); i++) {
+        var entry = dialog.el_data_builtin_list.entries[| i];
+        if (data.value_data == entry.GUID) {
+            ui_list_select(dialog.el_data_builtin_list, i, true);
+            break;
+        }
+    }
+}
+
+if (dialog.el_data_list.entries) {
+    for (var i = 0; i < ds_list_size(dialog.el_data_list.entries); i++) {
+        var entry = dialog.el_data_list.entries[| i];
+        if (data.value_data == entry.GUID) {
+            ui_list_select(dialog.el_data_list, i, true);
+            break;
+        }
+    }
+}

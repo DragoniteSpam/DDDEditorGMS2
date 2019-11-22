@@ -62,10 +62,11 @@ enum DataTypes {
  *  11. case in serialize_save_events
  *  12. case in ui_init_game_data_refresh
  *  13. text in the lists in dialog_create_select_data_types_ext
- *  15. case in draw_active_event
- *  16. case in uimu_data_add_data
- *  17. case in uivc_list_selection_constant
- *  18. case in dialog_entity_data_enable_by_type
+ *  14. case in draw_active_event
+ *  15. case in uimu_data_add_data
+ *  16. case in uivc_list_selection_constant
+ *  17. case in dialog_entity_data_enable_by_type
+ *  18. case in serialize_save_entity and the equilvalent in serialize_load_entity
  */
 
 enum NumberScales {
