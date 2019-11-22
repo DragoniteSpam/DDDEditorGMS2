@@ -101,7 +101,7 @@ switch (what.type) {
         list.index = 0;
         break;
     case DataTypes.TILE:
-        not_yet_implemented();
+        not_yet_implemented_polite();
         break;
     case DataTypes.AUTOTILE:
         show_error("autotile data is still just an array, they really need to be changed to LWO-ish things soon", true);

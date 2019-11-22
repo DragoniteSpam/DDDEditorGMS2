@@ -66,7 +66,9 @@ if (data) {
                 break;
             case DataTypes.TILE:
             case DataTypes.ENTITY:
-                not_yet_implemented();
+                instance_activate_object(instance);
+                instance_destroy(instance);
+                not_yet_implemented_polite();
                 break;
         }
     }

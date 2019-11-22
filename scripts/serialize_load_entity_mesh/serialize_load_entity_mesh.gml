@@ -11,7 +11,8 @@ serialize_load_entity(buffer, entity, version);
 entity.mesh = buffer_read(buffer, buffer_datatype);
 if (entity.mesh == 0) {
     // @togo gml try catch
-    not_yet_implemented();
+    not_yet_implemented_polite();
+    return false;
 }
 
 if (version >= DataVersions.SMF_MESH_ANIMATIONS) {

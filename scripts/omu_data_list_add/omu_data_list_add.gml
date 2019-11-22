@@ -46,7 +46,7 @@ if (ds_list_size(plist) < property.max_size) {
         case DataTypes.TILE:
         case DataTypes.ENTITY:
         case DataTypes.MAP:
-            not_yet_implemented();
+            not_yet_implemented_polite();
             break;
     }
 }

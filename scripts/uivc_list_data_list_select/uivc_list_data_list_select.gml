@@ -47,7 +47,7 @@ if (pselection + 1) {
         case DataTypes.TILE:
         case DataTypes.ENTITY:
         case DataTypes.MAP:
-            not_yet_implemented();
+            not_yet_implemented_polite();
             break;
     }
 }

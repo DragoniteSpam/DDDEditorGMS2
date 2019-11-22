@@ -237,13 +237,13 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     element = create_button(legal_x + spacing, yy, "Transfer Player", element_width, element_height, fa_left, omu_event_add_transfer_player, t_action1);
     ds_list_add(t_action1.contents, element);
     yy = yy + element_height;
-    element = create_button(legal_x + spacing, yy, "Set Entity Location", element_width, element_height, fa_left, not_yet_implemented, t_action1);
+    element = create_button(legal_x + spacing, yy, "Set Entity Location", element_width, element_height, fa_left, not_yet_implemented_polite, t_action1);
     ds_list_add(t_action1.contents, element);
     yy = yy + element_height;
-    element = create_button(legal_x + spacing, yy, "Scroll Map", element_width, element_height, fa_left, not_yet_implemented, t_action1);
+    element = create_button(legal_x + spacing, yy, "Scroll Map", element_width, element_height, fa_left, not_yet_implemented_polite, t_action1);
     ds_list_add(t_action1.contents, element);
     yy = yy + element_height;
-    element = create_button(legal_x + spacing, yy, "Set Movement Route", element_width, element_height, fa_left, not_yet_implemented, t_action1);
+    element = create_button(legal_x + spacing, yy, "Set Movement Route", element_width, element_height, fa_left, not_yet_implemented_polite, t_action1);
     ds_list_add(t_action1.contents, element);
     yy = yy + element_height;
     
@@ -289,7 +289,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     element = create_text(legal_x + spacing, yy, "Scene", element_width, element_height, fa_left, element_width, t_list);
     ds_list_add(t_action2.contents, element);
     yy = yy + element_height + spacing;
-    element = create_button(legal_x + spacing, yy, "Return to Title Screen", element_width, element_height, fa_left, not_yet_implemented, t_action2);
+    element = create_button(legal_x + spacing, yy, "Return to Title Screen", element_width, element_height, fa_left, not_yet_implemented_polite, t_action2);
     ds_list_add(t_action2.contents, element);
     yy = yy + element_height;
     
@@ -301,13 +301,13 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     element = create_button(legal_x + spacing, yy, "Change Map Display Name", element_width, element_height, fa_left, omu_event_add_change_map_name, t_action2);
     ds_list_add(t_action2.contents, element);
     yy = yy + element_height;
-    element = create_button(legal_x + spacing, yy, "Change Map Tileset", element_width, element_height, fa_left, not_yet_implemented, t_action2);
+    element = create_button(legal_x + spacing, yy, "Change Map Tileset", element_width, element_height, fa_left, not_yet_implemented_polite, t_action2);
     ds_list_add(t_action2.contents, element);
     yy = yy + element_height;
-    element = create_button(legal_x + spacing, yy, "Change Map Battle Scene", element_width, element_height, fa_left, not_yet_implemented, t_action2);
+    element = create_button(legal_x + spacing, yy, "Change Map Battle Scene", element_width, element_height, fa_left, not_yet_implemented_polite, t_action2);
     ds_list_add(t_action2.contents, element);
     yy = yy + element_height;
-    element = create_button(legal_x + spacing, yy, "Change Map Parallax", element_width, element_height, fa_left, not_yet_implemented, t_action2);
+    element = create_button(legal_x + spacing, yy, "Change Map Parallax", element_width, element_height, fa_left, not_yet_implemented_polite, t_action2);
     ds_list_add(t_action2.contents, element);
     yy = yy + element_height;
     
@@ -319,7 +319,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     element = create_button(legal_x + spacing, yy, "Script", element_width, element_height, fa_left, omu_event_add_script, t_action2);
     ds_list_add(t_action2.contents, element);
     yy = yy + element_height;
-    element = create_button(legal_x + spacing, yy, "Audio Controls", element_width, element_height, fa_left, not_yet_implemented, t_action2);
+    element = create_button(legal_x + spacing, yy, "Audio Controls", element_width, element_height, fa_left, not_yet_implemented_polite, t_action2);
     ds_list_add(t_action2.contents, element);
     yy = yy + element_height;
     // these are last

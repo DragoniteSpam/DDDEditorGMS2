@@ -3272,6 +3272,14 @@
             }
         },
         {
+            "Key": "35b6a32d-1038-4851-a2ae-188d555019c3",
+            "Value": {
+                "id": "f93fd52f-9a06-43e2-a352-734351ff08eb",
+                "resourcePath": "scripts\\not_yet_implemented_polite\\not_yet_implemented_polite.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "35e68409-dde2-47c6-a70c-bffd5ece8045",
             "Value": {
                 "id": "c27d5470-fa87-46cc-bb99-af3b5dc77d7e",
@@ -15683,6 +15691,7 @@
         "08669f77-85ae-4c3a-9c44-aab81b2e6be1",
         "90218ce4-a6e8-423f-aa14-fd344fe31dc9",
         "8f8403dd-07cf-47ef-91c7-02b16f6cc0bf",
+        "35b6a32d-1038-4851-a2ae-188d555019c3",
         "fb95bfea-4498-42e0-be1e-f99993c59ca3",
         "e9b17934-34dd-48c3-8112-f88d75ca4ad6",
         "aedf3e39-9ff1-42b1-8d9a-8a0c5766bba5",

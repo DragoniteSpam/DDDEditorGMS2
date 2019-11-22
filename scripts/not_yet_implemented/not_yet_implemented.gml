@@ -5,6 +5,6 @@
 // if called with script_execute, though.
 
 show_error(@"Stack trace requested, probably in lieu of a NotImplementedException.
-(If you're an end user and seeing this, that means the developer meant to add a
+(If you're an end user and seeing this, most of the time this means the developer meant to add a
 feature and probably forgot.)
 ", false);

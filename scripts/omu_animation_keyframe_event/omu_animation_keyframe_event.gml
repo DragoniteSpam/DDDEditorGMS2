@@ -63,12 +63,12 @@ if (keyframe) {
     el_graphic_no_change.enabled = (keyframe.graphic_type == GraphicTypes.NO_CHANGE);
     dg.el_graphic_no_change = el_graphic_no_change;
     
-    var el_graphic_sprite_list = create_list(col2_x + 16, yy, "Sprite", "<no sprites>", ew, eh, 16, not_yet_implemented, false, dg);
+    var el_graphic_sprite_list = create_list(col2_x + 16, yy, "Sprite", "<no sprites>", ew, eh, 16, not_yet_implemented_polite, false, dg);
     el_graphic_sprite_list.enabled = (keyframe.graphic_type == GraphicTypes.SPRITE);
     el_graphic_sprite_list.entries_are = ListEntries.GUIDS;
     dg.el_graphic_sprite_list = el_graphic_sprite_list;
     
-    var el_graphic_mesh_list = create_list(col2_x + 16, yy, "Mesh", "<no meshes>", ew, eh, 16, not_yet_implemented, false, dg);
+    var el_graphic_mesh_list = create_list(col2_x + 16, yy, "Mesh", "<no meshes>", ew, eh, 16, not_yet_implemented_polite, false, dg);
     el_graphic_mesh_list.enabled = (keyframe.graphic_type == GraphicTypes.MESH);
     // @todo this will need to be shifted to guids when meshes become those
     el_graphic_sprite_list.entries_are = ListEntries.STRINGS;
