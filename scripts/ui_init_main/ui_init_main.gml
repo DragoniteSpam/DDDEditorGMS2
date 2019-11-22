@@ -710,6 +710,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     element_mesh_list.colorize = true;
     element_mesh_list.render = ui_render_list_all_meshes;
     element_mesh_list.render_colors = ui_list_color_smf;
+    element_mesh_list.ondoubleclick = omu_mesh_preview;
     ds_list_add(t_p_mesh_editor.contents, element_mesh_list);
     
     element = create_text(col2_x, yy, "Mesh Properties", col_width, element_height, fa_left, col_width, t_p_mesh_editor);
