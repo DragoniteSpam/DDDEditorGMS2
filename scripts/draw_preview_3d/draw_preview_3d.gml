@@ -1,6 +1,7 @@
 /// @param EditorModeMap
 
 var mode = argument0;
+var mesh = Stuff.mesh_preview;
 
 draw_clear(c_black);
 
@@ -26,10 +27,37 @@ vertex_submit(Stuff.graphics.mesh_preview_grid, pr_linelist, -1);
 // draw the mesh
 var tex = sprite_get_texture(get_active_tileset().master, 0);
 matrix_set(matrix_world, matrix_build(Stuff.mesh_x, Stuff.mesh_y, Stuff.mesh_z, Stuff.mesh_xrot, Stuff.mesh_yrot, Stuff.mesh_zrot, Stuff.mesh_scale, Stuff.mesh_scale, Stuff.mesh_scale));
-vertex_submit(Stuff.mesh_preview.vbuffer, pr_trianglelist, tex);
+vertex_submit(mesh.vbuffer, pr_trianglelist, tex);
 
 // draw the wireframe
-vertex_submit(Stuff.mesh_preview.wbuffer, pr_linelist, tex);
+vertex_submit(mesh.wbuffer, pr_linelist, tex);
+
+// bounding box
+var x1 = mesh.xmin * TILE_WIDTH;
+var y1 = mesh.ymin * TILE_HEIGHT;
+var z1 = mesh.zmin * TILE_DEPTH;
+// the outer corner of the cube is already at (32, 32, 32) so we need to
+// compensate for that
+var cube_bound = 32;
+var x2 = mesh.xmax * TILE_WIDTH - cube_bound;
+var y2 = mesh.ymax * TILE_HEIGHT - cube_bound;
+var z2 = mesh.zmax * TILE_DEPTH - cube_bound;
+
+shader_set(shd_bounding_box);
+shader_set_uniform_f_array(shader_get_uniform(shd_bounding_box, "actual_color"), [1, 0, 0, 1]);
+shader_set_uniform_f_array(shader_get_uniform(shd_bounding_box, "offsets"), [
+    x1, y1, z1,
+    x2, y1, z1,
+    x1, y2, z1,
+    x2, y2, z1,
+    x1, y1, z2,
+    x2, y1, z2,
+    x1, y2, z2,
+    x2, y2, z2,
+]);
+
+vertex_submit(Stuff.graphics.indexed_cage, pr_trianglelist, -1);
+shader_reset();
 
 // clean up
 matrix_set(matrix_world, matrix_build(0, 0, 0, 0, 0, 0, 1, 1, 1));
