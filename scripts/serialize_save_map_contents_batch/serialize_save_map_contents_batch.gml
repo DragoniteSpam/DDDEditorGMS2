@@ -15,7 +15,6 @@ buffer_write_buffer(buffer, map_contents.frozen_data_wire);
 
 var passage_count = 0;
 var passage_address = buffer_tell(buffer);
-var anonymous_base = 1000;
 buffer_write(buffer, buffer_u32, 0 /* address */);
 
 for (var i = 0; i < map.xx; i++) {
@@ -28,7 +27,7 @@ for (var i = 0; i < map.xx; i++) {
                     buffer_write(buffer, buffer_u16, j);
                     buffer_write(buffer, buffer_u16, k);
                     buffer_write(buffer, buffer_u8, l);
-                    buffer_write(buffer, buffer_u16, cell[l] - anonymous_base);
+                    buffer_write(buffer, buffer_u16, cell[l] - ANONYMOUS_COLLISION_BASE);
                     passage_count++;
                 }
             }
