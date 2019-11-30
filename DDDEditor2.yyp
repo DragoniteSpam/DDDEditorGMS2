@@ -272,6 +272,14 @@
             }
         },
         {
+            "Key": "03b1d2be-3a37-4de2-bf37-2bb1169469af",
+            "Value": {
+                "id": "611776e1-adea-4922-a83e-d74ca2a2310d",
+                "resourcePath": "sprites\\spr_pawn_missing\\spr_pawn_missing.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "03c5e4d5-5aad-4df8-9734-17d507ad1070",
             "Value": {
                 "id": "f638e89d-015d-47d7-bc26-e8f3bf493c8e",

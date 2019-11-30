@@ -68,7 +68,7 @@ if (file_exists(filename)) {
                 for (var j = 0; j < map.yy; j++) {
                     for (var k = 0; k < map.zz; k++) {
                         var slice = map_get_grid_cell(i, j, k, map);
-                        if (is_clamped(slice[@ MapCellContents.TILE], 1000, 2000)) {
+                        if (is_clamped(slice[@ MapCellContents.TILE], ANONYMOUS_COLLISION_BASE, ANONYMOUS_COLLISION_BASE + ANONYMOUS_COLLISION_BASE)) {
                             slice[@ MapCellContents.TILE] = noone;
                         }
                     }

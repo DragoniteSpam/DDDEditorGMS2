@@ -6,13 +6,7 @@ var yy = pawn.yy;
 var zz = pawn.zz;
 
 var data = guid_get(pawn.overworld_sprite);
-
-if(!data) {
-    // @todo draw a "sprite not found" thing
-    return false;
-}
-
-var sprite = data.picture;
+var sprite = data ? data.picture : spr_pawn_missing;
 
 var spritesheet_height = 4;
 var spritesheet_frames = 4;
