@@ -1,19 +1,18 @@
-/// @description list ds_map_to_list_sorted(map);
 /// @param map
-// this is far, far faster than ds_list_sort
 
-var list=ds_list_create();
+var map = argument0;
+var list = ds_list_create();
 
-if (ds_map_empty(argument0)) {
+if (ds_map_empty(map)) {
     return list;
 }
 
-var q=ds_priority_create();
-var thing=ds_map_find_first(argument0);
+var q = ds_priority_create();
+var thing = ds_map_find_first(map);
 
-while (ds_map_find_last(argument0)!=thing) {
+while (ds_map_find_last(map) != thing) {
     ds_priority_add(q, thing, thing);
-    thing=ds_map_find_next(argument0, thing);
+    thing = ds_map_find_next(map, thing);
 }
 
 ds_priority_add(q, thing, thing);

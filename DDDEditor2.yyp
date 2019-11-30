@@ -3496,6 +3496,14 @@
             }
         },
         {
+            "Key": "38d47818-9650-4a4c-82ab-f8a50e310583",
+            "Value": {
+                "id": "25364645-3137-44bd-ba59-ad5f46cc1459",
+                "resourcePath": "scripts\\dmu_dialog_remove_graphic_etc\\dmu_dialog_remove_graphic_etc.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "39322df9-16c7-44e3-9fa0-b4e019c3d9cd",
             "Value": {
                 "id": "e09e0d2b-d6bc-43da-b227-caf074a14e5a",
@@ -4460,6 +4468,14 @@
             "Value": {
                 "id": "418bbeb2-8cda-403b-8872-c9325f264a1c",
                 "resourcePath": "scripts\\safc_fill_effect\\safc_fill_effect.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "4b6005a3-23c4-42a2-82c4-beaf682373df",
+            "Value": {
+                "id": "0cd437dd-60fb-4701-b403-cf4cfe3b69a7",
+                "resourcePath": "scripts\\dmu_dialog_remove_graphic_ui\\dmu_dialog_remove_graphic_ui.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -6219,7 +6235,7 @@
             "Key": "6741bdc7-6fa8-45dd-82af-ef512e335d52",
             "Value": {
                 "id": "b390fa80-4d70-4291-a9db-df5cb0280438",
-                "resourcePath": "scripts\\dmu_dialog_remove_graphic_general\\dmu_dialog_remove_graphic_general.yy",
+                "resourcePath": "scripts\\dmu_dialog_remove_graphic_battler\\dmu_dialog_remove_graphic_battler.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -6516,6 +6532,14 @@
             "Value": {
                 "id": "469dd5b8-d913-4f60-b0ec-dff2e7b44152",
                 "resourcePath": "scripts\\event_prefab_render_variable_name\\event_prefab_render_variable_name.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "6b162674-ee62-439e-b656-e429fabeaffa",
+            "Value": {
+                "id": "6293118c-b8e0-43d4-bf1c-c69237783195",
+                "resourcePath": "scripts\\dmu_dialog_remove_graphic_overworld\\dmu_dialog_remove_graphic_overworld.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -9228,6 +9252,14 @@
             "Value": {
                 "id": "37dc6f3f-7c25-461d-a142-c74262b544e6",
                 "resourcePath": "scripts\\omu_mr_move_upper_right\\omu_mr_move_upper_right.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "9706a804-9683-4dc9-a9ae-5023eda7a4f0",
+            "Value": {
+                "id": "15e957f4-e632-4943-a64a-ecc9ce73c1de",
+                "resourcePath": "scripts\\dmu_dialog_remove_graphic_particle\\dmu_dialog_remove_graphic_particle.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -16092,6 +16124,10 @@
         "fd509475-e535-4be9-8fc7-de4c581e0250",
         "2e013630-e3f1-4f01-b173-f9acbddf7050",
         "6741bdc7-6fa8-45dd-82af-ef512e335d52",
+        "38d47818-9650-4a4c-82ab-f8a50e310583",
+        "4b6005a3-23c4-42a2-82c4-beaf682373df",
+        "9706a804-9683-4dc9-a9ae-5023eda7a4f0",
+        "6b162674-ee62-439e-b656-e429fabeaffa",
         "d526fbee-9fd7-4e24-846d-67168517db6f",
         "5527d229-9517-451b-a2e4-917e1ba399aa",
         "a61fc529-6b87-43ac-9347-b3af90e13277",

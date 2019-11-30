@@ -1,5 +1,7 @@
 var fn = get_save_filename_dddd(Stuff.save_name);
 
+global.error_map = ds_map_create();
+
 if (string_length(fn) > 0) {
     Stuff.save_name = string_replace(filename_name(fn), EXPORT_EXTENSION_DATA, "");
     serialize_backup(PATH_BACKUP, Stuff.save_name, EXPORT_EXTENSION_DATA, fn);
@@ -84,6 +86,21 @@ if (string_length(fn) > 0) {
     buffer_delete(compressed);
     buffer_delete(buffer);
 }
+
+if (!ds_map_empty(global.error_map)) {
+    var error_list = ds_map_to_list_sorted(global.error_map);
+    var err_str = "";
+    for (var i = 0; i < ds_list_size(error_list); i++) {
+        err_str = err_str + "    - " + global.error_map[? error_list[| i]] + "\n";
+    }
+    var dialog = dialog_create_notice(noone, "Some warnings were generated when saving your data file:\n\n" + err_str, "Warning!", undefined, undefined, 560);
+    dialog.el_text.x = 32;
+    dialog.el_text.x = 64;
+    dialog.el_text.alignment = fa_left;
+    ds_list_destroy(error_list);
+}
+
+ds_map_destroy(global.error_map);
 
 enum DataVersions {
     SUMMARY_GENERIC_DATA        = 38,
