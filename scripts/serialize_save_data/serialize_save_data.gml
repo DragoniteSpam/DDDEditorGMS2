@@ -95,8 +95,9 @@ if (!ds_map_empty(global.error_map)) {
     }
     var dialog = dialog_create_notice(noone, "Some warnings were generated when saving your data file:\n\n" + err_str, "Warning!", undefined, undefined, 560);
     dialog.el_text.x = 32;
-    dialog.el_text.x = 64;
+    dialog.el_text.y = 64;
     dialog.el_text.alignment = fa_left;
+    dialog.el_text.valignment = fa_top;
     ds_list_destroy(error_list);
 }
 

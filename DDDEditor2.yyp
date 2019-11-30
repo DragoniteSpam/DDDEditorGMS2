@@ -1080,6 +1080,14 @@
             }
         },
         {
+            "Key": "10d75fc8-4f26-4d01-b806-e4e4061246de",
+            "Value": {
+                "id": "f6cb79c2-143e-4587-9dc8-e684851f4952",
+                "resourcePath": "scripts\\uivc_entity_pawn_set_sprite\\uivc_entity_pawn_set_sprite.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "10edd558-0f2b-49ff-b16c-788cf96bf9c2",
             "Value": {
                 "id": "ec703a61-ed0a-4666-8b87-06b346ea2d48",
@@ -16233,6 +16241,7 @@
         "d8f3a396-1c81-4c03-a661-1f05756107da",
         "5691eae2-f00c-4cc2-ac52-8adce4e87b25",
         "b19f02e8-8b5e-45b3-842e-6fc5a52df295",
+        "10d75fc8-4f26-4d01-b806-e4e4061246de",
         "75a5fec3-1002-4533-940c-f2a25fca9722",
         "3e051823-5ef9-4923-bb43-20dd4710b10f",
         "8ce47a97-7e64-4509-aa7c-e5615e5a15ac",

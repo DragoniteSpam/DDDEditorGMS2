@@ -52,10 +52,13 @@ if (ds_list_size(list) == 0) {
     Stuff.map.ui.element_entity_pawn_direction.interactive = false;
     Stuff.map.ui.element_entity_pawn_animating.value = false;
     Stuff.map.ui.element_entity_pawn_animating.interactive = false;
+    Stuff.map.ui.element_entity_pawn_sprite.interactive = false;
+    ui_list_deselect(Stuff.map.ui.element_entity_pawn_sprite);
 } else if (ds_list_size(list) == 1) {
     safa_on_select(list[| 0]);
 } else {
-    // populate the UI elements with a nice ¯\_(ツ)_/¯
+    // if multiple eligible entities are selected, populate the UI
+    // elements with a nice ¯\_(ツ)_/¯
     ui_input_set_value(Stuff.map.ui.element_entity_name, "");
     Stuff.map.ui.element_entity_solid.value = 2;
     Stuff.map.ui.element_entity_static.value = 2;
@@ -132,10 +135,12 @@ if (ds_list_size(list) == 0) {
             Stuff.map.ui.element_entity_pawn_frame.value = "0";
             Stuff.map.ui.element_entity_pawn_direction.value = 0;
             Stuff.map.ui.element_entity_pawn_animating.value = 2;
+            ui_list_deselect(Stuff.map.ui.element_entity_pawn_sprite);
             
             Stuff.map.ui.element_entity_pawn_frame.interactive = true;
             Stuff.map.ui.element_entity_pawn_direction.interactive = true;
             Stuff.map.ui.element_entity_pawn_animating.interactive = true;
+            Stuff.map.ui.element_entity_pawn_sprite.interactive = true;
             break;
         case EntityEffect:
             break;

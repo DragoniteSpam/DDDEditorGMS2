@@ -6,7 +6,8 @@
     "children": [
         "d8f3a396-1c81-4c03-a661-1f05756107da",
         "5691eae2-f00c-4cc2-ac52-8adce4e87b25",
-        "b19f02e8-8b5e-45b3-842e-6fc5a52df295"
+        "b19f02e8-8b5e-45b3-842e-6fc5a52df295",
+        "10d75fc8-4f26-4d01-b806-e4e4061246de"
     ],
     "filterType": "GMScript",
     "folderName": "pawn",

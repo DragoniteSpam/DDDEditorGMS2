@@ -11,15 +11,15 @@
 // this is much like batch_tile, except it bypasses the part where it actually needs an EntityTile,
 // and also writes the data straight into a regular buffer instead of a vertex buffer
 
-var buffer = argument0;
-var wire = argument1;
-var xx = argument2 * TILE_WIDTH;
-var yy = argument3 * TILE_HEIGHT;
-var zz = argument4 * TILE_DEPTH;
-var tile_x = argument5;
-var tile_y = argument6;
-var color = argument7;
-var alpha = argument8;
+var buffer = argument[0];
+var wire = argument[1];
+var xx = argument[2] * TILE_WIDTH;
+var yy = argument[3] * TILE_HEIGHT;
+var zz = argument[4] * TILE_DEPTH;
+var tile_x = argument[5];
+var tile_y = argument[6];
+var color = argument[7];
+var alpha = argument[8];
 var TEXEL = 1 / TEXTURE_SIZE;
 
 var nx = 0;

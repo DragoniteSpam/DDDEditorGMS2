@@ -603,6 +603,11 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element_entity_pawn_animating.height + spacing;
     
+    element_entity_pawn_sprite = create_list(legal_x + spacing, yy, "Overworld Sprite", "<no overworlds>", col_width, element_height, 12, uivc_entity_pawn_set_sprite, false, t_p_pawn, Stuff.all_graphic_overworlds);
+    element_entity_pawn_sprite.entries_are = ListEntries.INSTANCES;
+    ds_list_add(t_p_pawn.contents, element_entity_pawn_sprite);
+    
+    yy = yy + ui_get_list_height(element_entity_pawn_sprite) + spacing;
     #endregion
     
     #region tab: tiles
