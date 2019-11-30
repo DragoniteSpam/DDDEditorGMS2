@@ -3,7 +3,7 @@ event_inherited();
 save_script = serialize_save_entity_pawn;
 load_script = serialize_load_entity_pawn;
 
-overworld_sprite = Stuff.spr_character_default;
+overworld_sprite = 0;
 map_direction = 0;
 
 // not serialized but

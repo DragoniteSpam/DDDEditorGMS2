@@ -111,5 +111,6 @@ enum DataVersions {
     DATA_CHUNK_ADDRESSES        = 60,
     REMOVE_UNUSED_DATA          = 61,
     GENERIC_DATA                = 62,
+    PAWN_HELPFUL_DATA           = 63,
     _CURRENT /* = whatever the last one is + 1 */
 }
