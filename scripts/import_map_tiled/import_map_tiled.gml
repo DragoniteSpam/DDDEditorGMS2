@@ -38,6 +38,8 @@ if (file_exists(filename)) {
             }
         }
         
+        Stuff.tiled_map_id = map_id;
+        
         var json_width = json[? "width"];
         var json_height = json[? "height"];
         

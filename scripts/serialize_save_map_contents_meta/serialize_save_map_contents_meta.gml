@@ -6,6 +6,9 @@ var map_contents = map.contents;
 
 buffer_write(buffer, buffer_datatype, SerializeThings.MAP_META);
 
+// signed because it's allowed to be -1
+buffer_write(buffer, buffer_s32, map.tiled_map_id);
+
 buffer_write(buffer, buffer_u16, map.xx);
 buffer_write(buffer, buffer_u16, map.yy);
 buffer_write(buffer, buffer_u16, map.zz);

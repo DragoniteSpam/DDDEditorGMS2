@@ -9,6 +9,10 @@ var map_contents = map.contents;
 
 version = map.version;
 
+if (version >= DataVersions.MAP_TILED_ID) {
+    map.tiled_map_id = buffer_read(buffer, buffer_s32);
+}
+
 var xx = buffer_read(buffer, buffer_u16);
 var yy = buffer_read(buffer, buffer_u16);
 var zz = buffer_read(buffer, buffer_u16);

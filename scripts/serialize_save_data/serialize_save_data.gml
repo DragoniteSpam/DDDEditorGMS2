@@ -130,5 +130,6 @@ enum DataVersions {
     REMOVE_UNUSED_DATA          = 61,
     GENERIC_DATA                = 62,
     PAWN_HELPFUL_DATA           = 63,
+    MAP_TILED_ID                = 64,
     _CURRENT /* = whatever the last one is + 1 */
 }
