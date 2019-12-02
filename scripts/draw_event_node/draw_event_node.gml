@@ -130,7 +130,7 @@ switch (node.type) {
         eh = 32;
         var rh = ((ui_get_radio_array_height(node.ui_things[| 0]) div eh) * eh) + 16;
         x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
-        y2 = y1 + max(24 + 32 + (eh + rh + 1) * size + entry_offset, ds_list_size(node.outbound) * EVENT_NODE_CONTACT_HEIGHT * 2 / 3);
+        y2 = y1 + max(24 + 48 + (eh + rh + 1) * size + entry_offset, ds_list_size(node.outbound) * EVENT_NODE_CONTACT_HEIGHT * 2 / 3);
         
         if (rectangle_within_view(view_current, x1, y1, x2, y2)) {
             var ncolor = c_ev_basic;

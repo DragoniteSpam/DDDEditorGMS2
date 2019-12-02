@@ -410,6 +410,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     element_entity_events.colorize = false;
     element_entity_events.render = ui_render_list_entity_events;
     element_entity_events.entries_are = ListEntries.INSTANCES;
+    element_entity_events.ondoubleclick = omu_entity_event_page;
     ds_list_add(t_p_entity.contents, element_entity_events);
     element_entity_events.interactive = false;
     

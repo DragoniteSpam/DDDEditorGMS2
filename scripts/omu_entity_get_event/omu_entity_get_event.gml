@@ -1,5 +1,5 @@
-/// @param UIThing
+/// @param UIButton
 
-var thing = argument0;
+var button = argument0;
 
-dialog_create_entity_get_event(thing.root);
+dialog_create_entity_get_event(button.root);

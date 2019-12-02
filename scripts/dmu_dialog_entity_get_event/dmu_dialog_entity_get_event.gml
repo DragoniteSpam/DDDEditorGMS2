@@ -23,6 +23,7 @@ if (selection_index >= 0) {
     if (new_event.GUID != page.event_guid) {
         page.event_guid = new_event.GUID;
         thing.root.root.el_event_guid.text = "Event: " + new_event.name;
-        dialog_create_entity_get_event_entrypoint(thing.root.root);
     }
+    
+    dialog_create_entity_get_event_entrypoint(thing.root.root);
 }

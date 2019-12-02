@@ -25,7 +25,7 @@ var vy2 = vy1 + eh;
 var yy = 64;
 var spacing = 16;
 
-var el_list = create_list(16, yy, "Select an event", "<should never see this>", ew, eh, 20, null, false, dg);
+var el_list = create_list(16, yy, "Select an event", "<should never see this>", ew, eh, 20, null, false, dg, Stuff.all_events);
 el_list.entries_are = ListEntries.INSTANCES;
 dg.el_list = el_list;
 
@@ -40,7 +40,9 @@ var b_width = 128;
 var b_height = 32;
 var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Commit", b_width, b_height, fa_center, dmu_dialog_entity_get_event, dg);
 
-ds_list_add(dg.contents, el_list,
-    el_confirm);
+ds_list_add(dg.contents,
+    el_list,
+    el_confirm
+);
 
 return dg;
