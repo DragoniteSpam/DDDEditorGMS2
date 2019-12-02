@@ -31,7 +31,8 @@ buffer_write(buffer, buffer_f32, terrain.tile_brush_x);
 buffer_write(buffer, buffer_f32, terrain.tile_brush_y);
 buffer_write(buffer, buffer_u32, terrain.paint_color);
 buffer_write(buffer, buffer_f32, terrain.paint_strength);
-buffer_write(buffer, buffer_u8, terrain.paint_precision);
+// this is an unused byte, you can get rid of it later i guess
+buffer_write(buffer, buffer_u8, 0);
 
 // the actual data
 

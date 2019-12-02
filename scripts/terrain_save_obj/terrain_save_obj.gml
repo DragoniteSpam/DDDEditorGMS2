@@ -6,7 +6,6 @@ var terrain = Stuff.terrain;
 var bytes = buffer_get_size(terrain.terrain_buffer_data);
 var vertices = 0;
 var scale = terrain.save_scale;
-var precision = 256 - terrain.paint_precision;
 
 var fx = sprite_get_width(terrain.texture) / terrain.texture_width;
 var fy = sprite_get_height(terrain.texture) / terrain.texture_height;
@@ -18,9 +17,10 @@ var highp = 8;
 var zupswap = terrain.export_swap_zup;
 var uvswap = terrain.export_swap_uvs;
 
-var active_mtl = "c-" + string(0xffffffff);
+var active_mtl = "a-1";
 var mtl_warning = false;
 var mtl_colors = ds_map_create();
+var blender_color_warning = false;
 
 var buffer = buffer_create(1000000, buffer_grow, 1);
 var buffer_mtl = buffer_create(1000, buffer_grow, 1);
@@ -44,18 +44,9 @@ for (var i = 0; i < bytes; i = i + Stuff.graphics.format_size_basic * 3) {
     var c1 = buffer_peek(terrain.terrain_buffer_data, i + 32 + Stuff.graphics.format_size_basic, buffer_u32);
     var c2 = buffer_peek(terrain.terrain_buffer_data, i + 32 + Stuff.graphics.format_size_basic * 2, buffer_u32);
     
-    var rr0 = round_ext((c0 & 0x000000ff), precision);
-    var gg0 = round_ext((c0 & 0x0000ff00) >> 8, precision);
-    var bb0 = round_ext((c0 & 0x00ff0000) >> 16, precision);
-    var aa0 = round_ext((c0 & 0xff000000) >> 24, precision);
-    var rr1 = round_ext((c1 & 0x000000ff), precision);
-    var gg1 = round_ext((c1 & 0x0000ff00) >> 8, precision);
-    var bb1 = round_ext((c1 & 0x00ff0000) >> 16, precision);
-    var aa1 = round_ext((c1 & 0xff000000) >> 24, precision);
-    var rr2 = round_ext((c2 & 0x000000ff), precision);
-    var gg2 = round_ext((c2 & 0x0000ff00) >> 8, precision);
-    var bb2 = round_ext((c2 & 0x00ff0000) >> 16, precision);
-    var aa2 = round_ext((c2 & 0xff000000) >> 24, precision);
+    var aa0 = ((c0 & 0xff000000) >> 24) / 0xff;
+    var aa1 = ((c1 & 0xff000000) >> 24) / 0xff;
+    var aa2 = ((c2 & 0xff000000) >> 24) / 0xff;
     
     if (terrain.export_all || z0 > 0 || z1 > 0 || z2 > 0) {
         for (var j = 0; j < Stuff.graphics.format_size_basic * 3; j = j + Stuff.graphics.format_size_basic) {
@@ -69,6 +60,10 @@ for (var i = 0; i < bytes; i = i + Stuff.graphics.format_size_basic * 3) {
             var ytex = buffer_peek(terrain.terrain_buffer_data, j + i + 28, buffer_f32) * fy;
             var color = buffer_peek(terrain.terrain_buffer_data, j + i + 32, buffer_u32);
             
+            if (color & 0x00ffffff != 0x00ffffff) {
+                blender_color_warning = true;
+            }
+            
             if (zupswap) {
                 var t = xx;
                 xx = yy;
@@ -80,55 +75,40 @@ for (var i = 0; i < bytes; i = i + Stuff.graphics.format_size_basic * 3) {
                 ytex = 1 - ytex;
             }
             
+            var rr = (color & 0x000000ff) / 0xff;
+            var gg = ((color & 0x0000ff00) >> 8) / 0xff;
+            var bb = ((color & 0x00ff0000) >> 16) / 0xff;
+            
             buffer_write(buffer, buffer_text,
-                "v " + string_format(xx, 1, mediump) + " " + string_format(yy, 1, mediump) + " " + string_format(zz, 1, mediump) + "\n" +
+                "v " + string_format(xx, 1, mediump) + " " + string_format(yy, 1, mediump) + " " + string_format(zz, 1, mediump) +  " " +
+                    string_format(rr, 1, highp) + " " + string_format(gg, 1, highp) + " " + string_format(bb, 1, highp) + "\n" +
                 "vn " + string_format(nx, 1, mediump) + " " + string_format(ny, 1, mediump) + " " + string_format(nz, 1, mediump) + "\n" +
                 "vt " + string_format(xtex, 1, highp) + " " + string_format(ytex, 1, highp) + "\n"
             );
         }
         
-        // you could easily end up exporting a million materials if you use the full range of colors,
-        // so you may wish to not use the full range of colors
-
-        // essentially, only the greatest x bits are used to store color information, since you're less
-        // likely to notice if the lower one or two is off by one.
-        //  - a precision of 8 means color channels can be described with eight bits (i.e. the full range),
-        //  - a precision of 4 means color channels can be described with four bits (this would be 16-bit
-        //      color depth,
-        //  - a precision of 1 means color channels can be described with just one bit (i.e. just black,
-        //      white, cyan, magenta, yellow, red, green and blue)
-        // (this does not apply to d3d, since each individual vertex has its own color)
+        // vertex colors can be stored with the vertices themselves, but i don't know if alpha can
+        // and this should be Good Enough anyway
         
-        var rr = mean(rr0, rr1, rr2);
-        var gg = mean(gg0, gg1, gg2);
-        var bb = mean(bb0, bb1, bb2);
         var aa = mean(aa0, aa1, aa2);
         
-        var color_final = rr | (gg << 8) | (bb << 16) | (aa << 24);
-        
-        if (!mtl_warning && color_final != c0) {
-            dialog_create_notice(noone, "The Wavefront OBJ file format does not supprt per-vertex color / alpha values (only per-face) - see the Material Termplate Library specification for more information. The average value will be used instead for each face.",
-                "Hey!", "Okay", 540, 240
-            );
+        if (aa != aa0) {
             mtl_warning = true;
         }
         
-        var mtl_name = "c-" + string(color_final);
+        var mtl_name = "a-" + string(aa);
         
         if (!ds_map_exists(mtl_colors, mtl_name)) {
-            mtl_colors[? mtl_name] = color_final;
+            mtl_colors[? mtl_name] = aa;
         }
         
         if (mtl_name != active_mtl) {
             active_mtl = mtl_name;
-            var rr = (color_final & 0x000000ff) / 255;
-            var gg = ((color_final & 0x0000ff00) >> 8) / 255;
-            var bb = ((color_final & 0x00ff0000) >> 16) / 255;
-            var aa = ((color_final & 0xff000000) >> 24) / 255;
+            
             buffer_write(buffer, buffer_text, "usemtl " + mtl_name + "\n");
             buffer_write(buffer_mtl, buffer_text,
                 "newmtl " + mtl_name + "\n" +
-                "Kd " + string_format(rr, 1, mediump) + " " + string_format(gg, 1, mediump) + " " + string_format(bb, 1, mediump) + "\n" +
+                "Kd 1 1 1\n" +
                 "d " + string_format(aa, 1, mediump) + "\n" +
                 "map_Ka " + terrain.texture_name + "\n" +
                 "map_Kd " + terrain.texture_name + "\n" +
@@ -146,6 +126,23 @@ for (var i = 0; i < bytes; i = i + Stuff.graphics.format_size_basic * 3) {
         
         vertices = vertices + 3;
     }
+}
+
+var warning_str = "";
+var warning_size = 0;
+
+if (mtl_warning) {
+    warning_str = warning_str + "The Wavefront OBJ file format does not supprt per-vertex alpha values (only per-face) - see the Material Termplate Library specification for more information. The average alpha value will be used instead for each face.\n\n";
+    warning_size = warning_size + 160;
+}
+
+if (blender_color_warning) {
+    warning_str = warning_str + "This will be exported with vertex colors. Some software can import OBJ files that use vertex colors, but others (most notably, Blender) do not. You may want to check to see if the software you intend to use this with supports vertex colors.\n\n";
+    warning_size = warning_size + 160;
+}
+
+if (string_length(warning_str) > 0) {
+    var dialog = dialog_create_notice(noone, warning_str, "Warnings!", "Okay", 720, max(240, warning_size), fa_left);
 }
 
 buffer_poke(buffer, addr_vertex_count, buffer_text, string_pad(vertices, "0", 8));

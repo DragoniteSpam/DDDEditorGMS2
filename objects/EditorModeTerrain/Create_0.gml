@@ -67,12 +67,9 @@ tile_brush_y = 32 / 4096;
 // paint defaults
 paint_strength_min = 0.01;
 paint_strength_max = 1;
-paint_precision_min = 1;
-paint_precision_max = 0xff;
 // paint settings
 paint_color = 0xffffffff;
 paint_strength = 0.05;
-paint_precision = 0xff;
 
 var t = get_timer();
 

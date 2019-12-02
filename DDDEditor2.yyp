@@ -13904,14 +13904,6 @@
             }
         },
         {
-            "Key": "e46d57b5-d076-445f-b55b-787d63e309cb",
-            "Value": {
-                "id": "14c41813-e5ae-4621-9296-796220f4d7f6",
-                "resourcePath": "scripts\\ui_input_terrain_set_paint_precision\\ui_input_terrain_set_paint_precision.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "e4734c49-2efe-484f-86f8-905a518e3425",
             "Value": {
                 "id": "2b518211-2e8f-41de-9a12-231da2ccf1b3",
@@ -17226,7 +17218,6 @@
         "c1c8a104-06b3-4229-bb6d-ac5c3cc744db",
         "532a68cf-522c-4673-898d-6ad8891e321e",
         "4680b9c5-8420-4fd3-8270-b0d594e93133",
-        "e46d57b5-d076-445f-b55b-787d63e309cb",
         "52e823ae-ae18-4852-98cf-28eff8f21c09",
         "aa087457-cf7d-4538-8501-dce0df98cfc4",
         "7ce9b3cf-7081-4b06-96c5-9df5af141ba2",
