@@ -12450,6 +12450,9 @@
         {
             "Key": "cc98d028-7bdd-4680-85f3-c87a7baa481e",
             "Value": {
+                "configDeltas": [
+                    "YYC"
+                ],
                 "id": "13f08c95-1b4d-4d36-a03c-179f6fd33807",
                 "resourcePath": "options\\windows\\options_windows.yy",
                 "resourceType": "GMWindowsOptions"
