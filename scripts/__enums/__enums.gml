@@ -105,6 +105,7 @@ enum Dimensions {
 enum BattleStyles {
     TEAM_BASED,             // everyone stays on their own side
     GRID_BASED,             // boundaries are not respected
+    ACTION,                 // z*lda
 }
 
 enum TileSelectorDisplayMode {

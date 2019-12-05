@@ -1,5 +1,5 @@
-/// @param UICheckbox
+/// @param UIRadioArray
 
-var checkbox = argument0;
+var radio = argument0;
 
-Stuff.game_battle_style = checkbox.value;
+Stuff.game_battle_style = radio.value;

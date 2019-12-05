@@ -31,8 +31,8 @@ var el_player_start = create_button(col1_x, yy, "Player Starting Position", ew, 
 el_player_start.tooltip = "Set the player's starting position on the map. By default it will be in the bottom-upper-left corner of the default map, but you probably want it to be somewhere with meaning.";
 yy = yy + el_player_start.height + spacing;
 var el_battle_type = create_radio_array(col1_x, yy, "Battle Style", ew, eh, uivc_settings_game_battle_style, Stuff.game_battle_style, dg);
-el_battle_type.tooltip = "Whether the default battle system should be team-based, or should allow contestants to wander around on the battlefield.";
-create_radio_array_options(el_battle_type, ["Team-based", "Grid-based"]);
+el_battle_type.tooltip = "Team-based: standard turn-based RPG fare;\nGrid-based: contestants can move around the battle freely (but it's still turn-based);\nAction: you need reflexes";
+create_radio_array_options(el_battle_type, ["Team-based", "Grid-based", "Action"]);
 yy = yy + ui_get_radio_array_height(el_battle_type) + spacing;
 
 var el_edit_title = create_text(col1_x, yy, "Other Settings", ew, eh, fa_left, ew, dg);

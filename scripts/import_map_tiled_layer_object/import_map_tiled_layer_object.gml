@@ -165,7 +165,7 @@ for (var i = 0; i < ds_list_size(layer_objects); i++) {
             var pr_mesh_data = internal_name_get(gid_to_image_name);
             if (pr_mesh_data) {
                 map_add_thing(instance_create_mesh(pr_mesh_data), (xx + obj_x) div TILE_WIDTH, (yy + obj_y - data_height) div TILE_HEIGHT, zz);
-                Still need to deal with the offset issues
+                
             } else {
                 show_error("Log an error somewhere", false);
             }
