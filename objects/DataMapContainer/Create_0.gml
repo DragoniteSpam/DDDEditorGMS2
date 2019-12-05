@@ -10,7 +10,7 @@ data_buffer = buffer_create(1, buffer_grow, 1);
 contents = noone;
 version = DataVersions._CURRENT;
 
-tiled_map_id = "";
+tiled_map_id = -1;
 
 preview = noone;
 wpreview = noone;
