@@ -16,6 +16,7 @@ release_wasd = false;
 double_left = false;
 double_right = false;
 double_middle = false;
+double_wasd = false;
 
 // for measuring click duration
 time_left = -1;
@@ -28,6 +29,7 @@ time_wasd_seconds = -1;
 last_time_left = -1;
 last_time_right = -1;
 last_time_middle = -1;
+last_time_wasd = -1;
 
 // special keys that get special treatment
 escape = false;

@@ -38,6 +38,11 @@ if (press_middle) {
     time_middle = t;
     last_time_middle = t;
 }
+if (press_wasd) {
+    if ((t - last_time_wasd) < double_click_threshold) double_wasd = true;
+    time_wasd = t;
+    last_time_wasd = t;
+}
 
 time_wasd_seconds = (t - time_wasd) / MILLION;
 
