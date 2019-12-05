@@ -34,20 +34,28 @@ for (var i = 0; i < ds_list_size(layer_objects); i++) {
     var obj_properties = object[? "properties"];
     var obj_type = object[? "type"];
     var obj_visible = object[? "visible"];
+    var obj_width = object[? "width"];
+    var obj_height = object[? "height"];
     
     var data_template = (obj_template == undefined) ? noone : import_map_tiled_get_cached_object(object_cache, obj_template);
     if (!data_template) {
         if (obj_name == undefined) continue;
         if (obj_type == undefined) continue;
         if (obj_visible == undefined) continue;
+        if (obj_width == undefined) continue;
+        if (obj_height == undefined) continue;
         
         var data_name = obj_name;
         var data_type = obj_type;
         var data_visible = obj_visible;
+        var data_width = obj_width;
+        var data_height = obj_height;
     } else {
         var data_name = (obj_name == undefined) ? data_template[? "name"] : obj_name;
         var data_type = (obj_type == undefined) ? data_template[? "type"] : obj_type;
         var data_visible = (obj_visible == undefined) ? data_template[? "visible"] : obj_visible;
+        var data_width = (obj_width == undefined) ? data_template[? "width"] : obj_width;
+        var data_height = (obj_height == undefined) ? data_template[? "height"] : obj_height;
     }
     
     // merging the property maps does not sound like my idea of a fun time, but not doing it would be even worse
@@ -110,7 +118,7 @@ for (var i = 0; i < ds_list_size(layer_objects); i++) {
             
             var pr_mesh_data = internal_name_get(pr_mesh_internal_name);
             if (pr_mesh_data) {
-                map_add_thing(instance_create_mesh(pr_mesh_data), (xx + obj_x) div TILE_WIDTH, (yy + obj_y) div TILE_HEIGHT, zz);
+                map_add_thing(instance_create_mesh(pr_mesh_data), (xx + obj_x) div TILE_WIDTH, (yy + obj_y - data_height) div TILE_HEIGHT, zz);
             } else {
                 show_error("Log an error somewhere", false);
             }
