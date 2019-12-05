@@ -1,4 +1,4 @@
-/// @param instance-id
+/// @param mesh-data
 
 var mesh_data = argument0;
 

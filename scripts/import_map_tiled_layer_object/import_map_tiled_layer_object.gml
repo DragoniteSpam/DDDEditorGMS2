@@ -107,6 +107,13 @@ for (var i = 0; i < ds_list_size(layer_objects); i++) {
             pr_cutscene_entrypoint = pr_cutscene_entrypoint[? "value"];
             pr_mesh_internal_name = pr_mesh_internal_name[? "value"];
             pr_static = pr_static[? "value"];
+            
+            var pr_mesh_data = internal_name_get(pr_mesh_internal_name);
+            if (pr_mesh_data) {
+                map_add_thing(instance_create_mesh(pr_mesh_data), (xx + obj_x) div TILE_WIDTH, (yy + obj_y) div TILE_HEIGHT, zz);
+            } else {
+                show_error("Log an error somewhere", false);
+            }
             break;
         case "effect":
             not_yet_implemented_polite();
