@@ -20,8 +20,8 @@ if (file_exists(filename)) {
     
     var json_type = json[? "type"];
     if (json_type == "map") {
-        var object_cache = ds_map_create();
-        object_cache[? "*dir"] = filename_dir(filename);
+        var tiled_cache = ds_map_create();
+        tiled_cache[? "*dir"] = filename_dir(filename);
         
         var json_layers = json[? "layers"];
         
@@ -46,9 +46,12 @@ if (file_exists(filename)) {
         var json_height = json[? "height"];
         
         var json_tilesets = json[? "tilesets"];
+        var gid_cache = ds_map_create();
+        ds_map_add(tiled_cache, "%tilesets", json_tilesets); // don't mark as map
+        ds_map_add_map(tiled_cache, "&gid", gid_cache);
         var tileset_columns = 0;
+        
         if (!ds_list_empty(json_tilesets)) {
-            //import_map_tiled_tileset(json_tilesets[| 0]);
             // @todo gml update chained accessors
             var tileset_source = ds_map_find_value(json_tilesets[| 0], "source");
             if (!file_exists(tileset_source)) {
@@ -86,9 +89,9 @@ if (file_exists(filename)) {
                 var layer_type = layer_data[? "type"];
             
                 switch (layer_type) {
-                    case "group": layer_z = import_map_tiled_layer_folder(layer_data, tileset_columns, layer_z, 1, 0, 0, object_cache); break;
-                    case "objectgroup": layer_z = import_map_tiled_layer_object(layer_data, tileset_columns, layer_z, 1, 0, 0, object_cache); break;
-                    case "tilelayer": layer_z = import_map_tiled_layer_tile(layer_data, tileset_columns, layer_z, 1, 0, 0, object_cache); break;
+                    case "group": layer_z = import_map_tiled_layer_folder(layer_data, tileset_columns, layer_z, 1, 0, 0, tiled_cache); break;
+                    case "objectgroup": layer_z = import_map_tiled_layer_object(layer_data, tileset_columns, layer_z, 1, 0, 0, tiled_cache); break;
+                    case "tilelayer": layer_z = import_map_tiled_layer_tile(layer_data, tileset_columns, layer_z, 1, 0, 0, tiled_cache); break;
                 }
             }
             
@@ -111,7 +114,7 @@ if (file_exists(filename)) {
             dialog_create_notice(noone, "No valid tileset file found for " + filename_name(filename) + ". Please find one.");
         }
         
-        ds_map_destroy(object_cache);
+        ds_map_destroy(tiled_cache);
     }
     
     ds_map_destroy(json);

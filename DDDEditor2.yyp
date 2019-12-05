@@ -2320,6 +2320,14 @@
             }
         },
         {
+            "Key": "2506df25-f1e5-4285-a34e-0e8dca89a757",
+            "Value": {
+                "id": "71879497-be98-4397-a902-3cf132a6cc4c",
+                "resourcePath": "scripts\\import_map_tiled_get_cached_tileset\\import_map_tiled_get_cached_tileset.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "252e2e75-0216-4a83-a1a7-3bd642cd6327",
             "Value": {
                 "id": "de8ec79e-6a1d-426e-a96f-d2593aac5058",
@@ -3428,14 +3436,6 @@
             "Value": {
                 "id": "58792139-0e30-4395-be83-863349c93e66",
                 "resourcePath": "scripts\\ui_render_input_tile_tag\\ui_render_input_tile_tag.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "3786d7f9-8f5e-47f0-aa5f-4c7883bced0f",
-            "Value": {
-                "id": "73061d2e-12bd-4f9b-b2cd-53a3d90ccecc",
-                "resourcePath": "scripts\\import_map_tiled_tileset\\import_map_tiled_tileset.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -15982,8 +15982,8 @@
         "61360b52-0df7-4f9d-90f9-d436fbc6b599",
         "6e16cdf1-eb57-4011-8629-938cfc0111c7",
         "2e5dcb3f-b72d-4719-bdcd-2fccb646b7d9",
-        "3786d7f9-8f5e-47f0-aa5f-4c7883bced0f",
         "2a5429f7-c906-4426-9dc5-156f3f996991",
+        "2506df25-f1e5-4285-a34e-0e8dca89a757",
         "8d0bf6f9-3664-4503-8318-caa3f1cbcb4e",
         "fd103320-5aed-45a7-a57a-e09907e387ba",
         "09de95b6-3bc3-4bdf-b3a3-8440c65b1fa5",

@@ -4,7 +4,7 @@
 /// @param alpha
 /// @param x
 /// @param y
-/// @param object-cache
+/// @param tiled-cache
 
 var json = argument[0];
 var columns = argument[1];
@@ -12,7 +12,7 @@ var z = argument[2];
 var alpha = (argument_count > 3) ? argument[3] : 1;
 var xx = (argument_count > 4) ? argument[4] : 0;
 var yy = (argument_count > 5) ? argument[5] : 0;
-var object_cache = (argument_count > 6) ? argument[6] : noone;
+var tiled_cache = (argument_count > 6) ? argument[6] : noone;
 var map = Stuff.map.active_map;
 var map_contents = map.contents;
 var ts = get_active_tileset();
