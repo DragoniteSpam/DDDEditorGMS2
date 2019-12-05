@@ -2584,6 +2584,14 @@
             }
         },
         {
+            "Key": "2a5429f7-c906-4426-9dc5-156f3f996991",
+            "Value": {
+                "id": "74348e4c-261c-4002-be81-e05e9593cfa8",
+                "resourcePath": "scripts\\import_map_tiled_get_cached_object\\import_map_tiled_get_cached_object.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "2a65013a-ee4f-4d11-9049-d4d3d65d856a",
             "Value": {
                 "id": "5e0f6e0b-da93-4417-ac54-5da3db7af389",
@@ -15975,6 +15983,7 @@
         "6e16cdf1-eb57-4011-8629-938cfc0111c7",
         "2e5dcb3f-b72d-4719-bdcd-2fccb646b7d9",
         "3786d7f9-8f5e-47f0-aa5f-4c7883bced0f",
+        "2a5429f7-c906-4426-9dc5-156f3f996991",
         "8d0bf6f9-3664-4503-8318-caa3f1cbcb4e",
         "fd103320-5aed-45a7-a57a-e09907e387ba",
         "09de95b6-3bc3-4bdf-b3a3-8440c65b1fa5",

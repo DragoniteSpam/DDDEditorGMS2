@@ -20,6 +20,8 @@ if (file_exists(filename)) {
     
     var json_type = json[? "type"];
     if (json_type == "map") {
+        var object_cache = ds_map_create();
+        object_cache[? "*dir"] = filename_dir(filename);
         
         var json_layers = json[? "layers"];
         
@@ -84,9 +86,9 @@ if (file_exists(filename)) {
                 var layer_type = layer_data[? "type"];
             
                 switch (layer_type) {
-                    case "group": layer_z = import_map_tiled_layer_folder(layer_data, tileset_columns, layer_z); break;
-                    case "objectgroup": layer_z = import_map_tiled_layer_object(layer_data, tileset_columns, layer_z); break;
-                    case "tilelayer": layer_z = import_map_tiled_layer_tile(layer_data, tileset_columns, layer_z); break;
+                    case "group": layer_z = import_map_tiled_layer_folder(layer_data, tileset_columns, layer_z, 1, 0, 0, object_cache); break;
+                    case "objectgroup": layer_z = import_map_tiled_layer_object(layer_data, tileset_columns, layer_z, 1, 0, 0, object_cache); break;
+                    case "tilelayer": layer_z = import_map_tiled_layer_tile(layer_data, tileset_columns, layer_z, 1, 0, 0, object_cache); break;
                 }
             }
             
@@ -108,6 +110,8 @@ if (file_exists(filename)) {
         } else {
             dialog_create_notice(noone, "No valid tileset file found for " + filename_name(filename) + ". Please find one.");
         }
+        
+        ds_map_destroy(object_cache);
     }
     
     ds_map_destroy(json);
