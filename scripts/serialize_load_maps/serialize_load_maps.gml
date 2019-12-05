@@ -26,11 +26,16 @@ repeat (n_maps) {
     
     if (buffer_md5(map.data_buffer, 0, buffer_get_size(buffer)) != EMPTY_BUFFER_MD5) {
         buffer_seek(map.data_buffer, buffer_seek_start, 0);
-    
+        
         buffer_read(map.data_buffer, buffer_datatype);
         // @todo when all of the map contents variables have been moved over to regular map
         //serialize_load_map_contents_meta(map.data_buffer, version, map);
-
+        
+        // signed because it's allowed to be -1
+        // for those curious, this caused the editor to crash but not the game because the
+        // game doesn't read this data here
+        map.tiled_map_id = buffer_read(map.data_buffer, buffer_s32);
+        
         map.xx = buffer_read(map.data_buffer, buffer_u16);
         map.yy = buffer_read(map.data_buffer, buffer_u16);
         map.zz = buffer_read(map.data_buffer, buffer_u16);
