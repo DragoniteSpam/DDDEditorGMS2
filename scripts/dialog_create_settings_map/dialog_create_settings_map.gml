@@ -2,7 +2,9 @@
 
 var dialog = argument0;
 // no need to check that it exists because the button will be disabled if it doesn't
-var map = Stuff.all_maps[| ui_list_selection(dialog.root.el_map_list)];
+var selection = ui_list_selection(dialog.root.el_map_list);
+var index = (selection + 1) ? selection : 0;
+var map = Stuff.all_maps[| index];
 var map_contents = map.contents;
 
 var dw = 640;
