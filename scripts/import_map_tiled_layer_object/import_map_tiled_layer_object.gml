@@ -155,17 +155,23 @@ for (var i = 0; i < ds_list_size(layer_objects); i++) {
         case "mesh":
             var pr_cutscene_entrypoint = data_properties[? "CutsceneEntrypoint"];
             var pr_static = data_properties[? "Static?"];
+            var pr_offset_x = data_properties[? "OffsetX"];
+            var pr_offset_y = data_properties[? "OffsetY"];
             
             if (pr_cutscene_entrypoint == undefined) break;
             if (pr_static == undefined) break;
+            if (pr_offset_x == undefined) pr_offset_x = 0; else pr_offset_x = pr_offset_x[? "value"];
+            if (pr_offset_y == undefined) pr_offset_y = 0; else pr_offset_y = pr_offset_y[? "value"];
             
             pr_cutscene_entrypoint = pr_cutscene_entrypoint[? "value"];
             pr_static = pr_static[? "value"];
             
             var pr_mesh_data = internal_name_get(gid_to_image_name);
             if (pr_mesh_data) {
-                map_add_thing(instance_create_mesh(pr_mesh_data), (xx + obj_x) div TILE_WIDTH, (yy + obj_y - data_height) div TILE_HEIGHT, zz);
-                
+                var instance = instance_create_mesh(pr_mesh_data);
+                instance.off_xx = pr_offset_x / TILE_WIDTH;
+                instance.off_yy = pr_offset_y / TILE_HEIGHT;
+                map_add_thing(instance, (xx + obj_x) div TILE_WIDTH, (yy + obj_y - data_height) div TILE_HEIGHT, zz);
             } else {
                 show_error("Log an error somewhere", false);
             }
