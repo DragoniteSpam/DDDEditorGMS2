@@ -121,7 +121,8 @@ setting_npc_animate_rate = setting_get("Config", "npc-speed", 4);           // b
 setting_code_extension = setting_get("Config", "code-ext", 1);              // 0 = txt, 1 = lua
 setting_text_extension = setting_get("Config", "text-ext", 0);              // 0 = txt, 1 = md
 setting_normal_threshold = setting_get("Config", "normal-threshold", 30);   // degrees
-setting_tooltip = setting_get("Config", "tooltip", true);                  // bool
+setting_tooltip = setting_get("Config", "tooltip", true);                   // bool
+setting_camera_fly_rate = setting_get("Config", "camera-fly", 1);           // 0.5 ... 4
 
 setting_location_ddd = setting_get("Location", "ddd", "./");
 setting_location_mesh = setting_get("Location", "mesh", "./");
