@@ -28,4 +28,6 @@ if (!(top && (top.dialog_flags & DialogFlags.IS_EXCEPTION))) {
     if (difference) {
         dialog.el_text.text = dialog.el_text.text + "    (" + string(difference) + " more)";
     }
+    
+    debug(string_replace_all(dialog.el_text.text, "\n", " "));
 }
