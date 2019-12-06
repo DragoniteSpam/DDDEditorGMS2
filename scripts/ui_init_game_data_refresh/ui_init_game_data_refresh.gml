@@ -108,6 +108,17 @@ for (var i = 0; i < ds_list_size(dynamic.contents); i++) {
                             }
                         }
                         break;
+                    case DataTypes.AUDIO_BGM:
+                    case DataTypes.AUDIO_SE:
+                        ui_list_deselect(thingy);
+                        // @todo gml update chained accessors, in a few places in this script
+                        for (var k = 0; k < ds_list_size(thingy.entries); k++) {
+                            if (thingy.entries[| k].GUID == ds_list_find_value(instance.values[| n], 0)) {
+                                ui_list_select(thingy, k, true);
+                                break;
+                            }
+                        }
+                        break;
                 }
             } // else it's just a button
         } else {
@@ -145,7 +156,7 @@ for (var i = 0; i < ds_list_size(dynamic.contents); i++) {
                 case DataTypes.AUDIO_SE:
                 case DataTypes.ANIMATION:
                 case DataTypes.MAP:
-                    thingy.value = 0;
+                    ui_list_deselect(thingy);
                     break;
                 case DataTypes.ENTITY:
                     // not allowed
