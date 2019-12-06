@@ -9,7 +9,10 @@ draw_clear(c_black);
 
 gpu_set_zwriteenable(true);
 gpu_set_cullmode(Stuff.setting_view_backface ? cull_noculling : cull_counterclockwise);
-gpu_set_ztestenable(map.is_3d);        // this will make things rather odd with the wrong setting
+// this used to be turned off for 2D maps and there was a comment saying weird things
+// would happen, but it was causing layering issues and i havent seen anything bad
+// happen from turning it off yet
+gpu_set_ztestenable(true);
 
 draw_set_color(c_white);
 
