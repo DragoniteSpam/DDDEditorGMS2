@@ -85,7 +85,6 @@ switch (what.type) {
     case DataTypes.MESH:
         var list = base_dialog.el_value_other;
         list.entries = Stuff.all_meshes;
-        what.value_guid = 0;
         ui_list_deselect(list);
         ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value_guid)), true);
         list.enabled = true;
@@ -94,7 +93,6 @@ switch (what.type) {
     case DataTypes.IMG_TILESET:
         var list = base_dialog.el_value_other;
         list.entries = Stuff.all_graphic_tilesets;
-        what.value_guid = 0;
         ui_list_deselect(list);
         ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value_guid)), true);
         list.enabled = true;
@@ -107,7 +105,6 @@ switch (what.type) {
         show_error("autotile data is still just an array, they really need to be changed to LWO-ish things soon", true);
         var list = base_dialog.el_value_other;
         list.entries = Stuff.all_graphic_autotiles;
-        what.value_guid = 0;
         ui_list_deselect(list);
         ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value_guid)), true);
         list.enabled = true;
@@ -116,7 +113,6 @@ switch (what.type) {
     case DataTypes.AUDIO_BGM:
         var list = base_dialog.el_value_other;
         list.entries = Stuff.all_bgm;
-        what.value_guid = 0;
         ui_list_deselect(list);
         ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value_guid)), true);
         list.enabled = true;
@@ -125,7 +121,6 @@ switch (what.type) {
     case DataTypes.AUDIO_SE:
         var list = base_dialog.el_value_other;
         list.entries = Stuff.all_se;
-        what.value_guid = 0;
         ui_list_deselect(list);
         ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value_guid)), true);
         list.enabled = true;
@@ -134,7 +129,6 @@ switch (what.type) {
     case DataTypes.ANIMATION:
         var list = base_dialog.el_value_other;
         list.entries = Stuff.all_animations;
-        what.value_guid = 0;
         ui_list_deselect(list);
         ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value_guid)), true);
         list.enabled = true;
@@ -143,7 +137,6 @@ switch (what.type) {
     case DataTypes.MAP:
         var list = base_dialog.el_value_other;
         list.entries = Stuff.all_maps;
-        what.value_guid = 0;
         ui_list_deselect(list);
         ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value_guid)), true);
         list.enabled = true;
@@ -152,7 +145,6 @@ switch (what.type) {
     case DataTypes.IMG_BATTLER:
         var list = base_dialog.el_value_other;
         list.entries = Stuff.all_graphic_battlers;
-        what.value_guid = 0;
         ui_list_deselect(list);
         ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value_guid)), true);
         list.enabled = true;
@@ -161,7 +153,6 @@ switch (what.type) {
     case DataTypes.IMG_OVERWORLD:
         var list = base_dialog.el_value_other;
         list.entries = Stuff.all_graphic_overworlds;
-        what.value_guid = 0;
         ui_list_deselect(list);
         ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value_guid)), true);
         list.enabled = true;
@@ -170,7 +161,6 @@ switch (what.type) {
     case DataTypes.IMG_PARTICLE:
         var list = base_dialog.el_value_other;
         list.entries = Stuff.all_graphic_particles;
-        what.value_guid = 0;
         ui_list_deselect(list);
         ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value_guid)), true);
         list.enabled = true;
@@ -179,7 +169,6 @@ switch (what.type) {
     case DataTypes.IMG_UI:
         var list = base_dialog.el_value_other;
         list.entries = Stuff.all_graphic_ui;
-        what.value_guid = 0;
         ui_list_deselect(list);
         ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value_guid)), true);
         list.enabled = true;
@@ -188,7 +177,6 @@ switch (what.type) {
     case DataTypes.IMG_ETC:
         var list = base_dialog.el_value_other;
         list.entries = Stuff.all_graphic_etc;
-        what.value_guid = 0;
         ui_list_deselect(list);
         ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value_guid)), true);
         list.enabled = true;
