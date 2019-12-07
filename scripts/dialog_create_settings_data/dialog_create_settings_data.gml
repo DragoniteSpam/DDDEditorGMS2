@@ -10,9 +10,9 @@ var dg = dialog_create(dw, dh, "Data Settings", dialog_default, dc_close_no_ques
 var ew = (dw - 64) / 2;
 var eh = 24;
 
-var vx1 = dw / 4 + 16;
+var vx1 = ew / 2;
 var vy1 = 0;
-var vx2 = vx1 + 80;
+var vx2 = ew;
 var vy2 = vy1 + eh;
 
 var col1_x = 16;
@@ -23,6 +23,7 @@ var yy = 64;
 var yy_base = yy;
 
 var el_gameplay_title = create_text(col1_x, yy, "General Gameplay Settings", ew, eh, fa_left, dw / 2, dg);
+el_gameplay_title.color = c_blue;
 yy = yy + el_gameplay_title.height + spacing;
 var el_gameplay_grid = create_checkbox(col1_x, yy, "Snap Player to Grid", ew, eh, uivc_settings_game_grid, Stuff.game_player_grid, dg);
 el_gameplay_grid.tooltip = "Whether the player's position will be restricted to the grid, or whether they will be allowed to move freely between cells";
@@ -36,14 +37,22 @@ create_radio_array_options(el_battle_type, ["Team-based", "Grid-based", "Action"
 yy = yy + ui_get_radio_array_height(el_battle_type) + spacing;
 
 var el_edit_title = create_text(col1_x, yy, "Other Settings", ew, eh, fa_left, ew, dg);
+el_edit_title.color = c_blue;
 yy = yy + el_edit_title.height + spacing;
 var el_edit_include_terrain = create_checkbox(col1_x, yy, "Include Terrain?", ew, eh, uivc_settings_game_include_terrain, Stuff.game_include_terrain, dg);
 el_edit_include_terrain.tooltip = "It can be handy to save the terrain you are working on to the data file, but this can be very expensive space-wise. Feel free to turn this off if you're not making a game that uses this.";
 yy = yy + el_edit_include_terrain.height + spacing;
+var el_edit_notes_text = create_text(col1_x, yy, "Game Notes", ew, eh, fa_left, ew, dg);
+yy = yy + el_edit_notes_text.height + spacing;
+var el_edit_notes = create_input_code(col1_x, yy, "", ew, eh, 0, vy1, ew, vy2, Stuff.game_notes, uivc_settings_game_notes, dg);
+el_edit_notes.tooltip = "This doesn't affect the game, but you may find it helpful to keep a set of notes for things you want to remember while working on it.";
+el_edit_notes.is_code = false;
+yy = yy + el_edit_notes.height + spacing;
 
 yy = yy_base;
 
 var el_global_title = create_text(col2_x, yy, "Variables and Stuff", ew, eh, fa_left, dw / 2, dg);
+el_global_title.color = c_blue;
 yy = yy + el_global_title.height + spacing;
 var el_variables = create_button(col2_x, yy, "Global Variables", ew, eh, fa_center, dialog_create_settings_data_variables, dg);
 el_variables.tooltip = "A list of built-in variables which you may wish to modify during the game. You may set their default values here.";
@@ -68,7 +77,7 @@ var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Do
 
 ds_list_add(dg.contents,
     el_gameplay_title, el_gameplay_grid, el_player_start, el_battle_type,
-    el_edit_title, el_edit_include_terrain,
+    el_edit_title, el_edit_include_terrain, el_edit_notes_text, el_edit_notes,
     el_global_title, el_variables, el_switches, el_event_triggers, el_game_constants,
     el_confirm
 );

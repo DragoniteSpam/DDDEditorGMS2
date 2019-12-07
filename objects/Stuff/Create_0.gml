@@ -466,6 +466,8 @@ game_battle_style = BattleStyles.TEAM_BASED;
 
 game_include_terrain = true;
 
+game_notes = "";
+
 // hacky workarounds
 maps_included = false;
 

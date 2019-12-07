@@ -11,6 +11,16 @@ buffer_read(buffer, buffer_u8);
 buffer_read(buffer, buffer_u8);
 
 var version = buffer_read(buffer, buffer_u32);
+
+if (version >= DataVersions._CURRENT) {
+    dialog_create_notice(noone,
+        "The file(s) appear to be from a future version of the data format (" + string(version) +
+        "). The latest version supported by this game is " + string(DataVersions._CURRENT) + ". Can't open."
+    );
+    buffer_delete(buffer);
+    return false;
+}
+
 var what = buffer_read(buffer, buffer_u8);
 if (version >= DataVersions.REMOVE_UNUSED_DATA) {
 } else {

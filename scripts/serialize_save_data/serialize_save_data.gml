@@ -131,5 +131,6 @@ enum DataVersions {
     GENERIC_DATA                = 62,
     PAWN_HELPFUL_DATA           = 63,
     MAP_TILED_ID                = 64,
+    GAME_NOTES                  = 65,
     _CURRENT /* = whatever the last one is + 1 */
 }

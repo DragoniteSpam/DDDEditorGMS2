@@ -53,6 +53,8 @@ for (var i = 0; i < n_constants; i++) {
     buffer_write(buffer, buffer_datatype, what.value_guid);
 }
 
+buffer_write(buffer, buffer_string, Stuff.game_notes);
+
 buffer_poke(buffer, addr_next, buffer_u64, buffer_tell(buffer));
 
 return buffer_tell(buffer);

@@ -63,3 +63,7 @@ if (version >= DataVersions.GLOBAL_CONSTANTS) {
         ds_list_add(Stuff.all_game_constants, what);
     }
 }
+
+if (version >= DataVersions.GAME_NOTES) {
+    Stuff.game_notes = buffer_read(buffer, buffer_string);
+}
