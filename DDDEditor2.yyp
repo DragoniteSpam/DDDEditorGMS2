@@ -7688,6 +7688,14 @@
             }
         },
         {
+            "Key": "7e17571b-1269-471b-803e-a98b39ba3ac1",
+            "Value": {
+                "id": "0a8258e4-7d49-4e13-ab3a-261d4d467e1d",
+                "resourcePath": "sprites\\spr_progress_fill\\spr_progress_fill.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "7e6ecd08-9f9f-401d-95c1-cea6f1201cc6",
             "Value": {
                 "id": "774d6e71-55ce-4db2-aeff-c9bc79952782",

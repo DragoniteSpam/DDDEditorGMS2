@@ -18,11 +18,11 @@ var x2 = base_x2 - padding;
 var y2 = base_y2;
 
 var mid_yy = mean(y1, y2);
-var bar_y1 = mid_yy + bar.thickness / 2;
-var bar_y2 = mid_yy - bar.thickness / 2;
+var bar_y1 = mid_yy - bar.thickness / 2;
+var bar_y2 = mid_yy + bar.thickness / 2;
 var bar_x = x1 + clamp(bar.value, 0, 1) * (x2 - x1);
 
-draw_rectangle_colour(x1, bar_y1, bar_x, bar_y2, bar.color, bar.color, bar.color, bar.color, false);
+draw_sprite_stretched_ext(spr_progress_fill, 0, x1, bar_y1, (bar_x - x1), (bar_y2 - bar_y1), bar.color, 1);
 draw_rectangle_colour(x1, bar_y1, x2, bar_y2, c_black, c_black, c_black, c_black, true);
 
 draw_sprite(spr_slider, 0, bar_x, mid_yy);

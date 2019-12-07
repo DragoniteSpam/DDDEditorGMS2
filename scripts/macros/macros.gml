@@ -94,12 +94,13 @@
 #macro view_hud_width_3d 520
 #macro view_hud_width_event 320
 
-#macro c_ev_basic 0x99ffcc
+#macro c_ev_basic 0x99ff00
 #macro c_ev_comment 0xd8bfd8
 #macro c_ev_custom 0x99ccff
 #macro c_ev_ghost 0x0099cc
 #macro c_ev_init 0xffcc99
 #macro c_magenta 0xff00ff
+#macro c_progress_bar 0xff9900
 #macro c_tooltip 0xccffff
 #macro c_ui_select 0xffb8ac
 #macro c_ui 0xebebeb

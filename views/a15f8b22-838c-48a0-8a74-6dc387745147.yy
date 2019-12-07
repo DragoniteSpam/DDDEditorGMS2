@@ -26,7 +26,8 @@
         "f74788fe-a1cb-40ec-8253-1eaf827c4029",
         "cec57a55-b413-4634-9918-a7cfd9322712",
         "0cd80a61-d632-4995-99b3-ce8267528197",
-        "1311f21a-7abf-4139-8202-27716dea6aee"
+        "1311f21a-7abf-4139-8202-27716dea6aee",
+        "7e17571b-1269-471b-803e-a98b39ba3ac1"
     ],
     "filterType": "GMSprite",
     "folderName": "user interface",
