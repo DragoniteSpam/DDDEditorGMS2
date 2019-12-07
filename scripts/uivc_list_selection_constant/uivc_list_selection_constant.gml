@@ -1,7 +1,8 @@
 /// @param UIList
 
-var selection = ui_list_selection(argument0);
-var base_dialog = argument0.root;
+var list = argument0;
+var selection = ui_list_selection(list);
+var base_dialog = list.root;
 
 if (selection + 1) {
     var what = Stuff.all_game_constants[| selection];
