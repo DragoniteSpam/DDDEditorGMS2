@@ -67,7 +67,9 @@ var move_direction = 0;
 if (list.interactive && active) {
     var inbounds = mouse_within_rectangle_determine(x1, y2, x2 - offset, y3, list.adjust_view);
     if (inbounds) {
-        if (Controller.double_left) {
+        if (Controller.mouse_middle) {
+            script_execute(list.onmiddleclick, list);
+        } else if (Controller.double_left) {
             script_execute(list.ondoubleclick, list);
         } else if (Controller.press_left) {
             // if this ends up having a bounds problem it's probably because the list is empty and

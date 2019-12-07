@@ -15,6 +15,7 @@ click_y = -1;
 
 onvaluechange = null;
 ondoubleclick = null;
+onmiddleclick = null;
 render = ui_render_list;
 render_colors = ui_list_colors;
 
