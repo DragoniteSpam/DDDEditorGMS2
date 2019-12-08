@@ -54,12 +54,15 @@ var el_stop = create_button(xx, yy, "Stop", ew / 4, eh, fa_center, dmu_dialog_st
 yy = yy + el_name.height + spacing * 2;
 var el_effects = create_text(c2 + 16, yy, "Effects such as volume, pitch, etc can be defined when the sound is played in-game.", ew, eh, fa_left, ew, dg);
 
+var el_sample_rate = create_input(c2 + 16, yy, "Sample Rate:", ew, eh, null, 0, "hertz", validate_int, 0, 0xffffff, 8, vx1, vy1, vx2, vy2, dg);
+yy = yy + el_sample_rate.height + spacing;
+
 var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
 
 ds_list_add(dg.contents,
     el_list, el_add, el_remove,
     el_play, el_pause, el_resume, el_stop,
-    el_name_text, el_name, el_name_internal_text, el_name_internal, el_effects,
+    el_name_text, el_name, el_name_internal_text, el_name_internal, el_effects, el_sample_rate,
     el_confirm
 );
 

@@ -78,6 +78,8 @@ yy = yy + el_loop_end.height + spacing;
 var el_loop_progress = create_progress_bar(c3 + 16, yy, ew, eh, uivc_audio_bgm_loop_point, 8, 0, dg);
 el_loop_progress.render = ui_render_progress_bgm;
 yy = yy + el_loop_progress.height + spacing;
+var el_sample_rate = create_input(c3 + 16, yy, "Sample Rate:", ew, eh, null, 0, "hertz", validate_int, 0, 0xffffff, 8, vx1, vy1, vx2, vy2, dg);
+yy = yy + el_sample_rate.height + spacing;
 
 var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
 
@@ -85,7 +87,7 @@ ds_list_add(dg.contents,
     el_list, el_add, el_remove,
     el_play, el_pause, el_resume, el_stop,
     el_name_text, el_name, el_name_internal_text, el_name_internal,
-    el_effects, el_length, el_loop_start, el_loop_end, el_loop_progress,
+    el_effects, el_length, el_loop_start, el_loop_end, el_loop_progress, el_sample_rate,
     el_confirm
 );
 

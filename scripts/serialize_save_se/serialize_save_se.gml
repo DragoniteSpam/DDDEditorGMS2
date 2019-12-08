@@ -15,6 +15,7 @@ for (var i = 0; i < n_se; i++) {
     serialize_save_generic(buffer, se);
     
     buffer_write(buffer, buffer_string, se.temp_name);
+    
     if (file_exists(se.temp_name)) {
         var fbuffer = buffer_load(se.temp_name);
         var len = buffer_get_size(fbuffer);
@@ -27,6 +28,8 @@ for (var i = 0; i < n_se; i++) {
         buffer_write(buffer, buffer_u32, 0 /* this is important for something i think */);
         debug("Audio file not found: " + string(se.GUID) + " [" + se.name + "]");
     }
+    
+    buffer_write(buffer, buffer_u32, se.fmod_rate);
 }
 
 buffer_poke(buffer, addr_next, buffer_u64, buffer_tell(buffer));

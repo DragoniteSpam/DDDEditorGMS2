@@ -5,6 +5,7 @@ file_location = DataFileLocations.ASSET;
 
 fmod = noone;
 fmod_type = 0;          // FMODGMS_SOUND_TYPE_*
+fmod_rate = 44100;
 temp_name = "";
 
 loop_start = 0;

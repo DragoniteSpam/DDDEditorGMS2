@@ -28,6 +28,10 @@ for (var i = 0; i < n_bgm; i++) {
     buffer_save(fbuffer, bgm.temp_name);
     buffer_delete(fbuffer);
     
+    if (version >= DataVersions.FMOD_SAMPLE_RATE) {
+        bgm.fmod_rate = buffer_read(buffer, buffer_u32);
+    }
+    
     if (length == 0) {
         debug("Audio file was not embedded properly, you probably want to re-load: " + string(bgm.GUID) + " [" + bgm.name + "]");
     } else {
