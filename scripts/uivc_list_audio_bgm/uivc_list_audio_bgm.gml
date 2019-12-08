@@ -10,7 +10,8 @@ if (selection + 1) {
     ui_input_set_value(list.root.el_name_internal, what.internal_name);
     ui_input_set_value(list.root.el_loop_start, string(what.loop_start));
     ui_input_set_value(list.root.el_loop_end, string(what.loop_end));
-    list.root.el_length.text = "Length: " + string(FMODGMS_Snd_Get_Length(what.fmod) / AUDIO_BASE_FREQUENCY) + " s";
+    ui_input_set_value(list.root.el_sample_rate, string(what.fmod_rate));
+    list.root.el_length.text = "Length: " + string(FMODGMS_Snd_Get_Length(what.fmod) / what.fmod_rate) + " s";
     
     if (Stuff.fmod_sound) {
         FMODGMS_Chan_StopChannel(Stuff.fmod_channel);

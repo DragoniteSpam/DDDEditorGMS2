@@ -8,6 +8,8 @@ if (selection + 1) {
         FMODGMS_Chan_StopChannel(Stuff.fmod_channel);
     }
     
-    Stuff.fmod_sound = Stuff.all_se[| selection].fmod;
+    var what = Stuff.all_se[| selection];
+    Stuff.fmod_sound = what.fmod;
     FMODGMS_Snd_PlaySound(Stuff.fmod_sound, Stuff.fmod_channel);
+    FMODGMS_Chan_Set_Frequency(Stuff.fmod_channel, what.fmod_rate);
 }

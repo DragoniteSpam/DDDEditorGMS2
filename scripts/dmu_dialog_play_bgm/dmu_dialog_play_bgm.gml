@@ -5,13 +5,10 @@ var button = argument0;
 var selection = ui_list_selection(button.root.el_list);
 
 if (selection + 1) {
-    if (Stuff.fmod_sound) {
-        FMODGMS_Chan_StopChannel(Stuff.fmod_channel);
-        Stuff.fmod_playing = false;
-        Stuff.fmod_paused = false;
-    }
+    FMODGMS_Chan_StopChannel(Stuff.fmod_channel);
     
-    Stuff.fmod_sound = Stuff.all_bgm[| selection].fmod;
+    var what = Stuff.all_bgm[| selection];
+    Stuff.fmod_sound = what.fmod;
     FMODGMS_Snd_PlaySound(Stuff.fmod_sound, Stuff.fmod_channel);
-    Stuff.fmod_playing = true;
+    FMODGMS_Chan_Set_Frequency(Stuff.fmod_channel, what.fmod_rate);
 }

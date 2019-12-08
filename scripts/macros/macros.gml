@@ -105,7 +105,6 @@
 #macro c_ui_select 0xffb8ac
 #macro c_ui 0xebebeb
 
-#macro AUDIO_BASE_FREQUENCY 48000
 #macro BILLION 1000000000
 #macro EMPTY_BUFFER_MD5 "93b885adfe0da089cdf634904fd59f71"
 #macro MILLION 1000000

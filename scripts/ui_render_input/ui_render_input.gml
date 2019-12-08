@@ -78,7 +78,7 @@ if (input.interactive && dialog_is_active(input.root)) {
         keyboard_string = value;
         
         if (script_execute(input.validation, value, input)) {
-            var execute_value_change = (!input.require_enter && v0 != value) || (input.require_enter && keyboard_check_pressed(vk_enter));
+            var execute_value_change = (!input.require_enter && v0 != value) || (input.require_enter && Controller.press_enter);
             if (execute_value_change) {
                 if (input.real_value) {
                     var n = script_execute(input.value_conversion, value);

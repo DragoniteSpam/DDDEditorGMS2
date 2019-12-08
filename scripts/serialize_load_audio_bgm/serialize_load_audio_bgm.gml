@@ -37,7 +37,7 @@ for (var i = 0; i < n_bgm; i++) {
     } else {
         bgm.fmod = FMODGMS_Snd_LoadStream(environment_get_variable("localappdata") + "\\DDDEditor2\\" + bgm.temp_name);
         FMODGMS_Snd_Set_LoopMode(bgm.fmod, FMODGMS_LOOPMODE_NORMAL, -1);
-        FMODGMS_Snd_Set_LoopPoints(bgm.fmod, bgm.loop_start * AUDIO_BASE_FREQUENCY, bgm.loop_end * AUDIO_BASE_FREQUENCY);
+        FMODGMS_Snd_Set_LoopPoints(bgm.fmod, bgm.loop_start * bgm.fmod_rate, bgm.loop_end * bgm.fmod_rate);
     }
     
     ds_list_add(Stuff.all_bgm, bgm);
