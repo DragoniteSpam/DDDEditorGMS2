@@ -11,8 +11,8 @@ data.fmod = FMODGMS_Snd_LoadStream(filename);
 data.fmod_type = FMODGMS_Snd_Get_Type(data.fmod);
 FMODGMS_Snd_Set_LoopMode(data.fmod, FMODGMS_LOOPMODE_NORMAL, -1);
 data.loop_start = 0;
-data.loop_end = FMODGMS_Snd_Get_Length(data.fmod) / data.fmod_rate;
-FMODGMS_Snd_Set_LoopPoints(data.fmod, 0, data.loop_end * data.fmod_rate);
+data.loop_end = FMODGMS_Snd_Get_Length(data.fmod);
+FMODGMS_Snd_Set_LoopPoints(data.fmod, 0, data.loop_end);
 
 internal_name_generate(data, PREFIX_AUDIO_BGM + internal_name);
 

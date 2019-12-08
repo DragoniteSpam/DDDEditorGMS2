@@ -24,8 +24,8 @@ if (!ds_list_empty(Stuff.all_bgm) && (selection + 1)) {
     var mid_yy = mean(y1, y2);
     var bar_y1 = mid_yy - progress.thickness / 2 + 2;
     var bar_y2 = mid_yy + progress.thickness / 2 - 2;
-    var loop_start_x = x1 + bgm.loop_start * bgm.fmod_rate / length * (x2 - x1);
-    var loop_end_x = x1 + bgm.loop_end * bgm.fmod_rate / length * (x2 - x1);
+    var loop_start_x = x1 + bgm.loop_start / length * (x2 - x1);
+    var loop_end_x = x1 + bgm.loop_end / length * (x2 - x1);
     
     draw_line_width_color(loop_start_x, bar_y1, loop_start_x, bar_y2, 2, c_red, c_red);
     draw_line_width_color(loop_end_x, bar_y1, loop_end_x, bar_y2, 2, c_red, c_red);

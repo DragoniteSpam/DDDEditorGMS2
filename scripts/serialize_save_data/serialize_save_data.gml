@@ -133,5 +133,6 @@ enum DataVersions {
     MAP_TILED_ID                = 64,
     GAME_NOTES                  = 65,
     FMOD_SAMPLE_RATE            = 66,
+    FMOD_LOOP_POINT_SAMPLES     = 67,
     _CURRENT /* = whatever the last one is + 1 */
 }

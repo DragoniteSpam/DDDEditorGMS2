@@ -21,6 +21,13 @@ for (var i = 0; i < n_bgm; i++) {
     bgm.loop_start = buffer_read(buffer, buffer_f32);
     bgm.loop_end = buffer_read(buffer, buffer_f32);
     
+    if (version >= DataVersions.FMOD_LOOP_POINT_SAMPLES) {
+    } else {
+        var old_default_rate = 48000;
+        bgm.loop_start = bgm.loop_start * old_default_rate;
+        bgm.loop_end = bgm.loop_end * old_default_rate;
+    }
+    
     var length = buffer_read(buffer, buffer_u32);
     var fbuffer = buffer_create(length, buffer_fixed, 1);
     buffer_copy(buffer, buffer_tell(buffer), length, fbuffer, 0);
@@ -37,7 +44,7 @@ for (var i = 0; i < n_bgm; i++) {
     } else {
         bgm.fmod = FMODGMS_Snd_LoadStream(environment_get_variable("localappdata") + "\\DDDEditor2\\" + bgm.temp_name);
         FMODGMS_Snd_Set_LoopMode(bgm.fmod, FMODGMS_LOOPMODE_NORMAL, -1);
-        FMODGMS_Snd_Set_LoopPoints(bgm.fmod, bgm.loop_start * bgm.fmod_rate, bgm.loop_end * bgm.fmod_rate);
+        FMODGMS_Snd_Set_LoopPoints(bgm.fmod, bgm.loop_start, bgm.loop_end);
     }
     
     ds_list_add(Stuff.all_bgm, bgm);
