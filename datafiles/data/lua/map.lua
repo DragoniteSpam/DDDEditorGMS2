@@ -13,12 +13,19 @@ end
 -- @param map the map, which you are allowed to get (and set) the properties of
 -- @param t the number of seconds since Game Start
 function Enter(map, t)
+    BeginMusic(map, t)
 end
 
 -- Required; called once when the map is exited
 -- @param map the map, which you are allowed to get (and set) the properties of
 -- @param t the number of seconds since Game Start
 function Exit(map, t)
+end
+
+-- Required; called any time the music will be started
+-- @param map the map, which you are allowed to get (and set) the properties of
+-- @param t the number of seconds since Game Start
+function BeginMusic(map, t)
 end
 
 -- Not required, but recommended; determines random encounters for different
