@@ -529,6 +529,7 @@ switch (node.type) {
                         case DataTypes.DATA:
                             var datadata = guid_get(type[EventNodeCustomData.TYPE_GUID]);
                             var setdata = guid_get(custom_data_list[| 0]);
+                            
                             if (!datadata) {
                                 message = message + "(<no type set>)";
                             } else if (!setdata) {
