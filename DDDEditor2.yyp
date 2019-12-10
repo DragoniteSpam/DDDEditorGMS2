@@ -1272,6 +1272,14 @@
             }
         },
         {
+            "Key": "13a29890-b54d-4a12-ba7c-f11f012fc594",
+            "Value": {
+                "id": "5b7502eb-66e6-4cae-bcb5-925f3aab81a6",
+                "resourcePath": "scripts\\event_rename\\event_rename.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "13c16926-666f-43be-876c-1f7b7b19e562",
             "Value": {
                 "id": "802de72d-7c7a-4b36-b800-2a31c9207650",
@@ -17123,6 +17131,7 @@
         "7efd8b72-2430-41b5-855d-e5ec5525d8f1",
         "b630513b-98b8-4971-9592-05b1edac9d14",
         "62767d98-0d03-46f2-a6de-b79bc6629c39",
+        "13a29890-b54d-4a12-ba7c-f11f012fc594",
         "89c8bdd1-48c9-44ca-8885-1a0ffd7cca55",
         "d6a7855a-1b68-4b95-9838-0d8f23650938",
         "cae6374b-8f37-4d1f-a9b2-e971176a3b62",

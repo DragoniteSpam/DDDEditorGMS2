@@ -2,7 +2,7 @@
 /// @param UIInput
 
 var str = argument[0];
-var input = argument[1];
+var input = (argument_count > 1) ? argument[1] : noone;
 
 if (!string_length(str)) {
     return false;

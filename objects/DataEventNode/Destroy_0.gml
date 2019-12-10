@@ -43,3 +43,6 @@ for (var i = 0; i < ds_list_size(ui_things); i++) {
 }
 
 ds_list_destroy(ui_things);
+
+// remove this node from the registered names for nodes in the event
+ds_map_delete(event.name_map, name);
