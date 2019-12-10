@@ -3776,6 +3776,14 @@
             }
         },
         {
+            "Key": "3ebe9145-9a92-4bbe-a217-eb16b8f5c855",
+            "Value": {
+                "id": "eb949330-c856-4474-b5ca-833d32a17ceb",
+                "resourcePath": "scripts\\omu_event_add_prefab_event\\omu_event_add_prefab_event.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "3ef0de84-def2-48e5-9fe1-c7a24ea17eb2",
             "Value": {
                 "id": "079f7e69-88b1-4e23-93c3-512caef9c8e5",
@@ -4204,6 +4212,14 @@
             "Value": {
                 "id": "e5c76a93-3eaa-4d65-a7a3-8010c6f762d1",
                 "resourcePath": "scripts\\get_open_filename_mesh_d3d\\get_open_filename_mesh_d3d.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "45dc12ab-f5a2-4364-a032-3a357eb2fc4d",
+            "Value": {
+                "id": "15bc0fe5-eda6-4b7a-943e-bbb553dd90c1",
+                "resourcePath": "scripts\\dialog_create_add_prefab_node\\dialog_create_add_prefab_node.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -13083,6 +13099,14 @@
             }
         },
         {
+            "Key": "d4c8e0c9-f549-43d1-8211-889ddee604d6",
+            "Value": {
+                "id": "c196ec48-98e1-4657-8eed-447eab457f34",
+                "resourcePath": "scripts\\omu_event_prefab_dialog\\omu_event_prefab_dialog.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "d4d8f7f3-3113-4dcd-90b9-9d930c772de7",
             "Value": {
                 "id": "6f62b101-d486-4665-8ba3-11cbd8ac8930",
@@ -16167,6 +16191,7 @@
         "ce2c969c-4e06-446c-aa79-b4956504ecdd",
         "5f53b5c7-0f70-4bf5-b93d-41ab7676bb7d",
         "f84eaf9a-3ad7-4e05-8fd4-f9b2bc9ea54a",
+        "45dc12ab-f5a2-4364-a032-3a357eb2fc4d",
         "613a13a0-0722-48fd-8dd2-3ed455e6dd51",
         "803576ec-cfb9-4df2-8fd5-75d31feb9810",
         "2107e2a3-1d58-44ef-9930-9da619cb2f23",
@@ -16637,9 +16662,11 @@
         "ab72af93-f320-4bcb-b6f9-232cc709b3f1",
         "5756136b-8fb5-4d18-9688-caa4c729cd5e",
         "33774c6e-309c-4d7c-b28f-19e8c16b0f97",
+        "3ebe9145-9a92-4bbe-a217-eb16b8f5c855",
         "43235d98-3145-4fa2-88f9-0b9925e7cf45",
         "e4e4d918-e6c9-4be3-8f64-1e8276ebfa37",
         "5c1ab52a-b91a-4638-b11e-3ddeb81646f6",
+        "d4c8e0c9-f549-43d1-8211-889ddee604d6",
         "6013a280-0bc6-4e7c-9ba7-1e5bd47d3427",
         "c49a2eec-4933-40b9-b543-2909f0bea342",
         "79b2acef-a981-40b5-bebc-5b0c7dc5a07d",

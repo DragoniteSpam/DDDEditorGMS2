@@ -69,7 +69,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element_height + spacing;
     
-    element = create_button(legal_x + spacing, yy, "Prefab", element_width, element_height, fa_left, null, t_list);
+    element = create_button(legal_x + spacing, yy, "Prefab", element_width, element_height, fa_left, omu_event_prefab_dialog, t_list);
     ds_list_add(t_list.contents, element);
     
     #endregion
@@ -327,7 +327,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     element = create_button(legal_x + spacing, yy, "Custom", element_width, element_height, fa_left, omu_event_custom_dialog, t_list);
     ds_list_add(t_action2.contents, element);
     yy = yy + element_height;
-    element = create_button(legal_x + spacing, yy, "Prefab", element_width, element_height, fa_left, null, t_list);
+    element = create_button(legal_x + spacing, yy, "Prefab", element_width, element_height, fa_left, omu_event_prefab_dialog, t_list);
     ds_list_add(t_action2.contents, element);
     yy = yy + element_height;
     #endregion
