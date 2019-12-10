@@ -75,6 +75,7 @@ for (var i = 0; i < n_events; i++) {
                 
                 for (var k = 0; k < ds_list_size(node.custom_data); k++) {
                     var type = custom.types[| k];
+                    
                     switch (type[EventNodeCustomData.TYPE]) {
                         case DataTypes.INT:
                             var save_type = buffer_s32;

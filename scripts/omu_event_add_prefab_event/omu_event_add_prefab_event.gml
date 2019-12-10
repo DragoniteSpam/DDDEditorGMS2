@@ -11,9 +11,16 @@ if (selection + 1) {
     instantiated.name = prefab.name;
     ds_list_copy(instantiated.data, prefab.data);
     
+    for (var i = 0; i < ds_list_size(instantiated.custom_data); i++) {
+        ds_list_destroy(instantiated.custom_data[| i]);
+    }
+    
+    ds_list_clear(instantiated.custom_data);
+    
     for (var i = 0; i < ds_list_size(prefab.custom_data); i++) {
         ds_list_add(instantiated.custom_data, ds_list_clone(prefab.custom_data[| i]));
     }
+    
 }
 
 dialog_destroy();
