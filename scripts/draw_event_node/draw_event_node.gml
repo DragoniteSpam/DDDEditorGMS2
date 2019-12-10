@@ -17,8 +17,8 @@ var eh = 0;
 var tolerance = 4;
 var entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
 
-var entrypoint_height = 48;
-var ext_outbound_width = 16;
+var entrypoint_height = 64;
+var ext_node_padding = 12;
 
 var custom = noone;
 
@@ -30,7 +30,9 @@ switch (node.type) {
         
         if (rectangle_within_view(view_current, x1, y1, x2, y2)) {
             var c = colour_mute(c_ev_init);
-            draw_event_drag_handle(node, x1 + 16, y1 - 16, x2 - 16, y1 + 16, c);
+            draw_event_drag_handle(node, x1 + ext_node_padding, y1 - ext_node_padding, x2 - ext_node_padding, y1 + ext_node_padding, c);
+            draw_roundrect_colour(x2 - ext_node_padding, y1 + ext_node_padding, x2 + ext_node_padding, y2 - ext_node_padding, c, c, false);
+            draw_roundrect(x2 - ext_node_padding, y1 + ext_node_padding, x2 + ext_node_padding, y2 - ext_node_padding, true);
             draw_roundrect_colour(x1, y1, x2, y2, c_ev_init, c_ev_init, false);
             draw_roundrect(x1, y1, x2, y2, true);
             draw_event_node_title(node, c);
@@ -47,7 +49,7 @@ switch (node.type) {
         
         if (rectangle_within_view(view_current, x1, y1, x2, y2)) {
             var c = colour_mute(c_ev_comment);
-            draw_event_drag_handle(node, x1 + 16, y1 - 16, x2 - 16, y1 + 16, c);
+            draw_event_drag_handle(node, x1 + ext_node_padding, y1 - ext_node_padding, x2 - ext_node_padding, y1 + ext_node_padding, c);
             draw_roundrect_colour(x1, y1, x2, y2, c_ev_comment, c_ev_comment, false);
             draw_roundrect(x1, y1, x2, y2, true);
             draw_event_node_title(node, c);
@@ -78,9 +80,9 @@ switch (node.type) {
         
         if (rectangle_within_view(view_current, x1, y1, x2, y2)) {
             var c = colour_mute(c_ev_basic);
-            draw_event_drag_handle(node, x1 + 16, y1 - 16, x2 - 16, y1 + 16, c);
-            draw_roundrect_colour(x2 - 16, y1 + 16, x2 + ext_outbound_width, y2 - 16, c, c, false);
-            draw_roundrect(x2 - 16, y1 + 16, x2 + ext_outbound_width, y2 - 16, true);
+            draw_event_drag_handle(node, x1 + ext_node_padding, y1 - ext_node_padding, x2 - ext_node_padding, y1 + ext_node_padding, c);
+            draw_roundrect_colour(x2 - ext_node_padding, y1 + ext_node_padding, x2 + ext_node_padding, y2 - ext_node_padding, c, c, false);
+            draw_roundrect(x2 - ext_node_padding, y1 + ext_node_padding, x2 + ext_node_padding, y2 - ext_node_padding, true);
             draw_roundrect_colour(x1, y1, x2, y2, c_ev_basic, c_ev_basic, false);
             draw_roundrect(x1, y1, x2, y2, true);
             // this is the inbound node, which we don't really care about other than displaying
@@ -135,7 +137,7 @@ switch (node.type) {
         if (rectangle_within_view(view_current, x1, y1, x2, y2)) {
             var ncolor = c_ev_basic;
             var c = colour_mute(ncolor);
-            draw_event_drag_handle(node, x1 + 16, y1 - 16, x2 - 16, y1 + 16, c);
+            draw_event_drag_handle(node, x1 + ext_node_padding, y1 - ext_node_padding, x2 - ext_node_padding, y1 + ext_node_padding, c);
             draw_roundrect_colour(x1, y1, x2, y2, ncolor, ncolor, false);
             draw_roundrect(x1, y1, x2, y2, true);
             draw_sprite(spr_event_outbound, 2, x1, y1 + 16);
@@ -275,7 +277,9 @@ switch (node.type) {
         if (rectangle_within_view(view_current, x1, y1, x2, y2)) {
             var ncolor = c_ev_basic;
             var c = colour_mute(ncolor);
-            draw_event_drag_handle(node, x1 + 16, y1 - 16, x2 - 16, y1 + 16, c);
+            draw_event_drag_handle(node, x1 + ext_node_padding, y1 - ext_node_padding, x2 - ext_node_padding, y1 + ext_node_padding, c);
+            draw_roundrect_colour(x2 - ext_node_padding, y1 + ext_node_padding, x2 + ext_node_padding, y2 - ext_node_padding, c, c, false);
+            draw_roundrect(x2 - ext_node_padding, y1 + ext_node_padding, x2 + ext_node_padding, y2 - ext_node_padding, true);
             draw_roundrect_colour(x1, y1, x2, y2, ncolor, ncolor, false);
             draw_roundrect(x1, y1, x2, y2, true);
             draw_sprite(spr_event_outbound, 2, x1, y1 + 16);
@@ -364,9 +368,9 @@ switch (node.type) {
         
         if (rectangle_within_view(view_current, x1, y1, x2, y2)) {
             var c = colour_mute(ncolor);
-            draw_event_drag_handle(node, x1 + 16, y1 - 16, x2 - 16, y1 + 16, c);
-            draw_roundrect_colour(x2 - 16, y1 + 16, x2 + ext_outbound_width, y2 - 16, c, c, false);
-            draw_roundrect(x2 - 16, y1 + 16, x2 + ext_outbound_width, y2 - 16, true);
+            draw_event_drag_handle(node, x1 + ext_node_padding, y1 - ext_node_padding, x2 - ext_node_padding, y1 + ext_node_padding, c);
+            draw_roundrect_colour(x2 - ext_node_padding, y1 + ext_node_padding, x2 + ext_node_padding, y2 - ext_node_padding, c, c, false);
+            draw_roundrect(x2 - ext_node_padding, y1 + ext_node_padding, x2 + ext_node_padding, y2 - ext_node_padding, true);
             draw_roundrect_colour(x1, y1, x2, y2, ncolor, ncolor, false);
             draw_roundrect(x1, y1, x2, y2, true);
             draw_sprite(spr_event_outbound, 2, x1, y1 + 16);
@@ -642,6 +646,9 @@ switch (node.type) {
 }
 
 var entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
+var node_spr_width = sprite_get_width(spr_event_outbound);
+var node_spr_height = sprite_get_height(spr_event_outbound);
+var drag_from_yy = 0;
 
 // different node types may put the outbound nodes in different places - not all use more than one output node
 var bezier_override = false;
@@ -653,22 +660,27 @@ switch (node.type) {
         var outbound = node.outbound[| 0];
         
         if (!outbound) {
-            draw_event_node_outbound(x2, by, node, 0, true);
+            draw_event_node_outbound(x2 + ext_node_padding, by, node, 0, true);
         } else {
             var bx2 = outbound.x;
             var by2 = outbound.y + 16;
             
-            draw_event_node_outbound(x2, by, node);
-            draw_sprite(spr_event_dot, 0, x2, by);
+            draw_event_node_outbound(x2 + ext_node_padding, by, node);
+            draw_sprite(spr_event_dot, 0, x2 + ext_node_padding, by);
             
             if (Stuff.event.canvas_active_node != node) {
                 if (bx2 > x2) {
-                    draw_bezier(x2 + 8, by, bx2 - 8, by2);
+                    draw_bezier(x2 + ext_node_padding, by, bx2 - 8, by2);
                 } else {
-                    draw_event_ghost(x2 + 8, by, x2 + 64, by, outbound);
+                    draw_event_ghost(x2 + ext_node_padding, by, x2 + 64, by, outbound);
                 }
             }
         }
+        // the node is currently being dragged
+        if (Stuff.event.canvas_active_node == node) {
+            drag_from_yy = by;
+        }
+        
         break;
     #endregion
     case EventNodeTypes.COMMENT:
@@ -679,32 +691,33 @@ switch (node.type) {
         // it'd be real nice if this could just be in the default case, but the outbound nodes
         // are spaced slightly differently for this so it wouldn't really work
         bezier_override = true;
-        var by = entry_yy + entry_height - 16;
+        var by = entry_yy + entry_height - ext_node_padding;
         var n = ds_list_size(node.outbound);
         var bezier_y = 0;
         
         for (var i = 0; i < n; i++) {
             var outbound = node.outbound[| i];
             if (!outbound) {
-                draw_event_node_outbound(x2, by, node, i, true);
+                draw_event_node_outbound(x2 + ext_node_padding, by, node, i, true);
             } else {
                 var bx2 = outbound.x;
                 var by2 = outbound.y + 16;
                 
-                draw_event_node_outbound(x2, by, node, i);
-                draw_sprite(spr_event_dot, 0, x2, by);
-                
+                draw_event_node_outbound(x2 + ext_node_padding, by, node, i);
+                draw_sprite(spr_event_dot, 0, x2 + ext_node_padding, by);
+                // the node is not currently being dragged
                 if (Stuff.event.canvas_active_node != node || Stuff.event.canvas_active_node_index != i) {
                     if (bx2 > x2) {
-                        draw_bezier(x2 + 8, by, bx2 - 8, by2);
+                        draw_bezier(x2 + ext_node_padding, by, bx2 - 8, by2);
                     } else {
-                        draw_event_ghost(x2 + 8, by, x2 + 64, by, outbound);
+                        draw_event_ghost(x2 + ext_node_padding, by, x2 + 64, by, outbound);
                     }
                 }
             }
-            
+            // the node is currently being dragged
             if (Stuff.event.canvas_active_node == node && Stuff.event.canvas_active_node_index == i) {
                 bezier_y = by;
+                drag_from_yy = bezier_y;
             }
             
             // this is seriously screwing with scope but it works since nodes can't change type
@@ -724,7 +737,7 @@ switch (node.type) {
                 }
             }
             
-            draw_bezier(x2 + 8, bezier_y, mouse_x_view, mouse_y_view);
+            draw_bezier(x2 + ext_node_padding, bezier_y, mouse_x_view, mouse_y_view);
         }
         break;
     #endregion
@@ -739,25 +752,26 @@ switch (node.type) {
             var by = entry_yy + eh / 2;
             
             if (!outbound) {
-                draw_event_node_outbound(x2, by, node, i, true);
+                draw_event_node_outbound(x2 + ext_node_padding, by, node, i, true);
             } else {
                 var bx2 = outbound.x;
-                var by2 = outbound.y + 16;
+                var by2 = outbound.y + ext_node_padding;
                 
-                draw_event_node_outbound(x2, by, node, i);
-                draw_sprite(spr_event_dot, 0, x2, by);
-                
+                draw_event_node_outbound(x2 + ext_node_padding, by, node, i);
+                draw_sprite(spr_event_dot, 0, x2 + ext_node_padding, by);
+                // node is not currently being dragged
                 if (Stuff.event.canvas_active_node != node || Stuff.event.canvas_active_node_index != i) {
                     if (bx2 > x2) {
-                        draw_bezier(x2 + 8, by, bx2 - 8, by2);
+                        draw_bezier(x2 + ext_node_padding, by, bx2 - 8, by2);
                     } else {
-                        draw_event_ghost(x2 + 8, by, x2 + 64, by, outbound);
+                        draw_event_ghost(x2 + ext_node_padding, by, x2 + 64, by, outbound);
                     }
                 }
             }
-            
+            // the node is currently being dragged
             if (Stuff.event.canvas_active_node == node && Stuff.event.canvas_active_node_index == i) {
                 bezier_y = entry_yy + eh / 2;
+                drag_from_yy = bezier_y;
             }
             
             entry_yy = entry_yy + eh;
@@ -776,35 +790,39 @@ switch (node.type) {
                 }
             }
             
-            draw_bezier(x2 + 8, bezier_y, mouse_x_view, mouse_y_view);
+            draw_bezier(x2 + ext_node_padding, bezier_y, mouse_x_view, mouse_y_view);
         }
         break;
     #endregion
     default:
-    #region Custom (usually)
+    #region other node types (usually)
         var entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
-        var outbound_offset = 16;
         
         for (var i = 0; i < ds_list_size(node.outbound); i++) {
             var outbound = node.outbound[| i];
             var by = entry_yy + 32 * i;
             
             if (!outbound) {
-                draw_event_node_outbound(x2 + outbound_offset, by, node, i, true);
+                draw_event_node_outbound(x2 + ext_node_padding, by, node, i, true);
             } else {
                 var bnx = outbound.x;
                 var bny = outbound.y + 16;
                 
-                draw_event_node_outbound(x2 + outbound_offset, by, node, i);
-                draw_sprite(spr_event_dot, 0, x2 + outbound_offset, by);
-                
+                draw_event_node_outbound(x2 + ext_node_padding, by, node, i);
+                draw_sprite(spr_event_dot, 0, x2 + ext_node_padding, by);
+                // node is not being dragged
                 if (Stuff.event.canvas_active_node != node || Stuff.event.canvas_active_node_index != i) {
-                    if (bnx > x2 + outbound_offset) {
-                        draw_bezier(x2 + 8 + outbound_offset, by, bnx - 8, bny);
+                    if (bnx > x2 + ext_node_padding) {
+                        draw_bezier(x2 + ext_node_padding, by, bnx - 8, bny);
                     } else {
-                        draw_event_ghost(x2 + 8 + outbound_offset, by, x2 + 64, by, outbound);
+                        draw_event_ghost(x2 + ext_node_padding, by, x2 + 64, by, outbound);
                     }
                 }
+            }
+            // the node is currently being dragged
+            if (Stuff.event.canvas_active_node == node && Stuff.event.canvas_active_node_index == i) {
+                bezier_y = by;
+                drag_from_yy = bezier_y;
             }
         }
         break;
@@ -816,9 +834,10 @@ switch (node.type) {
 if (!bezier_override) {
     if (Stuff.event.canvas_active_node == node) {
         var camera = view_get_camera(view_current);
-        draw_bezier(x2 + 8, entry_yy + Stuff.event.canvas_active_node_index * EVENT_NODE_CONTACT_HEIGHT * 2 / 3, Stuff.MOUSE_X + camera_get_view_x(camera), Stuff.MOUSE_Y + camera_get_view_y(camera));
+        draw_bezier(x2 + ext_node_padding, drag_from_yy, Stuff.MOUSE_X + camera_get_view_x(camera), Stuff.MOUSE_Y + camera_get_view_y(camera));
         if (!dialog_exists()) {
             if (Controller.release_left) {
+                Controller.release_left = false;
                 // if the mouse is contacting another entrypoint, connect it
                 var contacted_node = event_seek_node();
                 if (contacted_node) {
