@@ -11,10 +11,13 @@ if (ds_list_size(list) == 0) {
     Stuff.map.ui.element_entity_solid.interactive = false;
     Stuff.map.ui.element_entity_static.interactive = false;
     Stuff.map.ui.element_entity_generic.interactive = false;
+    
     Stuff.map.ui.element_entity_events.interactive = false;
     Stuff.map.ui.element_entity_event_add.interactive = false;
     Stuff.map.ui.element_entity_event_remove.interactive = false;
     Stuff.map.ui.element_entity_event_edit.interactive = false;
+    
+    ui_list_deselect(Stuff.map.ui.element_entity_events);
     
     Stuff.map.ui.element_entity_option_animate_idle.interactive = false;
     Stuff.map.ui.element_entity_option_animate_movement.interactive = false;
