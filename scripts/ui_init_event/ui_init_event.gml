@@ -36,8 +36,8 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     var yy = legal_y;
     
-    element = create_text(legal_x + spacing, yy, "<active node>", element_width, element_height, fa_left, element_width, t_list);
-    element.render = ui_render_text_active_node;
+    element = create_text(legal_x + spacing, yy, "<active event name>", element_width, element_height, fa_left, element_width, t_list);
+    element.render = ui_render_text_active_event;
     ds_list_add(t_list.contents, element);
     
     yy = yy + element_height + spacing;
@@ -45,6 +45,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     element = create_list(legal_x + spacing, yy, "Event Nodes", "No nodes available!", element_width, spacing, slots, uivc_list_selection_event_node, false, t_list, noone);
     element.entries_are = ListEntries.INSTANCES;
     element.render = ui_render_list_event_node;
+    element.onmiddleclick = omu_event_node_list_alphabetize;
     ds_list_add(t_list.contents, element);
     
     yy = yy + element_height + spacing + element.height * element.slots;
@@ -134,13 +135,14 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     var yy = legal_y;
     
     element = create_text(legal_x + spacing, yy, "", element_width, element_height, fa_left, element_width, t_list);
-    element.render = ui_render_text_active_node;
+    element.render = ui_render_text_active_event;
     ds_list_add(t_events.contents, element);
     
     yy = yy + element_height + spacing;
     
     element = create_list(legal_x + spacing, yy, "All Events", "No events!", element_width, spacing, 32, uivc_list_selection_event, false, t_events, Stuff.all_events);
     element.entries_are = ListEntries.INSTANCES;
+    element.onmiddleclick = omu_event_list_alphabetize;
     ds_list_add(t_events.contents, element);
     
     t_events.el_event_list = element;
