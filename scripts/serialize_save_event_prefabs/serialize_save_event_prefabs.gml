@@ -19,7 +19,7 @@ for (var i = 0; i < n_prefabs; i++) {
     
     buffer_write(buffer, buffer_u8, n_data);
     for (var j = 0; j < n_data; j++) {
-        buffer_write(buffer, buffer_string, prefab.data[| i]);
+        buffer_write(buffer, buffer_string, prefab.data[| j]);
     }
     
     // I like the event prefab idea less than i did before i realized
