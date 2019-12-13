@@ -65,17 +65,13 @@ if (input.interactive && dialog_is_active(input.root)) {
             draw_line_width_colour(bx, vty - 7, bx, vty + 7, 2, c_black, c_black);
         }
         var v0 = value;
-        value = keyboard_string;
+        value = string_copy(keyboard_string, 1, min(string_length(keyboard_string), input.value_limit));
         if (Controller.press_escape) {
             Controller.press_escape = false;
             value = "";
+            keyboard_string = "";
         }
-        if (string_length(value) > input.value_limit) {
-            value = string_copy(value, 1, input.value_limit);
-        }
-        
         input.value = value;
-        keyboard_string = value;
         
         if (script_execute(input.validation, value, input)) {
             var execute_value_change = (!input.require_enter && v0 != value) || (input.require_enter && Controller.press_enter);
@@ -90,7 +86,7 @@ if (input.interactive && dialog_is_active(input.root)) {
             }
         }
     }
-    
+    // activation
     var inbounds = mouse_within_rectangle_determine(vx1, vy1, vx2, vy2, input.adjust_view);
     if (inbounds) {
         if (Controller.release_left) {
