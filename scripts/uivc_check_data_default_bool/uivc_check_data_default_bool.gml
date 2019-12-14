@@ -1,3 +1,5 @@
-/// @param UIThing
+/// @param UICheckbox
 
-argument0.root.selected_property.default_int = argument0.value;
+var checkbox = argument0;
+
+checkbox.root.selected_property.default_int = checkbox.value;
