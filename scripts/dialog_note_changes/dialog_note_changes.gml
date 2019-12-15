@@ -1,11 +1,13 @@
 /// @param Dialog
 
-var old_title = argument0.text;
+var dialog = argument0;
 
-if (argument0.changed) {
-    argument0.text = "* " + argument0.text;
+var old_title = dialog.text;
+
+if (dialog.changed) {
+    dialog.text = "* " + dialog.text;
 }
 
-dialog_default(argument0);
+dialog_default(dialog);
 
-argument0.text = old_title;
+dialog.text = old_title;
