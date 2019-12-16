@@ -8,7 +8,7 @@ var top = ds_list_top(Stuff.dialogs);
 if (!(top && (top.dialog_flags & DialogFlags.IS_EXCEPTION))) {
     var dialog = dialog_create_notice(noone,
         "Stack trace requested, probably in lieu of a NotImplementedException. (If you're an end user and seeing this, most of the time this means the developer meant to add a feature and probably forgot.)\n\n",
-        "Whoa, whoa!", "Okay", 640, 320
+        "Whoa, whoa!", "Okay", 640, 400
     );
     
     dialog.dialog_flags = dialog.dialog_flags | DialogFlags.IS_EXCEPTION;
@@ -19,7 +19,7 @@ if (!(top && (top.dialog_flags & DialogFlags.IS_EXCEPTION))) {
     dialog.el_text.valignment = fa_top;
     
     var callstack = debug_get_callstack();
-    var max_lines = 6;
+    var max_lines = 9;
     // index 0 is this script, and you don't need it
     for (var i = 1; i < min(max_lines, array_length_1d(callstack) - 2); i++) {
         dialog.el_text.text = dialog.el_text.text + string(callstack[i]) + "\n";
