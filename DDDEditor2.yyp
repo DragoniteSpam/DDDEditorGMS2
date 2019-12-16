@@ -9896,6 +9896,14 @@
             }
         },
         {
+            "Key": "9f5308b9-56fa-4da9-9483-d5871ee1a9f3",
+            "Value": {
+                "id": "dcc91e39-25d0-4593-85a2-782b7ffc5b6c",
+                "resourcePath": "scripts\\omu_event_prefab_list_alphabetize\\omu_event_prefab_list_alphabetize.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "9f61636c-c86b-4f83-b6dd-1b2ceffed749",
             "Value": {
                 "id": "ea048608-666c-4c2b-afdb-375cbf317da6",
@@ -13675,6 +13683,14 @@
             }
         },
         {
+            "Key": "dcdadb1f-0fe0-4e41-a683-04bec425ecf5",
+            "Value": {
+                "id": "ef117665-9c89-444f-b13f-6412590d1492",
+                "resourcePath": "scripts\\omu_event_custom_list_alphabetize\\omu_event_custom_list_alphabetize.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "dcf0a8d5-a0f1-4802-945e-c23aef10aadb",
             "Value": {
                 "id": "1c1caf03-7606-4655-a133-d7896163160c",
@@ -16722,6 +16738,8 @@
         "13c3ebe1-818f-4062-b162-f6846e95cfbc",
         "30f06f52-6415-4fc7-9ad7-bc81591fcdd0",
         "268cac00-00f4-497e-bb13-36dc9111054c",
+        "dcdadb1f-0fe0-4e41-a683-04bec425ecf5",
+        "9f5308b9-56fa-4da9-9483-d5871ee1a9f3",
         "29571f03-3093-4ae5-b4dd-7e992bff680e",
         "59f2270c-7041-4d8a-8913-facb42d036ba",
         "cb3e44bc-bafb-4080-a1f1-ed514e8c4961",

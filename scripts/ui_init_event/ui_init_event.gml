@@ -88,6 +88,8 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     el_list_custom = create_list(legal_x + spacing, yy, "Custom Nodes", "<none>", element_width, spacing, slots, null, false, t_custom, Stuff.all_event_custom);
     el_list_custom.entries_are = ListEntries.INSTANCES;
     el_list_custom.colorized = false;
+    el_list_custom.ondoubleclick = omu_event_edit_custom_event;
+    el_list_custom.onmiddleclick = omu_event_custom_list_alphabetize;
     ds_list_add(t_custom.contents, el_list_custom);
     
     yy = yy + ui_get_list_height(el_list_custom) + spacing;
@@ -107,10 +109,10 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element_height + spacing;
     
-    // todo all these
-     el_list_prefabs = create_list(legal_x + spacing, yy, "Node Prefabs", "<none>", element_width, spacing, slots, null, false, t_custom, Stuff.all_event_prefabs);
+    el_list_prefabs = create_list(legal_x + spacing, yy, "Node Prefabs", "<none>", element_width, spacing, slots, null, false, t_custom, Stuff.all_event_prefabs);
     el_list_prefabs.entries_are = ListEntries.INSTANCES;
     el_list_prefabs.colorized = false;
+    el_list_prefabs.onmiddleclick = omu_event_prefab_list_alphabetize;
     ds_list_add(t_custom.contents, el_list_prefabs);
     
     yy = yy + ui_get_list_height(el_list_prefabs) + spacing;
