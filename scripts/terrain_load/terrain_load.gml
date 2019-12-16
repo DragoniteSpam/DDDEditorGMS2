@@ -22,7 +22,7 @@ var header = chr(buffer_read(buffer, buffer_u8)) + chr(buffer_read(buffer, buffe
 
 if (header == "DDD") {
     var version = buffer_read(buffer, buffer_u32);
-    var last_safe_version = DataVersions.STARTING_POSITION;
+    var last_safe_version = DataVersions.MAP_TILED_ID;
     
     if (version < last_safe_version) {
         show_error("We stopped supporting versions of the data file before " + string(last_safe_version) +
@@ -32,10 +32,6 @@ if (header == "DDD") {
     }
     
     buffer_read(buffer, buffer_u8);
-    if (version >= DataVersions.REMOVE_UNUSED_DATA) {
-    } else {
-        buffer_read(buffer, buffer_u32);
-    }
     
     var datatype = buffer_read(buffer, buffer_datatype);
     

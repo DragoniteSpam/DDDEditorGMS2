@@ -4,11 +4,7 @@
 var buffer = argument0;
 var version = argument1;
 
-if (version >= DataVersions.DATA_CHUNK_ADDRESSES) {
-    var addr_next = buffer_read(buffer, buffer_u64);
-} else {
-    buffer_read(buffer, buffer_u32);        // address of the end - not useful here
-}
+var addr_next = buffer_read(buffer, buffer_u64);
 
 var n_prefabs = buffer_read(buffer, buffer_u32);
 

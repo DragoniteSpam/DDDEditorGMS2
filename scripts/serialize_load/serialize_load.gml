@@ -22,10 +22,6 @@ if (version >= DataVersions._CURRENT) {
 }
 
 var what = buffer_read(buffer, buffer_u8);
-if (version >= DataVersions.REMOVE_UNUSED_DATA) {
-} else {
-    buffer_read(buffer, buffer_u32);
-}
 
 Stuff.maps_included = (what == SERIALIZE_DATA_AND_MAP);
 
@@ -70,10 +66,8 @@ switch (what) {
 }
 
 // the editor doesn't care that much about the addresses of each chunk
-if (version >= DataVersions.DATA_CHUNK_ADDRESSES) {
-    var addr_content = buffer_read(buffer, buffer_u64);
-    buffer_seek(buffer, buffer_seek_start, addr_content);
-}
+var addr_content = buffer_read(buffer, buffer_u64);
+buffer_seek(buffer, buffer_seek_start, addr_content);
 
 while (true) {
     var datatype = buffer_read(buffer, buffer_datatype);

@@ -19,20 +19,13 @@ var zz = buffer_read(buffer, buffer_u16);
 
 // it's an index now, but i'm going to make it a data type later, and this is
 // in preparation for whenever i do that
-if (version >= DataVersions.TS_ID) {
-    map.tileset = buffer_read(buffer, buffer_datatype);
-} else {
-    map.tileset = buffer_read(buffer, buffer_u8);
-}
+map.tileset = buffer_read(buffer, buffer_datatype);
 
 data_resize_map(map, xx, yy, zz);
 
 map.fog_start = buffer_read(buffer, buffer_f32);
 map.fog_end = buffer_read(buffer, buffer_f32);
-
-if (version >= DataVersions.EXTRA_FOG_PROPERTIES) {
-    map.fog_colour = buffer_read(buffer, buffer_u32);
-}
+map.fog_colour = buffer_read(buffer, buffer_u32);
 
 map.base_encounter_rate = buffer_read(buffer, buffer_u32);
 map.base_encounter_deviation = buffer_read(buffer, buffer_u32);
@@ -43,14 +36,8 @@ map.draw_water = unpack(bools, 1);
 map.fast_travel_to = unpack(bools, 2);
 map.fast_travel_from = unpack(bools, 3);
 map.is_3d = unpack(bools, 4);
-
-if (version >= DataVersions.EXTRA_FOG_PROPERTIES) {
-    map.fog_enabled = unpack(bools, 5);
-}
-
-if (version >= DataVersions.MAP_GRID_PROPERTY) {
-    map.on_grid = unpack(bools, 6);
-}
+map.fog_enabled = unpack(bools, 5);
+map.on_grid = unpack(bools, 6);
 
 map.code = buffer_read(buffer, buffer_string);
 

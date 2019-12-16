@@ -81,45 +81,43 @@ while (ds_list_size(entity.variables) < BASE_SELF_VARIABLES) {
     ds_list_add(entity.variables, 0);
 }
 
-if (version >= DataVersions.GENERIC_DATA) {
-    var n_generic = buffer_read(buffer, buffer_u8);
-    repeat (n_generic) {
-        var data = instance_create_depth(0, 0, 0, DataAnonymous);
+var n_generic = buffer_read(buffer, buffer_u8);
+repeat (n_generic) {
+    var data = instance_create_depth(0, 0, 0, DataAnonymous);
+    
+    data.name = buffer_read(buffer, buffer_string);
+    data.type = buffer_read(buffer, buffer_u8);
+    
+    switch (data.type) {
+        case DataTypes.INT: data.value_int = buffer_read(buffer, buffer_s32); break;
+        case DataTypes.FLOAT: data.value_real = buffer_read(buffer, buffer_f32); break;
+        case DataTypes.STRING: data.value_string = buffer_read(buffer, buffer_string); break;
+        case DataTypes.BOOL: data.value_bool = buffer_read(buffer, buffer_u8); break;
+        case DataTypes.CODE: data.value_code = buffer_read(buffer, buffer_string); break;
+        case DataTypes.COLOR: data.value_color = buffer_read(buffer, buffer_u32); break;
         
-        data.name = buffer_read(buffer, buffer_string);
-        data.type = buffer_read(buffer, buffer_u8);
+        case DataTypes.ENUM:
+        case DataTypes.DATA:
+            data.value_type_guid = buffer_read(buffer, buffer_datatype);
+            data.value_data = buffer_read(buffer, buffer_datatype);
+            break;
         
-        switch (data.type) {
-            case DataTypes.INT: data.value_int = buffer_read(buffer, buffer_s32); break;
-            case DataTypes.FLOAT: data.value_real = buffer_read(buffer, buffer_f32); break;
-            case DataTypes.STRING: data.value_string = buffer_read(buffer, buffer_string); break;
-            case DataTypes.BOOL: data.value_bool = buffer_read(buffer, buffer_u8); break;
-            case DataTypes.CODE: data.value_code = buffer_read(buffer, buffer_string); break;
-            case DataTypes.COLOR: data.value_color = buffer_read(buffer, buffer_u32); break;
-            
-            case DataTypes.ENUM:
-            case DataTypes.DATA:
-                data.value_type_guid = buffer_read(buffer, buffer_datatype);
-                data.value_data = buffer_read(buffer, buffer_datatype);
-                break;
-            
-            case DataTypes.MESH: data.value_data = buffer_read(buffer, buffer_datatype); break;
-            case DataTypes.IMG_TILESET: data.value_data = buffer_read(buffer, buffer_datatype); break;
-            case DataTypes.AUDIO_BGM: data.value_data = buffer_read(buffer, buffer_datatype); break;
-            case DataTypes.AUDIO_SE: data.value_data = buffer_read(buffer, buffer_datatype); break;
-            case DataTypes.ANIMATION: data.value_data = buffer_read(buffer, buffer_datatype); break;
-            case DataTypes.MAP: data.value_data = buffer_read(buffer, buffer_datatype); break;
-            case DataTypes.IMG_BATTLER: data.value_data = buffer_read(buffer, buffer_datatype); break;
-            case DataTypes.IMG_OVERWORLD: data.value_data = buffer_read(buffer, buffer_datatype); break;
-            case DataTypes.IMG_PARTICLE: data.value_data = buffer_read(buffer, buffer_datatype); break;
-            case DataTypes.IMG_UI: data.value_data = buffer_read(buffer, buffer_datatype); break;
-            case DataTypes.IMG_ETC: data.value_data = buffer_read(buffer, buffer_datatype); break;
-            
-            case DataTypes.TILE: not_yet_implemented(); break;
-            case DataTypes.AUTOTILE: not_yet_implemented(); break;
-            case DataTypes.ENTITY: not_yet_implemented(); break;
-        }
+        case DataTypes.MESH: data.value_data = buffer_read(buffer, buffer_datatype); break;
+        case DataTypes.IMG_TILESET: data.value_data = buffer_read(buffer, buffer_datatype); break;
+        case DataTypes.AUDIO_BGM: data.value_data = buffer_read(buffer, buffer_datatype); break;
+        case DataTypes.AUDIO_SE: data.value_data = buffer_read(buffer, buffer_datatype); break;
+        case DataTypes.ANIMATION: data.value_data = buffer_read(buffer, buffer_datatype); break;
+        case DataTypes.MAP: data.value_data = buffer_read(buffer, buffer_datatype); break;
+        case DataTypes.IMG_BATTLER: data.value_data = buffer_read(buffer, buffer_datatype); break;
+        case DataTypes.IMG_OVERWORLD: data.value_data = buffer_read(buffer, buffer_datatype); break;
+        case DataTypes.IMG_PARTICLE: data.value_data = buffer_read(buffer, buffer_datatype); break;
+        case DataTypes.IMG_UI: data.value_data = buffer_read(buffer, buffer_datatype); break;
+        case DataTypes.IMG_ETC: data.value_data = buffer_read(buffer, buffer_datatype); break;
         
-        ds_list_add(entity.generic_data, data);
+        case DataTypes.TILE: not_yet_implemented(); break;
+        case DataTypes.AUTOTILE: not_yet_implemented(); break;
+        case DataTypes.ENTITY: not_yet_implemented(); break;
     }
+    
+    ds_list_add(entity.generic_data, data);
 }

@@ -4,9 +4,7 @@
 var buffer = argument0;
 var version = argument1;
 
-if (version >= DataVersions.DATA_CHUNK_ADDRESSES) {
-    var addr_next = buffer_read(buffer, buffer_u64);
-}
+var addr_next = buffer_read(buffer, buffer_u64);
 
 var n_maps = buffer_read(buffer, buffer_u16);
 
@@ -14,11 +12,7 @@ repeat (n_maps) {
     var map = instance_create_depth(0, 0, 0, DataMapContainer);
     serialize_load_generic(buffer, map, version);
     
-    if (version >= DataVersions.MAP_VERSIONING) {
-        map.version = buffer_read(buffer, buffer_u32);
-    } else {
-        map.version = version;
-    }
+    map.version = buffer_read(buffer, buffer_u32);
     
     var size = buffer_read(buffer, buffer_u32);
     buffer_delete(map.data_buffer);

@@ -4,9 +4,7 @@
 var buffer = argument0;
 var version = argument1;
 
-if (version >= DataVersions.DATA_CHUNK_ADDRESSES) {
-    var addr_next = buffer_read(buffer, buffer_u64);
-}
+var addr_next = buffer_read(buffer, buffer_u64);
 
 ds_list_clear_instances(Stuff.all_graphic_tilesets);
 gpu_set_state(Stuff.gpu_base_state);

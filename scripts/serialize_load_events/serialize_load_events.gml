@@ -4,9 +4,7 @@
 var buffer = argument0;
 var version = argument1;
 
-if (version >= DataVersions.DATA_CHUNK_ADDRESSES) {
-    var addr_next = buffer_read(buffer, buffer_u64);
-}
+var addr_next = buffer_read(buffer, buffer_u64);
 
 var n_events = buffer_read(buffer, buffer_u32);
 
@@ -40,9 +38,7 @@ repeat (n_events) {
         
         guid_set(node, buffer_read(buffer, buffer_u32));
         
-        if (version >= DataVersions.EVENT_PREFABS) {
-            node.prefab_guid = buffer_read(buffer, buffer_datatype);
-        }
+        node.prefab_guid = buffer_read(buffer, buffer_datatype);
         
         // some preliminary data may be created
         ds_list_clear(node.data);

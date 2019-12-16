@@ -4,9 +4,7 @@
 var buffer = argument0;
 var version = argument1;
 
-if (version >= DataVersions.DATA_CHUNK_ADDRESSES) {
-    var addr_next = buffer_read(buffer, buffer_u64);
-}
+var addr_next = buffer_read(buffer, buffer_u64);
 
 ds_list_clear_instances(Stuff.all_meshes);
 
@@ -16,9 +14,7 @@ repeat (n_meshes) {
     var mesh = instance_create_depth(0, 0, 0, DataMesh);
     serialize_load_generic(buffer, mesh, version);
     
-    if (version >= DataVersions.SMF_MESH_TYPE) {
-        mesh.type = buffer_read(buffer, buffer_u8);
-    }
+    mesh.type = buffer_read(buffer, buffer_u8);
     
     var size = buffer_read(buffer, buffer_u32);
     mesh.buffer = buffer_read_buffer(buffer, size);
@@ -39,7 +35,6 @@ repeat (n_meshes) {
     mesh.passage = buffer_read(buffer, buffer_u8);
     mesh.tags = buffer_read(buffer, buffer_u8);
     
-    // The type is RAW by default, so if the version < SMF_MESH_TYPE this will still work
     switch (mesh.type) {
         case MeshTypes.RAW: serialize_load_mesh_raw(mesh); break;
         case MeshTypes.SMF: serialize_load_mesh_smf(mesh); break;

@@ -60,7 +60,7 @@ if (outcome) {
     }
     
     if (outcome) {
-        var last_safe_version = DataVersions.STARTING_POSITION;
+        var last_safe_version = DataVersions.MAP_TILED_ID;
         var last_safe_release = "2019.4.1.19";
         var version_asset = buffer_read(buffer_asset, buffer_u32);
         var version_data = buffer_read(buffer_data, buffer_u32);

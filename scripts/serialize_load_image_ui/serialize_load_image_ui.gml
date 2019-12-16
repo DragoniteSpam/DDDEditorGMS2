@@ -5,9 +5,7 @@ var buffer = argument0;
 var version = argument1;
 var list = Stuff.all_graphic_ui;
 
-if (version >= DataVersions.DATA_CHUNK_ADDRESSES) {
-    var addr_next = buffer_read(buffer, buffer_u64);
-}
+var addr_next = buffer_read(buffer, buffer_u64);
 
 ds_list_clear_instances(list);
 
@@ -22,11 +20,8 @@ repeat (n_images) {
     data.vframes = buffer_read(buffer, buffer_u16);
     data.x = buffer_read(buffer, buffer_f32);
     data.y = buffer_read(buffer, buffer_f32);
-    
-    if (version >= DataVersions.IMAGE_SPRITE_SIZES) {
-        data.width = buffer_read(buffer, buffer_f32);
-        data.height = buffer_read(buffer, buffer_f32);
-    }
+    data.width = buffer_read(buffer, buffer_f32);
+    data.height = buffer_read(buffer, buffer_f32);
     
     if (individual_images) {
         data.picture = buffer_read_sprite(buffer);

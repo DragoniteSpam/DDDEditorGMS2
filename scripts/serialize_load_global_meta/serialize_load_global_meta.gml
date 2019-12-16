@@ -4,20 +4,14 @@
 var buffer = argument0;
 var version = argument1;
 
-if (version >= DataVersions.DATA_CHUNK_ADDRESSES) {
-    var addr_next = buffer_read(buffer, buffer_u64);
-}
+var addr_next = buffer_read(buffer, buffer_u64);
 
 Stuff.game_starting_map = buffer_read(buffer, buffer_datatype);
 
-if (version >= DataVersions.STARTING_POSITION) {
-    Stuff.game_starting_x = buffer_read(buffer, buffer_u16);
-    Stuff.game_starting_y = buffer_read(buffer, buffer_u16);
-    Stuff.game_starting_z = buffer_read(buffer, buffer_u16);
-    if (version >= DataVersions.STARTING_DIRECTION) {
-        Stuff.game_starting_direction = buffer_read(buffer, buffer_u8);
-    }
-}
+Stuff.game_starting_x = buffer_read(buffer, buffer_u16);
+Stuff.game_starting_y = buffer_read(buffer, buffer_u16);
+Stuff.game_starting_z = buffer_read(buffer, buffer_u16);
+Stuff.game_starting_direction = buffer_read(buffer, buffer_u8);
 
 var bools = buffer_read(buffer, buffer_u32);
 Stuff.game_player_grid = unpack(bools, 0);
@@ -40,28 +34,25 @@ for (var i = 0; i < n_variables; i++) {
     ds_list_add(Stuff.variables, var_data);
 }
 
-if (version >= DataVersions.CUSTOM_EVENT_TRIGGERS) {
-    var n_triggers = buffer_read(buffer, buffer_u8);
-    ds_list_clear(Stuff.all_event_triggers);
-    repeat (n_triggers) {
-        ds_list_add(Stuff.all_event_triggers, buffer_read(buffer, buffer_string));
-    }
+var n_triggers = buffer_read(buffer, buffer_u8);
+ds_list_clear(Stuff.all_event_triggers);
+
+repeat (n_triggers) {
+    ds_list_add(Stuff.all_event_triggers, buffer_read(buffer, buffer_string));
 }
 
-if (version >= DataVersions.GLOBAL_CONSTANTS) {
-    var n_constants = buffer_read(buffer, buffer_u16);
-    repeat (n_constants) {
-        var what = instance_create_depth(0, 0, 0, DataConstant);
-        serialize_load_generic(buffer, what, version);
+var n_constants = buffer_read(buffer, buffer_u16);
+repeat (n_constants) {
+    var what = instance_create_depth(0, 0, 0, DataConstant);
+    serialize_load_generic(buffer, what, version);
     
-        what.type = buffer_read(buffer, buffer_u16);
-        what.type_guid = buffer_read(buffer, buffer_datatype);
-        what.value_real = buffer_read(buffer, buffer_f32);
-        what.value_string = buffer_read(buffer, buffer_string);
-        what.value_guid = buffer_read(buffer, buffer_datatype);
-        
-        ds_list_add(Stuff.all_game_constants, what);
-    }
+    what.type = buffer_read(buffer, buffer_u16);
+    what.type_guid = buffer_read(buffer, buffer_datatype);
+    what.value_real = buffer_read(buffer, buffer_f32);
+    what.value_string = buffer_read(buffer, buffer_string);
+    what.value_guid = buffer_read(buffer, buffer_datatype);
+    
+    ds_list_add(Stuff.all_game_constants, what);
 }
 
 if (version >= DataVersions.GAME_NOTES) {
