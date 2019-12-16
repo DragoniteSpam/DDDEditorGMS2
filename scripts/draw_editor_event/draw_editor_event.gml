@@ -48,7 +48,8 @@ var wview = camera_get_view_width(camera);
 var hview = camera_get_view_height(camera);
 
 draw_checkerbox((xview div checker_width) * checker_width - checker_width,
-    (yview div checker_height) * checker_height - checker_height, wview + checker_width * 2, hview + checker_height * 2);
+    (yview div checker_height) * checker_height - checker_height, wview + checker_width * 2, hview + checker_height * 2
+);
 
 draw_active_event();
 
@@ -59,7 +60,7 @@ draw_text_colour(xview + 16, yview + hview - 8, string("Canvas at (" + string(xv
 if (CONTORL_3D_LOOK) {
     if (!dialog_exists()) {
         window_set_cursor(cr_none);
-        draw_sprite(spr_scroll, 0, Stuff.MOUSE_X, Stuff.MOUSE_Y);
+        draw_sprite(spr_scroll, 0, xview + Stuff.MOUSE_X, yview + Stuff.MOUSE_Y);
         
         camera_set_view_pos(camera, xview - (mouse_x - Controller.mouse_x_previous), yview - (mouse_y - Controller.mouse_y_previous));
     }
