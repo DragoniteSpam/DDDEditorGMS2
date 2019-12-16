@@ -44,23 +44,11 @@ enum ConditionBasicTypes {
     SCRIPT
 }
 
-// trigger is a mask in-game so that you can check any ones you want in a single
-// operation, but because you don't actually want to allow any arbitrary combination
-// of triggers the editor acts as if they aren't
-trigger = EventTriggers.ActionButton;
-
-enum EventTriggers {
-    ActionButton,
-    PlayerTouch,
-    EventTouch,
-    Autorun,
-    Parallel,
-}
+// by default the zeroth event trigger (probably the action button) is enabled
+trigger = 0x01;
 
 // not used: Image (since events are attached to entities)
 // not used: Priority (since priority is attached to entities)
-
-// the important bit
 
 event_guid = 0;
 event_entrypoint = "";
