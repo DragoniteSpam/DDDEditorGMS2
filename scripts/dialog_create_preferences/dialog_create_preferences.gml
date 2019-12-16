@@ -61,6 +61,10 @@ var el_camera_fly = create_progress_bar(col1_x, yy, ew, eh, uivc_camera_fly_rate
 el_camera_fly.tooltip = "How fast the camera accelerates in editor modes that use it (2D and 3D).";
 yy = yy + el_camera_fly.height + spacing;
 
+var el_alt_middle = create_checkbox(col1_x, yy, "Alternate Middle Click", ew, eh, uivc_settings_alt_middle, Stuff.setting_alternate_middle, dg);
+el_alt_middle.tooltip = "My mouse is slightly broken and middle click doesn't always work, so I need an alternate method to use it. This is turned off by default so that it's harder to accidentally invoke, but you may turn it on if you need it.\n\nThe alternate input is Control + Space.";
+yy = yy + el_alt_middle.height + spacing;
+
 yy = yy_base;
 
 var el_code_ext = create_radio_array(col2_x + col1_x, yy, "Code File Extension:", ew, eh, uivc_code_extension, Stuff.setting_code_extension, dg);
@@ -81,7 +85,7 @@ var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Co
 
 ds_list_add(dg.contents,
     el_bezier, el_tooltips, el_backups, el_autosave, el_npc_animation, el_ui_color,
-    el_camera_fly_text, el_camera_fly,
+    el_camera_fly_text, el_camera_fly, el_alt_middle,
     el_clear_backups, el_view_backups,
     el_code_ext, el_text_ext,
     el_confirm
