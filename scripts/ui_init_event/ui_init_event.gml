@@ -25,12 +25,41 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     var element;
     var spacing = 16;
+    var list_entry_height = 24;
     var legal_x = 32;
     var legal_y = 128;
-    var element_width = view_hud_width_event - 96;
-    
-    var slots = 28;
+    var element_width = view_hud_width_event - 112;
     // element_height is an object variable that's already been defined
+    
+    #region event list
+    
+    var yy = legal_y;
+    
+    element = create_list(legal_x + spacing, yy, "All Events", "No events!", element_width, list_entry_height, 24, uivc_list_selection_event, false, t_events, Stuff.all_events);
+    element.entries_are = ListEntries.INSTANCES;
+    element.onmiddleclick = omu_event_list_alphabetize;
+    ds_list_add(t_events.contents, element);
+    
+    t_events.el_event_list = element;
+    
+    yy = yy + element_height + spacing + element.height * element.slots;
+    
+    element = create_button(legal_x + spacing, yy, "Add Event", element_width, element_height, fa_left, omu_event_add_event, t_events);
+    ds_list_add(t_events.contents, element);
+    
+    yy = yy + element_height + spacing;
+    
+    element = create_button(legal_x + spacing, yy, "Rename", element_width, element_height, fa_left, omu_event_rename_event, t_events);
+    ds_list_add(t_events.contents, element);
+    
+    yy = yy + element_height + spacing;
+    
+    element = create_button(legal_x + spacing, yy, "Delete", element_width, element_height, fa_left, omu_event_remove_event, t_events);
+    ds_list_add(t_events.contents, element);
+    
+    yy = yy + element_height + spacing;
+    
+    #endregion
     
     #region node list
     
@@ -42,7 +71,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element_height + spacing;
     
-    element = create_list(legal_x + spacing, yy, "Event Nodes", "No nodes available!", element_width, spacing, slots, uivc_list_selection_event_node, false, t_list, noone);
+    element = create_list(legal_x + spacing, yy, "Event Nodes", "No nodes available!", element_width, list_entry_height, 18, uivc_list_selection_event_node, false, t_list, noone);
     element.entries_are = ListEntries.INSTANCES;
     element.render = ui_render_list_event_node;
     element.onmiddleclick = omu_event_node_list_alphabetize;
@@ -78,18 +107,13 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     #region custom nodes
     
     var yy = legal_y;
-    var slots = 12;
     
-    element = create_button(legal_x + spacing, yy, "Help?", element_width, element_height, fa_center, omu_event_custom_help, t_custom);
-    ds_list_add(t_custom.contents, element);
-    
-    yy = yy + element_height+spacing;
-    
-    el_list_custom = create_list(legal_x + spacing, yy, "Custom Nodes", "<none>", element_width, spacing, slots, null, false, t_custom, Stuff.all_event_custom);
+    el_list_custom = create_list(legal_x + spacing, yy, "Custom Nodes", "<none>", element_width, list_entry_height, 10, null, false, t_custom, Stuff.all_event_custom);
     el_list_custom.entries_are = ListEntries.INSTANCES;
     el_list_custom.colorized = false;
     el_list_custom.ondoubleclick = omu_event_edit_custom_event;
     el_list_custom.onmiddleclick = omu_event_custom_list_alphabetize;
+    el_list_custom.tooltip = "Any event you want that's specific to your game's data (for example, anything pertaining to Inventory) can be made from a custom event.\n\nYou can attach your own data types and even outbound nodes to custom events.";
     ds_list_add(t_custom.contents, el_list_custom);
     
     yy = yy + ui_get_list_height(el_list_custom) + spacing;
@@ -109,62 +133,22 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element_height + spacing;
     
-    el_list_prefabs = create_list(legal_x + spacing, yy, "Node Prefabs", "<none>", element_width, spacing, slots, null, false, t_custom, Stuff.all_event_prefabs);
+    el_list_prefabs = create_list(legal_x + spacing, yy, "Node Prefabs", "<none>", element_width, list_entry_height, 8, null, false, t_custom, Stuff.all_event_prefabs);
     el_list_prefabs.entries_are = ListEntries.INSTANCES;
     el_list_prefabs.colorized = false;
     el_list_prefabs.onmiddleclick = omu_event_prefab_list_alphabetize;
+    el_list_prefabs.tooltip = "If you have a particular event with particular data you invoke often, such as a certain line of text or custom event node, you may wish to save it as a prefab so you can add it with all of its attributes already defined.";
     ds_list_add(t_custom.contents, el_list_prefabs);
     
     yy = yy + ui_get_list_height(el_list_prefabs) + spacing;
     
-    element = create_text(legal_x + spacing, yy, "Click the button on an existing node to save it as a prefab", element_width, element_height, fa_left, element_width, t_custom);
+    element = create_button(legal_x + spacing, yy, "Remove Prefab", element_width, element_height, fa_center, not_yet_implemented_polite, t_custom);
     ds_list_add(t_custom.contents, element);
     
     yy = yy + element_height + spacing;
     
-    element = create_button(legal_x + spacing, yy, "Remove Prefab", element_width, element_height, fa_center, null, t_custom);
+    element = create_button(legal_x + spacing, yy, "Rename Prefab", element_width, element_height, fa_center, not_yet_implemented_polite, t_custom);
     ds_list_add(t_custom.contents, element);
-    
-    yy = yy + element_height + spacing;
-    
-    element = create_button(legal_x + spacing, yy, "Rename Prefab", element_width, element_height, fa_center, null, t_custom);
-    ds_list_add(t_custom.contents, element);
-    
-    #endregion
-    
-    #region event list
-    
-    var yy = legal_y;
-    
-    element = create_text(legal_x + spacing, yy, "", element_width, element_height, fa_left, element_width, t_list);
-    element.render = ui_render_text_active_event;
-    ds_list_add(t_events.contents, element);
-    
-    yy = yy + element_height + spacing;
-    
-    element = create_list(legal_x + spacing, yy, "All Events", "No events!", element_width, spacing, 32, uivc_list_selection_event, false, t_events, Stuff.all_events);
-    element.entries_are = ListEntries.INSTANCES;
-    element.onmiddleclick = omu_event_list_alphabetize;
-    ds_list_add(t_events.contents, element);
-    
-    t_events.el_event_list = element;
-    
-    yy = yy + element_height + spacing + element.height * element.slots;
-    
-    element = create_button(legal_x + spacing, yy, "Add Event", element_width, element_height, fa_left, omu_event_add_event, t_events);
-    ds_list_add(t_events.contents, element);
-    
-    yy = yy + element_height + spacing;
-    
-    element = create_button(legal_x + spacing, yy, "Rename", element_width, element_height, fa_left, omu_event_rename_event, t_events);
-    ds_list_add(t_events.contents, element);
-    
-    yy = yy + element_height + spacing;
-    
-    element = create_button(legal_x + spacing, yy, "Delete", element_width, element_height, fa_left, omu_event_remove_event, t_events);
-    ds_list_add(t_events.contents, element);
-    
-    yy = yy + element_height + spacing;
     
     #endregion
     
