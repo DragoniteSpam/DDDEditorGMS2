@@ -56,7 +56,7 @@ enum ETypes {
     ENTITY_PAWN,
     ENTITY_EFFECT,
     ENTITY_EVENT,
-    ENTITY_TERRAIN
+    ENTITY_TERRAIN,
 }
 
 enum ETypeFlags {

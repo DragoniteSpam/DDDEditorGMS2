@@ -39,7 +39,7 @@ for (var i = 0; i<ds_list_size(event.nodes); i++) {
         ds_list_add(el_list.entries, event.nodes[| i].GUID);
     }
 }
-debug(page.event_entrypoint);
+
 el_list.entries_are = ListEntries.GUIDS;
 el_list.colorize = false;
 dg.el_list = el_list;

@@ -127,7 +127,7 @@ if (selection + 1) {
                         case DataTypes.MESH:           // list
                             var element = create_list(spacing, yy, property.name, "<no Meshes>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Stuff.all_meshes);
                             element.key = i;
-                            element.entries_are = ListEntries.GUIDS;
+                            element.entries_are = ListEntries.INSTANCES;
                             var hh = ui_get_list_height(element);
                             break;
                         case DataTypes.TILE:
@@ -136,43 +136,43 @@ if (selection + 1) {
                         case DataTypes.IMG_TILESET:           // list
                             var element = create_list(spacing, yy, property.name, "<no Tilesets>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Stuff.all_graphic_tilesets);
                             element.key = i;
-                            element.entries_are = ListEntries.GUIDS;
+                            element.entries_are = ListEntries.INSTANCES;
                             var hh = ui_get_list_height(element);
                             break;
                         case DataTypes.IMG_BATTLER:           // list
                             var element = create_list(spacing, yy, property.name, "<no Battler sprites>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Stuff.all_graphic_battlers);
                             element.key = i;
-                            element.entries_are = ListEntries.GUIDS;
+                            element.entries_are = ListEntries.INSTANCES;
                             var hh = ui_get_list_height(element);
                             break;
                         case DataTypes.IMG_OVERWORLD:           // list
                             var element = create_list(spacing, yy, property.name, "<no Overworld sprites>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Stuff.all_graphic_overworlds);
                             element.key = i;
-                            element.entries_are = ListEntries.GUIDS;
+                            element.entries_are = ListEntries.INSTANCES;
                             var hh = ui_get_list_height(element);
                             break;
                         case DataTypes.IMG_PARTICLE:           // list
                             var element = create_list(spacing, yy, property.name, "<no Particle sprites>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Stuff.all_graphic_particles);
                             element.key = i;
-                            element.entries_are = ListEntries.GUIDS;
+                            element.entries_are = ListEntries.INSTANCES;
                             var hh = ui_get_list_height(element);
                             break;
                         case DataTypes.IMG_UI:           // list
                             var element = create_list(spacing, yy, property.name, "<no UI images>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Stuff.all_graphic_ui);
                             element.key = i;
-                            element.entries_are = ListEntries.GUIDS;
+                            element.entries_are = ListEntries.INSTANCES;
                             var hh = ui_get_list_height(element);
                             break;
                         case DataTypes.IMG_ETC:           // list
                             var element = create_list(spacing, yy, property.name, "<no Misc images>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Stuff.all_graphic_etc);
                             element.key = i;
-                            element.entries_are = ListEntries.GUIDS;
+                            element.entries_are = ListEntries.INSTANCES;
                             var hh = ui_get_list_height(element);
                             break;
                         case DataTypes.AUTOTILE:           // list
                             var element = create_list(spacing, yy, property.name, "<no Autotiles>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Stuff.all_graphic_autotiles);
                             element.key = i;
-                            element.entries_are = ListEntries.GUIDS;
+                            element.entries_are = ListEntries.INSTANCES;
                             var hh = ui_get_list_height(element);
                             break;
                         case DataTypes.AUDIO_BGM:           // list

@@ -110,6 +110,12 @@ for (var i = 0; i < ds_list_size(dynamic.contents); i++) {
                         break;
                     case DataTypes.AUDIO_BGM:
                     case DataTypes.AUDIO_SE:
+                    case DataTypes.IMG_TILESET:
+                    case DataTypes.IMG_BATTLER:
+                    case DataTypes.IMG_OVERWORLD:
+                    case DataTypes.IMG_PARTICLE:
+                    case DataTypes.IMG_UI:
+                    case DataTypes.IMG_ETC:
                         ui_list_deselect(thingy);
                         // @todo gml update chained accessors, in a few places in this script
                         for (var k = 0; k < ds_list_size(thingy.entries); k++) {
