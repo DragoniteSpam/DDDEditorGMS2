@@ -19,7 +19,22 @@ var ty = ui_get_text_y(list, y1, y2);
 draw_set_halign(list.alignment);
 draw_set_valign(list.valignment);
 draw_set_color(list.color);
-draw_text(tx, ty, string(list.text));
+
+if (string_length(list.tooltip) > 0) {
+    var spr_xoffset = sprite_get_xoffset(spr_help);
+    var spr_yoffset = sprite_get_yoffset(spr_help);
+    var spr_width = sprite_get_width(spr_help);
+    var spr_height = sprite_get_height(spr_help);
+    var txoffset = spr_width;
+    var inbounds = mouse_within_rectangle_determine(tx - spr_xoffset, ty - spr_yoffset, tx - spr_xoffset + spr_width, ty - spr_yoffset + spr_height, list.adjust_view);
+    draw_sprite(spr_help, inbounds ? 1 : 0, tx, ty);
+    if (inbounds) {
+        Stuff.element_tooltip = list;
+    }
+} else {
+    var txoffset = 0;
+}
+draw_text(tx + txoffset, ty, string(list.text));
 
 var n = list.entries ? ds_list_size(list.entries) : 0;
 list.index = clamp(n - list.slots, 0, list.index);
@@ -124,7 +139,6 @@ if (list.interactive && active) {
                 }
             }
         }
-        Stuff.element_tooltip = list;
     }
 }
 
