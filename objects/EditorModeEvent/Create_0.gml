@@ -21,6 +21,7 @@ save = editor_save_setting_event;
 
 canvas_active_node = noone;
 canvas_active_node_index = 0;
+request_cancel_active_node = false;
 
 active = event_create("DefaultEvent");
 node_info = noone;

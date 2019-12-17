@@ -58,7 +58,7 @@ switch (node.type) {
             if (mouse_within_rectangle_adjusted(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + entry_height - tolerance)) {
                 draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + entry_height - tolerance, c, c, c, c, false);
                 if (!dialog_exists()) {
-                    if (Controller.release_left) {
+                    if (Controller.release_left && !Stuff.event.canvas_active_node) {
                         node.data[| 0] = get_string("Comment contents?", node.data[| 0]);
                     }
                 }
@@ -97,7 +97,7 @@ switch (node.type) {
                 if (mouse_within_rectangle_adjusted(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + entry_height - tolerance)) {
                     draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + entry_height - tolerance, c, c, c, c, false);
                     if (!dialog_exists()) {
-                        if (Controller.release_left) {
+                        if (Controller.release_left && !Stuff.event.canvas_active_node) {
                             node.data[| i] = get_string("Data in this node?", node.data[| i]);
                         }
                     }
@@ -301,7 +301,7 @@ switch (node.type) {
                 if (mouse_within_rectangle_adjusted(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + eh - tolerance)) {
                     draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + eh - tolerance, c, c, c, c, false);
                     if (!dialog_exists()) {
-                        if (Controller.release_left) {
+                        if (Controller.release_left && !Stuff.event.canvas_active_node) {
                             node.data[| i] = get_string("Option text?", node.data[| i]);
                         }
                     }
@@ -420,7 +420,7 @@ switch (node.type) {
                 if (!dialog_exists()) {
                     if (mouse_within_rectangle_adjusted(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + eh - tolerance)) {
                         draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + eh - tolerance, c, c, c, c, false);
-                        if (Controller.release_left) {
+                        if (Controller.release_left && !Stuff.event.canvas_active_node) {
                             var attainment = type[EventNodeCustomData.ATTAINMENT];
                             if (attainment == null) {
                                 switch (type[EventNodeCustomData.TYPE]) {
@@ -732,8 +732,7 @@ switch (node.type) {
                     if (contacted_node) {
                         event_connect_node(node, contacted_node, Stuff.event.canvas_active_node_index);
                     }
-                    Stuff.event.canvas_active_node = noone;
-                    Stuff.event.canvas_active_node_index = 0;
+                    Stuff.event.request_cancel_active_node = true;
                 }
             }
             
@@ -785,8 +784,7 @@ switch (node.type) {
                     if (contacted_node) {
                         event_connect_node(node, contacted_node, Stuff.event.canvas_active_node_index);
                     }
-                    Stuff.event.canvas_active_node = noone;
-                    Stuff.event.canvas_active_node_index = 0;
+                    Stuff.event.request_cancel_active_node = true;
                 }
             }
             
@@ -843,9 +841,7 @@ if (!bezier_override) {
                 if (contacted_node) {
                     event_connect_node(node, contacted_node, Stuff.event.canvas_active_node_index);
                 }
-                Stuff.event.canvas_active_node = noone;
-                Stuff.event.canvas_active_node_index = 0;
-                Controller.release_left = false;
+                Stuff.event.request_cancel_active_node = true;
             }
         }
     }

@@ -68,6 +68,12 @@ if (CONTORL_3D_LOOK) {
     window_set_cursor(cr_default);
 }
 
+if (mode.request_cancel_active_node) {
+    mode.request_cancel_active_node = false;
+    mode.canvas_active_node = noone;
+    mode.canvas_active_node_index = 0;
+}
+
 // Reset controller input
 
 if (!mouse_within_view(view_fullscreen)) {
