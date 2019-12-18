@@ -26,6 +26,7 @@ if (ds_list_size(list) == 0) {
     Stuff.map.ui.element_entity_option_autonomous_movement.interactive = false;
     
     ui_list_deselect(Stuff.map.ui.element_entity_events);
+    Stuff.map.ui.element_entity_events.entries = noone;
     
     // transform
     

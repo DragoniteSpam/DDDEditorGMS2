@@ -25,7 +25,7 @@ if (!ds_list_empty(entity.object_events)) {
     Stuff.map.ui.element_entity_events.index = 0;
     ds_map_add(Stuff.map.ui.element_entity_events.selected_entries, 0, true);
 }
-    
+
 Stuff.map.ui.element_entity_option_animate_idle.value = entity.animate_idle;
 Stuff.map.ui.element_entity_option_animate_movement.value = entity.animate_movement;
 Stuff.map.ui.element_entity_option_direction_fix.value = entity.direction_fix;
