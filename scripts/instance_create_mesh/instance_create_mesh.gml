@@ -12,6 +12,7 @@ if (mesh_data) {
                 break;
             case MeshTypes.SMF:
                 static = false;
+                batchable = false;
                 break;
         }
         
