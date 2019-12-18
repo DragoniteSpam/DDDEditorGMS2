@@ -142,7 +142,8 @@ repeat (n_events) {
                         case DataTypes.ENTITY:
                         case DataTypes.MAP:
                         case DataTypes.MESH:
-                            var buffer_type = buffer_u32;
+                        case DataTypes.EVENT:
+                            var buffer_type = buffer_datatype;
                             break;
                         case DataTypes.TILE:
                         case DataTypes.AUTOTILE:

@@ -36,6 +36,7 @@ if (ds_list_size(plist) < property.max_size) {
         case DataTypes.IMG_UI:
         case DataTypes.IMG_ETC:
         case DataTypes.ANIMATION:
+        case DataTypes.EVENT:
             // no default - this is just a null value
             ds_list_add(plist, 0);
             break;

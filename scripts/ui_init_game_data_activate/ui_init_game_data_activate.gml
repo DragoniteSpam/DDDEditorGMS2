@@ -203,9 +203,17 @@ if (selection + 1) {
                             element.entries_are = ListEntries.INSTANCES;
                             var hh = ui_get_list_height(element);
                             break;
+                        case DataTypes.EVENT:           // list
+                            var element_header = create_text(spacing, yy, property.name, ew, eh, fa_left, ew, noone);
+                            var element = create_button(spacing, yy, "select something", ew, eh, fa_center, dialog_create_data_get_event, noone);
+                            element.event_guid = noone;
+                            element.instance = noone;
+                            element.key = i;
+                            var hh = vy2;
+                            break;
                     }
                 } else {
-                    var element = create_button(spacing, yy, property.name + " (List)", ew, eh, fa_middle, dialog_create_data_instance_property_list, noone);
+                    var element = create_button(spacing, yy, property.name + " (List)", ew, eh, fa_middle, dmu_create_data_event_list, noone);
                     element.key = i;
                     var hh = element.height;
                 }

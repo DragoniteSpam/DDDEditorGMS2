@@ -45,6 +45,7 @@ if (data) {
             case DataTypes.AUDIO_SE:
             case DataTypes.ANIMATION:
             case DataTypes.MAP:
+            case DataTypes.EVENT:
                 var plist = ds_list_create();
                 ds_list_add(plist, 0);
                 ds_list_add(instance.values, plist);

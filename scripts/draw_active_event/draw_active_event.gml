@@ -122,6 +122,7 @@ if (Stuff.event.active) {
                             case DataTypes.AUTOTILE: var type_name = "autotile"; break;
                             case DataTypes.ENTITY: var type_name = "entity"; break;
                             case DataTypes.MAP: var type_name = "map"; break;
+                            case DataTypes.EVENT: var type_name = "event"; break;
                         }
                         draw_text(x1 + 16, y1 + 40 + i * 16, string(string(i + 1) + ". " + type[EventNodeCustomData.NAME] + " (" + type_name + ")"));
                     }

@@ -360,6 +360,7 @@ switch (node.type) {
                 case DataTypes.AUTOTILE:
                 case DataTypes.ENTITY:
                 case DataTypes.MAP:
+                case DataTypes.EVENT:
                     y2 = y2 + 32;
                     break;
                 case DataTypes.STRING:
@@ -414,6 +415,7 @@ switch (node.type) {
                     case DataTypes.AUTOTILE:
                     case DataTypes.ENTITY:
                     case DataTypes.MAP:
+                    case DataTypes.EVENT:
                         eh = 32;
                         break;
                 }
@@ -482,6 +484,7 @@ switch (node.type) {
                                     case DataTypes.IMG_UI:
                                     case DataTypes.IMG_ETC:
                                     case DataTypes.AUTOTILE:
+                                    case DataTypes.EVENT:
                                         not_yet_implemented();
                                     case DataTypes.ENTITY:
                                         var dialog = dialog_create_refid_list(node, custom_data_list[| 0], uivc_refid_picker_event_node);
@@ -606,6 +609,11 @@ switch (node.type) {
                         case DataTypes.ANIMATION:
                             var setdata = guid_get(custom_data_list[| 0]);
                             message = message + "(animation): ";
+                            output_string = setdata ? setdata.name : "<null>";
+                            break;
+                        case DataTypes.EVENT:
+                            var setdata = guid_get(custom_data_list[| 0]);
+                            message = message + "(event): ";
                             output_string = setdata ? setdata.name : "<null>";
                             break;
                         case DataTypes.ENTITY:

@@ -114,6 +114,7 @@ for (var i = 0; i < ds_list_size(Stuff.original_data); i++) {
                     case DataTypes.AUDIO_SE:
                     case DataTypes.ANIMATION:
                     case DataTypes.MAP:
+                    case DataTypes.EVENT:
                         buffer_write(missing_output, buffer_text, data_new.name + "." + property_new.name + " has been changed to a resource. All instances will have their values set to null.\r\n");
                         missing_count++;
                         for (var k = 0; k < ds_list_size(data_old.instances); k++) {
@@ -185,6 +186,7 @@ for (var i = 0; i < n_data; i++) {
                     case DataTypes.AUDIO_SE:
                     case DataTypes.ANIMATION:
                     case DataTypes.MAP:
+                    case DataTypes.EVENT:
                         var plist = ds_list_create();
                         ds_list_add(plist, 0);
                         ds_list_add(instance.values, plist);

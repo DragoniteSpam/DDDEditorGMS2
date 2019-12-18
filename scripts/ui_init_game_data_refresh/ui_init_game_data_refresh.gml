@@ -125,6 +125,12 @@ for (var i = 0; i < ds_list_size(dynamic.contents); i++) {
                             }
                         }
                         break;
+                    case DataTypes.EVENT:
+                        var existing_data = guid_get(ds_list_find_value(instance.values[| n], 0));
+                        thingy.text = existing_data ? existing_data.name : "<none set>";
+                        thingy.event_guid = instance.values[| n];
+                        thingy.instance = instance;
+                        break;
                 }
             } // else it's just a button
         } else {
@@ -162,6 +168,7 @@ for (var i = 0; i < ds_list_size(dynamic.contents); i++) {
                 case DataTypes.AUDIO_SE:
                 case DataTypes.ANIMATION:
                 case DataTypes.MAP:
+                case DataTypes.EVENT:
                     ui_list_deselect(thingy);
                     break;
                 case DataTypes.ENTITY:

@@ -105,7 +105,8 @@ for (var i = 0; i < n_events; i++) {
                         case DataTypes.ENTITY:
                         case DataTypes.MAP:
                         case DataTypes.MESH:
-                            var save_type = buffer_u32;
+                        case DataTypes.EVENT:
+                            var save_type = buffer_datatype;
                             break;
                         case DataTypes.TILE:
                         case DataTypes.AUTOTILE:

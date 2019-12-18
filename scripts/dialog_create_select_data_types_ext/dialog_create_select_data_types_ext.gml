@@ -31,7 +31,7 @@ var el_list = create_radio_array(16, yy, "All Data Types: ", ew, eh, onvaluechan
 create_radio_array_options(el_list, [
     "Int", "Enum", "Float", "String", "Boolean", "Data", "Code", "Color", "Mesh", "Tileset", "Tile", "Autotile",
     "Audio (BGM)", "Audio (SE)", "Animation", "Entity (RefID)", "Map", "Battler sprite", "Overworld sprite",
-    "Particle", "UI image", "Misc. image"
+    "Particle", "UI image", "Misc. image", "Event",
 ]);
 
 el_list.contents[| DataTypes.AUDIO_BGM].color = c_green;

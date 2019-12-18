@@ -113,6 +113,7 @@ repeat (n_generic) {
         case DataTypes.IMG_PARTICLE: data.value_data = buffer_read(buffer, buffer_datatype); break;
         case DataTypes.IMG_UI: data.value_data = buffer_read(buffer, buffer_datatype); break;
         case DataTypes.IMG_ETC: data.value_data = buffer_read(buffer, buffer_datatype); break;
+        case DataTypes.EVENT: data.value_data = buffer_read(buffer, buffer_datatype); break;
         
         case DataTypes.TILE: not_yet_implemented(); break;
         case DataTypes.AUTOTILE: not_yet_implemented(); break;

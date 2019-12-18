@@ -52,6 +52,7 @@ switch (property.type) {
     case DataTypes.IMG_PARTICLE:
     case DataTypes.IMG_UI:
     case DataTypes.IMG_ETC:
+    case DataTypes.EVENT:
         el_list.entries_are = ListEntries.GUIDS;
         break;
     case DataTypes.TILE:
@@ -215,7 +216,9 @@ dg.height = dg.height + yy;
 var el_confirm = create_button(dw / 2 - b_width / 2, dg.height - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
 dg.el_confirm = el_confirm;
 
-ds_list_add(dg.contents, el_list, el_add, el_remove, el_value,
-    el_confirm);
+ds_list_add(dg.contents,
+    el_list, el_add, el_remove, el_value,
+    el_confirm
+);
 
 return dg;

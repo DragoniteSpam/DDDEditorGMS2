@@ -44,6 +44,7 @@ enum DataTypes {
     IMG_PARTICLE,
     IMG_UI,
     IMG_ETC,
+    EVENT,
     _COUNT
 }
 
@@ -54,19 +55,19 @@ enum DataTypes {
  *  3. case in uivc_list_data_list_select
  *  4. case in draw_event_node - in four different switch statements (can that be simplified?)
  *  5. case in ui_init_game_data_activate (the big one)
- *  6. case in dialog_create_data_instance_property_list
- *  7. case in dc_data_commit_seriously - in two different switch statements
- *  8. case in serialize_load_data_instances
- *  9. case in serialize_save_data_instances
- *  10. case in serialize_load_events
- *  11. case in serialize_save_events
- *  12. case in ui_init_game_data_refresh
- *  13. text in the lists in dialog_create_select_data_types_ext
+ *  6. case in ui_init_game_data_refresh
+ *  7. case in dialog_create_data_instance_property_list
+ *  8. case in dc_data_commit_seriously - in two different switch statements
+ *  9. case in serialize_load_data_instances
+ *  10. case in serialize_save_data_instances
+ *  11. case in serialize_load_events
+ *  12. case in serialize_save_events
+ *  13. text in the lists in dialog_create_select_data_types_ext (and the color, if applicable)
  *  14. case in draw_active_event
  *  15. case in uimu_data_add_data
- *  16. case in uivc_list_selection_constant
- *  17. case in dialog_entity_data_enable_by_type
- *  18. case in serialize_save_entity and the equilvalent in serialize_load_entity
+ *  16. case in dialog_entity_data_enable_by_type
+ *  17. case in serialize_save_entity
+ *  18. the equilvalent in serialize_load_entity
  */
 
 enum NumberScales {

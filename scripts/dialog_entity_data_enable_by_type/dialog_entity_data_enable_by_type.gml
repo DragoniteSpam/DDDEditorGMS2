@@ -135,6 +135,9 @@ switch (data.type) {
         dialog.el_data_builtin_list.enabled = true;
         dialog.el_data_builtin_list.entries = Stuff.all_graphic_etc;
         break;
+    case DataTypes.EVENT:
+        not_yet_implemented();
+        break;
 }
 
 // this is occasionally not needed because it'll run both of these every time,

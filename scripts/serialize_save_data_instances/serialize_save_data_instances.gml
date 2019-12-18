@@ -45,7 +45,8 @@ for (var i = 0; i < n_datadata; i++) {
                     case DataTypes.AUDIO_SE:
                     case DataTypes.ANIMATION:
                     case DataTypes.MAP:
-                        var btype = buffer_u32;
+                    case DataTypes.EVENT:
+                        var btype = buffer_datatype;
                         break;
                     case DataTypes.FLOAT:
                         var btype = buffer_f32;

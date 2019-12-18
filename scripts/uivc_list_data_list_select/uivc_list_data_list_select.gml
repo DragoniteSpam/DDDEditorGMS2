@@ -33,6 +33,7 @@ if (pselection + 1) {
         case DataTypes.IMG_UI:
         case DataTypes.IMG_ETC:
         case DataTypes.ANIMATION:
+        case DataTypes.EVENT:
             var found = -1;
             var data_list = list.root.el_value;
             ui_list_deselect(data_list);
