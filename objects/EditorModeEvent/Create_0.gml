@@ -24,6 +24,7 @@ canvas_active_node_index = 0;
 request_cancel_active_node = false;
 
 active = event_create("DefaultEvent");
+ds_list_add(Stuff.all_events, active);
 node_info = noone;
 
 map = noone;

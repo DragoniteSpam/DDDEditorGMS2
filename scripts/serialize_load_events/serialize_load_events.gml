@@ -15,6 +15,7 @@ repeat (n_events) {
     // so don't use it here otherwise things will break
     var event_name = buffer_read(buffer, buffer_string);
     var event = event_create(event_name);
+    ds_list_add(Stuff.all_events, event);
     guid_set(event, buffer_read(buffer, buffer_u32));
     
     // events are created with an entrypoint by default - you could pass an optional
