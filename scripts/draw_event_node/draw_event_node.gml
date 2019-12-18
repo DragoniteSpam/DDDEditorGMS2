@@ -11,6 +11,8 @@ var y1 = node.y;
 var x2 = x1;
 var y2 = y1;
 
+var camera = view_get_camera(view_current);
+
 var entry_height = 4 * 16 + 32;
 var entry_offset = 16;
 var eh = 0;
@@ -758,7 +760,7 @@ switch (node.type) {
                 
                 draw_event_node_outbound(x2 + ext_node_padding, by, node, i);
                 draw_sprite(spr_event_dot, 0, x2 + ext_node_padding, by);
-                // node is not currently being dragged
+                // node is NOT currently being dragged
                 if (Stuff.event.canvas_active_node != node || Stuff.event.canvas_active_node_index != i) {
                     if (bx2 > x2) {
                         draw_bezier(x2 + ext_node_padding, by, bx2 - 8, by2);
@@ -767,7 +769,7 @@ switch (node.type) {
                     }
                 }
             }
-            // the node is currently being dragged
+            // the node IS currently being dragged
             if (Stuff.event.canvas_active_node == node && Stuff.event.canvas_active_node_index == i) {
                 bezier_y = entry_yy + eh / 2;
                 drag_from_yy = bezier_y;
@@ -775,7 +777,7 @@ switch (node.type) {
             
             entry_yy = entry_yy + eh;
         }
-        
+        // the node is currently being dragged
         if (Stuff.event.canvas_active_node == node) {
             if (!dialog_exists()) {
                 if (Controller.release_left) {
@@ -788,7 +790,7 @@ switch (node.type) {
                 }
             }
             
-            draw_bezier(x2 + ext_node_padding, bezier_y, mouse_x_view, mouse_y_view);
+            draw_bezier(x2 + ext_node_padding, bezier_y, Stuff.MOUSE_X + camera_get_view_x(camera), Stuff.MOUSE_Y + camera_get_view_y(camera));
         }
         break;
     #endregion
@@ -831,7 +833,6 @@ switch (node.type) {
 // to come up with a general solution
 if (!bezier_override) {
     if (Stuff.event.canvas_active_node == node) {
-        var camera = view_get_camera(view_current);
         draw_bezier(x2 + ext_node_padding, drag_from_yy, Stuff.MOUSE_X + camera_get_view_x(camera), Stuff.MOUSE_Y + camera_get_view_y(camera));
         if (!dialog_exists()) {
             if (Controller.release_left) {
