@@ -25,7 +25,7 @@ var el_heading = create_text(32, yy, "Map Settings", ew, eh, fa_left, ew, dg);
 
 yy = yy + el_heading.height + spacing;
 
-var el_size_note = create_text(32, yy, "Maps can go up to " + string(MAP_AXIS_LIMIT) + " in any dimension, but the total volume must be lower than " + string_comma(MAP_VOLUME_LIMIT) + ".", dw - 64, eh, fa_left, dw - 64, dg);
+var el_size_note = create_text(32, yy, "Maps can go up to " + string(MAP_AXIS_LIMIT) + " in any dimension, but the total volume must be lower than " + string_comma(MAP_VOLUME_LIMIT) + ". And greater than zero. Obviously.", dw - 64, eh, fa_left, dw - 64, dg);
 
 yy = yy + el_size_note.height + spacing * 2;
 

@@ -23,5 +23,6 @@ if (!validate_int(str_z, input)) {
 var value_x = real(str_x);
 var value_y = real(str_y);
 var value_z = real(str_z);
+var volume = (value_x * value_y * value_z);
 
-return (value_x * value_y * value_z) <= MAP_VOLUME_LIMIT;
+return is_clamped(volume, 1, MAP_VOLUME_LIMIT);
