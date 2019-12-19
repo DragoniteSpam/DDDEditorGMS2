@@ -1,6 +1,7 @@
 /// @param UIButton
 // apply changes to data
 
+var button = argument0;
 var missing_output = buffer_create(1000, buffer_grow, 1);
 var missing_count = 0;
 
@@ -214,7 +215,7 @@ for (var i = 0; i < n_data; i++) {
 
 if (buffer_tell(missing_output) > 0) {
     buffer_save_ext(missing_output, "missing.txt", 0, buffer_tell(missing_output));
-    dialog_create_yes_or_no(argument0.root, string(missing_count) + " things were found which you probably would like to be aware of. Would you like to view a log of these issues?", dmu_dialog_view_missing, "This is optional", "Yeah", dmu_dialog_dont_view_missing);
+    dialog_create_yes_or_no(button.root, string(missing_count) + " things were found which you probably would like to be aware of. Would you like to view a log of these issues?", dmu_dialog_view_missing, "This is optional", "Yeah", dmu_dialog_dont_view_missing);
 } else {
     dialog_destroy();
     dialog_destroy();

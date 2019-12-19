@@ -11,7 +11,7 @@
 #macro BATCH_CACHE_SIZE 160
 #macro buffer_datatype buffer_u32
 #macro CAMERA_SAVE_FREQUENCY 5
-#macro CAMERA_ZNEAR 1
+#macro CAMERA_ZNEAR 32
 #macro CAMERA_ZFAR 0x4000
 // these aren't meant to be used for view coordinates but window coordinates, otherwise i'd make them relative
 #macro CH 900

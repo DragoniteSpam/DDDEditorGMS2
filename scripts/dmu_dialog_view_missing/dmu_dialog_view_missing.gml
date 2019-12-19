@@ -1,6 +1,12 @@
 /// @param UIThing
 
-ds_stuff_open_local("missing.txt");
+var button = argument0;
+
+if (file_exists(LOCAL_STORAGE + "missing.txt")) {
+    ds_stuff_open_local("missing.txt");
+} else {
+    dialog_create_notice(button, "No missing assets currently known. (That's a good thing!)");
+}
 
 dialog_destroy();
 dialog_destroy();
