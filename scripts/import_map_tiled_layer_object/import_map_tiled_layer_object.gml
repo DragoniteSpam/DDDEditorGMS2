@@ -21,7 +21,7 @@ var layer_alpha = json[? "opacity"];
 var layer_visible = json[? "visible"];
 var layer_data_x = json[? "x"];
 var layer_data_y = json[? "y"];
-var layer_base_z = get_2D_base_layer(z);
+var layer_base_z = z;
 
 var tmx_cache = tiled_cache[? "&tmx-ids"];
 

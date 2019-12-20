@@ -7,6 +7,9 @@
 /// @param tile_y
 /// @param color
 /// @param alpha
+/// @param [x-offset]
+/// @param [y-offset]
+/// @param [z-offset]
 
 // this is much like batch_tile, except it bypasses the part where it actually needs an EntityTile,
 // and also writes the data straight into a regular buffer instead of a vertex buffer
@@ -20,7 +23,14 @@ var tile_x = argument[5];
 var tile_y = argument[6];
 var color = argument[7];
 var alpha = argument[8];
+var xoffset = (argument_count > 9 && argument[9] != undefined) ? argument[9] : 0;
+var yoffset = (argument_count > 10 && argument[10] != undefined) ? argument[10] : 0;
+var zoffset = (argument_count > 11 && argument[11] != undefined) ? argument[11] : 0;
 var TEXEL = 1 / TEXTURE_SIZE;
+
+xx = xx + xoffset;
+yy = yy + yoffset;
+zz = zz + zoffset;
 
 var nx = 0;
 var ny = 0;

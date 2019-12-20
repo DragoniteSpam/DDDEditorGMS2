@@ -25,7 +25,7 @@ if (group_visible) {
     for (var i = 0; i < ds_list_size(group_layers); i++) {
         var layer_data = group_layers[| i];
         var layer_type = layer_data[? "type"];
-            
+        
         switch (layer_type) {
             case "group": z = import_map_tiled_layer_folder(layer_data, columns, z, alpha * group_alpha, xx, yy, tiled_cache); break;
             case "objectgroup": z = import_map_tiled_layer_object(layer_data, columns, z, alpha * group_alpha, xx, yy, tiled_cache); break;
@@ -34,4 +34,4 @@ if (group_visible) {
     }
 }
 
-return z;
+return ++z;

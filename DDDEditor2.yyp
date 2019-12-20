@@ -5216,14 +5216,6 @@
             }
         },
         {
-            "Key": "543d1d66-f07a-43a9-a9d0-3fd45fecbb06",
-            "Value": {
-                "id": "b4dc3144-b7c3-496e-8927-c7b15d87f36e",
-                "resourcePath": "scripts\\get_2D_base_layer\\get_2D_base_layer.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "5464e03a-da84-4d1b-8a66-65b7a5d089be",
             "Value": {
                 "id": "802bdbc0-faa0-46c8-9571-39a50a61e156",
@@ -16169,7 +16161,6 @@
         "b1ccb530-da96-48be-8c94-a95358e3b1a9",
         "0f67b905-b2ee-49eb-ba96-763eb27af16c",
         "d98e8a9a-d475-42cc-98ce-47bd6a8e1fdf",
-        "543d1d66-f07a-43a9-a9d0-3fd45fecbb06",
         "a0c45521-e3c0-4e37-94b4-600c3f5eaf19",
         "415b95ce-6e15-4fbb-a3a1-08ec22a0b925",
         "46687276-d13f-415d-8fbc-f7d206570371",

@@ -26,7 +26,19 @@ var layer_visible = json[? "visible"];
 var layer_data_x = json[? "x"];
 var layer_data_y = json[? "y"];
 
-var layer_base_z = get_2D_base_layer(z);
+var layer_properties = json[? "properties"];
+var property_map = ds_map_create();
+
+for (var i = 0; i < ds_list_size(layer_properties); i++) {
+    var property = layer_properties[| i];
+    // don't add map because they're already in the root map
+    property_map[? property[? "name"]] = property;
+}
+
+var xoffset = 0;
+var yoffset = 0;
+// @todo gml update chained accessors
+var zoffset = ds_map_find_value(property_map[? "Offset"], "value");
 
 if (layer_visible) {
     for (var i = 0; i < ds_list_size(layer_data); i++) {
@@ -40,14 +52,14 @@ if (layer_visible) {
             var tile_tex_y = tile_value div columns;
             
             if (is_clamped(tile_x, 0, Stuff.map.active_map.xx - 1) && is_clamped(tile_y, 0, Stuff.map.active_map.yy - 1) && is_clamped(z, 0, Stuff.map.active_map.zz - 1)) {
-                batch_tile_raw(map_contents.frozen_data, map_contents.frozen_data_wire, tile_x, tile_y, z, tile_tex_x, tile_tex_y, c_white, layer_alpha);
+                batch_tile_raw(map_contents.frozen_data, map_contents.frozen_data_wire, tile_x, tile_y, z, tile_tex_x, tile_tex_y, c_white, layer_alpha, 0, 0, zoffset);
                 // the solidness is applied to each of the layers; entities will most likely only exist on Layer 1, but solidness will be applied to any
                 for (var j = 0; j < TILED_MAP_LAYERS_PER_BASE_LAYER; j++) {
-                    map_add_thing_anonymous(ts.passage[# tile_tex_x, tile_tex_y], tile_x, tile_y, layer_base_z + j, map, MapCellContents.TILE);
+                    map_add_thing_anonymous(ts.passage[# tile_tex_x, tile_tex_y], tile_x, tile_y, z + j, map, MapCellContents.TILE);
                 }
             }
         }
     }
 }
 
-return ++z;
+return z;
