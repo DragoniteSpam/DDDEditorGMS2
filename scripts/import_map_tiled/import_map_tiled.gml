@@ -68,6 +68,14 @@ if (file_exists(filename)) {
             }
         }
         
+        // existing entities need to be logged
+        var tmx_ids = ds_map_create();
+        for (var i = 0; i < ds_list_size(map_contents.all_entities); i++) {
+            var entity = map_contents.all_entities[| i];
+            tmx_ids[? entity.tmx_id] = entity;
+        }
+        ds_map_add_map(tiled_cache, "&tmx-ids", tmx_ids);
+        
         if (tileset_columns) {
             buffer_seek(map_contents.frozen_data, buffer_seek_start, map_contents.frozen_data_size);
             buffer_seek(map_contents.frozen_data_wire, buffer_seek_start, map_contents.frozen_data_wire_size);

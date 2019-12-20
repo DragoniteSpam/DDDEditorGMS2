@@ -34,7 +34,7 @@ repeat (n_events) {
         var node_x = buffer_read(buffer, buffer_s32);
         var node_y = buffer_read(buffer, buffer_s32);
         var node = event_create_node(event, node_type, node_x, node_y);
-        node.name = node_name;
+        event_rename(event, node, node_name);
         node.event = event;
         
         guid_set(node, buffer_read(buffer, buffer_u32));

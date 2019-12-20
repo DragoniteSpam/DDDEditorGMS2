@@ -23,6 +23,8 @@ var layer_data_x = json[? "x"];
 var layer_data_y = json[? "y"];
 var layer_base_z = get_2D_base_layer(z);
 
+var tmx_cache = tiled_cache[? "&tmx-ids"];
+
 for (var i = 0; i < ds_list_size(layer_objects); i++) {
     var object = layer_objects[| i];
     var obj_id = object[? "id"];
@@ -146,11 +148,34 @@ for (var i = 0; i < ds_list_size(layer_objects); i++) {
             var pr_cutscene_entrypoint = data_properties[? "CutsceneEntrypoint"];
             var pr_static = data_properties[? "Static?"];
             
-            if (pr_cutscene_entrypoint == undefined) break;
             if (pr_static == undefined) break;
             
-            pr_cutscene_entrypoint = pr_cutscene_entrypoint[? "value"];
+            pr_cutscene_entrypoint = event_get_node_global(pr_cutscene_entrypoint[? "value"]);
             pr_static = pr_static[? "value"];
+            
+            if (pr_cutscene_entrypoint) {
+                if (tmx_cache[? obj_id]) {
+                    var instance = tmx_cache[? obj_id];
+                    var page = instance.object_events[| 0];
+                    if (!page) {
+                        page = create_instantiated_event("Conversation");
+                        ds_list_add(instance.object_events, page);
+                    }
+                    // The entity only needs to be relocated; it doesn't need to be removed from
+                    // the lists, or re-added later, because that would take a lot of time
+                    map_remove_thing(instance, false);
+                    map_add_thing(instance, (xx + obj_x) div TILE_WIDTH, (yy + obj_y - data_height) div TILE_HEIGHT, zz, undefined, undefined, false);
+                } else {
+                    var instance = instance_create_pawn(pr_cutscene_entrypoint);
+                    instance.tmx_id = obj_id;
+                    var page = create_instantiated_event("Conversation");
+                    map_add_thing(instance, (xx + obj_x) div TILE_WIDTH, (yy + obj_y - data_height) div TILE_HEIGHT, zz);
+                }
+                page.trigger = 1;   // magic, do not touch
+                page.event_entrypoint = pr_cutscene_entrypoint.GUID;
+            } else {
+                show_error("Log an error somewhere", false);
+            }
             break;
         case "mesh":
             var pr_cutscene_entrypoint = data_properties[? "CutsceneEntrypoint"];
@@ -168,15 +193,25 @@ for (var i = 0; i < ds_list_size(layer_objects); i++) {
             
             var pr_mesh_data = internal_name_get(gid_to_image_name);
             if (pr_mesh_data) {
-                var instance = instance_create_mesh(pr_mesh_data);
+                if (tmx_cache[? obj_id]) {
+                    var instance = tmx_cache[? obj_id];
+                    // The entity only needs to be relocated; it doesn't need to be removed from
+                    // the lists, or re-added later, because that would take a lot of time
+                    map_remove_thing(instance, false);
+                    map_add_thing(instance, (xx + obj_x) div TILE_WIDTH, (yy + obj_y - data_height) div TILE_HEIGHT, zz, undefined, undefined, false);
+                } else {
+                    var instance = instance_create_mesh(pr_mesh_data);
+                    instance.tmx_id = obj_id;
+                    map_add_thing(instance, (xx + obj_x) div TILE_WIDTH, (yy + obj_y - data_height) div TILE_HEIGHT, zz);
+                }
                 instance.off_xx = pr_offset_x / TILE_WIDTH;
                 instance.off_yy = pr_offset_y / TILE_HEIGHT;
-                map_add_thing(instance, (xx + obj_x) div TILE_WIDTH, (yy + obj_y - data_height) div TILE_HEIGHT, zz);
             } else {
                 show_error("Log an error somewhere", false);
             }
             break;
         case "effect":
+        default:
             not_yet_implemented_polite();
             break;
     }
