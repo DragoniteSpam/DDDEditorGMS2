@@ -12,8 +12,8 @@ if (!directory_exists(auto_folder)) {
 }
 
 if (buffer_asset != undefined) {
-    buffer_save_async(buffer_asset, auto_folder + "auto" + EXPORT_EXTENSION_ASSETS, 0, buffer_get_size(buffer_asset));
+    buffer_save_ext(buffer_asset, auto_folder + "auto" + EXPORT_EXTENSION_ASSETS, 0, buffer_get_size(buffer_asset));
 }
 if (buffer_data != undefined) {
-    buffer_save_async(buffer_data, auto_folder + "auto" + EXPORT_EXTENSION_ASSETS, 0, buffer_get_size(buffer_data));
+    buffer_save_ext(buffer_data, auto_folder + "auto" + EXPORT_EXTENSION_ASSETS, 0, buffer_get_size(buffer_data));
 }

@@ -20,7 +20,7 @@ for (var i = 0; i < n_se; i++) {
     var fbuffer = buffer_create(length, buffer_fixed, 1);
     buffer_copy(buffer, buffer_tell(buffer), length, fbuffer, 0);
     buffer_seek(buffer, buffer_seek_relative, length);
-    buffer_save_async(fbuffer, se.temp_name, 0, buffer_get_size(fbuffer));
+    buffer_save_ext(fbuffer, se.temp_name, 0, buffer_get_size(fbuffer));
     buffer_delete(fbuffer);
     
     if (version >= DataVersions.FMOD_SAMPLE_RATE) {
