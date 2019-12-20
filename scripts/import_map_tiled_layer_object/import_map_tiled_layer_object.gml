@@ -153,26 +153,31 @@ for (var i = 0; i < ds_list_size(layer_objects); i++) {
             pr_cutscene_entrypoint = event_get_node_global(pr_cutscene_entrypoint[? "value"]);
             pr_static = pr_static[? "value"];
             
-            if (pr_cutscene_entrypoint) {
+            // arrays don't have a truth value apparently
+            if (pr_cutscene_entrypoint != undefined) {
                 if (tmx_cache[? obj_id]) {
                     var instance = tmx_cache[? obj_id];
                     var page = instance.object_events[| 0];
                     if (!page) {
-                        page = create_instantiated_event("Conversation");
+                        page = create_instantiated_event("Conversation:" + pr_cutscene_entrypoint[1].name);
                         ds_list_add(instance.object_events, page);
+                    } else {
+                        page.name = "Conversation:" + pr_cutscene_entrypoint[1].name;
                     }
                     // The entity only needs to be relocated; it doesn't need to be removed from
                     // the lists, or re-added later, because that would take a lot of time
                     map_remove_thing(instance, false);
                     map_add_thing(instance, (xx + obj_x) div TILE_WIDTH, (yy + obj_y - data_height) div TILE_HEIGHT, zz, undefined, undefined, false);
                 } else {
-                    var instance = instance_create_pawn(pr_cutscene_entrypoint);
+                    var instance = instance_create_pawn();
                     instance.tmx_id = obj_id;
-                    var page = create_instantiated_event("Conversation");
+                    var page = create_instantiated_event("Conversation:" + pr_cutscene_entrypoint[1].name);
+                    ds_list_add(instance.object_events, page);
                     map_add_thing(instance, (xx + obj_x) div TILE_WIDTH, (yy + obj_y - data_height) div TILE_HEIGHT, zz);
                 }
                 page.trigger = 1;   // magic, do not touch
-                page.event_entrypoint = pr_cutscene_entrypoint.GUID;
+                page.event_guid = pr_cutscene_entrypoint[0].GUID;
+                page.event_entrypoint = pr_cutscene_entrypoint[1].GUID;
             } else {
                 show_error("Log an error somewhere", false);
             }

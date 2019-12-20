@@ -70,7 +70,7 @@
 #macro PREFIX_GRAPHIC_TILESET "GTs"
 #macro PREFIX_AUDIO_SE "Se"
 #macro PREFIX_AUDIO_BGM "Bgm"
-#macro PREFIX_MESH "Msh"
+#macro PREFIX_MESH "Ms"
 
 #macro CONTORL_3D_LOOK Controller.mouse_middle
 
