@@ -75,7 +75,7 @@ if (string_length(fn) > 0) {
     buffer_write(buffer, buffer_datatype, SerializeThings.END_OF_FILE);
     
     var compressed = buffer_compress(buffer, 0, buffer_tell(buffer));
-    buffer_save(compressed, fn);
+    buffer_save_async(compressed, fn, 0, buffer_get_size(compressed));
     
     serialize_save_assets(filename_change_ext(fn, EXPORT_EXTENSION_ASSETS));
     

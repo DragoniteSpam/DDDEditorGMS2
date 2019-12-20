@@ -73,8 +73,8 @@ if (string_length(fn) > 0) {
     buffer_write(buffer, buffer_datatype, SerializeThings.END_OF_FILE);
     
     var compressed = buffer_compress(buffer, 0, buffer_tell(buffer));
-    buffer_save(compressed, fn);
-    //buffer_save(buffer, fn);
+    buffer_save_async(compressed, fn, 0, buffer_get_size(compressed));
+    //buffer_save_async(buffer, fn, 0, buffer_get_size(buffer));
     var proj_name = filename_change_ext(filename_name(fn), "");
     setting_project_add(proj_name);
     setting_project_create_local(proj_name, compressed, undefined);
