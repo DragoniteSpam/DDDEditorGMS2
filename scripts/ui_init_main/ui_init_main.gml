@@ -711,7 +711,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy = legal_y + spacing;
     
     // this is an object variable
-    element_mesh_list = create_list(legal_x + spacing, yy, "Available meshes: ", "<no meshes>", col_width, element_height, 28, uivc_list_selection_mesh, false, t_p_mesh_editor);
+    element_mesh_list = create_list(legal_x + spacing, yy, "Available meshes: ", "<no meshes>", col_width, element_height, 25, uivc_list_selection_mesh, false, t_p_mesh_editor);
     element_mesh_list.entries_are = ListEntries.INSTANCES;
     element_mesh_list.colorize = true;
     element_mesh_list.render = ui_render_list_all_meshes;
@@ -719,20 +719,43 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     element_mesh_list.ondoubleclick = omu_mesh_preview;
     ds_list_add(t_p_mesh_editor.contents, element_mesh_list);
     
+    yy = yy + ui_get_list_height(element_mesh_list) + spacing;
+    
+    element = create_button(legal_x + spacing, yy, "Import", col_width, element_height, fa_center, omu_mesh_import, t_p_mesh_editor);
+    ds_list_add(t_p_mesh_editor.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
+    element = create_button(legal_x + spacing, yy, "Delete", col_width, element_height, fa_center, omu_mesh_remove, t_p_mesh_editor);
+    element.color = c_red;
+    ds_list_add(t_p_mesh_editor.contents, element);
+    
+    yy = legal_y + spacing;
+    
     element = create_text(col2_x, yy, "Mesh Properties", col_width, element_height, fa_left, col_width, t_p_mesh_editor);
     element.color = c_blue;
     ds_list_add(t_p_mesh_editor.contents, element);
     
     yy = yy + element.height + spacing;
     
-    element = create_input(col2_x, yy, "Name:", col_width, element_height, uivc_input_mesh_name, "", "Name", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, t_p_mesh_editor);
+    element = create_text(col2_x, yy, "Name:", col_width, element_height, fa_left, col_width, t_p_mesh_editor);
+    ds_list_add(t_p_mesh_editor.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
+    element = create_input(col2_x, yy, "", col_width, element_height, uivc_input_mesh_name, "", "Name", validate_string, 0, 1, VISIBLE_NAME_LENGTH, 0, vy1, vx2, vy2, t_p_mesh_editor);
     ds_list_add(t_p_mesh_editor.contents, element);
     
     t_p_mesh_editor.mesh_name = element;
     
     yy = yy + t_p_mesh_editor.mesh_name.height + spacing;
     
-    element = create_input(col2_x, yy, "Internal:", col_width, element_height, uivc_input_mesh_internal_name, "", "A-Za-z0-9_", validate_string_internal_name, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, t_p_mesh_editor);
+    element = create_text(col2_x, yy, "Internal Name:", col_width, element_height, fa_left, col_width, t_p_mesh_editor);
+    ds_list_add(t_p_mesh_editor.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
+    element = create_input(col2_x, yy, "", col_width, element_height, uivc_input_mesh_internal_name, "", "A-Za-z0-9_", validate_string_internal_name, 0, 1, INTERNAL_NAME_LENGTH, 0, vy1, vx2, vy2, t_p_mesh_editor);
     ds_list_add(t_p_mesh_editor.contents, element);
     
     t_p_mesh_editor.mesh_name_internal = element;
@@ -837,23 +860,12 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element.height + spacing;
     
-    element = create_button(col2_x, yy, "Import", col_width, element_height, fa_center, omu_mesh_import, t_p_mesh_editor);
-    ds_list_add(t_p_mesh_editor.contents, element);
-    
-    yy = yy + element.height + spacing;
-    
     element = create_button(col2_x, yy, "Export Selected", col_width, element_height, fa_center, omu_mesh_export_selected, t_p_mesh_editor);
     ds_list_add(t_p_mesh_editor.contents, element);
     
     yy = yy + element.height + spacing;
     
     element = create_button(col2_x, yy, "Export All", col_width, element_height, fa_center, omu_mesh_export_archive, t_p_mesh_editor);
-    ds_list_add(t_p_mesh_editor.contents, element);
-    
-    yy = yy + element.height + spacing;
-    
-    element = create_button(col2_x, yy, "Delete", col_width, element_height, fa_center, omu_mesh_remove, t_p_mesh_editor);
-    element.color = c_red;
     ds_list_add(t_p_mesh_editor.contents, element);
     
     yy = yy + element.height + spacing;
