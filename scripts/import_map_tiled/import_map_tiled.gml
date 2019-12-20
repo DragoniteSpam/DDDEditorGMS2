@@ -3,8 +3,10 @@
 var ask_clear = (argument_count > 0) ? argument[0] : false;
 
 if (ask_clear) {
-    dialog_create_yes_or_no(noone, "Would you like to clear the frozen terrain first? (This is recommended before importing Tiled maps.)",
-        dmu_data_import_map_clear, undefined, undefined, undefined, dmu_data_import_map_no_clear);
+    dialog_create_yes_or_no(
+        noone, "Would you like to clear the frozen terrain first? (This is recommended before importing Tiled maps.)",
+        dmu_data_import_map_clear, undefined, undefined, undefined, dmu_data_import_map_no_clear
+    );
     return;
 }
 

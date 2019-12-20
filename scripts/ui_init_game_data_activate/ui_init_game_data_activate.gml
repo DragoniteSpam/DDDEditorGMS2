@@ -205,7 +205,7 @@ if (selection + 1) {
                             break;
                         case DataTypes.EVENT:           // list
                             var element_header = create_text(spacing, yy, property.name, ew, eh, fa_left, ew, noone);
-                            var element = create_button(spacing, yy, "select something", ew, eh, fa_center, dialog_create_data_get_event, noone);
+                            var element = create_button(spacing, yy + vy1, "select something", ew, eh, fa_center, dialog_create_data_get_event, noone);
                             element.event_guid = noone;
                             element.instance = noone;
                             element.key = i;
@@ -218,7 +218,8 @@ if (selection + 1) {
                     var hh = element.height;
                 }
                 
-                if (yy + hh > room_height - 160) {
+                // this is where everything gets shifted to the next column, if needed
+                if (yy + hh > room_height - 128) {
                     var n = ds_list_size(container.contents);
                     col_data = instance_create_depth((n /* + 2 */) * cw + spacing * 4, 0, 0, UIThing);
                     if (n > 2) {
