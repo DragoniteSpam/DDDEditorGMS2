@@ -7792,14 +7792,6 @@
             }
         },
         {
-            "Key": "7e842895-6f90-469d-a5a5-1a4b1b4714c6",
-            "Value": {
-                "id": "497a33df-0c14-45a9-a7a1-0f7bb2c72d11",
-                "resourcePath": "scripts\\dmu_data_import_map_no_clear\\dmu_data_import_map_no_clear.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "7ee198d3-685f-4bdb-8a0e-f386c474ae3d",
             "Value": {
                 "id": "ab40c1be-6964-4968-b12b-786338489a88",
@@ -11587,7 +11579,7 @@
             "Key": "bafd5400-cfb9-4014-9997-1edaa5aeaa6f",
             "Value": {
                 "id": "13edd76e-be8a-4b8b-98fc-fde1228f6524",
-                "resourcePath": "scripts\\dmu_data_import_map_clear\\dmu_data_import_map_clear.yy",
+                "resourcePath": "scripts\\dmu_data_import_map_act\\dmu_data_import_map_act.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -16339,7 +16331,6 @@
         "be638e68-a97e-4a0c-afe8-b8b38eb934c0",
         "deb89310-0580-4a12-85dc-0523f7cc5284",
         "bafd5400-cfb9-4014-9997-1edaa5aeaa6f",
-        "7e842895-6f90-469d-a5a5-1a4b1b4714c6",
         "3524668f-fce9-47ef-a727-b1f72a682462",
         "ef88187a-f578-4d1f-b954-17d87c453441",
         "1463a253-2c9b-48c6-8428-954e21d6ff63",

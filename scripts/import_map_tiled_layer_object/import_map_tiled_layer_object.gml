@@ -13,7 +13,7 @@ var alpha = (argument_count > 3) ? argument[3] : 1;
 var xx = (argument_count > 4) ? argument[4] : 0;
 var yy = (argument_count > 5) ? argument[5] : 0;
 var tiled_cache = (argument_count > 6) ? argument[6] : noone;
-var zz = z div TILED_MAP_LAYERS_PER_BASE_LAYER;
+var zz = z;
 
 var layer_objects = json[? "objects"];
 var layer_name = json[? "name"];

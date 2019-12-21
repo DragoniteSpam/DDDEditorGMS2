@@ -1,8 +1,8 @@
 {
-    "id": "7e842895-6f90-469d-a5a5-1a4b1b4714c6",
+    "id": "bafd5400-cfb9-4014-9997-1edaa5aeaa6f",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "dmu_data_import_map_no_clear",
+    "name": "dmu_data_import_map_act",
     "IsCompatibility": false,
     "IsDnD": false
 }
