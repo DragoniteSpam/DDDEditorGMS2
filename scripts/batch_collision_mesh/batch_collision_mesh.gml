@@ -5,6 +5,10 @@ var shape = argument0;
 var mesh = argument1;
 var data = guid_get(mesh.mesh);
 
+if (!data) {
+    return 0;
+}
+
 var xx = (mesh.xx + data.xmin + 0.5) * TILE_WIDTH;
 var yy = (mesh.yy + data.ymin + 0.5) * TILE_HEIGHT;
 var zz = (mesh.zz + data.zmin + 0.5) * TILE_DEPTH;

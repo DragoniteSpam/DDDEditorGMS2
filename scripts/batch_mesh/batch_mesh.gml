@@ -8,6 +8,11 @@ var mesh = argument2;
 
 var data = guid_get(mesh.mesh); // lol
 
+// @todo find a way to batch the (?) things?
+if (!data) {
+    return [buffer, wire];
+}
+
 switch (data.type) {
     case MeshTypes.RAW: break;
     case MeshTypes.SMF: return [buffer, wire];

@@ -4,6 +4,8 @@ if (buffer_exists(buffer)) buffer_delete(buffer);
 if (wbuffer) vertex_delete_buffer(wbuffer);
 if (cshape) c_shape_destroy(cshape);
 
+show_error("This will cause anything that uses this mesh's collision shape to immediately crash; at some point you should probably take care of that", true);
+
 if (vbuffer) {
     switch (type) {
         case MeshTypes.RAW: vertex_delete_buffer(vbuffer); break;
