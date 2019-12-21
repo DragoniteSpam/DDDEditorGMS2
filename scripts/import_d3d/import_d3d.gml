@@ -1,12 +1,14 @@
 /// @param filename
-/// @param [complete_object?]
+/// @param [complete-object?]
+/// @param [adjust-UVs?]
 
 // this is VERY bad but i don't want to write two d3d importers, or to offload the d3d code to
 // somewhere else, so it stays like this for now
 
 var fn = argument[0];
 // setting "everything" to false will mean only the vertex buffer is returned
-var everything = (argument_count > 1) ? argument[1] : true;
+var everything = (argument_count > 1 && argument[1] != undefined) ? argument[1] : true;
+var adjust = (argument_count > 2 && argument[2] != undefined) ? argument[2] : true;
 
 var f = file_text_open_read(fn);
 file_text_readln(f);
@@ -146,10 +148,12 @@ while (!file_text_eof(f)) {
         continue;
     }
     
-    // because the texture doesn't take up the entire space on the texture page
-    // i MAY come up with a way of doing individual textures for meshes, but not now
-    xtex = xtex * TILESET_TEXTURE_WIDTH;
-    ytex = ytex * TILESET_TEXTURE_HEIGHT;
+    if (adjust) {
+        // because the texture doesn't take up the entire space on the texture page
+        // i MAY come up with a way of doing individual textures for meshes, but not now
+        xtex = xtex * TILESET_TEXTURE_WIDTH;
+        ytex = ytex * TILESET_TEXTURE_HEIGHT;
+    }
     
     minx = min(minx, xx[vc]);
     miny = min(miny, yy[vc]);
