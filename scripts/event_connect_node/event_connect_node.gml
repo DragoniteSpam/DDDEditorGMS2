@@ -7,7 +7,7 @@ var destination = argument[1];
 var index = (argument_count > 2) ? argument[2] : 0;
 
 // because this would be silly
-if (source != destination && destination.valid_destination) {
+if (source != destination && destination && destination.valid_destination) {
     var old_node = source.outbound[| index];
     if (old_node) {
         ds_map_delete(old_node.parents, source);
