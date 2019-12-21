@@ -9,5 +9,5 @@ if (mesh) {
         case MeshTypes.SMF: render_mesh_smf(entity); break;
     }
 } else {
-    // @todo some kind of error notice
+    render_mesh_missing(entity);
 }

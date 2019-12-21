@@ -7,7 +7,7 @@ var selection = ui_list_selection(ui_list);
 
 if (selection + 1) {
     var instance_selection = ui_list_selection(Stuff.data.ui.el_instances);
-    var property_selection = ui_list.entries[| election].GUID;
+    var property_selection = ui_list.entries[| selection].GUID;
     
     if (instance_selection + 1) {
         // i tried chaining these together into one statement and it didn't work for some reason. fabulous.

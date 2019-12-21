@@ -1440,6 +1440,14 @@
             }
         },
         {
+            "Key": "1586bf0c-0a82-41a1-9bc1-796353cb4637",
+            "Value": {
+                "id": "6a881d22-dd53-4c6e-bb16-a3e5f8d1f3d5",
+                "resourcePath": "scripts\\render_mesh_missing\\render_mesh_missing.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "15ab5199-66ae-4863-96ee-9fb150a0291e",
             "Value": {
                 "id": "8d0210fa-372a-4ba8-87b4-40c3e3e3d38a",
@@ -2536,6 +2544,14 @@
             }
         },
         {
+            "Key": "27c4bb2f-3dc8-4fc7-9e3e-080212052f98",
+            "Value": {
+                "id": "e0859648-382a-41a6-973b-ca9182a6a0a1",
+                "resourcePath": "sprites\\spr_mesh_missing\\spr_mesh_missing.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "27dc714f-af2c-4c19-be9e-2f8b4cb5dcee",
             "Value": {
                 "id": "a89f88b1-9619-424c-af4b-92381af52164",
@@ -3269,6 +3285,14 @@
                 "id": "896347a8-158a-4cf6-816a-c34077b55e48",
                 "resourcePath": "scripts\\dialog_create_refid_list\\dialog_create_refid_list.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "3461fe1b-06be-4922-b3c6-e7e7c4e526bd",
+            "Value": {
+                "id": "95274495-36c9-48e4-b302-54a5a2a4444f",
+                "resourcePath": "datafiles_yy\\data\\basic\\missing.d3d.yy",
+                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -16129,6 +16153,7 @@
         "7388fa70-3d82-49cb-911d-fdf570820496",
         "8d01683b-31d2-4512-b054-29e0a34f5d3e",
         "83918601-76a4-41ce-a370-e149f8357773",
+        "1586bf0c-0a82-41a1-9bc1-796353cb4637",
         "cabddee6-83fd-4635-a29d-8d1e4a5f3dfd",
         "820aac31-21d2-429a-b06e-34225a018af7",
         "abf63469-3f87-430c-a61c-e96d63dad92c",
