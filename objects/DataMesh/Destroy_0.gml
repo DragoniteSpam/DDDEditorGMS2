@@ -6,8 +6,8 @@ if (cshape) c_shape_destroy(cshape);
 
 if (vbuffer) {
     switch (type) {
-        case MeshTypes.RAW: vertex_delete_buffer(vbuffer);
-        case MeshTypes.SMF: smf_model_destroy(vbuffer);
+        case MeshTypes.RAW: vertex_delete_buffer(vbuffer); break;
+        case MeshTypes.SMF: smf_model_destroy(vbuffer); break;
     }
 }
 
