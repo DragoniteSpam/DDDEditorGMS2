@@ -167,13 +167,15 @@ for (var i = 0; i < ds_list_size(layer_objects); i++) {
                     // The entity only needs to be relocated; it doesn't need to be removed from
                     // the lists, or re-added later, because that would take a lot of time
                     map_remove_thing(instance, false);
-                    map_add_thing(instance, (xx + obj_x) div TILE_WIDTH, (yy + obj_y - data_height) div TILE_HEIGHT, zz, undefined, undefined, false);
+                    // position for NPCs is at -1 because of where the origin for sprites is in Tiled
+                    map_add_thing(instance, (xx + obj_x) div TILE_WIDTH, (yy + obj_y) div TILE_HEIGHT - 1, zz, undefined, undefined, false);
                 } else {
                     var instance = instance_create_pawn();
                     instance.tmx_id = obj_id;
                     var page = create_instantiated_event("Conversation:" + pr_cutscene_entrypoint[1].name);
                     ds_list_add(instance.object_events, page);
-                    map_add_thing(instance, (xx + obj_x) div TILE_WIDTH, (yy + obj_y - data_height) div TILE_HEIGHT, zz);
+                    // position for NPCs is at -1 because of where the origin for sprites is in Tiled
+                    map_add_thing(instance, (xx + obj_x) div TILE_WIDTH, (yy + obj_y) div TILE_HEIGHT - 1, zz);
                 }
                 page.trigger = 1;   // magic, do not touch
                 page.event_guid = pr_cutscene_entrypoint[0].GUID;
@@ -203,11 +205,11 @@ for (var i = 0; i < ds_list_size(layer_objects); i++) {
                     // The entity only needs to be relocated; it doesn't need to be removed from
                     // the lists, or re-added later, because that would take a lot of time
                     map_remove_thing(instance, false);
-                    map_add_thing(instance, (xx + obj_x) div TILE_WIDTH, (yy + obj_y - data_height) div TILE_HEIGHT, zz, undefined, undefined, false);
+                    map_add_thing(instance, (xx + obj_x) div TILE_WIDTH, (yy + obj_y) div TILE_HEIGHT, zz, undefined, undefined, false);
                 } else {
                     var instance = instance_create_mesh(pr_mesh_data);
                     instance.tmx_id = obj_id;
-                    map_add_thing(instance, (xx + obj_x) div TILE_WIDTH, (yy + obj_y - data_height) div TILE_HEIGHT, zz);
+                    map_add_thing(instance, (xx + obj_x) div TILE_WIDTH, (yy + obj_y) div TILE_HEIGHT, zz);
                 }
                 instance.off_xx = pr_offset_x / TILE_WIDTH;
                 instance.off_yy = pr_offset_y / TILE_HEIGHT;
