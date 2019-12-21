@@ -69,8 +69,8 @@ c_transform_identity();
 basic_cage = import_d3d("data\\basic\\cage.d3d", false);
 indexed_cage = import_d3d("data\\basic\\cage-indexed.d3d", false);
 
-water_tile_size = 0xffff;
-water_reptition = 256;
+water_tile_size = 0x10000;
+water_reptition = 0x100;
 
 mesh_water_base = vertex_create_buffer();
 mesh_water_bright = vertex_create_buffer();
