@@ -90,16 +90,15 @@ target_zz = zz;
 previous_xx = xx;
 previous_yy = yy;
 previous_zz = zz;
-// serialize: don't want to use the built-in "solid" variable since that might
-// cause things to break unexpectedly
-am_solid = false;
-static = false;         // anything that isn't intended to move - if batchable
-                        // is true, this can be turned on or off, otherwise it can't
+
+/* s */ collision_flags = 0xffffffff;
+/* s */ event_flags = 0xffffffff;
+/* s */ static = false;
 
 // editor properties
 
-// the game will know in advance whether something is to
-// be batched or not. remember to override this in dynamic entities.
+// the game will know in advance whether something is to be batched or not.
+// the editor may chance this on the fly. remember to override this in dynamic entities.
 batchable = true;
 batch_index = -1;
 modification = Modifications.CREATE;

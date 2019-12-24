@@ -11,8 +11,11 @@ buffer_write(buffer, buffer_u32, entity.zz);
 
 buffer_write(buffer, buffer_u32, entity.REFID);
 
-var entity_bools = pack(entity.am_solid, entity.static,
-    entity.animate_idle, entity.animate_movement, entity.direction_fix,
+var entity_bools = pack(
+    entity.static,
+    entity.animate_idle,
+    entity.animate_movement,
+    entity.direction_fix,
     entity.reset_position
 );
 buffer_write(buffer, buffer_u32, entity_bools);
@@ -96,3 +99,6 @@ for (var i = 0; i < n_generic; i++) {
         case DataTypes.ENTITY: not_yet_implemented(); break;
     }
 }
+
+buffer_write(buffer, buffer_u32, entity.collision_flags);
+buffer_write(buffer, buffer_u32, entity.event_flags);

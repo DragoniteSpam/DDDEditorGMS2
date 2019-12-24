@@ -12,23 +12,24 @@ entity.yy = buffer_read(buffer, buffer_u32);
 entity.zz = buffer_read(buffer, buffer_u32);
 refid_set(entity, buffer_read(buffer, buffer_u32));
 
-var state_solid = entity.am_solid;
 var state_static = entity.static;
 
 var entity_bools = buffer_read(buffer, buffer_u32);
-entity.am_solid = unpack(entity_bools, 0);
-entity.static = unpack(entity_bools, 1);
-entity.animate_idle = unpack(entity_bools, 2);
-entity.animate_movement = unpack(entity_bools, 3);
-entity.direction_fix = unpack(entity_bools, 4);
-entity.reset_position = unpack(entity_bools, 5);
-
-// meshes and pawns are solid by default, so if the state of their
-// solidness changes, this needs to be reflected in the map stats counter
-if (state_solid && !entity.am_solid) {
-    Stuff.map.active_map.contents.population_solid--;
-} else if (!state_solid && entity.am_solid) {
-    Stuff.map.active_map.contents.population_solid++;
+if (version >= DataVersions.COLLISION_FLAGS) {
+    entity.static = unpack(entity_bools, 0);
+    entity.animate_idle = unpack(entity_bools, 1);
+    entity.animate_movement = unpack(entity_bools, 2);
+    entity.direction_fix = unpack(entity_bools, 3);
+    entity.reset_position = unpack(entity_bools, 4);
+} else {
+    var solid_state = unpack(entity_bools, 0);
+    entity.static = unpack(entity_bools, 1);
+    entity.animate_idle = unpack(entity_bools, 2);
+    entity.animate_movement = unpack(entity_bools, 3);
+    entity.direction_fix = unpack(entity_bools, 4);
+    entity.reset_position = unpack(entity_bools, 5);
+    
+    entity.collision_flags = solid_state ? 0xffffffff : 0;
 }
 
 // same for statics
@@ -121,4 +122,9 @@ repeat (n_generic) {
     }
     
     ds_list_add(entity.generic_data, data);
+}
+
+if (version >= DataVersions.COLLISION_FLAGS) {
+    entity.collision_flags = buffer_read(buffer, buffer_u32);
+    entity.event_flags = buffer_read(buffer, buffer_u32);
 }

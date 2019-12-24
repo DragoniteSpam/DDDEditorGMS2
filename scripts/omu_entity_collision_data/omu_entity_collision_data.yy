@@ -1,8 +1,8 @@
 {
-    "id": "e9abde21-953a-4715-86e3-44b15e58be57",
+    "id": "a3241c4a-0c11-4c39-81ff-0843be65069b",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "ui_render_text_stats_solid",
+    "name": "omu_entity_collision_data",
     "IsCompatibility": false,
     "IsDnD": false
 }

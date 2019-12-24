@@ -7,9 +7,6 @@ if (cobject) {
 
 Stuff.map.active_map.contents.population[ETypes.ENTITY]--;
 
-if (am_solid) {
-    Stuff.map.active_map.contents.population_solid--;
-}
 if (static) {
     Stuff.map.active_map.contents.population_static--;
 }

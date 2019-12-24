@@ -8,7 +8,7 @@ Stuff.map.selected_entities = list;
 if (ds_list_size(list) == 0) {
     // deactivate everything
     Stuff.map.ui.element_entity_name.interactive = false;
-    Stuff.map.ui.element_entity_solid.interactive = false;
+    Stuff.map.ui.element_entity_collision_data.interactive = false;
     Stuff.map.ui.element_entity_static.interactive = false;
     Stuff.map.ui.element_entity_generic.interactive = false;
     
@@ -64,13 +64,12 @@ if (ds_list_size(list) == 0) {
     // if multiple eligible entities are selected, populate the UI
     // elements with a nice ¯\_(ツ)_/¯
     ui_input_set_value(Stuff.map.ui.element_entity_name, "");
-    Stuff.map.ui.element_entity_solid.value = 2;
     Stuff.map.ui.element_entity_static.value = 2;
     
     ui_list_deselect(Stuff.map.ui.element_entity_events);
     
     Stuff.map.ui.element_entity_name.interactive = true;
-    Stuff.map.ui.element_entity_solid.interactive = true;
+    Stuff.map.ui.element_entity_collision_data.interactive = true;
     Stuff.map.ui.element_entity_generic.interactive = true;
     Stuff.map.ui.element_entity_static.interactive = true;
     

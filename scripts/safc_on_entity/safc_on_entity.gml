@@ -5,11 +5,10 @@ var entity  =  argument0;
 // basic stuff
 
 ui_input_set_value(Stuff.map.ui.element_entity_name, entity.name);
-Stuff.map.ui.element_entity_solid.value = entity.am_solid;
 Stuff.map.ui.element_entity_static.value = entity.static;
 
 Stuff.map.ui.element_entity_name.interactive = true;
-Stuff.map.ui.element_entity_solid.interactive = true;
+Stuff.map.ui.element_entity_collision_data.interactive = true;
 Stuff.map.ui.element_entity_static.interactive = true;
 Stuff.map.ui.element_entity_generic.interactive = true;
 

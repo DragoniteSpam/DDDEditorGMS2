@@ -18,8 +18,6 @@ Stuff.map.active_map.contents.population[ETypes.ENTITY_PAWN]++;
 name = "Pawn";
 etype = ETypes.ENTITY_PAWN;
 
-am_solid = true;
-Stuff.map.active_map.contents.population_solid++;
 direction_fix = false;              // because it would be weird to have this off by default
 
 // editor properties

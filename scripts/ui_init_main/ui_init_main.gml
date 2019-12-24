@@ -194,10 +194,6 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     element = create_text(col2_x, yy, "     Solid:", col_width, element_height, fa_left, col_width, t_stats);
     ds_list_add(t_stats.contents, element);
     
-    element = create_text(stat_x, yy, "0", col_width, element_height, fa_left, col_width, t_stats);
-    element.render=ui_render_text_stats_solid;
-    ds_list_add(t_stats.contents, element);
-    
     yy = yy + element.height + spacing;
     
     element = create_text(col2_x, yy, "     Tiles:", col_width, element_height, fa_left, col_width, t_stats);
@@ -388,15 +384,16 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy = yy + element_entity_name.height + spacing;
     
     element = create_text(legal_x + spacing, yy, "Basic Properties", col_width, element_height, fa_left, col_width, t_p_entity);
+    element.color = c_blue;
     ds_list_add(t_p_entity.contents, element);
     
     yy = yy + element.height + spacing;
     
-    element_entity_solid = create_checkbox(legal_x + spacing, yy, "Solid", col_width, element_height, uivc_check_entity_solid, false, t_p_entity);
-    ds_list_add(t_p_entity.contents, element_entity_solid);
-    element_entity_solid.interactive = false;
+    element_entity_collision_data = create_button(legal_x + spacing, yy, "Collision Data", col_width, element_height, fa_center, omu_entity_collision_data, t_p_entity);
+    ds_list_add(t_p_entity.contents, element_entity_collision_data);
+    element_entity_collision_data.interactive = false;
     
-    yy = yy + element_entity_solid.height;
+    yy = yy + element_entity_collision_data.height + spacing;
     
     element_entity_static = create_checkbox(legal_x + spacing, yy, "Static", col_width, element_height, uivc_check_entity_static, false, t_p_entity);
     ds_list_add(t_p_entity.contents, element_entity_static);
@@ -404,7 +401,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element_entity_static.height + spacing;
     
-    var n = 8;
+    var n = 6;
     
     element_entity_events = create_list(legal_x + spacing, yy, "Event Pages", "<No events>", col_width, element_height, n, null, false, t_p_entity, noone);
     element_entity_events.colorize = false;
@@ -414,7 +411,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     ds_list_add(t_p_entity.contents, element_entity_events);
     element_entity_events.interactive = false;
     
-    yy = yy + element_height * n + spacing + spacing;
+    yy = yy + ui_get_list_height(element_entity_events) + spacing;
     
     element_entity_event_edit = create_button(legal_x + spacing, yy, "Edit Event Page", col_width, element_height, fa_center, omu_entity_event_page, t_p_entity);
     ds_list_add(t_p_entity.contents, element_entity_event_edit);
@@ -435,6 +432,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy = yy + element_height + spacing;
     
     element = create_text(legal_x + spacing, yy, "Options", col_width, element_height, fa_left, col_width, t_p_entity);
+    element.color = c_blue;
     ds_list_add(t_p_entity.contents, element);
     
     yy = yy + element.height + spacing;
@@ -480,6 +478,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy = legal_y + spacing + element_entity_name.height + spacing;
     
     element = create_text(col2_x, yy, "Transform: Position", col_width, element_height, fa_left, col_width, t_p_entity);
+    element.color = c_blue;
     ds_list_add(t_p_entity.contents, element);
     
     yy = yy + element_height + spacing;
@@ -503,6 +502,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy = yy + element_height + spacing;
     
     element = create_text(col2_x, yy, "Transform: Position Offset", col_width, element_height, fa_left, col_width, t_p_entity);
+    element.color = c_blue;
     ds_list_add(t_p_entity.contents, element);
     
     yy = yy + element_height + spacing;
@@ -526,6 +526,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy = yy + element_height + spacing;
     
     element = create_text(col2_x, yy, "Transform: Rotation", col_width, element_height, fa_left, col_width, t_p_entity);
+    element.color = c_blue;
     ds_list_add(t_p_entity.contents, element);
     
     yy = yy + element_height + spacing;
@@ -549,6 +550,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy = yy + element_height + spacing;
     
     element = create_text(col2_x, yy, "Transform: Scale", col_width, element_height, fa_left, col_width, t_p_entity);
+    element.color = c_blue;
     ds_list_add(t_p_entity.contents, element);
     
     yy = yy + element_height + spacing;

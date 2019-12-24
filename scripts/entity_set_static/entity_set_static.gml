@@ -1,8 +1,8 @@
 /// @param Entity
-/// @param solid?
+/// @param static?
 
 var entity = argument0;
-var am_solid = argument1;
+var static = argument1;
 
 // SMF meshes are simply not allowed to be marked as static, or anything like that
 if (instanceof(entity, EntityMesh) && guid_get(entity.mesh).type == MeshTypes.SMF) {
@@ -10,8 +10,8 @@ if (instanceof(entity, EntityMesh) && guid_get(entity.mesh).type == MeshTypes.SM
 }
 
 var state = entity.static;
-entity.static = am_solid;
+entity.static = static;
 
-if (state != am_solid) {
-    Stuff.map.active_map.contents.population_static = Stuff.map.active_map.contents.population_static + am_solid ? 1 : -1;
+if (state != static) {
+    Stuff.map.active_map.contents.population_static = Stuff.map.active_map.contents.population_static + static ? 1 : -1;
 }

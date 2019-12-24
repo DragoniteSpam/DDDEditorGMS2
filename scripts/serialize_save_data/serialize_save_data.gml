@@ -107,5 +107,6 @@ enum DataVersions {
     GAME_NOTES                  = 65,
     FMOD_SAMPLE_RATE            = 66,
     FMOD_LOOP_POINT_SAMPLES     = 67,
+    COLLISION_FLAGS             = 68,
     _CURRENT /* = whatever the last one is + 1 */
 }

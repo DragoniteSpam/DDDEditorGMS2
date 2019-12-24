@@ -14,11 +14,6 @@ animated = false;
 animation_index = 0;
 animation_type = SMF_loop_linear;
 
-// other properties - inherited
-
-am_solid = true;
-Stuff.map.active_map.contents.population_solid++;
-
 // editor properties
 
 slot = MapCellContents.MESHPAWN;

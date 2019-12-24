@@ -8,11 +8,6 @@ etype = ETypes.ENTITY_MESH;
 
 terrain_id = 0;
 
-// other properties - inherited
-
-am_solid = true;
-Stuff.map.active_map.contents.population_solid++;
-
 // editor properties
 
 // make this a GUID the same way normal meshes do
