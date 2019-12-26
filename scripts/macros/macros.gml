@@ -101,6 +101,7 @@
 #macro c_magenta 0xff00ff
 #macro c_progress_bar 0xff9900
 #macro c_tooltip 0xccffff
+#macro c_ui_active_bitfield c_ltgray
 #macro c_ui_select 0xffb8ac
 #macro c_ui 0xebebeb
 

@@ -21,12 +21,13 @@ if (view_current == view_overlay) {
         if (instance_exists(Stuff.element_tooltip) && string_length(Stuff.element_tooltip.tooltip) > 0) {
             var str = Stuff.element_tooltip.tooltip;
             var str_padding = 8;
-            var str_width = string_width_ext(str, -1, 540) + str_padding * 4;
-            var str_height = string_height_ext(str, -1, 540) + str_padding * 2;
-            var halign = draw_get_halign();
-            var valign = draw_get_valign();
+            var text_width = 540;
             draw_set_valign(fa_top);
             draw_set_halign(fa_left);
+            var str_width = string_width_ext(str, -1, text_width) + str_padding * 2;
+            var str_height = string_height_ext(str, -1, text_width) + str_padding * 2;
+            var halign = draw_get_halign();
+            var valign = draw_get_valign();
             var tooltip_x = min(mouse_x, view_get_wport(view_current) - str_width);
             var tooltip_y = min(mouse_y, view_get_hport(view_current) - str_height);
             draw_rectangle_colour(
@@ -37,7 +38,7 @@ if (view_current == view_overlay) {
                 tooltip_x, tooltip_y, tooltip_x + str_width, tooltip_y + str_height,
                 c_black, c_black, c_black, c_black, true
             );
-            draw_text_ext(tooltip_x + str_padding, tooltip_y + str_padding, str, -1, str_width);
+            draw_text_ext(tooltip_x + str_padding, tooltip_y + str_padding, str, -1, text_width);
             draw_set_halign(halign);
             draw_set_valign(valign);
             instance_deactivate_object(Stuff.element_tooltip);
