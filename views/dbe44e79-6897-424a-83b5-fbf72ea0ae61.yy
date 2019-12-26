@@ -19,7 +19,8 @@
         "7bd7672f-a5ce-4dd0-888f-98b30b086196",
         "43d067c8-589d-42af-95b0-e770cd521608",
         "8b4befb7-869d-4b9b-81d1-0f6c5f053bde",
-        "00b3af67-33bf-4c95-8fbc-0b8e7d84af2f"
+        "00b3af67-33bf-4c95-8fbc-0b8e7d84af2f",
+        "f197ebb3-4b6a-4bf9-b8c8-b172dde0146b"
     ],
     "filterType": "GMScript",
     "folderName": "tile and mesh editor",

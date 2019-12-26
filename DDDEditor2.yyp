@@ -1608,6 +1608,14 @@
             }
         },
         {
+            "Key": "18de48f4-ba73-44fd-af7c-1155e570d3d1",
+            "Value": {
+                "id": "64480fab-f3c4-4db2-bc44-9ee6accc097c",
+                "resourcePath": "scripts\\uivc_bitfield_entity_entity_none\\uivc_bitfield_entity_entity_none.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "18f51d51-2f2a-45dc-946b-7c5827d9e631",
             "Value": {
                 "id": "8afd5767-0354-452b-ab8b-5bb8ed5f6008",
@@ -1676,6 +1684,14 @@
             "Value": {
                 "id": "87ba22e4-a05a-4d47-97b9-56a553892b82",
                 "resourcePath": "scripts\\momu_set_starting_position_left\\momu_set_starting_position_left.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "1a7cbbc5-b8a4-4183-9260-059ee3a2b62a",
+            "Value": {
+                "id": "edbcd580-5764-4634-89c2-a5e2c6c4c8b7",
+                "resourcePath": "scripts\\ui_render_bitfield_option_text_event_all\\ui_render_bitfield_option_text_event_all.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -2420,6 +2436,14 @@
             "Value": {
                 "id": "b16f445e-54ea-4e2a-b43e-8243eb11a868",
                 "resourcePath": "scripts\\smf_matrix_orthogonalize_up\\smf_matrix_orthogonalize_up.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "25a7ce9d-79f2-4a5c-b5d4-95bb15ab9bc9",
+            "Value": {
+                "id": "74cf44b0-321d-45fd-8430-1844fd8e0652",
+                "resourcePath": "scripts\\ui_render_bitfield_option_text_collision\\ui_render_bitfield_option_text_collision.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -3184,6 +3208,14 @@
             }
         },
         {
+            "Key": "326c7c94-fe5a-4b9f-a947-95037253c414",
+            "Value": {
+                "id": "9455291c-5fba-45f3-ae03-867b14df1d80",
+                "resourcePath": "scripts\\ui_render_bitfield_option_text_collision_all\\ui_render_bitfield_option_text_collision_all.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "327803e3-4032-4de1-9a4a-831df9458b0a",
             "Value": {
                 "id": "5fad73ef-eaed-4c76-b810-e28758ddc9b5",
@@ -3860,6 +3892,14 @@
             "Value": {
                 "id": "4321196b-500a-48fc-ab93-58eea35dfe8c",
                 "resourcePath": "scripts\\ui_input_terrain_draw_water\\ui_input_terrain_draw_water.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "3fc6fd8a-f9be-4ce6-9c05-8c28e56d2421",
+            "Value": {
+                "id": "603e5029-ce38-4d1a-91f5-58252329d3e8",
+                "resourcePath": "scripts\\ui_render_bitfield_option_text_event_none\\ui_render_bitfield_option_text_event_none.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -5432,6 +5472,14 @@
             }
         },
         {
+            "Key": "57643896-d54d-4d74-b9ea-cee156d2cd34",
+            "Value": {
+                "id": "f5ab1dfc-f813-43d8-9f32-7f5ae73b0ace",
+                "resourcePath": "scripts\\uivc_bitfield_entity_collision_none\\uivc_bitfield_entity_collision_none.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "57900fe5-7f47-4480-b48e-ac5ced207467",
             "Value": {
                 "id": "cb511ac1-2612-4904-bf8b-b4e01149ee93",
@@ -6420,6 +6468,14 @@
             "Value": {
                 "id": "dbdff936-b30b-4ee4-99a1-ab833fef90f1",
                 "resourcePath": "scripts\\uivc_animation_set_frame_rate\\uivc_animation_set_frame_rate.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "67c4b701-803e-491c-a8d0-ecbe61e5fa89",
+            "Value": {
+                "id": "24b16abd-84f8-4c96-93b2-2e30250e70e3",
+                "resourcePath": "scripts\\uivc_bitfield_entity_entity_all\\uivc_bitfield_entity_entity_all.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -7477,6 +7533,14 @@
                 "id": "2d47eb54-a2a9-43c8-84ef-92a47bd2871b",
                 "resourcePath": "views\\78d37bfa-51ed-4edd-9604-c17de0af8ffc.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "7914578a-c685-4552-a14b-b89b8f1c27c1",
+            "Value": {
+                "id": "51a10c02-5c62-4bb9-8a59-d5abcc35ecd1",
+                "resourcePath": "scripts\\ui_render_bitfield_option_text_collision_none\\ui_render_bitfield_option_text_collision_none.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -10720,6 +10784,14 @@
             }
         },
         {
+            "Key": "ab8d7559-54c0-49c8-83e0-b8bed3869668",
+            "Value": {
+                "id": "149c4a5d-bad6-4059-9b50-27cfdb438e55",
+                "resourcePath": "scripts\\uivc_bitfield_entity_collision_all\\uivc_bitfield_entity_collision_all.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "abbd567a-8c29-4074-a591-04f96ef9d207",
             "Value": {
                 "id": "a20e8e78-4244-43c7-937c-101384db0e77",
@@ -11501,6 +11573,14 @@
                 "id": "3db09324-cec2-458d-bb98-9800989e4e74",
                 "resourcePath": "objects\\UIListTimeline\\UIListTimeline.yy",
                 "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "b8c367a5-84ef-46cd-b8b0-85ddd90e209d",
+            "Value": {
+                "id": "253dd0cd-3174-4745-9d00-898949c2acd6",
+                "resourcePath": "scripts\\uivc_bitfield_entity_collision\\uivc_bitfield_entity_collision.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -14227,6 +14307,14 @@
             }
         },
         {
+            "Key": "e5a5810c-f766-4b0d-8a11-5842aa5d478d",
+            "Value": {
+                "id": "5d17fc75-8c05-477f-bae0-5f4c698d3710",
+                "resourcePath": "scripts\\ui_render_bitfield_option_text_event\\ui_render_bitfield_option_text_event.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "e5cefd88-b674-4dff-a235-f59e68ab675f",
             "Value": {
                 "id": "5347374f-1907-482a-9653-2c2f30824015",
@@ -15032,6 +15120,14 @@
                 "id": "3ca6d20d-ee0d-4e21-9053-836fc0f8ff29",
                 "resourcePath": "scripts\\event_get_node_global\\event_get_node_global.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "f197ebb3-4b6a-4bf9-b8c8-b172dde0146b",
+            "Value": {
+                "id": "045072b2-96be-4496-bc5b-49f9e6890826",
+                "resourcePath": "views\\f197ebb3-4b6a-4bf9-b8c8-b172dde0146b.yy",
+                "resourceType": "GMFolder"
             }
         },
         {
@@ -15905,6 +16001,14 @@
                 "resourcePath": "scripts\\animation_get_keyframe_parameter\\animation_get_keyframe_parameter.yy",
                 "resourceType": "GMScript"
             }
+        },
+        {
+            "Key": "ffd6e8dd-7715-4bac-b112-e48f7ba785a4",
+            "Value": {
+                "id": "a52d4052-bbf0-4810-b501-b703c77a3066",
+                "resourcePath": "scripts\\uivc_bitfield_entity_entity\\uivc_bitfield_entity_entity.yy",
+                "resourceType": "GMScript"
+            }
         }
     ],
     "script_order": [
@@ -16574,6 +16678,12 @@
         "43d067c8-589d-42af-95b0-e770cd521608",
         "8b4befb7-869d-4b9b-81d1-0f6c5f053bde",
         "00b3af67-33bf-4c95-8fbc-0b8e7d84af2f",
+        "ab8d7559-54c0-49c8-83e0-b8bed3869668",
+        "b8c367a5-84ef-46cd-b8b0-85ddd90e209d",
+        "57643896-d54d-4d74-b9ea-cee156d2cd34",
+        "18de48f4-ba73-44fd-af7c-1155e570d3d1",
+        "67c4b701-803e-491c-a8d0-ecbe61e5fa89",
+        "ffd6e8dd-7715-4bac-b112-e48f7ba785a4",
         "c2f7ce01-3c43-4a82-94cc-a0bef47b5a27",
         "0660022b-43d7-4232-8df3-3a939f8876b6",
         "6fe33f08-c847-400f-9d76-51940de3ab96",
@@ -16972,6 +17082,12 @@
         "b02c90ba-74cc-435f-a415-750aedc6bebe",
         "089034f2-4f74-4f74-920e-32ed5aa7cc2a",
         "fc73463a-bd0b-45a1-89c7-6dd138677089",
+        "326c7c94-fe5a-4b9f-a947-95037253c414",
+        "7914578a-c685-4552-a14b-b89b8f1c27c1",
+        "25a7ce9d-79f2-4a5c-b5d4-95bb15ab9bc9",
+        "1a7cbbc5-b8a4-4183-9260-059ee3a2b62a",
+        "3fc6fd8a-f9be-4ce6-9c05-8c28e56d2421",
+        "e5a5810c-f766-4b0d-8a11-5842aa5d478d",
         "3deb6177-e085-4e84-94a9-c50fd662c6af",
         "815d57ce-2623-4a40-8231-11a46e096611",
         "fb8f69a8-68b0-4136-8e03-2aa9fa6c6836",

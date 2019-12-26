@@ -38,12 +38,12 @@ for (var i = 0; i < 32; i++) {
     // Each element will be positioned based on the one directly above it, so you
     // only need to move them up once otherwise they'll keep moving up the screen
     var field_yy = (i == 16) ? -(eh * 16) : 0;
-    create_bitfield_options_vertical(el_collision_flags, [create_bitfield_option_data(i, ui_render_bitfield_option_text, null, string(i), -1, 0, ew / 2, spacing / 2, field_xx, field_yy)]);
+    create_bitfield_options_vertical(el_collision_flags, [create_bitfield_option_data(i, ui_render_bitfield_option_text_collision, uivc_bitfield_entity_collision, string(i), -1, 0, ew / 2, spacing / 2, field_xx, field_yy)]);
 }
 
 create_bitfield_options_vertical(el_collision_flags, [
-    create_bitfield_option_data(i, ui_render_bitfield_option_text, null, "All", -1, 0, ew / 2, spacing / 2, 0, 0),
-    create_bitfield_option_data(i, ui_render_bitfield_option_text, null, "None", -1, 0, ew / 2, spacing / 2, ew, -eh),
+    create_bitfield_option_data(i, ui_render_bitfield_option_text_collision_all, uivc_bitfield_entity_collision_all, "All", -1, 0, ew / 2, spacing / 2, 0, 0),
+    create_bitfield_option_data(i, ui_render_bitfield_option_text_collision_none, uivc_bitfield_entity_collision_none, "None", -1, 0, ew / 2, spacing / 2, ew, -eh),
 ]);
 
 var el_event_flags = create_bitfield(c3, yy, "Event Flags", ew, eh, null, entity.event_flags, dg);
@@ -51,12 +51,12 @@ var el_event_flags = create_bitfield(c3, yy, "Event Flags", ew, eh, null, entity
 for (var i = 0; i < 32; i++) {
     var field_xx = (i >= 16) ? ew : 0;
     var field_yy = (i == 16) ? -(eh * 16) : 0;
-    create_bitfield_options_vertical(el_event_flags, [create_bitfield_option_data(i, ui_render_bitfield_option_text, null, string(i), -1, 0, ew / 2, spacing / 2, field_xx, field_yy)]);
+    create_bitfield_options_vertical(el_event_flags, [create_bitfield_option_data(i, ui_render_bitfield_option_text_event, uivc_bitfield_entity_entity, string(i), -1, 0, ew / 2, spacing / 2, field_xx, field_yy)]);
 }
 
 create_bitfield_options_vertical(el_event_flags, [
-    create_bitfield_option_data(i, ui_render_bitfield_option_text, null, "All", -1, 0, ew / 2, spacing / 2, 0, 0),
-    create_bitfield_option_data(i, ui_render_bitfield_option_text, null, "None", -1, 0, ew / 2, spacing / 2, ew, -eh),
+    create_bitfield_option_data(i, ui_render_bitfield_option_text_event_all, uivc_bitfield_entity_entity_all, "All", -1, 0, ew / 2, spacing / 2, 0, 0),
+    create_bitfield_option_data(i, ui_render_bitfield_option_text_event_none, uivc_bitfield_entity_entity_none, "None", -1, 0, ew / 2, spacing / 2, ew, -eh),
 ]);
 
 var b_width = 128;
