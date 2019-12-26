@@ -17,7 +17,7 @@ cshape = noone;
 /* s */ ymax = 1;
 /* s */ zmax = 1;
 
-/* s */ default_solid = false;
+/* s */ default_solid = true;
 /* s */ flags = 0;          // overrides Data.flags
 /* s */ tags = 0;
 

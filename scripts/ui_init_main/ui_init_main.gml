@@ -749,8 +749,10 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     var s = 10;
     
-    element = create_checkbox(col2_x, yy, "Solid by default?", col_width, element_height, null, true, t_p_mesh_editor);
+    element = create_checkbox(col2_x, yy, "Solid by default?", col_width, element_height, uivc_checkbox_mesh_default_solid, true, t_p_mesh_editor);
     ds_list_add(t_p_mesh_editor.contents, element);
+    
+    t_p_mesh_editor.mesh_solid = element;
     
     yy = yy + element.height + spacing;
     

@@ -5,6 +5,7 @@ load_script = serialize_load_entity_tile;
 
 name = "Tile";
 etype = ETypes.ENTITY_TILE;
+collision_flags = 0;
 
 Stuff.map.active_map.contents.population[ETypes.ENTITY_TILE]++;
 

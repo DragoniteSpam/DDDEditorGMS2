@@ -53,7 +53,7 @@ if (layer_visible) {
             
             if (is_clamped(tile_x, 0, Stuff.map.active_map.xx - 1) && is_clamped(tile_y, 0, Stuff.map.active_map.yy - 1) && is_clamped(z, 0, Stuff.map.active_map.zz - 1)) {
                 batch_tile_raw(map_contents.frozen_data, map_contents.frozen_data_wire, tile_x, tile_y, z, tile_tex_x, tile_tex_y, c_white, layer_alpha, 0, 0, zoffset);
-                map_add_thing_anonymous(ts.passage[# tile_tex_x, tile_tex_y], tile_x, tile_y, z, map, MapCellContents.TILE);
+                map_add_thing_anonymous(0, tile_x, tile_y, z, map, MapCellContents.TILE);
             }
         }
     }

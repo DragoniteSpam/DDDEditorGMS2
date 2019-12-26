@@ -24,7 +24,7 @@ for (var i = 0; i < n_tilesets; i++) {
     // stash the sprite in the buffer (via surface)
     buffer_write_sprite(buffer, ts.picture);
     
-    // @todo passage and stuff should probably be a property of the tileset now
+    // @todo this stuff should probably be a property of the tileset now
     var n_autotiles = array_length_1d(ts.autotiles);
     buffer_write(buffer, buffer_u8, n_autotiles);
     

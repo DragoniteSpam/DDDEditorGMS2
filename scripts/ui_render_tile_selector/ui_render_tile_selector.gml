@@ -65,8 +65,6 @@ if (ts) {
             var texty = y1 + j * Stuff.tile_size - selector.tile_view_y + Stuff.tile_size / 2;
             // the 8s here are magic numbers, do not touch anything or everything will explode violently
             if ((textx - 8) >= x1 && (textx + 8) <= x2 && (texty - 8) >= y1 && (texty + 8) <= y2) {
-                // could make this outside of the for loop except it displays something different
-                // for the passage data than the numbers, since the numbers are meaningless
                 switch (Stuff.map.tile_data_view) {
                     case TileSelectorDisplayMode.FLAGS:
                         draw_text_colour(textx, texty, string(ts.flags[# i, j]), c_black, c_black, c_black, c_black, da);
