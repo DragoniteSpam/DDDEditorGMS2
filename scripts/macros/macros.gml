@@ -71,7 +71,7 @@
 #macro PREFIX_AUDIO_BGM "Bgm"
 #macro PREFIX_MESH "Ms"
 
-#macro CONTORL_3D_LOOK Controller.mouse_middle
+#macro CONTORL_3D_LOOK (Controller.mouse_middle)
 
 #macro DEFAULT_TERRAIN_HEIGHT 256
 #macro DEFAULT_TERRAIN_HEIGHTMAP_SCALE 256

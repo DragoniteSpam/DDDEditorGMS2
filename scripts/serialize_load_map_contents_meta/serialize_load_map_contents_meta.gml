@@ -70,7 +70,7 @@ if (version >= DataVersions.MAP_GENERIC_DATA) {
                 data.value_type_guid = buffer_read(buffer, buffer_datatype);
                 data.value_data = buffer_read(buffer, buffer_datatype);
                 break;
-            
+        
             case DataTypes.MESH: data.value_data = buffer_read(buffer, buffer_datatype); break;
             case DataTypes.IMG_TILESET: data.value_data = buffer_read(buffer, buffer_datatype); break;
             case DataTypes.AUDIO_BGM: data.value_data = buffer_read(buffer, buffer_datatype); break;

@@ -82,7 +82,7 @@ if (keyboard_check_pressed(vk_delete)) {
 
 // move the camera
 
-if (!keyboard_check(vk_control)) {
+if (CONTORL_3D_LOOK || !keyboard_check(vk_control)) {
     var mspd = get_camera_speed(mode.z)
     var xspeed = 0;
     var yspeed = 0;
