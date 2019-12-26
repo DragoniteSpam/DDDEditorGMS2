@@ -16,7 +16,6 @@
         "98737f29-3c9d-431b-a59e-f2100418da5d",
         "ee7d0f5c-58b8-48f6-86b6-fdf55a5b14e9",
         "cea3d119-83f1-4607-a92f-d04eb6ec6ce3",
-        "cc8c2e48-12d3-4866-872d-b7dfc6b02780",
         "12b15d56-d575-4cdc-a3ee-09a3cccb1ca8",
         "4eacf829-3bff-4404-878c-5214bbde3f84",
         "b951b2b9-b4be-4e20-9b86-6f0df7cf41e9",
@@ -27,7 +26,8 @@
         "fac6a4c5-0061-4d26-8e43-d16315310bc5",
         "7dc6db06-7b2a-4e3d-bb79-bd285a28ad93",
         "344d7e58-3710-41c6-86d0-86c4ffcc7ed3",
-        "96a61750-db74-4901-827a-998ed718feed"
+        "96a61750-db74-4901-827a-998ed718feed",
+        "6bfd655e-df1f-44e5-b927-7fcd574a4ad2"
     ],
     "filterType": "GMScript",
     "folderName": "creation",

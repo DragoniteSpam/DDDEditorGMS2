@@ -110,5 +110,6 @@ enum DataVersions {
     COLLISION_FLAGS             = 68,
     COLLISION_TRIGGER_DATA      = 69,
     REMOVE_RMXP_DATA            = 70,
+    MAP_GENERIC_DATA            = 71,
     _CURRENT /* = whatever the last one is + 1 */
 }
