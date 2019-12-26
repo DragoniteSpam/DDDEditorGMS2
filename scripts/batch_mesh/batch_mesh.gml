@@ -26,6 +26,7 @@ buffer_seek(data.buffer, buffer_seek_start, 0);
 
 var vc = 0;
 
+// @todo gml update lightweight objects
 var px = array_create(3);
 var py = array_create(3);
 var pz = array_create(3);
@@ -51,7 +52,7 @@ while (buffer_tell(data.buffer) < buffer_get_size(data.buffer)) {
     extra = buffer_read(data.buffer, buffer_u32);
     
     alpha = color >> 24;
-    color = color | 0xffffff;
+    color = color & 0xffffff;
     
     vertex_point_complete(buffer, px[vc], py[vc], pz[vc], nx, ny, nz, xtex, ytex, color, alpha);
     
