@@ -4,7 +4,8 @@
     "mvc": "1.0",
     "IsDnDProject": false,
     "configs": [
-        "default"
+        "default",
+        "default;Terrain"
     ],
     "option_ecma": false,
     "parentProject": {
