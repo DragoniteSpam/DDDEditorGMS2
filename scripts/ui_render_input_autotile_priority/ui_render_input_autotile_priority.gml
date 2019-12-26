@@ -12,6 +12,4 @@ if (guid_get(ts.autotiles[Stuff.map.selection_fill_autotile])) {
     input.value = string(ts.at_priority[Stuff.map.selection_fill_autotile]);
 }
 
-input.interactive = (Stuff.dimensions == Dimensions.TWOD);
-
 ui_render_input(input, xx, yy);

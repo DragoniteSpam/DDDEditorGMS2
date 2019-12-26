@@ -432,6 +432,8 @@ schedule_save = false;
 gpu_base_state = gpu_get_state();
 #endregion
 
+#region visual stuff
+
 // it'd be nice to put this in EditorModeMap but it could also be summoned from
 // elsewhere, so it's going here for now; it's not impossible that the deep future
 // will contain a 3D model editor mode but that's at like the bottom of the
@@ -451,9 +453,9 @@ element_tooltip = noone;
 element_tooltip_previous = noone;
 element_tooltip_t = -1;
 
-// global game settings
+#endregion
 
-dimensions = Dimensions.THREED;
+#region global game settings
 
 game_starting_map = map.active_map.GUID;
 game_starting_x = 0;
@@ -467,8 +469,7 @@ game_include_terrain = true;
 
 game_notes = "";
 
-// hacky workarounds
-maps_included = false;
+#endregion
 
 // default editor mode
 switch (stashed_mode) {

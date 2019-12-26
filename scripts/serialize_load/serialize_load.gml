@@ -23,8 +23,6 @@ if (version >= DataVersions._CURRENT) {
 
 var what = buffer_read(buffer, buffer_u8);
 
-Stuff.maps_included = (what == SERIALIZE_DATA_AND_MAP);
-
 switch (what) {
     case SERIALIZE_ASSETS:
         instance_activate_object(Data);
