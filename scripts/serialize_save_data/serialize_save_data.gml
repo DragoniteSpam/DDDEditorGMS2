@@ -108,5 +108,7 @@ enum DataVersions {
     FMOD_SAMPLE_RATE            = 66,
     FMOD_LOOP_POINT_SAMPLES     = 67,
     COLLISION_FLAGS             = 68,
+    COLLISION_TRIGGER_DATA      = 69,
+    REMOVE_RMXP_DATA            = 70,
     _CURRENT /* = whatever the last one is + 1 */
 }

@@ -18,15 +18,6 @@ switch (Stuff.map.tile_on_click) {
         break;
     case TileSelectorOnClick.MODIFY:
         switch (Stuff.map.tile_data_view) {
-            case TileSelectorDisplayMode.PASSAGE:
-                var data = ts.passage;
-                data[# tx, ty] = (data[# tx, ty] == 0) ? TILE_PASSABLE : 0;
-                break;
-            case TileSelectorDisplayMode.PRIORITY:
-                var data = ts.priority;
-                data[# tx, ty] = ++data[# tx, ty] % TILE_MAX_PRIORITY;
-                uivc_select_tile_refresh(tx, ty);
-                break;
             case TileSelectorDisplayMode.FLAGS:
                 // modifying a bit flag just by clicking on it with no other
                 // information seems kinda useless to me

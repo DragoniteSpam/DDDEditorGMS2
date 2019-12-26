@@ -34,11 +34,20 @@ for (var i = 0; i < n_variables; i++) {
     ds_list_add(Stuff.variables, var_data);
 }
 
-var n_triggers = buffer_read(buffer, buffer_u8);
+var n_event_triggers = buffer_read(buffer, buffer_u8);
 ds_list_clear(Stuff.all_event_triggers);
 
-repeat (n_triggers) {
+repeat (n_event_triggers) {
     ds_list_add(Stuff.all_event_triggers, buffer_read(buffer, buffer_string));
+}
+
+if (version >= DataVersions.COLLISION_TRIGGER_DATA) {
+    var n_event_triggers = buffer_read(buffer, buffer_u8);
+    ds_list_clear(Stuff.all_collision_triggers);
+    
+    repeat (n_event_triggers) {
+        ds_list_add(Stuff.all_collision_triggers, buffer_read(buffer, buffer_string));
+    }
 }
 
 var n_constants = buffer_read(buffer, buffer_u16);

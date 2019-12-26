@@ -17,7 +17,7 @@ cshape = noone;
 /* s */ ymax = 1;
 /* s */ zmax = 1;
 
-/* s */ passage = TILE_PASSABLE;
+/* s */ default_solid = false;
 /* s */ flags = 0;          // overrides Data.flags
 /* s */ tags = 0;
 

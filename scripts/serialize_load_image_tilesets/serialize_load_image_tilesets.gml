@@ -25,16 +25,18 @@ for (var i = 0; i < n_tilesets; i++) {
     // all of the other things
     var n_autotiles = buffer_read(buffer, buffer_u8);
     var at_array = array_create(n_autotiles);
-    var at_passage = array_create(n_autotiles);
-    var at_priority = array_create(n_autotiles);
     var at_flags = array_create(n_autotiles);
     var at_tags = array_create(n_autotiles);
     
     for (var j = 0; j < n_autotiles; j++) {
         // s16 because no tile is "noone"
         at_array[j] = buffer_read(buffer, buffer_s16);
-        at_passage[j] = buffer_read(buffer, buffer_u8);
-        at_priority[j] = buffer_read(buffer, buffer_u8);
+        if (version >= DataVersions.REMOVE_RMXP_DATA) {
+            // gone
+        } else {
+            buffer_read(buffer, buffer_u8);
+            buffer_read(buffer, buffer_u8);
+        }
         at_flags[j] = buffer_read(buffer, buffer_u8);
         at_tags[j] = buffer_read(buffer, buffer_u8);
     }
@@ -47,9 +49,6 @@ for (var i = 0; i < n_tilesets; i++) {
     guid_set(ts, guid, true);
     
     // i really hope the garbage collector is doing its job with the old arrays
-    
-    ts.at_passage = at_passage;
-    ts.at_priority = at_priority;
     ts.at_flags = at_flags;
     ts.at_tags = at_tags;
     
@@ -62,8 +61,12 @@ for (var i = 0; i < n_tilesets; i++) {
     
     for (var j = 0; j < t_grid_width; j++) {
         for (var k = 0; k < t_grid_height; k++) {
-            ts.passage[# j, k] = buffer_read(buffer, buffer_u8);
-            ts.priority[# j, k] = buffer_read(buffer, buffer_u8);
+            if (version >= DataVersions.REMOVE_RMXP_DATA) {
+                // gone
+            } else {
+                buffer_read(buffer, buffer_u8);
+                buffer_read(buffer, buffer_u8);
+            }
             ts.flags[# j, k] = buffer_read(buffer, buffer_u8);
             ts.tags[# j, k] = buffer_read(buffer, buffer_u8);
         }

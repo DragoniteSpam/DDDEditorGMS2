@@ -32,6 +32,10 @@ repeat (n_meshes) {
     mesh.ymax = buffer_read(buffer, buffer_f32);
     mesh.zmax = buffer_read(buffer, buffer_f32);
     
+    if (version >= DataVersions.REMOVE_RMXP_DATA) {
+        mesh.default_solid = buffer_read(buffer, buffer_u8);
+    }
+    
     mesh.passage = buffer_read(buffer, buffer_u8);
     mesh.tags = buffer_read(buffer, buffer_u8);
     

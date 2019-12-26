@@ -147,6 +147,8 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     element = create_radio_array(col2_x, yy, "Mouse Drag Action", col_width, element_height, uivc_radio_mouse_drag_behavior, Stuff.setting_mouse_drag_behavior, t_general);
     create_radio_array_options(element, ["Default", "Translate Selection", "Offset Selection", "Rotate Selection", "Scale Selection"]);
+    element.tooltip = "This has yet to be implemented so I'm graying it out to avoid confusion";
+    element.interactive = false;
     ds_list_add(t_general.contents, element);
     
     yy = yy + ui_get_radio_array_height(element) + spacing;
@@ -639,7 +641,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     var yy_aftergrid = yy;
     
     element = create_radio_array(legal_x + spacing, yy, "Data to View", col_width, element_height, uivc_tile_set_data_view, mode.tile_data_view, t_p_tile_editor);
-    create_radio_array_options(element, ["Passage", "Priority", "Flags (off)", "Tags"]);
+    create_radio_array_options(element, ["Flags", "Tags"]);
     ds_list_add(t_p_tile_editor.contents, element);
     
     yy = yy + ui_get_radio_array_height(element) + spacing;
@@ -659,27 +661,6 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy = yy + element.height + spacing;
     
     var s = 10;
-    
-    element = create_bitfield(col2_x, yy, "Passage:", 84, element_height, null, TILE_PASSABLE, t_p_tile_editor);
-    create_bitfield_options(element, [
-        create_bitfield_option_data(TilePassability.UP, ui_render_bitfield_option_picture_tile_passability, uivc_bitfield_tile_passability, "", spr_direction, 0, s, s),
-        create_bitfield_option_data(TilePassability.DOWN, ui_render_bitfield_option_picture_tile_passability, uivc_bitfield_tile_passability, "", spr_direction, 1, s, s),
-        create_bitfield_option_data(TilePassability.LEFT, ui_render_bitfield_option_picture_tile_passability, uivc_bitfield_tile_passability, "", spr_direction, 2, s, s),
-        create_bitfield_option_data(TilePassability.RIGHT, ui_render_bitfield_option_picture_tile_passability, uivc_bitfield_tile_passability, "", spr_direction, 3, s, s),
-        create_bitfield_option_data(TILE_PASSABLE, ui_render_bitfield_option_text_passability_tile_passable, uivc_bitfield_tile_passability_passable, "O", spr_direction, 0, s, s),
-        create_bitfield_option_data(0, ui_render_bitfield_option_text_passability_tile_solid, uivc_bitfield_tile_passability_solid, "X", spr_direction, 0, s, s)
-    ]);
-    ds_list_add(t_p_tile_editor.contents, element);
-    
-    yy = yy + element.height + spacing;
-    
-    element = create_input(col2_x, yy, "Priority:", col_width, element_height, uivc_input_tile_priority, 0, 0, validate_int, 0, TILE_MAX_PRIORITY - 1, 3, 84, 0, 84 + 64, element_height, t_p_tile_editor);
-    element.render = ui_render_input_tile_priority;
-    ds_list_add(t_p_tile_editor.contents, element);
-    
-    t_p_tile_editor.element_priority = element;
-    
-    yy = yy + element.height + spacing;
     
     element = create_bitfield(col2_x, yy, "Flags:", 84, element_height, fa_left, col_width, t_p_tile_editor);
     create_bitfield_options(element, [
@@ -768,15 +749,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     var s = 10;
     
-    element = create_bitfield(col2_x, yy, "Passage:", 84, element_height, null, TILE_PASSABLE, t_p_mesh_editor);
-    create_bitfield_options(element, [
-        create_bitfield_option_data(TilePassability.UP, ui_render_bitfield_option_picture_mesh_passability, uivc_bitfield_mesh_passability, "", spr_direction, 0, s, s),
-        create_bitfield_option_data(TilePassability.DOWN, ui_render_bitfield_option_picture_mesh_passability, uivc_bitfield_mesh_passability, "", spr_direction, 1, s, s),
-        create_bitfield_option_data(TilePassability.LEFT, ui_render_bitfield_option_picture_mesh_passability, uivc_bitfield_mesh_passability, "", spr_direction, 2, s, s),
-        create_bitfield_option_data(TilePassability.RIGHT, ui_render_bitfield_option_picture_mesh_passability, uivc_bitfield_mesh_passability, "", spr_direction, 3, s, s),
-        create_bitfield_option_data(TILE_PASSABLE, ui_render_bitfield_option_text_passability_mesh_passable, uivc_bitfield_mesh_passability_passable, "O", spr_direction, 0, s, s),
-        create_bitfield_option_data(0, ui_render_bitfield_option_text_passability_mesh_solid, uivc_bitfield_mesh_passability_solid, "X", spr_direction, 0, s, s)
-    ]);
+    element = create_checkbox(col2_x, yy, "Solid by default?", col_width, element_height, null, true, t_p_mesh_editor);
     ds_list_add(t_p_mesh_editor.contents, element);
     
     yy = yy + element.height + spacing;
@@ -898,28 +871,6 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy = yy + element.height + spacing;
     
     var s = 10;
-    
-    element = create_bitfield(col2_x, yy, "Passage:", 84, element_height, null, TILE_PASSABLE, t_p_autotile_editor);
-    create_bitfield_options(element, [
-        create_bitfield_option_data(TilePassability.UP, ui_render_bitfield_option_picture_autotile_passability, uivc_bitfield_autotile_passability, "", spr_direction, 0, s, s),
-        create_bitfield_option_data(TilePassability.DOWN, ui_render_bitfield_option_picture_autotile_passability, uivc_bitfield_autotile_passability, "", spr_direction, 1, s, s),
-        create_bitfield_option_data(TilePassability.LEFT, ui_render_bitfield_option_picture_autotile_passability, uivc_bitfield_autotile_passability, "", spr_direction, 2, s, s),
-        create_bitfield_option_data(TilePassability.RIGHT, ui_render_bitfield_option_picture_autotile_passability, uivc_bitfield_autotile_passability, "", spr_direction, 3, s, s),
-        create_bitfield_option_data(TILE_PASSABLE, ui_render_bitfield_option_text_passability_autotile_passable, uivc_bitfield_autotile_passability_passable, "O", spr_direction, 0, s, s),
-        create_bitfield_option_data(0, ui_render_bitfield_option_text_passability_autotile_solid, uivc_bitfield_autotile_passability_solid, "X", spr_direction, 0, s, s)
-    ]);
-    ds_list_add(t_p_autotile_editor.contents, element);
-    
-    yy = yy + element.height + spacing;
-    
-    element = create_input(col2_x, yy, "Priority:", col_width, element_height, uivc_input_autotile_priority, 0, 0, validate_int, 0, TILE_MAX_PRIORITY - 1, 3, 84, 0, 84 + 64, element_height, t_p_autotile_editor);
-    element.render = ui_render_input_autotile_priority;
-    ds_list_add(t_p_autotile_editor.contents, element);
-    
-    // this is totally cheating but game maker allows me to do it so shut up
-    t_p_autotile_editor.element_priority = element;
-    
-    yy = yy + element.height + spacing;
     
     element = create_bitfield(col2_x, yy, "Flags:", 84, element_height, fa_left, col_width, t_p_autotile_editor);
     create_bitfield_options(element, [

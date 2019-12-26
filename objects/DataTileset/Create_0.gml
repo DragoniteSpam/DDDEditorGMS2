@@ -30,22 +30,11 @@ master = -1;
 autotiles = array_create(AUTOTILE_MAX);
 array_clear(autotiles, noone);
 
-passage = noone;
-priority = noone;
 flags = noone;
 tags = noone;
 
-at_passage = noone;
-at_priority = noone;
 at_flags = noone;
 at_tags = noone;
-
-enum TilePassability {
-    UP          = 0x01,
-    DOWN        = 0x02,
-    LEFT        = 0x04,
-    RIGHT       = 0x08
-}
 
 enum TileFlags {
     BUSH        = 0x01,     /* bush animation(?) */

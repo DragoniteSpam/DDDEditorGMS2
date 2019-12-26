@@ -23,18 +23,12 @@ with (instance_create_depth(0, 0, 0, DataTileset)) {
     
     array_clear(autotiles, noone);
     
-    passage = tileset_create_grid(picture, TILE_PASSABLE);
-    priority = tileset_create_grid(picture, 0);
     flags = tileset_create_grid(picture, 0);
     tags = tileset_create_grid(picture, TileTerrainTags.NONE);
     
-    at_passage = array_create(AUTOTILE_MAX);
-    at_priority = array_create(AUTOTILE_MAX);
     at_flags = array_create(AUTOTILE_MAX);
     at_tags = array_create(AUTOTILE_MAX);
     
-    array_clear(at_passage, TILE_PASSABLE);
-    array_clear(at_priority, 0);
     array_clear(at_flags, 0);
     array_clear(at_tags, TileTerrainTags.NONE);
     

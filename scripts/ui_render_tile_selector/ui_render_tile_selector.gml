@@ -68,19 +68,6 @@ if (ts) {
                 // could make this outside of the for loop except it displays something different
                 // for the passage data than the numbers, since the numbers are meaningless
                 switch (Stuff.map.tile_data_view) {
-                    case TileSelectorDisplayMode.PASSAGE:
-                        var value = ts.passage[# i, j];
-                        if (value == 0) {
-                            draw_text_colour(textx, texty, string("X"), c_black, c_black, c_black, c_black, da);
-                        } else if (value == TILE_PASSABLE) {
-                            draw_text_colour(textx, texty, string("O"), c_black, c_black, c_black, c_black, da);
-                        } else {
-                            draw_text_colour(textx, texty, string("*"), c_black, c_black, c_black, c_black, da);
-                        }
-                        break;
-                    case TileSelectorDisplayMode.PRIORITY:
-                        draw_text_colour(textx, texty, string(ts.priority[# i, j]), c_black, c_black, c_black, c_black, da);
-                        break;
                     case TileSelectorDisplayMode.FLAGS:
                         draw_text_colour(textx, texty, string(ts.flags[# i, j]), c_black, c_black, c_black, c_black, da);
                         break;

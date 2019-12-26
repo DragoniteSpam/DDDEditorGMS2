@@ -31,9 +31,6 @@ for (var i = 0; i < n_tilesets; i++) {
     for (var j = 0; j < n_autotiles; j++) {
         // s16 because no tile is "noone"
         buffer_write(buffer, buffer_s16, ts.autotiles[j]);
-        
-        buffer_write(buffer, buffer_u8, ts.at_passage[j]);
-        buffer_write(buffer, buffer_u8, ts.at_priority[j]);
         buffer_write(buffer, buffer_u8, ts.at_flags[j]);
         buffer_write(buffer, buffer_u8, ts.at_tags[j]);
     }
@@ -41,16 +38,14 @@ for (var i = 0; i < n_tilesets; i++) {
     // all of these grids will be the same dimensions so the
     // data can be saved in one loop
     
-    var t_grid_width = ds_grid_width(ts.passage);
-    var t_grid_height = ds_grid_height(ts.passage);
+    var t_grid_width = ds_grid_width(ts.flags);
+    var t_grid_height = ds_grid_height(ts.flags);
     
     buffer_write(buffer, buffer_u16, t_grid_width);
     buffer_write(buffer, buffer_u16, t_grid_height);
     
     for (var j = 0; j < t_grid_width; j++) {
         for (var k = 0; k < t_grid_height; k++) {
-            buffer_write(buffer, buffer_u8, ts.passage[# j, k]);
-            buffer_write(buffer, buffer_u8, ts.priority[# j, k]);
             buffer_write(buffer, buffer_u8, ts.flags[# j, k]);
             buffer_write(buffer, buffer_u8, ts.tags[# j, k]);
         }

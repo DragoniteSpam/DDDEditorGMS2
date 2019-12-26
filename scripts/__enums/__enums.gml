@@ -109,8 +109,6 @@ enum BattleStyles {
 }
 
 enum TileSelectorDisplayMode {
-    PASSAGE,
-    PRIORITY,
     FLAGS,
     TAGS,
 }
