@@ -60,12 +60,19 @@ yy = yy + el_variables.height + spacing;
 var el_switches = create_button(col2_x, yy, "Global Switches", ew, eh, fa_center, dialog_create_settings_data_switches, dg);
 el_switches.tooltip = "A list of built-in variables which you may wish to modify during the game. You may set their default values here.";
 yy = yy + el_switches.height + spacing;
-var el_event_triggers = create_button(col2_x, yy, "Event Triggers", ew, eh, fa_center, dialog_create_settings_data_event_triggers, dg);
-el_event_triggers.tooltip = "In addition to the default event triggers (action button, player touch, etc) you may define your own, such as \"on contact with a magic spell\" or something.";
-yy = yy + el_event_triggers.height + spacing;
 var el_game_constants = create_button(col2_x, yy, "Game Constants", ew, eh, fa_center, dialog_create_settings_data_game_constants, dg);
 el_game_constants.tooltip = "A list of properties whose value will not change during the game. Examples might include things such as \"walk speed\" or \"default weather.\"";
 yy = yy + el_game_constants.height + spacing;
+
+var el_trigger_title = create_text(col2_x, yy, "Conditional Triggers", ew, eh, fa_left, dw / 2, dg);
+el_trigger_title.color = c_blue;
+yy = yy + el_trigger_title.height + spacing;
+var el_collision_triggers = create_button(col2_x, yy, "Collision Triggers", ew, eh, fa_center, dialog_create_settings_data_collision_triggers, dg);
+el_collision_triggers.tooltip = "In addition to the default collision trigger (Player contact) you may define your own.";
+yy = yy + el_collision_triggers.height + spacing;
+var el_event_triggers = create_button(col2_x, yy, "Event Triggers", ew, eh, fa_center, dialog_create_settings_data_event_triggers, dg);
+el_event_triggers.tooltip = "In addition to the default event triggers (action button, player touch, etc) you may define your own, such as \"on contact with a magic spell\" or something.";
+yy = yy + el_event_triggers.height + spacing;
 
 yy = yy_base;
 
@@ -76,9 +83,21 @@ var b_height = 32;
 var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
 
 ds_list_add(dg.contents,
-    el_gameplay_title, el_gameplay_grid, el_player_start, el_battle_type,
-    el_edit_title, el_edit_include_terrain, el_edit_notes_text, el_edit_notes,
-    el_global_title, el_variables, el_switches, el_event_triggers, el_game_constants,
+    el_gameplay_title,
+    el_gameplay_grid,
+    el_player_start,
+    el_battle_type,
+    el_edit_title,
+    el_edit_include_terrain,
+    el_edit_notes_text,
+    el_edit_notes,
+    el_global_title,
+    el_variables,
+    el_switches,
+    el_game_constants,
+    el_trigger_title,
+    el_collision_triggers,
+    el_event_triggers,
     el_confirm
 );
 
