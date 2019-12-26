@@ -3,9 +3,22 @@
 /// @param onvaluechange
 /// @param text
 /// @param sprite
-/// @param image index
-/// @param half width
-/// @param half height
+/// @param image-index
+/// @param half-width
+/// @param half-height
+/// @param [xx]
+/// @param [yy]
+
+var value = argument[0];
+var render = argument[1];
+var onvaluechange = argument[2];
+var text = argument[3];
+var sprite = argument[4];
+var index = argument[5];
+var width = argument[6];
+var height = argument[7];
+var xx = (argument_count > 8) ? argument[8] : 0;
+var yy = (argument_count > 9) ? argument[9] : 0;
 
 // @todo gml update lightweight objects
-return [argument0, argument1, argument2, argument3, argument4, argument5, argument6, argument7];
+return [value, render, onvaluechange, text, sprite, index, width, height, xx, yy];

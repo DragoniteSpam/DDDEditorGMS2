@@ -1,5 +1,5 @@
 /// @param UIBitField
-/// @param data[]
+/// @param data[][]
 
 // see create_bitfield_options for how the data is arranged
 
@@ -9,9 +9,12 @@ var things = argument[1];
 for (var i = 0; i < array_length_1d(things); i++) {
     var n = ds_list_size(bitfield.contents);
     var data = things[i];
-    var yy = (n == 0) ? bitfield.height : ds_list_top(bitfield.contents).y + ds_list_top(bitfield.contents).height;
+    var base_xx = data[8];
+    var base_yy = data[9];
+    var xx = base_xx;
+    var yy = base_yy + ((n == 0) ? bitfield.height : (ds_list_top(bitfield.contents).y + ds_list_top(bitfield.contents).height));
     
-    var option = instance_create_depth(0, yy, 0, UIBitFieldOption);
+    var option = instance_create_depth(xx, yy, 0, UIBitFieldOption);
     option.value = data[0];
     option.render = data[1];
     option.onvaluechange = data[2];
