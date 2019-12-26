@@ -41,7 +41,8 @@ for (var i = 0; i < 32; i++) {
     // Each element will be positioned based on the one directly above it, so you
     // only need to move them up once otherwise they'll keep moving up the screen
     var field_yy = (i == 16) ? -(eh * 16) : 0;
-    create_bitfield_options_vertical(el_collision_flags, [create_bitfield_option_data(i, ui_render_bitfield_option_text_collision, uivc_bitfield_entity_collision, string(i), -1, 0, ew / 2, spacing / 2, field_xx, field_yy, color_active, color_inactive)]);
+    var label = (i >= ds_list_size(Stuff.all_collision_triggers)) ? "<" + string(i) + ">" : Stuff.all_collision_triggers[| i];
+    create_bitfield_options_vertical(el_collision_flags, [create_bitfield_option_data(i, ui_render_bitfield_option_text_collision, uivc_bitfield_entity_collision, label, -1, 0, ew / 2, spacing / 2, field_xx, field_yy, color_active, color_inactive)]);
 }
 
 create_bitfield_options_vertical(el_collision_flags, [
@@ -49,14 +50,18 @@ create_bitfield_options_vertical(el_collision_flags, [
     create_bitfield_option_data(i, ui_render_bitfield_option_text_collision_none, uivc_bitfield_entity_collision_none, "None", -1, 0, ew / 2, spacing / 2, ew, -eh, color_active, color_inactive),
 ]);
 
-el_collision_flags.tooltip = "You can turn on or off various collision flags. The one of interest is usually the Player collisions (the first one) but you may want to toggle the others, as well.";
+el_collision_flags.tooltip = "You can turn on or off various collision flags. The one of interest is usually the Player collisions (the first one) but you may want to toggle the others, as well. You can define collision triggers in Global Game Settings.";
+
+var color_active = 0x99ff99;
+var color_inactive = c_white;
 
 var el_event_flags = create_bitfield(c3, yy, "Event Flags", ew, eh, null, entity.event_flags, dg);
 
 for (var i = 0; i < 32; i++) {
     var field_xx = (i >= 16) ? ew : 0;
     var field_yy = (i == 16) ? -(eh * 16) : 0;
-    create_bitfield_options_vertical(el_event_flags, [create_bitfield_option_data(i, ui_render_bitfield_option_text_event, uivc_bitfield_entity_entity, string(i), -1, 0, ew / 2, spacing / 2, field_xx, field_yy, color_active, color_inactive)]);
+    var label = (i >= ds_list_size(Stuff.all_event_triggers)) ? "<" + string(i) + ">" : Stuff.all_event_triggers[| i];
+    create_bitfield_options_vertical(el_event_flags, [create_bitfield_option_data(i, ui_render_bitfield_option_text_event, uivc_bitfield_entity_entity, label, -1, 0, ew / 2, spacing / 2, field_xx, field_yy, color_active, color_inactive)]);
 }
 
 create_bitfield_options_vertical(el_event_flags, [
@@ -64,7 +69,7 @@ create_bitfield_options_vertical(el_event_flags, [
     create_bitfield_option_data(i, ui_render_bitfield_option_text_event_none, uivc_bitfield_entity_entity_none, "None", -1, 0, ew / 2, spacing / 2, ew, -eh, color_active, color_inactive),
 ]);
 
-el_event_flags.tooltip = "You can turn on or off various event response flags. The one of interest is usually the Action Button (the first one) but you may want to toggle the others, as well.";
+el_event_flags.tooltip = "You can turn on or off various event response flags. The one of interest is usually the Action Button (the first one) but you may want to toggle the others, as well. You can event collision triggers in Global Game Settings.";
 
 var b_width = 128;
 var b_height = 32;

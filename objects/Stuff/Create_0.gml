@@ -214,6 +214,9 @@ for (var i = 0; i < BASE_GAME_VARIABLES; i++) {
 all_event_triggers = ds_list_create();
 ds_list_add(all_event_triggers, "Action Button", "Player Touch", "Event Touch", "Autorun");
 
+all_collision_triggers = ds_list_create();
+ds_list_add(all_collision_triggers, "Player", "NPC");
+
 all_maps = ds_list_create();
 
 all_bgm = ds_list_create();
