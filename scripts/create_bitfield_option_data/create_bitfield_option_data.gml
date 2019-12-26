@@ -8,6 +8,8 @@
 /// @param half-height
 /// @param [xx]
 /// @param [yy]
+/// @param [color-active]
+/// @param [color-inactive]
 
 var value = argument[0];
 var render = argument[1];
@@ -19,6 +21,8 @@ var width = argument[6];
 var height = argument[7];
 var xx = (argument_count > 8) ? argument[8] : 0;
 var yy = (argument_count > 9) ? argument[9] : 0;
+var color_active = (argument_count > 10) ? argument[10] : c_ltgray;
+var color_inactive = (argument_count > 11) ? argument[11] : c_white;
 
 // @todo gml update lightweight objects
-return [value, render, onvaluechange, text, sprite, index, width, height, xx, yy];
+return [value, render, onvaluechange, text, sprite, index, width, height, xx, yy, color_active, color_inactive];

@@ -11,9 +11,8 @@ var y1 = bitfield.y + yy;
 var x2 = x1 + bitfield.width;
 var y2 = y1 + bitfield.height;
 
-if (bitfield.state) {
-    draw_rectangle_colour(x1, y1, x2, y2, c_ltgray, c_ltgray, c_ltgray, c_ltgray, false);
-}
+var c = bitfield.state ? bitfield.color_active : bitfield.color_inactive;
+draw_rectangle_colour(x1, y1, x2, y2, c, c, c, c, false);
 
 // not entirely sure what the deal with this is, normally I can draw rectangle outlines
 // without worrying about whether the edges are off by a pixel or not. whatever.

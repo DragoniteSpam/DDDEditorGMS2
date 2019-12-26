@@ -24,9 +24,12 @@ var things = argument[1];
 for (var i = 0; i < array_length_1d(things); i++) {
     var n = ds_list_size(bitfield.contents);
     var data = things[i];
-    var xx = (n == 0) ? bitfield.width : ds_list_top(bitfield.contents).x + ds_list_top(bitfield.contents).width;
+    var base_xx = data[8];
+    var base_yy = data[9];
+    var xx = base_xx + ((n == 0) ? bitfield.width : ds_list_top(bitfield.contents).x + ds_list_top(bitfield.contents).width);
+    var yy = base_yy;
     
-    var option = instance_create_depth(xx, bitfield.height / 2 - data[7], 0, UIBitFieldOption);
+    var option = instance_create_depth(xx, yy + bitfield.height / 2 - data[7], 0, UIBitFieldOption);
     option.value = data[0];
     option.render = data[1];
     option.onvaluechange = data[2];
@@ -38,6 +41,9 @@ for (var i = 0; i < array_length_1d(things); i++) {
     
     option.root = bitfield;
     option.height = bitfield.height;
+    
+    option.color_active = data[10];
+    option.color_inactive = data[11];
     
     ds_list_add(bitfield.contents, option);
 }

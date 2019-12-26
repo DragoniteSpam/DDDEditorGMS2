@@ -27,5 +27,8 @@ for (var i = 0; i < array_length_1d(things); i++) {
     option.root = bitfield;
     option.height = bitfield.height;
     
+    option.color_active = data[10];
+    option.color_inactive = data[11];
+    
     ds_list_add(bitfield.contents, option);
 }
