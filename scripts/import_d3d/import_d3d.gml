@@ -149,8 +149,6 @@ while (!file_text_eof(f)) {
     }
     
     if (adjust) {
-        // because the texture doesn't take up the entire space on the texture page
-        // i MAY come up with a way of doing individual textures for meshes, but not now
         xtex = xtex * TILESET_TEXTURE_WIDTH;
         ytex = ytex * TILESET_TEXTURE_HEIGHT;
     }

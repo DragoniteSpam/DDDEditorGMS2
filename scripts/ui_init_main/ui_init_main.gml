@@ -713,6 +713,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy = yy + ui_get_list_height(element_mesh_list) + spacing;
     
     element = create_button(legal_x + spacing, yy, "Import", col_width, element_height, fa_center, omu_mesh_import, t_p_mesh_editor);
+    element.tooltip = "Imports a 3D model. The texture coordinates will automatically be scaled on importing; to override this, press the Control key.";
     ds_list_add(t_p_mesh_editor.contents, element);
     
     yy = yy + element.height + spacing;

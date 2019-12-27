@@ -1,6 +1,9 @@
 /// @param filename
+/// @param [adjust-UVs?]
 
-var fn = argument0;
+var fn = argument[0];
+var adjust = (argument_count > 1 && argument[1] != undefined) ? argument[1] : true;
+
 var mfn = filename_change_ext(fn, ".mtl");
 
 if (file_exists(fn)) {
@@ -256,10 +259,10 @@ if (file_exists(fn)) {
             bny = v[4];
             bnz = v[5];
             
-            // because the texture doesn't take up the entire space on the texture page
-            // i MAY come up with a way of doing individual textures for meshes, but not now
-            bxtex = v[6] * TILESET_TEXTURE_WIDTH;
-            bytex = v[7] * TILESET_TEXTURE_HEIGHT;
+            if (adjust) {
+                bxtex = v[6] * TILESET_TEXTURE_WIDTH;
+                bytex = v[7] * TILESET_TEXTURE_HEIGHT;
+            }
             
             bcolor = v[8];
             balpha = v[9];

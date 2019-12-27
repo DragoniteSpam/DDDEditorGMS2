@@ -1,6 +1,8 @@
 /// @param filename
+/// @param [adjust-UVs?]
 
 var buffer = buffer_load(argument[0]);
+var adjust = (argument_count > 1 && argument[1] != undefined) ? argument[1] : true;
 
 var data = ds_map_create();
 ds_map_read(data, buffer_read_string(buffer));
