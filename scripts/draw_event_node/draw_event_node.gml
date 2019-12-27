@@ -134,12 +134,14 @@ switch (node.type) {
         eh = 32;
         var rh = ((ui_get_radio_array_height(node.ui_things[| 0]) div eh) * eh) + 16;
         x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
-        y2 = y1 + max(24 + 48 + (eh + rh + 1) * size + entry_offset, ds_list_size(node.outbound) * EVENT_NODE_CONTACT_HEIGHT * 2 / 3);
+        y2 = y1 + max(24 + 64 + (eh + rh + 1) * size + entry_offset, ds_list_size(node.outbound) * EVENT_NODE_CONTACT_HEIGHT * 2 / 3);
         
         if (rectangle_within_view(view_current, x1, y1, x2, y2)) {
             var ncolor = c_ev_basic;
             var c = colour_mute(ncolor);
             draw_event_drag_handle(node, x1 + ext_node_padding, y1 - ext_node_padding, x2 - ext_node_padding, y1 + ext_node_padding, c);
+            draw_roundrect_colour(x2 - ext_node_padding, y1 + ext_node_padding, x2 + ext_node_padding, y2 - ext_node_padding, c, c, false);
+            draw_roundrect(x2 - ext_node_padding, y1 + ext_node_padding, x2 + ext_node_padding, y2 - ext_node_padding, true);
             draw_roundrect_colour(x1, y1, x2, y2, ncolor, ncolor, false);
             draw_roundrect(x1, y1, x2, y2, true);
             draw_sprite(spr_event_outbound, 2, x1, y1 + 16);
@@ -663,6 +665,38 @@ var drag_from_yy = 0;
 // different node types may put the outbound nodes in different places - not all use more than one output node
 var bezier_override = false;
 switch (node.type) {
+    case EventNodeTypes.TEXT:
+    case EventNodeTypes.SHOW_SCROLLING_TEXT:
+        #region single-output nodes
+        var entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
+        var outbound = node.outbound[| 0];
+        
+        var by = entry_yy;
+        
+        if (!outbound) {
+            draw_event_node_outbound(x2 + ext_node_padding, by, node, 0, true);
+        } else {
+            var bnx = outbound.x;
+            var bny = outbound.y + 16;
+            
+            draw_event_node_outbound(x2 + ext_node_padding, by, node, 0);
+            draw_sprite(spr_event_dot, 0, x2 + ext_node_padding, by);
+            // node is not being dragged
+            if (Stuff.event.canvas_active_node != node || Stuff.event.canvas_active_node_index != 0) {
+                if (bnx > x2 + ext_node_padding) {
+                    draw_bezier(x2 + ext_node_padding, by, bnx - 8, bny);
+                } else {
+                    draw_event_ghost(x2 + ext_node_padding, by, x2 + 64, by, outbound);
+                }
+            }
+        }
+        // the node is currently being dragged
+        if (Stuff.event.canvas_active_node == node && Stuff.event.canvas_active_node_index == 0) {
+            bezier_y = by;
+            drag_from_yy = bezier_y;
+        }
+        #endregion
+        break;
     case EventNodeTypes.ENTRYPOINT:
     #region Entrypoint
         // vertical middle of the box; entrypoints will only ever have one outbound node so we can cheat
