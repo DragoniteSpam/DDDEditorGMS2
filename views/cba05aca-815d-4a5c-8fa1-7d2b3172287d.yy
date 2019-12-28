@@ -10,7 +10,8 @@
         "75e644ee-a05f-42e0-9c4e-1cfd7ae04e25",
         "c3f5eb49-d64e-4071-842a-8f27771e9035",
         "2b1277cb-9224-4c7b-bc2a-267fb598b6f3",
-        "6b0ac3d9-9ca5-40bf-ad8d-6e82898d06f5"
+        "6b0ac3d9-9ca5-40bf-ad8d-6e82898d06f5",
+        "d6ded8b3-88ee-4680-ada7-2a47bb1c27d8"
     ],
     "filterType": "GMScript",
     "folderName": "event prefab render",

@@ -293,7 +293,7 @@ shd_value_at_tex_offset = array_create(MAX_AUTOTILE_SHADER_POSITIONS);
 #region prefab events
 event_prefab[EventNodeTypes.INPUT_TEXT] = create_event_node_basic("InputText", [
     ["Help Text", DataTypes.STRING, 0, 1, false, "For example, \"Please enter your name\""],
-    ["Index", DataTypes.INT, 0, 1, false, -1, omu_event_attain_input_type_data, event_prefab_render_variable_name],
+    ["Index", DataTypes.INT, 0, 1, false, -1, omu_event_attain_input_type_data, event_prefab_render_input_variable_name],
     ["Kind", DataTypes.INT, 0, 1, false, 0, omu_event_attain_input_type_data, event_prefab_render_input_type_name],
     ["Char Limit", DataTypes.INT, 0, 1, false, 16, omu_event_attain_input_type_data]
 ]);

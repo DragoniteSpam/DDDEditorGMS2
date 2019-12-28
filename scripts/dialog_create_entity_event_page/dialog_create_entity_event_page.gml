@@ -111,24 +111,30 @@ var el_event_entrypoint = create_button(c2 + 16, yy, "Entrypoint: " + text_entry
 dg.el_event_entrypoint = el_event_entrypoint;
 yy = yy + eh + spacing;
 
-var el_option = create_text(c2 +16, yy, "Options", ew, eh, fa_left, ew, dg);
-yy = yy + eh + spacing;
-
-var el_option_temp = create_text(c2 +16, yy, "(No options, currently)", ew, eh, fa_left, ew, dg);
-yy = yy + eh + spacing;
-
-yy = yy + eh + spacing;
-
 var b_width = 128;
 var b_height = 32;
 var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
 
-ds_list_add(dg.contents, el_name, el_enabled, el_condition,
-    el_condition_switch_global_enabled, el_condition_switch_global, el_condition_variable_global_enabled, el_condition_variable_global,
-    el_condition_switch_self_enabled, el_condition_switch_self, el_condition_variable_self_enabled, el_condition_variable_self, el_condition_code_enabled, el_condition_code,
-    el_condition_explanation, el_option, el_option_temp,
+ds_list_add(dg.contents,
+    el_name,
+    el_enabled,
+    el_condition,
+    el_condition_switch_global_enabled,
+    el_condition_switch_global,
+    el_condition_variable_global_enabled,
+    el_condition_variable_global,
+    el_condition_switch_self_enabled,
+    el_condition_switch_self,
+    el_condition_variable_self_enabled,
+    el_condition_variable_self,
+    el_condition_code_enabled,
+    el_condition_code,
+    el_condition_explanation,
     el_trigger,
-    el_event, el_event_guid, el_event_entrypoint,
-    el_confirm);
+    el_event,
+    el_event_guid,
+    el_event_entrypoint,
+    el_confirm
+);
 
 return dg;

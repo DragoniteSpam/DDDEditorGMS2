@@ -29,10 +29,12 @@ el_list.multi_index = argument3;
 
 dg.el_list_main = el_list;
 
-el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dc_custom_event_set_animation, dg);
+var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dc_custom_event_set_animation, dg);
 dg.el_confirm = el_confirm;
 
-ds_list_add(dg.contents, el_list,
-    el_confirm);
+ds_list_add(dg.contents,
+    el_list,
+    el_confirm
+);
 
 return dg;
