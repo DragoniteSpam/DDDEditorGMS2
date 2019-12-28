@@ -156,7 +156,11 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = legal_y;
     
-    element = create_text(legal_x + spacing, yy, "Message", element_width, element_height, fa_left, element_width, t_list);
+    element = create_button(legal_x + spacing, yy, "Entrypoint", element_width, element_height, fa_left, omu_event_add_entrypoint, t_action1);
+    ds_list_add(t_action1.contents, element);
+    yy = yy + element_height + spacing;
+    
+    element = create_text(legal_x + spacing, yy, "Message", element_width, element_height, fa_left, element_width, t_action1);
     ds_list_add(t_action1.contents, element);
     yy = yy + element_height + spacing;
     element = create_button(legal_x + spacing, yy, "Show Text", element_width, element_height, fa_left, omu_event_add_text, t_action1);
@@ -174,7 +178,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + spacing;
     
-    element = create_text(legal_x + spacing, yy, "Data", element_width, element_height, fa_left, element_width, t_list);
+    element = create_text(legal_x + spacing, yy, "Data", element_width, element_height, fa_left, element_width, t_action1);
     ds_list_add(t_action1.contents, element);
     yy = yy + element_height + spacing;
     element = create_button(legal_x + spacing, yy, "Control Switches", element_width, element_height, fa_left, omu_event_add_global_switch, t_action1);
@@ -198,7 +202,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + spacing;
     
-    element = create_text(legal_x + spacing, yy, "Flow Control", element_width, element_height, fa_left, element_width, t_list);
+    element = create_text(legal_x + spacing, yy, "Flow Control", element_width, element_height, fa_left, element_width, t_action1);
     ds_list_add(t_action1.contents, element);
     yy = yy + element_height + spacing;
     element = create_button(legal_x + spacing, yy, "Conditional Branch", element_width, element_height, fa_left, omu_event_add_conditional, t_action1);
@@ -210,7 +214,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + spacing;
     
-    element = create_text(legal_x + spacing, yy, "Timing", element_width, element_height, fa_left, element_width, t_list);
+    element = create_text(legal_x + spacing, yy, "Timing", element_width, element_height, fa_left, element_width, t_action1);
     ds_list_add(t_action1.contents, element);
     yy = yy + element_height + spacing;
     element = create_button(legal_x + spacing, yy, "Wait", element_width, element_height, fa_left, omu_event_add_wait, t_action1);
@@ -219,7 +223,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + spacing;
     
-    element = create_text(legal_x + spacing, yy, "Movement", element_width, element_height, fa_left, element_width, t_list);
+    element = create_text(legal_x + spacing, yy, "Movement", element_width, element_height, fa_left, element_width, t_action1);
     ds_list_add(t_action1.contents, element);
     yy = yy + element_height + spacing;
     element = create_button(legal_x + spacing, yy, "Transfer Player", element_width, element_height, fa_left, omu_event_add_transfer_player, t_action1);
@@ -241,7 +245,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = legal_y;
     
-    element = create_text(legal_x + spacing, yy, "Screen", element_width, element_height, fa_left, element_width, t_list);
+    element = create_text(legal_x + spacing, yy, "Screen", element_width, element_height, fa_left, element_width, t_action2);
     ds_list_add(t_action2.contents, element);
     yy = yy + element_height + spacing;
     element = create_button(legal_x + spacing, yy, "Tint Screen", element_width, element_height, fa_left, omu_event_add_tint_screen, t_action2);
@@ -253,7 +257,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + spacing;
     
-    element = create_text(legal_x + spacing, yy, "Audio", element_width, element_height, fa_left, element_width, t_list);
+    element = create_text(legal_x + spacing, yy, "Audio", element_width, element_height, fa_left, element_width, t_action2);
     ds_list_add(t_action2.contents, element);
     yy = yy + element_height + spacing;
     element = create_button(legal_x + spacing, yy, "Play BGM", element_width, element_height, fa_left, omu_event_add_play_bgm, t_action2);
@@ -274,7 +278,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + spacing;
     
-    element = create_text(legal_x + spacing, yy, "Scene", element_width, element_height, fa_left, element_width, t_list);
+    element = create_text(legal_x + spacing, yy, "Scene", element_width, element_height, fa_left, element_width, t_action2);
     ds_list_add(t_action2.contents, element);
     yy = yy + element_height + spacing;
     element = create_button(legal_x + spacing, yy, "Return to Title Screen", element_width, element_height, fa_left, not_yet_implemented_polite, t_action2);
@@ -283,7 +287,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + spacing;
     
-    element = create_text(legal_x + spacing, yy, "Map", element_width, element_height, fa_left, element_width, t_list);
+    element = create_text(legal_x + spacing, yy, "Map", element_width, element_height, fa_left, element_width, t_action2);
     ds_list_add(t_action2.contents, element);
     yy = yy + element_height + spacing;
     element = create_button(legal_x + spacing, yy, "Change Map Display Name", element_width, element_height, fa_left, omu_event_add_change_map_name, t_action2);
@@ -301,7 +305,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + spacing;
     
-    element = create_text(legal_x + spacing, yy, "Advanced", element_width, element_height, fa_left, element_width, t_list);
+    element = create_text(legal_x + spacing, yy, "Advanced", element_width, element_height, fa_left, element_width, t_action2);
     ds_list_add(t_action2.contents, element);
     yy = yy + element_height;
     element = create_button(legal_x + spacing, yy, "Script", element_width, element_height, fa_left, omu_event_add_script, t_action2);
@@ -312,10 +316,10 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy = yy + element_height;
     // these are last
     yy = yy + element_height;
-    element = create_button(legal_x + spacing, yy, "Custom", element_width, element_height, fa_left, omu_event_custom_dialog, t_list);
+    element = create_button(legal_x + spacing, yy, "Custom", element_width, element_height, fa_left, omu_event_custom_dialog, t_action2);
     ds_list_add(t_action2.contents, element);
     yy = yy + element_height;
-    element = create_button(legal_x + spacing, yy, "Prefab", element_width, element_height, fa_left, omu_event_prefab_dialog, t_list);
+    element = create_button(legal_x + spacing, yy, "Prefab", element_width, element_height, fa_left, omu_event_prefab_dialog, t_action2);
     ds_list_add(t_action2.contents, element);
     yy = yy + element_height;
     #endregion
