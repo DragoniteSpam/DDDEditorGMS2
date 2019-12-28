@@ -1,11 +1,11 @@
-/// @param Dialog
+/// @param root
 
-var dialog = argument0;
+var root = argument0;
 
 var dw = 320;
 var dh = 640;
 
-var dg = dialog_create(dw, dh, "Select Event", dialog_default, dc_close_no_questions_asked, dialog);
+var dg = dialog_create(dw, dh, "Select Event", dialog_default, dc_close_no_questions_asked, root);
 dg.event = noone;
 
 var columns = 1;
@@ -24,9 +24,9 @@ var el_list = create_list(16, yy, "Select an event", "<how do you even have no e
 el_list.entries_are = ListEntries.INSTANCES;
 dg.el_list = el_list;
 
-if (dialog.instance) {
+if (root.instance) {
     for (var i = 0; i < ds_list_size(Stuff.all_events); i++) {
-        if (Stuff.all_events[| i].GUID == dialog.event_guid) {
+        if (Stuff.all_events[| i].GUID == root.event_guid) {
             ui_list_select(el_list, i);
             break;
         }

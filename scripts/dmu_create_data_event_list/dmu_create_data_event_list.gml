@@ -1,5 +1,5 @@
-/// @param Dialog
+/// @param root
 
-var dialog = argument0;
+var root = argument0;
 
-dialog_create_data_get_event(dialog);
+dialog_create_data_get_event(root);
