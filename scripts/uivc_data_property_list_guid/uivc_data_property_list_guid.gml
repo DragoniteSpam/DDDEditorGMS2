@@ -11,5 +11,5 @@ if (pselection >= 0 && selection >= 0) {
     var instance = data.instances[| selection];
     var plist = instance.values[| list.key];
     
-    plist[| pselection] = list.entries[| data_selection].GUID;
+    plist[| pselection] = (data_selection + 1) ? list.entries[| data_selection].GUID : 0;
 }
