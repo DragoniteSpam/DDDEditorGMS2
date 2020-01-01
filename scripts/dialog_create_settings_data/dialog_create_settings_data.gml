@@ -47,10 +47,6 @@ var el_edit_include_terrain = create_checkbox(col1_x, yy, "Include Terrain?", ew
 el_edit_include_terrain.tooltip = "It can be handy to save the terrain you are working on to the data file, but this can be very expensive space-wise. Feel free to turn this off if you're not making a game that uses this.";
 yy = yy + el_edit_include_terrain.height + spacing;
 
-var el_data_files = create_button(col1_x, yy, "Data and Asset Files", ew, eh, fa_center, dialog_create_settings_data_asset_files, dg);
-el_data_files.tooltip = "You may wish to separate different kinds of game assets into different data files. In fact, if you have a lot of them, you'll definitely want to do that, especially if you're on source control.";
-yy = yy + el_data_files.height + spacing;
-
 var el_edit_notes_text = create_text(col1_x, yy, "Game notes:", ew, eh, fa_left, ew, dg);
 yy = yy + el_edit_notes_text.height + spacing;
 
@@ -60,6 +56,10 @@ el_edit_notes.is_code = false;
 yy = yy + el_edit_notes.height + spacing;
 
 yy = yy_base;
+
+var el_data_files = create_button(col2_x, yy, "Data and Asset Files", ew, eh, fa_center, dialog_create_settings_data_asset_files, dg);
+el_data_files.tooltip = "You may wish to separate different kinds of game assets into different data files. In fact, if you have a lot of them, you'll definitely want to do that, especially if you're on source control.";
+yy = yy + el_data_files.height + spacing;
 
 var el_global_title = create_text(col2_x, yy, "Variables and Stuff", ew, eh, fa_left, dw / 2, dg);
 el_global_title.color = c_blue;

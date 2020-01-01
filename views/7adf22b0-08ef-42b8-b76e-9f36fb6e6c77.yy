@@ -8,7 +8,9 @@
         "2017f8d0-f23c-41b1-9e02-76715cc5da2d",
         "4ae7649a-3a83-4207-b3ef-88544218483e",
         "3753db42-53d3-4fb8-b981-4a320894bd49",
-        "5235e267-a128-4072-aae0-4ef5ff0c3ab6"
+        "5235e267-a128-4072-aae0-4ef5ff0c3ab6",
+        "e501f0d2-e906-4cfc-9ca2-6fe26ed12d4a",
+        "12524178-acdd-49a0-bcb8-77ba5b45bb12"
     ],
     "filterType": "GMScript",
     "folderName": "data files",

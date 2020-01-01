@@ -1192,6 +1192,14 @@
             }
         },
         {
+            "Key": "12524178-acdd-49a0-bcb8-77ba5b45bb12",
+            "Value": {
+                "id": "226884fa-9466-4a82-8e18-a4a6128f8fc4",
+                "resourcePath": "scripts\\uivc_button_settings_game_remove_asset_file\\uivc_button_settings_game_remove_asset_file.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "126e7ec6-2a46-46d7-8e2e-2cb71c514afa",
             "Value": {
                 "id": "22899f1b-8e7d-4894-9956-717a92b56447",
@@ -14408,6 +14416,14 @@
             }
         },
         {
+            "Key": "e501f0d2-e906-4cfc-9ca2-6fe26ed12d4a",
+            "Value": {
+                "id": "6182c15a-3cae-4554-b230-f08f0d732aec",
+                "resourcePath": "scripts\\uivc_button_settings_game_add_asset_file\\uivc_button_settings_game_add_asset_file.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "e5068eb4-f7c8-4a4c-9a74-f36d1f6aeeee",
             "Value": {
                 "id": "09a86601-cdbd-4f41-8e05-f5b611bbe3ea",
@@ -16825,6 +16841,8 @@
         "4ae7649a-3a83-4207-b3ef-88544218483e",
         "3753db42-53d3-4fb8-b981-4a320894bd49",
         "5235e267-a128-4072-aae0-4ef5ff0c3ab6",
+        "e501f0d2-e906-4cfc-9ca2-6fe26ed12d4a",
+        "12524178-acdd-49a0-bcb8-77ba5b45bb12",
         "49a17f7d-8102-4a15-8539-939e11db8886",
         "91ce0e12-699b-4131-a313-af68e7add7c1",
         "1adf9578-1fe3-4a55-919b-f4f2572696ee",

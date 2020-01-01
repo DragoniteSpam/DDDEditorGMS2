@@ -477,6 +477,7 @@ game_asset_lists = ds_list_create();
 // @todo gml update lightweight objects - filename, extension, compressed?
 var file_data = create_data_file("data", DataExtensions.DDDD, false);
 var file_asset = create_data_file("assets", DataExtensions.DDDA, false);
+var file_terrain = create_data_file("terrain", DataExtensions.DDDA, true);
 ds_list_add(game_asset_lists, file_data, file_asset);
 
 game_data_location[GameDataCategories.AUTOTILES] = file_asset.GUID;
@@ -494,7 +495,7 @@ game_data_location[GameDataCategories.GLOBAL] = file_data.GUID;
 game_data_location[GameDataCategories.EVENTS]  = file_data.GUID;
 game_data_location[GameDataCategories.DATADATA] = file_data.GUID;
 game_data_location[GameDataCategories.ANIMATIONS] = file_data.GUID;
-game_data_location[GameDataCategories.TERRAIN] = file_data.GUID;
+game_data_location[GameDataCategories.TERRAIN] = file_terrain.GUID;
 
 // these may all go to different save locations
 enum GameDataCategories {
