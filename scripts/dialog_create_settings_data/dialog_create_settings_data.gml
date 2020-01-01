@@ -43,10 +43,6 @@ var el_edit_title = create_text(col1_x, yy, "Other Settings", ew, eh, fa_left, e
 el_edit_title.color = c_blue;
 yy = yy + el_edit_title.height + spacing;
 
-var el_edit_include_terrain = create_checkbox(col1_x, yy, "Include Terrain?", ew, eh, uivc_settings_game_include_terrain, Stuff.game_include_terrain, dg);
-el_edit_include_terrain.tooltip = "It can be handy to save the terrain you are working on to the data file, but this can be very expensive space-wise. Feel free to turn this off if you're not making a game that uses this.";
-yy = yy + el_edit_include_terrain.height + spacing;
-
 var el_edit_notes_text = create_text(col1_x, yy, "Game notes:", ew, eh, fa_left, ew, dg);
 yy = yy + el_edit_notes_text.height + spacing;
 
@@ -105,7 +101,6 @@ ds_list_add(dg.contents,
     el_battle_type,
     // data settings
     el_edit_title,
-    el_edit_include_terrain,
     el_edit_notes_text,
     el_edit_notes,
     el_data_files,

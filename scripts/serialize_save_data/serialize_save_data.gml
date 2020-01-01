@@ -10,11 +10,31 @@ if (string_length(fn) > 0) {
     serialize_backup(PATH_BACKUP, Stuff.save_name, EXPORT_EXTENSION_DATA, fn);
     game_auto_title();
     
-    for (var i = 0; i < ds_list_size(Stuff.game_asset_lists); i++) {
+    buffers[0] = buffer_create(1024, buffer_grow, 1);
+    serialize_save_header(buffers[0], Stuff.game_asset_lists[| 0]);
+    
+    for (var i = 1; i < ds_list_size(Stuff.game_asset_lists); i++) {
         buffers[i] = buffer_create(1024, buffer_grow, 1);
         serialize_save_header(buffers[i], Stuff.game_asset_lists[| i]);
         var index_addr_content = buffer_tell(buffers[i]);
         buffer_write(buffers[i], buffer_u64, 0);
+        
+        // generate a list of all of the things that are in this file
+        var contents = ds_list_create();
+        var content_addresses = ds_list_create();
+        for (var j = 0; j < array_length_1d(Stuff.game_data_location); j++) {
+            if (Stuff.game_data_location[j] == Stuff.game_asset_lists[| i].GUID) {
+                ds_list_add(contents, j);
+            }
+        }
+        
+        // write out the addresses of all the things (or at least, allocate space)
+        var addr_content = buffer_tell(buffers[i]);
+        buffer_write(buffers[i], buffer_u64, 0);
+        buffer_write(buffers[i], buffer_u8, ds_list_size(contents));
+        for (var j = 0; j < ds_list_size(contents); j++) {
+            
+        }
     }
     
     #region header and index
@@ -50,7 +70,7 @@ if (string_length(fn) > 0) {
     var addr_global_meta =          serialize_save_global_meta(buffer);
     var addr_datadata =             serialize_save_datadata(buffer);
     var addr_animations =           serialize_save_animations(buffer);
-    var addr_terrain =              Stuff.game_include_terrain ? serialize_save_terrain(buffer) : 0;
+    var addr_terrain =              serialize_save_terrain(buffer);
     
     // events may depend on some other data being initialized and i don't feel like
     // going back and doing validation because that sounds terrible

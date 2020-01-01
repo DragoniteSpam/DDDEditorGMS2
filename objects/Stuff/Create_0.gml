@@ -468,17 +468,16 @@ game_starting_direction = 0;
 game_player_grid = true;
 game_battle_style = BattleStyles.TEAM_BASED;
 
-game_include_terrain = true;
-
 game_notes = "";
 
 game_asset_lists = ds_list_create();
 // @todo gml update lightweight objects - filename, extension, compressed?
-var file_data = create_data_file("data", false);
+var file_default = create_data_file("data", false);
 var file_asset = create_data_file("assets", false);
 var file_terrain = create_data_file("terrain", true);
 ds_list_add(game_asset_lists, file_data, file_asset);
 
+game_data_location = array_create(GameDataCategories.SIZE);
 game_data_location[GameDataCategories.AUTOTILES] = file_asset.GUID;
 game_data_location[GameDataCategories.TILESETS] = file_asset.GUID;
 game_data_location[GameDataCategories.BATTLERS] = file_asset.GUID;
@@ -489,11 +488,11 @@ game_data_location[GameDataCategories.MISC] = file_asset.GUID;
 game_data_location[GameDataCategories.BGM] = file_asset.GUID;
 game_data_location[GameDataCategories.SE] = file_asset.GUID;
 game_data_location[GameDataCategories.MESH] = file_asset.GUID;
-game_data_location[GameDataCategories.MAP] = file_data.GUID;
-game_data_location[GameDataCategories.GLOBAL] = file_data.GUID;
-game_data_location[GameDataCategories.EVENTS]  = file_data.GUID;
-game_data_location[GameDataCategories.DATADATA] = file_data.GUID;
-game_data_location[GameDataCategories.ANIMATIONS] = file_data.GUID;
+game_data_location[GameDataCategories.MAP] = file_default.GUID;
+game_data_location[GameDataCategories.GLOBAL] = file_default.GUID;
+game_data_location[GameDataCategories.EVENTS]  = file_default.GUID;
+game_data_location[GameDataCategories.DATADATA] = file_default.GUID;
+game_data_location[GameDataCategories.ANIMATIONS] = file_default.GUID;
 game_data_location[GameDataCategories.TERRAIN] = file_terrain.GUID;
 
 // these may all go to different save locations
@@ -504,7 +503,8 @@ enum GameDataCategories {
     BGM, SE,
     MESH,
     MAP,
-    GLOBAL, EVENTS, DATADATA, ANIMATIONS, TERRAIN
+    GLOBAL, EVENTS, DATADATA, ANIMATIONS, TERRAIN,
+    SIZE
 }
 
 enum DataExtensions {

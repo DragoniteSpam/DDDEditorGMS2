@@ -9304,14 +9304,6 @@
             }
         },
         {
-            "Key": "924d1234-d97f-4a0b-85c4-0c3d19579373",
-            "Value": {
-                "id": "6d097fc0-e2c7-4e48-a8c6-1bff5ec03318",
-                "resourcePath": "scripts\\uivc_settings_game_include_terrain\\uivc_settings_game_include_terrain.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "925069a1-d6f4-41e6-a08f-7afb4f3a1a9e",
             "Value": {
                 "id": "053b49c7-31b2-4b8b-99a0-e88797364116",
@@ -16823,7 +16815,6 @@
         "6d0ef0ba-b11a-484c-b31d-b6a4a853a98f",
         "1b4c545b-c4c5-4949-bb22-c222e7e159b3",
         "eea94a4c-b7e2-43dd-a768-bd396e34b75c",
-        "924d1234-d97f-4a0b-85c4-0c3d19579373",
         "6b5f91f0-b915-47b6-9160-92d85403c731",
         "5fd586ce-b064-4f99-a99a-990cce2b0c5f",
         "f2639134-a0d4-46dd-84ca-f52ea5ae553e",
