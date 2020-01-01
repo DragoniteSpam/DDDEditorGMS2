@@ -91,9 +91,13 @@ if (list.interactive && active) {
             // if this ends up having a bounds problem it's probably because the list is empty and
             // it's trying to access n-1 from the next line
             var mn = min(((Stuff.MOUSE_Y - y2) div list.height) + list.index, n - 1);
-            if ((!keyboard_check(vk_control) && !keyboard_check(vk_shift) && !list.select_toggle) || !list.allow_multi_select) {
-                ui_list_deselect(list);
+            // deselect the list if that's what yo uwould expect to happen
+            if (!list.auto_multi_select) {
+                if ((!keyboard_check(vk_control) && !keyboard_check(vk_shift) && !list.select_toggle) || !list.allow_multi_select) {
+                    ui_list_deselect(list);
+                }
             }
+            // toggle selection over a range
             if (list.allow_multi_select && keyboard_check(vk_shift)) {
                 if (list.last_index > -1) {
                     var d = clamp(mn - list.last_index, -1, 1);
@@ -105,6 +109,7 @@ if (list.interactive && active) {
                         }
                     }
                 }
+            // toggle single selections
             } else {
                 if (!ui_list_is_selected(list, mn)) {
                     ui_list_select(list, mn);

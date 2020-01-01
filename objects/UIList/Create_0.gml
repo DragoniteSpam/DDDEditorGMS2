@@ -20,6 +20,7 @@ render = ui_render_list;
 render_colors = ui_list_colors;
 evaluate_text = null;
 
+auto_multi_select = false;              // this will supercede the allow_multi_select option
 allow_multi_select = false;
 allow_deselect = true;
 select_toggle = false;                    // clicking on an entry will toggle its selected-ness
