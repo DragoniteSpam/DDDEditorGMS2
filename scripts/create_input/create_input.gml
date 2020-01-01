@@ -6,7 +6,7 @@
 /// @param onvaluechange
 /// @param value
 /// @param help-text
-/// @param value-conversion
+/// @param validation
 /// @param lower-bound
 /// @param upper-bound
 /// @param character-limit

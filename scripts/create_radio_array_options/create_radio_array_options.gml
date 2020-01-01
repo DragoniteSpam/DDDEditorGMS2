@@ -1,5 +1,5 @@
 /// @param UIRadioArray
-/// @param string[]
+/// @param [strings]
 
 var array = argument[0];
 var strings = argument[1];
