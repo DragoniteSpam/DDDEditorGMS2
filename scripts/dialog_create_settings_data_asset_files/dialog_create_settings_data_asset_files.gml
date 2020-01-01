@@ -60,13 +60,13 @@ el_name.interactive = false;
 dg.el_name = el_name;
 yy = yy + el_name.height + spacing;
 
-var el_extension = create_radio_array(col3_x, yy, "Extension:", ew, eh, null, -1, dg);
+var el_extension = create_radio_array(col3_x, yy, "Extension:", ew, eh, uivc_radio_settings_game_asset_extension, -1, dg);
 el_extension.interactive = false;
 dg.el_extension = el_extension;
 create_radio_array_options(el_extension, [Stuff.setting_asset_extension_map[0], Stuff.setting_asset_extension_map[1]]);
 yy = yy + ui_get_radio_array_height(el_extension) + spacing;
 
-var el_compressed = create_checkbox(col3_x, yy, "Compressed", ew, eh, null, false, dg);
+var el_compressed = create_checkbox(col3_x, yy, "Compressed", ew, eh, uivc_checkbox_settings_game_asset_compressed, false, dg);
 el_compressed.interactive = false;
 dg.el_compressed = el_compressed;
 yy = yy + el_compressed.height + spacing;
