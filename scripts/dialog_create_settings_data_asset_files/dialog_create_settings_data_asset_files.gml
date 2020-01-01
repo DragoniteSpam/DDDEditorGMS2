@@ -25,7 +25,7 @@ var yy = 64;
 var yy_start = 64;
 
 var el_list = create_list(col1_x, yy, "Asset Files", "", ew, eh, 8, uivc_list_settings_game_asset, false, dg, Stuff.game_asset_lists);
-el_list.tooltip = "This is the list of data / asset files you currently have linked to the project."
+el_list.tooltip = "This is the list of data / asset files you currently have linked to the project. The first one is special."
 el_list.entries_are = ListEntries.SCRIPT;
 el_list.evaluate_text = ui_list_text_asset_files;
 el_list.render_colors = ui_list_colors_asset_files;
@@ -70,13 +70,6 @@ el_name.interactive = false;
 dg.el_name = el_name;
 yy = yy + el_name.height + spacing;
 
-var el_extension = create_radio_array(col3_x, yy, "Extension:", ew, eh, uivc_radio_settings_game_asset_extension, -1, dg);
-el_extension.tooltip = "The extension of the file. This doesn't really matter, but for organization purposes I recommend using .dddd for data and .ddda for assets.";
-el_extension.interactive = false;
-dg.el_extension = el_extension;
-create_radio_array_options(el_extension, [Stuff.setting_asset_extension_map[0], Stuff.setting_asset_extension_map[1]]);
-yy = yy + ui_get_radio_array_height(el_extension) + spacing;
-
 var el_compressed = create_checkbox(col3_x, yy, "Compressed", ew, eh, uivc_checkbox_settings_game_asset_compressed, false, dg);
 el_compressed.tooltip = "Whether or not the data file should be compressed. Compressing files allows them to take up less space, but makes them take longer to load.";
 el_compressed.interactive = false;
@@ -96,7 +89,6 @@ ds_list_add(dg.contents,
     el_types,
     // specifications
     el_name,
-    el_extension,
     el_compressed,
     // confirm
     el_confirm

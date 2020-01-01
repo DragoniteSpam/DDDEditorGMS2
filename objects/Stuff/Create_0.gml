@@ -148,7 +148,6 @@ var stashed_mode = setting_get("Config", "mode", EDITOR_BASE_MODE);
 
 setting_code_extension_map = [".txt", ".lua"];
 setting_text_extension_map = [".txt", ".md"];
-setting_asset_extension_map = [".dddd", ".ddda"];
 
 setting_hide_warnings = ds_map_create();
 
@@ -475,9 +474,9 @@ game_notes = "";
 
 game_asset_lists = ds_list_create();
 // @todo gml update lightweight objects - filename, extension, compressed?
-var file_data = create_data_file("data", DataExtensions.DDDD, false);
-var file_asset = create_data_file("assets", DataExtensions.DDDA, false);
-var file_terrain = create_data_file("terrain", DataExtensions.DDDA, true);
+var file_data = create_data_file("data", false);
+var file_asset = create_data_file("assets", false);
+var file_terrain = create_data_file("terrain", true);
 ds_list_add(game_asset_lists, file_data, file_asset);
 
 game_data_location[GameDataCategories.AUTOTILES] = file_asset.GUID;

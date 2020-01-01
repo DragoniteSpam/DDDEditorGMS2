@@ -3,22 +3,23 @@ var fn = get_save_filename_dddd(Stuff.save_name);
 global.error_map = ds_map_create();
 
 if (string_length(fn) > 0) {
+    var save_directory = filename_path(fn);
+    var buffers = array_create(ds_list_size(Stuff.game_asset_lists));
+    
     Stuff.save_name = string_replace(filename_name(fn), EXPORT_EXTENSION_DATA, "");
     serialize_backup(PATH_BACKUP, Stuff.save_name, EXPORT_EXTENSION_DATA, fn);
     game_auto_title();
     
-    var buffer = buffer_create(1024, buffer_grow, 1);
+    for (var i = 0; i < ds_list_size(Stuff.game_asset_lists); i++) {
+        buffers[i] = buffer_create(1024, buffer_grow, 1);
+        serialize_save_header(buffers[i], Stuff.game_asset_lists[| i]);
+        var index_addr_content = buffer_tell(buffers[i]);
+        buffer_write(buffers[i], buffer_u64, 0);
+    }
     
     #region header and index
-    buffer_write(buffer, buffer_u8, $44);
-    buffer_write(buffer, buffer_u8, $44);
-    buffer_write(buffer, buffer_u8, $44);
-    buffer_write(buffer, buffer_u32, DataVersions._CURRENT - 1);
-    buffer_write(buffer, buffer_u8, SERIALIZE_DATA_AND_MAP);
-    
     // lol
-    var index_addr_content = buffer_tell(buffer);
-    buffer_write(buffer, buffer_u64, 0);
+    
     
     var index_addr_event_custom = buffer_tell(buffer);
     buffer_write(buffer, buffer_u64, 0);
@@ -111,5 +112,6 @@ enum DataVersions {
     COLLISION_TRIGGER_DATA      = 69,
     REMOVE_RMXP_DATA            = 70,
     MAP_GENERIC_DATA            = 71,
+    DATA_MODULARITY             = 72,
     _CURRENT /* = whatever the last one is + 1 */
 }
