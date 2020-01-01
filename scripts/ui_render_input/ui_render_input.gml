@@ -47,7 +47,13 @@ var c_back = input.interactive ? input.back_color : c_ltgray;
 draw_rectangle_colour(vx1 + 1, vy1 + 1, vx2 - 1, vy2 - 1, c_back, c_back, c_back, c_back, false);
 draw_rectangle_colour(vx1, vy1, vx2, vy2, c_black, c_black, c_black, c_black, true);
 
+if (input.emphasis) {
+    draw_set_font(FDefault12Italic);
+}
 draw_text_ext_colour(vtx, vty, string(value), -1, vx2 - vtx, c, c, c, c, 1);
+if (input.emphasis) {
+    draw_set_font(FDefault12);
+}
 if (string_length(value) == 0) {
     draw_text_ext_colour(vtx, vty, string(string(input.value_default)), -1, vx2 - vtx, c_dkgray, c_dkgray, c_dkgray, c_dkgray, 1);
 }
@@ -81,6 +87,7 @@ if (input.interactive && dialog_is_active(input.root)) {
                     execute_value_change = execute_value_change && is_clamped(n, input.value_lower, input.value_upper);
                 }
                 if (execute_value_change) {
+                    input.emphasis = (input.validation == validate_string_internal_name && internal_name_get(input.value));
                     script_execute(input.onvaluechange, input);
                 }
             }

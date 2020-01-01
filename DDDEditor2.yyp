@@ -6136,6 +6136,14 @@
             }
         },
         {
+            "Key": "60d8a2d6-3d9c-4e75-b762-54527b7b4389",
+            "Value": {
+                "id": "8d3d87bd-31f2-4418-9d34-5a432aa31613",
+                "resourcePath": "fonts\\FDefault12Italic\\FDefault12Italic.yy",
+                "resourceType": "GMFont"
+            }
+        },
+        {
             "Key": "60e2434b-0f6b-4b44-8d51-05d7b52b5def",
             "Value": {
                 "id": "74e733c2-40c0-41f5-a0de-f26b997bf84c",
