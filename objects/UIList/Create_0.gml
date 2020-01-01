@@ -18,6 +18,7 @@ ondoubleclick = null;
 onmiddleclick = null;
 render = ui_render_list;
 render_colors = ui_list_colors;
+evaluate_text = null;
 
 allow_multi_select = false;
 allow_deselect = true;
@@ -38,5 +39,6 @@ enum ListEntries {
     INSTANCES,
     // behaves the same as instances, but also draws the ref ID as an extra way to differentiate
     INSTANCES_REFID,
-    GUIDS
+    GUIDS,
+    SCRIPT,
 }

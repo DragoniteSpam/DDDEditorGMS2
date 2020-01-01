@@ -70,6 +70,7 @@ if (n == 0) {
                 var data = guid_get(list.entries[| index]);
                 text = text + (data ? data.name : " (null)");
                 break;
+            case ListEntries.SCRIPT: text = text + script_execute(list.evaluate_text, list, list.entries[| index]);
         }
         draw_text_colour(tx, tya, string(text), c, c, c, c, 1);
     }
