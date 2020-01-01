@@ -42,7 +42,10 @@ yy = yy + el_edit_title.height + spacing;
 var el_edit_include_terrain = create_checkbox(col1_x, yy, "Include Terrain?", ew, eh, uivc_settings_game_include_terrain, Stuff.game_include_terrain, dg);
 el_edit_include_terrain.tooltip = "It can be handy to save the terrain you are working on to the data file, but this can be very expensive space-wise. Feel free to turn this off if you're not making a game that uses this.";
 yy = yy + el_edit_include_terrain.height + spacing;
-var el_edit_notes_text = create_text(col1_x, yy, "Game Notes", ew, eh, fa_left, ew, dg);
+var el_data_files = create_button(col1_x, yy, "Data and Asset Files", ew, eh, fa_center, dialog_create_settings_data_asset_files, dg);
+el_data_files.tooltip = "You may wish to separate different kinds of game assets into different data files. In fact, if you have a lot of them, you'll definitely want to do that, especially if you're on source control.";
+yy = yy + el_data_files.height + spacing;
+var el_edit_notes_text = create_text(col1_x, yy, "Game notes:", ew, eh, fa_left, ew, dg);
 yy = yy + el_edit_notes_text.height + spacing;
 var el_edit_notes = create_input_code(col1_x, yy, "", ew, eh, 0, vy1, ew, vy2, Stuff.game_notes, uivc_settings_game_notes, dg);
 el_edit_notes.tooltip = "This doesn't affect the game, but you may find it helpful to keep a set of notes for things you want to remember while working on it.";
@@ -91,6 +94,7 @@ ds_list_add(dg.contents,
     el_edit_include_terrain,
     el_edit_notes_text,
     el_edit_notes,
+    el_data_files,
     el_global_title,
     el_variables,
     el_switches,

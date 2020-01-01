@@ -1880,6 +1880,14 @@
             }
         },
         {
+            "Key": "1cf1bae2-df93-4705-ae01-58ce64fd6495",
+            "Value": {
+                "id": "5d0b3e54-78eb-48b7-b360-90a861b96c5a",
+                "resourcePath": "scripts\\ui_list_colors_asset_files\\ui_list_colors_asset_files.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "1cf98de9-7ec9-469e-a493-8ac2e4476b10",
             "Value": {
                 "id": "f860a42d-6373-44fb-9756-407458367eb1",
@@ -5276,6 +5284,14 @@
             "Value": {
                 "id": "a8b229e9-3287-4a0a-bda9-98639786626b",
                 "resourcePath": "scripts\\omu_entity_remove_auto_move_route\\omu_entity_remove_auto_move_route.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "538d4490-89c4-4c18-a8d3-8b7a658d6740",
+            "Value": {
+                "id": "cb7c8283-9be1-4a31-adb0-912922e6626b",
+                "resourcePath": "scripts\\dialog_create_settings_data_asset_files\\dialog_create_settings_data_asset_files.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -9684,6 +9700,14 @@
             "Value": {
                 "id": "f2105350-fedb-4077-b5cb-0c39e115d7b9",
                 "resourcePath": "scripts\\dialog_create_settings_data_game_constants\\dialog_create_settings_data_game_constants.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "98752a70-4ba1-4d71-9035-818e4600c88a",
+            "Value": {
+                "id": "e34a734d-0c4c-4a39-8f26-c5c2e0b8ef69",
+                "resourcePath": "scripts\\ui_list_text_asset_files\\ui_list_text_asset_files.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -16438,6 +16462,7 @@
         "102099e5-d73a-4de5-b9ee-a60acea2a4de",
         "98737f29-3c9d-431b-a59e-f2100418da5d",
         "ee7d0f5c-58b8-48f6-86b6-fdf55a5b14e9",
+        "538d4490-89c4-4c18-a8d3-8b7a658d6740",
         "cea3d119-83f1-4607-a92f-d04eb6ec6ce3",
         "12b15d56-d575-4cdc-a3ee-09a3cccb1ca8",
         "4eacf829-3bff-4404-878c-5214bbde3f84",
@@ -17198,6 +17223,8 @@
         "fcd4ba1d-4e32-4811-bac1-bf5c9ad661c1",
         "e34c9a14-42e1-40c8-acb9-121efce0c0ef",
         "d72b146b-f741-4c3a-95d1-ef3a174917bf",
+        "1cf1bae2-df93-4705-ae01-58ce64fd6495",
+        "98752a70-4ba1-4d71-9035-818e4600c88a",
         "c37ecf28-8b0d-4b55-ad5e-e7c3ef5e5e0c",
         "7be262ef-2d7a-4cc8-85bb-446caf5592c9",
         "008f9998-5b4d-44c2-b795-eedcdadc9318",

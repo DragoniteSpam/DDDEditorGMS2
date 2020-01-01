@@ -148,6 +148,7 @@ var stashed_mode = setting_get("Config", "mode", EDITOR_BASE_MODE);
 
 setting_code_extension_map = [".txt", ".lua"];
 setting_text_extension_map = [".txt", ".md"];
+setting_asset_extension_map = [".dddd", ".ddda"];
 
 setting_hide_warnings = ds_map_create();
 
@@ -471,6 +472,15 @@ game_battle_style = BattleStyles.TEAM_BASED;
 game_include_terrain = true;
 
 game_notes = "";
+
+game_asset_lists = ds_list_create();
+// @todo gml update lightweight objects - filename, extension, compressed?
+ds_list_add(game_asset_lists, ["data", DataExtensions.DDDD, false], ["data", DataExtensions.DDDA, false]);
+
+enum DataExtensions {
+    DDDD,
+    DDDA
+}
 
 #endregion
 
