@@ -2040,6 +2040,14 @@
             }
         },
         {
+            "Key": "2017f8d0-f23c-41b1-9e02-76715cc5da2d",
+            "Value": {
+                "id": "22935803-8359-4bcd-90a1-f60967847cf8",
+                "resourcePath": "scripts\\uivc_list_settings_game_asset_location\\uivc_list_settings_game_asset_location.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "205f1af7-5ea4-4c64-9cb7-ae236f645f18",
             "Value": {
                 "id": "7c99460a-9c42-4509-93d9-4cea489c7130",
@@ -16813,6 +16821,7 @@
         "39bf3b45-cbc4-4862-8e04-f09ef52db97a",
         "23ae9c10-1217-410f-983c-111f1ce99f27",
         "7b1ed04a-ade6-47c9-89b8-fc8b55f049a6",
+        "2017f8d0-f23c-41b1-9e02-76715cc5da2d",
         "4ae7649a-3a83-4207-b3ef-88544218483e",
         "3753db42-53d3-4fb8-b981-4a320894bd49",
         "5235e267-a128-4072-aae0-4ef5ff0c3ab6",

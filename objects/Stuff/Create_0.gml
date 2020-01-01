@@ -475,7 +475,37 @@ game_notes = "";
 
 game_asset_lists = ds_list_create();
 // @todo gml update lightweight objects - filename, extension, compressed?
-ds_list_add(game_asset_lists, create_data_file("data", DataExtensions.DDDD, false), create_data_file("assets", DataExtensions.DDDA, false));
+var file_data = create_data_file("data", DataExtensions.DDDD, false);
+var file_asset = create_data_file("assets", DataExtensions.DDDA, false);
+ds_list_add(game_asset_lists, file_data, file_asset);
+
+game_data_location[GameDataCategories.AUTOTILES] = file_asset.GUID;
+game_data_location[GameDataCategories.TILESETS] = file_asset.GUID;
+game_data_location[GameDataCategories.BATTLERS] = file_asset.GUID;
+game_data_location[GameDataCategories.OVERWORLDS] = file_asset.GUID;
+game_data_location[GameDataCategories.PARTICLES] = file_asset.GUID;
+game_data_location[GameDataCategories.UI] = file_asset.GUID;
+game_data_location[GameDataCategories.MISC] = file_asset.GUID;
+game_data_location[GameDataCategories.BGM] = file_asset.GUID;
+game_data_location[GameDataCategories.SE] = file_asset.GUID;
+game_data_location[GameDataCategories.MESH] = file_asset.GUID;
+game_data_location[GameDataCategories.MAP] = file_data.GUID;
+game_data_location[GameDataCategories.GLOBAL] = file_data.GUID;
+game_data_location[GameDataCategories.EVENTS]  = file_data.GUID;
+game_data_location[GameDataCategories.DATADATA] = file_data.GUID;
+game_data_location[GameDataCategories.ANIMATIONS] = file_data.GUID;
+game_data_location[GameDataCategories.TERRAIN] = file_data.GUID;
+
+// these may all go to different save locations
+enum GameDataCategories {
+    AUTOTILES, TILESETS,
+    BATTLERS, OVERWORLDS,
+    PARTICLES, UI, MISC,
+    BGM, SE,
+    MESH,
+    MAP,
+    GLOBAL, EVENTS, DATADATA, ANIMATIONS, TERRAIN
+}
 
 enum DataExtensions {
     DDDD,
