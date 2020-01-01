@@ -3,6 +3,6 @@
 
 var list = argument0;
 var index = argument1;
-var data = list.entries[| index];
+var file_data = list.entries[| index];
 
-return data[0] + Stuff.setting_asset_extension_map[data[1]];
+return file_data.internal_name + Stuff.setting_asset_extension_map[file_data.extension];

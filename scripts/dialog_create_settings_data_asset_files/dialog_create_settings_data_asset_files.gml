@@ -24,7 +24,7 @@ var col3_x = 2 * dw / columns + spacing;
 var yy = 64;
 var yy_start = 64;
 
-var el_list = create_list(col1_x, yy, "Asset Files", "", ew, eh, 8, null, false, dg, Stuff.game_asset_lists);
+var el_list = create_list(col1_x, yy, "Asset Files", "", ew, eh, 8, uivc_list_settings_game_asset, false, dg, Stuff.game_asset_lists);
 el_list.entries_are = ListEntries.SCRIPT;
 el_list.evaluate_text = ui_list_text_asset_files;
 el_list.render_colors = ui_list_colors_asset_files;
@@ -49,18 +49,26 @@ create_list_entries(el_types,
     ["Data: Global", c_black], ["Data: Events", c_black], ["Data: Datadata", c_black], ["Data: Animations", c_black],
     ["Data: Terrain", c_black],
 );
+el_types.interactive = false;
+dg.el_types = el_types;
 yy = yy + ui_get_list_height(el_types) + spacing;
 
 yy = yy_start;
 
-var el_name = create_input(col3_x, yy, "Name:", ew, eh, null, "", "name", validate_string, 0, 1, 12, vx1, vy1, vx2, vy2, dg);
+var el_name = create_input(col3_x, yy, "Name:", ew, eh, uivc_input_settings_game_asset_name, "", "name", validate_string_internal_name, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
+el_name.interactive = false;
+dg.el_name = el_name;
 yy = yy + el_name.height + spacing;
 
 var el_extension = create_radio_array(col3_x, yy, "Extension:", ew, eh, null, -1, dg);
+el_extension.interactive = false;
+dg.el_extension = el_extension;
 create_radio_array_options(el_extension, [Stuff.setting_asset_extension_map[0], Stuff.setting_asset_extension_map[1]]);
 yy = yy + ui_get_radio_array_height(el_extension) + spacing;
 
 var el_compressed = create_checkbox(col3_x, yy, "Compressed", ew, eh, null, false, dg);
+el_compressed.interactive = false;
+dg.el_compressed = el_compressed;
 yy = yy + el_compressed.height + spacing;
 
 var b_width = 128;

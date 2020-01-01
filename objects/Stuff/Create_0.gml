@@ -475,7 +475,7 @@ game_notes = "";
 
 game_asset_lists = ds_list_create();
 // @todo gml update lightweight objects - filename, extension, compressed?
-ds_list_add(game_asset_lists, ["data", DataExtensions.DDDD, false], ["data", DataExtensions.DDDA, false]);
+ds_list_add(game_asset_lists, create_data_file("data", DataExtensions.DDDD, false), create_data_file("assets", DataExtensions.DDDA, false));
 
 enum DataExtensions {
     DDDD,

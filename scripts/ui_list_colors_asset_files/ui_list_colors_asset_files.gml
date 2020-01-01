@@ -3,6 +3,6 @@
 
 var list = argument0;
 var index = argument1;
-var data = list.entries[| index];
+var file_data = list.entries[| index];
 
-return data[2] ? c_blue : c_black;
+return file_data.compressed ? c_blue : c_black;
