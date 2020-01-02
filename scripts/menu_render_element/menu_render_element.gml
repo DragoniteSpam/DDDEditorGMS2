@@ -24,7 +24,7 @@ var mouse_inbounds = mouse_within_rectangle(x1, y1, x2, y2);
 
 // click on the element
 if (mouse_inbounds || active) {
-    draw_rectangle_colour(x1, y1, x2, y2, c_ui, c_ui, c_ui, c_ui, false);
+    draw_rectangle_colour(x1, y1, x2 - 1, y2, c_ui, c_ui, c_ui, c_ui, false);
 }
 
 if (mouse_inbounds) {
@@ -42,7 +42,7 @@ draw_text(tx, ty, string(menumenu.text));
 
 if (menumenu.onmouseup == momu_expand) {
     var s = 5;
-    draw_triangle(x2 - s*2, ty - s, x2 - s, ty, x2 - s * 2, ty + s, false);
+    draw_triangle(x2 - s * 2, ty - s, x2 - s, ty, x2 - s * 2, ty + s, false);
 }
 
 if (active) {
