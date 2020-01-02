@@ -1,4 +1,5 @@
 /// @param name
+// this just logs it in projects.json; it doesn't add any of the data files
 
 var project_name = argument0;
 if (ds_list_find_index(Stuff.all_projects[? "projects"], project_name) == -1) {

@@ -6,13 +6,8 @@ var selection_main = ui_list_selection(list_main);
 
 if (selection_main + 1) {
     var file_data = list_main.entries[| selection_main];
-    for (var i = 0; i < array_length_1d(Stuff.game_data_location); i++) {
-        if (Stuff.game_data_location[i] == file_data.GUID) {
-            Stuff.game_data_location[i] = 0;
-        }
-    }
     if (ui_list_selection(list) + 1) {
-        for (var i = ds_map_find_first(list.selected_entries); i != ds_map_find_last(list.selected_entries); i = ds_map_find_next(list.selected_entries, i)) {
+        for (var i = ds_map_find_first(list.selected_entries); i != undefined; i = ds_map_find_next(list.selected_entries, i)) {
             Stuff.game_data_location[i] = file_data.GUID;
         }
     }

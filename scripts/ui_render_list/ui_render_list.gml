@@ -104,7 +104,7 @@ if (list.interactive && active) {
                     for (var i = list.last_index; i != mn; i = i + d) {
                         if (!ui_list_is_selected(list, i)) {
                             ui_list_select(list, i);
-                        } else if (list.select_toggle) {
+                        } else if (list.select_toggle && list.allow_deselect) {
                             ds_map_delete(list.selected_entries, i);
                         }
                     }
@@ -112,8 +112,8 @@ if (list.interactive && active) {
             // toggle single selections
             } else {
                 if (!ui_list_is_selected(list, mn)) {
-                    ui_list_select(list, mn);
-                } else if (list.select_toggle) {
+                    ds_map_add(list.selected_entries, mn, true);
+                } else if (list.select_toggle && list.allow_deselect) {
                     ds_map_delete(list.selected_entries, mn);
                 }
             }

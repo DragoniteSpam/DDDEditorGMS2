@@ -13,6 +13,8 @@ if (selection + 1) {
     for (var i = 0; i < array_length_1d(Stuff.game_data_location); i++) {
         if (Stuff.game_data_location[i] == file_data.GUID) {
             ui_list_select(list.root.el_types, i);
+        } else if (i == 0 && !guid_get(Stuff.game_data_location[i])) {
+            ui_list_select(list.root.el_types, i);
         }
     }
     // the first file in the list is special, and its name is just whatever you give it when you save

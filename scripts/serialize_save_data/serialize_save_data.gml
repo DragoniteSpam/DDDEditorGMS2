@@ -7,6 +7,8 @@ if (string_length(fn) > 0) {
     var buffers = array_create(ds_list_size(Stuff.game_asset_lists));
     
     Stuff.save_name = string_replace(filename_name(fn), EXPORT_EXTENSION_DATA, "");
+    var proj_name = filename_change_ext(filename_name(fn), "");
+    setting_project_add(proj_name);
     
     game_auto_title();
     
@@ -25,6 +27,7 @@ if (string_length(fn) > 0) {
             buffer_write(buffer, buffer_u8, ds_list_size(Stuff.game_asset_lists));
             for (var j = 0; j < ds_list_size(Stuff.game_asset_lists); j++) {
                 buffer_write(buffer, buffer_string, Stuff.game_asset_lists[| j].internal_name);
+                buffer_write(buffer, buffer_u32, Stuff.game_asset_lists[| j].GUID);
             }
         }
         
@@ -66,9 +69,11 @@ if (string_length(fn) > 0) {
         if (file_data.compressed) {
             var compressed = buffer_compress(buffer, 0, buffer_tell(buffer));
             buffer_save_ext(compressed, this_files_name, 0, buffer_get_size(compressed));
+            setting_project_create_local(proj_name, filename_name(this_files_name), compressed);
             buffer_delete(compressed);
         } else {
             buffer_save_ext(buffer, this_files_name, 0, buffer_tell(buffer));
+            setting_project_create_local(proj_name, filename_name(this_files_name), buffer);
         }
         
         buffer_delete(buffer);
@@ -76,18 +81,6 @@ if (string_length(fn) > 0) {
     
     ds_list_destroy(contents);
     ds_list_destroy(content_addresses);
-    /*
-    //this is all old but will probably be adopted in some way or another
-    var compressed = buffer_compress(buffer, 0, buffer_tell(buffer));
-    
-    serialize_save_assets(filename_change_ext(fn, EXPORT_EXTENSION_ASSETS));
-    
-    var proj_name = filename_change_ext(filename_name(fn), "");
-    setting_project_add(proj_name);
-    setting_project_create_local(proj_name, undefined, compressed);
-    
-    buffer_delete(compressed);
-    buffer_delete(buffer);*/
 }
 
 if (!ds_map_empty(global.error_map)) {

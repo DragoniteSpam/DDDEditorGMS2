@@ -472,7 +472,7 @@ game_asset_lists = ds_list_create();
 var file_default = create_data_file("data", false);
 var file_asset = create_data_file("assets", false);
 var file_terrain = create_data_file("terrain", true);
-ds_list_add(game_asset_lists, file_default, file_asset);
+ds_list_add(game_asset_lists, file_default, file_asset, file_terrain);
 
 game_data_location = array_create(GameDataCategories.SIZE);
 game_data_location[GameDataCategories.AUTOTILES] = file_asset.GUID;
