@@ -13,8 +13,6 @@ if (string_length(fn) > 0) {
     var contents = ds_list_create();
     var content_addresses = ds_list_create();
     
-    var default_file_data = Stuff.game_asset_lists[| 0];
-    
     for (var i = 0; i < ds_list_size(Stuff.game_asset_lists); i++) {
         var file_data = Stuff.game_asset_lists[| i];
         var buffer = buffer_create(1024, buffer_grow, 1);
@@ -26,7 +24,7 @@ if (string_length(fn) > 0) {
         if (i == 0) {
             buffer_write(buffer, buffer_u8, ds_list_size(Stuff.game_asset_lists));
             for (var j = 0; j < ds_list_size(Stuff.game_asset_lists); j++) {
-                buffer_write(buffer, buffer_string, Stuff.game_asset_lists[j].internal_name);
+                buffer_write(buffer, buffer_string, Stuff.game_asset_lists[| j].internal_name);
             }
         }
         
@@ -63,12 +61,14 @@ if (string_length(fn) > 0) {
         
         buffer_write(buffer, buffer_datatype, SerializeThings.END_OF_FILE);
         
+        var this_files_name = (i == 0) ? fn : (save_directory + file_data.internal_name + EXPORT_EXTENSION_ASSETS);
+        
         if (file_data.compressed) {
             var compressed = buffer_compress(buffer, 0, buffer_tell(buffer));
-            buffer_save_ext(compressed, fn, 0, buffer_get_size(compressed));
+            buffer_save_ext(compressed, this_files_name, 0, buffer_get_size(compressed));
             buffer_delete(compressed);
         } else {
-            //save the main file here, and also the backup file(s)
+            buffer_save_ext(buffer, this_files_name, 0, buffer_tell(buffer));
         }
         
         buffer_delete(buffer);
@@ -76,7 +76,7 @@ if (string_length(fn) > 0) {
     
     ds_list_destroy(contents);
     ds_list_destroy(content_addresses);
-    
+    /*
     //this is all old but will probably be adopted in some way or another
     var compressed = buffer_compress(buffer, 0, buffer_tell(buffer));
     
@@ -87,7 +87,7 @@ if (string_length(fn) > 0) {
     setting_project_create_local(proj_name, undefined, compressed);
     
     buffer_delete(compressed);
-    buffer_delete(buffer);
+    buffer_delete(buffer);*/
 }
 
 if (!ds_map_empty(global.error_map)) {
