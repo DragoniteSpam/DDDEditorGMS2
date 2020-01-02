@@ -7,96 +7,79 @@ if (string_length(fn) > 0) {
     var buffers = array_create(ds_list_size(Stuff.game_asset_lists));
     
     Stuff.save_name = string_replace(filename_name(fn), EXPORT_EXTENSION_DATA, "");
-    serialize_backup(PATH_BACKUP, Stuff.save_name, EXPORT_EXTENSION_DATA, fn);
+    
     game_auto_title();
     
-    buffers[0] = buffer_create(1024, buffer_grow, 1);
-    serialize_save_header(buffers[0], Stuff.game_asset_lists[| 0]);
+    var contents = ds_list_create();
+    var content_addresses = ds_list_create();
     
-    for (var i = 1; i < ds_list_size(Stuff.game_asset_lists); i++) {
-        buffers[i] = buffer_create(1024, buffer_grow, 1);
-        serialize_save_header(buffers[i], Stuff.game_asset_lists[| i]);
-        var index_addr_content = buffer_tell(buffers[i]);
-        buffer_write(buffers[i], buffer_u64, 0);
+    var default_file_data = Stuff.game_asset_lists[| 0];
+    
+    for (var i = 0; i < ds_list_size(Stuff.game_asset_lists); i++) {
+        var file_data = Stuff.game_asset_lists[| i];
+        var buffer = buffer_create(1024, buffer_grow, 1);
+        serialize_save_header(buffer, file_data);
+        var index_addr_content = buffer_tell(buffer);
+        buffer_write(buffer, buffer_u64, 0);
+        
+        // the default file should have a list of all of the other files
+        if (i == 0) {
+            buffer_write(buffer, buffer_u8, ds_list_size(Stuff.game_asset_lists));
+            for (var j = 0; j < ds_list_size(Stuff.game_asset_lists); j++) {
+                buffer_write(buffer, buffer_string, Stuff.game_asset_lists[j].internal_name);
+            }
+        }
         
         // generate a list of all of the things that are in this file
-        var contents = ds_list_create();
-        var content_addresses = ds_list_create();
+        ds_list_clear(contents);
+        ds_list_clear(content_addresses);
         for (var j = 0; j < array_length_1d(Stuff.game_data_location); j++) {
-            if (Stuff.game_data_location[j] == Stuff.game_asset_lists[| i].GUID) {
+            if (Stuff.game_data_location[j] == file_data.GUID) {
+                ds_list_add(contents, j);
+            }
+            // any data categories that aren't sorted into files go to the default
+            if (i == 0 && !guid_get(Stuff.game_data_location[j])) {
                 ds_list_add(contents, j);
             }
         }
         
         // write out the addresses of all the things (or at least, allocate space)
         var addr_content = buffer_tell(buffers[i]);
-        buffer_write(buffers[i], buffer_u64, 0);
-        buffer_write(buffers[i], buffer_u8, ds_list_size(contents));
+        
+        buffer_write(buffer, buffer_u64, 0);
+        buffer_write(buffer, buffer_u8, ds_list_size(contents));
         for (var j = 0; j < ds_list_size(contents); j++) {
-            
+            ds_list_add(content_addresses, buffer_tell(buffer));
         }
+        
+        buffer_poke(buffer, addr_content, buffer_u64, buffer_tell(buffer));
+        
+        // okay now you can *actually* write out the addresses of all the things
+        
+        for (var j = 0; j < ds_list_size(contents); j++) {
+            var addr = script_execute(Stuff.game_data_save_scripts[contents[| j]], buffer);
+            buffer_poke(buffer, content_addresses[| j], buffer_u64, addr);
+        }
+        
+        buffer_write(buffer, buffer_datatype, SerializeThings.END_OF_FILE);
+        
+        if (file_data.compressed) {
+            var compressed = buffer_compress(buffer, 0, buffer_tell(buffer));
+            buffer_save_ext(compressed, fn, 0, buffer_get_size(compressed));
+            buffer_delete(compressed);
+        } else {
+            save the main file here, and also the backup file(s)
+        }
+        
+        buffer_delete(buffer);
     }
     
-    #region header and index
-    // lol
+    ds_list_destroy(contents);
+    ds_list_destroy(content_addresses);
     
-    
-    var index_addr_event_custom = buffer_tell(buffer);
-    buffer_write(buffer, buffer_u64, 0);
-    var index_addr_global_meta = buffer_tell(buffer);
-    buffer_write(buffer, buffer_u64, 0);
-    var index_addr_datadata = buffer_tell(buffer);
-    buffer_write(buffer, buffer_u64, 0);
-    var index_addr_animations = buffer_tell(buffer);
-    buffer_write(buffer, buffer_u64, 0);
-    var index_addr_terrain = buffer_tell(buffer);
-    buffer_write(buffer, buffer_u64, 0);
-    
-    var index_addr_event_prefabs = buffer_tell(buffer);
-    buffer_write(buffer, buffer_u64, 0);
-    var index_addr_events = buffer_tell(buffer);
-    buffer_write(buffer, buffer_u64, 0);
-    var index_addr_data_instances = buffer_tell(buffer);
-    buffer_write(buffer, buffer_u64, 0);
-    
-    var index_addr_maps = buffer_tell(buffer);
-    buffer_write(buffer, buffer_u64, 0);
-    #endregion
-    
-    buffer_poke(buffer, index_addr_content, buffer_u64, buffer_tell(buffer));
-    
-    #region data
-    var addr_event_custom =         serialize_save_event_custom(buffer);
-    var addr_global_meta =          serialize_save_global_meta(buffer);
-    var addr_datadata =             serialize_save_datadata(buffer);
-    var addr_animations =           serialize_save_animations(buffer);
-    var addr_terrain =              serialize_save_terrain(buffer);
-    
-    // events may depend on some other data being initialized and i don't feel like
-    // going back and doing validation because that sounds terrible
-    var addr_event_prefabs =        serialize_save_event_prefabs(buffer);
-    var addr_events =               serialize_save_events(buffer);
-    var addr_data_instances =       serialize_save_data_instances(buffer);
-    
-    var addr_maps =                 serialize_save_maps(buffer);
-    #endregion
-    
-    #region addresses
-    buffer_poke(buffer, index_addr_event_custom, buffer_u64, addr_event_custom);
-    buffer_poke(buffer, index_addr_global_meta, buffer_u64, addr_global_meta);
-    buffer_poke(buffer, index_addr_datadata, buffer_u64, addr_datadata);
-    buffer_poke(buffer, index_addr_animations, buffer_u64, addr_animations);
-    buffer_poke(buffer, index_addr_terrain, buffer_u64, addr_terrain);
-    buffer_poke(buffer, index_addr_event_prefabs, buffer_u64, addr_event_prefabs);
-    buffer_poke(buffer, index_addr_events, buffer_u64, addr_events);
-    buffer_poke(buffer, index_addr_data_instances, buffer_u64, addr_data_instances);
-    buffer_poke(buffer, index_addr_maps, buffer_u64, addr_maps);
-    #endregion
-    
-    buffer_write(buffer, buffer_datatype, SerializeThings.END_OF_FILE);
-    
+    this is all old but will probably be adopted in some way or another
     var compressed = buffer_compress(buffer, 0, buffer_tell(buffer));
-    buffer_save_ext(compressed, fn, 0, buffer_get_size(compressed));
+    
     serialize_save_assets(filename_change_ext(fn, EXPORT_EXTENSION_ASSETS));
     
     var proj_name = filename_change_ext(filename_name(fn), "");

@@ -30,10 +30,6 @@ var el_tooltips = create_checkbox(col1_x, yy, "Show Tooltips", ew, eh, uivc_show
 el_tooltips.tooltip = "These things.";
 yy = yy + el_tooltips.height + spacing;
 
-var el_backups = create_input(col1_x, yy, "Backups: ", ew, eh, uivc_backups, Stuff.setting_backups, "0...9", validate_int, 1, 16, 2, vx1, vy1, vx2, vy2, dg);
-el_backups.tooltip = "In case something goes wrong and you wish to recover a previous data file. A backup will be created every time you save; the editor will NOT otherwise autosave its state, because these data files can be very large and that would cause it to momentarily freeze.";
-yy = yy + el_backups.height + spacing;
-
 var el_autosave = create_checkbox(col1_x, yy, "Automatic Backups", ew, eh, uivc_autosave, Stuff.setting_autosave, dg);
 el_autosave.tooltip = el_backups.tooltip;
 yy = yy + el_autosave.height + spacing;
@@ -84,10 +80,18 @@ var b_height = 32;
 var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Commit", b_width, b_height, fa_center, dmu_dialog_commit, dg);
 
 ds_list_add(dg.contents,
-    el_bezier, el_tooltips, el_backups, el_autosave, el_npc_animation, el_ui_color,
-    el_camera_fly_text, el_camera_fly, el_alt_middle,
-    el_clear_backups, el_view_backups,
-    el_code_ext, el_text_ext,
+    el_bezier,
+    el_tooltips,
+    el_autosave,
+    el_npc_animation,
+    el_ui_color,
+    el_camera_fly_text,
+    el_camera_fly,
+    el_alt_middle,
+    el_clear_backups,
+    el_view_backups,
+    el_code_ext,
+    el_text_ext,
     el_confirm
 );
 

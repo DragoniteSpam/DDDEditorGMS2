@@ -10,7 +10,7 @@ if (ds_list_size(list_main.entries) < 0xff) {
     while (internal_name_get(name)) {
         name = base_name + string(n++);
     }
-    ds_list_add(list_main.entries, create_data_file(name, DataExtensions.DDDD, false));
+    ds_list_add(list_main.entries, create_data_file(name, false));
     button.interactive = (ds_list_size(list_main.entries) < 0xff);
     button.root.el_remove.interactive = (ds_list_size(list_main.entries) > 0x01);
 }
