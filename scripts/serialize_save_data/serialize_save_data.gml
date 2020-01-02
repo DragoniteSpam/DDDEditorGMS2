@@ -68,7 +68,7 @@ if (string_length(fn) > 0) {
             buffer_save_ext(compressed, fn, 0, buffer_get_size(compressed));
             buffer_delete(compressed);
         } else {
-            save the main file here, and also the backup file(s)
+            //save the main file here, and also the backup file(s)
         }
         
         buffer_delete(buffer);
@@ -77,7 +77,7 @@ if (string_length(fn) > 0) {
     ds_list_destroy(contents);
     ds_list_destroy(content_addresses);
     
-    this is all old but will probably be adopted in some way or another
+    //this is all old but will probably be adopted in some way or another
     var compressed = buffer_compress(buffer, 0, buffer_tell(buffer));
     
     serialize_save_assets(filename_change_ext(fn, EXPORT_EXTENSION_ASSETS));

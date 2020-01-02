@@ -34,7 +34,6 @@ easing_equations = [
 
 // local storage folders
 
-if (!directory_exists(PATH_BACKUP)) directory_create(PATH_BACKUP);
 if (!directory_exists(PATH_TEMP_CODE)) directory_create(PATH_TEMP_CODE);
 if (!directory_exists(PATH_AUDIO)) directory_create(PATH_AUDIO);
 if (!directory_exists(PATH_PROJECTS)) directory_create(PATH_PROJECTS);
@@ -115,7 +114,6 @@ if (file_exists(FILE_SETTINGS)) {
 
 setting_color = setting_get("Config", "color", c_green);                    // BGR
 setting_bezier_precision = setting_get("Config", "bezier", 6);              // preferably keep this between like 4 and 16ish?
-setting_autosave = setting_get("Config", "autosave", true);                 // bool
 setting_npc_animate_rate = setting_get("Config", "npc-speed", 4);           // bool
 setting_code_extension = setting_get("Config", "code-ext", 1);              // 0 = txt, 1 = lua
 setting_text_extension = setting_get("Config", "text-ext", 0);              // 0 = txt, 1 = md
@@ -474,7 +472,7 @@ game_asset_lists = ds_list_create();
 var file_default = create_data_file("data", false);
 var file_asset = create_data_file("assets", false);
 var file_terrain = create_data_file("terrain", true);
-ds_list_add(game_asset_lists, file_data, file_asset);
+ds_list_add(game_asset_lists, file_default, file_asset);
 
 game_data_location = array_create(GameDataCategories.SIZE);
 game_data_location[GameDataCategories.AUTOTILES] = file_asset.GUID;
@@ -553,14 +551,4 @@ switch (stashed_mode) {
     case ModeIDs.TERRAIN: editor_mode_heightmap(); break;
 }
 
-// the autosave/load is nice, BUT it will make the game break if there's an error
-// in either of them. so either do a LOT of validation or have a way to clear the
-// autosaves if problems happen.
-
-if (setting_autosave) {
-    var project_list = all_projects[? "projects"];
-    // @todo gml update try catch
-    if (project_list != undefined) {
-        dialog_create_project_list(noone);
-    }
-}
+dialog_create_project_list(noone);

@@ -36,8 +36,9 @@ A long time ago I made a 3D terrain editor for Game Maker (two of them, in fact)
 
 ## Upcoming stuff
 
+ - Overhauling the save structure, giving more control over how (and what) gets saved and enabling data files to be swapped around more easily
  - Autotiles (for both 2D tiles and 3D meshes)
- - More map stuff, verticality, camera controls
+ - More map stuff, especially verticality
  - Certain data structures inside the editor are garbage so i'm going to spend a bit of time refactoring
  - Off-grid map editing (both in 2D and in 3D) - although the main grid-based functionality will obviously take priority
 
@@ -52,9 +53,9 @@ Obviously I want to fully implement and / or expand a lot of the things that are
 
 For the time being, I'm compiling updates once a week or so, or perhaps more often if I find a bug that breaks things entirely. If I don't have much to add at the end of a given week I might skip one, or if I finish off something major I might release it as soon as it's done. The versioning system I'll be using goes `year.quarter.release.build`, so `2019.4.3.22` would be the third release in the fourth quarter of 2019, and the twenty-second time overall I created an executable.
 
-Unless something seriously bad happens and I'm not able to make the Yoyo Compiler work, there will be two versions: one with the regular Game Maker interpreter ("default"), and one made from the Yoyo Compiler ("yyc"). The interpreted version will be somewhat slower but should be more stable, and the YYC version will be faster but potentially buggier.
+Unless something seriously bad happens and I'm not able to make the Yoyo Compiler work, there will be two versions: one with the regular Game Maker interpreter ("default"), and one made from the Yoyo Compiler ("YYC"). The interpreted version will be somewhat slower but should be more stable, and the YYC version will be faster but potentially buggier.
 
-I've learned the hard way that having large amounts of bad code inevitably makes it really hard to develop a project, which means I refactor things fairly frequently. As a result, things that used to work break from time to time. If you're using this, that means you want to save your work and save backups frequently - there's an Automatic Backups setting in Preferences, as well as a button that lets you view the folder they're stored in.
+I've learned the hard way that having large amounts of bad code inevitably makes it really hard to develop a project, which means I refactor things fairly frequently. As a result, things that used to work break from time to time. If you're using this, that means you want to save your work and make backups frequently, and as a general rule verison control is never a bad thing.
 
 In addition, the data format evolves over time. For the most part the editor is backwards compatible and will be quite happy to read old version of the data files, but to fend off the aforementioned code rot I kill off old versions periodically (now that I'm publishing releases, I'll probably be doing that once a quarter or so). I'll say when I put out an update that kills compatibility, and if you try to load an old data file the editor will tell you and ask you to save it through a more recent version that it will accept.
 

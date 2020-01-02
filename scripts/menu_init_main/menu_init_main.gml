@@ -16,7 +16,8 @@ with (instance_create_depth(0, 0, 0, MenuMain)) {
     var mf_exit = create_menu_element("Exit (Alt+F4)", momu_exit, menu_file);
     ds_list_add(menu_file.contents,
         mf_save_data,
-        mf_settings_data, mf_preferences,
+        mf_settings_data,
+        mf_preferences,
         mf_exit
     );
     #endregion
@@ -31,11 +32,17 @@ with (instance_create_depth(0, 0, 0, MenuMain)) {
     var me_deselect = create_menu_element("Deselect (Ctrl+D)", momu_deselect, menu_edit);
     
     ds_list_add(menu_edit.contents,
-        me_undo, me_redo,
+        me_undo,
+        me_redo,
+        //
         m_separator,
-        me_cut, me_copy, me_paste,
+        me_cut,
+        me_copy,
+        me_paste,
+        //
         m_separator,
-        me_select_all, me_deselect
+        me_select_all,
+        me_deselect
     );
     #endregion
     
@@ -49,18 +56,22 @@ with (instance_create_depth(0, 0, 0, MenuMain)) {
         var md_graphic_ui = create_menu_element("User Interface", momu_graphic_ui, md_graphics);
         var md_graphic_etc = create_menu_element("Misc", momu_graphic_etc, md_graphics);
         ds_list_add(md_graphics.contents,
-            md_graphic_ts, md_graphic_at,
-            md_graphic_battle, md_graphic_ow, md_graphic_part, md_graphic_ui, md_graphic_etc
+            md_graphic_ts,
+            md_graphic_at,
+            md_graphic_battle,
+            md_graphic_ow,
+            md_graphic_part,
+            md_graphic_ui,
+            md_graphic_etc
         );
     var md_audio = create_menu_element("Audio", momu_expand, menu_data);
         var md_aud_bgm = create_menu_element("Background Music (BGM)", momu_bgm, md_audio);
         var md_aud_se = create_menu_element("Sound Effects (SE)", momu_se, md_audio);
         ds_list_add(md_audio.contents,
-            md_aud_bgm, md_aud_se
+            md_aud_bgm,
+            md_aud_se
         );
     var md_data_types = create_menu_element("Define Data Types", momu_data_types, menu_data);
-    var md_conflicts = create_menu_element("View Mesh Conflicts", momu_conflicts, menu_data);
-    var md_missing = create_menu_element("View Missing Data", momu_missing, menu_data);
     var md_3d = create_menu_element("Map Editor (F6)", momu_editor_3d, menu_data);
     var md_events = create_menu_element("Event Editor (F7)", momu_editor_event, menu_data);
     var md_data = create_menu_element("Game Data Editor (F8)", momu_editor_data, menu_data);
@@ -68,11 +79,16 @@ with (instance_create_depth(0, 0, 0, MenuMain)) {
     var md_heightmap = create_menu_element("Terrain Editor (F10)", momu_editor_heightmap, menu_help);
     
     ds_list_add(menu_data.contents,
-        md_graphics, md_audio, md_data_types,
+        md_graphics,
+        md_audio,
+        md_data_types,
+        //
         m_separator,
-        md_conflicts, md_missing,
-        m_separator,
-        md_3d, md_events, md_data, md_animation, md_heightmap,
+        md_3d,
+        md_events,
+        md_data,
+        md_animation,
+        md_heightmap,
     );
     #endregion
     
@@ -87,11 +103,13 @@ with (instance_create_depth(0, 0, 0, MenuMain)) {
     var mh_help = create_menu_element("Contents", momu_help, menu_help);
     var mh_about = create_menu_element("Credits", momu_about, menu_help);
     ds_list_add(menu_help.contents,
-        mh_help, mh_about
+        mh_help,
+        mh_about
     );
     #endregion
     
     #region right-click stuff
+    // this is an instance variable and not a local one
     menu_right_click = create_menu("right-click", element_width, element_height, id, true);
     var mrc_player = create_menu_element("Set Player Start", momu_expand, menu_right_click);
         var mrc_player_down = create_menu_element("Facing Down", momu_set_starting_position_down, mrc_player);
@@ -99,7 +117,10 @@ with (instance_create_depth(0, 0, 0, MenuMain)) {
         var mrc_player_right = create_menu_element("Facing Right", momu_set_starting_position_right, mrc_player);
         var mrc_player_up = create_menu_element("Facing Up", momu_set_starting_position_up, mrc_player);
         ds_list_add(mrc_player.contents,
-            mrc_player_down, mrc_player_left, mrc_player_right, mrc_player_up
+            mrc_player_down,
+            mrc_player_left,
+            mrc_player_right,
+            mrc_player_up
         );
     var mrc_fill = create_menu_element("Fill", momu_expand, menu_right_click);
         var mrc_fill_tile = create_menu_element("Tile", null, mrc_fill);
@@ -109,8 +130,12 @@ with (instance_create_depth(0, 0, 0, MenuMain)) {
         var mrc_fill_effect = create_menu_element("Effect", null, mrc_fill);
         var mrc_fill_terrain = create_menu_element("Terrain", null, mrc_fill);
         ds_list_add(mrc_fill.contents,
-            mrc_fill_tile, mrc_fill_autotile, mrc_fill_mesh, mrc_fill_pawn,
-            mrc_fill_effect, mrc_fill_terrain
+            mrc_fill_tile,
+            mrc_fill_autotile,
+            mrc_fill_mesh,
+            mrc_fill_pawn,
+            mrc_fill_effect,
+            mrc_fill_terrain
         );
     var mrc_delete = create_menu_element("Delete", null, menu_right_click);
     var mrc_cut = create_menu_element("Cut", momu_cut, menu_right_click);
@@ -119,10 +144,16 @@ with (instance_create_depth(0, 0, 0, MenuMain)) {
     var mrc_prefab = create_menu_element("Save as Prefrab", null, menu_right_click);
     ds_list_add(menu_right_click.contents,
         mrc_player,
+        //
         m_separator,
-        mrc_fill, mrc_delete,
+        mrc_fill,
+        mrc_delete,
+        //
         m_separator,
-        mrc_cut, mrc_copy, mrc_paste,
+        mrc_cut,
+        mrc_copy,
+        mrc_paste,
+        //
         m_separator,
         mrc_prefab
     );

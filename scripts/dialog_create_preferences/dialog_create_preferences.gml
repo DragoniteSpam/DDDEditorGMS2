@@ -27,20 +27,8 @@ el_bezier.tooltip = "Higher-precision bezier curves look better, but take more c
 yy = yy + el_bezier.height + spacing;
 
 var el_tooltips = create_checkbox(col1_x, yy, "Show Tooltips", ew, eh, uivc_show_tooltips, Stuff.setting_tooltip, dg);
-el_tooltips.tooltip = "These things.";
+el_tooltips.tooltip = "These thingies.";
 yy = yy + el_tooltips.height + spacing;
-
-var el_autosave = create_checkbox(col1_x, yy, "Automatic Backups", ew, eh, uivc_autosave, Stuff.setting_autosave, dg);
-el_autosave.tooltip = el_backups.tooltip;
-yy = yy + el_autosave.height + spacing;
-
-var el_clear_backups = create_button(col1_x, yy, "Clean Backups", ew, eh, fa_center, omu_clear_backups, dg);
-el_clear_backups.tooltip = "This will be permenant. It is recommended that you open the backup folder and decide what to keep for yourself if you think they're starting to waste a lot of space."
-yy = yy + el_clear_backups.height + spacing;
-
-var el_view_backups = create_button(col1_x, yy, "View Backup Folder", ew, eh, fa_center, omu_view_backups, dg);
-el_view_backups.tooltip = "Opens the folder on your computer where backups are stored."
-yy = yy + el_view_backups.height + spacing;
 
 var el_npc_animation = create_input(col1_x, yy, "NPC speed:", ew, eh, uivc_bezier_precision, Stuff.setting_npc_animate_rate, "0...9", validate_int, 1, 16, 2, vx1, vy1, vx2, vy2, dg);
 el_npc_animation.tooltip = "The speed at which NPC (Pawn) entities will animate.";
@@ -58,7 +46,7 @@ el_camera_fly.tooltip = "How fast the camera accelerates in editor modes that us
 yy = yy + el_camera_fly.height + spacing;
 
 var el_alt_middle = create_checkbox(col1_x, yy, "Alternate Middle Click", ew, eh, uivc_settings_alt_middle, Stuff.setting_alternate_middle, dg);
-el_alt_middle.tooltip = "My mouse is slightly broken and middle click doesn't always work, so I need an alternate method to use it. This is turned off by default so that it's harder to accidentally invoke, but you may turn it on if you need it.\n\nThe alternate input is Control + Space.";
+el_alt_middle.tooltip = "My mouse is slightly broken and middle click doesn't always work, so I need an alternate method to use it. This is turned off by default so that it's harder to accidentally invoke, but you may turn it on if you need it.\n\n(The alternate input is Control + Space.)";
 yy = yy + el_alt_middle.height + spacing;
 
 yy = yy_base;
@@ -82,14 +70,11 @@ var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Co
 ds_list_add(dg.contents,
     el_bezier,
     el_tooltips,
-    el_autosave,
     el_npc_animation,
     el_ui_color,
     el_camera_fly_text,
     el_camera_fly,
     el_alt_middle,
-    el_clear_backups,
-    el_view_backups,
     el_code_ext,
     el_text_ext,
     el_confirm
