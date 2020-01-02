@@ -10,6 +10,6 @@ var offset = 12;
 
 switch (text.valignment) {
     case fa_top: return y1 + offset;
-    case fa_middle: return mean(y1, y2);
+    case fa_middle: return floor(mean(y1, y2));
     case fa_bottom: return y2 - offset;
 }

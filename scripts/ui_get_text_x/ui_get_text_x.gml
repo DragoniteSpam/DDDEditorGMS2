@@ -10,6 +10,6 @@ var offset = 12;
 
 switch (text.alignment) {
     case fa_left: return x1 + offset;
-    case fa_center: return mean(x1, x2);
+    case fa_center: return floor(mean(x1, x2));
     case fa_right: return x2 - offset;
 }
