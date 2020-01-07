@@ -28,10 +28,13 @@ if (version >= DataVersions._CURRENT) {
 }
 
 var what = buffer_read(buffer, buffer_u8);
-
-// the editor doesn't care that much about the addresses of each chunk
-var addr_content = buffer_read(buffer, buffer_u64);
-buffer_seek(buffer, buffer_seek_start, addr_content);
+var author_string = buffer_read(buffer, buffer_string);
+var file_year = buffer_read(buffer, buffer_u16);
+var file_month = buffer_read(buffer, buffer_u8);
+var file_day = buffer_read(buffer, buffer_u8);
+var file_hour = buffer_read(buffer, buffer_u8);
+var file_minute = buffer_read(buffer, buffer_u8);
+var file_second = buffer_read(buffer, buffer_u8);
 
 switch (what) {
     case SERIALIZE_DATA_AND_MAP:
@@ -58,6 +61,7 @@ switch (what) {
         // data file list
         ds_list_clear(Stuff.game_asset_lists);
         var n_files = buffer_read(buffer, buffer_u8);
+        show_message(n_files);
         repeat (n_files) {
             var name = buffer_read(buffer, buffer_string);
             var guid = buffer_read(buffer, buffer_u32);
@@ -65,7 +69,6 @@ switch (what) {
             var file_data = create_data_file(name, false);
             guid_set(file_data, guid);
             ds_list_add(Stuff.game_asset_lists, file_data);
-            show_message(name);
         }
         break;
     case SERIALIZE_ASSETS:

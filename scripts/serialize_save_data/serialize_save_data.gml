@@ -12,12 +12,12 @@ if (string_length(fn) > 0) {
     
     game_auto_title();
     
+    var contents = ds_list_create();
+    
     for (var i = 0; i < ds_list_size(Stuff.game_asset_lists); i++) {
         var file_data = Stuff.game_asset_lists[| i];
         var buffer = buffer_create(1024, buffer_grow, 1);
         serialize_save_header(buffer, file_data, (i == 0));
-        var index_addr_content = buffer_tell(buffer);
-        buffer_write(buffer, buffer_u64, 0);
         
         // the default file should have a list of all of the other files
         if (i == 0) {
@@ -26,6 +26,28 @@ if (string_length(fn) > 0) {
                 buffer_write(buffer, buffer_string, Stuff.game_asset_lists[| j].internal_name);
                 buffer_write(buffer, buffer_u32, Stuff.game_asset_lists[| j].GUID);
             }
+        }
+        
+        // generate a list of all of the things that are in this file
+        ds_list_clear(contents);
+        for (var j = 0; j < array_length_1d(Stuff.game_data_location); j++) {
+            // the files that are sorted
+            if (Stuff.game_data_location[j] == file_data.GUID) {
+                ds_list_add(contents, j);
+            }
+            // any data categories that aren't sorted into files go to the default
+            if (i == 0 && !guid_get(Stuff.game_data_location[j])) {
+                ds_list_add(contents, j);
+            }
+        }
+        
+        buffer_write(buffer, buffer_u64, 0);
+        buffer_write(buffer, buffer_u8, ds_list_size(contents));
+        
+        // okay now you can *actually* write out the addresses of all the things
+        
+        for (var j = 0; j < ds_list_size(contents); j++) {
+            var addr = script_execute(Stuff.game_data_save_scripts[contents[| j]], buffer);
         }
         
         buffer_write(buffer, buffer_datatype, SerializeThings.END_OF_FILE);
@@ -44,6 +66,8 @@ if (string_length(fn) > 0) {
         
         buffer_delete(buffer);
     }
+    
+    ds_list_destroy(contents);
 }
 
 if (!ds_map_empty(global.error_map)) {

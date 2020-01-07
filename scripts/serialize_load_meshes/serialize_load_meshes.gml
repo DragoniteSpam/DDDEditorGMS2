@@ -45,6 +45,4 @@ repeat (n_meshes) {
     }
     
     buffer_seek(mesh.buffer, buffer_seek_start, 0);
-    
-    debug(mesh.GUID);
 }

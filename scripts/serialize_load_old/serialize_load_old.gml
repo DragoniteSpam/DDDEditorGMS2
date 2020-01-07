@@ -29,11 +29,9 @@ switch (what) {
         with (Data) if (file_location == DataFileLocations.ASSET) {
             instance_destroy();
         }
-        show_message("asset");
         break;
     case SERIALIZE_DATA_AND_MAP:
     case SERIALIZE_DATA:
-        show_message("data");
         instance_activate_object(Data);
         with (Data) if (file_location == DataFileLocations.DATA) {
             instance_destroy();
