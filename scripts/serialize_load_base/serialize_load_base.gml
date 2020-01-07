@@ -53,7 +53,7 @@ if (outcome) {
         }
         
         if (outcome) {
-            serialize_load(buffer_data);
+            serialize_load(buffer_data, filename_path(fn_data));
             
             setting_project_add(proj_name);
             setting_project_create_local(proj_name, proj_name, original_data);

@@ -35,5 +35,3 @@ repeat (n_maps) {
         buffer_seek(map.data_buffer, buffer_seek_start, 0);
     } // else the map has not been initialized yet and it just uses its default values
 }
-
-load_a_map(guid_get(Stuff.game_starting_map));

@@ -1,6 +1,8 @@
 /// @param buffer
+/// @param [proj-path]
 
 var buffer = argument0;
+var proj_path = argument1;
 var erroneous = false;
 
 buffer_seek(buffer, buffer_seek_start, 0);
@@ -112,8 +114,17 @@ while (true) {
 }
 
 switch (what) {
-    case SERIALIZE_MAP:
+    case SERIALIZE_DATA_AND_MAP:
+        for (var i = 1; i < ds_list_size(Stuff.game_asset_lists); i++) {
+            var file_name = proj_path + Stuff.game_asset_lists[| i].internal_name;
+            show_message(file_name);
+            if (file_exists(file_name)) {
+                var buffer = buffer_load(file_name);
+                serialize_load(buffer, proj_path);
+            }
+        }
         Stuff.map.active_map = guid_get(Stuff.game_starting_map);
+        load_a_map(Stuff.map.active_map);
         break;
 }
 

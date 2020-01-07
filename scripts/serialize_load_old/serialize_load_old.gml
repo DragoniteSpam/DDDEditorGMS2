@@ -95,7 +95,7 @@ while (true) {
         case SerializeThings.EVENT_PREFAB: serialize_load_event_prefabs(buffer, version); break;
         case SerializeThings.ANIMATIONS: serialize_load_animations(buffer, version); break;
         case SerializeThings.TERRAIN: serialize_load_terrain(buffer, version); break;
-        case SerializeThings.MAPS: serialize_load_maps(buffer, version); break;
+        case SerializeThings.MAPS: serialize_load_maps(buffer, version); load_a_map(guid_get(Stuff.game_starting_map)); break;
         // map stuff
         case SerializeThings.MAP_META: serialize_load_map_contents_meta(buffer, version, Stuff.map.active_map);  break;
         case SerializeThings.MAP_BATCH: serialize_load_map_contents_batch(buffer, version, Stuff.map.active_map); break;
