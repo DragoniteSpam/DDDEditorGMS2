@@ -24,11 +24,48 @@ var b_height = 32;
 var yy = 64;
 var yy_base = yy;
 var spacing = 16;
+var project_list = Stuff.all_projects[? "projects"]
 
-var el_list = create_list(16, yy, "Recent Projects", "<no projects>", ew, eh, 10, null, false, dg, Stuff.all_projects[? "projects"]);
+var el_list = create_list(16, yy, "Recent Projects", "<no projects>", ew, eh, 10, uivc_list_selection_project_list, false, dg, project_list);
 el_list.entries_are = ListEntries.STRINGS;
 el_list.ondoubleclick = omu_project_load;
 dg.el_list = el_list;
+
+var n_projects = ds_list_size(project_list);
+dg.names = array_create(n_projects);
+dg.strings = array_create(n_projects);
+dg.versions = array_create(n_projects);
+dg.timestamp_dates = array_create(n_projects);
+dg.timestamp_times = array_create(n_projects);
+
+var fbuffer = buffer_create(512, buffer_fixed, 1);
+for (var i = 0; i < n_projects; i++) {
+    dg.names[i] = project_list[| i];
+    dg.strings[i] = "";
+    dg.versions[i] = "";
+    dg.timestamp_dates[i] = "";
+    dg.timestamp_times[i] = "";
+    var path_new = PATH_PROJECTS + project_list[| i] + "\\" + project_list[| i] + ".dddd";
+    // @todo gml update try catch
+    if (file_exists(path_new)) {
+        // magic numbers abound
+        buffer_load_partial(fbuffer, path_new, 0, 512, 0);
+        var header = chr(buffer_read(fbuffer, buffer_u8)) + chr(buffer_read(fbuffer, buffer_u8)) + chr(buffer_read(fbuffer, buffer_u8));
+        if (buffer_peek(fbuffer, 0, buffer_u8) == $44 && buffer_peek(fbuffer, 1, buffer_u8) == $44 && buffer_peek(fbuffer, 2, buffer_u8) == $44) {
+            var version = buffer_peek(fbuffer, 3, buffer_u32);;
+            dg.versions[i] = string(version);
+            if (version >= DataVersions.DATA_MODULARITY) {
+                buffer_seek(fbuffer, buffer_seek_start, 8);
+                dg.strings[i] = buffer_read(fbuffer, buffer_string);
+                dg.timestamp_dates[i] = string(buffer_read(fbuffer, buffer_u16)) + " / " + string(buffer_read(fbuffer, buffer_u8)) + " / " +
+                    string(buffer_read(fbuffer, buffer_u8));
+                dg.timestamp_times[i] = string(buffer_read(fbuffer, buffer_u8)) + ":" + string_pad(buffer_read(fbuffer, buffer_u8), "0", 2) + ":" +
+                    string_pad(buffer_read(fbuffer, buffer_u8), "0", 2);
+            }
+        }
+    }
+}
+buffer_delete(fbuffer);
 
 yy = yy + ui_get_list_height(el_list) + spacing;
 
@@ -47,8 +84,25 @@ yy = yy_base;
 var el_summary = create_text(c2 + 16, yy, "Summary", ew, eh, fa_left, ew, dg);
 yy = yy + el_summary.height + spacing;
 
-var el_summary_todo = create_text(c2 + 16, yy + 4 * spacing, "maybe some day i'll fill in stuff like file size and date modified and stuff idk", ew, eh, fa_left, ew, dg);
-yy = yy + el_summary_todo.height + spacing;
+var el_summary_name = create_text(c2 + 16, yy, "", ew, eh, fa_left, ew, dg);
+dg.el_summary_name = el_summary_name;
+yy = yy + el_summary_name.height + spacing;
+
+var el_summary_version = create_text(c2 + 16, yy, "", ew, eh, fa_left, ew, dg);
+dg.el_summary_version = el_summary_version;
+yy = yy + el_summary_version.height + spacing;
+
+var el_summary_timestamp_date = create_text(c2 + 16, yy, "", ew, eh, fa_left, ew, dg);
+dg.el_summary_timestamp_date = el_summary_timestamp_date;
+yy = yy + el_summary_timestamp_date.height + spacing;
+
+var el_summary_timestamp_time = create_text(c2 + 16, yy, "", ew, eh, fa_left, ew, dg);
+dg.el_summary_timestamp_time = el_summary_timestamp_time;
+yy = yy + el_summary_timestamp_time.height + spacing;
+
+var el_summary_summary = create_text(c2 + 16, yy, "", ew, eh, fa_left, ew, dg);
+dg.el_summary_summary = el_summary_summary;
+yy = yy + el_summary_summary.height + spacing;
 
 var el_never_mind = create_button(dw /2 - b_width / 2, dh - 32 - b_height / 2, "Create New", b_width, b_height, fa_center, dmu_dialog_commit, dg);
 
@@ -58,7 +112,11 @@ ds_list_add(dg.contents,
     el_remove,
     el_other,
     el_summary,
-    el_summary_todo,
+    el_summary_name,
+    el_summary_version,
+    el_summary_summary,
+    el_summary_timestamp_date,
+    el_summary_timestamp_time,
     el_never_mind
 );
 
