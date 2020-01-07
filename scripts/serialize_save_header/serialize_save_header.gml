@@ -1,14 +1,16 @@
 /// @param buffer
 /// @param file-data
+/// @param is-base?
 
 var buffer = argument0;
 var file_data = argument1;
+var is_base = argument2;
 
 buffer_write(buffer, buffer_u8, $44);
 buffer_write(buffer, buffer_u8, $44);
 buffer_write(buffer, buffer_u8, $44);
 buffer_write(buffer, buffer_u32, DataVersions._CURRENT - 1);
-buffer_write(buffer, buffer_u8, SERIALIZE_DATA_AND_MAP);
+buffer_write(buffer, buffer_u8, is_base ? SERIALIZE_DATA_AND_MAP : SERIALIZE_ASSETS);
 
 buffer_write(buffer, buffer_u8, file_data.compressed);
 buffer_write(buffer, buffer_string, "// @todo author string");

@@ -12,12 +12,6 @@ buffer_read(buffer, buffer_u8);
 
 var version = buffer_read(buffer, buffer_u32);
 
-// there is no way i'm including both versions of the load code in one script
-if (version >= DataVersions.DATA_MODULARITY) {
-} else {
-    return serialize_load_old(buffer);
-}
-
 if (version >= DataVersions._CURRENT) {
     dialog_create_notice(noone,
         "The file(s) appear to be from a future version of the data format (" + string(version) +
@@ -29,14 +23,19 @@ if (version >= DataVersions._CURRENT) {
 
 var what = buffer_read(buffer, buffer_u8);
 
-// the editor doesn't care that much about the addresses of each chunk
-var addr_content = buffer_read(buffer, buffer_u64);
-buffer_seek(buffer, buffer_seek_start, addr_content);
-
 switch (what) {
-    case SERIALIZE_DATA_AND_MAP:
+    case SERIALIZE_ASSETS:
         instance_activate_object(Data);
-        instance_destroy(Data);
+        with (Data) if (file_location == DataFileLocations.ASSET) {
+            instance_destroy();
+        }
+        break;
+    case SERIALIZE_DATA_AND_MAP:
+    case SERIALIZE_DATA:
+        instance_activate_object(Data);
+        with (Data) if (file_location == DataFileLocations.DATA) {
+            instance_destroy();
+        }
         // clear all data - data has already been destroyed so you just have to clear them
         ds_list_clear(Stuff.all_events);
         ds_list_clear(Stuff.all_event_custom);
@@ -44,7 +43,7 @@ switch (what) {
         ds_list_clear(Stuff.all_data);
         ds_list_clear(Stuff.all_game_constants);
         ds_list_clear(Stuff.all_graphic_autotiles);
-        ds_list_clear(Stuff.all_graphic_tilesets);
+        //ds_list_clear(Stuff.all_graphic_tilesets);
         ds_list_clear(Stuff.all_graphic_overworlds);
         ds_list_clear(Stuff.all_graphic_battlers);
         ds_list_clear(Stuff.all_graphic_particles);
@@ -53,24 +52,21 @@ switch (what) {
         // these contain arrays, which are garbage collected
         ds_list_clear(Stuff.variables);
         ds_list_clear(Stuff.switches);
-        // reset the active map
+        // anything else?
         Stuff.map.active_map = noone;
-        // data file list
-        ds_list_clear(Stuff.game_asset_lists);
-        var n_files = buffer_read(buffer, buffer_u8);
-        repeat (n_files) {
-            var name = buffer_read(buffer, buffer_string);
-            var guid = buffer_read(buffer, buffer_u32);
-            // the "compressed" parameter can be set later
-            var file_data = create_data_file(name, false);
-            guid_set(file_data, guid);
-            ds_list_add(Stuff.game_asset_lists, file_data);
-            show_message(name);
-        }
         break;
-    case SERIALIZE_ASSETS:
+    case SERIALIZE_MAP:
+        instance_activate_object(DataMapContainer);
+        instance_destroy(DataMapContainer);
+        Stuff.map.active_map = instance_create_depth(0, 0, 0, DataMapContainer);
+        Stuff.map.active_map.contents = instance_create_depth(0, 0, 0, MapContents);
+        instance_deactivate_object(Stuff.map.active_map.contents);
         break;
 }
+
+// the editor doesn't care that much about the addresses of each chunk
+var addr_content = buffer_read(buffer, buffer_u64);
+buffer_seek(buffer, buffer_seek_start, addr_content);
 
 while (true) {
     var datatype = buffer_read(buffer, buffer_datatype);

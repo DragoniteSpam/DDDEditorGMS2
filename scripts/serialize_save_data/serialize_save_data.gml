@@ -18,7 +18,7 @@ if (string_length(fn) > 0) {
     for (var i = 0; i < ds_list_size(Stuff.game_asset_lists); i++) {
         var file_data = Stuff.game_asset_lists[| i];
         var buffer = buffer_create(1024, buffer_grow, 1);
-        serialize_save_header(buffer, file_data);
+        serialize_save_header(buffer, file_data, (i == 0));
         var index_addr_content = buffer_tell(buffer);
         buffer_write(buffer, buffer_u64, 0);
         
