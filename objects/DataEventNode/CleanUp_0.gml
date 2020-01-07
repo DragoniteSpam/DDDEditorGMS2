@@ -20,9 +20,13 @@ for (var i = 0; i < ds_list_size(outbound); i++) {
 }
 
 // remove from event's master list of nodes
-var event_index = ds_list_find_index(event.nodes, id);
-if (event_index > -1) {
-    ds_list_delete(event.nodes, event_index);
+if (event) {
+    var event_index = ds_list_find_index(event.nodes, id);
+    if (event_index > -1) {
+        ds_list_delete(event.nodes, event_index);
+    }
+    // remove this node from the registered names for nodes in the event
+    ds_map_delete(event.name_map, name);
 }
 
 // data structures
@@ -43,6 +47,3 @@ for (var i = 0; i < ds_list_size(ui_things); i++) {
 }
 
 ds_list_destroy(ui_things);
-
-// remove this node from the registered names for nodes in the event
-ds_map_delete(event.name_map, name);
