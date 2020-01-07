@@ -20,6 +20,10 @@ var col2_x = dw / 2 + 16;
 var spacing = 16;
 
 var yy = 64;
+
+var el_summary = create_input(col1_x, yy, "Summary:", dw - 64, eh, uivc_settings_game_file_summary, Stuff.game_file_summary, "Write a short description here", validate_string, 0, 1, 64, vx1, vy1, dw - 32, vy2, dg);
+yy = yy + el_summary.height + spacing
+
 var yy_base = yy;
 
 var el_gameplay_title = create_text(col1_x, yy, "General Gameplay Settings", ew, eh, fa_left, dw / 2, dg);
@@ -94,6 +98,7 @@ var b_height = 32;
 var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
 
 ds_list_add(dg.contents,
+    el_summary,
     // gameplay
     el_gameplay_title,
     el_gameplay_grid,

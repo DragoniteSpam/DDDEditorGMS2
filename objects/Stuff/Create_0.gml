@@ -466,6 +466,7 @@ game_player_grid = true;
 game_battle_style = BattleStyles.TEAM_BASED;
 
 game_notes = "";
+game_file_summary = "Write a short summary in Global Game Settings";
 
 game_asset_lists = ds_list_create();
 // @todo gml update lightweight objects - filename, extension, compressed?

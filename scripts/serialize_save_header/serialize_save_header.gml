@@ -12,7 +12,7 @@ buffer_write(buffer, buffer_u8, $44);
 buffer_write(buffer, buffer_u32, DataVersions._CURRENT - 1);
 buffer_write(buffer, buffer_u8, is_base ? SERIALIZE_DATA_AND_MAP : SERIALIZE_ASSETS);
 
-buffer_write(buffer, buffer_string, "// @todo author string");
+buffer_write(buffer, buffer_string, Stuff.game_file_summary);
 buffer_write(buffer, buffer_u16, current_year);
 buffer_write(buffer, buffer_u8, current_month);
 buffer_write(buffer, buffer_u8, current_day);
