@@ -12,9 +12,6 @@ if (string_length(fn) > 0) {
     
     game_auto_title();
     
-    var contents = ds_list_create();
-    var content_addresses = ds_list_create();
-    
     for (var i = 0; i < ds_list_size(Stuff.game_asset_lists); i++) {
         var file_data = Stuff.game_asset_lists[| i];
         var buffer = buffer_create(1024, buffer_grow, 1);
@@ -29,37 +26,6 @@ if (string_length(fn) > 0) {
                 buffer_write(buffer, buffer_string, Stuff.game_asset_lists[| j].internal_name);
                 buffer_write(buffer, buffer_u32, Stuff.game_asset_lists[| j].GUID);
             }
-        }
-        
-        // generate a list of all of the things that are in this file
-        ds_list_clear(contents);
-        ds_list_clear(content_addresses);
-        for (var j = 0; j < array_length_1d(Stuff.game_data_location); j++) {
-            if (Stuff.game_data_location[j] == file_data.GUID) {
-                ds_list_add(contents, j);
-            }
-            // any data categories that aren't sorted into files go to the default
-            if (i == 0 && !guid_get(Stuff.game_data_location[j])) {
-                ds_list_add(contents, j);
-            }
-        }
-        
-        // write out the addresses of all the things (or at least, allocate space)
-        var addr_content = buffer_tell(buffers[i]);
-        
-        buffer_write(buffer, buffer_u64, 0);
-        buffer_write(buffer, buffer_u8, ds_list_size(contents));
-        for (var j = 0; j < ds_list_size(contents); j++) {
-            ds_list_add(content_addresses, buffer_tell(buffer));
-        }
-        
-        buffer_poke(buffer, addr_content, buffer_u64, buffer_tell(buffer));
-        
-        // okay now you can *actually* write out the addresses of all the things
-        
-        for (var j = 0; j < ds_list_size(contents); j++) {
-            var addr = script_execute(Stuff.game_data_save_scripts[contents[| j]], buffer);
-            buffer_poke(buffer, content_addresses[| j], buffer_u64, addr);
         }
         
         buffer_write(buffer, buffer_datatype, SerializeThings.END_OF_FILE);
@@ -78,9 +44,6 @@ if (string_length(fn) > 0) {
         
         buffer_delete(buffer);
     }
-    
-    ds_list_destroy(contents);
-    ds_list_destroy(content_addresses);
 }
 
 if (!ds_map_empty(global.error_map)) {
