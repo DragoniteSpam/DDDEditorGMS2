@@ -22,9 +22,14 @@ var spacing = 16;
 var yy = 64;
 
 var el_summary = create_input(col1_x, yy, "Summary:", dw - 64, eh, uivc_settings_game_file_summary, Stuff.game_file_summary, "Write a short description here", validate_string, 0, 1, 64, vx1, vy1, dw - 32, vy2, dg);
-yy = yy + el_summary.height + spacing
+el_summary.tooltip = "A quick summary of the game that the data files are to be used for; will be shown in the project list when you open the editor. Has no impact on gameplay (unless you code it to)."
+yy = yy + el_summary.height + spacing;
 
 var yy_base = yy;
+
+var el_summary_author = create_input(col1_x, yy, "Author:", ew, eh, uivc_settings_game_file_author, Stuff.game_file_author, "Author", validate_string, 0, 1, 20, vx1, vy1, vx2, vy2, dg);
+el_summary_author.tooltip = "The name of the person who made this; will be shown in the project list when you open the editor. Has no impact on gameplay (unless you code it to) and is not a substitute for full game credits."
+yy = yy + el_summary_author.height + spacing;
 
 var el_gameplay_title = create_text(col1_x, yy, "General Gameplay Settings", ew, eh, fa_left, dw / 2, dg);
 el_gameplay_title.color = c_blue;
@@ -99,6 +104,7 @@ var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Do
 
 ds_list_add(dg.contents,
     el_summary,
+    el_summary_author,
     // gameplay
     el_gameplay_title,
     el_gameplay_grid,

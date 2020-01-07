@@ -41,11 +41,8 @@ if (string_length(fn) > 0) {
             }
         }
         
-        buffer_write(buffer, buffer_u64, 0);
-        buffer_write(buffer, buffer_u8, ds_list_size(contents));
-        
         // okay now you can *actually* write out the addresses of all the things
-        
+        // there's no need to save the size here because it reads until the EOF
         for (var j = 0; j < ds_list_size(contents); j++) {
             var addr = script_execute(Stuff.game_data_save_scripts[contents[| j]], buffer);
         }

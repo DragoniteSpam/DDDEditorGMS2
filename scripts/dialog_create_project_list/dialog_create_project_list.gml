@@ -34,6 +34,7 @@ dg.el_list = el_list;
 var n_projects = ds_list_size(project_list);
 dg.names = array_create(n_projects);
 dg.strings = array_create(n_projects);
+dg.authors = array_create(n_projects);
 dg.versions = array_create(n_projects);
 dg.timestamp_dates = array_create(n_projects);
 dg.timestamp_times = array_create(n_projects);
@@ -42,6 +43,7 @@ var fbuffer = buffer_create(512, buffer_fixed, 1);
 for (var i = 0; i < n_projects; i++) {
     dg.names[i] = project_list[| i];
     dg.strings[i] = "";
+    dg.authors[i] = "";
     dg.versions[i] = "";
     dg.timestamp_dates[i] = "";
     dg.timestamp_times[i] = "";
@@ -57,6 +59,7 @@ for (var i = 0; i < n_projects; i++) {
             if (version >= DataVersions.DATA_MODULARITY) {
                 buffer_seek(fbuffer, buffer_seek_start, 8);
                 dg.strings[i] = buffer_read(fbuffer, buffer_string);
+                dg.authors [i] = buffer_read(fbuffer, buffer_string);
                 dg.timestamp_dates[i] = string(buffer_read(fbuffer, buffer_u16)) + " / " + string(buffer_read(fbuffer, buffer_u8)) + " / " +
                     string(buffer_read(fbuffer, buffer_u8));
                 dg.timestamp_times[i] = string(buffer_read(fbuffer, buffer_u8)) + ":" + string_pad(buffer_read(fbuffer, buffer_u8), "0", 2) + ":" +
@@ -100,6 +103,10 @@ var el_summary_timestamp_time = create_text(c2 + 16, yy, "", ew, eh, fa_left, ew
 dg.el_summary_timestamp_time = el_summary_timestamp_time;
 yy = yy + el_summary_timestamp_time.height + spacing;
 
+var el_summary_author = create_text(c2 + 16, yy, "", ew, eh, fa_left, ew, dg);
+dg.el_summary_author = el_summary_author;
+yy = yy + el_summary_author.height + spacing;
+
 var el_summary_summary = create_text(c2 + 16, yy, "", ew, eh, fa_left, ew, dg);
 dg.el_summary_summary = el_summary_summary;
 yy = yy + el_summary_summary.height + spacing;
@@ -115,6 +122,7 @@ ds_list_add(dg.contents,
     el_summary_name,
     el_summary_version,
     el_summary_summary,
+    el_summary_author,
     el_summary_timestamp_date,
     el_summary_timestamp_time,
     el_never_mind

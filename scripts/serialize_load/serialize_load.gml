@@ -28,6 +28,7 @@ if (version >= DataVersions._CURRENT) {
 }
 
 var what = buffer_read(buffer, buffer_u8);
+var summary_string = buffer_read(buffer, buffer_string);
 var author_string = buffer_read(buffer, buffer_string);
 var file_year = buffer_read(buffer, buffer_u16);
 var file_month = buffer_read(buffer, buffer_u8);
@@ -61,7 +62,7 @@ switch (what) {
         // data file list
         ds_list_clear(Stuff.game_asset_lists);
         var n_files = buffer_read(buffer, buffer_u8);
-        show_message(n_files);
+        
         repeat (n_files) {
             var name = buffer_read(buffer, buffer_string);
             var guid = buffer_read(buffer, buffer_u32);
