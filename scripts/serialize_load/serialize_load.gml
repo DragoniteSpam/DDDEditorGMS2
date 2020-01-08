@@ -87,6 +87,8 @@ switch (what) {
             guid_set(file_data, guid);
             ds_list_add(Stuff.game_asset_lists, file_data);
         }
+        
+        Stuff.game_data_current_file = Stuff.game_asset_lists[| 0];
         break;
     case SERIALIZE_ASSETS:
         break;
@@ -100,37 +102,101 @@ while (true) {
     
     switch (datatype) {
         // assets
-        case SerializeThings.IMAGE_AUTOTILES: serialize_load_image_autotiles(buffer, version); break;
-        case SerializeThings.IMAGE_TILESET: serialize_load_image_tilesets(buffer, version); break;
-        case SerializeThings.IMAGE_BATTLERS: serialize_load_image_battlers(buffer, version); break;
-        case SerializeThings.IMAGE_OVERWORLD: serialize_load_image_overworlds(buffer, version); break;
-        case SerializeThings.IMAGE_PARTICLES: serialize_load_image_particles(buffer, version); break;
-        case SerializeThings.IMAGE_UI: serialize_load_image_ui(buffer, version); break;
-        case SerializeThings.IMAGE_MISC: serialize_load_image_etc(buffer, version); break;
-        case SerializeThings.AUDIO_BGM: serialize_load_audio_bgm(buffer, version); break;
-        case SerializeThings.AUDIO_SE: serialize_load_audio_se(buffer, version); break;
-        case SerializeThings.MESHES: serialize_load_meshes(buffer, version); break;
+        case SerializeThings.IMAGE_AUTOTILES:
+            Stuff.game_data_location[GameDataCategories.AUTOTILES] = Stuff.game_data_current_file.GUID;
+            serialize_load_image_autotiles(buffer, version);
+            break;
+        case SerializeThings.IMAGE_TILESET:
+            Stuff.game_data_location[GameDataCategories.TILESETS] = Stuff.game_data_current_file.GUID;
+            serialize_load_image_tilesets(buffer, version);
+            break;
+        case SerializeThings.IMAGE_BATTLERS:
+            Stuff.game_data_location[GameDataCategories.BATTLERS] = Stuff.game_data_current_file.GUID;
+            serialize_load_image_battlers(buffer, version);
+            break;
+        case SerializeThings.IMAGE_OVERWORLD:
+            Stuff.game_data_location[GameDataCategories.OVERWORLDS] = Stuff.game_data_current_file.GUID;
+            serialize_load_image_overworlds(buffer, version);
+            break;
+        case SerializeThings.IMAGE_PARTICLES:
+            Stuff.game_data_location[GameDataCategories.PARTICLES] = Stuff.game_data_current_file.GUID;
+            serialize_load_image_particles(buffer, version);
+            break;
+        case SerializeThings.IMAGE_UI:
+            Stuff.game_data_location[GameDataCategories.UI] = Stuff.game_data_current_file.GUID;
+            serialize_load_image_ui(buffer, version);
+            break;
+        case SerializeThings.IMAGE_MISC:
+            Stuff.game_data_location[GameDataCategories.MISC] = Stuff.game_data_current_file.GUID;
+            serialize_load_image_etc(buffer, version);
+            break;
+        case SerializeThings.AUDIO_BGM:
+            Stuff.game_data_location[GameDataCategories.BGM] = Stuff.game_data_current_file.GUID;
+            serialize_load_audio_bgm(buffer, version);
+            break;
+        case SerializeThings.AUDIO_SE:
+            Stuff.game_data_location[GameDataCategories.SE] = Stuff.game_data_current_file.GUID;
+            serialize_load_audio_se(buffer, version);
+            break;
+        case SerializeThings.MESHES:
+            Stuff.game_data_location[GameDataCategories.MESH] = Stuff.game_data_current_file.GUID;
+            serialize_load_meshes(buffer, version);
+            break;
         // game stuff
-        case SerializeThings.EVENTS: serialize_load_events(buffer, version); break;
-        case SerializeThings.EVENT_CUSTOM: serialize_load_event_custom(buffer, version); break;
-        case SerializeThings.EVENT_PREFAB: serialize_load_event_prefabs(buffer, version); break;
-        case SerializeThings.GLOBAL_METADATA: serialize_load_global_meta(buffer, version); break;
-        case SerializeThings.DATADATA: serialize_load_datadata(buffer, version); break;
-        case SerializeThings.DATA_INSTANCES: serialize_load_data_instances(buffer, version); break;
-        case SerializeThings.ANIMATIONS: serialize_load_animations(buffer, version); break;
-        case SerializeThings.TERRAIN: serialize_load_terrain(buffer, version); break;
-        case SerializeThings.MAPS: serialize_load_maps(buffer, version); break;
+        case SerializeThings.EVENTS:
+            Stuff.game_data_location[GameDataCategories.EVENTS] = Stuff.game_data_current_file.GUID;
+            serialize_load_events(buffer, version);
+            break;
+        case SerializeThings.EVENT_CUSTOM:
+            // these are part of events
+            serialize_load_event_custom(buffer, version);
+            break;
+        case SerializeThings.EVENT_PREFAB:
+            // these are part of events
+            serialize_load_event_prefabs(buffer, version);
+            break;
+        case SerializeThings.GLOBAL_METADATA:
+            Stuff.game_data_location[GameDataCategories.GLOBAL] = Stuff.game_data_current_file.GUID;
+            serialize_load_global_meta(buffer, version);
+            break;
+        case SerializeThings.DATADATA:
+            Stuff.game_data_location[GameDataCategories.DATADATA] = Stuff.game_data_current_file.GUID;
+            serialize_load_datadata(buffer, version);
+            break;
+        case SerializeThings.DATA_INSTANCES:
+            Stuff.game_data_location[GameDataCategories.DATA_INST] = Stuff.game_data_current_file.GUID;
+            serialize_load_data_instances(buffer, version);
+            break;
+        case SerializeThings.ANIMATIONS:
+            Stuff.game_data_location[GameDataCategories.ANIMATIONS] = Stuff.game_data_current_file.GUID;
+            serialize_load_animations(buffer, version);
+            break;
+        case SerializeThings.TERRAIN:
+            Stuff.game_data_location[GameDataCategories.TERRAIN] = Stuff.game_data_current_file.GUID;
+            serialize_load_terrain(buffer, version);
+            break;
+        case SerializeThings.MAPS:
+            Stuff.game_data_location[GameDataCategories.MAP] = Stuff.game_data_current_file.GUID;
+            serialize_load_maps(buffer, version);
+            break;
         // map stuff
-        case SerializeThings.MAP_META: serialize_load_map_contents_meta(buffer, version, Stuff.map.active_map);  break;
-        case SerializeThings.MAP_BATCH: serialize_load_map_contents_batch(buffer, version, Stuff.map.active_map); break;
-        case SerializeThings.MAP_DYNAMIC: serialize_load_map_contents_dynamic(buffer, version, Stuff.map.active_map); break;
+        case SerializeThings.MAP_META:
+            serialize_load_map_contents_meta(buffer, version, Stuff.map.active_map); 
+            break;
+        case SerializeThings.MAP_BATCH:
+            serialize_load_map_contents_batch(buffer, version, Stuff.map.active_map);
+            break;
+        case SerializeThings.MAP_DYNAMIC:
+            serialize_load_map_contents_dynamic(buffer, version, Stuff.map.active_map);
+            break;
     }
 }
-//Still doesn't re-save 
+
 switch (what) {
     case SERIALIZE_DATA_AND_MAP:
         for (var i = 1; i < ds_list_size(Stuff.game_asset_lists); i++) {
-            var file_name = proj_path + Stuff.game_asset_lists[| i].internal_name + EXPORT_EXTENSION_ASSETS;
+            Stuff.game_data_current_file = Stuff.game_asset_lists[| i];
+            var file_name = proj_path + Stuff.game_data_current_file.internal_name + EXPORT_EXTENSION_ASSETS;
             if (file_exists(file_name)) {
                 var buffer_next = buffer_load(file_name);
                 serialize_load(buffer_next, proj_path);

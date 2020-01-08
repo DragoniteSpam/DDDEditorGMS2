@@ -507,6 +507,8 @@ game_data_save_scripts[GameDataCategories.DATA_INST] = serialize_save_data_insta
 game_data_save_scripts[GameDataCategories.ANIMATIONS] = serialize_save_animations;
 game_data_save_scripts[GameDataCategories.TERRAIN] = serialize_save_terrain;
 
+game_data_current_file = noone;
+
 // these may all go to different save locations
 enum GameDataCategories {
     DATADATA, DATA_INST, GLOBAL,
