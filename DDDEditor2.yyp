@@ -7064,6 +7064,14 @@
             }
         },
         {
+            "Key": "6e7c4d85-2e25-4d73-8af7-a4934334a84d",
+            "Value": {
+                "id": "b834bdb5-bc7d-42d2-9b20-413e02ff06e2",
+                "resourcePath": "objects\\DataEventNodeCustomPersistent\\DataEventNodeCustomPersistent.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "6ea1b38b-2a12-4b05-9ab3-475e24c13c2f",
             "Value": {
                 "id": "5eb5991a-d57e-43c7-8741-32a1aa0cc22c",

@@ -49,7 +49,7 @@ var file_second = buffer_read(buffer, buffer_u8);
 switch (what) {
     case SERIALIZE_DATA_AND_MAP:
         instance_activate_object(Data);
-        with (Data) if (deleteable) {
+        with (Data) {
             instance_destroy(id);
         }
         // i seriously have no idea why this isn't being included in the above with() so

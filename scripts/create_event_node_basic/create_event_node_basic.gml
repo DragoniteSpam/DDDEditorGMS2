@@ -1,9 +1,8 @@
 /// @param name
 /// @param data[][]
 
-with (instance_create_depth(0, 0, 0, DataEventNodeCustom)) {
+with (instance_create_depth(0, 0, 0, DataEventNodeCustomPersistent)) {
     name = argument0;
-    deleteable = false;
     
     for (var i = 0; i < array_length_1d(argument1); i++) {
         var data = argument1[i];
