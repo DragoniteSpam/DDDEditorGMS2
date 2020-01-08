@@ -37,7 +37,10 @@ switch (what) {
             instance_destroy();
         }
         // clear all data - data has already been destroyed so you just have to clear them
-        ds_list_clear(Stuff.all_events);
+        // commenting this out is technically a memory leak, but i also don't care because
+        // the old versions will be removed completely in 2020.2 and this will only run when
+        // the program's started up anyway
+        /*ds_list_clear(Stuff.all_events);
         ds_list_clear(Stuff.all_event_custom);
         ds_list_clear(Stuff.all_event_prefabs);
         ds_list_clear(Stuff.all_data);
@@ -51,7 +54,7 @@ switch (what) {
         ds_list_clear(Stuff.all_graphic_etc);
         // these contain arrays, which are garbage collected
         ds_list_clear(Stuff.variables);
-        ds_list_clear(Stuff.switches);
+        ds_list_clear(Stuff.switches);*/
         // anything else?
         Stuff.map.active_map = noone;
         break;

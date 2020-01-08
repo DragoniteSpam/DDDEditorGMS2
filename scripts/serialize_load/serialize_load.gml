@@ -137,7 +137,6 @@ switch (what) {
             }
         }
         load_a_map(guid_get(Stuff.game_starting_map));
-        
         break;
 }
 
