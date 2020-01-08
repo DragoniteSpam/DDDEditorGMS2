@@ -1,9 +1,12 @@
 /// @param buffer
 /// @param length
 
-var sbuffer = buffer_create(argument1, buffer_fixed, 1);
+var original = argument0;
+var length = argument1;
+
+var sbuffer = buffer_create(length, buffer_fixed, 1);
     
-buffer_copy(argument0, buffer_tell(argument0), argument1, sbuffer, 0);
-buffer_seek(argument0, buffer_seek_relative, argument1);
+buffer_copy(original, buffer_tell(original), length, sbuffer, 0);
+buffer_seek(original, buffer_seek_relative, length);
 
 return sbuffer;

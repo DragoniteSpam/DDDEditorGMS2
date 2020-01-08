@@ -132,8 +132,8 @@ switch (what) {
         for (var i = 1; i < ds_list_size(Stuff.game_asset_lists); i++) {
             var file_name = proj_path + Stuff.game_asset_lists[| i].internal_name + EXPORT_EXTENSION_ASSETS;
             if (file_exists(file_name)) {
-                var buffer = buffer_load(file_name);
-                serialize_load(buffer, proj_path);
+                var buffer_next = buffer_load(file_name);
+                serialize_load(buffer_next, proj_path);
             }
         }
         load_a_map(guid_get(Stuff.game_starting_map));

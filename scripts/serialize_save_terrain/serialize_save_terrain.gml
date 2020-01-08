@@ -35,7 +35,6 @@ buffer_write(buffer, buffer_f32, terrain.paint_strength);
 buffer_write(buffer, buffer_u8, 0);
 
 // the actual data
-
 buffer_write(buffer, buffer_u32, buffer_get_size(terrain.height_data));
 buffer_write(buffer, buffer_u32, buffer_get_size(terrain.color_data));
 buffer_write(buffer, buffer_u32, buffer_get_size(terrain.terrain_buffer_data));
