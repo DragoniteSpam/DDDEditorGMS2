@@ -507,25 +507,6 @@ game_data_save_scripts[GameDataCategories.DATA_INST] = serialize_save_data_insta
 game_data_save_scripts[GameDataCategories.ANIMATIONS] = serialize_save_animations;
 game_data_save_scripts[GameDataCategories.TERRAIN] = serialize_save_terrain;
 
-game_data_load_scripts = array_create(GameDataCategories.SIZE);
-game_data_load_scripts[GameDataCategories.AUTOTILES] = serialize_load_image_autotiles;
-game_data_load_scripts[GameDataCategories.TILESETS] = serialize_load_image_tilesets;
-game_data_load_scripts[GameDataCategories.BATTLERS] = serialize_load_image_battlers;
-game_data_load_scripts[GameDataCategories.OVERWORLDS] = serialize_load_image_overworlds;
-game_data_load_scripts[GameDataCategories.PARTICLES] = serialize_load_image_particles;
-game_data_load_scripts[GameDataCategories.UI] = serialize_load_image_ui;
-game_data_load_scripts[GameDataCategories.MISC] = serialize_load_image_etc;
-game_data_load_scripts[GameDataCategories.BGM] = serialize_load_audio_bgm;
-game_data_load_scripts[GameDataCategories.SE] = serialize_load_audio_se;
-game_data_load_scripts[GameDataCategories.MESH] = serialize_load_meshes;
-game_data_load_scripts[GameDataCategories.MAP] = serialize_load_maps;
-game_data_load_scripts[GameDataCategories.GLOBAL] = serialize_load_global_meta;
-game_data_load_scripts[GameDataCategories.EVENTS]  = serialize_load_events;
-game_data_load_scripts[GameDataCategories.DATADATA] = serialize_load_datadata;
-game_data_load_scripts[GameDataCategories.DATA_INST] = serialize_load_data_instances;
-game_data_load_scripts[GameDataCategories.ANIMATIONS] = serialize_load_animations;
-game_data_load_scripts[GameDataCategories.TERRAIN] = serialize_load_terrain;
-
 // these may all go to different save locations
 enum GameDataCategories {
     DATADATA, DATA_INST, GLOBAL,
