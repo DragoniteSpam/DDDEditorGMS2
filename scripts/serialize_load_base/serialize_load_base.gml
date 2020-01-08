@@ -55,10 +55,9 @@ if (outcome) {
         
         if (outcome) {
             setting_project_add(proj_name);
-            setting_project_create_local(proj_name, proj_name, original_data);
             game_auto_title();
             
-            serialize_load(buffer_data, filename_path(fn_data));
+            serialize_load(buffer_data, fn_data);
             
             Stuff.save_name = proj_name;
         }

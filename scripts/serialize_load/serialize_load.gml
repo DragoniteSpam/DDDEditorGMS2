@@ -1,9 +1,13 @@
 /// @param buffer
-/// @param [proj-path]
+/// @param filename
 
 var buffer = argument0;
-var proj_path = argument1;
+var filename = argument1;
+var proj_path = filename_path(filename);
+var proj_name = filename_name(string_copy(proj_path, 1, string_length(proj_path) - 1));
 var erroneous = false;
+
+setting_project_create_local(proj_name, filename_name(filename), buffer);
 
 var header_zlib_data = buffer_peek(buffer, 0, buffer_u16);
 if (header_zlib_data == MAGIC_ZLIB_HEADER) {
@@ -101,6 +105,7 @@ while (true) {
     }
     
     switch (datatype) {
+        #region big ol' switch statement
         // assets
         case SerializeThings.IMAGE_AUTOTILES:
             Stuff.game_data_location[GameDataCategories.AUTOTILES] = Stuff.game_data_current_file.GUID;
@@ -189,6 +194,7 @@ while (true) {
         case SerializeThings.MAP_DYNAMIC:
             serialize_load_map_contents_dynamic(buffer, version, Stuff.map.active_map);
             break;
+        #endregion
     }
 }
 
@@ -196,10 +202,10 @@ switch (what) {
     case SERIALIZE_DATA_AND_MAP:
         for (var i = 1; i < ds_list_size(Stuff.game_asset_lists); i++) {
             Stuff.game_data_current_file = Stuff.game_asset_lists[| i];
-            var file_name = proj_path + Stuff.game_data_current_file.internal_name + EXPORT_EXTENSION_ASSETS;
-            if (file_exists(file_name)) {
-                var buffer_next = buffer_load(file_name);
-                serialize_load(buffer_next, proj_path);
+            var next_file_name = proj_path + Stuff.game_data_current_file.internal_name + EXPORT_EXTENSION_ASSETS;
+            if (file_exists(next_file_name)) {
+                var buffer_next = buffer_load(next_file_name);
+                serialize_load(buffer_next, next_file_name);
             }
         }
         load_a_map(guid_get(Stuff.game_starting_map));

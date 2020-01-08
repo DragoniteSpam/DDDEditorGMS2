@@ -87,7 +87,6 @@ if (outcome) {
             serialize_load_old(buffer_asset);
             serialize_load_old(buffer_data);
             setting_project_add(proj_name);
-            //setting_project_create_local(proj_name, original_asset, original_data);
             game_auto_title();
     
             Stuff.save_name = proj_name;
