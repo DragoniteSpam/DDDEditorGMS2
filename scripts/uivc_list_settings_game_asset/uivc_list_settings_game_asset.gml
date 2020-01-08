@@ -28,7 +28,7 @@ if (selection + 1) {
         // or the file is unassigned and the selected file is the master one
         if (Stuff.game_data_location[i] == file_data.GUID) {
             ui_list_select(list.root.el_types, i);
-        } else if (i == 0 && !guid_get(Stuff.game_data_location[i])) {
+        } else if (selection == 0 && !guid_get(Stuff.game_data_location[i])) {
             ui_list_select(list.root.el_types, i);
         }
     }

@@ -126,7 +126,7 @@ while (true) {
         case SerializeThings.MAP_DYNAMIC: serialize_load_map_contents_dynamic(buffer, version, Stuff.map.active_map); break;
     }
 }
-
+//Still doesn't re-save 
 switch (what) {
     case SERIALIZE_DATA_AND_MAP:
         for (var i = 1; i < ds_list_size(Stuff.game_asset_lists); i++) {
