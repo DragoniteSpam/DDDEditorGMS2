@@ -1,8 +1,8 @@
 /// @param filename
 /// @param project-name
 
-var fn = argument[0];
-var proj_name = argument[1];
+var fn = argument0;
+var proj_name = argument1;
 var outcome = true;
 
 var fn_data = filename_change_ext(fn, EXPORT_EXTENSION_DATA);
@@ -56,10 +56,9 @@ if (outcome) {
         if (outcome) {
             setting_project_add(proj_name);
             game_auto_title();
-            
-            serialize_load(buffer_data, fn_data);
-            
             Stuff.save_name = proj_name;
+            
+            serialize_load(buffer_data, fn_data, proj_name);
         }
     }
 }

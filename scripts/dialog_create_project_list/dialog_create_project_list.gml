@@ -31,6 +31,7 @@ el_list.entries_are = ListEntries.STRINGS;
 el_list.ondoubleclick = omu_project_load;
 dg.el_list = el_list;
 
+#region metadata
 var n_projects = ds_list_size(project_list);
 dg.names = array_create(n_projects);
 dg.strings = array_create(n_projects);
@@ -72,6 +73,7 @@ for (var i = 0; i < n_projects; i++) {
     }
 }
 buffer_delete(fbuffer);
+#endregion
 
 yy = yy + ui_get_list_height(el_list) + spacing;
 

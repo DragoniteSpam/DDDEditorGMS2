@@ -13,13 +13,14 @@ var original_data = -1;
 var decompressed_asset = -1;
 var decompressed_data = -1;
 
+// instead of showing this warning, the editor will instead attempt to load the data as the new version
 if (!file_exists(fn_asset)) {
-    dialog_create_notice(noone, "Could not find an asset file (it should be named \"" + filename_name(fn_asset) +"\" and be in the same folder as the data file). Please do not separate the asset and data files.");
-    outcome = false;
+    //dialog_create_notice(noone, "Could not find an asset file (it should be named \"" + filename_name(fn_asset) +"\" and be in the same folder as the data file). Please do not separate the asset and data files.");
+    return false;
 }
 if (!file_exists(fn_data)) {
-    dialog_create_notice(noone, "Could not find a data file (it should be named \"" + filename_name(fn_data) +"\" and be in the same folder as the asset file). Please do not separate the asset and data files.");
-    outcome = false;
+    //dialog_create_notice(noone, "Could not find a data file (it should be named \"" + filename_name(fn_data) +"\" and be in the same folder as the asset file). Please do not separate the asset and data files.");
+    return false;
 }
 
 // this is a bit ugly, but there are various points where the loading can fail, so after
