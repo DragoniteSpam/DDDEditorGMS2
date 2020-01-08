@@ -172,15 +172,8 @@ all_internal_names = ds_map_create();
 
 spr_character_default = sprite_add(PATH_GRAPHICS + "b_chr_default.png", 0, false, false, 0, 0);
 
-// @todo gml update lwos
+// @todo gml update lwos, all of them
 all_graphic_autotiles = ds_list_create();
-var default_autotile = instance_create_depth(0, 0, 0, DataImageAutotile);
-default_autotile.name = "Grass";
-default_autotile.picture = sprite_add(PATH_GRAPHICS + "b_at_default_grass_0.png", 0, true, false, 0, 0);
-default_autotile.width = sprite_get_width(default_autotile.picture);
-default_autotile.height = sprite_get_height(default_autotile.picture);
-ds_list_add(all_graphic_autotiles, default_autotile);
-
 all_graphic_tilesets = ds_list_create();
 all_graphic_overworlds = ds_list_create();
 all_graphic_battlers = ds_list_create();
