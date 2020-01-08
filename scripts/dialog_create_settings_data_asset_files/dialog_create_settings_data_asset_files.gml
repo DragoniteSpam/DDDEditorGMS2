@@ -48,14 +48,17 @@ yy = yy_start;
 
 var el_types = create_list(col2_x, yy, "Contents:", "", ew, eh, 10, uivc_list_settings_game_asset_location, false, dg);
 create_list_entries(el_types,
-    ["Image: Autotiles", c_blue], ["Image: Tilesets", c_blue], ["Image: Battlers", c_blue],
-    ["Image: Overworlds", c_blue], ["Image: Particles", c_blue], ["Image: UI", c_blue], ["Image: Misc.", c_blue],
+    ["Data: Datadata", c_gray], ["Data: Instances", c_gray],  ["Data: Global", c_gray],
+    ["Maps", c_black],
+    ["Data: Animations", c_black], ["Data: Events", c_black], ["Terrain", c_black],
+    ["Image: Autotiles", c_blue], ["Image: Tilesets", c_blue],
+    ["Image: Battlers", c_blue], ["Image: Overworlds", c_blue],
+    ["Image: Particles", c_blue], ["Image: UI", c_blue], ["Image: Misc.", c_blue],
     ["Audio: BGM", c_purple], ["Audio: SE", c_purple],
     ["Meshes", c_green],
-    ["Maps", c_black], ["Data: Global", c_black], ["Data: Events", c_black], ["Data: Datadata", c_black], ["Data: Animations", c_black],
-    ["Data: Terrain", c_black],
+    
 );
-el_types.tooltip = "This is the list of all the types of stuff you can sort into different files. I recommend putting each of the audio / visual resources (colorized) into their own files, especially if you use source control, so that changing one doesn't cause the entire wad of data to have to be updated.";
+el_types.tooltip = "This is the list of all the types of stuff you can sort into different files. I recommend putting each of the audio / visual resources (colorized) into their own files, especially if you use source control, so that changing one doesn't cause the entire wad of data to have to be updated. The main game data must be in the master data file, since other things may depend on them.";
 el_types.auto_multi_select = true;
 el_types.interactive = false;
 dg.el_types = el_types;

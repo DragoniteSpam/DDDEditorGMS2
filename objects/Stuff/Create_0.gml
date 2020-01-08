@@ -491,6 +491,7 @@ game_data_location[GameDataCategories.MAP] = file_default.GUID;
 game_data_location[GameDataCategories.GLOBAL] = file_default.GUID;
 game_data_location[GameDataCategories.EVENTS]  = file_default.GUID;
 game_data_location[GameDataCategories.DATADATA] = file_default.GUID;
+game_data_location[GameDataCategories.DATA_INST] = file_default.GUID;
 game_data_location[GameDataCategories.ANIMATIONS] = file_default.GUID;
 game_data_location[GameDataCategories.TERRAIN] = file_terrain.GUID;
 
@@ -509,6 +510,7 @@ game_data_save_scripts[GameDataCategories.MAP] = serialize_save_maps;
 game_data_save_scripts[GameDataCategories.GLOBAL] = serialize_save_global_meta;
 game_data_save_scripts[GameDataCategories.EVENTS]  = serialize_save_events;
 game_data_save_scripts[GameDataCategories.DATADATA] = serialize_save_datadata;
+game_data_save_scripts[GameDataCategories.DATA_INST] = serialize_save_data_instances;
 game_data_save_scripts[GameDataCategories.ANIMATIONS] = serialize_save_animations;
 game_data_save_scripts[GameDataCategories.TERRAIN] = serialize_save_terrain;
 
@@ -527,18 +529,20 @@ game_data_load_scripts[GameDataCategories.MAP] = serialize_load_maps;
 game_data_load_scripts[GameDataCategories.GLOBAL] = serialize_load_global_meta;
 game_data_load_scripts[GameDataCategories.EVENTS]  = serialize_load_events;
 game_data_load_scripts[GameDataCategories.DATADATA] = serialize_load_datadata;
+game_data_load_scripts[GameDataCategories.DATA_INST] = serialize_load_data_instances;
 game_data_load_scripts[GameDataCategories.ANIMATIONS] = serialize_load_animations;
 game_data_load_scripts[GameDataCategories.TERRAIN] = serialize_load_terrain;
 
 // these may all go to different save locations
 enum GameDataCategories {
+    DATADATA, DATA_INST, GLOBAL,
+    MAP,
+    ANIMATIONS, EVENTS, TERRAIN,
     AUTOTILES, TILESETS,
     BATTLERS, OVERWORLDS,
     PARTICLES, UI, MISC,
     BGM, SE,
     MESH,
-    MAP,
-    GLOBAL, EVENTS, DATADATA, ANIMATIONS, TERRAIN,
     SIZE
 }
 

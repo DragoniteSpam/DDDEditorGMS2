@@ -38,6 +38,7 @@ dg.authors = array_create(n_projects);
 dg.versions = array_create(n_projects);
 dg.timestamp_dates = array_create(n_projects);
 dg.timestamp_times = array_create(n_projects);
+dg.file_counts = array_create(n_projects);
 
 var fbuffer = buffer_create(512, buffer_fixed, 1);
 for (var i = 0; i < n_projects; i++) {
@@ -47,6 +48,7 @@ for (var i = 0; i < n_projects; i++) {
     dg.versions[i] = "";
     dg.timestamp_dates[i] = "";
     dg.timestamp_times[i] = "";
+    dg.file_counts[i] = 0;
     var path_new = PATH_PROJECTS + project_list[| i] + "\\" + project_list[| i] + ".dddd";
     // @todo gml update try catch
     if (file_exists(path_new)) {
@@ -64,6 +66,7 @@ for (var i = 0; i < n_projects; i++) {
                     string(buffer_read(fbuffer, buffer_u8));
                 dg.timestamp_times[i] = string(buffer_read(fbuffer, buffer_u8)) + ":" + string_pad(buffer_read(fbuffer, buffer_u8), "0", 2) + ":" +
                     string_pad(buffer_read(fbuffer, buffer_u8), "0", 2);
+                dg.file_counts[i] = buffer_read(fbuffer, buffer_u8);
             }
         }
     }
@@ -85,6 +88,7 @@ yy = yy + el_other.height + spacing;
 yy = yy_base;
 
 var el_summary = create_text(c2 + 16, yy, "Summary", ew, eh, fa_left, ew, dg);
+el_summary.color = c_blue;
 yy = yy + el_summary.height + spacing;
 
 var el_summary_name = create_text(c2 + 16, yy, "", ew, eh, fa_left, ew, dg);
@@ -107,9 +111,14 @@ var el_summary_author = create_text(c2 + 16, yy, "", ew, eh, fa_left, ew, dg);
 dg.el_summary_author = el_summary_author;
 yy = yy + el_summary_author.height + spacing;
 
-var el_summary_summary = create_text(c2 + 16, yy, "", ew, eh, fa_left, ew, dg);
+var el_summary_file_count = create_text(c2 + 16, yy, "", ew, eh, fa_left, ew, dg);
+dg.el_summary_file_count = el_summary_file_count;
+yy = yy + el_summary_file_count.height + spacing;
+
+var el_summary_summary = create_text(c2 + 16, yy - 8, "", ew, eh, fa_left, ew, dg);
+el_summary_summary.valignment = fa_top;
 dg.el_summary_summary = el_summary_summary;
-yy = yy + el_summary_summary.height + spacing;
+yy = yy + el_summary_summary.height + spacing - 8;
 
 var el_never_mind = create_button(dw /2 - b_width / 2, dh - 32 - b_height / 2, "Create New", b_width, b_height, fa_center, dmu_dialog_commit, dg);
 
@@ -125,6 +134,7 @@ ds_list_add(dg.contents,
     el_summary_author,
     el_summary_timestamp_date,
     el_summary_timestamp_time,
+    el_summary_file_count,
     el_never_mind
 );
 
