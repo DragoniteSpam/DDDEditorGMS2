@@ -29,7 +29,7 @@ repeat (n_prefabs) {
     for (var i = 0; i < n_data; i++) {
         ds_list_add(prefab.data, buffer_read(buffer, buffer_string));
     }
-        
+    
     switch (prefab.type) {
         // is_root is set in the constructor already
         case EventNodeTypes.ENTRYPOINT:

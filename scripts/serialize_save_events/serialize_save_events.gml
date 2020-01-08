@@ -2,6 +2,9 @@
 
 var buffer = argument0;
 
+serialize_save_event_custom(buffer);
+serialize_save_event_prefabs(buffer);
+
 buffer_write(buffer, buffer_datatype, SerializeThings.EVENTS);
 var addr_next = buffer_tell(buffer);
 buffer_write(buffer, buffer_u64, 0);

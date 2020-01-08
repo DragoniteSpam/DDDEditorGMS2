@@ -47,3 +47,5 @@ for (var i = 0; i < ds_list_size(ui_things); i++) {
 }
 
 ds_list_destroy(ui_things);
+
+show_message("!");

@@ -536,8 +536,8 @@ game_data_load_scripts[GameDataCategories.TERRAIN] = serialize_load_terrain;
 // these may all go to different save locations
 enum GameDataCategories {
     DATADATA, DATA_INST, GLOBAL,
-    MAP,
-    ANIMATIONS, EVENTS, TERRAIN,
+    ANIMATIONS, EVENTS,
+    TERRAIN, MAP,
     AUTOTILES, TILESETS,
     BATTLERS, OVERWORLDS,
     PARTICLES, UI, MISC,

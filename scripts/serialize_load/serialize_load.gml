@@ -42,7 +42,9 @@ var file_second = buffer_read(buffer, buffer_u8);
 switch (what) {
     case SERIALIZE_DATA_AND_MAP:
         instance_activate_object(Data);
-        instance_destroy(Data);
+        with (Data) if (deleteable) {
+            instance_destroy();
+        }
         // clear all data - data has already been destroyed so you just have to clear them
         ds_list_clear(Stuff.all_events);
         ds_list_clear(Stuff.all_event_custom);
@@ -98,11 +100,11 @@ while (true) {
         case SerializeThings.MESHES: serialize_load_meshes(buffer, version); break;
         // game stuff
         case SerializeThings.EVENTS: serialize_load_events(buffer, version); break;
+        case SerializeThings.EVENT_CUSTOM: serialize_load_event_custom(buffer, version); break;
+        case SerializeThings.EVENT_PREFAB: serialize_load_event_prefabs(buffer, version); break;
         case SerializeThings.GLOBAL_METADATA: serialize_load_global_meta(buffer, version); break;
         case SerializeThings.DATADATA: serialize_load_datadata(buffer, version); break;
         case SerializeThings.DATA_INSTANCES: serialize_load_data_instances(buffer, version); break;
-        case SerializeThings.EVENT_CUSTOM: serialize_load_event_custom(buffer, version); break;
-        case SerializeThings.EVENT_PREFAB: serialize_load_event_prefabs(buffer, version); break;
         case SerializeThings.ANIMATIONS: serialize_load_animations(buffer, version); break;
         case SerializeThings.TERRAIN: serialize_load_terrain(buffer, version); break;
         case SerializeThings.MAPS: serialize_load_maps(buffer, version); break;
