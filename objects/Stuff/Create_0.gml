@@ -470,7 +470,7 @@ game_file_summary = "Write a short summary in Global Game Settings";
 game_file_author = "Who made this?";
 
 game_asset_lists = ds_list_create();
-// @todo gml update lightweight objects - filename, extension, compressed?
+// @todo gml update lightweight objects
 var file_default = create_data_file("data", false);
 var file_asset = create_data_file("assets", false);
 var file_terrain = create_data_file("terrain", true);

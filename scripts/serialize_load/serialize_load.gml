@@ -5,9 +5,16 @@ var buffer = argument0;
 var proj_path = argument1;
 var erroneous = false;
 
+var header_zlib_data = buffer_peek(buffer, 0, buffer_u16);
+if (header_zlib_data == MAGIC_ZLIB_HEADER) {
+    var decompressed = buffer_decompress(buffer);
+    buffer_delete(buffer);
+    buffer = decompressed;
+}
+
 buffer_seek(buffer, buffer_seek_start, 0);
 
-// the header's already been validated by serialize_load_base
+// get on with the header
 buffer_read(buffer, buffer_u8);
 buffer_read(buffer, buffer_u8);
 buffer_read(buffer, buffer_u8);
@@ -43,6 +50,11 @@ switch (what) {
     case SERIALIZE_DATA_AND_MAP:
         instance_activate_object(Data);
         with (Data) if (deleteable) {
+            instance_destroy(id);
+        }
+        // i seriously have no idea why this isn't being included in the above with() so
+        // let's try deleting them manually
+        with (DataDataFile) {
             instance_destroy();
         }
         // clear all data - data has already been destroyed so you just have to clear them
@@ -118,16 +130,17 @@ while (true) {
 switch (what) {
     case SERIALIZE_DATA_AND_MAP:
         for (var i = 1; i < ds_list_size(Stuff.game_asset_lists); i++) {
-            var file_name = proj_path + Stuff.game_asset_lists[| i].internal_name;
-            show_message(file_name);
+            var file_name = proj_path + Stuff.game_asset_lists[| i].internal_name + EXPORT_EXTENSION_ASSETS;
             if (file_exists(file_name)) {
                 var buffer = buffer_load(file_name);
                 serialize_load(buffer, proj_path);
             }
         }
-        Stuff.map.active_map = guid_get(Stuff.game_starting_map);
-        load_a_map(Stuff.map.active_map);
+        load_a_map(guid_get(Stuff.game_starting_map));
+        
         break;
 }
+
+buffer_delete(buffer);
 
 error_show();

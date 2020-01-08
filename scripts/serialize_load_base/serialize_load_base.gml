@@ -26,6 +26,7 @@ if (outcome) {
     if (header_zlib_data == MAGIC_ZLIB_HEADER) {
         var decompressed_data = buffer_decompress(original_data);
         var buffer_data = decompressed_data;
+        buffer_delete(original_data);
     } else {
         var buffer_data = original_data;
     }
@@ -65,8 +66,5 @@ if (outcome) {
 }
 
 buffer_delete(original_data);
-if (buffer_exists(decompressed_data)) {
-    buffer_delete(decompressed_data);
-}
 
 return outcome;
