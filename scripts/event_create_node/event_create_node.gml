@@ -95,10 +95,16 @@ switch (type) {
 }
 
 if (event) {
-    // this used to be a # but that was screwing with game maker's newline thing because
-    // old game maker still used the stupid version of newlines and now that i'm on the
-    // new version i don't feel like changing it
-    node.name = node.name + "$" + string(ds_list_size(event.nodes));
+    var n = ds_list_size(event.nodes);
+    var base_name = node.name;
+    
+    // if there's a name collision, try the next number
+    do {
+        // this used to be a # but that was screwing with game maker's newline thing because
+        // old game maker still used the stupid version of newlines and now that i'm on the
+        // new version i don't feel like changing it
+        node.name = base_name + "$" + string(n++);
+    } until(!ds_map_exists(event.name_map, node.name));
 
     ds_list_add(event.nodes, node);
     ds_map_add(event.name_map, node.name, node);
