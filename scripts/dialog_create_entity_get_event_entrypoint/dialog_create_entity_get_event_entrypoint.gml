@@ -36,11 +36,10 @@ for (var i = 0; i<ds_list_size(event.nodes); i++) {
         if (page.event_entrypoint == event.nodes[| i].GUID) {
             ui_list_select(el_list, ds_list_size(el_list.entries), true);
         }
-        ds_list_add(el_list.entries, event.nodes[| i].GUID);
+        ds_list_add(el_list.entries, event.nodes[| i]);
     }
 }
-
-el_list.entries_are = ListEntries.GUIDS;
+el_list.entries_are = ListEntries.INSTANCES;
 el_list.colorize = false;
 dg.el_list = el_list;
 

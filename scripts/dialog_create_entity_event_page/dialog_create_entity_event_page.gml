@@ -62,8 +62,10 @@ var el_condition_code_enabled = create_checkbox(16, yy, "", ucheck_width, eh, ui
 var el_condition_code = create_input_code(16 + 64, yy, "Code", ew - 64, eh, vx1, vy1, vx2, vy2, page.condition_code, uivc_event_condition_code, dg);
 yy = yy + el_condition_code.height + spacing + 80;
 
-var el_condition_explanation = create_text(16, yy, "If no conditions are selected, the event will always execute when triggered.\n\nIf more than one are selected, " +
-    "the event will only execute when all of the conditions are met.", ew, eh, fa_left, ew, dg);
+var el_condition_explanation = create_text(16, yy,
+    "If no conditions are selected, the event will always execute when triggered.\n\nIf more than one are selected, " +
+    "the event will only execute when all of the conditions are met.", ew, eh, fa_left, ew, dg
+);
 
 yy = yy + el_condition_explanation.height + spacing;
 

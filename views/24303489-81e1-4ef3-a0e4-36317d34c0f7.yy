@@ -21,7 +21,9 @@
         "6c7cfe19-4cef-4073-91b7-6b5fad1c89ae",
         "c071ad5b-640d-45e2-b4b4-9bc7d40bac64",
         "6fa56731-bf2e-4eaa-9a1f-ccaeb5ca0972",
-        "cb91650b-0bd4-452e-ba8a-44bfc6fbda39"
+        "cb91650b-0bd4-452e-ba8a-44bfc6fbda39",
+        "aa87015b-9205-40fb-861f-af4da7f18aad",
+        "7c718de8-277a-4a6d-a1cc-866c19df6fe5"
     ],
     "filterType": "GMScript",
     "folderName": "data and events",

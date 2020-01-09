@@ -24,8 +24,12 @@ if (!dialog_exists()) {
             }
         }
         if (Controller.press_left) {
-            Stuff.event.canvas_active_node = node;
-            Stuff.event.canvas_active_node_index = index;
+            if (Controller.double_left) {
+                dialog_create_event_get_event_graph(noone, node, index);
+            } else {
+                Stuff.event.canvas_active_node = node;
+                Stuff.event.canvas_active_node_index = index;
+            }
         }
     }
 }
