@@ -1,3 +1,7 @@
+if (Stuff.is_quitting) exit;
+
+event_inherited();
+
 if (contents) {
     instance_activate_object(contents);
     instance_destroy(contents);

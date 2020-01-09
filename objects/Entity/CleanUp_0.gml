@@ -1,3 +1,5 @@
+if (Stuff.is_quitting) exit;
+
 entity_destroy();
 
 ds_list_destroy(switches);

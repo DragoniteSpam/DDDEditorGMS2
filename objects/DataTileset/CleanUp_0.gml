@@ -1,3 +1,5 @@
+if (Stuff.is_quitting) exit;
+
 event_inherited();
 
 // these are initialized to null in the create event but are intended

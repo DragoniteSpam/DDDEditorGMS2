@@ -1,0 +1,1 @@
+if (Stuff.is_quitting) exit;

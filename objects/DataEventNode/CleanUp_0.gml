@@ -1,3 +1,5 @@
+if (Stuff.is_quitting) exit;
+
 event_inherited();
 
 // remove references from other objects: things that contain this

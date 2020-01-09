@@ -1,3 +1,5 @@
+if (Stuff.is_quitting) exit;
+
 event_inherited();
 
 if (buffer_exists(buffer)) buffer_delete(buffer);

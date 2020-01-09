@@ -25,6 +25,7 @@ if (status == WINDOW_CLOSE) {
     view_set_visible(view_3d_preview, false);
     var top = ds_list_top(Stuff.dialogs);
     if (top && (top.dialog_flags & DialogFlags.IS_QUIT)) {
+        is_quitting = true;
         game_end();
     } else {
         momu_exit(noone);

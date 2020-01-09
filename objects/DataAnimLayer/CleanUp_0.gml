@@ -1,3 +1,5 @@
+if (Stuff.is_quitting) exit;
+
 for (var i = 0; i < ds_list_size(keyframes); i++) {
     var keyframe = keyframes[| i];
     if (keyframe) {

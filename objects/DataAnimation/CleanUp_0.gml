@@ -1,3 +1,5 @@
+if (Stuff.is_quitting) exit;
+
 event_inherited();
 
 for (var i = 0; i < ds_list_size(layers); i++) {

@@ -75,6 +75,8 @@ tile_size = 32;
 
 default_camera = camera_get_default();
 
+is_quitting = false;
+
 #endregion
 
 #region user settings
