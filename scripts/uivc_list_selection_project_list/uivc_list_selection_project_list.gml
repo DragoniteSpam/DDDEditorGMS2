@@ -12,8 +12,8 @@ if (selection + 1) {
     list.root.el_summary_version.text = "File version: " + ((string_length(version_str) > 0) ? (version_str + " (0x" + string_hex(real(version_str)) + ")") : "N/A");;
     list.root.el_summary_summary.text = "Summary: " + list.root.strings[selection];
     list.root.el_summary_author.text = "Author: " + list.root.authors[selection];
-    list.root.el_summary_timestamp_date.text = "Date: " + ((string_length(date_str) > 0) ? date_str : "N/A");
-    list.root.el_summary_timestamp_time.text = "Time: " + ((string_length(time_str) > 0) ? time_str : "N/A");
+    list.root.el_summary_timestamp_date.text = "Date Modified: " + ((string_length(date_str) > 0) ? date_str : "N/A");
+    list.root.el_summary_timestamp_time.text = "Time Modified: " + ((string_length(time_str) > 0) ? time_str : "N/A");
     list.root.el_summary_file_count.text = "Asset files: " + ((file_count > 0) ? string(file_count) : "N/A");
 } else {
     list.root.el_summary_name.text = "";

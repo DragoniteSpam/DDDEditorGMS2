@@ -15,6 +15,7 @@ if (header_zlib_data == MAGIC_ZLIB_HEADER) {
     var decompressed = buffer_decompress(buffer);
     buffer_delete(buffer);
     buffer = decompressed;
+    Stuff.game_data_current_file.compressed = true;
 }
 
 buffer_seek(buffer, buffer_seek_start, 0);
@@ -94,6 +95,9 @@ switch (what) {
         }
         
         Stuff.game_data_current_file = Stuff.game_asset_lists[| 0];
+        
+        Stuff.game_file_summary = summary_string;
+        Stuff.game_file_author = author_string;
         break;
     case SERIALIZE_ASSETS:
         break;
