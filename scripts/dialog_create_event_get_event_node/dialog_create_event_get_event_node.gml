@@ -38,23 +38,24 @@ if (event) {
     yy = yy + el_title_text.height + spacing;
     
     var el_list = create_list(16, yy, "Select an entrypoint", "<should never see this>", ew, eh, 18, null, false, dg, event.nodes);
-    for (var i = 0; i < ds_list_size(event.nodes); i++) {
-        if (node.outbound[| index] == event.nodes[| i]) {
-            ui_list_select(el_list, i, true);
-            break;
-        }
-    }
+    ui_list_select(el_list, ds_list_find_index(event.nodes, node.outbound[| index]));
     el_list.entries_are = ListEntries.INSTANCES;
     el_list.colorize = false;
     dg.el_list = el_list;
     
     var b_width = 128;
     var b_height = 32;
-    var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Commit", b_width, b_height, fa_center, dmu_dialog_event_set_outbound, dg);
+    
+    var el_clear = create_button(dw * 2 / 7 - b_width / 2, dh - 32 - b_height / 2, "Clear", b_width, b_height, fa_center, dmu_dialog_event_set_outbound_null_double, dg);
+    el_clear.tooltip = "Set the outbound node to null; in the game, this will be the end of the event and control will return to the player";
+    
+    var el_confirm = create_button(dw * 5 / 7 - b_width / 2, dh - 32 - b_height / 2, "Select", b_width, b_height, fa_center, dmu_dialog_event_set_outbound, dg);
+    el_confirm.tooltip = "Set the outbound node to the selected entry in the list";
     
     ds_list_add(dg.contents,
         el_title_text,
         el_list,
+        el_clear,
         el_confirm
     );
     
