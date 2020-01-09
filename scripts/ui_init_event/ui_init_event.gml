@@ -38,6 +38,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     element = create_list(legal_x + spacing, yy, "All Events", "No events!", element_width, list_entry_height, 24, uivc_list_selection_event, false, t_events, Stuff.all_events);
     element.entries_are = ListEntries.INSTANCES;
     element.onmiddleclick = omu_event_list_alphabetize;
+    ui_list_select(element, 0);
     ds_list_add(t_events.contents, element);
     
     t_events.el_event_list = element;

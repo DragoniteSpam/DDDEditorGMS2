@@ -683,10 +683,10 @@ switch (node.type) {
             draw_sprite(spr_event_dot, 0, x2 + ext_node_padding, by);
             // node is not being dragged
             if (Stuff.event.canvas_active_node != node || Stuff.event.canvas_active_node_index != 0) {
-                if (bnx > x2 + ext_node_padding) {
+                if (bnx > x2 + ext_node_padding && outbound.event == node.event) {
                     draw_bezier(x2 + ext_node_padding, by, bnx - 8, bny);
                 } else {
-                    draw_event_ghost(x2 + ext_node_padding, by, x2 + 64, by, outbound);
+                    draw_event_ghost(x2 + ext_node_padding, by, x2 + 64, by, node, outbound);
                 }
             }
         }
@@ -713,10 +713,10 @@ switch (node.type) {
             draw_sprite(spr_event_dot, 0, x2 + ext_node_padding, by);
             
             if (Stuff.event.canvas_active_node != node) {
-                if (bx2 > x2) {
+                if (bx2 > x2 && outbound.event == node.event) {
                     draw_bezier(x2 + ext_node_padding, by, bx2 - 8, by2);
                 } else {
-                    draw_event_ghost(x2 + ext_node_padding, by, x2 + 64, by, outbound);
+                    draw_event_ghost(x2 + ext_node_padding, by, x2 + 64, by, node, outbound);
                 }
             }
         }
@@ -751,10 +751,10 @@ switch (node.type) {
                 draw_sprite(spr_event_dot, 0, x2 + ext_node_padding, by);
                 // the node is not currently being dragged
                 if (Stuff.event.canvas_active_node != node || Stuff.event.canvas_active_node_index != i) {
-                    if (bx2 > x2) {
+                    if (bx2 > x2 && outbound.event == node.event) {
                         draw_bezier(x2 + ext_node_padding, by, bx2 - 8, by2);
                     } else {
-                        draw_event_ghost(x2 + ext_node_padding, by, x2 + 64, by, outbound);
+                        draw_event_ghost(x2 + ext_node_padding, by, x2 + 64, by, node, outbound);
                     }
                 }
             }
@@ -804,10 +804,10 @@ switch (node.type) {
                 draw_sprite(spr_event_dot, 0, x2 + ext_node_padding, by);
                 // node is NOT currently being dragged
                 if (Stuff.event.canvas_active_node != node || Stuff.event.canvas_active_node_index != i) {
-                    if (bx2 > x2) {
+                    if (bx2 > x2 && outbound.event == node.event) {
                         draw_bezier(x2 + ext_node_padding, by, bx2 - 8, by2);
                     } else {
-                        draw_event_ghost(x2 + ext_node_padding, by, x2 + 64, by, outbound);
+                        draw_event_ghost(x2 + ext_node_padding, by, x2 + 64, by, node, outbound);
                     }
                 }
             }
@@ -854,10 +854,10 @@ switch (node.type) {
                 draw_sprite(spr_event_dot, 0, x2 + ext_node_padding, by);
                 // node is not being dragged
                 if (Stuff.event.canvas_active_node != node || Stuff.event.canvas_active_node_index != i) {
-                    if (bnx > x2 + ext_node_padding) {
+                    if (bnx > x2 + ext_node_padding && outbound.event == node.event) {
                         draw_bezier(x2 + ext_node_padding, by, bnx - 8, bny);
                     } else {
-                        draw_event_ghost(x2 + ext_node_padding, by, x2 + 64, by, outbound);
+                        draw_event_ghost(x2 + ext_node_padding, by, x2 + 64, by, node, outbound);
                     }
                 }
             }

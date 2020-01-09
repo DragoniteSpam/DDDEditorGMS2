@@ -97,6 +97,7 @@
 #macro c_ev_comment 0xd8bfd8
 #macro c_ev_custom 0x99ccff
 #macro c_ev_ghost 0x0099cc
+#macro c_ev_ghost_external 0x4dd2ff
 #macro c_ev_init 0xffcc99
 #macro c_magenta 0xff00ff
 #macro c_progress_bar 0xff9900
