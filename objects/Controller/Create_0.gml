@@ -54,6 +54,8 @@ mouse_x_previous = mouse_x;
 mouse_y_previous = mouse_y;
 
 double_click_threshold = 0.25 * MILLION;
+// don't process input in the next (x) steps
+ignore_next = 0;
 
 // inputs; maybe these can be rebound though a menu, but that's not important now
 

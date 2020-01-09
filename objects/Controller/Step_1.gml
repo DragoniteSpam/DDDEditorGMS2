@@ -1,3 +1,7 @@
+if (--ignore_next) {
+    exit;
+}
+
 var t = get_timer();
 
 var last_wasd = wasd;

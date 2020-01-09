@@ -11011,7 +11011,7 @@
             "Key": "abe49b7e-34e7-4375-83a1-15f5afa50fac",
             "Value": {
                 "id": "0d82479d-d404-4e8c-997d-721385a7af7c",
-                "resourcePath": "scripts\\omu_project_open\\omu_project_open.yy",
+                "resourcePath": "scripts\\omu_project_open_other\\omu_project_open_other.yy",
                 "resourceType": "GMScript"
             }
         },
