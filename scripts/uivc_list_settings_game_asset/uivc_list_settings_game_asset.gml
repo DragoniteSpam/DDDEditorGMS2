@@ -6,9 +6,12 @@ var selection = ui_list_selection(list);
 
 if (selection + 1) {
     var file_data = list.entries[| selection];
+    list.root.el_name.interactive = (selection > 0);
     list.root.el_compressed.interactive = true;
     list.root.el_types.interactive = true;
+    list.root.el_critical.interactive = (selection > 0);
     list.root.el_compressed.value = file_data.compressed;
+    list.root.el_critical.value = file_data.critical;
     // the first file in the list is special, and its name is just whatever you give it when you save
     if (selection) {
         list.root.el_name.interactive = true;
@@ -36,4 +39,5 @@ if (selection + 1) {
     list.root.el_name.interactive = false;
     list.root.el_compressed.interactive = false;
     list.root.el_types.interactive = false;
+    list.root.el_critical.interactive = false;
 }

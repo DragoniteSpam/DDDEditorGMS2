@@ -88,10 +88,18 @@ switch (what) {
         repeat (n_files) {
             var name = buffer_read(buffer, buffer_string);
             var guid = buffer_read(buffer, buffer_u32);
+            if (version >= DataVersions.ASSSET_FILE_BOOLS) {
+                var bools = buffer_read(buffer, buffer_u32);
+            }
+            
             // the "compressed" parameter can be set later
             var file_data = create_data_file(name, false);
             guid_set(file_data, guid);
             ds_list_add(Stuff.game_asset_lists, file_data);
+            
+            if (version >= DataVersions.ASSSET_FILE_BOOLS) {
+                file_data.critical = unpack(bools, 0);
+            }
         }
         
         Stuff.game_data_current_file = Stuff.game_asset_lists[| 0];

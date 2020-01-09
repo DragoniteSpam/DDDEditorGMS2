@@ -9208,6 +9208,14 @@
             }
         },
         {
+            "Key": "907770f2-a36c-4e4c-bb24-9c4831722a9e",
+            "Value": {
+                "id": "b4e58f76-ecfd-4be9-b298-112077bec7eb",
+                "resourcePath": "scripts\\uivc_checkbox_settings_game_asset_critical\\uivc_checkbox_settings_game_asset_critical.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "908f9a52-7470-4e76-9808-402f4acb9d67",
             "Value": {
                 "id": "6e9a810e-7ee6-49ad-a5ff-45b9fa53a23b",
@@ -16830,6 +16838,7 @@
         "4ae7649a-3a83-4207-b3ef-88544218483e",
         "3753db42-53d3-4fb8-b981-4a320894bd49",
         "5235e267-a128-4072-aae0-4ef5ff0c3ab6",
+        "907770f2-a36c-4e4c-bb24-9c4831722a9e",
         "e501f0d2-e906-4cfc-9ca2-6fe26ed12d4a",
         "12524178-acdd-49a0-bcb8-77ba5b45bb12",
         "49a17f7d-8102-4a15-8539-939e11db8886",

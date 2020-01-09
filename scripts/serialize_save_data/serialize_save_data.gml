@@ -23,8 +23,11 @@ if (string_length(fn) > 0) {
         if (i == 0) {
             buffer_write(buffer, buffer_u8, ds_list_size(Stuff.game_asset_lists));
             for (var j = 0; j < ds_list_size(Stuff.game_asset_lists); j++) {
-                buffer_write(buffer, buffer_string, Stuff.game_asset_lists[| j].internal_name);
-                buffer_write(buffer, buffer_u32, Stuff.game_asset_lists[| j].GUID);
+                var asset_file = Stuff.game_asset_lists[| j];
+                var bools = pack(asset_file.critical);
+                buffer_write(buffer, buffer_string, asset_file.internal_name);
+                buffer_write(buffer, buffer_u32, asset_file.GUID);
+                buffer_write(buffer, buffer_u32, bools);
             }
         }
         
@@ -93,5 +96,6 @@ enum DataVersions {
     REMOVE_RMXP_DATA            = 70,
     MAP_GENERIC_DATA            = 71,
     DATA_MODULARITY             = 72,
+    ASSSET_FILE_BOOLS           = 73,
     _CURRENT /* = whatever the last one is + 1 */
 }

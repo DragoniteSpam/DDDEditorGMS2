@@ -5,4 +5,4 @@ var list = argument0;
 var index = argument1;
 var file_data = list.entries[| index];
 
-return index ? (file_data.internal_name + ".ddda") : "(default.dddd)";
+return (index ? (file_data.internal_name + ".ddda") : "(master.dddd)") + (file_data.critical ? "" : "*");

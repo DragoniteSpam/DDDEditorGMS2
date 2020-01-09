@@ -64,6 +64,14 @@ Old data versions:
     REMOVE_UNUSED_DATA          = 61,
     GENERIC_DATA                = 62,
     PAWN_HELPFUL_DATA           = 63,
+    MAP_TILED_ID                = 64,
+    GAME_NOTES                  = 65,
+    FMOD_SAMPLE_RATE            = 66,
+    FMOD_LOOP_POINT_SAMPLES     = 67,
+    COLLISION_FLAGS             = 68,
+    COLLISION_TRIGGER_DATA      = 69,
+    REMOVE_RMXP_DATA            = 70,
+    MAP_GENERIC_DATA            = 71,
 
 Serialization:
     https://docs.google.com/spreadsheets/d/1DTndzzZdpPexH84J0dcIUruJ7ZU1wQcL0JFjPu09yK4/edit#gid=0

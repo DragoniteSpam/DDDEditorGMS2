@@ -25,7 +25,7 @@ var yy = 64;
 var yy_start = 64;
 
 var el_list = create_list(col1_x, yy, "Asset Files", "", ew, eh, 8, uivc_list_settings_game_asset, false, dg, Stuff.game_asset_lists);
-el_list.tooltip = "This is the list of data / asset files you currently have linked to the project. The first one is special."
+el_list.tooltip = "This is the list of data / asset files you currently have linked to the project. The master file is special, is always critical and can't be renamed as it has the same name as the project by default.\n\nCompressed files are shown in blue. Non-critical files are denoted with an asterisk*."
 el_list.entries_are = ListEntries.SCRIPT;
 el_list.evaluate_text = ui_list_text_asset_files;
 el_list.render_colors = ui_list_colors_asset_files;
@@ -57,7 +57,7 @@ create_list_entries(el_types,
     ["Audio: BGM", c_purple], ["Audio: SE", c_purple],
     ["Meshes", c_green],
 );
-el_types.tooltip = "This is the list of all the types of stuff you can sort into different files. I recommend putting each of the audio / visual resources (colorized) into their own files, especially if you use source control, so that changing one doesn't cause the entire wad of data to have to be updated. The main game data must be in the master data file, since other things may depend on them.";
+el_types.tooltip = "This is the list of all the types of stuff you can sort into different files. I recommend putting each of the audio / visual resources (colorized) into their own files, especially if you use source control, so that changing one doesn't cause the entire wad of data to have to be updated. The main game data must be in the master data file, since other things may depend on their existence.";
 el_types.auto_multi_select = true;
 el_types.interactive = false;
 dg.el_types = el_types;
@@ -71,11 +71,17 @@ el_name.interactive = false;
 dg.el_name = el_name;
 yy = yy + el_name.height + spacing;
 
-var el_compressed = create_checkbox(col3_x, yy, "Compressed", ew, eh, uivc_checkbox_settings_game_asset_compressed, false, dg);
+var el_compressed = create_checkbox(col3_x, yy, "Compressed?", ew, eh, uivc_checkbox_settings_game_asset_compressed, false, dg);
 el_compressed.tooltip = "Whether or not the data file should be compressed. Compressing files allows them to take up less space, but makes them take longer to load.";
 el_compressed.interactive = false;
 dg.el_compressed = el_compressed;
 yy = yy + el_compressed.height + spacing;
+
+var el_critical = create_checkbox(col3_x, yy, "Critical?", ew, eh, uivc_checkbox_settings_game_asset_critical, false, dg);
+el_critical.tooltip = "The game is programmed to complain if any of its asset files can't be found, but in some cases (i.e. files containing Terrain) this may not be necessary and you can choose to ignore them. Note that this only affects how the game itself handles the data files; non-critical files are still needed by the editor.";
+el_critical.interactive = false;
+dg.el_critical = el_critical;
+yy = yy + el_critical.height + spacing;
 
 var b_width = 128;
 var b_height = 32;
@@ -91,6 +97,7 @@ ds_list_add(dg.contents,
     // specifications
     el_name,
     el_compressed,
+    el_critical,
     // confirm
     el_confirm
 );
