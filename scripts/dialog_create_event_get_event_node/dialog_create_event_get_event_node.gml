@@ -39,7 +39,6 @@ if (event) {
     
     var el_list = create_list(16, yy, "Select an entrypoint", "<should never see this>", ew, eh, 18, null, false, dg, event.nodes);
     for (var i = 0; i < ds_list_size(event.nodes); i++) {
-        // this happens before the list is updated, so you don't need to bother with size minus 1
         if (node.outbound[| index] == event.nodes[| i]) {
             ui_list_select(el_list, i, true);
             break;
@@ -51,7 +50,7 @@ if (event) {
     
     var b_width = 128;
     var b_height = 32;
-    var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Commit", b_width, b_height, fa_center, null, dg);
+    var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Commit", b_width, b_height, fa_center, dmu_dialog_event_set_outbound, dg);
     
     ds_list_add(dg.contents,
         el_title_text,

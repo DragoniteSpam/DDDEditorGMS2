@@ -1,3 +1,5 @@
 /// @param UIThing
 
-script_execute(argument0.root.commit, argument0.root);
+var thing = argument0;
+
+script_execute(thing.root.commit, thing.root);
