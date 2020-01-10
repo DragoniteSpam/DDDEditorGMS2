@@ -1,4 +1,4 @@
-if (--ignore_next) {
+if (ignore_next--) {
     exit;
 }
 

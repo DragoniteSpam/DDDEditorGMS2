@@ -16,5 +16,5 @@ if (file_exists(fn)) {
     Controller.double_left = false;
     Controller.time_left = -1;
     Controller.last_time_left = -1;
-    Controller.ignore_next = true;
+    Controller.ignore_next = 1;
 }

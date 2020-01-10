@@ -43,17 +43,18 @@ if (version >= DataVersions._CURRENT) {
 }
 
 var what = buffer_read(buffer, buffer_u8);
-var summary_string = buffer_read(buffer, buffer_string);
-var author_string = buffer_read(buffer, buffer_string);
-var file_year = buffer_read(buffer, buffer_u16);
-var file_month = buffer_read(buffer, buffer_u8);
-var file_day = buffer_read(buffer, buffer_u8);
-var file_hour = buffer_read(buffer, buffer_u8);
-var file_minute = buffer_read(buffer, buffer_u8);
-var file_second = buffer_read(buffer, buffer_u8);
 
 switch (what) {
     case SERIALIZE_DATA_AND_MAP:
+        var summary_string = buffer_read(buffer, buffer_string);
+        var author_string = buffer_read(buffer, buffer_string);
+        var file_year = buffer_read(buffer, buffer_u16);
+        var file_month = buffer_read(buffer, buffer_u8);
+        var file_day = buffer_read(buffer, buffer_u8);
+        var file_hour = buffer_read(buffer, buffer_u8);
+        var file_minute = buffer_read(buffer, buffer_u8);
+        var file_second = buffer_read(buffer, buffer_u8);
+        
         instance_activate_object(Data);
         with (Data) {
             instance_destroy(id);
@@ -113,6 +114,18 @@ switch (what) {
         Stuff.game_file_author = author_string;
         break;
     case SERIALIZE_ASSETS:
+    default:
+        if (version >= DataVersions.ASSET_FILE_NO_HEADER) {
+        } else {
+            var summary_string = buffer_read(buffer, buffer_string);
+            var author_string = buffer_read(buffer, buffer_string);
+            var file_year = buffer_read(buffer, buffer_u16);
+            var file_month = buffer_read(buffer, buffer_u8);
+            var file_day = buffer_read(buffer, buffer_u8);
+            var file_hour = buffer_read(buffer, buffer_u8);
+            var file_minute = buffer_read(buffer, buffer_u8);
+            var file_second = buffer_read(buffer, buffer_u8);
+        }
         break;
 }
 

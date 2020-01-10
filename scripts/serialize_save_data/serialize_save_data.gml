@@ -97,5 +97,6 @@ enum DataVersions {
     MAP_GENERIC_DATA            = 71,
     DATA_MODULARITY             = 72,
     ASSSET_FILE_BOOLS           = 73,
+    ASSET_FILE_NO_HEADER        = 74,
     _CURRENT /* = whatever the last one is + 1 */
 }
