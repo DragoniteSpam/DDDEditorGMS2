@@ -103,15 +103,40 @@ var el_value_data = create_list(col3_x, yy + ui_get_list_height(el_type_guid) + 
 el_value_data.enabled = false;
 el_value_data.entries_are = ListEntries.INSTANCES;
 dg.el_value_data = el_value_data;
+// for events
+var el_event = create_button(col3_x, yy, "Event: ", ew, eh, fa_left, uivc_button_constant_value_event_graph, dg, Stuff.all_events);
+el_event.enabled = false;
+dg.el_event = el_event;
+var el_event_entrypoint = create_button(col3_x, yy + el_event.height + spacing, "Entrypoint: ", ew, eh, fa_left, omu_entity_get_event_entrypoint, dg);
+el_event_entrypoint.enabled = false;
+dg.el_event_entrypoint = el_event_entrypoint;
 
 var b_width = 128;
 var b_height = 32;
 var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
 
 ds_list_add(dg.contents,
-    el_list, el_name, el_add, el_remove, el_alphabetize,
-    el_type, el_type_ext, el_type_guid,
-    el_value_code, el_value_string, el_value_real, el_value_int, el_value_bool, el_value_color, el_value_other, el_value_data,
+    el_list,
+    el_name,
+    el_add,
+    el_remove,
+    el_alphabetize,
+    // common
+    el_type,
+    el_type_ext,
+    el_type_guid,
+    // values
+    el_value_code,
+    el_value_string,
+    el_value_real,
+    el_value_int,
+    el_value_bool,
+    el_value_color,
+    el_value_other,
+    el_value_data,
+    el_event,
+    el_event_entrypoint,
+    // done
     el_confirm
 );
 

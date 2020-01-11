@@ -106,7 +106,7 @@ if (!page_event) {
 
 var el_event = create_text(c2 + 16, yy, "Event Details", ew, eh, fa_left, ew, dg);
 yy = yy + eh + spacing;
-var el_event_guid = create_button(c2 + 16, yy, "Event: "+text_event, ew, eh, fa_left, omu_entity_get_event, dg);
+var el_event_guid = create_button(c2 + 16, yy, "Event: " + text_event, ew, eh, fa_left, omu_entity_get_event, dg);
 dg.el_event_guid = el_event_guid;
 yy = yy + eh + spacing;
 var el_event_entrypoint = create_button(c2 + 16, yy, "Entrypoint: " + text_entrypoint, ew, eh, fa_left, omu_entity_get_event_entrypoint, dg);

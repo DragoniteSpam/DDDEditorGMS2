@@ -15,6 +15,9 @@ base_dialog.el_value_other.enabled = false;
 base_dialog.el_type_guid.enabled = false;
 base_dialog.el_value_data.enabled = false;
 
+base_dialog.el_event_entrypoint.enabled = false;
+base_dialog.el_event.enabled = false;
+
 switch (what.type) {
     case DataTypes.INT:
         what.value_real = floor(what.value_real);
@@ -186,6 +189,14 @@ switch (what.type) {
         what.value_real = c_black;
         base_dialog.el_value_color.enabled = true;
         base_dialog.el_value_color.value = c_black;
+        break;
+    case DataTypes.EVENT:
+        base_dialog.el_event.enabled = true;
+        base_dialog.el_event_entrypoint.enabled = true;
+        var entrypoint = guid_get(what.value_guid);
+        var event = entrypoint ? entrypoint.event : noone;
+        base_dialog.el_event.text = "Event: " + (event ? event.name : "");
+        base_dialog.el_event_entrypoint.text = "Entrypoint: " + (entrypoint ? entrypoint.name : "");
         break;
     case DataTypes.ENTITY:
         show_error("How did you get here?", false);

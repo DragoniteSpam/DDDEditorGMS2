@@ -152,6 +152,14 @@
             }
         },
         {
+            "Key": "02167d20-df7d-4774-a2e6-105cd629c256",
+            "Value": {
+                "id": "ec45b57d-0cd6-4271-abc2-75e8fa278d61",
+                "resourcePath": "scripts\\dialog_create_constant_get_event_node\\dialog_create_constant_get_event_node.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "0223d341-59b8-4d83-a9bf-aed31e7f214c",
             "Value": {
                 "id": "86fbe54f-3954-47e8-b9c7-ec0432d1b629",
@@ -2204,6 +2212,14 @@
             "Value": {
                 "id": "f7f79a35-bdb9-4745-9448-5193a15988d5",
                 "resourcePath": "scripts\\get_temp_text_path\\get_temp_text_path.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "2224077b-efff-4e97-85d1-35e49a4ce8b3",
+            "Value": {
+                "id": "01f491cc-b8a7-488c-b2aa-11448eb33c77",
+                "resourcePath": "scripts\\uivc_button_constant_value_event_graph\\uivc_button_constant_value_event_graph.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -4508,6 +4524,14 @@
             "Value": {
                 "id": "1903b3ea-6b71-4b67-a273-3c3e1329e412",
                 "resourcePath": "scripts\\colour_replace_green\\colour_replace_green.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "4756c8f0-f2a7-460e-8acd-7b2561ecb59f",
+            "Value": {
+                "id": "3f01bcfd-48d4-43bd-9fb6-3e865ee44da9",
+                "resourcePath": "scripts\\dialog_create_event_get_event_graph\\dialog_create_event_get_event_graph.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -7939,7 +7963,7 @@
             "Key": "7c718de8-277a-4a6d-a1cc-866c19df6fe5",
             "Value": {
                 "id": "360ca6d6-d2d0-4628-9f19-783c7d1c567a",
-                "resourcePath": "scripts\\dialog_create_event_get_event_graph\\dialog_create_event_get_event_graph.yy",
+                "resourcePath": "scripts\\dialog_create_constant_get_event_graph\\dialog_create_constant_get_event_graph.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -15568,6 +15592,14 @@
             }
         },
         {
+            "Key": "f5f5e763-4aa0-4445-9e7d-b2508b9fbded",
+            "Value": {
+                "id": "c2388c3b-c282-40c2-8bf0-11c08cf5ae1c",
+                "resourcePath": "scripts\\dmu_dialog_constant_set_event_node\\dmu_dialog_constant_set_event_node.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "f6270395-5624-4800-b97b-6d5df55a440a",
             "Value": {
                 "id": "af80dcc7-77e9-4cc0-8f15-8331f93e4169",
@@ -16628,7 +16660,9 @@
         "6fa56731-bf2e-4eaa-9a1f-ccaeb5ca0972",
         "cb91650b-0bd4-452e-ba8a-44bfc6fbda39",
         "aa87015b-9205-40fb-861f-af4da7f18aad",
+        "02167d20-df7d-4774-a2e6-105cd629c256",
         "7c718de8-277a-4a6d-a1cc-866c19df6fe5",
+        "4756c8f0-f2a7-460e-8acd-7b2561ecb59f",
         "3ebce2ef-e1ea-49d0-91fd-7a341df0022f",
         "bcd1774a-005a-440c-b96a-c4e8d29065bc",
         "79a317d9-c17d-49ff-bfcd-6ce6166c427b",
@@ -16717,6 +16751,7 @@
         "b9cdda59-4e7f-4fab-a59f-95e69630ef52",
         "30857f47-819a-4b83-8a65-ce4bafe82e6f",
         "2ea94623-fa70-454c-936c-34f3254a98b7",
+        "f5f5e763-4aa0-4445-9e7d-b2508b9fbded",
         "6c193149-d9a6-4e26-804b-579d9c731103",
         "4afd2cd1-23ad-423a-80d4-f4827e6734f2",
         "1209ebac-835c-4394-af5a-f1d135c930fc",
@@ -16991,6 +17026,7 @@
         "80d452f3-5357-4dd4-98aa-4ace86108312",
         "30165653-5007-4786-9457-127466eef073",
         "67c7ecc4-e9bb-4891-bc9e-ec2020e7926f",
+        "2224077b-efff-4e97-85d1-35e49a4ce8b3",
         "598ddab8-dbfd-40f6-952e-f3a161519598",
         "019f0249-82a1-475f-94fe-00d6d417cb80",
         "bd0f3095-f063-4c3f-b9f2-0567e39d3dc6",
