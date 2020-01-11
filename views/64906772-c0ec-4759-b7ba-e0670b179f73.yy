@@ -14,7 +14,8 @@
         "7f899bbe-8d7e-404f-8b24-022de0ffd308",
         "fa2372d8-5ad0-4a33-8506-8588989c6a3f",
         "83aa07ca-500e-4f06-9f3e-b7c6d90e98d9",
-        "f5f5e763-4aa0-4445-9e7d-b2508b9fbded"
+        "f5f5e763-4aa0-4445-9e7d-b2508b9fbded",
+        "76215deb-92fb-4200-b42e-d2a9e8c6b172"
     ],
     "filterType": "GMScript",
     "folderName": "on mouse up",

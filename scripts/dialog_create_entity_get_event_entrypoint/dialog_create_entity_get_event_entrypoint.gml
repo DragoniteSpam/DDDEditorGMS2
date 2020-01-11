@@ -29,7 +29,7 @@ var vy2 = vy1 + eh;
 var yy = 64;
 var spacing = 16;
 
-var el_list = create_list(16, yy, "Select an entrypoint", "<should never see this>", ew, eh, 16, null, false, dg);
+var el_list = create_list(16, yy, "Select an entrypoint", "<no entrypoints>", ew, eh, 16, null, false, dg);
 for (var i = 0; i < ds_list_size(event.nodes); i++) {
     if (event.nodes[| i].type == EventNodeTypes.ENTRYPOINT) {
         // this happens before the list is updated, so you don't need to bother with size minus 1

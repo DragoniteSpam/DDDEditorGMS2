@@ -3512,6 +3512,14 @@
             }
         },
         {
+            "Key": "355daae9-2843-4691-9b4f-3cd5b4fc938a",
+            "Value": {
+                "id": "55596611-5b76-4273-b64d-09ebc7ffefb5",
+                "resourcePath": "scripts\\dialog_create_constant_get_event_entrypoint\\dialog_create_constant_get_event_entrypoint.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "3590db0f-ffea-453f-bab7-a0b8532933d3",
             "Value": {
                 "id": "b9fc4291-d32a-4fd2-9b76-67074f80c0b5",
@@ -7548,6 +7556,14 @@
             "Value": {
                 "id": "9fad132f-6366-47ed-bb2f-744e7ed41edc",
                 "resourcePath": "scripts\\export_vrax\\export_vrax.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "76215deb-92fb-4200-b42e-d2a9e8c6b172",
+            "Value": {
+                "id": "1593b82d-8085-464f-aa30-16adc48aeee0",
+                "resourcePath": "scripts\\dmu_dialog_constant_set_event_node_only\\dmu_dialog_constant_set_event_node_only.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -16663,6 +16679,7 @@
         "02167d20-df7d-4774-a2e6-105cd629c256",
         "7c718de8-277a-4a6d-a1cc-866c19df6fe5",
         "4756c8f0-f2a7-460e-8acd-7b2561ecb59f",
+        "355daae9-2843-4691-9b4f-3cd5b4fc938a",
         "3ebce2ef-e1ea-49d0-91fd-7a341df0022f",
         "bcd1774a-005a-440c-b96a-c4e8d29065bc",
         "79a317d9-c17d-49ff-bfcd-6ce6166c427b",
@@ -16752,6 +16769,7 @@
         "30857f47-819a-4b83-8a65-ce4bafe82e6f",
         "2ea94623-fa70-454c-936c-34f3254a98b7",
         "f5f5e763-4aa0-4445-9e7d-b2508b9fbded",
+        "76215deb-92fb-4200-b42e-d2a9e8c6b172",
         "6c193149-d9a6-4e26-804b-579d9c731103",
         "4afd2cd1-23ad-423a-80d4-f4827e6734f2",
         "1209ebac-835c-4394-af5a-f1d135c930fc",

@@ -37,7 +37,7 @@ if (event) {
     
     yy = yy + el_title_text.height + spacing;
     
-    var el_list = create_list(16, yy, "Select an entrypoint", "<should never see this>", ew, eh, 18, null, false, dg);
+    var el_list = create_list(16, yy, "Select an entrypoint", "<no entrypoints>", ew, eh, 18, null, false, dg);
     for (var i = 0; i < ds_list_size(event.nodes); i++) {
         if (node.event == event || event.nodes[| i].type == EventNodeTypes.ENTRYPOINT) {
             ds_list_add(el_list.entries, event.nodes[| i]);
