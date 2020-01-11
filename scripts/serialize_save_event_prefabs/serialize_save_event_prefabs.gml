@@ -12,7 +12,6 @@ buffer_write(buffer, buffer_u32, n_prefabs);
 for (var i = 0; i < n_prefabs; i++) {
     var prefab = Stuff.all_event_prefabs[| i];
     serialize_save_generic(buffer, prefab);
-    
     buffer_write(buffer, buffer_u16, prefab.type);
     
     var n_data = ds_list_size(prefab.data);
@@ -74,6 +73,7 @@ for (var i = 0; i < n_prefabs; i++) {
                     case DataTypes.ANIMATION:
                     case DataTypes.ENTITY:
                     case DataTypes.MAP:
+                    case DataTypes.EVENT:
                         var save_type = buffer_u32;
                         break;
                     case DataTypes.COLOR:

@@ -24,9 +24,10 @@ repeat (n_prefabs) {
     guid_set(prefab, guid);
     prefab.type = type;
     ds_list_add(Stuff.all_event_prefabs, prefab);
-    
+    ds_list_clear(prefab.data);
     var n_data = buffer_read(buffer, buffer_u8);
-    for (var i = 0; i < n_data; i++) {
+    
+    repeat (n_data) {
         ds_list_add(prefab.data, buffer_read(buffer, buffer_string));
     }
     
@@ -68,7 +69,7 @@ repeat (n_prefabs) {
             }
             
             var custom = guid_get(prefab.custom_guid);
-                
+            
             for (var i = 0; i < ds_list_size(custom.types); i++) {
                 var sub_list = ds_list_create();
                 var type = custom.types[| i];
@@ -94,6 +95,7 @@ repeat (n_prefabs) {
                     case DataTypes.ANIMATION:
                     case DataTypes.ENTITY:
                     case DataTypes.MAP:
+                    case DataTypes.EVENT:
                         var buffer_type = buffer_u32;
                         break;
                     case DataTypes.COLOR:
@@ -104,7 +106,7 @@ repeat (n_prefabs) {
                         not_yet_implemented();
                         break;
                 }
-                    
+                
                 var n_custom_data = buffer_read(buffer, buffer_u8);
                     
                 // custom event types don't seem to be pre-populated with values, for
