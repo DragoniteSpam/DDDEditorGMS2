@@ -107,8 +107,3 @@ enum BattleStyles {
     GRID_BASED,             // boundaries are not respected
     ACTION,                 // z*lda
 }
-
-enum TileSelectorOnClick {
-    SELECT,
-    MODIFY,
-}

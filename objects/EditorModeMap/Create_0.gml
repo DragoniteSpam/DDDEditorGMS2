@@ -56,8 +56,6 @@ enum FillTypes {
     TERRAIN,
 }
 
-tile_on_click = TileSelectorOnClick.SELECT;
-
 active_map = instance_create_depth(0, 0, 0, DataMapContainer);
 active_map.contents = instance_create_depth(0, 0, 0, MapContents);
 ds_grid_resize(active_map.contents.map_grid, active_map.xx, active_map.yy);

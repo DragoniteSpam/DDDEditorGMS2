@@ -646,15 +646,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy = yy + element.height + spacing;
     var yy_aftergrid = yy;
     
-    element = create_radio_array(legal_x + spacing, yy, "On Click", col_width, element_height, uivc_tile_set_on_click, mode.tile_on_click, t_p_tile_editor);
-    create_radio_array_options(element, ["Select", "Modify"]);
-    ds_list_add(t_p_tile_editor.contents, element);
-    
-    // second column
-    
-    yy = yy_aftergrid;
-    
-    element = create_text(col2_x, yy, "Tile Properties: x, y", col_width, element_height, fa_left, col_width, t_p_tile_editor);
+    element = create_text(legal_x + spacing, yy, "Tile Properties: x, y", col_width, element_height, fa_left, col_width, t_p_tile_editor);
     element.render = ui_render_text_tile_label;
     ds_list_add(t_p_tile_editor.contents, element);
     
