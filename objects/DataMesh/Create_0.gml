@@ -19,7 +19,6 @@ cshape = noone;
 
 /* s */ default_solid = true;
 /* s */ flags = 0;          // overrides Data.flags
-/* s */ tags = 0;
 
 ds_list_add(Stuff.all_meshes, id);
 

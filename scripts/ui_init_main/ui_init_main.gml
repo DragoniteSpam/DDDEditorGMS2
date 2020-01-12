@@ -646,12 +646,6 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy = yy + element.height + spacing;
     var yy_aftergrid = yy;
     
-    element = create_radio_array(legal_x + spacing, yy, "Data to View", col_width, element_height, uivc_tile_set_data_view, mode.tile_data_view, t_p_tile_editor);
-    create_radio_array_options(element, ["Flags", "Tags"]);
-    ds_list_add(t_p_tile_editor.contents, element);
-    
-    yy = yy + ui_get_radio_array_height(element) + spacing;
-    
     element = create_radio_array(legal_x + spacing, yy, "On Click", col_width, element_height, uivc_tile_set_on_click, mode.tile_on_click, t_p_tile_editor);
     create_radio_array_options(element, ["Select", "Modify"]);
     ds_list_add(t_p_tile_editor.contents, element);
@@ -678,22 +672,6 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     ds_list_add(t_p_tile_editor.contents, element);
     
     yy = yy + element.height + spacing;
-    
-    element = create_input(col2_x, yy, "Tag:", col_width, element_height, uivc_input_tile_tag, 0, 0, validate_int, 0, TileTerrainTags.FINAL - 1, 2, 84, 0, 84 + 64, element_height, t_p_tile_editor);
-    element.render = ui_render_input_tile_tag;
-    ds_list_add(t_p_tile_editor.contents, element);
-    
-    t_p_tile_editor.element_tag = element;
-    
-    yy = yy + element.height + spacing;
-    
-    element = create_button(col2_x + 16, yy, "-", element_height, element_height, fa_center, uimu_tile_tag_down, t_p_tile_editor);
-    ds_list_add(t_p_tile_editor.contents, element);
-    element = create_text(col2_x + 48, yy, "tag name", col_width, element_height, fa_left, 128, t_p_tile_editor);
-    element.render = ui_render_text_tile_tag;
-    ds_list_add(t_p_tile_editor.contents, element);
-    element = create_button(col2_x + 176, yy, "+", element_height, element_height, fa_center, uimu_tile_tag_up, t_p_tile_editor);
-    ds_list_add(t_p_tile_editor.contents, element);
     
     #endregion
     
@@ -770,23 +748,6 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
         create_bitfield_option_data(TileFlags.DANGER, ui_render_bitfield_option_text_mesh_flag, uivc_bitfield_mesh_flag, "D", -1, 0, s, s),
         create_bitfield_option_data(TileFlags.SAFER, ui_render_bitfield_option_text_mesh_flag, uivc_bitfield_mesh_flag, "S", -1, 0, s, s)
     ]);
-    ds_list_add(t_p_mesh_editor.contents, element);
-    
-    yy = yy + element.height + spacing;
-    
-    element = create_input(col2_x, yy, "Tag:", col_width, element_height, uivc_input_mesh_tag, 0, 0, validate_int, 0, TileTerrainTags.FINAL - 1, 2, 84, 0, 84 + 64, element_height, t_p_mesh_editor);
-    ds_list_add(t_p_mesh_editor.contents, element);
-    
-    t_p_mesh_editor.element_tag = element;
-    
-    yy = yy + element.height + spacing;
-    
-    element = create_button(col2_x + 16, yy, "-", element_height, element_height, fa_center, uimu_mesh_tag_down, t_p_mesh_editor);
-    ds_list_add(t_p_mesh_editor.contents, element);
-    element = create_text(col2_x + 48, yy, "tag name", col_width, element_height, fa_left, 128, t_p_mesh_editor);
-    element.render = ui_render_text_mesh_tag;
-    ds_list_add(t_p_mesh_editor.contents, element);
-    element = create_button(col2_x + 176, yy, "+", element_height, element_height, fa_center, uimu_mesh_tag_up, t_p_mesh_editor);
     ds_list_add(t_p_mesh_editor.contents, element);
     
     yy = yy + element.height + spacing;
@@ -887,24 +848,6 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
         create_bitfield_option_data(TileFlags.COUNTER, ui_render_bitfield_option_text_autotile_flag, uivc_bitfield_autotile_flag, "C", -1, 0, s, s),
         create_bitfield_option_data(TileFlags.SAFER, ui_render_bitfield_option_text_autotile_flag, uivc_bitfield_autotile_flag, "S", -1, 0, s, s)
     ]);
-    ds_list_add(t_p_autotile_editor.contents, element);
-    
-    yy = yy + element.height + spacing;
-    
-    element = create_input(col2_x, yy, "Tag:", col_width, element_height, uivc_input_autotile_tag, 0, 0, validate_int, 0, TileTerrainTags.FINAL - 1, 2, 84, 0, 84 + 64, element_height, t_p_autotile_editor);
-    element.render = ui_render_input_autotile_tag;
-    ds_list_add(t_p_autotile_editor.contents, element);
-    
-    t_p_autotile_editor.element_tag = element;
-    
-    yy = yy + element.height + spacing;
-    
-    element = create_button(col2_x + 16, yy, "-", element_height, element_height, fa_center, uimu_autotile_tag_down, t_p_autotile_editor);
-    ds_list_add(t_p_autotile_editor.contents, element);
-    element = create_text(col2_x + 48, yy, "tag name", col_width, element_height, fa_left, 128, t_p_autotile_editor);
-    element.render = ui_render_text_autotile_tag;
-    ds_list_add(t_p_autotile_editor.contents, element);
-    element = create_button(col2_x + 176, yy, "+", element_height, element_height, fa_center, uimu_autotile_tag_up, t_p_autotile_editor);
     ds_list_add(t_p_autotile_editor.contents, element);
     
     yy = yy + element.height + spacing;

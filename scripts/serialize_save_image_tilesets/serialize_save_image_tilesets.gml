@@ -32,7 +32,6 @@ for (var i = 0; i < n_tilesets; i++) {
         // s16 because no tile is "noone"
         buffer_write(buffer, buffer_s16, ts.autotiles[j]);
         buffer_write(buffer, buffer_u8, ts.at_flags[j]);
-        buffer_write(buffer, buffer_u8, ts.at_tags[j]);
     }
     
     // all of these grids will be the same dimensions so the
@@ -47,13 +46,7 @@ for (var i = 0; i < n_tilesets; i++) {
     for (var j = 0; j < t_grid_width; j++) {
         for (var k = 0; k < t_grid_height; k++) {
             buffer_write(buffer, buffer_u8, ts.flags[# j, k]);
-            buffer_write(buffer, buffer_u8, ts.tags[# j, k]);
         }
-    }
-    
-    buffer_write(buffer, buffer_u8, ds_list_size(ts.terrain_tag_names));
-    for (var j = 0; j < ds_list_size(ts.terrain_tag_names); j++) {
-        buffer_write(buffer, buffer_string, ts.terrain_tag_names[| j]);
     }
 }
 

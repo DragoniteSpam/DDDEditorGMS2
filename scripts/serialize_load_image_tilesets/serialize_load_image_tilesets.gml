@@ -26,7 +26,6 @@ for (var i = 0; i < n_tilesets; i++) {
     var n_autotiles = buffer_read(buffer, buffer_u8);
     var at_array = array_create(n_autotiles);
     var at_flags = array_create(n_autotiles);
-    var at_tags = array_create(n_autotiles);
     
     for (var j = 0; j < n_autotiles; j++) {
         // s16 because no tile is "noone"
@@ -38,7 +37,10 @@ for (var i = 0; i < n_tilesets; i++) {
             buffer_read(buffer, buffer_u8);
         }
         at_flags[j] = buffer_read(buffer, buffer_u8);
-        at_tags[j] = buffer_read(buffer, buffer_u8);
+        if (version >= DataVersions.NEW_TERRAIN_FLAGS) {
+        } else {
+            buffer_read(buffer, buffer_u8);
+        }
     }
     
     var ts = tileset_create(ts_name, at_array, sprite);
@@ -50,7 +52,6 @@ for (var i = 0; i < n_tilesets; i++) {
     
     // i really hope the garbage collector is doing its job with the old arrays
     ts.at_flags = at_flags;
-    ts.at_tags = at_tags;
     
     var t_grid_width = buffer_read(buffer, buffer_u16);
     var t_grid_height = buffer_read(buffer, buffer_u16);
@@ -68,15 +69,20 @@ for (var i = 0; i < n_tilesets; i++) {
                 buffer_read(buffer, buffer_u8);
             }
             ts.flags[# j, k] = buffer_read(buffer, buffer_u8);
-            ts.tags[# j, k] = buffer_read(buffer, buffer_u8);
+            if (version >= DataVersions.NEW_TERRAIN_FLAGS) {
+            } else {
+                buffer_read(buffer, buffer_u8);
+            }
         }
     }
     
     ds_list_add(Stuff.all_graphic_tilesets, ts);
     
-    ds_list_clear(ts.terrain_tag_names);
-    var n = buffer_read(buffer, buffer_u8);
-    repeat (n) {
-        ds_list_add(ts.terrain_tag_names, buffer_read(buffer, buffer_string));
+    if (version >= DataVersions.NEW_TERRAIN_FLAGS) {
+    } else {
+        var n = buffer_read(buffer, buffer_u8);
+        repeat (n) {
+            buffer_read(buffer, buffer_string);
+        }
     }
 }

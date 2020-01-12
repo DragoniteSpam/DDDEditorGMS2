@@ -31,10 +31,8 @@ autotiles = array_create(AUTOTILE_MAX);
 array_clear(autotiles, noone);
 
 flags = noone;
-tags = noone;
 
 at_flags = noone;
-at_tags = noone;
 
 enum TileFlags {
     BUSH        = 0x01,     /* bush animation(?) */
@@ -42,32 +40,3 @@ enum TileFlags {
     SAFER       = 0x04,     /* reduced encounter rate */
     DANGER      = 0x08,     /* increased encounter rate */
 }
-
-enum TileTerrainTags {
-    NONE,               /* 00 */
-    LEDGE,              /* 01 */
-    GRASS,              /* 02 */
-    SAND,               /* 03 */
-    ROCK,               /* 04 */
-    DEEPWATER,          /* 05 */
-    STILLWATER,         /* 06 */
-    WATER,              /* 07 */
-    WATERFALL,          /* 08 */
-    WATERFALLCREST,     /* 09 */
-    TALLGRASS,          /* 10 */
-    UNDERWATERGRASS,    /* 11 */
-    ICE,                /* 12 */
-    NEUTRAL,            /* 13 */
-    SOOTGRASS,          /* 14 */
-    BRIDGE,             /* 15 */
-    FINAL
-}
-
-// this used to be global but now if you want to define different tags for each tileset,
-// you're allowed
-terrain_tag_names = ds_list_create();
-ds_list_add(terrain_tag_names,
-    "None", "Ledge", "Grass", "Sand", "Rock", "Deep Water",
-    "StilL Water", "Water", "Waterfall", "Waterfall Crest", "Tall Grass",
-    "Underwater Grass", "Ice", "Neutral", "Soot Grass", "Bridge"
-);

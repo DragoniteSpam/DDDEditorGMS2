@@ -56,7 +56,6 @@ enum FillTypes {
     TERRAIN,
 }
 
-tile_data_view = TileSelectorDisplayMode.FLAGS;
 tile_on_click = TileSelectorOnClick.SELECT;
 
 active_map = instance_create_depth(0, 0, 0, DataMapContainer);

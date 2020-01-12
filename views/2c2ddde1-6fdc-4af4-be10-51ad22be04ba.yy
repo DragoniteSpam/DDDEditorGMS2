@@ -6,9 +6,7 @@
     "children": [
         "a50260f0-a02f-47b0-8f59-72a6335e3088",
         "9921cd75-c9dc-49cc-b50f-cd98c14835db",
-        "4242d52a-6e3f-49ec-ba3d-9b7b2f99cfb7",
-        "abdfe03c-d0df-4440-b934-5a80285feefa",
-        "3745418b-0351-42db-b006-8f251c0017c3"
+        "4242d52a-6e3f-49ec-ba3d-9b7b2f99cfb7"
     ],
     "filterType": "GMScript",
     "folderName": "autotile",

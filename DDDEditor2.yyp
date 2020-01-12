@@ -80,14 +80,6 @@
             }
         },
         {
-            "Key": "00b3af67-33bf-4c95-8fbc-0b8e7d84af2f",
-            "Value": {
-                "id": "4273c108-a311-40a6-8775-2ee04342f226",
-                "resourcePath": "scripts\\uivc_input_tile_tag\\uivc_input_tile_tag.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "00c122c8-5ec4-4a90-9c38-5e47ca49e306",
             "Value": {
                 "id": "259c4f59-d59a-4440-ace3-7dbf1ed58062",
@@ -1752,14 +1744,6 @@
             }
         },
         {
-            "Key": "1adf9578-1fe3-4a55-919b-f4f2572696ee",
-            "Value": {
-                "id": "6a238b52-ec86-446e-bc23-e9f1e75b7210",
-                "resourcePath": "scripts\\uivc_input_autotile_tag\\uivc_input_autotile_tag.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "1b044773-eb50-43cd-b17c-7a74cf219137",
             "Value": {
                 "id": "a7f0682b-b9ef-451f-93c8-34367a68bd38",
@@ -2516,14 +2500,6 @@
             "Value": {
                 "id": "71baf9db-3807-4774-87b3-48fc489fe96a",
                 "resourcePath": "scripts\\serialize_save_entity_autotile\\serialize_save_entity_autotile.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "25daa208-4e50-4632-aa58-57f0179f62c5",
-            "Value": {
-                "id": "4fc5d461-ae35-4338-b010-b600fed1c5d8",
-                "resourcePath": "scripts\\uivc_select_tile_refresh\\uivc_select_tile_refresh.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -3536,14 +3512,6 @@
             }
         },
         {
-            "Key": "35e68409-dde2-47c6-a70c-bffd5ece8045",
-            "Value": {
-                "id": "c27d5470-fa87-46cc-bb99-af3b5dc77d7e",
-                "resourcePath": "scripts\\uimu_mesh_tag_down\\uimu_mesh_tag_down.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "35f737cc-5f92-4f40-a2d2-b48ed476bf37",
             "Value": {
                 "id": "6ee1e63e-edf2-408f-8f98-bf2e62bda167",
@@ -3652,14 +3620,6 @@
             "Value": {
                 "id": "412d4913-a1b9-4c8c-945c-9ec2584ab058",
                 "resourcePath": "scripts\\momu_preferences\\momu_preferences.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "3745418b-0351-42db-b006-8f251c0017c3",
-            "Value": {
-                "id": "58792139-0e30-4395-be83-863349c93e66",
-                "resourcePath": "scripts\\ui_render_input_tile_tag\\ui_render_input_tile_tag.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -4144,14 +4104,6 @@
             }
         },
         {
-            "Key": "4229cf21-1502-4221-b23b-1111acb38d06",
-            "Value": {
-                "id": "6ec85434-e4c0-463d-8404-2cdb6549f48e",
-                "resourcePath": "scripts\\ui_render_text_mesh_tag\\ui_render_text_mesh_tag.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "4233e147-592a-48e3-b713-ab7c92ab7a42",
             "Value": {
                 "id": "ea6321cb-3dd6-457f-bc76-817f7c4fd1a5",
@@ -4276,14 +4228,6 @@
             "Value": {
                 "id": "f0c9b19c-6c59-4105-93a2-9192dcff92c7",
                 "resourcePath": "scripts\\ui_render\\ui_render.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "43d067c8-589d-42af-95b0-e770cd521608",
-            "Value": {
-                "id": "340d8d90-3a20-4c12-ae7e-f937895b329f",
-                "resourcePath": "scripts\\uivc_input_mesh_tag\\uivc_input_mesh_tag.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -4696,14 +4640,6 @@
             }
         },
         {
-            "Key": "49a17f7d-8102-4a15-8539-939e11db8886",
-            "Value": {
-                "id": "e6bdfdb3-2b9b-4e7a-9266-403657f70e30",
-                "resourcePath": "scripts\\uimu_autotile_tag_down\\uimu_autotile_tag_down.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "49af59d3-f74c-416b-ad61-eafc4a461838",
             "Value": {
                 "id": "a87fe72a-83cb-4515-bd96-45bf18ba330a",
@@ -4724,14 +4660,6 @@
             "Value": {
                 "id": "910a270c-1a26-4c27-92ac-35da2ab7e3e2",
                 "resourcePath": "scripts\\smf_path_destroy\\smf_path_destroy.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "49ea60c3-016d-45d8-a55e-cbba672eb8c6",
-            "Value": {
-                "id": "370a6f47-4b9c-4c17-ab01-bae815ee155d",
-                "resourcePath": "scripts\\uimu_mesh_tag_up\\uimu_mesh_tag_up.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -4932,14 +4860,6 @@
             "Value": {
                 "id": "9c154967-b240-4662-888c-df14f5c7c816",
                 "resourcePath": "scripts\\omu_animation_reset_camera\\omu_animation_reset_camera.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "4d6d600c-14ea-42e7-bdb7-acd6a60dabbf",
-            "Value": {
-                "id": "0250f609-d6d3-480f-8a5f-d8c577885d54",
-                "resourcePath": "scripts\\uimu_tile_tag_down\\uimu_tile_tag_down.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -7312,14 +7232,6 @@
             }
         },
         {
-            "Key": "71c7bdf1-0710-45c2-bb0d-7d02944e02ae",
-            "Value": {
-                "id": "f7763881-2b32-4f37-9696-be04bf21ba27",
-                "resourcePath": "scripts\\uivc_tile_set_data_view\\uivc_tile_set_data_view.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "71c7cc6d-21a0-40d0-adae-ccf9e2a0b3fa",
             "Value": {
                 "id": "e1cede0f-708a-48b9-a50c-a0b837f3ffc5",
@@ -9360,14 +9272,6 @@
             }
         },
         {
-            "Key": "91ce0e12-699b-4131-a313-af68e7add7c1",
-            "Value": {
-                "id": "ddc123ba-cd1b-4468-88e2-700cf502e922",
-                "resourcePath": "scripts\\uimu_autotile_tag_up\\uimu_autotile_tag_up.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "91d910dc-0372-4e73-8aa3-3b02c1213846",
             "Value": {
                 "id": "2017750d-0c86-4a1d-88a4-d8b4b0a6dbdf",
@@ -10304,14 +10208,6 @@
             }
         },
         {
-            "Key": "a0687d80-acc3-48fc-9407-f79723171a22",
-            "Value": {
-                "id": "f026df15-45ec-4286-9c9e-147e9a8fc478",
-                "resourcePath": "scripts\\ui_render_text_tile_tag\\ui_render_text_tile_tag.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "a0c45521-e3c0-4e37-94b4-600c3f5eaf19",
             "Value": {
                 "id": "6a5a2c4b-86bf-4b77-9a9d-4328b4db6b6d",
@@ -11040,14 +10936,6 @@
             }
         },
         {
-            "Key": "abdfe03c-d0df-4440-b934-5a80285feefa",
-            "Value": {
-                "id": "dbd955ce-2bbb-4087-b5fb-52e4d788b1f2",
-                "resourcePath": "scripts\\ui_render_input_autotile_tag\\ui_render_input_autotile_tag.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "abe49b7e-34e7-4375-83a1-15f5afa50fac",
             "Value": {
                 "id": "0d82479d-d404-4e8c-997d-721385a7af7c",
@@ -11204,14 +11092,6 @@
             "Value": {
                 "id": "f963f9ef-8efc-4ce0-b4b2-239edbbfa49a",
                 "resourcePath": "scripts\\debug\\debug.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "af64796a-1c18-4a22-9fde-542f04fd5338",
-            "Value": {
-                "id": "65170aa7-e9e1-4362-a5c1-a297869dd78e",
-                "resourcePath": "scripts\\ui_render_text_autotile_tag\\ui_render_text_autotile_tag.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -14112,14 +13992,6 @@
             }
         },
         {
-            "Key": "ddc9b6e0-d201-4f39-9584-5a98b14f4dd8",
-            "Value": {
-                "id": "0a381d83-3849-4109-8702-4c547c50e72d",
-                "resourcePath": "scripts\\uimu_tile_tag_up\\uimu_tile_tag_up.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "dddfa864-b150-4c43-950b-8eebc16c1e56",
             "Value": {
                 "id": "e290142a-a47b-4ddb-bb41-c1f231162e82",
@@ -16939,18 +16811,9 @@
         "907770f2-a36c-4e4c-bb24-9c4831722a9e",
         "e501f0d2-e906-4cfc-9ca2-6fe26ed12d4a",
         "12524178-acdd-49a0-bcb8-77ba5b45bb12",
-        "49a17f7d-8102-4a15-8539-939e11db8886",
-        "91ce0e12-699b-4131-a313-af68e7add7c1",
-        "1adf9578-1fe3-4a55-919b-f4f2572696ee",
         "46d2c136-c93d-4989-bd2d-be7799c065cb",
-        "35e68409-dde2-47c6-a70c-bffd5ece8045",
-        "49ea60c3-016d-45d8-a55e-cbba672eb8c6",
-        "4d6d600c-14ea-42e7-bdb7-acd6a60dabbf",
-        "ddc9b6e0-d201-4f39-9584-5a98b14f4dd8",
         "27dc714f-af2c-4c19-be9e-2f8b4cb5dcee",
         "f297aafe-1c59-40a8-b59f-9c96502138d3",
-        "43d067c8-589d-42af-95b0-e770cd521608",
-        "00b3af67-33bf-4c95-8fbc-0b8e7d84af2f",
         "ab8d7559-54c0-49c8-83e0-b8bed3869668",
         "b8c367a5-84ef-46cd-b8b0-85ddd90e209d",
         "57643896-d54d-4d74-b9ea-cee156d2cd34",
@@ -16987,11 +16850,9 @@
         "2390c4d6-8c21-464c-b2b6-8fb05e3c5792",
         "aecbb8ee-fed9-4fb8-a933-b609c8d9eea1",
         "5cf72a25-8319-4e9b-8aca-55e960eccb1e",
-        "25daa208-4e50-4632-aa58-57f0179f62c5",
         "fda42921-f624-4057-96b8-dab2bb6b80ed",
         "c4975f3e-b100-4ede-ab82-74e597db528c",
         "41100900-466b-4eb8-80ce-de0da9f7cc47",
-        "71c7bdf1-0710-45c2-bb0d-7d02944e02ae",
         "0bb0a405-f03c-48b1-b906-b9f0a7014a09",
         "9682ada3-d443-4b8a-937c-87c27d741dbf",
         "bd84c81d-9213-4e20-9041-48eb9a15eefb",
@@ -17345,15 +17206,11 @@
         "a50260f0-a02f-47b0-8f59-72a6335e3088",
         "9921cd75-c9dc-49cc-b50f-cd98c14835db",
         "4242d52a-6e3f-49ec-ba3d-9b7b2f99cfb7",
-        "abdfe03c-d0df-4440-b934-5a80285feefa",
-        "3745418b-0351-42db-b006-8f251c0017c3",
         "2a2dc1ca-1f01-46b7-a91b-4495ca602c34",
         "77dd205b-f3ec-446b-9bc8-818e5c4b5e20",
         "d32ea813-a8d1-4cc2-9e3d-34b66d78cf8e",
         "fcbc3620-5731-43bc-8df5-437ff3c44e48",
         "37c895b3-7edf-4170-b5a2-dc4420099bf9",
-        "a0687d80-acc3-48fc-9407-f79723171a22",
-        "af64796a-1c18-4a22-9fde-542f04fd5338",
         "b6ac9778-94c7-4faf-9518-2aeba52f7490",
         "0b38f5c9-84a5-4ab5-b126-aa80850cc5d1",
         "3d8d93db-017a-4a73-bebc-d1b241221ebf",
@@ -17409,7 +17266,6 @@
         "64a593ba-b9a3-4eb1-afba-23dce9d09679",
         "e9bafafb-ea09-4d2a-95c3-60428a6c1248",
         "257305ac-2e07-4f5a-9891-06b3db9d576c",
-        "4229cf21-1502-4221-b23b-1111acb38d06",
         "14379ae6-3478-43af-9e2a-db113b917ebd",
         "ca31a73d-737d-49c7-9886-3a1b35650ccc",
         "fcd4ba1d-4e32-4811-bac1-bf5c9ad661c1",

@@ -108,11 +108,6 @@ enum BattleStyles {
     ACTION,                 // z*lda
 }
 
-enum TileSelectorDisplayMode {
-    FLAGS,
-    TAGS,
-}
-
 enum TileSelectorOnClick {
     SELECT,
     MODIFY,

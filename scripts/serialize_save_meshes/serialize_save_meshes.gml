@@ -29,7 +29,6 @@ for (var i = 0; i < n_meshes; i++) {
     buffer_write(buffer, buffer_f32, mesh.zmax);
     
     buffer_write(buffer, buffer_u8, mesh.default_solid);
-    buffer_write(buffer, buffer_u8, mesh.tags);
 }
 
 buffer_poke(buffer, addr_next, buffer_u64, buffer_tell(buffer));

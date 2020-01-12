@@ -24,13 +24,8 @@ with (instance_create_depth(0, 0, 0, DataTileset)) {
     array_clear(autotiles, noone);
     
     flags = tileset_create_grid(picture, 0);
-    tags = tileset_create_grid(picture, TileTerrainTags.NONE);
-    
     at_flags = array_create(AUTOTILE_MAX);
-    at_tags = array_create(AUTOTILE_MAX);
-    
     array_clear(at_flags, 0);
-    array_clear(at_tags, TileTerrainTags.NONE);
     
     master = tileset_create_master(id);
     

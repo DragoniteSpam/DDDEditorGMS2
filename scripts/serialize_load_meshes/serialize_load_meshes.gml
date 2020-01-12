@@ -37,7 +37,10 @@ repeat (n_meshes) {
     } else {
         buffer_read(buffer, buffer_u8);
     }
-    mesh.tags = buffer_read(buffer, buffer_u8);
+    if (version >= DataVersions.NEW_TERRAIN_FLAGS) {
+    } else {
+        buffer_read(buffer, buffer_u8);
+    }
     
     switch (mesh.type) {
         case MeshTypes.RAW: serialize_load_mesh_raw(mesh); break;

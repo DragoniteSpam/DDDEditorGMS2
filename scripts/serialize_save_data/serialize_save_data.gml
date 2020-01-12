@@ -98,5 +98,6 @@ enum DataVersions {
     DATA_MODULARITY             = 72,
     ASSSET_FILE_BOOLS           = 73,
     ASSET_FILE_NO_HEADER        = 74,
+    NEW_TERRAIN_FLAGS           = 75,
     _CURRENT /* = whatever the last one is + 1 */
 }
