@@ -41,6 +41,7 @@ repeat (n_meshes) {
     } else {
         buffer_read(buffer, buffer_u8);
     }
+    // flags are saved in save_generic
     
     switch (mesh.type) {
         case MeshTypes.RAW: serialize_load_mesh_raw(mesh); break;

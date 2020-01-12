@@ -19,7 +19,7 @@ for (var i = 0; i < n_meshes; i++) {
     buffer_write(buffer, buffer_u32, buffer_get_size(mesh.buffer));
     buffer_write_buffer(buffer, mesh.buffer);
     // don't bother saving the wireframe buffer - we need to re-create the collision
-    // shape as well, so we might as well recreate the wireframe at the same time :/
+    // shape as well, so we might as well recreate the wireframe at the same time =/
     
     buffer_write(buffer, buffer_f32, mesh.xmin);
     buffer_write(buffer, buffer_f32, mesh.ymin);
@@ -29,6 +29,7 @@ for (var i = 0; i < n_meshes; i++) {
     buffer_write(buffer, buffer_f32, mesh.zmax);
     
     buffer_write(buffer, buffer_u8, mesh.default_solid);
+    // flags are saved in save_generic
 }
 
 buffer_poke(buffer, addr_next, buffer_u64, buffer_tell(buffer));

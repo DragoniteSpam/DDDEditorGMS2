@@ -31,7 +31,7 @@ for (var i = 0; i < n_tilesets; i++) {
     for (var j = 0; j < n_autotiles; j++) {
         // s16 because no tile is "noone"
         buffer_write(buffer, buffer_s16, ts.autotiles[j]);
-        buffer_write(buffer, buffer_u8, ts.at_flags[j]);
+        buffer_write(buffer, buffer_u32, ts.at_flags[j]);
     }
     
     // all of these grids will be the same dimensions so the
@@ -45,7 +45,7 @@ for (var i = 0; i < n_tilesets; i++) {
     
     for (var j = 0; j < t_grid_width; j++) {
         for (var k = 0; k < t_grid_height; k++) {
-            buffer_write(buffer, buffer_u8, ts.flags[# j, k]);
+            buffer_write(buffer, buffer_u32, ts.flags[# j, k]);
         }
     }
 }

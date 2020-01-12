@@ -36,7 +36,11 @@ for (var i = 0; i < n_tilesets; i++) {
             buffer_read(buffer, buffer_u8);
             buffer_read(buffer, buffer_u8);
         }
-        at_flags[j] = buffer_read(buffer, buffer_u8);
+        if (version >= DataVersions.NEW_TERRAIN_FLAGS_PART_TWO) {
+            at_flags[j] = buffer_read(buffer, buffer_u32);
+        } else {
+            at_flags[j] = buffer_read(buffer, buffer_u8);
+        }
         if (version >= DataVersions.NEW_TERRAIN_FLAGS) {
         } else {
             buffer_read(buffer, buffer_u8);
@@ -68,7 +72,11 @@ for (var i = 0; i < n_tilesets; i++) {
                 buffer_read(buffer, buffer_u8);
                 buffer_read(buffer, buffer_u8);
             }
-            ts.flags[# j, k] = buffer_read(buffer, buffer_u8);
+            if (version >= DataVersions.NEW_TERRAIN_FLAGS_PART_TWO) {
+                ts.flags[# j, k] = buffer_read(buffer, buffer_u32);
+            } else {
+                ts.flags[# j, k] = buffer_read(buffer, buffer_u8);
+            }
             if (version >= DataVersions.NEW_TERRAIN_FLAGS) {
             } else {
                 buffer_read(buffer, buffer_u8);
