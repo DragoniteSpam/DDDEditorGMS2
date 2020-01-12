@@ -31,5 +31,4 @@ autotiles = array_create(AUTOTILE_MAX);
 array_clear(autotiles, noone);
 
 flags = noone;
-
 at_flags = noone;

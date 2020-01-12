@@ -14,7 +14,8 @@
         "b036f10f-07d7-4cae-9bac-3824365284af",
         "2c70626d-6b45-41a9-aa03-b92912dcbe11",
         "fc4662bb-11fc-46ed-a4e9-cfb814458882",
-        "0e914666-5b00-4ec7-aac1-acca6ddcb0e2"
+        "0e914666-5b00-4ec7-aac1-acca6ddcb0e2",
+        "f282925e-8cb3-443c-8f28-b7916d699741"
     ],
     "filterType": "GMScript",
     "folderName": "basic data",

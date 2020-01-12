@@ -123,12 +123,18 @@ for (var i = 0; i < ds_list_size(layer_objects); i++) {
         var ts_base_list = tiled_cache[? "%tilesets"];
         for (var j = 0; j < ds_list_size(ts_base_list); j++) {
             var ts_data = ts_base_list[| j];
-            if (ts_data[? "firstgid"] > data_gid) {
+            var ts_data_next = ts_base_list[| j + 1];
+            if (ts_data[? "firstgid"] > data_gid && (!ts_data_next || ts_data_next[? "firstgid"] <= data_gid)) {
                 ts_json_data = ts_base_list[| max(0, j - 1)];
                 break;
             }
         }
-        
+        // if a tileset wasn't found, go with the last one - it might be in there because
+        // we don't know what the greatest value in the last tileset is; i don't know if there
+        // are any potential issues with this, but if there are i'll deal with them later
+        if (!ts_json_data) {
+            ts_json_data = ds_list_top(ts_base_list);
+        }
         // i do NOT want to go through this every time so i'm going to cache the result
         // when i can since the gids are [waves hands] global
         var tileset_data = import_map_tiled_get_cached_tileset(tiled_cache, ts_json_data[? "source"]);
@@ -181,7 +187,7 @@ for (var i = 0; i < ds_list_size(layer_objects); i++) {
                 page.event_guid = pr_cutscene_entrypoint[0].GUID;
                 page.event_entrypoint = pr_cutscene_entrypoint[1].GUID;
             } else {
-                show_error("Log an error somewhere", false);
+                debug("Log an error somewhere - no event entrypoint \"" + data_properties[? "CutsceneEntrypoint"] + "\"" + " for " + data_name);
             }
             break;
         case "mesh":
@@ -214,7 +220,7 @@ for (var i = 0; i < ds_list_size(layer_objects); i++) {
                 instance.off_xx = pr_offset_x / TILE_WIDTH;
                 instance.off_yy = pr_offset_y / TILE_HEIGHT;
             } else {
-                show_error("Log an error somewhere", false);
+                debug("Log an error somewhere - no event entrypoint \"" + data_properties[? "CutsceneEntrypoint"] + "\"" + " for " + data_name);
             }
             break;
         case "effect":

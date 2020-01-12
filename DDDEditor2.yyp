@@ -1592,6 +1592,14 @@
             }
         },
         {
+            "Key": "1862fc95-bd9d-4dd5-bfd3-3f87421d96b3",
+            "Value": {
+                "id": "2abb7d09-42c8-4144-affe-03a5e7f928ac",
+                "resourcePath": "scripts\\omu_mesh_flags\\omu_mesh_flags.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "18786131-510b-4707-8e4d-588e193c7d76",
             "Value": {
                 "id": "c26b3263-0411-4edc-9c1d-802a3c32a215",
@@ -15232,6 +15240,14 @@
             }
         },
         {
+            "Key": "f282925e-8cb3-443c-8f28-b7916d699741",
+            "Value": {
+                "id": "32b5838e-7b96-4532-a5a3-b31bbb37e275",
+                "resourcePath": "scripts\\dialog_create_asset_flags\\dialog_create_asset_flags.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "f2cf8b98-0e9f-4287-83f9-b6cf1315dbe4",
             "Value": {
                 "id": "3ea44d18-3c51-4b7c-98ff-c35162582694",
@@ -16509,6 +16525,7 @@
         "2c70626d-6b45-41a9-aa03-b92912dcbe11",
         "fc4662bb-11fc-46ed-a4e9-cfb814458882",
         "0e914666-5b00-4ec7-aac1-acca6ddcb0e2",
+        "f282925e-8cb3-443c-8f28-b7916d699741",
         "cc8c2e48-12d3-4866-872d-b7dfc6b02780",
         "a49e8c31-936f-4515-bdcc-92018abaa5b0",
         "8c51d098-04e8-4711-bb41-f98098a4bdc7",
@@ -17093,6 +17110,7 @@
         "de12a3bf-7b99-4621-bdec-4715ee4965c4",
         "2883d4e0-ec23-482c-9d8a-e1e21a863e34",
         "064fd29e-7ed0-4201-87c9-355fde51e08a",
+        "1862fc95-bd9d-4dd5-bfd3-3f87421d96b3",
         "21c67df9-6a4c-42f3-bcd8-11d361ca41d2",
         "a6bf9709-cf24-48f2-ba15-ec4fd31b6722",
         "9956063f-0414-4638-a61b-123080bab628",

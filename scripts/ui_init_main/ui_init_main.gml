@@ -45,6 +45,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     var legal_y = home_row_y + 32;
     var legal_width = ui_legal_width();
     var col_width = legal_width / 2 - spacing * 1.5;
+    var col1_x = legal_x + spacing;
     var col2_x = legal_x + col_width + spacing * 2;
     
     var vx1 = col_width / 2;
@@ -58,36 +59,36 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     var yy = legal_y + spacing;
     
-    element = create_radio_array(legal_x + spacing, yy, "Selection mode", col_width, element_height, uivc_radio_selection_mode, Stuff.setting_selection_mode, t_general);
+    element = create_radio_array(col1_x, yy, "Selection mode", col_width, element_height, uivc_radio_selection_mode, Stuff.setting_selection_mode, t_general);
     create_radio_array_options(element, ["Single", "Rectangle", "Circle"]);
     ds_list_add(t_general.contents, element);
     
     yy = yy + ui_get_radio_array_height(element) + spacing;
     
-    element = create_checkbox(legal_x + spacing, yy, "Additive Selection", col_width, element_height, uivc_check_selection_addition, Stuff.setting_selection_addition, t_general);
+    element = create_checkbox(col1_x, yy, "Additive Selection", col_width, element_height, uivc_check_selection_addition, Stuff.setting_selection_addition, t_general);
     ds_list_add(t_general.contents, element);
     
     yy = yy + element.height + spacing;
     
-    element = create_radio_array(legal_x + spacing, yy, "Fill Type", col_width, element_height, uivc_radio_fill_type, Stuff.setting_selection_fill_type, t_general);
+    element = create_radio_array(col1_x, yy, "Fill Type", col_width, element_height, uivc_radio_fill_type, Stuff.setting_selection_fill_type, t_general);
     create_radio_array_options(element, ["Tile", "Autotile", "Mesh", "Pawn", "Effect", "Terrain"]);
     ds_list_add(t_general.contents, element);
     
     yy = yy + ui_get_radio_array_height(element) + spacing;
     
-    element = create_button(legal_x + spacing, yy, "Fill Selection (Space)", col_width, element_height, fa_center, uimu_selection_fill, t_general);
+    element = create_button(col1_x, yy, "Fill Selection (Space)", col_width, element_height, fa_center, uimu_selection_fill, t_general);
     ds_list_add(t_general.contents, element);
     
     yy = yy + element.height + spacing;
     
-    element = create_button(legal_x + spacing, yy, "Delete Selection (Delete)", col_width, element_height, fa_center, uimu_selection_delete, t_general);
+    element = create_button(col1_x, yy, "Delete Selection (Delete)", col_width, element_height, fa_center, uimu_selection_delete, t_general);
     ds_list_add(t_general.contents, element);
     
     yy = yy + element.height + spacing;
     
     var s = 16;
     
-    element = create_bitfield(legal_x + spacing, yy, "Selection Mask:", col_width, element_height, null, SELECTION_MASK_ALL, t_general);
+    element = create_bitfield(col1_x, yy, "Selection Mask:", col_width, element_height, null, SELECTION_MASK_ALL, t_general);
     create_bitfield_options_vertical(element, [
         create_bitfield_option_data(ETypeFlags.ENTITY_TILE, ui_render_bitfield_option_text_selection_mask, uivc_bitfield_selection_mask, "Tile", -1, 0, col_width / 2, s),
         create_bitfield_option_data(ETypeFlags.ENTITY_TILE_AUTO, ui_render_bitfield_option_text_selection_mask, uivc_bitfield_selection_mask, "Autotile", -1, 0, col_width / 2, s),
@@ -161,7 +162,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     // if you really want the color-coded entities, maybe make the entry color feature a script instead 
     // of just a list of colors - later, though
-    element_all_entities = create_list(legal_x + spacing, yy, "All Entities", "<No entities>", col_width, element_height, 28, null, true, t_stats, noone);
+    element_all_entities = create_list(col1_x, yy, "All Entities", "<No entities>", col_width, element_height, 28, null, true, t_stats, noone);
     element_all_entities.render = ui_render_list_all_entities;
     element_all_entities.entries_are = ListEntries.INSTANCES;
     ds_list_add(t_stats.contents, element_all_entities);
@@ -268,7 +269,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = legal_y + spacing;
     
-    element = create_list(legal_x + spacing, yy, "Maps: ", "no maps. (how?!)", col_width, element_height, 20, uivc_list_maps, false, t_maps, Stuff.all_maps);
+    element = create_list(col1_x, yy, "Maps: ", "no maps. (how?!)", col_width, element_height, 20, uivc_list_maps, false, t_maps, Stuff.all_maps);
     element.render = ui_render_list_all_maps;
     element.ondoubleclick = dmu_data_open_map;
     element.entries_are = ListEntries.INSTANCES;
@@ -277,27 +278,27 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + ui_get_list_height(element) + spacing;
     
-    element = create_button(legal_x + spacing, yy, "Add Map", col_width, element_height, fa_center, dmu_data_add_map, t_maps);
+    element = create_button(col1_x, yy, "Add Map", col_width, element_height, fa_center, dmu_data_add_map, t_maps);
     ds_list_add(t_maps.contents, element);
     
     yy = yy + element.height + spacing;
     
-    element = create_button(legal_x + spacing, yy, "Remove Map", col_width, element_height, fa_center, dmu_data_remove_map, t_maps);
+    element = create_button(col1_x, yy, "Remove Map", col_width, element_height, fa_center, dmu_data_remove_map, t_maps);
     ds_list_add(t_maps.contents, element);
     
     yy = yy + element.height + spacing;
     
-    element = create_button(legal_x + spacing, yy, "Open Map", col_width, element_height, fa_center, dmu_data_open_map, t_maps);
+    element = create_button(col1_x, yy, "Open Map", col_width, element_height, fa_center, dmu_data_open_map, t_maps);
     ds_list_add(t_maps.contents, element);
     
     yy = yy + element.height + spacing;
     
-    element = create_button(legal_x + spacing, yy, "Make Starting Map", col_width, element_height, fa_center, dmu_data_starting_map, t_maps);
+    element = create_button(col1_x, yy, "Make Starting Map", col_width, element_height, fa_center, dmu_data_starting_map, t_maps);
     ds_list_add(t_maps.contents, element);
     
     yy = yy + element.height + spacing;
     
-    element = create_button(legal_x + spacing, yy, "Import Tiled", col_width, element_height, fa_center, dmu_data_import_map, t_maps);
+    element = create_button(col1_x, yy, "Import Tiled", col_width, element_height, fa_center, dmu_data_import_map, t_maps);
     ds_list_add(t_maps.contents, element);
     
     yy = legal_y + spacing;
@@ -386,26 +387,26 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     var max_characters = 18;
     vx2 = vx1 + string_width(string("m")) * max_characters + 32;
     
-    element_entity_name = create_input(legal_x + spacing, yy, "Name: ", legal_width, element_height, uivc_input_entity_name, "", "Helpful if unique", validate_string, 0, 1, max_characters, vx1, vy1, vx2, vy2, t_p_entity);
+    element_entity_name = create_input(col1_x, yy, "Name: ", legal_width, element_height, uivc_input_entity_name, "", "Helpful if unique", validate_string, 0, 1, max_characters, vx1, vy1, vx2, vy2, t_p_entity);
     ds_list_add(t_p_entity.contents, element_entity_name);
     element_entity_name.interactive = false;
     
     vx2 = col_width;
     yy = yy + element_entity_name.height + spacing;
     
-    element = create_text(legal_x + spacing, yy, "Basic Properties", col_width, element_height, fa_left, col_width, t_p_entity);
+    element = create_text(col1_x, yy, "Basic Properties", col_width, element_height, fa_left, col_width, t_p_entity);
     element.color = c_blue;
     ds_list_add(t_p_entity.contents, element);
     
     yy = yy + element.height + spacing;
     
-    element_entity_collision_data = create_button(legal_x + spacing, yy, "Collision Data", col_width, element_height, fa_center, omu_entity_collision_data, t_p_entity);
+    element_entity_collision_data = create_button(col1_x, yy, "Collision Data", col_width, element_height, fa_center, omu_entity_collision_data, t_p_entity);
     ds_list_add(t_p_entity.contents, element_entity_collision_data);
     element_entity_collision_data.interactive = false;
     
     yy = yy + element_entity_collision_data.height + spacing;
     
-    element_entity_static = create_checkbox(legal_x + spacing, yy, "Static", col_width, element_height, uivc_check_entity_static, false, t_p_entity);
+    element_entity_static = create_checkbox(col1_x, yy, "Static", col_width, element_height, uivc_check_entity_static, false, t_p_entity);
     ds_list_add(t_p_entity.contents, element_entity_static);
     element_entity_static.interactive = false;
     
@@ -413,7 +414,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     var n = 6;
     
-    element_entity_events = create_list(legal_x + spacing, yy, "Event Pages", "<No events>", col_width, element_height, n, null, false, t_p_entity, noone);
+    element_entity_events = create_list(col1_x, yy, "Event Pages", "<No events>", col_width, element_height, n, null, false, t_p_entity, noone);
     element_entity_events.colorize = false;
     element_entity_events.render = ui_render_list_entity_events;
     element_entity_events.entries_are = ListEntries.INSTANCES;
@@ -423,61 +424,61 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + ui_get_list_height(element_entity_events) + spacing;
     
-    element_entity_event_edit = create_button(legal_x + spacing, yy, "Edit Event Page", col_width, element_height, fa_center, omu_entity_event_page, t_p_entity);
+    element_entity_event_edit = create_button(col1_x, yy, "Edit Event Page", col_width, element_height, fa_center, omu_entity_event_page, t_p_entity);
     ds_list_add(t_p_entity.contents, element_entity_event_edit);
     element_entity_event_edit.interactive = false;
     
     yy = yy + element_height + spacing;
     
-    element_entity_event_add = create_button(legal_x + spacing, yy, "Add Event Page", col_width, element_height, fa_center, omu_entity_add_event, t_p_entity);
+    element_entity_event_add = create_button(col1_x, yy, "Add Event Page", col_width, element_height, fa_center, omu_entity_add_event, t_p_entity);
     ds_list_add(t_p_entity.contents, element_entity_event_add);
     element_entity_event_add.interactive = false;
     
     yy = yy + element_height + spacing;
     
-    element_entity_event_remove = create_button(legal_x + spacing, yy, "Delete Event Page", col_width, element_height, fa_center, omu_entity_remove_event, t_p_entity);
+    element_entity_event_remove = create_button(col1_x, yy, "Delete Event Page", col_width, element_height, fa_center, omu_entity_remove_event, t_p_entity);
     ds_list_add(t_p_entity.contents, element_entity_event_remove);
     element_entity_event_remove.interactive = false;
     
     yy = yy + element_height + spacing;
     
-    element = create_text(legal_x + spacing, yy, "Options", col_width, element_height, fa_left, col_width, t_p_entity);
+    element = create_text(col1_x, yy, "Options", col_width, element_height, fa_left, col_width, t_p_entity);
     element.color = c_blue;
     ds_list_add(t_p_entity.contents, element);
     
     yy = yy + element.height + spacing;
     
-    element_entity_option_animate_idle = create_checkbox(legal_x + spacing, yy, "Animate Idle", col_width, element_height, uivc_check_entity_option_animate_idle, false, t_p_entity);
+    element_entity_option_animate_idle = create_checkbox(col1_x, yy, "Animate Idle", col_width, element_height, uivc_check_entity_option_animate_idle, false, t_p_entity);
     ds_list_add(t_p_entity.contents, element_entity_option_animate_idle);
     element_entity_option_animate_idle.interactive = false;
     
     yy = yy + element_entity_option_animate_idle.height;
     
-    element_entity_option_animate_movement = create_checkbox(legal_x + spacing, yy, "Animate Movement", col_width, element_height, uivc_check_entity_option_animate_movement, false, t_p_entity);
+    element_entity_option_animate_movement = create_checkbox(col1_x, yy, "Animate Movement", col_width, element_height, uivc_check_entity_option_animate_movement, false, t_p_entity);
     ds_list_add(t_p_entity.contents, element_entity_option_animate_movement);
     element_entity_option_animate_movement.interactive = false;
     
     yy = yy + element_entity_option_animate_movement.height;
     
-    element_entity_option_direction_fix = create_checkbox(legal_x + spacing, yy, "Direction Fix", col_width, element_height, uivc_check_entity_option_direction_fix, false, t_p_entity);
+    element_entity_option_direction_fix = create_checkbox(col1_x, yy, "Direction Fix", col_width, element_height, uivc_check_entity_option_direction_fix, false, t_p_entity);
     ds_list_add(t_p_entity.contents, element_entity_option_direction_fix);
     element_entity_option_direction_fix.interactive = false;
     
     yy = yy + element_entity_option_direction_fix.height;
     
-    element_entity_option_reset_position = create_checkbox(legal_x + spacing, yy, "Reset Position", col_width, element_height, uivc_check_entity_option_reset_position, false, t_p_entity);
+    element_entity_option_reset_position = create_checkbox(col1_x, yy, "Reset Position", col_width, element_height, uivc_check_entity_option_reset_position, false, t_p_entity);
     ds_list_add(t_p_entity.contents, element_entity_option_reset_position);
     element_entity_option_reset_position.interactive = false;
     
     yy = yy + element_entity_option_reset_position.height + spacing;
     
-    element_entity_generic = create_button(legal_x + spacing, yy, "Generic Data", col_width, element_height, fa_center, omu_entity_generic_data, t_p_entity);
+    element_entity_generic = create_button(col1_x, yy, "Generic Data", col_width, element_height, fa_center, omu_entity_generic_data, t_p_entity);
     ds_list_add(t_p_entity.contents, element_entity_generic);
     element_entity_generic.interactive = false;
     
     yy = yy + element_height + spacing;
     
-    element_entity_option_autonomous_movement = create_button(legal_x + spacing, yy, "Autonomous Movement", col_width, element_height, fa_center, omu_entity_autonomous_movement, t_p_entity);
+    element_entity_option_autonomous_movement = create_button(col1_x, yy, "Autonomous Movement", col_width, element_height, fa_center, omu_entity_autonomous_movement, t_p_entity);
     ds_list_add(t_p_entity.contents, element_entity_option_autonomous_movement);
     element_entity_option_autonomous_movement.interactive = false;
     
@@ -589,7 +590,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = legal_y + spacing;
     
-    element_entity_mesh_animated = create_checkbox(legal_x + spacing, yy, "Animated", col_width, element_height, uivc_entity_mesh_animated, false, t_p_mesh);
+    element_entity_mesh_animated = create_checkbox(col1_x, yy, "Animated", col_width, element_height, uivc_entity_mesh_animated, false, t_p_mesh);
     ds_list_add(t_p_mesh.contents, element_entity_mesh_animated);
     
     yy = yy + element_entity_mesh_animated.height + spacing;
@@ -600,23 +601,23 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = legal_y + spacing;
     
-    element_entity_pawn_frame = create_input(legal_x + spacing, yy, "Frame:", col_width, element_height, uivc_entity_pawn_editor_frame, 0, "0...3", validate_int, 0, 3, 1, vx1, vy1, vx2, vy2, t_p_pawn);
+    element_entity_pawn_frame = create_input(col1_x, yy, "Frame:", col_width, element_height, uivc_entity_pawn_editor_frame, 0, "0...3", validate_int, 0, 3, 1, vx1, vy1, vx2, vy2, t_p_pawn);
     ds_list_add(t_p_pawn.contents, element_entity_pawn_frame);
     
     yy = yy + element_entity_pawn_frame.height + spacing;
     
-    element_entity_pawn_direction = create_radio_array(legal_x + spacing, yy, "Direction", col_width, element_height, uivc_entity_pawn_direction, 0, t_p_pawn);
+    element_entity_pawn_direction = create_radio_array(col1_x, yy, "Direction", col_width, element_height, uivc_entity_pawn_direction, 0, t_p_pawn);
     create_radio_array_options(element_entity_pawn_direction, ["Down", "Left", "Right", "Up"]);
     ds_list_add(t_p_pawn.contents, element_entity_pawn_direction);
     
     yy = yy + ui_get_radio_array_height(element_entity_pawn_direction) + spacing;
     
-    element_entity_pawn_animating = create_checkbox(legal_x + spacing, yy, "Animating", col_width, element_height, uivc_entity_pawn_animating, false, t_p_pawn);
+    element_entity_pawn_animating = create_checkbox(col1_x, yy, "Animating", col_width, element_height, uivc_entity_pawn_animating, false, t_p_pawn);
     ds_list_add(t_p_pawn.contents, element_entity_pawn_animating);
     
     yy = yy + element_entity_pawn_animating.height + spacing;
     
-    element_entity_pawn_sprite = create_list(legal_x + spacing, yy, "Overworld Sprite", "<no overworlds>", col_width, element_height, 12, uivc_entity_pawn_set_sprite, false, t_p_pawn, Stuff.all_graphic_overworlds);
+    element_entity_pawn_sprite = create_list(col1_x, yy, "Overworld Sprite", "<no overworlds>", col_width, element_height, 12, uivc_entity_pawn_set_sprite, false, t_p_pawn, Stuff.all_graphic_overworlds);
     element_entity_pawn_sprite.entries_are = ListEntries.INSTANCES;
     ds_list_add(t_p_pawn.contents, element_entity_pawn_sprite);
     
@@ -627,18 +628,18 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = legal_y + spacing;
     
-    element = create_button(legal_x + spacing, yy, "Change Tileset", 128, element_height, fa_center, omu_manager_tileset, t_p_tile_editor);
+    element = create_button(col1_x, yy, "Change Tileset", 128, element_height, fa_center, omu_manager_tileset, t_p_tile_editor);
     ds_list_add(t_p_tile_editor.contents, element);
     
-    element = create_button(legal_x + spacing + (spacing + 128), yy, "Import Main", 128, element_height, fa_center, dmu_dialog_load_tileset_main, t_p_tile_editor);
+    element = create_button(col1_x + (spacing + 128), yy, "Import Main", 128, element_height, fa_center, dmu_dialog_load_tileset_main, t_p_tile_editor);
     ds_list_add(t_p_tile_editor.contents, element);
     
-    element = create_button(legal_x + spacing + (spacing + 128) * 2, yy, "Export Main", 128, element_height, fa_center, dmu_dialog_save_tileset_main, t_p_tile_editor);
+    element = create_button(col1_x + (spacing + 128) * 2, yy, "Export Main", 128, element_height, fa_center, dmu_dialog_save_tileset_main, t_p_tile_editor);
     ds_list_add(t_p_tile_editor.contents, element);
     
     yy = yy + element.height + spacing;
     
-    element = create_tile_selector(legal_x + spacing, yy, legal_width - spacing * 2, (legal_width div Stuff.tile_width) * Stuff.tile_width - element_height, uivc_select_tile, uivc_select_tile_backwards, t_p_tile_editor);
+    element = create_tile_selector(col1_x, yy, legal_width - spacing * 2, (legal_width div Stuff.tile_width) * Stuff.tile_width - element_height, uivc_select_tile, uivc_select_tile_backwards, t_p_tile_editor);
     element.tile_x = mode.selection_fill_tile_x;
     element.tile_y = mode.selection_fill_tile_y;
     ds_list_add(t_p_tile_editor.contents, element);
@@ -646,8 +647,13 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy = yy + element.height + spacing;
     var yy_aftergrid = yy;
     
-    element = create_text(legal_x + spacing, yy, "Tile Properties: x, y", col_width, element_height, fa_left, col_width, t_p_tile_editor);
+    element = create_text(col1_x, yy, "Tile Properties: x, y", col_width, element_height, fa_left, col_width, t_p_tile_editor);
     element.render = ui_render_text_tile_label;
+    ds_list_add(t_p_tile_editor.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
+    element = create_button(col1_x, yy, "Tile Flags", col_width, element_height, fa_center, null, t_p_tile_editor);
     ds_list_add(t_p_tile_editor.contents, element);
     
     yy = yy + element.height + spacing;
@@ -659,7 +665,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy = legal_y + spacing;
     
     // this is an object variable
-    element_mesh_list = create_list(legal_x + spacing, yy, "Available meshes: ", "<no meshes>", col_width, element_height, 25, uivc_list_selection_mesh, false, t_p_mesh_editor);
+    element_mesh_list = create_list(col1_x, yy, "Available meshes: ", "<no meshes>", col_width, element_height, 25, uivc_list_selection_mesh, false, t_p_mesh_editor);
     element_mesh_list.entries_are = ListEntries.INSTANCES;
     element_mesh_list.colorize = true;
     element_mesh_list.render = ui_render_list_all_meshes;
@@ -669,13 +675,13 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + ui_get_list_height(element_mesh_list) + spacing;
     
-    element = create_button(legal_x + spacing, yy, "Import", col_width, element_height, fa_center, omu_mesh_import, t_p_mesh_editor);
+    element = create_button(col1_x, yy, "Import", col_width, element_height, fa_center, omu_mesh_import, t_p_mesh_editor);
     element.tooltip = "Imports a 3D model. The texture coordinates will automatically be scaled on importing; to override this, press the Control key.";
     ds_list_add(t_p_mesh_editor.contents, element);
     
     yy = yy + element.height + spacing;
     
-    element = create_button(legal_x + spacing, yy, "Delete", col_width, element_height, fa_center, omu_mesh_remove, t_p_mesh_editor);
+    element = create_button(col1_x, yy, "Delete", col_width, element_height, fa_center, omu_mesh_remove, t_p_mesh_editor);
     element.color = c_red;
     ds_list_add(t_p_mesh_editor.contents, element);
     
@@ -759,6 +765,11 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element.height + spacing;
     
+    element = create_button(col2_x, yy, "Mesh Flags", col_width, element_height, fa_center, omu_mesh_flags, t_p_tile_editor);
+    ds_list_add(t_p_mesh_editor.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
     element = create_button(col2_x, yy, "Preview", col_width, element_height, fa_center, omu_mesh_preview, t_p_mesh_editor);
     ds_list_add(t_p_mesh_editor.contents, element);
     
@@ -791,7 +802,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = legal_y + spacing;
     
-    element = create_list(legal_x + spacing, yy, "Defined Autotiles: ", "<something is wrong>", col_width, element_height, 28, uivc_list_selection_autotile, false, t_p_autotile_editor);
+    element = create_list(col1_x, yy, "Defined Autotiles: ", "<something is wrong>", col_width, element_height, 28, uivc_list_selection_autotile, false, t_p_autotile_editor);
     element.render = ui_render_list_autotiles;
     ui_list_select(element, 0);
     element.numbered = true;
@@ -812,13 +823,20 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     element.render = ui_render_image_button_autotile;
     ds_list_add(t_p_autotile_editor.contents, element);
     
+    yy = yy + element.height + spacing;
+    
+    element = create_button(col2_x, yy, "Autotile Flags", col_width, element_height, fa_center, null, t_p_tile_editor);
+    ds_list_add(t_p_autotile_editor.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
     #endregion
     
     #region tab: other
     
     yy = legal_y + spacing;
     
-    element = create_text(legal_x + spacing, yy, "We also need to be able to manage particle (image), npc (image), follower (image), ui (image), se (audio), bgm (audio), and possibly some other asset types but there's not enough space here; those might just be done with other items in the Data menu",
+    element = create_text(col1_x, yy, "There may be information related to misc. map editor things such as effects or time / skybox things here at some point in the future",
         legal_width - spacing * 2, element_height, fa_left, legal_width - spacing * 2, t_p_other_editor);
     element.valignment = fa_top;
     ds_list_add(t_p_other_editor.contents, element);
