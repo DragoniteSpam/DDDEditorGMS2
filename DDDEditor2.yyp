@@ -1408,14 +1408,6 @@
             }
         },
         {
-            "Key": "15198e24-e178-461e-a76e-27a861142175",
-            "Value": {
-                "id": "63989efd-5387-4252-bdef-9351dfa8c242",
-                "resourcePath": "views\\15198e24-e178-461e-a76e-27a861142175.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
             "Key": "152b84a9-070e-4224-9042-a3292fd1486b",
             "Value": {
                 "id": "9f14f9a1-0e79-46c1-92f3-34ad81ec748c",
@@ -2608,14 +2600,6 @@
             }
         },
         {
-            "Key": "27dc714f-af2c-4c19-be9e-2f8b4cb5dcee",
-            "Value": {
-                "id": "a89f88b1-9619-424c-af4b-92381af52164",
-                "resourcePath": "scripts\\uivc_bitfield_mesh_flag\\uivc_bitfield_mesh_flag.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "285cbc91-0562-4c12-8543-b48d23eb30f7",
             "Value": {
                 "id": "0b7a9232-a658-4503-a717-3cd783cc50bc",
@@ -3037,14 +3021,6 @@
                 "id": "1baff2f0-63c8-4045-abc1-8524bc008cc4",
                 "resourcePath": "scripts\\create_bitfield_option_data\\create_bitfield_option_data.yy",
                 "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "2ea71797-a07b-44bf-a54a-776b69bec022",
-            "Value": {
-                "id": "fed81a08-6020-40bc-90c1-01d56e28324f",
-                "resourcePath": "views\\2ea71797-a07b-44bf-a54a-776b69bec022.yy",
-                "resourceType": "GMFolder"
             }
         },
         {
@@ -4452,14 +4428,6 @@
             "Value": {
                 "id": "c82ed141-6a5a-45b8-bd64-fe7502bef420",
                 "resourcePath": "scripts\\ds_list_destroy_instances_indirect\\ds_list_destroy_instances_indirect.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "46d2c136-c93d-4989-bd2d-be7799c065cb",
-            "Value": {
-                "id": "425110cc-0cf1-4354-8553-72db152a983c",
-                "resourcePath": "scripts\\uivc_bitfield_autotile_flag\\uivc_bitfield_autotile_flag.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -5948,14 +5916,6 @@
             "Value": {
                 "id": "d324ec32-e366-4262-988b-64c7fc7cb523",
                 "resourcePath": "scripts\\animation_set_keyframe_position\\animation_set_keyframe_position.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "5d3ec104-c3a4-481b-b280-0ff49630cbd9",
-            "Value": {
-                "id": "fea2a1b3-5c9a-4c26-97c6-6e5dad72ecbd",
-                "resourcePath": "scripts\\ui_render_bitfield_option_text_mesh_flag\\ui_render_bitfield_option_text_mesh_flag.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -9248,14 +9208,6 @@
             }
         },
         {
-            "Key": "90ff35c8-0755-4e46-9bfa-25b4898b535d",
-            "Value": {
-                "id": "8ee1af7f-4b63-4300-8e67-e1dcebfb7993",
-                "resourcePath": "scripts\\ui_render_bitfield_option_text_tile_flag\\ui_render_bitfield_option_text_tile_flag.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "9153f938-0bd4-473c-a7df-67290f13cd00",
             "Value": {
                 "id": "cbb85dd0-d44e-423c-920e-a789f7272bac",
@@ -9796,14 +9748,6 @@
             "Value": {
                 "id": "124f10f8-db33-4e8c-b34b-fa0eb7b91821",
                 "resourcePath": "scripts\\safc_fill_mesh\\safc_fill_mesh.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "9921cd75-c9dc-49cc-b50f-cd98c14835db",
-            "Value": {
-                "id": "5a3cdd78-9ab5-48ec-b203-0014681d3402",
-                "resourcePath": "scripts\\ui_render_bitfield_option_autotext_tile_flag\\ui_render_bitfield_option_autotext_tile_flag.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -15296,14 +15240,6 @@
             }
         },
         {
-            "Key": "f297aafe-1c59-40a8-b59f-9c96502138d3",
-            "Value": {
-                "id": "a2a69f0a-4e7b-445d-88b1-c73cf4c92a7b",
-                "resourcePath": "scripts\\uivc_bitfield_tile_flag\\uivc_bitfield_tile_flag.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "f2cf8b98-0e9f-4287-83f9-b6cf1315dbe4",
             "Value": {
                 "id": "3ea44d18-3c51-4b7c-98ff-c35162582694",
@@ -16811,9 +16747,6 @@
         "907770f2-a36c-4e4c-bb24-9c4831722a9e",
         "e501f0d2-e906-4cfc-9ca2-6fe26ed12d4a",
         "12524178-acdd-49a0-bcb8-77ba5b45bb12",
-        "46d2c136-c93d-4989-bd2d-be7799c065cb",
-        "27dc714f-af2c-4c19-be9e-2f8b4cb5dcee",
-        "f297aafe-1c59-40a8-b59f-9c96502138d3",
         "ab8d7559-54c0-49c8-83e0-b8bed3869668",
         "b8c367a5-84ef-46cd-b8b0-85ddd90e209d",
         "57643896-d54d-4d74-b9ea-cee156d2cd34",
@@ -17201,11 +17134,6 @@
         "6320b3ae-6ac3-4a38-95ae-17fefb6e6ffa",
         "a4094336-9d5e-49d4-929c-22d11f0172e5",
         "cf9b6c12-aef4-4791-b8be-74b74952c277",
-        "90ff35c8-0755-4e46-9bfa-25b4898b535d",
-        "5d3ec104-c3a4-481b-b280-0ff49630cbd9",
-        "a50260f0-a02f-47b0-8f59-72a6335e3088",
-        "9921cd75-c9dc-49cc-b50f-cd98c14835db",
-        "4242d52a-6e3f-49ec-ba3d-9b7b2f99cfb7",
         "2a2dc1ca-1f01-46b7-a91b-4495ca602c34",
         "77dd205b-f3ec-446b-9bc8-818e5c4b5e20",
         "d32ea813-a8d1-4cc2-9e3d-34b66d78cf8e",
@@ -17273,6 +17201,8 @@
         "d72b146b-f741-4c3a-95d1-ef3a174917bf",
         "1cf1bae2-df93-4705-ae01-58ce64fd6495",
         "98752a70-4ba1-4d71-9035-818e4600c88a",
+        "a50260f0-a02f-47b0-8f59-72a6335e3088",
+        "4242d52a-6e3f-49ec-ba3d-9b7b2f99cfb7",
         "c37ecf28-8b0d-4b55-ad5e-e7c3ef5e5e0c",
         "7be262ef-2d7a-4cc8-85bb-446caf5592c9",
         "008f9998-5b4d-44c2-b795-eedcdadc9318",

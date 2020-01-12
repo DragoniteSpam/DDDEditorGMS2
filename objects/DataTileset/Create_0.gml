@@ -33,10 +33,3 @@ array_clear(autotiles, noone);
 flags = noone;
 
 at_flags = noone;
-
-enum TileFlags {
-    BUSH        = 0x01,     /* bush animation(?) */
-    COUNTER     = 0x02,     /* counter */
-    SAFER       = 0x04,     /* reduced encounter rate */
-    DANGER      = 0x08,     /* increased encounter rate */
-}
