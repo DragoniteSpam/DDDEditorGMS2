@@ -34,15 +34,11 @@ for (var i = 0; i < n_variables; i++) {
     buffer_write(buffer, buffer_f32, var_data[1]);
 }
 
-var n_event_triggers = ds_list_size(Stuff.all_event_triggers);
-buffer_write(buffer, buffer_u8, n_event_triggers);
-for (var i = 0; i < n_event_triggers; i++) {
+for (var i = 0; i < FLAG_COUNT; i++) {
     buffer_write(buffer, buffer_string, Stuff.all_event_triggers[| i]);
 }
 
-var n_collision_triggers = ds_list_size(Stuff.all_collision_triggers);
-buffer_write(buffer, buffer_u8, n_collision_triggers);
-for (var i = 0; i < n_collision_triggers; i++) {
+for (var i = 0; i < FLAG_COUNT; i++) {
     buffer_write(buffer, buffer_string, Stuff.all_collision_triggers[| i]);
 }
 
@@ -61,9 +57,7 @@ for (var i = 0; i < n_constants; i++) {
 
 buffer_write(buffer, buffer_string, Stuff.game_notes);
 
-var n_asset_flags = ds_list_size(Stuff.all_asset_flags);
-buffer_write(buffer, buffer_u8, n_asset_flags);
-for (var i = 0; i < n_asset_flags; i++) {
+for (var i = 0; i < FLAG_COUNT; i++) {
     buffer_write(buffer, buffer_string, Stuff.all_asset_flags[| i]);
 }
 

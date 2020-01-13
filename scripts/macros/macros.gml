@@ -22,6 +22,7 @@
 #macro EXPORT_EXTENSION_DATA ".dddd"
 #macro EXPORT_EXTENSION_MAP ".dddm"
 #macro EXPORT_EXTENSION_ASSETS ".ddda"
+#macro FLAG_COUNT 32
 #macro HH 900
 #macro HW 520
 #macro IMPORT_GRID_SIZE 32          // for setting the bounds of imported meshes, and possibly other things

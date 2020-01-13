@@ -34,19 +34,33 @@ for (var i = 0; i < n_variables; i++) {
     ds_list_add(Stuff.variables, var_data);
 }
 
-var n_event_triggers = buffer_read(buffer, buffer_u8);
-ds_list_clear(Stuff.all_event_triggers);
-
-repeat (n_event_triggers) {
-    ds_list_add(Stuff.all_event_triggers, buffer_read(buffer, buffer_string));
+if (version >= DataVersions.THIRTY_TWO_FLAGS) {
+    for (var i = 0; i < FLAG_COUNT; i++) {
+        Stuff.all_event_triggers[| i] = buffer_read(buffer, buffer_string);
+    }
+} else {
+    var n_event_triggers = buffer_read(buffer, buffer_u8);
+    for (var i = 0; i < n_event_triggers; i++) {
+        Stuff.all_event_triggers[| i] = buffer_read(buffer, buffer_string);
+    }
+    for (var i = n_event_triggers; i < FLAG_COUNT; i++) {
+        Stuff.all_event_triggers[| i] = "";
+    }
 }
 
 if (version >= DataVersions.COLLISION_TRIGGER_DATA) {
-    var n_event_triggers = buffer_read(buffer, buffer_u8);
-    ds_list_clear(Stuff.all_collision_triggers);
-    
-    repeat (n_event_triggers) {
-        ds_list_add(Stuff.all_collision_triggers, buffer_read(buffer, buffer_string));
+    if (version >= DataVersions.THIRTY_TWO_FLAGS) {
+        for (var i = 0; i < FLAG_COUNT; i++) {
+            Stuff.all_collision_triggers[| i] = buffer_read(buffer, buffer_string);
+        }
+    } else {
+        var n_collision_triggers = buffer_read(buffer, buffer_u8);
+        for (var i = 0; i < n_collision_triggers; i++) {
+            Stuff.all_collision_triggers[| i] = buffer_read(buffer, buffer_string);
+        }
+        for (var i = n_collision_triggers; i < FLAG_COUNT; i++) {
+            Stuff.all_collision_triggers[| i] = "";
+        }
     }
 }
 
@@ -69,10 +83,17 @@ if (version >= DataVersions.GAME_NOTES) {
 }
 
 if (version >= DataVersions.ASSET_FLAG_LIST) {
-    var n_asset_flags = buffer_read(buffer, buffer_u8);
-    ds_list_clear(Stuff.all_asset_flags);
-    
-    repeat (n_asset_flags) {
-        ds_list_add(Stuff.all_asset_flags, buffer_read(buffer, buffer_string));
+    if (version >= DataVersions.THIRTY_TWO_FLAGS) {
+        for (var i = 0; i < FLAG_COUNT; i++) {
+            Stuff.all_asset_flags[| i] = buffer_read(buffer, buffer_string);
+        }
+    } else {
+        var n_asset_flags = buffer_read(buffer, buffer_u8);
+        for (var i = 0; i < n_asset_flags; i++) {
+            Stuff.all_asset_flags[| i] = buffer_read(buffer, buffer_string);
+        }
+        for (var i = n_asset_flags; i < FLAG_COUNT; i++) {
+            Stuff.all_asset_flags[| i] = "";
+        }
     }
 }
