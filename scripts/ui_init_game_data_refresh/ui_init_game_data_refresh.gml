@@ -20,8 +20,7 @@ this and ui_init_game_data_activate and ui_init_game_data were because i'm way t
 ui_input_set_value(Stuff.data.ui.el_inst_name, instance ? instance.name : "");
 ui_input_set_value(Stuff.data.ui.el_inst_internal_name, instance ? instance.internal_name : "");
 
-// if you got to this point, you already know data has a value
-// container
+// if you got to this point, you already know data has a value container
 var dynamic = Stuff.data.ui.el_dynamic;
 var n = 0;
 for (var i = 0; i < ds_list_size(dynamic.contents); i++) {
@@ -169,7 +168,9 @@ for (var i = 0; i < ds_list_size(dynamic.contents); i++) {
                 case DataTypes.ANIMATION:
                 case DataTypes.MAP:
                 case DataTypes.EVENT:
-                    ui_list_deselect(thingy);
+                    if (property.max_size == 1) {
+                        ui_list_deselect(thingy);
+                    }
                     break;
                 case DataTypes.ENTITY:
                     // not allowed
