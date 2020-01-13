@@ -37,14 +37,14 @@ var yy = 64;
 var color_active = c_ui_select;
 var color_inactive = c_white;
 
-var el_collision_flags = create_bitfield(c1, yy, "Miscellaneous Flags", ew, eh, onvaluechange, default_value, dg);
+var el_collision_flags = create_bitfield(c1, yy, "Asset Flags", ew, eh, onvaluechange, default_value, dg);
 
 for (var i = 0; i < 32; i++) {
     var field_xx = (i >= 16) ? ew : 0;
     // Each element will be positioned based on the one directly above it, so you
     // only need to move them up once otherwise they'll keep moving up the screen
     var field_yy = (i == 16) ? -(eh * 16) : 0;
-    var label = (i >= ds_list_size(Stuff.all_collision_triggers)) ? "<" + string(i) + ">" : Stuff.all_collision_triggers[| i];
+    var label = (i >= ds_list_size(Stuff.all_asset_flags)) ? "<" + string(i) + ">" : Stuff.all_asset_flags[| i];
     create_bitfield_options_vertical(el_collision_flags, [create_bitfield_option_data(i, ui_render_bitfield_option_text_generic_flag, uivc_bitfield_generic_flag, label, -1, 0, ew / 2, spacing / 2, field_xx, field_yy, color_active, color_inactive)]);
 }
 
@@ -53,7 +53,7 @@ create_bitfield_options_vertical(el_collision_flags, [
     create_bitfield_option_data(i, ui_render_bitfield_option_text_generic_flag_none, uivc_bitfield_generic_flag_none, "None", -1, 0, ew / 2, spacing / 2, ew, -eh, color_active, color_inactive),
 ]);
 
-el_collision_flags.tooltip = "Misc. flags which you may enable or disable. You can define flags in Global Game Settings.";
+el_collision_flags.tooltip = "Misc. flags which you may enable or disable. You can define asset flags in Global Game Settings.";
 
 var b_width = 128;
 var b_height = 32;
