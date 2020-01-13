@@ -1792,6 +1792,14 @@
             }
         },
         {
+            "Key": "1b6a7869-1ff8-4e05-a2fa-57e88d507845",
+            "Value": {
+                "id": "ab68b40e-fba1-487d-a23e-b6a65e70dca3",
+                "resourcePath": "scripts\\ui_render_bitfield_option_text_generic_flag_none\\ui_render_bitfield_option_text_generic_flag_none.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "1bab909d-562b-49fe-bb65-1efcb336c65d",
             "Value": {
                 "id": "e31acdd8-1c3c-4bf6-ab1a-1aaf69577c0f",
@@ -2300,6 +2308,14 @@
             "Value": {
                 "id": "384440db-9780-4c74-8f9d-034cc1a52873",
                 "resourcePath": "scripts\\smf_node_get_tovector\\smf_node_get_tovector.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "23e3b00c-bb2a-4282-afdd-7b72cb3985e1",
+            "Value": {
+                "id": "0e4d2afd-62e3-44d0-971e-5cd3d5b6ffbc",
+                "resourcePath": "scripts\\ui_render_bitfield_option_text_generic_flag_all\\ui_render_bitfield_option_text_generic_flag_all.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -5877,6 +5893,14 @@
                 "id": "4179094d-26df-4bb0-9a9a-4c36ddb90e7b",
                 "resourcePath": "views\\5cc8f617-1e18-4968-b56d-ab50d44928a6.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "5cf36b0b-7855-4646-9e7e-324de31cc39f",
+            "Value": {
+                "id": "b82cee40-8f5a-4c17-96ed-a334e60b4c17",
+                "resourcePath": "scripts\\uivc_bitfield_generic_flag_all\\uivc_bitfield_generic_flag_all.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -10096,6 +10120,14 @@
             }
         },
         {
+            "Key": "9f84b0fb-9475-413c-b01a-6ee06955f4ab",
+            "Value": {
+                "id": "621616f0-bd94-4a01-b27d-7511396a392d",
+                "resourcePath": "scripts\\uivc_bitfield_generic_flag\\uivc_bitfield_generic_flag.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "9f928d7b-6d0a-48d7-bbd0-61dfabf9bc7c",
             "Value": {
                 "id": "e56dcaba-cd4d-457b-9f59-1466ccbe6119",
@@ -13968,6 +14000,14 @@
             }
         },
         {
+            "Key": "de89506a-357a-4b3e-a5cb-f4143bb139e7",
+            "Value": {
+                "id": "6b7a5c62-fb6e-4da8-afee-2861eb307ba3",
+                "resourcePath": "scripts\\ui_render_bitfield_option_text_generic_flag\\ui_render_bitfield_option_text_generic_flag.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "deb89310-0580-4a12-85dc-0523f7cc5284",
             "Value": {
                 "id": "4a4bf6c0-9cf7-41b3-9229-d4b53b31fd3d",
@@ -14172,6 +14212,14 @@
             "Value": {
                 "id": "ada023e0-ea92-416d-831a-f5d829b9a4b9",
                 "resourcePath": "scripts\\safc_on_mesh\\safc_on_mesh.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "e3132bed-a025-4c6e-ad5c-9eff7200b02a",
+            "Value": {
+                "id": "1cfd55cd-2f83-4002-8c05-d3bba97fb061",
+                "resourcePath": "scripts\\uivc_bitfield_generic_flag_none\\uivc_bitfield_generic_flag_none.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -16748,8 +16796,11 @@
         "e501f0d2-e906-4cfc-9ca2-6fe26ed12d4a",
         "12524178-acdd-49a0-bcb8-77ba5b45bb12",
         "ab8d7559-54c0-49c8-83e0-b8bed3869668",
+        "9f84b0fb-9475-413c-b01a-6ee06955f4ab",
+        "5cf36b0b-7855-4646-9e7e-324de31cc39f",
         "b8c367a5-84ef-46cd-b8b0-85ddd90e209d",
         "57643896-d54d-4d74-b9ea-cee156d2cd34",
+        "e3132bed-a025-4c6e-ad5c-9eff7200b02a",
         "18de48f4-ba73-44fd-af7c-1155e570d3d1",
         "67c4b701-803e-491c-a8d0-ecbe61e5fa89",
         "ffd6e8dd-7715-4bac-b112-e48f7ba785a4",
@@ -17152,8 +17203,11 @@
         "089034f2-4f74-4f74-920e-32ed5aa7cc2a",
         "fc73463a-bd0b-45a1-89c7-6dd138677089",
         "326c7c94-fe5a-4b9f-a947-95037253c414",
+        "23e3b00c-bb2a-4282-afdd-7b72cb3985e1",
         "7914578a-c685-4552-a14b-b89b8f1c27c1",
+        "1b6a7869-1ff8-4e05-a2fa-57e88d507845",
         "25a7ce9d-79f2-4a5c-b5d4-95bb15ab9bc9",
+        "de89506a-357a-4b3e-a5cb-f4143bb139e7",
         "1a7cbbc5-b8a4-4183-9260-059ee3a2b62a",
         "3fc6fd8a-f9be-4ce6-9c05-8c28e56d2421",
         "e5a5810c-f766-4b0d-8a11-5842aa5d478d",
