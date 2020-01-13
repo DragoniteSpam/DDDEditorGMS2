@@ -8,13 +8,13 @@ var root = argument[0];
 var name_string = argument[1];
 var default_value = argument[2];
 var onvaluechange = argument[3];
-var instance = (argument_count > 4) ? argument[4] : noone;
+var instance_data = (argument_count > 4) ? argument[4] : noone;
 
 var dw = 640;
 var dh = 560;
 
 var dg = dialog_create(dw, dh, "Flags: " + name_string, dialog_default, dc_close_no_questions_asked, root);
-dg.instance = instance;
+dg.instance_data = instance_data;
 
 var columns = 2;
 var spacing = 16;
@@ -61,7 +61,7 @@ var b_height = 32;
 var yy = 64;
 var yy_base = yy;
 
-var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, null, dg);
+var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
 
 ds_list_add(dg.contents,
     el_collision_flags,

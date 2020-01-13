@@ -653,7 +653,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element.height + spacing;
     
-    element = create_button(col1_x, yy, "Tile Flags", col_width, element_height, fa_center, null, t_p_tile_editor);
+    element = create_button(col1_x, yy, "Tile Flags", col_width, element_height, fa_center, omu_tile_flags, t_p_tile_editor);
     ds_list_add(t_p_tile_editor.contents, element);
     
     yy = yy + element.height + spacing;
@@ -825,7 +825,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element.height + spacing;
     
-    element = create_button(col2_x, yy, "Autotile Flags", col_width, element_height, fa_center, null, t_p_tile_editor);
+    element = create_button(col2_x, yy, "Autotile Flags", col_width, element_height, fa_center, omu_autotile_flags, t_p_tile_editor);
     ds_list_add(t_p_autotile_editor.contents, element);
     
     yy = yy + element.height + spacing;
