@@ -27,13 +27,14 @@ if (buffer_get_size(map_contents.frozen_data_wire) - 1) {
     vertex_freeze(map_contents.frozen_wire);
 }
 
-var passage_count = buffer_read(buffer, buffer_u32);
-
-repeat (passage_count) {
-    var xx = buffer_read(buffer, buffer_u16);
-    var yy = buffer_read(buffer, buffer_u16);
-    var zz = buffer_read(buffer, buffer_u16);
-    var slot = buffer_read(buffer, buffer_u8);
-    var mask = buffer_read(buffer, buffer_u16);
-    map_add_thing_anonymous(mask, xx, yy, zz, map, slot);
+if (version >= DataVersions.NO_MORE_ANONYMOUS_COLLISION_DATA) {
+} else {
+    var passage_count = buffer_read(buffer, buffer_u32);
+    repeat (passage_count) {
+        var xx = buffer_read(buffer, buffer_u16);
+        var yy = buffer_read(buffer, buffer_u16);
+        var zz = buffer_read(buffer, buffer_u16);
+        var slot = buffer_read(buffer, buffer_u8);
+        var mask = buffer_read(buffer, buffer_u16);
+    }
 }

@@ -100,5 +100,6 @@ enum DataVersions {
     ASSET_FILE_NO_HEADER        = 74,
     NEW_TERRAIN_FLAGS           = 75,
     NEW_TERRAIN_FLAGS_PART_TWO  = 76,
+    NO_MORE_ANONYMOUS_COLLISION_DATA = 77,
     _CURRENT /* = whatever the last one is + 1 */
 }

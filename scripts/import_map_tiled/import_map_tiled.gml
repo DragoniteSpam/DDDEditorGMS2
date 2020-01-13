@@ -78,18 +78,6 @@ if (file_exists(filename)) {
             buffer_seek(map_contents.frozen_data, buffer_seek_start, map_contents.frozen_data_size);
             buffer_seek(map_contents.frozen_data_wire, buffer_seek_start, map_contents.frozen_data_wire_size);
             
-            // clear any anonymous collision data that may have been left behind by the previous map
-            for (var i = 0; i < map.xx; i++) {
-                for (var j = 0; j < map.yy; j++) {
-                    for (var k = 0; k < map.zz; k++) {
-                        var slice = map_get_grid_cell(i, j, k, map);
-                        if (is_clamped(slice[@ MapCellContents.TILE], ANONYMOUS_COLLISION_BASE, ANONYMOUS_COLLISION_BASE + ANONYMOUS_COLLISION_BASE)) {
-                            slice[@ MapCellContents.TILE] = noone;
-                        }
-                    }
-                }
-            }
-            
             var json_layers = json[? "layers"];
             var layer_z = 0;
             for (var i = 0; i < ds_list_size(json_layers); i++) {
