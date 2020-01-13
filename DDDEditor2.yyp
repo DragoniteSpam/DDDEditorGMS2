@@ -5752,14 +5752,6 @@
             }
         },
         {
-            "Key": "59f2270c-7041-4d8a-8913-facb42d036ba",
-            "Value": {
-                "id": "c7779df6-a551-4825-9396-935d030368eb",
-                "resourcePath": "scripts\\omu_entity_add_event_trigger\\omu_entity_add_event_trigger.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "5a6c1e2c-7c87-4ac2-87fc-3bf690609631",
             "Value": {
                 "id": "adc3b353-d8b0-428f-92c0-a8db126f256c",
@@ -9336,14 +9328,6 @@
             }
         },
         {
-            "Key": "9341365a-2e56-4b53-8ba6-a9581a3ecd51",
-            "Value": {
-                "id": "45317d5c-943c-4bce-9daa-cc14266f1f35",
-                "resourcePath": "scripts\\omu_entity_remove_collision_trigger\\omu_entity_remove_collision_trigger.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "934cb342-7163-49a0-8abe-cee2e7c7f837",
             "Value": {
                 "id": "2781015a-9776-49b1-92e2-b1053b98955c",
@@ -12304,14 +12288,6 @@
             }
         },
         {
-            "Key": "c302f410-5a7d-4e9e-be2e-4ce845e65dff",
-            "Value": {
-                "id": "0e276e0d-12cf-460b-b4ec-cef9d15ff06d",
-                "resourcePath": "scripts\\omu_entity_remove_asset_flag\\omu_entity_remove_asset_flag.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "c305ca34-a742-4287-8c5c-437244558605",
             "Value": {
                 "id": "492e1453-8249-4e8a-887a-2ec23f503300",
@@ -12789,14 +12765,6 @@
                 "id": "685512a3-1b47-4cfe-944d-effee3c6797a",
                 "resourcePath": "objects\\UINotification\\UINotification.yy",
                 "resourceType": "GMObject"
-            }
-        },
-        {
-            "Key": "cb3e44bc-bafb-4080-a1f1-ed514e8c4961",
-            "Value": {
-                "id": "70b13f0b-9091-4495-b494-71d1ce092e82",
-                "resourcePath": "scripts\\omu_entity_remove_event_trigger\\omu_entity_remove_event_trigger.yy",
-                "resourceType": "GMScript"
             }
         },
         {
@@ -13960,14 +13928,6 @@
             }
         },
         {
-            "Key": "dd36cfed-9acb-4f51-ae62-a48c57a7b099",
-            "Value": {
-                "id": "3274b769-b3bc-4d1b-9e81-d1207fef1e3d",
-                "resourcePath": "scripts\\omu_entity_add_collision_trigger\\omu_entity_add_collision_trigger.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "dd530bc5-b3be-4ad9-98cb-00e3c00bce71",
             "Value": {
                 "id": "d89e7c9b-e382-47ad-af94-b5ae7f44f5c5",
@@ -14364,14 +14324,6 @@
             "Value": {
                 "id": "2b518211-2e8f-41de-9a12-231da2ccf1b3",
                 "resourcePath": "scripts\\uivc_input_graphic_set_frames_v\\uivc_input_graphic_set_frames_v.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "e4806101-5ea5-4586-81d3-40c0f895a7c6",
-            "Value": {
-                "id": "03cb6619-9fc2-4878-9e48-8ce059f491c3",
-                "resourcePath": "scripts\\omu_entity_add_asset_flag\\omu_entity_add_asset_flag.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -17126,13 +17078,7 @@
         "dcdadb1f-0fe0-4e41-a683-04bec425ecf5",
         "9f5308b9-56fa-4da9-9483-d5871ee1a9f3",
         "29571f03-3093-4ae5-b4dd-7e992bff680e",
-        "59f2270c-7041-4d8a-8913-facb42d036ba",
-        "dd36cfed-9acb-4f51-ae62-a48c57a7b099",
-        "e4806101-5ea5-4586-81d3-40c0f895a7c6",
         "46debee7-4a42-4208-b29d-1d8542134f88",
-        "cb3e44bc-bafb-4080-a1f1-ed514e8c4961",
-        "9341365a-2e56-4b53-8ba6-a9581a3ecd51",
-        "c302f410-5a7d-4e9e-be2e-4ce845e65dff",
         "df25b060-7862-47c7-ae07-f023cd701099",
         "f41b124d-b315-4143-a16e-98e14ea1429e",
         "8453a464-deb9-42ec-89a3-f7e90347a783",

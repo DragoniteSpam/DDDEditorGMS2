@@ -20,7 +20,8 @@ var spacing = 16;
 var yy = 64;
 var yy_start = 64;
 
-var el_list = create_list(32, yy, "Asset Flags (max 32)", "<none>", ew, eh, 16, uivc_list_selection_asset_flags, false, dg, Stuff.all_asset_flags);
+var el_list = create_list(32, yy, "Asset Flags", "", ew, eh, 20, uivc_list_selection_asset_flags, false, dg, Stuff.all_asset_flags);
+el_list.tooltip = "Any flags you may want to assign to assets such as Meshes or Tiles. These are stored in the form of a 32-bit mask, which means you can use up to 32 of them and they may be toggled on or off independantly of each other.";
 el_list.numbered = true;
 el_list.allow_deselect = false;
 ui_list_select(el_list, 0);
@@ -33,16 +34,7 @@ ui_input_set_value(el_name, Stuff.all_asset_flags[| 0]);
 yy = yy + el_name.height + spacing;
 dg.el_name = el_name;
 
-var el_add = create_button(32, yy, "Add Flag", ew, eh, fa_center, omu_entity_add_asset_flag, dg);
-dg.el_add = el_add;
-
-yy = yy + el_add.height + spacing;
-
-var el_remove = create_button(32, yy, "Remove Flag", ew, eh, fa_center, omu_entity_remove_asset_flag, dg);
-el_remove.interactive = ds_list_size(Stuff.all_asset_flags) > 1;
-dg.el_remove = el_remove;
-
-yy = yy + el_remove.height + spacing;
+yy = yy + el_name.height + spacing;
 
 var b_width = 128;
 var b_height = 32;
@@ -51,8 +43,6 @@ var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Do
 ds_list_add(dg.contents,
     el_list,
     el_name,
-    el_add,
-    el_remove,
     el_confirm
 );
 
