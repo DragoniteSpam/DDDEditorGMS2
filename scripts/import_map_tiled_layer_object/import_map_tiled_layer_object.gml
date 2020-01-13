@@ -121,27 +121,22 @@ for (var i = 0; i < ds_list_size(layer_objects); i++) {
     if (gid_to_image_name == undefined) {
         var ts_json_data = noone;
         var ts_base_list = tiled_cache[? "%tilesets"];
-        for (var j = 0; j < ds_list_size(ts_base_list); j++) {
+        for (var j = ds_list_size(ts_base_list) - 1; j >= 0; j--) {
             var ts_data = ts_base_list[| j];
-            var ts_data_next = ts_base_list[| j + 1];
-            if (ts_data[? "firstgid"] > data_gid && (!ts_data_next || ts_data_next[? "firstgid"] <= data_gid)) {
-                ts_json_data = ts_base_list[| max(0, j - 1)];
+            if (ts_data[? "firstgid"] <= data_gid) {
+                ts_json_data = ts_base_list[| j];
                 break;
             }
         }
-        // if a tileset wasn't found, go with the last one - it might be in there because
-        // we don't know what the greatest value in the last tileset is; i don't know if there
-        // are any potential issues with this, but if there are i'll deal with them later
-        if (!ts_json_data) {
-            ts_json_data = ds_list_top(ts_base_list);
-        }
+        
         // i do NOT want to go through this every time so i'm going to cache the result
         // when i can since the gids are [waves hands] global
         var tileset_data = import_map_tiled_get_cached_tileset(tiled_cache, ts_json_data[? "source"]);
         var tileset_tile_data = tileset_data[? "tiles"];
+        var tile_id = data_gid - ts_json_data[? "firstgid"];
         for (var j = 0; j < ds_list_size(tileset_tile_data); j++) {
             var tileset_tile_data_object = tileset_tile_data[| j];
-            if (tileset_tile_data_object[? "id"] == data_gid - ts_json_data[? "firstgid"]) {
+            if (tileset_tile_data_object[? "id"] == tile_id) {
                 gid_to_image_name = filename_name(filename_change_ext(tileset_tile_data_object[? "image"], ""));
                 ds_map_add(gid_cache, data_gid, gid_to_image_name);
             }
@@ -152,11 +147,12 @@ for (var i = 0; i < ds_list_size(layer_objects); i++) {
     switch (string_lower(data_type)) {
         case "pawn":
             var pr_cutscene_entrypoint = data_properties[? "CutsceneEntrypoint"];
+            var pr_cutscene_entrypoint_name = pr_cutscene_entrypoint[? "value"];
             var pr_static = data_properties[? "Static?"];
             
             if (pr_static == undefined) break;
             
-            pr_cutscene_entrypoint = event_get_node_global(pr_cutscene_entrypoint[? "value"]);
+            pr_cutscene_entrypoint = event_get_node_global(pr_cutscene_entrypoint_name);
             pr_static = pr_static[? "value"];
             
             // arrays don't have a truth value apparently
@@ -187,7 +183,7 @@ for (var i = 0; i < ds_list_size(layer_objects); i++) {
                 page.event_guid = pr_cutscene_entrypoint[0].GUID;
                 page.event_entrypoint = pr_cutscene_entrypoint[1].GUID;
             } else {
-                debug("Log an error somewhere - no event entrypoint \"" + data_properties[? "CutsceneEntrypoint"] + "\"" + " for " + data_name);
+                debug("Log an error somewhere - no event entrypoint \"" + pr_cutscene_entrypoint_name + "\"" + " for " + data_name);
             }
             break;
         case "mesh":
@@ -201,7 +197,7 @@ for (var i = 0; i < ds_list_size(layer_objects); i++) {
             if (pr_offset_x == undefined) pr_offset_x = 0; else pr_offset_x = pr_offset_x[? "value"];
             if (pr_offset_y == undefined) pr_offset_y = 0; else pr_offset_y = pr_offset_y[? "value"];
             
-            pr_cutscene_entrypoint = pr_cutscene_entrypoint[? "value"];
+            var pr_cutscene_entrypoint_name = pr_cutscene_entrypoint[? "value"];
             pr_static = pr_static[? "value"];
             
             var pr_mesh_data = internal_name_get(gid_to_image_name);
@@ -220,7 +216,7 @@ for (var i = 0; i < ds_list_size(layer_objects); i++) {
                 instance.off_xx = pr_offset_x / TILE_WIDTH;
                 instance.off_yy = pr_offset_y / TILE_HEIGHT;
             } else {
-                debug("Log an error somewhere - no event entrypoint \"" + data_properties[? "CutsceneEntrypoint"] + "\"" + " for " + data_name);
+                debug("Log an error somewhere - no existing mesh \"" + gid_to_image_name + "\"" + " for " + data_name);
             }
             break;
         case "effect":
