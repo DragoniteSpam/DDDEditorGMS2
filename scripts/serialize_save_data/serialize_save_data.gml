@@ -96,10 +96,11 @@ enum DataVersions {
     REMOVE_RMXP_DATA            = 70,
     MAP_GENERIC_DATA            = 71,
     DATA_MODULARITY             = 72,
-    ASSSET_FILE_BOOLS           = 73,
+    ASSET_FILE_BOOLS            = 73,
     ASSET_FILE_NO_HEADER        = 74,
     NEW_TERRAIN_FLAGS           = 75,
     NEW_TERRAIN_FLAGS_PART_TWO  = 76,
     NO_MORE_ANONYMOUS_COLLISION_DATA = 77,
+    ASSET_FLAG_LIST             = 78,
     _CURRENT /* = whatever the last one is + 1 */
 }

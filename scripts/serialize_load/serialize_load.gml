@@ -94,7 +94,7 @@ switch (what) {
         repeat (n_files) {
             var name = buffer_read(buffer, buffer_string);
             var guid = buffer_read(buffer, buffer_u32);
-            if (version >= DataVersions.ASSSET_FILE_BOOLS) {
+            if (version >= DataVersions.ASSET_FILE_BOOLS) {
                 var bools = buffer_read(buffer, buffer_u32);
             }
             
@@ -103,7 +103,7 @@ switch (what) {
             guid_set(file_data, guid);
             ds_list_add(Stuff.game_asset_lists, file_data);
             
-            if (version >= DataVersions.ASSSET_FILE_BOOLS) {
+            if (version >= DataVersions.ASSET_FILE_BOOLS) {
                 file_data.critical = unpack(bools, 0);
             }
         }

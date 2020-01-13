@@ -61,6 +61,12 @@ for (var i = 0; i < n_constants; i++) {
 
 buffer_write(buffer, buffer_string, Stuff.game_notes);
 
+var n_asset_flags = ds_list_size(Stuff.all_asset_flags);
+buffer_write(buffer, buffer_u8, n_asset_flags);
+for (var i = 0; i < n_asset_flags; i++) {
+    buffer_write(buffer, buffer_string, Stuff.all_asset_flags[| i]);
+}
+
 buffer_poke(buffer, addr_next, buffer_u64, buffer_tell(buffer));
 
 return buffer_tell(buffer);

@@ -67,3 +67,12 @@ repeat (n_constants) {
 if (version >= DataVersions.GAME_NOTES) {
     Stuff.game_notes = buffer_read(buffer, buffer_string);
 }
+
+if (version >= DataVersions.ASSET_FLAG_LIST) {
+    var n_asset_flags = buffer_read(buffer, buffer_u8);
+    ds_list_clear(Stuff.all_asset_flags);
+    
+    repeat (n_asset_flags) {
+        ds_list_add(Stuff.all_asset_flags, buffer_read(buffer, buffer_string));
+    }
+}
