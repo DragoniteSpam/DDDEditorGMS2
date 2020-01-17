@@ -219,7 +219,7 @@ if (selection + 1) {
                 }
                 
                 // this is where everything gets shifted to the next column, if needed
-                if (yy + hh > room_height - 128) {
+                if (yy + hh > room_height - 96) {
                     var n = ds_list_size(container.contents);
                     col_data = instance_create_depth((n /* + 2 */) * cw + spacing * 4, 0, 0, UIThing);
                     if (n > 2) {
@@ -230,7 +230,6 @@ if (selection + 1) {
                     element.y = yy_base;
                     if (element_header) {
                         element_header.y = yy_base;
-                        element.y = yy_base + element_header.height;
                     }
                     
                     yy = yy_base;
