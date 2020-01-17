@@ -14,4 +14,5 @@ dialog_flags = 0;
 enum DialogFlags {
     IS_QUIT                 = 0x0001,
     IS_EXCEPTION            = 0x0002,
+    NO_CLOSE_BUTTON         = 0x0004,
 }

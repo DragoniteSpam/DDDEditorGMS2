@@ -30,7 +30,7 @@ if (active) {
         var cby2 = cby + cbs;
         if (mouse_within_rectangle_determine(cbx1, cby1, cbx2, cby2, true)) {
             cbi = 1;
-            if (Controller.release_left) {
+            if (!(dialog.dialog_flags & DialogFlags.NO_CLOSE_BUTTON) && Controller.release_left) {
                 kill = true;
             }
         } else {
@@ -77,7 +77,7 @@ draw_line_colour(x1, y1 + header_height, x2, y1 + header_height, c_black, c_blac
 draw_set_halign(fa_left);
 draw_text_colour(tx, ty, string(dialog.text), c_black, c_black, c_black, c_black, 1);
 
-if (dialog.close) {
+if (!(dialog.dialog_flags & DialogFlags.NO_CLOSE_BUTTON) && dialog.close) {
     draw_sprite(spr_close, cbi, cbx, cby);
 }
 

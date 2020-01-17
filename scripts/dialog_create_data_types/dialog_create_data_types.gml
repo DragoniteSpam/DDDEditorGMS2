@@ -10,6 +10,7 @@ var dw = 960;
 var dh = 640;
 
 var dg = dialog_create(dw, dh, "Data: Data", dialog_note_changes, dc_close_data_discard, dialog, dc_close_data_discard);
+dg.dialog_flags = dg.dialog_flags | DialogFlags.NO_CLOSE_BUTTON;
 dg.x = dg.x - 32;
 
 dg.selected_data = noone;
