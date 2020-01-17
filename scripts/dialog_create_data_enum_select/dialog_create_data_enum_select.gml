@@ -1,9 +1,11 @@
 /// @param Dialog
 
+var root = argument0;
+
 var dw = 320;
 var dh = 640;
 
-var dg = dialog_create(dw, dh, "Select Enum", dialog_default, dc_close_no_questions_asked, argument0);
+var dg = dialog_create(dw, dh, "Select Enum", dialog_default, dc_close_no_questions_asked, root);
 
 var columns = 1;
 var ew = (dw - columns * 32) / columns;

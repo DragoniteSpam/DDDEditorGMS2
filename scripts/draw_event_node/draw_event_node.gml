@@ -348,7 +348,6 @@ switch (node.type) {
                 case DataTypes.AUDIO_BGM:
                 case DataTypes.AUDIO_SE:
                 case DataTypes.ANIMATION:
-                // @todo data types
                 case DataTypes.CODE:
                 case DataTypes.COLOR:
                 case DataTypes.MESH:
