@@ -127,7 +127,7 @@ for (var i = 0; i < ds_list_size(dynamic.contents); i++) {
                         break;
                     case DataTypes.EVENT:
                         var existing_data = guid_get(ds_list_find_value(instance.values[| n], 0));
-                        thingy.text = existing_data ? existing_data.name : "<none set>";
+                        thingy.text = existing_data ? get_event_entrypoint_short_name(existing_data) : "<none set>";
                         thingy.event_guid = instance.values[| n];
                         thingy.instance = instance;
                         break;
@@ -168,10 +168,12 @@ for (var i = 0; i < ds_list_size(dynamic.contents); i++) {
                 case DataTypes.AUDIO_SE:
                 case DataTypes.ANIMATION:
                 case DataTypes.MAP:
-                case DataTypes.EVENT:
                     if (property.max_size == 1) {
                         ui_list_deselect(thingy);
                     }
+                    break;
+                case DataTypes.EVENT:
+                    thingy.text = "Select Event";
                     break;
                 case DataTypes.ENTITY:
                     // not allowed

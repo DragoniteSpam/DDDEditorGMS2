@@ -22,7 +22,7 @@ var vy2 = vy1 + eh;
 var yy = 64;
 var spacing = 16;
 
-var el_list = create_list(16, yy, "entrypoints", "<event has no entrypoints>", ew, eh, 16, null, false, dg);
+var el_list = create_list(16, yy, "Entrypoints", "<event has no entrypoints>", ew, eh, 16, null, false, dg);
 el_list.entries_are = ListEntries.INSTANCES;
 el_list.colorize = false;
 dg.el_list = el_list;

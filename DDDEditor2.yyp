@@ -608,6 +608,14 @@
             }
         },
         {
+            "Key": "0882141b-d4dd-4552-a00c-af01459be569",
+            "Value": {
+                "id": "a36264e0-74ad-4b63-ac12-322c61c12442",
+                "resourcePath": "scripts\\get_event_entrypoint_short_name\\get_event_entrypoint_short_name.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "0883ade2-0058-4e07-83f7-d510c0777c8a",
             "Value": {
                 "id": "e254c9dc-9fa5-4ca2-a20f-b8b687bd794a",
@@ -17509,6 +17517,7 @@
         "f150744d-6e9e-4a19-9d6b-aae2f59d9434",
         "62767d98-0d03-46f2-a6de-b79bc6629c39",
         "13a29890-b54d-4a12-ba7c-f11f012fc594",
+        "0882141b-d4dd-4552-a00c-af01459be569",
         "89c8bdd1-48c9-44ca-8885-1a0ffd7cca55",
         "d6a7855a-1b68-4b95-9838-0d8f23650938",
         "cae6374b-8f37-4d1f-a9b2-e971176a3b62",

@@ -35,7 +35,7 @@ if (root.instance) {
 
 var b_width = 128;
 var b_height = 32;
-var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Commit", b_width, b_height, fa_center, dmu_create_data_event_entrypoint_list, dg);
+var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Next", b_width, b_height, fa_center, dmu_create_data_event_entrypoint_list, dg);
 
 ds_list_add(dg.contents,
     el_list,

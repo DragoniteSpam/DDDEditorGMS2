@@ -205,7 +205,7 @@ if (selection + 1) {
                             break;
                         case DataTypes.EVENT:           // list
                             var element_header = create_text(spacing, yy, property.name, ew, eh, fa_left, ew, noone);
-                            var element = create_button(spacing, yy + vy1, "select something", ew, eh, fa_center, dialog_create_data_get_event, noone);
+                            var element = create_button(spacing, yy, "Select Event", ew, eh, fa_center, dialog_create_data_get_event, noone);
                             element.event_guid = noone;
                             element.instance = noone;
                             element.key = i;

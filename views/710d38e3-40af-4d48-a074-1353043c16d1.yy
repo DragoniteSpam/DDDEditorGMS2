@@ -20,7 +20,8 @@
         "ba6b3063-e93c-411f-b570-2028a01abdf5",
         "9634706a-435b-43d3-b5d1-636b7b71a5bd",
         "64e65ce0-a807-4972-b4d2-41ce97f943dc",
-        "f9bd2553-5743-4bb4-b648-cd3285518155"
+        "f9bd2553-5743-4bb4-b648-cd3285518155",
+        "0882141b-d4dd-4552-a00c-af01459be569"
     ],
     "filterType": "GMScript",
     "folderName": "event stuff",
