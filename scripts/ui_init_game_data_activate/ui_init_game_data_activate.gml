@@ -205,7 +205,7 @@ if (selection + 1) {
                             break;
                         case DataTypes.EVENT:           // list
                             var element_header = create_text(spacing, yy, property.name, ew, eh, fa_left, ew, noone);
-                            var element = create_button(spacing, yy, "Select Event", ew, eh, fa_center, dialog_create_data_get_event, noone);
+                            var element = create_button(spacing, yy + vy1, "Select Event", ew, eh, fa_center, dialog_create_data_get_event, noone);
                             element.event_guid = noone;
                             element.instance = noone;
                             element.key = i;
@@ -227,9 +227,12 @@ if (selection + 1) {
                     }
                     ds_list_add(container.contents, col_data);
                     
-                    element.y = yy_base;
                     if (element_header) {
+                        var difference = element.y - element_header.y;
                         element_header.y = yy_base;
+                        element.y = element_header.y + difference;
+                    } else {
+                        element.y = yy_base;
                     }
                     
                     yy = yy_base;
