@@ -1,10 +1,12 @@
 /// @param Dialog
 
+var root = argument0;
+
 var dw = 320;
 var dh = 640;
 
 // todo cache the custom event and only commit the changes when you're done
-var dg = dialog_create(dw, dh, "Prefab Nodes", dialog_default, dc_close_no_questions_asked, argument0);
+var dg = dialog_create(dw, dh, "Prefab Nodes", dialog_default, dc_close_no_questions_asked, root);
 
 var columns = 1;
 var ew = (dw - columns * 32) / columns;
@@ -24,6 +26,7 @@ var n_slots = 20;
 var yy = 64;
 
 var el_list = create_list(16, yy, "Prefab Nodes:", "<no prefab nodes>", ew, eh, n_slots, null, false, dg, Stuff.all_event_prefabs);
+el_list.ondoubleclick = omu_event_add_prefab_event;
 el_list.entries_are = ListEntries.INSTANCES;
 
 dg.el_list_main = el_list;
