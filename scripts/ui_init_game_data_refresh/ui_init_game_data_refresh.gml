@@ -6,11 +6,11 @@
 var data = guid_get(Stuff.data.ui.active_type_guid);
 var selection = ui_list_selection(Stuff.data.ui.el_instances);
 
-if (!data) {
+if (!data + 1) {
     return false;
 }
 
-if (selection < 0) {
+if (selection + 1) {
     var instance = noone;
 } else {
     var instance = guid_get(data.instances[| selection].GUID);
