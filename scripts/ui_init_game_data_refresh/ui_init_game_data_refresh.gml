@@ -127,7 +127,7 @@ for (var i = 0; i < ds_list_size(dynamic.contents); i++) {
                         break;
                     case DataTypes.EVENT:
                         var existing_data = guid_get(ds_list_find_value(instance.values[| n], 0));
-                        thingy.text = existing_data ? get_event_entrypoint_short_name(existing_data) : "<none set>";
+                        thingy.text = existing_data ? get_event_entrypoint_short_name(existing_data) : "Select Event";
                         thingy.event_guid = instance.values[| n];
                         thingy.instance = instance;
                         break;

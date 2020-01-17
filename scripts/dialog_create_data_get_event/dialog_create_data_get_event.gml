@@ -35,10 +35,12 @@ if (root.instance) {
 
 var b_width = 128;
 var b_height = 32;
-var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Next", b_width, b_height, fa_center, dmu_create_data_event_entrypoint_list, dg);
+var el_remove = create_button(dw / 3 - b_width / 2 - spacing, dh - 32 - b_height / 2, "Remove", b_width, b_height, fa_center, dmu_create_data_event_entrypoint_remove, dg);
+var el_confirm = create_button(dw * 2 / 3 - b_width / 2 + spacing, dh - 32 - b_height / 2, "Next", b_width, b_height, fa_center, dmu_create_data_event_entrypoint_list, dg);
 
 ds_list_add(dg.contents,
     el_list,
+    el_remove,
     el_confirm
 );
 
