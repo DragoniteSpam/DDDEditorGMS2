@@ -6,15 +6,16 @@
 var data = guid_get(Stuff.data.ui.active_type_guid);
 var selection = ui_list_selection(Stuff.data.ui.el_instances);
 
-if (!data + 1) {
+if (!(data + 1)) {
     return false;
 }
 
 if (selection + 1) {
-    var instance = noone;
-} else {
     var instance = guid_get(data.instances[| selection].GUID);
+} else {
+    var instance = noone;
 }
+
 /*Everything is suddenly broken, go into github to see if you can find what the latest changes to
 this and ui_init_game_data_activate and ui_init_game_data were because i'm way too tired for that now*/
 ui_input_set_value(Stuff.data.ui.el_inst_name, instance ? instance.name : "");
