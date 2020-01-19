@@ -144,6 +144,8 @@ for (var i = 0; i < ds_list_size(layer_objects); i++) {
         var tileset_tile_individual = tileset_tile_data[| data_gid - ts_json_data[? "firstgid"]];
     }
     
+    var instance = noone;
+    
     switch (string_lower(data_type)) {
         case "pawn":
             var pr_cutscene_entrypoint = data_properties[? "CutsceneEntrypoint"];
@@ -158,7 +160,7 @@ for (var i = 0; i < ds_list_size(layer_objects); i++) {
             // arrays don't have a truth value apparently
             if (pr_cutscene_entrypoint != undefined) {
                 if (tmx_cache[? obj_id]) {
-                    var instance = tmx_cache[? obj_id];
+                    instance = tmx_cache[? obj_id];
                     var page = instance.object_events[| 0];
                     if (!page) {
                         page = create_instantiated_event("Conversation:" + pr_cutscene_entrypoint[1].name);
@@ -172,7 +174,7 @@ for (var i = 0; i < ds_list_size(layer_objects); i++) {
                     // position for NPCs is at -1 because of where the origin for sprites is in Tiled
                     map_add_thing(instance, (xx + obj_x) div TILE_WIDTH, (yy + obj_y) div TILE_HEIGHT - 1, zz, undefined, undefined, false);
                 } else {
-                    var instance = instance_create_pawn();
+                    instance = instance_create_pawn();
                     instance.tmx_id = obj_id;
                     var page = create_instantiated_event("Conversation:" + pr_cutscene_entrypoint[1].name);
                     ds_list_add(instance.object_events, page);
@@ -203,13 +205,13 @@ for (var i = 0; i < ds_list_size(layer_objects); i++) {
             var pr_mesh_data = internal_name_get(gid_to_image_name);
             if (pr_mesh_data) {
                 if (tmx_cache[? obj_id]) {
-                    var instance = tmx_cache[? obj_id];
+                    instance = tmx_cache[? obj_id];
                     // The entity only needs to be relocated; it doesn't need to be removed from
                     // the lists, or re-added later, because that would take a lot of time
                     map_remove_thing(instance, false);
                     map_add_thing(instance, (xx + obj_x) div TILE_WIDTH, (yy + obj_y) div TILE_HEIGHT, zz, undefined, undefined, false);
                 } else {
-                    var instance = instance_create_mesh(pr_mesh_data);
+                    instance = instance_create_mesh(pr_mesh_data);
                     instance.tmx_id = obj_id;
                     map_add_thing(instance, (xx + obj_x) div TILE_WIDTH, (yy + obj_y) div TILE_HEIGHT, zz);
                 }
@@ -223,6 +225,29 @@ for (var i = 0; i < ds_list_size(layer_objects); i++) {
         default:
             not_yet_implemented_polite();
             break;
+    }
+    
+    if (instance) {
+        var property_list = ds_map_to_list(data_properties);
+        for (var j = 0; j < ds_list_size(property_list); j++) {
+            var property = data_properties[? property_list[| j]];
+            var property_name = property[? "name"];
+            switch (string_char_at(property_name, 1)) {
+                case "@":
+                    var data = internal_name_get(property[? "value"]);
+                    if (data) {
+                        var data_generic_instance = instance_create_depth(0, 0, 0, DataAnonymous);
+                        data_generic_instance.name = string_replace(property_name, "@", "");
+                        data_generic_instance.value_data = data_generic_instance;
+                        ds_list_add(instance.generic_data, data_generic_instance);
+                    } else {
+                        debug("internal name not found - " + property[? "value"]);
+                    }
+                    break;
+                // other sigils may indicate other data types, but that's all for now
+            }
+        }
+        ds_list_destroy(property_list);
     }
     
     ds_map_destroy(data_properties);
