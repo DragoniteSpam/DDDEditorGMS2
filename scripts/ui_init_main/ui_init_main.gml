@@ -360,12 +360,19 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     ds_list_add(t_maps.contents, element);
     t_maps.el_dim_z = element;
     
-    yy = yy + element.height + spacing * 4;
+    yy = yy + element.height + spacing * 3;
     
     element = create_text(col2_x, yy, "Maps can go up to " + string(MAP_AXIS_LIMIT) + " in any dimension, but the total volume must be lower than " + string_comma(MAP_VOLUME_LIMIT) + ".", col_width, element_height, fa_left, col_width, t_maps);
     ds_list_add(t_maps.contents, element);
     
-    yy = yy + element.height + spacing * 4;
+    yy = yy + element.height + spacing * 3;
+    
+    element = create_checkbox(col2_x, yy, "Is 3D?", col_width, element_height, uivc_settings_map_3d, false, t_maps);
+    element.tooltip = "This is my favorite checkbox in the whole entire editor";
+    ds_list_add(t_maps.contents, element);
+    t_maps.el_3d = element;
+    
+    yy = yy + element.height + spacing;
     
     element = create_button(col2_x, yy,  "Generic Data", col_width, element_height, fa_center, omu_map_generic_data, t_maps);
     ds_list_add(t_maps.contents, element);

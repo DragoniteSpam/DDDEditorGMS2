@@ -3,7 +3,7 @@
 var thing = argument0;
 
 if (ds_list_size(Stuff.all_animations) < 1000) {
-    var n = string(ds_list_size(Stuff.all_animations));;
+    var n = string(ds_list_size(Stuff.all_animations));
     var animation = animation_create("Animation" + n, "Anim" + n);
     ui_list_deselect(thing.root.el_master);
 } else {

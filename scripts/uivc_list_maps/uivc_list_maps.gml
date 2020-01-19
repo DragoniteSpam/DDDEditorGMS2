@@ -19,6 +19,8 @@ if (selection + 1) {
     list.root.el_dim_z.interactive = (what == Stuff.map.active_map);
     ui_input_set_value(list.root.el_dim_z, string(what.zz));
     list.root.el_other.interactive = true;
+    list.root.el_3d.value = what.is_3d;
+    list.root.el_3d.interactive = true;
 } else {
     list.root.el_name.interactive = false;
     list.root.el_internal_name.interactive = false;
@@ -27,4 +29,5 @@ if (selection + 1) {
     list.root.el_dim_y.interactive = false;
     list.root.el_dim_z.interactive = false;
     list.root.el_other.interactive = false;
+    list.root.el_3d.interactive = false;
 }

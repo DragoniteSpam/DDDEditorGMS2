@@ -57,7 +57,7 @@ for (var i = 0; i < n_projects; i++) {
         buffer_load_partial(fbuffer, path_new, 0, 512, 0);
         var header = chr(buffer_read(fbuffer, buffer_u8)) + chr(buffer_read(fbuffer, buffer_u8)) + chr(buffer_read(fbuffer, buffer_u8));
         if (buffer_peek(fbuffer, 0, buffer_u8) == $44 && buffer_peek(fbuffer, 1, buffer_u8) == $44 && buffer_peek(fbuffer, 2, buffer_u8) == $44) {
-            var version = buffer_peek(fbuffer, 3, buffer_u32);;
+            var version = buffer_peek(fbuffer, 3, buffer_u32);
             dg.versions[i] = string(version);
             if (version >= DataVersions.DATA_MODULARITY) {
                 buffer_seek(fbuffer, buffer_seek_start, 8);

@@ -10,7 +10,7 @@ var dg = dialog_create(dw, dh, "Data: Availalbe Autotiles", dialog_default, dc_c
 var ew = (dw - 64) / 2;
 var eh = 24;
 
-var vx1 = ew / 2;;
+var vx1 = ew / 2;
 var vy1 = 0;
 var vx2 = ew;
 var vy2 = vy1 + eh;

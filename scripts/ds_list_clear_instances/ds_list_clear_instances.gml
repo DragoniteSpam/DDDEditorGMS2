@@ -3,7 +3,7 @@
 // a couple destroy events that could use this but don't.
 
 var list = argument0;
-var n = ds_list_size(list);;
+var n = ds_list_size(list);
 
 for (var i = 0; i < n; i++) {
     var what = list[| i];
