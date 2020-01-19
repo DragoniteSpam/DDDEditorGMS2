@@ -6,6 +6,9 @@ var data = guid_get(thing.root.active_type_guid);
 
 if (data) {
     var instance = instance_create_depth(0, 0, 0, DataInstantiated);
+    instance.base_guid = data.GUID;
+    instance_deactivate_object(instance);
+    ds_list_add(data.instances, instance);
     
     var n = ds_list_size(data.instances);
     while (internal_name_get(string_upper(data.name) + string(n))) {
@@ -13,9 +16,6 @@ if (data) {
     }
     instance.name = data.name + string(n);
     internal_name_set(instance, string_upper(data.name) + string(n));
-    
-    instance_deactivate_object(instance);
-    ds_list_add(data.instances, instance);
     
     for (var i = 0; i < ds_list_size(data.properties); i++) {
         var property = data.properties[| i];

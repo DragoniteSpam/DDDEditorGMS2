@@ -236,9 +236,12 @@ for (var i = 0; i < ds_list_size(layer_objects); i++) {
                 case "@":
                     var data = internal_name_get(property[? "value"]);
                     if (data) {
+                        var base = guid_get(data.base_guid);
                         var data_generic_instance = instance_create_depth(0, 0, 0, DataAnonymous);
                         data_generic_instance.name = string_replace(property_name, "@", "");
-                        data_generic_instance.value_data = data_generic_instance;
+                        data_generic_instance.value_data = data.GUID;
+                        data_generic_instance.value_type_guid = base.GUID;
+                        data_generic_instance.type = DataTypes.DATA;
                         ds_list_add(instance.generic_data, data_generic_instance);
                     } else {
                         debug("internal name not found - " + property[? "value"]);

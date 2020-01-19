@@ -61,11 +61,7 @@ switch (data.type) {
             dialog.el_data_type_guid.color = c_black;
         }
         
-        if (data.type == DataTypes.ENUM) {
-            dialog.el_data_type_guid.onmouseup = omu_entity_data_enum_select;
-        } else  {
-            dialog.el_data_type_guid.onmouseup = omu_entity_data_data_select;
-        }
+        dialog.el_data_type_guid.onmouseup = (data.type == DataTypes.ENUM) ? omu_entity_data_enum_select : omu_entity_data_data_select;
         
         break;
     case DataTypes.COLOR:

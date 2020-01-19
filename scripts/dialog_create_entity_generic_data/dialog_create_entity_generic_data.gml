@@ -102,6 +102,7 @@ el_data_type_guid.enabled = false;
 dg.el_data_type_guid = el_data_type_guid;
 yy = yy + el_data_type_guid.height + spacing;
 
+// this one does basically the same thing as above but is in a slightly different location
 var el_data_list = create_list(col2_x, yy, "Data", "<none>", ew, eh, 6, uivc_list_entity_data_guid, false, dg, noone);
 el_data_list.interactive = false;
 el_data_list.enabled = false;

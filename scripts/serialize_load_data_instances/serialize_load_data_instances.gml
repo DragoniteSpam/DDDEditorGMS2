@@ -17,6 +17,7 @@ for (var i = 0; i < n_datadata; i++) {
         
         for (var j = 0; j < n_instances; j++) {
             var instance = instance_create_depth(0, 0, 0, DataInstantiated);
+            instance.base_guid = datadata.GUID;
             ds_list_add(datadata.instances, instance);
             
             serialize_load_generic(buffer, instance, version);
