@@ -80,7 +80,7 @@ yy = yy + el_encounter_deviation.height + spacing;
 
 var b_width = 128;
 var b_height = 32;
-var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Commit", b_width, b_height, fa_center, dmu_dialog_commit, dg);
+var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
 
 ds_list_add(dg.contents,
     el_other,
