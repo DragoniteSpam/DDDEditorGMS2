@@ -8,7 +8,7 @@ var yy = argument[2];
 var smooth = true;
 var threshold = 0.3;
 
-// @todo gml update when lwos come around i think an "add" method would be pretty handy here
+// @gml update when lwos come around i think an "add" method would be pretty handy here
 
 var normal_map = ds_map_create();
 

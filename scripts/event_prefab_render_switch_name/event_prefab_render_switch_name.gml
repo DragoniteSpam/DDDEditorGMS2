@@ -4,7 +4,7 @@
 var event = argument0;
 var index = argument1;
 
-// @todo gml update
+// @gml update
 var custom_data = event.custom_data[| 0];
 var raw = custom_data[| 0];
 

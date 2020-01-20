@@ -2,7 +2,7 @@
 
 gml_pragma("forceinline");
 
-// @todo gml update this will be part of the vec3 object
+// @gml update this will be part of the vec3 object
 
 var v = argument0;
 var l = point_distance_3d(0, 0, 0, v[0], v[1], v[2]);

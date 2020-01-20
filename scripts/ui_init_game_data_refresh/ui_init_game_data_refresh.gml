@@ -117,7 +117,7 @@ for (var i = 0; i < ds_list_size(dynamic.contents); i++) {
                     case DataTypes.IMG_UI:
                     case DataTypes.IMG_ETC:
                         ui_list_deselect(thingy);
-                        // @todo gml update chained accessors, in a few places in this script
+                        // @gml update chained accessors, in a few places in this script
                         for (var k = 0; k < ds_list_size(thingy.entries); k++) {
                             if (thingy.entries[| k].GUID == ds_list_find_value(instance.values[| n], 0)) {
                                 ui_list_select(thingy, k, true);

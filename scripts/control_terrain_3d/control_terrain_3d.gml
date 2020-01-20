@@ -20,7 +20,7 @@ terrain.cursor_position = undefined;
 if (zz < Stuff.terrain.z) {
     var f = abs(Stuff.terrain.z / zz);
     
-    // @todo gml update lwo
+    // @gml update lwo
     terrain.cursor_position = [(Stuff.terrain.x + xx * f) / terrain.view_scale, (Stuff.terrain.y + yy * f) / terrain.view_scale];
     
     if (Controller.mouse_left) {

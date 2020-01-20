@@ -17,7 +17,7 @@ with (instance_create_depth(0, 0, 0, DataEventNodeCustomPersistent)) {
         var data_attainment = (len > 6) ? data[6] : null;
         var data_output = (len > 7) ? data[7] : null;
         
-        /// @todo gml update lightweight objects
+        /// @gml update lightweight objects
         ds_list_add(types, [data_name, data_type, data_guid, data_max, data_required, data_default, data_attainment, data_output]);
     }
     

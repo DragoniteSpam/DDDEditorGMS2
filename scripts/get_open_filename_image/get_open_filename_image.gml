@@ -1,6 +1,6 @@
 var path = get_open_filename_ext("Image files (*.png)|*.png", "", Stuff.setting_location_image, "Select an image");
 
-// @todo gml update try-catch
+// @gml update try-catch
 if (file_exists(path)) {
     var dir = filename_dir(path);
 

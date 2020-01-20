@@ -89,7 +89,7 @@ if (file_exists(fn)) {
                     ds_list_add(v_y, real(ds_queue_dequeue(q)));
                     ds_list_add(v_z, real(ds_queue_dequeue(q)));
                 } else {
-                    // @todo gml update try-catch
+                    // @gml update try-catch
                     show_message("Malformed vertex found (line " + string(line_number) + ")");
                     illegal = true;
                 }
@@ -99,7 +99,7 @@ if (file_exists(fn)) {
                     ds_list_add(v_xtex, real(ds_queue_dequeue(q)));
                     ds_list_add(v_ytex, real(ds_queue_dequeue(q)));
                 } else {
-                    // @todo gml update try-catch
+                    // @gml update try-catch
                     show_message("Malformed vertex texture found (line " + string(line_number) + ")");
                     illegal = true;
                 }
@@ -110,7 +110,7 @@ if (file_exists(fn)) {
                     ds_list_add(v_ny, real(ds_queue_dequeue(q)));
                     ds_list_add(v_nz, real(ds_queue_dequeue(q)));
                 } else {
-                    // @todo gml update try-catch
+                    // @gml update try-catch
                     show_message("Malformed vertex normal found (line " + string(line_number) + ")");
                     illegal = true;
                 }
@@ -182,7 +182,7 @@ if (file_exists(fn)) {
                     }
                     ds_queue_destroy(vertex_q);
                 } else {
-                    // @todo gml update try-catch
+                    // @gml update try-catch
                     show_message("Malformed face found (tee hee) (line " + string(line_number) + ")");
                     illegal = true;
                 }
@@ -200,7 +200,7 @@ if (file_exists(fn)) {
             case "#":   // comment
                 break;
             default:
-                // @todo gml update try-catch
+                // @gml update try-catch
                 show_message("Unsupported thing found in your model, skipping everything (line " + string(line_number) + ")");
                 illegal = true;
                 break;

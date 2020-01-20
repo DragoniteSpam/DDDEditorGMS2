@@ -51,7 +51,7 @@ for (var i = 0; i < n_projects; i++) {
     dg.timestamp_times[i] = "";
     dg.file_counts[i] = 0;
     var path_new = PATH_PROJECTS + project_list[| i] + "\\" + project_list[| i] + ".dddd";
-    // @todo gml update try catch
+    // @gml update try catch
     if (file_exists(path_new)) {
         // magic numbers abound
         buffer_load_partial(fbuffer, path_new, 0, 512, 0);

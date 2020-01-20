@@ -6,7 +6,7 @@ var fn = get_open_filename_image();
 
 if (file_exists(fn)) {
     var ts = get_active_tileset();
-    // @todo gml update, try-catch?
+    // @gml update, try-catch?
     sprite_delete(ts.picture);
     var picture = sprite_add(fn, 0, false, false, 0, 0);
     

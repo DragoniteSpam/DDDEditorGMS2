@@ -4,7 +4,7 @@ var name = (argument_count > 0) ? argument[0] : "";
 
 var path = get_save_filename_ext("Terrain files (*.dddt)|*.dddt", name, Stuff.setting_location_terrain, "Select a terrain file");
 
-// @todo gml update try-catch
+// @gml update try-catch
 if (path != "") {
     var dir = filename_dir(path);
 

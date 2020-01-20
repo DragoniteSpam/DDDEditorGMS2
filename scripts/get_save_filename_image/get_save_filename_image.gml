@@ -4,7 +4,7 @@ var name = (argument_count > 0) ? argument[0] : "";
 
 var path = get_save_filename_ext("Image files (*.png)|*.png", name, Stuff.setting_location_image, "Select an image");
 
-// @todo gml update try-catch
+// @gml update try-catch
 if (path != "") {
     var dir = filename_dir(path);
 

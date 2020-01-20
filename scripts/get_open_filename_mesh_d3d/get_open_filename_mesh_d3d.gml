@@ -1,6 +1,6 @@
 var path = get_open_filename_ext("Game Maker model files (*.d3d;*.gmmod)|*.d3d;*.gmmod", "", Stuff.setting_location_mesh, "Select a mesh");
 
-// @todo gml update try-catch
+// @gml update try-catch
 if (file_exists(path)) {
     var dir = filename_dir(path);
 

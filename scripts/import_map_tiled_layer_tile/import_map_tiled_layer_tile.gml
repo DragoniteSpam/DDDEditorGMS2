@@ -37,7 +37,7 @@ for (var i = 0; i < ds_list_size(layer_properties); i++) {
 
 var xoffset = 0;
 var yoffset = 0;
-// @todo gml update chained accessors
+// @gml update chained accessors
 var zoffset = ds_map_find_value(property_map[? "Offset"], "value");
 
 if (layer_visible) {

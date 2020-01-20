@@ -104,6 +104,14 @@
             }
         },
         {
+            "Key": "00f9bcca-168a-4fc0-864f-fff339638ddc",
+            "Value": {
+                "id": "c3059938-7b13-4c61-b28c-a5754dcefaff",
+                "resourcePath": "scripts\\omu_event_add_set_entity_sprite\\omu_event_add_set_entity_sprite.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "01059a2d-4cd0-417a-933b-d0a83ae8a37b",
             "Value": {
                 "id": "9dd222ea-b44b-4a75-9f45-8b9d5ffc415f",
@@ -1220,6 +1228,14 @@
             "Value": {
                 "id": "64539533-9217-49a4-acdc-29397434577d",
                 "resourcePath": "scripts\\animation_get_tween_translate_z\\animation_get_tween_translate_z.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "12ab4546-eb34-437f-95e6-2f27c0b0c63e",
+            "Value": {
+                "id": "9655d26e-cb6a-4475-b572-3e2fde521f18",
+                "resourcePath": "scripts\\omu_event_add_set_entity_mesh\\omu_event_add_set_entity_mesh.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -17073,6 +17089,8 @@
         "106ffab1-4246-40cb-92e2-ac2b438b9639",
         "3b7341af-a6f2-4c54-b540-6abff4e0be96",
         "8b10e9c5-9141-4b95-8bdd-5eadf31517f3",
+        "00f9bcca-168a-4fc0-864f-fff339638ddc",
+        "12ab4546-eb34-437f-95e6-2f27c0b0c63e",
         "8177f210-129d-42a9-a6a8-a901f939882e",
         "29dd4d57-87e2-43ef-b58d-cc327092f224",
         "26e70d38-59c5-4f43-8d78-d4cf27af15cc",

@@ -26,7 +26,7 @@ buffer_seek(data.buffer, buffer_seek_start, 0);
 
 var vc = 0;
 
-// @todo gml update lightweight objects
+// @gml update lightweight objects
 var px = array_create(3);
 var py = array_create(3);
 var pz = array_create(3);

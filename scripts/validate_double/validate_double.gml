@@ -8,7 +8,7 @@ if (!string_length(str)) {
     return false;
 }
 
-// @todo gml update try-catch
+// @gml update try-catch
 return regex("[-+]?[0-9]*\.?[0-9]+", str);
 
 // ((\+)|(\-))?

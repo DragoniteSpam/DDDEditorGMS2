@@ -136,7 +136,7 @@ if (keyboard_check(vk_space)) {
     }
 }
 
-// @todo gml update chained accessors
+// @gml update chained accessors
 var ed_x = surface.root.node.custom_data[| 1];
 var ed_y = surface.root.node.custom_data[| 2];
 var ed_z = surface.root.node.custom_data[| 3];

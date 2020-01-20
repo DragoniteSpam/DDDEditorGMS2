@@ -34,7 +34,7 @@ var spacing = 16;
 
 var el_list = create_list(16, yy, "Destination Variable", "<no variables>", ew, eh, 10, uivc_list_event_attain_input_variable_index, false, dg);
 for (var i = 0; i < ds_list_size(Stuff.variables); i++) {
-    // @todo gml update
+    // @gml update
     var data = Stuff.variables[| i];
     create_list_entries(el_list, data[0]);
 }

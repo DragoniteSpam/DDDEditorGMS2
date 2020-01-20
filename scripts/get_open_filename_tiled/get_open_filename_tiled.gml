@@ -1,6 +1,6 @@
 var path = get_open_filename_ext("Tiled JSON files (*.json)|*.json", "", Stuff.setting_location_tiled, "Select a Tiled file");
 
-// @todo gml update try-catch
+// @gml update try-catch
 if (file_exists(path)) {
     var dir = filename_dir(path);
 

@@ -1,6 +1,6 @@
 var path = get_open_filename_ext("Audio files (*.wav)|*.wav", "", Stuff.setting_location_audio, "Select an audio file");
 
-// @todo gml update try-catch
+// @gml update try-catch
 if (file_exists(path)) {
     var dir = filename_dir(path);
 

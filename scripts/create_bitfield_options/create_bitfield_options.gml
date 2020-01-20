@@ -17,7 +17,7 @@
  * compose the array yourself and itll work
  */
 
-// @todo gml update lightweight objects
+// @gml update lightweight objects
 var bitfield = argument[0];
 var things = argument[1];
 

@@ -24,5 +24,5 @@ var yy = (argument_count > 9) ? argument[9] : 0;
 var color_active = (argument_count > 10) ? argument[10] : c_ui_active_bitfield;
 var color_inactive = (argument_count > 11) ? argument[11] : c_white;
 
-// @todo gml update lightweight objects
+// @gml update lightweight objects
 return [value, render, onvaluechange, text, sprite, index, width, height, xx, yy, color_active, color_inactive];

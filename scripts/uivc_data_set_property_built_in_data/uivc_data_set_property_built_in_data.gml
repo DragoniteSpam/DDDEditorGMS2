@@ -9,7 +9,7 @@ var data_selection = ui_list_selection(list);
 if ((selection + 1)) {
     var instance = data.instances[| selection];
     if (data_selection + 1) {
-        // @todo gml
+        // @gml
         // because game maker can't handle doing all of these accessors in the same
         // line apparently
         ds_list_set(instance.values[| list.key], 0, list.entries[| data_selection].GUID);
