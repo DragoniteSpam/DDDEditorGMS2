@@ -477,14 +477,28 @@ switch (node.type) {
                                         break;
                                     // @todo data types
                                     case DataTypes.MESH:
-                                    case DataTypes.TILE:
+                                        dialog_create_event_node_meshes(noone, node, i, 0);
+                                        break;
                                     case DataTypes.IMG_TILESET:
+                                        dialog_create_event_node_img_tileset(noone, node, i, 0);
+                                        break;
                                     case DataTypes.IMG_BATTLER:
+                                        dialog_create_event_node_img_battlers(noone, node, i, 0);
+                                        break;
                                     case DataTypes.IMG_OVERWORLD:
+                                        dialog_create_event_node_img_overworlds(noone, node, i, 0);
+                                        break;
                                     case DataTypes.IMG_PARTICLE:
+                                        dialog_create_event_node_img_particles(noone, node, i, 0);
+                                        break;
                                     case DataTypes.IMG_UI:
+                                        dialog_create_event_node_img_ui(noone, node, i, 0);
+                                        break;
                                     case DataTypes.IMG_ETC:
+                                        dialog_create_event_node_img_etc(noone, node, i, 0);
+                                        break;
                                     case DataTypes.AUTOTILE:
+                                    case DataTypes.TILE:
                                     case DataTypes.EVENT:
                                         not_yet_implemented();
                                     case DataTypes.ENTITY:
@@ -562,40 +576,48 @@ switch (node.type) {
                             draw_rectangle_colour(x2 - 64, entry_yy + 8, x2 - 32, entry_yy + eh - 8, c_black, c_black, c_black, c_black, true);
                             break;
                         case DataTypes.MESH:
+                            var setdata = guid_get(custom_data_list[| 0]);
                             message = message + "(mesh): ";
-                            output_string = "TBD";
+                            output_string = setdata ? setdata.name : "<null>";
                             break;
                         case DataTypes.TILE:
                             message = message + "(tile): ";
                             output_string = "TBD";
                             break;
                         case DataTypes.IMG_TILESET:
+                            var setdata = guid_get(custom_data_list[| 0]);
                             message = message + "(tileset): ";
-                            output_string = "TBD";
+                            output_string = setdata ? setdata.name : "<null>";
                             break;
                         case DataTypes.IMG_BATTLER:
+                            var setdata = guid_get(custom_data_list[| 0]);
                             message = message + "(battler): ";
-                            output_string = "TBD";
+                            output_string = setdata ? setdata.name : "<null>";
                             break;
                         case DataTypes.IMG_OVERWORLD:
-                            message = message + "(overworld): ";
-                            output_string = "TBD";
+                            var setdata = guid_get(custom_data_list[| 0]);
+                            message = message + "(OW): ";
+                            output_string = setdata ? setdata.name : "<null>";
                             break;
                         case DataTypes.IMG_PARTICLE:
+                            var setdata = guid_get(custom_data_list[| 0]);
                             message = message + "(particle): ";
-                            output_string = "TBD";
+                            output_string = setdata ? setdata.name : "<null>";
                             break;
                         case DataTypes.IMG_UI:
-                            message = message + "(UI): ";
-                            output_string = "TBD";
+                            var setdata = guid_get(custom_data_list[| 0]);
+                            message = message + "(ui): ";
+                            output_string = setdata ? setdata.name : "<null>";
                             break;
                         case DataTypes.IMG_ETC:
+                            var setdata = guid_get(custom_data_list[| 0]);
                             message = message + "(misc): ";
-                            output_string = "TBD";
+                            output_string = setdata ? setdata.name : "<null>";
                             break;
                         case DataTypes.AUTOTILE:
+                            var setdata = guid_get(custom_data_list[| 0]);
                             message = message + "(autotile): ";
-                            output_string = "TBD";
+                            output_string = setdata ? setdata.name : "<null>";
                             break;
                         case DataTypes.AUDIO_BGM:
                             var setdata = guid_get(custom_data_list[| 0]);
