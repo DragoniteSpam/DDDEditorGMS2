@@ -88,7 +88,7 @@ if (file_exists("projects.json")) {
     all_projects = ds_map_create();
     ds_map_add_list(all_projects, "projects", ds_list_create());
 }
-// @todo gml update try catch
+// @gml update try catch
 if (file_exists(FILE_SETTINGS)) {
     var json_buffer = buffer_load(FILE_SETTINGS);
     settings = json_decode(buffer_read(json_buffer, buffer_string));
@@ -174,7 +174,7 @@ all_internal_names = ds_map_create();
 
 spr_character_default = sprite_add(PATH_GRAPHICS + "b_chr_default.png", 0, false, false, 0, 0);
 
-// @todo gml update lwos, all of them
+// @gml update lwos, all of them
 all_graphic_autotiles = ds_list_create();
 all_graphic_tilesets = ds_list_create();
 all_graphic_overworlds = ds_list_create();
@@ -411,6 +411,14 @@ event_prefab[EventNodeTypes.SCRIPT] = create_event_node_basic("Script", [
 ]);
 /* */ event_prefab[EventNodeTypes.AUDIO_CONTORLS] = create_event_node_basic("NotYetImplemented", []);
 event_prefab[EventNodeTypes.DEACTIVATE_EVENT] = create_event_node_basic("Deactivate This Event", []);
+event_prefab[EventNodeTypes.SET_ENTITY_MESH] = create_event_node_basic("SetEntityMesh", [
+    ["Entity", DataTypes.ENTITY, 0, 1, false, 0],
+    ["Mesh", DataTypes.MESH, 0, 1, false, 0],
+]);
+event_prefab[EventNodeTypes.SET_ENTITY_SPRITE] = create_event_node_basic("SetEntitySprite", [
+    ["Entity", DataTypes.ENTITY, 0, 1, false, 0],
+    ["Sprite", DataTypes.IMG_OVERWORLD, 0, 1, false, 0],
+]);
 #endregion
 
 #region editor modes (and similar things)
@@ -485,7 +493,7 @@ game_file_summary = "Write a short summary in Global Game Settings";
 game_file_author = "Who made this?";
 
 game_asset_lists = ds_list_create();
-// @todo gml update lightweight objects
+// @gml update lightweight objects
 var file_default = create_data_file("data", false);
 var file_asset = create_data_file("assets", false);
 var file_terrain = create_data_file("terrain", true);
