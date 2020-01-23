@@ -49,7 +49,7 @@ with (instance_create_depth(0, 0, 0, MenuMain)) {
     #region data stuff
     var md_graphics = create_menu_element("Graphics", momu_expand, menu_data);
         var md_graphic_ts = create_menu_element("Tilesets", momu_graphic_tileset, md_graphics);
-        var md_graphic_at = create_menu_element("Autotiles", momu_graphic_autotile, md_graphics);
+        var md_graphic_at = create_menu_element("Autotiles", not_yet_implemented_polite, md_graphics);
         var md_graphic_battle = create_menu_element("Battler Sprites", momu_graphic_battle, md_graphics);
         var md_graphic_ow = create_menu_element("Overworld Sprites", momu_graphic_overworld, md_graphics);
         var md_graphic_part = create_menu_element("Particles", momu_graphic_particle, md_graphics);
@@ -71,6 +71,7 @@ with (instance_create_depth(0, 0, 0, MenuMain)) {
             md_aud_bgm,
             md_aud_se
         );
+    var md_mesh_at = create_menu_element("Mesh Autotiles", momu_graphic_mesh_autotiles, md_graphics);
     var md_data_types = create_menu_element("Define Data Types", momu_data_types, menu_data);
     var md_3d = create_menu_element("Map Editor (F6)", momu_editor_3d, menu_data);
     var md_events = create_menu_element("Event Editor (F7)", momu_editor_event, menu_data);
@@ -81,6 +82,7 @@ with (instance_create_depth(0, 0, 0, MenuMain)) {
     ds_list_add(menu_data.contents,
         md_graphics,
         md_audio,
+        md_mesh_at,
         md_data_types,
         //
         m_separator,
@@ -128,7 +130,7 @@ with (instance_create_depth(0, 0, 0, MenuMain)) {
         var mrc_fill_mesh = create_menu_element("Mesh", null, mrc_fill);
         var mrc_fill_pawn = create_menu_element("Pawn", null, mrc_fill);
         var mrc_fill_effect = create_menu_element("Effect", null, mrc_fill);
-        var mrc_fill_terrain = create_menu_element("Terrain", null, mrc_fill);
+        var mrc_fill_terrain = create_menu_element("Mesh Autotile", null, mrc_fill);
         ds_list_add(mrc_fill.contents,
             mrc_fill_tile,
             mrc_fill_autotile,

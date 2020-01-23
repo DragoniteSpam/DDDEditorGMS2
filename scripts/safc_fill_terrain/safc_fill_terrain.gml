@@ -8,9 +8,6 @@ var yy = argument1;
 var zz = argument2;
 var params = argument3;
 
-not_yet_implemented_polite();
-return false;
-
 var cell = map_get_grid_cell(xx, yy, zz);
     
 if (!cell[@ MapCellContents.MESHPAWN]) {

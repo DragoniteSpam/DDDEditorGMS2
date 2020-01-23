@@ -4,6 +4,8 @@
 // it's supposed to ask for zero arguments. It will take (and eat) arguments
 // if called with script_execute, though.
 
+// you're only allowed to have one; if more than one are requested at the same time,
+// only the first will be created
 var top = ds_list_top(Stuff.dialogs);
 if (!(top && (top.dialog_flags & DialogFlags.IS_EXCEPTION))) {
     var dialog = dialog_create_notice(noone,

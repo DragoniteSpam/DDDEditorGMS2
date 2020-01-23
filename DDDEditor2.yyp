@@ -5491,7 +5491,7 @@
             "Key": "54a48ce1-facf-4ddd-b47c-3d0087ccfee1",
             "Value": {
                 "id": "a3062281-1b75-4fde-b373-14387f22269c",
-                "resourcePath": "scripts\\momu_graphic_autotile\\momu_graphic_autotile.yy",
+                "resourcePath": "scripts\\momu_graphic_mesh_autotiles\\momu_graphic_mesh_autotiles.yy",
                 "resourceType": "GMScript"
             }
         },

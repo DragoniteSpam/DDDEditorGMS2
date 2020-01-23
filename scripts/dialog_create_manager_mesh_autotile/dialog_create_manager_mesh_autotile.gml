@@ -1,11 +1,12 @@
-/// @param Dialog
+/// @param root
 
+var root = argument0;
 var map = Stuff.map.active_map.contents;
 
 var dw = 540;
 var dh = 640;
 
-var dg = dialog_create(dw, dh, "Data: Mesh Autotiles", undefined, undefined, argument0);
+var dg = dialog_create(dw, dh, "Data: Mesh Autotiles", undefined, undefined, root);
 
 var ew = (dw - 64) / 2;
 var eh = 24;

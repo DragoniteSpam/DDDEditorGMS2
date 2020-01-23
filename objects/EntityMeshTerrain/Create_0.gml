@@ -9,17 +9,10 @@ etype = ETypes.ENTITY_MESH;
 terrain_id = 0;
 
 // editor properties
-
-// make this a GUID the same way normal meshes do
-not_yet_implemented_polite();
-mesh_id = 0;
-// find and deal with variables named "mesh_data_raw" because that was here
-// and i dont know what it was for
-
 slot = MapCellContents.MESHPAWN;
-rotateable = true;
-offsettable = true;
-scalable = true;
+rotateable = false;
+offsettable = false;
+scalable = false;
 
 batch = batch_mesh_terrain;
 render = render_mesh_terrain;

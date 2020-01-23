@@ -1,6 +1,9 @@
 /// @param EntityMesh
 
 var mesh = argument0;
+
+return false;
+
 var mesh_data = guid_get(mesh.mesh);
 
 transform_set(0, 0, 0, mesh.rot_xx, mesh.rot_yy, mesh.rot_zz, 1, 1, 1);
