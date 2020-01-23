@@ -41,6 +41,8 @@ fill_types = [
     safc_fill_effect, safc_fill_terrain
 ];
 
+edit_z = 0;
+
 enum SelectionModes {
     SINGLE,
     RECTANGLE,

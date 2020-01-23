@@ -20,19 +20,24 @@ if (c_raycast_world(mode.x, mode.y, mode.z, mode.x + xx, mode.y + yy, mode.z + z
 
 var floor_x = -1;
 var floor_y = -1;
+var floor_z = -1;
 var floor_cx = -1;
 var floor_cy = -1;
+var floor_cz = -1;
 
+// it makes no sense to check where the mouse vector intersects with the floor if you're not looking down
 if (zz < mode.z) {
-    var f = abs(mode.z / zz);
+    var f = abs((mode.z - (mode.edit_z * TILE_DEPTH)) / zz);
     floor_x = mode.x + xx * f;
     floor_y = mode.y + yy * f;
+    floor_z = mode.edit_z * TILE_DEPTH;
     
     // the bounds on this are weird - in some places the cell needs to be rounded up and in others it
     // needs to be rounded down, so the minimum allowed "cell" is (-1, -1) - be sure to max() this later
     // if it would cause issues
-    floor_cx = clamp(floor_x div TILE_WIDTH, -1, Stuff.map.active_map.xx - 1);
-    floor_cy = clamp(floor_y div TILE_HEIGHT, -1, Stuff.map.active_map.yy - 1);
+    floor_cx = clamp(floor_x div TILE_WIDTH, -1, mode.active_map.xx - 1);
+    floor_cy = clamp(floor_y div TILE_HEIGHT, -1, mode.active_map.yy - 1);
+    floor_cz = clamp(floor_z div TILE_DEPTH, -1, mode.active_map.zz - 1);
     
     if (Controller.press_left) {
         if (ds_list_size(mode.selection) < MAX_SELECTION_COUNT) {
@@ -47,7 +52,7 @@ if (zz < mode.z) {
                 default: Stuff.setting_selection_mode = SelectionModes.RECTANGLE; var stype = SelectionRectangle; break;
             }
             
-            var tz = mode.under_cursor ? mode.under_cursor.zz : 0;
+            var tz = mode.under_cursor ? mode.under_cursor.zz : mode.edit_z;
         
             mode.last_selection = instance_create_depth(0, 0, 0, stype);
             ds_list_add(mode.selection, mode.last_selection);
