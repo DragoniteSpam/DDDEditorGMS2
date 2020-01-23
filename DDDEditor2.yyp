@@ -3240,6 +3240,14 @@
             }
         },
         {
+            "Key": "31310edb-6fb3-40d9-adf7-34c439cd6b21",
+            "Value": {
+                "id": "a9b8db53-4049-4286-ac11-d514c227eec0",
+                "resourcePath": "sprites\\spr_plus_minus_button\\spr_plus_minus_button.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "3135aa96-c5d8-4ad7-9836-2f5976f052e0",
             "Value": {
                 "id": "1ce9973e-2a69-41b1-baba-565af805484a",
@@ -3933,6 +3941,14 @@
                 "id": "2e5dff72-056e-4b93-80b9-e16dead9e0f8",
                 "resourcePath": "scripts\\ui_render_list_event_node\\ui_render_list_event_node.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "3db59295-1f21-45e0-b800-4065c0c370a8",
+            "Value": {
+                "id": "1874739b-d8ff-43a4-b57f-59f9b7c5d3cb",
+                "resourcePath": "sprites\\spr_drag_handle_vertical\\spr_drag_handle_vertical.yy",
+                "resourceType": "GMSprite"
             }
         },
         {
@@ -7013,6 +7029,14 @@
                 "id": "ca73b784-c97c-4533-af1b-1ff9cce0efe3",
                 "resourcePath": "scripts\\uivc_entity_event_enable_variable_global\\uivc_entity_event_enable_variable_global.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "6c4d34b6-8bf7-41d1-8926-fc364935c8ec",
+            "Value": {
+                "id": "2de1ff1b-d64a-46be-adbf-7b7a4355d140",
+                "resourcePath": "sprites\\spr_vertical_bar\\spr_vertical_bar.yy",
+                "resourceType": "GMSprite"
             }
         },
         {

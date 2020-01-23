@@ -122,3 +122,66 @@ if (Stuff.game_starting_map == Stuff.map.active_map.GUID) {
 }
 
 transform_reset();
+
+// overlay stuff - draw_camera_controls_overlay exists, but i'd actually rather not use it for this
+gpu_set_ztestenable(false);
+var cwidth = camera_get_view_width(camera);
+var cheight = camera_get_view_height(camera);
+camera_set_view_mat(camera, matrix_build_lookat(cwidth / 2, cheight / 2, 16000,  cwidth / 2, cheight / 2, -16000, 0, 1, 0));
+camera_set_proj_mat(camera, matrix_build_projection_ortho(-cwidth, cheight, CAMERA_ZNEAR, CAMERA_ZFAR));
+camera_apply(camera);
+
+#region height controls
+// base bar
+var height = clamp(24 * mode.active_map.zz, 64, 640);
+var sw = sprite_get_width(spr_vertical_bar);
+var sh = sprite_get_height(spr_vertical_bar);
+var bw = sprite_get_width(spr_plus_minus_button);
+var bh = sprite_get_height(spr_plus_minus_button);
+var yy_start = 64 + bh;
+var yy_end = 64 + height - bh;
+draw_sprite_stretched(spr_vertical_bar, 0, 32 - sw / 2, 64, sw, height);
+
+// bar notches
+var notch_count = min(mode.active_map.zz, 10);
+for (var i = 0; i < notch_count; i++) {
+    var yy_notch = yy_start + i * (yy_end - yy_start) / notch_count;
+    draw_line_width_colour(32 - bw / 4, yy_notch, 32 + bw / 4, yy_notch, 2, c_ui_select, c_ui_select);
+}
+
+// buttons
+var overlap_plus = mouse_within_rectangle_view(32 - bw / 2, 64 - bh / 2, 32 + bw / 2, 64 + bh / 2);
+var overlap_minus = mouse_within_rectangle_view(32 - bw / 2, 64 + height - bh / 2, 32 + bw / 2, 64 + height + bh / 2);
+draw_sprite_ext(spr_plus_minus_button, 0, 32, 64, 1, 1, 0, overlap_plus ? c_ui_select : c_white, 1);
+draw_sprite_ext(spr_plus_minus_button, 1, 32, height + 64, 1, 1, 0, overlap_minus ? c_ui_select : c_white, 1);
+
+// slider
+var slider_length = height - bh * 2;
+var interval = slider_length / (mode.active_map.zz - 1);
+var slider_y = 64 + height - bh - mode.edit_z * interval;
+var slw = sprite_get_width(spr_drag_handle_vertical);
+var slh = sprite_get_height(spr_drag_handle_vertical);
+var overlap_slider = mouse_within_rectangle_view(32 - slw / 2, slider_y - slh / 2, 32 + slw / 2, slider_y + slh / 2);
+draw_sprite_ext(spr_drag_handle_vertical, 0, 32, slider_y, 1, 1, 0, overlap_slider ? c_ui_select : c_white, 1);
+
+// interactions
+var overlap_interval = mouse_within_rectangle_view(32 - slw / 2, 64, 32 + slw / 2, 64 + height);
+
+if (overlap_plus) {
+    if (mouse_check_button_pressed(mb_left)) {
+        mode.edit_z = min(++mode.edit_z, mode.active_map.zz - 1);
+    }
+    mode.mouse_over_ui = true;
+} else if (overlap_minus) {
+    if (mouse_check_button_pressed(mb_left)) {
+        mode.edit_z = max(-mode.edit_z, 0);
+    }
+    mode.mouse_over_ui = true;
+} else if (overlap_interval) {
+    if (mouse_check_button(mb_left)) {
+        var f = clamp((yy_end - mouse_y_view) / (yy_end - yy_start), 0, 1);
+        mode.edit_z = round(normalize_correct(f, 0, mode.active_map.zz - 1, 0, 1));
+    }
+    mode.mouse_over_ui = true;
+}
+#endregion

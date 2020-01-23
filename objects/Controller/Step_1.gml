@@ -1,4 +1,27 @@
 if (ignore_next--) {
+    mouse_left = false;
+    mouse_right = false;
+    mouse_middle = false;
+    wasd = false;
+    enter = false;
+    
+    press_left = false;
+    press_right = false;
+    press_middle = false;
+    press_wasd = false;
+    press_enter = false;
+    
+    release_left = false;
+    release_right = false;
+    release_middle = false;
+    release_wasd = false;
+    release_enter = false;
+    
+    double_left = false;
+    double_right = false;
+    double_middle = false;
+    double_wasd = false;
+    double_enter = false;
     exit;
 }
 

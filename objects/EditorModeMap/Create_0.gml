@@ -65,3 +65,4 @@ map_fill_grid(active_map.contents.map_grid, active_map.zz);
 
 ui = ui_init_main(id);
 mode_id = ModeIDs.MAP;
+mouse_over_ui = false;
