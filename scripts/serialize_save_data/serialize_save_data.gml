@@ -103,5 +103,6 @@ enum DataVersions {
     NO_MORE_ANONYMOUS_COLLISION_DATA = 77,
     ASSET_FLAG_LIST             = 78,
     THIRTY_TWO_FLAGS            = 79,
+    MESH_AUTOTILE_FINISHED      = 80,
     _CURRENT /* = whatever the last one is + 1 */
 }

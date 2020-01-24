@@ -49,6 +49,18 @@ for (var i = 0; i < array_length_1d(map_contents.mesh_autotile_raw); i++) {
     }
 }
 
+if (version >= DataVersions.MESH_AUTOTILE_FINISHED) {
+    for (var i = 0; i < array_length_1d(map_contents.mesh_autotile_vertical_raw); i++) {
+        var exists = buffer_read(buffer, buffer_bool);
+        if (exists) {
+            var size = buffer_read(buffer, buffer_u32);
+            map_contents.mesh_autotile_vertical_raw[i] = buffer_read_buffer(buffer, size);
+            map_contents.mesh_autotiles_vertical[i] = vertex_create_buffer_from_buffer(map_contents.mesh_autotile_vertical_raw[i], Stuff.graphics.vertex_format);
+            vertex_freeze(map_contents.mesh_autotiles_vertical[i]);
+        }
+    }
+}
+
 if (version >= DataVersions.MAP_GENERIC_DATA) {
     var n_generic = buffer_read(buffer, buffer_u8);
     repeat (n_generic) {

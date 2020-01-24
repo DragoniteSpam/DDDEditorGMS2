@@ -22,5 +22,5 @@ if (file_exists(fn)) {
         map_contents.mesh_autotile_raw[thing.key] = noone;
     }
     
-    thing.color = c_black;
+    thing.color = vbuffer ? c_black : c_gray;
 }

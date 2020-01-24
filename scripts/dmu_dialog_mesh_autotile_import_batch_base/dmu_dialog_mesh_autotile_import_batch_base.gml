@@ -25,7 +25,7 @@ for (var i = 0; i < array_length_1d(map_contents.mesh_autotiles); i++) {
         }
     }
     
-    button.root.buttons[i].color = c_black;
+    button.root.buttons[i].color = vbuffer ? c_black : c_gray;
 }
 
 return true;

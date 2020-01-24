@@ -21,11 +21,11 @@ for (var i = 0; i < array_length_1d(map_contents.mesh_autotiles_vertical); i++) 
             map_contents.mesh_autotile_vertical_raw[i] = buffer_create_from_vertex_buffer(vbuffer, buffer_fixed, 1);
             vertex_freeze(vbuffer);
         } else {
-            map_contents.mesh_autotile_vertical_raw[i] = buffer_create(1, buffer_fixed, 1);
+            map_contents.mesh_autotile_vertical_raw[i] = noone;
         }
     }
     
-    button.root.buttons[i].color = c_black;
+    button.root.buttons[i].color = vbuffer ? c_black : c_gray;
 }
 
 return true;

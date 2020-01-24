@@ -40,7 +40,9 @@ if (!cell[@ entity.slot]) {
         var list = entity.batchable ? map.batch_in_the_future : map.dynamic;
         // smf meshes simply aren't allowed to be batched, or static, so exert your authority over them;
         // mesh autotiles need to be able to change on the fly, although they should be batched by the game
-        if (instanceof(entity, EntityMeshAutotile) || (instanceof(entity, EntityMesh) && guid_get(entity.mesh).type == MeshTypes.SMF)) {
+        if (instanceof(entity, EntityMeshAutotile)) {
+            list = map.dynamic;
+        } else if (instanceof(entity, EntityMesh) && guid_get(entity.mesh).type == MeshTypes.SMF) {
             list = map.dynamic;
         }
         

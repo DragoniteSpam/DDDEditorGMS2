@@ -31,5 +31,4 @@ if (mesh_data) {
     }
 } else {
     // @togo gml try catch - i think you'll want to do something of the "mesh not found" variety
-    not_yet_implemented_polite();
 }

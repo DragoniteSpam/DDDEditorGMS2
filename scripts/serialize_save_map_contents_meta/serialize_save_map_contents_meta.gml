@@ -37,6 +37,17 @@ for (var i = 0; i < array_length_1d(map_contents.mesh_autotile_raw); i++) {
     }
 }
 
+for (var i = 0; i < array_length_1d(map_contents.mesh_autotile_vertical_raw); i++) {
+    var data = map_contents.mesh_autotile_vertical_raw[i];
+    if (data) {
+        buffer_write(buffer, buffer_bool, true);
+        buffer_write(buffer, buffer_u32, buffer_get_size(data));
+        buffer_write_buffer(buffer, data);
+    } else {
+        buffer_write(buffer, buffer_bool, false);
+    }
+}
+
 var n_generic = ds_list_size(map.generic_data);
 buffer_write(buffer, buffer_u8, n_generic);
 
