@@ -10147,7 +10147,7 @@
             "Key": "9cbae765-a3c4-4280-a0a2-64e983d507e3",
             "Value": {
                 "id": "13c97af1-90e3-4545-8928-cbff5cc6b062",
-                "resourcePath": "objects\\EntityMeshTerrain\\EntityMeshTerrain.yy",
+                "resourcePath": "objects\\EntityMeshAutotile\\EntityMeshAutotile.yy",
                 "resourceType": "GMObject"
             }
         },

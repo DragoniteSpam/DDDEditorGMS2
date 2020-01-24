@@ -12,7 +12,7 @@ etype_objects = [
     EntityPawn,
     EntityEffect,
     noone,
-    EntityMeshTerrain
+    EntityMeshAutotile
 ];
 
 default_lua_map = file_get_contents(PATH_LUA + "map.lua");

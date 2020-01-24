@@ -1,6 +1,6 @@
 /// @param vertex-buffer
 /// @param wireframe-buffer
-/// @param EntityMeshTerrain
+/// @param EntityMeshAutotile
 
 var buffer = argument0;
 var wire = argument1;

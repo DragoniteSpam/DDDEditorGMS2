@@ -1,5 +1,5 @@
 /// @param buffer
-/// @param EntityMeshTerrain
+/// @param EntityMeshAutotile
 
 var buffer = argument0;
 var entity = argument1;

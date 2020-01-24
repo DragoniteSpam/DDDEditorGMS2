@@ -1,4 +1,4 @@
-with (instance_create_depth(0, 0, 0, EntityMeshTerrain)) {
+with (instance_create_depth(0, 0, 0, EntityMeshAutotile)) {
     name = "Terrain";
     
     // @todo slopes i guess?

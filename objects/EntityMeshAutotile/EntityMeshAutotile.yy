@@ -2,7 +2,7 @@
     "id": "9cbae765-a3c4-4280-a0a2-64e983d507e3",
     "modelName": "GMObject",
     "mvc": "1.0",
-    "name": "EntityMeshTerrain",
+    "name": "EntityMeshAutotile",
     "eventList": [
         {
             "id": "6e3142aa-a980-403d-bbc2-2ae3ef1fd91c",

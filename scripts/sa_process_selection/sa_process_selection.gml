@@ -128,7 +128,7 @@ if (ds_list_size(list) == 0) {
         case EntityAutoTile:
         case EntityTile:
             break;
-        case EntityMeshTerrain:
+        case EntityMeshAutotile:
         case EntityMesh:
             Stuff.map.ui.element_entity_mesh_animated.value = 2;
             

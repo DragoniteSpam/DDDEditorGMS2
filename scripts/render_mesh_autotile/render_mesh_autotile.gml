@@ -1,4 +1,4 @@
-/// @param EntityMeshTerrain
+/// @param EntityMeshAutotile
 
 var terrain = argument0;
 var mapping = Stuff.autotile_map[? terrain.terrain_id];
