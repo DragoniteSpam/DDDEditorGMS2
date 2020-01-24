@@ -38,11 +38,8 @@ if (!cell[@ entity.slot]) {
     // just trying to move it
     if (!is_temp && add_to_lists) {
         var list = entity.batchable ? map.batch_in_the_future : map.dynamic;
-        // smf meshes simply aren't allowed to be batched, or static, so exert your authority over them;
-        // mesh autotiles need to be able to change on the fly, although they should be batched by the game
-        if (instanceof(entity, EntityMeshAutotile)) {
-            list = map.dynamic;
-        } else if (instanceof(entity, EntityMesh) && guid_get(entity.mesh).type == MeshTypes.SMF) {
+        // smf meshes simply aren't allowed to be batched, or static, so exert your authority over them
+        if (instanceof(entity, EntityMesh) && guid_get(entity.mesh) && guid_get(entity.mesh).type == MeshTypes.SMF) {
             list = map.dynamic;
         }
         

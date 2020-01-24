@@ -43,11 +43,7 @@ graphics_draw_water();
 shader_set(shd_default);
 
 // this will need to be dynamic at some point
-if (Stuff.setting_view_texture) {
-    var tex = sprite_get_texture(get_active_tileset().master, 0);
-} else {
-    var tex = sprite_get_texture(b_tileset_textureless, 0);
-}
+var tex = Stuff.setting_view_texture ? sprite_get_texture(get_active_tileset().master, 0) : sprite_get_texture(b_tileset_textureless, 0);
 
 if (map_contents.frozen && Stuff.setting_view_entities) {
     vertex_submit(map_contents.frozen, pr_trianglelist, tex);
