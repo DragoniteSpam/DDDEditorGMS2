@@ -52,9 +52,9 @@ if (!mode.mouse_over_ui) {
                     // not sure why it broke once, but just in case
                     default: Stuff.setting_selection_mode = SelectionModes.RECTANGLE; var stype = SelectionRectangle; break;
                 }
-            
-                var tz = mode.under_cursor ? mode.under_cursor.zz : mode.edit_z;
-        
+                
+                var tz = mode.under_cursor ? max(mode.under_cursor.zz, mode.edit_z) : mode.edit_z;
+                
                 mode.last_selection = instance_create_depth(0, 0, 0, stype);
                 ds_list_add(mode.selection, mode.last_selection);
                 script_execute(mode.last_selection.onmousedown, mode.last_selection, max(0, floor_cx), max(0, floor_cy), tz);
