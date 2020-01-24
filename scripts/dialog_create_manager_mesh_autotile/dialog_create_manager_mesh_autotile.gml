@@ -3,7 +3,7 @@
 var root = argument0;
 var map = Stuff.map.active_map.contents;
 
-var dw = 540;
+var dw = 544;
 var dh = 688;
 
 var dg = dialog_create(dw, dh, "Data: Mesh Autotiles", undefined, undefined, root);
@@ -18,10 +18,10 @@ var spacing = 16;
 
 var xx = 16;
 var yy = 64;
-var yy_start = yy;
+var xx_start = xx;
 var mbw = 64 - spacing;
 var mbh = eh;
-var rows = 6;
+var columns = 8;
 
 dg.buttons = array_create(array_length_1d(map.mesh_autotiles));
 dg.icons = array_create(array_length_1d(map.mesh_autotiles));
@@ -34,18 +34,16 @@ for (var i = 0; i < array_length_1d(map.mesh_autotiles); i++) {
     ds_list_add(dg.contents, button);
     dg.buttons[i] = button;
     
-    yy = yy + button.height + spacing;
-    
-    var icon = create_image_button(xx + spacing / 2, yy, "b", spr_autotile_blueprint, 32, 32, fa_center, null, dg);
+    var icon = create_image_button(xx + spacing / 2, yy + button.height + spacing, "b", spr_autotile_blueprint, 32, 32, fa_center, null, dg);
     icon.index = i;
     icon.outline = false;
     icon.interactive = false;
     
-    yy = yy + icon.height + spacing;
+    xx = xx + mbw + spacing;
     
-    if (i % rows == rows - 1) {
-        xx = xx + mbw + spacing;
-        yy = yy_start;
+    if (i % columns == columns - 1) {
+        xx = xx_start;
+        yy = yy + mbh + icon.height + spacing * 2;
     }
     
     ds_list_add(dg.contents, icon);
