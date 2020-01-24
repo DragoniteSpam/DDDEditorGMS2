@@ -55,20 +55,19 @@ enum ETypes {
     ENTITY_MESH,
     ENTITY_PAWN,
     ENTITY_EFFECT,
-    ENTITY_EVENT,
-    ENTITY_TERRAIN,
     ENTITY_MESH_AUTO,
 }
 
+// each type includes the parent objects, which includes Entity for everything and
+// some others for objects that are derived from something else
 enum ETypeFlags {
     ENTITY                  = 0x001,
-    ENTITY_TILE             = 0x002,
-    ENTITY_TILE_AUTO        = 0x004,
-    ENTITY_MESH             = 0x008,
-    ENTITY_PAWN             = 0x010,
-    ENTITY_EFFECT           = 0x020,
-    ENTITY_EVENT            = 0x040,
-    ENTITY_TERRAIN          = 0x080,
+    ENTITY_TILE             = 0x002 | 0x001,
+    ENTITY_TILE_AUTO        = 0x004 | 0x002 | 0x001,
+    ENTITY_MESH             = 0x008 | 0x001,
+    ENTITY_PAWN             = 0x010 | 0x001,
+    ENTITY_EFFECT           = 0x020 | 0x001,
+    ENTITY_MESH_AUTO        = 0x040 | 0x008 | 0x001,
 }
 
 enum AnimationTweens {

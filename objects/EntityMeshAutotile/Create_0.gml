@@ -5,6 +5,7 @@ load_script = serialize_load_entity_mesh_autotile;
 
 name = "Terrain";
 etype = ETypes.ENTITY_MESH_AUTO;
+etype_flags = ETypeFlags.ENTITY_MESH_AUTO;
 
 terrain_id = 0;
 terrain_type = ATTerrainTypes.BASE;

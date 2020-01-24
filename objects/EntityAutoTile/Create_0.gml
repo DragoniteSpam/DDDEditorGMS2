@@ -5,6 +5,7 @@ load_script = serialize_load_entity_autotile;
 
 name = "AutoTile";
 etype = ETypes.ENTITY_TILE_AUTO;
+etype_flags = ETypeFlags.ENTITY_TILE_AUTO;
 
 Stuff.map.active_map.contents.population[ETypes.ENTITY_TILE]++;
 Stuff.map.active_map.contents.population[ETypes.ENTITY_TILE_AUTO]++;

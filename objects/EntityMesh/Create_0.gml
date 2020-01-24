@@ -5,6 +5,7 @@ load_script = serialize_load_entity_mesh;
 
 name = "Mesh";
 etype = ETypes.ENTITY_MESH;
+etype_flags = ETypeFlags.ENTITY_MESH;
 
 Stuff.map.active_map.contents.population[ETypes.ENTITY_MESH]++;
 
