@@ -2,6 +2,7 @@
 // element(s) of the list so that won't work
 
 var list = selection_all();
+var map = Stuff.map.active_map;
 ds_list_destroy(Stuff.map.selected_entities);
 Stuff.map.selected_entities = list;
 
@@ -149,16 +150,3 @@ if (ds_list_size(list) == 0) {
             break;
     }
 }
-
-var terrain = selected_affected_terrain();
-
-for (var i = 0; i < ds_list_size(terrain); i++) {
-    var thing = terrain[| i];
-    thing.terrain_id = get_autotile_id(thing);
-    
-    if (!ds_map_exists(Stuff.autotile_map, thing.terrain_id)) {
-        thing.terrain_id = 255;
-    }
-}
-
-ds_list_destroy(terrain);

@@ -7,6 +7,7 @@ name = "Terrain";
 etype = ETypes.ENTITY_MESH;
 
 terrain_id = 0;
+terrain_type = ATTerrainTypes.BASE;
 
 // editor properties
 slot = MapCellContents.MESHPAWN;
@@ -28,4 +29,9 @@ enum ATMask {
     SOUTHWEST   = 0x0020,
     SOUTH       = 0x0040,
     SOUTHEAST   = 0x0080,
+}
+
+enum ATTerrainTypes {
+    BASE,
+    VERTICAL,
 }
