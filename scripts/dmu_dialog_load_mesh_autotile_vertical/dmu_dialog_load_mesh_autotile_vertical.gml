@@ -9,11 +9,18 @@ if (file_exists(fn)) {
     var map_contents = map.contents;
     if (map_contents.mesh_autotiles_vertical[thing.key]) {
         vertex_delete_buffer(map_contents.mesh_autotiles_vertical[thing.key]);
+        buffer_delete(map_contents.mesh_autotile_vertical_raw[thing.key]);
     }
     
-    map_contents.mesh_autotiles_vertical[thing.key] = import_d3d(fn, false, true);
-    map_contents.mesh_autotile_vertical_raw[thing.key] = buffer_create_from_vertex_buffer(map_contents.mesh_autotiles_vertical[thing.key], buffer_fixed, 1);
-    vertex_freeze(map_contents.mesh_autotiles_vertical[thing.key]);
+    var vbuffer = import_d3d(fn, false, true);
+    map_contents.mesh_autotiles_vertical[thing.key] = vbuffer;
+    
+    if (vbuffer) {
+        map_contents.mesh_autotile_vertical_raw[thing.key] = buffer_create_from_vertex_buffer(map_contents.mesh_autotiles_vertical[thing.key], buffer_fixed, 1);
+        vertex_freeze(map_contents.mesh_autotiles_vertical[thing.key]);
+    } else {
+        map_contents.mesh_autotile_vertical_raw[thing.key] = noone;
+    }
     
     thing.color = c_black;
 }
