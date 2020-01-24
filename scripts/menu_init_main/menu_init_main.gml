@@ -71,7 +71,13 @@ with (instance_create_depth(0, 0, 0, MenuMain)) {
             md_aud_bgm,
             md_aud_se
         );
-    var md_mesh_at = create_menu_element("Mesh Autotiles", momu_graphic_mesh_autotiles, md_graphics);
+    var md_mesh_at = create_menu_element("Mesh Autotiles", momu_expand, menu_data);
+        var md_mesh_at_base = create_menu_element("Base", momu_graphic_mesh_autotiles_base, md_graphics);
+        var md_mesh_at_vertical = create_menu_element("Vertical", momu_graphic_mesh_autotiles_vertical, md_graphics);
+        ds_list_add(md_mesh_at.contents,
+            md_mesh_at_base,
+            md_mesh_at_vertical
+        );
     var md_data_types = create_menu_element("Define Data Types", momu_data_types, menu_data);
     var md_3d = create_menu_element("Map Editor (F6)", momu_editor_3d, menu_data);
     var md_events = create_menu_element("Event Editor (F7)", momu_editor_event, menu_data);

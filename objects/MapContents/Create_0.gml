@@ -25,8 +25,12 @@ frozen_data_wire_size = 0;
 
 mesh_autotiles = array_create(48);
 mesh_autotile_raw = array_create(48);
+mesh_autotiles_vertical = array_create(48);
+mesh_autotile_vertical_raw = array_create(48);
 array_clear(mesh_autotiles, noone);
 array_clear(mesh_autotile_raw, noone);
+array_clear(mesh_autotiles_vertical, noone);
+array_clear(mesh_autotile_vertical_raw, noone);
 
 population = [0, 0, 0, 0, 0, 0, 0];
 population_static = 0;
