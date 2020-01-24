@@ -181,6 +181,7 @@ while (!file_text_eof(f)) {
 }
 #endregion
 
+file_text_close(f);
 vertex_end(vbuffer);
 
 if (everything) {
