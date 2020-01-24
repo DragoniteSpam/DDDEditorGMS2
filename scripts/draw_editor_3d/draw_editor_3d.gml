@@ -143,9 +143,9 @@ var yy_end = 64 + height - bh;
 draw_sprite_stretched(spr_vertical_bar, 0, 32 - sw / 2, 64, sw, height);
 
 // bar notches
-var notch_count = min(mode.active_map.zz, 10);
+var notch_count = min(power(2, floor(log2(max(mode.active_map.zz, 2)))), 16);
 for (var i = 0; i < notch_count; i++) {
-    var yy_notch = yy_start + i * (yy_end - yy_start) / notch_count;
+    var yy_notch = yy_start + i * (yy_end - yy_start) / (notch_count - 1);
     draw_line_width_colour(32 - bw / 4, yy_notch, 32 + bw / 4, yy_notch, 2, c_ui_select, c_ui_select);
 }
 
@@ -174,7 +174,7 @@ if (overlap_plus) {
     mode.mouse_over_ui = true;
 } else if (overlap_minus) {
     if (mouse_check_button_pressed(mb_left)) {
-        mode.edit_z = max(-mode.edit_z, 0);
+        mode.edit_z = max(--mode.edit_z, 0);
     }
     mode.mouse_over_ui = true;
 } else if (overlap_interval) {
