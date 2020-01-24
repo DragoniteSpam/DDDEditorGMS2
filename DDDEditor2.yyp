@@ -8464,6 +8464,14 @@
             }
         },
         {
+            "Key": "82ce3af3-3dee-4a8c-9ba9-19b89f4eee05",
+            "Value": {
+                "id": "ceec69ab-19f3-4937-80e4-9aa5ef1e1094",
+                "resourcePath": "scripts\\dmu_dialog_mesh_autotile_import_batch\\dmu_dialog_mesh_autotile_import_batch.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "82f5d587-a372-41de-bb2e-501f9c5980db",
             "Value": {
                 "id": "dc507db7-7bc3-4edd-9eae-db4b88fdf557",
@@ -16797,6 +16805,7 @@
         "421b75e0-45fa-46bd-9818-6df02b716307",
         "7324b285-e9fb-485c-88e7-4fd30103c242",
         "e3cfc2d9-b0d4-4869-b141-4122b6ea9694",
+        "82ce3af3-3dee-4a8c-9ba9-19b89f4eee05",
         "dd530bc5-b3be-4ad9-98cb-00e3c00bce71",
         "796df690-2228-4c77-b188-e46c05f22094",
         "2c8a3826-1fff-44d3-975d-a37ccd829943",

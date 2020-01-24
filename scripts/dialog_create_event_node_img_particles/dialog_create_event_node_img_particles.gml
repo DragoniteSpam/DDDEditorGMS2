@@ -1,12 +1,14 @@
-/// @param Dialog
+/// @param root
 /// @param DataNode
 /// @param property-index
 /// @param multi-index
 
+var root = argument0;
+
 var dw = 320;
 var dh = 640;
 
-var dg = dialog_create(dw, dh, "Particles", dialog_default, dc_close_no_questions_asked, argument0);
+var dg = dialog_create(dw, dh, "Particles", dialog_default, dc_close_no_questions_asked, root);
 
 var columns = 1;
 var ew = (dw - columns * 32) / columns;
@@ -20,7 +22,7 @@ var n_slots = 20;
 
 var yy = 64;
 
-var el_list = create_list(16, yy, "All Particles", "<no particles>", ew, eh, n_slots, null, false, dg, Stuff.all_graphic_particle);
+var el_list = create_list(16, yy, "All Particles", "<no particles>", ew, eh, n_slots, null, false, dg, Stuff.all_graphic_particles);
 el_list.entries_are = ListEntries.INSTANCES;
 el_list.node = argument1;
 el_list.property_index = argument2;

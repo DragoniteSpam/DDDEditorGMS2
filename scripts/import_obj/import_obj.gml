@@ -1,8 +1,11 @@
 /// @param filename
+/// @param [complete-object?]
 /// @param [adjust-UVs?]
 
 var fn = argument[0];
-var adjust = (argument_count > 1 && argument[1] != undefined) ? argument[1] : true;
+// setting "everything" to false will mean only the vertex buffer is returned
+var everything = (argument_count > 1 && argument[1] != undefined) ? argument[1] : true;
+var adjust = (argument_count > 2 && argument[2] != undefined) ? argument[2] : true;
 
 var mfn = filename_change_ext(fn, ".mtl");
 
@@ -228,12 +231,16 @@ if (file_exists(fn)) {
         var n = ds_list_size(temp_vertices);
         
         var vbuffer = vertex_create_buffer();
-        var wbuffer = vertex_create_buffer();
-        var cshape = c_shape_create();
+        if (everything) {
+            var wbuffer = vertex_create_buffer();
+            var cshape = c_shape_create();
+        }
         
-        c_shape_begin_trimesh();
         vertex_begin(vbuffer, Stuff.graphics.vertex_format);
-        vertex_begin(wbuffer, Stuff.graphics.vertex_format);
+        if (everything) {
+            vertex_begin(wbuffer, Stuff.graphics.vertex_format);
+            c_shape_begin_trimesh();
+        }
         var vc = 0;
         
         var bxx = [0, 0, 0];
@@ -278,7 +285,7 @@ if (file_exists(fn)) {
             
             vc = (++vc) % 3;
             
-            if (vc == 0) {
+            if (everything && vc == 0) {
                 vertex_point_line(wbuffer, bxx[0], byy[0], bzz[0], c_white, 1);
                 vertex_point_line(wbuffer, bxx[1], byy[1], bzz[1], c_white, 1);
                 
@@ -293,29 +300,35 @@ if (file_exists(fn)) {
         }
         
         vertex_end(vbuffer);
-        vertex_end(wbuffer);
-        c_shape_end_trimesh(cshape);
         
-        var mesh = instance_create_depth(0, 0, 0, DataMesh);
-        
-        mesh.xmin = round(minx / IMPORT_GRID_SIZE);
-        mesh.ymin = round(miny / IMPORT_GRID_SIZE);
-        mesh.zmin = round(minz / IMPORT_GRID_SIZE);
-        mesh.xmax = round(maxx / IMPORT_GRID_SIZE);
-        mesh.ymax = round(maxy / IMPORT_GRID_SIZE);
-        mesh.zmax = round(maxz / IMPORT_GRID_SIZE);
-        
-        var base_name = filename_change_ext(filename_name(fn), "");
-        mesh.name = base_name;
-        internal_name_generate(mesh, PREFIX_MESH + string_lettersdigits(base_name));
-        mesh.buffer = buffer_create_from_vertex_buffer(vbuffer, buffer_fixed, 1);
-        mesh.vbuffer = vbuffer;
-        mesh.wbuffer = wbuffer;
-        mesh.cshape = cshape;
+        if (everything) {
+            vertex_end(wbuffer);
+            c_shape_end_trimesh(cshape);
+            
+            var mesh = instance_create_depth(0, 0, 0, DataMesh);
+            
+            mesh.xmin = round(minx / IMPORT_GRID_SIZE);
+            mesh.ymin = round(miny / IMPORT_GRID_SIZE);
+            mesh.zmin = round(minz / IMPORT_GRID_SIZE);
+            mesh.xmax = round(maxx / IMPORT_GRID_SIZE);
+            mesh.ymax = round(maxy / IMPORT_GRID_SIZE);
+            mesh.zmax = round(maxz / IMPORT_GRID_SIZE);
+            
+            var base_name = filename_change_ext(filename_name(fn), "");
+            mesh.name = base_name;
+            internal_name_generate(mesh, PREFIX_MESH + string_lettersdigits(base_name));
+            mesh.buffer = buffer_create_from_vertex_buffer(vbuffer, buffer_fixed, 1);
+            mesh.vbuffer = vbuffer;
+            mesh.wbuffer = wbuffer;
+            mesh.cshape = cshape;
+            
+            vertex_freeze(wbuffer);
+        }
         
         vertex_freeze(vbuffer);
-        vertex_freeze(wbuffer);
     }
     
     ds_list_destroy(temp_vertices);
 }
+
+return everything ? mesh : vbuffer;

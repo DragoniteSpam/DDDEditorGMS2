@@ -164,19 +164,17 @@ while (!file_text_eof(f)) {
     
     vc = (++vc) % 3;
     
-    if (vc == 0) {
-        if (everything) {
-            vertex_point_line(wbuffer, xx[0], yy[0], zz[0], c_white, 1);
-            vertex_point_line(wbuffer, xx[1], yy[1], zz[1], c_white, 1);
+    if (everything && vc == 0) {
+        vertex_point_line(wbuffer, xx[0], yy[0], zz[0], c_white, 1);
+        vertex_point_line(wbuffer, xx[1], yy[1], zz[1], c_white, 1);
         
-            vertex_point_line(wbuffer, xx[1], yy[1], zz[1], c_white, 1);
-            vertex_point_line(wbuffer, xx[2], yy[2], zz[2], c_white, 1);
+        vertex_point_line(wbuffer, xx[1], yy[1], zz[1], c_white, 1);
+        vertex_point_line(wbuffer, xx[2], yy[2], zz[2], c_white, 1);
         
-            vertex_point_line(wbuffer, xx[2], yy[2], zz[2], c_white, 1);
-            vertex_point_line(wbuffer, xx[0], yy[0], zz[0], c_white, 1);
+        vertex_point_line(wbuffer, xx[2], yy[2], zz[2], c_white, 1);
+        vertex_point_line(wbuffer, xx[0], yy[0], zz[0], c_white, 1);
         
-            c_shape_add_triangle(xx[0], yy[0], zz[0], xx[1], yy[1], zz[1], xx[2], yy[2], zz[2]);
-        }
+        c_shape_add_triangle(xx[0], yy[0], zz[0], xx[1], yy[1], zz[1], xx[2], yy[2], zz[2]);
     }
 }
 #endregion
