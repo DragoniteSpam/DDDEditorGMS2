@@ -11,7 +11,7 @@ if (file_exists(fn)) {
         vertex_delete_buffer(map_contents.mesh_autotiles[thing.key]);
     }
     
-    map_contents.mesh_autotiles[thing.key] = data_import_d3d(fn);
+    map_contents.mesh_autotiles[thing.key] = import_d3d(fn, false, true);
     map_contents.mesh_autotile_raw[thing.key] = buffer_create_from_vertex_buffer(map_contents.mesh_autotiles[thing.key], buffer_fixed, 1);
     vertex_freeze(map_contents.mesh_autotiles[thing.key]);
     

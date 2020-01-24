@@ -5,7 +5,7 @@
 var all_tile = true;
 var all_tile_auto = true;
 var all_mesh = true;
-var all_mesh_terrain = true;
+var all_mesh_autotile = true;
 var all_pawn = true;
 var all_effect = true;
 
@@ -14,12 +14,12 @@ for (var i = 0; i < ds_list_size(Stuff.map.active_map.contents.all_entities); i+
     if (selected(thing)) {
         if (!instanceof(thing, EntityAutoTile)) all_tile_auto = false;
         if (!instanceof(thing, EntityTile)) all_tile = false;
-        if (!instanceof(thing, EntityMeshTerrain)) all_mesh_terrain = false;
+        if (!instanceof(thing, EntityMeshTerrain)) all_mesh_autotile = false;
         if (!instanceof(thing, EntityMesh)) all_mesh = false;
         if (!instanceof(thing, EntityPawn)) all_pawn = false;
         if (!instanceof(thing, EntityEffect)) all_effect = false;
         
-        if (!(all_effect || all_pawn || all_mesh || all_mesh_terrain || all_tile || all_tile_auto)) {
+        if (!(all_effect || all_pawn || all_mesh || all_mesh_autotile || all_tile || all_tile_auto)) {
             return Entity;
         }
     }
@@ -27,7 +27,7 @@ for (var i = 0; i < ds_list_size(Stuff.map.active_map.contents.all_entities); i+
 
 // check the more specific types first
 if (all_tile_auto) return EntityAutoTile;
-if (all_mesh_terrain) return EntityMeshTerrain;
+if (all_mesh_autotile) return EntityMeshTerrain;
 if (all_tile) return EntityTile;
 if (all_mesh) return EntityMesh;
 if (all_pawn) return EntityPawn;

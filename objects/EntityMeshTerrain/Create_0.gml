@@ -1,7 +1,7 @@
 event_inherited();
 
-save_script = serialize_save_entity_mesh_terrain;
-load_script = serialize_load_entity_mesh_terrain;
+save_script = serialize_save_entity_mesh_autotile;
+load_script = serialize_load_entity_mesh_autotile;
 
 name = "Terrain";
 etype = ETypes.ENTITY_MESH;
@@ -14,8 +14,8 @@ rotateable = false;
 offsettable = false;
 scalable = false;
 
-batch = batch_mesh_terrain;
-render = render_mesh_terrain;
+batch = batch_mesh_autotile;
+render = render_mesh_autotile;
 selector = select_single;
 on_select = safc_on_mesh;
 

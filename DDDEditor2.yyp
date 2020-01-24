@@ -4035,7 +4035,7 @@
             "Key": "3f15425f-e08b-466e-ae9b-3b5e601a567e",
             "Value": {
                 "id": "52207623-28de-4153-b9f9-c9e823cae74f",
-                "resourcePath": "scripts\\batch_mesh_terrain\\batch_mesh_terrain.yy",
+                "resourcePath": "scripts\\batch_mesh_autotile\\batch_mesh_autotile.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -7756,14 +7756,6 @@
             "Value": {
                 "id": "92c2f7e2-8283-40f2-9b0c-49602da404a8",
                 "resourcePath": "scripts\\uivc_list_maps\\uivc_list_maps.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "7874d997-3bb4-42ea-9d83-08436e7011ad",
-            "Value": {
-                "id": "b4073726-ed28-4c27-b428-b1c94878c26b",
-                "resourcePath": "scripts\\data_import_d3d\\data_import_d3d.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -12243,7 +12235,7 @@
             "Key": "bf81dc40-e73e-44cc-8002-90e1003e7331",
             "Value": {
                 "id": "4c203647-daf9-47c6-95b5-7d28a44850e7",
-                "resourcePath": "scripts\\serialize_save_entity_mesh_terrain\\serialize_save_entity_mesh_terrain.yy",
+                "resourcePath": "scripts\\serialize_save_entity_mesh_autotile\\serialize_save_entity_mesh_autotile.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -12875,7 +12867,7 @@
             "Key": "cabddee6-83fd-4635-a29d-8d1e4a5f3dfd",
             "Value": {
                 "id": "f224acce-5324-4158-adcd-09d038a9d613",
-                "resourcePath": "scripts\\render_mesh_terrain\\render_mesh_terrain.yy",
+                "resourcePath": "scripts\\render_mesh_autotile\\render_mesh_autotile.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -14459,7 +14451,7 @@
             "Key": "e42de6e2-aedc-4d8a-ba9e-4d179718b813",
             "Value": {
                 "id": "5cd2df52-7a05-46cf-8595-78f283c34711",
-                "resourcePath": "scripts\\serialize_load_entity_mesh_terrain\\serialize_load_entity_mesh_terrain.yy",
+                "resourcePath": "scripts\\serialize_load_entity_mesh_autotile\\serialize_load_entity_mesh_autotile.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -17538,7 +17530,6 @@
         "9026b3d4-6e7b-477f-a593-dcc517725bf2",
         "011034bf-db78-40b3-b64a-d0199b3f03f8",
         "025e7494-68e7-4a58-a082-1d288d3ba4dc",
-        "7874d997-3bb4-42ea-9d83-08436e7011ad",
         "e9c50412-ecb6-4bfa-a617-66e7d1c75859",
         "af1e57cd-c701-4655-baa3-e5ca28c70e99",
         "75fdb47b-99b6-4312-a3c3-207f72372850",

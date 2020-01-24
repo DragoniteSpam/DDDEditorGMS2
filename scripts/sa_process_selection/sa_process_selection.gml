@@ -159,10 +159,6 @@ for (var i = 0; i < ds_list_size(terrain); i++) {
     if (!ds_map_exists(Stuff.autotile_map, thing.terrain_id)) {
         thing.terrain_id = 255;
     }
-    
-    var mapping = Stuff.autotile_map[? thing.terrain_id];
-    thing.mesh_data = Stuff.map.active_map.contents.mesh_autotiles[mapping];
-    thing.mesh_data_raw = Stuff.map.active_map.contents.mesh_autotile_raw[mapping];
 }
 
 ds_list_destroy(terrain);

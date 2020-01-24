@@ -1,8 +1,8 @@
 {
-    "id": "7874d997-3bb4-42ea-9d83-08436e7011ad",
+    "id": "cabddee6-83fd-4635-a29d-8d1e4a5f3dfd",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "data_import_d3d",
+    "name": "render_mesh_autotile",
     "IsCompatibility": false,
     "IsDnD": false
 }
