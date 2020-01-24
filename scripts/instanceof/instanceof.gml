@@ -1,12 +1,15 @@
 /// @param instance
 /// @param object
 
-if (!argument0) {
+var instance = argument0;
+var object = argument1;
+
+if (!instance) {
     return false;
 }
 
-if (argument0.object_index == argument1) {
+if (instance.object_index == object) {
     return true;
 }
 
-return object_is_ancestor(argument0.object_index, argument1);
+return object_is_ancestor(instance.object_index, object);
