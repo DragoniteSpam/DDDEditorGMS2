@@ -6,6 +6,7 @@ var fn = argument[0];
 // setting "everything" to false will mean only the vertex buffer is returned
 var everything = (argument_count > 1 && argument[1] != undefined) ? argument[1] : true;
 var adjust = (argument_count > 2 && argument[2] != undefined) ? argument[2] : true;
+var data_added = false;
 
 var mfn = filename_change_ext(fn, ".mtl");
 
@@ -283,6 +284,7 @@ if (file_exists(fn)) {
             
             vertex_point_complete(vbuffer, bxx[vc], byy[vc], bzz[vc], bnx, bny, bnz, bxtex, bytex, bcolor, balpha);
             
+            data_added = true;
             vc = (++vc) % 3;
             
             if (everything && vc == 0) {
@@ -301,9 +303,19 @@ if (file_exists(fn)) {
         
         vertex_end(vbuffer);
         
+        if (!data_added) {
+            vertex_delete_buffer(vbuffer);
+            vbuffer = noone;
+        }
+        
         if (everything) {
-            vertex_end(wbuffer);
-            c_shape_end_trimesh(cshape);
+            if (data_added) {
+                vertex_end(wbuffer);
+                c_shape_end_trimesh(cshape);
+            } else {
+                vertex_delete_buffer(wbuffer);
+                c_shape_destroy(cshape);
+            }
             
             var mesh = instance_create_depth(0, 0, 0, DataMesh);
             
@@ -317,15 +329,20 @@ if (file_exists(fn)) {
             var base_name = filename_change_ext(filename_name(fn), "");
             mesh.name = base_name;
             internal_name_generate(mesh, PREFIX_MESH + string_lettersdigits(base_name));
-            mesh.buffer = buffer_create_from_vertex_buffer(vbuffer, buffer_fixed, 1);
-            mesh.vbuffer = vbuffer;
-            mesh.wbuffer = wbuffer;
-            mesh.cshape = cshape;
             
-            vertex_freeze(wbuffer);
+            if (data_added) {
+                mesh.buffer = buffer_create_from_vertex_buffer(vbuffer, buffer_fixed, 1);
+                mesh.vbuffer = vbuffer;
+                mesh.wbuffer = wbuffer;
+                mesh.cshape = cshape;
+                
+                vertex_freeze(wbuffer);
+            }
         }
         
-        vertex_freeze(vbuffer);
+        if (data_added) {
+            vertex_freeze(vbuffer);
+        }
     }
     
     ds_list_destroy(temp_vertices);
