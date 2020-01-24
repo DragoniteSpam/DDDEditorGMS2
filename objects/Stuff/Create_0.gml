@@ -12,6 +12,7 @@ etype_objects = [
     EntityPawn,
     EntityEffect,
     noone,
+    noone,
     EntityMeshAutotile
 ];
 

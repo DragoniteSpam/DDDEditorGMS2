@@ -57,6 +57,7 @@ enum ETypes {
     ENTITY_EFFECT,
     ENTITY_EVENT,
     ENTITY_TERRAIN,
+    ENTITY_MESH_AUTO,
 }
 
 enum ETypeFlags {
