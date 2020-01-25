@@ -3,16 +3,17 @@ var map = Stuff.map.active_map;
 
 for (var i = 0; i < ds_list_size(terrain); i++) {
     var thing = terrain[| i];
-    var original_id = thing.terrain_id;
+    var thing_is_mesh = instanceof(thing, EntityMeshAutotile);
+    var original_id = thing_is_mesh ? thing.terrain_id : -1;
     thing.terrain_id = get_autotile_id(thing);
     thing.terrain_type = ATTerrainTypes.BASE;
     
     // batched entities will need to be updated
-    if (thing.modification == Modifications.NONE && original_id != thing.terrain_id) {
+    if (thing.modification == Modifications.NONE && original_id != thing.terrain_id && original_id != -1) {
         editor_map_mark_changed(thing);
     }
     
-    if (thing.zz < map.zz - 1) {
+    if (thing.zz < map.zz - 1 && thing_is_mesh) {
         var above = map_get_grid_cell(thing.xx, thing.yy, thing.zz + 1);
         if (instanceof(above[MapCellContents.MESHPAWN], EntityMeshAutotile)) {
             thing.terrain_type = ATTerrainTypes.VERTICAL;
