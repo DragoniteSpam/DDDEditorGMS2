@@ -31,40 +31,51 @@ var el_other = create_text(16, yy, "Settings: Other", ew, eh, fa_left, ew, dg);
 yy = yy + el_other.height + spacing;
 
 var el_other_grid = create_checkbox(16, yy, "Grid aligned?", ew, eh, null, map.on_grid, dg);
+el_other_grid.tooltip = "This setting is currently unavailable; in the future I may enable off-grid editing";
 el_other_grid.interactive = false;
 yy = yy + el_other_grid.height + spacing;
 
 var el_other_fog_enabled = create_checkbox(16, yy, "Fog Enabled?", ew, eh, uivc_settings_map_fog_enabled, map.fog_enabled, dg);
+el_other_fog_enabled.tooltip = "Whether or not vertex fog should be enabled in the map";
 yy = yy + el_other_fog_enabled.height + spacing;
 
 var el_other_fog_start = create_input(16, yy, "     Fog Start:", ew, eh, uivc_settings_map_fog_start, map.fog_start, "512?", validate_int, 1, 0xffff, 5, vx1, vy1, vx2, vy2, dg);
+el_other_fog_start.tooltip = "The distance from the camera at which fog begins to become visible; this should be in game units, not tiles (I recomment assuming 32 units = 1 tile)";
 dg.el_other_fog_start = el_other_fog_start;
 yy = yy + el_other_fog_start.height + spacing;
 
 var el_other_fog_end = create_input(16, yy, "     Fog End:", ew, eh, uivc_settings_map_fog_end, map.fog_end, "2048?", validate_int, 1, 0xffff, 5, vx1, vy1, vx2, vy2, dg);
+el_other_fog_end.tooltip = "The distance from the camera at which fog completely obscures objects behind it; this should be in game units, not tiles (I recomment assuming 32 units = 1 tile)";
 dg.el_other_fog_end = el_other_fog_end;
 yy = yy + el_other_fog_end.height + spacing;
 
 var el_other_fog_colour = create_color_picker(16, yy, "     Fog Color:", ew, eh, uivc_settings_map_fog_colour, map.fog_colour, vx1, vy1, vx2, vy2, dg);
+el_other_fog_colour.tooltip = "The color of the fog; you will usually want this to be white or off-white, but sometimes it may be preferred to be some other color";
 dg.el_other_fog_colour = el_other_fog_colour;
 yy = yy + el_other_fog_colour.height + spacing;
 
 var el_other_indoors = create_checkbox(16, yy, "Is indoors?", ew, eh, uivc_settings_map_indoors, map.indoors, dg);
+el_other_indoors.tooltip = "Whether or not the map is supposed to be indoors (or underground); this will have effects such as determining whether or not the atmosphere is to be drawn, or whether or not weather should be processed";
 yy = yy + el_other_indoors.height + spacing;
 
 var el_other_water = create_checkbox(16, yy, "Render water?", ew, eh, uivc_settings_map_water, map.draw_water, dg);
+el_other_water.tooltip = "Whether or not water should be rendered";
 yy = yy + el_other_water.height + spacing;
 
 var el_other_water_reflect = create_checkbox(16 + string_width("     "), yy, "Reflections enabled?", ew, eh, uivc_settings_map_reflections, map.reflections_enabled, dg);
+el_other_water_reflect.tooltip = "Whether or not reflections will be shown; most of the time this should be turned off if you have the water level turned off, and it should probably be turned off if the map is marked as indoors, but you may choose otherwise";
 yy = yy + el_other_water_reflect.height + spacing;
 
 var el_other_water_level = create_input(16, yy, "     Water level:", ew, eh, uivc_settings_map_water_level, map.water_level, "float", validate_double, 0, map.zz - 1, 4, vx1, vy1, vx2, vy2, dg);
+el_other_water_level.tooltip = "The level of the water, in tile units";
 yy = yy + el_other_water_level.height + spacing;
 
 var el_other_fast_travel_to = create_checkbox(16, yy, "Can fast travel to?", ew, eh, uivc_settings_map_fast_travel_to, map.fast_travel_to, dg);
+el_other_fast_travel_to.tooltip = "Should you be able to teleport into this map?";
 yy = yy + el_other_fast_travel_to.height + spacing;
 
 var el_other_fast_travel_from = create_checkbox(16, yy, "Can fast travel from?", ew, eh, uivc_settings_map_fast_travel_from, map.fast_travel_from, dg);
+el_other_fast_travel_from.tooltip = "Should you be able to teleport away from this map?";
 yy = yy + el_other_fast_travel_from.height + spacing;
 
 yy = yy_base;
@@ -73,15 +84,18 @@ var el_code_heading = create_text(c2, yy, "Update Code", ew, eh, fa_left, ew, dg
 yy = yy + el_code_heading.height + spacing;
 
 var el_code = create_input_code(c2, yy, "", ew, eh, 0, vy1, vx2, vy2, map.code, uivc_map_code, dg);
+el_code.tooltip = "Code which runs in each update step for the map";
 yy = yy + el_code.height + spacing;
 
 var el_encounter_heading = create_text(c2, yy, "Encounter Stuff", ew, eh, fa_left, ew, dg);
 yy = yy + el_encounter_heading.height + spacing;
 
 var el_encounter_base = create_input(c2, yy, "Base Rate", ew, eh, uivc_settings_map_encounter_base, map.base_encounter_rate, "0 for off", validate_int, 0, 1000000, 7, vx1, vy1, vx2, vy2, dg);
+el_encounter_base.tooltip = "The base number of steps between random encounters; if movement is set to be off-grid, this can be approximated in tiles";
 yy = yy + el_encounter_base.height + spacing;
 
 var el_encounter_deviation = create_input(c2, yy, "Deviation", ew, eh, uivc_settings_map_encounter_deviation, map.base_encounter_deviation, "Probably steps", validate_int, 0, 1000000, 7, vx1, vy1, vx2, vy2, dg);
+el_encounter_deviation.tooltip = "The deviation in steps between random encounters; if movement is set to be off-grid, this can be approximated in tiles";
 yy = yy + el_encounter_deviation.height + spacing;
 
 var b_width = 128;
