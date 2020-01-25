@@ -1,4 +1,9 @@
 var modulo = Stuff.graphics.water_reptition;
+var map = Stuff.map.active_map;
+
+if (!map.draw_water) {
+    return 0;
+}
 
 shader_set(shd_water_base);
 transform_set(0, 0, -8, 0, 0, 0, 1, 1, 1);
