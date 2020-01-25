@@ -1,6 +1,7 @@
 /// @param EditorModeMap
 
 var mode = argument0;
+var input_control = keyboard_check(vk_control);
 
 if (Stuff.menu.active_element) {
     return false;
@@ -78,17 +79,19 @@ if (!mode.mouse_over_ui) {
             }
         }
     }
-
-    if (keyboard_check_pressed(vk_space)) {
-        sa_fill();
+    
+    if (!input_control) {
+        if (keyboard_check_pressed(vk_space)) {
+            sa_fill();
+        }
+        if (keyboard_check_pressed(vk_delete)) {
+            sa_delete();
+        }
     }
-    if (keyboard_check_pressed(vk_delete)) {
-        sa_delete();
-    }
-
+    
     // move the camera
-
-    if (CONTORL_3D_LOOK || !keyboard_check(vk_control)) {
+    
+    if (CONTORL_3D_LOOK || !input_control) {
         var mspd = get_camera_speed(mode.z)
         var xspeed = 0;
         var yspeed = 0;
