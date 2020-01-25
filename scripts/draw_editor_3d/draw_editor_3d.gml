@@ -36,10 +36,6 @@ graphics_draw_water();
 
 // anything in the world
 
-// the autotile shader doesn't work yet and it's annoying
-//shader_set(shd_default_autotile);
-//shader_set_uniform_f_array(Stuff.shd_uniform_at_tex_offset, Stuff.shd_value_at_tex_offset);
-
 shader_set(shd_default);
 
 // this will need to be dynamic at some point

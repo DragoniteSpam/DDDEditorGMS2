@@ -31,7 +31,6 @@
 #macro LIMIT_TILESET 255
 #macro MAP_AXIS_LIMIT 2048
 #macro MAP_VOLUME_LIMIT 0x100000
-#macro MAX_AUTOTILE_SHADER_POSITIONS 12 * 16 * 8 * 2
 #macro MAX_SELECTION_COUNT 32
 #macro MAX_VISIBLE_MOVE_ROUTES 4
 #macro mouse_x_view (Stuff.MOUSE_X - view_get_xport(view_current))
@@ -42,7 +41,7 @@
 #macro PATH_PROJECTS ".\\projects\\"
 #macro PATH_TEMP_CODE "temp\\"              // local storage - no leading punctuation - used for opening files
 #macro PATH_AUDIO "audio\\"                 // local storage - no leading punctuation - used for opening files
-#macro SELECTION_MASK_ALL ~0
+#macro SELECTION_MASK_ALL 0xffffffff
 #macro SERIALIZE_ASSETS 2
 #macro SERIALIZE_DATA 1
 #macro SERIALIZE_DATA_AND_MAP 3

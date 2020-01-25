@@ -8504,14 +8504,6 @@
             }
         },
         {
-            "Key": "83322984-4625-4ee2-a541-c957aaee7e63",
-            "Value": {
-                "id": "fe2be2e1-a559-446f-8233-9db2c0902267",
-                "resourcePath": "shaders\\shd_default_autotile\\shd_default_autotile.yy",
-                "resourceType": "GMShader"
-            }
-        },
-        {
             "Key": "833268fe-073b-4f6f-a29b-0e517efd474e",
             "Value": {
                 "id": "4075a32a-d5e2-472c-be12-9737fd40b891",

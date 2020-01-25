@@ -296,9 +296,6 @@ autotile_map[? 251] = 44;
 autotile_map[? 254] = 45;
 autotile_map[? 255] = 46;
 autotile_map[? 0] = 47;
-
-shd_uniform_at_tex_offset = shader_get_uniform(shd_default_autotile, "texoffset");
-shd_value_at_tex_offset = array_create(MAX_AUTOTILE_SHADER_POSITIONS);
 #endregion
 
 #region prefab events
