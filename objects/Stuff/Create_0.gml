@@ -11,8 +11,6 @@ etype_objects = [
     EntityMesh,
     EntityPawn,
     EntityEffect,
-    noone,
-    noone,
     EntityMeshAutotile
 ];
 
