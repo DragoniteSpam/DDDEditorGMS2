@@ -20,8 +20,18 @@ buffer_write(buffer, buffer_f32, map.fog_end);
 buffer_write(buffer, buffer_u32, map.fog_colour);
 buffer_write(buffer, buffer_u32, map.base_encounter_rate);
 buffer_write(buffer, buffer_u32, map.base_encounter_deviation);
+buffer_write(buffer, buffer_f32, map.water_level);
 
-var bools = pack(map.indoors, map.draw_water, map.fast_travel_to, map.fast_travel_from, map.is_3d, map.fog_enabled, map.on_grid);
+var bools = pack(
+    map.indoors,
+    map.draw_water,
+    map.fast_travel_to,
+    map.fast_travel_from,
+    map.is_3d,
+    map.fog_enabled,
+    map.on_grid,
+    map.reflections_enabled,
+);
 
 buffer_write(buffer, buffer_u32, bools);
 buffer_write(buffer, buffer_string, map.code);

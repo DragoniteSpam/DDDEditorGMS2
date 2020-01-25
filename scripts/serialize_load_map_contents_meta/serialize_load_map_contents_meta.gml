@@ -27,6 +27,9 @@ map.fog_colour = buffer_read(buffer, buffer_u32);
 
 map.base_encounter_rate = buffer_read(buffer, buffer_u32);
 map.base_encounter_deviation = buffer_read(buffer, buffer_u32);
+if (version >= DataVersions.WATER_LEVEL) {
+    map.water_level = buffer_read(buffer, buffer_f32);
+}
 
 var bools = buffer_read(buffer, buffer_u32);
 map.indoors = unpack(bools, 0);
@@ -36,6 +39,9 @@ map.fast_travel_from = unpack(bools, 3);
 map.is_3d = unpack(bools, 4);
 map.fog_enabled = unpack(bools, 5);
 map.on_grid = unpack(bools, 6);
+if (version >= DataVersions.WATER_LEVEL) {
+    map.reflections_enabled = unpack(bools, 7);
+}
 
 map.code = buffer_read(buffer, buffer_string);
 

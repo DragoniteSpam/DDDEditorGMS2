@@ -104,5 +104,6 @@ enum DataVersions {
     ASSET_FLAG_LIST             = 78,
     THIRTY_TWO_FLAGS            = 79,
     MESH_AUTOTILE_FINISHED      = 80,
+    WATER_LEVEL                 = 81,
     _CURRENT /* = whatever the last one is + 1 */
 }

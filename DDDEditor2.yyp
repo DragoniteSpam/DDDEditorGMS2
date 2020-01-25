@@ -1688,6 +1688,14 @@
             }
         },
         {
+            "Key": "1964989c-7a4a-4dcc-b579-1b3c7cca4f11",
+            "Value": {
+                "id": "b1944503-8eee-4ce1-9862-58176e6d785c",
+                "resourcePath": "scripts\\uivc_settings_map_reflections\\uivc_settings_map_reflections.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "1964af12-12b5-4633-ae91-53f1536d79dc",
             "Value": {
                 "id": "3211eea4-4a90-49b9-9989-4de8b4e857a8",
@@ -17035,6 +17043,7 @@
         "64faf918-5aba-4d29-a75a-7b2c08dede5e",
         "47b54fcf-16f1-4f46-b5b5-e1c1e44239fb",
         "c07186bb-4bc3-449b-886e-448d85708dc7",
+        "1964989c-7a4a-4dcc-b579-1b3c7cca4f11",
         "ff17e196-d504-42c7-a85e-e7d2a651d74c",
         "9064f1f1-760b-4f2e-a55a-b4d027ab5ac9",
         "cdb1eb79-b2b2-4ea0-991b-b0c42d1f374b",

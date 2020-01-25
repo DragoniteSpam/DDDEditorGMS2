@@ -55,6 +55,9 @@ yy = yy + el_other_indoors.height + spacing;
 var el_other_water = create_checkbox(16, yy, "Render water?", ew, eh, uivc_settings_map_water, map.draw_water, dg);
 yy = yy + el_other_water.height + spacing;
 
+var el_other_water_reflect = create_checkbox(16 + string_width("     "), yy, "Reflections enabled?", ew, eh, uivc_settings_map_reflections, map.reflections_enabled, dg);
+yy = yy + el_other_water_reflect.height + spacing;
+
 var el_other_water_level = create_input(16, yy, "     Water level:", ew, eh, uivc_settings_map_water_level, map.water_level, "float", validate_double, 0, map.zz - 1, 4, vx1, vy1, vx2, vy2, dg);
 yy = yy + el_other_water_level.height + spacing;
 
@@ -94,6 +97,7 @@ ds_list_add(dg.contents,
     el_other_fog_colour,
     el_other_indoors,
     el_other_water,
+    el_other_water_reflect,
     el_other_water_level,
     el_other_fast_travel_to,
     el_other_fast_travel_from,

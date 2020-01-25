@@ -34,6 +34,7 @@ fog_colour = c_white;                       // uint
 indoors = false;                            // bool
 draw_water = true;                          // bool
 water_level = 0;                            // float
+reflections_enabled = true;                 // bool
 fast_travel_to = true;                      // bool
 fast_travel_from = true;                    // bool
 base_encounter_rate = 8;                    // steps?
