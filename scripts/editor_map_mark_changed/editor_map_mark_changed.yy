@@ -1,8 +1,8 @@
 {
-    "id": "ba748655-de6d-4224-811b-e7df3a9c6e90",
+    "id": "04df1635-e5d4-40c3-8a2d-a34ad5d3b34b",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "update_autotile",
+    "name": "editor_map_mark_changed",
     "IsCompatibility": false,
     "IsDnD": false
 }

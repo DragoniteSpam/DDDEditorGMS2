@@ -127,6 +127,5 @@ coexist = false;
 cobject = noone;
 
 on_create = null;
-on_update = null;
 on_destroy = null;
 on_select = safc_on_entity;

@@ -9,7 +9,7 @@ for (var i = 0; i < ds_list_size(terrain); i++) {
     
     // batched entities will need to be updated
     if (thing.modification == Modifications.NONE && original_id != thing.terrain_id) {
-        thing.modification = Modifications.UPDATE;
+        editor_map_mark_changed(thing);
     }
     
     if (thing.zz < map.zz - 1) {
@@ -30,7 +30,7 @@ for (var i = 0; i < ds_list_size(terrain); i++) {
             below_thing.terrain_id = thing.terrain_id;
             below_thing.terrain_type = ATTerrainTypes.VERTICAL;
             if (below_thing.modification == Modifications.NONE && (original_id != thing.terrain_id || original_type != thing.terrain_type)) {
-                below_thing.modification = Modifications.UPDATE;
+                editor_map_mark_changed(below_thing);
             }
     
         }

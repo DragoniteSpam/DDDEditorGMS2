@@ -3,7 +3,7 @@
 var mode = argument0;
 var base_map = Stuff.map.active_map;
 var map = base_map.contents;
-var deletions = ds_list_create();
+var modifications = ds_list_create();
 
 for (var i = 0; i < ds_list_size(mode.changes); i++) {
     var thing = mode.changes[| i];
@@ -13,39 +13,47 @@ for (var i = 0; i < ds_list_size(mode.changes); i++) {
             script_execute(thing.on_create, thing);
             thing.modification = Modifications.NONE;
             break;
+        // we'd still like to know what the modification status on an entity is for when we re-batch
+        // everything
         case Modifications.UPDATE:
-            batch_again(thing.batch_index);
-            script_execute(thing.on_update, thing);
-            thing.modification = Modifications.NONE;
+            //batch_again(thing.batch_index);
+            ds_list_add(modifications, thing);
             break;
         case Modifications.REMOVE:
-            ds_list_add(deletions, thing);
+            ds_list_add(modifications, thing);
             break;
     }
 }
 
 ds_list_clear(mode.changes);
 
-if (ds_list_size(deletions) > 0) {
-    if (ds_list_size(deletions) < 25) {
-        for (var i = 0; i < ds_list_size(deletions); i++) {
-            var thing = deletions[| i];
-            if (thing.xx < base_map.xx && thing.yy < base_map.yy && thing.zz < base_map.zz) {
-                map_remove_thing(thing, true);
+if (ds_list_size(modifications) > 0) {
+    var rebatch_all_threshold = 25;
+    var rebatch_status = ds_list_create();
+    
+    for (var i = 0; i < ds_list_size(map.batch_instances); i++) {
+        ds_list_add(rebatch_status, false);
+    }
+    
+    if (ds_list_size(modifications) < rebatch_all_threshold) {
+        if (thing.modification == Modifications.REMOVE) {
+            for (var i = 0; i < ds_list_size(modifications); i++) {
+                var thing = modifications[| i];
+                if (thing.xx < base_map.xx && thing.yy < base_map.yy && thing.zz < base_map.zz) {
+                    map_remove_thing(thing, true);
+                }
+                instance_activate_object(thing);
+                instance_destroy(thing);
             }
-            instance_activate_object(thing);
-            instance_destroy(thing);
+        } else if (thing.modification == Modifications.UPDATE) {
+            thing.modification = Modifications.NONE;
+            rebatch_status[| thing.batch_index] = true;
         }
     } else {
-        var original_batch_sizes = ds_list_create();
         var clone_dynamic = ds_list_clone(map.dynamic);
         var clone_all = ds_list_clone(map.all_entities);
         ds_list_clear(map.dynamic);
         ds_list_clear(map.all_entities);
-        
-        for (var i = 0; i < ds_list_size(map.batch_instances); i++) {
-            ds_list_add(original_batch_sizes, ds_list_size(map.batch_instances[| i]));
-        }
         
         for (var i = 0; i < ds_list_size(clone_all); i++) {
             var thing = clone_all[| i];
@@ -61,35 +69,42 @@ if (ds_list_size(deletions) > 0) {
             }
         }
     
-        for (var i = 0; i < ds_list_size(deletions); i++) {
-            var thing = deletions[| i];
+        for (var i = 0; i < ds_list_size(modifications); i++) {
+            var thing = modifications[| i];
             
-            if (thing.batchable && thing.batch_index > -1) {
-                var batch_list = map.batch_instances[| thing.batch_index];
-                ds_list_delete(batch_list, ds_list_find_index(batch_list, thing));
-            }
-            
-            if (thing.xx < base_map.xx && thing.yy < base_map.yy && thing.zz < base_map.zz) {
-                map_remove_thing(thing, false);
-            }
-            
-            instance_activate_object(thing);
-            instance_destroy(thing);
-        }
-        
-        for (var i = 0; i < ds_list_size(map.batch_instances); i++) {
-            if (original_batch_sizes[| i] != ds_list_size(map.batch_instances[| i])) {
-                batch_again(i);
+            if (thing.modification == Modifications.REMOVE) {
+                if (thing.batchable && thing.batch_index > -1) {
+                    var batch_list = map.batch_instances[| thing.batch_index];
+                    rebatch_status[| thing.batch_index] = true;
+                    ds_list_delete(batch_list, ds_list_find_index(batch_list, thing));
+                }
+                
+                if (thing.xx < base_map.xx && thing.yy < base_map.yy && thing.zz < base_map.zz) {
+                    map_remove_thing(thing, false);
+                }
+                
+                instance_activate_object(thing);
+                instance_destroy(thing);
+            } else {
+                rebatch_status[| thing.batch_index] = true;
+                thing.modification = Modifications.NONE;
             }
         }
         
         ds_list_destroy(clone_dynamic);
         ds_list_destroy(clone_all);
-        ds_list_destroy(original_batch_sizes);
     }
+    
+    for (var i = 0; i < ds_list_size(map.batch_instances); i++) {
+        if (rebatch_status[| i]) {
+            batch_again(i);
+        }
+    }
+    
+    ds_list_destroy(rebatch_status);
 }
 
-ds_list_clear(deletions);
+ds_list_clear(modifications);
 
 // you may add/delete/move stuff in bulk and doing this for each
 // entity that was changed would slow the editor down quite a lot

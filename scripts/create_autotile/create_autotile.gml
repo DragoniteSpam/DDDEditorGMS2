@@ -39,6 +39,3 @@ for (var i = 0; i < ds_list_size(Stuff.map.active_map.contents.all_entities); i+
         }
     }
 }
-
-// this has to go last, after the neighbors have been set
-update_autotile(autotile);
