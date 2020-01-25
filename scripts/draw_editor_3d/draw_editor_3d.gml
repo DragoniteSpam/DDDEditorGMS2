@@ -91,11 +91,11 @@ for (var i = 0; i < ds_list_size(list_routes); i++) {
     }
 }
 
-// "set" overwrites the previous transform anyway
-transform_set(0, 0, 0.5, 0, 0, 0, 1, 1, 1);
-
 if (Stuff.setting_view_grid) {
+    transform_set(0, 0, Stuff.map.edit_z * TILE_DEPTH + 0.5, 0, 0, 0, 1, 1, 1);
     vertex_submit(Stuff.graphics.grid, pr_linelist, -1);
+    transform_reset();
+    transform_set(0, 0, 0.5, 0, 0, 0, 1, 1, 1);
     vertex_submit(Stuff.graphics.axes, pr_linelist, -1);
 }
 

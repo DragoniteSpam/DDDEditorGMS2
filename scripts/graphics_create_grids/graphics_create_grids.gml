@@ -16,7 +16,7 @@ for (var i = 0; i <= map.yy; i++) {
     vertex_point_line(Stuff.graphics.grid, 0, i * TILE_HEIGHT, 0, c_white, 1);
     vertex_point_line(Stuff.graphics.grid, map.xx * TILE_WIDTH, i * TILE_HEIGHT, 0, c_white, 1);
 }
-    
+
 vertex_end(Stuff.graphics.grid);
 vertex_freeze(Stuff.graphics.grid);
 
@@ -41,16 +41,6 @@ for (var i = -yy; i <= yy; i++) {
         vertex_point_line(Stuff.graphics.grid_centered, xx * TILE_WIDTH, i * TILE_HEIGHT, 0, c_white, 1);
     }
 }
-    
-// axes
-vertex_point_line(Stuff.graphics.grid_centered, -MILLION, 0, 0, c_red, 1);
-vertex_point_line(Stuff.graphics.grid_centered, MILLION, 0, 0, c_red, 1);
-    
-vertex_point_line(Stuff.graphics.grid_centered, 0, -MILLION, 0, c_green, 1);
-vertex_point_line(Stuff.graphics.grid_centered, 0, MILLION, 0, c_green, 1);
-    
-vertex_point_line(Stuff.graphics.grid_centered, 0, 0, 0, c_blue, 1);
-vertex_point_line(Stuff.graphics.grid_centered, 0, 0, MILLION, c_blue, 1);
     
 vertex_end(Stuff.graphics.grid_centered);
 vertex_freeze(Stuff.graphics.grid_centered);

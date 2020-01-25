@@ -64,5 +64,6 @@ if (animation) {
 // "set" overwrites the previous transform anyway
 transform_set(0, 0, 0.5, 0, 0, 0, 1, 1, 1);
 vertex_submit(Stuff.graphics.grid_centered, pr_linelist, -1);
+vertex_submit(Stuff.graphics.axes_centered, pr_linelist, -1);
 
 transform_reset();

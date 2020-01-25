@@ -134,5 +134,20 @@ vertex_point_line(axes, 0, 0, MILLION, c_blue, 1);
 vertex_end(axes);
 vertex_freeze(axes);
 
+axes_centered = vertex_create_buffer();
+vertex_begin(axes_centered, vertex_format);
+
+vertex_point_line(axes_centered, -MILLION, 0, 0, c_red, 1);
+vertex_point_line(axes_centered, MILLION, 0, 0, c_red, 1);
+
+vertex_point_line(axes_centered, 0, -MILLION, 0, c_green, 1);
+vertex_point_line(axes_centered, 0, MILLION, 0, c_green, 1);
+
+vertex_point_line(axes_centered, 0, 0, -MILLION, c_blue, 1);
+vertex_point_line(axes_centered, 0, 0, MILLION, c_blue, 1);
+    
+vertex_end(axes_centered);
+vertex_freeze(axes_centered);
+
 grid = noone;
 grid_centered = noone;
