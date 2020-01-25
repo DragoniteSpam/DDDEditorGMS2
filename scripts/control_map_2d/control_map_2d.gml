@@ -10,6 +10,13 @@ var camera = view_get_camera(view_3d);
 var cwidth = camera_get_view_width(camera);
 var cheight = camera_get_view_height(camera);
 
+// @todo mouse picking in 2D
+if (false && c_raycast_world(mode.x, mode.y, mode.z, mode.x + xx, mode.y + yy, mode.z + zz, CollisionMasks.MAIN)) {
+    mode.under_cursor = c_object_get_userid(c_hit_object(0));
+} else {
+    mode.under_cursor = noone;
+}
+
 var x1 = mode.x - cwidth / 2;
 var y1 = mode.y - cheight / 2;
 var x2 = mode.x + cwidth / 2;
@@ -60,7 +67,7 @@ if (true) {
             }
             
             var tz = mode.under_cursor ? max(mode.under_cursor.zz, mode.edit_z) : mode.edit_z;
-            
+            debug(mode.under_cursor);
             mode.last_selection = instance_create_depth(0, 0, 0, stype);
             ds_list_add(mode.selection, mode.last_selection);
             script_execute(mode.last_selection.onmousedown, mode.last_selection, floor_cx, floor_cy, tz);
