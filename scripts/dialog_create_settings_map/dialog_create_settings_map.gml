@@ -37,15 +37,15 @@ yy = yy + el_other_grid.height + spacing;
 var el_other_fog_enabled = create_checkbox(16, yy, "Fog Enabled?", ew, eh, uivc_settings_map_fog_enabled, map.fog_enabled, dg);
 yy = yy + el_other_fog_enabled.height + spacing;
 
-var el_other_fog_start = create_input(16, yy, "      Fog Start:", ew, eh, uivc_settings_map_fog_start, map.fog_start, "512?", validate_int, 1, 0xffff, 5, vx1, vy1, vx2, vy2, dg);
+var el_other_fog_start = create_input(16, yy, "     Fog Start:", ew, eh, uivc_settings_map_fog_start, map.fog_start, "512?", validate_int, 1, 0xffff, 5, vx1, vy1, vx2, vy2, dg);
 dg.el_other_fog_start = el_other_fog_start;
 yy = yy + el_other_fog_start.height + spacing;
 
-var el_other_fog_end = create_input(16, yy, "      Fog End:", ew, eh, uivc_settings_map_fog_end, map.fog_end, "2048?", validate_int, 1, 0xffff, 5, vx1, vy1, vx2, vy2, dg);
+var el_other_fog_end = create_input(16, yy, "     Fog End:", ew, eh, uivc_settings_map_fog_end, map.fog_end, "2048?", validate_int, 1, 0xffff, 5, vx1, vy1, vx2, vy2, dg);
 dg.el_other_fog_end = el_other_fog_end;
 yy = yy + el_other_fog_end.height + spacing;
 
-var el_other_fog_colour = create_color_picker(16, yy, "      Fog Color:", ew, eh, uivc_settings_map_fog_colour, map.fog_colour, vx1, vy1, vx2, vy2, dg);
+var el_other_fog_colour = create_color_picker(16, yy, "     Fog Color:", ew, eh, uivc_settings_map_fog_colour, map.fog_colour, vx1, vy1, vx2, vy2, dg);
 dg.el_other_fog_colour = el_other_fog_colour;
 yy = yy + el_other_fog_colour.height + spacing;
 
@@ -54,6 +54,9 @@ yy = yy + el_other_indoors.height + spacing;
 
 var el_other_water = create_checkbox(16, yy, "Render water?", ew, eh, uivc_settings_map_water, map.draw_water, dg);
 yy = yy + el_other_water.height + spacing;
+
+var el_other_water_level = create_input(16, yy, "     Water level:", ew, eh, uivc_settings_map_water_level, map.water_level, "float", validate_double, 0, map.zz - 1, 4, vx1, vy1, vx2, vy2, dg);
+yy = yy + el_other_water_level.height + spacing;
 
 var el_other_fast_travel_to = create_checkbox(16, yy, "Can fast travel to?", ew, eh, uivc_settings_map_fast_travel_to, map.fast_travel_to, dg);
 yy = yy + el_other_fast_travel_to.height + spacing;
@@ -91,6 +94,7 @@ ds_list_add(dg.contents,
     el_other_fog_colour,
     el_other_indoors,
     el_other_water,
+    el_other_water_level,
     el_other_fast_travel_to,
     el_other_fast_travel_from,
     el_code_heading,

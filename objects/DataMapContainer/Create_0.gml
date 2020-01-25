@@ -26,21 +26,22 @@ yy = 64;
 zz = 8;
 
 tileset = 0;                                // index
-is_3d = true;                                // bool
+is_3d = true;                               // bool
 fog_start = 256;                            // float
-fog_end = 1024;                                // float
-fog_enabled = true;                            // bool
-fog_colour = c_white;                        // uint
+fog_end = 1024;                             // float
+fog_enabled = true;                         // bool
+fog_colour = c_white;                       // uint
 indoors = false;                            // bool
-draw_water = true;                            // bool
-fast_travel_to = true;                        // bool
+draw_water = true;                          // bool
+water_level = 0;                            // float
+fast_travel_to = true;                      // bool
 fast_travel_from = true;                    // bool
 base_encounter_rate = 8;                    // steps?
-base_encounter_deviation = 4;                // ehh
+base_encounter_deviation = 4;               // ehh
 
-discovery = 0;                                // index
+discovery = 0;                              // index
 
-code = Stuff.default_lua_map;                // code
+code = Stuff.default_lua_map;               // code
 
 generic_data = ds_list_create();            // similar to that attached to Entities
 
