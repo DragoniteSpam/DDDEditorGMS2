@@ -7,8 +7,6 @@ var ZERO = ord("0");
 var NINE = ord("9");
 var A = ord("A");
 var F = ord("F");
-var a = ord("a");
-var f = ord("f");
 
 for (var i = 1; i <= string_length(str); i++) {
     var c = ord(string_char_at(string_upper(str), i));
@@ -20,8 +18,6 @@ for (var i = 1; i <= string_length(str); i++) {
         result = result + (c - ZERO);
     } else if (c >= A && c <= F) {
         result = result + (c - A + 10);
-    } else if (c >= a && c <= f) {
-        result = result + (c - a + 10);
     // otherwise complain
     } else {
         show_error("bad input for hex(str): " + str, true);
