@@ -32,6 +32,11 @@ repeat (n_meshes) {
     mesh.ymax = buffer_read(buffer, buffer_f32);
     mesh.zmax = buffer_read(buffer, buffer_f32);
     
+    if (version >= DataVersions.DETAILED_MESH_COLLISION_DATA) {
+    } else {
+        data_mesh_recalculate_bounds(mesh);
+    }
+    
     if (version >= DataVersions.REMOVE_RMXP_DATA) {
         mesh.default_solid = buffer_read(buffer, buffer_u8);
     } else {

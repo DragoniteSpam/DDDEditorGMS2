@@ -19,7 +19,8 @@
         "cb67ca02-1c4c-4d06-8447-9e46c7a27f2f",
         "4b676220-a677-4f1b-be19-a27beb4290cb",
         "58f6b340-c4ea-427b-99b5-0386ecf6ac77",
-        "0c3fb917-3b54-49a3-811f-5227a110fc51"
+        "0c3fb917-3b54-49a3-811f-5227a110fc51",
+        "cf13c201-bde1-4f29-8df2-6fdb3ff097d6"
     ],
     "filterType": "GMScript",
     "folderName": "Game data",

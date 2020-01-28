@@ -62,7 +62,7 @@ if (grid_size > 0) {
     mesh.ymax = buffer_read(data_buffer, buffer_f32);
     mesh.zmax = buffer_read(data_buffer, buffer_f32);
 }
-
+data_mesh_recalculate_bounds(mesh);
 vertex_end(vbuffer);
 vertex_end(wbuffer);
 c_shape_end_trimesh(cdata);

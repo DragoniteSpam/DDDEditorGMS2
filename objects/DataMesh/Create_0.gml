@@ -17,6 +17,9 @@ cshape = noone;
 /* s */ ymax = 1;
 /* s */ zmax = 1;
 
+collision_flags = ds_grid_create(xmax - xmin, ymax - ymin);
+collision_flags[# 0, 0] = array_create(zmax - zmin);
+
 /* s */ default_solid = true;
 /* s */ flags = 0;          // overrides Data.flags
 

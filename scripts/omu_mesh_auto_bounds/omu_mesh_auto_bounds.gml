@@ -28,6 +28,7 @@ while (buffer_tell(mesh.buffer) < buffer_get_size(mesh.buffer)) {
     mesh.zmax = max(mesh.zmax, zz);
 }
 
+data_mesh_recalculate_bounds(mesh);
 buffer_seek(mesh.buffer, buffer_seek_start, 0);
 
 ui_input_set_value(Stuff.map.ui.t_p_mesh_editor.xmin, string(mesh.xmin));

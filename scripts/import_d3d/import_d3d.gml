@@ -207,6 +207,8 @@ if (everything) {
     mesh.ymax = round(maxy / IMPORT_GRID_SIZE);
     mesh.zmax = round(maxz / IMPORT_GRID_SIZE);
     
+    data_mesh_recalculate_bounds(mesh);
+    
     var base_name = filename_change_ext(filename_name(fn), "");
     mesh.name = base_name;
     internal_name_generate(mesh, PREFIX_MESH + string_lettersdigits(base_name));

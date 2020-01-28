@@ -13200,6 +13200,14 @@
             }
         },
         {
+            "Key": "cf13c201-bde1-4f29-8df2-6fdb3ff097d6",
+            "Value": {
+                "id": "80e936ec-86bc-4140-8a5e-748a58daf102",
+                "resourcePath": "scripts\\data_mesh_recalculate_bounds\\data_mesh_recalculate_bounds.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "cf3e6074-68cf-4a7d-b7b2-983008efbc4c",
             "Value": {
                 "id": "4ee22f0c-d572-4b31-a749-c2ce413d4df7",
@@ -16676,6 +16684,7 @@
         "9f491f8c-8248-4e56-a331-3cbdae33c651",
         "5b8f054a-8aca-4699-8a12-e31646009d5c",
         "0c3fb917-3b54-49a3-811f-5227a110fc51",
+        "cf13c201-bde1-4f29-8df2-6fdb3ff097d6",
         "af334ca9-9e18-41e4-95dc-86fad4ff92dd",
         "247f6bc8-75c8-499d-af93-0f445669a68f",
         "a6d30fef-6445-4534-a529-edf6c041bd3a",
