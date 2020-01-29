@@ -1808,6 +1808,14 @@
             }
         },
         {
+            "Key": "1af5319c-8c47-4afe-90e4-9ac237c369b6",
+            "Value": {
+                "id": "021258c1-62ff-4920-a9bd-b7f97e427098",
+                "resourcePath": "sprites\\spr_star\\spr_star.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "1b044773-eb50-43cd-b17c-7a74cf219137",
             "Value": {
                 "id": "a7f0682b-b9ef-451f-93c8-34367a68bd38",
@@ -15968,6 +15976,14 @@
             }
         },
         {
+            "Key": "f909e7fe-18b7-4d60-99c3-ae9d30e9800e",
+            "Value": {
+                "id": "4bba6ddb-9a87-4cb2-9c56-76d5e14751bf",
+                "resourcePath": "scripts\\ui_render_surface_render_mesh_collision_grid\\ui_render_surface_render_mesh_collision_grid.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "f90db033-04e2-446f-b9f2-23fc44310846",
             "Value": {
                 "id": "147ab7a5-646e-447d-bb04-7c8bc20380e9",
@@ -17646,6 +17662,7 @@
         "14379ae6-3478-43af-9e2a-db113b917ebd",
         "ca31a73d-737d-49c7-9886-3a1b35650ccc",
         "430db596-511c-4827-8189-038fe68dfa9a",
+        "f909e7fe-18b7-4d60-99c3-ae9d30e9800e",
         "27ac824d-92f5-4d4b-a384-16b6a76e8346",
         "fcd4ba1d-4e32-4811-bac1-bf5c9ad661c1",
         "e34c9a14-42e1-40c8-acb9-121efce0c0ef",

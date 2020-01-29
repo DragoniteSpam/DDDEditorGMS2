@@ -72,7 +72,7 @@ dg.el_z = el_z;
 
 yy = yy + el_z.height + spacing;
 
-var yy_base_sliders = yy;
+var yy_base_c1 = yy;
 
 var el_alpha_text = create_text(c3, yy, "Preview Alpha", ew, eh, fa_left, ew, dg);
 
@@ -83,6 +83,8 @@ el_alpha.value = 0.5;
 dg.el_alpha = el_alpha;
 
 yy = yy + el_z.height + spacing;
+
+var yy_base_c3 = yy;
 #endregion
 
 yy = yy_base;
@@ -108,9 +110,15 @@ el_collision_triggers.tooltip = "Collision triggers; each cell occupied by a mes
 #endregion
 
 #region preview(s)
-yy = yy_base_sliders;
+yy = yy_base_c1;
+
 var el_render = create_render_surface(c1, yy, ew * 2 + spacing, ew * 1.5, ui_render_surface_render_mesh_collision, ui_render_surface_control_mesh_collision, dg);
 
+yy = yy_base_c3;
+
+var el_render_grid = create_render_surface(c3, yy, ew, ew, ui_render_surface_render_mesh_collision_grid, null, dg);
+
+yy = yy + el_render_grid.height + spacing;
 #endregion
 
 var b_width = 128;
@@ -129,6 +137,7 @@ ds_list_add(dg.contents,
     el_z_input,
     el_z,
     el_render,
+    el_render_grid,
     el_alpha_text,
     el_alpha,
     el_collision_triggers,

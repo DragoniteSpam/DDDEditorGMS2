@@ -12,6 +12,7 @@ var y2 = argument4;
 
 var mesh = surface.root.mesh;
 
+var original_state = gpu_get_state();
 var camera = view_get_camera(view_current);
 var active_view_mat = camera_get_view_mat(camera);
 var active_proj_mat = camera_get_proj_mat(camera);
@@ -31,6 +32,17 @@ camera_apply(camera);
 // draw the grid, and any other reference points
 vertex_submit(Stuff.graphics.mesh_preview_grid, pr_linelist, -1);
 
+// active cube
+var axx = real(surface.root.el_x_input.value);
+var ayy = real(surface.root.el_y_input.value);
+var azz = real(surface.root.el_z_input.value);
+matrix_set(matrix_world, matrix_build(
+    Stuff.mesh_x + axx * TILE_WIDTH, Stuff.mesh_y + ayy * TILE_HEIGHT, Stuff.mesh_z + azz * TILE_DEPTH,
+    Stuff.mesh_xrot, Stuff.mesh_yrot, Stuff.mesh_zrot,
+    Stuff.mesh_scale * TILE_WIDTH, Stuff.mesh_scale * TILE_HEIGHT, Stuff.mesh_scale * TILE_DEPTH
+));
+vertex_submit(Stuff.graphics.basic_cube, pr_trianglelist, -1);
+
 // draw the mesh
 var tex = sprite_get_texture(get_active_tileset().master, 0);
 shader_set(shd_default_alpha);
@@ -46,8 +58,7 @@ vertex_submit(mesh.wbuffer, pr_linelist, tex);
 var x1 = mesh.xmin * TILE_WIDTH;
 var y1 = mesh.ymin * TILE_HEIGHT;
 var z1 = mesh.zmin * TILE_DEPTH;
-// the outer corner of the cube is already at (32, 32, 32) so we need to
-// compensate for that
+// the outer corner of the cube is already at (32, 32, 32) so we need to compensate for that
 var cube_bound = 32;
 var x2 = mesh.xmax * TILE_WIDTH - cube_bound;
 var y2 = mesh.ymax * TILE_HEIGHT - cube_bound;
@@ -69,10 +80,9 @@ shader_set_uniform_f_array(shader_get_uniform(shd_bounding_box, "offsets"), [
 vertex_submit(Stuff.graphics.indexed_cage, pr_trianglelist, -1);
 shader_reset();
 
-transform_reset();
-
 camera_set_view_mat(camera, active_view_mat);
 camera_set_proj_mat(camera, active_proj_mat);
 camera_apply(camera);
-gpu_set_cullmode(cull_noculling);
-shader_reset();
+gpu_set_state(original_state);
+ds_map_destroy(original_state);
+transform_reset();
