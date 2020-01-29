@@ -7,7 +7,7 @@ if (mesh_data) {
         name = mesh_data.name;
         mesh = mesh_data.GUID;
         
-        collision_flags = mesh_data.default_solid ? 0xffffffff : 0;
+        collision_flags = 0;
         
         switch (mesh_data.type) {
             case MeshTypes.RAW:

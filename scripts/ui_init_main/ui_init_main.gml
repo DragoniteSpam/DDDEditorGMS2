@@ -726,13 +726,6 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     var s = 10;
     
-    element = create_checkbox(col2_x, yy, "Solid by default?", col_width, element_height, uivc_checkbox_mesh_default_solid, true, t_p_mesh_editor);
-    ds_list_add(t_p_mesh_editor.contents, element);
-    
-    t_p_mesh_editor.mesh_solid = element;
-    
-    yy = yy + element.height + spacing;
-    
     var bounds_x = col2_x;
     var bounds_x_2 = bounds_x + col_width / 2;
     
@@ -769,11 +762,12 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     element = create_input(bounds_x_2, yy, "zmax:", col_width / 2, element_height, uivc_mesh_set_zmax, 0, "integer", validate_int, -128, 127, 4, 64, vy1, col_width / 2, vy2, t_p_mesh_editor);
     ds_list_add(t_p_mesh_editor.contents, element);
     t_p_mesh_editor.zmax = element;
-    /*Next: button to set collision data for each cell in the grid, and a UI to set collision data for each cell in the grid,
-    and a way to save / load it from the file, and a way to do something with it in the game
     
-    an Import Collision Data From Existing Mesh button would be nice, because putting it in manually for every single mesh
-    would be a massive pain*/
+    yy = yy + element.height + spacing;
+    
+    element = create_button(col2_x, yy, "Collision Data", col_width, element_height, fa_center, omu_mesh_collision_data, t_p_tile_editor);
+    ds_list_add(t_p_mesh_editor.contents, element);
+    
     yy = yy + element.height + spacing;
     
     element = create_button(col2_x, yy, "Mesh Flags", col_width, element_height, fa_center, omu_mesh_flags, t_p_tile_editor);

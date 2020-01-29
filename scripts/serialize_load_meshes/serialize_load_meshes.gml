@@ -38,7 +38,7 @@ repeat (n_meshes) {
     }
     
     if (version >= DataVersions.REMOVE_RMXP_DATA) {
-        mesh.default_solid = buffer_read(buffer, buffer_u8);
+        buffer_read(buffer, buffer_u8);
     } else {
         buffer_read(buffer, buffer_u8);
     }

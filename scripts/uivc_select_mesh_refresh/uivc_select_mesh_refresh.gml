@@ -10,8 +10,6 @@ if (data) {
     ui_input_set_value(thing.mesh_name, data.name);
     ui_input_set_value(thing.mesh_name_internal, data.internal_name);
     
-    thing.mesh_solid.value = data.default_solid;
-    
     ui_input_set_value(thing.xmin, string(data.xmin));
     ui_input_set_value(thing.xmax, string(data.xmax));
     ui_input_set_value(thing.ymin, string(data.ymin));
