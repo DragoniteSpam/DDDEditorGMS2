@@ -12856,6 +12856,14 @@
             }
         },
         {
+            "Key": "c8be3a72-7a2a-4f49-b5bb-4804079054a7",
+            "Value": {
+                "id": "eed8f5e3-def9-4432-9994-ddb747144b97",
+                "resourcePath": "datafiles_yy\\data\\basic\\cube-indexed.d3d.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "c8df34bf-c874-4508-bb4d-ecf11f535d4c",
             "Value": {
                 "id": "6d42c9ee-192e-4e81-8a50-cfc2f5310f4e",
@@ -16251,7 +16259,7 @@
             "Key": "fcc7d4ae-cd26-4100-8d60-61259f8e6c06",
             "Value": {
                 "id": "bad1bc9f-e30e-4817-b158-0e16c23e5f48",
-                "resourcePath": "datafiles_yy\\data\\basic\\ccube.d3d.yy",
+                "resourcePath": "datafiles_yy\\data\\basic\\cube.d3d.yy",
                 "resourceType": "GMIncludedFile"
             }
         },

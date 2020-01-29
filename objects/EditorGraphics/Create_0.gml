@@ -62,12 +62,14 @@ c_shape_load_trimesh("data\\basic\\ctile.d3d");
 c_shape_end_trimesh(c_shape_tile);
 c_shape_block = c_shape_create();
 c_shape_begin_trimesh();
-c_shape_load_trimesh("data\\basic\\ccube.d3d");
+c_shape_load_trimesh("data\\basic\\cube.d3d");
 c_shape_end_trimesh(c_shape_block);
 c_transform_identity();
 
 basic_cage = import_d3d("data\\basic\\cage.d3d", false);
 indexed_cage = import_d3d("data\\basic\\cage-indexed.d3d", false);
+basic_cube = import_d3d("data\\basic\\cube.d3d", false);
+indexed_cube = import_d3d("data\\basic\\cube-indexed.d3d", false);
 mesh_missing = import_d3d("data\\basic\\missing.d3d", false, false);
 
 water_tile_size = 0x10000;
