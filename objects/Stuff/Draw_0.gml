@@ -28,8 +28,8 @@ if (view_current == view_overlay) {
             var str_height = string_height_ext(str, -1, text_width) + str_padding * 2;
             var halign = draw_get_halign();
             var valign = draw_get_valign();
-            var tooltip_x = min(mouse_x, view_get_wport(view_current) - str_width);
-            var tooltip_y = min(mouse_y, view_get_hport(view_current) - str_height);
+            var tooltip_x = min(window_mouse_get_x(), view_get_wport(view_current) - str_width);
+            var tooltip_y = min(window_mouse_get_y(), view_get_hport(view_current) - str_height);
             draw_rectangle_colour(
                 tooltip_x, tooltip_y, tooltip_x + str_width, tooltip_y + str_height,
                 c_tooltip, c_tooltip, c_tooltip, c_tooltip, false
