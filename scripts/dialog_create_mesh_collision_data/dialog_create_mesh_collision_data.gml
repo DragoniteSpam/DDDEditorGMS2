@@ -90,7 +90,7 @@ var yy_base_c3 = yy;
 yy = yy_base;
 
 #region collision triggers
-var el_collision_triggers = create_bitfield(c4, yy, "Collision Triggers", ew, eh, null, 0, dg);
+var el_collision_triggers = create_bitfield(c4, yy, "Collision Triggers", ew, eh, 0, dg);
 
 for (var i = 0; i < 32; i++) {
     var field_xx = (i >= 16) ? ew : 0;

@@ -34,7 +34,7 @@ var color_inactive = c_white;
 
 var yy = 64;
 
-var el_collision_flags = create_bitfield(c1, yy, "Collision Flags", ew, eh, null, entity.collision_flags, dg);
+var el_collision_flags = create_bitfield(c1, yy, "Collision Flags", ew, eh, entity.collision_flags, dg);
 
 for (var i = 0; i < 32; i++) {
     var field_xx = (i >= 16) ? ew : 0;
@@ -55,7 +55,7 @@ el_collision_flags.tooltip = "You can turn on or off various collision flags. Th
 var color_active = 0x99ff99;
 var color_inactive = c_white;
 
-var el_event_flags = create_bitfield(c3, yy, "Event Flags", ew, eh, null, entity.event_flags, dg);
+var el_event_flags = create_bitfield(c3, yy, "Event Flags", ew, eh, entity.event_flags, dg);
 
 for (var i = 0; i < 32; i++) {
     var field_xx = (i >= 16) ? ew : 0;

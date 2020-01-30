@@ -88,7 +88,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     var s = 16;
     
-    element = create_bitfield(col1_x, yy, "Selection Mask:", col_width, element_height, null, SELECTION_MASK_ALL, t_general);
+    element = create_bitfield(col1_x, yy, "Selection Mask:", col_width, element_height, SELECTION_MASK_ALL, t_general);
     create_bitfield_options_vertical(element, [
         create_bitfield_option_data(ETypeFlags.ENTITY_TILE, ui_render_bitfield_option_text_selection_mask, uivc_bitfield_selection_mask, "Tile", -1, 0, col_width / 2, s),
         create_bitfield_option_data(ETypeFlags.ENTITY_TILE_AUTO, ui_render_bitfield_option_text_selection_mask, uivc_bitfield_selection_mask, "Autotile", -1, 0, col_width / 2, s),

@@ -37,7 +37,8 @@ var yy = 64;
 var color_active = c_ui_select;
 var color_inactive = c_white;
 
-var el_collision_flags = create_bitfield(c1, yy, "Asset Flags", ew, eh, onvaluechange, default_value, dg);
+var el_collision_flags = create_bitfield(c1, yy, "Asset Flags", ew, eh, default_value, dg);
+el_collision_flags.onvaluechange = onvaluechange;
 
 for (var i = 0; i < 32; i++) {
     var field_xx = (i >= 16) ? ew : 0;
