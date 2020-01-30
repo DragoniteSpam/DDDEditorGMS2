@@ -37,7 +37,7 @@ var axx = real(surface.root.el_x_input.value);
 var ayy = real(surface.root.el_y_input.value);
 var azz = real(surface.root.el_z_input.value);
 shader_set(shd_default_alpha);
-shader_set_uniform_f(shader_get_uniform(shd_default_alpha, "alpha"), surface.root.el_alpha.value);
+shader_set_uniform_f(shader_get_uniform(shd_default_alpha, "alpha"), 1);
 matrix_set(matrix_world, matrix_build(
     Stuff.mesh_x + axx * TILE_WIDTH, Stuff.mesh_y + ayy * TILE_HEIGHT, Stuff.mesh_z + azz * TILE_DEPTH,
     Stuff.mesh_xrot, Stuff.mesh_yrot, Stuff.mesh_zrot,

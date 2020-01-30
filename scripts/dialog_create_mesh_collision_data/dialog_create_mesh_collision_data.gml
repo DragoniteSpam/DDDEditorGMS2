@@ -4,6 +4,24 @@
 var root = argument[0];
 var mesh = argument[1];
 
+var valid = true;
+var ww = ds_grid_width(mesh.collision_flags);
+var hh = ds_grid_height(mesh.collision_flags);
+
+if (ww * hh) {
+    var slice = mesh.collision_flags[# 0, 0];
+    if (!is_array(slice) || array_length_1d(slice) == 0) {
+        valid = false;
+    }
+} else {
+    valid = false;
+}
+
+if (!valid) {
+    dialog_create_notice(root, "The bounding box of " + mesh.name + " has a volume of zero; if you want to assign it collision data, please make sure it has a non-zero volume.");
+    return noone;
+}
+
 var dw = 1440;
 var dh = 560;
 
