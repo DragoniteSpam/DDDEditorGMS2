@@ -35,7 +35,7 @@ var vy2 = eh;
 var yy = 64;
 var yy_base = yy;
 
-var color_active = 0x9999cc;
+var color_active = c_ui_select;
 var color_inactive = c_white;
 
 #region numerical inputs and sliders
@@ -90,7 +90,10 @@ var yy_base_c3 = yy;
 yy = yy_base;
 
 #region collision triggers
-var el_collision_triggers = create_bitfield(c4, yy, "Collision Triggers", ew, eh, 0, dg);
+var slice = mesh.collision_flags[# dg.xx, dg.yy];
+var default_value = slice[@ dg.zz];
+var el_collision_triggers = create_bitfield(c4, yy, "Collision Triggers", ew, eh, default_value, dg);
+dg.el_collision_triggers = el_collision_triggers;
 
 for (var i = 0; i < 32; i++) {
     var field_xx = (i >= 16) ? ew : 0;
@@ -98,15 +101,15 @@ for (var i = 0; i < 32; i++) {
     // only need to move them up once otherwise they'll keep moving up the screen
     var field_yy = (i == 16) ? -(eh * 16) : 0;
     var label = (i >= ds_list_size(Stuff.all_collision_triggers)) ? "<" + string(i) + ">" : Stuff.all_collision_triggers[| i];
-    create_bitfield_options_vertical(el_collision_triggers, [create_bitfield_option_data(i, ui_render_bitfield_option_text, null, label, -1, 0, ew / 2, spacing / 2, field_xx, field_yy, color_active, color_inactive)]);
+    create_bitfield_options_vertical(el_collision_triggers, [create_bitfield_option_data(i, uivc_mesh_collision_render_data_flag, uivc_mesh_collision_data_flag, label, -1, 0, ew / 2, spacing / 2, field_xx, field_yy, color_active, color_inactive)]);
 }
 
 create_bitfield_options_vertical(el_collision_triggers, [
-    create_bitfield_option_data(i, ui_render_bitfield_option_text, null, "All", -1, 0, ew / 2, spacing / 2, 0, 0, color_active, color_inactive),
-    create_bitfield_option_data(i, ui_render_bitfield_option_text, null, "None", -1, 0, ew / 2, spacing / 2, ew, -eh, color_active, color_inactive),
+    create_bitfield_option_data(i, uivc_mesh_collision_render_data_flag_all, uivc_mesh_collision_data_flag_all, "All", -1, 0, ew / 2, spacing / 2, 0, 0, color_active, color_inactive),
+    create_bitfield_option_data(i, uivc_mesh_collision_render_data_flag_none, uivc_mesh_collision_data_flag_none, "None", -1, 0, ew / 2, spacing / 2, ew, -eh, color_active, color_inactive),
 ]);
 
-el_collision_triggers.tooltip = "Collision triggers; each cell occupied by a mesh can have its collision data toggled on or off";
+el_collision_triggers.tooltip = "Collision triggers; each cell occupied by a mesh can have its collision data toggled on or off.\n\nShaded cells are solid, while unshaded cells are passable.";
 #endregion
 
 #region preview(s)
