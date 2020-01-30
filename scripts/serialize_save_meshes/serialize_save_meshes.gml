@@ -27,6 +27,26 @@ for (var i = 0; i < n_meshes; i++) {
     buffer_write(buffer, buffer_f32, mesh.xmax);
     buffer_write(buffer, buffer_f32, mesh.ymax);
     buffer_write(buffer, buffer_f32, mesh.zmax);
+    
+    var xx = ds_grid_width(mesh.collision_flags);
+    var yy = ds_grid_height(mesh.collision_flags);
+    var zz = -1;
+    buffer_write(buffer, buffer_u16, xx);
+    buffer_write(buffer, buffer_u16, yy);
+    var addr_zz = buffer_tell(buffer);
+    buffer_write(buffer, buffer_u16, 0);
+    for (var j = 0; j < xx; j++) {
+        for (var k = 0; k < yy; k++) {
+            var slice = mesh.collision_flags[# j, k];
+            if (zz == -1) {
+                zz = array_length_1d(slice);
+                buffer_poke(buffer, addr_zz, buffer_u16, zz);
+            }
+            for (var l = 0; l < zz; l++) {
+                buffer_write(buffer, buffer_u32, slice[@ l]);
+            }
+        }
+    }
 }
 
 buffer_poke(buffer, addr_next, buffer_u64, buffer_tell(buffer));

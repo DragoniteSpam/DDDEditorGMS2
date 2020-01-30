@@ -33,11 +33,25 @@ repeat (n_meshes) {
     mesh.zmax = buffer_read(buffer, buffer_f32);
     
     if (version >= DataVersions.DETAILED_MESH_COLLISION_DATA) {
+        var xx = buffer_read(buffer, buffer_u16);
+        var yy = buffer_read(buffer, buffer_u16);
+        var zz = buffer_read(buffer, buffer_u16);
+        ds_grid_resize(mesh.collision_flags, xx, yy);
+        for (var i = 0; i < xx; i++) {
+            for (var j = 0; j < yy; j++) {
+                var slice = array_create(zz);
+                mesh.collision_flags[# i, j] = slice;
+                for (var k = 0; k < zz; k++) {
+                    slice[@ k] = buffer_read(buffer, buffer_u32);
+                }
+            }
+        }
     } else {
         data_mesh_recalculate_bounds(mesh);
     }
     
-    if (version >= DataVersions.REMOVE_RMXP_DATA) {
+    if (version >= DataVersions.DETAILED_MESH_COLLISION_DATA) {
+    } else if (version >= DataVersions.REMOVE_RMXP_DATA) {
         buffer_read(buffer, buffer_u8);
     } else {
         buffer_read(buffer, buffer_u8);
