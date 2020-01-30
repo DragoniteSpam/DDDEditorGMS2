@@ -1448,6 +1448,14 @@
             }
         },
         {
+            "Key": "14b384aa-1576-47a0-9ccf-66aea769ebab",
+            "Value": {
+                "id": "7f968319-4e5c-4787-925a-b7c111d8f70c",
+                "resourcePath": "scripts\\dmu_mesh_collision_data_apply_layer\\dmu_mesh_collision_data_apply_layer.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "14ff12b1-b8eb-4617-af7b-29642c2e74e5",
             "Value": {
                 "id": "accdb45a-eb40-45e4-a607-107f31180f62",
@@ -10976,6 +10984,14 @@
             }
         },
         {
+            "Key": "a7dc4e79-8130-4b3b-b63a-c1e743496f56",
+            "Value": {
+                "id": "70f555bd-eba9-4ab3-b145-e52e8ad04f15",
+                "resourcePath": "scripts\\dmu_mesh_collision_data_apply_all\\dmu_mesh_collision_data_apply_all.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "a82744db-04f4-41f4-adb3-0ca9737d7387",
             "Value": {
                 "id": "799820e0-40a8-4199-8bf1-a39e4ef67aca",
@@ -17459,6 +17475,8 @@
         "7178a721-e58d-47f6-96ca-32b16dae7214",
         "88e4dac4-872c-44a0-a596-fcc6bf408758",
         "ef52c2e3-a1fa-4b3a-b296-f81e1cd7fc21",
+        "14b384aa-1576-47a0-9ccf-66aea769ebab",
+        "a7dc4e79-8130-4b3b-b63a-c1e743496f56",
         "2f5ce293-5d19-4961-957c-cb2d450ac92e",
         "6bf27b2c-c013-4fb1-9836-b95167ffd715",
         "9ed4cda8-bf21-4add-a93f-e406872945a1",

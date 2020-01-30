@@ -27,6 +27,9 @@ var c3 = dw * 2 / columns + spacing;
 var c4 = dw * 3 / columns + spacing;
 var c5 = dw * 4 / columns + spacing;
 
+var b_width = 128;
+var b_height = 32;
+
 var vx1 = ew / 2;
 var vy1 = 0;
 var vx2 = ew;
@@ -110,6 +113,9 @@ create_bitfield_options_vertical(el_collision_triggers, [
 ]);
 
 el_collision_triggers.tooltip = "Collision triggers; each cell occupied by a mesh can have its collision data toggled on or off.\n\nShaded cells are solid, while unshaded cells are passable.";
+
+var el_button_apply_layer = create_button(c5 - b_width - spacing / 2, dh - 32 - b_height / 2, "Apply to Layer", b_width, b_height, fa_center, dmu_mesh_collision_data_apply_layer, dg);
+var el_button_apply_all = create_button(c5 + spacing / 2, dh - 32 - b_height / 2, "Apply to All", b_width, b_height, fa_center, dmu_mesh_collision_data_apply_all, dg);
 #endregion
 
 #region preview(s)
@@ -144,6 +150,8 @@ ds_list_add(dg.contents,
     el_alpha_text,
     el_alpha,
     el_collision_triggers,
+    el_button_apply_layer,
+    el_button_apply_all,
     el_confirm
 );
 

@@ -15,7 +15,9 @@
         "a6beb8c7-aece-4c95-af64-a534d60adb4f",
         "7178a721-e58d-47f6-96ca-32b16dae7214",
         "88e4dac4-872c-44a0-a596-fcc6bf408758",
-        "ef52c2e3-a1fa-4b3a-b296-f81e1cd7fc21"
+        "ef52c2e3-a1fa-4b3a-b296-f81e1cd7fc21",
+        "14b384aa-1576-47a0-9ccf-66aea769ebab",
+        "a7dc4e79-8130-4b3b-b63a-c1e743496f56"
     ],
     "filterType": "GMScript",
     "folderName": "collision data",
