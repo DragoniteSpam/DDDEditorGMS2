@@ -36,6 +36,8 @@ vertex_submit(Stuff.graphics.mesh_preview_grid, pr_linelist, -1);
 var axx = real(surface.root.el_x_input.value);
 var ayy = real(surface.root.el_y_input.value);
 var azz = real(surface.root.el_z_input.value);
+shader_set(shd_default_alpha);
+shader_set_uniform_f(shader_get_uniform(shd_default_alpha, "alpha"), surface.root.el_alpha.value);
 matrix_set(matrix_world, matrix_build(
     Stuff.mesh_x + axx * TILE_WIDTH, Stuff.mesh_y + ayy * TILE_HEIGHT, Stuff.mesh_z + azz * TILE_DEPTH,
     Stuff.mesh_xrot, Stuff.mesh_yrot, Stuff.mesh_zrot,
@@ -45,14 +47,18 @@ vertex_submit(Stuff.graphics.basic_cube, pr_trianglelist, -1);
 
 // draw the mesh
 var tex = sprite_get_texture(get_active_tileset().master, 0);
-shader_set(shd_default_alpha);
 shader_set_uniform_f(shader_get_uniform(shd_default_alpha, "alpha"), surface.root.el_alpha.value);
 matrix_set(matrix_world, matrix_build(Stuff.mesh_x, Stuff.mesh_y, Stuff.mesh_z, Stuff.mesh_xrot, Stuff.mesh_yrot, Stuff.mesh_zrot, Stuff.mesh_scale, Stuff.mesh_scale, Stuff.mesh_scale));
-vertex_submit(mesh.vbuffer, pr_trianglelist, tex);
+switch (mesh.type) {
+    case MeshTypes.SMF:
+        smf_model_draw(mesh.vbuffer);
+        break;
+    case MeshTypes.RAW:
+        vertex_submit(mesh.vbuffer, pr_trianglelist, tex);
+        vertex_submit(mesh.wbuffer, pr_linelist, tex);
+        break;
+}
 shader_reset();
-
-// draw the wireframe
-vertex_submit(mesh.wbuffer, pr_linelist, tex);
 
 // bounding box
 var x1 = mesh.xmin * TILE_WIDTH;
