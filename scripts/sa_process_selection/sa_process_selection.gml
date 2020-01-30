@@ -9,7 +9,7 @@ Stuff.map.selected_entities = list;
 if (ds_list_size(list) == 0) {
     // deactivate everything
     Stuff.map.ui.element_entity_name.interactive = false;
-    Stuff.map.ui.element_entity_collision_data.interactive = false;
+    //Stuff.map.ui.element_entity_collision_data.interactive = false;
     Stuff.map.ui.element_entity_static.interactive = false;
     Stuff.map.ui.element_entity_generic.interactive = false;
     
@@ -70,7 +70,7 @@ if (ds_list_size(list) == 0) {
     ui_list_deselect(Stuff.map.ui.element_entity_events);
     
     Stuff.map.ui.element_entity_name.interactive = true;
-    Stuff.map.ui.element_entity_collision_data.interactive = true;
+    //Stuff.map.ui.element_entity_collision_data.interactive = true;
     Stuff.map.ui.element_entity_generic.interactive = true;
     Stuff.map.ui.element_entity_static.interactive = true;
     

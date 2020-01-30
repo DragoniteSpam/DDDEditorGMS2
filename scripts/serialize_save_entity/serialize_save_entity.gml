@@ -100,5 +100,4 @@ for (var i = 0; i < n_generic; i++) {
     }
 }
 
-buffer_write(buffer, buffer_u32, entity.collision_flags);
 buffer_write(buffer, buffer_u32, entity.event_flags);

@@ -92,7 +92,9 @@ previous_xx = xx;
 previous_yy = yy;
 previous_zz = zz;
 
-/* s */ collision_flags = 0xffffffff;
+// this data is still here, but I disabled access to it because it's mostly determined
+// through other means now
+collision_flags = 0xffffffff;
 /* s */ event_flags = 0xffffffff;
 /* s */ static = false;
 

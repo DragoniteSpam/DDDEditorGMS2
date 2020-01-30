@@ -28,8 +28,6 @@ if (version >= DataVersions.COLLISION_FLAGS) {
     entity.animate_movement = unpack(entity_bools, 3);
     entity.direction_fix = unpack(entity_bools, 4);
     entity.reset_position = unpack(entity_bools, 5);
-    
-    entity.collision_flags = solid_state ? 0xffffffff : 0;
 }
 
 // same for statics
@@ -125,6 +123,9 @@ repeat (n_generic) {
 }
 
 if (version >= DataVersions.COLLISION_FLAGS) {
-    entity.collision_flags = buffer_read(buffer, buffer_u32);
+    if (version >= DataVersions.REMOVE_ENTITY_COLLISION_DATA) {
+    } else {
+        buffer_read(buffer, buffer_u32);
+    }
     entity.event_flags = buffer_read(buffer, buffer_u32);
 }
