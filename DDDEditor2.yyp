@@ -12744,6 +12744,14 @@
             }
         },
         {
+            "Key": "c5ee05e7-6c16-4761-90f6-27280fea05ab",
+            "Value": {
+                "id": "bc61f933-db5a-444f-839e-91d394b70815",
+                "resourcePath": "scripts\\ui_render_surface_control_mesh_collision_grid\\ui_render_surface_control_mesh_collision_grid.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "c5f93cc5-cb1c-46af-9e46-7cf396f39038",
             "Value": {
                 "id": "533c2ea7-7782-4f2a-b99e-7dd00ac7af95",
@@ -17664,6 +17672,7 @@
         "430db596-511c-4827-8189-038fe68dfa9a",
         "f909e7fe-18b7-4d60-99c3-ae9d30e9800e",
         "27ac824d-92f5-4d4b-a384-16b6a76e8346",
+        "c5ee05e7-6c16-4761-90f6-27280fea05ab",
         "fcd4ba1d-4e32-4811-bac1-bf5c9ad661c1",
         "e34c9a14-42e1-40c8-acb9-121efce0c0ef",
         "d72b146b-f741-4c3a-95d1-ef3a174917bf",

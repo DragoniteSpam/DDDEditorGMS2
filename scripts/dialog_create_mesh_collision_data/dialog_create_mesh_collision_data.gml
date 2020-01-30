@@ -116,7 +116,7 @@ var el_render = create_render_surface(c1, yy, ew * 2 + spacing, ew * 1.5, ui_ren
 
 yy = yy_base_c3;
 
-var el_render_grid = create_render_surface(c3, yy, ew, ew, ui_render_surface_render_mesh_collision_grid, null, dg);
+var el_render_grid = create_render_surface(c3, yy, ew, ew, ui_render_surface_render_mesh_collision_grid, ui_render_surface_control_mesh_collision_grid, dg);
 
 yy = yy + el_render_grid.height + spacing;
 #endregion

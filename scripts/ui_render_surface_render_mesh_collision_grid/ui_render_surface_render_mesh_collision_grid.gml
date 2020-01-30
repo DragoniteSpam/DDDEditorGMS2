@@ -32,7 +32,7 @@ for (var i = 0; i <= vcount; i++) {
     draw_line(0, i * vstep - off, hcount * hstep, i * vstep - off);
 }
 
-var xx = real(surface.root.el_x_input.value);
-var yy = real(surface.root.el_y_input.value);
+var xx = surface.root.xx;
+var yy = surface.root.yy;
 
 draw_sprite(spr_star, 0, (xx + 0.5) * hstep, (yy + 0.5) * vstep);
