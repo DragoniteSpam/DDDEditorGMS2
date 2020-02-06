@@ -36,7 +36,7 @@ if (string_length(list.tooltip) > 0) {
 }
 draw_text(tx + txoffset, ty, string(list.text));
 
-var n = list.entries ? ds_list_size(list.entries) : 0;
+var n = (list.entries + 1) ? ds_list_size(list.entries) : 0;
 list.index = clamp(n - list.slots, 0, list.index);
 
 var active = dialog_is_active(list.root);
