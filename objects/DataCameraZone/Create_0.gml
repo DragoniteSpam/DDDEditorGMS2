@@ -6,6 +6,7 @@ y2 = 0;
 z2 = 0;
 
 cobject = noone;
+cshape = noone;
 
 var map = Stuff.map.active_map;
 var map_contents = map.contents;
