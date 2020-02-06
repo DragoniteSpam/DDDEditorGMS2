@@ -128,4 +128,6 @@ if (version >= DataVersions.COLLISION_FLAGS) {
         buffer_read(buffer, buffer_u32);
     }
     entity.event_flags = buffer_read(buffer, buffer_u32);
+} else {
+    buffer_read(buffer, buffer_u32);
 }

@@ -14,5 +14,5 @@ void main() {
     int index = int(floor(in_Colour.r)) + int(floor(in_Colour.g)) * 2 + int(floor(in_Colour.b)) * 4;
     gl_Position = gm_Matrices[MATRIX_WORLD_VIEW_PROJECTION] * vec4(offsets[index] + in_Position, 1.);
     
-    v_vColour = actual_color;
+    v_vColour = vec4(actual_color.rgb, in_Colour.a);
 }

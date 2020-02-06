@@ -68,6 +68,7 @@ c_transform_identity();
 
 basic_cage = import_d3d("data\\basic\\cage.d3d", false);
 indexed_cage = import_d3d("data\\basic\\cage-indexed.d3d", false);
+indexed_cage_full = import_d3d("data\\basic\\cage-indexed-full.d3d", false);
 basic_cube = import_d3d("data\\basic\\cube.d3d", false);
 indexed_cube = import_d3d("data\\basic\\cube-indexed.d3d", false);
 mesh_missing = import_d3d("data\\basic\\missing.d3d", false, false);

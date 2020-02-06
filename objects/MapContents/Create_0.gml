@@ -11,6 +11,7 @@ batch_in_the_future = ds_list_create();   // entities
 dynamic = ds_list_create();               // entities
 
 all_entities = ds_list_create();          // entities
+all_camera_zones = ds_list_create();
 
 all_refids = ds_map_create();                // entities (mapped onto refids)
 

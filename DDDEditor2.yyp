@@ -3056,6 +3056,14 @@
             }
         },
         {
+            "Key": "2d30b15d-7421-4dce-acbf-7dcf55f7fcb9",
+            "Value": {
+                "id": "89af1125-c7a6-4f41-b980-298584a1f642",
+                "resourcePath": "objects\\DataCameraZone\\DataCameraZone.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "2d341bd8-dfaf-477a-870b-0083455718be",
             "Value": {
                 "id": "631df676-8128-40cd-a307-0c6799ff470a",
@@ -6125,6 +6133,14 @@
                 "id": "43e074ff-2b66-41dc-bfbb-0da3c20b4091",
                 "resourcePath": "scripts\\omu_mr_switch_on\\omu_mr_switch_on.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "5d3816a6-03e1-41e6-99c2-312a7b74a958",
+            "Value": {
+                "id": "9c147a5d-1c4f-4d97-aef4-a22b65ae1785",
+                "resourcePath": "datafiles_yy\\data\\basic\\cage-indexed-full.d3d.yy",
+                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -15520,6 +15536,14 @@
             }
         },
         {
+            "Key": "ef7cee2c-e94b-4d33-a6e4-6ccbee4d20e1",
+            "Value": {
+                "id": "937f1076-6b0b-4cff-b9e0-bd05070a9d89",
+                "resourcePath": "scripts\\zone_render_rectangle\\zone_render_rectangle.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "ef7e57cb-8661-4d54-b335-ab819f7369bd",
             "Value": {
                 "id": "4565ba5c-ce60-445e-981e-9b1646653f42",
@@ -16780,6 +16804,7 @@
         "230073b8-040a-4e1c-967c-2756a4faba3a",
         "e9d4cc97-849a-4ab8-bb78-549f5a950fd6",
         "a58b5918-f721-4a10-875a-9702dd06ea87",
+        "ef7cee2c-e94b-4d33-a6e4-6ccbee4d20e1",
         "fcc7b4ba-ecbf-4629-8256-f89692ac2277",
         "0858e3f0-31e7-41b8-8579-e89e5aece9f4",
         "1bab909d-562b-49fe-bb65-1efcb336c65d",
