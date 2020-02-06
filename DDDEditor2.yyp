@@ -5680,6 +5680,14 @@
             }
         },
         {
+            "Key": "54c88dd4-4ffb-4b5a-ae26-a1eeb69fe6b7",
+            "Value": {
+                "id": "6686b24c-ccad-4dc0-89da-a6724c54c24b",
+                "resourcePath": "scripts\\map_zone_camera_collision\\map_zone_camera_collision.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "54cf3983-392f-4be1-9bac-0ca442b6f774",
             "Value": {
                 "id": "4a631546-a3ff-467c-9d5e-3442abf90d21",
@@ -17035,6 +17043,7 @@
         "0f67b905-b2ee-49eb-ba96-763eb27af16c",
         "d98e8a9a-d475-42cc-98ce-47bd6a8e1fdf",
         "fa663bfb-720b-406f-b672-f3270b149138",
+        "54c88dd4-4ffb-4b5a-ae26-a1eeb69fe6b7",
         "a0c45521-e3c0-4e37-94b4-600c3f5eaf19",
         "415b95ce-6e15-4fbb-a3a1-08ec22a0b925",
         "46687276-d13f-415d-8fbc-f7d206570371",

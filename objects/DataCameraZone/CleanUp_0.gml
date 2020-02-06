@@ -1,9 +1,6 @@
 if (cobject) {
     c_world_remove_object(cobject);
     c_object_destroy(cobject);
-}
-
-if (cshape) {
     c_shape_destroy(cshape);
 }
 
