@@ -15,5 +15,5 @@ buffer_write(buffer, buffer_f32, zone.z2);
 buffer_write(buffer, buffer_u16, zone.zone_priority);
 buffer_write(buffer, buffer_u16, zone.camera_distance);
 buffer_write(buffer, buffer_f32, zone.camera_angle);
-
-return buffer_tell(buffer);
+buffer_write(buffer, buffer_u8, zone.camera_easing_method);
+buffer_write(buffer, buffer_f32, zone.camera_easing_speed);
