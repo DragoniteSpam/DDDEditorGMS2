@@ -480,6 +480,14 @@
             }
         },
         {
+            "Key": "06afd93e-8fcc-4e8b-adad-352a47e43bd2",
+            "Value": {
+                "id": "93d4e6a0-9a01-4d4e-b190-dc6de3ab5ce0",
+                "resourcePath": "scripts\\uivc_input_map_camera_zone_x2\\uivc_input_map_camera_zone_x2.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "06d7513a-3652-41d1-84de-29ba4485bce9",
             "Value": {
                 "id": "936a3a7f-7388-4490-ac65-e5c8ab574c78",
@@ -2784,6 +2792,14 @@
             }
         },
         {
+            "Key": "292831e3-0127-4fb1-976c-a46315873180",
+            "Value": {
+                "id": "85a9ab45-c5dc-4dc1-90eb-fe997ae9d8ab",
+                "resourcePath": "scripts\\uivc_input_map_camera_zone_z2\\uivc_input_map_camera_zone_z2.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "2931ee96-138f-4da1-939b-063de174aea3",
             "Value": {
                 "id": "c2402e5e-47bf-44f0-b2d9-096aefe9e560",
@@ -4432,6 +4448,14 @@
             }
         },
         {
+            "Key": "4412165b-be27-4079-94bb-d2365373cf67",
+            "Value": {
+                "id": "b5965e29-f908-4229-a527-2558bb087a22",
+                "resourcePath": "scripts\\uivc_input_map_camera_zone_y2\\uivc_input_map_camera_zone_y2.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "442e4ae8-6ae1-4e3d-bc84-12b8d2dd0fa5",
             "Value": {
                 "id": "3ec7cebf-1c79-4c54-b28b-cc1ea339c1cf",
@@ -4620,6 +4644,14 @@
             "Value": {
                 "id": "6df3f0cc-3a33-4fc8-9618-2d89cffaf329",
                 "resourcePath": "scripts\\ui_input_terrain_set_paint_strength\\ui_input_terrain_set_paint_strength.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "46889106-5ca5-49f1-a827-803f77d1f81e",
+            "Value": {
+                "id": "73b1a108-537e-44af-8803-16c78ba3d929",
+                "resourcePath": "scripts\\uivc_input_map_camera_zone_z1\\uivc_input_map_camera_zone_z1.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -5076,6 +5108,14 @@
             "Value": {
                 "id": "dc9dee43-dd51-4592-9023-24a4764ecc67",
                 "resourcePath": "scripts\\dc_custom_event_set_img_particle\\dc_custom_event_set_img_particle.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "4d520f3c-398a-48bd-a1b2-4ed552a5d90d",
+            "Value": {
+                "id": "1126579b-8b28-48ca-91cb-48a40e8bd49d",
+                "resourcePath": "scripts\\uivc_input_map_camera_zone_x1\\uivc_input_map_camera_zone_x1.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -6029,6 +6069,14 @@
                 "id": "6a19b16e-f888-4be6-b2fe-dc80d2f65e59",
                 "resourcePath": "views\\5b156caa-01be-45fb-b298-c90795a6082e.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "5b1bac1d-a1d0-441e-b3da-c6a006698b3d",
+            "Value": {
+                "id": "ad0b0b19-90ad-4fdf-a2d1-d988be027eeb",
+                "resourcePath": "scripts\\uivc_input_map_camera_zone_speed\\uivc_input_map_camera_zone_speed.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -12136,6 +12184,14 @@
             }
         },
         {
+            "Key": "b97165db-f331-44e0-8ca7-34957586ed4c",
+            "Value": {
+                "id": "41b264af-b023-4760-9602-0056d033b80d",
+                "resourcePath": "scripts\\uivc_input_map_camera_zone_y1\\uivc_input_map_camera_zone_y1.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "b9cdda59-4e7f-4fab-a59f-95e69630ef52",
             "Value": {
                 "id": "caa988b6-bd66-4e2e-8175-dd017bcfb133",
@@ -12893,6 +12949,14 @@
                 "id": "8c3646e7-303a-4b6b-bc37-b97007f04b15",
                 "resourcePath": "views\\c6107909-18aa-4a7a-b536-1f60d0772e8e.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "c621ec2c-8a1a-4971-834f-cd72137f4a92",
+            "Value": {
+                "id": "9461e33a-1d7e-490f-9ede-3da60657ea3a",
+                "resourcePath": "scripts\\uivc_input_map_camera_zone_transition\\uivc_input_map_camera_zone_transition.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -17610,8 +17674,16 @@
         "14b384aa-1576-47a0-9ccf-66aea769ebab",
         "a7dc4e79-8130-4b3b-b63a-c1e743496f56",
         "321d7d89-69f3-4aba-8189-963341df990c",
+        "4d520f3c-398a-48bd-a1b2-4ed552a5d90d",
+        "b97165db-f331-44e0-8ca7-34957586ed4c",
+        "46889106-5ca5-49f1-a827-803f77d1f81e",
+        "06afd93e-8fcc-4e8b-adad-352a47e43bd2",
+        "4412165b-be27-4079-94bb-d2365373cf67",
+        "292831e3-0127-4fb1-976c-a46315873180",
         "8054ab27-ecd4-43b5-80cf-36b997252001",
         "056ea9ef-393f-41b0-89cb-3094997c0c18",
+        "5b1bac1d-a1d0-441e-b3da-c6a006698b3d",
+        "c621ec2c-8a1a-4971-834f-cd72137f4a92",
         "f65f49e6-744e-46c5-b260-61ff028dc4b3",
         "2f5ce293-5d19-4961-957c-cb2d450ac92e",
         "6bf27b2c-c013-4fb1-9836-b95167ffd715",
