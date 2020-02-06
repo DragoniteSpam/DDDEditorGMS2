@@ -7,7 +7,8 @@ x2 = 0;
 y2 = 0;
 z2 = 0;
 
-camera_distance = 8 * TILE_HEIGHT;
+zone_priority = 100;
+camera_distance = 8;
 camera_angle = 45;
 
 zone_edit_script = map_zone_camera;

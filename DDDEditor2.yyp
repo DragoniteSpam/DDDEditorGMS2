@@ -368,6 +368,14 @@
             }
         },
         {
+            "Key": "056ea9ef-393f-41b0-89cb-3094997c0c18",
+            "Value": {
+                "id": "f54a1cec-f092-45b6-a37c-dbc597e08ae9",
+                "resourcePath": "scripts\\uivc_input_map_camera_zone_priority\\uivc_input_map_camera_zone_priority.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "0595d670-7f25-429d-a001-b1ceacdd5d49",
             "Value": {
                 "id": "506fc6d8-f695-4228-a82e-614dccffa8de",
@@ -17571,6 +17579,7 @@
         "a7dc4e79-8130-4b3b-b63a-c1e743496f56",
         "321d7d89-69f3-4aba-8189-963341df990c",
         "8054ab27-ecd4-43b5-80cf-36b997252001",
+        "056ea9ef-393f-41b0-89cb-3094997c0c18",
         "f65f49e6-744e-46c5-b260-61ff028dc4b3",
         "2f5ce293-5d19-4961-957c-cb2d450ac92e",
         "6bf27b2c-c013-4fb1-9836-b95167ffd715",
