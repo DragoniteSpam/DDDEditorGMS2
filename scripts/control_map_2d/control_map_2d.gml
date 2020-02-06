@@ -11,20 +11,21 @@ var camera = view_get_camera(view_3d);
 var cwidth = camera_get_view_width(camera);
 var cheight = camera_get_view_height(camera);
 
-// @todo mouse picking in 2D
-if (false && c_raycast_world(mode.x, mode.y, mode.z, mode.x + xx, mode.y + yy, mode.z + zz, CollisionMasks.MAIN)) {
-    mode.under_cursor = c_object_get_userid(c_hit_object(0));
-} else {
-    mode.under_cursor = noone;
-}
-
 var x1 = mode.x - cwidth / 2;
 var y1 = mode.y - cheight / 2;
 var x2 = mode.x + cwidth / 2;
 var y2 = mode.y + cheight / 2;
 
-var floor_cx = floor(((mouse_x_view + x1) / view_get_wport(view_3d)) * cwidth / TILE_WIDTH);
-var floor_cy = floor(((mouse_y_view + y1) / view_get_hport(view_3d)) * cheight / TILE_HEIGHT);
+var ray_cx = ((mouse_x_view + x1) / view_get_wport(view_3d)) * cwidth;
+var ray_cy = ((mouse_y_view + y1) / view_get_hport(view_3d)) * cheight;
+var floor_cx = floor(ray_cx / TILE_WIDTH);
+var floor_cy = floor(ray_cy / TILE_HEIGHT);
+
+if (c_raycast_world(ray_cx, ray_cy, mode.z, ray_cx, ray_cy, -1, CollisionMasks.MAIN)) {
+    mode.under_cursor = c_object_get_userid(c_hit_object(0));
+} else {
+    mode.under_cursor = noone;
+}
 
 // these will override everything else, but it's commented out because i dont like how it works
 if (false && ds_list_size(mode.selection) && Controller.mouse_left) {
@@ -67,10 +68,24 @@ if (true) {
                 case SelectionModes.CIRCLE: var stype = SelectionCircle; break;
             }
             
+            var button = Stuff.map.ui.t_p_other_editor.el_zone_data;
+            button.text = "Zone Data";
+            button.interactive = false;
+            button.onmouseup = null;
+            button.zone = noone;
+            
             var tz = mode.under_cursor ? max(mode.under_cursor.zz, mode.edit_z) : mode.edit_z;
-            mode.last_selection = instance_create_depth(0, 0, 0, stype);
-            ds_list_add(mode.selection, mode.last_selection);
-            script_execute(mode.last_selection.onmousedown, mode.last_selection, floor_cx, floor_cy, tz);
+            
+            if (mode.under_cursor && instanceof(mode.under_cursor, DataCameraZone)) {
+                button.interactive = true;
+                button.onmouseup = mode.under_cursor.zone_edit_script;
+                button.zone = mode.under_cursor;
+                button.text = "Data: " + mode.under_cursor.name;
+            } else {
+                mode.last_selection = instance_create_depth(0, 0, 0, stype);
+                ds_list_add(mode.selection, mode.last_selection);
+                script_execute(mode.last_selection.onmousedown, mode.last_selection, floor_cx, floor_cy, tz);
+            }
         }
     }
     
