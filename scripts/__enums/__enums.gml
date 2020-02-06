@@ -1,3 +1,7 @@
+// this defines a few global things, like names associated with each enum;
+// this is generally not a great practice and you should do it sparingly
+gml_pragma("global", "__enums()");
+
 enum SerializeThings {
     ERROR                   = 0x00000000,
     // basic stuff
@@ -80,6 +84,18 @@ enum AnimationTweens {
     EASE_EXP_I, EASE_EXP_O, EASE_EXP_IO,
     EASE_CIRC_I, EASE_CIRC_O, EASE_CIRC_IO,
 }
+
+global.animation_tween_names = ds_list_create();
+ds_list_add(global.animation_tween_names,
+    "Ignore", "None", "Linear",
+    "Quadratic In", "Quadratic Out", "Quadratic In / Out",
+    "Cubic In", "Cubic Out", "Cubic In / Out",
+    "Quartic In", "Quartic Out", "Quartic In / Out",
+    "Quintic In", "Quintic Out", "Quintic In / Out",
+    "Sinusoidal In", "Sinusoidal Out", "Sinusoidal In / Out",
+    "Exponential In", "Exponential Out", "Exponential In / Out",
+    "Circular In", "Circular Out", "Circular In / Out",
+);
 
 enum EventNodeTypes {
     ENTRYPOINT,
