@@ -10,4 +10,4 @@ var type = argument3;
 
 // big help: http://www.gizma.com/easing
 
-return script_execute(Stuff.easing_equations[type], v0, v1, f);
+return script_execute(global.easing_equations[type], v0, v1, f);

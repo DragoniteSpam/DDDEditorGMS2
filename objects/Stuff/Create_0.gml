@@ -4,32 +4,11 @@
 
 randomize();
 
-etype_objects = [
-    Entity,
-    EntityTile,
-    EntityAutoTile,
-    EntityMesh,
-    EntityPawn,
-    EntityEffect,
-    EntityMeshAutotile
-];
-
 default_lua_map = file_get_contents(PATH_LUA + "map.lua");
 default_lua_event_page_condition = file_get_contents(PATH_LUA + "event-page-condition.lua");
 default_lua_event_node_conditional = file_get_contents(PATH_LUA + "event-node-conditional.lua");
 default_lua_event_script = file_get_contents(PATH_LUA + "event-script.lua");
 default_lua_animation = file_get_contents(PATH_LUA + "animation.lua");
-
-easing_equations = [
-    ease_none, ease_none, ease_linear,
-    ease_quad_i, ease_quad_o, ease_quad_io,
-    ease_cube_i, ease_cube_o, ease_cube_io,
-    ease_quart_i, ease_quart_o, ease_quart_io,
-    ease_quint_i, ease_quint_o, ease_quint_io,
-    ease_sine_i, ease_sine_o, ease_sine_io,
-    ease_exp_i, ease_exp_o, ease_exp_io,
-    ease_circ_i, ease_circ_o, ease_circ_io,
-];
 
 // local storage folders
 

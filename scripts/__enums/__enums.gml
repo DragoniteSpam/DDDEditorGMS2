@@ -62,6 +62,16 @@ enum ETypes {
     ENTITY_MESH_AUTO,
 }
 
+global.etype_objects = [
+    Entity,
+    EntityTile,
+    EntityAutoTile,
+    EntityMesh,
+    EntityPawn,
+    EntityEffect,
+    EntityMeshAutotile
+];
+
 // each type includes the parent objects, which includes Entity for everything and
 // some others for objects that are derived from something else
 enum ETypeFlags {
@@ -97,6 +107,17 @@ ds_list_add(global.animation_tween_names,
     "Circular In", "Circular Out", "Circular In / Out",
 );
 
+global.easing_equations = [
+    ease_none, ease_none, ease_linear,
+    ease_quad_i, ease_quad_o, ease_quad_io,
+    ease_cube_i, ease_cube_o, ease_cube_io,
+    ease_quart_i, ease_quart_o, ease_quart_io,
+    ease_quint_i, ease_quint_o, ease_quint_io,
+    ease_sine_i, ease_sine_o, ease_sine_io,
+    ease_exp_i, ease_exp_o, ease_exp_io,
+    ease_circ_i, ease_circ_o, ease_circ_io,
+];
+
 enum EventNodeTypes {
     ENTRYPOINT,
     TEXT,
@@ -123,3 +144,11 @@ enum BattleStyles {
     GRID_BASED,             // boundaries are not respected
     ACTION,                 // z*lda
 }
+
+enum MapZoneTypes {
+    CAMERA,
+}
+
+global.map_zone_type_objects = [
+    DataCameraZone,
+]

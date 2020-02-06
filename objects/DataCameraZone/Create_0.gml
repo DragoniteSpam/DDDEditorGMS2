@@ -1,4 +1,5 @@
 /* s */ name = "Camera Zone";
+/* s */ ztype = MapZoneTypes.CAMERA;
 
 /* s */ x1 = 0;                     // f32
 /* s */ y1 = 0;                     // f32
