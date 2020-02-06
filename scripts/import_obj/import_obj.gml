@@ -272,6 +272,10 @@ if (file_exists(fn)) {
                 bytex = v[7] * TILESET_TEXTURE_HEIGHT;
             }
             
+            // the texture pages are 4k, so this is four pixels squared
+            xtex = round_ext(xtex, 1 / 1024);
+            ytex = round_ext(ytex, 1 / 1024);
+            
             bcolor = v[8];
             balpha = v[9];
             

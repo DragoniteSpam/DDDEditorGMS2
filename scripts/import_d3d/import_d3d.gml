@@ -154,6 +154,10 @@ while (!file_text_eof(f)) {
         ytex = ytex * TILESET_TEXTURE_HEIGHT;
     }
     
+    // the texture pages are 4k, so this is four pixels squared
+    xtex = round_ext(xtex, 1 / 1024);
+    ytex = round_ext(ytex, 1 / 1024);
+    
     minx = min(minx, xx[vc]);
     miny = min(miny, yy[vc]);
     minz = min(minz, zz[vc]);
