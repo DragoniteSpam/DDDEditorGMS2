@@ -12,7 +12,8 @@
         "c578333b-c949-4c7a-a2c2-5b31b8b69853",
         "36eb45b8-adb1-437b-839f-8b78d4268813",
         "50fa8e85-8b9d-4bcc-8c31-1ed3ffcca0d7",
-        "1b4ae03c-f484-48bf-a985-30c5bee62d02"
+        "1b4ae03c-f484-48bf-a985-30c5bee62d02",
+        "8fa68c5b-180f-453c-9df8-d25569b0da5a"
     ],
     "filterType": "GMScript",
     "folderName": "foreach",

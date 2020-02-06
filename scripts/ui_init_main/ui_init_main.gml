@@ -136,6 +136,11 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element.height + spacing;
     
+    element = create_checkbox(col2_x, yy, "View Zones", col_width, element_height, uivc_check_view_zones, Stuff.setting_view_zones, t_general);
+    ds_list_add(t_general.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
     element = create_text(col2_x, yy, "Map Settings", col_width, element_height, fa_left, col_width, t_general);
     ds_list_add(t_general.contents, element);
     

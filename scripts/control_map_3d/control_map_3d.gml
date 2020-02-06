@@ -56,9 +56,13 @@ if (!mode.mouse_over_ui) {
                 
                 var tz = mode.under_cursor ? max(mode.under_cursor.zz, mode.edit_z) : mode.edit_z;
                 
-                mode.last_selection = instance_create_depth(0, 0, 0, stype);
-                ds_list_add(mode.selection, mode.last_selection);
-                script_execute(mode.last_selection.onmousedown, mode.last_selection, max(0, floor_cx), max(0, floor_cy), tz);
+                if (mode.under_cursor && instanceof(mode.under_cursor, DataCameraZone)) {
+                    
+                } else {
+                    mode.last_selection = instance_create_depth(0, 0, 0, stype);
+                    ds_list_add(mode.selection, mode.last_selection);
+                    script_execute(mode.last_selection.onmousedown, mode.last_selection, max(0, floor_cx), max(0, floor_cy), tz);
+                }
             }
         }
         if (Controller.mouse_left) {

@@ -141,6 +141,7 @@ setting_view_grid = setting_get("View", "grid", true);
 setting_view_backface = setting_get("View", "backface", false);
 setting_view_texture = setting_get("View", "texture", true);
 setting_view_entities = setting_get("View", "entities", true);
+setting_view_zones = setting_get("View", "zones", true);
 
 var stashed_mode = setting_get("Config", "mode", EDITOR_BASE_MODE);
 

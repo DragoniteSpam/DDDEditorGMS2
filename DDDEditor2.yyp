@@ -9392,6 +9392,14 @@
             }
         },
         {
+            "Key": "8fa68c5b-180f-453c-9df8-d25569b0da5a",
+            "Value": {
+                "id": "e39e69ab-3269-4325-95f5-231eccb10fdb",
+                "resourcePath": "scripts\\safc_fill_camera_zone\\safc_fill_camera_zone.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "8fa9751d-593d-483c-93a8-04a1412d68f2",
             "Value": {
                 "id": "3751fcb8-214a-4704-85b1-14e885e9a0f4",
@@ -15216,6 +15224,14 @@
             }
         },
         {
+            "Key": "eadd74e7-9543-4f39-8401-22738cd79cc2",
+            "Value": {
+                "id": "1b9918a2-5e0e-41c2-9428-efc3c33c7ca2",
+                "resourcePath": "scripts\\uivc_check_view_zones\\uivc_check_view_zones.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "eae18694-7813-4728-b3b7-258975175d62",
             "Value": {
                 "id": "4a3cc8a3-d8cb-4fab-b889-c72969a7c5ee",
@@ -16793,6 +16809,7 @@
         "e2e9ab2d-4135-43f7-a086-2001e494654e",
         "aff645c1-ff62-4a29-8d66-fa9a02896b38",
         "d88f69f4-4e91-47f3-bfd5-f7a19764568c",
+        "8fa68c5b-180f-453c-9df8-d25569b0da5a",
         "6d08b675-dc55-4cbc-a9df-efd4e9e7e0a4",
         "1bfbc1cf-3ca2-4798-88b1-718e6007232c",
         "ee2e95e9-41a1-4f77-a28c-131addccdc81",
@@ -17310,6 +17327,7 @@
         "5e0cce33-be98-46fc-a595-a8f86a285b34",
         "8ea255fa-966d-4d03-b7b7-473d9d2edd81",
         "8cf107f0-a217-4721-8431-8ba27659762b",
+        "eadd74e7-9543-4f39-8401-22738cd79cc2",
         "d8f62473-2be2-4cfe-91e8-4ca68c265695",
         "951e6460-e787-4469-bb88-c88927d739ae",
         "18488dba-bde0-4f9a-b2ed-a97920982813",

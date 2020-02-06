@@ -105,9 +105,11 @@ for (var i = 0; i < ds_list_size(mode.selection); i++) {
     script_execute(sel.render, sel);
 }
 
-// zones
-for (var i = 0; i < ds_list_size(map_contents.all_camera_zones); i++) {
-    zone_render_rectangle(map_contents.all_camera_zones[| i]);
+if (Stuff.setting_view_zones) {
+    // zones
+    for (var i = 0; i < ds_list_size(map_contents.all_camera_zones); i++) {
+        zone_render_rectangle(map_contents.all_camera_zones[| i]);
+    }
 }
 
 ds_list_destroy(list_routes);
