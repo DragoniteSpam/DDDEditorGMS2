@@ -3952,6 +3952,14 @@
             }
         },
         {
+            "Key": "3a6f4f72-cc61-4b17-9061-3b835ed83de0",
+            "Value": {
+                "id": "6de213ee-078c-4253-8fc3-dfdac63ed976",
+                "resourcePath": "scripts\\serialize_save_zone_camera\\serialize_save_zone_camera.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "3a733b51-cc4d-482a-a25c-f975342ce962",
             "Value": {
                 "id": "ade5a4c1-fa03-4bba-8e08-5afdc8633065",
@@ -4820,6 +4828,14 @@
             "Value": {
                 "id": "3a966f97-4c13-41f6-9f7d-08983e52f8fa",
                 "resourcePath": "views\\4908abce-35cf-46f0-a72a-4e3ee9767aad.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "49530625-0be9-4e80-9f36-7fb70fb538b4",
+            "Value": {
+                "id": "a6c78ca0-75bf-4306-872f-d2a852d528d8",
+                "resourcePath": "views\\49530625-0be9-4e80-9f36-7fb70fb538b4.yy",
                 "resourceType": "GMFolder"
             }
         },
@@ -7676,6 +7692,14 @@
             "Value": {
                 "id": "85d9acd6-1ce6-4d48-b768-ade3e094d7d5",
                 "resourcePath": "scripts\\uivc_mesh_set_ymin\\uivc_mesh_set_ymin.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "7598a969-57b2-43a6-8354-283d93f53f02",
+            "Value": {
+                "id": "0ca01b18-b56b-45c7-83ef-080aa4d70eba",
+                "resourcePath": "scripts\\serialize_load_zone_camera\\serialize_load_zone_camera.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -14480,6 +14504,14 @@
             }
         },
         {
+            "Key": "ded30954-3462-444d-aebf-a64fdb049ea3",
+            "Value": {
+                "id": "095fe6e2-9182-423c-82d0-b1a201020412",
+                "resourcePath": "views\\ded30954-3462-444d-aebf-a64fdb049ea3.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "defc0a0a-9e2c-4f3f-abc8-e5e9d654f425",
             "Value": {
                 "id": "b1f4d3fd-0e1f-4f53-8a1c-dfb4a52832f0",
@@ -17999,6 +18031,7 @@
         "e5cefd88-b674-4dff-a235-f59e68ab675f",
         "7de30827-aa0d-4769-8954-fa0c4e77d129",
         "fc68c907-a6a1-43de-aa9c-9b2ab4d661b3",
+        "7598a969-57b2-43a6-8354-283d93f53f02",
         "09c3db56-cf0d-49de-be3f-5d7a532d4f90",
         "25d7e07b-cbd5-4039-af63-3fb8193314f3",
         "ff28a471-b69c-4494-8924-7d1f8b06de7d",
@@ -18030,6 +18063,7 @@
         "bd0be394-d9fd-4f47-82e2-6bf129f5ccd3",
         "844bd873-ea06-48b8-9447-953a9d9b2e33",
         "37f60345-ad91-4856-9d58-1954ef2f5e2a",
+        "3a6f4f72-cc61-4b17-9061-3b835ed83de0",
         "bf12de76-111a-48f5-8273-4a1c563e9145",
         "4e40beba-91ce-44e8-a609-cf9966422af2",
         "68887f1a-5406-4953-8e40-d50da4d8c219",

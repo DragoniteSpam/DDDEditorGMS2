@@ -25,7 +25,8 @@
         "e6bf92c0-4f9b-4861-bd3d-9db96a9452be",
         "b344b413-62f4-4707-bf95-a10d5fa2e457",
         "bc92cdb4-ab87-405d-88b7-a68f328f7740",
-        "e09b5de8-5b62-4fb5-a427-41f60328100b"
+        "e09b5de8-5b62-4fb5-a427-41f60328100b",
+        "ded30954-3462-444d-aebf-a64fdb049ea3"
     ],
     "filterType": "GMScript",
     "folderName": "load",
