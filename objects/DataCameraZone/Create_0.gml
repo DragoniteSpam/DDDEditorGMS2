@@ -1,3 +1,5 @@
+name = "Camera Zone";
+
 x1 = 0;
 y1 = 0;
 z1 = 0;
@@ -5,6 +7,10 @@ x2 = 0;
 y2 = 0;
 z2 = 0;
 
+camera_distance = 8 * TILE_HEIGHT;
+camera_angle = 45;
+
+zone_edit_script = map_zone_camera;
 cobject = noone;
 cshape = noone;
 

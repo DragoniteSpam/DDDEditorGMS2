@@ -848,10 +848,18 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = legal_y + spacing;
     
-    element = create_text(col1_x, yy, "There may be information related to misc. map editor things such as effects or time / skybox things here at some point in the future",
-        legal_width - spacing * 2, element_height, fa_left, legal_width - spacing * 2, t_p_other_editor);
-    element.valignment = fa_top;
+    element = create_text(col1_x, yy, "These are settings that don't really fit anywhere else", col_width, element_height, fa_left, legal_width, t_p_other_editor);
     ds_list_add(t_p_other_editor.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
+    element = create_button(col1_x, yy, "Zone Data", col_width, element_height, fa_center, null, t_p_other_editor);
+    element.interactive = false;
+    element.zone = noone;
+    ds_list_add(t_p_other_editor.contents, element);
+    t_p_other_editor.el_zone_data = element;
+    
+    yy = yy + element.height + spacing;
     
     #endregion
     

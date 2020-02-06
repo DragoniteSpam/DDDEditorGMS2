@@ -1,10 +1,14 @@
 // not technically a Selection Fill script, but it's used in a similar way
 
+var button = Stuff.map.ui.t_p_other_editor.el_zone_data;
+                    
 for (var i = 0; i < ds_list_size(Stuff.map.selection); i++) {
     var selection = Stuff.map.selection[| i];
     if (instanceof(selection, SelectionRectangle)) {
         var zone = instance_create_depth(0, 0, 0, DataCameraZone);
         instance_deactivate_object(zone);
+        zone.name = "Camera Zone " + string(ds_list_size(Stuff.map.active_map.contents.all_camera_zones));
+        
         zone.x1 = selection.x;
         zone.y1 = selection.y;
         zone.z1 = selection.z;
@@ -31,6 +35,11 @@ for (var i = 0; i < ds_list_size(Stuff.map.selection); i++) {
         if (!Stuff.setting_view_zones) {
             c_object_set_mask(zone.cobject, 0, 0);
         }
+        
+        button.interactive = true;
+        button.onmouseup = zone.zone_edit_script;
+        button.zone = zone;
+        button.text = "Data: " + zone.name;
     }
 }
 

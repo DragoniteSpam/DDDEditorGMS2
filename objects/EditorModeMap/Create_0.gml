@@ -35,6 +35,8 @@ selection_fill_tile_x = 4;
 selection_fill_tile_y = 0;
 selection_fill_autotile = 0;
 
+selected_zone = noone;
+
 fill_types = [
     safc_fill_tile, safc_fill_autotile,
     safc_fill_mesh, safc_fill_pawn,
