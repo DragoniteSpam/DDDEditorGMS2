@@ -37,27 +37,31 @@ el_bounds_text.color = c_blue;
 
 yy = yy + el_bounds_text.height + spacing;
 
-var el_bounds_x1 = create_input(col1_x, yy, "X1:", ew, eh, uivc_input_map_camera_zone_x1, zone.x1, "float", validate_int, 0, map.xx - 1, 4, vx1, vy1, vx2, vy2, dg);
+var bounds_x_help = "0..." + string(map.xx - 1);
+var bounds_y_help = "0..." + string(map.yy - 1);
+var bounds_z_help = "0..." + string(map.zz - 1);
+
+var el_bounds_x1 = create_input(col1_x, yy, "X1:", ew, eh, uivc_input_map_camera_zone_x1, zone.x1, bounds_x_help, validate_int, 0, map.xx - 1, 4, vx1, vy1, vx2, vy2, dg);
 el_bounds_x1.tooltip = "The starting X coordinate of the camera zone. If the minimum and maximum bounds values are switched, the editor will automatically put them in order.";
 yy = yy + el_bounds_x1.height + spacing;
 
-var el_bounds_y1 = create_input(col1_x, yy, "Y1:", ew, eh, uivc_input_map_camera_zone_y1, zone.y1, "float", validate_int, 0, map.yy - 1, 4, vx1, vy1, vx2, vy2, dg);
+var el_bounds_y1 = create_input(col1_x, yy, "Y1:", ew, eh, uivc_input_map_camera_zone_y1, zone.y1, bounds_y_help, validate_int, 0, map.yy - 1, 4, vx1, vy1, vx2, vy2, dg);
 el_bounds_y1.tooltip = "The starting Y coordinate of the camera zone. If the minimum and maximum bounds values are switched, the editor will automatically put them in order.";
 yy = yy + el_bounds_y1.height + spacing;
 
-var el_bounds_z1 = create_input(col1_x, yy, "Z1:", ew, eh, uivc_input_map_camera_zone_z1, zone.z1, "float", validate_int, 0, map.zz - 1, 4, vx1, vy1, vx2, vy2, dg);
+var el_bounds_z1 = create_input(col1_x, yy, "Z1:", ew, eh, uivc_input_map_camera_zone_z1, zone.z1, bounds_z_help, validate_int, 0, map.zz - 1, 4, vx1, vy1, vx2, vy2, dg);
 el_bounds_z1.tooltip = "The starting Z coordinate of the camera zone. If the minimum and maximum bounds values are switched, the editor will automatically put them in order.";
 yy = yy + el_bounds_z1.height + spacing;
 
-var el_bounds_x2 = create_input(col1_x, yy, "X2:", ew, eh, uivc_input_map_camera_zone_x2, zone.x2, "float", validate_int, 0, map.xx - 1, 4, vx1, vy1, vx2, vy2, dg);
+var el_bounds_x2 = create_input(col1_x, yy, "X2:", ew, eh, uivc_input_map_camera_zone_x2, zone.x2, bounds_x_help, validate_int, 0, map.xx - 1, 4, vx1, vy1, vx2, vy2, dg);
 el_bounds_x2.tooltip = "The ending X coordinate of the camera zone. If the minimum and maximum bounds values are switched, the editor will automatically put them in order.";
 yy = yy + el_bounds_x2.height + spacing;
 
-var el_bounds_y2 = create_input(col1_x, yy, "Y2:", ew, eh, uivc_input_map_camera_zone_y2, zone.y2, "float", validate_int, 0, map.yy - 1, 4, vx1, vy1, vx2, vy2, dg);
+var el_bounds_y2 = create_input(col1_x, yy, "Y2:", ew, eh, uivc_input_map_camera_zone_y2, zone.y2, bounds_y_help, validate_int, 0, map.yy - 1, 4, vx1, vy1, vx2, vy2, dg);
 el_bounds_y2.tooltip = "The ending Y coordinate of the camera zone. If the minimum and maximum bounds values are switched, the editor will automatically put them in order.";
 yy = yy + el_bounds_y2.height + spacing;
 
-var el_bounds_z2 = create_input(col1_x, yy, "Z2:", ew, eh, uivc_input_map_camera_zone_z2, zone.z2, "float", validate_int, 0, map.zz - 1, 4, vx1, vy1, vx2, vy2, dg);
+var el_bounds_z2 = create_input(col1_x, yy, "Z2:", ew, eh, uivc_input_map_camera_zone_z2, zone.z2, bounds_z_help, validate_int, 0, map.zz - 1, 4, vx1, vy1, vx2, vy2, dg);
 el_bounds_z2.tooltip = "The ending Z coordinate of the camera zone. If the minimum and maximum bounds values are switched, the editor will automatically put them in order.";
 yy = yy + el_bounds_z2.height + spacing;
 

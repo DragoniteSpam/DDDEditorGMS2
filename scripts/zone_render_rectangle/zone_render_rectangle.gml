@@ -22,7 +22,7 @@ var y2 = maxy * TILE_HEIGHT - cube_bound;
 var z2 = maxz * TILE_DEPTH - cube_bound;
 
 shader_set(shd_bounding_box);
-shader_set_uniform_f_array(shader_get_uniform(shd_bounding_box, "actual_color"), [0, 0, 1, 1]);
+shader_set_uniform_f_array(shader_get_uniform(shd_bounding_box, "actual_color"), zone.editor_color);
 shader_set_uniform_f_array(shader_get_uniform(shd_bounding_box, "offsets"), [
     x1, y1, z1,
     x2, y1, z1,

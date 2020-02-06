@@ -7,7 +7,7 @@ for (var i = 0; i < ds_list_size(Stuff.map.selection); i++) {
     if (instanceof(selection, SelectionRectangle)) {
         var zone = instance_create_depth(0, 0, 0, DataCameraZone);
         instance_deactivate_object(zone);
-        zone.name = "Camera Zone " + string(ds_list_size(Stuff.map.active_map.contents.all_camera_zones));
+        zone.name = "Camera Zone " + string(ds_list_size(Stuff.map.active_map.contents.all_zones));
         
         zone.x1 = selection.x;
         zone.y1 = selection.y;

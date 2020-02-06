@@ -6048,6 +6048,14 @@
             }
         },
         {
+            "Key": "5a144ae6-9726-4aac-8b41-5f0e98334706",
+            "Value": {
+                "id": "e44f2e23-6fc8-40c3-b896-285ed9f5facc",
+                "resourcePath": "objects\\DataMapZone\\DataMapZone.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "5a6c1e2c-7c87-4ac2-87fc-3bf690609631",
             "Value": {
                 "id": "adc3b353-d8b0-428f-92c0-a8db126f256c",

@@ -9,11 +9,11 @@ var buffer = argument0;
 
 buffer_write(buffer, buffer_datatype, SerializeThings.MAP_ZONES);
 
-var n_zones = ds_list_size(Stuff.map.active_map.contents.all_camera_zones);
+var n_zones = ds_list_size(Stuff.map.active_map.contents.all_zones);
 buffer_write(buffer, buffer_u32, n_zones);
 
 for (var i = 0; i < n_zones; i++) {
-    var zone = Stuff.map.active_map.contents.all_camera_zones[| i];
+    var zone = Stuff.map.active_map.contents.all_zones[| i];
     buffer_write(buffer, buffer_u16, zone.ztype);
     script_execute(zone.save_script, buffer, zone);
 }

@@ -1,10 +1,9 @@
-event_inherited();
-
 var map = Stuff.map.active_map;
 var map_contents = map.contents;
+ds_list_add(map_contents.all_zones, id);
 
-/* s */ name = "Camera " + name;
-/* s */ ztype = MapZoneTypes.CAMERA;
+/* s */ name = "Zone " + string(ds_list_size(map_contents.all_zones));
+/* s */ ztype = -1;
 
 /* s */ x1 = 0;                     // f32
 /* s */ y1 = 0;                     // f32
@@ -17,15 +16,12 @@ var map_contents = map.contents;
 zz = 0;
 
 /* s */ zone_priority = 100;        // u16
-/* s */ camera_distance = 8;        // u16
-/* s */ camera_angle = 45;          // f32
-/* s */ camera_easing_method = AnimationTweens.LINEAR;  // u8
-/* s */ camera_easing_speed = 1;    // f32
 
-zone_edit_script = map_zone_camera;
+zone_edit_script = null;
 cobject = noone;
 cshape = noone;
-editor_color = [0, 0, 1, 1];
+editor_color = [1, 1, 1, 1];
 
-save_script = serialize_save_zone_camera;
-load_script = serialize_load_zone_camera;
+// this is the base class, do not instantiate
+save_script = null;
+load_script = null;

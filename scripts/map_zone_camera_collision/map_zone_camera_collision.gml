@@ -40,4 +40,4 @@ c_world_add_object(zone.cobject);
 
 if (!Stuff.setting_view_zones) {
     c_object_set_mask(zone.cobject, 0, 0);
-}        
+}
