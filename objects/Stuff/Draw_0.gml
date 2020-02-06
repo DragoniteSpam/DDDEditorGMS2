@@ -42,7 +42,12 @@ if (view_current == view_overlay) {
             draw_set_halign(halign);
             draw_set_valign(valign);
             instance_deactivate_object(Stuff.element_tooltip);
+            window_set_cursor(cr_none);
+        } else {
+            window_set_cursor(cr_default);
         }
+    } else {
+        window_set_cursor(cr_default);
     }
     
     Stuff.element_tooltip_previous = Stuff.element_tooltip;
