@@ -1,12 +1,10 @@
 /// @param buffer
 /// @param version
 /// @param DataMapContainer
-/// @param [is-temp?]
 
 var buffer = argument[0];
 var version = argument[1];
 var map_container = argument[2];
-var is_temp = (argument_count > 3) ? argument[3] : false;
 
 var n_zones = buffer_read(buffer, buffer_u32);
 

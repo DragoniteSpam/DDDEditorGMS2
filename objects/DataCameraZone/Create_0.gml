@@ -20,7 +20,7 @@ zz = 0;
 /* s */ camera_distance = 8;        // u16
 /* s */ camera_angle = 45;          // f32
 /* s */ camera_easing_method = AnimationTweens.LINEAR;  // u8
-/* s */ camera_easing_speed = 1;    // f32
+/* s */ camera_easing_time = 1;    // f32
 
 zone_edit_script = map_zone_camera;
 cobject = noone;
