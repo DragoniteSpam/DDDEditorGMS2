@@ -107,5 +107,6 @@ enum DataVersions {
     WATER_LEVEL                         = 81,
     DETAILED_MESH_COLLISION_DATA        = 82,
     REMOVE_ENTITY_COLLISION_DATA        = 83,
+    MAP_ZONES                           = 84,
     _CURRENT /* = whatever the last one is + 1 */
 }

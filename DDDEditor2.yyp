@@ -11688,6 +11688,14 @@
             }
         },
         {
+            "Key": "b1562157-35d6-4a3b-af3d-391169b33256",
+            "Value": {
+                "id": "26638be3-27a9-46ba-b973-f4c40b1f91d7",
+                "resourcePath": "scripts\\serialize_save_map_contents_zones\\serialize_save_map_contents_zones.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "b160d72a-bf18-4a16-9146-44a80116863b",
             "Value": {
                 "id": "81b385bd-a491-4dca-900c-8c8c58733b8d",
@@ -16488,6 +16496,14 @@
             }
         },
         {
+            "Key": "fc3810c0-07f1-484b-9086-170b965bfd76",
+            "Value": {
+                "id": "31be7e38-c7c4-4fca-b12f-e94fae0f28e9",
+                "resourcePath": "scripts\\serialize_load_map_contents_zones\\serialize_load_map_contents_zones.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "fc4662bb-11fc-46ed-a4e9-cfb814458882",
             "Value": {
                 "id": "79674a04-3b16-4a35-9e67-940ec856daa2",
@@ -18091,6 +18107,7 @@
         "48fdfdb4-fad7-4101-b7ab-313d81a7baca",
         "ed355f8e-9157-470f-96ba-12e23a5c1105",
         "1b12e036-c241-48d6-be82-9af82db584c2",
+        "fc3810c0-07f1-484b-9086-170b965bfd76",
         "0a078c95-d6af-446f-8827-5774ff5c7b30",
         "94862849-855b-4ec2-a0c4-88e550b5acbc",
         "7093dcaa-32d8-44e3-a978-d76f954b1b1b",
@@ -18123,6 +18140,7 @@
         "d245e1bb-2bdf-4a2b-9cd7-ab22514fd8d8",
         "60e9a43f-c389-4d54-8bdb-72892cbcc85b",
         "41a2377b-7051-4794-9d6f-ec9f7aab500b",
+        "b1562157-35d6-4a3b-af3d-391169b33256",
         "7717ebcd-87c3-4c60-bf52-d31237fb4b7e",
         "adfb9509-957b-49f2-b42d-1c0afeb143d6",
         "1e7b1bcf-3901-470a-a81b-b02751e9b314",

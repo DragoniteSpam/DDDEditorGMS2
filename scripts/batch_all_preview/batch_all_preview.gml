@@ -16,6 +16,12 @@ if (buffer_md5(buffer, 0, buffer_get_size(buffer)) != EMPTY_BUFFER_MD5) {
     serialize_load_map_contents_batch(buffer, map.version, map);
     buffer_read(buffer, buffer_datatype);
     serialize_load_map_contents_dynamic(buffer, map.version, map, true);
+    // no need to read zones for the preview - but it any future data blocks
+    // are added these will need to be properly skipped
+    if (map.version >= DataVersions.MAP_ZONES) {
+        //buffer_read(buffer, buffer_datatype);
+        //serialize_load_map_contents_zones(buffer, map.version, map, true);
+    }
 }
 
 c_transform_identity();

@@ -225,6 +225,9 @@ while (true) {
         case SerializeThings.MAP_DYNAMIC:
             serialize_load_map_contents_dynamic(buffer, version, Stuff.map.active_map);
             break;
+        case SerializeThings.MAP_ZONES:
+            serialize_load_map_contents_zones(buffer, version, Stuff.map.active_map);
+            break;
         #endregion
     }
 }

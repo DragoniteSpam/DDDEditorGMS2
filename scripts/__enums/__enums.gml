@@ -23,7 +23,7 @@ enum SerializeThings {
     // 10
     GLOBAL_GRAPHICS         = 0x00000011,
     AUDIO_SE                = 0x00000012,
-    // 13
+    MAP_ZONES               = 0x00000013,
     AUDIO_BGM               = 0x00000014,
     MAP_BATCH               = 0x00000015,
     MAP_DYNAMIC             = 0x00000016,
@@ -151,4 +151,4 @@ enum MapZoneTypes {
 
 global.map_zone_type_objects = [
     DataCameraZone,
-]
+];
