@@ -106,6 +106,8 @@
 #macro c_ui_select 0xffb8ac
 #macro c_ui 0xebebeb
 
+#macro c_array_zone_selected [1, 1, 1, 1]
+
 #macro BILLION 1000000000
 #macro EMPTY_BUFFER_MD5 "93b885adfe0da089cdf634904fd59f71"
 #macro MILLION 1000000

@@ -20,9 +20,10 @@ var cube_bound = 32;
 var x2 = maxx * TILE_WIDTH - cube_bound;
 var y2 = maxy * TILE_HEIGHT - cube_bound;
 var z2 = maxz * TILE_DEPTH - cube_bound;
+var zone_color = (Stuff.map.selected_zone == zone) ? c_array_zone_selected : zone.editor_color;
 
 shader_set(shd_bounding_box);
-shader_set_uniform_f_array(shader_get_uniform(shd_bounding_box, "actual_color"), zone.editor_color);
+shader_set_uniform_f_array(shader_get_uniform(shd_bounding_box, "actual_color"), zone_color);
 shader_set_uniform_f_array(shader_get_uniform(shd_bounding_box, "offsets"), [
     x1, y1, z1,
     x2, y1, z1,
