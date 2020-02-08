@@ -1,14 +1,13 @@
 /// @param Dialog
 
 var root = argument0;
-var zone = root.zone;
+var zone = Stuff.map.selected_zone;
 var map = Stuff.map.active_map;
 
 var dw = 960;
 var dh = 480;
 
 var dg = dialog_create(dw, dh, "Camera Zone Settings: " + zone.name, dialog_default, dc_close_no_questions_asked, root);
-dg.zone = zone;
 
 var columns = 3;
 var spacing = 16;
@@ -73,12 +72,16 @@ el_properties_text.color = c_blue;
 yy = yy + el_properties_text.height + spacing;
 
 var el_camera_distance = create_input(col2_x, yy, "Distance:", ew, eh, uivc_input_map_camera_zone_distance, zone.camera_distance, "float", validate_double, 0, 32, 10, vx1, vy1, vx2, vy2, dg);
-el_camera_distance.tooltip = "How far the camera is to be from its target, measured in tile distances";
+el_camera_distance.tooltip = "How far the camera is to be from its target, measured in tile distances. (Only affects 3D).";
 yy = yy + el_camera_distance.height + spacing;
 
 var el_camera_angle = create_input(col2_x, yy, "Angle:", ew, eh, uivc_input_map_camera_zone_angle, zone.camera_angle, "float", validate_double, -89, 89, 4, vx1, vy1, vx2, vy2, dg);
 el_camera_angle.tooltip = "The angle above the ground of the camera, measured in degrees; a positive angle is looking down on the camera target, and a negative angle is looking up";
 yy = yy + el_camera_angle.height + spacing;
+
+var el_camera_ortho_size = create_input(col2_x, yy, "Ortho. Size:", ew, eh, uivc_input_map_camera_zone_ortho_size, zone.camera_orthographic_size, "float", validate_double, 0.1, 100, 4, vx1, vy1, vx2, vy2, dg);
+el_camera_ortho_size.tooltip = "The relative width and height of the camera. (Only affects 2D.)";
+yy = yy + el_camera_ortho_size.height + spacing;
 
 var el_priority = create_input(col2_x, yy, "Priority:", ew, eh, uivc_input_map_camera_zone_priority, zone.zone_priority, "int", validate_int, 0, 1000, 3, vx1, vy1, vx2, vy2, dg);
 el_priority.tooltip = "If multiple camera zones overlap, the one with the highest priority will be the one that is acted upon";
@@ -116,6 +119,7 @@ ds_list_add(dg.contents,
     el_properties_text,
     el_camera_distance,
     el_camera_angle,
+    el_camera_ortho_size,
     el_priority,
     el_transition_text,
     el_transition_style,
