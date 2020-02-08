@@ -72,15 +72,15 @@ if (true) {
             button.text = "Zone Data";
             button.interactive = false;
             button.onmouseup = null;
-            button.zone = noone;
+            mode.selected_zone = noone;
             
             var tz = mode.under_cursor ? max(mode.under_cursor.zz, mode.edit_z) : mode.edit_z;
             
             if (mode.under_cursor && instanceof(mode.under_cursor, DataCameraZone)) {
                 button.interactive = true;
                 button.onmouseup = mode.under_cursor.zone_edit_script;
-                button.zone = mode.under_cursor;
                 button.text = "Data: " + mode.under_cursor.name;
+                mode.selected_zone = mode.under_cursor;
             } else {
                 mode.last_selection = instance_create_depth(0, 0, 0, stype);
                 ds_list_add(mode.selection, mode.last_selection);

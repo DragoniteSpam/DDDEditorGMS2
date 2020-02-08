@@ -2,4 +2,4 @@
 
 var list = argument0;
 
-list.root.zone.camera_easing_method = ui_list_selection(list);
+Stuff.map.selected_zone.camera_easing_method = ui_list_selection(list);

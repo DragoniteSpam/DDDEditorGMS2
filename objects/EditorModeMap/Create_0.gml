@@ -29,6 +29,7 @@ under_cursor = noone;
 selection = ds_list_create();
 selected_entities = ds_list_create();
 last_selection = noone;
+selected_zone = noone;
 
 selection_fill_mesh = -1;       // list index
 selection_fill_tile_x = 4;

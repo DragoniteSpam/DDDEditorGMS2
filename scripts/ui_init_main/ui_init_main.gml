@@ -856,7 +856,6 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     element = create_button(col1_x, yy, "Zone Data", col_width, element_height, fa_center, null, t_p_other_editor);
     element.tooltip = "If you click on a map zone (camera, weather, audio, encounters, etc), you can edit the parameters of it here.";
     element.interactive = false;
-    element.zone = noone;
     ds_list_add(t_p_other_editor.contents, element);
     t_p_other_editor.el_zone_data = element;
     

@@ -2,4 +2,4 @@
 
 var input = argument0;
 
-input.root.zone.zone_priority = real(input.value);
+Stuff.map.selected_zone.zone_priority = real(input.value);

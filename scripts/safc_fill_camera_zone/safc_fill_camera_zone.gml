@@ -20,8 +20,8 @@ for (var i = 0; i < ds_list_size(Stuff.map.selection); i++) {
         
         button.interactive = true;
         button.onmouseup = zone.zone_edit_script;
-        button.zone = zone;
         button.text = "Data: " + zone.name;
+        Stuff.map.selected_zone = zone;
     }
 }
 

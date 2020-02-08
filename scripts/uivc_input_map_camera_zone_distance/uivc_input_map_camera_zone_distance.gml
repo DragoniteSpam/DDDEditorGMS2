@@ -2,4 +2,4 @@
 
 var input = argument0;
 
-input.root.zone.camera_distance = real(input.value);
+Stuff.map.selected_zone.camera_distance = real(input.value);

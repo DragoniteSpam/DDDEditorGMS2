@@ -2,4 +2,4 @@
 
 var input = argument0;
 
-input.root.zone.camera_easing_time = real(input.value);
+Stuff.map.selected_zone.camera_easing_time = real(input.value);
