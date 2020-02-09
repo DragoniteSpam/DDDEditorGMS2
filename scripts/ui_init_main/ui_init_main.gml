@@ -412,6 +412,12 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element.height + spacing;
     
+    element_entity_type = create_text(col1_x, yy, "Type:", col_width, element_height, fa_left, col_width, t_p_entity);
+    ds_list_add(t_p_entity.contents, element_entity_type);
+    ds_list_add(t_p_entity.contents, element_entity_type);
+    
+    yy = yy + element_entity_type.height + spacing;
+    
     /*
     element_entity_collision_data = create_button(col1_x, yy, "Collision Data", col_width, element_height, fa_center, omu_entity_collision_data, t_p_entity);
     ds_list_add(t_p_entity.contents, element_entity_collision_data);

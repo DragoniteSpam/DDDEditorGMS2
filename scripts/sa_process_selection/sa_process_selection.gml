@@ -7,6 +7,8 @@ ds_list_destroy(Stuff.map.selected_entities);
 Stuff.map.selected_entities = list;
 
 if (ds_list_size(list) == 0) {
+    // type
+    Stuff.map.ui.element_entity_type.text = "Type:";
     // deactivate everything
     Stuff.map.ui.element_entity_name.interactive = false;
     //Stuff.map.ui.element_entity_collision_data.interactive = false;
@@ -124,6 +126,8 @@ if (ds_list_size(list) == 0) {
     ui_input_set_value(Stuff.map.ui.element_entity_scale_z, "");
     
     var type = selection_all_type();
+    
+    Stuff.map.ui.element_entity_type.text = "Type: " + object_get_name(type);
     
     switch (type) {
         case EntityAutoTile:

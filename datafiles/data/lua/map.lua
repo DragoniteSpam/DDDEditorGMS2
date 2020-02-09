@@ -36,16 +36,12 @@ end
 -- @param weather the current weather; you may want different encounters
 --      based on the current weather
 function EvalEncounterMain(h, weather)
-    -- the default behavior is to just throw it back to game maker - the
-    -- option to calculate encounters is here if you want it, but you don't
-    -- actually need to do it
-    return DDD.map_default_encounter(get("EGBasic"), h, weather)
+    return noone
 end
 
  -- Returns the total of the encounter weights - this will probably be helpful
  -- to have, and possibly override
  -- @param zone the zone to calculate the total weight of
 function ZoneTotalWeight(zone)
-    -- same as above
-    return DDD.map_encounter_weight(zone)
+    return 0
 end

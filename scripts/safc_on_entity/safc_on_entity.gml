@@ -5,6 +5,7 @@ var entity  =  argument0;
 // basic stuff
 
 ui_input_set_value(Stuff.map.ui.element_entity_name, entity.name);
+Stuff.map.ui.element_entity_type.text = "Type: " + object_get_name(entity.object_index);
 Stuff.map.ui.element_entity_static.value = entity.static;
 
 Stuff.map.ui.element_entity_name.interactive = true;
