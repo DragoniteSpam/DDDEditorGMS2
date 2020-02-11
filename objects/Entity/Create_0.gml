@@ -1,6 +1,6 @@
 name = "Entity";
 etype = ETypes.ENTITY;
-etype_flags = ETypeFlags.ENTITY;
+etype_flags = 0;
 
 refid_set(id, refid_generate());
 

@@ -75,13 +75,14 @@ global.etype_objects = [
 // each type includes the parent objects, which includes Entity for everything and
 // some others for objects that are derived from something else
 enum ETypeFlags {
-    ENTITY                  = 0x001,
-    ENTITY_TILE             = 0x002 | 0x001,
-    ENTITY_TILE_AUTO        = 0x004 | 0x002 | 0x001,
-    ENTITY_MESH             = 0x008 | 0x001,
-    ENTITY_PAWN             = 0x010 | 0x001,
-    ENTITY_EFFECT           = 0x020 | 0x001,
-    ENTITY_MESH_AUTO        = 0x040 | 0x008 | 0x001,
+    ENTITY_TILE             = 0x002,
+    ENTITY_TILE_AUTO        = 0x004 | ETypeFlags.ENTITY_TILE,
+    ENTITY_MESH             = 0x008,
+    ENTITY_PAWN             = 0x010,
+    ENTITY_EFFECT           = 0x020,
+    ENTITY_MESH_AUTO        = 0x040 | ETypeFlags.ENTITY_MESH,
+    // every mask
+    ENTITY_ANY              = ETypeFlags.ENTITY_TILE_AUTO | ETypeFlags.ENTITY_MESH_AUTO | ETypeFlags.ENTITY_PAWN | ETypeFlags.ENTITY_EFFECT,
 }
 
 enum AnimationTweens {

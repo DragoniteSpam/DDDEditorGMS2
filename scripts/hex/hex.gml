@@ -1,4 +1,4 @@
-var str = argument0;
+var str = argument[0];
 
 var result = 0;
 

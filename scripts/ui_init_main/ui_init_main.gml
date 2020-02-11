@@ -88,14 +88,13 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     var s = 16;
     
-    element = create_bitfield(col1_x, yy, "Selection Mask:", col_width, element_height, SELECTION_MASK_ALL, t_general);
+    element = create_bitfield(col1_x, yy, "Selection Mask:", col_width, element_height, ETypeFlags.ENTITY_ANY, t_general);
     create_bitfield_options_vertical(element, [
         create_bitfield_option_data(ETypeFlags.ENTITY_TILE, ui_render_bitfield_option_text_selection_mask, uivc_bitfield_selection_mask, "Tile", -1, 0, col_width / 2, s),
-        create_bitfield_option_data(ETypeFlags.ENTITY_TILE_AUTO, ui_render_bitfield_option_text_selection_mask, uivc_bitfield_selection_mask, "Autotile", -1, 0, col_width / 2, s),
         create_bitfield_option_data(ETypeFlags.ENTITY_MESH, ui_render_bitfield_option_text_selection_mask, uivc_bitfield_selection_mask, "Mesh", -1, 0, col_width / 2, s),
         create_bitfield_option_data(ETypeFlags.ENTITY_PAWN, ui_render_bitfield_option_text_selection_mask, uivc_bitfield_selection_mask, "Pawn", -1, 0, col_width / 2, s),
         create_bitfield_option_data(ETypeFlags.ENTITY_EFFECT, ui_render_bitfield_option_text_selection_mask, uivc_bitfield_selection_mask, "Effect", -1, 0, col_width / 2, s),
-        create_bitfield_option_data(SELECTION_MASK_ALL, ui_render_bitfield_option_text_selection_mask_all, uivc_bitfield_selection_mask_all, "All", -1, 0, col_width / 2, s),
+        create_bitfield_option_data(ETypeFlags.ENTITY_ANY, ui_render_bitfield_option_text_selection_mask_all, uivc_bitfield_selection_mask_all, "All", -1, 0, col_width / 2, s),
         create_bitfield_option_data(0, ui_render_bitfield_option_text_selection_mask_none, uivc_bitfield_selection_mask_none, "None", -1, 0, col_width / 2, s)
     ]);
     ds_list_add(t_general.contents, element);

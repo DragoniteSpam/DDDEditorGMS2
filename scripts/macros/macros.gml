@@ -42,7 +42,6 @@
 #macro PATH_PROJECTS ".\\projects\\"
 #macro PATH_TEMP_CODE "temp\\"              // local storage - no leading punctuation - used for opening files
 #macro PATH_AUDIO "audio\\"                 // local storage - no leading punctuation - used for opening files
-#macro SELECTION_MASK_ALL 0xffffffff
 #macro SERIALIZE_ASSETS 2
 #macro SERIALIZE_DATA 1
 #macro SERIALIZE_DATA_AND_MAP 3
