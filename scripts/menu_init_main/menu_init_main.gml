@@ -74,7 +74,7 @@ with (instance_create_depth(0, 0, 0, MenuMain)) {
     var md_mesh_at = create_menu_element("Mesh Autotiles", momu_expand, menu_data);
         var md_mesh_at_top = create_menu_element("Top", momu_graphic_mesh_autotiles_top, md_graphics);
         var md_mesh_at_vertical = create_menu_element("Vertical", momu_graphic_mesh_autotiles_vertical, md_graphics);
-        var md_mesh_at_base = create_menu_element("Vertical", momu_graphic_mesh_autotiles_base, md_graphics);
+        var md_mesh_at_base = create_menu_element("Base", momu_graphic_mesh_autotiles_base, md_graphics);
         ds_list_add(md_mesh_at.contents,
             md_mesh_at_top,
             md_mesh_at_vertical,

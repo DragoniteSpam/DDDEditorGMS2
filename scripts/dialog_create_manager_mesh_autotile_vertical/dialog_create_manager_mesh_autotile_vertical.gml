@@ -4,7 +4,7 @@ var root = argument0;
 var map = Stuff.map.active_map;
 var map_contents = map.contents;
 
-var dw = 720;
+var dw = 800;
 var dh = 640;
 
 var dg = dialog_create(dw, dh, "Data: Mesh Autotiles (Vertical)", undefined, undefined, root);
@@ -30,6 +30,7 @@ array_clear(dg.buttons, noone);
 
 for (var i = 0; i < array_length_1d(map_contents.mesh_autotiles_vertical); i++) {
     var button = create_button(xx, yy, string(i), mbw, mbh, fa_center, dmu_dialog_load_mesh_autotile_vertical, dg);
+    button.tooltip = "Import a mesh for vertical mesh autotile #" + string(i) + ". It should take the shape of the icon below, with green representing the outer part and brown representing the inner part.";
     button.color = map_contents.mesh_autotiles_vertical[i] ? c_black : c_gray;
     button.key = i;
     ds_list_add(dg.contents, button);
@@ -52,6 +53,7 @@ for (var i = 0; i < array_length_1d(map_contents.mesh_autotiles_vertical); i++) 
 }
 
 var el_import_series = create_button(dw / 3 - b_width / 2, dh - 32 - b_height / 2, "Import Batch", b_width, b_height, fa_center, dmu_dialog_mesh_autotile_import_batch_vertical, dg);
+el_import_series.tooltip = "Import autotile meshes in batch. If you want to load an entire series at once you should probably choose this option, because selecting them one-by-one would be very slow.";
 var el_confirm = create_button(dw * 2/ 3 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
 
 ds_list_add(dg.contents,
