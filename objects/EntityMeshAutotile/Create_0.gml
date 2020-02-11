@@ -9,6 +9,7 @@ etype_flags = ETypeFlags.ENTITY_MESH_AUTO;
 
 terrain_id = 0;
 terrain_type = ATTerrainTypes.TOP;
+slope = false;
 
 // editor properties
 slot = MapCellContents.MESHPAWN;
