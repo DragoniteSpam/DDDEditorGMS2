@@ -5,19 +5,28 @@ for (var i = 0; i < ds_list_size(terrain); i++) {
     var thing = terrain[| i];
     var thing_is_mesh = instanceof(thing, EntityMeshAutotile);
     var original_id = thing_is_mesh ? thing.terrain_id : -1;
+    var original_type = thing.terrain_type;
     thing.terrain_id = get_autotile_id(thing);
-    thing.terrain_type = ATTerrainTypes.BASE;
     
-    // batched entities will need to be updated
-    if (thing.modification == Modifications.NONE && original_id != thing.terrain_id && original_id != -1) {
-        editor_map_mark_changed(thing);
+    // evaluate top, base or middle
+    if (thing.zz < map.zz - 1 && thing_is_mesh) {
+        var above = (thing.zz < map.zz - 1) ? map_get_grid_cell(thing.xx, thing.yy, thing.zz + 1) : array_create(MapCellContents._COUNT, noone);
+        var below = (thing.zz > 0) ? map_get_grid_cell(thing.xx, thing.yy, thing.zz - 1) : array_create(MapCellContents._COUNT, noone);
+        // is in middle?
+        if (instanceof(above[MapCellContents.MESHPAWN], EntityMeshAutotile) && instanceof(below[MapCellContents.MESHPAWN], EntityMeshAutotile)) {
+            thing.terrain_type = ATTerrainTypes.VERTICAL;
+        // is on bottom?
+        } else if (instanceof(above[MapCellContents.MESHPAWN], EntityMeshAutotile)) {
+            thing.terrain_type = ATTerrainTypes.BASE;
+        // is on top?
+        } else {
+            thing.terrain_type = ATTerrainTypes.TOP;
+        }
     }
     
-    if (thing.zz < map.zz - 1 && thing_is_mesh) {
-        var above = map_get_grid_cell(thing.xx, thing.yy, thing.zz + 1);
-        if (instanceof(above[MapCellContents.MESHPAWN], EntityMeshAutotile)) {
-            thing.terrain_type = ATTerrainTypes.VERTICAL;
-        }
+    // batched entities will need to be updated when changed
+    if (thing.modification == Modifications.NONE && ((original_id != thing.terrain_id && original_id != -1) || (thing.terrain_type != original_type))) {
+        editor_map_mark_changed(thing);
     }
     
     // if the cell below contains another EntityMeshAutotile, it should be set to use

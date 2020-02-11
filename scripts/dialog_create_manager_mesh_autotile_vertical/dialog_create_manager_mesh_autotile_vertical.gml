@@ -4,7 +4,7 @@ var root = argument0;
 var map = Stuff.map.active_map;
 var map_contents = map.contents;
 
-var dw = 544;
+var dw = 720;
 var dh = 640;
 
 var dg = dialog_create(dw, dh, "Data: Mesh Autotiles (Vertical)", undefined, undefined, root);
@@ -22,7 +22,7 @@ var yy = 64;
 var xx_start = xx;
 var mbw = 64 - spacing;
 var mbh = eh;
-var columns = 8;
+var columns = 12;
 
 dg.buttons = array_create(array_length_1d(map_contents.mesh_autotiles_vertical));
 dg.icons = array_create(array_length_1d(map_contents.mesh_autotiles_vertical));

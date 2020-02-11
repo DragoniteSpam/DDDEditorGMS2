@@ -7,7 +7,8 @@
 
 #macro ALARM_SETTINGS_SAVE 0
 #macro AUTOTILE_AVAILABLE_MAX 100
-#macro AUTOTILE_COUNT 48
+#macro AUTOTILE_COUNT 52
+#macro AUTOTILE_COUNT_OLD 48
 #macro AUTOTILE_MAX 32
 #macro BATCH_CACHE_SIZE 160
 #macro buffer_datatype buffer_u32

@@ -36,8 +36,11 @@ var bools = pack(
 buffer_write(buffer, buffer_u32, bools);
 buffer_write(buffer, buffer_string, map.code);
 
-for (var i = 0; i < array_length_1d(map_contents.mesh_autotile_raw); i++) {
-    var data = map_contents.mesh_autotile_raw[i];
+var at_count = array_length_1d(map_contents.mesh_autotile_top_raw);
+buffer_write(buffer, buffer_u16, at_count);
+
+for (var i = 0; i < at_count; i++) {
+    var data = map_contents.mesh_autotile_top_raw[i];
     if (data) {
         buffer_write(buffer, buffer_bool, true);
         buffer_write(buffer, buffer_u32, buffer_get_size(data));
@@ -47,7 +50,7 @@ for (var i = 0; i < array_length_1d(map_contents.mesh_autotile_raw); i++) {
     }
 }
 
-for (var i = 0; i < array_length_1d(map_contents.mesh_autotile_vertical_raw); i++) {
+for (var i = 0; i < at_count; i++) {
     var data = map_contents.mesh_autotile_vertical_raw[i];
     if (data) {
         buffer_write(buffer, buffer_bool, true);
@@ -57,6 +60,18 @@ for (var i = 0; i < array_length_1d(map_contents.mesh_autotile_vertical_raw); i+
         buffer_write(buffer, buffer_bool, false);
     }
 }
+
+for (var i = 0; i < at_count; i++) {
+    var data = map_contents.mesh_autotile_base_raw[i];
+    if (data) {
+        buffer_write(buffer, buffer_bool, true);
+        buffer_write(buffer, buffer_u32, buffer_get_size(data));
+        buffer_write_buffer(buffer, data);
+    } else {
+        buffer_write(buffer, buffer_bool, false);
+    }
+}
+
 
 var n_generic = ds_list_size(map.generic_data);
 buffer_write(buffer, buffer_u8, n_generic);

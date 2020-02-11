@@ -45,24 +45,42 @@ if (version >= DataVersions.WATER_LEVEL) {
 
 map.code = buffer_read(buffer, buffer_string);
 
-for (var i = 0; i < array_length_1d(map_contents.mesh_autotile_raw); i++) {
+if (version >= DataVersions.AUTOTILE_DESIGNATION_SLOPE) {
+    var at_count = buffer_read(buffer, buffer_u16);
+} else {
+    var at_count = AUTOTILE_COUNT_OLD;
+}
+
+for (var i = 0; i < at_count; i++) {
     var exists = buffer_read(buffer, buffer_bool);
     if (exists) {
         var size = buffer_read(buffer, buffer_u32);
-        map_contents.mesh_autotile_raw[i] = buffer_read_buffer(buffer, size);
-        map_contents.mesh_autotiles[i] = vertex_create_buffer_from_buffer(map_contents.mesh_autotile_raw[i], Stuff.graphics.vertex_format);
-        vertex_freeze(map_contents.mesh_autotiles[i]);
+        map_contents.mesh_autotile_top_raw[i] = buffer_read_buffer(buffer, size);
+        map_contents.mesh_autotiles_top[i] = vertex_create_buffer_from_buffer(map_contents.mesh_autotile_top_raw[i], Stuff.graphics.vertex_format);
+        vertex_freeze(map_contents.mesh_autotiles_top[i]);
     }
 }
 
 if (version >= DataVersions.MESH_AUTOTILE_FINISHED) {
-    for (var i = 0; i < array_length_1d(map_contents.mesh_autotile_vertical_raw); i++) {
+    for (var i = 0; i < at_count; i++) {
         var exists = buffer_read(buffer, buffer_bool);
         if (exists) {
             var size = buffer_read(buffer, buffer_u32);
             map_contents.mesh_autotile_vertical_raw[i] = buffer_read_buffer(buffer, size);
             map_contents.mesh_autotiles_vertical[i] = vertex_create_buffer_from_buffer(map_contents.mesh_autotile_vertical_raw[i], Stuff.graphics.vertex_format);
             vertex_freeze(map_contents.mesh_autotiles_vertical[i]);
+        }
+    }
+}
+
+if (version >= DataVersions.AUTOTILE_DESIGNATION_SLOPE) {
+    for (var i = 0; i < at_count; i++) {
+        var exists = buffer_read(buffer, buffer_bool);
+        if (exists) {
+            var size = buffer_read(buffer, buffer_u32);
+            map_contents.mesh_autotile_base_raw[i] = buffer_read_buffer(buffer, size);
+            map_contents.mesh_autotiles_base[i] = vertex_create_buffer_from_buffer(map_contents.mesh_autotile_base_raw[i], Stuff.graphics.vertex_format);
+            vertex_freeze(map_contents.mesh_autotiles_base[i]);
         }
     }
 }

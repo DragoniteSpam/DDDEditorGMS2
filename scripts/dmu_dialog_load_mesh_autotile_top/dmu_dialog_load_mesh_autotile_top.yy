@@ -1,8 +1,8 @@
 {
-    "id": "eb06fc41-b43a-463b-b299-d5dcf57fb989",
+    "id": "fc212abb-312a-4d64-8950-0366b9543557",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "momu_graphic_mesh_autotiles_base",
+    "name": "dmu_dialog_load_mesh_autotile_top",
     "IsCompatibility": false,
     "IsDnD": false
 }

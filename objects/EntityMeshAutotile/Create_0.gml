@@ -8,7 +8,7 @@ etype = ETypes.ENTITY_MESH_AUTO;
 etype_flags = ETypeFlags.ENTITY_MESH_AUTO;
 
 terrain_id = 0;
-terrain_type = ATTerrainTypes.BASE;
+terrain_type = ATTerrainTypes.TOP;
 
 // editor properties
 slot = MapCellContents.MESHPAWN;
@@ -33,6 +33,7 @@ enum ATMask {
 }
 
 enum ATTerrainTypes {
-    BASE,
+    TOP,
     VERTICAL,
+    BASE,
 }

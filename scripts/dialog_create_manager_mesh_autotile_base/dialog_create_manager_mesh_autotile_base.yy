@@ -1,5 +1,5 @@
 {
-    "id": "314b5433-7b59-4307-8bf8-0bf5d4f95406",
+    "id": "74a795f3-afad-42dd-9a89-46f24b79d916",
     "modelName": "GMScript",
     "mvc": "1.0",
     "name": "dialog_create_manager_mesh_autotile_base",

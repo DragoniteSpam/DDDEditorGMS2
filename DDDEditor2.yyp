@@ -3355,7 +3355,7 @@
             "Key": "314b5433-7b59-4307-8bf8-0bf5d4f95406",
             "Value": {
                 "id": "57b09959-46ba-45cb-bd5a-5039be9a11ee",
-                "resourcePath": "scripts\\dialog_create_manager_mesh_autotile_base\\dialog_create_manager_mesh_autotile_base.yy",
+                "resourcePath": "scripts\\dialog_create_manager_mesh_autotile_top\\dialog_create_manager_mesh_autotile_top.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -5667,7 +5667,7 @@
             "Key": "54a48ce1-facf-4ddd-b47c-3d0087ccfee1",
             "Value": {
                 "id": "a3062281-1b75-4fde-b373-14387f22269c",
-                "resourcePath": "scripts\\momu_graphic_mesh_autotiles_base\\momu_graphic_mesh_autotiles_base.yy",
+                "resourcePath": "scripts\\momu_graphic_mesh_autotiles_top\\momu_graphic_mesh_autotiles_top.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -6220,6 +6220,14 @@
             "Value": {
                 "id": "ecc54413-0565-4fed-a5bb-5a1d3f4f3e63",
                 "resourcePath": "scripts\\uivc_select_tile\\uivc_select_tile.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "5cf83b3c-cff5-42bc-8ec8-eb3a364e19d0",
+            "Value": {
+                "id": "c1acf951-85d5-4316-aaf0-7489218f1646",
+                "resourcePath": "scripts\\dmu_dialog_mesh_autotile_import_batch_top\\dmu_dialog_mesh_autotile_import_batch_top.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -7700,6 +7708,14 @@
             "Value": {
                 "id": "ee344fd0-8921-451c-b153-b83f1a0d69cc",
                 "resourcePath": "scripts\\omu_data_enum_select\\omu_data_enum_select.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "74a795f3-afad-42dd-9a89-46f24b79d916",
+            "Value": {
+                "id": "7d1feb21-08ff-466f-ace2-f21309bc17e6",
+                "resourcePath": "scripts\\dialog_create_manager_mesh_autotile_base\\dialog_create_manager_mesh_autotile_base.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -15424,6 +15440,14 @@
             }
         },
         {
+            "Key": "eb06fc41-b43a-463b-b299-d5dcf57fb989",
+            "Value": {
+                "id": "fe4e146a-1bd8-41db-a691-61c217c490c3",
+                "resourcePath": "scripts\\momu_graphic_mesh_autotiles_base\\momu_graphic_mesh_autotiles_base.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "eb329f9c-4b52-4016-aab8-6c095e9cfdf1",
             "Value": {
                 "id": "2988bfd8-6f17-454d-b250-63807f3622aa",
@@ -16520,6 +16544,14 @@
             }
         },
         {
+            "Key": "fc212abb-312a-4d64-8950-0366b9543557",
+            "Value": {
+                "id": "777a31d7-7fb0-45c0-a2e4-384ef2a48b9e",
+                "resourcePath": "scripts\\dmu_dialog_load_mesh_autotile_top\\dmu_dialog_load_mesh_autotile_top.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "fc3810c0-07f1-484b-9086-170b965bfd76",
             "Value": {
                 "id": "31be7e38-c7c4-4fca-b12f-e94fae0f28e9",
@@ -17267,6 +17299,7 @@
         "c5f93cc5-cb1c-46af-9e46-7cf396f39038",
         "314b5433-7b59-4307-8bf8-0bf5d4f95406",
         "afee7f06-5f5e-4d62-aa83-572e29679597",
+        "74a795f3-afad-42dd-9a89-46f24b79d916",
         "cb438292-f61d-47d3-aa94-63e69acbca1b",
         "6e5e22b4-1b52-4d8a-a218-f8ee04d806cb",
         "af69af38-ac36-447b-8100-4f054761af2f",
@@ -17300,8 +17333,10 @@
         "1463a253-2c9b-48c6-8428-954e21d6ff63",
         "6632e72e-3d90-4eed-bde9-d7220c475a3d",
         "421b75e0-45fa-46bd-9818-6df02b716307",
+        "fc212abb-312a-4d64-8950-0366b9543557",
         "9439ae5d-16a3-499d-b8bf-03a153cda3a4",
         "82ce3af3-3dee-4a8c-9ba9-19b89f4eee05",
+        "5cf83b3c-cff5-42bc-8ec8-eb3a364e19d0",
         "ae57029c-d28f-4571-8862-4333f25e1b6f",
         "dd530bc5-b3be-4ad9-98cb-00e3c00bce71",
         "796df690-2228-4c77-b188-e46c05f22094",
@@ -17376,6 +17411,7 @@
         "df9f8e52-d39f-4d27-959e-cb48c4037340",
         "54a48ce1-facf-4ddd-b47c-3d0087ccfee1",
         "4c1264f9-9738-4206-b39e-921d6a078dc1",
+        "eb06fc41-b43a-463b-b299-d5dcf57fb989",
         "ef7e57cb-8661-4d54-b335-ab819f7369bd",
         "88f87ee3-86f8-43a3-9b22-3b1bdf750885",
         "66a69a30-5cfd-40a6-a951-b7ce1ce7fd42",

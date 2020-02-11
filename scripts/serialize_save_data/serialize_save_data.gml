@@ -109,5 +109,6 @@ enum DataVersions {
     REMOVE_ENTITY_COLLISION_DATA        = 83,
     MAP_ZONES                           = 84,
     MAP_CAMERA_ZONE_ORTHO_DATA          = 85,
+    AUTOTILE_DESIGNATION_SLOPE          = 86,
     _CURRENT /* = whatever the last one is + 1 */
 }

@@ -7,7 +7,7 @@ var map_contents = map.contents;
 var dw = 720;
 var dh = 640;
 
-var dg = dialog_create(dw, dh, "Data: Mesh Autotiles (Base)", undefined, undefined, root);
+var dg = dialog_create(dw, dh, "Data: Mesh Autotiles (Top)", undefined, undefined, root);
 
 var ew = (dw - 64) / 2;
 var eh = 24;
@@ -24,13 +24,13 @@ var mbw = 64 - spacing;
 var mbh = eh;
 var columns = 12;
 
-dg.buttons = array_create(array_length_1d(map_contents.mesh_autotiles_base));
-dg.icons = array_create(array_length_1d(map_contents.mesh_autotiles_base));
+dg.buttons = array_create(array_length_1d(map_contents.mesh_autotiles_top));
+dg.icons = array_create(array_length_1d(map_contents.mesh_autotiles_top));
 array_clear(dg.buttons, noone);
 
-for (var i = 0; i < array_length_1d(map_contents.mesh_autotiles_base); i++) {
-    var button = create_button(xx, yy, string(i), mbw, mbh, fa_center, dmu_dialog_load_mesh_autotile_base, dg);
-    button.color = map_contents.mesh_autotiles_base[i] ? c_black : c_gray;
+for (var i = 0; i < array_length_1d(map_contents.mesh_autotiles_top); i++) {
+    var button = create_button(xx, yy, string(i), mbw, mbh, fa_center, dmu_dialog_load_mesh_autotile_top, dg);
+    button.color = map_contents.mesh_autotiles_top[i] ? c_black : c_gray;
     button.key = i;
     ds_list_add(dg.contents, button);
     dg.buttons[i] = button;
@@ -51,7 +51,7 @@ for (var i = 0; i < array_length_1d(map_contents.mesh_autotiles_base); i++) {
     dg.icon[i] = icon;
 }
 
-var el_import_series = create_button(dw / 3 - b_width / 2, dh - 32 - b_height / 2, "Import Batch", b_width, b_height, fa_center, dmu_dialog_mesh_autotile_import_batch_base, dg);
+var el_import_series = create_button(dw / 3 - b_width / 2, dh - 32 - b_height / 2, "Import Batch", b_width, b_height, fa_center, dmu_dialog_mesh_autotile_import_batch_top, dg);
 var el_confirm = create_button(dw * 2/ 3 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
 
 ds_list_add(dg.contents,
