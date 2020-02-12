@@ -9,7 +9,6 @@ etype_flags = ETypeFlags.ENTITY_MESH_AUTO;
 
 terrain_id = 0;
 terrain_type = ATTerrainTypes.TOP;
-slope = false;
 
 // editor properties
 slot = MapCellContents.MESHPAWN;
@@ -22,7 +21,10 @@ render = render_mesh_autotile;
 selector = select_single;
 on_select = safc_on_mesh;
 
+// this can also be used for anything else that needs eight directions
+// which may occasionally be combined
 enum ATMask {
+    NONE        = 0x0000,
     NORTHWEST   = 0x0001,
     NORTH       = 0x0002,
     NORTHEAST   = 0x0004,
@@ -37,4 +39,5 @@ enum ATTerrainTypes {
     TOP,
     VERTICAL,
     BASE,
+    SLOPE,
 }

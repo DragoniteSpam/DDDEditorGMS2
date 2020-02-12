@@ -5,7 +5,7 @@ var map = Stuff.map.active_map;
 var map_contents = map.contents;
 
 var dw = 800;
-var dh = 640;
+var dh = 480;
 
 var dg = dialog_create(dw, dh, "Data: Mesh Autotiles (Top)", undefined, undefined, root);
 

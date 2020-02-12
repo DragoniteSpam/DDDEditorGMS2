@@ -111,5 +111,6 @@ enum DataVersions {
     MAP_CAMERA_ZONE_ORTHO_DATA          = 85,
     AUTOTILE_DESIGNATION_SLOPE          = 86,
     AUTOTILE_DESIGNATION_SLOPE_WHOOPS   = 87,
+    AUTOTILE_DESIGNATION_SLOPE_WHOOPS_x2= 88,
     _CURRENT /* = whatever the last one is + 1 */
 }

@@ -12,6 +12,7 @@ switch (mesh.terrain_type) {
     case ATTerrainTypes.TOP: var raw = Stuff.map.active_map.contents.mesh_autotile_top_raw[mapping]; break;
     case ATTerrainTypes.VERTICAL: var raw = Stuff.map.active_map.contents.mesh_autotile_vertical_raw[mapping]; break;
     case ATTerrainTypes.BASE: var raw = Stuff.map.active_map.contents.mesh_autotile_base_raw[mapping]; break;
+    case ATTerrainTypes.SLOPE: var raw = Stuff.map.active_map.contents.mesh_autotile_slope_raw[mapping]; break;
     default: var raw = noone; break;
 }
 

@@ -13,7 +13,10 @@ if (version >= DataVersions.MESH_AUTOTILE_FINISHED) {
     entity.terrain_type = buffer_read(buffer, buffer_u8);
 }
 
+// i screwed this one up good
 if (version >= DataVersions.AUTOTILE_DESIGNATION_SLOPE_WHOOPS) {
-    var bools = buffer_read(buffer, buffer_u32);
-    entity.slope = unpack(bools, 0);
+    if (version >= DataVersions.AUTOTILE_DESIGNATION_SLOPE_WHOOPS_x2) {
+    } else {
+        buffer_read(buffer, buffer_u32);
+    }
 }

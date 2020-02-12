@@ -131,3 +131,7 @@ if (version >= DataVersions.COLLISION_FLAGS) {
 } else {
     buffer_read(buffer, buffer_u32);
 }
+
+if (version >= DataVersions.AUTOTILE_DESIGNATION_SLOPE_WHOOPS_x2) {
+    entity.slope = buffer_read(buffer, buffer_u8);
+}

@@ -15,12 +15,17 @@ for (var i = 0; i < ds_list_size(terrain); i++) {
         // is in middle?
         if (instanceof(above[MapCellContents.MESHPAWN], EntityMeshAutotile) && instanceof(below[MapCellContents.MESHPAWN], EntityMeshAutotile)) {
             thing.terrain_type = ATTerrainTypes.VERTICAL;
-        // is on bottom?
-        } else if (instanceof(above[MapCellContents.MESHPAWN], EntityMeshAutotile)) {
-            thing.terrain_type = ATTerrainTypes.BASE;
         // is on top?
+        } else if (instanceof(below[MapCellContents.MESHPAWN], EntityMeshAutotile)) {
+            // is marked as slope?
+            if (above[MapCellContents.MESHPAWN].slope) {
+                thing.terrain_type = ATTerrainTypes.SLOPE;
+            } else {
+                thing.terrain_type = ATTerrainTypes.TOP;
+            }
+        // is on bottom?
         } else {
-            thing.terrain_type = ATTerrainTypes.TOP;
+            thing.terrain_type = ATTerrainTypes.BASE;
         }
     }
     
