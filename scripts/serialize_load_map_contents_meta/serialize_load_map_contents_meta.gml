@@ -48,7 +48,7 @@ map.code = buffer_read(buffer, buffer_string);
 if (version >= DataVersions.AUTOTILE_DESIGNATION_SLOPE) {
     var at_count = buffer_read(buffer, buffer_u16);
 } else {
-    var at_count = AUTOTILE_COUNT_OLD;
+    var at_count = AUTOTILE_COUNT;
 }
 
 for (var i = 0; i < at_count; i++) {
@@ -81,6 +81,18 @@ if (version >= DataVersions.AUTOTILE_DESIGNATION_SLOPE) {
             map_contents.mesh_autotile_base_raw[i] = buffer_read_buffer(buffer, size);
             map_contents.mesh_autotiles_base[i] = vertex_create_buffer_from_buffer(map_contents.mesh_autotile_base_raw[i], Stuff.graphics.vertex_format);
             vertex_freeze(map_contents.mesh_autotiles_base[i]);
+        }
+    }
+}
+
+if (version >= DataVersions.AUTOTILE_DESIGNATION_SLOPE_WHOOPS) {
+    for (var i = 0; i < at_count; i++) {
+        var exists = buffer_read(buffer, buffer_bool);
+        if (exists) {
+            var size = buffer_read(buffer, buffer_u32);
+            map_contents.mesh_autotile_slope_raw[i] = buffer_read_buffer(buffer, size);
+            map_contents.mesh_autotiles_slope[i] = vertex_create_buffer_from_buffer(map_contents.mesh_autotile_slope_raw[i], Stuff.graphics.vertex_format);
+            vertex_freeze(map_contents.mesh_autotiles_slope[i]);
         }
     }
 }

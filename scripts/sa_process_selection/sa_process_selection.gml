@@ -50,6 +50,7 @@ if (ds_list_size(list) == 0) {
     
     Stuff.map.ui.element_entity_mesh_animated.value = false;
     Stuff.map.ui.element_entity_mesh_animated.interactive = false;
+    Stuff.map.ui.element_entity_mesh_autotile_data.interactive = false;
     
     // entity-pawn
     
@@ -64,8 +65,9 @@ if (ds_list_size(list) == 0) {
 } else if (ds_list_size(list) == 1) {
     safa_on_select(list[| 0]);
 } else {
-    // if multiple eligible entities are selected, populate the UI
-    // elements with a nice ¯\_(ツ)_/¯
+    // being able to use the on select script for this would be nice,
+    // except it depends rather heavily on whether or not each of the
+    // entities share a common type
     ui_input_set_value(Stuff.map.ui.element_entity_name, "");
     Stuff.map.ui.element_entity_static.value = 2;
     
@@ -134,9 +136,10 @@ if (ds_list_size(list) == 0) {
         case EntityTile:
             break;
         case EntityMeshAutotile:
+            // only allow this for individual entities
+            Stuff.map.ui.element_entity_mesh_autotile_data.interactive = false;
         case EntityMesh:
             Stuff.map.ui.element_entity_mesh_animated.value = 2;
-            
             Stuff.map.ui.element_entity_mesh_animated.interactive = true;
             break;
         case EntityPawn:
