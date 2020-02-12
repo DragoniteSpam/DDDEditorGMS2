@@ -1,3 +1,5 @@
-/// @param UICheckbox
+/// @param UIRadioArray
 
-var checkbox = argument0;
+var radio = argument0;
+
+radio.root.root.mesh.slope = global.at_mask_values[radio.value];

@@ -153,3 +153,31 @@ enum MapZoneTypes {
 global.map_zone_type_objects = [
     DataCameraZone,
 ];
+
+// this can also be used for anything else that needs eight directions
+// which may occasionally be combined
+enum ATMask {
+    NONE        = 0x0000,
+    NORTHWEST   = 0x0001,
+    NORTH       = 0x0002,
+    NORTHEAST   = 0x0004,
+    WEST        = 0x0008,
+    EAST        = 0x0010,
+    SOUTHWEST   = 0x0020,
+    SOUTH       = 0x0040,
+    SOUTHEAST   = 0x0080,
+}
+
+// there are other ways i'd prefer to do this but i also would kinda like to not make
+// a second cardinal directions enum
+global.at_mask_values = [ATMask.NONE, ATMask.NORTHWEST, ATMask.NORTH, ATMask.NORTHEAST, ATMask.WEST, ATMask.EAST, ATMask.SOUTHWEST, ATMask.SOUTH, ATMask.SOUTHEAST];
+global.at_mask_lookup = ds_map_create();
+global.at_mask_lookup[? ATMask.NONE] = 0;
+global.at_mask_lookup[? ATMask.NORTHWEST] = 1;
+global.at_mask_lookup[? ATMask.NORTH] = 2;
+global.at_mask_lookup[? ATMask.NORTHEAST] = 3;
+global.at_mask_lookup[? ATMask.WEST] = 4;
+global.at_mask_lookup[? ATMask.EAST] = 5;
+global.at_mask_lookup[? ATMask.SOUTHWEST] = 6;
+global.at_mask_lookup[? ATMask.SOUTH] = 7;
+global.at_mask_lookup[? ATMask.SOUTHEAST] = 8;

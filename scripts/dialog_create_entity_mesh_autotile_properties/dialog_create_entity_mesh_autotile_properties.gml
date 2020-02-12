@@ -5,9 +5,10 @@ var list = Stuff.map.selected_entities;
 var mesh = list[| 0];
 
 var dw = 320;
-var dh = 320;
+var dh = 400;
 
 var dg = dialog_create(dw, dh, "Mesh Autotile properties", dialog_default, dc_close_no_questions_asked, dialog);
+dg.mesh = mesh;
 
 var spacing = 16;
 var columns = 1;
@@ -24,7 +25,8 @@ var vy2 = vy1 + eh;
 var yy = 64;
 var yy_base = yy;
 
-var el_slope = create_checkbox(col1_x, yy, "Slope?", ew, eh, uivc_entity_mesh_autotile_slope, mesh.slope, dg);
+var el_slope = create_radio_array(col1_x, yy, "Slope Direction", ew, eh, uivc_entity_mesh_autotile_slope, global.at_mask_lookup[? mesh.slope], dg);
+create_radio_array_options(el_slope, ["None", "Northwest", "North", "Northeast", "West", "East", "Southwest", "South", "East"]);
 yy = yy + el_slope.height + spacing;
 
 var b_width = 128;

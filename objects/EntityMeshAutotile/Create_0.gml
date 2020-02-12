@@ -21,20 +21,6 @@ render = render_mesh_autotile;
 selector = select_single;
 on_select = safc_on_mesh;
 
-// this can also be used for anything else that needs eight directions
-// which may occasionally be combined
-enum ATMask {
-    NONE        = 0x0000,
-    NORTHWEST   = 0x0001,
-    NORTH       = 0x0002,
-    NORTHEAST   = 0x0004,
-    WEST        = 0x0008,
-    EAST        = 0x0010,
-    SOUTHWEST   = 0x0020,
-    SOUTH       = 0x0040,
-    SOUTHEAST   = 0x0080,
-}
-
 enum ATTerrainTypes {
     TOP,
     VERTICAL,
