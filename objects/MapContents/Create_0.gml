@@ -30,6 +30,8 @@ mesh_autotiles_vertical = array_create(AUTOTILE_COUNT, noone);
 mesh_autotile_vertical_raw = array_create(AUTOTILE_COUNT, noone);
 mesh_autotiles_base = array_create(AUTOTILE_COUNT, noone);
 mesh_autotile_base_raw = array_create(AUTOTILE_COUNT, noone);
+mesh_autotiles_slope = array_create(AUTOTILE_COUNT, noone);
+mesh_autotile_slope_raw = array_create(AUTOTILE_COUNT, noone);
 
 population = [0, 0, 0, 0, 0, 0, 0];
 population_static = 0;
