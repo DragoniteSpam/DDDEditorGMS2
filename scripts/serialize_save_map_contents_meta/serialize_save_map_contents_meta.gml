@@ -36,11 +36,11 @@ var bools = pack(
 buffer_write(buffer, buffer_u32, bools);
 buffer_write(buffer, buffer_string, map.code);
 
-var at_count = array_length_1d(map_contents.mesh_autotile_top_raw);
+var at_count = array_length_1d(map_contents.mesh_autotiles_top_raw);
 buffer_write(buffer, buffer_u16, at_count);
 
 for (var i = 0; i < at_count; i++) {
-    var data = map_contents.mesh_autotile_top_raw[i];
+    var data = map_contents.mesh_autotiles_top_raw[i];
     if (data) {
         buffer_write(buffer, buffer_bool, true);
         buffer_write(buffer, buffer_u32, buffer_get_size(data));
@@ -51,7 +51,7 @@ for (var i = 0; i < at_count; i++) {
 }
 
 for (var i = 0; i < at_count; i++) {
-    var data = map_contents.mesh_autotile_vertical_raw[i];
+    var data = map_contents.mesh_autotiles_vertical_raw[i];
     if (data) {
         buffer_write(buffer, buffer_bool, true);
         buffer_write(buffer, buffer_u32, buffer_get_size(data));
@@ -62,7 +62,7 @@ for (var i = 0; i < at_count; i++) {
 }
 
 for (var i = 0; i < at_count; i++) {
-    var data = map_contents.mesh_autotile_base_raw[i];
+    var data = map_contents.mesh_autotiles_base_raw[i];
     if (data) {
         buffer_write(buffer, buffer_bool, true);
         buffer_write(buffer, buffer_u32, buffer_get_size(data));
@@ -73,7 +73,7 @@ for (var i = 0; i < at_count; i++) {
 }
 
 for (var i = 0; i < at_count; i++) {
-    var data = map_contents.mesh_autotile_slope_raw[i];
+    var data = map_contents.mesh_autotiles_slope_raw[i];
     if (data) {
         buffer_write(buffer, buffer_bool, true);
         buffer_write(buffer, buffer_u32, buffer_get_size(data));

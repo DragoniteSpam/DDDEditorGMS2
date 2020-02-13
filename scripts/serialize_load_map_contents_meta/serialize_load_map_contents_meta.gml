@@ -55,8 +55,8 @@ for (var i = 0; i < at_count; i++) {
     var exists = buffer_read(buffer, buffer_bool);
     if (exists) {
         var size = buffer_read(buffer, buffer_u32);
-        map_contents.mesh_autotile_top_raw[i] = buffer_read_buffer(buffer, size);
-        map_contents.mesh_autotiles_top[i] = vertex_create_buffer_from_buffer(map_contents.mesh_autotile_top_raw[i], Stuff.graphics.vertex_format);
+        map_contents.mesh_autotiles_top_raw[i] = buffer_read_buffer(buffer, size);
+        map_contents.mesh_autotiles_top[i] = vertex_create_buffer_from_buffer(map_contents.mesh_autotiles_top_raw[i], Stuff.graphics.vertex_format);
         vertex_freeze(map_contents.mesh_autotiles_top[i]);
     }
 }
@@ -66,8 +66,8 @@ if (version >= DataVersions.MESH_AUTOTILE_FINISHED) {
         var exists = buffer_read(buffer, buffer_bool);
         if (exists) {
             var size = buffer_read(buffer, buffer_u32);
-            map_contents.mesh_autotile_vertical_raw[i] = buffer_read_buffer(buffer, size);
-            map_contents.mesh_autotiles_vertical[i] = vertex_create_buffer_from_buffer(map_contents.mesh_autotile_vertical_raw[i], Stuff.graphics.vertex_format);
+            map_contents.mesh_autotiles_vertical_raw[i] = buffer_read_buffer(buffer, size);
+            map_contents.mesh_autotiles_vertical[i] = vertex_create_buffer_from_buffer(map_contents.mesh_autotiles_vertical_raw[i], Stuff.graphics.vertex_format);
             vertex_freeze(map_contents.mesh_autotiles_vertical[i]);
         }
     }
@@ -78,8 +78,8 @@ if (version >= DataVersions.AUTOTILE_DESIGNATION_SLOPE) {
         var exists = buffer_read(buffer, buffer_bool);
         if (exists) {
             var size = buffer_read(buffer, buffer_u32);
-            map_contents.mesh_autotile_base_raw[i] = buffer_read_buffer(buffer, size);
-            map_contents.mesh_autotiles_base[i] = vertex_create_buffer_from_buffer(map_contents.mesh_autotile_base_raw[i], Stuff.graphics.vertex_format);
+            map_contents.mesh_autotiles_base_raw[i] = buffer_read_buffer(buffer, size);
+            map_contents.mesh_autotiles_base[i] = vertex_create_buffer_from_buffer(map_contents.mesh_autotiles_base_raw[i], Stuff.graphics.vertex_format);
             vertex_freeze(map_contents.mesh_autotiles_base[i]);
         }
     }
@@ -90,8 +90,8 @@ if (version >= DataVersions.AUTOTILE_DESIGNATION_SLOPE_WHOOPS) {
         var exists = buffer_read(buffer, buffer_bool);
         if (exists) {
             var size = buffer_read(buffer, buffer_u32);
-            map_contents.mesh_autotile_slope_raw[i] = buffer_read_buffer(buffer, size);
-            map_contents.mesh_autotiles_slope[i] = vertex_create_buffer_from_buffer(map_contents.mesh_autotile_slope_raw[i], Stuff.graphics.vertex_format);
+            map_contents.mesh_autotiles_slope_raw[i] = buffer_read_buffer(buffer, size);
+            map_contents.mesh_autotiles_slope[i] = vertex_create_buffer_from_buffer(map_contents.mesh_autotiles_slope_raw[i], Stuff.graphics.vertex_format);
             vertex_freeze(map_contents.mesh_autotiles_slope[i]);
         }
     }

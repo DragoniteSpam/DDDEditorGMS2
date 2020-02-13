@@ -11,17 +11,17 @@ for (var i = 0; i < array_length_1d(map_contents.mesh_autotiles_slope); i++) {
     if (file_exists(fn)) {
         if (map_contents.mesh_autotiles_slope[i]) {
             vertex_delete_buffer(map_contents.mesh_autotiles_slope[i]);
-            buffer_delete(map_contents.mesh_autotile_slope_raw[i]);
+            buffer_delete(map_contents.mesh_autotiles_slope_raw[i]);
         }
         
         var vbuffer = import_d3d(fn, false, true);
-        map_contents.mesh_autotile_slope_raw[i] = vbuffer;
+        map_contents.mesh_autotiles_slope_raw[i] = vbuffer;
         
         if (vbuffer) {
-            map_contents.mesh_autotile_slope_raw[i] = buffer_create_from_vertex_buffer(vbuffer, buffer_fixed, 1);
+            map_contents.mesh_autotiles_slope_raw[i] = buffer_create_from_vertex_buffer(vbuffer, buffer_fixed, 1);
             vertex_freeze(vbuffer);
         } else {
-            map_contents.mesh_autotile_slope_raw[i] = noone;
+            map_contents.mesh_autotiles_slope_raw[i] = noone;
         }
     }
     

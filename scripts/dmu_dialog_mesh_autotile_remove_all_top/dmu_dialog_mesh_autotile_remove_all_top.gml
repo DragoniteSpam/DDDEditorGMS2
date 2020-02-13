@@ -8,8 +8,8 @@ var changes = ds_map_create();
 for (var i = 0; i < array_length_1d(map_contents.mesh_autotiles_top); i++) {
     if (map_contents.mesh_autotiles_top[i]) {
         vertex_delete_buffer(map_contents.mesh_autotiles_top[i]);
-        buffer_delete(map_contents.mesh_autotile_top_raw[i]);
-        map_contents.mesh_autotile_top_raw[i] = noone;
+        buffer_delete(map_contents.mesh_autotiles_top_raw[i]);
+        map_contents.mesh_autotiles_top_raw[i] = noone;
         map_contents.mesh_autotiles_top[i] = noone;
     }
     changes[? i] = true;
