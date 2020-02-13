@@ -11,9 +11,10 @@ for (var i = 0; i < ds_list_size(terrain); i++) {
     // evaluate top, base or middle
     if (thing.zz < map.zz - 1 && thing_is_mesh) {
         var above = (thing.zz < map.zz - 1) ? map_get_grid_cell(thing.xx, thing.yy, thing.zz + 1) : array_create(MapCellContents._COUNT, noone);
-        var above_exists = instanceof(above[MapCellContents.MESHPAWN], EntityMeshAutotile);
         var below = (thing.zz > 0) ? map_get_grid_cell(thing.xx, thing.yy, thing.zz - 1) : array_create(MapCellContents._COUNT, noone);
-        var below_exists = instanceof(below[MapCellContents.MESHPAWN], EntityMeshAutotile);
+        // if an entity is marked as "removed," even if it's still there, it might as well not be there
+        var above_exists = instanceof(above[MapCellContents.MESHPAWN], EntityMeshAutotile) && (above[MapCellContents.MESHPAWN].modification != Modifications.REMOVE);
+        var below_exists = instanceof(below[MapCellContents.MESHPAWN], EntityMeshAutotile) && (below[MapCellContents.MESHPAWN].modification != Modifications.REMOVE);
         if (above_exists && below_exists) {
             // is in middle?
             thing.terrain_type = ATTerrainTypes.VERTICAL;
@@ -41,7 +42,6 @@ for (var i = 0; i < ds_list_size(terrain); i++) {
         // in which case it should go back to using the top one
         if (below_exists) {
             var below_thing = below[MapCellContents.MESHPAWN];
-            debug(thing.modification == Modifications.REMOVE);
             below_thing.terrain_type = (thing.modification == Modifications.REMOVE) ? ATTerrainTypes.TOP : ATTerrainTypes.VERTICAL;
             editor_map_mark_changed(below_thing);
         }

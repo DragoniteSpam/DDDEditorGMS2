@@ -38,7 +38,6 @@ if (ds_list_size(modifications) > 0) {
             if (thing.modification == Modifications.REMOVE) {
                 if (thing.batch_addr) {
                     var list_instances = thing.batch_addr[? "instances"];
-                    rebatch_these[? thing.batch_addr] = true;
                     ds_list_delete(list_instances, ds_list_find_index(list_instances, thing));
                 } else if (thing.batchable) {
                     ds_list_delete(map.batch_in_the_future, ds_list_find_index(map.batch_in_the_future, thing));
@@ -87,7 +86,6 @@ if (ds_list_size(modifications) > 0) {
             if (thing.modification == Modifications.REMOVE) {
                 if (thing.batch_addr) {
                     var list_instances = thing.batch_addr[? "instances"];
-                    rebatch_these[? thing.batch_addr] = true;
                     ds_list_delete(list_instances, ds_list_find_index(list_instances, thing));
                 } else if (thing.batchable) {
                     ds_list_delete(map.batch_in_the_future, ds_list_find_index(map.batch_in_the_future, thing));
@@ -112,11 +110,7 @@ if (ds_list_size(modifications) > 0) {
         ds_list_destroy(clone_dynamic);
         ds_list_destroy(clone_all);
     }
-    This is causing a crash occasionally
-    To replicate:
-     - Go out into the middle of the map and create an EntityMeshAutotile
-     - Create another EntityMeshAutotile right above it, which would request a rebatch
-     - Should crash
+    
     // once the batches that need to be recalculated have been worked out, re-batch them
     var rebatch_indices = ds_map_to_list(rebatch_these);
     for (var i = 0; i < ds_list_size(rebatch_indices); i++) {
