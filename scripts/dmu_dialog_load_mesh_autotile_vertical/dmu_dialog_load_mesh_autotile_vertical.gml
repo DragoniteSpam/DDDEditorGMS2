@@ -23,4 +23,9 @@ if (file_exists(fn)) {
     }
     
     thing.color = vbuffer ? c_black : c_gray;
+    
+    var changes = ds_map_create();
+    changes[? thing.key] = true;
+    entity_mesh_autotile_check_changes(changes, ATTerrainTypes.VERTICAL);
+    ds_map_destroy(changes);
 }
