@@ -52,12 +52,15 @@ for (var i = 0; i < array_length_1d(map_contents.mesh_autotiles_slope); i++) {
     dg.icon[i] = icon;
 }
 
-var el_import_series = create_button(dw / 3 - b_width / 2, dh - 32 - b_height / 2, "Import Batch", b_width, b_height, fa_center, dmu_dialog_mesh_autotile_import_batch_slope, dg);
+var el_import_series = create_button(dw / 4 - b_width / 2, dh - 32 - b_height / 2, "Import Batch", b_width, b_height, fa_center, dmu_dialog_mesh_autotile_import_batch_slope, dg);
 el_import_series.tooltip = "Import autotile meshes in batch. If you want to load an entire series at once you should probably choose this option, because selecting them one-by-one would be very slow.";
-var el_confirm = create_button(dw * 2/ 3 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
+var el_clear = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Clear All", b_width, b_height, fa_center, dmu_dialog_mesh_autotile_remove_all_slope, dg);
+el_clear.tooltip = "Removes all imported mesh autotiles. Entities which use them will continue to exist, but will be invisible."
+var el_confirm = create_button(dw * 3 / 4 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
 
 ds_list_add(dg.contents,
     el_import_series,
+    el_clear,
     el_confirm
 );
 

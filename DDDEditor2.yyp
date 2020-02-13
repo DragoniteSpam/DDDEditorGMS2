@@ -1480,6 +1480,14 @@
             }
         },
         {
+            "Key": "14cbc8b8-cbfe-4470-b1e2-e8f70a724ef8",
+            "Value": {
+                "id": "ff2070b0-c6e7-4cf8-8698-677476e00392",
+                "resourcePath": "scripts\\dmu_dialog_mesh_autotile_remove_all_vertical\\dmu_dialog_mesh_autotile_remove_all_vertical.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "14ff12b1-b8eb-4617-af7b-29642c2e74e5",
             "Value": {
                 "id": "accdb45a-eb40-45e4-a607-107f31180f62",
@@ -2076,6 +2084,14 @@
             "Value": {
                 "id": "69215443-8ff3-4ae3-ac2a-9da90b46a7bc",
                 "resourcePath": "scripts\\dialog_create_settings_data_event_triggers\\dialog_create_settings_data_event_triggers.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "1e4380b4-2201-4150-829a-2bccd4166e27",
+            "Value": {
+                "id": "d1080b22-7b24-4f41-9955-9867b21bbe47",
+                "resourcePath": "scripts\\dmu_dialog_mesh_autotile_remove_all_base\\dmu_dialog_mesh_autotile_remove_all_base.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -9216,6 +9232,14 @@
             }
         },
         {
+            "Key": "8a66e7ac-398f-491d-8811-aae483987855",
+            "Value": {
+                "id": "bd6f8cac-6098-4922-86b8-07fcea525c98",
+                "resourcePath": "scripts\\dmu_dialog_mesh_autotile_remove_all_top\\dmu_dialog_mesh_autotile_remove_all_top.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "8a770759-7625-4839-8485-b8aac79e1e07",
             "Value": {
                 "id": "3b87b873-a8b8-4378-94cf-848502cd3bbb",
@@ -13376,6 +13400,14 @@
             }
         },
         {
+            "Key": "cb49942f-53ea-40d1-acff-69c6d634edfe",
+            "Value": {
+                "id": "55db0bfa-311e-4e55-97c9-ace757441757",
+                "resourcePath": "scripts\\entity_mesh_autotile_check_changes\\entity_mesh_autotile_check_changes.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "cb67ca02-1c4c-4d06-8447-9e46c7a27f2f",
             "Value": {
                 "id": "31b89f29-fa1c-4b29-b716-b3ead57a3cbe",
@@ -16656,6 +16688,14 @@
             }
         },
         {
+            "Key": "fcb6de01-50cc-4e21-9d00-5e22d5834268",
+            "Value": {
+                "id": "b41a9096-2e1d-4614-8615-37acc5153a3b",
+                "resourcePath": "scripts\\dmu_dialog_mesh_autotile_remove_all_slope\\dmu_dialog_mesh_autotile_remove_all_slope.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "fcbc3620-5731-43bc-8df5-437ff3c44e48",
             "Value": {
                 "id": "3d95ee07-75b5-4f89-8bef-b62d0de8be28",
@@ -17398,6 +17438,10 @@
         "a57ae373-4738-4678-a2cf-f7b8c0ed5ec6",
         "5cf83b3c-cff5-42bc-8ec8-eb3a364e19d0",
         "ae57029c-d28f-4571-8862-4333f25e1b6f",
+        "14cbc8b8-cbfe-4470-b1e2-e8f70a724ef8",
+        "8a66e7ac-398f-491d-8811-aae483987855",
+        "1e4380b4-2201-4150-829a-2bccd4166e27",
+        "fcb6de01-50cc-4e21-9d00-5e22d5834268",
         "dd530bc5-b3be-4ad9-98cb-00e3c00bce71",
         "796df690-2228-4c77-b188-e46c05f22094",
         "2c8a3826-1fff-44d3-975d-a37ccd829943",
@@ -18621,7 +18665,8 @@
         "9825b8ed-4b32-4131-a921-295a54fbb134",
         "0595d670-7f25-429d-a001-b1ceacdd5d49",
         "03d96153-f5e5-4fb2-8f98-1aca29744fbc",
-        "9ac49e05-b1d8-42b2-be10-d3d98d0eea01"
+        "9ac49e05-b1d8-42b2-be10-d3d98d0eea01",
+        "cb49942f-53ea-40d1-acff-69c6d634edfe"
     ],
     "tutorial": ""
 }
