@@ -1,18 +1,22 @@
 /// @param [json]
 
 var map = Stuff.map.active_map.contents;
+var data = (argument_count > 0) ? argument[0] : -2;
 
-// If no index is provided, it just rebatches EVERYTHING. (I thought I already
-// had a script that does that. Weird.) This is very slow. Please don't use it
-// constantly otherwise the program will become very unenjoyable to use.
-if (argument_count == 0) {
+// If no index is provided it just rebatches EVERYTHING. This is very slow. Please
+// don't use it constantly otherwise the program will become very unenjoyable to use.
+if (data == -2) {
     for (var i = 0; i < ds_list_size(map.batch_data); i++) {
         batch_again(map.batch_data[| i]);
     }
     return 0;
 }
 
-var data = argument[0];
+// a value of -1 won't cause everything to rebatch, because that will be very
+// slow for absolutely no reason, but it also is obviously not a valid batch json
+if (data == -1) {
+    return 0;
+}
 
 vertex_delete_buffer(data[? "vertex"]);
 vertex_delete_buffer(data[? "wire"]);
