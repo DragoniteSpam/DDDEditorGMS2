@@ -104,7 +104,7 @@ collision_flags = 0xffffffff;
 // the game will know in advance whether something is to be batched or not.
 // the editor may chance this on the fly. remember to override this in dynamic entities.
 batchable = true;
-batch_index = -1;
+batch_addr = -1;                // ds_map index (which contains batch information)
 modification = Modifications.CREATE;
 
 translateable = true;

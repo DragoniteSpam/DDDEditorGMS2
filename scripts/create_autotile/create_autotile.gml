@@ -32,9 +32,8 @@ for (var i = 0; i < ds_list_size(Stuff.map.active_map.contents.all_entities); i+
                     old.neighbors[index] = noone;
                 }
                 thing.neighbors[index_alt] = autotile;
-            
-                thing.modification = Modifications.UPDATE;
-                ds_list_add(Stuff.map.changes, thing);
+                
+                editor_map_mark_changed(thing);
             }
         }
     }

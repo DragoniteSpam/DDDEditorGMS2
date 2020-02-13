@@ -19,8 +19,7 @@ if (mesh_data) {
     entity.cobject = c_object_create(mesh_data.cshape, CollisionMasks.MAIN, CollisionMasks.MAIN);
     
     map_transform_thing(entity);
-    entity.modification = Modifications.UPDATE;
-    ds_list_add(Stuff.map.changes, entity);
+    editor_map_mark_changed(entity);
     
     return true;
 }

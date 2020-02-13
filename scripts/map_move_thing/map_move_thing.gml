@@ -16,6 +16,7 @@ var yy = argument2;
 var zz = argument3;
 
 if (map_get_free_at(xx, yy, zz, entity.slot)) {
-    map_remove_thing(entity, true);
+    map_remove_thing(entity);
     map_add_thing(entity, xx, yy, zz);
+    editor_map_mark_changed(entity);
 }

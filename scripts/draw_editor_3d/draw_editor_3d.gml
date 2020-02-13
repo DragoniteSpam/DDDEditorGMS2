@@ -48,14 +48,16 @@ if (map_contents.frozen_wire && Stuff.setting_view_entities && Stuff.setting_vie
     vertex_submit(map_contents.frozen_wire, pr_linelist, -1);
 }
 
-for (var i = 0; i < ds_list_size(map_contents.batches); i++) {
+for (var i = 0; i < ds_list_size(map_contents.batch_data); i++) {
+    var data = map_contents.batch_data[| i];
     if (Stuff.setting_view_entities) {
-        vertex_submit(map_contents.batches[| i], pr_trianglelist, tex);
+        vertex_submit(data[? "vertex"], pr_trianglelist, tex);
     }
     if (Stuff.setting_view_wireframe) {
-        vertex_submit(map_contents.batches_wire[| i], pr_linelist, -1);
+        vertex_submit(data[? "wire"], pr_linelist, -1);
     }
 }
+
 for (var i = 0; i < ds_list_size(map_contents.batch_in_the_future); i++) {
     var ent = map_contents.batch_in_the_future[| i];
     script_execute(ent.render, ent);

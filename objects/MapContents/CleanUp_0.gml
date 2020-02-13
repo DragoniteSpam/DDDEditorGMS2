@@ -2,16 +2,17 @@ if (Stuff.is_quitting) exit;
 
 event_inherited();
 
-for (var i = 0; i < ds_list_size(batches); i++) {
-    vertex_delete_buffer(batches[| i]);
-    vertex_delete_buffer(batches_wire[| i]);
+for (var i = 0; i < ds_list_size(batch_data); i++) {
+    var data = batch_data[| i];
+    vertex_delete_buffer(data[? "vertex"]);
+    vertex_delete_buffer(data[? "wire"]);
 }
 
-ds_list_destroy(batches);
-ds_list_destroy(batches_wire);
+// this is a json, so all of the sub-objects and stuff will be taken care
+// of automatically, as well
+ds_list_destroy(batch_data);
 
 // don't actually delete the instances from here or bad things will happen
-ds_list_destroy(batch_instances);
 ds_list_destroy(batch_in_the_future);
 ds_list_destroy(dynamic);
 

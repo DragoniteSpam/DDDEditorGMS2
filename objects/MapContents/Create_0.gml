@@ -3,10 +3,8 @@
 // stored in the DataMapContainer
 
 // internal stuff
-batches = ds_list_create();          // vertex buffers
-batches_wire = ds_list_create();
+batch_data = ds_list_create();              // json
 
-batch_instances = ds_list_create();       // entities
 batch_in_the_future = ds_list_create();   // entities
 dynamic = ds_list_create();               // entities
 

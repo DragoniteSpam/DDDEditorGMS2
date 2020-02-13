@@ -11,6 +11,10 @@ for (var i = 0; i < ds_list_size(Stuff.map.active_map.contents.all_entities); i+
         continue;
     }
     
+    // if something's marked for removal, it might as well have been already
+    if (thing.modification == Modifications.REMOVE) {
+    }
+    
     if (selected_border(thing)) {
         ds_list_add(list, thing);
     }

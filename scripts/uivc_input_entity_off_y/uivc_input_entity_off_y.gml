@@ -7,7 +7,6 @@ for (var i = 0; i < ds_list_size(list); i++) {
     var thing = list[| i];
     if (thing.offsettable) {        
         thing.off_yy = real(input.value);
-        thing.modification = Modifications.UPDATE;
-        ds_list_add(Stuff.map.changes, thing);
+        editor_map_mark_changed(thing);
     }
 }
