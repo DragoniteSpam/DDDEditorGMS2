@@ -223,61 +223,6 @@ original_data = noone;            // when you're modifying the data types and wa
 
 #endregion
 
-#region autotile settings
-autotile_map = ds_map_create();
-autotile_map[? 2] = 1;
-autotile_map[? 8] = 2;
-autotile_map[? 10] = 3;
-autotile_map[? 11] = 4;
-autotile_map[? 16] = 5;
-autotile_map[? 18] = 6;
-autotile_map[? 22] = 7;
-autotile_map[? 24] = 8;
-autotile_map[? 26] = 9;
-autotile_map[? 27] = 10;
-autotile_map[? 30] = 11;
-autotile_map[? 31] = 12;
-
-autotile_map[? 64] = 13;
-autotile_map[? 66] = 14;
-autotile_map[? 72] = 15;
-autotile_map[? 74] = 16;
-autotile_map[? 75] = 17;
-autotile_map[? 80] = 18;
-autotile_map[? 82] = 19;
-autotile_map[? 86] = 20;
-autotile_map[? 88] = 21;
-autotile_map[? 90] = 22;
-autotile_map[? 91] = 23;
-autotile_map[? 94] = 24;
-
-autotile_map[? 95] = 25;
-autotile_map[? 104] = 26;
-autotile_map[? 106] = 27;
-autotile_map[? 107] = 28;
-autotile_map[? 120] = 29;
-autotile_map[? 122] = 30;
-autotile_map[? 123] = 31;
-autotile_map[? 126] = 32;
-autotile_map[? 127] = 33;
-autotile_map[? 208] = 34;
-autotile_map[? 210] = 35;
-autotile_map[? 214] = 36;
-
-autotile_map[? 216] = 37;
-autotile_map[? 218] = 38;
-autotile_map[? 219] = 39;
-autotile_map[? 222] = 40;
-autotile_map[? 223] = 41;
-autotile_map[? 248] = 42;
-autotile_map[? 250] = 43;
-
-autotile_map[? 251] = 44;
-autotile_map[? 254] = 45;
-autotile_map[? 255] = 46;
-autotile_map[? 0] = 47;
-#endregion
-
 #region prefab events
 event_prefab[EventNodeTypes.INPUT_TEXT] = create_event_node_basic("InputText", [
     ["Help Text", DataTypes.STRING, 0, 1, false, "For example, \"Please enter your name\""],

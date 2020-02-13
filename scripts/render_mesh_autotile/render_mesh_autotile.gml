@@ -1,7 +1,7 @@
 /// @param EntityMeshAutotile
 
 var terrain = argument0;
-var mapping = Stuff.autotile_map[? terrain.terrain_id];
+var mapping = global.at_map[? terrain.terrain_id];
 
 switch (terrain.terrain_type) {
     case ATTerrainTypes.TOP: var vbuffer = Stuff.map.active_map.contents.mesh_autotiles_top[mapping]; break;

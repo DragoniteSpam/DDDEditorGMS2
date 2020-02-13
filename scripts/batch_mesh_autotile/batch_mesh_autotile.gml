@@ -6,7 +6,7 @@ var buffer = argument0;
 var wire = argument1;
 var mesh = argument2;
 
-var mapping = Stuff.autotile_map[? mesh.terrain_id];
+var mapping = global.at_map[? mesh.terrain_id];
 
 switch (mesh.terrain_type) {
     case ATTerrainTypes.TOP: var raw = Stuff.map.active_map.contents.mesh_autotiles_top_raw[mapping]; break;
