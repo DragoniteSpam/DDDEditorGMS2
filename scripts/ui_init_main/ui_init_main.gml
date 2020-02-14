@@ -609,7 +609,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = legal_y + spacing;
     
-    element_entity_mesh_autotile_data = create_button(col1_x, yy, "Autotile Data", col_width, element_height, fa_center, uivc_entity_mesh_autotile_properties, t_p_mesh);
+    element_entity_mesh_autotile_data = create_button(col1_x, yy, "Mesh Autotile Data", col_width, element_height, fa_center, uivc_entity_mesh_autotile_properties, t_p_mesh);
     ds_list_add(t_p_mesh.contents, element_entity_mesh_autotile_data);
     
     yy = yy + element_entity_mesh_autotile_data.height + spacing;
