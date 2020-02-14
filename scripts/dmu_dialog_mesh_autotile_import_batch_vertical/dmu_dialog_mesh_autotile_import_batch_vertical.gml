@@ -7,6 +7,7 @@ var root = filename_dir(get_open_filename_mesh()) + "\\";
 
 for (var i = 0; i < array_length_1d(map_contents.mesh_autotiles_vertical); i++) {
     var fn = root + string(i) + ".d3d";
+    var vbuffer = -1;
     
     if (file_exists(fn)) {
         if (map_contents.mesh_autotiles_vertical[i]) {
@@ -14,7 +15,7 @@ for (var i = 0; i < array_length_1d(map_contents.mesh_autotiles_vertical); i++) 
             buffer_delete(map_contents.mesh_autotiles_vertical_raw[i]);
         }
         
-        var vbuffer = import_d3d(fn, false, true);
+        vbuffer = import_d3d(fn, false, true);
         map_contents.mesh_autotiles_vertical[i] = vbuffer;
         
         if (vbuffer) {
