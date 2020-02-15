@@ -51,4 +51,4 @@ trigger = 0x01;
 // not used: Priority (since priority is attached to entities)
 
 event_guid = 0;
-event_entrypoint = "";
+event_entrypoint = 0;
