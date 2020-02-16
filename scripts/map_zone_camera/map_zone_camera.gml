@@ -79,10 +79,6 @@ var el_camera_angle = create_input(col2_x, yy, "Angle:", ew, eh, uivc_input_map_
 el_camera_angle.tooltip = "The angle above the ground of the camera, measured in degrees; a positive angle is looking down on the camera target, and a negative angle is looking up";
 yy = yy + el_camera_angle.height + spacing;
 
-var el_camera_ortho_size = create_input(col2_x, yy, "Ortho. Size:", ew, eh, uivc_input_map_camera_zone_ortho_size, zone.camera_orthographic_size, "float", validate_double, 0.1, 100, 4, vx1, vy1, vx2, vy2, dg);
-el_camera_ortho_size.tooltip = "The relative width and height of the camera. (Only affects 2D.)";
-yy = yy + el_camera_ortho_size.height + spacing;
-
 var el_priority = create_input(col2_x, yy, "Priority:", ew, eh, uivc_input_map_camera_zone_priority, zone.zone_priority, "int", validate_int, 0, 1000, 3, vx1, vy1, vx2, vy2, dg);
 el_priority.tooltip = "If multiple camera zones overlap, the one with the highest priority will be the one that is acted upon";
 yy = yy + el_priority.height + spacing;
@@ -119,7 +115,6 @@ ds_list_add(dg.contents,
     el_properties_text,
     el_camera_distance,
     el_camera_angle,
-    el_camera_ortho_size,
     el_priority,
     el_transition_text,
     el_transition_style,

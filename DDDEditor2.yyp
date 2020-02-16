@@ -12432,14 +12432,6 @@
             }
         },
         {
-            "Key": "bc39588a-2b1d-46ff-b630-1d7101905ab4",
-            "Value": {
-                "id": "a3b09ba4-61ce-4e46-883a-a5c5e5aa53bd",
-                "resourcePath": "scripts\\uivc_input_map_camera_zone_ortho_size\\uivc_input_map_camera_zone_ortho_size.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "bc67fd1c-1ad8-4958-827a-30cb3101db43",
             "Value": {
                 "id": "db8b56c2-2c1b-4c65-a79a-b3c15e0d9c69",
@@ -17874,7 +17866,6 @@
         "4412165b-be27-4079-94bb-d2365373cf67",
         "292831e3-0127-4fb1-976c-a46315873180",
         "8054ab27-ecd4-43b5-80cf-36b997252001",
-        "bc39588a-2b1d-46ff-b630-1d7101905ab4",
         "056ea9ef-393f-41b0-89cb-3094997c0c18",
         "5b1bac1d-a1d0-441e-b3da-c6a006698b3d",
         "c621ec2c-8a1a-4971-834f-cd72137f4a92",

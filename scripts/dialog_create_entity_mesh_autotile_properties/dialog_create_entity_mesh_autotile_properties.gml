@@ -27,6 +27,7 @@ var yy_base = yy;
 
 var el_slope = create_radio_array(col1_x, yy, "Slope Direction", ew, eh, uivc_entity_mesh_autotile_slope, global.at_mask_lookup[? mesh.slope], dg);
 create_radio_array_options(el_slope, ["None", "Northwest", "North", "Northeast", "West", "East", "Southwest", "South", "East"]);
+el_slope.tooltip = "I realize this is ambiguous. Pick the direction of the top of the slope (i.e. if the bottom is on the West side and the top is on the East side, pick East). I'll probably change this to have it auto-calculate later because there's literally no reason to ever pick a direction other than the face of the mesh autotile.";
 yy = yy + el_slope.height + spacing;
 
 var b_width = 128;
@@ -37,5 +38,7 @@ ds_list_add(dg.contents,
     el_slope,
     el_confirm
 );
+
+show_error(@"This should get an Auto-Assign button of some sort, because that actually makes sense for mesh autotiles (but not other entity types)", false);
 
 return dg;
