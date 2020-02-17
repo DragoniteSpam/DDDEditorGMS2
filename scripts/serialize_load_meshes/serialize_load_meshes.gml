@@ -17,13 +17,7 @@ repeat (n_meshes) {
     mesh.type = buffer_read(buffer, buffer_u8);
     
     var size = buffer_read(buffer, buffer_u32);
-    mesh.buffer = buffer_read_buffer(buffer, size);
-    mesh.vbuffer = vertex_create_buffer_from_buffer(mesh.buffer, Stuff.graphics.vertex_format);
-    
-    mesh.cshape = c_shape_create();
-    c_shape_begin_trimesh();
-    mesh.wbuffer = vertex_create_buffer();
-    vertex_begin(mesh.wbuffer, Stuff.graphics.vertex_format);
+    ds_list_add(mesh.buffers, buffer_read_buffer(buffer, size));
     
     mesh.xmin = buffer_read(buffer, buffer_f32);
     mesh.ymin = buffer_read(buffer, buffer_f32);
@@ -66,6 +60,4 @@ repeat (n_meshes) {
         case MeshTypes.RAW: serialize_load_mesh_raw(mesh); break;
         case MeshTypes.SMF: serialize_load_mesh_smf(mesh); break;
     }
-    
-    buffer_seek(mesh.buffer, buffer_seek_start, 0);
 }

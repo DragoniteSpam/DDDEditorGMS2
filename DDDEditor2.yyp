@@ -6704,6 +6704,14 @@
             }
         },
         {
+            "Key": "64289ba3-596a-4413-bb7e-a4070b5a6eb8",
+            "Value": {
+                "id": "2f11db1a-4c40-4321-9bad-3e69fce4025f",
+                "resourcePath": "scripts\\entity_mesh_get_buffer\\entity_mesh_get_buffer.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "644336c9-ca82-4968-859f-069a4fdfc557",
             "Value": {
                 "id": "e04618a7-d574-49ae-96f9-5243a33762d7",
@@ -8824,6 +8832,14 @@
             }
         },
         {
+            "Key": "8335ebcb-f8b8-4613-84aa-9a4fc0d07796",
+            "Value": {
+                "id": "2b28e42c-39cf-43d4-b88a-4cfae6ad0cc6",
+                "resourcePath": "scripts\\entity_mesh_get_vbuffer\\entity_mesh_get_vbuffer.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "83918601-76a4-41ce-a370-e149f8357773",
             "Value": {
                 "id": "52fa0e7f-6a5d-4c48-b277-203fd632f34f",
@@ -9556,6 +9572,14 @@
             "Value": {
                 "id": "9a6fcb4c-0fd3-458c-b2ff-5dd11378300c",
                 "resourcePath": "scripts\\sa_invert\\sa_invert.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "8f0f4115-e352-4927-9396-f1832f1e8ebd",
+            "Value": {
+                "id": "f49ecd77-1711-4497-b368-f4f622c1c29e",
+                "resourcePath": "scripts\\entity_mesh_get_wbuffer\\entity_mesh_get_wbuffer.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -18260,6 +18284,9 @@
         "322539f4-2f11-4529-b0fd-b85bcab08e7e",
         "eafb66d1-299d-499a-b90d-dd706d2bcb31",
         "fcf970ff-305d-4ebe-9975-49961903f151",
+        "8335ebcb-f8b8-4613-84aa-9a4fc0d07796",
+        "8f0f4115-e352-4927-9396-f1832f1e8ebd",
+        "64289ba3-596a-4413-bb7e-a4070b5a6eb8",
         "4ef4d916-562d-4362-b777-697ab3236fa1",
         "d8ad5fef-aec7-44ad-84b6-786151956008",
         "88a72ab1-34ee-4030-b06d-0468751727de",

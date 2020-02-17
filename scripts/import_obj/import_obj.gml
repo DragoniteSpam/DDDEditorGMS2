@@ -337,10 +337,14 @@ if (file_exists(fn)) {
             internal_name_generate(mesh, PREFIX_MESH + string_lettersdigits(base_name));
             
             if (data_added) {
-                mesh.buffer = buffer_create_from_vertex_buffer(vbuffer, buffer_fixed, 1);
-                mesh.vbuffer = vbuffer;
-                mesh.wbuffer = wbuffer;
-                mesh.cshape = cshape;
+                ds_list_add(mesh.buffers, buffer_create_from_vertex_buffer(vbuffer, buffer_fixed, 1));
+                ds_list_add(mesh.vbuffers, vbuffer);
+                ds_list_add(mesh.wbuffers, wbuffer);
+                if (!mesh.cshape) {
+                    mesh.cshape = cshape;
+                } else {
+                    c_shape_destroy(cshape);
+                }
                 
                 vertex_freeze(wbuffer);
             }

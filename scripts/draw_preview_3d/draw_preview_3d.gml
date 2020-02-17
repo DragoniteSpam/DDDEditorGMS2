@@ -30,11 +30,11 @@ matrix_set(matrix_world, matrix_build(Stuff.mesh_x, Stuff.mesh_y, Stuff.mesh_z, 
 
 switch (mesh.type) {
     case MeshTypes.SMF:
-        smf_model_draw(mesh.vbuffer);
+        smf_model_draw(mesh.vbuffers[| mesh.preivew_index]);
         break;
     case MeshTypes.RAW:
-        vertex_submit(mesh.vbuffer, pr_trianglelist, tex);
-        vertex_submit(mesh.wbuffer, pr_linelist, tex);
+        vertex_submit(mesh.vbuffers[| mesh.preivew_index], pr_trianglelist, tex);
+        vertex_submit(mesh.wbuffers[| mesh.preivew_index], pr_linelist, tex);
         break;
 }
 

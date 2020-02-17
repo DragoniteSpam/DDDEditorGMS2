@@ -11,11 +11,11 @@ var ts = get_active_tileset();
 
 if (Stuff.setting_view_entities) {
     var tex = Stuff.setting_view_texture ? sprite_get_texture(ts.master, 0) : sprite_get_texture(b_tileset_textureless, 0);
-    vertex_submit(mesh.vbuffer, pr_trianglelist, tex);
+    vertex_submit(entity_mesh_get_vbuffer(entity), pr_trianglelist, tex);
 }
 
 if (Stuff.setting_view_wireframe) {
-    vertex_submit(mesh.wbuffer, pr_linelist, -1);
+    vertex_submit(entity_mesh_get_wbuffer(entity), pr_linelist, -1);
 }
 
 transform_reset();

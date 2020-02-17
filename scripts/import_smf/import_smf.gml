@@ -13,12 +13,13 @@ if (smf != undefined) {
     var base_name = filename_change_ext(filename_name(fn), "");
     mesh.name = base_name;
     internal_name_generate(mesh, PREFIX_MESH + string_lettersdigits(base_name));
-    mesh.buffer = smf[0];
-    mesh.vbuffer = smf[1];
+    ds_list_add(mesh.buffers, smf[0]);
+    ds_list_add(mesh.vbuffers, smf[1]);
+    ds_list_add(mesh.wbuffers, noone);
     
     mesh.type = MeshTypes.SMF;
     
-    data_smf_optimize_mesh(mesh);
+    data_smf_optimize_mesh(mesh, ds_list_size(mesh.vbuffers) - 1);
     
     return mesh;
 }

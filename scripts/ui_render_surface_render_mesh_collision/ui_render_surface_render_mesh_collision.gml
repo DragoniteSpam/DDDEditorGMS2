@@ -51,11 +51,11 @@ shader_set_uniform_f(shader_get_uniform(shd_default_alpha, "alpha"), surface.roo
 matrix_set(matrix_world, matrix_build(Stuff.mesh_x, Stuff.mesh_y, Stuff.mesh_z, Stuff.mesh_xrot, Stuff.mesh_yrot, Stuff.mesh_zrot, Stuff.mesh_scale, Stuff.mesh_scale, Stuff.mesh_scale));
 switch (mesh.type) {
     case MeshTypes.SMF:
-        smf_model_draw(mesh.vbuffer);
+        smf_model_draw(mesh.vbuffers[| 0]);
         break;
     case MeshTypes.RAW:
-        vertex_submit(mesh.vbuffer, pr_trianglelist, tex);
-        vertex_submit(mesh.wbuffer, pr_linelist, tex);
+        vertex_submit(mesh.vbuffers[| 0], pr_trianglelist, tex);
+        vertex_submit(mesh.wbuffer[| 0], pr_linelist, tex);
         break;
 }
 shader_reset();

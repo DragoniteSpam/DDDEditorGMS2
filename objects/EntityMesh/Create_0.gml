@@ -11,8 +11,8 @@ Stuff.map.active_map.contents.population[ETypes.ENTITY_MESH]++;
 
 static = true;
 
-// GUID
-mesh = 0;
+mesh = 0;                           // GUID
+mesh_submesh = 0;                   // proto-GUID
 animated = false;
 animation_index = 0;
 animation_type = SMF_loop_linear;

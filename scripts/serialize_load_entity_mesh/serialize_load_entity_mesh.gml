@@ -7,7 +7,6 @@ var entity = argument1;
 var version = argument2;
 
 serialize_load_entity(buffer, entity, version);
-
 entity.mesh = buffer_read(buffer, buffer_datatype);
 
 var bools = buffer_read(buffer, buffer_u32);
@@ -19,6 +18,8 @@ entity.animation_type = buffer_read(buffer, buffer_u8);
 var mesh_data = guid_get(entity.mesh);
 
 if (mesh_data) {
+    entity.mesh_submesh = ds_map_find_first(mesh_data.proto_guids);
+    
     entity_init_collision_mesh(entity);
     
     switch (mesh_data.type) {
@@ -29,6 +30,4 @@ if (mesh_data) {
             entity.batchable = false;
             break;
     }
-} else {
-    // @togo gml try catch - i think you'll want to do something of the "mesh not found" variety
 }

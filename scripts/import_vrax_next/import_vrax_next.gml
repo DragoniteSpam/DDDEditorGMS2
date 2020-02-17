@@ -69,9 +69,9 @@ c_shape_end_trimesh(cdata);
 
 mesh.name = name;
 internal_name_generate(mesh, PREFIX_MESH + string_lettersdigits(name));
-mesh.buffer = buffer_create_from_vertex_buffer(vbuffer, buffer_fixed, 1);
-mesh.vbuffer = vbuffer;
-mesh.wbuffer = wbuffer;
+ds_list_add(mesh.buffers, buffer_create_from_vertex_buffer(vbuffer, buffer_fixed, 1));
+ds_list_add(mesh.vbuffers, vbuffer);
+ds_list_add(mesh.wbuffers, wbuffer);
 mesh.cshape = cdata;
 
 vertex_freeze(vbuffer);
