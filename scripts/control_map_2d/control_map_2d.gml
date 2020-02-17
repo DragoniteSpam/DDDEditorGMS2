@@ -2,6 +2,7 @@
 
 var mode = argument0;
 var input_control = keyboard_check(vk_control);
+var map = Stuff.map.active_map;
 
 if (Stuff.menu.active_element) {
     return false;
@@ -18,8 +19,8 @@ var y2 = mode.y + cheight / 2;
 
 var ray_cx = ((mouse_x_view + x1) / view_get_wport(view_3d)) * cwidth;
 var ray_cy = ((mouse_y_view + y1) / view_get_hport(view_3d)) * cheight;
-var floor_cx = floor(ray_cx / TILE_WIDTH);
-var floor_cy = floor(ray_cy / TILE_HEIGHT);
+var floor_cx = clamp(floor(ray_cx / TILE_WIDTH), 0, map.xx - 1);
+var floor_cy = clamp(floor(ray_cy / TILE_HEIGHT), 0, map.yy - 1);
 
 if (c_raycast_world(ray_cx, ray_cy, mode.z, ray_cx, ray_cy, -1, CollisionMasks.MAIN)) {
     mode.under_cursor = c_object_get_userid(c_hit_object(0));
