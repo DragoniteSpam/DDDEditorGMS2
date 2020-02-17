@@ -7,6 +7,7 @@ var entity = argument1;
 serialize_save_entity(buffer, entity);
 
 buffer_write(buffer, buffer_datatype, entity.mesh);
+buffer_write(buffer, buffer_datatype, entity.mesh_submesh);
 
 var bools = pack(entity.animated);
 

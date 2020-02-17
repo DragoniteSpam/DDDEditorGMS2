@@ -16,10 +16,20 @@ for (var i = 0; i < n_meshes; i++) {
     
     buffer_write(buffer, buffer_u8, mesh.type);
     
-    buffer_write(buffer, buffer_u32, buffer_get_size(mesh.buffer));
-    buffer_write_buffer(buffer, mesh.buffer);
-    // don't bother saving the wireframe buffer - we need to re-create the collision
-    // shape as well, so we might as well recreate the wireframe at the same time =/
+    var list_proto_guids = ds_map_to_list(mesh.proto_guids);
+    var n_submeshes = ds_list_size(mesh.buffers);
+    buffer_write(buffer, buffer_u16, n_submeshes);
+    for (var j = 0; j < n_submeshes; j++) {
+        var index = mesh.proto_guids[? list_proto_guids[| j]];
+        var dbuffer = mesh.buffers[| index];
+        buffer_write(buffer, buffer_u16, index);
+        buffer_write(buffer, buffer_datatype, list_proto_guids[| j]);
+        buffer_write(buffer, buffer_u32, buffer_get_size(dbuffer));
+        buffer_write_buffer(buffer, dbuffer);
+        // don't bother saving the wireframe buffers - we need to re-create the collision
+        // shape as well, so we might as well recreate the wireframe at the same time =/
+    }
+    ds_list_destroy(list_proto_guids);
     
     buffer_write(buffer, buffer_f32, mesh.xmin);
     buffer_write(buffer, buffer_f32, mesh.ymin);

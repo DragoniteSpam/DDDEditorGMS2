@@ -16,8 +16,19 @@ repeat (n_meshes) {
     
     mesh.type = buffer_read(buffer, buffer_u8);
     
-    var size = buffer_read(buffer, buffer_u32);
-    ds_list_add(mesh.buffers, buffer_read_buffer(buffer, size));
+    if (version >= DataVersions.MESHES_OVERHAULED_AGAIN_PROBABLY) {
+        var n_submeshes = buffer_read(buffer, buffer_u16);
+        for (var i = 0; i < n_submeshes; i++) {
+            var index = buffer_read(buffer, buffer_u16);
+            var proto_guid = buffer_read(buffer, buffer_datatype);
+            var blength = buffer_read(buffer, buffer_u32);
+            mesh.buffers[| index] = buffer_read_buffer(buffer, blength);
+            proto_guid_set(mesh, i, proto_guid);
+        }
+    } else {
+        var size = buffer_read(buffer, buffer_u32);
+        ds_list_add(mesh.buffers, buffer_read_buffer(buffer, size));
+    }
     
     mesh.xmin = buffer_read(buffer, buffer_f32);
     mesh.ymin = buffer_read(buffer, buffer_f32);

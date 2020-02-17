@@ -1,6 +1,6 @@
 /// @param DataContainer
 /// @param data
-/// @param value
+/// @param proto
 
 var container = argument[0];
 var data = argument[1];
