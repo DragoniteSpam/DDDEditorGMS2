@@ -64,20 +64,6 @@ switch (what) {
         with (DataDataFile) {
             instance_destroy();
         }
-        // clear all data - data has already been destroyed so you just have to clear them
-        // commenting this out will lead to junk data filling up in the data files if there
-        // are any default assets, but I'd like to avoid as many of thsoe as possible
-        /*ds_list_clear(Stuff.all_event_custom);
-        ds_list_clear(Stuff.all_event_prefabs);
-        ds_list_clear(Stuff.all_data);*/
-        
-        /*ds_list_clear(Stuff.all_graphic_autotiles);
-        //ds_list_clear(Stuff.all_graphic_tilesets);
-        ds_list_clear(Stuff.all_graphic_overworlds);
-        ds_list_clear(Stuff.all_graphic_battlers);
-        ds_list_clear(Stuff.all_graphic_particles);
-        ds_list_clear(Stuff.all_graphic_ui);
-        ds_list_clear(Stuff.all_graphic_etc);*/
         
         // i'd like there to be a default event, although potentially in the future there will not be
         ds_list_clear(Stuff.all_events);
