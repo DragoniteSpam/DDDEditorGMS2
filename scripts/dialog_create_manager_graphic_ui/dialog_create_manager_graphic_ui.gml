@@ -66,6 +66,9 @@ dg.el_frames_horizontal = el_frames_horizontal;
 var el_frames_vertical = create_input(c2 + 16, yy, "Y frames:", ew, eh, uivc_input_graphic_set_frames_v, "1", "0...255", validate_int, 0, 255, 3, vx1, vy1, vx2, vy2, dg);
 el_frames_vertical.enabled = false;
 dg.el_frames_vertical = el_frames_vertical;
+var el_texture_exclude = create_checkbox(c2 + 16, yy, "Exclude from texture page?", ew, eh, uivc_input_graphic_texture_exclude, false, dg);
+el_texture_exclude.tooltip = "For optimization purposes the game may attempt to pack related sprites onto a single texture. In some cases you may wish for that to not happen.";
+dg.el_texture_exclude = el_texture_exclude;
 
 yy = yy_base;
 
@@ -85,9 +88,19 @@ var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Do
 
 ds_list_add(dg.contents,
     el_list,
-    el_add, el_remove, el_change, el_export,
-    el_name_text, el_name, el_name_internal_text, el_name_internal,
-    el_dimensions, el_frames_horizontal, el_frames_vertical, el_image,
+    el_add,
+    el_remove,
+    el_change,
+    el_export,
+    el_name_text,
+    el_name,
+    el_name_internal_text,
+    el_name_internal,
+    el_dimensions,
+    el_frames_horizontal,
+    el_frames_vertical,
+    el_texture_exclude,
+    el_image,
     el_texture_page,
     el_confirm
 );

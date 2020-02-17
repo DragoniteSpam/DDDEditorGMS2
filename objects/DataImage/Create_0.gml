@@ -1,6 +1,7 @@
 event_inherited();
 
 file_location = DataFileLocations.ASSET;
+texture_exclude = false;
 
 picture = -1;
 width = -1;

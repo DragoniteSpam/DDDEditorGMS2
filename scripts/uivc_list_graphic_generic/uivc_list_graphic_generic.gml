@@ -12,4 +12,5 @@ if (selection + 1) {
     ui_input_set_value(list.root.el_frames_vertical, string(what.vframes));
     list.root.el_image.image = what.picture;
     list.root.el_dimensions.text = "Dimensions: " + string(what.width) + " x " + string(what.height);
+    list.root.el_texture_exclude.value = what.texture_exclude;
 }

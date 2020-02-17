@@ -15384,6 +15384,14 @@
             }
         },
         {
+            "Key": "e8ac8087-a473-4e23-be68-b14f9ee25afd",
+            "Value": {
+                "id": "dc9a61f4-c3cb-4d60-84af-7ed57f2a89dd",
+                "resourcePath": "scripts\\uivc_input_graphic_texture_exclude\\uivc_input_graphic_texture_exclude.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "e8c1d5c4-fe6d-4f44-8e8c-69ede795a882",
             "Value": {
                 "id": "7bd01aa6-f8f3-43ee-bc59-88391ca370db",
@@ -17824,6 +17832,7 @@
         "ce519de6-170d-4f15-b160-5502c85aaf48",
         "234b025b-0da6-443a-923d-afc560c8d694",
         "e4734c49-2efe-484f-86f8-905a518e3425",
+        "e8ac8087-a473-4e23-be68-b14f9ee25afd",
         "d69c4608-aa35-47ea-8ffb-c11b46beaf9e",
         "ac9824b9-f01e-4080-93cf-e47c9dda1c10",
         "96bfb326-f42e-43df-bb00-eddceff7d0ff",
