@@ -8,21 +8,18 @@ var mesh = argument2;
 
 var data = guid_get(mesh.mesh); // lol
 
-// @todo find a way to batch the (?) things?
-if (!data) {
+// smf meshes won't be batched, please
+if (data && data.type == MeshTypes.SMF) {
     return [buffer, wire];
-}
-
-switch (data.type) {
-    case MeshTypes.RAW: break;
-    case MeshTypes.SMF: return [buffer, wire];
 }
 
 var xx = mesh.xx * TILE_WIDTH;
 var yy = mesh.yy * TILE_HEIGHT;
 var zz = mesh.zz * TILE_DEPTH;
 
+// if no valid mesh is found, use the big ol' ? instead
 var dbuffer = entity_mesh_get_buffer(mesh);
+if (!dbuffer) dbuffer = Stuff.graphics.mesh_missing_data;
 buffer_seek(dbuffer, buffer_seek_start, 0);
 
 var vc = 0;
