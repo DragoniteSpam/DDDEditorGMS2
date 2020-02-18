@@ -2,6 +2,7 @@
 /// @param [complete-object?]
 /// @param [adjust-UVs?]
 /// @param [raw-buffer?]
+/// @param [existing-object]
 // returns either a vertex buffer or an array of [vertex buffer, data buffer] depending
 // on what you ask it for
 // this is VERY bad but i don't want to write more than one d3d importers, or to offload
@@ -12,6 +13,7 @@ var fn = argument[0];
 var everything = (argument_count > 1 && argument[1] != undefined) ? argument[1] : true;
 var adjust = (argument_count > 2 && argument[2] != undefined) ? argument[2] : true;
 var raw_buffer = (argument_count > 3 && argument[3] != undefined) ? argument[3] : false;
+var existing = (argument_count > 4 && argument[4] != undefined) ? argument[4] : noone;
 var data_added = false;
 
 var f = file_text_open_read(fn);
@@ -207,20 +209,21 @@ if (everything) {
         c_shape_destroy(cshape);
     }
     
-    var mesh = instance_create_depth(0, 0, 0, DataMesh);
-    
-    mesh.xmin = round(minx / IMPORT_GRID_SIZE);
-    mesh.ymin = round(miny / IMPORT_GRID_SIZE);
-    mesh.zmin = round(minz / IMPORT_GRID_SIZE);
-    mesh.xmax = round(maxx / IMPORT_GRID_SIZE);
-    mesh.ymax = round(maxy / IMPORT_GRID_SIZE);
-    mesh.zmax = round(maxz / IMPORT_GRID_SIZE);
-    
-    data_mesh_recalculate_bounds(mesh);
-    
     var base_name = filename_change_ext(filename_name(fn), "");
-    mesh.name = base_name;
-    internal_name_generate(mesh, PREFIX_MESH + string_lettersdigits(base_name));
+    var mesh = existing ? existing : instance_create_depth(0, 0, 0, DataMesh);
+    
+    if (!existing) {
+        mesh.xmin = round(minx / IMPORT_GRID_SIZE);
+        mesh.ymin = round(miny / IMPORT_GRID_SIZE);
+        mesh.zmin = round(minz / IMPORT_GRID_SIZE);
+        mesh.xmax = round(maxx / IMPORT_GRID_SIZE);
+        mesh.ymax = round(maxy / IMPORT_GRID_SIZE);
+        mesh.zmax = round(maxz / IMPORT_GRID_SIZE);
+        
+        mesh.name = base_name;
+        data_mesh_recalculate_bounds(mesh);
+        internal_name_generate(mesh, PREFIX_MESH + string_lettersdigits(base_name));
+    }
     
     if (data_added) {
         proto_guid_set(mesh, ds_list_size(mesh.buffers));

@@ -38,9 +38,10 @@ for (var i = 0; i < ds_list_size(mesh.buffers); i++) {
 el_list.tooltip = "Each mesh can have a number of different sub-meshes. This can be used to give multiple meshes different visual skins, or to imitate primitive frame-based animation. Currently sub-meshes can't be given individual names, although I may do that later when I'm less busy.";
 el_list.allow_deselect = false;
 ui_list_select(el_list, 0);
+dg.el_list = el_list;
 yy = yy + ui_get_list_height(el_list) + spacing;
 
-var el_add = create_button(col1_x, yy, "Add Sub-Mesh", ew, eh, fa_center, null, dg);
+var el_add = create_button(col1_x, yy, "Add Sub-Mesh", ew, eh, fa_center, omu_mesh_import_sub, dg);
 el_add.tooltip = "Add a sub-mesh";
 yy = yy + el_add.height + spacing;
 

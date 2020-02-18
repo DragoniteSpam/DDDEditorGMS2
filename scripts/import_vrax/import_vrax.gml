@@ -1,8 +1,10 @@
 /// @param filename
 /// @param [adjust-UVs?]
+/// @param [existing-object]
 
 var buffer = buffer_load(argument[0]);
 var adjust = (argument_count > 1 && argument[1] != undefined) ? argument[1] : true;
+var existing = (argument_count > 2 && argument[2] != undefined) ? argument[2] : noone;
 
 var data = ds_map_create();
 ds_map_read(data, buffer_read_string(buffer));
@@ -16,7 +18,7 @@ var n = buffer_read(buffer, buffer_f32);
 
 repeat (n) {
     var mesh_name = buffer_read_string(buffer);
-    var mesh = import_vrax_next(buffer, grid_size, mesh_name);
+    var mesh = import_vrax_next(buffer, grid_size, mesh_name, existing);
     ds_list_add(Stuff.all_meshes, mesh);
 }
 

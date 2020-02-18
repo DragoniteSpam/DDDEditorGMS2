@@ -1,13 +1,15 @@
 /// @param buffer
 /// @param grid-size
 /// @param name
+/// @param [existing-object]
 
-var data_buffer = argument0;
-var grid_size = argument1;
-var name = argument2;
+var data_buffer = argument[0];
+var grid_size = argument[1];
+var name = argument[2];
+var existing = (argument_count > 3 && argument[3] != undefined) ? argument[3] : noone;
 
 var n = buffer_read(data_buffer, buffer_f32);
-var mesh = instance_create_depth(0, 0, 0, DataMesh);
+var mesh = existing ? existing : instance_create_depth(0, 0, 0, DataMesh);
 
 var vbuffer = vertex_create_buffer();
 var wbuffer = vertex_create_buffer();
@@ -54,26 +56,35 @@ repeat (n) {
     }
 }
 
-if (grid_size > 0) {
-    mesh.xmin = buffer_read(data_buffer, buffer_f32);
-    mesh.ymin = buffer_read(data_buffer, buffer_f32);
-    mesh.zmin = buffer_read(data_buffer, buffer_f32);
-    mesh.xmax = buffer_read(data_buffer, buffer_f32);
-    mesh.ymax = buffer_read(data_buffer, buffer_f32);
-    mesh.zmax = buffer_read(data_buffer, buffer_f32);
+// don't bother with the bounds if the mesh data already exists
+if (!existing) {
+    if (grid_size > 0) {
+        mesh.xmin = buffer_read(data_buffer, buffer_f32);
+        mesh.ymin = buffer_read(data_buffer, buffer_f32);
+        mesh.zmin = buffer_read(data_buffer, buffer_f32);
+        mesh.xmax = buffer_read(data_buffer, buffer_f32);
+        mesh.ymax = buffer_read(data_buffer, buffer_f32);
+        mesh.zmax = buffer_read(data_buffer, buffer_f32);
+    }
+    data_mesh_recalculate_bounds(mesh);
 }
-data_mesh_recalculate_bounds(mesh);
+
 vertex_end(vbuffer);
 vertex_end(wbuffer);
 c_shape_end_trimesh(cdata);
 
-mesh.name = name;
-internal_name_generate(mesh, PREFIX_MESH + string_lettersdigits(name));
+if (!existing) {
+    mesh.name = name;
+    internal_name_generate(mesh, PREFIX_MESH + string_lettersdigits(name));
+    mesh.cshape = cdata;
+} else {
+    c_shape_destroy(mesh.cshape);
+}
+
 proto_guid_set(mesh, ds_list_size(mesh.buffers));
 ds_list_add(mesh.buffers, buffer_create_from_vertex_buffer(vbuffer, buffer_fixed, 1));
 ds_list_add(mesh.vbuffers, vbuffer);
 ds_list_add(mesh.wbuffers, wbuffer);
-mesh.cshape = cdata;
 
 vertex_freeze(vbuffer);
 vertex_freeze(wbuffer);
