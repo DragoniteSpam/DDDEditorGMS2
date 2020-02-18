@@ -45,7 +45,7 @@ var el_add = create_button(col1_x, yy, "Add Sub-Mesh", ew, eh, fa_center, omu_me
 el_add.tooltip = "Add a sub-mesh";
 yy = yy + el_add.height + spacing;
 
-var el_delete = create_button(col1_x, yy, "Delete Sub-Mesh", ew, eh, fa_center, null, dg);
+var el_delete = create_button(col1_x, yy, "Delete Sub-Mesh", ew, eh, fa_center, omu_mesh_delete_sub, dg);
 el_add.tooltip = "Delete a sub-mesh";
 yy = yy + el_delete.height + spacing;
 
