@@ -1,14 +1,17 @@
 /// @param filename
 /// @param [complete-object?]
 /// @param [adjust-UVs?]
-
-// this is VERY bad but i don't want to write two d3d importers, or to offload the d3d code to
-// somewhere else, so it stays like this for now
+/// @param [raw-buffer?]
+// returns either a vertex buffer or an array of [vertex buffer, data buffer] depending
+// on what you ask it for
+// this is VERY bad but i don't want to write more than one d3d importers, or to offload
+// the d3d code to somewhere else, so it stays like this for now
 
 var fn = argument[0];
 // setting "everything" to false will mean only the vertex buffer is returned
 var everything = (argument_count > 1 && argument[1] != undefined) ? argument[1] : true;
 var adjust = (argument_count > 2 && argument[2] != undefined) ? argument[2] : true;
+var raw_buffer = (argument_count > 3 && argument[3] != undefined) ? argument[3] : false;
 var data_added = false;
 
 var f = file_text_open_read(fn);
@@ -188,6 +191,8 @@ while (!file_text_eof(f)) {
 file_text_close(f);
 vertex_end(vbuffer);
 
+var dbuffer = raw_buffer ? buffer_create_from_vertex_buffer(vbuffer, buffer_fixed, 1) : noone;
+
 if (!data_added) {
     vertex_delete_buffer(vbuffer);
     vbuffer = noone;
@@ -235,4 +240,4 @@ if (everything) {
     return mesh;
 }
 
-return vbuffer;
+return raw_buffer ? [vbuffer, dbuffer] : vbuffer;

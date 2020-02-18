@@ -2760,14 +2760,6 @@
             }
         },
         {
-            "Key": "27c4bb2f-3dc8-4fc7-9e3e-080212052f98",
-            "Value": {
-                "id": "e0859648-382a-41a6-973b-ca9182a6a0a1",
-                "resourcePath": "sprites\\spr_mesh_missing\\spr_mesh_missing.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
             "Key": "282cb80b-a1e2-464d-88db-d473965f925f",
             "Value": {
                 "id": "dcdd405b-99fc-4091-bb05-ac66c5a38350",
@@ -3581,14 +3573,6 @@
                 "id": "896347a8-158a-4cf6-816a-c34077b55e48",
                 "resourcePath": "scripts\\dialog_create_refid_list\\dialog_create_refid_list.yy",
                 "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "3461fe1b-06be-4922-b3c6-e7e7c4e526bd",
-            "Value": {
-                "id": "95274495-36c9-48e4-b302-54a5a2a4444f",
-                "resourcePath": "datafiles_yy\\data\\basic\\missing.d3d.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -15021,6 +15005,14 @@
                 "id": "9683fbce-89b0-4491-be24-e0a7b4d03089",
                 "resourcePath": "scripts\\ui_list_color_data_type\\ui_list_color_data_type.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "e36c2145-5461-4d10-a406-28b48990f062",
+            "Value": {
+                "id": "19edbd1b-cb01-4cba-95a3-c32345cb97db",
+                "resourcePath": "datafiles_yy\\data\\basic\\missing.d3d.yy",
+                "resourceType": "GMIncludedFile"
             }
         },
         {

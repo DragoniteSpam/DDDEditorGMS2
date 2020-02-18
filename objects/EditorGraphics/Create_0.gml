@@ -71,7 +71,9 @@ indexed_cage = import_d3d("data\\basic\\cage-indexed.d3d", false);
 indexed_cage_full = import_d3d("data\\basic\\cage-indexed-full.d3d", false);
 basic_cube = import_d3d("data\\basic\\cube.d3d", false);
 indexed_cube = import_d3d("data\\basic\\cube-indexed.d3d", false);
-mesh_missing = import_d3d("data\\basic\\missing.d3d", false, false);
+var qmark_data = import_d3d("data\\basic\\missing.d3d", false, false, true);
+mesh_missing = qmark_data[0];
+mesh_missing_data = qmark_data[1];
 
 water_tile_size = 0x10000;
 water_reptition = 0x100;
