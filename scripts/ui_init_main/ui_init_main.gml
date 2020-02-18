@@ -690,7 +690,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     // this is an object variable
     element_mesh_list = create_list(col1_x, yy, "Available meshes: ", "<no meshes>", col_width, element_height, 25, uivc_list_selection_mesh, false, t_p_mesh_editor);
-    element_mesh_list.entries_are = ListEntries.INSTANCES;
+    element_mesh_list.entries_are = ListEntries.SCRIPT;
     element_mesh_list.colorize = true;
     element_mesh_list.render = ui_render_list_all_meshes;
     element_mesh_list.render_colors = ui_list_color_meshes;

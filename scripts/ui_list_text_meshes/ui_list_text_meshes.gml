@@ -8,7 +8,7 @@ var mesh = list.entries[| index];
 var prefix = "";
 
 if (mesh.marker & MeshMarkers.PARTICLE) {
-    prefix = "* " + prefix;
+    prefix = "(p)" + prefix;
 }
 
 return prefix + mesh.name;

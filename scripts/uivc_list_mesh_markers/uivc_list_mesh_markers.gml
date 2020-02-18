@@ -8,5 +8,5 @@ mesh.marker = 0;
 for (var i = 0; i < ds_list_size(selection); i++) {
     mesh.marker |= (1 << selection[| i]);
 }
-
+debug([mesh.name, mesh.marker])
 ds_list_destroy(selection);
