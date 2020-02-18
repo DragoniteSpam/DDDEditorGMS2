@@ -104,8 +104,8 @@ if (true) {
                 instance_destroy(mode.last_selection);
                 ds_list_pop(mode.selection);
                 mode.last_selection = noone;
-                sa_process_selection();
             }
+            sa_process_selection();
         }
     }
     

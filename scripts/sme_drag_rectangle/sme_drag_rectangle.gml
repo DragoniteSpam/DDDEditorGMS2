@@ -10,5 +10,3 @@ var yy = argument2;
 
 selection.x2 = xx;
 selection.y2 = yy;
-
-sa_process_selection();
