@@ -13,6 +13,7 @@ if (smf != undefined) {
     var base_name = filename_change_ext(filename_name(fn), "");
     mesh.name = base_name;
     internal_name_generate(mesh, PREFIX_MESH + string_lettersdigits(base_name));
+    proto_guid_set(mesh, ds_list_size(mesh.buffers));
     ds_list_add(mesh.buffers, smf[0]);
     ds_list_add(mesh.vbuffers, smf[1]);
     ds_list_add(mesh.wbuffers, noone);

@@ -14,6 +14,7 @@ wbuffers = ds_list_create();
 cshape = noone;
 
 proto_guids = ds_map_create();
+first_proto_guid = 0;
 
 /* s */ xmin = 0;
 /* s */ ymin = 0;

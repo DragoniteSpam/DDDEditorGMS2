@@ -27,6 +27,7 @@ repeat (n_meshes) {
         }
     } else {
         var size = buffer_read(buffer, buffer_u32);
+        proto_guid_set(mesh, 0);
         ds_list_add(mesh.buffers, buffer_read_buffer(buffer, size));
     }
     

@@ -6,7 +6,7 @@ if (mesh_data) {
     with (instance_create_depth(0, 0, 0, EntityMesh)) {
         name = mesh_data.name;
         mesh = mesh_data.GUID;
-        
+        mesh_submesh = mesh_data.first_proto_guid;
         collision_flags = 0;
         
         switch (mesh_data.type) {

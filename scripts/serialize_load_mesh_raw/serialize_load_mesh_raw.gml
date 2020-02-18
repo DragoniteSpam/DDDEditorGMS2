@@ -9,7 +9,6 @@ var zz = [0, 0, 0];
 var nx, ny, nz, xtex, ytex, color;
 
 for (var i = 0; i < ds_list_size(mesh.buffers); i++) {
-    proto_guid_set(mesh, i, proto_guid_generate(mesh));
     var buffer = mesh.buffers[| i];
     
     var vbuffer = vertex_create_buffer_from_buffer(buffer, Stuff.graphics.vertex_format);
