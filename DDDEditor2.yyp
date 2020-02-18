@@ -8920,6 +8920,14 @@
             }
         },
         {
+            "Key": "850c8997-cd8a-4cd3-b0f1-b93c1585633c",
+            "Value": {
+                "id": "85b7ac61-4d68-4657-a2b3-a1ba66a4e7fc",
+                "resourcePath": "scripts\\uivc_list_mesh_markers\\uivc_list_mesh_markers.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "85595361-26ba-445a-a943-d45eaba8991c",
             "Value": {
                 "id": "40e0b090-e8af-49f4-b6b8-ed8c4808e720",
@@ -18121,6 +18129,7 @@
         "cf04a616-2403-4a32-8ea0-86a71adfc81c",
         "de12a3bf-7b99-4621-bdec-4715ee4965c4",
         "2883d4e0-ec23-482c-9d8a-e1e21a863e34",
+        "850c8997-cd8a-4cd3-b0f1-b93c1585633c",
         "064fd29e-7ed0-4201-87c9-355fde51e08a",
         "1862fc95-bd9d-4dd5-bfd3-3f87421d96b3",
         "40ddc73c-05b5-41a7-85b1-8664cf81c3b2",

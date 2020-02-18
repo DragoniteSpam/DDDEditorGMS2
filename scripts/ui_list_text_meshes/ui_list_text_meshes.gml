@@ -6,9 +6,9 @@ var index = argument1;
 var mesh = list.entries[| index];
 
 var prefix = "";
-switch (mesh.marker) {
-    case 0: break;
-    case 1: prefix = "*"; break;
+
+if (mesh.marker & MeshMarkers.PARTICLE) {
+    prefix = "* " + prefix;
 }
 
 return prefix + mesh.name;

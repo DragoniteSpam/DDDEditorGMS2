@@ -4,7 +4,7 @@ file_location = DataFileLocations.ASSET;
 type = MeshTypes.RAW;
 
 animations = ds_map_create();           // this should map an animation name onto an index
-marker = 0;                             // this may be repurposed later, but for now i just want a way to distinguish special meshes in the list
+marker = 0;                             // this is really a second Flags list, but those are being used as asset flags and i want to keep them separate
 
 /* s */ buffers = ds_list_create();
 vbuffers = ds_list_create();
@@ -36,4 +36,8 @@ preview_index = 0;
 enum MeshTypes {
     RAW,
     SMF
+}
+
+enum MeshMarkers {
+    PARTICLE            = 0x0001,
 }
