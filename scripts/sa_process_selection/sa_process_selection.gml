@@ -128,8 +128,9 @@ if (ds_list_size(list) == 0) {
     ui_input_set_value(Stuff.map.ui.element_entity_scale_z, "");
     
     var type = selection_all_type();
+    var suffix = (ds_list_size(list) > 0) ? " (" + string(ds_list_size(list)) + ")" : "";
     
-    Stuff.map.ui.element_entity_type.text = "Type: " + object_get_name(type);
+    Stuff.map.ui.element_entity_type.text = "Type: " + object_get_name(type) + suffix;
     
     switch (type) {
         case EntityAutoTile:
