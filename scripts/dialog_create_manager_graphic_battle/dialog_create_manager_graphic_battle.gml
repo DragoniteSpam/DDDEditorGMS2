@@ -27,6 +27,7 @@ var yy_base = yy;
 var spacing = 16;
 
 var el_list = create_list(16, yy, "Battler Graphics", "<no battler graphics>", ew, eh, 12, uivc_list_graphic_generic, false, dg, Stuff.all_graphic_battlers);
+el_list.render_colors = ui_list_colors_image_exclude;
 el_list.entries_are = ListEntries.INSTANCES;
 el_list.numbered = true;
 dg.el_list = el_list;

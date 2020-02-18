@@ -693,8 +693,9 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     element_mesh_list.entries_are = ListEntries.INSTANCES;
     element_mesh_list.colorize = true;
     element_mesh_list.render = ui_render_list_all_meshes;
-    element_mesh_list.render_colors = ui_list_color_smf;
+    element_mesh_list.render_colors = ui_list_color_meshes;
     element_mesh_list.ondoubleclick = omu_mesh_preview;
+    element_mesh_list.evaluate_text = ui_list_text_meshes;
     ds_list_add(t_p_mesh_editor.contents, element_mesh_list);
     
     yy = yy + ui_get_list_height(element_mesh_list) + spacing;

@@ -12920,6 +12920,14 @@
             }
         },
         {
+            "Key": "c3128918-7ea5-4d89-bc6d-2e5f16a013fb",
+            "Value": {
+                "id": "47bbd717-91e4-4df5-9c7c-96a6668a12df",
+                "resourcePath": "scripts\\ui_list_colors_image_exclude\\ui_list_colors_image_exclude.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "c32dd79d-73ad-4cb9-b2c9-978555cfe534",
             "Value": {
                 "id": "f42d6ba0-b2e3-4f83-a75b-085641b393db",
@@ -16400,6 +16408,14 @@
             }
         },
         {
+            "Key": "f8507d86-7280-483b-ab34-c5fd8425bcda",
+            "Value": {
+                "id": "28119d1b-7f86-4c07-b14e-4228eb045a94",
+                "resourcePath": "scripts\\ui_list_text_meshes\\ui_list_text_meshes.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "f86116f4-cc91-4448-8d5a-f464f4e0c236",
             "Value": {
                 "id": "de7bbfb5-d7e2-4213-a4af-918a1f009a87",
@@ -16787,7 +16803,7 @@
             "Key": "fcd4ba1d-4e32-4811-bac1-bf5c9ad661c1",
             "Value": {
                 "id": "fe36a7ad-8493-47a9-8bf2-a9192cfa4afb",
-                "resourcePath": "scripts\\ui_list_color_smf\\ui_list_color_smf.yy",
+                "resourcePath": "scripts\\ui_list_color_meshes\\ui_list_color_meshes.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -18216,8 +18232,10 @@
         "d72b146b-f741-4c3a-95d1-ef3a174917bf",
         "1cf1bae2-df93-4705-ae01-58ce64fd6495",
         "98752a70-4ba1-4d71-9035-818e4600c88a",
+        "f8507d86-7280-483b-ab34-c5fd8425bcda",
         "a50260f0-a02f-47b0-8f59-72a6335e3088",
         "4242d52a-6e3f-49ec-ba3d-9b7b2f99cfb7",
+        "c3128918-7ea5-4d89-bc6d-2e5f16a013fb",
         "c37ecf28-8b0d-4b55-ad5e-e7c3ef5e5e0c",
         "7be262ef-2d7a-4cc8-85bb-446caf5592c9",
         "008f9998-5b4d-44c2-b795-eedcdadc9318",
