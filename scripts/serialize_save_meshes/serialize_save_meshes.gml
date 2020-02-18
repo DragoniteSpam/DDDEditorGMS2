@@ -57,6 +57,8 @@ for (var i = 0; i < n_meshes; i++) {
             }
         }
     }
+    
+    buffer_write(buffer, buffer_u32, mesh.marker);
 }
 
 buffer_poke(buffer, addr_next, buffer_u64, buffer_tell(buffer));

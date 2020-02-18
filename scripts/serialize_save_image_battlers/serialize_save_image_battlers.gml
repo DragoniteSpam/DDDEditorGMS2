@@ -21,6 +21,9 @@ for (var i = 0; i < n_images; i++) {
     // battlers and overworlds aren't stored on a texture page ahead
     // of time - those are created for each map when the map is loaded
     // or when the battle starts
+    
+    var bools = pack(data.texture_exclude);
+    buffer_write(buffer, buffer_u32, bools);
 }
 
 buffer_poke(buffer, addr_next, buffer_u64, buffer_tell(buffer));

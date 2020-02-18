@@ -19,6 +19,11 @@ repeat (n_images) {
     data.vframes = buffer_read(buffer, buffer_u16);
     data.picture = buffer_read_sprite(buffer);
     
+    if (version >= DataVersions.ASSET_MARKERS) {
+        var bools = buffer_read(buffer, buffer_u32);
+        data.texture_exclude = unpack(bools, 0);
+    }
+    
     data.width = sprite_get_width(data.picture);
     data.height = sprite_get_height(data.picture);
     

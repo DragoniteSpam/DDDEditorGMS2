@@ -66,6 +66,10 @@ repeat (n_meshes) {
     } else {
         buffer_read(buffer, buffer_u8);
     }
+    
+    if (version >= DataVersions.ASSET_MARKERS) {
+        mesh.marker = buffer_read(buffer, buffer_u32);
+    }
     // flags are saved in save_generic
     
     switch (mesh.type) {

@@ -19,6 +19,9 @@ for (var i = 0; i < n_images; i++) {
     buffer_write_sprite(buffer, data.picture);
     // misc images may need to be summoned on-the-fly; in the future they may be
     // slapped onto one single texture page but for now they won't be
+    
+    var bools = pack(data.texture_exclude);
+    buffer_write(buffer, buffer_u32, bools);
 }
 
 buffer_poke(buffer, addr_next, buffer_u64, buffer_tell(buffer));

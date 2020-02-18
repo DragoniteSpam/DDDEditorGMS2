@@ -14,6 +14,12 @@ for (var i = 0; i < n_autotiles; i++) {
     data.picture = buffer_read_sprite(buffer);
     data.name = buffer_read(buffer, buffer_string);
     data.aframes = buffer_read(buffer, buffer_u8);
+    
+    if (version >= DataVersions.ASSET_MARKERS) {
+        var bools = buffer_read(buffer, buffer_u32);
+        data.texture_exclude = unpack(bools, 0);
+    }
+    
     data.width = sprite_get_width(data.picture);
     data.height = sprite_get_height(data.picture);
     

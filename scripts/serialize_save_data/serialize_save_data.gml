@@ -114,5 +114,6 @@ enum DataVersions {
     AUTOTILE_DESIGNATION_SLOPE_WHOOPS_x2= 88,
     MERGE_ORTHO_SIZE                    = 89,
     MESHES_OVERHAULED_AGAIN_PROBABLY    = 90,
+    ASSET_MARKERS                       = 91,
     _CURRENT /* = whatever the last one is + 1 */
 }

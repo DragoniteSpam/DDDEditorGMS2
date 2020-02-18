@@ -23,6 +23,11 @@ repeat (n_images) {
     data.width = buffer_read(buffer, buffer_f32);
     data.height = buffer_read(buffer, buffer_f32);
     
+    if (version >= DataVersions.ASSET_MARKERS) {
+        var bools = buffer_read(buffer, buffer_u32);
+        data.texture_exclude = unpack(bools, 0);
+    }
+    
     if (individual_images) {
         data.picture = buffer_read_sprite(buffer);
         
