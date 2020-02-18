@@ -20,7 +20,6 @@ if (raw) {
     var xx = mesh.xx * TILE_WIDTH;
     var yy = mesh.yy * TILE_HEIGHT;
     var zz = mesh.zz * TILE_DEPTH;
-    
     buffer_seek(raw, buffer_seek_start, 0);
     
     var vc = 0;

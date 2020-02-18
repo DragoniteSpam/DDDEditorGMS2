@@ -1,12 +1,13 @@
 if (Stuff.is_quitting) exit;
 
 event_inherited();
+var map = Stuff.map.active_map;
 
 for (var i = 0; i < ds_list_size(buffers); i++) {
     buffer_delete(buffers[| i]);
 }
 for (var i = 0; i < ds_list_size(wbuffers); i++) {
-    if (wbuffers[| i])  buffer_delete(wbuffers[| i]);
+    if (wbuffers[| i])  vertex_delete_buffer(wbuffers[| i]);
 }
 ds_list_destroy(wbuffers);
 if (cshape) c_shape_destroy(cshape);
@@ -24,7 +25,15 @@ switch (type) {
 }
 ds_list_destroy(vbuffers);
 
-show_debug_message("Deleting a mesh will cause anything that uses this mesh's collision shape to immediately crash; at some point you should probably take care of that");
+for (var i = 0; i < ds_list_size(map.contents.all_entities); i++) {
+    var thing = map.contents.all_entities[| i];
+    if (instanceof(thing, EntityMesh) && thing.mesh == GUID) {
+        c_world_destroy_object(thing.cobject);
+        thing.cobject = c_object_create(Stuff.graphics.c_shape_block, CollisionMasks.MAIN, CollisionMasks.MAIN);
+        map_transform_thing(thing);
+        editor_map_mark_changed(thing);
+    }
+}
 
 ds_list_delete(Stuff.all_meshes, ds_list_find_index(Stuff.all_meshes, id));
 
