@@ -25,6 +25,7 @@ value = "";
 value_default = "";
 back_color = c_white;
 emphasis = false;
+surface = noone;
 
 // these are not checked automatically because they don't apply to strings;
 // you need to check them in the uivc_* scripts

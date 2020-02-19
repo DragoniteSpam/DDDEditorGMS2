@@ -49,6 +49,8 @@ with (instance_create_depth(argument[0], argument[1], 0, UIInput)) {
     value_x2 = argument[14];
     value_y2 = argument[15];
     
+    surface = surface_create(value_x2 - value_x1, value_y2 - value_y1);
+    
     root = argument[16];
     
     switch (validation) {
