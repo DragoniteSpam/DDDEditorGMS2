@@ -10,6 +10,7 @@ var x1 = input.x + xx;
 var y1 = input.y + yy;
 var x2 = x1 + input.width;
 var y2 = y1 + input.height;
+var offset = 12;
 
 var vx1 = x1 + input.value_x1;
 var vy1 = y1 + input.value_y1;
@@ -31,7 +32,9 @@ if (!surface_exists(input.surface)) {
     input.surface = surface_create(ww, hh);
 }
 
-var value = input.value;
+var value = string(input.value);
+var sw = string_width(value);
+var sw_end = sw + 4;
 
 draw_set_halign(input.alignment);
 draw_set_valign(input.valignment);
@@ -63,12 +66,19 @@ draw_clear_alpha(input.interactive ? input.back_color : c_ltgray, 1);
 if (input.emphasis) {
     draw_set_font(FDefault12Italic);
 }
-draw_text_ext_colour(vtx - x1, vty - y1, string(value), -1, vx2 - vtx, c, c, c, c, 1);
+if (input.multi_line) {
+    // this will need work, and also it's not actually enabled anywhere yet
+    draw_text_ext_colour(vtx - x1, vty - y1, value, -1, vx2 - vtx, c, c, c, c, 1);
+} else {
+    var sw_begin = min(vtx - x1, ww - offset - sw);
+    draw_text_colour(sw_begin, vty - y1, value, c, c, c, c, 1);
+    sw_end = sw_begin + sw + 4;
+}
 if (input.emphasis) {
     draw_set_font(FDefault12);
 }
 if (string_length(value) == 0) {
-    draw_text_ext_colour(vtx - x1, vty - y1, string(string(input.value_default)), -1, vx2 - vtx, c_dkgray, c_dkgray, c_dkgray, c_dkgray, 1);
+    draw_text_colour(vtx - x1, vty - y1, string(string(input.value_default)), c_dkgray, c_dkgray, c_dkgray, c_dkgray, 1);
 }
 
 if (input.require_enter) {
@@ -80,8 +90,7 @@ if (input.interactive && dialog_is_active(input.root)) {
         // this will not work correctly if there are line breaks, but fixing that is
         // like the bottom of the priority queue right now
         if (floor((current_second * 1.25) % 2) == 0) {
-            var bx = vtx + string_width(string(value)) + 4;
-            draw_line_width_colour(bx - x1, vty - 7 - y1, bx - x1, vty + 7 - y1, 2, c_black, c_black);
+            draw_line_width_colour(sw_end, vty - 7 - y1, sw_end, vty + 7 - y1, 2, c_black, c_black);
         }
         var v0 = value;
         value = string_copy(keyboard_string, 1, min(string_length(keyboard_string), input.value_limit));
