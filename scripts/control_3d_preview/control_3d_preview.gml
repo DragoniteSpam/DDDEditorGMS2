@@ -6,6 +6,7 @@ if (Controller.press_escape) {
 var rotation_rate = 2;
 var translation_rate = 1;
 var scale_rate = 1.01;
+var mesh = Stuff.mesh_preview;
 
 /*
  * action           input       modifier
@@ -63,6 +64,15 @@ if (keyboard_check(vk_shift)) {
     }
     if (keyboard_check(vk_right) || keyboard_check(ord("D"))) {
         Stuff.mesh_x = Stuff.mesh_x + translation_rate;
+    }
+}
+
+if (keyboard_check_pressed(vk_tab)) {
+    var length = ds_list_size(mesh.buffers);
+    if (keyboard_check(vk_shift)) {
+        mesh.preview_index = ++mesh.preview_index % length;
+    } else {
+        mesh.preview_index = (--mesh.preview_index + length) % length;
     }
 }
 

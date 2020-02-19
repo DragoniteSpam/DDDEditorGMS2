@@ -31,19 +31,21 @@ draw_set_valign(fa_middle);
 draw_text(32, 32, string("Press Escape to close"));
 
 if (keyboard_check(vk_shift)) {
-    draw_text(32, 64, string("Up/Down: translate across Z"));
-    draw_text(32, 80, string("Left/Right: rotate around Z"));
+    draw_text(32, 64, string("Up / Down: translate across Z"));
+    draw_text(32, 80, string("Left / Right: rotate around Z"));
 } else if (keyboard_check(vk_control)) {
-    draw_text(32, 64, string("Up/Down: rotate around Y"));
-    draw_text(32, 80, string("Left/Right: rotate around X"));
+    draw_text(32, 64, string("Up / Down: rotate around Y"));
+    draw_text(32, 80, string("Left / Right: rotate around X"));
 } else if (keyboard_check(vk_alt)) {
-    draw_text(32, 64, string("Up/Down: scale up/down (all axes)"));
+    draw_text(32, 64, string("Up / Down: scale up/down (all axes)"));
 } else {
-    draw_text(32, 64, string("Up/Down: translate across Y"));
-    draw_text(32, 80, string("Left/Right: translate across X"));
+    draw_text(32, 64, string("Up / Down: translate across Y"));
+    draw_text(32, 80, string("Left / Right: translate across X"));
 }
 
-draw_text(32, 112, string("Press Backspace to reset"));
-draw_text(32, 128, string("Shift, Control and Alt all do different things"));
+draw_text(32, 112, string("Tab / Shift + Tab: cycle submodel index"));
+
+draw_text(32, 144, string("Press Backspace to reset"));
+draw_text(32, 160, string("Shift, Control and Alt all do different things"));
 
 draw_set_color(c_black);
