@@ -55,7 +55,7 @@ switch (mesh.type) {
         break;
     case MeshTypes.RAW:
         vertex_submit(mesh.vbuffers[| 0], pr_trianglelist, tex);
-        vertex_submit(mesh.wbuffer[| 0], pr_linelist, tex);
+        vertex_submit(mesh.wbuffers[| 0], pr_linelist, tex);
         break;
 }
 shader_reset();
