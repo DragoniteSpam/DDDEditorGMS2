@@ -19,3 +19,4 @@ ds_list_delete(Stuff.all_meshes, ds_list_find_index(Stuff.all_meshes, id));
 
 ds_map_destroy(animations);
 ds_grid_destroy(collision_flags);
+ds_map_destroy(proto_guids);

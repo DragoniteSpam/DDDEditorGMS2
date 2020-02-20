@@ -16,7 +16,7 @@ proto_guid_set(mesh, ds_list_size(mesh.submeshes), proto_guid);
 
 var submesh = instance_create_depth(0, 0, 0, MeshSubmesh);
 instance_deactivate_object(submesh);
-submesh.name = name
+submesh.name = name;
 submesh.buffer = buffer;
 submesh.vbuffer = vbuffer;
 submesh.wbuffer = wbuffer;
