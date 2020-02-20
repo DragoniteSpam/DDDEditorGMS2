@@ -115,5 +115,6 @@ enum DataVersions {
     MERGE_ORTHO_SIZE                    = 89,
     MESHES_OVERHAULED_AGAIN_PROBABLY    = 90,
     ASSET_MARKERS                       = 91,
+    SUBMESH_NAMES                       = 92,
     _CURRENT /* = whatever the last one is + 1 */
 }

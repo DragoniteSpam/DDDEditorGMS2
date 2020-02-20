@@ -22,8 +22,13 @@ repeat (n_meshes) {
             var index = buffer_read(buffer, buffer_u16);
             var proto_guid = buffer_read(buffer, buffer_datatype);
             var blength = buffer_read(buffer, buffer_u32);
+            if (version >= DataVersions.SUBMESH_NAMES) {
+                var name = buffer_read(buffer, buffer_string);
+            } else {
+                var name = undefined;
+            }
             var dbuffer = buffer_read_buffer(buffer, blength);
-            mesh_create_submesh(mesh, dbuffer, noone, noone, proto_guid);
+            mesh_create_submesh(mesh, dbuffer, noone, noone, proto_guid, name);
         }
     } else {
         var size = buffer_read(buffer, buffer_u32);

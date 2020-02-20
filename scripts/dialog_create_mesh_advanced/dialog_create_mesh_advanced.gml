@@ -31,7 +31,7 @@ var b_height = 32;
 var yy = 64;
 var yy_base = yy;
 
-var el_list = create_list(col1_x, yy, mesh.name + " contents", "(none)", ew, eh, 12, omu_mesh_submesh_select, false, dg, mesh.submeshes);
+var el_list = create_list(col1_x, yy, mesh.name + " submeshes", "(none)", ew, eh, 12, omu_mesh_submesh_select, false, dg, mesh.submeshes);
 el_list.tooltip = "Each mesh can have a number of different sub-meshes. This can be used to give multiple meshes different visual skins, or to imitate primitive frame-based animation.";
 el_list.allow_deselect = false;
 el_list.entries_are = ListEntries.INSTANCES;
@@ -53,9 +53,6 @@ dg.el_name = el_name;
 yy = yy + el_name.height + spacing;
 
 yy = yy_base;
-
-var el_text_single = create_text(col2_x, yy, mesh.name, ew, eh, fa_left, ew, dg);
-yy = yy + el_text_single.height + spacing;
 
 var el_auto_bounds = create_button(col2_x, yy, "Auto-calculate bounds (grid: 32)", ew, eh, fa_center, omu_mesh_auto_bounds, dg);
 el_auto_bounds.tooltip = "Automatically calculate the bounds of a mesh. Rounds to the nearest 32, i.e. [0, 0, 0] to [28, 36, 32] would be assigned bounds of [0, 0, 0] to [1, 1, 1].";
@@ -106,7 +103,6 @@ ds_list_add(dg.contents,
     el_add,
     el_delete,
     el_name,
-    el_text_single,
     el_auto_bounds,
     el_normal_flat,
     el_normal_smooth,
