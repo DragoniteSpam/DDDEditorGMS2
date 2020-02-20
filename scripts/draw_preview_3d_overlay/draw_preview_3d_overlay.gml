@@ -1,7 +1,7 @@
 /// @param EditorModeMap
 
 var mode = argument0;
-
+var mesh = Stuff.mesh_preview;
 var camera = view_get_camera(view_3d_preview);
 
 var w = camera_get_view_width(camera);
@@ -28,24 +28,25 @@ draw_line_width_colour(0, h - 1, w, h - 1, lw, Stuff.setting_color, Stuff.settin
 draw_set_font(FDefault12Bold);
 draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
-draw_text(32, 32, string("Press Escape to close"));
+draw_text(32, 32, string(mesh.name + " / " + mesh.submeshes[| mesh.preview_index].name));
+draw_text(32, 64, string("Press Escape to close"));
 
 if (keyboard_check(vk_shift)) {
-    draw_text(32, 64, string("Up / Down: translate across Z"));
-    draw_text(32, 80, string("Left / Right: rotate around Z"));
+    draw_text(32, 80, string("Up / Down: translate across Z"));
+    draw_text(32, 96, string("Left / Right: rotate around Z"));
 } else if (keyboard_check(vk_control)) {
-    draw_text(32, 64, string("Up / Down: rotate around Y"));
-    draw_text(32, 80, string("Left / Right: rotate around X"));
+    draw_text(32, 80, string("Up / Down: rotate around Y"));
+    draw_text(32, 96, string("Left / Right: rotate around X"));
 } else if (keyboard_check(vk_alt)) {
-    draw_text(32, 64, string("Up / Down: scale up/down (all axes)"));
+    draw_text(32, 80, string("Up / Down: scale up/down (all axes)"));
 } else {
-    draw_text(32, 64, string("Up / Down: translate across Y"));
-    draw_text(32, 80, string("Left / Right: translate across X"));
+    draw_text(32, 80, string("Up / Down: translate across Y"));
+    draw_text(32, 96, string("Left / Right: translate across X"));
 }
 
-draw_text(32, 112, string("Tab / Shift + Tab: cycle submodel index"));
+draw_text(32, 144, string("Tab / Shift + Tab: cycle submodel index"));
 
-draw_text(32, 144, string("Press Backspace to reset"));
-draw_text(32, 160, string("Shift, Control and Alt all do different things"));
+draw_text(32, 176, string("Press Backspace to reset"));
+draw_text(32, 192, string("Shift, Control and Alt all do different things"));
 
 draw_set_color(c_black);
