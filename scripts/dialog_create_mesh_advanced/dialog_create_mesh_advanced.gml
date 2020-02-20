@@ -31,7 +31,7 @@ var b_height = 32;
 var yy = 64;
 var yy_base = yy;
 
-var el_list = create_list(col1_x, yy, mesh.name + " contents", "(none)", ew, eh, 12, null, false, dg, mesh.submeshes);
+var el_list = create_list(col1_x, yy, mesh.name + " contents", "(none)", ew, eh, 12, omu_mesh_submesh_select, false, dg, mesh.submeshes);
 el_list.tooltip = "Each mesh can have a number of different sub-meshes. This can be used to give multiple meshes different visual skins, or to imitate primitive frame-based animation.";
 el_list.allow_deselect = false;
 el_list.entries_are = ListEntries.INSTANCES;
@@ -46,6 +46,11 @@ yy = yy + el_add.height + spacing;
 var el_delete = create_button(col1_x, yy, "Delete Sub-Mesh", ew, eh, fa_center, omu_mesh_delete_sub, dg);
 el_add.tooltip = "Delete a sub-mesh";
 yy = yy + el_delete.height + spacing;
+
+var el_name = create_input(col1_x, yy, "Name:", ew, eh, omu_mesh_submesh_rename, mesh.submeshes[| 0].name, "Enter a name", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
+el_name.tooltip = "You don't have to, but it's generally helpful to give your submeshes names to identify them with.";
+dg.el_name = el_name;
+yy = yy + el_name.height + spacing;
 
 yy = yy_base;
 
@@ -100,6 +105,7 @@ ds_list_add(dg.contents,
     el_list,
     el_add,
     el_delete,
+    el_name,
     el_text_single,
     el_auto_bounds,
     el_normal_flat,
