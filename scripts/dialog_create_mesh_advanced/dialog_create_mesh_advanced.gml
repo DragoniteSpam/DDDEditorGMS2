@@ -59,16 +59,24 @@ el_auto_bounds.tooltip = "Automatically calculate the bounds of a mesh. Rounds t
 yy = yy + el_auto_bounds.height + spacing;
 
 var el_normal_flat = create_button(col2_x, yy, "Normals: Flat", ew, eh, fa_center, omu_mesh_normal_flat, dg);
-el_normal_flat.tooltip = "Flattens all normals in the mesh.";
+el_normal_flat.tooltip = "Flattens all normals in all submeshes mesh.";
 yy = yy + el_normal_flat.height + spacing;
 
 var el_normal_smooth = create_button(col2_x, yy, "Normals: Smooth", ew, eh, fa_center, omu_mesh_normal_smooth, dg);
-el_normal_smooth.tooltip = "Smooths all normals in the mesh. Note that this will have no effect until I finally go and implement smooth shading in a shader.";
+el_normal_smooth.tooltip = "Smooths all normals in all submeshes. Note that this will have no effect until I finally go and implement smooth shading in a shader.";
 yy = yy + el_normal_smooth.height + spacing;
 
 var el_up_axis = create_button(col2_x, yy, "Rotate Up Axis", ew, eh, fa_center, omu_mesh_rotate_axis, dg);
-el_up_axis.tooltip = "Rotates the axes of the mesh. Useful if you exported it from a 3D modelling program that insists on using Y+Up instead of Z+Up (cough cough, Blender).";
+el_up_axis.tooltip = "Rotates the axes of all submeshes. Useful if you exported it from a 3D modelling program that insists on using Y+Up instead of Z+Up (cough cough, Blender).";
 yy = yy + el_up_axis.height + spacing;
+
+var el_scale_2x = create_button(col2_x, yy, "Texture Scale: 2x", ew, eh, fa_center, omu_mesh_texture_scale_2x, dg);
+el_scale_2x.tooltip = "Double the scale of the texture of all submeshes. Useful if you want a mesh to use a different texture than the map's base texture.";
+yy = yy + el_scale_2x.height + spacing;
+
+var el_scale_05x = create_button(col2_x, yy, "Texture Scale: 0.5x", ew, eh, fa_center, omu_mesh_texture_scale_05x, dg);
+el_scale_05x.tooltip = "Double the scale of the texture of all submeshes. Useful if you want to undo the effects of the button above.";
+yy = yy + el_scale_05x.height + spacing;
 
 yy = yy_base;
 
@@ -111,6 +119,8 @@ ds_list_add(dg.contents,
     el_text_all,
     el_all_normal_flat,
     el_all_normal_smooth,
+    el_scale_2x,
+    el_scale_05x,
     el_confirm
 );
 

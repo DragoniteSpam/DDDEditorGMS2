@@ -6360,6 +6360,14 @@
             }
         },
         {
+            "Key": "5dfa77e2-7712-4824-9e3a-e08ff4ce508a",
+            "Value": {
+                "id": "a63963ec-8e92-4edb-8605-28a9d3091a07",
+                "resourcePath": "scripts\\omu_mesh_texture_scale_2x\\omu_mesh_texture_scale_2x.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "5e0cce33-be98-46fc-a595-a8f86a285b34",
             "Value": {
                 "id": "ca9025e2-43fb-41eb-b131-7d49f37eeaa5",
@@ -6532,6 +6540,14 @@
             "Value": {
                 "id": "126dfb01-f9ea-4939-8d05-596e3a0587ec",
                 "resourcePath": "scripts\\serialize_save_move_route\\serialize_save_move_route.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "60f78c70-ed5d-45fc-a02c-e2cf75b5d2a9",
+            "Value": {
+                "id": "d2da38ff-e551-47d3-baf8-49622f6f0e60",
+                "resourcePath": "scripts\\omu_mesh_texture_scale_05x\\omu_mesh_texture_scale_05x.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -18181,6 +18197,8 @@
         "cf04a616-2403-4a32-8ea0-86a71adfc81c",
         "de12a3bf-7b99-4621-bdec-4715ee4965c4",
         "2883d4e0-ec23-482c-9d8a-e1e21a863e34",
+        "5dfa77e2-7712-4824-9e3a-e08ff4ce508a",
+        "60f78c70-ed5d-45fc-a02c-e2cf75b5d2a9",
         "850c8997-cd8a-4cd3-b0f1-b93c1585633c",
         "064fd29e-7ed0-4201-87c9-355fde51e08a",
         "1862fc95-bd9d-4dd5-bfd3-3f87421d96b3",
