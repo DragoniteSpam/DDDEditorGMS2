@@ -6384,6 +6384,14 @@
             }
         },
         {
+            "Key": "5eb508eb-c303-4775-a295-e6c61f87c6db",
+            "Value": {
+                "id": "37f3a622-f499-46a5-8914-ea9504a53843",
+                "resourcePath": "objects\\MeshSubmesh\\MeshSubmesh.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "5ecf7524-d817-4120-b4d8-87765b5d8b80",
             "Value": {
                 "id": "a0831bdb-370e-4088-ba2c-d6f096da5aee",
@@ -15768,6 +15776,14 @@
             }
         },
         {
+            "Key": "ed721469-d8b0-421c-b43d-2f75cec90c72",
+            "Value": {
+                "id": "aea152a3-ef45-446a-83da-7e6a338ef9d6",
+                "resourcePath": "scripts\\mesh_create_submesh\\mesh_create_submesh.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "eda421e6-0957-4159-8b01-a13dbd83a0f3",
             "Value": {
                 "id": "9ab6ba7b-a412-4c2a-bbc1-b119207bab24",
@@ -18782,7 +18798,8 @@
         "8335ebcb-f8b8-4613-84aa-9a4fc0d07796",
         "8f0f4115-e352-4927-9396-f1832f1e8ebd",
         "64289ba3-596a-4413-bb7e-a4070b5a6eb8",
-        "cb49942f-53ea-40d1-acff-69c6d634edfe"
+        "cb49942f-53ea-40d1-acff-69c6d634edfe",
+        "ed721469-d8b0-421c-b43d-2f75cec90c72"
     ],
     "tutorial": ""
 }

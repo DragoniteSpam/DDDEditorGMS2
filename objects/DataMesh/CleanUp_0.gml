@@ -3,27 +3,7 @@ if (Stuff.is_quitting) exit;
 event_inherited();
 var map = Stuff.map.active_map;
 
-for (var i = 0; i < ds_list_size(buffers); i++) {
-    buffer_delete(buffers[| i]);
-}
-for (var i = 0; i < ds_list_size(wbuffers); i++) {
-    if (wbuffers[| i])  vertex_delete_buffer(wbuffers[| i]);
-}
-ds_list_destroy(wbuffers);
-if (cshape) c_shape_destroy(cshape);
-switch (type) {
-    case MeshTypes.RAW:
-        for (var i = 0; i < ds_list_size(vbuffers); i++) {
-            if (vbuffers[| i])  vertex_delete_buffer(vbuffers[| i]);
-        }
-        break;
-    case MeshTypes.SMF:
-        for (var i = 0; i < ds_list_size(vbuffers); i++) {
-            if (vbuffers[| i])  smf_model_destroy(vbuffers[| i]);
-        }
-        break;
-}
-ds_list_destroy(vbuffers);
+ds_list_destroy_instances(submeshes);
 
 for (var i = 0; i < ds_list_size(map.contents.all_entities); i++) {
     var thing = map.contents.all_entities[| i];

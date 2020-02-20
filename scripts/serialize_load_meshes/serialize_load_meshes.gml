@@ -22,13 +22,12 @@ repeat (n_meshes) {
             var index = buffer_read(buffer, buffer_u16);
             var proto_guid = buffer_read(buffer, buffer_datatype);
             var blength = buffer_read(buffer, buffer_u32);
-            mesh.buffers[| index] = buffer_read_buffer(buffer, blength);
-            proto_guid_set(mesh, i, proto_guid);
+            var dbuffer = buffer_read_buffer(buffer, blength);
+            mesh_create_submesh(mesh, dbuffer, noone, noone, proto_guid);
         }
     } else {
         var size = buffer_read(buffer, buffer_u32);
-        proto_guid_set(mesh, 0);
-        ds_list_add(mesh.buffers, buffer_read_buffer(buffer, size));
+        mesh_create_submesh(mesh, buffer_read_buffer(buffer, size), noone, noone);
     }
     
     mesh.xmin = buffer_read(buffer, buffer_f32);

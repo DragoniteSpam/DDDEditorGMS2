@@ -3,8 +3,9 @@
 var button = argument[0];
 var mesh = button.root.mesh;
 
-for (var i = 0; i < ds_list_size(mesh.vbuffers); i++) {
-    var buffer = mesh.buffers[| i];
+for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
+    var submesh = mesh.submeshes[| i];
+    var buffer = submesh.buffer;
     buffer_seek(buffer, buffer_seek_start, 0);
     
     var tangle = dcos(Stuff.setting_normal_threshold);
@@ -26,13 +27,13 @@ for (var i = 0; i < ds_list_size(mesh.vbuffers); i++) {
     
     buffer_seek(buffer, buffer_seek_start, 0);
     
-    vertex_delete_buffer(mesh.vbuffers[| i]);
-    mesh.vbuffers[| i] = vertex_create_buffer_from_buffer(buffer, Stuff.graphics.vertex_format);
-    vertex_freeze(mesh.vbuffers[| i]);
+    vertex_delete_buffer(submesh.vbuffer);
+    submesh.vbuffer = vertex_create_buffer_from_buffer(buffer, Stuff.graphics.vertex_format);
+    vertex_freeze(submesh.vbuffer);
 
-    vertex_delete_buffer(mesh.wbuffers[| i]);
+    vertex_delete_buffer(submesh.wbuffer);
     var wbuffer = vertex_create_buffer();
-    mesh.wbuffers[| i] = wbuffer;
+    submesh.wbuffer = wbuffer;
     vertex_begin(wbuffer, Stuff.graphics.vertex_format);
     while (buffer_tell(buffer) < buffer_get_size(buffer)) {
         var x1 = buffer_read(buffer, buffer_f32);

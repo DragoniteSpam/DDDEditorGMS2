@@ -68,7 +68,7 @@ if (keyboard_check(vk_shift)) {
 }
 
 if (keyboard_check_pressed(vk_tab)) {
-    var length = ds_list_size(mesh.buffers);
+    var length = ds_list_size(mesh.submeshes);
     if (keyboard_check(vk_shift)) {
         mesh.preview_index = ++mesh.preview_index % length;
     } else {

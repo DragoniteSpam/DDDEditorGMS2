@@ -5,8 +5,9 @@ var button = argument[0];
 var rebatch = (argument_count > 1) ? argument[1] : true;
 var mesh = button.root.mesh;
 
-for (var i = 0; i < ds_list_size(mesh.buffers); i++) {
-    var buffer = mesh.buffers[| i];
+for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
+    var submesh = mesh.submeshes[| i];
+    var buffer = submesh.buffer;
     buffer_seek(buffer, buffer_seek_start, 0);
     
     while (buffer_tell(buffer) < buffer_get_size(buffer)) {
@@ -42,9 +43,9 @@ for (var i = 0; i < ds_list_size(mesh.buffers); i++) {
     
     buffer_seek(buffer, buffer_seek_start, 0);
     
-    vertex_delete_buffer(mesh.vbuffers[| i]);
-    mesh.vbuffers[| i] = vertex_create_buffer_from_buffer(buffer, Stuff.graphics.vertex_format);
-    vertex_freeze(mesh.vbuffers[| i]);
+    vertex_delete_buffer(submesh.vbuffer);
+    submesh.vbuffer = vertex_create_buffer_from_buffer(buffer, Stuff.graphics.vertex_format);
+    vertex_freeze(submesh.vbuffer);
 }
 
 if (rebatch) {

@@ -13,10 +13,4 @@ if (file_exists(fn)) {
         case ".vrax": import_vrax(fn, false, mesh_data); break;
         case ".smf": import_smf(fn, mesh_data); break;
     }
-    
-    var list = button.root.el_list;
-    ui_list_clear(list);
-    for (var i = 0; i < ds_list_size(mesh_data.buffers); i++) {
-        create_list_entries(list, "[" + string(i) + "]");
-    }
 }

@@ -6,9 +6,7 @@ type = MeshTypes.RAW;
 animations = ds_map_create();           // this should map an animation name onto an index
 marker = 0;                             // this is really a second Flags list, but those are being used as asset flags and i want to keep them separate
 
-/* s */ buffers = ds_list_create();
-vbuffers = ds_list_create();
-wbuffers = ds_list_create();
+submeshes = ds_list_create();
 // there will only be one collision shape, defined as the first mesh
 // you import; this is a good reason to make all meshes in a series
 // the same shape, or almost the same shape

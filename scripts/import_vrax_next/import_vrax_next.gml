@@ -81,11 +81,7 @@ if (!existing) {
     c_shape_destroy(mesh.cshape);
 }
 
-proto_guid_set(mesh, ds_list_size(mesh.buffers));
-ds_list_add(mesh.buffers, buffer_create_from_vertex_buffer(vbuffer, buffer_fixed, 1));
-ds_list_add(mesh.vbuffers, vbuffer);
-ds_list_add(mesh.wbuffers, wbuffer);
-
+mesh_create_submesh(mesh, buffer_create_from_vertex_buffer(vbuffer, buffer_fixed, 1), vbuffer, wbuffer);
 vertex_freeze(vbuffer);
 vertex_freeze(wbuffer);
 

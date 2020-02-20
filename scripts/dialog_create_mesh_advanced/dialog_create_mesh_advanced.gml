@@ -31,12 +31,10 @@ var b_height = 32;
 var yy = 64;
 var yy_base = yy;
 
-var el_list = create_list(col1_x, yy, mesh.name + " contents", "(none)", ew, eh, 12, null, false, dg);
-for (var i = 0; i < ds_list_size(mesh.buffers); i++) {
-    create_list_entries(el_list, "[" + string(i) + "]");
-}
-el_list.tooltip = "Each mesh can have a number of different sub-meshes. This can be used to give multiple meshes different visual skins, or to imitate primitive frame-based animation. Currently sub-meshes can't be given individual names, although I may do that later when I'm less busy.";
+var el_list = create_list(col1_x, yy, mesh.name + " contents", "(none)", ew, eh, 12, null, false, dg, mesh.submeshes);
+el_list.tooltip = "Each mesh can have a number of different sub-meshes. This can be used to give multiple meshes different visual skins, or to imitate primitive frame-based animation.";
 el_list.allow_deselect = false;
+el_list.entries_are = ListEntries.INSTANCES;
 ui_list_select(el_list, 0);
 dg.el_list = el_list;
 yy = yy + ui_get_list_height(el_list) + spacing;

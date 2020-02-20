@@ -8,16 +8,16 @@ var yy = [0, 0, 0];
 var zz = [0, 0, 0];
 var nx, ny, nz, xtex, ytex, color;
 
-for (var i = 0; i < ds_list_size(mesh.buffers); i++) {
-    var buffer = mesh.buffers[| i];
+for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
+    var submesh = mesh.submeshes[| i];
+    var buffer = submesh.buffer;
     
-    var vbuffer = vertex_create_buffer_from_buffer(buffer, Stuff.graphics.vertex_format);
-    vertex_freeze(vbuffer);
-    ds_list_add(mesh.vbuffers, vbuffer);
+    submesh.vbuffer = vertex_create_buffer_from_buffer(buffer, Stuff.graphics.vertex_format);
+    vertex_freeze(submesh.vbuffer);
     
     var wbuffer = vertex_create_buffer();
     vertex_begin(wbuffer, Stuff.graphics.vertex_format);
-    ds_list_add(mesh.wbuffers, wbuffer);
+    submesh.wbuffer = wbuffer;
     
     if (i == 0) {
         mesh.cshape = c_shape_create();

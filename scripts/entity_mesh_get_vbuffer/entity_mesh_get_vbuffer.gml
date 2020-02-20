@@ -5,4 +5,4 @@
 var entity = argument0;
 var mesh = guid_get(entity.mesh);
 
-return mesh ? mesh.vbuffers[| proto_guid_get(mesh, entity.mesh_submesh)] : noone;
+return mesh ? mesh.submeshes[| proto_guid_get(mesh, entity.mesh_submesh)].vbuffer : noone;
