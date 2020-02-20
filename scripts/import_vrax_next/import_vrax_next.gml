@@ -81,7 +81,7 @@ if (!existing) {
     c_shape_destroy(mesh.cshape);
 }
 
-mesh_create_submesh(mesh, buffer_create_from_vertex_buffer(vbuffer, buffer_fixed, 1), vbuffer, wbuffer);
+mesh_create_submesh(mesh, buffer_create_from_vertex_buffer(vbuffer, buffer_fixed, 1), vbuffer, wbuffer, undefined, name);
 vertex_freeze(vbuffer);
 vertex_freeze(wbuffer);
 

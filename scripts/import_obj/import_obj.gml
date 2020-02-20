@@ -342,7 +342,7 @@ if (file_exists(fn)) {
             }
             
             if (data_added) {
-                mesh_create_submesh(mesh, buffer_create_from_vertex_buffer(vbuffer, buffer_fixed, 1), vbuffer, wbuffer);
+                mesh_create_submesh(mesh, buffer_create_from_vertex_buffer(vbuffer, buffer_fixed, 1), vbuffer, wbuffer, undefined, base_name);
                 if (!mesh.cshape) {
                     mesh.cshape = cshape;
                 } else {
