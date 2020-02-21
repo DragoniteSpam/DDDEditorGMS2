@@ -108,6 +108,7 @@ for (var i = 0; i < ds_list_size(dynamic.contents); i++) {
                             }
                         }
                         break;
+                    case DataTypes.MESH:
                     case DataTypes.AUDIO_BGM:
                     case DataTypes.AUDIO_SE:
                     case DataTypes.IMG_TILESET:
