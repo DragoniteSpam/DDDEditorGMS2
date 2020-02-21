@@ -33,7 +33,6 @@ var yy_base = yy;
 
 var el_list = create_list(col1_x, yy, mesh.name + " submeshes", "(none)", ew, eh, 12, omu_mesh_submesh_select, false, dg, mesh.submeshes);
 el_list.tooltip = "Each mesh can have a number of different sub-meshes. This can be used to give multiple meshes different visual skins, or to imitate primitive frame-based animation.";
-el_list.allow_deselect = false;
 el_list.entries_are = ListEntries.INSTANCES;
 ui_list_select(el_list, 0);
 dg.el_list = el_list;
