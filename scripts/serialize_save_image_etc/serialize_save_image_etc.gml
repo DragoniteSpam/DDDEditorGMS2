@@ -16,6 +16,7 @@ for (var i = 0; i < n_images; i++) {
     serialize_save_generic(buffer, data);
     buffer_write(buffer, buffer_u16, data.hframes);
     buffer_write(buffer, buffer_u16, data.vframes);
+    buffer_write(buffer, buffer_f32, data.aspeed);
     buffer_write_sprite(buffer, data.picture);
     // misc images may need to be summoned on-the-fly; in the future they may be
     // slapped onto one single texture page but for now they won't be

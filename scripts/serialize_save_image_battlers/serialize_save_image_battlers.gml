@@ -16,6 +16,7 @@ for (var i = 0; i < n_images; i++) {
     serialize_save_generic(buffer, data);
     buffer_write(buffer, buffer_u16, data.hframes);
     buffer_write(buffer, buffer_u16, data.vframes);
+    buffer_write(buffer, buffer_f32, data.aspeed);
     
     buffer_write_sprite(buffer, data.picture);
     // battlers and overworlds aren't stored on a texture page ahead

@@ -1320,6 +1320,14 @@
             }
         },
         {
+            "Key": "12d5f9e0-da2b-4313-9ab9-408bb5bb5141",
+            "Value": {
+                "id": "3bfceb73-a278-4cc6-9f8f-ca82fdb27aea",
+                "resourcePath": "scripts\\uivc_input_graphic_set_frame_speed\\uivc_input_graphic_set_frame_speed.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "12d80f4f-40fb-464a-8828-2ed76246cebc",
             "Value": {
                 "id": "9dda4908-a45a-4879-9303-8d471ca17e76",
@@ -17928,6 +17936,7 @@
         "ce519de6-170d-4f15-b160-5502c85aaf48",
         "234b025b-0da6-443a-923d-afc560c8d694",
         "e4734c49-2efe-484f-86f8-905a518e3425",
+        "12d5f9e0-da2b-4313-9ab9-408bb5bb5141",
         "e8ac8087-a473-4e23-be68-b14f9ee25afd",
         "d69c4608-aa35-47ea-8ffb-c11b46beaf9e",
         "ac9824b9-f01e-4080-93cf-e47c9dda1c10",

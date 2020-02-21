@@ -116,5 +116,6 @@ enum DataVersions {
     MESHES_OVERHAULED_AGAIN_PROBABLY    = 90,
     ASSET_MARKERS                       = 91,
     SUBMESH_NAMES                       = 92,
+    IMAGE_ASPEED                        = 93,
     _CURRENT /* = whatever the last one is + 1 */
 }

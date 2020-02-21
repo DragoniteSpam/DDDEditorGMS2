@@ -15,6 +15,10 @@ for (var i = 0; i < n_autotiles; i++) {
     data.name = buffer_read(buffer, buffer_string);
     data.aframes = buffer_read(buffer, buffer_u8);
     
+    if (version >= DataVersions.IMAGE_ASPEED) {
+        data.aspeed = buffer_read(buffer, buffer_f32);
+    }
+    
     if (version >= DataVersions.ASSET_MARKERS) {
         var bools = buffer_read(buffer, buffer_u32);
         data.texture_exclude = unpack(bools, 0);

@@ -19,6 +19,10 @@ repeat (n_images) {
     data.hframes = buffer_read(buffer, buffer_u16);
     data.vframes = buffer_read(buffer, buffer_u16);
     
+    if (version >= DataVersions.IMAGE_ASPEED) {
+        data.aspeed = buffer_read(buffer, buffer_f32);
+    }
+    
     data.picture = buffer_read_sprite(buffer);
     
     if (version >= DataVersions.ASSET_MARKERS) {

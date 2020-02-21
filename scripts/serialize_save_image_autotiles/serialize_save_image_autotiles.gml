@@ -15,6 +15,7 @@ for (var i = 0; i < n_autotiles; i++) {
     buffer_write_sprite(buffer, data.picture);
     buffer_write(buffer, buffer_string, data.name);
     buffer_write(buffer, buffer_u8, data.aframes);
+    buffer_write(buffer, buffer_f32, data.aspeed);
     
     var bools = pack(data.texture_exclude);
     buffer_write(buffer, buffer_u32, bools);

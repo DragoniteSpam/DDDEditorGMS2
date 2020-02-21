@@ -23,6 +23,7 @@ for (var i = 0; i < n_images; i++) {
     buffer_write(buffer, buffer_f32, data.y);
     buffer_write(buffer, buffer_f32, data.width);
     buffer_write(buffer, buffer_f32, data.height);
+    buffer_write(buffer, buffer_f32, data.aspeed);
     
     var bools = pack(data.texture_exclude);
     buffer_write(buffer, buffer_u32, bools);
