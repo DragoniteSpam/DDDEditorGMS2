@@ -42,8 +42,12 @@ var el_add = create_button(col1_x, yy, "Add Sub-Mesh", ew, eh, fa_center, omu_me
 el_add.tooltip = "Add a sub-mesh";
 yy = yy + el_add.height + spacing;
 
+var el_replace = create_button(col1_x, yy, "Replace Sub-Mesh", ew, eh, fa_center, omu_mesh_replace_sub, dg);
+el_replace.tooltip = "Replace a sub-mesh";
+yy = yy + el_replace.height + spacing;
+
 var el_delete = create_button(col1_x, yy, "Delete Sub-Mesh", ew, eh, fa_center, omu_mesh_delete_sub, dg);
-el_add.tooltip = "Delete a sub-mesh";
+el_delete.tooltip = "Delete a sub-mesh";
 yy = yy + el_delete.height + spacing;
 
 var el_name = create_input(col1_x, yy, "Name:", ew, eh, omu_mesh_submesh_rename, mesh.submeshes[| 0].name, "Enter a name", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
@@ -109,6 +113,7 @@ ds_list_add(dg.contents,
     el_list,
     el_add,
     el_delete,
+    el_replace,
     el_name,
     el_auto_bounds,
     el_normal_flat,

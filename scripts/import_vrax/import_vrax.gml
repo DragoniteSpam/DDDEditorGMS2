@@ -1,10 +1,12 @@
 /// @param filename
 /// @param [adjust-UVs?]
 /// @param [existing-object]
+/// @param [replace-index]
 
 var buffer = buffer_load(argument[0]);
 var adjust = (argument_count > 1 && argument[1] != undefined) ? argument[1] : true;
 var existing = (argument_count > 2 && argument[2] != undefined) ? argument[2] : noone;
+var replace_index = (argument_count > 3 && argument[3] != undefined) ? argument[3] : -1;
 
 var data = ds_map_create();
 ds_map_read(data, buffer_read_string(buffer));

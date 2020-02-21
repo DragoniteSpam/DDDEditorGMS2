@@ -3,6 +3,8 @@
 /// @param [adjust-UVs?]
 /// @param [raw-buffer?]
 /// @param [existing-object]
+/// @param [replace-index]
+
 // returns either a vertex buffer or an array of [vertex buffer, data buffer] depending
 // on what you ask it for
 // this is VERY bad but i don't want to write more than one d3d importers, or to offload
@@ -14,6 +16,7 @@ var everything = (argument_count > 1 && argument[1] != undefined) ? argument[1] 
 var adjust = (argument_count > 2 && argument[2] != undefined) ? argument[2] : true;
 var raw_buffer = (argument_count > 3 && argument[3] != undefined) ? argument[3] : false;
 var existing = (argument_count > 4 && argument[4] != undefined) ? argument[4] : noone;
+var replace_index = (argument_count > 5 && argument[5] != undefined) ? argument[5] : -1;
 var data_added = false;
 
 var f = file_text_open_read(fn);
@@ -226,7 +229,7 @@ if (everything) {
     }
     
     if (data_added) {
-        mesh_create_submesh(mesh, buffer_create_from_vertex_buffer(vbuffer, buffer_fixed, 1), vbuffer, wbuffer, undefined, base_name);
+        mesh_create_submesh(mesh, buffer_create_from_vertex_buffer(vbuffer, buffer_fixed, 1), vbuffer, wbuffer, undefined, base_name, replace_index);
         if (!mesh.cshape) {
             mesh.cshape = cshape;
         } else {
