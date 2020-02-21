@@ -15,6 +15,7 @@ var all_effect = true;
 
 for (var i = 0; i < ds_list_size(list); i++) {
     var thing = list[| i];
+    var object_type = thing.object_index;
     // if latest common ancestor is undefined, define it
     if (!latest_common_ancestor) {
         latest_common_ancestor = object_type;
