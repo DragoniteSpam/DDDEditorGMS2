@@ -74,7 +74,7 @@ el_up_axis.tooltip = "Rotates the axes of all submeshes. Useful if you exported 
 yy = yy + el_up_axis.height + spacing;
 
 var el_scale_2x = create_button(col2_x, yy, "Texture Scale: 2x", ew, eh, fa_center, omu_mesh_texture_scale_2x, dg);
-el_scale_2x.tooltip = "Double the scale of the texture of all submeshes. Useful if you want a mesh to use a different texture than the map's base texture.";
+el_scale_2x.tooltip = "Double the scale of the texture of all submeshes. Useful if you want a mesh to use a different texture than the map's base tileset, since the base tilesets are scaled down.";
 yy = yy + el_scale_2x.height + spacing;
 
 var el_scale_05x = create_button(col2_x, yy, "Texture Scale: 0.5x", ew, eh, fa_center, omu_mesh_texture_scale_05x, dg);

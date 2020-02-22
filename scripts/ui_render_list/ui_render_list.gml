@@ -10,12 +10,14 @@ var x1 = list.x + xx;
 var y1 = list.y + yy;
 var x2 = x1 + list.width;
 var y2 = y1 + list.height;
-
 var y3 = y2 + list.slots * list.height;
+var ww = x2 - x1;
+var hh = y3 - y2;
 
 var tx = ui_get_text_x(list, x1, x2);
 var ty = ui_get_text_y(list, y1, y2);
 
+#region stuff around the list
 draw_set_halign(list.alignment);
 draw_set_valign(list.valignment);
 draw_set_color(list.color);
@@ -35,6 +37,21 @@ if (string_length(list.tooltip) > 0) {
     var txoffset = 0;
 }
 draw_text(tx + txoffset, ty, string(list.text));
+#endregion
+
+// Drawing to the surface instead of the screen directly - everything drawn needs
+// to be minus x1 and minus y1, because suddenly we're drawing at the origin again
+#region list drawing
+if (surface_exists(list.surface) && (surface_get_width(list.surface) != ww || surface_get_height(list.surface) != hh)) {
+    surface_free(list.surface);
+}
+
+if (!surface_exists(list.surface)) {
+    list.surface = surface_create(ww, hh);
+}
+
+surface_set_target(list.surface);
+draw_clear_alpha(list.interactive ? c_white : c_ltgray, 1);
 
 var n = (list.entries + 1) ? ds_list_size(list.entries) : 0;
 list.index = clamp(n - list.slots, 0, list.index);
@@ -42,9 +59,9 @@ list.index = clamp(n - list.slots, 0, list.index);
 var active = dialog_is_active(list.root);
 
 if (n == 0) {
-    draw_rectangle_colour(x1, y2, x2, y2 + list.height, c_ltgray, c_ltgray, c_ltgray, c_ltgray, false);
+    draw_rectangle_colour(0, 0, x2 - x1, y2 + list.height - y2, c_ltgray, c_ltgray, c_ltgray, c_ltgray, false);
     ty = mean(y2, y2 + list.height);
-    draw_text(tx, ty, string(list.text_vacant));
+    draw_text(tx - x1, ty - y2, string(list.text_vacant));
 } else {
     for (var i = 0; i < min(n, list.slots); i++) {
         var index = i + list.index;
@@ -53,7 +70,7 @@ if (n == 0) {
         var tya = mean(ya, yb);
         if (ui_list_is_selected(list, index)) {
             var c = list.interactive ? c_ui_select : c_ltgray;
-            draw_rectangle_colour(x1, ya, x2, yb, c, c, c, c, false);
+            draw_rectangle_colour(0, ya - y2, x2 - x1, yb - y2, c, c, c, c, false);
         }
         
         var c = list.colorize ? script_execute(list.render_colors, list, index) : c_black;
@@ -72,10 +89,13 @@ if (n == 0) {
                 break;
             case ListEntries.SCRIPT: text = text + script_execute(list.evaluate_text, list, index);
         }
-        draw_text_colour(tx, tya, string(text), c, c, c, c, 1);
+        draw_text_colour(tx - x1, tya - y2, string(text), c, c, c, c, 1);
     }
 }
+surface_reset_target();
+#endregion
 
+draw_surface(list.surface, x1, y2);
 var offset = (n > list.slots) ? 16 : 0;
 
 var move_direction = 0;
@@ -148,6 +168,8 @@ if (list.interactive && active) {
     }
 }
 
+
+// draw the slider
 if (n > list.slots) {
     var sw = 16;
     var noutofrange = n - list.slots; // at minimum, one

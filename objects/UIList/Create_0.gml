@@ -34,6 +34,7 @@ entry_colors = ds_list_create();
 colorize = true;
 entries_are = ListEntries.STRINGS;
 numbered = false;
+surface = noone;
 
 enum ListEntries {
     STRINGS,
