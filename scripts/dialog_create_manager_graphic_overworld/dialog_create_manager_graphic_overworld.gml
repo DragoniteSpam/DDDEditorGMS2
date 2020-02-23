@@ -63,12 +63,13 @@ yy = yy + el_name_internal.height + spacing;
 
 vx1 = ew / 2;
 
-var el_frames_horizontal = create_input(c2 + 16, yy, "X frames:", ew, eh, uivc_input_graphic_set_frames_h, "1", "0...255", validate_int, 0, 255, 3, vx1, vy1, vx2, vy2, dg);
+var el_frames_horizontal = create_input(c2 + 16, yy, "X frames:", ew, eh, uivc_input_graphic_set_frames_h_npc, "1", "0...255", validate_int, 0, 255, 3, vx1, vy1, vx2, vy2, dg);
 dg.el_frames_horizontal = el_frames_horizontal;
 yy = yy + el_name_internal.height + spacing;
 
 var el_frames_vertical = create_input(c2 + 16, yy, "Y frames:", ew, eh, uivc_input_graphic_set_frames_v, "1", "0...255", validate_int, 0, 255, 3, vx1, vy1, vx2, vy2, dg);
 dg.el_frames_vertical = el_frames_vertical;
+el_frames_vertical.interactive = false;
 yy = yy + el_frames_vertical.height + spacing;
 
 var el_texture_exclude = create_checkbox(c2 + 16, yy, "Exclude from texture page?", ew, eh, uivc_input_graphic_texture_exclude, false, dg);

@@ -32,5 +32,7 @@ repeat (n_images) {
     data.width = sprite_get_width(data.picture);
     data.height = sprite_get_height(data.picture);
     
+    data_image_npc_frames(data);
+    
     ds_list_add(list, data);
 }
