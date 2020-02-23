@@ -34,11 +34,6 @@ repeat (n_images) {
     
     if (individual_images) {
         data.picture = buffer_read_sprite(buffer);
-        
-        if (!data.width) {
-            data.width = sprite_get_width(data.picture);
-            data.height = sprite_get_height(data.picture);
-        }
     }
     
     ds_list_add(list, data);

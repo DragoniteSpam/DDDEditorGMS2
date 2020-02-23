@@ -29,9 +29,15 @@ repeat (n_images) {
         data.texture_exclude = unpack(bools, 0);
     }
     
-    data.width = sprite_get_width(data.picture);
-    data.height = sprite_get_height(data.picture);
+    if (version >= DataVersions.IMAGE_HEIGHT_WIDTH_DATA) {
+        data.width = buffer_read(buffer, buffer_u16);
+        data.height = buffer_read(buffer, buffer_u16);
+    } else {
+        data.width = sprite_get_width(data.picture);
+        data.height = sprite_get_height(data.picture);
+    }
     
+    data_image_force_power_two(data);
     data_image_npc_frames(data);
     
     ds_list_add(list, data);

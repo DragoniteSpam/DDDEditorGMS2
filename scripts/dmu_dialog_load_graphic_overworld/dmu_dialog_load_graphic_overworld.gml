@@ -8,5 +8,6 @@ if (file_exists(fn)) {
     data.hframes = 4;
     data.vframes = 4;
     
+    data_image_force_power_two(data);
     data_image_npc_frames(data);
 }

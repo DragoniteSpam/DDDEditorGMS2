@@ -4536,6 +4536,14 @@
             }
         },
         {
+            "Key": "44327d63-897f-47cc-afd0-a490d8846c46",
+            "Value": {
+                "id": "1d30a426-c996-49ae-a216-b7976225f868",
+                "resourcePath": "scripts\\data_image_force_power_two\\data_image_force_power_two.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "443815a0-a726-47e4-9ea3-6ab8f8337970",
             "Value": {
                 "id": "67a11f0a-1a3a-4b73-aa83-bf096a0852b3",
@@ -18466,6 +18474,7 @@
         "eafb66d1-299d-499a-b90d-dd706d2bcb31",
         "fcf970ff-305d-4ebe-9975-49961903f151",
         "d848c42a-fe99-4192-8526-49ab3d77398c",
+        "44327d63-897f-47cc-afd0-a490d8846c46",
         "4ef4d916-562d-4362-b777-697ab3236fa1",
         "d8ad5fef-aec7-44ad-84b6-786151956008",
         "88a72ab1-34ee-4030-b06d-0468751727de",

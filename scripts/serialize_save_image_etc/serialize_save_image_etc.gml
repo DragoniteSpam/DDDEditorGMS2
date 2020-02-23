@@ -23,6 +23,9 @@ for (var i = 0; i < n_images; i++) {
     
     var bools = pack(data.texture_exclude);
     buffer_write(buffer, buffer_u32, bools);
+    
+    buffer_write(buffer, buffer_u16, data.width);
+    buffer_write(buffer, buffer_u16, data.height);
 }
 
 buffer_poke(buffer, addr_next, buffer_u64, buffer_tell(buffer));

@@ -117,5 +117,6 @@ enum DataVersions {
     ASSET_MARKERS                       = 91,
     SUBMESH_NAMES                       = 92,
     IMAGE_ASPEED                        = 93,
+    IMAGE_HEIGHT_WIDTH_DATA             = 94,
     _CURRENT /* = whatever the last one is + 1 */
 }
