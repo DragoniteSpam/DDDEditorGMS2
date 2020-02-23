@@ -36,7 +36,7 @@ graphics_draw_water();
 
 // anything in the world
 
-shader_set(shd_default);
+shader_set(shd_ddd);
 
 // this will need to be dynamic at some point
 var tex = Stuff.setting_view_texture ? sprite_get_texture(get_active_tileset().master, 0) : sprite_get_texture(b_tileset_textureless, 0);
@@ -72,8 +72,10 @@ for (var i = 0; i < ds_list_size(map_contents.dynamic); i++) {
     for (var j = 0; j < MAX_VISIBLE_MOVE_ROUTES; j++) {
         var route = guid_get(ent.visible_routes[j]);
         if (route && route.buffer) {
-            ds_list_add(list_routes, [route.buffer, (ent.xx + 0.5) * TILE_WIDTH, (ent.yy + 0.5) * TILE_HEIGHT, (ent.zz + 0.5) * TILE_DEPTH,
-                route.extra, route.extra_xx, route.extra_yy, route.extra_zz]);
+            ds_list_add(list_routes, [
+                route.buffer, (ent.xx + 0.5) * TILE_WIDTH, (ent.yy + 0.5) * TILE_HEIGHT, (ent.zz + 0.5) * TILE_DEPTH,
+                route.extra, route.extra_xx, route.extra_yy, route.extra_zz
+            ]);
         }
     }
 }

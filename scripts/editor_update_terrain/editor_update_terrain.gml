@@ -22,10 +22,10 @@ if (mode.orthographic) {
     var proj = matrix_build_projection_perspective_fov(-mode.fov, -vw / vh, CAMERA_ZNEAR, CAMERA_ZFAR);
 }
 
-shader_set(shd_basic);
-shader_set_uniform_i(shader_get_uniform(shd_basic, "lightEnabled"), true);
-shader_set_uniform_i(shader_get_uniform(shd_basic, "lightCount"), 1);
-shader_set_uniform_f_array(shader_get_uniform(shd_basic, "lightData"), [
+shader_set(shd_basic_lighting);
+shader_set_uniform_i(shader_get_uniform(shd_basic_lighting, "lightEnabled"), true);
+shader_set_uniform_i(shader_get_uniform(shd_basic_lighting, "lightCount"), 1);
+shader_set_uniform_f_array(shader_get_uniform(shd_basic_lighting, "lightData"), [
     1, 1, -1, 0,
         0, 0, 0, 0,
         1, 1, 1, 0,

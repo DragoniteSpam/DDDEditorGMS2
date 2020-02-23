@@ -17,7 +17,7 @@ if (Stuff.setting_view_entities) {
     } else {
         smf_model_draw(vbuffer);
     }
-    shader_set(shd_default);
+    shader_set(shd_ddd);
 }
 
 transform_reset();

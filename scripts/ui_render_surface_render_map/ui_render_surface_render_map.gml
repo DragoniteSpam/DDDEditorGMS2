@@ -39,7 +39,7 @@ if (map.is_3d) {
     camera_apply(camera);
 }
 
-shader_set(shd_default);
+shader_set(shd_ddd);
 transform_reset();
 
 // @todo tileset update

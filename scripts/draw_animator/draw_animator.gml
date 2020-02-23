@@ -35,7 +35,7 @@ if (map.is_3d) {
 
 // anything in the world
 
-shader_set(shd_default);
+shader_set(shd_ddd);
 var animation = mode.ui.active_animation;
 
 gpu_set_cullmode(cull_noculling);

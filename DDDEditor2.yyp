@@ -1944,6 +1944,14 @@
             }
         },
         {
+            "Key": "1b701d5f-02ee-48a9-9d48-c3c5b7eaa238",
+            "Value": {
+                "id": "08fb33ed-385b-47ee-b2ab-683156d33687",
+                "resourcePath": "shaders\\shd_ddd_base\\shd_ddd_base.yy",
+                "resourceType": "GMShader"
+            }
+        },
+        {
             "Key": "1bab909d-562b-49fe-bb65-1efcb336c65d",
             "Value": {
                 "id": "e31acdd8-1c3c-4bf6-ab1a-1aaf69577c0f",
@@ -3283,7 +3291,7 @@
             "Key": "2f931b71-1fe1-4422-9eb1-68ef4d3691d0",
             "Value": {
                 "id": "24421485-3e11-4cb7-913f-27f0c6620bfb",
-                "resourcePath": "shaders\\shd_default\\shd_default.yy",
+                "resourcePath": "shaders\\shd_ddd\\shd_ddd.yy",
                 "resourceType": "GMShader"
             }
         },
@@ -11019,7 +11027,7 @@
             "Key": "a3d97ff3-e8c7-49db-813e-acdf38c20935",
             "Value": {
                 "id": "898e9ffc-f846-478d-983a-bb01808e70f3",
-                "resourcePath": "shaders\\shd_basic\\shd_basic.yy",
+                "resourcePath": "shaders\\shd_basic_lighting\\shd_basic_lighting.yy",
                 "resourceType": "GMShader"
             }
         },
