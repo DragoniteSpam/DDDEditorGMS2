@@ -10,7 +10,8 @@
         "2a65013a-ee4f-4d11-9049-d4d3d65d856a",
         "c8be3a72-7a2a-4f49-b5bb-4804079054a7",
         "5d3816a6-03e1-41e6-99c2-312a7b74a958",
-        "e36c2145-5461-4d10-a406-28b48990f062"
+        "e36c2145-5461-4d10-a406-28b48990f062",
+        "e6208ede-5a85-4ec7-99d9-b6ccb655046f"
     ],
     "filterType": "GMIncludedFile",
     "folderName": "basic",

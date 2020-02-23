@@ -3,13 +3,13 @@
     "modelName": "GMSprite",
     "mvc": "1.12",
     "name": "spr_pawn_missing",
-    "For3D": false,
+    "For3D": true,
     "HTile": false,
     "VTile": false,
     "bbox_bottom": 255,
     "bbox_left": 8,
     "bbox_right": 252,
-    "bbox_top": 0,
+    "bbox_top": 3,
     "bboxmode": 0,
     "colkind": 1,
     "coltolerance": 0,
@@ -38,8 +38,8 @@
             ]
         }
     ],
-    "gridX": 0,
-    "gridY": 0,
+    "gridX": 1,
+    "gridY": 1,
     "height": 256,
     "layers": [
         {

@@ -33,10 +33,12 @@ if (Stuff.map.active_map.is_3d) {
     var yoffset = Stuff.tile_height;
     var zoffset = 1;
 }
-transform_set(0, -TILE_HEIGHT, 0, 0, 0, 0, 1, 1, 1);
-transform_add(0, 0, 0, angle, 0, 0, 1, 1, 1);
+/*transform_set(0, -TILE_HEIGHT, 0, 0, 0, 0, 1, 1, 1);
+transform_add(0, 0, 0, angle, 0, 0, 1, 1, 1);*/
 transform_add(xx * TILE_WIDTH + xoffset, yy * TILE_HEIGHT + yoffset, zz * TILE_DEPTH + zoffset, 0, 0, 0, 1, 1, 1);
 
-draw_sprite_part_ext(sprite, 0, frame * frame_width, dir * frame_height, frame_width, frame_height, 0, 0, TILE_WIDTH / frame_width, TILE_HEIGHT / frame_height, c_white, 1);
+vertex_submit(Stuff.graphics.base_npc, pr_trianglelist, sprite_get_texture(spr_pawn_missing, 0));
+
+//draw_sprite_part_ext(sprite, 0, frame * frame_width, dir * frame_height, frame_width, frame_height, 0, 0, TILE_WIDTH / frame_width, TILE_HEIGHT / frame_height, c_white, 1);
 
 transform_reset();

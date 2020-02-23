@@ -1,7 +1,7 @@
 /// @param filename
 /// @param [complete-object?]
 /// @param [adjust-UVs?]
-/// @param [raw-buffer?]
+/// @param [include-raw-buffer?]
 /// @param [existing-object]
 /// @param [replace-index]
 

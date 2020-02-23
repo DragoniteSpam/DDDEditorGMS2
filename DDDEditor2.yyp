@@ -15296,6 +15296,14 @@
             }
         },
         {
+            "Key": "e6208ede-5a85-4ec7-99d9-b6ccb655046f",
+            "Value": {
+                "id": "5102c656-82b5-4c9f-9e9c-cfe8d503f525",
+                "resourcePath": "datafiles_yy\\data\\basic\\base-npc.d3d.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "e6445c3b-00cb-4c9d-910d-bd170c53a1a8",
             "Value": {
                 "id": "5564dd7d-4f4f-4c5f-bd80-fce7d5b5b56b",
