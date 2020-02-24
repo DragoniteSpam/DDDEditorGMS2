@@ -84,9 +84,6 @@ el_image.interactive = false;
 dg.el_image = el_image;
 yy = yy + el_image.height + spacing;
 
-var el_texture_page = create_button(c3 + 16, yy, "View Texture Page", ew, eh, fa_center, dmu_dialog_show_ui_texture, dg);
-yy = yy + el_texture_page.height + spacing;
-
 var el_dimensions = create_text(c3 + 16, yy, "Dimensions:", ew, eh, fa_left, ew, dg);
 dg.el_dimensions = el_dimensions;
 yy = yy + el_dimensions.height + spacing;
@@ -124,7 +121,6 @@ ds_list_add(dg.contents,
     el_frames_vertical,
     el_texture_exclude,
     el_image,
-    el_texture_page,
     el_dim_x,
     el_dim_y,
     el_dim_set_crop,
