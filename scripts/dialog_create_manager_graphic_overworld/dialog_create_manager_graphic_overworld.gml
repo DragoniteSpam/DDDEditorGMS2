@@ -84,9 +84,17 @@ el_image.interactive = false;
 dg.el_image = el_image;
 yy = yy + el_image.height + spacing;
 
-var el_dimensions = create_text(c3 + 16, yy, "Dimensions:", ew, eh, fa_left, ew, dg);
+var el_dimensions = create_text(c3 + 16, yy, "Texture Dimensions:", ew, eh, fa_left, ew, dg);
 dg.el_dimensions = el_dimensions;
 yy = yy + el_dimensions.height + spacing;
+
+var el_dim_x = create_input(c3 + 16, yy, "Width:", ew, eh, uivc_input_graphic_set_width, "", "int", validate_int, 1, 0xffff, 5, vx1, vy1, vx2, vy2, dg);
+dg.el_dim_x = el_dim_x;
+yy = yy + el_dim_x.height + spacing;
+
+var el_dim_y = create_input(c3 + 16, yy, "Height:", ew, eh, uivc_input_graphic_set_height, "", "int", validate_int, 1, 0xffff, 5, vx1, vy1, vx2, vy2, dg);
+dg.el_dim_y = el_dim_y;
+yy = yy + el_dim_y.height + spacing;
 
 dg.el_frame_speed = noone;
 
@@ -107,6 +115,8 @@ ds_list_add(dg.contents,
     el_frames_vertical,
     el_texture_exclude,
     el_image,
+    el_dim_x,
+    el_dim_y,
     el_confirm
 );
 

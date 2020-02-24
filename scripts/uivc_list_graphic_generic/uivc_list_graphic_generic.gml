@@ -14,6 +14,8 @@ if (selection + 1) {
         ui_input_set_value(list.root.el_frame_speed, string(what.aspeed));
     }
     list.root.el_image.image = what.picture;
-    list.root.el_dimensions.text = "Dimensions: " + string(what.width) + " x " + string(what.height);
+    list.root.el_dimensions.text = "Dimensions: " + string(sprite_get_width(what.picture)) + " x " + string(sprite_get_height(what.picture));
     list.root.el_texture_exclude.value = what.texture_exclude;
+    list.root.el_dim_x.value = string(what.width);
+    list.root.el_dim_y.value = string(what.height);
 }

@@ -91,6 +91,14 @@ yy = yy + el_dimensions.height + spacing;
 var el_texture_page = create_button(c3 + 16, yy, "View Texture Page", ew, eh, fa_center, dmu_dialog_show_ui_texture, dg);
 yy = yy + el_texture_page.height + spacing;
 
+var el_dim_x = create_input(c3 + 16, yy, "Width:", ew, eh, uivc_input_graphic_set_width, "", "int", validate_int, 1, 0xffff, 5, vx1, vy1, vx2, vy2, dg);
+dg.el_dim_x = el_dim_x;
+yy = yy + el_dim_x.height + spacing;
+
+var el_dim_y = create_input(c3 + 16, yy, "Height:", ew, eh, uivc_input_graphic_set_height, "", "int", validate_int, 1, 0xffff, 5, vx1, vy1, vx2, vy2, dg);
+dg.el_dim_y = el_dim_y;
+yy = yy + el_dim_y.height + spacing;
+
 dg.el_frame_speed = noone;
 
 var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
@@ -111,6 +119,8 @@ ds_list_add(dg.contents,
     el_texture_exclude,
     el_image,
     el_texture_page,
+    el_dim_x,
+    el_dim_y,
     el_confirm
 );
 
