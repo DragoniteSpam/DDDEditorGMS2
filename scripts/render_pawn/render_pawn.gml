@@ -18,5 +18,3 @@ var index = pawn.map_direction * data.hframes + floor(pawn.frame);
 transform_set(xx * TILE_WIDTH, yy * TILE_HEIGHT, zz * TILE_DEPTH, 0, 0, 0, 1, 1, 1);
 vertex_submit(data ? data.npc_frames[index] : Stuff.graphics.base_npc, pr_trianglelist, sprite_get_texture(data ? data.picture : spr_pawn_missing, 0));
 transform_reset();
-
-if(keyboard_check(vk_space)) sprite_save(data ? data.picture : spr_pawn_missing, 0, string(data) + ".png");

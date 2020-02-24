@@ -369,8 +369,6 @@ stuff_to_destroy = ds_queue_create();
 #region end of step actions
 schedule_rebuild_master_texture = false;
 schedule_view_master_texture = false;
-schedule_view_particle_texture = false;
-schedule_view_ui_texture = false;
 schedule_save = false;
 
 gpu_base_state = gpu_get_state();
