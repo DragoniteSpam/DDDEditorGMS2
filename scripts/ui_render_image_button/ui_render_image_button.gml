@@ -14,19 +14,25 @@ var y2 = y1 + button.height;
 var tx = ui_get_text_x(button, x1, x2);
 var ty = ui_get_text_y(button, y1, y2);
 
-var c = button.interactive ? c_white : c_ltgray;
-
-draw_rectangle_colour(x1, y1, x2, y2, c, c, c, c, false);
-
-if (button.outline) {
-    draw_rectangle_colour(x1, y1, x2, y2, c_black, c_black, c_black, c_black, true);
+// Drawing to the surface instead of the screen directly - everything drawn needs
+// to be minus x1 and minus y1, because suddenly we're drawing at the origin again
+#region input drawing
+if (surface_exists(button.surface) && (surface_get_width(button.surface) != button.width || surface_get_height(button.surface) != button.height)) {
+    surface_free(button.surface);
 }
+
+if (!surface_exists(button.surface)) {
+    button.surface = surface_create(button.width, button.height);
+}
+
+surface_set_target(button.surface);
+draw_clear_alpha(button.interactive ? c_white : c_ltgray, 1);
 
 var color = c_white;
 if (button.interactive && dialog_is_active(button.root)) {
     var inbounds = mouse_within_rectangle_determine(x1, y1, x2, y2, button.adjust_view);
     if (inbounds) {
-        draw_rectangle_colour(x1, y1, x2, y2, c_ui, c_ui, c_ui, c_ui, false);
+        draw_rectangle_colour(0, 0, x2 - x1, y2 - y1, c_ui, c_ui, c_ui, c_ui, false);
         color = merge_color(c_white, c_ui, 0.5);
         if (Controller.release_left) {
             script_execute(button.onmouseup, button);
@@ -39,10 +45,16 @@ if (!button.image) {
     draw_set_halign(button.alignment);
     draw_set_valign(button.valignment);
     draw_set_color(button.color);
-    draw_text_ext(tx, ty, string(button.text), -1, button.width);
+    draw_text_ext(tx - x1, ty - y1, string(button.text), -1, button.width);
 } else {
     draw_sprite_general(
-        button.image, button.index, 0, 0, min(button.width, sprite_get_width(button.image)),
-        min(button.height, sprite_get_height(button.image)), x1, y1, 1, 1, 0, color, color, color, color, 1
+        button.image, button.index, 0, 0, sprite_get_width(button.image),
+        sprite_get_height(button.image), 0, 0, 1, 1, 0, color, color, color, color, 1
     );
 }
+
+draw_rectangle_colour(1, 1, button.width - 2, button.height - 2, c_black, c_black, c_black, c_black, true);
+surface_reset_target();
+#endregion
+
+draw_surface(button.surface, x1, y1);

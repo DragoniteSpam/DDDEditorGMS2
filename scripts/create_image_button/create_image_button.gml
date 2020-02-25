@@ -15,6 +15,8 @@ with (instance_create_depth(argument[0], argument[1], 0, UIImageButton)) {
     image = argument[3];
     width = argument[4];
     height = argument[5];
+    
+    surface = surface_create(width, height);
 
     alignment = argument[6];
     onmouseup = argument[7];
