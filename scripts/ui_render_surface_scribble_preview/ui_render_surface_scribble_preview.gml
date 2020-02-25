@@ -14,4 +14,4 @@ var mode = Stuff.scribble;
 draw_clear(c_white);
 draw_rectangle_colour(1, 1, surface_get_width(surface.surface) - 2, surface_get_height(surface.surface) - 2, c_black, c_black, c_black, c_black, true);
 
-draw_text(32, 32, mode.scribble_text);
+scribble_draw(32, 32, mode.scribble_text);
