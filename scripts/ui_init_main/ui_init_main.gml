@@ -417,14 +417,6 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element_entity_type.height + spacing;
     
-    /*
-    element_entity_collision_data = create_button(col1_x, yy, "Collision Data", col_width, element_height, fa_center, omu_entity_collision_data, t_p_entity);
-    ds_list_add(t_p_entity.contents, element_entity_collision_data);
-    element_entity_collision_data.interactive = false;
-    
-    yy = yy + element_entity_collision_data.height + spacing;
-    */
-    
     element_entity_static = create_checkbox(col1_x, yy, "Static", col_width, element_height, uivc_check_entity_static, false, t_p_entity);
     ds_list_add(t_p_entity.contents, element_entity_static);
     element_entity_static.interactive = false;
