@@ -6,7 +6,8 @@
     "configs": [
         "default",
         "default;Terrain",
-        "default;scribble"
+        "default;scribble",
+        "default;spart"
     ],
     "option_ecma": false,
     "parentProject": {
@@ -10529,6 +10530,14 @@
             }
         },
         {
+            "Key": "9201adb5-019d-453d-a1a6-4968f13316b9",
+            "Value": {
+                "id": "02f6e6f5-204b-4aba-9d21-1a2d36b238e8",
+                "resourcePath": "scripts\\editor_mode_spart\\editor_mode_spart.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "921b35ab-b36c-4718-a0a0-85d3ee4904a0",
             "Value": {
                 "id": "eb63f6a9-0eaa-4229-a208-31340555eafc",
@@ -11285,6 +11294,14 @@
             "Value": {
                 "id": "13c97af1-90e3-4545-8928-cbff5cc6b062",
                 "resourcePath": "objects\\EntityMeshAutotile\\EntityMeshAutotile.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "9cdfc141-6a62-4289-947b-cce51b852883",
+            "Value": {
+                "id": "267c90f9-2acf-4ffc-b5a2-c1f741451368",
+                "resourcePath": "objects\\EditorModeSpart\\EditorModeSpart.yy",
                 "resourceType": "GMObject"
             }
         },
@@ -19920,6 +19937,7 @@
         "027688c8-77c1-40f5-b0c2-9fa7454e4f1b",
         "54e82075-777f-48c5-9db5-9d5896ed45ad",
         "31bf1c76-3d34-4e06-9612-6b0e3544324e",
+        "9201adb5-019d-453d-a1a6-4968f13316b9",
         "10ce15b8-7aa5-47a1-8560-c0aa462e166a",
         "df3fa51b-fa8b-48de-b8a9-64532b479d43",
         "85cb0072-cfc5-47b6-a769-1d18a1ca582c",
