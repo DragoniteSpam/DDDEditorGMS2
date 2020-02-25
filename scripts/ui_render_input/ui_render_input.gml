@@ -67,7 +67,7 @@ if (input.emphasis) {
     draw_set_font(FDefault12Italic);
 }
 
-var display_text = value + ((floor((current_second * 1.25) % 2) == 0) ? "|" : "");
+var display_text = value + ((floor((current_time * 0.00125) % 2) == 0) ? "|" : "");
 if (input.multi_line) {
     var valign = draw_get_valign();
     draw_set_valign(fa_top);

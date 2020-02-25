@@ -40,7 +40,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     var vx2 = vx1 + ew;
     var vy2 = vy1 + eh * 12;
     
-    var element = create_input(xx, yy, "", ew, eh, null, "Type something here to be previewed in [wave][rainbow]Scribble[]!", "text", validate_string, 0, 1, 10000, vx1, vy1, vx2, vy2, id);
+    var element = create_input(xx, yy, "", ew, eh, uivc_scribble_text, mode.scribble_text, "text", validate_string, 0, 1, 10000, vx1, vy1, vx2, vy2, id);
     element.multi_line = true;
     ds_list_add(contents, element);
     
