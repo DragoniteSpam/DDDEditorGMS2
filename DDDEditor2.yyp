@@ -5,7 +5,8 @@
     "IsDnDProject": false,
     "configs": [
         "default",
-        "default;Terrain"
+        "default;Terrain",
+        "default;scribble"
     ],
     "option_ecma": false,
     "parentProject": {
@@ -1200,6 +1201,14 @@
             }
         },
         {
+            "Key": "0e8562ff-2689-417a-bbc0-852ac82c9c4b",
+            "Value": {
+                "id": "359afd23-7ff2-46c5-9936-beb8ecc684e6",
+                "resourcePath": "objects\\EditorModeScribble\\EditorModeScribble.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "0e914666-5b00-4ec7-aac1-acca6ddcb0e2",
             "Value": {
                 "id": "fa6071cb-f287-457a-8ef0-048045dcb8df",
@@ -1309,6 +1318,14 @@
                 "id": "711cf1bc-cb1a-4336-98ad-6299087d0f10",
                 "resourcePath": "views\\1075bef3-d88a-4fd7-9601-5155915ad50e.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "10ce15b8-7aa5-47a1-8560-c0aa462e166a",
+            "Value": {
+                "id": "1eb67994-8a7d-4ae3-b8c4-bcc4a3fb21ec",
+                "resourcePath": "scripts\\editor_mode_scribble\\editor_mode_scribble.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -19903,6 +19920,7 @@
         "027688c8-77c1-40f5-b0c2-9fa7454e4f1b",
         "54e82075-777f-48c5-9db5-9d5896ed45ad",
         "31bf1c76-3d34-4e06-9612-6b0e3544324e",
+        "10ce15b8-7aa5-47a1-8560-c0aa462e166a",
         "df3fa51b-fa8b-48de-b8a9-64532b479d43",
         "85cb0072-cfc5-47b6-a769-1d18a1ca582c",
         "e6caee2a-f7c6-4df3-aeb8-436ca863445d",

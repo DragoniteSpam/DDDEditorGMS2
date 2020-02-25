@@ -34,7 +34,8 @@ enum ModeIDs {
     EVENT,
     DATA,
     ANIMATION,
-    TERRAIN
+    TERRAIN,
+    SCRIBBLE,
 }
 
 tf = ["False", "True"];
@@ -353,6 +354,7 @@ data = instance_create_depth(0, 0, 0, EditorModeData);
 event = instance_create_depth(0, 0, 0, EditorModeEvent);
 animation = instance_create_depth(0, 0, 0, EditorModeAnimation);
 terrain = instance_create_depth(0, 0, 0, EditorModeTerrain);
+scribble = instance_create_depth(0, 0, 0, EditorModeScribble);
 menu = menu_init_main();
 
 instance_deactivate_object(EditorMode);
@@ -480,6 +482,7 @@ switch (stashed_mode) {
     case ModeIDs.DATA: editor_mode_data(); break;
     case ModeIDs.ANIMATION: editor_mode_animation(); break;
     case ModeIDs.TERRAIN: editor_mode_heightmap(); break;
+    case ModeIDs.SCRIBBLE: editor_mode_scribble(); break;
 }
 
 dialog_create_project_list(noone);
