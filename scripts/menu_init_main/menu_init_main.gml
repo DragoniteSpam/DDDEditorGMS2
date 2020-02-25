@@ -106,8 +106,12 @@ with (instance_create_depth(0, 0, 0, MenuMain)) {
     
     #region beta stuff
     var mb_no_beta = create_menu_element("(No beta features, currently)", null, menu_help);
+    //
+    var md_beta_scribble = create_menu_element("Scribble demo", momu_editor_scribble, menu_help);
+    var md_beta_spart = create_menu_element("Spart demo", momu_editor_spart, menu_help);
     ds_list_add(menu_beta.contents,
-        mb_no_beta
+        md_beta_scribble,
+        md_beta_spart,
     );
     #endregion
     

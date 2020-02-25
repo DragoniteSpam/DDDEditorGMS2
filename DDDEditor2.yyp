@@ -11258,6 +11258,14 @@
             }
         },
         {
+            "Key": "9cc11b9c-2f04-40ff-b4c5-aab2a11b4514",
+            "Value": {
+                "id": "d81e118f-da84-41bf-8285-de1c6f554482",
+                "resourcePath": "scripts\\momu_editor_spart\\momu_editor_spart.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "9cdfc141-6a62-4289-947b-cce51b852883",
             "Value": {
                 "id": "267c90f9-2acf-4ffc-b5a2-c1f741451368",
@@ -15306,6 +15314,14 @@
             }
         },
         {
+            "Key": "d7530a8c-34a5-432a-b157-dc9d8271fa10",
+            "Value": {
+                "id": "82a4dc6b-4207-4994-86f6-7f63af0e3380",
+                "resourcePath": "scripts\\momu_editor_scribble\\momu_editor_scribble.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "d753a92c-d7de-44ca-8c93-b2b792e19e35",
             "Value": {
                 "id": "072e80ab-f232-4fa0-8ee6-c65def824c1f",
@@ -18770,6 +18786,8 @@
         "7645252a-52fa-4ad4-87c1-1341bb77fdb6",
         "0bc2521f-2dc0-4325-913e-77c33c0845e3",
         "caa20e44-8c55-4ed0-9855-8afaa2128c65",
+        "d7530a8c-34a5-432a-b157-dc9d8271fa10",
+        "9cc11b9c-2f04-40ff-b4c5-aab2a11b4514",
         "df9f8e52-d39f-4d27-959e-cb48c4037340",
         "54a48ce1-facf-4ddd-b47c-3d0087ccfee1",
         "4c1264f9-9738-4206-b39e-921d6a078dc1",
