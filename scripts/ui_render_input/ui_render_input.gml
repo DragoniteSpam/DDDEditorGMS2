@@ -66,12 +66,17 @@ draw_clear_alpha(input.interactive ? input.back_color : c_ltgray, 1);
 if (input.emphasis) {
     draw_set_font(FDefault12Italic);
 }
+
+var display_text = value + ((floor((current_second * 1.25) % 2) == 0) ? "|" : "");
 if (input.multi_line) {
-    // this will need work, and also it's not actually enabled anywhere yet
-    draw_text_ext_colour(vtx - vx1, vty - vy1, value, -1, vx2 - vtx, c, c, c, c, 1);
+    var valign = draw_get_valign();
+    draw_set_valign(fa_top);
+    var vty = ui_get_text_y(input, vy1, vy2, fa_top);
+    draw_text_ext_colour(vtx - vx1, vty - vy1, display_text, -1, vx2 - vx1 - (vtx - vx1) * 2, c, c, c, c, 1);
+    draw_set_valign(valign);
 } else {
     var sw_begin = min(vtx - vx1, ww - offset - sw);
-    draw_text_colour(sw_begin, vty - vy1, value, c, c, c, c, 1);
+    draw_text_colour(sw_begin, vty - vy1, display_text, c, c, c, c, 1);
     sw_end = sw_begin + sw + 4;
 }
 if (input.emphasis) {
@@ -87,11 +92,6 @@ if (input.require_enter) {
 
 if (input.interactive && dialog_is_active(input.root)) {
     if (ui_is_active(input)) {
-        // this will not work correctly if there are line breaks, but fixing that is
-        // like the bottom of the priority queue right now
-        if (floor((current_second * 1.25) % 2) == 0) {
-            draw_line_width_colour(sw_end, vty - 7 - vy1, sw_end, vty + 7 - vy1, 2, c_black, c_black);
-        }
         var v0 = value;
         value = string_copy(keyboard_string, 1, min(string_length(keyboard_string), input.value_limit));
         if (Controller.press_escape) {
@@ -99,6 +99,11 @@ if (input.interactive && dialog_is_active(input.root)) {
             value = "";
             keyboard_string = "";
         }
+        if (input.multi_line && !input.require_enter && Controller.press_enter) {
+            value = value + "\n";
+            keyboard_string = keyboard_string + "\n";
+        }
+        
         input.value = value;
         
         if (script_execute(input.validation, value, input)) {

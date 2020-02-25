@@ -1,14 +1,16 @@
 /// @param UIText
-/// @param y1
-/// @param y2
+/// @param x1
+/// @param x2
+/// @param [alignment]
 
-var text = argument0;
-var y1 = argument1;
-var y2 = argument2;
+var text = argument[0];
+var y1 = argument[1];
+var y2 = argument[2];
+var alignment = (argument_count > 3) ? argument[3] : text.valignment;
 
 var offset = 12;
 
-switch (text.valignment) {
+switch (alignment) {
     case fa_top: return y1 + offset;
     case fa_middle: return floor(mean(y1, y2));
     case fa_bottom: return y2 - offset;
