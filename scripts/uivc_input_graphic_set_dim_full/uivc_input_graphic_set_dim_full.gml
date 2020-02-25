@@ -10,4 +10,6 @@ if (selection + 1) {
     data.height = sprite_get_height(data.picture); 
     list.root.el_dim_x.value = string(data.width);
     list.root.el_dim_y.value = string(data.height);
+    
+    data_image_npc_frames(data);
 }

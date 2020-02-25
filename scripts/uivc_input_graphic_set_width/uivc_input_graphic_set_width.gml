@@ -5,5 +5,9 @@ var list = input.root.el_list;
 var selection = ui_list_selection(list);
 
 if (selection + 1) {
-    list.entries[| selection].width = real(input.value);
+    var data = list.entries[| selection];
+    data.width = real(input.value);
+    
+    data_image_force_power_two(data);
+    data_image_npc_frames(data);
 }

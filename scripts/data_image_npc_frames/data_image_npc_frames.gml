@@ -2,8 +2,8 @@
 
 var data = argument0;
 
-var ww = 1 / data.hframes;
-var hh = 1 / data.vframes;
+var ww = 1 / data.hframes * (data.width / sprite_get_width(data.picture));
+var hh = 1 / data.vframes * (data.height / sprite_get_height(data.picture));
 
 for (var i = 0; i < array_length_1d(data.npc_frames); i++) {
     vertex_delete_buffer(data.npc_frames[i]);

@@ -62,4 +62,6 @@ if (selection + 1) {
     data.height = round_ext(hh, round_to);
     list.root.el_dim_x.value = string(data.width);
     list.root.el_dim_y.value = string(data.height);
+    
+    data_image_npc_frames(data);
 }
