@@ -18,4 +18,6 @@ if (selection + 1) {
     list.root.el_texture_exclude.value = what.texture_exclude;
     list.root.el_dim_x.value = string(what.width);
     list.root.el_dim_y.value = string(what.height);
+    list.root.el_dim_x.value_upper = sprite_get_width(what.picture);
+    list.root.el_dim_y.value_upper = sprite_get_height(what.picture);
 }

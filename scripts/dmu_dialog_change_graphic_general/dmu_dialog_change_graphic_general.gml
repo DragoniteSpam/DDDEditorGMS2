@@ -15,5 +15,13 @@ if (selection + 1) {
         
         data_image_force_power_two(data);
         data_image_npc_frames(data);
+        
+        button.root.el_image.image = data.picture;
+        button.root.el_dim_x.value_upper = sprite_get_width(data.picture);
+        button.root.el_dim_y.value_upper = sprite_get_height(data.picture);
+        data.width = min(data.width, sprite_get_width(data.picture));
+        data.height = min(data.height, sprite_get_height(data.picture));
+        button.root.el_dim_x.value = string(sprite_get_width(data.picture));
+        button.root.el_dim_y.value = string(sprite_get_height(data.picture));
     }
 }
