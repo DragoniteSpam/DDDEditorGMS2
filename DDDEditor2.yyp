@@ -2242,6 +2242,14 @@
             }
         },
         {
+            "Key": "1d636291-ff8c-4837-861f-cfc60edf19df",
+            "Value": {
+                "id": "a5da90c1-68a4-42b1-91a2-c4aae5d4ba36",
+                "resourcePath": "scripts\\editor_render_scribble\\editor_render_scribble.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "1d8eddeb-0844-4a99-87e9-2dd2225feb50",
             "Value": {
                 "id": "0e67e50f-2bf9-4578-a09b-58c7f362cc3a",
@@ -4314,6 +4322,14 @@
             }
         },
         {
+            "Key": "3a7f8c23-2b10-4808-9b1f-c9b1dc17eef5",
+            "Value": {
+                "id": "29fb08d4-35f0-45f2-bac0-f203714d7946",
+                "resourcePath": "scripts\\ui_init_scribble\\ui_init_scribble.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "3b0fc4be-1355-4816-a8bf-0f10f23b4a25",
             "Value": {
                 "id": "bbe093e0-0236-4f8a-8325-e33b2f68e658",
@@ -4821,7 +4837,7 @@
             "Key": "443815a0-a726-47e4-9ea3-6ab8f8337970",
             "Value": {
                 "id": "67a11f0a-1a3a-4b73-aa83-bf096a0852b3",
-                "resourcePath": "scripts\\draw_editor_data\\draw_editor_data.yy",
+                "resourcePath": "scripts\\draw_editor_fullscreen\\draw_editor_fullscreen.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -19464,6 +19480,7 @@
         "065e1055-2daf-442e-8e46-d73791f85972",
         "c5b646ec-c93b-43e3-84e9-e2060705dcbe",
         "fd796d95-e335-4355-8f3e-512fb7d1ae61",
+        "3a7f8c23-2b10-4808-9b1f-c9b1dc17eef5",
         "ca80636b-0497-4858-bc95-568e1edebd32",
         "dd6822dc-8d2d-43b6-9e9f-ad86173f1faf",
         "8ace29c2-4ddb-49ca-92fd-0c37a93e02b8",
@@ -19956,6 +19973,7 @@
         "0b9ecc08-acdf-4786-9c96-193e4aaafe13",
         "729995d4-2411-4560-bfde-4d072a4adcfe",
         "11ead8d7-db1e-4c63-8dd3-3bee2b71c458",
+        "1d636291-ff8c-4837-861f-cfc60edf19df",
         "701fa8f4-d25e-4441-a55d-33688cfea7da",
         "5025d585-a4b7-45a6-99fc-15b1f361dbb0",
         "9d24b09c-db9d-42f5-ad40-13ece28c350d",

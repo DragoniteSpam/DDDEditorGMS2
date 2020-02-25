@@ -1,5 +1,6 @@
 event_inherited();
 
-var camera = view_get_camera(view_3d);
+render = editor_render_scribble;
 
+ui = ui_init_scribble(id);
 mode_id = ModeIDs.SCRIBBLE;
