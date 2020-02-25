@@ -46,6 +46,10 @@ var el_ex_smf = create_text(32, yy, "     Snidr's Model Format by himself:", ew,
 yy = yy + 16;
 var el_ex_smf_url = create_text(32, yy, "          https://marketplace.yoyogames.com/assets/5256/smf-3d-skeletal-animation", ew, eh, fa_left, dw - 32, dg);
 yy = yy + 32;
+var el_ex_scribble = create_text(32, yy, "     Scribble, a Game Maker text renderer by Juju Adams:", ew, eh, fa_left, dw - 32, dg);
+yy = yy + 16;
+var el_ex_scribble_url = create_text(32, yy, "          https://github.com/JujuAdams/scribble", ew, eh, fa_left, dw - 32, dg);
+yy = yy + 32;
 var el_asset = create_text(32, yy, "Default assets", ew, eh, fa_left, dw - 32, dg);
 yy = yy + 32;
 var el_asset_water = create_text(32, yy, "     Water textures: Aswin Vos and www.godsandidolds.com", ew, eh, fa_left, dw - 32, dg);
@@ -62,9 +66,27 @@ var b_height = 32;
 var el_close = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Thanks I guess", b_width, b_height, fa_center, dmu_dialog_commit, dg);
 
 ds_list_add(dg.contents,
-    el_text, el_author, el_author_1, el_author_2, el_author_3, el_help, el_help_who,
-    el_ex, el_ex_venomous, el_ex_venomous_url, el_ex_regex, el_ex_regex_url, el_ex_fmod, el_ex_fmod_url, el_ex_smf, el_ex_smf_url,
-    el_asset, el_asset_water, el_asset_npc,
+    el_text,
+    el_author,
+    el_author_1,
+    el_author_2,
+    el_author_3,
+    el_help,
+    el_help_who,
+    el_ex,
+    el_ex_venomous,
+    el_ex_venomous_url,
+    el_ex_regex,
+    el_ex_regex_url,
+    el_ex_fmod,
+    el_ex_fmod_url,
+    el_ex_smf,
+    el_ex_smf_url,
+    el_ex_scribble,
+    el_ex_scribble_url,
+    el_asset,
+    el_asset_water,
+    el_asset_npc,
     el_close
 );
 
