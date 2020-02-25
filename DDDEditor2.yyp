@@ -130,14 +130,6 @@
             }
         },
         {
-            "Key": "0106e7ff-8faa-4489-b0ec-e5796052a5de",
-            "Value": {
-                "id": "00e78f49-4bba-4ccf-8bc2-490bb1a457f2",
-                "resourcePath": "views\\0106e7ff-8faa-4489-b0ec-e5796052a5de.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
             "Key": "011034bf-db78-40b3-b64a-d0199b3f03f8",
             "Value": {
                 "id": "7d0adb1b-c8c4-42d2-87c8-436cc3b19e2b",
@@ -1418,14 +1410,6 @@
             }
         },
         {
-            "Key": "1241b71c-6a6b-40c0-a9a3-ccaf16bd534d",
-            "Value": {
-                "id": "491b1d27-aa12-487a-959f-ed36b3d3cb44",
-                "resourcePath": "scripts\\smf_vector_rotate1\\smf_vector_rotate1.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "12524178-acdd-49a0-bcb8-77ba5b45bb12",
             "Value": {
                 "id": "226884fa-9466-4a82-8e18-a4a6128f8fc4",
@@ -1486,14 +1470,6 @@
             "Value": {
                 "id": "9dda4908-a45a-4879-9303-8d471ca17e76",
                 "resourcePath": "scripts\\colour_replace_blue\\colour_replace_blue.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "12ff6cbe-8ef7-43af-a21d-4dc03b4091b9",
-            "Value": {
-                "id": "52364fe6-a1b6-464e-954d-c9ec13119559",
-                "resourcePath": "scripts\\smf_camera_set_projmat1\\smf_camera_set_projmat1.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -8450,14 +8426,6 @@
             }
         },
         {
-            "Key": "762aae65-2769-40ad-bfda-a537fb3a7444",
-            "Value": {
-                "id": "8f3d2d79-921a-4011-b581-a1566d288135",
-                "resourcePath": "scripts\\smf_camera_create1\\smf_camera_create1.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "762b8733-f9f4-4bf7-b9f9-5689940e8df3",
             "Value": {
                 "id": "d9108cc7-5ecf-4f9b-b597-b7956edb1c98",
@@ -9279,14 +9247,6 @@
                 "id": "c918b63f-b17e-4abd-bc7b-4ea232cd0894",
                 "resourcePath": "views\\8118f26e-b808-4b32-b7fe-cfcf5bf4fcad.yy",
                 "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "81473193-4fce-4d74-bde7-0f24edba22a7",
-            "Value": {
-                "id": "5b271ab6-c08f-470e-ac23-7587e962379d",
-                "resourcePath": "scripts\\smf_camera_init1\\smf_camera_init1.yy",
-                "resourceType": "GMScript"
             }
         },
         {
@@ -12242,14 +12202,6 @@
             }
         },
         {
-            "Key": "aa730173-d989-4257-b0d0-d88ade9c5654",
-            "Value": {
-                "id": "ffa7e8e9-4e74-422c-b428-84433f9a94d5",
-                "resourcePath": "scripts\\smf_camera_set_viewmat1\\smf_camera_set_viewmat1.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "aa87015b-9205-40fb-861f-af4da7f18aad",
             "Value": {
                 "id": "28f26203-d17e-4636-a244-87c5bfad4ea2",
@@ -12774,14 +12726,6 @@
             "Value": {
                 "id": "deadbade-aab3-44d0-b221-cfe8711f03a7",
                 "resourcePath": "scripts\\serialize_load_meshes\\serialize_load_meshes.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "b2a35a83-daa3-4923-9833-0240c09d7f1f",
-            "Value": {
-                "id": "ded626fd-75df-4802-8bc3-2ff81649b992",
-                "resourcePath": "scripts\\smf_camera_clear1\\smf_camera_clear1.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -17594,14 +17538,6 @@
             }
         },
         {
-            "Key": "f74b351c-8d16-45d5-92c7-7935bc79bedd",
-            "Value": {
-                "id": "611692b0-08c7-42f1-811c-ba34f63f8fc4",
-                "resourcePath": "scripts\\smf_3d_enable1\\smf_3d_enable1.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "f74ea3be-849c-4b66-a5cc-6289331f17d1",
             "Value": {
                 "id": "58734d58-0d79-4699-92c0-d6bb8b969b69",
@@ -20116,13 +20052,6 @@
         "2ae5e638-1b5b-4773-853b-9b900075b2a9",
         "a77bca9a-122e-4686-ba67-89eb8f03e5c2",
         "050180e5-cf33-41e3-a79f-83ba0685a50a",
-        "81473193-4fce-4d74-bde7-0f24edba22a7",
-        "f74b351c-8d16-45d5-92c7-7935bc79bedd",
-        "762aae65-2769-40ad-bfda-a537fb3a7444",
-        "12ff6cbe-8ef7-43af-a21d-4dc03b4091b9",
-        "aa730173-d989-4257-b0d0-d88ade9c5654",
-        "b2a35a83-daa3-4923-9833-0240c09d7f1f",
-        "1241b71c-6a6b-40c0-a9a3-ccaf16bd534d",
         "42640869-1b8b-4641-84ef-69b13a9c4440",
         "1fda876e-9e38-4f38-b17a-403ba7373010",
         "4d379f7b-eee9-4862-a479-e0f8d912b71d"
