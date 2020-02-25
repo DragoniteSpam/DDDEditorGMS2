@@ -86,6 +86,7 @@ dg.el_texture_exclude = el_texture_exclude;
 yy = yy_base;
 
 var el_image = create_image_button(c3 + 16, yy, "image", -1, ew, ew, fa_center, dmu_dialog_show_big_picture, dg);
+el_image.render = ui_render_image_button_graphic;
 el_image.interactive = false;
 dg.el_image = el_image;
 yy = yy + el_image.height + spacing;
