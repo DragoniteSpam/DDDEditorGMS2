@@ -9,6 +9,9 @@ scribble_autotype_speed = 1;
 scribble_autotype_smoothness = 1;
 scribble_bounds_width = 1;
 
+scribble_bounds_width_min = 0.25;
+scribble_bounds_width_max = 1;
+
 render = editor_render_scribble;
 ui = ui_init_scribble(id);
 mode_id = ModeIDs.SCRIBBLE;
