@@ -49,9 +49,6 @@ if (script_execute(input.validation, value, input)) {
 var vtx = vx1 + 12;
 var vty = mean(vy1, vy2);
 
-var current_camera = view_get_camera(view_current);
-view_set_camera(view_current, camera_get_default());
-
 // Drawing to the surface instead of the screen directly - everything drawn needs
 // to be minus x1 and minus y1, because suddenly we're drawing at the origin again
 #region input drawing
@@ -134,5 +131,3 @@ surface_reset_target();
 
 draw_surface(input.surface, vx1, vy1)
 draw_rectangle_colour(vx1, vy1, vx2, vy2, c_black, c_black, c_black, c_black, true);
-
-view_set_camera(view_current, current_camera);
