@@ -15,3 +15,4 @@ button.root.el_remove.interactive = false;
 button.root.el_name.interactive = false;
 button.root.el_value.interactive = false;
 mode.scribble = noone;
+scribble_cache_group_flush(SCRIBBLE_DEFAULT_CACHE_GROUP);

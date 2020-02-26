@@ -32,10 +32,10 @@ for (var i = 0; i < surface_get_width(surface.surface);) {
     i = i + line_length + line_spacing;
 }
 
-if (!is_array(mode.scribble) || (mode.scribble[__SCRIBBLE.STRING] != mode.scribble_text && (mode.scribble_text_time + 1000) < current_time)) {
-    scribble_draw_set_cache_group(0, false, true);
-    mode.scribble = scribble_draw(padding, padding, mode.scribble_text);
-    scribble_draw_set_cache_group(0, true, true);
+if (!is_array(mode.scribble) || (mode.scribble[__SCRIBBLE.STRING] != mode.scribble_text && (mode.scribble_text_time + 500) < current_time)) {
+    scribble_draw_set_cache_group(SCRIBBLE_DEFAULT_CACHE_GROUP, false, true);
+    mode.scribble = scribble_draw(0, 0, mode.scribble_text);
+    scribble_draw_set_cache_group(SCRIBBLE_DEFAULT_CACHE_GROUP, true, true);
     editor_scribble_autotype_fire();
 } else {
     if (scribble_autotype_get(mode.scribble) == 1) {

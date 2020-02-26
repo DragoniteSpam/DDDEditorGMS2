@@ -14,3 +14,4 @@ global.__scribble_colours[? cname] = c_black;
 button.root.el_remove.interactive = true;
 button.interactive = (ds_list_size(list.entries) < 0xff);
 mode.scribble = noone;
+scribble_cache_group_flush(SCRIBBLE_DEFAULT_CACHE_GROUP);

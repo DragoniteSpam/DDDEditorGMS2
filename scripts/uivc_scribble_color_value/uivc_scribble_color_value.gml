@@ -8,4 +8,5 @@ var selection = ui_list_selection(list);
 if (selection + 1) {
     global.__scribble_colours[? list.entries[| selection]] = picker.value;
     mode.scribble = noone;
+    scribble_cache_group_flush(SCRIBBLE_DEFAULT_CACHE_GROUP);
 }
