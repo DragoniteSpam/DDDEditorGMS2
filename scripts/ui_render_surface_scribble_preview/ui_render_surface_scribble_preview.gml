@@ -18,11 +18,27 @@ draw_rectangle_colour(1, 1, surface_get_width(surface.surface) - 2, surface_get_
 var f = normalize_correct(mode.scribble_bounds_width, mode.scribble_bounds_width_min, mode.scribble_bounds_width_max, 0, 1);
 scribble_draw_set_wrap(-1, f * (surface_get_width(surface.surface) - padding * 2), -1);
 
-if (!is_array(mode.scribble) || (mode.scribble[__SCRIBBLE.STRING] != mode.scribble_text && mode.scribble_text_time < (current_time - 1000))) {
+if (!is_array(mode.scribble) || (mode.scribble[__SCRIBBLE.STRING] != mode.scribble_text && (mode.scribble_text_time + 1000) < current_time)) {
     scribble_draw_set_cache_group(0, false, true);
     mode.scribble = scribble_draw(padding, padding, mode.scribble_text);
     scribble_draw_set_cache_group(0, true, true);
-    editor_scribble_set_autotype();
+    editor_scribble_autotype_fire();
+} else {
+    if (scribble_autotype_get(mode.scribble) == 1) {
+        if (mode.scribble_autotype_completion_time == -1) {
+            mode.scribble_autotype_completion_time = current_time;
+        } else if (current_time > (mode.scribble_autotype_completion_time + mode.scribble_autotype_delay * 1000)) {
+            editor_scribble_autotype_finish();
+            mode.scribble_autotype_completion_time = -1;
+        }
+    } else if (scribble_autotype_get(mode.scribble) == 2) {
+        if (mode.scribble_autotype_completion_time == -1) {
+            mode.scribble_autotype_completion_time = current_time;
+        } else if (current_time > (mode.scribble_autotype_completion_time + mode.scribble_autotype_delay * 1000)) {
+            editor_scribble_autotype_fire();
+            mode.scribble_autotype_completion_time = -1;
+        }
+    }
 }
 
 scribble_draw(padding, padding, mode.scribble);

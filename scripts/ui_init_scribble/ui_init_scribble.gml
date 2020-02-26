@@ -76,7 +76,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     element.tooltip = "The autotype method used. Scribble allows you to fade text by character or by line.";
     ds_list_add(contents, element);
     
-    yy = yy + ui_get_radio_array_height(element) + spacing;
+    yy = yy + ui_get_radio_array_height(element);
     
     var element = create_text(xx, yy, "    Speed:", ew, eh, fa_left, ew, id);
     ds_list_add(contents, element);
