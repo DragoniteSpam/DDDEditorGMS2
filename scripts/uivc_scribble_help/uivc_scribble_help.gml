@@ -27,44 +27,45 @@ var b_height = 32;
 var yy = 64;
 var yy_base = yy;
 
-var el_text_1 = create_text(xx, yy, "Welcome to Scribble!", ew, eh, fa_left, ew, dg);
-el_text_1.valignment = fa_top;
+var el_text_1 = create_text(xx, yy - spacing, "[FDefault20]Welcome to [wave][rainbow]Scribble[/rainbow][/wave]!", ew, eh, fa_left, ew, dg);
+el_text_1.use_scribble = true;
 
 yy = yy + el_text_1.height + spacing;
 
-var el_text_2 = create_text(xx, yy, "Scribble is a vertex buffer-based text renderer for Game Maker Studio 2 by Juju Adams. It has the advantages of both being faster than the default Game Maker text renderer and allowing for on-the-fly text effects like color, font, inline images and some special effects, which means you can do some cool things with it.", ew, eh, fa_left, ew, dg);
-el_text_2.valignment = fa_top;
+var el_text_2 = create_text(xx, yy, "[wave][rainbow]Scribble[] is a vertex buffer-based text renderer for Game Maker Studio 2 by Juju Adams. It has the advantages of both being faster than the default Game Maker text renderer and allowing for on-the-fly text effects like color, font, [spr_camera_icons,2]inline images and some [pulse][c_blue]special effects[], which means you can do some cool things with it.", ew, eh, fa_left, ew, dg);
+el_text_2.use_scribble = true;
 
-yy = yy + el_text_2.height + spacing * 3;
+yy = yy + el_text_2.height + spacing * 2;
 
-var el_text_3 = create_text(xx, yy, "You use command tags to control effects, not unlike HTML or BBCode. Here are a list of the commands you can use (Scribble includes a few other which are not currenty supported by this tool):", ew, eh, fa_left, ew, dg);
-el_text_3.valignment = fa_top;
+var el_text_3 = create_text(xx, yy, "You use command tags to control effects, not unlike HTML or BBCode. Here are a list of the commands you can use ([wave][rainbow]Scribble[] includes a few other which are not currenty supported by this tool). If you want to draw a square bracket itself, you can escape commands by repeating the open-bracket character.", ew, eh, fa_left, ew, dg);
+el_text_3.use_scribble = true;
 
 yy = yy + el_text_3.height + spacing * 2;
 
 var el_text_4 = create_text(xx, yy,
-@"[]
-[<name of colour>]
-[#<hex code>]
-[/colour] [/c]
-[<name of font>] [/font] [/f]
-[<name of sprite>]
-[<name of sprite>,<image>]
-[<name of sprite>,<image>,<speed>]
-[fa_left]
-[fa_right]
-[fa_center] [fa_centre]
-[scale,<factor>] [/scale] [/s]
-[slant] [/slant]
+@"[[]
+[[<name of colour>]
+[[#<hex code>]
+[[/colour] [[/c]
+[[<name of font>] [[/font] [[/f]
+[[<name of sprite>]
+[[<name of sprite>,<image>]
+[[<name of sprite>,<image>,<speed>]
+[[fa_left]
+[[fa_right]
+[[fa_center] [[fa_centre]
+[[scale,<factor>] [[/scale] [[/s]
+[[slant] [[/slant]
 
 Special effects:
-[wave]    [/wave]
-[shake]   [/shake]
-[rainbow] [/rainbow]
-[wobble]  [/wobble]
-[pulse]   [/pulse]"
+[[wave]    [[/wave]
+[[shake]   [[/shake]
+[[rainbow] [[/rainbow]
+[[wobble]  [[/wobble]
+[[pulse]   [[/pulse]"
 , ew, eh, fa_left, ew, dg);
-el_text_4.valignment = fa_top;
+el_text_4.use_scribble = true;
+el_text_4.wrap_height = 12;
 
 var el_text_5 = create_text(xx_desc, yy,
 @"Reset formatting to defaults
@@ -74,11 +75,11 @@ Reset colour to the default
 Set font / Reset font
 Insert an animated sprite starting on image 0 (note: this is not currently super useful in this preview tool)
 Insert a static sprite using the specified image index
-Insert animated sprite using the specified image index and animation speed
+Insert an animated sprite using the specified image index and animation speed
 Align horizontally to the left. This will insert a line break if used in the middle of a line of text
 Align horizontally to the right. This will insert a line break if used in the middle of a line of text
 Align centrally. This will insert a line break if used in the middle of a line of text
-Scale text
+Scale text (I don't recommend this, due to how bitmap fonts work)
 Set/unset italic emulation
 
 
@@ -88,7 +89,8 @@ Set/unset text to cycle through rainbow colours
 Set/unset text to wobble by rotating back and forth
 Set/unset text to shrink and grow rhythmically"
 , ew, eh, fa_left, ew, dg);
-el_text_5.valignment = fa_top;
+el_text_5.use_scribble = true;
+el_text_5.wrap_height = 12;
 
 var el_github = create_button(dw / 3 - b_width / 2, dh - 32 - b_height / 2, "View on Github", b_width, b_height, fa_center, uivc_scribble_github, dg);
 var el_done = create_button(dw * 2 / 3 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);

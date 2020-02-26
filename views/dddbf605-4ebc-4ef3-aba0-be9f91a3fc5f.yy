@@ -27,7 +27,8 @@
         "d14853c2-8e6a-42e0-9594-de18a8fee626",
         "a4309f97-6759-4245-bbc8-f4476a6cb7d5",
         "19dbb918-a3a2-49cb-be9b-8b98480017ad",
-        "72c9ad78-1c75-477e-85ea-23061944b1fa"
+        "72c9ad78-1c75-477e-85ea-23061944b1fa",
+        "8e5a546e-c0f6-48cc-9913-7cc6a1780107"
     ],
     "filterType": "GMIncludedFile",
     "folderName": "fonts",
