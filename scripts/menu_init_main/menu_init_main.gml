@@ -14,6 +14,8 @@ with (instance_create_depth(0, 0, 0, MenuMain)) {
     var mf_settings_data = create_menu_element("Global Data Settings", momu_settings_data, menu_file);
     var mf_preferences = create_menu_element("Preferences", momu_preferences, menu_file);
     var mf_exit = create_menu_element("Exit (Alt+F4)", momu_exit, menu_file);
+    mf_save_data.interactive = MENU_EDITOR_ENABLED;
+    mf_settings_data.interactive = MENU_EDITOR_ENABLED;
     ds_list_add(menu_file.contents,
         mf_save_data,
         mf_settings_data,
@@ -30,6 +32,13 @@ with (instance_create_depth(0, 0, 0, MenuMain)) {
     var me_paste = create_menu_element("Paste (Ctrl+V)", momu_paste, menu_edit);
     var me_select_all =create_menu_element("Select All (Ctrl+A)", momu_select_all, menu_edit);
     var me_deselect = create_menu_element("Deselect (Ctrl+D)", momu_deselect, menu_edit);
+    me_undo.interactive = MENU_EDITOR_ENABLED;
+    me_redo.interactive = MENU_EDITOR_ENABLED;
+    me_cut.interactive = MENU_EDITOR_ENABLED;
+    me_copy.interactive = MENU_EDITOR_ENABLED;
+    me_paste.interactive = MENU_EDITOR_ENABLED;
+    me_select_all.interactive = MENU_EDITOR_ENABLED;
+    me_deselect.interactive = MENU_EDITOR_ENABLED;
     
     ds_list_add(menu_edit.contents,
         me_undo,
@@ -64,6 +73,14 @@ with (instance_create_depth(0, 0, 0, MenuMain)) {
             md_graphic_ui,
             md_graphic_etc
         );
+    md_graphics.interactive = MENU_EDITOR_ENABLED;
+    md_graphic_ts.interactive = MENU_EDITOR_ENABLED;
+    md_graphic_at.interactive = MENU_EDITOR_ENABLED;
+    md_graphic_battle.interactive = MENU_EDITOR_ENABLED;
+    md_graphic_ow.interactive = MENU_EDITOR_ENABLED;
+    md_graphic_part.interactive = MENU_EDITOR_ENABLED;
+    md_graphic_ui.interactive = MENU_EDITOR_ENABLED;
+    md_graphic_etc.interactive = MENU_EDITOR_ENABLED;
     var md_audio = create_menu_element("Audio", momu_expand, menu_data);
         var md_aud_bgm = create_menu_element("Background Music (BGM)", momu_bgm, md_audio);
         var md_aud_se = create_menu_element("Sound Effects (SE)", momu_se, md_audio);
@@ -71,6 +88,9 @@ with (instance_create_depth(0, 0, 0, MenuMain)) {
             md_aud_bgm,
             md_aud_se
         );
+    md_audio.interactive = MENU_EDITOR_ENABLED;
+    md_aud_bgm.interactive = MENU_EDITOR_ENABLED;
+    md_aud_se.interactive = MENU_EDITOR_ENABLED;
     var md_mesh_at = create_menu_element("Mesh Autotiles", momu_expand, menu_data);
         var md_mesh_at_top = create_menu_element("Top", momu_graphic_mesh_autotiles_top, md_graphics);
         var md_mesh_at_vertical = create_menu_element("Vertical", momu_graphic_mesh_autotiles_vertical, md_graphics);
@@ -82,13 +102,23 @@ with (instance_create_depth(0, 0, 0, MenuMain)) {
             md_mesh_at_base,
             md_mesh_at_slope,
         );
+    md_mesh_at.interactive = MENU_EDITOR_ENABLED;
+    md_mesh_at_top.interactive = MENU_EDITOR_ENABLED;
+    md_mesh_at_vertical.interactive = MENU_EDITOR_ENABLED;
+    md_mesh_at_base.interactive = MENU_EDITOR_ENABLED;
+    md_mesh_at_slope.interactive = MENU_EDITOR_ENABLED;
     var md_data_types = create_menu_element("Define Data Types", momu_data_types, menu_data);
     var md_3d = create_menu_element("Map Editor (F6)", momu_editor_3d, menu_data);
     var md_events = create_menu_element("Event Editor (F7)", momu_editor_event, menu_data);
     var md_data = create_menu_element("Game Data Editor (F8)", momu_editor_data, menu_data);
     var md_animation = create_menu_element("Animation Editor (F9)", momu_editor_animation, menu_data);
     var md_heightmap = create_menu_element("Terrain Editor (F10)", momu_editor_heightmap, menu_help);
-    
+    md_data_types.interactive = MENU_EDITOR_ENABLED;
+    md_3d.interactive = MENU_EDITOR_ENABLED;
+    md_events.interactive = MENU_EDITOR_ENABLED;
+    md_data.interactive = MENU_EDITOR_ENABLED;
+    md_animation.interactive = MENU_EDITOR_ENABLED;
+    md_heightmap.interactive = MENU_EDITOR_ENABLED;
     ds_list_add(menu_data.contents,
         md_graphics,
         md_audio,
@@ -109,6 +139,7 @@ with (instance_create_depth(0, 0, 0, MenuMain)) {
     //
     var md_beta_scribble = create_menu_element("Scribble demo", momu_editor_scribble, menu_help);
     var md_beta_spart = create_menu_element("Spart demo", momu_editor_spart, menu_help);
+    md_beta_spart.interactive = MENU_EDITOR_ENABLED;
     ds_list_add(menu_beta.contents,
         md_beta_scribble,
         md_beta_spart,

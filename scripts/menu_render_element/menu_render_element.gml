@@ -19,15 +19,15 @@ menumenu.y = y1;
 var tx = ui_get_text_x(menumenu, x1, x2);
 var ty = ui_get_text_y(menumenu, y1, y2);
 
-var active = menu_is_active(menumenu);
+var active = menu_is_active(menumenu) && menumenu.interactive;
 var mouse_inbounds = mouse_within_rectangle(x1, y1, x2, y2);
 
 // click on the element
-if (mouse_inbounds || active) {
+if (mouse_inbounds || active || !menumenu.interactive) {
     draw_rectangle_colour(x1, y1, x2 - 1, y2, c_ui, c_ui, c_ui, c_ui, false);
 }
 
-if (mouse_inbounds) {
+if (menumenu.interactive && mouse_inbounds) {
     if (Controller.release_left && !dialog_exists()) {
         Controller.release_left = false;
         script_execute(menumenu.onmouseup, menumenu);

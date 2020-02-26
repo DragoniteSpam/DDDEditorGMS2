@@ -120,11 +120,11 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     ds_list_add(contents, element);
     
     var element = create_input(xx_in, yy, "", ew, eh, uivc_scribble_text_autotype_in_delay, mode.scribble_autotype_in_delay, "float", validate_double, 0.1, 1000, 4, vx1, vy1, vx2, vy2, id);
-    element.tooltip = "The amount of time between when the text finishes fading out and when the text begins fading in";
+    element.tooltip = "The amount of time between when the text finishes fading in and when the text begins fading out";
     ds_list_add(contents, element);
     
     var element = create_input(xx_out, yy, "", ew, eh, uivc_scribble_text_autotype_out_delay, mode.scribble_autotype_out_delay, "float", validate_double, 0.1, 1000, 4, vx1, vy1, vx2, vy2, id);
-    element.tooltip = "The amount of time between when the text finishes fading in and when the text begins fading out";
+    element.tooltip = "The amount of time between when the text finishes fading out and when the text begins fading in";
     ds_list_add(contents, element);
     
     var vx1 = ew / 2;

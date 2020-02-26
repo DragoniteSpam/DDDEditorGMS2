@@ -61,6 +61,10 @@
 #macro FILE_ERRORS "errors.log"
 #macro FILE_SETTINGS "settings.json"
 
+#macro MENU_EDITOR_ENABLED true
+#macro scribble:MENU_EDITOR_ENABLED false
+#macro spart:MENU_EDITOR_ENABLED false
+
 #macro PREFIX_GRAPHIC_BATTLER "GBat"
 #macro PREFIX_GRAPHIC_OVERWORLD "GOv"
 #macro PREFIX_GRAPHIC_PARTICLE "GPart"
