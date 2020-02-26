@@ -4250,6 +4250,14 @@
             }
         },
         {
+            "Key": "39393a5a-cf83-4289-b690-e39174ba0621",
+            "Value": {
+                "id": "7167d2d3-aa84-42ca-b872-6478828974c4",
+                "resourcePath": "scripts\\uivc_scribble_color_alphabetize\\uivc_scribble_color_alphabetize.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "394a6698-6d78-4135-80f7-1366ef1ee8ab",
             "Value": {
                 "id": "a87c192e-47ef-4ffd-b02f-c483980d6ff9",
@@ -19420,6 +19428,7 @@
         "f8f0c050-99fe-4031-af8f-c2fd2420992c",
         "4b37722c-ccb0-4eeb-a2ac-4900afae6679",
         "28ea880d-10f7-486a-b334-827da6b474ae",
+        "39393a5a-cf83-4289-b690-e39174ba0621",
         "761a2c8d-2d87-42f5-8a6d-4e7e2ca7169f",
         "2f5ce293-5d19-4961-957c-cb2d450ac92e",
         "6bf27b2c-c013-4fb1-9836-b95167ffd715",

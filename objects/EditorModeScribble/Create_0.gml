@@ -2,7 +2,7 @@ event_inherited();
 
 scribble_init("data\\fonts", "FDefault12", true);
 scribble_colours = ds_map_to_list(global.__scribble_colours);
-ds_list_sort(scribble_colours, false);
+ds_list_sort(scribble_colours, true);
 
 scribble = noone;
 scribble_text = "Type something here to be previewed in [wave][rainbow]Scribble[]!\n\n(This isn't a real text editor, and you can't select text or use the arrow keys or anything, but you can use the Copy and Paste buttons if you find that makes writing the text you want to preview to be easier.)";

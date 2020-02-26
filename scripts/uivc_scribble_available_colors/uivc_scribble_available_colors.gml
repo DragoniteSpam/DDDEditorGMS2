@@ -29,6 +29,7 @@ var yy_base = yy;
 var el_list = create_list(xx, yy, "Scribble Colors", "<no colors>", ew, eh, 10, uivc_scribble_color_select, false, dg, mode.scribble_colours);
 el_list.tooltip = "All of the colors Scribble currently recognizes. Use them in text by typing the color name in square brackets, e.g. [c_blue]. Cancel color formatting by typing [/c].";
 el_list.entries_are = ListEntries.STRINGS;
+el_list.onmiddleclick = uivc_scribble_color_alphabetize;
 dg.el_list = el_list;
 
 yy = yy + ui_get_list_height(el_list) + spacing;
