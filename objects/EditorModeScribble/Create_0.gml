@@ -1,6 +1,6 @@
 event_inherited();
 
-scribble_init("data\\fonts", "FDefault12", true);
+scribble_init("data\\fonts", "FDefault", true);
 scribble_colours = ds_map_to_list(global.__scribble_colours);
 ds_list_sort(scribble_colours, true);
 
