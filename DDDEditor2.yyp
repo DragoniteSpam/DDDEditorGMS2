@@ -13378,6 +13378,14 @@
             }
         },
         {
+            "Key": "ba667dcb-7f6e-429e-8453-3159d887b5f1",
+            "Value": {
+                "id": "7c22c625-3906-4abd-9f83-ae34000db1c0",
+                "resourcePath": "scripts\\uivc_scribble_text_autotype_out_delay\\uivc_scribble_text_autotype_out_delay.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "ba686f42-3501-4de2-98c3-002f52541333",
             "Value": {
                 "id": "8ca38236-45ba-4d42-91e3-bbf232e3492f",
@@ -14742,6 +14750,14 @@
             "Value": {
                 "id": "5190f1cf-ecec-41fb-8f19-ac3128ac37d0",
                 "resourcePath": "scripts\\dialog_create_settings_data_player_start\\dialog_create_settings_data_player_start.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "cea630de-825c-4a74-8ca0-cbb6d70eb466",
+            "Value": {
+                "id": "7b96ff1c-4d93-4089-8752-3200efb93612",
+                "resourcePath": "scripts\\uivc_scribble_text_autotype_in_delay\\uivc_scribble_text_autotype_in_delay.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -18950,6 +18966,8 @@
         "5921e83a-ddd1-4533-8c27-17e6029e7c0b",
         "76a84092-bbe4-4af9-9f79-28b9da5acc79",
         "42271633-fe32-4072-9142-99d753449858",
+        "cea630de-825c-4a74-8ca0-cbb6d70eb466",
+        "ba667dcb-7f6e-429e-8453-3159d887b5f1",
         "d0ce7d87-a48e-4191-9cb5-5e7d7b30d675",
         "eeeb7f83-74c9-4fd5-91c1-d51f48ff5f3e",
         "8e3c4e86-66be-48b2-9312-aba924d0bdf5",

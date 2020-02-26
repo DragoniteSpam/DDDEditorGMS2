@@ -27,14 +27,14 @@ if (!is_array(mode.scribble) || (mode.scribble[__SCRIBBLE.STRING] != mode.scribb
     if (scribble_autotype_get(mode.scribble) == 1) {
         if (mode.scribble_autotype_completion_time == -1) {
             mode.scribble_autotype_completion_time = current_time;
-        } else if (current_time > (mode.scribble_autotype_completion_time + mode.scribble_autotype_delay * 1000)) {
+        } else if (current_time > (mode.scribble_autotype_completion_time + mode.scribble_autotype_in_delay * 1000)) {
             editor_scribble_autotype_finish();
             mode.scribble_autotype_completion_time = -1;
         }
     } else if (scribble_autotype_get(mode.scribble) == 2) {
         if (mode.scribble_autotype_completion_time == -1) {
             mode.scribble_autotype_completion_time = current_time;
-        } else if (current_time > (mode.scribble_autotype_completion_time + mode.scribble_autotype_delay * 1000)) {
+        } else if (current_time > (mode.scribble_autotype_completion_time + mode.scribble_autotype_out_delay * 1000)) {
             editor_scribble_autotype_fire();
             mode.scribble_autotype_completion_time = -1;
         }

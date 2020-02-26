@@ -100,11 +100,24 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     ds_list_add(contents, element);
     
     var element = create_input(xx_in, yy, "", ew, eh, uivc_scribble_text_autotype_in_smoothness, mode.scribble_autotype_in_smoothness, "float", validate_double, 0.1, 1000, 4, vx1, vy1, vx2, vy2, id);
-    element.tooltip = "Whether characters fade in smoothly when autotype is running. Higher values correspond to a longer fade time; a smoothness value of 1 means characters appear instantly.";
+    element.tooltip = "How smoothly characters fade in when autotype is running. Higher values correspond to a longer fade time; a smoothness value of 1 means characters appear instantly.";
     ds_list_add(contents, element);
     
     var element = create_input(xx_out, yy, "", ew, eh, uivc_scribble_text_autotype_out_smoothness, mode.scribble_autotype_out_smoothness, "float", validate_double, 0.1, 1000, 4, vx1, vy1, vx2, vy2, id);
-    element.tooltip = "Whether characters fade in smoothly when autotype is running. Higher values correspond to a longer fade time; a smoothness value of 1 means characters appear instantly.";
+    element.tooltip = "How smoothly characters fade out when autotype is running. Higher values correspond to a longer fade time; a smoothness value of 1 means characters appear instantly.";
+    ds_list_add(contents, element);
+    
+    yy = yy + element.height + spacing;
+    
+    var element = create_text(xx, yy, "    Delay:", ew, eh, fa_left, ew, id);
+    ds_list_add(contents, element);
+    
+    var element = create_input(xx_in, yy, "", ew, eh, uivc_scribble_text_autotype_in_delay, mode.scribble_autotype_in_delay, "float", validate_double, 0.1, 1000, 4, vx1, vy1, vx2, vy2, id);
+    element.tooltip = "The amount of time between when the text finishes fading out and when the text begins fading in";
+    ds_list_add(contents, element);
+    
+    var element = create_input(xx_out, yy, "", ew, eh, uivc_scribble_text_autotype_out_delay, mode.scribble_autotype_out_delay, "float", validate_double, 0.1, 1000, 4, vx1, vy1, vx2, vy2, id);
+    element.tooltip = "The amount of time between when the text finishes fading in and when the text begins fading out";
     ds_list_add(contents, element);
     
     var vx1 = ew / 2;

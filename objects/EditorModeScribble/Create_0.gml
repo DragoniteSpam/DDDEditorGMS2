@@ -16,9 +16,10 @@ scribble_autotype_in_speed = 1;
 scribble_autotype_out_speed = 1;
 scribble_autotype_in_smoothness = 1;
 scribble_autotype_out_smoothness = 1;
+scribble_autotype_in_delay = 4;
+scribble_autotype_out_delay = 0.5;
 scribble_autotype_completion_time = 0;
 scribble_autotype_in = -1;
-scribble_autotype_delay = 4;
 
 render = editor_render_scribble;
 ui = ui_init_scribble(id);
