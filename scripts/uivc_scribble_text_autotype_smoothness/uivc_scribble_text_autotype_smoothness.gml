@@ -1,6 +1,7 @@
-/// @param UIProgressBar
+/// @param UIInput
 
-var bar = argument0;
+var input = argument0;
 var mode = Stuff.scribble;
 
-mode.scribble_bounds_width = bar.value;
+mode.scribble_autotype_smoothness = real(input.value);
+editor_scribble_set_autotype();

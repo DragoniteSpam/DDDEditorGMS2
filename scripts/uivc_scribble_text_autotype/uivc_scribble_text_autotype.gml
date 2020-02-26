@@ -7,3 +7,4 @@ mode.scribble_autotype_enabled = checkbox.value;
 mode.ui.autotype_method.interactive = checkbox.value;
 mode.ui.autotype_speed.interactive = checkbox.value;
 mode.ui.autotype_smoothness.interactive = checkbox.value;
+editor_scribble_set_autotype();

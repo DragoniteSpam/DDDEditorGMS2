@@ -82,7 +82,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     var element = create_text(xx, yy, "Text bounds:", ew, eh, fa_left, ew, id);
     ds_list_add(contents, element);
     
-    var element = create_progress_bar(xx + ew / 2, yy, ew / 2, eh, uivc_scribble_text_autotype_smoothness, 4, mode.scribble_bounds_width, id);
+    var element = create_progress_bar(xx + ew / 2, yy, ew / 2, eh, uivc_scribble_text_bounds_width, 4, mode.scribble_bounds_width, id);
     element.tooltip = "The width of the bounding box containing the text.";
     ds_list_add(contents, element);
     
