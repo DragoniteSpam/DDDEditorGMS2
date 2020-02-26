@@ -18,7 +18,7 @@ draw_rectangle_colour(1, 1, surface_get_width(surface.surface) - 2, surface_get_
 var f = normalize_correct(mode.scribble_bounds_width, mode.scribble_bounds_width_min, mode.scribble_bounds_width_max, 0, 1) * (surface_get_width(surface.surface) - padding * 2);
 scribble_draw_set_wrap(-1, f, -1);
 
-if (mode.scribble_back_show_grid) {
+if (mode.scribble_back_show_guides) {
     var line_length = 32;
     var line_spacing = 16;
     var line_colour = c_green;

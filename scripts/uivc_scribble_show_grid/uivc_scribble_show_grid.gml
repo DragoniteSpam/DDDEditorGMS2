@@ -3,4 +3,4 @@
 var checkbox = argument0;
 var mode = Stuff.scribble;
 
-mode.scribble_back_show_grid = checkbox.value;
+mode.scribble_back_show_guides = checkbox.value;

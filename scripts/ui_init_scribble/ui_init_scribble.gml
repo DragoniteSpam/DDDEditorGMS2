@@ -153,49 +153,50 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     ds_list_add(contents, element);
     
     yy = yy + element.height + spacing;
-
-    var element = create_text(xx, yy, "Assistance", ew, eh, fa_left, ew, id);
-    element.color = c_blue;
-    ds_list_add(contents, element);
-    
-    yy = yy + element.height + spacing;
-    
-    var element = create_button(xx, yy, "Available Colors", ew / 2 - spacing, eh, fa_center, uivc_scribble_available_colors, id);
-    element.tooltip = "Define colors recognized by Scribble.";
-    ds_list_add(contents, element);
-    
-    var element = create_button(xx + ew / 2 + spacing, yy, "Fonts", ew / 2 - spacing, eh, fa_center, uivc_scribble_available_fonts, id);
-    element.tooltip = "Fonts recognized by Scribble. In the future you may be allowed to import your own, but that is not a guarantee.";
-    ds_list_add(contents, element);
-    
-    yy = yy + element.height + spacing;
     #endregion
     
     #region scribble canvas
     var this_column = 1;
     var xx = this_column * cw + spacing;
     yy = yy_base;
-    
-    var xx_colour = xx;
-    var xx_grid = xx + ew / 2;
+    var xx_base = xx;
     
     var vx1 = ew / 4;
     var vy1 = 0;
     var vx2 = ew / 2;
     var vy2 = vy1 + eh;
     
-    var element = create_color_picker(xx_colour, yy, "Background:", ew / 2, eh, uivc_scribble_background_colour, mode.scribble_back_colour, vx1, vy1, vx2, vy2, id);
+    var element = create_color_picker(xx, yy, "Background:", ew / 2, eh, uivc_scribble_background_colour, mode.scribble_back_colour, vx1, vy1, vx2, vy2, id);
     ds_list_add(contents, element);
+    xx = xx + ew / 2;
     
     var vx1 = ew / 2;
     var vy1 = 0;
     var vx2 = ew;
     var vy2 = vy1 + eh;
     
-    var element = create_checkbox(xx_grid, yy, "Show grid", ew / 2, eh, uivc_scribble_show_grid, mode.scribble_back_show_grid, id);
+    var element = create_checkbox(xx, yy, "Guides", ew / 4, eh, uivc_scribble_show_grid, mode.scribble_back_show_guides, id);
     ds_list_add(contents, element);
+    xx = xx + ew / 4;
+        
+    var element = create_button(xx, yy, "Available Colors", ew / 2 - spacing, eh, fa_center, uivc_scribble_available_colors, id);
+    element.tooltip = "Define colors recognized by Scribble.";
+    ds_list_add(contents, element);
+    xx = xx + ew / 2;
+    
+    var element = create_button(xx, yy, "Fonts", ew / 2 - spacing, eh, fa_center, uivc_scribble_available_fonts, id);
+    element.tooltip = "Fonts recognized by Scribble. In the future you may be allowed to import your own, but that is not a guarantee.";
+    ds_list_add(contents, element);
+    xx = xx + ew / 2;
+    
+    var element = create_button(xx, yy, "Help", ew / 2 - spacing, eh, fa_center, uivc_scribble_available_fonts, id);
+    element.tooltip = "In case you're not sure how to use this.";
+    ds_list_add(contents, element);
+    xx = xx + ew / 2;
     
     yy = yy + element.height + spacing;
+    
+    xx = xx_base;
     
     var element = create_render_surface(xx, yy, room_width - spacing * 2 - xx, room_height - spacing * 2 - yy, ui_render_surface_scribble_preview, null, id);
     ds_list_add(contents, element);
