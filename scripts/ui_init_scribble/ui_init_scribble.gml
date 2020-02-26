@@ -171,7 +171,23 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     var xx = this_column * cw + spacing;
     yy = yy_base;
     
-    var element = create_text(xx, yy, "Scribble output:", ew, eh, fa_left, ew, id);
+    var xx_colour = xx;
+    var xx_grid = xx + ew / 2;
+    
+    var vx1 = ew / 4;
+    var vy1 = 0;
+    var vx2 = ew / 2;
+    var vy2 = vy1 + eh;
+    
+    var element = create_color_picker(xx_colour, yy, "Background:", ew / 2, eh, uivc_scribble_background_colour, mode.scribble_back_colour, vx1, vy1, vx2, vy2, id);
+    ds_list_add(contents, element);
+    
+    var vx1 = ew / 2;
+    var vy1 = 0;
+    var vx2 = ew;
+    var vy2 = vy1 + eh;
+    
+    var element = create_checkbox(xx_grid, yy, "Show grid", ew / 2, eh, uivc_scribble_show_grid, mode.scribble_back_show_grid, id);
     ds_list_add(contents, element);
     
     yy = yy + element.height + spacing;

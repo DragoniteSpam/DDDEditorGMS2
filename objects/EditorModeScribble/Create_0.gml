@@ -22,6 +22,9 @@ scribble_autotype_out_delay = 0.5;
 scribble_autotype_completion_time = 0;
 scribble_autotype_in = -1;
 
+scribble_back_show_grid = true;
+scribble_back_colour = c_white;
+
 render = editor_render_scribble;
 ui = ui_init_scribble(id);
 mode_id = ModeIDs.SCRIBBLE;

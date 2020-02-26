@@ -12,24 +12,26 @@ var y2 = argument4;
 var mode = Stuff.scribble;
 var padding = 32;
 
-draw_clear(c_white);
+draw_clear(mode.scribble_back_colour);
 draw_rectangle_colour(1, 1, surface_get_width(surface.surface) - 2, surface_get_height(surface.surface) - 2, c_black, c_black, c_black, c_black, true);
 
 var f = normalize_correct(mode.scribble_bounds_width, mode.scribble_bounds_width_min, mode.scribble_bounds_width_max, 0, 1) * (surface_get_width(surface.surface) - padding * 2);
 scribble_draw_set_wrap(-1, f, -1);
 
-var line_length = 32;
-var line_spacing = 16;
-var line_colour = c_green;
-// TIL game maker lets you skip terms in a for loop, the way other languages do
-for (var i = 0; i < surface_get_height(surface.surface);) {
-    draw_line_colour(padding, i, padding, i + line_length, line_colour, line_colour);
-    draw_line_colour(f + padding, i, f + padding, i + line_length, line_colour, line_colour);
-    i = i + line_length + line_spacing;
-}
-for (var i = 0; i < surface_get_width(surface.surface);) {
-    draw_line_colour(i, padding, i + line_length, padding, line_colour, line_colour);
-    i = i + line_length + line_spacing;
+if (mode.scribble_back_show_grid) {
+    var line_length = 32;
+    var line_spacing = 16;
+    var line_colour = c_green;
+    // TIL game maker lets you skip terms in a for loop, the way other languages do
+    for (var i = 0; i < surface_get_height(surface.surface);) {
+        draw_line_colour(padding, i, padding, i + line_length, line_colour, line_colour);
+        draw_line_colour(f + padding, i, f + padding, i + line_length, line_colour, line_colour);
+        i = i + line_length + line_spacing;
+    }
+    for (var i = 0; i < surface_get_width(surface.surface);) {
+        draw_line_colour(i, padding, i + line_length, padding, line_colour, line_colour);
+        i = i + line_length + line_spacing;
+    }
 }
 
 if (!is_array(mode.scribble) || (mode.scribble[__SCRIBBLE.STRING] != mode.scribble_text && (mode.scribble_text_time + 500) < current_time)) {
