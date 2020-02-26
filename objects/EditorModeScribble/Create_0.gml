@@ -4,7 +4,7 @@ scribble_init("data\\fonts", "FDefault12", true);
 scribble_colors = ds_map_to_list(global.__scribble_colours);
 
 scribble = noone;
-scribble_text = "Type something here to be previewed in [wave][rainbow]Scribble[]!";
+scribble_text = "Type something here to be previewed in [wave][rainbow]Scribble[]!\n\n(This isn't a real text editor, and you can't select text or use the arrow keys or anything, but you can use the Copy and Paste buttons if you find that makes writing the text you want to preview to be easier.)";
 scribble_text_time = 0;
 scribble_bounds_width = 1;
 scribble_bounds_width_min = 0.25;

@@ -27,7 +27,16 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     var this_column = 0;
     var xx = this_column * cw + spacing;
     
+    var xx_in = xx + ew / 3;
+    var xx_out = xx + ew * 2 / 3;
+    
     var element = create_text(xx, yy, "Text to preview:", ew, eh, fa_left, ew, id);
+    ds_list_add(contents, element);
+    
+    var element = create_button(xx_in, yy, "Copy", ew / 3, eh, fa_center, uivc_scribble_text_copy, id);
+    ds_list_add(contents, element);
+    
+    var element = create_button(xx_out, yy, "Paste", ew / 3, eh, fa_center, uivc_scribble_text_paste, id);
     ds_list_add(contents, element);
     
     yy = yy + element.height + spacing;
@@ -39,6 +48,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     
     var element = create_input(xx, yy, "", ew, eh, uivc_scribble_text, mode.scribble_text, "text", validate_string, 0, 1, 10000, vx1, vy1, vx2, vy2, id);
     element.multi_line = true;
+    el_scribble_text = element;
     ds_list_add(contents, element);
     
     yy = yy + element.height + vy2;
@@ -51,9 +61,6 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     var element = create_text(xx, yy, "Autotype", ew, eh, fa_left, ew, id);
     element.color = c_blue;
     ds_list_add(contents, element);
-    
-    var xx_in = xx + ew / 3;
-    var xx_out = xx + ew * 2 / 3;
     
     var element = create_text(xx_in, yy, "In", ew, eh, fa_left, ew, id);
     ds_list_add(contents, element);
