@@ -2,4 +2,4 @@ if (Stuff.is_quitting) exit;
 
 event_inherited();
 
-surface_free(surface);
+if (surface_exists(surface)) surface_free(surface);

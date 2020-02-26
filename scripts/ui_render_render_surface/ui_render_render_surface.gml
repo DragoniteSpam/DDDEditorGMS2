@@ -11,6 +11,10 @@ var y1 = surface.y + yy;
 var x2 = x1 + surface.width;
 var y2 = y1 + surface.height;
 
+if (!surface_exists(surface.surface)) {
+    surface.surface = surface_create(surface.width, surface.height);
+}
+
 surface_set_target(surface.surface);
 script_execute(surface.script_render, surface, x1, y1, x2, y2);
 surface_reset_target();
