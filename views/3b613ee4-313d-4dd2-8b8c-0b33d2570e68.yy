@@ -1,0 +1,30 @@
+{
+    "id": "3b613ee4-313d-4dd2-8b8c-0b33d2570e68",
+    "modelName": "GMFolder",
+    "mvc": "1.1",
+    "name": "3b613ee4-313d-4dd2-8b8c-0b33d2570e68",
+    "children": [
+        "76a84092-bbe4-4af9-9f79-28b9da5acc79",
+        "42271633-fe32-4072-9142-99d753449858",
+        "cea630de-825c-4a74-8ca0-cbb6d70eb466",
+        "ba667dcb-7f6e-429e-8453-3159d887b5f1",
+        "d0ce7d87-a48e-4191-9cb5-5e7d7b30d675",
+        "eeeb7f83-74c9-4fd5-91c1-d51f48ff5f3e",
+        "8e3c4e86-66be-48b2-9312-aba924d0bdf5",
+        "394db0ce-c851-4c45-848d-dd4d53ad8f6a",
+        "81dcce2d-0a42-4224-978a-5dee78c6d4fb",
+        "ea1639dc-e0b3-4a9b-8173-72c279479a39",
+        "13e74b8a-163d-4f8e-a8b4-6d8993905ba9",
+        "3e59ce3d-fa2c-4bdd-a72a-9a0cec82effb",
+        "0edcc575-be87-44ff-aaf8-c4254e360c08",
+        "fd66f6f3-8268-496a-8828-bb0cacad078e",
+        "f8f0c050-99fe-4031-af8f-c2fd2420992c",
+        "4b37722c-ccb0-4eeb-a2ac-4900afae6679",
+        "28ea880d-10f7-486a-b334-827da6b474ae",
+        "761a2c8d-2d87-42f5-8a6d-4e7e2ca7169f"
+    ],
+    "filterType": "GMScript",
+    "folderName": "scribble",
+    "isDefaultView": false,
+    "localisedFolderName": ""
+}
