@@ -189,7 +189,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     ds_list_add(contents, element);
     xx = xx + ew / 2;
     
-    var element = create_button(xx, yy, "Help", ew / 2 - spacing, eh, fa_center, uivc_scribble_available_fonts, id);
+    var element = create_button(xx, yy, "Help", ew / 2 - spacing, eh, fa_center, uivc_scribble_help, id);
     element.tooltip = "In case you're not sure how to use this.";
     ds_list_add(contents, element);
     xx = xx + ew / 2;

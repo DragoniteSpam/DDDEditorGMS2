@@ -7243,6 +7243,14 @@
             }
         },
         {
+            "Key": "61accf7a-8100-456a-aa00-fd2cc4893728",
+            "Value": {
+                "id": "e81fdd6d-f730-4745-a191-9141d62d76c8",
+                "resourcePath": "scripts\\uivc_scribble_github\\uivc_scribble_github.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "61b0fff7-8383-4e29-9898-c2f07c8e81cd",
             "Value": {
                 "id": "ce396f96-d383-4bfc-842d-132c24bf783f",
@@ -8583,6 +8591,14 @@
             "Value": {
                 "id": "4583b499-a0c4-4c0f-8b7f-421907c2f203",
                 "resourcePath": "scripts\\smf_light_add_direction\\smf_light_add_direction.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "7418e323-d540-4ac4-9ce2-d7b548bce741",
+            "Value": {
+                "id": "b3739f4a-5172-428d-985a-50738a070d33",
+                "resourcePath": "scripts\\uivc_scribble_help\\uivc_scribble_help.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -19827,6 +19843,8 @@
         "3e59ce3d-fa2c-4bdd-a72a-9a0cec82effb",
         "0edcc575-be87-44ff-aaf8-c4254e360c08",
         "7597fdd6-4f88-4953-af50-03e9cebb98a1",
+        "7418e323-d540-4ac4-9ce2-d7b548bce741",
+        "61accf7a-8100-456a-aa00-fd2cc4893728",
         "fd66f6f3-8268-496a-8828-bb0cacad078e",
         "f8f0c050-99fe-4031-af8f-c2fd2420992c",
         "4b37722c-ccb0-4eeb-a2ac-4900afae6679",
