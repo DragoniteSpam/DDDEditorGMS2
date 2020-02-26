@@ -1,6 +1,7 @@
 event_inherited();
 
 scribble_init("data\\fonts", "FDefault12", true);
+scribble_colors = ds_map_to_list(global.__scribble_colours);
 
 scribble_text = "Type something here to be previewed in [wave][rainbow]Scribble[]!";
 scribble_autotype_enabled = false;

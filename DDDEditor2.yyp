@@ -4234,6 +4234,14 @@
             }
         },
         {
+            "Key": "394db0ce-c851-4c45-848d-dd4d53ad8f6a",
+            "Value": {
+                "id": "e4d0253c-67e9-4e1a-9e2b-b65a20255056",
+                "resourcePath": "scripts\\uivc_scribble_text_autotype_method\\uivc_scribble_text_autotype_method.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "3959eac7-bfba-4fe1-b308-9ab3604fb077",
             "Value": {
                 "id": "60a84eec-a012-43ae-92be-9fcd58de62f1",
@@ -4638,6 +4646,14 @@
             "Value": {
                 "id": "b6c295fa-60b5-4bdf-961c-a9541840e5d6",
                 "resourcePath": "scripts\\dmu_dialog_load_mesh_autotile_base\\dmu_dialog_load_mesh_autotile_base.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "42271633-fe32-4072-9142-99d753449858",
+            "Value": {
+                "id": "5b628440-cfaa-4639-a8a6-53c75efb19b1",
+                "resourcePath": "scripts\\uivc_scribble_text_autotype_smoothness\\uivc_scribble_text_autotype_smoothness.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -12138,6 +12154,14 @@
             }
         },
         {
+            "Key": "a85269ef-1e49-4749-92f1-02bdc210699a",
+            "Value": {
+                "id": "08635598-beb8-4410-881e-7c2582fcdc81",
+                "resourcePath": "scripts\\uivc_scribble_text_autotype\\uivc_scribble_text_autotype.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "a859f308-6098-492e-b011-add66efafae6",
             "Value": {
                 "id": "bafe1fcb-6698-4fca-bb43-a40db8f1aad3",
@@ -16666,6 +16690,14 @@
             }
         },
         {
+            "Key": "ea1639dc-e0b3-4a9b-8173-72c279479a39",
+            "Value": {
+                "id": "5975aa2d-9a14-4f8a-902d-eeb753f30417",
+                "resourcePath": "scripts\\uivc_scribble_text_bounds_width\\uivc_scribble_text_bounds_width.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "ea55690e-486c-41d4-8d3e-9743caf7b989",
             "Value": {
                 "id": "1ef7835c-997d-443a-9ff4-1190eb4655d9",
@@ -16998,6 +17030,14 @@
             "Value": {
                 "id": "e1d0ecee-0ac0-479c-9970-a2b6f5339b4b",
                 "resourcePath": "scripts\\uivc_settings_game_battle_style\\uivc_settings_game_battle_style.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "eeeb7f83-74c9-4fd5-91c1-d51f48ff5f3e",
+            "Value": {
+                "id": "4bbab01d-be63-4898-95f4-02d51c227043",
+                "resourcePath": "scripts\\uivc_scribble_text_autotype_speed\\uivc_scribble_text_autotype_speed.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -18869,6 +18909,11 @@
         "93699feb-3073-458e-8c85-dd79b8345211",
         "5921e83a-ddd1-4533-8c27-17e6029e7c0b",
         "76a84092-bbe4-4af9-9f79-28b9da5acc79",
+        "a85269ef-1e49-4749-92f1-02bdc210699a",
+        "42271633-fe32-4072-9142-99d753449858",
+        "eeeb7f83-74c9-4fd5-91c1-d51f48ff5f3e",
+        "394db0ce-c851-4c45-848d-dd4d53ad8f6a",
+        "ea1639dc-e0b3-4a9b-8173-72c279479a39",
         "7fc49e7f-c0ac-4dd1-8bfc-3aa11045d761",
         "aa9382d9-61eb-4093-a955-aa380b440ec8",
         "36bd369a-26b4-43e9-b12e-16c308a64ce0",

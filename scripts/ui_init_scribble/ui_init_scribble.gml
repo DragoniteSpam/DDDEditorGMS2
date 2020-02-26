@@ -48,13 +48,13 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     var vx2 = ew;
     var vy2 = vy1 + eh;
     
-    var element = create_checkbox(xx, yy, "Autotype", ew, eh, null, mode.scribble_autotype_enabled, id);
+    var element = create_checkbox(xx, yy, "Autotype", ew, eh, uivc_scribble_text_autotype, mode.scribble_autotype_enabled, id);
     element.tooltip = "Turns the autotype effect on or off. If running, autotype will be restarted every time you change the preview text; you may wish to turn it off while entering text.";
     ds_list_add(contents, element);
     
     yy = yy + element.height + spacing;
     
-    var element = create_radio_array(xx, yy, "    Method", ew, eh, null, mode.scribble_autotype_method, id);
+    var element = create_radio_array(xx, yy, "    Method", ew, eh, uivc_scribble_text_autotype_method, mode.scribble_autotype_method, id);
     create_radio_array_options(element, ["Per Character", "Per Line"])
     element.tooltip = "The autotype method used. Scribble allows you to fade in text by character or by line.";
     element.interactive = mode.scribble_autotype_enabled;
@@ -63,7 +63,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     
     yy = yy + ui_get_radio_array_height(element) + spacing;
     
-    var element = create_input(xx, yy, "    Speed", ew, eh, null, mode.scribble_autotype_speed, "float", validate_double, 0.1, 1000, 4, vx1, vy1, vx2, vy2, id);
+    var element = create_input(xx, yy, "    Speed", ew, eh, uivc_scribble_text_autotype_speed, mode.scribble_autotype_speed, "float", validate_double, 0.1, 1000, 4, vx1, vy1, vx2, vy2, id);
     element.tooltip = "The speed at which text is revealed when autotype is enabled.";
     element.interactive = mode.scribble_autotype_enabled;
     autotype_speed = element;
@@ -71,7 +71,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     
     yy = yy + element.height + spacing;
     
-    var element = create_input(xx, yy, "    Smoothness", ew, eh, null, mode.scribble_autotype_smoothness, "float", validate_double, 0.1, 1000, 4, vx1, vy1, vx2, vy2, id);
+    var element = create_input(xx, yy, "    Smoothness", ew, eh, uivc_scribble_text_autotype_smoothness, mode.scribble_autotype_smoothness, "float", validate_double, 0.1, 1000, 4, vx1, vy1, vx2, vy2, id);
     element.tooltip = "Whether characters fade in smoothly when autotype is running. Higher values correspond to a longer fade time; a smoothness value of 1 means characters appear instantly.";
     element.interactive = mode.scribble_autotype_enabled;
     autotype_smoothness = element;
@@ -82,7 +82,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     var element = create_text(xx, yy, "Text bounds:", ew, eh, fa_left, ew, id);
     ds_list_add(contents, element);
     
-    var element = create_progress_bar(xx + ew / 2, yy, ew / 2, eh, null, 4, mode.scribble_bounds_width, id);
+    var element = create_progress_bar(xx + ew / 2, yy, ew / 2, eh, uivc_scribble_text_autotype_smoothness, 4, mode.scribble_bounds_width, id);
     element.tooltip = "The width of the bounding box containing the text.";
     ds_list_add(contents, element);
     
