@@ -149,6 +149,11 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     
     yy = yy + element.height + spacing;
     
+    var element = create_color_picker(xx, yy, "Default color:", ew / 2, eh, uivc_scribble_default_colour, mode.scribble_default_colour, vx1, vy1, vx2, vy2, id);
+    ds_list_add(contents, element);
+    
+    yy = yy + element.height + spacing;
+
     var element = create_text(xx, yy, "Assistance", ew, eh, fa_left, ew, id);
     element.color = c_blue;
     ds_list_add(contents, element);

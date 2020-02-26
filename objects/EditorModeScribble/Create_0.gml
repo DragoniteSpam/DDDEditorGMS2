@@ -12,6 +12,7 @@ scribble_text_time = 0;
 scribble_bounds_width = 1;
 scribble_bounds_width_min = 0.25;
 scribble_bounds_width_max = 1;
+scribble_default_colour = c_black;
 
 scribble_autotype_in_method = SCRIBBLE_AUTOTYPE_NONE;
 scribble_autotype_out_method = SCRIBBLE_AUTOTYPE_NONE;

@@ -12,7 +12,7 @@
 
 //Starting format
 // !
-#macro SCRIBBLE_DEFAULT_TEXT_COLOUR   c_black  //The default (vertex) colour of text.
+#macro SCRIBBLE_DEFAULT_TEXT_COLOUR   Stuff.scribble.scribble_default_colour  //The default (vertex) colour of text.
 #macro SCRIBBLE_DEFAULT_HALIGN        fa_left
 #macro SCRIBBLE_DEFAULT_SPRITE_SPEED  0.1      //The default animation speed for sprites inserted into text.
 
