@@ -159,8 +159,8 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     element.tooltip = "Define colors recognized by Scribble.";
     ds_list_add(contents, element);
     
-    var element = create_button(xx + ew / 2 + spacing, yy, "Fonts", ew / 2 - spacing, eh, fa_center, null, id);
-    element.tooltip = "Define fonts recognized by Scribble. Not yet implemented. Perhaps won't ever be implemented, we'll see.";
+    var element = create_button(xx + ew / 2 + spacing, yy, "Fonts", ew / 2 - spacing, eh, fa_center, uivc_scribble_available_fonts, id);
+    element.tooltip = "Fonts recognized by Scribble. In the future you may be allowed to import your own, but that is not a guarantee.";
     ds_list_add(contents, element);
     
     yy = yy + element.height + spacing;

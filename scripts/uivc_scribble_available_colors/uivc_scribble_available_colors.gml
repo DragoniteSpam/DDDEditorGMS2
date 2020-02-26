@@ -6,7 +6,7 @@ var mode = Stuff.scribble;
 var dw = 320;
 var dh = 560;
 
-var dg = dialog_create(dw, dh, "Scr", dialog_default, dc_default, button);
+var dg = dialog_create(dw, dh, "Scribble Colors", dialog_default, dc_default, button);
 
 var spacing = 16;
 var columns = 1;
