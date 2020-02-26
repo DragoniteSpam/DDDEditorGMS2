@@ -19,7 +19,8 @@
                 "Key": "ed6a955d-5826-4f98-a450-10b414266c27",
                 "Value": {
                     "configDeltas": [
-                        "inherited"
+                        "inherited",
+                        "scribble"
                     ],
                     "id": "da5c120c-f2cb-4acb-9fd1-c817d810b235",
                     "resourcePath": "options\\main\\options_main.yy",
@@ -1130,6 +1131,14 @@
             }
         },
         {
+            "Key": "0d94d3cb-08ad-455f-bcf9-491543f9712f",
+            "Value": {
+                "id": "cae3f005-95b6-45ad-8369-d36529d7103e",
+                "resourcePath": "fonts\\FTimesBold\\FTimesBold.yy",
+                "resourceType": "GMFont"
+            }
+        },
+        {
             "Key": "0d9b2194-7ad8-4eca-8bf5-5725cb0d6728",
             "Value": {
                 "id": "eb06afa8-0e3a-4991-abaf-906d362ae178",
@@ -1335,6 +1344,14 @@
                 "id": "f6cb79c2-143e-4587-9dc8-e684851f4952",
                 "resourcePath": "scripts\\uivc_entity_pawn_set_sprite\\uivc_entity_pawn_set_sprite.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "10dc4abf-13c6-40a7-9f56-4948b82898e2",
+            "Value": {
+                "id": "219df94f-2752-4882-8a4c-4985a28350ef",
+                "resourcePath": "fonts\\FComicSansBoldItalic\\FComicSansBoldItalic.yy",
+                "resourceType": "GMFont"
             }
         },
         {
@@ -1671,6 +1688,14 @@
                 "id": "62af9540-36b8-4350-aa06-9d6438d70117",
                 "resourcePath": "scripts\\ui_render_list_entity_events\\ui_render_list_entity_events.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "15164205-cde5-4781-a837-3c15d383171a",
+            "Value": {
+                "id": "de3cfbd3-5984-470c-bbd4-a754dffe38e7",
+                "resourcePath": "fonts\\FComicSans\\FComicSans.yy",
+                "resourceType": "GMFont"
             }
         },
         {
@@ -3058,6 +3083,14 @@
             }
         },
         {
+            "Key": "287a028d-dca5-4891-8f61-4ed39b7c85ec",
+            "Value": {
+                "id": "e94d841e-7ccb-4d72-b493-e010d8a30197",
+                "resourcePath": "fonts\\FComicSansItalic\\FComicSansItalic.yy",
+                "resourceType": "GMFont"
+            }
+        },
+        {
             "Key": "2883d4e0-ec23-482c-9d8a-e1e21a863e34",
             "Value": {
                 "id": "c3e1f8bb-1138-4c35-9a32-6896221f4c15",
@@ -3738,6 +3771,14 @@
             }
         },
         {
+            "Key": "31d0989b-8aac-4602-a97f-f16351623365",
+            "Value": {
+                "id": "b81e58a6-c7be-4399-b9df-c73de78ac9d5",
+                "resourcePath": "fonts\\FConsolasBold\\FConsolasBold.yy",
+                "resourceType": "GMFont"
+            }
+        },
+        {
             "Key": "32189d3e-73e8-4577-bf6b-14923e07e29f",
             "Value": {
                 "id": "f1bd237b-bc9b-4ffb-ad31-c532744498d6",
@@ -3887,6 +3928,14 @@
                 "id": "896347a8-158a-4cf6-816a-c34077b55e48",
                 "resourcePath": "scripts\\dialog_create_refid_list\\dialog_create_refid_list.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "34ad238f-9628-45a1-a354-8741f4c7699c",
+            "Value": {
+                "id": "8ec78117-a7bd-440d-a2ae-19303b3ea3e8",
+                "resourcePath": "fonts\\FArialBoldItalic\\FArialBoldItalic.yy",
+                "resourceType": "GMFont"
             }
         },
         {
@@ -4151,6 +4200,14 @@
                 "id": "26094ca6-5d48-4aae-ae5b-0797775ed8b1",
                 "resourcePath": "scripts\\uivc_input_map_data_int\\uivc_input_map_data_int.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "379095a4-26e0-454c-81a0-a8a2c264af98",
+            "Value": {
+                "id": "46a60c8a-c3e6-46db-8a36-2f55672014af",
+                "resourcePath": "fonts\\FCalibriBoldItalic\\FCalibriBoldItalic.yy",
+                "resourceType": "GMFont"
             }
         },
         {
@@ -4738,6 +4795,14 @@
             }
         },
         {
+            "Key": "4259a739-7dca-4909-8d9c-2d3db338c2d4",
+            "Value": {
+                "id": "c70a1548-4053-4a97-9ab4-caa537d4955e",
+                "resourcePath": "fonts\\FTimesItalic\\FTimesItalic.yy",
+                "resourceType": "GMFont"
+            }
+        },
+        {
             "Key": "425ac23d-b550-4e6e-9419-bee566c8b037",
             "Value": {
                 "id": "8d78e391-4846-4d86-8a65-95506d4c4ff7",
@@ -5071,6 +5136,14 @@
                 "id": "7cb5d48d-f014-4a29-8d46-1eede813a51d",
                 "resourcePath": "scripts\\serialize_skip_generic\\serialize_skip_generic.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "4643c2d6-5c00-4d17-b106-c8e3947e59e4",
+            "Value": {
+                "id": "9b6cada3-ff23-415d-87e0-afbe9b50eac2",
+                "resourcePath": "fonts\\FCalibriItalic\\FCalibriItalic.yy",
+                "resourceType": "GMFont"
             }
         },
         {
@@ -5738,6 +5811,14 @@
             }
         },
         {
+            "Key": "4e852ddc-19a0-4df0-8c32-cf06a894ba0e",
+            "Value": {
+                "id": "52e8949a-f319-490f-95d9-5d7d8c7b6adf",
+                "resourcePath": "fonts\\FCalibriBold\\FCalibriBold.yy",
+                "resourceType": "GMFont"
+            }
+        },
+        {
             "Key": "4ea25dc4-334f-4ce3-abbc-894aa3228dbd",
             "Value": {
                 "id": "5a0bb42e-e43b-44b4-b7a2-7fcd4da6b9d9",
@@ -5967,6 +6048,14 @@
                 "id": "ed827938-42d3-45d9-9684-cf2b82615ff1",
                 "resourcePath": "scripts\\momu_set_starting_position_right\\momu_set_starting_position_right.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "51e337d4-a439-42fe-ae94-d8474ec77703",
+            "Value": {
+                "id": "d4d80ce9-1200-49fb-b425-3df4a7781ea6",
+                "resourcePath": "fonts\\FDefaultItalic\\FDefaultItalic.yy",
+                "resourceType": "GMFont"
             }
         },
         {
@@ -7935,6 +8024,14 @@
                 "id": "b02273f7-c561-4eab-92ad-587dd6df6deb",
                 "resourcePath": "scripts\\omu_project_load\\omu_project_load.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "6ce8a697-8308-467b-9c77-a32e866dc1f8",
+            "Value": {
+                "id": "98bbac25-5a90-4f80-aa8e-6573aeffc46b",
+                "resourcePath": "fonts\\FDefaultBoldItalic\\FDefaultBoldItalic.yy",
+                "resourceType": "GMFont"
             }
         },
         {
@@ -10506,6 +10603,14 @@
             }
         },
         {
+            "Key": "8fe021e9-6f93-4665-8f87-a528620f41ab",
+            "Value": {
+                "id": "5407c555-95a5-430e-9458-a60b441a67e0",
+                "resourcePath": "fonts\\FComicSansBold\\FComicSansBold.yy",
+                "resourceType": "GMFont"
+            }
+        },
+        {
             "Key": "90218ce4-a6e8-423f-aa14-fd344fe31dc9",
             "Value": {
                 "id": "be0ce1f3-8d0b-4acb-b7d7-34dad1281fad",
@@ -11538,6 +11643,14 @@
             }
         },
         {
+            "Key": "9f3fdd3f-8d7b-4224-924f-e8f29e63b75c",
+            "Value": {
+                "id": "17019324-3bb7-49fc-b175-1b26ef5dba96",
+                "resourcePath": "fonts\\FConsolas\\FConsolas.yy",
+                "resourceType": "GMFont"
+            }
+        },
+        {
             "Key": "9f491f8c-8248-4e56-a331-3cbdae33c651",
             "Value": {
                 "id": "1248b7d3-3372-4609-80db-85ff4daabb35",
@@ -11767,6 +11880,14 @@
                 "id": "3259f705-9af4-4d2d-bbf3-2685078a1fd8",
                 "resourcePath": "scripts\\smf_path_linearize\\smf_path_linearize.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "a218f5be-bffb-4a8c-a8a1-f7d89b313ae8",
+            "Value": {
+                "id": "6947d43c-8c73-4e67-91f2-b2b23558ec08",
+                "resourcePath": "fonts\\FConsolasItalic\\FConsolasItalic.yy",
+                "resourceType": "GMFont"
             }
         },
         {
@@ -12079,6 +12200,14 @@
                 "id": "1b53d1a2-9361-493e-8343-86ecd5984086",
                 "resourcePath": "scripts\\dmu_dialog_cancel_destroy_data\\dmu_dialog_cancel_destroy_data.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "a62e91af-39da-4692-8b5e-a6e958eebbbc",
+            "Value": {
+                "id": "9bf907cb-7406-4adb-bf23-2e3033202f70",
+                "resourcePath": "fonts\\FConsolasBoldItalic\\FConsolasBoldItalic.yy",
+                "resourceType": "GMFont"
             }
         },
         {
@@ -12559,6 +12688,14 @@
                 "id": "40d7eaf8-7815-4acd-9c1a-d0fa1f86ec75",
                 "resourcePath": "scripts\\spart_emitter_retire\\spart_emitter_retire.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "ad2ad536-6892-4787-84a9-a88a4b6ded3b",
+            "Value": {
+                "id": "66cd362d-4868-46d8-9f27-0c4079739cfe",
+                "resourcePath": "fonts\\FArialBold\\FArialBold.yy",
+                "resourceType": "GMFont"
             }
         },
         {
@@ -13410,6 +13547,14 @@
             }
         },
         {
+            "Key": "b9b84fdf-58db-402b-8c72-8a124fe35c89",
+            "Value": {
+                "id": "68583a9a-a16f-438f-931b-5804685680ce",
+                "resourcePath": "fonts\\FTimes\\FTimes.yy",
+                "resourceType": "GMFont"
+            }
+        },
+        {
             "Key": "b9cdda59-4e7f-4fab-a59f-95e69630ef52",
             "Value": {
                 "id": "caa988b6-bd66-4e2e-8175-dd017bcfb133",
@@ -13551,6 +13696,14 @@
                 "id": "ec2d0161-fe84-4832-b5b8-7694cd32d8c4",
                 "resourcePath": "scripts\\omu_event_add_resume_bgm\\omu_event_add_resume_bgm.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "bc1a9390-41ad-4353-a750-bf7531d7cadd",
+            "Value": {
+                "id": "75ac5885-35de-4614-b085-e01207b76f49",
+                "resourcePath": "views\\bc1a9390-41ad-4353-a750-bf7531d7cadd.yy",
+                "resourceType": "GMFolder"
             }
         },
         {
@@ -13943,6 +14096,14 @@
                 "id": "6f7883d8-6357-4165-9dd0-754dd2064340",
                 "resourcePath": "scripts\\string_pad\\string_pad.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "c12a9b3d-8360-4dc2-b645-76ffaa0c1413",
+            "Value": {
+                "id": "6d24508c-4702-4c3d-a568-60f33bcf5abe",
+                "resourcePath": "fonts\\FTimesBoldItalic\\FTimesBoldItalic.yy",
+                "resourceType": "GMFont"
             }
         },
         {
@@ -14519,6 +14680,14 @@
                 "id": "e946e1f9-57bc-40c4-99ed-b5ff522a592c",
                 "resourcePath": "scripts\\momu_editor_heightmap\\momu_editor_heightmap.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "caa6eded-3451-465b-b695-b3f7dc109fcb",
+            "Value": {
+                "id": "f3275a48-ec14-4f7d-9904-e320817d4751",
+                "resourcePath": "fonts\\FDefaultBold\\FDefaultBold.yy",
+                "resourceType": "GMFont"
             }
         },
         {
@@ -16202,6 +16371,14 @@
             }
         },
         {
+            "Key": "e1dbffbf-d0d3-4cb7-bf12-8d75071b820a",
+            "Value": {
+                "id": "7ff471ef-b1d2-492d-982c-ea74af9c8212",
+                "resourcePath": "fonts\\FCalibri\\FCalibri.yy",
+                "resourceType": "GMFont"
+            }
+        },
+        {
             "Key": "e2244e54-8b55-472c-9a21-9cc13749cbef",
             "Value": {
                 "id": "af4c6596-aea3-443b-b517-7b14be50991d",
@@ -16727,6 +16904,14 @@
                 "id": "7a57896b-f3aa-4b82-a6ef-b69452629b26",
                 "resourcePath": "objects\\EditorMode\\EditorMode.yy",
                 "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "e9581754-d2ed-4d7a-94f1-bded9515a4e4",
+            "Value": {
+                "id": "16a88c72-f26d-472f-a19f-60f19c34dded",
+                "resourcePath": "fonts\\FDefault\\FDefault.yy",
+                "resourceType": "GMFont"
             }
         },
         {
@@ -17666,6 +17851,14 @@
             }
         },
         {
+            "Key": "f55d3429-896a-45f5-b727-50948f2220b5",
+            "Value": {
+                "id": "5e8d972e-81f2-4b93-8be9-7111032cc173",
+                "resourcePath": "fonts\\FArialItalic\\FArialItalic.yy",
+                "resourceType": "GMFont"
+            }
+        },
+        {
             "Key": "f5eb2002-0aec-4ed0-95cc-0f61b16aad2c",
             "Value": {
                 "id": "44f2bc4c-3158-4b2d-b425-7a192a7b08dc",
@@ -17863,6 +18056,14 @@
                 "id": "3db7edf6-bd56-443d-b2dd-e0556d349cc8",
                 "resourcePath": "scripts\\omu_entity_data_add\\omu_entity_data_add.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "f8e563f8-3ac2-41e9-86e5-6781cfece2f9",
+            "Value": {
+                "id": "2f8d7165-1972-4b67-ad00-3eab85fb8fba",
+                "resourcePath": "fonts\\FArial\\FArial.yy",
+                "resourceType": "GMFont"
             }
         },
         {
