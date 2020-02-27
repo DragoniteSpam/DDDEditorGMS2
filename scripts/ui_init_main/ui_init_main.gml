@@ -72,7 +72,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy = yy + element.height + spacing;
     
     element = create_radio_array(col1_x, yy, "Fill Type", col_width, element_height, uivc_radio_fill_type, Stuff.setting_selection_fill_type, t_general);
-    create_radio_array_options(element, ["Tile", "Autotile", "Mesh", "Pawn", "Effect", "Mesh Autotile", "Camera Zone"]);
+    create_radio_array_options(element, ["Tile", "Autotile", "Mesh", "Pawn", "Effect", "Mesh Autotile", "Zone"]);
     ds_list_add(t_general.contents, element);
     
     yy = yy + ui_get_radio_array_height(element) + spacing;
@@ -603,7 +603,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     #endregion
     
-    #region tab: entity-mesh
+    #region tab: entity: mesh
     
     yy = legal_y + spacing;
     
@@ -619,7 +619,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     #endregion
     
-    #region tab: entity-pawn
+    #region tab: entity: pawn
     
     yy = legal_y + spacing;
     
@@ -646,7 +646,26 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy = yy + ui_get_list_height(element_entity_pawn_sprite) + spacing;
     #endregion
     
-    #region tab: tiles
+    #region tab: entity: other
+    
+    yy = legal_y + spacing;
+    
+    element = create_text(col1_x, yy, "These are settings that don't really fit anywhere else", col_width, element_height, fa_left, legal_width, t_p_other);
+    ds_list_add(t_p_other.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
+    element = create_button(col1_x, yy, "Zone Data", col_width, element_height, fa_center, null, t_p_other);
+    element.tooltip = "If you click on a map zone (camera, weather, audio, encounters, etc), you can edit the parameters of it here.";
+    element.interactive = false;
+    ds_list_add(t_p_other.contents, element);
+    t_p_other.el_zone_data = element;
+    
+    yy = yy + element.height + spacing;
+    
+    #endregion
+    
+    #region tab: general: tiles
     
     yy = legal_y + spacing;
     
@@ -682,7 +701,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     #endregion
     
-    #region tab: meshes
+    #region tab: general: meshes
     
     yy = legal_y + spacing;
     
@@ -819,7 +838,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     #endregion
     
-    #region tab: autotiles
+    #region tab: general: autotiles
     
     yy = legal_y + spacing;
     
@@ -853,22 +872,27 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     #endregion
     
-    #region tab: other
+    #region tab: general: other
     
     yy = legal_y + spacing;
     
-    element = create_text(col1_x, yy, "These are settings that don't really fit anywhere else", col_width, element_height, fa_left, legal_width, t_p_other);
-    ds_list_add(t_p_other.contents, element);
+    element = create_list(col1_x, yy, "Effect type", "<no effect types>", col_width, element_height, 8, null, false, t_p_other_editor);
+    element.colorize = false;
+    element.allow_deselect = false;
+    ui_list_select(element, 0);
+    create_list_entries(element, ["Point Light"], ["Directional Light"], ["Spot Light"]);
+    ds_list_add(t_p_other_editor.contents, element);
     
-    yy = yy + element.height + spacing;
+    yy += ui_get_list_height(element) + spacing;
     
-    element = create_button(col1_x, yy, "Zone Data", col_width, element_height, fa_center, null, t_p_other);
-    element.tooltip = "If you click on a map zone (camera, weather, audio, encounters, etc), you can edit the parameters of it here.";
-    element.interactive = false;
-    ds_list_add(t_p_other.contents, element);
-    t_p_other.el_zone_data = element;
+    element = create_list(col1_x, yy, "Zone type", "<no zone types>", col_width, element_height, 8, null, false, t_p_other_editor);
+    element.colorize = false;
+    element.allow_deselect = false;
+    ui_list_select(element, 0);
+    create_list_entries(element, ["Camera Zone"]);
+    ds_list_add(t_p_other_editor.contents, element);
     
-    yy = yy + element.height + spacing;
+    yy += ui_get_list_height(element) + spacing;
     
     #endregion
     
