@@ -38,7 +38,7 @@ graphics_draw_water();
 
 // lighting
 shader_set(shd_ddd);
-shader_set_uniform_i(shader_get_uniform(shd_ddd, "lightEnabled"), true);
+shader_set_uniform_i(shader_get_uniform(shd_ddd, "lightEnabled"), Stuff.setting_view_lighting);
 shader_set_uniform_i(shader_get_uniform(shd_ddd, "lightCount"), 1);
 shader_set_uniform_f_array(shader_get_uniform(shd_ddd, "lightData"), [
     1, 1, -1, 0,
