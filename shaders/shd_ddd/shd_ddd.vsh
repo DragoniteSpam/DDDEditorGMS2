@@ -17,9 +17,9 @@ void main() {
     vec3 worldNormal = normalize(gm_Matrices[MATRIX_WORLD] * vec4(in_Normal, 0.)).xyz;
     vec3 worldPosition = vec3(gm_Matrices[MATRIX_WORLD] * vec4(in_Position, 1.));
     
-    vec4 finalColor = vec4(1., 1., 1., 1.);
+    vec4 finalColor = vec4(0.);
     // min isn't overloaded to work with ints, that's interesting
-    /*int n = int(min(float(lightCount), float(MAX_LIGHTS)));
+    int n = int(min(float(lightCount), float(MAX_LIGHTS)));
     
     for (int i = 0; i < n; i++) {
         vec3 lightPosition = lightData[i * 3].xyz;
@@ -45,9 +45,8 @@ void main() {
             
         }
     }
-    */
-    //v_vColour = vec4(min(finalColor, vec4(1.)).rgb, in_Colour.a);
+    
+    v_vColour = vec4(min(finalColor, vec4(1.)).rgb, in_Colour.a);
     gl_Position = position;
-    v_vColour = in_Colour;
     v_vTexcoord = in_TextureCoord;
 }

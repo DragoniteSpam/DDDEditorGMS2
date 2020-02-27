@@ -45,7 +45,7 @@ void main() {
         }
     }
     
-    gl_Position = position;
     v_vColour = vec4(min(finalColor, vec4(1.)).rgb, in_Colour.a);
+    gl_Position = position;
     v_vTexcoord = in_TextureCoord;
 }

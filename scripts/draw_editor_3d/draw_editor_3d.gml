@@ -36,7 +36,15 @@ graphics_draw_water();
 
 // anything in the world
 
+// lighting
 shader_set(shd_ddd);
+shader_set_uniform_i(shader_get_uniform(shd_ddd, "lightEnabled"), true);
+shader_set_uniform_i(shader_get_uniform(shd_ddd, "lightCount"), 1);
+shader_set_uniform_f_array(shader_get_uniform(shd_ddd, "lightData"), [
+    1, 1, -1, 0,
+        0, 0, 0, 0,
+        1, 1, 1, 0,
+]);
 
 // this will need to be dynamic at some point
 var tex = Stuff.setting_view_texture ? sprite_get_texture(get_active_tileset().master, 0) : sprite_get_texture(b_tileset_textureless, 0);
