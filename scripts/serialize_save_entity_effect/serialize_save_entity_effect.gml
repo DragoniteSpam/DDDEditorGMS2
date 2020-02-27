@@ -1,7 +1,10 @@
 /// @param buffer
-/// @param EntityTile
+/// @param EntityEffect
 
-serialize_save_entity(argument0, argument1);
+var buffer = argument0;
+var effect = argument1;
+
+serialize_save_entity(buffer, effect);
 
 // currently no data, but there definitely will be later
 

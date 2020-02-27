@@ -60,6 +60,8 @@ enum ETypes {
     ENTITY_PAWN,
     ENTITY_EFFECT,
     ENTITY_MESH_AUTO,
+    ENTITY_EFFECT_POINT_LIGHT,
+    ENTITY_EFFECT_DIRECTIONAL_LIGHT,
 }
 
 global.etype_objects = [
@@ -69,7 +71,9 @@ global.etype_objects = [
     EntityMesh,
     EntityPawn,
     EntityEffect,
-    EntityMeshAutotile
+    EntityMeshAutotile,
+    EntityEffectPointLight,
+    //EntityEffectDirectionalLight,
 ];
 
 // each type includes the parent objects, which includes Entity for everything and

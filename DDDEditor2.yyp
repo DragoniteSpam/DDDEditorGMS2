@@ -10299,6 +10299,14 @@
             }
         },
         {
+            "Key": "89c683e7-665d-4691-b15c-d9a0d417be8b",
+            "Value": {
+                "id": "c1626539-770c-4914-990b-166b284998af",
+                "resourcePath": "objects\\EntityEffectPointLight\\EntityEffectPointLight.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "89c8bdd1-48c9-44ca-8885-1a0ffd7cca55",
             "Value": {
                 "id": "5bad792d-15d2-4411-bda7-1a5901958b0c",
@@ -14435,6 +14443,14 @@
             }
         },
         {
+            "Key": "c2b5e3ee-184b-46cc-a308-de64b2ebe0f3",
+            "Value": {
+                "id": "4e450549-196f-47b3-ab22-ce9cd6a417fa",
+                "resourcePath": "scripts\\serialize_load_entity_effect_point_light\\serialize_load_entity_effect_point_light.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "c2f7ce01-3c43-4a82-94cc-a0bef47b5a27",
             "Value": {
                 "id": "f247d5d9-40fa-4319-b446-4c722ea884d8",
@@ -15480,6 +15496,14 @@
                 "id": "e4532e66-7e59-4a94-a579-d8049164e0f9",
                 "resourcePath": "datafiles_yy\\data\\fonts\\FTimes.yy.yy",
                 "resourceType": "GMIncludedFile"
+            }
+        },
+        {
+            "Key": "d183cb92-ea1f-49bf-abaf-e4ac3eccec63",
+            "Value": {
+                "id": "069efc1b-8ed9-482e-b9fc-4410ad6b8323",
+                "resourcePath": "scripts\\render_effect_light\\render_effect_light.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -17171,6 +17195,14 @@
             }
         },
         {
+            "Key": "e92119d1-3a53-438e-98e7-254df466d71c",
+            "Value": {
+                "id": "728832b2-185f-40f5-9b5a-c2269dec7ea8",
+                "resourcePath": "views\\e92119d1-3a53-438e-98e7-254df466d71c.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "e938bd97-716f-408c-b1d1-278f7242593f",
             "Value": {
                 "id": "e9034186-4748-451b-96a2-0d359cd28f3e",
@@ -17304,6 +17336,14 @@
                 "id": "1ff99bf9-0aed-4272-b250-63682930edf1",
                 "resourcePath": "sprites\\spr_event_info\\spr_event_info.yy",
                 "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "ea84a95d-282b-479c-8a59-bba1f17e0a57",
+            "Value": {
+                "id": "4b52001c-da14-43bc-850e-a9b0b735eb2c",
+                "resourcePath": "scripts\\serialize_save_entity_effect_point_light\\serialize_save_entity_effect_point_light.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -19197,6 +19237,7 @@
         "c90c974b-f766-4e1c-8510-7a8d4cb235c2",
         "0ba67cd4-8c88-46b5-98b0-6592fdf0f101",
         "7388fa70-3d82-49cb-911d-fdf570820496",
+        "d183cb92-ea1f-49bf-abaf-e4ac3eccec63",
         "8d01683b-31d2-4512-b054-29e0a34f5d3e",
         "83918601-76a4-41ce-a370-e149f8357773",
         "1586bf0c-0a82-41a1-9bc1-796353cb4637",
@@ -20332,6 +20373,7 @@
         "8232738a-b358-48e5-9da6-d0f3db4d7698",
         "c504c050-69e0-4c3b-bfe4-ece3e679e3c5",
         "faae0bf2-d5cb-4fc7-9e96-3817f3567427",
+        "c2b5e3ee-184b-46cc-a308-de64b2ebe0f3",
         "6a694831-2da7-416a-9c69-ba32172c29ec",
         "e42de6e2-aedc-4d8a-ba9e-4d179718b813",
         "05df440c-edde-41dd-b89c-9d6f5e72255e",
@@ -20369,6 +20411,7 @@
         "09c3db56-cf0d-49de-be3f-5d7a532d4f90",
         "25d7e07b-cbd5-4039-af63-3fb8193314f3",
         "ff28a471-b69c-4494-8924-7d1f8b06de7d",
+        "ea84a95d-282b-479c-8a59-bba1f17e0a57",
         "5ee05ca1-cc2f-4c2c-9abe-2edb7254e480",
         "bf81dc40-e73e-44cc-8002-90e1003e7331",
         "a56f2dd5-c46d-47fd-b1d1-7c96af4f5fca",
