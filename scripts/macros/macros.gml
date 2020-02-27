@@ -3,6 +3,16 @@
 #macro scribble:EDITOR_BASE_MODE ModeIDs.SCRIBBLE
 #macro spart:EDITOR_BASE_MODE ModeIDs.SPART
 
+#macro MENU_EDITOR_ENABLED true
+#macro scribble:MENU_EDITOR_ENABLED false
+#macro spart:MENU_EDITOR_ENABLED false
+#macro GLOBAL_CONTORLS_ENABLED true
+#macro scribble:GLOBAL_CONTORLS_ENABLED false
+#macro spart:GLOBAL_CONTORLS_ENABLED false
+#macro PROJECT_MENU_ENABLED true
+#macro scribble:PROJECT_MENU_ENABLED false
+#macro spart:PROJECT_MENU_ENABLED false
+
 // game maker buffer_compress uses medium-level compression; the first two bytes you'll see are
 // "78" and "9c" but buffer_read is little endian so they'll be in reverse order
 #macro MAGIC_ZLIB_HEADER 0x9c78
@@ -60,13 +70,6 @@
 
 #macro FILE_ERRORS "errors.log"
 #macro FILE_SETTINGS "settings.json"
-
-#macro MENU_EDITOR_ENABLED true
-#macro scribble:MENU_EDITOR_ENABLED false
-#macro spart:MENU_EDITOR_ENABLED false
-#macro GLOBAL_CONTORLS_ENABLED true
-#macro scribble:GLOBAL_CONTORLS_ENABLED false
-#macro spart:GLOBAL_CONTORLS_ENABLED false
 
 #macro PREFIX_GRAPHIC_BATTLER "GBat"
 #macro PREFIX_GRAPHIC_OVERWORLD "GOv"

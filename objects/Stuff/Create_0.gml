@@ -488,4 +488,6 @@ switch (stashed_mode) {
     case ModeIDs.SPART: editor_mode_spart(); break;
 }
 
-dialog_create_project_list(noone);
+if (PROJECT_MENU_ENABLED) {
+    dialog_create_project_list(noone);
+}
