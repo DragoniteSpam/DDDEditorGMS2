@@ -25,3 +25,6 @@ is_aux = false;
 adjust_view = false;
 
 override_escape = false;
+
+next = noone;
+previous = noone;
