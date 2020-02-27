@@ -10782,7 +10782,7 @@
             "Key": "8fa68c5b-180f-453c-9df8-d25569b0da5a",
             "Value": {
                 "id": "e39e69ab-3269-4325-95f5-231eccb10fdb",
-                "resourcePath": "scripts\\safc_fill_camera_zone\\safc_fill_camera_zone.yy",
+                "resourcePath": "scripts\\safc_fill_zone\\safc_fill_zone.yy",
                 "resourceType": "GMScript"
             }
         },

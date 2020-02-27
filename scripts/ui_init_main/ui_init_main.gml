@@ -881,7 +881,13 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     element.allow_deselect = false;
     ui_list_select(element, 0);
     create_list_entries(element, ["Point Light"], ["Directional Light"], ["Spot Light"]);
+    element.object_types = [
+        EntityEffect,
+        EntityEffect,
+        EntityEffect,
+    ];
     ds_list_add(t_p_other_editor.contents, element);
+    t_p_other_editor.el_effect_type = element;
     
     yy += ui_get_list_height(element) + spacing;
     
@@ -890,7 +896,11 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     element.allow_deselect = false;
     ui_list_select(element, 0);
     create_list_entries(element, ["Camera Zone"]);
+    element.object_types = [
+        DataCameraZone,
+    ];
     ds_list_add(t_p_other_editor.contents, element);
+    t_p_other_editor.el_zone_type = element;
     
     yy += ui_get_list_height(element) + spacing;
     

@@ -5,9 +5,11 @@ var button = Stuff.map.ui.t_p_other.el_zone_data;
 for (var i = 0; i < ds_list_size(Stuff.map.selection); i++) {
     var selection = Stuff.map.selection[| i];
     if (instanceof(selection, SelectionRectangle)) {
-        var zone = instance_create_depth(0, 0, 0, DataCameraZone);
+        var zone_list = Stuff.map.ui.t_p_other_editor.el_zone_type;
+        var type = zone_list.object_types[ui_list_selection(zone_list)];
+        var zone = instance_create_depth(0, 0, 0, type);
         instance_deactivate_object(zone);
-        zone.name = "Camera Zone " + string(ds_list_size(Stuff.map.active_map.contents.all_zones));
+        zone.name = object_get_name(type) + " " + string(ds_list_size(Stuff.map.active_map.contents.all_zones));
         
         zone.x1 = selection.x;
         zone.y1 = selection.y;
@@ -28,5 +30,5 @@ for (var i = 0; i < ds_list_size(Stuff.map.selection); i++) {
 selection_clear();
 
 if (!Stuff.setting_view_zones) {
-    dialog_create_notice(noone, "Camera zones are currently set to be invisible. It is recommended that you turn on Zone Visibility in the General tab.");
+    dialog_create_notice(noone, "zones are currently set to be invisible. It is recommended that you turn on Zone Visibility in the General tab.");
 }
