@@ -64,6 +64,9 @@
 #macro MENU_EDITOR_ENABLED true
 #macro scribble:MENU_EDITOR_ENABLED false
 #macro spart:MENU_EDITOR_ENABLED false
+#macro GLOBAL_CONTORLS_ENABLED true
+#macro scribble:GLOBAL_CONTORLS_ENABLED false
+#macro spart:GLOBAL_CONTORLS_ENABLED false
 
 #macro PREFIX_GRAPHIC_BATTLER "GBat"
 #macro PREFIX_GRAPHIC_OVERWORLD "GOv"
