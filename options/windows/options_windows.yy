@@ -34,7 +34,7 @@
         "build": 8,
         "major": 2020,
         "minor": 1,
-        "revision": 37
+        "revision": 38
     },
     "option_windows_vsync": false
 }
