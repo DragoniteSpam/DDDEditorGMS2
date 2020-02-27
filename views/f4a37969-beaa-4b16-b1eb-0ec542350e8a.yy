@@ -6,13 +6,12 @@
     "children": [
         "7f20ec16-813e-40ff-84ed-b924fec4984c",
         "7fc037ea-b87f-4b28-96d4-428bdcba295d",
-        "384cb058-7494-4cee-b51a-10dfc5aff2a7",
-        "c701aeee-5ddd-4c8f-8a2e-b13a26558727",
-        "9825b8ed-4b32-4131-a921-295a54fbb134",
-        "0595d670-7f25-429d-a001-b1ceacdd5d49",
-        "03d96153-f5e5-4fb2-8f98-1aca29744fbc",
         "b73ab1b0-725c-4c33-b7a4-f169a135ec36",
-        "98f912de-be5e-4997-9d73-9c6657025880"
+        "98f912de-be5e-4997-9d73-9c6657025880",
+        "701fa8f4-d25e-4441-a55d-33688cfea7da",
+        "02660a9b-b832-4d4c-8678-9aad19a10b3d",
+        "0d0269c7-25a8-436a-a255-dd6bfd65657d",
+        "0962fae9-d7ce-4855-8a02-ea7e397daa6f"
     ],
     "filterType": "GMScript",
     "folderName": "modes",
