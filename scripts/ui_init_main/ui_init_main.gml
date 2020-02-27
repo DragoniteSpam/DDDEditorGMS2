@@ -22,6 +22,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     t_p_mesh = create_tab("Mesh", 2, id);
     t_p_pawn = create_tab("Pawn", 2, id);
     t_p_effect = create_tab("Effect", 2, id);
+    t_p_other = create_tab("Other", 2, id);
     
     // the game will crash if you create a tab row with zero width.
     var tr_general = ds_list_create();
@@ -29,7 +30,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     var tr_editor = ds_list_create();
     ds_list_add(tr_editor, t_p_tile_editor, t_p_autotile_editor, t_p_mesh_editor, t_p_other_editor);
     var tr_world = ds_list_create();
-    ds_list_add(tr_world, t_p_entity, t_p_tile, t_p_mesh, t_p_pawn, t_p_effect);
+    ds_list_add(tr_world, t_p_entity, t_p_tile, t_p_mesh, t_p_pawn, t_p_effect, t_p_other);
     
     ds_list_add(tabs, tr_general, tr_editor, tr_world);
     
@@ -856,16 +857,16 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = legal_y + spacing;
     
-    element = create_text(col1_x, yy, "These are settings that don't really fit anywhere else", col_width, element_height, fa_left, legal_width, t_p_other_editor);
-    ds_list_add(t_p_other_editor.contents, element);
+    element = create_text(col1_x, yy, "These are settings that don't really fit anywhere else", col_width, element_height, fa_left, legal_width, t_p_other);
+    ds_list_add(t_p_other.contents, element);
     
     yy = yy + element.height + spacing;
     
-    element = create_button(col1_x, yy, "Zone Data", col_width, element_height, fa_center, null, t_p_other_editor);
+    element = create_button(col1_x, yy, "Zone Data", col_width, element_height, fa_center, null, t_p_other);
     element.tooltip = "If you click on a map zone (camera, weather, audio, encounters, etc), you can edit the parameters of it here.";
     element.interactive = false;
-    ds_list_add(t_p_other_editor.contents, element);
-    t_p_other_editor.el_zone_data = element;
+    ds_list_add(t_p_other.contents, element);
+    t_p_other.el_zone_data = element;
     
     yy = yy + element.height + spacing;
     

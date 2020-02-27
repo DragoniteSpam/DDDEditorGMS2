@@ -1,6 +1,6 @@
 // not technically a Selection Fill script, but it's used in a similar way
 
-var button = Stuff.map.ui.t_p_other_editor.el_zone_data;
+var button = Stuff.map.ui.t_p_other.el_zone_data;
                     
 for (var i = 0; i < ds_list_size(Stuff.map.selection); i++) {
     var selection = Stuff.map.selection[| i];

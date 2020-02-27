@@ -69,7 +69,7 @@ if (true) {
                 case SelectionModes.CIRCLE: var stype = SelectionCircle; break;
             }
             
-            var button = Stuff.map.ui.t_p_other_editor.el_zone_data;
+            var button = Stuff.map.ui.t_p_other.el_zone_data;
             button.text = "Zone Data";
             button.interactive = false;
             button.onmouseup = null;
