@@ -2,6 +2,9 @@
 
 var dialog = argument0;
 var list = Stuff.map.selected_entities;
+var single = (ds_list_size(list) == 1);
+var first = list[| 0];
+var com_light = first ? first.com_light : noone;
 
 var dw = 640;
 var dh = 480;
@@ -24,7 +27,7 @@ var vy2 = vy1 + eh;
 var yy = 64;
 var yy_base = yy;
 
-var el_type = create_radio_array(col1_x, yy, "Type", ew, eh, uivc_entity_effect_com_lighting_type, 0, dg);
+var el_type = create_radio_array(col1_x, yy, "Type", ew, eh, uivc_entity_effect_com_lighting_type, (com_light ? com_light.type : (single ? 0 : -1)), dg);
 create_radio_array_options(el_type, ["None", "Directional", "Point", "Spot (Cone)"]);
 el_type.contents[| 3].interactive = false;
 el_type.tooltip = "The lighting data to be attached to this effect.\n - Directional lights are infinite an illuminate everything\n - Point lights illuminate everything within a radius, fading out smoothly\n - Spot lights can be thought of as a combination of point and directional lights, illuminating everything in a certain direction";
@@ -93,6 +96,10 @@ el_point_radius.enabled = false;
 dg.el_point_radius = el_point_radius;
 
 yy = yy + el_point_radius.height + spacing;
+#endregion
+
+#region spot lights
+yy = yy_base;
 #endregion
 
 var b_width = 128;
