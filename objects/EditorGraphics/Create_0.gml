@@ -65,6 +65,8 @@ c_shape_begin_trimesh();
 c_shape_load_trimesh("data\\basic\\cube.d3d");
 c_shape_end_trimesh(c_shape_block);
 c_transform_identity();
+c_shape_sphere = c_shape_create();
+c_shape_add_sphere(c_shape_sphere, 1);
 
 basic_cage = import_d3d("data\\basic\\cage.d3d", false);
 indexed_cage = import_d3d("data\\basic\\cage-indexed.d3d", false);
@@ -72,6 +74,7 @@ indexed_cage_full = import_d3d("data\\basic\\cage-indexed-full.d3d", false);
 basic_cube = import_d3d("data\\basic\\cube.d3d", false);
 indexed_cube = import_d3d("data\\basic\\cube-indexed.d3d", false);
 base_npc = import_d3d("data\\basic\\base-npc.d3d", false, false);
+axes_rotation = import_d3d("data\\basic\\rotation.d3d", false, false);
 var qmark_data = import_d3d("data\\basic\\missing.d3d", false, false, true);
 mesh_missing = qmark_data[0];
 mesh_missing_data = qmark_data[1];

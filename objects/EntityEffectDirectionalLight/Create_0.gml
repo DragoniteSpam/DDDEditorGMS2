@@ -22,6 +22,8 @@ light_dx = 0;
 light_dy = 0;
 light_dz = -1;
 light_colour = c_white;
+// not used for directional lights, but they do affect the clickable area
+light_radius = 32;
 
 var map = Stuff.map.active_map;
 var map_contents = map.contents;

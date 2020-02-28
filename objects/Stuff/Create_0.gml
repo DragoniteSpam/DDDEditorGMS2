@@ -401,6 +401,7 @@ element_tooltip_previous = noone;
 element_tooltip_t = -1;
 
 screen_icons = ds_queue_create();
+unlit_meshes = ds_queue_create();
 #endregion
 
 #region global game settings

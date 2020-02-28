@@ -9211,6 +9211,14 @@
             }
         },
         {
+            "Key": "79d4ab70-6081-4745-94ad-b190a0f50ff3",
+            "Value": {
+                "id": "c97623db-4117-4403-ad9c-facda7d2ade7",
+                "resourcePath": "scripts\\map_transform_light\\map_transform_light.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "7a4be2f5-7fbb-458f-bbd5-d3b816fcb703",
             "Value": {
                 "id": "47d98ee8-caf2-4e51-a1a9-99cb7ffeea60",
@@ -18347,6 +18355,14 @@
             }
         },
         {
+            "Key": "f668208f-1ace-4c4d-96a1-987f82ae6692",
+            "Value": {
+                "id": "e6cef34f-a5b9-4289-a557-042f36cacbce",
+                "resourcePath": "datafiles_yy\\data\\basic\\rotation.d3d.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "f673b47c-92bc-4efa-8573-8a7e9c0ab516",
             "Value": {
                 "id": "01ae914f-b797-497a-b895-be8ef005d5c7",
@@ -19398,6 +19414,7 @@
         "b1ccb530-da96-48be-8c94-a95358e3b1a9",
         "0f67b905-b2ee-49eb-ba96-763eb27af16c",
         "d98e8a9a-d475-42cc-98ce-47bd6a8e1fdf",
+        "79d4ab70-6081-4745-94ad-b190a0f50ff3",
         "fa663bfb-720b-406f-b672-f3270b149138",
         "54c88dd4-4ffb-4b5a-ae26-a1eeb69fe6b7",
         "a0c45521-e3c0-4e37-94b4-600c3f5eaf19",

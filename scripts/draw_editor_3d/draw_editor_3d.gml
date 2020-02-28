@@ -32,11 +32,12 @@ if (map.is_3d) {
     camera_apply(camera);
 }
 
-graphics_draw_water();
-
 // anything in the world
 
-// lighting
+// the water effect uses a different shader
+graphics_draw_water();
+
+#region lighting
 shader_set(shd_ddd);
 shader_set_uniform_i(shader_get_uniform(shd_ddd, "lightEnabled"), Stuff.setting_view_lighting);
 var light_data = array_create(MAX_LIGHTS * 12);
@@ -69,10 +70,12 @@ for (var i = 0; i < MAX_LIGHTS; i++) {
 }
 shader_set_uniform_i(shader_get_uniform(shd_ddd, "lightCount"), n);
 shader_set_uniform_f_array(shader_get_uniform(shd_ddd, "lightData"), light_data);
+#endregion
 
 // this will need to be dynamic at some point
 var tex = Stuff.setting_view_texture ? sprite_get_texture(get_active_tileset().master, 0) : sprite_get_texture(b_tileset_textureless, 0);
 
+#region entities
 if (map_contents.frozen && Stuff.setting_view_entities) {
     vertex_submit(map_contents.frozen, pr_trianglelist, tex);
 }
@@ -95,7 +98,12 @@ for (var i = 0; i < ds_list_size(map_contents.batch_in_the_future); i++) {
     script_execute(ent.render, ent);
     // batchable entities don't make use of move routes, so don't bother
 }
+#endregion
 
+shader_reset();
+gpu_set_cullmode(cull_noculling);
+
+#region move routes
 var list_routes = ds_list_create();       // [buffer, x, y, z, extra?, extra x, extra y, extra z], positions are absolute
 
 for (var i = 0; i < ds_list_size(map_contents.dynamic); i++) {
@@ -112,9 +120,6 @@ for (var i = 0; i < ds_list_size(map_contents.dynamic); i++) {
     }
 }
 
-shader_reset();
-gpu_set_cullmode(cull_noculling);
-
 // because apparently you can't do color with a passthrough shader even though it has a color attribute
 for (var i = 0; i < ds_list_size(list_routes); i++) {
     var data = list_routes[| i];
@@ -126,6 +131,7 @@ for (var i = 0; i < ds_list_size(list_routes); i++) {
         draw_sprite_ext(spr_plus_minus, 0, 0, 0, 0.25, 0.25, 0, c_lime, 1);
     }
 }
+#endregion
 
 if (Stuff.setting_view_grid) {
     transform_set(0, 0, Stuff.map.edit_z * TILE_DEPTH + 0.5, 0, 0, 0, 1, 1, 1);
@@ -155,6 +161,16 @@ if (Stuff.game_starting_map == Stuff.map.active_map.GUID) {
     transform_add((Stuff.game_starting_x + 0.5) * TILE_WIDTH, (Stuff.game_starting_y + 0.5) * TILE_HEIGHT, Stuff.game_starting_z * TILE_DEPTH, 0, 0, 0, 1, 1, 1);
     vertex_submit(Stuff.graphics.basic_cage, pr_trianglelist, -1);
 }
+
+#region unlit meshes
+while (!ds_queue_empty(Stuff.unlit_meshes)) {
+    var data = ds_queue_dequeue(Stuff.unlit_meshes);
+    var vbuffer = data[0];
+    var transform = data[1];
+    matrix_set(matrix_world, transform);
+    vertex_submit(vbuffer, pr_trianglelist, -1);
+}
+#endregion
 
 transform_reset();
 
