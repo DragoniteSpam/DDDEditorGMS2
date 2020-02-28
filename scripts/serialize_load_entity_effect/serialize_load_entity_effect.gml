@@ -43,3 +43,5 @@ if (effect.com_audio) {
     effect.com_audio.parent = effect;
     script_execute(effect.com_audio.load_script, buffer, effect.com_audio, version);
 }
+
+entity_effect_position_colliders(effect);

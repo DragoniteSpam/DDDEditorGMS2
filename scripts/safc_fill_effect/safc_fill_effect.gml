@@ -11,6 +11,7 @@ var params = argument3;
 var cell = map_get_grid_cell(xx, yy, zz);
 
 if (!cell[@ MapCellContents.EFFECT]) {
-    var addition = instance_create_depth(0, 0, 0, EntityEffect);
-    map_add_thing(addition, xx, yy, zz);
+    var effect = instance_create_depth(0, 0, 0, EntityEffect);
+    map_add_thing(effect, xx, yy, zz);
+    entity_effect_position_colliders(effect);
 }

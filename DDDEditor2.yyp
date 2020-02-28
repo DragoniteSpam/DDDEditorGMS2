@@ -6483,6 +6483,14 @@
             }
         },
         {
+            "Key": "55afbd8a-0902-4f01-970b-fdec3cd3a858",
+            "Value": {
+                "id": "731bf340-6a1c-48c0-b4c4-9022882409b6",
+                "resourcePath": "scripts\\entity_effect_position_colliders\\entity_effect_position_colliders.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "55c21995-3724-4388-9245-b1d23fa4767e",
             "Value": {
                 "id": "558f3434-9ecb-47ff-8b7a-414f3e6f7a10",
@@ -21039,6 +21047,7 @@
         "cb49942f-53ea-40d1-acff-69c6d634edfe",
         "ed721469-d8b0-421c-b43d-2f75cec90c72",
         "665223cf-860b-41d6-8cca-abd533e55db4",
+        "55afbd8a-0902-4f01-970b-fdec3cd3a858",
         "acb26a39-8033-4289-87d0-228ed7921bc8",
         "89e8adda-438e-48f9-ab78-0e8b396b3850",
         "375e7330-6e30-4902-8a42-dbc8ad380c16",
