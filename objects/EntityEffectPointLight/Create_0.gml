@@ -9,10 +9,11 @@ etype = ETypes.ENTITY_EFFECT_POINT_LIGHT;
 etype_flags = ETypeFlags.ENTITY_EFFECT;
 render = render_effect_light_point;
 sprite = spr_light_point;
+light_type = LightTypes.POINT;
 
 // specific
 light_colour = c_white;
-light_radius = 255;
+light_radius = 0.5;
 
 var map = Stuff.map.active_map;
 var map_contents = map.contents;

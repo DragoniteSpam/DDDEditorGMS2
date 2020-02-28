@@ -39,18 +39,29 @@ graphics_draw_water();
 // lighting
 shader_set(shd_ddd);
 shader_set_uniform_i(shader_get_uniform(shd_ddd, "lightEnabled"), Stuff.setting_view_lighting);
-shader_set_uniform_i(shader_get_uniform(shd_ddd, "lightCount"), 3);
-shader_set_uniform_f_array(shader_get_uniform(shd_ddd, "lightData"), [
-    1600, 1600, 320, 1,
-        0, 0, 0, 255,
-        1, 0, 0, 0,
-    1440, 1664, 320, 1,
-        0, 0, 0, 255,
-        1, 1, 1, 0,
-    1664, 1280, 320, 1,
-        0, 0, 0, 320,
-        0, 1, 0, 0,
-]);
+var light_data = array_create(MAX_LIGHTS * 12);
+var n = 0;
+for (var i = 0; i < MAX_LIGHTS; i++) {
+    var data = refid_get(map_contents.active_lights[i]);
+    if (data) {
+        var index = n++ * 12;
+        light_data[index + 0] = (data.xx + data.off_xx + 0.5) * TILE_WIDTH;
+        light_data[index + 1] = (data.yy + data.off_yy + 0.5) * TILE_HEIGHT;
+        light_data[index + 2] = (data.zz + data.off_zz + 0.5) * TILE_DEPTH;
+        light_data[index + 3] = data.light_type;
+        light_data[index + 8] = (data.light_colour & 0x0000ff) / 0xff;
+        light_data[index + 9] = ((data.light_colour & 0x00ff00) >> 8) / 0xff;
+        light_data[index + 10] = ((data.light_colour & 0xff0000) >> 16) / 0xff;
+        
+        switch (data.light_type) {
+            case LightTypes.DIRECTIONAL: break;
+            case LightTypes.POINT: light_data[index + 7] = data.light_radius; break;
+            case LightTypes.SPOT: break;
+        }
+    }
+}
+shader_set_uniform_i(shader_get_uniform(shd_ddd, "lightCount"), n);
+shader_set_uniform_f_array(shader_get_uniform(shd_ddd, "lightData"), light_data);
 
 // this will need to be dynamic at some point
 var tex = Stuff.setting_view_texture ? sprite_get_texture(get_active_tileset().master, 0) : sprite_get_texture(b_tileset_textureless, 0);

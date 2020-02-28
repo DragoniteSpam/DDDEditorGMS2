@@ -9,6 +9,7 @@ etype = ETypes.ENTITY_EFFECT_DIRECTIONAL_LIGHT;
 etype_flags = ETypeFlags.ENTITY_EFFECT;
 render = render_effect_light_directional;
 sprite = spr_light_direction;
+light_type = LightTypes.DIRECTIONAL;
 
 // specific
 light_colour = c_white;
