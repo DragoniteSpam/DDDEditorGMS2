@@ -31,6 +31,7 @@ var bools = pack(
     map.fog_enabled,
     map.on_grid,
     map.reflections_enabled,
+    map.run_init,
 );
 
 buffer_write(buffer, buffer_u32, bools);

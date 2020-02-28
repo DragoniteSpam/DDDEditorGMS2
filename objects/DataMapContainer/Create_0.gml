@@ -39,6 +39,7 @@ fast_travel_to = true;                      // bool
 fast_travel_from = true;                    // bool
 base_encounter_rate = 8;                    // steps?
 base_encounter_deviation = 4;               // ehh
+run_init = true;                            // bool
 
 discovery = 0;                              // index
 

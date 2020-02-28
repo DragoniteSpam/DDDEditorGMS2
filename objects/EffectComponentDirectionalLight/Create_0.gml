@@ -6,7 +6,7 @@ sprite = spr_light_direction;
 light_type = LightTypes.DIRECTIONAL;
 
 // specific
-light_dx = 0;
-light_dy = 0;
+light_dx = -1;
+light_dy = -1;
 light_dz = -1;
 light_colour = c_white;
