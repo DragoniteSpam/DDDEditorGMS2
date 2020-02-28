@@ -11,7 +11,8 @@
         "825b407d-1925-43ba-bb83-57ecf601af53",
         "68759c59-2f2b-415b-9734-598286337221",
         "1cc25413-44c2-47b7-bacc-59879be8d440",
-        "7c1ef097-00b2-4e65-9c99-321a6b4159f0"
+        "7c1ef097-00b2-4e65-9c99-321a6b4159f0",
+        "da97f773-6c3f-499f-b553-a5185a34535f"
     ],
     "filterType": "GMScript",
     "folderName": "entity stuff",

@@ -232,6 +232,7 @@ global.at_map[? 255] = 46;
 global.at_map[? 0] = 47;
 
 enum LightTypes {
+    NONE,
     DIRECTIONAL,
     POINT,
     SPOT,
