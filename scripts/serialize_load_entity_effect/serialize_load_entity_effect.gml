@@ -6,6 +6,9 @@ var buffer = argument0;
 var effect = argument1;
 var version = argument2;
 
+var map = Stuff.map.active_map;
+var map_contents = map.contents;
+
 serialize_load_entity(buffer, effect, version);
 
 var light_type = buffer_read(buffer, buffer_u8);
@@ -18,6 +21,13 @@ switch (light_type) {
 if (effect.com_light) {
     effect.com_light.parent = effect;
     script_execute(effect.com_light.load_script, buffer, effect.com_light, version);
+    // for now, anyway
+    for (var i = 0; i < MAX_LIGHTS; i++) {
+        if (!refid_get(map_contents.active_lights[| i])) {
+            map_contents.active_lights[| i] = effect.REFID;
+            break;
+        }
+    }
 }
 
 var particle_type = buffer_read(buffer, buffer_u8);

@@ -9,6 +9,9 @@ var list = Stuff.map.selected_entities;
 var single = (ds_list_size(list) == 1);
 var first = list[| 0];
 
+var map = Stuff.map.active_map;
+var map_contents = map.contents;
+
 for (var i = 0; i < ds_list_size(list); i++) {
     var effect = list[| i];
     if (effect.com_light) {
@@ -69,4 +72,16 @@ switch (radio.value) {
         base_dialog.el_dir_z.enabled = false;
         base_dialog.el_point_radius.enabled = false;
         break;
+}
+
+for (var i = 0; i < ds_list_size(list); i++) {
+    var effect = list[| i];
+    if (ds_list_find_index(map_contents.active_lights, effect.REFID) == -1) {
+        for (var j = 0; j < MAX_LIGHTS; j++) {
+            if (!refid_get(map_contents.active_lights[| j])) {
+                map_contents.active_lights[| j] = effect.REFID;
+                break;
+            }
+        }
+    }
 }

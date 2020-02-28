@@ -42,4 +42,7 @@ enum MapCellContents {
     _COUNT
 }
 
-active_lights = array_create(MAX_LIGHTS, noone);
+active_lights = ds_list_create();
+repeat (MAX_LIGHTS) {
+    ds_list_add(active_lights, noone);
+}
