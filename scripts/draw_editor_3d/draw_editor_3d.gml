@@ -137,8 +137,11 @@ for (var i = 0; i < ds_list_size(list_routes); i++) {
         draw_sprite_ext(spr_plus_minus, 0, 0, 0, 0.25, 0.25, 0, c_lime, 1);
     }
 }
+
+ds_list_destroy(list_routes);
 #endregion
 
+#region grids, selection boxes, zones
 if (Stuff.setting_view_grid) {
     transform_set(0, 0, Stuff.map.edit_z * TILE_DEPTH + 0.5, 0, 0, 0, 1, 1, 1);
     vertex_submit(Stuff.graphics.grid, pr_linelist, -1);
@@ -159,8 +162,7 @@ if (Stuff.setting_view_zones) {
         zone_render_rectangle(map_contents.all_zones[| i]);
     }
 }
-
-ds_list_destroy(list_routes);
+#endregion
 
 if (Stuff.game_starting_map == Stuff.map.active_map.GUID) {
     transform_set(0, 0, 0, 0, 0, Stuff.direction_lookup[Stuff.game_starting_direction], 1, 1, 1);
@@ -222,24 +224,26 @@ var overlap_slider = mouse_within_rectangle_view(32 - slw / 2, slider_y - slh / 
 draw_sprite_ext(spr_drag_handle_vertical, 0, 32, slider_y, 1, 1, 0, overlap_slider ? c_ui_select : c_white, 1);
 
 // interactions
-var overlap_interval = mouse_within_rectangle_view(32 - slw / 2, 64, 32 + slw / 2, 64 + height);
+if (ds_list_empty(Stuff.dialogs)) {
+    var overlap_interval = mouse_within_rectangle_view(32 - slw / 2, 64, 32 + slw / 2, 64 + height);
 
-if (overlap_plus) {
-    if (mouse_check_button_pressed(mb_left)) {
-        mode.edit_z = min(++mode.edit_z, mode.active_map.zz - 1);
+    if (overlap_plus) {
+        if (mouse_check_button_pressed(mb_left)) {
+            mode.edit_z = min(++mode.edit_z, mode.active_map.zz - 1);
+        }
+        mode.mouse_over_ui = true;
+    } else if (overlap_minus) {
+        if (mouse_check_button_pressed(mb_left)) {
+            mode.edit_z = max(--mode.edit_z, 0);
+        }
+        mode.mouse_over_ui = true;
+    } else if (overlap_interval) {
+        if (mouse_check_button(mb_left)) {
+            var f = clamp((yy_end - mouse_y_view) / (yy_end - yy_start), 0, 1);
+            mode.edit_z = round(normalize_correct(f, 0, mode.active_map.zz - 1, 0, 1));
+        }
+        mode.mouse_over_ui = true;
     }
-    mode.mouse_over_ui = true;
-} else if (overlap_minus) {
-    if (mouse_check_button_pressed(mb_left)) {
-        mode.edit_z = max(--mode.edit_z, 0);
-    }
-    mode.mouse_over_ui = true;
-} else if (overlap_interval) {
-    if (mouse_check_button(mb_left)) {
-        var f = clamp((yy_end - mouse_y_view) / (yy_end - yy_start), 0, 1);
-        mode.edit_z = round(normalize_correct(f, 0, mode.active_map.zz - 1, 0, 1));
-    }
-    mode.mouse_over_ui = true;
 }
 #endregion
 
