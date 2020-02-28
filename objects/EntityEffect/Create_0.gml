@@ -15,5 +15,7 @@ slot = MapCellContents.EFFECT;
 batchable = false;
 render = render_effect;
 
-// specific
-sprite = spr_star;
+// components
+com_light = noone;
+com_particle = noone;
+com_audio = noone;
