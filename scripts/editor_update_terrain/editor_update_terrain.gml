@@ -26,7 +26,7 @@ shader_set(shd_basic_lighting);
 shader_set_uniform_i(shader_get_uniform(shd_basic_lighting, "lightEnabled"), true);
 shader_set_uniform_i(shader_get_uniform(shd_basic_lighting, "lightCount"), 1);
 shader_set_uniform_f_array(shader_get_uniform(shd_basic_lighting, "lightData"), [
-    1, 1, -1, 0,
+    1, 1, -1, 1,
         0, 0, 0, 0,
         1, 1, 1, 0,
 ]);

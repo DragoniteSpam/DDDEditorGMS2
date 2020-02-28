@@ -7,6 +7,9 @@ varying vec2 v_vTexcoord;
 varying vec4 v_vColour;
 
 #define MAX_LIGHTS 8
+#define LIGHT_DIRECTIONAL 1.
+#define LIGHT_POINT 2.
+#define LIGHT_SPOT 3.
 uniform int lightEnabled;
 uniform vec4 lightData[MAX_LIGHTS * 3];
 uniform int lightCount;
@@ -29,12 +32,12 @@ void main() {
             vec4 lightExt = lightData[i * 3 + 1];
             vec4 lightColor = lightData[i * 3 + 2];
             
-            if (type == 0.) {
+            if (type == LIGHT_DIRECTIONAL) {
                 // directional light: [x, y, z, type], [0, 0, 0, 0], [r, g, b, 0]
                 vec3 lightDir = -normalize(lightPosition);
                 float NdotL = max(dot(worldNormal, lightDir), 0.);
                 finalColor += NdotL * in_Colour;
-            } else if (type == 1.) {
+            } else if (type == LIGHT_POINT) {
                 float range = lightExt.w;
                 // point light: [x, y, z, type], [0, 0, 0, range], [r, g, b, 0]
                 vec3 lightDir = worldPosition - lightPosition;
@@ -43,7 +46,7 @@ void main() {
                 lightDir /= dist;
                 att *= att;
                 finalColor += lightColor * max(0., -dot(worldNormal, lightDir)) * 1.;
-            } else if (type == 2.) {
+            } else if (type == LIGHT_SPOT) {
             
             }
         }
