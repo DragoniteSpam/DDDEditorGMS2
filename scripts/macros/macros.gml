@@ -16,6 +16,8 @@
 // game maker buffer_compress uses medium-level compression; the first two bytes you'll see are
 // "78" and "9c" but buffer_read is little endian so they'll be in reverse order
 #macro MAGIC_ZLIB_HEADER 0x9c78
+// instance IDs begin here
+#macro MAGIC_INSTANCE_ID 100000
 
 #macro ALARM_SETTINGS_SAVE 0
 #macro AUTOTILE_AVAILABLE_MAX 100

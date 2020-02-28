@@ -13,11 +13,14 @@ var xx = mouse_vector[vec3.xx] * MILLION;
 var yy = mouse_vector[vec3.yy] * MILLION;
 var zz = mouse_vector[vec3.zz] * MILLION;
 
+// stash the result because you may hit a special value of some type
 if (c_raycast_world(mode.x, mode.y, mode.z, mode.x + xx, mode.y + yy, mode.z + zz, CollisionMasks.MAIN)) {
-    mode.under_cursor = c_object_get_userid(c_hit_object(0));
-    if (mouse_check_button_pressed(mb_left))  debug(mode.under_cursor);
+    var hit = c_object_get_userid(c_hit_object(0));
+    var data_under_cursor = (hit < MAGIC_INSTANCE_ID) ? hit : noone;
+    var instance_under_cursor = (hit >= MAGIC_INSTANCE_ID) ? hit : noone;
 } else {
-    mode.under_cursor = noone;
+    var data_under_cursor = 0;
+    var instance_under_cursor = noone;
 }
 
 var floor_x = -1;
@@ -28,96 +31,100 @@ var floor_cy = -1;
 var floor_cz = -1;
 
 if (!mode.mouse_over_ui) {
-    // it makes no sense to check where the mouse vector intersects with the floor if you're not looking down
-    if (zz < mode.z) {
-        var f = abs((mode.z - (mode.edit_z * TILE_DEPTH)) / zz);
-        floor_x = mode.x + xx * f;
-        floor_y = mode.y + yy * f;
-        floor_z = mode.edit_z * TILE_DEPTH;
-    
-        // the bounds on this are weird - in some places the cell needs to be rounded up and in others it
-        // needs to be rounded down, so the minimum allowed "cell" is (-1, -1) - be sure to max() this later
-        // if it would cause issues
-        floor_cx = clamp(floor_x div TILE_WIDTH, -1, mode.active_map.xx - 1);
-        floor_cy = clamp(floor_y div TILE_HEIGHT, -1, mode.active_map.yy - 1);
-        floor_cz = clamp(floor_z div TILE_DEPTH, -1, mode.active_map.zz - 1);
-    
-        if (Controller.press_left) {
-            if (ds_list_size(mode.selection) < MAX_SELECTION_COUNT) {
-                if (!keyboard_check(Controller.input_selection_add) && !Stuff.setting_selection_addition) {
-                    selection_clear();
+    if (data_under_cursor) {
+        
+    } else {
+        // it makes no sense to check where the mouse vector intersects with the floor if you're not looking down
+        if (zz < mode.z) {
+            var f = abs((mode.z - (mode.edit_z * TILE_DEPTH)) / zz);
+            floor_x = mode.x + xx * f;
+            floor_y = mode.y + yy * f;
+            floor_z = mode.edit_z * TILE_DEPTH;
+            
+            // the bounds on this are weird - in some places the cell needs to be rounded up and in others it
+            // needs to be rounded down, so the minimum allowed "cell" is (-1, -1) - be sure to max() this later
+            // if it would cause issues
+            floor_cx = clamp(floor_x div TILE_WIDTH, -1, mode.active_map.xx - 1);
+            floor_cy = clamp(floor_y div TILE_HEIGHT, -1, mode.active_map.yy - 1);
+            floor_cz = clamp(floor_z div TILE_DEPTH, -1, mode.active_map.zz - 1);
+            
+            if (Controller.press_left) {
+                if (ds_list_size(mode.selection) < MAX_SELECTION_COUNT) {
+                    if (!keyboard_check(Controller.input_selection_add) && !Stuff.setting_selection_addition) {
+                        selection_clear();
+                    }
+                    switch (Stuff.setting_selection_mode) {
+                        case SelectionModes.SINGLE: var stype = SelectionSingle; break;
+                        case SelectionModes.RECTANGLE: var stype = SelectionRectangle; break;
+                        case SelectionModes.CIRCLE: var stype = SelectionCircle; break;
+                        // not sure why it broke once, but just in case
+                        default: Stuff.setting_selection_mode = SelectionModes.RECTANGLE; var stype = SelectionRectangle; break;
+                    }
+                    
+                    var button = Stuff.map.ui.t_p_other.el_zone_data;
+                    button.text = "Zone Data";
+                    button.interactive = false;
+                    button.onmouseup = null;
+                    mode.selected_zone = noone;
+                    
+                    var tz = instance_under_cursor ? max(instance_under_cursor.zz, mode.edit_z) : mode.edit_z;
+                    
+                    if (instance_under_cursor && instanceof(instance_under_cursor, DataCameraZone)) {
+                        button.interactive = true;
+                        button.onmouseup = instance_under_cursor.zone_edit_script;
+                        button.text = "Data: " + instance_under_cursor.name;
+                        mode.selected_zone = instance_under_cursor;
+                    } else {
+                        mode.last_selection = instance_create_depth(0, 0, 0, stype);
+                        ds_list_add(mode.selection, mode.last_selection);
+                        script_execute(mode.last_selection.onmousedown, mode.last_selection, max(0, floor_cx), max(0, floor_cy), tz);
+                    }
                 }
-                switch (Stuff.setting_selection_mode) {
-                    case SelectionModes.SINGLE: var stype = SelectionSingle; break;
-                    case SelectionModes.RECTANGLE: var stype = SelectionRectangle; break;
-                    case SelectionModes.CIRCLE: var stype = SelectionCircle; break;
-                    // not sure why it broke once, but just in case
-                    default: Stuff.setting_selection_mode = SelectionModes.RECTANGLE; var stype = SelectionRectangle; break;
+            }
+            if (Controller.mouse_left) {
+                if (mode.last_selection) {
+                    script_execute(mode.last_selection.onmousedrag, mode.last_selection, floor_cx + 1, floor_cy + 1);
                 }
+            }
+            if (Controller.release_left) {
+                // selections of zero area are just deleted outright
+                if (mode.last_selection) {
+                    if (script_execute(mode.last_selection.area, mode.last_selection) == 0) {
+                        instance_activate_object(mode.last_selection);
+                        instance_destroy(mode.last_selection);
+                        ds_list_pop(mode.selection);
+                        mode.last_selection = noone;
+                    }
+                    sa_process_selection();
+                }
+            }
+            
+            if (Controller.press_right) {
+                Controller.press_right = false;
+                // if there is no selection, select the single square under the cursor. Otherwise you might
+                // want to do operations on large swaths of entities, so don't clear it or anythign like that.
                 
-                var button = Stuff.map.ui.t_p_other.el_zone_data;
-                button.text = "Zone Data";
-                button.interactive = false;
-                button.onmouseup = null;
-                mode.selected_zone = noone;
-                
-                var tz = mode.under_cursor ? max(mode.under_cursor.zz, mode.edit_z) : mode.edit_z;
-                
-                if (mode.under_cursor && instanceof(mode.under_cursor, DataCameraZone)) {
-                    button.interactive = true;
-                    button.onmouseup = mode.under_cursor.zone_edit_script;
-                    button.text = "Data: " + mode.under_cursor.name;
-                    mode.selected_zone = mode.under_cursor;
-                } else {
-                    mode.last_selection = instance_create_depth(0, 0, 0, stype);
+                if (selection_empty()) {
+                    var tz = instance_under_cursor ? instance_under_cursor.zz : 0;
+                    mode.last_selection = instance_create_depth(0, 0, 0, SelectionSingle);
                     ds_list_add(mode.selection, mode.last_selection);
-                    script_execute(mode.last_selection.onmousedown, mode.last_selection, max(0, floor_cx), max(0, floor_cy), tz);
+                    script_execute(mode.last_selection.onmousedown, mode.last_selection, floor_cx, floor_cy, tz);
                 }
-            }
-        }
-        if (Controller.mouse_left) {
-            if (mode.last_selection) {
-                script_execute(mode.last_selection.onmousedrag, mode.last_selection, floor_cx + 1, floor_cy + 1);
-            }
-        }
-        if (Controller.release_left) {
-            // selections of zero area are just deleted outright
-            if (mode.last_selection) {
-                if (script_execute(mode.last_selection.area, mode.last_selection) == 0) {
-                    instance_activate_object(mode.last_selection);
-                    instance_destroy(mode.last_selection);
-                    ds_list_pop(mode.selection);
-                    mode.last_selection = noone;
-                }
-                sa_process_selection();
+                
+                var menu = Stuff.menu.menu_right_click;
+                menu_activate_extra(menu);
+                menu.x = Stuff.MOUSE_X;
+                menu.y = Stuff.MOUSE_Y;
             }
         }
         
-        if (Controller.press_right) {
-            Controller.press_right = false;
-            // if there is no selection, select the single square under the cursor. Otherwise you might
-            // want to do operations on large swaths of entities, so don't clear it or anythign like that.
-            
-            if (selection_empty()) {
-                var tz = mode.under_cursor ? mode.under_cursor.zz : 0;
-                mode.last_selection = instance_create_depth(0, 0, 0, SelectionSingle);
-                ds_list_add(mode.selection, mode.last_selection);
-                script_execute(mode.last_selection.onmousedown, mode.last_selection, floor_cx, floor_cy, tz);
+        if (!input_control) {
+            if (keyboard_check_pressed(vk_space)) {
+                sa_fill();
             }
-            
-            var menu = Stuff.menu.menu_right_click;
-            menu_activate_extra(menu);
-            menu.x = Stuff.MOUSE_X;
-            menu.y = Stuff.MOUSE_Y;
-        }
-    }
-    
-    if (!input_control) {
-        if (keyboard_check_pressed(vk_space)) {
-            sa_fill();
-        }
-        if (keyboard_check_pressed(vk_delete)) {
-            sa_delete();
+            if (keyboard_check_pressed(vk_delete)) {
+                sa_delete();
+            }
         }
     }
     
@@ -173,3 +180,4 @@ if (!mode.mouse_over_ui) {
 }
 
 mode.mouse_over_ui = false;
+mode.under_cursor = instance_under_cursor ? instance_under_cursor : mode.under_cursor;
