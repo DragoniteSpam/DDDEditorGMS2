@@ -979,6 +979,14 @@
             }
         },
         {
+            "Key": "0ba86cc7-c729-4718-bd61-053622a166f5",
+            "Value": {
+                "id": "f5aa8381-b4c5-48bb-b526-96e7fb4a5372",
+                "resourcePath": "scripts\\uivc_entity_effect_com_lighting_dz\\uivc_entity_effect_com_lighting_dz.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "0bc2521f-2dc0-4325-913e-77c33c0845e3",
             "Value": {
                 "id": "22b0f510-5566-4447-a16a-6bf88c0c78c3",
@@ -3103,6 +3111,14 @@
             "Value": {
                 "id": "56363a7c-ee24-40d9-be39-e4265524068c",
                 "resourcePath": "scripts\\uivc_list_selection_constant\\uivc_list_selection_constant.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "27663094-24f4-4c14-9174-071fcca71e08",
+            "Value": {
+                "id": "fd1ae05b-c95e-4a99-b746-cb1ff5f25ba5",
+                "resourcePath": "scripts\\uivc_entity_effect_com_lighting_colour\\uivc_entity_effect_com_lighting_colour.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -11539,6 +11555,14 @@
             }
         },
         {
+            "Key": "985f0e33-9716-42d0-9262-74c71c002cdb",
+            "Value": {
+                "id": "73f16157-8be9-4efd-ace2-2a4c61ad0016",
+                "resourcePath": "scripts\\uivc_entity_effect_com_lighting_radius\\uivc_entity_effect_com_lighting_radius.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "98737f29-3c9d-431b-a59e-f2100418da5d",
             "Value": {
                 "id": "f2105350-fedb-4077-b5cb-0c39e115d7b9",
@@ -17659,6 +17683,14 @@
             }
         },
         {
+            "Key": "ed3696c5-a317-43f9-8bb3-b5c18af54628",
+            "Value": {
+                "id": "58138956-c429-4e13-855d-f6af56da13e0",
+                "resourcePath": "scripts\\uivc_entity_effect_com_lighting_dx\\uivc_entity_effect_com_lighting_dx.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "ed49c268-1db7-45e7-a45b-6f0dd5994e6c",
             "Value": {
                 "id": "23b9114d-9ee5-4c01-83e7-41778210bd74",
@@ -18399,6 +18431,14 @@
             "Value": {
                 "id": "1b907a24-79d1-48ed-a69a-2234de0b4011",
                 "resourcePath": "scripts\\uivc_scribble_background_colour\\uivc_scribble_background_colour.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "f6853248-c3eb-4964-86df-377b8c480e41",
+            "Value": {
+                "id": "32ac7d93-3f37-4d44-9e10-c2c91694f196",
+                "resourcePath": "scripts\\uivc_entity_effect_com_lighting_dy\\uivc_entity_effect_com_lighting_dy.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -19783,6 +19823,11 @@
         "aee80b62-8635-410e-a962-2f5f3b3285cd",
         "cb945382-5196-4cd4-863f-583bc4bc004d",
         "1853da0e-0bc0-44dd-ae71-b3e05a2c274b",
+        "ed3696c5-a317-43f9-8bb3-b5c18af54628",
+        "f6853248-c3eb-4964-86df-377b8c480e41",
+        "0ba86cc7-c729-4718-bd61-053622a166f5",
+        "985f0e33-9716-42d0-9262-74c71c002cdb",
+        "27663094-24f4-4c14-9174-071fcca71e08",
         "c4c6186e-04bd-409a-a93e-38317549cd72",
         "f673b47c-92bc-4efa-8573-8a7e9c0ab516",
         "e88eef17-b98c-4019-9ade-3a8cf597a1c0",

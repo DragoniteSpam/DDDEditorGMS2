@@ -40,6 +40,7 @@ switch (radio.value) {
             effect.com_light.parent = effect;
         }
         
+        base_dialog.el_color.value = first.com_light.light_colour;
         ui_input_set_value(base_dialog.el_dir_x, string(single ? first.com_light.light_dx : "-"));
         ui_input_set_value(base_dialog.el_dir_y, string(single ? first.com_light.light_dy : "-"));
         ui_input_set_value(base_dialog.el_dir_z, string(single ? first.com_light.light_dz : "-"));
@@ -58,6 +59,7 @@ switch (radio.value) {
             effect.com_light.parent = effect;
         }
         
+        base_dialog.el_color.value = first.com_light.light_colour;
         ui_input_set_value(base_dialog.el_point_radius, string(single ? first.com_light.light_radius : "-"));
         break;
     case LightTypes.SPOT:
