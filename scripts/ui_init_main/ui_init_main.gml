@@ -107,45 +107,60 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy = legal_y + spacing;
     
     element = create_button(col2_x, yy, "View Master Texture", col_width, element_height, fa_center, uimu_view_master_texture, t_general);
+    element.tooltip = "Preview the main texture page of the map. This is not particularly helpful currently and I may remove it at some point.";
     ds_list_add(t_general.contents, element);
     
     yy = yy + element.height + spacing;
     
     element = create_checkbox(col2_x, yy, "View Wireframes", col_width, element_height, uivc_check_view_wireframe, Stuff.setting_view_wireframe, t_general);
+    element.tooltip = "Whether or not you want to view the wireframes to go with visual data.";
     ds_list_add(t_general.contents, element);
     
     yy = yy + element.height + spacing;
     
     element = create_checkbox(col2_x, yy, "View Grid and Markers", col_width, element_height, uivc_check_view_grids, Stuff.setting_view_grid, t_general);
+    element.tooltip = "Whether or not you want to view the cell grid and grid axes.";
     ds_list_add(t_general.contents, element);
     
     yy = yy + element.height + spacing;
     
     element = create_checkbox(col2_x, yy, "View Texture", col_width, element_height, uivc_check_view_texture, Stuff.setting_view_texture, t_general);
+    element.tooltip = "Whether or not to texture the visuals (to use the tilesets, in common terms). If off, a flat orange texture will be used instead. Most of the time you want this on.";
     ds_list_add(t_general.contents, element);
     
     yy = yy + element.height + spacing;
     
     element = create_checkbox(col2_x, yy, "View Entities", col_width, element_height, uivc_check_view_entities, Stuff.setting_view_entities, t_general);
+    element.tooltip = "Whether or not entites should be visible. This is almost everything in the map, and turning it off is quite pointless.";
     ds_list_add(t_general.contents, element);
     
     yy = yy + element.height + spacing;
     
     element = create_checkbox(col2_x, yy, "View Backfaces", col_width, element_height, uivc_check_view_backface, Stuff.setting_view_backface, t_general);
+    element.tooltip = "Whether the backs of triangles should be visible. There is a very small performance cost to turning them on. Generally, this is not needed.";
     ds_list_add(t_general.contents, element);
     
     yy = yy + element.height + spacing;
     
     element = create_checkbox(col2_x, yy, "View Zones", col_width, element_height, uivc_check_view_zones, Stuff.setting_view_zones, t_general);
+    element.tooltip = "Map zones for things like camera and lighting controls. If you have a lot of them, it can become hard to see through them. Zones can only be blicked on when this is turned on.";
     ds_list_add(t_general.contents, element);
     
     yy = yy + element.height + spacing;
     
     element = create_checkbox(col2_x, yy, "View Lighting", col_width, element_height, uivc_check_view_lighting, Stuff.setting_view_lighting, t_general);
+    element.tooltip = "See how the scene looks with lighting. You may wish to turn this off if you find yourself having a hard time seeing with the lights enabled.";
     ds_list_add(t_general.contents, element);
     
     yy = yy + element.height + spacing;
     
+    element = create_checkbox(col2_x, yy, "View Gizmos", col_width, element_height, uivc_check_view_gizmos, Stuff.setting_view_gizmos, t_general);
+    element.tooltip = "The helpful frames you see around light sources and other effects and that sort of thing.";
+    ds_list_add(t_general.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
+    // more
     element = create_text(col2_x, yy, "Map Settings", col_width, element_height, fa_left, col_width, t_general);
     ds_list_add(t_general.contents, element);
     

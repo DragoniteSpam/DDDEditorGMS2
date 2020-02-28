@@ -124,6 +124,7 @@ setting_view_texture = setting_get("View", "texture", true);
 setting_view_entities = setting_get("View", "entities", true);
 setting_view_zones = setting_get("View", "zones", true);
 setting_view_lighting = setting_get("View", "lighting", true);
+setting_view_gizmos = setting_get("View", "gizmos", true);
 
 var stashed_mode = setting_get("Config", "mode", EDITOR_BASE_MODE);
 
