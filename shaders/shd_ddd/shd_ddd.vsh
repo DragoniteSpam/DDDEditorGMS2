@@ -43,7 +43,7 @@ void main() {
                 float att = clamp((1. - dist * dist / (range * range)), 0., 1.);
                 lightDir /= dist;
                 att *= att;
-                finalColor += lightColor * max(0., -dot(worldNormal, lightDir)) * 1.;
+                finalColor += lightColor * max(0., -dot(worldNormal, lightDir)) * att;
             } else if (type == 2.) {
             
             }

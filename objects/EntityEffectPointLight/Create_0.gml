@@ -13,7 +13,7 @@ light_type = LightTypes.POINT;
 
 // specific
 light_colour = c_white;
-light_radius = 0.5;
+light_radius = 255;
 
 var map = Stuff.map.active_map;
 var map_contents = map.contents;
