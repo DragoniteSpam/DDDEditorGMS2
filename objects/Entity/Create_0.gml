@@ -20,8 +20,7 @@ batch = null;
 batch_collision = null;
 
 // for things that don't fit into the above category, including but not limited
-// to NPCs, things that animate, things that move and things that need special
-// shaders
+// to NPCs, things that animate, things that move and things that need special shaders
 render = null;
 
 // for what happens when you click on the entity

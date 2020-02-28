@@ -646,6 +646,35 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy = yy + ui_get_list_height(element_entity_pawn_sprite) + spacing;
     #endregion
     
+    #region tab: entity: effect
+    
+    yy = legal_y + spacing;
+    
+    element = create_text(col1_x, yy, "Effect Components", col_width, element_height, fa_left, col_width, t_p_effect);
+    ds_list_add(t_p_effect.contents, element);
+    
+    yy = yy + element.height + spacing;
+    
+    element_effect_com_light = create_button(col1_x, yy, "Light", col_width, element_height, fa_center, null, t_p_effect);
+    element_effect_com_light.interactive = false;
+    ds_list_add(t_p_effect.contents, element_effect_com_light);
+    
+    yy = yy + element_effect_com_light.height + spacing;
+    
+    element_effect_com_particle = create_button(col1_x, yy, "Particle", col_width, element_height, fa_center, null, t_p_effect);
+    element_effect_com_particle.interactive = false;
+    ds_list_add(t_p_effect.contents, element_effect_com_particle);
+    
+    yy = yy + element_effect_com_particle.height + spacing;
+    
+    element_effect_com_audio = create_button(col1_x, yy, "Audio", col_width, element_height, fa_center, null, t_p_effect);
+    element_effect_com_audio.interactive = false;
+    ds_list_add(t_p_effect.contents, element_effect_com_audio);
+    
+    yy = yy + element_effect_com_audio.height + spacing;
+    
+    #endregion
+    
     #region tab: entity: other
     
     yy = legal_y + spacing;

@@ -62,6 +62,12 @@ if (ds_list_size(list) == 0) {
     Stuff.map.ui.element_entity_pawn_animating.interactive = false;
     Stuff.map.ui.element_entity_pawn_sprite.interactive = false;
     ui_list_deselect(Stuff.map.ui.element_entity_pawn_sprite);
+    
+    // entity-effect
+    
+    Stuff.map.ui.element_effect_com_light.interactive = false;
+    Stuff.map.ui.element_effect_com_particle.interactive = false;
+    Stuff.map.ui.element_effect_com_audio.interactive = false;
 } else if (ds_list_size(list) == 1) {
     safa_on_select(list[| 0]);
 } else {
@@ -155,6 +161,11 @@ if (ds_list_size(list) == 0) {
             Stuff.map.ui.element_entity_pawn_sprite.interactive = true;
             break;
         case EntityEffect:
+            // this could be a bit dangerous if you have more than one effect
+            // selected, i'm not going to stop you
+            Stuff.map.ui.element_effect_com_light.interactive = true;
+            Stuff.map.ui.element_effect_com_particle.interactive = true;
+            Stuff.map.ui.element_effect_com_audio.interactive = true;
             break;
     }
 }

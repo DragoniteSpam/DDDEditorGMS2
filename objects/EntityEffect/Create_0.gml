@@ -10,10 +10,10 @@ etype_flags = ETypeFlags.ENTITY_EFFECT;
 Stuff.map.active_map.contents.population[ETypes.ENTITY_EFFECT]++;
 
 // editor properties
-
 slot = MapCellContents.EFFECT;
 batchable = false;
 render = render_effect;
+on_select = safc_on_effect;
 
 // components
 com_light = noone;
