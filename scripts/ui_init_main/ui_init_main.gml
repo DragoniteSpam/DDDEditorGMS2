@@ -876,20 +876,6 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = legal_y + spacing;
     
-    element = create_list(col1_x, yy, "Effect type", "<no effect types>", col_width, element_height, 8, null, false, t_p_other_editor);
-    element.colorize = false;
-    element.allow_deselect = false;
-    ui_list_select(element, 0);
-    create_list_entries(element, ["Point Light"], ["Directional Light"]);
-    element.object_types = [
-        EntityEffectPointLight,
-        EntityEffectDirectionalLight,
-    ];
-    ds_list_add(t_p_other_editor.contents, element);
-    t_p_other_editor.el_effect_type = element;
-    
-    yy += ui_get_list_height(element) + spacing;
-    
     element = create_list(col1_x, yy, "Zone type", "<no zone types>", col_width, element_height, 8, null, false, t_p_other_editor);
     element.colorize = false;
     element.allow_deselect = false;

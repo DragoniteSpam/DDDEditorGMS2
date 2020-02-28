@@ -5,10 +5,10 @@
     "name": "e92119d1-3a53-438e-98e7-254df466d71c",
     "children": [
         "89c683e7-665d-4691-b15c-d9a0d417be8b",
-        "074da8b7-099a-4327-ae9f-af8b4fe1e606"
+        "e4d6c255-6c55-4820-9a2f-f7965c3cf4f7"
     ],
     "filterType": "GMObject",
-    "folderName": "Effects",
+    "folderName": "Effect Components",
     "isDefaultView": false,
     "localisedFolderName": ""
 }
