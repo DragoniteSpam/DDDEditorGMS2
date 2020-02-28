@@ -619,6 +619,14 @@
             }
         },
         {
+            "Key": "074da8b7-099a-4327-ae9f-af8b4fe1e606",
+            "Value": {
+                "id": "94c1499b-ca84-4710-adf1-a0503156d437",
+                "resourcePath": "objects\\EntityEffectDirectionalLight\\EntityEffectDirectionalLight.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "07540433-7a47-4959-a352-f53adb45af48",
             "Value": {
                 "id": "927e1c36-dda6-43b1-93e9-14ab951248a8",
@@ -7811,6 +7819,14 @@
             }
         },
         {
+            "Key": "67fc4e13-efc4-4f64-b159-5879e529cd4e",
+            "Value": {
+                "id": "393fd3f9-7896-4cba-9807-261370d9c36b",
+                "resourcePath": "scripts\\render_effect_light_directional\\render_effect_light_directional.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "681d7f36-7b03-4067-a58f-b23b795b2f31",
             "Value": {
                 "id": "796b6358-171e-4b84-a6fc-973bc743f099",
@@ -8391,6 +8407,14 @@
             "Value": {
                 "id": "0d3ec6d2-664a-4a3f-b9f8-997ec8dbb62a",
                 "resourcePath": "scripts\\ui_render_color_picker\\ui_render_color_picker.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "7046845b-9e27-436a-9018-37075ad6d0a3",
+            "Value": {
+                "id": "5822bf67-62c1-4f3f-b8ad-f23839ceaefb",
+                "resourcePath": "scripts\\serialize_save_entity_effect_directional_light\\serialize_save_entity_effect_directional_light.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -11047,6 +11071,14 @@
             "Value": {
                 "id": "dd52c62a-1a87-4340-9ede-ee853fb7ed5f",
                 "resourcePath": "scripts\\colour_fade\\colour_fade.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "92b9313f-f430-4be5-9ce2-a2b96b3fcbb7",
+            "Value": {
+                "id": "fef9a034-2e73-4f8c-b8f1-e1bef83020f2",
+                "resourcePath": "scripts\\serialize_load_entity_effect_directional_light\\serialize_load_entity_effect_directional_light.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -15526,7 +15558,7 @@
             "Key": "d183cb92-ea1f-49bf-abaf-e4ac3eccec63",
             "Value": {
                 "id": "069efc1b-8ed9-482e-b9fc-4410ad6b8323",
-                "resourcePath": "scripts\\render_effect_light\\render_effect_light.yy",
+                "resourcePath": "scripts\\render_effect_light_point\\render_effect_light_point.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -18995,6 +19027,14 @@
             }
         },
         {
+            "Key": "febfa0a6-7a25-4190-9117-03d6bdb048f1",
+            "Value": {
+                "id": "b995cfa7-dba7-4441-a872-4bc609822b38",
+                "resourcePath": "scripts\\render_effect\\render_effect.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "ff0155df-5dc3-4495-ad8c-9cc043c9e511",
             "Value": {
                 "id": "74193979-8be0-402e-a278-cff7046cddc4",
@@ -19288,6 +19328,8 @@
         "0ba67cd4-8c88-46b5-98b0-6592fdf0f101",
         "7388fa70-3d82-49cb-911d-fdf570820496",
         "d183cb92-ea1f-49bf-abaf-e4ac3eccec63",
+        "67fc4e13-efc4-4f64-b159-5879e529cd4e",
+        "febfa0a6-7a25-4190-9117-03d6bdb048f1",
         "8d01683b-31d2-4512-b054-29e0a34f5d3e",
         "83918601-76a4-41ce-a370-e149f8357773",
         "1586bf0c-0a82-41a1-9bc1-796353cb4637",
@@ -20424,6 +20466,7 @@
         "c504c050-69e0-4c3b-bfe4-ece3e679e3c5",
         "faae0bf2-d5cb-4fc7-9e96-3817f3567427",
         "c2b5e3ee-184b-46cc-a308-de64b2ebe0f3",
+        "92b9313f-f430-4be5-9ce2-a2b96b3fcbb7",
         "6a694831-2da7-416a-9c69-ba32172c29ec",
         "e42de6e2-aedc-4d8a-ba9e-4d179718b813",
         "05df440c-edde-41dd-b89c-9d6f5e72255e",
@@ -20462,6 +20505,7 @@
         "25d7e07b-cbd5-4039-af63-3fb8193314f3",
         "ff28a471-b69c-4494-8924-7d1f8b06de7d",
         "ea84a95d-282b-479c-8a59-bba1f17e0a57",
+        "7046845b-9e27-436a-9018-37075ad6d0a3",
         "5ee05ca1-cc2f-4c2c-9abe-2edb7254e480",
         "bf81dc40-e73e-44cc-8002-90e1003e7331",
         "a56f2dd5-c46d-47fd-b1d1-7c96af4f5fca",

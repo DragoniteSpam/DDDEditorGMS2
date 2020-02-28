@@ -880,11 +880,10 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     element.colorize = false;
     element.allow_deselect = false;
     ui_list_select(element, 0);
-    create_list_entries(element, ["Point Light"], ["Directional Light"], ["Spot Light"]);
+    create_list_entries(element, ["Point Light"], ["Directional Light"]);
     element.object_types = [
         EntityEffectPointLight,
-        EntityEffect,
-        EntityEffect,
+        EntityEffectDirectionalLight,
     ];
     ds_list_add(t_p_other_editor.contents, element);
     t_p_other_editor.el_effect_type = element;

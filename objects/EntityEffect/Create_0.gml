@@ -13,6 +13,7 @@ Stuff.map.active_map.contents.population[ETypes.ENTITY_EFFECT]++;
 
 slot = MapCellContents.EFFECT;
 batchable = false;
+render = render_effect;
 
 // there will be other things here probably
 on_select = safc_on_effect;

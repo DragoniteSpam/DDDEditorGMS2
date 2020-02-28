@@ -7,7 +7,7 @@ load_script = serialize_load_entity_effect_point_light;
 name = "Point Light";
 etype = ETypes.ENTITY_EFFECT_POINT_LIGHT;
 etype_flags = ETypeFlags.ENTITY_EFFECT;
-render = render_effect_light;
+render = render_effect_light_point;
 sprite = spr_light_point;
 
 // specific

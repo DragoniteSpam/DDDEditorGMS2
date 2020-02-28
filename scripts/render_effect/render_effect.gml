@@ -1,4 +1,4 @@
-/// @param EntityEffectLight
+/// @param EntityEffect
 
 var effect = argument0;
 var mode = Stuff.map;

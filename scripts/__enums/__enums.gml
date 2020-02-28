@@ -73,7 +73,7 @@ global.etype_objects = [
     EntityEffect,
     EntityMeshAutotile,
     EntityEffectPointLight,
-    //EntityEffectDirectionalLight,
+    EntityEffectDirectionalLight,
 ];
 
 // each type includes the parent objects, which includes Entity for everything and
