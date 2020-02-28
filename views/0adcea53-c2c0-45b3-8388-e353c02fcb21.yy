@@ -13,7 +13,13 @@
         "e36c2145-5461-4d10-a406-28b48990f062",
         "e6208ede-5a85-4ec7-99d9-b6ccb655046f",
         "f668208f-1ace-4c4d-96a1-987f82ae6692",
-        "73896abb-2670-4475-a35e-a88eed04771c"
+        "340d9b52-0ead-41c7-8f3e-cf383d387171",
+        "da7f7bdf-989a-474d-83e9-6e36cbd68aba",
+        "f344d295-09a9-4867-aa84-02013b6ec766",
+        "54fa820a-ea17-4fab-bb89-2e4d91699538",
+        "ca8525d6-f296-4df0-846c-82520b8072ea",
+        "a9175877-3c7b-4112-b468-e36b5771283f",
+        "84b0b1b1-5e90-40e7-a5b2-4d050d9bb62f"
     ],
     "filterType": "GMIncludedFile",
     "folderName": "basic",

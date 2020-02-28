@@ -4027,6 +4027,14 @@
             }
         },
         {
+            "Key": "340d9b52-0ead-41c7-8f3e-cf383d387171",
+            "Value": {
+                "id": "daf8a547-5ffe-4b18-9d79-9158ac90949d",
+                "resourcePath": "datafiles_yy\\data\\basic\\translation.d3d.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "3440e8e1-7fe9-444e-92d9-982278f76877",
             "Value": {
                 "id": "1f2f9a89-9523-4b01-a45d-81a39e2c4e41",
@@ -6451,6 +6459,14 @@
             }
         },
         {
+            "Key": "54fa820a-ea17-4fab-bb89-2e4d91699538",
+            "Value": {
+                "id": "e53a7a11-f05f-4c2d-a8d7-9d2d924efd52",
+                "resourcePath": "datafiles_yy\\data\\basic\\translation-y.d3d.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "5527d229-9517-451b-a2e4-917e1ba399aa",
             "Value": {
                 "id": "1b8d5d65-f1f0-42f2-a659-44e84e3c9716",
@@ -8691,14 +8707,6 @@
             }
         },
         {
-            "Key": "73896abb-2670-4475-a35e-a88eed04771c",
-            "Value": {
-                "id": "6922cfc1-409f-4f11-a443-21f14099a603",
-                "resourcePath": "datafiles_yy\\data\\basic\\translation.d3d.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "73b3844f-18e5-4db6-acc0-a46b9151026c",
             "Value": {
                 "id": "5e2733f1-1398-49bf-aff7-b981d456a94d",
@@ -9239,14 +9247,6 @@
             "Value": {
                 "id": "83f765bd-2c8e-40a5-ab62-91fc99ed2f01",
                 "resourcePath": "scripts\\omu_mesh_import_sub\\omu_mesh_import_sub.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "79d4ab70-6081-4745-94ad-b190a0f50ff3",
-            "Value": {
-                "id": "c97623db-4117-4403-ad9c-facda7d2ade7",
-                "resourcePath": "scripts\\map_transform_light\\map_transform_light.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -10064,6 +10064,14 @@
                 "id": "d284e924-2ca4-4b6a-a927-2adf1b9ceae1",
                 "resourcePath": "scripts\\uivc_animation_layer_rotation_z\\uivc_animation_layer_rotation_z.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "84b0b1b1-5e90-40e7-a5b2-4d050d9bb62f",
+            "Value": {
+                "id": "114b932e-21fb-4cd1-ba16-f3e8c960096f",
+                "resourcePath": "datafiles_yy\\data\\basic\\translation-z-gold.d3d.yy",
+                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -12795,6 +12803,14 @@
             }
         },
         {
+            "Key": "a9175877-3c7b-4112-b468-e36b5771283f",
+            "Value": {
+                "id": "e8f381b1-72fe-4eda-af7c-15cca34df6b7",
+                "resourcePath": "datafiles_yy\\data\\basic\\translation-x-gold.d3d.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "a9188620-a624-4a5a-83ae-a1b53faf038b",
             "Value": {
                 "id": "4ab44af5-046a-41ff-b276-a29f908163bf",
@@ -15091,6 +15107,14 @@
             }
         },
         {
+            "Key": "ca8525d6-f296-4df0-846c-82520b8072ea",
+            "Value": {
+                "id": "06be3d8d-e24c-4e7e-9a12-b69208675602",
+                "resourcePath": "datafiles_yy\\data\\basic\\translation-y-gold.d3d.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "caa20e44-8c55-4ed0-9855-8afaa2128c65",
             "Value": {
                 "id": "e946e1f9-57bc-40c4-99ed-b5ff522a592c",
@@ -16368,6 +16392,14 @@
                 "id": "c2c76e34-ee0b-4348-b5bd-beeef6a309d1",
                 "resourcePath": "views\\da695a53-d67e-4967-9ce8-3b1958efd81e.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "da7f7bdf-989a-474d-83e9-6e36cbd68aba",
+            "Value": {
+                "id": "60db7b2c-aed5-402b-b006-51172811236a",
+                "resourcePath": "datafiles_yy\\data\\basic\\translation-x.d3d.yy",
+                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -18227,6 +18259,14 @@
             }
         },
         {
+            "Key": "f344d295-09a9-4867-aa84-02013b6ec766",
+            "Value": {
+                "id": "1a9b5dbf-e829-412e-94a8-f3fd1f54aeef",
+                "resourcePath": "datafiles_yy\\data\\basic\\translation-z.d3d.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "f34fecc7-5274-49ee-8362-0478132f3cc6",
             "Value": {
                 "id": "1cd087e6-725f-4e1b-923e-913a1083f8de",
@@ -19511,7 +19551,6 @@
         "b1ccb530-da96-48be-8c94-a95358e3b1a9",
         "0f67b905-b2ee-49eb-ba96-763eb27af16c",
         "d98e8a9a-d475-42cc-98ce-47bd6a8e1fdf",
-        "79d4ab70-6081-4745-94ad-b190a0f50ff3",
         "fa663bfb-720b-406f-b672-f3270b149138",
         "54c88dd4-4ffb-4b5a-ae26-a1eeb69fe6b7",
         "cc4b665c-35dc-4843-9b3d-44fe61149dae",

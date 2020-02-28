@@ -15,6 +15,7 @@ var zz = mouse_vector[vec3.zz] * MILLION;
 
 if (c_raycast_world(mode.x, mode.y, mode.z, mode.x + xx, mode.y + yy, mode.z + zz, CollisionMasks.MAIN)) {
     mode.under_cursor = c_object_get_userid(c_hit_object(0));
+    if (mouse_check_button_pressed(mb_left))  debug(mode.under_cursor);
 } else {
     mode.under_cursor = noone;
 }

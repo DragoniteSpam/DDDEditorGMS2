@@ -24,3 +24,10 @@ if (effect.com_audio) {
     render_effect_add_sprite(effect.com_audio.sprite, position, [0, 16]);
     script_execute(effect.com_audio.render, effect.com_audio);
 }
+
+var mask = selected(effect) ? CollisionMasks.MAIN : 0;
+c_object_set_mask(effect.cobject_x, mask, mask);
+c_object_set_mask(effect.cobject_y, mask, mask);
+c_object_set_mask(effect.cobject_z, mask, mask);
+
+entity_effect_position_colliders(effect);
