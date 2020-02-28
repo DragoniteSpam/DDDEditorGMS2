@@ -41,3 +41,5 @@ enum MapCellContents {
     EVENT,
     _COUNT
 }
+
+active_lights = array_create(MAX_LIGHTS, noone);

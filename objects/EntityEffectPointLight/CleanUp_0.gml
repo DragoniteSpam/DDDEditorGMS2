@@ -1,5 +1,12 @@
 if (Stuff.is_quitting) exit;
 
-entity_destroy();
+event_inherited();
 
-Stuff.map.active_map.contents.population[ETypes.ENTITY_EFFECT]--;
+var map = Stuff.map.active_map;
+var map_contents = map.contents;
+
+for (var i = 0; i < MAX_LIGHTS; i++) {
+    if (map_contents.active_lights[i] == REFID) {
+        map_contents.active_lights[i] = noone;
+    }
+}
