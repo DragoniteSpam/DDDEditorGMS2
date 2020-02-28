@@ -8667,6 +8667,14 @@
             }
         },
         {
+            "Key": "73896abb-2670-4475-a35e-a88eed04771c",
+            "Value": {
+                "id": "6922cfc1-409f-4f11-a443-21f14099a603",
+                "resourcePath": "datafiles_yy\\data\\basic\\translation.d3d.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "73b3844f-18e5-4db6-acc0-a46b9151026c",
             "Value": {
                 "id": "5e2733f1-1398-49bf-aff7-b981d456a94d",

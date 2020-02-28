@@ -75,6 +75,7 @@ basic_cube = import_d3d("data\\basic\\cube.d3d", false);
 indexed_cube = import_d3d("data\\basic\\cube-indexed.d3d", false);
 base_npc = import_d3d("data\\basic\\base-npc.d3d", false, false);
 axes_rotation = import_d3d("data\\basic\\rotation.d3d", false, false);
+axes_translation = import_d3d("data\\basic\\translation.d3d", false, false);
 var qmark_data = import_d3d("data\\basic\\missing.d3d", false, false, true);
 mesh_missing = qmark_data[0];
 mesh_missing_data = qmark_data[1];

@@ -918,6 +918,9 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy += ui_get_list_height(element) + spacing;
     
+    element = create_checkbox(col1_x, yy, "Click to Drag", col_width, element_height, null, false, t_p_other_editor);
+    t_p_other_editor.el_click_to_drag = element;
+    ds_list_add(t_p_other_editor.contents, element);
     #endregion
     
     return id;
