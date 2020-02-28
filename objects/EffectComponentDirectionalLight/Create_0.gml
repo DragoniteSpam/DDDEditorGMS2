@@ -1,6 +1,4 @@
-event_inherited();
-
-// inherited
+parent = noone;
 save_script = serialize_save_entity_effect_com_directional_light;
 load_script = serialize_load_entity_effect_com_directional_light;
 render = render_effect_light_direction;
