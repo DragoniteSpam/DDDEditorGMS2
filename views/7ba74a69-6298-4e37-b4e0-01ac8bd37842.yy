@@ -14,7 +14,8 @@
         "0f67b905-b2ee-49eb-ba96-763eb27af16c",
         "d98e8a9a-d475-42cc-98ce-47bd6a8e1fdf",
         "79d4ab70-6081-4745-94ad-b190a0f50ff3",
-        "c7bb8e53-64ac-40f1-a2b1-f7b7cf8b437e"
+        "c7bb8e53-64ac-40f1-a2b1-f7b7cf8b437e",
+        "cc4b665c-35dc-4843-9b3d-44fe61149dae"
     ],
     "filterType": "GMScript",
     "folderName": "Maps",

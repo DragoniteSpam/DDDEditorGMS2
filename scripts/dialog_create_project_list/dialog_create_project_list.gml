@@ -6,6 +6,7 @@ var dw = 640;
 var dh = 512;
 
 var dg = dialog_create(dw, dh, "Open Project", dialog_default, dc_default, dialog);
+dg.dialog_flags |= DialogFlags.NO_CLOSE_BUTTON;
 
 var columns = 2;
 var ew = (dw - 64) / columns;
@@ -27,6 +28,7 @@ var spacing = 16;
 var project_list = Stuff.all_projects[? "projects"]
 
 var el_list = create_list(16, yy, "Recent Projects", "<no projects>", ew, eh, 10, uivc_list_selection_project_list, false, dg, project_list);
+el_list.tooltip = "Here's a list of projects you've worked on recently.";
 el_list.entries_are = ListEntries.STRINGS;
 el_list.ondoubleclick = omu_project_load;
 dg.el_list = el_list;
@@ -84,7 +86,7 @@ var el_remove = create_button(16, yy, "Remove", ew, eh, fa_center, omu_project_r
 el_remove.tooltip = "Removes the project from this list. If you still have it saved on your computer it will not be deleted, but you will need to use Open Other if you want to edit it again.";
 yy = yy + el_remove.height + spacing;
 var el_other = create_button(16, yy, "Open Other", ew, eh, fa_center, omu_project_open_other, dg);
-el_other.tooltip = "Open a .dddd game data file somehwere on your computer.";
+el_other.tooltip = "Open a .dddd game data file somehwere on your computer. The original will not be modified until you save over it; a copy will be saved to the editor's local storage.";
 yy = yy + el_other.height + spacing;
 
 yy = yy_base;
@@ -122,7 +124,8 @@ el_summary_summary.valignment = fa_top;
 dg.el_summary_summary = el_summary_summary;
 yy = yy + el_summary_summary.height + spacing - 8;
 
-var el_never_mind = create_button(dw /2 - b_width / 2, dh - 32 - b_height / 2, "Create New", b_width, b_height, fa_center, dmu_dialog_commit, dg);
+var el_new = create_button(dw /2 - b_width / 2, dh - 32 - b_height / 2, "Create New", b_width, b_height, fa_center, omu_project_create, dg);
+el_new.tooltip = "New maps will be created with a default white directional light with a vector of (-1, -1, -1).";
 
 ds_list_add(dg.contents,
     el_list,
@@ -137,7 +140,7 @@ ds_list_add(dg.contents,
     el_summary_timestamp_date,
     el_summary_timestamp_time,
     el_summary_file_count,
-    el_never_mind
+    el_new
 );
 
 return dg;

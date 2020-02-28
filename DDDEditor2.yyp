@@ -6459,6 +6459,14 @@
             }
         },
         {
+            "Key": "55426292-42a6-4d7d-bc4f-eb1badb1e4f0",
+            "Value": {
+                "id": "1b95cc86-1acd-4368-be40-a5b51c566af3",
+                "resourcePath": "scripts\\omu_project_create\\omu_project_create.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "558a62ab-7596-4819-824a-2c3884d96273",
             "Value": {
                 "id": "f147569a-8cbc-4b08-ab02-92c9f0b21681",
@@ -15227,6 +15235,14 @@
             }
         },
         {
+            "Key": "cc4b665c-35dc-4843-9b3d-44fe61149dae",
+            "Value": {
+                "id": "d1c39ce6-db37-48b0-9c53-3b0311dbe297",
+                "resourcePath": "scripts\\map_create_default_light\\map_create_default_light.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "cc4cec49-fe4c-4e70-b45f-6f74ce1e2734",
             "Value": {
                 "id": "15d61b2d-a344-429d-8382-d53c1a84694e",
@@ -19482,6 +19498,7 @@
         "79d4ab70-6081-4745-94ad-b190a0f50ff3",
         "fa663bfb-720b-406f-b672-f3270b149138",
         "54c88dd4-4ffb-4b5a-ae26-a1eeb69fe6b7",
+        "cc4b665c-35dc-4843-9b3d-44fe61149dae",
         "a0c45521-e3c0-4e37-94b4-600c3f5eaf19",
         "415b95ce-6e15-4fbb-a3a1-08ec22a0b925",
         "46687276-d13f-415d-8fbc-f7d206570371",
@@ -20192,6 +20209,7 @@
         "6bf27b2c-c013-4fb1-9836-b95167ffd715",
         "9ed4cda8-bf21-4add-a93f-e406872945a1",
         "abe49b7e-34e7-4375-83a1-15f5afa50fac",
+        "55426292-42a6-4d7d-bc4f-eb1badb1e4f0",
         "6c828586-91e0-4d8a-9ae5-b3dd4447f824",
         "ee00f2ab-35ab-4b25-823a-78ad1e706766",
         "7d1abbee-52fa-4e52-ad7b-5f30de25c5ce",

@@ -13,7 +13,7 @@ if (!(top && (top.dialog_flags & DialogFlags.IS_EXCEPTION))) {
         "Whoa, whoa!", "Okay", 640, 400
     );
     
-    dialog.dialog_flags = dialog.dialog_flags | DialogFlags.IS_EXCEPTION;
+    dialog.dialog_flags |= DialogFlags.IS_EXCEPTION;
     dialog.el_text.x = 32;
     dialog.el_text.y = 32;
     dialog.el_text.wrap_width = dialog.width - 64;
