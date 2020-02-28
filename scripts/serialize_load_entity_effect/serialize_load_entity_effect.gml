@@ -1,9 +1,9 @@
-/// @description void serialize_load_entity_effect(buffer, Entity, version);
 /// @param buffer
-/// @param Entity
+/// @param EntityEffect
 /// @param version
 
-serialize_load_entity(argument0, argument1, argument2);
+var buffer = argument0;
+var effect = argument1;
+var version = argument2;
 
-// remember to add collision information - probably in the form of
-// a block or sphere
+serialize_load_entity(buffer, effect, version);

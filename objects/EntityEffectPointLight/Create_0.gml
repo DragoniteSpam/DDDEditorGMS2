@@ -10,6 +10,9 @@ etype_flags = ETypeFlags.ENTITY_EFFECT;
 render = render_effect_light_point;
 sprite = spr_light_point;
 light_type = LightTypes.POINT;
+on_add = entity_effect_add_light;
+on_delete = entity_effect_delete_light;
+exist_in_map = false;
 
 // specific
 light_x = 0;

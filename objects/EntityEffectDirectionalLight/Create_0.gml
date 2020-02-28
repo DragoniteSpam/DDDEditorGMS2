@@ -10,6 +10,9 @@ etype_flags = ETypeFlags.ENTITY_EFFECT;
 render = render_effect_light_directional;
 sprite = spr_light_direction;
 light_type = LightTypes.DIRECTIONAL;
+on_add = entity_effect_add_light;
+on_delete = entity_effect_delete_light;
+exist_in_map = false;
 
 // specific
 light_x = 0;
@@ -17,7 +20,7 @@ light_y = 0;
 light_z = 0;
 light_dx = 0;
 light_dy = 0;
-light_dz = 0;
+light_dz = -1;
 light_colour = c_white;
 
 var map = Stuff.map.active_map;

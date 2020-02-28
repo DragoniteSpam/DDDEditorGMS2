@@ -14,4 +14,4 @@ var addition = instance_create_depth(0, 0, 0, type);
 addition.light_x = (xx + 0.5) * TILE_WIDTH;
 addition.light_y = (yy + 0.5) * TILE_HEIGHT;
 addition.light_z = (zz + 0.5) * TILE_DEPTH;
-map_add_thing(addition, 0, 0, 0);
+script_execute(addition.on_add, addition, xx, yy, zz);

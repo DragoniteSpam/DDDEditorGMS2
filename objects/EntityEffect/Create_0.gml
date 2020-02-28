@@ -17,6 +17,8 @@ render = render_effect;
 
 // there will be other things here probably
 on_select = safc_on_effect;
+on_add = entity_effect_add;
+on_delete = null;
 
 // specific
 sprite = spr_star;

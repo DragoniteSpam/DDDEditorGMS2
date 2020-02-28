@@ -1,6 +1,7 @@
 name = "Entity";
 etype = ETypes.ENTITY;
 etype_flags = 0;
+exist_in_map = true;
 
 refid_set(id, refid_generate());
 

@@ -16,5 +16,10 @@ repeat (n_things) {
     thing.tmx_id = buffer_read(buffer, buffer_u32);
     script_execute(thing.load_script, buffer, thing, version);
     
-    map_add_thing(thing, thing.xx, thing.yy, thing.zz, map_container, is_temp);
+    // some things don't need to exist in the map grid
+    if (thing.exist_in_map) {
+        map_add_thing(thing, thing.xx, thing.yy, thing.zz, map_container, is_temp);
+    } else {
+        script_execute(thing.on_add, thing, thing.xx, thing.yy, thing.zz);
+    }
 }
