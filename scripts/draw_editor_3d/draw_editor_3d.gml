@@ -140,7 +140,7 @@ if (Stuff.game_starting_map == Stuff.map.active_map.GUID) {
 
 transform_reset();
 
-// overlay stuff - draw_camera_controls_overlay exists, but i'd actually rather not use it for this
+#region overlay stuff - draw_camera_controls_overlay exists, but i'd actually rather not use it for this
 gpu_set_ztestenable(false);
 var cwidth = camera_get_view_width(camera);
 var cheight = camera_get_view_height(camera);
@@ -201,4 +201,14 @@ if (overlap_plus) {
     }
     mode.mouse_over_ui = true;
 }
+#endregion
+
+#region icons
+while (!ds_queue_empty(Stuff.screen_icons)) {
+    var data = ds_queue_dequeue(Stuff.screen_icons);
+    var sprite = data[0];
+    var position = data[1];
+    draw_sprite(sprite, 0, position[vec2.xx], position[vec2.yy]);
+}
+#endregion
 #endregion
