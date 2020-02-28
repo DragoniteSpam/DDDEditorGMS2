@@ -11,3 +11,7 @@ var light_index = ds_list_find_index(map_contents.active_lights, REFID);
 if (light_index != -1) {
     map_contents.active_lights[| light_index] = noone;
 }
+
+c_world_destroy_object(cobject_x);
+c_world_destroy_object(cobject_y);
+c_world_destroy_object(cobject_z);

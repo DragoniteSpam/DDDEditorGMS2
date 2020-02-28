@@ -19,3 +19,10 @@ on_select = safc_on_effect;
 com_light = noone;
 com_particle = noone;
 com_audio = noone;
+
+cobject_x = c_object_create(Stuff.graphics.c_shape_axis_x, 0, 0);
+cobject_y = c_object_create(Stuff.graphics.c_shape_axis_y, 0, 0);
+cobject_z = c_object_create(Stuff.graphics.c_shape_axis_z, 0, 0);
+c_world_add_object(cobject_x);
+c_world_add_object(cobject_y);
+c_world_add_object(cobject_z);

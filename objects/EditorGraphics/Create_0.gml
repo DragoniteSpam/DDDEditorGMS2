@@ -67,6 +67,12 @@ c_shape_end_trimesh(c_shape_block);
 c_transform_identity();
 c_shape_sphere = c_shape_create();
 c_shape_add_sphere(c_shape_sphere, 1);
+c_shape_axis_x = c_shape_create();
+c_shape_add_box(c_shape_axis_x, 24, 2, 2);
+c_shape_axis_y = c_shape_create();
+c_shape_add_box(c_shape_axis_y, 2, 24, 2);
+c_shape_axis_z = c_shape_create();
+c_shape_add_box(c_shape_axis_z, 2, 2, 24);
 
 basic_cage = import_d3d("data\\basic\\cage.d3d", false);
 indexed_cage = import_d3d("data\\basic\\cage-indexed.d3d", false);
