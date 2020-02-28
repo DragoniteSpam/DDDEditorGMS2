@@ -50,6 +50,8 @@ release_help = false;
 key_help = vk_f1;
 
 // mouse delta
+mouse_x_delta = 0;
+mouse_y_delta = 0;
 mouse_x_previous = mouse_x;
 mouse_y_previous = mouse_y;
 

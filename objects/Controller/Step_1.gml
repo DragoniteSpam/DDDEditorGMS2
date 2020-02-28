@@ -103,3 +103,6 @@ release_escape = keyboard_check_released(vk_escape);
 help = keyboard_check(key_help) || mouse_check_button(mb_middle);
 press_help = keyboard_check_pressed(key_help) || mouse_check_button_pressed(mb_middle);
 release_help = keyboard_check_released(key_help) || mouse_check_button_released(mb_middle);
+
+mouse_x_delta = mouse_x - mouse_x_previous;
+mouse_y_delta = mouse_y - mouse_y_previous;
