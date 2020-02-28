@@ -882,7 +882,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     ui_list_select(element, 0);
     create_list_entries(element, ["Point Light"], ["Directional Light"], ["Spot Light"]);
     element.object_types = [
-        EntityEffect,
+        EntityEffectPointLight,
         EntityEffect,
         EntityEffect,
     ];
