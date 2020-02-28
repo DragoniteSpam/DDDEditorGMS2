@@ -8,6 +8,9 @@ var version = argument2;
 
 serialize_load_entity(buffer, effect, version);
 
+effect.light_x = buffer_read(buffer, buffer_f32);
+effect.light_y = buffer_read(buffer, buffer_f32);
+effect.light_z = buffer_read(buffer, buffer_f32);
 effect.light_colour = buffer_read(buffer, buffer_u32);
 effect.light_radius = buffer_read(buffer, buffer_f32);
 

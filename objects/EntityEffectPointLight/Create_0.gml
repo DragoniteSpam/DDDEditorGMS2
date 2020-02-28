@@ -12,6 +12,9 @@ sprite = spr_light_point;
 light_type = LightTypes.POINT;
 
 // specific
+light_x = 0;
+light_y = 0;
+light_z = 0;
 light_colour = c_white;
 light_radius = 255;
 

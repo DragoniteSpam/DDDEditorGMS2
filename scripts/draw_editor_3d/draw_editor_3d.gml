@@ -45,17 +45,24 @@ for (var i = 0; i < MAX_LIGHTS; i++) {
     var data = refid_get(map_contents.active_lights[i]);
     if (data) {
         var index = n++ * 12;
-        light_data[index + 0] = (data.xx + data.off_xx + 0.5) * TILE_WIDTH;
-        light_data[index + 1] = (data.yy + data.off_yy + 0.5) * TILE_HEIGHT;
-        light_data[index + 2] = (data.zz + data.off_zz + 0.5) * TILE_DEPTH;
+        // common
         light_data[index + 3] = data.light_type;
         light_data[index + 8] = (data.light_colour & 0x0000ff) / 0xff;
         light_data[index + 9] = ((data.light_colour & 0x00ff00) >> 8) / 0xff;
         light_data[index + 10] = ((data.light_colour & 0xff0000) >> 16) / 0xff;
-        
+        // specific to each type
         switch (data.light_type) {
             case LightTypes.DIRECTIONAL: break;
-            case LightTypes.POINT: light_data[index + 7] = data.light_radius; break;
+                light_data[index + 0] = data.light_dx;
+                light_data[index + 1] = data.light_dy;
+                light_data[index + 2] = data.light_dz;
+                break;
+            case LightTypes.POINT:
+                light_data[index + 0] = data.light_x;
+                light_data[index + 1] = data.light_y;
+                light_data[index + 2] = data.light_z;
+                light_data[index + 7] = data.light_radius;
+                break;
             case LightTypes.SPOT: break;
         }
     }

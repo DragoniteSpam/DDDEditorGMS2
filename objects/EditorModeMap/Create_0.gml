@@ -16,8 +16,6 @@ fov = setting_get("Map", "fov", 50);
 pitch = setting_get("Map", "pitch", 0);
 direction = setting_get("Map", "direction", 0);
 
-smf_light_add_direction(smf_vector_normalize([-1, -1, -1]), c_white, 1);
-
 update = editor_update_map;
 render = editor_render_map;
 cleanup = editor_cleanup_map;
