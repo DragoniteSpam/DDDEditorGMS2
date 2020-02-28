@@ -37,7 +37,7 @@ void main() {
                 // directional light: [x, y, z, type], [0, 0, 0, 0], [r, g, b, 0]
                 vec3 lightDir = -normalize(lightPosition);
                 float NdotL = max(dot(worldNormal, lightDir), 0.);
-                finalColor += NdotL * in_Colour;
+                finalColor += lightColor * NdotL * in_Colour;
             } else if (type == LIGHT_POINT) {
                 float range = lightExt.w;
                 // point light: [x, y, z, type], [0, 0, 0, range], [r, g, b, 0]
