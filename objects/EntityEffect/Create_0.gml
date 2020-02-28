@@ -16,3 +16,6 @@ batchable = false;
 
 // there will be other things here probably
 on_select = safc_on_effect;
+
+// specific
+sprite = spr_star;

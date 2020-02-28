@@ -115,6 +115,14 @@
             }
         },
         {
+            "Key": "00ee307d-9d5f-4f17-9508-964f64ac586a",
+            "Value": {
+                "id": "b07353ee-f025-4f2b-b93a-0baa45df0c56",
+                "resourcePath": "sprites\\spr_light_spot\\spr_light_spot.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "00f9bcca-168a-4fc0-864f-fff339638ddc",
             "Value": {
                 "id": "c3059938-7b13-4c61-b28c-a5754dcefaff",
@@ -3032,6 +3040,14 @@
                 "id": "bb581a4e-e925-4234-9ec7-68675cea9a33",
                 "resourcePath": "scripts\\omu_event_add_text\\omu_event_add_text.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "26beaf2a-c037-432d-b31e-9b927b55e767",
+            "Value": {
+                "id": "2f8c5bc9-e496-4e53-a6c1-99346828626a",
+                "resourcePath": "views\\26beaf2a-c037-432d-b31e-9b927b55e767.yy",
+                "resourceType": "GMFolder"
             }
         },
         {
@@ -9368,6 +9384,14 @@
                 "id": "64ee8294-6357-49c3-b164-6797e08c39b9",
                 "resourcePath": "scripts\\omu_entity_event_page\\omu_entity_event_page.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "7d1e78a7-f450-4095-aa40-99b1e209e25a",
+            "Value": {
+                "id": "a64ecd43-8756-4052-b27c-48fee7f569c2",
+                "resourcePath": "sprites\\spr_light_point\\spr_light_point.yy",
+                "resourceType": "GMSprite"
             }
         },
         {
@@ -17584,6 +17608,14 @@
                 "id": "5f604dfd-225f-4146-aabb-6a06a6764adb",
                 "resourcePath": "scripts\\smf_pose_rotate_bone_global\\smf_pose_rotate_bone_global.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "ed669905-ad04-43b7-9335-38fa3769a6d5",
+            "Value": {
+                "id": "1699ed3e-034a-41cb-8dd6-1ebff591b1cb",
+                "resourcePath": "sprites\\spr_light_direction\\spr_light_direction.yy",
+                "resourceType": "GMSprite"
             }
         },
         {

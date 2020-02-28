@@ -8,6 +8,7 @@ name = "Point Light";
 etype = ETypes.ENTITY_EFFECT_POINT_LIGHT;
 etype_flags = ETypeFlags.ENTITY_EFFECT;
 render = render_effect_light;
+sprite = spr_light_point;
 
 // specific
 light_colour = c_white;
