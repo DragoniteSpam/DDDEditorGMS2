@@ -128,9 +128,3 @@
 
 #macro BASE_GAME_VARIABLES 100      // this also counts for switches
 #macro BASE_SELF_VARIABLES 4        // this also counts for switches
-
-enum CollisionMasks {
-    NONE                = 0x0000,
-    MAIN                = 0x0001,
-    SURFACE                = 0x0002,
-}

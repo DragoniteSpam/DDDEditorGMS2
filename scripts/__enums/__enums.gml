@@ -237,3 +237,16 @@ enum LightTypes {
     POINT,
     SPOT,
 }
+
+enum CollisionMasks {
+    NONE                    = 0x0000,
+    MAIN                    = 0x0001,
+    SURFACE                 = 0x0002,
+}
+
+enum CollisionSpecialValues {
+    NONE,
+    TRANSLATE_X,
+    TRANSLATE_Y,
+    TRANSLATE_Z,
+}

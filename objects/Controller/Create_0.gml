@@ -62,3 +62,6 @@ ignore_next = 0;
 // inputs; maybe these can be rebound though a menu, but that's not important now
 
 input_selection_add = vk_control;
+
+mouse_hit_previous = undefined;
+mouse_hold_action = CollisionSpecialValues.NONE;
