@@ -1,0 +1,1 @@
+if (object) c_world_destroy_object(object);

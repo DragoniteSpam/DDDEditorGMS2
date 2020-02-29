@@ -69,13 +69,20 @@ c_shape_sphere = c_shape_create();
 c_shape_add_sphere(c_shape_sphere, 1);
 
 var thin_length = 8;
+var thinner_length = 6;
 var long_length = 64;
 c_shape_axis_x = c_shape_create();
-c_shape_add_box(c_shape_axis_x, long_length, thin_length, thin_length);
 c_shape_axis_y = c_shape_create();
-c_shape_add_box(c_shape_axis_y, thin_length, long_length, thin_length);
 c_shape_axis_z = c_shape_create();
+c_shape_axis_x_plane = c_shape_create();
+c_shape_axis_y_plane = c_shape_create();
+c_shape_axis_z_plane = c_shape_create();
+c_shape_add_box(c_shape_axis_x, long_length, thin_length, thin_length);
+c_shape_add_box(c_shape_axis_y, thin_length, long_length, thin_length);
 c_shape_add_box(c_shape_axis_z, thin_length, thin_length, long_length);
+c_shape_add_plane(c_shape_axis_x_plane, 0, 1, 0, 0);
+c_shape_add_plane(c_shape_axis_y_plane, 1, 0, 0, 0);
+c_shape_add_plane(c_shape_axis_z_plane, 0, 0, 1, 0);
 
 basic_cage = import_d3d("data\\basic\\cage.d3d", false);
 indexed_cage = import_d3d("data\\basic\\cage-indexed.d3d", false);

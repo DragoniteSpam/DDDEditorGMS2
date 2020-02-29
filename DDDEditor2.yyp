@@ -1339,6 +1339,14 @@
             }
         },
         {
+            "Key": "0ff80a7a-c72e-4381-a424-8997af545b10",
+            "Value": {
+                "id": "b9ec9227-eaf2-47df-bf81-f349ac2b275a",
+                "resourcePath": "objects\\ComponentAxis\\ComponentAxis.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "0ffbe5fd-ba68-4d52-84b4-f0a4a5b74a6e",
             "Value": {
                 "id": "e78597e8-3588-4a03-9847-415b6c6a790a",

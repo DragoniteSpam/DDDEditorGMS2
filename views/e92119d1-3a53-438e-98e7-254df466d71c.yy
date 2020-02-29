@@ -5,7 +5,8 @@
     "name": "e92119d1-3a53-438e-98e7-254df466d71c",
     "children": [
         "89c683e7-665d-4691-b15c-d9a0d417be8b",
-        "e4d6c255-6c55-4820-9a2f-f7965c3cf4f7"
+        "e4d6c255-6c55-4820-9a2f-f7965c3cf4f7",
+        "0ff80a7a-c72e-4381-a424-8997af545b10"
     ],
     "filterType": "GMObject",
     "folderName": "Effect Components",
