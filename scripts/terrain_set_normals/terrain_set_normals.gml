@@ -250,7 +250,7 @@ if (xx < terrain.width - 1 && yy < terrain.height - 1) {
 
 if (smooth) {
     for (var vertex = ds_map_find_first(normal_map); vertex != ds_map_find_last(normal_map); vertex = ds_map_find_next(normal_map, vertex)) {
-        var normal = normalize_vec3(normal_map[? vertex]);
+        var normal = vector3_normalize(normal_map[? vertex]);
         // it's most likely not worth using lightweight objects here
         
         buffer_poke(terrain.terrain_buffer_data, vertex[3] + 12, buffer_f32, normal[vec3.xx]);

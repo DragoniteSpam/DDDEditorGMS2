@@ -58,7 +58,7 @@ for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
         var key = string(xx) + "," + string(yy) + "," + string(zz);
         
         if (ds_map_exists(normal_map, key)) {
-            var n = normalize_vec3(normal_map[? key]);
+            var n = vector3_normalize(normal_map[? key]);
         }
         
         buffer_poke(buffer, position + 12, buffer_f32, n[0]);
