@@ -25,9 +25,32 @@ if (effect.com_audio) {
     script_execute(effect.com_audio.render, effect.com_audio);
 }
 
-var mask = selected(effect) ? CollisionMasks.MAIN : 0;
-c_object_set_mask(effect.cobject_x, mask, mask);
-c_object_set_mask(effect.cobject_y, mask, mask);
-c_object_set_mask(effect.cobject_z, mask, mask);
+if (selected(effect)) {
+    if (effect.cobject_x_axis.current_mask == 0) {
+        effect.cobject_x_axis.current_mask = CollisionMasks.MAIN;
+        effect.cobject_y_axis.current_mask = CollisionMasks.MAIN;
+        effect.cobject_z_axis.current_mask = CollisionMasks.MAIN;
+        c_object_set_mask(effect.cobject_x_axis.object, CollisionMasks.MAIN, CollisionMasks.MAIN);
+        c_object_set_mask(effect.cobject_y_axis.object, CollisionMasks.MAIN, CollisionMasks.MAIN);
+        c_object_set_mask(effect.cobject_z_axis.object, CollisionMasks.MAIN, CollisionMasks.MAIN);
+        // this means the entity was only just selected - the planes should
+        // only be activated when the mouse is down on an axis
+    }
+} else {
+    if (effect.cobject_x_axis.current_mask != 0) {
+        effect.cobject_x_axis.current_mask = 0;
+        effect.cobject_y_axis.current_mask = 0;
+        effect.cobject_z_axis.current_mask = 0;
+        effect.cobject_x_plane.current_mask = 0;
+        effect.cobject_y_plane.current_mask = 0;
+        effect.cobject_z_plane.current_mask = 0;
+        c_object_set_mask(effect.cobject_x_axis.object, 0, 0);
+        c_object_set_mask(effect.cobject_y_axis.object, 0, 0);
+        c_object_set_mask(effect.cobject_z_axis.object, 0, 0);
+        c_object_set_mask(effect.cobject_x_plane.object, 0, 0);
+        c_object_set_mask(effect.cobject_y_plane.object, 0, 0);
+        c_object_set_mask(effect.cobject_z_plane.object, 0, 0);
+    }
+}
 
 entity_effect_position_colliders(effect);

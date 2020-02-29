@@ -18539,6 +18539,14 @@
             }
         },
         {
+            "Key": "f6bace53-c609-4fc1-be7a-2855ad46701d",
+            "Value": {
+                "id": "16d69873-f895-4520-9c23-7a6f6b45ed8d",
+                "resourcePath": "objects\\ComponentData\\ComponentData.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "f6beb2d5-9dca-496c-947f-1539e4a21f33",
             "Value": {
                 "id": "f6fa3743-1645-4710-9be5-26b727530602",

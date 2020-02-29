@@ -15,11 +15,8 @@ var zz = mouse_vector[vec3.zz] * MILLION;
 
 // stash the result because you may hit a special value of some type
 if (c_raycast_world(mode.x, mode.y, mode.z, mode.x + xx, mode.y + yy, mode.z + zz, CollisionMasks.MAIN)) {
-    var hit = c_object_get_userid(c_hit_object(0));
-    var data_under_cursor = (hit < MAGIC_INSTANCE_ID) ? hit : noone;
-    var instance_under_cursor = (hit >= MAGIC_INSTANCE_ID) ? hit : noone;
+    var instance_under_cursor = c_object_get_userid(c_hit_object(0));
 } else {
-    var data_under_cursor = 0;
     var instance_under_cursor = noone;
 }
 
@@ -31,30 +28,48 @@ var floor_cy = -1;
 var floor_cz = -1;
 
 if (!mode.mouse_over_ui) {
-    #region general inputs (mostly with click-and-drag things)
-    // press the mouse button: select an action (this is the same as the action 
-    if (Controller.press_left) {
-        if (data_under_cursor) {
-            Controller.mouse_hold_action = data_under_cursor;
-            Controller.mouse_hit_previous = [c_hit_x(), c_hit_y(), c_hit_z()];
-        }
-    }
-    if (Controller.mouse_left) {
-        if (Controller.mouse_hit_previous != undefined) {
-            switch (Controller.mouse_hold_action) {
-                case CollisionSpecialValues.TRANSLATE_X:
-                    var delta = c_hit_x() - Controller.mouse_hit_previous[vec3.xx];
-                    break;
-                case CollisionSpecialValues.TRANSLATE_Y:
-                    var delta = c_hit_y() - Controller.mouse_hit_previous[vec3.yy];
-                    break;
-                case CollisionSpecialValues.TRANSLATE_Z:
-                    var delta = c_hit_z() - Controller.mouse_hit_previous[vec3.zz];
+    #region general inputs (click-and-drag things)
+    if (instanceof(instance_under_cursor, ComponentData)) {
+        if (Controller.press_left) {
+            // it'd probably be better to put this in a script eventually
+            switch (instance_under_cursor.object_index) {
+                case ComponentAxis:
+                    Controller.mouse_hold_action = instance_under_cursor.axis;
+                    for (var i = 0; i < ds_list_size(mode.selected_entities); i++) {
+                        var thing = mode.selected_entities[| i];
+                        if (instanceof(thing, EntityEffect)) {
+                            thing.cobject_x_plane.current_mask = CollisionMasks.MAIN;
+                            thing.cobject_y_plane.current_mask = CollisionMasks.MAIN;
+                            thing.cobject_z_plane.current_mask = CollisionMasks.MAIN;
+                            c_object_set_mask(thing.cobject_x_plane.object, CollisionMasks.MAIN, CollisionMasks.MAIN);
+                            c_object_set_mask(thing.cobject_y_plane.object, CollisionMasks.MAIN, CollisionMasks.MAIN);
+                            c_object_set_mask(thing.cobject_z_plane.object, CollisionMasks.MAIN, CollisionMasks.MAIN);
+                        }
+                    }
                     break;
             }
+            Controller.mouse_hit_previous = [c_hit_x(), c_hit_y(), c_hit_z()];
         }
-    } else {
-        Controller.mouse_hit_previous = undefined;
+        if (Controller.mouse_left) {
+            if (Controller.mouse_hit_previous != undefined) {
+                switch (Controller.mouse_hold_action) {
+                    case CollisionSpecialValues.TRANSLATE_X:
+                        var delta = c_hit_x() - Controller.mouse_hit_previous[vec3.xx];
+                        debug(delta);
+                        break;
+                    case CollisionSpecialValues.TRANSLATE_Y:
+                        var delta = c_hit_y() - Controller.mouse_hit_previous[vec3.yy];
+                        break;
+                    case CollisionSpecialValues.TRANSLATE_Z:
+                        var delta = c_hit_z() - Controller.mouse_hit_previous[vec3.zz];
+                        break;
+                }
+            }
+        } else {
+            Controller.mouse_hit_previous = undefined;
+        }
+        // discard the data and don't set the persistent under cursor data
+        instance_under_cursor = noone;
     }
     #endregion
     // it makes no sense to check where the mouse vector intersects with the floor if you're not looking down
