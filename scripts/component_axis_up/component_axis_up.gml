@@ -29,3 +29,5 @@ for (var i = 0; i < ds_list_size(Stuff.map.selected_entities); i++) {
         map_move_thing(entity, floor(new_x), floor(new_y), floor(new_z), false);
     }
 }
+
+selection_clear();
