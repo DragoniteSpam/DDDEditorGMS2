@@ -23,9 +23,9 @@ for (var i = 0; i < ds_list_size(Stuff.map.selected_entities); i++) {
         var new_x = clamp(entity.xx + entity.off_xx, 0, map.xx - 1);
         var new_y = clamp(entity.yy + entity.off_yy, 0, map.yy - 1);
         var new_z = clamp(entity.zz + entity.off_zz, 0, map.zz - 1);
-        entity.off_xx = frac(entity.off_xx);
-        entity.off_yy = frac(entity.off_yy);
-        entity.off_zz = frac(entity.off_zz);
-        map_move_thing(entity, floor(new_x), floor(new_y), floor(new_z));
+        entity.off_xx = frac(new_x);
+        entity.off_yy = frac(new_y);
+        entity.off_zz = frac(new_z);
+        map_move_thing(entity, floor(new_x), floor(new_y), floor(new_z), false);
     }
 }
