@@ -14,7 +14,7 @@ var yy = mouse_vector[vec3.yy] * MILLION;
 var zz = mouse_vector[vec3.zz] * MILLION;
 
 // stash the result because you may hit a special value of some type
-if (c_raycast_world(mode.x, mode.y, mode.z, mode.x + xx, mode.y + yy, mode.z + zz, CollisionMasks.MAIN)) {
+if (c_raycast_world(mode.x, mode.y, mode.z, mode.x + xx, mode.y + yy, mode.z + zz, Controller.mouse_pick_mask)) {
     var instance_under_cursor = c_object_get_userid(c_hit_object(0));
 } else {
     var instance_under_cursor = noone;
@@ -35,6 +35,7 @@ if (!mode.mouse_over_ui) {
     if (instanceof(instance_under_cursor, ComponentData)) {
         // check mouse down
         if (Controller.press_left) {
+            Controller.mouse_pick_mask = CollisionMasks.AXES;
             // it'd probably be better to put this in a script eventually
             switch (instance_under_cursor.object_index) {
                 case ComponentAxis:
@@ -50,8 +51,8 @@ if (!mode.mouse_over_ui) {
                                     c_object_set_mask(thing.cobject_x_axis.object, 0, 0);
                                     c_object_set_mask(thing.cobject_y_axis.object, 0, 0);
                                     c_object_set_mask(thing.cobject_z_axis.object, 0, 0);
-                                    thing.cobject_x_plane.current_mask = CollisionMasks.MAIN;
-                                    c_object_set_mask(thing.cobject_x_plane.object, CollisionMasks.MAIN, CollisionMasks.MAIN);
+                                    thing.cobject_x_plane.current_mask = CollisionMasks.AXES;
+                                    c_object_set_mask(thing.cobject_x_plane.object, CollisionMasks.AXES, CollisionMasks.AXES);
                                     break;
                                 case CollisionSpecialValues.TRANSLATE_Y:
                                     thing.cobject_x_axis.current_mask = 0;
@@ -60,8 +61,8 @@ if (!mode.mouse_over_ui) {
                                     c_object_set_mask(thing.cobject_x_axis.object, 0, 0);
                                     c_object_set_mask(thing.cobject_y_axis.object, 0, 0);
                                     c_object_set_mask(thing.cobject_z_axis.object, 0, 0);
-                                    thing.cobject_y_plane.current_mask = CollisionMasks.MAIN;
-                                    c_object_set_mask(thing.cobject_y_plane.object, CollisionMasks.MAIN, CollisionMasks.MAIN);
+                                    thing.cobject_y_plane.current_mask = CollisionMasks.AXES;
+                                    c_object_set_mask(thing.cobject_y_plane.object, CollisionMasks.AXES, CollisionMasks.AXES);
                                     debug("set y");
                                     break;
                                 case CollisionSpecialValues.TRANSLATE_Z:
@@ -71,8 +72,8 @@ if (!mode.mouse_over_ui) {
                                     c_object_set_mask(thing.cobject_x_axis.object, 0, 0);
                                     c_object_set_mask(thing.cobject_y_axis.object, 0, 0);
                                     c_object_set_mask(thing.cobject_z_axis.object, 0, 0);
-                                    thing.cobject_z_plane.current_mask = CollisionMasks.MAIN;
-                                    c_object_set_mask(thing.cobject_z_plane.object, CollisionMasks.MAIN, CollisionMasks.MAIN);
+                                    thing.cobject_z_plane.current_mask = CollisionMasks.AXES;
+                                    c_object_set_mask(thing.cobject_z_plane.object, CollisionMasks.AXES, CollisionMasks.AXES);
                                     debug("set z");
                                     break;
                             }
@@ -139,6 +140,9 @@ if (!mode.mouse_over_ui) {
         // discard the data and don't set the persistent under cursor value
         instance_under_cursor = noone;
         process_main = false;
+    } else {
+        // this is bad code but should catch all cases where you want to reset the mouse picking mask
+        Controller.mouse_pick_mask = CollisionMasks.MAIN;
     }
     #endregion
     

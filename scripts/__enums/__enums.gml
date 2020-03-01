@@ -242,6 +242,7 @@ enum CollisionMasks {
     NONE                    = 0x0000,
     MAIN                    = 0x0001,
     SURFACE                 = 0x0002,
+    AXES                    = 0x0004,
 }
 
 enum CollisionSpecialValues {
