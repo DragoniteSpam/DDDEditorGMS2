@@ -54,6 +54,15 @@ el_other_fog_colour.tooltip = "The color of the fog; you will usually want this 
 dg.el_other_fog_colour = el_other_fog_colour;
 yy = yy + el_other_fog_colour.height + spacing;
 
+var el_other_light_enabled = create_checkbox(16, yy, "Lighting Enabled?", ew, eh, uivc_settings_map_light_enabled, map.light_enabled, dg);
+el_other_light_enabled.tooltip = "Whether or not vertex lighting should be enabled in the map";
+yy = yy + el_other_light_enabled.height + spacing;
+
+var el_other_light_colour = create_color_picker(16, yy, "     Ambient:", ew, eh, uivc_settings_map_light_colour, map.light_ambient_color, vx1, vy1, vx2, vy2, dg);
+el_other_light_colour.tooltip = "The color of unlit regions of the map; most of the time, this should be black";
+dg.el_other_light_colour = el_other_light_colour;
+yy = yy + el_other_light_colour.height + spacing;
+
 var el_other_indoors = create_checkbox(16, yy, "Is indoors?", ew, eh, uivc_settings_map_indoors, map.indoors, dg);
 el_other_indoors.tooltip = "Whether or not the map is supposed to be indoors (or underground); this will have effects such as determining whether or not the atmosphere is to be drawn, or whether or not weather should be processed";
 yy = yy + el_other_indoors.height + spacing;
@@ -109,6 +118,8 @@ ds_list_add(dg.contents,
     el_other_fog_start,
     el_other_fog_end,
     el_other_fog_colour,
+    el_other_light_enabled,
+    el_other_light_colour,
     el_other_indoors,
     el_other_water,
     el_other_water_reflect,

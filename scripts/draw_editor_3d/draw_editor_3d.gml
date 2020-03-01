@@ -39,7 +39,7 @@ graphics_draw_water();
 
 #region lighting
 shader_set(shd_ddd);
-shader_set_uniform_i(shader_get_uniform(shd_ddd, "lightEnabled"), Stuff.setting_view_lighting);
+shader_set_uniform_i(shader_get_uniform(shd_ddd, "lightEnabled"), Stuff.setting_view_lighting && map.light_enabled);
 var light_data = array_create(MAX_LIGHTS * 12);
 var n = 0;
 for (var i = 0; i < MAX_LIGHTS; i++) {

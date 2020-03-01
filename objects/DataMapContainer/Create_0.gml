@@ -40,6 +40,8 @@ fast_travel_from = true;                    // bool
 base_encounter_rate = 8;                    // steps?
 base_encounter_deviation = 4;               // ehh
 run_init = true;                            // bool
+light_enabled = true;                    // bool
+light_ambient_color = c_black;           // uint
 
 discovery = 0;                              // index
 

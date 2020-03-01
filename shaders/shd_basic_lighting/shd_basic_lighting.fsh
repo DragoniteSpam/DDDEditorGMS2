@@ -13,9 +13,11 @@ varying vec3 v_worldPosition;
 varying vec3 v_cameraPosition;
 
 void CommonFog(inout vec4 baseColor) {
-    float dist = length(v_worldPosition - v_cameraPosition);
-    float f = clamp((dist - fogStart) / (fogEnd - fogStart), 0., 1.);
-    baseColor.rgb = mix(baseColor.rgb, fogColor, f);
+    if (fogEnabled == 1) {
+        float dist = length(v_worldPosition - v_cameraPosition);
+        float f = clamp((dist - fogStart) / (fogEnd - fogStart), 0., 1.);
+        baseColor.rgb = mix(baseColor.rgb, fogColor, f);
+    }
 }
 // include("fog.f.xsh")
 

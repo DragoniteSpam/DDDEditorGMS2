@@ -3,7 +3,7 @@
 var mode = argument0;
 var input_control = keyboard_check(vk_control);
 var map = Stuff.map.active_map;
-show_error("this still needs to be udpated to use the fancy collision controls, but with everything pertaining to Z axis disabled", true);
+//show_error("this still needs to be udpated to use the fancy collision controls, but with everything pertaining to Z axis disabled", true);
 if (Stuff.menu.active_element) {
     return false;
 }
