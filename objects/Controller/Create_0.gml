@@ -64,5 +64,4 @@ ignore_next = 0;
 input_selection_add = vk_control;
 
 mouse_hit_previous = undefined;
-mouse_hold_action = CollisionSpecialValues.NONE;
 mouse_pick_mask = CollisionMasks.MAIN;

@@ -35,89 +35,19 @@ if (!mode.mouse_over_ui) {
     if (instanceof(instance_under_cursor, ComponentData)) {
         // check mouse down
         if (Controller.press_left) {
+            script_execute(instance_under_cursor.on_mouse_down, instance_under_cursor);
             Controller.mouse_pick_mask = CollisionMasks.AXES;
-            // it'd probably be better to put this in a script eventually
-            switch (instance_under_cursor.object_index) {
-                case ComponentAxis:
-                    Controller.mouse_hold_action = instance_under_cursor.axis;
-                    var thing = instance_under_cursor.parent;
-                    switch (instance_under_cursor.axis) {
-                        case CollisionSpecialValues.TRANSLATE_X:
-                            thing.cobject_x_axis.current_mask = 0;
-                            thing.cobject_y_axis.current_mask = 0;
-                            thing.cobject_z_axis.current_mask = 0;
-                            c_object_set_mask(thing.cobject_x_axis.object, 0, 0);
-                            c_object_set_mask(thing.cobject_y_axis.object, 0, 0);
-                            c_object_set_mask(thing.cobject_z_axis.object, 0, 0);
-                            thing.cobject_x_plane.current_mask = CollisionMasks.AXES;
-                            c_object_set_mask(thing.cobject_x_plane.object, CollisionMasks.AXES, CollisionMasks.AXES);
-                            break;
-                        case CollisionSpecialValues.TRANSLATE_Y:
-                            thing.cobject_x_axis.current_mask = 0;
-                            thing.cobject_y_axis.current_mask = 0;
-                            thing.cobject_z_axis.current_mask = 0;
-                            c_object_set_mask(thing.cobject_x_axis.object, 0, 0);
-                            c_object_set_mask(thing.cobject_y_axis.object, 0, 0);
-                            c_object_set_mask(thing.cobject_z_axis.object, 0, 0);
-                            thing.cobject_y_plane.current_mask = CollisionMasks.AXES;
-                            c_object_set_mask(thing.cobject_y_plane.object, CollisionMasks.AXES, CollisionMasks.AXES);
-                            break;
-                        case CollisionSpecialValues.TRANSLATE_Z:
-                            thing.cobject_x_axis.current_mask = 0;
-                            thing.cobject_y_axis.current_mask = 0;
-                            thing.cobject_z_axis.current_mask = 0;
-                            c_object_set_mask(thing.cobject_x_axis.object, 0, 0);
-                            c_object_set_mask(thing.cobject_y_axis.object, 0, 0);
-                            c_object_set_mask(thing.cobject_z_axis.object, 0, 0);
-                            thing.cobject_z_plane.current_mask = CollisionMasks.AXES;
-                            c_object_set_mask(thing.cobject_z_plane.object, CollisionMasks.AXES, CollisionMasks.AXES);
-                            break;
-                    }
-                    break;
-            }
             Controller.mouse_hit_previous = [c_hit_x(), c_hit_y(), c_hit_z()];
         }
         // check mouse release
         if (Controller.release_left) {
-            // it'd probably be better to put this in a script eventually
-            switch (instance_under_cursor.object_index) {
-                case ComponentAxis:
-                    Controller.mouse_hold_action = CollisionSpecialValues.NONE;
-                    var thing = instance_under_cursor.parent;
-                    if (instanceof(thing, EntityEffect)) {
-                        thing.cobject_x_axis.current_mask = CollisionMasks.MAIN;
-                        thing.cobject_y_axis.current_mask = CollisionMasks.MAIN;
-                        thing.cobject_z_axis.current_mask = CollisionMasks.MAIN;
-                        c_object_set_mask(thing.cobject_x_axis.object, CollisionMasks.MAIN, CollisionMasks.MAIN);
-                        c_object_set_mask(thing.cobject_y_axis.object, CollisionMasks.MAIN, CollisionMasks.MAIN);
-                        c_object_set_mask(thing.cobject_z_axis.object, CollisionMasks.MAIN, CollisionMasks.MAIN);
-                        thing.cobject_x_plane.current_mask = 0;
-                        thing.cobject_y_plane.current_mask = 0;
-                        thing.cobject_z_plane.current_mask = 0;
-                        c_object_set_mask(thing.cobject_x_plane.object, 0, 0);
-                        c_object_set_mask(thing.cobject_y_plane.object, 0, 0);
-                        c_object_set_mask(thing.cobject_z_plane.object, 0, 0);
-                    }
-                    break;
-            }
+            script_execute(instance_under_cursor.on_mouse_up, instance_under_cursor);
             Controller.mouse_hit_previous = undefined;
         }
         // check mouse hold
         if (Controller.mouse_left) {
             if (Controller.mouse_hit_previous != undefined) {
-                var delta = [0, 0, 0];
-                switch (Controller.mouse_hold_action) {
-                    case CollisionSpecialValues.TRANSLATE_X:
-                        delta[vec3.xx] = c_hit_x() - Controller.mouse_hit_previous[vec3.xx];
-                        break;
-                    case CollisionSpecialValues.TRANSLATE_Y:
-                        delta[vec3.yy] = c_hit_y() - Controller.mouse_hit_previous[vec3.yy];
-                        break;
-                    case CollisionSpecialValues.TRANSLATE_Z:
-                        delta[vec3.zz] = c_hit_z() - Controller.mouse_hit_previous[vec3.zz];
-                        break;
-                }
-                
+                var delta = script_execute(instance_under_cursor.on_mouse_stay, instance_under_cursor);
                 Controller.mouse_hit_previous = [c_hit_x(), c_hit_y(), c_hit_z()];
             }
         }
