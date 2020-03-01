@@ -2,6 +2,7 @@
 /// @param xx
 /// @param yy
 /// @param zz
+/// @param [mark-changed?]
 
 // this is, if possible, even slower than map_remove_thing because it does the same
 // operation and then does some extra things. please work on that.
@@ -10,13 +11,16 @@
 // behavior for map_add_free trying to add to an occupied location is to
 // delete it
 
-var entity = argument0;
-var xx = argument1;
-var yy = argument2;
-var zz = argument3;
+var entity = argument[0];
+var xx = argument[1];
+var yy = argument[2];
+var zz = argument[3];
+var mark_changed = (argument_count > 4) ? argument[4] : true;
 
 if (map_get_free_at(xx, yy, zz, entity.slot)) {
     map_remove_thing(entity);
-    map_add_thing(entity, xx, yy, zz);
-    editor_map_mark_changed(entity);
+    map_add_thing(entity, xx, yy, zz, undefined, false, false);
+    if (mark_changed) {
+        editor_map_mark_changed(entity);
+    }
 }
