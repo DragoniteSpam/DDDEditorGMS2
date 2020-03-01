@@ -48,7 +48,6 @@ if (!mode.mouse_over_ui) {
         if (Controller.mouse_left) {
             if (Controller.mouse_hit_previous != undefined) {
                 var delta = script_execute(instance_under_cursor.on_mouse_stay, instance_under_cursor);
-                Controller.mouse_hit_previous = [c_hit_x(), c_hit_y(), c_hit_z()];
             }
         }
         // discard the data and don't set the persistent under cursor value
