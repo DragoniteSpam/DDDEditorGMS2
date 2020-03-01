@@ -30,6 +30,9 @@ map.base_encounter_deviation = buffer_read(buffer, buffer_u32);
 if (version >= DataVersions.WATER_LEVEL) {
     map.water_level = buffer_read(buffer, buffer_f32);
 }
+if (version >= DataVersions.MAP_LIGHTING_FOG_DATA) {
+    map.light_ambient_colour = buffer_read(buffer, buffer_u32);
+}
 
 var bools = buffer_read(buffer, buffer_u32);
 map.indoors =           unpack(bools, 0);
@@ -43,9 +46,13 @@ if (version >= DataVersions.WATER_LEVEL) {
     map.reflections_enabled = unpack(bools, 7);
 }
 map.run_init =          unpack(bools, 8);
+if (version >= DataVersions.MAP_LIGHTING_FOG_DATA) {
+    map.light_enabled = unpack(bools, 9);
+}
 
 map.code = buffer_read(buffer, buffer_string);
 
+#region autotiles
 if (version >= DataVersions.AUTOTILE_DESIGNATION_SLOPE) {
     var at_count = buffer_read(buffer, buffer_u16);
 } else {
@@ -97,7 +104,9 @@ if (version >= DataVersions.AUTOTILE_DESIGNATION_SLOPE_WHOOPS) {
         }
     }
 }
+#endregion
 
+#region generic data
 if (version >= DataVersions.MAP_GENERIC_DATA) {
     var n_generic = buffer_read(buffer, buffer_u8);
     repeat (n_generic) {
@@ -139,5 +148,14 @@ if (version >= DataVersions.MAP_GENERIC_DATA) {
         }
         
         ds_list_add(map.generic_data, data);
+    }
+}
+#endregion
+
+if (version >= DataVersions.MAP_LIGHTING_FOG_DATA) {
+    var n_lights = buffer_read(buffer, buffer_u16);
+    ds_list_clear(map_contents.active_lights);
+    repeat (n_lights) {
+        ds_list_add(map_contents.active_lights, buffer_read(buffer, buffer_datatype));
     }
 }

@@ -21,6 +21,7 @@ buffer_write(buffer, buffer_u32, map.fog_colour);
 buffer_write(buffer, buffer_u32, map.base_encounter_rate);
 buffer_write(buffer, buffer_u32, map.base_encounter_deviation);
 buffer_write(buffer, buffer_f32, map.water_level);
+buffer_write(buffer, buffer_u32, map.light_ambient_colour);
 
 var bools = pack(
     map.indoors,
@@ -32,11 +33,13 @@ var bools = pack(
     map.on_grid,
     map.reflections_enabled,
     map.run_init,
+    map.light_enabled,
 );
 
 buffer_write(buffer, buffer_u32, bools);
 buffer_write(buffer, buffer_string, map.code);
 
+#region autotiles
 var at_count = array_length_1d(map_contents.mesh_autotiles_top_raw);
 buffer_write(buffer, buffer_u16, at_count);
 
@@ -83,7 +86,9 @@ for (var i = 0; i < at_count; i++) {
         buffer_write(buffer, buffer_bool, false);
     }
 }
+#endregion
 
+#region generic data
 var n_generic = ds_list_size(map.generic_data);
 buffer_write(buffer, buffer_u8, n_generic);
 
@@ -123,4 +128,11 @@ for (var i = 0; i < n_generic; i++) {
         case DataTypes.AUTOTILE: not_yet_implemented(); break;
         case DataTypes.ENTITY: not_yet_implemented(); break;
     }
+}
+#endregion
+
+var n_lights = ds_list_size(map_contents.active_lights);
+buffer_write(buffer, buffer_u16, n_lights);
+for (var i = 0; i < n_lights; i++) {
+    buffer_write(buffer, buffer_datatype, map_contents.active_lights[| i]);
 }
