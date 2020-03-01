@@ -52,7 +52,6 @@ if (!mode.mouse_over_ui) {
                                     c_object_set_mask(thing.cobject_z_axis.object, 0, 0);
                                     thing.cobject_x_plane.current_mask = CollisionMasks.MAIN;
                                     c_object_set_mask(thing.cobject_x_plane.object, CollisionMasks.MAIN, CollisionMasks.MAIN);
-                                    debug("set x");
                                     break;
                                 case CollisionSpecialValues.TRANSLATE_Y:
                                     thing.cobject_x_axis.current_mask = 0;
