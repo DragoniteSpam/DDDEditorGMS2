@@ -58,7 +58,7 @@ var el_other_light_enabled = create_checkbox(16, yy, "Lighting Enabled?", ew, eh
 el_other_light_enabled.tooltip = "Whether or not vertex lighting should be enabled in the map";
 yy = yy + el_other_light_enabled.height + spacing;
 
-var el_other_light_colour = create_color_picker(16, yy, "     Ambient:", ew, eh, uivc_settings_map_light_colour, map.light_ambient_color, vx1, vy1, vx2, vy2, dg);
+var el_other_light_colour = create_color_picker(16, yy, "     Ambient:", ew, eh, uivc_settings_map_light_colour, map.light_ambient_colour, vx1, vy1, vx2, vy2, dg);
 el_other_light_colour.tooltip = "The color of unlit regions of the map; most of the time, this should be black";
 dg.el_other_light_colour = el_other_light_colour;
 yy = yy + el_other_light_colour.height + spacing;

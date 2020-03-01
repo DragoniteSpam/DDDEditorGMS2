@@ -16,6 +16,7 @@ varying vec4 v_vColour;
 
 uniform int lightEnabled;
 uniform int lightCount;
+uniform vec3 lightAmbientColor;
 uniform vec4 lightData[MAX_LIGHTS * 3];
 
 vec4 CommonLighting(vec3 worldPosition, vec3 worldNormal) {
@@ -23,7 +24,7 @@ vec4 CommonLighting(vec3 worldPosition, vec3 worldNormal) {
         return vec4(1.);
     }
     
-    vec4 finalColor = vec4(0.);
+    vec4 finalColor = vec4(lightAmbientColor, 1.);
     // min isn't overloaded to work with ints, that's interesting
     int n = int(min(float(lightCount), float(MAX_LIGHTS)));
     
