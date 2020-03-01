@@ -3,6 +3,7 @@ varying vec4 v_vColour;
 
 #pragma include("fog.f.xsh")
 /// https://github.com/GameMakerDiscord/Xpanda
+
 uniform int fogEnabled;
 uniform float fogStart;
 uniform float fogEnd;
@@ -29,7 +30,6 @@ void main() {
     }
     
     CommonFog(color);
-    color.a = 1.;
     
     gl_FragColor = color;
 }

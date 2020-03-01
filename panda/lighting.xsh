@@ -5,8 +5,8 @@
 #define LIGHT_SPOT 3.
 
 uniform int lightEnabled;
-uniform vec4 lightData[MAX_LIGHTS * 3];
 uniform int lightCount;
+uniform Vec4 lightData[MAX_LIGHTS * 3];
 
 Vec4 CommonLighting(Vec3 worldPosition, Vec3 worldNormal) {
     if (lightEnabled == 0) {
