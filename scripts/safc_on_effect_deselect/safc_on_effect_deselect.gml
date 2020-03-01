@@ -2,4 +2,4 @@
 
 var effect = argument0;
 
-safc_on_entity(effect);
+safc_on_entity_deselect(effect);

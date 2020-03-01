@@ -14,6 +14,8 @@ slot = MapCellContents.EFFECT;
 batchable = false;
 render = render_effect;
 on_select = safc_on_effect;
+on_deselect = safc_on_effect_deselect;
+on_select_ui = safc_on_effect_ui;
 
 // components
 com_light = noone;

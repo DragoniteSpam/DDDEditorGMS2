@@ -1,8 +1,8 @@
 {
-    "id": "2379fee6-a508-4fb1-8afa-a25a1a23ef0e",
+    "id": "40eb65ac-3223-4a64-b780-87a78ac430eb",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "safc_on_entity",
+    "name": "safc_on_autotile_ui",
     "IsCompatibility": false,
     "IsDnD": false
 }

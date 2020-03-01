@@ -19,7 +19,7 @@ scalable = false;
 batch = batch_mesh_autotile;
 render = render_mesh_autotile;
 selector = select_single;
-on_select = safc_on_mesh;
+on_select_ui = safc_on_mesh_ui;
 
 enum ATTerrainTypes {
     TOP,

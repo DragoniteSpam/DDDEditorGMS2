@@ -30,5 +30,4 @@ batchable = false;
 batch = null;                     // you don't batch pawns
 render = render_pawn;
 selector = select_single;
-on_select = safc_on_pawn;
-
+on_select_ui = safc_on_pawn_ui;

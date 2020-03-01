@@ -33,4 +33,4 @@ batch = batch_tile;
 batch_collision = batch_collision_tile;
 render = render_tile;
 selector = select_single;
-on_select = safc_on_tile;
+on_select_ui = safc_on_tile_ui;

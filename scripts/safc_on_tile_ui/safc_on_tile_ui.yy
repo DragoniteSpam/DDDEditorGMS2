@@ -1,8 +1,8 @@
 {
-    "id": "50fa8e85-8b9d-4bcc-8c31-1ed3ffcca0d7",
+    "id": "d88f69f4-4e91-47f3-bfd5-f7a19764568c",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "safa_on_select",
+    "name": "safc_on_tile_ui",
     "IsCompatibility": false,
     "IsDnD": false
 }

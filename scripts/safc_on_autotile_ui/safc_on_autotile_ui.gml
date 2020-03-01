@@ -2,4 +2,4 @@
 
 var tile = argument0;
 
-safc_on_tile(tile);
+safc_on_tile_ui(tile);

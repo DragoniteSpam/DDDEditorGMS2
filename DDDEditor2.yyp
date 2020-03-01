@@ -2771,6 +2771,14 @@
             }
         },
         {
+            "Key": "2379fee6-a508-4fb1-8afa-a25a1a23ef0e",
+            "Value": {
+                "id": "481155d3-91be-4000-b471-0fc03218c801",
+                "resourcePath": "scripts\\safc_on_entity\\safc_on_entity.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "238e9aff-6d56-4ef2-b9b3-b4417d0fe03b",
             "Value": {
                 "id": "d5808baf-df27-4950-a9c5-1a5d30e8b5eb",
@@ -4395,6 +4403,14 @@
             }
         },
         {
+            "Key": "383e1080-4b6a-4713-8af1-1c5270c073d4",
+            "Value": {
+                "id": "7f49a297-feb4-4cd7-bb10-ca6fbbec7227",
+                "resourcePath": "scripts\\safc_on_effect\\safc_on_effect.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "384cb058-7494-4cee-b51a-10dfc5aff2a7",
             "Value": {
                 "id": "ea8d815e-8127-4a74-8bea-504e7f58509d",
@@ -4822,7 +4838,7 @@
             "Key": "40eb65ac-3223-4a64-b780-87a78ac430eb",
             "Value": {
                 "id": "c9234ca0-0e2e-4c2d-9a23-141404232d0b",
-                "resourcePath": "scripts\\safc_on_autotile\\safc_on_autotile.yy",
+                "resourcePath": "scripts\\safc_on_autotile_ui\\safc_on_autotile_ui.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -6134,7 +6150,7 @@
             "Key": "50fa8e85-8b9d-4bcc-8c31-1ed3ffcca0d7",
             "Value": {
                 "id": "8d604048-317e-4e99-95ea-1ed9a8822abb",
-                "resourcePath": "scripts\\safa_on_select\\safa_on_select.yy",
+                "resourcePath": "scripts\\safa_on_select_ui\\safa_on_select_ui.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -13262,7 +13278,7 @@
             "Key": "aff645c1-ff62-4a29-8d66-fa9a02896b38",
             "Value": {
                 "id": "d0ff18e2-c718-47cf-b03d-87980b8e5942",
-                "resourcePath": "scripts\\safc_on_pawn\\safc_on_pawn.yy",
+                "resourcePath": "scripts\\safc_on_pawn_ui\\safc_on_pawn_ui.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -14947,6 +14963,14 @@
             }
         },
         {
+            "Key": "c72ee7b3-4e85-45a2-9d02-a4cd69f1d8bc",
+            "Value": {
+                "id": "945a1539-efab-4d74-9089-8f1c54b67afb",
+                "resourcePath": "scripts\\safc_on_effect_deselect\\safc_on_effect_deselect.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "c746fcb4-1788-40dd-b8cf-0b6c1cdfc80d",
             "Value": {
                 "id": "21fce010-2ca3-4dda-8c66-bacd40a9d007",
@@ -16278,7 +16302,7 @@
             "Key": "d88f69f4-4e91-47f3-bfd5-f7a19764568c",
             "Value": {
                 "id": "bd595fa5-9fdb-49fd-93c5-e9196b5559a2",
-                "resourcePath": "scripts\\safc_on_tile\\safc_on_tile.yy",
+                "resourcePath": "scripts\\safc_on_tile_ui\\safc_on_tile_ui.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -16446,7 +16470,7 @@
             "Key": "daae4ad3-122a-4bb4-a7c2-953f02f14e69",
             "Value": {
                 "id": "bf947990-cae2-4196-9783-4daf557d8ed3",
-                "resourcePath": "scripts\\safc_on_entity\\safc_on_entity.yy",
+                "resourcePath": "scripts\\safc_on_entity_ui\\safc_on_entity_ui.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -16974,7 +16998,7 @@
             "Key": "e2e9ab2d-4135-43f7-a086-2001e494654e",
             "Value": {
                 "id": "ada023e0-ea92-416d-831a-f5d829b9a4b9",
-                "resourcePath": "scripts\\safc_on_mesh\\safc_on_mesh.yy",
+                "resourcePath": "scripts\\safc_on_mesh_ui\\safc_on_mesh_ui.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -17351,6 +17375,14 @@
             "Value": {
                 "id": "1e626d8a-f687-4084-88b9-337797ad697e",
                 "resourcePath": "scripts\\terrain_set_normals\\terrain_set_normals.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "e81de9e7-ca86-4926-860c-1a5272221f19",
+            "Value": {
+                "id": "1c2f585b-68e6-4e7c-809c-52368a3c9471",
+                "resourcePath": "scripts\\safc_on_entity_deselect\\safc_on_entity_deselect.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -17766,7 +17798,7 @@
             "Key": "ed209c0f-e467-4743-a690-ae533fdb32be",
             "Value": {
                 "id": "9ac7d441-2920-4add-b92d-6acc7afc039f",
-                "resourcePath": "scripts\\safc_on_effect\\safc_on_effect.yy",
+                "resourcePath": "scripts\\safc_on_effect_ui\\safc_on_effect_ui.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -19503,7 +19535,11 @@
         "50fa8e85-8b9d-4bcc-8c31-1ed3ffcca0d7",
         "40eb65ac-3223-4a64-b780-87a78ac430eb",
         "ed209c0f-e467-4743-a690-ae533fdb32be",
+        "383e1080-4b6a-4713-8af1-1c5270c073d4",
+        "c72ee7b3-4e85-45a2-9d02-a4cd69f1d8bc",
         "daae4ad3-122a-4bb4-a7c2-953f02f14e69",
+        "2379fee6-a508-4fb1-8afa-a25a1a23ef0e",
+        "e81de9e7-ca86-4926-860c-1a5272221f19",
         "e2e9ab2d-4135-43f7-a086-2001e494654e",
         "aff645c1-ff62-4a29-8d66-fa9a02896b38",
         "d88f69f4-4e91-47f3-bfd5-f7a19764568c",

@@ -29,4 +29,4 @@ render = render_autotile;
 selector = select_single;
 
 on_create = create_autotile;
-on_select = safc_on_autotile;
+on_select_ui = safc_on_autotile_ui;

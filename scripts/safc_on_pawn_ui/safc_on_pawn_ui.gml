@@ -2,7 +2,7 @@
 
 var pawn = argument0;
 
-safc_on_entity(pawn);
+safc_on_entity_ui(pawn);
 
 Stuff.map.ui.element_entity_mesh_animated.interactive = false;
 
