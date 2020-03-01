@@ -79,14 +79,6 @@ var el_other_water_level = create_input(16, yy, "     Water level:", ew, eh, uiv
 el_other_water_level.tooltip = "The level of the water, in tile units";
 yy = yy + el_other_water_level.height + spacing;
 
-var el_other_fast_travel_to = create_checkbox(16, yy, "Can fast travel to?", ew, eh, uivc_settings_map_fast_travel_to, map.fast_travel_to, dg);
-el_other_fast_travel_to.tooltip = "Should you be able to teleport into this map?";
-yy = yy + el_other_fast_travel_to.height + spacing;
-
-var el_other_fast_travel_from = create_checkbox(16, yy, "Can fast travel from?", ew, eh, uivc_settings_map_fast_travel_from, map.fast_travel_from, dg);
-el_other_fast_travel_from.tooltip = "Should you be able to teleport away from this map?";
-yy = yy + el_other_fast_travel_from.height + spacing;
-
 yy = yy_base;
 
 var el_code_heading = create_text(c2, yy, "Update Code", ew, eh, fa_left, ew, dg);
@@ -106,6 +98,14 @@ yy = yy + el_encounter_base.height + spacing;
 var el_encounter_deviation = create_input(c2, yy, "Deviation", ew, eh, uivc_settings_map_encounter_deviation, map.base_encounter_deviation, "Probably steps", validate_int, 0, 1000000, 7, vx1, vy1, vx2, vy2, dg);
 el_encounter_deviation.tooltip = "The deviation in steps between random encounters; if movement is set to be off-grid, this can be approximated in tiles";
 yy = yy + el_encounter_deviation.height + spacing;
+
+var el_other_fast_travel_to = create_checkbox(c2, yy, "Can fast travel to?", ew, eh, uivc_settings_map_fast_travel_to, map.fast_travel_to, dg);
+el_other_fast_travel_to.tooltip = "Should you be able to teleport into this map?";
+yy = yy + el_other_fast_travel_to.height + spacing;
+
+var el_other_fast_travel_from = create_checkbox(c2, yy, "Can fast travel from?", ew, eh, uivc_settings_map_fast_travel_from, map.fast_travel_from, dg);
+el_other_fast_travel_from.tooltip = "Should you be able to teleport away from this map?";
+yy = yy + el_other_fast_travel_from.height + spacing;
 
 var b_width = 128;
 var b_height = 32;

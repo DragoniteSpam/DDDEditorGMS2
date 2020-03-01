@@ -10,7 +10,7 @@ uniform Vec4 lightData[MAX_LIGHTS * 3];
 
 Vec4 CommonLighting(Vec3 worldPosition, Vec3 worldNormal) {
     if (lightEnabled == 0) {
-        return Vec4(0., 0., 0., 0.);
+        return Vec4(1.);
     }
     
     Vec4 finalColor = Vec4(0.);
