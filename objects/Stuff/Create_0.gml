@@ -115,7 +115,6 @@ setting_selection_mode = setting_get("Selection", "mode", SelectionModes.RECTANG
 setting_selection_addition = setting_get("Selection", "addition", false);
 setting_selection_fill_type = setting_get("Selection", "fill-type", FillTypes.TILE);
 setting_selection_mask = setting_get("Selection", "mask", ETypeFlags.ENTITY_ANY);
-setting_mouse_drag_behavior = setting_get("Selection", "drag-behavior", 0);
 
 setting_view_wireframe = setting_get("View", "wireframe", false);
 setting_view_grid = setting_get("View", "grid", true);

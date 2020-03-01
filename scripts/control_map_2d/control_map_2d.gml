@@ -28,33 +28,6 @@ if (c_raycast_world(ray_cx, ray_cy, mode.z, ray_cx, ray_cy, -1, CollisionMasks.M
     mode.under_cursor = noone;
 }
 
-// these will override everything else, but it's commented out because i dont like how it works
-if (false && ds_list_size(mode.selection) && Controller.mouse_left) {
-    var dx = clamp((mouse_x - Controller.mouse_x_previous) div 4, -1, 1);
-    var dy = clamp((mouse_y - Controller.mouse_y_previous) div 4, -1, 1);
-    
-    switch (Stuff.setting_mouse_drag_behavior) {
-        case 1:             // translate
-            var sel = selection_all();
-            for (var i = 0; i < ds_list_size(sel); i++) {
-                var thing = sel[| i];
-                map_move_thing(thing, thing.xx + dx, thing.yy + dy, thing.zz);
-            }
-            ds_list_destroy(sel);
-            for (var i = 0; i < ds_list_size(mode.selection); i++) {
-                var sel = mode.selection[| i];
-                script_execute(sel.onmove, sel, dx, dy, 0);
-            }
-            return 0;
-        case 2:             // offset
-            return 0;
-        case 3:             // rotate
-            return 0;
-        case 4:             // scale
-            return 0;
-    }
-}
-
 // are there any conditions that may cause this to be skipped?
 if (true) {
     if (Controller.press_left) {

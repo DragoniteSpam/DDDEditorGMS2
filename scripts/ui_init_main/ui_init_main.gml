@@ -171,14 +171,6 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy + element.height + spacing;
     
-    element = create_radio_array(col2_x, yy, "Mouse Drag Action", col_width, element_height, uivc_radio_mouse_drag_behavior, Stuff.setting_mouse_drag_behavior, t_general);
-    create_radio_array_options(element, ["Default", "Translate Selection", "Offset Selection", "Rotate Selection", "Scale Selection"]);
-    element.tooltip = "This has yet to be implemented so I'm graying it out to avoid confusion";
-    element.interactive = false;
-    ds_list_add(t_general.contents, element);
-    
-    yy = yy + ui_get_radio_array_height(element) + spacing;
-    
     #endregion
     
     #region tab: stats
