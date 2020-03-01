@@ -5,11 +5,32 @@ var mode = Stuff.map;
 var camera = camera_get_active();
 var com_offset = 24;
 
-var position = world_to_screen(
-    (effect.xx + effect.off_xx) * TILE_WIDTH, (effect.yy + effect.off_yy) * TILE_HEIGHT, (effect.zz + effect.off_zz) * TILE_DEPTH,
-    camera_get_view_mat(camera), camera_get_proj_mat(camera),
-    camera_get_view_width(camera), camera_get_view_height(camera)
-);
+var world_x = (effect.xx + effect.off_xx) * TILE_WIDTH;
+var world_y = (effect.yy + effect.off_yy) * TILE_HEIGHT;
+var world_z = (effect.zz + effect.off_zz) * TILE_DEPTH;
+
+var position = world_to_screen(world_x, world_y, world_z, camera_get_view_mat(camera), camera_get_proj_mat(camera), camera_get_view_width(camera), camera_get_view_height(camera));
+
+if (entity_effect_colliders_active(effect)) {
+    var dist = point_distance_3d(mode.x, mode.y, mode.z, world_x, world_y, world_z);
+    var f = min(dist / 160, 2.5);
+    var transform = matrix_build(world_x, world_y, world_z, 0, 0, 0, f, f, f);
+    if (effect.axis_over == CollisionSpecialValues.TRANSLATE_X) {
+        ds_queue_enqueue(Stuff.unlit_meshes, [Stuff.graphics.axes_translation_x_gold, transform]);
+    } else {
+        ds_queue_enqueue(Stuff.unlit_meshes, [Stuff.graphics.axes_translation_x, transform]);
+    }
+    if (effect.axis_over == CollisionSpecialValues.TRANSLATE_Y) {
+        ds_queue_enqueue(Stuff.unlit_meshes, [Stuff.graphics.axes_translation_y_gold, transform]);
+    } else {
+        ds_queue_enqueue(Stuff.unlit_meshes, [Stuff.graphics.axes_translation_y, transform]);
+    }
+    if (effect.axis_over == CollisionSpecialValues.TRANSLATE_Z) {
+        ds_queue_enqueue(Stuff.unlit_meshes, [Stuff.graphics.axes_translation_z_gold, transform]);
+    } else {
+        ds_queue_enqueue(Stuff.unlit_meshes, [Stuff.graphics.axes_translation_z, transform]);
+    }
+}
 
 render_effect_add_sprite(spr_star, position, [0, 0]);
 
