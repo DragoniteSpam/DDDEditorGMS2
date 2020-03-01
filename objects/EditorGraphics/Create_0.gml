@@ -69,7 +69,7 @@ c_shape_sphere = c_shape_create();
 c_shape_add_sphere(c_shape_sphere, 1);
 
 var thin_length = 8;
-var long_length = 64;
+var long_length = 108;
 c_shape_axis_x = c_shape_create();
 c_shape_axis_y = c_shape_create();
 c_shape_axis_z = c_shape_create();
