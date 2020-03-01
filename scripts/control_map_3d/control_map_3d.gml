@@ -115,10 +115,9 @@ if (!mode.mouse_over_ui) {
                         break;
                     case CollisionSpecialValues.TRANSLATE_Z:
                         delta[vec3.zz] = c_hit_z() - Controller.mouse_hit_previous[vec3.zz];
-                        debug([c_hit_x(), c_hit_y(), c_hit_z()])
                         break;
                 }
-                debug(delta);
+                
                 Controller.mouse_hit_previous = [c_hit_x(), c_hit_y(), c_hit_z()];
             }
         }

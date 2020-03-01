@@ -80,7 +80,10 @@ c_shape_add_box(c_shape_axis_x, long_length, thin_length, thin_length);
 c_shape_add_box(c_shape_axis_y, thin_length, long_length, thin_length);
 c_shape_add_box(c_shape_axis_z, thin_length, thin_length, long_length);
 c_shape_add_plane(c_shape_axis_x_plane, 0, 1, 0, 0);
+c_shape_add_plane(c_shape_axis_x_plane, 0, 0, 1, 0);
 c_shape_add_plane(c_shape_axis_y_plane, 1, 0, 0, 0);
+c_shape_add_plane(c_shape_axis_y_plane, 0, 0, 1, 0);
+c_shape_add_plane(c_shape_axis_z_plane, 1, 0, 0, 0);
 c_shape_add_plane(c_shape_axis_z_plane, 0, 0, 1, 0);
 
 basic_cage = import_d3d("data\\basic\\cage.d3d", false);
