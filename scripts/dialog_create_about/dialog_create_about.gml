@@ -33,22 +33,28 @@ yy = yy + 32;
 var el_ex_venomous = create_text(32, yy, "     3D collisions (mostly raycasting): Venomous Bullet implementation", ew, eh, fa_left, dw - 32, dg);
 yy = yy + 16;
 var el_ex_venomous_url = create_text(32, yy, "          http://gmc.yoyogames.com/index.php?showtopic=632606", ew, eh, fa_left, dw - 32, dg);
-yy = yy + 16;
+yy = yy + 32;
 var el_ex_regex = create_text(32, yy, "     There's a really great regex extension by Upset Baby Games", ew, eh, fa_left, dw - 32, dg);
 yy = yy + 16;
 var el_ex_regex_url = create_text(32, yy, "          but it appears to have been delisted", ew, eh, fa_left, dw - 32, dg);
-yy = yy + 16;
+yy = yy + 32;
 var el_ex_fmod = create_text(32, yy, "     FMODGMS by quadolorgames:", ew, eh, fa_left, dw - 32, dg);
 yy = yy + 16;
 var el_ex_fmod_url = create_text(32, yy, "          https://quadolorgames.itch.io/fmodgms", ew, eh, fa_left, dw - 32, dg);
-yy = yy + 16;
+yy = yy + 32;
 var el_ex_smf = create_text(32, yy, "     Snidr's Model Format by himself:", ew, eh, fa_left, dw - 32, dg);
 yy = yy + 16;
 var el_ex_smf_url = create_text(32, yy, "          https://marketplace.yoyogames.com/assets/5256/smf-3d-skeletal-animation", ew, eh, fa_left, dw - 32, dg);
 yy = yy + 32;
-var el_ex_scribble = create_text(32, yy, "     Scribble, a Game Maker text renderer by Juju Adams (version " + string(__SCRIBBLE_VERSION) + ", slightly customized)", ew, eh, fa_left, dw - 32, dg);
+var el_ex_scribble = create_text(32, yy - 16, "     [rainbow][wave]Scribble[], a Game Maker text renderer by Juju Adams (version " + string(__SCRIBBLE_VERSION) + ", slightly customized)", ew, eh, fa_left, dw - 32, dg);
+el_ex_scribble.use_scribble = true;
+
 yy = yy + 16;
 var el_ex_scribble_url = create_text(32, yy, "          https://github.com/JujuAdams/scribble", ew, eh, fa_left, dw - 32, dg);
+yy = yy + 32;
+var el_ex_xpanda = create_text(32, yy, "     Xpanda, shader management by kraifpatrik:", ew, eh, fa_left, dw - 32, dg);
+yy = yy + 16;
+var el_ex_xpanda_url = create_text(32, yy, "          https://github.com/GameMakerDiscord/Xpanda/", ew, eh, fa_left, dw - 32, dg);
 yy = yy + 32;
 var el_asset = create_text(32, yy, "Default assets", ew, eh, fa_left, dw - 32, dg);
 yy = yy + 32;
@@ -84,6 +90,8 @@ ds_list_add(dg.contents,
     el_ex_smf_url,
     el_ex_scribble,
     el_ex_scribble_url,
+    el_ex_xpanda,
+    el_ex_xpanda_url,
     el_asset,
     el_asset_water,
     el_asset_npc,
