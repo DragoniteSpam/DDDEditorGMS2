@@ -8763,6 +8763,14 @@
             }
         },
         {
+            "Key": "73b58ef2-6951-4fa6-8da1-cf75ea511ae9",
+            "Value": {
+                "id": "cc525e97-0083-4bfc-a8a1-cf97867b7435",
+                "resourcePath": "scripts\\entity_effect_colliders_active\\entity_effect_colliders_active.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "73e5d788-c5a4-4a67-a662-b12c1def4616",
             "Value": {
                 "id": "2a7db9e9-d22e-4702-8414-c183eb2980b2",
@@ -21189,6 +21197,7 @@
         "ed721469-d8b0-421c-b43d-2f75cec90c72",
         "665223cf-860b-41d6-8cca-abd533e55db4",
         "55afbd8a-0902-4f01-970b-fdec3cd3a858",
+        "73b58ef2-6951-4fa6-8da1-cf75ea511ae9",
         "78b2bb8b-549d-4968-a988-c216915e5d0f",
         "5222ae32-7658-4244-8b3d-e0be3a9732f9",
         "a5bf8eff-e8d4-4f5d-93f7-a41afd85cb94",
