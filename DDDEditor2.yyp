@@ -13683,6 +13683,14 @@
             }
         },
         {
+            "Key": "b4feb04f-b2e5-4f24-a34e-3be1cb750f7f",
+            "Value": {
+                "id": "f1ef78f6-7fc7-4cc3-bfba-33071642b931",
+                "resourcePath": "scripts\\component_axis_hover\\component_axis_hover.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "b52591dc-aa07-48cc-b754-89b23b63e6ad",
             "Value": {
                 "id": "b94ea5cb-a052-4523-afcf-dce8afcc242b",
@@ -21200,6 +21208,7 @@
         "73b58ef2-6951-4fa6-8da1-cf75ea511ae9",
         "78b2bb8b-549d-4968-a988-c216915e5d0f",
         "5222ae32-7658-4244-8b3d-e0be3a9732f9",
+        "b4feb04f-b2e5-4f24-a34e-3be1cb750f7f",
         "a5bf8eff-e8d4-4f5d-93f7-a41afd85cb94",
         "acb26a39-8033-4289-87d0-228ed7921bc8",
         "89e8adda-438e-48f9-ab78-0e8b396b3850",

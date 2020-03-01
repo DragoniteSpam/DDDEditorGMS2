@@ -58,3 +58,5 @@ c_world_add_object(cobject_z_axis.object);
 c_world_add_object(cobject_x_plane.object);
 c_world_add_object(cobject_y_plane.object);
 c_world_add_object(cobject_z_plane.object);
+
+axis_over = CollisionSpecialValues.NONE;

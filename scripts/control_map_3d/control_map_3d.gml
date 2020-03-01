@@ -52,6 +52,8 @@ if (!mode.mouse_over_ui) {
                 Controller.mouse_hit_previous = undefined;
             }
         }
+        // anything on hover
+        script_execute(instance_under_cursor.on_mouse_hover, instance_under_cursor);
         // discard the data and don't set the persistent under cursor value
         instance_under_cursor = noone;
         process_main = false;
