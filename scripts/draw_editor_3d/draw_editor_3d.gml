@@ -77,10 +77,10 @@ for (var i = 0; i < MAX_LIGHTS; i++) {
 shader_set_uniform_i(shader_get_uniform(shd_ddd, "lightCount"), n);
 shader_set_uniform_f_array(shader_get_uniform(shd_ddd, "lightData"), light_data);
 
-shader_set_uniform_i(shader_get_uniform(shd_ddd, "fogEnabled"), 1);
-shader_set_uniform_f(shader_get_uniform(shd_ddd, "fogStart"), 512);
-shader_set_uniform_f(shader_get_uniform(shd_ddd, "fogEnd"), 2048);
-shader_set_uniform_f(shader_get_uniform(shd_ddd, "fogColor"), 1, 1, 1);
+shader_set_uniform_i(shader_get_uniform(shd_ddd, "fogEnabled"), map.fog_enabled);
+shader_set_uniform_f(shader_get_uniform(shd_ddd, "fogStart"), map.fog_start);
+shader_set_uniform_f(shader_get_uniform(shd_ddd, "fogEnd"), map.fog_end);
+shader_set_uniform_f(shader_get_uniform(shd_ddd, "fogColor"), (map.fog_colour & 0x0000ff) / 0xff, ((map.fog_colour & 0x00ff00) >> 8) / 0xff, ((map.fog_colour & 0xff0000) >> 16) / 0xff);
 #endregion
 
 // this will need to be dynamic at some point
