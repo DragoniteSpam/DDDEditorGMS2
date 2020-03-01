@@ -76,6 +76,11 @@ for (var i = 0; i < MAX_LIGHTS; i++) {
 }
 shader_set_uniform_i(shader_get_uniform(shd_ddd, "lightCount"), n);
 shader_set_uniform_f_array(shader_get_uniform(shd_ddd, "lightData"), light_data);
+
+shader_set_uniform_i(shader_get_uniform(shd_ddd, "fogEnabled"), 1);
+shader_set_uniform_f(shader_get_uniform(shd_ddd, "fogStart"), 512);
+shader_set_uniform_f(shader_get_uniform(shd_ddd, "fogEnd"), 2048);
+shader_set_uniform_f(shader_get_uniform(shd_ddd, "fogColor"), 1, 1, 1);
 #endregion
 
 // this will need to be dynamic at some point
@@ -104,12 +109,8 @@ for (var i = 0; i < ds_list_size(map_contents.batch_in_the_future); i++) {
     script_execute(ent.render, ent);
     // batchable entities don't make use of move routes, so don't bother
 }
-#endregion
 
-shader_reset();
-gpu_set_cullmode(cull_noculling);
-
-#region move routes
+// move routes are logged when dynamic entities are being drawn
 var list_routes = ds_list_create();       // [buffer, x, y, z, extra?, extra x, extra y, extra z], positions are absolute
 
 for (var i = 0; i < ds_list_size(map_contents.dynamic); i++) {
@@ -125,7 +126,12 @@ for (var i = 0; i < ds_list_size(map_contents.dynamic); i++) {
         }
     }
 }
+#endregion
 
+shader_reset();
+gpu_set_cullmode(cull_noculling);
+
+#region move routes
 // because apparently you can't do color with a passthrough shader even though it has a color attribute
 for (var i = 0; i < ds_list_size(list_routes); i++) {
     var data = list_routes[| i];
@@ -164,13 +170,13 @@ if (Stuff.setting_view_zones) {
 }
 #endregion
 
+#region unlit meshes
 if (Stuff.game_starting_map == Stuff.map.active_map.GUID) {
     transform_set(0, 0, 0, 0, 0, Stuff.direction_lookup[Stuff.game_starting_direction], 1, 1, 1);
     transform_add((Stuff.game_starting_x + 0.5) * TILE_WIDTH, (Stuff.game_starting_y + 0.5) * TILE_HEIGHT, Stuff.game_starting_z * TILE_DEPTH, 0, 0, 0, 1, 1, 1);
     vertex_submit(Stuff.graphics.basic_cage, pr_trianglelist, -1);
 }
 
-#region unlit meshes
 if (Stuff.setting_view_gizmos) {
     while (!ds_queue_empty(Stuff.unlit_meshes)) {
         var data = ds_queue_dequeue(Stuff.unlit_meshes);

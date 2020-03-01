@@ -15,8 +15,8 @@ varying vec4 v_vColour;
 #define LIGHT_SPOT 3.
 
 uniform int lightEnabled;
-uniform vec4 lightData[MAX_LIGHTS * 3];
 uniform int lightCount;
+uniform vec4 lightData[MAX_LIGHTS * 3];
 
 vec4 CommonLighting(vec3 worldPosition, vec3 worldNormal) {
     if (lightEnabled == 0) {
@@ -55,6 +55,17 @@ vec4 CommonLighting(vec3 worldPosition, vec3 worldNormal) {
     return finalColor;
 }
 // include("lighting.xsh")
+#pragma include("fog.v.xsh")
+/// https://github.com/GameMakerDiscord/Xpanda
+
+varying vec3 v_worldPosition;
+varying vec3 v_cameraPosition;
+
+void CommonFogSetup() {
+    v_cameraPosition = vec3(gm_Matrices[MATRIX_WORLD][0][3], gm_Matrices[MATRIX_WORLD][1][3], gm_Matrices[MATRIX_WORLD][2][3]);
+    v_worldPosition = (gm_Matrices[MATRIX_WORLD_VIEW_PROJECTION] * vec4(in_Position, 1.)).xyz;
+}
+// include("fog.v.xsh")
 
 void main() {
     vec4 position = gm_Matrices[MATRIX_WORLD_VIEW_PROJECTION] * vec4(in_Position, 1.);
@@ -62,6 +73,7 @@ void main() {
     vec3 worldNormal = normalize(gm_Matrices[MATRIX_WORLD] * vec4(in_Normal, 0.)).xyz;
     
     vec4 finalColor = CommonLighting(worldPosition, worldNormal);
+    CommonFogSetup();
     
     v_vColour = vec4(min(finalColor, vec4(1.)).rgb, in_Colour.a);
     gl_Position = position;
