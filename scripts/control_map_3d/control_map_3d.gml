@@ -105,9 +105,7 @@ if (!mode.mouse_over_ui) {
                         button.text = "Data: " + instance_under_cursor.name;
                         mode.selected_zone = instance_under_cursor;
                     } else {
-                        mode.last_selection = instance_create_depth(0, 0, 0, stype);
-                        ds_list_add(mode.selection, mode.last_selection);
-                        script_execute(mode.last_selection.onmousedown, mode.last_selection, max(0, floor_cx), max(0, floor_cy), tz);
+                        mode.last_selection = selection_add(stype, max(0, floor_cx), max(0, floor_cy), tz);
                     }
                 }
             }
