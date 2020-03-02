@@ -413,6 +413,7 @@ game_starting_z = 0;
 game_starting_direction = 0;
 game_player_grid = true;
 game_battle_style = BattleStyles.TEAM_BASED;
+game_lighting_buckets = 100;
 
 game_notes = "";
 game_file_summary = "Write a short summary in Global Game Settings";

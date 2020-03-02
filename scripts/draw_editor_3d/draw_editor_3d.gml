@@ -75,7 +75,7 @@ for (var i = 0; i < MAX_LIGHTS; i++) {
     }
 }
 shader_set_uniform_i(shader_get_uniform(shd_ddd, "lightCount"), n);
-shader_set_uniform_f(shader_get_uniform(shd_ddd, "lightBuckets"), 12);
+shader_set_uniform_f(shader_get_uniform(shd_ddd, "lightBuckets"), Stuff.game_lighting_buckets);
 shader_set_uniform_f(shader_get_uniform(shd_ddd, "lightAmbientColor"), (map.light_ambient_colour & 0x0000ff) / 0xff, ((map.light_ambient_colour & 0x00ff00) >> 8) / 0xff, ((map.light_ambient_colour & 0xff0000) >> 16) / 0xff);
 shader_set_uniform_f_array(shader_get_uniform(shd_ddd, "lightData"), light_data);
 
