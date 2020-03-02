@@ -1,4 +1,5 @@
 /// https://github.com/GameMakerDiscord/Xpanda
+
 #define MAX_LIGHTS 8
 #define LIGHT_DIRECTIONAL 1.
 #define LIGHT_POINT 2.
@@ -10,9 +11,11 @@ uniform float lightBuckets;
 uniform Vec3 lightAmbientColor;
 uniform Vec4 lightData[MAX_LIGHTS * 3];
 
-Vec4 CommonLighting(Vec3 worldPosition, Vec3 worldNormal) {
+varying Vec4 v_lightColour;
+
+void CommonLightingSetup(Vec3 worldPosition, Vec3 worldNormal) {
     if (lightEnabled == 0) {
-        return Vec4(1.);
+        v_lightColour = Vec4(1.);
     }
     
     Vec4 finalColor = Vec4(lightAmbientColor, 1.);
@@ -25,11 +28,13 @@ Vec4 CommonLighting(Vec3 worldPosition, Vec3 worldNormal) {
         Vec4 lightExt = lightData[i * 3 + 1];
         Vec4 lightColor = lightData[i * 3 + 2];
         
+        // in_Colour is not actually applied here - this just calculates the strength
+        // of the light and passes it to the fragment shader for it to deal with
         if (type == LIGHT_DIRECTIONAL) {
             // directional light: [x, y, z, type], [0, 0, 0, 0], [r, g, b, 0]
             Vec3 lightDir = -normalize(lightPosition);
             float NdotL = max(dot(worldNormal, lightDir), 0.);
-            finalColor += lightColor * NdotL * in_Colour;
+            finalColor += lightColor * NdotL;
         } else if (type == LIGHT_POINT) {
             float range = lightExt.w;
             // point light: [x, y, z, type], [0, 0, 0, range], [r, g, b, 0]
@@ -44,5 +49,5 @@ Vec4 CommonLighting(Vec3 worldPosition, Vec3 worldNormal) {
         }
     }
     
-    return round(finalColor * lightBuckets) / lightBuckets;
+    v_lightColour = finalColor;
 }

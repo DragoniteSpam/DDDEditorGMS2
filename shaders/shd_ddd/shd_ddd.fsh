@@ -1,14 +1,17 @@
 varying vec2 v_vTexcoord;
 varying vec4 v_vColour;
 
-varying vec4 v_lightColour;
+#pragma include("lighting.f.xsh")
+/// https://github.com/GameMakerDiscord/Xpanda
 
 uniform float lightBuckets;
+
+varying vec4 v_lightColour;
 
 void CommonLighting(inout vec4 baseColor) {
     baseColor *= floor(v_lightColour * lightBuckets + vec4(0.5)) / lightBuckets;
 }
-
+// include("lighting.f.xsh")
 #pragma include("fog.f.xsh")
 /// https://github.com/GameMakerDiscord/Xpanda
 

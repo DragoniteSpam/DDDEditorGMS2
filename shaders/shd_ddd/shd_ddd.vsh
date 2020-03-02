@@ -7,10 +7,9 @@ attribute vec4 extra;                       // not used here
 varying vec2 v_vTexcoord;
 varying vec4 v_vColour;
 
-varying vec4 v_lightColour;
-
-#pragma include("lighting.xsh")
+#pragma include("lighting.v.xsh")
 /// https://github.com/GameMakerDiscord/Xpanda
+
 #define MAX_LIGHTS 8
 #define LIGHT_DIRECTIONAL 1.
 #define LIGHT_POINT 2.
@@ -18,13 +17,15 @@ varying vec4 v_lightColour;
 
 uniform int lightEnabled;
 uniform int lightCount;
+uniform float lightBuckets;
 uniform vec3 lightAmbientColor;
 uniform vec4 lightData[MAX_LIGHTS * 3];
+
+varying vec4 v_lightColour;
 
 void CommonLightingSetup(vec3 worldPosition, vec3 worldNormal) {
     if (lightEnabled == 0) {
         v_lightColour = vec4(1.);
-        return;
     }
     
     vec4 finalColor = vec4(lightAmbientColor, 1.);
@@ -37,6 +38,8 @@ void CommonLightingSetup(vec3 worldPosition, vec3 worldNormal) {
         vec4 lightExt = lightData[i * 3 + 1];
         vec4 lightColor = lightData[i * 3 + 2];
         
+        // in_Colour is not actually applied here - this just calculates the strength
+        // of the light and passes it to the fragment shader for it to deal with
         if (type == LIGHT_DIRECTIONAL) {
             // directional light: [x, y, z, type], [0, 0, 0, 0], [r, g, b, 0]
             vec3 lightDir = -normalize(lightPosition);
@@ -58,7 +61,7 @@ void CommonLightingSetup(vec3 worldPosition, vec3 worldNormal) {
     
     v_lightColour = finalColor;
 }
-// include("lighting.xsh")
+// include("lighting.v.xsh")
 #pragma include("fog.v.xsh")
 /// https://github.com/GameMakerDiscord/Xpanda
 
