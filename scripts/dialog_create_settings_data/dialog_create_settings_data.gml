@@ -52,6 +52,10 @@ var el_lighting_buckets = create_input(col1_x, yy, "Lighting levels:", ew, eh, u
 el_lighting_buckets.tooltip = "The number of level of shading the lighting can have. Use a small number for a more cartoony lighting effect. Use a higher value for smoother lighting. A value over 100 is largely pointless, but this is a constant-time operation so you can go higher if you want.";
 yy = yy + el_lighting_buckets.height + spacing;
 
+var el_lighting_default_ambient = create_color_picker(col1_x, yy, "Default ambient:", ew, eh, uivc_settings_game_lighting_default_ambient, Stuff.game_lighting_default_ambient, vx1, vy1, vx2, vy2, dg);
+el_lighting_default_ambient.tooltip = "The default ambient lighting color. New maps will use this value.";
+yy = yy + el_lighting_default_ambient.height + spacing;
+
 var el_edit_title = create_text(col1_x, yy, "Other Settings", ew, eh, fa_left, ew, dg);
 el_edit_title.color = c_blue;
 yy = yy + el_edit_title.height + spacing;
@@ -119,6 +123,7 @@ ds_list_add(dg.contents,
     el_player_start,
     el_battle_type,
     el_lighting_buckets,
+    el_lighting_default_ambient,
     // data settings
     el_edit_title,
     el_edit_notes_text,

@@ -3491,6 +3491,14 @@
             }
         },
         {
+            "Key": "2c048f66-104f-4d29-9494-c3de69bfaa35",
+            "Value": {
+                "id": "2098e8d4-58ef-4671-a63b-b634747f654f",
+                "resourcePath": "scripts\\uivc_settings_game_lighting_default_ambient\\uivc_settings_game_lighting_default_ambient.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "2c0b7a02-c65a-4fb6-91be-3158e8beae30",
             "Value": {
                 "id": "5a230389-46e9-4190-9292-313c02d53eee",
@@ -20115,6 +20123,7 @@
         "6d0ef0ba-b11a-484c-b31d-b6a4a853a98f",
         "1b4c545b-c4c5-4949-bb22-c222e7e159b3",
         "d616593f-a361-481c-92a1-cc6305ec1b2a",
+        "2c048f66-104f-4d29-9494-c3de69bfaa35",
         "50fe4fdf-8254-4e9f-b121-e5451ed2913b",
         "9a91b808-8041-4d0c-ac55-a23c6f4b780a",
         "eea94a4c-b7e2-43dd-a768-bd396e34b75c",
