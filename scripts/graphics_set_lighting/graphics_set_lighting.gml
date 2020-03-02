@@ -41,12 +41,13 @@ for (var i = 0; i < MAX_LIGHTS; i++) {
             break;
     }
 }
+
 shader_set_uniform_i(shader_get_uniform(shader, "lightCount"), n);
 shader_set_uniform_f(shader_get_uniform(shader, "lightBuckets"), Stuff.game_lighting_buckets);
 shader_set_uniform_f(shader_get_uniform(shader, "lightAmbientColor"), (map.light_ambient_colour & 0x0000ff) / 0xff, ((map.light_ambient_colour & 0x00ff00) >> 8) / 0xff, ((map.light_ambient_colour & 0xff0000) >> 16) / 0xff);
 shader_set_uniform_f_array(shader_get_uniform(shader, "lightData"), light_data);
 
-shader_set_uniform_i(shader_get_uniform(shader, "fogEnabled"), map.fog_enabled);
+shader_set_uniform_i(shader_get_uniform(shader, "fogEnabled"), Stuff.setting_view_lighting && map.fog_enabled);
 shader_set_uniform_f(shader_get_uniform(shader, "fogStart"), map.fog_start);
 shader_set_uniform_f(shader_get_uniform(shader, "fogEnd"), map.fog_end);
 shader_set_uniform_f(shader_get_uniform(shader, "fogColor"), (map.fog_colour & 0x0000ff) / 0xff, ((map.fog_colour & 0x00ff00) >> 8) / 0xff, ((map.fog_colour & 0xff0000) >> 16) / 0xff);

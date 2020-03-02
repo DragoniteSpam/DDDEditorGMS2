@@ -149,7 +149,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy = yy + element.height + spacing;
     
     element = create_checkbox(col2_x, yy, "View Lighting", col_width, element_height, uivc_check_view_lighting, Stuff.setting_view_lighting, t_general);
-    element.tooltip = "See how the scene looks with lighting. You may wish to turn this off if you find yourself having a hard time seeing with the lights enabled.";
+    element.tooltip = "See how the scene looks with lighting. This also affects fog. You may wish to turn this off if you find yourself having a hard time seeing with the lights enabled.";
     ds_list_add(t_general.contents, element);
     
     yy = yy + element.height + spacing;
