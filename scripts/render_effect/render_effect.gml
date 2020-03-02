@@ -3,7 +3,7 @@
 var effect = argument0;
 var mode = Stuff.map;
 var camera = camera_get_active();
-var com_offset = 24;
+var com_offset = 18;
 
 var world_x = (effect.xx + effect.off_xx) * TILE_WIDTH;
 var world_y = (effect.yy + effect.off_yy) * TILE_HEIGHT;

@@ -14,6 +14,7 @@ Stuff.game_starting_z = buffer_read(buffer, buffer_u16);
 Stuff.game_starting_direction = buffer_read(buffer, buffer_u8);
 if (version >= DataVersions.MAP_LIGHTING_FOG_DATA) {
     Stuff.game_lighting_buckets = buffer_read(buffer, buffer_f32);
+    Stuff.game_lighting_default_ambient = buffer_read(buffer, buffer_u32);
 }
 
 var bools = buffer_read(buffer, buffer_u32);

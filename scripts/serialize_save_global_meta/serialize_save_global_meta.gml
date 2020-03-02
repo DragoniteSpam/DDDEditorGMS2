@@ -12,6 +12,7 @@ buffer_write(buffer, buffer_u16, Stuff.game_starting_y);
 buffer_write(buffer, buffer_u16, Stuff.game_starting_z);
 buffer_write(buffer, buffer_u8, Stuff.game_starting_direction);
 buffer_write(buffer, buffer_f32, Stuff.game_lighting_buckets);
+buffer_write(buffer, buffer_u32, Stuff.game_lighting_default_ambient);
 
 var bools = pack(Stuff.game_player_grid);
 buffer_write(buffer, buffer_u32, bools);
