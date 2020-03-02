@@ -9,7 +9,7 @@ uniform float lightBuckets;
 varying vec4 v_lightColour;
 
 void CommonLighting(inout vec4 baseColor) {
-    baseColor *= floor(v_lightColour * lightBuckets + vec4(0.5)) / lightBuckets;
+    baseColor *= clamp(floor(v_lightColour * lightBuckets + vec4(0.5)) / lightBuckets, vec4(0.), vec4(1.));
 }
 // include("lighting.f.xsh")
 #pragma include("fog.f.xsh")
@@ -42,8 +42,8 @@ void main() {
     vec4 finalColor = texture2D(gm_BaseTexture, v_vTexcoord + vec2(mod(time.x / 10., 1.), mod(time.y / 10., 1.)) + offset);
     finalColor.a = clamp(length(finalColor.rgb) / 2., 0., 1.);
     
-    CommonLighting(finalColor);
-    CommonFog(finalColor);
+    //CommonLighting(finalColor);
+    //CommonFog(finalColor);
     
     gl_FragColor = finalColor;
 }

@@ -13875,6 +13875,14 @@
             }
         },
         {
+            "Key": "b727b1c8-ef03-494d-b4f3-7d7789b0e2af",
+            "Value": {
+                "id": "36c8d5b0-ead2-419d-9f74-14687d697baf",
+                "resourcePath": "scripts\\graphics_set_lighting\\graphics_set_lighting.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "b733d71f-3114-4d9f-8063-a2dbb4c7175d",
             "Value": {
                 "id": "ced6e458-cf6f-4e63-b853-db9ff5a9ec5f",
@@ -19693,6 +19701,7 @@
         "d8652093-8c63-4067-92d4-453d3bfe32c0",
         "93e79cca-6db9-4bd6-8dde-4a0390784c1e",
         "15ab5199-66ae-4863-96ee-9fb150a0291e",
+        "b727b1c8-ef03-494d-b4f3-7d7789b0e2af",
         "ef6793cd-a331-44e5-bd38-6920300a558a",
         "0657dd0d-6793-40d4-9667-d8b3da8ffe19",
         "8a169476-76e7-46d2-99f7-6de10c31e642",

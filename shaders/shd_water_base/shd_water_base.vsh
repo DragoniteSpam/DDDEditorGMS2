@@ -1,7 +1,7 @@
 attribute vec3 in_Position;
 attribute vec3 in_Normal;
-attribute vec4 in_Colour;
 attribute vec2 in_TextureCoord;
+attribute vec4 in_Colour;
 
 varying vec2 v_vTexcoord;
 varying vec4 v_vColour;
@@ -25,6 +25,7 @@ varying vec4 v_lightColour;
 void CommonLightingSetup(vec3 worldPosition, vec3 worldNormal) {
     if (lightEnabled == 0) {
         v_lightColour = vec4(1.);
+        return;
     }
     
     vec4 finalColor = vec4(lightAmbientColor, 1.);

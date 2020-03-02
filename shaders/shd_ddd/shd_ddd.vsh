@@ -26,6 +26,7 @@ varying vec4 v_lightColour;
 void CommonLightingSetup(vec3 worldPosition, vec3 worldNormal) {
     if (lightEnabled == 0) {
         v_lightColour = vec4(1.);
+        return;
     }
     
     vec4 finalColor = vec4(lightAmbientColor, 1.);

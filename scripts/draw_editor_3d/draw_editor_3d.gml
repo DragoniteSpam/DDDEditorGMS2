@@ -37,53 +37,8 @@ if (map.is_3d) {
 // the water effect uses a different shader
 graphics_draw_water();
 
-#region lighting
 shader_set(shd_ddd);
-shader_set_uniform_i(shader_get_uniform(shd_ddd, "lightEnabled"), Stuff.setting_view_lighting && map.light_enabled);
-var light_data = array_create(MAX_LIGHTS * 12);
-var n = 0;
-for (var i = 0; i < MAX_LIGHTS; i++) {
-    var effect = refid_get(map_contents.active_lights[| i]);
-    if (!effect) {
-        continue;
-    }
-    var data = effect.com_light;
-    if (!data) {
-        continue;
-    }
-    var index = n++ * 12;
-    // common value
-    light_data[index + 3] = data.light_type;
-    light_data[index + 8] = (data.light_colour & 0x0000ff) / 0xff;
-    light_data[index + 9] = ((data.light_colour & 0x00ff00) >> 8) / 0xff;
-    light_data[index + 10] = ((data.light_colour & 0xff0000) >> 16) / 0xff;
-    // specific to each type
-    switch (data.light_type) {
-        case LightTypes.DIRECTIONAL:
-            light_data[index + 0] = data.light_dx;
-            light_data[index + 1] = data.light_dy;
-            light_data[index + 2] = data.light_dz;
-            break;
-        case LightTypes.POINT:
-            light_data[index + 0] = (effect.xx + effect.off_xx + 0.5) * TILE_WIDTH;
-            light_data[index + 1] = (effect.yy + effect.off_yy + 0.5) * TILE_HEIGHT;
-            light_data[index + 2] = (effect.zz + effect.off_zz + 0.5) * TILE_DEPTH;
-            light_data[index + 7] = data.light_radius;
-            break;
-        case LightTypes.SPOT:
-            break;
-    }
-}
-shader_set_uniform_i(shader_get_uniform(shd_ddd, "lightCount"), n);
-shader_set_uniform_f(shader_get_uniform(shd_ddd, "lightBuckets"), Stuff.game_lighting_buckets);
-shader_set_uniform_f(shader_get_uniform(shd_ddd, "lightAmbientColor"), (map.light_ambient_colour & 0x0000ff) / 0xff, ((map.light_ambient_colour & 0x00ff00) >> 8) / 0xff, ((map.light_ambient_colour & 0xff0000) >> 16) / 0xff);
-shader_set_uniform_f_array(shader_get_uniform(shd_ddd, "lightData"), light_data);
-
-shader_set_uniform_i(shader_get_uniform(shd_ddd, "fogEnabled"), map.fog_enabled);
-shader_set_uniform_f(shader_get_uniform(shd_ddd, "fogStart"), map.fog_start);
-shader_set_uniform_f(shader_get_uniform(shd_ddd, "fogEnd"), map.fog_end);
-shader_set_uniform_f(shader_get_uniform(shd_ddd, "fogColor"), (map.fog_colour & 0x0000ff) / 0xff, ((map.fog_colour & 0x00ff00) >> 8) / 0xff, ((map.fog_colour & 0xff0000) >> 16) / 0xff);
-#endregion
+graphics_set_lighting(shd_ddd);
 
 // this will need to be dynamic at some point
 var tex = Stuff.setting_view_texture ? sprite_get_texture(get_active_tileset().master, 0) : sprite_get_texture(b_tileset_textureless, 0);
