@@ -42,8 +42,8 @@ void main() {
     vec4 finalColor = texture2D(gm_BaseTexture, v_vTexcoord + vec2(mod(time.x / 10., 1.), mod(time.y / 10., 1.)) + offset);
     finalColor.a = clamp(length(finalColor.rgb) / 2., 0., 1.);
     
-    //CommonLighting(finalColor);
-    //CommonFog(finalColor);
+    CommonLighting(finalColor);
+    CommonFog(finalColor);
     
     gl_FragColor = finalColor;
 }

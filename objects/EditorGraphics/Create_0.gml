@@ -104,8 +104,10 @@ var qmark_data = import_d3d("data\\basic\\missing.d3d", false, false, true);
 mesh_missing = qmark_data[0];
 mesh_missing_data = qmark_data[1];
 
-water_tile_size = 0x10000;
+water_tile_size = 0x1000;
 water_reptition = 0x100;
+water_units = 200;
+water_depth = -24;
 
 mesh_water_base = vertex_create_buffer();
 mesh_water_bright = vertex_create_buffer();
@@ -113,11 +115,17 @@ mesh_water_bright = vertex_create_buffer();
 vertex_begin(mesh_water_base, vertex_format_basic);
 vertex_begin(mesh_water_bright, vertex_format_basic);
 
-terrain_create_square(mesh_water_base, -water_tile_size / 2, -water_tile_size / 2, water_tile_size, 0, 0, water_tile_size / water_reptition, 0, -32, -32, -32, -32);
-terrain_create_square(mesh_water_bright, -water_tile_size / 2, -water_tile_size / 2, water_tile_size, 0, 0, water_tile_size / water_reptition, 0, -16, -16, -16, -16);
+for (var i = -water_tile_size / 2; i < water_tile_size / 2; i += (water_tile_size / water_units)) {
+    for (var j = -water_tile_size / 2; j < water_tile_size / 2; j += (water_tile_size / water_units)) {
+        terrain_create_square(mesh_water_base, i, j, water_tile_size / water_units, 0, 0, water_tile_size / water_reptition / water_units, 0, water_depth, water_depth, water_depth, water_depth);
+        terrain_create_square(mesh_water_bright, i, j, water_tile_size / water_units, 0, 0, water_tile_size / water_reptition / water_units, 0, water_depth, water_depth, water_depth, water_depth);
+    }
+}
 
 vertex_end(mesh_water_base);
 vertex_end(mesh_water_bright);
+vertex_freeze(mesh_water_base);
+vertex_freeze(mesh_water_bright);
 
 grid_sphere = vertex_create_buffer();
 vertex_begin(grid_sphere, vertex_format);
