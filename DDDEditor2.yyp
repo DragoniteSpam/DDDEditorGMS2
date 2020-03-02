@@ -16107,6 +16107,14 @@
             }
         },
         {
+            "Key": "d616593f-a361-481c-92a1-cc6305ec1b2a",
+            "Value": {
+                "id": "076b0645-e339-42a1-9766-8d28f30b07d0",
+                "resourcePath": "scripts\\uivc_settings_game_lighting_levels\\uivc_settings_game_lighting_levels.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "d629678a-2732-4f47-81e7-2a60db7bc206",
             "Value": {
                 "id": "a2383d8a-2feb-4ea3-801f-c0a0b24aaa79",
@@ -20106,6 +20114,7 @@
         "ece4d9f6-bcd8-45ea-876f-11fc745c21a7",
         "6d0ef0ba-b11a-484c-b31d-b6a4a853a98f",
         "1b4c545b-c4c5-4949-bb22-c222e7e159b3",
+        "d616593f-a361-481c-92a1-cc6305ec1b2a",
         "50fe4fdf-8254-4e9f-b121-e5451ed2913b",
         "9a91b808-8041-4d0c-ac55-a23c6f4b780a",
         "eea94a4c-b7e2-43dd-a768-bd396e34b75c",

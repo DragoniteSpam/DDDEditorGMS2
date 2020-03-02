@@ -2,7 +2,7 @@
 
 var dialog = argument0;
 
-var dw = 512;
+var dw = 640;
 var dh = 640;
 
 var dg = dialog_create(dw, dh, "Data Settings", dialog_default, dc_close_no_questions_asked, dialog);
@@ -47,6 +47,10 @@ var el_battle_type = create_radio_array(col1_x, yy, "Battle Style", ew, eh, uivc
 el_battle_type.tooltip = "Team-based: standard turn-based RPG fare;\nGrid-based: contestants can move around the battle freely (but it's still turn-based);\nAction: you need reflexes";
 create_radio_array_options(el_battle_type, ["Team-based", "Grid-based", "Action"]);
 yy = yy + ui_get_radio_array_height(el_battle_type) + spacing;
+
+var el_lighting_buckets = create_input(col1_x, yy, "Lighting levels:", ew, eh, uivc_settings_game_lighting_levels, Stuff.game_lighting_buckets, "float", validate_double, 1, 1000, 4, vx1, vy1, vx2, vy2, dg);
+el_lighting_buckets.tooltip = "The number of level of shading the lighting can have. Use a small number for a more cartoony lighting effect. Use a higher value for smoother lighting. A value over 100 is largely pointless, but this is a constant-time operation so you can go higher if you want.";
+yy = yy + el_lighting_buckets.height + spacing;
 
 var el_edit_title = create_text(col1_x, yy, "Other Settings", ew, eh, fa_left, ew, dg);
 el_edit_title.color = c_blue;
@@ -114,6 +118,7 @@ ds_list_add(dg.contents,
     el_gameplay_grid,
     el_player_start,
     el_battle_type,
+    el_lighting_buckets,
     // data settings
     el_edit_title,
     el_edit_notes_text,
