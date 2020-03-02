@@ -105,8 +105,8 @@ mesh_missing = qmark_data[0];
 mesh_missing_data = qmark_data[1];
 
 water_tile_size = 0x1000;
-water_reptition = 0x100;
-water_units = 200;
+water_reptition = 80;
+water_units = 80;
 water_depth = -24;
 
 mesh_water_base = vertex_create_buffer();
@@ -117,8 +117,8 @@ vertex_begin(mesh_water_bright, vertex_format_basic);
 
 for (var i = -water_tile_size / 2; i < water_tile_size / 2; i += (water_tile_size / water_units)) {
     for (var j = -water_tile_size / 2; j < water_tile_size / 2; j += (water_tile_size / water_units)) {
-        terrain_create_square(mesh_water_base, i, j, water_tile_size / water_units, 0, 0, water_tile_size / water_reptition / water_units, 0, water_depth, water_depth, water_depth, water_depth);
-        terrain_create_square(mesh_water_bright, i, j, water_tile_size / water_units, 0, 0, water_tile_size / water_reptition / water_units, 0, water_depth, water_depth, water_depth, water_depth);
+        terrain_create_square(mesh_water_base, i, j, water_tile_size / water_units, 0, 0, water_reptition / water_units, 0, water_depth, water_depth, water_depth, water_depth);
+        terrain_create_square(mesh_water_bright, i, j, water_tile_size / water_units, 0, 0, water_reptition / water_units, 0, water_depth, water_depth, water_depth, water_depth);
     }
 }
 
