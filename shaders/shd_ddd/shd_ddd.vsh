@@ -7,6 +7,8 @@ attribute vec4 extra;                       // not used here
 varying vec2 v_vTexcoord;
 varying vec4 v_vColour;
 
+varying vec4 v_lightColour;
+
 #pragma include("lighting.xsh")
 /// https://github.com/GameMakerDiscord/Xpanda
 #define MAX_LIGHTS 8
@@ -19,9 +21,10 @@ uniform int lightCount;
 uniform vec3 lightAmbientColor;
 uniform vec4 lightData[MAX_LIGHTS * 3];
 
-vec4 CommonLighting(vec3 worldPosition, vec3 worldNormal) {
+void CommonLightingSetup(vec3 worldPosition, vec3 worldNormal) {
     if (lightEnabled == 0) {
-        return vec4(1.);
+        v_lightColour = vec4(1.);
+        return;
     }
     
     vec4 finalColor = vec4(lightAmbientColor, 1.);
@@ -38,7 +41,7 @@ vec4 CommonLighting(vec3 worldPosition, vec3 worldNormal) {
             // directional light: [x, y, z, type], [0, 0, 0, 0], [r, g, b, 0]
             vec3 lightDir = -normalize(lightPosition);
             float NdotL = max(dot(worldNormal, lightDir), 0.);
-            finalColor += lightColor * NdotL * in_Colour;
+            finalColor += lightColor * NdotL;
         } else if (type == LIGHT_POINT) {
             float range = lightExt.w;
             // point light: [x, y, z, type], [0, 0, 0, range], [r, g, b, 0]
@@ -53,7 +56,7 @@ vec4 CommonLighting(vec3 worldPosition, vec3 worldNormal) {
         }
     }
     
-    return finalColor;
+    v_lightColour = finalColor;
 }
 // include("lighting.xsh")
 #pragma include("fog.v.xsh")
@@ -73,10 +76,10 @@ void main() {
     vec3 worldPosition = vec3(gm_Matrices[MATRIX_WORLD] * vec4(in_Position, 1.));
     vec3 worldNormal = normalize(gm_Matrices[MATRIX_WORLD] * vec4(in_Normal, 0.)).xyz;
     
-    vec4 finalColor = CommonLighting(worldPosition, worldNormal);
+    CommonLightingSetup(worldPosition, worldNormal);
     CommonFogSetup();
     
-    v_vColour = vec4(min(finalColor, vec4(1.)).rgb, in_Colour.a);
+    v_vColour = in_Colour;
     gl_Position = position;
     v_vTexcoord = in_TextureCoord;
 }

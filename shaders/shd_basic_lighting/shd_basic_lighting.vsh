@@ -15,6 +15,7 @@ varying vec4 v_vColour;
 
 uniform int lightEnabled;
 uniform int lightCount;
+uniform float lightBuckets;
 uniform vec3 lightAmbientColor;
 uniform vec4 lightData[MAX_LIGHTS * 3];
 
@@ -52,7 +53,7 @@ vec4 CommonLighting(vec3 worldPosition, vec3 worldNormal) {
         }
     }
     
-    return finalColor;
+    return floor(finalColor * lightBuckets) / lightBuckets;
 }
 // include("lighting.xsh")
 #pragma include("fog.v.xsh")

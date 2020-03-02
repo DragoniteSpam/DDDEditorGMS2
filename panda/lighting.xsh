@@ -6,6 +6,7 @@
 
 uniform int lightEnabled;
 uniform int lightCount;
+uniform float lightBuckets;
 uniform Vec3 lightAmbientColor;
 uniform Vec4 lightData[MAX_LIGHTS * 3];
 
@@ -43,5 +44,5 @@ Vec4 CommonLighting(Vec3 worldPosition, Vec3 worldNormal) {
         }
     }
     
-    return finalColor;
+    return round(finalColor * lightBuckets) / lightBuckets;
 }

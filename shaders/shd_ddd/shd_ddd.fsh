@@ -1,6 +1,14 @@
 varying vec2 v_vTexcoord;
 varying vec4 v_vColour;
 
+varying vec4 v_lightColour;
+
+uniform float lightBuckets;
+
+void CommonLighting(inout vec4 baseColor) {
+    baseColor *= floor(v_lightColour * lightBuckets) / lightBuckets;
+}
+
 #pragma include("fog.f.xsh")
 /// https://github.com/GameMakerDiscord/Xpanda
 
@@ -31,6 +39,7 @@ void main() {
         discard;
     }
     
+    CommonLighting(color);
     CommonFog(color);
     
     gl_FragColor = color;
