@@ -6,7 +6,7 @@ varying vec4 v_lightColour;
 uniform float lightBuckets;
 
 void CommonLighting(inout vec4 baseColor) {
-    baseColor *= floor(v_lightColour * lightBuckets) / lightBuckets;
+    baseColor *= floor(v_lightColour * lightBuckets + vec4(0.5)) / lightBuckets;
 }
 
 #pragma include("fog.f.xsh")
