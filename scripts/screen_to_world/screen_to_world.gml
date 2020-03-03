@@ -1,5 +1,5 @@
-/// @param screen-x
-/// @param screen-y
+/// @param view-x
+/// @param view-y
 /// @param xfrom
 /// @param yfrom
 /// @param zfrom
@@ -11,12 +11,16 @@
 /// @param zup
 /// @param fov
 /// @param aspect
-// Pretty suret his is an adapted version of code written by a
-// guy called Yourself on the game maker forums, but i can't
-// find the original thread.
+/// @param view-w
+/// @param view-h
+// Pretty suret his is an adapted version of code written by a guy called
+// Yourself on the game maker forums, but i can't find the original thread.
+// I've customized it slightly.
 
 var mm, dX, dY, dZ, uX, uY, uZ, vX, vY, vZ, mX, mY, mZ, width, height, tFOV, asp;
 asp = argument12;
+var view_x = argument13;
+var view_y = argument14;
 
 // normalize TO vector
 dX = argument5 - argument2;
