@@ -153,6 +153,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     
     var element = create_color_picker(xx, yy, "Default color:", ew / 2, eh, uivc_scribble_default_colour, mode.scribble_default_colour, vx1, vy1, vx2, vy2, id);
     ds_list_add(contents, element);
+    el_scribble_default_colour = element;
     
     yy = yy + element.height + spacing;
     #endregion

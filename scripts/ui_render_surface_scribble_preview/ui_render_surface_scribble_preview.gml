@@ -14,6 +14,9 @@ var padding = 32;
 var sw = surface_get_width(surface.surface);
 var sh = surface_get_height(surface.surface);
 
+var base_color = mode.scribble_default_colour;
+mode.scribble_default_colour = surface.root.el_scribble_default_colour.value;
+
 draw_clear(mode.scribble_back_colour);
 draw_rectangle_colour(1, 1, sw - 2, sh - 2, c_black, c_black, c_black, c_black, true);
 
@@ -67,3 +70,5 @@ if (mode.scribble_back_show_guides) {
 }
 
 scribble_draw(scribble_xx, scribble_yy, mode.scribble);
+
+mode.scribble_default_colour = base_color;
