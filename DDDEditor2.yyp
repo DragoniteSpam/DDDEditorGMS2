@@ -3838,7 +3838,7 @@
             "Key": "309412fd-8316-494d-9505-42f395e9f039",
             "Value": {
                 "id": "23277208-9137-40ef-bc3a-9fa234eb8d7f",
-                "resourcePath": "shaders\\shd_water_base\\shd_water_base.yy",
+                "resourcePath": "shaders\\shd_water\\shd_water.yy",
                 "resourceType": "GMShader"
             }
         },
@@ -14072,14 +14072,6 @@
                 "id": "c7e0bdc7-396d-4b80-ad41-00e94b65f4c3",
                 "resourcePath": "scripts\\draw_event_node_condition_add\\draw_event_node_condition_add.yy",
                 "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "b937c7e0-75b2-4300-bf00-a62b0d572993",
-            "Value": {
-                "id": "1d104385-b429-49bd-b7e2-af3052670116",
-                "resourcePath": "shaders\\shd_water_bright\\shd_water_bright.yy",
-                "resourceType": "GMShader"
             }
         },
         {
