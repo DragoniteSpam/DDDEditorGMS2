@@ -19,8 +19,8 @@
 
 var mm, dX, dY, dZ, uX, uY, uZ, vX, vY, vZ, mX, mY, mZ, width, height, tFOV, asp;
 asp = argument12;
-var view_x = argument13;
-var view_y = argument14;
+var view_w = argument13;
+var view_h = argument14;
 
 // normalize TO vector
 dX = argument5 - argument2;
@@ -62,9 +62,9 @@ vY *= tFOV * asp;
 vZ *= tFOV * asp;
 
 // add UP*MOUSE_Y and X*MOUSE_X vector to TO vector
-mX = dX + uX * (1 - 2 * argument1 / H) + vX * (2 * argument0 / W - 1);
-mY = dY + uY * (1 - 2 * argument1 / H) + vY * (2 * argument0 / W - 1);
-mZ = dZ + uZ * (1 - 2 * argument1 / H) + vZ * (2 * argument0 / W - 1);
+mX = dX + uX * (1 - 2 * argument1 / view_h) + vX * (2 * argument0 / view_w - 1);
+mY = dY + uY * (1 - 2 * argument1 / view_h) + vY * (2 * argument0 / view_w - 1);
+mZ = dZ + uZ * (1 - 2 * argument1 / view_h) + vZ * (2 * argument0 / view_w - 1);
 mm = sqrt(mX * mX + mY * mY + mZ * mZ);
 
 // normalize mouse direction vector
