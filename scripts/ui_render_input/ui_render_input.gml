@@ -48,6 +48,7 @@ if (script_execute(input.validation, value, input)) {
 
 var vtx = vx1 + 12;
 var vty = mean(vy1, vy2);
+var spacing = 12;
 
 // Drawing to the surface instead of the screen directly - everything drawn needs
 // to be minus x1 and minus y1, because suddenly we're drawing at the origin again
@@ -71,8 +72,9 @@ var display_text = value + (ui_is_active(input) && (floor((current_time * 0.0012
 if (input.multi_line) {
     var valign = draw_get_valign();
     draw_set_valign(fa_top);
+    var sh = string_height_ext(display_text, -1, vx2 - vx1 - (vtx - vx1) * 2);
     var vty = ui_get_text_y(input, vy1, vy2, fa_top);
-    draw_text_ext_colour(vtx - vx1, vty - vy1, display_text, -1, vx2 - vx1 - (vtx - vx1) * 2, c, c, c, c, 1);
+    draw_text_ext_colour(vtx - vx1, min(vty - vy1, hh - spacing - sh), display_text, -1, vx2 - vx1 - (vtx - vx1) * 2, c, c, c, c, 1);
     draw_set_valign(valign);
 } else {
     var sw_begin = min(vtx - vx1, ww - offset - sw);
@@ -83,7 +85,7 @@ if (input.emphasis) {
     draw_set_font(FDefault12);
 }
 if (string_length(value) == 0) {
-    draw_text_colour(vtx - vx1, vty - vy1, string(string(input.value_default)), c_dkgray, c_dkgray, c_dkgray, c_dkgray, 1);
+    draw_text_colour(vtx - vx1, vty - vy1, string(input.value_default), c_dkgray, c_dkgray, c_dkgray, c_dkgray, 1);
 }
 
 if (input.require_enter) {
