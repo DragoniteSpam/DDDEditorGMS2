@@ -166,7 +166,7 @@
             "Key": "01755d4f-0d5d-4085-a11f-d0c58255e4f7",
             "Value": {
                 "id": "37353d0e-c325-4b65-8390-58cf50c6a299",
-                "resourcePath": "scripts\\momu_about\\momu_about.yy",
+                "resourcePath": "scripts\\momu_credits\\momu_credits.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -10843,14 +10843,6 @@
             }
         },
         {
-            "Key": "8dabfabd-6492-4961-ae4e-fa74df24de87",
-            "Value": {
-                "id": "fda2f2ea-dfe0-4d5f-a653-caebed26f127",
-                "resourcePath": "scripts\\ds_stuff_help\\ds_stuff_help.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "8df3fe50-6439-4dee-8a35-60875ffd2124",
             "Value": {
                 "id": "0c08f22f-843c-4d52-8ef6-ec9aa660efc1",
@@ -15763,14 +15755,6 @@
             }
         },
         {
-            "Key": "d066e656-3571-450b-a31e-b1966976707b",
-            "Value": {
-                "id": "d74b7f88-5625-4b7b-8cb5-54b53f3e190e",
-                "resourcePath": "scripts\\momu_help\\momu_help.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "d06743d6-72a4-4f5e-b34a-903366ffb586",
             "Value": {
                 "id": "aa3de79c-1205-4ec9-bb3a-117d33dc9863",
@@ -15798,7 +15782,7 @@
             "Key": "d0be8157-fa9e-464f-85b4-fc599436f66b",
             "Value": {
                 "id": "86c77705-3d62-490c-866b-cdd010b13fda",
-                "resourcePath": "scripts\\dialog_create_about\\dialog_create_about.yy",
+                "resourcePath": "scripts\\dialog_create_credits\\dialog_create_credits.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -19519,7 +19503,6 @@
         "2dbd7768-55c0-4ab6-9023-057ab43da986",
         "6c74c3c7-3e1b-450f-8fbb-ad588f17dc89",
         "f4ab2647-facc-496d-8b09-0c8e8e5efa34",
-        "8dabfabd-6492-4961-ae4e-fa74df24de87",
         "6a971c31-99b2-4650-8227-a51e96e2bcf9",
         "09633a3f-60e0-4134-90cc-80961de6982c",
         "6ea1b38b-2a12-4b05-9ab3-475e24c13c2f",
@@ -20085,7 +20068,6 @@
         "bd6eb47f-283d-4ec7-9771-700efe9df4ee",
         "23f9a770-ec44-4aa3-be15-777a78a4ac55",
         "6949b6b9-d9ff-4ab9-8d27-461a748b4583",
-        "d066e656-3571-450b-a31e-b1966976707b",
         "01755d4f-0d5d-4085-a11f-d0c58255e4f7",
         "154517c7-22de-4eca-8916-6716b8924f47",
         "0cd6b412-3802-483b-a7b0-8e7f15ca6433",

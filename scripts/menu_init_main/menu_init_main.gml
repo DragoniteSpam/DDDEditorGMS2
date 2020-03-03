@@ -147,11 +147,9 @@ with (instance_create_depth(0, 0, 0, MenuMain)) {
     #endregion
     
     #region help stuff
-    var mh_help = create_menu_element("Contents", momu_help, menu_help);
-    var mh_about = create_menu_element("Credits", momu_about, menu_help);
+    var mh_credits = create_menu_element("Credits", momu_credits, menu_help);
     ds_list_add(menu_help.contents,
-        mh_help,
-        mh_about
+        mh_credits
     );
     #endregion
     

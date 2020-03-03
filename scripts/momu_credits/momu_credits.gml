@@ -4,4 +4,4 @@ var element = argument0;
 
 menu_activate(noone);
 
-dialog_create_about(noone);
+dialog_create_credits(noone);
