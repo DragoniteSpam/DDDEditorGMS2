@@ -42,9 +42,9 @@ with (instance_create_depth(argument[0], argument[1], 0, UIInput)) {
     
     value_lower = argument[9];
     value_upper = argument[10];
-    value_limit = min(argument[11], 0x400);
+    value_limit = min(argument[11], 1000);
     if (value_limit <= 0) {
-        value_limit = 0x400;
+        value_limit = 1000;
     }
     
     value_x1 = argument[12];

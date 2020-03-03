@@ -34,9 +34,11 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     ds_list_add(contents, element);
     
     var element = create_button(xx_in, yy, "Copy", ew / 3, eh, fa_center, uivc_scribble_text_copy, id);
+    element.tooltip = "Copy the text in the box to the Windows clipboard. You can paste it in a text editor or word processor or something.";
     ds_list_add(contents, element);
     
     var element = create_button(xx_out, yy, "Paste", ew / 3, eh, fa_center, uivc_scribble_text_paste, id);
+    element.tooltip = "Paste in text from somewhere else (perhaps a text editor). 1000 character limit; anything beyond that will be cut off.";
     ds_list_add(contents, element);
     
     yy = yy + element.height + spacing;
@@ -46,7 +48,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     var vx2 = vx1 + ew;
     var vy2 = vy1 + eh * 12;
     
-    var element = create_input(xx, yy, "", ew, eh, uivc_scribble_text, mode.scribble_text, "text", validate_string, 0, 1, 0x400, vx1, vy1, vx2, vy2, id);
+    var element = create_input(xx, yy, "", ew, eh, uivc_scribble_text, mode.scribble_text, "text", validate_string, 0, 1, 0x3ff, vx1, vy1, vx2, vy2, id);
     element.multi_line = true;
     el_scribble_text = element;
     ds_list_add(contents, element);
