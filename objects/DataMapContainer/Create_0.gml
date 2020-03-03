@@ -27,8 +27,8 @@ zz = 8;
 
 tileset = 0;                                // index
 is_3d = true;                               // bool
-fog_start = 256;                            // float
-fog_end = 1024;                             // float
+fog_start = 1024;                           // float
+fog_end = 3072;                             // float
 fog_enabled = true;                         // bool
 fog_colour = c_white;                       // uint
 indoors = false;                            // bool
