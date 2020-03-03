@@ -1,5 +1,8 @@
 Stuff.mode = Stuff.animation;
-setting_set("Config", "mode", ModeIDs.ANIMATION);
+
+if (!EDITOR_FORCE_SINGLE_MODE) {
+    setting_set("Config", "mode", ModeIDs.ANIMATION);
+}
 
 view_set_visible(view_fullscreen, true);
 view_set_visible(view_3d, true);

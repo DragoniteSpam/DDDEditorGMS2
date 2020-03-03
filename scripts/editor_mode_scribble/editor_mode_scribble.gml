@@ -1,5 +1,8 @@
 Stuff.mode = Stuff.scribble;
-setting_set("Config", "mode", ModeIDs.SCRIBBLE);
+
+if (!EDITOR_FORCE_SINGLE_MODE) {
+    setting_set("Config", "mode", ModeIDs.SCRIBBLE);
+}
 
 view_set_visible(view_fullscreen, true);
 view_set_visible(view_3d, false);

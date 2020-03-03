@@ -1,5 +1,8 @@
 Stuff.mode = Stuff.spart;
-setting_set("Config", "mode", ModeIDs.SPART);
+
+if (!EDITOR_FORCE_SINGLE_MODE) {
+    setting_set("Config", "mode", ModeIDs.SPART);
+}
 
 view_set_visible(view_fullscreen, false);
 view_set_visible(view_3d, true);

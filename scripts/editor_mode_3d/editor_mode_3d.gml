@@ -1,5 +1,8 @@
 Stuff.mode = Stuff.map;
-setting_set("Config", "mode", ModeIDs.MAP);
+
+if (!EDITOR_FORCE_SINGLE_MODE) {
+    setting_set("Config", "mode", ModeIDs.MAP);
+}
 
 view_set_visible(view_fullscreen, false);
 view_set_visible(view_3d, true);

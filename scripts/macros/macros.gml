@@ -2,6 +2,11 @@
 #macro Terrain:EDITOR_BASE_MODE ModeIDs.TERRAIN
 #macro scribble:EDITOR_BASE_MODE ModeIDs.SCRIBBLE
 #macro spart:EDITOR_BASE_MODE ModeIDs.SPART
+// the dedicated Scribble / spart preview tools will not have the rest of the
+// program available
+#macro EDITOR_FORCE_SINGLE_MODE false
+#macro scribble:EDITOR_FORCE_SINGLE_MODE true
+#macro spart:EDITOR_FORCE_SINGLE_MODE true
 
 #macro MENU_EDITOR_ENABLED true
 #macro scribble:MENU_EDITOR_ENABLED false
