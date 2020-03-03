@@ -113,6 +113,7 @@ with (instance_create_depth(0, 0, 0, MenuMain)) {
     var md_data = create_menu_element("Game Data Editor (F8)", momu_editor_data, menu_data);
     var md_animation = create_menu_element("Animation Editor (F9)", momu_editor_animation, menu_data);
     var md_heightmap = create_menu_element("Terrain Editor (F10)", momu_editor_heightmap, menu_help);
+    var md_scribble = create_menu_element("Scribble preview", momu_editor_scribble, menu_help);
     md_data_types.interactive = MENU_EDITOR_ENABLED;
     md_3d.interactive = MENU_EDITOR_ENABLED;
     md_events.interactive = MENU_EDITOR_ENABLED;
@@ -131,17 +132,18 @@ with (instance_create_depth(0, 0, 0, MenuMain)) {
         md_data,
         md_animation,
         md_heightmap,
+        //
+        m_separator,
+        md_scribble,
     );
     #endregion
     
     #region beta stuff
     var mb_no_beta = create_menu_element("(No beta features, currently)", null, menu_help);
     //
-    var md_beta_scribble = create_menu_element("Scribble demo", momu_editor_scribble, menu_help);
     var md_beta_spart = create_menu_element("Spart demo", momu_editor_spart, menu_help);
     md_beta_spart.interactive = MENU_EDITOR_ENABLED;
     ds_list_add(menu_beta.contents,
-        md_beta_scribble,
         md_beta_spart,
     );
     #endregion
