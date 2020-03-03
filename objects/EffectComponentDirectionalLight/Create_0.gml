@@ -10,3 +10,5 @@ light_dx = -1;
 light_dy = -1;
 light_dz = -1;
 light_colour = c_white;
+
+instance_deactivate_object(id);

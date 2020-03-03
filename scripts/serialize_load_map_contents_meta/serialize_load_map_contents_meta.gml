@@ -45,6 +45,7 @@ map.on_grid =           unpack(bools, 6);
 if (version >= DataVersions.WATER_LEVEL) {
     map.reflections_enabled = unpack(bools, 7);
 }
+// when you remove MAP_LIGHTING_FOG_DATA you can take this out
 map.run_init =          unpack(bools, 8);
 if (version >= DataVersions.MAP_LIGHTING_FOG_DATA) {
     map.light_enabled = unpack(bools, 9);

@@ -22,6 +22,7 @@ com_light = noone;
 com_particle = noone;
 com_audio = noone;
 
+// editor garbage
 cobject_x_axis = instance_create_depth(0, 0, 0, ComponentAxis);
 cobject_y_axis = instance_create_depth(0, 0, 0, ComponentAxis);
 cobject_z_axis = instance_create_depth(0, 0, 0, ComponentAxis);

@@ -39,7 +39,6 @@ switch (radio.value) {
         for (var i = 0; i < ds_list_size(list); i++) {
             var effect = list[| i];
             effect.com_light = instance_create_depth(0, 0, 0, EffectComponentDirectionalLight);
-            instance_deactivate_object(effect.com_light);
             effect.com_light.parent = effect;
         }
         
@@ -58,7 +57,6 @@ switch (radio.value) {
         for (var i = 0; i < ds_list_size(list); i++) {
             var effect = list[| i];
             effect.com_light = instance_create_depth(0, 0, 0, EffectComponentPointLight);
-            instance_deactivate_object(effect.com_light);
             effect.com_light.parent = effect;
         }
         
