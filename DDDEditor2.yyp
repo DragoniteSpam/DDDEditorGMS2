@@ -1227,6 +1227,14 @@
             }
         },
         {
+            "Key": "0e1c8adf-defe-4270-852e-1770113dcdca",
+            "Value": {
+                "id": "13465d2d-0444-481b-aaa2-66aaf6a38901",
+                "resourcePath": "sprites\\spr_event_info_scribble\\spr_event_info_scribble.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "0e26949e-30d7-4801-902e-e3aa4e2d441e",
             "Value": {
                 "id": "4db3724f-df17-4867-83db-021d738313ce",
