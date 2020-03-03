@@ -70,6 +70,40 @@ if (input.emphasis) {
 
 var display_text = value + (ui_is_active(input) && (floor((current_time * 0.00125) % 2) == 0) ? "|" : "");
 if (input.multi_line) {
+    // i guess you could draw this in a single-line box too, but it would be pretty cramped
+    #region the "how many characters remaining" counter
+    if (input.value_limit > 0) {
+        var remaining = input.value_limit - string_length(value);
+        var f = string_length(value) / input.value_limit;
+        // hard limit on 99 for characters remaining
+        if (f > 0.9 && remaining < 100) {
+            var remaining_w = string_width(string(remaining));
+            var remaining_h = string_height(string(remaining));
+            var remaining_x = ww - 4 - remaining_w;
+            var remaining_y = hh - remaining_h;
+            draw_text(remaining_x, remaining_y, string(remaining));
+        } else {
+            var remaining_x = ww - 16;
+            var remaining_y = hh - 16;
+            var r = 12;
+            var steps = 32;
+            draw_sprite(spr_ring, 0, remaining_x, remaining_y);
+            draw_primitive_begin_texture(pr_trianglefan, sprite_get_texture(spr_ring, 0));
+            draw_vertex_texture_colour(remaining_x, remaining_y, 0.5, 0.5, c_ui_select, 1);
+            for (var i = 0; i <= steps * f; i++) {
+                var angle = 360 / steps * i - 90;
+                draw_vertex_texture_colour(
+                    clamp(remaining_x + r * dcos(angle), remaining_x - r, remaining_x + r),
+                    clamp(remaining_y + r * dsin(angle), remaining_y - r, remaining_y + r),
+                    clamp(0.5 + 0.5 * dcos(angle), 0, 1),
+                    clamp(0.5 + 0.5 * dsin(angle), 0, 1),
+                c_ui_select, 1);
+            }
+            draw_primitive_end();
+        }
+    }
+    #endregion
+    
     var valign = draw_get_valign();
     draw_set_valign(fa_top);
     var sh = string_height_ext(display_text, -1, vx2 - vx1 - (vtx - vx1) * 2);
