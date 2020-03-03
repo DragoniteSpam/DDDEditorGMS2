@@ -55,7 +55,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     ds_list_add(contents, el_pages);
     ds_list_add(contents, el_next);
     
-    yy = yy + spacing + element.height;
+    yy += spacing + element.height;
     
     el_instances = create_list(this_column * cw + spacing, yy, "Instances: ", "<No instances>", ew, eh, 27, ui_init_game_data_refresh, false, id, noone);
     el_instances.render = ui_render_list_data_instances;
@@ -63,12 +63,12 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     el_instances.entries_are = ListEntries.INSTANCES;
     ds_list_add(contents, el_instances);
     
-    yy = yy + spacing + ui_get_list_height(el_instances);
+    yy += spacing + ui_get_list_height(el_instances);
     
     el_inst_add = create_button(this_column * cw + spacing, yy, "Add Instance", ew, eh, fa_center, uimu_data_add_data, id);
     ds_list_add(contents, el_inst_add);
     
-    yy = yy + spacing + element.height;
+    yy += spacing + element.height;
     
     el_inst_remove = create_button(this_column * cw + spacing, yy, "Remove Instance", ew, eh, fa_center, uimu_data_remove_data, id);
     ds_list_add(contents, el_inst_remove);

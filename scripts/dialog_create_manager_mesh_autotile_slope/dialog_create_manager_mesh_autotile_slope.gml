@@ -45,7 +45,7 @@ for (var i = 0; i < array_length_1d(map_contents.mesh_autotiles_slope); i++) {
     
     if (i % columns == columns - 1) {
         xx = xx_start;
-        yy = yy + mbh + icon.height + spacing * 2;
+        yy += mbh + icon.height + spacing * 2;
     }
     
     ds_list_add(dg.contents, icon);

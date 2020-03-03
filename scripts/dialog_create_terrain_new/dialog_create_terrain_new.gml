@@ -32,7 +32,7 @@ var el_width = create_input(
 el_width.tooltip = "Height of the terrain";
 dg.el_width = el_width;
 
-yy = yy + el_width.height + spacing;
+yy += el_width.height + spacing;
 
 var el_height = create_input(
     col1_x, yy, "Height:", ew, eh, null,  string(DEFAULT_TERRAIN_HEIGHT), string(MIN_TERRAIN_HEIGHT) + "..." + string(MAX_TERRAIN_HEIGHT),
@@ -41,20 +41,20 @@ var el_height = create_input(
 el_height.tooltip = "Height of the terrain";
 dg.el_height = el_height;
 
-yy = yy + el_height.height + spacing;
+yy += el_height.height + spacing;
 
 var el_dual_layer = create_checkbox(col1_x, yy, "Dual layer?", ew, eh, null, false, dg);
 el_dual_layer.tooltip = "Enable the secondary texture layer for the terrain";
 el_dual_layer.enabled = false;
 dg.el_dual_layer = el_dual_layer;
 
-yy = yy + el_dual_layer.height + spacing;
+yy += el_dual_layer.height + spacing;
 
 var el_scale = create_input(col1_x, yy, "Heightmap Scale:", ew, eh, null, "10", "1...255", validate_int, 1, 255, 3, vx1, vy1, vx2, vy2, dg);
 el_scale.tooltip = "The brightest point on the heightmap will correspond to this value (in most cases a value of 10 or 16 will be sufficient). This is only useful when importing a heightmap.";
 dg.el_scale = el_scale;
 
-yy = yy + el_height.height + spacing;
+yy += el_height.height + spacing;
 
 var el_import_heightmap = create_button(dw / 2 - ew / 2, dh - 32 - b_height - eh / 2 - spacing, "Import Heightmap", ew, b_height, fa_center, dmu_terrain_import_heightmap, dg);
 el_import_heightmap.tooltip = "Import a grayscale image to use to create terrain. Darker values will be lower, and lighter values will be higher.";

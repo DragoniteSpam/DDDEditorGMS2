@@ -34,14 +34,14 @@ create_radio_array_options(el_type, ["None", "Directional", "Point", "Spot (Cone
 el_type.contents[| 3].interactive = false;
 el_type.tooltip = "The lighting data to be attached to this effect.\n - Directional lights are infinite an illuminate everything\n - Point lights illuminate everything within a radius, fading out smoothly\n - Spot lights can be thought of as a combination of point and directional lights, illuminating everything in a certain direction";
 
-yy = yy + ui_get_radio_array_height(el_type) + spacing;
+yy += ui_get_radio_array_height(el_type) + spacing;
 
 var el_color = create_color_picker(col1_x, yy, "Light color:", ew, eh, uivc_entity_effect_com_lighting_colour, com_light ? com_light.light_colour : c_white, vx1, vy1, vx2, vy2, dg);
 el_color.tooltip = "The color of the light. White is fine, in most cases. Black makes no sense.";
 el_color.enabled = (single && com_light && com_light.light_type != LightTypes.NONE);
 dg.el_color = el_color;
 
-yy = yy + el_color.height + spacing;
+yy += el_color.height + spacing;
 
 var yy_options = yy;
 
@@ -53,21 +53,21 @@ el_dir_x.tooltip = "The X component of the light direction vector. If the total 
 el_dir_x.enabled = (single && com_light && com_light.light_type == LightTypes.DIRECTIONAL);
 dg.el_dir_x = el_dir_x;
 
-yy = yy + el_dir_x.height + spacing
+yy += el_dir_x.height + spacing
 
 var el_dir_y = create_input(col1_x, yy, "Y:", ew, eh, uivc_entity_effect_com_lighting_dy, com_dir ? string(com_dir.light_dy) : "", "float", validate_double, -1, 1, 4, vx1, vy1, vx2, vy2, dg);
 el_dir_y.tooltip = "The Y component of the light direction vector. If the total magnitude of the vector is zero, it will be ser to (0, 0, -1) instead.";
 el_dir_y.enabled = (single && com_light && com_light.light_type == LightTypes.DIRECTIONAL);
 dg.el_dir_y = el_dir_y;
 
-yy = yy + el_dir_y.height + spacing;
+yy += el_dir_y.height + spacing;
 
 var el_dir_z = create_input(col1_x, yy, "Z:", ew, eh, uivc_entity_effect_com_lighting_dz, com_dir ? string(com_dir.light_dz) : "", "float", validate_double, -1, 1, 4, vx1, vy1, vx2, vy2, dg);
 el_dir_z.tooltip = "The Z component of the light direction vector. If the total magnitude of the vector is zero, it will be ser to (0, 0, -1) instead.";
 el_dir_z.enabled = (single && com_light && com_light.light_type == LightTypes.DIRECTIONAL);
 dg.el_dir_z = el_dir_z;
 
-yy = yy + el_dir_z.height + spacing;
+yy += el_dir_z.height + spacing;
 #endregion
 
 #region point lights
@@ -78,7 +78,7 @@ el_point_radius.tooltip = "The radius of the point light. A value between 100 an
 el_point_radius.enabled = (single && com_light && com_light.light_type == LightTypes.POINT);
 dg.el_point_radius = el_point_radius;
 
-yy = yy + el_point_radius.height + spacing;
+yy += el_point_radius.height + spacing;
 #endregion
 
 #region spot lights

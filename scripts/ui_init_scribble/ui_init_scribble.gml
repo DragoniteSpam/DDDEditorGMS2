@@ -41,7 +41,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     element.tooltip = "Paste in text from somewhere else (perhaps a text editor). 1000 character limit; anything beyond that will be cut off.";
     ds_list_add(contents, element);
     
-    yy = yy + element.height + spacing;
+    yy += element.height + spacing;
     
     var vx1 = 0;
     var vy1 = 0;
@@ -53,7 +53,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     el_scribble_text = element;
     ds_list_add(contents, element);
     
-    yy = yy + element.height + vy2;
+    yy += element.height + vy2;
     
     var vx1 = ew / 2;
     var vy1 = 0;
@@ -70,7 +70,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     var element = create_text(xx_out, yy, "Out", ew, eh, fa_left, ew, id);
     ds_list_add(contents, element);
     
-    yy = yy + element.height + spacing;
+    yy += element.height + spacing;
     
     var element = create_text(xx, yy, "    Method:", ew, eh, fa_left, ew, id);
     ds_list_add(contents, element);
@@ -85,7 +85,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     element.tooltip = "The autotype method used. Scribble allows you to fade text by character or by line.";
     ds_list_add(contents, element);
     
-    yy = yy + ui_get_radio_array_height(element);
+    yy += ui_get_radio_array_height(element);
     
     var element = create_text(xx, yy, "    Speed:", ew, eh, fa_left, ew, id);
     ds_list_add(contents, element);
@@ -103,7 +103,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     element.tooltip = "The speed at which text is concealed when autotype is enabled.";
     ds_list_add(contents, element);
     
-    yy = yy + element.height + spacing;
+    yy += element.height + spacing;
     
     var element = create_text(xx, yy, "    Smoothness:", ew, eh, fa_left, ew, id);
     ds_list_add(contents, element);
@@ -116,7 +116,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     element.tooltip = "How smoothly characters fade out when autotype is running. Higher values correspond to a longer fade time; a smoothness value of 1 means characters appear instantly.";
     ds_list_add(contents, element);
     
-    yy = yy + element.height + spacing;
+    yy += element.height + spacing;
     
     var element = create_text(xx, yy, "    Delay:", ew, eh, fa_left, ew, id);
     ds_list_add(contents, element);
@@ -134,13 +134,13 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     var vx2 = ew;
     var vy2 = vy1 + eh;
     
-    yy = yy + element.height + spacing;
+    yy += element.height + spacing;
     
     var element = create_text(xx, yy, "Other Parameters", ew, eh, fa_left, ew, id);
     element.color = c_blue;
     ds_list_add(contents, element);
     
-    yy = yy + element.height + spacing;
+    yy += element.height + spacing;
     
     var element = create_text(xx, yy, "Text bounds:", ew, eh, fa_left, ew, id);
     ds_list_add(contents, element);
@@ -149,13 +149,13 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     element.tooltip = "The width of the bounding box containing the text.";
     ds_list_add(contents, element);
     
-    yy = yy + element.height + spacing;
+    yy += element.height + spacing;
     
     var element = create_color_picker(xx, yy, "Default color:", ew / 2, eh, uivc_scribble_default_colour, mode.scribble_default_colour, vx1, vy1, vx2, vy2, id);
     ds_list_add(contents, element);
     el_scribble_default_colour = element;
     
-    yy = yy + element.height + spacing;
+    yy += element.height + spacing;
     #endregion
     
     #region scribble canvas
@@ -197,7 +197,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     ds_list_add(contents, element);
     xx = xx + ew / 2;
     
-    yy = yy + element.height + spacing;
+    yy += element.height + spacing;
     
     xx = xx_base;
     

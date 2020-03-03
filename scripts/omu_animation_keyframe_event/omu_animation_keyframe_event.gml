@@ -31,15 +31,15 @@ if (keyframe) {
     var el_graphic_type = create_radio_array(16, yy, "Graphic Type", ew, eh, uivc_animation_keyframe_graphic_type, keyframe.graphic_type, dg);
     create_radio_array_options(el_graphic_type, ["None", "No Change", "Sprite", "Mesh"]);
     
-    yy = yy + ui_get_radio_array_height(el_graphic_type) + spacing;
+    yy += ui_get_radio_array_height(el_graphic_type) + spacing;
     
     var el_graphic_speed = create_input(16, yy, "Speed", ew, eh, uivc_animation_keyframe_graphic_speed, keyframe.graphic_speed, "float", validate_double, 0, 16, 4, vx1, vy1, vx2, vy2, dg);
     
-    yy = yy + el_graphic_speed.height + spacing;
+    yy += el_graphic_speed.height + spacing;
     
     var el_event = create_input(16, yy, "Function call", ew, eh, uivc_animation_keyframe_function, keyframe.event, "string", validate_string, 0, 1, 16, vx1, vy1, vx2, vy2, dg);
     
-    yy = yy + el_event.height + spacing;
+    yy += el_event.height + spacing;
     
     var el_audio = create_list(16, yy, "Sound Effect", "<no sound effects>", ew, eh, 8, uivc_animation_keyframe_audio, false, dg);
     el_audio.entries_are = ListEntries.GUIDS;
@@ -50,7 +50,7 @@ if (keyframe) {
         }
     }
     
-    yy = yy + ui_get_list_height(el_audio) + spacing;
+    yy += ui_get_list_height(el_audio) + spacing;
     
     yy = yy_base;
     
@@ -74,7 +74,7 @@ if (keyframe) {
     el_graphic_sprite_list.entries_are = ListEntries.STRINGS;
     dg.el_graphic_mesh_list = el_graphic_mesh_list;
     
-    yy = yy + ui_get_list_height(el_graphic_sprite_list) + spacing;
+    yy += ui_get_list_height(el_graphic_sprite_list) + spacing;
     
     var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
     

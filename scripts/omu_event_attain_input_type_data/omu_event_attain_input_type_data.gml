@@ -43,7 +43,7 @@ if (custom_data_index[| 0] > -1) {
 }
 dg.el_list = el_list;
 
-yy = yy + ui_get_list_height(el_list) + spacing;
+yy += ui_get_list_height(el_list) + spacing;
 
 var el_type = create_radio_array(16, yy, "Input Types", ew, eh, uivc_list_event_attain_input_type_index, custom_data_type[| 0], dg);
 create_radio_array_options(el_type, ["Text", "Text (Scribble safe)", "Integer", "Unsigned Integer", "Floating Point"]);
@@ -53,7 +53,7 @@ el_type.contents[| 3].interactive = false;
 el_type.contents[| 4].interactive = false;
 dg.el_type = el_type;
 
-yy = yy + ui_get_radio_array_height(el_type) + spacing;
+yy += ui_get_radio_array_height(el_type) + spacing;
 
 var el_limit = create_input(16, yy, "Char. Limit:", ew, eh, uivc_list_event_attain_input_char_limit, custom_data_limit[| 0], "probably 16", validate_int, 0, 120, 3, vx1, vy1, vx2, vy2, dg);
 

@@ -51,7 +51,7 @@ if (selection + 1) {
             var element_header = noone;
             var element = create_input(spacing, yy, "Name:", ew, eh * 2, uivc_data_set_name, "", "Instance name", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, noone);
             element.valignment = fa_top;
-            yy = yy + element.height + spacing;
+            yy += element.height + spacing;
             
             ds_list_add(col_data.contents, element);
             Stuff.data.ui.el_inst_name = element;
@@ -59,7 +59,7 @@ if (selection + 1) {
             var element = create_input(spacing, yy, "Internal Name:", ew, eh * 2, uivc_data_set_internal_name, "", "Internal name", validate_string_internal_name, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, noone);
             element.valignment = fa_top;
             element.render = ui_render_text_data_internal_name;
-            yy = yy + element.height + spacing + eh / 2;
+            yy += element.height + spacing + eh / 2;
             Stuff.data.ui.el_inst_internal_name = element;
             ds_list_add(col_data.contents, element);
             
@@ -238,7 +238,7 @@ if (selection + 1) {
                     yy = yy_base;
                 }
                 
-                yy = yy + hh + spacing;
+                yy += hh + spacing;
                 
                 if (element_header) {
                     element_header.is_aux = true;

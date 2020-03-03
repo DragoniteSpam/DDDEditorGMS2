@@ -31,7 +31,7 @@ var label = node.name + " / " + (string_length(outbound_label) > 0 ? outbound_la
 
 var el_title_text = create_text(16, yy, label, ew, eh, fa_left, ew, dg);
 
-yy = yy + el_title_text.height + spacing;
+yy += el_title_text.height + spacing;
 
 var el_list = create_list(16, yy, "Select an event", "<how do you even have no events?>", ew, eh, 18, null, false, dg, Stuff.all_events);
 el_list.entries_are = ListEntries.INSTANCES;

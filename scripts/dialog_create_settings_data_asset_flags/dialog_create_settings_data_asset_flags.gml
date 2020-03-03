@@ -27,14 +27,14 @@ el_list.allow_deselect = false;
 ui_list_select(el_list, 0);
 dg.el_list = el_list;
 
-yy = yy + ui_get_list_height(el_list) + spacing;
+yy += ui_get_list_height(el_list) + spacing;
 
 var el_name = create_input(32, yy, "Name:", ew, eh, uivc_global_flag_name, "", "16 characters", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
 ui_input_set_value(el_name, Stuff.all_asset_flags[| 0]);
-yy = yy + el_name.height + spacing;
+yy += el_name.height + spacing;
 dg.el_name = el_name;
 
-yy = yy + el_name.height + spacing;
+yy += el_name.height + spacing;
 
 var b_width = 128;
 var b_height = 32;

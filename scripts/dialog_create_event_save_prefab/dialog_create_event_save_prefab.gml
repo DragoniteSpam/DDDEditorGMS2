@@ -33,7 +33,7 @@ if (position) {
     base_name = string_copy(base_name, 1, position - 1);
 }
 var el_name = create_input(16, yy, "Name:", ew, eh, null, base_name, "", validate_string, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
-yy = yy + el_name.height + spacing;
+yy += el_name.height + spacing;
 dg.el_name = el_name;
 
 var el_nope = create_button(dw / 3, dh - 32 - b_height / 2, "Nope", b_width, b_height, fa_center, dmu_dialog_commit, dg, fa_center);

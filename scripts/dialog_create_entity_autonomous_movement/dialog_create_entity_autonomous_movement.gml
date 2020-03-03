@@ -29,15 +29,15 @@ var ucheck_width = 64;        // unlabeled check boxes shouldn't have as wide of
 
 var el_movement = create_radio_array(col1_x, yy, "Autonomous Movement", ew, eh, uivc_entity_auto_move, entity.autonomous_movement, dg);
 create_radio_array_options(el_movement, ["Fixed", "Random", "Approach", "Custom"]);
-yy = yy + ui_get_radio_array_height(el_movement) + spacing;
+yy += ui_get_radio_array_height(el_movement) + spacing;
 
 var el_movement_speed = create_radio_array(col1_x, yy, "Move Speed", ew, eh, uivc_entity_auto_speed, entity.autonomous_movement_speed, dg);
 create_radio_array_options(el_movement_speed, ["1 / 8x", "1 / 4x", "1 / 2x", "1x", "2x", "4x"]);
-yy = yy + ui_get_radio_array_height(el_movement_speed) + spacing;
+yy += ui_get_radio_array_height(el_movement_speed) + spacing;
 
 var el_movement_frequency = create_radio_array(col1_x, yy, "Move Frequency", ew, eh, uivc_entity_auto_frequency, entity.autonomous_movement_frequency, dg);
 create_radio_array_options(el_movement_frequency, ["Slowest", "Slow", "Normal", "Fast", "Fastest"]);
-yy = yy + ui_get_radio_array_height(el_movement_frequency) + spacing;
+yy += ui_get_radio_array_height(el_movement_frequency) + spacing;
 
 yy = 64;
 var n = 8;
@@ -45,25 +45,25 @@ var n = 8;
 var el_move_routes = create_list(col2_x, yy, "Move Routes", "<No move routes>", ew, eh, n, null, false, dg);
 el_move_routes.render = ui_render_list_move_routes;
 el_move_routes.entries_are = ListEntries.INSTANCES;
-yy = yy + ui_get_list_height(el_move_routes) + spacing;
+yy += ui_get_list_height(el_move_routes) + spacing;
 dg.el_move_routes = el_move_routes;
 
 var el_move_route_edit = create_button(col2_x, yy, "Edit Move Route", ew, eh, fa_center, omu_entity_edit_move_route, dg);
-yy = yy + el_move_route_edit.height + spacing;
+yy += el_move_route_edit.height + spacing;
 
 var el_move_route_add = create_button(col2_x, yy, "Add Move Route", ew, eh, fa_center, omu_entity_add_move_route, dg);
-yy = yy + el_move_route_add.height + spacing;
+yy += el_move_route_add.height + spacing;
 
 var el_move_route_delete = create_button(col2_x, yy, "Delete Move Route", ew, eh, fa_center, omu_entity_remove_move_route, dg);
-yy = yy + el_move_route_delete.height+spacing;
+yy += el_move_route_delete.height+spacing;
 
 var el_move_route_auto = create_button(col2_x, yy, "Set Auto", ew / 2, eh, fa_center, omu_entity_set_auto_move_route, dg);
 var el_move_route_auto_remove = create_button(col2_x + ew / 2, yy, "Remove Auto", ew / 2, eh, fa_center, omu_entity_remove_auto_move_route, dg);
-yy = yy + el_move_route_auto_remove.height + spacing;
+yy += el_move_route_auto_remove.height + spacing;
 
 var el_move_route_make_visible = create_button(col2_x, yy, "Show", ew / 2, eh, fa_center, omu_entity_move_route_make_visible, dg);
 var el_move_route_make_invisible = create_button(col2_x + ew / 2, yy, "Hide", ew / 2, eh, fa_center, omu_entity_move_route_make_invisible, dg);
-yy = yy + el_move_route_make_invisible.height + spacing;
+yy += el_move_route_make_invisible.height + spacing;
 
 var b_width = 128;
 var b_height = 32;

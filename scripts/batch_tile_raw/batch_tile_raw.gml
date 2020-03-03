@@ -29,7 +29,7 @@ var zoffset = (argument_count > 11 && argument[11] != undefined) ? argument[11] 
 var TEXEL = 1 / TEXTURE_SIZE;
 
 xx = xx + xoffset;
-yy = yy + yoffset;
+yy += yoffset;
 zz = zz + zoffset;
 
 var nx = 0;

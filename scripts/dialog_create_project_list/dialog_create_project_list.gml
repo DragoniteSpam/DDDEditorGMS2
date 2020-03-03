@@ -77,52 +77,52 @@ for (var i = 0; i < n_projects; i++) {
 buffer_delete(fbuffer);
 #endregion
 
-yy = yy + ui_get_list_height(el_list) + spacing;
+yy += ui_get_list_height(el_list) + spacing;
 
 var el_load = create_button(16, yy, "Load", ew, eh, fa_center, omu_project_load, dg);
 el_load.tooltip = "Alternatively, double-click on the entry in the list.";
-yy = yy + el_load.height + spacing;
+yy += el_load.height + spacing;
 var el_remove = create_button(16, yy, "Remove", ew, eh, fa_center, omu_project_remove, dg);
 el_remove.tooltip = "Removes the project from this list. If you still have it saved on your computer it will not be deleted, but you will need to use Open Other if you want to edit it again.";
-yy = yy + el_remove.height + spacing;
+yy += el_remove.height + spacing;
 var el_other = create_button(16, yy, "Open Other", ew, eh, fa_center, omu_project_open_other, dg);
 el_other.tooltip = "Open a .dddd game data file somehwere on your computer. The original will not be modified until you save over it; a copy will be saved to the editor's local storage.";
-yy = yy + el_other.height + spacing;
+yy += el_other.height + spacing;
 
 yy = yy_base;
 
 var el_summary = create_text(c2 + 16, yy, "Summary", ew, eh, fa_left, ew, dg);
 el_summary.color = c_blue;
-yy = yy + el_summary.height + spacing;
+yy += el_summary.height + spacing;
 
 var el_summary_name = create_text(c2 + 16, yy, "", ew, eh, fa_left, ew, dg);
 dg.el_summary_name = el_summary_name;
-yy = yy + el_summary_name.height + spacing;
+yy += el_summary_name.height + spacing;
 
 var el_summary_version = create_text(c2 + 16, yy, "", ew, eh, fa_left, ew, dg);
 dg.el_summary_version = el_summary_version;
-yy = yy + el_summary_version.height + spacing;
+yy += el_summary_version.height + spacing;
 
 var el_summary_timestamp_date = create_text(c2 + 16, yy, "", ew, eh, fa_left, ew, dg);
 dg.el_summary_timestamp_date = el_summary_timestamp_date;
-yy = yy + el_summary_timestamp_date.height + spacing;
+yy += el_summary_timestamp_date.height + spacing;
 
 var el_summary_timestamp_time = create_text(c2 + 16, yy, "", ew, eh, fa_left, ew, dg);
 dg.el_summary_timestamp_time = el_summary_timestamp_time;
-yy = yy + el_summary_timestamp_time.height + spacing;
+yy += el_summary_timestamp_time.height + spacing;
 
 var el_summary_author = create_text(c2 + 16, yy, "", ew, eh, fa_left, ew, dg);
 dg.el_summary_author = el_summary_author;
-yy = yy + el_summary_author.height + spacing;
+yy += el_summary_author.height + spacing;
 
 var el_summary_file_count = create_text(c2 + 16, yy, "", ew, eh, fa_left, ew, dg);
 dg.el_summary_file_count = el_summary_file_count;
-yy = yy + el_summary_file_count.height + spacing;
+yy += el_summary_file_count.height + spacing;
 
 var el_summary_summary = create_text(c2 + 16, yy - 8, "", ew, eh, fa_left, ew, dg);
 el_summary_summary.valignment = fa_top;
 dg.el_summary_summary = el_summary_summary;
-yy = yy + el_summary_summary.height + spacing - 8;
+yy += el_summary_summary.height + spacing - 8;
 
 var el_new = create_button(dw /2 - b_width / 2, dh - 32 - b_height / 2, "Create New", b_width, b_height, fa_center, omu_project_create, dg);
 el_new.tooltip = "New maps will be created with a default white directional light with a vector of (-1, -1, -1).";

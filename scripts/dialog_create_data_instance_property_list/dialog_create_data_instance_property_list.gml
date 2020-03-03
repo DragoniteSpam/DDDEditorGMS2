@@ -71,45 +71,45 @@ switch (property.type) {
 }
 dg.el_list_main = el_list;
 
-yy = yy + ui_get_list_height(el_list) + spacing;
+yy += ui_get_list_height(el_list) + spacing;
 
 var el_add = create_button(16, yy, "Add", ew, eh, fa_center, omu_data_list_add, dg);
 el_add.key = root.key;
 dg.el_add = el_add;
-yy = yy + el_add.height + spacing;
+yy += el_add.height + spacing;
 var el_remove = create_button(16, yy, "Remove", ew, eh, fa_center, omu_data_list_remove, dg);
 el_remove.key = root.key;
 dg.el_remove = el_remove;
-yy = yy + el_remove.height + spacing;
+yy += el_remove.height + spacing;
 
 switch (property.type) {
     case DataTypes.INT:
         var el_value = create_input(16, yy, "Value: ", ew, eh, uivc_data_property_list_number, "0", string(property.range_min) + "..." + string(property.range_max),
             validate_int, property.range_min, property.range_max, log10(property.range_max) + 2, vx1, vy1, vx2, vy2, dg);
         el_value.key = root.key;
-        yy = yy + el_value.height + spacing;
+        yy += el_value.height + spacing;
         break;
     case DataTypes.FLOAT:
         var el_value = create_input(16, yy, "Value: ", ew, eh, uivc_data_property_list_number, "0", string(property.range_min) + "..." + string(property.range_max),
             validate_double, property.range_min, property.range_max, 12, vx1, vy1, vx2, vy2, dg);
         el_value.key = root.key;
-        yy = yy + el_value.height + spacing;
+        yy += el_value.height + spacing;
         break;
     case DataTypes.STRING:
         var el_value = create_input(16, yy, "Value: ", ew, eh, uivc_data_property_list_string, "0", "text", validate_string, 0, 1, property.char_limit, vx1, vy1, vx2, vy2, dg);
         el_value.key = root.key;
-        yy = yy + el_value.height + spacing;
+        yy += el_value.height + spacing;
         break;
     case DataTypes.BOOL:
         // this onvaluechange just copies the value without casting it so we can do this even though it's designed for strings and
         // bools are decidedly not strings
         var el_value = create_checkbox(16, yy, "Value", ew, eh, uivc_data_property_list_string, false, dg);
         el_value.key = root.key;
-        yy = yy + el_value.height + spacing;
+        yy += el_value.height + spacing;
         break;
     case DataTypes.CODE:
         var el_value = create_input_code(16, yy, "Code: ", ew, eh, vx1, vy1, vx2, vy2, "-- write Lua here", uivc_data_property_list_string, dg, root.key);
-        yy = yy + el_value.height + spacing;
+        yy += el_value.height + spacing;
         break;
     case DataTypes.ENUM:
     case DataTypes.DATA:
@@ -120,40 +120,40 @@ switch (property.type) {
         el_value.entries_are = ListEntries.INSTANCES;
         
         el_value.key = root.key;
-        yy = yy + ui_get_list_height(el_value) + spacing;
+        yy += ui_get_list_height(el_value) + spacing;
         break;
     case DataTypes.AUDIO_BGM:
         var el_value = create_list(16, yy, "Select a BGM resource:", "<no BGM>", ew, eh, 8, uivc_data_property_list_guid, false, dg, Stuff.all_bgm);
         el_value.entries_are = ListEntries.INSTANCES;
         
         el_value.key = root.key;
-        yy = yy + ui_get_list_height(el_value) + spacing;
+        yy += ui_get_list_height(el_value) + spacing;
         break;
     case DataTypes.AUDIO_SE:
         var el_value = create_list(16, yy, "Select an SE resource:", "<no SE>", ew, eh, 8, uivc_data_property_list_guid, false, dg, Stuff.all_se);
         el_value.entries_are = ListEntries.INSTANCES;
         
         el_value.key = root.key;
-        yy = yy + ui_get_list_height(el_value) + spacing;
+        yy += ui_get_list_height(el_value) + spacing;
         break;
     case DataTypes.AUTOTILE:
         var el_value = create_list(16, yy, "Select an Autotile resource:", "<no Autotiles>", ew, eh, 8, uivc_data_property_list_guid, false, dg, Stuff.all_graphic_autotiles);
         el_value.entries_are = ListEntries.INSTANCES;
         
         el_value.key = root.key;
-        yy = yy + ui_get_list_height(el_value) + spacing;
+        yy += ui_get_list_height(el_value) + spacing;
         break;
     case DataTypes.COLOR:
         var el_value = create_button(16, yy, "Value", ew, eh, fa_left, not_yet_implemented, dg);
         el_value.key = root.key;
-        yy = yy + el_value.height + spacing;
+        yy += el_value.height + spacing;
         break;
     case DataTypes.MESH:
         var el_value = create_list(16, yy, "Select a Mesh resource:", "<no Meshes>", ew, eh, 8, uivc_data_property_list_guid, false, dg, Stuff.all_meshes);
         el_value.entries_are = ListEntries.INSTANCES;
         
         el_value.key = root.key;
-        yy = yy + ui_get_list_height(el_value) + spacing;
+        yy += ui_get_list_height(el_value) + spacing;
         break;
     case DataTypes.IMG_TILESET:
         not_yet_implemented();
@@ -161,42 +161,42 @@ switch (property.type) {
         el_value.entries_are = ListEntries.INSTANCES;
         
         el_value.key = root.key;
-        yy = yy + ui_get_list_height(el_value) + spacing;
+        yy += ui_get_list_height(el_value) + spacing;
         break;
     case DataTypes.IMG_BATTLER:
         var el_value = create_list(16, yy, "Select a Battler sprite:", "<no Battlers>", ew, eh, 8, uivc_data_property_list_guid, false, dg, Stuff.all_graphic_battlers);
         el_value.entries_are = ListEntries.INSTANCES;
         
         el_value.key = root.key;
-        yy = yy + ui_get_list_height(el_value) + spacing;
+        yy += ui_get_list_height(el_value) + spacing;
         break;
     case DataTypes.IMG_OVERWORLD:
         var el_value = create_list(16, yy, "Select am Overworld sprite:", "<no Overworlds>", ew, eh, 8, uivc_data_property_list_guid, false, dg, Stuff.all_graphic_overworlds);
         el_value.entries_are = ListEntries.INSTANCES;
         
         el_value.key = root.key;
-        yy = yy + ui_get_list_height(el_value) + spacing;
+        yy += ui_get_list_height(el_value) + spacing;
         break;
     case DataTypes.IMG_PARTICLE:
         var el_value = create_list(16, yy, "Select a Particle sprite:", "<no Particles>", ew, eh, 8, uivc_data_property_list_guid, false, dg, Stuff.all_graphic_particles);
         el_value.entries_are = ListEntries.INSTANCES;
         
         el_value.key = root.key;
-        yy = yy + ui_get_list_height(el_value) + spacing;
+        yy += ui_get_list_height(el_value) + spacing;
         break;
     case DataTypes.IMG_UI:
         var el_value = create_list(16, yy, "Select a UI images:", "<no UI images>", ew, eh, 8, uivc_data_property_list_guid, false, dg, Stuff.all_graphic_ui);
         el_value.entries_are = ListEntries.INSTANCES;
         
         el_value.key = root.key;
-        yy = yy + ui_get_list_height(el_value) + spacing;
+        yy += ui_get_list_height(el_value) + spacing;
         break;
     case DataTypes.IMG_ETC:
         var el_value = create_list(16, yy, "Select a misc. image:", "<no misc. images>", ew, eh, 8, uivc_data_property_list_guid, false, dg, Stuff.all_graphic_etc);
         el_value.entries_are = ListEntries.INSTANCES;
         
         el_value.key = root.key;
-        yy = yy + ui_get_list_height(el_value) + spacing;
+        yy += ui_get_list_height(el_value) + spacing;
         break;
     case DataTypes.TILE:
         not_yet_implemented();
@@ -207,7 +207,7 @@ switch (property.type) {
         el_value.entries_are = ListEntries.GUIDS;
         
         el_value.key = root.key;
-        yy = yy + ui_get_list_height(el_value) + spacing;
+        yy += ui_get_list_height(el_value) + spacing;
         break;
 }
 

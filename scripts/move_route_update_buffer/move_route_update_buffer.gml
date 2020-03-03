@@ -46,7 +46,7 @@ for (var i = 0; i < ds_list_size(route.steps); i++) {
         // actual things
         case MoveRouteActions.MOVE_DOWN:
             vertex_point_line(buffer, xx, yy, zz, c, 1);
-            yy = yy + TILE_HEIGHT * data[@ 1];
+            yy += TILE_HEIGHT * data[@ 1];
             vertex_point_line(buffer, xx, yy, zz, c, 1);
             n_actions++;
             break;
@@ -71,14 +71,14 @@ for (var i = 0; i < ds_list_size(route.steps); i++) {
         case MoveRouteActions.MOVE_LOWER_LEFT:
             vertex_point_line(buffer, xx, yy, zz, c, 1);
             xx = xx - TILE_WIDTH * data[@ 1];
-            yy = yy + TILE_HEIGHT * data[@ 1];
+            yy += TILE_HEIGHT * data[@ 1];
             vertex_point_line(buffer, xx, yy, zz, c, 1);
             n_actions++;
             break;
         case MoveRouteActions.MOVE_LOWER_RIGHT:
             vertex_point_line(buffer, xx, yy, zz, c, 1);
             xx = xx + TILE_WIDTH * data[@ 1];
-            yy = yy + TILE_HEIGHT * data[@ 1];
+            yy += TILE_HEIGHT * data[@ 1];
             vertex_point_line(buffer, xx, yy, zz, c, 1);
             n_actions++;
             break;

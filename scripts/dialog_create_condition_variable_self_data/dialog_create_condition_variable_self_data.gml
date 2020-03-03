@@ -40,7 +40,7 @@ dg.el_list = el_list;
 var el_comparison = create_radio_array(c2 + 16, yy, "Comparison", ew, eh, uivc_check_event_condition_comparison, list_comparison[| index], dg);
 create_radio_array_options(el_comparison, ["Less (<)", "Less or Equal (<=)", "Equal (==)", "Greater or Equal (>=)", "Greater (>)", "Not Equal (!=)"]);
 
-yy = yy + ui_get_radio_array_height(el_comparison) + spacing;
+yy += ui_get_radio_array_height(el_comparison) + spacing;
 
 var el_value = create_input(c2 + 16, yy, "Value:", ew, eh, uivc_check_event_condition_value, list_value[| index], "float", validate_double, -0x80000000, 0x7fffffff, 11, vx1, vy1, vx2, vy2, dg);
 dg.el_value = el_value;

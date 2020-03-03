@@ -25,7 +25,7 @@ dg.el_list.key = "list";
 dg.el_preview = create_image_button(dw / 2 + 16, yy, "If an autotile was loaded into this slot it would be previewed here", noone, dw / 2 - 32, dw / 2 - 32, fa_center, null, dg);
 dg.el_preview.render = ui_render_image_button_autotile_preview;
 
-yy = yy + dg.el_preview.height + 16;
+yy += dg.el_preview.height + 16;
 
 dg.el_manager = create_button(dw * 3 / 4, yy, "Autotile Data", b_width, b_height, fa_center, omu_manager_autotile, dg, fa_center, fa_top);
 

@@ -38,22 +38,22 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     el_master.entries_are = ListEntries.INSTANCES;
     ds_list_add(contents, el_master);
     
-    yy = yy + ui_get_list_height(el_master);
+    yy += ui_get_list_height(el_master);
     
     var element = create_button(xx, yy, "Add Animation", ew, eh, fa_middle, omu_animation_add, id);
     ds_list_add(contents, element);
     
-    yy = yy + element.height + spacing;
+    yy += element.height + spacing;
     
     var element = create_button(xx, yy, "Remove Animation", ew, eh, fa_middle, omu_animation_remove, id);
     ds_list_add(contents, element);
     
-    yy = yy + element.height + spacing;
+    yy += element.height + spacing;
     
     var element = create_button(xx, yy, "Edit Animation Properties", ew, eh, fa_middle, omu_animation_properties, id);
     ds_list_add(contents, element);
     
-    yy = yy + element.height + spacing;
+    yy += element.height + spacing;
     
     yy = yy_base;
     this_column = 1;
@@ -69,23 +69,23 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     el_timeline = create_timeline(tlx, el_layers.y, 32, eh, el_layers.slots, 30, null, uii_animation_layers, id);
     ds_list_add(contents, el_timeline);
     
-    yy = yy + ui_get_list_height(el_layers);
+    yy += ui_get_list_height(el_layers);
     var yy_beneath_timeline = yy - 16;
     
     var element = create_button(xx, yy, "Add Layer", ew, eh, fa_middle, omu_animation_layer_add, id);
     ds_list_add(contents, element);
     
-    yy = yy + element.height + spacing;
+    yy += element.height + spacing;
     
     var element = create_button(xx, yy, "Remove Layer", ew, eh, fa_middle, omu_animation_layer_remove, id);
     ds_list_add(contents, element);
     
-    yy = yy + element.height + spacing;
+    yy += element.height + spacing;
     
     var element = create_button(xx, yy, "Edit Layer Properties", ew, eh, fa_middle, uivc_animation_layer_properties, id);
     ds_list_add(contents, element);
     
-    yy = yy + element.height + spacing;
+    yy += element.height + spacing;
     
     el_keyframe = instance_create_depth(xx, yy, 0, UIThing);
     el_keyframe.root = id;
@@ -106,12 +106,12 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
         el_keyframe.relative.render = ui_render_animation_keyframe_relative;
         ds_list_add(el_keyframe.contents, el_keyframe.relative);
         
-        yy = yy + el_keyframe.relative.height + spacing;
+        yy += el_keyframe.relative.height + spacing;
         
         var element = create_text(xx, yy, "      Keyframe Translation", ew, eh, fa_left, ew, el_keyframe);
         ds_list_add(el_keyframe.contents, element);
         
-        yy = yy + element.height;
+        yy += element.height;
         
         el_keyframe.translate_x = create_input(xx, yy, "      x:", ew, eh, uivc_animation_keyframe_translation_x, "0", "float", validate_double, -MILLION, MILLION, 10, vx1, vy1, vx2, vy2, el_keyframe);
         el_keyframe.translate_x.render = ui_render_animation_keyframe_translate_x;
@@ -120,7 +120,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
         el_keyframe.tween_translate_x.parameter = KeyframeParameters.TRANS_X;
         ds_list_add(el_keyframe.contents, el_keyframe.tween_translate_x);
         
-        yy = yy + el_keyframe.translate_x.height;
+        yy += el_keyframe.translate_x.height;
     
         el_keyframe.translate_y = create_input(xx, yy, "      y:", ew, eh, uivc_animation_keyframe_translation_y, "0", "float", validate_double, -MILLION, MILLION, 10, vx1, vy1, vx2, vy2, el_keyframe);
         el_keyframe.translate_y.render = ui_render_animation_keyframe_translate_y;
@@ -129,7 +129,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
         el_keyframe.tween_translate_y.parameter = KeyframeParameters.TRANS_Y;
         ds_list_add(el_keyframe.contents, el_keyframe.tween_translate_y);
         
-        yy = yy + el_keyframe.translate_y.height;
+        yy += el_keyframe.translate_y.height;
     
         el_keyframe.translate_z = create_input(xx, yy, "      z:", ew, eh, uivc_animation_keyframe_translation_z, "0", "float", validate_double, -MILLION, MILLION, 10, vx1, vy1, vx2, vy2, el_keyframe);
         el_keyframe.translate_z.render = ui_render_animation_keyframe_translate_z;
@@ -138,12 +138,12 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
         el_keyframe.tween_translate_z.parameter = KeyframeParameters.TRANS_Z;
         ds_list_add(el_keyframe.contents, el_keyframe.tween_translate_z);
         
-        yy = yy + el_keyframe.translate_z.height;
+        yy += el_keyframe.translate_z.height;
     
         var element = create_text(xx, yy, "      Keyframe Rotation", ew, eh, fa_left, ew, el_keyframe);
         ds_list_add(el_keyframe.contents, element);
         
-        yy = yy + element.height;
+        yy += element.height;
     
         el_keyframe.rotate_x = create_input(xx, yy, "      x:", ew, eh, uivc_animation_keyframe_rotation_x, "0", "float", validate_double, -MILLION, MILLION, 10, vx1, vy1, vx2, vy2, el_keyframe);
         el_keyframe.rotate_x.render = ui_render_animation_keyframe_rotate_x;
@@ -152,7 +152,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
         el_keyframe.tween_rotate_x.parameter = KeyframeParameters.ROT_X;
         ds_list_add(el_keyframe.contents, el_keyframe.tween_rotate_x);
         
-        yy = yy + el_keyframe.rotate_x.height;
+        yy += el_keyframe.rotate_x.height;
     
         el_keyframe.rotate_y = create_input(xx, yy, "      y:", ew, eh, uivc_animation_keyframe_rotation_y, "0", "float", validate_double, -MILLION, MILLION, 10, vx1, vy1, vx2, vy2, el_keyframe);
         el_keyframe.rotate_y.render = ui_render_animation_keyframe_rotate_y;
@@ -161,7 +161,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
         el_keyframe.tween_rotate_y.parameter = KeyframeParameters.ROT_Y;
         ds_list_add(el_keyframe.contents, el_keyframe.tween_rotate_y);
         
-        yy = yy + el_keyframe.rotate_y.height;
+        yy += el_keyframe.rotate_y.height;
     
         el_keyframe.rotate_z = create_input(xx, yy, "      z:", ew, eh, uivc_animation_keyframe_rotation_z, "0", "float", validate_double, -MILLION, MILLION, 10, vx1, vy1, vx2, vy2, el_keyframe);
         el_keyframe.rotate_z.render = ui_render_animation_keyframe_rotate_z;
@@ -170,12 +170,12 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
         el_keyframe.tween_rotate_z.parameter = KeyframeParameters.ROT_Z;
         ds_list_add(el_keyframe.contents, el_keyframe.tween_rotate_z);
         
-        yy = yy + el_keyframe.rotate_z.height;
+        yy += el_keyframe.rotate_z.height;
     
         var element = create_text(xx, yy, "      Keyframe Scale", ew, eh, fa_left, ew, el_keyframe);
         ds_list_add(el_keyframe.contents, element);
         
-        yy = yy + element.height;
+        yy += element.height;
         
         el_keyframe.scale_x = create_input(xx, yy, "      x:", ew, eh, uivc_animation_keyframe_scale_x, "1", "float", validate_double, -100, 100, 5, vx1, vy1, vx2, vy2, el_keyframe);
         el_keyframe.scale_x.render = ui_render_animation_keyframe_scale_x;
@@ -184,7 +184,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
         el_keyframe.tween_scale_x.parameter = KeyframeParameters.SCALE_X;
         ds_list_add(el_keyframe.contents, el_keyframe.tween_scale_x);
         
-        yy = yy + el_keyframe.scale_x.height;
+        yy += el_keyframe.scale_x.height;
     
         el_keyframe.scale_y = create_input(xx, yy, "      y:", ew, eh, uivc_animation_keyframe_scale_y, "1", "float", validate_double, -100, 100, 5, vx1, vy1, vx2, vy2, el_keyframe);
         el_keyframe.scale_y.render = ui_render_animation_keyframe_scale_y;
@@ -193,7 +193,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
         el_keyframe.tween_scale_y.parameter = KeyframeParameters.SCALE_Y;
         ds_list_add(el_keyframe.contents, el_keyframe.tween_scale_y);
         
-        yy = yy + el_keyframe.scale_y.height;
+        yy += el_keyframe.scale_y.height;
     
         el_keyframe.scale_z = create_input(xx, yy, "      z:", ew, eh, uivc_animation_keyframe_scale_z, "1", "float", validate_double, -100, 100, 5, vx1, vy1, vx2, vy2, el_keyframe);
         el_keyframe.scale_z.render = ui_render_animation_keyframe_scale_z;
@@ -202,12 +202,12 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
         el_keyframe.tween_scale_z.parameter = KeyframeParameters.SCALE_Z;
         ds_list_add(el_keyframe.contents, el_keyframe.tween_scale_z);
         
-        yy = yy + el_keyframe.scale_z.height;
+        yy += el_keyframe.scale_z.height;
         
         var element = create_text(xx, yy, "      Other Keyframe Properties", ew, eh, fa_left, ew, el_keyframe);
         ds_list_add(el_keyframe.contents, element);
         
-        yy = yy + element.height;
+        yy += element.height;
     
         el_keyframe.color = create_color_picker(xx, yy, "      color:", ew, eh, uivc_animation_keyframe_color, c_white, vx1, vy1, vx2, vy2, el_keyframe);
         el_keyframe.color.render = ui_render_animation_keyframe_color;
@@ -216,7 +216,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
         el_keyframe.tween_color.parameter = KeyframeParameters.COLOR;
         ds_list_add(el_keyframe.contents, el_keyframe.tween_color);
         
-        yy = yy + el_keyframe.color.height;
+        yy += el_keyframe.color.height;
     
         el_keyframe.alpha = create_input(xx, yy, "      alpha:", ew, eh, uivc_animation_keyframe_alpha, "1", "float", validate_double, 0, 1, 6, vx1, vy1, vx2, vy2, el_keyframe);
         el_keyframe.alpha.render = ui_render_animation_keyframe_alpha;
@@ -225,13 +225,13 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
         el_keyframe.tween_alpha.parameter = KeyframeParameters.ALPHA;
         ds_list_add(el_keyframe.contents, el_keyframe.tween_alpha);
         
-        yy = yy + el_keyframe.alpha.height + spacing;
+        yy += el_keyframe.alpha.height + spacing;
     
         var element = create_button(xx, yy, "More Data", ew, eh, fa_center, omu_animation_keyframe_event, el_keyframe);
         element.render = ui_render_animation_keyframe_other;
         ds_list_add(el_keyframe.contents, element);
         
-        yy = yy + element.height;
+        yy += element.height;
         
         el_rectangle.y2 = yy + 8;
         el_rectangle_inner.y2 = el_rectangle.y2;

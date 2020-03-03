@@ -24,7 +24,7 @@ var el_scale = create_input(16, yy, "Heightmap scale:", ew, eh, null, "10", "1..
 el_scale.tooltip = "The brightest point on the heightmap will correspond to this value (in most cases a value of 10 or 16 will be sufficient).";
 dg.el_scale = el_scale;
 
-yy = yy + el_scale.height + spacing;
+yy += el_scale.height + spacing;
 
 var b_width = 128;
 var b_height = 32;

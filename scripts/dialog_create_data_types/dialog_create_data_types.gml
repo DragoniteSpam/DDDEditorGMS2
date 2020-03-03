@@ -41,13 +41,13 @@ el_list.entries_are = ListEntries.INSTANCES;
 
 dg.el_list_main = el_list;
 
-yy = yy + ui_get_list_height(el_list) + spacing;
+yy += ui_get_list_height(el_list) + spacing;
 
 var el_add = create_button(16, yy, "Add Data", ew, eh, fa_center, omu_data_add, dg);
-yy = yy + el_add.height + spacing;
+yy += el_add.height + spacing;
 
 var el_add_enum = create_button(16, yy, "Add Enum", ew, eh, fa_center, omu_data_enum_add, dg);
-yy = yy + el_add.height + spacing;
+yy += el_add.height + spacing;
 
 var el_remove = create_button(16, yy, "Remove", ew, eh, fa_center, omu_data_remove, dg);
 
@@ -59,20 +59,20 @@ var el_data_name = create_input(col2_x, yy, "Data Name:", ew, eh, uivc_input_dat
 el_data_name.interactive = false;
 dg.el_data_name = el_data_name;
 
-yy = yy + el_data_name.height + spacing;
+yy += el_data_name.height + spacing;
 
 var el_list_p = create_list(col2_x, yy, "Properties: ", "<name is implicit>", ew, eh, n_slots, uivc_list_data_property, false, dg, noone);
 el_list_p.render = ui_render_list_data_properties;
 el_list_p.entries_are = ListEntries.INSTANCES;
 dg.el_list_p = el_list_p;
 
-yy = yy + ui_get_list_height(el_list_p) + spacing;
+yy += ui_get_list_height(el_list_p) + spacing;
 
 var el_add_p = create_button(col2_x, yy, "Add Property", ew, eh, fa_center, omu_data_property_add, dg);
 el_add_p.interactive = false;
 dg.el_add_p = el_add_p;
 
-yy = yy + el_add_p.height + spacing;
+yy += el_add_p.height + spacing;
 
 var el_remove_p = create_button(col2_x, yy, "Remove Property", ew, eh, fa_center, omu_data_property_remove, dg);
 el_remove_p.interactive = false;
@@ -86,19 +86,19 @@ var el_property_name = create_input(col3_x, yy, "Name:", ew, eh, uivc_input_data
 el_property_name.interactive = false;
 dg.el_property_name = el_property_name;
 
-yy = yy + el_property_name.height + spacing;
+yy += el_property_name.height + spacing;
 
 var el_property_type = create_radio_array(col3_x, yy, "Type:", ew, eh, uivc_input_data_property_type, 0, dg);
 el_property_type.interactive = false;
 create_radio_array_options(el_property_type, ["Int", "Enum", "Float", "String", "Boolean", "Data", "Code"]);
 dg.el_property_type = el_property_type;
 
-yy = yy + ui_get_radio_array_height(el_property_type) + spacing;
+yy += ui_get_radio_array_height(el_property_type) + spacing;
 
 var el_property_ext_type = create_button(col3_x, yy, "Other Data Types", ew, eh, fa_middle, omu_datadata_select_type, dg);
 el_property_ext_type.interactive = false;
 
-yy = yy + el_property_ext_type.height + spacing;
+yy += el_property_ext_type.height + spacing;
 dg.el_property_ext_type = el_property_ext_type;
 
 var yy_top = yy;
@@ -108,7 +108,7 @@ var el_property_size = create_input(col3_x, yy, "Capacity:", ew, eh, uivc_input_
 el_property_size.interactive = false;
 dg.el_property_size = el_property_size;
 
-yy = yy + eh + spacing;
+yy += eh + spacing;
 
 var el_property_default_code = create_input_code(col3_x, yy, "Default:", ew, eh, vx1, vy1, vx2, vy2, "", uivc_input_data_default_code, dg);
 el_property_default_code.enabled = false;
@@ -129,7 +129,7 @@ var el_property_default_na = create_text(col3_x, yy, "Default Not Available", ew
 el_property_default_na.enabled = false;
 dg.el_property_default_na = el_property_default_na;
 
-yy = yy + eh + spacing;
+yy += eh + spacing;
 
 var yy_base = yy;
 
@@ -148,14 +148,14 @@ var el_property_char_limit = create_input(col3_x, yy, "Char. Limit:", ew, eh, ui
 el_property_char_limit.enabled = false;
 dg.el_property_char_limit = el_property_char_limit;
 
-yy = yy + eh + spacing;
+yy += eh + spacing;
 
 // int and float only
 var el_property_max = create_input(col3_x, yy, "Max. Value:", ew, eh, uivc_input_data_value_max, "0", "+" + string(-0x7fffffff), validate_double, -0x80000000, 0x7fffffff, 10, vx1, vy1, vx2, vy2, dg);
 el_property_max.enabled = false;
 dg.el_property_max = el_property_max;
 
-yy = yy + eh + spacing;
+yy += eh + spacing;
 
 var el_property_scale = create_radio_array(col3_x, yy, "Scale:", ew, eh, uivc_input_data_number_scale, 0, dg);
 create_radio_array_options(el_property_scale, ["Linear", "Quadratic", "Exponential"]);
@@ -164,7 +164,7 @@ dg.el_property_scale = el_property_scale;
 
 yy = yy_base;
 
-yy = yy + eh + spacing;
+yy += eh + spacing;
 
 var el_confirm = create_button(dw / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dc_data_commit, dg, fa_center);
 
