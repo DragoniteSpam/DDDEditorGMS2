@@ -1,6 +1,6 @@
 if (Controller.press_escape) {
     view_set_visible(view_3d_preview, false);
-    return 0;
+    return;
 }
 
 var rotation_rate = 2;

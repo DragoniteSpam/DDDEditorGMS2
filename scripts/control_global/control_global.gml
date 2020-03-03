@@ -1,5 +1,5 @@
 if (!GLOBAL_CONTORLS_ENABLED) {
-    return 0;
+    return;
 }
 
 /*

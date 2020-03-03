@@ -2,7 +2,7 @@ var modulo = Stuff.graphics.water_reptition;
 var map = Stuff.map.active_map;
 
 if (!map.draw_water) {
-    return 0;
+    return;
 }
 
 var s = Stuff.graphics.water_tile_size;

@@ -4,7 +4,7 @@ var button = argument0;
 var mesh = button.root.mesh;
 
 show_message("this still uses the old single submesh method, if you actually need to do this, please update it to use the submeshes");
-return 0;
+return;
 
 // @todo not hard-coding this?
 var grid_size = 32;

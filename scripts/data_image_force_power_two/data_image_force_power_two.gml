@@ -5,7 +5,7 @@ var ww = sprite_get_width(data.picture);
 var hh = sprite_get_height(data.picture);
 
 if (log2(hh) == floor(log2(hh)) && log2(ww) == floor(log2(ww))) {
-    return 0;
+    return;
 }
 
 var surface = surface_create(power(2, ceil(log2(ww))), power(2, ceil(log2(hh))));

@@ -6,7 +6,7 @@ var mesh = argument1;
 var data = guid_get(mesh.mesh);
 
 if (!data) {
-    return 0;
+    return;
 }
 
 var xx = (mesh.xx + data.xmin + 0.5) * TILE_WIDTH;

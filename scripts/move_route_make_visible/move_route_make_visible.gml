@@ -1,26 +1,29 @@
 /// @param Entity
 /// @param DataMoveRoute
 
-var n = array_length_1d(argument0.visible_routes);
+var entity = argument0;
+var route = argument1;
+
+var n = array_length_1d(route.visible_routes);
 
 // are you already visible?
 for (var i = 0; i < n; i++) {
-    if (argument0.visible_routes[i] == argument1.GUID) {
-        return 0;
+    if (entity.visible_routes[i] == route.GUID) {
+        return;
     }
 }
 
 // are there any open slots?
 for (var i = 0; i < n; i++) {
-    if (!guid_get(argument0.visible_routes[i])) {
-        argument0.visible_routes[i] = argument1.GUID;
-        return 0;
+    if (!guid_get(entity.visible_routes[i])) {
+        entity.visible_routes[i] = route.GUID;
+        return;
     }
 }
 
 // shift everything down
 for (var i = 0; i < n - 1; i++) {
-    argument0.visible_routes[i] = argument0.visible_routes[i + 1];
+    entity.visible_routes[i] = entity.visible_routes[i + 1];
 }
 
-argument0.visible_routes[n - 1] = argument1.GUID;
+entity.visible_routes[n - 1] = route.GUID;

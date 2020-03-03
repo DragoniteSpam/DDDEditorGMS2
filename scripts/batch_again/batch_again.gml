@@ -9,13 +9,13 @@ if (data == -2) {
     for (var i = 0; i < ds_list_size(map.batch_data); i++) {
         batch_again(map.batch_data[| i]);
     }
-    return 0;
+    return;
 }
 
 // a value of -1 won't cause everything to rebatch, because that will be very
 // slow for absolutely no reason, but it also is obviously not a valid batch json
 if (data == -1) {
-    return 0;
+    return;
 }
 
 vertex_delete_buffer(data[? "vertex"]);
