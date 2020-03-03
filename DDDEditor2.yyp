@@ -8171,14 +8171,6 @@
             }
         },
         {
-            "Key": "6a5fa5b5-4a61-4337-952c-07c599ebdb27",
-            "Value": {
-                "id": "9a214db0-c7d5-41a1-a7a3-0991f03b043a",
-                "resourcePath": "scripts\\string_backspace\\string_backspace.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "6a694831-2da7-416a-9c69-ba32172c29ec",
             "Value": {
                 "id": "c9ebaf5a-0b87-4423-9235-5858bb9810cf",
@@ -8415,14 +8407,6 @@
             "Value": {
                 "id": "00f15672-7907-4778-822b-53c978646d70",
                 "resourcePath": "scripts\\dialog_create_event_node_img_battlers\\dialog_create_event_node_img_battlers.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "6e0fa323-5993-4e2e-8f9d-1ab3d41654d4",
-            "Value": {
-                "id": "215381e8-aed9-4393-a4f3-fac675232b36",
-                "resourcePath": "scripts\\cstr\\cstr.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -19613,8 +19597,6 @@
         "36e843c0-600a-482e-ba93-5f450dddbad9",
         "9fc60d28-aec9-4790-8729-b6ef8b8d46b2",
         "39d8bec1-cc2c-4d92-a58d-50bcb7edac68",
-        "6e0fa323-5993-4e2e-8f9d-1ab3d41654d4",
-        "6a5fa5b5-4a61-4337-952c-07c599ebdb27",
         "25789f02-5486-4e86-95ef-ad0d0d5bbe33",
         "b6717d9b-237f-4fe8-b6eb-840559059594",
         "94874f90-4a8c-4b70-bf0a-191539d217a1",
