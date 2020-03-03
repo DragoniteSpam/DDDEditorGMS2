@@ -11,28 +11,14 @@ var x2 = argument3;
 var y2 = argument4;
 var mode = Stuff.scribble;
 var padding = 32;
+var sw = surface_get_width(surface.surface);
+var sh = surface_get_height(surface.surface);
 
 draw_clear(mode.scribble_back_colour);
-draw_rectangle_colour(1, 1, surface_get_width(surface.surface) - 2, surface_get_height(surface.surface) - 2, c_black, c_black, c_black, c_black, true);
+draw_rectangle_colour(1, 1, sw - 2, sh - 2, c_black, c_black, c_black, c_black, true);
 
 var f = normalize_correct(mode.scribble_bounds_width, mode.scribble_bounds_width_min, mode.scribble_bounds_width_max, 0, 1) * (surface_get_width(surface.surface) - padding * 2);
 scribble_draw_set_wrap(-1, f, -1);
-
-if (mode.scribble_back_show_guides) {
-    var line_length = 32;
-    var line_spacing = 16;
-    var line_colour = c_green;
-    // TIL game maker lets you skip terms in a for loop, the way other languages do
-    for (var i = 0; i < surface_get_height(surface.surface);) {
-        draw_line_colour(padding, i, padding, i + line_length, line_colour, line_colour);
-        draw_line_colour(f + padding, i, f + padding, i + line_length, line_colour, line_colour);
-        i = i + line_length + line_spacing;
-    }
-    for (var i = 0; i < surface_get_width(surface.surface);) {
-        draw_line_colour(i, padding, i + line_length, padding, line_colour, line_colour);
-        i = i + line_length + line_spacing;
-    }
-}
 
 if (!is_array(mode.scribble) || (mode.scribble[__SCRIBBLE.STRING] != mode.scribble_text && (mode.scribble_text_time + 500) < current_time)) {
     scribble_draw_set_cache_group(SCRIBBLE_DEFAULT_CACHE_GROUP, false, true);
@@ -57,4 +43,27 @@ if (!is_array(mode.scribble) || (mode.scribble[__SCRIBBLE.STRING] != mode.scribb
     }
 }
 
-scribble_draw(padding, padding, mode.scribble);
+var box = scribble_get_bbox(mode.scribble, 0, 0);
+var hh = box[SCRIBBLE_BBOX.B];
+var scribble_xx = padding;
+var scribble_yy = min(padding, sh - padding - hh);
+
+if (mode.scribble_back_show_guides) {
+    var line_length = 32;
+    var line_spacing = 16;
+    var line_colour = c_green;
+    // TIL game maker lets you skip terms in a for loop, the way other languages do
+    // vertical rules
+    for (var i = 0; i < sh;) {
+        draw_line_colour(padding, i, padding, i + line_length, line_colour, line_colour);
+        draw_line_colour(f + padding, i, f + padding, i + line_length, line_colour, line_colour);
+        i = i + line_length + line_spacing;
+    }
+    // horizontal rule
+    for (var i = 0; i < sw;) {
+        draw_line_colour(i, scribble_yy, i + line_length, scribble_yy, line_colour, line_colour);
+        i = i + line_length + line_spacing;
+    }
+}
+
+scribble_draw(scribble_xx, scribble_yy, mode.scribble);
