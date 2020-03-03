@@ -17915,6 +17915,14 @@
             }
         },
         {
+            "Key": "ec9fc7af-6917-4379-8b86-fe89fde12b11",
+            "Value": {
+                "id": "a5a63b6b-2ac8-475b-b7af-c218542e3df9",
+                "resourcePath": "objects\\EffectComponentAudioSource\\EffectComponentAudioSource.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "ecbc507c-0b61-4faf-8e5e-772764d4abd7",
             "Value": {
                 "id": "22e87bea-0d72-4485-90a2-ff965f40503a",
@@ -18528,6 +18536,14 @@
                 "id": "dc84f20c-276d-44e1-9699-5b19fbad7b12",
                 "resourcePath": "scripts\\omu_entity_get_event\\omu_entity_get_event.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "f439a7ad-1207-415b-bb76-48979798cd3f",
+            "Value": {
+                "id": "76811f60-f2ab-42a6-9f87-886fa93d4bfe",
+                "resourcePath": "objects\\EffectComponentParticleEmitter\\EffectComponentParticleEmitter.yy",
+                "resourceType": "GMObject"
             }
         },
         {
