@@ -10,6 +10,7 @@ if (Stuff.menu.active_element) {
     return;
 }
 
+#region mouse picking
 if (map.is_3d) {
     var mouse_vector = update_mouse_vector(mode.x, mode.y, mode.z, mode.xto, mode.yto, mode.zto, mode.xup, mode.yup, mode.zup, mode.fov, CW / CH);
     
@@ -47,6 +48,7 @@ if (c_raycast_world(rc_xfrom, rc_yfrom, rc_zfrom, rc_xto, rc_yto, rc_zto, Contro
 } else {
     var instance_under_cursor = noone;
 }
+#endregion
 
 var floor_x = -1;
 var floor_y = -1;
@@ -91,6 +93,7 @@ if (!mode.mouse_over_ui) {
     }
     #endregion
     
+    #region process the stuff you clicked on
     if (process_main) {
         // it makes no sense to check where the mouse vector intersects with the floor if you're not looking down
         if (zz < mode.z) {
@@ -176,6 +179,7 @@ if (!mode.mouse_over_ui) {
             }
         }
     }
+    #endregion
         
     if (!input_control) {
         if (keyboard_check_pressed(vk_space)) {
@@ -186,55 +190,88 @@ if (!mode.mouse_over_ui) {
         }
     }
     
-    // move the camera
-    
+    #region camera movement
     if (CONTORL_3D_LOOK || !input_control) {
-        var mspd = get_camera_speed(mode.z)
+        var mspd = get_camera_speed(map.is_3d ? mode.z : 100)
         var xspeed = 0;
         var yspeed = 0;
         var zspeed = 0;
-    
-        if (keyboard_check(vk_up) || keyboard_check(ord("W"))) {
-            xspeed = xspeed + dcos(mode.direction) * mspd;
-            yspeed = yspeed - dsin(mode.direction) * mspd;
-            zspeed = zspeed - dsin(mode.pitch) * mspd;
+        var xup = 0;
+        var yup = 0;
+        var zup = 0;
+        
+        if (map.is_3d) {
+            if (keyboard_check(vk_up) || keyboard_check(ord("W"))) {
+                xspeed = xspeed + dcos(mode.direction) * mspd;
+                yspeed = yspeed - dsin(mode.direction) * mspd;
+                zspeed = zspeed - dsin(mode.pitch) * mspd;
+            }
+            if (keyboard_check(vk_down) || keyboard_check(ord("S"))) {
+                xspeed = xspeed - dcos(mode.direction) * mspd;
+                yspeed = yspeed + dsin(mode.direction) * mspd;
+                zspeed = zspeed + dsin(mode.pitch) * mspd;
+            }
+            if (keyboard_check(vk_left) || keyboard_check(ord("A"))) {
+                xspeed = xspeed - dsin(mode.direction) * mspd;
+                yspeed = yspeed - dcos(mode.direction) * mspd;
+            }
+            if (keyboard_check(vk_right) || keyboard_check(ord("D"))) {
+                xspeed = xspeed + dsin(mode.direction) * mspd;
+                yspeed = yspeed + dcos(mode.direction) * mspd;
+            }
+            if (CONTORL_3D_LOOK) {
+                var camera_cx = view_get_xport(view_3d) + view_get_wport(view_3d) / 2;
+                var camera_cy = view_get_yport(view_3d) + view_get_hport(view_3d) / 2;
+                var dx = (Stuff.MOUSE_X - camera_cx) / 16;
+                var dy = (Stuff.MOUSE_Y - camera_cy) / 16;
+                mode.direction = (360 + mode.direction - dx) % 360;
+                mode.pitch = clamp(mode.pitch + dy, -89, 89);
+                window_mouse_set(camera_cx, camera_cy);
+                mode.xto = mode.x + dcos(mode.direction);
+                mode.yto = mode.y - dsin(mode.direction);
+                mode.zto = mode.z - dsin(mode.pitch);
+            }
+            
+            var xup = 0;
+            var yup = 0;
+            var zup = 1;
+        } else {
+            var xup = 0;
+            var yup = -1;
+            var zup = 0;
+            
+            if (keyboard_check(vk_up) || keyboard_check(ord("W"))) {
+                yspeed = yspeed - mspd;
+            }
+            if (keyboard_check(vk_down) || keyboard_check(ord("S"))) {
+                yspeed = yspeed + mspd;
+            }
+            if (keyboard_check(vk_left) || keyboard_check(ord("A"))) {
+                xspeed = xspeed - mspd;
+            }
+            if (keyboard_check(vk_right) || keyboard_check(ord("D"))) {
+                xspeed = xspeed + mspd;
+            }
+            if (CONTORL_3D_LOOK) {
+                var camera_cx = view_get_xport(view_3d) + view_get_wport(view_3d) / 2;
+                var camera_cy = view_get_yport(view_3d) + view_get_hport(view_3d) / 2;
+                xspeed = (Stuff.MOUSE_X - camera_cx);
+                yspeed = (Stuff.MOUSE_Y - camera_cy);
+                window_mouse_set(camera_cx, camera_cy);
+            }
         }
-        if (keyboard_check(vk_down) || keyboard_check(ord("S"))) {
-            xspeed = xspeed - dcos(mode.direction) * mspd;
-            yspeed = yspeed + dsin(mode.direction) * mspd;
-            zspeed = zspeed + dsin(mode.pitch) * mspd;
-        }
-        if (keyboard_check(vk_left) || keyboard_check(ord("A"))) {
-            xspeed = xspeed - dsin(mode.direction) * mspd;
-            yspeed = yspeed - dcos(mode.direction) * mspd;
-        }
-        if (keyboard_check(vk_right) || keyboard_check(ord("D"))) {
-            xspeed = xspeed + dsin(mode.direction) * mspd;
-            yspeed = yspeed + dcos(mode.direction) * mspd;
-        }
-        if (CONTORL_3D_LOOK) {
-            var camera_cx = view_get_xport(view_3d) + view_get_wport(view_3d) / 2;
-            var camera_cy = view_get_yport(view_3d) + view_get_hport(view_3d) / 2;
-            var dx = (Stuff.MOUSE_X - camera_cx) / 16;
-            var dy = (Stuff.MOUSE_Y - camera_cy) / 16;
-            mode.direction = (360 + mode.direction - dx) % 360;
-            mode.pitch = clamp(mode.pitch + dy, -89, 89);
-            window_mouse_set(camera_cx, camera_cy);
-            mode.xto = mode.x + dcos(mode.direction);
-            mode.yto = mode.y - dsin(mode.direction);
-            mode.zto = mode.z - dsin(mode.pitch);
-        }
-    
+        
         mode.x += xspeed;
         mode.y += yspeed;
         mode.z += zspeed;
         mode.xto += xspeed;
         mode.yto += yspeed;
         mode.zto += zspeed;
-        mode.xup = 0;
-        mode.yup = 0;
-        mode.zup = 1;
+        mode.xup = xup;
+        mode.yup = yup;
+        mode.zup = zup;
     }
+    #endregion
 }
 
 mode.mouse_over_ui = false;
