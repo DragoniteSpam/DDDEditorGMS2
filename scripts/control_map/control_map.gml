@@ -1,20 +1,48 @@
 /// @param EditorModeMap
 
 var mode = argument0;
+var map = mode.active_map;
+var map_contents = map.contents;
 var input_control = keyboard_check(vk_control);
+var camera = view_get_camera(view_3d);
 
 if (Stuff.menu.active_element) {
-    return false;
+    return;
 }
 
-var mouse_vector = update_mouse_vector(mode.x, mode.y, mode.z, mode.xto, mode.yto, mode.zto, mode.xup, mode.yup, mode.zup, mode.fov, CW / CH);
-
-var xx = mouse_vector[vec3.xx] * MILLION;
-var yy = mouse_vector[vec3.yy] * MILLION;
-var zz = mouse_vector[vec3.zz] * MILLION;
+if (map.is_3d) {
+    var mouse_vector = update_mouse_vector(mode.x, mode.y, mode.z, mode.xto, mode.yto, mode.zto, mode.xup, mode.yup, mode.zup, mode.fov, CW / CH);
+    
+    var xx = mouse_vector[vec3.xx] * MILLION;
+    var yy = mouse_vector[vec3.yy] * MILLION;
+    var zz = mouse_vector[vec3.zz] * MILLION;
+    
+    var rc_xfrom = mode.x;
+    var rc_yfrom = mode.y;
+    var rc_zfrom = mode.z;
+    var rc_xto = mode.x + xx;
+    var rc_yto = mode.y + yy;
+    var rc_zto = mode.z + zz;
+    
+} else {
+    var cwidth = camera_get_view_width(camera);
+    var cheight = camera_get_view_height(camera);
+    
+    var xx = 0;
+    var yy = 0;
+    var zz = -MILLION;
+    
+    var rc_xfrom = ((mouse_x_view + mode.x - cwidth / 2) / view_get_wport(view_3d)) * cwidth;
+    var rc_yfrom = ((mouse_y_view + mode.y - cheight / 2) / view_get_hport(view_3d)) * cheight;
+    var rc_zfrom = mode.z;
+    var rc_xto = rc_xfrom;
+    var rc_yto = rc_yfrom;
+    var rc_zto = -1;
+    
+}
 
 // stash the result because you may hit a special value of some type
-if (c_raycast_world(mode.x, mode.y, mode.z, mode.x + xx, mode.y + yy, mode.z + zz, Controller.mouse_pick_mask)) {
+if (c_raycast_world(rc_xfrom, rc_yfrom, rc_zfrom, rc_xto, rc_yto, rc_zto, Controller.mouse_pick_mask)) {
     var instance_under_cursor = c_object_get_userid(c_hit_object(0));
 } else {
     var instance_under_cursor = noone;

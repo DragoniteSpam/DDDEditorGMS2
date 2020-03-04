@@ -2510,7 +2510,7 @@
             "Key": "2014825b-a570-47e1-8600-19c965a6afcb",
             "Value": {
                 "id": "30b482fb-b09e-4eb6-ba5c-ed2015b2df25",
-                "resourcePath": "scripts\\control_map_3d\\control_map_3d.yy",
+                "resourcePath": "scripts\\control_map\\control_map.yy",
                 "resourceType": "GMScript"
             }
         },
