@@ -14,10 +14,12 @@ if (Stuff.menu.active_element) {
 if (map.is_3d) {
     var mouse_vector = update_mouse_vector(mode.x, mode.y, mode.z, mode.xto, mode.yto, mode.zto, mode.xup, mode.yup, mode.zup, mode.fov, CW / CH);
     
+    // end point of the mouse vector
     var xx = mouse_vector[vec3.xx] * MILLION;
     var yy = mouse_vector[vec3.yy] * MILLION;
     var zz = mouse_vector[vec3.zz] * MILLION;
     
+    // raycast coordinates
     var rc_xfrom = mode.x;
     var rc_yfrom = mode.y;
     var rc_zfrom = mode.z;
@@ -25,21 +27,31 @@ if (map.is_3d) {
     var rc_yto = mode.y + yy;
     var rc_zto = mode.z + zz;
     
+    // you only need this in 2D
+    var xadjust = 0;
+    var yadjust = 0;
+    var zadjust = 0;
 } else {
     var cwidth = camera_get_view_width(camera);
     var cheight = camera_get_view_height(camera);
     
+    // mouse vector (in 2D you always go straight down)
     var xx = 0;
     var yy = 0;
-    var zz = -MILLION;
+    var zz = -1;
     
-    var rc_xfrom = ((mouse_x_view + mode.x - cwidth / 2) / view_get_wport(view_3d)) * cwidth;
-    var rc_yfrom = ((mouse_y_view + mode.y - cheight / 2) / view_get_hport(view_3d)) * cheight;
+    // raycast coordinates
+    var rc_xfrom = mode.x + ((mouse_x_view - cwidth / 2) / view_get_wport(view_3d)) * cwidth;
+    var rc_yfrom = mode.y + ((mouse_y_view - cheight / 2) / view_get_hport(view_3d)) * cheight;
     var rc_zfrom = mode.z;
     var rc_xto = rc_xfrom;
     var rc_yto = rc_yfrom;
     var rc_zto = -1;
     
+    // offset from the center of the screen
+    var xadjust = rc_xfrom - mode.x;
+    var yadjust = rc_yfrom - mode.y;
+    var zadjust = -MILLION;
 }
 
 // stash the result because you may hit a special value of some type
@@ -95,16 +107,19 @@ if (!mode.mouse_over_ui) {
     
     #region process the stuff you clicked on
     if (process_main) {
-        // it makes no sense to check where the mouse vector intersects with the floor if you're not looking down
+        // it makes no sense to check where the mouse vector intersects with the
+        // floor if you're not looking down
         if (zz < mode.z) {
             var f = abs((mode.z - (mode.edit_z * TILE_DEPTH)) / zz);
-            floor_x = mode.x + xx * f;
-            floor_y = mode.y + yy * f;
-            floor_z = mode.edit_z * TILE_DEPTH;
             
-            // the bounds on this are weird - in some places the cell needs to be rounded up and in others it
-            // needs to be rounded down, so the minimum allowed "cell" is (-1, -1) - be sure to max() this later
-            // if it would cause issues
+            floor_x = mode.x + xx * f + xadjust;
+            floor_y = mode.y + yy * f + yadjust;
+            floor_z = mode.edit_z * TILE_DEPTH + zadjust;
+            
+            // the bounds on this are weird - in some places the cell needs to be
+            // rounded up and in others it needs to be rounded down, so the minimum
+            // allowed "cell" is (-1, -1) - be sure to max() this later if it
+            // would cause issues
             floor_cx = clamp(floor_x div TILE_WIDTH, -1, mode.active_map.xx - 1);
             floor_cy = clamp(floor_y div TILE_HEIGHT, -1, mode.active_map.yy - 1);
             floor_cz = clamp(floor_z div TILE_DEPTH, -1, mode.active_map.zz - 1);
@@ -162,8 +177,9 @@ if (!mode.mouse_over_ui) {
             
             if (Controller.press_right) {
                 Controller.press_right = false;
-                // if there is no selection, select the single square under the cursor. Otherwise you might
-                // want to do operations on large swaths of entities, so don't clear it or anythign like that.
+                // if there is no selection, select the single square under the
+                // cursor. Otherwise you might want to do operations on large
+                // swaths of entities, so don't clear it or anythign like that.
             
                 if (selection_empty()) {
                     var tz = instance_under_cursor ? instance_under_cursor.zz : 0;
