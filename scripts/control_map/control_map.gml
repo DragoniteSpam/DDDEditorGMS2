@@ -196,7 +196,8 @@ if (!mode.mouse_over_ui) {
         }
     }
     #endregion
-        
+    
+    #region main map editing actions
     if (!input_control) {
         if (keyboard_check_pressed(vk_space)) {
             sa_fill();
@@ -205,10 +206,11 @@ if (!mode.mouse_over_ui) {
             sa_delete();
         }
     }
+    #endregion
     
     #region camera movement
     if (CONTORL_3D_LOOK || !input_control) {
-        var mspd = get_camera_speed(map.is_3d ? mode.z : 100)
+        var mspd = get_camera_speed(map.is_3d ? mode.z : 100);
         var xspeed = 0;
         var yspeed = 0;
         var zspeed = 0;
