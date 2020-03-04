@@ -321,22 +321,24 @@ if (inbounds_play) {
     }
 }
 
-if (keyboard_check_pressed(vk_space) && animation) {
-    timeline.playing = !timeline.playing;
-}
-
-if (keyboard_check_pressed(vk_left) && animation) {
-    timeline.playing = false;
-    timeline.playing_moment = (--timeline.playing_moment + animation.moments) % animation.moments;
-}
-
-if (keyboard_check_pressed(vk_right) && animation) {
-    timeline.playing = false;
-    timeline.playing_moment = ++timeline.playing_moment % animation.moments;
-}
-
-if (Controller.press_enter) {
-    timeline.playing = false;
-    timeline.playing_moment = 0;
-    timeline.moment_index = 0;
+if (dialog_is_active(timeline.root)) {
+    if (keyboard_check_pressed(vk_space) && animation) {
+        timeline.playing = !timeline.playing;
+    }
+    
+    if (keyboard_check_pressed(vk_left) && animation) {
+        timeline.playing = false;
+        timeline.playing_moment = (--timeline.playing_moment + animation.moments) % animation.moments;
+    }
+    
+    if (keyboard_check_pressed(vk_right) && animation) {
+        timeline.playing = false;
+        timeline.playing_moment = ++timeline.playing_moment % animation.moments;
+    }
+    
+    if (Controller.press_enter) {
+        timeline.playing = false;
+        timeline.playing_moment = 0;
+        timeline.moment_index = 0;
+    }
 }
