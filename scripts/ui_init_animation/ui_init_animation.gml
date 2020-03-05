@@ -14,7 +14,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     var vx1 = room_width / (columns * 2) - 32;
     var vy1 = 0;
     var vx2 = ew;
-    var vy2 = vy1 + eh;
+    var vy2 = eh;
     
     var b_width = 128;
     var b_height = 32;

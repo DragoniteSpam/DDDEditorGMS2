@@ -17,7 +17,7 @@ if (animation) {
     var vx1 = ew / 2 + 16;
     var vy1 = 0;
     var vx2 = ew;
-    var vy2 = vy1 + eh;
+    var vy2 = eh;
     
     var b_width = 128;
     var b_height = 32;
@@ -54,7 +54,7 @@ if (animation) {
     var vx1 = ew / 2 - 16;
     var vy1 = 0;
     var vx2 = ew;
-    var vy2 = vy1 + eh;
+    var vy2 = eh;
     
     var el_code = create_input_code(16, yy, "Code", ew, eh, vx1, vy1, vx2, vy2, animation.code, uivc_animation_set_code, dg);
     

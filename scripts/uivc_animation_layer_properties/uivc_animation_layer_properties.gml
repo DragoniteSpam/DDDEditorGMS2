@@ -19,7 +19,7 @@ if (selection >= 0) {
     var vx1 = ew / 3;
     var vy1 = 0;
     var vx2 = ew;
-    var vy2 = vy1 + eh;
+    var vy2 = eh;
     
     var col2_x = dw / 2;
 
