@@ -12,9 +12,6 @@ gpu_set_ztestenable(true);
 draw_set_color(c_white);
 
 var camera = view_get_camera(view_current);
-var view_mat = camera_get_view_mat(camera);
-var proj_mat = camera_get_proj_mat(camera);
-
 var vw = view_get_wport(view_current);
 var vh = view_get_hport(view_current);
 camera_set_view_mat(camera, matrix_build_lookat(mode.x, mode.y, mode.z, mode.xto, mode.yto, mode.zto, mode.xup, mode.yup, mode.zup));
@@ -22,6 +19,7 @@ camera_set_proj_mat(camera, matrix_build_projection_perspective_fov(-mode.fov, -
 camera_apply(camera);
 
 shader_set(shd_ddd);
+shader_reset();
 var animation = mode.ui.active_animation;
 
 if (animation) {
