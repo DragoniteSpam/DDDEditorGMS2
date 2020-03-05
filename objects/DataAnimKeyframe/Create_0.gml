@@ -21,7 +21,7 @@ audio = 0;
 graphic_type = GraphicTypes.NO_CHANGE;
 graphic_sprite = noone; 
 graphic_mesh = noone;
-graphic_speed = 1;
+graphic_speed = 1;                  // frame per second
 
 event = "";     // lua function name (i.e. "invoke")
 

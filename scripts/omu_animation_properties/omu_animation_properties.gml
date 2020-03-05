@@ -4,7 +4,7 @@ var thing = argument0;
 var animation = thing.root.active_animation;
 
 if (animation) {
-    var dw = 640;
+    var dw = 720;
     var dh = 400;
 
     var dg = dialog_create(dw, dh, "Animation Properties", undefined, undefined, argument0);

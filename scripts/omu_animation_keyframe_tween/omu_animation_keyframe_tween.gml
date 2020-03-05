@@ -21,7 +21,7 @@ if (keyframe) {
     
     var el_type = create_radio_array(16, yy, "Type", ew, eh, uivc_animation_keyframe_set_tween, animation_get_keyframe_parameter_tween(keyframe, param), dg);
     create_radio_array_options(el_type, ["Ignore", "None", "Linear",
-        "Ease Quadratic In", "Ease Quadratic Out", "Ease Quadratic In / Out",
+        "Ease Quadratic In (Default Fall)", "Ease Quadratic Out (Default Ascent)", "Ease Quadratic In / Out",
         "Ease Cubic In", "Ease Cubic Out", "Ease Cubic In / Out",
         "Ease Quartic In", "Ease Quartic Out", "Ease Quartic In / Out",
         "Ease Quintic In", "Ease Quintic Out", "Ease Quintic In / Out",

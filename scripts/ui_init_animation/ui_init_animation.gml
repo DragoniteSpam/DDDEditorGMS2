@@ -35,6 +35,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     
     el_master = create_list(xx, yy_header, "Animations: ", "<no animations>", ew, eh, 26, uivc_list_animation_editor, false, id);
     el_master.render = ui_render_list_animations;
+    el_master.ondoubleclick = omu_animation_properties;
     el_master.entries_are = ListEntries.INSTANCES;
     ds_list_add(contents, el_master);
     
@@ -59,8 +60,10 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     this_column = 1;
     xx = this_column * cw + spacing;
     
+    #region keyframes
     el_layers = create_list(xx, yy_header, "Layers: ", "<no layers>", ew, eh, 8, uivc_list_animation_layers_editor, false, id);
     el_layers.render = ui_render_list_animation_layers;
+    el_layers.ondoubleclick = uivc_animation_layer_properties;
     el_layers.entries_are = ListEntries.INSTANCES;
     ds_list_add(contents, el_layers);
     
@@ -86,6 +89,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     ds_list_add(contents, element);
     
     yy += element.height + spacing;
+    #endregion
     
     el_keyframe = instance_create_depth(xx, yy, 0, UIThing);
     el_keyframe.root = id;

@@ -5,10 +5,10 @@ var selection = ui_list_selection(thing.root.el_layers);
 
 if (selection >= 0) {
     var timeline_layer = thing.root.active_animation.layers[| selection];
-    var dw = 640;
+    var dw = 720;
     var dh = 480;
 
-    var dg = dialog_create(dw, dh, "Layer Properties", undefined, undefined, argument0);
+    var dg = dialog_create(dw, dh, "Layer Properties", undefined, undefined, thing);
     dg.timeline_layer = timeline_layer;
     
     var columns = 2;
