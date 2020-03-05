@@ -202,7 +202,6 @@ switch (property.type) {
         not_yet_implemented();
         break;
     case DataTypes.ANIMATION:
-        not_yet_implemented();
         var el_value = create_list(16, yy, "Select an Animation resource:", "<no Animation>", ew, eh, 8, uivc_data_property_list_guid, false, dg);
         el_value.entries_are = ListEntries.GUIDS;
         
