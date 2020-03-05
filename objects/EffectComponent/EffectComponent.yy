@@ -1,23 +1,23 @@
 {
-    "id": "f439a7ad-1207-415b-bb76-48979798cd3f",
+    "id": "754f4cbd-1a64-465d-9073-9e5dcd38d132",
     "modelName": "GMObject",
     "mvc": "1.0",
-    "name": "EffectComponentParticleEmitter",
+    "name": "EffectComponent",
     "eventList": [
         {
-            "id": "f140c8dd-c65f-4685-aba2-0ad2650053fc",
+            "id": "905bff0a-645e-44d8-8a86-33e92dfeed75",
             "modelName": "GMEvent",
             "mvc": "1.0",
             "IsDnD": false,
             "collisionObjectId": "00000000-0000-0000-0000-000000000000",
             "enumb": 0,
             "eventtype": 0,
-            "m_owner": "f439a7ad-1207-415b-bb76-48979798cd3f"
+            "m_owner": "754f4cbd-1a64-465d-9073-9e5dcd38d132"
         }
     ],
     "maskSpriteId": "00000000-0000-0000-0000-000000000000",
     "overriddenProperties": null,
-    "parentObjectId": "754f4cbd-1a64-465d-9073-9e5dcd38d132",
+    "parentObjectId": "00000000-0000-0000-0000-000000000000",
     "persistent": false,
     "physicsAngularDamping": 0.1,
     "physicsDensity": 0.5,

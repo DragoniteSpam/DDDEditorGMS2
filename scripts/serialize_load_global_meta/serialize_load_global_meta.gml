@@ -17,6 +17,11 @@ if (version >= DataVersions.MAP_LIGHTING_FOG_DATA) {
     Stuff.game_lighting_default_ambient = buffer_read(buffer, buffer_u32);
 }
 
+if (version >= DataVersions.EFFECT_COM_SCRIPT_DATA) {
+    Stuff.game_common_effect_code = buffer_read(buffer, buffer_string);
+    debug(Stuff.game_common_effect_code);
+}
+
 var bools = buffer_read(buffer, buffer_u32);
 Stuff.game_player_grid = unpack(bools, 0);
 Stuff.game_battle_style = buffer_read(buffer, buffer_u8);

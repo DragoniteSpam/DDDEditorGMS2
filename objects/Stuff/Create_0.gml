@@ -9,6 +9,7 @@ default_lua_event_page_condition = file_get_contents(PATH_LUA + "event-page-cond
 default_lua_event_node_conditional = file_get_contents(PATH_LUA + "event-node-conditional.lua");
 default_lua_event_script = file_get_contents(PATH_LUA + "event-script.lua");
 default_lua_animation = file_get_contents(PATH_LUA + "animation.lua");
+default_lua_effect_common = file_get_contents(PATH_LUA + "global-effect-common.lua");
 
 // local storage folders
 
@@ -419,6 +420,8 @@ game_player_grid = true;
 game_battle_style = BattleStyles.TEAM_BASED;
 game_lighting_buckets = 100;
 game_lighting_default_ambient = c_white;
+
+game_common_effect_code = default_lua_effect_common;
 
 game_notes = "";
 game_file_summary = "Write a short summary in Global Game Settings";

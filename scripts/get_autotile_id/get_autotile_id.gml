@@ -10,13 +10,13 @@ var what = map_get_grid_cell_mesh_autotile_data(terrain.xx - 1, terrain.yy - 1, 
 var north = map_get_grid_cell_mesh_autotile_data(terrain.xx, terrain.yy - 1, terrain.zz);
 var west = map_get_grid_cell_mesh_autotile_data(terrain.xx - 1, terrain.yy, terrain.zz);
 if (what && north && west) {
-    mask = mask | ATMask.NORTHWEST;
+    mask |= ATMask.NORTHWEST;
 }
 
 // north
 var what = map_get_grid_cell_mesh_autotile_data(terrain.xx, terrain.yy - 1, terrain.zz);
 if (what) {
-    mask = mask | ATMask.NORTH;
+    mask |= ATMask.NORTH;
 }
 
 // northeast
@@ -24,19 +24,19 @@ var what = map_get_grid_cell_mesh_autotile_data(terrain.xx + 1, terrain.yy - 1, 
 var north = map_get_grid_cell_mesh_autotile_data(terrain.xx, terrain.yy - 1, terrain.zz);
 var east = map_get_grid_cell_mesh_autotile_data(terrain.xx + 1, terrain.yy, terrain.zz);
 if (what && north && east) {
-    mask = mask | ATMask.NORTHEAST;
+    mask |= ATMask.NORTHEAST;
 }
 
 // west
 var what = map_get_grid_cell_mesh_autotile_data(terrain.xx - 1, terrain.yy, terrain.zz);
 if (what) {
-    mask = mask | ATMask.WEST;
+    mask |= ATMask.WEST;
 }
 
 // east
 var what = map_get_grid_cell_mesh_autotile_data(terrain.xx + 1, terrain.yy, terrain.zz);
 if (what) {
-    mask = mask | ATMask.EAST;
+    mask |= ATMask.EAST;
 }
 
 // southwest
@@ -44,13 +44,13 @@ var what = map_get_grid_cell_mesh_autotile_data(terrain.xx - 1, terrain.yy + 1, 
 var west = map_get_grid_cell_mesh_autotile_data(terrain.xx - 1, terrain.yy, terrain.zz);
 var south = map_get_grid_cell_mesh_autotile_data(terrain.xx, terrain.yy + 1, terrain.zz);
 if (what && west && south) {
-    mask = mask | ATMask.SOUTHWEST;
+    mask |= ATMask.SOUTHWEST;
 }
 
 // south
 var what = map_get_grid_cell_mesh_autotile_data(terrain.xx, terrain.yy + 1, terrain.zz);
 if (what) {
-    mask = mask | ATMask.SOUTH;
+    mask |= ATMask.SOUTH;
 }
 
 // southeast
@@ -58,7 +58,7 @@ var what = map_get_grid_cell_mesh_autotile_data(terrain.xx + 1, terrain.yy + 1, 
 var south = map_get_grid_cell_mesh_autotile_data(terrain.xx, terrain.yy + 1, terrain.zz);
 var east = map_get_grid_cell_mesh_autotile_data(terrain.xx + 1, terrain.yy, terrain.zz);
 if (what && south && east) {
-    mask = mask | ATMask.SOUTHEAST;
+    mask |= ATMask.SOUTHEAST;
 }
 
 return mask;

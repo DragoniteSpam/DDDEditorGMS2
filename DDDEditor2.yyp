@@ -8939,6 +8939,14 @@
             }
         },
         {
+            "Key": "754f4cbd-1a64-465d-9073-9e5dcd38d132",
+            "Value": {
+                "id": "0463cda9-97b0-465c-98f1-88bd935d36aa",
+                "resourcePath": "objects\\EffectComponent\\EffectComponent.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "7551d806-5c53-4bd5-a39c-d0b372a6eed0",
             "Value": {
                 "id": "b015d506-3ad8-4efb-b82e-869f9d701e65",
@@ -12723,6 +12731,14 @@
             }
         },
         {
+            "Key": "a655252c-ffb3-49f6-8434-300f8e28a888",
+            "Value": {
+                "id": "69a0364e-d030-4c0e-88fc-fed265d00b4d",
+                "resourcePath": "datafiles_yy\\data\\lua\\global-effect-common.lua.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "a6a496f0-87a8-4866-a132-e6f9a2ea50a0",
             "Value": {
                 "id": "90b55491-933e-4591-af0d-85b990437cd9",
@@ -16483,6 +16499,14 @@
             }
         },
         {
+            "Key": "d8fa9281-4f12-472a-91a8-608e96b00ad4",
+            "Value": {
+                "id": "1a8aaa48-ec25-49bf-9068-336203697aa5",
+                "resourcePath": "scripts\\serialize_save_entity_effect_com\\serialize_save_entity_effect_com.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "d934110d-0067-4412-8563-3af79a256c25",
             "Value": {
                 "id": "4079ea3d-bc68-437b-8059-658c4ac655ce",
@@ -18167,6 +18191,14 @@
             "Value": {
                 "id": "865bae9c-9219-47e6-8d5f-a28c8b2648c1",
                 "resourcePath": "scripts\\uivc_input_event_attain_transfer_z\\uivc_input_event_attain_transfer_z.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "ef486610-605a-448f-a488-e9eaa72780ce",
+            "Value": {
+                "id": "251fd16e-bef6-4c9c-86cd-532900aadaf4",
+                "resourcePath": "scripts\\serialize_load_entity_effect_com\\serialize_load_entity_effect_com.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -20928,6 +20960,7 @@
         "c504c050-69e0-4c3b-bfe4-ece3e679e3c5",
         "faae0bf2-d5cb-4fc7-9e96-3817f3567427",
         "c2b5e3ee-184b-46cc-a308-de64b2ebe0f3",
+        "ef486610-605a-448f-a488-e9eaa72780ce",
         "773baa98-ffea-45e4-bab0-4d919d9776ec",
         "6a694831-2da7-416a-9c69-ba32172c29ec",
         "e42de6e2-aedc-4d8a-ba9e-4d179718b813",
@@ -20967,6 +21000,7 @@
         "25d7e07b-cbd5-4039-af63-3fb8193314f3",
         "ff28a471-b69c-4494-8924-7d1f8b06de7d",
         "ea84a95d-282b-479c-8a59-bba1f17e0a57",
+        "d8fa9281-4f12-472a-91a8-608e96b00ad4",
         "f16248ae-2cec-4f6b-aacf-9e653dfaf8e7",
         "5ee05ca1-cc2f-4c2c-9abe-2edb7254e480",
         "bf81dc40-e73e-44cc-8002-90e1003e7331",
