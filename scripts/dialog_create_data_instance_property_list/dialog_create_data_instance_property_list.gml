@@ -18,18 +18,17 @@ var instance = guid_get(data.instances[| selection].GUID);
 var dg = dialog_create(dw, dh, instance.name + ": " + property.name, dialog_default, dc_close_no_questions_asked, root);
 
 var columns = 1;
-var ew = (dw - columns * 32) / columns;
+var spacing = 16;
+var ew = dw / columns - spacing * 2;
 var eh = 24;
 
 var vx1 = dw / (columns * 2) - 16;
 var vy1 = 0;
 var vx2 = vx1 + dw / (columns * 2) - 16;
-var vy2 = vy1 + eh;
+var vy2 = eh;
 
 var b_width = 128;
 var b_height = 32;
-
-var spacing = 16;
 
 var yy = 64;
 

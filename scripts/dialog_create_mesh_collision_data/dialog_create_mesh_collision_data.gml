@@ -33,10 +33,7 @@ dg.zz = 0;
 
 var columns = 5;
 var spacing = 16;
-var ew = (dw - spacing * 2) / columns;
-var eh = 24;
-
-var ew = (dw - columns * spacing * 2) / columns;
+var ew = dw / columns - spacing * 2;
 var eh = 24;
 
 var c1 = dw * 0 / columns + spacing;

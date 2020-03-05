@@ -8,9 +8,9 @@ var dh = 760;
 
 var dg = dialog_create(dw, dh, "Scribble Cheat Sheet", dialog_default, dc_default, button);
 
-var spacing = 16;
 var columns = 1;
-var ew = (dw - spacing * columns * 4) / columns;
+var spacing = 16;
+var ew = dw / columns - spacing * 2;
 var eh = 24;
 
 var xx = spacing;
@@ -19,7 +19,7 @@ var xx_desc = dw / 4;
 var vx1 = ew / 2;
 var vy1 = 0;
 var vx2 = ew;
-var vy2 = vy1 + eh;
+var vy2 = eh;
 
 var b_width = 128;
 var b_height = 32;

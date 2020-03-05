@@ -8,7 +8,8 @@ var dh = 512;
 var dg = dialog_create(dw, dh, "Data: Availalbe Battler Graphics", dialog_default, dc_default, dialog);
 
 var columns = 3;
-var ew = (dw - columns * 64) / columns;
+var spacing = 16;
+var ew = dw / columns - spacing * 2;
 var eh = 24;
 
 var c2 = dw / columns;
@@ -17,14 +18,13 @@ var c3 = dw * 2 / columns;
 var vx1 = 0;
 var vy1 = 0;
 var vx2 = ew;
-var vy2 = vy1 + eh;
+var vy2 = eh;
 
 var b_width = 128;
 var b_height = 32;
 
 var yy = 64;
 var yy_base = yy;
-var spacing = 16;
 
 var el_list = create_list(16, yy, "Battler Graphics", "<no battler graphics>", ew, eh, 12, uivc_list_graphic_generic, false, dg, Stuff.all_graphic_battlers);
 el_list.render_colors = ui_list_colors_image_exclude;

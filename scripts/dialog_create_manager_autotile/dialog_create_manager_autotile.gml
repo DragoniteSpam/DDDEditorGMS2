@@ -7,13 +7,15 @@ var dh = 400;
 
 var dg = dialog_create(dw, dh, "Data: Availalbe Autotiles", dialog_default, dc_close_no_questions_asked, dialog);
 
-var ew = (dw - 64) / 2;
+var columns = 2;
+var spacing = 16;
+var ew = dw / columns - spacing * 2;
 var eh = 24;
 
 var vx1 = ew / 2;
 var vy1 = 0;
 var vx2 = ew;
-var vy2 = vy1 + eh;
+var vy2 = eh;
 
 var b_width = 128;
 var b_height = 32;

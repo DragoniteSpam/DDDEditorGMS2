@@ -8,7 +8,8 @@ var dh = 480;
 var dg = dialog_create(dw, dh, "Data: Availalbe Background Music", dialog_default, dc_default, dialog);
 
 var columns = 3;
-var ew = (dw - 64) / columns;
+var spacing = 16;
+var ew = dw / columns - spacing * 2;
 var eh = 24;
 
 var c2 = dw / columns;
@@ -17,14 +18,13 @@ var c3 = dw * 2 / columns;
 var vx1 = 0;
 var vy1 = 0;
 var vx2 = ew;
-var vy2 = vy1 + eh;
+var vy2 = eh;
 
 var b_width = 128;
 var b_height = 32;
 
 var yy = 64;
 var yy_base = yy;
-var spacing = 16;
 
 var el_list = create_list(16, yy, "Background Music", "<no music>", ew, eh, 12, uivc_list_audio_bgm, false, dg, Stuff.all_bgm);
 el_list.entries_are = ListEntries.INSTANCES;
@@ -63,7 +63,7 @@ yy += el_effects.height + spacing * 2;
 var vx1 = dw / (columns * 2) - 16;
 var vy1 = 0;
 var vx2 = vx1 + 80 + 32;
-var vy2 = vy1 + eh;
+var vy2 = eh;
 
 yy = yy_base;
 

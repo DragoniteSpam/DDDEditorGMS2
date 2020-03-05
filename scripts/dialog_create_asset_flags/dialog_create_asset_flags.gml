@@ -18,10 +18,7 @@ dg.instance_data = instance_data;
 
 var columns = 2;
 var spacing = 16;
-var ew = (dw - spacing * 2) / columns;
-var eh = 24;
-
-var ew = (dw - columns * spacing * 2) / columns;
+var ew = dw / columns - spacing * 2;
 var eh = 24;
 
 var c1 = dw * 0 / columns + spacing;
@@ -30,7 +27,7 @@ var c2 = dw * 1 / columns + spacing;
 var vx1 = ew / 2;
 var vy1 = 0;
 var vx2 = ew;
-var vy2 = vy1 + eh;
+var vy2 = eh;
 
 var yy = 64;
 

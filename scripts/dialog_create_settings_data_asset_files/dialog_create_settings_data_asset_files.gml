@@ -14,7 +14,7 @@ var eh = 24;
 var vx1 = ew / 3;
 var vy1 = 0;
 var vx2 = ew;
-var vy2 = vy1 + eh;
+var vy2 = eh;
 
 var spacing = 16;
 var col1_x = spacing;

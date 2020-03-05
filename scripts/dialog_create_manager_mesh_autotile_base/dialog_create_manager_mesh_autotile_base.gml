@@ -9,7 +9,9 @@ var dh = 480;
 
 var dg = dialog_create(dw, dh, "Data: Mesh Autotiles (Base)", undefined, undefined, root);
 
-var ew = (dw - 64) / 2;
+var columns = 12;
+var spacing = 16;
+var ew = dw / columns - spacing * 2;
 var eh = 24;
 
 var b_width = 128;
@@ -22,7 +24,6 @@ var yy = 64;
 var xx_start = xx;
 var mbw = 64 - spacing;
 var mbh = eh;
-var columns = 12;
 
 dg.buttons = array_create(array_length_1d(map_contents.mesh_autotiles_base));
 dg.icons = array_create(array_length_1d(map_contents.mesh_autotiles_base));

@@ -13,7 +13,8 @@ dg.x = dg.x - 32;
 dg.event = Stuff.all_event_custom[| ui_list_selection(dialog.root.el_list_custom)];
 
 var columns = 3;
-var ew = (dw - columns * 32) / columns - 16;
+var spacing = 16;
+var ew = dw / columns - spacing * 2;
 var eh = 24;
 
 var col2_x = dw / columns + 16;
@@ -22,12 +23,11 @@ var col3_x = dw * 2 / columns + 16;
 var vx1 = ew / 2 - 16;
 var vy1 = 0;
 var vx2 = ew;
-var vy2 = vy1 + eh;
+var vy2 = eh;
 
 var b_width = 128;
 var b_height = 32;
 
-var spacing = 16;
 var n_slots = 10;
 
 var yy = 64;

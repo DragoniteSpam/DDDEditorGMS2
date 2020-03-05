@@ -14,7 +14,9 @@ var dg = dialog_create(dw, dh, "Edit Move Route", dialog_default, dc_close_no_qu
 dg.route = route;
 
 var columns = 4;
-var ew = (dw - columns * 32) / columns;
+var spacing = 16;
+var spacing2 = 0;
+var ew = dw / columns - spacing * 2;
 var eh = 24;
 var eh2 = 20;
 
@@ -25,15 +27,13 @@ var c4 = dw * 3 / columns;
 var vx1 = ew / 2;
 var vy1 = 0;
 var vx2 = ew;
-var vy2 = vy1 + eh;
+var vy2 = eh;
 
 var yy = 64;
-var spacing = 16;
-var spacing2 = 0;
 
 var n = 10;
 
-var el_name = create_input(16, yy, "Name:", ew*2, eh, uivc_entity_move_route_name, route.name, "", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2 + c2, vy2, dg);
+var el_name = create_input(16, yy, "Name:", ew * 2, eh, uivc_entity_move_route_name, route.name, "", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2 + c2, vy2, dg);
 
 yy += el_name.height + spacing;
 

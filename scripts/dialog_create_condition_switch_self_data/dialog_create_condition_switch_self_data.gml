@@ -18,11 +18,11 @@ var list_value = node.custom_data[| 3];
 // data[| 4] not used
 
 var columns = 1;
-var ew = (dw - 64) / columns;
+var spacing = 16;
+var ew = dw / columns - spacing * 2;
 var eh = 24;
 
 var yy = 64;
-var spacing = 16;
 
 var el_list = create_radio_array(16, yy, "Self Switches:", ew, eh, uivc_list_event_condition_self_index, list_index[| index], dg);
 create_radio_array_options(el_list, ["A", "B", "C", "D"]);

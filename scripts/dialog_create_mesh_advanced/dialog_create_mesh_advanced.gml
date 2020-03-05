@@ -10,9 +10,9 @@ var dh = 560;
 var dg = dialog_create(dw, dh, "Advanced Mesh Options: " + mesh.name, dialog_default, dc_close_no_questions_asked, root);
 dg.mesh = mesh;
 
-var spacing = 16;
 var columns = 4;
-var ew = (dw - 32 * columns) / columns;
+var spacing = 16;
+var ew = dw / columns - spacing * 2;
 var eh = 24;
 
 var col1_x = dw * 0 / 4 + spacing;
@@ -23,7 +23,7 @@ var col4_x = dw * 3 / 4 + spacing;
 var vx1 = ew / 2;
 var vy1 = 0;
 var vx2 = ew;
-var vy2 = vy1 + eh;
+var vy2 = eh;
 
 var b_width = 128;
 var b_height = 32;

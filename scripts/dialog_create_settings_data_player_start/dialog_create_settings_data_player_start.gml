@@ -12,7 +12,7 @@ var eh = 24;
 var vx1 = ew / 2;
 var vy1 = 0;
 var vx2 = ew;
-var vy2 = vy1 + eh;
+var vy2 = eh;
 
 var c2 = dw / columns;
 var spacing = 16;

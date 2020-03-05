@@ -7,7 +7,7 @@ var dg = dialog_create(dw, dh, "Credits", dialog_default, dc_close_no_questions_
 
 var columns = 1;
 var spacing = 16;
-var ew = (dw - columns * spacing * 2) / columns;
+var ew = dw / columns - spacing * 2;
 var eh = 24;
 var bw = ew / 5;
 

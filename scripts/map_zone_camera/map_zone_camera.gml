@@ -11,7 +11,7 @@ var dg = dialog_create(dw, dh, "Camera Zone Settings: " + zone.name, dialog_defa
 
 var columns = 3;
 var spacing = 16;
-var ew = (dw - columns * spacing * 2) / columns;
+var ew = dw / columns - spacing * 2;
 var eh = 24;
 
 var col1_x = dw * 0 / columns + spacing;

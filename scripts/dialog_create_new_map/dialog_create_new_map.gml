@@ -7,7 +7,9 @@ var dh = 400;
 
 var dg = dialog_create(dw, dh, "New Map", undefined, undefined, dialog);
 
-var ew = (dw - 64) / 2;
+var columns = 1;
+var spacing = 16;
+var ew = dw / columns - spacing * 2;
 var eh = 24;
 var spacing = 16;
 

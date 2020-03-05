@@ -7,17 +7,18 @@ var dh = 640;
 
 var dg = dialog_create(dw, dh, "Data Settings", dialog_default, dc_close_no_questions_asked, dialog);
 
-var ew = (dw - 64) / 2;
+var columns = 2;
+var spacing = 16;
+var ew = dw / columns - spacing * 2;
 var eh = 24;
 
 var vx1 = ew / 2;
 var vy1 = 0;
 var vx2 = ew;
-var vy2 = vy1 + eh;
+var vy2 = eh;
 
-var col1_x = 16;
-var col2_x = dw / 2 + 16;
-var spacing = 16;
+var col1_x = dw * 0 / columns + spacing;
+var col2_x = dw * 1 / columns + spacing;
 
 var yy = 64;
 

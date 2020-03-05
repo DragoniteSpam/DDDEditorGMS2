@@ -9,7 +9,8 @@ var dh = 640;
 var dg = dialog_create(dw, dh, "Generic Data", dialog_default, dc_close_no_questions_asked, root);
 
 var columns = 2;
-var ew = (dw - columns * 32) / columns;
+var spacing = 16;
+var ew = dw / columns - spacing * 2;
 var eh = 24;
 
 var col1_x = 0 * dw / columns + 16;
@@ -18,10 +19,9 @@ var col2_x = 1 * dw / columns + 16;
 var vx1 = ew / 2;
 var vy1 = 0;
 var vx2 = ew;
-var vy2 = vy1 + eh;
+var vy2 = eh;
 
 var yy = 64;
-var spacing = 16;
 var slots = 16;
 
 var el_list = create_list(col1_x, yy, "Generic Data: " + map.name, "<No data>", ew, eh, slots, uivc_list_map_data, false, dg, map.generic_data);

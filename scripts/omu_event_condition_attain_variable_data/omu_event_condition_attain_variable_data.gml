@@ -14,7 +14,8 @@ var dh = 560;
 var dg = dialog_create(dw, dh, "Global Variable", dialog_default, dc_close_no_questions_asked, thing);
 
 var columns = 2;
-var ew = (dw - 64) / columns;
+var spacing = 16;
+var ew = dw / columns - spacing * 2;
 var eh = 24;
 
 var c2 = dw / columns;
@@ -22,10 +23,9 @@ var c2 = dw / columns;
 var vx1 = dw / 4;
 var vy1 = 0;
 var vx2 = vx1 + (ew - vx1);
-var vy2 = vy1 + eh;
+var vy2 = eh;
 
 var yy = 64;
-var spacing = 16;
 
 var el_list = create_list(16, yy, "Variables", "<no variables>", ew, eh, 16, uivc_event_condition_attain_variable_index, false, dg);
 for (var i = 0; i < ds_list_size(Stuff.variables); i++) {

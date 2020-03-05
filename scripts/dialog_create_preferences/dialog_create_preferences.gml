@@ -7,7 +7,9 @@ var dh = 640;
 
 var dg = dialog_create(dw, dh, "Preferences", dialog_default, dc_close_no_questions_asked, dialog);
 
-var ew = (dw - 64) / 2;
+var columns = 2;
+var spacing = 16;
+var ew = dw / columns - spacing * 2;
 var eh = 24;
 
 var col1_x = 16;
@@ -16,11 +18,10 @@ var col2_x = dw / 2 + 16;
 var vx1 = dw / 4 + 16;
 var vy1 = 0;
 var vx2 = vx1 + 80;
-var vy2 = vy1 + eh;
+var vy2 = eh;
 
 var yy = 64;
 var yy_base = yy;
-var spacing = 16;
 
 var el_bezier = create_input(col1_x, yy, "Bezier precision:", ew, eh, uivc_bezier_precision, Stuff.setting_bezier_precision, "0...16", validate_int, 1, 16, 2, vx1, vy1, vx2, vy2, dg);
 el_bezier.tooltip = "Higher-precision bezier curves look better, but take more computing power to draw. Lowering this will not fix performance issues, but it may help.";

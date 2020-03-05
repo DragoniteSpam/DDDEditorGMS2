@@ -20,7 +20,7 @@ var c2 = dw / columns;
 var vx1 = ew / 2;
 var vy1 = 0;
 var vx2 = ew;
-var vy2 = vy1 + eh;
+var vy2 = eh;
 
 var yy = 64;
 var spacing = 16;

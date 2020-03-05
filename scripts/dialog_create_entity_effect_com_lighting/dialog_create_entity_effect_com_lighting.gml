@@ -16,7 +16,8 @@ var dg = dialog_create(dw, dh, "Effect Component: Lighting", dialog_default, dc_
 
 var spacing = 16;
 var columns = 1;
-var ew = (dw - columns * 32) / columns;
+var spacing = 16;
+var ew = dw / columns - spacing * 2;
 var eh = 24;
 
 var col1_x = spacing;
@@ -24,7 +25,7 @@ var col1_x = spacing;
 var vx1 = dw / (columns * 2) - 32;
 var vy1 = 0;
 var vx2 = vx1 + dw / (columns * 2);
-var vy2 = vy1 + eh;
+var vy2 = eh;
 
 var yy = 64;
 var yy_base = yy;

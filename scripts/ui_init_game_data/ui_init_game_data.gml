@@ -14,7 +14,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     var vx1 = cw / 2;
     var vy1 = 0;
     var vx2 = cw;
-    var vy2 = vy1 + eh;
+    var vy2 = eh;
     
     var b_width = 128;
     var b_height = 32;

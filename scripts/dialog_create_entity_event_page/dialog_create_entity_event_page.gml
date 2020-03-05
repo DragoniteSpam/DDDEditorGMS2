@@ -15,7 +15,8 @@ var dg = dialog_create(dw, dh, "Event Page: " + page.name, dialog_default, dc_cl
 dg.page = page;
 
 var columns = 2;
-var ew = (dw - columns * 32) / columns;
+var spacing = 16;
+var ew = dw / columns - spacing * 2;
 var eh = 24;
 
 var c2 = dw / columns;
@@ -23,10 +24,9 @@ var c2 = dw / columns;
 var vx1 = dw / (columns * 2) - 32;
 var vy1 = 0;
 var vx2 = vx1 + dw / (columns * 2);
-var vy2 = vy1 + eh;
+var vy2 = eh;
 
 var yy = 64;
-var spacing = 16;
 var ucheck_width = 64;        // unlabeled check boxes shouldn't have as wide of a hitbox
 
 var el_name = create_input(16, yy, "Name:", ew, eh, uivc_entity_event_name, page.name, "Name of the event", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1 - 64, vy1, vx2, vy2, dg);

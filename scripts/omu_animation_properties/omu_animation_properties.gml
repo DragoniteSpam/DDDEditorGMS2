@@ -10,7 +10,8 @@ if (animation) {
     var dg = dialog_create(dw, dh, "Animation Properties", undefined, undefined, argument0);
     
     var columns = 2;
-    var ew = (dw - 64) / columns;
+    var spacing = 16;
+    var ew = dw / columns - spacing * 2;
     var eh = 24;
     
     var vx1 = ew / 2 + 16;
@@ -23,7 +24,6 @@ if (animation) {
     
     var yy = 64;
     var yy_base = yy;
-    var spacing = 16;
     
     var el_name = create_input(16, yy, "Name:", ew, eh, uivc_animation_set_name, animation.name, "text", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
     

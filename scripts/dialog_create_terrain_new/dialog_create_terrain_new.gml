@@ -8,20 +8,20 @@ var dh = 320;
 var dg = dialog_create(dw, dh, "New Terrain", dialog_default, dc_default, dialog);
 
 var columns = 1;
-var ew = (dw - 64) / columns;
+var spacing = 16;
+var ew = dw / columns - spacing * 2;
 var eh = 24;
 
 var vx1 = ew / 2;
 var vy1 = 0;
 var vx2 = ew;
-var vy2 = vy1 + eh;
+var vy2 = eh;
 
 var b_width = 128;
 var b_height = 32;
 
 var yy = 64;
 var yy_base = yy;
-var spacing = 16;
 
 var col1_x = 32;
 

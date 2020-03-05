@@ -26,7 +26,7 @@ var eh = 24;
 var vx1 = dw / 4 + 16;
 var vy1 = 0;
 var vx2 = vx1 + (ew - vx1);
-var vy2 = vy1 + eh;
+var vy2 = eh;
 
 var yy = 64;
 var spacing = 16;
