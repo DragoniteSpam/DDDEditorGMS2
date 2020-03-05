@@ -24,7 +24,7 @@ graphic_type = GraphicTypes.NO_CHANGE;
 // becuase i'm a dumbass
 graphic_sprite = noone;
 graphic_mesh = noone;
-graphic_speed = 1;
+graphic_frame = 1;
 
 enum GraphicTypes {
     NONE,

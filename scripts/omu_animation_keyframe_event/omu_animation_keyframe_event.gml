@@ -32,15 +32,9 @@ if (keyframe) {
     
     var el_graphic_type = create_radio_array(col1_x, yy, "Graphic Type", ew, eh, uivc_animation_keyframe_graphic_type, keyframe.graphic_type, dg);
     create_radio_array_options(el_graphic_type, ["None", "No Change", "Sprite", "Mesh"]);
-    
     yy += ui_get_radio_array_height(el_graphic_type) + spacing;
     
-    var el_graphic_speed = create_input(col1_x, yy, "Speed", ew, eh, uivc_animation_keyframe_graphic_speed, keyframe.graphic_speed, "float", validate_double, 0, 16, 4, vx1, vy1, vx2, vy2, dg);
-    
-    yy += el_graphic_speed.height + spacing;
-    
     var el_event = create_input(col1_x, yy, "Function call", ew, eh, uivc_animation_keyframe_function, keyframe.event, "string", validate_string, 0, 1, 16, vx1, vy1, vx2, vy2, dg);
-    
     yy += el_event.height + spacing;
     
     var el_audio = create_list(col1_x, yy, "Sound Effect", "<no sound effects>", ew, eh, 10, uivc_animation_keyframe_audio, false, dg, Stuff.all_se);
@@ -73,6 +67,16 @@ if (keyframe) {
     el_graphic_battler_sprite_list.entries_are = ListEntries.INSTANCES;
     dg.el_graphic_battler_sprite_list = el_graphic_battler_sprite_list;
     
+    yy += ui_get_list_height(el_graphic_overworld_sprite_list) + spacing;
+    
+    var el_graphic_frame = create_input(col2_x, yy, "Frame", ew, eh, uivc_animation_keyframe_graphic_frame, keyframe.graphic_frame, "float", validate_int, 0, 255, 3, vx1, vy1, vx2, vy2, dg);
+    dg.el_graphic_frame = el_graphic_frame;
+    yy += el_graphic_frame.height + spacing;
+    
+    var el_graphic_direction = create_input(col2_x, yy, "Direction", ew, eh, uivc_animation_keyframe_graphic_direction, keyframe.graphic_direction, "float", validate_int, 0, 4, 1, vx1, vy1, vx2, vy2, dg);
+    dg.el_graphic_direction = el_graphic_direction;
+    yy += el_graphic_direction.height + spacing;
+    
     var sprite_overworld_index = ds_list_find_index(Stuff.all_graphic_overworlds, keyframe.graphic_sprite);
     ui_list_select(el_graphic_overworld_sprite_list, sprite_overworld_index);
     
@@ -94,12 +98,14 @@ if (keyframe) {
     
     ds_list_add(dg.contents,
         el_graphic_type,
-        el_graphic_speed,
-        el_event, el_audio,
+        el_event,
+        el_audio,
         el_graphic_none,
         el_graphic_no_change,
         el_graphic_overworld_sprite_list,
         el_graphic_battler_sprite_list,
+        el_graphic_frame,
+        el_graphic_direction,
         el_graphic_mesh_list,
         el_confirm
     );

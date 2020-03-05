@@ -119,5 +119,6 @@ enum DataVersions {
     IMAGE_ASPEED                        = 93,
     IMAGE_HEIGHT_WIDTH_DATA             = 94,
     MAP_LIGHTING_FOG_DATA               = 95,
+    EXTRA_ANIMATION_DATA                = 96,
     _CURRENT /* = whatever the last one is + 1 */
 }
