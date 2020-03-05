@@ -24,10 +24,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     var yy_base = yy;
     var element;
     
-    /*
-     * the list on the side is pretty important
-     */
-    
+    #region the side column
     var this_column = 0;
     
     el_master = create_list(this_column * cw + spacing, yy_header, "All Game Data Types: ", "<Click to define some.>", ew, eh, 32, uivc_list_data_editor, false, id, Stuff.all_data);
@@ -36,11 +33,9 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     el_master.allow_deselect = false;
     el_master.entries_are = ListEntries.INSTANCES;
     ds_list_add(contents, el_master);
+    #endregion
     
-    /*
-     * administrative things
-     */
-    
+    #region administrative things
     var this_column = 1;
     yy = yy_header;
     
@@ -72,11 +67,9 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     
     el_inst_remove = create_button(this_column * cw + spacing, yy, "Remove Instance", ew, eh, fa_center, uimu_data_remove_data, id);
     ds_list_add(contents, el_inst_remove);
+    #endregion
     
-    /*
-     * contents - this is actually pretty boring, it's just a container for all of the things you create on the fly
-     */
-    
+    #region the contents list is just an empty container by default
     var this_column = 2;
     yy = yy_base;
     
@@ -84,10 +77,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     el_dynamic.render = ui_render_columns;
     el_dynamic.page = 0;
     ds_list_add(contents, el_dynamic);
-    
-    /*
-     * more important stuff that needs to be done?
-     */
+    #endregion
     
     active_type_guid = 0;
     instance_deactivate_object(UIThing);

@@ -31,7 +31,7 @@ if (selection + 1) {
             var vx1 = 0;
             var vy1 = eh * 1.5;
             var vx2 = ew;
-            var vy2 = eh;
+            var vy2 = vy1 + eh;
             
             var vx1n = ew * 2 / 3;
             var vy1n = 0;
