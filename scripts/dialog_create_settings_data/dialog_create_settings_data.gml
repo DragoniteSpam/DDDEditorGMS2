@@ -107,6 +107,14 @@ var el_asset_flags = create_button(col2_x, yy, "Asset Flags", ew, eh, fa_center,
 el_asset_flags.tooltip = "Some extra flags you can assign to various game assets.";
 yy += el_asset_flags.height + spacing;
 
+var el_common_code = create_text(col2_x, yy, "Common Code", ew, eh, fa_left, dw / 2, dg);
+el_common_code.color = c_blue;
+yy += el_common_code.height + spacing;
+
+var el_common_effect_code = create_input_code(col2_x, yy, "Effect Code", ew, eh, vx1, vy1, vx2, vy2, Stuff.game_common_effect_code, uivc_settings_game_common_effect_code, dg);
+el_common_effect_code.tooltip = "Code for common effects you might want to call from anywhere in the game (flickering lights, similar particle systems, etc).";
+yy += el_common_effect_code.height + spacing;
+
 yy = yy_base;
 
 // confirm
@@ -139,6 +147,9 @@ ds_list_add(dg.contents,
     el_collision_triggers,
     el_event_triggers,
     el_asset_flags,
+    // global code pieces
+    el_common_code,
+    el_common_effect_code,
     // confirm
     el_confirm
 );

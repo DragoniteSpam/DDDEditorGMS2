@@ -19,7 +19,6 @@ if (version >= DataVersions.MAP_LIGHTING_FOG_DATA) {
 
 if (version >= DataVersions.EFFECT_COM_SCRIPT_DATA) {
     Stuff.game_common_effect_code = buffer_read(buffer, buffer_string);
-    debug(Stuff.game_common_effect_code);
 }
 
 var bools = buffer_read(buffer, buffer_u32);

@@ -44,6 +44,13 @@ dg.el_color = el_color;
 
 yy += el_color.height + spacing;
 
+var el_script = create_input(col1_x, yy, "Script call:", ew, eh, uivc_entity_effect_com_lighting_script_call, com_light ? com_light.script_call : "", "funciton name", validate_string_internal_name_or_empty, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
+el_script.tooltip = "If you want this light component to run any code, call it here. This should be the name of a Lua function defined by the Common Effect Code.";
+el_script.enabled = (com_light && com_light.light_type != LightTypes.NONE);
+dg.el_script = el_script;
+
+yy += el_script.height + spacing;
+
 var yy_options = yy;
 
 #region directional lights
@@ -93,6 +100,7 @@ var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Do
 ds_list_add(dg.contents,
     el_type,
     el_color,
+    el_script,
     el_dir_x,
     el_dir_y,
     el_dir_z,
