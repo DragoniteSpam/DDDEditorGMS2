@@ -111,7 +111,7 @@ var el_common_code = create_text(col2_x, yy, "Common Code", ew, eh, fa_left, dw 
 el_common_code.color = c_blue;
 yy += el_common_code.height + spacing;
 
-var el_common_effect_code = create_input_code(col2_x, yy, "Effect Code", ew, eh, vx1, vy1, vx2, vy2, Stuff.game_common_effect_code, uivc_settings_game_common_effect_code, dg);
+var el_common_effect_code = create_input_code(col2_x, yy, "Effect Code:", ew, eh, vx1, vy1, vx2, vy2, Stuff.game_common_effect_code, uivc_settings_game_common_effect_code, dg);
 el_common_effect_code.tooltip = "Code for common effects you might want to call from anywhere in the game (flickering lights, similar particle systems, etc).";
 yy += el_common_effect_code.height + spacing;
 
