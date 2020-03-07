@@ -69,6 +69,12 @@ if (keyframe) {
     
     yy += ui_get_list_height(el_graphic_overworld_sprite_list) + spacing;
     
+    var el_graphic_battler_sprite_render = create_render_surface(col3_x, yy, ew, ew, ui_render_surface_render_animation_frame, null, dg);
+    el_graphic_battler_sprite_render.enabled = (keyframe.graphic_type == GraphicTypes.SPRITE);
+    dg.el_graphic_battler_sprite_render = el_graphic_battler_sprite_render;
+    
+    yy += ui_get_list_height(el_graphic_overworld_sprite_list) + spacing;
+    
     var el_graphic_frame = create_input(col2_x, yy, "Frame", ew, eh, uivc_animation_keyframe_graphic_frame, keyframe.graphic_frame, "float", validate_int, 0, 255, 3, vx1, vy1, vx2, vy2, dg);
     dg.el_graphic_frame = el_graphic_frame;
     yy += el_graphic_frame.height + spacing;
@@ -104,6 +110,7 @@ if (keyframe) {
         el_graphic_no_change,
         el_graphic_overworld_sprite_list,
         el_graphic_battler_sprite_list,
+        el_graphic_battler_sprite_render,
         el_graphic_frame,
         el_graphic_direction,
         el_graphic_mesh_list,

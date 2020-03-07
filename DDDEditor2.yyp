@@ -3115,6 +3115,14 @@
             }
         },
         {
+            "Key": "26bbea8b-61d0-4549-8c64-7420d3fa108f",
+            "Value": {
+                "id": "76328296-566d-4b21-a704-e5a83fa6dd9e",
+                "resourcePath": "scripts\\ui_render_surface_render_animation_frame\\ui_render_surface_render_animation_frame.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "26beaf2a-c037-432d-b31e-9b927b55e767",
             "Value": {
                 "id": "2f8c5bc9-e496-4e53-a6c1-99346828626a",
@@ -20857,6 +20865,7 @@
         "27ac824d-92f5-4d4b-a384-16b6a76e8346",
         "c5ee05e7-6c16-4761-90f6-27280fea05ab",
         "424effe5-bbb2-4880-b8e8-a7d657a45e77",
+        "26bbea8b-61d0-4549-8c64-7420d3fa108f",
         "fcd4ba1d-4e32-4811-bac1-bf5c9ad661c1",
         "e34c9a14-42e1-40c8-acb9-121efce0c0ef",
         "d72b146b-f741-4c3a-95d1-ef3a174917bf",
