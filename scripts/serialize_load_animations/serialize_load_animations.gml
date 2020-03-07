@@ -80,6 +80,8 @@ repeat (n_animations) {
                 keyframe.graphic_frame = buffer_read(buffer, buffer_u32);
                 if (version >= DataVersions.EXTRA_ANIMATION_DATA) {
                     keyframe.graphic_direction = buffer_read(buffer, buffer_u8);
+                } else {
+                    buffer_read(buffer, buffer_f32);
                 }
                 
                 keyframe.audio = buffer_read(buffer, buffer_datatype);
