@@ -147,7 +147,7 @@ while (!file_text_eof(f)) {
             file_text_readln(f);
             break;
         default:
-            debug("Unsupported structure in " + fn + ", skipping. Please convert your primitive shapes into triangles. Thank.");
+            wtf("Unsupported structure in " + fn + ", skipping. Please convert your primitive shapes into triangles. Thank.");
             file_text_readln(f);
             skip = true;
             break;

@@ -28,7 +28,7 @@ for (var i = 0; i < n_bgm; i++) {
     } else {
         buffer_write(buffer, buffer_u32, 0 /* length */);
         buffer_write(buffer, buffer_u32, 0 /* this is important for something i think */);
-        debug("Audio file not found: " + string(bgm.GUID) + " [" + bgm.name + "]");
+        wtf("Audio file not found: " + string(bgm.GUID) + " [" + bgm.name + "]");
     }
     
     buffer_write(buffer, buffer_u32, bgm.fmod_rate);

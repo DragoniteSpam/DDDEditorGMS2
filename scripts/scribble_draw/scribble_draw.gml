@@ -1536,7 +1536,7 @@ if (global.scribble_state_allow_draw)
             var _vbuff_data = _page_vbuffs_array[_i];
             shader_set_uniform_f(global.__scribble_uniform_texel, _vbuff_data[__SCRIBBLE_VERTEX_BUFFER.TEXEL_WIDTH], _vbuff_data[__SCRIBBLE_VERTEX_BUFFER.TEXEL_HEIGHT]);
             vertex_submit(_vbuff_data[__SCRIBBLE_VERTEX_BUFFER.VERTEX_BUFFER], pr_trianglelist, _vbuff_data[__SCRIBBLE_VERTEX_BUFFER.TEXTURE]);
-            //debug(_vbuff_data[__SCRIBBLE_VERTEX_BUFFER.VERTEX_BUFFER]);
+            //wtf(_vbuff_data[__SCRIBBLE_VERTEX_BUFFER.VERTEX_BUFFER]);
             ++_i;
         }
         

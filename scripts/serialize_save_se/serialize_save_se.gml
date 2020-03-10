@@ -26,7 +26,7 @@ for (var i = 0; i < n_se; i++) {
     } else {
         buffer_write(buffer, buffer_u32, 0 /* length */);
         buffer_write(buffer, buffer_u32, 0 /* this is important for something i think */);
-        debug("Audio file not found: " + string(se.GUID) + " [" + se.name + "]");
+        wtf("Audio file not found: " + string(se.GUID) + " [" + se.name + "]");
     }
     
     buffer_write(buffer, buffer_u32, se.fmod_rate);

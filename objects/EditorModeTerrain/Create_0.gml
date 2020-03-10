@@ -91,7 +91,7 @@ vertex_end(terrain_buffer);
 terrain_buffer_data = buffer_create_from_vertex_buffer(terrain_buffer, buffer_fixed, 1);
 vertex_freeze(terrain_buffer);
 
-debug("Terrain creation took " + string((get_timer() - t) / 1000) + " milliseconds");
+wtf("Terrain creation took " + string((get_timer() - t) / 1000) + " milliseconds");
 
 enum TerrainModes {
     Z,
