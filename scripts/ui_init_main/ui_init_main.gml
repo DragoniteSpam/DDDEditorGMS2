@@ -426,7 +426,6 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     element_entity_type = create_text(col1_x, yy, "Type:", col_width, element_height, fa_left, col_width, t_p_entity);
     ds_list_add(t_p_entity.contents, element_entity_type);
-    ds_list_add(t_p_entity.contents, element_entity_type);
     
     yy += element_entity_type.height + spacing;
     
