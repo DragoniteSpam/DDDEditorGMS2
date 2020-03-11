@@ -17,8 +17,9 @@ var spacing = 16;
 var ew = dw / columns - spacing * 2;
 var eh = 24;
 
-var col2_x = dw / columns + 16;
-var col3_x = dw * 2 / columns + 16;
+var col1_x = spacing;
+var col2_x = dw / columns + spacing;
+var col3_x = dw * 2 / columns + spacing;
 
 var vx1 = ew / 2 - 16;
 var vy1 = 0;
@@ -32,12 +33,12 @@ var n_slots = 10;
 
 var yy = 64;
 
-var el_name = create_input(16, yy, "Name:", ew, eh, uivc_input_custom_event_name, dg.event.name, "[A-Za-z0-9_]+", validate_string_internal_name, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
+var el_name = create_input(col1_x, yy, "Name:", ew, eh, uivc_input_custom_event_name, dg.event.name, "[A-Za-z0-9_]+", validate_string_internal_name, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
 yy += el_name.height + spacing;
 
 var yy_base = yy;
 
-var el_list = create_list(16, yy, "Properties Types: ", "<no properties>", ew, eh, n_slots, uivc_list_event_custom_property, false, dg);
+var el_list = create_list(col1_x, yy, "Properties Types: ", "<no properties>", ew, eh, n_slots, uivc_list_event_custom_property, false, dg);
 el_list.render = ui_render_list_event_custom_properties;
 el_list.colorize = false;
 el_list.numbered = true;
@@ -45,10 +46,10 @@ dg.el_list = el_list;
 
 yy += ui_get_list_height(el_list) + spacing;
 
-var el_add = create_button(16, yy, "Add Property", ew, eh, fa_center, omu_event_custom_add_property, dg);
+var el_add = create_button(col1_x, yy, "Add Property", ew, eh, fa_center, omu_event_custom_add_property, dg);
 yy += el_add.height + spacing;
 
-var el_remove = create_button(16, yy, "Remove Property", ew, eh, fa_center, omu_event_custom_remove_property, dg);
+var el_remove = create_button(col1_x, yy, "Remove Property", ew, eh, fa_center, omu_event_custom_remove_property, dg);
 
 // COLUMN 2
 yy = yy_base;
@@ -82,18 +83,18 @@ yy += el_property_type_guid.height + spacing;
 // COLUMN 3
 yy = yy_base;
 
-var el_outbound = create_list(col3_x + 16, yy, "Outbound Nodes (max 10):", "what?", ew, eh, 10, uivc_list_event_custom_outbound, false, dg, dg.event.outbound);
+var el_outbound = create_list(col3_x, yy, "Outbound Nodes (max 10):", "what?", ew, eh, 10, uivc_list_event_custom_outbound, false, dg, dg.event.outbound);
 ui_list_select(el_outbound, 0);
 el_outbound.render = ui_render_list_event_custom_outbound;
 dg.el_outbound = el_outbound;
 yy += ui_get_list_height(el_outbound) + spacing;
-var el_outbound_name = create_input(col3_x + 16, yy, "Name:", ew, eh, uivc_input_event_custom_outbound_name, "", "Name", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
+var el_outbound_name = create_input(col3_x, yy, "Name:", ew, eh, uivc_input_event_custom_outbound_name, "", "Name", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
 dg.el_outbound_name = el_outbound_name;
 yy += el_outbound_name.height + spacing;
-var el_outbound_add = create_button(col3_x + 16, yy, "Add", ew, eh, fa_center, omu_event_custom_add_outbound, dg);
+var el_outbound_add = create_button(col3_x, yy, "Add", ew, eh, fa_center, omu_event_custom_add_outbound, dg);
 dg.el_outbound_add = el_outbound_add;
 yy += el_outbound_add.height + spacing;
-var el_outbound_remove = create_button(col3_x + 16, yy, "Remove", ew, eh, fa_center, omu_event_custom_remove_outbound, dg);
+var el_outbound_remove = create_button(col3_x, yy, "Remove", ew, eh, fa_center, omu_event_custom_remove_outbound, dg);
 el_outbound_remove.interactive = ds_list_size(dg.event.outbound) > 1;
 dg.el_outbound_remove = el_outbound_remove;
 yy += el_outbound_remove.height + spacing;
