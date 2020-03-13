@@ -14,3 +14,5 @@ zone.x2 = buffer_read(buffer, buffer_f32);
 zone.y2 = buffer_read(buffer, buffer_f32);
 zone.z2 = buffer_read(buffer, buffer_f32);
 zone.zone_priority = buffer_read(buffer, buffer_u16);
+
+map_zone_collision(zone);

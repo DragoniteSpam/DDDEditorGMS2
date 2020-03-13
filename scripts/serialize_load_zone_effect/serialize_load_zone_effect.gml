@@ -8,14 +8,8 @@ var version = argument2;
 
 serialize_load_zone(buffer, zone, version);
 
-zone.camera_distance = buffer_read(buffer, buffer_u16);
-zone.camera_angle = buffer_read(buffer, buffer_f32);
-zone.camera_easing_method = buffer_read(buffer, buffer_u8);
-zone.camera_easing_time = buffer_read(buffer, buffer_f32);
-
-if (version >= DataVersions.MERGE_ORTHO_SIZE) {
-} else if (version >= DataVersions.MAP_CAMERA_ZONE_ORTHO_DATA) {
-    buffer_read(buffer, buffer_f32);
+ds_list_clear(zone.active_lights);
+var n_active = buffer_read(buffer, buffer_u8);
+repeat (n_active) {
+    ds_list_add(zone.active_lights, buffer_read(buffer, buffer_datatype));
 }
-
-map_zone_collision(zone);

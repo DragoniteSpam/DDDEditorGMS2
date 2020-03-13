@@ -148,10 +148,12 @@ enum BattleStyles {
 
 enum MapZoneTypes {
     CAMERA,
+    EFFECT,
 }
 
 global.map_zone_type_objects = [
     DataCameraZone,
+    DataEffectZone,
 ];
 
 // this can also be used for anything else that needs eight directions

@@ -16,9 +16,9 @@ zone.x2 = maxx;
 zone.y2 = maxy;
 zone.z2 = maxz;
 
-var ww = zone.x2 - zone.x1;
-var hh = zone.y2 - zone.y1;
-var dd = zone.z2 - zone.z1;
+var ww = (zone.x2 - zone.x1 + 1);
+var hh = (zone.y2 - zone.y1 + 1);
+var dd = (zone.z2 - zone.z1 + 1);
 zone.zz = zone.z1;
 
 if (zone.cobject) {

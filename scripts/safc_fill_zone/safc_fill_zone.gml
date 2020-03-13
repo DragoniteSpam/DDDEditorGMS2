@@ -8,7 +8,7 @@ for (var i = 0; i < ds_list_size(Stuff.map.selection); i++) {
     // supporting spherical zones, and size-one zones are kinda pointless.
     if (instanceof(selection, SelectionRectangle)) {
         var zone_list = Stuff.map.ui.t_p_other_editor.el_zone_type;
-        var type = zone_list.object_types[ui_list_selection(zone_list)];
+        var type = global.map_zone_type_objects[ui_list_selection(zone_list)];
         var zone = instance_create_depth(0, 0, 0, type);
         instance_deactivate_object(zone);
         zone.name = object_get_name(type) + " " + string(ds_list_size(Stuff.map.active_map.contents.all_zones));

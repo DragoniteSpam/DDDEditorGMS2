@@ -6,7 +6,8 @@ var zone = argument1;
 
 serialize_save_zone(buffer, zone);
 
-buffer_write(buffer, buffer_u16, zone.camera_distance);
-buffer_write(buffer, buffer_f32, zone.camera_angle);
-buffer_write(buffer, buffer_u8, zone.camera_easing_method);
-buffer_write(buffer, buffer_f32, zone.camera_easing_time);
+var n_active = ds_list_size(zone.active_lights);
+buffer_write(buffer, buffer_u8, n_active);
+for (var i = 0; i < n_active; i++) {
+    buffer_write(buffer, buffer_datatype, zone.active_lights[| i]);
+}

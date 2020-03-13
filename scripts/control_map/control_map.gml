@@ -43,7 +43,7 @@ if (map.is_3d) {
     // raycast coordinates
     var rc_xfrom = mode.x + ((mouse_x_view - cwidth / 2) / view_get_wport(view_3d)) * cwidth;
     var rc_yfrom = mode.y + ((mouse_y_view - cheight / 2) / view_get_hport(view_3d)) * cheight;
-    var rc_zfrom = mode.z;
+    var rc_zfrom = MILLION;
     var rc_xto = rc_xfrom;
     var rc_yto = rc_yfrom;
     var rc_zto = -1;

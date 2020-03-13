@@ -915,12 +915,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     element.colorize = false;
     element.allow_deselect = false;
     ui_list_select(element, 0);
-    create_list_entries(element, ["Camera Zone"]);
-    create_list_entries(element, ["Effect Zone"]);
-    element.object_types = [
-        DataCameraZone,
-        DataEffectZone,
-    ];
+    create_list_entries(element, ["Camera Zone"], ["Effect Zone"]);
     ds_list_add(t_p_other_editor.contents, element);
     t_p_other_editor.el_zone_type = element;
     

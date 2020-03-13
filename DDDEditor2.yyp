@@ -6179,6 +6179,14 @@
             }
         },
         {
+            "Key": "5007bd00-e7bc-452a-a28b-0c36a9d2328d",
+            "Value": {
+                "id": "abba7484-452e-45cf-b17e-6cfcb544131b",
+                "resourcePath": "scripts\\map_zone_effect\\map_zone_effect.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "50237d34-4c23-42ab-8136-aebbaf9bc2e7",
             "Value": {
                 "id": "599127dd-b4c2-483a-b904-1308cd2368fa",
@@ -19862,6 +19870,7 @@
         "0f67b905-b2ee-49eb-ba96-763eb27af16c",
         "d98e8a9a-d475-42cc-98ce-47bd6a8e1fdf",
         "fa663bfb-720b-406f-b672-f3270b149138",
+        "5007bd00-e7bc-452a-a28b-0c36a9d2328d",
         "54c88dd4-4ffb-4b5a-ae26-a1eeb69fe6b7",
         "cc4b665c-35dc-4843-9b3d-44fe61149dae",
         "a0c45521-e3c0-4e37-94b4-600c3f5eaf19",

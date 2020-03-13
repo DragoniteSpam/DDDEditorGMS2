@@ -17,5 +17,3 @@ if (version >= DataVersions.MERGE_ORTHO_SIZE) {
 } else if (version >= DataVersions.MAP_CAMERA_ZONE_ORTHO_DATA) {
     buffer_read(buffer, buffer_f32);
 }
-
-map_zone_collision(zone);
