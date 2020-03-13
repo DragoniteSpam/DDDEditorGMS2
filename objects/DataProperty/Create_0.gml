@@ -5,7 +5,6 @@ event_inherited();
 
 name = "Property";
 type = DataTypes.INT;
-deleted = false;
 
 range_min = 0;                        // int, float
 range_max = 10;                       // int, float

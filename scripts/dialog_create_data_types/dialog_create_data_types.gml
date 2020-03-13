@@ -9,7 +9,6 @@ var dw = 960;
 var dh = 640;
 
 var dg = dialog_create(dw, dh, "Data: Data", dialog_default, undefined, dialog);
-dg.x = dg.x - 32;
 
 dg.selected_data = noone;
 dg.selected_property = noone;
@@ -18,6 +17,10 @@ var columns = 3;
 var spacing = 16;
 var ew = dw / columns - spacing * 2;
 var eh = 24;
+
+var col1_x = dw * 0 / 3 + spacing;
+var col2_x = dw * 1 / 3 + spacing;
+var col3_x = dw * 2 / 3 + spacing;
 
 var vx1 = dw / (columns * 2) - 16;
 var vy1 = 0;
@@ -30,6 +33,7 @@ var b_height = 32;
 var n_slots = 14;
 
 var yy = 64;
+var yy_base = yy;
 
 var el_list = create_list(16, yy, "Data Types: ", "<no data types>", ew, eh, n_slots, uivc_list_data_data, false, dg, Stuff.all_data);
 el_list.render = ui_render_list_data_data;
@@ -49,8 +53,7 @@ yy += el_add.height + spacing;
 var el_remove = create_button(16, yy, "Remove", ew, eh, fa_center, omu_data_remove, dg);
 
 // COLUMN 2
-yy = 64;
-var col2_x = dw / 3 + 16;
+yy = yy_base;
 
 var el_data_name = create_input(col2_x, yy, "Data Name:", ew, eh, uivc_input_data_name, "", "[A-Za-z0-9_]+", validate_string_internal_name, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
 el_data_name.interactive = false;
@@ -76,8 +79,7 @@ el_remove_p.interactive = false;
 dg.el_remove_p = el_remove_p;
 
 // COLUMN 3
-yy = 64;
-var col3_x = dw * 2 / 3 + 16;
+yy = yy_base;
 
 var el_property_name = create_input(col3_x, yy, "Name:", ew, eh, uivc_input_data_property_name, "", "[A-Za-z0-9_]+", validate_string_internal_name, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
 el_property_name.interactive = false;
@@ -128,7 +130,7 @@ dg.el_property_default_na = el_property_default_na;
 
 yy += eh + spacing;
 
-var yy_base = yy;
+var yy_base_special = yy;
 
 // data and enum - onmouseup is assigned when the radio button is clicked
 var el_property_type_guid = create_button(col3_x, yy, "Select", ew, eh, fa_center, null, dg);
@@ -159,7 +161,7 @@ create_radio_array_options(el_property_scale, ["Linear", "Quadratic", "Exponenti
 el_property_scale.enabled = false;
 dg.el_property_scale = el_property_scale;
 
-yy = yy_base;
+yy = yy_base_special;
 
 yy += eh + spacing;
 

@@ -14,7 +14,7 @@ for (var i = 0; i < n_datadata; i++) {
     
     buffer_write(buffer, buffer_u16, datadata.type);
     // type is looked at to determine if you're a data type or enum, so save it first
-    buffer_write(buffer, buffer_u8, pack(datadata.deleted));
+    
     serialize_save_generic(buffer, datadata);
     
     var n_properties = ds_list_size(datadata.properties);
@@ -24,7 +24,6 @@ for (var i = 0; i < n_datadata; i++) {
         var property = datadata.properties[| j];
         
         serialize_save_generic(buffer, property);
-        buffer_write(buffer, buffer_u8, pack(property.deleted));
         
         if (datadata.type == DataTypes.DATA) {
             buffer_write(buffer, buffer_u8, property.type);
@@ -38,10 +37,6 @@ for (var i = 0; i < n_datadata; i++) {
             buffer_write(buffer, buffer_string, property.default_string);
             buffer_write(buffer, buffer_s32, property.default_int);
             buffer_write(buffer, buffer_f32, property.default_real);
-            
-            var bools = 0;
-            
-            buffer_write(buffer, buffer_u32, bools);
         } else {
             // then nothing else matters besides the name and other basic things
         }
