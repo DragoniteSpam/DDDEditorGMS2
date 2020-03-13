@@ -6,9 +6,9 @@ var map_contents = map.contents;
 save_script = serialize_save_zone_camera;
 load_script = serialize_load_zone_camera;
 zone_edit_script = map_zone_camera;
-editor_color = [0, 0, 1, 1];
+editor_color = [1, 1, 0, 1];
 
-/* s */ name = "CamZone " + name;
+/* s */ name = "FXZone " + name;
 /* s */ ztype = MapZoneTypes.CAMERA;
 
 /* s */ camera_distance = 8;                            // u16

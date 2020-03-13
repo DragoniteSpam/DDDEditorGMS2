@@ -58,7 +58,7 @@ enum FillTypes {
     PAWN,
     EFFECT,
     TERRAIN,
-    CAMERA_ZONE,
+    ZONE,
 }
 
 active_map = instance_create_depth(0, 0, 0, DataMapContainer);

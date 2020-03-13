@@ -4,6 +4,8 @@ var button = Stuff.map.ui.t_p_other.el_zone_data;
                     
 for (var i = 0; i < ds_list_size(Stuff.map.selection); i++) {
     var selection = Stuff.map.selection[| i];
+    // Only going to do this with rectangle zones. I'm not currently planning on
+    // supporting spherical zones, and size-one zones are kinda pointless.
     if (instanceof(selection, SelectionRectangle)) {
         var zone_list = Stuff.map.ui.t_p_other_editor.el_zone_type;
         var type = zone_list.object_types[ui_list_selection(zone_list)];

@@ -1,4 +1,4 @@
-if (Stuff.setting_selection_fill_type == FillTypes.CAMERA_ZONE) {
+if (Stuff.setting_selection_fill_type == FillTypes.ZONE) {
     safc_fill_zone();
     return;
 }

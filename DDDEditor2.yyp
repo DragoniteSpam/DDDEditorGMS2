@@ -2451,6 +2451,14 @@
             }
         },
         {
+            "Key": "1f04c10d-a902-4b9c-99b7-90f4f2610429",
+            "Value": {
+                "id": "9307dd95-1a59-49a7-a135-224f98c93dfe",
+                "resourcePath": "views\\1f04c10d-a902-4b9c-99b7-90f4f2610429.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "1f0af3fa-1515-4d85-bbfd-767a023e585b",
             "Value": {
                 "id": "0b49ff1d-8b82-4005-8883-7c7f639a3b10",
@@ -17912,6 +17920,14 @@
                 "id": "0b196fef-8a5d-44fc-a8f2-622bd8c91f1d",
                 "resourcePath": "scripts\\ui_render_animation_keyframe_rotate_x\\ui_render_animation_keyframe_rotate_x.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "ec982b33-59f6-4b79-896f-6b8db966d108",
+            "Value": {
+                "id": "f7c6a094-281c-4219-994c-7f497a0fe454",
+                "resourcePath": "objects\\DataEffectZone\\DataEffectZone.yy",
+                "resourceType": "GMObject"
             }
         },
         {
