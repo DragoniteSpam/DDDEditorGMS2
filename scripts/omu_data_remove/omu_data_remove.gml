@@ -1,7 +1,17 @@
-/// @param UIThing
+/// @param UIButton
 
-var thing = argument0;
+var button = argument0;
 
-if (thing.root.selected_data) {
-    dialog_create_notice(thing.root, thing.root.selected_data.name + " has been marked for deletion, but due to the technical headache that is identifying and handling uses of it elsewhere in the data it's not actually going to be deleted. In the future when I have time I might address ways around this but for now just dummy it out, perhaps adding a few Zs to its name so it sinks to the bottom of the list; you can set the game to ignore it anyway.", undefined, undefined, 480, 400);
+if (button.root.selected_data) {
+    instance_activate_object(button.root.selected_data);
+    instance_destroy(button.root.selected_data);
+    ds_list_delete(Stuff.all_data, ds_list_find_index(Stuff.all_data, button.root.selected_data));
+    
+    ui_list_deselect(button.root.el_list_main);
+    ui_list_deselect(button.root.el_list_p);
+    script_execute(button.root.el_list_main.onvaluechange, button.root.el_list_main);
+    script_execute(button.root.el_list_p.onvaluechange, button.root.el_list_p);
+    
+    button.root.selected_data = noone;
+    button.root.selected_property = noone;
 }

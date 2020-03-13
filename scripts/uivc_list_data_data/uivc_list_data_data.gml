@@ -4,7 +4,7 @@ var list = argument0;
 
 var selection = ui_list_selection(list);
 
-if (selection >= 0) {
+if (selection + 1) {
     var listofthings = Stuff.all_data;
     if (listofthings[| selection] != list.root.selected_data) {
         list.root.selected_data = listofthings[| selection];
