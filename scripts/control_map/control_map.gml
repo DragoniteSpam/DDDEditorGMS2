@@ -145,7 +145,7 @@ if (!mode.mouse_over_ui) {
                     
                     var tz = instance_under_cursor ? max(instance_under_cursor.zz, mode.edit_z) : mode.edit_z;
                     
-                    if (instance_under_cursor && instanceof(instance_under_cursor, DataCameraZone)) {
+                    if (instance_under_cursor && instanceof(instance_under_cursor, DataMapZone)) {
                         button.interactive = true;
                         button.onmouseup = instance_under_cursor.zone_edit_script;
                         button.text = "Data: " + instance_under_cursor.name;
