@@ -23,8 +23,6 @@ if (selection >= 0) {
     
     thing.root.root.root.el_property_type_guid.text = guid_get(property.type_guid).name;
     thing.root.root.root.el_property_type_guid.color = c_black;
-    
-    thing.root.root.root.changed = true;
 }
 
 dialog_destroy();

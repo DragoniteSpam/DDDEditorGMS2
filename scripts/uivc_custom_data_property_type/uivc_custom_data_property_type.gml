@@ -6,7 +6,6 @@ var selection = ui_list_selection(thing.root.root.el_list);
 
 var property = thing.root.root.event.types[| selection];
 property[EventNodeCustomData.TYPE] = thing.value;
-thing.root.root.changed = true;
 
 // this should work without this because of the accessor but
 // just because pass by reference in game maker sucks

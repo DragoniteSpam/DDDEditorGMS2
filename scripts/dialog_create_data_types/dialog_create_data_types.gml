@@ -8,12 +8,11 @@ var dialog = argument0;
 var dw = 960;
 var dh = 640;
 
-var dg = dialog_create(dw, dh, "Data: Data", dialog_note_changes, undefined, dialog);
+var dg = dialog_create(dw, dh, "Data: Data", dialog_default, undefined, dialog);
 dg.x = dg.x - 32;
 
 dg.selected_data = noone;
 dg.selected_property = noone;
-dg.changed = false;
 
 var columns = 3;
 var spacing = 16;
