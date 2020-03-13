@@ -227,7 +227,6 @@ all_animations = ds_list_create();
 all_game_constants = ds_list_create();
 
 all_data = ds_list_create();
-original_data = noone;            // when you're modifying the data types and want to stash the old ones
 
 #endregion
 
