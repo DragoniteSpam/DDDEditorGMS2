@@ -35,22 +35,23 @@ var n_slots = 14;
 var yy = 64;
 var yy_base = yy;
 
-var el_list = create_list(16, yy, "Data Types: ", "<no data types>", ew, eh, n_slots, uivc_list_data_data, false, dg, Stuff.all_data);
+var el_list = create_list(col1_x, yy, "Data Types: ", "<no data types>", ew, eh, n_slots, uivc_list_data_data, false, dg, Stuff.all_data);
 el_list.render = ui_render_list_data_data;
 el_list.render_colors = ui_list_color_data_type;
+el_list.onmiddleclick = uivc_list_data_alphabetize;
 el_list.entries_are = ListEntries.INSTANCES;
 
 dg.el_list_main = el_list;
 
 yy += ui_get_list_height(el_list) + spacing;
 
-var el_add = create_button(16, yy, "Add Data", ew, eh, fa_center, omu_data_add, dg);
+var el_add = create_button(col1_x, yy, "Add Data", ew, eh, fa_center, omu_data_add, dg);
 yy += el_add.height + spacing;
 
-var el_add_enum = create_button(16, yy, "Add Enum", ew, eh, fa_center, omu_data_enum_add, dg);
+var el_add_enum = create_button(col1_x, yy, "Add Enum", ew, eh, fa_center, omu_data_enum_add, dg);
 yy += el_add.height + spacing;
 
-var el_remove = create_button(16, yy, "Remove", ew, eh, fa_center, omu_data_remove, dg);
+var el_remove = create_button(col1_x, yy, "Remove", ew, eh, fa_center, omu_data_remove, dg);
 
 // COLUMN 2
 yy = yy_base;
