@@ -1,8 +1,8 @@
 {
-    "id": "54c88dd4-4ffb-4b5a-ae26-a1eeb69fe6b7",
+    "id": "a6a5e265-4650-40fc-8221-11254253ece5",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "map_zone_camera_collision",
+    "name": "serialize_load_zone",
     "IsCompatibility": false,
     "IsDnD": false
 }

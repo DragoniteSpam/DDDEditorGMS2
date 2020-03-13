@@ -6550,7 +6550,7 @@
             "Key": "54c88dd4-4ffb-4b5a-ae26-a1eeb69fe6b7",
             "Value": {
                 "id": "6686b24c-ccad-4dc0-89da-a6724c54c24b",
-                "resourcePath": "scripts\\map_zone_camera_collision\\map_zone_camera_collision.yy",
+                "resourcePath": "scripts\\map_zone_collision\\map_zone_collision.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -9527,6 +9527,14 @@
             "Value": {
                 "id": "90fb571e-aea7-486d-83dd-39cd0d6d9bcb",
                 "resourcePath": "scripts\\uivc_animation_keyframe_alpha\\uivc_animation_keyframe_alpha.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "7c455d4d-ca30-4dc0-9d24-b340fe482e76",
+            "Value": {
+                "id": "04492d06-7893-4a91-9b62-684bf7f66153",
+                "resourcePath": "scripts\\serialize_save_zone\\serialize_save_zone.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -12747,6 +12755,14 @@
             }
         },
         {
+            "Key": "a6a5e265-4650-40fc-8221-11254253ece5",
+            "Value": {
+                "id": "a4573b38-0544-4474-8432-0aebd79fab5c",
+                "resourcePath": "scripts\\serialize_load_zone\\serialize_load_zone.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "a6beb8c7-aece-4c95-af64-a534d60adb4f",
             "Value": {
                 "id": "5eac720f-058a-4a27-b0cd-e3ae19b4d9a1",
@@ -15571,6 +15587,14 @@
             }
         },
         {
+            "Key": "cd6dbbb8-6dce-4f9b-9814-bd2eb5e83ab9",
+            "Value": {
+                "id": "67758940-1a8e-428f-8327-bbc666dd811e",
+                "resourcePath": "scripts\\serialize_save_zone_effect\\serialize_save_zone_effect.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "cdb1eb79-b2b2-4ea0-991b-b0c42d1f374b",
             "Value": {
                 "id": "dee1c24f-94b0-4e0f-90ae-0f7c3cdc3b91",
@@ -15591,6 +15615,14 @@
             "Value": {
                 "id": "5f0e3e14-976a-4477-8699-284a7af64d95",
                 "resourcePath": "scripts\\serialize_load_entity_tile\\serialize_load_entity_tile.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "cdbc6c07-9e78-4b7a-ac07-2e3f8968aecd",
+            "Value": {
+                "id": "7e1afe05-6011-4b8d-bcdf-ae3062683444",
+                "resourcePath": "scripts\\serialize_load_zone_effect\\serialize_load_zone_effect.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -20994,6 +21026,8 @@
         "7de30827-aa0d-4769-8954-fa0c4e77d129",
         "fc68c907-a6a1-43de-aa9c-9b2ab4d661b3",
         "7598a969-57b2-43a6-8354-283d93f53f02",
+        "cdbc6c07-9e78-4b7a-ac07-2e3f8968aecd",
+        "a6a5e265-4650-40fc-8221-11254253ece5",
         "09c3db56-cf0d-49de-be3f-5d7a532d4f90",
         "25d7e07b-cbd5-4039-af63-3fb8193314f3",
         "ff28a471-b69c-4494-8924-7d1f8b06de7d",
@@ -21030,6 +21064,8 @@
         "bd0be394-d9fd-4f47-82e2-6bf129f5ccd3",
         "844bd873-ea06-48b8-9447-953a9d9b2e33",
         "3a6f4f72-cc61-4b17-9061-3b835ed83de0",
+        "cd6dbbb8-6dce-4f9b-9814-bd2eb5e83ab9",
+        "7c455d4d-ca30-4dc0-9d24-b340fe482e76",
         "bf12de76-111a-48f5-8273-4a1c563e9145",
         "4e40beba-91ce-44e8-a609-cf9966422af2",
         "68887f1a-5406-4953-8e40-d50da4d8c219",

@@ -20,7 +20,7 @@ for (var i = 0; i < ds_list_size(Stuff.map.selection); i++) {
         zone.y2 = selection.y2;
         zone.z2 = selection.z2;
         
-        map_zone_camera_collision(zone);
+        map_zone_collision(zone);
         
         button.interactive = true;
         button.onmouseup = zone.zone_edit_script;
