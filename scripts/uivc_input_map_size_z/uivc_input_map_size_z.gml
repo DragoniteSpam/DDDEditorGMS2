@@ -3,7 +3,7 @@
 var input = argument0;
 var selection = ui_list_selection(input.root.el_map_list);
 
-if (selection >= 0) {
+if (selection + 1) {
     var map = Stuff.all_maps[| selection];
     var clear = true;
     var zz = real(input.value);
@@ -14,7 +14,7 @@ if (selection >= 0) {
     if (clear) {
         data_resize_map(map, map.xx, map.yy, zz);
     } else {
-        var dialog = dialog_create_yes_or_no(input, "If you do this, entities will be deleted and you will not be able to get them back. Is this okay?", dc_map_resize);
+        var dialog = dialog_create_yes_or_no(input, "If you do this, entities will be deleted and you will not be able to get them back. Is this okay?", dc_map_resize, undefined, undefined, undefined, dmu_dialog_cancel_reset_map_dimension_values);
         dialog.map = map;
         dialog.xx = map.xx;
         dialog.yy = map.yy;

@@ -179,6 +179,14 @@
             }
         },
         {
+            "Key": "01ee65eb-87c8-424b-83ad-c4dee7d8818b",
+            "Value": {
+                "id": "a663e5fb-3774-479c-9142-2f0c8ce45290",
+                "resourcePath": "scripts\\dmu_dialog_cancel_reset_map_dimension_values\\dmu_dialog_cancel_reset_map_dimension_values.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "02167d20-df7d-4774-a2e6-105cd629c256",
             "Value": {
                 "id": "ec45b57d-0cd6-4271-abc2-75e8fa278d61",
@@ -20116,6 +20124,7 @@
         "3524668f-fce9-47ef-a727-b1f72a682462",
         "ef88187a-f578-4d1f-b954-17d87c453441",
         "1463a253-2c9b-48c6-8428-954e21d6ff63",
+        "01ee65eb-87c8-424b-83ad-c4dee7d8818b",
         "6632e72e-3d90-4eed-bde9-d7220c475a3d",
         "421b75e0-45fa-46bd-9818-6df02b716307",
         "2bab7c83-082f-4f2d-bf70-d27f96dabdab",
