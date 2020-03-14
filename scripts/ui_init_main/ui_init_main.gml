@@ -160,17 +160,6 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy += element.height + spacing;
     
-    // more
-    element = create_text(col2_x, yy, "Map Settings", col_width, element_height, fa_left, col_width, t_general);
-    ds_list_add(t_general.contents, element);
-    
-    yy += element.height + spacing;
-    
-    element = create_button(col2_x, yy, "Freeze Selected", col_width, element_height, fa_center, uimu_freeze_ask, t_general);
-    ds_list_add(t_general.contents, element);
-    
-    yy += element.height + spacing;
-    
     #endregion
     
     #region tab: stats
@@ -287,6 +276,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy = legal_y + spacing;
     
     element = create_list(col1_x, yy, "Maps: ", "no maps. (how?!)", col_width, element_height, 20, uivc_list_maps, false, t_maps, Stuff.all_maps);
+    element.tooltip = "This is a list of all the maps currently in the game.";
     element.render = ui_render_list_all_maps;
     element.ondoubleclick = dmu_data_open_map;
     element.entries_are = ListEntries.INSTANCES;
@@ -296,26 +286,31 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy += ui_get_list_height(element) + spacing;
     
     element = create_button(col1_x, yy, "Add Map", col_width, element_height, fa_center, dmu_data_add_map, t_maps);
+    element.tooltip = "Add a map. You can have up to " + string(0xffff) + " maps in the game. I seriously doubt anyone will need anywhere near that many.";
     ds_list_add(t_maps.contents, element);
     
     yy += element.height + spacing;
     
     element = create_button(col1_x, yy, "Remove Map", col_width, element_height, fa_center, dmu_data_remove_map, t_maps);
+    element.tooltip = "Remove the currently selected map. Any existing references to it will no longer work. You should only use this if you're absolutely sure; generally speaking, maps not loaded into memory will not affect the game very much.";
     ds_list_add(t_maps.contents, element);
     
     yy += element.height + spacing;
     
     element = create_button(col1_x, yy, "Open Map", col_width, element_height, fa_center, dmu_data_open_map, t_maps);
+    element.tooltip = "Open the currently selected map for editing. Double-clicking it in the list will have the same effect.";
     ds_list_add(t_maps.contents, element);
     
     yy += element.height + spacing;
     
     element = create_button(col1_x, yy, "Make Starting Map", col_width, element_height, fa_center, dmu_data_starting_map, t_maps);
+    element.tooltip = "Designate the currently selected map as the first one entered when the game starts. What this means to your game is up to you.";
     ds_list_add(t_maps.contents, element);
     
     yy += element.height + spacing;
     
     element = create_button(col1_x, yy, "Import Tiled", col_width, element_height, fa_center, dmu_data_import_map, t_maps);
+    element.tooltip = "Import a Tiled map editor file (json version). Tile data will be imported as frozen terrain; the editor will attempt to convert other data to Entities.";
     ds_list_add(t_maps.contents, element);
     
     yy = legal_y + spacing;
@@ -326,6 +321,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy += element.height + spacing;
     
     element = create_input(col2_x, yy, "", col_width, element_height, uivc_settings_map_name, "", "Name", validate_string, 0, 0, VISIBLE_NAME_LENGTH, 0, vy1, vx2, vy2, t_maps);
+    element.tooltip = "The name of the map, as it appears to the player.";
     ds_list_add(t_maps.contents, element);
     t_maps.el_name = element;
     
@@ -337,6 +333,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy += element.height + spacing;
     
     element = create_input(col2_x, yy, "", col_width, element_height, uivc_settings_map_internal, "", "[A-Za-z0-9_]+", validate_string_internal_name, 0, 0, INTERNAL_NAME_LENGTH, 0, vy1, vx2, vy2, t_maps);
+    element.tooltip = "The internal name of the map, as it appears to the developer. Standard restrictions on internal names apply.";
     ds_list_add(t_maps.contents, element);
     t_maps.el_internal_name = element;
     
@@ -348,6 +345,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy += element.height + spacing;
     
     element = create_input(col2_x, yy, "", col_width, element_height, uivc_settings_map_summary, "", "Words", validate_string, 0, 0, 400, 0, vy1, vx2, vy2, t_maps);
+    element.tooltip = "A description of the map. Try not to make this too long. You may wish to use Scribble formatting tags.";
     ds_list_add(t_maps.contents, element);
     t_maps.el_summary = element;
     
@@ -359,6 +357,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy += element.height + spacing;
     
     element = create_input(col2_x, yy, "Width (X): ", col_width, element_height, uivc_input_map_size_x, "64", "width", validate_int_map_size_x, 1, MAP_AXIS_LIMIT, 4, vx1, vy1, vx2, vy2, t_maps);
+    element.tooltip = "The width of the map, in tiles. Press Enter to confirm. Shrinking a map may result in entities being deleted.";
     element.require_enter = true;
     ds_list_add(t_maps.contents, element);
     t_maps.el_dim_x = element;
@@ -366,6 +365,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy += element.height + spacing;
     
     element = create_input(col2_x, yy, "Height (Y): ", col_width, element_height, uivc_input_map_size_y, "64", "height", validate_int_map_size_y, 1, MAP_AXIS_LIMIT, 4, vx1, vy1, vx2, vy2, t_maps);
+    element.tooltip = "The height of the map, in tiles. Press Enter to confirm. Shrinking a map may result in entities being deleted.";
     element.require_enter = true;
     ds_list_add(t_maps.contents, element);
     t_maps.el_dim_y = element;
@@ -373,6 +373,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy += element.height + spacing;
     
     element = create_input(col2_x, yy, "Depth (Z): ", col_width, element_height, uivc_input_map_size_z, "8", "depth", validate_int_map_size_z, 1, MAP_AXIS_LIMIT, 4, vx1, vy1, vx2, vy2, t_maps);
+    element.tooltip = "The depth of the map, in tiles. Press Enter to confirm. Shrinking a map may result in entities being deleted.";
     element.require_enter = true;
     ds_list_add(t_maps.contents, element);
     t_maps.el_dim_z = element;
@@ -385,21 +386,37 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy += element.height + spacing * 3;
     
     element = create_checkbox(col2_x, yy, "Is 3D?", col_width, element_height, uivc_settings_map_3d, false, t_maps);
-    element.tooltip = "This is my favorite checkbox in the whole entire editor";
+    element.tooltip = "This is my favorite checkbox in the whole entire editor.";
     ds_list_add(t_maps.contents, element);
     t_maps.el_3d = element;
     
     yy += element.height + spacing;
     
     element = create_button(col2_x, yy,  "Generic Data", col_width, element_height, fa_center, omu_map_generic_data, t_maps);
+    element.tooltip = "You can attach generic data properties to each map, to give the game extra information about it. How you use this is up to you. These properties aren't guaranteed to exist, so the game should always check first before trying to access them.";
     ds_list_add(t_maps.contents, element);
     t_maps.el_other = element;
     
     yy += element.height + spacing;
     
     element = create_button(col2_x, yy,  "More Settings", col_width, element_height, fa_center, dialog_create_settings_map, t_maps);
+    element.tooltip = "I put the more important settings out here on the main UI, but there are plenty of other things you may need to specify about maps.";
     ds_list_add(t_maps.contents, element);
     t_maps.el_other = element;
+    
+    element = create_button(col2_x, yy, "Freeze Selected Objects", col_width, element_height, fa_center, null, t_maps);
+    element.tooltip = "Selected objects will be converted to a frozen vertex buffer and will no longer be editable. This means they will be significantly faster to process and render, but they will otherwise be effectively permanently removed. Use with caution.";
+    element.interactive = false;
+    ds_list_add(t_maps.contents, element);
+    
+    yy += element.height + spacing;
+    
+    element = create_button(col2_x, yy, "Clear Frozen Data", col_width, element_height, fa_center, null, t_maps);
+    element.tooltip = "Clear the frozen vertex buffer data. There is no way to get it back. Use with caution.";
+    element.interactive = false;
+    ds_list_add(t_maps.contents, element);
+    
+    yy += element.height + spacing;
     
     #endregion
     
@@ -915,7 +932,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     element.colorize = false;
     element.allow_deselect = false;
     ui_list_select(element, Stuff.setting_selection_zone_type);
-    create_list_entries(element, ["Camera Zone"], ["Effect Zone"]);
+    create_list_entries(element, ["Camera Zone"], ["Light Zone"]);
     ds_list_add(t_p_other_editor.contents, element);
     t_p_other_editor.el_zone_type = element;
     

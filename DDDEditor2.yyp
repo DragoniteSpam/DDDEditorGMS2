@@ -14835,14 +14835,6 @@
             }
         },
         {
-            "Key": "c2f7ce01-3c43-4a82-94cc-a0bef47b5a27",
-            "Value": {
-                "id": "f247d5d9-40fa-4319-b446-4c722ea884d8",
-                "resourcePath": "scripts\\uimu_freeze_ask\\uimu_freeze_ask.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "c305ca34-a742-4287-8c5c-437244558605",
             "Value": {
                 "id": "492e1453-8249-4e8a-887a-2ec23f503300",
@@ -20371,7 +20363,6 @@
         "18de48f4-ba73-44fd-af7c-1155e570d3d1",
         "67c4b701-803e-491c-a8d0-ecbe61e5fa89",
         "ffd6e8dd-7715-4bac-b112-e48f7ba785a4",
-        "c2f7ce01-3c43-4a82-94cc-a0bef47b5a27",
         "0660022b-43d7-4232-8df3-3a939f8876b6",
         "6fe33f08-c847-400f-9d76-51940de3ab96",
         "898412a1-5a61-4951-956d-9474e447b49f",
