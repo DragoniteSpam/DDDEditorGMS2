@@ -69,7 +69,9 @@ yy += el_bounds_z2.height + spacing;
 yy = yy_base;
 
 var el_light_list = create_list(col2_x, yy, "Active Lights:", "<no active lights>", ew, eh, MAX_LIGHTS, null, false, dg, zone.active_lights);
-el_light_list.entries_are = ListEntries.GUIDS;
+el_light_list.tooltip = "Directional lights will be shown in green. Point lights will be shown in blue. Effects with no light component (i.e. the light component has been removed) will be shown in red. I recommend giving, at the very least, all of your Light entities unique names.";
+el_light_list.render_colors = ui_list_color_effect_components;
+el_light_list.entries_are = ListEntries.REFIDS;
 dg.el_light_list = el_light_list;
 yy += ui_get_list_height(el_light_list) + spacing;
 

@@ -17099,6 +17099,14 @@
             }
         },
         {
+            "Key": "e0fbacd6-8d07-41a5-b1ef-c42df2c13cfb",
+            "Value": {
+                "id": "f6ebdb34-f41b-447f-a8c8-d7b41128dd43",
+                "resourcePath": "scripts\\ui_list_color_effect_components\\ui_list_color_effect_components.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "e15147dc-e9e4-4d18-8085-2152e46f44d9",
             "Value": {
                 "id": "1cb89062-1b96-41da-9031-bd681de475a5",
@@ -20879,6 +20887,7 @@
         "424effe5-bbb2-4880-b8e8-a7d657a45e77",
         "26bbea8b-61d0-4549-8c64-7420d3fa108f",
         "fcd4ba1d-4e32-4811-bac1-bf5c9ad661c1",
+        "e0fbacd6-8d07-41a5-b1ef-c42df2c13cfb",
         "e34c9a14-42e1-40c8-acb9-121efce0c0ef",
         "d72b146b-f741-4c3a-95d1-ef3a174917bf",
         "1cf1bae2-df93-4705-ae01-58ce64fd6495",
