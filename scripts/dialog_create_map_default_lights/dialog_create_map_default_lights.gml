@@ -28,7 +28,7 @@ var yy = 64;
 var yy_base = 64;
 
 var el_light_list = create_list(col1_x, yy, "Active Lights", "<no active lights>", ew, eh, 12, uivc_input_map_select_active_light, false, dg, map_contents.active_lights);
-el_light_list.tooltip = "Directional lights will be shown in green. Point lights will be shown in blue. Effects with no light component (i.e. the light component has been removed) will be shown in red. I recommend giving, at the very least, all of your Light entities unique names.";
+el_light_list.tooltip = "Directional lights will be shown in green. Point lights will be shown in blue. Effects with no light component (i.e. the light component has been removed) will be shown in red. Duplicate entries will be shown in orange. I recommend giving, at the very least, all of your Light entities unique names.";
 el_light_list.render_colors = ui_list_color_effect_components;
 el_light_list.entries_are = ListEntries.REFIDS;
 dg.el_light_list = el_light_list;
