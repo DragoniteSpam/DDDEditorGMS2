@@ -911,10 +911,10 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = legal_y + spacing;
     
-    element = create_list(col1_x, yy, "Zone type", "<no zone types>", col_width, element_height, 8, null, false, t_p_other_editor);
+    element = create_list(col1_x, yy, "Zone type", "<no zone types>", col_width, element_height, 8, uivc_zone_type, false, t_p_other_editor);
     element.colorize = false;
     element.allow_deselect = false;
-    ui_list_select(element, 0);
+    ui_list_select(element, Stuff.setting_selection_zone_type);
     create_list_entries(element, ["Camera Zone"], ["Effect Zone"]);
     ds_list_add(t_p_other_editor.contents, element);
     t_p_other_editor.el_zone_type = element;
@@ -922,6 +922,8 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy += ui_get_list_height(element) + spacing;
     
     element = create_checkbox(col1_x, yy, "Click to Drag", col_width, element_height, null, false, t_p_other_editor);
+    // if this is ever implemented properly, reactivate this
+    element.interactive = false;
     t_p_other_editor.el_click_to_drag = element;
     ds_list_add(t_p_other_editor.contents, element);
     #endregion

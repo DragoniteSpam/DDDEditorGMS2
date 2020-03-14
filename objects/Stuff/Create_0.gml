@@ -115,6 +115,7 @@ setting_location_tiled = setting_get("Location", "tiled", "./");
 setting_selection_mode = setting_get("Selection", "mode", SelectionModes.RECTANGLE);
 setting_selection_addition = setting_get("Selection", "addition", false);
 setting_selection_fill_type = setting_get("Selection", "fill-type", FillTypes.TILE);
+setting_selection_zone_type = setting_get("Selection", "zone-type", MapZoneTypes.CAMERA);
 setting_selection_mask = setting_get("Selection", "mask", ETypeFlags.ENTITY_ANY);
 
 setting_view_wireframe = setting_get("View", "wireframe", false);

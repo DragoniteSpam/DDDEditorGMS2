@@ -2,11 +2,12 @@
 /// @param x
 /// @param y
 
-// this is a lot of the same stuff in ui_render_list, but with a lot of stuff that isn't relevant
-// cut out - entries as text vs instances, colored entries, etc
+// this is a lot of the same stuff in ui_render_list, but with a lot of stuff that
+// isn't relevant cut out - entries as text vs instances, colored entries, etc
 
-// it's also SUPER hard-coded to work with the animation editor because i don't plan on it being
-// needed anywhere else; if it is, you'll want to make a more general solution for this
+// it's also SUPER hard-coded to work with the animation editor because i don't
+// plan on it being needed anywhere else; if it is, you'll want to make a more
+// general solution for this
 
 var timeline = argument0;
 var xx = argument1;
