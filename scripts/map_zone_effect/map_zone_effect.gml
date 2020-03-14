@@ -66,39 +66,16 @@ yy += el_bounds_z2.height + spacing;
 
 yy = yy_base;
 
-var el_properties_text = create_text(col2_x, yy, "Properties", ew, eh, fa_left, ew, dg);
-el_properties_text.color = c_blue;
-
-yy += el_properties_text.height + spacing;
-/*
-var el_camera_distance = create_input(col2_x, yy, "Distance:", ew, eh, uivc_input_map_camera_zone_distance, zone.camera_distance, "float", validate_double, 0, 32, 10, vx1, vy1, vx2, vy2, dg);
-el_camera_distance.tooltip = "How far the camera is to be from its target, measured in tile distances. (Only affects 3D).";
-yy += el_camera_distance.height + spacing;
-
-var el_camera_angle = create_input(col2_x, yy, "Angle:", ew, eh, uivc_input_map_camera_zone_angle, zone.camera_angle, "float", validate_double, -89, 89, 4, vx1, vy1, vx2, vy2, dg);
-el_camera_angle.tooltip = "The angle above the ground of the camera, measured in degrees; a positive angle is looking down on the camera target, and a negative angle is looking up";
-yy += el_camera_angle.height + spacing;
-
-var el_priority = create_input(col2_x, yy, "Priority:", ew, eh, uivc_input_map_camera_zone_priority, zone.zone_priority, "int", validate_int, 0, 1000, 3, vx1, vy1, vx2, vy2, dg);
-el_priority.tooltip = "If multiple camera zones overlap, the one with the highest priority will be the one that is acted upon";
-yy += el_priority.height + spacing;
+var el_light_list = create_list(col2_x, yy, "Active Lights:", "<no active lights>", ew, eh, MAX_LIGHTS, null, false, dg, zone.active_lights);
+el_light_list.entries_are = ListEntries.GUIDS;
+yy += ui_get_list_height(el_light_list) + spacing;
 
 yy = yy_base;
 
-var el_transition_text = create_text(col3_x, yy, "Transition", ew, eh, fa_left, ew, dg);
-el_transition_text.color = c_blue;
-yy += el_transition_text.height + spacing;
+var el_available_lights = create_list(col3_x, yy, "Available Lights:", "<no available lights>", ew, eh, 12, null, false, dg);
+el_available_lights.entries_are = ListEntries.INSTANCES;
+yy += ui_get_list_height(el_available_lights) + spacing;
 
-var el_transition_style = create_list(col3_x, yy, "Easing Mode:", "(no easings)", ew, eh, 8, uivc_input_map_camera_zone_transition, false, dg, global.animation_tween_names);
-el_transition_style.entries_are = ListEntries.STRINGS;
-el_transition_style.tooltip = "The transition used when you enter this camera zone. In almost all cases, Linear or Quadratic In / Out should be fine.";
-ui_list_select(el_transition_style, zone.camera_easing_method, true);
-yy += ui_get_list_height(el_transition_style) + spacing;
-
-var el_transition_rate = create_input(col3_x, yy, "Time:", ew, eh, uivc_input_map_camera_zone_time, zone.camera_easing_time, "float", validate_double, 0, 60, 4, vx1, vy1, vx2, vy2, dg);
-el_transition_rate.tooltip = "How long camera position transitions should take, in seconds. A speed value of 0 is an instantaneous transition, and is not recommended.";
-yy += el_transition_rate.height + spacing;
-*/
 var b_width = 128;
 var b_height = 32;
 var el_commit = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
@@ -112,13 +89,8 @@ ds_list_add(dg.contents,
     el_bounds_x2,
     el_bounds_y2,
     el_bounds_z2,
-    el_properties_text,
-    /*el_camera_distance,
-    el_camera_angle,
-    el_priority,
-    el_transition_text,
-    el_transition_style,
-    el_transition_rate,*/
+    el_light_list,
+    el_available_lights,
     el_commit
 );
 
