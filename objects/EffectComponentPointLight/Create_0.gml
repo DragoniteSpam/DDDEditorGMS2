@@ -5,6 +5,7 @@ load_script = serialize_load_entity_effect_com_point_light;
 render = render_effect_light_point;
 sprite = spr_light_point;
 light_type = LightTypes.POINT;
+label_colour = c_blue;
 
 // specific
 light_colour = c_white;

@@ -3,11 +3,13 @@
 var root = argument0;
 var zone = Stuff.map.selected_zone;
 var map = Stuff.map.active_map;
+var map_contents = map.contents;
 
 var dw = 960;
 var dh = 480;
 
 var dg = dialog_create(dw, dh, "Effect Zone Settings: " + zone.name, dialog_default, dc_close_no_questions_asked, root);
+dg.zone = zone;
 
 var columns = 3;
 var spacing = 16;
@@ -73,7 +75,14 @@ yy += ui_get_list_height(el_light_list) + spacing;
 yy = yy_base;
 
 var el_available_lights = create_list(col3_x, yy, "Available Lights:", "<no available lights>", ew, eh, 12, null, false, dg);
+el_available_lights.tooltip = "Directional lights will be shown in green. Point lights will be shown in blue. I recommend giving, at the very least, all of your Light entities unique names.";
 el_available_lights.entries_are = ListEntries.INSTANCES;
+for (var i = 0; i < ds_list_size(map_contents.all_entities); i++) {
+    var entity = map_contents.all_entities[| i];
+    if (instanceof(entity, EntityEffect) && entity.com_light) {
+        create_list_entries(el_available_lights, [entity, entity.com_light.label_colour]);
+    }
+}
 yy += ui_get_list_height(el_available_lights) + spacing;
 
 var b_width = 128;
