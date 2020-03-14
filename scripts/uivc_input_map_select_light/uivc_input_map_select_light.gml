@@ -7,7 +7,7 @@ var active_selection = ui_list_selection(active_list);
 
 if (active_selection + 1) {
     if (selection + 1) {
-        active_list.entries[| active_selection] = list.entries[| selection].REFID;
+        active_list.entries[| active_selection] = list.entries[| selection];
     } else {
         active_list.entries[| active_selection] = 0;
     }

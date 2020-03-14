@@ -1451,14 +1451,6 @@
             }
         },
         {
-            "Key": "1138f406-0508-4b88-abae-6f7bd2616c5b",
-            "Value": {
-                "id": "4e5f8e8c-502f-4a69-badb-3020e90706ca",
-                "resourcePath": "scripts\\uivc_input_map_light_zone_select_light\\uivc_input_map_light_zone_select_light.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "119e5e11-b696-4e37-896e-691261577f52",
             "Value": {
                 "id": "b22f00be-9920-4b76-954d-3af1920ae888",
@@ -4855,6 +4847,14 @@
             "Value": {
                 "id": "4321196b-500a-48fc-ab93-58eea35dfe8c",
                 "resourcePath": "scripts\\ui_input_terrain_draw_water\\ui_input_terrain_draw_water.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "3fa34049-53f7-4494-b14c-f3e09c95d15c",
+            "Value": {
+                "id": "787d4620-5e9d-4363-be54-a51d860baa12",
+                "resourcePath": "scripts\\uivc_input_map_select_active_light\\uivc_input_map_select_active_light.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -20597,8 +20597,8 @@
         "056ea9ef-393f-41b0-89cb-3094997c0c18",
         "5b1bac1d-a1d0-441e-b3da-c6a006698b3d",
         "c621ec2c-8a1a-4971-834f-cd72137f4a92",
-        "1138f406-0508-4b88-abae-6f7bd2616c5b",
         "9229373f-ce79-4577-ad90-cb5675305902",
+        "3fa34049-53f7-4494-b14c-f3e09c95d15c",
         "f65f49e6-744e-46c5-b260-61ff028dc4b3",
         "76a84092-bbe4-4af9-9f79-28b9da5acc79",
         "42271633-fe32-4072-9142-99d753449858",
