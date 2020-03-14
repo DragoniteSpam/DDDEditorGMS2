@@ -5,6 +5,10 @@ var active_list = list.root.el_light_list;
 var selection = ui_list_selection(list);
 var active_selection = ui_list_selection(active_list);
 
-if (selection + 1 && active_selection + 1) {
-    active_list.entries[| active_selection] = list.entries[| selection].REFID;
+if (active_selection + 1) {
+    if (selection + 1) {
+        active_list.entries[| active_selection] = list.entries[| selection].REFID;
+    } else {
+        active_list.entries[| active_selection] = 0;
+    }
 }

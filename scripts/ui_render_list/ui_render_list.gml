@@ -174,8 +174,7 @@ if (list.interactive && active) {
     }
 }
 
-
-// draw the slider
+#region slider
 if (n > list.slots) {
     var sw = 16;
     var noutofrange = n - list.slots; // at minimum, one
@@ -243,6 +242,7 @@ if (n > list.slots) {
     draw_sprite(spr_scroll_arrow, 0, x2 - sw, y2);
     draw_sprite(spr_scroll_arrow, 1, x2 - sw, y3 - sw);
 }
+#endregion
 
 draw_rectangle(x1, y2, x2, y3, true);
 
