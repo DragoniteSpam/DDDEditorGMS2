@@ -80,14 +80,20 @@ if (n == 0) {
             // i resisted casting to string for a while because i wanted them to be
             // actual strings, but now that lists are allowed to reference other ds_lists
             // which may not necessarily contain strings that's not really a viable option
-            case ListEntries.STRINGS: text = text + string(list.entries[| index]); break;
-            case ListEntries.INSTANCES_REFID: text = text + +"<" + string_hex(list.entries[| index].REFID) + "> "; /* cascades */
-            case ListEntries.INSTANCES: text = text + list.entries[| index].name; break;
+            case ListEntries.STRINGS: text += string(list.entries[| index]); break;
+            case ListEntries.INSTANCES: text += list.entries[| index].name; break;
             case ListEntries.GUIDS:
                 var data = guid_get(list.entries[| index]);
                 text = text + (data ? data.name : " (null)");
                 break;
-            case ListEntries.SCRIPT: text = text + script_execute(list.evaluate_text, list, index);
+            case ListEntries.REFIDS:
+                var data = refid_get(list.entries[| index]);
+                text = text + (data ? data.name : " (null)");
+                break;
+            case ListEntries.INSTANCES_REFID:
+                text += "<" + string_hex(list.entries[| index].REFID) + "> " + list.entries[| index].name;
+                break;
+            case ListEntries.SCRIPT: text = text + script_execute(list.evaluate_text, list, index); break;
         }
         draw_text_colour(tx - x1, tya - y2, string(text), c, c, c, c, 1);
     }

@@ -42,5 +42,6 @@ enum ListEntries {
     // behaves the same as instances, but also draws the ref ID as an extra way to differentiate
     INSTANCES_REFID,
     GUIDS,
+    REFIDS,
     SCRIPT,
 }
