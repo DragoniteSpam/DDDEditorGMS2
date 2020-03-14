@@ -36,7 +36,7 @@ yy += ui_get_list_height(el_light_list) + spacing;
 
 yy = yy_base;
 
-var el_available_lights = create_list(col2_x, yy, "Available Lights:", "<no available lights>", ew, eh, 12, null, false, dg);
+var el_available_lights = create_list(col2_x, yy, "Available Lights:", "<no available lights>", ew, eh, 12, uivc_input_map_select_light, false, dg);
 el_available_lights.tooltip = "Directional lights will be shown in green. Point lights will be shown in blue. I recommend giving, at the very least, all of your Light entities unique names.";
 el_available_lights.entries_are = ListEntries.INSTANCES;
 for (var i = 0; i < ds_list_size(map_contents.all_entities); i++) {
