@@ -1,8 +1,8 @@
 {
-    "id": "f65f49e6-744e-46c5-b260-61ff028dc4b3",
+    "id": "292831e3-0127-4fb1-976c-a46315873180",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "uivc_input_map_camera_zone_name",
+    "name": "uivc_input_map_zone_z2",
     "IsCompatibility": false,
     "IsDnD": false
 }

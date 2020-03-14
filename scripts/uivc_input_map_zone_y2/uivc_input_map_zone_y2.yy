@@ -1,8 +1,8 @@
 {
-    "id": "cdbc6c07-9e78-4b7a-ac07-2e3f8968aecd",
+    "id": "4412165b-be27-4079-94bb-d2365373cf67",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "serialize_load_zone_effect",
+    "name": "uivc_input_map_zone_y2",
     "IsCompatibility": false,
     "IsDnD": false
 }

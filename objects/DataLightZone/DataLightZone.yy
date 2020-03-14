@@ -2,7 +2,7 @@
     "id": "ec982b33-59f6-4b79-896f-6b8db966d108",
     "modelName": "GMObject",
     "mvc": "1.0",
-    "name": "DataEffectZone",
+    "name": "DataLightZone",
     "eventList": [
         {
             "id": "59abd336-c437-4f2d-94c6-7987d044c569",
