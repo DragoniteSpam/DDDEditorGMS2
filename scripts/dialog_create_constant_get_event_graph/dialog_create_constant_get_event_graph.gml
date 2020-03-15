@@ -11,19 +11,19 @@ var dg = dialog_create(dw, dh, "Select Event", dialog_default, dc_close_no_quest
 dg.constant = constant;
 
 var columns = 1;
-var ew = (dw - columns * 32) / columns;
+var spacing = 16;
+var ew = dw / columns - spacing * 2;
 var eh = 24;
 
 var vx1 = ew / 2;
 var vy1 = 0;
 var vx2 = ew;
-var vy2 = vy1 + eh;
+var vy2 = eh;
 
 var yy = 64;
-var spacing = 16;
 
 var el_title_text = create_text(16, yy, constant.name, ew, eh, fa_left, ew, dg);
-yy = yy + el_title_text.height + spacing;
+yy += el_title_text.height + spacing;
 
 var el_list = create_list(16, yy, "Select an event", "<how do you even have no events?>", ew, eh, 18, null, false, dg, Stuff.all_events);
 el_list.entries_are = ListEntries.INSTANCES;

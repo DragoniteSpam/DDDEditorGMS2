@@ -8,9 +8,9 @@ xto = setting_get("Event", "xto", 0);
 yto = setting_get("Event", "yto", 0);
 zto = setting_get("Event", "zto", 0);
 
-xup = setting_get("Event", "xup", 0);
-yup = setting_get("Event", "yup", 0);
-zup = setting_get("Event", "zup", 1);
+xup = 0;
+yup = 0;
+zup = 1;
 
 fov = setting_get("Event", "fov", 50);
 pitch = setting_get("Event", "pitch", 0);

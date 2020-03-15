@@ -23,7 +23,7 @@ with (instance_create_depth(argument[0], argument[1], 0, UIList)) {
     root = argument[9];
     
     if (slots * height < 128) {
-        debug("List: " + text + " has a total height less than 128 (" + string(slots) + " slots of height " + string(height) + "). The scroll bar may not behave as intended.");
+        wtf("List: " + text + " has a total height less than 128 (" + string(slots) + " slots of height " + string(height) + "). The scroll bar may not behave as intended.");
     }
     
     // if you don't want to assign it a list now but don't want it to own the entries,

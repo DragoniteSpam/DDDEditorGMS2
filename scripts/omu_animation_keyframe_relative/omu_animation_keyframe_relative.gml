@@ -11,13 +11,14 @@ if (keyframe) {
     var dg = dialog_create(dw, dh, "Keyframe Relative To Other Layer", undefined, undefined, argument0);
     
     var columns = 1;
-    var ew = (dw - 64) / columns;
+    var spacing = 16;
+    var ew = dw / columns - spacing * 2;
     var eh = 24;
     
     var vx1 = ew / 2;
     var vy1 = 0;
     var vx2 = ew;
-    var vy2 = vy1 + eh;
+    var vy2 = eh;
     
     var col2_x = dw / columns;
     
@@ -26,7 +27,6 @@ if (keyframe) {
     
     var yy = 64;
     var yy_base = yy;
-    var spacing = 16;
     
     var el_list = create_list(16, yy, "Other Layer", "No Layers", ew, eh, 12, uivc_animation_keyframe_relative, false, dg);
     for (var i = 0; i < ds_list_size(thing.root.root.active_animation.layers); i++) {

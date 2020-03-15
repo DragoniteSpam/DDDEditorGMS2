@@ -2,14 +2,14 @@ if (Stuff.is_quitting) exit;
 
 event_inherited();
 
-// remove references from other objects: things that contain this
-// as an outbound node
+// remove references from other objects: things that contain this as an outbound node
 var parent_nodes = ds_map_to_list(parents);
 for (var i = 0; i < ds_list_size(parent_nodes); i++) {
-    var parent_index = ds_list_find_index(parent_nodes[| i].outbound, id);
-    if (parent_index > -1) {
-        var node = parent_nodes[| i];
-        node.outbound[| parent_index] = noone;
+    var parent = parent_nodes[| i];
+    for (var j = 0; j < ds_list_size(parent.outbound); j++) {
+        if (parent.outbound[| j] == id) {
+            parent.outbound[| j] = noone;
+        }
     }
 }
 ds_list_destroy(parent_nodes);

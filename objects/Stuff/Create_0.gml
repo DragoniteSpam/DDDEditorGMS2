@@ -9,6 +9,7 @@ default_lua_event_page_condition = file_get_contents(PATH_LUA + "event-page-cond
 default_lua_event_node_conditional = file_get_contents(PATH_LUA + "event-node-conditional.lua");
 default_lua_event_script = file_get_contents(PATH_LUA + "event-script.lua");
 default_lua_animation = file_get_contents(PATH_LUA + "animation.lua");
+default_lua_effect_common = file_get_contents(PATH_LUA + "global-effect-common.lua");
 
 // local storage folders
 
@@ -114,6 +115,7 @@ setting_location_tiled = setting_get("Location", "tiled", "./");
 setting_selection_mode = setting_get("Selection", "mode", SelectionModes.RECTANGLE);
 setting_selection_addition = setting_get("Selection", "addition", false);
 setting_selection_fill_type = setting_get("Selection", "fill-type", FillTypes.TILE);
+setting_selection_zone_type = setting_get("Selection", "zone-type", MapZoneTypes.CAMERA);
 setting_selection_mask = setting_get("Selection", "mask", ETypeFlags.ENTITY_ANY);
 
 setting_view_wireframe = setting_get("View", "wireframe", false);
@@ -226,7 +228,6 @@ all_animations = ds_list_create();
 all_game_constants = ds_list_create();
 
 all_data = ds_list_create();
-original_data = noone;            // when you're modifying the data types and want to stash the old ones
 
 #endregion
 
@@ -419,6 +420,8 @@ game_player_grid = true;
 game_battle_style = BattleStyles.TEAM_BASED;
 game_lighting_buckets = 100;
 game_lighting_default_ambient = c_white;
+
+game_common_effect_code = default_lua_effect_common;
 
 game_notes = "";
 game_file_summary = "Write a short summary in Global Game Settings";

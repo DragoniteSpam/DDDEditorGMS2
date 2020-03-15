@@ -12,7 +12,7 @@ var eh = 24;
 var vx1 = ew / 2;
 var vy1 = 0;
 var vx2 = ew;
-var vy2 = vy1 + eh;
+var vy2 = eh;
 
 var c2 = dw / columns;
 var spacing = 16;
@@ -30,21 +30,21 @@ for (var i = 0; i < ds_list_size(Stuff.all_maps); i++) {
     }
 }
 el_list_map.entries_are = ListEntries.INSTANCES;
-yy = yy + ui_get_list_height(el_list_map) + spacing;
+yy += ui_get_list_height(el_list_map) + spacing;
 
 yy = yy_start;
 
 var el_x = create_input(c2 + 32, yy, "X:", ew, eh, uivc_settings_game_start_x, Stuff.game_starting_x, "x coordinate", validate_int, 0, starting.xx, 5, vx1, vy1, vx2, vy2, dg);
 dg.el_x = el_x;
-yy = yy + el_x.height + spacing;
+yy += el_x.height + spacing;
 
 var el_y = create_input(c2 + 32, yy, "Y:", ew, eh, uivc_settings_game_start_y, Stuff.game_starting_y, "y coordinate", validate_int, 0, starting.yy, 5, vx1, vy1, vx2, vy2, dg);
 dg.el_y = el_y;
-yy = yy + el_y.height + spacing;
+yy += el_y.height + spacing;
 
 var el_z = create_input(c2 + 32, yy, "Z:", ew, eh, uivc_settings_game_start_z, Stuff.game_starting_z, "z coordinate", validate_int, 0, starting.zz, 5, vx1, vy1, vx2, vy2, dg);
 dg.el_z = el_z;
-yy = yy + el_z.height + spacing;
+yy += el_z.height + spacing;
 
 var el_direction = create_radio_array(c2 + 32, yy, "Direction:", ew, eh, uivc_settings_game_start_direction, Stuff.game_starting_direction, dg);
 create_radio_array_options(el_direction, ["Down", "Left", "Right", "Up"]);

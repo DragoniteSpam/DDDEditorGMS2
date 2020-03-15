@@ -21,7 +21,8 @@ var list_value = node.custom_data[| 3];
 // data[| 4] not used
 
 var columns = 2;
-var ew = (dw - 64) / columns;
+var spacing = 16;
+var ew = dw / columns - spacing * 2;
 var eh = 24;
 
 var c2 = dw / columns;
@@ -29,10 +30,9 @@ var c2 = dw / columns;
 var vx1 = dw / 4 + 16;
 var vy1 = 0;
 var vx2 = vx1 + (ew - vx1);
-var vy2 = vy1 + eh;
+var vy2 = eh;
 
 var yy = 64;
-var spacing = 16;
 
 var el_list = create_list(16, yy, "Variables", "<no variables>", ew, eh, 14, uivc_list_event_condition_index, false, dg);
 for (var i = 0; i < ds_list_size(Stuff.variables); i++) {
@@ -50,7 +50,7 @@ dg.el_list = el_list;
 var el_comparison = create_radio_array(c2 + 16, yy, "Comparison", ew, eh, uivc_check_event_condition_comparison, list_comparison[| index], dg);
 create_radio_array_options(el_comparison, ["Less (<)", "Less or Equal (<=)", "Equal (==)", "Greater or Equal (>=)", "Greater (>)", "Not Equal (!=)"]);
 
-yy = yy + ui_get_radio_array_height(el_comparison) + spacing;
+yy += ui_get_radio_array_height(el_comparison) + spacing;
 
 var el_value = create_input(c2 + 16, yy, "Value", ew, eh, uivc_check_event_condition_value, string(list_value[| index]), "float", validate_double, -0x80000000, 0x7fffffff, 11, vx1, vy1, vx2, vy2, dg);
 dg.el_value = el_value;

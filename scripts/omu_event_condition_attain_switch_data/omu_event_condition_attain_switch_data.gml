@@ -12,11 +12,11 @@ var dh = 560;
 var dg = dialog_create(dw, dh, "Global Switch", dialog_default, dc_close_no_questions_asked, thing);
 
 var columns = 1;
-var ew = (dw - 64) / columns;
+var spacing = 16;
+var ew = dw / columns - spacing * 2;
 var eh = 24;
 
 var yy = 64;
-var spacing = 16;
 
 var el_list = create_list(16, yy, "Switches", "<no switches>", ew, eh, 16, uivc_event_condition_attain_switch_index, false, dg);
 for (var i = 0; i < ds_list_size(Stuff.switches); i++) {

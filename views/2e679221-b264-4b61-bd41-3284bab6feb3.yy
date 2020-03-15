@@ -10,7 +10,8 @@
         "5d169634-0236-40d0-b5f8-e3e97e6aca0b",
         "4e080d15-f133-447d-abe5-ab7f29a05427",
         "0f57fa50-b4b4-4fd3-832c-6c615f96fd98",
-        "0f508252-9daa-41ed-96a5-a43db14d9538"
+        "0f508252-9daa-41ed-96a5-a43db14d9538",
+        "a33d062a-39b1-4959-8348-d5e71a4583fb"
     ],
     "filterType": "GMScript",
     "folderName": "mesh stuff",

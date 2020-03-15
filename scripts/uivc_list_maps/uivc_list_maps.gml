@@ -12,6 +12,9 @@ if (selection + 1) {
     ui_input_set_value(list.root.el_internal_name, what.internal_name);
     list.root.el_summary.interactive = true;
     ui_input_set_value(list.root.el_summary, what.summary);
+    // resizing a map checks if any entities will be deleted and warns you if any
+    // will; maps that are not loaded do not have a list of their entities on hand,
+    // and trying to check this is not worth the trouble
     list.root.el_dim_x.interactive = (what == Stuff.map.active_map);
     ui_input_set_value(list.root.el_dim_x, string(what.xx));
     list.root.el_dim_y.interactive = (what == Stuff.map.active_map);

@@ -3,7 +3,7 @@
 var index = argument0;
 
 var data = Stuff.all_meshes[| Stuff.map.selection_fill_mesh];
-Stuff.map.ui.t_p_mesh_editor.element_tag = (data && true);
+Stuff.map.ui.t_p_mesh_editor.element_tag = !!data;
 
 if (data) {
     var thing = Stuff.map.ui.t_p_mesh_editor;

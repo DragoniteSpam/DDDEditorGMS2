@@ -16,7 +16,7 @@ dg.entity = entity;
 
 var columns = 4;
 var spacing = 16;
-var ew = (dw - columns * spacing * 2) / columns;
+var ew = dw / columns - spacing * 2;
 var eh = 24;
 
 var c1 = dw * 0 / columns + spacing;
@@ -24,10 +24,10 @@ var c2 = dw * 1 / columns + spacing;
 var c3 = dw * 2 / columns + spacing;
 var c4 = dw * 3 / columns + spacing;
 
-var vx1 = dw / (columns * 2) - 32;
+var vx1 = ew / 2;
 var vy1 = 0;
-var vx2 = vx1 + dw / (columns * 2);
-var vy2 = vy1 + eh;
+var vx2 = ew;
+var vy2 = eh;
 
 var color_active = 0x9999ff;
 var color_inactive = c_white;

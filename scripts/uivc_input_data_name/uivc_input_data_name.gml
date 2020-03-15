@@ -1,4 +1,5 @@
-/// @param UIThing
+/// @param UIInput
 
-argument0.root.selected_data.name = argument0.value;
-argument0.root.changed = true;
+var input = argument0;
+
+input.root.selected_data.name = input.value;

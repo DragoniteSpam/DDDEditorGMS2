@@ -8,9 +8,9 @@ xto = setting_get("Animation", "xto", 0);
 yto = setting_get("Animation", "yto", 0);
 zto = setting_get("Animation", "zto", 0);
 
-xup = setting_get("Animation", "xup", 0);
-yup = setting_get("Animation", "yup", 0);
-zup = setting_get("Animation", "zup", 1);
+xup = 0;
+yup = 0;
+zup = 1;
 
 fov = setting_get("Animation", "fov", 50);
 pitch = setting_get("Animation", "pitch", 0);

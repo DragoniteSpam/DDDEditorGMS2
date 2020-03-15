@@ -16,7 +16,7 @@ var col3_x = dw * 2 / columns + 32;
 var vx1 = ew / 3;
 var vy1 = 0;
 var vx2 = ew;
-var vy2 = vy1 + eh;
+var vy2 = eh;
 
 var spacing = 16;
 
@@ -29,29 +29,29 @@ el_list.entries_are = ListEntries.INSTANCES;
 el_list.onmiddleclick = omu_global_constant_alphabetize;
 dg.el_list = el_list;
 
-yy = yy + ui_get_list_height(el_list) + spacing;
+yy += ui_get_list_height(el_list) + spacing;
 
 var el_add = create_button(col1_x, yy, "Add Constant", ew, eh, fa_center, omu_global_constant_add, dg);
 dg.el_add = el_add;
 
-yy = yy + el_add.height + spacing;
+yy += el_add.height + spacing;
 
 var el_remove = create_button(col1_x, yy, "Remove Constant", ew, eh, fa_center, omu_global_constant_remove, dg);
 dg.el_remove = el_remove;
 
-yy = yy + el_remove.height + spacing;
+yy += el_remove.height + spacing;
 
 var el_alphabetize = create_button(col1_x, yy, "Alphabetize", ew, eh, fa_center, omu_global_constant_alphabetize, dg);
 dg.el_remove = el_alphabetize;
 
-yy = yy + el_alphabetize.height + spacing;
+yy += el_alphabetize.height + spacing;
 
 yy = yy_base;
 
 var el_name = create_input(col2_x, yy, "Name:", ew, eh, uivc_global_constant_name, "", "16 characters", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
 dg.el_name = el_name;
 
-yy = yy + el_name.height + spacing;
+yy += el_name.height + spacing;
 
 var el_type = create_radio_array(col2_x, yy, "Type:", ew, eh, uivc_input_constant_type, 0, dg);
 create_radio_array_options(el_type, [
@@ -62,7 +62,7 @@ el_type.contents[| DataTypes.TILE].interactive = false;
 el_type.interactive = false;
 dg.el_type = el_type;
 
-yy = yy + ui_get_radio_array_height(el_type) + spacing;
+yy += ui_get_radio_array_height(el_type) + spacing;
 
 var el_type_ext = create_button(col2_x, yy, "Other Data Types", ew, eh, fa_middle, omu_global_data_select_type, dg);
 el_type_ext.interactive = false;

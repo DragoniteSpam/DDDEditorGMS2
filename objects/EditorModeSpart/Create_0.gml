@@ -10,9 +10,9 @@ xto = setting_get("Map", "xto", 512);
 yto = setting_get("Map", "yto", 512);
 zto = setting_get("Map", "zto", 0);
 
-xup = setting_get("Map", "xup", 0);
-yup = setting_get("Map", "yup", 0);
-zup = setting_get("Map", "zup", 1);
+xup = 0;
+yup = 0;
+zup = 1;
 
 fov = setting_get("Map", "fov", 50);
 pitch = setting_get("Map", "pitch", 0);

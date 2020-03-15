@@ -36,7 +36,7 @@ if (custom_data_switch[| 0] > -1) {
 }
 dg.el_list = el_list;
 
-yy = yy + ui_get_list_height(el_list) + spacing;
+yy += ui_get_list_height(el_list) + spacing;
 
 var el_state = create_checkbox(16, yy, "Enabled?", ew, eh, uivc_check_event_attain_switch_state, custom_data_state[|0], dg);
 dg.el_state = el_state;

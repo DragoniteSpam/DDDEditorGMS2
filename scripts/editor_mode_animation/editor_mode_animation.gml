@@ -8,7 +8,6 @@ view_set_visible(view_fullscreen, true);
 view_set_visible(view_3d, true);
 view_set_visible(view_ribbon, true);
 view_set_visible(view_hud, false);
-view_set_visible(view_3d_preview, false);
 
 var camera = view_get_camera(view_fullscreen);
 camera_set_view_pos(camera, 0, 0);

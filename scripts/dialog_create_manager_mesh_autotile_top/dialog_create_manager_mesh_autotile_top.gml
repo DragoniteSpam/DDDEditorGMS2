@@ -9,20 +9,19 @@ var dh = 480;
 
 var dg = dialog_create(dw, dh, "Data: Mesh Autotiles (Top)", undefined, undefined, root);
 
-var ew = (dw - 64) / 2;
+var columns = 12;
+var spacing = 16;
+var ew = dw / columns - spacing * 2;
 var eh = 24;
 
 var b_width = 128;
 var b_height = 32;
-
-var spacing = 16;
 
 var xx = 16;
 var yy = 64;
 var xx_start = xx;
 var mbw = 64 - spacing;
 var mbh = eh;
-var columns = 12;
 
 dg.buttons = array_create(array_length_1d(map_contents.mesh_autotiles_top));
 dg.icons = array_create(array_length_1d(map_contents.mesh_autotiles_top));
@@ -45,7 +44,7 @@ for (var i = 0; i < array_length_1d(map_contents.mesh_autotiles_top); i++) {
     
     if (i % columns == columns - 1) {
         xx = xx_start;
-        yy = yy + mbh + icon.height + spacing * 2;
+        yy += mbh + icon.height + spacing * 2;
     }
     
     ds_list_add(dg.contents, icon);

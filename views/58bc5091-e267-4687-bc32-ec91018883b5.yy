@@ -15,10 +15,12 @@
         "056ea9ef-393f-41b0-89cb-3094997c0c18",
         "5b1bac1d-a1d0-441e-b3da-c6a006698b3d",
         "c621ec2c-8a1a-4971-834f-cd72137f4a92",
+        "9229373f-ce79-4577-ad90-cb5675305902",
+        "3fa34049-53f7-4494-b14c-f3e09c95d15c",
         "f65f49e6-744e-46c5-b260-61ff028dc4b3"
     ],
     "filterType": "GMScript",
-    "folderName": "map zones",
+    "folderName": "map zones, other map things",
     "isDefaultView": false,
     "localisedFolderName": ""
 }

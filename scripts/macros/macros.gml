@@ -18,6 +18,9 @@
 #macro scribble:PROJECT_MENU_ENABLED false
 #macro spart:PROJECT_MENU_ENABLED false
 
+// game maker
+#macro wtf show_debug_message
+
 // game maker buffer_compress uses medium-level compression; the first two bytes you'll see are
 // "78" and "9c" but buffer_read is little endian so they'll be in reverse order
 #macro MAGIC_ZLIB_HEADER 0x9c78
@@ -104,7 +107,7 @@
 #macro view_3d 1
 #macro view_ribbon 2
 #macro view_hud 3
-#macro view_3d_preview 4
+#macro view_4 4
 #macro view_5 5
 #macro view_6 6
 #macro view_overlay 7

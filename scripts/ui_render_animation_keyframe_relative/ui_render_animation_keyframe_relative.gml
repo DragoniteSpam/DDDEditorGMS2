@@ -18,7 +18,7 @@ if (animation && (timeline_layer + 1)) {
 }
 
 // we must abuse truthiness wherever possible
-button.interactive = (keyframe && true);
+button.interactive = !!keyframe;
 
 ui_render_button(button, xx, yy);
 

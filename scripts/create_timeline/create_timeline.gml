@@ -18,7 +18,7 @@ with (instance_create_depth(argument[0], argument[1], 0, UIListTimeline)) {
     root = argument[8];
     
     if (slots * height < 128) {
-        debug("ListTimeline: " + text + " has a total height less than 128 (" + string(slots) + " slots of height " + string(height) + "). The scroll bar may not behave as intended.");
+        wtf("ListTimeline: " + text + " has a total height less than 128 (" + string(slots) + " slots of height " + string(height) + "). The scroll bar may not behave as intended.");
     }
     
     return id;

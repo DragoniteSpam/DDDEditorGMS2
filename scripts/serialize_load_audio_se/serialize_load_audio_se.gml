@@ -28,7 +28,7 @@ for (var i = 0; i < n_se; i++) {
     }
     
     if (length == 0) {
-        debug("Audio file was not embedded properly, you probably want to re-load: " + string(se.GUID) + " [" + se.name + "]");
+        wtf("Audio file was not embedded properly, you probably want to re-load: " + string(se.GUID) + " [" + se.name + "]");
     } else {
         se.fmod = FMODGMS_Snd_LoadStream(environment_get_variable("localappdata") + "\\DDDEditor2\\" + se.temp_name);
     }

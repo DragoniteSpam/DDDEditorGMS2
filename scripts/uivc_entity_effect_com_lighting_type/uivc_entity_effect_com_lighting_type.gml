@@ -27,6 +27,7 @@ switch (radio.value) {
         base_dialog.el_dir_x.enabled = false;
         base_dialog.el_dir_y.enabled = false;
         base_dialog.el_dir_z.enabled = false;
+        base_dialog.el_script.enabled = false;
         base_dialog.el_point_radius.enabled = false;
         break;
     case LightTypes.DIRECTIONAL:
@@ -34,6 +35,7 @@ switch (radio.value) {
         base_dialog.el_dir_x.enabled = true;
         base_dialog.el_dir_y.enabled = true;
         base_dialog.el_dir_z.enabled = true;
+        base_dialog.el_script.enabled = true;
         base_dialog.el_point_radius.enabled = false;
         
         for (var i = 0; i < ds_list_size(list); i++) {
@@ -52,6 +54,7 @@ switch (radio.value) {
         base_dialog.el_dir_x.enabled = false;
         base_dialog.el_dir_y.enabled = false;
         base_dialog.el_dir_z.enabled = false;
+        base_dialog.el_script.enabled = true;
         base_dialog.el_point_radius.enabled = true;
         
         for (var i = 0; i < ds_list_size(list); i++) {
@@ -68,6 +71,7 @@ switch (radio.value) {
         base_dialog.el_dir_x.enabled = false;
         base_dialog.el_dir_y.enabled = false;
         base_dialog.el_dir_z.enabled = false;
+        base_dialog.el_script.enabled = true;
         base_dialog.el_point_radius.enabled = false;
         break;
 }

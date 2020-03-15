@@ -21,7 +21,8 @@ audio = 0;
 graphic_type = GraphicTypes.NO_CHANGE;
 graphic_sprite = noone; 
 graphic_mesh = noone;
-graphic_speed = 1;
+graphic_frame = 0;
+graphic_direction = 0;
 
 event = "";     // lua function name (i.e. "invoke")
 

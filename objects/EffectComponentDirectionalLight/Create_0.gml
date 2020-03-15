@@ -1,9 +1,11 @@
-parent = noone;
+event_inherited();
+
 save_script = serialize_save_entity_effect_com_directional_light;
 load_script = serialize_load_entity_effect_com_directional_light;
 render = render_effect_light_direction;
 sprite = spr_light_direction;
 light_type = LightTypes.DIRECTIONAL;
+label_colour = c_green;
 
 // specific
 light_dx = -1;

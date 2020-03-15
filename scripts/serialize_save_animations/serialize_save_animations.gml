@@ -48,7 +48,6 @@ for (var i = 0; i < n_animations; i++) {
         buffer_write(buffer, buffer_u8, timeline_layer.graphic_type);
         buffer_write(buffer, buffer_datatype, timeline_layer.graphic_sprite);
         buffer_write(buffer, buffer_datatype, timeline_layer.graphic_mesh);
-        buffer_write(buffer, buffer_f32, timeline_layer.graphic_speed);
         
         // this is not the same as animation.moments, since old keyframes can exist beyond the end
         // of the animation - or, the list might not be the same size as the animation in general
@@ -57,7 +56,7 @@ for (var i = 0; i < n_animations; i++) {
         
         for (var k = 0; k < n_keyframes; k++) {
             var keyframe = timeline_layer.keyframes[| k];
-            buffer_write(buffer, buffer_bool, keyframe && true);
+            buffer_write(buffer, buffer_bool, !!keyframe);
             
             if (keyframe) {
                 buffer_write(buffer, buffer_u16, keyframe.moment);
@@ -79,7 +78,8 @@ for (var i = 0; i < n_animations; i++) {
                 buffer_write(buffer, buffer_u8, keyframe.graphic_type);
                 buffer_write(buffer, buffer_datatype, keyframe.graphic_sprite);
                 buffer_write(buffer, buffer_datatype, keyframe.graphic_mesh);
-                buffer_write(buffer, buffer_f32, keyframe.graphic_speed);
+                buffer_write(buffer, buffer_u32, keyframe.graphic_frame);
+                buffer_write(buffer, buffer_u8, keyframe.graphic_direction);
                 
                 buffer_write(buffer, buffer_datatype, keyframe.audio);
                 buffer_write(buffer, buffer_string, keyframe.event);

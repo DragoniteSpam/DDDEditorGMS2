@@ -1,6 +1,6 @@
 /// @param n
-// this is a very lazy solution and won't work in all cases. decimals, for example,
-// completely screw it up.
+// this is a very lazy solution and won't work in all cases.
+// decimals, for example, completely screw it up.
 
 //    5000 =>      5000
 //   15000 =>    15,000

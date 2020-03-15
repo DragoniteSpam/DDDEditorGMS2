@@ -18,16 +18,16 @@ if (event) {
     dg.index = index;
     
     var columns = 1;
-    var ew = (dw - columns * 32) / columns;
+    var spacing = 16;
+    var ew = dw / columns - spacing * 2;
     var eh = 24;
     
     var vx1 = ew / 2;
     var vy1 = 0;
     var vx2 = ew;
-    var vy2 = vy1 + eh;
+    var vy2 = eh;
     
     var yy = 64;
-    var spacing = 16;
     
     var custom = guid_get(node.custom_guid);
     var outbound_label = (custom ? custom.outbound[| index] : "#" + string(index));
@@ -35,7 +35,7 @@ if (event) {
     
     var el_title_text = create_text(16, yy, label, ew, eh, fa_left, ew, dg);
     
-    yy = yy + el_title_text.height + spacing;
+    yy += el_title_text.height + spacing;
     
     var el_list = create_list(16, yy, "Select an entrypoint", "<no entrypoints>", ew, eh, 18, null, false, dg);
     for (var i = 0; i < ds_list_size(event.nodes); i++) {

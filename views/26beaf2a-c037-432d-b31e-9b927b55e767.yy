@@ -6,7 +6,8 @@
     "children": [
         "7d1e78a7-f450-4095-aa40-99b1e209e25a",
         "00ee307d-9d5f-4f17-9508-964f64ac586a",
-        "ed669905-ad04-43b7-9335-38fa3769a6d5"
+        "ed669905-ad04-43b7-9335-38fa3769a6d5",
+        "1af5319c-8c47-4afe-90e4-9ac237c369b6"
     ],
     "filterType": "GMSprite",
     "folderName": "screen icons",

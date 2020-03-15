@@ -31,12 +31,14 @@ var vtx = vx1 + 12;
 var vty = mean(vy1, vy2);
 
 if (code.editor_handle) {
-    if (ds_stuff_process_complete(code.editor_handle)) {
-        code.editor_handle = noone;
-        file_delete(get_temp_code_path(code));
-    }
     script_execute(code.onsave, code);
     script_execute(code.onvaluechange, code);
+    
+    if (ds_stuff_process_complete(code.editor_handle)) {
+        code.editor_handle = noone;
+        var location = code.is_code ? get_temp_code_path(code) : get_temp_text_path(code);
+        file_delete(location);
+    }
 }
 
 if (code.editor_handle) {

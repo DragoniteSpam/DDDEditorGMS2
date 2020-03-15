@@ -11,7 +11,7 @@ var eh = 24;
 var vx1 = ew / 2 + 16;
 var vy1 = 0;
 var vx2 = ew;
-var vy2 = vy1 + eh;
+var vy2 = eh;
 
 var c2 = dw / 2;
 var spacing = 16;
@@ -27,20 +27,20 @@ for (var i = 0; i < n_variables; i++) {
 }
 el_list.numbered = true;
 dg.el_list = el_list;
-yy = yy + ui_get_list_height(el_list) + spacing;
+yy += ui_get_list_height(el_list) + spacing;
 
 yy = yy_start;
 var el_max = create_input(c2 + 32, yy, "Maximum", ew, eh, dialog_create_commit_variable_resize, string(n_variables), "0...65535", validate_int, 0, 65535, 5, vx1, vy1, vx2, vy2, dg);
 el_max.require_enter = true;
-yy = yy + el_max.height + spacing;
+yy += el_max.height + spacing;
 
-yy = yy + eh + spacing;
+yy += eh + spacing;
 
 var el_name = create_input(c2 + 32, yy, "Variable name:", ew, eh, uivc_global_variable_name, "", "", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
-yy = yy + el_name.height + spacing;
+yy += el_name.height + spacing;
 dg.el_name = el_name;
 var el_default = create_input(c2 + 32, yy, "Default value", ew, eh, uivc_global_variable_default, 0, "number", validate_double, -BILLION, BILLION, 12, vx1, vy1, vx2, vy2, dg);
-yy = yy + el_default.height + spacing;
+yy += el_default.height + spacing;
 dg.el_default = el_default;
 
 var b_width = 128;

@@ -57,32 +57,32 @@ el_maps.allow_deselect = false;
 el_maps.entries_are = ListEntries.INSTANCES;
 dg.el_maps = el_maps;
 
-yy = yy + ui_get_list_height(el_maps) + spacing * 2;
+yy += ui_get_list_height(el_maps) + spacing * 2;
 
 var el_text = create_text(16, yy, "Click on a location in one of the maps to set the destination", ew, eh, fa_left, ew, dg);
 
-yy = yy + el_text.height + spacing * 2;
+yy += el_text.height + spacing * 2;
 
 var el_input_x = create_input(16, yy, "X", ew, eh, uivc_input_event_attain_transfer_x, custom_data_x[| 0], "", validate_int, 0, map.xx - 1, 5, vx1, vy1, vx2, vy2, dg);
-yy = yy + el_input_x.height + spacing;
+yy += el_input_x.height + spacing;
 dg.el_input_x = el_input_x;
 
 var el_input_y = create_input(16, yy, "Y", ew, eh, uivc_input_event_attain_transfer_y, custom_data_y[| 0], "", validate_int, 0, map.yy - 1, 5, vx1, vy1, vx2, vy2, dg);
-yy = yy + el_input_y.height + spacing;
+yy += el_input_y.height + spacing;
 dg.el_input_y = el_input_y;
 
 var el_input_z = create_input(16, yy, "Z", ew, eh, uivc_input_event_attain_transfer_z, custom_data_z[| 0], "", validate_int, 0, map.zz - 1, 5, vx1, vy1, vx2, vy2, dg);
-yy = yy + el_input_z.height + spacing;
+yy += el_input_z.height + spacing;
 dg.el_input_z = el_input_z;
 
 var el_direction = create_radio_array(16, yy, "Direction", ew, eh, uivc_list_event_attain_transfer_direction, custom_data_direction[| 0], dg);
 create_radio_array_options(el_direction, ["Down", "Left", "Right", "Up"]);
 dg.el_direction = el_direction;
-yy = yy + ui_get_radio_array_height(el_direction) + spacing;
+yy += ui_get_radio_array_height(el_direction) + spacing;
 
 var el_color = create_color_picker(16, yy, "Fade Color", ew, eh, uivc_input_event_attain_transfer_color, custom_data_color[| 0], vx1, vy1, vx2, vy2, dg);
 dg.el_color = el_color;
-yy = yy + el_color.height + spacing;
+yy += el_color.height + spacing;
 
 var el_time = create_input(16, yy, "Fade Time", ew, eh, uivc_input_event_attain_transfer_time, custom_data_time[| 0], "seconds", validate_double, 0, 100, 5, vx1, vy1, vx2, vy2, dg);
 dg.el_time = el_time;

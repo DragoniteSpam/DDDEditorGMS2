@@ -187,7 +187,7 @@ for (var i = 0; i < ds_list_size(layer_objects); i++) {
                 page.event_guid = pr_cutscene_entrypoint[0].GUID;
                 page.event_entrypoint = pr_cutscene_entrypoint[1].GUID;
             } else {
-                debug("Log an error somewhere - no event entrypoint \"" + pr_cutscene_entrypoint_name + "\"" + " for " + data_name);
+                wtf("Log an error somewhere - no event entrypoint \"" + pr_cutscene_entrypoint_name + "\"" + " for " + data_name);
             }
             break;
         case "mesh":
@@ -221,7 +221,7 @@ for (var i = 0; i < ds_list_size(layer_objects); i++) {
                 instance.off_xx = pr_offset_x / TILE_WIDTH;
                 instance.off_yy = pr_offset_y / TILE_HEIGHT;
             } else {
-                debug("Log an error somewhere - no existing mesh \"" + gid_to_image_name + "\"" + " for " + data_name);
+                wtf("Log an error somewhere - no existing mesh \"" + gid_to_image_name + "\"" + " for " + data_name);
             }
             break;
         case "effect":
@@ -263,7 +263,7 @@ for (var i = 0; i < ds_list_size(layer_objects); i++) {
                         data_generic_instance.value_type_guid = base.GUID;
                         data_generic_instance.type = DataTypes.DATA;
                     } else {
-                        debug("internal name not found - " + property[? "value"]);
+                        wtf("internal name not found - " + property[? "value"]);
                     }
                     break;
                 // other sigils may indicate other data types, but that's all for now

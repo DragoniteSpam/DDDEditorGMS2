@@ -12,7 +12,7 @@ Stuff.animation.zto = 0;
 
 Stuff.animation.xup = 0;
 Stuff.animation.yup = 0;
-Stuff.animation.zp = 1;
+Stuff.animation.zup = 1;
 
 Stuff.animation.fov = 50;
 Stuff.animation.pitch = 0;

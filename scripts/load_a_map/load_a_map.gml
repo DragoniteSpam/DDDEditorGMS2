@@ -34,6 +34,7 @@ if (Stuff.map.active_map) {
         c_shape_destroy(Stuff.map.active_map.cspreview);
         Stuff.map.active_map.cspreview = noone;
     }
+    Stuff.map.active_map.contents = noone;
 }
 
 Stuff.map.active_map = map;

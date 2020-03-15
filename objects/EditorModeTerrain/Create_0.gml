@@ -12,9 +12,9 @@ xto = setting_get("Terrain", "xto", 512);
 yto = setting_get("Terrain", "yto", 512);
 zto = setting_get("Terrain", "zto", 0);
 
-xup = setting_get("Terrain", "xup", 0);
-yup = setting_get("Terrain", "yup", 0);
-zup = setting_get("Terrain", "zup", 1);
+xup = 0;
+yup = 0;
+zup = 1;
 
 fov = setting_get("Terrain", "fov", 50);
 pitch = setting_get("Terrain", "pitch", 0);
@@ -91,7 +91,7 @@ vertex_end(terrain_buffer);
 terrain_buffer_data = buffer_create_from_vertex_buffer(terrain_buffer, buffer_fixed, 1);
 vertex_freeze(terrain_buffer);
 
-debug("Terrain creation took " + string((get_timer() - t) / 1000) + " milliseconds");
+wtf("Terrain creation took " + string((get_timer() - t) / 1000) + " milliseconds");
 
 enum TerrainModes {
     Z,

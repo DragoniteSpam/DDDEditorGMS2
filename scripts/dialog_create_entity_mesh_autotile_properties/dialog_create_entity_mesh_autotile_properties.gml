@@ -12,7 +12,8 @@ dg.mesh = mesh;
 
 var spacing = 16;
 var columns = 1;
-var ew = (dw - columns * 32) / columns;
+var spacing = 16;
+var ew = dw / columns - spacing * 2;
 var eh = 24;
 
 var col1_x = spacing;
@@ -20,7 +21,7 @@ var col1_x = spacing;
 var vx1 = dw / (columns * 2) - 32;
 var vy1 = 0;
 var vx2 = vx1 + dw / (columns * 2);
-var vy2 = vy1 + eh;
+var vy2 = eh;
 
 var yy = 64;
 var yy_base = yy;
@@ -28,7 +29,7 @@ var yy_base = yy;
 var el_slope = create_radio_array(col1_x, yy, "Slope Direction", ew, eh, uivc_entity_mesh_autotile_slope, global.at_mask_lookup[? mesh.slope], dg);
 create_radio_array_options(el_slope, ["None", "Northwest", "North", "Northeast", "West", "East", "Southwest", "South", "East"]);
 el_slope.tooltip = "I realize this is ambiguous. Pick the direction of the top of the slope (i.e. if the bottom is on the West side and the top is on the East side, pick East). I'll probably change this to have it auto-calculate later because there's literally no reason to ever pick a direction other than the face of the mesh autotile.";
-yy = yy + el_slope.height + spacing;
+yy += el_slope.height + spacing;
 
 var b_width = 128;
 var b_height = 32;

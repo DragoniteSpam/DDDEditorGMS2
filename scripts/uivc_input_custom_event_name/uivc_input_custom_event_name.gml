@@ -1,4 +1,6 @@
-/// @param UIThing
+/// @param UIInput
 
-argument0.root.event.name = argument0.value;
-argument0.root.changed = true;
+var input = argument0;
+
+input.root.event.name = input.value;
+input.root.changed = true;

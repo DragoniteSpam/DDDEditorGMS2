@@ -10,7 +10,7 @@ buffer_write(buffer, buffer_u64, 0);
 var n_images = ds_list_size(list);
 buffer_write(buffer, buffer_u32, n_images);
 
-var individual_images = (n_images < 100) && true;
+var individual_images = (n_images < 100);
 buffer_write(buffer, buffer_u8, individual_images);
 
 for (var i = 0; i < n_images; i++) {

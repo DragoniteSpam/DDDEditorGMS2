@@ -22,7 +22,6 @@ view_set_hport(view_overlay, hh);
 var status = ds_stuff_fetch_status();
 
 if (status == WINDOW_CLOSE) {
-    view_set_visible(view_3d_preview, false);
     var top = ds_list_top(Stuff.dialogs);
     if (top && (top.dialog_flags & DialogFlags.IS_QUIT)) {
         is_quitting = true;

@@ -30,7 +30,7 @@ var el_choices = create_radio_array(16, yy, "Switches", ew, eh, uivc_list_event_
 create_radio_array_options(el_choices, ["A", "B", "C", "D"]);
 dg.el_choices = el_choices;
 
-yy = yy + ui_get_radio_array_height(el_choices) + spacing;
+yy += ui_get_radio_array_height(el_choices) + spacing;
 
 var el_state = create_checkbox(16, yy, "Enabled?", ew, eh, uivc_check_event_attain_switch_state, custom_data_state[|0], dg);
 dg.el_state = el_state;

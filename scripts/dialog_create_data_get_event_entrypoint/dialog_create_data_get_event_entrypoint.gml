@@ -11,16 +11,16 @@ var dh = 544;
 var dg = dialog_create(dw, dh, "Select entrypoint", dialog_default, dc_close_no_questions_asked, dialog);
 
 var columns = 1;
-var ew = (dw - columns * 32) / columns;
+var spacing = 16;
+var ew = dw / columns - spacing * 2;
 var eh = 24;
 
 var vx1 = ew / 2;
 var vy1 = 0;
 var vx2 = ew;
-var vy2 = vy1 + eh;
+var vy2 = eh;
 
 var yy = 64;
-var spacing = 16;
 
 var el_list = create_list(16, yy, "Entrypoints", "<event has no entrypoints>", ew, eh, 16, null, false, dg);
 el_list.entries_are = ListEntries.INSTANCES;

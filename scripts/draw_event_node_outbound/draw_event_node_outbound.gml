@@ -20,7 +20,7 @@ if (!dialog_exists()) {
         if (custom) {
             var str = custom.outbound[| index];
             if (string_length(str) > 0) {
-                draw_tooltip(xx - 16 - string_width(str) / 2 - 4, yy - string_height(str) / 2 - 4, str);
+                draw_tooltip(floor(xx - 16 - string_width(str) / 2 - 4), floor(yy - string_height(str) / 2 - 4), str);
             }
         }
         if (Controller.press_left) {

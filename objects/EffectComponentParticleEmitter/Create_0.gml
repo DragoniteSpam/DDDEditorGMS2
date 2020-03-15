@@ -1,4 +1,5 @@
-parent = noone;
+event_inherited();
+
 save_script = null;
 load_script = null;
 render = null;

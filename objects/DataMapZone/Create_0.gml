@@ -4,6 +4,7 @@ ds_list_add(map_contents.all_zones, id);
 
 /* s */ name = "Zone " + string(ds_list_size(map_contents.all_zones));
 /* s */ ztype = -1;
+/* s */ zone_priority = 100;        // u16
 
 /* s */ x1 = 0;                     // f32
 /* s */ y1 = 0;                     // f32
@@ -14,8 +15,6 @@ ds_list_add(map_contents.all_zones, id);
 
 // this is updated with z1 just so that it can interface with Selection instances
 zz = 0;
-
-/* s */ zone_priority = 100;        // u16
 
 zone_edit_script = null;
 cobject = noone;

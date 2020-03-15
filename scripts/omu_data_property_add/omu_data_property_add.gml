@@ -11,8 +11,6 @@ if (ds_list_size(datadata.properties) < 1000) {
     instance_deactivate_object(property);
     button.root.selected_property = noone;
     
-    button.root.changed = true;
-    
     dialog_data_type_disable(button.root);
     
     button.root.el_data_name.interactive = true;

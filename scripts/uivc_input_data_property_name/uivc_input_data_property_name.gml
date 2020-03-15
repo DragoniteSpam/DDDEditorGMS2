@@ -1,4 +1,5 @@
-/// @param UIThing
+/// @param UIInput
 
-argument0.root.selected_property.name = argument0.value;
-argument0.root.changed = true;
+var input = argument0;
+
+input.root.selected_property.name = input.value;
