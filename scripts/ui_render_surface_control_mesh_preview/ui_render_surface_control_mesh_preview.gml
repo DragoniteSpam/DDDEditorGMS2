@@ -84,13 +84,7 @@ if (mouse_within_rectangle_view(x1, y1, x2, y2)) {
     }
     
     if (keyboard_check(vk_backspace) || keyboard_check(vk_delete)) {
-        Stuff.mesh_x = 0;
-        Stuff.mesh_y = 0;
-        Stuff.mesh_z = 0;
-        Stuff.mesh_xrot = 0;
-        Stuff.mesh_yrot = 0;
-        Stuff.mesh_zrot = 0;
-        Stuff.mesh_scale = 1;
+        script_execute(surface.root.el_controls_reset.onmouseup, surface.root.el_controls_reset);
     }
     
     if (keyboard_check_pressed(vk_tab)) {

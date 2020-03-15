@@ -86,8 +86,9 @@ dg.el_control_scale = el_control_scale;
 
 yy += el_control_scale.height + spacing;
 
-var el_controls_reset = create_button(col4_x, yy, "Reset", ew, eh, fa_center, null, dg);
+var el_controls_reset = create_button(col4_x, yy, "Reset", ew, eh, fa_center, uivc_mesh_preview_reset, dg);
 el_controls_reset.tooltip = "Reset default settings for the preview window.";
+dg.el_controls_reset = el_controls_reset;
 
 yy += el_controls_reset.height + spacing;
 
