@@ -45,7 +45,7 @@ dg.el_color = el_color;
 yy += el_color.height + spacing;
 
 var el_script = create_input(col1_x, yy, "Script call:", ew, eh, uivc_entity_effect_com_lighting_script_call, com_light ? com_light.script_call : "", "funciton name", validate_string_internal_name_or_empty, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
-el_script.tooltip = "If you want this light component to run any code, call it here. This should be the name of a Lua function defined by the Common Effect Code.";
+el_script.tooltip = "If you want this light component to run any code, call it here. This should correspond to a set of Lua functions defined by the Common Effect Code suffixed with \"Create\", \"Update\" and \"Destroy\". See the sample code.";
 el_script.enabled = (com_light && com_light.light_type != LightTypes.NONE);
 dg.el_script = el_script;
 

@@ -1,15 +1,16 @@
-/// @param UIThing
+/// @param UIInputCode
 /// @param default
 
-var location = get_temp_code_path(argument0);
+var code = argument0;
+var def_value = argument1;
+
+var location = code.is_code ? get_temp_code_path(code) : get_temp_text_path(code);
 
 if (file_exists(location)) {
     var buffer = buffer_load(location);
-    if (buffer_get_size(buffer) > 0) {
-        var text = buffer_read(buffer, buffer_text);
-        buffer_delete(buffer);
-        return text;
-    }
+    var text = (buffer_get_size(buffer) > 0) ? buffer_read(buffer, buffer_text) : "";
+    buffer_delete(buffer);
+    return text;
 }
 
-return argument1;
+return def_value;
