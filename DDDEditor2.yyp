@@ -1315,6 +1315,14 @@
             }
         },
         {
+            "Key": "0f31efed-2e40-444f-a0b1-727c5f415a76",
+            "Value": {
+                "id": "c10f116e-5ed4-499d-8a8f-4c356c0e644f",
+                "resourcePath": "scripts\\ui_render_surface_render_mesh_preview\\ui_render_surface_render_mesh_preview.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "0f508252-9daa-41ed-96a5-a43db14d9538",
             "Value": {
                 "id": "7ff4b534-6b98-4208-b66e-bfb4fd380b9c",
@@ -20911,6 +20919,7 @@
         "f909e7fe-18b7-4d60-99c3-ae9d30e9800e",
         "27ac824d-92f5-4d4b-a384-16b6a76e8346",
         "c5ee05e7-6c16-4761-90f6-27280fea05ab",
+        "0f31efed-2e40-444f-a0b1-727c5f415a76",
         "424effe5-bbb2-4880-b8e8-a7d657a45e77",
         "26bbea8b-61d0-4549-8c64-7420d3fa108f",
         "fcd4ba1d-4e32-4811-bac1-bf5c9ad661c1",

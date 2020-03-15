@@ -13,9 +13,9 @@ var spacing = 16;
 var ew = dw / columns - spacing * 2;
 var eh = 24;
 
-var vx1 = dw / (columns * 2) - 16;
+var vx1 = ew / 2;
 var vy1 = 0;
-var vx2 = vx1 + dw / (columns * 2) - 16;
+var vx2 = ew;
 var vy2 = eh;
 
 var b_width = 128;
