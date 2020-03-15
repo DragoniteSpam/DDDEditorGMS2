@@ -20,3 +20,7 @@ ui_input_set_value(button.root.el_control_rot_y, string(Stuff.mesh_yrot));
 ui_input_set_value(button.root.el_control_rot_z, string(Stuff.mesh_zrot));
 ui_input_set_value(button.root.el_control_scale, string(Stuff.mesh_scale));
 ui_input_set_value(button.root.el_controls_index, string(mesh.preview_index));
+var bsize = buffer_get_size(mesh.submeshes[| mesh.preview_index].buffer);
+button.root.el_stats_kb.text = "    Size: " + string_comma(bsize) + " bytes";
+button.root.el_stats_vertices.text = "    Vertices: " + string(bsize / Stuff.graphics.format_size);
+button.root.el_stats_triangles.text = "    Triangles: " + string(bsize / Stuff.graphics.format_size / 3);

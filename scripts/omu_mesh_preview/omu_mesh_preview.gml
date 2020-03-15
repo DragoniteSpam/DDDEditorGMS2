@@ -8,7 +8,7 @@ if (!mesh) {
 }
 
 var dw = 1280;
-var dh = 760;
+var dh = 840;
 
 // todo cache the custom event and only commit the changes when you're done
 var dg = dialog_create(dw, dh, "Mesh Preview", dialog_default, dc_close_no_questions_asked, root);
@@ -36,8 +36,9 @@ var n_slots = 20;
 
 var yy = 64;
 
-var el_surface = create_render_surface(col1_x, yy, 944, 624, ui_render_surface_render_mesh_preview, ui_render_surface_control_mesh_preview, dg);
+var el_surface = create_render_surface(col1_x, yy, 944, 704, ui_render_surface_render_mesh_preview, ui_render_surface_control_mesh_preview, dg);
 
+#region controls
 var el_controls_title = create_text(col4_x, yy, "Controls", ew, eh, fa_left, ew, dg);
 el_controls_title.color = c_blue;
 
@@ -97,6 +98,7 @@ el_controls_index.tooltip = "There are " + string(ds_list_size(mesh.submeshes)) 
 dg.el_controls_index = el_controls_index;
 
 yy += el_controls_index.height + spacing;
+#endregion
 
 #region settings
 var el_settings_title = create_text(col4_x, yy, "Settings", ew, eh, fa_left, ew, dg);
@@ -123,6 +125,29 @@ dg.el_settings_scale_rate = el_settings_scale_rate;
 yy += el_settings_scale_rate.height + spacing;
 #endregion
 
+#region stats
+var el_stats_title = create_text(col4_x, yy, "Stats", ew, eh, fa_left, ew, dg);
+el_stats_title.color = c_blue;
+
+yy += el_stats_title.height + spacing;
+
+var bsize = buffer_get_size(mesh.submeshes[| mesh.preview_index].buffer);
+var el_stats_kb = create_text(col4_x, yy, "    Size: " + string_comma(bsize) + " bytes", ew, eh, fa_left, ew, dg);
+dg.el_stats_kb = el_stats_kb;
+
+yy += el_stats_kb.height + spacing;
+
+var el_stats_vertices = create_text(col4_x, yy, "    Vertices: " + string(bsize / Stuff.graphics.format_size), ew, eh, fa_left, ew, dg);
+dg.el_stats_vertices = el_stats_vertices;
+
+yy += el_stats_vertices.height + spacing;
+
+var el_stats_triangles = create_text(col4_x, yy, "    Triangles: " + string(bsize / Stuff.graphics.format_size / 3), ew, eh, fa_left, ew, dg);
+dg.el_stats_triangles = el_stats_triangles;
+
+yy += el_stats_triangles.height + spacing;
+#endregion
+
 var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_close_no_questions_asked, dg);
 dg.el_confirm = el_confirm;
 
@@ -142,6 +167,10 @@ ds_list_add(dg.contents,
     el_settings_trans_rate,
     el_settings_rot_rate,
     el_settings_scale_rate,
+    el_stats_title,
+    el_stats_kb,
+    el_stats_vertices,
+    el_stats_triangles,
     el_confirm
 );
 
