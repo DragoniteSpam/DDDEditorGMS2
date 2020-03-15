@@ -38,11 +38,95 @@ var yy = 64;
 
 var el_surface = create_render_surface(col1_x, yy, 944, 624, ui_render_surface_render_mesh_preview, ui_render_surface_control_mesh_preview, dg);
 
+var el_controls_title = create_text(col4_x, yy, "Controls", ew, eh, fa_left, ew, dg);
+el_controls_title.color = c_blue;
+
+yy += el_controls_title.height + spacing;
+
+var el_control_x = create_input(col4_x, yy, "X:", ew, eh, null, Stuff.mesh_x, "float", validate_double, -1000, 1000, 4, vx1, vy1, vx2, vy2, dg);
+dg.el_control_x = el_control_x;
+
+yy += el_control_x.height + spacing;
+
+var el_control_y = create_input(col4_x, yy, "Y:", ew, eh, null, Stuff.mesh_y, "float", validate_double, -1000, 1000, 4, vx1, vy1, vx2, vy2, dg);
+dg.el_control_y = el_control_y;
+
+yy += el_control_y.height + spacing;
+
+var el_control_z = create_input(col4_x, yy, "Z:", ew, eh, null, Stuff.mesh_z, "float", validate_double, -1000, 1000, 4, vx1, vy1, vx2, vy2, dg);
+dg.el_control_z = el_control_z;
+
+yy += el_control_z.height + spacing;
+
+// max value of 359.99 but only allowing 5 decimal places is rather clever, i like to think
+var el_control_rot_x = create_input(col4_x, yy, "X Rotation:", ew, eh, null, Stuff.mesh_xrot, "float", validate_double, 0, 359.99, 5, vx1, vy1, vx2, vy2, dg);
+dg.el_control_rot_x = el_control_rot_x;
+
+yy += el_control_rot_x.height + spacing;
+
+var el_control_rot_y = create_input(col4_x, yy, "Y Rotation:", ew, eh, null, Stuff.mesh_yrot, "float", validate_double, 0, 359.99, 5, vx1, vy1, vx2, vy2, dg);
+dg.el_control_rot_y = el_control_rot_y;
+
+yy += el_control_rot_y.height + spacing;
+
+var el_control_rot_z = create_input(col4_x, yy, "Z Rotation:", ew, eh, null, Stuff.mesh_zrot, "float", validate_double, 0, 359.99, 5, vx1, vy1, vx2, vy2, dg);
+dg.el_control_rot_z = el_control_rot_z;
+
+yy += el_control_rot_z.height + spacing;
+
+var el_control_scale = create_input(col4_x, yy, "Scale:", ew, eh, null, Stuff.mesh_scale, "float", validate_double, 0.01, 10, 3, vx1, vy1, vx2, vy2, dg);
+dg.el_control_scale = el_control_scale;
+
+yy += el_control_scale.height + spacing;
+
+var el_controls_reset = create_button(col4_x, yy, "Reset", ew, eh, fa_center, null, dg);
+el_controls_reset.tooltip = "Reset default settings for the preview window.";
+
+yy += el_controls_reset.height + spacing;
+
+#region settings
+var el_settings_title = create_text(col4_x, yy, "Settings", ew, eh, fa_left, ew, dg);
+el_settings_title.color = c_blue;
+
+yy += el_settings_title.height + spacing;
+
+var el_settings_trans_rate = create_input(col4_x, yy, "Translation rate:", ew, eh, null, 2, "float", validate_double, 0, 8, 4, vx1, vy1, vx2, vy2, dg);
+el_settings_trans_rate.tooltip = "Tiles per second.";
+dg.el_settings_trans_rate = el_settings_trans_rate;
+
+yy += el_settings_trans_rate.height + spacing;
+
+var el_settings_rot_rate = create_input(col4_x, yy, "Rotation rate:", ew, eh, null, 120, "float", validate_double, 0, 720, 4, vx1, vy1, vx2, vy2, dg);
+el_settings_rot_rate.tooltip = "Degrees per second.";
+dg.el_settings_rot_rate = el_settings_rot_rate;
+
+yy += el_settings_rot_rate.height + spacing;
+
+var el_settings_scale_rate = create_input(col4_x, yy, "Scale rate:", ew, eh, null, 1, "float", validate_double, 0, 3, 4, vx1, vy1, vx2, vy2, dg);
+el_settings_scale_rate.tooltip = "Whatever per second.";
+dg.el_settings_scale_rate = el_settings_scale_rate;
+
+yy += el_settings_scale_rate.height + spacing;
+#endregion
+
 var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_close_no_questions_asked, dg);
 dg.el_confirm = el_confirm;
 
 ds_list_add(dg.contents,
     el_surface,
+    el_controls_title,
+    el_control_x,
+    el_control_y,
+    el_control_z,
+    el_control_rot_x,
+    el_control_rot_y,
+    el_control_rot_z,
+    el_control_scale,
+    el_controls_reset,
+    el_settings_title,
+    el_settings_trans_rate,
+    el_settings_rot_rate,
+    el_settings_scale_rate,
     el_confirm
 );
 
