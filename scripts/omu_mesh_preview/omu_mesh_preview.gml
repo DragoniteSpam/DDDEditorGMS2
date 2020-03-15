@@ -43,38 +43,45 @@ el_controls_title.color = c_blue;
 
 yy += el_controls_title.height + spacing;
 
-var el_control_x = create_input(col4_x, yy, "X:", ew, eh, null, Stuff.mesh_x, "float", validate_double, -1000, 1000, 4, vx1, vy1, vx2, vy2, dg);
+var el_control_x = create_input(col4_x, yy, "X:", ew, eh, uivc_mesh_preview_x, Stuff.mesh_x, "float", validate_double, -1000, 1000, 4, vx1, vy1, vx2, vy2, dg);
+el_control_x.tooltip = "Left / right";
 dg.el_control_x = el_control_x;
 
 yy += el_control_x.height + spacing;
 
-var el_control_y = create_input(col4_x, yy, "Y:", ew, eh, null, Stuff.mesh_y, "float", validate_double, -1000, 1000, 4, vx1, vy1, vx2, vy2, dg);
+var el_control_y = create_input(col4_x, yy, "Y:", ew, eh, uivc_mesh_preview_y, Stuff.mesh_y, "float", validate_double, -1000, 1000, 4, vx1, vy1, vx2, vy2, dg);
+el_control_x.tooltip = "Up / down";
 dg.el_control_y = el_control_y;
 
 yy += el_control_y.height + spacing;
 
-var el_control_z = create_input(col4_x, yy, "Z:", ew, eh, null, Stuff.mesh_z, "float", validate_double, -1000, 1000, 4, vx1, vy1, vx2, vy2, dg);
+var el_control_z = create_input(col4_x, yy, "Z:", ew, eh, uivc_mesh_preview_z, Stuff.mesh_z, "float", validate_double, -1000, 1000, 4, vx1, vy1, vx2, vy2, dg);
+el_control_x.tooltip = "Shift + up / down";
 dg.el_control_z = el_control_z;
 
 yy += el_control_z.height + spacing;
 
 // max value of 359.99 but only allowing 5 decimal places is rather clever, i like to think
-var el_control_rot_x = create_input(col4_x, yy, "X Rotation:", ew, eh, null, Stuff.mesh_xrot, "float", validate_double, 0, 359.99, 5, vx1, vy1, vx2, vy2, dg);
+var el_control_rot_x = create_input(col4_x, yy, "X Rotation:", ew, eh, uivc_mesh_preview_xrot, Stuff.mesh_xrot, "float", validate_double, 0, 359.99, 5, vx1, vy1, vx2, vy2, dg);
+el_control_x.tooltip = "Control + left / right";
 dg.el_control_rot_x = el_control_rot_x;
 
 yy += el_control_rot_x.height + spacing;
 
-var el_control_rot_y = create_input(col4_x, yy, "Y Rotation:", ew, eh, null, Stuff.mesh_yrot, "float", validate_double, 0, 359.99, 5, vx1, vy1, vx2, vy2, dg);
+var el_control_rot_y = create_input(col4_x, yy, "Y Rotation:", ew, eh, uivc_mesh_preview_yrot, Stuff.mesh_yrot, "float", validate_double, 0, 359.99, 5, vx1, vy1, vx2, vy2, dg);
+el_control_x.tooltip = "Control + up / down";
 dg.el_control_rot_y = el_control_rot_y;
 
 yy += el_control_rot_y.height + spacing;
 
-var el_control_rot_z = create_input(col4_x, yy, "Z Rotation:", ew, eh, null, Stuff.mesh_zrot, "float", validate_double, 0, 359.99, 5, vx1, vy1, vx2, vy2, dg);
+var el_control_rot_z = create_input(col4_x, yy, "Z Rotation:", ew, eh, uivc_mesh_preview_zrot, Stuff.mesh_zrot, "float", validate_double, 0, 359.99, 5, vx1, vy1, vx2, vy2, dg);
+el_control_x.tooltip = "Shift + left / right";
 dg.el_control_rot_z = el_control_rot_z;
 
 yy += el_control_rot_z.height + spacing;
 
-var el_control_scale = create_input(col4_x, yy, "Scale:", ew, eh, null, Stuff.mesh_scale, "float", validate_double, 0.01, 10, 3, vx1, vy1, vx2, vy2, dg);
+var el_control_scale = create_input(col4_x, yy, "Scale:", ew, eh, uivc_mesh_preview_scale, Stuff.mesh_scale, "float", validate_double, 0.01, 10, 3, vx1, vy1, vx2, vy2, dg);
+el_control_scale.tooltip = "Alt + up / down";
 dg.el_control_scale = el_control_scale;
 
 yy += el_control_scale.height + spacing;
@@ -83,6 +90,12 @@ var el_controls_reset = create_button(col4_x, yy, "Reset", ew, eh, fa_center, nu
 el_controls_reset.tooltip = "Reset default settings for the preview window.";
 
 yy += el_controls_reset.height + spacing;
+
+var el_controls_index = create_input(col4_x, yy, "Submesh:", ew, eh, uivc_mesh_preview_index, mesh.preview_index, "int", validate_double, 0, ds_list_size(mesh.submeshes) -1 , 5, vx1, vy1, vx2, vy2, dg);
+el_controls_index.tooltip = "Tiles per second.";
+dg.el_controls_index = el_controls_index;
+
+yy += el_controls_index.height + spacing;
 
 #region settings
 var el_settings_title = create_text(col4_x, yy, "Settings", ew, eh, fa_left, ew, dg);
@@ -123,6 +136,7 @@ ds_list_add(dg.contents,
     el_control_rot_z,
     el_control_scale,
     el_controls_reset,
+    el_controls_index,
     el_settings_title,
     el_settings_trans_rate,
     el_settings_rot_rate,

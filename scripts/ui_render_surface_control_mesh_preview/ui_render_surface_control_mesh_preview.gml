@@ -9,6 +9,7 @@ var x1 = argument1;
 var y1 = argument2;
 var x2 = argument3;
 var y2 = argument4;
+var mesh = surface.root.mesh;
 
 var rotation_rate = 2;
 var translation_rate = 1;
@@ -72,5 +73,14 @@ if (mouse_within_rectangle_view(x1, y1, x2, y2)) {
         Stuff.mesh_yrot = 0;
         Stuff.mesh_zrot = 0;
         Stuff.mesh_scale = 1;
+    }
+    
+    if (keyboard_check_pressed(vk_tab)) {
+        var length = ds_list_size(mesh.submeshes);
+        if (keyboard_check(vk_shift)) {
+            mesh.preview_index = (--mesh.preview_index + length) % length;
+        } else {
+            mesh.preview_index = ++mesh.preview_index % length;
+        }
     }
 }
