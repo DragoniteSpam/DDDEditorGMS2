@@ -80,7 +80,7 @@ dg.el_control_rot_z = el_control_rot_z;
 
 yy += el_control_rot_z.height + spacing;
 
-var el_control_scale = create_input(col4_x, yy, "Scale:", ew, eh, uivc_mesh_preview_scale, Stuff.mesh_scale, "float", validate_double, 0.01, 10, 3, vx1, vy1, vx2, vy2, dg);
+var el_control_scale = create_input(col4_x, yy, "Scale:", ew, eh, uivc_mesh_preview_scale, Stuff.mesh_scale, "float", validate_double, 0.1, 10, 3, vx1, vy1, vx2, vy2, dg);
 el_control_scale.tooltip = "Alt + up / down";
 dg.el_control_scale = el_control_scale;
 
