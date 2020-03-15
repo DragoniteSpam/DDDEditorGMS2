@@ -3,21 +3,21 @@
 -- at the appropriate times
 
 -- This is called when the effect is loaded into a map
--- @param effect The effect which this code is being used on
+-- @param component The component which this code is being used on
 -- @param t The amount of time since the game has started, in seconds
-function SampleCreate(effect, t)
+function SampleCreate(component, t)
 end
 
 -- This is called when the effect is unloaded from a map
--- @param effect The effect which this code is being used on
+-- @param component The component which this code is being used on
 -- @param t The amount of time since the game has started, in seconds
 -- @param dt The delta time value, in seconds
-function SampleDestroy(effect, t)
+function SampleDestroy(component, t)
 end
 
 -- This is called in each frame
--- @param effect The effect which this code is being used on
+-- @param component The component which this code is being used on
 -- @param t The amount of time since the game has started, in seconds
 -- @param dt The delta time value, in seconds
-function SampleUpdate(effect, t, dt)
+function SampleUpdate(component, t, dt)
 end

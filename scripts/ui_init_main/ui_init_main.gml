@@ -404,6 +404,8 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     ds_list_add(t_maps.contents, element);
     t_maps.el_other = element;
     
+    yy += element.height + spacing;
+    
     element = create_button(col2_x, yy, "Freeze Selected Objects", col_width, element_height, fa_center, null, t_maps);
     element.tooltip = "Selected objects will be converted to a frozen vertex buffer and will no longer be editable. This means they will be significantly faster to process and render, but they will otherwise be effectively permanently removed. Use with caution.";
     element.interactive = false;
