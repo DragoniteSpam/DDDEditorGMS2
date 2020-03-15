@@ -24,48 +24,62 @@ if (mouse_within_rectangle_view(x1, y1, x2, y2)) {
     if (keyboard_check(vk_shift)) {
         if (keyboard_check(vk_up) || keyboard_check(ord("W"))) {
             Stuff.mesh_z = Stuff.mesh_z - translation_rate * TILE_DEPTH;
+            ui_input_set_value(surface.root.el_control_z, string(Stuff.mesh_z));
         }
         if (keyboard_check(vk_down) || keyboard_check(ord("S"))) {
             Stuff.mesh_z = Stuff.mesh_z + translation_rate * TILE_DEPTH;
+            ui_input_set_value(surface.root.el_control_z, string(Stuff.mesh_z));
         }
         if (keyboard_check(vk_left) || keyboard_check(ord("A"))) {
-            Stuff.mesh_zrot = Stuff.mesh_zrot - rotation_rate;
+            Stuff.mesh_zrot = (Stuff.mesh_zrot - rotation_rate + 360) % 360
+            ui_input_set_value(surface.root.el_control_rot_z, string(Stuff.mesh_zrot));
         }
         if (keyboard_check(vk_right) || keyboard_check(ord("D"))) {
-            Stuff.mesh_zrot = Stuff.mesh_zrot + rotation_rate;
+            Stuff.mesh_zrot = (Stuff.mesh_zrot + rotation_rate) % 360;
+            ui_input_set_value(surface.root.el_control_rot_z, string(Stuff.mesh_zrot));
         }
     } else if (keyboard_check(vk_control)) {
         if (keyboard_check(vk_up) || keyboard_check(ord("W"))) {
-            Stuff.mesh_yrot = Stuff.mesh_yrot - translation_rate;
+            Stuff.mesh_yrot = (Stuff.mesh_yrot - rotation_rate + 360) % 360;
+            ui_input_set_value(surface.root.el_control_rot_y, string(Stuff.mesh_yrot));
         }
         if (keyboard_check(vk_down) || keyboard_check(ord("S"))) {
-            Stuff.mesh_yrot = Stuff.mesh_yrot + translation_rate;
+            Stuff.mesh_yrot = (Stuff.mesh_yrot + rotation_rate) % 360;
+            ui_input_set_value(surface.root.el_control_rot_y, string(Stuff.mesh_yrot));
         }
         if (keyboard_check(vk_left) || keyboard_check(ord("A"))) {
-            Stuff.mesh_xrot = Stuff.mesh_xrot - rotation_rate;
+            Stuff.mesh_xrot = (Stuff.mesh_xrot - rotation_rate + 360) % 360;
+            ui_input_set_value(surface.root.el_control_rot_x, string(Stuff.mesh_xrot));
         }
         if (keyboard_check(vk_right) || keyboard_check(ord("D"))) {
-            Stuff.mesh_xrot = Stuff.mesh_xrot + rotation_rate;
+            Stuff.mesh_xrot = (Stuff.mesh_xrot + rotation_rate) % 360;
+            ui_input_set_value(surface.root.el_control_rot_x, string(Stuff.mesh_xrot));
         }
     } else if (keyboard_check(vk_alt)) {
         if (keyboard_check(vk_up) || keyboard_check(ord("W"))) {
             Stuff.mesh_scale = min(Stuff.mesh_scale + scale_rate, 10);
+            ui_input_set_value(surface.root.el_control_scale, string(Stuff.mesh_scale));
         }
         if (keyboard_check(vk_down) || keyboard_check(ord("S"))) {
             Stuff.mesh_scale = max(Stuff.mesh_scale - scale_rate, 0.1);
+            ui_input_set_value(surface.root.el_control_scale, string(Stuff.mesh_scale));
         }
     } else {
         if (keyboard_check(vk_up) || keyboard_check(ord("W"))) {
             Stuff.mesh_y = Stuff.mesh_y - translation_rate * TILE_HEIGHT;
+            ui_input_set_value(surface.root.el_control_y, string(Stuff.mesh_y));
         }
         if (keyboard_check(vk_down) || keyboard_check(ord("S"))) {
             Stuff.mesh_y = Stuff.mesh_y + translation_rate * TILE_HEIGHT;
+            ui_input_set_value(surface.root.el_control_y, string(Stuff.mesh_y));
         }
         if (keyboard_check(vk_left) || keyboard_check(ord("A"))) {
             Stuff.mesh_x = Stuff.mesh_x - translation_rate * TILE_WIDTH;
+            ui_input_set_value(surface.root.el_control_x, string(Stuff.mesh_x));
         }
         if (keyboard_check(vk_right) || keyboard_check(ord("D"))) {
             Stuff.mesh_x = Stuff.mesh_x + translation_rate * TILE_WIDTH;
+            ui_input_set_value(surface.root.el_control_x, string(Stuff.mesh_x));
         }
     }
     
@@ -83,8 +97,10 @@ if (mouse_within_rectangle_view(x1, y1, x2, y2)) {
         var length = ds_list_size(mesh.submeshes);
         if (keyboard_check(vk_shift)) {
             mesh.preview_index = (--mesh.preview_index + length) % length;
+            ui_input_set_value(surface.root.el_controls_index, string(mesh.preview_index));
         } else {
             mesh.preview_index = ++mesh.preview_index % length;
+            ui_input_set_value(surface.root.el_controls_index, string(mesh.preview_index));
         }
     }
 }

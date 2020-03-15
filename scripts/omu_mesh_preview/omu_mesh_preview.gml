@@ -92,7 +92,7 @@ el_controls_reset.tooltip = "Reset default settings for the preview window.";
 yy += el_controls_reset.height + spacing;
 
 var el_controls_index = create_input(col4_x, yy, "Submesh:", ew, eh, uivc_mesh_preview_index, mesh.preview_index, "int", validate_double, 0, ds_list_size(mesh.submeshes) -1 , 5, vx1, vy1, vx2, vy2, dg);
-el_controls_index.tooltip = "Tiles per second.";
+el_controls_index.tooltip = "There are " + string(ds_list_size(mesh.submeshes)) + " submeshes in " + mesh.name + ".";
 dg.el_controls_index = el_controls_index;
 
 yy += el_controls_index.height + spacing;
