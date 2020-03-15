@@ -36,7 +36,7 @@ var n_slots = 20;
 
 var yy = 64;
 
-var el_surface = create_render_surface(col1_x, yy, 944, 624, ui_render_surface_render_mesh_preview, null, dg);
+var el_surface = create_render_surface(col1_x, yy, 944, 624, ui_render_surface_render_mesh_preview, ui_render_surface_control_mesh_preview, dg);
 
 var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_close_no_questions_asked, dg);
 dg.el_confirm = el_confirm;

@@ -10579,6 +10579,14 @@
             }
         },
         {
+            "Key": "894325ed-22ed-443e-b575-8f82bb5cef3b",
+            "Value": {
+                "id": "9b33cd13-9fbb-4144-afb3-224d8994d64d",
+                "resourcePath": "scripts\\ui_render_surface_control_mesh_preview\\ui_render_surface_control_mesh_preview.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "89433db3-d7f9-44f5-a5ea-6701128fba70",
             "Value": {
                 "id": "12d15acb-74cc-4ccb-a900-2b08b4b5af89",
@@ -20894,6 +20902,7 @@
         "27ac824d-92f5-4d4b-a384-16b6a76e8346",
         "c5ee05e7-6c16-4761-90f6-27280fea05ab",
         "0f31efed-2e40-444f-a0b1-727c5f415a76",
+        "894325ed-22ed-443e-b575-8f82bb5cef3b",
         "424effe5-bbb2-4880-b8e8-a7d657a45e77",
         "26bbea8b-61d0-4549-8c64-7420d3fa108f",
         "fcd4ba1d-4e32-4811-bac1-bf5c9ad661c1",
