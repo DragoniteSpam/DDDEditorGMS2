@@ -25,7 +25,7 @@ if (animation && (timeline_layer + 1)) {
 }
 
 // we must abuse truthiness wherever possible
-input.interactive = (keyframe && true);
+input.interactive = !!keyframe;
 input.root.tween_translate_y.interactive = input.interactive;
 
 ui_render_input(input, xx, yy);

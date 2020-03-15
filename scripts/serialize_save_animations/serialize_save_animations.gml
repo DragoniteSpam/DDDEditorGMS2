@@ -56,7 +56,7 @@ for (var i = 0; i < n_animations; i++) {
         
         for (var k = 0; k < n_keyframes; k++) {
             var keyframe = timeline_layer.keyframes[| k];
-            buffer_write(buffer, buffer_bool, keyframe && true);
+            buffer_write(buffer, buffer_bool, !!keyframe);
             
             if (keyframe) {
                 buffer_write(buffer, buffer_u16, keyframe.moment);
