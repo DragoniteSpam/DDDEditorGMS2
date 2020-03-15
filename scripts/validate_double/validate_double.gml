@@ -2,7 +2,7 @@
 /// @param UIInput
 
 var str = argument[0];
-var input = argument[1];
+var input = (argument_count > 1 && argument[1] != undefined) ? argument[1] : noone;
 
 if (!string_length(str)) {
     return false;
@@ -10,10 +10,3 @@ if (!string_length(str)) {
 
 // @gml update try-catch
 return regex("[-+]?[0-9]*\.?[0-9]+", str);
-
-// ((\+)|(\-))?
-//      optional + or -
-// ((\d)*)
-//      0 or more digits
-// ((\.)(\d)+)?
-//      optional decimal point followed by 1 or more digits

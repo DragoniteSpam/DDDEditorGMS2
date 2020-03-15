@@ -15,9 +15,7 @@ var translation_rate = 1;
 var scale_rate = 1.01;
 
 if (mouse_within_rectangle_view(x1, y1, x2, y2)) {
-    // this is the same set of controls as in control_3d_preview but without the
-    // overlay text
-    
+    // this is the same set of controls as in control_3d_preview
     if (keyboard_check(vk_shift)) {
         if (keyboard_check(vk_up) || keyboard_check(ord("W"))) {
             Stuff.mesh_z = Stuff.mesh_z - translation_rate;
