@@ -3443,14 +3443,6 @@
             }
         },
         {
-            "Key": "2a6837e7-9351-4828-b0c8-f7f6095d2e09",
-            "Value": {
-                "id": "619135b7-ab77-42e2-b9e5-5ef5121e0608",
-                "resourcePath": "scripts\\draw_preview_3d\\draw_preview_3d.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "2ab08a6e-119d-4a2a-97b1-5dd18ff02a9a",
             "Value": {
                 "id": "20ed01d0-712d-462f-965c-4d08e1c86e2f",
@@ -14227,14 +14219,6 @@
             }
         },
         {
-            "Key": "ba4a8101-af2b-497e-907d-7a331adf03b6",
-            "Value": {
-                "id": "4aef4f25-5235-488f-bb89-05f0132c227d",
-                "resourcePath": "scripts\\control_3d_preview\\control_3d_preview.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "ba4c8d51-83bf-4ac7-9608-74f580bea3cf",
             "Value": {
                 "id": "72eaac86-4319-4e94-8aba-5ece0d81b3c7",
@@ -16520,14 +16504,6 @@
                 "id": "d338eb77-71d9-457d-9405-87aa26ac3b5c",
                 "resourcePath": "views\\d849c957-f7e6-464b-8d1c-4abb98fb14c5.yy",
                 "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "d8652093-8c63-4067-92d4-453d3bfe32c0",
-            "Value": {
-                "id": "d9e32ba7-dab8-460b-8b25-7414060056da",
-                "resourcePath": "scripts\\draw_preview_3d_overlay\\draw_preview_3d_overlay.yy",
-                "resourceType": "GMScript"
             }
         },
         {
@@ -19903,8 +19879,6 @@
         "e98c9e1c-1587-4303-85b5-314ab3c45363",
         "908f9a52-7470-4e76-9808-402f4acb9d67",
         "53b4a8ca-ad8f-4dec-be4b-9236d94a283c",
-        "2a6837e7-9351-4828-b0c8-f7f6095d2e09",
-        "d8652093-8c63-4067-92d4-453d3bfe32c0",
         "93e79cca-6db9-4bd6-8dde-4a0390784c1e",
         "15ab5199-66ae-4863-96ee-9fb150a0291e",
         "b727b1c8-ef03-494d-b4f3-7d7789b0e2af",
@@ -20961,7 +20935,6 @@
         "ae2be7f6-e7b0-45e5-aff6-edeed2e31f40",
         "8bb911fe-e169-4600-88d0-560c6d77bc9c",
         "f99fa76c-f1be-44a0-a900-27fc9778a457",
-        "ba4a8101-af2b-497e-907d-7a331adf03b6",
         "b3c13d94-1e6e-4632-b6b5-a72df87da442",
         "0cf10e8e-e37f-4f4e-8d69-ac3955e5ccd6",
         "0c8b0bb3-97ad-42ec-8a2a-40d3f2dde3fc",

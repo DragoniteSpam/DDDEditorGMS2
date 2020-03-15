@@ -107,7 +107,7 @@
 #macro view_3d 1
 #macro view_ribbon 2
 #macro view_hud 3
-#macro view_3d_preview 4
+#macro view_4 4
 #macro view_5 5
 #macro view_6 6
 #macro view_overlay 7

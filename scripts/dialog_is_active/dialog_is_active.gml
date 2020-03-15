@@ -4,11 +4,6 @@
 
 var dialog = argument0;
 
-// because the 3D preview counts as a dialog???
-if (view_get_visible(view_3d_preview)) {
-    return false;
-}
-
 if (ds_list_empty(Stuff.dialogs)) {
     return true;
 }
