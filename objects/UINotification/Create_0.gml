@@ -3,9 +3,9 @@
 
 event_inherited();
 
-t=0;
-lifespan=10;
+t = 0;
+lifespan = 10;
+scribble = -1;
 
-color=c_red;
-render=notification_render;
-
+color = c_red;
+render = ui_render_notification;

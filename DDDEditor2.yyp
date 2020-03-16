@@ -6006,7 +6006,7 @@
             "Key": "4d8916d6-b7bf-41a6-9bc4-c9f4bea27ce1",
             "Value": {
                 "id": "0d214256-281a-4f37-bbb0-c955e82828e5",
-                "resourcePath": "scripts\\notification_render\\notification_render.yy",
+                "resourcePath": "scripts\\ui_render_notification\\ui_render_notification.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -11390,7 +11390,7 @@
             "Key": "93699feb-3073-458e-8c85-dd79b8345211",
             "Value": {
                 "id": "8c09af4a-bdf7-4ae9-a608-29f161b45600",
-                "resourcePath": "scripts\\create_notification\\create_notification.yy",
+                "resourcePath": "scripts\\ui_create_notification\\ui_create_notification.yy",
                 "resourceType": "GMScript"
             }
         },

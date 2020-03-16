@@ -34,6 +34,7 @@ if (Stuff.map.active_map) {
         Stuff.map.active_map.cspreview = noone;
     }
     Stuff.map.active_map.contents = noone;
+    ui_create_notification("[c_red]There are " + string(ds_queue_size(Stuff.c_objects_to_destroy)) + " collision objects to destroy. Clearing them is unfathomably slow so the editor may lag for a bit.[]", 15);
 }
 
 Stuff.map.active_map = map;
