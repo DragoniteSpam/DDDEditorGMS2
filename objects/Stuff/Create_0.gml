@@ -374,6 +374,7 @@ instance_deactivate_object(UIThing);
 
 #region stuff related to garbage collection
 stuff_to_destroy = ds_queue_create();
+c_objects_to_destroy = ds_queue_create();
 #endregion
 
 #region end of step actions
