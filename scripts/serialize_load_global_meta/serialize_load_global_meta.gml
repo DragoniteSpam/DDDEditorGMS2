@@ -12,14 +12,9 @@ Stuff.game_starting_x = buffer_read(buffer, buffer_u16);
 Stuff.game_starting_y = buffer_read(buffer, buffer_u16);
 Stuff.game_starting_z = buffer_read(buffer, buffer_u16);
 Stuff.game_starting_direction = buffer_read(buffer, buffer_u8);
-if (version >= DataVersions.MAP_LIGHTING_FOG_DATA) {
-    Stuff.game_lighting_buckets = buffer_read(buffer, buffer_f32);
-    Stuff.game_lighting_default_ambient = buffer_read(buffer, buffer_u32);
-}
-
-if (version >= DataVersions.EFFECT_COM_SCRIPT_DATA) {
-    Stuff.game_common_effect_code = buffer_read(buffer, buffer_string);
-}
+Stuff.game_lighting_buckets = buffer_read(buffer, buffer_f32);
+Stuff.game_lighting_default_ambient = buffer_read(buffer, buffer_u32);
+Stuff.game_common_effect_code = buffer_read(buffer, buffer_string);
 
 var bools = buffer_read(buffer, buffer_u32);
 Stuff.game_player_grid = unpack(bools, 0);
@@ -42,34 +37,12 @@ for (var i = 0; i < n_variables; i++) {
     ds_list_add(Stuff.variables, var_data);
 }
 
-if (version >= DataVersions.THIRTY_TWO_FLAGS) {
-    for (var i = 0; i < FLAG_COUNT; i++) {
-        Stuff.all_event_triggers[| i] = buffer_read(buffer, buffer_string);
-    }
-} else {
-    var n_event_triggers = buffer_read(buffer, buffer_u8);
-    for (var i = 0; i < n_event_triggers; i++) {
-        Stuff.all_event_triggers[| i] = buffer_read(buffer, buffer_string);
-    }
-    for (var i = n_event_triggers; i < FLAG_COUNT; i++) {
-        Stuff.all_event_triggers[| i] = "";
-    }
+for (var i = 0; i < FLAG_COUNT; i++) {
+    Stuff.all_event_triggers[| i] = buffer_read(buffer, buffer_string);
 }
 
-if (version >= DataVersions.COLLISION_TRIGGER_DATA) {
-    if (version >= DataVersions.THIRTY_TWO_FLAGS) {
-        for (var i = 0; i < FLAG_COUNT; i++) {
-            Stuff.all_collision_triggers[| i] = buffer_read(buffer, buffer_string);
-        }
-    } else {
-        var n_collision_triggers = buffer_read(buffer, buffer_u8);
-        for (var i = 0; i < n_collision_triggers; i++) {
-            Stuff.all_collision_triggers[| i] = buffer_read(buffer, buffer_string);
-        }
-        for (var i = n_collision_triggers; i < FLAG_COUNT; i++) {
-            Stuff.all_collision_triggers[| i] = "";
-        }
-    }
+for (var i = 0; i < FLAG_COUNT; i++) {
+    Stuff.all_collision_triggers[| i] = buffer_read(buffer, buffer_string);
 }
 
 var n_constants = buffer_read(buffer, buffer_u16);
@@ -86,22 +59,8 @@ repeat (n_constants) {
     ds_list_add(Stuff.all_game_constants, what);
 }
 
-if (version >= DataVersions.GAME_NOTES) {
-    Stuff.game_notes = buffer_read(buffer, buffer_string);
-}
+Stuff.game_notes = buffer_read(buffer, buffer_string);
 
-if (version >= DataVersions.ASSET_FLAG_LIST) {
-    if (version >= DataVersions.THIRTY_TWO_FLAGS) {
-        for (var i = 0; i < FLAG_COUNT; i++) {
-            Stuff.all_asset_flags[| i] = buffer_read(buffer, buffer_string);
-        }
-    } else {
-        var n_asset_flags = buffer_read(buffer, buffer_u8);
-        for (var i = 0; i < n_asset_flags; i++) {
-            Stuff.all_asset_flags[| i] = buffer_read(buffer, buffer_string);
-        }
-        for (var i = n_asset_flags; i < FLAG_COUNT; i++) {
-            Stuff.all_asset_flags[| i] = "";
-        }
-    }
+for (var i = 0; i < FLAG_COUNT; i++) {
+    Stuff.all_asset_flags[| i] = buffer_read(buffer, buffer_string);
 }

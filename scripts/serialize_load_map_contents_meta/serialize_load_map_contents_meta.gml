@@ -27,12 +27,8 @@ map.fog_colour = buffer_read(buffer, buffer_u32);
 
 map.base_encounter_rate = buffer_read(buffer, buffer_u32);
 map.base_encounter_deviation = buffer_read(buffer, buffer_u32);
-if (version >= DataVersions.WATER_LEVEL) {
-    map.water_level = buffer_read(buffer, buffer_f32);
-}
-if (version >= DataVersions.MAP_LIGHTING_FOG_DATA) {
-    map.light_ambient_colour = buffer_read(buffer, buffer_u32);
-}
+map.water_level = buffer_read(buffer, buffer_f32);
+map.light_ambient_colour = buffer_read(buffer, buffer_u32);
 
 var bools = buffer_read(buffer, buffer_u32);
 map.indoors =           unpack(bools, 0);
@@ -42,23 +38,14 @@ map.fast_travel_from =  unpack(bools, 3);
 map.is_3d =             unpack(bools, 4);
 map.fog_enabled =       unpack(bools, 5);
 map.on_grid =           unpack(bools, 6);
-if (version >= DataVersions.WATER_LEVEL) {
-    map.reflections_enabled = unpack(bools, 7);
-}
-// when you remove MAP_LIGHTING_FOG_DATA you can take this out
-map.run_init =          unpack(bools, 8);
-if (version >= DataVersions.MAP_LIGHTING_FOG_DATA) {
-    map.light_enabled = unpack(bools, 9);
-}
+map.reflections_enabled = unpack(bools, 7);
+// 8
+map.light_enabled = unpack(bools, 9);
 
 map.code = buffer_read(buffer, buffer_string);
 
 #region autotiles
-if (version >= DataVersions.AUTOTILE_DESIGNATION_SLOPE) {
-    var at_count = buffer_read(buffer, buffer_u16);
-} else {
-    var at_count = AUTOTILE_COUNT;
-}
+var at_count = buffer_read(buffer, buffer_u16);
 
 for (var i = 0; i < at_count; i++) {
     var exists = buffer_read(buffer, buffer_bool);
@@ -70,93 +57,83 @@ for (var i = 0; i < at_count; i++) {
     }
 }
 
-if (version >= DataVersions.MESH_AUTOTILE_FINISHED) {
-    for (var i = 0; i < at_count; i++) {
-        var exists = buffer_read(buffer, buffer_bool);
-        if (exists) {
-            var size = buffer_read(buffer, buffer_u32);
-            map_contents.mesh_autotiles_vertical_raw[i] = buffer_read_buffer(buffer, size);
-            map_contents.mesh_autotiles_vertical[i] = vertex_create_buffer_from_buffer(map_contents.mesh_autotiles_vertical_raw[i], Stuff.graphics.vertex_format);
-            vertex_freeze(map_contents.mesh_autotiles_vertical[i]);
-        }
+for (var i = 0; i < at_count; i++) {
+    var exists = buffer_read(buffer, buffer_bool);
+    if (exists) {
+        var size = buffer_read(buffer, buffer_u32);
+        map_contents.mesh_autotiles_vertical_raw[i] = buffer_read_buffer(buffer, size);
+        map_contents.mesh_autotiles_vertical[i] = vertex_create_buffer_from_buffer(map_contents.mesh_autotiles_vertical_raw[i], Stuff.graphics.vertex_format);
+        vertex_freeze(map_contents.mesh_autotiles_vertical[i]);
     }
 }
 
-if (version >= DataVersions.AUTOTILE_DESIGNATION_SLOPE) {
-    for (var i = 0; i < at_count; i++) {
-        var exists = buffer_read(buffer, buffer_bool);
-        if (exists) {
-            var size = buffer_read(buffer, buffer_u32);
-            map_contents.mesh_autotiles_base_raw[i] = buffer_read_buffer(buffer, size);
-            map_contents.mesh_autotiles_base[i] = vertex_create_buffer_from_buffer(map_contents.mesh_autotiles_base_raw[i], Stuff.graphics.vertex_format);
-            vertex_freeze(map_contents.mesh_autotiles_base[i]);
-        }
+for (var i = 0; i < at_count; i++) {
+    var exists = buffer_read(buffer, buffer_bool);
+    if (exists) {
+        var size = buffer_read(buffer, buffer_u32);
+        map_contents.mesh_autotiles_base_raw[i] = buffer_read_buffer(buffer, size);
+        map_contents.mesh_autotiles_base[i] = vertex_create_buffer_from_buffer(map_contents.mesh_autotiles_base_raw[i], Stuff.graphics.vertex_format);
+        vertex_freeze(map_contents.mesh_autotiles_base[i]);
     }
 }
 
-if (version >= DataVersions.AUTOTILE_DESIGNATION_SLOPE_WHOOPS) {
-    for (var i = 0; i < at_count; i++) {
-        var exists = buffer_read(buffer, buffer_bool);
-        if (exists) {
-            var size = buffer_read(buffer, buffer_u32);
-            map_contents.mesh_autotiles_slope_raw[i] = buffer_read_buffer(buffer, size);
-            map_contents.mesh_autotiles_slope[i] = vertex_create_buffer_from_buffer(map_contents.mesh_autotiles_slope_raw[i], Stuff.graphics.vertex_format);
-            vertex_freeze(map_contents.mesh_autotiles_slope[i]);
-        }
+for (var i = 0; i < at_count; i++) {
+    var exists = buffer_read(buffer, buffer_bool);
+    if (exists) {
+        var size = buffer_read(buffer, buffer_u32);
+        map_contents.mesh_autotiles_slope_raw[i] = buffer_read_buffer(buffer, size);
+        map_contents.mesh_autotiles_slope[i] = vertex_create_buffer_from_buffer(map_contents.mesh_autotiles_slope_raw[i], Stuff.graphics.vertex_format);
+        vertex_freeze(map_contents.mesh_autotiles_slope[i]);
     }
 }
 #endregion
 
 #region generic data
-if (version >= DataVersions.MAP_GENERIC_DATA) {
-    var n_generic = buffer_read(buffer, buffer_u8);
-    repeat (n_generic) {
-        var data = instance_create_depth(0, 0, 0, DataAnonymous);
+var n_generic = buffer_read(buffer, buffer_u8);
+repeat (n_generic) {
+    var data = instance_create_depth(0, 0, 0, DataAnonymous);
+    
+    data.name = buffer_read(buffer, buffer_string);
+    data.type = buffer_read(buffer, buffer_u8);
+    
+    switch (data.type) {
+        case DataTypes.INT: data.value_int = buffer_read(buffer, buffer_s32); break;
+        case DataTypes.FLOAT: data.value_real = buffer_read(buffer, buffer_f32); break;
+        case DataTypes.STRING: data.value_string = buffer_read(buffer, buffer_string); break;
+        case DataTypes.BOOL: data.value_bool = buffer_read(buffer, buffer_u8); break;
+        case DataTypes.CODE: data.value_code = buffer_read(buffer, buffer_string); break;
+        case DataTypes.COLOR: data.value_color = buffer_read(buffer, buffer_u32); break;
         
-        data.name = buffer_read(buffer, buffer_string);
-        data.type = buffer_read(buffer, buffer_u8);
+        case DataTypes.ENUM:
+        case DataTypes.DATA:
+            data.value_type_guid = buffer_read(buffer, buffer_datatype);
+            data.value_data = buffer_read(buffer, buffer_datatype);
+            break;
+    
+        case DataTypes.MESH: data.value_data = buffer_read(buffer, buffer_datatype); break;
+        case DataTypes.IMG_TILESET: data.value_data = buffer_read(buffer, buffer_datatype); break;
+        case DataTypes.AUDIO_BGM: data.value_data = buffer_read(buffer, buffer_datatype); break;
+        case DataTypes.AUDIO_SE: data.value_data = buffer_read(buffer, buffer_datatype); break;
+        case DataTypes.ANIMATION: data.value_data = buffer_read(buffer, buffer_datatype); break;
+        case DataTypes.MAP: data.value_data = buffer_read(buffer, buffer_datatype); break;
+        case DataTypes.IMG_BATTLER: data.value_data = buffer_read(buffer, buffer_datatype); break;
+        case DataTypes.IMG_OVERWORLD: data.value_data = buffer_read(buffer, buffer_datatype); break;
+        case DataTypes.IMG_PARTICLE: data.value_data = buffer_read(buffer, buffer_datatype); break;
+        case DataTypes.IMG_UI: data.value_data = buffer_read(buffer, buffer_datatype); break;
+        case DataTypes.IMG_ETC: data.value_data = buffer_read(buffer, buffer_datatype); break;
+        case DataTypes.EVENT: data.value_data = buffer_read(buffer, buffer_datatype); break;
         
-        switch (data.type) {
-            case DataTypes.INT: data.value_int = buffer_read(buffer, buffer_s32); break;
-            case DataTypes.FLOAT: data.value_real = buffer_read(buffer, buffer_f32); break;
-            case DataTypes.STRING: data.value_string = buffer_read(buffer, buffer_string); break;
-            case DataTypes.BOOL: data.value_bool = buffer_read(buffer, buffer_u8); break;
-            case DataTypes.CODE: data.value_code = buffer_read(buffer, buffer_string); break;
-            case DataTypes.COLOR: data.value_color = buffer_read(buffer, buffer_u32); break;
-            
-            case DataTypes.ENUM:
-            case DataTypes.DATA:
-                data.value_type_guid = buffer_read(buffer, buffer_datatype);
-                data.value_data = buffer_read(buffer, buffer_datatype);
-                break;
-        
-            case DataTypes.MESH: data.value_data = buffer_read(buffer, buffer_datatype); break;
-            case DataTypes.IMG_TILESET: data.value_data = buffer_read(buffer, buffer_datatype); break;
-            case DataTypes.AUDIO_BGM: data.value_data = buffer_read(buffer, buffer_datatype); break;
-            case DataTypes.AUDIO_SE: data.value_data = buffer_read(buffer, buffer_datatype); break;
-            case DataTypes.ANIMATION: data.value_data = buffer_read(buffer, buffer_datatype); break;
-            case DataTypes.MAP: data.value_data = buffer_read(buffer, buffer_datatype); break;
-            case DataTypes.IMG_BATTLER: data.value_data = buffer_read(buffer, buffer_datatype); break;
-            case DataTypes.IMG_OVERWORLD: data.value_data = buffer_read(buffer, buffer_datatype); break;
-            case DataTypes.IMG_PARTICLE: data.value_data = buffer_read(buffer, buffer_datatype); break;
-            case DataTypes.IMG_UI: data.value_data = buffer_read(buffer, buffer_datatype); break;
-            case DataTypes.IMG_ETC: data.value_data = buffer_read(buffer, buffer_datatype); break;
-            case DataTypes.EVENT: data.value_data = buffer_read(buffer, buffer_datatype); break;
-            
-            case DataTypes.TILE: not_yet_implemented(); break;
-            case DataTypes.AUTOTILE: not_yet_implemented(); break;
-            case DataTypes.ENTITY: not_yet_implemented(); break;
-        }
-        
-        ds_list_add(map.generic_data, data);
+        case DataTypes.TILE: not_yet_implemented(); break;
+        case DataTypes.AUTOTILE: not_yet_implemented(); break;
+        case DataTypes.ENTITY: not_yet_implemented(); break;
     }
+    
+    ds_list_add(map.generic_data, data);
 }
 #endregion
 
-if (version >= DataVersions.MAP_LIGHTING_FOG_DATA) {
-    var n_lights = buffer_read(buffer, buffer_u16);
-    ds_list_clear(map_contents.active_lights);
-    repeat (n_lights) {
-        ds_list_add(map_contents.active_lights, buffer_read(buffer, buffer_datatype));
-    }
+var n_lights = buffer_read(buffer, buffer_u16);
+ds_list_clear(map_contents.active_lights);
+repeat (n_lights) {
+    ds_list_add(map_contents.active_lights, buffer_read(buffer, buffer_datatype));
 }

@@ -23,9 +23,7 @@ for (var i = 0; i < n_se; i++) {
     buffer_save_ext(fbuffer, se.temp_name, 0, buffer_get_size(fbuffer));
     buffer_delete(fbuffer);
     
-    if (version >= DataVersions.FMOD_SAMPLE_RATE) {
-        se.fmod_rate = buffer_read(buffer, buffer_u32);
-    }
+    se.fmod_rate = buffer_read(buffer, buffer_u32);
     
     if (length == 0) {
         wtf("Audio file was not embedded properly, you probably want to re-load: " + string(se.GUID) + " [" + se.name + "]");

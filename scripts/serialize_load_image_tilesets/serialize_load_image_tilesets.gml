@@ -30,21 +30,7 @@ for (var i = 0; i < n_tilesets; i++) {
     for (var j = 0; j < n_autotiles; j++) {
         // s16 because no tile is "noone"
         at_array[j] = buffer_read(buffer, buffer_s16);
-        if (version >= DataVersions.REMOVE_RMXP_DATA) {
-            // gone
-        } else {
-            buffer_read(buffer, buffer_u8);
-            buffer_read(buffer, buffer_u8);
-        }
-        if (version >= DataVersions.NEW_TERRAIN_FLAGS_PART_TWO) {
-            at_flags[j] = buffer_read(buffer, buffer_u32);
-        } else {
-            at_flags[j] = buffer_read(buffer, buffer_u8);
-        }
-        if (version >= DataVersions.NEW_TERRAIN_FLAGS) {
-        } else {
-            buffer_read(buffer, buffer_u8);
-        }
+        at_flags[j] = buffer_read(buffer, buffer_u32);
     }
     
     var ts = tileset_create(ts_name, at_array, sprite);
@@ -66,31 +52,9 @@ for (var i = 0; i < n_tilesets; i++) {
     
     for (var j = 0; j < t_grid_width; j++) {
         for (var k = 0; k < t_grid_height; k++) {
-            if (version >= DataVersions.REMOVE_RMXP_DATA) {
-                // gone
-            } else {
-                buffer_read(buffer, buffer_u8);
-                buffer_read(buffer, buffer_u8);
-            }
-            if (version >= DataVersions.NEW_TERRAIN_FLAGS_PART_TWO) {
-                ts.flags[# j, k] = buffer_read(buffer, buffer_u32);
-            } else {
-                ts.flags[# j, k] = buffer_read(buffer, buffer_u8);
-            }
-            if (version >= DataVersions.NEW_TERRAIN_FLAGS) {
-            } else {
-                buffer_read(buffer, buffer_u8);
-            }
+            ts.flags[# j, k] = buffer_read(buffer, buffer_u32);
         }
     }
     
     ds_list_add(Stuff.all_graphic_tilesets, ts);
-    
-    if (version >= DataVersions.NEW_TERRAIN_FLAGS) {
-    } else {
-        var n = buffer_read(buffer, buffer_u8);
-        repeat (n) {
-            buffer_read(buffer, buffer_string);
-        }
-    }
 }

@@ -2339,14 +2339,6 @@
             }
         },
         {
-            "Key": "1c036560-0f61-433d-8086-75da8ec32cbf",
-            "Value": {
-                "id": "118a171c-dc8d-477e-8749-a5be34d3c751",
-                "resourcePath": "scripts\\serialize_load_base_old\\serialize_load_base_old.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "1c187030-e1e3-49ad-ab61-97f8a80b3e2f",
             "Value": {
                 "id": "8bcab664-50dd-49bd-ab27-c0f3dc01ca1c",
@@ -6095,14 +6087,6 @@
             "Value": {
                 "id": "9c8e791a-e9df-4c75-9ea7-64b5d9ee0907",
                 "resourcePath": "scripts\\dialog_create_manager_graphic_particle\\dialog_create_manager_graphic_particle.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "4e40beba-91ce-44e8-a609-cf9966422af2",
-            "Value": {
-                "id": "a551c32d-3883-48d7-a608-4d4bbd609803",
-                "resourcePath": "scripts\\serialize_load_old\\serialize_load_old.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -21201,9 +21185,7 @@
         "cd6dbbb8-6dce-4f9b-9814-bd2eb5e83ab9",
         "7c455d4d-ca30-4dc0-9d24-b340fe482e76",
         "bf12de76-111a-48f5-8273-4a1c563e9145",
-        "4e40beba-91ce-44e8-a609-cf9966422af2",
         "68887f1a-5406-4953-8e40-d50da4d8c219",
-        "1c036560-0f61-433d-8086-75da8ec32cbf",
         "f5580333-4bb6-4b78-bbba-6f31bd4f15eb",
         "a2763d48-6a66-44a4-b7d4-507b677a44ba",
         "d62f29fa-8d4b-4822-9430-e63515b4a9d8",

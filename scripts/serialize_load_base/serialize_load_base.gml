@@ -40,7 +40,7 @@ if (outcome) {
     }
     
     if (outcome) {
-        var last_safe_version = DataVersions.MAP_TILED_ID;
+        var last_safe_version = DataVersions.NUKE_UNUSED_BOOLS;
         var last_safe_release = "2019.4.1.19";
         var version_data = buffer_read(buffer_data, buffer_u32);
         

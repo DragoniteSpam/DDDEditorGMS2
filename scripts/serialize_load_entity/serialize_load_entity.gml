@@ -15,20 +15,11 @@ refid_set(entity, buffer_read(buffer, buffer_u32));
 var state_static = entity.static;
 
 var entity_bools = buffer_read(buffer, buffer_u32);
-if (version >= DataVersions.COLLISION_FLAGS) {
-    entity.static = unpack(entity_bools, 0);
-    entity.animate_idle = unpack(entity_bools, 1);
-    entity.animate_movement = unpack(entity_bools, 2);
-    entity.direction_fix = unpack(entity_bools, 3);
-    entity.reset_position = unpack(entity_bools, 4);
-} else {
-    var solid_state = unpack(entity_bools, 0);
-    entity.static = unpack(entity_bools, 1);
-    entity.animate_idle = unpack(entity_bools, 2);
-    entity.animate_movement = unpack(entity_bools, 3);
-    entity.direction_fix = unpack(entity_bools, 4);
-    entity.reset_position = unpack(entity_bools, 5);
-}
+entity.static = unpack(entity_bools, 0);
+entity.animate_idle = unpack(entity_bools, 1);
+entity.animate_movement = unpack(entity_bools, 2);
+entity.direction_fix = unpack(entity_bools, 3);
+entity.reset_position = unpack(entity_bools, 4);
 
 // same for statics
 if (state_static && !entity.static) {
@@ -122,16 +113,5 @@ repeat (n_generic) {
     ds_list_add(entity.generic_data, data);
 }
 
-if (version >= DataVersions.COLLISION_FLAGS) {
-    if (version >= DataVersions.REMOVE_ENTITY_COLLISION_DATA) {
-    } else {
-        buffer_read(buffer, buffer_u32);
-    }
-    entity.event_flags = buffer_read(buffer, buffer_u32);
-} else {
-    buffer_read(buffer, buffer_u32);
-}
-
-if (version >= DataVersions.AUTOTILE_DESIGNATION_SLOPE_WHOOPS_x2) {
-    entity.slope = buffer_read(buffer, buffer_u8);
-}
+entity.event_flags = buffer_read(buffer, buffer_u32);
+entity.slope = buffer_read(buffer, buffer_u8);

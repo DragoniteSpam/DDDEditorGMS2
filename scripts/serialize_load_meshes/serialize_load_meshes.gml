@@ -16,23 +16,14 @@ repeat (n_meshes) {
     
     mesh.type = buffer_read(buffer, buffer_u8);
     
-    if (version >= DataVersions.MESHES_OVERHAULED_AGAIN_PROBABLY) {
-        var n_submeshes = buffer_read(buffer, buffer_u16);
-        for (var i = 0; i < n_submeshes; i++) {
-            var index = buffer_read(buffer, buffer_u16);
-            var proto_guid = buffer_read(buffer, buffer_datatype);
-            var blength = buffer_read(buffer, buffer_u32);
-            if (version >= DataVersions.SUBMESH_NAMES) {
-                var name = buffer_read(buffer, buffer_string);
-            } else {
-                var name = undefined;
-            }
-            var dbuffer = buffer_read_buffer(buffer, blength);
-            mesh_create_submesh(mesh, dbuffer, noone, noone, proto_guid, name);
-        }
-    } else {
-        var size = buffer_read(buffer, buffer_u32);
-        mesh_create_submesh(mesh, buffer_read_buffer(buffer, size), noone, noone);
+    var n_submeshes = buffer_read(buffer, buffer_u16);
+    for (var i = 0; i < n_submeshes; i++) {
+        var index = buffer_read(buffer, buffer_u16);
+        var proto_guid = buffer_read(buffer, buffer_datatype);
+        var blength = buffer_read(buffer, buffer_u32);
+        var name = buffer_read(buffer, buffer_string);
+        var dbuffer = buffer_read_buffer(buffer, blength);
+        mesh_create_submesh(mesh, dbuffer, noone, noone, proto_guid, name);
     }
     
     mesh.xmin = buffer_read(buffer, buffer_f32);
@@ -42,38 +33,22 @@ repeat (n_meshes) {
     mesh.ymax = buffer_read(buffer, buffer_f32);
     mesh.zmax = buffer_read(buffer, buffer_f32);
     
-    if (version >= DataVersions.DETAILED_MESH_COLLISION_DATA) {
-        var xx = buffer_read(buffer, buffer_u16);
-        var yy = buffer_read(buffer, buffer_u16);
-        var zz = buffer_read(buffer, buffer_u16);
-        ds_grid_resize(mesh.collision_flags, xx, yy);
-        for (var i = 0; i < xx; i++) {
-            for (var j = 0; j < yy; j++) {
-                var slice = array_create(zz);
-                mesh.collision_flags[# i, j] = slice;
-                for (var k = 0; k < zz; k++) {
-                    slice[@ k] = buffer_read(buffer, buffer_u32);
-                }
+    var xx = buffer_read(buffer, buffer_u16);
+    var yy = buffer_read(buffer, buffer_u16);
+    var zz = buffer_read(buffer, buffer_u16);
+    ds_grid_resize(mesh.collision_flags, xx, yy);
+    for (var i = 0; i < xx; i++) {
+        for (var j = 0; j < yy; j++) {
+            var slice = array_create(zz);
+            mesh.collision_flags[# i, j] = slice;
+            for (var k = 0; k < zz; k++) {
+                slice[@ k] = buffer_read(buffer, buffer_u32);
             }
         }
-    } else {
-        data_mesh_recalculate_bounds(mesh);
     }
     
-    if (version >= DataVersions.DETAILED_MESH_COLLISION_DATA) {
-    } else if (version >= DataVersions.REMOVE_RMXP_DATA) {
-        buffer_read(buffer, buffer_u8);
-    } else {
-        buffer_read(buffer, buffer_u8);
-    }
-    if (version >= DataVersions.NEW_TERRAIN_FLAGS) {
-    } else {
-        buffer_read(buffer, buffer_u8);
-    }
+    mesh.marker = buffer_read(buffer, buffer_u32);
     
-    if (version >= DataVersions.ASSET_MARKERS) {
-        mesh.marker = buffer_read(buffer, buffer_u32);
-    }
     // flags are saved in save_generic
     
     switch (mesh.type) {

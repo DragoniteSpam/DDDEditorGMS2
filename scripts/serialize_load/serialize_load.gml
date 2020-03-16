@@ -27,12 +27,6 @@ buffer_read(buffer, buffer_u8);
 
 var version = buffer_read(buffer, buffer_u32);
 
-// there is no way i'm including both versions of the load code in one script
-if (version >= DataVersions.DATA_MODULARITY) {
-} else {
-    return serialize_load_old(buffer);
-}
-
 if (version >= DataVersions._CURRENT) {
     dialog_create_notice(noone,
         "The file(s) appear to be from a future version of the data format (" + string(version) +
@@ -80,18 +74,14 @@ switch (what) {
         repeat (n_files) {
             var name = buffer_read(buffer, buffer_string);
             var guid = buffer_read(buffer, buffer_u32);
-            if (version >= DataVersions.ASSET_FILE_BOOLS) {
-                var bools = buffer_read(buffer, buffer_u32);
-            }
+            var bools = buffer_read(buffer, buffer_u32);
             
             // the "compressed" parameter can be set later
             var file_data = create_data_file(name, false);
             guid_set(file_data, guid);
             ds_list_add(Stuff.game_asset_lists, file_data);
             
-            if (version >= DataVersions.ASSET_FILE_BOOLS) {
-                file_data.critical = unpack(bools, 0);
-            }
+            file_data.critical = unpack(bools, 0);
         }
         
         Stuff.game_data_current_file = Stuff.game_asset_lists[| 0];
@@ -101,17 +91,6 @@ switch (what) {
         break;
     case SERIALIZE_ASSETS:
     default:
-        if (version >= DataVersions.ASSET_FILE_NO_HEADER) {
-        } else {
-            var summary_string = buffer_read(buffer, buffer_string);
-            var author_string = buffer_read(buffer, buffer_string);
-            var file_year = buffer_read(buffer, buffer_u16);
-            var file_month = buffer_read(buffer, buffer_u8);
-            var file_day = buffer_read(buffer, buffer_u8);
-            var file_hour = buffer_read(buffer, buffer_u8);
-            var file_minute = buffer_read(buffer, buffer_u8);
-            var file_second = buffer_read(buffer, buffer_u8);
-        }
         break;
 }
 

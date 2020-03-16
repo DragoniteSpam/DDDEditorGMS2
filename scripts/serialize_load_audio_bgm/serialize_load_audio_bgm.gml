@@ -19,13 +19,6 @@ for (var i = 0; i < n_bgm; i++) {
     bgm.loop_start = buffer_read(buffer, buffer_f32);
     bgm.loop_end = buffer_read(buffer, buffer_f32);
     
-    if (version >= DataVersions.FMOD_LOOP_POINT_SAMPLES) {
-    } else {
-        var old_default_rate = 48000;
-        bgm.loop_start = bgm.loop_start * old_default_rate;
-        bgm.loop_end = bgm.loop_end * old_default_rate;
-    }
-    
     var length = buffer_read(buffer, buffer_u32);
     var fbuffer = buffer_create(length, buffer_fixed, 1);
     buffer_copy(buffer, buffer_tell(buffer), length, fbuffer, 0);
@@ -33,9 +26,7 @@ for (var i = 0; i < n_bgm; i++) {
     buffer_save_ext(fbuffer, bgm.temp_name, 0, buffer_get_size(fbuffer));
     buffer_delete(fbuffer);
     
-    if (version >= DataVersions.FMOD_SAMPLE_RATE) {
-        bgm.fmod_rate = buffer_read(buffer, buffer_u32);
-    }
+    bgm.fmod_rate = buffer_read(buffer, buffer_u32);
     
     if (length == 0) {
         wtf("Audio file was not embedded properly, you probably want to re-load: " + string(bgm.GUID) + " [" + bgm.name + "]");

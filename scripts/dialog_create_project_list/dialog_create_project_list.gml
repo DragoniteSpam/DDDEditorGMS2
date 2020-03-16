@@ -61,16 +61,14 @@ for (var i = 0; i < n_projects; i++) {
         if (buffer_peek(fbuffer, 0, buffer_u8) == $44 && buffer_peek(fbuffer, 1, buffer_u8) == $44 && buffer_peek(fbuffer, 2, buffer_u8) == $44) {
             var version = buffer_peek(fbuffer, 3, buffer_u32);
             dg.versions[i] = string(version);
-            if (version >= DataVersions.DATA_MODULARITY) {
-                buffer_seek(fbuffer, buffer_seek_start, 8);
-                dg.strings[i] = buffer_read(fbuffer, buffer_string);
-                dg.authors [i] = buffer_read(fbuffer, buffer_string);
-                dg.timestamp_dates[i] = string(buffer_read(fbuffer, buffer_u16)) + " / " + string(buffer_read(fbuffer, buffer_u8)) + " / " +
-                    string(buffer_read(fbuffer, buffer_u8));
-                dg.timestamp_times[i] = string(buffer_read(fbuffer, buffer_u8)) + ":" + string_pad(buffer_read(fbuffer, buffer_u8), "0", 2) + ":" +
-                    string_pad(buffer_read(fbuffer, buffer_u8), "0", 2);
-                dg.file_counts[i] = buffer_read(fbuffer, buffer_u8);
-            }
+            buffer_seek(fbuffer, buffer_seek_start, 8);
+            dg.strings[i] = buffer_read(fbuffer, buffer_string);
+            dg.authors [i] = buffer_read(fbuffer, buffer_string);
+            dg.timestamp_dates[i] = string(buffer_read(fbuffer, buffer_u16)) + " / " + string(buffer_read(fbuffer, buffer_u8)) + " / " +
+                string(buffer_read(fbuffer, buffer_u8));
+            dg.timestamp_times[i] = string(buffer_read(fbuffer, buffer_u8)) + ":" + string_pad(buffer_read(fbuffer, buffer_u8), "0", 2) + ":" +
+                string_pad(buffer_read(fbuffer, buffer_u8), "0", 2);
+            dg.file_counts[i] = buffer_read(fbuffer, buffer_u8);
         }
     }
 }
