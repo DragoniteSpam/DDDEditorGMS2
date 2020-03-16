@@ -133,6 +133,7 @@
 #macro BILLION 1000000000
 #macro EMPTY_BUFFER_MD5 "93b885adfe0da089cdf634904fd59f71"
 #macro MILLION 1000000
+#macro LAST_SAFE_VERSION DataVersions.NUKE_UNUSED_BOOLS
 
 #macro BASE_GAME_VARIABLES 100      // this also counts for switches
 #macro BASE_SELF_VARIABLES 4        // this also counts for switches
