@@ -16,19 +16,19 @@ if (entity_effect_colliders_active(effect)) {
     var f = min(dist / 160, 2.5);
     var transform = matrix_build(world_x, world_y, world_z, 0, 0, 0, f, f, f);
     if (effect.axis_over == CollisionSpecialValues.TRANSLATE_X) {
-        ds_queue_enqueue(Stuff.unlit_meshes, [Stuff.graphics.axes_translation_x_gold, transform]);
+        graphics_add_gizmo(Stuff.graphics.axes_translation_x_gold, transform, false);
     } else {
-        ds_queue_enqueue(Stuff.unlit_meshes, [Stuff.graphics.axes_translation_x, transform]);
+        graphics_add_gizmo(Stuff.graphics.axes_translation_x, transform, false);
     }
     if (effect.axis_over == CollisionSpecialValues.TRANSLATE_Y) {
-        ds_queue_enqueue(Stuff.unlit_meshes, [Stuff.graphics.axes_translation_y_gold, transform]);
+        graphics_add_gizmo(Stuff.graphics.axes_translation_y_gold, transform, false);
     } else {
-        ds_queue_enqueue(Stuff.unlit_meshes, [Stuff.graphics.axes_translation_y, transform]);
+        graphics_add_gizmo(Stuff.graphics.axes_translation_y, transform, false);
     }
     if (effect.axis_over == CollisionSpecialValues.TRANSLATE_Z) {
-        ds_queue_enqueue(Stuff.unlit_meshes, [Stuff.graphics.axes_translation_z_gold, transform]);
+        graphics_add_gizmo(Stuff.graphics.axes_translation_z_gold, transform, false);
     } else {
-        ds_queue_enqueue(Stuff.unlit_meshes, [Stuff.graphics.axes_translation_z, transform]);
+        graphics_add_gizmo(Stuff.graphics.axes_translation_z, transform, false);
     }
 }
 

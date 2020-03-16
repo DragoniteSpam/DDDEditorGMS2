@@ -11,8 +11,8 @@ if (ds_list_find_value(map_contents.active_lights, component.parent.REFID) != -1
     var world_y = (component.parent.yy + component.parent.off_yy) * TILE_HEIGHT;
     var world_z = (component.parent.zz + component.parent.off_zz) * TILE_DEPTH;
     if (!entity_effect_colliders_active(component.parent)) {
-        ds_queue_enqueue(Stuff.unlit_meshes, [Stuff.graphics.axes_rotation, matrix_build(
+        graphics_add_gizmo(Stuff.graphics.axes_rotation, matrix_build(
             world_x, world_y, world_z, 0, 0, 0, 4, 4, 4
-        )]);
+        ), true);
     }
 }

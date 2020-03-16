@@ -14,7 +14,8 @@
         "2df772b3-73af-4e0a-978d-f11fc4997fda",
         "7ca70233-4e85-420d-904c-91f2b9dc93aa",
         "15ab5199-66ae-4863-96ee-9fb150a0291e",
-        "b727b1c8-ef03-494d-b4f3-7d7789b0e2af"
+        "b727b1c8-ef03-494d-b4f3-7d7789b0e2af",
+        "d76ea4ef-8539-4788-90ce-56dafb2f8490"
     ],
     "filterType": "GMScript",
     "folderName": "Graphics",
