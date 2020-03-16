@@ -30,9 +30,8 @@ switch (what.type) {
         base_dialog.el_value_real.value = string(what.value_real);
         break;
     case DataTypes.STRING:
-        what.value_string = "";
         base_dialog.el_value_string.enabled = true;
-        base_dialog.el_value_string.value = "";
+        base_dialog.el_value_string.value = what.value_string;
         break;
     case DataTypes.BOOL:
         what.value_real = clamp(floor(what.value_real), 0, 1);
@@ -40,9 +39,8 @@ switch (what.type) {
         base_dialog.el_value_bool.value = what.value_real;
         break;
     case DataTypes.CODE:
-        what.value_string = "";
         base_dialog.el_value_code.enabled = true;
-        base_dialog.el_value_code.value = "";
+        base_dialog.el_value_code.value = what.value_string;
         break;
     case DataTypes.ENUM:
     case DataTypes.DATA:
