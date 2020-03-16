@@ -180,19 +180,6 @@ while (true) {
             Stuff.game_data_location[GameDataCategories.MAP] = Stuff.game_data_current_file.GUID;
             serialize_load_maps(buffer, version);
             break;
-        // map stuff
-        case SerializeThings.MAP_META:
-            serialize_load_map_contents_meta(buffer, version, Stuff.map.active_map); 
-            break;
-        case SerializeThings.MAP_BATCH:
-            serialize_load_map_contents_batch(buffer, version, Stuff.map.active_map);
-            break;
-        case SerializeThings.MAP_DYNAMIC:
-            serialize_load_map_contents_dynamic(buffer, version, Stuff.map.active_map);
-            break;
-        case SerializeThings.MAP_ZONES:
-            serialize_load_map_contents_zones(buffer, version, Stuff.map.active_map);
-            break;
         #endregion
     }
 }

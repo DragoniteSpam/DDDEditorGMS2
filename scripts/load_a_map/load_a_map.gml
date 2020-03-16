@@ -69,5 +69,4 @@ for (var i = 0; i < ds_list_size(Stuff.all_maps); i++) {
     }
 }
 
-map_create_default_light(map);
 graphics_create_grids();

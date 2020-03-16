@@ -15571,14 +15571,6 @@
             }
         },
         {
-            "Key": "cc4b665c-35dc-4843-9b3d-44fe61149dae",
-            "Value": {
-                "id": "d1c39ce6-db37-48b0-9c53-3b0311dbe297",
-                "resourcePath": "scripts\\map_create_default_light\\map_create_default_light.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "cc4cec49-fe4c-4e70-b45f-6f74ce1e2734",
             "Value": {
                 "id": "15d61b2d-a344-429d-8382-d53c1a84694e",
@@ -19966,7 +19958,6 @@
         "fa663bfb-720b-406f-b672-f3270b149138",
         "5007bd00-e7bc-452a-a28b-0c36a9d2328d",
         "54c88dd4-4ffb-4b5a-ae26-a1eeb69fe6b7",
-        "cc4b665c-35dc-4843-9b3d-44fe61149dae",
         "a0c45521-e3c0-4e37-94b4-600c3f5eaf19",
         "415b95ce-6e15-4fbb-a3a1-08ec22a0b925",
         "46687276-d13f-415d-8fbc-f7d206570371",
