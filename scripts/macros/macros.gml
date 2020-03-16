@@ -26,6 +26,8 @@
 #macro MAGIC_ZLIB_HEADER 0x9c78
 // instance IDs begin here
 #macro MAGIC_INSTANCE_ID 100000
+#macro LAST_SAFE_VERSION DataVersions.NUKE_UNUSED_BOOLS
+#macro LAST_SAFE_RELEASE "2019.4.1.19";
 
 #macro ALARM_SETTINGS_SAVE 0
 #macro AUTOTILE_AVAILABLE_MAX 100
@@ -133,7 +135,6 @@
 #macro BILLION 1000000000
 #macro EMPTY_BUFFER_MD5 "93b885adfe0da089cdf634904fd59f71"
 #macro MILLION 1000000
-#macro LAST_SAFE_VERSION DataVersions.NUKE_UNUSED_BOOLS
 
 #macro BASE_GAME_VARIABLES 100      // this also counts for switches
 #macro BASE_SELF_VARIABLES 4        // this also counts for switches

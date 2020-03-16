@@ -1,6 +1,5 @@
 if (Stuff.is_quitting) exit;
 
-entity_tile_destroy();
+event_inherited();
 
-Stuff.map.active_map.contents.population[ETypes.ENTITY_TILE]--;
 Stuff.map.active_map.contents.population[ETypes.ENTITY_TILE_AUTO]--;

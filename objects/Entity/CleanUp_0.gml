@@ -1,18 +1,16 @@
 if (Stuff.is_quitting) exit;
 
-entity_destroy();
+Stuff.map.active_map.contents.population[ETypes.ENTITY]--;
 
+if (static) {
+    Stuff.map.active_map.contents.population_static--;
+}
+
+ds_list_destroy_instances(object_events);
+ds_list_destroy_instances(movement_routes);
 ds_list_destroy(switches);
 ds_list_destroy(variables);
 
-for (var i = 0; i < ds_list_size(object_events); i++) {
-    instance_activate_object(object_events[| i]);
-    instance_destroy(object_events[| i]);
-}
+refid_remove(REFID);
 
-for (var i = 0; i < ds_list_size(movement_routes); i++) {
-    instance_activate_object(movement_routes[| i]);
-    instance_destroy(movement_routes[| i]);
-}
-
-if (cobject) c_object_destroy(cobject);
+if (cobject) c_world_destroy_object(cobject);

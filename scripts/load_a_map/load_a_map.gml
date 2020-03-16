@@ -5,7 +5,6 @@ var version = map.version;
 var buffer = map.data_buffer;
 
 if (Stuff.map.active_map) {
-    ds_map_clear(Stuff.map.active_map.contents.all_refids);
     buffer_delete(Stuff.map.active_map.data_buffer);
     Stuff.map.active_map.version = DataVersions._CURRENT - 1;
     Stuff.map.active_map.data_buffer = serialize_save_current_map();
