@@ -12,9 +12,11 @@ if (ds_list_size(datadata.properties) < 1000) {
     instance_deactivate_object(property);
     button.root.selected_property = noone;
     
-    for (var i = 0; i < ds_list_size(datadata.instances); i++) {
-        var inst = datadata.instances[| i];
-        ds_list_add(inst.values, ds_list_create());
+    if (datadata.type == DataTypes.DATA) {
+        for (var i = 0; i < ds_list_size(datadata.instances); i++) {
+            var inst = datadata.instances[| i];
+            ds_list_add(inst.values, ds_list_create());
+        }
     }
     
     dialog_data_type_disable(button.root);
