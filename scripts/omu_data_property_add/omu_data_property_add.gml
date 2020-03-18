@@ -6,10 +6,16 @@ var datadata = button.root.selected_data;
 if (ds_list_size(datadata.properties) < 1000) {
     var property = instance_create_depth(0, 0, 0, DataProperty);
     property.name = "Property" + string(ds_list_size(datadata.properties));
+    
     ds_list_add(datadata.properties, property);
     ui_list_deselect(button.root.el_list_p);
     instance_deactivate_object(property);
     button.root.selected_property = noone;
+    
+    for (var i = 0; i < ds_list_size(datadata.instances); i++) {
+        var inst = datadata.instances[| i];
+        ds_list_add(inst.values, ds_list_create());
+    }
     
     dialog_data_type_disable(button.root);
     
