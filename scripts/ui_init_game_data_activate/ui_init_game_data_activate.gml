@@ -95,15 +95,19 @@ if (selection + 1) {
                         case DataTypes.ENUM:           // list
                         case DataTypes.DATA:           // list
                             var datadata = guid_get(property.type_guid);
-                            var element = create_list(spacing, yy, property.name, "<no options: " + datadata.name + ">", ew, eh, 8, uivc_data_set_property_list, false, noone);
-                            if (datadata.type == DataTypes.DATA) {
-                                for (var j = 0; j < ds_list_size(datadata.instances); j++) {
-                                    create_list_entries(element, datadata.instances[| j]);
+                            if (datadata) {
+                                var element = create_list(spacing, yy, property.name, "<no options: " + datadata.name + ">", ew, eh, 8, uivc_data_set_property_list, false, noone);
+                                if (datadata.type == DataTypes.DATA) {
+                                    for (var j = 0; j < ds_list_size(datadata.instances); j++) {
+                                        create_list_entries(element, datadata.instances[| j]);
+                                    }
+                                } else {
+                                    for (var j = 0; j < ds_list_size(datadata.properties); j++) {
+                                        create_list_entries(element, datadata.properties[| j]);
+                                    }
                                 }
                             } else {
-                                for (var j = 0; j < ds_list_size(datadata.properties); j++) {
-                                    create_list_entries(element, datadata.properties[| j]);
-                                }
+                                var element = create_list(spacing, yy, "<missing data type>", "<n/a>", ew, eh, 8, null, false, noone);
                             }
                             element.key = i;
                             element.entries_are = ListEntries.INSTANCES;

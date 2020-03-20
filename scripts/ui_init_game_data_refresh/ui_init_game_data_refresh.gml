@@ -73,11 +73,13 @@ for (var i = 0; i < ds_list_size(dynamic.contents); i++) {
                     case DataTypes.DATA:
                         ui_list_deselect(thingy);
                         var datatype = guid_get(property.type_guid);
-                        for (var k = 0; k < ds_list_size(datatype.instances); k++) {
-                            // still no need to mess with the list
-                            if (datatype.instances[| k].GUID == ds_list_find_value(instance.values[| n], 0)) {
-                                ui_list_select(thingy, k, true);
-                                break;
+                        if (datatype) {
+                            for (var k = 0; k < ds_list_size(datatype.instances); k++) {
+                                // still no need to mess with the list
+                                if (datatype.instances[| k].GUID == ds_list_find_value(instance.values[| n], 0)) {
+                                    ui_list_select(thingy, k, true);
+                                    break;
+                                }
                             }
                         }
                         break;
