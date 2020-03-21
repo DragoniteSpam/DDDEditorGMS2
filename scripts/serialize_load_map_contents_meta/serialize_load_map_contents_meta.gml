@@ -131,5 +131,8 @@ repeat (n_generic) {
 var n_lights = buffer_read(buffer, buffer_u16);
 ds_list_clear(map_contents.active_lights);
 repeat (n_lights) {
-    ds_list_add(map_contents.active_lights, buffer_read(buffer, buffer_datatype));
+    var data = buffer_read(buffer, buffer_datatype);
+    if (ds_list_size(map_contents.active_lights) < MAX_LIGHTS) {
+        ds_list_add(map_contents.active_lights, data);
+    }
 }

@@ -27,7 +27,7 @@ var vy2 = eh;
 var yy = 64;
 var yy_base = 64;
 
-var el_light_list = create_list(col1_x, yy, "Active Lights", "<no active lights>", ew, eh, 12, uivc_input_map_select_active_light, false, dg, map_contents.active_lights);
+var el_light_list = create_list(col1_x, yy, "Active Lights", "<no active lights>", ew, eh, 10, uivc_input_map_select_active_light, false, dg, map_contents.active_lights);
 el_light_list.tooltip = "Directional lights will be shown in green. Point lights will be shown in blue. Effects with no light component (i.e. the light component has been removed) will be shown in red. Duplicate entries will be shown in orange. I recommend giving, at the very least, all of your Light entities unique names.";
 el_light_list.render_colors = ui_list_color_effect_components;
 el_light_list.entries_are = ListEntries.REFIDS;
@@ -37,8 +37,8 @@ yy += ui_get_list_height(el_light_list) + spacing;
 
 yy = yy_base;
 
-var el_available_lights = create_list(col2_x, yy, "Available Lights:", "<no available lights>", ew, eh, 12, uivc_input_map_select_light, false, dg);
-el_available_lights.tooltip = "Directional lights will be shown in green. Point lights will be shown in blue. I recommend giving, at the very least, all of your Light entities unique names. Deselecting this list will clear the active light index.";
+var el_available_lights = create_list(col2_x, yy, "Available Lights:", "<no available lights>", ew, eh, 10, uivc_input_map_select_light, false, dg);
+el_available_lights.tooltip = "Directional lights will be shown in green. Point lights will be shown in blue. I recommend giving, at the very least, all of your Light entities unique names. Deselecting this list will clear the active light index. One light will be reserved for the player at all times.";
 el_available_lights.entries_are = ListEntries.REFIDS;
 for (var i = 0; i < ds_list_size(map_contents.all_entities); i++) {
     var entity = map_contents.all_entities[| i];
