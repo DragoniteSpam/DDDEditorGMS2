@@ -6,15 +6,15 @@ event_inherited();
 // x                                                                    // serialize: buffer_u32
 // y                                                                    // serialize: buffer_u32
 
-type = EventNodeTypes.ENTRYPOINT;                                         // serialize: buffer_u16
+type = EventNodeTypes.ENTRYPOINT;                                       // serialize: buffer_u16
 
 data = ds_list_create();
 outbound = ds_list_create();
 ds_list_add(data, "The quick brown fox jumped over the lazy dog");      // serialize: buffer_string
 ds_list_add(outbound, noone);                                           // serialize: buffer_string (this is an instance ID, but you serialize the unique name of the destination)
 
-custom_guid = 0;                                                          // serialize: buffer_u32
-custom_data = ds_list_create();                                           // list of lists - contents determined by custom_guid
+custom_guid = 0;                                                        // serialize: buffer_u32
+custom_data = ds_list_create();                                         // list of lists - contents determined by custom_guid
 
 prefab_guid = 0;                                                        // serialize: buffer_u32
 
@@ -22,7 +22,8 @@ prefab_guid = 0;                                                        // seria
 
 is_root = false;
 event = noone;
-valid_destination = true;                                                // can other nodes lead to this? basically here to denote comments
+valid_destination = true;                                               // can other nodes lead to this? basically here to denote comments
+is_code = true;                                                         // for when you need code
 
 dragging = false;
 offset_x = -1;
