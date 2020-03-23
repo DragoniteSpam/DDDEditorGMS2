@@ -12,6 +12,8 @@ if (ds_list_size(datadata.properties) < 1000) {
     instance_deactivate_object(property);
     button.root.selected_property = noone;
     
+    // don't do this for enums - iterate over all data instances and add an empty
+    // list to each value
     if (datadata.type == DataTypes.DATA) {
         for (var i = 0; i < ds_list_size(datadata.instances); i++) {
             var inst = datadata.instances[| i];
