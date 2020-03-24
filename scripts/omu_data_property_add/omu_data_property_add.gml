@@ -17,7 +17,9 @@ if (ds_list_size(datadata.properties) < 1000) {
     if (datadata.type == DataTypes.DATA) {
         for (var i = 0; i < ds_list_size(datadata.instances); i++) {
             var inst = datadata.instances[| i];
-            ds_list_add(inst.values, ds_list_create());
+            var plist = ds_list_create();
+            ds_list_add(plist, 0);
+            ds_list_add(inst.values, plist);
         }
     }
     
