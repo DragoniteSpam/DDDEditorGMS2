@@ -55,6 +55,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     el_instances = create_list(this_column * cw + spacing, yy, "Instances: ", "<No instances>", ew, eh, 24, ui_init_game_data_refresh, false, id, noone);
     el_instances.render = ui_render_list_data_instances;
     el_instances.onmiddleclick = dialog_create_data_instance_alphabetize;
+    el_instances.render_colors = ui_list_color_game_data_instances;
     el_instances.numbered = true;
     el_instances.entries_are = ListEntries.INSTANCES;
     ds_list_add(contents, el_instances);
