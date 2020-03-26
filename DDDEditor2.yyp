@@ -11371,6 +11371,14 @@
             }
         },
         {
+            "Key": "92cf4187-69ff-49f0-8f21-9f690591cd25",
+            "Value": {
+                "id": "44a346a6-ecbf-41dc-823e-2782f3d8fd1a",
+                "resourcePath": "scripts\\uimu_data_move_up\\uimu_data_move_up.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "92e7e95e-04ae-43ef-b34c-c6c1463fca56",
             "Value": {
                 "id": "2530b9f8-52ef-4d7a-b7a9-40e015250d0e",
@@ -19651,6 +19659,14 @@
             }
         },
         {
+            "Key": "ff8ede4f-395d-4e57-977f-edd25a64808e",
+            "Value": {
+                "id": "2c8c32cb-02d9-4c0d-a003-5a41a78ae778",
+                "resourcePath": "scripts\\uimu_data_move_down\\uimu_data_move_down.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "ffa97b8c-62e5-40d3-a0a4-8d21c2fec2dd",
             "Value": {
                 "id": "7a15c2fa-40bb-4a2c-b29f-3565cc6e7de9",
@@ -20447,6 +20463,8 @@
         "9682ada3-d443-4b8a-937c-87c27d741dbf",
         "bd84c81d-9213-4e20-9041-48eb9a15eefb",
         "b4e281f8-30a0-4e37-a5af-db6790ab8563",
+        "92cf4187-69ff-49f0-8f21-9f690591cd25",
+        "ff8ede4f-395d-4e57-977f-edd25a64808e",
         "90ae5a77-c6a4-4309-ba0d-89ce8c9d7820",
         "e938bd97-716f-408c-b1d1-278f7242593f",
         "2be4bb41-d6da-4ba0-8d1b-fdba9e442881",
