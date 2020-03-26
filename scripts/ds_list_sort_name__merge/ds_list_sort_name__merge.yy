@@ -1,8 +1,8 @@
 {
-    "id": "e4e0c547-e1ea-4d4f-a7aa-405e26b1c16c",
+    "id": "0ba63890-e1c2-489d-b209-70fba2eb457d",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "ds_list_sort_name_sucks",
+    "name": "ds_list_sort_name__merge",
     "IsCompatibility": false,
     "IsDnD": false
 }

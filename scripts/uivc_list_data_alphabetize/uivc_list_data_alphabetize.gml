@@ -13,8 +13,8 @@ for (var i = 0; i < ds_list_size(Stuff.all_data); i++) {
         ds_list_add(list_data, data);
     }
 }
-var list_enums_sorted = ds_list_sort_name_sucks(list_enums);
-var list_data_sorted = ds_list_sort_name_sucks(list_data);
+var list_enums_sorted = ds_list_sort_name(list_enums);
+var list_data_sorted = ds_list_sort_name(list_data);
 ds_list_clear(Stuff.all_data);
 for (var i = 0; i < ds_list_size(list_enums_sorted); i++) {
     ds_list_add(Stuff.all_data, list_enums_sorted[| i]);

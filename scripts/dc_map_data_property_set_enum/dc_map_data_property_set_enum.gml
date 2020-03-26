@@ -16,7 +16,7 @@ if (selection_index + 1) {
         }
     }
     
-    var list_sorted = ds_list_sort_name_sucks(list_enum);
+    var list_sorted = ds_list_sort_name(list_enum);
     
     var type = list_sorted[| selection_index];
     data.value_type_guid = type.GUID;
