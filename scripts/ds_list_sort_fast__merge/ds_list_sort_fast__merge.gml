@@ -2,11 +2,13 @@
 /// @param l
 /// @param m
 /// @param r
+/// @param value-get
 
 var list = argument0;
 var l = argument1;
 var m = argument2;
 var r = argument3;
+var value = argument4;
 
 var n1 = m - l + 1;
 var n2 = r - m;
@@ -27,7 +29,7 @@ var j = 0;
 var k = l;
 
 while (i < n1 && j < n2) {
-    if (lt[| i].name <= rt[| j].name) {
+    if (script_execute(value, lt, i) <= script_execute(value, rt, j)) {
         list[| k++] = lt[| i++];
     } else {
         list[| k++] = rt[| j++];
