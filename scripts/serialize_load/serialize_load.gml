@@ -27,19 +27,25 @@ buffer_read(buffer, buffer_u8);
 
 var version = buffer_read(buffer, buffer_u32);
 
-// there is no way i'm including both versions of the load code in one script
-if (version >= DataVersions.DATA_MODULARITY) {
-} else {
-    return serialize_load_old(buffer);
+if (version < LAST_SAFE_VERSION) {
+    dialog_create_notice(noone,
+        "We stopped supporting versions of the data file before " + string(LAST_SAFE_VERSION) +
+        ". This current version is " + string(version) + ".\nPlease find a version of " + filename_name(filename) +
+        " saved with the last compatible version of the editor. Can't open this one.",
+    );
+    buffer_delete(buffer);
+    return;
 }
 
 if (version >= DataVersions._CURRENT) {
-    dialog_create_notice(noone,
-        "The file(s) appear to be from a future version of the data format (" + string(version) +
-        "). The latest version supported by this program is " + string(DataVersions._CURRENT) + ". Can't open."
-    );
+        dialog_create_notice(noone,
+            "The file(s) appear to be from a future version of the data format (" + string(version) +
+            "). The latest version supported by this program is " + string(DataVersions._CURRENT) + ".\n" +
+            "Please find a version of " + filename + " saved with the an older version of the editor "+
+            " (or update). Can't open."
+        );
     buffer_delete(buffer);
-    return false;
+    return;
 }
 
 var what = buffer_read(buffer, buffer_u8);
@@ -80,18 +86,14 @@ switch (what) {
         repeat (n_files) {
             var name = buffer_read(buffer, buffer_string);
             var guid = buffer_read(buffer, buffer_u32);
-            if (version >= DataVersions.ASSET_FILE_BOOLS) {
-                var bools = buffer_read(buffer, buffer_u32);
-            }
+            var bools = buffer_read(buffer, buffer_u32);
             
             // the "compressed" parameter can be set later
             var file_data = create_data_file(name, false);
             guid_set(file_data, guid);
             ds_list_add(Stuff.game_asset_lists, file_data);
             
-            if (version >= DataVersions.ASSET_FILE_BOOLS) {
-                file_data.critical = unpack(bools, 0);
-            }
+            file_data.critical = unpack(bools, 0);
         }
         
         Stuff.game_data_current_file = Stuff.game_asset_lists[| 0];
@@ -101,17 +103,6 @@ switch (what) {
         break;
     case SERIALIZE_ASSETS:
     default:
-        if (version >= DataVersions.ASSET_FILE_NO_HEADER) {
-        } else {
-            var summary_string = buffer_read(buffer, buffer_string);
-            var author_string = buffer_read(buffer, buffer_string);
-            var file_year = buffer_read(buffer, buffer_u16);
-            var file_month = buffer_read(buffer, buffer_u8);
-            var file_day = buffer_read(buffer, buffer_u8);
-            var file_hour = buffer_read(buffer, buffer_u8);
-            var file_minute = buffer_read(buffer, buffer_u8);
-            var file_second = buffer_read(buffer, buffer_u8);
-        }
         break;
 }
 
@@ -200,19 +191,6 @@ while (true) {
         case SerializeThings.MAPS:
             Stuff.game_data_location[GameDataCategories.MAP] = Stuff.game_data_current_file.GUID;
             serialize_load_maps(buffer, version);
-            break;
-        // map stuff
-        case SerializeThings.MAP_META:
-            serialize_load_map_contents_meta(buffer, version, Stuff.map.active_map); 
-            break;
-        case SerializeThings.MAP_BATCH:
-            serialize_load_map_contents_batch(buffer, version, Stuff.map.active_map);
-            break;
-        case SerializeThings.MAP_DYNAMIC:
-            serialize_load_map_contents_dynamic(buffer, version, Stuff.map.active_map);
-            break;
-        case SerializeThings.MAP_ZONES:
-            serialize_load_map_contents_zones(buffer, version, Stuff.map.active_map);
             break;
         #endregion
     }

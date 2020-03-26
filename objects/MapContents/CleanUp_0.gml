@@ -1,7 +1,7 @@
 if (Stuff.is_quitting) exit;
 
 event_inherited();
-
+var t0 = get_timer() / 1000;
 for (var i = 0; i < ds_list_size(batch_data); i++) {
     var data = batch_data[| i];
     vertex_delete_buffer(data[? "vertex"]);

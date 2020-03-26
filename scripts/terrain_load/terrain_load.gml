@@ -22,7 +22,7 @@ var header = chr(buffer_read(buffer, buffer_u8)) + chr(buffer_read(buffer, buffe
 
 if (header == "DDD") {
     var version = buffer_read(buffer, buffer_u32);
-    var last_safe_version = DataVersions.MAP_TILED_ID;
+    var last_safe_version = DataVersions.NUKE_UNUSED_BOOLS;
     
     if (version < last_safe_version) {
         show_error("We stopped supporting versions of the data file before " + string(last_safe_version) +

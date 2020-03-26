@@ -1,18 +1,23 @@
 if (Stuff.is_quitting) exit;
 
-entity_destroy();
+Stuff.map.active_map.contents.population[ETypes.ENTITY]--;
 
+if (static) {
+    Stuff.map.active_map.contents.population_static--;
+}
+
+ds_list_destroy_instances(object_events);
+ds_list_destroy_instances(movement_routes);
 ds_list_destroy(switches);
 ds_list_destroy(variables);
 
-for (var i = 0; i < ds_list_size(object_events); i++) {
-    instance_activate_object(object_events[| i]);
-    instance_destroy(object_events[| i]);
-}
+refid_remove(REFID);
 
-for (var i = 0; i < ds_list_size(movement_routes); i++) {
-    instance_activate_object(movement_routes[| i]);
-    instance_destroy(movement_routes[| i]);
+if (cobject) {
+    // it turns out removing these things is REALLY SLOW, so instead we'll pool
+    // them to be removed in an orderly manner (and nullify their masks so they
+    // don't accidentally trigger interactions if you click on them)
+    c_object_set_mask(cobject, 0, 0);
+    c_object_set_userid(cobject, 0);
+    ds_queue_enqueue(Stuff.c_objects_to_destroy, cobject);
 }
-
-if (cobject) c_object_destroy(cobject);

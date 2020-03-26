@@ -220,6 +220,7 @@ for (var i = 0; i < ds_list_size(layer_objects); i++) {
                 }
                 instance.off_xx = pr_offset_x / TILE_WIDTH;
                 instance.off_yy = pr_offset_y / TILE_HEIGHT;
+                instance.static = pr_static;
             } else {
                 wtf("Log an error somewhere - no existing mesh \"" + gid_to_image_name + "\"" + " for " + data_name);
             }

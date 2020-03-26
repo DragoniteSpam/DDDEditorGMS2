@@ -10,5 +10,7 @@ var pselection = ui_list_selection(thing.root.el_list_main);
 
 if (pselection >= 0 && ds_list_size(plist) > 1) {
     ds_list_delete(plist, pselection);
-    ds_list_delete(thing.root.el_list_main.entries, pselection);
+    // plist and the list element's list point to the same data structure
+    // and you can remove from either, although i prefer to remove from
+    // the plist because that's the "original"
 }

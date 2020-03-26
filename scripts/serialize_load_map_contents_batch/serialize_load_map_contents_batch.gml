@@ -26,15 +26,3 @@ if (buffer_get_size(map_contents.frozen_data_wire) - 1) {
     map_contents.frozen_wire = vertex_create_buffer_from_buffer(map_contents.frozen_data_wire, Stuff.graphics.vertex_format);
     vertex_freeze(map_contents.frozen_wire);
 }
-
-if (version >= DataVersions.NO_MORE_ANONYMOUS_COLLISION_DATA) {
-} else {
-    var passage_count = buffer_read(buffer, buffer_u32);
-    repeat (passage_count) {
-        buffer_read(buffer, buffer_u16);
-        buffer_read(buffer, buffer_u16);
-        buffer_read(buffer, buffer_u16);
-        buffer_read(buffer, buffer_u8);
-        buffer_read(buffer, buffer_u16);
-    }
-}

@@ -40,15 +40,13 @@ if (outcome) {
     }
     
     if (outcome) {
-        var last_safe_version = DataVersions.MAP_TILED_ID;
-        var last_safe_release = "2019.4.1.19";
         var version_data = buffer_read(buffer_data, buffer_u32);
         
-        if (version_data < last_safe_version) {
-            dialog_create_notice(noone, "We stopped supporting versions of the data file before " + string(last_safe_version) +
+        if (version_data < LAST_SAFE_VERSION) {
+            dialog_create_notice(noone, "We stopped supporting versions of the data file before " + string(LAST_SAFE_VERSION) +
                 ". This file's version is " + string(version_data) + ". Please find a version of " + filename_name(fn_data) +
                 " made with a more up-to-date version of the editor - the last version which nuked compatibility was " +
-                last_safe_version + ".", true
+                LAST_SAFE_VERSION + ".", true
             );
             outcome = false;
         }

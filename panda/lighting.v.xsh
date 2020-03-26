@@ -1,6 +1,6 @@
 /// https://github.com/GameMakerDiscord/Xpanda
 
-#define MAX_LIGHTS 8
+#define MAX_LIGHTS 16
 #define LIGHT_DIRECTIONAL 1.
 #define LIGHT_POINT 2.
 #define LIGHT_SPOT 3.

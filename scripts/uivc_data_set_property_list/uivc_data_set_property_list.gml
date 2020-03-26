@@ -14,6 +14,6 @@ if (selection + 1) {
         var instance = guid_get(data.instances[| instance_selection].GUID);
         var list = ds_list_find_value(instance.values, ui_list.key);
         // this is for when max size = 1 so no need to mess with the list
-        ds_list_replace(list, 0, property_selection);
+        list[| 0] = property_selection;
     }
 }

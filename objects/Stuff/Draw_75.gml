@@ -14,6 +14,12 @@ while (!ds_queue_empty(stuff_to_destroy)) {
     instance_destroy(thing);
 }
 
+// I'm not actually sure why this seems to be so astonishginly slow that you
+// literally have to do it one at a time to maintian a frame rate
+if (!ds_queue_empty(c_objects_to_destroy)) {
+    c_world_destroy_object(ds_queue_dequeue(c_objects_to_destroy));
+}
+
 gpu_set_state(gpu_base_state);
 
 var ts = get_active_tileset();

@@ -17,25 +17,13 @@ repeat (n_images) {
     serialize_load_generic(buffer, data, version);
     data.hframes = buffer_read(buffer, buffer_u16);
     data.vframes = buffer_read(buffer, buffer_u16);
-    
-    if (version >= DataVersions.IMAGE_ASPEED) {
-        data.aspeed = buffer_read(buffer, buffer_f32);
-    }
-    
+    data.aspeed = buffer_read(buffer, buffer_f32);
     data.picture = buffer_read_sprite(buffer);
+    var bools = buffer_read(buffer, buffer_u32);
+    data.texture_exclude = unpack(bools, 0);
     
-    if (version >= DataVersions.ASSET_MARKERS) {
-        var bools = buffer_read(buffer, buffer_u32);
-        data.texture_exclude = unpack(bools, 0);
-    }
-    
-    if (version >= DataVersions.IMAGE_HEIGHT_WIDTH_DATA) {
-        data.width = buffer_read(buffer, buffer_u16);
-        data.height = buffer_read(buffer, buffer_u16);
-    } else {
-        data.width = sprite_get_width(data.picture);
-        data.height = sprite_get_height(data.picture);
-    }
+    data.width = buffer_read(buffer, buffer_u16);
+    data.height = buffer_read(buffer, buffer_u16);
     
     ds_list_add(list, data);
 }

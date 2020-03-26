@@ -7,7 +7,7 @@ var event = Stuff.event.active;
 
 var selected_node = (selection + 1) ? event.nodes[| selection] : noone;
 
-var sorted = ds_list_sort_name_sucks(event.nodes);
+var sorted = ds_list_sort_name(event.nodes);
 ds_list_destroy(event.nodes);
 event.nodes = sorted;
 // list entries is another reference

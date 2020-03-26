@@ -16,7 +16,7 @@ for (var i = 0; i < ds_list_size(Stuff.all_data); i++) {
 }
 
 list.text = otext + string(ds_list_size(list_data));
-list.entries = ds_list_sort_name_sucks(list_data);
+list.entries = ds_list_sort_name(list_data);
 
 ui_render_list(list, xx, yy);
 

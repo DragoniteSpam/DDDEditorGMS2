@@ -28,11 +28,13 @@ if (selection + 1) {
             var ew = cw - spacing * 2;
             var eh = 24;
             
+            // most input boxes
             var vx1 = 0;
             var vy1 = eh * 1.5;
             var vx2 = ew;
             var vy2 = vy1 + eh;
             
+            // number values and colors
             var vx1n = ew * 2 / 3;
             var vy1n = 0;
             var vx2n = ew;
@@ -93,15 +95,19 @@ if (selection + 1) {
                         case DataTypes.ENUM:           // list
                         case DataTypes.DATA:           // list
                             var datadata = guid_get(property.type_guid);
-                            var element = create_list(spacing, yy, property.name, "<no options: " + datadata.name + ">", ew, eh, 8, uivc_data_set_property_list, false, noone);
-                            if (datadata.type == DataTypes.DATA) {
-                                for (var j = 0; j < ds_list_size(datadata.instances); j++) {
-                                    create_list_entries(element, datadata.instances[| j]);
+                            if (datadata) {
+                                var element = create_list(spacing, yy, property.name, "<no options: " + datadata.name + ">", ew, eh, 8, uivc_data_set_property_list, false, noone);
+                                if (datadata.type == DataTypes.DATA) {
+                                    for (var j = 0; j < ds_list_size(datadata.instances); j++) {
+                                        create_list_entries(element, datadata.instances[| j]);
+                                    }
+                                } else {
+                                    for (var j = 0; j < ds_list_size(datadata.properties); j++) {
+                                        create_list_entries(element, datadata.properties[| j]);
+                                    }
                                 }
                             } else {
-                                for (var j = 0; j < ds_list_size(datadata.properties); j++) {
-                                    create_list_entries(element, datadata.properties[| j]);
-                                }
+                                var element = create_list(spacing, yy, "<missing data type>", "<n/a>", ew, eh, 8, null, false, noone);
                             }
                             element.key = i;
                             element.entries_are = ListEntries.INSTANCES;
@@ -119,8 +125,8 @@ if (selection + 1) {
                             var element = create_input_code(spacing, yy, "", ew, eh, 0, vy1, vx2, vy2, property.default_code, uivc_data_set_property_code, noone, i);
                             var hh = vy2;
                             break;
-                        case DataTypes.COLOR:           // @todo color box
-                            var element = create_button(spacing, yy, property.name, ew, eh, fa_left, not_yet_implemented_polite, noone);
+                        case DataTypes.COLOR:
+                            var element = create_color_picker(spacing, yy, property.name, ew, eh, uivc_data_set_property_color, c_white, vx1n, vy1n, vx2n, vy2n, noone);
                             element.key = i;
                             var hh = element.height;
                             break;

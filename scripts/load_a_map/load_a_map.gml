@@ -5,7 +5,6 @@ var version = map.version;
 var buffer = map.data_buffer;
 
 if (Stuff.map.active_map) {
-    ds_map_clear(Stuff.map.active_map.contents.all_refids);
     buffer_delete(Stuff.map.active_map.data_buffer);
     Stuff.map.active_map.version = DataVersions._CURRENT - 1;
     Stuff.map.active_map.data_buffer = serialize_save_current_map();
@@ -35,6 +34,7 @@ if (Stuff.map.active_map) {
         Stuff.map.active_map.cspreview = noone;
     }
     Stuff.map.active_map.contents = noone;
+    ui_create_notification("[c_red]There are " + string(ds_queue_size(Stuff.c_objects_to_destroy)) + " collision objects to destroy. Clearing them is unfathomably slow so the editor may lag for a bit.[]", 15);
 }
 
 Stuff.map.active_map = map;
@@ -53,12 +53,8 @@ if (buffer_md5(buffer, 0, buffer_get_size(buffer)) != EMPTY_BUFFER_MD5) {
     serialize_load_map_contents_batch(buffer, version, map);
     buffer_read(buffer, buffer_datatype);
     serialize_load_map_contents_dynamic(buffer, version, map);
-    if (version >= DataVersions.MAP_ZONES) {
-        buffer_read(buffer, buffer_datatype);
-        serialize_load_map_contents_zones(buffer, version, map);
-    }
-    
-    //gpu_set_fog(true, c_white, map.fog_start, map.fog_end);
+    buffer_read(buffer, buffer_datatype);
+    serialize_load_map_contents_zones(buffer, version, map);
 } // else the map has not been initialized yet and it just uses its default values
 
 // this also
@@ -71,5 +67,4 @@ for (var i = 0; i < ds_list_size(Stuff.all_maps); i++) {
     }
 }
 
-map_create_default_light(map);
 graphics_create_grids();

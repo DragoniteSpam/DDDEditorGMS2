@@ -14,7 +14,7 @@ if (selection >= 0) {
         }
     }
     
-    var list_sorted = ds_list_sort_name_sucks(list_enum);
+    var list_sorted = ds_list_sort_name(list_enum);
     
     property.type_guid = list_sorted[| selection].GUID;
     

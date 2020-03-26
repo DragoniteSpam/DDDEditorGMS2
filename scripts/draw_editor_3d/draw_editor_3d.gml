@@ -134,16 +134,14 @@ if (Stuff.game_starting_map == Stuff.map.active_map.GUID) {
     vertex_submit(Stuff.graphics.basic_cage, pr_trianglelist, -1);
 }
 
-if (Stuff.setting_view_gizmos) {
-    while (!ds_queue_empty(Stuff.unlit_meshes)) {
-        var data = ds_queue_dequeue(Stuff.unlit_meshes);
-        var vbuffer = data[0];
-        var transform = data[1];
-        matrix_set(matrix_world, transform);
-        vertex_submit(vbuffer, pr_trianglelist, -1);
-    }
-} else {
-    ds_queue_clear(Stuff.unlit_meshes);
+// check for the gizmo setting in the actual events where this list is contributed
+// to - there may be some you want to draw regardless, like component axes
+while (!ds_queue_empty(Stuff.unlit_meshes)) {
+    var data = ds_queue_dequeue(Stuff.unlit_meshes);
+    var vbuffer = data[0];
+    var transform = data[1];
+    matrix_set(matrix_world, transform);
+    vertex_submit(vbuffer, pr_trianglelist, -1);
 }
 #endregion
 
