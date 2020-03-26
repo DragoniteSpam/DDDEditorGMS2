@@ -13,33 +13,33 @@ var n2 = r - m;
 var lt = ds_list_create();
 var rt = ds_list_create();
 
-for (var i = 0; i < n1; i++) begin
+for (var i = 0; i < n1; i++) {
     // this should technically be a ds_list_add but whatever
     lt[| i] = list[| l +i ];
-end
-for (var j = 0; j < n2; j++) begin
+}
+for (var j = 0; j < n2; j++) {
     // ditto
     rt[| j] = list[| m + j + 1];
-end
+}
 
 var i = 0;
 var j = 0;
 var k = l;
 
-while (i < n1 && j < n2) begin
-    if (lt[| i].name <= rt[| j].name) begin
+while (i < n1 && j < n2) {
+    if (lt[| i].name <= rt[| j].name) {
         list[| k++] = lt[| i++];
-    end else begin
+    } else {
         list[| k++] = rt[| j++];
-    end
-end
+    }
+}
 
-while (i < n1) begin
+while (i < n1) {
     list[| k++] = lt[| i++];
-end
-while (j < n2) begin
+}
+while (j < n2) {
     list[| k++] = rt[| j++];
-end
+}
 
 ds_list_destroy(lt);
 ds_list_destroy(rt);
