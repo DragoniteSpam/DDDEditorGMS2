@@ -1283,6 +1283,14 @@
             }
         },
         {
+            "Key": "0e26c60b-d3d0-41b8-9cb8-add504141c5a",
+            "Value": {
+                "id": "68c13b36-e80d-4db8-a619-92ced6c63e62",
+                "resourcePath": "scripts\\sprite_get_cropped_dimensions\\sprite_get_cropped_dimensions.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "0e558d8c-50e3-48dc-84f5-9b1f3a9e5aef",
             "Value": {
                 "id": "9a7b0a83-c963-44bd-a79a-5a87d8ed4960",
@@ -20040,6 +20048,7 @@
         "15ab5199-66ae-4863-96ee-9fb150a0291e",
         "b727b1c8-ef03-494d-b4f3-7d7789b0e2af",
         "d76ea4ef-8539-4788-90ce-56dafb2f8490",
+        "0e26c60b-d3d0-41b8-9cb8-add504141c5a",
         "ef6793cd-a331-44e5-bd38-6920300a558a",
         "0657dd0d-6793-40d4-9667-d8b3da8ffe19",
         "8a169476-76e7-46d2-99f7-6de10c31e642",
