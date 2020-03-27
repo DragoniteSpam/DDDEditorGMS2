@@ -22,7 +22,7 @@ for (var i = 0; i < sw; i++) {
         var yy = j;
         var index = (yy * sw + xx) * 4;
         var alpha = buffer_peek(buffer, index + 3, buffer_u8);
-        if (alpha >= cutoff) {
+        if (alpha > cutoff) {
             ww = xx + 1;
             done = true;
             break;
@@ -43,7 +43,7 @@ for (var i = 0; i < sh; i++) {
         var xx = j;
         var index = (yy * sw + xx) * 4;
         var alpha = buffer_peek(buffer, index + 3, buffer_u8);
-        if (alpha >= cutoff) {
+        if (alpha > cutoff) {
             hh = yy + 1;
             done = true;
             break;
