@@ -5,20 +5,17 @@ var xx = argument1;
 var yy = argument2;
 
 var otext = list.text;
-var list_enum = ds_list_create();
+ds_list_clear(list.entries);
 
 for (var i = 0; i < ds_list_size(Stuff.all_data); i++) {
     if (Stuff.all_data[| i].type == DataTypes.ENUM) {
-        ds_list_add(list_enum, Stuff.all_data[| i]);
+        ds_list_add(list.entries, Stuff.all_data[| i]);
     }
 }
 
-list.text = otext + string(ds_list_size(list_enum));
-list.entries = ds_list_sort_name(list_enum);
+list.text = otext + string(ds_list_size(list.entries));
+ds_list_sort_name(list.entries);
 
 ui_render_list(list, xx, yy);
-
-ds_list_destroy(list.entries);
-ds_list_destroy(list_enum);
 
 list.text = otext;

@@ -15,15 +15,11 @@ if (selection >= 0) {
         }
     }
     
-    var list_sorted = ds_list_sort_name(list_data);
-    
-    var data = list_sorted[| selection];
-    
+    ds_list_sort_name(list_data);
+    var data = list_data[| selection];
     property[@ EventNodeCustomData.TYPE_GUID] = data.GUID;
     thing.root.root.root.event.types[| pselection] = property;
-    
     ds_list_destroy(list_data);
-    ds_list_destroy(list_sorted);
     
     thing.root.root.root.el_property_type_guid.text = "Select (" + data.name + ")";
     thing.root.root.root.el_property_type_guid.color = c_black;

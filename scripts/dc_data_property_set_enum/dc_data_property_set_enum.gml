@@ -14,12 +14,9 @@ if (selection >= 0) {
         }
     }
     
-    var list_sorted = ds_list_sort_name(list_enum);
-    
-    property.type_guid = list_sorted[| selection].GUID;
-    
+    ds_list_sort_name(list_enum);
+    property.type_guid = list_enum[| selection].GUID;
     ds_list_destroy(list_enum);
-    ds_list_destroy(list_sorted);
     
     thing.root.root.root.el_property_type_guid.text = guid_get(property.type_guid).name;
     thing.root.root.root.el_property_type_guid.color = c_black;

@@ -13,6 +13,9 @@ for (var i = 0; i < ds_list_size(Stuff.all_data); i++) {
         ds_list_add(list_data, data);
     }
 }
+
+// Normally you'd just use the list sort funciton on the source lists since they
+// don't modify them, but in this case we want the enums to always go at the top
 var list_enums_sorted = ds_list_sort_name(list_enums);
 var list_data_sorted = ds_list_sort_name(list_data);
 ds_list_clear(Stuff.all_data);
