@@ -55,20 +55,22 @@ var x2 = mesh.xmax * TILE_WIDTH - cube_bound;
 var y2 = mesh.ymax * TILE_HEIGHT - cube_bound;
 var z2 = mesh.zmax * TILE_DEPTH - cube_bound;
 
-shader_set(shd_bounding_box);
-shader_set_uniform_f_array(shader_get_uniform(shd_bounding_box, "actual_color"), [1, 0, 0, 1]);
-shader_set_uniform_f_array(shader_get_uniform(shd_bounding_box, "offsets"), [
-    x1, y1, z1,
-    x2, y1, z1,
-    x1, y2, z1,
-    x2, y2, z1,
-    x1, y1, z2,
-    x2, y1, z2,
-    x1, y2, z2,
-    x2, y2, z2,
-]);
-vertex_submit(Stuff.graphics.indexed_cage, pr_trianglelist, -1);
-shader_reset();
+if (mesh.xmin != mesh.xmax || mesh.ymin != mesh.ymax || mesh.zmin != mesh.zmax) {
+    shader_set(shd_bounding_box);
+    shader_set_uniform_f_array(shader_get_uniform(shd_bounding_box, "actual_color"), [1, 0, 0, 1]);
+    shader_set_uniform_f_array(shader_get_uniform(shd_bounding_box, "offsets"), [
+        x1, y1, z1,
+        x2, y1, z1,
+        x1, y2, z1,
+        x2, y2, z1,
+        x1, y1, z2,
+        x2, y1, z2,
+        x1, y2, z2,
+        x2, y2, z2,
+    ]);
+    vertex_submit(Stuff.graphics.indexed_cage, pr_trianglelist, -1);
+    shader_reset();
+}
 
 camera_set_view_mat(camera, active_view_mat);
 camera_set_proj_mat(camera, active_proj_mat);
