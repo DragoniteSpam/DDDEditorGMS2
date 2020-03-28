@@ -15,8 +15,6 @@ for (var i = 0; i < mesh.xmax - mesh.xmin; i++) {
                     new_array[@ k] = 0xffffffff;
                 }
             }
-        } else {
-            new_array[@ k] = 0xffffffff;
         }
     }
 }

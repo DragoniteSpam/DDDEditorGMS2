@@ -16,8 +16,8 @@ if (selection + 1) {
     var instance = noone;
 }
 
-/*Everything is suddenly broken, go into github to see if you can find what the latest changes to
-this and ui_init_game_data_activate and ui_init_game_data were because i'm way too tired for that now*/
+// this is causing issues with the YYC (I32 argument is undefined) - please try to
+// find out exactly what's undefined and why
 ui_input_set_value(Stuff.data.ui.el_inst_name, instance ? instance.name : "");
 ui_input_set_value(Stuff.data.ui.el_inst_internal_name, instance ? instance.internal_name : "");
 
