@@ -10,7 +10,7 @@ var params = argument3;
 
 var cell = map_get_grid_cell(xx, yy, zz);
 
-if (!cell[@ MapCellContents.MESHPAWN]) {
+if (!cell[@ MapCellContents.PAWN]) {
     var addition = instance_create_pawn();
     map_add_thing(addition, xx, yy, zz);
 }

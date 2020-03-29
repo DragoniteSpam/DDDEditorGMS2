@@ -36,7 +36,8 @@ population_static = 0;
 
 enum MapCellContents {
     TILE,
-    MESHPAWN,
+    MESH,
+    PAWN,
     EFFECT,
     EVENT,
     _COUNT

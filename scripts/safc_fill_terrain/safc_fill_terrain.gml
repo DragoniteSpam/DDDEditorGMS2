@@ -10,7 +10,7 @@ var params = argument3;
 
 var cell = map_get_grid_cell(xx, yy, zz);
     
-if (!cell[@ MapCellContents.MESHPAWN]) {
+if (!cell[@ MapCellContents.MESH]) {
     var addition = instance_create_terrain();
         
     // there's no reason this should fail but just in case

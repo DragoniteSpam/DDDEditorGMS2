@@ -11,7 +11,7 @@ terrain_id = 0;
 terrain_type = ATTerrainTypes.TOP;
 
 // editor properties
-slot = MapCellContents.MESHPAWN;
+slot = MapCellContents.MESH;
 rotateable = false;
 offsettable = false;
 scalable = false;

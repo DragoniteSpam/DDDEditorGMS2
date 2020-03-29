@@ -17,7 +17,7 @@ for (var i = 0; i < ds_list_size(Stuff.map.active_map.contents.all_entities); i+
     // above
     if (map_get_grid_cell_mesh_autotile_data(thing.xx, thing.yy, thing.zz + 1)) {
         var neighbor = map_get_grid_cell(thing.xx, thing.yy, thing.zz + 1);
-        var neighbor_mesh = neighbor[@ MapCellContents.MESHPAWN];
+        var neighbor_mesh = neighbor[@ MapCellContents.MESH];
         var neighbor_tile = neighbor[@ MapCellContents.TILE];
         if (instanceof(neighbor_mesh, EntityMeshAutotile) && selected_border(neighbor_mesh, mask_mesh_auto) ||
                 instanceof(neighbor_tile, EntityTile) && selected_border(neighbor_tile, mask_tile)
@@ -28,7 +28,7 @@ for (var i = 0; i < ds_list_size(Stuff.map.active_map.contents.all_entities); i+
     // below
     if (map_get_grid_cell_mesh_autotile_data(thing.xx, thing.yy, thing.zz - 1)) {
         var neighbor = map_get_grid_cell(thing.xx, thing.yy, thing.zz - 1);
-        var neighbor_mesh = neighbor[@ MapCellContents.MESHPAWN];
+        var neighbor_mesh = neighbor[@ MapCellContents.MESH];
         var neighbor_tile = neighbor[@ MapCellContents.TILE];
         if (instanceof(neighbor_mesh, EntityMeshAutotile) && selected_border(neighbor_mesh, mask_mesh_auto) ||
                 instanceof(neighbor_tile, EntityTile) && selected_border(neighbor_tile, mask_tile)
@@ -39,7 +39,7 @@ for (var i = 0; i < ds_list_size(Stuff.map.active_map.contents.all_entities); i+
     // north
     if (map_get_grid_cell_mesh_autotile_data(thing.xx, thing.yy - 1, thing.zz)) {
         var neighbor = map_get_grid_cell(thing.xx, thing.yy - 1, thing.zz);
-        var neighbor_mesh = neighbor[@ MapCellContents.MESHPAWN];
+        var neighbor_mesh = neighbor[@ MapCellContents.MESH];
         var neighbor_tile = neighbor[@ MapCellContents.TILE];
         if (instanceof(neighbor_mesh, EntityMeshAutotile) && selected_border(neighbor_mesh, mask_mesh_auto) ||
                 instanceof(neighbor_tile, EntityTile) && selected_border(neighbor_tile, mask_tile)
@@ -50,7 +50,7 @@ for (var i = 0; i < ds_list_size(Stuff.map.active_map.contents.all_entities); i+
     // south
     if (map_get_grid_cell_mesh_autotile_data(thing.xx, thing.yy + 1, thing.zz)) {
         var neighbor = map_get_grid_cell(thing.xx, thing.yy + 1, thing.zz);
-        var neighbor_mesh = neighbor[@ MapCellContents.MESHPAWN];
+        var neighbor_mesh = neighbor[@ MapCellContents.MESH];
         var neighbor_tile = neighbor[@ MapCellContents.TILE];
         if (instanceof(neighbor_mesh, EntityMeshAutotile) && selected_border(neighbor_mesh, mask_mesh_auto) ||
                 instanceof(neighbor_tile, EntityTile) && selected_border(neighbor_tile, mask_tile)
@@ -61,7 +61,7 @@ for (var i = 0; i < ds_list_size(Stuff.map.active_map.contents.all_entities); i+
     // east
     if (map_get_grid_cell_mesh_autotile_data(thing.xx + 1, thing.yy, thing.zz)) {
         var neighbor = map_get_grid_cell(thing.xx + 1, thing.yy, thing.zz);
-        var neighbor_mesh = neighbor[@ MapCellContents.MESHPAWN];
+        var neighbor_mesh = neighbor[@ MapCellContents.MESH];
         var neighbor_tile = neighbor[@ MapCellContents.TILE];
         if (instanceof(neighbor_mesh, EntityMeshAutotile) && selected_border(neighbor_mesh, mask_mesh_auto) ||
                 instanceof(neighbor_tile, EntityTile) && selected_border(neighbor_tile, mask_tile)
@@ -72,7 +72,7 @@ for (var i = 0; i < ds_list_size(Stuff.map.active_map.contents.all_entities); i+
     // west
     if (map_get_grid_cell_mesh_autotile_data(thing.xx - 1, thing.yy, thing.zz)) {
         var neighbor = map_get_grid_cell(thing.xx - 1, thing.yy, thing.zz);
-        var neighbor_mesh = neighbor[@ MapCellContents.MESHPAWN];
+        var neighbor_mesh = neighbor[@ MapCellContents.MESH];
         var neighbor_tile = neighbor[@ MapCellContents.TILE];
         if (instanceof(neighbor_mesh, EntityMeshAutotile) && selected_border(neighbor_mesh, mask_mesh_auto) ||
                 instanceof(neighbor_tile, EntityTile) && selected_border(neighbor_tile, mask_tile)
@@ -83,7 +83,7 @@ for (var i = 0; i < ds_list_size(Stuff.map.active_map.contents.all_entities); i+
     // northwest
     if (map_get_grid_cell_mesh_autotile_data(thing.xx - 1, thing.yy - 1, thing.zz)) {
         var neighbor = map_get_grid_cell(thing.xx - 1, thing.yy - 1, thing.zz);
-        var neighbor_mesh = neighbor[@ MapCellContents.MESHPAWN];
+        var neighbor_mesh = neighbor[@ MapCellContents.MESH];
         var neighbor_tile = neighbor[@ MapCellContents.TILE];
         if (instanceof(neighbor_mesh, EntityMeshAutotile) && selected_border(neighbor_mesh, mask_mesh_auto) ||
                 instanceof(neighbor_tile, EntityTile) && selected_border(neighbor_tile, mask_tile)
@@ -94,7 +94,7 @@ for (var i = 0; i < ds_list_size(Stuff.map.active_map.contents.all_entities); i+
     // northeast
     if (map_get_grid_cell_mesh_autotile_data(thing.xx + 1, thing.yy - 1, thing.zz)) {
         var neighbor = map_get_grid_cell(thing.xx + 1, thing.yy - 1, thing.zz);
-        var neighbor_mesh = neighbor[@ MapCellContents.MESHPAWN];
+        var neighbor_mesh = neighbor[@ MapCellContents.MESH];
         var neighbor_tile = neighbor[@ MapCellContents.TILE];
         if (instanceof(neighbor_mesh, EntityMeshAutotile) && selected_border(neighbor_mesh, mask_mesh_auto) ||
                 instanceof(neighbor_tile, EntityTile) && selected_border(neighbor_tile, mask_tile)
@@ -105,7 +105,7 @@ for (var i = 0; i < ds_list_size(Stuff.map.active_map.contents.all_entities); i+
     // southwest
     if (map_get_grid_cell_mesh_autotile_data(thing.xx - 1, thing.yy + 1, thing.zz)) {
         var neighbor = map_get_grid_cell(thing.xx - 1, thing.yy + 1, thing.zz);
-        var neighbor_mesh = neighbor[@ MapCellContents.MESHPAWN];
+        var neighbor_mesh = neighbor[@ MapCellContents.MESH];
         var neighbor_tile = neighbor[@ MapCellContents.TILE];
         if (instanceof(neighbor_mesh, EntityMeshAutotile) && selected_border(neighbor_mesh, mask_mesh_auto) ||
                 instanceof(neighbor_tile, EntityTile) && selected_border(neighbor_tile, mask_tile)
@@ -116,7 +116,7 @@ for (var i = 0; i < ds_list_size(Stuff.map.active_map.contents.all_entities); i+
     // southeast
     if (map_get_grid_cell_mesh_autotile_data(thing.xx + 1, thing.yy + 1, thing.zz)) {
         var neighbor = map_get_grid_cell(thing.xx + 1, thing.yy + 1, thing.zz);
-        var neighbor_mesh = neighbor[@ MapCellContents.MESHPAWN];
+        var neighbor_mesh = neighbor[@ MapCellContents.MESH];
         var neighbor_tile = neighbor[@ MapCellContents.TILE];
         if (instanceof(neighbor_mesh, EntityMeshAutotile) && selected_border(neighbor_mesh, mask_mesh_auto) ||
                 instanceof(neighbor_tile, EntityTile) && selected_border(neighbor_tile, mask_tile)

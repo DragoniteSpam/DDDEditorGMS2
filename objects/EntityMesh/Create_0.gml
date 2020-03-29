@@ -19,7 +19,7 @@ animation_type = SMF_loop_linear;
 
 // editor properties
 
-slot = MapCellContents.MESHPAWN;
+slot = MapCellContents.MESH;
 rotateable = true;
 offsettable = true;
 scalable = true;

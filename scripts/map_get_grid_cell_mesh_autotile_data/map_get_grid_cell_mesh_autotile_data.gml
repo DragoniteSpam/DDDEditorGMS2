@@ -17,7 +17,7 @@ var result = false;
 
 var cell = map_get_grid_cell(xx, yy, zz, map);
 if (is_array(cell)) {
-    var what = cell[@ MapCellContents.MESHPAWN];
+    var what = cell[@ MapCellContents.MESH];
     result = result || (instanceof(what, EntityMeshAutotile) && what.modification != Modifications.REMOVE);
 }
 
