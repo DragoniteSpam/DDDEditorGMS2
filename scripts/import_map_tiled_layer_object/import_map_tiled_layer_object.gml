@@ -149,6 +149,7 @@ for (var i = 0; i < ds_list_size(layer_objects); i++) {
     
     switch (string_lower(data_type)) {
         case "pawn":
+            #region load pawn
             var pr_cutscene_entrypoint = data_properties[? "CutsceneEntrypoint"];
             var pr_cutscene_entrypoint_name = pr_cutscene_entrypoint[? "value"];
             var pr_static = data_properties[? "Static?"];
@@ -158,39 +159,46 @@ for (var i = 0; i < ds_list_size(layer_objects); i++) {
             pr_cutscene_entrypoint = event_get_node_global(pr_cutscene_entrypoint_name);
             pr_static = pr_static[? "value"];
             
-            // arrays don't have a truth value apparently
-            if (pr_cutscene_entrypoint != undefined) {
-                if (tmx_cache[? obj_id]) {
-                    instance = tmx_cache[? obj_id];
-                    updated = true;
-                    var page = instance.object_events[| 0];
+            if (tmx_cache[? obj_id]) {
+                instance = tmx_cache[? obj_id];
+                instance.overworld_sprite = internal_name_get(gid_to_image_name).GUID;
+                updated = true;
+                var page = instance.object_events[| 0];
+                // arrays don't have a truth value apparently
+                if (pr_cutscene_entrypoint != undefined) {
                     if (!page) {
-                        page = create_instantiated_event("Conversation:" + pr_cutscene_entrypoint[1].name);
+                        page = create_instantiated_event("");
                         ds_list_add(instance.object_events, page);
-                    } else {
-                        page.name = "Conversation:" + pr_cutscene_entrypoint[1].name;
                     }
-                    // The entity only needs to be relocated; it doesn't need to be removed from
-                    // the lists, or re-added later, because that would take a lot of time
-                    map_remove_thing(instance);
-                    // position for NPCs is at -1 because of where the origin for sprites is in Tiled
-                    map_add_thing(instance, (xx + obj_x) div TILE_WIDTH, (yy + obj_y) div TILE_HEIGHT - 1, zz, undefined, undefined, false);
-                } else {
-                    instance = instance_create_pawn();
-                    instance.tmx_id = obj_id;
+                    page.name = "Conversation:" + pr_cutscene_entrypoint[1].name;
+                    page.trigger = 1;   // magic, do not touch
+                    page.event_guid = pr_cutscene_entrypoint[0].GUID;
+                    page.event_entrypoint = pr_cutscene_entrypoint[1].GUID;
+                }
+                // The entity only needs to be relocated; it doesn't need to be removed from
+                // the lists, or re-added later, because that would take a lot of time
+                map_remove_thing(instance);
+                // position for NPCs is at -1 because of where the origin for sprites is in Tiled
+                map_add_thing(instance, (xx + obj_x) div TILE_WIDTH, (yy + obj_y) div TILE_HEIGHT - 1, zz, undefined, undefined, false);
+            } else {
+                instance = instance_create_pawn();
+                instance.tmx_id = obj_id;
+                instance.overworld_sprite = internal_name_get(gid_to_image_name).GUID;
+                // arrays don't have a truth value apparently
+                if (pr_cutscene_entrypoint != undefined) {
                     var page = create_instantiated_event("Conversation:" + pr_cutscene_entrypoint[1].name);
                     ds_list_add(instance.object_events, page);
-                    // position for NPCs is at -1 because of where the origin for sprites is in Tiled
-                    map_add_thing(instance, (xx + obj_x) div TILE_WIDTH, (yy + obj_y) div TILE_HEIGHT - 1, zz);
+                    page.trigger = 1;   // magic, do not touch
+                    page.event_guid = pr_cutscene_entrypoint[0].GUID;
+                    page.event_entrypoint = pr_cutscene_entrypoint[1].GUID;
                 }
-                page.trigger = 1;   // magic, do not touch
-                page.event_guid = pr_cutscene_entrypoint[0].GUID;
-                page.event_entrypoint = pr_cutscene_entrypoint[1].GUID;
-            } else {
-                wtf("Log an error somewhere - no event entrypoint \"" + pr_cutscene_entrypoint_name + "\"" + " for " + data_name);
+                // position for NPCs is at -1 because of where the origin for sprites is in Tiled
+                map_add_thing(instance, (xx + obj_x) div TILE_WIDTH, (yy + obj_y) div TILE_HEIGHT - 1, zz);
             }
             break;
+            #endregion
         case "mesh":
+            #region load mesh
             var pr_cutscene_entrypoint = data_properties[? "CutsceneEntrypoint"];
             var pr_static = data_properties[? "Static?"];
             var pr_offset_x = data_properties[? "OffsetX"];
@@ -225,6 +233,7 @@ for (var i = 0; i < ds_list_size(layer_objects); i++) {
                 wtf("Log an error somewhere - no existing mesh \"" + gid_to_image_name + "\"" + " for " + data_name);
             }
             break;
+            #endregion
         case "effect":
         default:
             not_yet_implemented_polite();
@@ -232,6 +241,9 @@ for (var i = 0; i < ds_list_size(layer_objects); i++) {
     }
     
     if (instance) {
+        instance.name = data_name;
+        
+        #region generic properties
         var property_list = ds_map_to_list(data_properties);
         for (var j = 0; j < ds_list_size(property_list); j++) {
             var property = data_properties[? property_list[| j]];
@@ -271,6 +283,7 @@ for (var i = 0; i < ds_list_size(layer_objects); i++) {
             }
         }
         ds_list_destroy(property_list);
+        #endregion
     }
     
     ds_map_destroy(data_properties);
