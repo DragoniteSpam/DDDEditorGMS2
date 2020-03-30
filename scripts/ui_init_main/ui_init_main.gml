@@ -168,7 +168,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     // if you really want the color-coded entities, maybe make the entry color feature a script instead 
     // of just a list of colors - later, though
-    element_all_entities = create_list(col1_x, yy, "All Entities", "<No entities>", col_width, element_height, 28, null, true, t_stats, noone);
+    element_all_entities = create_list(col1_x, yy, "All Entities", "<No entities>", col_width, element_height, 28, uivc_list_all_entities, true, t_stats, noone);
     element_all_entities.render = ui_render_list_all_entities;
     element_all_entities.entries_are = ListEntries.INSTANCES;
     ds_list_add(t_stats.contents, element_all_entities);
