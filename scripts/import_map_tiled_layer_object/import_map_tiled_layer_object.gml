@@ -150,31 +150,16 @@ for (var i = 0; i < ds_list_size(layer_objects); i++) {
     switch (string_lower(data_type)) {
         case "pawn":
             #region load pawn
-            var pr_cutscene_entrypoint = data_properties[? "CutsceneEntrypoint"];
-            var pr_cutscene_entrypoint_name = pr_cutscene_entrypoint[? "value"];
             var pr_static = data_properties[? "Static?"];
             
             if (pr_static == undefined) break;
             
-            pr_cutscene_entrypoint = event_get_node_global(pr_cutscene_entrypoint_name);
             pr_static = pr_static[? "value"];
             
             if (tmx_cache[? obj_id]) {
                 instance = tmx_cache[? obj_id];
                 instance.overworld_sprite = internal_name_get(gid_to_image_name).GUID;
                 updated = true;
-                var page = instance.object_events[| 0];
-                // arrays don't have a truth value apparently
-                if (pr_cutscene_entrypoint != undefined) {
-                    if (!page) {
-                        page = create_instantiated_event("");
-                        ds_list_add(instance.object_events, page);
-                    }
-                    page.name = "Conversation:" + pr_cutscene_entrypoint[1].name;
-                    page.trigger = 1;   // magic, do not touch
-                    page.event_guid = pr_cutscene_entrypoint[0].GUID;
-                    page.event_entrypoint = pr_cutscene_entrypoint[1].GUID;
-                }
                 // The entity only needs to be relocated; it doesn't need to be removed from
                 // the lists, or re-added later, because that would take a lot of time
                 map_remove_thing(instance);
@@ -184,14 +169,6 @@ for (var i = 0; i < ds_list_size(layer_objects); i++) {
                 instance = instance_create_pawn();
                 instance.tmx_id = obj_id;
                 instance.overworld_sprite = internal_name_get(gid_to_image_name).GUID;
-                // arrays don't have a truth value apparently
-                if (pr_cutscene_entrypoint != undefined) {
-                    var page = create_instantiated_event("Conversation:" + pr_cutscene_entrypoint[1].name);
-                    ds_list_add(instance.object_events, page);
-                    page.trigger = 1;   // magic, do not touch
-                    page.event_guid = pr_cutscene_entrypoint[0].GUID;
-                    page.event_entrypoint = pr_cutscene_entrypoint[1].GUID;
-                }
                 // position for NPCs is at -1 because of where the origin for sprites is in Tiled
                 map_add_thing(instance, (xx + obj_x) div TILE_WIDTH, (yy + obj_y) div TILE_HEIGHT - 1, zz);
             }
@@ -242,6 +219,24 @@ for (var i = 0; i < ds_list_size(layer_objects); i++) {
     
     if (instance) {
         instance.name = data_name;
+        
+        #region Default conversation
+        var pr_cutscene_entrypoint = data_properties[? "CutsceneEntrypoint"];
+        var pr_cutscene_entrypoint_name = pr_cutscene_entrypoint[? "value"];
+        pr_cutscene_entrypoint = event_get_node_global(pr_cutscene_entrypoint_name);
+        // arrays don't have a truth value apparently
+        if (pr_cutscene_entrypoint != undefined) {
+            var page = instance.object_events[| 0];
+            if (!page) {
+                page = create_instantiated_event("");
+                ds_list_add(instance.object_events, page);
+            }
+            page.name = "Conversation:" + pr_cutscene_entrypoint[1].name;
+            page.trigger = 1;   // magic, do not touch
+            page.event_guid = pr_cutscene_entrypoint[0].GUID;
+            page.event_entrypoint = pr_cutscene_entrypoint[1].GUID;
+        }
+        #endregion
         
         #region generic properties
         var property_list = ds_map_to_list(data_properties);
