@@ -13,7 +13,6 @@ if (selection + 1) {
         switch (filename_ext(fn)) {
             case ".obj": import_obj(fn, undefined, adjust, mesh_data, selection); break;
             case ".d3d": case ".gmmod": import_d3d(fn, undefined, adjust, false, mesh_data, selection); break;
-            case ".vrax": import_vrax(fn, false, mesh_data, selection); break;
             case ".smf": import_smf(fn, mesh_data, selection); break;
         }
     }

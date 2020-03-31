@@ -1,15 +1,13 @@
 /// @param buffer
 /// @param grid-size
 /// @param name
-/// @param [existing-object]
 
 var data_buffer = argument[0];
 var grid_size = argument[1];
 var name = argument[2];
-var existing = (argument_count > 3 && argument[3] != undefined) ? argument[3] : noone;
 
 var n = buffer_read(data_buffer, buffer_f32);
-var mesh = existing ? existing : instance_create_depth(0, 0, 0, DataMesh);
+var mesh = instance_create_depth(0, 0, 0, DataMesh);
 
 var vbuffer = vertex_create_buffer();
 var wbuffer = vertex_create_buffer();
@@ -56,30 +54,24 @@ repeat (n) {
     }
 }
 
-// don't bother with the bounds if the mesh data already exists
-if (!existing) {
-    if (grid_size > 0) {
-        mesh.xmin = buffer_read(data_buffer, buffer_f32);
-        mesh.ymin = buffer_read(data_buffer, buffer_f32);
-        mesh.zmin = buffer_read(data_buffer, buffer_f32);
-        mesh.xmax = buffer_read(data_buffer, buffer_f32);
-        mesh.ymax = buffer_read(data_buffer, buffer_f32);
-        mesh.zmax = buffer_read(data_buffer, buffer_f32);
-    }
-    data_mesh_recalculate_bounds(mesh);
+
+if (grid_size > 0) {
+    mesh.xmin = buffer_read(data_buffer, buffer_f32);
+    mesh.ymin = buffer_read(data_buffer, buffer_f32);
+    mesh.zmin = buffer_read(data_buffer, buffer_f32);
+    mesh.xmax = buffer_read(data_buffer, buffer_f32);
+    mesh.ymax = buffer_read(data_buffer, buffer_f32);
+    mesh.zmax = buffer_read(data_buffer, buffer_f32);
 }
+data_mesh_recalculate_bounds(mesh);
 
 vertex_end(vbuffer);
 vertex_end(wbuffer);
 c_shape_end_trimesh(cdata);
 
-if (!existing) {
-    mesh.name = name;
-    internal_name_generate(mesh, PREFIX_MESH + string_lettersdigits(name));
-    mesh.cshape = cdata;
-} else {
-    c_shape_destroy(mesh.cshape);
-}
+mesh.name = name;
+internal_name_generate(mesh, PREFIX_MESH + string_lettersdigits(name));
+mesh.cshape = cdata;
 
 mesh_create_submesh(mesh, buffer_create_from_vertex_buffer(vbuffer, buffer_fixed, 1), vbuffer, wbuffer, undefined, name);
 vertex_freeze(vbuffer);

@@ -1,8 +1,8 @@
 {
-    "id": "75fdb47b-99b6-4312-a3c3-207f72372850",
+    "id": "32163c8a-6857-4b8f-864d-158d3a667f83",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "export_vrax",
+    "name": "import_qma",
     "IsCompatibility": false,
     "IsDnD": false
 }

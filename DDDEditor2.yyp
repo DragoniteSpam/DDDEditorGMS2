@@ -4067,6 +4067,14 @@
             }
         },
         {
+            "Key": "32163c8a-6857-4b8f-864d-158d3a667f83",
+            "Value": {
+                "id": "bdae1cc3-72a2-4a6a-b50a-b788eaafe702",
+                "resourcePath": "scripts\\import_qma\\import_qma.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "32189d3e-73e8-4577-bf6b-14923e07e29f",
             "Value": {
                 "id": "f1bd237b-bc9b-4ffb-ad31-c532744498d6",
@@ -4216,6 +4224,14 @@
                 "id": "daf8a547-5ffe-4b18-9d79-9158ac90949d",
                 "resourcePath": "datafiles_yy\\data\\basic\\translation.d3d.yy",
                 "resourceType": "GMIncludedFile"
+            }
+        },
+        {
+            "Key": "3435b63c-3f17-424f-ba46-7d9fb60578b9",
+            "Value": {
+                "id": "449d4587-9c28-4d74-891d-4551826ede0e",
+                "resourcePath": "scripts\\import_qma_next\\import_qma_next.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -5976,6 +5992,14 @@
                 "id": "e3effec2-3781-4131-be2a-2987689e7d21",
                 "resourcePath": "datafiles_yy\\data\\fonts\\FArialItalic.yy.yy",
                 "resourceType": "GMIncludedFile"
+            }
+        },
+        {
+            "Key": "4c78b6fb-7019-4409-b04c-b356fb4179af",
+            "Value": {
+                "id": "32f6ee3d-8d2c-4162-ac97-e3360e01129e",
+                "resourcePath": "scripts\\get_save_filename_mesh_qma\\get_save_filename_mesh_qma.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -9166,7 +9190,7 @@
             "Key": "75fdb47b-99b6-4312-a3c3-207f72372850",
             "Value": {
                 "id": "9fad132f-6366-47ed-bb2f-744e7ed41edc",
-                "resourcePath": "scripts\\export_vrax\\export_vrax.yy",
+                "resourcePath": "scripts\\export_qma\\export_qma.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -21170,8 +21194,10 @@
         "cd56789a-f283-426f-9073-df9733a81253",
         "a13e6f93-d36b-43b5-91a8-dd5e11f4573e",
         "9026b3d4-6e7b-477f-a593-dcc517725bf2",
+        "32163c8a-6857-4b8f-864d-158d3a667f83",
         "011034bf-db78-40b3-b64a-d0199b3f03f8",
         "025e7494-68e7-4a58-a082-1d288d3ba4dc",
+        "3435b63c-3f17-424f-ba46-7d9fb60578b9",
         "e9c50412-ecb6-4bfa-a617-66e7d1c75859",
         "af1e57cd-c701-4655-baa3-e5ca28c70e99",
         "75fdb47b-99b6-4312-a3c3-207f72372850",
@@ -21190,6 +21216,7 @@
         "07126765-3877-42ca-baff-58d4e37fc259",
         "322539f4-2f11-4529-b0fd-b85bcab08e7e",
         "eafb66d1-299d-499a-b90d-dd706d2bcb31",
+        "4c78b6fb-7019-4409-b04c-b356fb4179af",
         "fcf970ff-305d-4ebe-9975-49961903f151",
         "d848c42a-fe99-4192-8526-49ab3d77398c",
         "44327d63-897f-47cc-afd0-a490d8846c46",
