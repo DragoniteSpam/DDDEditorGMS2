@@ -1,24 +1,23 @@
 /// @param buffer
-/// @param grid-size
-/// @param name
 
-var data_buffer = argument[0];
-var grid_size = argument[1];
-var name = argument[2];
+var data_buffer = argument0;
 
-var n = buffer_read(data_buffer, buffer_f32);
 var mesh = instance_create_depth(0, 0, 0, DataMesh);
 
-var vbuffer = vertex_create_buffer();
+var json = json_decode(buffer_read(data_buffer, buffer_string));
+mesh.name = json[? "name"];
+var bsize = json[? "size"];
+ds_map_destroy(json);
+
+var raw_buffer = buffer_read_buffer(data_buffer, bsize);
+var vbuffer = vertex_create_buffer_from_buffer(raw_buffer, Stuff.graphics.vertex_format);
+vertex_freeze(vbuffer);
+
 var wbuffer = vertex_create_buffer();
-vertex_begin(vbuffer, Stuff.graphics.vertex_format);
 vertex_begin(wbuffer, Stuff.graphics.vertex_format);
 
 var cdata = c_shape_create();
 c_shape_begin_trimesh();
-
-var bsize = buffer_read(data_buffer, buffer_u32);
-var raw_buffer = buffer_read_buffer(data_buffer, bsize);
 
 for (var i = 0; i < bsize; i += 3 * 40) {
     var x1 = buffer_peek(raw_buffer, i + 000, buffer_f32);
@@ -43,26 +42,12 @@ for (var i = 0; i < bsize; i += 3 * 40) {
     c_shape_add_triangle(x1, y1, z1, x2, y2, z2, x3, y3, z3);
 }
 
-if (grid_size > 0) {
-    mesh.xmin = buffer_read(data_buffer, buffer_f32);
-    mesh.ymin = buffer_read(data_buffer, buffer_f32);
-    mesh.zmin = buffer_read(data_buffer, buffer_f32);
-    mesh.xmax = buffer_read(data_buffer, buffer_f32);
-    mesh.ymax = buffer_read(data_buffer, buffer_f32);
-    mesh.zmax = buffer_read(data_buffer, buffer_f32);
-}
-data_mesh_recalculate_bounds(mesh);
-
-vertex_end(vbuffer);
 vertex_end(wbuffer);
+vertex_freeze(wbuffer);
 c_shape_end_trimesh(cdata);
 
-mesh.name = name;
-internal_name_generate(mesh, PREFIX_MESH + string_lettersdigits(name));
+mesh_create_submesh(mesh, raw_buffer, vbuffer, wbuffer, undefined, mesh.name);
+internal_name_generate(mesh, PREFIX_MESH + string_lettersdigits(mesh.name));
 mesh.cshape = cdata;
-
-mesh_create_submesh(mesh, buffer_create_from_vertex_buffer(vbuffer, buffer_fixed, 1), vbuffer, wbuffer, undefined, name);
-vertex_freeze(vbuffer);
-vertex_freeze(wbuffer);
 
 return mesh;
