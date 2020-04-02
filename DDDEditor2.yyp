@@ -4979,6 +4979,14 @@
             }
         },
         {
+            "Key": "40a25e67-646f-4628-b8b5-3e933399e3ba",
+            "Value": {
+                "id": "258f880c-90da-48b3-b65b-a56fab96fff1",
+                "resourcePath": "scripts\\uivc_settings_game_base_screen_full\\uivc_settings_game_base_screen_full.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "40ad8d69-cbbb-49e9-a933-98de2a3a4e6b",
             "Value": {
                 "id": "3589d0a8-9f58-4f68-abf8-2145aa936631",
@@ -8239,6 +8247,14 @@
             "Value": {
                 "id": "c539b36f-b10a-40b3-a27e-d1e4872a505b",
                 "resourcePath": "scripts\\refid_remove\\refid_remove.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "68e0921f-953c-4679-89df-9a1275a53862",
+            "Value": {
+                "id": "f3e3c66d-1e04-41a1-8597-1d7d2b93f565",
+                "resourcePath": "scripts\\uivc_settings_game_base_screen_640\\uivc_settings_game_base_screen_640.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -14291,6 +14307,14 @@
             }
         },
         {
+            "Key": "b91fba25-b5b6-479e-ab73-53319f536793",
+            "Value": {
+                "id": "410bd410-9b57-4e90-b966-7089d81298b1",
+                "resourcePath": "scripts\\uivc_settings_game_base_screen_320\\uivc_settings_game_base_screen_320.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "b931e039-5e88-4c93-83e3-ca603f5aaa67",
             "Value": {
                 "id": "c7e0bdc7-396d-4b80-ad41-00e94b65f4c3",
@@ -14791,6 +14815,14 @@
             "Value": {
                 "id": "dd191a23-81f2-491b-9cad-1df0a8284376",
                 "resourcePath": "scripts\\smf_texture_get_height\\smf_texture_get_height.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "bfe1c5d7-8249-4411-9abe-ff4d9da727c1",
+            "Value": {
+                "id": "a31234ff-29bd-4ce9-b93e-7523e41c0f16",
+                "resourcePath": "scripts\\uivc_settings_game_base_screen_w\\uivc_settings_game_base_screen_w.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -16088,6 +16120,14 @@
                 "id": "e4532e66-7e59-4a94-a579-d8049164e0f9",
                 "resourcePath": "datafiles_yy\\data\\fonts\\FTimes.yy.yy",
                 "resourceType": "GMIncludedFile"
+            }
+        },
+        {
+            "Key": "d167346f-be1f-465d-b3f3-486ef5476f94",
+            "Value": {
+                "id": "7d7619e2-adff-46fd-b70c-8ad5682449e5",
+                "resourcePath": "scripts\\uivc_settings_game_base_screen_h\\uivc_settings_game_base_screen_h.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -20508,6 +20548,11 @@
         "6d0ef0ba-b11a-484c-b31d-b6a4a853a98f",
         "1b4c545b-c4c5-4949-bb22-c222e7e159b3",
         "d616593f-a361-481c-92a1-cc6305ec1b2a",
+        "bfe1c5d7-8249-4411-9abe-ff4d9da727c1",
+        "d167346f-be1f-465d-b3f3-486ef5476f94",
+        "40a25e67-646f-4628-b8b5-3e933399e3ba",
+        "b91fba25-b5b6-479e-ab73-53319f536793",
+        "68e0921f-953c-4679-89df-9a1275a53862",
         "2c048f66-104f-4d29-9494-c3de69bfaa35",
         "50fe4fdf-8254-4e9f-b121-e5451ed2913b",
         "9a91b808-8041-4d0c-ac55-a23c6f4b780a",

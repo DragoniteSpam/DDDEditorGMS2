@@ -2,12 +2,12 @@
 
 var dialog = argument0;
 
-var dw = 640;
+var dw = 960;
 var dh = 640;
 
 var dg = dialog_create(dw, dh, "Data Settings", dialog_default, dc_close_no_questions_asked, dialog);
 
-var columns = 2;
+var columns = 3;
 var spacing = 16;
 var ew = dw / columns - spacing * 2;
 var eh = 24;
@@ -19,10 +19,11 @@ var vy2 = eh;
 
 var col1_x = dw * 0 / columns + spacing;
 var col2_x = dw * 1 / columns + spacing;
+var col3_x = dw * 2 / columns + spacing;
 
 var yy = 64;
 
-var el_summary = create_input(col1_x, yy, "Summary:", dw - 64, eh, uivc_settings_game_file_summary, Stuff.game_file_summary, "Write a short description here", validate_string, 0, 1, 64, vx1, vy1, dw - 32, vy2, dg);
+var el_summary = create_input(col1_x, yy, "Summary:", dw - 64, eh, uivc_settings_game_file_summary, Stuff.game_file_summary, "Write a short description here", validate_string, 0, 1, 128, vx1, vy1, dw - 32, vy2, dg);
 el_summary.tooltip = "A quick summary of the game that the data files are to be used for; will be shown in the project list when you open the editor. Has no impact on gameplay (unless you code it to)."
 yy += el_summary.height + spacing;
 
@@ -44,31 +45,34 @@ var el_player_start = create_button(col1_x, yy, "Player Starting Position", ew, 
 el_player_start.tooltip = "Set the player's starting position on the map. By default it will be in the bottom-upper-left corner of the default map, but you probably want it to be somewhere with meaning.";
 yy += el_player_start.height + spacing;
 
+var el_graphics_title = create_text(col1_x, yy, "Graphical Settings", ew, eh, fa_left, dw / 2, dg);
+el_graphics_title.color = c_blue;
+yy += el_graphics_title.height + spacing
+
 var el_lighting_buckets = create_input(col1_x, yy, "Lighting levels:", ew, eh, uivc_settings_game_lighting_levels, Stuff.game_lighting_buckets, "float", validate_double, 1, 1000, 4, vx1, vy1, vx2, vy2, dg);
 el_lighting_buckets.tooltip = "The number of level of shading the lighting can have. Use a small number for a more cartoony lighting effect. Use a higher value for smoother lighting. A value over 100 is largely pointless, but this is a constant-time operation so you can go higher if you want.";
 yy += el_lighting_buckets.height + spacing;
 
 var el_lighting_default_ambient = create_color_picker(col1_x, yy, "Default ambient:", ew, eh, uivc_settings_game_lighting_default_ambient, Stuff.game_lighting_default_ambient, vx1, vy1, vx2, vy2, dg);
-el_lighting_default_ambient.tooltip = "The default ambient lighting color. New maps will use this value.";
+el_lighting_default_ambient.tooltip = "The default ambient lighting color. New maps will use this value. Existing maps will not be updated.";
 yy += el_lighting_default_ambient.height + spacing;
 
-var el_edit_title = create_text(col1_x, yy, "Other Settings", ew, eh, fa_left, ew, dg);
-el_edit_title.color = c_blue;
-yy += el_edit_title.height + spacing;
+var el_screen_width = create_input(col1_x, yy, "Screen Width:", ew, eh, uivc_settings_game_base_screen_w, Stuff.game_screen_base_width, "signed short int", validate_int, -0x10000, 0xffff, 6, vx1, vy1, vx2, vy2, dg);
+el_screen_width.tooltip = "How you want the game to be scaled. If you are making a game that is primarily pixel art, you may want to use a base resolution such as 640x360 or 320x180. Set these to -1 if you do not want scaling.";
+dg.el_screen_width = el_screen_width;
+yy += el_screen_width.height + spacing;
 
-var el_edit_notes_text = create_text(col1_x, yy, "Game notes:", ew, eh, fa_left, ew, dg);
-yy += el_edit_notes_text.height + spacing;
+var el_screen_height = create_input(col1_x, yy, "Screen Height:", ew, eh, uivc_settings_game_base_screen_h, Stuff.game_screen_base_height, "signed short int", validate_int, -0x10000, 0xffff, 6, vx1, vy1, vx2, vy2, dg);
+el_screen_height.tooltip = el_screen_width.tooltip;
+dg.el_screen_height = el_screen_height;
+yy += el_screen_height.height + spacing;
 
-var el_edit_notes = create_input_code(col1_x, yy, "", ew, eh, 0, vy1, ew, vy2, Stuff.game_notes, uivc_settings_game_notes, dg);
-el_edit_notes.tooltip = "This doesn't affect the game, but you may find it helpful to keep a set of notes for things you want to remember while working on it.";
-el_edit_notes.is_code = false;
-yy += el_edit_notes.height + spacing;
+var el_screen_full = create_button(col1_x, yy, "Full", ew / 3, eh, fa_center, uivc_settings_game_base_screen_full, dg);
+var el_screen_320 = create_button(col1_x + ew / 3, yy, "320x180", ew / 3, eh, fa_center, uivc_settings_game_base_screen_320, dg);
+var el_screen_640 = create_button(col1_x + ew * 2 / 3, yy, "640x360", ew / 3, eh, fa_center, uivc_settings_game_base_screen_640, dg);
+yy += el_screen_640.height + spacing;
 
 yy = yy_base;
-
-var el_data_files = create_button(col2_x, yy, "Data and Asset Files", ew, eh, fa_center, dialog_create_settings_data_asset_files, dg);
-el_data_files.tooltip = "You may wish to separate different kinds of game assets into different data files. In fact, if you have a lot of them, you'll definitely want to do that, especially if you're on source control.";
-yy += el_data_files.height + spacing;
 
 var el_global_title = create_text(col2_x, yy, "Variables and Stuff", ew, eh, fa_left, dw / 2, dg);
 el_global_title.color = c_blue;
@@ -112,6 +116,21 @@ yy += el_common_effect_code.height + spacing;
 
 yy = yy_base;
 
+var el_edit_title = create_text(col3_x, yy, "Other Settings", ew, eh, fa_left, ew, dg);
+el_edit_title.color = c_blue;
+yy += el_edit_title.height + spacing;
+
+var el_edit_notes = create_input_code(col3_x, yy, "Game notes:", ew, eh, vx1, vy1, vx2, vy2, Stuff.game_notes, uivc_settings_game_notes, dg);
+el_edit_notes.tooltip = "This doesn't affect the game, but you may find it helpful to keep a set of notes for things you want to remember while working on it.";
+el_edit_notes.is_code = false;
+yy += el_edit_notes.height + spacing;
+
+var el_data_files = create_button(col3_x, yy, "Data and Asset Files", ew, eh, fa_center, dialog_create_settings_data_asset_files, dg);
+el_data_files.tooltip = "You may wish to separate different kinds of game assets into different data files. In fact, if you have a lot of them, you'll definitely want to do that, especially if you're on source control.";
+yy += el_data_files.height + spacing;
+
+yy = yy_base;
+
 // confirm
     
 var b_width = 128;
@@ -125,13 +144,15 @@ ds_list_add(dg.contents,
     el_gameplay_title,
     el_gameplay_grid,
     el_player_start,
+    // graphics
+    el_graphics_title,
     el_lighting_buckets,
     el_lighting_default_ambient,
-    // data settings
-    el_edit_title,
-    el_edit_notes_text,
-    el_edit_notes,
-    el_data_files,
+    el_screen_width,
+    el_screen_height,
+    el_screen_full,
+    el_screen_320,
+    el_screen_640,
     // game variables and stuff
     el_global_title,
     el_variables,
@@ -144,6 +165,10 @@ ds_list_add(dg.contents,
     // global code pieces
     el_common_code,
     el_common_effect_code,
+    // other things
+    el_edit_title,
+    el_edit_notes,
+    el_data_files,
     // confirm
     el_confirm
 );
