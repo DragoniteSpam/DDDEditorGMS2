@@ -44,11 +44,6 @@ var el_player_start = create_button(col1_x, yy, "Player Starting Position", ew, 
 el_player_start.tooltip = "Set the player's starting position on the map. By default it will be in the bottom-upper-left corner of the default map, but you probably want it to be somewhere with meaning.";
 yy += el_player_start.height + spacing;
 
-var el_battle_type = create_radio_array(col1_x, yy, "Battle Style", ew, eh, uivc_settings_game_battle_style, Stuff.game_battle_style, dg);
-el_battle_type.tooltip = "Team-based: standard turn-based RPG fare;\nGrid-based: contestants can move around the battle freely (but it's still turn-based);\nAction: you need reflexes";
-create_radio_array_options(el_battle_type, ["Team-based", "Grid-based", "Action"]);
-yy += ui_get_radio_array_height(el_battle_type) + spacing;
-
 var el_lighting_buckets = create_input(col1_x, yy, "Lighting levels:", ew, eh, uivc_settings_game_lighting_levels, Stuff.game_lighting_buckets, "float", validate_double, 1, 1000, 4, vx1, vy1, vx2, vy2, dg);
 el_lighting_buckets.tooltip = "The number of level of shading the lighting can have. Use a small number for a more cartoony lighting effect. Use a higher value for smoother lighting. A value over 100 is largely pointless, but this is a constant-time operation so you can go higher if you want.";
 yy += el_lighting_buckets.height + spacing;
@@ -130,7 +125,6 @@ ds_list_add(dg.contents,
     el_gameplay_title,
     el_gameplay_grid,
     el_player_start,
-    el_battle_type,
     el_lighting_buckets,
     el_lighting_default_ambient,
     // data settings

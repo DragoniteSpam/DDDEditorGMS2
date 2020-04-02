@@ -88,5 +88,6 @@ ds_map_destroy(global.error_map);
 
 enum DataVersions {
     NUKE_UNUSED_BOOLS                   = 98,
+    BASE_SCREEN_DIMENSIONS              = 99,
     _CURRENT /* = whatever the last one is + 1 */
 }

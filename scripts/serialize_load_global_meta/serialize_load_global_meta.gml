@@ -18,7 +18,14 @@ Stuff.game_common_effect_code = buffer_read(buffer, buffer_string);
 
 var bools = buffer_read(buffer, buffer_u32);
 Stuff.game_player_grid = unpack(bools, 0);
-Stuff.game_battle_style = buffer_read(buffer, buffer_u8);
+
+if (version >= DataVersions.BASE_SCREEN_DIMENSIONS) {
+    Stuff.game_screen_base_width = buffer_read(buffer, buffer_s16);
+    Stuff.game_screen_base_height = buffer_read(buffer, buffer_s16);
+} else {
+    // this was the battle style, which is no longer used
+    buffer_read(buffer, buffer_u8);
+}
 
 var n_switches = buffer_read(buffer, buffer_u16);
 var n_variables = buffer_read(buffer, buffer_u16);

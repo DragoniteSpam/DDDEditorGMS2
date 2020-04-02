@@ -418,9 +418,10 @@ game_starting_y = 0;
 game_starting_z = 0;
 game_starting_direction = 0;
 game_player_grid = true;
-game_battle_style = BattleStyles.TEAM_BASED;
 game_lighting_buckets = 100;
 game_lighting_default_ambient = c_white;
+game_screen_base_width = -1;
+game_screen_base_height = -1;
 
 game_common_effect_code = default_lua_effect_common;
 

@@ -19,7 +19,8 @@ buffer_write(buffer, buffer_string, Stuff.game_common_effect_code);
 var bools = pack(Stuff.game_player_grid);
 buffer_write(buffer, buffer_u32, bools);
 
-buffer_write(buffer, buffer_u8, Stuff.game_battle_style);
+buffer_write(buffer, buffer_s16, Stuff.game_screen_base_width);
+buffer_write(buffer, buffer_s16, Stuff.game_screen_base_height);
 
 var n_switches = ds_list_size(Stuff.switches);
 var n_variables = ds_list_size(Stuff.variables);
