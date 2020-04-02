@@ -7,6 +7,8 @@ var dialog = argument0;
 dialog.el_data_name.interactive = true;
 dialog.el_add_p.interactive = true;
 dialog.el_remove_p.interactive = true;
+dialog.el_move_up.interactive = true;
+dialog.el_move_down.interactive = true;
 
 dialog.el_property_name.interactive = true;
 ui_input_set_value(dialog.el_property_name, dialog.selected_property.name);

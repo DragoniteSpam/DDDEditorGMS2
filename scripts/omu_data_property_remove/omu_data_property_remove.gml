@@ -1,10 +1,10 @@
-/// @param UIThing
+/// @param UIButton
 
-var thing = argument0;
+var button = argument0;
 
-if (thing.root.selected_property) {
-    var data = thing.root.selected_data;
-    var index = ds_list_find_index(data.properties, thing.root.selected_property);
+if (button.root.selected_property) {
+    var data = button.root.selected_data;
+    var index = ds_list_find_index(data.properties, button.root.selected_property);
     ds_list_delete(data.properties, index);
     
     if (data.type == DataTypes.DATA) {
@@ -14,5 +14,9 @@ if (thing.root.selected_property) {
             ds_list_delete(instances[| i].values, index);
         }
     }
-    ui_list_deselect(thing.root.el_list_p);
+    
+    ui_list_deselect(button.root.el_list_p);
+    button.interactive = false;
+    button.root.el_move_up.interactive = false;
+    button.root.el_move_down.interactive = false;
 }

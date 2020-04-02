@@ -6,7 +6,7 @@
 var dialog = argument0;
 
 var dw = 960;
-var dh = 640;
+var dh = 720;
 
 var dg = dialog_create(dw, dh, "Data: Data", dialog_default, undefined, dialog);
 
@@ -74,6 +74,18 @@ el_add_p.interactive = false;
 dg.el_add_p = el_add_p;
 
 yy += el_add_p.height + spacing;
+
+var el_move_up = create_button(col2_x, yy, "Move Up", ew, eh, fa_center, null, dg);
+el_move_up.interactive = false;
+dg.el_move_up = el_move_up;
+
+yy += el_move_up.height + spacing;
+
+var el_move_down = create_button(col2_x, yy, "Move Down", ew, eh, fa_center, null, dg);
+el_move_down.interactive = false;
+dg.el_move_down = el_move_down;
+
+yy += el_move_down.height + spacing;
 
 var el_remove_p = create_button(col2_x, yy, "Remove Property", ew, eh, fa_center, omu_data_property_remove, dg);
 el_remove_p.interactive = false;
@@ -169,13 +181,35 @@ yy += eh + spacing;
 var el_confirm = create_button(dw / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dc_default, dg, fa_center);
 
 ds_list_add(dg.contents,
-    el_list, el_add, el_add_enum, el_remove,
-    el_data_name, el_list_p, el_add_p, el_remove_p,
-    el_property_name, el_property_type, el_property_ext_type,
-    el_property_size, el_property_type_guid, el_property_min, el_property_char_limit,
-    el_property_max, el_property_scale,
-    el_property_default_code, el_property_default_string, el_property_default_real,
-    el_property_default_bool, el_property_default_int, el_property_default_na,
+    // data types
+    el_list,
+    el_add,
+    el_add_enum,
+    el_remove,
+    // data type
+    el_data_name,
+    el_list_p,
+    el_add_p,
+    el_move_up,
+    el_move_down,
+    el_remove_p,
+    // properties
+    el_property_name,
+    el_property_type,
+    el_property_ext_type,
+    el_property_size,
+    el_property_type_guid,
+    el_property_min,
+    el_property_char_limit,
+    el_property_max,
+    el_property_scale,
+    el_property_default_code,
+    el_property_default_string,
+    el_property_default_real,
+    el_property_default_bool,
+    el_property_default_int,
+    el_property_default_na,
+    // that's it
     el_confirm
 );
 

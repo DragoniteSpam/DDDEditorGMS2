@@ -27,6 +27,8 @@ if (ds_list_size(datadata.properties) < 1000) {
     
     button.root.el_data_name.interactive = true;
     button.root.el_add_p.interactive = true;
+    button.root.el_move_up.interactive = true;
+    button.root.el_move_down.interactive = true;
     button.root.el_remove_p.interactive = true;
 } else {
     dialog_create_notice(button.root, "Please don't try to create more than a thousand properties on a single data type. Bad things will happen.", "Hey!");
