@@ -81,7 +81,7 @@ dg.el_move_up = el_move_up;
 
 yy += el_move_up.height + spacing;
 
-var el_move_down = create_button(col2_x, yy, "Move Down", ew, eh, fa_center, null, dg);
+var el_move_down = create_button(col2_x, yy, "Move Down", ew, eh, fa_center, omu_data_property_move_down, dg);
 el_move_down.interactive = false;
 dg.el_move_down = el_move_down;
 
