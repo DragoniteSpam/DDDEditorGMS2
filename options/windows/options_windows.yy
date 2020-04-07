@@ -33,8 +33,8 @@
     "option_windows_version": {
         "build": 1,
         "major": 2020,
-        "minor": 1,
-        "revision": 42
+        "minor": 2,
+        "revision": 43
     },
     "option_windows_vsync": false
 }
