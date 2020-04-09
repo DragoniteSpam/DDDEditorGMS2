@@ -13,6 +13,7 @@ char_limit = 20;                      // string
 type_guid = 0;                        // Data, enum
 
 max_size = 1;
+size_can_be_zero = false;
 
 default_real = 0;
 default_int = 0;

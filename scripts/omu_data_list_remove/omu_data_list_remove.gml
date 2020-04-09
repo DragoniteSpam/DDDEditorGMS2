@@ -8,7 +8,7 @@ var instance = guid_get(data.instances[| selection].GUID);
 var plist = instance.values[| thing.key];
 var pselection = ui_list_selection(thing.root.el_list_main);
 
-if (pselection >= 0 && ds_list_size(plist) > 1) {
+if (pselection + 1 && ds_list_size(plist) > (thing.root.property.size_can_be_zero ? 0 : 1)) {
     ds_list_delete(plist, pselection);
     // plist and the list element's list point to the same data structure
     // and you can remove from either, although i prefer to remove from

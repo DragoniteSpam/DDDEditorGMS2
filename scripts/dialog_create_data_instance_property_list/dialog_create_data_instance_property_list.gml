@@ -16,6 +16,7 @@ var property = data.properties[| root.key];
 var instance = guid_get(data.instances[| selection].GUID);
 
 var dg = dialog_create(dw, dh, instance.name + ": " + property.name, dialog_default, dc_close_no_questions_asked, root);
+dg.property = property;
 
 var columns = 1;
 var spacing = 16;
@@ -35,7 +36,7 @@ var yy = 64;
 var plist = instance.values[| root.key];
 var el_list = create_list(16, yy,
     "Values (" + string(ds_list_size(plist)) + " / " + string(property.max_size) + ")",
-    "<something went wrong>", ew, eh, 8, uivc_list_data_list_select, false, dg, plist
+    "<no values>", ew, eh, 8, uivc_list_data_list_select, false, dg, plist
 );
 el_list.numbered = true;
 el_list.key = root.key;
