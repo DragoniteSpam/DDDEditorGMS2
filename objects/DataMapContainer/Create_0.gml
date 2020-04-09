@@ -41,6 +41,7 @@ base_encounter_rate = 8;                    // steps?
 base_encounter_deviation = 4;               // ehh
 light_enabled = true;                       // bool
 light_ambient_colour = c_white;             // uint
+light_player_enabled = true;                // bool
 
 discovery = 0;                              // index
 

@@ -35,7 +35,9 @@ map.is_3d =                     unpack(bools, 4);
 map.fog_enabled =               unpack(bools, 5);
 map.on_grid =                   unpack(bools, 6);
 map.reflections_enabled =       unpack(bools, 7);
-// 8
+if (version >= DataVersions.MAP_PLAYER_LIGHT) {
+    map.light_player_enabled =  unpack(bools, 8);
+}
 map.light_enabled =             unpack(bools, 9);
 
 map.code =                      buffer_read(buffer, buffer_string);

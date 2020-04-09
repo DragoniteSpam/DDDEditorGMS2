@@ -32,7 +32,7 @@ var bools = pack(
     map.fog_enabled,
     map.on_grid,
     map.reflections_enabled,
-    0,  // 8
+    map.light_player_enabled,
     map.light_enabled,
 );
 

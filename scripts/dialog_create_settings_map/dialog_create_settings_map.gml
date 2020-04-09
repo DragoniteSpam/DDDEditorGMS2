@@ -30,11 +30,6 @@ var vy2 = eh;
 var yy = 64;
 var yy_base = 64;
 
-var el_other_grid = create_checkbox(col1_x, yy, "Grid aligned?", ew, eh, null, map.on_grid, dg);
-el_other_grid.tooltip = "This setting is currently unavailable; in the future I may enable off-grid editing";
-el_other_grid.interactive = false;
-yy += el_other_grid.height + spacing;
-
 var el_other = create_text(col1_x, yy, "Lighting, Fog and Atmosphere", ew, eh, fa_left, ew, dg);
 el_other.color = c_blue;
 yy += el_other.height + spacing;
@@ -69,6 +64,10 @@ var el_other_light_colour = create_color_picker(col1_x, yy, "     Ambient:", ew,
 el_other_light_colour.tooltip = "The color of unlit regions of the map; most of the time, this should be black";
 dg.el_other_light_colour = el_other_light_colour;
 yy += el_other_light_colour.height + spacing;
+
+var el_other_light_player = create_checkbox(col1_x + 16, yy, "Player Light Enabled?", ew, eh, uivc_settings_map_light_player_enabled, map.light_player_enabled, dg);
+el_other_light_player.tooltip = "Whether or not there should be a point light around the player on this map";
+yy += el_other_light_player.height + spacing;
 
 var el_other_light_list = create_button(col1_x, yy, "Default Lights", ew, eh, fa_center, dialog_create_map_default_lights, dg);
 el_other_light_list.tooltip = "Choose which lights will be turned on by default in this map. Up to eight lights may be active at one time.";
@@ -130,6 +129,12 @@ yy += el_other_fast_travel_to.height + spacing;
 var el_other_fast_travel_from = create_checkbox(col2_x, yy, "Can fast travel from?", ew, eh, uivc_settings_map_fast_travel_from, map.fast_travel_from, dg);
 el_other_fast_travel_from.tooltip = "Should you be able to teleport away from this map?";
 yy += el_other_fast_travel_from.height + spacing;
+
+var el_other_grid = create_checkbox(col1_x, yy, "Grid aligned?", ew, eh, null, map.on_grid, dg);
+el_other_grid.tooltip = "This setting is currently unavailable; in the future I may enable off-grid editing";
+el_other_grid.interactive = false;
+yy += el_other_grid.height + spacing;
+
 #endregion
 
 var b_width = 128;
@@ -145,6 +150,7 @@ ds_list_add(dg.contents,
     el_other_fog_colour,
     el_other_light_enabled,
     el_other_light_colour,
+    el_other_light_player,
     el_other_light_list,
     el_other_indoors,
     el_other_water,

@@ -90,5 +90,6 @@ enum DataVersions {
     NUKE_UNUSED_BOOLS                   = 98,
     BASE_SCREEN_DIMENSIONS              = 99,
     PROPERTY_SIZE_CAN_BE_ZERO           = 100,
+    MAP_PLAYER_LIGHT                    = 101,
     _CURRENT /* = whatever the last one is + 1 */
 }
