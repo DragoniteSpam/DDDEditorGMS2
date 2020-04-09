@@ -20,6 +20,8 @@ if (dialog.selected_data.type == DataTypes.DATA) {
     dialog.el_property_ext_type.interactive = true;
     dialog.el_property_size.interactive = true;
     ui_input_set_value(dialog.el_property_size, string(dialog.selected_property.max_size));
+    dialog.el_property_size_can_be_zero.interactive = true;
+    dialog.el_property_size_can_be_zero.value = dialog.selected_property.size_can_be_zero;
     
     dialog.el_property_type.value = dialog.selected_property.type;
     

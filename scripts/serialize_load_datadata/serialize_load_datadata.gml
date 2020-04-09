@@ -50,6 +50,9 @@ repeat (n_datadata) {
                 property.default_code = buffer_read(buffer, buffer_string);
                 
                 property.max_size = buffer_read(buffer, buffer_u8);
+                if (version >= DataVersions.PROPERTY_SIZE_CAN_BE_ZERO) {
+                    property.size_can_be_zero = buffer_read(buffer, buffer_u8);
+                }
                 property.default_string = buffer_read(buffer, buffer_string);
                 property.default_int = buffer_read(buffer, buffer_s32);
                 property.default_real = buffer_read(buffer, buffer_f32);

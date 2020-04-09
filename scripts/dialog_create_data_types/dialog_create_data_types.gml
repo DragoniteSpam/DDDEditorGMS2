@@ -122,6 +122,13 @@ dg.el_property_size = el_property_size;
 
 yy += eh + spacing;
 
+var el_property_size_can_be_zero = create_checkbox(col3_x, yy, "Capacity can be zero", ew, eh, uivc_input_data_size_can_be_zero, false, dg);
+el_property_size_can_be_zero.tooltip = "List values are optionally allowed to have their capacity be zero."
+el_property_size_can_be_zero.interactive = false;
+dg.el_property_size_can_be_zero = el_property_size_can_be_zero;
+
+yy += eh + spacing;
+
 var el_property_default_code = create_input_code(col3_x, yy, "Default:", ew, eh, vx1, vy1, vx2, vy2, "", uivc_input_data_default_code, dg);
 el_property_default_code.enabled = false;
 dg.el_property_default_code = el_property_default_code;
@@ -198,6 +205,7 @@ ds_list_add(dg.contents,
     el_property_type,
     el_property_ext_type,
     el_property_size,
+    el_property_size_can_be_zero,
     el_property_type_guid,
     el_property_min,
     el_property_char_limit,

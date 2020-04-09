@@ -13,6 +13,7 @@ dialog.el_property_type.interactive = false;
 dialog.el_property_ext_type.interactive = false;
 dialog.el_property_type_guid.enabled = false;
 dialog.el_property_size.interactive = false;
+dialog.el_property_size_can_be_zero.interactive = false;
 dialog.el_property_min.interactive = false;
 dialog.el_property_max.interactive = false;
 dialog.el_property_char_limit.interactive = false;
