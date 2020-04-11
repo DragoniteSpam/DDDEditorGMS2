@@ -16,6 +16,7 @@ dialog.el_data_property_bool.interactive = false;
 dialog.el_data_list.interactive = false;
 dialog.el_data_type_guid.interactive = false;
 dialog.el_data_property_color.interactive = false;
+dialog.el_data_property_entity.interactive = false;
 dialog.el_data_builtin_list.interactive = false;
 
 dialog.el_data_property_code.enabled = false;
@@ -26,4 +27,5 @@ dialog.el_data_property_bool.enabled = false;
 dialog.el_data_list.enabled = false;
 dialog.el_data_type_guid.enabled = false;
 dialog.el_data_property_color.enabled = false;
+dialog.el_data_property_entity.enabled = false;
 dialog.el_data_builtin_list.enabled = false;

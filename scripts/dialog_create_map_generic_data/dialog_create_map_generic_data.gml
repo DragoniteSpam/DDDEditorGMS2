@@ -53,6 +53,12 @@ el_data_ext_type.interactive = false;
 dg.el_data_ext_type = el_data_ext_type;
 yy += el_data_ext_type.height + spacing;
 
+var el_data_property_entity = create_list(col2_x, yy, "Entities", "<none>", ew, eh, 8, uivc_list_map_entity_refid, false, dg, map.contents.all_entities);
+el_data_property_entity.interactive = false;
+el_data_property_entity.enabled = false;
+el_data_property_entity.entries_are = ListEntries.INSTANCES;
+dg.el_data_property_entity = el_data_property_entity;
+
 var el_data_property_code = create_input_code(col2_x, yy, "Code:", ew, eh, vx1, vy1, vx2, vy2, "", uivc_input_map_data_code, dg);
 el_data_property_code.interactive = false;
 el_data_property_code.enabled = false;
@@ -128,6 +134,7 @@ ds_list_add(dg.contents,
     el_data_property_int,
     el_data_property_bool,
     el_data_property_color,
+    el_data_property_entity,
     el_confirm
 );
 

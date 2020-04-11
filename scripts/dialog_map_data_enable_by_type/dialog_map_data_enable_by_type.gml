@@ -103,7 +103,11 @@ switch (data.type) {
         dialog.el_data_builtin_list.entries = Stuff.all_animations;
         break;
     case DataTypes.ENTITY:
-        not_yet_implemented();
+        dialog.el_data_property_entity.interactive = true;
+        dialog.el_data_property_entity.enabled = true;
+        var ref_index = ds_list_find_index(map.contents.all_entities, refid_get(data.value_data));
+        ui_list_deselect(dialog.el_data_property_entity);
+        ui_list_select(dialog.el_data_property_entity, ref_index, true);
         break;
     case DataTypes.MAP:
         dialog.el_data_builtin_list.interactive = true;
