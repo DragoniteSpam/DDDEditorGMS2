@@ -6,6 +6,7 @@ if (!GLOBAL_CONTORLS_ENABLED) {
  * General keyboard shortcuts
  */
 if (keyboard_check(vk_control)) {
+    ui_activate(noone);
     // file
     if (keyboard_check_pressed(ord("S"))) {
         momu_save_data(noone);
