@@ -77,11 +77,17 @@ switch (data.type) {
         dialog.el_data_builtin_list.interactive = true;
         dialog.el_data_builtin_list.enabled = true;
         dialog.el_data_builtin_list.entries = Stuff.all_meshes;
+        var data_index = ds_list_find_index(Stuff.all_meshes, guid_get(data.value_data));
+        ui_list_deselect(dialog.el_data_builtin_list);
+        ui_list_select(dialog.el_data_builtin_list, data_index, true);
         break;
     case DataTypes.IMG_TILESET:
         dialog.el_data_builtin_list.interactive = true;
         dialog.el_data_builtin_list.enabled = true;
         dialog.el_data_builtin_list.entries = Stuff.all_graphic_tilesets;
+        var data_index = ds_list_find_index(Stuff.all_graphic_tilesets, guid_get(data.value_data));
+        ui_list_deselect(dialog.el_data_builtin_list);
+        ui_list_select(dialog.el_data_builtin_list, data_index, true);
         break;
     case DataTypes.TILE:
     case DataTypes.AUTOTILE:
@@ -91,16 +97,25 @@ switch (data.type) {
         dialog.el_data_builtin_list.interactive = true;
         dialog.el_data_builtin_list.enabled = true;
         dialog.el_data_builtin_list.entries = Stuff.all_bgm;
+        var data_index = ds_list_find_index(Stuff.all_bgm, guid_get(data.value_data));
+        ui_list_deselect(dialog.el_data_builtin_list);
+        ui_list_select(dialog.el_data_builtin_list, data_index, true);
         break;
     case DataTypes.AUDIO_SE:
         dialog.el_data_builtin_list.interactive = true;
         dialog.el_data_builtin_list.enabled = true;
         dialog.el_data_builtin_list.entries = Stuff.all_se;
+        var data_index = ds_list_find_index(Stuff.all_se, guid_get(data.value_data));
+        ui_list_deselect(dialog.el_data_builtin_list);
+        ui_list_select(dialog.el_data_builtin_list, data_index, true);
         break;
     case DataTypes.ANIMATION:
         dialog.el_data_builtin_list.interactive = true;
         dialog.el_data_builtin_list.enabled = true;
         dialog.el_data_builtin_list.entries = Stuff.all_animations;
+        var data_index = ds_list_find_index(Stuff.all_animations, guid_get(data.value_data));
+        ui_list_deselect(dialog.el_data_builtin_list);
+        ui_list_select(dialog.el_data_builtin_list, data_index, true);
         break;
     case DataTypes.ENTITY:
         dialog.el_data_property_entity.interactive = true;
@@ -113,31 +128,49 @@ switch (data.type) {
         dialog.el_data_builtin_list.interactive = true;
         dialog.el_data_builtin_list.enabled = true;
         dialog.el_data_builtin_list.entries = Stuff.all_maps;
+        var data_index = ds_list_find_index(Stuff.all_maps, guid_get(data.value_data));
+        ui_list_deselect(dialog.el_data_builtin_list);
+        ui_list_select(dialog.el_data_builtin_list, data_index, true);
         break;
     case DataTypes.IMG_BATTLER:
         dialog.el_data_builtin_list.interactive = true;
         dialog.el_data_builtin_list.enabled = true;
         dialog.el_data_builtin_list.entries = Stuff.all_graphic_battlers;
+        var data_index = ds_list_find_index(Stuff.all_graphic_battlers, guid_get(data.value_data));
+        ui_list_deselect(dialog.el_data_builtin_list);
+        ui_list_select(dialog.el_data_builtin_list, data_index, true);
         break;
     case DataTypes.IMG_OVERWORLD:
         dialog.el_data_builtin_list.interactive = true;
         dialog.el_data_builtin_list.enabled = true;
         dialog.el_data_builtin_list.entries = Stuff.all_graphic_overworlds;
+        var data_index = ds_list_find_index(Stuff.all_graphic_overworlds, guid_get(data.value_data));
+        ui_list_deselect(dialog.el_data_builtin_list);
+        ui_list_select(dialog.el_data_builtin_list, data_index, true);
         break;
     case DataTypes.IMG_PARTICLE:
         dialog.el_data_builtin_list.interactive = true;
         dialog.el_data_builtin_list.enabled = true;
         dialog.el_data_builtin_list.entries = Stuff.all_graphic_particles;
+        var data_index = ds_list_find_index(Stuff.all_graphic_particles, guid_get(data.value_data));
+        ui_list_deselect(dialog.el_data_builtin_list);
+        ui_list_select(dialog.el_data_builtin_list, data_index, true);
         break;
     case DataTypes.IMG_UI:
         dialog.el_data_builtin_list.interactive = true;
         dialog.el_data_builtin_list.enabled = true;
         dialog.el_data_builtin_list.entries = Stuff.all_graphic_ui;
+        var data_index = ds_list_find_index(Stuff.all_graphic_ui, guid_get(data.value_data));
+        ui_list_deselect(dialog.el_data_builtin_list);
+        ui_list_select(dialog.el_data_builtin_list, data_index, true);
         break;
     case DataTypes.IMG_ETC:
         dialog.el_data_builtin_list.interactive = true;
         dialog.el_data_builtin_list.enabled = true;
         dialog.el_data_builtin_list.entries = Stuff.all_graphic_etc;
+        var data_index = ds_list_find_index(Stuff.all_graphic_etc, guid_get(data.value_data));
+        ui_list_deselect(dialog.el_data_builtin_list);
+        ui_list_select(dialog.el_data_builtin_list, data_index, true);
         break;
     case DataTypes.EVENT:
         not_yet_implemented();
