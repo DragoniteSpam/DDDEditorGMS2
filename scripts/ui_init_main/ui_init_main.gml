@@ -427,8 +427,8 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy = legal_y + spacing;
     
     draw_set_font(FDefault12);
-    var max_characters = 18;
-    vx2 = vx1 + string_width(string("m")) * max_characters + 32;
+    var max_characters = 32;
+    vx2 = vx1 + 288;
     
     element_entity_name = create_input(col1_x, yy, "Name: ", legal_width, element_height, uivc_input_entity_name, "", "Helpful if unique", validate_string, 0, 1, max_characters, vx1, vy1, vx2, vy2, t_p_entity);
     ds_list_add(t_p_entity.contents, element_entity_name);
