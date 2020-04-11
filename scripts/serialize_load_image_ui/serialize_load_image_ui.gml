@@ -22,8 +22,8 @@ repeat (n_images) {
     data.y = buffer_read(buffer, buffer_f32);
     data.width = buffer_read(buffer, buffer_f32);
     data.height = buffer_read(buffer, buffer_f32);
-    
     data.aspeed = buffer_read(buffer, buffer_f32);
+    
     var bools = buffer_read(buffer, buffer_u32);
     data.texture_exclude = unpack(bools, 0);
     

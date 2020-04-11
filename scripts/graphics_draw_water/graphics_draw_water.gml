@@ -18,12 +18,12 @@ for (var i = -1; i < 3; i++) {
         texture_set_stage(shader_get_sampler_index(shd_water, "displacementMap"), sprite_get_texture(spr_water_displacement, 0));
         shader_set_uniform_f(shader_get_uniform(shd_water, "displacement"), 0.0625);
         shader_set_uniform_f(shader_get_uniform(shd_water, "baseAlpha"), 1);
-        shader_set_uniform_f_array(shader_get_uniform(shd_water, "time"), [current_time / 1000, current_time / 1000]);
+        shader_set_uniform_f(shader_get_uniform(shd_water, "time"), current_time / 1000, current_time / 1000);
         
         vertex_submit(Stuff.graphics.mesh_water_base, pr_trianglelist, sprite_get_texture(spr_water_base, 0));
         
         shader_set_uniform_f(shader_get_uniform(shd_water, "baseAlpha"), 0);
-        shader_set_uniform_f_array(shader_get_uniform(shd_water, "time"), [current_time / 1024, current_time / 1200]);
+        shader_set_uniform_f(shader_get_uniform(shd_water, "time"), current_time / 1024, current_time / 1200);
         vertex_submit(Stuff.graphics.mesh_water_bright, pr_trianglelist, sprite_get_texture(spr_water_base, 0));
     }
 }
