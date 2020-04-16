@@ -15,7 +15,7 @@ void CommonLighting(inout vec4 baseColor) {
 #pragma include("fog.f.xsh")
 /// https://github.com/GameMakerDiscord/Xpanda
 
-uniform int fogEnabled;
+uniform float fogStrength;
 uniform float fogStart;
 uniform float fogEnd;
 uniform vec3 fogColor;
@@ -24,11 +24,9 @@ varying vec3 v_worldPosition;
 varying vec3 v_cameraPosition;
 
 void CommonFog(inout vec4 baseColor) {
-    if (fogEnabled == 1) {
-        float dist = length(v_worldPosition - v_cameraPosition);
-        float f = clamp((dist - fogStart) / (fogEnd - fogStart), 0., 1.);
-        baseColor.rgb = mix(baseColor.rgb, fogColor, f);
-    }
+    float dist = length(v_worldPosition - v_cameraPosition);
+    float f = clamp((dist - fogStart) / (fogEnd - fogStart) * fogStrength, 0., 1.);
+    baseColor.rgb = mix(baseColor.rgb, fogColor, f);
 }
 // include("fog.f.xsh")
 
