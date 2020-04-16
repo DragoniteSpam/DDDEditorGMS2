@@ -5,7 +5,6 @@
 #define LIGHT_POINT 2.
 #define LIGHT_SPOT 3.
 
-uniform int lightEnabled;
 uniform float lightBuckets;
 uniform Vec3 lightAmbientColor;
 uniform Vec4 lightData[MAX_LIGHTS * 3];
@@ -16,11 +15,6 @@ void CommonLightEvaluate(int i, inout vec4 finalColor, Vec3 worldPosition, Vec3 
 void CommonLightingSetup(Vec3 worldPosition, Vec3 worldNormal);
 
 void CommonLightingSetup(Vec3 worldPosition, Vec3 worldNormal) {
-    if (lightEnabled == 0) {
-        v_lightColour = Vec4(1.);
-        return;
-    }
-    
     Vec4 finalColor = Vec4(lightAmbientColor, 1.);
     
     CommonLightEvaluate(0, finalColor, worldPosition, worldNormal);

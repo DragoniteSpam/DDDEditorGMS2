@@ -23,13 +23,19 @@ if (mode.orthographic) {
 }
 
 shader_set(shd_basic_lighting);
-shader_set_uniform_i(shader_get_uniform(shd_basic_lighting, "lightEnabled"), true);
-shader_set_uniform_i(shader_get_uniform(shd_basic_lighting, "lightCount"), 1);
-shader_set_uniform_f_array(shader_get_uniform(shd_basic_lighting, "lightData"), [
-    1, 1, -1, 1,
-        0, 0, 0, 0,
-        1, 1, 1, 0,
-]);
+var light_data = array_create(MAX_LIGHTS * 12);
+array_clear(light_data, 0);
+
+// common variables
+light_data[index + 0] = 1;
+light_data[index + 1] = 1;
+light_data[index + 2] = -1;
+light_data[index + 8] = 1;
+light_data[index + 9] = 1;
+light_data[index + 10] = 1;
+light_data[index + 11] = 1;
+
+shader_set_uniform_f_array(shader_get_uniform(shd_basic_lighting, "lightData"), light_data);
 
 transform_set(0, 0, 0, 0, 0, 0, mode.view_scale, mode.view_scale, mode.view_scale);
 
