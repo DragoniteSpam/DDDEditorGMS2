@@ -8,6 +8,8 @@ uniform float lightBuckets;
 
 varying vec4 v_lightColour;
 
+void CommonLighting(inout vec4 baseColor);
+
 void CommonLighting(inout vec4 baseColor) {
     baseColor *= clamp(floor(v_lightColour * lightBuckets + vec4(0.5)) / lightBuckets, vec4(0.), vec4(1.));
 }
@@ -22,6 +24,8 @@ uniform vec3 fogColor;
 
 varying vec3 v_worldPosition;
 varying vec3 v_cameraPosition;
+
+void CommonFog(inout vec4 baseColor);
 
 void CommonFog(inout vec4 baseColor) {
     float dist = length(v_worldPosition - v_cameraPosition);

@@ -16,12 +16,14 @@ varying vec4 v_vColour;
 #define LIGHT_SPOT 3.
 
 uniform int lightEnabled;
-uniform int lightCount;
 uniform float lightBuckets;
 uniform vec3 lightAmbientColor;
 uniform vec4 lightData[MAX_LIGHTS * 3];
 
 varying vec4 v_lightColour;
+
+void CommonLightEvaluate(int i, inout vec4 finalColor, vec3 worldPosition, vec3 worldNormal);
+void CommonLightingSetup(vec3 worldPosition, vec3 worldNormal);
 
 void CommonLightingSetup(vec3 worldPosition, vec3 worldNormal) {
     if (lightEnabled == 0) {
@@ -30,37 +32,52 @@ void CommonLightingSetup(vec3 worldPosition, vec3 worldNormal) {
     }
     
     vec4 finalColor = vec4(lightAmbientColor, 1.);
-    // min isn't overloaded to work with ints, that's interesting
-    int n = int(min(float(lightCount), float(MAX_LIGHTS)));
     
-    for (int i = 0; i < n; i++) {
-        vec3 lightPosition = lightData[i * 3].xyz;
-        float type = lightData[i * 3].w;
-        vec4 lightExt = lightData[i * 3 + 1];
-        vec4 lightColor = lightData[i * 3 + 2];
-        
-        // in_Colour is not actually applied here - this just calculates the strength
-        // of the light and passes it to the fragment shader for it to deal with
-        if (type == LIGHT_DIRECTIONAL) {
-            // directional light: [x, y, z, type], [0, 0, 0, 0], [r, g, b, 0]
-            vec3 lightDir = -normalize(lightPosition);
-            float NdotL = max(dot(worldNormal, lightDir), 0.);
-            finalColor += lightColor * NdotL;
-        } else if (type == LIGHT_POINT) {
-            float range = lightExt.w;
-            // point light: [x, y, z, type], [0, 0, 0, range], [r, g, b, 0]
-            vec3 lightDir = worldPosition - lightPosition;
-            float dist = length(lightDir);
-            float att = clamp((1. - dist * dist / (range * range)), 0., 1.);
-            lightDir /= dist;
-            att *= att;
-            finalColor += lightColor * max(0., -dot(worldNormal, lightDir)) * att;
-        } else if (type == LIGHT_SPOT) {
-        
-        }
-    }
+    CommonLightEvaluate(0, finalColor, worldPosition, worldNormal);
+    CommonLightEvaluate(1, finalColor, worldPosition, worldNormal);
+    CommonLightEvaluate(2, finalColor, worldPosition, worldNormal);
+    CommonLightEvaluate(3, finalColor, worldPosition, worldNormal);
+    CommonLightEvaluate(4, finalColor, worldPosition, worldNormal);
+    CommonLightEvaluate(5, finalColor, worldPosition, worldNormal);
+    CommonLightEvaluate(6, finalColor, worldPosition, worldNormal);
+    CommonLightEvaluate(7, finalColor, worldPosition, worldNormal);
+    CommonLightEvaluate(8, finalColor, worldPosition, worldNormal);
+    CommonLightEvaluate(9, finalColor, worldPosition, worldNormal);
+    CommonLightEvaluate(10, finalColor, worldPosition, worldNormal);
+    CommonLightEvaluate(11, finalColor, worldPosition, worldNormal);
+    CommonLightEvaluate(12, finalColor, worldPosition, worldNormal);
+    CommonLightEvaluate(13, finalColor, worldPosition, worldNormal);
+    CommonLightEvaluate(14, finalColor, worldPosition, worldNormal);
+    CommonLightEvaluate(15, finalColor, worldPosition, worldNormal);
     
     v_lightColour = finalColor;
+}
+
+void CommonLightEvaluate(int i, inout vec4 finalColor, in vec3 worldPosition, in vec3 worldNormal) {
+    vec3 lightPosition = lightData[i * 3].xyz;
+    float type = lightData[i * 3].w;
+    vec4 lightExt = lightData[i * 3 + 1];
+    vec4 lightColor = lightData[i * 3 + 2];
+    
+    // in_Colour is not actually applied here - this just calculates the strength
+    // of the light and passes it to the fragment shader for it to deal with
+    if (type == LIGHT_DIRECTIONAL) {
+        // directional light: [x, y, z, type], [0, 0, 0, 0], [r, g, b, 0]
+        vec3 lightDir = -normalize(lightPosition);
+        float NdotL = max(dot(worldNormal, lightDir), 0.);
+        finalColor += lightColor * NdotL;
+    } else if (type == LIGHT_POINT) {
+        float range = lightExt.w;
+        // point light: [x, y, z, type], [0, 0, 0, range], [r, g, b, 0]
+        vec3 lightDir = worldPosition - lightPosition;
+        float dist = length(lightDir);
+        float att = clamp((1. - dist * dist / (range * range)), 0., 1.);
+        lightDir /= dist;
+        att *= att;
+        finalColor += lightColor * max(0., -dot(worldNormal, lightDir)) * att;
+    } else if (type == LIGHT_SPOT) {
+    
+    }
 }
 // include("lighting.v.xsh")
 #pragma include("fog.v.xsh")
@@ -68,6 +85,8 @@ void CommonLightingSetup(vec3 worldPosition, vec3 worldNormal) {
 
 varying vec3 v_worldPosition;
 varying vec3 v_cameraPosition;
+
+void CommonFogSetup();
 
 void CommonFogSetup() {
     v_cameraPosition = vec3(gm_Matrices[MATRIX_WORLD][0][3], gm_Matrices[MATRIX_WORLD][1][3], gm_Matrices[MATRIX_WORLD][2][3]);
