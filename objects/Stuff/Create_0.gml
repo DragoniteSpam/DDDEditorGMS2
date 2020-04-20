@@ -158,6 +158,7 @@ fmod_paused = false;
 #region asset lists
 
 all_guids = ds_map_create();
+guid_current = 0;
 all_internal_names = ds_map_create();
 
 spr_character_default = sprite_add(PATH_GRAPHICS + "b_chr_default.png", 0, false, false, 0, 0);
