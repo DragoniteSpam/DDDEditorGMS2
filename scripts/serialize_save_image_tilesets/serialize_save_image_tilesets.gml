@@ -17,7 +17,7 @@ for (var i = 0; i < n_tilesets; i++) {
     buffer_write(buffer, buffer_string, ts.name);
     buffer_write(buffer, buffer_string, ts.internal_name);
     buffer_write(buffer, buffer_string, ts.summary);
-    buffer_write(buffer, buffer_u32, ts.GUID);
+    buffer_write(buffer, buffer_datatype, ts.GUID);
     
     buffer_write(buffer, buffer_string, ts.picture_name);
     

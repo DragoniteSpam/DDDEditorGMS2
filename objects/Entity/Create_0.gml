@@ -74,7 +74,7 @@ generic_data = ds_list_create();
 autonomous_movement = AutonomousMovementTypes.FIXED;
 autonomous_movement_speed = 3;                            // 0: 0.125, 1: 0.25, 2: 0.5, 3: 1, 4: 2, 5: 4
 autonomous_movement_frequency = 2;                        // 0 through 4
-autonomous_movement_route = 0;                            // GUID
+autonomous_movement_route = NULL;
 
 movement_routes = ds_list_create();             // list of DataMovementRoutes
 

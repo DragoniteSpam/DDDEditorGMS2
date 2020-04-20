@@ -18,7 +18,7 @@ for (var i = 0; i < n_events; i++) {
     // this was written in pieces before serialize_save_generic was
     // implemented so don't use it here
     buffer_write(buffer, buffer_string, event.name);
-    buffer_write(buffer, buffer_u32, event.GUID);
+    buffer_write(buffer, buffer_datatype, event.GUID);
     buffer_write(buffer, buffer_u32, n_nodes);
     
     for (var j = 0; j < n_nodes; j++) {
@@ -27,7 +27,7 @@ for (var i = 0; i < n_events; i++) {
         buffer_write(buffer, buffer_u16, node.type);
         buffer_write(buffer, buffer_s32, floor(node.x));
         buffer_write(buffer, buffer_s32, floor(node.y));
-        buffer_write(buffer, buffer_u32, node.GUID);
+        buffer_write(buffer, buffer_datatype, node.GUID);
         
         buffer_write(buffer, buffer_datatype, node.prefab_guid);
         

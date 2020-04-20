@@ -642,7 +642,7 @@ switch (node.type) {
                         case DataTypes.ENTITY:
                             var refid = custom_data_list[| 0];
                             var setdata = refid_get(refid);
-                            var strh = string_hex(refid);
+                            var strh = string(refid);
                             message = message + "(entity): ";
                             // If the value is 0, it's automatically "this". If it has a value, it's
                             // an entity reference somewhere (which could also be self, but probably not)

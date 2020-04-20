@@ -50,5 +50,5 @@ trigger = 0x01;
 // not used: Image (since events are attached to entities)
 // not used: Priority (since priority is attached to entities)
 
-event_guid = 0;
+event_guid = NULL;
 event_entrypoint = 0;

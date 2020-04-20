@@ -51,7 +51,7 @@
 #macro HH 900
 #macro HW 520
 #macro IMPORT_GRID_SIZE 32          // for setting the bounds of imported meshes, and possibly other things
-#macro INTERNAL_NAME_LENGTH 20
+#macro INTERNAL_NAME_LENGTH 32
 #macro VISIBLE_NAME_LENGTH 32
 #macro LIMIT_TILESET 255
 #macro MAP_AXIS_LIMIT 2048
@@ -61,6 +61,7 @@
 #macro MAX_LIGHTS 7                         // one is reserved for the point / spot light around the player
 #macro mouse_x_view (Stuff.MOUSE_X - view_get_xport(view_current))
 #macro mouse_y_view (Stuff.MOUSE_Y - view_get_yport(view_current))
+#macro NULL ""
 #macro PATH_AUTOTILE ".\\autotile\\"
 #macro PATH_GRAPHICS ".\\data\\graphics\\"  // local storage - no leading punctuation - used for opening files
 #macro PATH_LUA ".\\data\\lua\\"

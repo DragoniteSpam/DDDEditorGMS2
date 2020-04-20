@@ -85,7 +85,7 @@ switch (what) {
         
         repeat (n_files) {
             var name = buffer_read(buffer, buffer_string);
-            var guid = buffer_read(buffer, buffer_u32);
+            var guid = buffer_read(buffer, buffer_datatype);
             var bools = buffer_read(buffer, buffer_u32);
             
             // the "compressed" parameter can be set later

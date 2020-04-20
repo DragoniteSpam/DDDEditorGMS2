@@ -91,7 +91,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     ds_list_add(contents, el_dynamic);
     #endregion
     
-    active_type_guid = 0;
+    active_type_guid = NULL;
     instance_deactivate_object(UIThing);
     
     return id;

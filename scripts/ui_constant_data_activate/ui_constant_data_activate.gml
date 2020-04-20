@@ -53,8 +53,8 @@ switch (what.type) {
         ui_list_deselect(list_data);
         
         if (type && (what.type != type.type)) {
-            what.value_guid = 0;
-            what.type_guid = 0;
+            what.value_guid = NULL;
+            what.type_guid = NULL;
             type = noone;
         }
         

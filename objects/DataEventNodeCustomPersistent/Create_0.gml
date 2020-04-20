@@ -4,7 +4,7 @@ name = "data";
 flags = 0;
 summary = "";
 
-GUID = 0;
+GUID = NULL;
 guid_set(id, guid_generate());
 
 internal_name = "DATA_" + string_hex(GUID);

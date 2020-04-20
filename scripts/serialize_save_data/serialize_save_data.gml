@@ -26,7 +26,7 @@ if (string_length(fn) > 0) {
                 var asset_file = Stuff.game_asset_lists[| j];
                 var bools = pack(asset_file.critical);
                 buffer_write(buffer, buffer_string, asset_file.internal_name);
-                buffer_write(buffer, buffer_u32, asset_file.GUID);
+                buffer_write(buffer, buffer_datatype, asset_file.GUID);
                 buffer_write(buffer, buffer_u32, bools);
             }
         }

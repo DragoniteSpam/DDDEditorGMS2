@@ -1,5 +1,5 @@
 event_inherited();
 
-base_guid = 0;
+base_guid = NULL;
 // this is a list of lists
 values = ds_list_create();

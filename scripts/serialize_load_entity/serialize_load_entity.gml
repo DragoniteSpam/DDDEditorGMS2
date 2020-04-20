@@ -10,7 +10,7 @@ entity.name = buffer_read(buffer, buffer_string);
 entity.xx = buffer_read(buffer, buffer_u32);
 entity.yy = buffer_read(buffer, buffer_u32);
 entity.zz = buffer_read(buffer, buffer_u32);
-refid_set(entity, buffer_read(buffer, buffer_u32));
+refid_set(entity, buffer_read(buffer, buffer_datatype));
 
 var state_static = entity.static;
 

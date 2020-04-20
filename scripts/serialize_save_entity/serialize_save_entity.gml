@@ -41,7 +41,7 @@ buffer_write(buffer, buffer_f32, entity.scale_zz);
 buffer_write(buffer, buffer_u8, entity.autonomous_movement);
 buffer_write(buffer, buffer_u8, entity.autonomous_movement_speed);
 buffer_write(buffer, buffer_u8, entity.autonomous_movement_frequency);
-buffer_write(buffer, buffer_u32, entity.autonomous_movement_route);
+buffer_write(buffer, buffer_datatype, entity.autonomous_movement_route);
 
 var n_move_routes = ds_list_size(entity.movement_routes);
 buffer_write(buffer, buffer_u8, n_move_routes);

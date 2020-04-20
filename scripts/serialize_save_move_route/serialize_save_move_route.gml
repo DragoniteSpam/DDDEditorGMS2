@@ -56,7 +56,7 @@ for (var i = 0; i < n_steps; i++) {
             buffer_write(buffer, buffer_u8, step[@ 1]);
             break;
         case MoveRouteActions.CHANGE_GRAPHIC:
-            buffer_write(buffer, buffer_u32, step[@ 1]);
+            buffer_write(buffer, buffer_datatype, step[@ 1]);
             break;
         case MoveRouteActions.CHANGE_OPACITY:
             buffer_write(buffer, buffer_f32, step[@ 1]);
@@ -65,11 +65,11 @@ for (var i = 0; i < n_steps; i++) {
             buffer_write(buffer, buffer_u8, step[@ 1]);
             break;
         case MoveRouteActions.PLAY_SE:
-            buffer_write(buffer, buffer_u32, step[@ 1]);
+            buffer_write(buffer, buffer_datatype, step[@ 1]);
             break;
         case MoveRouteActions.EVENT:
-            buffer_write(buffer, buffer_u32, step[@ 1]);
-            buffer_write(buffer, buffer_u32, step[@ 2]);
+            buffer_write(buffer, buffer_datatype, step[@ 1]);
+            buffer_write(buffer, buffer_datatype, step[@ 2]);
             break;
         case MoveRouteActions.MOVE_TO:
             buffer_write(buffer, buffer_u16, step[@ 1]);

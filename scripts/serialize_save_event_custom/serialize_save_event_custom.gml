@@ -19,7 +19,7 @@ for (var i = 0; i < n_custom; i++) {
         var type = custom.types[| j];
         buffer_write(buffer, buffer_string, type[0]);    // name
         buffer_write(buffer, buffer_u8, type[1]);        // data type
-        buffer_write(buffer, buffer_u32, type[2]);       // data guid
+        buffer_write(buffer, buffer_datatype, type[2]);  // data guid
         buffer_write(buffer, buffer_u8, type[3]);        // max list size
         buffer_write(buffer, buffer_u8, type[4]);        // all elements required?
     }

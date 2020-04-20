@@ -16,7 +16,7 @@ for (var i = 0; i < n_tilesets; i++) {
     var name = buffer_read(buffer, buffer_string);
     var internal_name = buffer_read(buffer, buffer_string);
     var summary = buffer_read(buffer, buffer_string);
-    var guid = buffer_read(buffer, buffer_u32);
+    var guid = buffer_read(buffer, buffer_datatype);
     
     var ts_name = buffer_read(buffer, buffer_string);
     

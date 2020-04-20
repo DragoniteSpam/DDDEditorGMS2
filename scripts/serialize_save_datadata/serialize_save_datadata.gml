@@ -31,7 +31,7 @@ for (var i = 0; i < n_datadata; i++) {
             buffer_write(buffer, buffer_f32, property.range_max);
             buffer_write(buffer, buffer_u8, property.number_scale);
             buffer_write(buffer, buffer_u16, property.char_limit);
-            buffer_write(buffer, buffer_u32, property.type_guid);
+            buffer_write(buffer, buffer_datatype, property.type_guid);
             buffer_write(buffer, buffer_string, property.default_code);
             buffer_write(buffer, buffer_u8, property.max_size);
             buffer_write(buffer, buffer_u8, property.size_can_be_zero);

@@ -21,8 +21,6 @@ repeat (n_datadata) {
     
     serialize_load_generic(buffer, data, version);
     
-    guid_set(data);
-    
     var n_properties = buffer_read(buffer, buffer_u16);
     
     repeat (n_properties) {
@@ -46,7 +44,7 @@ repeat (n_datadata) {
                 property.range_max = buffer_read(buffer, buffer_f32);
                 property.number_scale = buffer_read(buffer, buffer_u8);
                 property.char_limit = buffer_read(buffer, buffer_u16);
-                property.type_guid = buffer_read(buffer, buffer_u32);
+                property.type_guid = buffer_read(buffer, buffer_datatype);
                 property.default_code = buffer_read(buffer, buffer_string);
                 
                 property.max_size = buffer_read(buffer, buffer_u8);
