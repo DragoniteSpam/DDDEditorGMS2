@@ -85,7 +85,7 @@ switch (what) {
         
         repeat (n_files) {
             var name = buffer_read(buffer, buffer_string);
-            var guid = buffer_read(buffer, buffer_datatype);
+            var guid = buffer_read(buffer, buffer_get_datatype(version));
             var bools = buffer_read(buffer, buffer_u32);
             
             // the "compressed" parameter can be set later
@@ -107,7 +107,7 @@ switch (what) {
 }
 
 while (true) {
-    var datatype = buffer_read(buffer, buffer_datatype);
+    var datatype = buffer_read(buffer, buffer_get_datatype(version));
     if (datatype == SerializeThings.END_OF_FILE) {
         break;
     }

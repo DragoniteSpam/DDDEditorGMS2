@@ -34,7 +34,8 @@
 #macro AUTOTILE_COUNT 48
 #macro AUTOTILE_MAX 32
 #macro BATCH_CACHE_SIZE 160
-#macro buffer_datatype buffer_u32
+#macro buffer_datatype buffer_string
+#macro buffer_datatype_old buffer_u32
 #macro CAMERA_SAVE_FREQUENCY 5
 #macro CAMERA_ZNEAR 32
 #macro CAMERA_ZFAR 0x4000

@@ -74,11 +74,18 @@ for (var i = 0; i < n_prefabs; i++) {
                     case DataTypes.ENTITY:
                     case DataTypes.MAP:
                     case DataTypes.EVENT:
-                        var save_type = buffer_u32;
-                        break;
-                    case DataTypes.COLOR:
                     case DataTypes.MESH:
                     case DataTypes.IMG_TILESET:
+                    case DataTypes.IMG_BATTLER:
+                    case DataTypes.IMG_ETC:
+                    case DataTypes.IMG_OVERWORLD:
+                    case DataTypes.IMG_PARTICLE:
+                    case DataTypes.IMG_UI:
+                        var save_type = buffer_datatype;
+                        break;
+                    case DataTypes.COLOR:
+                        var save_type = buffer_u32;
+                        break;
                     case DataTypes.TILE:
                     case DataTypes.AUTOTILE:
                         not_yet_implemented();

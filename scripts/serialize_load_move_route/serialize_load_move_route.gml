@@ -67,7 +67,7 @@ repeat (n_steps) {
             var data = [type, frequency];
             break;
         case MoveRouteActions.CHANGE_GRAPHIC:
-            var graphic = buffer_read(buffer, buffer_datatype);
+            var graphic = buffer_read(buffer, buffer_get_datatype(version));
             var data = [type, graphic];
             break;
         case MoveRouteActions.CHANGE_OPACITY:
@@ -79,12 +79,12 @@ repeat (n_steps) {
             var data = [type, color];
             break;
         case MoveRouteActions.PLAY_SE:
-            var sound = buffer_read(buffer, buffer_datatype);
+            var sound = buffer_read(buffer, buffer_get_datatype(version));
             var data = [type, sound];
             break;
         case MoveRouteActions.EVENT:
-            var event = buffer_read(buffer, buffer_datatype);
-            var entrypoint = buffer_read(buffer, buffer_datatype);
+            var event = buffer_read(buffer, buffer_get_datatype(version));
+            var entrypoint = buffer_read(buffer, buffer_get_datatype(version));
             var data = [type, event, entrypoint];
             break;
         case MoveRouteActions.MOVE_TO:

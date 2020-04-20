@@ -7,8 +7,8 @@ var entity = argument1;
 var version = argument2;
 
 serialize_load_entity(buffer, entity, version);
-entity.mesh = buffer_read(buffer, buffer_datatype);
-entity.mesh_submesh = buffer_read(buffer, buffer_datatype);
+entity.mesh = buffer_read(buffer, buffer_get_datatype(version));
+entity.mesh_submesh = buffer_read(buffer, buffer_get_datatype(version));
 
 var bools = buffer_read(buffer, buffer_u32);
 
@@ -23,8 +23,8 @@ if (mesh_data) {
     
     switch (mesh_data.type) {
         case MeshTypes.RAW:
-            break;
             entity.batchable = true;
+            break;
         case MeshTypes.SMF:
             entity.batchable = false;
             break;

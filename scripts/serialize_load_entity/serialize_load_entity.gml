@@ -10,7 +10,7 @@ entity.name = buffer_read(buffer, buffer_string);
 entity.xx = buffer_read(buffer, buffer_u32);
 entity.yy = buffer_read(buffer, buffer_u32);
 entity.zz = buffer_read(buffer, buffer_u32);
-refid_set(entity, buffer_read(buffer, buffer_datatype));
+refid_set(entity, buffer_read(buffer, buffer_get_datatype(version)));
 
 var state_static = entity.static;
 
@@ -88,22 +88,24 @@ repeat (n_generic) {
         
         case DataTypes.ENUM:
         case DataTypes.DATA:
-            data.value_type_guid = buffer_read(buffer, buffer_datatype);
-            data.value_data = buffer_read(buffer, buffer_datatype);
+            data.value_type_guid = buffer_read(buffer, buffer_get_datatype(version));
+            data.value_data = buffer_read(buffer, buffer_get_datatype(version));
             break;
         
-        case DataTypes.MESH: data.value_data = buffer_read(buffer, buffer_datatype); break;
-        case DataTypes.IMG_TILESET: data.value_data = buffer_read(buffer, buffer_datatype); break;
-        case DataTypes.AUDIO_BGM: data.value_data = buffer_read(buffer, buffer_datatype); break;
-        case DataTypes.AUDIO_SE: data.value_data = buffer_read(buffer, buffer_datatype); break;
-        case DataTypes.ANIMATION: data.value_data = buffer_read(buffer, buffer_datatype); break;
-        case DataTypes.MAP: data.value_data = buffer_read(buffer, buffer_datatype); break;
-        case DataTypes.IMG_BATTLER: data.value_data = buffer_read(buffer, buffer_datatype); break;
-        case DataTypes.IMG_OVERWORLD: data.value_data = buffer_read(buffer, buffer_datatype); break;
-        case DataTypes.IMG_PARTICLE: data.value_data = buffer_read(buffer, buffer_datatype); break;
-        case DataTypes.IMG_UI: data.value_data = buffer_read(buffer, buffer_datatype); break;
-        case DataTypes.IMG_ETC: data.value_data = buffer_read(buffer, buffer_datatype); break;
-        case DataTypes.EVENT: data.value_data = buffer_read(buffer, buffer_datatype); break;
+        case DataTypes.MESH:
+        case DataTypes.IMG_TILESET:
+        case DataTypes.AUDIO_BGM:
+        case DataTypes.AUDIO_SE:
+        case DataTypes.ANIMATION:
+        case DataTypes.MAP:
+        case DataTypes.IMG_BATTLER:
+        case DataTypes.IMG_OVERWORLD:
+        case DataTypes.IMG_PARTICLE:
+        case DataTypes.IMG_UI:
+        case DataTypes.IMG_ETC:
+        case DataTypes.EVENT:
+            data.value_data = buffer_read(buffer, buffer_get_datatype(version));
+            break;
         
         case DataTypes.TILE: not_yet_implemented(); break;
         case DataTypes.AUTOTILE: not_yet_implemented(); break;

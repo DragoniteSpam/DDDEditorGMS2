@@ -16,7 +16,7 @@ repeat (n_custom) {
     repeat (n_types) {
         var name = buffer_read(buffer, buffer_string);
         var type = buffer_read(buffer, buffer_u8);
-        var guid = buffer_read(buffer, buffer_datatype);
+        var guid = buffer_read(buffer, buffer_get_datatype(version));
         var max_size = buffer_read(buffer, buffer_u8);
         var required = buffer_read(buffer, buffer_u8);
         

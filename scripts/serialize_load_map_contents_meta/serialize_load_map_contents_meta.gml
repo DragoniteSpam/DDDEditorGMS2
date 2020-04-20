@@ -16,7 +16,7 @@ var zz = buffer_read(buffer, buffer_u16);
 
 // it's an index now, but i'm going to make it a data type later, and this is
 // in preparation for whenever i do that
-map.tileset =                   buffer_read(buffer, buffer_datatype);
+map.tileset =                   buffer_read(buffer, buffer_get_datatype(version));
 data_resize_map(map, xx, yy, zz);
 map.fog_start =                 buffer_read(buffer, buffer_f32);
 map.fog_end =                   buffer_read(buffer, buffer_f32);
@@ -104,23 +104,25 @@ repeat (n_generic) {
         
         case DataTypes.ENUM:
         case DataTypes.DATA:
-            data.value_type_guid = buffer_read(buffer, buffer_datatype);
-            data.value_data = buffer_read(buffer, buffer_datatype);
+            data.value_type_guid = buffer_read(buffer, buffer_get_datatype(version));
+            data.value_data = buffer_read(buffer, buffer_get_datatype(version));
             break;
     
-        case DataTypes.MESH: data.value_data = buffer_read(buffer, buffer_datatype); break;
-        case DataTypes.IMG_TILESET: data.value_data = buffer_read(buffer, buffer_datatype); break;
-        case DataTypes.AUDIO_BGM: data.value_data = buffer_read(buffer, buffer_datatype); break;
-        case DataTypes.AUDIO_SE: data.value_data = buffer_read(buffer, buffer_datatype); break;
-        case DataTypes.ANIMATION: data.value_data = buffer_read(buffer, buffer_datatype); break;
-        case DataTypes.MAP: data.value_data = buffer_read(buffer, buffer_datatype); break;
-        case DataTypes.IMG_BATTLER: data.value_data = buffer_read(buffer, buffer_datatype); break;
-        case DataTypes.IMG_OVERWORLD: data.value_data = buffer_read(buffer, buffer_datatype); break;
-        case DataTypes.IMG_PARTICLE: data.value_data = buffer_read(buffer, buffer_datatype); break;
-        case DataTypes.IMG_UI: data.value_data = buffer_read(buffer, buffer_datatype); break;
-        case DataTypes.IMG_ETC: data.value_data = buffer_read(buffer, buffer_datatype); break;
-        case DataTypes.EVENT: data.value_data = buffer_read(buffer, buffer_datatype); break;
-        case DataTypes.ENTITY: data.value_data = buffer_read(buffer, buffer_datatype); break;
+        case DataTypes.MESH:
+        case DataTypes.IMG_TILESET:
+        case DataTypes.AUDIO_BGM:
+        case DataTypes.AUDIO_SE:
+        case DataTypes.ANIMATION:
+        case DataTypes.MAP:
+        case DataTypes.IMG_BATTLER:
+        case DataTypes.IMG_OVERWORLD:
+        case DataTypes.IMG_PARTICLE:
+        case DataTypes.IMG_UI:
+        case DataTypes.IMG_ETC:
+        case DataTypes.EVENT:
+        case DataTypes.ENTITY:
+            data.value_data = buffer_read(buffer, buffer_get_datatype(version));
+            break;
         
         case DataTypes.TILE: not_yet_implemented(); break;
         case DataTypes.AUTOTILE: not_yet_implemented(); break;
@@ -133,7 +135,7 @@ repeat (n_generic) {
 var n_lights = buffer_read(buffer, buffer_u16);
 ds_list_clear(map_contents.active_lights);
 repeat (n_lights) {
-    var data = buffer_read(buffer, buffer_datatype);
+    var data = buffer_read(buffer, buffer_get_datatype(version));
     if (ds_list_size(map_contents.active_lights) < MAX_LIGHTS) {
         ds_list_add(map_contents.active_lights, data);
     }

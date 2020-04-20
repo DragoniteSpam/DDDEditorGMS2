@@ -33,7 +33,7 @@ if (header == "DDD") {
     
     buffer_read(buffer, buffer_u8);
     
-    var datatype = buffer_read(buffer, buffer_datatype);
+    var datatype = buffer_read(buffer, buffer_get_datatype(version));
     
     if (datatype == SerializeThings.TERRAIN) {
         serialize_load_terrain(buffer, version);

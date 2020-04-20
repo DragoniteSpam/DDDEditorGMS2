@@ -10,11 +10,11 @@ var buffer = map.data_buffer;
 if (buffer_md5(buffer, 0, buffer_get_size(buffer)) != EMPTY_BUFFER_MD5) {
     buffer_seek(buffer, buffer_seek_start, 0);
     
-    buffer_read(buffer, buffer_datatype);
+    buffer_read(buffer, buffer_get_datatype(map.version));
     serialize_load_map_contents_meta(buffer, map.version, map);
-    buffer_read(buffer, buffer_datatype);
+    buffer_read(buffer, buffer_get_datatype(map.version));
     serialize_load_map_contents_batch(buffer, map.version, map);
-    buffer_read(buffer, buffer_datatype);
+    buffer_read(buffer, buffer_get_datatype(map.version));
     serialize_load_map_contents_dynamic(buffer, map.version, map, true);
 }
 

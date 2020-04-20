@@ -6,7 +6,7 @@ var version = argument1;
 
 var addr_next = buffer_read(buffer, buffer_u64);
 
-Stuff.game_starting_map = buffer_read(buffer, buffer_datatype);
+Stuff.game_starting_map = buffer_read(buffer, buffer_get_datatype(version));
 Stuff.game_starting_x = buffer_read(buffer, buffer_u16);
 Stuff.game_starting_y = buffer_read(buffer, buffer_u16);
 Stuff.game_starting_z = buffer_read(buffer, buffer_u16);
@@ -57,10 +57,10 @@ repeat (n_constants) {
     serialize_load_generic(buffer, what, version);
     
     what.type = buffer_read(buffer, buffer_u16);
-    what.type_guid = buffer_read(buffer, buffer_datatype);
+    what.type_guid = buffer_read(buffer, buffer_get_datatype(version));
     what.value_real = buffer_read(buffer, buffer_f32);
     what.value_string = buffer_read(buffer, buffer_string);
-    what.value_guid = buffer_read(buffer, buffer_datatype);
+    what.value_guid = buffer_read(buffer, buffer_get_datatype(version));
     
     ds_list_add(Stuff.all_game_constants, what);
 }

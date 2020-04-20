@@ -42,7 +42,7 @@ repeat (n_maps) {
     if (buffer_md5(map.data_buffer, 0, buffer_get_size(map.data_buffer)) != EMPTY_BUFFER_MD5) {
         buffer_seek(map.data_buffer, buffer_seek_start, 0);
         
-        buffer_read(map.data_buffer, buffer_datatype);
+        buffer_read(map.data_buffer, buffer_get_datatype(version));
         
         // signed because it's allowed to be -1
         // for those curious, this caused the editor to crash but not the game

@@ -16,7 +16,7 @@ repeat (n_events) {
     var event_name = buffer_read(buffer, buffer_string);
     var event = event_create(event_name);
     ds_list_add(Stuff.all_events, event);
-    guid_set(event, buffer_read(buffer, buffer_datatype));
+    guid_set(event, buffer_read(buffer, buffer_get_datatype(version)));
     
     // events are created with an entrypoint by default - you could pass an optional
     // parameter to the constructor to have it not do this, but this is the only place
@@ -37,9 +37,9 @@ repeat (n_events) {
         event_rename(event, node, node_name);
         node.event = event;
         
-        guid_set(node, buffer_read(buffer, buffer_datatype));
+        guid_set(node, buffer_read(buffer, buffer_get_datatype(version)));
         
-        node.prefab_guid = buffer_read(buffer, buffer_datatype);
+        node.prefab_guid = buffer_read(buffer, buffer_get_datatype(version));
         
         // some preliminary data may be created
         ds_list_clear(node.data);
@@ -144,7 +144,7 @@ repeat (n_events) {
                         case DataTypes.MAP:
                         case DataTypes.MESH:
                         case DataTypes.EVENT:
-                            var buffer_type = buffer_datatype;
+                            var buffer_type = buffer_get_datatype(version);
                             break;
                         case DataTypes.TILE:
                         case DataTypes.AUTOTILE:

@@ -61,7 +61,7 @@ repeat (n_prefabs) {
             break;
         case EventNodeTypes.CUSTOM:
         default:
-            prefab.custom_guid = buffer_read(buffer, buffer_datatype);
+            prefab.custom_guid = buffer_read(buffer, buffer_get_datatype(version));
             if (prefab.type != EventNodeTypes.CUSTOM) {
                 // other types also save the custom guid, even though there's really no reason
                 // for them to do so
@@ -96,11 +96,18 @@ repeat (n_prefabs) {
                     case DataTypes.ENTITY:
                     case DataTypes.MAP:
                     case DataTypes.EVENT:
-                        var buffer_type = buffer_u32;
-                        break;
-                    case DataTypes.COLOR:
                     case DataTypes.MESH:
                     case DataTypes.IMG_TILESET:
+                    case DataTypes.IMG_BATTLER:
+                    case DataTypes.IMG_ETC:
+                    case DataTypes.IMG_OVERWORLD:
+                    case DataTypes.IMG_PARTICLE:
+                    case DataTypes.IMG_UI:
+                        var buffer_type = buffer_get_datatype(version);
+                        break;
+                    case DataTypes.COLOR:
+                        var buffer_type = buffer_u32;
+                        break;
                     case DataTypes.TILE:
                     case DataTypes.AUTOTILE:
                         not_yet_implemented();

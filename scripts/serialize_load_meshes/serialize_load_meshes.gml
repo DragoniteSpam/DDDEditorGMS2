@@ -19,7 +19,7 @@ repeat (n_meshes) {
     var n_submeshes = buffer_read(buffer, buffer_u16);
     for (var i = 0; i < n_submeshes; i++) {
         var index = buffer_read(buffer, buffer_u16);
-        var proto_guid = buffer_read(buffer, buffer_datatype);
+        var proto_guid = buffer_read(buffer, buffer_get_datatype(version));
         var blength = buffer_read(buffer, buffer_u32);
         var name = buffer_read(buffer, buffer_string);
         var dbuffer = buffer_read_buffer(buffer, blength);

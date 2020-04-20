@@ -91,5 +91,6 @@ enum DataVersions {
     BASE_SCREEN_DIMENSIONS              = 99,
     PROPERTY_SIZE_CAN_BE_ZERO           = 100,
     MAP_PLAYER_LIGHT                    = 101,
+    ID_OVERHAUL                         = 102,  // sequential IDs, and IDs are strings rather than ints
     _CURRENT /* = whatever the last one is + 1 */
 }

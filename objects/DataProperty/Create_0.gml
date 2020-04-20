@@ -67,6 +67,8 @@ enum DataTypes {
  *  15. case in dialog_entity_data_enable_by_type
  *  16. case in serialize_save_entity
  *  17. the equilvalent in serialize_load_entity
+ *  18. case in serialize_load_event_prefabs
+ *  19. case in serialize_save_event_prefabs
  */
 
 enum NumberScales {
