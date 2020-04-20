@@ -1,8 +1,9 @@
-var n = 0;
+/// @param [map]
+
+var map = (argument_count > 0 && argument[0] != undefined) ? argument[0] : Stuff.map.active_map;
 
 do {
-    // range: [1, 2147483647] - 0 is "null"
-    n = irandom(0x7ffffffe) + 1;
-} until (!ds_map_exists(Stuff.map.active_map.contents.all_refids, n));
+    var n = string_hex(map.contents.refid_current++);
+} until (!ds_map_exists(map.contents.refids, n));
 
 return n;

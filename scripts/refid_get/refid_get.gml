@@ -1,7 +1,8 @@
+/// @param data
 /// @param refid
+/// @param [map]
 
-if (ds_map_exists(Stuff.map.active_map.contents.all_refids, argument0)) {
-    return Stuff.map.active_map.contents.all_refids[? argument0];
-}
+var refid = argument[0];
+var map = (argument_count > 1 && argument[1] != undefined) ? argument[1] : Stuff.map.active_map;
 
-return noone;
+return map.contents.refids[? refid] ? map.contents.refids[? refid] : noone;
