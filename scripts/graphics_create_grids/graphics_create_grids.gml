@@ -41,6 +41,6 @@ for (var i = -yy; i <= yy; i++) {
         vertex_point_line(Stuff.graphics.grid_centered, xx * TILE_WIDTH, i * TILE_HEIGHT, 0, c_white, 1);
     }
 }
-    
+
 vertex_end(Stuff.graphics.grid_centered);
 vertex_freeze(Stuff.graphics.grid_centered);

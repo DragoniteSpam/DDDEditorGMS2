@@ -42,7 +42,7 @@ repeat (n_maps) {
     if (buffer_md5(map.data_buffer, 0, buffer_get_size(map.data_buffer)) != EMPTY_BUFFER_MD5) {
         buffer_seek(map.data_buffer, buffer_seek_start, 0);
         
-        buffer_read(map.data_buffer, buffer_get_datatype(version));
+        buffer_read(map.data_buffer, buffer_u32);
         
         // signed because it's allowed to be -1
         // for those curious, this caused the editor to crash but not the game
@@ -52,7 +52,7 @@ repeat (n_maps) {
         map.xx = buffer_read(map.data_buffer, buffer_u16);
         map.yy = buffer_read(map.data_buffer, buffer_u16);
         map.zz = buffer_read(map.data_buffer, buffer_u16);
-    
+        
         buffer_seek(map.data_buffer, buffer_seek_start, 0);
     } // else the map has not been initialized yet and it just uses its default values
 }

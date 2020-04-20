@@ -4,11 +4,11 @@
 var buffer = argument0;
 var entity = argument1;
 
+
 buffer_write(buffer, buffer_string, entity.name);
 buffer_write(buffer, buffer_u32, entity.xx);
 buffer_write(buffer, buffer_u32, entity.yy);
 buffer_write(buffer, buffer_u32, entity.zz);
-
 buffer_write(buffer, buffer_datatype, entity.REFID);
 
 var entity_bools = pack(
@@ -104,3 +104,5 @@ for (var i = 0; i < n_generic; i++) {
 
 buffer_write(buffer, buffer_u32, entity.event_flags);
 buffer_write(buffer, buffer_u8, entity.slope);
+
+wtf(buffer_tell(buffer))

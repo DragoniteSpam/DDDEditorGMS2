@@ -13,14 +13,12 @@ entity.zz = buffer_read(buffer, buffer_u32);
 refid_set(entity, buffer_read(buffer, buffer_get_datatype(version)));
 
 var state_static = entity.static;
-
 var entity_bools = buffer_read(buffer, buffer_u32);
 entity.static = unpack(entity_bools, 0);
 entity.animate_idle = unpack(entity_bools, 1);
 entity.animate_movement = unpack(entity_bools, 2);
 entity.direction_fix = unpack(entity_bools, 3);
 entity.reset_position = unpack(entity_bools, 4);
-
 // same for statics
 if (state_static && !entity.static) {
     Stuff.map.active_map.contents.population_static--;
@@ -48,8 +46,8 @@ entity.scale_zz = buffer_read(buffer, buffer_f32);
 entity.autonomous_movement = buffer_read(buffer, buffer_u8);
 entity.autonomous_movement_speed = buffer_read(buffer, buffer_u8);
 entity.autonomous_movement_frequency = buffer_read(buffer, buffer_u8);
-entity.autonomous_movement_route = buffer_read(buffer, buffer_u32);
-    
+entity.autonomous_movement_route = buffer_read(buffer, buffer_get_datatype(version));
+
 var n_move_routes = buffer_read(buffer, buffer_u8);
 repeat (n_move_routes) {
     serialize_load_move_route(buffer, entity, version);
@@ -117,3 +115,5 @@ repeat (n_generic) {
 
 entity.event_flags = buffer_read(buffer, buffer_u32);
 entity.slope = buffer_read(buffer, buffer_u8);
+
+wtf(buffer_tell(buffer))
