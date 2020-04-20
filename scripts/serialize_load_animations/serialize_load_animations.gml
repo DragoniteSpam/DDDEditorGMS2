@@ -97,3 +97,7 @@ repeat (n_animations) {
         }
     }
 }
+
+if (true) {
+    var foo = "bar";
+}

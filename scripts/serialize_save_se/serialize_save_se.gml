@@ -2,7 +2,7 @@
 
 var buffer = argument0;
 
-buffer_write(buffer, buffer_datatype, SerializeThings.AUDIO_SE);
+buffer_write(buffer, buffer_u32, SerializeThings.AUDIO_SE);
 var addr_next = buffer_tell(buffer);
 buffer_write(buffer, buffer_u64, 0);
 

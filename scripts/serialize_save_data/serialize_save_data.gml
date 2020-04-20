@@ -50,7 +50,7 @@ if (string_length(fn) > 0) {
             var addr = script_execute(Stuff.game_data_save_scripts[contents[| j]], buffer);
         }
         
-        buffer_write(buffer, buffer_datatype, SerializeThings.END_OF_FILE);
+        buffer_write(buffer, buffer_u32, SerializeThings.END_OF_FILE);
         
         var this_files_name = (i == 0) ? fn : (save_directory + file_data.internal_name + EXPORT_EXTENSION_ASSETS);
         

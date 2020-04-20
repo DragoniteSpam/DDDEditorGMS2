@@ -106,8 +106,9 @@ switch (what) {
         break;
 }
 
+var n = 0;
 while (true) {
-    var datatype = buffer_read(buffer, buffer_get_datatype(version));
+    var datatype = buffer_read(buffer, buffer_u32);
     if (datatype == SerializeThings.END_OF_FILE) {
         break;
     }

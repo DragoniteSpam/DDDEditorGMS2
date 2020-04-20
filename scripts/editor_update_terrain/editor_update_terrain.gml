@@ -27,6 +27,7 @@ var light_data = array_create(MAX_LIGHTS * 12);
 array_clear(light_data, 0);
 
 // common variables
+var index = 0;
 light_data[index + 0] = 1;
 light_data[index + 1] = 1;
 light_data[index + 2] = -1;

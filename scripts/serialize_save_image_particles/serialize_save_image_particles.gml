@@ -3,7 +3,7 @@
 var buffer = argument0;
 var list = Stuff.all_graphic_particles;
 
-buffer_write(buffer, buffer_datatype, SerializeThings.IMAGE_PARTICLES);
+buffer_write(buffer, buffer_u32, SerializeThings.IMAGE_PARTICLES);
 var addr_next = buffer_tell(buffer);
 buffer_write(buffer, buffer_u64, 0);
 

@@ -4,7 +4,7 @@
 
 var buffer = argument0;
 
-buffer_write(buffer, buffer_datatype, SerializeThings.DATA_INSTANCES);
+buffer_write(buffer, buffer_u32, SerializeThings.DATA_INSTANCES);
 var addr_next = buffer_tell(buffer);
 buffer_write(buffer, buffer_u64, 0);
 

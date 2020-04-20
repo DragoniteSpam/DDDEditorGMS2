@@ -5,7 +5,7 @@ var buffer = argument0;
 serialize_save_event_custom(buffer);
 serialize_save_event_prefabs(buffer);
 
-buffer_write(buffer, buffer_datatype, SerializeThings.EVENTS);
+buffer_write(buffer, buffer_u32, SerializeThings.EVENTS);
 var addr_next = buffer_tell(buffer);
 buffer_write(buffer, buffer_u64, 0);
 
@@ -72,7 +72,7 @@ for (var i = 0; i < n_events; i++) {
                 break;
             case EventNodeTypes.CUSTOM:
             default:
-                buffer_write(buffer, buffer_u32, node.custom_guid);
+                buffer_write(buffer, buffer_datatype, node.custom_guid);
                 // the size of this list should already be known by the custom event node
                 var custom = guid_get(node.custom_guid);
                 

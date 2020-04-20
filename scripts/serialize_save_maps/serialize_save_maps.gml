@@ -6,7 +6,7 @@ buffer_delete(Stuff.map.active_map.data_buffer);
 Stuff.map.active_map.version = DataVersions._CURRENT - 1;
 Stuff.map.active_map.data_buffer = serialize_save_current_map();
 
-buffer_write(buffer, buffer_datatype, SerializeThings.MAPS);
+buffer_write(buffer, buffer_u32, SerializeThings.MAPS);
 var addr_next = buffer_tell(buffer);
 buffer_write(buffer, buffer_u64, 0);
 

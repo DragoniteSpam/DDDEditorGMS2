@@ -10,7 +10,7 @@ var data = guid_get(Stuff.data.ui.active_type_guid);
 var selection = ui_list_selection(Stuff.data.ui.el_instances);
 var original_color = text.color;
 
-if (selection >= 0) {
+if (selection + 1) {
     var exists = internal_name_get(text.value);
     if (exists && exists != data.instances[| selection]) {
         text.color = c_red;

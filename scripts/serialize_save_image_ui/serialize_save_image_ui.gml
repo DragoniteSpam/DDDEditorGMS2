@@ -3,7 +3,7 @@
 var buffer = argument0;
 var list = Stuff.all_graphic_ui;
 
-buffer_write(buffer, buffer_datatype, SerializeThings.IMAGE_UI);
+buffer_write(buffer, buffer_u32, SerializeThings.IMAGE_UI);
 var addr_next = buffer_tell(buffer);
 buffer_write(buffer, buffer_u64, 0);
 

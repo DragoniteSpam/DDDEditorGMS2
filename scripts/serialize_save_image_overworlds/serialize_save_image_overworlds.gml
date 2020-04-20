@@ -3,7 +3,7 @@
 var buffer = argument0;
 var list = Stuff.all_graphic_overworlds;
 
-buffer_write(buffer, buffer_datatype, SerializeThings.IMAGE_OVERWORLD);
+buffer_write(buffer, buffer_u32, SerializeThings.IMAGE_OVERWORLD);
 var addr_next = buffer_tell(buffer);
 buffer_write(buffer, buffer_u64, 0);
 

@@ -70,7 +70,7 @@ if (string_length(fn) > 0) {
     buffer_poke(buffer, index_addr_meshes, buffer_u64, addr_meshes);
     #endregion
     
-    buffer_write(buffer, buffer_datatype, SerializeThings.END_OF_FILE);
+    buffer_write(buffer, buffer_u32, SerializeThings.END_OF_FILE);
     
     var compressed = buffer_compress(buffer, 0, buffer_tell(buffer));
     buffer_save_ext(compressed, fn, 0, buffer_get_size(compressed));

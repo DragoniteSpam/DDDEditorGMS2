@@ -2,7 +2,7 @@
 
 var buffer = argument0;
 
-buffer_write(buffer, buffer_datatype, SerializeThings.IMAGE_BATTLERS);
+buffer_write(buffer, buffer_u32, SerializeThings.IMAGE_BATTLERS);
 var addr_next = buffer_tell(buffer);
 buffer_write(buffer, buffer_u64, 0);
 var list = Stuff.all_graphic_battlers;

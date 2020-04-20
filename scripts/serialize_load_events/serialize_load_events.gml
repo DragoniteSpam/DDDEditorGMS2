@@ -101,7 +101,7 @@ repeat (n_events) {
                 break;
             case EventNodeTypes.CUSTOM:
             default:
-                node.custom_guid = buffer_read(buffer, buffer_u32);
+                node.custom_guid = buffer_read(buffer, buffer_get_datatype(version));
                 
                 if (node_type != EventNodeTypes.CUSTOM) {
                     // other types also save the custom guid, even though there's really no reason

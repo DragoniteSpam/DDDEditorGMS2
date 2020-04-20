@@ -7,7 +7,7 @@
 
 var buffer = argument0;
 
-buffer_write(buffer, buffer_datatype, SerializeThings.MAP_ZONES);
+buffer_write(buffer, buffer_u32, SerializeThings.MAP_ZONES);
 
 var n_zones = ds_list_size(Stuff.map.active_map.contents.all_zones);
 buffer_write(buffer, buffer_u32, n_zones);

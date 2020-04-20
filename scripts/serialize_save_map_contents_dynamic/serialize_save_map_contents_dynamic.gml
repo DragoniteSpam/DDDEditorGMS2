@@ -7,7 +7,7 @@
 
 var buffer = argument0;
 
-buffer_write(buffer, buffer_datatype, SerializeThings.MAP_DYNAMIC);
+buffer_write(buffer, buffer_u32, SerializeThings.MAP_DYNAMIC);
 
 var n_things = ds_list_size(Stuff.map.active_map.contents.all_entities);
 buffer_write(buffer, buffer_u32, n_things);
