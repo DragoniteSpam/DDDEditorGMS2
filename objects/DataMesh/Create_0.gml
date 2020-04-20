@@ -13,6 +13,7 @@ submeshes = ds_list_create();
 cshape = noone;
 
 proto_guids = ds_map_create();
+proto_guid_current = 0;
 first_proto_guid = NULL;
 
 /* s */ xmin = 0;
