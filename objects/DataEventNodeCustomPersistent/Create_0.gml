@@ -7,7 +7,7 @@ summary = "";
 GUID = NULL;
 guid_set(id, guid_generate());
 
-internal_name = "DATA_" + string_hex(GUID);
+internal_name = "DATA_" + string(GUID);
 
 types = ds_list_create();
 outbound = ds_list_create();

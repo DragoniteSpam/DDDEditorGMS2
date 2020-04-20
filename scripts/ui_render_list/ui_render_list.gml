@@ -91,7 +91,7 @@ if (n == 0) {
                 text = text + (data ? data.name : " (null)");
                 break;
             case ListEntries.INSTANCES_REFID:
-                text += "<" + string_hex(list.entries[| index].REFID) + "> " + list.entries[| index].name;
+                text += "<" + string(list.entries[| index].REFID) + "> " + list.entries[| index].name;
                 break;
             case ListEntries.SCRIPT: text = text + script_execute(list.evaluate_text, list, index); break;
         }

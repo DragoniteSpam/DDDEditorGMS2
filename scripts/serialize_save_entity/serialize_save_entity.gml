@@ -9,7 +9,7 @@ buffer_write(buffer, buffer_u32, entity.xx);
 buffer_write(buffer, buffer_u32, entity.yy);
 buffer_write(buffer, buffer_u32, entity.zz);
 
-buffer_write(buffer, buffer_u32, entity.REFID);
+buffer_write(buffer, buffer_datatype, entity.REFID);
 
 var entity_bools = pack(
     entity.static,

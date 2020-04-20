@@ -13,11 +13,10 @@ if (ds_map_exists(Stuff.all_guids, addition)) {
 
 // if there's a collision, you ought to be informed (and explode)
 if (ds_map_exists(Stuff.all_guids, addition)) {
-    show_error("guid conflict: " + argument[0].name + " is trying to overwrite " + guid_get(addition).name + " [" + string(addition) + "]", true)
-    ds_map_delete(Stuff.all_guids, argument[0].GUID);
+    show_error("guid conflict: " + data.name + " is trying to overwrite " + guid_get(addition).name + " [" + string(addition) + "]", false)
 }
 
-ds_map_add(Stuff.all_guids, addition, argument[0]);
-argument[0].GUID = addition;
+Stuff.all_guids[? addition] = data;
+data.GUID = addition;
 
 return true;

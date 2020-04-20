@@ -8,7 +8,7 @@ if (selection + 1) {
     var datadata = list.entries[| ui_list_selection(base_dialog.el_type_guid)];
     var what = Stuff.all_game_constants[| selection];
     what.type_guid = datadata.GUID;
-    what.value_guid = 0;
+    what.value_guid = NULL;
     
     var type = guid_get(what.type_guid);
     var list_data = base_dialog.el_value_data;
