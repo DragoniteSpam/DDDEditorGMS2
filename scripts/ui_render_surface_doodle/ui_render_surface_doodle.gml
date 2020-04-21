@@ -25,13 +25,16 @@ switch (mode.doodle_tool) {
         #region pencil
         if (Controller.mouse_left) {
             var c = mode.doodle_color_a;
+            changed = true;
         } else if (Controller.mouse_right) {
             var c = mode.doodle_color_b;
+            changed = true;
         }
-        draw_line_width_color(mxp, myp, mx, my, mode.doodle_brush_size * 2, c, c);
-        draw_circle_color(mxp, myp, mode.doodle_brush_size, c, c, false);
-        draw_circle_color(mx, my, mode.doodle_brush_size, c, c, false);
-        changed = true;
+        if (changed) {
+            draw_line_width_color(mxp, myp, mx, my, mode.doodle_brush_size * 2, c, c);
+            draw_circle_color(mxp, myp, mode.doodle_brush_size, c, c, false);
+            draw_circle_color(mx, my, mode.doodle_brush_size, c, c, false);
+        }
         #endregion
         break;
 }
