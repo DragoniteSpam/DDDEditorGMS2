@@ -38,10 +38,10 @@ for (var i = 0; i < n_datadata; i++) {
                         var btype = buffer_string;
                         break;
                     case DataTypes.BOOL:
-                        // could pack these but the savings are honestly just not
-                        // significant enough for me to dedicate time to this if it's
-                        // not as simple as just using pack/unpack
                         var btype = buffer_u8;
+                        break;
+                    case DataTypes.COLOR:
+                        var btype = buffer_u32;
                         break;
                     case DataTypes.ENUM:
                     case DataTypes.DATA:
@@ -55,7 +55,6 @@ for (var i = 0; i < n_datadata; i++) {
                     case DataTypes.AUTOTILE:
                     case DataTypes.AUDIO_BGM:
                     case DataTypes.AUDIO_SE:
-                    case DataTypes.COLOR:
                     case DataTypes.ANIMATION:
                     case DataTypes.MAP:
                     case DataTypes.EVENT:

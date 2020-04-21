@@ -27,9 +27,20 @@ for (var i = 0; i < n_datadata; i++) {
                 var property = datadata.properties[| k];
                 switch (property.type) {
                     case DataTypes.INT:
-                        // constraining this to the range allowed by the property (u8, s8,
-                        // s16, etc) sounds fun but probably not worth the time
                         var btype = buffer_s32;
+                        break;
+                    case DataTypes.FLOAT:
+                        var btype = buffer_f32;
+                        break;
+                    case DataTypes.STRING:
+                    case DataTypes.CODE:
+                        var btype = buffer_string;
+                        break;
+                    case DataTypes.BOOL:
+                        var btype = buffer_u8;
+                        break;
+                    case DataTypes.COLOR:
+                        var btype = buffer_u32;
                         break;
                     case DataTypes.ENUM:
                     case DataTypes.DATA:
@@ -46,30 +57,11 @@ for (var i = 0; i < n_datadata; i++) {
                     case DataTypes.ANIMATION:
                     case DataTypes.MAP:
                     case DataTypes.EVENT:
+                    case DataTypes.ENTITY:
                         var btype = buffer_datatype;
-                        break;
-                    case DataTypes.FLOAT:
-                        var btype = buffer_f32;
-                        break;
-                    case DataTypes.STRING:
-                    case DataTypes.CODE:
-                        var btype = buffer_string;
-                        break;
-                    case DataTypes.BOOL:
-                        // could pack these but the savings are honestly just not
-                        // significant enough for me to dedicate time to this if it's
-                        // not as simple as just using pack/unpack
-                        var btype = buffer_u8;
-                        break;
-                    case DataTypes.COLOR:
-                        var btype = buffer_u32;
                         break;
                     case DataTypes.TILE:
                         not_yet_implemented();
-                        break;
-                    case DataTypes.ENTITY:
-                        // not sure how this happened but
-                        var btype = buffer_u32;
                         break;
                     
                 }
