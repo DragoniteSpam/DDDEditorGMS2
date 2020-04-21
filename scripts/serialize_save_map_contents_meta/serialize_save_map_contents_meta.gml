@@ -111,22 +111,24 @@ for (var i = 0; i < n_generic; i++) {
             buffer_write(buffer, buffer_datatype, data.value_data);
             break;
         
-        case DataTypes.MESH: buffer_write(buffer, buffer_datatype, data.value_data); break;
-        case DataTypes.IMG_TILESET: buffer_write(buffer, buffer_datatype, data.value_data); break;
-        case DataTypes.AUDIO_BGM: buffer_write(buffer, buffer_datatype, data.value_data); break;
-        case DataTypes.AUDIO_SE: buffer_write(buffer, buffer_datatype, data.value_data); break;
-        case DataTypes.ANIMATION: buffer_write(buffer, buffer_datatype, data.value_data); break;
-        case DataTypes.MAP: buffer_write(buffer, buffer_datatype, data.value_data); break;
-        case DataTypes.IMG_BATTLER: buffer_write(buffer, buffer_datatype, data.value_data); break;
-        case DataTypes.IMG_OVERWORLD: buffer_write(buffer, buffer_datatype, data.value_data); break;
-        case DataTypes.IMG_PARTICLE: buffer_write(buffer, buffer_datatype, data.value_data); break;
-        case DataTypes.IMG_UI: buffer_write(buffer, buffer_datatype, data.value_data); break;
-        case DataTypes.IMG_ETC: buffer_write(buffer, buffer_datatype, data.value_data); break;
-        case DataTypes.EVENT: buffer_write(buffer, buffer_datatype, data.value_data); break;
-        case DataTypes.ENTITY: buffer_write(buffer, buffer_datatype, data.value_data); break;
+        case DataTypes.MESH:
+        case DataTypes.IMG_TILESET:
+        case DataTypes.AUDIO_BGM:
+        case DataTypes.AUDIO_SE:
+        case DataTypes.ANIMATION:
+        case DataTypes.MAP:
+        case DataTypes.IMG_TILE_ANIMATION:
+        case DataTypes.IMG_BATTLER:
+        case DataTypes.IMG_OVERWORLD:
+        case DataTypes.IMG_PARTICLE:
+        case DataTypes.IMG_UI:
+        case DataTypes.IMG_ETC:
+        case DataTypes.EVENT:
+        case DataTypes.ENTITY:
+            buffer_write(buffer, buffer_datatype, data.value_data);
+            break;
         
         case DataTypes.TILE: not_yet_implemented(); break;
-        case DataTypes.AUTOTILE: not_yet_implemented(); break;
     }
 }
 #endregion

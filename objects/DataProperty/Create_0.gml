@@ -33,7 +33,7 @@ enum DataTypes {
     MESH,            // list
     IMG_TILESET,
     TILE,
-    AUTOTILE,
+    IMG_TILE_ANIMATION,
     AUDIO_BGM,        // list
     AUDIO_SE,        // list
     ANIMATION,        // list
@@ -69,6 +69,8 @@ enum DataTypes {
  *  17. the equilvalent in serialize_load_entity
  *  18. case in serialize_load_event_prefabs
  *  19. case in serialize_save_event_prefabs
+ *  20. case in serialize_save_map_contents_meta
+ *  21. case in serialize_load_map_contents_meta
  */
 
 enum NumberScales {

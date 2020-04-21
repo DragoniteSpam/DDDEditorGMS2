@@ -88,6 +88,9 @@ repeat (n_prefabs) {
                     case DataTypes.CODE:
                         var buffer_type = buffer_string;
                         break;
+                    case DataTypes.COLOR:
+                        var buffer_type = buffer_u32;
+                        break;
                     case DataTypes.ENUM:
                     case DataTypes.DATA:
                     case DataTypes.AUDIO_BGM:
@@ -103,13 +106,10 @@ repeat (n_prefabs) {
                     case DataTypes.IMG_OVERWORLD:
                     case DataTypes.IMG_PARTICLE:
                     case DataTypes.IMG_UI:
+                    case DataTypes.IMG_TILE_ANIMATION:
                         var buffer_type = buffer_get_datatype(version);
                         break;
-                    case DataTypes.COLOR:
-                        var buffer_type = buffer_u32;
-                        break;
                     case DataTypes.TILE:
-                    case DataTypes.AUTOTILE:
                         not_yet_implemented();
                         break;
                 }

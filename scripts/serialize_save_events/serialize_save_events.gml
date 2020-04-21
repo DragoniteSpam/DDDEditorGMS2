@@ -102,6 +102,7 @@ for (var i = 0; i < n_events; i++) {
                         case DataTypes.IMG_OVERWORLD:
                         case DataTypes.IMG_PARTICLE:
                         case DataTypes.IMG_UI:
+                        case DataTypes.IMG_TILE_ANIMATION:
                         case DataTypes.IMG_ETC:
                         case DataTypes.ANIMATION:
                         case DataTypes.COLOR:
@@ -112,7 +113,6 @@ for (var i = 0; i < n_events; i++) {
                             var save_type = buffer_datatype;
                             break;
                         case DataTypes.TILE:
-                        case DataTypes.AUTOTILE:
                             not_yet_implemented();
                             break;
                     }

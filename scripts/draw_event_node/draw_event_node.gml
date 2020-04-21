@@ -358,7 +358,7 @@ switch (node.type) {
                 case DataTypes.IMG_PARTICLE:
                 case DataTypes.IMG_UI:
                 case DataTypes.IMG_ETC:
-                case DataTypes.AUTOTILE:
+                case DataTypes.IMG_TILE_ANIMATION:
                 case DataTypes.ENTITY:
                 case DataTypes.MAP:
                 case DataTypes.EVENT:
@@ -413,7 +413,7 @@ switch (node.type) {
                     case DataTypes.IMG_PARTICLE:
                     case DataTypes.IMG_UI:
                     case DataTypes.IMG_ETC:
-                    case DataTypes.AUTOTILE:
+                    case DataTypes.IMG_TILE_ANIMATION:
                     case DataTypes.ENTITY:
                     case DataTypes.MAP:
                     case DataTypes.EVENT:
@@ -497,7 +497,9 @@ switch (node.type) {
                                     case DataTypes.IMG_ETC:
                                         dialog_create_event_node_img_etc(noone, node, i, 0);
                                         break;
-                                    case DataTypes.AUTOTILE:
+                                    case DataTypes.IMG_TILE_ANIMATION:
+                                        show_error("you can do this now, you know", true);
+                                        break;
                                     case DataTypes.TILE:
                                     case DataTypes.EVENT:
                                         not_yet_implemented();
@@ -614,9 +616,9 @@ switch (node.type) {
                             message = message + "(misc): ";
                             output_string = setdata ? setdata.name : "<null>";
                             break;
-                        case DataTypes.AUTOTILE:
+                        case DataTypes.IMG_TILE_ANIMATION:
                             var setdata = guid_get(custom_data_list[| 0]);
-                            message = message + "(autotile): ";
+                            message = message + "(tile animation): ";
                             output_string = setdata ? setdata.name : "<null>";
                             break;
                         case DataTypes.AUDIO_BGM:

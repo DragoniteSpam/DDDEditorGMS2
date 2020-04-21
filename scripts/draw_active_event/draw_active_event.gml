@@ -119,7 +119,7 @@ if (Stuff.event.active) {
                             case DataTypes.IMG_PARTICLE: var type_name = "particle"; break;
                             case DataTypes.IMG_UI: var type_name = "UI"; break;
                             case DataTypes.IMG_ETC: var type_name = "misc"; break;
-                            case DataTypes.AUTOTILE: var type_name = "autotile"; break;
+                            case DataTypes.IMG_TILE_ANIMATION: var type_name = "tile animation"; break;
                             case DataTypes.ENTITY: var type_name = "entity"; break;
                             case DataTypes.MAP: var type_name = "map"; break;
                             case DataTypes.EVENT: var type_name = "event"; break;

@@ -90,13 +90,13 @@ for (var i = 0; i < n_generic; i++) {
         case DataTypes.IMG_OVERWORLD:
         case DataTypes.IMG_PARTICLE:
         case DataTypes.IMG_UI:
+        case DataTypes.IMG_TILE_ANIMATION:
         case DataTypes.IMG_ETC:
         case DataTypes.EVENT:
             buffer_write(buffer, buffer_datatype, data.value_data);
             break;
         
         case DataTypes.TILE: not_yet_implemented(); break;
-        case DataTypes.AUTOTILE: not_yet_implemented(); break;
         case DataTypes.ENTITY: not_yet_implemented(); break;
     }
 }

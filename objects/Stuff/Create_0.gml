@@ -164,12 +164,12 @@ all_internal_names = ds_map_create();
 spr_character_default = sprite_add(PATH_GRAPHICS + "b_chr_default.png", 0, false, false, 0, 0);
 
 // @gml update lwos, all of them
-all_graphic_autotiles = ds_list_create();
 all_graphic_tilesets = ds_list_create();
 all_graphic_overworlds = ds_list_create();
 all_graphic_battlers = ds_list_create();
 all_graphic_particles = ds_list_create();
 all_graphic_ui = ds_list_create();
+all_graphic_tile_animations = ds_list_create();
 all_graphic_etc = ds_list_create();
 
 var surface = surface_create(2048, 2048);

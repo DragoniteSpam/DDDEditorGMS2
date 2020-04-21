@@ -22,7 +22,7 @@ var b_height = 32;
 
 var yy = 64;
 
-dg.el_list = create_list(16, yy, "Available autotiles:", "<none>", dw / 2 - 16, b_height, 12, uivc_list_autotile_selector, false, dg, Stuff.all_graphic_autotiles);
+dg.el_list = create_list(16, yy, "Available autotiles:", "<none>", dw / 2 - 16, b_height, 12, uivc_list_autotile_selector, false, dg, Stuff.all_graphic_tile_animations);
 dg.el_list.entries_are = ListEntries.INSTANCES;
 dg.el_list.key = "list";
 

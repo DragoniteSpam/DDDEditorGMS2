@@ -144,10 +144,10 @@ repeat (n_events) {
                         case DataTypes.MAP:
                         case DataTypes.MESH:
                         case DataTypes.EVENT:
+                        case DataTypes.IMG_TILE_ANIMATION:
                             var buffer_type = buffer_get_datatype(version);
                             break;
                         case DataTypes.TILE:
-                        case DataTypes.AUTOTILE:
                             not_yet_implemented();
                             break;
                     }

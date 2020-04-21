@@ -156,8 +156,6 @@ for (var i = 0; i < ds_list_size(dynamic.contents); i++) {
                 case DataTypes.COLOR:
                     thingy.value = c_black;
                     break;
-                // all of the following are guids; you can give them defaults if you want to
-                // but i'm not going to because that sounds awful
                 case DataTypes.MESH:
                 case DataTypes.TILE:
                 case DataTypes.IMG_TILESET:
@@ -166,7 +164,7 @@ for (var i = 0; i < ds_list_size(dynamic.contents); i++) {
                 case DataTypes.IMG_PARTICLE:
                 case DataTypes.IMG_UI:
                 case DataTypes.IMG_ETC:
-                case DataTypes.AUTOTILE:
+                case DataTypes.IMG_TILE_ANIMATION:
                 case DataTypes.AUDIO_BGM:
                 case DataTypes.AUDIO_SE:
                 case DataTypes.ANIMATION:

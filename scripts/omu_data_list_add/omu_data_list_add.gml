@@ -27,7 +27,7 @@ if (ds_list_size(plist) < property.max_size) {
         case DataTypes.DATA:
         case DataTypes.AUDIO_BGM:
         case DataTypes.AUDIO_SE:
-        case DataTypes.AUTOTILE:
+        case DataTypes.IMG_TILE_ANIMATION:
         case DataTypes.MESH:
         case DataTypes.IMG_TILESET:
         case DataTypes.IMG_BATTLER:

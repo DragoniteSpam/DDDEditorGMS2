@@ -89,8 +89,15 @@ switch (data.type) {
         ui_list_deselect(dialog.el_data_builtin_list);
         ui_list_select(dialog.el_data_builtin_list, data_index, true);
         break;
+    case DataTypes.IMG_TILE_ANIMATION:
+        dialog.el_data_builtin_list.interactive = true;
+        dialog.el_data_builtin_list.enabled = true;
+        dialog.el_data_builtin_list.entries = Stuff.all_graphic_tile_animations;
+        var data_index = ds_list_find_index(Stuff.all_graphic_tile_animations, guid_get(data.value_data));
+        ui_list_deselect(dialog.el_data_builtin_list);
+        ui_list_select(dialog.el_data_builtin_list, data_index, true);
+        break;
     case DataTypes.TILE:
-    case DataTypes.AUTOTILE:
         not_yet_implemented();
         break;
     case DataTypes.AUDIO_BGM:

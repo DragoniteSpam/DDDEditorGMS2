@@ -46,7 +46,7 @@ switch (property.type) {
     case DataTypes.DATA:
     case DataTypes.AUDIO_BGM:
     case DataTypes.AUDIO_SE:
-    case DataTypes.AUTOTILE:
+    case DataTypes.IMG_TILE_ANIMATION:
     case DataTypes.MESH:
     case DataTypes.IMG_TILESET:
     case DataTypes.IMG_BATTLER:
@@ -136,8 +136,8 @@ switch (property.type) {
         el_value.key = root.key;
         yy += ui_get_list_height(el_value) + spacing;
         break;
-    case DataTypes.AUTOTILE:
-        var el_value = create_list(16, yy, "Select an Autotile resource:", "<no Autotiles>", ew, eh, 8, uivc_data_property_list_guid, false, dg, Stuff.all_graphic_autotiles);
+    case DataTypes.IMG_TILE_ANIMATION:
+        var el_value = create_list(16, yy, "Select a Tile Animation resource:", "<no Autotiles>", ew, eh, 8, uivc_data_property_list_guid, false, dg, Stuff.all_graphic_tile_animations);
         el_value.entries_are = ListEntries.INSTANCES;
         
         el_value.key = root.key;

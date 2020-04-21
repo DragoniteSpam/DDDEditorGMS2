@@ -175,8 +175,8 @@ if (selection + 1) {
                             element.entries_are = ListEntries.INSTANCES;
                             var hh = ui_get_list_height(element);
                             break;
-                        case DataTypes.AUTOTILE:           // list
-                            var element = create_list(0, yy, property.name, "<no Autotiles>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Stuff.all_graphic_autotiles);
+                        case DataTypes.IMG_TILE_ANIMATION:// list
+                            var element = create_list(0, yy, property.name, "<no Tile Animations>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Stuff.all_graphic_tile_animations);
                             element.key = i;
                             element.entries_are = ListEntries.INSTANCES;
                             var hh = ui_get_list_height(element);

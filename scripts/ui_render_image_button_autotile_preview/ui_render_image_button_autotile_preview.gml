@@ -10,7 +10,7 @@ button.image = noone;
 var index = ui_list_selection(button.root.el_list);
 
 if (index + 1) {
-    button.image = Stuff.all_graphic_autotiles[| index].picture;
+    button.image = Stuff.all_graphic_tile_animations[| index].picture;
 }
 
 ui_render_image_button(button, xx, yy);

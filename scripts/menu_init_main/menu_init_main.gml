@@ -58,7 +58,7 @@ with (instance_create_depth(0, 0, 0, MenuMain)) {
     #region data stuff
     var md_graphics = create_menu_element("Graphics", momu_expand, menu_data);
         var md_graphic_ts = create_menu_element("Tilesets", momu_graphic_tileset, md_graphics);
-        var md_graphic_at = create_menu_element("Autotiles", not_yet_implemented_polite, md_graphics);
+        var md_graphic_at = create_menu_element("Tile Animation", not_yet_implemented_polite, md_graphics);
         var md_graphic_battle = create_menu_element("Battler Sprites", momu_graphic_battle, md_graphics);
         var md_graphic_ow = create_menu_element("Overworld Sprites", momu_graphic_overworld, md_graphics);
         var md_graphic_part = create_menu_element("Particles", momu_graphic_particle, md_graphics);

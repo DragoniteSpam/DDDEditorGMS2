@@ -102,11 +102,11 @@ repeat (n_generic) {
         case DataTypes.IMG_UI:
         case DataTypes.IMG_ETC:
         case DataTypes.EVENT:
+        case DataTypes.IMG_TILE_ANIMATION:
             data.value_data = buffer_read(buffer, buffer_get_datatype(version));
             break;
         
         case DataTypes.TILE: not_yet_implemented(); break;
-        case DataTypes.AUTOTILE: not_yet_implemented(); break;
         case DataTypes.ENTITY: not_yet_implemented(); break;
     }
     

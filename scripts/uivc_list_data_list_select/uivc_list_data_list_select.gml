@@ -24,7 +24,7 @@ if (pselection + 1) {
         case DataTypes.DATA:
         case DataTypes.AUDIO_BGM:
         case DataTypes.AUDIO_SE:
-        case DataTypes.AUTOTILE:
+        case DataTypes.IMG_TILE_ANIMATION:
         case DataTypes.MESH:
         case DataTypes.IMG_TILESET:
         case DataTypes.IMG_BATTLER:

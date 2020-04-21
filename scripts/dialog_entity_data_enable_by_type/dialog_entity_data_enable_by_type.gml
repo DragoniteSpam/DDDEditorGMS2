@@ -79,8 +79,12 @@ switch (data.type) {
         dialog.el_data_builtin_list.enabled = true;
         dialog.el_data_builtin_list.entries = Stuff.all_graphic_tilesets;
         break;
+    case DataTypes.IMG_TILE_ANIMATION:
+        dialog.el_data_builtin_list.interactive = true;
+        dialog.el_data_builtin_list.enabled = true;
+        dialog.el_data_builtin_list.entries = Stuff.all_graphic_tile_animations;
+        break;
     case DataTypes.TILE:
-    case DataTypes.AUTOTILE:
         not_yet_implemented();
         break;
     case DataTypes.AUDIO_BGM:

@@ -102,10 +102,9 @@ switch (what.type) {
     case DataTypes.TILE:
         not_yet_implemented_polite();
         break;
-    case DataTypes.AUTOTILE:
-        show_error("autotile data is still just an array, they really need to be changed to LWO-ish things soon", true);
+    case DataTypes.IMG_TILE_ANIMATION:
         var list = base_dialog.el_value_other;
-        list.entries = Stuff.all_graphic_autotiles;
+        list.entries = Stuff.all_graphic_tile_animations;
         ui_list_deselect(list);
         ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value_guid)), true);
         list.enabled = true;
