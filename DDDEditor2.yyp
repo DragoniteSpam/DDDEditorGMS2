@@ -4803,6 +4803,14 @@
             }
         },
         {
+            "Key": "3d824a3b-935b-4339-ad40-98c92cc93dc3",
+            "Value": {
+                "id": "ec66858d-da61-49b1-92e2-d6b214cedf3e",
+                "resourcePath": "scripts\\entity_tile_create_vbuffer\\entity_tile_create_vbuffer.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "3d8d93db-017a-4a73-bebc-d1b241221ebf",
             "Value": {
                 "id": "2e5dff72-056e-4b93-80b9-e16dead9e0f8",
@@ -6927,6 +6935,14 @@
             "Value": {
                 "id": "be9daea8-14c9-470c-8ac2-ff5a95e8253b",
                 "resourcePath": "scripts\\spart_type_colour2\\spart_type_colour2.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "5824e384-dc9a-46c3-8549-e29fc04f1a98",
+            "Value": {
+                "id": "e2a3c204-6f0c-4dfd-ac7d-c91b6e5fe6fc",
+                "resourcePath": "scripts\\entity_tile_update_vbuffer\\entity_tile_update_vbuffer.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -18699,6 +18715,14 @@
             }
         },
         {
+            "Key": "f3663df7-0025-42cc-96a8-e15357471d95",
+            "Value": {
+                "id": "f93be146-0f79-43ed-bcc1-fe6077339777",
+                "resourcePath": "views\\f3663df7-0025-42cc-96a8-e15357471d95.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "f36a04b7-20ff-4fe0-83e2-d5eb2912b107",
             "Value": {
                 "id": "10e9f944-26c9-4830-97a0-398c14998e95",
@@ -21591,6 +21615,8 @@
         "5222ae32-7658-4244-8b3d-e0be3a9732f9",
         "b4feb04f-b2e5-4f24-a34e-3be1cb750f7f",
         "a5bf8eff-e8d4-4f5d-93f7-a41afd85cb94",
+        "3d824a3b-935b-4339-ad40-98c92cc93dc3",
+        "5824e384-dc9a-46c3-8549-e29fc04f1a98",
         "acb26a39-8033-4289-87d0-228ed7921bc8",
         "89e8adda-438e-48f9-ab78-0e8b396b3850",
         "375e7330-6e30-4902-8a42-dbc8ad380c16",

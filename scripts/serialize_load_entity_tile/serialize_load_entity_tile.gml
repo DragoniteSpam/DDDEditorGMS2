@@ -13,4 +13,5 @@ tile.tile_y = buffer_read(buffer, buffer_u8);
 tile.tile_color = buffer_read(buffer, buffer_u32);
 tile.tile_alpha = buffer_read(buffer, buffer_u8)/255;
 
+entity_tile_update_vbuffer(tile);
 entity_init_collision_tile(tile);
