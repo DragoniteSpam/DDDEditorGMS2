@@ -13,17 +13,17 @@
 #macro MENU_EDITOR_ENABLED true
 #macro scribble:MENU_EDITOR_ENABLED false
 #macro spart:MENU_EDITOR_ENABLED false
-#macro doodle:MENU_EDITOR_ENABLED true
+#macro doodle:MENU_EDITOR_ENABLED false
 //
 #macro GLOBAL_CONTORLS_ENABLED true
 #macro scribble:GLOBAL_CONTORLS_ENABLED false
 #macro spart:GLOBAL_CONTORLS_ENABLED false
-#macro doodle:GLOBAL_CONTORLS_ENABLED true
+#macro doodle:GLOBAL_CONTORLS_ENABLED false
 //
 #macro PROJECT_MENU_ENABLED true
 #macro scribble:PROJECT_MENU_ENABLED false
 #macro spart:PROJECT_MENU_ENABLED false
-#macro doodle:PROJECT_MENU_ENABLED true
+#macro doodle:PROJECT_MENU_ENABLED false
 
 // game maker
 #macro wtf show_debug_message

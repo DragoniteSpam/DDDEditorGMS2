@@ -1,5 +1,5 @@
 event_inherited();
 
-render = null;
-ui = ui_init_scribble(id);
+render = editor_render_doodle;
+ui = ui_init_doodle(id);
 mode_id = ModeIDs.DOODLE;
