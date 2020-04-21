@@ -9,7 +9,3 @@ var x1 = argument1;
 var y1 = argument2;
 var x2 = argument3;
 var y2 = argument4;
-
-if (surface_exists(surface.surface)) {
-    
-}
