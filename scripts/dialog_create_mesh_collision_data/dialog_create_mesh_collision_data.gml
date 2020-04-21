@@ -136,11 +136,11 @@ var el_button_apply_all = create_button(c5 + spacing / 2, dh - 32 - b_height / 2
 #region preview(s)
 yy = yy_base_c1;
 
-var el_render = create_render_surface(c1, yy, ew * 2 + spacing, ew * 1.5, ui_render_surface_render_mesh_collision, ui_render_surface_control_mesh_collision, dg);
+var el_render = create_render_surface(c1, yy, ew * 2 + spacing, ew * 1.5, ui_render_surface_render_mesh_collision, ui_render_surface_control_mesh_collision, c_black, dg);
 
 yy = yy_base_c3;
 
-var el_render_grid = create_render_surface(c3, yy, ew, ew, ui_render_surface_render_mesh_collision_grid, ui_render_surface_control_mesh_collision_grid, dg);
+var el_render_grid = create_render_surface(c3, yy, ew, ew, ui_render_surface_render_mesh_collision_grid, ui_render_surface_control_mesh_collision_grid, c_black, dg);
 
 yy += el_render_grid.height + spacing;
 #endregion

@@ -89,7 +89,7 @@ dg.el_time = el_time;
 
 yy = yy_start;
 
-var el_render = create_render_surface(c2 + 16, yy, dw * 3 / 4 - 32, dh - 96, ui_render_surface_render_map, ui_render_surface_control_map, dg);
+var el_render = create_render_surface(c2 + 16, yy, dw * 3 / 4 - 32, dh - 96, ui_render_surface_render_map, ui_render_surface_control_map, c_black, dg);
 // let's be honest, if you somehow manage to make a data file with zero maps you
 // have bigger problems than the error this is going to generate
 var visible_map = guid_get(custom_data_map[| 0]);

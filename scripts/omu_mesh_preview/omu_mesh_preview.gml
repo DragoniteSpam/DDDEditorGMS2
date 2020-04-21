@@ -36,7 +36,7 @@ var n_slots = 20;
 
 var yy = 64;
 
-var el_surface = create_render_surface(col1_x, yy, 944, 704, ui_render_surface_render_mesh_preview, ui_render_surface_control_mesh_preview, dg);
+var el_surface = create_render_surface(col1_x, yy, 944, 704, ui_render_surface_render_mesh_preview, ui_render_surface_control_mesh_preview, c_black, dg);
 
 #region controls
 var el_controls_title = create_text(col4_x, yy, "Controls", ew, eh, fa_left, ew, dg);

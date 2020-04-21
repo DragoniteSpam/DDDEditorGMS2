@@ -73,7 +73,7 @@ dg.el_graphic_battler_sprite_list = el_graphic_battler_sprite_list;
 
 yy += ui_get_list_height(el_graphic_overworld_sprite_list) + spacing;
 
-var el_graphic_battler_sprite_render = create_render_surface(col3_x, yy, ew, ew, ui_render_surface_render_animation_frame, null, dg);
+var el_graphic_battler_sprite_render = create_render_surface(col3_x, yy, ew, ew, ui_render_surface_render_animation_frame, null, c_white, dg);
 el_graphic_battler_sprite_render.enabled = (keyframe.graphic_type == GraphicTypes.SPRITE);
 dg.el_graphic_battler_sprite_render = el_graphic_battler_sprite_render;
 

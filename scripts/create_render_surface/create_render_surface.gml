@@ -4,17 +4,22 @@
 /// @param height
 /// @param render
 /// @param control
+/// @param base-color
 /// @param root
 
-with (instance_create_depth(argument[0], argument[1], 0, UIRenderSurface)) {
-    width = argument[2];
-    height = argument[3];
+with (instance_create_depth(argument0, argument1, 0, UIRenderSurface)) {
+    width = argument2;
+    height = argument3;
+    
+    script_render = argument4;
+    script_control = argument5;
+    var base_color = argument6;
+    root = argument7;
     
     surface_resize(surface, width, height);
-    
-    script_render = argument[4];
-    script_control = argument[5];
-    root = argument[6];
+    surface_set_target(surface);
+    draw_clear(base_color);
+    surface_reset_target();
     
     return id;
 }

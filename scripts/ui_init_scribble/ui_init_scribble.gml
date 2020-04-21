@@ -201,7 +201,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     
     xx = xx_base;
     
-    var element = create_render_surface(xx, yy, room_width - spacing * 2 - xx, room_height - spacing * 2 - yy, ui_render_surface_scribble_preview, null, id);
+    var element = create_render_surface(xx, yy, room_width - spacing * 2 - xx, room_height - spacing * 2 - yy, ui_render_surface_scribble_preview, null, c_white, id);
     ds_list_add(contents, element);
     #endregion
     
