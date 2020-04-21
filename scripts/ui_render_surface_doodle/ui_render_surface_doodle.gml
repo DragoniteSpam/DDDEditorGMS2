@@ -14,7 +14,8 @@ var padding = 32;
 var sw = surface_get_width(surface.surface);
 var sh = surface_get_height(surface.surface);
 
-draw_clear(c_white);
 draw_rectangle_colour(1, 1, sw - 2, sh - 2, c_black, c_black, c_black, c_black, true);
 
-draw_circle_colour(mouse_x_view - x1, mouse_y_view - y1, 4, c_black, c_black, false);
+if (Controller.mouse_left) {
+    draw_line_colour(mouse_x_view_previous - x1, mouse_y_view_previous - y1, mouse_x_view - x1, mouse_y_view - y1, c_red, c_red);
+}
