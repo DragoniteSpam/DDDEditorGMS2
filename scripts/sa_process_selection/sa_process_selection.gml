@@ -150,7 +150,6 @@ if (ds_list_size(list) == 0) {
     Stuff.map.ui.element_entity_type.text = "Type: " + object_get_name(type) + suffix;
     
     switch (type) {
-        case EntityAutoTile:
         case EntityTile:
             break;
         case EntityMeshAutotile:

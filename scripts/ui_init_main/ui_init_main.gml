@@ -13,7 +13,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     t_maps = create_tab("Maps", 0, id);
     
     t_p_tile_editor = create_tab("Tile Ed.", 1, id);
-    t_p_autotile_editor = create_tab("Autotile Ed.", 1, id);
+    t_p_tile_animation_editor = create_tab("Tile Anim. Ed.", 1, id);
     t_p_mesh_editor = create_tab("Mesh Ed.", 1, id);
     t_p_other_editor = create_tab("Other Ed.", 1, id);
     
@@ -28,7 +28,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     var tr_general = ds_list_create();
     ds_list_add(tr_general, t_general, t_stats, t_maps);
     var tr_editor = ds_list_create();
-    ds_list_add(tr_editor, t_p_tile_editor, t_p_autotile_editor, t_p_mesh_editor, t_p_other_editor);
+    ds_list_add(tr_editor, t_p_tile_editor, t_p_tile_animation_editor, t_p_mesh_editor, t_p_other_editor);
     var tr_world = ds_list_create();
     ds_list_add(tr_world, t_p_entity, t_p_tile, t_p_mesh, t_p_pawn, t_p_effect, t_p_other);
     
@@ -892,35 +892,25 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     #endregion
     
-    #region tab: general: autotiles
+    #region tab: general: tile animation
     
     yy = legal_y + spacing;
     
-    element = create_list(col1_x, yy, "Defined Autotiles: ", "<something is wrong>", col_width, element_height, 28, uivc_list_selection_autotile, false, t_p_autotile_editor);
-    element.render = ui_render_list_autotiles;
-    ui_list_select(element, 0);
+    element = create_list(col1_x, yy, "Animated Tiles: ", "<something is wrong>", col_width, element_height, 28, null, false, t_p_tile_animation_editor);
+    element.entries_are = ListEntries.GUIDS;
     element.numbered = true;
-    for (var i = 0; i < AUTOTILE_MAX; i++) {
-        create_list_entries(element, "<none set>");
-    }
-    ds_list_add(t_p_autotile_editor.contents, element);
+    ds_list_add(t_p_tile_animation_editor.contents, element);
     
-    t_p_autotile_editor.element_list = element;
+    t_p_tile_animation_editor.element_list = element;
     
-    element = create_text(col2_x, yy, "Autotile Properties", col_width, element_height, fa_left, col_width, t_p_autotile_editor);
+    element = create_text(col2_x, yy, "Animated Tile Properties", col_width, element_height, fa_left, col_width, t_p_tile_animation_editor);
     element.color = c_blue;
-    ds_list_add(t_p_autotile_editor.contents, element);
+    ds_list_add(t_p_tile_animation_editor.contents, element);
     
     yy += element.height + spacing;
     
-    element = create_image_button(col2_x, yy, "(Click for autotile)", noone, col_width, col_width, fa_center, omu_autotile_selector, t_p_autotile_editor);
-    element.render = ui_render_image_button_autotile;
-    ds_list_add(t_p_autotile_editor.contents, element);
-    
-    yy += element.height + spacing;
-    
-    element = create_button(col2_x, yy, "Autotile Flags", col_width, element_height, fa_center, omu_autotile_flags, t_p_tile_editor);
-    ds_list_add(t_p_autotile_editor.contents, element);
+    element = create_image_button(col2_x, yy, "Select", noone, col_width, element_height, fa_center, null, t_p_tile_animation_editor);
+    ds_list_add(t_p_tile_animation_editor.contents, element);
     
     yy += element.height + spacing;
     

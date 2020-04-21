@@ -55,7 +55,7 @@ enum SerializeThings {
 enum ETypes {
     ENTITY,
     ENTITY_TILE,
-    ENTITY_TILE_AUTO,
+    ENTITY_TILE_ANIMATED,
     ENTITY_MESH,
     ENTITY_PAWN,
     ENTITY_EFFECT,
@@ -65,7 +65,7 @@ enum ETypes {
 global.etype_objects = [
     Entity,
     EntityTile,
-    EntityAutoTile,
+    EntityTileAnimated,
     EntityMesh,
     EntityPawn,
     EntityEffect,
@@ -76,13 +76,13 @@ global.etype_objects = [
 // some others for objects that are derived from something else
 enum ETypeFlags {
     ENTITY_TILE             = 0x002,
-    ENTITY_TILE_AUTO        = 0x004 | ETypeFlags.ENTITY_TILE,
+    ENTITY_TILE_ANIMATED    = 0x004 | ETypeFlags.ENTITY_TILE,
     ENTITY_MESH             = 0x008,
     ENTITY_PAWN             = 0x010,
     ENTITY_EFFECT           = 0x020,
     ENTITY_MESH_AUTO        = 0x040 | ETypeFlags.ENTITY_MESH,
     // every mask
-    ENTITY_ANY              = ETypeFlags.ENTITY_TILE_AUTO | ETypeFlags.ENTITY_MESH_AUTO | ETypeFlags.ENTITY_PAWN | ETypeFlags.ENTITY_EFFECT,
+    ENTITY_ANY              = 0xffffffff,
 }
 
 enum AnimationTweens {

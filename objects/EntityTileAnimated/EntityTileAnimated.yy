@@ -2,7 +2,7 @@
     "id": "75062a15-6fba-4c5d-a6f9-6a0cd14c61b8",
     "modelName": "GMObject",
     "mvc": "1.0",
-    "name": "EntityAutoTile",
+    "name": "EntityTileAnimated",
     "eventList": [
         {
             "id": "de826bc6-0245-4096-8ab0-0e0297e83d70",
