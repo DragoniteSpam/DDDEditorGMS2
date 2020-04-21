@@ -13108,6 +13108,14 @@
             }
         },
         {
+            "Key": "a87b853e-fa8b-44e8-8daa-1d1ccbb8f0ef",
+            "Value": {
+                "id": "7de067b5-10e1-4cbe-949f-c7e74d614e20",
+                "resourcePath": "scripts\\momu_editor_doodle\\momu_editor_doodle.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "a87d128e-a6f0-49f2-9520-282a6cdd62a8",
             "Value": {
                 "id": "eb0f501d-d80a-4702-a49b-a753670f5b8a",
@@ -20470,6 +20478,7 @@
         "0bc2521f-2dc0-4325-913e-77c33c0845e3",
         "caa20e44-8c55-4ed0-9855-8afaa2128c65",
         "d7530a8c-34a5-432a-b157-dc9d8271fa10",
+        "a87b853e-fa8b-44e8-8daa-1d1ccbb8f0ef",
         "9cc11b9c-2f04-40ff-b4c5-aab2a11b4514",
         "df9f8e52-d39f-4d27-959e-cb48c4037340",
         "54a48ce1-facf-4ddd-b47c-3d0087ccfee1",
