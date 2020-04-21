@@ -1,8 +1,6 @@
 /// @description this is for all types of audio, currently
 event_inherited();
 
-file_location = DataFileLocations.ASSET;
-
 fmod = noone;
 fmod_type = 0;          // FMODGMS_SOUND_TYPE_*
 fmod_rate = 44100;

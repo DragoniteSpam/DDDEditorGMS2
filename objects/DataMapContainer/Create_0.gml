@@ -5,7 +5,6 @@ event_inherited();
 name = "Map";
 summary = "it does map things";
 
-file_location = DataFileLocations.DATA;
 data_buffer = buffer_create(1, buffer_grow, 1);
 contents = noone;
 version = DataVersions._CURRENT;
