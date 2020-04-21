@@ -1,5 +1,5 @@
 /// @param buffer
-/// @param Entity
+/// @param EntityTileAnimated
 /// @param version
 
 var buffer = argument0;

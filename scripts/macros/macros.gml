@@ -1,22 +1,29 @@
+// the mode that the editor starts in
 #macro EDITOR_BASE_MODE ModeIDs.MAP
 #macro Terrain:EDITOR_BASE_MODE ModeIDs.TERRAIN
 #macro scribble:EDITOR_BASE_MODE ModeIDs.SCRIBBLE
 #macro spart:EDITOR_BASE_MODE ModeIDs.SPART
-// the dedicated Scribble / spart preview tools will not have the rest of the
-// program available
+#macro doodle:EDITOR_BASE_MODE ModeIDs.DOODLE
+// standalone tools will not have the rest of the program enabled
 #macro EDITOR_FORCE_SINGLE_MODE false
 #macro scribble:EDITOR_FORCE_SINGLE_MODE true
 #macro spart:EDITOR_FORCE_SINGLE_MODE true
-
+#macro doodle:EDITOR_FORCE_SINGLE_MODE true
+//
 #macro MENU_EDITOR_ENABLED true
 #macro scribble:MENU_EDITOR_ENABLED false
 #macro spart:MENU_EDITOR_ENABLED false
+#macro doodle:MENU_EDITOR_ENABLED true
+//
 #macro GLOBAL_CONTORLS_ENABLED true
 #macro scribble:GLOBAL_CONTORLS_ENABLED false
 #macro spart:GLOBAL_CONTORLS_ENABLED false
+#macro doodle:GLOBAL_CONTORLS_ENABLED true
+//
 #macro PROJECT_MENU_ENABLED true
 #macro scribble:PROJECT_MENU_ENABLED false
 #macro spart:PROJECT_MENU_ENABLED false
+#macro doodle:PROJECT_MENU_ENABLED true
 
 // game maker
 #macro wtf show_debug_message

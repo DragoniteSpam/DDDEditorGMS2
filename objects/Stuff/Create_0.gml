@@ -39,6 +39,7 @@ enum ModeIDs {
     TERRAIN,
     SCRIBBLE,
     SPART,
+    DOODLE,
 }
 
 tf = ["False", "True"];
@@ -364,6 +365,7 @@ animation = instance_create_depth(0, 0, 0, EditorModeAnimation);
 terrain = instance_create_depth(0, 0, 0, EditorModeTerrain);
 scribble = instance_create_depth(0, 0, 0, EditorModeScribble);
 spart = instance_create_depth(0, 0, 0, EditorModeSpart);
+doodle = instance_create_depth(0, 0, 0, EditorModeDoodle);
 menu = menu_init_main();
 
 instance_deactivate_object(EditorMode);
@@ -515,6 +517,7 @@ switch (stashed_mode) {
     case ModeIDs.TERRAIN: editor_mode_heightmap(); break;
     case ModeIDs.SCRIBBLE: editor_mode_scribble(); break;
     case ModeIDs.SPART: editor_mode_spart(); break;
+    case ModeIDs.DOODLE: editor_mode_doodle(); break;
 }
 
 if (PROJECT_MENU_ENABLED) {
