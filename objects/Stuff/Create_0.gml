@@ -10,6 +10,7 @@ default_lua_event_node_conditional = file_get_contents(PATH_LUA + "event-node-co
 default_lua_event_script = file_get_contents(PATH_LUA + "event-script.lua");
 default_lua_animation = file_get_contents(PATH_LUA + "animation.lua");
 default_lua_effect_common = file_get_contents(PATH_LUA + "global-effect-common.lua");
+game_asset_id = string_hex(irandom(0xffffffff));
 
 // local storage folders
 
@@ -429,7 +430,6 @@ game_notes = "";
 game_file_summary = "Write a short summary in Global Game Settings";
 game_file_author = "Who made this?";
 
-game_asset_id = string_hex(irandom(0xffffffff));
 game_asset_lists = ds_list_create();
 // @gml update lightweight objects
 var file_default = create_data_file("data", false);
