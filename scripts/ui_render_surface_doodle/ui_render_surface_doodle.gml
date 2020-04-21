@@ -13,16 +13,31 @@ var mode = Stuff.doodle;
 var sw = surface_get_width(surface.surface);
 var sh = surface_get_height(surface.surface);
 var changed = false;
+var mx = mouse_x_view - x1;
+var my = mouse_y_view - y1;
+var mxp = mouse_x_view_previous - x1;
+var myp = mouse_y_view_previous - y1;
 
 draw_rectangle_colour(1, 1, sw - 2, sh - 2, c_black, c_black, c_black, c_black, true);
 
-if (Controller.mouse_left) {
-    draw_line_colour(mouse_x_view_previous - x1, mouse_y_view_previous - y1, mouse_x_view - x1, mouse_y_view - y1, c_red, c_red);
-    changed = true;
+switch (mode.doodle_tool) {
+    case DoodleTools.PENCIL:
+        #region pencil
+        if (Controller.mouse_left) {
+            var c = mode.doodle_color_a;
+        } else if (Controller.mouse_right) {
+            var c = mode.doodle_color_b;
+        }
+        draw_line_width_color(mxp, myp, mx, my, mode.doodle_brush_size * 2, c, c);
+        draw_circle_color(mxp, myp, mode.doodle_brush_size, c, c, false);
+        draw_circle_color(mx, my, mode.doodle_brush_size, c, c, false);
+        changed = true;
+        #endregion
+        break;
 }
 
 if (changed) {
     surface_reset_target();
-    buffer_get_surface(Stuff.doodle.doodle_buffer, surface.surface, buffer_surface_copy, 0, 0);
+    buffer_get_surface(mode.doodle_buffer, surface.surface, buffer_surface_copy, 0, 0);
     surface_set_target(surface.surface);
 }
