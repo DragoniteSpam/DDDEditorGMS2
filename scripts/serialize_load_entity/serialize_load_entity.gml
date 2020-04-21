@@ -115,5 +115,3 @@ repeat (n_generic) {
 
 entity.event_flags = buffer_read(buffer, buffer_u32);
 entity.slope = buffer_read(buffer, buffer_u8);
-
-wtf(buffer_tell(buffer))
