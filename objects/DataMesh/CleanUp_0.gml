@@ -9,7 +9,7 @@ for (var i = 0; i < ds_list_size(map.contents.all_entities); i++) {
     var thing = map.contents.all_entities[| i];
     if (instanceof(thing, EntityMesh) && thing.mesh == GUID) {
         c_world_destroy_object(thing.cobject);
-        thing.cobject = c_object_create(Stuff.graphics.c_shape_block, CollisionMasks.MAIN, CollisionMasks.MAIN);
+        thing.cobject = c_object_create_cached(Stuff.graphics.c_shape_block, CollisionMasks.MAIN, CollisionMasks.MAIN);
         map_transform_thing(thing);
         editor_map_mark_changed(thing);
     }

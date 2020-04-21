@@ -4,5 +4,5 @@ if (object) {
     // don't accidentally trigger interactions if you click on them)
     c_object_set_mask(object, 0, 0);
     c_object_set_userid(object, 0);
-    ds_queue_enqueue(Stuff.c_objects_to_destroy, object);
+    ds_queue_enqueue(Stuff.c_object_cache, object);
 }

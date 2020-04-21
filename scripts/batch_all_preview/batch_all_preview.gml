@@ -48,7 +48,7 @@ if (ds_list_size(map.all_entities) > 0) {
     map.wpreview = noone;
 }
 
-map.cpreview = c_object_create(map.cspreview, CollisionMasks.SURFACE, CollisionMasks.SURFACE);
+map.cpreview = c_object_create_cached(map.cspreview, CollisionMasks.SURFACE, CollisionMasks.SURFACE);
 c_transform_identity();
 c_object_apply_transform(map.cpreview);
 c_world_add_object(map.cpreview);

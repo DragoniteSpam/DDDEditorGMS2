@@ -29,7 +29,7 @@ if (zone.cobject) {
 
 zone.cshape = c_shape_create();
 c_shape_add_box(zone.cshape, ww * TILE_WIDTH / 2, hh * TILE_HEIGHT / 2, dd * TILE_DEPTH / 2);
-zone.cobject = c_object_create(zone.cshape, CollisionMasks.MAIN, CollisionMasks.MAIN);
+zone.cobject = c_object_create_cached(zone.cshape, CollisionMasks.MAIN, CollisionMasks.MAIN);
 
 c_transform_position((zone.x1 + ww / 2) * TILE_WIDTH, (zone.y1 + hh / 2) * TILE_HEIGHT, (zone.z1 + dd / 2) * TILE_DEPTH);
 c_object_apply_transform(zone.cobject);

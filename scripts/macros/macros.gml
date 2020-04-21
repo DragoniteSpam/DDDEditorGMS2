@@ -42,6 +42,7 @@
 // these aren't meant to be used for view coordinates but window coordinates, otherwise i'd make them relative
 #macro CH 900
 #macro CW 1080
+#macro C_OBJECT_CACHE_SIZE 5000
 #macro DEBUG true
 #macro EVENT_NODE_CONTACT_HEIGHT 48
 #macro EVENT_NODE_CONTACT_WIDTH 320

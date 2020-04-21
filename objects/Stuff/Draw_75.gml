@@ -16,8 +16,8 @@ while (!ds_queue_empty(stuff_to_destroy)) {
 
 // I'm not actually sure why this seems to be so astonishginly slow that you
 // literally have to do it one at a time to maintian a frame rate
-if (!ds_queue_empty(c_objects_to_destroy)) {
-    c_world_destroy_object(ds_queue_dequeue(c_objects_to_destroy));
+if (ds_queue_size(c_object_cache) > C_OBJECT_CACHE_SIZE) {
+    c_world_destroy_object(ds_queue_dequeue(c_object_cache));
 }
 
 gpu_set_state(gpu_base_state);
