@@ -14604,6 +14604,14 @@
             }
         },
         {
+            "Key": "bd7d68d1-60c0-4536-82ee-a7f8c19eb663",
+            "Value": {
+                "id": "00aea4ce-1502-47bd-960b-c6f31477830a",
+                "resourcePath": "scripts\\ui_render_surface_control_doodle\\ui_render_surface_control_doodle.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "bd84c81d-9213-4e20-9041-48eb9a15eefb",
             "Value": {
                 "id": "be51290e-caf6-4eb1-a710-0f7b3dd5884e",
@@ -18716,6 +18724,14 @@
             }
         },
         {
+            "Key": "f30504f6-0c38-43d5-888a-437bd205ae3f",
+            "Value": {
+                "id": "b6883fa3-d5c7-44f6-bd3f-f0a5c85c0e71",
+                "resourcePath": "scripts\\ui_render_surface_recreate_doodle\\ui_render_surface_recreate_doodle.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "f32c4ca1-0737-433a-b8f5-f9fcc729837d",
             "Value": {
                 "id": "f3ea3da1-98cf-4ad2-b333-e0ca29f18399",
@@ -21207,6 +21223,8 @@
         "424effe5-bbb2-4880-b8e8-a7d657a45e77",
         "9d4edbe1-6f93-4774-9010-759acce00411",
         "26bbea8b-61d0-4549-8c64-7420d3fa108f",
+        "bd7d68d1-60c0-4536-82ee-a7f8c19eb663",
+        "f30504f6-0c38-43d5-888a-437bd205ae3f",
         "fcd4ba1d-4e32-4811-bac1-bf5c9ad661c1",
         "950a3cdf-e08c-43e0-9603-73967c4760d6",
         "e0fbacd6-8d07-41a5-b1ef-c42df2c13cfb",

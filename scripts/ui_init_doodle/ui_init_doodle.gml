@@ -41,8 +41,8 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     yy = yy_base;
     var xx_base = xx;
     
-    var element = create_button(xx, yy, "Help (Scribble)", ew / 2 - spacing, eh, fa_center, uivc_scribble_help, id);
-    element.tooltip = "In case you're not sure how to use this.";
+    var element = create_button(xx, yy, "Button", ew / 2 - spacing, eh, fa_center, null, id);
+    element.tooltip = "This is here so that I don't forget to put a toolbar in its place later or something";
     ds_list_add(contents, element);
     xx = xx + ew / 2;
     
@@ -50,7 +50,8 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     
     xx = xx_base;
     
-    var element = create_render_surface(xx, yy, room_width - spacing * 2 - xx, room_height - spacing * 2 - yy, ui_render_surface_doodle, null, id);
+    var element = create_render_surface(xx, yy, room_width - spacing * 2 - xx, room_height - spacing * 2 - yy, ui_render_surface_doodle, ui_render_surface_control_doodle, id);
+    element.script_recreate = ui_render_surface_recreate_doodle;
     ds_list_add(contents, element);
     #endregion
     
