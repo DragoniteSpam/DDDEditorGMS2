@@ -153,8 +153,8 @@ if (active) {
 }
 
 if (picker.selecting_color) {
-    picker.axis_w = clamp((Stuff.MOUSE_X - vx1) / w, 0, 1);
-    picker.axis_h = 1 - clamp((Stuff.MOUSE_Y - vy1) / h, 0, 1);
+    picker.axis_w = clamp((mouse_x - vx1) / w, 0, 1);
+    picker.axis_h = 1 - clamp((mouse_y - vy1) / h, 0, 1);
     picker.selecting_color = Controller.mouse_left;
 }
 
@@ -210,7 +210,7 @@ if (active) {
 }
 
 if (picker.selecting_axis) {
-    picker.axis_value = clamp((Stuff.MOUSE_Y - vy1) / h, 0, 1);
+    picker.axis_value = clamp((mouse_y - vy1) / h, 0, 1);
     picker.selecting_axis = Controller.mouse_left;
 }
 
@@ -262,7 +262,7 @@ if (picker.allow_alpha) {
     }
 
     if (picker.selecting_alpha) {
-        picker.alpha = clamp((Stuff.MOUSE_X - vx1) / w, 0, 1);
+        picker.alpha = clamp((mouse_x - vx1) / w, 0, 1);
         picker.selecting_alpha = Controller.mouse_left;
     }
 

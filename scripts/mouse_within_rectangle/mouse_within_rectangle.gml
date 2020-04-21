@@ -3,4 +3,4 @@
 /// @param x2
 /// @param y2
 
-return point_in_rectangle(Stuff.MOUSE_X, Stuff.MOUSE_Y, argument0, argument1, argument2, argument3);
+return point_in_rectangle(mouse_x, mouse_y, argument0, argument1, argument2, argument3);

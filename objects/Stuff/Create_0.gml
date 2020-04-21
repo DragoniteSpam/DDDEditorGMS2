@@ -26,8 +26,6 @@ time = 0;
 time_int = 0;
 frames = 0;
 
-MOUSE_X = window_mouse_get_x();
-MOUSE_Y = window_mouse_get_y();
 mouse_3d_lock = false;
 mode = noone;
 

@@ -4,10 +4,6 @@ time = get_timer() / MILLION;
 time_int = time div 1;
 frames++;
 
-// mouse things
-MOUSE_X = window_mouse_get_x();
-MOUSE_Y = window_mouse_get_y();
-
 // keep the overlay view updated
 var ww = window_get_width();
 var hh = window_get_height();

@@ -31,8 +31,8 @@ if (keyboard_check(vk_right) || keyboard_check(ord("D"))) {
 if (CONTORL_3D_LOOK) {
     var camera_cx = view_get_xport(view_3d) + view_get_wport(view_3d) / 2;
     var camera_cy = view_get_yport(view_3d) + view_get_hport(view_3d) / 2;
-    var dx = (Stuff.MOUSE_X - camera_cx) / 16;
-    var dy = (Stuff.MOUSE_Y - camera_cy) / 16;
+    var dx = (mouse_x - camera_cx) / 16;
+    var dy = (mouse_y - camera_cy) / 16;
     mode.direction = (360 + mode.direction - dx) % 360;
     mode.pitch = clamp(mode.pitch + dy, -89, 89);
     window_mouse_set(camera_cx, camera_cy);

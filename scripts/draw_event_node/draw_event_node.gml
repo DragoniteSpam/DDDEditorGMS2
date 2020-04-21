@@ -855,7 +855,7 @@ switch (node.type) {
                 }
             }
             
-            draw_bezier(x2 + ext_node_padding, bezier_y, Stuff.MOUSE_X + camera_get_view_x(camera), Stuff.MOUSE_Y + camera_get_view_y(camera));
+            draw_bezier(x2 + ext_node_padding, bezier_y, mouse_x + camera_get_view_x(camera), mouse_y + camera_get_view_y(camera));
         }
         break;
     #endregion
@@ -898,7 +898,7 @@ switch (node.type) {
 // to come up with a general solution
 if (!bezier_override) {
     if (Stuff.event.canvas_active_node == node) {
-        draw_bezier(x2 + ext_node_padding, drag_from_yy, Stuff.MOUSE_X + camera_get_view_x(camera), Stuff.MOUSE_Y + camera_get_view_y(camera));
+        draw_bezier(x2 + ext_node_padding, drag_from_yy, mouse_x + camera_get_view_x(camera), mouse_y + camera_get_view_y(camera));
         if (!dialog_exists()) {
             if (Controller.release_left) {
                 Controller.release_left = false;

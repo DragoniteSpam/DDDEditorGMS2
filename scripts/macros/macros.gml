@@ -68,8 +68,8 @@
 #macro MAX_SELECTION_COUNT 32
 #macro MAX_VISIBLE_MOVE_ROUTES 4
 #macro MAX_LIGHTS 7                         // one is reserved for the point / spot light around the player
-#macro mouse_x_view (Stuff.MOUSE_X - view_get_xport(view_current))
-#macro mouse_y_view (Stuff.MOUSE_Y - view_get_yport(view_current))
+#macro mouse_x_view (mouse_x - view_get_xport(view_current))
+#macro mouse_y_view (mouse_y - view_get_yport(view_current))
 #macro mouse_x_view_previous (Controller.mouse_x_previous - view_get_xport(view_current))
 #macro mouse_y_view_previous (Controller.mouse_y_previous - view_get_yport(view_current))
 #macro NULL ""

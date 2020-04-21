@@ -140,8 +140,8 @@ if (animation) {
         if (inbounds) {
             // double-left not used, that's to be handled by oninteract instead now
             if (Controller.mouse_left) {
-                var mx = min(((Stuff.MOUSE_X - x1) div timeline.moment_width) + timeline.moment_index, animation.moments - 1);
-                var my = min(((Stuff.MOUSE_Y - y2) div timeline.height) + layer_list.index, n - 1);
+                var mx = min(((mouse_x - x1) div timeline.moment_width) + timeline.moment_index, animation.moments - 1);
+                var my = min(((mouse_y - y2) div timeline.height) + layer_list.index, n - 1);
                 
                 timeline.selected_moment = mx;
                 timeline.selected_layer = my;
@@ -205,13 +205,13 @@ if (animation) {
             if (inbounds) {
                 draw_rectangle_colour(sbx1 + 1, y3 + 1, sbx2 - 1, y4 - 1, c_ui, c_ui, c_ui, c_ui, false);
                 if (Controller.press_left) {
-                    timeline.click_x = Stuff.MOUSE_X;
-                    timeline.click_y = Stuff.MOUSE_Y;
+                    timeline.click_x = mouse_x;
+                    timeline.click_y = mouse_y;
                 }
             }
             if (Controller.mouse_left) {
                 if (timeline.click_y > -1) {
-                    timeline.moment_index = floor(noutofrange * clamp(Stuff.MOUSE_X - smin, 0, srange) / srange);
+                    timeline.moment_index = floor(noutofrange * clamp(mouse_x - smin, 0, srange) / srange);
                 }
             }
             if (Controller.release_left) {
