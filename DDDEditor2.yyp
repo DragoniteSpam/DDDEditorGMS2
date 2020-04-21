@@ -2134,7 +2134,7 @@
             "Key": "19fa2ef9-9c3f-4073-be76-9ea24070ee3c",
             "Value": {
                 "id": "1a427756-2377-4be6-8da2-98ccf81b3ab4",
-                "resourcePath": "scripts\\serialize_load_image_autotiles\\serialize_load_image_autotiles.yy",
+                "resourcePath": "scripts\\serialize_load_image_tile_animations\\serialize_load_image_tile_animations.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -2478,7 +2478,7 @@
             "Key": "1e7b1bcf-3901-470a-a81b-b02751e9b314",
             "Value": {
                 "id": "a621a6d5-1e3a-49b8-a812-9954e2daefb0",
-                "resourcePath": "scripts\\serialize_save_image_autotiles\\serialize_save_image_autotiles.yy",
+                "resourcePath": "scripts\\serialize_save_image_tile_animations\\serialize_save_image_tile_animations.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -12571,14 +12571,6 @@
             }
         },
         {
-            "Key": "a2763d48-6a66-44a4-b7d4-507b677a44ba",
-            "Value": {
-                "id": "742fa197-6c1b-49dc-aa6c-85fd298bc6da",
-                "resourcePath": "scripts\\serialize_save_assets\\serialize_save_assets.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "a27b1260-f8c7-4889-a73d-4b6a6815bb1c",
             "Value": {
                 "id": "bffb3d16-48b7-44bf-b763-7544d762db0d",
@@ -17659,14 +17651,6 @@
             }
         },
         {
-            "Key": "e6a999fd-30df-42d0-beeb-ecabeae890c5",
-            "Value": {
-                "id": "ad339045-c236-4962-ac2e-6ff401a3fc5b",
-                "resourcePath": "objects\\DataImageAutotile\\DataImageAutotile.yy",
-                "resourceType": "GMObject"
-            }
-        },
-        {
             "Key": "e6b08f7b-d456-46f9-b000-01592b4a5598",
             "Value": {
                 "id": "63bba3a8-2146-49c9-87c8-d9ac97782ab7",
@@ -21274,7 +21258,6 @@
         "bf12de76-111a-48f5-8273-4a1c563e9145",
         "68887f1a-5406-4953-8e40-d50da4d8c219",
         "f5580333-4bb6-4b78-bbba-6f31bd4f15eb",
-        "a2763d48-6a66-44a4-b7d4-507b677a44ba",
         "d62f29fa-8d4b-4822-9430-e63515b4a9d8",
         "227c5c14-ce9f-4ddb-8d4c-d42a3382ea7f",
         "465938a3-586d-4f13-ae7a-8b7f3fe035b5",

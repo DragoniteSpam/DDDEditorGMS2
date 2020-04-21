@@ -116,8 +116,8 @@ while (true) {
         #region big ol' switch statement
         // assets
         case SerializeThings.IMAGE_TILE_ANIMATION:
-            Stuff.game_data_location[GameDataCategories.AUTOTILES] = Stuff.game_data_current_file.GUID;
-            serialize_load_image_autotiles(buffer, version);
+            Stuff.game_data_location[GameDataCategories.TILE_ANIMATIONS] = Stuff.game_data_current_file.GUID;
+            serialize_load_image_tile_animations(buffer, version);
             break;
         case SerializeThings.IMAGE_TILESET:
             Stuff.game_data_location[GameDataCategories.TILESETS] = Stuff.game_data_current_file.GUID;

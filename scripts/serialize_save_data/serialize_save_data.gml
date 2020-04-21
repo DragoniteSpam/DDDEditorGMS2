@@ -93,5 +93,6 @@ enum DataVersions {
     MAP_PLAYER_LIGHT                    = 101,
     ID_OVERHAUL                         = 102,  // sequential IDs, and IDs are strings rather than ints
     ASSET_ID                            = 103,
+    ANIMATED_TILES                      = 104,
     _CURRENT /* = whatever the last one is + 1 */
 }

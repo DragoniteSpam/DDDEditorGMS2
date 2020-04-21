@@ -438,7 +438,7 @@ var file_terrain = create_data_file("terrain", true);
 ds_list_add(game_asset_lists, file_default, file_asset, file_terrain);
 
 game_data_location = array_create(GameDataCategories.SIZE);
-game_data_location[GameDataCategories.AUTOTILES] = file_asset.GUID;
+game_data_location[GameDataCategories.TILE_ANIMATIONS] = file_asset.GUID;
 game_data_location[GameDataCategories.TILESETS] = file_asset.GUID;
 game_data_location[GameDataCategories.BATTLERS] = file_asset.GUID;
 game_data_location[GameDataCategories.OVERWORLDS] = file_asset.GUID;
@@ -457,7 +457,7 @@ game_data_location[GameDataCategories.ANIMATIONS] = file_default.GUID;
 game_data_location[GameDataCategories.TERRAIN] = file_terrain.GUID;
 
 game_data_save_scripts = array_create(GameDataCategories.SIZE);
-game_data_save_scripts[GameDataCategories.AUTOTILES] = serialize_save_image_autotiles;
+game_data_save_scripts[GameDataCategories.TILE_ANIMATIONS] = serialize_save_image_tile_animations;
 game_data_save_scripts[GameDataCategories.TILESETS] = serialize_save_image_tilesets;
 game_data_save_scripts[GameDataCategories.BATTLERS] = serialize_save_image_battlers;
 game_data_save_scripts[GameDataCategories.OVERWORLDS] = serialize_save_image_overworlds;
@@ -479,13 +479,27 @@ game_data_current_file = noone;
 
 // these may all go to different save locations
 enum GameDataCategories {
-    DATADATA, DATA_INST, GLOBAL,
-    ANIMATIONS, EVENTS,
-    TERRAIN, MAP,
-    AUTOTILES, TILESETS,
-    BATTLERS, OVERWORLDS,
-    PARTICLES, UI, MISC,
-    BGM, SE,
+    // core
+    DATADATA,
+    DATA_INST,
+    GLOBAL,
+    // other
+    ANIMATIONS,
+    EVENTS,
+    TERRAIN,
+    MAP,
+    // image assets
+    TILE_ANIMATIONS,
+    TILESETS,
+    BATTLERS,
+    OVERWORLDS,
+    PARTICLES,
+    UI,
+    MISC,
+    // audio assets
+    BGM,
+    SE,
+    // other assets
     MESH,
     SIZE
 }
