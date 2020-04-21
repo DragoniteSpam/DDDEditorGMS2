@@ -13,6 +13,11 @@ Stuff.game_starting_z = buffer_read(buffer, buffer_u16);
 Stuff.game_starting_direction = buffer_read(buffer, buffer_u8);
 Stuff.game_lighting_buckets = buffer_read(buffer, buffer_f32);
 Stuff.game_lighting_default_ambient = buffer_read(buffer, buffer_u32);
+
+if (version >= DataVersions.ASSET_ID) {
+    Stuff.game_asset_prefix = buffer_read(buffer, buffer_string);
+}
+
 Stuff.game_common_effect_code = buffer_read(buffer, buffer_string);
 
 var bools = buffer_read(buffer, buffer_u32);

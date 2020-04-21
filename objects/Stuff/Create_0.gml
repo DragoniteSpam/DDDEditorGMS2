@@ -429,6 +429,7 @@ game_notes = "";
 game_file_summary = "Write a short summary in Global Game Settings";
 game_file_author = "Who made this?";
 
+game_asset_prefix = "";
 game_asset_lists = ds_list_create();
 // @gml update lightweight objects
 var file_default = create_data_file("data", false);
