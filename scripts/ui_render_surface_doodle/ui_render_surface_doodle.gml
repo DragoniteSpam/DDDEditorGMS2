@@ -22,7 +22,7 @@ draw_rectangle_colour(1, 1, sw - 2, sh - 2, c_black, c_black, c_black, c_black, 
 
 switch (mode.doodle_tool) {
     case DoodleTools.PENCIL:
-        #region pencil
+        #region
         if (Controller.mouse_left) {
             var c = mode.doodle_color_a;
             changed = true;
@@ -34,6 +34,20 @@ switch (mode.doodle_tool) {
             draw_line_width_color(mxp, myp, mx, my, mode.doodle_brush_size * 2, c, c);
             draw_circle_color(mxp, myp, mode.doodle_brush_size, c, c, false);
             draw_circle_color(mx, my, mode.doodle_brush_size, c, c, false);
+        }
+        #endregion
+        break;
+    case DoodleTools.FLOODFILL:
+        #region
+        if (Controller.mouse_left) {
+            var c = mode.doodle_color_a;
+            changed = true;
+        } else if (Controller.mouse_right) {
+            var c = mode.doodle_color_b;
+            changed = true;
+        }
+        if (changed) {
+            var base_color = buffer_get_pixel(surface.surface, mode.doodle_buffer, mx, my);
         }
         #endregion
         break;

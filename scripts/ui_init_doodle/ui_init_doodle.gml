@@ -52,8 +52,9 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     
     mode.doodle_width = room_width - spacing * 2 - xx;
     mode.doodle_height = room_height - spacing * 2 - yy;
-    mode.doodle_buffer = buffer_create(mode.doodle_width * mode.doodle_height * 4, buffer_fixed, 4);
+    mode.doodle_buffer = buffer_create(mode.doodle_width * mode.doodle_height * 4, buffer_fixed, 1);
     var element = create_render_surface(xx, yy, mode.doodle_width, mode.doodle_height, ui_render_surface_doodle, ui_render_surface_control_doodle, c_white, id);
+    buffer_get_surface(mode.doodle_buffer, element.surface, buffer_surface_copy, 0, 0);
     element.script_recreate = ui_render_surface_recreate_doodle;
     ds_list_add(contents, element);
     #endregion

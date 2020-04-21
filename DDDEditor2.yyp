@@ -3628,6 +3628,14 @@
             }
         },
         {
+            "Key": "2c47cf03-de1f-477d-ba8c-b1222f9f1047",
+            "Value": {
+                "id": "b73c88fc-ec0f-4e57-8957-c273aa74b3a1",
+                "resourcePath": "scripts\\buffer_set_pixel\\buffer_set_pixel.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "2c66ec5e-56de-4eaa-be40-88d2d1520e26",
             "Value": {
                 "id": "25862d56-971c-4bf6-8b2d-56493985abee",
@@ -4920,6 +4928,14 @@
             "Value": {
                 "id": "52207623-28de-4153-b9f9-c9e823cae74f",
                 "resourcePath": "scripts\\batch_mesh_autotile\\batch_mesh_autotile.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "3f4714e7-5fe4-4e68-b0fb-5852f717fe47",
+            "Value": {
+                "id": "1b905a8d-34cd-4f6c-8c57-f07c6a91a620",
+                "resourcePath": "scripts\\buffer_get_pixel\\buffer_get_pixel.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -19908,6 +19924,8 @@
         "b1dcf306-c0d7-492b-a72f-4059f8e25687",
         "2c68108a-9c5a-4560-a00c-13bf12f3ac89",
         "7e3891e2-95b5-49a5-9417-881ec3d990f0",
+        "3f4714e7-5fe4-4e68-b0fb-5852f717fe47",
+        "2c47cf03-de1f-477d-ba8c-b1222f9f1047",
         "9f34a1fd-8e43-42b1-a18a-94d1604a9141",
         "6b3df79f-2173-4001-afd6-984ac02d8100",
         "094aeebb-eb41-4a39-8e94-7ea297522792",
