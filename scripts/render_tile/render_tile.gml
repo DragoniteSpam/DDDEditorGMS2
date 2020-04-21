@@ -32,37 +32,13 @@ var alpha = tile.tile_alpha;
 
 if (Stuff.setting_view_entities) {
     var tex = Stuff.setting_view_texture ? sprite_get_texture(ts.master, 0) : sprite_get_texture(b_tileset_textureless, 0)
-    
-    d3d_primitive_begin_texture(pr_trianglelist, tex);
-    
-    d3d_vertex_normal_texture_colour(xx, yy, zz, nx, ny, nz, xtex + TEXEL, ytex + TEXEL, color, alpha);
-    d3d_vertex_normal_texture_colour(xx + TILE_WIDTH, yy, zz, nx, ny, nz, xtex + texture_width - TEXEL, ytex + TEXEL, color, alpha);
-    d3d_vertex_normal_texture_colour(xx + TILE_WIDTH, yy + TILE_HEIGHT, zz, nx, ny, nz, xtex + texture_width - TEXEL, ytex + texture_height - TEXEL, color, alpha);
-    
-    d3d_vertex_normal_texture_colour(xx + TILE_WIDTH, yy + TILE_HEIGHT, zz, nx, ny, nz, xtex + texture_width - TEXEL, ytex + texture_height - TEXEL, color, alpha);
-    d3d_vertex_normal_texture_colour(xx, yy + TILE_HEIGHT, zz, nx, ny, nz, xtex + TEXEL, ytex + texture_height - TEXEL, color, alpha);
-    d3d_vertex_normal_texture_colour(xx, yy, zz, nx, ny, nz, xtex + TEXEL, ytex + TEXEL, color, alpha);
-    
-    d3d_primitive_end();
+    transform_set(xx, yy, zz, 0, 0, 0, 1, 1, 1);
+    vertex_submit(tile.vbuffer, pr_trianglelist, tex);
+    transform_reset();
 }
 
 if (Stuff.setting_view_wireframe) {
-    d3d_primitive_begin_texture(pr_linelist, -1);
-    
-    d3d_vertex(xx, yy, zz);
-    d3d_vertex(xx + TILE_WIDTH, yy, zz);
-    
-    d3d_vertex(xx + TILE_WIDTH, yy, zz);
-    d3d_vertex(xx + TILE_WIDTH, yy + TILE_HEIGHT, zz);
-    
-    d3d_vertex(xx, yy, zz);
-    d3d_vertex(xx + TILE_WIDTH, yy + TILE_HEIGHT, zz);
-    
-    d3d_vertex(xx + TILE_WIDTH, yy + TILE_HEIGHT, zz);
-    d3d_vertex(xx, yy + TILE_HEIGHT, zz);
-    
-    d3d_vertex(xx, yy + TILE_HEIGHT, zz);
-    d3d_vertex(xx, yy, zz);
-    
-    d3d_primitive_end();
+    transform_set(xx, yy, zz, 0, 0, 0, 1, 1, 1);
+    vertex_submit(tile.vbuffer, pr_trianglelist, -1);
+    transform_reset();
 }
