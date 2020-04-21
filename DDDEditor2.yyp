@@ -12228,6 +12228,14 @@
             }
         },
         {
+            "Key": "9d4edbe1-6f93-4774-9010-759acce00411",
+            "Value": {
+                "id": "9c04b8b8-9437-4efc-9aa9-ea2e751616e7",
+                "resourcePath": "scripts\\ui_render_surface_doodle\\ui_render_surface_doodle.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "9db57781-2030-4103-ba8b-0a6c7307e4da",
             "Value": {
                 "id": "08517a84-e644-4a18-a5fa-0795aeca107a",
@@ -21188,6 +21196,7 @@
         "0f31efed-2e40-444f-a0b1-727c5f415a76",
         "894325ed-22ed-443e-b575-8f82bb5cef3b",
         "424effe5-bbb2-4880-b8e8-a7d657a45e77",
+        "9d4edbe1-6f93-4774-9010-759acce00411",
         "26bbea8b-61d0-4549-8c64-7420d3fa108f",
         "fcd4ba1d-4e32-4811-bac1-bf5c9ad661c1",
         "950a3cdf-e08c-43e0-9603-73967c4760d6",
