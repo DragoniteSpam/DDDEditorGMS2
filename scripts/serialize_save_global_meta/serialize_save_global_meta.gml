@@ -13,7 +13,7 @@ buffer_write(buffer, buffer_u16, Stuff.game_starting_z);
 buffer_write(buffer, buffer_u8, Stuff.game_starting_direction);
 buffer_write(buffer, buffer_f32, Stuff.game_lighting_buckets);
 buffer_write(buffer, buffer_u32, Stuff.game_lighting_default_ambient);
-buffer_write(buffer, buffer_string, Stuff.game_asset_prefix);
+buffer_write(buffer, buffer_string, Stuff.game_asset_id);
 
 buffer_write(buffer, buffer_string, Stuff.game_common_effect_code);
 
