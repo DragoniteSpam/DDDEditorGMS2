@@ -1,8 +1,8 @@
 {
-    "id": "1aaa6354-fcdd-4251-8494-6dff10635795",
+    "id": "40eb65ac-3223-4a64-b780-87a78ac430eb",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "create_autotile",
+    "name": "safc_on_tile_animated_ui",
     "IsCompatibility": false,
     "IsDnD": false
 }

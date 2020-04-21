@@ -33,12 +33,11 @@ selected_zone = noone;
 selection_fill_mesh = -1;       // list index
 selection_fill_tile_x = 4;
 selection_fill_tile_y = 0;
-selection_fill_autotile = 0;
 
 selected_zone = noone;
 
 fill_types = [
-    safc_fill_tile, safc_fill_autotile,
+    safc_fill_tile, safc_fill_tile_animated,
     safc_fill_mesh, safc_fill_pawn,
     safc_fill_effect, safc_fill_terrain
 ];
@@ -53,7 +52,7 @@ enum SelectionModes {
 
 enum FillTypes {
     TILE,
-    AUTOTILE,
+    TILE_ANIMATED,
     MESH,
     PAWN,
     EFFECT,

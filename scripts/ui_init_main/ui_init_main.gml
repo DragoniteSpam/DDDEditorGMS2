@@ -72,7 +72,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy += element.height + spacing;
     
     element = create_radio_array(col1_x, yy, "Fill Type", col_width, element_height, uivc_radio_fill_type, Stuff.setting_selection_fill_type, t_general);
-    create_radio_array_options(element, ["Tile", "Autotile", "Mesh", "Pawn", "Effect", "Mesh Autotile", "Zone"]);
+    create_radio_array_options(element, ["Tile", "Animated Tile", "Mesh", "Pawn", "Effect", "Mesh Autotile", "Zone"]);
     ds_list_add(t_general.contents, element);
     
     yy += ui_get_radio_array_height(element) + spacing;

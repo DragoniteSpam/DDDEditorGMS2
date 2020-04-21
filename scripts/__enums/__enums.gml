@@ -29,7 +29,7 @@ enum SerializeThings {
     MAP_DYNAMIC             = 0x00000016,
     EVENTS                  = 0x00000017,
     // 18
-    IMAGE_AUTOTILES         = 0x00000019,
+    IMAGE_TILE_ANIMATION    = 0x00000019,
     MAP_META                = 0x0000001A,
     DATADATA                = 0x0000001B,
     EVENT_CUSTOM            = 0x0000001C,

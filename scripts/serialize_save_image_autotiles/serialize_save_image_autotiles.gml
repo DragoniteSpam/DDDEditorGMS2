@@ -2,7 +2,7 @@
 
 var buffer = argument0;
 
-buffer_write(buffer, buffer_u32, SerializeThings.IMAGE_AUTOTILES);
+buffer_write(buffer, buffer_u32, SerializeThings.IMAGE_TILE_ANIMATION);
 var addr_next = buffer_tell(buffer);
 buffer_write(buffer, buffer_u64, 0);
 

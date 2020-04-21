@@ -14,5 +14,5 @@ batch = batch_autotile;
 render = render_autotile;
 selector = select_single;
 
-on_create = create_autotile;
-on_select_ui = safc_on_autotile_ui;
+on_create = null;
+on_select_ui = safc_on_tile_animated_ui;
