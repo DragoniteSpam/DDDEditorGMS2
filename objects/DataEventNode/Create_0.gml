@@ -3,8 +3,8 @@ event_inherited();
 // serialized
 
 // these are so they can be put in the proper place the next time you load them into the editor
-// x                                                                    // serialize: buffer_u32
-// y                                                                    // serialize: buffer_u32
+// x                                                                    // serialize: buffer_s32
+// y                                                                    // serialize: buffer_s32
 
 type = EventNodeTypes.ENTRYPOINT;                                       // serialize: buffer_u16
 
@@ -13,10 +13,10 @@ outbound = ds_list_create();
 ds_list_add(data, "The quick brown fox jumped over the lazy dog");      // serialize: buffer_string
 ds_list_add(outbound, noone);                                           // serialize: buffer_string (this is an instance ID, but you serialize the unique name of the destination)
 
-custom_guid = NULL;                                                        // serialize: buffer_u32
+custom_guid = NULL;                                                     // serialize: buffer_datatype
 custom_data = ds_list_create();                                         // list of lists - contents determined by custom_guid
 
-prefab_guid = NULL;                                                        // serialize: buffer_u32
+prefab_guid = NULL;                                                     // serialize: buffer_datatype
 
 // editor only - set upon creation, or reset upon loading
 

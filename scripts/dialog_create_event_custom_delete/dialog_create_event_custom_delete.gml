@@ -28,7 +28,25 @@ var b_height = 32;
 var yy = 64;
 var yy_base = yy;
 
-var el_text = create_text(col1_x, yy, "Are you sure you want to delete " + custom.name + "? Any nodes based upon it will also be deleted, and graph logic may break.", ew, eh, fa_left, ew, dg);
+var n_events = 0;
+var n_nodes = 0;
+#region count the number of nodes that will be deleted
+for (var i = 0; i < ds_list_size(Stuff.all_events); i++) {
+    var event = Stuff.all_events[| i];
+    var this_event = false;
+    for (var j = 0; j < ds_list_size(event.nodes); j++) {
+        if (event.nodes[| j].custom_guid == custom.GUID) {
+            n_nodes++;
+            if (!this_event) {
+                this_event = true;
+                n_events++;
+            }
+        }
+    }
+}
+#endregion
+
+var el_text = create_text(col1_x, yy, "Are you sure you want to delete " + custom.name + "? This will also delete " + string(n_nodes) + " nodes in " + string(n_events) + " and may cause event logic to no longer work properly.", ew, eh, fa_left, ew, dg);
 el_text.valignment = fa_top;
 yy += el_text.height + spacing;
 

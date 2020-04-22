@@ -4,15 +4,19 @@ var button = argument0;
 var custom = button.root.custom;
 var index = ds_list_find_index(Stuff.all_event_custom, custom);
 
-instance_activate_object(custom);
-instance_destroy(custom);
 ds_list_delete(Stuff.all_event_custom, index);
 ui_list_deselect(button.root.root.root.el_list_custom);
 
-/*
-if (show_question("Delete " + custom.name + "? If you have any instances of it instantiated, they will also be deleted and event graphs may break.")) {
+for (var i = 0; i < ds_list_size(Stuff.all_events); i++) {
+    var event = Stuff.all_events[| i];
+    for (var j = 0; j < ds_list_size(event.nodes); j++) {
+        if (event.nodes[| j].custom_guid == custom.GUID) {
+            instance_destroy_later(event.nodes[| j]);
+        }
+    }
+}
 
-    // todo make the thing in the warning actually happen
-}*/
+instance_activate_object(custom);
+instance_destroy(custom);
 
 dc_default(button);
