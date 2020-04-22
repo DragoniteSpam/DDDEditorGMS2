@@ -1,8 +1,8 @@
 {
-    "id": "13a29890-b54d-4a12-ba7c-f11f012fc594",
+    "id": "8437e241-2803-4cdf-a95e-4042d6521f04",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "event_rename",
+    "name": "uivc_event_attain_string",
     "IsCompatibility": false,
     "IsDnD": false
 }

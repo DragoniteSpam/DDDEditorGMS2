@@ -14,16 +14,7 @@ if (!dialog_exists() && !Stuff.event.canvas_active_node) {
         
         // i don't like this either but it also works (for now)
         if (Controller.release_left && !Stuff.event.canvas_active_node) {
-            var new_name = get_string("New name for this node?", node.name);
-            if (new_name != node.name) {
-                if (string_length(new_name) == 0) {
-                    // don't
-                } else if (ds_map_exists(node.event.name_map, new_name) && new_name != node.name) {
-                    show_message(new_name + " is already in use!");
-                } else {
-                    event_rename(Stuff.event.active, node, new_name);
-                }
-            }
+            dialog_create_event_node_rename(node);
         }
     }
 }

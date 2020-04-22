@@ -8,7 +8,15 @@ if (!string_length(str)) {
     return false;
 }
 
-// characters must be save to use as a file name; to keep things simple we'll
-// use the A-Za-z0-9\_ pattern of variable names, although we don't care if
-// they start with a digit in this case
-return regex("[A-Za-z0-9_\+\$]+", str);
+if (!regex("[A-Za-z0-9_\+\$]+", str)) {
+    return false;
+}
+
+if (input) {
+    var node = input.root.node;
+    if (node.event.name_map[? str] && node.event.name_map[? str] != node) {
+        return false;
+    }
+}
+
+return true;

@@ -11,6 +11,7 @@ var y1 = input.y + yy;
 var x2 = x1 + input.width;
 var y2 = y1 + input.height;
 var offset = 12;
+var c = input.color;
 
 var vx1 = x1 + input.value_x1;
 var vy1 = y1 + input.value_y1;
@@ -29,7 +30,6 @@ var sw_end = sw + 4;
 #region text label
 draw_set_halign(input.alignment);
 draw_set_valign(input.valignment);
-var c = input.color;
 draw_text_colour(tx, ty, string(input.text), c, c, c, c, 1);
 draw_set_valign(fa_middle);
 

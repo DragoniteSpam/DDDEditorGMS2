@@ -1,12 +1,12 @@
-/// @param node
+/// @param event
 
-var node = argument0;
+var event = argument0;
 
 var dw = 400;
 var dh = 200;
 
-var dg = dialog_create(dw, dh, "Rename Node", dialog_default, undefined, noone);
-dg.node = node;
+var dg = dialog_create(dw, dh, "Rename Event", dialog_default, undefined, noone);
+dg.event = event;
 
 var columns = 1;
 var spacing = 16;
@@ -26,7 +26,7 @@ var b_height = 32;
 var yy = 64;
 var yy_base = yy;
 
-var el_input = create_input(col1_x, yy, "Name:", ew, eh, uivc_event_attain_node_name, node.name, "", validate_string_event_name, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
+var el_input = create_input(col1_x, yy, "Name:", ew, eh, uivc_event_attain_name, event.name, "", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
 yy += el_input.height;
 
 var el_confirm = create_button(dw / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dc_default, dg, fa_center);

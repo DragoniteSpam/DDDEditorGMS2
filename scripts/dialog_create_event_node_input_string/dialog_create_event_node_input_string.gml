@@ -36,7 +36,7 @@ var yy_base = yy;
 var el_text = create_text(col1_x, yy, message, ew, eh, fa_left, ew, dg);
 yy += el_text.height + spacing;
 
-var el_input = create_input(col1_x, yy, "", ew, eh, uivc_list_event_attain_string, value, "", validate_string, 0, 1, 250, vx1, vy1, vx2, vy2, dg);
+var el_input = create_input(col1_x, yy, "", ew, eh, uivc_event_attain_string, value, "", validate_string, 0, 1, 250, vx1, vy1, vx2, vy2, dg);
 yy += el_input.height;
 
 var el_confirm = create_button(dw / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dc_default, dg, fa_center);

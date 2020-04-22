@@ -11,7 +11,7 @@ if (selection + 1) {
     // when the node is named normally the $number is appended before the event is added to the
     // list; in this case it's already in the list and you're renaming it, so the number you want
     // is length minus one
-    event_rename(event, instantiated, prefab.name + "$" + string(ds_list_size(Stuff.event.active.nodes) - 1));
+    event_rename_node(event, instantiated, prefab.name + "$" + string(ds_list_size(Stuff.event.active.nodes) - 1));
     instantiated.prefab_guid = prefab.GUID;
     ds_list_copy(instantiated.data, prefab.data);
     
