@@ -61,7 +61,7 @@ switch (node.type) {
                 draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + entry_height - tolerance, c, c, c, c, false);
                 if (!dialog_exists()) {
                     if (Controller.release_left && !Stuff.event.canvas_active_node) {
-                        dialog_create_event_node_input_string(node, 0, "Comment text?", node.data[| 0]);
+                        dialog_create_event_node_input_string(node.data, 0, "Comment text?", node.data[| 0]);
                     }
                 }
             }
@@ -100,7 +100,7 @@ switch (node.type) {
                     draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + entry_height - tolerance, c, c, c, c, false);
                     if (!dialog_exists()) {
                         if (Controller.release_left && !Stuff.event.canvas_active_node) {
-                            node.data[| i] = get_string("Data in this node?", node.data[| i]);
+                            dialog_create_event_node_input_string(node.data, i, "Node data?", node.data[| i]);
                         }
                     }
                 }
@@ -306,7 +306,7 @@ switch (node.type) {
                     draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + eh - tolerance, c, c, c, c, false);
                     if (!dialog_exists()) {
                         if (Controller.release_left && !Stuff.event.canvas_active_node) {
-                            node.data[| i] = get_string("Option text?", node.data[| i]);
+                            dialog_create_event_node_input_string(node.data, i, "Option text?", node.data[| i]);
                         }
                     }
                 }
@@ -439,7 +439,7 @@ switch (node.type) {
                                         }
                                         break;
                                     case DataTypes.STRING:
-                                        custom_data_list[| 0] = get_string(type[0] + "?", string(custom_data_list[| 0]));
+                                        dialog_create_event_node_input_string(custom_data_list, 0, type[0] + "?", custom_data_list[| 0]);
                                         break;
                                     case DataTypes.BOOL:
                                         custom_data_list[| 0] =! custom_data_list[| 0];

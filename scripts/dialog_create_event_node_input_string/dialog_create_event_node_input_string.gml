@@ -1,18 +1,18 @@
-/// @param node
+/// @param list
 /// @param index
 /// @param message
 /// @param value
 
-var node = argument0;
+var list = argument0;
 var index = argument1;
 var message = argument2;
 var value = argument3;
 
 var dw = 560;
-var dh = 320;
+var dh = 240;
 
-var dg = dialog_create(dw, dh, message, dialog_default, undefined, node);
-dg.node = node;
+var dg = dialog_create(dw, dh, message, dialog_default, undefined, noone);
+dg.list = list;
 dg.index = index;
 
 var columns = 1;
