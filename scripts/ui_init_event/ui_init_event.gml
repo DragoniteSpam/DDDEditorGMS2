@@ -43,19 +43,19 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     t_events.el_event_list = element;
     
-    yy += element_height + spacing + element.height * element.slots;
+    yy += ui_get_list_height(element) + spacing;
     
-    element = create_button(legal_x + spacing, yy, "Add Event", element_width, element_height, fa_left, omu_event_add_event, t_events);
+    element = create_button(legal_x + spacing, yy, "Add Event", element_width, element_height, fa_center, omu_event_add_event, t_events);
     ds_list_add(t_events.contents, element);
     
     yy += element_height + spacing;
     
-    element = create_button(legal_x + spacing, yy, "Rename", element_width, element_height, fa_left, omu_event_rename_event, t_events);
+    element = create_button(legal_x + spacing, yy, "Rename", element_width, element_height, fa_center, omu_event_rename_event, t_events);
     ds_list_add(t_events.contents, element);
     
     yy += element_height + spacing;
     
-    element = create_button(legal_x + spacing, yy, "Delete", element_width, element_height, fa_left, omu_event_remove_event, t_events);
+    element = create_button(legal_x + spacing, yy, "Delete", element_width, element_height, fa_center, omu_event_remove_event, t_events);
     ds_list_add(t_events.contents, element);
     
     yy += element_height + spacing;
@@ -66,41 +66,30 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     var yy = legal_y;
     
-    element = create_text(legal_x + spacing, yy, "<active event name>", element_width, element_height, fa_left, element_width, t_list);
-    element.render = ui_render_text_active_event;
-    ds_list_add(t_list.contents, element);
-    
-    yy += element_height + spacing;
-    
-    element = create_list(legal_x + spacing, yy, "Event Nodes", "No nodes available!", element_width, list_entry_height, 18, uivc_list_selection_event_node, false, t_list, noone);
+    element = create_list(legal_x + spacing, yy, "Event Nodes", "No nodes available!", element_width, list_entry_height, 22, uivc_list_selection_event_node, false, t_list, noone);
     element.entries_are = ListEntries.INSTANCES;
     element.render = ui_render_list_event_node;
     element.onmiddleclick = omu_event_node_list_alphabetize;
     ds_list_add(t_list.contents, element);
     
-    yy += element_height + spacing + element.height * element.slots;
+    yy += ui_get_list_height(element) + spacing;
     
-    element = create_text(legal_x + spacing, yy, "Quick Add", element_width, element_height, fa_left, element_width, t_list);
+    element = create_button(legal_x + spacing, yy, "Entrypoint", element_width, element_height, fa_center, omu_event_add_entrypoint, t_list);
     ds_list_add(t_list.contents, element);
     
     yy += element_height + spacing;
     
-    element = create_button(legal_x + spacing, yy, "Entrypoint", element_width, element_height, fa_left, omu_event_add_entrypoint, t_list);
+    element = create_button(legal_x + spacing, yy, "Text Node", element_width, element_height, fa_center, omu_event_add_text, t_list);
     ds_list_add(t_list.contents, element);
     
     yy += element_height + spacing;
     
-    element = create_button(legal_x + spacing, yy, "Text Node", element_width, element_height, fa_left, omu_event_add_text, t_list);
+    element = create_button(legal_x + spacing, yy, "Custom", element_width, element_height, fa_center, omu_event_custom_dialog, t_list);
     ds_list_add(t_list.contents, element);
     
     yy += element_height + spacing;
     
-    element = create_button(legal_x + spacing, yy, "Custom", element_width, element_height, fa_left, omu_event_custom_dialog, t_list);
-    ds_list_add(t_list.contents, element);
-    
-    yy += element_height + spacing;
-    
-    element = create_button(legal_x + spacing, yy, "Prefab", element_width, element_height, fa_left, omu_event_prefab_dialog, t_list);
+    element = create_button(legal_x + spacing, yy, "Prefab", element_width, element_height, fa_center, omu_event_prefab_dialog, t_list);
     ds_list_add(t_list.contents, element);
     
     #endregion
