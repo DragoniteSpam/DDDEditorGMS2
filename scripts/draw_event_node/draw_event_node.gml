@@ -430,13 +430,10 @@ switch (node.type) {
                             if (attainment == null) {
                                 switch (type[EventNodeCustomData.TYPE]) {
                                     case DataTypes.INT:
-                                        custom_data_list[| 0] = get_integer(type[0] + "?", custom_data_list[| 0]);
+                                        dialog_create_event_node_input_real(custom_data_list, 0, type[0] + "?", custom_data_list[| 0], validate_int, -0x1000000, 0xffffff);
                                         break;
                                     case DataTypes.FLOAT:
-                                        var parse_me = get_string(type[0] + "?", string(custom_data_list[| 0]));
-                                        if (validate_double(parse_me)) {
-                                            custom_data_list[| 0] = real(parse_me);
-                                        }
+                                        dialog_create_event_node_input_real(custom_data_list, 0, type[0] + "?", custom_data_list[| 0], validate_double, -0x1000000, 0xffffff);
                                         break;
                                     case DataTypes.STRING:
                                         dialog_create_event_node_input_string(custom_data_list, 0, type[0] + "?", custom_data_list[| 0]);
