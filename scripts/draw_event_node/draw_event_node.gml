@@ -61,7 +61,7 @@ switch (node.type) {
                 draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + entry_height - tolerance, c, c, c, c, false);
                 if (!dialog_exists()) {
                     if (Controller.release_left && !Stuff.event.canvas_active_node) {
-                        node.data[| 0] = get_string("Comment contents?", node.data[| 0]);
+                        dialog_create_event_node_input_string(node, 0, "Comment text?", node.data[| 0]);
                     }
                 }
             }

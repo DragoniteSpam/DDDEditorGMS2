@@ -1012,6 +1012,14 @@
             }
         },
         {
+            "Key": "0ba3d399-c75d-48da-9595-7540d707a581",
+            "Value": {
+                "id": "24f3e87b-5b0e-46b8-ab9b-94b053221022",
+                "resourcePath": "scripts\\dialog_create_event_node_input_string\\dialog_create_event_node_input_string.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "0ba63890-e1c2-489d-b209-70fba2eb457d",
             "Value": {
                 "id": "31d8c8c1-40dd-48b5-be7c-755eb3fb3201",
@@ -10337,6 +10345,14 @@
                 "id": "a67880b9-1db9-4a2f-a90f-0bf94c0b6c85",
                 "resourcePath": "shaders\\sh_smf_f_outline\\sh_smf_f_outline.yy",
                 "resourceType": "GMShader"
+            }
+        },
+        {
+            "Key": "8437e241-2803-4cdf-a95e-4042d6521f04",
+            "Value": {
+                "id": "5e1e8f62-7fae-4f88-8c2d-ab478119f150",
+                "resourcePath": "scripts\\uivc_list_event_attain_string\\uivc_list_event_attain_string.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -20376,6 +20392,7 @@
         "7c718de8-277a-4a6d-a1cc-866c19df6fe5",
         "4756c8f0-f2a7-460e-8acd-7b2561ecb59f",
         "355daae9-2843-4691-9b4f-3cd5b4fc938a",
+        "0ba3d399-c75d-48da-9595-7540d707a581",
         "3ebce2ef-e1ea-49d0-91fd-7a341df0022f",
         "bcd1774a-005a-440c-b96a-c4e8d29065bc",
         "79a317d9-c17d-49ff-bfcd-6ce6166c427b",
@@ -20591,6 +20608,7 @@
         "48ede753-26d6-419c-83c1-a7e4d235f7c8",
         "3e051823-5ef9-4923-bb43-20dd4710b10f",
         "8ce47a97-7e64-4509-aa7c-e5615e5a15ac",
+        "8437e241-2803-4cdf-a95e-4042d6521f04",
         "f1b48acb-f86f-4f6d-801a-02488a8cc4a7",
         "c0b378b1-8279-4026-92b9-baf44647606f",
         "9d217a8c-a352-45ad-b279-1107c7e48c16",
