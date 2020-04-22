@@ -46,7 +46,13 @@ for (var i = 0; i < ds_list_size(Stuff.all_events); i++) {
 }
 #endregion
 
-var el_text = create_text(col1_x, yy, "Are you sure you want to delete " + custom.name + "? This will also delete " + string(n_nodes) + " nodes in " + string(n_events) + " and may cause event logic to no longer work properly.", ew, eh, fa_left, ew, dg);
+var text_contents = "Are you sure you want to delete " + custom.name + "?";
+
+if (n_nodes > 0) {
+    text_contents += " This will also delete " + string(n_nodes) + " " + ((n_nodes > 1) ? "nodes" : "node") + " in " + string(n_events) + " " + ((n_events > 1) ? "events" : "event") + " and may cause event logic to no longer work properly.";
+}
+
+var el_text = create_text(col1_x, yy, text_contents, ew, eh, fa_left, ew, dg);
 el_text.valignment = fa_top;
 yy += el_text.height + spacing;
 
