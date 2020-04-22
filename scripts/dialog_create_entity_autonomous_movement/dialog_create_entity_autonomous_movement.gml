@@ -58,7 +58,7 @@ var el_move_route_delete = create_button(col2_x, yy, "Delete Move Route", ew, eh
 yy += el_move_route_delete.height+spacing;
 
 var el_move_route_auto = create_button(col2_x, yy, "Set Auto", ew / 2, eh, fa_center, omu_entity_set_auto_move_route, dg);
-var el_move_route_auto_remove = create_button(col2_x + ew / 2, yy, "Remove Auto", ew / 2, eh, fa_center, omu_entity_remove_auto_move_route, dg);
+var el_move_route_auto_remove = create_button(col2_x + ew / 2, yy, "Delete Auto", ew / 2, eh, fa_center, omu_entity_remove_auto_move_route, dg);
 yy += el_move_route_auto_remove.height + spacing;
 
 var el_move_route_make_visible = create_button(col2_x, yy, "Show", ew / 2, eh, fa_center, omu_entity_move_route_make_visible, dg);

@@ -46,7 +46,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     
     yy += element.height + spacing;
     
-    var element = create_button(xx, yy, "Remove Animation", ew, eh, fa_middle, omu_animation_remove, id);
+    var element = create_button(xx, yy, "Delete Animation", ew, eh, fa_middle, omu_animation_remove, id);
     ds_list_add(contents, element);
     
     yy += element.height + spacing;
@@ -80,7 +80,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     
     yy += element.height + spacing;
     
-    var element = create_button(xx, yy, "Remove Layer", ew, eh, fa_middle, omu_animation_layer_remove, id);
+    var element = create_button(xx, yy, "Delete Layer", ew, eh, fa_middle, omu_animation_layer_remove, id);
     ds_list_add(contents, element);
     
     yy += element.height + spacing;

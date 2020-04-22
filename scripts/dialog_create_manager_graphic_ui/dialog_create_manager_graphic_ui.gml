@@ -37,7 +37,7 @@ yy += ui_get_list_height(el_list) + spacing;
 var el_add = create_button(16, yy, "Add Image", ew, eh, fa_center, dmu_dialog_load_graphic_ui, dg);
 yy += el_add.height + spacing;
 
-var el_remove = create_button(16, yy, "Remove Image", ew, eh, fa_center, dmu_dialog_remove_graphic_ui, dg);
+var el_remove = create_button(16, yy, "Delete Image", ew, eh, fa_center, dmu_dialog_remove_graphic_ui, dg);
 
 yy = yy_base;
 

@@ -49,7 +49,7 @@ yy += ui_get_list_height(el_list) + spacing;
 var el_add = create_button(col1_x, yy, "Add Property", ew, eh, fa_center, omu_event_custom_add_property, dg);
 yy += el_add.height + spacing;
 
-var el_remove = create_button(col1_x, yy, "Remove Property", ew, eh, fa_center, omu_event_custom_remove_property, dg);
+var el_remove = create_button(col1_x, yy, "Delete Property", ew, eh, fa_center, omu_event_custom_remove_property, dg);
 
 // COLUMN 2
 yy = yy_base;
@@ -94,7 +94,7 @@ yy += el_outbound_name.height + spacing;
 var el_outbound_add = create_button(col3_x, yy, "Add", ew, eh, fa_center, omu_event_custom_add_outbound, dg);
 dg.el_outbound_add = el_outbound_add;
 yy += el_outbound_add.height + spacing;
-var el_outbound_remove = create_button(col3_x, yy, "Remove", ew, eh, fa_center, omu_event_custom_remove_outbound, dg);
+var el_outbound_remove = create_button(col3_x, yy, "Delete", ew, eh, fa_center, omu_event_custom_remove_outbound, dg);
 el_outbound_remove.interactive = ds_list_size(dg.event.outbound) > 1;
 dg.el_outbound_remove = el_outbound_remove;
 yy += el_outbound_remove.height + spacing;

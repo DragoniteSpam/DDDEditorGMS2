@@ -37,7 +37,7 @@ yy += ui_get_list_height(el_list) + spacing;
 var el_add = create_button(16, yy, "Add Particle", ew, eh, fa_center, dmu_dialog_load_graphic_particle, dg);
 yy += el_add.height + spacing;
 
-var el_remove = create_button(16, yy, "Remove Particle", ew, eh, fa_center, dmu_dialog_remove_graphic_particle, dg);
+var el_remove = create_button(16, yy, "Delete Particle", ew, eh, fa_center, dmu_dialog_remove_graphic_particle, dg);
 
 yy = yy_base;
 

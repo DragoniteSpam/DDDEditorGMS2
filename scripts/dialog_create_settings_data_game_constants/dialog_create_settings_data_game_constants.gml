@@ -36,7 +36,7 @@ dg.el_add = el_add;
 
 yy += el_add.height + spacing;
 
-var el_remove = create_button(col1_x, yy, "Remove Constant", ew, eh, fa_center, omu_global_constant_remove, dg);
+var el_remove = create_button(col1_x, yy, "Delete Constant", ew, eh, fa_center, omu_global_constant_remove, dg);
 dg.el_remove = el_remove;
 
 yy += el_remove.height + spacing;

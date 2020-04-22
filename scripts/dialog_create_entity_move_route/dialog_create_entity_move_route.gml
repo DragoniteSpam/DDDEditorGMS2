@@ -48,7 +48,7 @@ dg.el_steps = el_steps;
 var el_step_edit = create_button(16, yy, "Edit Step", ew, eh, fa_center, null, dg);
 yy += el_step_edit.height + spacing;
 
-var el_step_remove = create_button(16, yy, "Remove Step", ew, eh, fa_center, omu_entity_remove_move_route_step, dg);
+var el_step_remove = create_button(16, yy, "Delete Step", ew, eh, fa_center, omu_entity_remove_move_route_step, dg);
 yy += el_step_remove.height + spacing;
 
 var el_repeat = create_checkbox(16, yy, "Loop Route", ew, eh, uivc_entity_move_route_loop, route.repeat_action, dg);

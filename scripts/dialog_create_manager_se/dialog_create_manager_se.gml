@@ -31,7 +31,7 @@ dg.el_list = el_list;
 
 var el_add = create_button(c2 + 16, yy, "Add SE", ew, eh, fa_center, dmu_dialog_load_se, dg);
 yy += el_add.height + spacing;
-var el_remove = create_button(c2 + 16, yy, "Remove SE", ew, eh, fa_center, dmu_dialog_remove_se, dg);
+var el_remove = create_button(c2 + 16, yy, "Delete SE", ew, eh, fa_center, dmu_dialog_remove_se, dg);
 yy += el_remove.height + spacing;
 
 var el_name_text = create_text(c2 + 16, yy, "Name:", ew, eh, fa_left, ew, dg);

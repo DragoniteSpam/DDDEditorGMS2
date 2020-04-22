@@ -40,8 +40,8 @@ dg.el_add = el_add;
 
 yy += el_add.height + spacing;
 
-var el_remove = create_button(xx, yy, "Remove Color", ew, eh, fa_center, uivc_scribble_color_remove, dg);
-el_remove.tooltip = "Remove a color value. It will no longer be usable by Scribble.";
+var el_remove = create_button(xx, yy, "Delete Color", ew, eh, fa_center, uivc_scribble_color_remove, dg);
+el_remove.tooltip = "Delete a color value. It will no longer be usable by Scribble.";
 dg.el_remove = el_remove;
 
 yy += el_remove.height + spacing;

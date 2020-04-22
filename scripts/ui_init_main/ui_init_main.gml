@@ -291,8 +291,8 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy += element.height + spacing;
     
-    element = create_button(col1_x, yy, "Remove Map", col_width, element_height, fa_center, dmu_data_remove_map, t_maps);
-    element.tooltip = "Remove the currently selected map. Any existing references to it will no longer work. You should only use this if you're absolutely sure; generally speaking, maps not loaded into memory will not affect the game very much.";
+    element = create_button(col1_x, yy, "Delete Map", col_width, element_height, fa_center, dmu_data_remove_map, t_maps);
+    element.tooltip = "Delete the currently selected map. Any existing references to it will no longer work. You should only use this if you're absolutely sure; generally speaking, maps not loaded into memory will not affect the game very much.";
     ds_list_add(t_maps.contents, element);
     
     yy += element.height + spacing;

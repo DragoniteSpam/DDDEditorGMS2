@@ -51,7 +51,7 @@ yy += el_add.height + spacing;
 var el_add_enum = create_button(col1_x, yy, "Add Enum", ew, eh, fa_center, omu_data_enum_add, dg);
 yy += el_add.height + spacing;
 
-var el_remove = create_button(col1_x, yy, "Remove", ew, eh, fa_center, omu_data_remove, dg);
+var el_remove = create_button(col1_x, yy, "Delete", ew, eh, fa_center, omu_data_remove, dg);
 
 // COLUMN 2
 yy = yy_base;
@@ -87,7 +87,7 @@ dg.el_move_down = el_move_down;
 
 yy += el_move_down.height + spacing;
 
-var el_remove_p = create_button(col2_x, yy, "Remove Property", ew, eh, fa_center, omu_data_property_remove, dg);
+var el_remove_p = create_button(col2_x, yy, "Delete Property", ew, eh, fa_center, omu_data_property_remove, dg);
 el_remove_p.interactive = false;
 dg.el_remove_p = el_remove_p;
 

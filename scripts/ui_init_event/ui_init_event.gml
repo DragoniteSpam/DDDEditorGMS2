@@ -124,7 +124,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy += element_height + spacing;
     
-    element = create_button(legal_x + spacing, yy, "Remove Custom Node", element_width, element_height, fa_center, omu_event_remove_custom_event, t_custom);
+    element = create_button(legal_x + spacing, yy, "Delete Custom Node", element_width, element_height, fa_center, omu_event_remove_custom_event, t_custom);
     ds_list_add(t_custom.contents, element);
     
     yy += element_height + spacing;
@@ -143,7 +143,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy += ui_get_list_height(el_list_prefabs) + spacing;
     
-    element = create_button(legal_x + spacing, yy, "Remove Prefab", element_width, element_height, fa_center, not_yet_implemented_polite, t_custom);
+    element = create_button(legal_x + spacing, yy, "Delete Prefab", element_width, element_height, fa_center, not_yet_implemented_polite, t_custom);
     ds_list_add(t_custom.contents, element);
     
     yy += element_height + spacing;

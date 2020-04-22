@@ -38,8 +38,8 @@ el_add.interactive = (ds_list_size(Stuff.game_asset_lists) < 0xff);
 dg.el_add = el_add;
 yy += el_add.height + spacing;
 
-var el_remove = create_button(col1_x, yy, "Remove File", ew, eh, fa_center, uivc_button_settings_game_remove_asset_file, dg);
-el_remove.tooltip = "Remove a data / asset file. You must have at least one. If you remove a data file that is still assigned to be used, anything that would have been saved to it will instead be saved to the one at the top of the list.";
+var el_remove = create_button(col1_x, yy, "Delete File", ew, eh, fa_center, uivc_button_settings_game_remove_asset_file, dg);
+el_remove.tooltip = "Delete a data / asset file. You must have at least one. If you remove a data file that is still assigned to be used, anything that would have been saved to it will instead be saved to the one at the top of the list.";
 el_remove.interactive = (ds_list_size(Stuff.game_asset_lists) > 0x01);
 dg.el_remove = el_remove;
 yy += el_remove.height + spacing;

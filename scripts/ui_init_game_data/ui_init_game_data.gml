@@ -77,7 +77,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     
     yy += spacing + element.height;
     
-    el_inst_remove = create_button(this_column * cw + spacing, yy, "Remove Instance", ew, eh, fa_center, uimu_data_remove_data, id);
+    el_inst_remove = create_button(this_column * cw + spacing, yy, "Delete Instance", ew, eh, fa_center, uimu_data_remove_data, id);
     ds_list_add(contents, el_inst_remove);
     #endregion
     

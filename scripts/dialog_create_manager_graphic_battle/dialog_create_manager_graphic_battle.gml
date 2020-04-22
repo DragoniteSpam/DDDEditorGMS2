@@ -37,7 +37,7 @@ yy += ui_get_list_height(el_list) + spacing;
 var el_add = create_button(16, yy, "Add Battler", ew, eh, fa_center, dmu_dialog_load_graphic_battler, dg);
 yy += el_add.height + spacing;
 
-var el_remove = create_button(16, yy, "Remove Battler", ew, eh, fa_center, dmu_dialog_remove_graphic_battler, dg);
+var el_remove = create_button(16, yy, "Delete Battler", ew, eh, fa_center, dmu_dialog_remove_graphic_battler, dg);
 
 yy = yy_base;
 
