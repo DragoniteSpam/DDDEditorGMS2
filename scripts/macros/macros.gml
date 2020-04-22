@@ -27,6 +27,8 @@
 
 // game maker
 #macro wtf show_debug_message
+#macro mouse_x window_mouse_get_x()
+#macro mouse_y window_mouse_get_y()
 
 // game maker buffer_compress uses medium-level compression; the first two bytes you'll see are
 // "78" and "9c" but buffer_read is little endian so they'll be in reverse order
