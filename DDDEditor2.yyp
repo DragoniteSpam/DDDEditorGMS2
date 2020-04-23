@@ -13172,6 +13172,14 @@
             }
         },
         {
+            "Key": "a7518480-2f36-464b-926a-9e78dc7ee879",
+            "Value": {
+                "id": "01ce1338-4930-4c32-8a4d-a33a8db1fc82",
+                "resourcePath": "scripts\\ui_render_text_mesh_submesh_path\\ui_render_text_mesh_submesh_path.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "a7528908-98dc-40ec-a309-1b2fefac7915",
             "Value": {
                 "id": "c691b9c2-6fa6-4f72-8ad9-3dabbd03054b",
@@ -21334,6 +21342,7 @@
         "2a2dc1ca-1f01-46b7-a91b-4495ca602c34",
         "77dd205b-f3ec-446b-9bc8-818e5c4b5e20",
         "d32ea813-a8d1-4cc2-9e3d-34b66d78cf8e",
+        "a7518480-2f36-464b-926a-9e78dc7ee879",
         "37c895b3-7edf-4170-b5a2-dc4420099bf9",
         "3d8d93db-017a-4a73-bebc-d1b241221ebf",
         "833268fe-073b-4f6f-a29b-0e517efd474e",

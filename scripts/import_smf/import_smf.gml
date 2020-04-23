@@ -22,7 +22,7 @@ if (smf != undefined) {
         internal_name_generate(mesh, PREFIX_MESH + string_lettersdigits(base_name));
     }
     
-    mesh_create_submesh(mesh, smf[0], smf[1], noone, undefined, base_name, replace_index);
+    mesh_create_submesh(mesh, smf[0], smf[1], noone, undefined, base_name, replace_index, fn);
     data_smf_optimize_mesh(mesh, ds_list_size(mesh.submeshes) - 1);
     
     return mesh;

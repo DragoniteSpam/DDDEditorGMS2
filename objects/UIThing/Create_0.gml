@@ -11,6 +11,7 @@ active_element = noone;
 text = "thing";
 width = 128;
 height = 24;
+offset = 12;
 
 color = c_black;
 alignment = fa_left;

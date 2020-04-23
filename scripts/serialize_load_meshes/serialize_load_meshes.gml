@@ -24,9 +24,11 @@ repeat (n_meshes) {
         var name = buffer_read(buffer, buffer_string);
         if (version >= DataVersions.EVEN_MORE_MESH_METADATA) {
             var path = buffer_read(buffer, buffer_string);
+        } else {
+            path = "";
         }
         var dbuffer = buffer_read_buffer(buffer, blength);
-        mesh_create_submesh(mesh, dbuffer, noone, noone, proto_guid, name);
+        mesh_create_submesh(mesh, dbuffer, noone, noone, proto_guid, name, undefined, path);
     }
     
     mesh.xmin = buffer_read(buffer, buffer_f32);
