@@ -1,13 +1,24 @@
 /// @param DataMesh
 /// @param scale
+/// @param [index]
+/// @param [set-scale?]
 
-var mesh = argument0;
-var scale = argument1;
+var mesh = argument[0];
+var scale = argument[1];
+var index = (argument_count > 2) ? argument[2] : undefined;
+var set_scale = (argument_count > 3 && argument[3] != undefined) ? argument[3] : true;
 
-var f = scale / mesh.texture_scale;
-mesh.texture_scale = scale;
+if (set_scale) {
+    mesh.texture_scale = scale;
+    var f = scale / mesh.texture_scale;
+} else {
+    var f = scale;
+}
 
-for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
+var istart = (index == undefined) ? 0 : index;
+var iend = (index == undefined) ? ds_list_size(mesh.submeshes) : (index + 1);
+
+for (var i = istart; i < iend; i++) {
     var submesh = mesh.submeshes[| i];
     var buffer = submesh.buffer;
     buffer_seek(buffer, buffer_seek_start, 0);
