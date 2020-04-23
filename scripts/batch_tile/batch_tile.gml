@@ -28,27 +28,31 @@ var ytex = tile.tile_y * texture_height;
 var color = tile.tile_color;
 var alpha = tile.tile_alpha;
 
-vertex_point_complete(buffer, xx, yy, zz, nx, ny, nz, xtex + TEXEL, ytex + TEXEL, color, alpha);
-vertex_point_complete(buffer, xx + TILE_WIDTH, yy, zz, nx, ny, nz, xtex + texture_width - TEXEL, ytex + TEXEL, color, alpha);
-vertex_point_complete(buffer, xx + TILE_WIDTH, yy + TILE_HEIGHT, zz, nx, ny, nz, xtex + texture_width - TEXEL, ytex + texture_height - TEXEL, color, alpha);
+if (buffer) {
+    vertex_point_complete(buffer, xx, yy, zz, nx, ny, nz, xtex + TEXEL, ytex + TEXEL, color, alpha);
+    vertex_point_complete(buffer, xx + TILE_WIDTH, yy, zz, nx, ny, nz, xtex + texture_width - TEXEL, ytex + TEXEL, color, alpha);
+    vertex_point_complete(buffer, xx + TILE_WIDTH, yy + TILE_HEIGHT, zz, nx, ny, nz, xtex + texture_width - TEXEL, ytex + texture_height - TEXEL, color, alpha);
+    
+    vertex_point_complete(buffer, xx + TILE_WIDTH, yy + TILE_HEIGHT, zz, nx, ny, nz, xtex + texture_width - TEXEL, ytex + texture_height - TEXEL, color, alpha);
+    vertex_point_complete(buffer, xx, yy + TILE_HEIGHT, zz, nx, ny, nz, xtex + TEXEL, ytex + texture_height - TEXEL, color, alpha);
+    vertex_point_complete(buffer, xx, yy, zz, nx, ny, nz, xtex + TEXEL, ytex + TEXEL, color, alpha);
+}
 
-vertex_point_complete(buffer, xx + TILE_WIDTH, yy + TILE_HEIGHT, zz, nx, ny, nz, xtex + texture_width - TEXEL, ytex + texture_height - TEXEL, color, alpha);
-vertex_point_complete(buffer, xx, yy + TILE_HEIGHT, zz, nx, ny, nz, xtex + TEXEL, ytex + texture_height - TEXEL, color, alpha);
-vertex_point_complete(buffer, xx, yy, zz, nx, ny, nz, xtex + TEXEL, ytex + TEXEL, color, alpha);
-
-vertex_point_line(wire, xx, yy, zz, c_white, 1);
-vertex_point_line(wire, xx + TILE_WIDTH, yy, zz, c_white, 1);
-
-vertex_point_line(wire, xx + TILE_WIDTH, yy, zz, c_white, 1);
-vertex_point_line(wire, xx + TILE_WIDTH, yy + TILE_HEIGHT, zz, c_white, 1);
-
-vertex_point_line(wire, xx, yy, zz, c_white, 1);
-vertex_point_line(wire, xx + TILE_WIDTH, yy + TILE_HEIGHT, zz, c_white, 1);
-
-vertex_point_line(wire, xx + TILE_WIDTH, yy + TILE_HEIGHT, zz, c_white, 1);
-vertex_point_line(wire, xx, yy + TILE_HEIGHT, zz, c_white, 1);
-
-vertex_point_line(wire, xx, yy + TILE_HEIGHT, zz, c_white, 1);
-vertex_point_line(wire, xx, yy, zz, c_white, 1);
+if (wire) {
+    vertex_point_line(wire, xx, yy, zz, c_white, 1);
+    vertex_point_line(wire, xx + TILE_WIDTH, yy, zz, c_white, 1);
+    
+    vertex_point_line(wire, xx + TILE_WIDTH, yy, zz, c_white, 1);
+    vertex_point_line(wire, xx + TILE_WIDTH, yy + TILE_HEIGHT, zz, c_white, 1);
+    
+    vertex_point_line(wire, xx, yy, zz, c_white, 1);
+    vertex_point_line(wire, xx + TILE_WIDTH, yy + TILE_HEIGHT, zz, c_white, 1);
+    
+    vertex_point_line(wire, xx + TILE_WIDTH, yy + TILE_HEIGHT, zz, c_white, 1);
+    vertex_point_line(wire, xx, yy + TILE_HEIGHT, zz, c_white, 1);
+    
+    vertex_point_line(wire, xx, yy + TILE_HEIGHT, zz, c_white, 1);
+    vertex_point_line(wire, xx, yy, zz, c_white, 1);
+}
 
 return [buffer, wire];

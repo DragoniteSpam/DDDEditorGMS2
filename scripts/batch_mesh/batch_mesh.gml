@@ -52,19 +52,23 @@ while (buffer_tell(dbuffer) < buffer_get_size(dbuffer)) {
     alpha = color >> 24;
     color = color & 0xffffff;
     
-    vertex_point_complete(buffer, px[vc], py[vc], pz[vc], nx, ny, nz, xtex, ytex, color, alpha);
+    if (buffer) {
+        vertex_point_complete(buffer, px[vc], py[vc], pz[vc], nx, ny, nz, xtex, ytex, color, alpha);
+    }
     
     vc = ++vc % 3;
     
-    if (vc == 0) {
-        vertex_point_line(wire, px[0], py[0], pz[0], c_white, 1);
-        vertex_point_line(wire, px[1], py[1], pz[1], c_white, 1);
-        
-        vertex_point_line(wire, px[1], py[1], pz[1], c_white, 1);
-        vertex_point_line(wire, px[2], py[2], pz[2], c_white, 1);
-        
-        vertex_point_line(wire, px[2], py[2], pz[2], c_white, 1);
-        vertex_point_line(wire, px[0], py[0], pz[0], c_white, 1);
+    if (wire) {
+        if (vc == 0) {
+            vertex_point_line(wire, px[0], py[0], pz[0], c_white, 1);
+            vertex_point_line(wire, px[1], py[1], pz[1], c_white, 1);
+            
+            vertex_point_line(wire, px[1], py[1], pz[1], c_white, 1);
+            vertex_point_line(wire, px[2], py[2], pz[2], c_white, 1);
+            
+            vertex_point_line(wire, px[2], py[2], pz[2], c_white, 1);
+            vertex_point_line(wire, px[0], py[0], pz[0], c_white, 1);
+        }
     }
 }
 
