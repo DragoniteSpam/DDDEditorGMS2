@@ -18,4 +18,4 @@ if (selection + 1) {
     }
 }
 
-show_message("you will need to re-batch");
+batch_again();

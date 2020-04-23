@@ -59,5 +59,4 @@ for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
     vertex_freeze(wbuffer);
 }
 
-show_message("you will need to re-batch");
-// @todo re-batch everything in the map
+batch_again();

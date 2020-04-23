@@ -75,6 +75,5 @@ for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
 }
 
 if (rebatch) {
-    show_message("This has yet to be actually tested properly, seeing as I haven't implemented lighting yet");
-    // @todo re-batch everything in the map
+    batch_again();
 }

@@ -28,5 +28,4 @@ for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
     // no actual vertex data has changed, so we can keep the wbuffer
 }
 
-show_message("you will need to re-batch");
-// @todo re-batch everything in the map
+batch_again();
