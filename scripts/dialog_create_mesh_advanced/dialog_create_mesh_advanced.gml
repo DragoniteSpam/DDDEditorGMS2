@@ -73,13 +73,17 @@ var el_up_axis = create_button(col2_x, yy, "Rotate Up Axis", ew, eh, fa_center, 
 el_up_axis.tooltip = "Rotates the axes of all submeshes. Useful if you exported it from a 3D modelling program that insists on using Y+Up instead of Z+Up (cough cough, Blender).";
 yy += el_up_axis.height + spacing;
 
-var el_scale_2x = create_button(col2_x, yy, "Texture Scale: 1.0x", ew, eh, fa_center, omu_mesh_texture_scale_1x, dg);
-el_scale_2x.tooltip = "Set the scale of the texture of all submeshes to full. Useful if you want a mesh to use a different texture than the map's base tileset, since the base tilesets are scaled down.";
-yy += el_scale_2x.height + spacing;
+var el_scale_1x = create_button(col2_x, yy, "Texture Scale: 1.0x", ew, eh, fa_center, omu_mesh_texture_scale_1x, dg);
+el_scale_1x.tooltip = "Set the scale of the texture of all submeshes to full. Useful if you want a mesh to use a different texture than the map's base tileset, since the base tilesets are scaled down.";
+el_scale_1x.color = (mesh.texture_scale == 1) ? c_blue : c_black;
+yy += el_scale_1x.height + spacing;
+dg.el_scale_1x = el_scale_1x;
 
 var el_scale_05x = create_button(col2_x, yy, "Texture Scale: 0.5x", ew, eh, fa_center, omu_mesh_texture_scale_05x, dg);
 el_scale_05x.tooltip = "Sets the scale of the texture of all submeshes to half.";
+el_scale_05x.color = (mesh.texture_scale == 0.5) ? c_blue : c_black;
 yy += el_scale_05x.height + spacing;
+dg.el_scale_05x = el_scale_05x;
 
 yy = yy_base;
 
@@ -123,7 +127,7 @@ ds_list_add(dg.contents,
     el_text_all,
     el_all_normal_flat,
     el_all_normal_smooth,
-    el_scale_2x,
+    el_scale_1x,
     el_scale_05x,
     el_confirm
 );
