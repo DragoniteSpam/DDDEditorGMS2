@@ -134,3 +134,4 @@ on_destroy = null;
 on_select = safc_on_entity;
 on_deselect = safc_on_entity_deselect;
 on_select_ui = safc_on_entity_ui;
+get_bounding_box = entity_bounds_one;

@@ -20,6 +20,7 @@ batch = batch_mesh_autotile;
 render = render_mesh_autotile;
 selector = select_single;
 on_select_ui = safc_on_mesh_ui;
+get_bounding_box = entity_bounds_one;
 
 enum ATTerrainTypes {
     TOP,

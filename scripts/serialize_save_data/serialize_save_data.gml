@@ -95,5 +95,6 @@ enum DataVersions {
     ASSET_ID                            = 103,
     ANIMATED_TILES                      = 104,
     EVEN_MORE_MESH_METADATA             = 105,
+    MAP_STATIC_BATCHES                  = 106,
     _CURRENT /* = whatever the last one is + 1 */
 }

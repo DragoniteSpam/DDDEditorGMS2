@@ -260,6 +260,14 @@
             }
         },
         {
+            "Key": "0272aaad-3b2b-44a2-9724-0189f048aab8",
+            "Value": {
+                "id": "3b3fda38-c489-4c89-a8ec-86b2b3bf41e0",
+                "resourcePath": "scripts\\entity_bounds_one\\entity_bounds_one.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "02762144-a040-411b-90f2-3b6d9b913caf",
             "Value": {
                 "id": "37cb6e0d-e504-44cb-bea5-95a7cce1aa57",
@@ -11476,6 +11484,14 @@
             }
         },
         {
+            "Key": "90e05461-3ad0-4aa6-8b93-a0983d31d8a8",
+            "Value": {
+                "id": "170514c6-3669-485c-bcb0-01a13e2c2cc2",
+                "resourcePath": "scripts\\batch_all_export\\batch_all_export.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "90e7dad9-5c1b-4ad1-8ec8-c267b2fbe159",
             "Value": {
                 "id": "6527a7f5-2664-484f-afa4-5371b2c04aff",
@@ -17572,6 +17588,14 @@
             }
         },
         {
+            "Key": "e312a79e-7f27-4899-a39a-b9eb3300f9e2",
+            "Value": {
+                "id": "6dbae968-a78e-4805-851e-5acb5357aabe",
+                "resourcePath": "views\\e312a79e-7f27-4899-a39a-b9eb3300f9e2.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "e3132bed-a025-4c6e-ad5c-9eff7200b02a",
             "Value": {
                 "id": "1cfd55cd-2f83-4002-8c05-d3bba97fb061",
@@ -18328,6 +18352,14 @@
             "Value": {
                 "id": "631bee81-1690-4b04-9949-64be0a732868",
                 "resourcePath": "scripts\\smf_matrix_orthogonalize\\smf_matrix_orthogonalize.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "ec66174b-bf3a-4026-a062-603ba313d8e2",
+            "Value": {
+                "id": "8e3c82e4-b58b-4b5a-96a7-058cf54d5d12",
+                "resourcePath": "scripts\\entity_bounds_mesh\\entity_bounds_mesh.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -20234,6 +20266,7 @@
         "db53ac99-44eb-4cd5-bf09-833aa01808a1",
         "4a75c93e-a7d4-47af-a01a-a4e195fae967",
         "80b4314f-45e9-472a-adac-f4e7fd5355a1",
+        "90e05461-3ad0-4aa6-8b93-a0983d31d8a8",
         "60c20c64-f0b8-47dd-8915-ea8f056d085d",
         "214533a4-bdc3-4319-8c84-dfb628a5143e",
         "09096564-84a5-4547-b3e9-13eb83d5083e",
@@ -21868,6 +21901,8 @@
         "a5bf8eff-e8d4-4f5d-93f7-a41afd85cb94",
         "3d824a3b-935b-4339-ad40-98c92cc93dc3",
         "5824e384-dc9a-46c3-8549-e29fc04f1a98",
+        "0272aaad-3b2b-44a2-9724-0189f048aab8",
+        "ec66174b-bf3a-4026-a062-603ba313d8e2",
         "acb26a39-8033-4289-87d0-228ed7921bc8",
         "89e8adda-438e-48f9-ab78-0e8b396b3850",
         "375e7330-6e30-4902-8a42-dbc8ad380c16",

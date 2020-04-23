@@ -5,6 +5,7 @@ var version = map.version;
 var buffer = map.data_buffer;
 
 if (Stuff.map.active_map) {
+    #region clear active map
     buffer_delete(Stuff.map.active_map.data_buffer);
     Stuff.map.active_map.version = DataVersions._CURRENT - 1;
     Stuff.map.active_map.data_buffer = serialize_save_current_map();
@@ -38,6 +39,7 @@ if (Stuff.map.active_map) {
     if (cache_destroy > 0) {
         ui_create_notification("[c_red]There are " + string(cache_destroy) + " collision objects to destroy. Clearing them is unfathomably slow so the editor may lag for a bit.[]", 15);
     }
+    #endregion
 }
 
 Stuff.map.active_map = map;

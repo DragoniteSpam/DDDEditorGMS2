@@ -29,3 +29,4 @@ batch_collision = batch_collision_mesh;
 render = render_mesh;
 selector = select_single;
 on_select_ui = safc_on_mesh_ui;
+get_bounding_box = entity_bounds_mesh;
