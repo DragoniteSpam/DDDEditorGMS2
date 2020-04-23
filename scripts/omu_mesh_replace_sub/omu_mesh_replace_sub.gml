@@ -16,6 +16,8 @@ if (selection + 1) {
             case ".smf": import_smf(fn, mesh_data, selection); break;
         }
     }
+    // re-adjust the texture scale
+    mesh_set_texture_scale(mesh_data, mesh_data.texture_scale / TILESET_TEXTURE_WIDTH);
 }
 
 batch_again();
