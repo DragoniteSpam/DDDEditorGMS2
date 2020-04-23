@@ -94,5 +94,6 @@ enum DataVersions {
     ID_OVERHAUL                         = 102,  // sequential IDs, and IDs are strings rather than ints
     ASSET_ID                            = 103,
     ANIMATED_TILES                      = 104,
+    EVEN_MORE_MESH_METADATA             = 105,
     _CURRENT /* = whatever the last one is + 1 */
 }

@@ -5,3 +5,4 @@ buffer = noone;
 vbuffer = noone;
 wbuffer = noone;
 owner = noone;
+path = "";

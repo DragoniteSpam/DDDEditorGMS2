@@ -26,6 +26,7 @@ for (var i = 0; i < n_meshes; i++) {
         buffer_write(buffer, buffer_datatype, list_proto_guids[| j]);
         buffer_write(buffer, buffer_u32, buffer_get_size(submesh.buffer));
         buffer_write(buffer, buffer_string, submesh.name);
+        buffer_write(buffer, buffer_string, submesh.path);
         buffer_write_buffer(buffer, submesh.buffer);
         // don't bother saving the wireframe buffers - we need to re-create the collision
         // shape as well, so we might as well recreate the wireframe at the same time =/
@@ -38,6 +39,8 @@ for (var i = 0; i < n_meshes; i++) {
     buffer_write(buffer, buffer_f32, mesh.xmax);
     buffer_write(buffer, buffer_f32, mesh.ymax);
     buffer_write(buffer, buffer_f32, mesh.zmax);
+    
+    buffer_write(buffer, buffer_f32, mesh.texture_scale);
     
     var xx = ds_grid_width(mesh.collision_flags);
     var yy = ds_grid_height(mesh.collision_flags);

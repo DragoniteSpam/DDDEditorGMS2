@@ -22,6 +22,9 @@ repeat (n_meshes) {
         var proto_guid = buffer_read(buffer, buffer_get_datatype(version));
         var blength = buffer_read(buffer, buffer_u32);
         var name = buffer_read(buffer, buffer_string);
+        if (version >= DataVersions.EVEN_MORE_MESH_METADATA) {
+            var path = buffer_read(buffer, buffer_string);
+        }
         var dbuffer = buffer_read_buffer(buffer, blength);
         mesh_create_submesh(mesh, dbuffer, noone, noone, proto_guid, name);
     }
@@ -32,6 +35,10 @@ repeat (n_meshes) {
     mesh.xmax = buffer_read(buffer, buffer_f32);
     mesh.ymax = buffer_read(buffer, buffer_f32);
     mesh.zmax = buffer_read(buffer, buffer_f32);
+    
+    if (version >= DataVersions.EVEN_MORE_MESH_METADATA) {
+        mesh.texture_scale = buffer_read(buffer, buffer_f32);
+    }
     
     var xx = buffer_read(buffer, buffer_u16);
     var yy = buffer_read(buffer, buffer_u16);
