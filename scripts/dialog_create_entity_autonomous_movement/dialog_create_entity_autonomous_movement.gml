@@ -45,6 +45,7 @@ var n = 8;
 var el_move_routes = create_list(col2_x, yy, "Move Routes", "<No move routes>", ew, eh, n, null, false, dg);
 el_move_routes.render = ui_render_list_move_routes;
 el_move_routes.entries_are = ListEntries.INSTANCES;
+el_move_routes.ondoubleclick = omu_entity_edit_move_route;
 yy += ui_get_list_height(el_move_routes) + spacing;
 dg.el_move_routes = el_move_routes;
 
@@ -70,9 +71,17 @@ var b_height = 32;
 var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
 
 ds_list_add(dg.contents,
-    el_movement, el_movement_speed, el_movement_frequency,
-    el_move_routes, el_move_route_edit, el_move_route_add, el_move_route_delete, el_move_route_auto, el_move_route_auto_remove,
-    el_move_route_make_visible, el_move_route_make_invisible,
+    el_movement,
+    el_movement_speed,
+    el_movement_frequency,
+    el_move_routes,
+    el_move_route_edit,
+    el_move_route_add,
+    el_move_route_delete,
+    el_move_route_auto,
+    el_move_route_auto_remove,
+    el_move_route_make_visible,
+    el_move_route_make_invisible,
     el_confirm
 );
 
