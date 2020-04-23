@@ -15,7 +15,7 @@ var n_actions = 0;
 route.extra = false;
 
 // essentailly the rng seed
-var c = Stuff.color_lookup[route.GUID % array_length_1d(Stuff.color_lookup)];
+var c = Stuff.color_lookup[string_hash_simple(route.GUID) % array_length_1d(Stuff.color_lookup)];
 var cube_size = 2;
 
 var buffer = vertex_create_buffer();
