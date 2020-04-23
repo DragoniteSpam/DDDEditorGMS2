@@ -93,7 +93,6 @@ ui_list_select(el_graphic_battler_sprite_list, sprite_battler_index, true);
 
 var el_graphic_mesh_list = create_list(col2_x, yy, "Mesh", "<no meshes>", ew, eh, 16, uivc_animation_keyframe_graphic_mesh, false, dg, Stuff.all_meshes);
 el_graphic_mesh_list.enabled = (keyframe.graphic_type == GraphicTypes.MESH);
-// @todo this will need to be shifted to guids when meshes become those
 el_graphic_mesh_list.entries_are = ListEntries.INSTANCES;
 dg.el_graphic_mesh_list = el_graphic_mesh_list;
 

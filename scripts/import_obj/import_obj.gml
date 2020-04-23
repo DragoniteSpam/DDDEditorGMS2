@@ -58,7 +58,7 @@ if (file_exists(fn)) {
     }
     
     var f = file_text_open_read(fn);
-    var illegal = false;
+    var err = "";
     var line_number = 0;
     
     var v_x = ds_list_create();
@@ -85,7 +85,7 @@ if (file_exists(fn)) {
     
     var temp_vertices = ds_list_create();
     
-    while (!file_text_eof(f) && !illegal) {
+    while (!file_text_eof(f) && err == "") {
         line_number++;
         var str = file_text_read_string(f);
         var q = split(str, " ", false, false);
@@ -98,9 +98,7 @@ if (file_exists(fn)) {
                     ds_list_add(v_y, real(ds_queue_dequeue(q)));
                     ds_list_add(v_z, real(ds_queue_dequeue(q)));
                 } else {
-                    // @gml update try-catch
-                    show_message("Malformed vertex found (line " + string(line_number) + ")");
-                    illegal = true;
+                    err = "Malformed vertex found (line " + string(line_number) + ")";
                 }
                 break;
             case "vt":
@@ -108,9 +106,7 @@ if (file_exists(fn)) {
                     ds_list_add(v_xtex, real(ds_queue_dequeue(q)));
                     ds_list_add(v_ytex, real(ds_queue_dequeue(q)));
                 } else {
-                    // @gml update try-catch
-                    show_message("Malformed vertex texture found (line " + string(line_number) + ")");
-                    illegal = true;
+                    err = "Malformed vertex texture found (line " + string(line_number) + ")";
                 }
                 break;
             case "vn":
@@ -119,9 +115,7 @@ if (file_exists(fn)) {
                     ds_list_add(v_ny, real(ds_queue_dequeue(q)));
                     ds_list_add(v_nz, real(ds_queue_dequeue(q)));
                 } else {
-                    // @gml update try-catch
-                    show_message("Malformed vertex normal found (line " + string(line_number) + ")");
-                    illegal = true;
+                    err = "Malformed vertex normal found (line " + string(line_number) + ")";
                 }
                 break;
             case "usemtl":
@@ -191,9 +185,7 @@ if (file_exists(fn)) {
                     }
                     ds_queue_destroy(vertex_q);
                 } else {
-                    // @gml update try-catch
-                    show_message("Malformed face found (tee hee) (line " + string(line_number) + ")");
-                    illegal = true;
+                    err = "Malformed face found (line " + string(line_number) + ")";
                 }
                 break;
             case "s":   // surface something
@@ -209,9 +201,7 @@ if (file_exists(fn)) {
             case "#":   // comment
                 break;
             default:
-                // @gml update try-catch
-                show_message("Unsupported thing found in your model, skipping everything (line " + string(line_number) + ")");
-                illegal = true;
+                err = "Unsupported thing found in your model, skipping everything (line " + string(line_number) + ")";
                 break;
         }
         
@@ -234,7 +224,7 @@ if (file_exists(fn)) {
     ds_map_destroy(mtl_color_b);
     #endregion
     
-    if (!illegal) {
+    if (err == "") {
         var n = ds_list_size(temp_vertices);
         
         var vbuffer = vertex_create_buffer();
@@ -358,6 +348,8 @@ if (file_exists(fn)) {
             vertex_freeze(vbuffer);
             vertex_freeze(wbuffer);
         }
+    } else {
+        dialog_create(noone, "Could not load the model: " + err);
     }
     
     ds_list_destroy(temp_vertices);
