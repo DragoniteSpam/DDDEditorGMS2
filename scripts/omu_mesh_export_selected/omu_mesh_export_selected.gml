@@ -6,8 +6,7 @@ var data = Stuff.all_meshes[| Stuff.map.selection_fill_mesh];
 
 if (data) {
     var fn = get_save_filename_mesh();
-
-    // @todo try catch
+    
     if (string_length(fn) > 0) {
         switch (filename_ext(fn)) {
             case ".obj": export_obj(fn, data); break;
