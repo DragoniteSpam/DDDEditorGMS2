@@ -26,3 +26,8 @@ if (buffer_get_size(map_contents.frozen_data_wire) - 1) {
     map_contents.frozen_wire = vertex_create_buffer_from_buffer(map_contents.frozen_data_wire, Stuff.graphics.vertex_format);
     vertex_freeze(map_contents.frozen_wire);
 }
+
+if (version >= DataVersions.MAP_STATIC_BATCHES) {
+    var skip_to = buffer_read(buffer, buffer_u32);
+    buffer_seek(buffer, buffer_seek_start, skip_to);
+}

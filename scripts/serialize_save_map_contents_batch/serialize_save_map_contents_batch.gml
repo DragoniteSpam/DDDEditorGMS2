@@ -13,6 +13,8 @@ buffer_write(buffer, buffer_u64, int64(buffer_get_size(map_contents.frozen_data_
 buffer_write(buffer, buffer_u64, int64(map_contents.frozen_data_wire_size));
 buffer_write_buffer(buffer, map_contents.frozen_data_wire);
 
+var addr_cache = buffer_tell(buffer);
+buffer_write(buffer, buffer_u32, 0);
 // if this goes well, make it a game setting
 var chunk_size = 32;
 var exported = batch_all_export(map, chunk_size);
@@ -24,3 +26,5 @@ for (var i = ds_map_find_first(exported); i != undefined; i = ds_map_find_next(e
     buffer_write_buffer(buffer, chunk);
     buffer_delete(chunk);
 }
+
+buffer_poke(buffer, addr_cache, buffer_u32, buffer_tell(buffer));
