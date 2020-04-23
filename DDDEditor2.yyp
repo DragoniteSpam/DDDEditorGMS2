@@ -7519,7 +7519,7 @@
             "Key": "5dfa77e2-7712-4824-9e3a-e08ff4ce508a",
             "Value": {
                 "id": "a63963ec-8e92-4edb-8605-28a9d3091a07",
-                "resourcePath": "scripts\\omu_mesh_texture_scale_2x\\omu_mesh_texture_scale_2x.yy",
+                "resourcePath": "scripts\\omu_mesh_texture_scale_1x\\omu_mesh_texture_scale_1x.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -10296,6 +10296,14 @@
             "Value": {
                 "id": "902875ad-dfce-4d55-b31b-84ca73e63582",
                 "resourcePath": "scripts\\smf_dualquat_sclerp\\smf_dualquat_sclerp.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "82c3adf9-339f-4fd1-a324-1552d7c8dec8",
+            "Value": {
+                "id": "3ed00e76-67c6-479d-9bb0-4e6c509106d8",
+                "resourcePath": "scripts\\mesh_set_texture_scale\\mesh_set_texture_scale.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -17172,6 +17180,14 @@
             }
         },
         {
+            "Key": "dd810676-116c-4751-ba97-95355674c9aa",
+            "Value": {
+                "id": "044c9624-7ee9-4687-8e3f-c5cc2d76dd3c",
+                "resourcePath": "views\\dd810676-116c-4751-ba97-95355674c9aa.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "dd82b307-43ee-40db-9771-119ef159976b",
             "Value": {
                 "id": "6637e72e-ef15-4a7e-9bec-52243e3db11a",
@@ -20294,6 +20310,7 @@
         "5b8f054a-8aca-4699-8a12-e31646009d5c",
         "0c3fb917-3b54-49a3-811f-5227a110fc51",
         "cf13c201-bde1-4f29-8df2-6fdb3ff097d6",
+        "82c3adf9-339f-4fd1-a324-1552d7c8dec8",
         "2014825b-a570-47e1-8600-19c965a6afcb",
         "ae2be7f6-e7b0-45e5-aff6-edeed2e31f40",
         "8bb911fe-e169-4600-88d0-560c6d77bc9c",

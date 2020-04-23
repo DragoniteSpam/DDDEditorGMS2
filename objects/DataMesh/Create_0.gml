@@ -26,6 +26,7 @@ first_proto_guid = NULL;
 collision_flags[# 0, 0] = array_create(zmax - zmin);
 
 /* s */ flags = 0;          // overrides Data.flags
+texture_scale = 0.5;        // half by default
 
 ds_list_add(Stuff.all_meshes, id);
 

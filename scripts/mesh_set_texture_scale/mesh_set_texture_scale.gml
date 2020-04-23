@@ -1,7 +1,11 @@
-/// @param UIButton
+/// @param DataMesh
+/// @param scale
 
-var button = argument[0];
-var mesh = button.root.mesh;
+var mesh = argument0;
+var scale = argument1;
+
+var f = scale / mesh.texture_scale;
+mesh.texture_scale = scale;
 
 for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
     var submesh = mesh.submeshes[| i];
@@ -13,8 +17,8 @@ for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
         
         var tu = buffer_peek(buffer, position + 24, buffer_f32);
         var tv = buffer_peek(buffer, position + 28, buffer_f32);
-        buffer_poke(buffer, position + 24, buffer_f32, tu * 2);
-        buffer_poke(buffer, position + 28, buffer_f32, tv * 2);
+        buffer_poke(buffer, position + 24, buffer_f32, tu * f);
+        buffer_poke(buffer, position + 28, buffer_f32, tv * f);
         
         buffer_seek(buffer, buffer_seek_relative, Stuff.graphics.format_size);
     }
