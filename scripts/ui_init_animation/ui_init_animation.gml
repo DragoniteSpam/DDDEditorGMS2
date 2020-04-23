@@ -250,11 +250,5 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     element.index = 0;
     ds_list_add(contents, element);
     
-    // @todo proper animation preview, because i'm not putting paid assets in an open source tool
-    var element = create_image_button(room_width - 32 - sw * 2, yy, "", spr_camera_icons, sw, sh, fa_middle, omu_animation_preview, id);
-    element.index = 1;
-    element.interactive = false;
-    ds_list_add(contents, element);
-    
     return id;
 }

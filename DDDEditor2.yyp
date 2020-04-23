@@ -7484,14 +7484,6 @@
             }
         },
         {
-            "Key": "5d9b0da8-e3f1-48f9-9372-368b2600a1c5",
-            "Value": {
-                "id": "3b1b73f8-c677-4da2-af81-6e62d59347b2",
-                "resourcePath": "scripts\\omu_animation_preview\\omu_animation_preview.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "5da0d36a-08b2-47fb-b325-25ebe08dbe45",
             "Value": {
                 "id": "62462f50-6be2-4021-a9fb-371f7a0a72b7",
@@ -21298,7 +21290,6 @@
         "1698a2a3-74e7-4227-811d-2ab4c9c2516d",
         "56680588-b308-4ea5-b55a-7fded968b626",
         "4d64ace5-5c70-435d-b13b-1fdbfd767a86",
-        "5d9b0da8-e3f1-48f9-9372-368b2600a1c5",
         "43ae57f2-9a33-45c9-bb00-529bd505469d",
         "d991b300-f8bd-492f-b7fb-3c931798fc68",
         "9fe42c44-3ba2-491e-a420-b440bfcd560f",
