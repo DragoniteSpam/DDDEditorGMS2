@@ -23,7 +23,6 @@ buffer_write(buffer, buffer_u32, ds_map_size(exported));
 for (var i = ds_map_find_first(exported); i != undefined; i = ds_map_find_next(exported, i)) {
     buffer_write(buffer, buffer_u16, i[vec3.xx]);
     buffer_write(buffer, buffer_u16, i[vec3.yy]);
-    buffer_write(buffer, buffer_u16, i[vec3.zz]);
     var chunk = buffer_create_from_vertex_buffer(exported[? i], buffer_fixed, 1);
     buffer_write(buffer, buffer_u32, buffer_get_size(chunk));
     buffer_write_buffer(buffer, chunk);
