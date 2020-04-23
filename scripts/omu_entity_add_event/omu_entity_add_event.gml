@@ -11,6 +11,6 @@ if (!ds_list_empty(list)) {
         ds_list_add(event_list, create_instantiated_event("Event Page " + string(ds_list_size(list[| 0].object_events))));
     } else {
         // if this becomes a problem I'll increase the limit, but I doubt it's going to become a problem
-        show_message("Not allowed to have more than ten of these at a time. Sorry!");
+        dialog_create_notice(noone, "Not allowed to have more than ten of these at a time. Sorry!");
     }
 }

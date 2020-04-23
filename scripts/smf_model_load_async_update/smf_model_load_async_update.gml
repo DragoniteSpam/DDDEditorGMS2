@@ -6,9 +6,7 @@ if async_load[? "status"] == false{
     show_debug_message(SMF_asyncLoadText);
     exit;}
 
-//show_message("1 " + filename_name(SMF_asyncFileName));
 var modelIndex = smf_model_load_from_buffer(SMF_asyncBuffer, filename_name(SMF_asyncFileName));
-//show_message("2 " + filename_name(SMF_asyncFileName));
 
 ds_list_delete(SMF_asyncLoadList, 0);
 

@@ -33,14 +33,14 @@ if os_browser == browser_not_a_browser
 buffer_seek(loadBuff, buffer_seek_start, 0);
 HeaderText = buffer_read(loadBuff, buffer_string);
 if HeaderText != "SnidrsModelFormat"{
-    show_message("File " + modelName + " is not a valid SMF file");
+    dialog_create_notice(noone, "File " + modelName + " is not a valid SMF file");
     if compressed{buffer_delete(loadBuff);}
     return -1;}
 
 //Check if the version is supported
 versionNum = buffer_read(loadBuff, buffer_f32);
 if versionNum != 7{
-    show_message("Error when loading SMF file " + string(modelName) + "\nAttempting to load version " + string(versionNum) + ". This importer only supports SMF version 7.");
+    dialog_create_notice(noone, "Error when loading SMF file " + string(modelName) + "\nAttempting to load version " + string(versionNum) + ". This importer only supports SMF version 7.");
     if compressed{buffer_delete(loadBuff);}
     return -1;}
 
