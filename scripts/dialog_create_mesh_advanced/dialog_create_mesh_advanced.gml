@@ -57,7 +57,7 @@ yy += el_name.height + spacing;
 
 yy = yy_base;
 
-var el_auto_bounds = create_button(col2_x, yy, "Auto-calculate bounds (grid: 32)", ew, eh, fa_center, omu_mesh_auto_bounds, dg);
+var el_auto_bounds = create_button(col2_x, yy, "Auto-calculate bounds", ew, eh, fa_center, omu_mesh_auto_bounds, dg);
 el_auto_bounds.tooltip = "Automatically calculate the bounds of a mesh. Rounds to the nearest 32, i.e. [0, 0, 0] to [28, 36, 32] would be assigned bounds of [0, 0, 0] to [1, 1, 1].";
 yy += el_auto_bounds.height + spacing;
 
