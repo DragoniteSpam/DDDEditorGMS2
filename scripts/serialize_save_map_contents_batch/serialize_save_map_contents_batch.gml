@@ -16,3 +16,11 @@ buffer_write_buffer(buffer, map_contents.frozen_data_wire);
 // if this goes well, make it a game setting
 var chunk_size = 32;
 var exported = batch_all_export(map, chunk_size);
+
+buffer_write(buffer, buffer_u32, ds_map_size(exported));
+for (var i = ds_map_find_first(exported); i != undefined; i = ds_map_find_next(exported, i)) {
+    var chunk = buffer_create_from_vertex_buffer(exported[? i], buffer_fixed, 1);
+    buffer_write(buffer, buffer_u32, buffer_get_size(chunk));
+    buffer_write_buffer(buffer, chunk);
+    buffer_delete(chunk);
+}
