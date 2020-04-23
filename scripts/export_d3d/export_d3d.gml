@@ -23,8 +23,8 @@ for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
         var nx = buffer_read(sub.buffer, buffer_f32);
         var ny = buffer_read(sub.buffer, buffer_f32);
         var nz = buffer_read(sub.buffer, buffer_f32);
-        var xtex = buffer_read(sub.buffer, buffer_f32);
-        var ytex = buffer_read(sub.buffer, buffer_f32);
+        var xtex = buffer_read(sub.buffer, buffer_f32) / mesh.texture_scale;
+        var ytex = buffer_read(sub.buffer, buffer_f32) / mesh.texture_scale;
         var color = buffer_read(sub.buffer, buffer_u32);
         buffer_read(sub.buffer, buffer_u32);
     
