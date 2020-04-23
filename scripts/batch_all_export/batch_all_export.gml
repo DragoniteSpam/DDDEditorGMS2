@@ -7,8 +7,8 @@ var chunk_size = argument1;
 var contents = map.contents;
 var buffers = ds_map_create();
 
-for (var i = 0; i < ds_list_size(map.all_entities); i++) {
-    var thing = map.all_entities[| i];
+for (var index = 0; index < ds_list_size(contents.all_entities); index++) {
+    var thing = contents.all_entities[| index];
     var bounds = script_execute(thing.get_bounding_box, thing);
     bounds[0] = bounds[0] div TILE_WIDTH;
     bounds[1] = bounds[1] div TILE_HEIGHT;
@@ -25,7 +25,7 @@ for (var i = 0; i < ds_list_size(map.all_entities); i++) {
                     vertex_begin(buffers[? key], Stuff.graphics.vertex_format);
                 }
                 var vbuff = buffers[? key];
-                script_execute(thing.batch, map.preview, noone, thing);
+                script_execute(thing.batch, vbuff, noone, thing);
             }
         }
     }
