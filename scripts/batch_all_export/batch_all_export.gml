@@ -19,7 +19,7 @@ for (var index = 0; index < ds_list_size(contents.all_entities); index++) {
     for (var i = bounds[0]; i < bounds[3]; i++) {
         for (var j = bounds[1]; j < bounds[4]; j++) {
             for (var k = bounds[2]; k < bounds[5]; k++) {
-                var key = string(i) + ":" + string(j) + ":" + string(k);
+                var key = vector3(i, j, k);
                 if (!ds_map_exists(buffers, key)) {
                     buffers[? key] = vertex_create_buffer();
                     vertex_begin(buffers[? key], Stuff.graphics.vertex_format);
