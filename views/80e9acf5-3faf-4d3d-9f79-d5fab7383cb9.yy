@@ -32,7 +32,8 @@
         "c4c6186e-04bd-409a-a93e-38317549cd72",
         "bd409ce6-cfa8-46f7-91f2-1f51f52383e3",
         "660cfa5d-62a5-42b7-9924-7fe0b2ba592f",
-        "11c05109-0444-4b59-8190-7f35b59284a8"
+        "11c05109-0444-4b59-8190-7f35b59284a8",
+        "3906571d-a505-4378-ab79-86a485d197d9"
     ],
     "filterType": "GMScript",
     "folderName": "entity properties",

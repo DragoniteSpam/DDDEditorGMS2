@@ -4628,6 +4628,14 @@
             }
         },
         {
+            "Key": "3906571d-a505-4378-ab79-86a485d197d9",
+            "Value": {
+                "id": "194a9175-af27-4650-988b-42747e778fa6",
+                "resourcePath": "scripts\\uivc_move_route_delete\\uivc_move_route_delete.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "393098e9-c2ab-4eff-b308-534321b76316",
             "Value": {
                 "id": "370b2a19-d9da-44c1-9841-dc488cb416b8",
@@ -15068,6 +15076,14 @@
             }
         },
         {
+            "Key": "c202d42c-f336-4054-ad6a-d873329cb04f",
+            "Value": {
+                "id": "d92d9bbb-e435-4811-a867-83389a7949f1",
+                "resourcePath": "scripts\\dialog_create_move_route_delete\\dialog_create_move_route_delete.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "c20ec49a-1b56-4766-8690-c9b5846f6111",
             "Value": {
                 "id": "7f301845-92e9-4360-99ca-c72c7ddd552d",
@@ -20479,6 +20495,7 @@
         "69714a5c-ac15-4355-9f39-8629389e4e80",
         "1b8ac16e-5f77-46eb-b2d7-72a807696916",
         "444743a3-d1ae-45ce-b343-be63bc061953",
+        "c202d42c-f336-4054-ad6a-d873329cb04f",
         "3ebce2ef-e1ea-49d0-91fd-7a341df0022f",
         "bcd1774a-005a-440c-b96a-c4e8d29065bc",
         "79a317d9-c17d-49ff-bfcd-6ce6166c427b",
@@ -20692,6 +20709,7 @@
         "75a5fec3-1002-4533-940c-f2a25fca9722",
         "70b7d05e-b653-457d-ac89-7ee06447841b",
         "48ede753-26d6-419c-83c1-a7e4d235f7c8",
+        "3906571d-a505-4378-ab79-86a485d197d9",
         "3e051823-5ef9-4923-bb43-20dd4710b10f",
         "8ce47a97-7e64-4509-aa7c-e5615e5a15ac",
         "8437e241-2803-4cdf-a95e-4042d6521f04",
