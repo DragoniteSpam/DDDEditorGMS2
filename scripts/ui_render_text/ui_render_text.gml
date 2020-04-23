@@ -24,3 +24,7 @@ if (text.use_scribble) {
     draw_set_color(text.color);
     draw_text_ext(tx, ty, string(text.text), text.wrap_height, text.wrap_width);
 }
+
+if (mouse_within_rectangle_determine(x1, y1, x2, y2, text.adjust_view)) {
+    Stuff.element_tooltip = text;
+}
