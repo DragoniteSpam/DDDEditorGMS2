@@ -264,8 +264,8 @@ if (file_exists(fn)) {
             bnz = v[5];
             
             if (adjust) {
-                bxtex = v[6] * TILESET_TEXTURE_WIDTH;
-                bytex = v[7] * TILESET_TEXTURE_HEIGHT;
+                bxtex = v[6] * TILESET_TEXTURE_SCALE;
+                bytex = v[7] * TILESET_TEXTURE_SCALE;
             }
             
             // the texture pages are 4k, so this is four pixels squared

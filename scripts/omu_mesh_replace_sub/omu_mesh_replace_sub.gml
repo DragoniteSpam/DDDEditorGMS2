@@ -17,7 +17,7 @@ if (selection + 1) {
         }
     }
     // re-adjust the texture scale
-    mesh_set_texture_scale(mesh_data, mesh_data.texture_scale / TILESET_TEXTURE_WIDTH);
+    mesh_set_texture_scale(mesh_data, mesh_data.texture_scale / TILESET_TEXTURE_SCALE);
 }
 
 batch_again();

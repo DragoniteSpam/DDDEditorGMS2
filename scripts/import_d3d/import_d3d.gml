@@ -158,8 +158,8 @@ while (!file_text_eof(f)) {
     }
     
     if (adjust) {
-        xtex = xtex * TILESET_TEXTURE_WIDTH;
-        ytex = ytex * TILESET_TEXTURE_HEIGHT;
+        xtex = xtex * TILESET_TEXTURE_SCALE;
+        ytex = ytex * TILESET_TEXTURE_SCALE;
     }
     
     // the texture pages are 4k, so this is four pixels squared
