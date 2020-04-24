@@ -10,10 +10,10 @@ var buffers = ds_map_create();
 for (var index = 0; index < ds_list_size(contents.all_entities); index++) {
     var thing = contents.all_entities[| index];
     var bounds = script_execute(thing.get_bounding_box, thing);
-    bounds[0] = bounds[0] div TILE_WIDTH;
-    bounds[1] = bounds[1] div TILE_HEIGHT;
-    bounds[3] = bounds[3] div TILE_WIDTH;
-    bounds[4] = bounds[4] div TILE_HEIGHT;
+    bounds[0] = bounds[0] div chunk_size;
+    bounds[1] = bounds[1] div chunk_size;
+    bounds[3] = bounds[3] div chunk_size;
+    bounds[4] = bounds[4] div chunk_size;
     for (var i = bounds[0]; i <= bounds[3]; i++) {
         for (var j = bounds[1]; j <= bounds[4]; j++) {
             var key = (i << 24) | j;

@@ -22,6 +22,7 @@ var exported = batch_all_export(map, chunk_size);
 var addr_count = buffer_tell(buffer);
 var count = 0;
 buffer_write(buffer, buffer_u32, 0);
+buffer_write(buffer, buffer_u32, chunk_size);
 
 for (var i = ds_map_find_first(exported); i != undefined; i = ds_map_find_next(exported, i)) {
     var vbuffer = exported[? i];
