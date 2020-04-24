@@ -19,14 +19,23 @@ buffer_write(buffer, buffer_u32, 0);
 var chunk_size = 32;
 var exported = batch_all_export(map, chunk_size);
 
-buffer_write(buffer, buffer_u32, ds_map_size(exported));
+var addr_count = buffer_tell(buffer);
+var count = 0;
+buffer_write(buffer, buffer_u32, 0);
+
 for (var i = ds_map_find_first(exported); i != undefined; i = ds_map_find_next(exported, i)) {
-    buffer_write(buffer, buffer_u16, i[vec3.xx]);
-    buffer_write(buffer, buffer_u16, i[vec3.yy]);
-    var chunk = buffer_create_from_vertex_buffer(exported[? i], buffer_fixed, 1);
-    buffer_write(buffer, buffer_u32, buffer_get_size(chunk));
-    buffer_write_buffer(buffer, chunk);
-    buffer_delete(chunk);
+    var vbuffer = exported[? i];
+        if (vertex_get_number(vbuffer) > 0) {
+        buffer_write(buffer, buffer_u16, i >> 24);
+        buffer_write(buffer, buffer_u16, i & 0xffffff);
+        var chunk = buffer_create_from_vertex_buffer(vbuffer, buffer_fixed, 1);
+        buffer_write(buffer, buffer_u32, buffer_get_size(chunk));
+        buffer_write_buffer(buffer, chunk);
+        buffer_delete(chunk);
+    }
+    vertex_delete_buffer(vbuffer);
+    count++;
 }
 ds_map_destroy(exported);
+buffer_poke(buffer, addr_count, buffer_u32, count);
 buffer_poke(buffer, addr_cache, buffer_u32, buffer_tell(buffer));
