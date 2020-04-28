@@ -10,7 +10,7 @@ default_lua_event_node_conditional = file_get_contents(PATH_LUA + "event-node-co
 default_lua_event_script = file_get_contents(PATH_LUA + "event-script.lua");
 default_lua_animation = file_get_contents(PATH_LUA + "animation.lua");
 default_lua_effect_common = file_get_contents(PATH_LUA + "global-effect-common.lua");
-game_asset_id = string_hex(irandom(0xffffffff));
+game_asset_id = string_hex(irandom(0xffffffff), 8);
 
 // local storage folders
 
