@@ -1,12 +1,14 @@
 /// Scribble's macros, used to customise and control behaviour throughout the library.
 
 
+
 // !
 #macro SCRIBBLE_HASH_NEWLINE        false  //Replaces hashes (#) with newlines (ASCII chr10) to emulate GMS1's newline behaviour
 // !
 #macro SCRIBBLE_COLOURISE_SPRITES   false  //Whether to apply the text colour to non-animated sprites (animated sprites are always blended white)
-#macro SCRIBBLE_VERBOSE             false  //Enables verbose console output to aid with debugging
-#macro SCRIBBLE_ADD_SPRITE_ORIGINS  false  //Whether to use sprite origins. Setting this to <false> will vertically centre sprites on the line of text
+#macro SCRIBBLE_VERBOSE                       false  //Enables verbose console output to aid with debugging
+#macro SCRIBBLE_ADD_SPRITE_ORIGINS            false  //Whether to use sprite origins. Setting this to <false> will vertically centre sprites on the line of text
+#macro SCRIBBLE_SPRITEFONT_ALIGN_GLYPHS_LEFT  false  //Set to <true> to emulate GameMaker's native behaviour
 
 #region Default parameters
 
@@ -40,12 +42,14 @@
 
 #region Advanced stuff
 
-#macro SCRIBBLE_STEP_SIZE                  (delta_time/game_get_speed(gamespeed_microseconds)) //The animation step size. The default command here uses delta_time ensures that animations are smooth at all framerates
-#macro SCRIBBLE_SLANT_AMOUNT               0.24  //The x-axis displacement when using the [slant] tag
-#macro SCRIBBLE_Z                          0     //The z-value for vertexes
+#macro SCRIBBLE_WARNING_REINITIALIZE  false
 
-#macro SCRIBBLE_DEFAULT_CACHE_GROUP        0     //The name of the default cache group. Real value and strings accepted.
-#macro SCRIBBLE_CACHE_TIMEOUT              15000 //How long to wait (in milliseconds) before the cache automatically destroys a text element. Set to 0 (or less) to turn off automatic de-caching (you'll need to manually call scribble_cache_group_flush() instead)
+#macro SCRIBBLE_STEP_SIZE             (delta_time/game_get_speed(gamespeed_microseconds)) //The animation step size. The default command here uses delta_time ensures that animations are smooth at all framerates
+#macro SCRIBBLE_SLANT_AMOUNT          0.24  //The x-axis displacement when using the [slant] tag
+#macro SCRIBBLE_Z                     0     //The z-value for vertexes
+                                      
+#macro SCRIBBLE_DEFAULT_CACHE_GROUP   0     //The name of the default cache group. Real value and strings accepted.
+#macro SCRIBBLE_CACHE_TIMEOUT         15000 //How long to wait (in milliseconds) before the cache automatically destroys a text element. Set to 0 (or less) to turn off automatic de-caching (you'll need to manually call scribble_cache_group_flush() instead)
 
 #macro SCRIBBLE_COMMAND_TAG_OPEN      ord("[") //Character used to open a command tag. First 127 ASCII chars only
 #macro SCRIBBLE_COMMAND_TAG_CLOSE     ord("]") //Character used to close a command tag. First 127 ASCII chars only
