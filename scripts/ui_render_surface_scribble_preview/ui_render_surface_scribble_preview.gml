@@ -25,6 +25,8 @@ scribble_draw_set_wrap(-1, f, -1);
 
 if (!is_array(mode.scribble) || (mode.scribble[__SCRIBBLE.STRING] != mode.scribble_text && (mode.scribble_text_time + 500) < current_time)) {
     scribble_draw_set_cache_group(SCRIBBLE_DEFAULT_CACHE_GROUP, false, true);
+    // I feel like this should happen when cache_group_flush is called, but
+    ds_map_clear(global.__scribble_global_cache_map);
     mode.scribble = scribble_draw(0, 0, mode.scribble_text);
     scribble_draw_set_cache_group(SCRIBBLE_DEFAULT_CACHE_GROUP, true, true);
     editor_scribble_autotype_fire();
