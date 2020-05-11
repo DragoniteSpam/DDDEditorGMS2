@@ -10,7 +10,11 @@ var mesh_data = text.root.mesh;
 var base_text = text.text;
 
 if (selection + 1) {
-    var str = (mesh_data.submeshes[| selection].path != "") ? mesh_data.submeshes[| selection].path : "<no path saved>";
+    if (mesh_data.submeshes[| selection].path == "") {
+        var str = "<no path saved>";
+    } else {
+        var str = mesh_data.submeshes[| selection].path;
+    }
 } else {
     var str = "";
 }

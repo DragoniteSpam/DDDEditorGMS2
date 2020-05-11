@@ -56,7 +56,12 @@ el_name.tooltip = "You don't have to, but it's generally helpful to give your su
 dg.el_name = el_name;
 yy += el_name.height + spacing;
 
-var el_text_submesh_path = create_text(col1_x, yy, (mesh.submeshes[| 0].path != "") ? mesh.submeshes[| 0].path : "<no path saved>", ew, eh, fa_left, ew, dg);
+if (mesh.submeshes[| 0].path == "") {
+    var text = "<no path saved>";
+} else {
+    var text = mesh.submeshes[| 0].path;
+}
+var el_text_submesh_path = create_text(col1_x, yy, text, ew, eh, fa_left, ew, dg);
 el_text_submesh_path.render = ui_render_text_mesh_submesh_path;
 yy += el_text_submesh_path.height + spacing;
 
