@@ -50,6 +50,12 @@ var el_alt_middle = create_checkbox(col1_x, yy, "Alternate Middle Click", ew, eh
 el_alt_middle.tooltip = "My mouse is slightly broken and middle click doesn't always work, so I need an alternate method to use it. This is turned off by default so that it's harder to accidentally invoke, but you may turn it on if you need it.\n\n(The alternate input is Control + Space.)";
 yy += el_alt_middle.height + spacing;
 
+var el_focus_alpha_text = create_text(col1_x, yy, "Out-of-focus opacity:", ew, eh, fa_left, ew, dg);
+yy += el_focus_alpha_text.height + spacing;
+
+var el_focus_alpha = create_progress_bar(col1_x, yy, ew, eh, uivc_focus_alpha, 4, Stuff.setting_focus_alpha, dg);
+yy += el_focus_alpha.height + spacing;
+
 yy = yy_base;
 
 var el_code_ext = create_radio_array(col2_x + col1_x, yy, "Code File Extension:", ew, eh, uivc_code_extension, Stuff.setting_code_extension, dg);
@@ -78,6 +84,8 @@ ds_list_add(dg.contents,
     el_alt_middle,
     el_code_ext,
     el_text_ext,
+    el_focus_alpha_text,
+    el_focus_alpha,
     el_confirm
 );
 

@@ -21,6 +21,11 @@ var cbi = 2;  // 0 is is available, 1 is hovering, 2 is unavailable
 
 // move the box first
 if (active) {
+    
+    draw_set_alpha(Stuff.setting_focus_alpha);
+    draw_rectangle_colour(0, 0, window_get_width(), window_get_height(), c_black, c_black, c_black, c_black, false);
+    draw_set_alpha(1);
+    
     cbi = 0;
     if (mouse_within_rectangle_determine(x1, y1, x2, y1 + header_height, true)) {
         // close box
