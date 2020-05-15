@@ -134,7 +134,7 @@ if (!EDITOR_FORCE_SINGLE_MODE) {
     var stashed_mode = EDITOR_BASE_MODE;
 }
 
-setting_code_extension_map = [".txt", ".lua"];
+setting_code_extension_map = [".txt", ".lua", ".gml"];
 setting_text_extension_map = [".txt", ".md"];
 
 setting_hide_warnings = ds_map_create();
