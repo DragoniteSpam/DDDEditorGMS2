@@ -201,33 +201,34 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = legal_y + spacing;
     
-    element = create_checkbox(legal_x + spacing, yy, "Light enabled?", col_width, element_height, null, true, t_lighting);
+    element = create_checkbox(legal_x + spacing, yy, "Light enabled?", col_width, element_height, null, mode.terrain_light_enabled, t_lighting);
     ds_list_add(t_lighting.contents, element);
     yy += element.height + spacing;
     
-    element = create_color_picker(legal_x + spacing, yy, "Ambient:", col_width, element_height, null, c_black, vx1, vy1, vx2, vy2, t_lighting);
+    element = create_color_picker(legal_x + spacing, yy, "Ambient:", col_width, element_height, null, mode.terrain_light_ambient, vx1, vy1, vx2, vy2, t_lighting);
     ds_list_add(t_lighting.contents, element);
     yy += element.height + spacing;
     
     element = create_list(legal_x + spacing, yy, "Terrain Lights", "", col_width, element_height, MAX_TERRAIN_LIGHTS, null, false, t_lighting, mode.lights);
+    element.allow_deselect = false;
     element.entries_are = ListEntries.INSTANCES;
     ui_list_select(element, 0);
     ds_list_add(t_lighting.contents, element);
     yy += ui_get_list_height(element) + spacing;
     
-    element = create_checkbox(legal_x + spacing, yy, "Fog enabled?", col_width, element_height, null, true, t_lighting);
+    element = create_checkbox(legal_x + spacing, yy, "Fog enabled?", col_width, element_height, null, mode.terrain_fog_enabled, t_lighting);
     ds_list_add(t_lighting.contents, element);
     yy += element.height + spacing;
     
-    element = create_color_picker(legal_x + spacing, yy, "Fog color:", col_width, element_height, null, c_white, vx1, vy1, vx2, vy2, t_lighting);
+    element = create_color_picker(legal_x + spacing, yy, "Fog color:", col_width, element_height, null, mode.terrain_fog_color, vx1, vy1, vx2, vy2, t_lighting);
     ds_list_add(t_lighting.contents, element);
     yy += element.height + spacing;
     
-    element = create_input(legal_x + spacing, yy, "Start:", col_width, element_height, null, 0, "number", validate_double, -100000, 100000, 8, vx1, vy1, vx2, vy2, t_lighting);
+    element = create_input(legal_x + spacing, yy, "Start:", col_width, element_height, null, mode.terrain_fog_start, "number", validate_double, -100000, 100000, 8, vx1, vy1, vx2, vy2, t_lighting);
     ds_list_add(t_lighting.contents, element);
     yy += element.height + spacing;
     
-    element = create_input(legal_x + spacing, yy, "End:", col_width, element_height, null, 0, "number", validate_double, -100000, 100000, 8, vx1, vy1, vx2, vy2, t_lighting);
+    element = create_input(legal_x + spacing, yy, "End:", col_width, element_height, null, mode.terrain_fog_end, "number", validate_double, -100000, 100000, 8, vx1, vy1, vx2, vy2, t_lighting);
     ds_list_add(t_lighting.contents, element);
     yy += element.height + spacing;
     

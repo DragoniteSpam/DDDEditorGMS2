@@ -130,5 +130,13 @@ for (var i = 0; i < MAX_TERRAIN_LIGHTS; i++) {
     ds_list_add(lights, light);
 }
 
+terrain_light_enabled = true;
+terrain_light_ambient = c_black;
+
+terrain_fog_enabled = false;
+terrain_fog_color = c_white;
+terrain_fog_start = 1000;
+terrain_fog_end = 32000;
+
 ui = ui_init_terrain(id);
 mode_id = ModeIDs.TERRAIN;
