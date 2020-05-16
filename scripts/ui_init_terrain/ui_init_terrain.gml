@@ -255,9 +255,10 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     var yy_base = yy;
     
-    element = create_text(col2_x, yy, "X:", col_width, element_height, fa_left, col_width, t_lighting);
+    element = create_text(col2_x, yy, "X component:", col_width, element_height, fa_left, col_width, t_lighting);
     element.enabled = false;
     ds_list_add(t_lighting.contents, element);
+    t_lighting.el_dir_x_name = element;
     yy += element.height + spacing;
     
     element = create_progress_bar(col2_x, yy, col_width, element_height, ui_input_terrain_light_dir_x, 4, 0.5, t_lighting);
@@ -266,9 +267,10 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     t_lighting.el_dir_x = element;
     yy += element.height + spacing;
     
-    element = create_text(col2_x, yy, "Y:", col_width, element_height, fa_left, col_width, t_lighting);
+    element = create_text(col2_x, yy, "Y component:", col_width, element_height, fa_left, col_width, t_lighting);
     element.enabled = false;
     ds_list_add(t_lighting.contents, element);
+    t_lighting.el_dir_y_name = element;
     yy += element.height + spacing;
     
     element = create_progress_bar(col2_x, yy, col_width, element_height, ui_input_terrain_light_dir_y, 4, 0.5, t_lighting);
@@ -277,9 +279,10 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     t_lighting.el_dir_y = element;
     yy += element.height + spacing;
     
-    element = create_text(col2_x, yy, "Z:", col_width, element_height, fa_left, col_width, t_lighting);
+    element = create_text(col2_x, yy, "Z component:", col_width, element_height, fa_left, col_width, t_lighting);
     element.enabled = false;
     ds_list_add(t_lighting.contents, element);
+    t_lighting.el_dir_z_name = element;
     yy += element.height + spacing;
     
     element = create_progress_bar(col2_x, yy, col_width, element_height, ui_input_terrain_light_dir_z, 4, 0.5, t_lighting);

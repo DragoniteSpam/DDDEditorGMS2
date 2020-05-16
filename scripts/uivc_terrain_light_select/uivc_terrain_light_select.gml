@@ -21,3 +21,5 @@ switch (light.type) {
         ui_input_set_value(tab.el_point_radius, light.radius);
         break;
 }
+
+uivc_terrain_light_enable_by_type(list);
