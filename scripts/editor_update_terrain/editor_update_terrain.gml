@@ -22,7 +22,6 @@ if (mode.orthographic) {
     var proj = matrix_build_projection_perspective_fov(-mode.fov, -vw / vh, CAMERA_ZNEAR, CAMERA_ZFAR);
 }
 
-graphics_set_lighting_terrain(shd_terrain);
 transform_set(0, 0, 0, 0, 0, 0, mode.view_scale, mode.view_scale, mode.view_scale);
 
 gpu_set_ztestenable(true);
@@ -41,6 +40,7 @@ camera_set_proj_mat(camera, proj);
 camera_apply(camera);
 
 draw_clear_alpha(c_black, 0);
+graphics_set_lighting_terrain(shd_terrain);
 vertex_submit(mode.terrain_buffer, pr_trianglelist, sprite_get_texture(mode.texture, 0));
 vertex_submit(Stuff.graphics.axes, pr_linelist, -1);
 surface_reset_target();
