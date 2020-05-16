@@ -22,22 +22,7 @@ if (mode.orthographic) {
     var proj = matrix_build_projection_perspective_fov(-mode.fov, -vw / vh, CAMERA_ZNEAR, CAMERA_ZFAR);
 }
 
-shader_set(shd_basic_lighting);
-var light_data = array_create(MAX_LIGHTS * 12);
-array_clear(light_data, 0);
-
-// common variables
-var index = 0;
-light_data[index + 0] = 1;
-light_data[index + 1] = 1;
-light_data[index + 2] = -1;
-light_data[index + 8] = 1;
-light_data[index + 9] = 1;
-light_data[index + 10] = 1;
-light_data[index + 11] = 1;
-
-shader_set_uniform_f_array(shader_get_uniform(shd_basic_lighting, "lightData"), light_data);
-
+graphics_set_lighting_terrain(shd_basic_lighting);
 transform_set(0, 0, 0, 0, 0, 0, mode.view_scale, mode.view_scale, mode.view_scale);
 
 gpu_set_ztestenable(true);

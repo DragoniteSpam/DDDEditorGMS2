@@ -14,13 +14,9 @@ var ambient = light_enabled ? map.light_ambient_colour : c_white;
 var n = 0;
 for (var i = 0; i < MAX_LIGHTS; i++) {
     var effect = refid_get(map_contents.active_lights[| i]);
-    if (!effect) {
-        continue;
-    }
+    if (!effect) continue;
     var data = effect.com_light;
-    if (!data) {
-        continue;
-    }
+    if (!data) continue;
     var index = n++ * 12;
     // common value
     light_data[index + 3] = data.light_type;

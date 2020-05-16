@@ -10628,6 +10628,14 @@
             }
         },
         {
+            "Key": "85de35ee-d80f-4db8-b110-51c12114072f",
+            "Value": {
+                "id": "51128a89-3be7-47e9-9b01-b3cf39dff808",
+                "resourcePath": "scripts\\graphics_set_lighting_terrain\\graphics_set_lighting_terrain.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "85e2f090-df61-438e-ab75-f59bb73114e5",
             "Value": {
                 "id": "e14f7e7c-2416-4f3a-b581-6222236f9065",
@@ -20462,6 +20470,7 @@
         "93e79cca-6db9-4bd6-8dde-4a0390784c1e",
         "15ab5199-66ae-4863-96ee-9fb150a0291e",
         "b727b1c8-ef03-494d-b4f3-7d7789b0e2af",
+        "85de35ee-d80f-4db8-b110-51c12114072f",
         "d76ea4ef-8539-4788-90ce-56dafb2f8490",
         "0e26c60b-d3d0-41b8-9cb8-add504141c5a",
         "d038e821-1dd0-4269-8124-8b1496f6335a",

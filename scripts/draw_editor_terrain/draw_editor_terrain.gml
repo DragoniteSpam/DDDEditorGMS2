@@ -26,7 +26,8 @@ camera_set_proj_mat(camera, proj);
 camera_apply(camera);
 
 if (mode.view_water) {
-    graphics_draw_water();
+    graphics_set_lighting_terrain(shd_water);
+    graphics_draw_water(false);
 }
 
 // This is officially the worst solution to z fighting ever, but to effectively reset the depth buffer

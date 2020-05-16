@@ -1,3 +1,6 @@
+/// @param [set-lights?=true]
+
+var set_lights = argument[0];
 var modulo = Stuff.graphics.water_reptition;
 var map = Stuff.map.active_map;
 
@@ -14,7 +17,9 @@ for (var i = -1; i < 3; i++) {
         transform_set(i * s + base_x, j * s + base_y, map.water_level * TILE_DEPTH - 1, 0, 0, 0, 1, 1, 1);
         
         shader_set(shd_water);
-        graphics_set_lighting(shd_water);
+        if (set_lights) {
+            graphics_set_lighting(shd_water);
+        }
         texture_set_stage(shader_get_sampler_index(shd_water, "displacementMap"), sprite_get_texture(spr_water_displacement, 0));
         shader_set_uniform_f(shader_get_uniform(shd_water, "displacement"), 0.0625);
         shader_set_uniform_f(shader_get_uniform(shd_water, "baseAlpha"), 1);
