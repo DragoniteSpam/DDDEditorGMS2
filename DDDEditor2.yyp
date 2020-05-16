@@ -12975,7 +12975,7 @@
             "Key": "a3d97ff3-e8c7-49db-813e-acdf38c20935",
             "Value": {
                 "id": "898e9ffc-f846-478d-983a-bb01808e70f3",
-                "resourcePath": "shaders\\shd_basic_lighting\\shd_basic_lighting.yy",
+                "resourcePath": "shaders\\shd_terrain\\shd_terrain.yy",
                 "resourceType": "GMShader"
             }
         },

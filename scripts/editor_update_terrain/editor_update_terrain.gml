@@ -22,7 +22,7 @@ if (mode.orthographic) {
     var proj = matrix_build_projection_perspective_fov(-mode.fov, -vw / vh, CAMERA_ZNEAR, CAMERA_ZFAR);
 }
 
-graphics_set_lighting_terrain(shd_basic_lighting);
+graphics_set_lighting_terrain(shd_terrain);
 transform_set(0, 0, 0, 0, 0, 0, mode.view_scale, mode.view_scale, mode.view_scale);
 
 gpu_set_ztestenable(true);

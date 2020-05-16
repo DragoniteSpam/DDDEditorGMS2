@@ -16,7 +16,7 @@ var mx = argument[2];
 var omin = (argument_count > 3) ? argument[3] : 0;
 var omax = (argument_count > 4) ? argument[4] : 1;
 
-if (mn == mx && mn == n) {
+if (mn == mx) {
     return mn;
 }
 
