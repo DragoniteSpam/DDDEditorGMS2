@@ -5044,6 +5044,14 @@
             }
         },
         {
+            "Key": "408986d2-34f4-410c-b640-f085b32c353d",
+            "Value": {
+                "id": "c9ae5b4c-854d-4f50-a53f-96d752e24d9c",
+                "resourcePath": "scripts\\ui_checkbox_fog_start\\ui_checkbox_fog_start.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "40a25e67-646f-4628-b8b5-3e933399e3ba",
             "Value": {
                 "id": "258f880c-90da-48b3-b65b-a56fab96fff1",
@@ -7868,6 +7876,14 @@
             }
         },
         {
+            "Key": "6363866f-8112-4354-9eeb-899272e353e5",
+            "Value": {
+                "id": "a4583918-8657-4d11-8317-39597895700c",
+                "resourcePath": "scripts\\ui_checkbox_light_enabled\\ui_checkbox_light_enabled.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "636d11e5-5bdf-4ceb-8ae9-7e6837da6552",
             "Value": {
                 "id": "7e2b8e14-5db7-4e8b-9937-69ae20fd5159",
@@ -9648,6 +9664,14 @@
             "Value": {
                 "id": "83f765bd-2c8e-40a5-ab62-91fc99ed2f01",
                 "resourcePath": "scripts\\omu_mesh_import_sub\\omu_mesh_import_sub.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "79d88758-0ab7-47cc-881f-7786957b46e9",
+            "Value": {
+                "id": "9c6662b2-fc6e-4f5a-aad2-c73e759c16e0",
+                "resourcePath": "scripts\\ui_checkbox_light_ambient\\ui_checkbox_light_ambient.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -12340,6 +12364,14 @@
             }
         },
         {
+            "Key": "9c7d3cea-1c20-4661-b43f-af7703e7efd8",
+            "Value": {
+                "id": "9eec6db6-b635-43ed-8871-59a737520cd8",
+                "resourcePath": "scripts\\ui_checkbox_fog_end\\ui_checkbox_fog_end.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "9c90740e-4c8e-45e8-815e-d3660936f3cb",
             "Value": {
                 "id": "dc9a3983-57d0-46bc-ad01-e58ef83660b0",
@@ -13808,6 +13840,14 @@
             "Value": {
                 "id": "19bdcfdf-5011-4f18-ad06-20d3ba67cda1",
                 "resourcePath": "scripts\\momu_graphic_ui\\momu_graphic_ui.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "b071e9e8-f1a1-40cb-acb7-01693e4af942",
+            "Value": {
+                "id": "f61344ba-1dd7-4003-a810-98ed455295f7",
+                "resourcePath": "scripts\\ui_checkbox_fog_enabled\\ui_checkbox_fog_enabled.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -15384,6 +15424,14 @@
             "Value": {
                 "id": "59252966-947c-417c-97f4-9ecf7bc25364",
                 "resourcePath": "scripts\\ui_input_set_value\\ui_input_set_value.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "c5d5ef1c-b073-4e02-a8f8-40c6982855f4",
+            "Value": {
+                "id": "a8046dce-e580-4274-bc9e-0f47710f5d45",
+                "resourcePath": "scripts\\ui_checkbox_fog_color\\ui_checkbox_fog_color.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -21851,6 +21899,12 @@
         "257bf034-805c-456b-9643-af5628f2218e",
         "3f64e116-940e-4ebf-8405-7aee7df73e21",
         "8d969df7-5f17-4056-a105-ed69f3d22c52",
+        "6363866f-8112-4354-9eeb-899272e353e5",
+        "b071e9e8-f1a1-40cb-acb7-01693e4af942",
+        "79d88758-0ab7-47cc-881f-7786957b46e9",
+        "c5d5ef1c-b073-4e02-a8f8-40c6982855f4",
+        "408986d2-34f4-410c-b640-f085b32c353d",
+        "9c7d3cea-1c20-4661-b43f-af7703e7efd8",
         "c0bde925-00bd-43ff-9d9e-5edd4da45423",
         "df041495-c198-4b7b-bffc-6efdf79a23df",
         "46967aa9-7520-44ac-ab9b-df1bd70a3df2",
