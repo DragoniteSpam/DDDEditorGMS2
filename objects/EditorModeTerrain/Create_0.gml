@@ -130,6 +130,11 @@ for (var i = 0; i < MAX_TERRAIN_LIGHTS; i++) {
     ds_list_add(lights, light);
 }
 
+lights[| 0].type = LightTypes.DIRECTIONAL;
+lights[| 0].x = 1;
+lights[| 0].y = 1;
+lights[| 0].z = -1;
+
 terrain_light_enabled = setting_get("Terrain", "light-enabled", true);
 terrain_light_ambient = setting_get("Terrain", "light-ambient", c_black);
 

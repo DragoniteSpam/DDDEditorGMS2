@@ -3,5 +3,4 @@ y = 0;
 z = 0;
 name = "";
 color = c_white;
-type = LightTypes.DIRECTIONAL;
-enabled = false;
+type = LightTypes.NONE;

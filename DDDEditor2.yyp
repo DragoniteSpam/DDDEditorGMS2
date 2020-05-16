@@ -5500,6 +5500,14 @@
             }
         },
         {
+            "Key": "45070c69-e577-44b1-b881-31a638333035",
+            "Value": {
+                "id": "d2d503da-aa7f-4f91-8e08-a30c4b452530",
+                "resourcePath": "scripts\\ui_radio_terrain_light_type\\ui_radio_terrain_light_type.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "4534a1e2-51d3-4f9c-b458-2559ac0b95ca",
             "Value": {
                 "id": "ead6a447-87fd-4dfd-b2e1-5309ac5fcd9b",
@@ -9492,6 +9500,14 @@
             }
         },
         {
+            "Key": "77a99d72-fae0-4c2e-8dd3-ba28b564fd52",
+            "Value": {
+                "id": "58106e6b-674b-46ad-9fd6-12d4d75ebc84",
+                "resourcePath": "scripts\\ui_input_terrain_light_point_radius\\ui_input_terrain_light_point_radius.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "77bcf0a4-59a3-43aa-9b69-d5692ca22274",
             "Value": {
                 "id": "1c415e6d-460b-44da-87fd-bea76a5dc369",
@@ -10425,6 +10441,14 @@
                 "id": "c7a54cca-7cab-4340-b48a-2f0be7365800",
                 "resourcePath": "views\\83aa07ca-500e-4f06-9f3e-b7c6d90e98d9.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "83b2e8a4-ba16-405a-8d3a-31bc47d3658c",
+            "Value": {
+                "id": "2d22e675-71de-4de9-829e-e170207f7c62",
+                "resourcePath": "scripts\\ui_input_terrain_light_point_x\\ui_input_terrain_light_point_x.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -11672,6 +11696,14 @@
             "Value": {
                 "id": "8c09af4a-bdf7-4ae9-a608-29f161b45600",
                 "resourcePath": "scripts\\ui_create_notification\\ui_create_notification.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "93b819b0-6803-4c1f-8ac0-b21e118c5b50",
+            "Value": {
+                "id": "45b4b2f2-152b-4f9f-a11a-4fe29612378e",
+                "resourcePath": "scripts\\ui_input_terrain_light_point_y\\ui_input_terrain_light_point_y.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -15116,6 +15148,14 @@
             }
         },
         {
+            "Key": "c12ed004-72a8-43f1-8482-88cb1d9d4900",
+            "Value": {
+                "id": "6c20b889-b16a-44d1-9fcc-cc627c9a0ed4",
+                "resourcePath": "scripts\\ui_input_terrain_light_dir_x\\ui_input_terrain_light_dir_x.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "c1658414-a62d-44ec-9233-a6ea8294750d",
             "Value": {
                 "id": "a2d171a5-9e6b-42f9-b03a-622a2055ab0b",
@@ -16028,6 +16068,14 @@
             }
         },
         {
+            "Key": "cdc7f3e0-1178-41f7-a256-66392ac72e0a",
+            "Value": {
+                "id": "6bf8356a-ced0-4e04-882f-7512868e32af",
+                "resourcePath": "scripts\\ui_input_terrain_light_dir_z\\ui_input_terrain_light_dir_z.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "cdf56ccf-7846-4c0b-a147-ec6281583885",
             "Value": {
                 "id": "06c28575-71c7-4f46-8e0a-8ce11f4e0b1f",
@@ -16800,6 +16848,14 @@
             "Value": {
                 "id": "1def84ad-e9be-4f89-b2c8-8dcf7036191a",
                 "resourcePath": "scripts\\smf_matrix_create\\smf_matrix_create.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "d7363512-5360-432e-965e-163b272ddca6",
+            "Value": {
+                "id": "95c1e894-760e-4d66-a506-82d48a71824b",
+                "resourcePath": "scripts\\ui_color_terrain_light_color\\ui_color_terrain_light_color.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -18564,6 +18620,14 @@
             }
         },
         {
+            "Key": "ed72e61f-bd24-4752-bb22-567d0fefefa2",
+            "Value": {
+                "id": "b28b6497-63d8-43b1-a732-93bca76c3b6f",
+                "resourcePath": "scripts\\ui_input_terrain_light_point_z\\ui_input_terrain_light_point_z.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "eda421e6-0957-4159-8b01-a13dbd83a0f3",
             "Value": {
                 "id": "9ab6ba7b-a412-4c2a-bbc1-b119207bab24",
@@ -19952,6 +20016,14 @@
             "Value": {
                 "id": "9fafa25f-41ed-4fdd-a0e5-80ddab2b18e5",
                 "resourcePath": "scripts\\smf_model_load_async_finished\\smf_model_load_async_finished.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "fdcb97b0-f71d-4101-bf8f-80335e8fb2d5",
+            "Value": {
+                "id": "d893ff5d-5763-4143-a3eb-03d7aa04af64",
+                "resourcePath": "scripts\\ui_input_terrain_light_dir_y\\ui_input_terrain_light_dir_y.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -21905,6 +21977,15 @@
         "c5d5ef1c-b073-4e02-a8f8-40c6982855f4",
         "408986d2-34f4-410c-b640-f085b32c353d",
         "9c7d3cea-1c20-4661-b43f-af7703e7efd8",
+        "45070c69-e577-44b1-b881-31a638333035",
+        "d7363512-5360-432e-965e-163b272ddca6",
+        "c12ed004-72a8-43f1-8482-88cb1d9d4900",
+        "fdcb97b0-f71d-4101-bf8f-80335e8fb2d5",
+        "cdc7f3e0-1178-41f7-a256-66392ac72e0a",
+        "83b2e8a4-ba16-405a-8d3a-31bc47d3658c",
+        "93b819b0-6803-4c1f-8ac0-b21e118c5b50",
+        "ed72e61f-bd24-4752-bb22-567d0fefefa2",
+        "77a99d72-fae0-4c2e-8dd3-ba28b564fd52",
         "c0bde925-00bd-43ff-9d9e-5edd4da45423",
         "df041495-c198-4b7b-bffc-6efdf79a23df",
         "46967aa9-7520-44ac-ab9b-df1bd70a3df2",

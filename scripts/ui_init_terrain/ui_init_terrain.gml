@@ -214,6 +214,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     element.entries_are = ListEntries.INSTANCES;
     ui_list_select(element, 0);
     ds_list_add(t_lighting.contents, element);
+    t_lighting.el_light_list = element;
     yy += ui_get_list_height(element) + spacing;
     
     element = create_checkbox(legal_x + spacing, yy, "Fog enabled?", col_width, element_height, ui_checkbox_fog_enabled, mode.terrain_fog_enabled, t_lighting);
@@ -238,13 +239,13 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     ds_list_add(t_lighting.contents, element);
     yy += element.height + spacing;
     
-    element = create_radio_array(col2_x, yy, "Type", col_width, element_height, null, 0, t_lighting);
+    element = create_radio_array(col2_x, yy, "Type", col_width, element_height, ui_radio_terrain_light_type, 0, t_lighting);
     create_radio_array_options(element, ["None", "Direction", "Point", "Spot"]);
     element.contents[| 2].enabled = false;
     ds_list_add(t_lighting.contents, element);
     yy += ui_get_radio_array_height(element) + spacing;
     
-    element = create_color_picker(col2_x, yy, "Color:", col_width, element_height, null, c_white, vx1, vy1, vx2, vy2, t_lighting);
+    element = create_color_picker(col2_x, yy, "Color:", col_width, element_height, ui_color_terrain_light_color, c_white, vx1, vy1, vx2, vy2, t_lighting);
     ds_list_add(t_lighting.contents, element);
     yy += element.height + spacing;
     
@@ -257,7 +258,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     ds_list_add(t_lighting.contents, element);
     yy += element.height + spacing;
     
-    element = create_progress_bar(col2_x, yy, col_width, element_height, null, 4, 0.5, t_lighting);
+    element = create_progress_bar(col2_x, yy, col_width, element_height, ui_input_terrain_light_dir_x, 4, 0.5, t_lighting);
     element.enabled = false;
     ds_list_add(t_lighting.contents, element);
     yy += element.height + spacing;
@@ -267,7 +268,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     ds_list_add(t_lighting.contents, element);
     yy += element.height + spacing;
     
-    element = create_progress_bar(col2_x, yy, col_width, element_height, null, 4, 0.5, t_lighting);
+    element = create_progress_bar(col2_x, yy, col_width, element_height, ui_input_terrain_light_dir_y, 4, 0.5, t_lighting);
     element.enabled = false;
     ds_list_add(t_lighting.contents, element);
     yy += element.height + spacing;
@@ -277,7 +278,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     ds_list_add(t_lighting.contents, element);
     yy += element.height + spacing;
     
-    element = create_progress_bar(col2_x, yy, col_width, element_height, null, 4, 0.5, t_lighting);
+    element = create_progress_bar(col2_x, yy, col_width, element_height, ui_input_terrain_light_dir_z, 4, 0.5, t_lighting);
     element.enabled = false;
     ds_list_add(t_lighting.contents, element);
     yy += element.height + spacing;
@@ -286,22 +287,22 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = yy_base;
     
-    element = create_input(col2_x, yy, "X:", col_width, element_height, null, 0, "number", validate_double, -1000, 100000, 8, vx1, vy1, vx2, vy2, t_lighting);
+    element = create_input(col2_x, yy, "X:", col_width, element_height, ui_input_terrain_light_point_x, 0, "number", validate_double, -1000, 100000, 8, vx1, vy1, vx2, vy2, t_lighting);
     element.enabled = false;
     ds_list_add(t_lighting.contents, element);
     yy += element.height + spacing;
     
-    element = create_input(col2_x, yy, "Y:", col_width, element_height, null, 0, "number", validate_double, -1000, 100000, 8, vx1, vy1, vx2, vy2, t_lighting);
+    element = create_input(col2_x, yy, "Y:", col_width, element_height, ui_input_terrain_light_point_y, 0, "number", validate_double, -1000, 100000, 8, vx1, vy1, vx2, vy2, t_lighting);
     element.enabled = false;
     ds_list_add(t_lighting.contents, element);
     yy += element.height + spacing;
     
-    element = create_input(col2_x, yy, "Z:", col_width, element_height, null, 0, "number", validate_double, -1000, 100000, 8, vx1, vy1, vx2, vy2, t_lighting);
+    element = create_input(col2_x, yy, "Z:", col_width, element_height, ui_input_terrain_light_point_z, 0, "number", validate_double, -1000, 100000, 8, vx1, vy1, vx2, vy2, t_lighting);
     element.enabled = false;
     ds_list_add(t_lighting.contents, element);
     yy += element.height + spacing;
     
-    element = create_input(col2_x, yy, "Radius:", col_width, element_height, null, 0, "number", validate_double, 0, 100000, 8, vx1, vy1, vx2, vy2, t_lighting);
+    element = create_input(col2_x, yy, "Radius:", col_width, element_height, ui_input_terrain_light_point_radius, 0, "number", validate_double, 0, 100000, 8, vx1, vy1, vx2, vy2, t_lighting);
     element.enabled = false;
     ds_list_add(t_lighting.contents, element);
     yy += element.height + spacing;
