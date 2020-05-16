@@ -7,13 +7,14 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     #region setup
     t_general = create_tab("General", 0, id);
+    t_lighting = create_tab("Lighting", 0, id);
     t_heightmap = create_tab("Deform", 0, id);
     t_texture = create_tab("Texture", 0, id);
     t_paint = create_tab("Paint", 0, id);
     
     // the game will crash if you create a tab row with zero width.
     var tr_general = ds_list_create();
-    ds_list_add(tr_general, t_general, t_heightmap, t_texture, t_paint);
+    ds_list_add(tr_general, t_general, t_lighting, t_heightmap, t_texture, t_paint);
     
     ds_list_add(tabs, tr_general);
     
@@ -192,6 +193,100 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     element.interactive = false;
     ds_list_add(t_general.contents, element);
     
+    yy += element.height + spacing;
+    
+    #endregion
+    
+    #region tab: lights
+    
+    yy = legal_y + spacing;
+    
+    element = create_checkbox(legal_x + spacing, yy, "Enabled?", col_width, element_height, null, true, t_lighting);
+    ds_list_add(t_lighting.contents, element);
+    yy += element.height + spacing;
+    
+    element = create_color_picker(legal_x + spacing, yy, "Ambient:", col_width, element_height, null, c_black, vx1, vy1, vx2, vy2, t_lighting);
+    ds_list_add(t_lighting.contents, element);
+    yy += element.height + spacing;
+    
+    element = create_list(legal_x + spacing, yy, "Terrain Lights", "", col_width, element_height, MAX_TERRAIN_LIGHTS, null, false, t_lighting, mode.lights);
+    element.entries_are = ListEntries.INSTANCES;
+    ui_list_select(element, 0);
+    ds_list_add(t_lighting.contents, element);
+    yy += ui_get_list_height(element) + spacing;
+    
+    yy = legal_y + spacing;
+    
+    element = create_text(col2_x, yy, "Light Properties", col_width, element_height, fa_left, col_width, t_lighting);
+    ds_list_add(t_lighting.contents, element);
+    yy += element.height + spacing;
+    
+    element = create_radio_array(col2_x, yy, "Type", col_width, element_height, null, 0, t_lighting);
+    create_radio_array_options(element, ["None", "Direction", "Point", "Spot"]);
+    element.contents[| 2].enabled = false;
+    ds_list_add(t_lighting.contents, element);
+    yy += ui_get_radio_array_height(element) + spacing;
+    
+    element = create_color_picker(col2_x, yy, "Color:", col_width, element_height, null, c_white, vx1, vy1, vx2, vy2, t_lighting);
+    ds_list_add(t_lighting.contents, element);
+    yy += element.height + spacing;
+    
+    // directional light
+    
+    var yy_base = yy;
+    
+    element = create_text(col2_x, yy, "X:", col_width, element_height, fa_left, col_width, t_lighting);
+    element.enabled = false;
+    ds_list_add(t_lighting.contents, element);
+    yy += element.height + spacing;
+    
+    element = create_progress_bar(col2_x, yy, col_width, element_height, null, 4, 0.5, t_lighting);
+    element.enabled = false;
+    ds_list_add(t_lighting.contents, element);
+    yy += element.height + spacing;
+    
+    element = create_text(col2_x, yy, "Y:", col_width, element_height, fa_left, col_width, t_lighting);
+    element.enabled = false;
+    ds_list_add(t_lighting.contents, element);
+    yy += element.height + spacing;
+    
+    element = create_progress_bar(col2_x, yy, col_width, element_height, null, 4, 0.5, t_lighting);
+    element.enabled = false;
+    ds_list_add(t_lighting.contents, element);
+    yy += element.height + spacing;
+    
+    element = create_text(col2_x, yy, "Z:", col_width, element_height, fa_left, col_width, t_lighting);
+    element.enabled = false;
+    ds_list_add(t_lighting.contents, element);
+    yy += element.height + spacing;
+    
+    element = create_progress_bar(col2_x, yy, col_width, element_height, null, 4, 0.5, t_lighting);
+    element.enabled = false;
+    ds_list_add(t_lighting.contents, element);
+    yy += element.height + spacing;
+    
+    // point light
+    
+    yy = yy_base;
+    
+    element = create_input(col2_x, yy, "X:", col_width, element_height, null, 0, "number", validate_double, -1000, 100000, 8, vx1, vy1, vx2, vy2, t_lighting);
+    element.enabled = false;
+    ds_list_add(t_lighting.contents, element);
+    yy += element.height + spacing;
+    
+    element = create_input(col2_x, yy, "Y:", col_width, element_height, null, 0, "number", validate_double, -1000, 100000, 8, vx1, vy1, vx2, vy2, t_lighting);
+    element.enabled = false;
+    ds_list_add(t_lighting.contents, element);
+    yy += element.height + spacing;
+    
+    element = create_input(col2_x, yy, "Z:", col_width, element_height, null, 0, "number", validate_double, -1000, 100000, 8, vx1, vy1, vx2, vy2, t_lighting);
+    element.enabled = false;
+    ds_list_add(t_lighting.contents, element);
+    yy += element.height + spacing;
+    
+    element = create_input(col2_x, yy, "Radius:", col_width, element_height, null, 0, "number", validate_double, 0, 100000, 8, vx1, vy1, vx2, vy2, t_lighting);
+    element.enabled = false;
+    ds_list_add(t_lighting.contents, element);
     yy += element.height + spacing;
     
     #endregion

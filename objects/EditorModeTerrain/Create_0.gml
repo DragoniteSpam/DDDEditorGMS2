@@ -121,5 +121,14 @@ submode_equation[TerrainSubmodes.ZERO] = terrain_sub_zero;
 style_radius_coefficient[TerrainStyles.BLOCK] = 2.0;        // this will effectively fill the entire space
 style_radius_coefficient[TerrainStyles.CIRCLE] = 1.0;       // an exact circle
 
+lights = ds_list_create();
+#macro MAX_TERRAIN_LIGHTS 16
+for (var i = 0; i < MAX_TERRAIN_LIGHTS; i++) {
+    var light = instance_create_depth(0, 0, 0, EditorLightData);
+    instance_deactivate_object(light);
+    light.name = "Light" + string(i);
+    ds_list_add(lights, light);
+}
+
 ui = ui_init_terrain(id);
 mode_id = ModeIDs.TERRAIN;
