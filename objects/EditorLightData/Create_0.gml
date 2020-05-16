@@ -4,3 +4,4 @@ z = 0;
 name = "";
 color = c_white;
 type = LightTypes.NONE;
+radius = 256;

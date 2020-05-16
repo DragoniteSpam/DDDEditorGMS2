@@ -3948,6 +3948,14 @@
             }
         },
         {
+            "Key": "2fdf93fd-6c42-4da9-9206-347c67fc6976",
+            "Value": {
+                "id": "349f4a17-0652-43b7-8086-9f7edd479dcd",
+                "resourcePath": "scripts\\ui_list_color_terrain_lights\\ui_list_color_terrain_lights.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "2ffc15bc-7161-4018-aaa0-a130a14d866e",
             "Value": {
                 "id": "f9603e90-e9f5-4f17-9f53-3f0f90f90ac5",
@@ -8160,6 +8168,14 @@
             "Value": {
                 "id": "26925f0a-1911-437a-b141-d156dae9be30",
                 "resourcePath": "scripts\\smf_dualquat_set_translation\\smf_dualquat_set_translation.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "66a14a1a-5152-424a-b15c-bcb39cb2163e",
+            "Value": {
+                "id": "eac5bca1-306f-4539-abdb-660c44a10406",
+                "resourcePath": "scripts\\ui_list_text_terrain_lights\\ui_list_text_terrain_lights.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -21600,6 +21616,7 @@
         "bd7d68d1-60c0-4536-82ee-a7f8c19eb663",
         "f30504f6-0c38-43d5-888a-437bd205ae3f",
         "fcd4ba1d-4e32-4811-bac1-bf5c9ad661c1",
+        "2fdf93fd-6c42-4da9-9206-347c67fc6976",
         "950a3cdf-e08c-43e0-9603-73967c4760d6",
         "e0fbacd6-8d07-41a5-b1ef-c42df2c13cfb",
         "e34c9a14-42e1-40c8-acb9-121efce0c0ef",
@@ -21607,6 +21624,7 @@
         "1cf1bae2-df93-4705-ae01-58ce64fd6495",
         "98752a70-4ba1-4d71-9035-818e4600c88a",
         "f8507d86-7280-483b-ab34-c5fd8425bcda",
+        "66a14a1a-5152-424a-b15c-bcb39cb2163e",
         "c3128918-7ea5-4d89-bc6d-2e5f16a013fb",
         "f5eb2002-0aec-4ed0-95cc-0f61b16aad2c",
         "c37ecf28-8b0d-4b55-ad5e-e7c3ef5e5e0c",
