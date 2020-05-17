@@ -37,6 +37,7 @@ void CommonFog(inout vec4 baseColor) {
 void main() {
     vec4 color = v_vColour * texture2D(gm_BaseTexture, v_vTexcoord);
     
+    CommonLighting(color);
     CommonFog(color);
     
     gl_FragColor = color;
