@@ -3,8 +3,13 @@ attribute vec3 in_Normal;                   // (x,y,z)
 attribute vec2 in_TextureCoord;             // (u,v)
 attribute vec4 in_Colour;                   // (r,g,b,a)
 
+uniform vec2 mouse;
+uniform float mouseRadius;
+
 varying vec2 v_vTexcoord;
 varying vec4 v_vColour;
+
+const vec4 cursorColor = vec4(1., 0., 0., 1.);
 
 #pragma include("lighting.v.xsh")
 /// https://github.com/GameMakerDiscord/Xpanda
@@ -94,6 +99,11 @@ void main() {
     
     CommonLightingSetup(worldPosition, worldNormal);
     CommonFogSetup();
+    
+    float r = mouseRadius;
+    float dist = length(in_Position.xy - mouse);
+    float strength = max(min(-2. / pow(r, 2.) * (dist + r) * (dist - r), 1.), 0.);
+    v_lightColour = mix(v_lightColour, cursorColor, strength);
     
     v_vColour = in_Colour;
     gl_Position = position;
