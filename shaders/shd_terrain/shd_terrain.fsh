@@ -1,5 +1,11 @@
 varying vec2 v_vTexcoord;
 varying vec4 v_vColour;
+varying vec2 v_vWorldXY;
+
+uniform vec2 mouse;
+uniform float mouseRadius;
+
+const vec4 cursorColor = vec4(0.6, 0., 0., 1.);
 
 #pragma include("lighting.f.xsh")
 /// https://github.com/GameMakerDiscord/Xpanda
@@ -39,6 +45,11 @@ void main() {
     
     CommonLighting(color);
     CommonFog(color);
+    
+    float r = mouseRadius;
+    float dist = length(v_vWorldXY - mouse);
+    float strength = max(min(-2. / pow(r, 2.) * (dist + r) * (dist - r), 1.), 0.);
+    color = mix(color, cursorColor, strength);
     
     gl_FragColor = color;
 }
