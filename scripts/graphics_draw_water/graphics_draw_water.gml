@@ -1,6 +1,6 @@
 /// @param [set-lights?=true]
 
-var set_lights = argument[0];
+var set_lights = (argument_count > 0) ? argument[0] : true;
 var modulo = Stuff.graphics.water_reptition;
 var map = Stuff.map.active_map;
 
