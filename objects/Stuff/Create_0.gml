@@ -340,7 +340,7 @@ event_prefab[EventNodeTypes.SCRIPT] = create_event_node_basic("Script", [
     ["Code", DataTypes.CODE, 0, 1, true, default_lua_event_script]
 ]);
 /* */ event_prefab[EventNodeTypes.AUDIO_CONTORLS] = create_event_node_basic("NotYetImplemented", []);
-event_prefab[EventNodeTypes.DEACTIVATE_EVENT] = create_event_node_basic("Deactivate This Event", []);
+event_prefab[EventNodeTypes.DEACTIVATE_EVENT] = create_event_node_basic("Deactivate This Event Page", []);
 event_prefab[EventNodeTypes.SET_ENTITY_MESH] = create_event_node_basic("SetEntityMesh", [
     ["Entity", DataTypes.ENTITY, 0, 1, false, 0],
     ["Mesh", DataTypes.MESH, 0, 1, false, 0],

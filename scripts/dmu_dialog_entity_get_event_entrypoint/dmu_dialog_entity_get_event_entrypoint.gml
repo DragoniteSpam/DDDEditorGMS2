@@ -8,12 +8,10 @@ var entrypoint = button.root.el_list.entries[| selection];
 if (entrypoint) {
     var index = ui_list_selection(Stuff.map.ui.element_entity_events);
     var list = Stuff.map.selected_entities;
-    var entity = list[| 0];
-    var page = entity.object_events[| index];
-    var event = guid_get(page.event_guid);
+    var page = list[| 0].object_events[| index];
     
     page.event_entrypoint = entrypoint.GUID;
-    button.root.root.el_event_entrypoint.text = "Entrypoint: " + entrypoint.name;
+    button.root.root.el_event.text = entrypoint.event.name + " / " + entrypoint.name;
 }
 
 dmu_dialog_commit(button);

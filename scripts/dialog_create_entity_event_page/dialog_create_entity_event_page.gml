@@ -2,7 +2,7 @@
 
 var dialog = argument0;
 
-var dw = 640;
+var dw = 720;
 var dh = 672;
 
 // you can assume that this is valid data because this won't be called otherwise
@@ -83,35 +83,19 @@ for (var i = 0; i < ds_list_size(Stuff.all_event_triggers); i++) {
 
 yy += ui_get_list_height(el_trigger) + spacing;
 
-// i don't like this ridiculous validation chain but if you try to refer to a nonexistent
-// event/entrypoint without checking it's going to explode violently
-var page_event = guid_get(page.event_guid);
 var page_entrypoint = guid_get(page.event_entrypoint);
-var text_event = "None Set";
-var text_entrypoint = "None Set";
-if (!page_event) {
-    if (page.event_guid > 0) {
-        var text_event = "<" + string(page.event_guid) + ">";
-    }
-} else {
-    var text_event = page_event.name;
-    if (!page_entrypoint) {
-        if (page.event_entrypoint > 0) {
-            var text_entrypoint = "<" + string(page.event_entrypoint) + ">";
-        }
-    } else {
-        var text_entrypoint = page_entrypoint.name;
-    }
+if (page_entrypoint) {
+    var text_event = page_entrypoint.event.name + " / " + page_entrypoint.name;
+} else{
+    var text_event = "<not set>";
 }
 
-var el_event = create_text(c2 + 16, yy, "Event Details", ew, eh, fa_left, ew, dg);
+var el_event_text = create_text(c2 + 16, yy, "Event and Entrypoint", ew, eh, fa_left, ew, dg);
+el_event_text.color = c_blue;
 yy += eh + spacing;
-var el_event_guid = create_button(c2 + 16, yy, "Event: " + text_event, ew, eh, fa_left, omu_entity_get_event, dg);
-dg.el_event_guid = el_event_guid;
-yy += eh + spacing;
-var el_event_entrypoint = create_button(c2 + 16, yy, "Entrypoint: " + text_entrypoint, ew, eh, fa_left, omu_entity_get_event_entrypoint, dg);
-dg.el_event_entrypoint = el_event_entrypoint;
-yy += eh + spacing;
+var el_event = create_button(c2 + 16, yy, text_event, ew, eh * 2, fa_left, omu_entity_get_event, dg);
+dg.el_event = el_event;
+yy += el_event.height + spacing;
 
 var b_width = 128;
 var b_height = 32;
@@ -133,9 +117,8 @@ ds_list_add(dg.contents,
     el_condition_code,
     el_condition_explanation,
     el_trigger,
+    el_event_text,
     el_event,
-    el_event_guid,
-    el_event_entrypoint,
     el_confirm
 );
 

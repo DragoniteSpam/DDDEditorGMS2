@@ -1,21 +1,22 @@
 /// @param Dialog
+/// @param Event
 
 var dialog = argument0;
+var event = argument1;
 
 // you might think it's odd that this is of a different size than the get_event
 // dialog, except when they're the same size it's easy to not notice the contents
 // changing if there's not a lot of them, and to think that something went wrong
-var dw = 320;
-var dh = 544;
+var dw = 400;
+var dh = 640;
 
 // you can assume that this is valid data because this won't be called otherwise
 var index = ui_list_selection(Stuff.map.ui.element_entity_events);
 var list = Stuff.map.selected_entities;
 var entity = list[| 0];
 var page = entity.object_events[| index];
-var event = guid_get(page.event_guid);
 
-var dg = dialog_create(dw, dh, "Select entrypoint for: " + event.name, dialog_default, dc_close_no_questions_asked, dialog);
+var dg = dialog_create(dw, dh, "Select entrypoint: " + event.name, dialog_default, dc_close_no_questions_asked, dialog);
 
 var columns = 1;
 var spacing = 16;
@@ -29,7 +30,7 @@ var vy2 = eh;
 
 var yy = 64;
 
-var el_list = create_list(16, yy, "Select an entrypoint", "<no entrypoints>", ew, eh, 16, null, false, dg);
+var el_list = create_list(16, yy, "Select an entrypoint", "<no entrypoints>", ew, eh, 20, null, false, dg);
 for (var i = 0; i < ds_list_size(event.nodes); i++) {
     if (event.nodes[| i].type == EventNodeTypes.ENTRYPOINT) {
         // this happens before the list is updated, so you don't need to bother with size minus 1

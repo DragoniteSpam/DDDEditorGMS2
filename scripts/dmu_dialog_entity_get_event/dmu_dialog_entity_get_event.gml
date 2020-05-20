@@ -4,26 +4,6 @@ var thing = argument0;
 
 var selection_index = ui_list_selection(thing.root.el_list);
 
-// normally this would go at the bottom but if you spawn a new dialog for
-// the entrypoints it'll get despawned immediately since the default dialog
-// commit action just pops the top dialog off the stack and deletes it,
-// meaning the new dialog will be removed instantly and this dialog will
-// just stay here, and wow that was a lot of technobabble in one runon sentence
-dmu_dialog_commit(thing);
-
-if (selection_index >= 0) {
-    var new_event = Stuff.all_events[| selection_index];
-    
-    // safe
-    var index = ui_list_selection(Stuff.map.ui.element_entity_events);
-    var list = Stuff.map.selected_entities;
-    var entity = list[| 0];
-    var page = entity.object_events[| index];
-    
-    if (new_event.GUID != page.event_guid) {
-        page.event_guid = new_event.GUID;
-        thing.root.root.el_event_guid.text = "Event: " + new_event.name;
-    }
-    
-    dialog_create_entity_get_event_entrypoint(thing.root.root);
+if (selection_index + 1) {
+    dialog_create_entity_get_event_entrypoint(thing.root.root, Stuff.all_events[| selection_index]);
 }
