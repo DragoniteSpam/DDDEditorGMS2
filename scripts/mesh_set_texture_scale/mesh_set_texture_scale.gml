@@ -14,6 +14,7 @@ if (set_scale) {
 } else {
     var f = scale;
 }
+show_message(f)
 
 var istart = (index == undefined) ? 0 : index;
 var iend = (index == undefined) ? ds_list_size(mesh.submeshes) : (index + 1);

@@ -4,7 +4,7 @@
 
 var container = argument[0];
 var data = argument[1];
-var value = (argument_count > 2 && argument[2]) ? argument[2] : proto_guid_generate(container);
+var value = (argument_count > 2 && argument[2] != undefined) ? argument[2] : proto_guid_generate(container);
 
 container.proto_guids[? value] = data;
 if (container.first_proto_guid == NULL) {
