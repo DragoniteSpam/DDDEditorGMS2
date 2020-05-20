@@ -14,4 +14,5 @@ if (entrypoint) {
     button.root.root.el_event.text = entrypoint.event.name + " / " + entrypoint.name;
 }
 
-dmu_dialog_commit(button);
+dialog_destroy();
+dialog_destroy();

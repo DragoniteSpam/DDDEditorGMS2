@@ -38,6 +38,4 @@ var bools = 0;
 buffer_write(buffer, buffer_u16, bools);
 
 buffer_write(buffer, buffer_u32, event.trigger);
-
-buffer_write(buffer, buffer_datatype, event.event_guid);
 buffer_write(buffer, buffer_datatype, event.event_entrypoint);

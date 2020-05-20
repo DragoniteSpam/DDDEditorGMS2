@@ -35,7 +35,10 @@ var bools = buffer_read(buffer, buffer_u16);
 
 page.trigger = buffer_read(buffer, buffer_u32);
 
-page.event_guid = buffer_read(buffer, buffer_get_datatype(version));
+if (version >= DataVersions.NO_EVENT_PAGE_GUID) {
+} else {
+    buffer_read(buffer, buffer_get_datatype(version));
+}
 page.event_entrypoint = buffer_read(buffer, buffer_get_datatype(version));
 
 ds_list_add(entity.object_events, page);

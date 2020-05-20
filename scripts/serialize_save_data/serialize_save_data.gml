@@ -96,5 +96,6 @@ enum DataVersions {
     ANIMATED_TILES                      = 104,
     EVEN_MORE_MESH_METADATA             = 105,
     MAP_STATIC_BATCHES                  = 106,
+    NO_EVENT_PAGE_GUID                  = 107,
     _CURRENT /* = whatever the last one is + 1 */
 }

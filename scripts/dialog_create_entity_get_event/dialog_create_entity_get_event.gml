@@ -2,7 +2,7 @@
 
 var dialog = argument0;
 
-var dw = 320;
+var dw = 400;
 var dh = 640;
 
 // you can assume that this is valid data because this won't be called otherwise
@@ -29,8 +29,9 @@ var el_list = create_list(16, yy, "Select an event", "<how do you even have no e
 el_list.entries_are = ListEntries.INSTANCES;
 dg.el_list = el_list;
 
+var entrypoint = guid_get(page.event_entrypoint);
 for (var i = 0; i < ds_list_size(Stuff.all_events); i++) {
-    if (Stuff.all_events[| i].GUID == page.event_guid) {
+    if (Stuff.all_events[| i] == entrypoint.event) {
         ui_list_select(el_list, i);
         break;
     }

@@ -233,7 +233,6 @@ for (var i = 0; i < ds_list_size(layer_objects); i++) {
             }
             page.name = "Conversation:" + pr_cutscene_entrypoint[1].name;
             page.trigger = 1;   // magic, do not touch
-            page.event_guid = pr_cutscene_entrypoint[0].GUID;
             page.event_entrypoint = pr_cutscene_entrypoint[1].GUID;
         }
         #endregion
