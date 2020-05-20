@@ -9,12 +9,11 @@ var index = (argument_count > 2) ? argument[2] : undefined;
 var set_scale = (argument_count > 3 && argument[3] != undefined) ? argument[3] : true;
 
 if (set_scale) {
-    mesh.texture_scale = scale;
     var f = scale / mesh.texture_scale;
+    mesh.texture_scale = scale;
 } else {
     var f = scale;
 }
-show_message(f)
 
 var istart = (index == undefined) ? 0 : index;
 var iend = (index == undefined) ? ds_list_size(mesh.submeshes) : (index + 1);
