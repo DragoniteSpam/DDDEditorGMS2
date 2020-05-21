@@ -61,6 +61,7 @@ if (ds_list_size(list) == 0) {
     
     Stuff.map.ui.element_entity_mesh_animated.value = false;
     Stuff.map.ui.element_entity_mesh_animated.interactive = false;
+    Stuff.map.ui.element_entity_mesh_animation_speed.interactive = false;
     Stuff.map.ui.element_entity_mesh_autotile_data.interactive = false;
     
     // entity-pawn

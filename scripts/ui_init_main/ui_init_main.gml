@@ -634,13 +634,22 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     element_entity_mesh_autotile_data = create_button(col1_x, yy, "Mesh Autotile Data", col_width, element_height, fa_center, uivc_entity_mesh_autotile_properties, t_p_mesh);
     ds_list_add(t_p_mesh.contents, element_entity_mesh_autotile_data);
+    element_entity_mesh_autotile_data.interactive = false;
     
     yy += element_entity_mesh_autotile_data.height + spacing;
     
     element_entity_mesh_animated = create_checkbox(col1_x, yy, "Animated", col_width, element_height, uivc_entity_mesh_animated, false, t_p_mesh);
     ds_list_add(t_p_mesh.contents, element_entity_mesh_animated);
+    element_entity_mesh_animated.interactive = false;
     
     yy += element_entity_mesh_animated.height + spacing;
+    
+    element_entity_mesh_animation_speed = create_input(col1_x, yy, "Anim. Spd:", col_width, element_height, uivc_entity_mesh_animation_speed, 1, "float", validate_double, -10, 10, 5, vx1, vy1, vx2, vy2, t_p_mesh);
+    element_entity_mesh_animation_speed.tooltip = "The number of complete animation cycles per second";
+    ds_list_add(t_p_mesh.contents, element_entity_mesh_animation_speed);
+    element_entity_mesh_animation_speed.interactive = false;
+    
+    yy += element_entity_mesh_animation_speed.height + spacing;
     
     #endregion
     

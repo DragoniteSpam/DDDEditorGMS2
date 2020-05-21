@@ -3884,6 +3884,14 @@
             }
         },
         {
+            "Key": "2e94e2bf-d32a-4aff-a21b-e45d31c106e8",
+            "Value": {
+                "id": "f6a8a322-6052-4fbd-9033-3d6190b3ec2d",
+                "resourcePath": "scripts\\uivc_entity_mesh_animation_speed\\uivc_entity_mesh_animation_speed.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "2ea94623-fa70-454c-936c-34f3254a98b7",
             "Value": {
                 "id": "24ea9bcb-d507-46f9-8f70-ba6896e9c621",
@@ -20960,6 +20968,7 @@
         "b19f02e8-8b5e-45b3-842e-6fc5a52df295",
         "10d75fc8-4f26-4d01-b806-e4e4061246de",
         "75a5fec3-1002-4533-940c-f2a25fca9722",
+        "2e94e2bf-d32a-4aff-a21b-e45d31c106e8",
         "70b7d05e-b653-457d-ac89-7ee06447841b",
         "48ede753-26d6-419c-83c1-a7e4d235f7c8",
         "3906571d-a505-4378-ab79-86a485d197d9",
