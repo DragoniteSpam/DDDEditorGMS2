@@ -16,6 +16,10 @@ entity.animated = unpack(bools, 0);
 entity.animation_index = buffer_read(buffer, buffer_u32);
 entity.animation_type = buffer_read(buffer, buffer_u8);
 
+if (version >= DataVersions.MESH_ANIMATION) {
+    entity.animation_speed = buffer_read(buffer, buffer_f32);
+}
+
 var mesh_data = guid_get(entity.mesh);
 
 if (mesh_data) {
