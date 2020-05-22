@@ -12988,6 +12988,14 @@
             }
         },
         {
+            "Key": "a3b199ad-ff09-421f-b9cf-61ada57cf392",
+            "Value": {
+                "id": "3867288d-8113-423f-ac02-bc2b9a2db284",
+                "resourcePath": "scripts\\event_prefab_render_mesh_animation_end_action\\event_prefab_render_mesh_animation_end_action.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "a3b74359-2fe7-41c0-b44d-34ef17064261",
             "Value": {
                 "id": "5b605fdd-20ec-4d12-9757-4b014b0421ba",
@@ -13168,6 +13176,14 @@
             "Value": {
                 "id": "c3978a24-78b2-43df-9be3-7c2ee9076fe3",
                 "resourcePath": "scripts\\draw_event_node_text_add\\draw_event_node_text_add.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "a5c841d2-bdc9-4c55-9793-b582303d7c14",
+            "Value": {
+                "id": "a9c55e40-eae5-4d2a-8c48-0b10d0a9ff6a",
+                "resourcePath": "scripts\\uivc_list_event_attain_entity_mesh_anim_end_action\\uivc_list_event_attain_entity_mesh_anim_end_action.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -13697,6 +13713,14 @@
                 "id": "2fed93ca-af4d-456c-9c21-939c99e92be1",
                 "resourcePath": "datafiles_yy\\data\\basic\\cage.d3d.yy",
                 "resourceType": "GMIncludedFile"
+            }
+        },
+        {
+            "Key": "acc15879-e28d-4b05-8ad5-b65c54cd79c8",
+            "Value": {
+                "id": "eacc4af2-7f7e-41b3-895e-ee30314457a8",
+                "resourcePath": "scripts\\uivc_list_event_attain_entity_mesh_anim_speed\\uivc_list_event_attain_entity_mesh_anim_speed.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -17048,6 +17072,14 @@
             "Value": {
                 "id": "7de5e96c-8c49-4315-be40-b23ac2d2dd48",
                 "resourcePath": "scripts\\draw_tooltip\\draw_tooltip.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "d8db3be3-b53a-4a85-aeba-3d220e136c32",
+            "Value": {
+                "id": "6320f753-2e4a-44c9-812d-03de3b69bfcb",
+                "resourcePath": "scripts\\omu_event_add_set_entity_mesh_animation\\omu_event_add_set_entity_mesh_animation.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -20602,6 +20634,7 @@
         "75e644ee-a05f-42e0-9c4e-1cfd7ae04e25",
         "c3f5eb49-d64e-4071-842a-8f27771e9035",
         "2b1277cb-9224-4c7b-bc2a-267fb598b6f3",
+        "a3b199ad-ff09-421f-b9cf-61ada57cf392",
         "6b0ac3d9-9ca5-40bf-ad8d-6e82898d06f5",
         "d6ded8b3-88ee-4680-ada7-2a47bb1c27d8",
         "cd56789a-f283-426f-9073-df9733a81253",
@@ -21026,6 +21059,8 @@
         "2931ee96-138f-4da1-939b-063de174aea3",
         "7ad44d48-83c5-4ce9-9797-6856ee782bc4",
         "b020c4f1-3a59-46d9-a69f-98e4609052a8",
+        "a5c841d2-bdc9-4c55-9793-b582303d7c14",
+        "acc15879-e28d-4b05-8ad5-b65c54cd79c8",
         "bfb7483b-1ede-4897-8a63-c7e4bba13962",
         "c38ee0b9-22cd-4da7-b6fd-4d2824cec83d",
         "faa8d6d0-56e9-4ff6-8be6-abe439eac4d8",
@@ -21421,6 +21456,7 @@
         "8b10e9c5-9141-4b95-8bdd-5eadf31517f3",
         "00f9bcca-168a-4fc0-864f-fff339638ddc",
         "12ab4546-eb34-437f-95e6-2f27c0b0c63e",
+        "d8db3be3-b53a-4a85-aeba-3d220e136c32",
         "8177f210-129d-42a9-a6a8-a901f939882e",
         "29dd4d57-87e2-43ef-b58d-cc327092f224",
         "26e70d38-59c5-4f43-8d78-d4cf27af15cc",

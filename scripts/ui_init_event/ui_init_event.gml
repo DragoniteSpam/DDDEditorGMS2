@@ -278,6 +278,10 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     element.tooltip = "Change a Mesh entity's mesh.";
     ds_list_add(t_action2.contents, element);
     yy += element_height;
+    element = create_button(legal_x + spacing, yy, "Set Mesh Animation Data", element_width, element_height, fa_left, omu_event_add_set_entity_mesh_animation, t_action2);
+    element.tooltip = "Change a Mesh entity's animation data.";
+    ds_list_add(t_action2.contents, element);
+    yy += element_height;
     
     yy += spacing;
     

@@ -30,24 +30,23 @@ var vy2 = eh;
 var yy = 64;
 var spacing = 16;
 
-var el_choices = create_radio_array(16, yy, "Variables", ew, eh, uivc_list_event_attain_self_variable_index, custom_data_variable[| 0], dg);
-create_radio_array_options(el_choices, ["A", "B", "C", "D"]);
-dg.el_choices = el_choices;
+var el_speed = create_input(16, yy, "Speed:", ew, eh, uivc_list_event_attain_entity_mesh_anim_speed, custom_data_speed[| 0], "Frames per second", validate_double, -10, 10, 5, vx1, vy1, vx2, vy2, dg);
 
-yy += ui_get_radio_array_height(el_choices) + spacing;
+yy += el_speed.height + spacing;
 
-var el_value = create_input(16, yy, "Value", ew, eh, uivc_check_event_attain_variable_value, custom_data_value[|0], "float", validate_double, -0x80000000, 0x7fffffff, 11, vx1, vy1, vx2, vy2, dg);
-dg.el_value = el_value;
+var el_end_action = create_radio_array(16, yy, "Animation End Action", ew, eh, uivc_list_event_attain_entity_mesh_anim_end_action, custom_data_endaction[| 0], dg);
+create_radio_array_options(el_end_action, ["Stop", "Loop", "Reverse"]);
 
-yy += el_value.height + spacing;
-
-var el_relative = create_checkbox(16, yy, "Relative?", ew, eh, uivc_check_event_attain_variable_relative, custom_data_relative[|0], dg);
-dg.el_relative = el_relative;
+yy += ui_get_radio_array_height(el_end_action) + spacing;
 
 var b_width = 128;
 var b_height = 32;
 var el_close = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
 
-ds_list_add(dg.contents, el_choices, el_value, el_relative, el_close);
+ds_list_add(dg.contents,
+    el_speed,
+    el_end_action,
+    el_close
+);
 
 return dg;

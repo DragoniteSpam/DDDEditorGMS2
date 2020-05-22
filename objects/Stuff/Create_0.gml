@@ -349,6 +349,10 @@ event_prefab[EventNodeTypes.SET_ENTITY_SPRITE] = create_event_node_basic("SetEnt
     ["Entity", DataTypes.ENTITY, 0, 1, false, 0],
     ["Sprite", DataTypes.IMG_OVERWORLD, 0, 1, false, 0],
 ]);
+event_prefab[EventNodeTypes.SET_MESH_ANIMATION] = create_event_node_basic("SetMeshAnimation", [
+    ["Speed", DataTypes.FLOAT, -10, 10, false, 0],
+    ["EndAction", DataTypes.INT, 0, 1, false, 0, omu_event_attain_mesh_anim_end_action, event_prefab_render_mesh_animation_end_action],
+]);
 #endregion
 
 #region editor modes (and similar things)
