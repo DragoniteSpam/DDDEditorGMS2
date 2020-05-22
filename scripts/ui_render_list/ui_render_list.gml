@@ -53,7 +53,7 @@ if (!surface_exists(list.surface)) {
 surface_set_target(list.surface);
 draw_clear_alpha(list.interactive ? c_white : c_ltgray, 1);
 
-var n = (list.entries + 1) ? ds_list_size(list.entries) : 0;
+var n = ds_exists(list.entries, ds_type_list) ? ds_list_size(list.entries) : 0;
 list.index = clamp(n - list.slots, 0, list.index);
 
 var active = dialog_is_active(list.root);
@@ -162,7 +162,7 @@ if (list.interactive && active) {
         
         if (list.allow_multi_select) {
             if (keyboard_check(vk_control) && keyboard_check_pressed(ord("A"))) {
-                for (var i = 0; i < ds_list_size(list.entries); i++) {
+                for (var i = 0; i < n; i++) {
                     if (!ui_list_is_selected(list, i)) {
                         ui_list_select(list, i);
                     } else if (list.select_toggle) {
