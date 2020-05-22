@@ -164,6 +164,45 @@ if (ds_list_size(list) == 0) {
             Stuff.map.ui.element_entity_mesh_animated.interactive = true;
             ui_list_deselect(Stuff.map.ui.element_entity_mesh_list);
             ui_list_deselect(Stuff.map.ui.element_entity_mesh_submesh);
+            
+            // if all selected meshes use the same submesh, you may select it in the
+            // list and show the available submeshes; otherwise the list should be
+            // deselected and the submesh list should be empty
+            var mesh = noone;
+            for (var i = 0; i < ds_list_size(list); i++) {
+                var mesh_data = guid_get(list[| i].mesh);
+                if (!mesh) {
+                    if (mesh_data) {
+                        mesh = mesh_data;
+                        ui_list_select(Stuff.map.ui.element_entity_mesh_list, ds_list_find_index(Stuff.all_meshes, mesh), true);
+                        Stuff.map.ui.element_entity_mesh_submesh.entries = mesh.submeshes;
+                        continue;
+                    }
+                }
+                if (mesh != mesh_data) {
+                    ui_list_deselect(Stuff.map.ui.element_entity_mesh_list);
+                    Stuff.map.ui.element_entity_mesh_submesh.entries = noone;
+                    mesh = noone;
+                    break;
+                }
+            }
+            // if all meshes use the same mesh, you may check to see if they all
+            // share the same submesh, as well
+            if (mesh) {
+                var submesh = NULL;
+                for (var i = 0; i < ds_list_size(list); i++) {
+                    var submesh_data = list[| i].mesh_submesh;
+                    if (submesh == NULL) {
+                        submesh = submesh_data;
+                        ui_list_select(Stuff.map.ui.element_entity_mesh_submesh, proto_guid_get(mesh, submesh), true);
+                        continue;
+                    }
+                    if (submesh != submesh_data) {
+                        ui_list_deselect(Stuff.map.ui.element_entity_mesh_submesh);
+                        break;
+                    }
+                }
+            }
             break;
         case EntityPawn:
             Stuff.map.ui.element_entity_pawn_frame.value = "0";
