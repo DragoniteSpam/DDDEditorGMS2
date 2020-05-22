@@ -632,26 +632,44 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = legal_y + spacing;
     
-    element_entity_mesh_autotile_data = create_button(col1_x, yy, "Mesh Autotile Data", col_width, element_height, fa_center, uivc_entity_mesh_autotile_properties, t_p_mesh);
+    element_entity_mesh_list = create_list(col1_x, yy, "Mesh", "<no meshes>", col_width, element_height, 16, null, false, t_p_mesh, Stuff.all_meshes);
+    element_entity_mesh_list.allow_deselect = false;
+    element_entity_mesh_list.entries_are = ListEntries.INSTANCES;
+    ds_list_add(t_p_mesh.contents, element_entity_mesh_list);
+    element_entity_mesh_list.interactive = false;
+    
+    yy += ui_get_list_height(element_entity_mesh_list) + spacing;
+    
+    element_entity_mesh_submesh = create_list(col1_x, yy, "Submesh", "<no submeshes>", col_width, element_height, 10, null, false, t_p_mesh, noone);
+    element_entity_mesh_submesh.allow_deselect = false;
+    element_entity_mesh_submesh.entries_are = ListEntries.INSTANCES;
+    ds_list_add(t_p_mesh.contents, element_entity_mesh_submesh);
+    element_entity_mesh_submesh.interactive = false;
+    
+    yy += ui_get_list_height(element_entity_mesh_submesh) + spacing;
+    
+    yy = legal_y + spacing;
+    
+    element_entity_mesh_autotile_data = create_button(col2_x, yy, "Mesh Autotile Data", col_width, element_height, fa_center, uivc_entity_mesh_autotile_properties, t_p_mesh);
     ds_list_add(t_p_mesh.contents, element_entity_mesh_autotile_data);
     element_entity_mesh_autotile_data.interactive = false;
     
     yy += element_entity_mesh_autotile_data.height + spacing;
     
-    element_entity_mesh_animated = create_checkbox(col1_x, yy, "Animated", col_width, element_height, uivc_entity_mesh_animated, false, t_p_mesh);
+    element_entity_mesh_animated = create_checkbox(col2_x, yy, "Animated", col_width, element_height, uivc_entity_mesh_animated, false, t_p_mesh);
     ds_list_add(t_p_mesh.contents, element_entity_mesh_animated);
     element_entity_mesh_animated.interactive = false;
     
     yy += element_entity_mesh_animated.height + spacing;
     
-    element_entity_mesh_animation_speed = create_input(col1_x, yy, "Anim. Spd:", col_width, element_height, uivc_entity_mesh_animation_speed, 1, "float", validate_double, -10, 10, 5, vx1, vy1, vx2, vy2, t_p_mesh);
+    element_entity_mesh_animation_speed = create_input(col2_x, yy, "Anim. Spd:", col_width, element_height, uivc_entity_mesh_animation_speed, 1, "float", validate_double, -10, 10, 5, vx1, vy1, vx2, vy2, t_p_mesh);
     element_entity_mesh_animation_speed.tooltip = "The number of complete animation cycles per second (animations will not be previewed in the editor)";
     ds_list_add(t_p_mesh.contents, element_entity_mesh_animation_speed);
     element_entity_mesh_animation_speed.interactive = false;
     
     yy += element_entity_mesh_animation_speed.height + spacing;
     
-    element_entity_mesh_animation_end_action = create_radio_array(col1_x, yy, "End Action:", col_width, element_height, uivc_entity_mesh_animation_end_action, 0, t_p_mesh);
+    element_entity_mesh_animation_end_action = create_radio_array(col2_x, yy, "End Action:", col_width, element_height, uivc_entity_mesh_animation_end_action, 0, t_p_mesh);
     create_radio_array_options(element_entity_mesh_animation_end_action, ["Stop", "Loop", "Reverse"]);
     element_entity_mesh_animation_end_action.tooltip = "The number of complete animation cycles per second";
     ds_list_add(t_p_mesh.contents, element_entity_mesh_animation_end_action);
