@@ -5612,6 +5612,14 @@
             }
         },
         {
+            "Key": "465136a7-b59a-484d-98ba-36055f62ab01",
+            "Value": {
+                "id": "52246af9-f5a8-4cab-9aab-659196b46f53",
+                "resourcePath": "scripts\\omu_event_attain_mesh_anim_end_action\\omu_event_attain_mesh_anim_end_action.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "465938a3-586d-4f13-ae7a-8b7f3fe035b5",
             "Value": {
                 "id": "3c8f7647-6cf4-4a6e-8a2a-e0a7141a91d7",
@@ -20780,6 +20788,7 @@
         "76bd648a-cf24-4caf-95f2-fe83456e8afd",
         "a1b96f05-5454-42ea-b0d8-b1b714a0badc",
         "6f9e5b17-ab0b-452f-b6ee-f6b5c88ab1e5",
+        "465136a7-b59a-484d-98ba-36055f62ab01",
         "13cbc365-cd0b-416c-a256-9d7a196af4d3",
         "7dc6db06-7b2a-4e3d-bb79-bd285a28ad93",
         "344d7e58-3710-41c6-86d0-86c4ffcc7ed3",
