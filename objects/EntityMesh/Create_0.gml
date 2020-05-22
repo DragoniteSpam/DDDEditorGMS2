@@ -17,6 +17,7 @@ animated = false;
 animation_index = 0;
 animation_type = SMF_loop_linear;
 animation_speed = 1;
+animation_endaction = AnimationEndActions.LOOP;
 
 // editor properties
 

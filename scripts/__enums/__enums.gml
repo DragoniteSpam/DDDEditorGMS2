@@ -261,3 +261,9 @@ enum CollisionSpecialValues {
     TRANSLATE_Y,
     TRANSLATE_Z,
 }
+
+enum AnimationEndActions {
+    STOP,
+    LOOP,
+    REVERSE,
+}

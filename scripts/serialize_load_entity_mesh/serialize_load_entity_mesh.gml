@@ -18,6 +18,7 @@ entity.animation_type = buffer_read(buffer, buffer_u8);
 
 if (version >= DataVersions.MESH_ANIMATION) {
     entity.animation_speed = buffer_read(buffer, buffer_f32);
+    entity.animation_endaction = buffer_read(buffer, buffer_u8);
 }
 
 var mesh_data = guid_get(entity.mesh);
