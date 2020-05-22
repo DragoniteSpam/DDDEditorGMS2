@@ -651,6 +651,14 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy += element_entity_mesh_animation_speed.height + spacing;
     
+    element_entity_mesh_animation_end_action = create_radio_array(col1_x, yy, "End Action:", col_width, element_height, uivc_entity_mesh_animation_end_action, 0, t_p_mesh);
+    create_radio_array_options(element_entity_mesh_animation_end_action, ["Stop", "Loop", "Reverse"]);
+    element_entity_mesh_animation_end_action.tooltip = "The number of complete animation cycles per second";
+    ds_list_add(t_p_mesh.contents, element_entity_mesh_animation_end_action);
+    element_entity_mesh_animation_end_action.interactive = false;
+    
+    yy += ui_get_radio_array_height(element_entity_mesh_animation_end_action) + spacing;
+    
     #endregion
     
     #region tab: entity: pawn

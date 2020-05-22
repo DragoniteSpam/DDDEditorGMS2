@@ -2140,6 +2140,14 @@
             }
         },
         {
+            "Key": "19bc8895-cfcd-40a9-b3b6-f1a0714729db",
+            "Value": {
+                "id": "d6962866-6e84-4250-a176-7dd69e6d0860",
+                "resourcePath": "scripts\\uivc_entity_mesh_animation_end_action\\uivc_entity_mesh_animation_end_action.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "19dbb918-a3a2-49cb-be9b-8b98480017ad",
             "Value": {
                 "id": "bc67b928-8cd9-4a2a-ad20-ec2180fd5423",
@@ -20969,6 +20977,7 @@
         "10d75fc8-4f26-4d01-b806-e4e4061246de",
         "75a5fec3-1002-4533-940c-f2a25fca9722",
         "2e94e2bf-d32a-4aff-a21b-e45d31c106e8",
+        "19bc8895-cfcd-40a9-b3b6-f1a0714729db",
         "70b7d05e-b653-457d-ac89-7ee06447841b",
         "48ede753-26d6-419c-83c1-a7e4d235f7c8",
         "3906571d-a505-4378-ab79-86a485d197d9",

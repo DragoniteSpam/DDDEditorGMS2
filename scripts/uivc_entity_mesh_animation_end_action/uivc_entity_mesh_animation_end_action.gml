@@ -1,10 +1,10 @@
-/// @param UIInput
+/// @param UIRadioArray
 
-var input = argument0;
+var radio = argument0;
 
 // this assumes that every selected entity is already an instance of Mesh
 var list = Stuff.map.selected_entities;
 
 for (var i = 0; i < ds_list_size(list); i++) {
-    list[| i].animation_speed = real(input.value);
+    list[| i].animation_end_action = radio.value;
 }

@@ -16,4 +16,4 @@ buffer_write(buffer, buffer_u32, bools);
 buffer_write(buffer, buffer_u32, entity.animation_index);
 buffer_write(buffer, buffer_u8, entity.animation_type);
 buffer_write(buffer, buffer_f32, entity.animation_speed);
-buffer_write(buffer, buffer_u8, entity.animation_endaction);
+buffer_write(buffer, buffer_u8, entity.animation_end_action);
