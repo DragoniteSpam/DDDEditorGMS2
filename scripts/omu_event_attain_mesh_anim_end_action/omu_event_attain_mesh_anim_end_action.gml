@@ -30,7 +30,7 @@ var vy2 = eh;
 var yy = 64;
 var spacing = 16;
 
-var el_speed = create_input(16, yy, "Speed:", ew, eh, uivc_list_event_attain_entity_mesh_anim_speed, custom_data_speed[| 0], "Frames per second", validate_double, -10, 10, 5, vx1, vy1, vx2, vy2, dg);
+var el_speed = create_input(16, yy, "Speed:", ew, eh, uivc_list_event_attain_entity_mesh_anim_speed, custom_data_speed[| 0], "Frames per second", validate_int, -60, 60, 3, vx1, vy1, vx2, vy2, dg);
 
 yy += el_speed.height + spacing;
 

@@ -662,8 +662,8 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy += element_entity_mesh_animated.height + spacing;
     
-    element_entity_mesh_animation_speed = create_input(col2_x, yy, "Anim. Spd:", col_width, element_height, uivc_entity_mesh_animation_speed, 1, "float", validate_double, -10, 10, 5, vx1, vy1, vx2, vy2, t_p_mesh);
-    element_entity_mesh_animation_speed.tooltip = "The number of complete animation cycles per second (animations will not be previewed in the editor)";
+    element_entity_mesh_animation_speed = create_input(col2_x, yy, "Anim. Spd:", col_width, element_height, uivc_entity_mesh_animation_speed, 1, "-60 to 60", validate_int, -60, 60, 3, vx1, vy1, vx2, vy2, t_p_mesh);
+    element_entity_mesh_animation_speed.tooltip = "The number of complete animation frames per second. (Animations will not be previewed in the editor.)";
     ds_list_add(t_p_mesh.contents, element_entity_mesh_animation_speed);
     element_entity_mesh_animation_speed.interactive = false;
     
