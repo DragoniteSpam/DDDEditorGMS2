@@ -351,7 +351,7 @@ event_prefab[EventNodeTypes.SET_ENTITY_SPRITE] = create_event_node_basic("SetEnt
 ]);
 event_prefab[EventNodeTypes.SET_MESH_ANIMATION] = create_event_node_basic("SetEntityMeshAnimation", [
     ["Entity", DataTypes.ENTITY, 0, 1, false, 0],
-    ["Speed", DataTypes.FLOAT, -60, 60, false, 0],
+    ["Speed", DataTypes.FLOAT, 0, 1, false, 30],
     ["EndAction", DataTypes.INT, 0, 1, false, 0, omu_event_attain_mesh_anim_end_action, event_prefab_render_mesh_animation_end_action],
 ]);
 #endregion
