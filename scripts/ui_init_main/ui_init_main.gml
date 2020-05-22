@@ -632,7 +632,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = legal_y + spacing;
     
-    element_entity_mesh_list = create_list(col1_x, yy, "Mesh", "<no meshes>", col_width, element_height, 16, null, false, t_p_mesh, Stuff.all_meshes);
+    element_entity_mesh_list = create_list(col1_x, yy, "Mesh", "<no meshes>", col_width, element_height, 16, uivc_entity_mesh_list, false, t_p_mesh, Stuff.all_meshes);
     element_entity_mesh_list.allow_deselect = false;
     element_entity_mesh_list.entries_are = ListEntries.INSTANCES;
     ds_list_add(t_p_mesh.contents, element_entity_mesh_list);
@@ -640,7 +640,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy += ui_get_list_height(element_entity_mesh_list) + spacing;
     
-    element_entity_mesh_submesh = create_list(col1_x, yy, "Submesh", "<no submeshes>", col_width, element_height, 10, null, false, t_p_mesh, noone);
+    element_entity_mesh_submesh = create_list(col1_x, yy, "Submesh", "<no submeshes>", col_width, element_height, 10, uivc_entity_mesh_submesh, false, t_p_mesh, noone);
     element_entity_mesh_submesh.allow_deselect = false;
     element_entity_mesh_submesh.entries_are = ListEntries.INSTANCES;
     ds_list_add(t_p_mesh.contents, element_entity_mesh_submesh);

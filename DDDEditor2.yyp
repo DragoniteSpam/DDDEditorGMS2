@@ -14092,6 +14092,14 @@
             }
         },
         {
+            "Key": "b2e43184-6c21-43c3-bb29-e2f95e7c0017",
+            "Value": {
+                "id": "6eb2b0dc-7b3d-4939-9304-f9d50c16d76e",
+                "resourcePath": "scripts\\uivc_entity_mesh_list\\uivc_entity_mesh_list.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "b2f42062-ace8-472f-9801-b8e66b5cc981",
             "Value": {
                 "id": "24fe0456-a98d-4581-bd26-96cb1ad42c0e",
@@ -16728,6 +16736,14 @@
             "Value": {
                 "id": "b9dedc5b-a084-4e53-b7bc-26143217ca0b",
                 "resourcePath": "scripts\\omu_data_remove\\omu_data_remove.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "d58c1979-fa02-4735-8725-4ecc6b939cbb",
+            "Value": {
+                "id": "68b8208b-57b7-48be-b7e5-e58fc11dfb32",
+                "resourcePath": "scripts\\uivc_entity_mesh_submesh\\uivc_entity_mesh_submesh.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -20985,6 +21001,8 @@
         "b19f02e8-8b5e-45b3-842e-6fc5a52df295",
         "10d75fc8-4f26-4d01-b806-e4e4061246de",
         "75a5fec3-1002-4533-940c-f2a25fca9722",
+        "b2e43184-6c21-43c3-bb29-e2f95e7c0017",
+        "d58c1979-fa02-4735-8725-4ecc6b939cbb",
         "2e94e2bf-d32a-4aff-a21b-e45d31c106e8",
         "19bc8895-cfcd-40a9-b3b6-f1a0714729db",
         "70b7d05e-b653-457d-ac89-7ee06447841b",
