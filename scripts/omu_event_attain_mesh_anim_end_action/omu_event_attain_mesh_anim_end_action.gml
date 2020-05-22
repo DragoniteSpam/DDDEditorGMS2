@@ -16,8 +16,9 @@ var dg = dialog_create(dw, dh, "Mesh Animation Settings", dialog_default, dc_clo
 dg.node = event_node;
 dg.index = data_index;
 
-var custom_data_speed = event_node.custom_data[| 0];
-var custom_data_endaction = event_node.custom_data[| 1];
+// entity isn't going to be set here, because that's a pain in the butt
+var custom_data_speed = event_node.custom_data[| 1];
+var custom_data_endaction = event_node.custom_data[| 2];
 
 var ew = dw - 64;
 var eh = 24;
