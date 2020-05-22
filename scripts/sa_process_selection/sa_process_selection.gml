@@ -64,6 +64,8 @@ if (ds_list_size(list) == 0) {
     Stuff.map.ui.element_entity_mesh_animation_speed.interactive = false;
     Stuff.map.ui.element_entity_mesh_autotile_data.interactive = false;
     Stuff.map.ui.element_entity_mesh_animation_end_action.interactive = false;
+    Stuff.map.ui.element_entity_mesh_submesh.interactive = false;
+    Stuff.map.ui.element_entity_mesh_list.interactive = false;
     
     // entity-pawn
     
@@ -160,6 +162,8 @@ if (ds_list_size(list) == 0) {
         case EntityMesh:
             Stuff.map.ui.element_entity_mesh_animated.value = 2;
             Stuff.map.ui.element_entity_mesh_animated.interactive = true;
+            ui_list_deselect(Stuff.map.ui.element_entity_mesh_list);
+            ui_list_deselect(Stuff.map.ui.element_entity_mesh_submesh);
             break;
         case EntityPawn:
             Stuff.map.ui.element_entity_pawn_frame.value = "0";
