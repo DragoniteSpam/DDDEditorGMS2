@@ -648,7 +648,7 @@ switch (node.type) {
                             if (custom_data_list[| 0]) {
                                 output_string = (setdata ? setdata.name : "<not loaded>") + ":" + strh;
                             } else {
-                                output_string = "<self>:" + strh;
+                                output_string = "<self>";
                             }
                             break;
                         case DataTypes.MAP:
