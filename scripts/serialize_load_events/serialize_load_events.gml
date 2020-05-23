@@ -188,10 +188,24 @@ for (var i = 0; i < ds_list_size(Stuff.all_events); i++) {
                 var dest = guid_get(node.outbound[| k]);
                 dest.parents[? node] = true;
                 node.outbound[| k] = dest;
+            // the trials and tribulations of backwards compatibility
             } else {
-                var dest = event_get_node(event, node.outbound[| k]);
-                dest.parents[? node] = true;
-                node.outbound[| k] = dest;
+                var dest = event_get_node(Stuff.all_events[| i], node.outbound[| k]);
+                if (dest) {
+                    dest.parents[? node] = true;
+                    node.outbound[| k] = dest;
+                } else {
+                    for (var inefficient = 0; inefficient < ds_list_size(Stuff.all_events); inefficient++) {
+                        var dest = event_get_node(Stuff.all_events[| inefficient], node.outbound[| k]);
+                        if (dest) {
+                            dest.parents[? node] = true;
+                            node.outbound[| k] = dest;
+                        }
+                    }
+                    if (typeof(node.outbound[| k]) == typeof(NULL)) {
+                        node.outbound[| k] = noone;
+                    }
+                }
             }
         }
     }
