@@ -92,6 +92,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     var yy = legal_y + spacing;
     
     var element = create_list(col1_x, yy, "Particle Emitters", "<no emitters>", col_width, eh, 24, null, false, t_emitter, mode.emitters);
+    element.entries_are = ListEntries.INSTANCES;
     t_emitter.list = element;
     ds_list_add(t_emitter.contents, element);
     
@@ -113,6 +114,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     var yy = legal_y + spacing;
     
     var element = create_list(col1_x, yy, "Particle Types", "<no particle types>", col_width, eh, 24, null, false, t_type, mode.types);
+    element.entries_are = ListEntries.INSTANCES;
     t_type.list = element;
     ds_list_add(t_type.contents, element);
     

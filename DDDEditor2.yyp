@@ -5093,6 +5093,14 @@
             }
         },
         {
+            "Key": "4063e485-03b0-4a36-840d-ee21a68654a5",
+            "Value": {
+                "id": "36ef2826-8915-4eab-9e76-920e210003bd",
+                "resourcePath": "objects\\ParticleEmitter\\ParticleEmitter.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "406db1cc-6498-4da0-8807-482b2b36baea",
             "Value": {
                 "id": "2b2e3c7d-2198-43be-88f5-e53e574d133e",
@@ -7682,6 +7690,14 @@
                 "id": "9a7e4086-d399-45bb-a299-c8369cc5848f",
                 "resourcePath": "scripts\\serialize_save_entity_mesh\\serialize_save_entity_mesh.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "5ee2d0c1-b0b1-49ed-a7f5-fccac3257d8f",
+            "Value": {
+                "id": "ae8310b7-cd54-4929-99b4-ccbcf161a0bd",
+                "resourcePath": "views\\5ee2d0c1-b0b1-49ed-a7f5-fccac3257d8f.yy",
+                "resourceType": "GMFolder"
             }
         },
         {
@@ -16314,6 +16330,14 @@
                 "id": "5a3cca2c-2ae6-4bd9-8d1a-c4b85e9b7c4f",
                 "resourcePath": "scripts\\uivc_input_graphic_internal_name\\uivc_input_graphic_internal_name.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "ce764bc4-84a9-4ba8-b964-f2ea61b46727",
+            "Value": {
+                "id": "fc339f88-79f4-4ff6-bb84-5cf544d3237e",
+                "resourcePath": "objects\\ParticleType\\ParticleType.yy",
+                "resourceType": "GMObject"
             }
         },
         {

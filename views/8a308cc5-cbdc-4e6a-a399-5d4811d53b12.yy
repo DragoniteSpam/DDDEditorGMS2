@@ -14,7 +14,8 @@
         "140218bc-2d31-4f40-bcfa-2d3437628ce3",
         "771e9db7-5a02-461e-b804-a1156ac8d161",
         "bb6072e6-4752-45cc-bede-f2920404e76f",
-        "dbe99185-b4f6-4aa6-a66c-9ccbe9054b34"
+        "dbe99185-b4f6-4aa6-a66c-9ccbe9054b34",
+        "5ee2d0c1-b0b1-49ed-a7f5-fccac3257d8f"
     ],
     "filterType": "GMObject",
     "folderName": "Editor",
