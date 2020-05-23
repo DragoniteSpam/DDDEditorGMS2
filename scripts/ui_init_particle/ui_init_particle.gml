@@ -114,6 +114,19 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy += element.height + spacing;
     
+    var element = create_radio_array(col2_x, yy, "Shape:", col_width, eh, ui_particle_emitter_shape, PartEmitterShapes.ELLIPSE, t_emitter);
+    create_radio_array_options(element, ["Rectangle", "Ellipse", "Diamond", "Line"]);
+    ds_list_add(t_emitter.contents, element);
+    t_emitter.shape = element;
+    
+    yy += ui_get_radio_array_height(element) + spacing;
+    
+    var element = create_radio_array(col2_x, yy, "Distribution:", col_width, eh, ui_particle_emitter_distribution, PartEmitterDistributions.LINEAR, t_emitter);
+    create_radio_array_options(element, ["Linear", "Gaussian", "Inverse Gaussian"]);
+    ds_list_add(t_emitter.contents, element);
+    t_emitter.distr = element;
+    
+    yy += ui_get_radio_array_height(element) + spacing;
     #endregion
     
     #region tab: types
@@ -141,7 +154,6 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     t_type.name = element;
     
     yy += element.height + spacing;
-    
     
     #endregion
     

@@ -9477,6 +9477,14 @@
             }
         },
         {
+            "Key": "7600788e-1dc9-489a-8e0d-39db5e320665",
+            "Value": {
+                "id": "6ffd44d3-af44-4dcf-ba32-d4b1d7411bf4",
+                "resourcePath": "scripts\\ui_particle_emitter_distribution\\ui_particle_emitter_distribution.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "761a2c8d-2d87-42f5-8a6d-4e7e2ca7169f",
             "Value": {
                 "id": "c739de5f-8d2d-4984-ae88-1ff214ba9705",
@@ -16085,6 +16093,14 @@
             }
         },
         {
+            "Key": "cb129842-bf70-4909-865f-6e75fa8e3ca3",
+            "Value": {
+                "id": "6c94bbd9-a763-4036-9393-d720869741d3",
+                "resourcePath": "scripts\\ui_particle_emitter_shape\\ui_particle_emitter_shape.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "cb1d3064-de25-4fcf-87c8-c469f6ffcddf",
             "Value": {
                 "id": "685512a3-1b47-4cfe-944d-effee3c6797a",
@@ -22284,6 +22300,8 @@
         "a1d7b84f-41ac-405e-8310-b50365e418dd",
         "68cdaea9-94d8-47a8-bc3e-b67c5fa3e03d",
         "374d554a-ae65-45d5-b56e-2d4babe99b7d",
+        "cb129842-bf70-4909-865f-6e75fa8e3ca3",
+        "7600788e-1dc9-489a-8e0d-39db5e320665",
         "8eff8778-d9e0-49d9-98ef-3adddcc64104",
         "84db3576-8caf-46e2-b41e-67ebeca0d69c",
         "113c99ac-1f8c-4fe5-9496-11f266891628",
