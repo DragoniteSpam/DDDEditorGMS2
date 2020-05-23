@@ -310,9 +310,83 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy += element.height + spacing;
     
-    var element = create_color_picker(col3_x, yy, "Color:", ew, eh, ui_particle_back_color, mode.back_color, vx1, vy1, vx2, vy2, t_system);
+    var element = create_color_picker(col3_x, yy, "Color 1A:", ew, eh, null, mode.back_color, vx1, vy1, vx2, vy2, t_type);
+    element.allow_alpha = true;
     ds_list_add(t_type.contents, element);
-    t_type.base_color = element;
+    t_type.base_color_1a = element;
+    
+    yy += element.height + spacing;
+    
+    var element = create_checkbox(col3_x, yy, "", eh, eh, null, false, t_type);
+    ds_list_add(t_type.contents, element);
+    t_type.base_color_1b_enabled = element;
+    
+    var element = create_color_picker(col3_x, yy, "        1B:", ew, eh, null, mode.back_color, vx1, vy1, vx2, vy2, t_type);
+    element.allow_alpha = true;
+    ds_list_add(t_type.contents, element);
+    t_type.base_color_1b = element;
+    
+    yy += element.height + spacing;
+    
+    var element = create_checkbox(col3_x, yy, "", eh, eh, null, false, t_type);
+    ds_list_add(t_type.contents, element);
+    t_type.base_color_2_enabled = element;
+    
+    var element = create_color_picker(col3_x, yy, "        2:", ew, eh, null, mode.back_color, vx1, vy1, vx2, vy2, t_type);
+    element.allow_alpha = true;
+    ds_list_add(t_type.contents, element);
+    t_type.base_color_2 = element;
+    
+    yy += element.height + spacing;
+    
+    var element = create_checkbox(col3_x, yy, "", eh, eh, null, false, t_type);
+    ds_list_add(t_type.contents, element);
+    t_type.base_color_3_enabled = element;
+    
+    var element = create_color_picker(col3_x, yy, "        3:", ew, eh, null, mode.back_color, vx1, vy1, vx2, vy2, t_type);
+    element.allow_alpha = true;
+    ds_list_add(t_type.contents, element);
+    t_type.base_color_3 = element;
+    
+    yy += element.height + spacing;
+    
+    var element = create_text(col3_x, yy, "Base Scale:", ew, eh, fa_left, ew, t_type);
+    ds_list_add(t_type.contents, element);
+    
+    yy += element.height + spacing;
+    
+    var element = create_input(col3_x, yy, "x:", ew, eh, null, 1, "float", validate_double, 0, 40, 4, ovx1, ovy1, ovx2, ovy2, t_type);
+    ds_list_add(t_type.contents, element);
+    t_type.xscale = element;
+    
+    var element = create_input(col3_x + ew / 2, yy, "y:", ew, eh, null, 1, "float", validate_double, 0, 40, 4, ovx1, ovy1, ovx2, ovy2, t_type);
+    ds_list_add(t_type.contents, element);
+    t_type.yscale = element;
+    
+    yy += element.height + spacing;
+    
+    var element = create_text(col3_x, yy, "Size:", ew, eh, fa_left, ew, t_type);
+    ds_list_add(t_type.contents, element);
+    
+    yy += element.height + spacing;
+    
+    var element = create_input(col3_x, yy, "min:", ew, eh, null, 1, "float", validate_double, 0, 40, 4, ovx1, ovy1, ovx2, ovy2, t_type);
+    ds_list_add(t_type.contents, element);
+    t_type.size_min = element;
+    
+    var element = create_input(col3_x + ew / 2, yy, "max:", ew, eh, null, 1, "float", validate_double, 0, 40, 4, ovx1, ovy1, ovx2, ovy2, t_type);
+    ds_list_add(t_type.contents, element);
+    t_type.size_max = element;
+    
+    yy += element.height + spacing;
+    
+    var element = create_input(col3_x, yy, "incr:", ew, eh, null, 0, "float", validate_double, -10, 10, 4, ovx1, ovy1, ovx2, ovy2, t_type);
+    ds_list_add(t_type.contents, element);
+    t_type.size_incr = element;
+    
+    var element = create_input(col3_x + ew / 2, yy, "wgl:", ew, eh, null, 0, "float", validate_double, -10, 10, 4, ovx1, ovy1, ovx2, ovy2, t_type);
+    ds_list_add(t_type.contents, element);
+    t_type.size_wiggle = element;
     
     yy += element.height + spacing;
     
@@ -322,9 +396,15 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy += element.height + spacing;
     
-    var element = create_input(col3_x, yy, "Lifetime:", ew, eh, null, 0, "seconds", validate_double, 0, 60, 3, vx1, vy1, vx2, vy2, t_type);
+    var element = create_input(col3_x, yy, "min:", ew, eh, null, 10, "float", validate_double, 0.1, 60, 4, ovx1, ovy1, ovx2, ovy2, t_type);
     ds_list_add(t_type.contents, element);
-    t_type.lifetime = element;
+    t_type.life_min = element;
+    
+    var element = create_input(col3_x + ew / 2, yy, "max:", ew, eh, null, 10, "float", validate_double, 0.1, 60, 4, ovx1, ovy1, ovx2, ovy2, t_type);
+    ds_list_add(t_type.contents, element);
+    t_type.life_max = element;
+    
+    yy += element.height + spacing;
     
     #endregion
     
