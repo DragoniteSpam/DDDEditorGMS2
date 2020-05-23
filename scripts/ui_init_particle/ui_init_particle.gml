@@ -162,6 +162,24 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     t_emitter.ymax = element;
     
     yy += element.height + spacing;
+    
+    var element = create_checkbox(col2_x, yy, "Streaming?", col_width, eh, ui_particle_emitter_streaming, false, t_emitter);
+    ds_list_add(t_emitter.contents, element);
+    t_emitter.streaming = element;
+    
+    yy += element.height + spacing;
+    
+    var element = create_input(col2_x, yy, "Rate", col_width, eh, ui_particle_emitter_rate, 120, "", validate_double, 0, 999, 5, vx1, vy1, vx2, vy2, t_emitter);
+    ds_list_add(t_emitter.contents, element);
+    t_emitter.rate = element;
+    
+    yy += element.height + spacing;
+    
+    var element = create_button(col2_x, yy, "Burst", col_width, eh, fa_center, null, t_emitter);
+    ds_list_add(t_emitter.contents, element);
+    
+    yy += element.height + spacing;
+    
     #endregion
     
     #region tab: types

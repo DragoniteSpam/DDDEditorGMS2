@@ -8,7 +8,9 @@ region_y1 = 160;
 region_x2 = 240;
 region_y2 = 240;
 
-streaming = true;
+streaming = false;
+rate = 120;
+type = noone;
 
 enum PartEmitterShapes {
     RECTANGLE, ELLIPSE, DIAMOND, LINE
