@@ -5,7 +5,7 @@ var mode = argument0;
 var map = Stuff.map.active_map;
 var map_contents = map.contents;
 
-draw_clear(c_black);
+draw_clear(mode.back_color);
 
 gpu_set_zwriteenable(false);
 gpu_set_ztestenable(false);

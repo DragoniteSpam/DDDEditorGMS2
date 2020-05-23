@@ -1,5 +1,7 @@
 event_inherited();
 
+back_color = c_black;
+
 system_auto_update = true;
 
 system = part_system_create();

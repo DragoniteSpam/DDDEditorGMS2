@@ -7245,6 +7245,14 @@
             }
         },
         {
+            "Key": "58bc98a5-a3ce-4f92-995d-5f429874bc7f",
+            "Value": {
+                "id": "1d69b9d3-3116-4ca6-bfbd-50a91d55358c",
+                "resourcePath": "scripts\\ui_particle_back_color\\ui_particle_back_color.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "58c47e9d-ecab-4472-b7a8-97668439288d",
             "Value": {
                 "id": "36e28433-2b68-44f7-a0be-167928004ac6",
@@ -22292,6 +22300,7 @@
         "257bf034-805c-456b-9643-af5628f2218e",
         "3f64e116-940e-4ebf-8405-7aee7df73e21",
         "8d969df7-5f17-4056-a105-ed69f3d22c52",
+        "58bc98a5-a3ce-4f92-995d-5f429874bc7f",
         "8928a201-4150-497e-a1dd-5a3543da6d2b",
         "7fc94665-6879-4c99-8260-4c232ca769a7",
         "1933cc1c-ce19-45a0-9109-5e2fa15c424a",

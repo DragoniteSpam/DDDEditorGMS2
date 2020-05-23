@@ -65,6 +65,11 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     #region tab: system
     var yy = legal_y + spacing;
     
+    var element = create_color_picker(col1_x, yy, "Back:", col_width, eh, ui_particle_back_color, mode.back_color, vx1, vy1, vx2, vy2, t_system);
+    ds_list_add(t_system.contents, element);
+    
+    yy += element.height + spacing;
+    
     var element = create_checkbox(col1_x, yy, "Automatic Update?", col_width, eh, ui_particle_automatic_update, mode.system_auto_update, t_system);
     ds_list_add(t_system.contents, element);
     
