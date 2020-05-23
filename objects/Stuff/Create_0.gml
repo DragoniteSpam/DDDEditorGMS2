@@ -38,6 +38,7 @@ enum ModeIDs {
     SCRIBBLE,
     SPART,
     DOODLE,
+    PARTICLE,
 }
 
 tf = ["False", "True"];
@@ -370,6 +371,7 @@ terrain = instance_create_depth(0, 0, 0, EditorModeTerrain);
 scribble = instance_create_depth(0, 0, 0, EditorModeScribble);
 spart = instance_create_depth(0, 0, 0, EditorModeSpart);
 doodle = instance_create_depth(0, 0, 0, EditorModeDoodle);
+particle = instance_create_depth(0, 0, 0, EditorModeParticle);
 menu = menu_init_main();
 
 instance_deactivate_object(EditorMode);
@@ -522,6 +524,7 @@ switch (stashed_mode) {
     case ModeIDs.SCRIBBLE: editor_mode_scribble(); break;
     case ModeIDs.SPART: editor_mode_spart(); break;
     case ModeIDs.DOODLE: editor_mode_doodle(); break;
+    case ModeIDs.PARTICLE: editor_mode_particle(); break;
 }
 
 if (PROJECT_MENU_ENABLED) {
