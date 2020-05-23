@@ -54,6 +54,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     var col_width = legal_width / 2 - spacing * 1.5;
     var col1_x = legal_x + spacing;
     var col2_x = legal_x + col_width + spacing * 2;
+    var col3_x = legal_x + col_width * 2 + spacing * 2;
     
     var vx1 = col_width / 2;
     var vy1 = 0;
@@ -113,7 +114,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = legal_y + spacing;
     
-    var element = create_input(col2_x, yy, "Name:", col_width, eh, ui_particle_emitter_rename, "", "", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, t_emitter);
+    var element = create_input(col2_x, yy, "Name:", col_width, eh, ui_particle_emitter_rename, "Part Emitter", "", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, t_emitter);
     ds_list_add(t_emitter.contents, element);
     t_emitter.name = element;
     
@@ -202,7 +203,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = legal_y + spacing;
     
-    var element = create_input(col2_x, yy, "Name:", col_width, eh, ui_particle_type_rename, "", "", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, t_type);
+    var element = create_input(col2_x, yy, "Name:", col_width, eh, ui_particle_type_rename, "Part Type", "", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, t_type);
     ds_list_add(t_type.contents, element);
     t_type.name = element;
     
@@ -238,28 +239,6 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy += element.height + spacing;
     
-    var element = create_button(col2_x, yy, "More...", col_width, eh, fa_center, null, t_type);
-    ds_list_add(t_type.contents, element);
-    
-    yy += element.height + spacing;
-    
-    var element = create_text(col2_x, yy, "Color and Size", col_width, eh, fa_left, col_width, t_type);
-    element.color = c_blue;
-    ds_list_add(t_type.contents, element);
-    
-    yy += element.height + spacing;
-    
-    var element = create_color_picker(col2_x, yy, "Color:", col_width, eh, ui_particle_back_color, mode.back_color, vx1, vy1, vx2, vy2, t_system);
-    ds_list_add(t_type.contents, element);
-    t_type.base_color = element;
-    
-    yy += element.height + spacing;
-    
-    var element = create_button(col2_x, yy, "More...", col_width, eh, fa_center, null, t_type);
-    ds_list_add(t_type.contents, element);
-    
-    yy += element.height + spacing;
-    
     var element = create_text(col2_x, yy, "Life and Death", col_width, eh, fa_left, col_width, t_type);
     element.color = c_blue;
     ds_list_add(t_type.contents, element);
@@ -270,10 +249,17 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     ds_list_add(t_type.contents, element);
     t_type.lifetime = element;
     
+    yy = legal_y + spacing;
+    
+    var element = create_text(col3_x, yy, "Color and Size", col_width, eh, fa_left, col_width, t_type);
+    element.color = c_blue;
+    ds_list_add(t_type.contents, element);
+    
     yy += element.height + spacing;
     
-    var element = create_button(col2_x, yy, "More...", col_width, eh, fa_center, null, t_type);
+    var element = create_color_picker(col3_x, yy, "Color:", col_width, eh, ui_particle_back_color, mode.back_color, vx1, vy1, vx2, vy2, t_system);
     ds_list_add(t_type.contents, element);
+    t_type.base_color = element;
     
     yy += element.height + spacing;
     
