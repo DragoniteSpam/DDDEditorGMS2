@@ -208,6 +208,76 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy += element.height + spacing;
     
+    var element = create_list(col2_x, yy, "Shape:", "", col_width, eh, 8, null, false, t_type);
+    create_list_entries(element, "Pixel", "Disk", "Square", "Line", "Star", "Circle", "Ring", "Sphere", "Flare", "Spark", "Explosion", "Cloud", "Smoke", "Snow");
+    ds_list_add(t_type.contents, element);
+    t_type.shape = element;
+    
+    yy += ui_get_list_height(element) + spacing;
+    
+    var element = create_text(col2_x, yy, "Movement", col_width, eh, fa_left, col_width, t_type);
+    element.color = c_blue;
+    ds_list_add(t_type.contents, element);
+    
+    yy += element.height + spacing;
+    
+    var element = create_input(col2_x, yy, "Speed:", col_width, eh, null, 0, "pixels per frame", validate_double, -400, 400, 5, vx1, vy1, vx2, vy2, t_type);
+    ds_list_add(t_type.contents, element);
+    t_type.speed = element;
+    
+    yy += element.height + spacing;
+    
+    var element = create_button(col2_x, yy, "More...", col_width, eh, fa_center, null, t_type);
+    ds_list_add(t_type.contents, element);
+    
+    yy += element.height + spacing;
+    
+    var element = create_input(col2_x, yy, "Direction:", col_width, eh, null, 0, "", validate_double, -400, 400, 5, vx1, vy1, vx2, vy2, t_type);
+    ds_list_add(t_type.contents, element);
+    t_type.direction = element;
+    
+    yy += element.height + spacing;
+    
+    var element = create_button(col2_x, yy, "More...", col_width, eh, fa_center, null, t_type);
+    ds_list_add(t_type.contents, element);
+    
+    yy += element.height + spacing;
+    
+    var element = create_input(col2_x, yy, "Gravity:", col_width, eh, null, 0, "", validate_double, -400, 400, 5, vx1, vy1, vx2, vy2, t_type);
+    ds_list_add(t_type.contents, element);
+    t_type.gravity = element;
+    
+    yy += element.height + spacing;
+    
+    var element = create_input(col2_x, yy, "Grav. Dir:", col_width, eh, null, 270, "", validate_double, -360, 360, 5, vx1, vy1, vx2, vy2, t_type);
+    ds_list_add(t_type.contents, element);
+    t_type.gravity_direction = element;
+    
+    yy += element.height + spacing;
+    
+    var element = create_input(col2_x, yy, "Orientation:", col_width, eh, null, 0, "", validate_double, -400, 400, 5, vx1, vy1, vx2, vy2, t_type);
+    ds_list_add(t_type.contents, element);
+    t_type.orientation = element;
+    
+    yy += element.height + spacing;
+    
+    var element = create_button(col2_x, yy, "More...", col_width, eh, fa_center, null, t_type);
+    ds_list_add(t_type.contents, element);
+    
+    yy += element.height + spacing;
+    
+    var element = create_text(col2_x, yy, "Color", col_width, eh, fa_left, col_width, t_type);
+    element.color = c_blue;
+    ds_list_add(t_type.contents, element);
+    
+    yy += element.height + spacing;
+    
+    var element = create_text(col2_x, yy, "Life and Death", col_width, eh, fa_left, col_width, t_type);
+    element.color = c_blue;
+    ds_list_add(t_type.contents, element);
+    
+    yy += element.height + spacing;
+    
     #endregion
     
     return id;
