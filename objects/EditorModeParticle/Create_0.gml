@@ -7,6 +7,7 @@ types = ds_list_create();
 emitters = ds_list_create();
 
 part_system_automatic_update(system, system_auto_update);
+part_system_automatic_draw(system, false);
 
 render = editor_render_particle;
 ui = ui_init_particle(id);

@@ -1,4 +1,4 @@
-/// @param EditorModeMap
+/// @param EditorModeParticle
 
 var mode = argument0;
 
@@ -11,3 +11,5 @@ gpu_set_zwriteenable(false);
 gpu_set_ztestenable(false);
 gpu_set_cullmode(cull_counterclockwise);
 draw_set_color(c_white);
+
+part_system_drawit(mode.system);
