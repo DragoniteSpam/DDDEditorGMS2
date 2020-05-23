@@ -58,7 +58,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     var vx1 = col_width / 2;
     var vy1 = 0;
     var vx2 = col_width;
-    var vy2 = vy1 + 24;
+    var vy2 = eh;
     
     var button_width = 128;
     
@@ -132,6 +132,36 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     t_emitter.distr = element;
     
     yy += ui_get_radio_array_height(element) + spacing;
+    
+    var element = create_button(col2_x, yy, "Set Region", col_width, eh, fa_center, null, t_emitter);
+    ds_list_add(t_emitter.contents, element);
+    
+    yy += element.height + spacing;
+    
+    var ovx1 = col_width / 4;
+    var ovy1 = 0;
+    var ovx2 = col_width / 2;
+    var ovy2 = eh;
+    
+    var element = create_input(col2_x, yy, "X1:", col_width, eh, ui_particle_emitter_xmin, 160, "int", validate_int, -CW / 2, floor(1.5 * CW), 4, ovx1, ovy1, ovx2, ovy2, t_emitter);
+    ds_list_add(t_emitter.contents, element);
+    t_emitter.xmin = element;
+    
+    var element = create_input(col2_x + col_width / 2, yy, "Y1:", col_width, eh, ui_particle_emitter_ymin, 160, "int", validate_int, -CH / 2, floor(1.5 * CH), 4, ovx1, ovy1, ovx2, ovy2, t_emitter);
+    ds_list_add(t_emitter.contents, element);
+    t_emitter.ymin = element;
+    
+    yy += element.height + spacing;
+    
+    var element = create_input(col2_x, yy, "X2:", col_width, eh, ui_particle_emitter_xmax, 240, "int", validate_int, -CW / 2, floor(1.5 * CW), 4, ovx1, ovy1, ovx2, ovy2, t_emitter);
+    ds_list_add(t_emitter.contents, element);
+    t_emitter.xmax = element;
+    
+    var element = create_input(col2_x + col_width / 2, yy, "Y2:", col_width, eh, ui_particle_emitter_ymax, 240, "int", validate_int, -CH / 2, floor(1.5 * CH), 4, ovx1, ovy1, ovx2, ovy2, t_emitter);
+    ds_list_add(t_emitter.contents, element);
+    t_emitter.ymax = element;
+    
+    yy += element.height + spacing;
     #endregion
     
     #region tab: types

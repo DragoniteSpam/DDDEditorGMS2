@@ -4077,6 +4077,14 @@
             }
         },
         {
+            "Key": "30e4e4ce-b597-460a-a4ac-eaccbd4d0ff4",
+            "Value": {
+                "id": "d03edaef-532c-496e-b46c-cf5a0f824eda",
+                "resourcePath": "scripts\\ui_particle_emitter_xmin\\ui_particle_emitter_xmin.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "30e6c2ce-5723-4c1b-84f4-b587eaf70d2e",
             "Value": {
                 "id": "4f3ce9e8-2e69-4ba1-99b0-c96b0c29ae8e",
@@ -10073,6 +10081,14 @@
             "Value": {
                 "id": "897fe5ab-9dec-4262-81b4-94877505a97f",
                 "resourcePath": "scripts\\uivc_terrain_export\\uivc_terrain_export.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "7d0fb690-1d00-44f9-a194-3006cd1e9e01",
+            "Value": {
+                "id": "3962ed57-4ef3-4c94-aeab-754afabdd2d6",
+                "resourcePath": "scripts\\ui_particle_emitter_xmax\\ui_particle_emitter_xmax.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -16269,6 +16285,14 @@
             }
         },
         {
+            "Key": "cd28e50e-38b4-445b-b912-0d59a531d6e5",
+            "Value": {
+                "id": "6626c838-d192-4092-bf95-a827907ec116",
+                "resourcePath": "scripts\\ui_particle_emitter_ymin\\ui_particle_emitter_ymin.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "cd32215f-9241-4130-bb8e-7050945ed0d9",
             "Value": {
                 "id": "f9264c2a-6d12-48a3-9ccd-1f6f02903ef5",
@@ -17601,6 +17625,14 @@
             "Value": {
                 "id": "ab4bd1e8-a434-435d-990c-4f64e69d4021",
                 "resourcePath": "scripts\\array_clear\\array_clear.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "dd655b46-cd9f-41a9-8376-3c0fe900190a",
+            "Value": {
+                "id": "39d328df-da7e-4163-a5fa-b3fe9b6c00d8",
+                "resourcePath": "scripts\\ui_particle_emitter_ymax\\ui_particle_emitter_ymax.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -22311,6 +22343,10 @@
         "374d554a-ae65-45d5-b56e-2d4babe99b7d",
         "cb129842-bf70-4909-865f-6e75fa8e3ca3",
         "7600788e-1dc9-489a-8e0d-39db5e320665",
+        "30e4e4ce-b597-460a-a4ac-eaccbd4d0ff4",
+        "cd28e50e-38b4-445b-b912-0d59a531d6e5",
+        "7d0fb690-1d00-44f9-a194-3006cd1e9e01",
+        "dd655b46-cd9f-41a9-8376-3c0fe900190a",
         "8eff8778-d9e0-49d9-98ef-3adddcc64104",
         "84db3576-8caf-46e2-b41e-67ebeca0d69c",
         "113c99ac-1f8c-4fe5-9496-11f266891628",
