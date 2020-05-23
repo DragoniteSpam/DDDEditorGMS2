@@ -1,8 +1,8 @@
 name = "Emitter";
 
 emitter = part_emitter_create(Stuff.particle.system);
-region_shape = ps_shape_ellipse;
-region_distribution = ps_distr_linear;
+region_shape = PartEmitterShapes.ELLIPSE;
+region_distribution = PartEmitterDistributions.LINEAR;
 region_x1 = 160;
 region_y1 = 160;
 region_x2 = 240;
