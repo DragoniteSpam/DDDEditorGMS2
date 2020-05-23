@@ -2109,6 +2109,14 @@
             }
         },
         {
+            "Key": "1933cc1c-ce19-45a0-9109-5e2fa15c424a",
+            "Value": {
+                "id": "68388582-80c5-49fa-a7ee-51d077f677e4",
+                "resourcePath": "scripts\\ui_particle_reset\\ui_particle_reset.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "1964989c-7a4a-4dcc-b579-1b3c7cca4f11",
             "Value": {
                 "id": "b1944503-8eee-4ce1-9862-58176e6d785c",
@@ -10053,6 +10061,14 @@
             }
         },
         {
+            "Key": "7dc9f1dd-f25f-4455-b399-d6e4b43b2b76",
+            "Value": {
+                "id": "cdfdc3d2-2565-453d-9d77-737ca81c2ef8",
+                "resourcePath": "scripts\\ui_particle_manual_update\\ui_particle_manual_update.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "7dd7a448-12e8-4b51-894e-a06f6ac66448",
             "Value": {
                 "id": "c8c72cc8-51f0-4169-a733-ccb80c77f2c3",
@@ -10193,6 +10209,14 @@
             "Value": {
                 "id": "2528a809-59bf-4fee-aa18-f10373a2e581",
                 "resourcePath": "scripts\\uivc_check_entity_option_animate_movement\\uivc_check_entity_option_animate_movement.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "7fc94665-6879-4c99-8260-4c232ca769a7",
+            "Value": {
+                "id": "798936d9-238e-409c-bf2e-7c8528cad93a",
+                "resourcePath": "scripts\\ui_particle_clear_particles\\ui_particle_clear_particles.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -10961,6 +10985,14 @@
             "Value": {
                 "id": "5af1c144-733b-4f06-a16d-5c7657d22d0f",
                 "resourcePath": "scripts\\momu_se\\momu_se.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "8928a201-4150-497e-a1dd-5a3543da6d2b",
+            "Value": {
+                "id": "2ed98bd9-604d-4b2d-a9ed-6178dca30f88",
+                "resourcePath": "scripts\\ui_particle_automatic_update\\ui_particle_automatic_update.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -22156,6 +22188,10 @@
         "257bf034-805c-456b-9643-af5628f2218e",
         "3f64e116-940e-4ebf-8405-7aee7df73e21",
         "8d969df7-5f17-4056-a105-ed69f3d22c52",
+        "8928a201-4150-497e-a1dd-5a3543da6d2b",
+        "7fc94665-6879-4c99-8260-4c232ca769a7",
+        "1933cc1c-ce19-45a0-9109-5e2fa15c424a",
+        "7dc9f1dd-f25f-4455-b399-d6e4b43b2b76",
         "6363866f-8112-4354-9eeb-899272e353e5",
         "b071e9e8-f1a1-40cb-acb7-01693e4af942",
         "79d88758-0ab7-47cc-881f-7786957b46e9",

@@ -1,10 +1,12 @@
 event_inherited();
 
+system_auto_update = true;
+
 system = part_system_create();
 types = ds_list_create();
 emitters = ds_list_create();
 
-system_auto_update = true;
+part_system_automatic_update(system, system_auto_update);
 
 render = editor_render_particle;
 ui = ui_init_particle(id);

@@ -62,23 +62,24 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     #region tab: system
     var yy = legal_y + spacing;
     
-    var element = create_checkbox(col1_x, yy, "Automatic Update?", col_width, eh, null, mode.system_auto_update, t_system);
+    var element = create_checkbox(col1_x, yy, "Automatic Update?", col_width, eh, ui_particle_automatic_update, mode.system_auto_update, t_system);
     ds_list_add(t_system.contents, element);
     
     yy += element.height + spacing;
     
-    var element = create_button(col1_x, yy, "Update", col_width, eh, fa_center, null, t_system);
+    var element = create_button(col1_x, yy, "Update", col_width, eh, fa_center, ui_particle_manual_update, t_system);
     element.interactive = !mode.system_auto_update;
     ds_list_add(t_system.contents, element);
+    t_system.manual_update = element;
     
     yy += element.height + spacing;
     
-    var element = create_button(col1_x, yy, "Clear All Particles", col_width, eh, fa_center, null, t_system);
+    var element = create_button(col1_x, yy, "Clear All Particles", col_width, eh, fa_center, ui_particle_clear_particles, t_system);
     ds_list_add(t_system.contents, element);
     
     yy += element.height + spacing;
     
-    var element = create_button(col1_x, yy, "Reset System", col_width, eh, fa_center, null, t_system);
+    var element = create_button(col1_x, yy, "Reset System", col_width, eh, fa_center, ui_particle_reset, t_system);
     ds_list_add(t_system.contents, element);
     
     yy += element.height + spacing;
