@@ -4,6 +4,9 @@ var mode = argument0;
 
 // this one's not tabbed, it's just a bunch of elements floating in space
 with (instance_create_depth(0, 0, 0, UIMain)) {
+    #macro PART_MAXIMUM_EMITTERS 8
+    #macro PART_MAXIMUM_TYPES 255
+    
     var columns = 3;
     var spacing = 16;
     
@@ -89,16 +92,17 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     var yy = legal_y + spacing;
     
     var element = create_list(col1_x, yy, "Particle Emitters", "<no emitters>", col_width, eh, 24, null, false, t_emitter, mode.emitters);
+    t_emitter.list = element;
     ds_list_add(t_emitter.contents, element);
     
     yy += ui_get_list_height(element) + spacing;
     
-    var element = create_button(col1_x, yy, "Add Emitter", col_width, eh, fa_center, null, t_emitter);
+    var element = create_button(col1_x, yy, "Add Emitter", col_width, eh, fa_center, ui_particle_emitter_add, t_emitter);
     ds_list_add(t_emitter.contents, element);
     
     yy += element.height + spacing;
     
-    var element = create_button(col1_x, yy, "Remove Emitter", col_width, eh, fa_center, null, t_emitter);
+    var element = create_button(col1_x, yy, "Remove Emitter", col_width, eh, fa_center, ui_particle_emitter_remove, t_emitter);
     ds_list_add(t_emitter.contents, element);
     
     yy += element.height + spacing;
@@ -109,16 +113,17 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     var yy = legal_y + spacing;
     
     var element = create_list(col1_x, yy, "Particle Types", "<no particle types>", col_width, eh, 24, null, false, t_type, mode.types);
+    t_type.list = element;
     ds_list_add(t_type.contents, element);
     
     yy += ui_get_list_height(element) + spacing;
     
-    var element = create_button(col1_x, yy, "Add Type", col_width, eh, fa_center, null, t_type);
+    var element = create_button(col1_x, yy, "Add Type", col_width, eh, fa_center, ui_particle_type_add, t_type);
     ds_list_add(t_type.contents, element);
     
     yy += element.height + spacing;
     
-    var element = create_button(col1_x, yy, "Remove Type", col_width, eh, fa_center, null, t_type);
+    var element = create_button(col1_x, yy, "Remove Type", col_width, eh, fa_center, ui_particle_type_remove, t_type);
     ds_list_add(t_type.contents, element);
     
     yy += element.height + spacing;

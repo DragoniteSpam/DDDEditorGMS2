@@ -1517,6 +1517,14 @@
             }
         },
         {
+            "Key": "113c99ac-1f8c-4fe5-9496-11f266891628",
+            "Value": {
+                "id": "c1659da6-9878-4873-81b4-6fbf4e6ed04b",
+                "resourcePath": "scripts\\ui_particle_type_remove\\ui_particle_type_remove.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "119e5e11-b696-4e37-896e-691261577f52",
             "Value": {
                 "id": "b22f00be-9920-4b76-954d-3af1920ae888",
@@ -8421,6 +8429,14 @@
             }
         },
         {
+            "Key": "68cdaea9-94d8-47a8-bc3e-b67c5fa3e03d",
+            "Value": {
+                "id": "184798de-c163-471c-b1d7-60943d600fa8",
+                "resourcePath": "scripts\\ui_particle_emitter_remove\\ui_particle_emitter_remove.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "68d06cb8-1698-44b8-846f-6676647bf045",
             "Value": {
                 "id": "cc8f58e4-233a-4b66-8efc-43fa3b3d4a67",
@@ -10673,6 +10689,14 @@
             "Value": {
                 "id": "b57c706a-bfe0-4975-96cd-b3357596c408",
                 "resourcePath": "scripts\\dmu_dialog_event_break_prefab\\dmu_dialog_event_break_prefab.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "84db3576-8caf-46e2-b41e-67ebeca0d69c",
+            "Value": {
+                "id": "4eefe4d3-664e-4221-9310-3f186bf393aa",
+                "resourcePath": "scripts\\ui_particle_type_add\\ui_particle_type_add.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -12945,6 +12969,14 @@
             "Value": {
                 "id": "4b310611-b37a-40ea-88af-f3374e877ee2",
                 "resourcePath": "scripts\\dialog_create_condition_variable_self_data\\dialog_create_condition_variable_self_data.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "a1d7b84f-41ac-405e-8310-b50365e418dd",
+            "Value": {
+                "id": "b344c250-9f22-4590-b874-5128f610d2d2",
+                "resourcePath": "scripts\\ui_particle_emitter_add\\ui_particle_emitter_add.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -22192,6 +22224,10 @@
         "7fc94665-6879-4c99-8260-4c232ca769a7",
         "1933cc1c-ce19-45a0-9109-5e2fa15c424a",
         "7dc9f1dd-f25f-4455-b399-d6e4b43b2b76",
+        "a1d7b84f-41ac-405e-8310-b50365e418dd",
+        "68cdaea9-94d8-47a8-bc3e-b67c5fa3e03d",
+        "84db3576-8caf-46e2-b41e-67ebeca0d69c",
+        "113c99ac-1f8c-4fe5-9496-11f266891628",
         "6363866f-8112-4354-9eeb-899272e353e5",
         "b071e9e8-f1a1-40cb-acb7-01693e4af942",
         "79d88758-0ab7-47cc-881f-7786957b46e9",
