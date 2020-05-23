@@ -145,9 +145,12 @@ with (instance_create_depth(0, 0, 0, MenuMain)) {
     #region beta stuff
     var mb_no_beta = create_menu_element("(No beta features, currently)", null, menu_help);
     //
+    var md_beta_particles = create_menu_element("Particle Editor", momu_editor_particles, menu_help);
+    md_beta_particles.interactive = MENU_EDITOR_ENABLED;
     var md_beta_spart = create_menu_element("Spart demo", momu_editor_spart, menu_help);
     md_beta_spart.interactive = MENU_EDITOR_ENABLED;
     ds_list_add(menu_beta.contents,
+        md_beta_particles,
         md_beta_spart,
     );
     #endregion
