@@ -406,6 +406,11 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy += element.height + spacing;
     
+    var element = create_button(col3_x, yy, "Secondary Emission", ew, eh, fa_center, null, t_type);
+    ds_list_add(t_type.contents, element);
+    
+    yy += element.height + spacing;
+    
     #endregion
     
     return id;

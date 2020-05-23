@@ -46,6 +46,11 @@ yscale = 1;
 life_min = 2;
 life_max = 2;
 
+step_type = noone;
+step_count = 10;
+death_type = noone;
+death_count = 10;
+
 enum PartTypeShapes {
     PIXEL, DISK, SQUARE, LINE, STAR, CIRCLE, RING, SPHERE, FLARE, SPARK, EXPLOSION, CLOUD, SMOKE, SNOW,
 }
