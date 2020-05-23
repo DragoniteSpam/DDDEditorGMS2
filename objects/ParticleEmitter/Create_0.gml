@@ -7,3 +7,5 @@ region_x1 = 160;
 region_y1 = 160;
 region_x2 = 240;
 region_y2 = 240;
+
+streaming = true;

@@ -91,7 +91,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     #region tab: emitters
     var yy = legal_y + spacing;
     
-    var element = create_list(col1_x, yy, "Particle Emitters", "<no emitters>", col_width, eh, 24, null, false, t_emitter, mode.emitters);
+    var element = create_list(col1_x, yy, "Particle Emitters", "<no emitters>", col_width, eh, 24, ui_particle_emitter_select, false, t_emitter, mode.emitters);
     element.entries_are = ListEntries.INSTANCES;
     t_emitter.list = element;
     ds_list_add(t_emitter.contents, element);
@@ -106,6 +106,12 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     var element = create_button(col1_x, yy, "Remove Emitter", col_width, eh, fa_center, ui_particle_emitter_remove, t_emitter);
     ds_list_add(t_emitter.contents, element);
     
+    yy = legal_y + spacing;
+    
+    var element = create_input(col2_x, yy, "Name:", col_width, eh, ui_particle_emitter_rename, "", "", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, t_emitter);
+    ds_list_add(t_emitter.contents, element);
+    t_emitter.name = element;
+    
     yy += element.height + spacing;
     
     #endregion
@@ -113,7 +119,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     #region tab: types
     var yy = legal_y + spacing;
     
-    var element = create_list(col1_x, yy, "Particle Types", "<no particle types>", col_width, eh, 24, null, false, t_type, mode.types);
+    var element = create_list(col1_x, yy, "Particle Types", "<no particle types>", col_width, eh, 24, ui_particle_type_select, false, t_type, mode.types);
     element.entries_are = ListEntries.INSTANCES;
     t_type.list = element;
     ds_list_add(t_type.contents, element);
@@ -128,7 +134,14 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     var element = create_button(col1_x, yy, "Remove Type", col_width, eh, fa_center, ui_particle_type_remove, t_type);
     ds_list_add(t_type.contents, element);
     
+    yy = legal_y + spacing;
+    
+    var element = create_input(col2_x, yy, "Name:", col_width, eh, ui_particle_type_rename, "", "", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, t_type);
+    ds_list_add(t_type.contents, element);
+    t_type.name = element;
+    
     yy += element.height + spacing;
+    
     
     #endregion
     
