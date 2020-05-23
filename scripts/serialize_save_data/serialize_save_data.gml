@@ -98,5 +98,6 @@ enum DataVersions {
     MAP_STATIC_BATCHES                  = 106,
     NO_EVENT_PAGE_GUID                  = 107,
     MESH_ANIMATION                      = 108,
+    UPDATED_EVENT_NODE_CONNECTIONS      = 109,
     _CURRENT /* = whatever the last one is + 1 */
 }

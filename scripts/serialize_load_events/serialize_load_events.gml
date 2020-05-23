@@ -24,8 +24,6 @@ repeat (n_events) {
     instance_destroy(event.nodes[| 0]);
     ds_list_clear(event.nodes);
     
-    var connections = ds_list_create();
-    
     var n_nodes = buffer_read(buffer, buffer_u32);
     
     repeat (n_nodes) {
@@ -45,15 +43,14 @@ repeat (n_events) {
         ds_list_clear(node.data);
         ds_list_clear(node.outbound);
         
-        // node connections are stored until all of the nodes (and their names)
-        // have been read out of the file
-        
-        var node_connections = ds_list_create();
-        ds_list_add(connections, node_connections);
-        
+        // read out the GUIDs and link them later
         var n_outbound = buffer_read(buffer, buffer_u8);
         repeat (n_outbound) {
-            ds_list_add(node_connections, buffer_read(buffer, buffer_string));
+            if (version >= DataVersions.UPDATED_EVENT_NODE_CONNECTIONS) {
+                ds_list_add(node.outbound, buffer_read(buffer, buffer_datatype));
+            } else {
+                ds_list_add(node.outbound, buffer_read(buffer, buffer_string));
+            }
         }
         
         var n_data = buffer_read(buffer, buffer_u8);
@@ -175,22 +172,29 @@ repeat (n_events) {
         // don't add the node to event.nodes because it already does it for you
         // in the constructor (how nice!)
     }
-    
-    for (var i = 0; i < n_nodes; i++) {
-        var node = event.nodes[| i];
-        var node_connection = connections[| i];
+}
+
+for (var i = 0; i < ds_list_size(Stuff.all_events); i++) {
+    for (var j = 0; j < ds_list_size(Stuff.all_events[| i].nodes); j++) {
+        var node = Stuff.all_events[| i].nodes[| j];
         
-        for (var j = 0; j < ds_list_size(node_connection); j++) {
-            ds_list_add(node.outbound, noone);
-            if (string_length(node_connection[| j]) > 0) {
-                event_connect_node(node, event_get_node(event, node_connection[| j]), j);
+        for (var k = 0; k < ds_list_size(node.outbound); k++) {
+            if (node.outbound[| k] == "") {
+                node.outbound[| k] = noone;
+                continue;
+            }
+            
+            if (version >= DataVersions.UPDATED_EVENT_NODE_CONNECTIONS) {
+                var dest = guid_get(node.outbound[| k]);
+                dest.parents[? node] = true;
+                node.outbound[| k] = dest;
+            } else {
+                var dest = event_get_node(event, node.outbound[| k]);
+                dest.parents[? node] = true;
+                node.outbound[| k] = dest;
             }
         }
-        
-        ds_list_destroy(node_connection);
     }
-    
-    ds_list_destroy(connections);
 }
 
 // by default, set the 0th event as the active event

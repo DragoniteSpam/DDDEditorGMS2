@@ -34,11 +34,11 @@ for (var i = 0; i < n_events; i++) {
         var n_outbound = ds_list_size(node.outbound);
         buffer_write(buffer, buffer_u8, n_outbound);
         for (var k = 0; k < n_outbound; k++) {
-            if (!node.outbound[| k]) {
+            if (node.outbound[| k]) {
+                buffer_write(buffer, buffer_datatype, node.outbound[| k].GUID);
+            } else {
                 // empty string signifies a terminal node
                 buffer_write(buffer, buffer_string, "");
-            } else {
-                buffer_write(buffer, buffer_string, node.outbound[| k].name);
             }
         }
         
