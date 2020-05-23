@@ -175,7 +175,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy += element.height + spacing;
     
-    var element = create_button(col2_x, yy, "Burst", col_width, eh, fa_center, null, t_emitter);
+    var element = create_button(col2_x, yy, "Burst", col_width, eh, fa_center, ui_particle_emitter_burst, t_emitter);
     ds_list_add(t_emitter.contents, element);
     
     yy += element.height + spacing;

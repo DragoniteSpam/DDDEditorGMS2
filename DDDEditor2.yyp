@@ -13861,6 +13861,14 @@
             }
         },
         {
+            "Key": "abb1571e-cd90-4198-95ab-8ef19901486b",
+            "Value": {
+                "id": "203c6427-a481-40e1-93a3-705f44b34115",
+                "resourcePath": "scripts\\ui_particle_emitter_burst\\ui_particle_emitter_burst.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "abbd567a-8c29-4074-a591-04f96ef9d207",
             "Value": {
                 "id": "a20e8e78-4244-43c7-937c-101384db0e77",
@@ -22365,6 +22373,7 @@
         "dd655b46-cd9f-41a9-8376-3c0fe900190a",
         "fa161a5f-bf59-45f3-a9c4-5b28f8e816a3",
         "90ff0d74-9af9-459d-9ae9-4b72f7d9da6e",
+        "abb1571e-cd90-4198-95ab-8ef19901486b",
         "8eff8778-d9e0-49d9-98ef-3adddcc64104",
         "84db3576-8caf-46e2-b41e-67ebeca0d69c",
         "113c99ac-1f8c-4fe5-9496-11f266891628",
