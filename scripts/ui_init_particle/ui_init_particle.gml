@@ -85,5 +85,45 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy += element.height + spacing;
     #endregion
     
+    #region tab: emitters
+    var yy = legal_y + spacing;
+    
+    var element = create_list(col1_x, yy, "Particle Emitters", "<no emitters>", col_width, eh, 24, null, false, t_emitter, mode.emitters);
+    ds_list_add(t_emitter.contents, element);
+    
+    yy += ui_get_list_height(element) + spacing;
+    
+    var element = create_button(col1_x, yy, "Add Emitter", col_width, eh, fa_center, null, t_emitter);
+    ds_list_add(t_emitter.contents, element);
+    
+    yy += element.height + spacing;
+    
+    var element = create_button(col1_x, yy, "Remove Emitter", col_width, eh, fa_center, null, t_emitter);
+    ds_list_add(t_emitter.contents, element);
+    
+    yy += element.height + spacing;
+    
+    #endregion
+    
+    #region tab: types
+    var yy = legal_y + spacing;
+    
+    var element = create_list(col1_x, yy, "Particle Types", "<no particle types>", col_width, eh, 24, null, false, t_type, mode.types);
+    ds_list_add(t_type.contents, element);
+    
+    yy += ui_get_list_height(element) + spacing;
+    
+    var element = create_button(col1_x, yy, "Add Type", col_width, eh, fa_center, null, t_type);
+    ds_list_add(t_type.contents, element);
+    
+    yy += element.height + spacing;
+    
+    var element = create_button(col1_x, yy, "Remove Type", col_width, eh, fa_center, null, t_type);
+    ds_list_add(t_type.contents, element);
+    
+    yy += element.height + spacing;
+    
+    #endregion
+    
     return id;
 }
