@@ -14,6 +14,7 @@ type = noone;
 
 draw_region = false;
 region = vertex_create_buffer();
+editor_particle_emitter_create_region(id);
 
 enum PartEmitterShapes {
     RECTANGLE, ELLIPSE, DIAMOND, LINE

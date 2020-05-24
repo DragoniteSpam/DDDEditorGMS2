@@ -2525,6 +2525,14 @@
             }
         },
         {
+            "Key": "1d38fafc-8dea-44ee-bcbb-007dfb811d66",
+            "Value": {
+                "id": "5ddb99b9-4ce2-47b7-84be-f20d8fe7eea4",
+                "resourcePath": "scripts\\vertex_point_basic\\vertex_point_basic.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "1d47f8ed-aaac-42ec-a679-4944a4a8c403",
             "Value": {
                 "id": "e2bf13c4-e4b4-43e4-aba8-e2eda61a117c",
@@ -12957,6 +12965,14 @@
             }
         },
         {
+            "Key": "9f3e7e21-14cc-4832-b649-654f4a871615",
+            "Value": {
+                "id": "4581d598-390b-4001-960a-e660f3175e27",
+                "resourcePath": "scripts\\editor_particle_emitter_create_region\\editor_particle_emitter_create_region.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "9f3fdd3f-8d7b-4224-924f-e8f29e63b75c",
             "Value": {
                 "id": "17019324-3bb7-49fc-b175-1b26ef5dba96",
@@ -21055,6 +21071,7 @@
         "70414bc1-8bf6-4caa-bc1d-173bbd6e8e2a",
         "7d50df32-f6b5-46c0-8e4c-814b3b87f1c4",
         "7ee198d3-685f-4bdb-8a0e-f386c474ae3d",
+        "1d38fafc-8dea-44ee-bcbb-007dfb811d66",
         "f32c4ca1-0737-433a-b8f5-f9fcc729837d",
         "2ae255d2-161f-4f86-aa5d-cda175c529d7",
         "95df9841-2a5d-4510-a304-f9874c62ff02",
@@ -22781,6 +22798,7 @@
         "d28e260a-edf2-4e1b-a232-256f486b7118",
         "a884fcbf-572d-4c3a-95e0-b57bff3243b4",
         "488bb7b8-3447-4188-8ac7-951e8b542103",
+        "9f3e7e21-14cc-4832-b649-654f4a871615",
         "8335ebcb-f8b8-4613-84aa-9a4fc0d07796",
         "8f0f4115-e352-4927-9396-f1832f1e8ebd",
         "64289ba3-596a-4413-bb7e-a4070b5a6eb8",
