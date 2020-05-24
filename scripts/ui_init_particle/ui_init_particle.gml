@@ -195,6 +195,20 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy += ui_get_list_height(element) + spacing;
     
+    t_emitter.name.next = t_emitter.xmin;
+    t_emitter.xmin.next = t_emitter.ymin;
+    t_emitter.ymin.next = t_emitter.xmax;
+    t_emitter.xmax.next = t_emitter.ymax;
+    t_emitter.ymax.next = t_emitter.rate;
+    t_emitter.rate.next = t_emitter.name;
+    
+    t_emitter.name.previous = t_emitter.rate;
+    t_emitter.xmin.previous = t_emitter.name;
+    t_emitter.ymin.previous = t_emitter.xmin;
+    t_emitter.xmax.previous = t_emitter.ymin;
+    t_emitter.ymax.previous = t_emitter.xmax;
+    t_emitter.rate.previous = t_emitter.ymax;
+    
     #endregion
     
     #region tab: types
@@ -496,6 +510,46 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     ds_list_add(t_type.contents, element);
     
     yy += element.height + spacing;
+    
+    t_type.name.next = t_type.speed_min;
+    t_type.speed_min.next = t_type.speed_max;
+    t_type.speed_max.next = t_type.speed_incr;
+    t_type.speed_incr.next = t_type.speed_wiggle;
+    t_type.speed_wiggle.next = t_type.direction_incr;
+    t_type.direction_incr.next = t_type.direction_wiggle;
+    t_type.direction_wiggle.next = t_type.orientation_incr;
+    t_type.orientation_incr.next = t_type.orientation_wiggle;
+    t_type.orientation_wiggle.next = t_type.gravity;
+    t_type.gravity.next = t_type.gravity_direction;
+    t_type.gravity_direction.next = t_type.xscale;
+    t_type.xscale.next = t_type.yscale;
+    t_type.yscale.next = t_type.size_min;
+    t_type.size_min.next = t_type.size_max;
+    t_type.size_max.next = t_type.size_incr;
+    t_type.size_incr.next = t_type.size_wiggle;
+    t_type.size_wiggle.next = t_type.life_min;
+    t_type.life_min.next = t_type.life_max;
+    t_type.life_max.next = t_type.name;
+    
+    t_type.name.previous = t_type.life_max;
+    t_type.speed_min.previous = t_type.name;
+    t_type.speed_max.previous = t_type.speed_min;
+    t_type.speed_incr.previous = t_type.speed_max;
+    t_type.speed_wiggle.previous = t_type.speed_incr;
+    t_type.direction_incr.previous = t_type.speed_wiggle;
+    t_type.direction_wiggle.previous = t_type.direction_incr;
+    t_type.orientation_incr.previous = t_type.direction_wiggle;
+    t_type.orientation_wiggle.previous = t_type.orientation_incr;
+    t_type.gravity.previous = t_type.orientation_wiggle;
+    t_type.gravity_direction.previous = t_type.gravity;
+    t_type.xscale.previous = t_type.gravity_direction;
+    t_type.yscale.previous = t_type.xscale;
+    t_type.size_min.previous = t_type.yscale;
+    t_type.size_max.previous = t_type.size_min;
+    t_type.size_incr.previous = t_type.size_max;
+    t_type.size_wiggle.previous = t_type.size_incr;
+    t_type.life_min.previous = t_type.size_wiggle;
+    t_type.life_max.previous = t_type.life_min;
     
     #endregion
     
