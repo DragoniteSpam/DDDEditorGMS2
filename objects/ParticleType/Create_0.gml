@@ -56,7 +56,7 @@ var f = game_get_speed(gamespeed_fps);
 part_type_life(type, life_min * f, life_max * f);
 
 update_type = noone;
-update_rate = 10;
+update_rate = 60;
 death_type = noone;
 death_rate = 10;
 

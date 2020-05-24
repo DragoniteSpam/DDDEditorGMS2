@@ -39,7 +39,7 @@ for (var i = 0; i < ds_list_size(Stuff.particle.types); i++) {
     var type_name = "type_" + string(i);
     if (type.update_type) {
         var update_name = "type_" + string(ds_list_find_index(Stuff.particle.types, type.update_type));
-        text += "part_type_step(" + type_name + ", " + string(type.update_rate) + "/ _fps, " + update_name + ");\n";
+        text += "part_type_step(" + type_name + ", ceil(" + string(type.update_rate) + "/ _fps), " + update_name + ");\n";
     }
     if (type.death_type) {
         var death_name = "type_" + string(ds_list_find_index(Stuff.particle.types, type.death_type));
@@ -61,7 +61,7 @@ for (var i = 0; i < ds_list_size(Stuff.particle.emitters); i++) {
     if (emitter.type) {
         var type_index = ds_list_find_index(Stuff.particle.types, emitter.type);
         text += ((!emitter.streaming) ? "// " : "") + "part_emitter_stream(" + sys_name + ", " + em_name + ", " +
-            "type_" + string(type_index) + ", " + string(emitter.rate) + " / _fps);\n";
+            "type_" + string(type_index) + ", ceil(" + string(emitter.rate) + " / _fps));\n";
     }
     text += "\n";
 }

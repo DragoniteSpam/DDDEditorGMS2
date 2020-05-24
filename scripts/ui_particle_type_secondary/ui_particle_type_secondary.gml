@@ -37,7 +37,7 @@ if (selection + 1) {
     yy += ui_get_list_height(el_update_list) + spacing;
     
     var el_update_rate = create_input(col1_x, yy, "Rate:", ew, eh, ui_particle_type_secondary_update_rate, type.update_rate, "particles per second", validate_double, 0, 1000, 6, vx1, vy1, vx2, vy2, dg);
-    el_update_rate.tooltip = "How the rate at which secondary particles are emitted per second.";
+    el_update_rate.tooltip = "How the rate at which secondary particles are emitted per second. Values less than 1 particle per frame will be rounded up to 1.";
     
     yy = yy_base;
     
