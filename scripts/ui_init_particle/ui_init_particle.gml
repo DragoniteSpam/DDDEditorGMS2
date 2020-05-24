@@ -520,8 +520,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     t_type.direction_wiggle.next = t_type.orientation_incr;
     t_type.orientation_incr.next = t_type.orientation_wiggle;
     t_type.orientation_wiggle.next = t_type.gravity;
-    t_type.gravity.next = t_type.gravity_direction;
-    t_type.gravity_direction.next = t_type.xscale;
+    t_type.gravity.next = t_type.xscale;
     t_type.xscale.next = t_type.yscale;
     t_type.yscale.next = t_type.size_min;
     t_type.size_min.next = t_type.size_max;
@@ -541,8 +540,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     t_type.orientation_incr.previous = t_type.direction_wiggle;
     t_type.orientation_wiggle.previous = t_type.orientation_incr;
     t_type.gravity.previous = t_type.orientation_wiggle;
-    t_type.gravity_direction.previous = t_type.gravity;
-    t_type.xscale.previous = t_type.gravity_direction;
+    t_type.xscale.previous = t_type.gravity;
     t_type.yscale.previous = t_type.xscale;
     t_type.size_min.previous = t_type.yscale;
     t_type.size_max.previous = t_type.size_min;

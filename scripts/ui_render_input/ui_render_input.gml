@@ -172,3 +172,22 @@ surface_reset_target();
 
 draw_surface(input.surface, vx1, vy1)
 draw_rectangle_colour(vx1, vy1, vx2, vy2, c_black, c_black, c_black, c_black, true);
+
+#region next and previous
+if (ui_is_active(input)) {
+    if (Controller.press_tab) {
+        Controller.press_tab = false;
+        if (keyboard_check(vk_shift)) {
+            if (input.previous) {
+                ui_activate(input.previous);
+                keyboard_string = input.previous.value;
+                return;
+            }
+        } else if (input.next) {
+            ui_activate(input.next);
+            keyboard_string = input.next.value;
+            return;
+        }
+    }
+}
+#endregion
