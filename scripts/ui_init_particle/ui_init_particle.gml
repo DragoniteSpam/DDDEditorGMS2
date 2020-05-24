@@ -222,7 +222,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy += element.height + spacing;
     
-    var element = create_list(col2_x, yy, "Shape:", "", ew, eh, 6, null, false, t_type);
+    var element = create_list(col2_x, yy, "Shape:", "", ew, eh, 6, ui_particle_type_shape, false, t_type);
     create_list_entries(element, "Pixel", "Disk", "Square", "Line", "Star", "Circle", "Ring", "Sphere", "Flare", "Spark", "Explosion", "Cloud", "Smoke", "Snow");
     element.tooltip = "The shape of the particle type. (Support for custom particle sprites may be added later.)";
     ds_list_add(t_type.contents, element);
@@ -235,24 +235,24 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy += element.height + spacing;
     
-    var element = create_input(col2_x, yy, "min:", ew, eh, null, 160, "float", validate_double, -400, 400, 4, ovx1, ovy1, ovx2, ovy2, t_type);
+    var element = create_input(col2_x, yy, "min:", ew, eh, ui_particle_type_speed_min, 160, "float", validate_double, -400, 400, 4, ovx1, ovy1, ovx2, ovy2, t_type);
     element.tooltip = "The minimum starting speed of the particle.";
     ds_list_add(t_type.contents, element);
     t_type.speed_min = element;
     
-    var element = create_input(col2_x + ew / 2, yy, "max:", ew, eh, null, 160, "float", validate_double, -400, 400, 4, ovx1, ovy1, ovx2, ovy2, t_type);
+    var element = create_input(col2_x + ew / 2, yy, "max:", ew, eh, ui_particle_type_speed_max, 160, "float", validate_double, -400, 400, 4, ovx1, ovy1, ovx2, ovy2, t_type);
     element.tooltip = "The maximum starting speed of the particle.";
     ds_list_add(t_type.contents, element);
     t_type.speed_max = element;
     
     yy += element.height + spacing;
     
-    var element = create_input(col2_x, yy, "incr:", ew, eh, null, 0, "float", validate_double, -100, 100, 4, ovx1, ovy1, ovx2, ovy2, t_type);
+    var element = create_input(col2_x, yy, "incr:", ew, eh, ui_particle_type_speed_incr, 0, "float", validate_double, -100, 100, 4, ovx1, ovy1, ovx2, ovy2, t_type);
     element.tooltip = "How much the particle speed should increase or decrease each update.";
     ds_list_add(t_type.contents, element);
     t_type.speed_incr = element;
     
-    var element = create_input(col2_x + ew / 2, yy, "wgl:", ew, eh, null, 0, "float", validate_double, -100, 100, 4, ovx1, ovy1, ovx2, ovy2, t_type);
+    var element = create_input(col2_x + ew / 2, yy, "wgl:", ew, eh, ui_particle_type_speed_wiggle, 0, "float", validate_double, -100, 100, 4, ovx1, ovy1, ovx2, ovy2, t_type);
     element.tooltip = "How much should randomly be added or subtracted to particle speed each update.";
     ds_list_add(t_type.contents, element);
     t_type.speed_wiggle = element;
@@ -267,7 +267,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     var element = create_text(col2_x, yy, "min:", ew, eh, fa_left, ew, t_type);
     ds_list_add(t_type.contents, element);
     
-    var element = create_progress_bar(col2_x + ew / 2, yy, ew / 2, eh, null, 4, 0, t_type);
+    var element = create_progress_bar(col2_x + ew / 2, yy, ew / 2, eh, ui_particle_type_direction_min, 4, 0.5, t_type);
     element.tooltip = "The minimum starting direction of the particle.";
     ds_list_add(t_type.contents, element);
     t_type.direction_min = element;
@@ -277,19 +277,19 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     var element = create_text(col2_x, yy, "max:", ew, eh, fa_left, ew, t_type);
     ds_list_add(t_type.contents, element);
     
-    var element = create_progress_bar(col2_x + ew / 2, yy, ew / 2, eh, null, 4, 0, t_type);
+    var element = create_progress_bar(col2_x + ew / 2, yy, ew / 2, eh, ui_particle_type_direction_max, 4, 0.5, t_type);
     element.tooltip = "The maximum starting direction of the particle.";
     ds_list_add(t_type.contents, element);
     t_type.direction_max = element;
     
     yy += element.height + spacing;
     
-    var element = create_input(col2_x, yy, "incr:", ew, eh, null, 0, "float", validate_double, -100, 100, 4, ovx1, ovy1, ovx2, ovy2, t_type);
+    var element = create_input(col2_x, yy, "incr:", ew, eh, ui_particle_type_direction_incr, 0, "float", validate_double, -100, 100, 4, ovx1, ovy1, ovx2, ovy2, t_type);
     element.tooltip = "How much the particle direction should increase or decrease each update.";
     ds_list_add(t_type.contents, element);
     t_type.direction_incr = element;
     
-    var element = create_input(col2_x + ew / 2, yy, "wgl:", ew, eh, null, 0, "float", validate_double, -100, 100, 4, ovx1, ovy1, ovx2, ovy2, t_type);
+    var element = create_input(col2_x + ew / 2, yy, "wgl:", ew, eh, ui_particle_type_direction_wiggle, 0, "float", validate_double, -100, 100, 4, ovx1, ovy1, ovx2, ovy2, t_type);
     element.tooltip = "How much should randomly be added or subtracted to particle direction each update.";
     ds_list_add(t_type.contents, element);
     t_type.direction_wiggle = element;
@@ -304,7 +304,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     var element = create_text(col2_x, yy, "min:", ew, eh, fa_left, ew, t_type);
     ds_list_add(t_type.contents, element);
     
-    var element = create_progress_bar(col2_x + ew / 2, yy, ew / 2, eh, null, 4, 0, t_type);
+    var element = create_progress_bar(col2_x + ew / 2, yy, ew / 2, eh, null, 4, 0.5, t_type);
     element.tooltip = "The minimum starting rotation of the particle.";
     ds_list_add(t_type.contents, element);
     t_type.orientation_min = element;
@@ -314,7 +314,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     var element = create_text(col2_x, yy, "max:", ew, eh, fa_left, ew, t_type);
     ds_list_add(t_type.contents, element);
     
-    var element = create_progress_bar(col2_x + ew / 2, yy, ew / 2, eh, null, 4, 0, t_type);
+    var element = create_progress_bar(col2_x + ew / 2, yy, ew / 2, eh, null, 4, 0.5, t_type);
     element.tooltip = "The maximum starting rotation of the particle.";
     ds_list_add(t_type.contents, element);
     t_type.orientation_max = element;
