@@ -20,7 +20,7 @@ if (selection + 1) {
     ui_input_set_value(list.root.orientation_wiggle, string(type.orientation_wiggle));
     list.root.orientation_relative.value = type.orientation_relative;
     ui_input_set_value(list.root.gravity, string(type.gravity));
-    list.root.gravity_direction.value = normalize_correct(type.gravity_direction, 0, 1, -180, 180);
+    list.root.gravity_direction.value = normalize_correct(type.gravity_direction, 0, 1, 0, 360);
     ui_list_deselect(list.root.shape);
     ui_list_select(list.root.shape, type.shape, true);
     list.root.base_color_1a.value = type.color_1a;

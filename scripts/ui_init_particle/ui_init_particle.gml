@@ -368,7 +368,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     var element = create_text(col2_x, yy, "direction:", ew, eh, fa_left, ew, t_type);
     ds_list_add(t_type.contents, element);
     
-    var element = create_progress_bar(col2_x + ew / 2, yy, ew / 2, eh, ui_particle_type_gravity_direction, 4, 0.5, t_type);
+    var element = create_progress_bar(col2_x + ew / 2, yy, ew / 2, eh, ui_particle_type_gravity_direction, 4, 0.75, t_type);
     element.tooltip = "The minimum starting rotation of the particle.";
     ds_list_add(t_type.contents, element);
     t_type.gravity_direction = element;

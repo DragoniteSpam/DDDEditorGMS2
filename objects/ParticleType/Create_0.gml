@@ -2,26 +2,31 @@ name = "Type";
 
 type = part_type_create();
 
-shape = PartTypeShapes.DISK;
+shape = PartTypeShapes.SPHERE;
+part_type_shape(type, pt_shape_sphere);
 
 speed_min = 0;
 speed_max = 0;
 speed_incr = 0;
 speed_wiggle = 0;
+part_type_speed(type, speed_min, speed_max, speed_incr, speed_wiggle);
 
 direction_min = 0;
 direction_max = 0;
 direction_incr = 0;
 direction_wiggle = 0;
+part_type_direction(type, direction_min, direction_max, direction_incr, direction_wiggle);
 
-gravity = 0;
+gravity = 0.25;
 gravity_direction = 270;
+part_type_gravity(type, gravity, gravity_direction);
 
 orientation_min = 0;
 orientation_max = 0;
 orientation_incr = 0;
 orientation_wiggle = 0;
 orientation_relative = 0;
+part_type_orientation(type, orientation_min, orientation_max, orientation_incr, orientation_wiggle, orientation_relative);
 
 color_1a = c_white;
 alpha_1 = 1;
@@ -40,11 +45,15 @@ size_min = 1;
 size_max = 1;
 size_incr = 0;
 size_wiggle = 0;
+part_type_size(type, size_min, size_max, size_incr, size_wiggle);
 xscale = 1;
 yscale = 1;
+part_type_scale(type, xscale, yscale);
 
 life_min = 2;
 life_max = 2;
+var f = game_get_speed(gamespeed_fps);
+part_type_life(type, life_min * f, life_max * f);
 
 step_type = noone;
 step_count = 10;

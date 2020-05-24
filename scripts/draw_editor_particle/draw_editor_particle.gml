@@ -20,7 +20,7 @@ draw_set_color(c_white);
 draw_set_alpha(1);
 
 if (Controller.mouse_right || Controller.press_left) {
-    if (mouse_within_view(view_current)) {
+    if (mouse_within_view(view_current) && ds_list_empty(Stuff.dialogs)) {
         var emitter = mode.emitters[| ui_list_selection(mode.ui.t_emitter.list)];
         if (emitter && emitter.type) {
             part_particles_create(mode.system, mouse_x_view, mouse_y_view, emitter.type.type, emitter.rate * Stuff.dt)
