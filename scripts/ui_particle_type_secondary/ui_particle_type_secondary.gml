@@ -29,26 +29,26 @@ if (selection + 1) {
     var yy = 64;
     var yy_base = yy;
     
-    var el_update_list = create_list(col1_x, yy, "Update", "", ew, eh, 10, null, false, dg, Stuff.particle.types);
+    var el_update_list = create_list(col1_x, yy, "Update", "", ew, eh, 10, ui_particle_type_secondary_update_type, false, dg, Stuff.particle.types);
     ui_list_select(el_update_list, ds_list_find_index(Stuff.particle.types, type.update_type), true);
     el_update_list.tooltip = "The secondary particles emitted over the lifetime of the particle. You're free to create a fork bomb by spawning particles recursively, although I'd like to ask that you don't.";
     el_update_list.entries_are = ListEntries.INSTANCES;
     
     yy += ui_get_list_height(el_update_list) + spacing;
     
-    var el_update_rate = create_input(col1_x, yy, "Rate:", ew, eh, null, type.update_count, "particles per second", validate_double, 0, 1000, 6, vx1, vy1, vx2, vy2, dg);
+    var el_update_rate = create_input(col1_x, yy, "Rate:", ew, eh, ui_particle_type_secondary_update_rate, type.update_rate, "particles per second", validate_double, 0, 1000, 6, vx1, vy1, vx2, vy2, dg);
     el_update_rate.tooltip = "How the rate at which secondary particles are emitted per second.";
     
     yy = yy_base;
     
-    var el_death_list = create_list(col2_x, yy, "Death", "", ew, eh, 10, null, false, dg, Stuff.particle.types);
+    var el_death_list = create_list(col2_x, yy, "Death", "", ew, eh, 10, ui_particle_type_secondary_death_type, false, dg, Stuff.particle.types);
     ui_list_select(el_death_list, ds_list_find_index(Stuff.particle.types, type.death_type), true);
     el_death_list.tooltip = "The secondary particles emitted when the particle is destroyed. You're free to create a fork bomb by spawning particles recursively, although I'd like to ask that you don't.";
     el_death_list.entries_are = ListEntries.INSTANCES;
     
     yy += ui_get_list_height(el_death_list) + spacing;
     
-    var el_death_rate = create_input(col2_x, yy, "Count:", ew, eh, null, type.death_count, "particles per second", validate_double, 0, 1000, 6, vx1, vy1, vx2, vy2, dg);
+    var el_death_rate = create_input(col2_x, yy, "Count:", ew, eh, ui_particle_type_secondary_death_rate, type.death_rate, "particles per second", validate_double, 0, 1000, 6, vx1, vy1, vx2, vy2, dg);
     el_death_rate.tooltip = "The number of secondary particles emitted when the particle is destroyed.";
     
     yy += el_death_rate.height + spacing;

@@ -101,6 +101,14 @@
             }
         },
         {
+            "Key": "0092396c-d3b5-45f8-9c75-6ce1d389fa8b",
+            "Value": {
+                "id": "011a4dae-34e8-4d78-9a8f-e8c8c458a51f",
+                "resourcePath": "scripts\\ui_particle_type_secondary_death_type\\ui_particle_type_secondary_death_type.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "00c122c8-5ec4-4a90-9c38-5e47ca49e306",
             "Value": {
                 "id": "259c4f59-d59a-4440-ace3-7dbf1ed58062",
@@ -2137,6 +2145,14 @@
             "Value": {
                 "id": "c26b3263-0411-4edc-9c1d-802a3c32a215",
                 "resourcePath": "scripts\\batch_tile_raw\\batch_tile_raw.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "187dc8f8-0c3a-4436-a5b0-a2bc86a752fd",
+            "Value": {
+                "id": "ef9ffdbe-ffa5-4793-83af-3cd3813ad50e",
+                "resourcePath": "scripts\\ui_particle_type_secondary_update_type\\ui_particle_type_secondary_update_type.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -8045,6 +8061,14 @@
             }
         },
         {
+            "Key": "61ee6e11-1ebe-448a-bfb4-64922c9702eb",
+            "Value": {
+                "id": "3580b007-ad1f-4953-8916-9ca47e667b37",
+                "resourcePath": "scripts\\ui_particle_type_secondary_update_rate\\ui_particle_type_secondary_update_rate.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "620d5d86-27a6-45ca-ae43-e24d460a2333",
             "Value": {
                 "id": "1d8fbb14-b962-4a4e-9b22-6ee7aaa1cbfb",
@@ -9057,6 +9081,14 @@
             "Value": {
                 "id": "0c80c876-4961-448f-bf0b-522ed68bcdfe",
                 "resourcePath": "scripts\\omu_mr_solid_on\\omu_mr_solid_on.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "6ebc5b0a-987f-4b85-ad90-6d977613fee8",
+            "Value": {
+                "id": "a63a0ee6-4516-4928-a4ec-7f7420fe3bd3",
+                "resourcePath": "scripts\\ui_particle_type_secondary_death_rate\\ui_particle_type_secondary_death_rate.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -22806,6 +22838,10 @@
         "d28e260a-edf2-4e1b-a232-256f486b7118",
         "a884fcbf-572d-4c3a-95e0-b57bff3243b4",
         "aee1c047-131a-4046-9be5-d9bbbc42cdad",
+        "187dc8f8-0c3a-4436-a5b0-a2bc86a752fd",
+        "61ee6e11-1ebe-448a-bfb4-64922c9702eb",
+        "0092396c-d3b5-45f8-9c75-6ce1d389fa8b",
+        "6ebc5b0a-987f-4b85-ad90-6d977613fee8",
         "488bb7b8-3447-4188-8ac7-951e8b542103",
         "9f3e7e21-14cc-4832-b649-654f4a871615",
         "8335ebcb-f8b8-4613-84aa-9a4fc0d07796",
