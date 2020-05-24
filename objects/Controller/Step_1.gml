@@ -104,5 +104,9 @@ help = keyboard_check(key_help) || mouse_check_button(mb_middle);
 press_help = keyboard_check_pressed(key_help) || mouse_check_button_pressed(mb_middle);
 release_help = keyboard_check_released(key_help) || mouse_check_button_released(mb_middle);
 
+tab = keyboard_check(vk_tab);
+press_tab = keyboard_check_pressed(vk_tab);
+release_tab = keyboard_check_released(vk_tab);
+
 mouse_x_delta = mouse_x - mouse_x_previous;
 mouse_y_delta = mouse_y - mouse_y_previous;

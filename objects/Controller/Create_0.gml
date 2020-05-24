@@ -46,6 +46,10 @@ help = false;
 press_help = false;
 release_help = false;
 
+tab = false;
+press_tab = false;
+release_tab = false;
+
 // hotkeys
 key_help = vk_f1;
 
