@@ -316,13 +316,13 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy += element.height + spacing;
     
-    var element = create_button(col2_x + 0 * ew / 4, yy,   "0°", ew / 4, eh, fa_center, null, t_type);
+    var element = create_button(col2_x + 0 * ew / 4, yy,   "0°", ew / 4, eh, fa_center, ui_particle_type_direction_min_auto_0, t_type);
     ds_list_add(t_type.contents, element);
-    var element = create_button(col2_x + 1 * ew / 4, yy,  "90°", ew / 4, eh, fa_center, null, t_type);
+    var element = create_button(col2_x + 1 * ew / 4, yy,  "90°", ew / 4, eh, fa_center, ui_particle_type_direction_min_auto_90, t_type);
     ds_list_add(t_type.contents, element);
-    var element = create_button(col2_x + 2 * ew / 4, yy, "180°", ew / 4, eh, fa_center, null, t_type);
+    var element = create_button(col2_x + 2 * ew / 4, yy, "180°", ew / 4, eh, fa_center, ui_particle_type_direction_min_auto_180, t_type);
     ds_list_add(t_type.contents, element);
-    var element = create_button(col2_x + 3 * ew / 4, yy, "270°", ew / 4, eh, fa_center, null, t_type);
+    var element = create_button(col2_x + 3 * ew / 4, yy, "270°", ew / 4, eh, fa_center, ui_particle_type_direction_min_auto_270, t_type);
     ds_list_add(t_type.contents, element);
     
     yy += element.height + spacing;
@@ -337,13 +337,13 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy += element.height + spacing;
     
-    var element = create_button(col2_x + 0 * ew / 4, yy,   "0°", ew / 4, eh, fa_center, null, t_type);
+    var element = create_button(col2_x + 0 * ew / 4, yy,   "0°", ew / 4, eh, fa_center, ui_particle_type_direction_max_auto_0, t_type);
     ds_list_add(t_type.contents, element);
-    var element = create_button(col2_x + 1 * ew / 4, yy,  "90°", ew / 4, eh, fa_center, null, t_type);
+    var element = create_button(col2_x + 1 * ew / 4, yy,  "90°", ew / 4, eh, fa_center, ui_particle_type_direction_max_auto_90, t_type);
     ds_list_add(t_type.contents, element);
-    var element = create_button(col2_x + 2 * ew / 4, yy, "180°", ew / 4, eh, fa_center, null, t_type);
+    var element = create_button(col2_x + 2 * ew / 4, yy, "180°", ew / 4, eh, fa_center, ui_particle_type_direction_max_auto_180, t_type);
     ds_list_add(t_type.contents, element);
-    var element = create_button(col2_x + 3 * ew / 4, yy, "270°", ew / 4, eh, fa_center, null, t_type);
+    var element = create_button(col2_x + 3 * ew / 4, yy, "270°", ew / 4, eh, fa_center, ui_particle_type_direction_max_auto_270, t_type);
     ds_list_add(t_type.contents, element);
     
     yy += element.height + spacing;
@@ -421,16 +421,16 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy += element.height + spacing / 2;
     
-    var element = create_button(col2_x + 0 * ew / 4, yy,   "0°", ew / 4, eh, fa_center, null, t_type);
+    var element = create_button(col2_x + 0 * ew / 4, yy,   "0°", ew / 4, eh, fa_center, ui_particle_type_gravity_direction_auto_0, t_type);
     element.tooltip = "Gravity attracts things to the right";
     ds_list_add(t_type.contents, element);
-    var element = create_button(col2_x + 1 * ew / 4, yy,  "90°", ew / 4, eh, fa_center, null, t_type);
+    var element = create_button(col2_x + 1 * ew / 4, yy,  "90°", ew / 4, eh, fa_center, ui_particle_type_gravity_direction_auto_90, t_type);
     element.tooltip = "Gravity attracts things upwards";
     ds_list_add(t_type.contents, element);
-    var element = create_button(col2_x + 2 * ew / 4, yy, "180°", ew / 4, eh, fa_center, null, t_type);
+    var element = create_button(col2_x + 2 * ew / 4, yy, "180°", ew / 4, eh, fa_center, ui_particle_type_gravity_direction_auto_180, t_type);
     element.tooltip = "Gravity attracts things to the left";
     ds_list_add(t_type.contents, element);
-    var element = create_button(col2_x + 3 * ew / 4, yy, "270°", ew / 4, eh, fa_center, null, t_type);
+    var element = create_button(col2_x + 3 * ew / 4, yy, "270°", ew / 4, eh, fa_center, ui_particle_type_gravity_direction_auto_270, t_type);
     element.tooltip = "Gravity attracts things downwards";
     ds_list_add(t_type.contents, element);
     
