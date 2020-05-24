@@ -139,6 +139,13 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy += element.height + spacing;
     
+    var element = create_checkbox(col2_x, yy, "Draw Region?", ew, eh, ui_particle_emitter_draw_region, false, t_emitter);
+    element.tooltip = "You can display the emitter's region on the screen if you'd like.";
+    ds_list_add(t_emitter.contents, element);
+    t_emitter.draw = element;
+    
+    yy += element.height + spacing;
+    
     var ovx1 = ew / 4;
     var ovy1 = 0;
     var ovx2 = ew / 2;

@@ -12,6 +12,9 @@ streaming = false;
 rate = 120;
 type = noone;
 
+draw_region = false;
+region = vertex_create_buffer();
+
 enum PartEmitterShapes {
     RECTANGLE, ELLIPSE, DIAMOND, LINE
 }

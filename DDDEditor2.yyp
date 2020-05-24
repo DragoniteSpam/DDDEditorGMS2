@@ -17885,6 +17885,14 @@
             }
         },
         {
+            "Key": "dd5f3b13-9703-4b30-81e3-6b625a44b16b",
+            "Value": {
+                "id": "6b54ba13-e315-472a-93e1-14f93949c621",
+                "resourcePath": "scripts\\ui_particle_emitter_draw_region\\ui_particle_emitter_draw_region.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "dd655b46-cd9f-41a9-8376-3c0fe900190a",
             "Value": {
                 "id": "39d328df-da7e-4163-a5fa-b3fe9b6c00d8",
@@ -22727,6 +22735,7 @@
         "cb129842-bf70-4909-865f-6e75fa8e3ca3",
         "7600788e-1dc9-489a-8e0d-39db5e320665",
         "ea7984c5-af8e-4a8b-af90-867077168f9d",
+        "dd5f3b13-9703-4b30-81e3-6b625a44b16b",
         "30e4e4ce-b597-460a-a4ac-eaccbd4d0ff4",
         "cd28e50e-38b4-445b-b912-0d59a531d6e5",
         "7d0fb690-1d00-44f9-a194-3006cd1e9e01",

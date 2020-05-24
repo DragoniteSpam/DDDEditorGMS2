@@ -8,6 +8,7 @@ if (selection + 1) {
     list.root.shape.value = emitter.region_shape;
     list.root.distr.value = emitter.region_distribution;
     list.root.streaming.value = emitter.streaming;
+    list.root.draw.value = emitter.draw_region;
     ui_input_set_value(list.root.name, string(emitter.name));
     ui_input_set_value(list.root.xmin, string(emitter.region_x1));
     ui_input_set_value(list.root.ymin, string(emitter.region_y1));

@@ -34,7 +34,7 @@ part_system_drawit(mode.system);
 
 if (mode.emitter_setting) {
     var emitter = mode.emitter_setting;
-    draw_set_alpha(0.5);
+    draw_set_alpha(0.75);
     draw_set_colour(c_black);
     
     if (mode.emitter_first_corner) {
@@ -58,8 +58,8 @@ if (mode.emitter_setting) {
         var ymx = max(emitter.region_y1, emitter.region_y2);
         
         draw_rectangle(0, 0, xmn, hh, false);
-        draw_rectangle(xmn, 0, xmx, ymn, false);
-        draw_rectangle(xmn, ymx, xmx, hh, false);
+        draw_rectangle(xmn + 1, 0, xmx, ymn, false);
+        draw_rectangle(xmn + 1, ymx, xmx, hh, false);
         draw_rectangle(xmx, 0, ww, hh, false);
         
         if (Controller.release_left) {
