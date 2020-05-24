@@ -5,7 +5,7 @@ var selection = ui_list_selection(picker.root.list);
 
 if (selection + 1) {
     var type = Stuff.particle.types[| selection];
-    type.color_1a = picker.value & 0x00ffffff;
-    type.alpha_1 = (picker.value >> 24) & 0xff;
+    type.color_1a = picker.value;
+    type.alpha_1 = picker.alpha;
     editor_particle_type_set_color(type);
 }
