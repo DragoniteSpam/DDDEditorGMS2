@@ -185,7 +185,15 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     element.tooltip = "Create a one-time burst of particles. The number of particles created is defined by the emission rate. Right-click in the paricle view to create a burst at the position of the mouse.";
     ds_list_add(t_emitter.contents, element);
     
-    yy += element.height + spacing;
+    var yy = legal_y + spacing;
+    
+    var element = create_list(col3_x, yy, "Type", "<no particle types>", ew, eh, 26, ui_particle_emitter_type, false, t_emitter, mode.types);
+    element.tooltip = "The particle type attached to the emitter.";
+    element.entries_are = ListEntries.INSTANCES;
+    t_emitter.types = element;
+    ds_list_add(t_emitter.contents, element);
+    
+    yy += ui_get_list_height(element) + spacing;
     
     #endregion
     

@@ -14,4 +14,5 @@ if (selection + 1) {
     ui_input_set_value(list.root.ymax, emitter.region_y2);
     list.root.streaming.value = emitter.streaming;
     ui_input_set_value(list.root.rate, emitter.rate);
+    ui_list_select(list.root.types, ds_list_find_index(Stuff.particle.types, emitter.type));
 }
