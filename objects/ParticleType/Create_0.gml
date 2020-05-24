@@ -23,12 +23,9 @@ orientation_incr = 0;
 orientation_wiggle = 0;
 orientation_relative = 0;
 
-// random colors
-color_a = c_white;
-color_b = c_white;
-// transitioning colors
-color_1 = c_white;
+color_1a = c_white;
 alpha_1 = 1;
+color_1b = c_white;
 color_2 = c_white;
 alpha_2 = 1;
 color_3 = c_white;

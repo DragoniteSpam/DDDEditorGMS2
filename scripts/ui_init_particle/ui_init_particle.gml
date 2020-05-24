@@ -366,7 +366,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy += ui_get_list_height(element) + spacing;
     
-    var element = create_color_picker(col3_x, yy, "Color 1A:", ew, eh, null, mode.back_color, vx1, vy1, vx2, vy2, t_type);
+    var element = create_color_picker(col3_x, yy, "Color 1A:", ew, eh, ui_particle_type_color_1a, c_white, vx1, vy1, vx2, vy2, t_type);
     element.tooltip = "The beginning range of colors the particle may be at the beginning of its lifetime. (If multiple colors are disabled, it will be the only color.)";
     element.allow_alpha = true;
     ds_list_add(t_type.contents, element);
@@ -374,25 +374,24 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy += element.height + spacing;
     
-    var element = create_checkbox(col3_x - spacing, yy, "", 64, eh, null, false, t_type);
+    var element = create_checkbox(col3_x - spacing, yy, "", 64, eh, ui_particle_type_color_1b_enabled, false, t_type);
     element.tooltip = "Enable or disable starting color range. (Enabling staring color range will override color transitions.)";
     ds_list_add(t_type.contents, element);
     t_type.base_color_1b_enabled = element;
     
-    var element = create_color_picker(col3_x, yy, "        1B:", ew, eh, null, mode.back_color, vx1, vy1, vx2, vy2, t_type);
-    element.tooltip = "The end range of colors the particle may be at the beginning of its lifetime.";
-    element.allow_alpha = true;
+    var element = create_color_picker(col3_x, yy, "        1B:", ew, eh, ui_particle_type_color_1b, c_white, vx1, vy1, vx2, vy2, t_type);
+    element.tooltip = "The end range of colors the particle may be at the beginning of its lifetime. (Color ranges do not support alpha.)";
     ds_list_add(t_type.contents, element);
     t_type.base_color_1b = element;
     
     yy += element.height + spacing;
     
-    var element = create_checkbox(col3_x - spacing, yy, "", 64, eh, null, false, t_type);
+    var element = create_checkbox(col3_x - spacing, yy, "", 64, eh, ui_particle_type_color_2_enabled, false, t_type);
     element.tooltip = "Enable or disable two-color transition. (Enabling staring color range will override color transitions.)";
     ds_list_add(t_type.contents, element);
     t_type.base_color_2_enabled = element;
     
-    var element = create_color_picker(col3_x, yy, "        2:", ew, eh, null, mode.back_color, vx1, vy1, vx2, vy2, t_type);
+    var element = create_color_picker(col3_x, yy, "        2:", ew, eh, ui_particle_type_color_2, c_white, vx1, vy1, vx2, vy2, t_type);
     element.tooltip = "The color the particle will be halfway through its lifetime.";
     element.allow_alpha = true;
     ds_list_add(t_type.contents, element);
@@ -400,12 +399,12 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy += element.height + spacing;
     
-    var element = create_checkbox(col3_x - spacing, yy, "", 64, eh, null, false, t_type);
+    var element = create_checkbox(col3_x - spacing, yy, "", 64, eh, ui_particle_type_color_3_enabled, false, t_type);
     element.tooltip = "Enable or disable three-color transition. (Enabling staring color range will override color transitions.)";
     ds_list_add(t_type.contents, element);
     t_type.base_color_3_enabled = element;
     
-    var element = create_color_picker(col3_x, yy, "        3:", ew, eh, null, mode.back_color, vx1, vy1, vx2, vy2, t_type);
+    var element = create_color_picker(col3_x, yy, "        3:", ew, eh, ui_particle_type_color_3, c_white, vx1, vy1, vx2, vy2, t_type);
     element.tooltip = "The color the particle will be at the end of its lifetime.";
     element.allow_alpha = true;
     ds_list_add(t_type.contents, element);
@@ -413,7 +412,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy += element.height + spacing;
     
-    var element = create_checkbox(col3_x, yy, "Additive blending?", eh, eh, null, false, t_type);
+    var element = create_checkbox(col3_x, yy, "Additive blending?", ew, eh, ui_particle_type_color_additive, false, t_type);
     element.tooltip = "Enable or disable additive color blending.";
     ds_list_add(t_type.contents, element);
     t_type.additive_blending = element;
