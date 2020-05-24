@@ -471,12 +471,12 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy += element.height + spacing;
     
-    var element = create_input(col3_x, yy, "min:", ew, eh, null, 10, "float", validate_double, 0.1, 60, 4, ovx1, ovy1, ovx2, ovy2, t_type);
+    var element = create_input(col3_x, yy, "min:", ew, eh, ui_particle_type_life_min, 10, "float", validate_double, 0.1, 60, 4, ovx1, ovy1, ovx2, ovy2, t_type);
     element.tooltip = "The minimum lifetime of the particle type, in seconds.";
     ds_list_add(t_type.contents, element);
     t_type.life_min = element;
     
-    var element = create_input(col3_x + ew / 2, yy, "max:", ew, eh, null, 10, "float", validate_double, 0.1, 60, 4, ovx1, ovy1, ovx2, ovy2, t_type);
+    var element = create_input(col3_x + ew / 2, yy, "max:", ew, eh, ui_particle_type_life_max, 10, "float", validate_double, 0.1, 60, 4, ovx1, ovy1, ovx2, ovy2, t_type);
     element.tooltip = "The maximum lifetime of the particle type, in seconds.";
     ds_list_add(t_type.contents, element);
     t_type.life_max = element;

@@ -7,4 +7,5 @@ if (selection + 1) {
     var type = Stuff.particle.types[| selection];
     type.color_2 = picker.value & 0x00ffffff;
     type.alpha_2 = (picker.value >> 24) & 0xff;
+    editor_particle_type_set_color(type);
 }

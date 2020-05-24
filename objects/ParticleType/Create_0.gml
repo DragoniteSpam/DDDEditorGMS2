@@ -26,10 +26,13 @@ orientation_relative = 0;
 color_1a = c_white;
 alpha_1 = 1;
 color_1b = c_white;
+color_1b_enabled = false;
 color_2 = c_white;
 alpha_2 = 1;
+color_2_enabled = false;
 color_3 = c_white;
 alpha_3 = 1;
+color_3_enabled = false;
 
 blend = false;
 
