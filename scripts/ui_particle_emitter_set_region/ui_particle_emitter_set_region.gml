@@ -11,4 +11,5 @@ if (selection + 1) {
     bad.x = -10000;
     bad.y = -10000;
     bad.active_shade = false;
+    part_system_automatic_update(Stuff.particle.system, false);
 }
