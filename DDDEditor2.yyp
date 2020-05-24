@@ -1205,6 +1205,14 @@
             }
         },
         {
+            "Key": "0cddae83-d9c3-49a5-b9a8-f16532ce0f2d",
+            "Value": {
+                "id": "3389eb3a-1aa3-4d84-a09c-02dd87cb9997",
+                "resourcePath": "scripts\\get_save_filename_gml\\get_save_filename_gml.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "0cf10e8e-e37f-4f4e-8d69-ac3955e5ccd6",
             "Value": {
                 "id": "fdcc46b9-9900-47a9-a499-5be705a36a15",
@@ -21395,6 +21403,7 @@
         "eafb66d1-299d-499a-b90d-dd706d2bcb31",
         "4c78b6fb-7019-4409-b04c-b356fb4179af",
         "fcf970ff-305d-4ebe-9975-49961903f151",
+        "0cddae83-d9c3-49a5-b9a8-f16532ce0f2d",
         "d848c42a-fe99-4192-8526-49ab3d77398c",
         "44327d63-897f-47cc-afd0-a490d8846c46",
         "4ef4d916-562d-4362-b777-697ab3236fa1",

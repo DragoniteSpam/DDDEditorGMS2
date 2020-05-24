@@ -2,6 +2,11 @@
 
 var button = argument0;
 
+var fn = get_save_filename_gml("particles.gml");
+if (fn == "") {
+    return;
+}
+
 var emitter_shape_names = ["ps_shape_rectangle", "ps_shape_ellipse", "ps_shape_diamond", "ps_shape_line"];
 var emitter_distribution_names = ["ps_distr_linear", "ps_distr_gaussian", "ps_distr_invgaussian"];
 var type_shape_names = ["pt_shape_pixel", "pt_shape_disk", "pt_shape_square", "pt_shape_line", "pt_shape_star", "pt_shape_circle", "pt_shape_ring", "pt_shape_sphere", "pt_shape_flare", "pt_shape_spark", "pt_shape_explosion", "pt_shape_cloud", "pt_shape_smoke", "pt_shape_snow"];
@@ -28,7 +33,6 @@ for (var i = 0; i < ds_list_size(Stuff.particle.types); i++) {
         string(type.size_incr) + ", " + string(type.size_wiggle) + ");\n";
     text += "part_type_scale(" + type_name + ", " + string(type.xscale) + ", " + string(type.yscale) + ");\n";
     text += "part_type_life(" + type_name + ", " + string(type.life_min) + " * _fps, " + string(type.life_max) + " * _fps);\n";
-    text += "\n";
 }
 
 text += "\n";
@@ -63,5 +67,9 @@ for (var i = 0; i < ds_list_size(Stuff.particle.emitters); i++) {
         text += ((!emitter.streaming) ? "// " : "") + "part_emitter_stream(" + sys_name + ", " + em_name + ", " +
             "type_" + string(type_index) + ", " + string(emitter.rate) + " / _fps);\n";
     }
-    text += "\n";
 }
+
+var fbuffer = buffer_create(1024, buffer_grow, 1);
+buffer_write(fbuffer, buffer_text, text);
+buffer_save(fbuffer, fn);
+buffer_delete(fbuffer);

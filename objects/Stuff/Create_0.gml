@@ -111,6 +111,7 @@ setting_location_ddd = setting_get("Location", "ddd", "./");
 setting_location_mesh = setting_get("Location", "mesh", "./");
 setting_location_terrain = setting_get("Location", "terrain", "./");
 setting_location_image = setting_get("Location", "image", "./");
+setting_location_gml = setting_get("Location", "gml", "./");
 setting_location_audio = setting_get("Location", "audio", "./");
 setting_location_tiled = setting_get("Location", "tiled", "./");
 
