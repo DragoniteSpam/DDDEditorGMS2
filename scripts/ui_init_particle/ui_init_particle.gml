@@ -517,7 +517,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy += element.height + spacing;
     
-    var element = create_button(col3_x, yy, "Secondary Emission", ew, eh, fa_center, null, t_type);
+    var element = create_button(col3_x, yy, "Secondary Emission", ew, eh, fa_center, ui_particle_type_secondary, t_type);
     element.tooltip = "Particles can emit other particles when they update, or upon death.";
     ds_list_add(t_type.contents, element);
     

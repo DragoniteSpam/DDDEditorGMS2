@@ -55,8 +55,8 @@ life_max = 2;
 var f = game_get_speed(gamespeed_fps);
 part_type_life(type, life_min * f, life_max * f);
 
-step_type = noone;
-step_count = 10;
+update_type = noone;
+update_count = 10;
 death_type = noone;
 death_count = 10;
 
