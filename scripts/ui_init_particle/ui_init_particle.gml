@@ -56,6 +56,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     var element = create_color_picker(col1_x, yy, "Back:", ew, eh, ui_particle_back_color, mode.back_color, vx1, vy1, vx2, vy2, t_system);
     element.tooltip = "The background color.";
+    element.active_shade = false;
     ds_list_add(t_system.contents, element);
     
     yy += element.height + spacing;
@@ -391,6 +392,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     var element = create_color_picker(col3_x, yy, "Color 1A:", ew, eh, ui_particle_type_color_1a, c_white, vx1, vy1, vx2, vy2, t_type);
     element.tooltip = "The beginning range of colors the particle may be at the beginning of its lifetime. (If multiple colors are disabled, it will be the only color.)";
     element.allow_alpha = true;
+    element.active_shade = false;
     ds_list_add(t_type.contents, element);
     t_type.base_color_1a = element;
     
@@ -403,6 +405,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     var element = create_color_picker(col3_x, yy, "        1B:", ew, eh, ui_particle_type_color_1b, c_white, vx1, vy1, vx2, vy2, t_type);
     element.tooltip = "The end range of colors the particle may be at the beginning of its lifetime. (Color ranges do not support alpha.)";
+    element.active_shade = false;
     ds_list_add(t_type.contents, element);
     t_type.base_color_1b = element;
     
@@ -416,6 +419,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     var element = create_color_picker(col3_x, yy, "        2:", ew, eh, ui_particle_type_color_2, c_white, vx1, vy1, vx2, vy2, t_type);
     element.tooltip = "The color the particle will be halfway through its lifetime.";
     element.allow_alpha = true;
+    element.active_shade = false;
     ds_list_add(t_type.contents, element);
     t_type.base_color_2 = element;
     
@@ -429,6 +433,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     var element = create_color_picker(col3_x, yy, "        3:", ew, eh, ui_particle_type_color_3, c_white, vx1, vy1, vx2, vy2, t_type);
     element.tooltip = "The color the particle will be at the end of its lifetime.";
     element.allow_alpha = true;
+    element.active_shade = false;
     ds_list_add(t_type.contents, element);
     t_type.base_color_3 = element;
     

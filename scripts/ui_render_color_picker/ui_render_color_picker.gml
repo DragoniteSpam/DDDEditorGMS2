@@ -47,6 +47,7 @@ if (picker.interactive && dialog_is_active(picker.root)) {
             var dialog = dialog_create_color_picker_options(picker, picker.value, uivc_color_picker_reflect);
             dialog.el_picker.alpha = picker.alpha;
             dialog.el_picker.allow_alpha = picker.allow_alpha;
+            dialog.active_shade = picker.active_shade;
         }
         Stuff.element_tooltip = picker;
     }

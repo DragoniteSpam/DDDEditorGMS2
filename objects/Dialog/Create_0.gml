@@ -10,6 +10,7 @@ cmx = -1;
 cmy = -1;
 
 dialog_flags = 0;
+active_shade = true;
 
 enum DialogFlags {
     IS_QUIT                 = 0x0001,

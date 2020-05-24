@@ -14,3 +14,4 @@ value_y2 = y + height;
 value = c_black;
 alpha = 1;
 allow_alpha = false;
+active_shade = true;
