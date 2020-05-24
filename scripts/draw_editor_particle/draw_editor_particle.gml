@@ -19,4 +19,13 @@ draw_rectangle(0, 0, camera_get_view_width(camera), camera_get_view_height(camer
 draw_set_color(c_white);
 draw_set_alpha(1);
 
+if (Controller.mouse_right || Controller.press_left) {
+    if (mouse_within_view(view_current)) {
+        var emitter = mode.emitters[| ui_list_selection(mode.ui.t_emitter.list)];
+        if (emitter && emitter.type) {
+            part_particles_create(mode.system, mouse_x_view, mouse_y_view, emitter.type.type, emitter.rate * Stuff.dt)
+        }
+    }
+}
+
 part_system_drawit(mode.system);

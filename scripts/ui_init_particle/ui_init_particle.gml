@@ -176,14 +176,14 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy += element.height + spacing;
     
     var element = create_input(col2_x, yy, "Rate", ew, eh, ui_particle_emitter_rate, 120, "", validate_double, 0, 999, 5, vx1, vy1, vx2, vy2, t_emitter);
-    element.tooltip = "How many particles will be emitted per second. If you create a burst, this will be the number of particles created at once.";
+    element.tooltip = "How many particles will be emitted per second (or per burst, per second).";
     ds_list_add(t_emitter.contents, element);
     t_emitter.rate = element;
     
     yy += element.height + spacing;
     
     var element = create_button(col2_x, yy, "Burst", ew, eh, fa_center, ui_particle_emitter_burst, t_emitter);
-    element.tooltip = "Create a one-time burst of particles. The number of particles created is defined by the emission rate. Right-click in the paricle view to create a burst at the position of the mouse.";
+    element.tooltip = "Create a one-time burst of particles. The number of particles created is defined by the emission rate. Right-click in the paricle view to create a stream at the position of the mouse, or left-click to create a one-time burst.";
     ds_list_add(t_emitter.contents, element);
     
     var yy = legal_y + spacing;
