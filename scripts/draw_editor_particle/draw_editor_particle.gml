@@ -83,9 +83,12 @@ if (mode.emitter_setting) {
         var ymx = max(emitter.region_y1, emitter.region_y2);
         
         draw_rectangle(0, 0, xmn, hh, false);
-        draw_rectangle(xmn + 1, 0, xmx, ymn, false);
-        draw_rectangle(xmn + 1, ymx, xmx, hh, false);
         draw_rectangle(xmx + 1, 0, ww, hh, false);
+        // things don't look super good if you try to draw zero-width rectangles
+        if (xmn != xmx) {
+            draw_rectangle(xmn + 1, 0, xmx, ymn, false);
+            draw_rectangle(xmn + 1, ymx, xmx, hh, false);
+        }
         
         if (Controller.release_left) {
             part_system_automatic_update(mode.system, mode.system_auto_update);
