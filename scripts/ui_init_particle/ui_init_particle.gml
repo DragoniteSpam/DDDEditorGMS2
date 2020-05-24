@@ -424,12 +424,12 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy += element.height + spacing;
     
-    var element = create_input(col3_x, yy, "x:", ew, eh, null, 1, "float", validate_double, 0, 40, 4, ovx1, ovy1, ovx2, ovy2, t_type);
+    var element = create_input(col3_x, yy, "x:", ew, eh, ui_particle_type_scale_x, 1, "float", validate_double, 0, 40, 4, ovx1, ovy1, ovx2, ovy2, t_type);
     element.tooltip = "The horizontal scale of the particle, before particle size (below) is applied.";
     ds_list_add(t_type.contents, element);
     t_type.xscale = element;
     
-    var element = create_input(col3_x + ew / 2, yy, "y:", ew, eh, null, 1, "float", validate_double, 0, 40, 4, ovx1, ovy1, ovx2, ovy2, t_type);
+    var element = create_input(col3_x + ew / 2, yy, "y:", ew, eh, ui_particle_type_scale_y, 1, "float", validate_double, 0, 40, 4, ovx1, ovy1, ovx2, ovy2, t_type);
     element.tooltip = "The vertical scale of the particle, before particle size (below) is applied.";
     ds_list_add(t_type.contents, element);
     t_type.yscale = element;
@@ -441,24 +441,24 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy += element.height + spacing;
     
-    var element = create_input(col3_x, yy, "min:", ew, eh, null, 1, "float", validate_double, 0, 40, 4, ovx1, ovy1, ovx2, ovy2, t_type);
+    var element = create_input(col3_x, yy, "min:", ew, eh, ui_particle_type_size_min, 1, "float", validate_double, 0, 40, 4, ovx1, ovy1, ovx2, ovy2, t_type);
     element.tooltip = "The minimum starting size of the particle.";
     ds_list_add(t_type.contents, element);
     t_type.size_min = element;
     
-    var element = create_input(col3_x + ew / 2, yy, "max:", ew, eh, null, 1, "float", validate_double, 0, 40, 4, ovx1, ovy1, ovx2, ovy2, t_type);
+    var element = create_input(col3_x + ew / 2, yy, "max:", ew, eh, ui_particle_type_size_max, 1, "float", validate_double, 0, 40, 4, ovx1, ovy1, ovx2, ovy2, t_type);
     element.tooltip = "The maximum starting size of the particle.";
     ds_list_add(t_type.contents, element);
     t_type.size_max = element;
     
     yy += element.height + spacing;
     
-    var element = create_input(col3_x, yy, "incr:", ew, eh, null, 0, "float", validate_double, -10, 10, 4, ovx1, ovy1, ovx2, ovy2, t_type);
+    var element = create_input(col3_x, yy, "incr:", ew, eh, ui_particle_type_size_incr, 0, "float", validate_double, -10, 10, 4, ovx1, ovy1, ovx2, ovy2, t_type);
     element.tooltip = "How much the particle size should increase or decrease each update.";
     ds_list_add(t_type.contents, element);
     t_type.size_incr = element;
     
-    var element = create_input(col3_x + ew / 2, yy, "wgl:", ew, eh, null, 0, "float", validate_double, -10, 10, 4, ovx1, ovy1, ovx2, ovy2, t_type);
+    var element = create_input(col3_x + ew / 2, yy, "wgl:", ew, eh, ui_particle_type_size_wiggle, 0, "float", validate_double, -10, 10, 4, ovx1, ovy1, ovx2, ovy2, t_type);
     element.tooltip = "How much should randomly be added or subtracted to particle size each update.";
     ds_list_add(t_type.contents, element);
     t_type.size_wiggle = element;
