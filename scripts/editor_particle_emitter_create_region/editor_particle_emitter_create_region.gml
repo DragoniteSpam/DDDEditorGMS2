@@ -76,12 +76,40 @@ switch (emitter.region_shape) {
         vertex_point_basic(emitter.region, dx1, dy1, 0, 0, 0, 1, dxtex1, dytex1, c_white, ao);
         break;
     case PartEmitterShapes.LINE:
-        vertex_point_basic(emitter.region, x1, y1, 0, 0, 0, 1, xtex1, ytex1, c_white, 0.125);
-        vertex_point_basic(emitter.region, x2, y1, 0, 0, 0, 1, xtex2, ytex1, c_white, 0.125);
-        vertex_point_basic(emitter.region, x2, y2, 0, 0, 0, 1, xtex2, ytex2, c_white, 0.125);
-        vertex_point_basic(emitter.region, x2, y2, 0, 0, 0, 1, xtex2, ytex2, c_white, 0.125);
-        vertex_point_basic(emitter.region, x1, y2, 0, 0, 0, 1, xtex1, ytex2, c_white, 0.125);
-        vertex_point_basic(emitter.region, x1, y1, 0, 0, 0, 1, xtex1, ytex1, c_white, 0.125);
+        var r = 16;
+        var xtexr = r / sprite_get_width(b_tileset_checkers);
+        var ytexr = r / sprite_get_height(b_tileset_checkers);
+        vertex_point_basic(emitter.region, x1, y1, 0, 0, 0, 1, xtex1, ytex1, c_white, ao);
+        vertex_point_basic(emitter.region, x1 + r, y1, 0, 0, 0, 1, xtex1 + xtexr, ytex1, c_white, ao);
+        vertex_point_basic(emitter.region, x1, y1 + r, 0, 0, 0, 1, xtex1, ytex1 + ytexr, c_white, ao);
+        
+        vertex_point_basic(emitter.region, x1 + r, y1, 0, 0, 0, 1, xtex1 + xtexr, ytex1, c_white, ao);
+        vertex_point_basic(emitter.region, xc + r, yc, 0, 0, 0, 1, xtexc + xtexr, ytexc, c_white, ac);
+        vertex_point_basic(emitter.region, xc, yc, 0, 0, 0, 1, xtexc, ytexc, c_white, ac);
+        
+        vertex_point_basic(emitter.region, xc, yc, 0, 0, 0, 1, xtexc, ytexc, c_white, ac);
+        vertex_point_basic(emitter.region, x1, y1 + r, 0, 0, 0, 1, xtex1, ytex1 + ytexr, c_white, ao);
+        vertex_point_basic(emitter.region, x1 + r, y1, 0, 0, 0, 1, xtex1 + xtexr, ytex1, c_white, ao);
+        
+        vertex_point_basic(emitter.region, x1, y1 + r, 0, 0, 0, 1, xtex1, ytex1 + ytexr, c_white, ao);
+        vertex_point_basic(emitter.region, xc, yc, 0, 0, 0, 1, xtexc, ytexc, c_white, ac);
+        vertex_point_basic(emitter.region, xc - r, yc, 0, 0, 0, 1, xtexc - xtexr, ytexc, c_white, ac);
+        
+        vertex_point_basic(emitter.region, xc + r, yc, 0, 0, 0, 1, xtexc + xtexr, ytexc, c_white, ac);
+        vertex_point_basic(emitter.region, x2, y2 - r, 0, 0, 0, 1, xtex2, ytex2 - ytexr, c_white, ao);
+        vertex_point_basic(emitter.region, xc, yc, 0, 0, 0, 1, xtexc, ytexc, c_white, ac);
+        
+        vertex_point_basic(emitter.region, xc, yc, 0, 0, 0, 1, xtexc, ytexc, c_white, ac);
+        vertex_point_basic(emitter.region, x2, y2 - r, 0, 0, 0, 1, xtex2, ytex2 - ytexr, c_white, ao);
+        vertex_point_basic(emitter.region, x2 - r, y2, 0, 0, 0, 1, xtex2 - ytexr, ytex2, c_white, ao);
+        
+        vertex_point_basic(emitter.region, x2 - r, y2, 0, 0, 0, 1, xtex2 - ytexr, ytex2, c_white, ao);
+        vertex_point_basic(emitter.region, xc - r, yc, 0, 0, 0, 1, xtexc - xtexr, ytexc, c_white, ac);
+        vertex_point_basic(emitter.region, xc, yc, 0, 0, 0, 1, xtexc, ytexc, c_white, ac);
+        
+        vertex_point_basic(emitter.region, x2, y2, 0, 0, 0, 1, xtex2, ytex2, c_white, ao);
+        vertex_point_basic(emitter.region, x2 - r, y2, 0, 0, 0, 1, xtex2 - xtexr, ytex2, c_white, ao);
+        vertex_point_basic(emitter.region, x2, y2 - r, 0, 0, 0, 1, xtex2, ytex2 - ytexr, c_white, ao);
         break;
 }
 vertex_end(emitter.region);
