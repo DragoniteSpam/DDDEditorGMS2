@@ -7,6 +7,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     #macro PART_MAXIMUM_EMITTERS 8
     #macro PART_MAXIMUM_TYPES 255
     
+    home_row_y = 64;
     var columns = 3;
     var spacing = 16;
     var legal_x = 32;
@@ -28,10 +29,6 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     var yy_header = 64;
     var yy = 64 + eh;
     var yy_base = yy;
-    
-    var header = create_text(32, 32, "[FDefault20][#0000ff]Particle Editor[]", 10000, eh, fa_left, 10000, id);
-    header.use_scribble = true;
-    ds_list_add(contents, header);
     
     // it would be best if you don't ask to access these later but if you need to these are just
     // object variables so you can look them up
@@ -93,7 +90,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     #region tab: emitters
     var yy = legal_y + spacing;
     
-    var element = create_list(col1_x, yy, "Particle Emitters", "<no emitters>", ew, eh, 24, ui_particle_emitter_select, false, t_emitter, mode.emitters);
+    var element = create_list(col1_x, yy, "Particle Emitters", "<no emitters>", ew, eh, 26, ui_particle_emitter_select, false, t_emitter, mode.emitters);
     element.tooltip = "All of the currently-defined emitters types.";
     element.entries_are = ListEntries.INSTANCES;
     t_emitter.list = element;
@@ -195,7 +192,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     #region tab: types
     var yy = legal_y + spacing;
     
-    var element = create_list(col1_x, yy, "Particle Types", "<no particle types>", ew, eh, 24, ui_particle_type_select, false, t_type, mode.types);
+    var element = create_list(col1_x, yy, "Particle Types", "<no particle types>", ew, eh, 26, ui_particle_type_select, false, t_type, mode.types);
     element.tooltip = "All of the currently-defined particle types.";
     element.entries_are = ListEntries.INSTANCES;
     t_type.list = element;
@@ -222,13 +219,11 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy += element.height + spacing;
     
-    var element = create_list(col2_x, yy, "Shape:", "", ew, eh, 6, ui_particle_type_shape, false, t_type);
-    create_list_entries(element, "Pixel", "Disk", "Square", "Line", "Star", "Circle", "Ring", "Sphere", "Flare", "Spark", "Explosion", "Cloud", "Smoke", "Snow");
-    element.tooltip = "The shape of the particle type. (Support for custom particle sprites may be added later.)";
+    var element = create_text(col2_x, yy, "Motion", ew, eh, fa_left, ew, t_type);
+    element.color = c_blue;
     ds_list_add(t_type.contents, element);
-    t_type.shape = element;
     
-    yy += ui_get_list_height(element) + spacing;
+    yy += element.height + spacing;
     
     var element = create_text(col2_x, yy, "Speed:", ew, eh, fa_left, ew, t_type);
     ds_list_add(t_type.contents, element);
@@ -338,13 +333,38 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     ds_list_add(t_type.contents, element);
     t_type.orientation_relative = element;
     
+    yy += element.height + spacing;
+    
+    var element = create_input(col2_x, yy, "Gravity:", ew, eh, null, 0, "float", validate_double, 0, 10, 3, vx1, vy1, vx2, vy2, t_type);
+    element.tooltip = "The strength of gravity acting on the particle, in pixels per step.";
+    ds_list_add(t_type.contents, element);
+    t_type.gravity = element;
+    
+    yy += element.height + spacing;
+    
+    var element = create_text(col2_x, yy, "direction:", ew, eh, fa_left, ew, t_type);
+    ds_list_add(t_type.contents, element);
+    
+    var element = create_progress_bar(col2_x + ew / 2, yy, ew / 2, eh, null, 4, 0.5, t_type);
+    element.tooltip = "The minimum starting rotation of the particle.";
+    ds_list_add(t_type.contents, element);
+    t_type.gravity_direction = element;
+    
     yy = legal_y + spacing;
     
-    var element = create_text(col3_x, yy, "Color and Size", ew, eh, fa_left, ew, t_type);
+    var element = create_text(col3_x, yy, "Graphics", ew, eh, fa_left, ew, t_type);
     element.color = c_blue;
     ds_list_add(t_type.contents, element);
     
     yy += element.height + spacing;
+    
+    var element = create_list(col3_x, yy, "Shape:", "", ew, eh, 6, ui_particle_type_shape, false, t_type);
+    create_list_entries(element, "Pixel", "Disk", "Square", "Line", "Star", "Circle", "Ring", "Sphere", "Flare", "Spark", "Explosion", "Cloud", "Smoke", "Snow");
+    element.tooltip = "The shape of the particle type. (Support for custom particle sprites may be added later.)";
+    ds_list_add(t_type.contents, element);
+    t_type.shape = element;
+    
+    yy += ui_get_list_height(element) + spacing;
     
     var element = create_color_picker(col3_x, yy, "Color 1A:", ew, eh, null, mode.back_color, vx1, vy1, vx2, vy2, t_type);
     element.tooltip = "The beginning range of colors the particle may be at the beginning of its lifetime. (If multiple colors are disabled, it will be the only color.)";
