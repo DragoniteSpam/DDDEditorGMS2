@@ -3,6 +3,8 @@ event_inherited();
 back_color = c_black;
 emitter_setting = noone;
 emitter_first_corner = true;
+emitter_set_snap = false;
+emitter_set_snap_size = 32;
 system_auto_update = true;
 
 system = part_system_create();

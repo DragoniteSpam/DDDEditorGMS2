@@ -85,6 +85,17 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     element.tooltip = "Destroy all particle types and emitters.";
     ds_list_add(t_system.contents, element);
     
+    yy += element.height + spacing;
+    
+    var element = create_checkbox(col1_x, yy, "Snap Emitter to Grid?", ew, eh, ui_particle_grid_snap, mode.emitter_set_snap, t_system);
+    element.tooltip = "When clicking on the particle view to set emitter regions, you may find it helpful to snap to the grid.";
+    ds_list_add(t_system.contents, element);
+    
+    yy += element.height + spacing;
+    
+    var element = create_input(col1_x, yy, "Distance:", ew, eh, ui_particle_grid_snap_distance, mode.emitter_set_snap_size, "reasonable integer", validate_int, 1, 128, 3, vx1, vy1, vx2, vy2, t_system);
+    element.tooltip = "The grid-snapping distance.";
+    ds_list_add(t_system.contents, element);
     yy = legal_y + spacing;
     
     var element = create_button(col2_x, yy, "Export Code", ew, eh, fa_center, ui_particle_export_code, t_system);

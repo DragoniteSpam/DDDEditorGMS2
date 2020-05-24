@@ -51,13 +51,15 @@ if (mode.emitter_setting) {
     draw_set_alpha(0.75);
     draw_set_colour(c_black);
     var kill = false;
+    var mx = mode.emitter_set_snap ? round_ext(mouse_x_view, mode.emitter_set_snap_size) : mouse_x_view;
+    var my = mode.emitter_set_snap ? round_ext(mouse_y_view, mode.emitter_set_snap_size) : mouse_y_view;
     
     if (mode.emitter_first_corner) {
         if (Controller.mouse_left) {
             if (mouse_x_view < view_get_wport(view_current)) {
                 mode.emitter_first_corner = false;
-                emitter.region_x1 = mouse_x_view;
-                emitter.region_y1 = mouse_y_view;
+                emitter.region_x1 = mx;
+                emitter.region_y1 = my;
             } else {
                 kill = true;
             }
@@ -71,8 +73,8 @@ if (mode.emitter_setting) {
     } else {
         if (Controller.mouse_left) {
             mode.emitter_first_corner = false;
-            emitter.region_x2 = mouse_x_view;
-            emitter.region_y2 = mouse_y_view;
+            emitter.region_x2 = mx;
+            emitter.region_y2 = my;
         }
         
         var xmn = min(emitter.region_x1, emitter.region_x2);
