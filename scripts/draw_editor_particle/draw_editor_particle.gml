@@ -30,7 +30,17 @@ if (Controller.mouse_right || Controller.press_left) {
     }
 }
 
+var tex_checker = sprite_get_texture(b_tileset_checkers, 0);
+
+for (var i = 0; i < ds_list_size(mode.emitters); i++) {
+    if (mode.emitters[| i].draw_region) vertex_submit(mode.emitters[| i].region, pr_trianglelist, tex_checker);
+}
+
 part_system_drawit(mode.system);
+
+for (var i = 0; i < ds_list_size(mode.emitters); i++) {
+    if (mode.emitters[| i].draw_region) {vertex_submit(mode.emitters[| i].region, pr_trianglelist, tex_checker);
+}
 
 if (mode.emitter_setting) {
     var emitter = mode.emitter_setting;
