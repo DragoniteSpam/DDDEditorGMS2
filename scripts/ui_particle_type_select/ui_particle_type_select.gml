@@ -10,12 +10,12 @@ if (selection + 1) {
     ui_input_set_value(list.root.speed_max, string(type.speed_max));
     ui_input_set_value(list.root.speed_incr, string(type.speed_incr));
     ui_input_set_value(list.root.speed_wiggle, string(type.speed_wiggle));
-    list.root.direction_min.value = normalize_correct(type.direction_min, 0, 1, -180, 180);
-    list.root.direction_max.value = normalize_correct(type.direction_max, 0, 1, -180, 180);
+    list.root.direction_min.value = normalize_correct(type.direction_min, 0, 1, 0, 360);
+    list.root.direction_max.value = normalize_correct(type.direction_max, 0, 1, 0, 360);
     ui_input_set_value(list.root.direction_incr, string(type.direction_incr));
     ui_input_set_value(list.root.direction_wiggle, string(type.direction_wiggle));
-    list.root.orientation_min.value = normalize_correct(type.orientation_min, 0, 1, -180, 180);
-    list.root.orientation_max.value = normalize_correct(type.orientation_max, 0, 1, -180, 180);
+    list.root.orientation_min.value = normalize_correct(type.orientation_min, 0, 1, 0, 360);
+    list.root.orientation_max.value = normalize_correct(type.orientation_max, 0, 1, 0, 360);
     ui_input_set_value(list.root.orientation_incr, string(type.orientation_incr));
     ui_input_set_value(list.root.orientation_wiggle, string(type.orientation_wiggle));
     list.root.orientation_relative.value = type.orientation_relative;

@@ -309,7 +309,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     var element = create_text(col2_x, yy, "min:", ew, eh, fa_left, ew, t_type);
     ds_list_add(t_type.contents, element);
     
-    var element = create_progress_bar(col2_x + ew / 2, yy, ew / 2, eh, ui_particle_type_direction_min, 4, 0.5, t_type);
+    var element = create_progress_bar(col2_x + ew / 2, yy, ew / 2, eh, ui_particle_type_direction_min, 4, 0, t_type);
     element.tooltip = "The minimum starting direction of the particle.";
     ds_list_add(t_type.contents, element);
     t_type.direction_min = element;
@@ -330,7 +330,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     var element = create_text(col2_x, yy, "max:", ew, eh, fa_left, ew, t_type);
     ds_list_add(t_type.contents, element);
     
-    var element = create_progress_bar(col2_x + ew / 2, yy, ew / 2, eh, ui_particle_type_direction_max, 4, 0.5, t_type);
+    var element = create_progress_bar(col2_x + ew / 2, yy, ew / 2, eh, ui_particle_type_direction_max, 4, 0, t_type);
     element.tooltip = "The maximum starting direction of the particle.";
     ds_list_add(t_type.contents, element);
     t_type.direction_max = element;
@@ -368,7 +368,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     var element = create_text(col2_x, yy, "min:", ew, eh, fa_left, ew, t_type);
     ds_list_add(t_type.contents, element);
     
-    var element = create_progress_bar(col2_x + ew / 2, yy, ew / 2, eh, ui_particle_type_rotation_min, 4, 0.5, t_type);
+    var element = create_progress_bar(col2_x + ew / 2, yy, ew / 2, eh, ui_particle_type_rotation_min, 4, 0, t_type);
     element.tooltip = "The minimum starting rotation of the particle.";
     ds_list_add(t_type.contents, element);
     t_type.orientation_min = element;
@@ -378,7 +378,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     var element = create_text(col2_x, yy, "max:", ew, eh, fa_left, ew, t_type);
     ds_list_add(t_type.contents, element);
     
-    var element = create_progress_bar(col2_x + ew / 2, yy, ew / 2, eh, ui_particle_type_rotation_max, 4, 0.5, t_type);
+    var element = create_progress_bar(col2_x + ew / 2, yy, ew / 2, eh, ui_particle_type_rotation_max, 4, 0, t_type);
     element.tooltip = "The maximum starting rotation of the particle.";
     ds_list_add(t_type.contents, element);
     t_type.orientation_max = element;
