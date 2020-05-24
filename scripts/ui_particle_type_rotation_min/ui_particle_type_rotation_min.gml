@@ -5,6 +5,6 @@ var selection = ui_list_selection(bar.root.list);
 
 if (selection + 1) {
     var type = Stuff.particle.types[| selection];
-    type.orientation_min = normalize_correct(bar.value, -180, 180);
+    type.orientation_min = round(normalize_correct(bar.value, -180, 180));
     part_type_orientation(type.type, type.orientation_min, type.orientation_max, type.orientation_incr, type.orientation_wiggle, type.orientation_relative);
 }
