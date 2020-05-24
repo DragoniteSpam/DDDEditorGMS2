@@ -374,7 +374,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy += element.height + spacing;
     
-    var element = create_checkbox(col3_x - spacing, yy, "", eh, eh, null, false, t_type);
+    var element = create_checkbox(col3_x - spacing, yy, "", 64, eh, null, false, t_type);
     element.tooltip = "Enable or disable starting color range. (Enabling staring color range will override color transitions.)";
     ds_list_add(t_type.contents, element);
     t_type.base_color_1b_enabled = element;
@@ -387,7 +387,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy += element.height + spacing;
     
-    var element = create_checkbox(col3_x - spacing, yy, "", eh, eh, null, false, t_type);
+    var element = create_checkbox(col3_x - spacing, yy, "", 64, eh, null, false, t_type);
     element.tooltip = "Enable or disable two-color transition. (Enabling staring color range will override color transitions.)";
     ds_list_add(t_type.contents, element);
     t_type.base_color_2_enabled = element;
@@ -400,7 +400,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy += element.height + spacing;
     
-    var element = create_checkbox(col3_x - spacing, yy, "", eh, eh, null, false, t_type);
+    var element = create_checkbox(col3_x - spacing, yy, "", 64, eh, null, false, t_type);
     element.tooltip = "Enable or disable three-color transition. (Enabling staring color range will override color transitions.)";
     ds_list_add(t_type.contents, element);
     t_type.base_color_3_enabled = element;
