@@ -29,3 +29,11 @@ if (Controller.mouse_right || Controller.press_left) {
 }
 
 part_system_drawit(mode.system);
+
+if (mode.emitter_setting) {
+    draw_set_alpha(0.5);
+    draw_set_colour(c_black);
+    draw_rectangle_colour(0, 0, camera_get_view_width(camera), camera_get_view_height(camera), c_black, c_black, c_black, c_black, false);
+    draw_set_alpha(1);
+    draw_set_colour(c_white);
+}

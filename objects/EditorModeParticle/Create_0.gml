@@ -1,7 +1,8 @@
 event_inherited();
 
 back_color = c_black;
-
+emitter_setting = noone;
+emitter_first_corner = true;
 system_auto_update = true;
 
 system = part_system_create();
