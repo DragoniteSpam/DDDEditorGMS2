@@ -34,12 +34,18 @@ switch (emitter.region_shape) {
         vertex_point_basic(emitter.region, x1, y1, 0, 0, 0, 1, xtex1, ytex1, c_white, ao);
         break;
     case PartEmitterShapes.ELLIPSE:
-        vertex_point_basic(emitter.region, x1, y1, 0, 0, 0, 1, xtex1, ytex1, c_white, 0.125);
-        vertex_point_basic(emitter.region, x2, y1, 0, 0, 0, 1, xtex2, ytex1, c_white, 0.125);
-        vertex_point_basic(emitter.region, x2, y2, 0, 0, 0, 1, xtex2, ytex2, c_white, 0.125);
-        vertex_point_basic(emitter.region, x2, y2, 0, 0, 0, 1, xtex2, ytex2, c_white, 0.125);
-        vertex_point_basic(emitter.region, x1, y2, 0, 0, 0, 1, xtex1, ytex2, c_white, 0.125);
-        vertex_point_basic(emitter.region, x1, y1, 0, 0, 0, 1, xtex1, ytex1, c_white, 0.125);
+        var xr = xc - x1;
+        var yr = yc - y1;
+        var xtexr = xtexc - xtex1;
+        var ytexr = ytexc - ytex1;
+        var precision = 32;
+        var sangle = 360 / precision;
+        for (var i = 0; i < precision; i++) {
+            var angle = sangle * i;
+            vertex_point_basic(emitter.region, xc, yc, 0, 0, 0, 1, xtexc, ytexc, c_white, ac);
+            vertex_point_basic(emitter.region, xc + xr * dcos(angle + sangle), yc - yr * dsin(angle + sangle), 0, 0, 0, 1, xtexc + xtexr * dcos(angle + sangle), ytexc - ytexr * dsin(angle + sangle), c_white, ao);
+            vertex_point_basic(emitter.region, xc + xr * dcos(angle), yc - yr * dsin(angle), 0, 0, 0, 1, xtexc + xtexr * dcos(angle), ytexc - ytexr * dsin(angle), c_white, ao);
+        }
         break;
     case PartEmitterShapes.DIAMOND:
         var dxc = xc;
@@ -82,31 +88,24 @@ switch (emitter.region_shape) {
         vertex_point_basic(emitter.region, x1, y1, 0, 0, 0, 1, xtex1, ytex1, c_white, ao);
         vertex_point_basic(emitter.region, x1 + r, y1, 0, 0, 0, 1, xtex1 + xtexr, ytex1, c_white, ao);
         vertex_point_basic(emitter.region, x1, y1 + r, 0, 0, 0, 1, xtex1, ytex1 + ytexr, c_white, ao);
-        
         vertex_point_basic(emitter.region, x1 + r, y1, 0, 0, 0, 1, xtex1 + xtexr, ytex1, c_white, ao);
         vertex_point_basic(emitter.region, xc + r, yc, 0, 0, 0, 1, xtexc + xtexr, ytexc, c_white, ac);
         vertex_point_basic(emitter.region, xc, yc, 0, 0, 0, 1, xtexc, ytexc, c_white, ac);
-        
         vertex_point_basic(emitter.region, xc, yc, 0, 0, 0, 1, xtexc, ytexc, c_white, ac);
         vertex_point_basic(emitter.region, x1, y1 + r, 0, 0, 0, 1, xtex1, ytex1 + ytexr, c_white, ao);
         vertex_point_basic(emitter.region, x1 + r, y1, 0, 0, 0, 1, xtex1 + xtexr, ytex1, c_white, ao);
-        
         vertex_point_basic(emitter.region, x1, y1 + r, 0, 0, 0, 1, xtex1, ytex1 + ytexr, c_white, ao);
         vertex_point_basic(emitter.region, xc, yc, 0, 0, 0, 1, xtexc, ytexc, c_white, ac);
         vertex_point_basic(emitter.region, xc - r, yc, 0, 0, 0, 1, xtexc - xtexr, ytexc, c_white, ac);
-        
         vertex_point_basic(emitter.region, xc + r, yc, 0, 0, 0, 1, xtexc + xtexr, ytexc, c_white, ac);
         vertex_point_basic(emitter.region, x2, y2 - r, 0, 0, 0, 1, xtex2, ytex2 - ytexr, c_white, ao);
         vertex_point_basic(emitter.region, xc, yc, 0, 0, 0, 1, xtexc, ytexc, c_white, ac);
-        
         vertex_point_basic(emitter.region, xc, yc, 0, 0, 0, 1, xtexc, ytexc, c_white, ac);
         vertex_point_basic(emitter.region, x2, y2 - r, 0, 0, 0, 1, xtex2, ytex2 - ytexr, c_white, ao);
         vertex_point_basic(emitter.region, x2 - r, y2, 0, 0, 0, 1, xtex2 - ytexr, ytex2, c_white, ao);
-        
         vertex_point_basic(emitter.region, x2 - r, y2, 0, 0, 0, 1, xtex2 - ytexr, ytex2, c_white, ao);
         vertex_point_basic(emitter.region, xc - r, yc, 0, 0, 0, 1, xtexc - xtexr, ytexc, c_white, ac);
         vertex_point_basic(emitter.region, xc, yc, 0, 0, 0, 1, xtexc, ytexc, c_white, ac);
-        
         vertex_point_basic(emitter.region, x2, y2, 0, 0, 0, 1, xtex2, ytex2, c_white, ao);
         vertex_point_basic(emitter.region, x2 - r, y2, 0, 0, 0, 1, xtex2 - xtexr, ytex2, c_white, ao);
         vertex_point_basic(emitter.region, x2, y2 - r, 0, 0, 0, 1, xtex2, ytex2 - ytexr, c_white, ao);
