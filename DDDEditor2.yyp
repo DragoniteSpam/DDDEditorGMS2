@@ -10845,6 +10845,14 @@
             }
         },
         {
+            "Key": "83d9fcff-4290-4dde-89f2-7f5b4d837773",
+            "Value": {
+                "id": "f8d47a95-8ef5-457c-acea-1be00d644f96",
+                "resourcePath": "scripts\\ui_particle_export_code\\ui_particle_export_code.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "83e1173b-5b80-44c9-917e-5310a83bb28b",
             "Value": {
                 "id": "2f665666-a98c-49e4-9821-c8058dac6808",
@@ -22784,6 +22792,7 @@
         "8928a201-4150-497e-a1dd-5a3543da6d2b",
         "7fc94665-6879-4c99-8260-4c232ca769a7",
         "1933cc1c-ce19-45a0-9109-5e2fa15c424a",
+        "83d9fcff-4290-4dde-89f2-7f5b4d837773",
         "7dc9f1dd-f25f-4455-b399-d6e4b43b2b76",
         "165bcba6-f798-4c11-9745-7723c132f44b",
         "a1d7b84f-41ac-405e-8310-b50365e418dd",

@@ -85,6 +85,12 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     element.tooltip = "Destroy all particle types and emitters.";
     ds_list_add(t_system.contents, element);
     
+    yy = legal_y + spacing;
+    
+    var element = create_button(col2_x, yy, "Export Code", ew, eh, fa_center, ui_particle_export_code, t_system);
+    element.tooltip = "View and / or save code that will generate the particles.";
+    ds_list_add(t_system.contents, element);
+    
     yy += element.height + spacing;
     #endregion
     
