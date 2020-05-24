@@ -50,12 +50,21 @@ if (mode.emitter_setting) {
     var emitter = mode.emitter_setting;
     draw_set_alpha(0.75);
     draw_set_colour(c_black);
+    var kill = false;
     
     if (mode.emitter_first_corner) {
         if (Controller.mouse_left) {
-            mode.emitter_first_corner = false;
-            emitter.region_x1 = mouse_x_view;
-            emitter.region_y1 = mouse_y_view;
+            if (mouse_x_view < view_get_wport(view_current)) {
+                mode.emitter_first_corner = false;
+                emitter.region_x1 = mouse_x_view;
+                emitter.region_y1 = mouse_y_view;
+            } else {
+                kill = true;
+            }
+        }
+        
+        if (Controller.release_right) {
+            kill = true;
         }
         
         draw_rectangle(0, 0, ww, hh, false);
@@ -74,18 +83,22 @@ if (mode.emitter_setting) {
         draw_rectangle(0, 0, xmn, hh, false);
         draw_rectangle(xmn + 1, 0, xmx, ymn, false);
         draw_rectangle(xmn + 1, ymx, xmx, hh, false);
-        draw_rectangle(xmx, 0, ww, hh, false);
+        draw_rectangle(xmx + 1, 0, ww, hh, false);
         
         if (Controller.release_left) {
             part_system_automatic_update(mode.system, mode.system_auto_update);
             part_emitter_region(Stuff.particle.system, emitter.emitter, emitter.region_x1, emitter.region_x2, emitter.region_y1, emitter.region_y2, emitter.region_shape, emitter.region_distribution);
             editor_particle_emitter_create_region(emitter);
-            dialog_destroy();
             ui_particle_emitter_select(mode.ui.t_emitter.list);
-            mode.emitter_setting = noone;
+            kill = true;
         }
     }
     
     draw_set_alpha(1);
     draw_set_colour(c_white);
+    
+    if (kill) {
+        mode.emitter_setting = noone;
+        dialog_destroy();
+    }
 }
