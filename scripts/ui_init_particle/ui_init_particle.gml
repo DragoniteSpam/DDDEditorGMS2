@@ -238,24 +238,24 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy += element.height + spacing;
     
-    var element = create_input(col2_x, yy, "min:", ew, eh, ui_particle_type_speed_min, 160, "float", validate_double, -400, 400, 4, ovx1, ovy1, ovx2, ovy2, t_type);
+    var element = create_input(col2_x, yy, "min:", ew, eh, ui_particle_type_speed_min, 160, "float", validate_double, -400, 400, 6, ovx1, ovy1, ovx2, ovy2, t_type);
     element.tooltip = "The minimum starting speed of the particle.";
     ds_list_add(t_type.contents, element);
     t_type.speed_min = element;
     
-    var element = create_input(col2_x + ew / 2, yy, "max:", ew, eh, ui_particle_type_speed_max, 160, "float", validate_double, -400, 400, 4, ovx1, ovy1, ovx2, ovy2, t_type);
+    var element = create_input(col2_x + ew / 2, yy, "max:", ew, eh, ui_particle_type_speed_max, 160, "float", validate_double, -400, 400, 6, ovx1, ovy1, ovx2, ovy2, t_type);
     element.tooltip = "The maximum starting speed of the particle.";
     ds_list_add(t_type.contents, element);
     t_type.speed_max = element;
     
     yy += element.height + spacing;
     
-    var element = create_input(col2_x, yy, "incr:", ew, eh, ui_particle_type_speed_incr, 0, "float", validate_double, -100, 100, 4, ovx1, ovy1, ovx2, ovy2, t_type);
+    var element = create_input(col2_x, yy, "incr:", ew, eh, ui_particle_type_speed_incr, 0, "float", validate_double, -100, 100, 6, ovx1, ovy1, ovx2, ovy2, t_type);
     element.tooltip = "How much the particle speed should increase or decrease each update.";
     ds_list_add(t_type.contents, element);
     t_type.speed_incr = element;
     
-    var element = create_input(col2_x + ew / 2, yy, "wgl:", ew, eh, ui_particle_type_speed_wiggle, 0, "float", validate_double, -100, 100, 4, ovx1, ovy1, ovx2, ovy2, t_type);
+    var element = create_input(col2_x + ew / 2, yy, "wgl:", ew, eh, ui_particle_type_speed_wiggle, 0, "float", validate_double, -100, 100, 6, ovx1, ovy1, ovx2, ovy2, t_type);
     element.tooltip = "How much should randomly be added or subtracted to particle speed each update.";
     ds_list_add(t_type.contents, element);
     t_type.speed_wiggle = element;
@@ -287,12 +287,12 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy += element.height + spacing;
     
-    var element = create_input(col2_x, yy, "incr:", ew, eh, ui_particle_type_direction_incr, 0, "float", validate_double, -100, 100, 4, ovx1, ovy1, ovx2, ovy2, t_type);
+    var element = create_input(col2_x, yy, "incr:", ew, eh, ui_particle_type_direction_incr, 0, "float", validate_double, -100, 100, 6, ovx1, ovy1, ovx2, ovy2, t_type);
     element.tooltip = "How much the particle direction should increase or decrease each update.";
     ds_list_add(t_type.contents, element);
     t_type.direction_incr = element;
     
-    var element = create_input(col2_x + ew / 2, yy, "wgl:", ew, eh, ui_particle_type_direction_wiggle, 0, "float", validate_double, -100, 100, 4, ovx1, ovy1, ovx2, ovy2, t_type);
+    var element = create_input(col2_x + ew / 2, yy, "wgl:", ew, eh, ui_particle_type_direction_wiggle, 0, "float", validate_double, -100, 100, 6, ovx1, ovy1, ovx2, ovy2, t_type);
     element.tooltip = "How much should randomly be added or subtracted to particle direction each update.";
     ds_list_add(t_type.contents, element);
     t_type.direction_wiggle = element;
@@ -324,12 +324,12 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy += element.height + spacing;
     
-    var element = create_input(col2_x, yy, "incr:", ew, eh, ui_particle_type_rotation_incr, 0, "float", validate_double, -100, 100, 4, ovx1, ovy1, ovx2, ovy2, t_type);
+    var element = create_input(col2_x, yy, "incr:", ew, eh, ui_particle_type_rotation_incr, 0, "float", validate_double, -100, 100, 6, ovx1, ovy1, ovx2, ovy2, t_type);
     element.tooltip = "How much the particle orientation should increase or decrease each update.";
     ds_list_add(t_type.contents, element);
     t_type.orientation_incr = element;
     
-    var element = create_input(col2_x + ew / 2, yy, "wgl:", ew, eh, ui_particle_type_rotation_wiggle, 0, "float", validate_double, -100, 100, 4, ovx1, ovy1, ovx2, ovy2, t_type);
+    var element = create_input(col2_x + ew / 2, yy, "wgl:", ew, eh, ui_particle_type_rotation_wiggle, 0, "float", validate_double, -100, 100, 6, ovx1, ovy1, ovx2, ovy2, t_type);
     element.tooltip = "How much should randomly be added or subtracted to particle orientation each update.";
     ds_list_add(t_type.contents, element);
     t_type.orientation_wiggle = element;
@@ -343,7 +343,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy += element.height + spacing;
     
-    var element = create_input(col2_x, yy, "Gravity:", ew, eh, ui_particle_type_gravity, 0, "float", validate_double, 0, 10, 3, vx1, vy1, vx2, vy2, t_type);
+    var element = create_input(col2_x, yy, "Gravity:", ew, eh, ui_particle_type_gravity, 0, "float", validate_double, 0, 10, 6, vx1, vy1, vx2, vy2, t_type);
     element.tooltip = "The strength of gravity acting on the particle, in pixels per step.";
     ds_list_add(t_type.contents, element);
     t_type.gravity = element;
@@ -432,12 +432,12 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy += element.height + spacing;
     
-    var element = create_input(col3_x, yy, "x:", ew, eh, ui_particle_type_scale_x, 1, "float", validate_double, 0, 40, 4, ovx1, ovy1, ovx2, ovy2, t_type);
+    var element = create_input(col3_x, yy, "x:", ew, eh, ui_particle_type_scale_x, 1, "float", validate_double, 0, 40, 6, ovx1, ovy1, ovx2, ovy2, t_type);
     element.tooltip = "The horizontal scale of the particle, before particle size (below) is applied.";
     ds_list_add(t_type.contents, element);
     t_type.xscale = element;
     
-    var element = create_input(col3_x + ew / 2, yy, "y:", ew, eh, ui_particle_type_scale_y, 1, "float", validate_double, 0, 40, 4, ovx1, ovy1, ovx2, ovy2, t_type);
+    var element = create_input(col3_x + ew / 2, yy, "y:", ew, eh, ui_particle_type_scale_y, 1, "float", validate_double, 0, 40, 6, ovx1, ovy1, ovx2, ovy2, t_type);
     element.tooltip = "The vertical scale of the particle, before particle size (below) is applied.";
     ds_list_add(t_type.contents, element);
     t_type.yscale = element;
@@ -449,24 +449,24 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy += element.height + spacing;
     
-    var element = create_input(col3_x, yy, "min:", ew, eh, ui_particle_type_size_min, 1, "float", validate_double, 0, 40, 4, ovx1, ovy1, ovx2, ovy2, t_type);
+    var element = create_input(col3_x, yy, "min:", ew, eh, ui_particle_type_size_min, 1, "float", validate_double, 0, 40, 6, ovx1, ovy1, ovx2, ovy2, t_type);
     element.tooltip = "The minimum starting size of the particle.";
     ds_list_add(t_type.contents, element);
     t_type.size_min = element;
     
-    var element = create_input(col3_x + ew / 2, yy, "max:", ew, eh, ui_particle_type_size_max, 1, "float", validate_double, 0, 40, 4, ovx1, ovy1, ovx2, ovy2, t_type);
+    var element = create_input(col3_x + ew / 2, yy, "max:", ew, eh, ui_particle_type_size_max, 1, "float", validate_double, 0, 40, 6, ovx1, ovy1, ovx2, ovy2, t_type);
     element.tooltip = "The maximum starting size of the particle.";
     ds_list_add(t_type.contents, element);
     t_type.size_max = element;
     
     yy += element.height + spacing;
     
-    var element = create_input(col3_x, yy, "incr:", ew, eh, ui_particle_type_size_incr, 0, "float", validate_double, -10, 10, 4, ovx1, ovy1, ovx2, ovy2, t_type);
+    var element = create_input(col3_x, yy, "incr:", ew, eh, ui_particle_type_size_incr, 0, "float", validate_double, -10, 10, 6, ovx1, ovy1, ovx2, ovy2, t_type);
     element.tooltip = "How much the particle size should increase or decrease each update.";
     ds_list_add(t_type.contents, element);
     t_type.size_incr = element;
     
-    var element = create_input(col3_x + ew / 2, yy, "wgl:", ew, eh, ui_particle_type_size_wiggle, 0, "float", validate_double, -10, 10, 4, ovx1, ovy1, ovx2, ovy2, t_type);
+    var element = create_input(col3_x + ew / 2, yy, "wgl:", ew, eh, ui_particle_type_size_wiggle, 0, "float", validate_double, -10, 10, 6, ovx1, ovy1, ovx2, ovy2, t_type);
     element.tooltip = "How much should randomly be added or subtracted to particle size each update.";
     ds_list_add(t_type.contents, element);
     t_type.size_wiggle = element;
@@ -479,12 +479,12 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy += element.height + spacing;
     
-    var element = create_input(col3_x, yy, "min:", ew, eh, ui_particle_type_life_min, 10, "float", validate_double, 0.1, 60, 4, ovx1, ovy1, ovx2, ovy2, t_type);
+    var element = create_input(col3_x, yy, "min:", ew, eh, ui_particle_type_life_min, 10, "float", validate_double, 0.1, 60, 6, ovx1, ovy1, ovx2, ovy2, t_type);
     element.tooltip = "The minimum lifetime of the particle type, in seconds.";
     ds_list_add(t_type.contents, element);
     t_type.life_min = element;
     
-    var element = create_input(col3_x + ew / 2, yy, "max:", ew, eh, ui_particle_type_life_max, 10, "float", validate_double, 0.1, 60, 4, ovx1, ovy1, ovx2, ovy2, t_type);
+    var element = create_input(col3_x + ew / 2, yy, "max:", ew, eh, ui_particle_type_life_max, 10, "float", validate_double, 0.1, 60, 6, ovx1, ovy1, ovx2, ovy2, t_type);
     element.tooltip = "The maximum lifetime of the particle type, in seconds.";
     ds_list_add(t_type.contents, element);
     t_type.life_max = element;
