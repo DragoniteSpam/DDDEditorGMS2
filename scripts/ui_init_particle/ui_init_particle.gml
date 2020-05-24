@@ -125,7 +125,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     var element = create_radio_array(col2_x, yy, "Shape:", ew, eh, ui_particle_emitter_shape, PartEmitterShapes.ELLIPSE, t_emitter);
     create_radio_array_options(element, ["Rectangle", "Ellipse", "Diamond", "Line"]);
-    element.tooltip = "The shape of the emitter, stretched between the start and end points.";
+    element.tooltip = "The shape of the emitter, stretched between the start and end points. Check the \"draw region\" option to see what it looks like.";
     ds_list_add(t_emitter.contents, element);
     t_emitter.shape = element;
     
@@ -133,7 +133,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     var element = create_radio_array(col2_x, yy, "Distribution:", ew, eh, ui_particle_emitter_distribution, PartEmitterDistributions.LINEAR, t_emitter);
     create_radio_array_options(element, ["Linear", "Gaussian", "Inverse Gaussian"]);
-    element.tooltip = "How the particles are distributed over the emission region.";
+    element.tooltip = "How the particles are distributed over the emission region.\n\nLinear: particles have an equal chance of spawning across the entire region\nGaussian: particles have a greater chance of spawning towards the center of the region.\nInverse Gaussian: particles have a greater chance of spawning towards the edges of the region.";
     ds_list_add(t_emitter.contents, element);
     t_emitter.distr = element;
     
@@ -188,8 +188,8 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy += element.height + spacing;
     
-    var element = create_input(col2_x, yy, "Rate", ew, eh, ui_particle_emitter_rate, 120, "", validate_double, 0, 999, 5, vx1, vy1, vx2, vy2, t_emitter);
-    element.tooltip = "How many particles will be emitted per second (or per burst, per second).";
+    var element = create_input(col2_x, yy, "Rate", ew, eh, ui_particle_emitter_rate, 120, "", validate_int, -1000, 1000, 5, vx1, vy1, vx2, vy2, t_emitter);
+    element.tooltip = "How many particles will be emitted per second (or per burst, per second). Negative values will result in a random chance of a particle being emitted every update.";
     ds_list_add(t_emitter.contents, element);
     t_emitter.rate = element;
     
