@@ -9,10 +9,10 @@ speed_max = 0;
 speed_incr = 0;
 speed_wiggle = 0;
 
-dir_min = 0;
-dir_max = 0;
-dir_incr = 0;
-dir_wiggle = 0;
+direction_min = 0;
+direction_max = 0;
+direction_incr = 0;
+direction_wiggle = 0;
 
 gravity = 0;
 gravity_direction = 270;

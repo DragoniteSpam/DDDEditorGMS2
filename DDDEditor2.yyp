@@ -917,6 +917,14 @@
             }
         },
         {
+            "Key": "09c745b8-926e-411c-a2f3-6237dfb45cb9",
+            "Value": {
+                "id": "47bdba85-6426-4b31-b7b7-6c4529369f2a",
+                "resourcePath": "scripts\\ui_particle_type_rotation_wiggle\\ui_particle_type_rotation_wiggle.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "09de95b6-3bc3-4bdf-b3a3-8440c65b1fa5",
             "Value": {
                 "id": "55c65707-c362-4864-8c11-212e63bf2cde",
@@ -9061,6 +9069,14 @@
             }
         },
         {
+            "Key": "6ffd34f7-4bb2-498b-92b9-d38c2b96d8bf",
+            "Value": {
+                "id": "e51c6f8b-9a13-494e-a7c2-c0b8e8382b81",
+                "resourcePath": "scripts\\ui_particle_type_rotation_min\\ui_particle_type_rotation_min.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "701fa8f4-d25e-4441-a55d-33688cfea7da",
             "Value": {
                 "id": "06da3519-2db5-4948-9f0f-70cb8b856f55",
@@ -9945,6 +9961,14 @@
             "Value": {
                 "id": "2c37f0da-660b-44b1-bdab-3e523b9ce3fa",
                 "resourcePath": "scripts\\smf__collision_get_triangle\\smf__collision_get_triangle.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "7aadc92d-e461-4c4f-8ec2-1288d33a6ae5",
+            "Value": {
+                "id": "222145a8-979e-4e55-a87d-4325fdcfcbb7",
+                "resourcePath": "scripts\\ui_particle_type_rotation_incr\\ui_particle_type_rotation_incr.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -16845,6 +16869,14 @@
             }
         },
         {
+            "Key": "d21edf25-9c08-40f5-b8b1-ff6f0e76e724",
+            "Value": {
+                "id": "fac4784d-d67c-41bd-9c55-c2fd38f74d58",
+                "resourcePath": "scripts\\ui_particle_type_rotation_max\\ui_particle_type_rotation_max.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "d223d6df-2ba1-40c8-b52d-d7b574932900",
             "Value": {
                 "id": "f3a91527-2c00-4fd2-a600-c922f5b88ef5",
@@ -17545,6 +17577,14 @@
             "Value": {
                 "id": "bf947990-cae2-4196-9783-4daf557d8ed3",
                 "resourcePath": "scripts\\safc_on_entity_ui\\safc_on_entity_ui.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "dac7ab76-1885-41b2-8ce9-f795e6497489",
+            "Value": {
+                "id": "06f04702-6dde-402e-84b3-4889717feb1c",
+                "resourcePath": "scripts\\ui_particle_type_rotation_relative\\ui_particle_type_rotation_relative.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -22459,6 +22499,11 @@
         "a81ccbbd-526c-4597-ae9b-5acffe20084e",
         "6b727fe1-2143-48b4-b66f-3860cdc65668",
         "c4d27da8-053b-4edc-b6ad-2a6572ae62c3",
+        "6ffd34f7-4bb2-498b-92b9-d38c2b96d8bf",
+        "d21edf25-9c08-40f5-b8b1-ff6f0e76e724",
+        "7aadc92d-e461-4c4f-8ec2-1288d33a6ae5",
+        "09c745b8-926e-411c-a2f3-6237dfb45cb9",
+        "dac7ab76-1885-41b2-8ce9-f795e6497489",
         "6363866f-8112-4354-9eeb-899272e353e5",
         "b071e9e8-f1a1-40cb-acb7-01693e4af942",
         "79d88758-0ab7-47cc-881f-7786957b46e9",
