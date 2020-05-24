@@ -335,7 +335,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy += element.height + spacing;
     
-    var element = create_input(col2_x, yy, "Gravity:", ew, eh, null, 0, "float", validate_double, 0, 10, 3, vx1, vy1, vx2, vy2, t_type);
+    var element = create_input(col2_x, yy, "Gravity:", ew, eh, ui_particle_type_gravity, 0, "float", validate_double, 0, 10, 3, vx1, vy1, vx2, vy2, t_type);
     element.tooltip = "The strength of gravity acting on the particle, in pixels per step.";
     ds_list_add(t_type.contents, element);
     t_type.gravity = element;
@@ -345,7 +345,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     var element = create_text(col2_x, yy, "direction:", ew, eh, fa_left, ew, t_type);
     ds_list_add(t_type.contents, element);
     
-    var element = create_progress_bar(col2_x + ew / 2, yy, ew / 2, eh, null, 4, 0.5, t_type);
+    var element = create_progress_bar(col2_x + ew / 2, yy, ew / 2, eh, ui_particle_type_gravity_direction, 4, 0.5, t_type);
     element.tooltip = "The minimum starting rotation of the particle.";
     ds_list_add(t_type.contents, element);
     t_type.gravity_direction = element;
