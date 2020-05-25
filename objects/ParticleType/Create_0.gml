@@ -2,6 +2,9 @@ name = "Type";
 
 type = part_type_create();
 
+// if custom sprites are added later, this will make serializing them easier
+sprite_builtin = true;
+
 shape = PartTypeShapes.SPHERE;
 part_type_shape(type, pt_shape_sphere);
 
