@@ -37,6 +37,7 @@ for (var i = 0; i < ds_list_size(Stuff.particle.types); i++) {
 
 text += "\n";
 
+var secondary = false;
 // secondary emission - particles must be previously defined
 for (var i = 0; i < ds_list_size(Stuff.particle.types); i++) {
     var type = Stuff.particle.types[| i];
@@ -44,14 +45,19 @@ for (var i = 0; i < ds_list_size(Stuff.particle.types); i++) {
     if (type.update_type) {
         var update_name = "type_" + string(ds_list_find_index(Stuff.particle.types, type.update_type));
         text += "part_type_step(" + type_name + ", ceil(" + string(type.update_rate) + "/ _fps), " + update_name + ");\n";
+        secondary = true;
     }
     if (type.death_type) {
         var death_name = "type_" + string(ds_list_find_index(Stuff.particle.types, type.death_type));
         text += "part_type_death(" + type_name + ", " + string(type.death_rate) + ", " + death_name + ");\n";
+        secondary = true;
     }
 }
 
-text += "\n";
+// if no secondary emissions have been defined you just get an ugly second line break
+if (secondary) {
+    text += "\n";
+}
 
 // emitters
 for (var i = 0; i < ds_list_size(Stuff.particle.emitters); i++) {
