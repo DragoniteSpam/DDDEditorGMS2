@@ -9,6 +9,6 @@
  * or the double backslash ("file.txt" isntead of ".\\file.txt").
  */
 
-#macro LOCAL_STORAGE environment_get_variable("localappdata") + "\\\\DDDEditor2\\\\"
+#macro LOCAL_STORAGE environment_get_variable("localappdata") + "\\\\" + game_project_name + "\\\\"
 
 return ds_stuff_open(LOCAL_STORAGE + argument0);
