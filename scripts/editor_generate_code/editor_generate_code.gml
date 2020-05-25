@@ -26,6 +26,22 @@ for (var i = 0; i < ds_list_size(Stuff.particle.types); i++) {
         string(type.size_incr) + ", " + string(type.size_wiggle) + ");\n";
     text += "part_type_scale(" + type_name + ", " + string(type.xscale) + ", " + string(type.yscale) + ");\n";
     text += "part_type_life(" + type_name + ", " + string(type.life_min) + " * _fps, " + string(type.life_max) + " * _fps);\n";
+    
+    if (type.color_1b_enabled) {
+        text += "part_type_color_mix(" + type_name + ", " + string(type.color_1a) + ", " + string(type.color_1b) + ");\n";
+        text += "part_type_alpha1(" + type_name + ", " + string(type.alpha_1) + ");\n";
+    } else {
+        if (type.color_3_enabled) {
+            text += "part_type_color3(" + type_name + ", " + string(type.color_1a) + ", " + string(type.color_2) + ", " + string(type.color_3) + ");\n";
+            text += "part_type_alpha3(" + type_name + ", " + string(type.alpha_1) + ", " + string(type.alpha_2) + ", " + string(type.alpha_3) + ");\n";
+        } else if (type.color_2_enabled) {
+            text += "part_type_color2(" + type_name + ", " + string(type.color_1a) + ", " + string(type.color_2) + ");\n";
+            text += "part_type_alpha2(" + type_name + ", " + string(type.alpha_1) + ", " + string(type.alpha_2) + ");\n";
+        } else {
+            text += "part_type_color1(" + type_name + ", " + string(type.color_1a) + ");\n";
+            text += "part_type_alpha1(" + type_name + ", " + string(type.alpha_1) + ");\n";
+        }
+    }
 }
 
 text += "\n";
