@@ -4,6 +4,8 @@ var type_shape_names = ["pt_shape_pixel", "pt_shape_disk", "pt_shape_square", "p
 
 var sys_name = "global._part_system";
 var text = sys_name + " = part_system_create();\n\n";
+text += "part_system_automatic_update(" + sys_name + ", " + (string(Stuff.particle.system_auto_update) ? "true" : "false") + ");\n";
+text += "part_system_automatic_draw(" + sys_name + ", true);\n";
 text += "var _fps = game_get_speed(gamespeed_fps);\n\n";
 
 // part types
