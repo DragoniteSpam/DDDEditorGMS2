@@ -9389,6 +9389,14 @@
             }
         },
         {
+            "Key": "72636f79-0359-4530-84ab-33adff67898e",
+            "Value": {
+                "id": "37fdf329-4a97-45fb-b3d5-ac290324cf6c",
+                "resourcePath": "scripts\\ui_list_color_part_emitters\\ui_list_color_part_emitters.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "727fd0a4-ad59-4db2-b989-81f34df0926d",
             "Value": {
                 "id": "d0f0ddfc-ea5e-4d6b-9182-24078f5df9a3",
@@ -22454,6 +22462,7 @@
         "bd7d68d1-60c0-4536-82ee-a7f8c19eb663",
         "f30504f6-0c38-43d5-888a-437bd205ae3f",
         "fcd4ba1d-4e32-4811-bac1-bf5c9ad661c1",
+        "72636f79-0359-4530-84ab-33adff67898e",
         "2fdf93fd-6c42-4da9-9206-347c67fc6976",
         "950a3cdf-e08c-43e0-9603-73967c4760d6",
         "e0fbacd6-8d07-41a5-b1ef-c42df2c13cfb",
