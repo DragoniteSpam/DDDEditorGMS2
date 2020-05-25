@@ -26,7 +26,7 @@ for (var i = 0; i < ds_list_size(Stuff.particle.types); i++) {
         string(type.size_incr) + ", " + string(type.size_wiggle) + ");\n";
     text += "part_type_scale(" + type_name + ", " + string(type.xscale) + ", " + string(type.yscale) + ");\n";
     text += "part_type_life(" + type_name + ", " + string(type.life_min) + " * _fps, " + string(type.life_max) + " * _fps);\n";
-    text += "part_type_blend(" + type_name + ", " + (type.additive_blending ? "true" : "false") + ");\n";
+    text += "part_type_blend(" + type_name + ", " + (type.blend ? "true" : "false") + ");\n";
     
     if (type.color_1b_enabled) {
         text += "part_type_color_mix(" + type_name + ", " + string(type.color_1a) + ", " + string(type.color_1b) + ");\n";
