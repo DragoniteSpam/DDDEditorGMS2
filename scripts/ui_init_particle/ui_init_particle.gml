@@ -99,7 +99,13 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy = legal_y + spacing;
     
     var element = create_button(col2_x, yy, "Export Code", ew, eh, fa_center, ui_particle_export_code, t_system);
-    element.tooltip = "View and / or save GML code that will generate the particles.";
+    element.tooltip = "Save the GML code that will generate the particles to a file.";
+    ds_list_add(t_system.contents, element);
+    
+    yy += element.height + spacing;
+    
+    var element = create_button(col2_x, yy, "Copy Code", ew, eh, fa_center, ui_particle_copy_code, t_system);
+    element.tooltip = "Copy the GML code that will generate the particles to the Windows clipboard.";
     ds_list_add(t_system.contents, element);
     
     yy += element.height + spacing;
