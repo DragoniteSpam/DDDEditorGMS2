@@ -110,8 +110,8 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     var element = create_list(col1_x, yy, "Particle Emitters", "<no emitters>", ew, eh, 26, ui_particle_emitter_select, false, t_emitter, mode.emitters);
     element.tooltip = "All of the currently-defined emitters types.";
-    element.render_colors = ui_list_color_part_emitters;
-    element.entries_are = ListEntries.INSTANCES;
+    element.evaluate_text = ui_list_text_particle_emitters;
+    element.entries_are = ListEntries.SCRIPT;
     t_emitter.list = element;
     ds_list_add(t_emitter.contents, element);
     
