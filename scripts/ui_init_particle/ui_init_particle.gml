@@ -4,7 +4,7 @@ var mode = argument0;
 
 // this one's not tabbed, it's just a bunch of elements floating in space
 with (instance_create_depth(0, 0, 0, UIMain)) {
-    #macro PART_MAXIMUM_EMITTERS 8
+    #macro PART_MAXIMUM_EMITTERS 16
     #macro PART_MAXIMUM_TYPES 255
     
     home_row_y = 64;
