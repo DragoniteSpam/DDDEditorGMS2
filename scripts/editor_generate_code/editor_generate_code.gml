@@ -80,7 +80,7 @@ for (var i = 0; i < ds_list_size(Stuff.particle.emitters); i++) {
     if (emitter.type) {
         var type_name = "global._part_type_" + string(ds_list_find_index(Stuff.particle.types, emitter.type));
         text += ((!emitter.streaming) ? "// " : "") + "part_emitter_stream(" + sys_name + ", " + em_name + ", " +
-            "type_" + string(type_name) + ", " + string(emitter.rate) + " / _fps);\n";
+            string(type_name) + ", " + string(emitter.rate) + " / _fps);\n";
     }
 }
 
