@@ -78,9 +78,9 @@ for (var i = 0; i < ds_list_size(Stuff.particle.emitters); i++) {
         string(emitter.region_x2) + ", " + string(emitter.region_y1) + ", " + string(emitter.region_y2) + ", " +
         emitter_shape_names[emitter.region_shape] + ", " + emitter_distribution_names[emitter.region_distribution] + ");\n";
     if (emitter.type) {
-        var type_index = ds_list_find_index(Stuff.particle.types, emitter.type);
+        var type_name = "global._part_type_" + string(ds_list_find_index(Stuff.particle.types, emitter.type));
         text += ((!emitter.streaming) ? "// " : "") + "part_emitter_stream(" + sys_name + ", " + em_name + ", " +
-            "type_" + string(type_index) + ", " + string(emitter.rate) + " / _fps);\n";
+            "type_" + string(type_name) + ", " + string(emitter.rate) + " / _fps);\n";
     }
 }
 
