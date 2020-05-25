@@ -11,7 +11,7 @@ text += "var _fps = game_get_speed(gamespeed_fps);\n\n";
 // part types
 for (var i = 0; i < ds_list_size(Stuff.particle.types); i++) {
     var type = Stuff.particle.types[| i];
-    var type_name = "type_" + string(i);
+    var type_name = "global._part_type_" + string(i);
     text += "/* " + type.name + " */\n";
     text += "" + type_name + " = part_type_create();\n";
     text += "part_type_shape(" + type_name + ", " + type_shape_names[type.shape] + ");\n";
@@ -34,14 +34,14 @@ var secondary = false;
 // secondary emission - particles must be previously defined
 for (var i = 0; i < ds_list_size(Stuff.particle.types); i++) {
     var type = Stuff.particle.types[| i];
-    var type_name = "type_" + string(i);
+    var type_name = "global._part_type_" + string(i);
     if (type.update_type) {
-        var update_name = "type_" + string(ds_list_find_index(Stuff.particle.types, type.update_type));
+        var update_name = "global._part_type_" + string(ds_list_find_index(Stuff.particle.types, type.update_type));
         text += "part_type_step(" + type_name + ", ceil(" + string(type.update_rate) + "/ _fps), " + update_name + ");\n";
         secondary = true;
     }
     if (type.death_type) {
-        var death_name = "type_" + string(ds_list_find_index(Stuff.particle.types, type.death_type));
+        var death_name = "global._part_type_" + string(ds_list_find_index(Stuff.particle.types, type.death_type));
         text += "part_type_death(" + type_name + ", " + string(type.death_rate) + ", " + death_name + ");\n";
         secondary = true;
     }
@@ -55,7 +55,7 @@ if (secondary) {
 // emitters
 for (var i = 0; i < ds_list_size(Stuff.particle.emitters); i++) {
     var emitter = Stuff.particle.emitters[| i];
-    var em_name = "emitter_" + string(i);
+    var em_name = "global._part_emitter_" + string(i);
     text += "/* " + emitter.name + " */\n";
     text += em_name + " = part_emitter_create(" + sys_name + ");\n";
     text += "part_emitter_region(" + sys_name + ", " + em_name + ", " + string(emitter.region_x1) + ", " +
