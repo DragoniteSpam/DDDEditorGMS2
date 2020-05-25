@@ -77,23 +77,47 @@ if (file_exists(FILE_SETTINGS)) {
     buffer_delete(json_buffer);
 } else {
     settings = ds_map_create();
+}
+
+if (!ds_map_exists(settings, "Map")) {
     var settings_map = ds_map_create();
-    var settings_animation = ds_map_create();
-    var settings_terrain = ds_map_create();
-    var settings_event = ds_map_create();
-    var settings_data = ds_map_create();
-    var settings_config = ds_map_create();
-    var settings_location = ds_map_create();
-    var settings_view = ds_map_create();
     ds_map_add_map(settings, "Map", settings_map);
+}
+if (!ds_map_exists(settings, "Animation")) {
+    var settings_animation = ds_map_create();
     ds_map_add_map(settings, "Animation", settings_animation);
+}
+if (!ds_map_exists(settings, "Terrain")) {
+    var settings_terrain = ds_map_create();
     ds_map_add_map(settings, "Terrain", settings_terrain);
+}
+if (!ds_map_exists(settings, "Event")) {
+    var settings_event = ds_map_create();
     ds_map_add_map(settings, "Event", settings_event);
+}
+if (!ds_map_exists(settings, "Data")) {
+    var settings_data = ds_map_create();
     ds_map_add_map(settings, "Data", settings_data);
+}
+if (!ds_map_exists(settings, "Config")) {
+    var settings_config = ds_map_create();
     ds_map_add_map(settings, "Config", settings_config);
+}
+if (!ds_map_exists(settings, "Location")) {
+    var settings_location = ds_map_create();
     ds_map_add_map(settings, "Location", settings_location);
-    ds_map_add_map(settings, "Selection", settings_config);
+}
+if (!ds_map_exists(settings, "Selection")) {
+    var settings_selection = ds_map_create();
+    ds_map_add_map(settings, "Selection", settings_selection);
+}
+if (!ds_map_exists(settings, "View")) {
+    var settings_view = ds_map_create();
     ds_map_add_map(settings, "View", settings_view);
+}
+if (!ds_map_exists(settings, "Particle")) {
+    var settings_particle = ds_map_create();
+    ds_map_add_map(settings, "Particle", settings_particle);
 }
 
 setting_color = setting_get("Config", "color", c_green);                    // BGR
@@ -105,7 +129,7 @@ setting_text_extension = setting_get("Config", "text-ext", 0);              // 0
 setting_normal_threshold = setting_get("Config", "normal-threshold", 30);   // degrees
 setting_tooltip = setting_get("Config", "tooltip", true);                   // bool
 setting_camera_fly_rate = setting_get("Config", "camera-fly", 1);           // 0.5 ... 4
-setting_alternate_middle = setting_get("Config", "alt-mid", false);      // bool
+setting_alternate_middle = setting_get("Config", "alt-mid", false);         // bool
 
 setting_location_ddd = setting_get("Location", "ddd", "./");
 setting_location_mesh = setting_get("Location", "mesh", "./");
