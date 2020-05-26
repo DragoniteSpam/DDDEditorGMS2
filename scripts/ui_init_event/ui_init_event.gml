@@ -238,6 +238,10 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     element.tooltip = "Wait for a specified amount of time, and then continue.";
     ds_list_add(t_action1.contents, element);
     yy += element_height;
+    element = create_button(legal_x + spacing, yy, "Schedule Event", element_width, element_height, fa_left, omu_event_add_schedule_event, t_action1);
+    element.tooltip = "Schedule another event to happen after a certain amount of time. (The current event will not be interrupted.)";
+    ds_list_add(t_action1.contents, element);
+    yy += element_height;
     
     yy += spacing;
     

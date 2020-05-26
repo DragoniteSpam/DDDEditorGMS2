@@ -283,29 +283,29 @@ event_prefab[EventNodeTypes.CONTROL_VARIABLES] = create_event_node_basic("Contro
     ["Relative?", DataTypes.BOOL, 0, 1, false, false]
 ]);
 event_prefab[EventNodeTypes.CONTROL_SELF_SWITCHES] = create_event_node_basic("ControlSelfSwitch", [
-    ["Entity", DataTypes.ENTITY, 0, 1, false, 0],
+    ["Entity", DataTypes.ENTITY],
     ["Index", DataTypes.INT, 0, 1, false, 0, omu_event_attain_self_switch_data, event_prefab_render_self_switch_name],
     ["State", DataTypes.BOOL, 0, 1, false, false]
 ]);
 event_prefab[EventNodeTypes.CONTROL_SELF_VARIABLES] = create_event_node_basic("ControlSelfVariable", [
-    ["Entity", DataTypes.ENTITY, 0, 1, false, 0],
+    ["Entity", DataTypes.ENTITY],
     ["Index", DataTypes.INT, 0, 1, false, 0, omu_event_attain_self_variable_data, event_prefab_render_self_variable_name],
     ["Value", DataTypes.FLOAT, 0, 1, false, 0, omu_event_attain_self_variable_data],
     ["Relative?", DataTypes.BOOL, 0, 1, false, false]
 ]);
 event_prefab[EventNodeTypes.CONTROL_TIME] = create_event_node_basic("ControlTimer", [
     ["Counting Down?", DataTypes.BOOL, 0, 1, false, true],
-    ["Initial Time (seconds)", DataTypes.INT, 0, 1, false, 0],
+    ["Initial Time (seconds)", DataTypes.INT],
     ["Display?", DataTypes.BOOL, 0, 1, false, false],
     ["Running?", DataTypes.BOOL, 0, 1, false, true],
 ]);
 event_prefab[EventNodeTypes.CONDITIONAL] = create_event_node_basic("Conditional", [
     // conditional branch nodes are not actually handled as a prefab but i'm leaving this here for reference
-    ["Type", DataTypes.INT, 0, 1, false, 0],
-    ["Index", DataTypes.INT, 0, 1, false, 0],
-    ["Comparison", DataTypes.INT, 0, 1, false, 0],
-    ["Value", DataTypes.INT, 0, 1, false, 0],
-    ["Code", DataTypes.INT, 0, 1, false, 0],
+    ["Type", DataTypes.INT],
+    ["Index", DataTypes.INT],
+    ["Comparison", DataTypes.INT],
+    ["Value", DataTypes.INT],
+    ["Code", DataTypes.INT],
 ]);
 event_prefab[EventNodeTypes.INVOKE_EVENT] = create_event_node_basic("WillNotBeImplemented", []);
 event_prefab[EventNodeTypes.COMMENT] = create_event_node_basic("ImplementedElsewhere", []);
@@ -342,7 +342,7 @@ event_prefab[EventNodeTypes.PLAY_BGM] = create_event_node_basic("PlayBGM", [
     ["Pitch", DataTypes.INT, 0, 1, false, 100]
 ]);
 event_prefab[EventNodeTypes.FADE_BGM] = create_event_node_basic("FadeBGM", [
-    ["Volume", DataTypes.INT, 0, 1, false, 0],
+    ["Volume", DataTypes.INT],
     ["Time", DataTypes.FLOAT, 0, 1, false, 1],
     ["Stop On Complete?", DataTypes.BOOL, 0, 1, false, true]
 ]);
@@ -356,7 +356,7 @@ event_prefab[EventNodeTypes.PLAY_SE] = create_event_node_basic("PlaySoundEffect"
 event_prefab[EventNodeTypes.STOP_SE] = create_event_node_basic("StopAllSoundEffects", []);
 /* */ event_prefab[EventNodeTypes.RETURN_TO_TITLE] = create_event_node_basic("NotYetImplemented", []);
 event_prefab[EventNodeTypes.CHANGE_MAP_DISPLAY_NAME] = create_event_node_basic("ChangeMapDisplayName", [
-    ["Map", DataTypes.MAP, 0, 1, false, 0],
+    ["Map", DataTypes.MAP],
     ["New Name", DataTypes.STRING, 0, 1, false, "Whatever the new name is"],
 ]);
 /* */ event_prefab[EventNodeTypes.CHANGE_MAP_TILESET] = create_event_node_basic("NotYetImplemented", []);
@@ -368,18 +368,39 @@ event_prefab[EventNodeTypes.SCRIPT] = create_event_node_basic("Script", [
 /* */ event_prefab[EventNodeTypes.AUDIO_CONTORLS] = create_event_node_basic("NotYetImplemented", []);
 event_prefab[EventNodeTypes.DEACTIVATE_EVENT] = create_event_node_basic("Deactivate This Event Page", []);
 event_prefab[EventNodeTypes.SET_ENTITY_MESH] = create_event_node_basic("SetEntityMesh", [
-    ["Entity", DataTypes.ENTITY, 0, 1, false, 0],
-    ["Mesh", DataTypes.MESH, 0, 1, false, 0],
+    ["Entity", DataTypes.ENTITY],
+    ["Mesh", DataTypes.MESH],
 ]);
 event_prefab[EventNodeTypes.SET_ENTITY_SPRITE] = create_event_node_basic("SetEntitySprite", [
-    ["Entity", DataTypes.ENTITY, 0, 1, false, 0],
-    ["Sprite", DataTypes.IMG_OVERWORLD, 0, 1, false, 0],
+    ["Entity", DataTypes.ENTITY],
+    ["Sprite", DataTypes.IMG_OVERWORLD],
 ]);
 event_prefab[EventNodeTypes.SET_MESH_ANIMATION] = create_event_node_basic("SetEntityMeshAnimation", [
-    ["Entity", DataTypes.ENTITY, 0, 1, false, 0],
+    ["Entity", DataTypes.ENTITY],
     ["Speed", DataTypes.FLOAT, 0, 1, false, 30],
     ["EndAction", DataTypes.INT, 0, 1, false, 0, omu_event_attain_mesh_anim_end_action, event_prefab_render_mesh_animation_end_action],
 ]);
+event_prefab[EventNodeTypes.SCHEDULE_EVENT] = create_event_node_basic("ScheduleEvent", [
+    ["Entity", DataTypes.ENTITY],
+    ["Event", DataTypes.EVENT],
+    ["Time", DataTypes.FLOAT],
+]);
+
+enum EventNodeTypes {
+    ENTRYPOINT,
+    TEXT,
+    CUSTOM,
+    INPUT_TEXT, SHOW_SCROLLING_TEXT,
+    CONTROL_SWITCHES, CONTROL_VARIABLES, CONTROL_SELF_SWITCHES, CONTROL_SELF_VARIABLES, CONTROL_TIME,
+    CONDITIONAL, INVOKE_EVENT, COMMENT, WAIT,
+    TRANSFER_PLAYER, SET_ENTITY_LOCATION, SCROLL_MAP, SET_MOVEMENT_ROUTE,
+    TINT_SCREEN, FLASH_SCREEN, SHAKE_SCREEN,
+    PLAY_BGM, FADE_BGM, RESUME_BGM, PLAY_SE, STOP_SE,
+    RETURN_TO_TITLE, CHANGE_MAP_DISPLAY_NAME, CHANGE_MAP_TILESET, CHANGE_MAP_BATTLE_SCENE, CHANGE_MAP_PARALLAX,
+    SCRIPT, AUDIO_CONTORLS, DEACTIVATE_EVENT, SET_MESH_ANIMATION, SCHEDULE_EVENT, ADVANCED3, ADVANCED4, ADVANCED5, ADVANCED6, ADVANCED7,
+    // i forgot to put this one with the other text nodes
+    SHOW_CHOICES, SET_ENTITY_SPRITE, SET_ENTITY_MESH,
+}
 #endregion
 
 #region editor modes (and similar things)

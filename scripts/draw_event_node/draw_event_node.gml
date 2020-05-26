@@ -498,8 +498,11 @@ switch (node.type) {
                                         show_error("you can do this now, you know", true);
                                         break;
                                     case DataTypes.TILE:
-                                    case DataTypes.EVENT:
                                         not_yet_implemented();
+                                        break;
+                                    case DataTypes.EVENT:
+                                        dialog_create_event_get_event(noone, node, i, 0);
+                                        break;
                                     case DataTypes.ENTITY:
                                         var dialog = dialog_create_refid_list(node, custom_data_list[| 0], uivc_refid_picker_event_node);
                                         dialog.node = node;

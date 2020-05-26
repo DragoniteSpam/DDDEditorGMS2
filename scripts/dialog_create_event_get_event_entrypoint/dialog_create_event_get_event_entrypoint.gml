@@ -1,6 +1,8 @@
 /// @param Dialog
+/// @param DataEvent
 
 var dialog = argument0;
+var event = argument1;
 
 // you might think it's odd that this is of a different size than the get_event
 // dialog, except when they're the same size it's easy to not notice the contents
@@ -9,6 +11,10 @@ var dw = 320;
 var dh = 544;
 
 var dg = dialog_create(dw, dh, "Select entrypoint", dialog_default, dc_close_no_questions_asked, dialog);
+dg.event = event;
+dg.node = dialog.root.node;
+dg.index = dialog.root.index;
+dg.multi_index = dialog.root.multi_index;
 
 var columns = 1;
 var spacing = 16;
@@ -29,10 +35,11 @@ dg.el_list = el_list;
 
 var current_index = -1;
 var en = 0;
-for (var i = 0; i < ds_list_size(dialog.event.nodes); i++) {
-    var node = dialog.event.nodes[| i];
+var data = dg.node.custom_data[| dg.index];
+for (var i = 0; i < ds_list_size(dg.event.nodes); i++) {
+    var node = dg.event.nodes[| i];
     if (node.type == EventNodeTypes.ENTRYPOINT) {
-        if (node.GUID == dialog.root.root.event_guid) {
+        if (node.GUID == data[| dg.multi_index]) {
             current_index = en;
         }
         ds_list_add(el_list.entries, node);
@@ -48,7 +55,7 @@ if (current_index + 1) {
 
 var b_width = 128;
 var b_height = 32;
-var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Select", b_width, b_height, fa_center, dmu_create_data_event_entrypoint_finalize, dg);
+var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Select", b_width, b_height, fa_center, dmu_create_event_event_entrypoint_finalize, dg);
 
 ds_list_add(dg.contents,
     el_list,
