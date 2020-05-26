@@ -272,7 +272,7 @@ event_prefab[EventNodeTypes.SHOW_CHOICES] = create_event_node_basic("ShowChoices
     // conditional branch nodes are not actually handled as a prefab but i'm leaving this here for reference
     ["Message", DataTypes.STRING, 0, 16, false, "Option 1"],
     ["ID", DataTypes.INT, 0, 16, false, 0],
-]);
+], ["Option 1", "Option 2"]);
 event_prefab[EventNodeTypes.CONTROL_SWITCHES] = create_event_node_basic("ControlGlobalSwitch", [
     ["Index", DataTypes.INT, 0, 1, false, -1, omu_event_attain_switch_data, event_prefab_render_switch_name],
     ["State", DataTypes.BOOL, 0, 1, false, false]
@@ -306,7 +306,7 @@ event_prefab[EventNodeTypes.CONDITIONAL] = create_event_node_basic("Conditional"
     ["Comparison", DataTypes.INT],
     ["Value", DataTypes.INT],
     ["Code", DataTypes.INT],
-]);
+], ["Success", "Fail"]);
 event_prefab[EventNodeTypes.INVOKE_EVENT] = create_event_node_basic("WillNotBeImplemented", []);
 event_prefab[EventNodeTypes.COMMENT] = create_event_node_basic("ImplementedElsewhere", []);
 event_prefab[EventNodeTypes.WAIT] = create_event_node_basic("Wait", [["Seconds", DataTypes.FLOAT, 0, 1, false, 1]]);
@@ -382,9 +382,8 @@ event_prefab[EventNodeTypes.SET_MESH_ANIMATION] = create_event_node_basic("SetEn
 ]);
 event_prefab[EventNodeTypes.SCHEDULE_EVENT] = create_event_node_basic("ScheduleEvent", [
     ["Entity", DataTypes.ENTITY],
-    ["Event", DataTypes.EVENT],
     ["Time", DataTypes.FLOAT],
-]);
+], ["Outbound", "Scheduled Event"]);
 
 enum EventNodeTypes {
     ENTRYPOINT,

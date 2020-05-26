@@ -1,11 +1,14 @@
 /// @param name
 /// @param data[][]
+/// @param outbound-names[]
 
 with (instance_create_depth(0, 0, 0, DataEventNodeCustomPersistent)) {
-    name = argument0;
+    name = argument[0];
+    var template = argument[1];
+    var outbound_names = (argument_count > 2 && is_array(argument[2])) ? argument[2] : [""];
     
-    for (var i = 0; i < array_length_1d(argument1); i++) {
-        var data = argument1[i];
+    for (var i = 0; i < array_length_1d(template); i++) {
+        var data = template[i];
         var len = array_length_1d(data);
         
         var data_name = data[0];
@@ -19,6 +22,10 @@ with (instance_create_depth(0, 0, 0, DataEventNodeCustomPersistent)) {
         
         /// @gml update lightweight objects
         ds_list_add(types, [data_name, data_type, data_guid, data_max, data_required, data_default, data_attainment, data_output]);
+    }
+    
+    for (var i = 0; i < array_length_1d(outbound_names); i++) {
+        ds_list_add(outbound, outbound_names[i]);
     }
     
     return id;

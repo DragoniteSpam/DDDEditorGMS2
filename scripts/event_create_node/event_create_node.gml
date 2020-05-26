@@ -15,6 +15,16 @@ var node = instance_create_depth(xx, yy, 0, DataEventNode);
 node.event = event;
 node.type = type;
 
+// built-in node types have their outbound count specified
+if (type != EventNodeTypes.CUSTOM) {
+    var base = Stuff.event_prefab[type];
+    if (base) {
+        repeat (ds_list_size(base.outbound) - 1) {
+            ds_list_add(node.outbound, noone);
+        }
+    }
+}
+
 switch (type) {
     case EventNodeTypes.ENTRYPOINT:
         node.is_root = true;
@@ -31,13 +41,10 @@ switch (type) {
         break;
     case EventNodeTypes.SHOW_CHOICES:
         node.name = "Choose";
-        ds_list_add(node.outbound, noone);                      // there are always one more outbound nodes than the number of branches - the last one is for the final "if cancelled"
         node.data[| 0] = "Option 0";
         break;
     case EventNodeTypes.CONDITIONAL:
         node.name = "Branch";
-        // there are always one more outbound nodes than the number of branches - the last one is for the final "else"
-        ds_list_add(node.outbound, noone);
         var list_branch_types = ds_list_create();
         var list_branch_indices = ds_list_create();
         var list_branch_comparisons = ds_list_create();
@@ -65,8 +72,8 @@ switch (type) {
         if (type != EventNodeTypes.CUSTOM) {
             custom_guid = Stuff.event_prefab[type].GUID;
         }
-        
         var custom = guid_get(custom_guid);
+        
         if (custom) {
             node.custom_guid = custom_guid;
             node.name = custom.name;

@@ -11,4 +11,3 @@ internal_name = "DATA_" + string(GUID);
 
 types = ds_list_create();
 outbound = ds_list_create();
-ds_list_add(outbound, "");
