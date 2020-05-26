@@ -65,10 +65,11 @@ var y2 = y1 + dialog.height;
 var tx = x1 + 32;
 var ty = y1 + header_height / 2;
 
-if (active && dialog.active_shade) {
+if (active && dialog.active_shade && !Stuff.drawn_dialog_shade) {
     draw_set_alpha(Stuff.setting_focus_alpha);
     draw_rectangle_colour(0, 0, window_get_width(), window_get_height(), c_black, c_black, c_black, c_black, false);
     draw_set_alpha(1);
+    Stuff.drawn_dialog_shade = true;
 }
 
 // NOW you're allowed to draw stuff
