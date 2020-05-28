@@ -54,7 +54,7 @@ create_list_entries(el_types,
     ["Image: Autotiles", c_blue], ["Image: Tilesets", c_blue],
     ["Image: Battlers", c_blue], ["Image: Overworlds", c_blue],
     ["Image: Particles", c_blue], ["Image: UI", c_blue],
-    ["Image: Skybox.", c_blue], ["Image: Misc.", c_blue],
+    ["Image: Skybox", c_blue], ["Image: Misc.", c_blue],
     ["Audio: BGM", c_purple], ["Audio: SE", c_purple],
     ["Meshes", c_green],
 );

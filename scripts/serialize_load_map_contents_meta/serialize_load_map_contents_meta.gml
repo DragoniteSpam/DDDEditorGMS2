@@ -25,6 +25,9 @@ map.base_encounter_rate =       buffer_read(buffer, buffer_u32);
 map.base_encounter_deviation =  buffer_read(buffer, buffer_u32);
 map.water_level =               buffer_read(buffer, buffer_f32);
 map.light_ambient_colour =      buffer_read(buffer, buffer_u32);
+if (version >= DataVersions.MAP_SKYBOX_DATA) {
+    map.skybox =  buffer_read(buffer, buffer_datatype);
+}
 
 var bools =                     buffer_read(buffer, buffer_u32);
 map.indoors =                   unpack(bools, 0);

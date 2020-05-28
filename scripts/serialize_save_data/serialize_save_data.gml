@@ -99,5 +99,6 @@ enum DataVersions {
     NO_EVENT_PAGE_GUID                  = 107,
     MESH_ANIMATION                      = 108,
     UPDATED_EVENT_NODE_CONNECTIONS      = 109,
+    MAP_SKYBOX_DATA                     = 110,
     _CURRENT /* = whatever the last one is + 1 */
 }

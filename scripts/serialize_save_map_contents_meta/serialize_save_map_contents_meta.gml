@@ -22,6 +22,7 @@ buffer_write(buffer, buffer_u32, map.base_encounter_rate);
 buffer_write(buffer, buffer_u32, map.base_encounter_deviation);
 buffer_write(buffer, buffer_f32, map.water_level);
 buffer_write(buffer, buffer_u32, map.light_ambient_colour);
+buffer_write(buffer, buffer_datatype, map.skybox);
 
 var bools = pack(
     map.indoors,
