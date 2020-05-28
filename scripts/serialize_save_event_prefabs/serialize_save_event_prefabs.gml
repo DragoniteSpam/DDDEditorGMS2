@@ -81,6 +81,7 @@ for (var i = 0; i < n_prefabs; i++) {
                     case DataTypes.IMG_OVERWORLD:
                     case DataTypes.IMG_PARTICLE:
                     case DataTypes.IMG_UI:
+                    case DataTypes.IMG_SKYBOX:
                     case DataTypes.IMG_TILE_ANIMATION:
                         var save_type = buffer_datatype;
                         break;

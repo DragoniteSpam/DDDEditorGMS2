@@ -40,6 +40,7 @@ if (data) {
             case DataTypes.IMG_PARTICLE:
             case DataTypes.IMG_UI:
             case DataTypes.IMG_ETC:
+            case DataTypes.IMG_SKYBOX:
             case DataTypes.IMG_TILE_ANIMATION:
             case DataTypes.AUDIO_BGM:
             case DataTypes.AUDIO_SE:

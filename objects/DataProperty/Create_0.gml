@@ -38,13 +38,14 @@ enum DataTypes {
     AUDIO_SE,        // list
     ANIMATION,        // list
     ENTITY,
-    MAP,            // list
+    MAP,                // list
     IMG_BATTLER,
     IMG_OVERWORLD,
     IMG_PARTICLE,
     IMG_UI,
     IMG_ETC,
     EVENT,
+    IMG_SKYBOX,
     _COUNT
 }
 
@@ -55,11 +56,13 @@ enum DataTypes {
  *  3. case in uivc_list_data_list_select
  *  4. case in draw_event_node - in four different switch statements (can that be simplified?)
  *  5. case in ui_init_game_data_activate (the big one)
- *  6. case in ui_init_game_data_refresh
- *  7. case in dialog_create_data_instance_property_list
+ *  6. case in ui_init_game_data_refresh - in two different switch statements
+ *  7. case in dialog_create_data_instance_property_list - in two different switch statemetns
  *  8. case in serialize_load_data_instances
+ *          and the equivalent in the game
  *  9. case in serialize_save_data_instances
  *  10. case in serialize_load_events
+ *          and the equivalent in the game
  *  11. case in serialize_save_events
  *  12. text in the lists in dialog_create_select_data_types_ext (and the color, if applicable)
  *  13. case in draw_active_event
@@ -67,10 +70,14 @@ enum DataTypes {
  *  15. case in dialog_entity_data_enable_by_type
  *  16. case in serialize_save_entity
  *  17. the equilvalent in serialize_load_entity
+ *          and the equivalent in the game
  *  18. case in serialize_load_event_prefabs
+ *          and the equivalent in the game
  *  19. case in serialize_save_event_prefabs
  *  20. case in serialize_save_map_contents_meta
  *  21. case in serialize_load_map_contents_meta
+ *          and the equivalent in the game
+ *  22. the main save and load script(s)
  */
 
 enum NumberScales {

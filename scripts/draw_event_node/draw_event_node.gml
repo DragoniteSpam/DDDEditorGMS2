@@ -358,6 +358,7 @@ switch (node.type) {
                 case DataTypes.IMG_PARTICLE:
                 case DataTypes.IMG_UI:
                 case DataTypes.IMG_ETC:
+                case DataTypes.IMG_SKYBOX:
                 case DataTypes.IMG_TILE_ANIMATION:
                 case DataTypes.ENTITY:
                 case DataTypes.MAP:
@@ -413,6 +414,7 @@ switch (node.type) {
                     case DataTypes.IMG_PARTICLE:
                     case DataTypes.IMG_UI:
                     case DataTypes.IMG_ETC:
+                    case DataTypes.IMG_SKYBOX:
                     case DataTypes.IMG_TILE_ANIMATION:
                     case DataTypes.ENTITY:
                     case DataTypes.MAP:
@@ -493,6 +495,9 @@ switch (node.type) {
                                         break;
                                     case DataTypes.IMG_ETC:
                                         dialog_create_event_node_img_etc(noone, node, i, 0);
+                                        break;
+                                    case DataTypes.IMG_SKYBOX:
+                                        dialog_create_event_node_img_skybox(noone, node, i, 0);
                                         break;
                                     case DataTypes.IMG_TILE_ANIMATION:
                                         show_error("you can do this now, you know", true);
@@ -614,6 +619,11 @@ switch (node.type) {
                         case DataTypes.IMG_ETC:
                             var setdata = guid_get(custom_data_list[| 0]);
                             message = message + "(misc): ";
+                            output_string = setdata ? setdata.name : "<null>";
+                            break;
+                        case DataTypes.IMG_SKYBOX:
+                            var setdata = guid_get(custom_data_list[| 0]);
+                            message = message + "(sky): ";
                             output_string = setdata ? setdata.name : "<null>";
                             break;
                         case DataTypes.IMG_TILE_ANIMATION:

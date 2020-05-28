@@ -100,6 +100,7 @@ repeat (n_generic) {
         case DataTypes.IMG_OVERWORLD:
         case DataTypes.IMG_PARTICLE:
         case DataTypes.IMG_UI:
+        case DataTypes.IMG_SKYBOX:
         case DataTypes.IMG_ETC:
         case DataTypes.EVENT:
         case DataTypes.IMG_TILE_ANIMATION:

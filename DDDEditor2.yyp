@@ -6117,6 +6117,14 @@
             }
         },
         {
+            "Key": "493e2808-9a9a-475c-a983-5fcccea671de",
+            "Value": {
+                "id": "da9e0bb5-b789-4684-a4b0-05d816438a52",
+                "resourcePath": "scripts\\dialog_create_event_node_img_skybox\\dialog_create_event_node_img_skybox.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "49530625-0be9-4e80-9f36-7fb70fb538b4",
             "Value": {
                 "id": "a6c78ca0-75bf-4306-872f-d2a852d528d8",
@@ -7922,6 +7930,14 @@
                 "id": "ae8310b7-cd54-4929-99b4-ccbcf161a0bd",
                 "resourcePath": "views\\5ee2d0c1-b0b1-49ed-a7f5-fccac3257d8f.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "5ef28ad9-e1c1-4020-aca3-b8e4faa1a1ad",
+            "Value": {
+                "id": "aee06b14-9ed2-40c2-81e6-100f3e977413",
+                "resourcePath": "scripts\\dc_custom_event_set_img_skybox\\dc_custom_event_set_img_skybox.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -21564,6 +21580,7 @@
         "99e13cb8-c18c-45c0-8b0f-7f0e68ff65f4",
         "92e7e95e-04ae-43ef-b34c-c6c1463fca56",
         "de12224a-5ecd-4d19-a9ce-ea8d81de0ad2",
+        "5ef28ad9-e1c1-4020-aca3-b8e4faa1a1ad",
         "20a134f4-b446-4e16-a26a-64bb6ca66c1f",
         "dd7b7abb-40cd-4907-9831-9df695733c83",
         "0c114815-94e3-4ae6-aec8-af307aa1165d",
@@ -21634,6 +21651,7 @@
         "7946f0d1-26ac-457f-9d3d-5671b142b49c",
         "a611409e-36d1-4a6e-8103-4b934072ee84",
         "4a1768bb-c886-41a0-8236-55acf97a657f",
+        "493e2808-9a9a-475c-a983-5fcccea671de",
         "09395a08-d935-4d11-9284-0d114dca4baa",
         "2acbddf9-dfcf-4bad-b31c-09d7d29e226e",
         "6c7cfe19-4cef-4073-91b7-6b5fad1c89ae",

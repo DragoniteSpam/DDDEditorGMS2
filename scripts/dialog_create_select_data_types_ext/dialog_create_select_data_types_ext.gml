@@ -32,7 +32,7 @@ var el_list = create_radio_array(16, yy, "All Data Types: ", ew, eh, onvaluechan
 create_radio_array_options(el_list, [
     "Int", "Enum", "Float", "String", "Boolean", "Data", "Code", "Color", "Mesh", "Tileset", "Tile", "Autotile",
     "Audio (BGM)", "Audio (SE)", "Animation", "Entity (RefID)", "Map", "Battler sprite", "Overworld sprite",
-    "Particle", "UI image", "Misc. image", "Event",
+    "Particle", "UI image", "Misc. image", "Event", "Skybox",
 ]);
 
 el_list.contents[| DataTypes.AUDIO_BGM].color = c_green;
@@ -43,6 +43,7 @@ el_list.contents[| DataTypes.IMG_OVERWORLD].color = c_purple;
 el_list.contents[| DataTypes.IMG_PARTICLE].color = c_purple;
 el_list.contents[| DataTypes.IMG_TILESET].color = c_purple;
 el_list.contents[| DataTypes.IMG_UI].color = c_purple;
+el_list.contents[| DataTypes.IMG_SKYBOX].color = c_purple;
 el_list.contents[| DataTypes.MESH].color = c_blue;
 el_list.contents[| DataTypes.TILE].color = c_blue;
 el_list.contents[| DataTypes.IMG_TILE_ANIMATION].color = c_blue;

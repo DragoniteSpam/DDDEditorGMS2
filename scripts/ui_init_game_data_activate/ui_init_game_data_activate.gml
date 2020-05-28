@@ -175,6 +175,12 @@ if (selection + 1) {
                             element.entries_are = ListEntries.INSTANCES;
                             var hh = ui_get_list_height(element);
                             break;
+                        case DataTypes.IMG_SKYBOX:       // list
+                            var element = create_list(0, yy, property.name, "<no Skybox images>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Stuff.all_graphic_skybox);
+                            element.key = i;
+                            element.entries_are = ListEntries.INSTANCES;
+                            var hh = ui_get_list_height(element);
+                            break;
                         case DataTypes.IMG_TILE_ANIMATION:// list
                             var element = create_list(0, yy, property.name, "<no Tile Animations>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Stuff.all_graphic_tile_animations);
                             element.key = i;

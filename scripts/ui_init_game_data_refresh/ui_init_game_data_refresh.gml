@@ -119,6 +119,7 @@ for (var i = 0; i < ds_list_size(dynamic.contents); i++) {
                     case DataTypes.IMG_PARTICLE:
                     case DataTypes.IMG_UI:
                     case DataTypes.IMG_ETC:
+                    case DataTypes.IMG_SKYBOX:
                         ui_list_deselect(thingy);
                         // @gml update chained accessors, in a few places in this script
                         for (var k = 0; k < ds_list_size(thingy.entries); k++) {
@@ -164,6 +165,7 @@ for (var i = 0; i < ds_list_size(dynamic.contents); i++) {
                 case DataTypes.IMG_PARTICLE:
                 case DataTypes.IMG_UI:
                 case DataTypes.IMG_ETC:
+                case DataTypes.IMG_SKYBOX:
                 case DataTypes.IMG_TILE_ANIMATION:
                 case DataTypes.AUDIO_BGM:
                 case DataTypes.AUDIO_SE:

@@ -54,6 +54,7 @@ switch (property.type) {
     case DataTypes.IMG_PARTICLE:
     case DataTypes.IMG_UI:
     case DataTypes.IMG_ETC:
+    case DataTypes.IMG_SKYBOX:
     case DataTypes.EVENT:
         el_list.entries_are = ListEntries.GUIDS;
         break;
@@ -195,6 +196,13 @@ switch (property.type) {
         break;
     case DataTypes.IMG_ETC:
         var el_value = create_list(16, yy, "Select a misc. image:", "<no misc. images>", ew, eh, 8, uivc_data_property_list_guid, false, dg, Stuff.all_graphic_etc);
+        el_value.entries_are = ListEntries.INSTANCES;
+        
+        el_value.key = root.key;
+        yy += ui_get_list_height(el_value) + spacing;
+        break;
+    case DataTypes.IMG_SKYBOX:
+        var el_value = create_list(16, yy, "Select a skybox image:", "<no skybox images>", ew, eh, 8, uivc_data_property_list_guid, false, dg, Stuff.all_graphic_skybox);
         el_value.entries_are = ListEntries.INSTANCES;
         
         el_value.key = root.key;
