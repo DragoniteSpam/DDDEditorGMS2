@@ -5,4 +5,4 @@ summary = "";
 GUID = NULL;
 guid_set(id, guid_generate());
 
-internal_name = "DATA_" + string(GUID);
+internal_name = "Data" + string_lettersdigits(GUID);
