@@ -6,17 +6,12 @@ var map = Stuff.map.active_map;
 var map_contents = map.contents;
 
 draw_clear(c_black);
-
-gpu_set_zwriteenable(true);
-gpu_set_cullmode(Stuff.setting_view_backface ? cull_noculling : cull_counterclockwise);
-// this used to be turned off for 2D maps and there was a comment saying weird things
-// would happen, but it was causing layering issues and i havent seen anything bad
-// happen from turning it off yet
-gpu_set_ztestenable(true);
-
 draw_set_color(c_white);
+gpu_set_cullmode(Stuff.setting_view_backface ? cull_noculling : cull_counterclockwise);
 
 var camera = view_get_camera(view_current);
+
+var z2d = 1600;
 
 if (map.is_3d) {
     var vw = view_get_wport(view_current);
@@ -27,10 +22,20 @@ if (map.is_3d) {
 } else {
     var cwidth = camera_get_view_width(camera);
     var cheight = camera_get_view_height(camera);
-    camera_set_view_mat(camera, matrix_build_lookat(mode.x, mode.y, 16000,  mode.x, mode.y, -16000, 0, 1, 0));
+    camera_set_view_mat(camera, matrix_build_lookat(mode.x, mode.y, z2d,  mode.x, mode.y, -16000, 0, 1, 0));
     camera_set_proj_mat(camera, matrix_build_projection_ortho(-cwidth, cheight, CAMERA_ZNEAR, CAMERA_ZFAR));
     camera_apply(camera);
 }
+
+// skyboxes go first
+
+gpu_set_zwriteenable(false);
+gpu_set_ztestenable(false);
+transform_set(mode.x, mode.y, map.is_3d ? mode.z : z2d, 0, 0, 0, 1, 1, 1);
+vertex_submit(Stuff.graphics.skybox_base, pr_trianglelist, sprite_get_texture(Stuff.graphics.default_skybox, 0));
+gpu_set_zwriteenable(true);
+gpu_set_ztestenable(true);
+transform_reset();
 
 // anything in the world
 

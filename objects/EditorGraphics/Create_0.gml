@@ -194,3 +194,5 @@ vertex_freeze(axes_centered);
 
 grid = noone;
 grid_centered = noone;
+
+default_skybox = sprite_add(PATH_GRAPHICS + "b_sky_clouds_blue.png", 0, false, false, 0, 0);

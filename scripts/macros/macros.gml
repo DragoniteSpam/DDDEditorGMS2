@@ -53,7 +53,7 @@
 #macro buffer_datatype buffer_string
 #macro buffer_datatype_old buffer_u32
 #macro CAMERA_SAVE_FREQUENCY 5
-#macro CAMERA_ZNEAR 32
+#macro CAMERA_ZNEAR 0x0004
 #macro CAMERA_ZFAR 0x4000
 // these aren't meant to be used for view coordinates but window coordinates, otherwise i'd make them relative
 #macro CH 900

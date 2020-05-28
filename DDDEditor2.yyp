@@ -18580,6 +18580,14 @@
             }
         },
         {
+            "Key": "e2622799-364d-4ede-936d-a268f6cb5b33",
+            "Value": {
+                "id": "146e5e38-343c-441c-9326-fc679170d656",
+                "resourcePath": "datafiles_yy\\data\\graphics\\b_sky_clouds_blue.png.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "e26e7831-922f-415a-9ecf-fe71cf8cc9f7",
             "Value": {
                 "id": "54dbd930-2837-4cff-ad3e-491c21f4af3a",
