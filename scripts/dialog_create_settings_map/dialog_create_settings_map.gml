@@ -7,13 +7,13 @@ var index = (selection + 1) ? selection : 0;
 var map = Stuff.all_maps[| index];
 var map_contents = map.contents;
 
-var dw = 640;
+var dw = 960;
 var dh = 640;
 
 var dg = dialog_create(dw, dh, "More Map Settings", undefined, undefined, dialog);
 dg.map = map;
 
-var columns = 2;
+var columns = 3;
 var spacing = 16;
 var ew = dw / columns - spacing * 2;
 var eh = 24;
@@ -21,6 +21,7 @@ var spacing = 16;
 
 var col1_x = dw * 0 / columns + spacing;
 var col2_x = dw * 1 / columns + spacing;
+var col3_x = dw * 2 / columns + spacing;
 
 var vx1 = ew / 2;
 var vy1 = 0;
@@ -84,7 +85,7 @@ var el_other_water = create_checkbox(col1_x, yy, "Render water?", ew, eh, uivc_s
 el_other_water.tooltip = "Whether or not water should be rendered";
 yy += el_other_water.height + spacing;
 
-var el_other_water_reflect = create_checkbox(16 + string_width("     "), yy, "Reflections enabled?", ew, eh, uivc_settings_map_reflections, map.reflections_enabled, dg);
+var el_other_water_reflect = create_checkbox(col1_x + string_width("     "), yy, "Reflections enabled?", ew, eh, uivc_settings_map_reflections, map.reflections_enabled, dg);
 el_other_water_reflect.tooltip = "Whether or not reflections will be shown; most of the time this should be turned off if you have the water level turned off, and it should probably be turned off if the map is marked as indoors, but you may choose otherwise";
 yy += el_other_water_reflect.height + spacing;
 
@@ -95,46 +96,55 @@ yy += el_other_water_level.height + spacing;
 
 yy = yy_base;
 
+#region more atmosphere
+var el_skybox_image = create_list(col2_x, yy, "Skybox", "<no skyboxes>", ew, eh, 8, uivc_settings_map_skybox, false, dg, Stuff.all_graphic_skybox);
+ui_list_select(el_skybox_image, ds_list_find_index(Stuff.all_graphic_skybox, map.skybox), true);
+el_skybox_image.tooltip = "The skybox to be used by the map. Deselect to clear.";
+el_skybox_image.entries_are = ListEntries.INSTANCES;
+yy += el_skybox_image.height + spacing;
+#endregion
+
+yy = yy_base;
+
 #region update
-var el_code_heading = create_text(col2_x, yy, "Update Ticker", ew, eh, fa_left, ew, dg);
+var el_code_heading = create_text(col3_x, yy, "Update Ticker", ew, eh, fa_left, ew, dg);
 el_code_heading.color = c_blue;
 yy += el_code_heading.height + spacing;
 
-var el_code = create_input_code(col2_x, yy, "Code:", ew, eh, vx1, vy1, vx2, vy2, map.code, uivc_map_code, dg);
+var el_code = create_input_code(col3_x, yy, "Code:", ew, eh, vx1, vy1, vx2, vy2, map.code, uivc_map_code, dg);
 el_code.tooltip = "Code which runs in each update step for the map";
 yy += el_code.height + spacing;
 
-var el_encounter_heading = create_text(col2_x, yy, "Encounter Stuff", ew, eh, fa_left, ew, dg);
+var el_encounter_heading = create_text(col3_x, yy, "Encounter Stuff", ew, eh, fa_left, ew, dg);
 el_encounter_heading.color = c_blue;
 yy += el_encounter_heading.height + spacing;
 
-var el_encounter_base = create_input(col2_x, yy, "Base Rate", ew, eh, uivc_settings_map_encounter_base, map.base_encounter_rate, "0 for off", validate_int, 0, 1000000, 7, vx1, vy1, vx2, vy2, dg);
+var el_encounter_base = create_input(col3_x, yy, "Base Rate", ew, eh, uivc_settings_map_encounter_base, map.base_encounter_rate, "0 for off", validate_int, 0, 1000000, 7, vx1, vy1, vx2, vy2, dg);
 el_encounter_base.tooltip = "The base number of steps between random encounters; if movement is set to be off-grid, this can be approximated in tiles";
 yy += el_encounter_base.height + spacing;
 
-var el_encounter_deviation = create_input(col2_x, yy, "Deviation", ew, eh, uivc_settings_map_encounter_deviation, map.base_encounter_deviation, "Probably steps", validate_int, 0, 1000000, 7, vx1, vy1, vx2, vy2, dg);
+var el_encounter_deviation = create_input(col3_x, yy, "Deviation", ew, eh, uivc_settings_map_encounter_deviation, map.base_encounter_deviation, "Probably steps", validate_int, 0, 1000000, 7, vx1, vy1, vx2, vy2, dg);
 el_encounter_deviation.tooltip = "The deviation in steps between random encounters; if movement is set to be off-grid, this can be approximated in tiles";
 yy += el_encounter_deviation.height + spacing;
 #endregion
 
 #region navigation
-var el_nav_heading = create_text(col2_x, yy, "Navigation Settings", ew, eh, fa_left, ew, dg);
+var el_nav_heading = create_text(col3_x, yy, "Navigation Settings", ew, eh, fa_left, ew, dg);
 el_nav_heading.color = c_blue;
 yy += el_nav_heading.height + spacing;
 
-var el_other_fast_travel_to = create_checkbox(col2_x, yy, "Can fast travel to?", ew, eh, uivc_settings_map_fast_travel_to, map.fast_travel_to, dg);
+var el_other_fast_travel_to = create_checkbox(col3_x, yy, "Can fast travel to?", ew, eh, uivc_settings_map_fast_travel_to, map.fast_travel_to, dg);
 el_other_fast_travel_to.tooltip = "Should you be able to teleport into this map?";
 yy += el_other_fast_travel_to.height + spacing;
 
-var el_other_fast_travel_from = create_checkbox(col2_x, yy, "Can fast travel from?", ew, eh, uivc_settings_map_fast_travel_from, map.fast_travel_from, dg);
+var el_other_fast_travel_from = create_checkbox(col3_x, yy, "Can fast travel from?", ew, eh, uivc_settings_map_fast_travel_from, map.fast_travel_from, dg);
 el_other_fast_travel_from.tooltip = "Should you be able to teleport away from this map?";
 yy += el_other_fast_travel_from.height + spacing;
 
-var el_other_grid = create_checkbox(col1_x, yy, "Grid aligned?", ew, eh, null, map.on_grid, dg);
+var el_other_grid = create_checkbox(col3_x, yy, "Grid aligned?", ew, eh, null, map.on_grid, dg);
 el_other_grid.tooltip = "This setting is currently unavailable; in the future I may enable off-grid editing";
 el_other_grid.interactive = false;
 yy += el_other_grid.height + spacing;
-
 #endregion
 
 var b_width = 128;
@@ -156,6 +166,7 @@ ds_list_add(dg.contents,
     el_other_water,
     el_other_water_reflect,
     el_other_water_level,
+    el_skybox_image,
     el_code_heading,
     el_code,
     el_encounter_heading,

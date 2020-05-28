@@ -29,7 +29,7 @@ if (map.is_3d) {
 
 // skyboxes go first
 
-if (map.skybox) {
+if (map.skybox && !map.indoors) {
     gpu_set_zwriteenable(false);
     gpu_set_ztestenable(false);
     transform_set(mode.x, mode.y, map.is_3d ? mode.z : z2d, 0, 0, 0, 1, 1, 1);
