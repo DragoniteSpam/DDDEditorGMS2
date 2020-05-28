@@ -500,6 +500,7 @@ game_data_location[GameDataCategories.BATTLERS] = file_asset.GUID;
 game_data_location[GameDataCategories.OVERWORLDS] = file_asset.GUID;
 game_data_location[GameDataCategories.PARTICLES] = file_asset.GUID;
 game_data_location[GameDataCategories.UI] = file_asset.GUID;
+game_data_location[GameDataCategories.SKYBOX] = file_asset.GUID;
 game_data_location[GameDataCategories.MISC] = file_asset.GUID;
 game_data_location[GameDataCategories.BGM] = file_asset.GUID;
 game_data_location[GameDataCategories.SE] = file_asset.GUID;
@@ -519,6 +520,7 @@ game_data_save_scripts[GameDataCategories.BATTLERS] = serialize_save_image_battl
 game_data_save_scripts[GameDataCategories.OVERWORLDS] = serialize_save_image_overworlds;
 game_data_save_scripts[GameDataCategories.PARTICLES] = serialize_save_image_particles;
 game_data_save_scripts[GameDataCategories.UI] = serialize_save_image_ui;
+game_data_save_scripts[GameDataCategories.SKYBOX] = serialize_save_image_skybox;
 game_data_save_scripts[GameDataCategories.MISC] = serialize_save_image_etc;
 game_data_save_scripts[GameDataCategories.BGM] = serialize_save_bgm;
 game_data_save_scripts[GameDataCategories.SE] = serialize_save_se;
@@ -551,6 +553,7 @@ enum GameDataCategories {
     OVERWORLDS,
     PARTICLES,
     UI,
+    SKYBOX,
     MISC,
     // audio assets
     BGM,

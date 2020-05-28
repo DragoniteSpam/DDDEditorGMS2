@@ -51,7 +51,10 @@ enum DataTypes {
 
 /*
  * if you want to add a new data type, you need to:
- *  1. add it to the list here
+ *  0. add it to the list here
+ *  1. add it to the following enums:
+ *           - SerializeThings
+ *           - GameDataCategories
  *  2. case in omu_data_list_add
  *  3. case in uivc_list_data_list_select
  *  4. case in draw_event_node - in four different switch statements (can that be simplified?)
@@ -77,7 +80,8 @@ enum DataTypes {
  *  20. case in serialize_save_map_contents_meta
  *  21. case in serialize_load_map_contents_meta
  *          and the equivalent in the game
- *  22. the main save and load script(s)
+ *  22. Stuff.Create - game data location and game data save scripts
+ *  23. the main save and load script(s)
  */
 
 enum NumberScales {

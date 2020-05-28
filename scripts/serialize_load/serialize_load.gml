@@ -139,6 +139,10 @@ while (true) {
             Stuff.game_data_location[GameDataCategories.UI] = Stuff.game_data_current_file.GUID;
             serialize_load_image_ui(buffer, version);
             break;
+        case SerializeThings.IMAGE_SKYBOX:
+            Stuff.game_data_location[GameDataCategories.SKYBOX] = Stuff.game_data_current_file.GUID;
+            serialize_load_image_skybox(buffer, version);
+            break;
         case SerializeThings.IMAGE_MISC:
             Stuff.game_data_location[GameDataCategories.MISC] = Stuff.game_data_current_file.GUID;
             serialize_load_image_etc(buffer, version);

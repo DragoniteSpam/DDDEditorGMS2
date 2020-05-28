@@ -100,6 +100,7 @@ axes_translation_z = import_d3d("data\\basic\\translation-z.d3d", false, false);
 axes_translation_x_gold = import_d3d("data\\basic\\translation-x-gold.d3d", false, false);
 axes_translation_y_gold = import_d3d("data\\basic\\translation-y-gold.d3d", false, false);
 axes_translation_z_gold = import_d3d("data\\basic\\translation-z-gold.d3d", false, false);
+skybox_base = import_d3d("data\\basic\\skybox-base.d3d", false, false);
 var qmark_data = import_d3d("data\\basic\\missing.d3d", false, false, true);
 mesh_missing = qmark_data[0];
 mesh_missing_data = qmark_data[1];

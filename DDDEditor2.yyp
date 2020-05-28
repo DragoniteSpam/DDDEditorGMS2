@@ -10141,14 +10141,6 @@
             }
         },
         {
-            "Key": "7a596099-debe-4704-b32b-8e49bb9aaa96",
-            "Value": {
-                "id": "727681aa-7080-4d87-ad3c-a46636b796a1",
-                "resourcePath": "datafiles_yy\\data\\graphics\\b_at_default_grass_0.png.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "7a5d15d6-9cab-4f51-bd03-2381dd75c70a",
             "Value": {
                 "id": "d2555c2e-f56d-4bf9-82e8-9686e214b7c5",
@@ -11557,6 +11549,14 @@
             }
         },
         {
+            "Key": "8b2fe120-ad5a-402c-81e4-2379d51e2bd6",
+            "Value": {
+                "id": "3d343181-3a77-44e7-9d82-0292d511888b",
+                "resourcePath": "scripts\\serialize_load_image_skybox\\serialize_load_image_skybox.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "8b6bff5c-d27e-40a1-a141-1c6140d26222",
             "Value": {
                 "id": "168549ab-5152-4439-9f9a-3b64d75afbfa",
@@ -12661,6 +12661,14 @@
             }
         },
         {
+            "Key": "97d20770-cc27-43ca-91f1-d79c4e24ad7d",
+            "Value": {
+                "id": "ed74b37d-15e6-4052-be59-39c0ccbeac97",
+                "resourcePath": "datafiles_yy\\data\\basic\\skybox-base.d3d.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "97e4658f-44e8-460b-b750-05c209938cc2",
             "Value": {
                 "id": "c94503aa-a4c4-4abf-a281-9b63438ba000",
@@ -13266,6 +13274,14 @@
                 "id": "b17c7f6f-0015-41a4-9d5b-cedb461e7b56",
                 "resourcePath": "views\\a03f7d51-8538-4c1f-8aa0-095f08ba99f0.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "a04b8baa-6189-4840-8ac5-ea3d2108f574",
+            "Value": {
+                "id": "9e1ca118-121f-4087-ada3-8f182d90aa06",
+                "resourcePath": "scripts\\serialize_save_image_skybox\\serialize_save_image_skybox.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -22664,6 +22680,7 @@
         "17857816-1e15-494d-ab03-393c4af84898",
         "e5068eb4-f7c8-4a4c-9a74-f36d1f6aeeee",
         "432120e6-46f9-4649-97e3-9b42aad35a03",
+        "8b2fe120-ad5a-402c-81e4-2379d51e2bd6",
         "0657fd1c-e87d-4ca4-8a07-ccb2fd33a6c9",
         "b24da28a-e385-423a-826f-f7a4cbec64e7",
         "9f61636c-c86b-4f83-b6dd-1b2ceffed749",
@@ -22705,6 +22722,7 @@
         "2f4382d9-ac82-4529-8956-751d9d969fce",
         "f9d648a8-077e-47de-97d9-a2d8679c79ca",
         "ab6d0dd3-660d-44a0-8631-afc34e4883f8",
+        "a04b8baa-6189-4840-8ac5-ea3d2108f574",
         "b8ce4686-b304-4ae4-8a85-bf5fe32c93c9",
         "7f872584-6856-443e-964d-ae7a82301666",
         "37f60345-ad91-4856-9d58-1954ef2f5e2a",

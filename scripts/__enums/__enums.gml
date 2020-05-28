@@ -10,7 +10,7 @@ enum SerializeThings {
     MESHES                  = 0x00000003,
     ANIMATIONS              = 0x00000004,
     TERRAIN                 = 0x00000005,
-    // 06
+    IMAGE_SKYBOX            = 0x00000006,
     IMAGE_TILESET           = 0x00000007,
     IMAGE_PARTICLES         = 0x00000008, //+
     IMAGE_OVERWORLD         = 0x00000009, //+
