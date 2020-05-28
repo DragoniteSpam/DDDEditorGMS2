@@ -28,12 +28,12 @@ if (map.is_3d) {
 }
 
 // skyboxes go first
-
-if (map.skybox && !map.indoors) {
+var skybox = guid_get(map.skybox);
+if (skybox && !map.indoors) {
     gpu_set_zwriteenable(false);
     gpu_set_ztestenable(false);
     transform_set(mode.x, mode.y, map.is_3d ? mode.z : z2d, 0, 0, 0, 1, 1, 1);
-    vertex_submit(Stuff.graphics.skybox_base, pr_trianglelist, sprite_get_texture(map.skybox.picture, 0));
+    vertex_submit(Stuff.graphics.skybox_base, pr_trianglelist, sprite_get_texture(skybox.picture, 0));
     transform_reset();
 }
 
