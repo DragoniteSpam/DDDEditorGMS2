@@ -47,10 +47,19 @@ if (!button.image) {
     draw_set_color(button.color);
     draw_text_ext(tx - x1, ty - y1, string(button.text), -1, button.width);
 } else {
-    draw_sprite_general(
-        button.image, button.index, 0, 0, sprite_get_width(button.image),
-        sprite_get_height(button.image), 0, 0, 1, 1, 0, color, color, color, color, 1
-    );
+    if (button.scale_to_fit) {
+        var xscale = min(button.width / sprite_get_width(button.image), 1);
+        var yscale = min(button.height / sprite_get_height(button.image), 1);
+        draw_sprite_general(
+            button.image, button.index, 0, 0, sprite_get_width(button.image),
+            sprite_get_height(button.image), 0, 0, xscale, yscale, 0, color, color, color, color, 1
+        );
+    } else {
+        draw_sprite_general(
+            button.image, button.index, 0, 0, sprite_get_width(button.image),
+            sprite_get_height(button.image), 0, 0, 1, 1, 0, color, color, color, color, 1
+        );
+    }
 }
 
 draw_rectangle_colour(1, 1, button.width - 2, button.height - 2, c_black, c_black, c_black, c_black, true);

@@ -11077,6 +11077,14 @@
             }
         },
         {
+            "Key": "8546aca6-5a71-4129-b3eb-bc30df9a6592",
+            "Value": {
+                "id": "e3578e5a-d54f-4a0a-9124-d0d3d9c4d18d",
+                "resourcePath": "scripts\\momu_graphic_skybox\\momu_graphic_skybox.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "85595361-26ba-445a-a943-d45eaba8991c",
             "Value": {
                 "id": "40e0b090-e8af-49f4-b6b8-ed8c4808e720",
@@ -12921,6 +12929,14 @@
             "Value": {
                 "id": "283c2236-325c-43f3-a8a9-5dcdb38a2dfa",
                 "resourcePath": "scripts\\editor_update_animation\\editor_update_animation.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "9b286d27-b508-4f3a-a850-669bcd921ca3",
+            "Value": {
+                "id": "b40188da-3cdb-4ca8-bf15-f0dbe4166e6e",
+                "resourcePath": "scripts\\graphics_remove_skybox\\graphics_remove_skybox.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -16173,6 +16189,14 @@
             }
         },
         {
+            "Key": "c587fd06-95a8-4726-ba44-096d59fb464b",
+            "Value": {
+                "id": "984c88e3-c16b-42ea-8c78-e57b3913fddf",
+                "resourcePath": "scripts\\dialog_create_manager_graphic_skybox\\dialog_create_manager_graphic_skybox.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "c592660d-4fdb-425a-89ea-21c6feac9c96",
             "Value": {
                 "id": "e8b2b967-ebef-4632-ba61-3943872ef999",
@@ -16824,6 +16848,14 @@
             "Value": {
                 "id": "21736f43-d147-44e1-933d-0a2bca3f587c",
                 "resourcePath": "scripts\\regex\\regex.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "cdb8e6ed-b574-4ea2-9995-402c21d22cad",
+            "Value": {
+                "id": "461e2a7c-4cbc-4876-9540-633cf3005d33",
+                "resourcePath": "scripts\\dmu_dialog_remove_graphic_skybox\\dmu_dialog_remove_graphic_skybox.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -19916,6 +19948,14 @@
             }
         },
         {
+            "Key": "f228daea-2abf-44a8-b35e-7d9bf9b8711a",
+            "Value": {
+                "id": "a5e227d5-4c5e-41ab-9edf-7d02df50d2f4",
+                "resourcePath": "scripts\\dmu_dialog_load_graphic_skybox\\dmu_dialog_load_graphic_skybox.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "f2639134-a0d4-46dd-84ca-f52ea5ae553e",
             "Value": {
                 "id": "7e67399b-878e-4691-a016-4588ed95e08b",
@@ -21440,6 +21480,7 @@
         "09de95b6-3bc3-4bdf-b3a3-8440c65b1fa5",
         "bcb6dc10-e824-48e6-8c72-5e4ccd7f2601",
         "9f491f8c-8248-4e56-a331-3cbdae33c651",
+        "9b286d27-b508-4f3a-a850-669bcd921ca3",
         "5b8f054a-8aca-4699-8a12-e31646009d5c",
         "0c3fb917-3b54-49a3-811f-5227a110fc51",
         "cf13c201-bde1-4f29-8df2-6fdb3ff097d6",
@@ -21701,6 +21742,7 @@
         "6e5e22b4-1b52-4d8a-a218-f8ee04d806cb",
         "af69af38-ac36-447b-8100-4f054761af2f",
         "42535af5-83bb-4342-8687-c9b3e4f69374",
+        "c587fd06-95a8-4726-ba44-096d59fb464b",
         "4e3804a8-c17f-4023-8bc9-77c2e555f1da",
         "b036f10f-07d7-4cae-9bac-3824365284af",
         "2c70626d-6b45-41a9-aa03-b92912dcbe11",
@@ -21757,10 +21799,12 @@
         "21066338-6a38-4cca-a8dd-72e788b45b2d",
         "024e26cf-64d8-4bb8-bb2b-8e611a5bfee0",
         "fd509475-e535-4be9-8fc7-de4c581e0250",
+        "f228daea-2abf-44a8-b35e-7d9bf9b8711a",
         "2e013630-e3f1-4f01-b173-f9acbddf7050",
         "6741bdc7-6fa8-45dd-82af-ef512e335d52",
         "38d47818-9650-4a4c-82ab-f8a50e310583",
         "4b6005a3-23c4-42a2-82c4-beaf682373df",
+        "cdb8e6ed-b574-4ea2-9995-402c21d22cad",
         "9706a804-9683-4dc9-a9ae-5023eda7a4f0",
         "6b162674-ee62-439e-b656-e429fabeaffa",
         "d526fbee-9fd7-4e24-846d-67168517db6f",
@@ -21825,6 +21869,7 @@
         "9bac25e0-5aba-4eb9-82da-321ff046a837",
         "42fdf907-440f-4bad-8f1a-7c6b211cace2",
         "b04c7fff-7538-4c79-bf9c-0e80c39f62b0",
+        "8546aca6-5a71-4129-b3eb-bc30df9a6592",
         "d472f96a-b85a-47a9-b4b3-d28416a2dcd9",
         "2ca3ca53-1f59-48ed-b886-ed7b622a31a5",
         "1a6841f0-01b4-4971-8189-8daa820254f6",

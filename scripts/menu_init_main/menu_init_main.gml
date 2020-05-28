@@ -63,6 +63,7 @@ with (instance_create_depth(0, 0, 0, MenuMain)) {
         var md_graphic_ow = create_menu_element("Overworld Sprites", momu_graphic_overworld, md_graphics);
         var md_graphic_part = create_menu_element("Particles", momu_graphic_particle, md_graphics);
         var md_graphic_ui = create_menu_element("User Interface", momu_graphic_ui, md_graphics);
+        var md_graphic_skybox = create_menu_element("Skyboxes", momu_graphic_skybox, md_graphics);
         var md_graphic_etc = create_menu_element("Misc", momu_graphic_etc, md_graphics);
         ds_list_add(md_graphics.contents,
             md_graphic_ts,
@@ -71,6 +72,7 @@ with (instance_create_depth(0, 0, 0, MenuMain)) {
             md_graphic_ow,
             md_graphic_part,
             md_graphic_ui,
+            md_graphic_skybox,
             md_graphic_etc
         );
     md_graphics.interactive = MENU_EDITOR_ENABLED;
