@@ -29,13 +29,16 @@ if (map.is_3d) {
 
 // skyboxes go first
 
-gpu_set_zwriteenable(false);
-gpu_set_ztestenable(false);
-transform_set(mode.x, mode.y, map.is_3d ? mode.z : z2d, 0, 0, 0, 1, 1, 1);
-vertex_submit(Stuff.graphics.skybox_base, pr_trianglelist, sprite_get_texture(Stuff.graphics.default_skybox, 0));
+if (map.skybox) {
+    gpu_set_zwriteenable(false);
+    gpu_set_ztestenable(false);
+    transform_set(mode.x, mode.y, map.is_3d ? mode.z : z2d, 0, 0, 0, 1, 1, 1);
+    vertex_submit(Stuff.graphics.skybox_base, pr_trianglelist, sprite_get_texture(map.skybox.picture, 0));
+    transform_reset();
+}
+
 gpu_set_zwriteenable(true);
 gpu_set_ztestenable(true);
-transform_reset();
 
 // anything in the world
 

@@ -41,6 +41,7 @@ base_encounter_deviation = 4;               // ehh
 light_enabled = true;                       // bool
 light_ambient_colour = c_white;             // uint
 light_player_enabled = true;                // bool
+skybox = noone;                             // DataImage
 
 discovery = 0;                              // index
 
