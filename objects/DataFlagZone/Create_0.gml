@@ -11,4 +11,4 @@ editor_color = [0, 1, 0, 1];
 /* s */ name = "FlagZone " + name;
 /* s */ ztype = MapZoneTypes.FLAG;
 
-tag = 0;
+zone_flags = 0;

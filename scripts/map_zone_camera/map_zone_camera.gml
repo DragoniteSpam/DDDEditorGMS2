@@ -79,7 +79,7 @@ var el_camera_angle = create_input(col2_x, yy, "Angle:", ew, eh, uivc_input_map_
 el_camera_angle.tooltip = "The angle above the ground of the camera, measured in degrees; a positive angle is looking down on the camera target, and a negative angle is looking up";
 yy += el_camera_angle.height + spacing;
 
-var el_priority = create_input(col2_x, yy, "Priority:", ew, eh, uivc_input_map_camera_zone_priority, zone.zone_priority, "int", validate_int, 0, 1000, 3, vx1, vy1, vx2, vy2, dg);
+var el_priority = create_input(col2_x, yy, "Priority:", ew, eh, uivc_input_map_zone_priority, zone.zone_priority, "int", validate_int, 0, 1000, 3, vx1, vy1, vx2, vy2, dg);
 el_priority.tooltip = "If multiple camera zones overlap, the one with the highest priority will be the one that is acted upon";
 yy += el_priority.height + spacing;
 

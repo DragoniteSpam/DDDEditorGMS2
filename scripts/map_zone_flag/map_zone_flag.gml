@@ -5,7 +5,7 @@ var zone = Stuff.map.selected_zone;
 var map = Stuff.map.active_map;
 
 var dw = 960;
-var dh = 480;
+var dh = 640;
 
 var dg = dialog_create(dw, dh, "Flag Zone Settings: " + zone.name, dialog_default, dc_close_no_questions_asked, root);
 
@@ -64,40 +64,34 @@ var el_bounds_z2 = create_input(col1_x, yy, "Z2:", ew, eh, uivc_input_map_zone_z
 el_bounds_z2.tooltip = "The ending Z coordinate of the camera zone. If the minimum and maximum bounds values are switched, the editor will automatically put them in order.";
 yy += el_bounds_z2.height + spacing;
 
-yy = yy_base;
-
-var el_properties_text = create_text(col2_x, yy, "Properties", ew, eh, fa_left, ew, dg);
-el_properties_text.color = c_blue;
-
-yy += el_properties_text.height + spacing;
-
-var el_camera_distance = create_input(col2_x, yy, "Distance:", ew, eh, uivc_input_map_camera_zone_distance, zone.camera_distance, "float", validate_double, 0, 32, 10, vx1, vy1, vx2, vy2, dg);
-el_camera_distance.tooltip = "How far the camera is to be from its target, measured in tile distances. (Only affects 3D).";
-yy += el_camera_distance.height + spacing;
-
-var el_camera_angle = create_input(col2_x, yy, "Angle:", ew, eh, uivc_input_map_camera_zone_angle, zone.camera_angle, "float", validate_double, -89, 89, 4, vx1, vy1, vx2, vy2, dg);
-el_camera_angle.tooltip = "The angle above the ground of the camera, measured in degrees; a positive angle is looking down on the camera target, and a negative angle is looking up";
-yy += el_camera_angle.height + spacing;
-
-var el_priority = create_input(col2_x, yy, "Priority:", ew, eh, uivc_input_map_camera_zone_priority, zone.zone_priority, "int", validate_int, 0, 1000, 3, vx1, vy1, vx2, vy2, dg);
+var el_priority = create_input(col1_x, yy, "Priority:", ew, eh, uivc_input_map_zone_priority, zone.zone_priority, "int", validate_int, 0, 1000, 3, vx1, vy1, vx2, vy2, dg);
 el_priority.tooltip = "If multiple camera zones overlap, the one with the highest priority will be the one that is acted upon";
 yy += el_priority.height + spacing;
 
 yy = yy_base;
 
-var el_transition_text = create_text(col3_x, yy, "Transition", ew, eh, fa_left, ew, dg);
-el_transition_text.color = c_blue;
-yy += el_transition_text.height + spacing;
+var color_active = c_ui_select;
+var color_inactive = c_white;
 
-var el_transition_style = create_list(col3_x, yy, "Easing Mode:", "(no easings)", ew, eh, 8, uivc_input_map_camera_zone_transition, false, dg, global.animation_tween_names);
-el_transition_style.entries_are = ListEntries.STRINGS;
-el_transition_style.tooltip = "The transition used when you enter this camera zone. In almost all cases, Linear or Quadratic In / Out should be fine.";
-ui_list_select(el_transition_style, zone.camera_easing_method, true);
-yy += ui_get_list_height(el_transition_style) + spacing;
+var el_asset_flags = create_bitfield(col2_x, yy, "Asset Flags", ew, eh, 0, dg);
+el_asset_flags.onvaluechange = uivc_input_map_flag_zone_flag;
+el_asset_flags.value = zone.zone_flags;
 
-var el_transition_rate = create_input(col3_x, yy, "Time:", ew, eh, uivc_input_map_camera_zone_time, zone.camera_easing_time, "float", validate_double, 0, 60, 4, vx1, vy1, vx2, vy2, dg);
-el_transition_rate.tooltip = "How long camera position transitions should take, in seconds. A speed value of 0 is an instantaneous transition, and is not recommended.";
-yy += el_transition_rate.height + spacing;
+for (var i = 0; i < 32; i++) {
+    var field_xx = (i >= 16) ? ew : 0;
+    // Each element will be positioned based on the one directly above it, so you
+    // only need to move them up once otherwise they'll keep moving up the screen
+    var field_yy = (i == 16) ? -(eh * 16) : 0;
+    var label = (i >= ds_list_size(Stuff.all_asset_flags)) ? "<" + string(i) + ">" : Stuff.all_asset_flags[| i];
+    create_bitfield_options_vertical(el_asset_flags, [create_bitfield_option_data(i, ui_render_bitfield_option_text_generic_flag, uivc_bitfield_generic_flag, label, -1, 0, ew / 2, spacing / 2, field_xx, field_yy, color_active, color_inactive)]);
+}
+
+create_bitfield_options_vertical(el_asset_flags, [
+    create_bitfield_option_data(i, ui_render_bitfield_option_text_generic_flag_all, uivc_bitfield_generic_flag_all, "All", -1, 0, ew / 2, spacing / 2, 0, 0, color_active, color_inactive),
+    create_bitfield_option_data(i, ui_render_bitfield_option_text_generic_flag_none, uivc_bitfield_generic_flag_none, "None", -1, 0, ew / 2, spacing / 2, ew, -eh, color_active, color_inactive),
+]);
+
+el_asset_flags.tooltip = "Misc. flags which you may enable or disable. You can define asset flags in Global Game Settings.";
 
 var b_width = 128;
 var b_height = 32;
@@ -112,13 +106,8 @@ ds_list_add(dg.contents,
     el_bounds_x2,
     el_bounds_y2,
     el_bounds_z2,
-    el_properties_text,
-    el_camera_distance,
-    el_camera_angle,
     el_priority,
-    el_transition_text,
-    el_transition_style,
-    el_transition_rate,
+    el_asset_flags,
     el_commit
 );
 

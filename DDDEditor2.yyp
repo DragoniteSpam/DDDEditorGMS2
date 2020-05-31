@@ -520,7 +520,7 @@
             "Key": "056ea9ef-393f-41b0-89cb-3094997c0c18",
             "Value": {
                 "id": "f54a1cec-f092-45b6-a37c-dbc597e08ae9",
-                "resourcePath": "scripts\\uivc_input_map_camera_zone_priority\\uivc_input_map_camera_zone_priority.yy",
+                "resourcePath": "scripts\\uivc_input_map_zone_priority\\uivc_input_map_zone_priority.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -19100,6 +19100,14 @@
             }
         },
         {
+            "Key": "e822066a-fc1d-4fa3-a77e-0d0cf3374389",
+            "Value": {
+                "id": "3a17c0ea-7a96-4551-9bd8-93156fb3c648",
+                "resourcePath": "scripts\\uivc_input_map_flag_zone_flag\\uivc_input_map_flag_zone_flag.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "e843ade0-f396-4d4c-85c5-f19eaa707c0c",
             "Value": {
                 "id": "28940a02-5f22-4df1-a69a-65e3d57581a7",
@@ -22352,6 +22360,7 @@
         "9229373f-ce79-4577-ad90-cb5675305902",
         "3fa34049-53f7-4494-b14c-f3e09c95d15c",
         "f65f49e6-744e-46c5-b260-61ff028dc4b3",
+        "e822066a-fc1d-4fa3-a77e-0d0cf3374389",
         "76a84092-bbe4-4af9-9f79-28b9da5acc79",
         "42271633-fe32-4072-9142-99d753449858",
         "cea630de-825c-4a74-8ca0-cbb6d70eb466",
