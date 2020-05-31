@@ -959,7 +959,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     element.colorize = false;
     element.allow_deselect = false;
     ui_list_select(element, Stuff.setting_selection_zone_type);
-    create_list_entries(element, ["Camera Zone"], ["Light Zone"]);
+    create_list_entries(element, ["Camera Zone"], ["Light Zone"], ["Flag Zone"]);
     ds_list_add(t_p_other_editor.contents, element);
     t_p_other_editor.el_zone_type = element;
     

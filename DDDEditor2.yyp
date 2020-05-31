@@ -7965,6 +7965,14 @@
             }
         },
         {
+            "Key": "5f4ed38a-a50a-4bb6-bf86-0f44892a1b65",
+            "Value": {
+                "id": "d79744de-9276-4c67-9435-a9c73a2aad5a",
+                "resourcePath": "scripts\\serialize_load_zone_flag\\serialize_load_zone_flag.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "5f53b5c7-0f70-4bf5-b93d-41ab7676bb7d",
             "Value": {
                 "id": "d8474646-5a53-4a05-8f8f-bb85ef08a759",
@@ -8913,6 +8921,14 @@
             "Value": {
                 "id": "32a6dea7-00f1-4fd3-8d3a-aea4129f506b",
                 "resourcePath": "scripts\\uivc_settings_game_notes\\uivc_settings_game_notes.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "6b682c62-c82a-44e4-b1c6-41c8528551af",
+            "Value": {
+                "id": "66b7cbc3-7527-4bc9-ab59-72b93ba0fbba",
+                "resourcePath": "scripts\\map_zone_flag\\map_zone_flag.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -10530,6 +10546,14 @@
                 "id": "f7f9639d-42f1-406c-9cfe-430d1ac583e3",
                 "resourcePath": "views\\7f20ec16-813e-40ff-84ed-b924fec4984c.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "7f231230-1de3-4390-9d78-b4324c80f7e1",
+            "Value": {
+                "id": "ff9820b6-4664-44da-8327-5194b8faebcb",
+                "resourcePath": "objects\\DataFlagZone\\DataFlagZone.yy",
+                "resourceType": "GMObject"
             }
         },
         {
@@ -14650,6 +14674,14 @@
                 "id": "81b385bd-a491-4dca-900c-8c8c58733b8d",
                 "resourcePath": "objects\\DataAnimation\\DataAnimation.yy",
                 "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "b16cfef7-1309-49be-9911-5b9f2ed11cfa",
+            "Value": {
+                "id": "0b817086-6f28-41ca-a608-e6381b973148",
+                "resourcePath": "scripts\\serialize_save_zone_flag\\serialize_save_zone_flag.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -21471,6 +21503,7 @@
         "0f67b905-b2ee-49eb-ba96-763eb27af16c",
         "d98e8a9a-d475-42cc-98ce-47bd6a8e1fdf",
         "fa663bfb-720b-406f-b672-f3270b149138",
+        "6b682c62-c82a-44e4-b1c6-41c8528551af",
         "5007bd00-e7bc-452a-a28b-0c36a9d2328d",
         "54c88dd4-4ffb-4b5a-ae26-a1eeb69fe6b7",
         "a0c45521-e3c0-4e37-94b4-600c3f5eaf19",
@@ -22709,6 +22742,7 @@
         "46248d3b-19ba-4a6c-b098-acbc5e51ea7a",
         "444482e5-bf9b-4222-94cc-b0ad9ab5efc8",
         "7598a969-57b2-43a6-8354-283d93f53f02",
+        "5f4ed38a-a50a-4bb6-bf86-0f44892a1b65",
         "cdbc6c07-9e78-4b7a-ac07-2e3f8968aecd",
         "a6a5e265-4650-40fc-8221-11254253ece5",
         "09c3db56-cf0d-49de-be3f-5d7a532d4f90",
@@ -22748,6 +22782,7 @@
         "bd0be394-d9fd-4f47-82e2-6bf129f5ccd3",
         "844bd873-ea06-48b8-9447-953a9d9b2e33",
         "3a6f4f72-cc61-4b17-9061-3b835ed83de0",
+        "b16cfef7-1309-49be-9911-5b9f2ed11cfa",
         "cd6dbbb8-6dce-4f9b-9814-bd2eb5e83ab9",
         "7c455d4d-ca30-4dc0-9d24-b340fe482e76",
         "bf12de76-111a-48f5-8273-4a1c563e9145",

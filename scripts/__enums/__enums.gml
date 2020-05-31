@@ -131,13 +131,15 @@ enum BattleStyles {
 }
 
 enum MapZoneTypes {
-    CAMERA,
-    LIGHT,
+    CAMERA,                 // 0x0000ff (blue)
+    LIGHT,                  // 0xffff00 (yellow)
+    FLAG,                   // 0x00ff00 (green)
 }
 
 global.map_zone_type_objects = [
     DataCameraZone,
     DataLightZone,
+    DataFlagZone,
 ];
 
 // this can also be used for anything else that needs eight directions
