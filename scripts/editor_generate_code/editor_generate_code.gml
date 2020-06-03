@@ -43,8 +43,9 @@ for (var i = 0; i < ds_list_size(Stuff.particle.types); i++) {
         }
     }
     
-    if (type.sprite_custom) {
-        text += "part_type_sprite(" + type_name + ", " + type.sprite.internal_name + ", " + (type.sprite_animated ? "true" : "false") +
+    var sprite = guid_get(type.sprite);
+    if (type.sprite_custom && sprite) {
+        text += "part_type_sprite(" + type_name + ", " + sprite.internal_name + ", " + (type.sprite_animated ? "true" : "false") +
             ", " + (type.sprite_stretched ? "true" : "false") + ", " + (type.sprite_random ? "true" : "false") + ");\n";
     } else {
         text += "part_type_shape(" + type_name + ", " + type_shape_names[type.shape] + ");\n";

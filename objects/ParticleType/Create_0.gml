@@ -5,7 +5,7 @@ type = part_type_create();
 sprite_custom = false;
 shape = PartTypeShapes.SPHERE;
 part_type_shape(type, pt_shape_sphere);
-sprite = noone;
+sprite = NULL;
 sprite_animated = false;
 sprite_stretched = false;
 sprite_random = false;

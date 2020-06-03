@@ -450,12 +450,14 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     yy += element.height + spacing;
     
     var element = create_checkbox(col3_x, yy, "Use sprite?", ew, eh, ui_particle_type_use_sprite, false, t_type);
+    element.tooltip = "You can use a custom particle sprite. If no sprite is selected, the particle will draw its built-in shape instead.";
     ds_list_add(t_type.contents, element);
     t_type.use_sprite = element;
     
     yy += element.height + spacing;
     
     var element = create_button(col3_x, yy, "Sprite", ew, eh, fa_center, ui_particle_type_sprite, t_type);
+    element.tooltip = t_type.use_sprite.tooltip;
     ds_list_add(t_type.contents, element);
     
     yy += element.height + spacing;
