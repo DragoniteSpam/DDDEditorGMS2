@@ -75,12 +75,13 @@ with (instance_create_depth(0, 0, 0, MenuMain)) {
             md_graphic_skybox,
             md_graphic_etc
         );
-    md_graphics.interactive = MENU_EDITOR_ENABLED;
+    md_graphics.interactive = MENU_EDITOR_ENABLED || MENU_EDITOR_PARTICLE_OVERRIDE;
     md_graphic_ts.interactive = MENU_EDITOR_ENABLED;
     md_graphic_at.interactive = MENU_EDITOR_ENABLED;
     md_graphic_battle.interactive = MENU_EDITOR_ENABLED;
     md_graphic_ow.interactive = MENU_EDITOR_ENABLED;
-    md_graphic_part.interactive = MENU_EDITOR_ENABLED;
+    md_graphic_part.interactive = MENU_EDITOR_ENABLED || MENU_EDITOR_PARTICLE_OVERRIDE;
+    md_graphic_skybox.interactive = MENU_EDITOR_ENABLED;
     md_graphic_ui.interactive = MENU_EDITOR_ENABLED;
     md_graphic_etc.interactive = MENU_EDITOR_ENABLED;
     var md_audio = create_menu_element("Audio", momu_expand, menu_data);

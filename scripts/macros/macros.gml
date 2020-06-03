@@ -17,6 +17,8 @@
 #macro spart:MENU_EDITOR_ENABLED false
 #macro doodle:MENU_EDITOR_ENABLED false
 #macro particle:MENU_EDITOR_ENABLED false
+#macro MENU_EDITOR_PARTICLE_OVERRIDE false
+#macro particle:MENU_EDITOR_PARTICLE_OVERRIDE true
 //
 #macro GLOBAL_CONTORLS_ENABLED true
 #macro scribble:GLOBAL_CONTORLS_ENABLED false
