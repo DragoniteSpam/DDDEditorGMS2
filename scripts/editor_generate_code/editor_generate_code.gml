@@ -14,7 +14,6 @@ for (var i = 0; i < ds_list_size(Stuff.particle.types); i++) {
     var type_name = "global._part_type_" + string(i);
     text += "/* " + type.name + " */\n";
     text += "" + type_name + " = part_type_create();\n";
-    text += "part_type_shape(" + type_name + ", " + type_shape_names[type.shape] + ");\n";
     text += "part_type_speed(" + type_name + ", " + string(type.speed_min) + ", " + string(type.speed_max) +
         ", " + string(type.speed_incr) + ", " + string(type.speed_wiggle) + ");\n";
     text += "part_type_direction(" + type_name + ", " + string(type.direction_min) + ", " +
@@ -42,6 +41,13 @@ for (var i = 0; i < ds_list_size(Stuff.particle.types); i++) {
             text += "part_type_color1(" + type_name + ", " + string(type.color_1a) + ");\n";
             text += "part_type_alpha1(" + type_name + ", " + string(type.alpha_1) + ");\n";
         }
+    }
+    
+    if (type.sprite_custom) {
+        text += "part_type_sprite(" + type_name + ", " + type.sprite.internal_name + ", " + (type.sprite_animated ? "true" : "false") +
+            ", " + (type.sprite_stretched ? "true" : "false") + ", " + (type.sprite_random ? "true" : "false") + ");\n";
+    } else {
+        text += "part_type_shape(" + type_name + ", " + type_shape_names[type.shape] + ");\n";
     }
 }
 
