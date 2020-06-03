@@ -7,4 +7,8 @@ if (ds_list_size(Stuff.particle.types) < PART_MAXIMUM_TYPES) {
     type.name = "Type " + string(ds_list_size(Stuff.particle.types));
     instance_deactivate_object(type);
     ds_list_add(Stuff.particle.types, type);
+    
+    return type;
 }
+
+return noone;

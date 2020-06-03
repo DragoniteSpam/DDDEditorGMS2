@@ -7,4 +7,8 @@ if (ds_list_size(Stuff.particle.emitters) < PART_MAXIMUM_EMITTERS) {
     emitter.name = "Emitter " + string(ds_list_size(Stuff.particle.emitters));
     instance_deactivate_object(emitter);
     ds_list_add(Stuff.particle.emitters, emitter);
+    
+    return emitter;
 }
+
+return noone;
