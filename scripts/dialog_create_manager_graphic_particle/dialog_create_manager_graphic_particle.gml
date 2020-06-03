@@ -106,8 +106,6 @@ yy += el_dim_set_crop.height + spacing;
 var el_dim_set_full = create_button(c3 + 16, yy, "Dimensions: Full", ew, eh, fa_center, uivc_input_graphic_set_dim_full, dg);
 yy += el_dim_set_full.height + spacing;
 
-dg.el_frame_speed = noone;
-
 var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
 
 ds_list_add(dg.contents,

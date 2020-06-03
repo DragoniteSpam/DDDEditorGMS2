@@ -5,5 +5,7 @@ var list = input.root.el_list;
 var selection = ui_list_selection(list);
 
 if (selection + 1) {
-    list.entries[| selection].aspeed = real(input.value);
+    var image = list.entries[| selection];
+    image.aspeed = real(input.value);
+    sprite_set_speed(image.picture_with_frames, image.aspeed, spritespeed_framespersecond);
 }

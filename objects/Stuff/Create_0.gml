@@ -14,7 +14,7 @@ game_asset_id = string_hex(irandom(0xffffffff), 8);
 
 // local storage folders
 
-if (!directory_exists(PATH_TEMP_CODE)) directory_create(PATH_TEMP_CODE);
+if (!directory_exists(PATH_TEMP)) directory_create(PATH_TEMP);
 if (!directory_exists(PATH_AUDIO)) directory_create(PATH_AUDIO);
 if (!directory_exists(PATH_PROJECTS)) directory_create(PATH_PROJECTS);
 
