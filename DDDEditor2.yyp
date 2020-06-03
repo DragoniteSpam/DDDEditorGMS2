@@ -21252,6 +21252,14 @@
             }
         },
         {
+            "Key": "ffd07468-5b71-4c5a-a96d-edfdb34b9fb2",
+            "Value": {
+                "id": "57ff5b97-67da-41cb-83f6-9fefc93082af",
+                "resourcePath": "scripts\\editor_particle_type_set_sprite\\editor_particle_type_set_sprite.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "ffd6e8dd-7715-4bac-b112-e48f7ba785a4",
             "Value": {
                 "id": "a52d4052-bbf0-4810-b501-b703c77a3066",
@@ -23279,6 +23287,7 @@
         "cfe1b4b3-5450-45eb-ac18-fbae19969efe",
         "411d3ab2-d830-4fea-a6f6-937b8ab97373",
         "488bb7b8-3447-4188-8ac7-951e8b542103",
+        "ffd07468-5b71-4c5a-a96d-edfdb34b9fb2",
         "9f3e7e21-14cc-4832-b649-654f4a871615",
         "52338f42-fd48-4aeb-a0ad-9fb467f23278",
         "8335ebcb-f8b8-4613-84aa-9a4fc0d07796",
