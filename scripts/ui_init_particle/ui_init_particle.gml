@@ -449,7 +449,18 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy += element.height + spacing;
     
-    var element = create_list(col3_x, yy, "Shape:", "", ew, eh, 6, ui_particle_type_shape, false, t_type);
+    var element = create_checkbox(col3_x, yy, "Use sprite?", ew, eh, ui_particle_type_use_sprite, false, t_type);
+    ds_list_add(t_type.contents, element);
+    t_type.use_sprite = element;
+    
+    yy += element.height + spacing;
+    
+    var element = create_button(col3_x, yy, "Sprite", ew, eh, fa_center, null, t_type);
+    ds_list_add(t_type.contents, element);
+    
+    yy += element.height + spacing;
+    
+    var element = create_list(col3_x, yy, "Shape:", "", ew, eh, 5, ui_particle_type_shape, false, t_type);
     create_list_entries(element, "Pixel", "Disk", "Square", "Line", "Star", "Circle", "Ring", "Sphere", "Flare", "Spark", "Explosion", "Cloud", "Smoke", "Snow");
     element.tooltip = "The shape of the particle type. (Support for custom particle sprites may be added later.)";
     ds_list_add(t_type.contents, element);
@@ -464,7 +475,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     ds_list_add(t_type.contents, element);
     t_type.base_color_1a = element;
     
-    yy += element.height + spacing;
+    yy += element.height;
     
     var element = create_checkbox(col3_x - spacing, yy, "", 64, eh, ui_particle_type_color_1b_enabled, false, t_type);
     element.tooltip = "Enable or disable starting color range. (Enabling staring color range will override color transitions.)";
@@ -477,7 +488,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     ds_list_add(t_type.contents, element);
     t_type.base_color_1b = element;
     
-    yy += element.height + spacing;
+    yy += element.height;
     
     var element = create_checkbox(col3_x - spacing, yy, "", 64, eh, ui_particle_type_color_2_enabled, false, t_type);
     element.tooltip = "Enable or disable two-color transition. (Enabling staring color range will override color transitions.)";
@@ -491,7 +502,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     ds_list_add(t_type.contents, element);
     t_type.base_color_2 = element;
     
-    yy += element.height + spacing;
+    yy += element.height;
     
     var element = create_checkbox(col3_x - spacing, yy, "", 64, eh, ui_particle_type_color_3_enabled, false, t_type);
     element.tooltip = "Enable or disable three-color transition. (Enabling staring color range will override color transitions.)";
