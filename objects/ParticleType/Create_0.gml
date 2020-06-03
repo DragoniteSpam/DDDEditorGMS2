@@ -6,6 +6,9 @@ sprite_custom = false;
 shape = PartTypeShapes.SPHERE;
 part_type_shape(type, pt_shape_sphere);
 sprite = noone;
+sprite_animated = false;
+sprite_stretched = false;
+sprite_random = false;
 
 speed_min = 0;
 speed_max = 0;

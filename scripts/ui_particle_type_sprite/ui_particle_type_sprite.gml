@@ -28,23 +28,25 @@ if (selection + 1) {
     var yy = 64;
     var yy_base = yy;
     
-    //var el_update_list = create_list(col1_x, yy, "Particle SPrites", "", ew, eh, 10, ui_particle_type_secondary_update_type, false, dg, Stuff.particle.types);
-    var el_update_list = create_list(col1_x, yy, "Particle Sprites", "<no particle sprites>", ew, eh, 10, null, false, dg, Stuff.all_graphic_particles);
+    var el_update_list = create_list(col1_x, yy, "Particle Sprites", "<no particle sprites>", ew, eh, 10, ui_particle_type_sprite_assign, false, dg, Stuff.all_graphic_particles);
     ui_list_select(el_update_list, ds_list_find_index(Stuff.all_graphic_particles, type.sprite), true);
-    el_update_list.tooltip = "The custom sprite to be used by the particle type. Go to Data > Graphics > Particles to manage particle sprites. Right-click the list to deselect.";
+    el_update_list.tooltip = "The custom sprite to be used by the particle type. Go to Data > Graphics > Particles to manage particle sprites.";
     el_update_list.entries_are = ListEntries.INSTANCES;
     
     yy += ui_get_list_height(el_update_list) + spacing;
     
-    var el_animated = create_checkbox(col1_x, yy, "Animated?", ew, eh, null, false, dg);
+    var el_animated = create_checkbox(col1_x, yy, "Animated?", ew, eh, ui_particle_type_sprite_animated, type.sprite_animated, dg);
+    el_animated.tooltip = "Should the particles follow the sprite's animation?";
     
     yy += el_animated.height + spacing;
     
-    var el_stretched = create_checkbox(col1_x, yy, "Animation stretched?", ew, eh, null, false, dg);
+    var el_stretched = create_checkbox(col1_x, yy, "Animation stretched?", ew, eh, ui_particle_type_sprite_stretched, type.sprite_stretched, dg);
+    el_stretched.tooltip = "Should the particle's animation be stretched out over the lifespan of the particle, or play at a rate of one frame per step?";
     
     yy += el_stretched.height + spacing;
     
-    var el_random = create_checkbox(col1_x, yy, "Random subimage?", ew, eh, null, false, dg);
+    var el_random = create_checkbox(col1_x, yy, "Random subimage?", ew, eh, ui_particle_type_sprite_random, type.sprite_random, dg);
+    el_random.tooltip = "Should the particles start with a random subimage of the sprite?";
     
     yy += el_random.height + spacing;
     
