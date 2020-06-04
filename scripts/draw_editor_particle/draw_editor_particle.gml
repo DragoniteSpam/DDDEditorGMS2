@@ -92,7 +92,7 @@ if (mode.emitter_setting) {
         
         if (Controller.release_left) {
             part_system_automatic_update(mode.system, mode.system_auto_update);
-            part_emitter_region(Stuff.particle.system, emitter.emitter, emitter.region_x1, emitter.region_x2, emitter.region_y1, emitter.region_y2, emitter.region_shape, emitter.region_distribution);
+            editor_particle_emitter_set_region(emitter);
             editor_particle_emitter_create_region(emitter);
             ui_particle_emitter_select(mode.ui.t_emitter.list);
             kill = true;

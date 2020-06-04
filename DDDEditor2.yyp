@@ -6904,7 +6904,7 @@
             "Key": "52338f42-fd48-4aeb-a0ad-9fb467f23278",
             "Value": {
                 "id": "3878eb0b-7014-4a9c-933d-d5344d88e60e",
-                "resourcePath": "scripts\\editor_generate_code\\editor_generate_code.yy",
+                "resourcePath": "scripts\\editor_particle_generate_code\\editor_particle_generate_code.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -7057,6 +7057,14 @@
             "Value": {
                 "id": "d5b41745-6a21-4027-8e99-7720dcd1331f",
                 "resourcePath": "scripts\\smf_pose_lerp_bone\\smf_pose_lerp_bone.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "54419df8-f4c4-4329-a3a2-2504f27fe4fc",
+            "Value": {
+                "id": "02d01fdc-279d-4752-91dd-1d1c36e8ef7c",
+                "resourcePath": "scripts\\editor_particle_emitter_set_region\\editor_particle_emitter_set_region.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -23308,6 +23316,7 @@
         "52338f42-fd48-4aeb-a0ad-9fb467f23278",
         "8de8efae-e880-4818-85ac-299766b99e0d",
         "2bcdfba8-0f39-466b-a60b-544fcc4e5d8e",
+        "54419df8-f4c4-4329-a3a2-2504f27fe4fc",
         "8335ebcb-f8b8-4613-84aa-9a4fc0d07796",
         "8f0f4115-e352-4927-9396-f1832f1e8ebd",
         "64289ba3-596a-4413-bb7e-a4070b5a6eb8",

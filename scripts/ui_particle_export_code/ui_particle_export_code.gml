@@ -7,7 +7,7 @@ if (fn == "") {
     return;
 }
 
-var text = editor_generate_code();
+var text = editor_particle_generate_code();
 
 var fbuffer = buffer_create(1024, buffer_grow, 1);
 buffer_write(fbuffer, buffer_text, text);

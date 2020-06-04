@@ -6,7 +6,7 @@ var selection = ui_list_selection(list.root.list);
 
 if (selection + 1) {
     var emitter = Stuff.particle.emitters[| selection];
-    part_emitter_region(Stuff.particle.system, emitter.emitter, emitter.region_x1, emitter.region_x2, emitter.region_y1, emitter.region_y2, emitter.region_shape, emitter.region_distribution);
+    editor_particle_emitter_set_region(emitter);
     if (selected_type + 1) {
         emitter.type = Stuff.particle.types[| selected_type];
         editor_particle_emitter_set_emission(emitter);
