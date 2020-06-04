@@ -206,8 +206,8 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy += element.height + spacing;
     
-    var element = create_input(col2_x, yy, "Rate", ew, eh, ui_particle_emitter_rate, 120, "", validate_int, -1000, 1000, 5, vx1, vy1, vx2, vy2, t_emitter);
-    element.tooltip = "How many particles will be emitted per second (or per burst, per second). Negative values will result in a random chance of a particle being emitted every update.";
+    var element = create_input(col2_x, yy, "Rate", ew, eh, ui_particle_emitter_rate, 120, "", validate_int, 0, 1000, 5, vx1, vy1, vx2, vy2, t_emitter);
+    element.tooltip = "How many particles will be emitted per second (or per burst). Values less than 60 will result in a random chance of a particle being emitted every update.";
     ds_list_add(t_emitter.contents, element);
     t_emitter.rate = element;
     

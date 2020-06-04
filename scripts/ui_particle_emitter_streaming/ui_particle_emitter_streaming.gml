@@ -8,6 +8,6 @@ if (selection + 1) {
     emitter.streaming = checkbox.value;
     if (emitter.type) {
         part_emitter_region(Stuff.particle.system, emitter.emitter, emitter.region_x1, emitter.region_x2, emitter.region_y1, emitter.region_y2, emitter.region_shape, emitter.region_distribution);
-        part_emitter_stream(Stuff.particle.system, emitter.emitter, emitter.type.type, emitter.streaming ? emitter.rate * Stuff.dt : 0);
+        editor_particle_emitter_set_emission(emitter);
     }
 }

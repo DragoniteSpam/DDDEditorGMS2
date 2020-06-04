@@ -3781,6 +3781,14 @@
             }
         },
         {
+            "Key": "2bcdfba8-0f39-466b-a60b-544fcc4e5d8e",
+            "Value": {
+                "id": "c8dace21-0c7e-4fd0-8f56-8e775b2f91d0",
+                "resourcePath": "scripts\\editor_particle_emitter_set_emission\\editor_particle_emitter_set_emission.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "2be4bb41-d6da-4ba0-8d1b-fdba9e442881",
             "Value": {
                 "id": "a84514a3-957f-495e-b9b8-0027f2b577e6",
@@ -11817,6 +11825,14 @@
             "Value": {
                 "id": "70296417-2265-4232-b3d0-02e78ebd0d9f",
                 "resourcePath": "scripts\\ui_input_terrain_orthographic\\ui_input_terrain_orthographic.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "8de8efae-e880-4818-85ac-299766b99e0d",
+            "Value": {
+                "id": "4e2296e3-1e91-499c-88ee-a2232aeebc5a",
+                "resourcePath": "scripts\\editor_particle_rate_odds\\editor_particle_rate_odds.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -23290,6 +23306,8 @@
         "ffd07468-5b71-4c5a-a96d-edfdb34b9fb2",
         "9f3e7e21-14cc-4832-b649-654f4a871615",
         "52338f42-fd48-4aeb-a0ad-9fb467f23278",
+        "8de8efae-e880-4818-85ac-299766b99e0d",
+        "2bcdfba8-0f39-466b-a60b-544fcc4e5d8e",
         "8335ebcb-f8b8-4613-84aa-9a4fc0d07796",
         "8f0f4115-e352-4927-9396-f1832f1e8ebd",
         "64289ba3-596a-4413-bb7e-a4070b5a6eb8",
