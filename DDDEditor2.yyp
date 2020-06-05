@@ -3453,6 +3453,14 @@
             }
         },
         {
+            "Key": "27949d72-2336-461e-aeff-780c9e61f54e",
+            "Value": {
+                "id": "60f9189c-217c-4feb-8f10-9b0c1a8c90db",
+                "resourcePath": "datafiles_yy\\data\\particles\\waterfall.dddp.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "27a87c1d-e2bb-46af-9bf6-c260bd11f882",
             "Value": {
                 "id": "2bac79b7-860b-4a2e-a0f6-654c4ca6c6b6",
@@ -5101,6 +5109,14 @@
             }
         },
         {
+            "Key": "3c141a34-546d-40f8-a3c4-b7fbbe2a990b",
+            "Value": {
+                "id": "d28b0648-e4c1-4194-bd80-91cdf750ee9b",
+                "resourcePath": "scripts\\ui_particle_demo_water_execute\\ui_particle_demo_water_execute.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "3c8c30fe-63a3-40a7-b727-8282289c84de",
             "Value": {
                 "id": "3ad0fc80-e53b-4e6d-a4b2-20defcc2f44a",
@@ -5405,6 +5421,14 @@
             }
         },
         {
+            "Key": "417fe27f-c559-486a-9b6b-6b31c25ddb4d",
+            "Value": {
+                "id": "374b2a92-2869-43c2-8999-2c79b25bd8c3",
+                "resourcePath": "scripts\\ui_particle_demo_glow_execute\\ui_particle_demo_glow_execute.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "4182667f-9154-4529-b83f-0f642700c2e8",
             "Value": {
                 "id": "5ab977f7-8b16-4675-8fe4-f266972493c2",
@@ -5642,6 +5666,14 @@
                 "id": "c1aca589-c457-496d-a85d-bfac82f5f66c",
                 "resourcePath": "shaders\\sh_smf_f_reflection\\sh_smf_f_reflection.yy",
                 "resourceType": "GMShader"
+            }
+        },
+        {
+            "Key": "43d4a969-1b5b-4f7a-a587-12fdb39f57e0",
+            "Value": {
+                "id": "c3842e74-1879-4440-b109-a7845c891026",
+                "resourcePath": "scripts\\ui_particle_demo_glow\\ui_particle_demo_glow.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -8242,6 +8274,14 @@
                 "id": "500559ba-68f3-494a-bfdd-f00a52d5e0f8",
                 "resourcePath": "scripts\\omu_event_remove_event\\omu_event_remove_event.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "62694697-6864-4e50-a57f-446fd8f0dfbf",
+            "Value": {
+                "id": "7e6dd50d-1f15-4411-8f5a-47cbc7982eff",
+                "resourcePath": "datafiles_yy\\data\\particles\\fire.dddp.yy",
+                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -11609,6 +11649,14 @@
             "Value": {
                 "id": "8db585a1-3899-4caf-8b8f-42fe3039536b",
                 "resourcePath": "scripts\\spart_particles_clear\\spart_particles_clear.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "8a8324bc-3620-4929-87bb-585b4b1984ef",
+            "Value": {
+                "id": "50742a74-92d3-49e5-b3d5-3d45441f7bc3",
+                "resourcePath": "scripts\\ui_particle_demo_fire\\ui_particle_demo_fire.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -16013,6 +16061,14 @@
             }
         },
         {
+            "Key": "c12e7a1d-a513-4aab-be17-7b779a644ec1",
+            "Value": {
+                "id": "5c28fe1c-f76a-4b92-aad4-3964ce7378a3",
+                "resourcePath": "scripts\\ui_particle_demo_fire_execute\\ui_particle_demo_fire_execute.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "c12ed004-72a8-43f1-8482-88cb1d9d4900",
             "Value": {
                 "id": "6c20b889-b16a-44d1-9fcc-cc627c9a0ed4",
@@ -17577,6 +17633,14 @@
                 "id": "7a645182-2895-4454-8a0f-d76469e0d235",
                 "resourcePath": "scripts\\ds_stuff_process_complete\\ds_stuff_process_complete.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "d3cb3ec1-1efc-4a49-8fc8-fcec90794007",
+            "Value": {
+                "id": "1defd9a1-52a5-4b54-b00e-aba2801ee8e3",
+                "resourcePath": "datafiles_yy\\data\\particles\\glow.dddp.yy",
+                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -19313,6 +19377,14 @@
                 "id": "16a88c72-f26d-472f-a19f-60f19c34dded",
                 "resourcePath": "fonts\\FDefault\\FDefault.yy",
                 "resourceType": "GMFont"
+            }
+        },
+        {
+            "Key": "e95bc918-ed39-4c25-82ba-274b0bdcc4e5",
+            "Value": {
+                "id": "67caab54-8df4-419b-b42f-c3818fd3776f",
+                "resourcePath": "views\\e95bc918-ed39-4c25-82ba-274b0bdcc4e5.yy",
+                "resourceType": "GMFolder"
             }
         },
         {
@@ -21300,6 +21372,14 @@
             }
         },
         {
+            "Key": "ff7f72d1-0f11-4fb2-a6ae-eb3c8401d342",
+            "Value": {
+                "id": "1a803ba3-dd90-4b36-92a5-4778026dc616",
+                "resourcePath": "scripts\\ui_particle_demo_water\\ui_particle_demo_water.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "ff8ede4f-395d-4e57-977f-edd25a64808e",
             "Value": {
                 "id": "2c8c32cb-02d9-4c0d-a003-5a41a78ae778",
@@ -23278,6 +23358,12 @@
         "1fa29d7a-80e2-43c1-89aa-b667bbdf55ff",
         "83d9fcff-4290-4dde-89f2-7f5b4d837773",
         "899c2441-ce1a-44e5-bf37-c91d2e9c8353",
+        "8a8324bc-3620-4929-87bb-585b4b1984ef",
+        "ff7f72d1-0f11-4fb2-a6ae-eb3c8401d342",
+        "43d4a969-1b5b-4f7a-a587-12fdb39f57e0",
+        "c12e7a1d-a513-4aab-be17-7b779a644ec1",
+        "3c141a34-546d-40f8-a3c4-b7fbbe2a990b",
+        "417fe27f-c559-486a-9b6b-6b31c25ddb4d",
         "7dc9f1dd-f25f-4455-b399-d6e4b43b2b76",
         "165bcba6-f798-4c11-9745-7723c132f44b",
         "a1d7b84f-41ac-405e-8310-b50365e418dd",

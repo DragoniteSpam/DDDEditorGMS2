@@ -147,19 +147,19 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy += element.height + spacing;
     
-    var element = create_button(col3_x, yy, "Fire", ew, eh, fa_center, null, t_system);
+    var element = create_button(col3_x, yy, "Fire", ew, eh, fa_center, ui_particle_demo_fire, t_system);
     element.tooltip = "A demo of fire and smoke";
     ds_list_add(t_system.contents, element);
     
     yy += element.height + spacing;
     
-    var element = create_button(col3_x, yy, "Waterfall", ew, eh, fa_center, null, t_system);
+    var element = create_button(col3_x, yy, "Waterfall", ew, eh, fa_center, ui_particle_demo_water, t_system);
     element.tooltip = "A demo of water";
     ds_list_add(t_system.contents, element);
     
     yy += element.height + spacing;
     
-    var element = create_button(col3_x, yy, "Glowing Blobs", ew, eh, fa_center, null, t_system);
+    var element = create_button(col3_x, yy, "Glowing Blobs", ew, eh, fa_center, ui_particle_demo_glow, t_system);
     element.tooltip = "A demo of glowing particles that you can draw on the screen and stuff with (click the mouse to spawn particles at the cursor location)";
     ds_list_add(t_system.contents, element);
     
