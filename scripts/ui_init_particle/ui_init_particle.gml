@@ -110,7 +110,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy += element.height + spacing;
     
-    var element = create_button(col2_x, yy, "Save Buffer", ew, eh, fa_center, null, t_system);
+    var element = create_button(col2_x, yy, "Save Buffer", ew, eh, fa_center, ui_particle_save, t_system);
     element.tooltip = "Save a buffer containing particle information, which you can load later (or use in your game itself).";
     ds_list_add(t_system.contents, element);
     

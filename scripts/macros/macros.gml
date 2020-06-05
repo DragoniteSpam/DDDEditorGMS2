@@ -67,6 +67,7 @@
 #macro EXPORT_EXTENSION_DATA ".dddd"
 #macro EXPORT_EXTENSION_MAP ".dddm"
 #macro EXPORT_EXTENSION_ASSETS ".ddda"
+#macro EXPORT_EXTENSION_PARTICLES ".dddp"
 #macro FLAG_COUNT 32
 #macro HH 900
 #macro HW 520
