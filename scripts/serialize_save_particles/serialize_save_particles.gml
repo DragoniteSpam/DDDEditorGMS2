@@ -3,6 +3,9 @@
 var buffer = argument0;
 var mode = Stuff.particle;
 
+var version = 0;
+buffer_write(buffer, buffer_u32, version);
+
 var addr_end = buffer_tell(buffer);
 buffer_write(buffer, buffer_u64, 0);
 
