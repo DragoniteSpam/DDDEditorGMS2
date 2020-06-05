@@ -99,6 +99,7 @@ for (var i = 0; i < n_types; i++) {
     buffer_write(buffer, buffer_f32, type.update_rate);
     buffer_write(buffer, buffer_s16, ds_list_find_index(mode.types, type.death_type));
     buffer_write(buffer, buffer_f32, type.death_rate);
+    buffer_write(buffer, buffer_u32, bools);
 }
 #endregion
 

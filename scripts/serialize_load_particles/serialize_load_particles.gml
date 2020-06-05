@@ -84,14 +84,25 @@ repeat (n_types) {
     type.size_max = buffer_read(buffer, buffer_f32);
     type.size_incr = buffer_read(buffer, buffer_f32);
     type.size_wiggle = buffer_read(buffer, buffer_f32);
-    type.size_xscale = buffer_read(buffer, buffer_f32);
-    type.size_yscale = buffer_read(buffer, buffer_f32);
+    type.xscale = buffer_read(buffer, buffer_f32);
+    type.yscale = buffer_read(buffer, buffer_f32);
     type.life_min = buffer_read(buffer, buffer_f32);
     type.life_max = buffer_read(buffer, buffer_f32);
     type.update_type = buffer_read(buffer, buffer_s16);
     type.update_rate = buffer_read(buffer, buffer_f32);
     type.death_type = buffer_read(buffer, buffer_s16);
     type.death_rate = buffer_read(buffer, buffer_f32);
+    
+    var bools = buffer_read(buffer, buffer_u32);
+    type.sprite_custom =        unpack(bools, 0);
+    type.sprite_animated =      unpack(bools, 1);
+    type.sprite_stretched =     unpack(bools, 2);
+    type.sprite_random =        unpack(bools, 3);
+    type.color_1b_enabled =     unpack(bools, 4);
+    type.color_2_enabled =      unpack(bools, 5);
+    type.color_3_enabled =      unpack(bools, 6);
+    type.blend =                unpack(bools, 7);
+    type.orientation_relative = unpack(bools, 8);
 }
 #endregion
 
