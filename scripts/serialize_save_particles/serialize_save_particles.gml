@@ -10,9 +10,13 @@ var addr_end = buffer_tell(buffer);
 buffer_write(buffer, buffer_u64, 0);
 
 #region system
-var bools = pack(mode.system_auto_update);
+var bools = pack(
+    mode.system_auto_update,
+    mode.emitter_set_snap_size,
+);
 
 buffer_write(buffer, buffer_u32, mode.back_color);
+buffer_write(buffer, buffer_u32, mode.emitter_set_snap_size);
 buffer_write(buffer, buffer_u32, bools);
 #endregion
 
