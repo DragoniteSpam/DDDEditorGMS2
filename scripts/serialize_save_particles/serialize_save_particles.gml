@@ -12,7 +12,7 @@ buffer_write(buffer, buffer_u64, 0);
 #region system
 var bools = pack(
     mode.system_auto_update,
-    mode.emitter_set_snap_size,
+    mode.emitter_set_snap,
 );
 
 buffer_write(buffer, buffer_u32, mode.back_color);
@@ -26,7 +26,10 @@ buffer_write(buffer, buffer_u8, n_emitters);
 
 for (var i = 0; i < n_emitters; i++) {
     var emitter = mode.emitters[| i];
-    var bools = pack(emitter.streaming, emitter.draw_region);
+    var bools = pack(
+        emitter.streaming,
+        emitter.draw_region
+    );
     buffer_write(buffer, buffer_string, emitter.name);
     buffer_write(buffer, buffer_u8, emitter.region_shape);
     buffer_write(buffer, buffer_u8, emitter.region_distribution);
@@ -96,7 +99,6 @@ for (var i = 0; i < n_types; i++) {
     buffer_write(buffer, buffer_f32, type.update_rate);
     buffer_write(buffer, buffer_s16, ds_list_find_index(mode.types, type.death_type));
     buffer_write(buffer, buffer_f32, type.death_rate);
-    
 }
 #endregion
 
