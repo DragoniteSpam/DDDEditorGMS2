@@ -86,9 +86,11 @@ for (var i = 0; i < ds_list_size(Stuff.particle.emitters); i++) {
         string(emitter.region_x2) + ", " + string(emitter.region_y1) + ", " + string(emitter.region_y2) + ", " +
         emitter_shape_names[emitter.region_shape] + ", " + emitter_distribution_names[emitter.region_distribution] + ");\n";
     if (emitter.type) {
+        text += "var _odds = " + string(emitter.rate) + ";\n";
+        text += "if (_odds < _fps) {\n    var _rate =  -1 / (_odds / _fps);\n} else {\n    var _rate = _odds / _fps;\n}\n";
         var type_name = "global._part_type_" + string(ds_list_find_index(Stuff.particle.types, emitter.type));
         text += ((!emitter.streaming) ? "// " : "") + "part_emitter_stream(" + sys_name + ", " + em_name + ", " +
-            string(type_name) + ", " + string(emitter.rate) + " / _fps);\n";
+            string(type_name) + ", _rate);\n";
     }
 }
 
