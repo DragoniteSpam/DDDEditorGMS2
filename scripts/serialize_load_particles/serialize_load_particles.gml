@@ -130,7 +130,8 @@ for (var i = 0; i < n_types; i++) {
     part_type_size(type.type, type.size_min, type.size_max, type.size_incr, type.size_wiggle);
     var f = game_get_speed(gamespeed_fps);
     part_type_life(type.type, type.life_min * f, type.life_max * f);
-    if (type.update_type) part_type_step(type.type, ceil(type.update_rate / f), type.update_type.type);
+    var odds = editor_particle_rate_odds(type.update_rate);
+    if (type.update_type) part_type_step(type.type, odds, type.update_type.type);
     if (type.death_type) part_type_death(type.type, type.death_rate, type.death_type.type);
 }
 #endregion
