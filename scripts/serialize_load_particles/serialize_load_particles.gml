@@ -10,15 +10,6 @@ ui_particle_reset(noone);
 buffer_read(buffer, buffer_u32);
 var addr_end = buffer_read(buffer, buffer_u64);
 
-#region system
-mode.back_color = buffer_read(buffer, buffer_u32);
-mode.emitter_set_snap_size = buffer_read(buffer, buffer_u32);
-
-var bools = buffer_read(buffer, buffer_u32);
-mode.system_auto_update =       unpack(bools, 0);
-mode.emitter_set_snap =         unpack(bools, 1);
-#endregion
-
 #region emitters
 var n_emitters = buffer_read(buffer, buffer_u8);
 repeat (n_emitters) {

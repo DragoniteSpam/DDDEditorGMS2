@@ -9,17 +9,6 @@ buffer_write(buffer, buffer_u32, version);
 var addr_end = buffer_tell(buffer);
 buffer_write(buffer, buffer_u64, 0);
 
-#region system
-var bools = pack(
-    mode.system_auto_update,
-    mode.emitter_set_snap,
-);
-
-buffer_write(buffer, buffer_u32, mode.back_color);
-buffer_write(buffer, buffer_u32, mode.emitter_set_snap_size);
-buffer_write(buffer, buffer_u32, bools);
-#endregion
-
 #region emitters
 var n_emitters = ds_list_size(mode.emitters);
 buffer_write(buffer, buffer_u8, n_emitters);

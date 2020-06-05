@@ -64,12 +64,14 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     element.tooltip = "The background color.";
     element.active_shade = false;
     ds_list_add(t_system.contents, element);
+    t_system.back_color = element;
     
     yy += element.height + spacing;
     
     var element = create_checkbox(col1_x, yy, "Automatic Update?", ew, eh, ui_particle_automatic_update, mode.system_auto_update, t_system);
     element.tooltip = "Whehter or not the particle system will update automatically. If this is turned off, you must update the system manually.";
     ds_list_add(t_system.contents, element);
+    t_system.automatic_update = element;
     
     yy += element.height + spacing;
     
@@ -96,12 +98,15 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     var element = create_checkbox(col1_x, yy, "Snap Emitter to Grid?", ew, eh, ui_particle_grid_snap, mode.emitter_set_snap, t_system);
     element.tooltip = "When clicking on the particle view to set emitter regions, you may find it helpful to snap to the grid.";
     ds_list_add(t_system.contents, element);
+    t_system.emitter_set_snap = element;
     
     yy += element.height + spacing;
     
     var element = create_input(col1_x, yy, "Distance:", ew, eh, ui_particle_grid_snap_distance, mode.emitter_set_snap_size, "reasonable integer", validate_int, 1, 128, 3, vx1, vy1, vx2, vy2, t_system);
     element.tooltip = "The grid-snapping distance.";
     ds_list_add(t_system.contents, element);
+    t_system.emitter_set_snap_size = element;
+    
     yy = legal_y + spacing;
     
     var element = create_text(col2_x, yy, "Save / Load", ew, eh, fa_left, ew, t_system);
