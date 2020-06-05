@@ -54,6 +54,12 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     #region tab: system
     var yy = legal_y + spacing;
     
+    var element = create_text(col1_x, yy, "Settings", ew, eh, fa_left, ew, t_system);
+    element.color = c_blue;
+    ds_list_add(t_system.contents, element);
+    
+    yy += element.height + spacing;
+    
     var element = create_color_picker(col1_x, yy, "Back:", ew, eh, ui_particle_back_color, mode.back_color, vx1, vy1, vx2, vy2, t_system);
     element.tooltip = "The background color.";
     element.active_shade = false;
@@ -97,6 +103,24 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     element.tooltip = "The grid-snapping distance.";
     ds_list_add(t_system.contents, element);
     yy = legal_y + spacing;
+    
+    var element = create_text(col2_x, yy, "Save / Load", ew, eh, fa_left, ew, t_system);
+    element.color = c_blue;
+    ds_list_add(t_system.contents, element);
+    
+    yy += element.height + spacing;
+    
+    var element = create_button(col2_x, yy, "Save Buffer", ew, eh, fa_center, null, t_system);
+    element.tooltip = "Save a buffer containing particle information, which you can load later (or use in your game itself).";
+    ds_list_add(t_system.contents, element);
+    
+    yy += element.height + spacing;
+    
+    var element = create_button(col2_x, yy, "Load Buffer", ew, eh, fa_center, null, t_system);
+    element.tooltip = "Load a previously saved buffer containing particle information.";
+    ds_list_add(t_system.contents, element);
+    
+    yy += element.height + spacing;
     
     var element = create_button(col2_x, yy, "Export Code", ew, eh, fa_center, ui_particle_export_code, t_system);
     element.tooltip = "Save the GML code that will generate the particles to a file.";
