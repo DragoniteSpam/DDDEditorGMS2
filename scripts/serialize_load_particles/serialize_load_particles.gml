@@ -98,7 +98,7 @@ repeat (n_types) {
 #region linkage
 for (var i = 0; i < n_emitters; i++) {
     var emitter = mode.emitters[| i];
-    emitter.type = mode.types[| emitter.emitter] ? mode.types[| emitter.emitter] : noone;
+    emitter.type = mode.types[| emitter.type] ? mode.types[| emitter.type] : noone;
     editor_particle_emitter_set_emission(emitter);
     editor_particle_emitter_set_region(emitter);
     editor_particle_emitter_create_region(emitter);
