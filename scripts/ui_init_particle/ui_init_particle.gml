@@ -52,7 +52,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     var button_width = 128;
     
     #region tab: system
-    var yy = legal_y + spacing;
+    var yy = legal_y;
     
     var element = create_text(col1_x, yy, "Settings", ew, eh, fa_left, ew, t_system);
     element.color = c_blue;
@@ -107,7 +107,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     ds_list_add(t_system.contents, element);
     t_system.emitter_set_snap_size = element;
     
-    yy = legal_y + spacing;
+    yy = legal_y;
     
     var element = create_text(col2_x, yy, "Save / Load", ew, eh, fa_left, ew, t_system);
     element.color = c_blue;
@@ -138,6 +138,33 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     ds_list_add(t_system.contents, element);
     
     yy += element.height + spacing;
+    
+    yy = legal_y;
+    
+    var element = create_text(col3_x, yy, "Demo Particle Types", ew, eh, fa_left, ew, t_system);
+    element.color = c_blue;
+    ds_list_add(t_system.contents, element);
+    
+    yy += element.height + spacing;
+    
+    var element = create_button(col3_x, yy, "Fire", ew, eh, fa_center, null, t_system);
+    element.tooltip = "A demo of fire and smoke";
+    ds_list_add(t_system.contents, element);
+    
+    yy += element.height + spacing;
+    
+    var element = create_button(col3_x, yy, "Waterfall", ew, eh, fa_center, null, t_system);
+    element.tooltip = "A demo of water";
+    ds_list_add(t_system.contents, element);
+    
+    yy += element.height + spacing;
+    
+    var element = create_button(col3_x, yy, "Glowing Blobs", ew, eh, fa_center, null, t_system);
+    element.tooltip = "A demo of glowing particles that you can draw on the screen and stuff with (click the mouse to spawn particles at the cursor location)";
+    ds_list_add(t_system.contents, element);
+    
+    yy += element.height + spacing;
+    
     #endregion
     
     #region tab: emitters
