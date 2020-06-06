@@ -465,6 +465,20 @@ element_tooltip_t = -1;
 
 screen_icons = ds_queue_create();
 unlit_meshes = ds_queue_create();
+
+default_pawn = instance_create_depth(0, 0, 0, DataImage);
+instance_deactivate_object(default_pawn);
+default_pawn.texture_exclude = true;
+default_pawn.picture = spr_pawn_missing;
+default_pawn.width = sprite_get_width(spr_pawn_missing);
+default_pawn.height = sprite_get_height(spr_pawn_missing);
+default_pawn.hframes = 4;
+default_pawn.vframes = 4;
+default_pawn.aframes = 0;
+default_pawn.aspeed = 0;
+default_pawn.picture_with_frames = -1;
+data_image_npc_frames(default_pawn);
+
 #endregion
 
 #region global game settings

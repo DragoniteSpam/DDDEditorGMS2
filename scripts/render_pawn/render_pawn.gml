@@ -6,6 +6,7 @@ var yy = pawn.yy;
 var zz = pawn.zz;
 
 var data = guid_get(pawn.overworld_sprite);
+data = data ? data : Stuff.default_pawn;
 var spritesheet_height = 4;
 var spritesheet_frames = data ? data.hframes : 4;
 
