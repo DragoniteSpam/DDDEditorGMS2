@@ -91,7 +91,14 @@ if (file_exists(fn)) {
         var q = split(str, " ", false, false);
         file_text_readln(f);
         
-        switch (ds_queue_dequeue(q)) {
+        if (ds_queue_size(q) == 0) {
+            ds_queue_destroy(q);
+            continue;
+        }
+        
+        var word = ds_queue_dequeue(q);
+        
+        switch (word) {
             case "v":
                 if (ds_queue_size(q) >= 3) {
                     ds_list_add(v_x, real(ds_queue_dequeue(q)));
@@ -201,7 +208,7 @@ if (file_exists(fn)) {
             case "#":   // comment
                 break;
             default:
-                err = "Unsupported thing found in your model, skipping everything (line " + string(line_number) + ")";
+                err = "Unsupported thing found in your model, skipping everything (line " + string(line_number) + "): " + string(word);
                 break;
         }
         
@@ -266,11 +273,14 @@ if (file_exists(fn)) {
             if (adjust) {
                 bxtex = v[6] * TILESET_TEXTURE_SCALE;
                 bytex = v[7] * TILESET_TEXTURE_SCALE;
+            } else {
+                bxtex = v[6];
+                bytex = v[7];
             }
             
             // the texture pages are 4k, so this is four pixels squared
-            xtex = round_ext(xtex, 1 / 1024);
-            ytex = round_ext(ytex, 1 / 1024);
+            bxtex = round_ext(bxtex, 1 / 1024);
+            bytex = round_ext(bytex, 1 / 1024);
             
             bcolor = v[8];
             balpha = v[9];

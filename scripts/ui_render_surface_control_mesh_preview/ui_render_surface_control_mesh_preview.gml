@@ -57,7 +57,7 @@ if (mouse_within_rectangle_view(x1, y1, x2, y2)) {
         }
     } else if (keyboard_check(vk_alt)) {
         if (keyboard_check(vk_up) || keyboard_check(ord("W"))) {
-            Stuff.mesh_scale = min(Stuff.mesh_scale + scale_rate, 10);
+            Stuff.mesh_scale = min(Stuff.mesh_scale + scale_rate, 100);
             ui_input_set_value(surface.root.el_control_scale, string(Stuff.mesh_scale));
         }
         if (keyboard_check(vk_down) || keyboard_check(ord("S"))) {
