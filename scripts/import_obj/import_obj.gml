@@ -349,7 +349,9 @@ if (file_exists(fn)) {
             vertex_freeze(wbuffer);
         }
     } else {
-        dialog_create(noone, "Could not load the model: " + err);
+        dialog_create_notice(noone, "Could not load the model: " + err);
+        ds_list_destroy(temp_vertices);
+        return noone;
     }
     
     ds_list_destroy(temp_vertices);
