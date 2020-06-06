@@ -15029,6 +15029,14 @@
             }
         },
         {
+            "Key": "b4956d3c-b70d-485f-981b-a45bdaba63e9",
+            "Value": {
+                "id": "d4b6fae6-e7e6-4baa-bde7-7b4dd9c62128",
+                "resourcePath": "scripts\\omu_mesh_texture_scale_0x\\omu_mesh_texture_scale_0x.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "b4a26310-1b1e-4860-8d92-640374e06f46",
             "Value": {
                 "id": "abff8817-a5e0-4050-8787-9c07ffc1c678",
@@ -22768,6 +22776,7 @@
         "2883d4e0-ec23-482c-9d8a-e1e21a863e34",
         "5dfa77e2-7712-4824-9e3a-e08ff4ce508a",
         "60f78c70-ed5d-45fc-a02c-e2cf75b5d2a9",
+        "b4956d3c-b70d-485f-981b-a45bdaba63e9",
         "850c8997-cd8a-4cd3-b0f1-b93c1585633c",
         "064fd29e-7ed0-4201-87c9-355fde51e08a",
         "1862fc95-bd9d-4dd5-bfd3-3f87421d96b3",
