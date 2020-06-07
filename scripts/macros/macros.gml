@@ -76,7 +76,7 @@
 #macro VISIBLE_NAME_LENGTH 32
 #macro LIMIT_TILESET 255
 #macro MAP_AXIS_LIMIT 2048
-#macro MAP_VOLUME_LIMIT 0x100000
+#macro MAP_VOLUME_LIMIT 0x40000
 #macro MAX_SELECTION_COUNT 32
 #macro MAX_VISIBLE_MOVE_ROUTES 4
 #macro MAX_LIGHTS 7                         // one is reserved for the point / spot light around the player
