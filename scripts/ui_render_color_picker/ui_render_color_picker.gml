@@ -10,16 +10,14 @@ var x1 = picker.x + xx;
 var y1 = picker.y + yy;
 var x2 = x1 + picker.width;
 var y2 = y1 + picker.height;
+var c = picker.color;
 
 var tx = ui_get_text_x(picker, x1, x2);
 var ty = ui_get_text_y(picker, y1, y2);
 
-var value = picker.value;
-
 // this is not quite the same as ui_render_text
 draw_set_halign(picker.alignment);
 draw_set_valign(picker.valignment);
-var c = picker.color;
 draw_text_colour(tx, ty, picker.text, c, c, c, c, 1);
 
 var vx1 = x1 + picker.value_x1;

@@ -59,7 +59,7 @@ list.index = clamp(n - list.slots, 0, list.index);
 var active = dialog_is_active(list.root);
 
 if (n == 0) {
-    draw_rectangle_colour(0, 0, x2 - x1, y2 + list.height - y2, c_ltgray, c_ltgray, c_ltgray, c_ltgray, false);
+    draw_rectangle_colour(0, 0, x2 - x1, list.height, c_ltgray, c_ltgray, c_ltgray, c_ltgray, false);
     ty = mean(y2, y2 + list.height);
     draw_text(tx - x1, ty - y2, string(list.text_vacant));
 } else {
@@ -102,8 +102,9 @@ surface_reset_target();
 #endregion
 
 draw_surface(list.surface, x1, y2);
-var offset = (n > list.slots) ? 16 : 0;
 
+#region interaction
+var offset = (n > list.slots) ? 16 : 0;
 var move_direction = 0;
 
 if (list.interactive && active) {
@@ -173,6 +174,7 @@ if (list.interactive && active) {
         }
     }
 }
+#endregion
 
 #region slider
 if (n > list.slots) {

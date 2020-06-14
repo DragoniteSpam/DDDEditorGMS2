@@ -26,6 +26,7 @@ draw_set_valign(picker.valignment);
 var c = picker.color; /* the ui element color, not the value */
 draw_text_colour(tx, ty, picker.text, c, c, c, c, 1);
 
+#region text input
 var vx1 = x1 + picker.value_x1;
 var vy1 = y1 + picker.value_y1;
 var vx2 = x1 + picker.value_x2;
@@ -114,8 +115,9 @@ if (active) {
         }
     }
 }
+#endregion
 
-// COLOR PICKER
+#region color picker
 
 vx1 = x1 + picker.color_x;
 vy1 = y1 + picker.color_y;
@@ -192,9 +194,9 @@ var chx = vx1 + picker.axis_w * w;
 var chy = vy1 + (1 - picker.axis_h) * h;
 draw_sprite(spr_crosshair_mask, 0, chx, chy);
 gpu_set_blendmode(bm_normal);
+#endregion
 
-// COLOR AXIS
-
+#region color axis
 vx1 = x1 + picker.axis_x;
 vy1 = y1 + picker.axis_y;
 vx2 = vx1 + picker.axis_width;
@@ -228,9 +230,9 @@ var f = min(vy1 + h * picker.axis_value, vy2 - 1);
 gpu_set_blendmode_ext(bm_inv_dest_color, bm_inv_src_color);
 draw_line_width_colour(vx1, f, vx2, f, 2, c_white, c_white);
 gpu_set_blendmode(bm_normal);
+#endregion
 
-// OUTPUT COLOR
-
+#region output color
 vx1 = x1 + picker.output_x;
 vy1 = y1 + picker.output_y;
 vx2 = vx1 + picker.main_size;
@@ -243,9 +245,9 @@ draw_set_alpha(picker.alpha);
 draw_rectangle_colour(vx1, vy1, vx2, vy2, picker.value, picker.value, picker.value, picker.value, false);
 draw_set_alpha(1);
 draw_rectangle(vx1, vy1, vx2, vy2, true);
+#endregion
 
-// ALPHA
-
+#region alpha
 if (picker.allow_alpha) {
     vx1 = x1 + picker.alpha_x;
     vy1 = y1 + picker.alpha_y;
@@ -280,6 +282,7 @@ if (picker.allow_alpha) {
     var f = min(vx1 + w * picker.alpha, vx2 - 1);
     draw_line_width_colour(f, vy1, f, vy2, 2, c_white, c_white);
 }
+#endregion
 
 if (color_initial != picker.value || alpha_initial != picker.alpha) {
     script_execute(picker.onvaluechange, picker);

@@ -22,15 +22,15 @@ var text = argument6;
 var halign = argument7;
 var valign = argument8;
 var color = argument9;
-var enabled = argument10;
+var interactive = argument10;
 var onmouseup = argument11;
 var thing = argument12;
 
 // the background goes before everything, because you want to draw over it on hover
-var c = enabled ? c_white : c_ltgray;
+var c = interactive ? c_white : c_ltgray;
 draw_rectangle_colour(x1, y1, x2, y2, c, c, c, c, false);
 
-if (enabled) {
+if (interactive) {
     var inbounds = mouse_within_rectangle_determine(x1, y1, x2, y2, thing.adjust_view);
     if (inbounds) {
         draw_rectangle_colour(x1, y1, x2, y2, c_ui, c_ui, c_ui, c_ui, false);
