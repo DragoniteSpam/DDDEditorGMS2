@@ -14,5 +14,6 @@ if (file_exists(fn)) {
         case ".vrax": import_vrax(fn); break;
         case ".smf": import_smf(fn); break;
         case ".qma": import_qma(fn); break;
+        case ".dae": import_dae(fn); break;
     }
 }

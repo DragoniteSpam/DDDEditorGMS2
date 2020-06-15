@@ -65,97 +65,19 @@ while (!file_text_eof(f)) {
     skip = false;
     
     switch (type) {
-        case 0:
-        case 1:
-            file_text_readln(f);
-            skip = true;
-            break;
-        case 2:
-            xx[vc] = file_text_read_real(f);
-            yy[vc] = file_text_read_real(f);
-            zz[vc] = file_text_read_real(f);
-            file_text_readln(f);
-            break;
-        case 3:
-            xx[vc] = file_text_read_real(f);
-            yy[vc] = file_text_read_real(f);
-            zz[vc] = file_text_read_real(f);
-            color = file_text_read_real(f);
-            alpha = file_text_read_real(f);
-            file_text_readln(f);
-            break;
-        case 4:
-            xx[vc] = file_text_read_real(f);
-            yy[vc] = file_text_read_real(f);
-            zz[vc] = file_text_read_real(f);
-            xtex = file_text_read_real(f);
-            ytex = file_text_read_real(f);
-            file_text_readln(f);
-            break;
-        case 5:
-            xx[vc] = file_text_read_real(f);
-            yy[vc] = file_text_read_real(f);
-            zz[vc] = file_text_read_real(f);
-            xtex = file_text_read_real(f);
-            ytex = file_text_read_real(f);
-            color = file_text_read_real(f);
-            alpha = file_text_read_real(f);
-            file_text_readln(f);
-            break;
-        case 6:
-            xx[vc] = file_text_read_real(f);
-            yy[vc] = file_text_read_real(f);
-            zz[vc] = file_text_read_real(f);
-            nx = file_text_read_real(f);
-            ny = file_text_read_real(f);
-            nz = file_text_read_real(f);
-            file_text_readln(f);
-            break;
-        case 7:
-            xx[vc] = file_text_read_real(f);
-            yy[vc] = file_text_read_real(f);
-            zz[vc] = file_text_read_real(f);
-            nx = file_text_read_real(f);
-            ny = file_text_read_real(f);
-            nz = file_text_read_real(f);
-            color = file_text_read_real(f);
-            alpha = file_text_read_real(f);
-            file_text_readln(f);
-            break;
-        case 8:
-            xx[vc] = file_text_read_real(f);
-            yy[vc] = file_text_read_real(f);
-            zz[vc] = file_text_read_real(f);
-            nx = file_text_read_real(f);
-            ny = file_text_read_real(f);
-            nz = file_text_read_real(f);
-            xtex = file_text_read_real(f);
-            ytex = file_text_read_real(f);
-            file_text_readln(f);
-            break;
-        case 9:
-            xx[vc] = file_text_read_real(f);
-            yy[vc] = file_text_read_real(f);
-            zz[vc] = file_text_read_real(f);
-            nx = file_text_read_real(f);
-            ny = file_text_read_real(f);
-            nz = file_text_read_real(f);
-            xtex = file_text_read_real(f);
-            ytex = file_text_read_real(f);
-            color = file_text_read_real(f);
-            alpha = file_text_read_real(f);
-            file_text_readln(f);
-            break;
-        default:
-            wtf("Unsupported structure in " + fn + ", skipping. Please convert your primitive shapes into triangles. Thank.");
-            file_text_readln(f);
-            skip = true;
-            break;
+        case 0: case 1: file_text_readln(f); skip = true; break;
+        case 2: xx[vc] = file_text_read_real(f); yy[vc] = file_text_read_real(f); zz[vc] = file_text_read_real(f); file_text_readln(f); break;
+        case 3: xx[vc] = file_text_read_real(f); yy[vc] = file_text_read_real(f); zz[vc] = file_text_read_real(f); color = file_text_read_real(f); alpha = file_text_read_real(f); file_text_readln(f); break;
+        case 4: xx[vc] = file_text_read_real(f); yy[vc] = file_text_read_real(f); zz[vc] = file_text_read_real(f); xtex = file_text_read_real(f); ytex = file_text_read_real(f); file_text_readln(f); break;
+        case 5: xx[vc] = file_text_read_real(f); yy[vc] = file_text_read_real(f); zz[vc] = file_text_read_real(f); xtex = file_text_read_real(f); ytex = file_text_read_real(f); color = file_text_read_real(f); alpha = file_text_read_real(f); file_text_readln(f); break;
+        case 6: xx[vc] = file_text_read_real(f); yy[vc] = file_text_read_real(f); zz[vc] = file_text_read_real(f); nx = file_text_read_real(f); ny = file_text_read_real(f); nz = file_text_read_real(f); file_text_readln(f); break;
+        case 7: xx[vc] = file_text_read_real(f); yy[vc] = file_text_read_real(f); zz[vc] = file_text_read_real(f); nx = file_text_read_real(f); ny = file_text_read_real(f); nz = file_text_read_real(f); color = file_text_read_real(f); alpha = file_text_read_real(f); file_text_readln(f); break;
+        case 8: xx[vc] = file_text_read_real(f); yy[vc] = file_text_read_real(f); zz[vc] = file_text_read_real(f); nx = file_text_read_real(f); ny = file_text_read_real(f); nz = file_text_read_real(f); xtex = file_text_read_real(f); ytex = file_text_read_real(f); file_text_readln(f); break;
+        case 9: xx[vc] = file_text_read_real(f); yy[vc] = file_text_read_real(f); zz[vc] = file_text_read_real(f); nx = file_text_read_real(f); ny = file_text_read_real(f); nz = file_text_read_real(f); xtex = file_text_read_real(f); ytex = file_text_read_real(f); color = file_text_read_real(f); alpha = file_text_read_real(f); file_text_readln(f); break;
+        default: wtf("Unsupported structure in " + fn + ", skipping. Please convert your primitive shapes into triangles. Thank."); file_text_readln(f); skip = true; break;
     }
     
-    if (skip) {
-        continue;
-    }
+    if (skip) continue;
     
     if (adjust) {
         xtex = xtex * TILESET_TEXTURE_SCALE;
@@ -216,12 +138,12 @@ if (everything) {
     var mesh = existing ? existing : instance_create_depth(0, 0, 0, DataMesh);
     
     if (!existing) {
-        mesh.xmin = round(minx / IMPORT_GRID_SIZE);
-        mesh.ymin = round(miny / IMPORT_GRID_SIZE);
-        mesh.zmin = round(minz / IMPORT_GRID_SIZE);
-        mesh.xmax = round(maxx / IMPORT_GRID_SIZE);
-        mesh.ymax = round(maxy / IMPORT_GRID_SIZE);
-        mesh.zmax = round(maxz / IMPORT_GRID_SIZE);
+        mesh.xmin = 0;
+        mesh.ymin = 0;
+        mesh.zmin = 0;
+        mesh.xmax = 1;
+        mesh.ymax = 1;
+        mesh.zmax = 1;
         
         mesh.name = base_name;
         data_mesh_recalculate_bounds(mesh);
