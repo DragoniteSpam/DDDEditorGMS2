@@ -6,7 +6,7 @@ var camera = camera_get_active();
 var map = Stuff.map.active_map;
 var map_contents = map.contents;
 
-if (ds_list_find_value(map_contents.active_lights, component.parent.REFID) != -1) {
+if (ds_list_find_index(map_contents.active_lights, component.parent.REFID) != -1) {
     var world_x = (component.parent.xx + component.parent.off_xx) * TILE_WIDTH;
     var world_y = (component.parent.yy + component.parent.off_yy) * TILE_HEIGHT;
     var world_z = (component.parent.zz + component.parent.off_zz) * TILE_DEPTH;
