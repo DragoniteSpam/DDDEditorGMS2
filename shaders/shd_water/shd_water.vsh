@@ -77,12 +77,10 @@ void CommonLightEvaluate(int i, inout vec4 finalColor, in vec3 worldPosition, in
 /// https://github.com/GameMakerDiscord/Xpanda
 
 varying vec3 v_worldPosition;
-varying vec3 v_cameraPosition;
 
 void CommonFogSetup();
 
 void CommonFogSetup() {
-    v_cameraPosition = vec3(gm_Matrices[MATRIX_WORLD][0][3], gm_Matrices[MATRIX_WORLD][1][3], gm_Matrices[MATRIX_WORLD][2][3]);
     v_worldPosition = (gm_Matrices[MATRIX_WORLD_VIEW_PROJECTION] * vec4(in_Position, 1.)).xyz;
 }
 // include("fog.v.xsh")

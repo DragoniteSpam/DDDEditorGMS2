@@ -29,12 +29,11 @@ uniform float fogEnd;
 uniform vec3 fogColor;
 
 varying vec3 v_worldPosition;
-varying vec3 v_cameraPosition;
 
 void CommonFog(inout vec4 baseColor);
 
 void CommonFog(inout vec4 baseColor) {
-    float dist = length(v_worldPosition - v_cameraPosition);
+    float dist = length(v_worldPosition);
     float f = clamp((dist - fogStart) / (fogEnd - fogStart) * fogStrength, 0., 1.);
     baseColor.rgb = mix(baseColor.rgb, fogColor, f);
 }
