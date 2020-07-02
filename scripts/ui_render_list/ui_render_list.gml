@@ -42,13 +42,7 @@ draw_text(tx + txoffset, ty, string(list.text));
 // Drawing to the surface instead of the screen directly - everything drawn needs
 // to be minus x1 and minus y1, because suddenly we're drawing at the origin again
 #region list drawing
-if (surface_exists(list.surface) && (surface_get_width(list.surface) != ww || surface_get_height(list.surface) != hh)) {
-    surface_free(list.surface);
-}
-
-if (!surface_exists(list.surface)) {
-    list.surface = surface_create(ww, hh);
-}
+list.surface = surface_rebuild(list.surface, ww, hh);
 
 surface_set_target(list.surface);
 draw_clear_alpha(list.interactive ? c_white : c_ltgray, 1);

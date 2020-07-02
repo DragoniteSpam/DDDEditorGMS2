@@ -17,13 +17,7 @@ var ty = ui_get_text_y(button, y1, y2);
 // Drawing to the surface instead of the screen directly - everything drawn needs
 // to be minus x1 and minus y1, because suddenly we're drawing at the origin again
 #region input drawing
-if (surface_exists(button.surface) && (surface_get_width(button.surface) != button.width || surface_get_height(button.surface) != button.height)) {
-    surface_free(button.surface);
-}
-
-if (!surface_exists(button.surface)) {
-    button.surface = surface_create(button.width, button.height);
-}
+button.surface = surface_rebuild(button.surface, button.width, button.height);
 
 surface_set_target(button.surface);
 draw_clear_alpha(button.interactive ? c_white : c_ltgray, 1);

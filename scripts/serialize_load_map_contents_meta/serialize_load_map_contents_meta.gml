@@ -110,7 +110,7 @@ repeat (n_generic) {
             data.value_type_guid = buffer_read(buffer, buffer_get_datatype(version));
             data.value_data = buffer_read(buffer, buffer_get_datatype(version));
             break;
-    
+        
         case DataTypes.MESH:
         case DataTypes.IMG_TILESET:
         case DataTypes.AUDIO_BGM:

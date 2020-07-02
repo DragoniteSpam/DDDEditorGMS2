@@ -12,6 +12,7 @@ var x2 = x1 + surface.width;
 var y2 = y1 + surface.height;
 
 if (!surface_exists(surface.surface)) {
+    // you need the recreate function here, so no surface_rebuild
     surface.surface = surface_create(surface.width, surface.height);
     script_execute(surface.script_recreate, surface);
 }

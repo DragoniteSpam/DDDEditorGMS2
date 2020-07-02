@@ -10,7 +10,7 @@ if (mouse_within_view(view_3d) && !dialog_exists()) {
     }
 }
 
-var camera = camera_get_default();
+var camera = view_get_camera(view_3d);
 var vw = view_get_wport(view_3d);
 var vh = view_get_hport(view_3d);
 

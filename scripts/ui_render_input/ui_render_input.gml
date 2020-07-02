@@ -53,13 +53,7 @@ var spacing = 12;
 // Drawing to the surface instead of the screen directly - everything drawn needs
 // to be minus x1 and minus y1, because suddenly we're drawing at the origin again
 #region input drawing
-if (surface_exists(input.surface) && (surface_get_width(input.surface) != ww || surface_get_height(input.surface) != hh)) {
-    surface_free(input.surface);
-}
-
-if (!surface_exists(input.surface)) {
-    input.surface = surface_create(ww, hh);
-}
+input.surface = surface_rebuild(input.surface, ww, hh);
 
 surface_set_target(input.surface);
 draw_clear_alpha(input.interactive ? input.back_color : c_ltgray, 1);

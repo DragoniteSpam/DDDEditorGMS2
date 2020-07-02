@@ -11421,6 +11421,14 @@
             }
         },
         {
+            "Key": "8774c492-6931-497f-9927-d5a7431f928e",
+            "Value": {
+                "id": "07cccdd7-d666-44bf-81da-e561fbc4df3e",
+                "resourcePath": "scripts\\surface_rebuild\\surface_rebuild.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "8779633a-007a-41a1-b454-42844d4f9aa5",
             "Value": {
                 "id": "7adc7967-fc3a-4818-a220-96b65f7d656c",
@@ -21853,6 +21861,7 @@
         "d76ea4ef-8539-4788-90ce-56dafb2f8490",
         "0e26c60b-d3d0-41b8-9cb8-add504141c5a",
         "d038e821-1dd0-4269-8124-8b1496f6335a",
+        "8774c492-6931-497f-9927-d5a7431f928e",
         "ef6793cd-a331-44e5-bd38-6920300a558a",
         "0657dd0d-6793-40d4-9667-d8b3da8ffe19",
         "8a169476-76e7-46d2-99f7-6de10c31e642",
