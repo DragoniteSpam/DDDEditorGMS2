@@ -72,6 +72,11 @@ var el_screen_320 = create_button(col1_x + ew / 3, yy, "320x180", ew / 3, eh, fa
 var el_screen_640 = create_button(col1_x + ew * 2 / 3, yy, "640x360", ew / 3, eh, fa_center, uivc_settings_game_base_screen_640, dg);
 yy += el_screen_640.height + spacing;
 
+var el_base_chunk_size = create_input(col1_x, yy, "Base Chunk Size:", ew, eh, uivc_settings_game_base_map_chunk_size, Stuff.game_base_map_chunk_size, "short int", validate_int, 16, MAP_AXIS_LIMIT, 4, vx1, vy1, vx2, vy2, dg);
+el_base_chunk_size.tooltip = "The default map chunk size";
+dg.el_base_chunk_size = el_base_chunk_size;
+yy += el_base_chunk_size.height + spacing;
+
 yy = yy_base;
 
 var el_global_title = create_text(col2_x, yy, "Variables and Stuff", ew, eh, fa_left, dw / 2, dg);
@@ -153,6 +158,7 @@ ds_list_add(dg.contents,
     el_screen_full,
     el_screen_320,
     el_screen_640,
+    el_base_chunk_size,
     // game variables and stuff
     el_global_title,
     el_variables,

@@ -6293,6 +6293,14 @@
             }
         },
         {
+            "Key": "49d0e113-2ec7-499c-a4c9-20c6d7d8e085",
+            "Value": {
+                "id": "b160fe02-e877-409c-85cf-94be9784546f",
+                "resourcePath": "scripts\\uivc_settings_game_base_map_chunk_size\\uivc_settings_game_base_map_chunk_size.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "49d61c47-6dff-408d-93e9-4042398397a6",
             "Value": {
                 "id": "910a270c-1a26-4c27-92ac-35da2ab7e3e2",
@@ -22455,6 +22463,7 @@
         "d616593f-a361-481c-92a1-cc6305ec1b2a",
         "bfe1c5d7-8249-4411-9abe-ff4d9da727c1",
         "d167346f-be1f-465d-b3f3-486ef5476f94",
+        "49d0e113-2ec7-499c-a4c9-20c6d7d8e085",
         "40a25e67-646f-4628-b8b5-3e933399e3ba",
         "b91fba25-b5b6-479e-ab73-53319f536793",
         "68e0921f-953c-4679-89df-9a1275a53862",
