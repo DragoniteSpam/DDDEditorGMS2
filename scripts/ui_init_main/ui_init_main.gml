@@ -512,7 +512,13 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     ds_list_add(t_p_entity.contents, element_entity_option_reset_position);
     element_entity_option_reset_position.interactive = false;
     
-    yy += element_entity_option_reset_position.height + spacing;
+    yy += element_entity_option_reset_position.height;
+    
+    element_entity_option_always_update = create_checkbox(col1_x, yy, "Always Update?", col_width, element_height, uivc_check_entity_option_always_update, false, t_p_entity);
+    ds_list_add(t_p_entity.contents, element_entity_option_always_update);
+    element_entity_option_always_update.interactive = false;
+    
+    yy += element_entity_option_always_update.height + spacing;
     
     element_entity_generic = create_button(col1_x, yy, "Generic Data", col_width, element_height, fa_center, omu_entity_generic_data, t_p_entity);
     ds_list_add(t_p_entity.contents, element_entity_generic);
