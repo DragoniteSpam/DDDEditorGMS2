@@ -17,6 +17,9 @@ Stuff.game_lighting_default_ambient = buffer_read(buffer, buffer_u32);
 if (version >= DataVersions.ASSET_ID) {
     Stuff.game_asset_id = buffer_read(buffer, buffer_string);
 }
+if (version >= DataVersions.MAP_ENTITY_CHUNKS) {
+    Stuff.game_base_map_chunk_size = buffer_read(buffer, buffer_u16);
+}
 
 Stuff.game_common_effect_code = buffer_read(buffer, buffer_string);
 

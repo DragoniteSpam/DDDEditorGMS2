@@ -65,6 +65,7 @@ animate_idle = false;
 animate_movement = false;
 direction_fix = true;
 reset_position = false;
+always_update = false;
 slope = ATMask.NONE;
 
 generic_data = ds_list_create();

@@ -15,7 +15,8 @@ var entity_bools = pack(
     entity.animate_idle,
     entity.animate_movement,
     entity.direction_fix,
-    entity.reset_position
+    entity.reset_position,
+    entity.always_update,
 );
 buffer_write(buffer, buffer_u32, entity_bools);
 

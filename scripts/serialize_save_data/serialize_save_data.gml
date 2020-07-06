@@ -100,5 +100,6 @@ enum DataVersions {
     MESH_ANIMATION                      = 108,
     UPDATED_EVENT_NODE_CONNECTIONS      = 109,
     MAP_SKYBOX_DATA                     = 110,
+    MAP_ENTITY_CHUNKS                   = 111,
     _CURRENT /* = whatever the last one is + 1 */
 }

@@ -19,6 +19,7 @@ entity.animate_idle = unpack(entity_bools, 1);
 entity.animate_movement = unpack(entity_bools, 2);
 entity.direction_fix = unpack(entity_bools, 3);
 entity.reset_position = unpack(entity_bools, 4);
+entity.always_update = unpack(entity_bools, 5);
 // same for statics
 if (state_static && !entity.static) {
     Stuff.map.active_map.contents.population_static--;

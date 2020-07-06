@@ -42,6 +42,7 @@ light_enabled = true;                       // bool
 light_ambient_colour = c_white;             // uint
 light_player_enabled = true;                // bool
 skybox = NULL;                              // GUID
+map_chunk_size = 32;                        // int
 
 discovery = 0;                              // index
 

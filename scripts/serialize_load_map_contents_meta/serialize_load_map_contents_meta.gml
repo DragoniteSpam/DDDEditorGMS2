@@ -28,6 +28,9 @@ map.light_ambient_colour =      buffer_read(buffer, buffer_u32);
 if (version >= DataVersions.MAP_SKYBOX_DATA) {
     map.skybox =  buffer_read(buffer, buffer_datatype);
 }
+if (version >= DataVersions.MAP_ENTITY_CHUNKS) {
+    map.map_chunk_size = buffer_read(buffer, buffer_u16);
+}
 
 var bools =                     buffer_read(buffer, buffer_u32);
 map.indoors =                   unpack(bools, 0);
