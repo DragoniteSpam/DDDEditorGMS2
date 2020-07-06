@@ -101,7 +101,12 @@ var el_skybox_image = create_list(col2_x, yy, "Skybox", "<no skyboxes>", ew, eh,
 ui_list_select(el_skybox_image, ds_list_find_index(Stuff.all_graphic_skybox, guid_get(map.skybox)), true);
 el_skybox_image.tooltip = "The skybox to be used by the map. Deselect to clear.";
 el_skybox_image.entries_are = ListEntries.INSTANCES;
-yy += el_skybox_image.height + spacing;
+
+yy += ui_get_list_height(el_skybox_image) + spacing;
+
+var el_chunk_size = create_input(col2_x, yy, "Chunk Size:", ew, eh, uivc_settings_map_chunk_size, map.map_chunk_size, "int", validate_int, 16, MAP_AXIS_LIMIT, 4, vx1, vy1, vx2, vy2, dg);
+el_chunk_size.tooltip = "The size of the chunks maps are broken up into for optimization purposes";
+yy += el_chunk_size.height + spacing;
 #endregion
 
 yy = yy_base;
@@ -168,6 +173,7 @@ ds_list_add(dg.contents,
     el_other_water_level,
     el_skybox_image,
     el_code_heading,
+    el_chunk_size,
     el_code,
     el_encounter_heading,
     el_encounter_base,
