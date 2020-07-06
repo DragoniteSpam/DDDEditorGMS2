@@ -399,7 +399,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy += element.height + spacing;
     
-    element = create_button(col2_x, yy,  "More Settings", col_width, element_height, fa_center, dialog_create_settings_map, t_maps);
+    element = create_button(col2_x, yy,  "Advanced", col_width, element_height, fa_center, dialog_create_settings_map, t_maps);
     element.tooltip = "I put the more important settings out here on the main UI, but there are plenty of other things you may need to specify about maps.";
     ds_list_add(t_maps.contents, element);
     t_maps.el_other = element;

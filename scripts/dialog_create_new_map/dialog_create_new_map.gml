@@ -2,18 +2,19 @@
 
 var dialog = argument0;
 
-var dw = 320;
+var dw = 640;
 var dh = 480;
 
 var dg = dialog_create(dw, dh, "New Map", undefined, undefined, dialog);
 
-var columns = 1;
+var columns = 2;
 var spacing = 16;
 var ew = dw / columns - spacing * 2;
 var eh = 24;
 var spacing = 16;
 
 var col1_x = dw * 0 / columns + spacing;
+var col2_x = dw * 1 / columns + spacing;
 
 var vx1 = ew / 2;
 var vy1 = 0;
@@ -57,10 +58,17 @@ dg.el_z = el_z;
 yy += el_z.height + spacing;
 
 var el_grid = create_checkbox(col1_x, yy, "Aligned to Grid?", ew, eh, null, true, dg);
+el_grid.interactive = false;
 el_grid.tooltip = "In the future I plan on allowing maps to be free of the tile grid, but that is not a priority right now.";
 dg.el_grid = el_grid;
 
-yy += el_grid.height + spacing;
+yy = yy_base;
+
+var el_chunk_size = create_input(col2_x, yy, "Chunk Size:", ew, eh, null, Stuff.game_base_map_chunk_size, "", validate_int, 16, MAP_AXIS_LIMIT, 4, vx1, vy1, vx2, vy2, dg);
+el_chunk_size.tooltip = "The size of each chunk of the map; chunks outside of the camera's view will not be updated or rendered (although their contents will continue to exist).";
+dg.el_chunk_size = el_chunk_size;
+
+yy += el_chunk_size.height + spacing;
 
 var b_width = 128;
 var b_height = 32;
@@ -74,6 +82,7 @@ ds_list_add(dg.contents,
     el_z,
     el_size_note,
     el_grid,
+    el_chunk_size,
     el_confirm
 );
 
