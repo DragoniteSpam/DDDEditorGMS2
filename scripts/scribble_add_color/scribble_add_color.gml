@@ -1,17 +1,14 @@
-/// Adds a custom colour for use as an in-line colour definition for scribble_draw().
+/// Adds a custom colour for use as an in-line colour definition for scribble_draw()
 /// 
-/// 
-/// @param name                     String name of the colour
-/// @param colour                   The colour itself as a 24-bit integer
-/// @param [colourIsGameMakerBGR]   Whether the colour is in GameMaker's propriatery 24-bit BGR colour format. Defaults to <false>.
-/// 
-/// All optional arguments accept <undefined> to indicate that the default value should be used.
+/// @param name                    String name of the colour
+/// @param color                   The colour itself as a 24-bit integer
+/// @param [colorIsGameMakerBGR]   Whether the colour is in GameMaker's propriatery 24-bit BGR colour format. Defaults to <false>.
 
 var _name   = argument[0];
 var _colour = argument[1];
 var _native = ((argument_count > 2) && (argument[2] != undefined))? argument[2] : false;
 
-if ( !variable_global_exists("__scribble_global_count") )
+if ( !variable_global_exists("__scribble_lcg") )
 {
     show_error("Scribble:\nscribble_add_color() should be called after initialising Scribble.\n ", false);
     exit;

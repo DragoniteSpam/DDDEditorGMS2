@@ -1,4 +1,6 @@
-const int MAX_EFFECTS = 6;
+//   @jujuadams   v6.0.7e   2020-06-29
+
+const int MAX_EFFECTS = 8;
 //By default, the effect indexes are:
 //0 = is an animated sprite
 //1 = wave
@@ -6,8 +8,10 @@ const int MAX_EFFECTS = 6;
 //3 = rainbow
 //4 = wobble
 //5 = pulse
+//6 = wheel
+//7 = cycle
 
-const int MAX_DATA_FIELDS = 11;
+const int MAX_ANIM_FIELDS = 18;
 //By default, the data fields are:
 // 0 = wave amplitude
 // 1 = wave frequency
@@ -20,8 +24,26 @@ const int MAX_DATA_FIELDS = 11;
 // 8 = wobble frequency
 // 9 = pulse scale
 //10 = pulse speed
+//11 = wheel amplitude
+//12 = wheel frequency
+//13 = wheel speed
+//14 = cycle weight
+//15 = cycle speed
+//16 = cycle hues (A, B, C)
+//17 = cycle hues (D, E, F)
 
-const float MAX_LINES = 1000.0; //Change SCRIBBLE_MAX_LINES in __scribble_config() if you change this value!
+const float MAX_LINES = 1000.0; //Change __SCRIBBLE_MAX_LINES in scribble_init() if you change this value!
+
+const int WINDOW_COUNT = 4;
+
+//YIQ colourspace conversion matrices, used for [cycle] effect
+const mat3 rgb2yiq = mat3(0.299000,  0.5870000,  0.114000,
+                          0.595716, -0.2744530, -0.321263,
+                          0.211456, -0.5225910,  0.311135);
+
+const mat3 yiq2rgb = mat3(1.000000,  0.9563000,  0.621000,
+                          1.000000, -0.2721000, -0.647400,
+                          1.000000, -1.1070000,  1.704600);
 
 
 
@@ -37,16 +59,12 @@ attribute vec2 in_TextureCoord; //UVs
 varying vec2 v_vTexcoord;
 varying vec4 v_vColour;
 
-uniform vec4  u_vColourBlend;
-uniform float u_fTime;
-uniform float u_fZ;
-
-uniform float u_fTypewriterMethod;
-uniform float u_fTypewriterSmoothness;
-uniform float u_fTypewriterT;
-
-uniform float u_aDataFields[MAX_DATA_FIELDS];
-//uniform vec2 u_vTexel; //Used in the fragment shader
+uniform vec4  u_vColourBlend;                           //4
+uniform float u_fTime;                                  //1
+uniform float u_fTypewriterMethod;                      //1
+uniform float u_fTypewriterWindowArray[2*WINDOW_COUNT]; //8
+uniform float u_fTypewriterSmoothness;                  //1
+uniform float u_aDataFields[MAX_ANIM_FIELDS];           //18
 
 
 
@@ -90,16 +108,35 @@ vec2 rotate(vec2 position, vec2 centre, float angle)
     return centre + vec2(delta.x*_cos - delta.y*_sin, delta.x*_sin + delta.y*_cos);
 }
 
-//Scale the character
+//Scale the character equally on both x and y axes
 vec2 scale(vec2 position, vec2 centre, float scale)
 {
     return centre + scale*(position - centre);
+}
+
+//Scale the character on the x-axis
+float xscale(vec2 position, vec2 centre, float scale)
+{
+    return centre.x + scale*(position.x - centre.x);
+}
+
+//Scale the character on the y-axis
+float yscale(vec2 position, vec2 centre, float scale)
+{
+    return centre.y + scale*(position.y - centre.y);
 }
 
 //Oscillate the character
 vec2 wave(vec2 position, float characterIndex, float amplitude, float frequency, float speed)
 {
     return vec2(position.x, position.y + amplitude*sin(frequency*characterIndex + speed*u_fTime));
+}
+
+//Wheel the character around
+vec2 wheel(vec2 position, float characterIndex, float amplitude, float frequency, float speed)
+{
+    float time = frequency*characterIndex + speed*u_fTime;
+    return position.xy + amplitude*vec2(cos(time), -sin(time));
 }
 
 //Wobble the character by rotating around its central point
@@ -163,24 +200,57 @@ vec4 rainbow(float characterIndex, float weight, float speed, vec4 colour)
 {
     return vec4(mix(colour.rgb, hsv2rgb(vec3(characterIndex + speed*u_fTime, 1.0, 1.0)), weight), colour.a);
 }
+                           
+//Colour cycling through a defined palette
+vec4 cycle(float characterIndex, float weight, float speed, float huesABC, float huesDEF, vec4 colour)
+{
+    float hueArray[7];
+        
+    hueArray[2] = floor(huesABC / 65536.0);
+    hueArray[1] = floor((huesABC - 65536.0*hueArray[2]) / 256.0);
+    hueArray[0] = huesABC - 65536.0*hueArray[2] - 256.0*hueArray[1];
+    hueArray[6] = hueArray[0];
+    
+    hueArray[5] = floor(huesDEF / 65536.0);
+    hueArray[4] = floor((huesDEF - 65536.0*hueArray[5]) / 256.0);
+    hueArray[3] = huesDEF - 65536.0*hueArray[5] - 256.0*hueArray[4];
+    
+    float h = abs(mod(speed*u_fTime - characterIndex/10.0, 6.0));
+    vec3 rgbA = hsv2rgb(vec3(hueArray[int(h)  ]/255.0, 1.0, 1.0));
+    vec3 rgbB = hsv2rgb(vec3(hueArray[int(h)+1]/255.0, 1.0, 1.0));
+    
+    //Interpolate between the two hues using YIQ colourspace
+    return vec4(mix(colour.rgb, mix(rgbA, rgbB, fract(h)), weight), colour.a);
+}
 
 //Fade effect for typewriter etc.
-float fade(float time, float smoothness, float limit)
+float fade(float windowArray[2*WINDOW_COUNT], float smoothness, float index)
 {
-    float multiplier = 1.0;
+    float result = 0.0;
+    float f      = 1.0;
+    float head   = 0.0;
+    float tail   = 0.0;
     
-    if (smoothness > 0.0)
+    for(int i = 0; i < 2*WINDOW_COUNT; i += 2)
     {
-        multiplier = clamp((time - limit)/smoothness, 0.0, 1.0);
-    }
-    else
-    {
-        multiplier = 1.0 - step(time, limit);
-    }
+        head = windowArray[i  ];
+        tail = windowArray[i+1];
         
-    if (u_fTypewriterMethod < 0.0) multiplier = 1.0 - multiplier;
+        if (u_fTypewriterSmoothness > 0.0)
+        {
+            f = 1.0 - min(max((index - tail) / smoothness, 0.0), 1.0);
+        }
+        else
+        {
+            f = 1.0;
+        }
+        
+        f *= step(index, head);
+        
+        result = max(f, result);
+    }
     
-    return multiplier;
+    return result;
 }
 
 
@@ -208,6 +278,13 @@ void main()
     float wobbleFrequency = u_aDataFields[ 8];
     float pulseScale      = u_aDataFields[ 9];
     float pulseSpeed      = u_aDataFields[10];
+    float wheelAmplitude  = u_aDataFields[11];
+    float wheelFrequency  = u_aDataFields[12];
+    float wheelSpeed      = u_aDataFields[13];
+    float cycleWeight     = u_aDataFields[14];
+    float cycleSpeed      = u_aDataFields[15];
+    float cycleHuesABC    = u_aDataFields[16];
+    float cycleHuesDEF    = u_aDataFields[17];
     
     //Unpack the effect flag bits into an array, then into variables for readability
     float flagArray[MAX_EFFECTS]; unpackFlags(in_Normal.z, flagArray);
@@ -217,6 +294,8 @@ void main()
     float rainbowFlag = flagArray[3];
     float wobbleFlag  = flagArray[4];
     float pulseFlag   = flagArray[5];
+    float wheelFlag   = flagArray[6];
+    float cycleFlag   = flagArray[7];
     
     //Use the input vertex position from the vertex attributes. Use our Z uniform because the z-component is used for other data
     vec2 centre = in_Position.xy;
@@ -226,23 +305,25 @@ void main()
     pos.xy = wobble(pos.xy, centre, wobbleFlag*wobbleAngle, wobbleFrequency);
     pos.xy = pulse( pos.xy, centre, characterIndex, pulseFlag*pulseScale, pulseSpeed);
     pos.xy = wave(  pos.xy, characterIndex, waveFlag*waveAmplitude, waveFrequency, waveSpeed); //Apply the wave effect
+    pos.xy = wheel( pos.xy, characterIndex, wheelFlag*wheelAmplitude, wheelFrequency, wheelSpeed); //Apply the wheel effect
     pos.xy = shake( pos.xy, characterIndex, shakeFlag*shakeAmplitude, shakeSpeed); //Apply the shake effect
     
     //Colour
     v_vColour  = handleSprites(spriteFlag, in_Colour); //Use RGBA information to filter out sprites
     v_vColour  = rainbow(characterIndex, rainbowFlag*rainbowWeight, rainbowSpeed, v_vColour); //Cycle colours for the rainbow effect
+    v_vColour  = cycle(characterIndex, cycleFlag*cycleWeight, cycleSpeed, cycleHuesABC, cycleHuesDEF, v_vColour); //Cycle colours through the defined palette
     v_vColour *= u_vColourBlend; //And then blend with the blend colour/alpha
     
     //Apply fade (if we're given a method)
     if (u_fTypewriterMethod != 0.0)
     {
-        //Choose our limit based on what method's being used: if the method value == 1.0 then we're using character indexes, otherwise we use line indexes
-        float limit = (abs(u_fTypewriterMethod) == 1.0)? characterIndex : lineIndex;
-        v_vColour.a *= fade(u_fTypewriterT, u_fTypewriterSmoothness, limit);
+        //Choose our index based on what method's being used: if the method value == 1.0 then we're using character indexes, otherwise we use line indexes
+        float index = (abs(u_fTypewriterMethod) == 1.0)? characterIndex : lineIndex;
+        v_vColour.a *= fade(u_fTypewriterWindowArray, u_fTypewriterSmoothness, index + 1.0);
     }
     
     //Texture
     v_vTexcoord = in_TextureCoord;
     
-    gl_Position = gm_Matrices[MATRIX_WORLD_VIEW_PROJECTION]*vec4(pos, u_fZ, 1.0);
+    gl_Position = gm_Matrices[MATRIX_WORLD_VIEW_PROJECTION]*vec4(pos, 0.0, 1.0);
 }

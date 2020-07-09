@@ -16,7 +16,7 @@ var ty = ui_get_text_y(text, y1, y2);
 
 if (text.use_scribble) {
     // @todo un-hard code the line height
-    scribble_draw_set_wrap(text.wrap_height, text.wrap_width, -1);
+    scribble_set_wrap(text.wrap_height, text.wrap_width, -1);
     scribble_draw(tx, ty, string(text.text));
 } else {
     draw_set_halign(text.alignment);

@@ -4,7 +4,8 @@
     "mvc": "1.1",
     "name": "d8295997-0b1f-46ac-86ad-26c554ddd763",
     "children": [
-        "1cadf0e8-8394-480c-8ce1-0cce13ec62dc"
+        "1cadf0e8-8394-480c-8ce1-0cce13ec62dc",
+        "ae42e802-853a-4ff8-8180-67ddd92fe272"
     ],
     "filterType": "GMShader",
     "folderName": "Scribble",

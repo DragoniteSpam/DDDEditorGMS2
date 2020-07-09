@@ -21,14 +21,11 @@ draw_clear(mode.scribble_back_colour);
 draw_rectangle_colour(1, 1, sw - 2, sh - 2, c_black, c_black, c_black, c_black, true);
 
 var f = normalize_correct(mode.scribble_bounds_width, mode.scribble_bounds_width_min, mode.scribble_bounds_width_max, 0, 1) * (surface_get_width(surface.surface) - padding * 2);
-scribble_draw_set_wrap(-1, f, -1);
+scribble_set_wrap(-1, f, -1);
 
-if (!is_array(mode.scribble) || (mode.scribble[__SCRIBBLE.STRING] != mode.scribble_text && (mode.scribble_text_time + 500) < current_time)) {
-    scribble_draw_set_cache_group(SCRIBBLE_DEFAULT_CACHE_GROUP, false, true);
-    // I feel like this should happen when cache_group_flush is called, but
-    ds_map_clear(global.__scribble_global_cache_map);
-    mode.scribble = scribble_draw(0, 0, mode.scribble_text);
-    scribble_draw_set_cache_group(SCRIBBLE_DEFAULT_CACHE_GROUP, true, true);
+if (!is_array(mode.scribble) || (mode.scribble[SCRIBBLE.STRING] != mode.scribble_text && (mode.scribble_text_time + 500) < current_time)) {
+    scribble_flush();
+    mode.scribble = scribble_cache(mode.scribble_text);
     editor_scribble_autotype_fire();
 } else {
     if (scribble_autotype_get(mode.scribble) == 1) {
@@ -48,8 +45,8 @@ if (!is_array(mode.scribble) || (mode.scribble[__SCRIBBLE.STRING] != mode.scribb
     }
 }
 
-var box = scribble_get_bbox(mode.scribble, 0, 0);
-var hh = box[SCRIBBLE_BBOX.B];
+var box = scribble_get_bbox(0, 0, mode.scribble);
+var hh = box[SCRIBBLE_BBOX.H];
 var scribble_xx = padding;
 var scribble_yy = min(padding, sh - padding - hh);
 

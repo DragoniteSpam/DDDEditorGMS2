@@ -1,6 +1,35 @@
 event_inherited();
 
-scribble_init("data\\fonts", "FDefault", true);
+scribble_init("data\\fonts", "FDefault", false);
+scribble_fonts = [
+    FDefault,
+    FDefaultBold,
+    FDefaultItalic,
+    FDefaultBoldItalic,
+    FConsolas,
+    FConsolasBold,
+    FConsolasItalic,
+    FConsolasBoldItalic,
+    FComicSans,
+    FComicSansBold,
+    FComicSansItalic,
+    FComicSansBoldItalic,
+    FTimes,
+    FTimesBold,
+    FTimesItalic,
+    FTimesBoldItalic,
+    FArial,
+    FArialBold,
+    FArialItalic,
+    FArialBoldItalic,
+    FCalibri,
+    FCalibriBold,
+    FCalibriItalic,
+    FCalibriBoldItalic,
+];
+for (var i = 0; i < array_length_1d(scribble_fonts); i++) {
+    scribble_add_font(font_get_name(scribble_fonts[i]));
+}
 scribble_colours = ds_map_to_list(global.__scribble_colours);
 ds_list_sort(scribble_colours, true);
 scribble_fonts = ds_map_to_list(global.__scribble_font_data);
