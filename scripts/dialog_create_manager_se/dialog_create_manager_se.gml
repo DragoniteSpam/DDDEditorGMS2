@@ -3,7 +3,7 @@
 var dw = 768;
 var dh = 480;
 
-var dg = dialog_create(dw, dh, "Data: Availalbe Sound Effects", dialog_default, dc_default, argument0);
+var dg = dialog_create(dw, dh, "Data: Available Sound Effects", dialog_default, dc_default, argument0);
 
 var columns = 3;
 var spacing = 16;
@@ -41,7 +41,7 @@ dg.el_name = el_name;
 yy += el_name.height + spacing;
 var el_name_internal_text = create_text(c2 + 16, yy, "Internal Name:", ew, eh, fa_left, ew, dg);
 yy += el_name_internal_text.height + spacing;
-var el_name_internal = create_input(c2 + 16, yy, "", ew, eh, uivc_input_audio_se_rate, 0, "[A-Za-z0-9_]+", validate_string_internal_name, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
+var el_name_internal = create_input(c2 + 16, yy, "", ew, eh, uivc_input_audio_se_internal_name, 0, "[A-Za-z0-9_]+", validate_string_internal_name, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
 dg.el_name_internal = el_name_internal;
 yy += el_name_internal.height + spacing;
 
