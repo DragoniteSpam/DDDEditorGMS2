@@ -94,6 +94,7 @@ with (instance_create_depth(0, 0, 0, MenuMain)) {
     md_audio.interactive = MENU_EDITOR_ENABLED;
     md_aud_bgm.interactive = MENU_EDITOR_ENABLED;
     md_aud_se.interactive = MENU_EDITOR_ENABLED;
+    var md_meshes = create_menu_element("Meshes", momu_meshes, menu_data);
     var md_mesh_at = create_menu_element("Mesh Autotiles", momu_expand, menu_data);
         var md_mesh_at_top = create_menu_element("Top", momu_graphic_mesh_autotiles_top, md_graphics);
         var md_mesh_at_vertical = create_menu_element("Vertical", momu_graphic_mesh_autotiles_vertical, md_graphics);
@@ -129,6 +130,7 @@ with (instance_create_depth(0, 0, 0, MenuMain)) {
     ds_list_add(menu_data.contents,
         md_graphics,
         md_audio,
+        md_meshes,
         md_mesh_at,
         md_data_types,
         //

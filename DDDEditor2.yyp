@@ -1277,6 +1277,14 @@
             }
         },
         {
+            "Key": "0d463cd8-bcf2-4fe1-8a3e-e5616a242850",
+            "Value": {
+                "id": "34eee537-1e74-4c46-87b2-4009aa1a7349",
+                "resourcePath": "scripts\\momu_meshes\\momu_meshes.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "0d675d95-ba6b-44c0-8859-dae1079c74ca",
             "Value": {
                 "id": "152ea6c5-5e69-4fa1-ae6b-17428dfb9a27",
@@ -2869,6 +2877,14 @@
             }
         },
         {
+            "Key": "2120ea0e-6efd-46f5-bb16-ccbcb6103f2c",
+            "Value": {
+                "id": "44f5b2d1-5aad-4b2a-b335-398ec5509d0b",
+                "resourcePath": "scripts\\editor_render_mesh\\editor_render_mesh.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "214533a4-bdc3-4319-8c84-dfb628a5143e",
             "Value": {
                 "id": "5519fd0f-a1a3-4c69-82f4-c341e74da7d2",
@@ -4185,6 +4201,14 @@
             "Value": {
                 "id": "8fd42d8e-64ea-456c-a9b4-02ac55051ddd",
                 "resourcePath": "views\\2fad8809-baa3-4cbf-b3e8-7bb7c9fb73fc.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "2fd77f3d-64b8-4730-b2b5-830685f09c9b",
+            "Value": {
+                "id": "6f9b3d73-ce25-439c-a3a8-1055589718c9",
+                "resourcePath": "views\\2fd77f3d-64b8-4730-b2b5-830685f09c9b.yy",
                 "resourceType": "GMFolder"
             }
         },
@@ -7849,6 +7873,14 @@
             "Value": {
                 "id": "4e8d661f-c922-4cf0-b72f-0dc47bbd39a2",
                 "resourcePath": "scripts\\graphics_remove_etc\\graphics_remove_etc.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "5bc773b7-4a95-4993-b8bc-12467e6ed81f",
+            "Value": {
+                "id": "06294cfd-46f5-429c-8314-6b0b6b50470f",
+                "resourcePath": "scripts\\editor_mode_meshes\\editor_mode_meshes.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -13538,6 +13570,14 @@
                 "id": "324ea98c-18cb-4b7c-8852-dd1d3750e0fb",
                 "resourcePath": "scripts\\terrain_sub_zero\\terrain_sub_zero.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "9fc5d41c-abf4-4055-8d53-792cde4d68be",
+            "Value": {
+                "id": "8fc9700b-ae79-4b5c-b417-443823d4a90f",
+                "resourcePath": "objects\\EditorModeMeshes\\EditorModeMeshes.yy",
+                "resourceType": "GMObject"
             }
         },
         {
@@ -19948,6 +19988,14 @@
             }
         },
         {
+            "Key": "ec858de9-c7c7-4392-9483-b93efc3d89e5",
+            "Value": {
+                "id": "1bd31645-e191-4bf9-bbb1-daf37b3f573c",
+                "resourcePath": "scripts\\ui_init_mesh\\ui_init_mesh.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "ec982b33-59f6-4b79-896f-6b8db966d108",
             "Value": {
                 "id": "f7c6a094-281c-4219-994c-7f497a0fe454",
@@ -22405,6 +22453,7 @@
         "6949b6b9-d9ff-4ab9-8d27-461a748b4583",
         "01755d4f-0d5d-4085-a11f-d0c58255e4f7",
         "154517c7-22de-4eca-8916-6716b8924f47",
+        "0d463cd8-bcf2-4fe1-8a3e-e5616a242850",
         "0cd6b412-3802-483b-a7b0-8e7f15ca6433",
         "7645252a-52fa-4ad4-87c1-1341bb77fdb6",
         "0bc2521f-2dc0-4325-913e-77c33c0845e3",
@@ -23196,6 +23245,7 @@
         "c5b646ec-c93b-43e3-84e9-e2060705dcbe",
         "fd796d95-e335-4355-8f3e-512fb7d1ae61",
         "3a7f8c23-2b10-4808-9b1f-c9b1dc17eef5",
+        "ec858de9-c7c7-4392-9483-b93efc3d89e5",
         "f07a2f9b-b066-4c72-a4fb-180a737456c3",
         "11149f07-ed81-433a-97c6-962deea13fc6",
         "6bacee58-05cb-44bf-b841-0fd8f82f4df0",
@@ -23529,6 +23579,7 @@
         "075ee6c6-8a7d-4de2-ad5b-87ca1b908b22",
         "88b30e3c-292c-4680-ae4c-1d01e05c0b4a",
         "81113da0-88d2-4fd5-88c8-445e0154a02e",
+        "5bc773b7-4a95-4993-b8bc-12467e6ed81f",
         "cd32215f-9241-4130-bb8e-7050945ed0d9",
         "027688c8-77c1-40f5-b0c2-9fa7454e4f1b",
         "54e82075-777f-48c5-9db5-9d5896ed45ad",
@@ -23734,6 +23785,7 @@
         "8de8efae-e880-4818-85ac-299766b99e0d",
         "2bcdfba8-0f39-466b-a60b-544fcc4e5d8e",
         "54419df8-f4c4-4329-a3a2-2504f27fe4fc",
+        "2120ea0e-6efd-46f5-bb16-ccbcb6103f2c",
         "8335ebcb-f8b8-4613-84aa-9a4fc0d07796",
         "8f0f4115-e352-4927-9396-f1832f1e8ebd",
         "64289ba3-596a-4413-bb7e-a4070b5a6eb8",

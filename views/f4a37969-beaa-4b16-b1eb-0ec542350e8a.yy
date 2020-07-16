@@ -13,7 +13,8 @@
         "0d0269c7-25a8-436a-a255-dd6bfd65657d",
         "0962fae9-d7ce-4855-8a02-ea7e397daa6f",
         "404c8edb-7df3-499e-8947-9b53ae7849e2",
-        "28487863-e9c4-4f9d-992e-cd8a7db38ef3"
+        "28487863-e9c4-4f9d-992e-cd8a7db38ef3",
+        "2fd77f3d-64b8-4730-b2b5-830685f09c9b"
     ],
     "filterType": "GMScript",
     "folderName": "modes",

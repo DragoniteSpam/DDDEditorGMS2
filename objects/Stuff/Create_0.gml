@@ -39,6 +39,7 @@ enum ModeIDs {
     SPART,
     DOODLE,
     PARTICLE,
+    MESH,
 }
 
 tf = ["False", "True"];
@@ -416,6 +417,7 @@ data = instance_create_depth(0, 0, 0, EditorModeData);
 event = instance_create_depth(0, 0, 0, EditorModeEvent);
 animation = instance_create_depth(0, 0, 0, EditorModeAnimation);
 terrain = instance_create_depth(0, 0, 0, EditorModeTerrain);
+mesh_ed = instance_create_depth(0, 0, 0, EditorModeMeshes);
 scribble = instance_create_depth(0, 0, 0, EditorModeScribble);
 spart = instance_create_depth(0, 0, 0, EditorModeSpart);
 doodle = instance_create_depth(0, 0, 0, EditorModeDoodle);
@@ -592,6 +594,7 @@ switch (stashed_mode) {
     case ModeIDs.SPART: editor_mode_spart(); break;
     case ModeIDs.DOODLE: editor_mode_doodle(); break;
     case ModeIDs.PARTICLE: editor_mode_particle(); break;
+    case ModeIDs.MESH: editor_mode_meshes(); break;
 }
 
 if (PROJECT_MENU_ENABLED) {
