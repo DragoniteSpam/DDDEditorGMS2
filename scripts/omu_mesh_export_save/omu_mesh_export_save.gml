@@ -10,10 +10,17 @@ if (folder == "") return;
 folder = filename_path(folder);
 for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
     var mesh = Stuff.all_meshes[| index];
-    switch (type) {
-        case 0: export_d3d(folder + mesh.name + ".d3d", mesh); break;
-        case 1: export_obj(folder + mesh.name + ".obj", mesh); break;
-        case 2: export_vb(folder + mesh.name + ".vbuff", mesh); break;
+    switch (mesh.type) {
+        case MeshTypes.RAW:
+            switch (type) {
+                case 0: export_d3d(folder + mesh.name + ".d3d", mesh); break;
+                case 1: export_obj(folder + mesh.name + ".obj", mesh); break;
+                case 2: export_vb(folder + mesh.name + ".vbuff", mesh); break;
+            }
+            break;
+        case MeshTypes.SMF:
+            // do this later maybe?
+            break;
     }
 }
 
