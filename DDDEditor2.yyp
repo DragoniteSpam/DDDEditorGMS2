@@ -1925,6 +1925,14 @@
             }
         },
         {
+            "Key": "14f59f87-4419-4f70-90ee-8abcabb4aba5",
+            "Value": {
+                "id": "0281fe2e-82b8-4839-99ef-7c0ca00467d8",
+                "resourcePath": "scripts\\dialog_create_mesh_export_type\\dialog_create_mesh_export_type.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "14ff12b1-b8eb-4617-af7b-29642c2e74e5",
             "Value": {
                 "id": "accdb45a-eb40-45e4-a607-107f31180f62",
@@ -13869,6 +13877,14 @@
             }
         },
         {
+            "Key": "a2ded603-6cfa-460c-9fd5-8ac037862868",
+            "Value": {
+                "id": "fb8608fb-4f19-48aa-aa8d-7df4bc38c935",
+                "resourcePath": "views\\a2ded603-6cfa-460c-9fd5-8ac037862868.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "a2e21ab3-91c7-40ce-a1de-def3bb92cb6c",
             "Value": {
                 "id": "2c384588-7879-47fc-b1d0-87c23e4bb5ad",
@@ -23077,6 +23093,7 @@
         "cc8c2e48-12d3-4866-872d-b7dfc6b02780",
         "8230362c-a3a3-483b-a5c6-fcd6a70edd26",
         "a49e8c31-936f-4515-bdcc-92018abaa5b0",
+        "14f59f87-4419-4f70-90ee-8abcabb4aba5",
         "8c51d098-04e8-4711-bb41-f98098a4bdc7",
         "a2373338-b0ab-43af-97ea-95927ad0dcaa",
         "8e7beb43-6baa-4777-a9bb-2b531b7ca709",

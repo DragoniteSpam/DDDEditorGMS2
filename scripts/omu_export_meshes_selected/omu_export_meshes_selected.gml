@@ -21,6 +21,8 @@ if (ds_map_size(selection) == 1) {
     return;
 }
 
+dialog_create_mesh_export_type(button);
+return;
 var folder = get_save_filename("", "save everything here");
 if (folder == "") return;
 
