@@ -31,6 +31,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     var xx = this_column * cw + spacing;
     
     var element = create_list(c1x, yy, "Meshes:", "no meshes", ew, eh, 28, null, true, id, Stuff.all_meshes);
+    element.render_colors = ui_list_colors_mesh_type_smf_disabled;
     element.entries_are = ListEntries.INSTANCES;
     mesh_list = element;
     ds_list_add(contents, element);

@@ -5117,6 +5117,14 @@
             }
         },
         {
+            "Key": "39d4f9b5-521d-49c1-b0af-23c1542d8f53",
+            "Value": {
+                "id": "9ba0fd66-3582-4a2d-bd70-21fcf8ae405f",
+                "resourcePath": "scripts\\ui_list_colors_mesh_type_smf_disabled\\ui_list_colors_mesh_type_smf_disabled.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "39d8bec1-cc2c-4d92-a58d-50bcb7edac68",
             "Value": {
                 "id": "292b281b-7450-4bd8-9041-14c85af6c7f8",
@@ -23977,6 +23985,7 @@
         "e34c9a14-42e1-40c8-acb9-121efce0c0ef",
         "d72b146b-f741-4c3a-95d1-ef3a174917bf",
         "1cf1bae2-df93-4705-ae01-58ce64fd6495",
+        "39d4f9b5-521d-49c1-b0af-23c1542d8f53",
         "98752a70-4ba1-4d71-9035-818e4600c88a",
         "f8507d86-7280-483b-ab34-c5fd8425bcda",
         "926442c3-7f9e-4290-a73f-e6c2729be91c",
