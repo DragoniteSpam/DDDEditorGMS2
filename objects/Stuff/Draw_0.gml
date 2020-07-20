@@ -22,12 +22,17 @@ if (view_current == view_overlay) {
             var str = Stuff.element_tooltip.tooltip;
             var str_padding = 8;
             var text_width = 540;
-            draw_set_valign(fa_top);
-            draw_set_halign(fa_left);
-            var str_width = string_width_ext(str, -1, text_width) + str_padding * 2;
-            var str_height = string_height_ext(str, -1, text_width) + str_padding * 2;
-            var halign = draw_get_halign();
-            var valign = draw_get_valign();
+            var halign = global.scribble_state_box_halign;
+            var valign = global.scribble_state_box_valign;
+            var starting_font = global.scribble_state_starting_font;
+            var starting_color = global.scribble_state_starting_color;
+            var starting_halign = global.scribble_state_starting_halign;
+            scribble_set_box_align(fa_left, fa_top);
+            scribble_set_wrap(text_width, -1);
+            scribble_set_starting_format(FDefault12, c_black, fa_left);
+            var scribble = scribble_cache(str, "", true, true);
+            var str_width = scribble_get_width(scribble) + str_padding * 2;
+            var str_height = scribble_get_height(scribble) + str_padding * 2;
             var tooltip_x = min(window_mouse_get_x(), view_get_wport(view_current) - str_width);
             var tooltip_y = min(window_mouse_get_y(), view_get_hport(view_current) - str_height);
             draw_rectangle_colour(
@@ -38,9 +43,9 @@ if (view_current == view_overlay) {
                 tooltip_x, tooltip_y, tooltip_x + str_width, tooltip_y + str_height,
                 c_black, c_black, c_black, c_black, true
             );
-            draw_text_ext(tooltip_x + str_padding, tooltip_y + str_padding, str, -1, text_width);
-            draw_set_halign(halign);
-            draw_set_valign(valign);
+            scribble_draw(tooltip_x + str_padding, tooltip_y + str_padding, scribble);
+            scribble_set_box_align(halign, valign);
+            scribble_set_starting_format(starting_font, starting_color, starting_halign);
             instance_deactivate_object(Stuff.element_tooltip);
         }
     }
