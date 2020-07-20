@@ -32,6 +32,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     
     var element = create_list(c1x, yy, "Meshes:", "no meshes", ew, eh, 28, null, true, id, Stuff.all_meshes);
     element.entries_are = ListEntries.INSTANCES;
+    mesh_list = element;
     ds_list_add(contents, element);
     yy += ui_get_list_height(element) + spacing;
     
@@ -41,6 +42,12 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     yy += element.height + spacing;
     
     element = create_button(c1x, yy, "Remove Mesh", ew, eh, fa_center, null, id);
+    ds_list_add(contents, element);
+    yy += element.height + spacing;
+    
+    yy = yy_base;
+    
+    element = create_button(c2x, yy, "Export Selected", ew, eh, fa_center, omu_export_meshes_selected, id);
     ds_list_add(contents, element);
     yy += element.height + spacing;
     

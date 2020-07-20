@@ -6133,6 +6133,14 @@
             }
         },
         {
+            "Key": "476186a7-9dce-4e3a-a764-fda7d15de899",
+            "Value": {
+                "id": "0c67eb3d-0709-4542-9605-6b9be2cb70b8",
+                "resourcePath": "scripts\\omu_export_meshes_selected\\omu_export_meshes_selected.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "4764ee55-c9ba-43c4-a912-8b56008ccac5",
             "Value": {
                 "id": "7a9f94fc-cf3e-46b0-8266-d3058f489130",
@@ -20548,6 +20556,14 @@
             }
         },
         {
+            "Key": "f1d98923-3cfa-40f0-a8c5-62d866b7a9ed",
+            "Value": {
+                "id": "d44c3c5f-75c2-4eaf-aa2e-b35b8b1121e9",
+                "resourcePath": "views\\f1d98923-3cfa-40f0-a8c5-62d866b7a9ed.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "f1ea65ec-f504-477c-88cb-9c0596cfc3b9",
             "Value": {
                 "id": "c3e73400-3a9b-4ccd-b954-533683650c1b",
@@ -23820,6 +23836,7 @@
         "1698a2a3-74e7-4227-811d-2ab4c9c2516d",
         "56680588-b308-4ea5-b55a-7fded968b626",
         "4d64ace5-5c70-435d-b13b-1fdbfd767a86",
+        "476186a7-9dce-4e3a-a764-fda7d15de899",
         "43ae57f2-9a33-45c9-bb00-529bd505469d",
         "d991b300-f8bd-492f-b7fb-3c931798fc68",
         "9fe42c44-3ba2-491e-a420-b440bfcd560f",
