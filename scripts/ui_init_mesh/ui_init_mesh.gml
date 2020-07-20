@@ -36,6 +36,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     yy += ui_get_list_height(element) + spacing;
     
     element = create_button(c1x, yy, "Add Mesh", ew, eh, fa_center, null, id);
+    element.file_dropper_action = uifd_load_meshes;
     ds_list_add(contents, element);
     yy += element.height + spacing;
     

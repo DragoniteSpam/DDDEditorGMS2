@@ -6669,6 +6669,14 @@
             }
         },
         {
+            "Key": "4d95f584-6101-4d6a-bc7e-3d4281ba237c",
+            "Value": {
+                "id": "b6a90e38-5797-4f0e-a6a7-e994686924a3",
+                "resourcePath": "scripts\\uifd_load_meshes\\uifd_load_meshes.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "4dabc89d-9bac-4749-8233-324055ddef86",
             "Value": {
                 "id": "6543da14-f790-4724-8255-3a1bb3146733",
@@ -6905,6 +6913,14 @@
             "Value": {
                 "id": "03d1a276-cdfe-4898-b016-cd4309123eec",
                 "resourcePath": "views\\4ffbdd56-d25d-4c77-be70-6cf548d024c3.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "4ffdfd0e-50e8-4af3-8fa4-6ab95c996864",
+            "Value": {
+                "id": "4fa6ed80-c011-4071-8d74-38831752a651",
+                "resourcePath": "views\\4ffdfd0e-50e8-4af3-8fa4-6ab95c996864.yy",
                 "resourceType": "GMFolder"
             }
         },
@@ -9194,6 +9210,14 @@
                 "id": "ad1b12c5-57e8-4189-a45f-57cd0dc37873",
                 "resourcePath": "objects\\DataTileset\\DataTileset.yy",
                 "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "6bd97c84-ae56-4898-b2c9-e8d8626508f1",
+            "Value": {
+                "id": "77753867-4aaf-42c8-b2be-f041512723ae",
+                "resourcePath": "scripts\\ui_handle_dropped_files_filter\\ui_handle_dropped_files_filter.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -23934,7 +23958,9 @@
         "8ace29c2-4ddb-49ca-92fd-0c37a93e02b8",
         "97712004-d86d-4104-82f9-886060b28495",
         "1412f209-e335-43d6-9808-19678f4d12ff",
-        "40e1e28d-257c-4c32-acb4-6ccf8e94da63"
+        "40e1e28d-257c-4c32-acb4-6ccf8e94da63",
+        "4d95f584-6101-4d6a-bc7e-3d4281ba237c",
+        "6bd97c84-ae56-4898-b2c9-e8d8626508f1"
     ],
     "tutorial": ""
 }

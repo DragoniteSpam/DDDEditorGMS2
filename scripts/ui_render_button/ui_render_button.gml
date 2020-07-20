@@ -18,3 +18,5 @@ ui_render_button_general(
     x1, y1, x2, y2, tx, ty, button.text, button.alignment, button.valignment, button.color,
     button.interactive && dialog_is_active(button.root), button.onmouseup, button
 );
+
+ui_handle_dropped_files(button);
