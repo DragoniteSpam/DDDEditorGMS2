@@ -17,6 +17,7 @@ if (ds_map_size(selection) == 1) {
     switch (filename_ext(fn)) {
         case ".obj": export_obj(fn, mesh); break;
         case ".d3d": case ".gmmod": export_d3d(fn, mesh); break;
+        case ".vbuff": export_vb(fn, mesh); break;
     }
     return;
 }

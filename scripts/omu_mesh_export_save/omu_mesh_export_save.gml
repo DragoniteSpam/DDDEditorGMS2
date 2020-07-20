@@ -12,8 +12,8 @@ for (var index = ds_map_find_first(selection); index != undefined; index = ds_ma
     var mesh = Stuff.all_meshes[| index];
     switch (type) {
         case 0: export_d3d(folder + mesh.name + ".d3d", mesh); break;
-        case 1: export_obj(folder + mesh.name + ".obj", mesh); wtf(mesh.name); break;
-        case 2: 
+        case 1: export_obj(folder + mesh.name + ".obj", mesh); break;
+        case 2: export_vb(folder + mesh.name + ".vbuff", mesh); break;
     }
 }
 

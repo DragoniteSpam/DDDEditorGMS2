@@ -9,8 +9,6 @@ var buffer = buffer_create(1024, buffer_grow, 1);
 for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
     var sub = mesh.submeshes[| i];
     var fn = mesh_filename + "." + string_hex(i, 3) + filename_ext(base_filename);
-    //var fn = mesh_filename + "." + string_hex(i, 3) + filename_ext(base_filename);
-    //var fn = string_replace(filename_name(base_filename), filename_ext(base_filename), "") + "." + string_hex(i, 3) + filename_ext(base_filename);
     buffer_seek(sub.buffer, buffer_seek_start, 0);
     buffer_seek(buffer, buffer_seek_start, 0);
     

@@ -13,7 +13,7 @@ var dg = dialog_create(dw, dh, "Hey!", dialog_default, dmu_dialog_cancel, root);
 dg.selection = selection;
 
 var el_type = create_radio_array(32, 64, "Model type to save:", dw - 64, 32, null, 0, dg);
-create_radio_array_options(el_type, ["GameMaker model (d3d)", "OBJ model file", "Vertex buffer"]);
+create_radio_array_options(el_type, ["GameMaker model (d3d)", "OBJ model file (obj)", "Vertex buffer (vbuff)"]);
 el_type.tooltip = @"You may convert to several different types of 3D model files.
 - [c_blue]GameMaker model files[/c] (d3d or gmmod) are the format used by the model loading function of old versions of GameMaker, as well as programs like Model Creator for GameMaker.
 - [c_blue]OBJ model files[/c] are a very common 3D model format which can be read by most 3D modelling programs such as Blender.
