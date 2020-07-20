@@ -185,3 +185,5 @@ if (ui_is_active(input)) {
     }
 }
 #endregion
+
+ui_handle_dropped_files(input);

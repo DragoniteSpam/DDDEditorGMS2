@@ -28,3 +28,5 @@ for (var i = 0; i < ds_list_size(array.contents); i++) {
     // these are all part of the same UIThing so there's no point in turning them off
     script_execute(thing.render, thing, x1, y1);
 }
+
+ui_handle_dropped_files(array);

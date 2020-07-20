@@ -45,3 +45,5 @@ if (bar.interactive && dialog_is_active(bar.root)) {
         bar.clicked = false;
     }
 }
+
+ui_handle_dropped_files(bar);

@@ -121,3 +121,5 @@ if (CONTORL_3D_LOOK) {
         window_mouse_set(mx + view_get_xport(view_current), my + view_get_yport(view_current));
     }
 }
+
+ui_handle_dropped_files(selector);

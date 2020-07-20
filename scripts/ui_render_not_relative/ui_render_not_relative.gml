@@ -15,3 +15,5 @@ for (var i = 0; i < ds_list_size(thing.contents); i++) {
         script_execute(what.render, what, xx, yy);
     }
 }
+
+ui_handle_dropped_files(thing);

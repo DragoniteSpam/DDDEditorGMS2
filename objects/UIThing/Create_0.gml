@@ -1,4 +1,5 @@
 render = ui_render;
+file_dropper_action = null;
 contents = ds_list_create();
 root = noone;
 enabled = true;

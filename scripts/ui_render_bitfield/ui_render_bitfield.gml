@@ -29,3 +29,5 @@ for (var i = 0; i < ds_list_size(bitfield.contents); i++) {
 }
 
 draw_set_halign(fa_left);
+
+ui_handle_dropped_files(bitfield);

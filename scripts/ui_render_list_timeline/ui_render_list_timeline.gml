@@ -343,3 +343,5 @@ if (dialog_is_active(timeline.root)) {
         timeline.moment_index = 0;
     }
 }
+
+ui_handle_dropped_files(timeline);

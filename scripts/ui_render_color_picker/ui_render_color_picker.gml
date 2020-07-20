@@ -50,3 +50,5 @@ if (picker.interactive && dialog_is_active(picker.root)) {
         Stuff.element_tooltip = picker;
     }
 }
+
+ui_handle_dropped_files(picker);

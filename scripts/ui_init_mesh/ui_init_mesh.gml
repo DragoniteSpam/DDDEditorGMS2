@@ -3,12 +3,17 @@
 var mode = argument0;
 
 with (instance_create_depth(0, 0, 0, UIThing)) {
-    var columns = 3;
+    var columns = 4;
     var spacing = 16;
     
     var cw = (room_width - columns * 32) / columns;
     var ew = cw - spacing * 2;
     var eh = 24;
+    
+    var c1x = cw * 0 + spacing;
+    var c2x = cw * 1 + spacing;
+    var c3x = cw * 2 + spacing;
+    var c4x = cw * 3 + spacing;
     
     var vx1 = ew / 2;
     var vy1 = 0;
@@ -25,9 +30,17 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     var this_column = 0;
     var xx = this_column * cw + spacing;
     
-    var element = create_text(xx, yy, "text", ew, eh, fa_left, ew, id);
+    var element = create_list(c1x, yy, "Meshes:", "no meshes", ew, eh, 28, null, true, id, Stuff.all_meshes);
+    element.entries_are = ListEntries.INSTANCES;
     ds_list_add(contents, element);
+    yy += ui_get_list_height(element) + spacing;
     
+    element = create_button(c1x, yy, "Add Mesh", ew, eh, fa_center, null, id);
+    ds_list_add(contents, element);
+    yy += element.height + spacing;
+    
+    element = create_button(c1x, yy, "Remove Mesh", ew, eh, fa_center, null, id);
+    ds_list_add(contents, element);
     yy += element.height + spacing;
     
     return id;

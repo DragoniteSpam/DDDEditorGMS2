@@ -28,3 +28,5 @@ if (bitfield.interactive && dialog_is_active(bitfield.root.root)) {
         Stuff.element_tooltip = bitfield.root;
     }
 }
+
+ui_handle_dropped_files(bitfield);

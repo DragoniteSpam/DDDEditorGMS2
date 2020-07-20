@@ -52,3 +52,5 @@ if (code.editor_handle) {
 var message = string_comma(string_length(code.value)) + " bytes (edit)";
 
 ui_render_button_general(vx1, vy1, vx2, vy2, vtx, vty, message, fa_left, fa_middle, c_black, interactable, omu, code);
+
+ui_handle_dropped_files(code);

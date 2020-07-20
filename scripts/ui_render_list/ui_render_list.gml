@@ -243,3 +243,5 @@ if (n > list.slots) {
 draw_rectangle(x1, y2, x2, y3, true);
 
 list.index = clamp(list.index + move_direction, 0, max(0, n - list.slots));
+
+ui_handle_dropped_files(list);

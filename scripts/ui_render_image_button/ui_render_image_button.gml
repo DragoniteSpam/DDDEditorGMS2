@@ -61,3 +61,5 @@ surface_reset_target();
 #endregion
 
 draw_surface(button.surface, x1, y1);
+
+ui_handle_dropped_files(button);

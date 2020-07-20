@@ -52,3 +52,5 @@ if (checkbox.interactive && dialog_is_active(checkbox.root)) {
         Stuff.element_tooltip = checkbox;
     }
 }
+
+ui_handle_dropped_files(checkbox);

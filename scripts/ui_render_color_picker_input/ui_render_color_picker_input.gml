@@ -287,3 +287,5 @@ if (picker.allow_alpha) {
 if (color_initial != picker.value || alpha_initial != picker.alpha) {
     script_execute(picker.onvaluechange, picker);
 }
+
+ui_handle_dropped_files(picker);

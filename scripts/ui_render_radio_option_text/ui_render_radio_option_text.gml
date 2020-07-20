@@ -51,3 +51,5 @@ if (enabled && dialog_is_active(option.root.root)) {
         Stuff.element_tooltip = option.root;
     }
 }
+
+ui_handle_dropped_files(option);

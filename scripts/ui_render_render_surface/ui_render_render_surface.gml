@@ -23,3 +23,5 @@ surface_reset_target();
 script_execute(surface.script_control, surface, x1, y1, x2, y2);
 
 draw_surface(surface.surface, x1, y1);
+
+ui_handle_dropped_files(surface);

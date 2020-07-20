@@ -75,3 +75,5 @@ for (var i = 0; i < ds_list_size(ui.tabs); i++) {
 }
 
 script_execute(ui.active_tab.render_contents, ui.active_tab, 0, 0);
+
+ui_handle_dropped_files(ui);

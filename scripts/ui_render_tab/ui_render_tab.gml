@@ -44,3 +44,5 @@ if (tab.interactive && dialog_is_active(tab.root)) {
         Stuff.element_tooltip = tab;
     }
 }
+
+ui_handle_dropped_files(tab);

@@ -28,3 +28,5 @@ if (text.use_scribble) {
 if (mouse_within_rectangle_determine(x1, y1, x2, y2, text.adjust_view)) {
     Stuff.element_tooltip = text;
 }
+
+ui_handle_dropped_files(text);
