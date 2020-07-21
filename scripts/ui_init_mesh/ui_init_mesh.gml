@@ -30,6 +30,11 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     var this_column = 0;
     var xx = this_column * cw + spacing;
     
+    element = create_button(c1x, yy, "Vertex Formats", ew, eh, fa_center, null, id);
+    element.file_dropper_action = uifd_load_meshes;
+    ds_list_add(contents, element);
+    yy += element.height + spacing;
+    
     var element = create_list(c1x, yy, "Meshes:", "no meshes", ew, eh, 28, null, true, id, Stuff.all_meshes);
     element.render_colors = ui_list_colors_mesh_type_smf_disabled;
     element.entries_are = ListEntries.INSTANCES;
@@ -52,5 +57,15 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     ds_list_add(contents, element);
     yy += element.height + spacing;
     
+    element = create_radio_array(c2x, yy, "Model type to save:", ew, eh, uivc_radio_mesh_export_type, mode.export_type, id);
+    create_radio_array_options(element, ["GameMaker model (d3d)", "OBJ model file (obj)", "Vertex buffer (vbuff)"]);
+    element.tooltip = @"You may convert to several different types of 3D model files.
+- [c_blue]GameMaker model files[/c] (d3d or gmmod) are the format used by the model loading function of old versions of GameMaker, as well as programs like Model Creator for GameMaker.
+- [c_blue]OBJ model files[/c] are a very common 3D model format which can be read by most 3D modelling programs such as Blender.
+- [c_blue]Vertex buffer files[/c] contain raw (binary) vertex data, and may be loaded into a game quickly without a need for parsing.
+If you loaded a model containing SMF data, it will be saved as is without conversion.";
+    ds_list_add(contents, element);
+    yy += ui_get_radio_array_height(element) + spacing;
+
     return id;
 }
