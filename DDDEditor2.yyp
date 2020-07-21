@@ -5117,6 +5117,14 @@
             }
         },
         {
+            "Key": "3987b971-56d4-494e-be56-f75d59299a2a",
+            "Value": {
+                "id": "a29e6e3d-a09b-49ea-b597-e539cac6cb38",
+                "resourcePath": "scripts\\omu_meshes_draw_meshes\\omu_meshes_draw_meshes.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "399cb04c-858a-4805-8be8-5eab470bab59",
             "Value": {
                 "id": "993ecb53-16a6-47a1-ae40-1a66f54dd028",
@@ -11800,7 +11808,7 @@
             "Key": "89302a67-9dfe-4817-a359-ebb81a4e9bcf",
             "Value": {
                 "id": "3b5fec85-5d10-4e61-a7af-e68fc5e374ad",
-                "resourcePath": "scripts\\omu_meshes_use_textures\\omu_meshes_use_textures.yy",
+                "resourcePath": "scripts\\omu_meshes_draw_textures\\omu_meshes_draw_textures.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -15538,6 +15546,14 @@
                 "id": "f35c309d-f3cc-4aba-b646-47b592fc1dab",
                 "resourcePath": "objects\\UICheckbox\\UICheckbox.yy",
                 "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "b641bb46-3f0d-4bd7-bf31-be2a508506c4",
+            "Value": {
+                "id": "4a3394b4-3ff8-4462-a7fa-e6a05bc01c9b",
+                "resourcePath": "scripts\\omu_meshes_draw_wireframes\\omu_meshes_draw_wireframes.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -23967,6 +23983,8 @@
         "ff423883-5341-4856-8833-73b7f57fe769",
         "2f02dc60-a487-4686-81f3-2e8f2f75d829",
         "89302a67-9dfe-4817-a359-ebb81a4e9bcf",
+        "3987b971-56d4-494e-be56-f75d59299a2a",
+        "b641bb46-3f0d-4bd7-bf31-be2a508506c4",
         "01ffceb5-8bd9-4556-a683-7c16d669a58a",
         "43ae57f2-9a33-45c9-bb00-529bd505469d",
         "d991b300-f8bd-492f-b7fb-3c931798fc68",

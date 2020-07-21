@@ -4,7 +4,9 @@ update = null;
 render = editor_render_mesh;
 save = null;
 
-use_textures = false;
+draw_meshes = true;
+draw_wireframes = true;
+draw_textures = false;
 draw_scale = 1;
 
 x = setting_get("Mesh", "x", 0);

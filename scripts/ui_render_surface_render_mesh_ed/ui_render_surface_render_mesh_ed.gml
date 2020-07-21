@@ -29,11 +29,11 @@ vertex_submit(Stuff.graphics.axes_width, pr_linelist, -1);
 transform_set(0, 0, 0, 0, 0, 0, mode.draw_scale, mode.draw_scale, mode.draw_scale);
 var n = 0;
 var limit = 10;
-var tex = mode.use_textures ? sprite_get_texture(get_active_tileset().master, 0) : -1;
+var tex = mode.draw_textures ? sprite_get_texture(get_active_tileset().master, 0) : -1;
 for (var index = ds_map_find_first(mesh_list.selected_entries); index != undefined; index = ds_map_find_next(mesh_list.selected_entries, index)) {
     var mesh_data = Stuff.all_meshes[| index];
-    vertex_submit(mesh_data.submeshes[| 0].vbuffer, pr_trianglelist, tex);
-    vertex_submit(mesh_data.submeshes[| 0].wbuffer, pr_linelist, -1);
+    if (mode.draw_meshes) vertex_submit(mesh_data.submeshes[| 0].vbuffer, pr_trianglelist, tex);
+    if (mode.draw_wireframes) vertex_submit(mesh_data.submeshes[| 0].wbuffer, pr_linelist, -1);
     if (++n > limit) break;
 }
 transform_reset();
