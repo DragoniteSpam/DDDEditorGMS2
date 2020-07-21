@@ -121,6 +121,10 @@ if (!ds_map_exists(settings, "Particle")) {
     var settings_particle = ds_map_create();
     ds_map_add_map(settings, "Particle", settings_particle);
 }
+if (!ds_map_exists(settings, "Mesh")) {
+    var settings_mesh = ds_map_create();
+    ds_map_add_map(settings, "Mesh", settings_mesh);
+}
 
 setting_color = setting_get("Config", "color", c_green);                    // BGR
 setting_focus_alpha = setting_get("Config", "focus-alpha", 0);              // 0 ... 1
