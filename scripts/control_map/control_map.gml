@@ -209,7 +209,7 @@ if (!mode.mouse_over_ui) {
     #endregion
     
     #region camera movement
-    if (CONTORL_3D_LOOK || !input_control) {
+    if (CONTROL_3D_LOOK || !input_control) {
         var mspd = get_camera_speed(map.is_3d ? mode.z : 100);
         var xspeed = 0;
         var yspeed = 0;
@@ -237,7 +237,7 @@ if (!mode.mouse_over_ui) {
                 xspeed = xspeed + dsin(mode.direction) * mspd;
                 yspeed = yspeed + dcos(mode.direction) * mspd;
             }
-            if (CONTORL_3D_LOOK) {
+            if (CONTROL_3D_LOOK) {
                 var camera_cx = view_get_xport(view_3d) + view_get_wport(view_3d) / 2;
                 var camera_cy = view_get_yport(view_3d) + view_get_hport(view_3d) / 2;
                 var dx = (mouse_x - camera_cx) / 16;
@@ -270,7 +270,7 @@ if (!mode.mouse_over_ui) {
             if (keyboard_check(vk_right) || keyboard_check(ord("D"))) {
                 xspeed = xspeed + mspd;
             }
-            if (CONTORL_3D_LOOK) {
+            if (CONTROL_3D_LOOK) {
                 var camera_cx = view_get_xport(view_3d) + view_get_wport(view_3d) / 2;
                 var camera_cy = view_get_yport(view_3d) + view_get_hport(view_3d) / 2;
                 xspeed = (mouse_x - camera_cx);

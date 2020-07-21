@@ -41,7 +41,7 @@ if (point_in_rectangle(mx, my, x1, y1, x2, y2) && dialog_is_active(surface.root)
         yspeed += dcos(mode.direction) * mspd;
     }
     
-    if (CONTORL_3D_LOOK) {
+    if (CONTROL_3D_LOOK) {
         var camera_cx = x1 + (x2 - x1) / 2;
         var camera_cy = y1 + (y2 - y1) / 2;
         var dx = (mouse_x - camera_cx) / 16;
