@@ -4,11 +4,16 @@ var button = argument0;
 var list = button.root.mesh_list;
 var selection = list.selected_entries;
 
-if (ds_map_size(selection) == 0) {
-    return;
+var valid_count = 0;
+for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
+    if (Stuff.all_meshes[| index].type == MeshTypes.RAW) {
+        valid_count++;
+    }
 }
 
-if (ds_map_size(selection) == 1) {
+if (valid_count == 0) return;
+
+if (valid_count == 1) {
     var index = ui_list_selection(list);
     var mesh = Stuff.all_meshes[| index];
     switch (mesh.type) {
