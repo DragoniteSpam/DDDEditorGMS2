@@ -4,6 +4,8 @@ update = null;
 render = editor_render_mesh;
 save = null;
 
+use_textures = false;
+
 x = setting_get("Mesh", "x", 0);
 y = setting_get("Mesh", "y", 0);
 z = setting_get("Mesh", "z", 100);

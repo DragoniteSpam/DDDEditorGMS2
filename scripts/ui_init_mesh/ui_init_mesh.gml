@@ -80,5 +80,9 @@ If you loaded a model containing SMF data, it will be saved as is without conver
     ds_list_add(contents, element);
     yy += element.height + spacing;
     
+    element = create_checkbox(c3x, yy, "Use Textures?", ew, eh, omu_meshes_use_textures, mode.use_textures, id);
+    ds_list_add(contents, element);
+    yy += element.height + spacing;
+    
     return id;
 }
