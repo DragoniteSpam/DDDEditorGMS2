@@ -44,7 +44,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     ds_list_add(contents, element);
     yy += element.height + spacing;
     
-    element = create_button(c1x, yy, "Remove Mesh", ew, eh, fa_center, null, id);
+    element = create_button(c1x, yy, "Remove Mesh", ew, eh, fa_center, omu_mesh_editor_remove, id);
     element.tooltip = "Remove the selected 3D meshes.";
     ds_list_add(contents, element);
     yy += element.height + spacing;
