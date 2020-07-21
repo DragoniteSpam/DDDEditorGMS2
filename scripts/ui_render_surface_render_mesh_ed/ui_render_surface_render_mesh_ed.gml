@@ -26,7 +26,7 @@ transform_reset();
 vertex_submit(Stuff.graphics.mesh_preview_grid, pr_linelist, -1);
 vertex_submit(Stuff.graphics.axes_width, pr_linelist, -1);
 
-transform_set(0, 0, 0, 0, 0, 0, mode.draw_scale, mode.draw_scale, mode.draw_scale);
+transform_set(0, 0, 0, mode.draw_rot_x, mode.draw_rot_y, mode.draw_rot_z, mode.draw_scale, mode.draw_scale, mode.draw_scale);
 var n = 0;
 var limit = 10;
 var tex = mode.draw_textures ? sprite_get_texture(get_active_tileset().master, 0) : -1;

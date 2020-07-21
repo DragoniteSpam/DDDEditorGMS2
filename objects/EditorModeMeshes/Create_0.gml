@@ -9,6 +9,9 @@ draw_wireframes = true;
 draw_textures = false;
 draw_lighting = false;
 draw_scale = 1;
+draw_rot_x = 0;
+draw_rot_y = 0;
+draw_rot_z = 0;
 
 x = setting_get("Mesh", "x", 0);
 y = setting_get("Mesh", "y", 0);

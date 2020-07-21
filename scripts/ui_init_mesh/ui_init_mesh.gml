@@ -86,6 +86,24 @@ If you loaded a model containing SMF data, it will be saved as is without conver
     ds_list_add(contents, element);
     yy += element.height + spacing;
     
+    element = create_input(c2x, yy, "Rotation (X):", ew, eh, omu_meshes_set_rot_x, mode.draw_rot_x, "float", validate_double, -360, 360, 5, vx1, vy1, vx2, vy2, id);
+    element.tooltip = "Rotate the model(s) drawn in the preview window around the X axis.";
+    ds_list_add(contents, element);
+    mesh_rot_x = element;
+    yy += element.height + spacing;
+    
+    element = create_input(c2x, yy, "Rotation (Y):", ew, eh, omu_meshes_set_rot_y, mode.draw_rot_y, "float", validate_double, -360, 360, 5, vx1, vy1, vx2, vy2, id);
+    element.tooltip = "Rotate the model(s) drawn in the preview window around the Y axis.";
+    ds_list_add(contents, element);
+    mesh_rot_y = element;
+    yy += element.height + spacing;
+    
+    element = create_input(c2x, yy, "Rotation (Z):", ew, eh, omu_meshes_set_rot_z, mode.draw_rot_z, "float", validate_double, -360, 360, 5, vx1, vy1, vx2, vy2, id);
+    element.tooltip = "Rotate the model(s) drawn in the preview window around the Z axis.";
+    ds_list_add(contents, element);
+    mesh_rot_z = element;
+    yy += element.height + spacing;
+    
     element = create_button(c2x, yy, "Reset Transform", ew, eh, fa_center, omu_meshes_reset_transform, id);
     element.tooltip = "Reset the transform used in the preview.";
     ds_list_add(contents, element);

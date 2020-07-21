@@ -869,6 +869,14 @@
             }
         },
         {
+            "Key": "08c971c8-d3ce-4bf0-b873-71d60162f2f6",
+            "Value": {
+                "id": "8ff7f2cd-0d69-42ab-9026-94a9ada8d958",
+                "resourcePath": "scripts\\omu_meshes_set_rot_x\\omu_meshes_set_rot_x.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "08d43c28-69a9-4b20-a2f2-d6097d84b720",
             "Value": {
                 "id": "29345505-af53-464a-ab26-d3e54036b70f",
@@ -4597,6 +4605,14 @@
             }
         },
         {
+            "Key": "3377d433-f0b5-4757-b9ac-272fd1353f87",
+            "Value": {
+                "id": "bffae517-72fb-4540-a1ec-5d5424ecbc03",
+                "resourcePath": "scripts\\omu_meshes_set_rot_y\\omu_meshes_set_rot_y.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "33bbe902-5251-4d55-aaaf-b36e1864facb",
             "Value": {
                 "id": "07d196ed-b240-4ba8-bf15-082c5fd010bd",
@@ -8210,6 +8226,14 @@
                 "id": "15cfe4cf-22ac-4bb5-9a6b-695ea75f8d5c",
                 "resourcePath": "views\\5e0492cb-3558-4bfa-87f7-918a16bb8b3c.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "5e062586-8071-4b35-98e9-149cce27b904",
+            "Value": {
+                "id": "3d1df50c-cde0-4e4d-8f1d-8c3e975eb162",
+                "resourcePath": "scripts\\omu_meshes_set_rot_z\\omu_meshes_set_rot_z.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -24007,6 +24031,9 @@
         "ff423883-5341-4856-8833-73b7f57fe769",
         "5ddd873f-2734-48dc-b1b9-8ea6f3f9a0f4",
         "2f02dc60-a487-4686-81f3-2e8f2f75d829",
+        "08c971c8-d3ce-4bf0-b873-71d60162f2f6",
+        "3377d433-f0b5-4757-b9ac-272fd1353f87",
+        "5e062586-8071-4b35-98e9-149cce27b904",
         "111931c2-0269-4686-8ff5-e720f0f9840c",
         "89302a67-9dfe-4817-a359-ebb81a4e9bcf",
         "77cb5bac-1958-48d1-836d-93b24d80ba87",
