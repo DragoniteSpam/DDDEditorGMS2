@@ -1,6 +1,7 @@
 event_inherited();
 
 scribble_init("data\\fonts", "FDefault", false);
+scribble_set_starting_format("FDefault", c_black, fa_left);
 scribble_fonts = [
     FDefault,
     FDefaultBold,
