@@ -20,4 +20,5 @@ camera_apply(cam);
 
 transform_reset();
 vertex_submit(Stuff.graphics.mesh_preview_grid, pr_linelist, -1);
-vertex_submit(Stuff.graphics.axes, pr_linelist, -1);
+vertex_submit(Stuff.graphics.axes_width, pr_linelist, -1);
+

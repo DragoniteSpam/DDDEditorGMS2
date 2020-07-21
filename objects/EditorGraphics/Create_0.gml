@@ -177,6 +177,39 @@ vertex_point_line(axes, 0, 0, MILLION, c_blue, 1);
 vertex_end(axes);
 vertex_freeze(axes);
 
+axes_width = vertex_create_buffer();
+vertex_begin(axes_width, vertex_format);
+
+vertex_point_line(axes_width, 0, -1, -1, c_red, 1);
+vertex_point_line(axes_width, MILLION, -1, -1, c_red, 1);
+vertex_point_line(axes_width, 0, -1, 1, c_red, 1);
+vertex_point_line(axes_width, MILLION, -1, 1, c_red, 1);
+vertex_point_line(axes_width, 0, 1, -1, c_red, 1);
+vertex_point_line(axes_width, MILLION, 1, -1, c_red, 1);
+vertex_point_line(axes_width, 0, 1, 1, c_red, 1);
+vertex_point_line(axes_width, MILLION, 1, 1, c_red, 1);
+
+vertex_point_line(axes_width, -1, 0, -1, c_green, 1);
+vertex_point_line(axes_width, -1, MILLION, -1, c_green, 1);
+vertex_point_line(axes_width, -1, 0, 1, c_green, 1);
+vertex_point_line(axes_width, -1, MILLION, 1, c_green, 1);
+vertex_point_line(axes_width, 1, 0, -1, c_green, 1);
+vertex_point_line(axes_width, 1, MILLION, -1, c_green, 1);
+vertex_point_line(axes_width, 1, 0, 1, c_green, 1);
+vertex_point_line(axes_width, 1, MILLION, 1, c_green, 1);
+
+vertex_point_line(axes_width, -1, -1, 0, c_blue, 1);
+vertex_point_line(axes_width, -1, -1, MILLION, c_blue, 1);
+vertex_point_line(axes_width, -1, 1, 0, c_blue, 1);
+vertex_point_line(axes_width, -1, 1, MILLION, c_blue, 1);
+vertex_point_line(axes_width, 1, -1, 0, c_blue, 1);
+vertex_point_line(axes_width, 1, -1, MILLION, c_blue, 1);
+vertex_point_line(axes_width, 1, 1, 0, c_blue, 1);
+vertex_point_line(axes_width, 1, 1, MILLION, c_blue, 1);
+    
+vertex_end(axes_width);
+vertex_freeze(axes_width);
+
 axes_centered = vertex_create_buffer();
 vertex_begin(axes_centered, vertex_format);
 
