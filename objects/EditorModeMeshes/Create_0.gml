@@ -7,6 +7,7 @@ save = null;
 draw_meshes = true;
 draw_wireframes = true;
 draw_textures = false;
+draw_lighting = false;
 draw_scale = 1;
 
 x = setting_get("Mesh", "x", 0);

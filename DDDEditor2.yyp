@@ -1621,6 +1621,14 @@
             }
         },
         {
+            "Key": "111931c2-0269-4686-8ff5-e720f0f9840c",
+            "Value": {
+                "id": "f1177280-d8fc-4284-9443-4da94fb309be",
+                "resourcePath": "scripts\\omu_meshes_reset_transform\\omu_meshes_reset_transform.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "113c99ac-1f8c-4fe5-9496-11f266891628",
             "Value": {
                 "id": "c1659da6-9878-4873-81b4-6fbf4e6ed04b",
@@ -10313,6 +10321,14 @@
             "Value": {
                 "id": "1c415e6d-460b-44da-87fd-bea76a5dc369",
                 "resourcePath": "scripts\\uivc_terrain_set_mode_heightmap\\uivc_terrain_set_mode_heightmap.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "77cb5bac-1958-48d1-836d-93b24d80ba87",
+            "Value": {
+                "id": "e438aaf6-1a5a-4c6d-b4f5-8d4446331dc1",
+                "resourcePath": "scripts\\omu_meshes_draw_lighting\\omu_meshes_draw_lighting.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -23991,7 +24007,9 @@
         "ff423883-5341-4856-8833-73b7f57fe769",
         "5ddd873f-2734-48dc-b1b9-8ea6f3f9a0f4",
         "2f02dc60-a487-4686-81f3-2e8f2f75d829",
+        "111931c2-0269-4686-8ff5-e720f0f9840c",
         "89302a67-9dfe-4817-a359-ebb81a4e9bcf",
+        "77cb5bac-1958-48d1-836d-93b24d80ba87",
         "3987b971-56d4-494e-be56-f75d59299a2a",
         "b641bb46-3f0d-4bd7-bf31-be2a508506c4",
         "01ffceb5-8bd9-4556-a683-7c16d669a58a",

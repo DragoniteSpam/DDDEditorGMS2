@@ -86,11 +86,18 @@ If you loaded a model containing SMF data, it will be saved as is without conver
     ds_list_add(contents, element);
     yy += element.height + spacing;
     
-    yy = yy_base;
-    
-    element = create_render_surface(c3x, yy, ew * 2, ew * 2, ui_render_surface_render_mesh_ed, ui_render_surface_control_mesh_ed, c_black, id);
+    element = create_button(c2x, yy, "Reset Transform", ew, eh, fa_center, omu_meshes_reset_transform, id);
+    element.tooltip = "Reset the transform used in the preview.";
     ds_list_add(contents, element);
     yy += element.height + spacing;
+    
+    yy = yy_base;
+    
+    element = create_render_surface(c3x, yy, ew * 2, ew * 1.8, ui_render_surface_render_mesh_ed, ui_render_surface_control_mesh_ed, c_black, id);
+    ds_list_add(contents, element);
+    yy += element.height + spacing;
+    
+    var yy_base_rs = yy;
     
     element = create_checkbox(c3x, yy, "Draw filled meshes?", ew, eh, omu_meshes_draw_meshes, mode.draw_meshes, id);
     element.tooltip = "Draw the filled part of the 3D meshes.";
@@ -102,8 +109,16 @@ If you loaded a model containing SMF data, it will be saved as is without conver
     ds_list_add(contents, element);
     yy += element.height + spacing;
     
-    element = create_checkbox(c3x, yy, "Use Textures?", ew, eh, omu_meshes_draw_textures, mode.draw_textures, id);
+    yy = yy_base_rs;
+    
+    element = create_checkbox(c4x, yy, "Show Textures?", ew, eh, omu_meshes_draw_textures, mode.draw_textures, id);
     element.tooltip = "Whether or not to draw the meshes in the preview window using a texture.";
+    element.interactive = false;
+    ds_list_add(contents, element);
+    yy += element.height + spacing;
+    
+    element = create_checkbox(c4x, yy, "Show Lighting?", ew, eh, omu_meshes_draw_lighting, mode.draw_lighting, id);
+    element.tooltip = "Whether or not to lighting should be enabled.";
     element.interactive = false;
     ds_list_add(contents, element);
     yy += element.height + spacing;
