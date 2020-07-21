@@ -38,7 +38,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     ds_list_add(contents, element);
     yy += ui_get_list_height(element) + spacing;
     
-    element = create_button(c1x, yy, "Add Mesh", ew, eh, fa_center, null, id);
+    element = create_button(c1x, yy, "Add Mesh", ew, eh, fa_center, omu_mesh_editor_add, id);
     element.tooltip = "Add a 3D mesh. You can drag them from Windows Explorer into the program window to add them in bulk.";
     element.file_dropper_action = uifd_load_meshes;
     ds_list_add(contents, element);

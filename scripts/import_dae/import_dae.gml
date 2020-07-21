@@ -7,6 +7,8 @@ var adjust = (argument_count > 2 && argument[2] != undefined) ? argument[2] : tr
 var existing = (argument_count > 3 && argument[3] != undefined) ? argument[3] : noone;
 var replace_index = (argument_count > 4 && argument[4] != undefined) ? argument[4] : -1;
 
+return;
+
 var container = dotdae_model_load_file(filename, false, false);
 var vbs = container[@ eDotDae.VertexBufferList];
 
