@@ -14,6 +14,7 @@ var my = mouse_y_view;
 var mode = Stuff.mesh_ed;
 
 if (point_in_rectangle(mx, my, x1, y1, x2, y2) && dialog_is_active(surface.root)) {
+    ui_activate(surface);
     var xspeed = 0;
     var yspeed = 0;
     var zspeed = 0;

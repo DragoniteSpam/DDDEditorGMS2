@@ -6,7 +6,8 @@
     "children": [
         "476186a7-9dce-4e3a-a764-fda7d15de899",
         "dd67f9e2-32bd-4dff-9b06-8fdb4d7b9009",
-        "89302a67-9dfe-4817-a359-ebb81a4e9bcf"
+        "89302a67-9dfe-4817-a359-ebb81a4e9bcf",
+        "01ffceb5-8bd9-4556-a683-7c16d669a58a"
     ],
     "filterType": "GMScript",
     "folderName": "meshes",

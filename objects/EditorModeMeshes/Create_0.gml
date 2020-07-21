@@ -5,6 +5,7 @@ render = editor_render_mesh;
 save = null;
 
 use_textures = false;
+draw_scale = 1;
 
 x = setting_get("Mesh", "x", 0);
 y = setting_get("Mesh", "y", 0);

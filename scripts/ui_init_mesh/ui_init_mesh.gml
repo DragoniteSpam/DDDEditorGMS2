@@ -74,6 +74,10 @@ If you loaded a model containing SMF data, it will be saved as is without conver
     ds_list_add(contents, element);
     yy += element.height + spacing;
     
+    element = create_input(c2x, yy, "Scale:", ew, eh, omu_meshes_draw_scale, mode.draw_scale, "float", validate_double, 0.01, 100, 5, vx1, vy1, vx2, vy2, id);
+    ds_list_add(contents, element);
+    yy += element.height + spacing;
+    
     yy = yy_base;
     
     element = create_render_surface(c3x, yy, ew * 2, ew * 2, ui_render_surface_render_mesh_ed, ui_render_surface_control_mesh_ed, c_black, id);
