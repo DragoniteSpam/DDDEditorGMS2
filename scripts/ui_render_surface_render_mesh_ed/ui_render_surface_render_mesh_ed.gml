@@ -19,6 +19,9 @@ camera_set_view_mat(cam, matrix_build_lookat(mode.x, mode.y, mode.z, mode.xto, m
 camera_set_proj_mat(cam, matrix_build_projection_perspective_fov(-mode.fov, -sh / sw, 1, 1000));
 camera_apply(cam);
 
+gpu_set_ztestenable(true);
+gpu_set_zwriteenable(true);
+
 transform_reset();
 vertex_submit(Stuff.graphics.mesh_preview_grid, pr_linelist, -1);
 vertex_submit(Stuff.graphics.axes_width, pr_linelist, -1);
@@ -34,3 +37,6 @@ for (var index = ds_map_find_first(mesh_list.selected_entries); index != undefin
     if (++n > limit) break;
 }
 transform_reset();
+
+gpu_set_ztestenable(false);
+gpu_set_zwriteenable(false);
