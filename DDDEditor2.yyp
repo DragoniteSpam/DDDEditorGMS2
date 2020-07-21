@@ -1061,6 +1061,14 @@
             }
         },
         {
+            "Key": "0aea133a-3da3-47fa-9087-a0ceb0bc26ed",
+            "Value": {
+                "id": "51c9a308-6bb3-4e9f-8ed0-ca97312b9f89",
+                "resourcePath": "scripts\\ui_render_surface_render_mesh_ed\\ui_render_surface_render_mesh_ed.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "0b4aaebc-63ac-47b1-9a28-13cb3e2f8d82",
             "Value": {
                 "id": "ae2f8273-9aa1-45ae-9e3b-042c7960e143",
@@ -12973,6 +12981,14 @@
             }
         },
         {
+            "Key": "974439c8-1520-4cc9-8d4e-bcc815ecbc63",
+            "Value": {
+                "id": "a8ce2f2a-5a10-4bbf-b973-087473c4cad8",
+                "resourcePath": "scripts\\ui_render_surface_control_mesh_ed\\ui_render_surface_control_mesh_ed.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "9747388c-f42e-4b81-8b36-191371dd761f",
             "Value": {
                 "id": "5ab7ec02-6f42-45d9-b209-79db0a4be756",
@@ -23966,8 +23982,10 @@
         "894325ed-22ed-443e-b575-8f82bb5cef3b",
         "424effe5-bbb2-4880-b8e8-a7d657a45e77",
         "9d4edbe1-6f93-4774-9010-759acce00411",
+        "0aea133a-3da3-47fa-9087-a0ceb0bc26ed",
         "26bbea8b-61d0-4549-8c64-7420d3fa108f",
         "bd7d68d1-60c0-4536-82ee-a7f8c19eb663",
+        "974439c8-1520-4cc9-8d4e-bcc815ecbc63",
         "f30504f6-0c38-43d5-888a-437bd205ae3f",
         "fcd4ba1d-4e32-4811-bac1-bf5c9ad661c1",
         "2fdf93fd-6c42-4da9-9206-347c67fc6976",

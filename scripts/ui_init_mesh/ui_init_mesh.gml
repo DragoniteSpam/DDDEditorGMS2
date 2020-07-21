@@ -66,6 +66,12 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
 If you loaded a model containing SMF data, it will be saved as is without conversion.";
     ds_list_add(contents, element);
     yy += ui_get_radio_array_height(element) + spacing;
-
+    
+    yy = yy_base;
+    
+    element = create_render_surface(c3x, yy, ew * 2, ew * 2, ui_render_surface_render_mesh_ed, ui_render_surface_control_mesh_ed, c_black, id);
+    ds_list_add(contents, element);
+    yy += element.height + spacing;
+    
     return id;
 }
