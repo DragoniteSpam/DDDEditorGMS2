@@ -67,7 +67,6 @@ If you loaded a model containing SMF data, it will be saved as is without conver
     yy += ui_get_radio_array_height(element) + spacing;
     
     element = create_text(c2x, yy, "[c_blue]Editing", ew, eh, fa_left, ew, id);
-    element.use_scribble = true;
     ds_list_add(contents, element);
     yy += element.height + spacing;
     

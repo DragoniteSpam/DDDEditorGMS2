@@ -13,7 +13,6 @@ var bw = ew / 5;
 
 var yy = 64;
 var el_text = create_text(16, yy, "[FDefault20][c_blue]DDD Game Editor", ew, eh, fa_left, dw - 32, dg);
-el_text.use_scribble = true;
 yy += 64;
 var el_author = create_text(16, yy, "Author: Michael Peng (DragoniteSpam)", ew, eh, fa_left, dw - 32, dg);
 yy += 40;
@@ -26,13 +25,11 @@ el_author_3.tooltip = "https://github.com/DragoniteSpam";
 yy += 40;
 
 var el_help = create_text(16, yy, "[c_blue]With help from:", ew, eh, fa_left, dw - 32, dg);
-el_help.use_scribble = true;
 yy += 40;
 var el_help_who = create_text(32, yy, "     RatcheT2497", ew, eh, fa_left, dw - 32, dg);
 yy += 40;
 
 var el_ex = create_text(16, yy, "[c_blue]Some Game Maker extensions were used", ew, eh, fa_left, dw - 32, dg);
-el_ex.use_scribble = true;
 yy += 40;
 var el_ex_venomous_url = create_button(32, yy, "GMC Forum thread", bw, eh, fa_center, uivc_url_venomous_collision, dg);
 el_ex_venomous_url.tooltip = "http://gmc.yoyogames.com/index.php?showtopic=632606 (Web Archive; the original page has long since been deleted)";
@@ -49,7 +46,6 @@ yy += 40;
 var el_ex_scribble_url = create_button(32, yy, "Github", bw, eh, fa_center, uivc_url_scribble, dg);
 el_ex_scribble_url.tooltip = "https://github.com/JujuAdams/scribble";
 var el_ex_scribble = create_text(32 + bw + spacing, yy - 12, "[rainbow][wave]Scribble,[] a Game Maker text renderer by Juju Adams (v" + string(__SCRIBBLE_VERSION) + ", slightly customized)", ew, eh, fa_left, dw - 32, dg);
-el_ex_scribble.use_scribble = true;
 yy += 40;
 var el_ex_xpanda_url = create_button(32, yy, "Github", bw, eh, fa_center, uivc_url_xpanda, dg);
 el_ex_xpanda_url.tooltip = "https://github.com/GameMakerDiscord/Xpanda/";
@@ -59,7 +55,6 @@ var el_ex_regex = create_text(32, yy, "     There's a really great regex extensi
 yy += 40;
 
 var el_asset = create_text(32, yy, "[c_blue]Default assets", ew, eh, fa_left, dw - 32, dg);
-el_asset.use_scribble = true;
 yy += 40;
 var el_asset_wate_url = create_button(32, yy, "GodsAndIdols.com", bw, eh, fa_center, uivc_url_godsandidols, dg);
 el_asset_wate_url.tooltip = "www.godsandidolds.com";
