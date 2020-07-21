@@ -4181,6 +4181,14 @@
             }
         },
         {
+            "Key": "2f02dc60-a487-4686-81f3-2e8f2f75d829",
+            "Value": {
+                "id": "07fea50d-2fab-48e9-9ed3-0a6f8d7a1309",
+                "resourcePath": "scripts\\omu_meshes_set_scale\\omu_meshes_set_scale.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "2f4382d9-ac82-4529-8956-751d9d969fce",
             "Value": {
                 "id": "4de75524-d669-4dad-bf4d-1b1916ea4575",
@@ -5765,6 +5773,14 @@
             }
         },
         {
+            "Key": "432d1471-4f6b-45d0-b850-fe1973279338",
+            "Value": {
+                "id": "dc37bc88-dd64-4652-a34f-bf9b174877aa",
+                "resourcePath": "scripts\\mesh_set_all_scale\\mesh_set_all_scale.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "4345671c-7f8e-4049-8e84-9df5d9068ed0",
             "Value": {
                 "id": "9672a87b-480f-490c-8b03-edbc2d9518ae",
@@ -7314,6 +7330,14 @@
                 "id": "dbaea9e6-9725-48dc-8f0f-fc14e0903447",
                 "resourcePath": "objects\\EditorModeParticle\\EditorModeParticle.yy",
                 "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "54513f56-81db-40db-989d-63a3c798c9cb",
+            "Value": {
+                "id": "e93b6a06-f934-426f-a51c-73b02c0502d2",
+                "resourcePath": "scripts\\mesh_set_scale\\mesh_set_scale.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -22225,7 +22249,9 @@
         "cf13c201-bde1-4f29-8df2-6fdb3ff097d6",
         "82c3adf9-339f-4fd1-a324-1552d7c8dec8",
         "58e72d1e-1d41-48fd-bbc9-128169f863ec",
+        "54513f56-81db-40db-989d-63a3c798c9cb",
         "7af12a97-65b9-4d65-8579-caa8158cd291",
+        "432d1471-4f6b-45d0-b850-fe1973279338",
         "2014825b-a570-47e1-8600-19c965a6afcb",
         "ae2be7f6-e7b0-45e5-aff6-edeed2e31f40",
         "8bb911fe-e169-4600-88d0-560c6d77bc9c",
@@ -23930,6 +23956,7 @@
         "4d64ace5-5c70-435d-b13b-1fdbfd767a86",
         "476186a7-9dce-4e3a-a764-fda7d15de899",
         "dd67f9e2-32bd-4dff-9b06-8fdb4d7b9009",
+        "2f02dc60-a487-4686-81f3-2e8f2f75d829",
         "89302a67-9dfe-4817-a359-ebb81a4e9bcf",
         "01ffceb5-8bd9-4556-a683-7c16d669a58a",
         "43ae57f2-9a33-45c9-bb00-529bd505469d",

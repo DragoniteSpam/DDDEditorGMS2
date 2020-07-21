@@ -76,6 +76,11 @@ If you loaded a model containing SMF data, it will be saved as is without conver
     
     element = create_input(c2x, yy, "Scale:", ew, eh, omu_meshes_draw_scale, mode.draw_scale, "float", validate_double, 0.01, 100, 5, vx1, vy1, vx2, vy2, id);
     ds_list_add(contents, element);
+    mesh_scale = element;
+    yy += element.height + spacing;
+    
+    element = create_button(c2x, yy, "Apply Scale", ew, eh, fa_center, omu_meshes_set_scale, id);
+    ds_list_add(contents, element);
     yy += element.height + spacing;
     
     yy = yy_base;
