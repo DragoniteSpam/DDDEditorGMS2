@@ -32,8 +32,15 @@ var limit = 10;
 var tex = mode.draw_textures ? sprite_get_texture(get_active_tileset().master, 0) : -1;
 for (var index = ds_map_find_first(mesh_list.selected_entries); index != undefined; index = ds_map_find_next(mesh_list.selected_entries, index)) {
     var mesh_data = Stuff.all_meshes[| index];
-    if (mode.draw_meshes) vertex_submit(mesh_data.submeshes[| 0].vbuffer, pr_trianglelist, tex);
-    if (mode.draw_wireframes) vertex_submit(mesh_data.submeshes[| 0].wbuffer, pr_linelist, -1);
+    switch (mesh_data.type) {
+        case MeshTypes.RAW:
+            if (mode.draw_meshes) vertex_submit(mesh_data.submeshes[| 0].vbuffer, pr_trianglelist, tex);
+            if (mode.draw_wireframes) vertex_submit(mesh_data.submeshes[| 0].wbuffer, pr_linelist, -1);
+            break;
+        case MeshTypes.SMF:
+            if (mode.draw_meshes) smf_model_draw(mesh_data.submeshes[| 0].vbuffer);
+            break;
+    }
     if (++n > limit) break;
 }
 transform_reset();
