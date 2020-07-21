@@ -14,14 +14,15 @@ var padding = 32;
 var sw = surface_get_width(surface.surface);
 var sh = surface_get_height(surface.surface);
 
-var base_color = mode.scribble_default_colour;
+var old_color = global.scribble_state_starting_color;
 mode.scribble_default_colour = surface.root.el_scribble_default_colour.value;
+global.scribble_state_starting_color = mode.scribble_default_colour;
 
 draw_clear(mode.scribble_back_colour);
 draw_rectangle_colour(1, 1, sw - 2, sh - 2, c_black, c_black, c_black, c_black, true);
 
 var f = normalize_correct(mode.scribble_bounds_width, mode.scribble_bounds_width_min, mode.scribble_bounds_width_max, 0, 1) * (surface_get_width(surface.surface) - padding * 2);
-scribble_set_wrap(-1, f, -1);
+scribble_set_wrap(f, -1, -1);
 
 if (!is_array(mode.scribble) || (mode.scribble[SCRIBBLE.STRING] != mode.scribble_text && (mode.scribble_text_time + 500) < current_time)) {
     scribble_flush();
@@ -70,4 +71,4 @@ if (mode.scribble_back_show_guides) {
 
 scribble_draw(scribble_xx, scribble_yy, mode.scribble);
 
-mode.scribble_default_colour = base_color;
+global.scribble_state_starting_color = old_color;
