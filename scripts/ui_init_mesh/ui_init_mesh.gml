@@ -66,6 +66,14 @@ If you loaded a model containing SMF data, it will be saved as is without conver
     ds_list_add(contents, element);
     yy += ui_get_radio_array_height(element) + spacing;
     
+    element = create_text(c2x, yy, "Editing", ew, eh, fa_center, ew, id);
+    ds_list_add(contents, element);
+    yy += element.height + spacing;
+    
+    element = create_button(c2x, yy, "Rotate Up Axis", ew, eh, fa_center, omu_meshes_rotate_up_axis, id);
+    ds_list_add(contents, element);
+    yy += element.height + spacing;
+    
     yy = yy_base;
     
     element = create_render_surface(c3x, yy, ew * 2, ew * 2, ui_render_surface_render_mesh_ed, ui_render_surface_control_mesh_ed, c_black, id);

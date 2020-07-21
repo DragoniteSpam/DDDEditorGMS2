@@ -7709,6 +7709,14 @@
             }
         },
         {
+            "Key": "58e72d1e-1d41-48fd-bbc9-128169f863ec",
+            "Value": {
+                "id": "1ce19dd8-2021-4bc1-a9ac-e543be7f1d89",
+                "resourcePath": "scripts\\mesh_rotate_up_axis\\mesh_rotate_up_axis.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "58f6b340-c4ea-427b-99b5-0386ecf6ac77",
             "Value": {
                 "id": "cdf73ab7-944b-45e3-89ac-bcd99433c408",
@@ -10498,6 +10506,14 @@
                 "id": "8a9293ce-af6e-483a-830b-96bcb04b1aed",
                 "resourcePath": "views\\7adf22b0-08ef-42b8-b76e-9f36fb6e6c77.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "7af12a97-65b9-4d65-8579-caa8158cd291",
+            "Value": {
+                "id": "f2aa9457-feac-4340-a7d9-f4ab19c0307a",
+                "resourcePath": "scripts\\mesh_rotate_all_up_axis\\mesh_rotate_all_up_axis.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -18780,6 +18796,14 @@
             }
         },
         {
+            "Key": "dd67f9e2-32bd-4dff-9b06-8fdb4d7b9009",
+            "Value": {
+                "id": "3fceda73-a7e2-452a-b199-0cf5c54856a8",
+                "resourcePath": "scripts\\omu_meshes_rotate_up_axis\\omu_meshes_rotate_up_axis.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "dd6822dc-8d2d-43b6-9e9f-ad86173f1faf",
             "Value": {
                 "id": "dd0b8307-4f4f-4bb7-a069-fb3b9b2e36e0",
@@ -22184,6 +22208,8 @@
         "0c3fb917-3b54-49a3-811f-5227a110fc51",
         "cf13c201-bde1-4f29-8df2-6fdb3ff097d6",
         "82c3adf9-339f-4fd1-a324-1552d7c8dec8",
+        "58e72d1e-1d41-48fd-bbc9-128169f863ec",
+        "7af12a97-65b9-4d65-8579-caa8158cd291",
         "2014825b-a570-47e1-8600-19c965a6afcb",
         "ae2be7f6-e7b0-45e5-aff6-edeed2e31f40",
         "8bb911fe-e169-4600-88d0-560c6d77bc9c",
@@ -23887,6 +23913,7 @@
         "56680588-b308-4ea5-b55a-7fded968b626",
         "4d64ace5-5c70-435d-b13b-1fdbfd767a86",
         "476186a7-9dce-4e3a-a764-fda7d15de899",
+        "dd67f9e2-32bd-4dff-9b06-8fdb4d7b9009",
         "43ae57f2-9a33-45c9-bb00-529bd505469d",
         "d991b300-f8bd-492f-b7fb-3c931798fc68",
         "9fe42c44-3ba2-491e-a420-b440bfcd560f",
