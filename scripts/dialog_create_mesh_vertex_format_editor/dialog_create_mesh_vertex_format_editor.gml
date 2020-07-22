@@ -30,9 +30,15 @@ var yy_start = 64;
 var el_name = create_input(c1x, yy, "Name: ", ew, eh, omu_meshes_vertex_format_name, mode.format_names[| format_index], "string", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
 yy += el_name.height + spacing;
 
-var el_list = create_list(c1x, yy, "Attributes: ", "no attributes", ew, eh, 12, omu_meshes_vertex_attribute_list, false, dg);
-yy += ui_get_list_height(el_list) + spacing;
+var el_list = create_list(c1x, yy, "Attributes: ", "no attributes", ew, eh, 8, omu_meshes_vertex_attribute_list, false, dg);
 dg.el_list = el_list;
+yy += ui_get_list_height(el_list) + spacing;
+
+var el_add = create_button(c1x, yy, "Add Attribute", ew, eh, fa_center, omu_meshes_vertex_format_add_attribute, dg);
+yy += el_add.height + spacing;
+
+var el_remove = create_button(c1x, yy, "Remove Attribute", ew, eh, fa_center, null, dg);
+yy += el_remove.height + spacing;
 
 yy = yy_start;
 
@@ -60,7 +66,7 @@ var b_height = 32;
 var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
 
 ds_list_add(dg.contents,
-    el_name, el_list,
+    el_name, el_list, el_add, el_remove,
     el_attribute_label, el_attribute_name, el_attribute_type,
     el_confirm
 );
