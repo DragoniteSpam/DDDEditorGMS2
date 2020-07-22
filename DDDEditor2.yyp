@@ -17972,6 +17972,14 @@
             }
         },
         {
+            "Key": "d1b6d7a5-d3fd-45bf-8be9-90717afa2c58",
+            "Value": {
+                "id": "16ee3c7b-7e04-42ba-861d-f15277506fca",
+                "resourcePath": "scripts\\omu_meshes_add_vertex_format\\omu_meshes_add_vertex_format.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "d1c26bb1-b3c3-4382-a7d9-cb1b955a2b44",
             "Value": {
                 "id": "3fcf05e9-9b12-494f-b2ec-99ce4cf0edfe",
@@ -24112,6 +24120,7 @@
         "12689c1e-03f5-415b-b728-1a796ac51a25",
         "8fc5b789-0cbb-4d84-bff5-e5dd966fcb52",
         "7e00aa7f-330c-4da6-871a-5a960232acc7",
+        "d1b6d7a5-d3fd-45bf-8be9-90717afa2c58",
         "08c971c8-d3ce-4bf0-b873-71d60162f2f6",
         "3377d433-f0b5-4757-b9ac-272fd1353f87",
         "5e062586-8071-4b35-98e9-149cce27b904",

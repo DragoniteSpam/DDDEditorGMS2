@@ -74,7 +74,7 @@ If you loaded a model containing SMF data, it will be saved as is without conver
     ds_list_add(contents, element);
     yy += ui_get_list_height(element) + spacing;
     
-    element = create_button(c2x, yy, "Add Vertex Format", ew, eh, fa_center, omu_meshes_mirror_z, id);
+    element = create_button(c2x, yy, "Add Vertex Format", ew, eh, fa_center, omu_meshes_add_vertex_format, id);
     element.tooltip = "Mirror the selected meshes over the Z axis";
     ds_list_add(contents, element);
     yy += element.height + spacing;
