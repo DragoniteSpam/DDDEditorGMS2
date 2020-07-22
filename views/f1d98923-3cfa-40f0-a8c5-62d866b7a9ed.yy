@@ -14,6 +14,7 @@
         "7e00aa7f-330c-4da6-871a-5a960232acc7",
         "d1b6d7a5-d3fd-45bf-8be9-90717afa2c58",
         "dc1af1cc-16df-4f52-9b5c-127379f50ca5",
+        "2824475a-51e7-494f-802a-916323135967",
         "08c971c8-d3ce-4bf0-b873-71d60162f2f6",
         "3377d433-f0b5-4757-b9ac-272fd1353f87",
         "5e062586-8071-4b35-98e9-149cce27b904",
@@ -22,7 +23,9 @@
         "77cb5bac-1958-48d1-836d-93b24d80ba87",
         "3987b971-56d4-494e-be56-f75d59299a2a",
         "b641bb46-3f0d-4bd7-bf31-be2a508506c4",
-        "01ffceb5-8bd9-4556-a683-7c16d669a58a"
+        "01ffceb5-8bd9-4556-a683-7c16d669a58a",
+        "5e6e14c8-6d0d-4b9b-ab58-4e8a75a58d8b",
+        "da04b096-1a83-4632-9eba-c3a055b43bbe"
     ],
     "filterType": "GMScript",
     "folderName": "meshes",

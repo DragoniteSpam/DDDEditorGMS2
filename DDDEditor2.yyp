@@ -3613,6 +3613,14 @@
             }
         },
         {
+            "Key": "2824475a-51e7-494f-802a-916323135967",
+            "Value": {
+                "id": "cf51f04c-c8b8-424d-9e78-b87d2b60507a",
+                "resourcePath": "scripts\\omu_meshes_edit_vertex_format\\omu_meshes_edit_vertex_format.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "283f0338-26b3-4fc0-aec4-c58e57e58944",
             "Value": {
                 "id": "4ca08f5b-f087-435a-8f53-1bc5687852ea",
@@ -14077,14 +14085,6 @@
             }
         },
         {
-            "Key": "a2ded603-6cfa-460c-9fd5-8ac037862868",
-            "Value": {
-                "id": "fb8608fb-4f19-48aa-aa8d-7df4bc38c935",
-                "resourcePath": "views\\a2ded603-6cfa-460c-9fd5-8ac037862868.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
             "Key": "a2e21ab3-91c7-40ce-a1de-def3bb92cb6c",
             "Value": {
                 "id": "2c384588-7879-47fc-b1d0-87c23e4bb5ad",
@@ -18705,6 +18705,14 @@
                 "id": "ce86ad0b-6003-4b13-b992-d8b83509bbfd",
                 "resourcePath": "views\\d9b722a3-baed-47bc-9958-4d3a8dc4b7a9.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "da04b096-1a83-4632-9eba-c3a055b43bbe",
+            "Value": {
+                "id": "c644a50b-6130-4edc-8639-b715162ddf0f",
+                "resourcePath": "scripts\\dialog_create_mesh_vertex_format_editor\\dialog_create_mesh_vertex_format_editor.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -23360,7 +23368,6 @@
         "cc8c2e48-12d3-4866-872d-b7dfc6b02780",
         "8230362c-a3a3-483b-a5c6-fcd6a70edd26",
         "a49e8c31-936f-4515-bdcc-92018abaa5b0",
-        "5e6e14c8-6d0d-4b9b-ab58-4e8a75a58d8b",
         "8c51d098-04e8-4711-bb41-f98098a4bdc7",
         "a2373338-b0ab-43af-97ea-95927ad0dcaa",
         "8e7beb43-6baa-4777-a9bb-2b531b7ca709",
@@ -24130,6 +24137,7 @@
         "7e00aa7f-330c-4da6-871a-5a960232acc7",
         "d1b6d7a5-d3fd-45bf-8be9-90717afa2c58",
         "dc1af1cc-16df-4f52-9b5c-127379f50ca5",
+        "2824475a-51e7-494f-802a-916323135967",
         "08c971c8-d3ce-4bf0-b873-71d60162f2f6",
         "3377d433-f0b5-4757-b9ac-272fd1353f87",
         "5e062586-8071-4b35-98e9-149cce27b904",
@@ -24139,6 +24147,8 @@
         "3987b971-56d4-494e-be56-f75d59299a2a",
         "b641bb46-3f0d-4bd7-bf31-be2a508506c4",
         "01ffceb5-8bd9-4556-a683-7c16d669a58a",
+        "5e6e14c8-6d0d-4b9b-ab58-4e8a75a58d8b",
+        "da04b096-1a83-4632-9eba-c3a055b43bbe",
         "43ae57f2-9a33-45c9-bb00-529bd505469d",
         "d991b300-f8bd-492f-b7fb-3c931798fc68",
         "9fe42c44-3ba2-491e-a420-b440bfcd560f",
