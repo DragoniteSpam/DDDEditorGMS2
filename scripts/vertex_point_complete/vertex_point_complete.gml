@@ -31,4 +31,4 @@ vertex_texcoord(buffer, xtex, ytex);
 vertex_colour(buffer, color, alpha);
 
 // todo this - extra 32 bits for whatever you want
-vertex_colour(buffer, color, alpha);
+vertex_colour(buffer, 0, 0);

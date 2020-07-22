@@ -109,6 +109,21 @@ If you loaded a model containing SMF data, it will be saved as is without conver
     ds_list_add(contents, element);
     yy += element.height + spacing;
     
+    element = create_button(c2x, yy, "Mirror: X Axis", ew, eh, fa_center, omu_meshes_mirror_x, id);
+    element.tooltip = "Mirror the selected meshes over the X axis";
+    ds_list_add(contents, element);
+    yy += element.height + spacing;
+    
+    element = create_button(c2x, yy, "Mirror: Y Axis", ew, eh, fa_center, omu_meshes_mirror_y, id);
+    element.tooltip = "Mirror the selected meshes over the Y axis";
+    ds_list_add(contents, element);
+    yy += element.height + spacing;
+    
+    element = create_button(c2x, yy, "Mirror: Z Axis", ew, eh, fa_center, omu_meshes_mirror_z, id);
+    element.tooltip = "Mirror the selected meshes over the Z axis";
+    ds_list_add(contents, element);
+    yy += element.height + spacing;
+    
     yy = yy_base;
     
     element = create_render_surface(c3x, yy, ew * 2, ew * 1.8, ui_render_surface_render_mesh_ed, ui_render_surface_control_mesh_ed, c_black, id);
