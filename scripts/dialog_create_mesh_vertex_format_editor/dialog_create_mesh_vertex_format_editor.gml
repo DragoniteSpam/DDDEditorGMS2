@@ -37,7 +37,7 @@ yy += ui_get_list_height(el_list) + spacing;
 var el_add = create_button(c1x, yy, "Add Attribute", ew, eh, fa_center, omu_meshes_vertex_format_add_attribute, dg);
 yy += el_add.height + spacing;
 
-var el_remove = create_button(c1x, yy, "Remove Attribute", ew, eh, fa_center, null, dg);
+var el_remove = create_button(c1x, yy, "Remove Attribute", ew, eh, fa_center, omu_meshes_vertex_format_remove_attribute, dg);
 yy += el_remove.height + spacing;
 
 yy = yy_start;
