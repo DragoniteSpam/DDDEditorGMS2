@@ -32,19 +32,12 @@ direction = setting_get("Mesh", "direction", 0);
 
 export_type = MeshExportTypes.D3D;
 
-formats = ds_list_create();
-format_default = ds_list_create();
-ds_list_add(format_default,
-    VertexFormatData.POSITION_3D,
-    VertexFormatData.NORMAL,
-    VertexFormatData.TEXCOORD,
-    VertexFormatData.COLOUR,
-);
-ds_list_add(formats, format_default);
-ds_list_mark_as_list(formats, 0);
+var fbuffer = buffer_load("data\\vertex-formats.json");
+format_json = json_decode(buffer_read(fbuffer, buffer_text));
+buffer_delete(fbuffer);
 
-format_names = ds_list_create();
-ds_list_add(format_names, "Default");
+formats = format_json[? "formats"];
+format_names = format_json[? "names"];
 
 ui = ui_init_mesh(id);
 

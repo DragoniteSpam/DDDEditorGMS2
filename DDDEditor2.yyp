@@ -10629,6 +10629,14 @@
             }
         },
         {
+            "Key": "7aaab77b-f01b-49b9-a361-efd431d1f3fa",
+            "Value": {
+                "id": "ad303a6d-1f3b-4922-9aa6-06ca57868e36",
+                "resourcePath": "datafiles_yy\\data\\vertex-formats.json.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "7aadc92d-e461-4c4f-8ec2-1288d33a6ae5",
             "Value": {
                 "id": "222145a8-979e-4e55-a87d-4325fdcfcbb7",

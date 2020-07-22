@@ -45,6 +45,13 @@ var el_attribute_type = create_radio_array(c2x, yy, "Type:", ew, eh, null, -1, d
 create_radio_array_options(el_attribute_type, ["Position (2D)", "Position (3D)", "Normal", "Texture Coordinate", "Color"]);
 yy += ui_get_radio_array_height(el_attribute_type) + spacing;
 
+var format = mode.formats[| format_index];
+var attributes = format[? "attributes"];
+for (var i = 0; i < ds_list_size(attributes); i++) {
+    var att = attributes[| i];
+    wtf([att[? "name"], att[? "type"]]);
+}
+
 var b_width = 128;
 var b_height = 32;
 var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
