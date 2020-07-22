@@ -32,8 +32,6 @@ direction = setting_get("Mesh", "direction", 0);
 
 export_type = MeshExportTypes.D3D;
 
-ui = ui_init_mesh(id);
-
 formats = ds_list_create();
 format_default = ds_list_create();
 ds_list_add(format_default,
@@ -44,6 +42,11 @@ ds_list_add(format_default,
 );
 ds_list_add(formats, format_default);
 ds_list_mark_as_list(formats, 0);
+
+format_names = ds_list_create();
+ds_list_add(format_names, "Default");
+
+ui = ui_init_mesh(id);
 
 enum VertexFormatData {
     POSITION_2D,

@@ -30,7 +30,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     var this_column = 0;
     var xx = this_column * cw + spacing;
     
-    var element = create_list(c1x, yy, "Meshes:", "no meshes", ew, eh, 28, null, true, id, Stuff.all_meshes);
+    var element = create_list(c1x, yy, "Meshes:", "no meshes", ew, eh, 22, null, true, id, Stuff.all_meshes);
     element.tooltip = "All of the 3D meshes currently loaded. You can drag them from Windows Explorer into the program window to add them in bulk.";
     element.render_colors = ui_list_colors_mesh_type_smf_disabled;
     element.entries_are = ListEntries.INSTANCES;
@@ -49,14 +49,12 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     ds_list_add(contents, element);
     yy += element.height + spacing;
     
-    yy = yy_base;
-    
-    element = create_button(c2x, yy, "Export Selected", ew, eh, fa_center, omu_export_meshes_selected, id);
+    element = create_button(c1x, yy, "Export Selected", ew, eh, fa_center, omu_export_meshes_selected, id);
     element.tooltip = "Export the selected 3D meshes to the specified format. You can use this to convert from one 3D model format to another.";
     ds_list_add(contents, element);
     yy += element.height + spacing;
     
-    element = create_radio_array(c2x, yy, "Model type to save:", ew, eh, uivc_radio_mesh_export_type, mode.export_type, id);
+    element = create_radio_array(c1x, yy, "Model type to save:", ew, eh, uivc_radio_mesh_export_type, mode.export_type, id);
     create_radio_array_options(element, ["GameMaker model (d3d)", "OBJ model file (obj)", "Vertex buffer (vbuff)"]);
     element.tooltip = @"You may convert to several different types of 3D model files.
 - [c_blue]GameMaker model files[/c] (d3d or gmmod) are the format used by the model loading function of old versions of GameMaker, as well as programs like Model Creator for GameMaker.
@@ -65,6 +63,31 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
 If you loaded a model containing SMF data, it will be saved as is without conversion.";
     ds_list_add(contents, element);
     yy += ui_get_radio_array_height(element) + spacing;
+    
+    yy = yy_base;
+    
+    element = create_text(c2x, yy, "[c_blue]Vertex Formats", ew, eh, fa_left, ew, id);
+    ds_list_add(contents, element);
+    yy += element.height + spacing;
+    
+    element = create_list(c2x, yy, "Available Vertex Formats", "no vertex formats", ew, eh, 6, null, false, id, mode.format_names);
+    ds_list_add(contents, element);
+    yy += ui_get_list_height(element) + spacing;
+    
+    element = create_button(c2x, yy, "Add Vertex Format", ew, eh, fa_center, omu_meshes_mirror_z, id);
+    element.tooltip = "Mirror the selected meshes over the Z axis";
+    ds_list_add(contents, element);
+    yy += element.height + spacing;
+    
+    element = create_button(c2x, yy, "Edit Vertex Format", ew, eh, fa_center, omu_meshes_mirror_z, id);
+    element.tooltip = "Mirror the selected meshes over the Z axis";
+    ds_list_add(contents, element);
+    yy += element.height + spacing;
+    
+    element = create_button(c2x, yy, "Remove Vertex Format", ew, eh, fa_center, omu_meshes_mirror_z, id);
+    element.tooltip = "Mirror the selected meshes over the Z axis";
+    ds_list_add(contents, element);
+    yy += element.height + spacing;
     
     element = create_text(c2x, yy, "[c_blue]Editing", ew, eh, fa_left, ew, id);
     ds_list_add(contents, element);
@@ -109,17 +132,13 @@ If you loaded a model containing SMF data, it will be saved as is without conver
     ds_list_add(contents, element);
     yy += element.height + spacing;
     
-    element = create_button(c2x, yy, "Mirror: X Axis", ew, eh, fa_center, omu_meshes_mirror_x, id);
+    element = create_button(c2x, yy, "Mirror X Axis", ew / 3, eh, fa_center, omu_meshes_mirror_x, id);
     element.tooltip = "Mirror the selected meshes over the X axis";
     ds_list_add(contents, element);
-    yy += element.height + spacing;
-    
-    element = create_button(c2x, yy, "Mirror: Y Axis", ew, eh, fa_center, omu_meshes_mirror_y, id);
+    element = create_button(c2x + ew / 3, yy, "Mirror Y Axis", ew / 3, eh, fa_center, omu_meshes_mirror_y, id);
     element.tooltip = "Mirror the selected meshes over the Y axis";
     ds_list_add(contents, element);
-    yy += element.height + spacing;
-    
-    element = create_button(c2x, yy, "Mirror: Z Axis", ew, eh, fa_center, omu_meshes_mirror_z, id);
+    element = create_button(c2x + 2 * ew / 3, yy, "Mirror Z Axis", ew / 3, eh, fa_center, omu_meshes_mirror_z, id);
     element.tooltip = "Mirror the selected meshes over the Z axis";
     ds_list_add(contents, element);
     yy += element.height + spacing;
@@ -131,7 +150,7 @@ If you loaded a model containing SMF data, it will be saved as is without conver
     yy += element.height + spacing;
     
     var yy_base_rs = yy;
-    
+    #region options
     element = create_checkbox(c3x, yy, "Draw filled meshes?", ew, eh, omu_meshes_draw_meshes, mode.draw_meshes, id);
     element.tooltip = "Draw the filled part of the 3D meshes.";
     ds_list_add(contents, element);
@@ -155,6 +174,6 @@ If you loaded a model containing SMF data, it will be saved as is without conver
     element.interactive = false;
     ds_list_add(contents, element);
     yy += element.height + spacing;
-    
+    #endregion
     return id;
 }
