@@ -85,6 +85,14 @@
             }
         },
         {
+            "Key": "00587622-ad6b-4783-a82c-b202df4c7b2a",
+            "Value": {
+                "id": "e607fcfc-d469-431b-a81e-5fe0fe190823",
+                "resourcePath": "views\\00587622-ad6b-4783-a82c-b202df4c7b2a.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "00719de6-f6d6-4bcb-9dda-c3732778031f",
             "Value": {
                 "id": "6df9c383-4fbb-406a-818e-6bdea1ac9d1e",
@@ -153,6 +161,14 @@
             "Value": {
                 "id": "c3059938-7b13-4c61-b28c-a5754dcefaff",
                 "resourcePath": "scripts\\omu_event_add_set_entity_sprite\\omu_event_add_set_entity_sprite.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "00fe9043-f526-40e2-a812-473961790c88",
+            "Value": {
+                "id": "ef2bbc14-73ee-4c68-b6f4-650a5fc51524",
+                "resourcePath": "scripts\\omu_meshes_vertex_attribute_name\\omu_meshes_vertex_attribute_name.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -4962,6 +4978,14 @@
                 "id": "9e6cfa57-4498-471d-9e11-a5a86318c72f",
                 "resourcePath": "objects\\UITileSelector\\UITileSelector.yy",
                 "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "37210aba-e6e6-4504-86a8-37f3a8b53db9",
+            "Value": {
+                "id": "be533cb9-608d-4a69-99eb-20bdad38a5f7",
+                "resourcePath": "scripts\\omu_meshes_vertex_format_name\\omu_meshes_vertex_format_name.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -16941,6 +16965,14 @@
             }
         },
         {
+            "Key": "c5a144ed-5c6f-4fd1-af92-872c65c158c5",
+            "Value": {
+                "id": "3252241a-9a1b-423c-9123-fa9c77a135bd",
+                "resourcePath": "scripts\\omu_meshes_vertex_attribute_list\\omu_meshes_vertex_attribute_list.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "c5ae622f-d2b9-4bbe-98f5-e12a48374205",
             "Value": {
                 "id": "6a3a177f-d56d-4563-8461-8d3bd8d05872",
@@ -19736,6 +19768,14 @@
             "Value": {
                 "id": "9843d730-3650-40a8-9019-8246f5b3f929",
                 "resourcePath": "scripts\\dmu_dialog_entity_get_event\\dmu_dialog_entity_get_event.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "e6838b4c-9d82-4cf2-9287-a66ff563ea0b",
+            "Value": {
+                "id": "8077409f-75c0-45d4-86dd-eb29db55a188",
+                "resourcePath": "scripts\\omu_meshes_vertex_attribute_type\\omu_meshes_vertex_attribute_type.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -24157,6 +24197,10 @@
         "01ffceb5-8bd9-4556-a683-7c16d669a58a",
         "5e6e14c8-6d0d-4b9b-ab58-4e8a75a58d8b",
         "da04b096-1a83-4632-9eba-c3a055b43bbe",
+        "37210aba-e6e6-4504-86a8-37f3a8b53db9",
+        "00fe9043-f526-40e2-a812-473961790c88",
+        "e6838b4c-9d82-4cf2-9287-a66ff563ea0b",
+        "c5a144ed-5c6f-4fd1-af92-872c65c158c5",
         "43ae57f2-9a33-45c9-bb00-529bd505469d",
         "d991b300-f8bd-492f-b7fb-3c931798fc68",
         "9fe42c44-3ba2-491e-a420-b440bfcd560f",

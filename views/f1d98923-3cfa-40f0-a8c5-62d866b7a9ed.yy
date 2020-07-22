@@ -25,7 +25,8 @@
         "b641bb46-3f0d-4bd7-bf31-be2a508506c4",
         "01ffceb5-8bd9-4556-a683-7c16d669a58a",
         "5e6e14c8-6d0d-4b9b-ab58-4e8a75a58d8b",
-        "da04b096-1a83-4632-9eba-c3a055b43bbe"
+        "da04b096-1a83-4632-9eba-c3a055b43bbe",
+        "00587622-ad6b-4783-a82c-b202df4c7b2a"
     ],
     "filterType": "GMScript",
     "folderName": "meshes",
