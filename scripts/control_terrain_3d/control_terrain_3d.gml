@@ -78,8 +78,8 @@ if (CONTROL_3D_LOOK) {
     Stuff.terrain.direction = (360 + Stuff.terrain.direction - dx) % 360;
     Stuff.terrain.pitch = clamp(Stuff.terrain.pitch + dy, -89, 89);
     window_mouse_set(camera_cx, camera_cy);
-    Stuff.terrain.xto = Stuff.terrain.x + dcos(Stuff.terrain.direction);
-    Stuff.terrain.yto = Stuff.terrain.y - dsin(Stuff.terrain.direction);
+    Stuff.terrain.xto = Stuff.terrain.x + dcos(Stuff.terrain.direction) * dcos(Stuff.terrain.pitch);
+    Stuff.terrain.yto = Stuff.terrain.y - dsin(Stuff.terrain.direction) * dcos(Stuff.terrain.pitch);
     Stuff.terrain.zto = Stuff.terrain.z - dsin(Stuff.terrain.pitch);
 }
 

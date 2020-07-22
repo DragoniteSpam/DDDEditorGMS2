@@ -245,8 +245,8 @@ if (!mode.mouse_over_ui) {
                 mode.direction = (360 + mode.direction - dx) % 360;
                 mode.pitch = clamp(mode.pitch + dy, -89, 89);
                 window_mouse_set(camera_cx, camera_cy);
-                mode.xto = mode.x + dcos(mode.direction);
-                mode.yto = mode.y - dsin(mode.direction);
+                mode.xto = mode.x + dcos(mode.direction) * dcos(mode.pitch);
+                mode.yto = mode.y - dsin(mode.direction) * dcos(mode.pitch);
                 mode.zto = mode.z - dsin(mode.pitch);
             }
             

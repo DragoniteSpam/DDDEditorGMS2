@@ -92,8 +92,8 @@ if (!keyboard_check(vk_control)) {
         Stuff.event.direction = (360 + Stuff.event.direction - dx) % 360;
         Stuff.event.pitch = clamp(Stuff.event.pitch + dy, -89, 89);
         window_mouse_set(camera_cx, camera_cy);
-        Stuff.event.xto = Stuff.event.x + dcos(Stuff.event.direction);
-        Stuff.event.yto = Stuff.event.y - dsin(Stuff.event.direction);
+        Stuff.event.xto = Stuff.event.x + dcos(Stuff.event.direction) * dcos(Stuff.event.pitch);
+        Stuff.event.yto = Stuff.event.y - dsin(Stuff.event.direction) * dcos(Stuff.event.pitch);
         Stuff.event.zto = Stuff.event.z - dsin(Stuff.event.pitch);
     }
     
