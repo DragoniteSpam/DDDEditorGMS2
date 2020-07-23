@@ -107,7 +107,10 @@ if (list.interactive && active && !ds_list_empty(list.entries)) {
         if (Controller.mouse_middle) {
             script_execute(list.onmiddleclick, list);
         } else if (Controller.double_left) {
-            script_execute(list.ondoubleclick, list);
+            // left-right-left on a list that can be deselected usually makes bad things happen
+            if (!ds_map_empty(list.selected_entries)) {
+                script_execute(list.ondoubleclick, list);
+            }
         } else if (Controller.press_left) {
             // if this ends up having a bounds problem it's probably because the list is empty and
             // it's trying to access n-1 from the next line
