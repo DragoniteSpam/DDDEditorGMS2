@@ -18940,6 +18940,14 @@
             }
         },
         {
+            "Key": "dc3809f2-d9fb-46aa-85a8-3238b1524362",
+            "Value": {
+                "id": "fd856702-15c9-47cf-9d8b-a4584bfafbf5",
+                "resourcePath": "scripts\\editor_save_setting_mesh\\editor_save_setting_mesh.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "dc403c2a-027b-418a-87c9-91dd19465df8",
             "Value": {
                 "id": "025169e7-996d-41cd-b854-5feeb59bf855",
@@ -23149,6 +23157,7 @@
         "2bcdfba8-0f39-466b-a60b-544fcc4e5d8e",
         "54419df8-f4c4-4329-a3a2-2504f27fe4fc",
         "2120ea0e-6efd-46f5-bb16-ccbcb6103f2c",
+        "dc3809f2-d9fb-46aa-85a8-3238b1524362",
         "8335ebcb-f8b8-4613-84aa-9a4fc0d07796",
         "8f0f4115-e352-4927-9396-f1832f1e8ebd",
         "64289ba3-596a-4413-bb7e-a4070b5a6eb8",
