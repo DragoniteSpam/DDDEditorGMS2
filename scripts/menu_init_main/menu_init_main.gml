@@ -94,7 +94,6 @@ with (instance_create_depth(0, 0, 0, MenuMain)) {
     md_audio.interactive = MENU_EDITOR_ENABLED;
     md_aud_bgm.interactive = MENU_EDITOR_ENABLED;
     md_aud_se.interactive = MENU_EDITOR_ENABLED;
-    var md_meshes = create_menu_element("Meshes", momu_meshes, menu_data);
     var md_mesh_at = create_menu_element("Mesh Autotiles", momu_expand, menu_data);
         var md_mesh_at_top = create_menu_element("Top", momu_graphic_mesh_autotiles_top, md_graphics);
         var md_mesh_at_vertical = create_menu_element("Vertical", momu_graphic_mesh_autotiles_vertical, md_graphics);
@@ -112,6 +111,7 @@ with (instance_create_depth(0, 0, 0, MenuMain)) {
     md_mesh_at_base.interactive = MENU_EDITOR_ENABLED;
     md_mesh_at_slope.interactive = MENU_EDITOR_ENABLED;
     var md_data_types = create_menu_element("Define Data Types", momu_data_types, menu_data);
+    var md_meshes = create_menu_element("Mesh Editor (F5)", momu_meshes, menu_data);
     var md_3d = create_menu_element("Map Editor (F6)", momu_editor_3d, menu_data);
     var md_events = create_menu_element("Event Editor (F7)", momu_editor_event, menu_data);
     var md_data = create_menu_element("Game Data Editor (F8)", momu_editor_data, menu_data);
@@ -120,6 +120,7 @@ with (instance_create_depth(0, 0, 0, MenuMain)) {
     var md_scribble = create_menu_element("Scribble preview", momu_editor_scribble, menu_help);
     var md_doodle = create_menu_element("Doodle", momu_editor_doodle, menu_help);
     md_data_types.interactive = MENU_EDITOR_ENABLED;
+    md_meshes.interactive = MENU_EDITOR_ENABLED;
     md_3d.interactive = MENU_EDITOR_ENABLED;
     md_events.interactive = MENU_EDITOR_ENABLED;
     md_data.interactive = MENU_EDITOR_ENABLED;
@@ -130,11 +131,11 @@ with (instance_create_depth(0, 0, 0, MenuMain)) {
     ds_list_add(menu_data.contents,
         md_graphics,
         md_audio,
-        md_meshes,
         md_mesh_at,
         md_data_types,
         //
         m_separator,
+        md_meshes,
         md_3d,
         md_events,
         md_data,

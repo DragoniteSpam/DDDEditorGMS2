@@ -9,7 +9,8 @@
         "default;scribble",
         "default;spart",
         "default;doodle",
-        "default;particle"
+        "default;particle",
+        "default;mesh"
     ],
     "option_ecma": false,
     "parentProject": {

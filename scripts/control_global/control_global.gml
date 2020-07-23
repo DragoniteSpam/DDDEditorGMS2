@@ -35,6 +35,9 @@ if (keyboard_check(vk_control)) {
     }
 }
 
+if (keyboard_check_pressed(vk_f5)) {
+    editor_mode_meshes();
+}
 if (keyboard_check_pressed(vk_f6)) {
     editor_mode_3d();
 }
