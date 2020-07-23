@@ -125,6 +125,10 @@ if (!ds_map_exists(settings, "Mesh")) {
     var settings_mesh = ds_map_create();
     ds_map_add_map(settings, "Mesh", settings_mesh);
 }
+if (!ds_map_exists(settings, "Spart")) {
+    var settings_spart = ds_map_create();
+    ds_map_add_map(settings, "Spart", settings_spart);
+}
 
 setting_color = setting_get("Config", "color", c_green);                    // BGR
 setting_focus_alpha = setting_get("Config", "focus-alpha", 0);              // 0 ... 1

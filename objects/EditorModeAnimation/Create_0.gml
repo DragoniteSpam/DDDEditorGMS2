@@ -12,9 +12,9 @@ xup = 0;
 yup = 0;
 zup = 1;
 
-fov = setting_get("Animation", "fov", 50);
-pitch = setting_get("Animation", "pitch", 0);
-direction = setting_get("Animation", "direction", 0);
+fov = setting_get("Animation", "fov", 60);
+pitch = setting_get("Animation", "pitch", arctan2(z, point_distance(0, 0, x, y)));
+direction = setting_get("Animation", "direction", point_direction(x, y, 0, 0));
 
 update = editor_update_animation;
 render = editor_render_animation;

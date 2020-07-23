@@ -16,9 +16,9 @@ xup = 0;
 yup = 0;
 zup = 1;
 
-fov = setting_get("Terrain", "fov", 50);
-pitch = setting_get("Terrain", "pitch", 0);
-direction = setting_get("Terrain", "direction", 0);
+fov = setting_get("Terrain", "fov", 60);
+pitch = setting_get("Terrain", "pitch", arctan2(z, point_distance(0, 0, x, y)));
+direction = setting_get("Terrain", "direction", point_direction(x, y, 0, 0));
 
 update = editor_update_terrain;
 render = editor_render_terrain;

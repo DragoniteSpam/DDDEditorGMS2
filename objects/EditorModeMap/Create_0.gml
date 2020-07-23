@@ -13,9 +13,9 @@ xup = 0;
 yup = 0;
 zup = 1;
 
-fov = setting_get("Map", "fov", 50);
-pitch = setting_get("Map", "pitch", 0);
-direction = setting_get("Map", "direction", 0);
+fov = setting_get("Map", "fov", 60);
+pitch = setting_get("Map", "pitch", arctan2(z, point_distance(0, 0, x, y)));
+direction = setting_get("Map", "direction", point_direction(x, y, 0, 0));
 
 update = editor_update_map;
 render = editor_render_map;
