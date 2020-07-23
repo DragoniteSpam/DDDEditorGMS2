@@ -13,15 +13,19 @@ draw_roundrect_colour(iconx - iconlength, icony - iconlength, iconx + iconlength
 draw_sprite(spr_camera_icons, 2, iconx - sprite_get_width(spr_camera_icons) / 2, icony - sprite_get_height(spr_camera_icons) / 2);
 
 if ((inbounds && Controller.release_left) || keyboard_check(vk_f1)) {
-    mode.x = 0;
-    mode.y = 0;
-    mode.z = 100;
+    mode.x = mode.def_x;
+    mode.y = mode.def_y;
+    mode.z = mode.def_z;
     
-    mode.xto = 512;
-    mode.yto = 512;
-    mode.zto = 0;
+    mode.xto = mode.def_xto;
+    mode.yto = mode.def_yto;
+    mode.zto = mode.def_zto;
     
-    mode.xup = 0;
-    mode.yup = 0;
-    mode.zup = 1;
+    mode.xup = mode.def_xup;
+    mode.yup = mode.def_yup;
+    mode.zup = mode.def_zup;
+    
+    mode.fov = mode.def_fov;
+    mode.pitch = arctan2(mode.z, point_distance(0, 0, mode.x, mode.y));
+    mode.direction = point_direction(mode.x, mode.y, 0, 0);
 }

@@ -38,8 +38,8 @@ yup = def_yup;
 zup = def_zup;
 
 fov = setting_get("Mesh", "fov", def_fov);
-pitch = setting_get("Mesh", "pitch", arctan2(z, point_distance(0, 0, x, y)));
-direction = setting_get("Mesh", "direction", point_direction(x, y, 0, 0));
+pitch = arctan2(z, point_distance(0, 0, x, y));
+direction = point_direction(x, y, 0, 0);
 
 export_type = MeshExportTypes.D3D;
 

@@ -1,20 +1,31 @@
 event_inherited();
 
-x = setting_get("Animation", "x", 0);
-y = setting_get("Animation", "y", 100);
-z = setting_get("Animation", "z", 100);
+def_x = 0;
+def_y = 128;
+def_z = 128;
+def_xto = 0;
+def_yto = 0;
+def_zto = 0;
+def_xup = 0;
+def_yup = 0;
+def_zup = 1;
+def_fov = 60;
 
-xto = setting_get("Animation", "xto", 0);
-yto = setting_get("Animation", "yto", 0);
-zto = setting_get("Animation", "zto", 0);
+x = setting_get("Animation", "x", def_x);
+y = setting_get("Animation", "y", def_y);
+z = setting_get("Animation", "z", def_z);
 
-xup = 0;
-yup = 0;
-zup = 1;
+xto = setting_get("Animation", "xto", def_x);
+yto = setting_get("Animation", "yto", def_y);
+zto = setting_get("Animation", "zto", def_z);
 
-fov = setting_get("Animation", "fov", 60);
-pitch = setting_get("Animation", "pitch", arctan2(z, point_distance(0, 0, x, y)));
-direction = setting_get("Animation", "direction", point_direction(x, y, 0, 0));
+xup = def_xup;
+yup = def_yup;
+zup = def_zup;
+
+fov = setting_get("Animation", "fov", def_fov);
+pitch = arctan2(z, point_distance(0, 0, x, y));
+direction = point_direction(x, y, 0, 0);
 
 update = editor_update_animation;
 render = editor_render_animation;

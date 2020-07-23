@@ -1,21 +1,32 @@
 event_inherited();
 
-x = setting_get("Map", "x", 0);
-y = setting_get("Map", "y", 0);
-z = setting_get("Map", "z", 100);
+def_x = 256;
+def_y = 256;
+def_z = 128;
+def_xto = 0;
+def_yto = 0;
+def_zto = 0;
+def_xup = 0;
+def_yup = 0;
+def_zup = 1;
+def_fov = 60;
 
-xto = setting_get("Map", "xto", 512);
-yto = setting_get("Map", "yto", 512);
-zto = setting_get("Map", "zto", 0);
+x = setting_get("Map", "x", def_x);
+y = setting_get("Map", "y", def_y);
+z = setting_get("Map", "z", def_z);
+
+xto = setting_get("Map", "xto", def_xto);
+yto = setting_get("Map", "yto", def_yto);
+zto = setting_get("Map", "zto", def_zto);
 
 // don't put the up vector in the settings file
-xup = 0;
-yup = 0;
-zup = 1;
+xup = def_xup;
+yup = def_yup;
+zup = def_zup;
 
-fov = setting_get("Map", "fov", 60);
-pitch = setting_get("Map", "pitch", arctan2(z, point_distance(0, 0, x, y)));
-direction = setting_get("Map", "direction", point_direction(x, y, 0, 0));
+fov = setting_get("Map", "fov", def_fov);
+pitch = arctan2(z, point_distance(0, 0, x, y));
+direction = point_direction(x, y, 0, 0);
 
 update = editor_update_map;
 render = editor_render_map;

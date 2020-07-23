@@ -4,21 +4,32 @@ var camera = view_get_camera(view_3d);
 depth_surface_base = surface_create(camera_get_view_width(camera), camera_get_view_height(camera));
 depth_surface_top = surface_create(camera_get_view_width(camera), camera_get_view_height(camera));
 
-x = setting_get("Terrain", "x", 0);
-y = setting_get("Terrain", "y", 0);
-z = setting_get("Terrain", "z", 100);
+def_x = -1024;
+def_y = -1024;
+def_z = 1024;
+def_xto = 1024;
+def_yto = 1024;
+def_zto = 0;
+def_xup = 0;
+def_yup = 0;
+def_zup = 1;
+def_fov = 60;
 
-xto = setting_get("Terrain", "xto", 512);
-yto = setting_get("Terrain", "yto", 512);
-zto = setting_get("Terrain", "zto", 0);
+x = setting_get("Terrain", "x", def_x);
+y = setting_get("Terrain", "y", def_y);
+z = setting_get("Terrain", "z", def_z);
 
-xup = 0;
-yup = 0;
-zup = 1;
+xto = setting_get("Terrain", "xto", def_xto);
+yto = setting_get("Terrain", "yto", def_yto);
+zto = setting_get("Terrain", "zto", def_zto);
 
-fov = setting_get("Terrain", "fov", 60);
-pitch = setting_get("Terrain", "pitch", arctan2(z, point_distance(0, 0, x, y)));
-direction = setting_get("Terrain", "direction", point_direction(x, y, 0, 0));
+xup = def_xup;
+yup = def_yup;
+zup = def_zup;
+
+fov = setting_get("Terrain", "fov", def_fov);
+pitch = arctan2(z, point_distance(0, 0, x, y));
+direction = point_direction(x, y, 0, 0);
 
 update = editor_update_terrain;
 render = editor_render_terrain;

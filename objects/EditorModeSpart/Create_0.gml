@@ -2,21 +2,32 @@ event_inherited();
 
 var camera = view_get_camera(view_3d);
 
-x = setting_get("Spart", "x", 0);
-y = setting_get("Spart", "y", 512);
-z = setting_get("Spart", "z", 128);
+def_x = 0;
+def_y = 512;
+def_z = 128;
+def_xto = 0;
+def_yto = 0;
+def_zto = 0;
+def_xup = 0;
+def_yup = 0;
+def_zup = 1;
+def_fov = 60;
 
-xto = setting_get("Spart", "xto", 0);
-yto = setting_get("Spart", "yto", 0);
-zto = setting_get("Spart", "zto", 0);
+x = setting_get("Spart", "x", def_x);
+y = setting_get("Spart", "y", def_y);
+z = setting_get("Spart", "z", def_z);
 
-xup = 0;
-yup = 0;
-zup = 1;
+xto = setting_get("Spart", "xto", def_xto);
+yto = setting_get("Spart", "yto", def_yto);
+zto = setting_get("Spart", "zto", def_zto);
 
-fov = setting_get("Spart", "fov", 60);
-pitch = setting_get("Spart", "pitch", arctan2(z, point_distance(0, 0, x, y)));
-direction = setting_get("Spart", "direction", point_direction(x, y, 0, 0));
+xup = def_xup;
+yup = def_yup;
+zup = def_zup;
+
+fov = setting_get("Spart", "fov", def_fov);
+pitch = arctan2(z, point_distance(0, 0, x, y));
+direction = point_direction(x, y, 0, 0);
 
 render = editor_render_spart;
 ui = ui_init_spart(id);
