@@ -48,7 +48,7 @@ yy = yy_start;
 var el_attribute_label = create_text(c2x, yy, "[c_blue]Attributes", ew, eh, fa_left, ew, dg);
 yy += el_name.height + spacing;
 
-var el_attribute_name = create_input(c2x, yy, "Name: ", ew, eh, omu_meshes_vertex_attribute_name, "", "string", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
+var el_attribute_name = create_input(c2x, yy, "Name: ", ew, eh, omu_meshes_vertex_attribute_name, "", "string", validate_string_internal_name, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
 el_list.tooltip = "The name of the vertex attribute (this is for your benefit and has no impact on how the mesh is exported)";
 dg.el_attribute_name = el_attribute_name;
 yy += el_attribute_name.height + spacing;
