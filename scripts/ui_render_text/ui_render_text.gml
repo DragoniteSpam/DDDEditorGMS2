@@ -17,7 +17,7 @@ var ty = ui_get_text_y(text, y1, y2);
 var old_halign = global.scribble_state_box_halign;
 var old_valign = global.scribble_state_box_valign;
 scribble_set_box_align(text.alignment, text.valignment);
-scribble_set_wrap(text.wrap_height, text.wrap_width, -1);
+scribble_set_wrap(text.wrap_width, text.wrap_height);
 scribble_draw(tx, ty, string(text.text));
 scribble_set_box_align(old_halign, old_valign);
 
