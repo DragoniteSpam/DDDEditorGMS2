@@ -13,10 +13,13 @@ var mode = Stuff.mesh_ed;
 var mesh_list = surface.root.mesh_list;
 var sw = surface_get_width(surface.surface);
 var sh = surface_get_height(surface.surface);
+var znear = 1;
+var zfar = 1000;
 draw_clear(c_black);
+
 var cam = camera_get_active();
 camera_set_view_mat(cam, matrix_build_lookat(mode.x, mode.y, mode.z, mode.xto, mode.yto, mode.zto, mode.xup, mode.yup, mode.zup));
-camera_set_proj_mat(cam, matrix_build_projection_perspective_fov(-mode.fov, -sh / sw, 1, 1000));
+camera_set_proj_mat(cam, matrix_build_projection_perspective_fov(-mode.fov, -sh / sw, znear, zfar));
 camera_apply(cam);
 
 gpu_set_ztestenable(true);
@@ -25,6 +28,33 @@ gpu_set_zwriteenable(true);
 transform_reset();
 vertex_submit(Stuff.graphics.mesh_preview_grid, pr_linelist, -1);
 vertex_submit(Stuff.graphics.axes_width, pr_linelist, -1);
+
+shader_set(shd_ddd);
+
+var light_data = array_create(MAX_LIGHTS * 12);
+array_clear(light_data, 0);
+var ambient = mode.draw_lighting ? c_gray : c_white;
+
+light_data[0] = -1;
+light_data[1] = -1;
+light_data[2] = -1;
+light_data[3] = LightTypes.DIRECTIONAL;
+light_data[8] = 1;
+light_data[9] = 1;
+light_data[10] = 1;
+
+var time_color = c_white;
+var weather_color = c_white;
+shader_set_uniform_f(shader_get_uniform(shd_ddd, "lightBuckets"), 255);
+shader_set_uniform_f(shader_get_uniform(shd_ddd, "lightAmbientColor"), (ambient & 0x0000ff) / 0xff, ((ambient & 0x00ff00) >> 8) / 0xff, ((ambient & 0xff0000) >> 16) / 0xff);
+    shader_set_uniform_f(shader_get_uniform(shd_ddd, "lightDayTimeColor"), (time_color & 0x0000ff) / 0xff, ((time_color & 0x00ff00) >> 8) / 0xff, (time_color >> 16) / 0xff);
+    shader_set_uniform_f(shader_get_uniform(shd_ddd, "lightWeatherColor"), (weather_color & 0x0000ff) / 0xff, ((weather_color & 0x00ff00) >> 8) / 0xff, (weather_color >> 16) / 0xff);
+shader_set_uniform_f_array(shader_get_uniform(shd_ddd, "lightData"), light_data);
+
+shader_set_uniform_f(shader_get_uniform(shd_ddd, "fogStrength"), 0);
+shader_set_uniform_f(shader_get_uniform(shd_ddd, "fogStart"), zfar * 2);
+shader_set_uniform_f(shader_get_uniform(shd_ddd, "fogEnd"), zfar * 3);
+
 
 transform_set(0, 0, 0, mode.draw_rot_x, mode.draw_rot_y, mode.draw_rot_z, mode.draw_scale, mode.draw_scale, mode.draw_scale);
 var n = 0;
@@ -43,11 +73,13 @@ for (var index = ds_map_find_first(mesh_list.selected_entries); index != undefin
     }
     if (++n > limit) break;
 }
-transform_reset();
 
+transform_reset();
+shader_reset();
 gpu_set_ztestenable(false);
 gpu_set_zwriteenable(false);
 
+#region draw the overlay
 var cwidth = camera_get_view_width(cam);
 var cheight = camera_get_view_height(cam);
 camera_set_view_mat(cam, matrix_build_lookat(cwidth / 2, cheight / 2, 16000,  cwidth / 2, cheight / 2, -16000, 0, 1, 0));
@@ -83,3 +115,4 @@ if ((inbounds && Controller.release_left) || keyboard_check(vk_f1)) {
     mode.pitch = arctan2(mode.z, point_distance(0, 0, mode.x, mode.y));
     mode.direction = point_direction(mode.x, mode.y, 0, 0);
 }
+#endregion

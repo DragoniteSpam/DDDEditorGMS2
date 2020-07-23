@@ -174,7 +174,6 @@ If you loaded a model containing SMF data, it will be saved as is without conver
     
     element = create_checkbox(c4x, yy, "Show Lighting?", ew, eh, omu_meshes_draw_lighting, mode.draw_lighting, id);
     element.tooltip = "Whether or not to lighting should be enabled.";
-    element.interactive = false;
     ds_list_add(contents, element);
     yy += element.height + spacing;
     #endregion
