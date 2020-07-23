@@ -6,6 +6,8 @@ var mesh = argument0;
 var index = argument1;
 var scale = argument2;
 
+if (mesh.type == MeshTypes.SMF) return;
+
 var submesh = mesh.submeshes[| index];
 var buffer = submesh.buffer;
 buffer_seek(buffer, buffer_seek_start, 0);
@@ -16,6 +18,7 @@ while (buffer_tell(buffer) < buffer_get_size(buffer)) {
     buffer_poke(buffer, position, buffer_f32, buffer_peek(buffer, position, buffer_f32) * scale);
     buffer_poke(buffer, position + 4, buffer_f32, buffer_peek(buffer, position + 4, buffer_f32) * scale);
     buffer_poke(buffer, position + 8, buffer_f32, buffer_peek(buffer, position + 8, buffer_f32) * scale);
+    // if you scale uniformly, normals don't need to be scaled
     
     buffer_seek(buffer, buffer_seek_relative, Stuff.graphics.format_size);
 }

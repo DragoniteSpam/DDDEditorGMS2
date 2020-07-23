@@ -4,6 +4,8 @@
 var mesh = argument0;
 var index = argument1;
 
+if (mesh.type == MeshTypes.SMF) return;
+
 var submesh = mesh.submeshes[| index];
 var buffer = submesh.buffer;
 buffer_seek(buffer, buffer_seek_start, 0);
@@ -12,6 +14,7 @@ while (buffer_tell(buffer) < buffer_get_size(buffer)) {
     var position = buffer_tell(buffer);
     
     buffer_poke(buffer, position + 8, buffer_f32, -buffer_peek(buffer, position + 8, buffer_f32));
+    buffer_poke(buffer, position + 20, buffer_f32, -buffer_peek(buffer, position + 20, buffer_f32));
     
     buffer_seek(buffer, buffer_seek_relative, Stuff.graphics.format_size);
 }
