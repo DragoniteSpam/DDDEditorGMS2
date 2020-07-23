@@ -22,7 +22,7 @@ void CommonLightEvaluate(int i, inout vec4 finalColor);
 void CommonLight(inout vec4 baseColor);
 
 void CommonLight(inout vec4 baseColor) {
-    vec4 lightColor = vec4(lightAmbientColor * lightDayTimeColor * lightWeatherColor, 1.);
+    vec4 lightColor = vec4(lightAmbientColor * lightDayTimeColor * lightWeatherColor, 1);
     
     CommonLightEvaluate(0, lightColor);
     CommonLightEvaluate(1, lightColor);
@@ -41,7 +41,7 @@ void CommonLight(inout vec4 baseColor) {
     CommonLightEvaluate(14, lightColor);
     CommonLightEvaluate(15, lightColor);
     
-    baseColor *= clamp(lightColor, vec4(0.), vec4(1.));
+    baseColor *= clamp(lightColor, vec4(0), vec4(1));
 }
 
 void CommonLightEvaluate(int i, inout vec4 finalColor) {
@@ -95,10 +95,11 @@ void main() {
     vec4 colorDM = texture2D(displacementMap, v_vTexcoord - vec2(mod(2. * time.x / 10., 1.), mod(-time.y / 10., 1.)));
     vec2 offset = vec2((colorDM.r + colorDM.g + colorDM.b) / 3. - 0.5) * displacement;
     vec4 finalColor = texture2D(gm_BaseTexture, v_vTexcoord + vec2(mod(time.x / 10., 1.), mod(time.y / 10., 1.)) + offset);
-    finalColor.a = clamp(length(finalColor.rgb) / 2., 0., 1.) + baseAlpha;
     
     CommonLight(finalColor);
     CommonFog(finalColor);
+    
+    finalColor.a = clamp(length(finalColor.rgb) / 2., 0., 1.) + baseAlpha;
     
     gl_FragColor = finalColor;
 }
