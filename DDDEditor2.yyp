@@ -11173,6 +11173,14 @@
             }
         },
         {
+            "Key": "80463d46-2f37-441e-a6e6-f274ac455560",
+            "Value": {
+                "id": "03fa80a3-b53a-4d0e-865c-a9b47b7eb98c",
+                "resourcePath": "scripts\\export_smf\\export_smf.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "804895a8-55fc-4175-8892-1743b5c5dd19",
             "Value": {
                 "id": "afcb12b4-aaea-4e4c-adf2-5f9e0ad5e543",
@@ -22551,6 +22559,7 @@
         "025e7494-68e7-4a58-a082-1d288d3ba4dc",
         "3435b63c-3f17-424f-ba46-7d9fb60578b9",
         "e9c50412-ecb6-4bfa-a617-66e7d1c75859",
+        "80463d46-2f37-441e-a6e6-f274ac455560",
         "f2f99141-e04d-46f0-ae6a-2f71407cf9b5",
         "af1e57cd-c701-4655-baa3-e5ca28c70e99",
         "75fdb47b-99b6-4312-a3c3-207f72372850",

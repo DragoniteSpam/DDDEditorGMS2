@@ -6,16 +6,11 @@ var selection = list.selected_entries;
 var format_index = ui_list_selection(button.root.format_list);
 var format = (format_index + 1) ? Stuff.mesh_ed.formats[| format_index] : undefined;
 
-var valid_count = 0;
-for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-    if (Stuff.all_meshes[| index].type == MeshTypes.RAW) {
-        valid_count++;
-    }
-}
+var export_count = ds_map_size(selection);
 
-if (valid_count == 0) return;
+if (export_count == 0) return;
 
-if (valid_count == 1) {
+if (export_count == 1) {
     var index = ui_list_selection(list);
     var mesh = Stuff.all_meshes[| index];
     switch (mesh.type) {
@@ -29,15 +24,17 @@ if (valid_count == 1) {
             }
             return;
         case MeshTypes.SMF:
-            // do this later maybe?
+            var fn = get_save_filename_mesh(mesh.name, "SMF files|*.smf");
+            if (fn == "") return;
+            export_smf(fn, mesh);
             return;
     }
 }
 
-var folder = get_save_filename("", "save everything here");
+var folder = get_save_filename_mesh("save everything here", "");
 if (folder == "") return;
-
 folder = filename_path(folder);
+
 for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
     var mesh = Stuff.all_meshes[| index];
     switch (mesh.type) {
@@ -49,7 +46,7 @@ for (var index = ds_map_find_first(selection); index != undefined; index = ds_ma
             }
             break;
         case MeshTypes.SMF:
-            // do this later maybe?
+            export_smf(folder + mesh.name + ".smf", mesh);
             break;
     }
 }
