@@ -31,8 +31,9 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     var xx = this_column * cw + spacing;
     
     var element = create_list(c1x, yy, "Meshes:", "no meshes", ew, eh, 22, null, true, id, Stuff.all_meshes);
-    element.tooltip = "All of the 3D meshes currently loaded. You can drag them from Windows Explorer into the program window to add them in bulk.";
+    element.tooltip = "All of the 3D meshes currently loaded. You can drag them from Windows Explorer into the program window to add them in bulk. Middle-click the list to alphabetize the meshes.";
     element.render_colors = ui_list_colors_mesh_type_smf_disabled;
+    element.onmiddleclick = omu_meshes_alphabetize_meshes;
     element.entries_are = ListEntries.INSTANCES;
     mesh_list = element;
     ds_list_add(contents, element);

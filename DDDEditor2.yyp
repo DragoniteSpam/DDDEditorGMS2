@@ -20348,6 +20348,14 @@
             }
         },
         {
+            "Key": "ec905a8a-dc87-432b-a58d-93513e451e71",
+            "Value": {
+                "id": "3095e148-f199-492c-bf09-d192f913462b",
+                "resourcePath": "scripts\\omu_meshes_alphabetize_meshes\\omu_meshes_alphabetize_meshes.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "ec982b33-59f6-4b79-896f-6b8db966d108",
             "Value": {
                 "id": "f7c6a094-281c-4219-994c-7f497a0fe454",
@@ -24208,6 +24216,7 @@
         "8fc5b789-0cbb-4d84-bff5-e5dd966fcb52",
         "7e00aa7f-330c-4da6-871a-5a960232acc7",
         "d1b6d7a5-d3fd-45bf-8be9-90717afa2c58",
+        "ec905a8a-dc87-432b-a58d-93513e451e71",
         "dc1af1cc-16df-4f52-9b5c-127379f50ca5",
         "2824475a-51e7-494f-802a-916323135967",
         "08c971c8-d3ce-4bf0-b873-71d60162f2f6",
