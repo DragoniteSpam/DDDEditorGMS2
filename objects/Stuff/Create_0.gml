@@ -414,6 +414,7 @@ enum EventNodeTypes {
 // at some point there shouldn't necessarily need to be an active
 // map in existence for this to work, but for now there does
 instance_create_depth(0, 0, 0, Controller);
+all_modes = ds_list_create();
 graphics = instance_create_depth(0, 0, 0, EditorGraphics);
 // various types of editors
 map = instance_create_depth(0, 0, 0, EditorModeMap);

@@ -2,11 +2,9 @@
 
 alarm[ALARM_SETTINGS_SAVE] = room_speed * CAMERA_SAVE_FREQUENCY;
 
-script_execute(map.save, map);
-script_execute(event.save, event);
-script_execute(data.save, data);
-script_execute(animation.save, animation);
-script_execute(terrain.save, terrain);
+for (var i = 0; i < ds_list_size(all_modes); i++) {
+    script_execute(all_modes[| i].save, all_modes[| i]);
+}
 
 var json = json_encode(settings);
 var json_buffer = buffer_create(1000, buffer_grow, 1);
