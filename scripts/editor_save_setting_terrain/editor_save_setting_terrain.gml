@@ -9,5 +9,3 @@ setting_set("Terrain", "xto", terrain.xto);
 setting_set("Terrain", "yto", terrain.yto);
 setting_set("Terrain", "zto", terrain.zto);
 setting_set("Terrain", "fov", terrain.fov);
-setting_set("Terrain", "pitch", terrain.pitch);
-setting_set("Terrain", "direction", terrain.direction);

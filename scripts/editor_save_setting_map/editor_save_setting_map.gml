@@ -9,5 +9,3 @@ setting_set("Map", "xto", map.xto);
 setting_set("Map", "yto", map.yto);
 setting_set("Map", "zto", map.zto);
 setting_set("Map", "fov", map.fov);
-setting_set("Map", "pitch", map.pitch);
-setting_set("Map", "direction", map.direction);

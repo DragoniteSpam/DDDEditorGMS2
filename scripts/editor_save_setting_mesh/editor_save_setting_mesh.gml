@@ -9,5 +9,3 @@ setting_set("Mesh", "xto", terrain.xto);
 setting_set("Mesh", "yto", terrain.yto);
 setting_set("Mesh", "zto", terrain.zto);
 setting_set("Mesh", "fov", terrain.fov);
-setting_set("Mesh", "pitch", terrain.pitch);
-setting_set("Mesh", "direction", terrain.direction);
