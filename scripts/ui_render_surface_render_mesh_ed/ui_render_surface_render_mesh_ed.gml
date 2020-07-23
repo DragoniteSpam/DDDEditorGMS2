@@ -31,13 +31,14 @@ vertex_submit(Stuff.graphics.axes_width, pr_linelist, -1);
 
 shader_set(shd_ddd);
 
+#region light stuff
 var light_data = array_create(MAX_LIGHTS * 12);
 array_clear(light_data, 0);
 var ambient = mode.draw_lighting ? c_gray : c_white;
 
-light_data[0] = -1;
-light_data[1] = -1;
-light_data[2] = -1;
+light_data[0] = dcos(mode.draw_light_direction);
+light_data[1] = dsin(mode.draw_light_direction);
+light_data[2] = -sqrt(2);
 light_data[3] = LightTypes.DIRECTIONAL;
 light_data[8] = 1;
 light_data[9] = 1;
@@ -54,7 +55,7 @@ shader_set_uniform_f_array(shader_get_uniform(shd_ddd, "lightData"), light_data)
 shader_set_uniform_f(shader_get_uniform(shd_ddd, "fogStrength"), 0);
 shader_set_uniform_f(shader_get_uniform(shd_ddd, "fogStart"), zfar * 2);
 shader_set_uniform_f(shader_get_uniform(shd_ddd, "fogEnd"), zfar * 3);
-
+#endregion
 
 transform_set(0, 0, 0, mode.draw_rot_x, mode.draw_rot_y, mode.draw_rot_z, mode.draw_scale, mode.draw_scale, mode.draw_scale);
 var n = 0;

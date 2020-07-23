@@ -63,4 +63,13 @@ if (point_in_rectangle(mx, my, x1, y1, x2, y2) && dialog_is_active(surface.root)
     mode.xup = xup;
     mode.yup = yup;
     mode.zup = zup;
+    
+    var light_rotate_speed = 90 * delta_time / MILLION;
+    if (keyboard_check(ord("Q"))) {
+        mode.draw_light_direction += light_rotate_speed;
+    }
+    if (keyboard_check(ord("E"))) {
+        mode.draw_light_direction -= light_rotate_speed;
+    }
+    mode.draw_light_direction = (mode.draw_light_direction + 360) % 360;
 }

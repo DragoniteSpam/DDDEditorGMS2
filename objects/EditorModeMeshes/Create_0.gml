@@ -13,6 +13,8 @@ draw_rot_x = 0;
 draw_rot_y = 0;
 draw_rot_z = 0;
 
+draw_light_direction = 180;
+
 def_x = 256;
 def_y = 256;
 def_z = 128;
