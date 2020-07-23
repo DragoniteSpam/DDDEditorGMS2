@@ -87,6 +87,9 @@ camera_set_view_mat(cam, matrix_build_lookat(cwidth / 2, cheight / 2, 16000,  cw
 camera_set_proj_mat(cam, matrix_build_projection_ortho(-cwidth, cheight, CAMERA_ZNEAR, CAMERA_ZFAR));
 camera_apply(cam);
 
+scribble_draw(20, 20, "[c_white]Use WASD to fly around, and hold the middle mouse button to aim the camera");
+scribble_draw(20, 40, "[c_white]Use Q and E to rotate the light source");
+
 // this is like draw_camera_controls_overlay but different enough that i
 // don't want to generic-ize it
 var iconx = 32;
