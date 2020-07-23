@@ -41,12 +41,16 @@ fov = setting_get("Mesh", "fov", def_fov);
 pitch = arctan2(z, point_distance(0, 0, x, y));
 direction = point_direction(x, y, 0, 0);
 
-export_type = MeshExportTypes.D3D;
+export_type = setting_get("Mesh", "export-type", MeshExportTypes.D3D);
+format_json = json_decode(setting_get("Mesh", "vertex-formats", ""));
 
-var fbuffer = buffer_load("data\\vertex-formats.json");
-format_json = json_decode(buffer_read(fbuffer, buffer_text));
-buffer_delete(fbuffer);
+if (!ds_exists(format_json, ds_type_map)) {
+    var fbuffer = buffer_load("data\\vertex-formats.json");
+    format_json = json_decode(buffer_read(fbuffer, buffer_text));
+    buffer_delete(fbuffer);
+}
 
+// if you screw this up, that's on you
 formats = format_json[? "formats"];
 format_names = format_json[? "names"];
 
