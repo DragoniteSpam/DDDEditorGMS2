@@ -37,8 +37,8 @@ array_clear(light_data, 0);
 var ambient = mode.draw_lighting ? c_gray : c_white;
 
 light_data[0] = dcos(mode.draw_light_direction);
-light_data[1] = dsin(mode.draw_light_direction);
-light_data[2] = -sqrt(2);
+light_data[1] = -dsin(mode.draw_light_direction);
+light_data[2] = 1;  // this feels upside-down
 light_data[3] = LightTypes.DIRECTIONAL;
 light_data[8] = 1;
 light_data[9] = 1;
