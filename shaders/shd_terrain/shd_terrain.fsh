@@ -66,7 +66,7 @@ void CommonLightEvaluate(int i, inout vec4 finalColor) {
         vec3 lightDir = v_LightWorldPosition - lightPosition;
         float dist = length(lightDir);
         float att = pow(clamp((1. - dist * dist / (range * range)), 0., 1.), 2.);
-        lightDir /= dist;
+        lightDir = normalize(lightDir);
         finalColor += lightColor * max(0., -dot(v_LightWorldNormal, lightDir)) * att;
     } else if (type == LIGHT_SPOT) {
         

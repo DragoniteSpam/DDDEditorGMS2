@@ -22,7 +22,7 @@ void CommonLightEvaluate(int i, inout vec4 finalColor);
 void CommonLight(inout vec4 baseColor);
 
 void CommonLight(inout vec4 baseColor) {
-    vec4 lightColor = vec4(lightAmbientColor * lightDayTimeColor * lightWeatherColor, 1);
+    vec4 lightColor = vec4(lightAmbientColor * lightDayTimeColor * lightWeatherColor, 1.);
     
     CommonLightEvaluate(0, lightColor);
     CommonLightEvaluate(1, lightColor);
@@ -41,7 +41,7 @@ void CommonLight(inout vec4 baseColor) {
     CommonLightEvaluate(14, lightColor);
     CommonLightEvaluate(15, lightColor);
     
-    baseColor *= clamp(lightColor, vec4(0), vec4(1));
+    baseColor *= clamp(lightColor, vec4(0.), vec4(1.));
 }
 
 void CommonLightEvaluate(int i, inout vec4 finalColor) {
@@ -60,7 +60,7 @@ void CommonLightEvaluate(int i, inout vec4 finalColor) {
         vec3 lightDir = v_LightWorldPosition - lightPosition;
         float dist = length(lightDir);
         float att = pow(clamp((1. - dist * dist / (range * range)), 0., 1.), 2.);
-        lightDir /= dist;
+        lightDir = normalize(lightDir);
         finalColor += lightColor * max(0., -dot(v_LightWorldNormal, lightDir)) * att;
     } else if (type == LIGHT_SPOT) {
         
