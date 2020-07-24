@@ -124,6 +124,7 @@ if (file_exists(fn)) {
         }
         file_text_close(matfile);
     }
+    #endregion
     
     var f = file_text_open_read(fn);
     var line_number = 0;
@@ -152,6 +153,7 @@ if (file_exists(fn)) {
     
     var temp_vertices = ds_list_create();
     
+    #region parse the obj file
     while (!file_text_eof(f) && err == "") {
         line_number++;
         var str = file_text_read_string(f);
@@ -282,6 +284,7 @@ if (file_exists(fn)) {
         ds_queue_destroy(q);
     }
     file_text_close(f);
+    #endregion
     
     ds_list_destroy(v_x);
     ds_list_destroy(v_y);
@@ -291,6 +294,15 @@ if (file_exists(fn)) {
     ds_list_destroy(v_nz);
     ds_list_destroy(v_xtex);
     ds_list_destroy(v_ytex);
+    
+    var tex_base = mtl_map_diffuse[? ds_map_find_first(mtl_map_diffuse)];
+    var tex_ambient = mtl_map_ambient[?ds_map_find_first(mtl_map_ambient)];
+    var tex_specular_color = mtl_map_specular_color[?ds_map_find_first(mtl_map_specular_color)];
+    var tex_specular_highlight = mtl_map_specular_highlight[?ds_map_find_first(mtl_map_specular_highlight)];
+    var tex_alpha = mtl_map_alpha[?ds_map_find_first(mtl_map_alpha)];
+    var tex_bump = mtl_map_bump[?ds_map_find_first(mtl_map_bump)];
+    var tex_displace = mtl_map_displace[?ds_map_find_first(mtl_map_displace)];
+    var tex_decal = mtl_map_decal[?ds_map_find_first(mtl_map_decal)];
 
     ds_map_destroy(mtl_alpha);
     ds_map_destroy(mtl_color_r);
@@ -304,7 +316,6 @@ if (file_exists(fn)) {
     ds_map_destroy(mtl_map_bump);
     ds_map_destroy(mtl_map_displace);
     ds_map_destroy(mtl_map_decal);
-    #endregion
     
     if (err == "") {
         var n = ds_list_size(temp_vertices);
@@ -425,8 +436,16 @@ if (file_exists(fn)) {
                 } else {
                     c_shape_destroy(cshape);
                 }
-                
             }
+            
+            mesh.tex_base = tex_base ? tex_base.GUID : NULL;
+            mesh.tex_ambient = tex_ambient ? tex_ambient.GUID : NULL;
+            mesh.tex_specular_color = tex_specular_color ? tex_specular_color.GUID : NULL;
+            mesh.tex_specular_highlight = tex_specular_highlight ? tex_specular_highlight.GUID : NULL;
+            mesh.tex_alpha = tex_alpha ? tex_alpha.GUID : NULL;
+            mesh.tex_bump = tex_bump ? tex_bump.GUID : NULL;
+            mesh.tex_displacement = tex_displace ? tex_displace.GUID : NULL;
+            mesh.tex_stencil = tex_decal ? tex_decal.GUID : NULL;
         }
         
         if (data_added) {
@@ -440,6 +459,8 @@ if (file_exists(fn)) {
     }
     
     ds_list_destroy(temp_vertices);
+    
+    return everything ? mesh : vbuffer;
 }
 
-return everything ? mesh : vbuffer;
+return noone;
