@@ -74,7 +74,7 @@ switch (data.type) {
         dialog.el_data_builtin_list.enabled = true;
         dialog.el_data_builtin_list.entries = Stuff.all_meshes;
         break;
-    case DataTypes.IMG_TEXTURE:
+    case DataTypes.IMG_TILESET:
         dialog.el_data_builtin_list.interactive = true;
         dialog.el_data_builtin_list.enabled = true;
         dialog.el_data_builtin_list.entries = Stuff.all_graphic_tilesets;

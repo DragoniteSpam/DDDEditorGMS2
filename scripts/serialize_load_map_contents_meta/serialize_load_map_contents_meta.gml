@@ -115,7 +115,7 @@ repeat (n_generic) {
             break;
         
         case DataTypes.MESH:
-        case DataTypes.IMG_TEXTURE:
+        case DataTypes.IMG_TILESET:
         case DataTypes.AUDIO_BGM:
         case DataTypes.AUDIO_SE:
         case DataTypes.ANIMATION:

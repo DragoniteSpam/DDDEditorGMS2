@@ -45,7 +45,7 @@ for (var i = 0; i < n_datadata; i++) {
                     case DataTypes.ENUM:
                     case DataTypes.DATA:
                     case DataTypes.MESH:
-                    case DataTypes.IMG_TEXTURE:
+                    case DataTypes.IMG_TILESET:
                     case DataTypes.IMG_BATTLER:
                     case DataTypes.IMG_OVERWORLD:
                     case DataTypes.IMG_PARTICLE:

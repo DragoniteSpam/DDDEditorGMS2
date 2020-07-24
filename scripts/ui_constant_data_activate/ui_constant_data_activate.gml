@@ -91,7 +91,7 @@ switch (what.type) {
         list.enabled = true;
         list.index = 0;
         break;
-    case DataTypes.IMG_TEXTURE:
+    case DataTypes.IMG_TILESET:
         var list = base_dialog.el_value_other;
         list.entries = Stuff.all_graphic_tilesets;
         ui_list_deselect(list);

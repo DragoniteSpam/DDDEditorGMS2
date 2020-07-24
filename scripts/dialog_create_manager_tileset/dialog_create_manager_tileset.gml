@@ -3,7 +3,7 @@
 var dw = 640;
 var dh = 480;
 
-var dg = dialog_create(dw, dh, "Data: Textures and Tilesets", dialog_default, dc_close_no_questions_asked, argument0);
+var dg = dialog_create(dw, dh, "Data: Tileset", dialog_default, dc_close_no_questions_asked, argument0);
 
 var columns = 1;
 var spacing = 16;

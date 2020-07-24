@@ -81,7 +81,7 @@ switch (data.type) {
         ui_list_deselect(dialog.el_data_builtin_list);
         ui_list_select(dialog.el_data_builtin_list, data_index, true);
         break;
-    case DataTypes.IMG_TEXTURE:
+    case DataTypes.IMG_TILESET:
         dialog.el_data_builtin_list.interactive = true;
         dialog.el_data_builtin_list.enabled = true;
         dialog.el_data_builtin_list.entries = Stuff.all_graphic_tilesets;
