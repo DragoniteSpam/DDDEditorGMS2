@@ -19,7 +19,7 @@ draw_clear(c_black);
 
 var cam = camera_get_active();
 camera_set_view_mat(cam, matrix_build_lookat(mode.x, mode.y, mode.z, mode.xto, mode.yto, mode.zto, mode.xup, mode.yup, mode.zup));
-camera_set_proj_mat(cam, matrix_build_projection_perspective_fov(-mode.fov, -sh / sw, znear, zfar));
+camera_set_proj_mat(cam, matrix_build_projection_perspective_fov(-mode.fov, -sw / sh, znear, zfar));
 camera_apply(cam);
 
 gpu_set_ztestenable(true);
