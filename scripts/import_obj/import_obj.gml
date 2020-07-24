@@ -11,6 +11,7 @@ var adjust = (argument_count > 2 && argument[2] != undefined) ? argument[2] : tr
 var existing = (argument_count > 3 && argument[3] != undefined) ? argument[3] : noone;
 var replace_index = (argument_count > 4 && argument[4] != undefined) ? argument[4] : -1;
 var data_added = false;
+var err = "";
 
 var mfn = filename_change_ext(fn, ".mtl");
 
@@ -20,6 +21,14 @@ if (file_exists(fn)) {
     var mtl_color_r = ds_map_create();
     var mtl_color_g = ds_map_create();
     var mtl_color_b = ds_map_create();
+    var mtl_map_diffuse = ds_map_create();
+    var mtl_map_ambient = ds_map_create();
+    var mtl_map_specular_color = ds_map_create();
+    var mtl_map_specular_highlight = ds_map_create();
+    var mtl_map_alpha = ds_map_create();
+    var mtl_map_bump = ds_map_create();
+    var mtl_map_displace = ds_map_create();
+    var mtl_map_decal = ds_map_create();
     ds_map_set(mtl_alpha, "None", 1);
     ds_map_set(mtl_color_r, "None", 255);
     ds_map_set(mtl_color_g, "None", 255);
@@ -49,6 +58,65 @@ if (file_exists(fn)) {
                 case "Tr":  // "transparent" (1 - alpha)
                     mtl_alpha[? mtl_name] = 1 - real(ds_queue_dequeue(spl));
                     break;
+                case "map_Kd":                  // dissolve (base) texture
+                    var texfn = filename_path(fn) + ds_queue_dequeue(spl);
+                    var ts = tileset_create(texfn, undefined, undefined, false);
+                    ds_list_add(Stuff.all_graphic_tilesets, ts);
+                    if (ds_map_size(mtl_map_diffuse) == 1) err += "Tried to load more than one diffuse texture map (map_Kd) - this is not yet supported\n";
+                    mtl_map_diffuse[? mtl_name] = ts;
+                    break;
+                case "map_Ka":                  // ambient texture
+                    var texfn = filename_path(fn) + ds_queue_dequeue(spl);
+                    var ts = tileset_create(texfn, undefined, undefined, false);
+                    ds_list_add(Stuff.all_graphic_tilesets, ts);
+                    if (ds_map_size(mtl_map_ambient) == 1) err += "Tried to load more than one ambient texture map (map_Ka) - this is not yet supported\n";
+                    mtl_map_ambient[? mtl_name] = ts;
+                    break;
+                case "map_Ks":                  // specular color texture
+                    var texfn = filename_path(fn) + ds_queue_dequeue(spl);
+                    var ts = tileset_create(texfn, undefined, undefined, false);
+                    ds_list_add(Stuff.all_graphic_tilesets, ts);
+                    if (ds_map_size(mtl_map_specular_color) == 1) err += "Tried to load more than one specular color texture map (map_Ks) - this is not yet supported\n";
+                    mtl_map_specular_color[? mtl_name] = ts;
+                    break;
+                case "map_Ns":                  // specular highlight texture
+                    var texfn = filename_path(fn) + ds_queue_dequeue(spl);
+                    var ts = tileset_create(texfn, undefined, undefined, false);
+                    ds_list_add(Stuff.all_graphic_tilesets, ts);
+                    if (ds_map_size(mtl_map_specular_highlight) == 1) err += "Tried to load more than one specular highlight texture map (map_Ns) - this is not yet supported\n";
+                    mtl_map_specular_highlight[? mtl_name] = ts;
+                    break;
+                case "map_d":                   // alpha texture
+                    var texfn = filename_path(fn) + ds_queue_dequeue(spl);
+                    var ts = tileset_create(texfn, undefined, undefined, false);
+                    ds_list_add(Stuff.all_graphic_tilesets, ts);
+                    if (ds_map_size(mtl_map_alpha) == 1) err += "Tried to load more than one alpha texture map (map_Ka) - this is not yet supported\n";
+                    mtl_map_alpha[? mtl_name] = ts;
+                    break;
+                case "map_bump":                // bump texture
+                    var texfn = filename_path(fn) + ds_queue_dequeue(spl);
+                    var ts = tileset_create(texfn, undefined, undefined, false);
+                    ds_list_add(Stuff.all_graphic_tilesets, ts);
+                    if (ds_map_size(mtl_map_bump) == 1) err += "Tried to load more than one bump map (map_bump) - this is not yet supported\n";
+                    mtl_map_bump[? mtl_name] = ts;
+                    break;
+                case "bump":
+                    err += "bump map (alternate) - not yet implemented\n";
+                    break;
+                case "disp":                    // displacement texture
+                    var texfn = filename_path(fn) + ds_queue_dequeue(spl);
+                    var ts = tileset_create(texfn, undefined, undefined, false);
+                    ds_list_add(Stuff.all_graphic_tilesets, ts);
+                    if (ds_map_size(mtl_map_displace) == 1) err += "Tried to load more than one displacement texture map (disp) - this is not yet supported\n";
+                    mtl_map_displace[? mtl_name] = ts;
+                    break;
+                case "decal":                   // stencil decal texture
+                    var texfn = filename_path(fn) + ds_queue_dequeue(spl);
+                    var ts = tileset_create(texfn, undefined, undefined, false);
+                    ds_list_add(Stuff.all_graphic_tilesets, ts);
+                    if (ds_map_size(mtl_map_decal) == 1) err += "Tried to load more than one stencil decal texture map (decal) - this is not yet supported\n";
+                    mtl_map_decal[? mtl_name] = ts;
+                    break;
                 default:    // There are way more attributes available than I'm going to use later - maybe
                     break;
             }
@@ -58,7 +126,6 @@ if (file_exists(fn)) {
     }
     
     var f = file_text_open_read(fn);
-    var err = "";
     var line_number = 0;
     
     var v_x = ds_list_create();
@@ -229,6 +296,14 @@ if (file_exists(fn)) {
     ds_map_destroy(mtl_color_r);
     ds_map_destroy(mtl_color_g);
     ds_map_destroy(mtl_color_b);
+    ds_map_destroy(mtl_map_diffuse);
+    ds_map_destroy(mtl_map_ambient);
+    ds_map_destroy(mtl_map_specular_color);
+    ds_map_destroy(mtl_map_specular_highlight);
+    ds_map_destroy(mtl_map_alpha);
+    ds_map_destroy(mtl_map_bump);
+    ds_map_destroy(mtl_map_displace);
+    ds_map_destroy(mtl_map_decal);
     #endregion
     
     if (err == "") {

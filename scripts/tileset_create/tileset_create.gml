@@ -1,7 +1,6 @@
 /// @param file/name
 /// @param [autotiles]
 /// @param [sprite-index]
-/// @param [guid]
 /// @param [create-master?]
 
 // don't instantiate these outside of this script
@@ -12,14 +11,8 @@ with (instance_create_depth(0, 0, 0, DataTileset)) {
     
     autotiles = (argument_count > 1 && argument[1] != undefined) ? argument[1] : autotiles;
     picture = (argument_count > 2 && argument[2] != undefined) ? argument[2] : sprite_add(picture_name, 0, false, false, 0, 0);
-    var new_guid = (argument_count > 3) ? argument[3] : undefined;
-    var create_master = (argument_count > 4 && argument[4] != undefined) ? argument[4] : true;
+    var create_master = (argument_count > 3 && argument[3] != undefined) ? argument[3] : true;
     
-    if (new_guid != undefined) {
-        guid_remove(GUID);
-        guid_set(id, new_guid);
-    }
-        
     if (!sprite_exists(picture)) {
         picture = b_tileset_checkers;
         error_log("Missing tileset image; using default tileset instead: " + picture_name);
