@@ -58,6 +58,17 @@ repeat (n_meshes) {
     
     mesh.marker = buffer_read(buffer, buffer_u32);
     
+    if (version >= DataVersions.MESH_MATERIALS) {
+        mesh.tex_base = buffer_read(buffer, buffer_datatype);
+        mesh.tex_ambient = buffer_read(buffer, buffer_datatype);
+        mesh.tex_specular_color = buffer_read(buffer, buffer_datatype);
+        mesh.tex_specular_highlight = buffer_read(buffer, buffer_datatype);
+        mesh.tex_alpha = buffer_read(buffer, buffer_datatype);
+        mesh.tex_bump = buffer_read(buffer, buffer_datatype);
+        mesh.tex_displacement = buffer_read(buffer, buffer_datatype);
+        mesh.tex_stencil = buffer_read(buffer, buffer_datatype);
+    }
+    
     // flags are saved in save_generic
     
     switch (mesh.type) {

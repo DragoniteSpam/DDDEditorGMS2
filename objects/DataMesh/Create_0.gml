@@ -28,6 +28,15 @@ collision_flags[# 0, 0] = array_create(zmax - zmin);
 /* s */ flags = 0;          // overrides Data.flags
 texture_scale = 0.5;        // half by default
 
+tex_base = NULL;                    // map_Kd
+tex_ambient = NULL;                 // map_Ka
+tex_specular_color = NULL;          // map_Ls
+tex_specular_highlight = NULL;      // map_Ns
+tex_alpha = NULL;                   // map_d
+tex_bump = NULL;                    // map_bump
+tex_displacement = NULL;            // disp
+tex_stencil = NULL;                 // decal
+
 ds_list_add(Stuff.all_meshes, id);
 
 preview_index = 0;

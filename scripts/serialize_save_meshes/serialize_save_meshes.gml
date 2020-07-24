@@ -63,6 +63,15 @@ for (var i = 0; i < n_meshes; i++) {
     }
     
     buffer_write(buffer, buffer_u32, mesh.marker);
+    
+    buffer_write(buffer, buffer_datatype, mesh.tex_base);
+    buffer_write(buffer, buffer_datatype, mesh.tex_ambient);
+    buffer_write(buffer, buffer_datatype, mesh.tex_specular_color);
+    buffer_write(buffer, buffer_datatype, mesh.tex_specular_highlight);
+    buffer_write(buffer, buffer_datatype, mesh.tex_alpha);
+    buffer_write(buffer, buffer_datatype, mesh.tex_bump);
+    buffer_write(buffer, buffer_datatype, mesh.tex_displacement);
+    buffer_write(buffer, buffer_datatype, mesh.tex_stencil);
 }
 
 buffer_poke(buffer, addr_next, buffer_u64, buffer_tell(buffer));
