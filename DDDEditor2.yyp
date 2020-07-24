@@ -18661,6 +18661,14 @@
             }
         },
         {
+            "Key": "d8941a3f-6707-46e6-8ad8-935955eb101b",
+            "Value": {
+                "id": "a11fae9f-b6e1-44d5-90b0-9650402bd921",
+                "resourcePath": "scripts\\menu_init_mesh\\menu_init_mesh.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "d8a7cea6-0e21-40f3-8dd4-12754b0ebbe5",
             "Value": {
                 "id": "5edee110-35a0-441a-bea2-54ea63e40d8a",
@@ -24396,6 +24404,7 @@
         "8ace29c2-4ddb-49ca-92fd-0c37a93e02b8",
         "97712004-d86d-4104-82f9-886060b28495",
         "1412f209-e335-43d6-9808-19678f4d12ff",
+        "d8941a3f-6707-46e6-8ad8-935955eb101b",
         "40e1e28d-257c-4c32-acb4-6ccf8e94da63",
         "4d95f584-6101-4d6a-bc7e-3d4281ba237c",
         "6bd97c84-ae56-4898-b2c9-e8d8626508f1"

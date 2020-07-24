@@ -38,6 +38,9 @@
 #macro particle:PROJECT_MENU_ENABLED false
 #macro mesh:PROJECT_MENU_ENABLED false
 
+#macro RIBBON_MENU menu_init_main
+#macro mesh:RIBBON_MENU menu_init_mesh
+
 // game maker
 #macro wtf show_debug_message
 #macro mouse_x (window_mouse_get_x() * _base_window_width / window_get_width())
