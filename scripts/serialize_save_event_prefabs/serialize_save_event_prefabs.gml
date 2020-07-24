@@ -75,7 +75,7 @@ for (var i = 0; i < n_prefabs; i++) {
                     case DataTypes.MAP:
                     case DataTypes.EVENT:
                     case DataTypes.MESH:
-                    case DataTypes.IMG_TILESET:
+                    case DataTypes.IMG_TEXTURE:
                     case DataTypes.IMG_BATTLER:
                     case DataTypes.IMG_ETC:
                     case DataTypes.IMG_OVERWORLD:

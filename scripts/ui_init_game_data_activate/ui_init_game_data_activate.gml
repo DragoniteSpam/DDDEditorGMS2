@@ -139,7 +139,7 @@ if (selection + 1) {
                         case DataTypes.TILE:
                             not_yet_implemented();
                             break;
-                        case DataTypes.IMG_TILESET:           // list
+                        case DataTypes.IMG_TEXTURE:           // list
                             var element = create_list(0, yy, property.name, "<no Tilesets>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Stuff.all_graphic_tilesets);
                             element.key = i;
                             element.entries_are = ListEntries.INSTANCES;

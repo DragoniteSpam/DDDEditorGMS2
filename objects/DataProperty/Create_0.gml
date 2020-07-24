@@ -31,7 +31,7 @@ enum DataTypes {
     CODE,           // opens in text editor
     COLOR,            // color picker
     MESH,            // list
-    IMG_TILESET,
+    IMG_TEXTURE,
     TILE,
     IMG_TILE_ANIMATION,
     AUDIO_BGM,        // list

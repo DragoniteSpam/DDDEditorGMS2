@@ -48,7 +48,7 @@ switch (property.type) {
     case DataTypes.AUDIO_SE:
     case DataTypes.IMG_TILE_ANIMATION:
     case DataTypes.MESH:
-    case DataTypes.IMG_TILESET:
+    case DataTypes.IMG_TEXTURE:
     case DataTypes.IMG_BATTLER:
     case DataTypes.IMG_OVERWORLD:
     case DataTypes.IMG_PARTICLE:
@@ -158,7 +158,7 @@ switch (property.type) {
         el_value.key = root.key;
         yy += ui_get_list_height(el_value) + spacing;
         break;
-    case DataTypes.IMG_TILESET:
+    case DataTypes.IMG_TEXTURE:
         not_yet_implemented();
         var el_value = create_list(16, yy, "Select a Tileset resource:", "<no Tilesets>", ew, eh, 8, uivc_data_property_list_guid, false, dg);
         el_value.entries_are = ListEntries.INSTANCES;
