@@ -1,6 +1,8 @@
 /// @param file/name
 /// @param [autotiles]
 /// @param [sprite-index]
+/// @param [guid]
+/// @param [create-master?]
 
 // don't instantiate these outside of this script
 with (instance_create_depth(0, 0, 0, DataTileset)) {
@@ -8,17 +10,19 @@ with (instance_create_depth(0, 0, 0, DataTileset)) {
     
     internal_name_generate(id, PREFIX_GRAPHIC_TILESET + string_lettersdigits(picture_name));
     
-    autotiles = (argument_count > 1) ? argument[1] : autotiles;
+    autotiles = (argument_count > 1 && argument[1] != undefined) ? argument[1] : autotiles;
+    picture = (argument_count > 2 && argument[2] != undefined) ? argument[2] : sprite_add(picture_name, 0, false, false, 0, 0);
+    var new_guid = (argument_count > 3) ? argument[3] : undefined;
+    var create_master = (argument_count > 4 && argument[4] != undefined) ? argument[4] : true;
     
-    if (argument_count > 2) {
-        picture = argument[2];
-    } else {
-        picture = sprite_add(argument[0], 0, false, false, 0, 0);
+    if (new_guid != undefined) {
+        guid_remove(GUID);
+        guid_set(id, new_guid);
+    }
         
-        if (!sprite_exists(picture)) {
-            picture = b_tileset_checkers;
-            error_log("Missing tileset image; using default tileset instead: " + argument[0]);
-        }
+    if (!sprite_exists(picture)) {
+        picture = b_tileset_checkers;
+        error_log("Missing tileset image; using default tileset instead: " + picture_name);
     }
     
     array_clear(autotiles, noone);
@@ -27,8 +31,9 @@ with (instance_create_depth(0, 0, 0, DataTileset)) {
     at_flags = array_create(AUTOTILE_MAX);
     array_clear(at_flags, 0);
     
-    master = tileset_create_master(id);
+    master = create_master ? tileset_create_master(id) : b_tileset_textureless;
     
     instance_deactivate_object(id);
+    
     return id;
 }
