@@ -97,7 +97,7 @@ for (var i = 0; i < n_events; i++) {
                         case DataTypes.DATA:
                         case DataTypes.AUDIO_BGM:
                         case DataTypes.AUDIO_SE:
-                        case DataTypes.IMG_TILESET:
+                        case DataTypes.IMG_TEXTURE:
                         case DataTypes.IMG_BATTLER:
                         case DataTypes.IMG_OVERWORLD:
                         case DataTypes.IMG_PARTICLE:

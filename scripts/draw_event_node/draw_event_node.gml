@@ -352,7 +352,7 @@ switch (node.type) {
                 case DataTypes.COLOR:
                 case DataTypes.MESH:
                 case DataTypes.TILE:
-                case DataTypes.IMG_TILESET:
+                case DataTypes.IMG_TEXTURE:
                 case DataTypes.IMG_BATTLER:
                 case DataTypes.IMG_OVERWORLD:
                 case DataTypes.IMG_PARTICLE:
@@ -408,7 +408,7 @@ switch (node.type) {
                     case DataTypes.COLOR:
                     case DataTypes.MESH:
                     case DataTypes.TILE:
-                    case DataTypes.IMG_TILESET:
+                    case DataTypes.IMG_TEXTURE:
                     case DataTypes.IMG_BATTLER:
                     case DataTypes.IMG_OVERWORLD:
                     case DataTypes.IMG_PARTICLE:
@@ -478,7 +478,7 @@ switch (node.type) {
                                     case DataTypes.MESH:
                                         dialog_create_event_node_meshes(noone, node, i, 0);
                                         break;
-                                    case DataTypes.IMG_TILESET:
+                                    case DataTypes.IMG_TEXTURE:
                                         dialog_create_event_node_img_tileset(noone, node, i, 0);
                                         break;
                                     case DataTypes.IMG_BATTLER:
@@ -591,7 +591,7 @@ switch (node.type) {
                             message = message + "(tile): ";
                             output_string = "TBD";
                             break;
-                        case DataTypes.IMG_TILESET:
+                        case DataTypes.IMG_TEXTURE:
                             var setdata = guid_get(custom_data_list[| 0]);
                             message = message + "(tileset): ";
                             output_string = setdata ? setdata.name : "<null>";
