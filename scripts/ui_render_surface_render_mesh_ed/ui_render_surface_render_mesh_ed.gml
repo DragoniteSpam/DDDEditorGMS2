@@ -65,7 +65,8 @@ for (var index = ds_map_find_first(mesh_list.selected_entries); index != undefin
     var mesh_data = Stuff.all_meshes[| index];
     switch (mesh_data.type) {
         case MeshTypes.RAW:
-            if (mode.draw_meshes) vertex_submit(mesh_data.submeshes[| 0].vbuffer, pr_trianglelist, tex);
+            var this_tex = (mesh_data.tex_base != NULL) ? sprite_get_texture(guid_get(mesh_data.tex_base).picture, 0) : -1;
+            if (mode.draw_meshes) vertex_submit(mesh_data.submeshes[| 0].vbuffer, pr_trianglelist, this_tex);
             if (mode.draw_wireframes) vertex_submit(mesh_data.submeshes[| 0].wbuffer, pr_linelist, -1);
             break;
         case MeshTypes.SMF:
