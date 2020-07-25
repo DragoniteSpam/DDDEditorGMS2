@@ -37,9 +37,12 @@
 #macro doodle:PROJECT_MENU_ENABLED false
 #macro particle:PROJECT_MENU_ENABLED false
 #macro mesh:PROJECT_MENU_ENABLED false
-
+//
 #macro RIBBON_MENU menu_init_main
 #macro mesh:RIBBON_MENU menu_init_mesh
+//
+#macro DEFAULT_TILESET "b_tileset_overworld_0.png"
+#macro mesh:DEFAULT_TILEST "b_magenta.png"
 
 // game maker
 #macro wtf show_debug_message

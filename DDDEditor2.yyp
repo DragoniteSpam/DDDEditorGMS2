@@ -9830,6 +9830,14 @@
             }
         },
         {
+            "Key": "7017aee9-164b-4669-84f8-df6c1956d060",
+            "Value": {
+                "id": "da4d69e1-0f76-40c9-81e7-22a2652afce0",
+                "resourcePath": "datafiles_yy\\data\\graphics\\b_magenta.png.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "701fa8f4-d25e-4441-a55d-33688cfea7da",
             "Value": {
                 "id": "06da3519-2db5-4948-9f0f-70cb8b856f55",
