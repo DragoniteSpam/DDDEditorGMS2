@@ -9,7 +9,6 @@ var format = argument2;
 
 if (format) {
     format = format[? "attributes"];
-    var vertex_base_size = 40;
     var vertex_new_size = 0;
     var attribute_count = 0;
     for (var i = 0; i < ds_list_size(format); i++) {
@@ -28,7 +27,7 @@ if (format) {
     for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
         var sub = mesh.submeshes[| i];
         var fn = mesh_filename + "." + string_hex(i, 3) + filename_ext(base_filename);
-        var vertex_count = buffer_get_size(sub.buffer) / vertex_base_size;
+        var vertex_count = buffer_get_size(sub.buffer) / VERTEX_SIZE;
         var new_size = vertex_count * vertex_new_size;
         
         var base_position = 0;
@@ -92,7 +91,7 @@ if (format) {
             if (current_attribute_count == attribute_count) {
                 current_attribute_count = 0;
                 attributes_used = [false, false, false, false];
-                base_position += 40;
+                base_position += VERTEX_SIZE;
             }
         }
         

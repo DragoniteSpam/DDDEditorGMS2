@@ -19,7 +19,7 @@ vertex_begin(wbuffer, Stuff.graphics.vertex_format);
 var cdata = c_shape_create();
 c_shape_begin_trimesh();
 
-for (var i = 0; i < bsize; i += 3 * 40) {
+for (var i = 0; i < bsize; i += 3 * VERTEX_SIZE) {
     var x1 = buffer_peek(raw_buffer, i + 000, buffer_f32);
     var y1 = buffer_peek(raw_buffer, i + 004, buffer_f32);
     var z1 = buffer_peek(raw_buffer, i + 008, buffer_f32);
