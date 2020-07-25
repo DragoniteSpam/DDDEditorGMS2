@@ -5,6 +5,8 @@
 
 // don't instantiate these outside of this script
 with (instance_create_depth(0, 0, 0, DataTileset)) {
+    name = filename_change_ext(filename_name(argument[0]), "");
+    // this needs to be the file path
     picture_name = argument[0];
     
     internal_name_generate(id, PREFIX_GRAPHIC_TILESET + string_lettersdigits(picture_name));

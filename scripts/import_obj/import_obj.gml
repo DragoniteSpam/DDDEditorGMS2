@@ -34,7 +34,7 @@ if (file_exists(fn)) {
     ds_map_set(mtl_color_g, "None", 255);
     ds_map_set(mtl_color_b, "None", 255);
     
-    #region parse the obj
+    #region parse the material
     if (file_exists(mfn)) {
         var matfile = file_text_open_read(mfn);
         var mtl_name = "";
