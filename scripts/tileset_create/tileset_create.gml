@@ -9,7 +9,7 @@ with (instance_create_depth(0, 0, 0, DataTileset)) {
     // this needs to be the file path
     picture_name = argument[0];
     
-    internal_name_generate(id, PREFIX_GRAPHIC_TILESET + string_lettersdigits(picture_name));
+    internal_name_generate(id, PREFIX_GRAPHIC_TILESET + string_lettersdigits(filename_change_ext(filename_name(picture_name), "")));
     
     autotiles = (argument_count > 1 && argument[1] != undefined) ? argument[1] : autotiles;
     picture = (argument_count > 2 && argument[2] != undefined) ? argument[2] : sprite_add(picture_name, 0, false, false, 0, 0);
