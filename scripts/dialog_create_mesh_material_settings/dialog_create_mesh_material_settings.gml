@@ -169,18 +169,18 @@ for (var i = 0; i < ds_list_size(selected_things); i++) {
 }
 #endregion
 
-var el_base = create_list(c1x, yy, "Base Texture", "no textures", ew, eh, 8, null, false, dg, Stuff.all_graphic_tilesets);
+var el_base = create_list(c1x, yy, "Base Texture", "no textures", ew, eh, 8, omu_meshes_mat_set_base, false, dg, Stuff.all_graphic_tilesets);
 el_base.entries_are = ListEntries.INSTANCES;
 ui_list_select(el_base, id_base, true);
 yy += ui_get_list_height(el_base) + spacing;
 
-var el_ambient = create_list(c1x, yy, "Ambient Map", "no textures", ew, eh, 8, null, false, dg, Stuff.all_graphic_tilesets);
+var el_ambient = create_list(c1x, yy, "Ambient Map", "no textures", ew, eh, 8, omu_meshes_mat_set_ambient, false, dg, Stuff.all_graphic_tilesets);
 el_ambient.interactive = false;
 el_ambient.entries_are = ListEntries.INSTANCES;
 ui_list_select(el_ambient, id_ambient, true);
 yy += ui_get_list_height(el_ambient) + spacing;
 
-var el_specular_color = create_list(c1x, yy, "Specular Color Map", "no textures", ew, eh, 8, null, false, dg, Stuff.all_graphic_tilesets);
+var el_specular_color = create_list(c1x, yy, "Specular Color Map", "no textures", ew, eh, 8, omu_meshes_mat_set_specular_color, false, dg, Stuff.all_graphic_tilesets);
 el_specular_color.interactive = false;
 el_specular_color.entries_are = ListEntries.INSTANCES;
 ui_list_select(el_specular_color, id_specular_color, true);
@@ -188,19 +188,19 @@ yy += ui_get_list_height(el_specular_color) + spacing;
 
 yy = yy_base;
 
-var el_specular_highlight = create_list(c2x, yy, "Specular Highlight Map", "no textures", ew, eh, 8, null, false, dg, Stuff.all_graphic_tilesets);
+var el_specular_highlight = create_list(c2x, yy, "Specular Highlight Map", "no textures", ew, eh, 8, omu_meshes_mat_set_specular_highlight, false, dg, Stuff.all_graphic_tilesets);
 el_specular_highlight.interactive = false;
 el_specular_highlight.entries_are = ListEntries.INSTANCES;
 ui_list_select(el_specular_highlight, id_specular_highlight, true);
 yy += ui_get_list_height(el_specular_highlight) + spacing;
 
-var el_alpha = create_list(c2x, yy, "Alpha Map", "no textures", ew, eh, 8, null, false, dg, Stuff.all_graphic_tilesets);
+var el_alpha = create_list(c2x, yy, "Alpha Map", "no textures", ew, eh, 8, omu_meshes_mat_set_alpha, false, dg, Stuff.all_graphic_tilesets);
 el_alpha.interactive = false;
 el_alpha.entries_are = ListEntries.INSTANCES;
 ui_list_select(el_alpha, id_alpha, true);
 yy += ui_get_list_height(el_alpha) + spacing;
 
-var el_bump = create_list(c2x, yy, "Bump Map", "no textures", ew, eh, 8, null, false, dg, Stuff.all_graphic_tilesets);
+var el_bump = create_list(c2x, yy, "Bump Map", "no textures", ew, eh, 8, omu_meshes_mat_set_specular_bump, false, dg, Stuff.all_graphic_tilesets);
 el_bump.interactive = false;
 el_bump.entries_are = ListEntries.INSTANCES;
 ui_list_select(el_bump, id_bump, true);
@@ -208,13 +208,13 @@ yy += ui_get_list_height(el_bump) + spacing;
 
 yy = yy_base;
 
-var el_displacement = create_list(c3x, yy, "Displacement Map", "no textures", ew, eh, 8, null, false, dg, Stuff.all_graphic_tilesets);
+var el_displacement = create_list(c3x, yy, "Displacement Map", "no textures", ew, eh, 8, omu_meshes_mat_set_specular_displacement, false, dg, Stuff.all_graphic_tilesets);
 el_displacement.interactive = false;
 el_displacement.entries_are = ListEntries.INSTANCES;
 ui_list_select(el_displacement, id_displacement, true);
 yy += ui_get_list_height(el_displacement) + spacing;
 
-var el_stencil = create_list(c3x, yy, "Stencil Map", "no textures", ew, eh, 8, null, false, dg, Stuff.all_graphic_tilesets);
+var el_stencil = create_list(c3x, yy, "Stencil Map", "no textures", ew, eh, 8, omu_meshes_mat_set_specular_decal, false, dg, Stuff.all_graphic_tilesets);
 el_stencil.interactive = false;
 el_stencil.entries_are = ListEntries.INSTANCES;
 ui_list_select(el_stencil, id_decal, true);

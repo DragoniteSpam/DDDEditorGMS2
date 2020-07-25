@@ -1486,6 +1486,14 @@
             }
         },
         {
+            "Key": "0e96bfd5-d5f8-4207-a46b-d5dd976d60f7",
+            "Value": {
+                "id": "75b3dbe3-45ac-4ed0-9092-d5e7d13b7cc6",
+                "resourcePath": "scripts\\omu_meshes_mat_set_specular_displacement\\omu_meshes_mat_set_specular_displacement.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "0ea2db3c-0c2a-41b6-a304-3a4a776ec989",
             "Value": {
                 "id": "39e8b5e9-40f6-43c9-9f57-e4e1eccb3e71",
@@ -2766,6 +2774,14 @@
             }
         },
         {
+            "Key": "1ebfeaad-3958-49aa-adea-c2d1f461e11c",
+            "Value": {
+                "id": "92248abd-bd2c-4871-8f50-6cb640cba822",
+                "resourcePath": "scripts\\omu_meshes_mat_set_ambient\\omu_meshes_mat_set_ambient.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "1ef9b8fa-088a-46b8-bad0-54e150b3104b",
             "Value": {
                 "id": "b7d4d501-9275-49e4-8aee-93e665d28a79",
@@ -3170,6 +3186,14 @@
             "Value": {
                 "id": "21580ef2-9495-40d6-8b7b-922a7193f00f",
                 "resourcePath": "scripts\\ui_particle_type_rename\\ui_particle_type_rename.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "22d761e7-e334-4b95-aab2-851041c2b800",
+            "Value": {
+                "id": "40f8c087-5104-47ac-a0b5-ec46afd2ffd9",
+                "resourcePath": "scripts\\omu_meshes_mat_set_base\\omu_meshes_mat_set_base.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -9966,6 +9990,14 @@
             }
         },
         {
+            "Key": "725282c4-0dd0-472d-9e70-bbf592ddf6eb",
+            "Value": {
+                "id": "506c6cf0-539a-4d58-a310-5a43d158c889",
+                "resourcePath": "scripts\\omu_meshes_mat_set_specular_color\\omu_meshes_mat_set_specular_color.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "727fd0a4-ad59-4db2-b989-81f34df0926d",
             "Value": {
                 "id": "d0f0ddfc-ea5e-4d6b-9182-24078f5df9a3",
@@ -14774,6 +14806,14 @@
             }
         },
         {
+            "Key": "a90cddd9-d137-4953-91d7-89daf1a67d47",
+            "Value": {
+                "id": "2966f385-2af2-4d30-947b-30d90993be51",
+                "resourcePath": "scripts\\omu_meshes_mat_set_specular_bump\\omu_meshes_mat_set_specular_bump.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "a9175877-3c7b-4112-b468-e36b5771283f",
             "Value": {
                 "id": "e8f381b1-72fe-4eda-af7c-15cca34df6b7",
@@ -16222,6 +16262,14 @@
             }
         },
         {
+            "Key": "bb9fe3f5-4b40-4a21-a04f-c9cb4d3152c4",
+            "Value": {
+                "id": "7335b04e-3a73-4f5b-90a4-def8f9d37586",
+                "resourcePath": "scripts\\omu_meshes_mat_set_alpha\\omu_meshes_mat_set_alpha.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "bbb5c019-f4d5-4fb6-94c0-1af0463fa320",
             "Value": {
                 "id": "f43f08ac-c371-4ef9-a93d-791cb892f2f1",
@@ -17194,6 +17242,14 @@
             "Value": {
                 "id": "e8ce0ccf-243e-4bdd-ba9a-ed38f41ceece",
                 "resourcePath": "scripts\\omu_data_list_remove\\omu_data_list_remove.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "c8316bf3-4293-439b-829c-068f6bfc8a9a",
+            "Value": {
+                "id": "005fae01-a0d1-43bb-a0eb-5f922662c8f5",
+                "resourcePath": "scripts\\omu_meshes_mat_set_specular_highlight\\omu_meshes_mat_set_specular_highlight.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -20090,6 +20146,14 @@
                 "id": "728832b2-185f-40f5-9b5a-c2269dec7ea8",
                 "resourcePath": "views\\e92119d1-3a53-438e-98e7-254df466d71c.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "e9367b80-88b5-40dc-afd7-84a94d91b60a",
+            "Value": {
+                "id": "b3a5fbd1-8882-42d4-8166-55112101bd0f",
+                "resourcePath": "scripts\\omu_meshes_mat_set_specular_decal\\omu_meshes_mat_set_specular_decal.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -24321,6 +24385,14 @@
         "5e062586-8071-4b35-98e9-149cce27b904",
         "111931c2-0269-4686-8ff5-e720f0f9840c",
         "89302a67-9dfe-4817-a359-ebb81a4e9bcf",
+        "22d761e7-e334-4b95-aab2-851041c2b800",
+        "1ebfeaad-3958-49aa-adea-c2d1f461e11c",
+        "725282c4-0dd0-472d-9e70-bbf592ddf6eb",
+        "c8316bf3-4293-439b-829c-068f6bfc8a9a",
+        "bb9fe3f5-4b40-4a21-a04f-c9cb4d3152c4",
+        "a90cddd9-d137-4953-91d7-89daf1a67d47",
+        "0e96bfd5-d5f8-4207-a46b-d5dd976d60f7",
+        "e9367b80-88b5-40dc-afd7-84a94d91b60a",
         "1913ea3c-8871-4ec8-9b92-b6c8f576b061",
         "77cb5bac-1958-48d1-836d-93b24d80ba87",
         "3987b971-56d4-494e-be56-f75d59299a2a",
