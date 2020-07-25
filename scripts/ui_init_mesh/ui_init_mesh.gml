@@ -32,7 +32,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     var this_column = 0;
     var xx = this_column * cw + spacing;
     
-    var element = create_list(c1x, yy, "Meshes:", "no meshes", ew0, eh, 20, null, true, id, Stuff.all_meshes);
+    var element = create_list(c1x, yy, "Meshes:", "no meshes", ew0, eh, 22, null, true, id, Stuff.all_meshes);
     element.tooltip = "All of the 3D meshes currently loaded. You can drag them from Windows Explorer into the program window to add them in bulk. Middle-click the list to alphabetize the meshes.";
     element.render_colors = ui_list_colors_mesh_type_smf_disabled;
     element.onmiddleclick = omu_meshes_alphabetize_meshes;
@@ -75,23 +75,24 @@ If you loaded a model containing SMF data, it will be saved as is without conver
     yy += element.height + spacing;
     
     element = create_list(c2x, yy, "Available Vertex Formats", "no vertex formats", ew, eh, 6, null, false, id, mode.format_names);
+    element.tooltip = "Vertex formats available to be exported to. Extra fields beyond the original position / normal / texture / color will be set to zero.";
     element.ondoubleclick = omu_meshes_edit_vertex_format;
     ds_list_add(contents, element);
     format_list = element;
     yy += ui_get_list_height(element) + spacing;
     
     element = create_button(c2x, yy, "Add Vertex Format", ew, eh, fa_center, omu_meshes_add_vertex_format, id);
-    element.tooltip = "Mirror the selected meshes over the Z axis";
+    element.tooltip = "Mirror the selected meshes over the Z axis.";
     ds_list_add(contents, element);
     yy += element.height + spacing;
     
     element = create_button(c2x, yy, "Edit Vertex Format", ew, eh, fa_center, omu_meshes_edit_vertex_format, id);
-    element.tooltip = "Mirror the selected meshes over the Z axis";
+    element.tooltip = "Mirror the selected meshes over the Z axis.";
     ds_list_add(contents, element);
     yy += element.height + spacing;
     
     element = create_button(c2x, yy, "Remove Vertex Format", ew, eh, fa_center, omu_meshes_remove_vertex_format, id);
-    element.tooltip = "Mirror the selected meshes over the Z axis";
+    element.tooltip = "Mirror the selected meshes over the Z axis.";
     ds_list_add(contents, element);
     yy += element.height + spacing;
     
@@ -139,13 +140,13 @@ If you loaded a model containing SMF data, it will be saved as is without conver
     yy += element.height + spacing;
     
     element = create_button(c2x, yy, "Mirror X Axis", ew / 3, eh, fa_center, omu_meshes_mirror_x, id);
-    element.tooltip = "Mirror the selected meshes over the X axis";
+    element.tooltip = "Mirror the selected meshes over the X axis.";
     ds_list_add(contents, element);
     element = create_button(c2x + ew / 3, yy, "Mirror Y Axis", ew / 3, eh, fa_center, omu_meshes_mirror_y, id);
-    element.tooltip = "Mirror the selected meshes over the Y axis";
+    element.tooltip = "Mirror the selected meshes over the Y axis.";
     ds_list_add(contents, element);
     element = create_button(c2x + 2 * ew / 3, yy, "Mirror Z Axis", ew / 3, eh, fa_center, omu_meshes_mirror_z, id);
-    element.tooltip = "Mirror the selected meshes over the Z axis";
+    element.tooltip = "Mirror the selected meshes over the Z axis.";
     ds_list_add(contents, element);
     yy += element.height + spacing;
     
@@ -177,7 +178,7 @@ If you loaded a model containing SMF data, it will be saved as is without conver
     ds_list_add(contents, element);
     yy += element.height + spacing;
     
-    element = create_button(c3x, yy, "Material...", ew, eh, fa_center, omu_meshes_set_textures, id);
+    element = create_button(c3x, yy, "Object Materials...", ew, eh, fa_center, omu_meshes_set_textures, id);
     element.tooltip = "Set the textures used by the selected meshes. Only the base texture is available for now; I may implement the others later.";
     ds_list_add(contents, element);
     yy += element.height + spacing;
@@ -186,7 +187,6 @@ If you loaded a model containing SMF data, it will be saved as is without conver
     
     element = create_checkbox(c4x, yy, "Show Textures?", ew, eh, omu_meshes_draw_textures, mode.draw_textures, id);
     element.tooltip = "Whether or not to draw the meshes in the preview window using a texture.";
-    element.interactive = false;
     ds_list_add(contents, element);
     yy += element.height + spacing;
     
