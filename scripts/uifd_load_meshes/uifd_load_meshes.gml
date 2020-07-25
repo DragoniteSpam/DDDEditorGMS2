@@ -4,7 +4,7 @@
 var thing = argument0;
 var files = argument1;
 
-var filtered_list = ui_handle_dropped_files_filter(files, [".d3d", ".gmmod", ".obj", ".smf"]);
+var filtered_list = ui_handle_dropped_files_filter(files, [".d3d", ".gmmod", ".obj", ".smf", ".png", ".bmp", ".jpg", ".jpeg"]);
 
 for (var i = 0; i < ds_list_size(filtered_list); i++) {
     var fn = filtered_list[| i];
@@ -12,5 +12,6 @@ for (var i = 0; i < ds_list_size(filtered_list); i++) {
         case ".obj": import_obj(fn, true, false); break;
         case ".d3d": case ".gmmod": import_d3d(fn, true, false); break;
         case ".smf": import_smf(fn);
+        case ".png": case ".bmp": case ".jpg": case ".jpeg": import_texture(fn); break;
     }
 }

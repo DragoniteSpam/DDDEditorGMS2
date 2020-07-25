@@ -19238,6 +19238,14 @@
             }
         },
         {
+            "Key": "ddcb0dbe-7a3a-4ed2-b0bc-8cd992c6f146",
+            "Value": {
+                "id": "c66f823f-0642-4685-adb5-0cc35591f123",
+                "resourcePath": "scripts\\import_texture\\import_texture.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "dddbf605-4ebc-4ef3-aba0-be9f91a3fc5f",
             "Value": {
                 "id": "c8a493d5-bb9f-47a4-ad54-87d7511d7531",
@@ -22726,6 +22734,7 @@
         "6b0ac3d9-9ca5-40bf-ad8d-6e82898d06f5",
         "d6ded8b3-88ee-4680-ada7-2a47bb1c27d8",
         "cd56789a-f283-426f-9073-df9733a81253",
+        "ddcb0dbe-7a3a-4ed2-b0bc-8cd992c6f146",
         "a13e6f93-d36b-43b5-91a8-dd5e11f4573e",
         "9026b3d4-6e7b-477f-a593-dcc517725bf2",
         "32163c8a-6857-4b8f-864d-158d3a667f83",
