@@ -12,3 +12,8 @@ setting_set("Mesh", "fov", mesh.fov);
 
 setting_set("Mesh", "export-type", mesh.export_type);
 setting_set("Mesh", "vertex-formats", json_encode(mesh.format_json));
+
+setting_set("Mesh", "draw-mesh", mesh.draw_meshes);
+setting_set("Mesh", "draw-wire", mesh.draw_wireframes);
+setting_set("Mesh", "draw-tex", mesh.draw_textures);
+setting_set("Mesh", "draw-light", mesh.draw_lighting);

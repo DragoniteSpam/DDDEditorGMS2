@@ -4,10 +4,10 @@ update = null;
 render = editor_render_mesh;
 save = editor_save_setting_mesh;
 
-draw_meshes = true;
-draw_wireframes = true;
-draw_textures = false;
-draw_lighting = false;
+draw_meshes = setting_get("Mesh", "draw-mesh", true);
+draw_wireframes = setting_get("Mesh", "draw-wire", true);
+draw_textures = setting_get("Mesh", "draw-tex", true);
+draw_lighting = setting_get("Mesh", "draw-light", false);
 draw_scale = 1;
 draw_rot_x = 0;
 draw_rot_y = 0;
