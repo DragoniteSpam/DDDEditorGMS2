@@ -35,7 +35,7 @@ update = editor_update_terrain;
 render = editor_render_terrain;
 save = editor_save_setting_terrain;
 
-texture_name = "b_tileset_overworld_0.png";
+texture_name = DEFAULT_TILESET;
 texture = terrain_create_texture_sprite(PATH_GRAPHICS + texture_name);
 texture_width = 2048;
 texture_height = 2048;

@@ -42,7 +42,7 @@
 #macro mesh:RIBBON_MENU menu_init_mesh
 //
 #macro DEFAULT_TILESET "b_tileset_overworld_0.png"
-#macro mesh:DEFAULT_TILEST "b_magenta.png"
+#macro mesh:DEFAULT_TILESET "b_magenta.png"
 
 // game maker
 #macro wtf show_debug_message
