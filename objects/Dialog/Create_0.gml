@@ -17,4 +17,5 @@ enum DialogFlags {
     IS_EXCEPTION            = 0x0002,
     NO_CLOSE_BUTTON         = 0x0004,
     IS_DUPLICATE_WARNING    = 0x0008,
+    IS_GENERIC_WARNING      = 0x0010,
 }
