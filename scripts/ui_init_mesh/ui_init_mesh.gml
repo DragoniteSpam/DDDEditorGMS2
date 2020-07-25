@@ -30,7 +30,7 @@ with (instance_create_depth(0, 0, 0, UIThing)) {
     var this_column = 0;
     var xx = this_column * cw + spacing;
     
-    var element = create_list(c1x, yy, "Meshes:", "no meshes", ew, eh, 22, null, true, id, Stuff.all_meshes);
+    var element = create_list(c1x, yy, "Meshes:", "no meshes", ew, eh, 20, null, true, id, Stuff.all_meshes);
     element.tooltip = "All of the 3D meshes currently loaded. You can drag them from Windows Explorer into the program window to add them in bulk. Middle-click the list to alphabetize the meshes.";
     element.render_colors = ui_list_colors_mesh_type_smf_disabled;
     element.onmiddleclick = omu_meshes_alphabetize_meshes;
@@ -146,6 +146,16 @@ If you loaded a model containing SMF data, it will be saved as is without conver
     ds_list_add(contents, element);
     yy += element.height + spacing;
     
+    element = create_button(c2x, yy, "Flip Horizontal Texture Coordinates", ew, eh, fa_center, omu_meshes_flip_tex_h, id);
+    element.tooltip = "I don't actually know why you would need to do this, but it's here.";
+    ds_list_add(contents, element);
+    yy += element.height + spacing;
+    
+    element = create_button(c2x, yy, "Flip Vertical Texture Coordinates", ew, eh, fa_center, omu_meshes_flip_tex_v, id);
+    element.tooltip = "Some 3D modelling programs (I'm looking at you, Blender) insist on using the bottom-left of the texture image as the (0, 0) origin. We prefer the origin to be in the top-left. Use this button to flip the texture coordinates vertically.";
+    ds_list_add(contents, element);
+    yy += element.height + spacing;
+    
     yy = yy_base;
     
     element = create_render_surface(c3x, yy, ew * 2, ew * 1.8, ui_render_surface_render_mesh_ed, ui_render_surface_control_mesh_ed, c_black, id);
@@ -161,6 +171,11 @@ If you loaded a model containing SMF data, it will be saved as is without conver
     
     element = create_checkbox(c3x, yy, "Draw wireframes?", ew, eh, omu_meshes_draw_textures, mode.draw_wireframes, id);
     element.tooltip = "Draw a wireframe over the 3D mesh. Turn this off if it gets annoying.";
+    ds_list_add(contents, element);
+    yy += element.height + spacing;
+    
+    element = create_button(c3x, yy, "Material...", ew, eh, fa_center, omu_meshes_set_textures, id);
+    element.tooltip = "Set the textures used by the selected meshes. I recommend not using this on more than one mesh at a time.";
     ds_list_add(contents, element);
     yy += element.height + spacing;
     
