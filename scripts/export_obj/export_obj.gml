@@ -2,7 +2,8 @@
 /// @param DataMesh
 
 var base_filename = argument0;
-var mesh_filename = filename_path(base_filename) + string_replace(filename_name(base_filename), filename_ext(base_filename), "");
+var path = filename_path(base_filename);
+var mesh_filename = path + string_replace(filename_name(base_filename), filename_ext(base_filename), "");
 var mesh = argument1;
 var buffer = buffer_create(1024, buffer_grow, 1);
 
@@ -48,7 +49,8 @@ for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
     
         var c = floor(((color[0] & 0xffffff) + (color[1] & 0xffffff) + (color[2] & 0xffffff)) / 3);
         var a = (((color[0] & 0xff000000) >> 24) + ((color[1] & 0xff000000) >> 24) + ((color[2] & 0xff000000) >> 24)) / 3;
-    
+        
+        // this may need updating if materials are dealt with properly later
         var mtl_name = string(floor((color[0] + color[1] + color[2]) / 4));
     
         if (!ds_map_exists(mtl_alpha, mtl_name)) {
@@ -84,9 +86,32 @@ for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
         buffer_write(buffer, buffer_text, "Kd " + string(mtl_r[? mtl]) + " " + string(mtl_g[? mtl]) + " " + string(mtl_b[? mtl]) + "\r\n");
         buffer_write(buffer, buffer_text, "d " + string(mtl_alpha[? mtl]) + "\r\n");
         buffer_write(buffer, buffer_text, "illum 2\r\n");
+        // there are a lot of texture maps that may or may not need to be used
+        if (mesh.tex_base != NULL) buffer_write(buffer, buffer_text, "map_Kd " + guid_get(mesh.tex_base).name + ".png\r\n");
+        if (mesh.tex_ambient != NULL) buffer_write(buffer, buffer_text, "map_Ka " + guid_get(mesh.tex_ambient).name + ".png\r\n");
+        if (mesh.tex_specular_color != NULL) buffer_write(buffer, buffer_text, "map_Ks " + guid_get(mesh.tex_specular_color).name + ".png\r\n");
+        if (mesh.tex_specular_highlight != NULL) buffer_write(buffer, buffer_text, "map_Ns " + guid_get(mesh.tex_specular_highlight).name + ".png\r\n");
+        if (mesh.tex_alpha != NULL) buffer_write(buffer, buffer_text, "map_d " + guid_get(mesh.tex_alpha).name + ".png\r\n");
+        if (mesh.tex_bump != NULL) buffer_write(buffer, buffer_text, "map_bump " + guid_get(mesh.tex_bump).name + ".png\r\n");
+        if (mesh.tex_displacement != NULL) buffer_write(buffer, buffer_text, "map_disp " + guid_get(mesh.tex_displacement).name + ".png\r\n");
+        if (mesh.tex_stencil != NULL) buffer_write(buffer, buffer_text, "map_decal " + guid_get(mesh.tex_stencil).name + ".png\r\n");
     }
 
     buffer_save_ext(buffer, filename_change_ext(fn, ".mtl"), 0, buffer_tell(buffer));
+    // sigh
+    if (mesh.tex_base != NULL) sprite_save(guid_get(mesh.tex_base).picture, 0, path + guid_get(mesh.tex_base).name + ".png");
+    if (mesh.tex_ambient != NULL) sprite_save(guid_get(mesh.tex_base).picture, 0, path + guid_get(mesh.tex_ambient).name + ".png");
+    if (mesh.tex_specular_color != NULL) sprite_save(guid_get(mesh.tex_base).picture, 0, path + guid_get(mesh.tex_specular_color).name + ".png");
+    if (mesh.tex_specular_highlight != NULL) sprite_save(guid_get(mesh.tex_base).picture, 0, path + guid_get(mesh.tex_specular_highlight).name + ".png");
+    if (mesh.tex_alpha != NULL) sprite_save(guid_get(mesh.tex_base).picture, 0, path + guid_get(mesh.tex_alpha).name + ".png");
+    if (mesh.tex_bump != NULL) sprite_save(guid_get(mesh.tex_base).picture, 0, path + guid_get(mesh.tex_bump).name + ".png");
+    if (mesh.tex_displacement != NULL) sprite_save(guid_get(mesh.tex_base).picture, 0, path + guid_get(mesh.tex_displacement).name + ".png");
+    if (mesh.tex_stencil != NULL) sprite_save(guid_get(mesh.tex_base).picture, 0, path + guid_get(mesh.tex_stencil).name + ".png");
+    
+    ds_map_destroy(mtl_alpha);
+    ds_map_destroy(mtl_r);
+    ds_map_destroy(mtl_g);
+    ds_map_destroy(mtl_b);
 }
 
 buffer_delete(buffer);
