@@ -17,7 +17,7 @@ with (instance_create_depth(0, 0, 0, DataTileset)) {
     
     if (!sprite_exists(picture)) {
         picture = b_tileset_checkers;
-        error_log("Missing tileset image; using default tileset instead: " + picture_name);
+        wtf("Missing tileset image; using default tileset instead: " + picture_name);
     }
     
     array_clear(autotiles, noone);
