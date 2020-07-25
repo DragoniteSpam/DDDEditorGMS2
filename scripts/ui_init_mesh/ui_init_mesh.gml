@@ -173,7 +173,7 @@ If you loaded a model containing SMF data, it will be saved as is without conver
     ds_list_add(contents, element);
     yy += element.height + spacing;
     
-    element = create_checkbox(c3x, yy, "Draw wireframes?", ew, eh, omu_meshes_draw_textures, mode.draw_wireframes, id);
+    element = create_checkbox(c3x, yy, "Draw wireframes?", ew, eh, omu_meshes_draw_wireframes, mode.draw_wireframes, id);
     element.tooltip = "Draw a wireframe over the 3D mesh. Turn this off if it gets annoying.";
     ds_list_add(contents, element);
     yy += element.height + spacing;
