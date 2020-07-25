@@ -5,7 +5,7 @@ var root = argument0;
 var selection = argument1;
 var mode = Stuff.mesh_ed;
 
-var dw = 960;
+var dw = 1200;
 var dh = 840;
 
 var dg = dialog_create(dw, dh, "Materials", dialog_default, dc_close_no_questions_asked, root);

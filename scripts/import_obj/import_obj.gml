@@ -14,6 +14,7 @@ var data_added = false;
 var err = "";
 
 var mfn = filename_change_ext(fn, ".mtl");
+var base_name = filename_change_ext(filename_name(fn), "");
 
 if (file_exists(fn)) {
     var active_mtl = "None";
@@ -61,6 +62,7 @@ if (file_exists(fn)) {
                 case "map_Kd":                  // dissolve (base) texture
                     var texfn = filename_path(fn) + ds_queue_dequeue(spl);
                     var ts = tileset_create(texfn, undefined, undefined, false);
+                    ts.name = base_name + ".BaseTexture";
                     ds_list_add(Stuff.all_graphic_tilesets, ts);
                     if (ds_map_size(mtl_map_diffuse) == 1) err += "Tried to load more than one diffuse texture map (map_Kd) - this is not yet supported\n";
                     mtl_map_diffuse[? mtl_name] = ts;
@@ -68,6 +70,7 @@ if (file_exists(fn)) {
                 case "map_Ka":                  // ambient texture
                     var texfn = filename_path(fn) + ds_queue_dequeue(spl);
                     var ts = tileset_create(texfn, undefined, undefined, false);
+                    ts.name = base_name + ".AmbientMap";
                     ds_list_add(Stuff.all_graphic_tilesets, ts);
                     if (ds_map_size(mtl_map_ambient) == 1) err += "Tried to load more than one ambient texture map (map_Ka) - this is not yet supported\n";
                     mtl_map_ambient[? mtl_name] = ts;
@@ -75,6 +78,7 @@ if (file_exists(fn)) {
                 case "map_Ks":                  // specular color texture
                     var texfn = filename_path(fn) + ds_queue_dequeue(spl);
                     var ts = tileset_create(texfn, undefined, undefined, false);
+                    ts.name = base_name + ".SpecularColorMap";
                     ds_list_add(Stuff.all_graphic_tilesets, ts);
                     if (ds_map_size(mtl_map_specular_color) == 1) err += "Tried to load more than one specular color texture map (map_Ks) - this is not yet supported\n";
                     mtl_map_specular_color[? mtl_name] = ts;
@@ -82,6 +86,7 @@ if (file_exists(fn)) {
                 case "map_Ns":                  // specular highlight texture
                     var texfn = filename_path(fn) + ds_queue_dequeue(spl);
                     var ts = tileset_create(texfn, undefined, undefined, false);
+                    ts.name = base_name + ".SpecularHighlightMap";
                     ds_list_add(Stuff.all_graphic_tilesets, ts);
                     if (ds_map_size(mtl_map_specular_highlight) == 1) err += "Tried to load more than one specular highlight texture map (map_Ns) - this is not yet supported\n";
                     mtl_map_specular_highlight[? mtl_name] = ts;
@@ -89,6 +94,7 @@ if (file_exists(fn)) {
                 case "map_d":                   // alpha texture
                     var texfn = filename_path(fn) + ds_queue_dequeue(spl);
                     var ts = tileset_create(texfn, undefined, undefined, false);
+                    ts.name = base_name + ".AlphaMap";
                     ds_list_add(Stuff.all_graphic_tilesets, ts);
                     if (ds_map_size(mtl_map_alpha) == 1) err += "Tried to load more than one alpha texture map (map_Ka) - this is not yet supported\n";
                     mtl_map_alpha[? mtl_name] = ts;
@@ -96,6 +102,7 @@ if (file_exists(fn)) {
                 case "map_bump":                // bump texture
                     var texfn = filename_path(fn) + ds_queue_dequeue(spl);
                     var ts = tileset_create(texfn, undefined, undefined, false);
+                    ts.name = base_name + ".BumpMap";
                     ds_list_add(Stuff.all_graphic_tilesets, ts);
                     if (ds_map_size(mtl_map_bump) == 1) err += "Tried to load more than one bump map (map_bump) - this is not yet supported\n";
                     mtl_map_bump[? mtl_name] = ts;
@@ -106,6 +113,7 @@ if (file_exists(fn)) {
                 case "disp":                    // displacement texture
                     var texfn = filename_path(fn) + ds_queue_dequeue(spl);
                     var ts = tileset_create(texfn, undefined, undefined, false);
+                    ts.name = base_name + ".DisplacementMap";
                     ds_list_add(Stuff.all_graphic_tilesets, ts);
                     if (ds_map_size(mtl_map_displace) == 1) err += "Tried to load more than one displacement texture map (disp) - this is not yet supported\n";
                     mtl_map_displace[? mtl_name] = ts;
@@ -113,6 +121,7 @@ if (file_exists(fn)) {
                 case "decal":                   // stencil decal texture
                     var texfn = filename_path(fn) + ds_queue_dequeue(spl);
                     var ts = tileset_create(texfn, undefined, undefined, false);
+                    ts.name = base_name + ".StencilDecal";
                     ds_list_add(Stuff.all_graphic_tilesets, ts);
                     if (ds_map_size(mtl_map_decal) == 1) err += "Tried to load more than one stencil decal texture map (decal) - this is not yet supported\n";
                     mtl_map_decal[? mtl_name] = ts;
@@ -413,7 +422,6 @@ if (file_exists(fn)) {
                 c_shape_destroy(cshape);
             }
             
-            var base_name = filename_change_ext(filename_name(fn), "");
             var mesh = existing ? existing : instance_create_depth(0, 0, 0, DataMesh);
             
             if (!existing) {
