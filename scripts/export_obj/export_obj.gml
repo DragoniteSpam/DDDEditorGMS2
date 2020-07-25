@@ -1,10 +1,12 @@
 /// @param fname
 /// @param DataMesh
+/// @param [scale-texture?]
 
-var base_filename = argument0;
+var base_filename = argument[0];
 var path = filename_path(base_filename);
 var mesh_filename = path + string_replace(filename_name(base_filename), filename_ext(base_filename), "");
-var mesh = argument1;
+var mesh = argument[1];
+var scale = (argument_count > 2 && argument[2] != undefined) ? argument[2] : true;
 var buffer = buffer_create(1024, buffer_grow, 1);
 
 for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
@@ -37,11 +39,11 @@ for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
             nx = buffer_read(sub.buffer, buffer_f32);
             ny = buffer_read(sub.buffer, buffer_f32);
             nz = buffer_read(sub.buffer, buffer_f32);
-            xtex = buffer_read(sub.buffer, buffer_f32) / mesh.texture_scale;
-            ytex = buffer_read(sub.buffer, buffer_f32) / mesh.texture_scale;
+            xtex = buffer_read(sub.buffer, buffer_f32) / (scale ? mesh.texture_scale : 1);
+            ytex = buffer_read(sub.buffer, buffer_f32) / (scale ? mesh.texture_scale : 1);
             color[j] = buffer_read(sub.buffer, buffer_u32);
             buffer_read(sub.buffer, buffer_u32);
-        
+            
             buffer_write(buffer, buffer_text, "v " + decimal(xx) + " " + decimal(yy) + " " + decimal(zz) + "\r\n");
             buffer_write(buffer, buffer_text, "vt " + decimal(xtex) + " " + decimal(ytex) + "\r\n");
             buffer_write(buffer, buffer_text, "vn " + decimal(nx) + " " + decimal(ny) + " " + decimal(nz) + "\r\n");

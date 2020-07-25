@@ -18,7 +18,7 @@ if (export_count == 1) {
             var fn = get_save_filename_mesh(mesh.name);
             if (fn == "") return;
             switch (filename_ext(fn)) {
-                case ".obj": export_obj(fn, mesh); break;
+                case ".obj": export_obj(fn, mesh, false); break;
                 case ".d3d": case ".gmmod": export_d3d(fn, mesh); break;
                 case ".vbuff": export_vb(fn, mesh, format); break;
             }
@@ -41,7 +41,7 @@ for (var index = ds_map_find_first(selection); index != undefined; index = ds_ma
         case MeshTypes.RAW:
             switch (Stuff.mesh_ed.export_type) {
                 case 0: export_d3d(folder + mesh.name + ".d3d", mesh); break;
-                case 1: export_obj(folder + mesh.name + ".obj", mesh); break;
+                case 1: export_obj(folder + mesh.name + ".obj", mesh, false); break;
                 case 2: export_vb(folder + mesh.name + ".vbuff", mesh, format); break;
             }
             break;
