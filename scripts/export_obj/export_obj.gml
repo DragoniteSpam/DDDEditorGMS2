@@ -56,7 +56,7 @@ for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
         var mtl_name = string(floor((color[0] + color[1] + color[2]) / 4));
     
         if (!ds_map_exists(mtl_alpha, mtl_name)) {
-            mtl_alpha[? mtl_name] = a;
+            mtl_alpha[? mtl_name] = a / 255;
             mtl_r[? mtl_name] = (c & 0x0000ff) / 255;
             mtl_g[? mtl_name] = ((c & 0x00ff00) >> 8) / 255;
             mtl_b[? mtl_name] = ((c & 0xff0000) >> 16) / 255;
@@ -101,6 +101,7 @@ for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
 
     buffer_save_ext(buffer, filename_change_ext(fn, ".mtl"), 0, buffer_tell(buffer));
     // sigh
+    
     if (mesh.tex_base != NULL) sprite_save(guid_get(mesh.tex_base).picture, 0, path + guid_get(mesh.tex_base).name + ".png");
     if (mesh.tex_ambient != NULL) sprite_save(guid_get(mesh.tex_base).picture, 0, path + guid_get(mesh.tex_ambient).name + ".png");
     if (mesh.tex_specular_color != NULL) sprite_save(guid_get(mesh.tex_base).picture, 0, path + guid_get(mesh.tex_specular_color).name + ".png");
