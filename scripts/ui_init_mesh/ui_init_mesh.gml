@@ -175,7 +175,7 @@ If you loaded a model containing SMF data, it will be saved as is without conver
     yy += element.height + spacing;
     
     element = create_button(c3x, yy, "Material...", ew, eh, fa_center, omu_meshes_set_textures, id);
-    element.tooltip = "Set the textures used by the selected meshes. I recommend not using this on more than one mesh at a time.";
+    element.tooltip = "Set the textures used by the selected meshes. Only the base texture is available for now; I may implement the others later.";
     ds_list_add(contents, element);
     yy += element.height + spacing;
     

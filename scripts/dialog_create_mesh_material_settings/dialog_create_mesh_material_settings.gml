@@ -33,34 +33,41 @@ el_base.entries_are = ListEntries.INSTANCES;
 yy += ui_get_list_height(el_base) + spacing;
 
 var el_ambient = create_list(c1x, yy, "Ambient Map", "no textures", ew, eh, 8, null, false, dg, Stuff.all_graphic_tilesets);
+el_ambient.interactive = false;
 el_ambient.entries_are = ListEntries.INSTANCES;
 yy += ui_get_list_height(el_ambient) + spacing;
 
 var el_specular_color = create_list(c1x, yy, "Specular Color Map", "no textures", ew, eh, 8, null, false, dg, Stuff.all_graphic_tilesets);
+el_specular_color.interactive = false;
 el_specular_color.entries_are = ListEntries.INSTANCES;
 yy += ui_get_list_height(el_specular_color) + spacing;
 
 yy = yy_base;
 
 var el_specular_highlight = create_list(c2x, yy, "Specular Highlight Map", "no textures", ew, eh, 8, null, false, dg, Stuff.all_graphic_tilesets);
+el_specular_highlight.interactive = false;
 el_specular_highlight.entries_are = ListEntries.INSTANCES;
 yy += ui_get_list_height(el_specular_highlight) + spacing;
 
 var el_alpha = create_list(c2x, yy, "Alpha Map", "no textures", ew, eh, 8, null, false, dg, Stuff.all_graphic_tilesets);
+el_alpha.interactive = false;
 el_alpha.entries_are = ListEntries.INSTANCES;
 yy += ui_get_list_height(el_alpha) + spacing;
 
 var el_bump = create_list(c2x, yy, "Bump Map", "no textures", ew, eh, 8, null, false, dg, Stuff.all_graphic_tilesets);
+el_bump.interactive = false;
 el_bump.entries_are = ListEntries.INSTANCES;
 yy += ui_get_list_height(el_bump) + spacing;
 
 yy = yy_base;
 
 var el_displacement = create_list(c3x, yy, "Displacement Map", "no textures", ew, eh, 8, null, false, dg, Stuff.all_graphic_tilesets);
+el_displacement.interactive = false;
 el_displacement.entries_are = ListEntries.INSTANCES;
 yy += ui_get_list_height(el_displacement) + spacing;
 
 var el_stencil = create_list(c3x, yy, "Stencil Map", "no textures", ew, eh, 8, null, false, dg, Stuff.all_graphic_tilesets);
+el_stencil.interactive = false;
 el_stencil.entries_are = ListEntries.INSTANCES;
 yy += ui_get_list_height(el_stencil) + spacing;
 
