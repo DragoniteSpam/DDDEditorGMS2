@@ -27,7 +27,7 @@ var spacing = 16;
 var yy = 64;
 var yy_base = 64;
 
-var el_flat = create_button(c1x, yy, "Set Flat Normals", ew, eh, fa_center, null, dg);
+var el_flat = create_button(c1x, yy, "Set Flat Normals", ew, eh, fa_center, omu_meshes_normals_flat, dg);
 yy += el_flat.height + spacing;
 
 var el_smooth = create_button(c1x, yy, "Set Smooth Normals", ew, eh, fa_center, omu_meshes_normals_smooth, dg);
