@@ -21,7 +21,7 @@ var folder = filename_path(fn);
 
 for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
     var mesh = Stuff.all_meshes[| index];
-    var name = ((export_count == 1) ? fn : (folder + mesh.name)) + filename_ext(fn);
+    var name = (export_count == 1) ? fn : (folder + mesh.name + filename_ext(fn));
     switch (mesh.type) {
         case MeshTypes.RAW:
             switch (filename_ext(fn)) {

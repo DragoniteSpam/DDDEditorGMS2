@@ -4,7 +4,7 @@
 
 var base_filename = argument[0];
 var path = filename_path(base_filename);
-var mesh_filename = path + string_replace(filename_name(base_filename), filename_ext(base_filename), "");
+var mesh_filename = filename_path(base_filename) + filename_change_ext(filename_name(base_filename), "");
 var mesh = argument[1];
 var scale = (argument_count > 2 && argument[2] != undefined) ? argument[2] : true;
 var buffer = buffer_create(1024, buffer_grow, 1);

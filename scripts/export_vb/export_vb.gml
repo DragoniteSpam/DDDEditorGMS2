@@ -3,7 +3,7 @@
 /// @param vertex-format-json
 
 var base_filename = argument0;
-var mesh_filename = filename_path(base_filename) + string_replace(filename_name(base_filename), filename_ext(base_filename), "");
+var mesh_filename = filename_path(base_filename) + filename_change_ext(filename_name(base_filename), "");
 var mesh = argument1;
 var format = argument2;
 
