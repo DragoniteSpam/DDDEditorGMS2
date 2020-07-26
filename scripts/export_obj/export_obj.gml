@@ -16,21 +16,21 @@ for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
     buffer_seek(sub.buffer, buffer_seek_start, 0);
     buffer_seek(buffer, buffer_seek_start, 0);
     
-    buffer_write(buffer, buffer_text, "# DDD OBJ file\r\n");
+    buffer_write(buffer, buffer_text, "# DDD\r\n");
     buffer_write(buffer, buffer_text, "mtllib " + filename_name(filename_name(filename_change_ext(fn, ".mtl"))) + "\r\n\r\n");
     
     var active_mtl = "None";
-
+    
     var mtl_alpha = ds_map_create();
     var mtl_r = ds_map_create();
     var mtl_g = ds_map_create();
     var mtl_b = ds_map_create();
-
+    
     var color = [0xffffffff, 0xffffffff, 0xffffffff];
     var xx, yy, zz, nx, ny, nz, xtex, ytex;
-
+    
     var n = 1;
-
+    
     while (buffer_tell(sub.buffer) < buffer_get_size(sub.buffer)) {
         for (var j = 0; j < 3; j++) {
             xx = buffer_read(sub.buffer, buffer_f32);

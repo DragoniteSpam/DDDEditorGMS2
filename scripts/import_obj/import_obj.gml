@@ -72,11 +72,17 @@ if (file_exists(fn)) {
     var ytex = [0, 0, 0];
     
     var temp_vertices = ds_list_create();
+    var first_line_read = false;
+    var is_blender = false;
     
     #region parse the obj file
     while (!file_text_eof(f) && err == "") {
         line_number++;
         var str = file_text_read_string(f);
+        if (!first_line_read) {
+            is_blender = (string_count("Blender", str) > 0);
+            first_line_read = true;
+        }
         var q = split(str, " ", false, false);
         file_text_readln(f);
         
@@ -86,7 +92,7 @@ if (file_exists(fn)) {
         }
         
         var word = ds_queue_dequeue(q);
-        // comments don't have to be single characters 
+        // comments don't have to be single characters
         if (string_char_at(word, 1) != "#") {
             switch (word) {
                 case "v":
@@ -416,6 +422,10 @@ if (file_exists(fn)) {
             bnx = v[3];
             bny = v[4];
             bnz = v[5];
+            
+            if (is_blender) {
+                v[7] = 1 - v[7];
+            }
             
             if (adjust) {
                 bxtex = v[6] * TILESET_TEXTURE_SCALE;
