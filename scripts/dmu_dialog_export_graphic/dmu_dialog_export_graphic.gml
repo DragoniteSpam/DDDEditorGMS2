@@ -6,6 +6,9 @@ var selection = ui_list_selection(list);
 
 if (selection + 1) {
     var what = list.entries[| selection];
-    sprite_save(what.picture, 0, what.name + ".png");
-    ds_stuff_open_local(what.name + ".png");
+    var fn = get_save_filename_image(what.name + ".png");
+    if (fn != "") {
+        sprite_save(what.picture, 0, fn);
+        ds_stuff_open(fn);
+    }
 }
