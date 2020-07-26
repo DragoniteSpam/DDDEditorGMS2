@@ -1,4 +1,4 @@
-var path = get_open_filename_ext("Image files (*.png)|*.png", "", Stuff.setting_location_image, "Select an image");
+var path = get_open_filename_ext("Image files (*.png, *.bmp)|*.png;*.bmp|PNG files|*.png|Bitmap files|*.bmp", "", Stuff.setting_location_image, "Select an image");
 
 // @gml update try-catch
 if (file_exists(path)) {

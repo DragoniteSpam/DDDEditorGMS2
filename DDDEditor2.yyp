@@ -8342,6 +8342,14 @@
             }
         },
         {
+            "Key": "5ded7fcd-c61f-43e7-adb5-a09144795842",
+            "Value": {
+                "id": "0ce15b92-918e-4777-be16-8c0541f408b2",
+                "resourcePath": "scripts\\dmu_dialog_remove_graphic_texture\\dmu_dialog_remove_graphic_texture.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "5dfa77e2-7712-4824-9e3a-e08ff4ce508a",
             "Value": {
                 "id": "a63963ec-8e92-4edb-8605-28a9d3091a07",
@@ -16518,6 +16526,14 @@
             }
         },
         {
+            "Key": "be7ea767-c19f-4172-9f93-42de84e6ed88",
+            "Value": {
+                "id": "c6ec72c7-1335-4ceb-b0db-dd7df2ed07df",
+                "resourcePath": "scripts\\dmu_dialog_load_graphic_texture\\dmu_dialog_load_graphic_texture.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "be96e3c6-ced9-4104-8676-25b866bccf2d",
             "Value": {
                 "id": "a97247f1-e7d5-4bb8-a742-755a2a0fd4f8",
@@ -23685,12 +23701,14 @@
         "4454a6a9-99b9-42dd-bd75-4032290c3af7",
         "a34664c5-89bc-4bc9-93c5-37a4c24dfc9f",
         "d20b943e-a6f2-4ba3-8744-b4476ee0d608",
+        "be7ea767-c19f-4172-9f93-42de84e6ed88",
         "21066338-6a38-4cca-a8dd-72e788b45b2d",
         "024e26cf-64d8-4bb8-bb2b-8e611a5bfee0",
         "fd509475-e535-4be9-8fc7-de4c581e0250",
         "f228daea-2abf-44a8-b35e-7d9bf9b8711a",
         "2e013630-e3f1-4f01-b173-f9acbddf7050",
         "6741bdc7-6fa8-45dd-82af-ef512e335d52",
+        "5ded7fcd-c61f-43e7-adb5-a09144795842",
         "38d47818-9650-4a4c-82ab-f8a50e310583",
         "4b6005a3-23c4-42a2-82c4-beaf682373df",
         "cdb8e6ed-b574-4ea2-9995-402c21d22cad",
