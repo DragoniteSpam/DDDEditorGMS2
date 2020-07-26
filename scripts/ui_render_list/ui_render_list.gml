@@ -101,7 +101,7 @@ draw_surface(list.surface, x1, y2);
 var offset = (n > list.slots) ? 16 : 0;
 var move_direction = 0;
 
-if (list.interactive && active && !ds_list_empty(list.entries)) {
+if (list.interactive && ds_exists(list.entries, ds_type_list) && active && !ds_list_empty(list.entries)) {
     var inbounds = mouse_within_rectangle_determine(x1, y2, x2 - offset, y3, list.adjust_view);
     if (inbounds) {
         if (Controller.mouse_middle) {
