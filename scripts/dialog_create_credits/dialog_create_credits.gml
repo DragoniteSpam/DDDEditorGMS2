@@ -13,7 +13,7 @@ var bw = ew / 5;
 
 var yy = 64;
 var el_text = create_text(16, yy, "[FDefault20][c_blue]DDD Game Editor", ew, eh, fa_left, dw - 32, dg);
-yy += 64;
+yy += 40;
 var el_author = create_text(16, yy, "Author: Michael Peng (DragoniteSpam)", ew, eh, fa_left, dw - 32, dg);
 yy += 40;
 var el_author_1 = create_button(32 + (bw + spacing) * 0, yy, "Twitter", bw, eh, fa_center, uivc_url_ds_twitter, dg);
@@ -22,11 +22,13 @@ var el_author_2 = create_button(32 + (bw + spacing) * 1, yy, "YouTube", bw, eh, 
 el_author_2.tooltip = "https://www.youtube.com/c/dragonitespam/about";
 var el_author_3 = create_button(32 + (bw + spacing) * 2, yy, "Github", bw, eh, fa_center, uivc_url_ds_github, dg);
 el_author_3.tooltip = "https://github.com/DragoniteSpam";
+var el_author_4 = create_button(32 + (bw + spacing) * 2, yy, "Itch.io", bw, eh, fa_center, uivc_url_ds_itch, dg);
+el_author_4.tooltip = "https://dragonite.itch.io/";
 yy += 40;
 
 var el_help = create_text(16, yy, "[c_blue]With help from:", ew, eh, fa_left, dw - 32, dg);
 yy += 40;
-var el_help_who = create_text(32, yy, "     RatcheT2497", ew, eh, fa_left, dw - 32, dg);
+var el_help_who = create_text(32, yy, "     RatcheT2497, Nate Robbins, YouTube stream chat", ew, eh, fa_left, dw - 32, dg);
 yy += 40;
 
 var el_ex = create_text(16, yy, "[c_blue]Some Game Maker extensions were used", ew, eh, fa_left, dw - 32, dg);
@@ -74,26 +76,18 @@ var el_close = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Wow,
 ds_list_add(dg.contents,
     el_text,
     el_author,
-    el_author_1,
-    el_author_2,
-    el_author_3,
+    el_author_1, el_author_2, el_author_3, el_author_4,
     el_help,
     el_help_who,
     el_ex,
-    el_ex_venomous,
-    el_ex_venomous_url,
+    el_ex_venomous, el_ex_venomous_url,
+    el_ex_fmod, el_ex_fmod_url,
+    el_ex_smf, el_ex_smf_url,
+    el_ex_scribble, el_ex_scribble_url,
+    el_ex_xpanda, el_ex_xpanda_url,
     el_ex_regex,
-    el_ex_fmod,
-    el_ex_fmod_url,
-    el_ex_smf,
-    el_ex_smf_url,
-    el_ex_scribble,
-    el_ex_scribble_url,
-    el_ex_xpanda,
-    el_ex_xpanda_url,
     el_asset,
-    el_asset_water,
-    el_asset_wate_url,
+    el_asset_water, el_asset_wate_url,
     el_asset_npc,
     el_close
 );

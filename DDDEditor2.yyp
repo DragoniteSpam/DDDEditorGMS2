@@ -21390,6 +21390,14 @@
             }
         },
         {
+            "Key": "f4d6142b-2f03-47ca-b180-11a3f017ccee",
+            "Value": {
+                "id": "5127fe14-a914-4f01-8187-aee1be5c0f18",
+                "resourcePath": "scripts\\uivc_url_ds_itch\\uivc_url_ds_itch.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "f4daec4a-c6f6-48c0-be21-209c8bbb988c",
             "Value": {
                 "id": "fc962af1-559e-46ac-a61b-2fe529e69f80",
@@ -24291,6 +24299,7 @@
         "92ef99bf-be77-4396-aa4c-7bb0a3c008ec",
         "4cb0b1f0-de93-49b3-9cce-df0c5b45cda5",
         "c8c731cd-c4e9-4e2d-b7c7-b94d48ec9aa1",
+        "f4d6142b-2f03-47ca-b180-11a3f017ccee",
         "6bf27b2c-c013-4fb1-9836-b95167ffd715",
         "9ed4cda8-bf21-4add-a93f-e406872945a1",
         "abe49b7e-34e7-4375-83a1-15f5afa50fac",
