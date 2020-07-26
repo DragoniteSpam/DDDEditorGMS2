@@ -31,7 +31,7 @@ for (var i = istart; i < iend; i++) {
         buffer_poke(buffer, position + 24, buffer_f32, tu * f);
         buffer_poke(buffer, position + 28, buffer_f32, tv * f);
         
-        buffer_seek(buffer, buffer_seek_relative, Stuff.graphics.format_size);
+        buffer_seek(buffer, buffer_seek_relative, VERTEX_SIZE);
     }
     
     buffer_seek(buffer, buffer_seek_start, 0);

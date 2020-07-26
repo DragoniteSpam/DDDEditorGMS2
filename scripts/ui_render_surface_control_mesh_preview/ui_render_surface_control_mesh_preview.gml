@@ -94,15 +94,15 @@ if (mouse_within_rectangle_view(x1, y1, x2, y2)) {
             ui_input_set_value(surface.root.el_controls_index, string(mesh.preview_index));
             var bsize = buffer_get_size(mesh.submeshes[| mesh.preview_index].buffer);
             surface.root.el_stats_kb.text = "    Size: " + string_comma(bsize) + " bytes";
-            surface.root.el_stats_vertices.text = "    Vertices: " + string(bsize / Stuff.graphics.format_size);
-            surface.root.el_stats_triangles.text = "    Triangles: " + string(bsize / Stuff.graphics.format_size / 3);
+            surface.root.el_stats_vertices.text = "    Vertices: " + string(bsize / VERTEX_SIZE);
+            surface.root.el_stats_triangles.text = "    Triangles: " + string(bsize / VERTEX_SIZE / 3);
         } else {
             mesh.preview_index = ++mesh.preview_index % length;
             ui_input_set_value(surface.root.el_controls_index, string(mesh.preview_index));
             var bsize = buffer_get_size(mesh.submeshes[| mesh.preview_index].buffer);
             surface.root.el_stats_kb.text = "    Size: " + string_comma(bsize) + " bytes";
-            surface.root.el_stats_vertices.text = "    Vertices: " + string(bsize / Stuff.graphics.format_size);
-            surface.root.el_stats_triangles.text = "    Triangles: " + string(bsize / Stuff.graphics.format_size / 3);
+            surface.root.el_stats_vertices.text = "    Vertices: " + string(bsize / VERTEX_SIZE);
+            surface.root.el_stats_triangles.text = "    Triangles: " + string(bsize / VERTEX_SIZE / 3);
         }
     }
 }

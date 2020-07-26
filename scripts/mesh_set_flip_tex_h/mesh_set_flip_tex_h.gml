@@ -15,7 +15,7 @@ while (buffer_tell(buffer) < buffer_get_size(buffer)) {
     
     buffer_poke(buffer, position + 24, buffer_f32, 1 - buffer_peek(buffer, position + 24, buffer_f32));
     
-    buffer_seek(buffer, buffer_seek_relative, Stuff.graphics.format_size);
+    buffer_seek(buffer, buffer_seek_relative, VERTEX_SIZE);
 }
 
 buffer_seek(buffer, buffer_seek_start, 0);
@@ -33,15 +33,15 @@ while (buffer_tell(buffer) < buffer_get_size(buffer)) {
     var x1 = buffer_read(buffer, buffer_f32);
     var y1 = buffer_read(buffer, buffer_f32);
     var z1 = buffer_read(buffer, buffer_f32);
-    buffer_seek(buffer, buffer_seek_relative, Stuff.graphics.format_size - 12);
+    buffer_seek(buffer, buffer_seek_relative, VERTEX_SIZE - 12);
     var x2 = buffer_read(buffer, buffer_f32);
     var y2 = buffer_read(buffer, buffer_f32);
     var z2 = buffer_read(buffer, buffer_f32);
-    buffer_seek(buffer, buffer_seek_relative, Stuff.graphics.format_size - 12);
+    buffer_seek(buffer, buffer_seek_relative, VERTEX_SIZE - 12);
     var x3 = buffer_read(buffer, buffer_f32);
     var y3 = buffer_read(buffer, buffer_f32);
     var z3 = buffer_read(buffer, buffer_f32);
-    buffer_seek(buffer, buffer_seek_relative, Stuff.graphics.format_size - 12);
+    buffer_seek(buffer, buffer_seek_relative, VERTEX_SIZE - 12);
     
     vertex_point_line(wbuffer, x1, y1, z1, c_white, 1);
     vertex_point_line(wbuffer, x2, y2, z2, c_white, 1);

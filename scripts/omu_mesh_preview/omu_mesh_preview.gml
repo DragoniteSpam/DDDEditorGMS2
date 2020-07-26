@@ -137,12 +137,12 @@ dg.el_stats_kb = el_stats_kb;
 
 yy += el_stats_kb.height + spacing;
 
-var el_stats_vertices = create_text(col4_x, yy, "    Vertices: " + string(bsize / Stuff.graphics.format_size), ew, eh, fa_left, ew, dg);
+var el_stats_vertices = create_text(col4_x, yy, "    Vertices: " + string(bsize / VERTEX_SIZE), ew, eh, fa_left, ew, dg);
 dg.el_stats_vertices = el_stats_vertices;
 
 yy += el_stats_vertices.height + spacing;
 
-var el_stats_triangles = create_text(col4_x, yy, "    Triangles: " + string(bsize / Stuff.graphics.format_size / 3), ew, eh, fa_left, ew, dg);
+var el_stats_triangles = create_text(col4_x, yy, "    Triangles: " + string(bsize / VERTEX_SIZE / 3), ew, eh, fa_left, ew, dg);
 dg.el_stats_triangles = el_stats_triangles;
 
 yy += el_stats_triangles.height + spacing;

@@ -20,18 +20,18 @@ for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
         
         var xx = [
             buffer_peek(buffer, position, buffer_f32),
-            buffer_peek(buffer, position + Stuff.graphics.format_size, buffer_f32),
-            buffer_peek(buffer, position + Stuff.graphics.format_size * 2, buffer_f32)
+            buffer_peek(buffer, position + VERTEX_SIZE, buffer_f32),
+            buffer_peek(buffer, position + VERTEX_SIZE * 2, buffer_f32)
         ];
         var yy = [
             buffer_peek(buffer, position + 4, buffer_f32),
-            buffer_peek(buffer, position + Stuff.graphics.format_size + 4, buffer_f32),
-            buffer_peek(buffer, position + Stuff.graphics.format_size * 2 + 4, buffer_f32)
+            buffer_peek(buffer, position + VERTEX_SIZE + 4, buffer_f32),
+            buffer_peek(buffer, position + VERTEX_SIZE * 2 + 4, buffer_f32)
         ];
         var zz = [
             buffer_peek(buffer, position + 8, buffer_f32),
-            buffer_peek(buffer, position + Stuff.graphics.format_size + 8, buffer_f32),
-            buffer_peek(buffer, position + Stuff.graphics.format_size * 2 + 8, buffer_f32)
+            buffer_peek(buffer, position + VERTEX_SIZE + 8, buffer_f32),
+            buffer_peek(buffer, position + VERTEX_SIZE * 2 + 8, buffer_f32)
         ];
         
         var normals = triangle_normal(xx[0], yy[0], zz[0], xx[1], yy[1], zz[1], xx[2], yy[2], zz[2]);
@@ -46,7 +46,7 @@ for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
             }
         }
         
-        buffer_seek(buffer, buffer_seek_relative, Stuff.graphics.format_size * 3);
+        buffer_seek(buffer, buffer_seek_relative, VERTEX_SIZE * 3);
     }
     
     buffer_seek(buffer, buffer_seek_start, 0);
@@ -70,7 +70,7 @@ for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
             buffer_poke(buffer, position + 20, buffer_f32, n[2]);
         }
         
-        buffer_seek(buffer, buffer_seek_relative, Stuff.graphics.format_size);
+        buffer_seek(buffer, buffer_seek_relative, VERTEX_SIZE);
     }
     
     ds_map_destroy(normal_map);

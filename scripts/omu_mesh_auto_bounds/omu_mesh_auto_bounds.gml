@@ -18,7 +18,7 @@ for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
         var xx = round(buffer_read(sub.buffer, buffer_f32) / TILE_WIDTH);
         var yy = round(buffer_read(sub.buffer, buffer_f32) / TILE_HEIGHT);
         var zz = round(buffer_read(sub.buffer, buffer_f32) / TILE_DEPTH);
-        buffer_seek(sub.buffer, buffer_seek_relative, Stuff.graphics.format_size - 12);
+        buffer_seek(sub.buffer, buffer_seek_relative, VERTEX_SIZE - 12);
         xmin = min(xmin, xx);
         ymin = min(ymin, yy);
         zmin = min(zmin, zz);

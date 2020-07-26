@@ -36,20 +36,20 @@ buffer_write(buffer_mtl, buffer_text, "00000000\n\n");
 buffer_write(buffer, buffer_text, "usemtl " + active_mtl + "\n");
 buffer_write(buffer_mtl, buffer_text, "newmtl " + active_mtl + "\nKd 1 1 1\nd 1\nillum 2\n\n");
 
-for (var i = 0; i < bytes; i = i + Stuff.graphics.format_size_basic * 3) {
+for (var i = 0; i < bytes; i = i + VERTEX_SIZE_BASIC * 3) {
     var z0 = buffer_peek(terrain.terrain_buffer_data, i + 8, buffer_f32) * scale;
-    var z1 = buffer_peek(terrain.terrain_buffer_data, i + 8 + Stuff.graphics.format_size_basic, buffer_f32) * scale;
-    var z2 = buffer_peek(terrain.terrain_buffer_data, i + 8 + Stuff.graphics.format_size_basic * 2, buffer_f32) * scale;
+    var z1 = buffer_peek(terrain.terrain_buffer_data, i + 8 + VERTEX_SIZE_BASIC, buffer_f32) * scale;
+    var z2 = buffer_peek(terrain.terrain_buffer_data, i + 8 + VERTEX_SIZE_BASIC * 2, buffer_f32) * scale;
     var c0 = buffer_peek(terrain.terrain_buffer_data, i + 32, buffer_u32);
-    var c1 = buffer_peek(terrain.terrain_buffer_data, i + 32 + Stuff.graphics.format_size_basic, buffer_u32);
-    var c2 = buffer_peek(terrain.terrain_buffer_data, i + 32 + Stuff.graphics.format_size_basic * 2, buffer_u32);
+    var c1 = buffer_peek(terrain.terrain_buffer_data, i + 32 + VERTEX_SIZE_BASIC, buffer_u32);
+    var c2 = buffer_peek(terrain.terrain_buffer_data, i + 32 + VERTEX_SIZE_BASIC * 2, buffer_u32);
     
     var aa0 = ((c0 & 0xff000000) >> 24) / 0xff;
     var aa1 = ((c1 & 0xff000000) >> 24) / 0xff;
     var aa2 = ((c2 & 0xff000000) >> 24) / 0xff;
     
     if (terrain.export_all || z0 > 0 || z1 > 0 || z2 > 0) {
-        for (var j = 0; j < Stuff.graphics.format_size_basic * 3; j = j + Stuff.graphics.format_size_basic) {
+        for (var j = 0; j < VERTEX_SIZE_BASIC * 3; j = j + VERTEX_SIZE_BASIC) {
             var xx = buffer_peek(terrain.terrain_buffer_data, j + i, buffer_f32) * scale;
             var yy = buffer_peek(terrain.terrain_buffer_data, j + i + 4, buffer_f32) * scale;
             var zz = buffer_peek(terrain.terrain_buffer_data, j + i + 8, buffer_f32) * scale;

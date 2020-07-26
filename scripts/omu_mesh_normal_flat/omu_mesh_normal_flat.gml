@@ -15,11 +15,11 @@ for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
         var x1 = buffer_peek(buffer, position, buffer_f32);
         var y1 = buffer_peek(buffer, position + 4, buffer_f32);
         var z1 = buffer_peek(buffer, position + 8, buffer_f32);
-        var offset = Stuff.graphics.format_size;
+        var offset = VERTEX_SIZE;
         var x2 = buffer_peek(buffer, position + offset, buffer_f32);
         var y2 = buffer_peek(buffer, position + offset + 4, buffer_f32);
         var z2 = buffer_peek(buffer, position + offset + 8, buffer_f32);
-        var offset = Stuff.graphics.format_size * 2;
+        var offset = VERTEX_SIZE * 2;
         var x3 = buffer_peek(buffer, position + offset, buffer_f32);
         var y3 = buffer_peek(buffer, position + offset + 4, buffer_f32);
         var z3 = buffer_peek(buffer, position + offset + 8, buffer_f32);
@@ -29,16 +29,16 @@ for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
         buffer_poke(buffer, position + 12, buffer_f32, normals[0]);
         buffer_poke(buffer, position + 16, buffer_f32, normals[1]);
         buffer_poke(buffer, position + 20, buffer_f32, normals[2]);
-        var offset = Stuff.graphics.format_size;
+        var offset = VERTEX_SIZE;
         buffer_poke(buffer, position + offset + 12, buffer_f32, normals[0]);
         buffer_poke(buffer, position + offset + 16, buffer_f32, normals[1]);
         buffer_poke(buffer, position + offset + 20, buffer_f32, normals[2]);
-        var offset = Stuff.graphics.format_size * 2;
+        var offset = VERTEX_SIZE * 2;
         buffer_poke(buffer, position + offset + 12, buffer_f32, normals[0]);
         buffer_poke(buffer, position + offset + 16, buffer_f32, normals[1]);
         buffer_poke(buffer, position + offset + 20, buffer_f32, normals[2]);
         
-        buffer_seek(buffer, buffer_seek_relative, Stuff.graphics.format_size * 3);
+        buffer_seek(buffer, buffer_seek_relative, VERTEX_SIZE * 3);
     }
     
     buffer_seek(buffer, buffer_seek_start, 0);

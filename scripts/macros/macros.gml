@@ -116,6 +116,7 @@
 #macro TILESET_MAX_SIZE 2048
 #macro TILESET_TEXTURE_SCALE 0.5
 #macro VERTEX_SIZE Stuff.graphics.format_size
+#macro VERTEX_SIZE_BASIC Stuff.graphics.format_size_basic
 
 #macro FILE_ERRORS "errors.log"
 #macro FILE_SETTINGS "settings.json"

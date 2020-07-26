@@ -21,13 +21,13 @@ buffer_write(buffer, buffer_text, "100\n");
 var addr_capacity = buffer_tell(buffer);
 buffer_write(buffer, buffer_text, "00000000\n0 4\n");
 
-for (var i = 0; i < bytes; i = i + Stuff.graphics.format_size_basic * 3) {
+for (var i = 0; i < bytes; i = i + VERTEX_SIZE_BASIC * 3) {
     var z0 = buffer_peek(terrain.terrain_buffer_data, i + 8, buffer_f32) * scale;
-    var z1 = buffer_peek(terrain.terrain_buffer_data, i + 8 + Stuff.graphics.format_size_basic, buffer_f32) * scale;
-    var z2 = buffer_peek(terrain.terrain_buffer_data, i + 8 + Stuff.graphics.format_size_basic * 2, buffer_f32) * scale;
+    var z1 = buffer_peek(terrain.terrain_buffer_data, i + 8 + VERTEX_SIZE_BASIC, buffer_f32) * scale;
+    var z2 = buffer_peek(terrain.terrain_buffer_data, i + 8 + VERTEX_SIZE_BASIC * 2, buffer_f32) * scale;
     
     if (terrain.export_all || z0 > 0 || z1 > 0 || z2 > 0) {
-        for (var j = 0; j < Stuff.graphics.format_size_basic * 3; j = j + Stuff.graphics.format_size_basic) {
+        for (var j = 0; j < VERTEX_SIZE_BASIC * 3; j = j + VERTEX_SIZE_BASIC) {
             var xx = buffer_peek(terrain.terrain_buffer_data, j + i, buffer_f32) * scale;
             var yy = buffer_peek(terrain.terrain_buffer_data, j + i + 4, buffer_f32) * scale;
             var zz = buffer_peek(terrain.terrain_buffer_data, j + i + 8, buffer_f32) * scale;

@@ -16,28 +16,28 @@ for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
             buffer_peek(buffer, position + 4, buffer_f32),
             buffer_peek(buffer, position + 8, buffer_f32),
             // t2
-            buffer_peek(buffer, position + Stuff.graphics.format_size, buffer_f32),
-            buffer_peek(buffer, position + Stuff.graphics.format_size + 4, buffer_f32),
-            buffer_peek(buffer, position + Stuff.graphics.format_size + 8, buffer_f32),
+            buffer_peek(buffer, position + VERTEX_SIZE, buffer_f32),
+            buffer_peek(buffer, position + VERTEX_SIZE + 4, buffer_f32),
+            buffer_peek(buffer, position + VERTEX_SIZE + 8, buffer_f32),
             // t3
-            buffer_peek(buffer, position + Stuff.graphics.format_size * 2, buffer_f32),
-            buffer_peek(buffer, position + Stuff.graphics.format_size * 2 + 4, buffer_f32),
-            buffer_peek(buffer, position + Stuff.graphics.format_size * 2 + 8, buffer_f32),
+            buffer_peek(buffer, position + VERTEX_SIZE * 2, buffer_f32),
+            buffer_peek(buffer, position + VERTEX_SIZE * 2 + 4, buffer_f32),
+            buffer_peek(buffer, position + VERTEX_SIZE * 2 + 8, buffer_f32),
         );
         
-        buffer_poke(buffer, position + Stuff.graphics.format_size * 0 + 12, buffer_f32, normals[0]);
-        buffer_poke(buffer, position + Stuff.graphics.format_size * 1 + 12, buffer_f32, normals[0]);
-        buffer_poke(buffer, position + Stuff.graphics.format_size * 2 + 12, buffer_f32, normals[0]);
+        buffer_poke(buffer, position + VERTEX_SIZE * 0 + 12, buffer_f32, normals[0]);
+        buffer_poke(buffer, position + VERTEX_SIZE * 1 + 12, buffer_f32, normals[0]);
+        buffer_poke(buffer, position + VERTEX_SIZE * 2 + 12, buffer_f32, normals[0]);
         
-        buffer_poke(buffer, position + Stuff.graphics.format_size * 0 + 16, buffer_f32, normals[1]);
-        buffer_poke(buffer, position + Stuff.graphics.format_size * 1 + 16, buffer_f32, normals[1]);
-        buffer_poke(buffer, position + Stuff.graphics.format_size * 2 + 16, buffer_f32, normals[1]);
+        buffer_poke(buffer, position + VERTEX_SIZE * 0 + 16, buffer_f32, normals[1]);
+        buffer_poke(buffer, position + VERTEX_SIZE * 1 + 16, buffer_f32, normals[1]);
+        buffer_poke(buffer, position + VERTEX_SIZE * 2 + 16, buffer_f32, normals[1]);
         
-        buffer_poke(buffer, position + Stuff.graphics.format_size * 0 + 20, buffer_f32, normals[2]);
-        buffer_poke(buffer, position + Stuff.graphics.format_size * 1 + 20, buffer_f32, normals[2]);
-        buffer_poke(buffer, position + Stuff.graphics.format_size * 2 + 20, buffer_f32, normals[2]);
+        buffer_poke(buffer, position + VERTEX_SIZE * 0 + 20, buffer_f32, normals[2]);
+        buffer_poke(buffer, position + VERTEX_SIZE * 1 + 20, buffer_f32, normals[2]);
+        buffer_poke(buffer, position + VERTEX_SIZE * 2 + 20, buffer_f32, normals[2]);
         
-        buffer_seek(buffer, buffer_seek_relative, Stuff.graphics.format_size * 3);
+        buffer_seek(buffer, buffer_seek_relative, VERTEX_SIZE * 3);
     }
     
     buffer_seek(buffer, buffer_seek_start, 0);

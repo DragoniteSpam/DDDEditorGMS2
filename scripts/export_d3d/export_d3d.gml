@@ -14,7 +14,7 @@ for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
     buffer_seek(sub.buffer, buffer_seek_start, 0);
     
     buffer_write(buffer, buffer_text, "100\r\n");
-    buffer_write(buffer, buffer_text, string((buffer_get_size(sub.buffer) / Stuff.graphics.format_size) + 2) + "\r\n");
+    buffer_write(buffer, buffer_text, string((buffer_get_size(sub.buffer) / VERTEX_SIZE) + 2) + "\r\n");
     buffer_write(buffer, buffer_text, "0 4\r\n");
 
     while (buffer_tell(sub.buffer) < buffer_get_size(sub.buffer)) {
