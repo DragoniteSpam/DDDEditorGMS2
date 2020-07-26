@@ -86,234 +86,241 @@ if (file_exists(fn)) {
         }
         
         var word = ds_queue_dequeue(q);
-        
-        switch (word) {
-            case "v":
-                if (ds_queue_size(q) >= 3) {
-                    ds_list_add(v_x, real(ds_queue_dequeue(q)));
-                    ds_list_add(v_y, real(ds_queue_dequeue(q)));
-                    ds_list_add(v_z, real(ds_queue_dequeue(q)));
-                } else {
-                    err = "Malformed vertex found (line " + string(line_number) + ")";
-                }
-                break;
-            case "vt":
-                if (ds_queue_size(q) >= 2) {
-                    ds_list_add(v_xtex, real(ds_queue_dequeue(q)));
-                    ds_list_add(v_ytex, real(ds_queue_dequeue(q)));
-                } else {
-                    err = "Malformed vertex texture found (line " + string(line_number) + ")";
-                }
-                break;
-            case "vn":
-                if (ds_queue_size(q) >= 3) {
-                    ds_list_add(v_nx, real(ds_queue_dequeue(q)));
-                    ds_list_add(v_ny, real(ds_queue_dequeue(q)));
-                    ds_list_add(v_nz, real(ds_queue_dequeue(q)));
-                } else {
-                    err = "Malformed vertex normal found (line " + string(line_number) + ")";
-                }
-                break;
-            case "usemtl":
-                active_mtl = ds_queue_dequeue(q);
-                break;
-            case "f":
-                #region face data
-                if (ds_queue_size(q) >= 3) {
-                    var s = ds_queue_size(q);
-                    for (var i = 0; i < s; i++) {
-                        var vertex_q = split(ds_queue_dequeue(q), "/", false, true);
-                        switch (ds_queue_size(vertex_q)) {
-                            case 1:
-                                var vert = real(ds_queue_dequeue(vertex_q)) - 1;    // each of these are -1 because they start indexing from 1 instead of 0. Why?
-                                xx[i] = v_x[| vert];
-                                yy[i] = v_y[| vert];
-                                zz[i] = v_z[| vert];
-                                nx[i] = 0;
-                                ny[i] = 0;
-                                ny[i] = 1;
-                                xtex[i] = 0;
-                                ytex[i] = 0;
-                                r[i] = ds_map_exists(mtl_color_r, active_mtl) ? mtl_color_r[? active_mtl] : 255;
-                                g[i] = ds_map_exists(mtl_color_g, active_mtl) ? mtl_color_g[? active_mtl] : 255;
-                                b[i] = ds_map_exists(mtl_color_b, active_mtl) ? mtl_color_b[? active_mtl] : 255;
-                                a[i] = ds_map_exists(mtl_alpha, active_mtl) ? mtl_alpha[? active_mtl] : 1;
-                                break;
-                            case 2:
-                                var vert = real(ds_queue_dequeue(vertex_q)) - 1;
-                                var tex = real(ds_queue_dequeue(vertex_q)) - 1;
-                                xx[i] = v_x[| vert];
-                                yy[i] = v_y[| vert];
-                                zz[i] = v_z[| vert];
-                                xtex[i] = v_xtex[| tex];
-                                ytex[i] = v_ytex[| tex];
-                                nx[i] = 0;
-                                ny[i] = 0;
-                                ny[i] = 1;
-                                r[i] = ds_map_exists(mtl_color_r, active_mtl) ? mtl_color_r[? active_mtl] : 255;
-                                g[i] = ds_map_exists(mtl_color_g, active_mtl) ? mtl_color_g[? active_mtl] : 255;
-                                b[i] = ds_map_exists(mtl_color_b, active_mtl) ? mtl_color_b[? active_mtl] : 255;
-                                a[i] = ds_map_exists(mtl_alpha, active_mtl) ? mtl_alpha[? active_mtl] : 1;
-                                break;
-                            case 3:
-                                var vert = real(ds_queue_dequeue(vertex_q)) - 1;
-                                var tex = real(ds_queue_dequeue(vertex_q)) - 1;
-                                var normal = real(ds_queue_dequeue(vertex_q))-1;
-                                xx[i] = v_x[| vert];
-                                yy[i] = v_y[| vert];
-                                zz[i] = v_z[| vert];
-                                nx[i] = v_nx[| normal];
-                                ny[i] = v_ny[| normal];
-                                nz[i] = v_nz[| normal];
-                                xtex[i] = v_xtex[| tex];
-                                ytex[i] = v_ytex[| tex];
-                                r[i] = ds_map_exists(mtl_color_r, active_mtl) ? mtl_color_r[? active_mtl] : 255;
-                                g[i] = ds_map_exists(mtl_color_g, active_mtl) ? mtl_color_g[? active_mtl] : 255;
-                                b[i] = ds_map_exists(mtl_color_b, active_mtl) ? mtl_color_b[? active_mtl] : 255;
-                                a[i] = ds_map_exists(mtl_alpha, active_mtl) ? mtl_alpha[? active_mtl] : 1;
-                                break;
+        // comments don't have to be single characters 
+        if (string_char_at(word, 1) != "#") {
+            switch (word) {
+                case "v":
+                    if (ds_queue_size(q) >= 3) {
+                        ds_list_add(v_x, real(ds_queue_dequeue(q)));
+                        ds_list_add(v_y, real(ds_queue_dequeue(q)));
+                        ds_list_add(v_z, real(ds_queue_dequeue(q)));
+                    } else {
+                        err = "Malformed vertex found (line " + string(line_number) + ")";
+                    }
+                    break;
+                case "vt":
+                    if (ds_queue_size(q) >= 2) {
+                        ds_list_add(v_xtex, real(ds_queue_dequeue(q)));
+                        ds_list_add(v_ytex, real(ds_queue_dequeue(q)));
+                    } else {
+                        err = "Malformed vertex texture found (line " + string(line_number) + ")";
+                    }
+                    break;
+                case "vn":
+                    if (ds_queue_size(q) >= 3) {
+                        ds_list_add(v_nx, real(ds_queue_dequeue(q)));
+                        ds_list_add(v_ny, real(ds_queue_dequeue(q)));
+                        ds_list_add(v_nz, real(ds_queue_dequeue(q)));
+                    } else {
+                        err = "Malformed vertex normal found (line " + string(line_number) + ")";
+                    }
+                    break;
+                case "usemtl":
+                    active_mtl = ds_queue_dequeue(q);
+                    break;
+                case "f":
+                    #region face data
+                    if (ds_queue_size(q) >= 3) {
+                        var s = ds_queue_size(q);
+                        for (var i = 0; i < s; i++) {
+                            var vertex_q = split(ds_queue_dequeue(q), "/", false, true);
+                            switch (ds_queue_size(vertex_q)) {
+                                case 1:
+                                    var vert = real(ds_queue_dequeue(vertex_q)) - 1;    // each of these are -1 because they start indexing from 1 instead of 0. Why?
+                                    xx[i] = v_x[| vert];
+                                    yy[i] = v_y[| vert];
+                                    zz[i] = v_z[| vert];
+                                    nx[i] = 0;
+                                    ny[i] = 0;
+                                    nz[i] = 1;
+                                    xtex[i] = 0;
+                                    ytex[i] = 0;
+                                    r[i] = ds_map_exists(mtl_color_r, active_mtl) ? mtl_color_r[? active_mtl] : 255;
+                                    g[i] = ds_map_exists(mtl_color_g, active_mtl) ? mtl_color_g[? active_mtl] : 255;
+                                    b[i] = ds_map_exists(mtl_color_b, active_mtl) ? mtl_color_b[? active_mtl] : 255;
+                                    a[i] = ds_map_exists(mtl_alpha, active_mtl) ? mtl_alpha[? active_mtl] : 1;
+                                    break;
+                                case 2:
+                                    var vert = real(ds_queue_dequeue(vertex_q)) - 1;
+                                    var tex = real(ds_queue_dequeue(vertex_q)) - 1;
+                                    xx[i] = v_x[| vert];
+                                    yy[i] = v_y[| vert];
+                                    zz[i] = v_z[| vert];
+                                    xtex[i] = v_xtex[| tex];
+                                    ytex[i] = v_ytex[| tex];
+                                    nx[i] = 0;
+                                    ny[i] = 0;
+                                    nz[i] = 1;
+                                    r[i] = ds_map_exists(mtl_color_r, active_mtl) ? mtl_color_r[? active_mtl] : 255;
+                                    g[i] = ds_map_exists(mtl_color_g, active_mtl) ? mtl_color_g[? active_mtl] : 255;
+                                    b[i] = ds_map_exists(mtl_color_b, active_mtl) ? mtl_color_b[? active_mtl] : 255;
+                                    a[i] = ds_map_exists(mtl_alpha, active_mtl) ? mtl_alpha[? active_mtl] : 1;
+                                    break;
+                                case 3:
+                                    var vert = real(ds_queue_dequeue(vertex_q)) - 1;
+                                    // if the vt term is blank (v//vn), that is
+                                    // not the same as having just two terms (v/vt)
+                                    var middle_term = ds_queue_dequeue(vertex_q);
+                                    var tex = (middle_term == "") ? -1 : (real(middle_term) - 1);
+                                    var normal = real(ds_queue_dequeue(vertex_q))-1;
+                                    xx[i] = v_x[| vert];
+                                    yy[i] = v_y[| vert];
+                                    zz[i] = v_z[| vert];
+                                    nx[i] = v_nx[| normal];
+                                    ny[i] = v_ny[| normal];
+                                    nz[i] = v_nz[| normal];
+                                    if (tex == -1) {
+                                        xtex[i] = 0;
+                                        ytex[i] = 0;
+                                    } else {
+                                        xtex[i] = v_xtex[| tex];
+                                        ytex[i] = v_ytex[| tex];
+                                    }
+                                    r[i] = ds_map_exists(mtl_color_r, active_mtl) ? mtl_color_r[? active_mtl] : 255;
+                                    g[i] = ds_map_exists(mtl_color_g, active_mtl) ? mtl_color_g[? active_mtl] : 255;
+                                    b[i] = ds_map_exists(mtl_color_b, active_mtl) ? mtl_color_b[? active_mtl] : 255;
+                                    a[i] = ds_map_exists(mtl_alpha, active_mtl) ? mtl_alpha[? active_mtl] : 1;
+                                    break;
+                            }
                         }
+                        // faces are triangle fans
+                        for (var i = 1; i < array_length_1d(xx) - 1; i++) {
+                            ds_list_add(temp_vertices, [xx[0], yy[0], zz[0], nx[0], ny[0], nz[0], xtex[0], ytex[0], (b[0] << 16) | (g[0] << 8) | r[0], a[0]]);
+                            ds_list_add(temp_vertices, [xx[i], yy[i], zz[i], nx[i], ny[i], nz[i], xtex[i], ytex[i], (b[i] << 16) | (g[i] << 8) | r[i], a[i]]);
+                            ds_list_add(temp_vertices, [xx[i + 1], yy[i + 1], zz[i + 1], nx[i + 1], ny[i + 1], nz[i + 1], xtex[i + 1], ytex[i + 1], (b[i + 1] << 16) | (g[i + 1] << 8) | r[i + 1], a[i + 1]]);
+                        }
+                        ds_queue_destroy(vertex_q);
+                    } else {
+                        err = "Malformed face found (line " + string(line_number) + ")";
                     }
-                    // faces are triangle fans
-                    for (var i = 1; i < array_length_1d(xx) - 1; i++) {
-                        ds_list_add(temp_vertices, [xx[0], yy[0], zz[0], nx[0], ny[0], nz[0], xtex[0], ytex[0], (b[0] << 16) | (g[0] << 8) | r[0], a[0]]);
-                        ds_list_add(temp_vertices, [xx[i], yy[i], zz[i], nx[i], ny[i], nz[i], xtex[i], ytex[i], (b[i] << 16) | (g[i] << 8) | r[i], a[i]]);
-                        ds_list_add(temp_vertices, [xx[i + 1], yy[i + 1], zz[i + 1], nx[i + 1], ny[i + 1], nz[i + 1], xtex[i + 1], ytex[i + 1], (b[i + 1] << 16) | (g[i + 1] << 8) | r[i + 1], a[i + 1]]);
-                    }
-                    ds_queue_destroy(vertex_q);
-                } else {
-                    err = "Malformed face found (line " + string(line_number) + ")";
-                }
-                #endregion
-                break;
-            case "s":   // surface something
-                break;
-            case "mtllib":  // specify the mtllib file
-                #region
-                var mfn = "";
-                while (!ds_queue_empty(q)) mfn += ds_queue_dequeue(q) + (ds_queue_empty(q) ? "" : " ");
-                if (!file_exists(mfn)) mfn = base_path + mfn;
+                    #endregion
+                    break;
+                case "s":   // surface something
+                    break;
+                case "mtllib":  // specify the mtllib file
+                    #region mtl data
+                    var mfn = "";
+                    while (!ds_queue_empty(q)) mfn += ds_queue_dequeue(q) + (ds_queue_empty(q) ? "" : " ");
+                    if (!file_exists(mfn)) mfn = base_path + mfn;
                 
-                if (file_exists(mfn)) {
-                    var matfile = file_text_open_read(mfn);
-                    var mtl_name = "";
+                    if (file_exists(mfn)) {
+                        var matfile = file_text_open_read(mfn);
+                        var mtl_name = "";
                     
-                    while (!file_text_eof(matfile)) {
-                        var line = file_text_read_string(matfile);
-                        file_text_readln(matfile);
-                        var spl = split(line, " ");
-                        switch (ds_queue_dequeue(spl)) {
-                            case "newmtl":
-                                mtl_name = ds_queue_dequeue(spl);
-                                break;
-                            case "Kd":  // Diffuse color (the color we're concerned with)
-                                mtl_color_r[? mtl_name] = real(ds_queue_dequeue(spl)) * 255;
-                                mtl_color_g[? mtl_name] = real(ds_queue_dequeue(spl)) * 255;
-                                mtl_color_b[? mtl_name] = real(ds_queue_dequeue(spl)) * 255;
-                                break;
-                            case "d":   // "dissolved" (alpha)
-                                mtl_alpha[? mtl_name] = real(ds_queue_dequeue(spl));
-                                break;
-                            case "Tr":  // "transparent" (1 - alpha)
-                                mtl_alpha[? mtl_name] = 1 - real(ds_queue_dequeue(spl));
-                                break;
-                            case "map_Kd":                  // dissolve (base) texture
-                                var texfn = "";
-                                while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
-                                if (!file_exists(texfn)) texfn = base_path + texfn;
-                                var ts = tileset_create(texfn, undefined, undefined, false);
-                                ts.name = base_name + ".BaseTexture";
-                                if (ds_map_size(mtl_map_diffuse) == 1) warnings |= warn_map_1;
-                                else mtl_map_diffuse[? mtl_name] = ts;
-                                break;
-                            case "map_Ka":                  // ambient texture
-                                var texfn = "";
-                                while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
-                                if (!file_exists(texfn)) texfn = base_path + texfn;
-                                var ts = tileset_create(texfn, undefined, undefined, false);
-                                ts.name = base_name + ".AmbientMap";
-                                if (ds_map_size(mtl_map_ambient) == 1) warnings |= warn_map_2;
-                                else mtl_map_ambient[? mtl_name] = ts;
-                                break;
-                            case "map_Ks":                  // specular color texture
-                                var texfn = "";
-                                while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
-                                if (!file_exists(texfn)) texfn = base_path + texfn;
-                                var ts = tileset_create(texfn, undefined, undefined, false);
-                                ts.name = base_name + ".SpecularColorMap";
-                                if (ds_map_size(mtl_map_specular_color) == 1) warnings |= warn_map_3;
-                                else mtl_map_specular_color[? mtl_name] = ts;
-                                break;
-                            case "map_Ns":                  // specular highlight texture
-                                var texfn = "";
-                                while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
-                                if (!file_exists(texfn)) texfn = base_path + texfn;
-                                var ts = tileset_create(texfn, undefined, undefined, false);
-                                ts.name = base_name + ".SpecularHighlightMap";
-                                if (ds_map_size(mtl_map_specular_highlight) == 1) warnings |= warn_map_4;
-                                else mtl_map_specular_highlight[? mtl_name] = ts;
-                                break;
-                            case "map_d":                   // alpha texture
-                                var texfn = "";
-                                while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
-                                if (!file_exists(texfn)) texfn = base_path + texfn;
-                                var ts = tileset_create(texfn, undefined, undefined, false);
-                                ts.name = base_name + ".AlphaMap";
-                                if (ds_map_size(mtl_map_alpha) == 1) warnings |= warn_map_5;
-                                else mtl_map_alpha[? mtl_name] = ts;
-                                break;
-                            case "map_bump":                // bump texture
-                                var texfn = "";
-                                while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
-                                if (!file_exists(texfn)) texfn = base_path + texfn;
-                                var ts = tileset_create(texfn, undefined, undefined, false);
-                                ts.name = base_name + ".BumpMap";
-                                if (ds_map_size(mtl_map_bump) == 1) warnings |= warn_map_6;
-                                else mtl_map_bump[? mtl_name] = ts;
-                                break;
-                            case "bump":
-                                warnings |= warn_alt_bump;
-                                break;
-                            case "disp":                    // displacement texture
-                                var texfn = "";
-                                while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
-                                if (!file_exists(texfn)) texfn = base_path + texfn;
-                                var ts = tileset_create(texfn, undefined, undefined, false);
-                                ts.name = base_name + ".DisplacementMap";
-                                if (ds_map_size(mtl_map_displace) == 1) warnings |= warn_map_7;
-                                else mtl_map_displace[? mtl_name] = ts;
-                                break;
-                            case "decal":                   // stencil decal texture
-                                var texfn = "";
-                                while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
-                                if (!file_exists(texfn)) texfn = base_path + texfn;
-                                var ts = tileset_create(texfn, undefined, undefined, false);
-                                ts.name = base_name + ".StencilDecal";
-                                if (ds_map_size(mtl_map_decal) == 1) warnings |= warn_map_8;
-                                else mtl_map_decal[? mtl_name] = ts;
-                                break;
-                            default:    // There are way more attributes available than I'm going to use later - maybe
-                                break;
+                        while (!file_text_eof(matfile)) {
+                            var line = file_text_read_string(matfile);
+                            file_text_readln(matfile);
+                            var spl = split(line, " ");
+                            switch (ds_queue_dequeue(spl)) {
+                                case "newmtl":
+                                    mtl_name = ds_queue_dequeue(spl);
+                                    break;
+                                case "Kd":  // Diffuse color (the color we're concerned with)
+                                    mtl_color_r[? mtl_name] = real(ds_queue_dequeue(spl)) * 255;
+                                    mtl_color_g[? mtl_name] = real(ds_queue_dequeue(spl)) * 255;
+                                    mtl_color_b[? mtl_name] = real(ds_queue_dequeue(spl)) * 255;
+                                    break;
+                                case "d":   // "dissolved" (alpha)
+                                    mtl_alpha[? mtl_name] = real(ds_queue_dequeue(spl));
+                                    break;
+                                case "Tr":  // "transparent" (1 - alpha)
+                                    mtl_alpha[? mtl_name] = 1 - real(ds_queue_dequeue(spl));
+                                    break;
+                                case "map_Kd":                  // dissolve (base) texture
+                                    var texfn = "";
+                                    while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
+                                    if (!file_exists(texfn)) texfn = base_path + texfn;
+                                    var ts = tileset_create(texfn, undefined, undefined, false);
+                                    ts.name = base_name + ".BaseTexture";
+                                    if (ds_map_size(mtl_map_diffuse) == 1) warnings |= warn_map_1;
+                                    else mtl_map_diffuse[? mtl_name] = ts;
+                                    break;
+                                case "map_Ka":                  // ambient texture
+                                    var texfn = "";
+                                    while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
+                                    if (!file_exists(texfn)) texfn = base_path + texfn;
+                                    var ts = tileset_create(texfn, undefined, undefined, false);
+                                    ts.name = base_name + ".AmbientMap";
+                                    if (ds_map_size(mtl_map_ambient) == 1) warnings |= warn_map_2;
+                                    else mtl_map_ambient[? mtl_name] = ts;
+                                    break;
+                                case "map_Ks":                  // specular color texture
+                                    var texfn = "";
+                                    while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
+                                    if (!file_exists(texfn)) texfn = base_path + texfn;
+                                    var ts = tileset_create(texfn, undefined, undefined, false);
+                                    ts.name = base_name + ".SpecularColorMap";
+                                    if (ds_map_size(mtl_map_specular_color) == 1) warnings |= warn_map_3;
+                                    else mtl_map_specular_color[? mtl_name] = ts;
+                                    break;
+                                case "map_Ns":                  // specular highlight texture
+                                    var texfn = "";
+                                    while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
+                                    if (!file_exists(texfn)) texfn = base_path + texfn;
+                                    var ts = tileset_create(texfn, undefined, undefined, false);
+                                    ts.name = base_name + ".SpecularHighlightMap";
+                                    if (ds_map_size(mtl_map_specular_highlight) == 1) warnings |= warn_map_4;
+                                    else mtl_map_specular_highlight[? mtl_name] = ts;
+                                    break;
+                                case "map_d":                   // alpha texture
+                                    var texfn = "";
+                                    while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
+                                    if (!file_exists(texfn)) texfn = base_path + texfn;
+                                    var ts = tileset_create(texfn, undefined, undefined, false);
+                                    ts.name = base_name + ".AlphaMap";
+                                    if (ds_map_size(mtl_map_alpha) == 1) warnings |= warn_map_5;
+                                    else mtl_map_alpha[? mtl_name] = ts;
+                                    break;
+                                case "map_bump":                // bump texture
+                                    var texfn = "";
+                                    while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
+                                    if (!file_exists(texfn)) texfn = base_path + texfn;
+                                    var ts = tileset_create(texfn, undefined, undefined, false);
+                                    ts.name = base_name + ".BumpMap";
+                                    if (ds_map_size(mtl_map_bump) == 1) warnings |= warn_map_6;
+                                    else mtl_map_bump[? mtl_name] = ts;
+                                    break;
+                                case "bump":
+                                    warnings |= warn_alt_bump;
+                                    break;
+                                case "disp":                    // displacement texture
+                                    var texfn = "";
+                                    while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
+                                    if (!file_exists(texfn)) texfn = base_path + texfn;
+                                    var ts = tileset_create(texfn, undefined, undefined, false);
+                                    ts.name = base_name + ".DisplacementMap";
+                                    if (ds_map_size(mtl_map_displace) == 1) warnings |= warn_map_7;
+                                    else mtl_map_displace[? mtl_name] = ts;
+                                    break;
+                                case "decal":                   // stencil decal texture
+                                    var texfn = "";
+                                    while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
+                                    if (!file_exists(texfn)) texfn = base_path + texfn;
+                                    var ts = tileset_create(texfn, undefined, undefined, false);
+                                    ts.name = base_name + ".StencilDecal";
+                                    if (ds_map_size(mtl_map_decal) == 1) warnings |= warn_map_8;
+                                    else mtl_map_decal[? mtl_name] = ts;
+                                    break;
+                                default:    // There are way more attributes available than I'm going to use later - maybe
+                                    break;
+                            }
+                            ds_queue_destroy(spl);
                         }
-                        ds_queue_destroy(spl);
+                        file_text_close(matfile);
                     }
-                    file_text_close(matfile);
-                }
-                #endregion
-                break;
-            case "g":   // group
-                break;
-            case "o":   // object name
-                break;
-            case "l":   // line
-                break;
-            case "#":   // comment
-                break;
-            default:
-                err = "Unsupported thing found in your model, skipping everything (line " + string(line_number) + "): " + string(word);
-                break;
+                    #endregion
+                    break;
+                case "g":   // group
+                    break;
+                case "o":   // object name
+                    break;
+                case "l":   // line
+                    break;
+                default:
+                    err = "Unsupported thing found in your model, skipping everything (line " + string(line_number) + "): " + string(word);
+                    break;
+            }
         }
-        
         ds_queue_destroy(q);
     }
     file_text_close(f);
