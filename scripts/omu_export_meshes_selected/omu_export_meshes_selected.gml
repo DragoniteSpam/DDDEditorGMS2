@@ -25,13 +25,13 @@ for (var index = ds_map_find_first(selection); index != undefined; index = ds_ma
     switch (mesh.type) {
         case MeshTypes.RAW:
             switch (filename_ext(fn)) {
-                case ".obj": export_obj(fn, mesh, false); break;
-                case ".d3d": case ".gmmod": export_d3d(fn, mesh); break;
-                case ".vbuff": export_vb(fn, mesh, format); break;
+                case ".obj": export_obj(name, mesh, false); break;
+                case ".d3d": case ".gmmod": export_d3d(name, mesh); break;
+                case ".vbuff": export_vb(name, mesh, format); break;
             }
-            return;
+            break;
         case MeshTypes.SMF:
-            export_smf(fn, mesh);
-            return;
+            export_smf(name, mesh);
+            break;
     }
 }
