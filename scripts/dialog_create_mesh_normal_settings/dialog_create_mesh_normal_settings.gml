@@ -27,15 +27,19 @@ var yy = 64;
 var yy_base = 64;
 
 var el_none = create_button(c1x, yy, "Remove Normals", ew, eh, fa_center, omu_meshes_normals_remove, dg);
+el_none.tooltip = "Re-initialize all normals (to 0, 0, 1), so that the entire model is lit the same way.";
 yy += el_none.height + spacing;
 
 var el_flat = create_button(c1x, yy, "Set Flat Normals", ew, eh, fa_center, omu_meshes_normals_flat, dg);
+el_flat.tooltip = "Set the normals of each vertex to the normals of their triangle.";
 yy += el_flat.height + spacing;
 
 var el_smooth = create_button(c1x, yy, "Set Smooth Normals", ew, eh, fa_center, omu_meshes_normals_smooth, dg);
+el_smooth.tooltip = "Weigh the normals of each vertex based on the angle of their surrounding triangles, if the angle between them is less than the specified threshold.";
 yy += el_smooth.height + spacing;
 
 var el_smooth_threshold = create_input(c1x, yy, "Threshold:", ew, eh, omu_meshes_normals_smooth_threshold, Stuff.setting_normal_threshold, "angle", validate_double, 0, 360, 5, vx1, vy1, vx2, vy2, dg);
+el_smooth_threshold.tooltip = "The threshold which the angle between two triangles must be less than in order for their vertix normals to be smoothed. (A threshold of zero is the same as flat shading.)";
 yy += el_smooth_threshold.height + spacing;
 
 var b_width = 128;
