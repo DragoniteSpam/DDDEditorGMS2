@@ -220,6 +220,7 @@ if (file_exists(fn)) {
                             case "map_Kd":                  // dissolve (base) texture
                                 var texfn = "";
                                 while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
+                                if (!file_exists(texfn)) texfn = base_path + texfn;
                                 var ts = tileset_create(texfn, undefined, undefined, false);
                                 ts.name = base_name + ".BaseTexture";
                                 if (ds_map_size(mtl_map_diffuse) == 1) warnings |= warn_map_1;
@@ -228,6 +229,7 @@ if (file_exists(fn)) {
                             case "map_Ka":                  // ambient texture
                                 var texfn = "";
                                 while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
+                                if (!file_exists(texfn)) texfn = base_path + texfn;
                                 var ts = tileset_create(texfn, undefined, undefined, false);
                                 ts.name = base_name + ".AmbientMap";
                                 if (ds_map_size(mtl_map_ambient) == 1) warnings |= warn_map_2;
@@ -236,6 +238,7 @@ if (file_exists(fn)) {
                             case "map_Ks":                  // specular color texture
                                 var texfn = "";
                                 while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
+                                if (!file_exists(texfn)) texfn = base_path + texfn;
                                 var ts = tileset_create(texfn, undefined, undefined, false);
                                 ts.name = base_name + ".SpecularColorMap";
                                 if (ds_map_size(mtl_map_specular_color) == 1) warnings |= warn_map_3;
@@ -244,6 +247,7 @@ if (file_exists(fn)) {
                             case "map_Ns":                  // specular highlight texture
                                 var texfn = "";
                                 while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
+                                if (!file_exists(texfn)) texfn = base_path + texfn;
                                 var ts = tileset_create(texfn, undefined, undefined, false);
                                 ts.name = base_name + ".SpecularHighlightMap";
                                 if (ds_map_size(mtl_map_specular_highlight) == 1) warnings |= warn_map_4;
@@ -252,6 +256,7 @@ if (file_exists(fn)) {
                             case "map_d":                   // alpha texture
                                 var texfn = "";
                                 while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
+                                if (!file_exists(texfn)) texfn = base_path + texfn;
                                 var ts = tileset_create(texfn, undefined, undefined, false);
                                 ts.name = base_name + ".AlphaMap";
                                 if (ds_map_size(mtl_map_alpha) == 1) warnings |= warn_map_5;
@@ -260,6 +265,7 @@ if (file_exists(fn)) {
                             case "map_bump":                // bump texture
                                 var texfn = "";
                                 while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
+                                if (!file_exists(texfn)) texfn = base_path + texfn;
                                 var ts = tileset_create(texfn, undefined, undefined, false);
                                 ts.name = base_name + ".BumpMap";
                                 if (ds_map_size(mtl_map_bump) == 1) warnings |= warn_map_6;
@@ -271,6 +277,7 @@ if (file_exists(fn)) {
                             case "disp":                    // displacement texture
                                 var texfn = "";
                                 while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
+                                if (!file_exists(texfn)) texfn = base_path + texfn;
                                 var ts = tileset_create(texfn, undefined, undefined, false);
                                 ts.name = base_name + ".DisplacementMap";
                                 if (ds_map_size(mtl_map_displace) == 1) warnings |= warn_map_7;
@@ -279,6 +286,7 @@ if (file_exists(fn)) {
                             case "decal":                   // stencil decal texture
                                 var texfn = "";
                                 while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
+                                if (!file_exists(texfn)) texfn = base_path + texfn;
                                 var ts = tileset_create(texfn, undefined, undefined, false);
                                 ts.name = base_name + ".StencilDecal";
                                 if (ds_map_size(mtl_map_decal) == 1) warnings |= warn_map_8;
