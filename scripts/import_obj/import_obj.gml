@@ -127,6 +127,18 @@ if (file_exists(fn)) {
                 case "f":
                     #region face data
                     if (ds_queue_size(q) >= 3) {
+                        xx = [0, 0, 0];
+                        yy = [0, 0, 0];
+                        zz = [0, 0, 0];
+                        nx = [0, 0, 0];
+                        nx = [0, 0, 0];
+                        nx = [0, 0, 0];
+                        xtex = [0, 0, 0];
+                        ytex = [0, 0, 0];
+                        r = [0, 0, 0];
+                        g = [0, 0, 0];
+                        b = [0, 0, 0];
+                        a = [0, 0, 0];
                         var s = ds_queue_size(q);
                         for (var i = 0; i < s; i++) {
                             var vertex_q = split(ds_queue_dequeue(q), "/", false, true);
@@ -190,10 +202,10 @@ if (file_exists(fn)) {
                             }
                         }
                         // faces are triangle fans
-                        for (var i = 1; i < array_length_1d(xx) - 1; i++) {
-                            ds_list_add(temp_vertices, [xx[0], yy[0], zz[0], nx[0], ny[0], nz[0], xtex[0], ytex[0], (b[0] << 16) | (g[0] << 8) | r[0], a[0]]);
-                            ds_list_add(temp_vertices, [xx[i], yy[i], zz[i], nx[i], ny[i], nz[i], xtex[i], ytex[i], (b[i] << 16) | (g[i] << 8) | r[i], a[i]]);
-                            ds_list_add(temp_vertices, [xx[i + 1], yy[i + 1], zz[i + 1], nx[i + 1], ny[i + 1], nz[i + 1], xtex[i + 1], ytex[i + 1], (b[i + 1] << 16) | (g[i + 1] << 8) | r[i + 1], a[i + 1]]);
+                        for (var i = 2; i < array_length_1d(xx); i++) {
+                            ds_list_add(temp_vertices, [xx[0],      yy[0],      zz[0],      nx[0],      ny[0],      nz[0],      xtex[0],        ytex[0],        (b[0] << 16) |      (g[0] << 8) |       r[0],       a[0]]);
+                            ds_list_add(temp_vertices, [xx[i - 1],  yy[i - 1],  zz[i - 1],  nx[i - 1],  ny[i - 1],  nz[i - 1],  xtex[i - 1],    ytex[i - 1],    (b[i - 1] << 16) |  (g[i - 1] << 8) |   r[i - 1],   a[i - 1]]);
+                            ds_list_add(temp_vertices, [xx[i - 0],  yy[i - 0],  zz[i - 0],  nx[i - 0],  ny[i - 0],  nz[i - 0],  xtex[i - 0],    ytex[i - 0],    (b[i - 0] << 16) |  (g[i - 0] << 8) |   r[i - 0],   a[i - 0]]);
                         }
                         ds_queue_destroy(vertex_q);
                     } else {
