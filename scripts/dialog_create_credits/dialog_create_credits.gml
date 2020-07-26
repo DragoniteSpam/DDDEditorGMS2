@@ -22,7 +22,7 @@ var el_author_2 = create_button(32 + (bw + spacing) * 1, yy, "YouTube", bw, eh, 
 el_author_2.tooltip = "https://www.youtube.com/c/dragonitespam/about";
 var el_author_3 = create_button(32 + (bw + spacing) * 2, yy, "Github", bw, eh, fa_center, uivc_url_ds_github, dg);
 el_author_3.tooltip = "https://github.com/DragoniteSpam";
-var el_author_4 = create_button(32 + (bw + spacing) * 2, yy, "Itch.io", bw, eh, fa_center, uivc_url_ds_itch, dg);
+var el_author_4 = create_button(32 + (bw + spacing) * 3, yy, "Itch.io", bw, eh, fa_center, uivc_url_ds_itch, dg);
 el_author_4.tooltip = "https://dragonite.itch.io/";
 yy += 40;
 

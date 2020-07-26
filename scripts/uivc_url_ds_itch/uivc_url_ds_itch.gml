@@ -2,4 +2,4 @@
 
 var button = argument0;
 
-ds_stuff_open("https://dragonite.itch.io/");
+url_open("https://dragonite.itch.io/");

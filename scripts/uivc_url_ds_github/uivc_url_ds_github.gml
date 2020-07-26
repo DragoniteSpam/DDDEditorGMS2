@@ -2,4 +2,4 @@
 
 var button = argument0;
 
-ds_stuff_open("https://github.com/DragoniteSpam");
+url_open("https://github.com/DragoniteSpam");
