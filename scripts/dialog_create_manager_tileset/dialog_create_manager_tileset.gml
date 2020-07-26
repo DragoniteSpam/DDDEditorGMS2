@@ -4,7 +4,7 @@ var dw = 1280;
 var dh = 720;
 
 var dg = dialog_create(dw, dh, "Data: Textures and Tilesets", dialog_default, dc_close_no_questions_asked, argument0);
-
+dg.dialog_flags |= DialogFlags.IS_GENERIC_WARNING;
 var columns = 4;
 var spacing = 16;
 var ew = dw / columns - spacing * 2;
