@@ -33,7 +33,7 @@ yy += el_flat.height + spacing;
 var el_smooth = create_button(c1x, yy, "Set Smooth Normals", ew, eh, fa_center, omu_meshes_normals_smooth, dg);
 yy += el_smooth.height + spacing;
 
-var el_smooth_threshold = create_input(c1x, yy, "Threshold:", ew, eh, null, dg.threshold, "angle", validate_double, 0, 360, 5, vx1, vy1, vx2, vy2, dg);
+var el_smooth_threshold = create_input(c1x, yy, "Threshold:", ew, eh, omu_meshes_normals_smooth_threshold, dg.threshold, "angle", validate_double, 0, 360, 5, vx1, vy1, vx2, vy2, dg);
 yy += el_smooth_threshold.height + spacing;
 
 var b_width = 128;
