@@ -4,6 +4,11 @@
 var mesh = argument0;
 var threshold = cos(argument1);
 
+// probably not super efficient but
+if (threshold < 1) {
+    mesh_set_normals_flat(mesh);
+}
+
 for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
     var submesh = mesh.submeshes[| i];
     var buffer = submesh.buffer;
@@ -58,14 +63,12 @@ for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
         var nz = buffer_peek(buffer, position + 20, buffer_f32);
         var key = string(xx) + "," + string(yy) + "," + string(zz);
         
-        if (ds_map_exists(normal_map, key)) {
-            var n = vector3_normalize(normal_map[? key]);
-            var angle_dot = dot_product_3d(n[0], n[1], n[2], nx, ny, nz);
-            if (angle_dot > threshold) {
-                buffer_poke(buffer, position + 12, buffer_f32, n[0]);
-                buffer_poke(buffer, position + 16, buffer_f32, n[1]);
-                buffer_poke(buffer, position + 20, buffer_f32, n[2]);
-            }
+        var n = vector3_normalize(normal_map[? key]);
+        var angle_dot = dot_product_3d(n[0], n[1], n[2], nx, ny, nz);
+        if (angle_dot > threshold) {
+            buffer_poke(buffer, position + 12, buffer_f32, n[0]);
+            buffer_poke(buffer, position + 16, buffer_f32, n[1]);
+            buffer_poke(buffer, position + 20, buffer_f32, n[2]);
         }
         
         buffer_seek(buffer, buffer_seek_relative, Stuff.graphics.format_size);
