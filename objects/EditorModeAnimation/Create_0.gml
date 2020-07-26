@@ -24,7 +24,7 @@ yup = def_yup;
 zup = def_zup;
 
 fov = setting_get("Animation", "fov", def_fov);
-pitch = arctan2(z, point_distance(0, 0, x, y));
+pitch = darctan2(z - zto, point_distance(x, y, xto, yto));
 direction = point_direction(x, y, 0, 0);
 
 update = editor_update_animation;
