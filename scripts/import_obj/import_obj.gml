@@ -24,6 +24,7 @@ var warn_map_7 = 0x0040;
 var warn_map_8 = 0x0080;
 
 var mfn = filename_change_ext(fn, ".mtl");
+var base_path = filename_path(fn);
 var base_name = filename_change_ext(filename_name(fn), "");
 
 if (file_exists(fn)) {
@@ -70,7 +71,7 @@ if (file_exists(fn)) {
                     mtl_alpha[? mtl_name] = 1 - real(ds_queue_dequeue(spl));
                     break;
                 case "map_Kd":                  // dissolve (base) texture
-                    var texfn = filename_path(fn);
+                    var texfn = "";
                     while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
                     var ts = tileset_create(texfn, undefined, undefined, false);
                     ts.name = base_name + ".BaseTexture";
@@ -78,40 +79,40 @@ if (file_exists(fn)) {
                     mtl_map_diffuse[? mtl_name] = ts;
                     break;
                 case "map_Ka":                  // ambient texture
-                    var texfn = filename_path(fn) + ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
-                    while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl);
+                    var texfn = "";
+                    while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
                     var ts = tileset_create(texfn, undefined, undefined, false);
                     ts.name = base_name + ".AmbientMap";
                     if (ds_map_size(mtl_map_ambient) == 1) warnings |= warn_map_2;
                     mtl_map_ambient[? mtl_name] = ts;
                     break;
                 case "map_Ks":                  // specular color texture
-                    var texfn = filename_path(fn) + ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
-                    while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl);
+                    var texfn = "";
+                    while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
                     var ts = tileset_create(texfn, undefined, undefined, false);
                     ts.name = base_name + ".SpecularColorMap";
                     if (ds_map_size(mtl_map_specular_color) == 1) warnings |= warn_map_3;
                     mtl_map_specular_color[? mtl_name] = ts;
                     break;
                 case "map_Ns":                  // specular highlight texture
-                    var texfn = filename_path(fn) + ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
-                    while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl);
+                    var texfn = "";
+                    while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
                     var ts = tileset_create(texfn, undefined, undefined, false);
                     ts.name = base_name + ".SpecularHighlightMap";
                     if (ds_map_size(mtl_map_specular_highlight) == 1) warnings |= warn_map_4;
                     mtl_map_specular_highlight[? mtl_name] = ts;
                     break;
                 case "map_d":                   // alpha texture
-                    var texfn = filename_path(fn) + ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
-                    while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl);
+                    var texfn = "";
+                    while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
                     var ts = tileset_create(texfn, undefined, undefined, false);
                     ts.name = base_name + ".AlphaMap";
                     if (ds_map_size(mtl_map_alpha) == 1) warnings |= warn_map_5;
                     mtl_map_alpha[? mtl_name] = ts;
                     break;
                 case "map_bump":                // bump texture
-                    var texfn = filename_path(fn) + ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
-                    while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl);
+                    var texfn = "";
+                    while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
                     var ts = tileset_create(texfn, undefined, undefined, false);
                     ts.name = base_name + ".BumpMap";
                     if (ds_map_size(mtl_map_bump) == 1) warnings |= warn_map_6;
@@ -121,16 +122,16 @@ if (file_exists(fn)) {
                     warn += "bump map (alternate) - not yet implemented\n";
                     break;
                 case "disp":                    // displacement texture
-                    var texfn = filename_path(fn) + ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
-                    while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl);
+                    var texfn = "";
+                    while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
                     var ts = tileset_create(texfn, undefined, undefined, false);
                     ts.name = base_name + ".DisplacementMap";
                     if (ds_map_size(mtl_map_displace) == 1) warnings |= warn_map_7;
                     mtl_map_displace[? mtl_name] = ts;
                     break;
                 case "decal":                   // stencil decal texture
-                    var texfn = filename_path(fn) + ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
-                    while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl);
+                    var texfn = "";
+                    while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
                     var ts = tileset_create(texfn, undefined, undefined, false);
                     ts.name = base_name + ".StencilDecal";
                     if (ds_map_size(mtl_map_decal) == 1) warnings |= warn_map_8;
