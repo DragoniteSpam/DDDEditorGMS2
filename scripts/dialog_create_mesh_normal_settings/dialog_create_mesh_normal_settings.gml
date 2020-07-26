@@ -26,6 +26,9 @@ var spacing = 16;
 var yy = 64;
 var yy_base = 64;
 
+var el_none = create_button(c1x, yy, "Remove Normals", ew, eh, fa_center, omu_meshes_normals_remove, dg);
+yy += el_none.height + spacing;
+
 var el_flat = create_button(c1x, yy, "Set Flat Normals", ew, eh, fa_center, omu_meshes_normals_flat, dg);
 yy += el_flat.height + spacing;
 
@@ -40,7 +43,7 @@ var b_height = 32;
 var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
 
 ds_list_add(dg.contents,
-    el_flat, el_smooth, el_smooth_threshold,
+    el_none, el_flat, el_smooth, el_smooth_threshold,
     el_confirm
 );
 
