@@ -22,6 +22,10 @@ button.surface = surface_rebuild(button.surface, button.width, button.height);
 surface_set_target(button.surface);
 draw_clear_alpha(button.interactive ? c_white : c_ltgray, 1);
 
+if (button.draw_checker_behind) {
+    draw_sprite_tiled(b_tileset_checkers, 0, 0, 0);
+}
+
 var color = c_white;
 if (button.interactive && dialog_is_active(button.root)) {
     var inbounds = mouse_within_rectangle_determine(x1, y1, x2, y2, button.adjust_view);
