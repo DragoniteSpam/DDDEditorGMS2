@@ -3,6 +3,17 @@
 /// @param [sprite-index]
 /// @param [create-master?]
 
+var file_hash = "";
+if (file_exists(argument[0])) {
+    file_hash = md5_file(argument[0]);
+    for (var i = 0; i < ds_list_size(Stuff.all_graphic_tilesets); i++) {
+        var ts = Stuff.all_graphic_tilesets[| i];
+        if (ts.hash == file_hash) {
+            return ts;
+        }
+    }
+}
+
 // don't instantiate these outside of this script
 with (instance_create_depth(0, 0, 0, DataTileset)) {
     name = filename_change_ext(filename_name(argument[0]), "");
@@ -14,6 +25,7 @@ with (instance_create_depth(0, 0, 0, DataTileset)) {
     autotiles = (argument_count > 1 && argument[1] != undefined) ? argument[1] : autotiles;
     picture = (argument_count > 2 && argument[2] != undefined) ? argument[2] : sprite_add(picture_name, 0, false, false, 0, 0);
     var create_master = (argument_count > 3 && argument[3] != undefined) ? argument[3] : true;
+    hash = file_hash;
     
     if (!sprite_exists(picture)) {
         picture = b_tileset_checkers;
@@ -27,6 +39,8 @@ with (instance_create_depth(0, 0, 0, DataTileset)) {
     array_clear(at_flags, 0);
     
     master = create_master ? tileset_create_master(id) : b_tileset_textureless;
+    
+    ds_list_add(Stuff.all_graphic_tilesets, id);
     
     instance_deactivate_object(id);
     

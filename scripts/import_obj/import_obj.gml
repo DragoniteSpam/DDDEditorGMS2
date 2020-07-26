@@ -74,7 +74,6 @@ if (file_exists(fn)) {
                     while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
                     var ts = tileset_create(texfn, undefined, undefined, false);
                     ts.name = base_name + ".BaseTexture";
-                    ds_list_add(Stuff.all_graphic_tilesets, ts);
                     if (ds_map_size(mtl_map_diffuse) == 1) warnings |= warn_map_1;
                     mtl_map_diffuse[? mtl_name] = ts;
                     break;
@@ -83,7 +82,6 @@ if (file_exists(fn)) {
                     while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl);
                     var ts = tileset_create(texfn, undefined, undefined, false);
                     ts.name = base_name + ".AmbientMap";
-                    ds_list_add(Stuff.all_graphic_tilesets, ts);
                     if (ds_map_size(mtl_map_ambient) == 1) warnings |= warn_map_2;
                     mtl_map_ambient[? mtl_name] = ts;
                     break;
@@ -92,7 +90,6 @@ if (file_exists(fn)) {
                     while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl);
                     var ts = tileset_create(texfn, undefined, undefined, false);
                     ts.name = base_name + ".SpecularColorMap";
-                    ds_list_add(Stuff.all_graphic_tilesets, ts);
                     if (ds_map_size(mtl_map_specular_color) == 1) warnings |= warn_map_3;
                     mtl_map_specular_color[? mtl_name] = ts;
                     break;
@@ -101,7 +98,6 @@ if (file_exists(fn)) {
                     while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl);
                     var ts = tileset_create(texfn, undefined, undefined, false);
                     ts.name = base_name + ".SpecularHighlightMap";
-                    ds_list_add(Stuff.all_graphic_tilesets, ts);
                     if (ds_map_size(mtl_map_specular_highlight) == 1) warnings |= warn_map_4;
                     mtl_map_specular_highlight[? mtl_name] = ts;
                     break;
@@ -110,7 +106,6 @@ if (file_exists(fn)) {
                     while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl);
                     var ts = tileset_create(texfn, undefined, undefined, false);
                     ts.name = base_name + ".AlphaMap";
-                    ds_list_add(Stuff.all_graphic_tilesets, ts);
                     if (ds_map_size(mtl_map_alpha) == 1) warnings |= warn_map_5;
                     mtl_map_alpha[? mtl_name] = ts;
                     break;
@@ -119,7 +114,6 @@ if (file_exists(fn)) {
                     while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl);
                     var ts = tileset_create(texfn, undefined, undefined, false);
                     ts.name = base_name + ".BumpMap";
-                    ds_list_add(Stuff.all_graphic_tilesets, ts);
                     if (ds_map_size(mtl_map_bump) == 1) warnings |= warn_map_6;
                     mtl_map_bump[? mtl_name] = ts;
                     break;
@@ -131,7 +125,6 @@ if (file_exists(fn)) {
                     while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl);
                     var ts = tileset_create(texfn, undefined, undefined, false);
                     ts.name = base_name + ".DisplacementMap";
-                    ds_list_add(Stuff.all_graphic_tilesets, ts);
                     if (ds_map_size(mtl_map_displace) == 1) warnings |= warn_map_7;
                     mtl_map_displace[? mtl_name] = ts;
                     break;
@@ -140,7 +133,6 @@ if (file_exists(fn)) {
                     while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl);
                     var ts = tileset_create(texfn, undefined, undefined, false);
                     ts.name = base_name + ".StencilDecal";
-                    ds_list_add(Stuff.all_graphic_tilesets, ts);
                     if (ds_map_size(mtl_map_decal) == 1) warnings |= warn_map_8;
                     mtl_map_decal[? mtl_name] = ts;
                     break;

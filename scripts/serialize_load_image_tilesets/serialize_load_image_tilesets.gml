@@ -55,6 +55,4 @@ for (var i = 0; i < n_tilesets; i++) {
             ts.flags[# j, k] = buffer_read(buffer, buffer_u32);
         }
     }
-    
-    ds_list_add(Stuff.all_graphic_tilesets, ts);
 }

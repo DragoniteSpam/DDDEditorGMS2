@@ -15,3 +15,5 @@ picture_with_frames = -1;
 // for some images, the instance's x, y will be the coordinates on the texture page
 
 npc_frames = [];
+
+hash = "";

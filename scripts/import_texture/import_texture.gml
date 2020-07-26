@@ -4,7 +4,6 @@ var fn = argument[0];
 
 var ts = tileset_create(fn);
 ts.name = filename_change_ext(filename_name(fn),"");
-ds_list_add(Stuff.all_graphic_tilesets, ts);
 
 var dialog = dialog_create_manager_tileset(noone);
 ui_list_select(dialog.el_list, ds_list_size(Stuff.all_graphic_tilesets) - 1);
