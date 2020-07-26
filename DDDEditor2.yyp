@@ -4806,6 +4806,14 @@
             }
         },
         {
+            "Key": "34d96b3e-7719-4140-b92b-bd1c83463029",
+            "Value": {
+                "id": "0f6cd74c-9229-4604-8225-fbbfa9e5754c",
+                "resourcePath": "scripts\\mesh_set_normals_smooth\\mesh_set_normals_smooth.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "34ec1042-7193-4b78-add9-820f36769e50",
             "Value": {
                 "id": "8de8b169-4bb6-4d4b-bbc3-80d18354e5c8",
@@ -6210,6 +6218,14 @@
             "Value": {
                 "id": "87529e30-e8d8-40e0-ac13-c7461df16ebf",
                 "resourcePath": "scripts\\sa_process_selection\\sa_process_selection.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "4618f6c5-3750-4bde-b499-884ca6e23590",
+            "Value": {
+                "id": "163c5d7e-0717-4d5f-888f-5cf7450dc22b",
+                "resourcePath": "scripts\\omu_meshes_normals_smooth\\omu_meshes_normals_smooth.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -15206,6 +15222,14 @@
             }
         },
         {
+            "Key": "aeb4f229-24fd-49d8-86c9-66603ee4dc82",
+            "Value": {
+                "id": "5966d8d4-995b-4bd9-8224-caddd2527801",
+                "resourcePath": "scripts\\omu_meshes_set_normals\\omu_meshes_set_normals.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "aecbb8ee-fed9-4fb8-a933-b609c8d9eea1",
             "Value": {
                 "id": "d7e18b3d-42cd-4094-8ca5-4188a8c185e2",
@@ -19182,6 +19206,14 @@
             }
         },
         {
+            "Key": "dd2a1983-c87e-4770-be15-4d67047ba3f9",
+            "Value": {
+                "id": "f3d8dfaf-7f98-4f10-879b-30e968bbc3f9",
+                "resourcePath": "scripts\\dialog_create_mesh_normal_settings\\dialog_create_mesh_normal_settings.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "dd530bc5-b3be-4ad9-98cb-00e3c00bce71",
             "Value": {
                 "id": "d89e7c9b-e382-47ad-af94-b5ae7f44f5c5",
@@ -22713,6 +22745,7 @@
         "22158ffa-87eb-4f98-aa3d-0b6370920ffb",
         "0fd0a9a4-dea2-4101-8f65-ce052285bd5a",
         "2058cc62-feb6-4f99-8398-168134babf8c",
+        "34d96b3e-7719-4140-b92b-bd1c83463029",
         "2014825b-a570-47e1-8600-19c965a6afcb",
         "ae2be7f6-e7b0-45e5-aff6-edeed2e31f40",
         "8bb911fe-e169-4600-88d0-560c6d77bc9c",
@@ -24429,6 +24462,7 @@
         "12689c1e-03f5-415b-b728-1a796ac51a25",
         "8fc5b789-0cbb-4d84-bff5-e5dd966fcb52",
         "7e00aa7f-330c-4da6-871a-5a960232acc7",
+        "4618f6c5-3750-4bde-b499-884ca6e23590",
         "d1b6d7a5-d3fd-45bf-8be9-90717afa2c58",
         "ec905a8a-dc87-432b-a58d-93513e451e71",
         "dc1af1cc-16df-4f52-9b5c-127379f50ca5",
@@ -24447,6 +24481,7 @@
         "0e96bfd5-d5f8-4207-a46b-d5dd976d60f7",
         "e9367b80-88b5-40dc-afd7-84a94d91b60a",
         "1913ea3c-8871-4ec8-9b92-b6c8f576b061",
+        "aeb4f229-24fd-49d8-86c9-66603ee4dc82",
         "77cb5bac-1958-48d1-836d-93b24d80ba87",
         "b8d2cc99-171d-4465-86eb-9458cb43369c",
         "3987b971-56d4-494e-be56-f75d59299a2a",
@@ -24454,6 +24489,7 @@
         "01ffceb5-8bd9-4556-a683-7c16d669a58a",
         "da04b096-1a83-4632-9eba-c3a055b43bbe",
         "737bd345-ba95-4c37-9b67-a13a3aaf39a4",
+        "dd2a1983-c87e-4770-be15-4d67047ba3f9",
         "37210aba-e6e6-4504-86a8-37f3a8b53db9",
         "f63b2d97-f4fe-4d6e-b3bc-a3fcc62bdb00",
         "f27d3749-f59c-407a-887a-299b6fc3b57e",

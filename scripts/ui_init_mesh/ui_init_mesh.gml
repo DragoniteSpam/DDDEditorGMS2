@@ -96,11 +96,6 @@ If you loaded a model containing SMF data, it will be saved as is without conver
     ds_list_add(contents, element);
     yy += element.height + spacing;
     
-    element = create_button(c2x, yy, "Rotate Up Axis", ew, eh, fa_center, omu_meshes_rotate_up_axis, id);
-    element.tooltip = "Rotate the \"up\" axis for the selected meshes. It would be nice if the world could standardize around either Y-up or Z-up, but that's never going to happen.";
-    ds_list_add(contents, element);
-    yy += element.height + spacing;
-    
     element = create_input(c2x, yy, "Scale:", ew, eh, omu_meshes_draw_scale, mode.draw_scale, "float", validate_double, 0.01, 100, 5, vx1, vy1, vx2, vy2, id);
     element.tooltip = "Set the scale used by the preview on the right. If you want to apply the scale to the selected meshes permanently, click the button below.";
     ds_list_add(contents, element);
@@ -135,6 +130,11 @@ If you loaded a model containing SMF data, it will be saved as is without conver
     ds_list_add(contents, element);
     yy += element.height + spacing;
     
+    element = create_button(c2x, yy, "Rotate Up Axis", ew, eh, fa_center, omu_meshes_rotate_up_axis, id);
+    element.tooltip = "Rotate the \"up\" axis for the selected meshes. It would be nice if the world could standardize around either Y-up or Z-up, but that's never going to happen.";
+    ds_list_add(contents, element);
+    yy += element.height + spacing;
+    
     element = create_button(c2x, yy, "Mirror X Axis", ew / 3, eh, fa_center, omu_meshes_mirror_x, id);
     element.tooltip = "Mirror the selected meshes over the X axis.";
     ds_list_add(contents, element);
@@ -146,13 +146,16 @@ If you loaded a model containing SMF data, it will be saved as is without conver
     ds_list_add(contents, element);
     yy += element.height + spacing;
     
-    element = create_button(c2x, yy, "Flip Horizontal Texture Coordinates", ew, eh, fa_center, omu_meshes_flip_tex_h, id);
+    element = create_button(c2x, yy, "Flip Texture U", ew / 2, eh, fa_center, omu_meshes_flip_tex_h, id);
     element.tooltip = "I don't actually know why you would need to do this, but it's here.";
+    ds_list_add(contents, element);
+    element = create_button(c2x + ew / 2, yy, "Flip Texture V", ew / 2, eh, fa_center, omu_meshes_flip_tex_v, id);
+    element.tooltip = "Some 3D modelling programs (I'm looking at you, Blender) insist on using the bottom-left of the texture image as the (0, 0) origin. We prefer the origin to be in the top-left. Use this button to flip the texture coordinates vertically.";
     ds_list_add(contents, element);
     yy += element.height + spacing;
     
-    element = create_button(c2x, yy, "Flip Vertical Texture Coordinates", ew, eh, fa_center, omu_meshes_flip_tex_v, id);
-    element.tooltip = "Some 3D modelling programs (I'm looking at you, Blender) insist on using the bottom-left of the texture image as the (0, 0) origin. We prefer the origin to be in the top-left. Use this button to flip the texture coordinates vertically.";
+    element = create_button(c2x, yy, "Normals", ew, eh, fa_center, omu_meshes_set_normals, id);
+    element.tooltip = "Adjust the vertex normals of the selected meshes.";
     ds_list_add(contents, element);
     yy += element.height + spacing;
     

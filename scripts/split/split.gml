@@ -1,5 +1,7 @@
 /// @param string
 /// @param [delimiter]
+/// @param [enqueue-delimiter?]
+/// @param [enqueue-blank?]
 
 var base = argument[0];
 var delimiter = (argument_count > 1) ? argument[1] : " ";
