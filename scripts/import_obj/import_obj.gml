@@ -224,7 +224,7 @@ if (file_exists(fn)) {
                                 var ts = tileset_create(texfn, undefined, undefined, false);
                                 ts.name = base_name + ".BaseTexture";
                                 if (ds_map_size(mtl_map_diffuse) == 1) warnings |= warn_map_1;
-                                mtl_map_diffuse[? mtl_name] = ts;
+                                else mtl_map_diffuse[? mtl_name] = ts;
                                 break;
                             case "map_Ka":                  // ambient texture
                                 var texfn = "";
@@ -233,7 +233,7 @@ if (file_exists(fn)) {
                                 var ts = tileset_create(texfn, undefined, undefined, false);
                                 ts.name = base_name + ".AmbientMap";
                                 if (ds_map_size(mtl_map_ambient) == 1) warnings |= warn_map_2;
-                                mtl_map_ambient[? mtl_name] = ts;
+                                else mtl_map_ambient[? mtl_name] = ts;
                                 break;
                             case "map_Ks":                  // specular color texture
                                 var texfn = "";
@@ -242,7 +242,7 @@ if (file_exists(fn)) {
                                 var ts = tileset_create(texfn, undefined, undefined, false);
                                 ts.name = base_name + ".SpecularColorMap";
                                 if (ds_map_size(mtl_map_specular_color) == 1) warnings |= warn_map_3;
-                                mtl_map_specular_color[? mtl_name] = ts;
+                                else mtl_map_specular_color[? mtl_name] = ts;
                                 break;
                             case "map_Ns":                  // specular highlight texture
                                 var texfn = "";
@@ -251,7 +251,7 @@ if (file_exists(fn)) {
                                 var ts = tileset_create(texfn, undefined, undefined, false);
                                 ts.name = base_name + ".SpecularHighlightMap";
                                 if (ds_map_size(mtl_map_specular_highlight) == 1) warnings |= warn_map_4;
-                                mtl_map_specular_highlight[? mtl_name] = ts;
+                                else mtl_map_specular_highlight[? mtl_name] = ts;
                                 break;
                             case "map_d":                   // alpha texture
                                 var texfn = "";
@@ -260,7 +260,7 @@ if (file_exists(fn)) {
                                 var ts = tileset_create(texfn, undefined, undefined, false);
                                 ts.name = base_name + ".AlphaMap";
                                 if (ds_map_size(mtl_map_alpha) == 1) warnings |= warn_map_5;
-                                mtl_map_alpha[? mtl_name] = ts;
+                                else mtl_map_alpha[? mtl_name] = ts;
                                 break;
                             case "map_bump":                // bump texture
                                 var texfn = "";
@@ -269,7 +269,7 @@ if (file_exists(fn)) {
                                 var ts = tileset_create(texfn, undefined, undefined, false);
                                 ts.name = base_name + ".BumpMap";
                                 if (ds_map_size(mtl_map_bump) == 1) warnings |= warn_map_6;
-                                mtl_map_bump[? mtl_name] = ts;
+                                else mtl_map_bump[? mtl_name] = ts;
                                 break;
                             case "bump":
                                 warnings |= warn_alt_bump;
@@ -281,7 +281,7 @@ if (file_exists(fn)) {
                                 var ts = tileset_create(texfn, undefined, undefined, false);
                                 ts.name = base_name + ".DisplacementMap";
                                 if (ds_map_size(mtl_map_displace) == 1) warnings |= warn_map_7;
-                                mtl_map_displace[? mtl_name] = ts;
+                                else mtl_map_displace[? mtl_name] = ts;
                                 break;
                             case "decal":                   // stencil decal texture
                                 var texfn = "";
@@ -290,7 +290,7 @@ if (file_exists(fn)) {
                                 var ts = tileset_create(texfn, undefined, undefined, false);
                                 ts.name = base_name + ".StencilDecal";
                                 if (ds_map_size(mtl_map_decal) == 1) warnings |= warn_map_8;
-                                mtl_map_decal[? mtl_name] = ts;
+                                else mtl_map_decal[? mtl_name] = ts;
                                 break;
                             default:    // There are way more attributes available than I'm going to use later - maybe
                                 break;
