@@ -10,7 +10,6 @@ setting_set("Mesh", "yto", mesh.yto);
 setting_set("Mesh", "zto", mesh.zto);
 setting_set("Mesh", "fov", mesh.fov);
 
-setting_set("Mesh", "export-type", mesh.export_type);
 setting_set("Mesh", "vertex-formats", json_encode(mesh.format_json));
 
 setting_set("Mesh", "draw-mesh", mesh.draw_meshes);

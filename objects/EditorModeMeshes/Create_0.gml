@@ -43,8 +43,6 @@ fov = setting_get("Mesh", "fov", def_fov);
 pitch = arctan2(z, point_distance(0, 0, x, y));
 direction = point_direction(x, y, 0, 0);
 
-export_type = setting_get("Mesh", "export-type", MeshExportTypes.D3D);
-
 var json_string = setting_get("Mesh", "vertex-formats", "");
 if (json_string == "") {
     var fbuffer = buffer_load("data\\vertex-formats.json");
@@ -66,8 +64,4 @@ enum VertexFormatData {
     NORMAL,
     TEXCOORD,
     COLOUR,
-}
-
-enum MeshExportTypes {
-    D3D, OBJ, VB
 }
