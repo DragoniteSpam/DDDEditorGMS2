@@ -2,7 +2,7 @@
 /// @param threshold
 
 var mesh = argument0;
-var threshold = cos(argument1);
+var threshold = dcos(argument1);
 
 // probably not super efficient but
 if (threshold < 1) {
@@ -13,7 +13,6 @@ for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
     var submesh = mesh.submeshes[| i];
     var buffer = submesh.buffer;
     buffer_seek(buffer, buffer_seek_start, 0);
-    var tangle = dcos(Stuff.setting_normal_threshold);
     var normal_map = ds_map_create();
     
     while (buffer_tell(buffer) < buffer_get_size(buffer)) {

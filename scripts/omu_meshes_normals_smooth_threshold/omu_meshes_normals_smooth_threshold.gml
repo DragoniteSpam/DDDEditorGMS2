@@ -1,4 +1,5 @@
 /// @param UIInput
 
 var input = argument0;
-input.root.threshold = real(input.value);
+Stuff.setting_normal_threshold = real(input.value);
+setting_set("Config", "normal-threshold", Stuff.setting_normal_threshold);
