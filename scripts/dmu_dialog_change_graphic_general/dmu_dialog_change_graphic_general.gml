@@ -16,12 +16,13 @@ if (selection + 1) {
         data_image_force_power_two(data);
         data_image_npc_frames(data);
         
-        button.root.el_image.image = data.picture;
-        button.root.el_dim_x.value_upper = sprite_get_width(data.picture);
-        button.root.el_dim_y.value_upper = sprite_get_height(data.picture);
         data.width = min(data.width, sprite_get_width(data.picture));
         data.height = min(data.height, sprite_get_height(data.picture));
-        button.root.el_dim_x.value = string(sprite_get_width(data.picture));
-        button.root.el_dim_y.value = string(sprite_get_height(data.picture));
+        if (button.root.el_image) button.root.el_image.image = data.picture;
+        if (button.root.el_dim_x) button.root.el_dim_x.value_upper = sprite_get_width(data.picture);
+        if (button.root.el_dim_y) button.root.el_dim_y.value_upper = sprite_get_height(data.picture);
+        if (button.root.el_dim_x) button.root.el_dim_x.value = string(sprite_get_width(data.picture));
+        if (button.root.el_dim_y) button.root.el_dim_y.value = string(sprite_get_height(data.picture));
+        if (button.root.el_dimensions) button.root.el_dimensions.text = "Dimensions: " + string(sprite_get_width(data.picture)) + " x " + string(sprite_get_height(data.picture));
     }
 }
