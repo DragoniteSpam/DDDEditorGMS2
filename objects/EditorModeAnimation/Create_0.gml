@@ -25,7 +25,7 @@ zup = def_zup;
 
 fov = setting_get("Animation", "fov", def_fov);
 pitch = darctan2(z - zto, point_distance(x, y, xto, yto));
-direction = point_direction(x, y, 0, 0);
+direction = point_direction(x, y, xto, yto);
 
 update = editor_update_animation;
 render = editor_render_animation;

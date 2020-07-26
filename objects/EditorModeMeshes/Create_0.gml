@@ -42,7 +42,7 @@ zup = def_zup;
 
 fov = setting_get("Mesh", "fov", def_fov);
 pitch = darctan2(z - zto, point_distance(x, y, xto, yto));
-direction = point_direction(x, y, 0, 0);
+direction = point_direction(x, y, xto, yto);
 
 var json_string = setting_get("Mesh", "vertex-formats", "");
 if (json_string == "") {

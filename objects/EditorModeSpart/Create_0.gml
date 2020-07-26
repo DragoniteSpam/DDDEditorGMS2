@@ -27,7 +27,7 @@ zup = def_zup;
 
 fov = setting_get("Spart", "fov", def_fov);
 pitch = darctan2(z - zto, point_distance(x, y, xto, yto));
-direction = point_direction(x, y, 0, 0);
+direction = point_direction(x, y, xto, yto);
 
 render = editor_render_spart;
 ui = ui_init_spart(id);

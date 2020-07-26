@@ -123,6 +123,6 @@ if ((inbounds && Controller.release_left) || keyboard_check(vk_f1)) {
     
     mode.fov = mode.def_fov;
     mode.pitch = darctan2(mode.z - mode.zto, point_distance(mode.x, mode.y, mode.xto, mode.yto));
-    mode.direction = point_direction(mode.x, mode.y, 0, 0);
+    mode.direction = point_direction(mode.x, mode.y, mode.xto, mode.yto);
 }
 #endregion
