@@ -60,12 +60,16 @@ shader_set_uniform_f(shader_get_uniform(shd_ddd, "fogEnd"), zfar * 3);
 transform_set(0, 0, 0, mode.draw_rot_x, mode.draw_rot_y, mode.draw_rot_z, mode.draw_scale, mode.draw_scale, mode.draw_scale);
 var n = 0;
 var limit = 10;
-var tex = mode.draw_textures ? sprite_get_texture(get_active_tileset().master, 0) : -1;
+var def_tex = sprite_get_texture(get_active_tileset().master, 0);
 for (var index = ds_map_find_first(mesh_list.selected_entries); index != undefined; index = ds_map_find_next(mesh_list.selected_entries, index)) {
     var mesh_data = Stuff.all_meshes[| index];
     switch (mesh_data.type) {
         case MeshTypes.RAW:
-            var this_tex = (mode.draw_textures && guid_get(mesh_data.tex_base)) ? sprite_get_texture(guid_get(mesh_data.tex_base).picture, 0) : tex;
+            if (mesh_data.tex_base == NULL || !mode.draw_textures) {
+                var this_tex = -1;
+            } else {
+                var this_tex = guid_get(mesh_data.tex_base) ? sprite_get_texture(guid_get(mesh_data.tex_base).picture, 0) : def_tex;
+            }
             if (mode.draw_meshes) vertex_submit(mesh_data.submeshes[| 0].vbuffer, pr_trianglelist, this_tex);
             if (mode.draw_wireframes) vertex_submit(mesh_data.submeshes[| 0].wbuffer, pr_linelist, -1);
             break;
