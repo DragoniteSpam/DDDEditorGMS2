@@ -20374,6 +20374,14 @@
             }
         },
         {
+            "Key": "ea1541fa-72b3-4d81-adf8-3e03fd7cd8ec",
+            "Value": {
+                "id": "b63969db-f621-4c84-8a7e-b455d7198251",
+                "resourcePath": "sprites\\b_tileset_magenta\\b_tileset_magenta.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "ea1639dc-e0b3-4a9b-8173-72c279479a39",
             "Value": {
                 "id": "5975aa2d-9a14-4f8a-902d-eeb753f30417",

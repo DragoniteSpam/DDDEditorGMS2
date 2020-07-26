@@ -28,7 +28,7 @@ with (instance_create_depth(0, 0, 0, DataTileset)) {
     hash = file_hash;
     
     if (!sprite_exists(picture)) {
-        picture = sprite_duplicate(b_tileset_checkers);
+        picture = sprite_duplicate(b_tileset_magenta);
         wtf("Missing tileset image; using default tileset instead: " + picture_name);
     }
     
