@@ -27,7 +27,7 @@ gpu_set_zwriteenable(true);
 
 transform_reset();
 vertex_submit(Stuff.graphics.mesh_preview_grid, pr_linelist, -1);
-vertex_submit(Stuff.graphics.axes_width, pr_linelist, -1);
+if (mode.draw_axes) vertex_submit(Stuff.graphics.axes_width, pr_linelist, -1);
 
 shader_set(shd_ddd);
 

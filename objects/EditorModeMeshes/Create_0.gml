@@ -13,6 +13,7 @@ draw_rot_x = 0;
 draw_rot_y = 0;
 draw_rot_z = 0;
 
+draw_axes = setting_get("Mesh", "draw-axes", true);
 draw_light_direction = 180;
 
 def_x = 256;

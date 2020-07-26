@@ -16,3 +16,4 @@ setting_set("Mesh", "draw-mesh", mesh.draw_meshes);
 setting_set("Mesh", "draw-wire", mesh.draw_wireframes);
 setting_set("Mesh", "draw-tex", mesh.draw_textures);
 setting_set("Mesh", "draw-light", mesh.draw_lighting);
+setting_set("Mesh", "draw-axes", mesh.draw_axes);

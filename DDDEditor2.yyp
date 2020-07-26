@@ -16070,6 +16070,14 @@
             }
         },
         {
+            "Key": "b8d2cc99-171d-4465-86eb-9458cb43369c",
+            "Value": {
+                "id": "8b5a3a8d-9fb7-4355-a793-e5a70a6b56c2",
+                "resourcePath": "scripts\\omu_meshes_draw_axes\\omu_meshes_draw_axes.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "b91fba25-b5b6-479e-ab73-53319f536793",
             "Value": {
                 "id": "410bd410-9b57-4e90-b966-7089d81298b1",
@@ -24422,6 +24430,7 @@
         "e9367b80-88b5-40dc-afd7-84a94d91b60a",
         "1913ea3c-8871-4ec8-9b92-b6c8f576b061",
         "77cb5bac-1958-48d1-836d-93b24d80ba87",
+        "b8d2cc99-171d-4465-86eb-9458cb43369c",
         "3987b971-56d4-494e-be56-f75d59299a2a",
         "b641bb46-3f0d-4bd7-bf31-be2a508506c4",
         "01ffceb5-8bd9-4556-a683-7c16d669a58a",

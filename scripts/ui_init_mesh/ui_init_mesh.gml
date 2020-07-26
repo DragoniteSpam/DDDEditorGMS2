@@ -190,6 +190,11 @@ If you loaded a model containing SMF data, it will be saved as is without conver
     element.tooltip = "Whether or not to lighting should be enabled.";
     ds_list_add(contents, element);
     yy += element.height + spacing;
+    
+    element = create_checkbox(c4x, yy, "Show Axes?", ew, eh, omu_meshes_draw_axes, mode.draw_axes, id);
+    element.tooltip = "Whether or not to draw the red, green, and blue axes in the 3D view.";
+    ds_list_add(contents, element);
+    yy += element.height + spacing;
     #endregion
     return id;
 }
