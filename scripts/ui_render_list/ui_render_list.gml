@@ -132,6 +132,10 @@ if (list.interactive && active && !ds_list_empty(list.entries)) {
                             ds_map_delete(list.selected_entries, i);
                         }
                     }
+                    // this index isn't actually affected yet because the
+                    // loop stops when it reaches it (Emu has a slightly
+                    // different way of dealing with this)
+                    ui_list_select(list, mn);
                 }
             // toggle single selections
             } else {
