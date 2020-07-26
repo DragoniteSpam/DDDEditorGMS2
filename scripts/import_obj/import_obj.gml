@@ -14,14 +14,15 @@ var data_added = false;
 var err = "";
 var warnings = 0;
 
-var warn_map_1 = 0x0001;
-var warn_map_2 = 0x0002;
-var warn_map_3 = 0x0004;
-var warn_map_4 = 0x0008;
-var warn_map_5 = 0x0010;
-var warn_map_6 = 0x0020;
-var warn_map_7 = 0x0040;
-var warn_map_8 = 0x0080;
+var warn_map_1 =            0x0001;
+var warn_map_2 =            0x0002;
+var warn_map_3 =            0x0004;
+var warn_map_4 =            0x0008;
+var warn_map_5 =            0x0010;
+var warn_map_6 =            0x0020;
+var warn_map_7 =            0x0040;
+var warn_map_8 =            0x0080;
+var warn_alt_bump =         0x0100;
 
 var mfn = filename_change_ext(fn, ".mtl");
 var base_path = filename_path(fn);
@@ -119,7 +120,7 @@ if (file_exists(fn)) {
                     mtl_map_bump[? mtl_name] = ts;
                     break;
                 case "bump":
-                    warn += "bump map (alternate) - not yet implemented\n";
+                    warnings |= warn_alt_bump;
                     break;
                 case "disp":                    // displacement texture
                     var texfn = "";
@@ -351,6 +352,7 @@ if (file_exists(fn)) {
             if (warnings & warn_map_6) warn_string += "Tried to load more than one bump map (map_bump) - this is not yet supported\n";
             if (warnings & warn_map_7) warn_string += "Tried to load more than one displacement texture map (disp) - this is not yet supported\n";
             if (warnings & warn_map_8) warn_string += "Tried to load more than one stencil decal texture map (decal) - this is not yet supported\n";
+            if (warnings & warn_alt_bump) warn_string += "Alternate bump map material data found - this is not yet supported\n";
             (dialog_create_notice(noone, warn_header + warn_string)).dialog_flags |= DialogFlags.IS_GENERIC_WARNING;
         } else {
             top.el_text.text = string_replace(top.el_text.text, warn_header, warn_header_plural);
