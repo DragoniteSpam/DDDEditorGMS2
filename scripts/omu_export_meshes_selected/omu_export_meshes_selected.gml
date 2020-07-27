@@ -4,7 +4,7 @@ var button = argument0;
 var list = button.root.mesh_list;
 var selection = list.selected_entries;
 var format_index = ui_list_selection(button.root.format_list);
-var format = (format_index + 1) ? Stuff.mesh_ed.formats[| format_index] : undefined;
+var format = (format_index + 1) ? Stuff.mesh_ed.formats[| format_index] : Stuff.mesh_ed.format_default;
 
 var export_count = ds_map_size(selection);
 if (export_count == 0) return;

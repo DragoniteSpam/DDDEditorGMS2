@@ -30,13 +30,13 @@ if (format) {
         var fn = mesh_filename + number_ext + filename_ext(base_filename);
         var vertex_count = buffer_get_size(sub.buffer) / VERTEX_SIZE;
         var new_size = vertex_count * vertex_new_size;
-        
         var base_position = 0;
         var formatted_buffer = buffer_create(new_size, buffer_fixed, 1);
         var current_attribute_count = 0;
         var attributes_used = [false, false, false, false];
+        var index = 0;
         
-        repeat (vertex_count) {
+        while (index < vertex_count) {
             var attribute = format[| current_attribute_count++];
             var attribute_type = attribute[? "type"];
             
@@ -93,6 +93,7 @@ if (format) {
                 current_attribute_count = 0;
                 attributes_used = [false, false, false, false];
                 base_position += VERTEX_SIZE;
+                index++
             }
         }
         
