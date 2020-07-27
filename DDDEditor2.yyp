@@ -14182,14 +14182,6 @@
             }
         },
         {
-            "Key": "a19ea353-ab78-4008-8ca0-58c2f6ffc35b",
-            "Value": {
-                "id": "4d4e5813-cb64-4fff-b767-1d851006b639",
-                "resourcePath": "datafiles_yy\\data\\halp.chm.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "a1a92459-7d03-4799-ae5b-ce9f756e1502",
             "Value": {
                 "id": "bb7ecc5e-2d3d-4ea4-8bfb-f416a2d7c0bd",
