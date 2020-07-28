@@ -5126,6 +5126,14 @@
             }
         },
         {
+            "Key": "37b535a6-f429-418a-accf-001404022425",
+            "Value": {
+                "id": "cff56c8c-bcfd-454f-833b-f7c1759b4c1a",
+                "resourcePath": "scripts\\uivc_entity_effect_com_lighting_spot_dx\\uivc_entity_effect_com_lighting_spot_dx.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "37c895b3-7edf-4170-b5a2-dc4420099bf9",
             "Value": {
                 "id": "e6050761-3173-40f3-afaa-2ccafc54bbd1",
@@ -5442,6 +5450,14 @@
             "Value": {
                 "id": "d4e7949d-25bf-4188-8f4c-1ca3d338df49",
                 "resourcePath": "scripts\\omu_animation_add\\omu_animation_add.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "3ce7febb-4b21-4b63-a010-11e2d954649d",
+            "Value": {
+                "id": "009a149a-be95-461b-957d-c98d5b50fd3f",
+                "resourcePath": "scripts\\uivc_entity_effect_com_lighting_spot_dy\\uivc_entity_effect_com_lighting_spot_dy.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -5898,6 +5914,14 @@
             "Value": {
                 "id": "2216ab9b-18dc-4eea-ad4e-cd61c25941b0",
                 "resourcePath": "scripts\\create_input\\create_input.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "42d7c86d-d63b-4ef8-8949-73c539d0c671",
+            "Value": {
+                "id": "5488a2e0-bf0d-46ee-b32c-a31b0c7360f5",
+                "resourcePath": "scripts\\uivc_entity_effect_com_lighting_spot_radius\\uivc_entity_effect_com_lighting_spot_radius.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -8075,6 +8099,14 @@
                 "id": "e44f2e23-6fc8-40c3-b896-285ed9f5facc",
                 "resourcePath": "objects\\DataMapZone\\DataMapZone.yy",
                 "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "5a5548b6-e712-4989-9147-4ea53478fbf8",
+            "Value": {
+                "id": "033e927b-c138-49e7-a966-ea88c843573e",
+                "resourcePath": "scripts\\uivc_entity_effect_com_lighting_spot_dz\\uivc_entity_effect_com_lighting_spot_dz.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -21198,6 +21230,14 @@
             }
         },
         {
+            "Key": "f21593d7-c191-4bd2-9538-fea77983377a",
+            "Value": {
+                "id": "3e80f67b-356b-4aeb-8e18-d1e46dafc426",
+                "resourcePath": "scripts\\uivc_entity_effect_com_lighting_spot_cutoff\\uivc_entity_effect_com_lighting_spot_cutoff.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "f228daea-2abf-44a8-b35e-7d9bf9b8711a",
             "Value": {
                 "id": "a5e227d5-4c5e-41ab-9edf-7d02df50d2f4",
@@ -23938,6 +23978,11 @@
         "f6853248-c3eb-4964-86df-377b8c480e41",
         "0ba86cc7-c729-4718-bd61-053622a166f5",
         "985f0e33-9716-42d0-9262-74c71c002cdb",
+        "42d7c86d-d63b-4ef8-8949-73c539d0c671",
+        "f21593d7-c191-4bd2-9538-fea77983377a",
+        "37b535a6-f429-418a-accf-001404022425",
+        "3ce7febb-4b21-4b63-a010-11e2d954649d",
+        "5a5548b6-e712-4989-9147-4ea53478fbf8",
         "27663094-24f4-4c14-9174-071fcca71e08",
         "583ac173-9d0e-40fb-9574-f67725c73811",
         "c4c6186e-04bd-409a-a93e-38317549cd72",
