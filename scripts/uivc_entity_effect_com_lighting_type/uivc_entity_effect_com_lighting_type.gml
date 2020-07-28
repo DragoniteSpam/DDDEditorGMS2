@@ -79,8 +79,8 @@ switch (radio.value) {
         base_dialog.el_spot_x.enabled = true;
         base_dialog.el_spot_y.enabled = true;
         base_dialog.el_spot_z.enabled = true;
-        base_dialog.el_spot_radius.enabled = false;
-        base_dialog.el_spot_cutoff.enabled = false;
+        base_dialog.el_spot_radius.enabled = true;
+        base_dialog.el_spot_cutoff.enabled = true;
         
         for (var i = 0; i < ds_list_size(list); i++) {
             var effect = list[| i];

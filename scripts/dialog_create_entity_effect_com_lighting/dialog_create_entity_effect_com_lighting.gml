@@ -10,7 +10,7 @@ var com_point = (com_light && com_light.light_type == LightTypes.POINT) ? com_li
 var com_spot = (com_light && com_light.light_type == LightTypes.SPOT) ? com_light : noone;
 
 var dw = 320;
-var dh = 480;
+var dh = 540;
 
 var dg = dialog_create(dw, dh, "Effect Component: Lighting", dialog_default, dc_close_no_questions_asked, dialog);
 

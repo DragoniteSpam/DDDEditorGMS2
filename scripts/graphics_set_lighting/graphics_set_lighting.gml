@@ -37,6 +37,18 @@ for (var i = 0; i < MAX_LIGHTS; i++) {
             light_data[index + 7] = data.light_radius;
             break;
         case LightTypes.SPOT:
+            light_data[index + 0] = (effect.xx + effect.off_xx + 0.5) * TILE_WIDTH;
+            light_data[index + 1] = (effect.yy + effect.off_yy + 0.5) * TILE_HEIGHT;
+            light_data[index + 2] = (effect.zz + effect.off_zz + 0.5) * TILE_DEPTH;
+            // 3 is type
+            light_data[index + 4] = data.light_dx;
+            light_data[index + 5] = data.light_dy;
+            light_data[index + 6] = data.light_dz;
+            light_data[index + 7] = data.light_radius;
+            // 8 is r
+            // 9 is g
+            // 10 is b
+            light_data[index + 11] = dcos(data.light_cutoff);
             break;
     }
 }
