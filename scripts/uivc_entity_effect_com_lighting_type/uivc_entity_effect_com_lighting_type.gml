@@ -12,23 +12,30 @@ var first = list[| 0];
 var map = Stuff.map.active_map;
 var map_contents = map.contents;
 
+// reset everything (but if an effect has the same light compoment as the type to be added, keep it)
 for (var i = 0; i < ds_list_size(list); i++) {
     var effect = list[| i];
-    if (effect.com_light) {
+    if (effect.com_light && effect.com_light.light_type != radio.value) {
         instance_activate_object(effect.com_light);
         instance_destroy(effect.com_light);
         effect.com_light = noone;
     }
 }
 
+base_dialog.el_color.enabled = false;
+base_dialog.el_dir_x.enabled = false;
+base_dialog.el_dir_y.enabled = false;
+base_dialog.el_dir_z.enabled = false;
+base_dialog.el_script.enabled = false;
+base_dialog.el_point_radius.enabled = false;
+base_dialog.el_spot_x.enabled = false;
+base_dialog.el_spot_y.enabled = false;
+base_dialog.el_spot_z.enabled = false;
+base_dialog.el_spot_radius.enabled = false;
+base_dialog.el_spot_cutoff.enabled = false;
+
 switch (radio.value) {
     case LightTypes.NONE:
-        base_dialog.el_color.enabled = false;
-        base_dialog.el_dir_x.enabled = false;
-        base_dialog.el_dir_y.enabled = false;
-        base_dialog.el_dir_z.enabled = false;
-        base_dialog.el_script.enabled = false;
-        base_dialog.el_point_radius.enabled = false;
         break;
     case LightTypes.DIRECTIONAL:
         base_dialog.el_color.enabled = true;
@@ -36,12 +43,13 @@ switch (radio.value) {
         base_dialog.el_dir_y.enabled = true;
         base_dialog.el_dir_z.enabled = true;
         base_dialog.el_script.enabled = true;
-        base_dialog.el_point_radius.enabled = false;
         
         for (var i = 0; i < ds_list_size(list); i++) {
             var effect = list[| i];
-            effect.com_light = instance_create_depth(0, 0, 0, EffectComponentDirectionalLight);
-            effect.com_light.parent = effect;
+            if (!effect.com_light) {
+                effect.com_light = instance_create_depth(0, 0, 0, EffectComponentDirectionalLight);
+                effect.com_light.parent = effect;
+            }
         }
         
         base_dialog.el_color.value = first.com_light.light_colour;
@@ -51,16 +59,15 @@ switch (radio.value) {
         break;
     case LightTypes.POINT:
         base_dialog.el_color.enabled = true;
-        base_dialog.el_dir_x.enabled = false;
-        base_dialog.el_dir_y.enabled = false;
-        base_dialog.el_dir_z.enabled = false;
         base_dialog.el_script.enabled = true;
         base_dialog.el_point_radius.enabled = true;
         
         for (var i = 0; i < ds_list_size(list); i++) {
             var effect = list[| i];
-            effect.com_light = instance_create_depth(0, 0, 0, EffectComponentPointLight);
-            effect.com_light.parent = effect;
+            if (!effect.com_light) {
+                effect.com_light = instance_create_depth(0, 0, 0, EffectComponentPointLight);
+                effect.com_light.parent = effect;
+            }
         }
         
         base_dialog.el_color.value = first.com_light.light_colour;
@@ -68,11 +75,26 @@ switch (radio.value) {
         break;
     case LightTypes.SPOT:
         base_dialog.el_color.enabled = true;
-        base_dialog.el_dir_x.enabled = false;
-        base_dialog.el_dir_y.enabled = false;
-        base_dialog.el_dir_z.enabled = false;
         base_dialog.el_script.enabled = true;
-        base_dialog.el_point_radius.enabled = false;
+        base_dialog.el_spot_x.enabled = true;
+        base_dialog.el_spot_y.enabled = true;
+        base_dialog.el_spot_z.enabled = true;
+        base_dialog.el_spot_radius.enabled = false;
+        base_dialog.el_spot_cutoff.enabled = false;
+        
+        for (var i = 0; i < ds_list_size(list); i++) {
+            var effect = list[| i];
+            if (!effect.com_light) {
+                effect.com_light = instance_create_depth(0, 0, 0, EffectComponentSpotLight);
+                effect.com_light.parent = effect;
+            }
+        }
+        
+        ui_input_set_value(base_dialog.el_spot_x, string(single ? first.com_light.light_dx : "-"));
+        ui_input_set_value(base_dialog.el_spot_y, string(single ? first.com_light.light_dy : "-"));
+        ui_input_set_value(base_dialog.el_spot_z, string(single ? first.com_light.light_dz : "-"));
+        ui_input_set_value(base_dialog.el_spot_radius, string(single ? first.com_light.light_radius : "-"));
+        ui_input_set_value(base_dialog.el_spot_cutoff, string(single ? first.com_light.light_cutoff : "-"));
         break;
 }
 

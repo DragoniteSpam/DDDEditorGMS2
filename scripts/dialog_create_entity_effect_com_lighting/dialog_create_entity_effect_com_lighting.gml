@@ -32,7 +32,6 @@ var yy_base = yy;
 
 var el_type = create_radio_array(col1_x, yy, "Type", ew, eh, uivc_entity_effect_com_lighting_type, (single ? (com_light ? com_light.light_type : 0) : -1), dg);
 create_radio_array_options(el_type, ["None", "Directional", "Point", "Spot (Cone)"]);
-el_type.contents[| 3].interactive = false;
 el_type.tooltip = "The lighting data to be attached to this effect.\n - Directional lights are infinite an illuminate everything\n - Point lights illuminate everything within a radius, fading out smoothly\n - Spot lights can be thought of as a combination of point and directional lights, illuminating everything in a certain direction";
 
 yy += ui_get_radio_array_height(el_type) + spacing;
@@ -91,6 +90,41 @@ yy += el_point_radius.height + spacing;
 
 #region spot lights
 yy = yy_options;
+
+var el_spot_x = create_input(col1_x, yy, "X direction:", ew, eh, null, com_spot ? string(com_spot.light_dx) : "", "float", validate_double, -1, 1, 4, vx1, vy1, vx2, vy2, dg);
+el_spot_x.tooltip = "The X component of the light direction vector. If the total magnitude of the vector is zero, it will be ser to (0, 0, -1) instead.";
+el_spot_x.enabled = (single && com_light && com_light.light_type == LightTypes.SPOT);
+dg.el_spot_x = el_spot_x;
+
+yy += el_spot_x.height + spacing
+
+var el_spot_y = create_input(col1_x, yy, "Y direction:", ew, eh, null, com_spot ? string(com_spot.light_dy) : "", "float", validate_double, -1, 1, 4, vx1, vy1, vx2, vy2, dg);
+el_spot_y.tooltip = "The Y component of the light direction vector. If the total magnitude of the vector is zero, it will be ser to (0, 0, -1) instead.";
+el_spot_y.enabled = (single && com_light && com_light.light_type == LightTypes.SPOT);
+dg.el_spot_y = el_spot_y;
+
+yy += el_spot_y.height + spacing;
+
+var el_spot_z = create_input(col1_x, yy, "Z direction:", ew, eh, null, com_spot ? string(com_spot.light_dz) : "", "float", validate_double, -1, 1, 4, vx1, vy1, vx2, vy2, dg);
+el_spot_z.tooltip = "The Z component of the light direction vector. If the total magnitude of the vector is zero, it will be ser to (0, 0, -1) instead.";
+el_spot_z.enabled = (single && com_light && com_light.light_type == LightTypes.SPOT);
+dg.el_spot_z = el_spot_z;
+
+yy += el_spot_z.height + spacing;
+
+var el_spot_radius = create_input(col1_x, yy, "Radius:", ew, eh, null, com_spot ? string(com_spot.light_radius) : "", "float", validate_double, 0.1, 0xffffff, 10, vx1, vy1, vx2, vy2, dg);
+el_spot_radius.tooltip = "The radius of the spot light. A value between 100 and 1000 is normally fine. A value that's very small or very large doesn't make much sense, but will still work.";
+el_spot_radius.enabled = (single && com_light && com_light.light_type == LightTypes.SPOT);
+dg.el_spot_radius = el_spot_radius;
+
+yy += el_spot_radius.height + spacing;
+
+var el_spot_cutoff = create_input(col1_x, yy, "Cone Angle:", ew, eh, null, com_spot ? string(com_spot.light_cutoff) : "", "float", validate_double, 0.1, 80, 10, vx1, vy1, vx2, vy2, dg);
+el_spot_cutoff.tooltip = "The angle of the cone. Only space inside the cone angle will be lit.";
+el_spot_cutoff.enabled = (single && com_light && com_light.light_type == LightTypes.SPOT);
+dg.el_spot_cutoff = el_spot_cutoff;
+
+yy += el_spot_cutoff.height + spacing;
 #endregion
 
 var b_width = 128;
@@ -105,6 +139,11 @@ ds_list_add(dg.contents,
     el_dir_y,
     el_dir_z,
     el_point_radius,
+    el_spot_x,
+    el_spot_y,
+    el_spot_z,
+    el_spot_radius,
+    el_spot_cutoff,
     el_confirm
 );
 
