@@ -60,7 +60,7 @@ shader_set_uniform_f(shader_get_uniform(shd_ddd, "fogEnd"), zfar * 3);
 transform_set(0, 0, 0, mode.draw_rot_x, mode.draw_rot_y, mode.draw_rot_z, mode.draw_scale, mode.draw_scale, mode.draw_scale);
 var n = 0;
 var limit = 10;
-var def_tex = sprite_get_texture(get_active_tileset().master, 0);
+var def_tex = sprite_get_texture(get_active_tileset().picture, 0);
 for (var index = ds_map_find_first(mesh_list.selected_entries); index != undefined; index = ds_map_find_next(mesh_list.selected_entries, index)) {
     var mesh_data = Stuff.all_meshes[| index];
     switch (mesh_data.type) {

@@ -49,7 +49,7 @@ shader_set(shd_ddd);
 graphics_set_lighting(shd_ddd);
 
 // this will need to be dynamic at some point
-var tex = Stuff.setting_view_texture ? sprite_get_texture(get_active_tileset().master, 0) : sprite_get_texture(b_tileset_textureless, 0);
+var tex = Stuff.setting_view_texture ? sprite_get_texture(get_active_tileset().picture, 0) : sprite_get_texture(b_tileset_textureless, 0);
 
 #region entities
 if (map_contents.frozen && Stuff.setting_view_entities) {

@@ -15054,14 +15054,6 @@
             }
         },
         {
-            "Key": "ab1c616c-910c-4871-acf0-57454305d64e",
-            "Value": {
-                "id": "bf07c968-fe86-459a-bd4f-cdf74a9f6a65",
-                "resourcePath": "scripts\\tileset_create_master\\tileset_create_master.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "ab4dc1de-410d-4017-96ef-716a1d515073",
             "Value": {
                 "id": "d8192358-59d2-44c0-973b-c6257d663215",
@@ -22816,7 +22808,6 @@
         "7f9b48c6-4ea7-4b99-89f8-feb0b31660f5",
         "e71ce57b-012a-4105-90bc-042da4a75151",
         "76403829-b3ad-4523-a0aa-a703bdfeb376",
-        "ab1c616c-910c-4871-acf0-57454305d64e",
         "af86da3a-8c36-4bb6-a6ba-c8dbd255b8cc",
         "00c9f3f8-6e49-4b6b-84be-7246d945f471",
         "78c1419c-1de0-4c7b-bf88-56f5eccdf6f9",

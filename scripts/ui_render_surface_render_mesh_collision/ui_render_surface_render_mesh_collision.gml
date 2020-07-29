@@ -46,7 +46,7 @@ matrix_set(matrix_world, matrix_build(
 vertex_submit(Stuff.graphics.basic_cube, pr_trianglelist, -1);
 
 // draw the mesh
-var tex = sprite_get_texture(get_active_tileset().master, 0);
+var tex = sprite_get_texture(get_active_tileset().picture, 0);
 shader_set_uniform_f(shader_get_uniform(shd_default_alpha, "alpha"), surface.root.el_alpha.value);
 matrix_set(matrix_world, matrix_build(Stuff.mesh_x, Stuff.mesh_y, Stuff.mesh_z, Stuff.mesh_xrot, Stuff.mesh_yrot, Stuff.mesh_zrot, Stuff.mesh_scale, Stuff.mesh_scale, Stuff.mesh_scale));
 switch (mesh.type) {
