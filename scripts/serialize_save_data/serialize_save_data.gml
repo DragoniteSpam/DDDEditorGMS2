@@ -102,5 +102,6 @@ enum DataVersions {
     MAP_SKYBOX_DATA                     = 110,
     MAP_ENTITY_CHUNKS                   = 111,
     MESH_MATERIALS                      = 112,
+    REMOVE_MESH_TEX_SCALE               = 113,
     _CURRENT /* = whatever the last one is + 1 */
 }

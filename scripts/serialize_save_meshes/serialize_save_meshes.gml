@@ -40,8 +40,6 @@ for (var i = 0; i < n_meshes; i++) {
     buffer_write(buffer, buffer_f32, mesh.ymax);
     buffer_write(buffer, buffer_f32, mesh.zmax);
     
-    buffer_write(buffer, buffer_f32, mesh.texture_scale);
-    
     var xx = ds_grid_width(mesh.collision_flags);
     var yy = ds_grid_height(mesh.collision_flags);
     var zz = -1;

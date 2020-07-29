@@ -39,7 +39,10 @@ repeat (n_meshes) {
     mesh.zmax = buffer_read(buffer, buffer_f32);
     
     if (version >= DataVersions.EVEN_MORE_MESH_METADATA) {
-        mesh.texture_scale = buffer_read(buffer, buffer_f32);
+        if (version >= DataVersions.REMOVE_MESH_TEX_SCALE) {
+        } else {
+            buffer_read(buffer, buffer_f32);
+        }
     }
     
     var xx = buffer_read(buffer, buffer_u16);
