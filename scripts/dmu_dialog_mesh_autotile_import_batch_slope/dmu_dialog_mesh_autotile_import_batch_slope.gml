@@ -15,7 +15,7 @@ for (var i = 0; i < array_length_1d(map_contents.mesh_autotiles_slope); i++) {
             buffer_delete(map_contents.mesh_autotiles_slope_raw[i]);
         }
         
-        vbuffer = import_d3d(fn, false, true);
+        vbuffer = import_d3d(fn, false);
         map_contents.mesh_autotiles_slope_raw[i] = vbuffer;
         
         if (vbuffer) {

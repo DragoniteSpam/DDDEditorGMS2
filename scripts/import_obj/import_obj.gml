@@ -1,13 +1,12 @@
 /// @param filename
 /// @param [complete-object?]
-/// @param [adjust-UVs?]
 /// @param [existing-object]
 /// @param [replace-index]
 
 var fn = argument[0];
 // setting "everything" to false will mean only the vertex buffer is returned
 var everything = (argument_count > 1 && argument[1] != undefined) ? argument[1] : true;
-var adjust = (argument_count > 2 && argument[2] != undefined) ? argument[2] : true;
+var raw_buffer = (argument_count > 2 && argument[2] != undefined) ? argument[2] : false;
 var existing = (argument_count > 3 && argument[3] != undefined) ? argument[3] : noone;
 var replace_index = (argument_count > 4 && argument[4] != undefined) ? argument[4] : -1;
 var data_added = false;
@@ -439,13 +438,8 @@ if (file_exists(fn)) {
                 v[7] = 1 - v[7];
             }
             
-            if (adjust) {
-                bxtex = v[6] * TILESET_TEXTURE_SCALE;
-                bytex = v[7] * TILESET_TEXTURE_SCALE;
-            } else {
-                bxtex = v[6];
-                bytex = v[7];
-            }
+            bxtex = v[6];
+            bytex = v[7];
             
             // the texture pages are 4k, so this is four pixels squared
             bxtex = round_ext(bxtex, 1 / 1024);

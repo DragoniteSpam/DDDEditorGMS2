@@ -114,7 +114,6 @@
 #macro TILE_PASSABLE 0xff
 #macro TILE_WIDTH Stuff.tile_width
 #macro TILESET_MAX_SIZE 2048
-#macro TILESET_TEXTURE_SCALE 0.5
 #macro VERTEX_SIZE Stuff.graphics.format_size
 #macro VERTEX_SIZE_BASIC Stuff.graphics.format_size_basic
 

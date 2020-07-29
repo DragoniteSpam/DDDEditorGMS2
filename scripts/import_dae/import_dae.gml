@@ -1,11 +1,12 @@
 /// @param filename
 /// @param [adjust-UVs?]
+/// @param [existing-mesh]
+/// @param [replace-index]
 
 var filename = argument[0];
 var everything = (argument_count > 1 && argument[1] != undefined) ? argument[1] : true;
-var adjust = (argument_count > 2 && argument[2] != undefined) ? argument[2] : true;
-var existing = (argument_count > 3 && argument[3] != undefined) ? argument[3] : noone;
-var replace_index = (argument_count > 4 && argument[4] != undefined) ? argument[4] : -1;
+var existing = (argument_count > 2 && argument[2] != undefined) ? argument[2] : noone;
+var replace_index = (argument_count > 3 && argument[3] != undefined) ? argument[3] : -1;
 
 return;
 

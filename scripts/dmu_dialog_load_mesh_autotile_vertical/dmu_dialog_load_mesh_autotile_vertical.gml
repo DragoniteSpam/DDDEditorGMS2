@@ -12,7 +12,7 @@ if (file_exists(fn)) {
         buffer_delete(map_contents.mesh_autotiles_vertical_raw[thing.key]);
     }
     
-    var vbuffer = import_d3d(fn, false, true);
+    var vbuffer = import_d3d(fn, false);
     map_contents.mesh_autotiles_vertical[thing.key] = vbuffer;
     
     if (vbuffer) {

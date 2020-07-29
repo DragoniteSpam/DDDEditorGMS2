@@ -1,6 +1,5 @@
 /// @param filename
 /// @param [complete-object?]
-/// @param [adjust-UVs?]
 /// @param [include-raw-buffer?]
 /// @param [existing-object]
 /// @param [replace-index]
@@ -13,10 +12,9 @@
 var fn = argument[0];
 // setting "everything" to false will mean only the vertex buffer is returned
 var everything = (argument_count > 1 && argument[1] != undefined) ? argument[1] : true;
-var adjust = (argument_count > 2 && argument[2] != undefined) ? argument[2] : true;
-var raw_buffer = (argument_count > 3 && argument[3] != undefined) ? argument[3] : false;
-var existing = (argument_count > 4 && argument[4] != undefined) ? argument[4] : noone;
-var replace_index = (argument_count > 5 && argument[5] != undefined) ? argument[5] : -1;
+var raw_buffer = (argument_count > 2 && argument[2] != undefined) ? argument[2] : false;
+var existing = (argument_count > 3 && argument[3] != undefined) ? argument[3] : noone;
+var replace_index = (argument_count > 4 && argument[4] != undefined) ? argument[4] : -1;
 var data_added = false;
 
 var f = file_text_open_read(fn);
@@ -78,11 +76,6 @@ while (!file_text_eof(f)) {
     }
     
     if (skip) continue;
-    
-    if (adjust) {
-        xtex = xtex * TILESET_TEXTURE_SCALE;
-        ytex = ytex * TILESET_TEXTURE_SCALE;
-    }
     
     // the texture pages are 4k, so this is four pixels squared
     xtex = round_ext(xtex, 1 / 1024);

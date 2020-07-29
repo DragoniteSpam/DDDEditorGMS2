@@ -31,8 +31,8 @@ repeat (n) {
     nx = buffer_read(data_buffer, buffer_f32);
     ny = buffer_read(data_buffer, buffer_f32);
     nz = buffer_read(data_buffer, buffer_f32);
-    xtex = buffer_read(data_buffer, buffer_f32) * TILESET_TEXTURE_SCALE;
-    ytex = buffer_read(data_buffer, buffer_f32) * TILESET_TEXTURE_SCALE;
+    xtex = buffer_read(data_buffer, buffer_f32);
+    ytex = buffer_read(data_buffer, buffer_f32);
     color = buffer_read(data_buffer, buffer_f32);
     alpha = buffer_read(data_buffer, buffer_f32);
     
