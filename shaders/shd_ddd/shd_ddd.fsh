@@ -65,7 +65,7 @@ void CommonLightEvaluate(int i, inout vec4 finalColor) {
     } else if (type == LIGHT_SPOT) {
         // spot light: [x, y, z, type], [dx, dy, dz, range], [r, g, b, cutoff]
         float range = lightExt.w;
-        vec3 sourceDir = lightExt.xyz;
+        vec3 sourceDir = normalize(lightExt.xyz);
         float cutoff = lightColor.w;
         
         vec3 lightDir = v_LightWorldPosition - lightPosition;
@@ -80,7 +80,6 @@ void CommonLightEvaluate(int i, inout vec4 finalColor) {
         }
         
         finalColor += att * lightColor * max(0., -dot(v_LightWorldNormal, lightDir));
-    
     }
 }
 // include("lighting.f.xsh")
