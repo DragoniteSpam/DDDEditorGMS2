@@ -34,9 +34,10 @@ void CommonFogSetup() {
 
 void main() {
     gl_Position = gm_Matrices[MATRIX_WORLD_VIEW_PROJECTION] * vec4(in_Position, 1.);
-    v_vTexcoord = in_TextureCoord;
-    v_vColour = in_Colour;
     
     CommonLightSetup();
     CommonFogSetup();
+    
+    v_vTexcoord = in_TextureCoord;
+    v_vColour = in_Colour;
 }
