@@ -8422,14 +8422,6 @@
             }
         },
         {
-            "Key": "5dfa77e2-7712-4824-9e3a-e08ff4ce508a",
-            "Value": {
-                "id": "a63963ec-8e92-4edb-8605-28a9d3091a07",
-                "resourcePath": "scripts\\omu_mesh_texture_scale_1x\\omu_mesh_texture_scale_1x.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "5e0492cb-3558-4bfa-87f7-918a16bb8b3c",
             "Value": {
                 "id": "15cfe4cf-22ac-4bb5-9a6b-695ea75f8d5c",
@@ -8650,14 +8642,6 @@
             "Value": {
                 "id": "126dfb01-f9ea-4939-8d05-596e3a0587ec",
                 "resourcePath": "scripts\\serialize_save_move_route\\serialize_save_move_route.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "60f78c70-ed5d-45fc-a02c-e2cf75b5d2a9",
-            "Value": {
-                "id": "d2da38ff-e551-47d3-baf8-49622f6f0e60",
-                "resourcePath": "scripts\\omu_mesh_texture_scale_05x\\omu_mesh_texture_scale_05x.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -11578,14 +11562,6 @@
             "Value": {
                 "id": "902875ad-dfce-4d55-b31b-84ca73e63582",
                 "resourcePath": "scripts\\smf_dualquat_sclerp\\smf_dualquat_sclerp.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "82c3adf9-339f-4fd1-a324-1552d7c8dec8",
-            "Value": {
-                "id": "3ed00e76-67c6-479d-9bb0-4e6c509106d8",
-                "resourcePath": "scripts\\mesh_set_texture_scale\\mesh_set_texture_scale.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -15763,14 +15739,6 @@
                 "id": "8056e34c-0f59-4cc5-a22f-4fb034c0e520",
                 "resourcePath": "views\\b46f63c7-5eef-4aed-bfbc-e9c83567256d.yy",
                 "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "b4956d3c-b70d-485f-981b-a45bdaba63e9",
-            "Value": {
-                "id": "d4b6fae6-e7e6-4baa-bde7-7b4dd9c62128",
-                "resourcePath": "scripts\\omu_mesh_texture_scale_0x\\omu_mesh_texture_scale_0x.yy",
-                "resourceType": "GMScript"
             }
         },
         {
@@ -22834,7 +22802,6 @@
         "5b8f054a-8aca-4699-8a12-e31646009d5c",
         "0c3fb917-3b54-49a3-811f-5227a110fc51",
         "cf13c201-bde1-4f29-8df2-6fdb3ff097d6",
-        "82c3adf9-339f-4fd1-a324-1552d7c8dec8",
         "58e72d1e-1d41-48fd-bbc9-128169f863ec",
         "54513f56-81db-40db-989d-63a3c798c9cb",
         "03ec4385-7027-4a5b-b203-d36abc89ff13",
@@ -24550,9 +24517,6 @@
         "cf04a616-2403-4a32-8ea0-86a71adfc81c",
         "de12a3bf-7b99-4621-bdec-4715ee4965c4",
         "2883d4e0-ec23-482c-9d8a-e1e21a863e34",
-        "5dfa77e2-7712-4824-9e3a-e08ff4ce508a",
-        "60f78c70-ed5d-45fc-a02c-e2cf75b5d2a9",
-        "b4956d3c-b70d-485f-981b-a45bdaba63e9",
         "850c8997-cd8a-4cd3-b0f1-b93c1585633c",
         "064fd29e-7ed0-4201-87c9-355fde51e08a",
         "1862fc95-bd9d-4dd5-bfd3-3f87421d96b3",

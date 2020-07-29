@@ -39,8 +39,8 @@ for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
             nx = buffer_read(sub.buffer, buffer_f32);
             ny = buffer_read(sub.buffer, buffer_f32);
             nz = buffer_read(sub.buffer, buffer_f32);
-            xtex = buffer_read(sub.buffer, buffer_f32) / (scale ? mesh.texture_scale : 1);
-            ytex = buffer_read(sub.buffer, buffer_f32) / (scale ? mesh.texture_scale : 1);
+            xtex = buffer_read(sub.buffer, buffer_f32);
+            ytex = buffer_read(sub.buffer, buffer_f32);
             color[j] = buffer_read(sub.buffer, buffer_u32);
             buffer_read(sub.buffer, buffer_u32);
             

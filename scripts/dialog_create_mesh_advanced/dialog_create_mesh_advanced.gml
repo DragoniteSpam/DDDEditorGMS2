@@ -109,26 +109,6 @@ var el_all_normal_smooth = create_button(col4_x, yy, "Normals: Smooth", ew, eh, 
 el_all_normal_smooth.tooltip = "Smooths all normals in every mesh in the data file. Note that this will have no effect until I finally go and implement smooth shading in a shader.";
 yy += el_all_normal_smooth.height + spacing;
 
-var el_scale_1x = create_button(col4_x, yy, "Texture Scale: Normal", ew, eh, fa_center, omu_mesh_texture_scale_1x, dg);
-el_scale_1x.tooltip = "Mesh textures are unscaled. Anything that is not intended to use a map tileset as its texture should use this setting.";
-el_scale_1x.color = (mesh.texture_scale == 1) ? c_blue : c_black;
-el_scale_1x.interactive = (mesh.texture_scale > 0);
-yy += el_scale_1x.height + spacing;
-dg.el_scale_1x = el_scale_1x;
-
-var el_scale_05x = create_button(col4_x, yy, "Texture Scale: Tileset", ew, eh, fa_center, omu_mesh_texture_scale_05x, dg);
-el_scale_05x.tooltip = "Mesh textures are scaled to use a map tileset.";
-el_scale_05x.color = (mesh.texture_scale == 0.5) ? c_blue : c_black;
-el_scale_05x.interactive = (mesh.texture_scale > 0);
-yy += el_scale_05x.height + spacing;
-dg.el_scale_05x = el_scale_05x;
-
-var el_scale_0x = create_button(col4_x, yy, "Texture Scale: Textureless", ew, eh, fa_center, omu_mesh_texture_scale_0x, dg);
-el_scale_0x.tooltip = "Mesh texture coordinate information is set to zero (effectively removed). This is a one-way operation which cannot be undone.";
-el_scale_0x.color = (mesh.texture_scale == 0) ? c_blue : c_black;
-yy += el_scale_0x.height + spacing;
-dg.el_scale_0x = el_scale_0x;
-
 var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
 
 ds_list_add(dg.contents,
@@ -141,9 +121,6 @@ ds_list_add(dg.contents,
     el_auto_bounds,
     el_normal_flat,
     el_normal_smooth,
-    el_scale_1x,
-    el_scale_05x,
-    el_scale_0x,
     el_up_axis,
     el_markers,
     el_text_all,
