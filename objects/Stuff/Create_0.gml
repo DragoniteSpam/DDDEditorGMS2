@@ -447,8 +447,7 @@ c_object_cache = ds_queue_create();
 #endregion
 
 #region end of step actions
-schedule_rebuild_master_texture = false;
-schedule_view_master_texture = false;
+schedule_rebuild_autotile_texture = false;
 schedule_save = false;
 
 gpu_base_state = gpu_get_state();

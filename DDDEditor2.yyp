@@ -12190,14 +12190,6 @@
             }
         },
         {
-            "Key": "898412a1-5a61-4951-956d-9474e447b49f",
-            "Value": {
-                "id": "05d75b30-71db-4efc-bea2-0115710c63a1",
-                "resourcePath": "scripts\\uimu_view_master_texture\\uimu_view_master_texture.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "89860c2a-76de-47dd-ba84-17e174dde339",
             "Value": {
                 "id": "8fe3451d-de33-42f2-be88-8d9dd166bd29",
@@ -24120,7 +24112,6 @@
         "ffd6e8dd-7715-4bac-b112-e48f7ba785a4",
         "0660022b-43d7-4232-8df3-3a939f8876b6",
         "6fe33f08-c847-400f-9d76-51940de3ab96",
-        "898412a1-5a61-4951-956d-9474e447b49f",
         "ed5ed73e-6f8a-4600-86cd-b40122c6c077",
         "c1658414-a62d-44ec-9233-a6ea8294750d",
         "8ea255fa-966d-4d03-b7b7-473d9d2edd81",

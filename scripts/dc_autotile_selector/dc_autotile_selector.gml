@@ -12,4 +12,4 @@ dialog_destroy();
 // later though because in the middle of the step while the 3D camera is on things
 // tend to get flipped upside-down sometimes
 
-Stuff.schedule_rebuild_master_texture = true;
+Stuff.schedule_rebuild_autotile_texture = true;

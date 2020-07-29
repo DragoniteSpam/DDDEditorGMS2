@@ -24,18 +24,9 @@ gpu_set_state(gpu_base_state);
 
 var ts = get_active_tileset();
 
-if (schedule_rebuild_master_texture) {
-    if (sprite_exists(ts.master)) {
-        sprite_delete(ts.master);
-    }
-    ts.master = tileset_create_master(ts);
-    schedule_rebuild_master_texture = false;
-}
-
-if (schedule_view_master_texture) {
-    sprite_save_fixed(ts.master, 0, "master-preview.png");
-    ds_stuff_open_local("master-preview.png");
-    schedule_view_master_texture = false;
+if (schedule_rebuild_autotile_texture) {
+    wtf("this has yet to be implemented");
+    schedule_rebuild_autotile_texture = false;
 }
 
 if (schedule_save) {

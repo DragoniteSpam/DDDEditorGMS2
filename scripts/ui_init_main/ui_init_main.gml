@@ -106,12 +106,6 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = legal_y + spacing;
     
-    element = create_button(col2_x, yy, "View Master Texture", col_width, element_height, fa_center, uimu_view_master_texture, t_general);
-    element.tooltip = "Preview the main texture page of the map. This is not particularly helpful currently and I may remove it at some point.";
-    ds_list_add(t_general.contents, element);
-    
-    yy += element.height + spacing;
-    
     element = create_checkbox(col2_x, yy, "View Wireframes", col_width, element_height, uivc_check_view_wireframe, Stuff.setting_view_wireframe, t_general);
     element.tooltip = "Whether or not you want to view the wireframes to go with visual data.";
     ds_list_add(t_general.contents, element);
