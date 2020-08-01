@@ -29,16 +29,23 @@ var layer_data_y = json[? "y"];
 var layer_properties = json[? "properties"];
 var property_map = ds_map_create();
 
-for (var i = 0; i < ds_list_size(layer_properties); i++) {
-    var property = layer_properties[| i];
-    // don't add map because they're already in the root map
-    property_map[? property[? "name"]] = property;
+if (layer_properties != undefined) {
+    for (var i = 0; i < ds_list_size(layer_properties); i++) {
+        var property = layer_properties[| i];
+        // don't add map because they're already in the root map
+        property_map[? property[? "name"]] = property;
+    }
 }
 
 var xoffset = 0;
 var yoffset = 0;
-// @gml update chained accessors
-var zoffset = ds_map_find_value(property_map[? "Offset"], "value");
+
+// @gml update try catch
+if (ds_map_exists(property_map, "Offset")) {
+    var zoffset = ds_map_find_value(property_map[? "Offset"], "value");
+} else {
+    var zoffset = 0;
+}
 
 if (layer_visible) {
     for (var i = 0; i < ds_list_size(layer_data); i++) {
