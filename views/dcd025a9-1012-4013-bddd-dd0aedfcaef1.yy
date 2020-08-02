@@ -12,7 +12,8 @@
         "3524668f-fce9-47ef-a727-b1f72a682462",
         "ef88187a-f578-4d1f-b954-17d87c453441",
         "1463a253-2c9b-48c6-8428-954e21d6ff63",
-        "01ee65eb-87c8-424b-83ad-c4dee7d8818b"
+        "01ee65eb-87c8-424b-83ad-c4dee7d8818b",
+        "acb65499-35f1-44ae-b1e6-5c29e30af030"
     ],
     "filterType": "GMScript",
     "folderName": "map and settings",

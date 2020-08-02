@@ -3526,6 +3526,14 @@
             }
         },
         {
+            "Key": "25eb292d-89e9-41f1-88af-518b285ca328",
+            "Value": {
+                "id": "4f66b778-3bb2-4a14-994b-0375da9b9a71",
+                "resourcePath": "scripts\\omu_manager_tileset_selector\\omu_manager_tileset_selector.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "26393753-6ea7-48ff-96b6-f6b61d18b115",
             "Value": {
                 "id": "909a30f6-8489-4f88-b690-9044b6872bfe",
@@ -15150,6 +15158,14 @@
             }
         },
         {
+            "Key": "acb65499-35f1-44ae-b1e6-5c29e30af030",
+            "Value": {
+                "id": "3cd89e62-6e4f-488d-889f-4a7c47a03f70",
+                "resourcePath": "scripts\\dmu_dialog_commit__select_tileset\\dmu_dialog_commit__select_tileset.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "acc15879-e28d-4b05-8ad5-b65c54cd79c8",
             "Value": {
                 "id": "eacc4af2-7f7e-41b3-895e-ee30314457a8",
@@ -23784,6 +23800,7 @@
         "ef88187a-f578-4d1f-b954-17d87c453441",
         "1463a253-2c9b-48c6-8428-954e21d6ff63",
         "01ee65eb-87c8-424b-83ad-c4dee7d8818b",
+        "acb65499-35f1-44ae-b1e6-5c29e30af030",
         "6632e72e-3d90-4eed-bde9-d7220c475a3d",
         "421b75e0-45fa-46bd-9818-6df02b716307",
         "2bab7c83-082f-4f2d-bf70-d27f96dabdab",
@@ -24508,6 +24525,7 @@
         "54920234-5e1f-419d-ba29-7e4cf13a8121",
         "999d02f7-dac6-4fca-961b-58e30d3981a7",
         "4e6c2bd0-485b-4d69-9b59-5df2a95c4209",
+        "25eb292d-89e9-41f1-88af-518b285ca328",
         "58c47e9d-ecab-4472-b7a8-97668439288d",
         "a29d7679-9e69-44a1-bb5e-3a8dd119f452",
         "fd69df94-52ec-4dc4-ac67-39f1bbfee9b7",

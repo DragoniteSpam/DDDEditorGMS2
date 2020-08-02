@@ -82,7 +82,9 @@ dg.el_dim_x = noone;
 dg.el_dim_y = noone;
 dg.el_frame_speed = noone;
 
-var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
+var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit__select_tileset, dg);
+el_confirm.select_tileset = false;
+dg.el_confirm = el_confirm;
 
 ds_list_add(dg.contents,
     el_list,

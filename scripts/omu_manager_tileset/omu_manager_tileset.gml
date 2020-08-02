@@ -2,4 +2,4 @@
 
 var thing = argument0;
 
-dialog_create_manager_tileset(noone);
+return dialog_create_manager_tileset(noone);

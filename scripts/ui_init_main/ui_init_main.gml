@@ -758,7 +758,7 @@ with (instance_create_depth(0, 0, 0, UIMain)) {
     
     yy = legal_y + spacing;
     
-    element = create_button(col1_x, yy, "Change Tileset", 128, element_height, fa_center, omu_manager_tileset, t_p_tile_editor);
+    element = create_button(col1_x, yy, "Change Tileset", 128, element_height, fa_center, omu_manager_tileset_selector, t_p_tile_editor);
     ds_list_add(t_p_tile_editor.contents, element);
     
     element = create_button(col1_x + (spacing + 128), yy, "Import Main", 128, element_height, fa_center, dmu_dialog_load_tileset_main, t_p_tile_editor);
