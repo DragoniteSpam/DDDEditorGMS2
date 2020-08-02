@@ -13,9 +13,9 @@ map.tiled_map_id = buffer_read(buffer, buffer_s32);
 var xx = buffer_read(buffer, buffer_u16);
 var yy = buffer_read(buffer, buffer_u16);
 var zz = buffer_read(buffer, buffer_u16);
+data_resize_map(map, xx, yy, zz);
 
 map.tileset =                   buffer_read(buffer, buffer_get_datatype(version));
-data_resize_map(map, xx, yy, zz);
 map.fog_start =                 buffer_read(buffer, buffer_f32);
 map.fog_end =                   buffer_read(buffer, buffer_f32);
 map.fog_colour =                buffer_read(buffer, buffer_u32);

@@ -14,7 +14,6 @@ buffer_write(buffer, buffer_u16, map.yy);
 buffer_write(buffer, buffer_u16, map.zz);
 
 buffer_write(buffer, buffer_datatype, map.tileset);
-
 buffer_write(buffer, buffer_f32, map.fog_start);
 buffer_write(buffer, buffer_f32, map.fog_end);
 buffer_write(buffer, buffer_u32, map.fog_colour);
