@@ -14,8 +14,6 @@ var xx = buffer_read(buffer, buffer_u16);
 var yy = buffer_read(buffer, buffer_u16);
 var zz = buffer_read(buffer, buffer_u16);
 
-// it's an index now, but i'm going to make it a data type later, and this is
-// in preparation for whenever i do that
 map.tileset =                   buffer_read(buffer, buffer_get_datatype(version));
 data_resize_map(map, xx, yy, zz);
 map.fog_start =                 buffer_read(buffer, buffer_f32);

@@ -1,5 +1,5 @@
 /// @param json
-/// @param tileset-columns
+/// @param ts-columns
 /// @param z
 /// @param alpha
 /// @param x

@@ -27,7 +27,7 @@ with (instance_create_depth(0, 0, 0, DataTileset)) {
     
     if (!sprite_exists(picture)) {
         picture = sprite_duplicate(b_tileset_magenta);
-        wtf("Missing tileset image; using default tileset instead: " + picture_name);
+        wtf("Missing tileset image; using default instead: " + picture_name);
     }
     
     array_clear(autotiles, noone);

@@ -50,7 +50,7 @@ if (file_exists(filename)) {
         ds_map_add_map(tiled_cache, "&gid", gid_cache);
         var tileset_columns = 0;
         
-        // the main tileset used by the map
+        // the main ts used by the map
         if (!ds_list_empty(json_tilesets)) {
             // @gml update chained accessors
             var tileset_source = ds_map_find_value(json_tilesets[| 0], "source");
