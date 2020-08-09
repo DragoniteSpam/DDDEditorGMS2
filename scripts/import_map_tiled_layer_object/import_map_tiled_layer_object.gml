@@ -31,6 +31,10 @@ for (var i = 0; i < ds_list_size(layer_objects); i++) {
     var obj_x = object[? "x"];
     var obj_y = object[? "y"];
     
+    if (!is_clamped((xx + obj_x) / TILE_WIDTH, 0, Stuff.map.active_map.xx - 1)) continue;
+    if (!is_clamped((yy + obj_y) / TILE_HEIGHT, 0, Stuff.map.active_map.yy - 1)) continue;
+    if (!is_clamped(zz, 0, Stuff.map.active_map.zz - 1)) continue;
+    
     var obj_gid_local = object[? "gid"];
     var obj_name = object[? "name"];
     var obj_template = object[? "template"];
