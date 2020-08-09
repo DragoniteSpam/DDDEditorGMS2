@@ -11,6 +11,7 @@ if (selection + 1) {
     var instance = root_element.instance;
     ds_list_set(instance.values[| root_element.key], 0, entrypoint.GUID);
     root_element.text = get_event_entrypoint_short_name(entrypoint);
+    root_element.tooltip = entrypoint.event.name + " / " + entrypoint.name;
 }
 
 dmu_dialog_commit(button);
