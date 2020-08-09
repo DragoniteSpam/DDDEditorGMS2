@@ -114,4 +114,6 @@ if (file_exists(filename)) {
     }
     
     ds_map_destroy(json);
+    
+    batch_again();
 }

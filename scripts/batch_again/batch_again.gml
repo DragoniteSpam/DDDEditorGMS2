@@ -1,11 +1,11 @@
 /// @param [json]
 
 var map = Stuff.map.active_map.contents;
-var data = (argument_count > 0) ? argument[0] : -2;
+var data = (argument_count > 0) ? argument[0] : undefined;
 
 // If no index is provided it just rebatches EVERYTHING. This is very slow. Please
 // don't use it constantly otherwise the program will become very unenjoyable to use.
-if (data == -2) {
+if (data == undefined) {
     for (var i = 0; i < ds_list_size(map.batch_data); i++) {
         batch_again(map.batch_data[| i]);
     }
