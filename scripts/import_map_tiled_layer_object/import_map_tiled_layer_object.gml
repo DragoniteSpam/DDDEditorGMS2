@@ -14,6 +14,7 @@ var xx = (argument_count > 4) ? argument[4] : 0;
 var yy = (argument_count > 5) ? argument[5] : 0;
 var tiled_cache = (argument_count > 6) ? argument[6] : noone;
 var zz = z;
+var layer_tag = 0;
 
 var layer_objects = json[? "objects"];
 var layer_name = json[? "name"];
@@ -22,6 +23,23 @@ var layer_visible = json[? "visible"];
 var layer_data_x = json[? "x"];
 var layer_data_y = json[? "y"];
 var layer_base_z = z;
+var layer_properties = json[? "properties"];
+if (layer_properties) {
+    /// @gml chained accessors
+    for (var i = 0; i < ds_list_size(layer_properties); i++) {
+        var property_data = layer_properties[| i];
+        var property_name = property_data[? "name"];
+        if (string_copy(property_name, 1, 4) == "Tag_") {
+            var imported = string_lettersdigits(string_lower(string(property_data[? "value"])));
+            for (var j = 0; j < ds_list_size(Stuff.all_asset_flags); j++) {
+                if (string_lettersdigits(string_lower(Stuff.all_asset_flags[| j])) == imported) {
+                    layer_tag |= (1 << j);
+                    break;
+                }
+            }
+        }
+    }
+}
 
 var tmx_cache = tiled_cache[? "&tmx-ids"];
 
@@ -43,6 +61,21 @@ for (var i = 0; i < ds_list_size(layer_objects); i++) {
     var obj_visible = object[? "visible"];
     var obj_width = object[? "width"];
     var obj_height = object[? "height"];
+    
+    // if the layer has a tag assigned to it, instead of creating an instance
+    // of a mesh or whatever, convert its area to a tag
+    if (layer_tag) {
+        var x1 = obj_x;
+        var y1 = obj_y;
+        var x2 = x1 + (obj_width div TILE_WIDTH);
+        var y2 = y1 + (obj_height div TILE_HEIGHT);
+        for (var j = x1; j < x2; j++) {
+            for (var k = y1; k < y2; k++) {
+                
+            }
+        }
+        continue;
+    }
     
     if ((obj_template == undefined)) {
         var data_template = noone;
