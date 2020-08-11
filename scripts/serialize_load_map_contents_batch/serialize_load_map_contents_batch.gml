@@ -18,6 +18,17 @@ var length = buffer_read(buffer, buffer_u64);
 map_contents.frozen_data_wire_size = buffer_read(buffer, buffer_u64);
 map_contents.frozen_data_wire = buffer_read_buffer(buffer, length);
 
+if (version >= DataVersions.MAP_FROZEN_TAGS) {
+    map_clear_tag_grid(map);
+    for (var i = 0; i < map.xx; i++) {
+        for (var j = 0; j < map.yy; j++) {
+            for (var k = 0; k < map.zz; k++) {
+                map_set_tag_grid(i, j, k, buffer_read(buffer, buffer_u64), map);
+            }
+        }
+    }
+}
+
 if (buffer_get_size(map_contents.frozen_data) - 1) {
     map_contents.frozen = vertex_create_buffer_from_buffer(map_contents.frozen_data, Stuff.graphics.vertex_format);
     vertex_freeze(map_contents.frozen);

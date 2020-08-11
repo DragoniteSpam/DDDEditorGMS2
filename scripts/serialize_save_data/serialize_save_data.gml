@@ -103,5 +103,6 @@ enum DataVersions {
     MAP_ENTITY_CHUNKS                   = 111,
     MESH_MATERIALS                      = 112,
     REMOVE_MESH_TEX_SCALE               = 113,
+    MAP_FROZEN_TAGS                     = 114,
     _CURRENT /* = whatever the last one is + 1 */
 }

@@ -13,6 +13,14 @@ buffer_write(buffer, buffer_u64, int64(buffer_get_size(map_contents.frozen_data_
 buffer_write(buffer, buffer_u64, int64(map_contents.frozen_data_wire_size));
 buffer_write_buffer(buffer, map_contents.frozen_data_wire);
 
+for (var i = 0; i < map.xx; i++) {
+    for (var j = 0; j < map.yy; j++) {
+        for (var k = 0; k < map.zz; k++) {
+            buffer_write(buffer, buffer_u64, int64(map_get_tag_grid(i, j, k)));
+        }
+    }
+}
+
 var addr_cache = buffer_tell(buffer);
 buffer_write(buffer, buffer_u32, 0);
 // if this goes well, make it a game setting
