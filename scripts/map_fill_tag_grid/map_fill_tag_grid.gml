@@ -12,12 +12,12 @@ for (var i = 0; i < ds_grid_width(grid); i++) {
             var le = array_length_1d(existing_array);
             var contents = array_create(zz);
             for (var k = 0; k < zz; k++) {
-                contents[k] = (k < le) ? existing_array[k] : [noone, noone, noone, noone];
+                contents[k] = (k < le) ? existing_array[k] : 0;
             }
         } else {
             var contents = array_create(zz);
             for (var k = 0; k < zz; k++) {
-                contents[k] = [noone, noone, noone, noone];
+                contents[k] = 0;
             }
         }
         grid[# i, j] = contents;

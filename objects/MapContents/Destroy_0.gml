@@ -23,6 +23,7 @@ ds_list_destroy_instances(all_zones);
 ds_map_destroy(refids);
 
 ds_grid_destroy(map_grid);
+ds_grid_destroy(map_grid_frozen_tags);
 
 if (frozen) vertex_delete_buffer(frozen);
 if (frozen_wire) vertex_delete_buffer(frozen_wire);

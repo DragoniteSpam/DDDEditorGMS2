@@ -23,7 +23,9 @@ for (var i = 0; i < ds_list_size(map_contents.all_entities); i++) {
 graphics_create_grids();
 
 ds_grid_resize(map_contents.map_grid, xx, yy);
+ds_grid_resize(map_contents.map_grid_frozen_tags, xx, yy);
 map_fill_grid(map_contents.map_grid, zz);
+map_fill_tag_grid(map_contents.map_grid_frozen_tags, zz);
 
 if (Stuff.game_starting_map == map.GUID) {
     Stuff.game_starting_x = min(Stuff.game_starting_x, xx - 1);
