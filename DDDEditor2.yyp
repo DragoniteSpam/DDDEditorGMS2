@@ -1134,6 +1134,14 @@
             }
         },
         {
+            "Key": "0b701334-7eb6-4952-958c-068fe758e75c",
+            "Value": {
+                "id": "21e5d6c1-13e1-4c73-af2e-c568766d5992",
+                "resourcePath": "scripts\\map_clear_tag_grid\\map_clear_tag_grid.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "0b7de2e4-423b-4049-ae3c-cefbec9a47a6",
             "Value": {
                 "id": "5bfec962-a80a-40d2-95d2-86105b6fca00",
@@ -22789,6 +22797,7 @@
         "ef6793cd-a331-44e5-bd38-6920300a558a",
         "0657dd0d-6793-40d4-9667-d8b3da8ffe19",
         "be2d8597-706f-41df-818c-ab0dfed4e6aa",
+        "0b701334-7eb6-4952-958c-068fe758e75c",
         "8a169476-76e7-46d2-99f7-6de10c31e642",
         "338a10b6-ba1c-45a0-bc8d-76b91747d872",
         "27d6890c-358e-48d9-92b6-a3b114a3893b",

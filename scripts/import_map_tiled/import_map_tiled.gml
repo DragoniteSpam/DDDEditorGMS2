@@ -77,6 +77,7 @@ if (file_exists(filename)) {
         if (tileset_columns) {
             buffer_seek(map_contents.frozen_data, buffer_seek_start, map_contents.frozen_data_size);
             buffer_seek(map_contents.frozen_data_wire, buffer_seek_start, map_contents.frozen_data_wire_size);
+            map_clear_tag_grid();
             
             var json_layers = json[? "layers"];
             var layer_z = 0;
