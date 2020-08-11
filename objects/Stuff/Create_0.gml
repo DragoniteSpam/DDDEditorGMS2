@@ -254,7 +254,7 @@ repeat (FLAG_COUNT) {
 all_asset_flags[| 0] = "Bush";
 all_asset_flags[| 1] = "Counter";
 all_asset_flags[| 2] = "Danger";
-all_asset_flags[| 3] = "Save";
+all_asset_flags[| 3] = "Safe";
 all_asset_flags[| 4] = "Water";
 
 all_maps = ds_list_create();

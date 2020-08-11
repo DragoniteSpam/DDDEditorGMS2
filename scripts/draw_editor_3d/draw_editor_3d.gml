@@ -42,9 +42,6 @@ gpu_set_ztestenable(true);
 
 // anything in the world
 
-// the water effect uses a different shader
-graphics_draw_water();
-
 shader_set(shd_ddd);
 graphics_set_lighting(shd_ddd);
 
@@ -74,6 +71,9 @@ for (var i = 0; i < ds_list_size(map_contents.batch_in_the_future); i++) {
     script_execute(ent.render, ent);
     // batchable entities don't make use of move routes, so don't bother
 }
+
+// the water effect uses a different shader
+graphics_draw_water();
 
 // move routes are logged when dynamic entities are being drawn
 var list_routes = ds_list_create();       // [buffer, x, y, z, extra?, extra x, extra y, extra z], positions are absolute
@@ -128,14 +128,13 @@ for (var i = 0; i < ds_list_size(mode.selection); i++) {
 }
 
 if (Stuff.setting_view_zones) {
-    // zones
     for (var i = 0; i < ds_list_size(map_contents.all_zones); i++) {
         zone_render_rectangle(map_contents.all_zones[| i]);
     }
 }
 #endregion
 
-#region unlit meshes
+#region unlit meshes - UI stuff like axes and gizmos
 if (Stuff.game_starting_map == Stuff.map.active_map.GUID) {
     transform_set(0, 0, 0, 0, 0, Stuff.direction_lookup[Stuff.game_starting_direction], 1, 1, 1);
     transform_add((Stuff.game_starting_x + 0.5) * TILE_WIDTH, (Stuff.game_starting_y + 0.5) * TILE_HEIGHT, Stuff.game_starting_z * TILE_DEPTH, 0, 0, 0, 1, 1, 1);
