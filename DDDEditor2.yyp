@@ -3694,6 +3694,14 @@
             }
         },
         {
+            "Key": "27d6890c-358e-48d9-92b6-a3b114a3893b",
+            "Value": {
+                "id": "4e5398bc-6022-44af-ae7f-95f826911ded",
+                "resourcePath": "scripts\\map_set_tag_grid\\map_set_tag_grid.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "2824475a-51e7-494f-802a-916323135967",
             "Value": {
                 "id": "cf51f04c-c8b8-424d-9e78-b87d2b60507a",
@@ -4738,6 +4746,14 @@
             "Value": {
                 "id": "bffae517-72fb-4540-a1ec-5d5424ecbc03",
                 "resourcePath": "scripts\\omu_meshes_set_rot_y\\omu_meshes_set_rot_y.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "338a10b6-ba1c-45a0-bc8d-76b91747d872",
+            "Value": {
+                "id": "3b9ce268-95fb-4e0a-b0b6-51d16152a1f1",
+                "resourcePath": "scripts\\map_fill_grid\\map_fill_grid.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -22774,6 +22790,8 @@
         "0657dd0d-6793-40d4-9667-d8b3da8ffe19",
         "be2d8597-706f-41df-818c-ab0dfed4e6aa",
         "8a169476-76e7-46d2-99f7-6de10c31e642",
+        "338a10b6-ba1c-45a0-bc8d-76b91747d872",
+        "27d6890c-358e-48d9-92b6-a3b114a3893b",
         "24b6de3e-721f-4f0b-aa81-c4611fcd2ee4",
         "0c1b8697-a831-4069-b945-6b7051f929f5",
         "310aeda2-72de-428e-a091-757483e1c36a",

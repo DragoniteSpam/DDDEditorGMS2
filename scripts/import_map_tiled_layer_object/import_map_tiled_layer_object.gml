@@ -65,13 +65,13 @@ for (var i = 0; i < ds_list_size(layer_objects); i++) {
     // if the layer has a tag assigned to it, instead of creating an instance
     // of a mesh or whatever, convert its area to a tag
     if (layer_tag) {
-        var x1 = obj_x;
-        var y1 = obj_y;
+        var x1 = obj_x div TILE_WIDTH;
+        var y1 = obj_y div TILE_HEIGHT;
         var x2 = x1 + (obj_width div TILE_WIDTH);
         var y2 = y1 + (obj_height div TILE_HEIGHT);
         for (var j = x1; j < x2; j++) {
             for (var k = y1; k < y2; k++) {
-                
+                map_set_tag_grid(j, k, zz, layer_tag);
             }
         }
         continue;
