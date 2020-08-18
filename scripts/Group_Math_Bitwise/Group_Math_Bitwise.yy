@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Data Structures",
-    "path": "folders/Scripts/Math/Data Structures.yy",
+    "name": "Math",
+    "path": "folders/Scripts/Math.yy",
   },
   "resourceVersion": "1.0",
-  "name": "ds_list_sort_fast",
+  "name": "Group_Math_Bitwise",
   "tags": [],
   "resourceType": "GMScript",
 }

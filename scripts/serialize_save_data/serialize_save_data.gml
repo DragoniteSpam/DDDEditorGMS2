@@ -72,7 +72,8 @@ function serialize_save_data() {
 	}
 
 	if (!ds_map_empty(global.error_map)) {
-	    var error_list = ds_map_to_list_sorted(global.error_map);
+	    var error_list = ds_map_to_list(global.error_map);
+        ds_list_sort(error_list, false);
 	    var err_str = "";
 	    for (var i = 0; i < ds_list_size(error_list); i++) {
 	        err_str = err_str + "    - " + global.error_map[? error_list[| i]] + "\n";

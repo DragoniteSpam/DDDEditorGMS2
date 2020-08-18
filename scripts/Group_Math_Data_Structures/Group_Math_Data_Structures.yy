@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "generics",
-    "path": "folders/Scripts/Math/Data Structures/generics.yy",
+    "name": "Math",
+    "path": "folders/Scripts/Math.yy",
   },
   "resourceVersion": "1.0",
-  "name": "ds_get_value",
+  "name": "Group_Math_Data_Structures",
   "tags": [],
   "resourceType": "GMScript",
 }
