@@ -7,7 +7,7 @@
 /// @param [occuranceName]      Unique identifier to differentiate particular occurances of a string within the game
 /// 
 /// Formatting commands:
-/// [/]                                 Reset formatting to the starting format (as set by scribble_set_starting_format()). For legacy reasions, [] is also permitted
+/// [/]                                 Reset formatting to the starting format, as set by scribble_set_starting_format(). For legacy reasons, [] is also accepted
 /// [/page]                             Page break
 /// [delay]                             Pause the autotype for a fixed amount of time at the tag's position. Only supported when using autotype. DUration is defined by SCRIBBLE_DEFAULT_DELAY_DURATION
 /// [delay,<time>]                      Pause the autotype for a fixed amount of time at the tag's position. Only supported when using autotype
@@ -35,9 +35,9 @@
 /// [wobble]  [/wobble]                 Set/unset text to wobble by rotating back and forth
 /// [pulse]   [/pulse]                  Set/unset text to shrink and grow rhythmically
 /// [wheel]   [/wheel]                  Set/unset text to circulate around their origin
-/// [cycle]   [/cycle]                  
-function scribble_draw() {
 
+function scribble_draw()
+{
 	var _draw_x         = argument[0];
 	var _draw_y         = argument[1];
 	var _draw_string    = argument[2];
@@ -71,10 +71,10 @@ function scribble_draw() {
 
 	//Grab our vertex buffers for this page
 	var _page_vbuffs_array = _page_array[__SCRIBBLE_PAGE.VERTEX_BUFFERS_ARRAY];
-	var _count = array_length_1d(_page_vbuffs_array);
+	var _count = array_length(_page_vbuffs_array);
 	if (_count > 0)
 	{
-    #region Advance the autotyper, execute events, play sounds etc.
+        #region Advance the autotyper, execute events, play sounds etc.
     
 	    var _typewriter_method = _occurance_array[__SCRIBBLE_OCCURANCE.METHOD];
 	    if (_typewriter_method == 0) //No fade in/out set
@@ -92,13 +92,8 @@ function scribble_draw() {
 	        var _typewriter_window_array   = _occurance_array[__SCRIBBLE_OCCURANCE.WINDOW_ARRAY];
 	        var _typewriter_fade_in        = _occurance_array[__SCRIBBLE_OCCURANCE.FADE_IN     ];
 	        var _typewriter_adjusted_speed = _occurance_array[__SCRIBBLE_OCCURANCE.SPEED       ]*SCRIBBLE_STEP_SIZE;
-	        var _skipping                  = _occurance_array[__SCRIBBLE_OCCURANCE.SKIP        ];
-        
-	        if (_skipping)
-	        {
-	            //_typewriter_adjusted_speed = 99999999;
-	        }
-        
+            var _skipping                  = _occurance_array[__SCRIBBLE_OCCURANCE.SKIP        ];
+            
 	        //Handle pausing
 	        if (_occurance_array[__SCRIBBLE_OCCURANCE.PAUSED])
 	        {
@@ -129,7 +124,7 @@ function scribble_draw() {
 	            var _typewriter_speed = _typewriter_adjusted_speed;
 	        }
             
-        #region Scan for autotype events
+            #region Scan for autotype events
         
 	        if ((_typewriter_fade_in >= 0) && (_typewriter_speed > 0))
 	        {
@@ -156,7 +151,7 @@ function scribble_draw() {
 	                var _events_char_array = _scribble_array[SCRIBBLE.EVENT_CHAR_ARRAY];
 	                var _events_name_array = _scribble_array[SCRIBBLE.EVENT_NAME_ARRAY];
 	                var _events_data_array = _scribble_array[SCRIBBLE.EVENT_DATA_ARRAY];
-	                var _event_count       = array_length_1d(_events_char_array);
+	                var _event_count       = array_length(_events_char_array);
                 
 	                var _event                = _occurance_array[__SCRIBBLE_OCCURANCE.EVENT_PREVIOUS     ];
 	                var _events_visited_array = _occurance_array[__SCRIBBLE_OCCURANCE.EVENT_VISITED_ARRAY];
@@ -180,29 +175,32 @@ function scribble_draw() {
 	                            if (!_events_visited_array[_event])
 	                            {
 	                                _events_visited_array[@ _event] = true;
-	                                _occurance_array[@ __SCRIBBLE_OCCURANCE.EVENT_PREVIOUS] = _event;
+                                    _occurance_array[@ __SCRIBBLE_OCCURANCE.EVENT_PREVIOUS] = _event;
                                     
 	                                //Process pause and delay events
 	                                if (_event_name == "pause")
 	                                {
-	                                    if (!_skipping) _occurance_array[@ __SCRIBBLE_OCCURANCE.PAUSED] = true;
+                                        if (!_skipping)
+                                        {
+	                                        _occurance_array[@ __SCRIBBLE_OCCURANCE.PAUSED] = true;
+                                        }
 	                                }
 	                                else if (_event_name == "delay")
 	                                {
-	                                    if (!_skipping)
-	                                    {
-	                                        if (array_length_1d(_event_data_array) >= 1)
-	                                        {
-	                                            var _duration = real(_event_data_array[0]);
-	                                        }
-	                                        else
-	                                        {
-	                                            var _duration = SCRIBBLE_DEFAULT_DELAY_DURATION;
-	                                        }
-                                        
-	                                        _occurance_array[@ __SCRIBBLE_OCCURANCE.DELAY_PAUSED] = true;
-	                                        _occurance_array[@ __SCRIBBLE_OCCURANCE.DELAY_END   ] = current_time + _duration;
-	                                    }
+                                        if (!_skipping)
+                                        {
+    	                                    if (array_length(_event_data_array) >= 1)
+    	                                    {
+    	                                        var _duration = real(_event_data_array[0]);
+    	                                    }
+    	                                    else
+    	                                    {
+    	                                        var _duration = SCRIBBLE_DEFAULT_DELAY_DURATION;
+    	                                    }
+                                            
+    	                                    _occurance_array[@ __SCRIBBLE_OCCURANCE.DELAY_PAUSED] = true;
+    	                                    _occurance_array[@ __SCRIBBLE_OCCURANCE.DELAY_END   ] = current_time + _duration;
+                                        }
 	                                }
 	                                else
 	                                {
@@ -249,10 +247,10 @@ function scribble_draw() {
 	            _typewriter_window_array[@ _typewriter_window] = _typewriter_head_pos;
 	        }
             
-        #endregion
+            #endregion
 	    }
     
-    #region Move the typewriter head/tail
+        #region Move the typewriter head/tail
     
 	    if (_typewriter_method != 0) //Either per line or per character fade set
 	    {
@@ -269,14 +267,14 @@ function scribble_draw() {
 	        }
 	    }
     
-    #endregion
+        #endregion
     
 	    if ((_typewriter_speed > 0) && (floor(_scan_b) > floor(_scan_a)))
 	    {
-        #region Play a sound effect as the text is revealed
+            #region Play a sound effect as the text is revealed
         
 	        var _sound_array = _occurance_array[__SCRIBBLE_OCCURANCE.SOUND_ARRAY];
-	        if (is_array(_sound_array) && (array_length_1d(_sound_array) > 0))
+	        if (is_array(_sound_array) && (array_length(_sound_array) > 0))
 	        {
 	            var _play_sound = false;
 	            if (_occurance_array[__SCRIBBLE_OCCURANCE.SOUND_PER_CHAR])
@@ -292,7 +290,7 @@ function scribble_draw() {
 	            {
 	                global.__scribble_lcg = (48271*global.__scribble_lcg) mod 2147483647; //Lehmer
 	                var _rand = global.__scribble_lcg / 2147483648;
-	                var _sound = _sound_array[floor(_rand*array_length_1d(_sound_array))];
+	                var _sound = _sound_array[floor(_rand*array_length(_sound_array))];
                 
 	                var _inst = audio_play_sound(_sound, 0, false);
                 
@@ -304,44 +302,51 @@ function scribble_draw() {
 	            }
 	        }
         
-        #endregion
+            #endregion
         
 	        var _callback = _occurance_array[__SCRIBBLE_OCCURANCE.FUNCTION];
 	        if ((_callback != undefined) && script_exists(_callback)) script_execute(_callback, _scribble_array, _typewriter_window_array[_typewriter_window] - 1);
 	    }
     
-    #endregion
+        #endregion
     
     
     
-    #region Do the drawing!
+        #region Do the drawing!
     
-	    if (global.scribble_state_box_align_page)
-	    {
-	        var _box_w = _page_array[__SCRIBBLE_PAGE.WIDTH ];
-	        var _box_h = _page_array[__SCRIBBLE_PAGE.HEIGHT];
-	    }
-	    else
-	    {
-	        var _box_w = _scribble_array[SCRIBBLE.WIDTH ];
-	        var _box_h = _scribble_array[SCRIBBLE.HEIGHT];
-	    }
-    
-	    //Figure out the left/top offset
-	    switch(global.scribble_state_box_halign)
-	    {
-	        case fa_center: var _left = -(_box_w div 2); break;
-	        case fa_right:  var _left = -_box_w;         break;
-	        default:        var _left = 0;               break;
-	    }
-    
-	    switch(global.scribble_state_box_valign)
-	    {
-	        case fa_middle: var _top = -(_box_h div 2); break;
-	        case fa_bottom: var _top = -_box_h;         break;
-	        default:        var _top = 0;               break;
-	    }
-    
+        if (global.scribble_state_box_align_page)
+        {
+            var _box_w = _page_array[__SCRIBBLE_PAGE.WIDTH ];
+            var _box_h = _page_array[__SCRIBBLE_PAGE.HEIGHT];
+        }
+        else
+        {
+            var _box_w = _scribble_array[SCRIBBLE.WIDTH ];
+            var _box_h = _scribble_array[SCRIBBLE.HEIGHT];
+        }
+        
+        var _left = 0;
+        var _top  = 0;
+        
+        //Figure out the left/top offset
+        switch(global.scribble_state_box_halign)
+        {
+            case fa_center: _left -= _box_w div 2; break;
+            case fa_right:  _left -= _box_w;       break;
+        }
+        
+        switch(global.scribble_state_box_valign)
+        {
+            case fa_middle: _top -= _box_h div 2; break;
+            case fa_bottom: _top -= _box_h;       break;
+        }
+        
+        switch(_scribble_array[SCRIBBLE.VALIGN])
+        {
+            case fa_middle: _top -= _box_h div 2; break;
+            case fa_bottom: _top -= _box_h;       break;
+        }
+        
 	    //Build a matrix to transform the text...
 	    if ((global.scribble_state_xscale == 1)
 	    &&  (global.scribble_state_yscale == 1)
@@ -391,12 +396,12 @@ function scribble_draw() {
 	    //Make sure we reset the world matrix
 	    matrix_set(matrix_world, _old_matrix);
     
-    #endregion
+            #endregion
 	}
 
 
 
-#region Check to see if we need to free some memory from the global cache list
+        #region Check to see if we need to free some memory from the global cache list
 
 	if (SCRIBBLE_CACHE_TIMEOUT > 0)
 	{
@@ -423,11 +428,9 @@ function scribble_draw() {
 	    }
 	}
 
-#endregion
+        #endregion
 
 
 
 	return _scribble_array;
-
-
 }

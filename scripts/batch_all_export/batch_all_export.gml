@@ -10,7 +10,7 @@ function batch_all_export(argument0, argument1) {
 
 	for (var index = 0; index < ds_list_size(contents.all_entities); index++) {
 	    var thing = contents.all_entities[| index];
-	    if (thing.static) {
+	    if (thing.is_static) {
 	        var bounds = script_execute(thing.get_bounding_box, thing);
 	        bounds[0] = bounds[0] div chunk_size;
 	        bounds[1] = bounds[1] div chunk_size;

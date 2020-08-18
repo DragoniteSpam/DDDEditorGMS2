@@ -6,7 +6,7 @@
     "path": "folders/Scribble/Advanced Things For Serious People.yy",
   },
   "resourceVersion": "1.0",
-  "name": "scribble_add_autotype_character_delay",
+  "name": "scribble_combine_fonts",
   "tags": [],
   "resourceType": "GMScript",
 }

@@ -9,7 +9,7 @@ etype_flags = ETypeFlags.ENTITY_MESH;
 
 Stuff.map.active_map.contents.population[ETypes.ENTITY_MESH]++;
 
-static = true;
+is_static = true;
 
 mesh = NULL;
 mesh_submesh = 0;                   // proto-GUID

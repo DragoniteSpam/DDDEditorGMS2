@@ -14,7 +14,7 @@ function instance_create_mesh(argument0) {
 	            case MeshTypes.RAW:
 	                break;
 	            case MeshTypes.SMF:
-	                static = false;
+	                is_static = false;
 	                batchable = false;
 	                break;
 	        }

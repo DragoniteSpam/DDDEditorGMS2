@@ -183,7 +183,8 @@ smf_init();
 ds_stuff_init();
 c_init();
 c_world_create();
-dotdae_init();
+//dotdae_init();
+wtf("re-add the dotdae thing eventually");
 
 FMODGMS_Sys_Create();
 FMODGMS_Sys_Initialize(32);

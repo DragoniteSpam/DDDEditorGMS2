@@ -243,7 +243,7 @@ function import_map_tiled_layer_object() {
 	                }
 	                instance.off_xx = pr_offset_x / TILE_WIDTH;
 	                instance.off_yy = pr_offset_y / TILE_HEIGHT;
-	                instance.static = pr_static;
+	                instance.is_static = pr_static;
 	            } else {
 	                wtf("Log an error somewhere - no existing mesh \"" + string(gid_to_image_name) + "\"" + " for " + string(data_name));
 	            }

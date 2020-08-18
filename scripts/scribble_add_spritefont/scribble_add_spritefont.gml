@@ -20,8 +20,9 @@
 /// 
 /// Unlike standard fonts, spritefonts do not need to have any files added as Included Files. Similarly, spritefonts will not be added by using the autoScan feature
 /// of scribble_init(). Each spritefont must be added manually by calling scribble_add_spritefont().
-function scribble_add_spritefont() {
 
+function scribble_add_spritefont()
+{
 	if (!variable_global_exists("__scribble_lcg"))
 	{
 	    show_error("Scribble:\nscribble_add_spritefont() should be called after scribble_init()\n ", true);
@@ -42,7 +43,7 @@ function scribble_add_spritefont() {
 
 	if (!is_string(_font))
 	{
-	    if (is_real(_font))
+	    if (is_real(_font) && (asset_get_type(font_get_name(_font)) == asset_sprite))
 	    {
 	        show_error("Scribble:\nFonts should be initialised using their name as a string.\n(Input to script was \"" + string(_font) + "\", which might be sprite \"" + sprite_get_name(_font) + "\")\n ", false);
 	    }
@@ -93,6 +94,7 @@ function scribble_add_spritefont() {
 	var _data = array_create(__SCRIBBLE_FONT.__SIZE);
 	_data[@ __SCRIBBLE_FONT.NAME        ] = _font;
 	_data[@ __SCRIBBLE_FONT.PATH        ] = undefined;
+	_data[@ __SCRIBBLE_FONT.FAMILY_NAME ] = undefined;
 	_data[@ __SCRIBBLE_FONT.TYPE        ] = __SCRIBBLE_FONT_TYPE.SPRITE;
 	_data[@ __SCRIBBLE_FONT.GLYPHS_MAP  ] = undefined;
 	_data[@ __SCRIBBLE_FONT.GLYPHS_ARRAY] = undefined;
@@ -140,7 +142,7 @@ function scribble_add_spritefont() {
     
 	    image_index = _i;
 	    var _uvs = sprite_get_uvs(_sprite, image_index);
-	    if ((_uvs[0] == 0.0) && (_uvs[1] == 0.0) && (_uvs[4] == 0.0) && (_uvs[5] == 0.0) && (_uvs[6] == 1.0) && (_uvs[7] == 1.0)) ++_potential_separate_texture_page;
+	    if ((_uvs[0] == 0.0) && (_uvs[1] == 0.0) && (_uvs[4] == 0.0) && (_uvs[5] == 0.0) && (_uvs[6] == 1.0) && (_uvs[7] == 1.0)) _potential_separate_texture_page++;
     
 	    //Perform line sweeping to get accurate glyph data
 	    var _left   = bbox_left-2;
@@ -148,10 +150,10 @@ function scribble_add_spritefont() {
 	    var _right  = bbox_right+2;
 	    var _bottom = bbox_bottom+2;
             
-	    while (!collision_line(      _left, bbox_top-1,        _left, bbox_bottom+1, id, true, false) && (_left <= _right )) ++_left;
-	    while (!collision_line(bbox_left-1,       _top, bbox_right+1,          _top, id, true, false) && (_top  <= _bottom)) ++_top;
-	    while (!collision_line(     _right, bbox_top-1,       _right, bbox_bottom+1, id, true, false) && (_right  >= _left)) --_right;
-	    while (!collision_line(bbox_left-1,    _bottom, bbox_right+1,       _bottom, id, true, false) && (_bottom >= _top )) --_bottom;
+	    while (!collision_line(      _left, bbox_top-1,        _left, bbox_bottom+1, id, true, false) && (_left <= _right )) _left++;
+	    while (!collision_line(bbox_left-1,       _top, bbox_right+1,          _top, id, true, false) && (_top  <= _bottom)) _top++;
+	    while (!collision_line(     _right, bbox_top-1,       _right, bbox_bottom+1, id, true, false) && (_right  >= _left)) _right--;
+	    while (!collision_line(bbox_left-1,    _bottom, bbox_right+1,       _bottom, id, true, false) && (_bottom >= _top )) _bottom--;
             
 	    //Build an array to store this glyph's properties
 	    var _array = array_create(SCRIBBLE_GLYPH.__SIZE, 0);
@@ -249,6 +251,4 @@ function scribble_add_spritefont() {
 	}
 
 	if (SCRIBBLE_VERBOSE) show_debug_message("Scribble: Added \"" + _font + "\" as a spritefont");
-
-
 }

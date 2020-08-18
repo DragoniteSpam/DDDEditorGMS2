@@ -98,7 +98,7 @@ previous_zz = zz;
 // through other means now
 collision_flags = 0xffffffff;
 /* s */ event_flags = 0xffffffff;
-/* s */ static = false;
+/* s */ is_static = false;
 
 // editor properties
 

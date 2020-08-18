@@ -1,6 +1,6 @@
 function editor_scribble_autotype_fire() {
 	var mode = Stuff.scribble;
-
+/*
 	switch (mode.scribble_autotype_in_method) {
 	    case SCRIBBLE_AUTOTYPE_NONE:
 	        scribble_autotype_skip(mode.scribble);
@@ -13,5 +13,5 @@ function editor_scribble_autotype_fire() {
 	        break;
 	}
 
-
+*/
 }

@@ -1,8 +1,9 @@
 /// Frees up memory used by Scribble, targetting either all text elements, or a specific text element
 /// 
 /// @param [textElement]   Which text element to target. Defaults to <all>, which will clear the memory for all text elements
-function scribble_flush() {
 
+function scribble_flush()
+{
 	var _scribble_array = (argument_count > 0)? argument[0] : all;
 
 	if ((_scribble_array == all) || (_scribble_array == "all"))
@@ -17,12 +18,12 @@ function scribble_flush() {
 	    //Destroy vertex buffers
 	    var _element_pages_array = _scribble_array[SCRIBBLE.PAGES_ARRAY];
 	    var _p = 0;
-	    repeat(array_length_1d(_element_pages_array))
+	    repeat(array_length(_element_pages_array))
 	    {
 	        var _page_array = _element_pages_array[_p];
 	        var _vertex_buffers_array = _page_array[__SCRIBBLE_PAGE.VERTEX_BUFFERS_ARRAY];
 	        var _v = 0;
-	        repeat(array_length_1d(_vertex_buffers_array))
+	        repeat(array_length(_vertex_buffers_array))
 	        {
 	            var _vbuff_data = _vertex_buffers_array[_v];
 	            var _vbuff = _vbuff_data[__SCRIBBLE_VERTEX_BUFFER.VERTEX_BUFFER];
@@ -45,6 +46,4 @@ function scribble_flush() {
 	    //Set as freed
 	    _scribble_array[@ SCRIBBLE.FREED] = true;
 	}
-
-
 }

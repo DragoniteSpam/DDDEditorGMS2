@@ -9,8 +9,8 @@ function import_dae() {
 	var existing = (argument_count > 2 && argument[2] != undefined) ? argument[2] : noone;
 	var replace_index = (argument_count > 3 && argument[3] != undefined) ? argument[3] : -1;
 
-	return;
-
+	throw "not now";
+    /*
 	var container = dotdae_model_load_file(filename, false, false);
 	var vbs = container[@ eDotDae.VertexBufferList];
 
@@ -60,5 +60,5 @@ function import_dae() {
 
 	return container;
 
-
+*/
 }

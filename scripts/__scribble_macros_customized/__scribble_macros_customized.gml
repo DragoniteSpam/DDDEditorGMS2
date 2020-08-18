@@ -1,10 +1,9 @@
 /// Scribble's macros, used to customise and control behaviour throughout the library
-function __scribble_macros_customized() {
 
-	// !
+// !
 #macro SCRIBBLE_HASH_NEWLINE                  false  //Replaces hashes (#) with newlines (ASCII chr10) to emulate GMS1's newline behaviour
-	// !
-#macro SCRIBBLE_COLORIZE_SPRITES              false  //Whether to apply the text color to non-animated sprites (animated sprites are always blended white)
+#macro SCRIBBLE_FIX_ESCAPED_NEWLINES          false  //Replaces incorrectly escaped newline literals with an actual newline
+#macro SCRIBBLE_COLORIZE_SPRITES              false  //Whether to use colourization for sprites. This includes [rainbow] and [cycle]
 #macro SCRIBBLE_ADD_SPRITE_ORIGINS            false  //Whether to use sprite origins. Setting this to <false> will vertically centre sprites on the line of text
 #macro SCRIBBLE_SPRITEFONT_ALIGN_GLYPHS_LEFT  false  //Set to <true> to emulate GameMaker's native behaviour
 #macro SCRIBBLE_MISSING_CHARACTER             "?"    //Used when a character is missing from a font
@@ -32,7 +31,7 @@ function __scribble_macros_customized() {
 
 
 
-#region Warnings
+    #region Warnings
 
 	//Various warning messages. Please do not turn these off unless you have to!
 #macro SCRIBBLE_WARNING_REINITIALIZE           true
@@ -40,7 +39,4 @@ function __scribble_macros_customized() {
 #macro SCRIBBLE_WARNING_AUTOSCAN_YY_NOT_FOUND  true
 #macro SCRIBBLE_WARNING_DRAW_SET_DEPRECATED    true
 
-#endregion
-
-
-}
+    #endregion

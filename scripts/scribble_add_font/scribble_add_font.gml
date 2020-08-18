@@ -8,8 +8,8 @@
 /// Scribble requires that you explicitly initialise fonts for use with Scribble. This is a three-step process:
 /// 
 ///  1. Add a normal GameMaker font resource through the IDE
-///  2. Click the Regenerate button in font dialogue inside the GameMaker IDE, then add the font's .yy file as an Included File (found in
-///     the font's folder in the project directory)
+///  2. Click the Regenerate button in font dialogue inside the GameMaker IDE, then add the font's .yy file as an Included File (found in the
+///     font's folder in the project directory)
 ///  3. Call scribble_add_font() targeting the font
 /// 
 /// Scribble needs to access information that GameMaker generates. All this information is contained in a single .yy file in the font's folder
@@ -17,8 +17,9 @@
 /// In the IDE, Navigate to the font resource you wish to add and right click on it. From the drop-down menu, select "Show In Explorer". A
 /// window will open showing various files for the font resource. You can drag-and-drop the .yy file into the GameMaker IDE to add it as an
 /// Included File.
-function scribble_add_font() {
 
+function scribble_add_font()
+{
 	if (!variable_global_exists("__scribble_lcg"))
 	{
 	    show_error("Scribble:\nscribble_add_font() should be called after scribble_init()\n ", true);
@@ -38,7 +39,7 @@ function scribble_add_font() {
 
 	if (!is_string(_font))
 	{
-	    if (is_real(_font))
+	    if (is_real(_font) && (asset_get_type(font_get_name(_font)) == asset_font))
 	    {
 	        show_error("Scribble:\nFonts should be initialised using their name as a string.\n(Input was \"" + string(_font) + "\", which might be font \"" + font_get_name(_font) + "\")\n ", false);
 	    }
@@ -70,6 +71,7 @@ function scribble_add_font() {
 	var _data = array_create(__SCRIBBLE_FONT.__SIZE);
 	_data[@ __SCRIBBLE_FONT.NAME        ] = _font;
 	_data[@ __SCRIBBLE_FONT.PATH        ] = _path;
+	_data[@ __SCRIBBLE_FONT.FAMILY_NAME ] = undefined;
 	_data[@ __SCRIBBLE_FONT.TYPE        ] = __SCRIBBLE_FONT_TYPE.FONT;
 	_data[@ __SCRIBBLE_FONT.GLYPHS_MAP  ] = undefined;
 	_data[@ __SCRIBBLE_FONT.GLYPHS_ARRAY] = undefined;
@@ -179,7 +181,29 @@ function scribble_add_font() {
 	    ds_map_delete(global.__scribble_font_data, _font);
 	    exit;
 	}
-
+    
+    //Add this font to a font family
+    var _family_name = _json[? "fontName"] + "." + string(_json[? "size"]);
+    _data[@ __SCRIBBLE_FONT.FAMILY_NAME] = _family_name;
+    
+    var _family_map = global.__scribble_font_family_map[? _family_name];
+    if (_family_map == undefined)
+    {
+        _family_map = ds_map_create();
+        ds_map_add_map(global.__scribble_font_family_map, _family_name, _family_map);
+    }
+    
+    var _style_name = _json[? "styleName"];
+    if (ds_map_exists(_family_map, _style_name))
+    {
+        show_debug_message("Scribble: Style \"" + string(_style_name) + "\" already exists for font family \"" + string(_family_name) + "\"");
+    }
+    else
+    {
+        _family_map[? _style_name] = _font;
+    }
+    
+    //Now parse the JSON for glyph data!
 	if (ds_map_exists(_json, "mvc"))
 	{
 	    //Version 2.2.5 and before
@@ -221,7 +245,7 @@ function scribble_add_font() {
 
 	if (__SCRIBBLE_SEQUENTIAL_GLYPH_TRY)
 	{
-    #region Sequential glyph index
+        #region Sequential glyph index
     
 	    if (SCRIBBLE_VERBOSE) show_debug_message("Scribble:   Trying sequential glyph index...");
     
@@ -312,7 +336,7 @@ function scribble_add_font() {
 	        }
 	    }
     
-    #endregion
+        #endregion
 	}
 
 	if (_ds_map_fallback)
@@ -360,6 +384,4 @@ function scribble_add_font() {
 	ds_map_destroy(_json);
 
 	if (SCRIBBLE_VERBOSE) show_debug_message("Scribble: Added \"" + _font + "\" as a standard font");
-
-
 }
