@@ -1,10 +1,14 @@
 /// @param UIInput
+function ui_particle_type_scale_x(argument0) {
 
-var input = argument0;
-var selection = ui_list_selection(input.root.list);
+	var input = argument0;
+	var selection = ui_list_selection(input.root.list);
 
-if (selection + 1) {
-    var type = Stuff.particle.types[| selection];
-    type.xscale = real(input.value);
-    part_type_scale(type.type, type.xscale, type.yscale);
+	if (selection + 1) {
+	    var type = Stuff.particle.types[| selection];
+	    type.xscale = real(input.value);
+	    part_type_scale(type.type, type.xscale, type.yscale);
+	}
+
+
 }

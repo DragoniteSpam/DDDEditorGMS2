@@ -1,8 +1,12 @@
 {
-    "id": "7c58e811-6eb6-4fee-9ce5-a1763a1845af",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_bitfield_selection_mask_none",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "selection mask",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction/selection mask.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_bitfield_selection_mask_none",
+  "tags": [],
+  "resourceType": "GMScript",
 }

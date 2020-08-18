@@ -1,8 +1,12 @@
 {
-    "id": "19fa2ef9-9c3f-4073-be76-9ea24070ee3c",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "serialize_load_image_tile_animations",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "load",
+    "path": "folders/Scripts/serialization/load.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "serialize_load_image_tile_animations",
+  "tags": [],
+  "resourceType": "GMScript",
 }

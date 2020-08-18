@@ -1,8 +1,12 @@
 {
-    "id": "cfb26dd1-e44f-48e7-9f15-2398eeb4012c",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "ui_render_animation_keyframe_scale_y",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "keyframes",
+    "path": "folders/Scripts/ui stuff/rendering/special/animations/keyframes.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "ui_render_animation_keyframe_scale_y",
+  "tags": [],
+  "resourceType": "GMScript",
 }

@@ -1,8 +1,12 @@
 {
-    "id": "a1a92459-7d03-4799-ae5b-ce9f756e1502",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_ui_color",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "settings",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction/settings.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_ui_color",
+  "tags": [],
+  "resourceType": "GMScript",
 }

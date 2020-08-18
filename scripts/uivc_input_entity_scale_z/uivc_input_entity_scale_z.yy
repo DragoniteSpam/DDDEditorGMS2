@@ -1,8 +1,12 @@
 {
-    "id": "a3178a78-d8b3-40f7-bdcb-2e83d257526f",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_input_entity_scale_z",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "transform",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction/entity properties/transform.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_input_entity_scale_z",
+  "tags": [],
+  "resourceType": "GMScript",
 }

@@ -1,8 +1,12 @@
 {
-    "id": "ecd6e5bc-029d-4d19-9ccb-ffdf997a7515",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "spart_particles_create",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Particle emitters",
+    "path": "folders/Scripts/sPart/Particle emitters.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "spart_particles_create",
+  "tags": [],
+  "resourceType": "GMScript",
 }

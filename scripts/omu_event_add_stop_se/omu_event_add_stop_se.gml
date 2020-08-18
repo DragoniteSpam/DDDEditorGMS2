@@ -1,5 +1,9 @@
 /// @param UIButton
+function omu_event_add_stop_se(argument0) {
 
-var button = argument0;
+	var button = argument0;
 
-var node = event_create_node(Stuff.event.active, EventNodeTypes.STOP_SE);
+	var node = event_create_node(Stuff.event.active, EventNodeTypes.STOP_SE);
+
+
+}

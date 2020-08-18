@@ -1,11 +1,15 @@
 /// @param UIList
+function uivc_global_switch_name(argument0) {
 
-var base_dialog = argument0.root;
-var selection = ui_list_selection(base_dialog.el_list);
+	var base_dialog = argument0.root;
+	var selection = ui_list_selection(base_dialog.el_list);
 
-if (selection >= 0) {
-    var sw_data = Stuff.switches[| selection];
-    sw_data[@ 0] = base_dialog.el_name.value;
+	if (selection >= 0) {
+	    var sw_data = Stuff.switches[| selection];
+	    sw_data[@ 0] = base_dialog.el_name.value;
 
-    base_dialog.el_list.entries[| selection] = sw_data[@ 0] + ": " + Stuff.tf[sw_data[@ 1]];
+	    base_dialog.el_list.entries[| selection] = sw_data[@ 0] + ": " + Stuff.tf[sw_data[@ 1]];
+	}
+
+
 }

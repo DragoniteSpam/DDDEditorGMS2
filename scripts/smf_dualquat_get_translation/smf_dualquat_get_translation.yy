@@ -1,8 +1,12 @@
 {
-    "id": "71997f92-8c0e-41a0-9294-a722ba78ecb9",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "smf_dualquat_get_translation",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Dual quaternion",
+    "path": "folders/Scripts/SMF model format/Advanced/Mathematics/Dual quaternion.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "smf_dualquat_get_translation",
+  "tags": [],
+  "resourceType": "GMScript",
 }

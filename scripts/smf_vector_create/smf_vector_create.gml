@@ -1,2 +1,6 @@
 /// @description smf_vector_create(x, y, z)
-return [argument0, argument1, argument2];
+function smf_vector_create(argument0, argument1, argument2) {
+	return [argument0, argument1, argument2];
+
+
+}

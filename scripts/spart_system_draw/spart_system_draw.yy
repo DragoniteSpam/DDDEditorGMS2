@@ -1,8 +1,12 @@
 {
-    "id": "f6039d22-60af-4de7-96e8-a11e18af050a",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "spart_system_draw",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Particle system",
+    "path": "folders/Scripts/sPart/Particle system.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "spart_system_draw",
+  "tags": [],
+  "resourceType": "GMScript",
 }

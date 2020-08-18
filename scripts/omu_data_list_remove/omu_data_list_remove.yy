@@ -1,8 +1,12 @@
 {
-    "id": "c7d25588-cabb-4d28-9bf1-a467041bb5b4",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "omu_data_list_remove",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "data etc",
+    "path": "folders/Scripts/ui stuff/onmouseup/data etc.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "omu_data_list_remove",
+  "tags": [],
+  "resourceType": "GMScript",
 }

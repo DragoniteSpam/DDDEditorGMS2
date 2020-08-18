@@ -1,8 +1,12 @@
 {
-    "id": "62767d98-0d03-46f2-a6de-b79bc6629c39",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "create_instantiated_event",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "instantiated",
+    "path": "folders/Scripts/event stuff/create etc/instantiated.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "create_instantiated_event",
+  "tags": [],
+  "resourceType": "GMScript",
 }

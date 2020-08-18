@@ -1,8 +1,12 @@
 {
-    "id": "97978952-935c-493c-9f7c-adffad231d26",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "omu_mesh_submesh_select",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "data etc",
+    "path": "folders/Scripts/ui stuff/onmouseup/data etc.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "omu_mesh_submesh_select",
+  "tags": [],
+  "resourceType": "GMScript",
 }

@@ -1,8 +1,12 @@
 {
-    "id": "deb89310-0580-4a12-85dc-0523f7cc5284",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "dmu_data_import_map",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "map and settings",
+    "path": "folders/Scripts/ui stuff/dialogs/on mouse up/map and settings.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "dmu_data_import_map",
+  "tags": [],
+  "resourceType": "GMScript",
 }

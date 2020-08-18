@@ -1,8 +1,12 @@
 {
-    "id": "6f9e5b17-ab0b-452f-b6ee-f6b5c88ab1e5",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "omu_event_attain_self_variable_data",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "event attainment and stuff",
+    "path": "folders/Scripts/ui stuff/dialogs/creation/event attainment and stuff.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "omu_event_attain_self_variable_data",
+  "tags": [],
+  "resourceType": "GMScript",
 }

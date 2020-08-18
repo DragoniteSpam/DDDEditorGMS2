@@ -1,8 +1,12 @@
 {
-    "id": "215c2fc3-cce9-430c-8459-dfbed959d63f",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "omu_animation_remove",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "data etc",
+    "path": "folders/Scripts/ui stuff/onmouseup/data etc.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "omu_animation_remove",
+  "tags": [],
+  "resourceType": "GMScript",
 }

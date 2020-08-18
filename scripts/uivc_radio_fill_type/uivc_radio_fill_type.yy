@@ -1,8 +1,12 @@
 {
-    "id": "5b4d6b39-cf59-434c-a196-ea615d1b006b",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_radio_fill_type",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "on value change and general interaction",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_radio_fill_type",
+  "tags": [],
+  "resourceType": "GMScript",
 }

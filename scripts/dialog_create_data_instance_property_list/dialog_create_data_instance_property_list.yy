@@ -1,8 +1,12 @@
 {
-    "id": "803576ec-cfb9-4df2-8fd5-75d31feb9810",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "dialog_create_data_instance_property_list",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "data and events",
+    "path": "folders/Scripts/ui stuff/dialogs/creation/data and events.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "dialog_create_data_instance_property_list",
+  "tags": [],
+  "resourceType": "GMScript",
 }

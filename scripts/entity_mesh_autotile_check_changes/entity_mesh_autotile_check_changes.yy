@@ -1,8 +1,12 @@
 {
-    "id": "cb49942f-53ea-40d1-acff-69c6d634edfe",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "entity_mesh_autotile_check_changes",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "mesh",
+    "path": "folders/Scripts/entity/mesh.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "entity_mesh_autotile_check_changes",
+  "tags": [],
+  "resourceType": "GMScript",
 }

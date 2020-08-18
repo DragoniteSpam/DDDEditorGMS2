@@ -1,8 +1,12 @@
 {
-    "id": "a9d5386c-2c72-439b-9704-f064874e708d",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "ds_stuff_open",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "stuff",
+    "path": "folders/Scripts/dll stuff/stuff.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "ds_stuff_open",
+  "tags": [],
+  "resourceType": "GMScript",
 }

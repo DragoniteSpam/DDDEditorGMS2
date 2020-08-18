@@ -1,8 +1,12 @@
 {
-    "id": "29dd4d57-87e2-43ef-b58d-cc327092f224",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "omu_event_add_play_se",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "prefab",
+    "path": "folders/Scripts/ui stuff/onmouseup/events/prefab.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "omu_event_add_play_se",
+  "tags": [],
+  "resourceType": "GMScript",
 }

@@ -1,8 +1,12 @@
 {
-    "id": "cb2799ad-3aeb-4611-866c-b259ad109b8d",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_mesh_preview_xrot",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "preview",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction/mesh stuff/preview.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_mesh_preview_xrot",
+  "tags": [],
+  "resourceType": "GMScript",
 }

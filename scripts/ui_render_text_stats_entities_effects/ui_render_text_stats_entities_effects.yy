@@ -1,8 +1,12 @@
 {
-    "id": "ab4dc1de-410d-4017-96ef-716a1d515073",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "ui_render_text_stats_entities_effects",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "stats",
+    "path": "folders/Scripts/ui stuff/rendering/special/stats.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "ui_render_text_stats_entities_effects",
+  "tags": [],
+  "resourceType": "GMScript",
 }

@@ -1,8 +1,12 @@
 {
-    "id": "ff17e196-d504-42c7-a85e-e7d2a651d74c",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_settings_map_water_level",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "settings",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction/settings.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_settings_map_water_level",
+  "tags": [],
+  "resourceType": "GMScript",
 }

@@ -1,8 +1,12 @@
 {
-    "id": "88191f5a-ca49-44ba-82f3-a889732cb833",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_animation_keyframe_scale_y",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "keyframe data",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction/animations/keyframe data.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_animation_keyframe_scale_y",
+  "tags": [],
+  "resourceType": "GMScript",
 }

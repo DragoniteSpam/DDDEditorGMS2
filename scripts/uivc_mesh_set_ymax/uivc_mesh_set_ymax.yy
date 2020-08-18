@@ -1,8 +1,12 @@
 {
-    "id": "5d169634-0236-40d0-b5f8-e3e97e6aca0b",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_mesh_set_ymax",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "mesh stuff",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction/mesh stuff.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_mesh_set_ymax",
+  "tags": [],
+  "resourceType": "GMScript",
 }

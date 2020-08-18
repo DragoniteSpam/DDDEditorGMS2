@@ -1,8 +1,12 @@
 {
-    "id": "1c1dcccd-6e0c-48d4-8db4-fdab7bf6a22f",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "ui_init_game_data_refresh",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "data etc",
+    "path": "folders/Scripts/ui stuff/data etc.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "ui_init_game_data_refresh",
+  "tags": [],
+  "resourceType": "GMScript",
 }

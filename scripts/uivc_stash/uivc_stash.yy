@@ -1,8 +1,12 @@
 {
-    "id": "c4975f3e-b100-4ede-ab82-74e597db528c",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_stash",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "on value change and general interaction",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_stash",
+  "tags": [],
+  "resourceType": "GMScript",
 }

@@ -1,8 +1,12 @@
 {
-    "id": "4a1768bb-c886-41a0-8236-55acf97a657f",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "dialog_create_event_node_img_etc",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "data and events",
+    "path": "folders/Scripts/ui stuff/dialogs/creation/data and events.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "dialog_create_event_node_img_etc",
+  "tags": [],
+  "resourceType": "GMScript",
 }

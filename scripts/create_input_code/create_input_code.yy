@@ -1,8 +1,12 @@
 {
-    "id": "178c8cd0-dd20-49ca-874d-d0b000d872be",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "create_input_code",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "creation",
+    "path": "folders/Scripts/ui stuff/creation.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "create_input_code",
+  "tags": [],
+  "resourceType": "GMScript",
 }

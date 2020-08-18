@@ -1,8 +1,12 @@
 {
-    "id": "21caa52e-7ab2-444c-b29a-ab29b09146ea",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "smf_dualquat_create_identity",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Dual quaternion",
+    "path": "folders/Scripts/SMF model format/Advanced/Mathematics/Dual quaternion.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "smf_dualquat_create_identity",
+  "tags": [],
+  "resourceType": "GMScript",
 }

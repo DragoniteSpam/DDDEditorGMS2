@@ -1,8 +1,12 @@
 {
-    "id": "cf04a616-2403-4a32-8ea0-86a71adfc81c",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "omu_mesh_normal_flat",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "data etc",
+    "path": "folders/Scripts/ui stuff/onmouseup/data etc.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "omu_mesh_normal_flat",
+  "tags": [],
+  "resourceType": "GMScript",
 }

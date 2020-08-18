@@ -1,8 +1,12 @@
 {
-    "id": "171ba54b-db2d-4452-93f7-9d391e9a0b22",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "omu_data_property_move_down",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "data etc",
+    "path": "folders/Scripts/ui stuff/onmouseup/data etc.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "omu_data_property_move_down",
+  "tags": [],
+  "resourceType": "GMScript",
 }

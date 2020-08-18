@@ -1,8 +1,12 @@
 {
-    "id": "c587fd06-95a8-4726-ba44-096d59fb464b",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "dialog_create_manager_graphic_skybox",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "basic data",
+    "path": "folders/Scripts/ui stuff/dialogs/creation/basic data.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "dialog_create_manager_graphic_skybox",
+  "tags": [],
+  "resourceType": "GMScript",
 }

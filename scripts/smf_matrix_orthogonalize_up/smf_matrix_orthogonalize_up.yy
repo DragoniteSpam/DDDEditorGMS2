@@ -1,8 +1,12 @@
 {
-    "id": "2583358d-7c67-4820-8b16-e043989ebb4a",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "smf_matrix_orthogonalize_up",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Matrix",
+    "path": "folders/Scripts/SMF model format/Advanced/Mathematics/Matrix.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "smf_matrix_orthogonalize_up",
+  "tags": [],
+  "resourceType": "GMScript",
 }

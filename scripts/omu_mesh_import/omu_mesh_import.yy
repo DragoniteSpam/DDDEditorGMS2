@@ -1,8 +1,12 @@
 {
-    "id": "5347a46d-a10a-470e-b7a3-df916ad35144",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "omu_mesh_import",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "data etc",
+    "path": "folders/Scripts/ui stuff/onmouseup/data etc.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "omu_mesh_import",
+  "tags": [],
+  "resourceType": "GMScript",
 }

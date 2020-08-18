@@ -1,8 +1,12 @@
 {
-    "id": "622f843a-bea6-4aaf-8127-baf651794e9f",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "serialize_save_generic",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "generic data",
+    "path": "folders/Scripts/serialization/save/generic data.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "serialize_save_generic",
+  "tags": [],
+  "resourceType": "GMScript",
 }

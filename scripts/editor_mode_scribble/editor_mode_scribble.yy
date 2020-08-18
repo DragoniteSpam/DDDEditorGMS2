@@ -1,8 +1,12 @@
 {
-    "id": "10ce15b8-7aa5-47a1-8560-c0aa462e166a",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "editor_mode_scribble",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "editor",
+    "path": "folders/Scripts/editor.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "editor_mode_scribble",
+  "tags": [],
+  "resourceType": "GMScript",
 }

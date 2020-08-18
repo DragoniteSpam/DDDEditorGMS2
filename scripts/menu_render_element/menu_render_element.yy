@@ -1,8 +1,12 @@
 {
-    "id": "4ce7981e-a39d-4b4f-8777-3102eabb637d",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "menu_render_element",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "render",
+    "path": "folders/Scripts/ui stuff/menu/render.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "menu_render_element",
+  "tags": [],
+  "resourceType": "GMScript",
 }

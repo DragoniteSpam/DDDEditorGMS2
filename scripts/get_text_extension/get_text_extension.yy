@@ -1,8 +1,12 @@
 {
-    "id": "19718edc-ec3f-4fe9-a807-75acce4f6573",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "get_text_extension",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "misc code",
+    "path": "folders/Scripts/misc code.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "get_text_extension",
+  "tags": [],
+  "resourceType": "GMScript",
 }

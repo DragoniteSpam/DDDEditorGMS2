@@ -1,8 +1,12 @@
 {
-    "id": "8bab5ab5-aecf-4540-8e05-ee52076cf44e",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "smf_node_get_property_type",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Nodes",
+    "path": "folders/Scripts/SMF model format/Nodes.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "smf_node_get_property_type",
+  "tags": [],
+  "resourceType": "GMScript",
 }

@@ -1,8 +1,12 @@
 {
-    "id": "ea1639dc-e0b3-4a9b-8173-72c279479a39",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_scribble_text_bounds_width",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "scribble",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction/scribble.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_scribble_text_bounds_width",
+  "tags": [],
+  "resourceType": "GMScript",
 }

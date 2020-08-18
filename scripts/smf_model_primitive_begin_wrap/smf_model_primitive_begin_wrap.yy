@@ -1,8 +1,12 @@
 {
-    "id": "20d86bfe-a284-4877-8a5a-e8ae91917c63",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "smf_model_primitive_begin_wrap",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Dynamic model creation",
+    "path": "folders/Scripts/SMF model format/Dynamic model creation.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "smf_model_primitive_begin_wrap",
+  "tags": [],
+  "resourceType": "GMScript",
 }

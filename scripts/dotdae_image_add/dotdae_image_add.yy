@@ -1,8 +1,12 @@
 {
-    "id": "4cd424be-ba34-477a-bcbb-b3cc2ca62874",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "dotdae_image_add",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "dotdae",
+    "path": "folders/Scripts/dotdae.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "dotdae_image_add",
+  "tags": [],
+  "resourceType": "GMScript",
 }

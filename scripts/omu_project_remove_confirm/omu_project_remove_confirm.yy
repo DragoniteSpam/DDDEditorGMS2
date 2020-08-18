@@ -1,8 +1,12 @@
 {
-    "id": "ee00f2ab-35ab-4b25-823a-78ad1e706766",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "omu_project_remove_confirm",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "onmouseup",
+    "path": "folders/Scripts/ui stuff/onmouseup.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "omu_project_remove_confirm",
+  "tags": [],
+  "resourceType": "GMScript",
 }

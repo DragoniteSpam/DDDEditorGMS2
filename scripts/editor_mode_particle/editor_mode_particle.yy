@@ -1,8 +1,12 @@
 {
-    "id": "197e682c-8c05-4093-abb4-8feb78438490",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "editor_mode_particle",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "editor",
+    "path": "folders/Scripts/editor.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "editor_mode_particle",
+  "tags": [],
+  "resourceType": "GMScript",
 }

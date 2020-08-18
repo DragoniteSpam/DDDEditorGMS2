@@ -1,8 +1,12 @@
 {
-    "id": "38d47818-9650-4a4c-82ab-f8a50e310583",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "dmu_dialog_remove_graphic_etc",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "images",
+    "path": "folders/Scripts/ui stuff/dialogs/on mouse up/data/images.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "dmu_dialog_remove_graphic_etc",
+  "tags": [],
+  "resourceType": "GMScript",
 }

@@ -1,8 +1,12 @@
 {
-    "id": "97388bf3-1972-404b-b99f-1194d8072ed6",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_input_graphic_set_dim_full",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "images",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction/data etc/basic data/images.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_input_graphic_set_dim_full",
+  "tags": [],
+  "resourceType": "GMScript",
 }

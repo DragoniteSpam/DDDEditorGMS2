@@ -1,8 +1,12 @@
 {
-    "id": "db59ae15-86be-4839-ab51-582bfaaf94c4",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "terrain_load",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "file",
+    "path": "folders/Scripts/modes/terrain/file.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "terrain_load",
+  "tags": [],
+  "resourceType": "GMScript",
 }

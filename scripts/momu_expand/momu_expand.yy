@@ -1,8 +1,12 @@
 {
-    "id": "6949b6b9-d9ff-4ab9-8d27-461a748b4583",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "momu_expand",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "onmouseup",
+    "path": "folders/Scripts/ui stuff/menu/onmouseup.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "momu_expand",
+  "tags": [],
+  "resourceType": "GMScript",
 }

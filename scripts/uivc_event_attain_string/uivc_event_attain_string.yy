@@ -1,8 +1,12 @@
 {
-    "id": "8437e241-2803-4cdf-a95e-4042d6521f04",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_event_attain_string",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "attainment",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction/events/attainment.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_event_attain_string",
+  "tags": [],
+  "resourceType": "GMScript",
 }

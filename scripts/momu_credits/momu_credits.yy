@@ -1,8 +1,12 @@
 {
-    "id": "01755d4f-0d5d-4085-a11f-d0c58255e4f7",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "momu_credits",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "help",
+    "path": "folders/Scripts/ui stuff/menu/onmouseup/help.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "momu_credits",
+  "tags": [],
+  "resourceType": "GMScript",
 }

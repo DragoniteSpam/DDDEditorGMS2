@@ -1,8 +1,12 @@
 {
-    "id": "49087d81-6476-4147-9fbc-20d93648cee9",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "omu_mr_move_backward",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "move routes",
+    "path": "folders/Scripts/ui stuff/onmouseup/entities/move routes.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "omu_mr_move_backward",
+  "tags": [],
+  "resourceType": "GMScript",
 }

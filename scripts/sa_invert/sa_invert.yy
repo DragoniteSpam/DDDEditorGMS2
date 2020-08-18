@@ -1,8 +1,12 @@
 {
-    "id": "8f033140-c11b-431f-881b-f96e2b29cf47",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "sa_invert",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "common",
+    "path": "folders/Scripts/Selection/actions/common.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "sa_invert",
+  "tags": [],
+  "resourceType": "GMScript",
 }

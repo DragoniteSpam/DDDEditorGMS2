@@ -1,8 +1,12 @@
 {
-    "id": "ddcb0dbe-7a3a-4ed2-b0bc-8cd992c6f146",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "import_texture",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "meshes",
+    "path": "folders/Scripts/resources/meshes.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "import_texture",
+  "tags": [],
+  "resourceType": "GMScript",
 }

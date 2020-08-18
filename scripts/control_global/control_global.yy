@@ -1,8 +1,12 @@
 {
-    "id": "321a891d-82b7-45ad-a9cf-af99e5109987",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "control_global",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Control",
+    "path": "folders/Scripts/Control.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "control_global",
+  "tags": [],
+  "resourceType": "GMScript",
 }

@@ -1,8 +1,12 @@
 {
-    "id": "eae18694-7813-4728-b3b7-258975175d62",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_input_map_size_z",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "data etc",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction/data etc.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_input_map_size_z",
+  "tags": [],
+  "resourceType": "GMScript",
 }

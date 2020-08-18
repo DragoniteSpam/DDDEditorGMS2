@@ -1,8 +1,12 @@
 {
-    "id": "f4cf0162-1969-4bab-ba13-c0eb46223b81",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "omu_event_add_global_variable",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "prefab",
+    "path": "folders/Scripts/ui stuff/onmouseup/events/prefab.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "omu_event_add_global_variable",
+  "tags": [],
+  "resourceType": "GMScript",
 }

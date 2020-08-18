@@ -1,8 +1,12 @@
 {
-    "id": "9f491f8c-8248-4e56-a331-3cbdae33c651",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "graphics_remove_ui",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "images",
+    "path": "folders/Scripts/Game data/images.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "graphics_remove_ui",
+  "tags": [],
+  "resourceType": "GMScript",
 }

@@ -1,7 +1,11 @@
 {
-    "id": "a3d97ff3-e8c7-49db-813e-acdf38c20935",
-    "modelName": "GMShader",
-    "mvc": "1.0",
-    "name": "shd_terrain",
-    "type": 1
+  "type": 1,
+  "parent": {
+    "name": "Shaders",
+    "path": "folders/Shaders.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "shd_terrain",
+  "tags": [],
+  "resourceType": "GMShader",
 }

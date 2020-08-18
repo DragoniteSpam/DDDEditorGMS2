@@ -1,11 +1,15 @@
 /// @param string
 /// @param UIInput
+function validate_string_internal_name_or_empty() {
 
-var str = argument[0];
-var input = argument[1];
+	var str = argument[0];
+	var input = argument[1];
 
-if (str == "") {
-    return true;
+	if (str == "") {
+	    return true;
+	}
+
+	return validate_string_internal_name(str, input);
+
+
 }
-
-return validate_string_internal_name(str, input);

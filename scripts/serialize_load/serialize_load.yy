@@ -1,8 +1,12 @@
 {
-    "id": "bf12de76-111a-48f5-8273-4a1c563e9145",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "serialize_load",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "serialization",
+    "path": "folders/Scripts/serialization.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "serialize_load",
+  "tags": [],
+  "resourceType": "GMScript",
 }

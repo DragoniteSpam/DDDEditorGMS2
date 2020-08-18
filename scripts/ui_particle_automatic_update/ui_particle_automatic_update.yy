@@ -1,8 +1,12 @@
 {
-    "id": "8928a201-4150-497e-a1dd-5a3543da6d2b",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "ui_particle_automatic_update",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "ui",
+    "path": "folders/Scripts/modes/particle/ui.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "ui_particle_automatic_update",
+  "tags": [],
+  "resourceType": "GMScript",
 }

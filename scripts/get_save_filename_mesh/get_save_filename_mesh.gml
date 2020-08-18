@@ -1,19 +1,23 @@
 /// @param [name]
 /// @param [filter]
+function get_save_filename_mesh() {
 
-var name = (argument_count > 0 && argument[0] != undefined) ? argument[0] : "";
-var filter = (argument_count > 1 && argument[1] != undefined) ? argument[1] : "Any valid mesh|*.d3d;*.gmmod;*.obj;*.vbuff|Game Maker model files|*.d3d;*.gmmod|Wavefront Object files|*.obj|Vertex buffers|*.vbuff";
+	var name = (argument_count > 0 && argument[0] != undefined) ? argument[0] : "";
+	var filter = (argument_count > 1 && argument[1] != undefined) ? argument[1] : "Any valid mesh|*.d3d;*.gmmod;*.obj;*.vbuff|Game Maker model files|*.d3d;*.gmmod|Wavefront Object files|*.obj|Vertex buffers|*.vbuff";
 
-var path = get_save_filename_ext(filter, name, Stuff.setting_location_mesh, "Select a mesh");
+	var path = get_save_filename_ext(filter, name, Stuff.setting_location_mesh, "Select a mesh");
 
-// @gml update try-catch
-if (path != "") {
-    var dir = filename_dir(path);
+	// @gml update try-catch
+	if (path != "") {
+	    var dir = filename_dir(path);
 
-    if (string_length(dir) > 0) {
-        Stuff.setting_location_mesh = dir;
-        setting_set("Location", "mesh", dir);
-    }
+	    if (string_length(dir) > 0) {
+	        Stuff.setting_location_mesh = dir;
+	        setting_set("Location", "mesh", dir);
+	    }
+	}
+
+	return path;
+
+
 }
-
-return path;

@@ -1,8 +1,12 @@
 {
-    "id": "a4ac0d3b-c57c-41c3-a7d8-ea3c41668481",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "smf_texture_get_sprite",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Texture management",
+    "path": "folders/Scripts/SMF model format/Advanced/Texture management.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "smf_texture_get_sprite",
+  "tags": [],
+  "resourceType": "GMScript",
 }

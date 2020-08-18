@@ -1,8 +1,12 @@
 {
-    "id": "060fe784-8988-4b7c-8b2a-43395fdca507",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_mesh_preview_reset",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "preview",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction/mesh stuff/preview.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_mesh_preview_reset",
+  "tags": [],
+  "resourceType": "GMScript",
 }

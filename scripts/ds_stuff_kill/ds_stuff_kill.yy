@@ -1,8 +1,12 @@
 {
-    "id": "d1eb6354-1a18-40b2-a491-62fbeaff36a7",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "ds_stuff_kill",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "stuff",
+    "path": "folders/Scripts/dll stuff/stuff.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "ds_stuff_kill",
+  "tags": [],
+  "resourceType": "GMScript",
 }

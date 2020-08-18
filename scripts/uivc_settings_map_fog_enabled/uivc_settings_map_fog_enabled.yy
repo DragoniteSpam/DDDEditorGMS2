@@ -1,8 +1,12 @@
 {
-    "id": "64faf918-5aba-4d29-a75a-7b2c08dede5e",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_settings_map_fog_enabled",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "settings",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction/settings.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_settings_map_fog_enabled",
+  "tags": [],
+  "resourceType": "GMScript",
 }

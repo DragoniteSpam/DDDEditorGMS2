@@ -1,8 +1,12 @@
 {
-    "id": "e984880a-6282-4a6e-b12c-16431d49fb7a",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_radio_color_picker_channel",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "on value change and general interaction",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_radio_color_picker_channel",
+  "tags": [],
+  "resourceType": "GMScript",
 }

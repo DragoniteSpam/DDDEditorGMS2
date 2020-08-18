@@ -1,8 +1,12 @@
 {
-    "id": "383e1080-4b6a-4713-8af1-1c5270c073d4",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "safc_on_effect",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "on select",
+    "path": "folders/Scripts/Selection/actions/common/foreach/on select.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "safc_on_effect",
+  "tags": [],
+  "resourceType": "GMScript",
 }

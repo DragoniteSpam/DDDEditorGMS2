@@ -1,8 +1,12 @@
 {
-    "id": "5a5548b6-e712-4989-9147-4ea53478fbf8",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_entity_effect_com_lighting_spot_dz",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "effect components",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction/entity properties/effect components.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_entity_effect_com_lighting_spot_dz",
+  "tags": [],
+  "resourceType": "GMScript",
 }

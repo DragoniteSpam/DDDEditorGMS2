@@ -1,8 +1,12 @@
 {
-    "id": "b4547180-9f38-4e79-ba78-93cd5f502de9",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_animation_layer_scale_x",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "defaults",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction/animations/defaults.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_animation_layer_scale_x",
+  "tags": [],
+  "resourceType": "GMScript",
 }

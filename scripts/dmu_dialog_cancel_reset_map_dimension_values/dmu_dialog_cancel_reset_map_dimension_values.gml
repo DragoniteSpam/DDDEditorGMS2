@@ -1,11 +1,15 @@
 /// @param UIButton
+function dmu_dialog_cancel_reset_map_dimension_values(argument0) {
 
-var button = argument0;
-var map = button.root.map;
-var base_ui = button.root.root.root;
+	var button = argument0;
+	var map = button.root.map;
+	var base_ui = button.root.root.root;
 
-ui_input_set_value(base_ui.el_dim_x, string(map.xx));
-ui_input_set_value(base_ui.el_dim_y, string(map.yy));
-ui_input_set_value(base_ui.el_dim_z, string(map.zz));
+	ui_input_set_value(base_ui.el_dim_x, string(map.xx));
+	ui_input_set_value(base_ui.el_dim_y, string(map.yy));
+	ui_input_set_value(base_ui.el_dim_z, string(map.zz));
 
-dialog_destroy();
+	dialog_destroy();
+
+
+}

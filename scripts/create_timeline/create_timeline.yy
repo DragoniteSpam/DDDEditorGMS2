@@ -1,8 +1,12 @@
 {
-    "id": "50c361df-9cf2-4149-a3fe-c730fa87f563",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "create_timeline",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "special",
+    "path": "folders/Scripts/ui stuff/creation/special.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "create_timeline",
+  "tags": [],
+  "resourceType": "GMScript",
 }

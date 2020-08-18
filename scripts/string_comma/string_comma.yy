@@ -1,8 +1,12 @@
 {
-    "id": "809c965f-b63e-45a5-beac-da1abeba927b",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "string_comma",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "misc code",
+    "path": "folders/Scripts/misc code.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "string_comma",
+  "tags": [],
+  "resourceType": "GMScript",
 }

@@ -1,8 +1,12 @@
 {
-    "id": "444743a3-d1ae-45ce-b343-be63bc061953",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "dialog_create_event_node_rename",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "data and events",
+    "path": "folders/Scripts/ui stuff/dialogs/creation/data and events.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "dialog_create_event_node_rename",
+  "tags": [],
+  "resourceType": "GMScript",
 }

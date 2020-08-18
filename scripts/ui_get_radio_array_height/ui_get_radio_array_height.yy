@@ -1,8 +1,12 @@
 {
-    "id": "7d8442f9-6b55-4daa-a240-ea6af38c268e",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "ui_get_radio_array_height",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "math",
+    "path": "folders/Scripts/ui stuff/math.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "ui_get_radio_array_height",
+  "tags": [],
+  "resourceType": "GMScript",
 }

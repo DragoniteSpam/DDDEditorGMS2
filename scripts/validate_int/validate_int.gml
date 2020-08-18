@@ -1,11 +1,15 @@
 /// @param string
 /// @param UIInput
+function validate_int() {
 
-var str = argument[0];
-var input = argument[1];
+	var str = argument[0];
+	var input = argument[1];
 
-if (!string_length(str)) {
-    return false;
+	if (!string_length(str)) {
+	    return false;
+	}
+
+	return regex("((\\+)|(\\-))?(\\d)+", str);
+
+
 }
-
-return regex("((\\+)|(\\-))?(\\d)+", str);

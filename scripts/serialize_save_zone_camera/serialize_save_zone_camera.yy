@@ -1,8 +1,12 @@
 {
-    "id": "3a6f4f72-cc61-4b17-9061-3b835ed83de0",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "serialize_save_zone_camera",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "map zones",
+    "path": "folders/Scripts/serialization/save/map zones.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "serialize_save_zone_camera",
+  "tags": [],
+  "resourceType": "GMScript",
 }

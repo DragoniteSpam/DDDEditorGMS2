@@ -1,8 +1,12 @@
 {
-    "id": "fb5bcc30-46d5-4258-b190-0eb5b9c25574",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "ds_list_clone",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Data Structures",
+    "path": "folders/Scripts/Math/Data Structures.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "ds_list_clone",
+  "tags": [],
+  "resourceType": "GMScript",
 }

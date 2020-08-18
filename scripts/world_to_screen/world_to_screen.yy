@@ -1,8 +1,12 @@
 {
-    "id": "d99732fb-4dc7-4fa7-812a-58ea46d5ca90",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "world_to_screen",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Math",
+    "path": "folders/Scripts/Math.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "world_to_screen",
+  "tags": [],
+  "resourceType": "GMScript",
 }

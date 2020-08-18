@@ -1,8 +1,12 @@
 {
-    "id": "f21593d7-c191-4bd2-9538-fea77983377a",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_entity_effect_com_lighting_spot_cutoff",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "effect components",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction/entity properties/effect components.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_entity_effect_com_lighting_spot_cutoff",
+  "tags": [],
+  "resourceType": "GMScript",
 }

@@ -1,10 +1,14 @@
 /// @param map
+function ds_map_to_list(argument0) {
 
-var map = argument0;
-var list = ds_list_create();
+	var map = argument0;
+	var list = ds_list_create();
 
-for (var i = ds_map_find_first(map); i != undefined; i = ds_map_find_next(map, i)) {
-    ds_list_add(list, i);
+	for (var i = ds_map_find_first(map); i != undefined; i = ds_map_find_next(map, i)) {
+	    ds_list_add(list, i);
+	}
+
+	return list;
+
+
 }
-
-return list;

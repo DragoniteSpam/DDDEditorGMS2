@@ -1,8 +1,12 @@
 {
-    "id": "f4daec4a-c6f6-48c0-be21-209c8bbb988c",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "smf_tri_box_intersection",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Shape intersections",
+    "path": "folders/Scripts/SMF model format/Advanced/Mathematics/Shape intersections.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "smf_tri_box_intersection",
+  "tags": [],
+  "resourceType": "GMScript",
 }

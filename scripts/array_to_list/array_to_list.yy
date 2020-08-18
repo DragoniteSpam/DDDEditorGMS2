@@ -1,8 +1,12 @@
 {
-    "id": "9538fe95-5bfc-45dd-9101-0754fc7a5e62",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "array_to_list",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Data Structures",
+    "path": "folders/Scripts/Math/Data Structures.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "array_to_list",
+  "tags": [],
+  "resourceType": "GMScript",
 }

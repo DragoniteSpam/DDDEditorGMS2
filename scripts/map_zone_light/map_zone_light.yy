@@ -1,8 +1,12 @@
 {
-    "id": "5007bd00-e7bc-452a-a28b-0c36a9d2328d",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "map_zone_light",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "zones",
+    "path": "folders/Scripts/Maps/zones.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "map_zone_light",
+  "tags": [],
+  "resourceType": "GMScript",
 }

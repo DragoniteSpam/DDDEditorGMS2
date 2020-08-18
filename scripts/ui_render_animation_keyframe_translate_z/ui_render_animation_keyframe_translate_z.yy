@@ -1,8 +1,12 @@
 {
-    "id": "327ca289-3870-43db-8501-f6ec80a3f48a",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "ui_render_animation_keyframe_translate_z",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "keyframes",
+    "path": "folders/Scripts/ui stuff/rendering/special/animations/keyframes.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "ui_render_animation_keyframe_translate_z",
+  "tags": [],
+  "resourceType": "GMScript",
 }

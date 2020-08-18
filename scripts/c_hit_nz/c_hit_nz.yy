@@ -1,8 +1,12 @@
 {
-    "id": "1634d341-8edf-44da-8a7c-18f81082ce6f",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "c_hit_nz",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Collisions",
+    "path": "folders/Scripts/dll stuff/Collisions.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "c_hit_nz",
+  "tags": [],
+  "resourceType": "GMScript",
 }

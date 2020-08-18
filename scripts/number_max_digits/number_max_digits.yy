@@ -1,8 +1,12 @@
 {
-    "id": "e3ad3f79-1663-4046-879f-6c26869859db",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "number_max_digits",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Math",
+    "path": "folders/Scripts/Math.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "number_max_digits",
+  "tags": [],
+  "resourceType": "GMScript",
 }

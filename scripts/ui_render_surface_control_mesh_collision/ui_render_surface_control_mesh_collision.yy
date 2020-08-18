@@ -1,8 +1,12 @@
 {
-    "id": "27ac824d-92f5-4d4b-a384-16b6a76e8346",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "ui_render_surface_control_mesh_collision",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "mesh stuff",
+    "path": "folders/Scripts/ui stuff/rendering/special/render surfaces/mesh stuff.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "ui_render_surface_control_mesh_collision",
+  "tags": [],
+  "resourceType": "GMScript",
 }

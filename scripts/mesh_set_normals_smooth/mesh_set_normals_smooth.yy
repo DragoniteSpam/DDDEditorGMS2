@@ -1,8 +1,12 @@
 {
-    "id": "34d96b3e-7719-4140-b92b-bd1c83463029",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "mesh_set_normals_smooth",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "meshes",
+    "path": "folders/Scripts/Game data/meshes.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "mesh_set_normals_smooth",
+  "tags": [],
+  "resourceType": "GMScript",
 }

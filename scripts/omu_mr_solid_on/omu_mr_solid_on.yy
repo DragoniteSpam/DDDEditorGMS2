@@ -1,8 +1,12 @@
 {
-    "id": "6eadf97e-dc74-486a-9f3f-8b598585bc5e",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "omu_mr_solid_on",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "move routes",
+    "path": "folders/Scripts/ui stuff/onmouseup/entities/move routes.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "omu_mr_solid_on",
+  "tags": [],
+  "resourceType": "GMScript",
 }

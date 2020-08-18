@@ -1,8 +1,12 @@
 {
-    "id": "cdb3ea79-2378-4aaf-8a76-cc8c6fdda2b5",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "regex",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "input validation",
+    "path": "folders/Scripts/Math/input validation.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "regex",
+  "tags": [],
+  "resourceType": "GMScript",
 }

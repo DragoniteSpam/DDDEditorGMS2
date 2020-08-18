@@ -1,8 +1,12 @@
 {
-    "id": "15606cd6-dd9c-4600-bfc5-8b7160735fcc",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "merge_colour_ds",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Math",
+    "path": "folders/Scripts/Math.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "merge_colour_ds",
+  "tags": [],
+  "resourceType": "GMScript",
 }

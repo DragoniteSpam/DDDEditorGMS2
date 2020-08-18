@@ -1,8 +1,12 @@
 {
-    "id": "36fcf7ab-721b-4a4d-9379-af579c6fe032",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_settings_map_skybox",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "settings",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction/settings.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_settings_map_skybox",
+  "tags": [],
+  "resourceType": "GMScript",
 }

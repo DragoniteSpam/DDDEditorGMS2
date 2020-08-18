@@ -1,8 +1,12 @@
 {
-    "id": "4fea7ff7-d725-4419-9070-283d9640487a",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "validate_int",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "input validation",
+    "path": "folders/Scripts/Math/input validation.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "validate_int",
+  "tags": [],
+  "resourceType": "GMScript",
 }

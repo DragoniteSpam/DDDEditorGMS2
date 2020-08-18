@@ -1,8 +1,12 @@
 {
-    "id": "1412f209-e335-43d6-9808-19678f4d12ff",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "menu_init_main",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "init",
+    "path": "folders/Scripts/ui stuff/init.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "menu_init_main",
+  "tags": [],
+  "resourceType": "GMScript",
 }

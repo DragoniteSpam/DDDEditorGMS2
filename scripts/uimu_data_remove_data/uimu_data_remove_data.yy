@@ -1,8 +1,12 @@
 {
-    "id": "b4e281f8-30a0-4e37-a5af-db6790ab8563",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uimu_data_remove_data",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "data etc",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction/data etc.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uimu_data_remove_data",
+  "tags": [],
+  "resourceType": "GMScript",
 }

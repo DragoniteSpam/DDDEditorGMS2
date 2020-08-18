@@ -1,8 +1,12 @@
 {
-    "id": "1b69fc99-d689-4caf-a1f1-71f4768a43f2",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "draw_active_event",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "event stuff",
+    "path": "folders/Scripts/event stuff.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "draw_active_event",
+  "tags": [],
+  "resourceType": "GMScript",
 }

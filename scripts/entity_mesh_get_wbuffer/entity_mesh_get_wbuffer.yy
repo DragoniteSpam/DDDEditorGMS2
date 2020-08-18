@@ -1,8 +1,12 @@
 {
-    "id": "8f0f4115-e352-4927-9396-f1832f1e8ebd",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "entity_mesh_get_wbuffer",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "mesh",
+    "path": "folders/Scripts/entity/mesh.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "entity_mesh_get_wbuffer",
+  "tags": [],
+  "resourceType": "GMScript",
 }

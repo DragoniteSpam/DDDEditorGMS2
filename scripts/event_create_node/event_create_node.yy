@@ -1,8 +1,12 @@
 {
-    "id": "045ee4e9-f14d-4122-9884-9ef21e3850d8",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "event_create_node",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "create etc",
+    "path": "folders/Scripts/event stuff/create etc.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "event_create_node",
+  "tags": [],
+  "resourceType": "GMScript",
 }

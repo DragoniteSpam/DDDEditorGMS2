@@ -1,7 +1,11 @@
 {
-    "id": "82c9e93d-7f20-4286-b9c0-3b73c6cb331d",
-    "modelName": "GMShader",
-    "mvc": "1.0",
-    "name": "shd_bounding_box",
-    "type": 1
+  "type": 1,
+  "parent": {
+    "name": "Shaders",
+    "path": "folders/Shaders.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "shd_bounding_box",
+  "tags": [],
+  "resourceType": "GMShader",
 }

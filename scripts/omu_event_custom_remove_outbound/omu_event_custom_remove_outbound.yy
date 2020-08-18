@@ -1,8 +1,12 @@
 {
-    "id": "2a46d36e-677b-41ae-88df-106ca0f80758",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "omu_event_custom_remove_outbound",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "data etc",
+    "path": "folders/Scripts/ui stuff/onmouseup/data etc.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "omu_event_custom_remove_outbound",
+  "tags": [],
+  "resourceType": "GMScript",
 }

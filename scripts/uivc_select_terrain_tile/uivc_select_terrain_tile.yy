@@ -1,8 +1,12 @@
 {
-    "id": "cf3e6074-68cf-4a7d-b7b2-983008efbc4c",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_select_terrain_tile",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "ui",
+    "path": "folders/Scripts/modes/terrain/ui.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_select_terrain_tile",
+  "tags": [],
+  "resourceType": "GMScript",
 }

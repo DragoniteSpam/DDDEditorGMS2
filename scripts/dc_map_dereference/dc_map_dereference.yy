@@ -1,8 +1,12 @@
 {
-    "id": "b412a263-2002-467f-bed8-aa852b14e3bc",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "dc_map_dereference",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "execution",
+    "path": "folders/Scripts/ui stuff/dialogs/commit/execution.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "dc_map_dereference",
+  "tags": [],
+  "resourceType": "GMScript",
 }

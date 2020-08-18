@@ -1,8 +1,12 @@
 {
-    "id": "ea3f145d-5a65-41b0-9e47-81d1e6329e87",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "ui_particle_type_use_sprite",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "ui",
+    "path": "folders/Scripts/modes/particle/ui.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "ui_particle_type_use_sprite",
+  "tags": [],
+  "resourceType": "GMScript",
 }

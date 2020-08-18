@@ -1,8 +1,12 @@
 {
-    "id": "ef0b3e01-48f5-4db7-88a8-fa60a6aef07d",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_refid_picker_event_node",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "on value change and general interaction",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_refid_picker_event_node",
+  "tags": [],
+  "resourceType": "GMScript",
 }

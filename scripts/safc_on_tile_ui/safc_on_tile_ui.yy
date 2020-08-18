@@ -1,8 +1,12 @@
 {
-    "id": "d88f69f4-4e91-47f3-bfd5-f7a19764568c",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "safc_on_tile_ui",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "on select",
+    "path": "folders/Scripts/Selection/actions/common/foreach/on select.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "safc_on_tile_ui",
+  "tags": [],
+  "resourceType": "GMScript",
 }

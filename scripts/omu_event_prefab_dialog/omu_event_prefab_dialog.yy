@@ -1,8 +1,12 @@
 {
-    "id": "d4c8e0c9-f549-43d1-8211-889ddee604d6",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "omu_event_prefab_dialog",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "events",
+    "path": "folders/Scripts/ui stuff/onmouseup/events.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "omu_event_prefab_dialog",
+  "tags": [],
+  "resourceType": "GMScript",
 }

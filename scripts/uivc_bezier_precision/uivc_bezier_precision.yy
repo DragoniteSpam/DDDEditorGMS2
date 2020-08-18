@@ -1,8 +1,12 @@
 {
-    "id": "67ed8cf7-9d17-4b37-a556-eeabc93fe165",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_bezier_precision",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "settings",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction/settings.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_bezier_precision",
+  "tags": [],
+  "resourceType": "GMScript",
 }

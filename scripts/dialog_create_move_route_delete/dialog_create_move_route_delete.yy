@@ -1,8 +1,12 @@
 {
-    "id": "c202d42c-f336-4054-ad6a-d873329cb04f",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "dialog_create_move_route_delete",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "data and events",
+    "path": "folders/Scripts/ui stuff/dialogs/creation/data and events.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "dialog_create_move_route_delete",
+  "tags": [],
+  "resourceType": "GMScript",
 }

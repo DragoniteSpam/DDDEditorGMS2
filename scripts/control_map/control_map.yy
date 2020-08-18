@@ -1,8 +1,12 @@
 {
-    "id": "2014825b-a570-47e1-8600-19c965a6afcb",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "control_map",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Control",
+    "path": "folders/Scripts/Control.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "control_map",
+  "tags": [],
+  "resourceType": "GMScript",
 }

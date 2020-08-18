@@ -1,8 +1,12 @@
 {
-    "id": "9edfe673-27ec-4872-8749-e268d9753d87",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "c_shape_add_cone",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Collisions",
+    "path": "folders/Scripts/dll stuff/Collisions.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "c_shape_add_cone",
+  "tags": [],
+  "resourceType": "GMScript",
 }

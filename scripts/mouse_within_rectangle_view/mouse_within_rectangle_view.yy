@@ -1,8 +1,12 @@
 {
-    "id": "39d8bec1-cc2c-4d92-a58d-50bcb7edac68",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "mouse_within_rectangle_view",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Math",
+    "path": "folders/Scripts/Math.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "mouse_within_rectangle_view",
+  "tags": [],
+  "resourceType": "GMScript",
 }

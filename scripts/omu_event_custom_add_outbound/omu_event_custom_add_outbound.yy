@@ -1,8 +1,12 @@
 {
-    "id": "4bb11eb2-931c-421e-81a4-de9aabbe9497",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "omu_event_custom_add_outbound",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "data etc",
+    "path": "folders/Scripts/ui stuff/onmouseup/data etc.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "omu_event_custom_add_outbound",
+  "tags": [],
+  "resourceType": "GMScript",
 }

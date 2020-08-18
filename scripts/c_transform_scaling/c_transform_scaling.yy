@@ -1,8 +1,12 @@
 {
-    "id": "10edd558-0f2b-49ff-b16c-788cf96bf9c2",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "c_transform_scaling",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Collisions",
+    "path": "folders/Scripts/dll stuff/Collisions.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "c_transform_scaling",
+  "tags": [],
+  "resourceType": "GMScript",
 }

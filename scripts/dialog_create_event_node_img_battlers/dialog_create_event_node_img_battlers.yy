@@ -1,8 +1,12 @@
 {
-    "id": "6d433735-dac5-489e-814f-fb19346b710e",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "dialog_create_event_node_img_battlers",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "data and events",
+    "path": "folders/Scripts/ui stuff/dialogs/creation/data and events.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "dialog_create_event_node_img_battlers",
+  "tags": [],
+  "resourceType": "GMScript",
 }

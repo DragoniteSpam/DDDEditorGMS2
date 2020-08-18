@@ -1,8 +1,12 @@
 {
-    "id": "0ea2db3c-0c2a-41b6-a304-3a4a776ec989",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "serialize_save_data_instances",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "generic data",
+    "path": "folders/Scripts/serialization/save/generic data.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "serialize_save_data_instances",
+  "tags": [],
+  "resourceType": "GMScript",
 }

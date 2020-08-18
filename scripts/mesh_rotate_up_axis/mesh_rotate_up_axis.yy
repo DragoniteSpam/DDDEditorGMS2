@@ -1,8 +1,12 @@
 {
-    "id": "58e72d1e-1d41-48fd-bbc9-128169f863ec",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "mesh_rotate_up_axis",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "meshes",
+    "path": "folders/Scripts/Game data/meshes.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "mesh_rotate_up_axis",
+  "tags": [],
+  "resourceType": "GMScript",
 }

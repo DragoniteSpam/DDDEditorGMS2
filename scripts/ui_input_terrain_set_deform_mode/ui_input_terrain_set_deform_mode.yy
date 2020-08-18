@@ -1,8 +1,12 @@
 {
-    "id": "46967aa9-7520-44ac-ab9b-df1bd70a3df2",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "ui_input_terrain_set_deform_mode",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "ui",
+    "path": "folders/Scripts/modes/terrain/ui.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "ui_input_terrain_set_deform_mode",
+  "tags": [],
+  "resourceType": "GMScript",
 }

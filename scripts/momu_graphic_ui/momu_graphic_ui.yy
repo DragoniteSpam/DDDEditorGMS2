@@ -1,8 +1,12 @@
 {
-    "id": "b04c7fff-7538-4c79-bf9c-0e80c39f62b0",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "momu_graphic_ui",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "basic",
+    "path": "folders/Scripts/ui stuff/menu/onmouseup/data/basic.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "momu_graphic_ui",
+  "tags": [],
+  "resourceType": "GMScript",
 }

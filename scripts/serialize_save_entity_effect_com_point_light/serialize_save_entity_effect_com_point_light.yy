@@ -1,8 +1,12 @@
 {
-    "id": "ea84a95d-282b-479c-8a59-bba1f17e0a57",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "serialize_save_entity_effect_com_point_light",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "map contents",
+    "path": "folders/Scripts/serialization/save/map contents.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "serialize_save_entity_effect_com_point_light",
+  "tags": [],
+  "resourceType": "GMScript",
 }

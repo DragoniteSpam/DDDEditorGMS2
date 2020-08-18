@@ -1,8 +1,12 @@
 {
-    "id": "2ae255d2-161f-4f86-aa5d-cda175c529d7",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "vertex_point_line",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Graphics",
+    "path": "folders/Scripts/Graphics.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "vertex_point_line",
+  "tags": [],
+  "resourceType": "GMScript",
 }

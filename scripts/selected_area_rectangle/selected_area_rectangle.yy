@@ -1,8 +1,12 @@
 {
-    "id": "db87b49d-d4cf-4760-af07-410cc18dd630",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "selected_area_rectangle",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "area",
+    "path": "folders/Scripts/Selection/area.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "selected_area_rectangle",
+  "tags": [],
+  "resourceType": "GMScript",
 }

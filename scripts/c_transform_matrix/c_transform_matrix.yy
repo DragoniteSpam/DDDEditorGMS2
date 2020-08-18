@@ -1,8 +1,12 @@
 {
-    "id": "fb73fa08-5ca2-414c-bc51-0a5042ea5c5f",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "c_transform_matrix",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Collisions",
+    "path": "folders/Scripts/dll stuff/Collisions.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "c_transform_matrix",
+  "tags": [],
+  "resourceType": "GMScript",
 }

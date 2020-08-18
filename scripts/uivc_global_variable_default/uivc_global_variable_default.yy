@@ -1,8 +1,12 @@
 {
-    "id": "0c2010e1-757f-4b76-a7ca-e2334966222c",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_global_variable_default",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "variables and stuff",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction/variables and stuff.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_global_variable_default",
+  "tags": [],
+  "resourceType": "GMScript",
 }

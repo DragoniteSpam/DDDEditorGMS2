@@ -22,28 +22,32 @@
 /// 
 /// This script "sets state". All text drawn with scribble_draw() will use these settings until they're overwritten,
 /// either by calling this script again or by calling scribble_reset() or scribble_set_state().
+function scribble_set_animation(argument0, argument1) {
 
-enum SCRIBBLE_ANIM
-{
-    WAVE_SIZE,      // 0
-    WAVE_FREQ,      // 1
-    WAVE_SPEED,     // 2
-    SHAKE_SIZE,     // 3
-    SHAKE_SPEED,    // 4
-    RAINBOW_WEIGHT, // 5
-    RAINBOW_SPEED,  // 6
-    WOBBLE_ANGLE,   // 7
-    WOBBLE_FREQ,    // 8
-    PULSE_SCALE,    // 9
-    PULSE_SPEED,    //10
-    WHEEL_SIZE,     //11
-    WHEEL_FREQ,     //12
-    WHEEL_SPEED,    //13
-    CYCLE_WEIGHT,   //14
-    CYCLE_SPEED,    //15
-    CYCLE_HUES_ABC, //16
-    CYCLE_HUES_DEF, //17
-    __SIZE,         //18
+	enum SCRIBBLE_ANIM
+	{
+	    WAVE_SIZE,      // 0
+	    WAVE_FREQ,      // 1
+	    WAVE_SPEED,     // 2
+	    SHAKE_SIZE,     // 3
+	    SHAKE_SPEED,    // 4
+	    RAINBOW_WEIGHT, // 5
+	    RAINBOW_SPEED,  // 6
+	    WOBBLE_ANGLE,   // 7
+	    WOBBLE_FREQ,    // 8
+	    PULSE_SCALE,    // 9
+	    PULSE_SPEED,    //10
+	    WHEEL_SIZE,     //11
+	    WHEEL_FREQ,     //12
+	    WHEEL_SPEED,    //13
+	    CYCLE_WEIGHT,   //14
+	    CYCLE_SPEED,    //15
+	    CYCLE_HUES_ABC, //16
+	    CYCLE_HUES_DEF, //17
+	    __SIZE,         //18
+	}
+
+	global.scribble_state_anim_array[@ argument0] = argument1;
+
+
 }
-
-global.scribble_state_anim_array[@ argument0] = argument1;

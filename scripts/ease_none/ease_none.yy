@@ -1,8 +1,12 @@
 {
-    "id": "8d1030e2-3d0f-40ca-89fb-282bad18b421",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "ease_none",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "easings",
+    "path": "folders/Scripts/Math/easings.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "ease_none",
+  "tags": [],
+  "resourceType": "GMScript",
 }

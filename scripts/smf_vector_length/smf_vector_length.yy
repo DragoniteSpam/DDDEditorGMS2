@@ -1,8 +1,12 @@
 {
-    "id": "abf11ddd-583d-48e7-ac1c-68bf23d1d2e2",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "smf_vector_length",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Vector",
+    "path": "folders/Scripts/SMF model format/Advanced/Mathematics/Vector.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "smf_vector_length",
+  "tags": [],
+  "resourceType": "GMScript",
 }

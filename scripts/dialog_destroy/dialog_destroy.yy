@@ -1,8 +1,12 @@
 {
-    "id": "a2373338-b0ab-43af-97ea-95927ad0dcaa",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "dialog_destroy",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "dialogs",
+    "path": "folders/Scripts/ui stuff/dialogs.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "dialog_destroy",
+  "tags": [],
+  "resourceType": "GMScript",
 }

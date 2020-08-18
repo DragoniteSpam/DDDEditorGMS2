@@ -1,8 +1,12 @@
 {
-    "id": "11e2b2bc-d1dc-4e8e-932d-1f29460d9dea",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "editor_cleanup_map",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "map",
+    "path": "folders/Scripts/modes/map.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "editor_cleanup_map",
+  "tags": [],
+  "resourceType": "GMScript",
 }

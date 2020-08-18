@@ -1,8 +1,12 @@
 {
-    "id": "d4959a77-c35a-4241-9801-d39b2e181c17",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "get_open_filename_audio_effect",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "open",
+    "path": "folders/Scripts/resources/file selectors/open.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "get_open_filename_audio_effect",
+  "tags": [],
+  "resourceType": "GMScript",
 }

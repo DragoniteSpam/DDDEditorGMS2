@@ -1,8 +1,12 @@
 {
-    "id": "6c74c3c7-3e1b-450f-8fbb-ad588f17dc89",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "ds_stuff_reset_status",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "stuff",
+    "path": "folders/Scripts/dll stuff/stuff.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "ds_stuff_reset_status",
+  "tags": [],
+  "resourceType": "GMScript",
 }

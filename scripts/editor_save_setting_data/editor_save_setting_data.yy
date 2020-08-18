@@ -1,8 +1,12 @@
 {
-    "id": "03d96153-f5e5-4fb2-8f98-1aca29744fbc",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "editor_save_setting_data",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "data",
+    "path": "folders/Scripts/modes/data.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "editor_save_setting_data",
+  "tags": [],
+  "resourceType": "GMScript",
 }

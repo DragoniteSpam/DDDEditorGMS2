@@ -1,8 +1,12 @@
 {
-    "id": "a70253a0-a56f-45bd-a8bb-da8e530d431a",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "vector4",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "vectors",
+    "path": "folders/Scripts/Math/vectors.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "vector4",
+  "tags": [],
+  "resourceType": "GMScript",
 }

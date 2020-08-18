@@ -1,8 +1,12 @@
 {
-    "id": "d991b300-f8bd-492f-b7fb-3c931798fc68",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "ui_render_rectangle",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "rendering",
+    "path": "folders/Scripts/ui stuff/rendering.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "ui_render_rectangle",
+  "tags": [],
+  "resourceType": "GMScript",
 }

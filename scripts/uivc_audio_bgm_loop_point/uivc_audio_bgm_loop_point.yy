@@ -1,8 +1,12 @@
 {
-    "id": "8ea255fa-966d-4d03-b7b7-473d9d2edd81",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_audio_bgm_loop_point",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "on value change and general interaction",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_audio_bgm_loop_point",
+  "tags": [],
+  "resourceType": "GMScript",
 }

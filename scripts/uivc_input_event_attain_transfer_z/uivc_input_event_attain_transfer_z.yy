@@ -1,8 +1,12 @@
 {
-    "id": "ef27b90a-f8be-4379-91fc-c1e153dbbc50",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_input_event_attain_transfer_z",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "attainment",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction/events/attainment.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_input_event_attain_transfer_z",
+  "tags": [],
+  "resourceType": "GMScript",
 }

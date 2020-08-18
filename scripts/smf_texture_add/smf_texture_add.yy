@@ -1,8 +1,12 @@
 {
-    "id": "ecbc507c-0b61-4faf-8e5e-772764d4abd7",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "smf_texture_add",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Texture management",
+    "path": "folders/Scripts/SMF model format/Advanced/Texture management.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "smf_texture_add",
+  "tags": [],
+  "resourceType": "GMScript",
 }

@@ -1,8 +1,12 @@
 {
-    "id": "592176f4-c858-47ae-ba6d-be477cc58dce",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "refid_set",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "resources",
+    "path": "folders/Scripts/resources.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "refid_set",
+  "tags": [],
+  "resourceType": "GMScript",
 }

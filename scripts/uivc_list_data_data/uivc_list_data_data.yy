@@ -1,8 +1,12 @@
 {
-    "id": "361fa843-14b9-43a0-bdff-9c6b8485502e",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_list_data_data",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "data etc",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction/data etc.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_list_data_data",
+  "tags": [],
+  "resourceType": "GMScript",
 }

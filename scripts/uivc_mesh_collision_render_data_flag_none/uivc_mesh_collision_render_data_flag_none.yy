@@ -1,8 +1,12 @@
 {
-    "id": "ef52c2e3-a1fa-4b3a-b296-f81e1cd7fc21",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_mesh_collision_render_data_flag_none",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "collision data",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction/mesh stuff/collision data.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_mesh_collision_render_data_flag_none",
+  "tags": [],
+  "resourceType": "GMScript",
 }

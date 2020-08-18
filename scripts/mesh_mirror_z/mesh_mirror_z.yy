@@ -1,8 +1,12 @@
 {
-    "id": "6e18246e-8fdd-43c3-bed7-4622e73c63fb",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "mesh_mirror_z",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "meshes",
+    "path": "folders/Scripts/Game data/meshes.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "mesh_mirror_z",
+  "tags": [],
+  "resourceType": "GMScript",
 }

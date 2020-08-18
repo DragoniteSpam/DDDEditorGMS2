@@ -1,8 +1,12 @@
 {
-    "id": "8a169476-76e7-46d2-99f7-6de10c31e642",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "map_fill_tag_grid",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Maps",
+    "path": "folders/Scripts/Maps.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "map_fill_tag_grid",
+  "tags": [],
+  "resourceType": "GMScript",
 }

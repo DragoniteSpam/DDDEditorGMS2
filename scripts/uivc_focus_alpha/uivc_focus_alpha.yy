@@ -1,8 +1,12 @@
 {
-    "id": "2588482c-62b0-4a5a-8441-b4ff015adbd5",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_focus_alpha",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "settings",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction/settings.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_focus_alpha",
+  "tags": [],
+  "resourceType": "GMScript",
 }

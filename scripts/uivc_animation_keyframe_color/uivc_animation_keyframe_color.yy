@@ -1,8 +1,12 @@
 {
-    "id": "b5d23ad5-4c02-4e93-8600-5152ae820a98",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_animation_keyframe_color",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "keyframe data",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction/animations/keyframe data.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_animation_keyframe_color",
+  "tags": [],
+  "resourceType": "GMScript",
 }

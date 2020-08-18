@@ -1,8 +1,12 @@
 {
-    "id": "406db1cc-6498-4da0-8807-482b2b36baea",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "validate_int_create_map_size",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "input validation",
+    "path": "folders/Scripts/Math/input validation.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "validate_int_create_map_size",
+  "tags": [],
+  "resourceType": "GMScript",
 }

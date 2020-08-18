@@ -1,8 +1,12 @@
 {
-    "id": "181468e7-f186-4bec-b4dd-7008d34585cc",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_terrain_change_texture",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "ui",
+    "path": "folders/Scripts/modes/terrain/ui.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_terrain_change_texture",
+  "tags": [],
+  "resourceType": "GMScript",
 }

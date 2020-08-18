@@ -1,8 +1,12 @@
 {
-    "id": "011034bf-db78-40b3-b64a-d0199b3f03f8",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "import_smf",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "meshes",
+    "path": "folders/Scripts/resources/meshes.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "import_smf",
+  "tags": [],
+  "resourceType": "GMScript",
 }

@@ -1,14 +1,18 @@
 /// @param UIList
+function uivc_input_map_select_light(argument0) {
 
-var list = argument0;
-var active_list = list.root.el_light_list;
-var selection = ui_list_selection(list);
-var active_selection = ui_list_selection(active_list);
+	var list = argument0;
+	var active_list = list.root.el_light_list;
+	var selection = ui_list_selection(list);
+	var active_selection = ui_list_selection(active_list);
 
-if (active_selection + 1) {
-    if (selection + 1) {
-        active_list.entries[| active_selection] = list.entries[| selection];
-    } else {
-        active_list.entries[| active_selection] = 0;
-    }
+	if (active_selection + 1) {
+	    if (selection + 1) {
+	        active_list.entries[| active_selection] = list.entries[| selection];
+	    } else {
+	        active_list.entries[| active_selection] = 0;
+	    }
+	}
+
+
 }

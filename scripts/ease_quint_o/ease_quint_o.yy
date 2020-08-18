@@ -1,8 +1,12 @@
 {
-    "id": "e84e4d5c-0292-4c3e-9861-e899242c4186",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "ease_quint_o",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "easings",
+    "path": "folders/Scripts/Math/easings.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "ease_quint_o",
+  "tags": [],
+  "resourceType": "GMScript",
 }

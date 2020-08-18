@@ -1,8 +1,12 @@
 {
-    "id": "4c78b6fb-7019-4409-b04c-b356fb4179af",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "get_save_filename_mesh_qma",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "save",
+    "path": "folders/Scripts/resources/file selectors/save.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "get_save_filename_mesh_qma",
+  "tags": [],
+  "resourceType": "GMScript",
 }

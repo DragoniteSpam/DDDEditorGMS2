@@ -1,8 +1,12 @@
 {
-    "id": "3de87189-979f-4cce-a3b2-96e2fe18249f",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "__dotdae_string_decompose_array",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "System",
+    "path": "folders/Scripts/dotdae/System.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "__dotdae_string_decompose_array",
+  "tags": [],
+  "resourceType": "GMScript",
 }

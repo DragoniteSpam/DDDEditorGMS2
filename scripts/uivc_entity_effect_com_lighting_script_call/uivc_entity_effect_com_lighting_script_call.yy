@@ -1,8 +1,12 @@
 {
-    "id": "583ac173-9d0e-40fb-9574-f67725c73811",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_entity_effect_com_lighting_script_call",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "effect components",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction/entity properties/effect components.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_entity_effect_com_lighting_script_call",
+  "tags": [],
+  "resourceType": "GMScript",
 }

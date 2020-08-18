@@ -7,25 +7,29 @@
 /// @param x3
 /// @param y3
 /// @param z3
+function triangle_normal(argument0, argument1, argument2, argument3, argument4, argument5, argument6, argument7, argument8) {
 
-gml_pragma("forceinline");
+	gml_pragma("forceinline");
 
-var v1x = argument3 - argument0;
-var v1y = argument4 - argument1;
-var v1z = argument5 - argument2;
-var v2x = argument6 - argument0;
-var v2y = argument7 - argument1;
-var v2z = argument8 - argument2;
+	var v1x = argument3 - argument0;
+	var v1y = argument4 - argument1;
+	var v1z = argument5 - argument2;
+	var v2x = argument6 - argument0;
+	var v2y = argument7 - argument1;
+	var v2z = argument8 - argument2;
 
-var cx = v1y * v2z - v1z * v2y;
-var cy = -v1x * v2z + v1z * v2x;
-var cz = v1x * v2y - v1y * v2x;
+	var cx = v1y * v2z - v1z * v2y;
+	var cy = -v1x * v2z + v1z * v2x;
+	var cz = v1x * v2y - v1y * v2x;
 
-// if this is zero, the triangle has zero area and won't be visible anyway
-var cpl = point_distance_3d(0, 0, 0, cx, cy, cz);
+	// if this is zero, the triangle has zero area and won't be visible anyway
+	var cpl = point_distance_3d(0, 0, 0, cx, cy, cz);
 
-if (cpl != 0) {
-    return [cx / cpl, cy / cpl, cz / cpl];
+	if (cpl != 0) {
+	    return [cx / cpl, cy / cpl, cz / cpl];
+	}
+
+	return [0, 0, 1];
+
+
 }
-
-return [0, 0, 1];

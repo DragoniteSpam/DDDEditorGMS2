@@ -1,8 +1,12 @@
 {
-    "id": "3f4714e7-5fe4-4e68-b0fb-5852f717fe47",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "buffer_get_pixel",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Data Structures",
+    "path": "folders/Scripts/Math/Data Structures.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "buffer_get_pixel",
+  "tags": [],
+  "resourceType": "GMScript",
 }

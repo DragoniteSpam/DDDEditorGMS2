@@ -1,8 +1,12 @@
 {
-    "id": "ae9f92cb-5ba5-4913-9bb0-ecd6d324b809",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "spart__read_obj_line",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Helper scripts",
+    "path": "folders/Scripts/sPart/Helper scripts.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "spart__read_obj_line",
+  "tags": [],
+  "resourceType": "GMScript",
 }

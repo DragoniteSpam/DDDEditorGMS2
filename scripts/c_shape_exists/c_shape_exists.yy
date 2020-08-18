@@ -1,8 +1,12 @@
 {
-    "id": "34feaddb-bf37-486c-b506-f79e662ad80a",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "c_shape_exists",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Collisions",
+    "path": "folders/Scripts/dll stuff/Collisions.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "c_shape_exists",
+  "tags": [],
+  "resourceType": "GMScript",
 }

@@ -1,8 +1,12 @@
 {
-    "id": "a58b5918-f721-4a10-875a-9702dd06ea87",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "selection_render_circle",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "render",
+    "path": "folders/Scripts/Selection/render.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "selection_render_circle",
+  "tags": [],
+  "resourceType": "GMScript",
 }

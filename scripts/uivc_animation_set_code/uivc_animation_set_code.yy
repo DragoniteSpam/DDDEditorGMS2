@@ -1,8 +1,12 @@
 {
-    "id": "91d910dc-0372-4e73-8aa3-3b02c1213846",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_animation_set_code",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "animations",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction/animations.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_animation_set_code",
+  "tags": [],
+  "resourceType": "GMScript",
 }

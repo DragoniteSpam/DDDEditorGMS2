@@ -1,8 +1,12 @@
 {
-    "id": "518e3572-e275-43c8-a693-cff4bdd64fc5",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "smf__collision_avoid_quadtree",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Quad tree functions",
+    "path": "folders/Scripts/SMF model format/Collision/Model collision/Advanced/Quad tree functions.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "smf__collision_avoid_quadtree",
+  "tags": [],
+  "resourceType": "GMScript",
 }

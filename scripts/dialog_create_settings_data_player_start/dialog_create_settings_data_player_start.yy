@@ -1,8 +1,12 @@
 {
-    "id": "cea3d119-83f1-4607-a92f-d04eb6ec6ce3",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "dialog_create_settings_data_player_start",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "creation",
+    "path": "folders/Scripts/ui stuff/dialogs/creation.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "dialog_create_settings_data_player_start",
+  "tags": [],
+  "resourceType": "GMScript",
 }

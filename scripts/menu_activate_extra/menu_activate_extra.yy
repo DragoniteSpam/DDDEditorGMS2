@@ -1,8 +1,12 @@
 {
-    "id": "9dd43b3a-9f79-4496-89e8-fdbed4ead3ef",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "menu_activate_extra",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "menu",
+    "path": "folders/Scripts/ui stuff/menu.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "menu_activate_extra",
+  "tags": [],
+  "resourceType": "GMScript",
 }

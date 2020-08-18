@@ -1,8 +1,12 @@
 {
-    "id": "651603fe-de68-412e-89e4-d9728e2ccd4b",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "ease_sine_i",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "easings",
+    "path": "folders/Scripts/Math/easings.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "ease_sine_i",
+  "tags": [],
+  "resourceType": "GMScript",
 }

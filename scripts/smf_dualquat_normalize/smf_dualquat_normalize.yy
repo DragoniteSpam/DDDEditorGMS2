@@ -1,8 +1,12 @@
 {
-    "id": "26847660-73e2-4609-a513-eeff7e2f3f00",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "smf_dualquat_normalize",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Dual quaternion",
+    "path": "folders/Scripts/SMF model format/Advanced/Mathematics/Dual quaternion.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "smf_dualquat_normalize",
+  "tags": [],
+  "resourceType": "GMScript",
 }

@@ -1,8 +1,12 @@
 {
-    "id": "bfc3d40f-9e81-45c8-9351-e4417cf06fdc",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "smf_texture_get_height",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Texture management",
+    "path": "folders/Scripts/SMF model format/Advanced/Texture management.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "smf_texture_get_height",
+  "tags": [],
+  "resourceType": "GMScript",
 }

@@ -1,8 +1,12 @@
 {
-    "id": "b6f3b750-6196-4126-b7a8-633aadca2496",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "colour_reverse",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Math",
+    "path": "folders/Scripts/Math.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "colour_reverse",
+  "tags": [],
+  "resourceType": "GMScript",
 }
