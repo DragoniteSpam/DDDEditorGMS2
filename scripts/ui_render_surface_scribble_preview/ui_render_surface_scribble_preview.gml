@@ -22,7 +22,7 @@ function ui_render_surface_scribble_preview(argument0, argument1, argument2, arg
 	draw_clear(mode.scribble_back_colour);
 	draw_rectangle_colour(1, 1, sw - 2, sh - 2, c_black, c_black, c_black, c_black, true);
 
-	var f = normalize_correct(mode.scribble_bounds_width, mode.scribble_bounds_width_min, mode.scribble_bounds_width_max, 0, 1) * (surface_get_width(surface.surface) - padding * 2);
+	var f = normalize(mode.scribble_bounds_width, mode.scribble_bounds_width_min, mode.scribble_bounds_width_max, 0, 1) * (surface_get_width(surface.surface) - padding * 2);
 	scribble_set_wrap(f, -1);
 
 	if (!is_array(mode.scribble) || (mode.scribble[SCRIBBLE.STRING] != mode.scribble_text && (mode.scribble_text_time + 500) < current_time)) {

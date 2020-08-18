@@ -150,7 +150,6 @@
     {"id":{"name":"colour_reverse","path":"scripts/colour_reverse/colour_reverse.yy",},"order":24,},
     {"id":{"name":"tween","path":"scripts/tween/tween.yy",},"order":25,},
     {"id":{"name":"normalize","path":"scripts/normalize/normalize.yy",},"order":26,},
-    {"id":{"name":"normalize_correct","path":"scripts/normalize_correct/normalize_correct.yy",},"order":27,},
     {"id":{"name":"split","path":"scripts/split/split.yy",},"order":29,},
     {"id":{"name":"decimal","path":"scripts/decimal/decimal.yy",},"order":30,},
     {"id":{"name":"triangle_normal","path":"scripts/triangle_normal/triangle_normal.yy",},"order":31,},

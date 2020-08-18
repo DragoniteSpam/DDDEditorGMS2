@@ -213,7 +213,7 @@ function draw_editor_3d(argument0) {
 	    } else if (overlap_interval) {
 	        if (mouse_check_button(mb_left)) {
 	            var f = clamp((yy_end - mouse_y_view) / (yy_end - yy_start), 0, 1);
-	            mode.edit_z = round(normalize_correct(f, 0, mode.active_map.zz - 1, 0, 1));
+	            mode.edit_z = round(normalize(f, 0, mode.active_map.zz - 1, 0, 1));
 	        }
 	        mode.mouse_over_ui = true;
 	    }

@@ -43,7 +43,7 @@ function dialog_create_preferences(argument0) {
 	var el_camera_fly_text = create_text(col1_x, yy, "Camera Acceleration", ew, eh, fa_left, ew, dg);
 	yy += el_camera_fly_text.height + spacing;
 
-	var el_camera_fly = create_progress_bar(col1_x, yy, ew, eh, uivc_camera_fly_rate, 4, normalize_correct(Stuff.setting_camera_fly_rate, 0, 1, 0.5, 4), dg);
+	var el_camera_fly = create_progress_bar(col1_x, yy, ew, eh, uivc_camera_fly_rate, 4, normalize(Stuff.setting_camera_fly_rate, 0, 1, 0.5, 4), dg);
 	el_camera_fly.tooltip = "How fast the camera accelerates in editor modes that use it (2D and 3D).";
 	yy += el_camera_fly.height + spacing;
 

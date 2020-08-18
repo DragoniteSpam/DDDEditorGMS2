@@ -109,7 +109,7 @@ function ui_init_terrain(argument0) {
     
 	    yy += element.height + spacing;
     
-	    element = create_progress_bar(legal_x + spacing, yy, col_width, element_height, ui_input_terrain_set_brush_radius, 4, normalize_correct(mode.radius, 0, 1, mode.brush_min, mode.brush_max), t_general);
+	    element = create_progress_bar(legal_x + spacing, yy, col_width, element_height, ui_input_terrain_set_brush_radius, 4, normalize(mode.radius, 0, 1, mode.brush_min, mode.brush_max), t_general);
 	    element.tooltip = "A larger brush will allow you to edit more terrain at once, and a smaller one will give you more precision.";
 	    t_general.element_brush_radius_bar = element;
 	    ds_list_add(t_general.contents, element);
@@ -351,7 +351,7 @@ function ui_init_terrain(argument0) {
     
 	    yy += element.height + spacing;
     
-	    element = create_progress_bar(legal_x + spacing, yy, col_width, element_height, ui_input_terrain_set_deformation_rate, 4, normalize_correct(mode.rate, 0, 1, mode.rate_min, mode.rate_max), t_heightmap);
+	    element = create_progress_bar(legal_x + spacing, yy, col_width, element_height, ui_input_terrain_set_deformation_rate, 4, normalize(mode.rate, 0, 1, mode.rate_min, mode.rate_max), t_heightmap);
 	    element.tooltip = "A smaller rate will give you more precision, and a larger rate will make the deformation more dramatic.";
 	    t_heightmap.element_deform_rate_bar = element;
 	    ds_list_add(t_heightmap.contents, element);
@@ -414,7 +414,7 @@ function ui_init_terrain(argument0) {
     
 	    yy += element.height + spacing;
     
-	    element = create_progress_bar(legal_x + spacing, yy, col_width, element_height, ui_input_terrain_set_paint_strength, 4, normalize_correct(mode.paint_strength, 0, 1, mode.paint_strength_min, mode.paint_strength_max), t_paint);
+	    element = create_progress_bar(legal_x + spacing, yy, col_width, element_height, ui_input_terrain_set_paint_strength, 4, normalize(mode.paint_strength, 0, 1, mode.paint_strength_min, mode.paint_strength_max), t_paint);
 	    element.tooltip = "A lower strength value will cause the color to blend with the existing color, and a greater one will cause it to replace the existing color.";
 	    t_paint.element_paint_strength_bar = element;
 	    ds_list_add(t_paint.contents, element);

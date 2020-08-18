@@ -6,7 +6,7 @@ function ui_particle_type_direction_max(argument0) {
 
 	if (selection + 1) {
 	    var type = Stuff.particle.types[| selection];
-	    type.direction_max = round(normalize_correct(bar.value, 0, 360));
+	    type.direction_max = round(normalize(bar.value, 0, 360));
 	    part_type_direction(type.type, type.direction_min, type.direction_max, type.direction_incr, type.direction_wiggle);
 	}
 
