@@ -45,7 +45,7 @@ function editor_update_terrain(argument0) {
 	if (mode.cursor_position == undefined) {
 	    shader_set_uniform_f(shader_get_uniform(shd_terrain, "mouse"), -MILLION, -MILLION);
 	} else {
-	    shader_set_uniform_f(shader_get_uniform(shd_terrain, "mouse"), mode.cursor_position[vec2.xx], mode.cursor_position[vec2.yy]);
+	    shader_set_uniform_f(shader_get_uniform(shd_terrain, "mouse"), mode.cursor_position[vec3.xx], mode.cursor_position[vec3.yy]);
 	}
 	shader_set_uniform_f(shader_get_uniform(shd_terrain, "mouseRadius"), mode.radius);
 	vertex_submit(mode.terrain_buffer, pr_trianglelist, sprite_get_texture(mode.texture, 0));

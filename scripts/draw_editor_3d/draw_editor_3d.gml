@@ -225,7 +225,7 @@ function draw_editor_3d(argument0) {
 	    var data = ds_queue_dequeue(Stuff.screen_icons);
 	    var sprite = data[0];
 	    var position = data[1];
-	    draw_sprite(sprite, 0, position[vec2.xx], position[vec2.yy]);
+	    draw_sprite(sprite, 0, position[vec3.xx], position[vec3.yy]);
 	}
 #endregion
 #endregion

@@ -12,14 +12,14 @@ function sprite_crop() {
 	var dimensions = sprite_get_cropped_dimensions(sprite, 0, cutoff);
 
 	if (ww == -1) {
-	    ww = dimensions[vec2.xx];
+	    ww = dimensions[vec3.xx];
 	} else {
-	    ww = min(ww, dimensions[vec2.xx]);
+	    ww = min(ww, dimensions[vec3.xx]);
 	}
 	if (hh == -1) {
-	    hh = dimensions[vec2.yy];
+	    hh = dimensions[vec3.yy];
 	} else {
-	    hh = min(hh, dimensions[vec2.yy]);
+	    hh = min(hh, dimensions[vec3.yy]);
 	}
 
 	var surface = surface_create(ww, hh);

@@ -72,7 +72,7 @@ function update_mouse_vector() {
 	mm = point_distance_3d(0, 0, 0, mX, mY, mZ);
 
 	// normalize mouse direction vector
-	return vector3(mX / mm, mY / mm, mZ / mm);
+	return [mX / mm, mY / mm, mZ / mm];
 
 
 }

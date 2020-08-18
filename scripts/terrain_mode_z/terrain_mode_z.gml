@@ -23,7 +23,7 @@ function terrain_mode_z(argument0, argument1, argument2) {
 	        var d4 = point_distance(xx + 0.5, yy + 0.5, i + 1.5, j + 1.5);
 	        if (d1 <= coeff && d2 <= coeff && d3 <= coeff && d4 <= coeff) {
 	            t = t + terrain_get_z(terrain, floor(i), floor(j));
-	            ds_list_add(list_range, vector3(floor(i), floor(j), mean(d1, d2, d3, d4)));
+	            ds_list_add(list_range, [floor(i), floor(j), mean(d1, d2, d3, d4)]);
 	        }
 	    }
 	}

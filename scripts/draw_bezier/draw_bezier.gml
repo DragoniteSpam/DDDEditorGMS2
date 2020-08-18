@@ -21,7 +21,7 @@ function draw_bezier(argument0, argument1, argument2, argument3) {
 	for (var i = 0; i < Stuff.setting_bezier_precision; i++) {
 	    p1 = p2;
 	    p2 = bezier_point((i + 1) / Stuff.setting_bezier_precision, x0, y0, xa, ya, xb, yb, x1, y1);
-	    draw_line(p1[vec2.xx], p1[vec2.yy], p2[vec2.xx], p2[vec2.yy]);
+	    draw_line(p1[vec3.xx], p1[vec3.yy], p2[vec3.xx], p2[vec3.yy]);
 	}
 
 
