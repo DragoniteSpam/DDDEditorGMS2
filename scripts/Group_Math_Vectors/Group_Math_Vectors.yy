@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Transform",
-    "path": "folders/Scripts/Math/Transform.yy",
+    "name": "Math",
+    "path": "folders/Scripts/Math.yy",
   },
   "resourceVersion": "1.0",
-  "name": "transform_set",
+  "name": "Group_Math_Vectors",
   "tags": [],
   "resourceType": "GMScript",
 }
