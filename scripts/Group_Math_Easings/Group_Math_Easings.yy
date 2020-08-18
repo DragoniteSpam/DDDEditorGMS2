@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "easings",
-    "path": "folders/Scripts/Math/easings.yy",
+    "name": "Math",
+    "path": "folders/Scripts/Math.yy",
   },
   "resourceVersion": "1.0",
-  "name": "ease_quart_i",
+  "name": "Group_Math_Easings",
   "tags": [],
   "resourceType": "GMScript",
 }
