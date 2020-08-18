@@ -116,7 +116,7 @@ void main() {
     CommonLight(finalColor);
     CommonFog(finalColor);
     
-    finalColor.a = clamp(length(finalColor.rgb) / 2., 0., 1.) + baseAlpha;
+    finalColor.a = clamp(length(finalColor.rgb) / 2., 0., 1.) * baseAlpha;
     
     gl_FragColor = finalColor;
 }
