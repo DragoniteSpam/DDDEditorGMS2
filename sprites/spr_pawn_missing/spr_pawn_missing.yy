@@ -60,7 +60,7 @@
     "eventStubScript": null,
     "parent": {"name":"spr_pawn_missing","path":"sprites/spr_pawn_missing/spr_pawn_missing.yy",},
     "resourceVersion": "1.3",
-    "name": "",
+    "name": "spr_pawn_missing",
     "tags": [],
     "resourceType": "GMSequence",
   },

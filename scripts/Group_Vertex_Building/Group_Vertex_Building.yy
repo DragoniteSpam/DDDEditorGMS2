@@ -6,7 +6,7 @@
     "path": "folders/Scripts/Graphics.yy",
   },
   "resourceVersion": "1.0",
-  "name": "vertex_point_line_raw",
+  "name": "Group_Vertex_Building",
   "tags": [],
   "resourceType": "GMScript",
 }
