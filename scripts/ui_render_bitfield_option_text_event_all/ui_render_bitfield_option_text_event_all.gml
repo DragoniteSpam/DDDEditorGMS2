@@ -3,14 +3,14 @@
 /// @param y
 function ui_render_bitfield_option_text_event_all(argument0, argument1, argument2) {
 
-	var bitfield = argument0;
-	var xx = argument1;
-	var yy = argument2;
+    var bitfield = argument0;
+    var xx = argument1;
+    var yy = argument2;
 
-	var entity = bitfield.root.root.entity;
-	bitfield.state = (entity.event_flags == 0xffffffff);
+    var entity = bitfield.root.root.entity;
+    bitfield.state = (entity.event_flags == 0xffffffff);
 
-	ui_render_bitfield_option_text(bitfield, xx, yy);
+    ui_render_bitfield_option_text(bitfield, xx, yy);
 
 
 }

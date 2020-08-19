@@ -31,8 +31,8 @@
 
 function scribble_set_animation(_property, _value)
 {
-	enum SCRIBBLE_ANIM
-	{
+    enum SCRIBBLE_ANIM
+    {
         WAVE_SIZE,        // 0
         WAVE_FREQ,        // 1
         WAVE_SPEED,       // 2
@@ -54,7 +54,7 @@ function scribble_set_animation(_property, _value)
         JITTER_MAXIMUM,   //18
         JITTER_SPEED,     //19
         __SIZE,           //20
-	}
+    }
 
-	global.scribble_state_anim_array[@ _property] = _value;
+    global.scribble_state_anim_array[@ _property] = _value;
 }

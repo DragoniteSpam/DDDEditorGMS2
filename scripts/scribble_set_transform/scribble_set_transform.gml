@@ -12,7 +12,7 @@
 
 function scribble_set_transform()
 {
-	global.scribble_state_xscale = argument0;
-	global.scribble_state_yscale = argument1;
-	global.scribble_state_angle  = argument2;
+    global.scribble_state_xscale = argument0;
+    global.scribble_state_yscale = argument1;
+    global.scribble_state_angle  = argument2;
 }

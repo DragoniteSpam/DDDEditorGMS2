@@ -5,22 +5,22 @@
 /// @param meshShader
 /// @param emitterMeshShader
 function spart_system_set_shaders(argument0, argument1, argument2, argument3, argument4) {
-	/*
-		Lets you define custom particle shaders for the given particle system
-	
-		Script created by TheSnidr
-		www.TheSnidr.com
-	*/
-	var partSystem = argument0;
-	var regShader = argument1
-	var secondaryShader = argument2;
-	var meshShader = argument3;
-	var emitterMeshShader = argument4;
+    /*
+        Lets you define custom particle shaders for the given particle system
+    
+        Script created by TheSnidr
+        www.TheSnidr.com
+    */
+    var partSystem = argument0;
+    var regShader = argument1
+    var secondaryShader = argument2;
+    var meshShader = argument3;
+    var emitterMeshShader = argument4;
 
-	partSystem[| sPartSys.RegShader] = regShader;
-	partSystem[| sPartSys.SecShader] = secondaryShader;
-	partSystem[| sPartSys.MeshShader] = meshShader;
-	partSystem[| sPartSys.EmitterMeshShader] = emitterMeshShader;
+    partSystem[| sPartSys.RegShader] = regShader;
+    partSystem[| sPartSys.SecShader] = secondaryShader;
+    partSystem[| sPartSys.MeshShader] = meshShader;
+    partSystem[| sPartSys.EmitterMeshShader] = emitterMeshShader;
 
 
 }

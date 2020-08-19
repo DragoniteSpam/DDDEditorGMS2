@@ -1,7 +1,7 @@
 /// @description smf_matrix_reset()
 function smf_matrix_reset() {
-	gml_pragma("forceinline");
-	matrix_set(matrix_world, SMF_MATIDENTITY);
+    gml_pragma("forceinline");
+    matrix_set(matrix_world, SMF_MATIDENTITY);
 
 
 }

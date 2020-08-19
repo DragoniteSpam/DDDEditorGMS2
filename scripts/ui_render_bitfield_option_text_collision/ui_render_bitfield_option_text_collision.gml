@@ -3,14 +3,14 @@
 /// @param y
 function ui_render_bitfield_option_text_collision(argument0, argument1, argument2) {
 
-	var bitfield = argument0;
-	var xx = argument1;
-	var yy = argument2;
+    var bitfield = argument0;
+    var xx = argument1;
+    var yy = argument2;
 
-	var entity = bitfield.root.root.entity;
-	bitfield.state = entity.collision_flags & (1 << bitfield.value);
+    var entity = bitfield.root.root.entity;
+    bitfield.state = entity.collision_flags & (1 << bitfield.value);
 
-	ui_render_bitfield_option_text(bitfield, xx, yy);
+    ui_render_bitfield_option_text(bitfield, xx, yy);
 
 
 }

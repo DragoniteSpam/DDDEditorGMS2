@@ -5,15 +5,15 @@
 /// @param [invisible?]
 function create_menu() {
 
-	with (instance_create_depth(0, 0, 0, MenuMenu)) {
-	    text = argument[0];
-	    width = argument[1];
-	    height = argument[2];
-	    root = argument[3];
-	    invisible = (argument_count > 4) ? argument[4] : invisible;
+    with (instance_create_depth(0, 0, 0, MenuMenu)) {
+        text = argument[0];
+        width = argument[1];
+        height = argument[2];
+        root = argument[3];
+        invisible = (argument_count > 4) ? argument[4] : invisible;
     
-	    return id;
-	}
+        return id;
+    }
 
 
 }

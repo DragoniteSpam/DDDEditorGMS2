@@ -1,17 +1,17 @@
 /// @param Dialog
 function dialog_note_changes(argument0) {
 
-	var dialog = argument0;
+    var dialog = argument0;
 
-	var old_title = dialog.text;
+    var old_title = dialog.text;
 
-	if (dialog.changed) {
-	    dialog.text = "* " + dialog.text;
-	}
+    if (dialog.changed) {
+        dialog.text = "* " + dialog.text;
+    }
 
-	dialog_default(dialog);
+    dialog_default(dialog);
 
-	dialog.text = old_title;
+    dialog.text = old_title;
 
 
 }

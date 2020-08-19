@@ -8,18 +8,18 @@
 /// @param root
 function create_radio_array() {
 
-	with (instance_create_depth(argument[0], argument[1], 0, UIRadioArray)) {
-	    text = argument[2];
-	    width = argument[3];
-	    height = argument[4];
+    with (instance_create_depth(argument[0], argument[1], 0, UIRadioArray)) {
+        text = argument[2];
+        width = argument[3];
+        height = argument[4];
     
-	    onvaluechange = argument[5];
-	    value = argument[6];
+        onvaluechange = argument[5];
+        value = argument[6];
     
-	    root = argument[7];
+        root = argument[7];
     
-	    return id;
-	}
+        return id;
+    }
 
 
 }

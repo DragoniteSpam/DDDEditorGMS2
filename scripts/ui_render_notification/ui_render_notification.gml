@@ -1,11 +1,11 @@
 function ui_render_notification() {
-	scribble_draw(x, y, scribble);
+    scribble_draw(x, y, scribble);
 
-	t = t + Stuff.dt;
+    t = t + Stuff.dt;
 
-	if (t > (lifespan + 2)) {
-	    instance_destroy();
-	}
+    if (t > (lifespan + 2)) {
+        instance_destroy();
+    }
 
 
 }
