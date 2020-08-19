@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Collisions",
-    "path": "folders/Scripts/dll stuff/Collisions.yy",
+    "name": "dll stuff",
+    "path": "folders/Scripts/dll stuff.yy",
   },
   "resourceVersion": "1.0",
-  "name": "c_object_create",
+  "name": "Group_Bullet_Extra",
   "tags": [],
   "resourceType": "GMScript",
 }
