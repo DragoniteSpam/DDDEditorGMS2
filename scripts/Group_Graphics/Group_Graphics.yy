@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "misc graphics",
-    "path": "folders/Scripts/misc graphics.yy",
+    "name": "misc code",
+    "path": "folders/Scripts/misc code.yy",
   },
   "resourceVersion": "1.0",
-  "name": "draw_tooltip",
+  "name": "Group_Graphics",
   "tags": [],
   "resourceType": "GMScript",
 }

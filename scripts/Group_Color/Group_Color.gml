@@ -1,3 +1,13 @@
+function colour_fade(color) {
+	// merges a bit with white
+	return merge_colour(color, c_white, 0.2);
+}
+
+function colour_mute(color) {
+	// merges a bit with black
+	return merge_colour(color, c_black, 0.2);
+}
+
 function colour_replace_blue(original, value) {
 	return (value << 16) | (original & 0x00ffff);
 }
