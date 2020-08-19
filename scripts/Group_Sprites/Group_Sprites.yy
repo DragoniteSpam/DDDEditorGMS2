@@ -6,7 +6,7 @@
     "path": "folders/Scripts/misc code.yy",
   },
   "resourceVersion": "1.0",
-  "name": "sprite_save_fixed",
+  "name": "Group_Sprites",
   "tags": [],
   "resourceType": "GMScript",
 }

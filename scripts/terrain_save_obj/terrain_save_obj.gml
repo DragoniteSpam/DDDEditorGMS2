@@ -151,7 +151,7 @@ function terrain_save_obj(argument0) {
 
 	buffer_save_ext(buffer, fn, 1, buffer_tell(buffer));
 	buffer_save_ext(buffer_mtl, matfn, 1, buffer_tell(buffer_mtl));
-	sprite_save_fixed(terrain.texture, 0, filename_dir(fn) + "\\" + terrain.texture_name, terrain.texture_width, terrain.texture_height);
+	sprite_save(terrain.texture, 0, filename_dir(fn) + "\\" + terrain.texture_name, terrain.texture_width, terrain.texture_height);
 
 	buffer_delete(buffer);
 	buffer_delete(buffer_mtl);

@@ -62,7 +62,7 @@ function terrain_save_d3d(argument0) {
 	buffer_write(buffer, buffer_text, "1\n");
 
 	buffer_save_ext(buffer, fn, 0, buffer_tell(buffer));
-	sprite_save_fixed(terrain.texture, 0, filename_dir(fn) + "\\" + terrain.texture_name, terrain.texture_width, terrain.texture_height);
+	sprite_save(terrain.texture, 0, filename_dir(fn) + "\\" + terrain.texture_name, terrain.texture_width, terrain.texture_height);
 	buffer_delete(buffer);
 
 
