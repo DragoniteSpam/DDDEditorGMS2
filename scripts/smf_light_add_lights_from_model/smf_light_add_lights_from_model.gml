@@ -2,7 +2,7 @@
 /// @param modelIndex
 function smf_light_add_lights_from_model(argument0) {
 	var light;
-	var i = (array_length_1d(SMF_lights) div 8) * 8;
+	var i = (array_length(SMF_lights) div 8) * 8;
 	var modelIndex = argument0;
 	var nodeList = modelIndex[| SMF_model.NodeList];
 	var lightList = modelIndex[| SMF_model.LightList];

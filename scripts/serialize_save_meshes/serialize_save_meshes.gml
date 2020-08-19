@@ -52,7 +52,7 @@ function serialize_save_meshes(argument0) {
 	        for (var k = 0; k < yy; k++) {
 	            var slice = mesh.collision_flags[# j, k];
 	            if (zz == -1) {
-	                zz = array_length_1d(slice);
+	                zz = array_length(slice);
 	                buffer_poke(buffer, addr_zz, buffer_u16, zz);
 	            }
 	            for (var l = 0; l < zz; l++) {

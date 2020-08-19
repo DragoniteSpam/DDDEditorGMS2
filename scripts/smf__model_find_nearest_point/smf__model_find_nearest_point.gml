@@ -32,7 +32,7 @@ function smf__model_find_nearest_point(argument0, argument1, argument2, argument
 	newZ = transformScale * (argument3 - modelZ);
 
 	var tris = smf__collision_get_nearest_region(colBuffer, newX, newY, newZ);
-	for (i = 0; i < array_length_1d(tris); i ++)
+	for (i = 0; i < array_length(tris); i ++)
 	{
 	    vert = smf__collision_get_triangle(colBuffer, tris[i]);
 	    //----------------------------------Check if the object is inside the triangle (we need to check each line in the triangle)

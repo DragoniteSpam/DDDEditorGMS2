@@ -6,7 +6,7 @@ function dmu_dialog_mesh_autotile_remove_all_top(argument0) {
 	var map_contents = map.contents;
 
 	var changes = ds_map_create();
-	for (var i = 0; i < array_length_1d(map_contents.mesh_autotiles_top); i++) {
+	for (var i = 0; i < array_length(map_contents.mesh_autotiles_top); i++) {
 	    if (map_contents.mesh_autotiles_top[i]) {
 	        vertex_delete_buffer(map_contents.mesh_autotiles_top[i]);
 	        buffer_delete(map_contents.mesh_autotiles_top_raw[i]);

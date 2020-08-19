@@ -17,7 +17,7 @@ function smf_shadowmap_update_draw_model() {
 	    shader_set_uniform_f_array(uni[SMF_uni.Sample], sample);
 	}
 	shader_set_uniform_i(uni[SMF_uni.Animate], animate);
-	for (m = 0; m < array_length_1d(modArray); m ++)
+	for (m = 0; m < array_length(modArray); m ++)
 	{
 	    if !Visible[m]{continue;}
 	    vertex_submit(modArray[m], pr_trianglelist, -1);

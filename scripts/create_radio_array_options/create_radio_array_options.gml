@@ -5,7 +5,7 @@ function create_radio_array_options(argument0, argument1) {
 	var array = argument0;
 	var strings = argument1;
 
-	for (var i = 0; i < array_length_1d(strings); i++) {
+	for (var i = 0; i < array_length(strings); i++) {
 	    var option = instance_create_depth(0, array.height * (1 + i), 0, UITextRadio);
 	    option.text = strings[i];
 	    option.root = array;

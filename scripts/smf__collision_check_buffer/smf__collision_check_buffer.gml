@@ -31,7 +31,7 @@ function smf__collision_check_buffer(argument0, argument1, argument2, argument3,
 	pos[2] = argument3 - modelPos[2];
     
 	tris = smf__collision_get_region_buffer(octBuff, pos[0], pos[1], pos[2]);
-	n = array_length_1d(tris);
+	n = array_length(tris);
 	for (i = 0; i < n; i ++)
 	{
 	    V = smf__collision_get_triangle_buffer(colBuff, tris[i]);

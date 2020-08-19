@@ -16,7 +16,7 @@ function move_route_update_buffer(argument0) {
 	route.extra = false;
 
 	// essentailly the rng seed
-	var c = Stuff.color_lookup[string_hash_simple(route.GUID) % array_length_1d(Stuff.color_lookup)];
+	var c = Stuff.color_lookup[string_hash_simple(route.GUID) % array_length(Stuff.color_lookup)];
 	var cube_size = 2;
 
 	var buffer = vertex_create_buffer();

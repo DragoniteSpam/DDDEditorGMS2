@@ -34,7 +34,7 @@ function serialize_save_data() {
         
 	        // generate a list of all of the things that are in this file
 	        ds_list_clear(contents);
-	        for (var j = 0; j < array_length_1d(Stuff.game_data_location); j++) {
+	        for (var j = 0; j < array_length(Stuff.game_data_location); j++) {
 	            // the files that are sorted
 	            if (Stuff.game_data_location[j] == file_data.GUID) {
 	                ds_list_add(contents, j);

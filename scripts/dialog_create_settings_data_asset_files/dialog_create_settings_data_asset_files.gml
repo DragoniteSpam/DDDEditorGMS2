@@ -34,7 +34,7 @@ function dialog_create_settings_data_asset_files(argument0) {
 	yy += ui_get_list_height(el_list) + spacing;
 
 	var el_add = create_button(col1_x, yy, "Add File", ew, eh, fa_center, uivc_button_settings_game_add_asset_file, dg);
-	el_add.tooltip = "Add a data / asset file. You can have up to " + string(0xff) + ", which is realistically way the heck more than you'll need since there are only " + string(array_length_1d(Stuff.game_data_location)) + " things you can sort into them.";
+	el_add.tooltip = "Add a data / asset file. You can have up to " + string(0xff) + ", which is realistically way the heck more than you'll need since there are only " + string(array_length(Stuff.game_data_location)) + " things you can sort into them.";
 	el_add.interactive = (ds_list_size(Stuff.game_asset_lists) < 0xff);
 	dg.el_add = el_add;
 	yy += el_add.height + spacing;

@@ -2,7 +2,7 @@
 /// @param shaderEnum
 function smf__shadowmap_update_uniforms(argument0) {
 
-	if array_length_1d(SMF_shadowmapEnabled) < 1{exit;}
+	if array_length(SMF_shadowmapEnabled) < 1{exit;}
 
 	/////////////////////////////////////
 	//Set uniforms
@@ -19,7 +19,7 @@ function smf__shadowmap_update_uniforms(argument0) {
 	shader_set_uniform_f_array(uni[SMF_uni.ShadowVPMatrix1], shadowmap[| SMF_shadowmap.vpmat]);
 	shader_set_uniform_f_array(uni[SMF_uni.ShadowPos1], shadowmap[| SMF_shadowmap.pos]);
 
-	if array_length_1d(SMF_shadowmapEnabled) > 1
+	if array_length(SMF_shadowmapEnabled) > 1
 	{
 	    shader_set_uniform_i(uni[SMF_uni.ShadowCascade], 1);
 	    shadowmap = SMF_shadowmapEnabled[1];

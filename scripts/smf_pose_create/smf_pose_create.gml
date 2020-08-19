@@ -101,8 +101,8 @@ function smf_pose_create(argument0, argument1, argument2, argument3) {
 	        }
 	    }
 	}
-	returnPose[array_length_1d(returnPose)] = animationIndex;
-	returnPose[array_length_1d(returnPose)] = modelIndex;
+	returnPose[array_length(returnPose)] = animationIndex;
+	returnPose[array_length(returnPose)] = modelIndex;
 	return returnPose;
 
 

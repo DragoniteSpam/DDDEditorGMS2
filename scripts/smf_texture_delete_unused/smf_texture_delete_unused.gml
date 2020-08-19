@@ -11,7 +11,7 @@ function smf_texture_delete_unused() {
 	    {
 	        var modelIndex = SMF_modelList[| j];
 	        var texInd = modelIndex[| SMF_model.TextureIndex];
-	        var mNum = array_length_1d(texInd);
+	        var mNum = array_length(texInd);
 	        for (var m = 0; m < mNum; m ++){
 	            if (texInd[m] == i) break;}
 	        var material = modelIndex[| SMF_model.Material];

@@ -44,7 +44,7 @@ function smf__collision_avoid_model_slope_quadtree(argument0, argument1, argumen
 	var triCollisionPriority = ds_priority_create();
 
 	tris = smf__collision_get_region_quadtree(quadBuff, newPos[0], newPos[1]);
-	var n = array_length_1d(tris);
+	var n = array_length(tris);
 	for (i = 0; i < n; i ++){
 	    V = smf__collision_get_triangle_quadtree(modelBuffer, tris[i]);
 	    N = smf_vector_normalize(smf_vector_cross_product([V[3] - V[0], V[4] - V[1], V[5] - V[2]], [V[6] - V[0], V[7] - V[1], V[8] - V[2]]));

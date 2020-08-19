@@ -8,9 +8,9 @@ function create_event_node_basic() {
 	    var template = argument[1];
 	    var outbound_names = (argument_count > 2 && is_array(argument[2])) ? argument[2] : [""];
     
-	    for (var i = 0; i < array_length_1d(template); i++) {
+	    for (var i = 0; i < array_length(template); i++) {
 	        var data = template[i];
-	        var len = array_length_1d(data);
+	        var len = array_length(data);
         
 	        var data_name = data[0];
 	        var data_type = data[1];
@@ -25,7 +25,7 @@ function create_event_node_basic() {
 	        ds_list_add(types, [data_name, data_type, data_guid, data_max, data_required, data_default, data_attainment, data_output]);
 	    }
     
-	    for (var i = 0; i < array_length_1d(outbound_names); i++) {
+	    for (var i = 0; i < array_length(outbound_names); i++) {
 	        ds_list_add(outbound, outbound_names[i]);
 	    }
     

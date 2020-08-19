@@ -26,7 +26,7 @@ function serialize_save_image_tilesets(argument0) {
 	    buffer_write_sprite(buffer, ts.picture);
     
 	    // @todo this stuff should probably be a property of the tileset now
-	    var n_autotiles = array_length_1d(ts.autotiles);
+	    var n_autotiles = array_length(ts.autotiles);
 	    buffer_write(buffer, buffer_u8, n_autotiles);
     
 	    for (var j = 0; j < n_autotiles; j++) {

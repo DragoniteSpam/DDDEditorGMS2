@@ -16,7 +16,7 @@ function smf_model_draw() {
 
 	//Check whether or not to use shadows. If shadows are enabled, the shader selection is limited to a basic vertex shader or a basic fragment shader.
 	//Normal maps, reflections and outlines will be removed. However, if you'd like shadows along with special effects, you're free to create your own shaders ;)
-	shadowEnable = (array_length_1d(SMF_shadowmapEnabled) > 0);
+	shadowEnable = (array_length(SMF_shadowmapEnabled) > 0);
 
 	//If a sample has been provided, the model will be animated
 	animate = false;
@@ -34,7 +34,7 @@ function smf_model_draw() {
             
 	//Loop through the models
 	prevMat = -1;
-	models = array_length_1d(modArray);
+	models = array_length(modArray);
 	for (m = 0; m < models; m ++)
 	{
 	    //If this model is not visible, don't draw it
@@ -64,7 +64,7 @@ function smf_model_draw() {
 	            //These uniforms are shared among all the shaders except for the basic one
 	            shader_set_uniform_f(uni[SMF_uni.CamPos], camPos[0], camPos[1], camPos[2]);
 	            shader_set_uniform_f_array(uni[SMF_uni.Lights], SMF_lights);
-	            shader_set_uniform_i(uni[SMF_uni.LightNum], array_length_1d(SMF_lights) div 8);
+	            shader_set_uniform_i(uni[SMF_uni.LightNum], array_length(SMF_lights) div 8);
 	            shader_set_uniform_f(uni[SMF_uni.AmbientColor], SMF_ambientColor[0], SMF_ambientColor[1], SMF_ambientColor[2]);
 	            shader_set_uniform_f(uni[SMF_uni.SpecReflectance], materials[# mat, SMF_mat.SpecReflectance]);
 	            shader_set_uniform_f(uni[SMF_uni.SpecDamping], materials[# mat, SMF_mat.SpecDamping]);

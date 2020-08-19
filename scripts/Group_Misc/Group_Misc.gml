@@ -29,10 +29,10 @@ function not_yet_implemented_polite() {
 	    var callstack = debug_get_callstack();
 	    var max_lines = 9;
 	    // index 0 is this script, and you don't need it
-	    for (var i = 1; i < min(max_lines, array_length_1d(callstack) - 2); i++) {
+	    for (var i = 1; i < min(max_lines, array_length(callstack) - 2); i++) {
 	        dialog.el_text.text = dialog.el_text.text + string(callstack[i]) + "\n";
 	    }
-	    var difference = array_length_1d(callstack) - max_lines - 1;
+	    var difference = array_length(callstack) - max_lines - 1;
 	    if (difference) {
 	        dialog.el_text.text = dialog.el_text.text + "    (" + string(difference) + " more)";
 	    }

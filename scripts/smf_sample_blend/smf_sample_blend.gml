@@ -18,7 +18,7 @@ function smf_sample_blend(argument0, argument1, argument2) {
 	sample2 = argument1;
 	t2 = argument2;
 	t1 = 1 - t2;
-	num = array_length_1d(sample1);
+	num = array_length(sample1);
 	returnSample = -1;
 	for (i = 0; i < num - 2; i ++)
 	{

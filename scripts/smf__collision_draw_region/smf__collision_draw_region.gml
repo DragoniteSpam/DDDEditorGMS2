@@ -36,7 +36,7 @@ function smf__collision_draw_region(argument0, argument1, argument2, argument3) 
 	modelPos[2] = buffer_read(octBuff, buffer_f32);
     
 	tris = smf__collision_get_region_buffer(octBuff, argument1 - modelPos[0], argument2 - modelPos[1], argument3 - modelPos[2]);
-	n = array_length_1d(tris);
+	n = array_length(tris);
 
 	var vBuff = vertex_create_buffer();
 	vertex_begin(vBuff, SMF_debugformat);

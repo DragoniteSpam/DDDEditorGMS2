@@ -28,7 +28,7 @@ scribble_fonts = [
     FCalibriItalic,
     FCalibriBoldItalic,
 ];
-for (var i = 0; i < array_length_1d(scribble_fonts); i++) {
+for (var i = 0; i < array_length(scribble_fonts); i++) {
     scribble_add_font(font_get_name(scribble_fonts[i]));
 }
 scribble_colours = ds_map_to_list(global.__scribble_colours);

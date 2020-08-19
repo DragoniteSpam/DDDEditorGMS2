@@ -11,7 +11,7 @@ function dialog_create_mesh_collision_data() {
 
 	if (ww * hh) {
 	    var slice = mesh.collision_flags[# 0, 0];
-	    if (!is_array(slice) || array_length_1d(slice) == 0) {
+	    if (!is_array(slice) || array_length(slice) == 0) {
 	        valid = false;
 	    }
 	} else {

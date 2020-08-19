@@ -33,7 +33,7 @@ function smf_model_destroy(argument0) {
 	ds_grid_destroy(materials);
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//Delete vertex buffers
-	var modelNum = array_length_1d(modArray);
+	var modelNum = array_length(modArray);
 	for (var m = 0; m < modelNum; m ++){
 	    vertex_delete_buffer(modArray[m]);
 	    if bufArray[m] >= 0{buffer_delete(bufArray[m])};}

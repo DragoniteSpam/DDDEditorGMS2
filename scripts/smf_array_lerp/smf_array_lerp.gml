@@ -7,8 +7,8 @@ function smf_array_lerp(argument0, argument1, argument2) {
 	var arr2 = argument1;
 	var amount = argument2;
 	var ret = arr2;
-	var l1 = array_length_1d(arr1);
-	var l2 = array_length_1d(arr2);
+	var l1 = array_length(arr1);
+	var l2 = array_length(arr2);
 	var l = l1;
 	if l2 < l1
 	{

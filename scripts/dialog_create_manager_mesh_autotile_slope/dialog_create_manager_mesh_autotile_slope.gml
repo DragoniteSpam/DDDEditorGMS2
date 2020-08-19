@@ -26,11 +26,11 @@ function dialog_create_manager_mesh_autotile_slope(argument0) {
 	var mbw = 64 - spacing;
 	var mbh = eh;
 
-	dg.buttons = array_create(array_length_1d(map_contents.mesh_autotiles_slope));
-	dg.icons = array_create(array_length_1d(map_contents.mesh_autotiles_slope));
+	dg.buttons = array_create(array_length(map_contents.mesh_autotiles_slope));
+	dg.icons = array_create(array_length(map_contents.mesh_autotiles_slope));
 	array_clear(dg.buttons, noone);
 
-	for (var i = 0; i < array_length_1d(map_contents.mesh_autotiles_slope); i++) {
+	for (var i = 0; i < array_length(map_contents.mesh_autotiles_slope); i++) {
 	    var button = create_button(xx, yy, string(i), mbw, mbh, fa_center, dmu_dialog_load_mesh_autotile_slope, dg);
 	    button.tooltip = "Import a mesh for slope mesh autotile #" + string(i) + ". It should take the shape of the icon below, with green representing the outer part and brown representing the inner part.";
 	    button.color = map_contents.mesh_autotiles_slope[i] ? c_black : c_gray;

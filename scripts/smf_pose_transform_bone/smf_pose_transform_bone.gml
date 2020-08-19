@@ -8,7 +8,7 @@ function smf_pose_transform_bone(argument0, argument1, argument2) {
 	pose = argument0;
 	bone = argument1;
 	transformDQ = argument2;
-	modelIndex = pose[array_length_1d(pose) - 1];
+	modelIndex = pose[array_length(pose) - 1];
 	bindPose = modelIndex[| SMF_model.BindPose];
 
 	bind = bindPose[| bone];

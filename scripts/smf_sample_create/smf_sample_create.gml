@@ -32,7 +32,7 @@ function smf_sample_create(argument0, argument1, argument2, argument3) {
 	var optimizedAnim = animationList[| 3 * animationIndex + 2];
 	if is_array(optimizedAnim)
 	{
-	    var steps = array_length_1d(optimizedAnim) - 1;
+	    var steps = array_length(optimizedAnim) - 1;
 	    time = min(time, 0.99999) * steps;
 	    var pos = floor(time);
 	    return smf_sample_blend(optimizedAnim[pos], optimizedAnim[pos + 1], frac(time));
@@ -228,8 +228,8 @@ function smf_sample_create(argument0, argument1, argument2, argument3) {
 	        }
 	    }
 	}
-	returnSample[array_length_1d(returnSample)] = animationIndex;
-	returnSample[array_length_1d(returnSample)] = modelIndex;
+	returnSample[array_length(returnSample)] = animationIndex;
+	returnSample[array_length(returnSample)] = modelIndex;
 	return returnSample;
 
 

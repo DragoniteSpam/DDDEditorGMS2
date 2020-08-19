@@ -58,7 +58,7 @@ function spart__submit_particles(argument0, argument1, argument2, argument3, arg
 	//Draw billboard particles
 	var batchSizeArray = partSystem[| sPartSys.BatchSizeArray];
 	var vertexBatchArray = partSystem[| sPartSys.VertexBatchArray];
-	var indexNum = array_length_1d(batchSizeArray);
+	var indexNum = array_length(batchSizeArray);
 	var index = 0;
 	while (index < indexNum-1 && partNum > batchSizeArray[index])
 	{

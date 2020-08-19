@@ -3,7 +3,7 @@
 /// @param colour
 /// @param intensity
 function smf_light_add_direction(argument0, argument1, argument2) {
-	var i = (array_length_1d(SMF_lights) div 8) * 8;
+	var i = (array_length(SMF_lights) div 8) * 8;
 	var j = 0;
 	var V = argument0;
 	var col = argument1;

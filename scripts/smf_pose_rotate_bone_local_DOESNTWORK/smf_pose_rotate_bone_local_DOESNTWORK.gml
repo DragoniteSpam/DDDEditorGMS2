@@ -14,7 +14,7 @@ function smf_pose_rotate_bone_local_DOESNTWORK() {
 	ay = argument3;
 	az = argument4;
 	angle = argument5;
-	animationIndex = frame[array_length_1d(frame) - 1];
+	animationIndex = frame[array_length(frame) - 1];
 
 	bind = ds_list_find_value(SMF_bindList[| animationIndex], bone);
 	pBind = ds_list_find_value(SMF_bindList[| animationIndex], bind[8]);

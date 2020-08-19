@@ -6,7 +6,7 @@ function dmu_dialog_mesh_autotile_remove_all_slope(argument0) {
 	var map_contents = map.contents;
 
 	var changes = ds_map_create();
-	for (var i = 0; i < array_length_1d(map_contents.mesh_autotiles_slope); i++) {
+	for (var i = 0; i < array_length(map_contents.mesh_autotiles_slope); i++) {
 	    if (map_contents.mesh_autotiles_slope[i]) {
 	        vertex_delete_buffer(map_contents.mesh_autotiles_slope[i]);
 	        buffer_delete(map_contents.mesh_autotiles_slope_raw[i]);

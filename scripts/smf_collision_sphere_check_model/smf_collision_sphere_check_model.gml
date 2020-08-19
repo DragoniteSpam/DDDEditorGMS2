@@ -26,7 +26,7 @@ function smf_collision_sphere_check_model(argument0, argument1, argument2, argum
 	pos = [argument1 - octList[| 1], argument2 - octList[| 2], argument3 - octList[| 3]];
 	addRadius = argument4;
 	tris = smf__collision_get_region(octList, pos[0], pos[1], pos[2]);
-	n = array_length_1d(tris);
+	n = array_length(tris);
 	for (i = 0; i < n; i ++)
 	{
 	    //----------------------------------If the object is closer than it's supposed to, push it away from the model and return the new coordinates

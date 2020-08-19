@@ -20,7 +20,7 @@ function uivc_list_settings_game_asset(argument0) {
 	    }
 	    // pick out data types that go to this data file
 	    ui_list_deselect(list.root.el_types);
-	    for (var i = 0; i < array_length_1d(Stuff.game_data_location); i++) {
+	    for (var i = 0; i < array_length(Stuff.game_data_location); i++) {
 	        // the first three get special treatment
 	        if (i < 3) {
 	            if (selection == 0) {

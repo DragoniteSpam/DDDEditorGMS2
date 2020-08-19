@@ -42,7 +42,7 @@ function serialize_save_map_contents_meta(argument0) {
 	buffer_write(buffer, buffer_string, map.code);
 
 #region autotiles
-	var at_count = array_length_1d(map_contents.mesh_autotiles_top_raw);
+	var at_count = array_length(map_contents.mesh_autotiles_top_raw);
 	buffer_write(buffer, buffer_u16, at_count);
 
 	for (var i = 0; i < at_count; i++) {

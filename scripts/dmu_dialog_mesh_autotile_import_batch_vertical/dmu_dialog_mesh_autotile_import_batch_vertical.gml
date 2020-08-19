@@ -6,7 +6,7 @@ function dmu_dialog_mesh_autotile_import_batch_vertical(argument0) {
 	var map_contents = map.contents;
 	var root = filename_dir(get_open_filename_mesh()) + "\\";
 
-	for (var i = 0; i < array_length_1d(map_contents.mesh_autotiles_vertical); i++) {
+	for (var i = 0; i < array_length(map_contents.mesh_autotiles_vertical); i++) {
 	    var fn = root + string(i) + ".d3d";
 	    var vbuffer = -1;
     

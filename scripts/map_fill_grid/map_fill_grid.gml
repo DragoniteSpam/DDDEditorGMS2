@@ -10,7 +10,7 @@ function map_fill_grid(argument0, argument1) {
 	        // if something already exists, use its data
 	        if (is_array(grid[# i, j])) {
 	            var existing_array = grid[# i, j];
-	            var le = array_length_1d(existing_array);
+	            var le = array_length(existing_array);
 	            var contents = array_create(zz);
 	            for (var k = 0; k < zz; k++) {
 	                contents[k] = (k < le) ? existing_array[k] : [noone, noone, noone, noone];

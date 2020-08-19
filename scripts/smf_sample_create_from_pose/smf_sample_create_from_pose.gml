@@ -8,8 +8,8 @@ function smf_sample_create_from_pose(argument0) {
 	*/
 	var pose, time, type, animationIndex, bonesInSample, loop, quadratic, linear, bindPose, frameGrid, worldDQ, Qa, Qb, Qc, deltaWorldDQ, boneNum, frameNum, pDQ, cDQ, dWDQ, lr, ld, a, b, i, j, l, p, f, ma, mb, d, Q, bindDQ, localFrame, framePriority, returnSample;
 	pose = argument0;
-	animationIndex = pose[array_length_1d(pose) - 2];
-	var modelIndex = pose[array_length_1d(pose) - 1];
+	animationIndex = pose[array_length(pose) - 2];
+	var modelIndex = pose[array_length(pose) - 1];
 
 	bindPose = modelIndex[| SMF_model.BindPose];
 	boneNum = ds_list_size(bindPose);
@@ -71,8 +71,8 @@ function smf_sample_create_from_pose(argument0) {
 	    }
 	    cDQ = -1;
 	}
-	returnSample[array_length_1d(returnSample)] = animationIndex;
-	returnSample[array_length_1d(returnSample)] = modelIndex;
+	returnSample[array_length(returnSample)] = animationIndex;
+	returnSample[array_length(returnSample)] = modelIndex;
 	return returnSample;
 
 

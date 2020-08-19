@@ -5,7 +5,7 @@
 /// @param intensity
 function smf_light_add_point(argument0, argument1, argument2, argument3) {
 	//Returns the index of this light
-	var i = (array_length_1d(SMF_lights) div 8) * 8;
+	var i = (array_length(SMF_lights) div 8) * 8;
 	var pos = argument0;
 	var radius = argument1;
 	var col = argument2;

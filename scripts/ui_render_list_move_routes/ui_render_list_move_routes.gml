@@ -12,7 +12,7 @@ function ui_render_list_move_routes(argument0, argument1, argument2) {
 
 	for (var i = 0; i < ds_list_size(argument0.entries); i++) {
 	    var is_drawn = false;
-	    for (var j = 0; j < array_length_1d(visible_things); j++) {
+	    for (var j = 0; j < array_length(visible_things); j++) {
 	        if (visible_things[j] == argument0.entries[| i].GUID) {
 	            is_drawn = true;
 	            break;

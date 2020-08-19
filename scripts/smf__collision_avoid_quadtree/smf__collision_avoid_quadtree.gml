@@ -31,7 +31,7 @@ function smf__collision_avoid_quadtree(argument0, argument1, argument2, argument
 	returnUp = [argument5, argument6, argument7];
 
 	tris = smf__collision_get_region_quadtree(quadBuff, newPos[0], newPos[1]);
-	n = array_length_1d(tris);
+	n = array_length(tris);
 	for (i = 0; i < n; i ++)
 	{
 	    V = smf__collision_get_triangle_quadtree(modelBuffer, tris[i]);

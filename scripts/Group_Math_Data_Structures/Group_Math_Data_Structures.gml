@@ -1,7 +1,7 @@
 #region array stuff
 function array_to_list(array) {
 	var list = ds_list_create();
-	for (var i = 0; i < array_length_1d(argument0); i++) {
+	for (var i = 0; i < array_length(argument0); i++) {
 	    ds_list_add(list, argument0[@ i]);
 	}
     
@@ -9,7 +9,7 @@ function array_to_list(array) {
 }
 
 function array_clear(array, value) {
-	for (var i = 0; i < array_length_1d(array); i++) {
+	for (var i = 0; i < array_length(array); i++) {
 	    array[@ i] = value;
 	}
 }

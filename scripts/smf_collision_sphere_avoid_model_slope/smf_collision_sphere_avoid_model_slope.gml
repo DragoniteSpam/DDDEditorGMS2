@@ -51,7 +51,7 @@ function smf_collision_sphere_avoid_model_slope(argument0, argument1, argument2,
 	newPos = [argument1 - octList[| 1], argument2 - octList[| 2], argument3 - octList[| 3]];
 
 	tris = smf__collision_get_region(octList, newPos[0], newPos[1], newPos[2]);
-	for (i = array_length_1d(tris) - 1; i >= 0; i --)
+	for (i = array_length(tris) - 1; i >= 0; i --)
 	{
 	    //----------------------------------Now, if the object is closer than it's supposed to, push it away from the model and return the new coordinates
 	    tempPos = smf_project_to_triangle(newPos, colList[| tris[i]]);

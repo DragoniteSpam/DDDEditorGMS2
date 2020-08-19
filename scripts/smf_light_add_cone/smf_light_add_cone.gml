@@ -4,7 +4,7 @@
 /// @param radius
 /// @param angle
 function smf_light_add_cone(argument0, argument1, argument2, argument3) {
-	var i = (array_length_1d(SMF_lights) div 8) * 8;
+	var i = (array_length(SMF_lights) div 8) * 8;
 	var j = 0;
 	var pos = argument0;
 	var dir = argument1;

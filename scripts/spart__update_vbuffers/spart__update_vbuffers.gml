@@ -9,7 +9,7 @@ function spart__update_vbuffers(argument0) {
 	*/
 	var partSystem = argument0;
 	var batchSizeArray = partSystem[| sPartSys.BatchSizeArray];
-	var num = array_length_1d(batchSizeArray);
+	var num = array_length(batchSizeArray);
 	var vertexBatchArray = array_create(num);
 	var i, j, k, particlesPerBatch, mBuff, k;
 	for (k = 0; k < num; k ++)

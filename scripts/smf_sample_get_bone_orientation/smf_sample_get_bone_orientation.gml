@@ -7,7 +7,7 @@ function smf_sample_get_bone_orientation(argument0, argument1) {
 	*/
 	var bindPose, modelIndex, bone, sample, R, S, Q, i;
 	sample = argument0;
-	modelIndex = sample[array_length_1d(sample) - 1];
+	modelIndex = sample[array_length(sample) - 1];
 	bone = ds_list_find_value(modelIndex[| SMF_model.BindSampleMappingList], argument1);
 	bindPose = modelIndex[| SMF_model.BindPose];
 	S = bindPose[| argument1];

@@ -14,7 +14,7 @@ function smf_pose_rotate_bone_global(argument0, argument1, argument2, argument3,
 	ay = argument3;
 	az = argument4;
 	angle = argument5;
-	modelIndex = frame[array_length_1d(frame) - 1];
+	modelIndex = frame[array_length(frame) - 1];
 	bindPose = modelIndex[| SMF_model.BindPose];
 
 	bind = bindPose[| bone];

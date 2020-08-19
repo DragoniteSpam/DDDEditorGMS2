@@ -24,7 +24,7 @@ function smf__collision_draw_region_quadtree(argument0, argument1, argument2) {
 	modelPos[2] = buffer_read(quadBuff, buffer_f32);
     
 	tris = smf__collision_get_region_quadtree(quadBuff, argument1 - modelPos[0], argument2 - modelPos[1]);
-	n = array_length_1d(tris);
+	n = array_length(tris);
 
 	var vBuff = vertex_create_buffer();
 	vertex_begin(vBuff, SMF_debugformat);
