@@ -1,5 +1,4 @@
-function macros() {
-	// the mode that the editor starts in
+// the mode that the editor starts in
 #macro EDITOR_BASE_MODE ModeIDs.MAP
 #macro Terrain:EDITOR_BASE_MODE ModeIDs.TERRAIN
 #macro scribble:EDITOR_BASE_MODE ModeIDs.SCRIBBLE
@@ -7,55 +6,55 @@ function macros() {
 #macro doodle:EDITOR_BASE_MODE ModeIDs.DOODLE
 #macro particle:EDITOR_BASE_MODE ModeIDs.PARTICLE
 #macro mesh:EDITOR_BASE_MODE ModeIDs.MESH
-	// standalone tools will not have the rest of the program enabled
+// standalone tools will not have the rest of the program enabled
 #macro EDITOR_FORCE_SINGLE_MODE false
 #macro scribble:EDITOR_FORCE_SINGLE_MODE true
 #macro spart:EDITOR_FORCE_SINGLE_MODE true
 #macro doodle:EDITOR_FORCE_SINGLE_MODE true
 #macro particle:EDITOR_FORCE_SINGLE_MODE true
 #macro mesh:EDITOR_FORCE_SINGLE_MODE true
-	//
+//
 #macro MENU_EDITOR_ENABLED true
 #macro scribble:MENU_EDITOR_ENABLED false
 #macro spart:MENU_EDITOR_ENABLED false
 #macro doodle:MENU_EDITOR_ENABLED false
 #macro particle:MENU_EDITOR_ENABLED false
 #macro mesh:MENU_EDITOR_ENABLED false
-	//
+//
 #macro MENU_EDITOR_PARTICLE_OVERRIDE false
 #macro particle:MENU_EDITOR_PARTICLE_OVERRIDE true
-	//
+//
 #macro GLOBAL_CONTORLS_ENABLED true
 #macro scribble:GLOBAL_CONTORLS_ENABLED false
 #macro spart:GLOBAL_CONTORLS_ENABLED false
 #macro doodle:GLOBAL_CONTORLS_ENABLED false
 #macro particle:GLOBAL_CONTORLS_ENABLED false
 #macro mesh:GLOBAL_CONTORLS_ENABLED false
-	//
+//
 #macro PROJECT_MENU_ENABLED true
 #macro scribble:PROJECT_MENU_ENABLED false
 #macro spart:PROJECT_MENU_ENABLED false
 #macro doodle:PROJECT_MENU_ENABLED false
 #macro particle:PROJECT_MENU_ENABLED false
 #macro mesh:PROJECT_MENU_ENABLED false
-	//
+//
 #macro RIBBON_MENU menu_init_main
 #macro mesh:RIBBON_MENU menu_init_mesh
-	//
+//
 #macro DEFAULT_TILESET "b_tileset_overworld_0.png"
 #macro mesh:DEFAULT_TILESET "b_magenta.png"
 
-	// game maker
+// game maker
 #macro wtf show_debug_message
 #macro mouse_x (window_mouse_get_x() * _base_window_width / window_get_width())
 #macro mouse_y (window_mouse_get_y() * _base_window_height / window_get_height())
 #macro _base_window_width 1600
 #macro _base_window_height 900
 
-	// game maker buffer_compress uses medium-level compression; the first two bytes you'll see are
-	// "78" and "9c" but buffer_read is little endian so they'll be in reverse order
+// game maker buffer_compress uses medium-level compression; the first two bytes you'll see are
+// "78" and "9c" but buffer_read is little endian so they'll be in reverse order
 #macro MAGIC_ZLIB_HEADER 0x9c78
-	// instance IDs begin here
+// instance IDs begin here
 #macro MAGIC_INSTANCE_ID 100000
 #macro LAST_SAFE_VERSION DataVersions.NUKE_UNUSED_BOOLS
 #macro LAST_SAFE_RELEASE "2019.4.1.19";
@@ -73,7 +72,7 @@ function macros() {
 #macro CAMERA_SAVE_FREQUENCY 5
 #macro CAMERA_ZNEAR 0x0004
 #macro CAMERA_ZFAR 0x4000
-	// these aren't meant to be used for view coordinates but window coordinates, otherwise i'd make them relative
+// these aren't meant to be used for view coordinates but window coordinates, otherwise i'd make them relative
 #macro CH 900
 #macro CW 1080
 #macro C_OBJECT_CACHE_SIZE 5000
@@ -178,6 +177,3 @@ function macros() {
 
 #macro BASE_GAME_VARIABLES 100      // this also counts for switches
 #macro BASE_SELF_VARIABLES 4        // this also counts for switches
-
-
-}

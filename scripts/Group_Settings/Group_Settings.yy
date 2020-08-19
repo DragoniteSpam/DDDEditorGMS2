@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "settings",
-    "path": "folders/Scripts/misc code/settings.yy",
+    "name": "misc code",
+    "path": "folders/Scripts/misc code.yy",
   },
   "resourceVersion": "1.0",
-  "name": "setting_project_create_local",
+  "name": "Group_Settings",
   "tags": [],
   "resourceType": "GMScript",
 }
