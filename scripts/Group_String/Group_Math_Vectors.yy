@@ -6,7 +6,7 @@
     "path": "folders/Scripts/Math.yy",
   },
   "resourceVersion": "1.0",
-  "name": "string_hash_simple",
+  "name": "Group_Math_Vectors",
   "tags": [],
   "resourceType": "GMScript",
 }

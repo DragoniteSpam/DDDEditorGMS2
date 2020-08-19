@@ -6,7 +6,7 @@
     "path": "folders/Scripts/Math.yy",
   },
   "resourceVersion": "1.0",
-  "name": "bezier_point",
+  "name": "Group_Color",
   "tags": [],
   "resourceType": "GMScript",
 }

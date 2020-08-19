@@ -6,7 +6,7 @@
     "path": "folders/Scripts/Math.yy",
   },
   "resourceVersion": "1.0",
-  "name": "is_clamped",
+  "name": "Group_String",
   "tags": [],
   "resourceType": "GMScript",
 }

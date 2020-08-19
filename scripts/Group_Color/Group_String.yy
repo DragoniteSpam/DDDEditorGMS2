@@ -6,7 +6,7 @@
     "path": "folders/Scripts/Math.yy",
   },
   "resourceVersion": "1.0",
-  "name": "number_max_digits",
+  "name": "Group_String",
   "tags": [],
   "resourceType": "GMScript",
 }

@@ -6,7 +6,7 @@
     "path": "folders/Scripts/Math.yy",
   },
   "resourceVersion": "1.0",
-  "name": "tween",
+  "name": "Group_Math_Vectors",
   "tags": [],
   "resourceType": "GMScript",
 }
