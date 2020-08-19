@@ -6,7 +6,7 @@
     "path": "folders/Scripts/Math.yy",
   },
   "resourceVersion": "1.0",
-  "name": "mouse_within_rectangle_view",
+  "name": "Group_Intersection",
   "tags": [],
   "resourceType": "GMScript",
 }
