@@ -469,7 +469,6 @@ mesh_yrot = 0;
 mesh_zrot = 0;
 mesh_scale = 1;
 
-error_log_messages = ds_list_create();
 dialogs = ds_list_create();
 drawn_dialog_shade = false;
 element_tooltip = noone;

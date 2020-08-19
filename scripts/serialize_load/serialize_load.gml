@@ -216,8 +216,4 @@ function serialize_load(argument0, argument1, argument2) {
 	}
 
 	buffer_delete(buffer);
-
-	error_show();
-
-
 }

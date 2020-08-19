@@ -118,7 +118,6 @@ function macros() {
 #macro VERTEX_SIZE Stuff.graphics.format_size
 #macro VERTEX_SIZE_BASIC Stuff.graphics.format_size_basic
 
-#macro FILE_ERRORS "errors.log"
 #macro FILE_SETTINGS "settings.json"
 
 #macro PREFIX_GRAPHIC_BATTLER "GBat"

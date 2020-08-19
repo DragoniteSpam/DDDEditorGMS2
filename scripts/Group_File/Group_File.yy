@@ -6,7 +6,7 @@
     "path": "folders/Scripts/misc code.yy",
   },
   "resourceVersion": "1.0",
-  "name": "error_log",
+  "name": "Group_File",
   "tags": [],
   "resourceType": "GMScript",
 }

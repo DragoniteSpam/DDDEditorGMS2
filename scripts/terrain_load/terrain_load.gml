@@ -41,8 +41,6 @@ function terrain_load(argument0) {
 	    } else {
 	        erroneous = true;
 	    }
-    
-	    error_show();
 	} else {
 	    erroneous = true;
 	}
