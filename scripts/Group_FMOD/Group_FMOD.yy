@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "FMODGMS",
-    "path": "folders/Scripts/FMODGMS.yy",
+    "name": "misc code",
+    "path": "folders/Scripts/misc code.yy",
   },
   "resourceVersion": "1.0",
-  "name": "FMODGMS_Util_SecondsToSamples",
+  "name": "Group_FMOD",
   "tags": [],
   "resourceType": "GMScript",
 }
