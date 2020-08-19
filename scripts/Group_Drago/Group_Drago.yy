@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "stuff",
-    "path": "folders/Scripts/dll stuff/stuff.yy",
+    "name": "dll stuff",
+    "path": "folders/Scripts/dll stuff.yy",
   },
   "resourceVersion": "1.0",
-  "name": "ds_stuff_edit",
+  "name": "Group_Drago",
   "tags": [],
   "resourceType": "GMScript",
 }
