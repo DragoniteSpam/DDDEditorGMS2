@@ -195,7 +195,7 @@ function ds_list_sort_fast__merge(list, l, m, r, value) {
     var k = l;
     
     while (i < n1 && j < n2) {
-        if (script_execute(value, lt, i) <= script_execute(value, rt, j)) {
+        if (value(lt, i) <= value(rt, j)) {
             list[| k++] = lt[| i++];
         } else {
             list[| k++] = rt[| j++];
