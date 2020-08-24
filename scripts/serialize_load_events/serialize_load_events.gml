@@ -1,10 +1,4 @@
-/// @param buffer
-/// @param version
-function serialize_load_events(argument0, argument1) {
-
-    var buffer = argument0;
-    var version = argument1;
-
+function serialize_load_events(buffer, version) {
     var addr_next = buffer_read(buffer, buffer_u64);
 
     var n_events = buffer_read(buffer, buffer_u32);
@@ -219,6 +213,4 @@ function serialize_load_events(argument0, argument1) {
     }
 
     Stuff.event.active = Stuff.all_events[| 0];
-
-
 }

@@ -6,7 +6,6 @@
 /// @param y
 /// @param tiled-cache
 function import_map_tiled_layer_object() {
-
     var json = argument[0];
     var columns = argument[1];
     var z = argument[2];

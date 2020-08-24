@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "create etc",
-    "path": "folders/Scripts/event stuff/create etc.yy",
+    "name": "event stuff",
+    "path": "folders/Scripts/event stuff.yy",
   },
   "resourceVersion": "1.0",
-  "name": "event_view_node",
+  "name": "Group_Event_Management",
   "tags": [],
   "resourceType": "GMScript",
 }
