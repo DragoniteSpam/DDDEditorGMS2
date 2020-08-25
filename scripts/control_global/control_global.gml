@@ -12,6 +12,9 @@ function control_global() {
         if (keyboard_check_pressed(ord("S"))) {
             momu_save_data(noone);
         }
+        if (keyboard_check_pressed(ord("G"))) {
+            momu_settings_data(noone);
+        }
         // edit
         if (keyboard_check_pressed(ord("A"))) {
             momu_select_all(noone);

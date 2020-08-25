@@ -12,7 +12,7 @@ function menu_init_main() {
     
     #region file stuff
         var mf_save_data = create_menu_element("Save (Ctrl+S)", momu_save_data, menu_file);
-        var mf_settings_data = create_menu_element("Global Data Settings", momu_settings_data, menu_file);
+        var mf_settings_data = create_menu_element("Global Data Settings (Ctrl+G)", momu_settings_data, menu_file);
         var mf_preferences = create_menu_element("Preferences", momu_preferences, menu_file);
         var mf_exit = create_menu_element("Exit (Alt+F4)", momu_exit, menu_file);
         mf_save_data.interactive = MENU_EDITOR_ENABLED;
