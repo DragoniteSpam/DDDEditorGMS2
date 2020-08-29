@@ -1,20 +1,12 @@
-/// @param EditorModeTerrain
-/// @param cursor-position[]
-/// @param direction
-function terrain_mode_z(argument0, argument1, argument2) {
-
-    var terrain = argument0;
-    var position = argument1;
-    var dir = argument2;
-    var xx = position[vec3.xx];
-    var yy = position[vec3.yy];
+function terrain_mode_z(terrain, position, dir) {
+    var xx = position.x;
+    var yy = position.y;
     var radius = terrain.radius;
-
+    
     var t = 0;
     var coeff = radius * terrain.style_radius_coefficient[terrain.style];
-
     var list_range = ds_list_create();
-
+    
     for (var i = max(0, xx - radius + 1); i < min(terrain.width, xx + radius + 1); i++) {
         for (var j = max(0, yy - radius + 1); j < min(terrain.height, yy + radius + 1); j++) {
             var d1 = point_distance(xx + 0.5, yy + 0.5, i + 0.5, j + 0.5);
@@ -27,24 +19,22 @@ function terrain_mode_z(argument0, argument1, argument2) {
             }
         }
     }
-
+    
     var avg = t / ds_list_size(list_range);
-
+    
     for (var i = 0; i < ds_list_size(list_range); i++) {
         var coordinates = list_range[| i];
         script_execute(terrain.submode_equation[terrain.submode], terrain, coordinates[vec3.xx], coordinates[vec3.yy], dir, avg, coordinates[vec3.zz]);
     }
-
+    
     for (var i = 0; i < ds_list_size(list_range); i++) {
         var coordinates = list_range[| i];
         terrain_set_normals(terrain, coordinates[vec3.xx], coordinates[vec3.yy]);
     }
-
+    
     if (!ds_list_empty(list_range)) {
         terrain_refresh_vertex_buffer(terrain);
     }
-
+    
     ds_list_destroy(list_range);
-
-
 }

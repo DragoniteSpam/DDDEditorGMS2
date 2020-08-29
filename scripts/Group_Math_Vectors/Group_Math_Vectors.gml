@@ -10,3 +10,8 @@ function vector3_normalize(vector) {
     }
     return [0, 0, 1];
 }
+
+function vec2(x, y) constructor {
+    self.x = x;
+    self.y = y;
+}

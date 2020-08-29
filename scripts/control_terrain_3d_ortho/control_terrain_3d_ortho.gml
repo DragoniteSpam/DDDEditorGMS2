@@ -7,10 +7,10 @@ function control_terrain_3d_ortho(terrain) {
     var vw = view_get_wport(view_3d);
     var vh = view_get_hport(view_3d);
     // @gml update lwo
-    terrain.cursor_position = [
+    terrain.cursor_position = new vec2(
         (Stuff.terrain.x + (mouse_x_view - vw / 2) * terrain.orthographic_scale) / terrain.view_scale,
         (Stuff.terrain.y + (mouse_y_view - vh / 2) * terrain.orthographic_scale) / terrain.view_scale
-    ];
+    );
 
     if (Controller.mouse_left) {
         switch (terrain.mode) {

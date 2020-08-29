@@ -1,19 +1,18 @@
 /// @param EditorModeTerrain
-/// @param cursor-position[]
+/// @param cursor-position
 /// @param [color]
 function terrain_mode_color() {
-
     var terrain = argument[0];
     var position = argument[1];
     var color = (argument_count > 2) ? argument[2] : terrain.paint_color;
     var strength = (argument_count > 2) ? 1 : terrain.paint_strength;
-    var xx = position[vec3.xx];
-    var yy = position[vec3.yy];
+    var xx = position.x;
+    var yy = position.y;
     var radius = terrain.radius;
-
+    
     var n = 0;
     var coeff = radius * terrain.style_radius_coefficient[terrain.style];
-
+    
     for (var i = max(0, xx - radius + 1); i < min(terrain.width, xx + radius + 1); i++) {
         for (var j = max(0, yy - radius + 1); j < min(terrain.height, yy + radius + 1); j++) {
             var d1 = point_distance(xx + 0.5, yy + 0.5, i + 0.5, j + 0.5);
@@ -26,10 +25,8 @@ function terrain_mode_color() {
             }
         }
     }
-
+    
     if (n) {
         terrain_refresh_vertex_buffer(terrain);
     }
-
-
 }

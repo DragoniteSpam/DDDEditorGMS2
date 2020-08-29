@@ -1,29 +1,25 @@
-/// @param EditorModeTerrain
-function control_terrain_3d(argument0) {
-
-    var terrain = argument0;
-
+function control_terrain_3d(terrain) {
     if (Stuff.menu.active_element) {
         return false;
     }
-
+    
     var mouse_vector = update_mouse_vector(
         Stuff.terrain.x, Stuff.terrain.y, Stuff.terrain.z, Stuff.terrain.xto, Stuff.terrain.yto, Stuff.terrain.zto,
         Stuff.terrain.xup, Stuff.terrain.yup, Stuff.terrain.zup, Stuff.terrain.fov, CW / CH
     );
-
+    
     var xx = mouse_vector[vec3.xx] * MILLION;
     var yy = mouse_vector[vec3.yy] * MILLION;
     var zz = mouse_vector[vec3.zz] * MILLION;
-
+    
     terrain.cursor_position = undefined;
-
+    
     if (zz < Stuff.terrain.z) {
         var f = abs(Stuff.terrain.z / zz);
-    
+        
         // @gml update lwo
-        terrain.cursor_position = [(Stuff.terrain.x + xx * f) / terrain.view_scale, (Stuff.terrain.y + yy * f) / terrain.view_scale];
-    
+        terrain.cursor_position = new vec2((Stuff.terrain.x + xx * f) / terrain.view_scale, (Stuff.terrain.y + yy * f) / terrain.view_scale);
+        
         if (Controller.mouse_left) {
             switch (terrain.mode) {
                 case TerrainModes.Z: terrain_mode_z(terrain, terrain.cursor_position, 1); break;
@@ -39,20 +35,20 @@ function control_terrain_3d(argument0) {
             }
         }
     }
-
+    
     if (keyboard_check_pressed(vk_space)) {
     
     }
     if (keyboard_check_pressed(vk_delete)) {
     
     }
-
+    
     // move the camera
     var mspd = get_camera_speed(terrain.z);
     var xspeed = 0;
     var yspeed = 0;
     var zspeed = 0;
-
+    
     if (keyboard_check(vk_up) || keyboard_check(ord("W"))) {
         xspeed = xspeed + dcos(Stuff.terrain.direction) * mspd;
         yspeed = yspeed - dsin(Stuff.terrain.direction) * mspd;
@@ -83,7 +79,7 @@ function control_terrain_3d(argument0) {
         Stuff.terrain.yto = Stuff.terrain.y - dsin(Stuff.terrain.direction) * dcos(Stuff.terrain.pitch);
         Stuff.terrain.zto = Stuff.terrain.z - dsin(Stuff.terrain.pitch);
     }
-
+    
     Stuff.terrain.x += xspeed;
     Stuff.terrain.y += yspeed;
     Stuff.terrain.z += zspeed;
@@ -93,6 +89,4 @@ function control_terrain_3d(argument0) {
     Stuff.terrain.xup = 0;
     Stuff.terrain.yup = 0;
     Stuff.terrain.zup = 1;
-
-
 }
