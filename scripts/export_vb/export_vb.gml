@@ -13,10 +13,9 @@ function export_vb(argument0, argument1, argument2) {
         var vertex_new_size = 0;
         var attribute_count = 0;
         for (var i = 0; i < ds_list_size(format); i++) {
-            var attribute = format[| i];
+            var type = format[| i][? "type"];
             attribute_count++;
-            // @gml chained accessors
-            switch (attribute[? "type"]) {
+            switch (type) {
                 case VertexFormatData.POSITION_2D: vertex_new_size += 8; break;
                 case VertexFormatData.POSITION_3D: vertex_new_size += 12; break;
                 case VertexFormatData.NORMAL: vertex_new_size += 12; break;

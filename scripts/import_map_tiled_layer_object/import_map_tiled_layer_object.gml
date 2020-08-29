@@ -1,10 +1,10 @@
 /// @param json
 /// @param ts-columns
 /// @param z
-/// @param alpha
-/// @param x
-/// @param y
-/// @param tiled-cache
+/// @param [alpha]
+/// @param [x]
+/// @param [y]
+/// @param [tiled-cache]
 function import_map_tiled_layer_object() {
     var json = argument[0];
     var columns = argument[1];
@@ -25,7 +25,6 @@ function import_map_tiled_layer_object() {
     var layer_base_z = z;
     var layer_properties = json[? "properties"];
     if (layer_properties) {
-        /// @gml chained accessors
         for (var i = 0; i < ds_list_size(layer_properties); i++) {
             var property_data = layer_properties[| i];
             var property_name = property_data[? "name"];

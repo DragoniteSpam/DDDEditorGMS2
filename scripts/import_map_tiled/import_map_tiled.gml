@@ -53,8 +53,7 @@ function import_map_tiled() {
         
             // the main ts used by the map
             if (!ds_list_empty(json_tilesets)) {
-                // @gml update chained accessors
-                var tileset_source = ds_map_find_value(json_tilesets[| 0], "source");
+                var tileset_source = json_tilesets[| 0][? "source"];
                 if (!file_exists(tileset_source)) {
                     tileset_source = filename_path(filename) + filename_name(tileset_source);
                 }

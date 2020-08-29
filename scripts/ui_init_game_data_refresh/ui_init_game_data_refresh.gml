@@ -63,9 +63,9 @@ function ui_init_game_data_refresh() {
                 if (property.max_size == 1) {
                     // no need to mess with the list
                     if (property.type == DataTypes.BOOL) {
-                        thingy.value = ds_list_find_value(instance.values[| n], 0);
+                        thingy.value = instance.values[| n][| 0];
                     } else {
-                        ui_input_set_value(thingy, string(ds_list_find_value(instance.values[| n], 0)));
+                        ui_input_set_value(thingy, string(instance.values[| n][| 0]));
                     }
                     // if you re-select a data that already has one of these fields set, it should
                     // be re-selected when you re-select the instance - there should be some indication
@@ -77,7 +77,7 @@ function ui_init_game_data_refresh() {
                             if (datatype) {
                                 for (var k = 0; k < ds_list_size(datatype.instances); k++) {
                                     // still no need to mess with the list
-                                    if (datatype.instances[| k].GUID == ds_list_find_value(instance.values[| n], 0)) {
+                                    if (datatype.instances[| k].GUID == instance.values[| n][| 0]) {
                                         ui_list_select(thingy, k, true);
                                         break;
                                     }
@@ -88,7 +88,7 @@ function ui_init_game_data_refresh() {
                             ui_list_deselect(thingy);
                             var datatype = guid_get(property.type_guid);
                             for (var k = 0; k < ds_list_size(datatype.properties); k++) {
-                                if (datatype.properties[| k].GUID == ds_list_find_value(instance.values[| n], 0)) {
+                                if (datatype.properties[| k].GUID == instance.values[| n][| 0]) {
                                     ui_list_select(thingy, k, true);
                                     break;
                                 }
@@ -105,7 +105,7 @@ function ui_init_game_data_refresh() {
                             ui_list_deselect(thingy);
                             for (var k = 0; k < ds_list_size(Stuff.all_animations); k++) {
                                 // still no need to mess with the list
-                                if (Stuff.all_animations[| k].GUID == ds_list_find_value(instance.values[| n], 0)) {
+                                if (Stuff.all_animations[| k].GUID == instance.values[| n][| 0]) {
                                     ui_list_select(thingy, k, true);
                                     break;
                                 }
@@ -122,16 +122,15 @@ function ui_init_game_data_refresh() {
                         case DataTypes.IMG_ETC:
                         case DataTypes.IMG_SKYBOX:
                             ui_list_deselect(thingy);
-                            // @gml update chained accessors, in a few places in this script
                             for (var k = 0; k < ds_list_size(thingy.entries); k++) {
-                                if (thingy.entries[| k].GUID == ds_list_find_value(instance.values[| n], 0)) {
+                                if (thingy.entries[| k].GUID == instance.values[| n][| 0]) {
                                     ui_list_select(thingy, k, true);
                                     break;
                                 }
                             }
                             break;
                         case DataTypes.EVENT:
-                            var existing_data = guid_get(ds_list_find_value(instance.values[| n], 0));
+                            var existing_data = guid_get(instance.values[| n][| 0]);
                             thingy.text = existing_data ? get_event_entrypoint_short_name(existing_data) : "Select Event";
                             thingy.tooltip = existing_data ? (existing_data.event.name + " / " + existing_data.name) : "";
                             thingy.event_guid = instance.values[| n];
