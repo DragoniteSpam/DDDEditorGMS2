@@ -1,8 +1,5 @@
 /// @param EditorModeTerrain
-function control_terrain_3d_ortho(argument0) {
-
-    var terrain = argument0;
-
+function control_terrain_3d_ortho(terrain) {
     if (Stuff.menu.active_element) {
         return false;
     }

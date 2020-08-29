@@ -72,7 +72,7 @@ if (file_exists("projects.json")) {
     all_projects = ds_map_create();
     ds_map_add_list(all_projects, "projects", ds_list_create());
 }
-// @gml update try catch
+
 if (file_exists(FILE_SETTINGS)) {
     var json_buffer = buffer_load(FILE_SETTINGS);
     settings = json_decode(buffer_read(json_buffer, buffer_string));
@@ -199,7 +199,6 @@ all_internal_names = ds_map_create();
 
 spr_character_default = sprite_add(PATH_GRAPHICS + "b_chr_default.png", 0, false, false, 0, 0);
 
-// @gml update lwos, all of them
 all_graphic_tilesets = ds_list_create();
 all_graphic_overworlds = ds_list_create();
 all_graphic_battlers = ds_list_create();

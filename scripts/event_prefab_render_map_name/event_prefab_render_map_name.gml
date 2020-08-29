@@ -1,15 +1,4 @@
-/// @param EventNode
-/// @param index
-function event_prefab_render_map_name(argument0, argument1) {
-
-    var event = argument0;
-    var index = argument1;
-
-    // @gml update
-    var custom_data = event.custom_data[| 0];
-    var map = guid_get(custom_data[| 0]);
-
+function event_prefab_render_map_name(event, index) {
+    var map = guid_get(event.custom_data[| 0][| 0]);
     return map ? map.name : "<no map>";
-
-
 }
