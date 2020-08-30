@@ -10,7 +10,6 @@ function editor_cleanup_map(mode) {
         switch (thing.modification) {
             case Modifications.CREATE:
                 instance_deactivate_object(thing);
-                script_execute(thing.on_create, thing);
                 thing.modification = Modifications.NONE;
                 break;
             // we'd still like to know what the modification status on an entity is for
