@@ -1,11 +1,8 @@
-/// @param EditorMode
-function editor_cleanup_map(argument0) {
-
-    var mode = argument0;
+function editor_cleanup_map(mode) {
     var base_map = Stuff.map.active_map;
     var map = base_map.contents;
     var modifications = ds_list_create();
-
+    
     // let's try to keep the Modifications list separate because batching / rebatching
     // behaves differently depending on how many things are in it
     for (var i = 0; i < ds_list_size(mode.changes); i++) {
@@ -45,11 +42,11 @@ function editor_cleanup_map(argument0) {
                     } else {
                         ds_list_delete(map.dynamic, ds_list_find_index(map.dynamic, thing));
                     }
-                
+                    
                     if (thing.listed) {
                         map_remove_thing(thing);
                     }
-                
+                    
                     ds_list_delete(map.all_entities, ds_list_find_index(map.all_entities, thing));
                     rebatch_these[? thing.batch_addr] = true;
                     instance_activate_object(thing);
@@ -127,6 +124,4 @@ function editor_cleanup_map(argument0) {
     if (ds_list_size(map.batch_in_the_future) > BATCH_CACHE_SIZE) {
         batch_cache();
     }
-
-
 }
