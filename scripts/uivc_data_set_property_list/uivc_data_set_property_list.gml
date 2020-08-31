@@ -1,23 +1,15 @@
-/// @param UIList
-function uivc_data_set_property_list(argument0) {
-
-    var ui_list = argument0;
-
+function uivc_data_set_property_list(list) {
     var data = guid_get(Stuff.data.ui.active_type_guid);
-    var selection = ui_list_selection(ui_list);
-
-    if (selection + 1) {
-        var instance_selection = ui_list_selection(Stuff.data.ui.el_instances);
-        var property_selection = ui_list.entries[| selection].GUID;
+    var selection = ui_list_selection(list);
     
-        if (instance_selection + 1) {
-            // i tried chaining these together into one statement and it didn't work for some reason. fabulous.
-            var instance = guid_get(data.instances[| instance_selection].GUID);
-            var list = ds_list_find_value(instance.values, ui_list.key);
+    var instance_selection = ui_list_selection(Stuff.data.ui.el_instances);
+    if (instance_selection + 1) {
+        var instance = guid_get(data.instances[| instance_selection].GUID);
+        if (selection + 1) {
             // this is for when max size = 1 so no need to mess with the list
-            list[| 0] = property_selection;
+            instance.values[| list.key][| 0] = list.entries[| selection].GUID;
+        } else {
+            instance.values[| list.key][| 0] = NULL;
         }
     }
-
-
 }
