@@ -1,0 +1,8 @@
+I guess?
+
+1. Try to make your code look like the rest of the code: four-space indentation, `snake_case`, curly braces around control blocks. I'm not going to throw a fit of scripts don't begin with `scr_` or anything but try to give resources names that group them together with similar resources easily
+2. Generally accepted Game Maker coding standards are appreciated: giving script arguments meaningful names at the top of scripts (except in constructor-like scripts) (I still have a ton of old code that doesn't really do that - don't be like that) and using `true` and `false` to mean "true" and "false" instead of `1` and `0`
+3. Avoid magic numbers when possible, although in some cases it's probably not actually worth the trouble
+4. Until the 2020 GML update comes along, `script_execute` is the answer to object-oriented programming
+5. In Game Maker, `n < 0.5` evaluates false and `n >= 0.5` evaluates true. You may take advantage of this fact when checking for the presence of a `null` value: the keyword `noone` equates to `-4`, `undefined` is a special falsey value and `-1` is often used to represent an invalid index in a list. (In fact, I encourage you to do so, because `value != noone` checks everywhere make the code more dense and arguably harder to read.) However, **do not** do this when checking actual numbers against each other. Note: `0` may be a perfectly valid index in a list but is falsey, so if you want to abuse the truthiness of a list or array index you must instead check `index + 1`.
+6. I'll add more to this later maybe
