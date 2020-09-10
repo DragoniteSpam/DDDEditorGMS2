@@ -1,7 +1,4 @@
-/// @param UIButton
-function omu_export_meshes_selected(argument0) {
-
-    var button = argument0;
+function omu_export_meshes_selected(button) {
     var list = button.root.mesh_list;
     var selection = list.selected_entries;
     var format_index = ui_list_selection(button.root.format_list);
@@ -36,6 +33,4 @@ function omu_export_meshes_selected(argument0) {
                 break;
         }
     }
-
-
 }

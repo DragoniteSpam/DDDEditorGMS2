@@ -1,8 +1,4 @@
-/// @param EditorModeMesh
-function ui_init_mesh(argument0) {
-
-    var mode = argument0;
-
+function ui_init_mesh(mode) {
     with (instance_create_depth(0, 0, 0, UIThing)) {
         var columns = 4;
         var spacing = 16;

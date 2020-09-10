@@ -1,13 +1,6 @@
-/// @param fname
-/// @param DataMesh
-/// @param vertex-format-json
-function export_vb(argument0, argument1, argument2) {
-
-    var base_filename = argument0;
+function export_vb(base_filename, mesh, format) {
     var mesh_filename = filename_path(base_filename) + filename_change_ext(filename_name(base_filename), "");
-    var mesh = argument1;
-    var format = argument2;
-
+    
     if (format) {
         format = format[? "attributes"];
         var vertex_new_size = 0;
@@ -23,7 +16,7 @@ function export_vb(argument0, argument1, argument2) {
                 case VertexFormatData.COLOUR: vertex_new_size += 4; break;
             }
         }
-    
+        
         for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
             var number_ext = (ds_list_size(mesh.submeshes) == 1) ? "" : ("!" + string_hex(i, 3));
             var sub = mesh.submeshes[| i];
@@ -35,8 +28,11 @@ function export_vb(argument0, argument1, argument2) {
             var formatted_buffer = buffer_create(new_size, buffer_fixed, 1);
             var current_attribute_count = 0;
             var attributes_used = [false, false, false, false];
-        
-            repeat (vertex_count) {
+            var n_pos = 0;
+            
+            // what we're really doing here is looping through each *attribute,*
+            // rather than each vertex
+            repeat (vertex_count * ds_list_size(format)) {
                 var attribute = format[| current_attribute_count++];
                 var attribute_type = attribute[? "type"];
             
