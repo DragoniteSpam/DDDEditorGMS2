@@ -124,7 +124,7 @@ function c_object_get_userid(object) {
 
 function c_object_set_mask(object, group, mask) {
     // Sets the collision mask of the object.
-    return external_call(global._c_object_set_mask, object, group, mask);
+    //return external_call(global._c_object_set_mask, object, group, mask);
 }
 
 function c_object_set_shape(object, shape) {
