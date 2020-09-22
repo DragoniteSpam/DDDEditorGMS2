@@ -1,19 +1,16 @@
-/// @param Dialog
-function dialog_entity_data_enable_by_type(argument0) {
-
-    var dialog = argument0;
+function dialog_entity_data_enable_by_type(dialog) {
     var entity = dialog.entity;
     var selection = ui_list_selection(dialog.el_list);
     var data = entity.generic_data[| selection];
-
+    
     dialog.el_name.interactive = true;
     ui_input_set_value(dialog.el_name, data.name);
-
+    
     dialog.el_data_type.interactive = true;
     dialog.el_data_type.value = data.type;
-
+    
     dialog.el_data_ext_type.interactive = true;
-
+    
     switch (data.type) {
         case DataTypes.CODE:
             dialog.el_data_property_code.interactive = true;
@@ -46,9 +43,9 @@ function dialog_entity_data_enable_by_type(argument0) {
             dialog.el_data_type_guid.enabled = true;
             dialog.el_data_list.interactive = true;
             dialog.el_data_list.enabled = true;
-        
+            
             var type = guid_get(data.value_type_guid);
-        
+            
             if (type) {
                 dialog.el_data_type_guid.text = type.name + " (Select)";
                 dialog.el_data_type_guid.color = (data.type == type.type) ? c_black : c_red;
@@ -61,9 +58,9 @@ function dialog_entity_data_enable_by_type(argument0) {
                 dialog.el_data_type_guid.text = "Select";
                 dialog.el_data_type_guid.color = c_black;
             }
-        
+            
             dialog.el_data_type_guid.onmouseup = (data.type == DataTypes.ENUM) ? omu_entity_data_enum_select : omu_entity_data_data_select;
-        
+            
             break;
         case DataTypes.COLOR:
             dialog.el_data_property_color.interactive = true;
@@ -145,7 +142,7 @@ function dialog_entity_data_enable_by_type(argument0) {
             not_yet_implemented();
             break;
     }
-
+    
     // this is occasionally not needed because it'll run both of these every time,
     // but it's way cleaner than trying to only do it when necessary
     if (dialog.el_data_builtin_list.entries) {
@@ -157,7 +154,7 @@ function dialog_entity_data_enable_by_type(argument0) {
             }
         }
     }
-
+    
     if (dialog.el_data_list.entries) {
         for (var i = 0; i < ds_list_size(dialog.el_data_list.entries); i++) {
             var entry = dialog.el_data_list.entries[| i];
@@ -167,6 +164,4 @@ function dialog_entity_data_enable_by_type(argument0) {
             }
         }
     }
-
-
 }

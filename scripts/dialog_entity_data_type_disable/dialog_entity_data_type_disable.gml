@@ -1,14 +1,10 @@
-/// @param Dialog
-function dialog_entity_data_type_disable(argument0) {
-
-    var dialog = argument0;
-
+function dialog_entity_data_type_disable(dialog) {
     // turns off all of the UI elements associated with properties of data
-
+    
     dialog.el_name.interactive = false;
     dialog.el_data_type.interactive = false;
     dialog.el_data_ext_type.interactive = false;
-
+    
     dialog.el_data_property_code.interactive = false;
     dialog.el_data_property_string.interactive = false;
     dialog.el_data_property_real.interactive = false;
@@ -18,7 +14,7 @@ function dialog_entity_data_type_disable(argument0) {
     dialog.el_data_type_guid.interactive = false;
     dialog.el_data_property_color.interactive = false;
     dialog.el_data_builtin_list.interactive = false;
-
+    
     dialog.el_data_property_code.enabled = false;
     dialog.el_data_property_string.enabled = false;
     dialog.el_data_property_real.enabled = false;
@@ -28,6 +24,4 @@ function dialog_entity_data_type_disable(argument0) {
     dialog.el_data_type_guid.enabled = false;
     dialog.el_data_property_color.enabled = false;
     dialog.el_data_builtin_list.enabled = false;
-
-
 }

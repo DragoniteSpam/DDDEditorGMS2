@@ -194,13 +194,17 @@ function import_map_tiled_layer_object() {
             
                 if (tmx_cache[? obj_id]) {
                     instance = tmx_cache[? obj_id];
-                    instance.overworld_sprite = internal_name_get(gid_to_image_name).GUID;
-                    updated = true;
-                    // The entity only needs to be relocated; it doesn't need to be removed from
-                    // the lists, or re-added later, because that would take a lot of time
+                    var thing = internal_name_get(gid_to_image_name);
                     map_remove_thing(instance);
-                    // position for NPCs is at -1 because of where the origin for sprites is in Tiled
-                    map_add_thing(instance, (xx + obj_x) div TILE_WIDTH, (yy + obj_y) div TILE_HEIGHT - 1, zz, undefined, undefined, false);
+                    if (thing) {
+                        instance.overworld_sprite = thing.GUID;
+                        // position for NPCs is at -1 because of where the origin for sprites is in Tiled
+                        map_add_thing(instance, (xx + obj_x) div TILE_WIDTH, (yy + obj_y) div TILE_HEIGHT - 1, zz, undefined, undefined, false);
+                    } else {
+                        instance_activate_object(thing);
+                        instance_destroy(thing);
+                        updated = true;
+                    }
                 } else {
                     instance = instance_create_pawn();
                     instance.tmx_id = obj_id;
