@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "meshes",
-    "path": "folders/Scripts/Game data/meshes.yy",
+    "name": "Game data",
+    "path": "folders/Scripts/Game data.yy",
   },
   "resourceVersion": "1.0",
-  "name": "mesh_set_all_flip_tex_h",
+  "name": "Group_Meshes",
   "tags": [],
   "resourceType": "GMScript",
 }
