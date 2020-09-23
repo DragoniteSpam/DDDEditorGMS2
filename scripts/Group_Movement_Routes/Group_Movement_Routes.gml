@@ -1,33 +1,66 @@
-/// @param DataMoveRoute
-function move_route_update_buffer(argument0) {
+function move_route_make_visible(entity, route) {
+    var n = array_length(entity.visible_routes);
+    
+    // are you already visible?
+    for (var i = 0; i < n; i++) {
+        if (entity.visible_routes[i] == route.GUID) {
+            return;
+        }
+    }
+    
+    // are there any open slots?
+    for (var i = 0; i < n; i++) {
+        if (!guid_get(entity.visible_routes[i])) {
+            entity.visible_routes[i] = route.GUID;
+            return;
+        }
+    }
+    
+    // shift everything down
+    for (var i = 0; i < n - 1; i++) {
+        entity.visible_routes[i] = entity.visible_routes[i + 1];
+    }
+    
+    entity.visible_routes[n - 1] = route.GUID;
+}
 
-    var route = argument0;
+function move_route_make_invisible(entity, route) {
+    var n = array_length(entity.visible_routes);
+    
+    // are you already visible?
+    for (var i = 0; i < n; i++) {
+        if (entity.visible_routes[i] == route.GUID) {
+            entity.visible_routes[i] = 0;
+            return;
+        }
+    }
+}
 
+function move_route_update_buffer(route) {
     if (route.buffer) {
         vertex_delete_buffer(route.buffer);
         route.buffer = noone;
     }
-
+    
     var xx = 0;
     var yy = 0;
     var zz = 0;         // this will not work well with sloped terrain
     var n_actions = 0;
-
+    
     route.extra = false;
-
+    
     // essentailly the rng seed
     var c = Stuff.color_lookup[string_hash_simple(route.GUID) % array_length(Stuff.color_lookup)];
     var cube_size = 2;
-
+    
     var buffer = vertex_create_buffer();
     vertex_begin(buffer, Stuff.graphics.vertex_format);
-
     vertex_cube_line(buffer, 0, 0, 0, c, 1, cube_size);
-
+    
     for (var i = 0; i < ds_list_size(route.steps); i++) {
         var data = route.steps[| i];
         var stop = false;
-    
+        
         switch (data[@ 0]) {
             // these either use some kind of random motion or use absolute coordinates,
             // so there's not much good in drawing them
@@ -108,7 +141,7 @@ function move_route_update_buffer(argument0) {
             break;
         }
     }
-
+    
     if (n_actions > 0) {
         vertex_end(buffer);
         vertex_freeze(buffer);
@@ -116,6 +149,4 @@ function move_route_update_buffer(argument0) {
     } else {
         vertex_delete_buffer(buffer);
     }
-
-
 }

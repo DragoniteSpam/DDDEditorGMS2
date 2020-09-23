@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "move routes",
-    "path": "folders/Scripts/Game data/move routes.yy",
+    "name": "Game data",
+    "path": "folders/Scripts/Game data.yy",
   },
   "resourceVersion": "1.0",
-  "name": "move_route_update_buffer",
+  "name": "Group_Movement_Routes",
   "tags": [],
   "resourceType": "GMScript",
 }
