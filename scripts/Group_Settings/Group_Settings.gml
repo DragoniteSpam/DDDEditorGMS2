@@ -4,7 +4,7 @@ function setting_get(object, name, def) {
         if (ds_map_exists(domain, name)) return domain[? name];
         return def;
     }
-
+    
     throw "Setting object not found: " + object;
 }
 
