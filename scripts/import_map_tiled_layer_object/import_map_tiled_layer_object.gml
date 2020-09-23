@@ -346,8 +346,8 @@ function import_map_tiled_layer_object() {
                     data_generic_instance.value_string = property_value_string;
                     data_generic_instance.value_bool = property_value_bool;
                     data_generic_instance.value_color = property_value_color;
-                    data_generic_instance.value_data = property_value_type_guid;
-                    data_generic_instance.value_type_guid = property_value_data;
+                    data_generic_instance.value_data = property_value_data;
+                    data_generic_instance.value_type_guid = property_value_type_guid;
                     data_generic_instance.type = property_type;
                 }
             }
