@@ -359,6 +359,4 @@ function import_map_tiled_layer_object() {
     }
 
     return z;
-
-
 }
