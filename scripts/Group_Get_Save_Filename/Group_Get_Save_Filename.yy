@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "save",
-    "path": "folders/Scripts/resources/file selectors/save.yy",
+    "name": "file selectors",
+    "path": "folders/Scripts/resources/file selectors.yy",
   },
   "resourceVersion": "1.0",
-  "name": "get_save_filename_mesh",
+  "name": "Group_Get_Save_Filename",
   "tags": [],
   "resourceType": "GMScript",
 }
