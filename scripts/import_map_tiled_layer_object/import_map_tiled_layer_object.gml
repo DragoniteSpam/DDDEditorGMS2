@@ -233,7 +233,7 @@ function import_map_tiled_layer_object() {
                 if (pr_mesh_data) {
                     if (tmx_cache[? obj_id]) {
                         instance = tmx_cache[? obj_id];
-                        update = true
+                        update = true;
                         // The entity only needs to be relocated; it doesn't need to be removed from
                         // the lists, or re-added later, because that would take a lot of time
                         map_remove_thing(instance);
@@ -256,11 +256,11 @@ function import_map_tiled_layer_object() {
                 not_yet_implemented_polite();
                 break;
         }
-    
+        
         if (instance) {
             instance.name = data_name;
-        
-        #region Default conversation
+            
+            #region Default conversation
             var pr_cutscene_entrypoint = data_properties[? "CutsceneEntrypoint"];
             var pr_cutscene_entrypoint_name = pr_cutscene_entrypoint[? "value"];
             pr_cutscene_entrypoint = event_get_node_global(pr_cutscene_entrypoint_name);
@@ -275,49 +275,84 @@ function import_map_tiled_layer_object() {
                 page.trigger = 1;   // magic, do not touch
                 page.event_entrypoint = pr_cutscene_entrypoint[1].GUID;
             }
-        #endregion
-        
-        #region generic properties
+            #endregion
+            
+            #region generic properties
             var property_list = ds_map_to_list(data_properties);
             for (var j = 0; j < ds_list_size(property_list); j++) {
                 var property = data_properties[? property_list[| j]];
                 var property_name = property[? "name"];
+                
+                var property_value_real = 0;
+                var property_value_int = 0;
+                var property_value_string = "";
+                var property_value_bool = false;
+                var property_value_color = c_black;
+                var property_value_type_guid = NULL;
+                var property_value_data = 0;
+                var property_type = DataTypes.INT;
+                var base_property_name = "";
+                var accept = true;
+                
                 switch (string_char_at(property_name, 1)) {
                     case "@":
                         var data = internal_name_get(property[? "value"]);
                         if (data) {
-                            var base = guid_get(data.base_guid);
-                            var base_property_name = string_replace(property_name, "@", "");
-                            var data_generic_instance = noone;
-                            // if there's already a generic data property with the same name, set its
-                            // value instead of creating a new one, since you're not really supposed to
-                            // have duplicate generic properties
-                            if (update) {
-                                for (var k = 0; k < ds_list_size(instance.generic_data); k++) {
-                                    var existing_generic = instance.generic_data[| k];
-                                    if (existing_generic.name == base_property_name) {
-                                        data_generic_instance = existing_generic;
-                                        break;
-                                    }
-                                }
-                            }
-                            if (!data_generic_instance) {
-                                var data_generic_instance = instance_create_depth(0, 0, 0, DataAnonymous);
-                                data_generic_instance.name = base_property_name;
-                                ds_list_add(instance.generic_data, data_generic_instance);
-                            }
-                            data_generic_instance.value_data = data.GUID;
-                            data_generic_instance.value_type_guid = base.GUID;
-                            data_generic_instance.type = DataTypes.DATA;
+                            base_property_name = string_replace(property_name, "@", "");
+                            property_value_data = data.GUID;
+                            property_value_type_guid = guid_get(data.base_guid).GUID;
+                            property_type = DataTypes.DATA;
                         } else {
                             wtf("internal name not found - " + property[? "value"]);
                         }
                         break;
+                    case "$":
+                        base_property_name = string_replace(property_name, "$", "");
+                        property_value_string = property[? "value"];
+                        property_type = DataTypes.STRING;
+                        break;
+                    case "#":
+                        base_property_name = string_replace(property_name, "#", "");
+                        property_value_string = property[? "value"];
+                        property_type = DataTypes.FLOAT;
+                        break;
+                    default:
+                        // if a property does not start with a valid sigil, skip it
+                        accept = false;
+                        break;
                     // other sigils may indicate other data types, but that's all for now
+                }
+                
+                if (accept) {
+                    // if there's already a generic data property with the same name, set its
+                    // value instead of creating a new one, since you're not really supposed to
+                    // have duplicate generic properties
+                    var data_generic_instance = undefined;
+                    for (var k = 0; k < ds_list_size(instance.generic_data); k++) {
+                        var existing_generic = instance.generic_data[| k];
+                        if (string_lower(string_lettersdigits(existing_generic.name)) == string_lower(string_lettersdigits(base_property_name))) {
+                            data_generic_instance = existing_generic;
+                            break;
+                        }
+                    }
+                    // otherwise, create one
+                    if (!data_generic_instance) {
+                        var data_generic_instance = instance_create_depth(0, 0, 0, DataAnonymous);
+                        data_generic_instance.name = base_property_name;
+                        ds_list_add(instance.generic_data, data_generic_instance);
+                    }
+                    data_generic_instance.value_real = property_value_real;
+                    data_generic_instance.value_int = property_value_int;
+                    data_generic_instance.value_string = property_value_string;
+                    data_generic_instance.value_bool = property_value_bool;
+                    data_generic_instance.value_color = property_value_color;
+                    data_generic_instance.value_data = property_value_type_guid;
+                    data_generic_instance.value_type_guid = property_value_data;
+                    data_generic_instance.type = property_type;
                 }
             }
             ds_list_destroy(property_list);
-        #endregion
+            #endregion
         }
     
         ds_map_destroy(data_properties);
