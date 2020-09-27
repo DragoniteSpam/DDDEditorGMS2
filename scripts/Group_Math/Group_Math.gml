@@ -91,7 +91,7 @@ function normalize(n, mn, mx, omin, omax) {
     if (omin == undefined) omin = 0;
     if (omax == undefined) omax = 1;
     if (mn == mx && mn == n) return mn;
-    return omin + ((n - mn) / (mx - mn)) * (omax - omin);
+    return mn + ((n - omin) / (omax - omin)) * (mx - mn);
 }
 
 function number_max_digits(n) {

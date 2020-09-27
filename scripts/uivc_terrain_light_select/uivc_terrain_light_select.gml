@@ -1,14 +1,11 @@
-/// @param UIList
-function uivc_terrain_light_select(argument0) {
-
-    var list = argument0;
+function uivc_terrain_light_select(list) {
     var mode = Stuff.terrain;
     var tab = mode.ui.t_lighting;
-
+    
     var light = mode.lights[| ui_list_selection(list)];
     tab.el_light_type.value = light.type;
     tab.el_light_color.value = light.color;
-
+    
     switch (light.type) {
         case LightTypes.DIRECTIONAL:
             tab.el_dir_x.value = normalize(light.x, 0, 1, -0.5, 0.5);
@@ -22,8 +19,6 @@ function uivc_terrain_light_select(argument0) {
             ui_input_set_value(tab.el_point_radius, light.radius);
             break;
     }
-
+    
     uivc_terrain_light_enable_by_type(list);
-
-
 }
