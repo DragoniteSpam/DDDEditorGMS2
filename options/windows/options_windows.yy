@@ -9,7 +9,7 @@
   },
   "option_windows_display_name": "DDD Editor",
   "option_windows_executable_name": "ddd",
-  "option_windows_version": "2020.3.8.56",
+  "option_windows_version": "2020.3.8.57",
   "option_windows_company_info": "",
   "option_windows_product_info": "DDD Game Tools",
   "option_windows_copyright_info": "(c) 2018 - 2020 Michael Peng",
