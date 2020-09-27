@@ -1,9 +1,3 @@
-/// @param UIButton
-function ui_particle_manual_update(argument0) {
-
-    var button = argument0;
-
+function ui_particle_manual_update(button) {
     part_system_update(Stuff.particle.system);
-
-
 }

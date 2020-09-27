@@ -100,6 +100,7 @@ function draw_editor_particle(mode) {
         draw_set_colour(c_white);
         
         if (kill) {
+            mode.ui.el_set_region.click_time = current_time;
             mode.emitter_setting = noone;
             dialog_destroy();
         }

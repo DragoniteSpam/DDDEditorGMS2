@@ -210,7 +210,9 @@ function ui_init_particle(mode) {
         yy += ui_get_radio_array_height(element) + spacing;
         
         var element = create_button(col2_x, yy, "Set Region", ew, eh, fa_center, ui_particle_emitter_set_region, t_emitter);
+        element.click_time = -100000;
         element.tooltip = "Set the emission region by clicking on the particle view.";
+        el_set_region = element;
         ds_list_add(t_emitter.contents, element);
         
         yy += element.height + spacing;

@@ -1,9 +1,9 @@
-/// @param UIButton
-function ui_particle_emitter_set_region(argument0) {
-
-    var button = argument0;
+function ui_particle_emitter_set_region(button) {
     var selection = ui_list_selection(button.root.list);
-
+    
+    // 250 ms delay between when you kill the region and when you can click it again
+    if (current_time - button.click_time < 250) return;
+    
     if (selection + 1) {
         Stuff.particle.emitter_setting = Stuff.particle.emitters[| selection];
         Stuff.particle.emitter_first_corner = true;
@@ -14,6 +14,4 @@ function ui_particle_emitter_set_region(argument0) {
         bad.active_shade = false;
         part_system_automatic_update(Stuff.particle.system, false);
     }
-
-
 }
