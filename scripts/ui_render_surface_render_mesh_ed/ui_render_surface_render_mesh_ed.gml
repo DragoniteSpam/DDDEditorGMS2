@@ -1,15 +1,4 @@
-/// @param UIRenderSurface
-/// @param x1
-/// @param y1
-/// @param x2
-/// @param y2
-function ui_render_surface_render_mesh_ed(argument0, argument1, argument2, argument3, argument4) {
-
-    var surface = argument0;
-    var x1 = argument1;
-    var y1 = argument2;
-    var x2 = argument3;
-    var y2 = argument4;
+function ui_render_surface_render_mesh_ed(surface, x1, y1, x2, y2) {
     var mode = Stuff.mesh_ed;
     var mesh_list = surface.root.mesh_list;
     var sw = surface_get_width(surface.surface);

@@ -1,8 +1,4 @@
-/// @param EditorModeSpart
-function ui_init_particle(argument0) {
-
-    var mode = argument0;
-
+function ui_init_particle(mode) {
     // this one's not tabbed, it's just a bunch of elements floating in space
     with (instance_create_depth(0, 0, 0, UIMain)) {
     #macro PART_MAXIMUM_EMITTERS 16
@@ -691,11 +687,8 @@ function ui_init_particle(argument0) {
         t_type.size_wiggle.previous = t_type.size_incr;
         t_type.life_min.previous = t_type.size_wiggle;
         t_type.life_max.previous = t_type.life_min;
-    
     #endregion
     
         return id;
     }
-
-
 }
