@@ -1,19 +1,14 @@
-/// @param EditorModeMap
-function draw_editor_3d(argument0) {
-
-    var mode = argument0;
-
+function draw_editor_3d(mode) {
     var map = Stuff.map.active_map;
     var map_contents = map.contents;
-
+    
     draw_clear(c_black);
     draw_set_color(c_white);
     gpu_set_cullmode(Stuff.setting_view_backface ? cull_noculling : cull_counterclockwise);
-
+    
     var camera = view_get_camera(view_current);
-
     var z2d = 1600;
-
+    
     if (map.is_3d) {
         var vw = view_get_wport(view_current);
         var vh = view_get_hport(view_current);
@@ -27,7 +22,7 @@ function draw_editor_3d(argument0) {
         camera_set_proj_mat(camera, matrix_build_projection_ortho(-cwidth, cheight, CAMERA_ZNEAR, CAMERA_ZFAR));
         camera_apply(camera);
     }
-
+    
     // skyboxes go first
     var skybox = guid_get(map.skybox);
     if (skybox && !map.indoors) {
@@ -37,26 +32,25 @@ function draw_editor_3d(argument0) {
         vertex_submit(Stuff.graphics.skybox_base, pr_trianglelist, sprite_get_texture(skybox.picture, 0));
         transform_reset();
     }
-
+    
     gpu_set_zwriteenable(true);
     gpu_set_ztestenable(true);
-
+    
     // anything in the world
-
     shader_set(shd_ddd);
     graphics_set_lighting(shd_ddd);
-
+    
     // this will need to be dynamic at some point
     var tex = Stuff.setting_view_texture ? sprite_get_texture(get_active_tileset().picture, 0) : sprite_get_texture(b_tileset_textureless, 0);
-
-#region entities
+    
+    #region entities
     if (map_contents.frozen && Stuff.setting_view_entities) {
         vertex_submit(map_contents.frozen, pr_trianglelist, tex);
     }
     if (map_contents.frozen_wire && Stuff.setting_view_entities && Stuff.setting_view_wireframe) {
         vertex_submit(map_contents.frozen_wire, pr_linelist, -1);
     }
-
+    
     for (var i = 0; i < ds_list_size(map_contents.batch_data); i++) {
         var data = map_contents.batch_data[| i];
         if (Stuff.setting_view_entities) {
@@ -66,19 +60,19 @@ function draw_editor_3d(argument0) {
             vertex_submit(data[? "wire"], pr_linelist, -1);
         }
     }
-
+    
     for (var i = 0; i < ds_list_size(map_contents.batch_in_the_future); i++) {
         var ent = map_contents.batch_in_the_future[| i];
         script_execute(ent.render, ent);
         // batchable entities don't make use of move routes, so don't bother
     }
-
+    
     // the water effect uses a different shader
     graphics_draw_water();
-
+    
     // move routes are logged when dynamic entities are being drawn
     var list_routes = ds_list_create();       // [buffer, x, y, z, extra?, extra x, extra y, extra z], positions are absolute
-
+    
     for (var i = 0; i < ds_list_size(map_contents.dynamic); i++) {
         var ent = map_contents.dynamic[| i];
         script_execute(ent.render, ent);
@@ -92,12 +86,12 @@ function draw_editor_3d(argument0) {
             }
         }
     }
-#endregion
-
+    #endregion
+    
     shader_reset();
     gpu_set_cullmode(cull_noculling);
-
-#region move routes
+    
+    #region move routes
     // because apparently you can't do color with a passthrough shader even though it has a color attribute
     for (var i = 0; i < ds_list_size(list_routes); i++) {
         var data = list_routes[| i];
@@ -109,11 +103,11 @@ function draw_editor_3d(argument0) {
             draw_sprite_ext(spr_plus_minus, 0, 0, 0, 0.25, 0.25, 0, c_lime, 1);
         }
     }
-
+    
     ds_list_destroy(list_routes);
-#endregion
-
-#region grids, selection boxes, zones
+    #endregion
+    
+    #region grids, selection boxes, zones
     if (Stuff.setting_view_grid) {
         transform_set(0, 0, Stuff.map.edit_z * TILE_DEPTH + 0.5, 0, 0, 0, 1, 1, 1);
         vertex_submit(Stuff.graphics.grid, pr_linelist, -1);
@@ -121,27 +115,27 @@ function draw_editor_3d(argument0) {
         transform_set(0, 0, 0.5, 0, 0, 0, 1, 1, 1);
         vertex_submit(Stuff.graphics.axes_width, pr_linelist, -1);
     }
-
+    
     // tried using ztestenable for this - didn't look good. at all.
     for (var i = 0; i < ds_list_size(mode.selection); i++) {
         var sel = mode.selection[| i];
         script_execute(sel.render, sel);
     }
-
+    
     if (Stuff.setting_view_zones) {
         for (var i = 0; i < ds_list_size(map_contents.all_zones); i++) {
             zone_render_rectangle(map_contents.all_zones[| i]);
         }
     }
-#endregion
-
-#region unlit meshes - UI stuff like axes and gizmos
+    #endregion
+    
+    #region unlit meshes - UI stuff like axes and gizmos
     if (Stuff.game_starting_map == Stuff.map.active_map.GUID) {
         transform_set(0, 0, 0, 0, 0, Stuff.direction_lookup[Stuff.game_starting_direction], 1, 1, 1);
         transform_add((Stuff.game_starting_x + 0.5) * TILE_WIDTH, (Stuff.game_starting_y + 0.5) * TILE_HEIGHT, Stuff.game_starting_z * TILE_DEPTH, 0, 0, 0, 1, 1, 1);
         vertex_submit(Stuff.graphics.basic_cage, pr_trianglelist, -1);
     }
-
+    
     // check for the gizmo setting in the actual events where this list is contributed
     // to - there may be some you want to draw regardless, like component axes
     while (!ds_queue_empty(Stuff.unlit_meshes)) {
@@ -151,19 +145,19 @@ function draw_editor_3d(argument0) {
         matrix_set(matrix_world, transform);
         vertex_submit(vbuffer, pr_trianglelist, -1);
     }
-#endregion
-
+    #endregion
+    
     transform_reset();
-
-#region overlay stuff - draw_camera_controls_overlay exists, but i'd actually rather not use it for this
+    
+    #region overlay stuff - draw_camera_controls_overlay exists, but i'd actually rather not use it for this
     gpu_set_ztestenable(false);
     var cwidth = camera_get_view_width(camera);
     var cheight = camera_get_view_height(camera);
     camera_set_view_mat(camera, matrix_build_lookat(cwidth / 2, cheight / 2, 16000,  cwidth / 2, cheight / 2, -16000, 0, 1, 0));
     camera_set_proj_mat(camera, matrix_build_projection_ortho(-cwidth, cheight, CAMERA_ZNEAR, CAMERA_ZFAR));
     camera_apply(camera);
-
-#region height controls
+    
+    #region height controls
     // base bar
     var height = clamp(24 * mode.active_map.zz, 64, 640);
     var sw = sprite_get_width(spr_vertical_bar);
@@ -173,20 +167,20 @@ function draw_editor_3d(argument0) {
     var yy_start = 64 + bh;
     var yy_end = 64 + height - bh;
     draw_sprite_stretched(spr_vertical_bar, 0, 32 - sw / 2, 64, sw, height);
-
+    
     // bar notches
     var notch_count = min(power(2, floor(log2(max(mode.active_map.zz, 2)))), 16);
     for (var i = 0; i < notch_count; i++) {
         var yy_notch = yy_start + i * (yy_end - yy_start) / (notch_count - 1);
         draw_line_width_colour(32 - bw / 4, yy_notch, 32 + bw / 4, yy_notch, 2, c_ui_select, c_ui_select);
     }
-
+    
     // buttons
     var overlap_plus = mouse_within_rectangle_view(32 - bw / 2, 64 - bh / 2, 32 + bw / 2, 64 + bh / 2);
     var overlap_minus = mouse_within_rectangle_view(32 - bw / 2, 64 + height - bh / 2, 32 + bw / 2, 64 + height + bh / 2);
     draw_sprite_ext(spr_plus_minus_button, 0, 32, 64, 1, 1, 0, overlap_plus ? c_ui_select : c_white, 1);
     draw_sprite_ext(spr_plus_minus_button, 1, 32, height + 64, 1, 1, 0, overlap_minus ? c_ui_select : c_white, 1);
-
+    
     // slider
     var slider_length = height - bh * 2;
     var interval = slider_length / (mode.active_map.zz - 1);
@@ -195,11 +189,11 @@ function draw_editor_3d(argument0) {
     var slh = sprite_get_height(spr_drag_handle_vertical);
     var overlap_slider = mouse_within_rectangle_view(32 - slw / 2, slider_y - slh / 2, 32 + slw / 2, slider_y + slh / 2);
     draw_sprite_ext(spr_drag_handle_vertical, 0, 32, slider_y, 1, 1, 0, overlap_slider ? c_ui_select : c_white, 1);
-
+    
     // interactions
     if (ds_list_empty(Stuff.dialogs)) {
         var overlap_interval = mouse_within_rectangle_view(32 - slw / 2, 64, 32 + slw / 2, 64 + height);
-
+        
         if (overlap_plus) {
             if (mouse_check_button_pressed(mb_left)) {
                 mode.edit_z = min(++mode.edit_z, mode.active_map.zz - 1);
@@ -218,17 +212,15 @@ function draw_editor_3d(argument0) {
             mode.mouse_over_ui = true;
         }
     }
-#endregion
-
-#region icons
+    #endregion
+    
+    #region icons
     while (!ds_queue_empty(Stuff.screen_icons)) {
         var data = ds_queue_dequeue(Stuff.screen_icons);
         var sprite = data[0];
         var position = data[1];
         draw_sprite(sprite, 0, position[vec3.xx], position[vec3.yy]);
     }
-#endregion
-#endregion
-
-
+    #endregion
+    #endregion
 }
