@@ -4,7 +4,11 @@
 
 I have it in my head that making a general-purpose game editor will save me time in the long run, as opposed to falling into the trap of [this](https://xkcd.com/1319/), which it almost certainly already has. But on the other hand, I've had fun working on this, so maybe that's okay.
 
-The design of this editor borrows a lot from RPG Maker, although there are a number of places where it obviously deviates (all events are functionally Common Events) and some stuff that's totally new (3D meshes vs tiles only).
+(With that said, it's bee nice having this base of code to use as a starting point to spin other tools off of.)
+
+The design of this editor borrows a lot from RPG Maker, although there are a number of places where it obviously deviates - all events are functionally Common Events - and some stuff that's totally new, such as 3D meshes.
+
+By the way I'm chronically behind on updating this readme, I hope you understand.
 
 ## Media
 
