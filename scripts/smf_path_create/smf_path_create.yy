@@ -1,8 +1,12 @@
 {
-    "id": "80033825-816a-46e4-9edd-d21797530bf8",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "smf_path_create",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Advanced",
+    "path": "folders/Scripts/SMF model format/Paths/Advanced.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "smf_path_create",
+  "tags": [],
+  "resourceType": "GMScript",
 }

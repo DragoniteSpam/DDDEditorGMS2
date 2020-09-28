@@ -1,8 +1,12 @@
 {
-    "id": "532a68cf-522c-4673-898d-6ad8891e321e",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "ui_input_terrain_set_brush_radius",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "ui",
+    "path": "folders/Scripts/modes/terrain/ui.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "ui_input_terrain_set_brush_radius",
+  "tags": [],
+  "resourceType": "GMScript",
 }

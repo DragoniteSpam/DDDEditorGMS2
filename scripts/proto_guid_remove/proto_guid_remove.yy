@@ -1,8 +1,12 @@
 {
-    "id": "754364ca-9776-43fb-bde8-deeaa36fef01",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "proto_guid_remove",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "resources",
+    "path": "folders/Scripts/resources.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "proto_guid_remove",
+  "tags": [],
+  "resourceType": "GMScript",
 }

@@ -1,8 +1,12 @@
 {
-    "id": "6eaa07fc-fddf-4b81-a9b6-b44e3b1c7174",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "dialog_create_project_list",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "creation",
+    "path": "folders/Scripts/ui stuff/dialogs/creation.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "dialog_create_project_list",
+  "tags": [],
+  "resourceType": "GMScript",
 }

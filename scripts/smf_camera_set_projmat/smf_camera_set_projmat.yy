@@ -1,8 +1,12 @@
 {
-    "id": "a5300b80-a663-4127-a3e5-3e488a8a2238",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "smf_camera_set_projmat",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Camera control",
+    "path": "folders/Scripts/SMF model format/Camera control.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "smf_camera_set_projmat",
+  "tags": [],
+  "resourceType": "GMScript",
 }

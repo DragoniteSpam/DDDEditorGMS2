@@ -28,15 +28,16 @@ varying vec3 v_FogCameraRelativePosition;
 void CommonFogSetup();
 
 void CommonFogSetup() {
-    v_FogCameraRelativePosition = normalize((gm_Matrices[MATRIX_WORLD_VIEW_PROJECTION] * vec4(in_Position, 1.)).xyz);
+    v_FogCameraRelativePosition = (gm_Matrices[MATRIX_WORLD_VIEW_PROJECTION] * vec4(in_Position, 1.)).xyz;
 }
 // include("fog.v.xsh")
 
 void main() {
     gl_Position = gm_Matrices[MATRIX_WORLD_VIEW_PROJECTION] * vec4(in_Position, 1.);
-    v_vTexcoord = in_TextureCoord;
-    v_vColour = in_Colour;
     
     CommonLightSetup();
     CommonFogSetup();
+    
+    v_vTexcoord = in_TextureCoord;
+    v_vColour = in_Colour;
 }

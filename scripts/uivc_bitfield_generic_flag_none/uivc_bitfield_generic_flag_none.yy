@@ -1,8 +1,12 @@
 {
-    "id": "e3132bed-a025-4c6e-ad5c-9eff7200b02a",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_bitfield_generic_flag_none",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "entity",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction/tile and mesh editor/entity.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_bitfield_generic_flag_none",
+  "tags": [],
+  "resourceType": "GMScript",
 }

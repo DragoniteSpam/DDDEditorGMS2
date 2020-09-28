@@ -1,8 +1,12 @@
 {
-    "id": "fd466295-aea2-451a-ab73-43cb9a9658c2",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "ui_particle_type_speed_wiggle",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "ui",
+    "path": "folders/Scripts/modes/particle/ui.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "ui_particle_type_speed_wiggle",
+  "tags": [],
+  "resourceType": "GMScript",
 }

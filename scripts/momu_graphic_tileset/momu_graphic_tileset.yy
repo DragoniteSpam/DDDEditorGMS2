@@ -1,8 +1,12 @@
 {
-    "id": "66a69a30-5cfd-40a6-a951-b7ce1ce7fd42",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "momu_graphic_tileset",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "basic",
+    "path": "folders/Scripts/ui stuff/menu/onmouseup/data/basic.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "momu_graphic_tileset",
+  "tags": [],
+  "resourceType": "GMScript",
 }

@@ -1,8 +1,12 @@
 {
-    "id": "223abb26-c58a-42d2-9eb2-1834ad458a5f",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "animation_set_keyframe_parameter_tween",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "animation",
+    "path": "folders/Scripts/animation.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "animation_set_keyframe_parameter_tween",
+  "tags": [],
+  "resourceType": "GMScript",
 }

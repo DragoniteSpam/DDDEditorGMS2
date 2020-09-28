@@ -1,8 +1,12 @@
 {
-    "id": "7c1a54b1-fcf3-4396-b39e-60eebb51628c",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "terrain_add_color",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "terrain",
+    "path": "folders/Scripts/modes/terrain.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "terrain_add_color",
+  "tags": [],
+  "resourceType": "GMScript",
 }

@@ -1,8 +1,12 @@
 {
-    "id": "d7530a8c-34a5-432a-b157-dc9d8271fa10",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "momu_editor_scribble",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "data",
+    "path": "folders/Scripts/ui stuff/menu/onmouseup/data.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "momu_editor_scribble",
+  "tags": [],
+  "resourceType": "GMScript",
 }

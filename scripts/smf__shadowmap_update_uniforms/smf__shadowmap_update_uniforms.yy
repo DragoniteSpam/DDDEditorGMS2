@@ -1,8 +1,12 @@
 {
-    "id": "c0605e45-8b2b-4e5f-af60-d7ef718a0d1f",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "smf__shadowmap_update_uniforms",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Shadowmaps",
+    "path": "folders/Scripts/SMF model format/Lighting/Shadowmaps.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "smf__shadowmap_update_uniforms",
+  "tags": [],
+  "resourceType": "GMScript",
 }

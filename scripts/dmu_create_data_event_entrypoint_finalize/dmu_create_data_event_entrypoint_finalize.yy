@@ -1,8 +1,12 @@
 {
-    "id": "60e2434b-0f6b-4b44-8d51-05d7b52b5def",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "dmu_create_data_event_entrypoint_finalize",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "data and events",
+    "path": "folders/Scripts/ui stuff/dialogs/creation/data and events.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "dmu_create_data_event_entrypoint_finalize",
+  "tags": [],
+  "resourceType": "GMScript",
 }

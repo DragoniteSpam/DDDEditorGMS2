@@ -1,8 +1,12 @@
 {
-    "id": "48ede753-26d6-419c-83c1-a7e4d235f7c8",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_entity_mesh_autotile_slope",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "mesh",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction/entity properties/mesh.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_entity_mesh_autotile_slope",
+  "tags": [],
+  "resourceType": "GMScript",
 }

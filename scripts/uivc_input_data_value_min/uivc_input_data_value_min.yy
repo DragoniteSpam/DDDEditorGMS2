@@ -1,8 +1,12 @@
 {
-    "id": "b8cec825-7713-48b2-b786-8bd25a42285d",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_input_data_value_min",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "data etc",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction/data etc.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_input_data_value_min",
+  "tags": [],
+  "resourceType": "GMScript",
 }

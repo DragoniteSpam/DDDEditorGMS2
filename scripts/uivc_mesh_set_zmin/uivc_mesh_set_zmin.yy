@@ -1,8 +1,12 @@
 {
-    "id": "4e080d15-f133-447d-abe5-ab7f29a05427",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_mesh_set_zmin",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "mesh stuff",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction/mesh stuff.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_mesh_set_zmin",
+  "tags": [],
+  "resourceType": "GMScript",
 }

@@ -44,7 +44,7 @@ enum ModeIDs {
 
 tf = ["False", "True"];
 on_off = ["Off", "On"];
-color_channels = vector4(0x000000ff, 0x0000ff00, 0x00ff0000, 0xff000000);
+color_channels = [0x000000ff, 0x0000ff00, 0x00ff0000, 0xff000000];
 comparison_text = ["<", "<=", "==", ">=", ">", "!="];
 color_lookup = [c_red, c_green, c_blue, c_orange, c_aqua, c_fuchsia, c_purple, c_teal];
 direction_lookup = [270, 180, 0, 90];
@@ -72,7 +72,7 @@ if (file_exists("projects.json")) {
     all_projects = ds_map_create();
     ds_map_add_list(all_projects, "projects", ds_list_create());
 }
-// @gml update try catch
+
 if (file_exists(FILE_SETTINGS)) {
     var json_buffer = buffer_load(FILE_SETTINGS);
     settings = json_decode(buffer_read(json_buffer, buffer_string));
@@ -180,10 +180,9 @@ alarm[ALARM_SETTINGS_SAVE] = room_speed * CAMERA_SAVE_FREQUENCY;
 
 #region initialize standalone systems
 smf_init();
-ds_stuff_init();
-c_init();
-c_world_create();
-dotdae_init();
+
+//dotdae_init();
+wtf("re-add the dotdae thing eventually");
 
 FMODGMS_Sys_Create();
 FMODGMS_Sys_Initialize(32);
@@ -200,7 +199,6 @@ all_internal_names = ds_map_create();
 
 spr_character_default = sprite_add(PATH_GRAPHICS + "b_chr_default.png", 0, false, false, 0, 0);
 
-// @gml update lwos, all of them
 all_graphic_tilesets = ds_list_create();
 all_graphic_overworlds = ds_list_create();
 all_graphic_battlers = ds_list_create();
@@ -254,7 +252,7 @@ repeat (FLAG_COUNT) {
 all_asset_flags[| 0] = "Bush";
 all_asset_flags[| 1] = "Counter";
 all_asset_flags[| 2] = "Danger";
-all_asset_flags[| 3] = "Save";
+all_asset_flags[| 3] = "Safe";
 all_asset_flags[| 4] = "Water";
 
 all_maps = ds_list_create();
@@ -447,8 +445,7 @@ c_object_cache = ds_queue_create();
 #endregion
 
 #region end of step actions
-schedule_rebuild_master_texture = false;
-schedule_view_master_texture = false;
+schedule_rebuild_autotile_texture = false;
 schedule_save = false;
 
 gpu_base_state = gpu_get_state();
@@ -469,7 +466,6 @@ mesh_yrot = 0;
 mesh_zrot = 0;
 mesh_scale = 1;
 
-error_log_messages = ds_list_create();
 dialogs = ds_list_create();
 drawn_dialog_shade = false;
 element_tooltip = noone;

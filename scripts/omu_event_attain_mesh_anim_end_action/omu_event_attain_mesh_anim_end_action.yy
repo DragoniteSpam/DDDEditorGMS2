@@ -1,8 +1,12 @@
 {
-    "id": "465136a7-b59a-484d-98ba-36055f62ab01",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "omu_event_attain_mesh_anim_end_action",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "event attainment and stuff",
+    "path": "folders/Scripts/ui stuff/dialogs/creation/event attainment and stuff.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "omu_event_attain_mesh_anim_end_action",
+  "tags": [],
+  "resourceType": "GMScript",
 }

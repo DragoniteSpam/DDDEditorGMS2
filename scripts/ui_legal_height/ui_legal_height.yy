@@ -1,8 +1,12 @@
 {
-    "id": "c5d6c480-92e5-436d-80e1-0571b6c38ea4",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "ui_legal_height",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "math",
+    "path": "folders/Scripts/ui stuff/math.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "ui_legal_height",
+  "tags": [],
+  "resourceType": "GMScript",
 }

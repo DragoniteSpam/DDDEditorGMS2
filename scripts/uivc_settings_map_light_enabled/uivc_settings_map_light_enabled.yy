@@ -1,8 +1,12 @@
 {
-    "id": "e58b6d0b-89cc-4b46-9cda-7da586aadce0",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_settings_map_light_enabled",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "settings",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction/settings.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_settings_map_light_enabled",
+  "tags": [],
+  "resourceType": "GMScript",
 }

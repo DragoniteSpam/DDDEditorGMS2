@@ -1,8 +1,12 @@
 {
-    "id": "4fecdd3d-e55e-4415-9b9b-17f908c7851b",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "omu_data_enum_add",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "data etc",
+    "path": "folders/Scripts/ui stuff/onmouseup/data etc.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "omu_data_enum_add",
+  "tags": [],
+  "resourceType": "GMScript",
 }

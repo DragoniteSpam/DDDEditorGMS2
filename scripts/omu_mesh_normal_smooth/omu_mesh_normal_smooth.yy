@@ -1,8 +1,12 @@
 {
-    "id": "de12a3bf-7b99-4621-bdec-4715ee4965c4",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "omu_mesh_normal_smooth",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "data etc",
+    "path": "folders/Scripts/ui stuff/onmouseup/data etc.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "omu_mesh_normal_smooth",
+  "tags": [],
+  "resourceType": "GMScript",
 }

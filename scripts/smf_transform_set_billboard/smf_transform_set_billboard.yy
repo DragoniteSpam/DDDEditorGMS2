@@ -1,8 +1,12 @@
 {
-    "id": "dc9e63db-692c-48a1-8a19-77eca821508f",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "smf_transform_set_billboard",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Transformations",
+    "path": "folders/Scripts/SMF model format/Transformations.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "smf_transform_set_billboard",
+  "tags": [],
+  "resourceType": "GMScript",
 }

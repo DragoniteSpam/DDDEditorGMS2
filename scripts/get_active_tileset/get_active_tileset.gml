@@ -1,1 +1,5 @@
-return Stuff.all_graphic_tilesets[| Stuff.map.active_map.tileset];
+function get_active_tileset() {
+    var ts = guid_get(Stuff.map.active_map.tileset);
+    if (ts) return ts;
+    return Stuff.all_graphic_tilesets[| 0];
+}

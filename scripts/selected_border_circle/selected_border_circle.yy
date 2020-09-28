@@ -1,8 +1,12 @@
 {
-    "id": "d9678316-8b96-4553-823c-842be2f99daf",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "selected_border_circle",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "determination",
+    "path": "folders/Scripts/Selection/determination.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "selected_border_circle",
+  "tags": [],
+  "resourceType": "GMScript",
 }

@@ -1,8 +1,12 @@
 {
-    "id": "424effe5-bbb2-4880-b8e8-a7d657a45e77",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "ui_render_surface_scribble_preview",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "render surfaces",
+    "path": "folders/Scripts/ui stuff/rendering/special/render surfaces.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "ui_render_surface_scribble_preview",
+  "tags": [],
+  "resourceType": "GMScript",
 }

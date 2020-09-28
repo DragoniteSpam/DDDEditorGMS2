@@ -1,8 +1,12 @@
 {
-    "id": "77207114-ebe4-4501-b3c9-ba4aa8b2674e",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "dc_settings_switch_resize",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "verification",
+    "path": "folders/Scripts/ui stuff/dialogs/commit/verification.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "dc_settings_switch_resize",
+  "tags": [],
+  "resourceType": "GMScript",
 }

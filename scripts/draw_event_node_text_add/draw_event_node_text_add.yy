@@ -1,8 +1,12 @@
 {
-    "id": "a5c10f61-02fd-4c2a-b486-216c67295597",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "draw_event_node_text_add",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "event stuff",
+    "path": "folders/Scripts/event stuff.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "draw_event_node_text_add",
+  "tags": [],
+  "resourceType": "GMScript",
 }

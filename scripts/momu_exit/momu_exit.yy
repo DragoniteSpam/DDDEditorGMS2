@@ -1,8 +1,12 @@
 {
-    "id": "235f416d-662b-4b56-95ad-660d96b2ee29",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "momu_exit",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "file",
+    "path": "folders/Scripts/ui stuff/menu/onmouseup/file.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "momu_exit",
+  "tags": [],
+  "resourceType": "GMScript",
 }

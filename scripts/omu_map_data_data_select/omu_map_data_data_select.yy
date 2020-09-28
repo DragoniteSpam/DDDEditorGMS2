@@ -1,8 +1,12 @@
 {
-    "id": "e70220a9-2119-4adb-9483-5e10df80a29b",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "omu_map_data_data_select",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "data etc",
+    "path": "folders/Scripts/ui stuff/onmouseup/data etc.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "omu_map_data_data_select",
+  "tags": [],
+  "resourceType": "GMScript",
 }

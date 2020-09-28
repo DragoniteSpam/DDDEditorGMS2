@@ -1,8 +1,12 @@
 {
-    "id": "53b4a8ca-ad8f-4dec-be4b-9236d94a283c",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "draw_editor_terrain_menu",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "views",
+    "path": "folders/Scripts/Graphics/views.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "draw_editor_terrain_menu",
+  "tags": [],
+  "resourceType": "GMScript",
 }

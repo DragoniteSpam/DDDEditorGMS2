@@ -1,8 +1,12 @@
 {
-    "id": "b036f10f-07d7-4cae-9bac-3824365284af",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "dialog_create_manager_graphic_etc",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "basic data",
+    "path": "folders/Scripts/ui stuff/dialogs/creation/basic data.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "dialog_create_manager_graphic_etc",
+  "tags": [],
+  "resourceType": "GMScript",
 }

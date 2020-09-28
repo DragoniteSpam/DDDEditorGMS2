@@ -1,3 +1,7 @@
 /// @smf_path_get_closed(index)
 /// @param index
-return SMF_pathList[| argument0 + 1];
+function smf_path_get_closed(argument0) {
+    return SMF_pathList[| argument0 + 1];
+
+
+}

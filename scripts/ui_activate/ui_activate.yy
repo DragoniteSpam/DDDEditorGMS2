@@ -1,8 +1,12 @@
 {
-    "id": "c37ecf28-8b0d-4b55-ad5e-e7c3ef5e5e0c",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "ui_activate",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "ui stuff",
+    "path": "folders/Scripts/ui stuff.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "ui_activate",
+  "tags": [],
+  "resourceType": "GMScript",
 }

@@ -1,8 +1,12 @@
 {
-    "id": "2bed63df-39c2-4b6c-a14d-540d841749db",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "smf_sample_blend",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Animation",
+    "path": "folders/Scripts/SMF model format/Animation.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "smf_sample_blend",
+  "tags": [],
+  "resourceType": "GMScript",
 }

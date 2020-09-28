@@ -1,8 +1,12 @@
 {
-    "id": "8a779c0f-b0fd-4a5b-8f09-002d9fe80c9d",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "spart_particles_clear",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Particle system",
+    "path": "folders/Scripts/sPart/Particle system.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "spart_particles_clear",
+  "tags": [],
+  "resourceType": "GMScript",
 }

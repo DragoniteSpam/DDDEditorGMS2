@@ -1,8 +1,12 @@
 {
-    "id": "a884fcbf-572d-4c3a-95e0-b57bff3243b4",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "ui_particle_type_life_max",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "ui",
+    "path": "folders/Scripts/modes/particle/ui.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "ui_particle_type_life_max",
+  "tags": [],
+  "resourceType": "GMScript",
 }

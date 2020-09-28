@@ -1,8 +1,12 @@
 {
-    "id": "1b4c545b-c4c5-4949-bb22-c222e7e159b3",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_settings_game_grid",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "settings",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction/settings.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_settings_game_grid",
+  "tags": [],
+  "resourceType": "GMScript",
 }

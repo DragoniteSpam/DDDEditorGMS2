@@ -1,8 +1,12 @@
 {
-    "id": "63247abf-b15d-4ad5-9dbb-2a4ab5905d4a",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "dmu_dialog_commit",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "on mouse up",
+    "path": "folders/Scripts/ui stuff/dialogs/on mouse up.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "dmu_dialog_commit",
+  "tags": [],
+  "resourceType": "GMScript",
 }

@@ -1,8 +1,12 @@
 {
-    "id": "850c8997-cd8a-4cd3-b0f1-b93c1585633c",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_list_mesh_markers",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "data etc",
+    "path": "folders/Scripts/ui stuff/onmouseup/data etc.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_list_mesh_markers",
+  "tags": [],
+  "resourceType": "GMScript",
 }

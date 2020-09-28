@@ -1,8 +1,12 @@
 {
-    "id": "78b2bb8b-549d-4968-a988-c216915e5d0f",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "component_axis_down",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "components",
+    "path": "folders/Scripts/entity/components.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "component_axis_down",
+  "tags": [],
+  "resourceType": "GMScript",
 }

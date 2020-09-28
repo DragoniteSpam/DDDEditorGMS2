@@ -74,7 +74,9 @@ enum FillTypes {
 active_map = instance_create_depth(0, 0, 0, DataMapContainer);
 active_map.contents = instance_create_depth(0, 0, 0, MapContents);
 ds_grid_resize(active_map.contents.map_grid, active_map.xx, active_map.yy);
+ds_grid_resize(active_map.contents.map_grid_frozen_tags, active_map.xx, active_map.yy);
 map_fill_grid(active_map.contents.map_grid, active_map.zz);
+map_fill_tag_grid(active_map.contents.map_grid_frozen_tags, active_map.zz);
 
 ui = ui_init_main(id);
 mode_id = ModeIDs.MAP;

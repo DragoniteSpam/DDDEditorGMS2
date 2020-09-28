@@ -1,8 +1,12 @@
 {
-    "id": "ed72e61f-bd24-4752-bb22-567d0fefefa2",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "ui_input_terrain_light_point_z",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "ui",
+    "path": "folders/Scripts/modes/terrain/ui.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "ui_input_terrain_light_point_z",
+  "tags": [],
+  "resourceType": "GMScript",
 }

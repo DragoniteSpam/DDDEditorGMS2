@@ -1,8 +1,12 @@
 {
-    "id": "de103569-7936-4d54-8094-68b2fd78c739",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "dc_entity_data_property_set_data",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "execution",
+    "path": "folders/Scripts/ui stuff/dialogs/commit/execution.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "dc_entity_data_property_set_data",
+  "tags": [],
+  "resourceType": "GMScript",
 }

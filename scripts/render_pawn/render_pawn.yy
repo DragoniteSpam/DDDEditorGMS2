@@ -1,8 +1,12 @@
 {
-    "id": "c90c974b-f766-4e1c-8510-7a8d4cb235c2",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "render_pawn",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "rendering",
+    "path": "folders/Scripts/Graphics/rendering.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "render_pawn",
+  "tags": [],
+  "resourceType": "GMScript",
 }

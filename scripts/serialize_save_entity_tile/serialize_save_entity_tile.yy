@@ -1,8 +1,12 @@
 {
-    "id": "db1f335d-2cec-4b9d-8cd5-530338220303",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "serialize_save_entity_tile",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "map contents",
+    "path": "folders/Scripts/serialization/save/map contents.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "serialize_save_entity_tile",
+  "tags": [],
+  "resourceType": "GMScript",
 }

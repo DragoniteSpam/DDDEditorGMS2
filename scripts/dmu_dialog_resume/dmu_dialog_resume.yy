@@ -1,8 +1,12 @@
 {
-    "id": "e2dceef7-cfec-4ab2-8c6f-a021e9f5a6a3",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "dmu_dialog_resume",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "audio",
+    "path": "folders/Scripts/ui stuff/dialogs/on mouse up/data/audio.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "dmu_dialog_resume",
+  "tags": [],
+  "resourceType": "GMScript",
 }

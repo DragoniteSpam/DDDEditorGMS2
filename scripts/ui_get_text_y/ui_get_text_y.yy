@@ -1,8 +1,12 @@
 {
-    "id": "b31ec713-3cba-4250-abcc-87a3798418a9",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "ui_get_text_y",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "math",
+    "path": "folders/Scripts/ui stuff/math.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "ui_get_text_y",
+  "tags": [],
+  "resourceType": "GMScript",
 }

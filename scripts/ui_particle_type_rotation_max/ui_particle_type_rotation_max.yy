@@ -1,8 +1,12 @@
 {
-    "id": "d21edf25-9c08-40f5-b8b1-ff6f0e76e724",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "ui_particle_type_rotation_max",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "ui",
+    "path": "folders/Scripts/modes/particle/ui.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "ui_particle_type_rotation_max",
+  "tags": [],
+  "resourceType": "GMScript",
 }

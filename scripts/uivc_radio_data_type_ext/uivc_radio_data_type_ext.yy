@@ -1,8 +1,12 @@
 {
-    "id": "866aebb3-1e12-407d-b60b-0edf7a950e7d",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_radio_data_type_ext",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "data etc",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction/data etc.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_radio_data_type_ext",
+  "tags": [],
+  "resourceType": "GMScript",
 }

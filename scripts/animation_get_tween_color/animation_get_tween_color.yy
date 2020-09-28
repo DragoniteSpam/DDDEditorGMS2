@@ -1,8 +1,12 @@
 {
-    "id": "39322df9-16c7-44e3-9fa0-b4e019c3d9cd",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "animation_get_tween_color",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "get tween values",
+    "path": "folders/Scripts/animation/get tween values.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "animation_get_tween_color",
+  "tags": [],
+  "resourceType": "GMScript",
 }

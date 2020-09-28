@@ -1,8 +1,12 @@
 {
-    "id": "d8f62473-2be2-4cfe-91e8-4ca68c265695",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_check_view_grids",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "on value change and general interaction",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_check_view_grids",
+  "tags": [],
+  "resourceType": "GMScript",
 }

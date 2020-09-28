@@ -1,8 +1,12 @@
 {
-    "id": "5c1ab52a-b91a-4638-b11e-3ddeb81646f6",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "omu_event_custom_dialog",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "events",
+    "path": "folders/Scripts/ui stuff/onmouseup/events.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "omu_event_custom_dialog",
+  "tags": [],
+  "resourceType": "GMScript",
 }

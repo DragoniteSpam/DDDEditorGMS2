@@ -1,8 +1,12 @@
 {
-    "id": "d1c26bb1-b3c3-4382-a7d9-cb1b955a2b44",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "omu_mesh_submesh_rename",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "data etc",
+    "path": "folders/Scripts/ui stuff/onmouseup/data etc.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "omu_mesh_submesh_rename",
+  "tags": [],
+  "resourceType": "GMScript",
 }

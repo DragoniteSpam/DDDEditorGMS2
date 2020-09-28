@@ -1,8 +1,12 @@
 {
-    "id": "2d4cde59-e7cc-4103-b4f6-409f20c12e83",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_terrain_export_heightmap",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "ui",
+    "path": "folders/Scripts/modes/terrain/ui.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_terrain_export_heightmap",
+  "tags": [],
+  "resourceType": "GMScript",
 }

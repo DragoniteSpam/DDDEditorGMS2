@@ -1,8 +1,12 @@
 {
-    "id": "aaee8de7-e29b-49c3-b6fb-edc4188c2be9",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "ui_render_list_data_data",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "special",
+    "path": "folders/Scripts/ui stuff/rendering/special.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "ui_render_list_data_data",
+  "tags": [],
+  "resourceType": "GMScript",
 }

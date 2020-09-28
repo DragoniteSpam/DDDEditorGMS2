@@ -1,8 +1,12 @@
 {
-    "id": "fd1dc245-8525-4610-9008-3b046145122d",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "smf_light_add_point",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Lighting",
+    "path": "folders/Scripts/SMF model format/Lighting.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "smf_light_add_point",
+  "tags": [],
+  "resourceType": "GMScript",
 }

@@ -1,8 +1,12 @@
 {
-    "id": "0660022b-43d7-4232-8df3-3a939f8876b6",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uimu_selection_delete",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "on value change and general interaction",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uimu_selection_delete",
+  "tags": [],
+  "resourceType": "GMScript",
 }

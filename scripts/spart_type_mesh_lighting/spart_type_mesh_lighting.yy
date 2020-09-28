@@ -1,8 +1,12 @@
 {
-    "id": "051e0138-cf32-4557-888d-c4f8185d131c",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "spart_type_mesh_lighting",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Particle types",
+    "path": "folders/Scripts/sPart/Particle types.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "spart_type_mesh_lighting",
+  "tags": [],
+  "resourceType": "GMScript",
 }

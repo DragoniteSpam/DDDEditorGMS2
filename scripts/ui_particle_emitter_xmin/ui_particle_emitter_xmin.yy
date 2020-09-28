@@ -1,8 +1,12 @@
 {
-    "id": "30e4e4ce-b597-460a-a4ac-eaccbd4d0ff4",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "ui_particle_emitter_xmin",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "ui",
+    "path": "folders/Scripts/modes/particle/ui.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "ui_particle_emitter_xmin",
+  "tags": [],
+  "resourceType": "GMScript",
 }

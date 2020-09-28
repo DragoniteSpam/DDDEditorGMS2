@@ -1,8 +1,12 @@
 {
-    "id": "b895c766-6a0f-4664-b9a2-cecbf8a2ff4a",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "smf_texture_get_index",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Texture management",
+    "path": "folders/Scripts/SMF model format/Advanced/Texture management.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "smf_texture_get_index",
+  "tags": [],
+  "resourceType": "GMScript",
 }

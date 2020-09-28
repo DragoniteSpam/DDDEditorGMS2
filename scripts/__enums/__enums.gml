@@ -1,7 +1,5 @@
 // this defines a few global things, like names associated with each enum;
 // this is generally not a great practice and you should do it sparingly
-gml_pragma("global", "__enums()");
-
 enum SerializeThings {
     ERROR                   = 0x00000000,
     // basic stuff

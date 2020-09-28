@@ -2,10 +2,14 @@
 /// @param xs the x scale amount
 /// @param ys the y scale amount
 /// @param zs the z scale amount
+function smf_transform_set_scaling(argument0, argument1, argument2) {
 
-// build the rotation matrix
-var m = matrix_build_identity();
-m[0] = argument0;
-m[5] = argument1;
-m[10] = argument2;
-matrix_set( matrix_world, m);
+    // build the rotation matrix
+    var m = matrix_build_identity();
+    m[0] = argument0;
+    m[5] = argument1;
+    m[10] = argument2;
+    matrix_set( matrix_world, m);
+
+
+}

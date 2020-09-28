@@ -1,8 +1,12 @@
 {
-    "id": "3524668f-fce9-47ef-a727-b1f72a682462",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "dmu_data_remove_map",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "map and settings",
+    "path": "folders/Scripts/ui stuff/dialogs/on mouse up/map and settings.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "dmu_data_remove_map",
+  "tags": [],
+  "resourceType": "GMScript",
 }

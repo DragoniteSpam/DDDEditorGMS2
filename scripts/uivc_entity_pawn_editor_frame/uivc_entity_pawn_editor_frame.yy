@@ -1,8 +1,12 @@
 {
-    "id": "d8f3a396-1c81-4c03-a661-1f05756107da",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_entity_pawn_editor_frame",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "pawn",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction/entity properties/pawn.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_entity_pawn_editor_frame",
+  "tags": [],
+  "resourceType": "GMScript",
 }

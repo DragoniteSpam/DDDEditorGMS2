@@ -1,8 +1,12 @@
 {
-    "id": "102099e5-d73a-4de5-b9ee-a60acea2a4de",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "dialog_create_settings_data_collision_triggers",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "creation",
+    "path": "folders/Scripts/ui stuff/dialogs/creation.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "dialog_create_settings_data_collision_triggers",
+  "tags": [],
+  "resourceType": "GMScript",
 }

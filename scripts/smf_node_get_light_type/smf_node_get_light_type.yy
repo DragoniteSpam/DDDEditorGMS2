@@ -1,8 +1,12 @@
 {
-    "id": "290df38e-fcdc-43c9-a500-fba705c812aa",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "smf_node_get_light_type",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Nodes",
+    "path": "folders/Scripts/SMF model format/Nodes.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "smf_node_get_light_type",
+  "tags": [],
+  "resourceType": "GMScript",
 }

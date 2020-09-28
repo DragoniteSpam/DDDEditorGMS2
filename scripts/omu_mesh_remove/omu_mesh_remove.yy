@@ -1,8 +1,12 @@
 {
-    "id": "e8680be4-b527-4311-9f1f-8573c3fe63cb",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "omu_mesh_remove",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "data etc",
+    "path": "folders/Scripts/ui stuff/onmouseup/data etc.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "omu_mesh_remove",
+  "tags": [],
+  "resourceType": "GMScript",
 }

@@ -1,8 +1,12 @@
 {
-    "id": "ef62638d-1a2c-488c-b15f-40a10d885319",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "draw_event_node_text_move",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "event stuff",
+    "path": "folders/Scripts/event stuff.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "draw_event_node_text_move",
+  "tags": [],
+  "resourceType": "GMScript",
 }

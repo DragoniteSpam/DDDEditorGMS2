@@ -1,8 +1,12 @@
 {
-    "id": "afcc34aa-84c9-48d0-b004-4de9eec23ef2",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "smf__collision_recursive_split_quadtree",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Quad tree functions",
+    "path": "folders/Scripts/SMF model format/Collision/Model collision/Advanced/Quad tree functions.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "smf__collision_recursive_split_quadtree",
+  "tags": [],
+  "resourceType": "GMScript",
 }

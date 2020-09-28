@@ -1,8 +1,12 @@
 {
-    "id": "af0acf16-9d44-49cb-bbd5-3839800d3330",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_animation_layer_rotation_y",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "defaults",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction/animations/defaults.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_animation_layer_rotation_y",
+  "tags": [],
+  "resourceType": "GMScript",
 }

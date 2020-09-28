@@ -1,8 +1,12 @@
 {
-    "id": "994c505b-b3aa-4e61-94a1-d407accf5740",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "smf_quat_multiply",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Quaternion",
+    "path": "folders/Scripts/SMF model format/Advanced/Mathematics/Quaternion.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "smf_quat_multiply",
+  "tags": [],
+  "resourceType": "GMScript",
 }

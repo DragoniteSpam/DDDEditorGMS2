@@ -1,8 +1,12 @@
 {
-    "id": "01ffceb5-8bd9-4556-a683-7c16d669a58a",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "omu_meshes_draw_scale",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "meshes",
+    "path": "folders/Scripts/ui stuff/onmouseup/meshes.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "omu_meshes_draw_scale",
+  "tags": [],
+  "resourceType": "GMScript",
 }

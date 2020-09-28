@@ -1,6 +1,7 @@
-//   @jujuadams   v6.0.7e   2020-06-29
+//   @jujuadams   v6.0.9   2020-07-22
+precision highp float;
 
-const int MAX_EFFECTS = 8;
+const int MAX_EFFECTS = 9;
 //By default, the effect indexes are:
 //0 = is an animated sprite
 //1 = wave
@@ -10,8 +11,9 @@ const int MAX_EFFECTS = 8;
 //5 = pulse
 //6 = wheel
 //7 = cycle
+//8 = jitter
 
-const int MAX_ANIM_FIELDS = 18;
+const int MAX_ANIM_FIELDS = 20;
 //By default, the data fields are:
 // 0 = wave amplitude
 // 1 = wave frequency
@@ -27,23 +29,16 @@ const int MAX_ANIM_FIELDS = 18;
 //11 = wheel amplitude
 //12 = wheel frequency
 //13 = wheel speed
-//14 = cycle weight
-//15 = cycle speed
-//16 = cycle hues (A, B, C)
-//17 = cycle hues (D, E, F)
+//14 = cycle speed
+//15 = cycle saturation
+//16 = cycle value
+//17 = jitter minimum scale
+//18 = jitter maximum scale
+//19 = jitter speed
 
 const float MAX_LINES = 1000.0; //Change __SCRIBBLE_MAX_LINES in scribble_init() if you change this value!
 
 const int WINDOW_COUNT = 4;
-
-//YIQ colourspace conversion matrices, used for [cycle] effect
-const mat3 rgb2yiq = mat3(0.299000,  0.5870000,  0.114000,
-                          0.595716, -0.2744530, -0.321263,
-                          0.211456, -0.5225910,  0.311135);
-
-const mat3 yiq2rgb = mat3(1.000000,  0.9563000,  0.621000,
-                          1.000000, -0.2721000, -0.647400,
-                          1.000000, -1.1070000,  1.704600);
 
 
 
@@ -51,8 +46,8 @@ const mat3 yiq2rgb = mat3(1.000000,  0.9563000,  0.621000,
 // Attributes, Varyings, and Uniforms
 
 
-attribute vec3 in_Position;     //{Centre X, Centre Y, Packed character & line index}
-attribute vec3 in_Normal;       //{Delta X, Delta Y, Bitpacked effect flags}
+attribute vec3 in_Position;     //{X, Y, Packed character & line index}
+attribute vec3 in_Normal;       //{Packed centre dXdY, Sprite data, Bitpacked effect flags}
 attribute vec4 in_Colour;       //Colour. This attribute is used for sprite data if this character is a sprite
 attribute vec2 in_TextureCoord; //UVs
 
@@ -162,29 +157,31 @@ vec2 shake(vec2 position, float characterIndex, float magnitude, float speed)
     float merge = 1.0 - abs(2.0*(time - floorTime) - 1.0);
     
     //Use some misc prime numbers to try to get a varied-looking shake
-    vec2 delta = vec2(rand(vec2(149.0*characterIndex + 13.0*floorTime, 727.0*characterIndex - 331.0*floorTime)),
-                      rand(vec2(501.0*characterIndex - 19.0*floorTime, 701.0*characterIndex + 317.0*floorTime)));
+    vec2 delta = vec2(rand(vec2(characterIndex/149.0 + floorTime/13.0, characterIndex/727.0 - floorTime/331.0)),
+                      rand(vec2(characterIndex/501.0 - floorTime/19.0, characterIndex/701.0 + floorTime/317.0)));
     
-    return position + magnitude*merge*(2.0*delta-1.0);
+    return position + magnitude*merge*(2.0*delta - 1.0);
 }
 
-//Use RGBA 
-vec4 handleSprites(float isSprite, vec4 colour)
+//Jitter the character scale, using a similar method to above
+vec2 jitter(vec2 position, vec2 centre, float characterIndex, float mini, float maxi, float speed)
 {
-    if (isSprite == 1.0)
-    {
-        float myImage    = colour.r*255.0;       //First byte is the index of this sprite
-        float imageMax   = 1.0 + colour.g*255.0; //Second byte is the maximum number of images in the sprite
-        float imageSpeed = colour.b;             //Third byte is half of the image speed
-        float imageStart = colour.a*255.0;       //Fourth byte is the image offset
-        
-        float displayImage = floor(mod(imageSpeed*u_fTime + imageStart, imageMax));
-        return vec4((abs(myImage-displayImage) < 1.0/255.0)? 1.0 : 0.0);
-    }
-    else
-    {
-        return colour;
-    }
+    float floorTime = floor(speed*u_fTime + 0.5);
+    
+    //Use some misc prime numbers to try to get a varied-looking jitter
+    float delta = rand(vec2(characterIndex/149.0 + floorTime/13.0, characterIndex/727.0 - floorTime/331.0));
+    
+    return scale(position, centre, mix(mini, maxi, delta));
+}
+
+float filterSprite(float spriteData)
+{
+    float imageSpeed = floor(spriteData / 4096.0);
+    float imageMax   = floor((spriteData - 4096.0*imageSpeed) / 64.0);
+    float image      = spriteData - (4096.0*imageSpeed + 64.0*imageMax);
+    
+    float displayImage = floor(mod(imageSpeed*u_fTime/1024.0, imageMax));
+    return ((abs(image-displayImage) < 1.0/255.0)? 1.0 : 0.0);
 }
 
 //HSV->RGB conversion function
@@ -202,29 +199,25 @@ vec4 rainbow(float characterIndex, float weight, float speed, vec4 colour)
 }
                            
 //Colour cycling through a defined palette
-vec4 cycle(float characterIndex, float weight, float speed, float huesABC, float huesDEF, vec4 colour)
+vec4 cycle(float characterIndex, float speed, float saturation, float value, vec4 colour)
 {
-    float hueArray[7];
-        
-    hueArray[2] = floor(huesABC / 65536.0);
-    hueArray[1] = floor((huesABC - 65536.0*hueArray[2]) / 256.0);
-    hueArray[0] = huesABC - 65536.0*hueArray[2] - 256.0*hueArray[1];
-    hueArray[6] = hueArray[0];
+    float max_h = 4.0; //Default to a 4-colour cycle
     
-    hueArray[5] = floor(huesDEF / 65536.0);
-    hueArray[4] = floor((huesDEF - 65536.0*hueArray[5]) / 256.0);
-    hueArray[3] = huesDEF - 65536.0*hueArray[5] - 256.0*hueArray[4];
+    //Special cases for 0- and 1-colour cycles
+    if (colour.r < 0.003) return colour;
+    if (colour.g < 0.003) return vec4(hsv2rgb(vec3(colour.r, saturation/255.0, value/255.0)), 1.0);
+    if (colour.a < 0.003) max_h = 3.0; //3-colour cycle
+    if (colour.b < 0.003) max_h = 2.0; //2-colour cycle
     
-    float h = abs(mod(speed*u_fTime - characterIndex/10.0, 6.0));
-    vec3 rgbA = hsv2rgb(vec3(hueArray[int(h)  ]/255.0, 1.0, 1.0));
-    vec3 rgbB = hsv2rgb(vec3(hueArray[int(h)+1]/255.0, 1.0, 1.0));
+    float h = abs(mod((speed*u_fTime - characterIndex)/10.0, max_h));
+    vec3 rgbA = hsv2rgb(vec3(colour[int(h)], saturation/255.0, value/255.0));
+    vec3 rgbB = hsv2rgb(vec3(colour[int(mod(h + 1.0, max_h))], saturation/255.0, value/255.0));
     
-    //Interpolate between the two hues using YIQ colourspace
-    return vec4(mix(colour.rgb, mix(rgbA, rgbB, fract(h)), weight), colour.a);
+    return vec4(mix(rgbA, rgbB, fract(h)), 1.0);
 }
 
 //Fade effect for typewriter etc.
-float fade(float windowArray[2*WINDOW_COUNT], float smoothness, float index)
+float fade(float windowArray[2*WINDOW_COUNT], float smoothness, float index, bool invert)
 {
     float result = 0.0;
     float f      = 1.0;
@@ -249,6 +242,8 @@ float fade(float windowArray[2*WINDOW_COUNT], float smoothness, float index)
         
         result = max(f, result);
     }
+    
+    if (invert) result = 1.0 - result;
     
     return result;
 }
@@ -281,10 +276,12 @@ void main()
     float wheelAmplitude  = u_aDataFields[11];
     float wheelFrequency  = u_aDataFields[12];
     float wheelSpeed      = u_aDataFields[13];
-    float cycleWeight     = u_aDataFields[14];
-    float cycleSpeed      = u_aDataFields[15];
-    float cycleHuesABC    = u_aDataFields[16];
-    float cycleHuesDEF    = u_aDataFields[17];
+    float cycleSpeed      = u_aDataFields[14];
+    float cycleSaturation = u_aDataFields[15];
+    float cycleValue      = u_aDataFields[16];
+    float jitterMinimum   = u_aDataFields[17];
+    float jitterMaximum   = u_aDataFields[18];
+    float jitterSpeed     = u_aDataFields[19];
     
     //Unpack the effect flag bits into an array, then into variables for readability
     float flagArray[MAX_EFFECTS]; unpackFlags(in_Normal.z, flagArray);
@@ -296,31 +293,40 @@ void main()
     float pulseFlag   = flagArray[5];
     float wheelFlag   = flagArray[6];
     float cycleFlag   = flagArray[7];
+    float jitterFlag  = flagArray[8];
     
-    //Use the input vertex position from the vertex attributes. Use our Z uniform because the z-component is used for other data
-    vec2 centre = in_Position.xy;
-    vec2 pos = centre + in_Normal.xy; //The actual position of this vertex is the central point plus the delta
+    //Use the input vertex position from the vertex attributes. We ignore the z-component because it's used for other data
+    vec2 pos = in_Position.xy;
+    
+    //Unpack the glyph centre. This assumes our glyph is maximum 200px wide and gives us 1 decimal place
+    vec2 centre;
+    centre.y = floor(in_Normal.x/2000.0);
+    centre.x = in_Normal.x - centre.y*2000.0;
+    centre = pos + (centre - 1000.0)/10.0;
     
     //Vertex animation
-    pos.xy = wobble(pos.xy, centre, wobbleFlag*wobbleAngle, wobbleFrequency);
-    pos.xy = pulse( pos.xy, centre, characterIndex, pulseFlag*pulseScale, pulseSpeed);
-    pos.xy = wave(  pos.xy, characterIndex, waveFlag*waveAmplitude, waveFrequency, waveSpeed); //Apply the wave effect
-    pos.xy = wheel( pos.xy, characterIndex, wheelFlag*wheelAmplitude, wheelFrequency, wheelSpeed); //Apply the wheel effect
-    pos.xy = shake( pos.xy, characterIndex, shakeFlag*shakeAmplitude, shakeSpeed); //Apply the shake effect
+    pos.xy = wobble(pos, centre, wobbleFlag*wobbleAngle, wobbleFrequency);
+    pos.xy = pulse( pos, centre, characterIndex, pulseFlag*pulseScale, pulseSpeed);
+    pos.xy = wave(  pos, characterIndex, waveFlag*waveAmplitude, waveFrequency, waveSpeed); //Apply the wave effect
+    pos.xy = wheel( pos, characterIndex, wheelFlag*wheelAmplitude, wheelFrequency, wheelSpeed); //Apply the wheel effect
+    pos.xy = shake( pos, characterIndex, shakeFlag*shakeAmplitude, shakeSpeed); //Apply the shake effect
+    if (jitterFlag > 0.5) pos.xy = jitter(pos, centre, characterIndex, jitterMinimum, jitterMaximum, jitterSpeed); //Apply the jitter effect
     
     //Colour
-    v_vColour  = handleSprites(spriteFlag, in_Colour); //Use RGBA information to filter out sprites
-    v_vColour  = rainbow(characterIndex, rainbowFlag*rainbowWeight, rainbowSpeed, v_vColour); //Cycle colours for the rainbow effect
-    v_vColour  = cycle(characterIndex, cycleFlag*cycleWeight, cycleSpeed, cycleHuesABC, cycleHuesDEF, v_vColour); //Cycle colours through the defined palette
+    v_vColour = in_Colour;
+    if (cycleFlag > 0.5) v_vColour = cycle(characterIndex, cycleSpeed, cycleSaturation, cycleValue, v_vColour); //Cycle colours through the defined palette
+    v_vColour = rainbow(characterIndex, rainbowFlag*rainbowWeight, rainbowSpeed, v_vColour); //Cycle colours for the rainbow effect
     v_vColour *= u_vColourBlend; //And then blend with the blend colour/alpha
     
     //Apply fade (if we're given a method)
-    if (u_fTypewriterMethod != 0.0)
+    if (abs(u_fTypewriterMethod) > 0.5)
     {
         //Choose our index based on what method's being used: if the method value == 1.0 then we're using character indexes, otherwise we use line indexes
         float index = (abs(u_fTypewriterMethod) == 1.0)? characterIndex : lineIndex;
-        v_vColour.a *= fade(u_fTypewriterWindowArray, u_fTypewriterSmoothness, index + 1.0);
+        v_vColour.a *= fade(u_fTypewriterWindowArray, u_fTypewriterSmoothness, index + 1.0, (u_fTypewriterMethod < 0.0));
     }
+    
+    if (spriteFlag > 0.5) v_vColour.a *= filterSprite(in_Normal.y); //Use RGBA information to filter out sprites
     
     //Texture
     v_vTexcoord = in_TextureCoord;

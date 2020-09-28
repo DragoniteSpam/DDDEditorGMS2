@@ -1,8 +1,12 @@
 {
-    "id": "5921e83a-ddd1-4533-8c27-17e6029e7c0b",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_check_entity_option_animate_idle",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "entity properties",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction/entity properties.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_check_entity_option_animate_idle",
+  "tags": [],
+  "resourceType": "GMScript",
 }

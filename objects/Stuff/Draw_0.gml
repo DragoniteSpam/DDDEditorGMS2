@@ -29,7 +29,7 @@ if (view_current == view_overlay) {
             var starting_halign = global.scribble_state_starting_halign;
             scribble_set_box_align(fa_left, fa_top);
             scribble_set_wrap(text_width, -1);
-            scribble_set_starting_format(FDefault12, c_black, fa_left);
+            scribble_set_starting_format("FDefault", c_black, fa_left);
             var scribble = scribble_cache(str, "", true, true);
             var str_width = scribble_get_width(scribble) + str_padding * 2;
             var str_height = scribble_get_height(scribble) + str_padding * 2;

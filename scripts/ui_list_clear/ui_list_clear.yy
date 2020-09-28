@@ -1,8 +1,12 @@
 {
-    "id": "2f740cca-4c86-4c4a-8da1-7f7a43d514d3",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "ui_list_clear",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "help",
+    "path": "folders/Scripts/ui stuff/help.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "ui_list_clear",
+  "tags": [],
+  "resourceType": "GMScript",
 }

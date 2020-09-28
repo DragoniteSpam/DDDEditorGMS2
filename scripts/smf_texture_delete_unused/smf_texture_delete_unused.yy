@@ -1,8 +1,12 @@
 {
-    "id": "fd7cf473-c78d-4ffb-a70b-4b13a5b04a17",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "smf_texture_delete_unused",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Texture management",
+    "path": "folders/Scripts/SMF model format/Advanced/Texture management.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "smf_texture_delete_unused",
+  "tags": [],
+  "resourceType": "GMScript",
 }

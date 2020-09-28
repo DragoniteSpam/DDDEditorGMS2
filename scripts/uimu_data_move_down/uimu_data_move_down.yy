@@ -1,8 +1,12 @@
 {
-    "id": "ff8ede4f-395d-4e57-977f-edd25a64808e",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uimu_data_move_down",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "data etc",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction/data etc.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uimu_data_move_down",
+  "tags": [],
+  "resourceType": "GMScript",
 }

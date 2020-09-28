@@ -59,6 +59,23 @@ void CommonLightEvaluate(int i, inout Vec4 finalColor) {
         lightDir = normalize(lightDir);
         finalColor += lightColor * max(0., -dot(v_LightWorldNormal, lightDir)) * att;
     } else if (type == LIGHT_SPOT) {
+        // spot light: [x, y, z, type], [dx, dy, dz, range], [r, g, b, cutoff]
+        float range = lightExt.w;
+        Vec3 sourceDir = normalize(lightExt.xyz);
+        float cutoff = lightColor.w;
         
+        Vec3 lightDir = v_LightWorldPosition - lightPosition;
+        float dist = length(lightDir);
+        lightDir = normalize(lightDir);
+        
+        float lightAngleDifference = max(dot(lightDir, sourceDir), 0.);
+        // this is very much hard-coding the cutoff radius but i dont really feel
+        // like adding more shader attributes now
+        float epsilon = (cos(acos(cutoff) * 0.75) - cutoff);
+        float f = clamp((lightAngleDifference - cutoff) / epsilon, 0., 1.);
+        float att = f * pow(clamp((1. - dist * dist / (range * range)), 0., 1.), 2.);
+        
+        lightColor.a = 1.;
+        finalColor += att * lightColor * max(0., -dot(v_LightWorldNormal, lightDir));
     }
 }

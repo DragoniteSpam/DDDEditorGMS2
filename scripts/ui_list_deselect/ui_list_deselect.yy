@@ -1,8 +1,12 @@
 {
-    "id": "d8102b46-037d-49c7-97dc-781ac1d7e301",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "ui_list_deselect",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "help",
+    "path": "folders/Scripts/ui stuff/help.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "ui_list_deselect",
+  "tags": [],
+  "resourceType": "GMScript",
 }

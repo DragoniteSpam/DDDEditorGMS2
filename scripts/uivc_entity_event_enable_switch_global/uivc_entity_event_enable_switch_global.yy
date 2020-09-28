@@ -1,8 +1,12 @@
 {
-    "id": "4e01cfd0-8ed8-4d1b-918d-d5e13ee8f00a",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_entity_event_enable_switch_global",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "entity properties",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction/entity properties.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_entity_event_enable_switch_global",
+  "tags": [],
+  "resourceType": "GMScript",
 }

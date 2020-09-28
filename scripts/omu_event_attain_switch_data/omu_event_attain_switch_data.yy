@@ -1,8 +1,12 @@
 {
-    "id": "79a317d9-c17d-49ff-bfcd-6ce6166c427b",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "omu_event_attain_switch_data",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "event attainment and stuff",
+    "path": "folders/Scripts/ui stuff/dialogs/creation/event attainment and stuff.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "omu_event_attain_switch_data",
+  "tags": [],
+  "resourceType": "GMScript",
 }

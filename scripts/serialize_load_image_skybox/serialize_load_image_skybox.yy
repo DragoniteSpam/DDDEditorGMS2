@@ -1,8 +1,12 @@
 {
-    "id": "8b2fe120-ad5a-402c-81e4-2379d51e2bd6",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "serialize_load_image_skybox",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "load",
+    "path": "folders/Scripts/serialization/load.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "serialize_load_image_skybox",
+  "tags": [],
+  "resourceType": "GMScript",
 }

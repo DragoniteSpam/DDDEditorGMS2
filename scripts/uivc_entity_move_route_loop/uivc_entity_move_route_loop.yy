@@ -1,8 +1,12 @@
 {
-    "id": "3dc75a39-d460-4e4b-9e4a-4917ea32d1d3",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_entity_move_route_loop",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "entity properties",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction/entity properties.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_entity_move_route_loop",
+  "tags": [],
+  "resourceType": "GMScript",
 }

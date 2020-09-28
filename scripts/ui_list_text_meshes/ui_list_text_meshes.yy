@@ -1,8 +1,12 @@
 {
-    "id": "f8507d86-7280-483b-ab34-c5fd8425bcda",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "ui_list_text_meshes",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "special",
+    "path": "folders/Scripts/ui stuff/rendering/special.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "ui_list_text_meshes",
+  "tags": [],
+  "resourceType": "GMScript",
 }

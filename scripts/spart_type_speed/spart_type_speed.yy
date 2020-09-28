@@ -1,8 +1,12 @@
 {
-    "id": "286d8201-52eb-4f08-8063-a179dc88593e",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "spart_type_speed",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Particle types",
+    "path": "folders/Scripts/sPart/Particle types.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "spart_type_speed",
+  "tags": [],
+  "resourceType": "GMScript",
 }

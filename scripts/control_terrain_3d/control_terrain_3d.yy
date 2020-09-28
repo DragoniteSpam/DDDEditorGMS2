@@ -1,8 +1,12 @@
 {
-    "id": "ae2be7f6-e7b0-45e5-aff6-edeed2e31f40",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "control_terrain_3d",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Control",
+    "path": "folders/Scripts/Control.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "control_terrain_3d",
+  "tags": [],
+  "resourceType": "GMScript",
 }

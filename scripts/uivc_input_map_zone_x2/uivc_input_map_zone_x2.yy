@@ -1,8 +1,12 @@
 {
-    "id": "06afd93e-8fcc-4e8b-adad-352a47e43bd2",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_input_map_zone_x2",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "map zones, other map things",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction/map zones, other map things.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_input_map_zone_x2",
+  "tags": [],
+  "resourceType": "GMScript",
 }

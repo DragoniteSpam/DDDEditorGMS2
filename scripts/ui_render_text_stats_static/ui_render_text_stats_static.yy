@@ -1,8 +1,12 @@
 {
-    "id": "efdc3e6f-c92d-4062-869b-66a5e69e687f",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "ui_render_text_stats_static",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "stats",
+    "path": "folders/Scripts/ui stuff/rendering/special/stats.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "ui_render_text_stats_static",
+  "tags": [],
+  "resourceType": "GMScript",
 }

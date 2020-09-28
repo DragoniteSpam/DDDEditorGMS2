@@ -1,8 +1,12 @@
 {
-    "id": "1209ebac-835c-4394-af5a-f1d135c930fc",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "dr_box",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "dont mess with me",
+    "path": "folders/Scripts/ui stuff/dialogs/render/dont mess with me.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "dr_box",
+  "tags": [],
+  "resourceType": "GMScript",
 }

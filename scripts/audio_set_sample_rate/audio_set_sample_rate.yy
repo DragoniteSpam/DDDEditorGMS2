@@ -1,8 +1,12 @@
 {
-    "id": "9453b01f-ee25-447d-a6ff-ac4590f4967e",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "audio_set_sample_rate",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "audio",
+    "path": "folders/Scripts/Game data/audio.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "audio_set_sample_rate",
+  "tags": [],
+  "resourceType": "GMScript",
 }

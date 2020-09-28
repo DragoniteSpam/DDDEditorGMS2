@@ -1,8 +1,12 @@
 {
-    "id": "fda42921-f624-4057-96b8-dab2bb6b80ed",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_select_tile_backwards",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "on value change and general interaction",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_select_tile_backwards",
+  "tags": [],
+  "resourceType": "GMScript",
 }

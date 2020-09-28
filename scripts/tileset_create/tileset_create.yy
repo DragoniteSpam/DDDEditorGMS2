@@ -1,8 +1,12 @@
 {
-    "id": "76403829-b3ad-4523-a0aa-a703bdfeb376",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "tileset_create",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Game data",
+    "path": "folders/Scripts/Game data.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "tileset_create",
+  "tags": [],
+  "resourceType": "GMScript",
 }

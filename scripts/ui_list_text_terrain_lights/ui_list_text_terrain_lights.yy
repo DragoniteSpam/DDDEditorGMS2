@@ -1,8 +1,12 @@
 {
-    "id": "66a14a1a-5152-424a-b15c-bcb39cb2163e",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "ui_list_text_terrain_lights",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "special",
+    "path": "folders/Scripts/ui stuff/rendering/special.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "ui_list_text_terrain_lights",
+  "tags": [],
+  "resourceType": "GMScript",
 }

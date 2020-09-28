@@ -1,8 +1,12 @@
 {
-    "id": "ace33834-81ff-4eab-ac24-9075dee0fd0b",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "spart_emitter_retire",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Particle emitters",
+    "path": "folders/Scripts/sPart/Particle emitters.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "spart_emitter_retire",
+  "tags": [],
+  "resourceType": "GMScript",
 }

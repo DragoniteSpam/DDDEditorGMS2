@@ -1,8 +1,12 @@
 {
-    "id": "2041b117-fb76-46bc-ab1c-a41a19f59605",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_mesh_preview_index",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "preview",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction/mesh stuff/preview.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_mesh_preview_index",
+  "tags": [],
+  "resourceType": "GMScript",
 }

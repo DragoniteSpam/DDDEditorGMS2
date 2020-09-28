@@ -1,8 +1,12 @@
 {
-    "id": "8bf273ed-0fb1-429d-81df-68d566aecfa4",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_animation_keyframe_translation_y",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "keyframe data",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction/animations/keyframe data.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_animation_keyframe_translation_y",
+  "tags": [],
+  "resourceType": "GMScript",
 }

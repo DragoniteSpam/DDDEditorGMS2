@@ -36,7 +36,7 @@ vertex_end(wbuffer);
 
 // other properties
 
-static = true;
+is_static = true;
 Stuff.map.active_map.contents.population_static++;
 
 // editor properties

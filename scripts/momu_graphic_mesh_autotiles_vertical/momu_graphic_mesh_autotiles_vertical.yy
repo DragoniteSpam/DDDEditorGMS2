@@ -1,8 +1,12 @@
 {
-    "id": "4c1264f9-9738-4206-b39e-921d6a078dc1",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "momu_graphic_mesh_autotiles_vertical",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "basic",
+    "path": "folders/Scripts/ui stuff/menu/onmouseup/data/basic.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "momu_graphic_mesh_autotiles_vertical",
+  "tags": [],
+  "resourceType": "GMScript",
 }

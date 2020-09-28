@@ -1,8 +1,12 @@
 {
-    "id": "95386a7d-c28a-4e51-91cb-b74b3a209b77",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_input_data_max_size",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "data etc",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction/data etc.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_input_data_max_size",
+  "tags": [],
+  "resourceType": "GMScript",
 }

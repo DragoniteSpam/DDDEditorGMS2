@@ -1,8 +1,12 @@
 {
-    "id": "4d379f7b-eee9-4862-a479-e0f8d912b71d",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "stdf_load_obj",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Standard model format",
+    "path": "folders/Scripts/Standard model format.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "stdf_load_obj",
+  "tags": [],
+  "resourceType": "GMScript",
 }

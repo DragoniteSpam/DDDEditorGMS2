@@ -1,8 +1,12 @@
 {
-    "id": "20a134f4-b446-4e16-a26a-64bb6ca66c1f",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "dc_custom_event_set_img_battler",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "execution",
+    "path": "folders/Scripts/ui stuff/dialogs/commit/execution.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "dc_custom_event_set_img_battler",
+  "tags": [],
+  "resourceType": "GMScript",
 }

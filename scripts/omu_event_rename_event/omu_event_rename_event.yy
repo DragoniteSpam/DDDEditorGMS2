@@ -1,8 +1,12 @@
 {
-    "id": "70649bcd-a6b8-4c5c-84a4-d2a6a517021e",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "omu_event_rename_event",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "events",
+    "path": "folders/Scripts/ui stuff/onmouseup/events.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "omu_event_rename_event",
+  "tags": [],
+  "resourceType": "GMScript",
 }

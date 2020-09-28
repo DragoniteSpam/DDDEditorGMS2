@@ -1,8 +1,12 @@
 {
-    "id": "aa68aa29-f494-443d-874f-2825257215b3",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_input_entity_rotate_z",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "transform",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction/entity properties/transform.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_input_entity_rotate_z",
+  "tags": [],
+  "resourceType": "GMScript",
 }

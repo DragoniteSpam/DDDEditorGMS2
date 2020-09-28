@@ -1,8 +1,12 @@
 {
-    "id": "20ae4024-a8cc-4f6d-a02d-51fff19c8806",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "data_resize_map",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "resources",
+    "path": "folders/Scripts/resources.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "data_resize_map",
+  "tags": [],
+  "resourceType": "GMScript",
 }

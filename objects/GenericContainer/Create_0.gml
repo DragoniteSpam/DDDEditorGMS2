@@ -1,1 +1,0 @@
-// @gml update once lightweight objects show up this WHOLE thing will no longer be needed

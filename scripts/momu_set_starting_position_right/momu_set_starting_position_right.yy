@@ -1,8 +1,12 @@
 {
-    "id": "51d6d22f-926d-4b4f-a93f-15b52bb999fc",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "momu_set_starting_position_right",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "right click",
+    "path": "folders/Scripts/ui stuff/menu/onmouseup/right click.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "momu_set_starting_position_right",
+  "tags": [],
+  "resourceType": "GMScript",
 }

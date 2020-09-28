@@ -1,8 +1,12 @@
 {
-    "id": "7ce9b3cf-7081-4b06-96c5-9df5af141ba2",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_terrain_export",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "ui",
+    "path": "folders/Scripts/modes/terrain/ui.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_terrain_export",
+  "tags": [],
+  "resourceType": "GMScript",
 }

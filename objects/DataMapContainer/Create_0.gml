@@ -24,7 +24,7 @@ xx = 64;                                    // dimensions
 yy = 64;
 zz = 8;
 
-tileset = 0;                                // index
+tileset = NULL;                             // GUID
 is_3d = true;                               // bool
 fog_start = 1024;                           // float
 fog_end = 3072;                             // float

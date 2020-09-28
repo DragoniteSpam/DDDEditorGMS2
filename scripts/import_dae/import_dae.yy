@@ -1,8 +1,12 @@
 {
-    "id": "b5afcd68-05ab-4022-abe3-4f09a2411e7a",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "import_dae",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "meshes",
+    "path": "folders/Scripts/resources/meshes.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "import_dae",
+  "tags": [],
+  "resourceType": "GMScript",
 }

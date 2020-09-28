@@ -1,8 +1,12 @@
 {
-    "id": "2ea94623-fa70-454c-936c-34f3254a98b7",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "dmu_dialog_event_set_outbound_null_double",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "event",
+    "path": "folders/Scripts/ui stuff/dialogs/on mouse up/event.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "dmu_dialog_event_set_outbound_null_double",
+  "tags": [],
+  "resourceType": "GMScript",
 }

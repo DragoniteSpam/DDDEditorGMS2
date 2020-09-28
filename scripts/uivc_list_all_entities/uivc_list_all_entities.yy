@@ -1,8 +1,12 @@
 {
-    "id": "232cf89a-9131-4e6e-9add-a876bb5de97f",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_list_all_entities",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "on value change and general interaction",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_list_all_entities",
+  "tags": [],
+  "resourceType": "GMScript",
 }

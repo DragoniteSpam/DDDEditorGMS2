@@ -1,8 +1,12 @@
 {
-    "id": "faae0bf2-d5cb-4fc7-9e96-3817f3567427",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "serialize_load_entity_effect",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "map contents",
+    "path": "folders/Scripts/serialization/load/map contents.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "serialize_load_entity_effect",
+  "tags": [],
+  "resourceType": "GMScript",
 }

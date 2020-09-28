@@ -1,8 +1,12 @@
 {
-    "id": "57cc704c-8fde-4838-94cd-a1330995117f",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_url_fmodgms",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "urls",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction/urls.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_url_fmodgms",
+  "tags": [],
+  "resourceType": "GMScript",
 }

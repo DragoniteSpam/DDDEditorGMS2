@@ -1,8 +1,12 @@
 {
-    "id": "cdb1eb79-b2b2-4ea0-991b-b0c42d1f374b",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_settings_map_fast_travel_from",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "settings",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction/settings.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_settings_map_fast_travel_from",
+  "tags": [],
+  "resourceType": "GMScript",
 }

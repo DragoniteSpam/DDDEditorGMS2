@@ -1,8 +1,12 @@
 {
-    "id": "408986d2-34f4-410c-b640-f085b32c353d",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "ui_checkbox_fog_start",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "ui",
+    "path": "folders/Scripts/modes/terrain/ui.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "ui_checkbox_fog_start",
+  "tags": [],
+  "resourceType": "GMScript",
 }

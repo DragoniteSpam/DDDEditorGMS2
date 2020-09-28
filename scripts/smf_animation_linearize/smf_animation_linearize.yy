@@ -1,8 +1,12 @@
 {
-    "id": "0340b82a-13e4-4516-b74d-238ad25daccf",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "smf_animation_linearize",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Animation",
+    "path": "folders/Scripts/SMF model format/Animation.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "smf_animation_linearize",
+  "tags": [],
+  "resourceType": "GMScript",
 }

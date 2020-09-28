@@ -1,8 +1,12 @@
 {
-    "id": "fd103320-5aed-45a7-a57a-e09907e387ba",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "graphics_remove_battler",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "images",
+    "path": "folders/Scripts/Game data/images.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "graphics_remove_battler",
+  "tags": [],
+  "resourceType": "GMScript",
 }

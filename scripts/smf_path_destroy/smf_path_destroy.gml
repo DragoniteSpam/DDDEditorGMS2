@@ -1,3 +1,8 @@
 /// @description smf_path_add()
 /// @param index
-ds_list_destroy(SMF_pathList[| argument0]);
+function smf_path_destroy(argument0) {
+    ds_list_destroy(SMF_pathList[| argument0]);
+
+
+
+}

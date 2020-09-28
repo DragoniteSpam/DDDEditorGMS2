@@ -1,8 +1,12 @@
 {
-    "id": "36bab2e2-6898-4756-9021-886369a7347b",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "dialog_create_event_node_img_overworlds",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "data and events",
+    "path": "folders/Scripts/ui stuff/dialogs/creation/data and events.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "dialog_create_event_node_img_overworlds",
+  "tags": [],
+  "resourceType": "GMScript",
 }

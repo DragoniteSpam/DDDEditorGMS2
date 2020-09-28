@@ -2,20 +2,24 @@
 /// @param arr1
 /// @param arr2
 /// @param amount
-var arr1 = argument0;
-var arr2 = argument1;
-var amount = argument2;
-var ret = arr2;
-var l1 = array_length_1d(arr1);
-var l2 = array_length_1d(arr2);
-var l = l1;
-if l2 < l1
-{
-    ret = arr1;
-    l = l2;
+function smf_array_lerp(argument0, argument1, argument2) {
+    var arr1 = argument0;
+    var arr2 = argument1;
+    var amount = argument2;
+    var ret = arr2;
+    var l1 = array_length(arr1);
+    var l2 = array_length(arr2);
+    var l = l1;
+    if l2 < l1
+    {
+        ret = arr1;
+        l = l2;
+    }
+    for (var i = 0; i < l; i ++)
+    {
+        ret[i] = lerp(arr1[i], arr2[i], amount);
+    }
+    return ret;
+
+
 }
-for (var i = 0; i < l; i ++)
-{
-    ret[i] = lerp(arr1[i], arr2[i], amount);
-}
-return ret;

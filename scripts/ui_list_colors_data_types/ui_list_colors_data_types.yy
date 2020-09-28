@@ -1,8 +1,12 @@
 {
-    "id": "d72b146b-f741-4c3a-95d1-ef3a174917bf",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "ui_list_colors_data_types",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "special",
+    "path": "folders/Scripts/ui stuff/rendering/special.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "ui_list_colors_data_types",
+  "tags": [],
+  "resourceType": "GMScript",
 }

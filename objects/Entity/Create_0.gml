@@ -98,7 +98,7 @@ previous_zz = zz;
 // through other means now
 collision_flags = 0xffffffff;
 /* s */ event_flags = 0xffffffff;
-/* s */ static = false;
+/* s */ is_static = false;
 
 // editor properties
 
@@ -130,8 +130,6 @@ coexist = false;
 // collision data
 cobject = noone;
 
-on_create = null;
-on_destroy = null;
 on_select = safc_on_entity;
 on_deselect = safc_on_entity_deselect;
 on_select_ui = safc_on_entity_ui;

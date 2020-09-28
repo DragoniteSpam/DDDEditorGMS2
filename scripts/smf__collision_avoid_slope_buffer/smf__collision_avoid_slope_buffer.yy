@@ -1,8 +1,12 @@
 {
-    "id": "8d7fd218-d150-4210-accd-0356b94bcd14",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "smf__collision_avoid_slope_buffer",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Buffer functions",
+    "path": "folders/Scripts/SMF model format/Collision/Model collision/Advanced/Buffer functions.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "smf__collision_avoid_slope_buffer",
+  "tags": [],
+  "resourceType": "GMScript",
 }

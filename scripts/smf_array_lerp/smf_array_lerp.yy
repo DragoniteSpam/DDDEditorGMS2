@@ -1,8 +1,12 @@
 {
-    "id": "88e23e4e-6ebf-476a-abba-313f38284cf2",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "smf_array_lerp",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Mathematics",
+    "path": "folders/Scripts/SMF model format/Advanced/Mathematics.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "smf_array_lerp",
+  "tags": [],
+  "resourceType": "GMScript",
 }

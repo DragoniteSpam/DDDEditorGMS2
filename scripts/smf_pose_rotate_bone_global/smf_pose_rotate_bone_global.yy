@@ -1,8 +1,12 @@
 {
-    "id": "ed663b71-3573-4ea4-8039-ad449c47de39",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "smf_pose_rotate_bone_global",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Pose",
+    "path": "folders/Scripts/SMF model format/Animation/Pose.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "smf_pose_rotate_bone_global",
+  "tags": [],
+  "resourceType": "GMScript",
 }

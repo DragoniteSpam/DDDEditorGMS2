@@ -1,8 +1,12 @@
 {
-    "id": "2017f8d0-f23c-41b1-9e02-76715cc5da2d",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_list_settings_game_asset_location",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "data files",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction/settings/data files.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_list_settings_game_asset_location",
+  "tags": [],
+  "resourceType": "GMScript",
 }

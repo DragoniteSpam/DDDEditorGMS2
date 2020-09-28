@@ -1,8 +1,12 @@
 {
-    "id": "dde8c7cf-f9bf-4449-ad44-1ba1ce1518ff",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_autotile_set_flags",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "data etc",
+    "path": "folders/Scripts/ui stuff/onmouseup/data etc.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_autotile_set_flags",
+  "tags": [],
+  "resourceType": "GMScript",
 }

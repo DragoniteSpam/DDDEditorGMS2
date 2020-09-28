@@ -1,8 +1,12 @@
 {
-    "id": "c4cafb2b-8de7-43fd-ac62-80247f1420c0",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "spart_type_blend",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Particle types",
+    "path": "folders/Scripts/sPart/Particle types.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "spart_type_blend",
+  "tags": [],
+  "resourceType": "GMScript",
 }

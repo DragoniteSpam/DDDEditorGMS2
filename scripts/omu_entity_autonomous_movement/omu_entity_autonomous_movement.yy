@@ -1,8 +1,12 @@
 {
-    "id": "1822abda-6297-46bc-94d3-b91b2c8f6cea",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "omu_entity_autonomous_movement",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "onmouseup",
+    "path": "folders/Scripts/ui stuff/onmouseup.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "omu_entity_autonomous_movement",
+  "tags": [],
+  "resourceType": "GMScript",
 }

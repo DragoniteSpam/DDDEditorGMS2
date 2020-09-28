@@ -1,8 +1,12 @@
 {
-    "id": "d04c1fdb-f637-4ebd-8385-87c36ef2394e",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "dialog_create_select_data_types_ext",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "data and events",
+    "path": "folders/Scripts/ui stuff/dialogs/creation/data and events.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "dialog_create_select_data_types_ext",
+  "tags": [],
+  "resourceType": "GMScript",
 }

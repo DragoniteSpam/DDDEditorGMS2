@@ -1,8 +1,12 @@
 {
-    "id": "e6a554f2-dc48-4855-8dc8-c539adb32157",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "uivc_entity_event_direction_fix",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "entity properties",
+    "path": "folders/Scripts/ui stuff/on value change and general interaction/entity properties.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "uivc_entity_event_direction_fix",
+  "tags": [],
+  "resourceType": "GMScript",
 }

@@ -1,8 +1,12 @@
 {
-    "id": "c860d3f6-2162-40d2-bdc1-ca6ff27de699",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "dialog_data_type_disable",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "help",
+    "path": "folders/Scripts/ui stuff/dialogs/creation/help.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "dialog_data_type_disable",
+  "tags": [],
+  "resourceType": "GMScript",
 }

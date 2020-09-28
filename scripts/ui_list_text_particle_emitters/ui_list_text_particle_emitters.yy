@@ -1,8 +1,12 @@
 {
-    "id": "926442c3-7f9e-4290-a73f-e6c2729be91c",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "ui_list_text_particle_emitters",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "special",
+    "path": "folders/Scripts/ui stuff/rendering/special.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "ui_list_text_particle_emitters",
+  "tags": [],
+  "resourceType": "GMScript",
 }

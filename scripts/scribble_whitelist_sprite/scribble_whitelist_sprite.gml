@@ -1,21 +1,24 @@
 /// @param spriteIndex        Sprite index to whitelist
 /// @param [spriteIndex...]   Any additional sprite indexes to whitelist
 
-var _i = 0;
-repeat(argument_count)
+function scribble_whitelist_sprite()
 {
-	var _sprite = argument[_i];
+    var _i = 0;
+    repeat(argument_count)
+    {
+        var _sprite = argument[_i];
     
-	if (is_string(_sprite))
-	{
-	    show_error("Scribble:\nSprite index was a string but should be an asset index\n ", false);
-	}
-	else
-	{
-	    global.__scribble_sprite_whitelist_map[? _sprite] = true;
-	}
+        if (is_string(_sprite))
+        {
+            show_error("Scribble:\nSprite index was a string but should be an asset index\n ", false);
+        }
+        else
+        {
+            global.__scribble_sprite_whitelist_map[? _sprite] = true;
+        }
     
-	++_i;
-}
+        ++_i;
+    }
 
-global.__scribble_sprite_whitelist = true;
+    global.__scribble_sprite_whitelist = true;
+}

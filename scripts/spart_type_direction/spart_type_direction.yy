@@ -1,8 +1,12 @@
 {
-    "id": "83e178e0-2c56-48a0-a791-b83008ffc98d",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "spart_type_direction",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Particle types",
+    "path": "folders/Scripts/sPart/Particle types.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "spart_type_direction",
+  "tags": [],
+  "resourceType": "GMScript",
 }
