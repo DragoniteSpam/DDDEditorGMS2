@@ -1,17 +1,14 @@
-/// @param shader
-function graphics_set_lighting(argument0) {
-
-    var shader = argument0;
+function graphics_set_lighting(shader) {
     // this will need to be modified if / when it gets added to the terrain editor
     var map = Stuff.map.active_map;
     var map_contents = map.contents;
     var light_enabled = Stuff.setting_view_lighting && map.light_enabled;
-
+    
     shader_set(shader);
     var light_data = array_create(MAX_LIGHTS * 12);
     array_clear(light_data, 0);
     var ambient = light_enabled ? map.light_ambient_colour : c_white;
-
+    
     var n = 0;
     for (var i = 0; i < MAX_LIGHTS; i++) {
         var effect = refid_get(map_contents.active_lights[| i]);
@@ -53,7 +50,7 @@ function graphics_set_lighting(argument0) {
                 break;
         }
     }
-
+    
     var time_color = c_white;
     var weather_color = c_white;
     shader_set_uniform_f(shader_get_uniform(shader, "lightBuckets"), Stuff.game_lighting_buckets);
@@ -61,11 +58,9 @@ function graphics_set_lighting(argument0) {
         shader_set_uniform_f(shader_get_uniform(shader, "lightDayTimeColor"), (time_color & 0x0000ff) / 0xff, ((time_color & 0x00ff00) >> 8) / 0xff, (time_color >> 16) / 0xff);
         shader_set_uniform_f(shader_get_uniform(shader, "lightWeatherColor"), (weather_color & 0x0000ff) / 0xff, ((weather_color & 0x00ff00) >> 8) / 0xff, (weather_color >> 16) / 0xff);
     shader_set_uniform_f_array(shader_get_uniform(shader, "lightData"), light_data);
-
+    
     shader_set_uniform_f(shader_get_uniform(shader, "fogStrength"), (Stuff.setting_view_lighting && map.fog_enabled) ? 1 : 0);
     shader_set_uniform_f(shader_get_uniform(shader, "fogStart"), map.fog_start);
     shader_set_uniform_f(shader_get_uniform(shader, "fogEnd"), map.fog_end);
     shader_set_uniform_f(shader_get_uniform(shader, "fogColor"), (map.fog_colour & 0x0000ff) / 0xff, ((map.fog_colour & 0x00ff00) >> 8) / 0xff, ((map.fog_colour & 0xff0000) >> 16) / 0xff);
-
-
 }
