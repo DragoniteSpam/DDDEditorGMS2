@@ -1,11 +1,4 @@
-/// @param MenuElement
-function momu_se(argument0) {
-
-    var element = argument0;
-
+function momu_se(element) {
     menu_activate(noone);
-
     dialog_create_manager_se(noone);
-
-
 }

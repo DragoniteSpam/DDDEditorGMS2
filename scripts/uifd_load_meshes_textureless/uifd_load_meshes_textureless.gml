@@ -1,4 +1,4 @@
-function uifd_load_meshes(thing, files) {
+function uifd_load_meshes_textureless(thing, files) {
     var filtered_list = ui_handle_dropped_files_filter(files, [".d3d", ".gmmod", ".obj", ".smf"]);
     for (var i = 0; i < ds_list_size(filtered_list); i++) {
         var fn = filtered_list[| i];

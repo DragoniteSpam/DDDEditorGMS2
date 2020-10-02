@@ -7,10 +7,10 @@ function menu_init_main() {
         var menu_beta = create_menu("Beta", element_width, element_height, id);
         var menu_help = create_menu("Help", element_width, element_height, id);
         ds_list_add(contents, menu_file, menu_edit, menu_data, menu_beta, menu_help);
-    
+        
         var m_separator = create_menu_element("----------", null, id);
-    
-    #region file stuff
+        
+        #region file stuff
         var mf_save_data = create_menu_element("Save (Ctrl+S)", momu_save_data, menu_file);
         var mf_settings_data = create_menu_element("Global Data Settings (Ctrl+G)", momu_settings_data, menu_file);
         var mf_preferences = create_menu_element("Preferences", momu_preferences, menu_file);
@@ -23,9 +23,9 @@ function menu_init_main() {
             mf_preferences,
             mf_exit
         );
-    #endregion
-    
-    #region edit stuff
+        #endregion
+        
+        #region edit stuff
         var me_undo = create_menu_element("Undo (Ctrl+Z)", momu_undo, menu_edit);
         var me_redo = create_menu_element("Redo (Ctrl+Y)", momu_redo, menu_edit);
         var me_cut = create_menu_element("Cut (Ctrl+X)", momu_cut, menu_edit);
@@ -40,7 +40,7 @@ function menu_init_main() {
         me_paste.interactive = MENU_EDITOR_ENABLED;
         me_select_all.interactive = MENU_EDITOR_ENABLED;
         me_deselect.interactive = MENU_EDITOR_ENABLED;
-    
+        
         ds_list_add(menu_edit.contents,
             me_undo,
             me_redo,
@@ -54,9 +54,9 @@ function menu_init_main() {
             me_select_all,
             me_deselect
         );
-    #endregion
-    
-    #region data stuff
+        #endregion
+        
+        #region data stuff
         var md_graphics = create_menu_element("Graphics", momu_expand, menu_data);
             var md_graphic_ts = create_menu_element("Textures and Tilesets", momu_graphic_tileset, md_graphics);
             var md_graphic_at = create_menu_element("Tile Animation", not_yet_implemented_polite, md_graphics);
@@ -147,9 +147,9 @@ function menu_init_main() {
             md_scribble,
             md_doodle,
         );
-    #endregion
-    
-    #region beta stuff
+        #endregion
+        
+        #region beta stuff
         var mb_no_beta = create_menu_element("(No beta features, currently)", null, menu_help);
         //
         var md_beta_particles = create_menu_element("Particle Editor", momu_editor_particles, menu_help);
@@ -160,16 +160,16 @@ function menu_init_main() {
             md_beta_particles,
             md_beta_spart,
         );
-    #endregion
-    
-    #region help stuff
+        #endregion
+        
+        #region help stuff
         var mh_credits = create_menu_element("Credits", momu_credits, menu_help);
         ds_list_add(menu_help.contents,
             mh_credits
         );
-    #endregion
-    
-    #region right-click stuff
+        #endregion
+        
+        #region right-click stuff
         // this is an instance variable and not a local one
         menu_right_click = create_menu("right-click", element_width, element_height, id, true);
         var mrc_player = create_menu_element("Set Player Start", momu_expand, menu_right_click);
@@ -218,12 +218,10 @@ function menu_init_main() {
             m_separator,
             mrc_prefab
         );
-    #endregion
-    
+        #endregion
+        
         instance_deactivate_object(id);
-    
+        
         return id;
     }
-
-
 }
