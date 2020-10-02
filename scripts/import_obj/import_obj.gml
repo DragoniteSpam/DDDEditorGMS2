@@ -1,9 +1,9 @@
 /// @param filename
 /// @param [complete-object?]
+/// @param [raw-buffer?]
 /// @param [existing-object]
 /// @param [replace-index]
 function import_obj() {
-
     var fn = argument[0];
     // setting "everything" to false will mean only the vertex buffer is returned
     var everything = (argument_count > 1 && argument[1] != undefined) ? argument[1] : true;
