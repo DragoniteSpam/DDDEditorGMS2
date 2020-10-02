@@ -35,12 +35,12 @@ function draw_editor_3d(mode) {
     gpu_set_zwriteenable(true);
     gpu_set_ztestenable(true);
     
-    // terrain
-    graphics_set_lighting(shd_terrain);
-    
-    matrix_set(matrix_world, matrix_build(0, 0, 0, 0, 0, 0, 16, 16, 16));
-    vertex_submit(Stuff.terrain.terrain_buffer, pr_trianglelist, -1);
-    matrix_set(matrix_world, matrix_build_identity());
+    if (Stuff.setting_view_terrain) {
+        graphics_set_lighting(shd_terrain);
+        matrix_set(matrix_world, matrix_build(0, 0, 0, 0, 0, 0, 16, 16, 16));
+        vertex_submit(Stuff.terrain.terrain_buffer, pr_trianglelist, -1);
+        matrix_set(matrix_world, matrix_build_identity());
+    }
     
     graphics_set_lighting(shd_ddd);
     
