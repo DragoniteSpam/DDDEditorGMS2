@@ -1,30 +1,25 @@
-/// @param EditorModeMap
-function ui_init_main(argument0) {
-
-    var mode = argument0;
-
+function ui_init_main(mode) {
     with (instance_create_depth(0, 0, 0, UIMain)) {
-    
-    #region setup
-    
+        
+        #region setup
         // it would be best if you don't ask to access these later but if you need to these are just
         // object variables so you can look them up
         t_general = create_tab("General", 0, id);
         t_stats = create_tab("Stats", 0, id);
         t_maps = create_tab("Maps", 0, id);
-    
+        
         t_p_tile_editor = create_tab("Tile Ed.", 1, id);
         t_p_tile_animation_editor = create_tab("Tile Anim. Ed.", 1, id);
         t_p_mesh_editor = create_tab("Mesh Ed.", 1, id);
         t_p_other_editor = create_tab("Other Ed.", 1, id);
-    
+        
         t_p_entity = create_tab("Entity", 2, id);
         t_p_tile = create_tab("Tile", 2, id);
         t_p_mesh = create_tab("Mesh", 2, id);
         t_p_pawn = create_tab("Pawn", 2, id);
         t_p_effect = create_tab("Effect", 2, id);
         t_p_other = create_tab("Other", 2, id);
-    
+        
         // the game will crash if you create a tab row with zero width.
         var tr_general = ds_list_create();
         ds_list_add(tr_general, t_general, t_stats, t_maps);
@@ -32,13 +27,12 @@ function ui_init_main(argument0) {
         ds_list_add(tr_editor, t_p_tile_editor, t_p_tile_animation_editor, t_p_mesh_editor, t_p_other_editor);
         var tr_world = ds_list_create();
         ds_list_add(tr_world, t_p_entity, t_p_tile, t_p_mesh, t_p_pawn, t_p_effect, t_p_other);
-    
+        
         ds_list_add(tabs, tr_general, tr_editor, tr_world);
-    
+        
         active_tab = t_general;
-    
-    #endregion
-    
+        #endregion
+        
         // don't try to make three columns. the math has been hard-coded
         // for two. everything will go very badly if you try three or more.
         var element;
@@ -49,47 +43,46 @@ function ui_init_main(argument0) {
         var col_width = legal_width / 2 - spacing * 1.5;
         var col1_x = legal_x + spacing;
         var col2_x = legal_x + col_width + spacing * 2;
-    
+        
         var vx1 = col_width / 2;
         var vy1 = 0;
         var vx2 = col_width;
         var vy2 = vy1 + 24;
-    
+        
         var button_width = 128;
-    
-    #region tab: general
-    
+        
+        #region tab: general
         var yy = legal_y + spacing;
-    
+        
         element = create_radio_array(col1_x, yy, "Selection mode", col_width, element_height, uivc_radio_selection_mode, Stuff.setting_selection_mode, t_general);
         create_radio_array_options(element, ["Single", "Rectangle", "Circle"]);
         ds_list_add(t_general.contents, element);
-    
+        
         yy += ui_get_radio_array_height(element) + spacing;
-    
+        
         element = create_checkbox(col1_x, yy, "Additive Selection", col_width, element_height, uivc_check_selection_addition, Stuff.setting_selection_addition, t_general);
         ds_list_add(t_general.contents, element);
-    
+        
         yy += element.height + spacing;
-    
+        
         element = create_radio_array(col1_x, yy, "Fill Type", col_width, element_height, uivc_radio_fill_type, Stuff.setting_selection_fill_type, t_general);
         create_radio_array_options(element, ["Tile", "Animated Tile", "Mesh", "Pawn", "Effect", "Mesh Autotile", "Zone"]);
         ds_list_add(t_general.contents, element);
-    
+        
         yy += ui_get_radio_array_height(element) + spacing;
-    
+        
         element = create_button(col1_x, yy, "Fill Selection (Space)", col_width, element_height, fa_center, uimu_selection_fill, t_general);
         ds_list_add(t_general.contents, element);
-    
+        
         yy += element.height + spacing;
-    
+        
         element = create_button(col1_x, yy, "Delete Selection (Delete)", col_width, element_height, fa_center, uimu_selection_delete, t_general);
         ds_list_add(t_general.contents, element);
-    
+        
         yy += element.height + spacing;
-    
+        
         var s = 16;
-    
+        
         element = create_bitfield(col1_x, yy, "Selection Mask:", col_width, element_height, ETypeFlags.ENTITY_ANY, t_general);
         create_bitfield_options_vertical(element, [
             create_bitfield_option_data(ETypeFlags.ENTITY_TILE, ui_render_bitfield_option_text_selection_mask, uivc_bitfield_selection_mask, "Tile", -1, 0, col_width / 2, s),
@@ -100,78 +93,76 @@ function ui_init_main(argument0) {
             create_bitfield_option_data(0, ui_render_bitfield_option_text_selection_mask_none, uivc_bitfield_selection_mask_none, "None", -1, 0, col_width / 2, s)
         ]);
         ds_list_add(t_general.contents, element);
-    
+        
         yy += element.height + spacing;
-    
+        
         // second column
-    
+        
         yy = legal_y + spacing;
-    
+        
         element = create_checkbox(col2_x, yy, "View Wireframes", col_width, element_height, uivc_check_view_wireframe, Stuff.setting_view_wireframe, t_general);
         element.tooltip = "Whether or not you want to view the wireframes to go with visual data.";
         ds_list_add(t_general.contents, element);
-    
+        
         yy += element.height + spacing;
-    
+        
         element = create_checkbox(col2_x, yy, "View Grid and Markers", col_width, element_height, uivc_check_view_grids, Stuff.setting_view_grid, t_general);
         element.tooltip = "Whether or not you want to view the cell grid and grid axes.";
         ds_list_add(t_general.contents, element);
-    
+        
         yy += element.height + spacing;
-    
+        
         element = create_checkbox(col2_x, yy, "View Texture", col_width, element_height, uivc_check_view_texture, Stuff.setting_view_texture, t_general);
         element.tooltip = "Whether or not to texture the visuals (to use the tilesets, in common terms). If off, a flat orange texture will be used instead. Most of the time you want this on.";
         ds_list_add(t_general.contents, element);
-    
+        
         yy += element.height + spacing;
-    
+        
         element = create_checkbox(col2_x, yy, "View Entities", col_width, element_height, uivc_check_view_entities, Stuff.setting_view_entities, t_general);
         element.tooltip = "Whether or not entites should be visible. This is almost everything in the map, and turning it off is quite pointless.";
         ds_list_add(t_general.contents, element);
-    
+        
         yy += element.height + spacing;
-    
+        
         element = create_checkbox(col2_x, yy, "View Backfaces", col_width, element_height, uivc_check_view_backface, Stuff.setting_view_backface, t_general);
         element.tooltip = "Whether the backs of triangles should be visible. There is a very small performance cost to turning them on. Generally, this is not needed.";
         ds_list_add(t_general.contents, element);
-    
+        
         yy += element.height + spacing;
-    
+        
         element = create_checkbox(col2_x, yy, "View Zones", col_width, element_height, uivc_check_view_zones, Stuff.setting_view_zones, t_general);
         element.tooltip = "Map zones for things like camera and lighting controls. If you have a lot of them, it can become hard to see through them. Zones can only be blicked on when this is turned on.";
         ds_list_add(t_general.contents, element);
-    
+        
         yy += element.height + spacing;
-    
+        
         element = create_checkbox(col2_x, yy, "View Lighting", col_width, element_height, uivc_check_view_lighting, Stuff.setting_view_lighting, t_general);
         element.tooltip = "See how the scene looks with lighting. This also affects fog. You may wish to turn this off if you find yourself having a hard time seeing with the lights enabled.";
         ds_list_add(t_general.contents, element);
-    
+        
         yy += element.height + spacing;
-    
+        
         element = create_checkbox(col2_x, yy, "View Gizmos", col_width, element_height, uivc_check_view_gizmos, Stuff.setting_view_gizmos, t_general);
         element.tooltip = "The helpful frames you see around light sources and other effects and that sort of thing.";
         ds_list_add(t_general.contents, element);
-    
+        
         yy += element.height + spacing;
-    
-    #endregion
-    
-    #region tab: stats
-    
+        #endregion
+        
+        #region tab: stats
         yy = legal_y + spacing;
-    
+        
         // if you really want the color-coded entities, maybe make the entry color feature a script instead 
         // of just a list of colors - later, though
         element_all_entities = create_list(col1_x, yy, "All Entities", "<No entities>", col_width, element_height, 28, uivc_list_all_entities, true, t_stats, noone);
         element_all_entities.render = ui_render_list_all_entities;
         element_all_entities.entries_are = ListEntries.INSTANCES;
         ds_list_add(t_stats.contents, element_all_entities);
-    
+        
         // second column
-    
+        
         yy = legal_y + spacing;
-    
+        
         element = create_text(col2_x, yy, "Entity Stats", col_width, element_height, fa_left, col_width, t_stats);
         ds_list_add(t_stats.contents, element);
     

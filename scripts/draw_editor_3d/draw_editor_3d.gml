@@ -2,7 +2,6 @@ function draw_editor_3d(mode) {
     var map = Stuff.map.active_map;
     var map_contents = map.contents;
     
-    draw_clear(c_black);
     draw_set_color(c_white);
     gpu_set_cullmode(Stuff.setting_view_backface ? cull_noculling : cull_counterclockwise);
     

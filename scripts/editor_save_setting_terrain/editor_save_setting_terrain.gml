@@ -1,8 +1,4 @@
-/// @param EditorModeTerrain
-function editor_save_setting_terrain(argument0) {
-
-    var terrain = argument0;
-
+function editor_save_setting_terrain(mode) {
     setting_set("Terrain", "x", terrain.x);
     setting_set("Terrain", "y", terrain.y);
     setting_set("Terrain", "z", terrain.z);
@@ -10,6 +6,4 @@ function editor_save_setting_terrain(argument0) {
     setting_set("Terrain", "yto", terrain.yto);
     setting_set("Terrain", "zto", terrain.zto);
     setting_set("Terrain", "fov", terrain.fov);
-
-
 }
