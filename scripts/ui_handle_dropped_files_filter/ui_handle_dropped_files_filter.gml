@@ -1,16 +1,10 @@
-/// @param files[]
-/// @param extensions[]
-function ui_handle_dropped_files_filter(argument0, argument1) {
-
-    var files = argument0;
-    var extensions = argument1;
-
+function ui_handle_dropped_files_filter(files, extensions) {
     var filtered_list = ds_list_create();
-
+    
     for (var j = 0; j < array_length(extensions); j++) {
         extensions[j] = string_lower(extensions[j]);
     }
-
+    
     for (var i = 0; i < array_length(files); i++) {
         var fn = string_lower(files[i]);
         for (var j = 0; j < array_length(extensions); j++) {
@@ -19,8 +13,6 @@ function ui_handle_dropped_files_filter(argument0, argument1) {
             }
         }
     }
-
+    
     return filtered_list;
-
-
 }

@@ -163,6 +163,7 @@ setting_view_entities = setting_get("View", "entities", true);
 setting_view_zones = setting_get("View", "zones", true);
 setting_view_lighting = setting_get("View", "lighting", true);
 setting_view_gizmos = setting_get("View", "gizmos", true);
+setting_view_terrain = setting_get("View", "terrain", true);
 
 if (!EDITOR_FORCE_SINGLE_MODE) {
     var stashed_mode = setting_get("Config", "mode", EDITOR_BASE_MODE);

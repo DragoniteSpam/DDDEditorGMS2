@@ -1,10 +1,7 @@
-/// @param UIButton
-function omu_mesh_import_sub(argument0) {
-
-    var button = argument0;
+function omu_mesh_import_sub(button) {
     var fn = get_open_filename_mesh();
     var mesh_data = button.root.mesh;
-
+    
     // @todo try catch
     if (file_exists(fn)) {
         switch (filename_ext(fn)) {
@@ -13,6 +10,4 @@ function omu_mesh_import_sub(argument0) {
             case ".smf": import_smf(fn, mesh_data); break;
         }
     }
-
-
 }

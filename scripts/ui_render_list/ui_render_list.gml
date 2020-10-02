@@ -1,12 +1,4 @@
-/// @param UIList
-/// @param x
-/// @param y
-function ui_render_list(argument0, argument1, argument2) {
-
-    var list = argument0;
-    var xx = argument1;
-    var yy = argument2;
-
+function ui_render_list(list, xx, yy) {
     var x1 = list.x + xx;
     var y1 = list.y + yy;
     var x2 = x1 + list.width;
@@ -14,15 +6,15 @@ function ui_render_list(argument0, argument1, argument2) {
     var y3 = y2 + list.slots * list.height;
     var ww = x2 - x1;
     var hh = y3 - y2;
-
+    
     var tx = ui_get_text_x(list, x1, x2);
     var ty = ui_get_text_y(list, y1, y2);
-
-#region stuff around the list
+    
+    #region stuff around the list
     draw_set_halign(list.alignment);
     draw_set_valign(list.valignment);
     draw_set_color(list.color);
-
+    
     if (string_length(list.tooltip) > 0) {
         var spr_xoffset = sprite_get_xoffset(spr_help);
         var spr_yoffset = sprite_get_yoffset(spr_help);
@@ -38,21 +30,21 @@ function ui_render_list(argument0, argument1, argument2) {
         var txoffset = 0;
     }
     draw_text(tx + txoffset, ty, string(list.text));
-#endregion
-
+    #endregion
+    
     // Drawing to the surface instead of the screen directly - everything drawn needs
     // to be minus x1 and minus y1, because suddenly we're drawing at the origin again
-#region list drawing
+    #region list drawing
     list.surface = surface_rebuild(list.surface, ww, hh);
-
+    
     surface_set_target(list.surface);
     draw_clear_alpha(list.interactive ? c_white : c_ltgray, 1);
-
+    
     var n = ds_exists(list.entries, ds_type_list) ? ds_list_size(list.entries) : 0;
     list.index = clamp(n - list.slots, 0, list.index);
-
+    
     var active = dialog_is_active(list.root);
-
+    
     if (n == 0) {
         draw_rectangle_colour(0, 0, x2 - x1, list.height, c_ltgray, c_ltgray, c_ltgray, c_ltgray, false);
         ty = mean(y2, y2 + list.height);
@@ -67,10 +59,10 @@ function ui_render_list(argument0, argument1, argument2) {
                 var c = list.interactive ? c_ui_select : c_ltgray;
                 draw_rectangle_colour(0, ya - y2, x2 - x1, yb - y2, c, c, c, c, false);
             }
-        
+            
             var c = list.colorize ? script_execute(list.render_colors, list, index) : c_black;
             var text = list.numbered ? string(index) + ". " : "";
-        
+            
             switch (list.entries_are) {
                 // i resisted casting to string for a while because i wanted them to be
                 // actual strings, but now that lists are allowed to reference other ds_lists
@@ -94,14 +86,14 @@ function ui_render_list(argument0, argument1, argument2) {
         }
     }
     surface_reset_target();
-#endregion
-
+    #endregion
+    
     draw_surface(list.surface, x1, y2);
-
-#region interaction
+    
+    #region interaction
     var offset = (n > list.slots) ? 16 : 0;
     var move_direction = 0;
-
+    
     if (list.interactive && ds_exists(list.entries, ds_type_list) && active && !ds_list_empty(list.entries)) {
         var inbounds = mouse_within_rectangle_determine(x1, y2, x2 - offset, y3, list.adjust_view);
         if (inbounds) {
@@ -146,7 +138,7 @@ function ui_render_list(argument0, argument1, argument2) {
                         ds_map_delete(list.selected_entries, mn);
                     }
                 }
-            
+                
                 list.last_index = mn;
                 ui_activate(list);
                 script_execute(list.onvaluechange, list);
@@ -156,13 +148,13 @@ function ui_render_list(argument0, argument1, argument2) {
                     script_execute(list.onvaluechange, list);
                 }
             }
-        
+            
             if (mouse_wheel_up()) {
                 move_direction = -1;
             } else if (mouse_wheel_down()) {
                 move_direction = 1;
             }
-        
+            
             if (list.allow_multi_select) {
                 if (keyboard_check(vk_control) && keyboard_check_pressed(ord("A"))) {
                     for (var i = 0; i < n; i++) {
@@ -176,9 +168,9 @@ function ui_render_list(argument0, argument1, argument2) {
             }
         }
     }
-#endregion
-
-#region slider
+    #endregion
+    
+    #region slider
     if (n > list.slots) {
         var sw = 16;
         var noutofrange = n - list.slots; // at minimum, one
@@ -193,7 +185,7 @@ function ui_render_list(argument0, argument1, argument2) {
         draw_line(x2 - sw, y2 + sw, x2, y2 + sw);
         draw_line(x2 - sw, y3 - sw, x2, y3 - sw);
         draw_rectangle(x2 - sw, y2, x2, y3, true);
-    
+        
         var sby1 = sy - shalf;
         var sby2 = sy + shalf;
         if (list.interactive && active) {
@@ -219,7 +211,7 @@ function ui_render_list(argument0, argument1, argument2) {
         draw_line_colour(x2 - sw * 4 / 5, sy - 4, x2 - sw / 5, sy - 4, c_gray, c_gray);
         draw_line_colour(x2 - sw * 4 / 5, sy, x2 - sw / 5, sy, c_gray, c_gray);
         draw_line_colour(x2 - sw * 4 / 5, sy + 4, x2 - sw / 5, sy + 4, c_gray, c_gray);
-    
+        
         if (active) {
             var inbounds_top = mouse_within_rectangle_determine(x2 - sw, y2, x2, y2 + sw, list.adjust_view);
             var inbounds_bottom = mouse_within_rectangle_determine(x2 - sw, y3 - sw, x2, y3, list.adjust_view);
@@ -246,13 +238,11 @@ function ui_render_list(argument0, argument1, argument2) {
         draw_sprite(spr_scroll_arrow, 0, x2 - sw, y2);
         draw_sprite(spr_scroll_arrow, 1, x2 - sw, y3 - sw);
     }
-#endregion
-
+    #endregion
+    
     draw_rectangle(x1, y2, x2, y3, true);
-
+    
     list.index = clamp(list.index + move_direction, 0, max(0, n - list.slots));
-
+    
     ui_handle_dropped_files(list);
-
-
 }

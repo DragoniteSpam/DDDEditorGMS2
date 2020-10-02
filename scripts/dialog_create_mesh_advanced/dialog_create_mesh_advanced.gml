@@ -1,10 +1,4 @@
-/// @param Dialog
-/// @param mesh
-function dialog_create_mesh_advanced(argument0, argument1) {
-
-    var root = argument0;
-    var mesh = argument1;
-
+function dialog_create_mesh_advanced(root, mesh) {
     var dw = 1280;
     var dh = 560;
 
@@ -41,6 +35,7 @@ function dialog_create_mesh_advanced(argument0, argument1) {
     yy += ui_get_list_height(el_list) + spacing;
 
     var el_add = create_button(col1_x, yy, "Add Sub-Mesh", ew, eh, fa_center, omu_mesh_import_sub, dg);
+    el_add.file_dropper_action = uifd_load_submeshes;
     el_add.tooltip = "Add a sub-mesh";
     yy += el_add.height + spacing;
 

@@ -248,6 +248,7 @@
     {"id":{"name":"refid_get","path":"scripts/refid_get/refid_get.yy",},"order":11,},
     {"id":{"name":"guid_remove","path":"scripts/guid_remove/guid_remove.yy",},"order":12,},
     {"id":{"name":"proto_guid_remove","path":"scripts/proto_guid_remove/proto_guid_remove.yy",},"order":13,},
+    {"id":{"name":"uifd_load_meshes_textureless","path":"scripts/uifd_load_meshes_textureless/uifd_load_meshes_textureless.yy",},"order":4,},
     {"id":{"name":"refid_remove","path":"scripts/refid_remove/refid_remove.yy",},"order":14,},
     {"id":{"name":"internal_name_remove","path":"scripts/internal_name_remove/internal_name_remove.yy",},"order":15,},
     {"id":{"name":"guid_generate","path":"scripts/guid_generate/guid_generate.yy",},"order":16,},

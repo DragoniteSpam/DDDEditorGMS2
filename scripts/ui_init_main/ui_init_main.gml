@@ -147,6 +147,12 @@ function ui_init_main(mode) {
         ds_list_add(t_general.contents, element);
         
         yy += element.height + spacing;
+        
+        element = create_checkbox(col2_x, yy, "View Terrain", col_width, element_height, uivc_check_view_terrain, Stuff.setting_view_gizmos, t_general);
+        element.tooltip = "The helpful frames you see around light sources and other effects and that sort of thing.";
+        ds_list_add(t_general.contents, element);
+        
+        yy += element.height + spacing;
         #endregion
         
         #region tab: stats
@@ -617,31 +623,29 @@ function ui_init_main(mode) {
         element_entity_scale_z.interactive = false;
     
         yy += element_height + spacing;
-    
-    #endregion
-    
-    #region tab: entity: mesh
-    
+        #endregion
+        
+        #region tab: entity: mesh
         yy = legal_y + spacing;
-    
+        
         element_entity_mesh_list = create_list(col1_x, yy, "Mesh", "<no meshes>", col_width, element_height, 16, uivc_entity_mesh_list, false, t_p_mesh, Stuff.all_meshes);
         element_entity_mesh_list.allow_deselect = false;
         element_entity_mesh_list.entries_are = ListEntries.INSTANCES;
         ds_list_add(t_p_mesh.contents, element_entity_mesh_list);
         element_entity_mesh_list.interactive = false;
-    
+        
         yy += ui_get_list_height(element_entity_mesh_list) + spacing;
-    
+        
         element_entity_mesh_submesh = create_list(col1_x, yy, "Submesh", "<choose a single mesh>", col_width, element_height, 10, uivc_entity_mesh_submesh, false, t_p_mesh, noone);
         element_entity_mesh_submesh.allow_deselect = false;
         element_entity_mesh_submesh.entries_are = ListEntries.INSTANCES;
         ds_list_add(t_p_mesh.contents, element_entity_mesh_submesh);
         element_entity_mesh_submesh.interactive = false;
-    
+        
         yy += ui_get_list_height(element_entity_mesh_submesh) + spacing;
-    
+        
         yy = legal_y + spacing;
-    
+        
         element_entity_mesh_autotile_data = create_button(col2_x, yy, "Mesh Autotile Data", col_width, element_height, fa_center, uivc_entity_mesh_autotile_properties, t_p_mesh);
         ds_list_add(t_p_mesh.contents, element_entity_mesh_autotile_data);
         element_entity_mesh_autotile_data.interactive = false;
@@ -781,11 +785,10 @@ function ui_init_main(mode) {
         yy += element.height + spacing;
     
     #endregion
-    
-    #region tab: general: meshes
-    
+        
+        #region tab: general: meshes
         yy = legal_y + spacing;
-    
+        
         // this is an object variable
         element_mesh_list = create_list(col1_x, yy, "Available meshes: ", "<no meshes>", col_width, element_height, 25, uivc_list_selection_mesh, false, t_p_mesh_editor);
         element_mesh_list.entries_are = ListEntries.SCRIPT;
@@ -795,129 +798,129 @@ function ui_init_main(mode) {
         element_mesh_list.ondoubleclick = omu_mesh_preview;
         element_mesh_list.evaluate_text = ui_list_text_meshes;
         ds_list_add(t_p_mesh_editor.contents, element_mesh_list);
-    
+        
         yy += ui_get_list_height(element_mesh_list) + spacing;
-    
+        
         element = create_button(col1_x, yy, "Import", col_width, element_height, fa_center, omu_mesh_import, t_p_mesh_editor);
+        element.file_dropper_action = uifd_load_meshes_textureless;
         element.tooltip = "Imports a 3D model. The texture coordinates will automatically be scaled on importing; to override this, press the Control key.";
         ds_list_add(t_p_mesh_editor.contents, element);
-    
+        
         yy += element.height + spacing;
-    
+        
         element = create_button(col1_x, yy, "Delete", col_width, element_height, fa_center, omu_mesh_remove, t_p_mesh_editor);
         element.color = c_red;
         ds_list_add(t_p_mesh_editor.contents, element);
-    
+        
         yy = legal_y + spacing;
-    
+        
         element = create_text(col2_x, yy, "Mesh Properties", col_width, element_height, fa_left, col_width, t_p_mesh_editor);
         element.color = c_blue;
         ds_list_add(t_p_mesh_editor.contents, element);
-    
+        
         yy += element.height + spacing;
-    
+        
         element = create_text(col2_x, yy, "Name:", col_width, element_height, fa_left, col_width, t_p_mesh_editor);
         ds_list_add(t_p_mesh_editor.contents, element);
-    
+        
         yy += element.height + spacing;
-    
+        
         element = create_input(col2_x, yy, "", col_width, element_height, uivc_input_mesh_name, "", "Name", validate_string, 0, 1, VISIBLE_NAME_LENGTH, 0, vy1, vx2, vy2, t_p_mesh_editor);
         ds_list_add(t_p_mesh_editor.contents, element);
-    
+        
         t_p_mesh_editor.mesh_name = element;
-    
+        
         yy += t_p_mesh_editor.mesh_name.height + spacing;
-    
+        
         element = create_text(col2_x, yy, "Internal Name:", col_width, element_height, fa_left, col_width, t_p_mesh_editor);
         ds_list_add(t_p_mesh_editor.contents, element);
-    
+        
         yy += element.height + spacing;
-    
+        
         element = create_input(col2_x, yy, "", col_width, element_height, uivc_input_mesh_internal_name, "", "A-Za-z0-9_", validate_string_internal_name, 0, 1, INTERNAL_NAME_LENGTH, 0, vy1, vx2, vy2, t_p_mesh_editor);
         ds_list_add(t_p_mesh_editor.contents, element);
-    
+        
         t_p_mesh_editor.mesh_name_internal = element;
-    
+        
         yy += t_p_mesh_editor.mesh_name_internal.height + spacing;
-    
+        
         var s = 10;
-    
+        
         var bounds_x = col2_x;
         var bounds_x_2 = bounds_x + col_width / 2;
-    
+        
         element = create_text(bounds_x, yy, "Bounds", col_width, element_height, fa_left, col_width, t_p_mesh_editor);
         element.color = c_blue;
         ds_list_add(t_p_mesh_editor.contents, element);
-    
+        
         yy += element.height + spacing;
-    
+        
         element = create_input(bounds_x, yy, "xmin:", col_width / 2, element_height, uivc_mesh_set_xmin, 0, "integer", validate_int, -128, 127, 4, 64, vy1, col_width / 2, vy2, t_p_mesh_editor);
         ds_list_add(t_p_mesh_editor.contents, element);
         t_p_mesh_editor.xmin = element;
-    
+        
         element = create_input(bounds_x_2, yy, "xmax:", col_width / 2, element_height, uivc_mesh_set_xmax, 0, "integer", validate_int, -128, 127, 4, 64, vy1, col_width / 2, vy2, t_p_mesh_editor);
         ds_list_add(t_p_mesh_editor.contents, element);
         t_p_mesh_editor.xmax = element;
-    
+        
         yy += element.height + spacing;
-    
+        
         element = create_input(bounds_x, yy, "ymin:", col_width / 2, element_height, uivc_mesh_set_ymin, 0, "integer", validate_int, -128, 127, 4, 64, vy1, col_width / 2, vy2, t_p_mesh_editor);
         ds_list_add(t_p_mesh_editor.contents, element);
         t_p_mesh_editor.ymin = element;
-    
+        
         element = create_input(bounds_x_2, yy, "ymax:", col_width / 2, element_height, uivc_mesh_set_ymax, 0, "integer", validate_int, -128, 127, 4, 64, vy1, col_width / 2, vy2, t_p_mesh_editor);
         ds_list_add(t_p_mesh_editor.contents, element);
         t_p_mesh_editor.ymax = element;
-    
+        
         yy += element.height + spacing;
-    
+        
         element = create_input(bounds_x, yy, "zmin:", col_width / 2, element_height, uivc_mesh_set_zmin, 0, "integer", validate_int, -128, 127, 4, 64, vy1, col_width / 2, vy2, t_p_mesh_editor);
         ds_list_add(t_p_mesh_editor.contents, element);
         t_p_mesh_editor.zmin = element;
-    
+        
         element = create_input(bounds_x_2, yy, "zmax:", col_width / 2, element_height, uivc_mesh_set_zmax, 0, "integer", validate_int, -128, 127, 4, 64, vy1, col_width / 2, vy2, t_p_mesh_editor);
         ds_list_add(t_p_mesh_editor.contents, element);
         t_p_mesh_editor.zmax = element;
-    
+        
         yy += element.height + spacing;
-    
+        
         element = create_button(col2_x, yy, "Collision Data", col_width, element_height, fa_center, omu_mesh_collision_data, t_p_tile_editor);
         ds_list_add(t_p_mesh_editor.contents, element);
-    
+        
         yy += element.height + spacing;
-    
+        
         element = create_button(col2_x, yy, "Mesh Flags", col_width, element_height, fa_center, omu_mesh_flags, t_p_tile_editor);
         ds_list_add(t_p_mesh_editor.contents, element);
-    
+        
         yy += element.height + spacing;
-    
+        
         element = create_button(col2_x, yy, "Preview", col_width, element_height, fa_center, omu_mesh_preview, t_p_mesh_editor);
         ds_list_add(t_p_mesh_editor.contents, element);
-    
+        
         yy += element.height + spacing;
-    
+        
         element = create_button(col2_x, yy, "Advanced", col_width, element_height, fa_center, omu_mesh_advanced, t_p_mesh_editor);
         ds_list_add(t_p_mesh_editor.contents, element);
-    
+        
         yy += element.height + spacing;
-    
+        
         element = create_text(col2_x, yy, "General Mesh Things", col_width, element_height, fa_left, col_width, t_p_mesh_editor);
         element.color = c_blue;
         ds_list_add(t_p_mesh_editor.contents, element);
-    
+        
         yy += element.height + spacing;
-    
+        
         element = create_button(col2_x, yy, "Export Selected", col_width, element_height, fa_center, omu_mesh_export_selected, t_p_mesh_editor);
         ds_list_add(t_p_mesh_editor.contents, element);
-    
+        
         yy += element.height + spacing;
-    
+        
         element = create_button(col2_x, yy, "Export All", col_width, element_height, fa_center, omu_mesh_export_archive, t_p_mesh_editor);
         ds_list_add(t_p_mesh_editor.contents, element);
-    
+        
         yy += element.height + spacing;
-    
-    #endregion
+        #endregion
     
     #region tab: general: tile animation
     
