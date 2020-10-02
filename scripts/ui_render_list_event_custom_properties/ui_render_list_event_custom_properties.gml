@@ -1,13 +1,4 @@
-/// @param UIList
-/// @param x
-/// @param y
 function ui_render_list_event_custom_properties(list, x, y) {
-    // this is a lot of the same code as ui_render_list which annoys me
-    // slightly, except it looks directly at DataMapContainer.all_entities
-    // in order to minimize code duplication. (Lol!)
-    // as such, entries, entry_colors and entries_are_instances are not
-    // used in here
-
     var otext = list.text;
     
     list.text = list.text + " (" + string(ds_list_size(list.root.event.types)) + ")";
@@ -20,7 +11,7 @@ function ui_render_list_event_custom_properties(list, x, y) {
         ds_list_add(list.entries, property[EventNodeCustomData.NAME]);
     }
     
-    ui_render_list(list, xx, yy);
+    ui_render_list(list, x, y);
     
     list.text = otext;
 }

@@ -13,7 +13,7 @@ function uivc_list_event_custom_property(list) {
         list.root.el_property_type.value = property[EventNodeCustomData.TYPE];
         
         var datatype = guid_get(property[EventNodeCustomData.TYPE_GUID]);
-        list.root.el_property_type_guid.text = datatype ? ("Select (" + datatype.name + ")") : "Select";
+        list.root.el_property_type_guid.text = datatype ? ("Select (" + datatype.name + ")") : "Select Type...";
         
         // set the behavior of the button based on the data type
         switch (list.root.el_property_type.value) {
