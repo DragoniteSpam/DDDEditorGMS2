@@ -36,6 +36,7 @@ function dialog_create_manager_graphic_overworld(argument0) {
     yy += ui_get_list_height(el_list) + spacing;
 
     var el_add = create_button(16, yy, "Add Overworld", ew, eh, fa_center, dmu_dialog_load_graphic_overworld, dg);
+    el_add.file_dropper_action = uifd_load_img_overworld;
     yy += el_add.height + spacing;
 
     var el_remove = create_button(16, yy, "Delete Overworld", ew, eh, fa_center, dmu_dialog_remove_graphic_overworld, dg);

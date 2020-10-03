@@ -36,6 +36,7 @@ function dialog_create_manager_graphic_battle(argument0) {
     yy += ui_get_list_height(el_list) + spacing;
 
     var el_add = create_button(16, yy, "Add Battler", ew, eh, fa_center, dmu_dialog_load_graphic_battler, dg);
+    el_add.file_dropper_action = uifd_load_img_battler;
     yy += el_add.height + spacing;
 
     var el_remove = create_button(16, yy, "Delete Battler", ew, eh, fa_center, dmu_dialog_remove_graphic_battler, dg);

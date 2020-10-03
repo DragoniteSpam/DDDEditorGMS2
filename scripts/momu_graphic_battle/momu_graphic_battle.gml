@@ -1,11 +1,4 @@
-/// @param MenuElement
-function momu_graphic_battle(argument0) {
-
-    var element = argument0;
-
+function momu_graphic_battle(element) {
     menu_activate(noone);
-
     dialog_create_manager_graphic_battle(noone);
-
-
 }
