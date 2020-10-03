@@ -15,7 +15,6 @@ function import_d3d() {
     var raw_buffer = (argument_count > 2 && argument[2] != undefined) ? argument[2] : false;
     var existing = (argument_count > 3 && argument[3] != undefined) ? argument[3] : noone;
     var replace_index = (argument_count > 4 && argument[4] != undefined) ? argument[4] : -1;
-    var data_added = false;
     
     var f = file_text_open_read(fn);
     file_text_readln(f);
@@ -93,8 +92,6 @@ function import_d3d() {
         maxy = max(maxy, yy[vc]);
         maxz = max(maxz, zz[vc]);
         
-        data_added = true;
-        
         vc++;
         
         if (vc == 3) {
@@ -162,13 +159,13 @@ function import_d3d() {
     
     var dbuffer = raw_buffer ? buffer_create_from_vertex_buffer(vbuffer, buffer_fixed, 1) : noone;
     
-    if (!data_added) {
+    if (vertex_get_number(vbuffer) == 0) {
         vertex_delete_buffer(vbuffer);
         vbuffer = noone;
     }
     
     if (everything) {
-        if (data_added) {
+        if (vertex_get_number(vbuffer) > 0) {
             vertex_end(wbuffer);
             c_shape_end_trimesh(cshape);
         } else {
@@ -192,7 +189,7 @@ function import_d3d() {
             internal_name_generate(mesh, PREFIX_MESH + string_lettersdigits(base_name));
         }
         
-        if (data_added) {
+        if (vertex_get_number(vbuffer) > 0) {
             mesh_create_submesh(mesh, buffer_create_from_vertex_buffer(vbuffer, buffer_fixed, 1), vbuffer, wbuffer, undefined, base_name, replace_index, fn);
             if (!mesh.cshape) {
                 mesh.cshape = cshape;
