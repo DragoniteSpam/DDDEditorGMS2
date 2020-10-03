@@ -1,7 +1,4 @@
-/// @param root
-function dialog_create_manager_mesh_autotile_top(argument0) {
-
-    var root = argument0;
+function dialog_create_manager_mesh_autotile_top(root) {
     var map = Stuff.map.active_map;
     var map_contents = map.contents;
 
@@ -33,6 +30,7 @@ function dialog_create_manager_mesh_autotile_top(argument0) {
         button.tooltip = "Import a mesh for top mesh autotile #" + string(i) + ". It should take the shape of the icon below, with green representing the outer part and brown representing the inner part.";
         button.color = map_contents.mesh_autotiles_top[i] ? c_black : c_gray;
         button.key = i;
+        button.file_dropper_action = uifd_load_mesh_autotile_top;
         ds_list_add(dg.contents, button);
         dg.buttons[i] = button;
     
