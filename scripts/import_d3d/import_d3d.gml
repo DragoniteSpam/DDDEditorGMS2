@@ -65,7 +65,14 @@ function import_d3d() {
         
         switch (type) {
             case 0: tri_type = file_text_read_real(f); file_text_readln(f); continue;
-            case 1: file_text_readln(f); continue;
+            case 1:
+                file_text_readln(f);
+                vc = 0;
+                xx = [0, 0, 0]; yy = [0, 0, 0]; zz = [0, 0, 0];
+                nx = [0, 0, 0]; ny = [0, 0, 0]; nz = [0, 0, 0];
+                xtex = [0, 0, 0]; ytex = [0, 0, 0];
+                color = [0, 0, 0]; alpha = [0, 0, 0];
+                continue;
             case 2: xx[vc] = file_text_read_real(f); yy[vc] = file_text_read_real(f); zz[vc] = file_text_read_real(f); file_text_readln(f); break;
             case 3: xx[vc] = file_text_read_real(f); yy[vc] = file_text_read_real(f); zz[vc] = file_text_read_real(f); color[vc] = file_text_read_real(f); alpha[vc] = file_text_read_real(f); file_text_readln(f); break;
             case 4: xx[vc] = file_text_read_real(f); yy[vc] = file_text_read_real(f); zz[vc] = file_text_read_real(f); xtex[vc] = file_text_read_real(f); ytex[vc] = file_text_read_real(f); file_text_readln(f); break;
