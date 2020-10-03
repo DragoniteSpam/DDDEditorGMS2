@@ -3,7 +3,7 @@ function uifd_load_mesh_autotile_vertical(thing, files) {
     for (var i = 0; i < ds_list_size(filtered_list); i++) {
         var fn = filtered_list[| i];
         switch (filename_ext(fn)) {
-            
+            default:
         }
     }
 }
