@@ -191,10 +191,11 @@ function import_map_tiled_layer_object() {
                 if (pr_static == undefined) break;
             
                 pr_static = pr_static[? "value"];
-            
+                
+                var thing = internal_name_get(gid_to_image_name);
+                
                 if (tmx_cache[? obj_id]) {
                     instance = tmx_cache[? obj_id];
-                    var thing = internal_name_get(gid_to_image_name);
                     map_remove_thing(instance);
                     if (thing) {
                         instance.overworld_sprite = thing.GUID;
@@ -205,10 +206,10 @@ function import_map_tiled_layer_object() {
                         instance_destroy(thing);
                         updated = true;
                     }
-                } else {
+                } else if (thing) {
                     instance = instance_create_pawn();
                     instance.tmx_id = obj_id;
-                    instance.overworld_sprite = internal_name_get(gid_to_image_name).GUID;
+                    instance.overworld_sprite = thing.GUID;
                     // position for NPCs is at -1 because of where the origin for sprites is in Tiled
                     map_add_thing(instance, (xx + obj_x) div TILE_WIDTH, (yy + obj_y) div TILE_HEIGHT - 1, zz);
                 }
