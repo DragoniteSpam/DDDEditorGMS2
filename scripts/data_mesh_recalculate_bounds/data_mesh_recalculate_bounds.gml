@@ -1,7 +1,4 @@
-/// @param DataMesh
-function data_mesh_recalculate_bounds(argument0) {
-    var mesh = argument0;
-
+function data_mesh_recalculate_bounds(mesh) {
     var new_grid = ds_grid_create(mesh.xmax - mesh.xmin, mesh.ymax - mesh.ymin);
     for (var i = 0; i < mesh.xmax - mesh.xmin; i++) {
         for (var j = 0; j < mesh.ymax - mesh.ymin; j++) {
@@ -19,9 +16,7 @@ function data_mesh_recalculate_bounds(argument0) {
             }
         }
     }
-
+    
     ds_grid_destroy(mesh.collision_flags);
     mesh.collision_flags = new_grid;
-
-
 }
