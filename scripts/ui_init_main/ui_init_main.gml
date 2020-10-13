@@ -171,102 +171,100 @@ function ui_init_main(mode) {
         
         element = create_text(col2_x, yy, "Entity Stats", col_width, element_height, fa_left, col_width, t_stats);
         ds_list_add(t_stats.contents, element);
-    
+        
         yy += element.height + spacing;
-    
+        
         var stat_x = col2_x + col_width * 3 / 4;
-    
+        
         element = create_text(col2_x, yy, "Total Entities:", col_width, element_height, fa_left, col_width, t_stats);
         ds_list_add(t_stats.contents, element);
-    
+        
         element = create_text(stat_x, yy, "0", col_width, element_height, fa_left, col_width, t_stats);
         element.render = ui_render_text_stats_entities;
         ds_list_add(t_stats.contents, element);
-    
+        
         yy += element.height + spacing;
-    
+        
         element = create_text(col2_x, yy, "     Static:", col_width, element_height, fa_left, col_width, t_stats);
         ds_list_add(t_stats.contents, element);
-    
+        
         element = create_text(stat_x, yy, "0", col_width, element_height, fa_left, col_width, t_stats);
         element.render = ui_render_text_stats_static;
         ds_list_add(t_stats.contents, element);
-    
+        
         yy += element.height;
-    
+        
         element = create_text(col2_x, yy, "     Solid:", col_width, element_height, fa_left, col_width, t_stats);
         ds_list_add(t_stats.contents, element);
-    
+        
         yy += element.height + spacing;
-    
+        
         element = create_text(col2_x, yy, "     Tiles:", col_width, element_height, fa_left, col_width, t_stats);
         ds_list_add(t_stats.contents, element);
-    
+        
         element = create_text(stat_x, yy, "0", col_width, element_height, fa_left, col_width, t_stats);
         element.render = ui_render_text_stats_entities_tiles;
         ds_list_add(t_stats.contents, element);
-    
+        
         yy += element.height;
-    
+        
         element = create_text(col2_x, yy, "     Autotiles:", col_width, element_height, fa_left, col_width, t_stats);
         ds_list_add(t_stats.contents, element);
-    
+        
         element = create_text(stat_x, yy, "0", col_width, element_height, fa_left, col_width, t_stats);
         element.render = ui_render_text_stats_entities_tiles_auto;
         ds_list_add(t_stats.contents, element);
-    
+        
         yy += element.height;
-    
+        
         element = create_text(col2_x, yy, "     Meshes:", col_width, element_height, fa_left, col_width, t_stats);
         ds_list_add(t_stats.contents, element);
-    
+        
         element = create_text(stat_x, yy, "0", col_width, element_height, fa_left, col_width, t_stats);
         element.render = ui_render_text_stats_entities_meshes;
         ds_list_add(t_stats.contents, element);
-    
+        
         yy += element.height;
-    
+        
         element = create_text(col2_x, yy, "     Pawns:", col_width, element_height, fa_left, col_width, t_stats);
         ds_list_add(t_stats.contents, element);
-    
+        
         element = create_text(stat_x, yy, "0", col_width, element_height, fa_left, col_width, t_stats);
         element.render = ui_render_text_stats_entities_pawns;
         ds_list_add(t_stats.contents, element);
-    
+        
         yy += element.height;
-    
+        
         element = create_text(col2_x, yy, "     Effects:", col_width, element_height, fa_left, col_width, t_stats);
         ds_list_add(t_stats.contents, element);
-    
+        
         element = create_text(stat_x, yy, "0", col_width, element_height, fa_left, col_width, t_stats);
         element.render = ui_render_text_stats_entities_effects;
         ds_list_add(t_stats.contents, element);
-    
+        
         yy += element.height + spacing;
-    
+        
         element = create_text(col2_x, yy, "Frozen terrain data:", col_width, element_height, fa_left, col_width, t_stats);
         ds_list_add(t_stats.contents, element);
-    
+        
         yy += spacing;
-    
+        
         element = create_text(col2_x, yy, "    - kb", col_width, element_height, fa_left, col_width, t_stats);
         element.render = ui_render_text_stats_entities_frozen_size_kb;
         ds_list_add(t_stats.contents, element);
-    
+        
         yy += spacing;
-    
+        
         element = create_text(col2_x, yy, "    ( - bytes)", col_width, element_height, fa_left, col_width, t_stats);
         element.render = ui_render_text_stats_entities_frozen_size;
         ds_list_add(t_stats.contents, element);
-    
+        
         yy += spacing;
-    
-    #endregion
-    
-    #region tab: map
-    
+        #endregion
+        
+        #region tab: map
         yy = legal_y + spacing;
-    
+        
         element = create_list(col1_x, yy, "Maps: ", "no maps. (how?!)", col_width, element_height, 20, uivc_list_maps, false, t_maps, Stuff.all_maps);
         element.tooltip = "This is a list of all the maps currently in the game.";
         element.render = ui_render_list_all_maps;
@@ -274,180 +272,178 @@ function ui_init_main(mode) {
         element.entries_are = ListEntries.INSTANCES;
         t_maps.el_map_list = element;
         ds_list_add(t_maps.contents, element);
-    
+        
         yy += ui_get_list_height(element) + spacing;
-    
+        
         element = create_button(col1_x, yy, "Add Map", col_width, element_height, fa_center, dmu_data_add_map, t_maps);
         element.tooltip = "Add a map. You can have up to " + string(0xffff) + " maps in the game. I seriously doubt anyone will need anywhere near that many.";
         ds_list_add(t_maps.contents, element);
-    
+        
         yy += element.height + spacing;
-    
+        
         element = create_button(col1_x, yy, "Delete Map", col_width, element_height, fa_center, dmu_data_remove_map, t_maps);
         element.tooltip = "Delete the currently selected map. Any existing references to it will no longer work. You should only use this if you're absolutely sure; generally speaking, maps not loaded into memory will not affect the game very much.";
         ds_list_add(t_maps.contents, element);
-    
+        
         yy += element.height + spacing;
-    
+        
         element = create_button(col1_x, yy, "Open Map", col_width, element_height, fa_center, dmu_data_open_map, t_maps);
         element.tooltip = "Open the currently selected map for editing. Double-clicking it in the list will have the same effect.";
         ds_list_add(t_maps.contents, element);
-    
+        
         yy += element.height + spacing;
-    
+        
         element = create_button(col1_x, yy, "Make Starting Map", col_width, element_height, fa_center, dmu_data_starting_map, t_maps);
         element.tooltip = "Designate the currently selected map as the first one entered when the game starts. What this means to your game is up to you.";
         ds_list_add(t_maps.contents, element);
-    
+        
         yy += element.height + spacing;
-    
+        
         element = create_button(col1_x, yy, "Import Tiled", col_width, element_height, fa_center, dmu_data_import_map, t_maps);
         element.tooltip = "Import a Tiled map editor file (json version). Tile data will be imported as frozen terrain; the editor will attempt to convert other data to Entities.";
         ds_list_add(t_maps.contents, element);
-    
+        
         yy = legal_y + spacing;
-    
+        
         element = create_text(col2_x, yy, "Name:", col_width, element_height, fa_left, col_width, t_maps);
         ds_list_add(t_maps.contents, element);
-    
+        
         yy += element.height + spacing;
-    
+        
         element = create_input(col2_x, yy, "", col_width, element_height, uivc_settings_map_name, "", "Name", validate_string, 0, 0, VISIBLE_NAME_LENGTH, 0, vy1, vx2, vy2, t_maps);
         element.tooltip = "The name of the map, as it appears to the player.";
         ds_list_add(t_maps.contents, element);
         t_maps.el_name = element;
-    
+        
         yy += element.height + spacing;
-    
+        
         element = create_text(col2_x, yy, "Internal name:", col_width, element_height, fa_left, col_width, t_maps);
         ds_list_add(t_maps.contents, element);
-    
+        
         yy += element.height + spacing;
-    
+        
         element = create_input(col2_x, yy, "", col_width, element_height, uivc_settings_map_internal, "", "[A-Za-z0-9_]+", validate_string_internal_name, 0, 0, INTERNAL_NAME_LENGTH, 0, vy1, vx2, vy2, t_maps);
         element.tooltip = "The internal name of the map, as it appears to the developer. Standard restrictions on internal names apply.";
         ds_list_add(t_maps.contents, element);
         t_maps.el_internal_name = element;
-    
+        
         yy += element.height + spacing;
-    
+        
         element = create_text(col2_x, yy, "Summary:", col_width, element_height, fa_left, col_width, t_maps);
         ds_list_add(t_maps.contents, element);
-    
+        
         yy += element.height + spacing;
-    
+        
         element = create_input(col2_x, yy, "", col_width, element_height, uivc_settings_map_summary, "", "Words", validate_string, 0, 0, 400, 0, vy1, vx2, vy2, t_maps);
         element.tooltip = "A description of the map. Try not to make this too long. You may wish to use Scribble formatting tags.";
         ds_list_add(t_maps.contents, element);
         t_maps.el_summary = element;
-    
+        
         yy += element.height + spacing;
-    
+        
         element = create_text(col2_x, yy, "Dimensions", col_width, element_height, fa_left, col_width, t_maps);
         ds_list_add(t_maps.contents, element);
-    
+        
         yy += element.height + spacing;
-    
+        
         element = create_input(col2_x, yy, "Width (X): ", col_width, element_height, uivc_input_map_size_x, "64", "width", validate_int_map_size_x, 1, MAP_AXIS_LIMIT, 4, vx1, vy1, vx2, vy2, t_maps);
         element.tooltip = "The width of the map, in tiles. Press Enter to confirm. Shrinking a map may result in entities being deleted.";
         element.require_enter = true;
         ds_list_add(t_maps.contents, element);
         t_maps.el_dim_x = element;
-    
+        
         yy += element.height + spacing;
-    
+        
         element = create_input(col2_x, yy, "Height (Y): ", col_width, element_height, uivc_input_map_size_y, "64", "height", validate_int_map_size_y, 1, MAP_AXIS_LIMIT, 4, vx1, vy1, vx2, vy2, t_maps);
         element.tooltip = "The height of the map, in tiles. Press Enter to confirm. Shrinking a map may result in entities being deleted.";
         element.require_enter = true;
         ds_list_add(t_maps.contents, element);
         t_maps.el_dim_y = element;
-    
+        
         yy += element.height + spacing;
-    
+        
         element = create_input(col2_x, yy, "Depth (Z): ", col_width, element_height, uivc_input_map_size_z, "8", "depth", validate_int_map_size_z, 1, MAP_AXIS_LIMIT, 4, vx1, vy1, vx2, vy2, t_maps);
         element.tooltip = "The depth of the map, in tiles. Press Enter to confirm. Shrinking a map may result in entities being deleted.";
         element.require_enter = true;
         ds_list_add(t_maps.contents, element);
         t_maps.el_dim_z = element;
-    
+        
         yy += element.height + spacing * 3;
-    
+        
         element = create_text(col2_x, yy, "Maps can go up to " + string(MAP_AXIS_LIMIT) + " in any dimension, but the total volume must be lower than " + string_comma(MAP_VOLUME_LIMIT) + ".", col_width, element_height, fa_left, col_width, t_maps);
         ds_list_add(t_maps.contents, element);
-    
+        
         yy += element.height + spacing * 3;
-    
+        
         element = create_checkbox(col2_x, yy, "Is 3D?", col_width, element_height, uivc_settings_map_3d, false, t_maps);
         element.tooltip = "This is my favorite checkbox in the whole entire editor.";
         ds_list_add(t_maps.contents, element);
         t_maps.el_3d = element;
-    
+        
         yy += element.height + spacing;
-    
+        
         element = create_button(col2_x, yy,  "Generic Data", col_width, element_height, fa_center, omu_map_generic_data, t_maps);
         element.tooltip = "You can attach generic data properties to each map, to give the game extra information about it. How you use this is up to you. These properties aren't guaranteed to exist, so the game should always check first before trying to access them.";
         ds_list_add(t_maps.contents, element);
         t_maps.el_other = element;
-    
+        
         yy += element.height + spacing;
-    
+        
         element = create_button(col2_x, yy,  "Advanced", col_width, element_height, fa_center, dialog_create_settings_map, t_maps);
         element.tooltip = "I put the more important settings out here on the main UI, but there are plenty of other things you may need to specify about maps.";
         ds_list_add(t_maps.contents, element);
         t_maps.el_other = element;
-    
+        
         yy += element.height + spacing;
-    
+        
         element = create_button(col2_x, yy, "Freeze Selected Objects", col_width, element_height, fa_center, null, t_maps);
         element.tooltip = "Selected objects will be converted to a frozen vertex buffer and will no longer be editable. This means they will be significantly faster to process and render, but they will otherwise be effectively permanently removed. Use with caution.";
         element.interactive = false;
         ds_list_add(t_maps.contents, element);
-    
+        
         yy += element.height + spacing;
-    
+        
         element = create_button(col2_x, yy, "Clear Frozen Data", col_width, element_height, fa_center, null, t_maps);
         element.tooltip = "Clear the frozen vertex buffer data. There is no way to get it back. Use with caution.";
         element.interactive = false;
         ds_list_add(t_maps.contents, element);
-    
+        
         yy += element.height + spacing;
-    
-    #endregion
-    
-    #region tab: entity
-    
+        #endregion
+        
+        #region tab: entity
         yy = legal_y + spacing;
-    
+        
         draw_set_font(FDefault12);
         var max_characters = 32;
         vx2 = vx1 + 288;
-    
+        
         element_entity_name = create_input(col1_x, yy, "Name: ", legal_width, element_height, uivc_input_entity_name, "", "Helpful if unique", validate_string, 0, 1, max_characters, vx1, vy1, vx2, vy2, t_p_entity);
         ds_list_add(t_p_entity.contents, element_entity_name);
         element_entity_name.interactive = false;
-    
+        
         vx2 = col_width;
         yy += element_entity_name.height + spacing;
-    
+        
         element = create_text(col1_x, yy, "Basic Properties", col_width, element_height, fa_left, col_width, t_p_entity);
         element.color = c_blue;
         ds_list_add(t_p_entity.contents, element);
-    
+        
         yy += element.height + spacing;
-    
+        
         element_entity_type = create_text(col1_x, yy, "Type:", col_width, element_height, fa_left, col_width, t_p_entity);
         ds_list_add(t_p_entity.contents, element_entity_type);
-    
+        
         yy += element_entity_type.height + spacing;
-    
+        
         element_entity_static = create_checkbox(col1_x, yy, "Static", col_width, element_height, uivc_check_entity_static, false, t_p_entity);
         ds_list_add(t_p_entity.contents, element_entity_static);
         element_entity_static.interactive = false;
-    
+        
         yy += element_entity_static.height + spacing;
-    
+        
         var n = 6;
-    
+        
         element_entity_events = create_list(col1_x, yy, "Event Pages", "<No events>", col_width, element_height, n, null, false, t_p_entity, noone);
         element_entity_events.colorize = false;
         element_entity_events.render = ui_render_list_entity_events;
@@ -455,173 +451,155 @@ function ui_init_main(mode) {
         element_entity_events.ondoubleclick = omu_entity_event_page;
         ds_list_add(t_p_entity.contents, element_entity_events);
         element_entity_events.interactive = false;
-    
+        
         yy += ui_get_list_height(element_entity_events) + spacing;
-    
+        
         element_entity_event_edit = create_button(col1_x, yy, "Edit Event Page", col_width, element_height, fa_center, omu_entity_event_page, t_p_entity);
         ds_list_add(t_p_entity.contents, element_entity_event_edit);
         element_entity_event_edit.interactive = false;
-    
+        
         yy += element_height + spacing;
-    
+        
         element_entity_event_add = create_button(col1_x, yy, "Add Event Page", col_width, element_height, fa_center, omu_entity_add_event, t_p_entity);
         ds_list_add(t_p_entity.contents, element_entity_event_add);
         element_entity_event_add.interactive = false;
-    
+        
         yy += element_height + spacing;
-    
+        
         element_entity_event_remove = create_button(col1_x, yy, "Delete Event Page", col_width, element_height, fa_center, omu_entity_remove_event, t_p_entity);
         ds_list_add(t_p_entity.contents, element_entity_event_remove);
         element_entity_event_remove.interactive = false;
-    
+        
         yy += element_height + spacing;
-    
+        
         element = create_text(col1_x, yy, "Options", col_width, element_height, fa_left, col_width, t_p_entity);
         element.color = c_blue;
         ds_list_add(t_p_entity.contents, element);
-    
+        
         yy += element.height + spacing;
-    
-        element_entity_option_animate_idle = create_checkbox(col1_x, yy, "Animate Idle", col_width, element_height, uivc_check_entity_option_animate_idle, false, t_p_entity);
-        ds_list_add(t_p_entity.contents, element_entity_option_animate_idle);
-        element_entity_option_animate_idle.interactive = false;
-    
-        yy += element_entity_option_animate_idle.height;
-    
-        element_entity_option_animate_movement = create_checkbox(col1_x, yy, "Animate Movement", col_width, element_height, uivc_check_entity_option_animate_movement, false, t_p_entity);
-        ds_list_add(t_p_entity.contents, element_entity_option_animate_movement);
-        element_entity_option_animate_movement.interactive = false;
-    
-        yy += element_entity_option_animate_movement.height;
-    
+        
         element_entity_option_direction_fix = create_checkbox(col1_x, yy, "Direction Fix", col_width, element_height, uivc_check_entity_option_direction_fix, false, t_p_entity);
         ds_list_add(t_p_entity.contents, element_entity_option_direction_fix);
         element_entity_option_direction_fix.interactive = false;
-    
+        
         yy += element_entity_option_direction_fix.height;
-    
-        element_entity_option_reset_position = create_checkbox(col1_x, yy, "Reset Position", col_width, element_height, uivc_check_entity_option_reset_position, false, t_p_entity);
-        ds_list_add(t_p_entity.contents, element_entity_option_reset_position);
-        element_entity_option_reset_position.interactive = false;
-    
-        yy += element_entity_option_reset_position.height;
-    
+        
         element_entity_option_always_update = create_checkbox(col1_x, yy, "Always Update?", col_width, element_height, uivc_check_entity_option_always_update, false, t_p_entity);
         ds_list_add(t_p_entity.contents, element_entity_option_always_update);
         element_entity_option_always_update.interactive = false;
-    
+        
         yy += element_entity_option_always_update.height + spacing;
-    
+        
         element_entity_generic = create_button(col1_x, yy, "Generic Data", col_width, element_height, fa_center, omu_entity_generic_data, t_p_entity);
         ds_list_add(t_p_entity.contents, element_entity_generic);
         element_entity_generic.interactive = false;
-    
+        
         yy += element_height + spacing;
-    
+        
         element_entity_option_autonomous_movement = create_button(col1_x, yy, "Autonomous Movement", col_width, element_height, fa_center, omu_entity_autonomous_movement, t_p_entity);
         ds_list_add(t_p_entity.contents, element_entity_option_autonomous_movement);
         element_entity_option_autonomous_movement.interactive = false;
-    
+        
         yy += element_entity_option_autonomous_movement.height + spacing;
-    
+        
         // second column
-    
+        
         yy = legal_y + spacing + element_entity_name.height + spacing;
-    
+        
         element = create_text(col2_x, yy, "Transform: Position", col_width, element_height, fa_left, col_width, t_p_entity);
         element.color = c_blue;
         ds_list_add(t_p_entity.contents, element);
-    
+        
         yy += element_height + spacing;
-    
+        
         element_entity_pos_x = create_input(col2_x, yy, "   X: ", col_width, element_height, uivc_input_entity_pos_x, "", "Cell", validate_int, 0, 64, 5, vx1, vy1, vx2, vy2, t_p_entity);
         ds_list_add(t_p_entity.contents, element_entity_pos_x);
         element_entity_pos_x.interactive = false;
-    
+        
         yy += element_height + spacing / 2;
-    
+        
         element_entity_pos_y = create_input(col2_x, yy, "   Y: ", col_width, element_height, uivc_input_entity_pos_y, "", "Cell", validate_int, 0, 64, 5, vx1, vy1, vx2, vy2, t_p_entity);
         ds_list_add(t_p_entity.contents, element_entity_pos_y);
         element_entity_pos_y.interactive = false;
-    
+        
         yy += element_height + spacing / 2;
-    
+        
         element_entity_pos_z = create_input(col2_x, yy, "   Z: ", col_width, element_height, uivc_input_entity_pos_z, "", "Cell", validate_int, 0, 64, 5, vx1, vy1, vx2, vy2, t_p_entity);
         ds_list_add(t_p_entity.contents, element_entity_pos_z);
         element_entity_pos_z.interactive = false;
-    
+        
         yy += element_height + spacing;
-    
+        
         element = create_text(col2_x, yy, "Transform: Position Offset", col_width, element_height, fa_left, col_width, t_p_entity);
         element.color = c_blue;
         ds_list_add(t_p_entity.contents, element);
-    
+        
         yy += element_height + spacing;
-    
+        
         element_entity_offset_x = create_input(col2_x, yy, "   X: ", col_width, element_height, uivc_input_entity_off_x, "", "0...1", validate_double, 0, 1, 4, vx1, vy1, vx2, vy2, t_p_entity);
         ds_list_add(t_p_entity.contents, element_entity_offset_x);
         element_entity_offset_x.interactive = false;
-    
+        
         yy += element_height + spacing / 2;
-    
+        
         element_entity_offset_y = create_input(col2_x, yy, "   Y: ", col_width, element_height, uivc_input_entity_off_y, "", "0...1", validate_double, 0, 1, 4, vx1, vy1, vx2, vy2, t_p_entity);
         ds_list_add(t_p_entity.contents, element_entity_offset_y);
         element_entity_offset_y.interactive = false;
-    
+        
         yy += element_height + spacing / 2;
-    
+        
         element_entity_offset_z = create_input(col2_x, yy, "   Z: ", col_width, element_height, uivc_input_entity_off_z, "", "0...1", validate_double, 0, 1, 4, vx1, vy1, vx2, vy2, t_p_entity);
         ds_list_add(t_p_entity.contents, element_entity_offset_z);
         element_entity_offset_z.interactive = false;
-    
+        
         yy += element_height + spacing;
-    
+        
         element = create_text(col2_x, yy, "Transform: Rotation", col_width, element_height, fa_left, col_width, t_p_entity);
         element.color = c_blue;
         ds_list_add(t_p_entity.contents, element);
-    
+        
         yy += element_height + spacing;
-    
+        
         element_entity_rot_x = create_input(col2_x, yy, "   X: ", col_width, element_height, uivc_input_entity_rotate_x, "", "Degrees", validate_int, 0, 359, 3, vx1, vy1, vx2, vy2, t_p_entity);
         ds_list_add(t_p_entity.contents, element_entity_rot_x);
         element_entity_rot_x.interactive = false;
-    
+        
         yy += element_height + spacing / 2;
-    
+        
         element_entity_rot_y = create_input(col2_x, yy, "   Y: ", col_width, element_height, uivc_input_entity_rotate_y, "", "Degrees", validate_int, 0, 359, 3, vx1, vy1, vx2, vy2, t_p_entity);
         ds_list_add(t_p_entity.contents, element_entity_rot_y);
         element_entity_rot_y.interactive = false;
-    
+        
         yy += element_height + spacing / 2;
-    
+        
         element_entity_rot_z = create_input(col2_x, yy, "   Z: ", col_width, element_height, uivc_input_entity_rotate_z, "", "Degrees", validate_int, 0, 359, 3, vx1, vy1, vx2, vy2, t_p_entity);
         ds_list_add(t_p_entity.contents, element_entity_rot_z);
         element_entity_rot_z.interactive = false;
-    
+        
         yy += element_height + spacing;
-    
+        
         element = create_text(col2_x, yy, "Transform: Scale", col_width, element_height, fa_left, col_width, t_p_entity);
         element.color = c_blue;
         ds_list_add(t_p_entity.contents, element);
-    
+        
         yy += element_height + spacing;
-    
+        
         element_entity_scale_x = create_input(col2_x, yy, "   X: ", col_width, element_height, uivc_input_entity_scale_x, "", "0.1...10", validate_double, 0.1, 10, 5, vx1, vy1, vx2, vy2, t_p_entity);
         ds_list_add(t_p_entity.contents, element_entity_scale_x);
         element_entity_scale_x.interactive = false;
-    
+        
         yy += element_height + spacing / 2;
-    
+        
         element_entity_scale_y = create_input(col2_x, yy, "   Y: ", col_width, element_height, uivc_input_entity_scale_y, "", "0.1...10", validate_double, 0.1, 10, 5, vx1, vy1, vx2, vy2, t_p_entity);
         ds_list_add(t_p_entity.contents, element_entity_scale_y);
         element_entity_scale_y.interactive = false;
-    
+        
         yy += element_height + spacing / 2;
-    
+        
         element_entity_scale_z = create_input(col2_x, yy, "   Z: ", col_width, element_height, uivc_input_entity_scale_z, "", "0.1...10", validate_double, 0.1, 10, 5, vx1, vy1, vx2, vy2, t_p_entity);
         ds_list_add(t_p_entity.contents, element_entity_scale_z);
         element_entity_scale_z.interactive = false;
-    
+        
         yy += element_height + spacing;
         #endregion
         

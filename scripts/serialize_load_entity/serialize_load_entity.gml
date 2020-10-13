@@ -16,10 +16,7 @@ function serialize_load_entity(argument0, argument1, argument2) {
     var state_static = entity.is_static;
     var entity_bools = buffer_read(buffer, buffer_u32);
     entity.is_static = unpack(entity_bools, 0);
-    entity.animate_idle = unpack(entity_bools, 1);
-    entity.animate_movement = unpack(entity_bools, 2);
     entity.direction_fix = unpack(entity_bools, 3);
-    entity.reset_position = unpack(entity_bools, 4);
     entity.always_update = unpack(entity_bools, 5);
     // same for statics
     if (state_static && !entity.is_static) {

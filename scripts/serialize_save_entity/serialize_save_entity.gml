@@ -13,10 +13,10 @@ function serialize_save_entity(argument0, argument1) {
 
     var entity_bools = pack(
         entity.is_static,
-        entity.animate_idle,
-        entity.animate_movement,
+        0,
+        0,
         entity.direction_fix,
-        entity.reset_position,
+        0,
         entity.always_update,
     );
     buffer_write(buffer, buffer_u32, entity_bools);

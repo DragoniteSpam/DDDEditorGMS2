@@ -26,16 +26,10 @@ function safc_on_entity_ui(argument0) {
         ds_map_add(Stuff.map.ui.element_entity_events.selected_entries, 0, true);
     }
 
-    Stuff.map.ui.element_entity_option_animate_idle.value = entity.animate_idle;
-    Stuff.map.ui.element_entity_option_animate_movement.value = entity.animate_movement;
     Stuff.map.ui.element_entity_option_direction_fix.value = entity.direction_fix;
-    Stuff.map.ui.element_entity_option_reset_position.value = entity.reset_position;
     Stuff.map.ui.element_entity_option_always_update.value = entity.always_update;
     
-    Stuff.map.ui.element_entity_option_animate_idle.interactive = true;
-    Stuff.map.ui.element_entity_option_animate_movement.interactive = true;
     Stuff.map.ui.element_entity_option_direction_fix.interactive = true;
-    Stuff.map.ui.element_entity_option_reset_position.interactive = true;
     Stuff.map.ui.element_entity_option_always_update.interactive = true;
     Stuff.map.ui.element_entity_option_autonomous_movement.interactive = true;
 

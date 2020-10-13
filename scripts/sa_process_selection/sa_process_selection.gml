@@ -34,10 +34,7 @@ function sa_process_selection() {
     
         ui_list_deselect(Stuff.map.ui.element_entity_events);
     
-        Stuff.map.ui.element_entity_option_animate_idle.interactive = false;
-        Stuff.map.ui.element_entity_option_animate_movement.interactive = false;
         Stuff.map.ui.element_entity_option_direction_fix.interactive = false;
-        Stuff.map.ui.element_entity_option_reset_position.interactive = false;
         Stuff.map.ui.element_entity_option_always_update.interactive = false;
         Stuff.map.ui.element_entity_option_autonomous_movement.interactive = false;
     
@@ -106,16 +103,10 @@ function sa_process_selection() {
         Stuff.map.ui.element_entity_event_remove.interactive = false;
         Stuff.map.ui.element_entity_event_edit.interactive = false;
     
-        Stuff.map.ui.element_entity_option_animate_idle.value = 2;
-        Stuff.map.ui.element_entity_option_animate_movement.value = 2;
         Stuff.map.ui.element_entity_option_direction_fix.value = 2;
-        Stuff.map.ui.element_entity_option_reset_position.value = 2;
         Stuff.map.ui.element_entity_option_always_update.value = 2;
     
-        Stuff.map.ui.element_entity_option_animate_idle.interactive = true;
-        Stuff.map.ui.element_entity_option_animate_movement.interactive = true;
         Stuff.map.ui.element_entity_option_direction_fix.interactive = true;
-        Stuff.map.ui.element_entity_option_reset_position.interactive = true;
         Stuff.map.ui.element_entity_option_always_update.interactive = true;
         Stuff.map.ui.element_entity_option_autonomous_movement.interactive = false;
     

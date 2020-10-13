@@ -60,11 +60,7 @@ for (var i = 0; i < BASE_SELF_VARIABLES; i++) {
 }
 
 // options
-
-animate_idle = false;
-animate_movement = false;
 direction_fix = true;
-reset_position = false;
 always_update = false;
 slope = ATMask.NONE;
 

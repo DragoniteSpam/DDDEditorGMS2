@@ -24,7 +24,7 @@ function batch_mesh_autotile(argument0, argument1, argument2) {
         buffer_seek(raw, buffer_seek_start, 0);
     
         var vc = 0;
-    
+        
         // @gml update lightweight objects
         var px = array_create(3);
         var py = array_create(3);
