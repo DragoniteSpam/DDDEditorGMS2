@@ -458,7 +458,6 @@ gpu_base_state = gpu_get_state();
 // elsewhere, so it's going here for now; it's not impossible that the deep future
 // will contain a 3D model editor mode but that's at like the bottom of the
 // priority list now
-mesh_preview = noone;
 mesh_x = 0;
 mesh_y = 0;
 mesh_z = 0;
