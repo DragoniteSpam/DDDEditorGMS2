@@ -773,7 +773,7 @@ function ui_init_main(mode) {
         element_mesh_list.colorize = true;
         element_mesh_list.render = ui_render_list_all_meshes;
         element_mesh_list.render_colors = ui_list_color_meshes;
-        element_mesh_list.ondoubleclick = omu_mesh_preview;
+        element_mesh_list.ondoubleclick = omu_mesh_advanced;
         element_mesh_list.evaluate_text = ui_list_text_meshes;
         ds_list_add(t_p_mesh_editor.contents, element_mesh_list);
         
@@ -869,11 +869,6 @@ function ui_init_main(mode) {
         yy += element.height + spacing;
         
         element = create_button(col2_x, yy, "Mesh Flags", col_width, element_height, fa_center, omu_mesh_flags, t_p_tile_editor);
-        ds_list_add(t_p_mesh_editor.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_button(col2_x, yy, "Preview", col_width, element_height, fa_center, omu_mesh_preview, t_p_mesh_editor);
         ds_list_add(t_p_mesh_editor.contents, element);
         
         yy += element.height + spacing;
