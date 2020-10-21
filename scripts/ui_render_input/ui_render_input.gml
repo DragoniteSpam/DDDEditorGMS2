@@ -26,11 +26,10 @@ function ui_render_input(input, xx, yy) {
     draw_text_colour(tx, ty, string(input.text), c, c, c, c, 1);
     draw_set_valign(fa_middle);
     
-    if (script_execute(input.validation, value, input)) {
+    if (input.validation(value, input)) {
         var c = input.color;
         if (input.real_value) {
-            var n = script_execute(input.value_conversion, value);
-            if (!is_clamped(n, input.value_lower, input.value_upper)) {
+            if (!is_clamped(input.value_conversion(value), input.value_lower, input.value_upper)) {
                 c = c_orange;
             }
         }
@@ -129,12 +128,11 @@ function ui_render_input(input, xx, yy) {
             
             input.value = value;
             
-            if (script_execute(input.validation, value, input)) {
+            if (input.validation(value, input)) {
                 var execute_value_change = (!input.require_enter && v0 != value) || (input.require_enter && Controller.press_enter);
                 if (execute_value_change) {
                     if (input.real_value) {
-                        var n = script_execute(input.value_conversion, value);
-                        execute_value_change = execute_value_change && is_clamped(n, input.value_lower, input.value_upper);
+                        execute_value_change = execute_value_change && is_clamped(input.value_conversion(value), input.value_lower, input.value_upper);
                     }
                     if (execute_value_change) {
                         input.emphasis = (input.validation == validate_string_internal_name && internal_name_get(input.value));
