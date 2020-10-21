@@ -488,6 +488,18 @@ function ui_init_main(mode) {
         ds_list_add(t_p_entity.contents, element_entity_option_always_update);
         element_entity_option_always_update.interactive = false;
         
+        yy += element_entity_option_always_update.height;
+        
+        element_entity_option_preserve = create_checkbox(col1_x, yy, "Preserve?", col_width, element_height, function(checkbox) {
+            var list = Stuff.map.selected_entities;
+            for (var i = 0; i < ds_list_size(list); i++) {
+                list[| i].preserve_on_save = checkbox.value;
+            }
+        }, false, t_p_entity);
+        element_entity_option_preserve.tooltip = "Whether or not the state of the entity is saved when the map is exited, the game is closed, etc.";
+        ds_list_add(t_p_entity.contents, element_entity_option_preserve);
+        element_entity_option_preserve.interactive = false;
+        
         yy += element_entity_option_always_update.height + spacing;
         
         element_entity_generic = create_button(col1_x, yy, "Generic Data", col_width, element_height, fa_center, omu_entity_generic_data, t_p_entity);

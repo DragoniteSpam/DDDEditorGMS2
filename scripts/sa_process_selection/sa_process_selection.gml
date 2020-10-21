@@ -37,6 +37,7 @@ function sa_process_selection() {
         Stuff.map.ui.element_entity_option_direction_fix.interactive = false;
         Stuff.map.ui.element_entity_option_always_update.interactive = false;
         Stuff.map.ui.element_entity_option_autonomous_movement.interactive = false;
+        Stuff.map.ui.element_entity_option_preserve.interactive = false;
     
         ui_list_deselect(Stuff.map.ui.element_entity_events);
         Stuff.map.ui.element_entity_events.entries = noone;
@@ -105,10 +106,12 @@ function sa_process_selection() {
     
         Stuff.map.ui.element_entity_option_direction_fix.value = 2;
         Stuff.map.ui.element_entity_option_always_update.value = 2;
+        Stuff.map.ui.element_entity_option_preserve.value = 2;
     
         Stuff.map.ui.element_entity_option_direction_fix.interactive = true;
         Stuff.map.ui.element_entity_option_always_update.interactive = true;
         Stuff.map.ui.element_entity_option_autonomous_movement.interactive = false;
+        Stuff.map.ui.element_entity_option_preserve.interactive = true;
     
         // transform - position is disabled when multiple entities are selected because
         // you do NOT want to pile everything into the same cell
