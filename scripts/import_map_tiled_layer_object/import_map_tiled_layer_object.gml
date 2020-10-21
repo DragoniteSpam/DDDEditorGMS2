@@ -179,7 +179,7 @@ function import_map_tiled_layer_object() {
             }
             var tileset_tile_individual = tileset_tile_data[| data_gid - ts_json_data[? "firstgid"]];
         }
-    
+        
         var instance = noone;
         var update = false;
     

@@ -1,22 +1,16 @@
-/// @param buffer
-/// @param version
-function serialize_load_meshes(argument0, argument1) {
-
-    var buffer = argument0;
-    var version = argument1;
-
+function serialize_load_meshes(buffer, version) {
     var addr_next = buffer_read(buffer, buffer_u64);
-
+    
     ds_list_clear_instances(Stuff.all_meshes);
-
+    
     var n_meshes = buffer_read(buffer, buffer_u32);
-
+    
     repeat (n_meshes) {
         var mesh = instance_create_depth(0, 0, 0, DataMesh);
         serialize_load_generic(buffer, mesh, version);
-    
+        
         mesh.type = buffer_read(buffer, buffer_u8);
-    
+        
         var n_submeshes = buffer_read(buffer, buffer_u16);
         for (var i = 0; i < n_submeshes; i++) {
             var index = buffer_read(buffer, buffer_u16);
@@ -31,21 +25,21 @@ function serialize_load_meshes(argument0, argument1) {
             var dbuffer = buffer_read_buffer(buffer, blength);
             mesh_create_submesh(mesh, dbuffer, noone, noone, proto_guid, name, undefined, path);
         }
-    
+        
         mesh.xmin = buffer_read(buffer, buffer_f32);
         mesh.ymin = buffer_read(buffer, buffer_f32);
         mesh.zmin = buffer_read(buffer, buffer_f32);
         mesh.xmax = buffer_read(buffer, buffer_f32);
         mesh.ymax = buffer_read(buffer, buffer_f32);
         mesh.zmax = buffer_read(buffer, buffer_f32);
-    
+        
         if (version >= DataVersions.EVEN_MORE_MESH_METADATA) {
             if (version >= DataVersions.REMOVE_MESH_TEX_SCALE) {
             } else {
                 buffer_read(buffer, buffer_f32);
             }
         }
-    
+        
         var xx = buffer_read(buffer, buffer_u16);
         var yy = buffer_read(buffer, buffer_u16);
         var zz = buffer_read(buffer, buffer_u16);
@@ -59,9 +53,9 @@ function serialize_load_meshes(argument0, argument1) {
                 }
             }
         }
-    
+        
         mesh.marker = buffer_read(buffer, buffer_u32);
-    
+        
         if (version >= DataVersions.MESH_MATERIALS) {
             mesh.tex_base = buffer_read(buffer, buffer_datatype);
             mesh.tex_ambient = buffer_read(buffer, buffer_datatype);
@@ -72,14 +66,12 @@ function serialize_load_meshes(argument0, argument1) {
             mesh.tex_displacement = buffer_read(buffer, buffer_datatype);
             mesh.tex_stencil = buffer_read(buffer, buffer_datatype);
         }
-    
+        
         // flags are saved in save_generic
-    
+        
         switch (mesh.type) {
             case MeshTypes.RAW: serialize_load_mesh_raw(mesh); break;
             case MeshTypes.SMF: serialize_load_mesh_smf(mesh); break;
         }
     }
-
-
 }

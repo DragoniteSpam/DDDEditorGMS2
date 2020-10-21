@@ -7,7 +7,6 @@
 /// @param [replace-index]
 /// @param [path]
 function mesh_create_submesh() {
-
     var mesh = argument[0];
     var buffer = argument[1];
     var vbuffer = argument[2];
@@ -17,7 +16,7 @@ function mesh_create_submesh() {
     var replace_index = (argument_count > 6 && argument[6] != undefined) ? argument[6] : -1;
     var submesh = mesh.submeshes[| replace_index];
     var path = (argument_count > 7) ? argument[7] : undefined;
-
+    
     if (submesh) {
         buffer_delete(submesh.buffer);
         vertex_delete_buffer(submesh.vbuffer);
@@ -31,14 +30,12 @@ function mesh_create_submesh() {
         submesh.owner = mesh;
         ds_list_add(mesh.submeshes, submesh);
     }
-
+    
     submesh.buffer = buffer;
     submesh.vbuffer = vbuffer;
     submesh.wbuffer = wbuffer;
-
+    
     if (path != undefined) {
         submesh.path = path;
     }
-
-
 }
