@@ -1,39 +1,31 @@
-/// @param UIInput
-/// @param x
-/// @param y
-function ui_render_input(argument0, argument1, argument2) {
-
-    var input = argument0;
-    var xx = argument1;
-    var yy = argument2;
-
+function ui_render_input(input, xx, yy) {
     var x1 = input.x + xx;
     var y1 = input.y + yy;
     var x2 = x1 + input.width;
     var y2 = y1 + input.height;
     var offset = 12;
     var c = input.color;
-
+    
     var vx1 = x1 + input.value_x1;
     var vy1 = y1 + input.value_y1;
     var vx2 = x1 + input.value_x2;
     var vy2 = y1 + input.value_y2;
     var ww = vx2 - vx1;
     var hh = vy2 - vy1;
-
+    
     var tx = ui_get_text_x(input, x1, x2);
     var ty = ui_get_text_y(input, y1, y2);
-
+    
     var value = string(input.value);
     var sw = string_width(value);
     var sw_end = sw + 4;
-
-#region text label
+    
+    #region text label
     draw_set_halign(input.alignment);
     draw_set_valign(input.valignment);
     draw_text_colour(tx, ty, string(input.text), c, c, c, c, 1);
     draw_set_valign(fa_middle);
-
+    
     if (script_execute(input.validation, value, input)) {
         var c = input.color;
         if (input.real_value) {
@@ -45,28 +37,28 @@ function ui_render_input(argument0, argument1, argument2) {
     } else {
         var c = c_red;
     }
-#endregion
-
+    #endregion
+    
     var vtx = vx1 + 12;
     var vty = mean(vy1, vy2);
     var spacing = 12;
-
+    
     // Drawing to the surface instead of the screen directly - everything drawn needs
     // to be minus x1 and minus y1, because suddenly we're drawing at the origin again
-#region input drawing
+    #region input drawing
     input.surface = surface_rebuild(input.surface, ww, hh);
-
+    
     surface_set_target(input.surface);
     draw_clear_alpha(input.interactive ? input.back_color : c_ltgray, 1);
-
+    
     if (input.emphasis) {
         draw_set_font(FDefault12Italic);
     }
-
+    
     var display_text = value + (ui_is_active(input) && (floor((current_time * 0.00125) % 2) == 0) ? "|" : "");
     if (input.multi_line) {
         // i guess you could draw this in a single-line box too, but it would be pretty cramped
-    #region the "how many characters remaining" counter
+        #region the "how many characters remaining" counter
         if (input.value_limit > 0) {
             var remaining = input.value_limit - string_length(value);
             var f = string_length(value) / input.value_limit;
@@ -97,8 +89,8 @@ function ui_render_input(argument0, argument1, argument2) {
                 draw_primitive_end();
             }
         }
-    #endregion
-    
+        #endregion
+        
         var valign = draw_get_valign();
         draw_set_valign(fa_top);
         var sh = string_height_ext(display_text, -1, vx2 - vx1 - (vtx - vx1) * 2);
@@ -116,11 +108,11 @@ function ui_render_input(argument0, argument1, argument2) {
     if (string_length(value) == 0) {
         draw_text_colour(vtx - vx1, vty - vy1, string(input.value_default), c_dkgray, c_dkgray, c_dkgray, c_dkgray, 1);
     }
-
+    
     if (input.require_enter) {
         draw_sprite(spr_enter, 0, vx2 - sprite_get_width(spr_enter) - 4 - vx1, vty - sprite_get_height(spr_enter) / 2 - vy1);
     }
-
+    
     if (input.interactive && dialog_is_active(input.root)) {
         if (ui_is_active(input)) {
             var v0 = value;
@@ -134,9 +126,9 @@ function ui_render_input(argument0, argument1, argument2) {
                 value = value + "\n";
                 keyboard_string = keyboard_string + "\n";
             }
-        
+            
             input.value = value;
-        
+            
             if (script_execute(input.validation, value, input)) {
                 var execute_value_change = (!input.require_enter && v0 != value) || (input.require_enter && Controller.press_enter);
                 if (execute_value_change) {
@@ -146,7 +138,7 @@ function ui_render_input(argument0, argument1, argument2) {
                     }
                     if (execute_value_change) {
                         input.emphasis = (input.validation == validate_string_internal_name && internal_name_get(input.value));
-                        script_execute(input.onvaluechange, input);
+                        input.onvaluechange(input);
                     }
                 }
             }
@@ -161,14 +153,14 @@ function ui_render_input(argument0, argument1, argument2) {
             Stuff.element_tooltip = input;
         }
     }
-
+    
     surface_reset_target();
-#endregion
-
+    #endregion
+    
     draw_surface(input.surface, vx1, vy1)
     draw_rectangle_colour(vx1, vy1, vx2, vy2, c_black, c_black, c_black, c_black, true);
-
-#region next and previous
+    
+    #region next and previous
     if (ui_is_active(input)) {
         if (Controller.press_tab) {
             Controller.press_tab = false;
@@ -185,9 +177,7 @@ function ui_render_input(argument0, argument1, argument2) {
             }
         }
     }
-#endregion
-
+    #endregion
+    
     ui_handle_dropped_files(input);
-
-
 }
