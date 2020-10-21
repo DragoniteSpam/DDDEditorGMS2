@@ -478,13 +478,23 @@ function ui_init_main(mode) {
         
         yy += element.height + spacing;
         
-        element_entity_option_direction_fix = create_checkbox(col1_x, yy, "Direction Fix", col_width, element_height, uivc_check_entity_option_direction_fix, false, t_p_entity);
+        element_entity_option_direction_fix = create_checkbox(col1_x, yy, "Direction Fix", col_width, element_height, function(checkbox) {
+            var list = Stuff.map.selected_entities;
+            for (var i = 0; i < ds_list_size(list); i++) {
+                list[| i].direction_fix = checkbox.value;
+            }
+        }, false, t_p_entity);
         ds_list_add(t_p_entity.contents, element_entity_option_direction_fix);
         element_entity_option_direction_fix.interactive = false;
         
         yy += element_entity_option_direction_fix.height;
         
-        element_entity_option_always_update = create_checkbox(col1_x, yy, "Always Update?", col_width, element_height, uivc_check_entity_option_always_update, false, t_p_entity);
+        element_entity_option_always_update = create_checkbox(col1_x, yy, "Always Update?", col_width, element_height, function(checkbox) {
+            var list = Stuff.map.selected_entities;
+            for (var i = 0; i < ds_list_size(list); i++) {
+                list[| i].always_update = checkbox.value;
+            }
+        }, false, t_p_entity);
         ds_list_add(t_p_entity.contents, element_entity_option_always_update);
         element_entity_option_always_update.interactive = false;
         
