@@ -1,32 +1,24 @@
-/// @param UIImageButton
-/// @param x
-/// @param y
-function ui_render_image_button(argument0, argument1, argument2) {
-
-    var button = argument0;
-    var xx = argument1;
-    var yy = argument2;
-
+function ui_render_image_button(button, xx, yy) {
     var x1 = button.x + xx;
     var y1 = button.y + yy;
     var x2 = x1 + button.width;
     var y2 = y1 + button.height;
-
+    
     var tx = ui_get_text_x(button, x1, x2);
     var ty = ui_get_text_y(button, y1, y2);
-
+    
     // Drawing to the surface instead of the screen directly - everything drawn needs
     // to be minus x1 and minus y1, because suddenly we're drawing at the origin again
-#region input drawing
+    #region input drawing
     button.surface = surface_rebuild(button.surface, button.width, button.height);
-
+    
     surface_set_target(button.surface);
     draw_clear_alpha(button.interactive ? c_white : c_ltgray, 1);
-
+    
     if (button.draw_checker_behind) {
         draw_sprite_tiled(b_tileset_checkers, 0, 0, 0);
     }
-
+    
     var color = c_white;
     if (button.interactive && dialog_is_active(button.root)) {
         var inbounds = mouse_within_rectangle_determine(x1, y1, x2, y2, button.adjust_view);
@@ -34,12 +26,12 @@ function ui_render_image_button(argument0, argument1, argument2) {
             draw_rectangle_colour(0, 0, x2 - x1, y2 - y1, c_ui, c_ui, c_ui, c_ui, false);
             color = merge_color(c_white, c_ui, 0.5);
             if (Controller.release_left) {
-                script_execute(button.onmouseup, button);
+                button.onmouseup(button);
             }
             Stuff.element_tooltip = button;
         }
     }
-
+    
     if (!button.image) {
         draw_set_halign(button.alignment);
         draw_set_valign(button.valignment);
@@ -60,14 +52,12 @@ function ui_render_image_button(argument0, argument1, argument2) {
             );
         }
     }
-
+    
     draw_rectangle_colour(1, 1, button.width - 2, button.height - 2, c_black, c_black, c_black, c_black, true);
     surface_reset_target();
-#endregion
-
+    #endregion
+    
     draw_surface(button.surface, x1, y1);
-
+    
     ui_handle_dropped_files(button);
-
-
 }
