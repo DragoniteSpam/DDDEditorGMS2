@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "ui",
-    "path": "folders/Scripts/modes/particle/ui.yy",
+    "name": "particle",
+    "path": "folders/Scripts/modes/particle.yy",
   },
   "resourceVersion": "1.0",
-  "name": "ui_particle_demo_water_execute",
+  "name": "editor_particle_reset",
   "tags": [],
   "resourceType": "GMScript",
 }

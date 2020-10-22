@@ -68,7 +68,7 @@ function ui_init_particle(mode) {
         
         yy += element.height + spacing;
         
-        var element = create_checkbox(col1_x, yy, "Automatic Update?", ew, eh, function(button) {
+        var element = create_checkbox(col1_x, yy, "Automatic Update?", ew, eh, function(checkbox) {
             Stuff.particle.system_auto_update = checkbox.value;
             checkbox.root.manual_update.interactive = !checkbox.value;
             part_system_automatic_update(Stuff.particle.system, checkbox.value);
@@ -99,17 +99,7 @@ function ui_init_particle(mode) {
         yy += element.height + spacing;
         
         var element = create_button(col1_x, yy, "Reset System", ew, eh, fa_center, function(button) {
-            part_particles_clear(Stuff.particle.system);
-            for (var i = 0; i < ds_list_size(Stuff.particle.emitters); i++) {
-                instance_activate_object(Stuff.particle.emitters[| i]);
-                instance_destroy(Stuff.particle.emitters[| i]);
-            }
-            for (var i = 0; i < ds_list_size(Stuff.particle.types); i++) {
-                instance_activate_object(Stuff.particle.types[| i]);
-                instance_destroy(Stuff.particle.types[| i]);
-            }
-            ds_list_clear(Stuff.particle.emitters);
-            ds_list_clear(Stuff.particle.types);
+            editor_particle_reset();
         }, t_system);
         element.tooltip = "Destroy all particle types and emitters.";
         ds_list_add(t_system.contents, element);
@@ -140,25 +130,50 @@ function ui_init_particle(mode) {
         
         yy += element.height + spacing;
         
-        var element = create_button(col2_x, yy, "Save Buffer", ew, eh, fa_center, ui_particle_save, t_system);
+        var element = create_button(col2_x, yy, "Save Buffer", ew, eh, fa_center, function(button) {
+            var fn = get_save_filename("DDD Particle files|*" + EXPORT_EXTENSION_PARTICLES, "");
+            if (fn == "") return;
+            var fbuffer = buffer_create(1024, buffer_grow, 1);
+            serialize_save_particles(fbuffer);
+            buffer_save(fbuffer, fn);
+            buffer_delete(fbuffer);
+        }, t_system);
         element.tooltip = "Save a buffer containing particle information, which you can load later (or use in your game itself).";
         ds_list_add(t_system.contents, element);
         
         yy += element.height + spacing;
         
-        var element = create_button(col2_x, yy, "Load Buffer", ew, eh, fa_center, ui_particle_load, t_system);
+        var element = create_button(col2_x, yy, "Load Buffer", ew, eh, fa_center, function(button) {
+            var fn = get_open_filename("DDD Particle files|*" + EXPORT_EXTENSION_PARTICLES, "");
+            if (!file_exists(fn)) return;
+            var fbuffer = buffer_load(fn);
+            var version = buffer_peek(fbuffer, 0, buffer_u32);
+            serialize_load_particles(fbuffer, version);
+            buffer_delete(fbuffer);
+        }, t_system);
         element.tooltip = "Load a previously saved buffer containing particle information.";
         ds_list_add(t_system.contents, element);
         
         yy += element.height + spacing;
         
-        var element = create_button(col2_x, yy, "Export Code", ew, eh, fa_center, ui_particle_export_code, t_system);
+        var element = create_button(col2_x, yy, "Export Code", ew, eh, fa_center, function(button) {
+            var fn = get_save_filename_gml("particles.gml");
+            if (fn == "") return;
+            var text = editor_particle_generate_code();
+            var fbuffer = buffer_create(1024, buffer_grow, 1);
+            buffer_write(fbuffer, buffer_text, text);
+            buffer_save(fbuffer, fn);
+            buffer_delete(fbuffer);
+        }, t_system);
         element.tooltip = "Save the GML code that will generate the particles to a file.";
         ds_list_add(t_system.contents, element);
         
         yy += element.height + spacing;
         
-        var element = create_button(col2_x, yy, "Copy Code", ew, eh, fa_center, ui_particle_copy_code, t_system);
+        var element = create_button(col2_x, yy, "Copy Code", ew, eh, fa_center, function(button) {
+            clipboard_set_text(editor_particle_generate_code());
+            (dialog_create_notice(noone, "Code has been copied to the clipboard!")).active_shade = false;
+        }, t_system);
         element.tooltip = "Copy the GML code that will generate the particles to the Windows clipboard.";
         ds_list_add(t_system.contents, element);
         
@@ -172,19 +187,51 @@ function ui_init_particle(mode) {
         
         yy += element.height + spacing;
         
-        var element = create_button(col3_x, yy, "Fire", ew, eh, fa_center, ui_particle_demo_fire, t_system);
+        var element = create_button(col3_x, yy, "Fire", ew, eh, fa_center, function(button) {
+            dialog_create_yes_or_no(button.root, "Would you like to load the demo fire particles? (Any current particle types and emitters will be cleared.)", function(button) {
+                var version = buffer_peek(Stuff.particle.demo_fire, 0, buffer_u32);
+                serialize_load_particles(Stuff.particle.demo_fire, version);
+                buffer_seek(Stuff.particle.demo_fire, buffer_seek_start, 0);
+                ui_list_select(Stuff.particle.ui.t_emitter.list, 0);
+                ui_list_select(Stuff.particle.ui.t_type.list, 0);
+                script_execute(Stuff.particle.ui.t_emitter.list.onvaluechange, Stuff.particle.ui.t_emitter.list);
+                script_execute(Stuff.particle.ui.t_type.list.onvaluechange, Stuff.particle.ui.t_type.list);
+                dialog_destroy();
+            });
+        }, t_system);
         element.tooltip = "A demo of fire and smoke";
         ds_list_add(t_system.contents, element);
         
         yy += element.height + spacing;
         
-        var element = create_button(col3_x, yy, "Waterfall", ew, eh, fa_center, ui_particle_demo_water, t_system);
+        var element = create_button(col3_x, yy, "Waterfall", ew, eh, fa_center, function(button) {
+            dialog_create_yes_or_no(button.root, "Would you like to load the demo water particles? (Any current particle types and emitters will be cleared.)", function(button) {var version = buffer_peek(Stuff.particle.demo_water, 0, buffer_u32);
+                serialize_load_particles(Stuff.particle.demo_water, version);
+                buffer_seek(Stuff.particle.demo_water, buffer_seek_start, 0);
+                ui_list_select(Stuff.particle.ui.t_emitter.list, 0);
+                ui_list_select(Stuff.particle.ui.t_type.list, 0);
+                script_execute(Stuff.particle.ui.t_emitter.list.onvaluechange, Stuff.particle.ui.t_emitter.list);
+                script_execute(Stuff.particle.ui.t_type.list.onvaluechange, Stuff.particle.ui.t_type.list);
+                dialog_destroy();
+            });
+        }, t_system);
         element.tooltip = "A demo of water";
         ds_list_add(t_system.contents, element);
         
         yy += element.height + spacing;
         
-        var element = create_button(col3_x, yy, "Glowing Blobs", ew, eh, fa_center, ui_particle_demo_glow, t_system);
+        var element = create_button(col3_x, yy, "Glowing Blobs", ew, eh, fa_center, function(button) {
+            dialog_create_yes_or_no(button.root, "Would you like to load the demo glow particles? (Any current particle types and emitters will be cleared.)", function(button) {
+                var version = buffer_peek(Stuff.particle.demo_glow, 0, buffer_u32);
+                serialize_load_particles(Stuff.particle.demo_glow, version);
+                buffer_seek(Stuff.particle.demo_glow, buffer_seek_start, 0);
+                ui_list_select(Stuff.particle.ui.t_emitter.list, 0);
+                ui_list_select(Stuff.particle.ui.t_type.list, 0);
+                script_execute(Stuff.particle.ui.t_emitter.list.onvaluechange, Stuff.particle.ui.t_emitter.list);
+                script_execute(Stuff.particle.ui.t_type.list.onvaluechange, Stuff.particle.ui.t_type.list);
+                dialog_destroy();
+            });
+        }, t_system);
         element.tooltip = "A demo of glowing particles that you can draw on the screen and stuff with (click the mouse to spawn particles at the cursor location)";
         ds_list_add(t_system.contents, element);
         

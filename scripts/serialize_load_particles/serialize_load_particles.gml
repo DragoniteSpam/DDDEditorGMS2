@@ -1,23 +1,18 @@
 /// @param buffer
 /// @param version
-function serialize_load_particles(argument0, argument1) {
-
-    var buffer = argument0;
-    var version = argument1;
+function serialize_load_particles(buffer, version) {
     var mode = Stuff.particle;
-
-    ui_particle_reset(noone);
-
+    editor_particle_reset();
     buffer_read(buffer, buffer_u32);
     var addr_end = buffer_read(buffer, buffer_u64);
-
-#region emitters
+    
+    #region emitters
     var n_emitters = buffer_read(buffer, buffer_u8);
     repeat (n_emitters) {
         var emitter = instance_create_depth(0, 0, 0, ParticleEmitter);
         instance_deactivate_object(emitter);
         ds_list_add(mode.emitters, emitter);
-    
+        
         emitter.name = buffer_read(buffer, buffer_string);
         emitter.region_shape = buffer_read(buffer, buffer_u8);
         emitter.region_distribution = buffer_read(buffer, buffer_u8);
@@ -27,20 +22,20 @@ function serialize_load_particles(argument0, argument1) {
         emitter.region_y2 = buffer_read(buffer, buffer_f32);
         emitter.rate = buffer_read(buffer, buffer_f32);
         emitter.type = buffer_read(buffer, buffer_s16);
-    
+        
         var bools = buffer_read(buffer, buffer_u32);
         emitter.streaming =         unpack(bools, 0);
         emitter.draw_region =       unpack(bools, 1);
     }
-#endregion
-
-#region types
+    #endregion
+    
+    #region types
     var n_types = buffer_read(buffer, buffer_u8);
     repeat (n_types) {
         var type = instance_create_depth(0, 0, 0, ParticleType);
         instance_deactivate_object(type);
         ds_list_add(mode.types, type);
-    
+        
         type.name = buffer_read(buffer, buffer_string);
         type.shape = buffer_read(buffer, buffer_u8);
         // if a particle sprite with the saved internal name exists, use that;
@@ -50,7 +45,7 @@ function serialize_load_particles(argument0, argument1) {
         if (internal_name_get(spr_name)) {
             type.sprite = internal_name_get(spr_name).GUID;
         }
-    
+        
         type.speed_min = buffer_read(buffer, buffer_f32);
         type.speed_max = buffer_read(buffer, buffer_f32);
         type.speed_incr = buffer_read(buffer, buffer_f32);
@@ -84,7 +79,7 @@ function serialize_load_particles(argument0, argument1) {
         type.update_rate = buffer_read(buffer, buffer_f32);
         type.death_type = buffer_read(buffer, buffer_s16);
         type.death_rate = buffer_read(buffer, buffer_f32);
-    
+        
         var bools = buffer_read(buffer, buffer_u32);
         type.sprite_custom =        unpack(bools, 0);
         type.sprite_animated =      unpack(bools, 1);
@@ -96,9 +91,9 @@ function serialize_load_particles(argument0, argument1) {
         type.blend =                unpack(bools, 7);
         type.orientation_relative = unpack(bools, 8);
     }
-#endregion
-
-#region linkage
+    #endregion
+    
+    #region linkage
     for (var i = 0; i < n_emitters; i++) {
         var emitter = mode.emitters[| i];
         emitter.type = mode.types[| emitter.type] ? mode.types[| emitter.type] : noone;
@@ -110,7 +105,7 @@ function serialize_load_particles(argument0, argument1) {
         var type = mode.types[| i];
         type.update_type = mode.types[| type.update_type] ? mode.types[| type.update_type] : noone;
         type.death_type = mode.types[| type.death_type] ? mode.types[| type.death_type] : noone;
-    
+        
         part_type_speed(type.type, type.speed_min, type.speed_max, type.speed_incr, type.speed_wiggle);
         part_type_direction(type.type, type.direction_min, type.direction_max, type.direction_incr, type.direction_wiggle);
         part_type_orientation(type.type, type.orientation_min, type.orientation_max, type.orientation_incr, type.orientation_wiggle, type.orientation_relative);
@@ -126,7 +121,5 @@ function serialize_load_particles(argument0, argument1) {
         if (type.update_type) part_type_step(type.type, odds, type.update_type.type);
         if (type.death_type) part_type_death(type.type, type.death_rate, type.death_type.type);
     }
-#endregion
-
-
+    #endregion
 }
