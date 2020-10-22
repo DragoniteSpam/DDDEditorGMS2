@@ -63,6 +63,7 @@ for (var i = 0; i < BASE_SELF_VARIABLES; i++) {
 direction_fix = true;
 always_update = false;
 preserve_on_save = false;
+reflect = false;
 slope = ATMask.NONE;
 
 generic_data = ds_list_create();

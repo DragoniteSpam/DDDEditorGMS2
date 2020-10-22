@@ -21,6 +21,7 @@ etype_flags = ETypeFlags.ENTITY_PAWN;
 
 direction_fix = false;              // because it would be weird to have this off by default
 preserve_on_save = true;
+reflect = true;
 
 // editor properties
 
