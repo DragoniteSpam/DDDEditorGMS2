@@ -471,7 +471,9 @@ function draw_event_node(argument0) {
                                             }
                                             break;
                                         case DataTypes.COLOR:
-                                            var picker = dialog_create_color_picker_options(node, custom_data_list[| 0], uivc_color_picker_event_node);
+                                            var picker = dialog_create_color_picker_options(node, custom_data_list[| 0], function(picker) {
+                                                picker.root.node.custom_data[| picker.root.index][| 0] = picker.value;
+                                            });
                                             picker.node = node;
                                             picker.index = i;
                                             break;

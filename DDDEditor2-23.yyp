@@ -1406,7 +1406,6 @@
     {"id":{"name":"uivc_radio_fill_type","path":"scripts/uivc_radio_fill_type/uivc_radio_fill_type.yy",},"order":24,},
     {"id":{"name":"uivc_radio_color_picker_channel","path":"scripts/uivc_radio_color_picker_channel/uivc_radio_color_picker_channel.yy",},"order":25,},
     {"id":{"name":"uivc_color_picker_reflect","path":"scripts/uivc_color_picker_reflect/uivc_color_picker_reflect.yy",},"order":26,},
-    {"id":{"name":"uivc_color_picker_event_node","path":"scripts/uivc_color_picker_event_node/uivc_color_picker_event_node.yy",},"order":27,},
     {"id":{"name":"uivc_refid_picker_event_node","path":"scripts/uivc_refid_picker_event_node/uivc_refid_picker_event_node.yy",},"order":28,},
     {"id":{"name":"uivc_color_picker_all_colors","path":"scripts/uivc_color_picker_all_colors/uivc_color_picker_all_colors.yy",},"order":29,},
     {"id":{"name":"uivc_radio_selection_mode","path":"scripts/uivc_radio_selection_mode/uivc_radio_selection_mode.yy",},"order":30,},
