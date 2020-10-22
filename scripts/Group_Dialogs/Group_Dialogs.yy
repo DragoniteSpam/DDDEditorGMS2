@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "render",
-    "path": "folders/Scripts/ui stuff/dialogs/render.yy",
+    "name": "dialogs",
+    "path": "folders/Scripts/ui stuff/dialogs.yy",
   },
   "resourceVersion": "1.0",
-  "name": "dialog_default",
+  "name": "Group_Dialogs",
   "tags": [],
   "resourceType": "GMScript",
 }

@@ -1,4 +1,49 @@
-function dr_box(dialog) {
+function dialog_exists() {
+    return !ds_list_empty(Stuff.dialogs);
+}
+
+function dialog_create(width, height, text, render, commit, root, close) {
+    if (render == undefined) render = dialog_default;
+    if (commit == undefined) commit = dc_default;
+    if (close == undefined) close = dc_default;
+    var base_x = 64;
+    var base_y = 64;
+    var offset = 48;
+    var n = ds_list_size(Stuff.dialogs);
+    
+    var dg = instance_create_depth(base_x + n * offset, base_y + n * offset, 0, Dialog);
+    dg.width = width;
+    dg.height = height;
+    dg.text = text;
+    dg.render = render;
+    dg.commit = commit;
+    dg.root = root;
+    // "close" can be undefined if you want to hide the button entirely.
+    dg.close = close;
+    
+    ds_list_add(Stuff.dialogs, dg);
+    instance_deactivate_object(dg);
+    
+    return dg;
+}
+
+function dialog_destroy() {
+    // closes the top dialog. or schedules it for closing. if you
+    // destroy it now, bad things will happen to other parts of the
+    // Draw event which still reference it, because my code is spaghetti.
+    if (dialog_exists()) {
+        instance_destroy_later(ds_list_pop(Stuff.dialogs));
+    }
+}
+
+function dialog_is_active(dialog) {
+    // this assumes that if there are no active dialog windows, any
+    // active ui elements live in a Free Parking part of the  window.
+    if (ds_list_empty(Stuff.dialogs)) return true;
+    return (ds_list_top(Stuff.dialogs) == dialog);
+}
+
+function dialog_default(dialog) {
     var header_height = 32;
     var x1 = dialog.x;
     var y1 = dialog.y;
@@ -105,4 +150,19 @@ function dr_box(dialog) {
     if (kill && dialog.close) {
         script_execute(dialog.close, dialog);
     }
+}
+
+function dialog_note_changes(dialog) {
+    var old_title = dialog.text;
+    if (dialog.changed) dialog.text = "* " + dialog.text;
+    dialog_default(dialog);
+    dialog.text = old_title;
+}
+
+function dmu_dialog_cancel() {
+    dialog_destroy();
+}
+
+function dmu_dialog_commit(thing) {
+    thing.root.commit(thing.root);
 }
