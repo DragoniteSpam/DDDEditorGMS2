@@ -1,25 +1,11 @@
-/// @param x
-/// @param y
-/// @param text
-/// @param width
-/// @param height
-/// @param onvaluechange
-/// @param default
-/// @param root
-function create_radio_array() {
-
-    with (instance_create_depth(argument[0], argument[1], 0, UIRadioArray)) {
-        text = argument[2];
-        width = argument[3];
-        height = argument[4];
-    
-        onvaluechange = argument[5];
-        value = argument[6];
-    
-        root = argument[7];
-    
+function create_radio_array(x, y, text, width, height, onvaluechange, def, root) {
+    with (instance_create_depth(x, y, 0, UIRadioArray)) {
+        self.text = text;
+        self.width = width;
+        self.height = height;
+        self.onvaluechange = onvaluechange;
+        self.value = def;
+        self.root = root;
         return id;
     }
-
-
 }

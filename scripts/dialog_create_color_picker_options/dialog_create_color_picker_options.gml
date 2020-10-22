@@ -21,10 +21,14 @@ function dialog_create_color_picker_options(dialog, color, onvaluechange) {
     dg.el_picker.axis_value = (color & 0x0000ff) / 0xff;
     dg.el_picker.axis_w = ((color & 0x00ff00) >> 8) / 0xff;
     dg.el_picker.axis_h = ((color & 0xff0000) >> 16) / 0xff;
-    dg.el_channels = create_radio_array(320, yy, "Axis Channel", ew / 2, eh, uivc_radio_color_picker_channel, 0, dg);
+    dg.el_channels = create_radio_array(320, yy, "Axis Channel", ew / 2, eh, function(radio) {
+        radio.root.root.el_picker.axis_channel = radio.value;
+    }, 0, dg);
     create_radio_array_options(dg.el_channels, ["Red", "Green", "Blue"]);
     yy += ui_get_radio_array_height(dg.el_channels) + spacing;
-    dg.el_all = create_checkbox(320, yy, "All colors?", ew / 2, eh, uivc_color_picker_all_colors, true, dg);
+    dg.el_all = create_checkbox(320, yy, "All colors?", ew / 2, eh, function(checkbox) {
+        checkbox.root.el_picker.all_colors = checkbox.value;
+    }, true, dg);
     
     var b_width = 128;
     var b_height = 32;
