@@ -57,7 +57,10 @@ function ui_init_particle(mode) {
         
         yy += element.height + spacing;
         
-        var element = create_color_picker(col1_x, yy, "Back:", ew, eh, ui_particle_back_color, mode.back_color, vx1, vy1, vx2, vy2, t_system);
+        var element = create_color_picker(col1_x, yy, "Back:", ew, eh, function(picker) {
+            Stuff.particle.back_color = picker.value;
+            setting_set("Particle", "back", picker.value);
+        }, mode.back_color, vx1, vy1, vx2, vy2, t_system);
         element.tooltip = "The background color.";
         element.active_shade = false;
         ds_list_add(t_system.contents, element);
@@ -65,14 +68,21 @@ function ui_init_particle(mode) {
         
         yy += element.height + spacing;
         
-        var element = create_checkbox(col1_x, yy, "Automatic Update?", ew, eh, ui_particle_automatic_update, mode.system_auto_update, t_system);
+        var element = create_checkbox(col1_x, yy, "Automatic Update?", ew, eh, function(button) {
+            Stuff.particle.system_auto_update = checkbox.value;
+            checkbox.root.manual_update.interactive = !checkbox.value;
+            part_system_automatic_update(Stuff.particle.system, checkbox.value);
+            setting_set("Particle", "auto-update", checkbox.value);
+        }, mode.system_auto_update, t_system);
         element.tooltip = "Whehter or not the particle system will update automatically. If this is turned off, you must update the system manually.";
         ds_list_add(t_system.contents, element);
         t_system.automatic_update = element;
         
         yy += element.height + spacing;
         
-        var element = create_button(col1_x, yy, "Update", ew, eh, fa_center, ui_particle_manual_update, t_system);
+        var element = create_button(col1_x, yy, "Update", ew, eh, fa_center, function(button) {
+            part_system_update(Stuff.particle.system);
+        }, t_system);
         element.tooltip = "Update the particle system by one step.";
         element.interactive = !mode.system_auto_update;
         ds_list_add(t_system.contents, element);
@@ -80,26 +90,44 @@ function ui_init_particle(mode) {
         
         yy += element.height + spacing;
         
-        var element = create_button(col1_x, yy, "Clear All Particles", ew, eh, fa_center, ui_particle_clear_particles, t_system);
+        var element = create_button(col1_x, yy, "Clear All Particles", ew, eh, fa_center, function(button) {
+            part_particles_clear(Stuff.particle.system);
+        }, t_system);
         element.tooltip = "Clear all particles currently in the system.";
         ds_list_add(t_system.contents, element);
         
         yy += element.height + spacing;
         
-        var element = create_button(col1_x, yy, "Reset System", ew, eh, fa_center, ui_particle_reset, t_system);
+        var element = create_button(col1_x, yy, "Reset System", ew, eh, fa_center, function(button) {
+            part_particles_clear(Stuff.particle.system);
+            for (var i = 0; i < ds_list_size(Stuff.particle.emitters); i++) {
+                instance_activate_object(Stuff.particle.emitters[| i]);
+                instance_destroy(Stuff.particle.emitters[| i]);
+            }
+            for (var i = 0; i < ds_list_size(Stuff.particle.types); i++) {
+                instance_activate_object(Stuff.particle.types[| i]);
+                instance_destroy(Stuff.particle.types[| i]);
+            }
+            ds_list_clear(Stuff.particle.emitters);
+            ds_list_clear(Stuff.particle.types);
+        }, t_system);
         element.tooltip = "Destroy all particle types and emitters.";
         ds_list_add(t_system.contents, element);
         
         yy += element.height + spacing;
         
-        var element = create_checkbox(col1_x, yy, "Snap Emitter to Grid?", ew, eh, ui_particle_grid_snap, mode.emitter_set_snap, t_system);
+        var element = create_checkbox(col1_x, yy, "Snap Emitter to Grid?", ew, eh, function(checkbox) {
+            Stuff.particle.emitter_set_snap = checkbox.value;
+        }, mode.emitter_set_snap, t_system);
         element.tooltip = "When clicking on the particle view to set emitter regions, you may find it helpful to snap to the grid.";
         ds_list_add(t_system.contents, element);
         t_system.emitter_set_snap = element;
         
         yy += element.height + spacing;
         
-        var element = create_input(col1_x, yy, "Distance:", ew, eh, ui_particle_grid_snap_distance, mode.emitter_set_snap_size, "reasonable integer", validate_int, 1, 128, 3, vx1, vy1, vx2, vy2, t_system);
+        var element = create_input(col1_x, yy, "Distance:", ew, eh, function(input) {
+            Stuff.particle.emitter_set_snap_size = real(input.value);
+        }, mode.emitter_set_snap_size, "reasonable integer", validate_int, 1, 128, 3, vx1, vy1, vx2, vy2, t_system);
         element.tooltip = "The grid-snapping distance.";
         ds_list_add(t_system.contents, element);
         t_system.emitter_set_snap_size = element;
