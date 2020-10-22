@@ -107,6 +107,7 @@ function serialize_save_data() {
         REMOVE_MESH_TEX_SCALE               = 113,
         MAP_FROZEN_TAGS                     = 114,
         ENTITY_PRESERVE_FLAG                = 115,
+        ENTITY_REFLECT_FLAG                 = 116,
         _CURRENT /* = whatever the last one is + 1 */
     }
 }

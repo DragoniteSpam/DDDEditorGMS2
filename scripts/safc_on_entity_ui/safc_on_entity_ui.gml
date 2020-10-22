@@ -25,7 +25,7 @@ function safc_on_entity_ui(entity) {
     Stuff.map.ui.element_entity_option_direction_fix.value = entity.direction_fix;
     Stuff.map.ui.element_entity_option_always_update.value = entity.always_update;
     Stuff.map.ui.element_entity_option_preserve.value = entity.preserve_on_save;
-    Stuff.map.ui.element_entity_option_reflect.value = entity.preserve_on_save;
+    Stuff.map.ui.element_entity_option_reflect.value = entity.reflect;
     
     Stuff.map.ui.element_entity_option_direction_fix.interactive = true;
     Stuff.map.ui.element_entity_option_always_update.interactive = true;

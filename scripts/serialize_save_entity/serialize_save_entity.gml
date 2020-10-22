@@ -8,7 +8,7 @@ function serialize_save_entity(buffer, entity) {
     var entity_bools = pack(
         entity.is_static,
         entity.preserve_on_save,
-        0,
+        entity.reflect,
         entity.direction_fix,
         0,
         entity.always_update,
