@@ -1,11 +1,4 @@
-/// @param MenuElement
-function momu_save_data(argument0) {
-
-    var element = argument0;
-
+function momu_save_data(element) {
     menu_activate(noone);
-
     Stuff.schedule_save = true;
-
-
 }
