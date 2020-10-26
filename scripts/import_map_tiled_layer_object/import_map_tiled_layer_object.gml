@@ -217,19 +217,16 @@ function import_map_tiled_layer_object() {
             #endregion
             case "mesh":
             #region load mesh
-                var pr_cutscene_entrypoint = data_properties[? "CutsceneEntrypoint"];
                 var pr_static = data_properties[? "Static?"];
                 var pr_offset_x = data_properties[? "OffsetX"];
                 var pr_offset_y = data_properties[? "OffsetY"];
-            
-                if (pr_cutscene_entrypoint == undefined) break;
+                
                 if (pr_static == undefined) break;
                 if (pr_offset_x == undefined) pr_offset_x = 0; else pr_offset_x = pr_offset_x[? "value"];
                 if (pr_offset_y == undefined) pr_offset_y = 0; else pr_offset_y = pr_offset_y[? "value"];
-            
-                var pr_cutscene_entrypoint_name = pr_cutscene_entrypoint[? "value"];
+                
                 pr_static = pr_static[? "value"];
-            
+                
                 var pr_mesh_data = internal_name_get(gid_to_image_name);
                 if (pr_mesh_data) {
                     if (tmx_cache[? obj_id]) {
@@ -263,18 +260,41 @@ function import_map_tiled_layer_object() {
             
             #region Default conversation
             var pr_cutscene_entrypoint = data_properties[? "CutsceneEntrypoint"];
-            var pr_cutscene_entrypoint_name = pr_cutscene_entrypoint[? "value"];
-            pr_cutscene_entrypoint = event_get_node_global(pr_cutscene_entrypoint_name);
+            var pr_autorun_entrypoint = data_properties[? "AutorunEntrypoint"];
+            pr_cutscene_entrypoint = pr_cutscene_entrypoint ? event_get_node_global(pr_cutscene_entrypoint[? "value"]) : undefined;
+            pr_autorun_entrypoint = pr_autorun_entrypoint ? event_get_node_global(pr_autorun_entrypoint[? "value"]) : undefined;
             // arrays don't have a truth value apparently
             if (pr_cutscene_entrypoint != undefined) {
-                var page = instance.object_events[| 0];
+                var page = undefined;
+                for (var j = 0; j < ds_list_size(instance.object_events); j++) {
+                    if (instance.object_events[| j].trigger = 0x01) {
+                        page = instance.object_events[| j];
+                        break;
+                    }
+                }
                 if (!page) {
                     page = create_instantiated_event("");
                     ds_list_add(instance.object_events, page);
                 }
                 page.name = "Conversation:" + pr_cutscene_entrypoint[1].name;
-                page.trigger = 1;   // magic, do not touch
+                page.trigger = 0x01;   // action button
                 page.event_entrypoint = pr_cutscene_entrypoint[1].GUID;
+            }
+            if (pr_autorun_entrypoint != undefined) {
+                var page = undefined;
+                for (var j = 0; j < ds_list_size(instance.object_events); j++) {
+                    if (instance.object_events[| j].trigger = 0x08) {
+                        page = instance.object_events[| j];
+                        break;
+                    }
+                }
+                if (!page) {
+                    page = create_instantiated_event("");
+                    ds_list_add(instance.object_events, page);
+                }
+                page.name = "Autorun:" + pr_autorun_entrypoint[1].name;
+                page.trigger = 0x08;   // autorun
+                page.event_entrypoint = pr_autorun_entrypoint[1].GUID;
             }
             #endregion
             
