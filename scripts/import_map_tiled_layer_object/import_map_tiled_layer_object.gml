@@ -258,7 +258,7 @@ function import_map_tiled_layer_object() {
         if (instance) {
             instance.name = data_name;
             
-            #region Default conversation
+            #region Default conversations
             var pr_cutscene_entrypoint = data_properties[? "CutsceneEntrypoint"];
             var pr_autorun_entrypoint = data_properties[? "AutorunEntrypoint"];
             pr_cutscene_entrypoint = pr_cutscene_entrypoint ? event_get_node_global(pr_cutscene_entrypoint[? "value"]) : undefined;

@@ -250,4 +250,5 @@ enum AnimationEndActions {
     STOP,
     LOOP,
     REVERSE,
+    END,
 }
