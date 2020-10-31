@@ -252,3 +252,10 @@ enum AnimationEndActions {
     REVERSE,
     END,
 }
+
+global.animation_end_action_names = [
+    "Stop",
+    "Loop",
+    "Reverse",
+    "End"
+];
