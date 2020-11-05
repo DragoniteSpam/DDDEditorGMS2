@@ -1,25 +1,18 @@
-/// @param buffer
-/// @param version
-function serialize_load_event_prefabs(argument0, argument1) {
-
-    var buffer = argument0;
-    var version = argument1;
-
+function serialize_load_event_prefabs(buffer, version) {
     var addr_next = buffer_read(buffer, buffer_u64);
-
     var n_prefabs = buffer_read(buffer, buffer_u32);
-
+    
     repeat (n_prefabs) {
         var prefab = instance_create_depth(0, 0, 0, DataEventNode);
         // serialize_load_generic needs to be unwrapped here
         var name = buffer_read(buffer, buffer_string);
         buffer_read(buffer, buffer_string);
         buffer_read(buffer, buffer_u32);
-        var guid = buffer_read(buffer, buffer_u32);
+        var guid = buffer_read(buffer, buffer_datatype);
         buffer_read(buffer, buffer_string);
-    
+        
         var type = buffer_read(buffer, buffer_u16);
-    
+        
         var prefab = event_create_node(noone, type);
         prefab.name = name;
         guid_set(prefab, guid);
@@ -27,11 +20,11 @@ function serialize_load_event_prefabs(argument0, argument1) {
         ds_list_add(Stuff.all_event_prefabs, prefab);
         ds_list_clear(prefab.data);
         var n_data = buffer_read(buffer, buffer_u8);
-    
+        
         repeat (n_data) {
             ds_list_add(prefab.data, buffer_read(buffer, buffer_string));
         }
-    
+        
         switch (prefab.type) {
             // is_root is set in the constructor already
             case EventNodeTypes.ENTRYPOINT:
@@ -68,9 +61,9 @@ function serialize_load_event_prefabs(argument0, argument1) {
                     // for them to do so
                     prefab.custom_guid = Stuff.event_prefab[prefab.type].GUID;
                 }
-            
+                
                 var custom = guid_get(prefab.custom_guid);
-            
+                
                 for (var i = 0; i < ds_list_size(custom.types); i++) {
                     var sub_list = ds_list_create();
                     var type = custom.types[| i];
@@ -115,7 +108,7 @@ function serialize_load_event_prefabs(argument0, argument1) {
                             not_yet_implemented();
                             break;
                     }
-                
+                    
                     var n_custom_data = buffer_read(buffer, buffer_u8);
                     
                     // custom event types don't seem to be pre-populated with values, for
@@ -136,6 +129,4 @@ function serialize_load_event_prefabs(argument0, argument1) {
                 break;
         }
     }
-
-
 }

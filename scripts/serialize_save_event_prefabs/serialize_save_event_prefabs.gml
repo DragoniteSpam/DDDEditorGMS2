@@ -1,27 +1,23 @@
-/// @param buffer
-function serialize_save_event_prefabs(argument0) {
-
-    var buffer = argument0;
-
+function serialize_save_event_prefabs(buffer) {
     buffer_write(buffer, buffer_u32, SerializeThings.EVENT_PREFAB);
     var addr_next = buffer_tell(buffer);
     buffer_write(buffer, buffer_u64, 0);
 
     var n_prefabs = ds_list_size(Stuff.all_event_prefabs);
     buffer_write(buffer, buffer_u32, n_prefabs);
-
+    
     for (var i = 0; i < n_prefabs; i++) {
         var prefab = Stuff.all_event_prefabs[| i];
         serialize_save_generic(buffer, prefab);
         buffer_write(buffer, buffer_u16, prefab.type);
-    
+        
         var n_data = ds_list_size(prefab.data);
-    
+        
         buffer_write(buffer, buffer_u8, n_data);
         for (var j = 0; j < n_data; j++) {
             buffer_write(buffer, buffer_string, prefab.data[| j]);
         }
-    
+        
         // I like the event prefab idea less than i did before i realized
         // that i was going to have to do this
         switch (prefab.type) {
@@ -50,7 +46,7 @@ function serialize_save_event_prefabs(argument0) {
                 buffer_write(buffer, buffer_datatype, prefab.custom_guid);
                 // the size of this list should already be known by the custom event node
                 var custom = guid_get(prefab.custom_guid);
-            
+                
                 for (var j = 0; j < ds_list_size(prefab.custom_data); j++) {
                     var type = custom.types[| j];
                     switch (type[EventNodeCustomData.TYPE]) {
@@ -93,7 +89,7 @@ function serialize_save_event_prefabs(argument0) {
                             not_yet_implemented();
                             break;
                     }
-                
+                    
                     var n_custom_data = ds_list_size(prefab.custom_data[| j]);
                     buffer_write(buffer, buffer_u8, n_custom_data);
                     for (var k = 0; k < n_custom_data; k++) {
@@ -103,10 +99,8 @@ function serialize_save_event_prefabs(argument0) {
                 break;
         }
     }
-
+    
     buffer_poke(buffer, addr_next, buffer_u64, buffer_tell(buffer));
-
+    
     return buffer_tell(buffer);
-
-
 }
