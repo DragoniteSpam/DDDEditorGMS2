@@ -6,45 +6,43 @@ function ui_init_game_data_refresh() {
 
     var data = guid_get(Stuff.data.ui.active_type_guid);
     var selection = ui_list_selection(Stuff.data.ui.el_instances);
-
+    
     if (!(data + 1)) {
         return;
     }
-
+    
     if (selection + 1) {
         var instance = guid_get(data.instances[| selection].GUID);
     } else {
         var instance = noone;
     }
-
+    
     // this is causing issues with the YYC (I32 argument is undefined) - please try to
     // find out exactly what's undefined and why
     ui_input_set_value(Stuff.data.ui.el_inst_name, instance ? instance.name : "");
     ui_input_set_value(Stuff.data.ui.el_inst_internal_name, instance ? instance.internal_name : "");
-
+    
     // if you got to this point, you already know data has a value container
     var dynamic = Stuff.data.ui.el_dynamic;
     var n = 0;
     for (var i = 0; i < ds_list_size(dynamic.contents); i++) {
         // another container
         var column = dynamic.contents[| i];
-    
+        
         // slot 0 in column 0 is taken up by "name" which doesn't count
         var start = (i == 0) ? 2 : 0;
-    
+        
         for (var j = start; j < ds_list_size(column.contents); j++) {
             var thingy = column.contents[| j];
-        
-            if (thingy.is_aux) {
-                continue;
-            }
-        
+            
+            if (thingy.is_aux) continue;
+            
             // it'd be nice if i could just add the elements to a list and go over the
             // list without having to "physically" go down each column and row, but then
             // the list would be orphaned/memory leak unless i do some other things that
             // i don't feel like doing
             var property = data.properties[| n];
-        
+            
             // only check data, not enums
             if (property.type == DataTypes.DATA) {
                 if (property.max_size == 1) {
@@ -58,7 +56,7 @@ function ui_init_game_data_refresh() {
                     }
                 } // else it's a button
             } // enums can't have their members instantiated on this screen so they don't need to be refreshed
-        
+            
             if (instance) {
                 if (property.max_size == 1) {
                     // no need to mess with the list
@@ -184,10 +182,8 @@ function ui_init_game_data_refresh() {
                         break;
                 }
             }
-        
+            
             n++;
         }
     }
-
-
 }

@@ -1,23 +1,25 @@
-/// @param UIThing
-function uimu_data_add_data(argument0) {
-
-    var thing = argument0;
-
+function uimu_data_add_data(thing) {
     var data = guid_get(thing.root.active_type_guid);
-
+    
     if (data) {
         var instance = instance_create_depth(0, 0, 0, DataInstantiated);
         instance.base_guid = data.GUID;
         instance_deactivate_object(instance);
-        ds_list_add(data.instances, instance);
-    
+        
+        var current_index = ui_list_selection(thing.root.el_instances);
+        if (current_index + 1) {
+            ds_list_insert(data.instances, current_index + 1, instance);
+        } else {
+            ds_list_add(data.instances, instance);
+        }
+        
         var n = ds_list_size(data.instances);
         while (internal_name_get(string_upper(data.name) + string(n))) {
             n++;
         }
         instance.name = data.name + string(n);
         internal_name_set(instance, string_upper(data.name) + string(n));
-    
+        
         for (var i = 0; i < ds_list_size(data.properties); i++) {
             var property = data.properties[| i];
             switch (property.type) {
@@ -76,6 +78,4 @@ function uimu_data_add_data(argument0) {
             }
         }
     }
-
-
 }
