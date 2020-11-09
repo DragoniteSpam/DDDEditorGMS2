@@ -141,6 +141,8 @@ function dialog_create_data_types(dialog) {
     el_property_default_bool.enabled = false;
     dg.el_property_default_bool = el_property_default_bool;
     
+    yy += eh + spacing;
+    
     var yy_base_special = yy;
     
     // data and enum - onmouseup is assigned when the radio button is clicked
