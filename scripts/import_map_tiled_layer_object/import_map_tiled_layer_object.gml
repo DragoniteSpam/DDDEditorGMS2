@@ -15,7 +15,7 @@ function import_map_tiled_layer_object() {
     var tiled_cache = (argument_count > 6) ? argument[6] : noone;
     var zz = z;
     var layer_tag = 0;
-
+    
     var layer_objects = json[? "objects"];
     var layer_name = json[? "name"];
     var layer_alpha = json[? "opacity"];
@@ -39,19 +39,19 @@ function import_map_tiled_layer_object() {
             }
         }
     }
-
+    
     var tmx_cache = tiled_cache[? "&tmx-ids"];
-
+    
     for (var i = 0; i < ds_list_size(layer_objects); i++) {
         var object = layer_objects[| i];
         var obj_id = object[? "id"];
         var obj_x = object[? "x"];
         var obj_y = object[? "y"];
-    
+        
         if (!is_clamped((xx + obj_x) / TILE_WIDTH, 0, Stuff.map.active_map.xx - 1)) continue;
         if (!is_clamped((yy + obj_y) / TILE_HEIGHT, 0, Stuff.map.active_map.yy - 1)) continue;
         if (!is_clamped(zz, 0, Stuff.map.active_map.zz - 1)) continue;
-    
+        
         var obj_gid_local = object[? "gid"];
         var obj_name = object[? "name"];
         var obj_template = object[? "template"];
@@ -60,7 +60,7 @@ function import_map_tiled_layer_object() {
         var obj_visible = object[? "visible"];
         var obj_width = object[? "width"];
         var obj_height = object[? "height"];
-    
+        
         // if the layer has a tag assigned to it, instead of creating an instance
         // of a mesh or whatever, convert its area to a tag
         if (layer_tag) {
@@ -75,7 +75,7 @@ function import_map_tiled_layer_object() {
             }
             continue;
         }
-    
+        
         if ((obj_template == undefined)) {
             var data_template = noone;
             var data_template_root = noone;
@@ -83,7 +83,7 @@ function import_map_tiled_layer_object() {
             var data_template_root = import_map_tiled_get_cached_object(tiled_cache, obj_template);
             var data_template = data_template_root[? "object"];
         }
-    
+        
         if (!data_template) {
             if (obj_gid_local == undefined) continue;
             if (obj_name == undefined) continue;
@@ -91,7 +91,7 @@ function import_map_tiled_layer_object() {
             if (obj_visible == undefined) continue;
             if (obj_width == undefined) continue;
             if (obj_height == undefined) continue;
-        
+            
             var data_gid = obj_gid_local;
             var data_name = obj_name;
             var data_type = obj_type;
@@ -104,7 +104,7 @@ function import_map_tiled_layer_object() {
             var data_visible = (obj_visible == undefined) ? data_template[? "visible"] : obj_visible;
             var data_width = (obj_width == undefined) ? data_template[? "width"] : obj_width;
             var data_height = (obj_height == undefined) ? data_template[? "height"] : obj_height;
-        
+            
             // because this gid system makes everything extremely fun and enjoyable to work with
             if (obj_gid_local == undefined) {
                 var ts_object = data_template_root[? "tileset"];
@@ -120,10 +120,10 @@ function import_map_tiled_layer_object() {
                 var data_gid = obj_gid_local;
             }
         }
-    
+        
         // merging the property maps does not sound like my idea of a fun time, but not doing it would be even worse
         var data_properties = ds_map_create();
-    
+        
         // the properties given to the instantiated object go first
         if (obj_properties != undefined) {
             for (var j = 0; j < ds_list_size(obj_properties); j++) {
@@ -149,11 +149,11 @@ function import_map_tiled_layer_object() {
                 }
             }
         }
-    
+        
         // extract the information about the tile the object uses
         var gid_cache = tiled_cache[? "&gid"];
         var gid_to_image_name = gid_cache[? data_gid];
-    
+        
         if (gid_to_image_name == undefined) {
             var ts_json_data = noone;
             var ts_base_list = tiled_cache[? "%tilesets"];
@@ -164,7 +164,7 @@ function import_map_tiled_layer_object() {
                     break;
                 }
             }
-        
+            
             // i do NOT want to go through this every time so i'm going to cache the result
             // when i can since the gids are [waves hands] global
             var tileset_data = import_map_tiled_get_cached_tileset(tiled_cache, ts_json_data[? "source"]);
@@ -182,14 +182,14 @@ function import_map_tiled_layer_object() {
         
         var instance = noone;
         var update = false;
-    
+        
         switch (string_lower(data_type)) {
             case "pawn":
             #region load pawn
                 var pr_static = data_properties[? "Static?"];
-            
+                
                 if (pr_static == undefined) break;
-            
+                
                 pr_static = pr_static[? "value"];
                 
                 var thing = internal_name_get(gid_to_image_name);
