@@ -1897,6 +1897,7 @@
     {"id":{"name":"ui_render_list","path":"scripts/ui_render_list/ui_render_list.yy",},"order":17,},
     {"id":{"name":"ui_list_colors","path":"scripts/ui_list_colors/ui_list_colors.yy",},"order":18,},
     {"id":{"name":"ui_render_list_timeline","path":"scripts/ui_render_list_timeline/ui_render_list_timeline.yy",},"order":19,},
+    {"id":{"name":"Group_Mode_Text_Main","path":"scripts/Group_Mode_Text_Main/Group_Mode_Text_Main.yy",},"order":0,},
     {"id":{"name":"ui_render_tab","path":"scripts/ui_render_tab/ui_render_tab.yy",},"order":20,},
     {"id":{"name":"ui_render_text","path":"scripts/ui_render_text/ui_render_text.yy",},"order":21,},
     {"id":{"name":"ui_render_radio_option_text","path":"scripts/ui_render_radio_option_text/ui_render_radio_option_text.yy",},"order":22,},
@@ -2446,6 +2447,7 @@
     {"folderPath":"folders/Scribble/Initialisation.yy","order":3,"resourceVersion":"1.0","name":"Initialisation","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Scribble/Pages.yy","order":4,"resourceVersion":"1.0","name":"Pages","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Scribble/Shaders.yy","order":5,"resourceVersion":"1.0","name":"Shaders","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Mode - Text.yy","order":15,"resourceVersion":"1.0","name":"Mode - Text","tags":[],"resourceType":"GMFolder",},
   ],
   "AudioGroups": [
     {"targets":461609314234257646,"resourceVersion":"1.0","name":"audiogroup_default","resourceType":"GMAudioGroup",},

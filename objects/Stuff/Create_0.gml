@@ -40,6 +40,7 @@ enum ModeIDs {
     DOODLE,
     PARTICLE,
     MESH,
+    TEXT,
 }
 
 tf = ["False", "True"];
@@ -431,6 +432,7 @@ scribble = instance_create_depth(0, 0, 0, EditorModeScribble);
 spart = instance_create_depth(0, 0, 0, EditorModeSpart);
 doodle = instance_create_depth(0, 0, 0, EditorModeDoodle);
 particle = instance_create_depth(0, 0, 0, EditorModeParticle);
+text = new EditorModeText();
 menu = RIBBON_MENU();
 
 instance_deactivate_object(EditorMode);
