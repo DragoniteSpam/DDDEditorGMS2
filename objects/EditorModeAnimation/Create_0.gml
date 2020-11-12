@@ -28,7 +28,14 @@ pitch = darctan2(z - zto, point_distance(x, y, xto, yto));
 direction = point_direction(x, y, xto, yto);
 
 update = editor_update_animation;
-render = editor_render_animation;
+render = function() {
+    gpu_set_cullmode(cull_noculling);
+    switch (view_current) {
+        case view_fullscreen: draw_editor_animation(); break;
+        case view_3d: draw_animator(); draw_animator_overlay(); break;
+        case view_ribbon: draw_editor_menu(); break;
+    }
+};
 save = function() {
     setting_set("Animation", "x", x);
     setting_set("Animation", "y", y);

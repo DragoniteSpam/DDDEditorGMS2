@@ -1,9 +1,4 @@
-/// @param EditorMode
-/// @param [camera-controls?]
-function draw_editor_menu() {
-    var mode = argument[0];
-    var camera_controls = (argument_count > 1) ? argument[1] : false;
-    
+function draw_editor_menu(camera_controls) {
     // if you're using this in debug mode the overlay is going to be
     // shown and that's going to block out the first part of the menu
     var yy = DEBUG ? 24 : 0;
@@ -13,17 +8,15 @@ function draw_editor_menu() {
     camera_set_proj_mat(camera, matrix_build_projection_ortho(room_width, room_height, CAMERA_ZNEAR, CAMERA_ZFAR));
     camera_apply(camera);
     
-    if (camera_controls) {
-        draw_camera_controls_overlay(mode);
-    }
+    if (camera_controls) draw_camera_controls_overlay();
     
     gpu_set_cullmode(cull_noculling);
     
-    script_execute(Stuff.menu.render, Stuff.menu, 0, yy);
+    Stuff.menu.render(Stuff.menu, 0, yy);
     
     // these are going to be uncommon and short-lived, so don't bother deactivating them.
     with (UINotification) {
-        script_execute(render);
+        render();
     }
     
     if (DEBUG) {

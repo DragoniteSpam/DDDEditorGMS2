@@ -58,6 +58,11 @@ scribble_autotype_in = -1;
 scribble_back_show_guides = true;
 scribble_back_colour = c_white;
 
-render = editor_render_scribble;
+render = function() {
+    switch (view_current) {
+        case view_ribbon: draw_editor_menu(); break;
+        case view_fullscreen: draw_editor_fullscreen(); break;
+    }
+};
 ui = ui_init_scribble(id);
 mode_id = ModeIDs.SCRIBBLE;

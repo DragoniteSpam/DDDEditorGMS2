@@ -1,7 +1,13 @@
 event_inherited();
 
 update = null;
-render = editor_render_mesh;
+render = function() {
+    gpu_set_cullmode(cull_noculling);
+    switch (view_current) {
+        case view_ribbon: draw_editor_menu(); break;
+        case view_fullscreen: draw_editor_fullscreen(); break;
+    }
+};
 save = function() {
     setting_set("Mesh", "x", x);
     setting_set("Mesh", "y", y);

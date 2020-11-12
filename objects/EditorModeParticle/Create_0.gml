@@ -17,7 +17,13 @@ emitters = ds_list_create();
 part_system_automatic_update(system, system_auto_update);
 part_system_automatic_draw(system, false);
 
-render = editor_render_particle;
+render = function() {
+    switch (view_current) {
+        case view_3d: draw_editor_particle(); break;
+        case view_ribbon: draw_editor_menu(); break;
+        case view_hud: draw_editor_hud(); break;
+    }
+};
 ui = ui_init_particle(id);
 mode_id = ModeIDs.PARTICLE;
 

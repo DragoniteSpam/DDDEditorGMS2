@@ -1,4 +1,4 @@
-function draw_editor_fullscreen(mode) {
+function draw_editor_fullscreen() {
     gpu_set_ztestenable(false);
     gpu_set_zwriteenable(false);
     
@@ -7,5 +7,5 @@ function draw_editor_fullscreen(mode) {
     draw_set_valign(fa_middle);
     draw_clear(c_white);
     
-    if (mode.ui) mode.ui.render(mode.ui, 0, 0);
+    if (ui) ui.render(ui, 0, 0);
 }

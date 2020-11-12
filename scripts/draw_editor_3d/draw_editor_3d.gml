@@ -1,4 +1,4 @@
-function draw_editor_3d(mode) {
+function draw_editor_3d() {
     var map = Stuff.map.active_map;
     var map_contents = map.contents;
     
@@ -11,13 +11,13 @@ function draw_editor_3d(mode) {
     if (map.is_3d) {
         var vw = view_get_wport(view_current);
         var vh = view_get_hport(view_current);
-        camera_set_view_mat(camera, matrix_build_lookat(mode.x, mode.y, mode.z, mode.xto, mode.yto, mode.zto, mode.xup, mode.yup, mode.zup));
-        camera_set_proj_mat(camera, matrix_build_projection_perspective_fov(-mode.fov, -vw / vh, CAMERA_ZNEAR, CAMERA_ZFAR));
+        camera_set_view_mat(camera, matrix_build_lookat(x, y, z, xto, yto, zto, xup, yup, zup));
+        camera_set_proj_mat(camera, matrix_build_projection_perspective_fov(-fov, -vw / vh, CAMERA_ZNEAR, CAMERA_ZFAR));
         camera_apply(camera);
     } else {
         var cwidth = camera_get_view_width(camera);
         var cheight = camera_get_view_height(camera);
-        camera_set_view_mat(camera, matrix_build_lookat(mode.x, mode.y, z2d,  mode.x, mode.y, -16000, 0, 1, 0));
+        camera_set_view_mat(camera, matrix_build_lookat(x, y, z2d,  x, y, -16000, 0, 1, 0));
         camera_set_proj_mat(camera, matrix_build_projection_ortho(-cwidth, cheight, CAMERA_ZNEAR, CAMERA_ZFAR));
         camera_apply(camera);
     }
@@ -27,7 +27,7 @@ function draw_editor_3d(mode) {
     if (skybox && !map.indoors) {
         gpu_set_zwriteenable(false);
         gpu_set_ztestenable(false);
-        transform_set(mode.x, mode.y, map.is_3d ? mode.z : z2d, 0, 0, 0, 1, 1, 1);
+        transform_set(x, y, map.is_3d ? z : z2d, 0, 0, 0, 1, 1, 1);
         vertex_submit(Stuff.graphics.skybox_base, pr_trianglelist, sprite_get_texture(skybox.picture, 0));
         transform_reset();
     }
@@ -102,7 +102,7 @@ function draw_editor_3d(mode) {
         transform_set(data[@ 1], data[@ 2], data[@ 3], 0, 0, 0, 1, 1, 1);
         vertex_submit(data[@ 0], pr_linestrip, -1);
         if (data[@ 4]) {
-            transform_set(0, 0, 0, 90, 0, point_direction(mode.x, mode.y, data[@ 1] + data[@ 5], data[@ 2] + data[@ 6]) - 90, 1, 1, 1);
+            transform_set(0, 0, 0, 90, 0, point_direction(x, y, data[@ 1] + data[@ 5], data[@ 2] + data[@ 6]) - 90, 1, 1, 1);
             transform_add(data[@ 1] + data[@ 5], data[@ 2] + data[@ 6], data[@ 3] + data[@ 7], 0, 0, 0, 1, 1, 1);
             draw_sprite_ext(spr_plus_minus, 0, 0, 0, 0.25, 0.25, 0, c_lime, 1);
         }
@@ -121,8 +121,8 @@ function draw_editor_3d(mode) {
     }
     
     // tried using ztestenable for this - didn't look good. at all.
-    for (var i = 0; i < ds_list_size(mode.selection); i++) {
-        var sel = mode.selection[| i];
+    for (var i = 0; i < ds_list_size(Stuff.map.selection); i++) {
+        var sel = Stuff.map.selection[| i];
         script_execute(sel.render, sel);
     }
     
@@ -163,7 +163,7 @@ function draw_editor_3d(mode) {
     
     #region height controls
     // base bar
-    var height = clamp(24 * mode.active_map.zz, 64, 640);
+    var height = clamp(24 * Stuff.map.active_map.zz, 64, 640);
     var sw = sprite_get_width(spr_vertical_bar);
     var sh = sprite_get_height(spr_vertical_bar);
     var bw = sprite_get_width(spr_plus_minus_button);
@@ -173,7 +173,7 @@ function draw_editor_3d(mode) {
     draw_sprite_stretched(spr_vertical_bar, 0, 32 - sw / 2, 64, sw, height);
     
     // bar notches
-    var notch_count = min(power(2, floor(log2(max(mode.active_map.zz, 2)))), 16);
+    var notch_count = min(power(2, floor(log2(max(Stuff.map.active_map.zz, 2)))), 16);
     for (var i = 0; i < notch_count; i++) {
         var yy_notch = yy_start + i * (yy_end - yy_start) / (notch_count - 1);
         draw_line_width_colour(32 - bw / 4, yy_notch, 32 + bw / 4, yy_notch, 2, c_ui_select, c_ui_select);
@@ -187,8 +187,8 @@ function draw_editor_3d(mode) {
     
     // slider
     var slider_length = height - bh * 2;
-    var interval = slider_length / (mode.active_map.zz - 1);
-    var slider_y = 64 + height - bh - mode.edit_z * interval;
+    var interval = slider_length / (Stuff.map.active_map.zz - 1);
+    var slider_y = 64 + height - bh - Stuff.map.edit_z * interval;
     var slw = sprite_get_width(spr_drag_handle_vertical);
     var slh = sprite_get_height(spr_drag_handle_vertical);
     var overlap_slider = mouse_within_rectangle_view(32 - slw / 2, slider_y - slh / 2, 32 + slw / 2, slider_y + slh / 2);
@@ -200,20 +200,20 @@ function draw_editor_3d(mode) {
         
         if (overlap_plus) {
             if (mouse_check_button_pressed(mb_left)) {
-                mode.edit_z = min(++mode.edit_z, mode.active_map.zz - 1);
+                Stuff.map.edit_z = min(++Stuff.map.edit_z, Stuff.map.active_map.zz - 1);
             }
-            mode.mouse_over_ui = true;
+            mouse_over_ui = true;
         } else if (overlap_minus) {
             if (mouse_check_button_pressed(mb_left)) {
-                mode.edit_z = max(--mode.edit_z, 0);
+                Stuff.map.edit_z = max(--Stuff.map.edit_z, 0);
             }
-            mode.mouse_over_ui = true;
+            mouse_over_ui = true;
         } else if (overlap_interval) {
             if (mouse_check_button(mb_left)) {
                 var f = clamp((yy_end - mouse_y_view) / (yy_end - yy_start), 0, 1);
-                mode.edit_z = round(f * (mode.active_map.zz - 1));
+                Stuff.map.edit_z = round(f * (Stuff.map.active_map.zz - 1));
             }
-            mode.mouse_over_ui = true;
+            mouse_over_ui = true;
         }
     }
     #endregion

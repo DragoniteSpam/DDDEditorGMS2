@@ -29,7 +29,13 @@ pitch = darctan2(z - zto, point_distance(x, y, xto, yto));
 direction = point_direction(x, y, xto, yto);
 
 update = editor_update_map;
-render = editor_render_map;
+render = function() {
+    switch (view_current) {
+        case view_3d: draw_clear(c_black); draw_editor_3d(); break;
+        case view_ribbon: draw_editor_menu(true); break;
+        case view_hud: draw_editor_hud(); break;
+    }
+};
 cleanup = editor_cleanup_map;
 save = function() {
     setting_set("Map", "x", x);

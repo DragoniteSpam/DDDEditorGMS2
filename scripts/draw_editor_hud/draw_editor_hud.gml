@@ -1,4 +1,4 @@
-function draw_editor_hud(mode) {
+function draw_editor_hud() {
     gpu_set_cullmode(cull_noculling);
-    script_execute(mode.ui.render, mode.ui);
+    ui.render(ui);
 }

@@ -32,7 +32,14 @@ pitch = darctan2(z - zto, point_distance(x, y, xto, yto));
 direction = point_direction(x, y, xto, yto);
 
 update = editor_update_terrain;
-render = editor_render_terrain;
+render = function() {
+    gpu_set_cullmode(cull_noculling);
+    switch (view_current) {
+        case view_3d: draw_clear(c_black); draw_editor_terrain(); draw_editor_3d(Stuff.map); break;
+        case view_ribbon: draw_editor_terrain_menu(); break;
+        case view_hud: draw_editor_hud(); break;
+    }
+};
 save = function() {
     setting_set("Terrain", "x", x);
     setting_set("Terrain", "y", y);

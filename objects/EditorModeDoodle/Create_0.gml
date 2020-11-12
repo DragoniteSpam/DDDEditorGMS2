@@ -11,7 +11,12 @@ doodle_color_alpha = 1;
 
 doodle_brush_size = 4;
 
-render = editor_render_doodle;
+render = function() {
+    switch (view_current) {
+        case view_ribbon: draw_editor_menu(); break;
+        case view_fullscreen: draw_editor_fullscreen(); break;
+    }
+};
 ui = ui_init_doodle(id);
 mode_id = ModeIDs.DOODLE;
 

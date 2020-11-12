@@ -16,7 +16,14 @@ fov = setting_get("Event", "fov", 50);
 pitch = setting_get("Event", "pitch", 0);
 direction = setting_get("Event", "direction", 0);
 
-render = editor_render_event;
+render = function() {
+    gpu_set_cullmode(cull_noculling);
+    switch (view_current) {
+        case view_fullscreen: draw_editor_event(); break;
+        case view_ribbon: draw_editor_menu(); break;
+        case view_hud: draw_editor_hud(); break;
+    }
+};
 save = function() {
     setting_set("Event", "x", x);
     setting_set("Event", "y", y);
