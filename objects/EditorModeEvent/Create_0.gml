@@ -17,7 +17,17 @@ pitch = setting_get("Event", "pitch", 0);
 direction = setting_get("Event", "direction", 0);
 
 render = editor_render_event;
-save = editor_save_setting_event;
+save = function() {
+    setting_set("Event", "x", x);
+    setting_set("Event", "y", y);
+    setting_set("Event", "z", z);
+    setting_set("Event", "xto", xto);
+    setting_set("Event", "yto", yto);
+    setting_set("Event", "zto", zto);
+    setting_set("Event", "fov", fov);
+    setting_set("Event", "pitch", pitch);
+    setting_set("Event", "direction", direction);
+};
 
 canvas_active_node = noone;
 canvas_active_node_index = 0;

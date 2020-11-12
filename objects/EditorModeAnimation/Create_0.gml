@@ -29,7 +29,15 @@ direction = point_direction(x, y, xto, yto);
 
 update = editor_update_animation;
 render = editor_render_animation;
-save = editor_save_setting_animation;
+save = function() {
+    setting_set("Animation", "x", x);
+    setting_set("Animation", "y", y);
+    setting_set("Animation", "z", z);
+    setting_set("Animation", "xto", xto);
+    setting_set("Animation", "yto", yto);
+    setting_set("Animation", "zto", zto);
+    setting_set("Animation", "fov", fov);
+};
 
 ui = ui_init_animation(id);
 mode_id = ModeIDs.ANIMATION;

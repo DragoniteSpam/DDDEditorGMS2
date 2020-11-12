@@ -2,9 +2,7 @@
 
 alarm[ALARM_SETTINGS_SAVE] = room_speed * CAMERA_SAVE_FREQUENCY;
 
-for (var i = 0; i < ds_list_size(all_modes); i++) {
-    script_execute(all_modes[| i].save, all_modes[| i]);
-}
+for (var i = 0; i < ds_list_size(all_modes); i++) all_modes[| i].save();
 
 var json = json_encode(settings);
 var json_buffer = buffer_create(1000, buffer_grow, 1);

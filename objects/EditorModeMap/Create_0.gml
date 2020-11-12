@@ -31,7 +31,15 @@ direction = point_direction(x, y, xto, yto);
 update = editor_update_map;
 render = editor_render_map;
 cleanup = editor_cleanup_map;
-save = editor_save_setting_map;
+save = function() {
+    setting_set("Map", "x", x);
+    setting_set("Map", "y", y);
+    setting_set("Map", "z", z);
+    setting_set("Map", "xto", xto);
+    setting_set("Map", "yto", yto);
+    setting_set("Map", "zto", zto);
+    setting_set("Map", "fov", fov);
+};
 changes = ds_list_create();
 
 under_cursor = noone;

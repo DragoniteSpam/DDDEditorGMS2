@@ -33,7 +33,15 @@ direction = point_direction(x, y, xto, yto);
 
 update = editor_update_terrain;
 render = editor_render_terrain;
-save = editor_save_setting_terrain;
+save = function() {
+    setting_set("Terrain", "x", x);
+    setting_set("Terrain", "y", y);
+    setting_set("Terrain", "z", z);
+    setting_set("Terrain", "xto", xto);
+    setting_set("Terrain", "yto", yto);
+    setting_set("Terrain", "zto", zto);
+    setting_set("Terrain", "fov", fov);
+};
 
 texture_name = DEFAULT_TILESET;
 texture = terrain_create_texture_sprite(PATH_GRAPHICS + texture_name);

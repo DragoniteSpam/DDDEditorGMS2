@@ -1,7 +1,7 @@
 event_inherited();
 
 render = editor_render_data;
-save = editor_save_setting_data;
+save = function() { };
 
 ui = noone;
 mode_id = ModeIDs.DATA;

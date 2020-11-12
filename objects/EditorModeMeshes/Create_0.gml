@@ -2,7 +2,23 @@ event_inherited();
 
 update = null;
 render = editor_render_mesh;
-save = editor_save_setting_mesh;
+save = function() {
+    setting_set("Mesh", "x", x);
+    setting_set("Mesh", "y", y);
+    setting_set("Mesh", "z", z);
+    setting_set("Mesh", "xto", xto);
+    setting_set("Mesh", "yto", yto);
+    setting_set("Mesh", "zto", zto);
+    setting_set("Mesh", "fov", fov);
+    
+    setting_set("Mesh", "vertex-formats", json_encode(format_json));
+    
+    setting_set("Mesh", "draw-mesh", draw_meshes);
+    setting_set("Mesh", "draw-wire", draw_wireframes);
+    setting_set("Mesh", "draw-tex", draw_textures);
+    setting_set("Mesh", "draw-light", draw_lighting);
+    setting_set("Mesh", "draw-axes", draw_axes);
+};
 
 draw_meshes = setting_get("Mesh", "draw-mesh", true);
 draw_wireframes = setting_get("Mesh", "draw-wire", true);
