@@ -5,4 +5,4 @@ if (array_length(files) > 0) {
     files_dropped = [];
 }
 
-script_execute(mode.update, mode);
+mode.update(mode);

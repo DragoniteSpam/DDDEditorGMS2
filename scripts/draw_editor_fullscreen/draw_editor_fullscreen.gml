@@ -7,5 +7,5 @@ function draw_editor_fullscreen(mode) {
     draw_set_valign(fa_middle);
     draw_clear(c_white);
     
-    script_execute(mode.ui.render, mode.ui, 0, 0);
+    if (mode.ui) mode.ui.render(mode.ui, 0, 0);
 }

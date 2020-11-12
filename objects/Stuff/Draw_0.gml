@@ -1,4 +1,4 @@
-script_execute(mode.render, mode);
+mode.render(mode);
 
 // these shouldn't be attached to any one view or anything
 // would put this in the draw gui event except i dont know what would
@@ -6,7 +6,7 @@ script_execute(mode.render, mode);
 if (view_current == view_overlay) {
     for (var i = 0; i < ds_list_size(dialogs); i++) {
         var thing = dialogs[| i];
-        script_execute(thing.render, thing);
+        thing.render(thing);
     }
     
     if (Stuff.element_tooltip_previous && !Stuff.element_tooltip_t) {

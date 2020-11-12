@@ -4,7 +4,7 @@ if (!dialog_exists()) {
     control_global();
 }
 
-script_execute(mode.cleanup, mode);
+mode.cleanup(mode);
 
 // dialogs (or other things) to be killed
 
