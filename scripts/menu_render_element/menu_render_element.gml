@@ -1,51 +1,42 @@
-/// @param MenuMenu
-/// @param x
-/// @param y
-/// @param x2
-/// @param y2
-function menu_render_element(argument0, argument1, argument2, argument3, argument4) {
-
-    // the root menu objects calculate their x2 and y2 based on their width and height,
-    // but since the width and height of menu elements are based on their neighbors,
-    // we just pass them as parameters
-    var menumenu = argument0;
-    var x1 = argument1;
-    var y1 = argument2;
-    var x2 = argument3 - 1;
-    var y2 = argument4 - 1;
-
+function menu_render_element(menumenu, x1, y1, x2, y2) {
+    // the root menu objects calculate their x2 and y2 based on their width
+    // and height, but since the width and height of menu elements are based
+    // on their neighbors, we just pass them as parameters
+    x2--;
+    y2--;
+    
     menumenu.x = x1;
     menumenu.y = y1;
-
+    
     var tx = ui_get_text_x(menumenu, x1, x2);
     var ty = ui_get_text_y(menumenu, y1, y2);
-
+    
     var active = menu_is_active(menumenu) && menumenu.interactive;
     var mouse_inbounds = mouse_within_rectangle(x1, y1, x2, y2);
-
+    
     // click on the element
     if (mouse_inbounds || active || !menumenu.interactive) {
         draw_rectangle_colour(x1, y1, x2 - 1, y2, c_ui, c_ui, c_ui, c_ui, false);
     }
-
+    
     if (menumenu.interactive && mouse_inbounds) {
         if (Controller.release_left && !dialog_exists()) {
             Controller.release_left = false;
-            script_execute(menumenu.onmouseup, menumenu);
+            menumenu.onmouseup();
         }
         Stuff.menu.mouse_over = menumenu;
     }
-
+    
     draw_set_halign(menumenu.alignment);
     draw_set_valign(menumenu.valignment);
     draw_set_color(menumenu.color);
     draw_text(tx, ty, string(menumenu.text));
-
+    
     if (menumenu.onmouseup == momu_expand) {
         var s = 5;
         draw_triangle(x2 - s * 2, ty - s, x2 - s, ty, x2 - s * 2, ty + s, false);
     }
-
+    
     if (active) {
         var separation = 16;
         var ww = separation * 2;
@@ -79,6 +70,4 @@ function menu_render_element(argument0, argument1, argument2, argument3, argumen
         }
         draw_rectangle_colour(xx, yy, xx + ww - 1, yy + hh - 1, c_black, c_black, c_black, c_black, true);
     }
-
-
 }

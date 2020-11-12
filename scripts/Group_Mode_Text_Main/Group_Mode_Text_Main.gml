@@ -3,7 +3,7 @@ function EditorModeText() : EditorMode_Struct() constructor {
     render = function(mode) { /* */ };
     save = function() { };
     
-    mode_id = ModeIDs.TERRAIN;
+    mode_id = ModeIDs.TEXT;
 }
 
 function EditorMode_Struct() constructor {update = null;
