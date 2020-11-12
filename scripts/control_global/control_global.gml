@@ -1,11 +1,6 @@
 function control_global() {
-    if (!GLOBAL_CONTORLS_ENABLED) {
-        return;
-    }
-
-    /*
-     * General keyboard shortcuts
-     */
+    if (!GLOBAL_CONTORLS_ENABLED) return;
+    
     if (keyboard_check(vk_control)) {
         ui_activate(noone);
         // file
@@ -38,7 +33,7 @@ function control_global() {
             momu_redo(noone);
         }
     }
-
+    
     if (keyboard_check_pressed(vk_f5)) {
         editor_mode_meshes();
     }
@@ -57,6 +52,7 @@ function control_global() {
     if (keyboard_check_pressed(vk_f10)) {
         editor_mode_heightmap();
     }
-
-
+    if (keyboard_check_pressed(vk_f11)) {
+        editor_mode_text();
+    }
 }

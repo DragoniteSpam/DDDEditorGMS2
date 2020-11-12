@@ -35,6 +35,11 @@ function momu_editor_heightmap() {
     menu_activate(noone);
 }
 
+function momu_editor_text() {
+    editor_mode_text();
+    menu_activate(noone);
+}
+
 function momu_editor_particles() {
     editor_mode_particle();
     menu_activate(noone);

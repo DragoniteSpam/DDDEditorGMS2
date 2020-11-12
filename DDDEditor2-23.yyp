@@ -58,6 +58,7 @@
     {"id":{"name":"triangle_normal","path":"scripts/triangle_normal/triangle_normal.yy",},"order":4,},
     {"id":{"name":"triangle_smooth","path":"scripts/triangle_smooth/triangle_smooth.yy",},"order":5,},
     {"id":{"name":"get_camera_speed","path":"scripts/get_camera_speed/get_camera_speed.yy",},"order":6,},
+    {"id":{"name":"editor_mode_text","path":"scripts/editor_mode_text/editor_mode_text.yy",},"order":10,},
     {"id":{"name":"screen_to_world","path":"scripts/screen_to_world/screen_to_world.yy",},"order":7,},
     {"id":{"name":"world_to_screen","path":"scripts/world_to_screen/world_to_screen.yy",},"order":8,},
     {"id":{"name":"selection_clear","path":"scripts/selection_clear/selection_clear.yy",},"order":0,},
