@@ -32,7 +32,7 @@ function menu_render_element(menumenu, x1, y1, x2, y2) {
     draw_set_color(menumenu.color);
     draw_text(tx, ty, string(menumenu.text));
     
-    if (menumenu.onmouseup == momu_expand) {
+    if (menumenu.expandable) {
         var s = 5;
         draw_triangle(x2 - s * 2, ty - s, x2 - s, ty, x2 - s * 2, ty + s, false);
     }
@@ -42,7 +42,7 @@ function menu_render_element(menumenu, x1, y1, x2, y2) {
         var ww = separation * 2;
         for (var i = 0; i < ds_list_size(menumenu.contents); i++) {
             var ew = string_width(string(menumenu.contents[| i].text));
-            if (menumenu.contents[| i].onmouseup == momu_expand) {
+            if (menumenu.contents[| i].expandable) {
                 ew = ew + 16;
             }
             ww = max(ww, ew + separation * 2);

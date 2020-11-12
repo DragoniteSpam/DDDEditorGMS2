@@ -57,7 +57,7 @@ function menu_init_main() {
         #endregion
         
         #region data stuff
-        var md_graphics = create_menu_element("Graphics", momu_expand, menu_data);
+        var md_graphics = create_menu_element("Graphics", momu_expand, menu_data, true);
             var md_graphic_ts = create_menu_element("Textures and Tilesets", momu_graphic_tileset, md_graphics);
             var md_graphic_at = create_menu_element("Tile Animation", not_yet_implemented_polite, md_graphics);
             var md_graphic_battle = create_menu_element("Battler Sprites", momu_graphic_battle, md_graphics);
@@ -85,7 +85,7 @@ function menu_init_main() {
         md_graphic_skybox.interactive = MENU_EDITOR_ENABLED;
         md_graphic_ui.interactive = MENU_EDITOR_ENABLED;
         md_graphic_etc.interactive = MENU_EDITOR_ENABLED;
-        var md_audio = create_menu_element("Audio", momu_expand, menu_data);
+        var md_audio = create_menu_element("Audio", momu_expand, menu_data, true);
             var md_aud_bgm = create_menu_element("Background Music (BGM)", momu_bgm, md_audio);
             var md_aud_se = create_menu_element("Sound Effects (SE)", momu_se, md_audio);
             ds_list_add(md_audio.contents,
@@ -95,7 +95,7 @@ function menu_init_main() {
         md_audio.interactive = MENU_EDITOR_ENABLED;
         md_aud_bgm.interactive = MENU_EDITOR_ENABLED;
         md_aud_se.interactive = MENU_EDITOR_ENABLED;
-        var md_mesh_at = create_menu_element("Mesh Autotiles", momu_expand, menu_data);
+        var md_mesh_at = create_menu_element("Mesh Autotiles", momu_expand, menu_data, true);
             var md_mesh_at_top = create_menu_element("Top", momu_graphic_mesh_autotiles_top, md_graphics);
             var md_mesh_at_vertical = create_menu_element("Vertical", momu_graphic_mesh_autotiles_vertical, md_graphics);
             var md_mesh_at_base = create_menu_element("Base", momu_graphic_mesh_autotiles_base, md_graphics);
@@ -172,7 +172,7 @@ function menu_init_main() {
         #region right-click stuff
         // this is an instance variable and not a local one
         menu_right_click = create_menu("right-click", element_width, element_height, id, true);
-        var mrc_player = create_menu_element("Set Player Start", momu_expand, menu_right_click);
+        var mrc_player = create_menu_element("Set Player Start", momu_expand, menu_right_click, true);
             var mrc_player_down = create_menu_element("Facing Down", momu_set_starting_position_down, mrc_player);
             var mrc_player_left = create_menu_element("Facing Left", momu_set_starting_position_left, mrc_player);
             var mrc_player_right = create_menu_element("Facing Right", momu_set_starting_position_right, mrc_player);
@@ -183,7 +183,7 @@ function menu_init_main() {
                 mrc_player_right,
                 mrc_player_up
             );
-        var mrc_fill = create_menu_element("Fill", momu_expand, menu_right_click);
+        var mrc_fill = create_menu_element("Fill", momu_expand, menu_right_click, true);
             var mrc_fill_tile = create_menu_element("Tile", null, mrc_fill);
             var mrc_fill_autotile = create_menu_element("Autotile", null, mrc_fill);
             var mrc_fill_mesh = create_menu_element("Mesh", null, mrc_fill);
