@@ -4,6 +4,14 @@ function regex(expression, str) {
     return regex_match();
 }
 
+function ui_value_real(input) {
+    return real(input);
+}
+
+function ui_value_string(input) {
+    return input;
+}
+
 function validate_code(expression, input) {
     // @todo validate the Lua
     return true;

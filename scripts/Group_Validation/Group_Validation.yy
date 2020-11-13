@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "ui stuff",
-    "path": "folders/Scripts/ui stuff.yy",
+    "name": "Math",
+    "path": "folders/Scripts/Math.yy",
   },
   "resourceVersion": "1.0",
-  "name": "ui_value_real",
+  "name": "Group_Validation",
   "tags": [],
   "resourceType": "GMScript",
 }
