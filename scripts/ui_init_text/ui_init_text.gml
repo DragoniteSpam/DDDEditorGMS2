@@ -8,10 +8,9 @@ function ui_init_text(mode) {
         var eh = 24;
         
         var c1x = cw * 0 + spacing;
-        // the first column is a bit wider
-        var c2x = cw * 1 + spacing + spacing * 4;
-        var c3x = cw * 2 + spacing + spacing * 4;
-        var c4x = cw * 3 + spacing + spacing * 4;
+        var c2x = cw * 1 + spacing;
+        var c3x = cw * 2 + spacing;
+        var c4x = cw * 3 + spacing;
         
         var vx1 = ew / 2;
         var vy1 = 0;
@@ -76,6 +75,65 @@ function ui_init_text(mode) {
         yy += element.height + spacing;
         
         yy = yy_base;
+        
+        var element = create_list(c2x, yy, "Text strings:", "(no text)", ew * 2, eh, 26, function(list) {
+            
+        }, true, id);
+        element.tooltip = "Text strings in the game. The list is not updated automatically; you should periodically click \"Extract\" to update the list.";
+        ds_list_add(contents, element);
+        el_language_list = element;
+        yy += ui_get_list_height(element) + spacing;
+        
+        element = create_button(c2x, yy, "Extract Text", ew * 2, eh, fa_center, function(button) {
+            
+        }, id);
+        element.tooltip = "Extract all player-visible text from the game's data; this includes String types in the database, cutscene event nodes, and other such things.";
+        ds_list_add(contents, element);
+        yy += element.height + spacing;
+        
+        element = create_button(c2x, yy, "Set From Default", ew * 2, eh, fa_center, function(button) {
+            
+        }, id);
+        element.tooltip = "Set each of the localized strings for this language to the default value (i.e. the text that has been entered into the editor itself).";
+        ds_list_add(contents, element);
+        yy += element.height + spacing;
+        
+        element = create_button(c2x, yy, "Export Strings", ew - 16, eh, fa_center, function(button) {
+            
+        }, id);
+        element.tooltip = "Save the extracted text strings to a file to be edited in external software.";
+        ds_list_add(contents, element);
+        
+        element = create_button(c2x + ew + 16, yy, "Import Strings", ew - 16, eh, fa_center, function(button) {
+            
+        }, id);
+        element.tooltip = "Import translated text strings.";
+        ds_list_add(contents, element);
+        yy += element.height + spacing;
+        
+        yy = yy_base;
+        
+        element = create_text(c4x, yy, "Default text:", ew, eh, fa_left, ew, id);
+        ds_list_add(contents, element);
+        yy += element.height + spacing;
+        
+        element = create_text(c4x, yy, "This is where the default text is shown; it may be somewhat longer than a normal text string, and may require more than one line", ew * 2, eh * 8, fa_left, ew * 2, id);
+        element.valignment = fa_top;
+        ds_list_add(contents, element);
+        el_text_default = element;
+        yy += element.height + spacing;
+        
+        element = create_text(c4x, yy, "Localized text:", ew, eh, fa_left, ew, id);
+        ds_list_add(contents, element);
+        yy += element.height + spacing;
+        
+        element = create_input(c4x, yy, "", ew * 2, eh * 8, function(input) {
+            
+        }, "", "Translated text...", validate_string, 0, 1, 1000, 0, 0, ew * 2, eh * 8, id);
+        element.multi_line = true;
+        ds_list_add(contents, element);
+        el_text_translated = element;
+        yy += element.height + spacing;
         
         return id;
     }

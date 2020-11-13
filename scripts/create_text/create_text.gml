@@ -1,24 +1,11 @@
-/// @param x
-/// @param y
-/// @param text
-/// @param width
-/// @param height
-/// @param halignment
-/// @param wrap-width
-/// @param root
-function create_text() {
-
-    with (instance_create_depth(argument[0], argument[1], 0, UIText)) {
-        text = argument[2];
-        width = argument[3];
-        height = argument[4];
-
-        alignment = argument[5];
-        wrap_width = argument[6];
-        root = argument[7];
-    
+function create_text(x, y, text, width, height, alignment, wrap_width, root) {
+    with (instance_create_depth(x, y, 0, UIText)) {
+        self.text = text;
+        self.width = width;
+        self.height = height;
+        self.alignment = alignment;
+        self.wrap_width = wrap_width;
+        self.root = root;
         return id;
     }
-
-
 }
