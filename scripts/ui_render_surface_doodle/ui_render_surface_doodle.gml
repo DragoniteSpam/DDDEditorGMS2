@@ -74,7 +74,7 @@ function ui_render_surface_doodle(argument0, argument1, argument2, argument3, ar
                     }
                     ds_stack_destroy(points);
                     surface_reset_target();
-                    buffer_set_surface(buffer, surface.surface, buffer_surface_copy, 0, 0);
+                    buffer_set_surface(buffer, surface.surface, 0);
                     surface_set_target(surface.surface);
                     changed = false;
                 }*/
@@ -85,7 +85,7 @@ function ui_render_surface_doodle(argument0, argument1, argument2, argument3, ar
 
     if (changed) {
         surface_reset_target();
-        buffer_get_surface(buffer, surface.surface, buffer_surface_copy, 0, 0);
+        buffer_get_surface(buffer, surface.surface, 0);
         surface_set_target(surface.surface);
     }
 

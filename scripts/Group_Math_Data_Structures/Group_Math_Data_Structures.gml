@@ -44,7 +44,7 @@ function buffer_read_sprite(buffer) {
     var surface = surface_create(sw, sh);
     var sbuffer = buffer_read_buffer(buffer, slength); 
     
-    buffer_set_surface(sbuffer, surface, buffer_surface_copy, 0, 0);
+    buffer_set_surface(sbuffer, surface, 0);
     
     var sprite = sprite_create_from_surface(surface, 0, 0, sw, sh, false, false, 0, 0);
     
@@ -54,11 +54,6 @@ function buffer_read_sprite(buffer) {
     return sprite;
 }
 
-/// @param surface
-/// @param buffer
-/// @param x
-/// @param y
-/// @param color
 function buffer_set_pixel(surface, buffer, x, y, color) {
     x = floor(x);
     y = floor(y);
@@ -84,7 +79,7 @@ function buffer_write_sprite(buffer, sprite) {
     
     var sbuffer = buffer_create(slength, buffer_fixed, 1);
     var size = buffer_get_size(sbuffer);
-    buffer_get_surface(sbuffer, surface, buffer_surface_copy, 0, 0);
+    buffer_get_surface(sbuffer, surface, 0);
     buffer_write(buffer, buffer_u16, sw);
     buffer_write(buffer, buffer_u16, sh);
     

@@ -138,7 +138,7 @@ function spart__read_type_from_buffer(argument0, argument1) {
         buffer_seek(loadBuff, buffer_seek_relative, w * h * 4);
     
         var surface = surface_create(w, h);
-        buffer_set_surface(sprBuff, surface, 0, 0, 0);
+        buffer_set_surface(sprBuff, surface, 0);
         buffer_delete(sprBuff);
         partType[| sPartTyp.Spr] = sprite_create_from_surface(surface, 0, 0, w, h, 0, 0, 0, 0);
         surface_free(surface);

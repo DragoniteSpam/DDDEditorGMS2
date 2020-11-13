@@ -106,7 +106,7 @@ function smf_model_load_from_buffer() {
                 surface_resize(s, w, h);
                 buffer_resize(texBuff, w * h * 4)
                 buffer_copy(loadBuff, buffer_tell(loadBuff), w * h * 4, texBuff, 0);
-                buffer_set_surface(texBuff, s, 0, 0, 0);
+                buffer_set_surface(texBuff, s, 0,);
                 smf_texture_add(sprite_create_from_surface(s, 0, 0, w, h, 0, 0, 0, 0), name, true);
             }
             else

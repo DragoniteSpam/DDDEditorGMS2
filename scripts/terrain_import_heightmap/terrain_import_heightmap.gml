@@ -22,7 +22,7 @@ function terrain_import_heightmap(argument0, argument1) {
     draw_sprite(image, 0, 0, 0);
     surface_reset_target();
 
-    buffer_get_surface(buffer, surface, 0, 0, 0);
+    buffer_get_surface(buffer, surface, 0);
 
     buffer_delete(terrain.height_data);
     buffer_delete(terrain.color_data);

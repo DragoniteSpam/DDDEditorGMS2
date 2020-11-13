@@ -135,7 +135,7 @@ function spart__write_type_to_buffer(argument0, argument1, argument2) {
         gpu_set_blendmode(bm_normal);
     
         var sprBuff = buffer_create(w * h * 4, buffer_grow, 1);
-        buffer_get_surface(sprBuff, surface, buffer_surface_copy, 0, 0);
+        buffer_get_surface(sprBuff, surface, 0);
         buffer_copy(sprBuff, 0, w * h * 4, saveBuff, buffer_tell(saveBuff));
         buffer_seek(saveBuff, buffer_seek_relative, w * h * 4);
         buffer_delete(sprBuff);
