@@ -85,7 +85,7 @@ function ui_init_text(mode) {
         yy += ui_get_list_height(element) + spacing;
         
         element = create_button(c2x, yy, "Extract Text", ew * 2, eh, fa_center, function(button) {
-            
+            language_extract();
         }, id);
         element.tooltip = "Extract all player-visible text from the game's data; this includes String types in the database, cutscene event nodes, and other such things.";
         ds_list_add(contents, element);

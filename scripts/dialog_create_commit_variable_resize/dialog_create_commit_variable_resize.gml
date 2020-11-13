@@ -27,7 +27,7 @@ function dialog_create_commit_variable_resize(argument0) {
         ds_list_add(Stuff.variables, [name, 0]);
         create_list_entries(argument0.root.el_list, name);
     }
-        
+    
     return noone;
 
 

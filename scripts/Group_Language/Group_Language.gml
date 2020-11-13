@@ -22,3 +22,29 @@ function language_remove(name) {
         variable_struct_remove(Stuff.all_localized_text, name);
     }
 }
+
+function language_extract() {
+    for (var l = 0; l < ds_list_size(Stuff.all_languages); l++) {
+        var lang = Stuff.all_localized_text[$ Stuff.all_languages[| l]];
+        #region data
+        for (var i = 0; i < ds_list_size(Stuff.all_data); i++) {
+            var datadata = Stuff.all_data[| i];
+            if (datadata.type != DataTypes.DATA) continue;
+            for (var j = 0; j < ds_list_size(datadata.properties); j++) {
+                var property = datadata.properties[| j];
+                if (property.type != DataTypes.STRING) continue;
+                for (var k = 0; k < ds_list_size(datadata.instances); k++) {
+                    var inst = datadata.instances[| k];
+                    if (inst.name != "") lang[$ "Data." + inst.internal_name + ".@NAME@"] = inst.name;
+                    if (inst.summary != "") lang[$ "Data." + inst.internal_name + ".@SUMMARY@"] = inst.summary;
+                    for (var m = 0; m < ds_list_size(inst.values[| j]); m++) {
+                        var text = inst.values[| j][| m];
+                        if (text == "") continue;
+                        lang[$ "Data." + inst.internal_name + "." + property.name + "." + string(m)] = text;
+                    }
+                }
+            }
+        }
+        #endregion
+    }
+}
