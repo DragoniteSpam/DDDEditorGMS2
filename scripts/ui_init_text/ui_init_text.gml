@@ -33,7 +33,7 @@ function ui_init_text(mode) {
                 ui_input_set_value(list.root.el_language_name, Stuff.all_languages[| selection]);
             }
         }, true, id, Stuff.all_languages);
-        element.tooltip = "All of the 3D meshes currently loaded. You can drag them from Windows Explorer into the program window to add them in bulk. Middle-click the list to alphabetize the meshes.";
+        element.tooltip = "Every language which text in the game data may be translated to.";
         ds_list_add(contents, element);
         el_language_list = element;
         yy += ui_get_list_height(element) + spacing;
@@ -52,9 +52,9 @@ function ui_init_text(mode) {
         element = create_button(c1x, yy, "Add Language", ew, eh, fa_center, function() {
             if (ds_list_size(Stuff.all_languages) >= 255) return;
             var n = 0;
-            for (var i = 0; i < 10000; i++) {
-                if (ds_list_find_index(Stuff.all_languages, "Language" + string(i)) + 1) {
-                    ds_list_add(Stuff.all_languages, "Language" + string(i));
+            for (var i = ds_list_size(Stuff.all_languages); i < 1000; i++) {
+                if (!(ds_list_find_index(Stuff.all_languages, "Language" + string(i)) + 1)) {
+                    language_add("Language" + string(i));
                     break;
                 }
             }
@@ -66,7 +66,7 @@ function ui_init_text(mode) {
         element = create_button(c1x, yy, "Remove Language", ew, eh, fa_center, function(button) {
             var selection = ui_list_selection(button.root.el_language_list);
             if (selection + 1) {
-                ds_list_delete(Stuff.all_languages, selection);
+                language_remove(Stuff.all_languages[| selection]);
                 ui_list_deselect(button.root.el_language_list);
             }
         }, id);
@@ -81,7 +81,7 @@ function ui_init_text(mode) {
         }, true, id);
         element.tooltip = "Text strings in the game. The list is not updated automatically; you should periodically click \"Extract\" to update the list.";
         ds_list_add(contents, element);
-        el_language_list = element;
+        el_language_text = element;
         yy += ui_get_list_height(element) + spacing;
         
         element = create_button(c2x, yy, "Extract Text", ew * 2, eh, fa_center, function(button) {

@@ -272,6 +272,8 @@ all_data = ds_list_create();
 all_languages = ds_list_create();
 ds_list_add(all_languages, "English");
 
+all_localized_text = { };
+
 #endregion
 
 #region prefab events
