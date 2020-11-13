@@ -46,5 +46,12 @@ function language_extract() {
             }
         }
         #endregion
+        #region constants
+        for (var i = 0; i < ds_list_size(Stuff.all_game_constants); i++) {
+            var const = Stuff.all_game_constants[| i];
+            if (const.type != DataTypes.STRING) continue;
+            lang[$ "Const." + string(i) + "." + const.name] = const.value_string;
+        }
+        #endregion
     }
 }
