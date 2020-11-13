@@ -65,7 +65,7 @@ function ui_init_text(mode) {
         
         element = create_button(c1x, yy, "Remove Language", ew, eh, fa_center, function(button) {
             var selection = ui_list_selection(button.root.el_language_list);
-            if (selection + 1) {
+            if (selection + 1 && ds_list_size(Stuff.all_languages) > 1) {
                 language_remove(Stuff.all_languages[| selection]);
                 ui_list_deselect(button.root.el_language_list);
             }

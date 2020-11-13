@@ -272,7 +272,20 @@ all_data = ds_list_create();
 all_languages = ds_list_create();
 ds_list_add(all_languages, "English");
 
-all_localized_text = { };
+/*
+ * example:
+ * {
+ *      "English": {
+ *          "string1": "string1",
+ *          "string2": "string2"
+ *      },
+ *      "Portuguese": {
+ *          "string1": "texto1",
+ *          "string2": "texto2"
+ *      }
+ * }
+ */
+all_localized_text = { English: { } };
 
 #endregion
 
