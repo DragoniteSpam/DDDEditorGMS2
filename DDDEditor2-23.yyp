@@ -2161,8 +2161,8 @@
       {"name":"mesh","children":[],},
     ],
   },
-  "RoomOrder": [
-    {"name":"editor","path":"rooms/editor/editor.yy",},
+  "RoomOrderNodes": [
+    {"roomId":{"name":"editor","path":"rooms/editor/editor.yy",},},
   ],
   "Folders": [
     {"folderPath":"folders/Sprites.yy","order":0,"resourceVersion":"1.0","name":"Sprites","tags":[],"resourceType":"GMFolder",},
@@ -2388,8 +2388,8 @@
     {"targets":461609314234257646,"resourceVersion":"1.0","name":"audiogroup_default","resourceType":"GMAudioGroup",},
   ],
   "TextureGroups": [
-    {"isScaled":false,"autocrop":true,"border":2,"mipsToGenerate":0,"targets":461609314234257646,"resourceVersion":"1.0","name":"Default","resourceType":"GMTextureGroup",},
-    {"isScaled":true,"autocrop":true,"border":2,"mipsToGenerate":0,"targets":461609314234257646,"resourceVersion":"1.0","name":"scribble","resourceType":"GMTextureGroup",},
+    {"isScaled":false,"autocrop":true,"border":2,"mipsToGenerate":0,"groupParent":null,"targets":461609314234257646,"resourceVersion":"1.0","name":"Default","resourceType":"GMTextureGroup",},
+    {"isScaled":true,"autocrop":true,"border":2,"mipsToGenerate":0,"groupParent":null,"targets":461609314234257646,"resourceVersion":"1.0","name":"scribble","resourceType":"GMTextureGroup",},
   ],
   "IncludedFiles": [
     {"CopyToMask":-1,"filePath":"atafiles/data/basic","resourceVersion":"1.0","name":"cube.d3d","resourceType":"GMIncludedFile",},
@@ -3692,9 +3692,9 @@
     {"CopyToMask":-1,"filePath":"datafiles/data","resourceVersion":"1.0","name":"vertex-formats.json","resourceType":"GMIncludedFile",},
   ],
   "MetaData": {
-    "IDEVersion": "2.3.0.529",
+    "IDEVersion": "23.1.1.230",
   },
-  "resourceVersion": "1.3",
+  "resourceVersion": "1.4",
   "name": "DDDEditor2-23",
   "tags": [],
   "resourceType": "GMProject",
