@@ -603,6 +603,7 @@ switch (stashed_mode) {
     case ModeIDs.DOODLE: editor_mode_doodle(); break;
     case ModeIDs.PARTICLE: editor_mode_particle(); break;
     case ModeIDs.MESH: editor_mode_meshes(); break;
+    case ModeIDs.TEXT: editor_mode_text(); break;
 }
 
 if (PROJECT_MENU_ENABLED) {
