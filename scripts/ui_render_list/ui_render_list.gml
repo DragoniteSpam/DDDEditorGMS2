@@ -60,7 +60,7 @@ function ui_render_list(list, xx, yy) {
                 draw_rectangle_colour(0, ya - y2, x2 - x1, yb - y2, c, c, c, c, false);
             }
             
-            var c = list.colorize ? script_execute(list.render_colors, list, index) : c_black;
+            var c = list.colorize ? list.render_colors(list, index) : c_black;
             var text = list.numbered ? string(index) + ". " : "";
             
             switch (list.entries_are) {
@@ -80,7 +80,7 @@ function ui_render_list(list, xx, yy) {
                 case ListEntries.INSTANCES_REFID:
                     text += "<" + string(list.entries[| index].REFID) + "> " + list.entries[| index].name;
                     break;
-                case ListEntries.SCRIPT: text = text + script_execute(list.evaluate_text, list, index); break;
+                case ListEntries.SCRIPT: text = text + list.evaluate_text(list, index); break;
             }
             draw_text_colour(tx - x1, tya - y2, string(text), c, c, c, c, 1);
         }
@@ -98,11 +98,11 @@ function ui_render_list(list, xx, yy) {
         var inbounds = mouse_within_rectangle_determine(x1, y2, x2 - offset, y3, list.adjust_view);
         if (inbounds) {
             if (Controller.mouse_middle) {
-                script_execute(list.onmiddleclick, list);
+                list.onmiddleclick(list);
             } else if (Controller.double_left) {
                 // left-right-left on a list that can be deselected usually makes bad things happen
                 if (!ds_map_empty(list.selected_entries)) {
-                    script_execute(list.ondoubleclick, list);
+                    list.ondoubleclick(list);
                 }
             } else if (Controller.press_left) {
                 // if this ends up having a bounds problem it's probably because the list is empty and
@@ -141,11 +141,11 @@ function ui_render_list(list, xx, yy) {
                 
                 list.last_index = mn;
                 ui_activate(list);
-                script_execute(list.onvaluechange, list);
+                list.onvaluechange(list);
             } else if (Controller.press_right) {
                 if (list.allow_deselect) {
                     ui_list_deselect(list);
-                    script_execute(list.onvaluechange, list);
+                    list.onvaluechange(list);
                 }
             }
             

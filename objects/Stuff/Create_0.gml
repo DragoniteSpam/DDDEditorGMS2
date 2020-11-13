@@ -269,6 +269,9 @@ all_game_constants = ds_list_create();
 
 all_data = ds_list_create();
 
+all_languages = ds_list_create();
+ds_list_add(all_languages, "English");
+
 #endregion
 
 #region prefab events
