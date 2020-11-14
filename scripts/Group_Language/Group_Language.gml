@@ -64,16 +64,42 @@ function language_extract() {
         }
         #endregion
         #region entity generics
-        var scrape_entity_generics = function(map) {
-            for (var j = 0; j < ds_list_size(map.contents.all_entities); j++) {
-                var entity = map.contents.all_entities[| j];
+        var scrape_entity_generics = function(map_container, lang) {
+            for (var i = 0; i < ds_list_size(map_container.contents.all_entities); i++) {
+                var entity = map_container.contents.all_entities[| i];
+                for (var j = 0; j < ds_list_size(entity.generic_data); j++) {
+                    var gen = entity.generic_data[| j];
+                    if (gen.type != DataTypes.STRING) continue;
+                    lang[$ "Map." + entity.name + "." + entity.REFID + "." + gen.name] = gen.value_string;
+                }
             }
-        }
+        };
+        var scrape_entity_generics_buffer = function(buffer, map_container, lang) {
+            var entities = serialize_load_map_contents_dynamic(buffer, map_container.version, undefined, false, true);
+            for (var i = 0; i < array_length(entities); i++) {
+                var entity = entities[i];
+                for (var j = 0; j < ds_list_size(entity.generic_data); j++) {
+                    var gen = entity.generic_data[| j];
+                    if (gen.type != DataTypes.STRING) continue;
+                    lang[$ "Map." + map_container.name + "." + entity.name + "." + entity.REFID + "." + gen.name] = gen.value_string;
+                }
+                instance_activate_object(entity);
+                instance_destroy(entity);
+            }
+        };
+        
+        var map_warned = false;
         for (var i = 0; i < ds_list_size(Stuff.all_maps); i++) {
             var map = Stuff.all_maps[| i];
             if (map.contents) {
-                scrape_entity_generics(map);
+                scrape_entity_generics(map, lang);
             } else {
+                if (map.version >= DataVersions.MAP_SKIP_ADDRESSES) {
+                    scrape_entity_generics_buffer(map.data_buffer, map, lang);
+                } else if (!map_warned) {
+                    dialog_create_notice(noone, "The map [c_blue]" + map.name + "[/c] is not of Version " + string(DataVersions.MAP_SKIP_ADDRESSES) + " or later, and will not have its text extracted. Update the map by opening and closing it.");
+                    map_warned = true;
+                }
             }
         }
         #endregion
