@@ -10,7 +10,7 @@ type = EventNodeTypes.ENTRYPOINT;                                       // seria
 
 data = ds_list_create();
 outbound = ds_list_create();
-ds_list_add(data, "The quick brown fox jumped over the lazy dog");      // serialize: buffer_string
+ds_list_add(data, "");                                                  // serialize: buffer_string
 ds_list_add(outbound, noone);                                           // serialize: buffer_string (this is an instance ID, but you serialize the unique name of the destination)
 
 custom_guid = NULL;                                                     // serialize: buffer_datatype

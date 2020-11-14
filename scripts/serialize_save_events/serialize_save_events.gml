@@ -1,18 +1,14 @@
-/// @param buffer
-function serialize_save_events(argument0) {
-
-    var buffer = argument0;
-
+function serialize_save_events(buffer) {
     serialize_save_event_custom(buffer);
     serialize_save_event_prefabs(buffer);
-
+    
     buffer_write(buffer, buffer_u32, SerializeThings.EVENTS);
     var addr_next = buffer_tell(buffer);
     buffer_write(buffer, buffer_u64, 0);
-
+    
     var n_events = ds_list_size(Stuff.all_events);
     buffer_write(buffer, buffer_u32, n_events);
-
+    
     for (var i = 0; i < n_events; i++) {
         var event = Stuff.all_events[| i];
         var n_nodes = ds_list_size(event.nodes);
@@ -21,7 +17,7 @@ function serialize_save_events(argument0) {
         buffer_write(buffer, buffer_string, event.name);
         buffer_write(buffer, buffer_datatype, event.GUID);
         buffer_write(buffer, buffer_u32, n_nodes);
-    
+        
         for (var j = 0; j < n_nodes; j++) {
             var node = event.nodes[| j];
             buffer_write(buffer, buffer_string, node.name);
@@ -29,9 +25,9 @@ function serialize_save_events(argument0) {
             buffer_write(buffer, buffer_s32, floor(node.x));
             buffer_write(buffer, buffer_s32, floor(node.y));
             buffer_write(buffer, buffer_datatype, node.GUID);
-        
+            
             buffer_write(buffer, buffer_datatype, node.prefab_guid);
-        
+            
             var n_outbound = ds_list_size(node.outbound);
             buffer_write(buffer, buffer_u8, n_outbound);
             for (var k = 0; k < n_outbound; k++) {
@@ -42,13 +38,13 @@ function serialize_save_events(argument0) {
                     buffer_write(buffer, buffer_string, "");
                 }
             }
-        
+            
             var n_data = ds_list_size(node.data);
             buffer_write(buffer, buffer_u8, n_data);
             for (var k = 0; k < n_data; k++) {
                 buffer_write(buffer, buffer_string, node.data[| k]);
             }
-        
+            
             // if there's anything special in the node, save it here
             switch (node.type) {
                 case EventNodeTypes.ENTRYPOINT:
@@ -79,7 +75,7 @@ function serialize_save_events(argument0) {
                 
                     for (var k = 0; k < ds_list_size(node.custom_data); k++) {
                         var type = custom.types[| k];
-                    
+                        
                         switch (type[EventNodeCustomData.TYPE]) {
                             case DataTypes.INT:
                                 var save_type = buffer_s32;
@@ -129,10 +125,8 @@ function serialize_save_events(argument0) {
             }
         }
     }
-
+    
     buffer_poke(buffer, addr_next, buffer_u64, buffer_tell(buffer));
-
+    
     return buffer_tell(buffer);
-
-
 }

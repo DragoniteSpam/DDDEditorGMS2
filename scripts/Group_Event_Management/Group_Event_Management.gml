@@ -75,6 +75,7 @@ function event_create_node() {
             break;
         case EventNodeTypes.TEXT:
             node.name = "Text";
+            node.data[| 0] = "The quick brown fox jumped over the lazy dog";
             break;
         case EventNodeTypes.COMMENT:
             node.name = "Comment";
