@@ -53,5 +53,15 @@ function language_extract() {
             lang[$ "Const." + string(i) + "." + const.name] = const.value_string;
         }
         #endregion
+        #region map generics
+        for (var i = 0; i < ds_list_size(Stuff.all_maps); i++) {
+            var map = Stuff.all_maps[| i];
+            for (var j = 0; j < ds_list_size(map.generic_data); j++) {
+                var gen = map.generic_data[| j];
+                if (gen.type != DataTypes.STRING) continue;
+                lang[$ "Map." + map.internal_name + "." + gen.name] = gen.value_string;
+            }
+        }
+        #endregion
     }
 }
