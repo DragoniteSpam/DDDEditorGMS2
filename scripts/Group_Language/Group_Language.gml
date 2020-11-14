@@ -40,7 +40,7 @@ function language_extract() {
                     for (var m = 0; m < ds_list_size(inst.values[| j]); m++) {
                         var text = inst.values[| j][| m];
                         if (text == "") continue;
-                        lang[$ "Data." + inst.internal_name + "." + property.name + "." + string(m)] = text;
+                        lang[$ "Data." + inst.internal_name + "." + property.name + ((m > 0) ? "." + string(m) : "")] = text;
                     }
                 }
             }
@@ -63,5 +63,6 @@ function language_extract() {
             }
         }
         #endregion
+        clipboard_set_text(json_stringify(Stuff.all_localized_text))
     }
 }
