@@ -103,5 +103,26 @@ function language_extract() {
             }
         }
         #endregion
+        #region events
+        for (var i = 0; i < ds_list_size(Stuff.all_events); i++) {
+            var event = Stuff.all_events[| i];
+            for (var j = 0; j < ds_list_size(event.nodes); j++) {
+                var node = event.nodes[| j];
+                for (var k = 0; k < ds_list_size(node.data); k++) {
+                    lang[$ "Event." + event.name + "." + node.name + ".data." + string(k)] = node.data[| k];
+                }
+                if (node.type == EventNodeTypes.CUSTOM) {
+                    var custom = guid_get(node.custom_guid);
+                    for (var k = 0; k < ds_list_size(custom.types); k++) {
+                        if (custom.types[| k][EventNodeCustomData.TYPE] == DataTypes.STRING) {
+                            for (var l = 0; l < ds_list_size(node.custom_data[| k]); l++) {
+                                lang[$ "Event." + event.name + "." + node.name + ".custom." + string(k) + "." + string(l)] = node.custom_data[| k][| l];
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        #endregion
     }
 }
