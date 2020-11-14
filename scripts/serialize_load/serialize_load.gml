@@ -200,6 +200,7 @@ function serialize_load(buffer, filename, proj_name) {
                     serialize_load(buffer_next, next_file_name, proj_name);
                 }
             }
+            
             load_a_map(guid_get(Stuff.game_starting_map));
             break;
     }

@@ -1,4 +1,5 @@
-function serialize_load_map_contents_meta(buffer, version, map) {
+function serialize_load_map_contents_meta(buffer, version, map_container) {
+    var map = map_container;
     var map_contents = map.contents;
     version = map.version;
     

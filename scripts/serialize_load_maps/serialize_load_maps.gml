@@ -37,6 +37,9 @@ function serialize_load_maps(buffer, version) {
             buffer_seek(map.data_buffer, buffer_seek_start, 0);
             
             buffer_read(map.data_buffer, buffer_u32);
+            if (version >= DataVersions.MAP_SKIP_ADDRESSES) {
+                var skip_addr = buffer_read(map.data_buffer, buffer_u64);
+            }
             
             // signed because it's allowed to be -1
             // for those curious, this caused the editor to crash but not the game
