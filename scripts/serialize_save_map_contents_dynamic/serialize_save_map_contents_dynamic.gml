@@ -6,6 +6,8 @@ function serialize_save_map_contents_dynamic(buffer) {
     // avoid confusion.
     
     buffer_write(buffer, buffer_u32, SerializeThings.MAP_DYNAMIC);
+    var addr_skip = buffer_tell(buffer);
+    buffer_write(buffer, buffer_u64, 0);
     
     var n_things = ds_list_size(Stuff.map.active_map.contents.all_entities);
     buffer_write(buffer, buffer_u32, n_things);
@@ -16,4 +18,6 @@ function serialize_save_map_contents_dynamic(buffer) {
         buffer_write(buffer, buffer_u32, thing.tmx_id);
         script_execute(thing.save_script, buffer, thing);
     }
+    
+    buffer_poke(buffer, addr_skip, buffer_u64, buffer_tell(buffer));
 }

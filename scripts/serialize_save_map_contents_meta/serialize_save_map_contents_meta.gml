@@ -3,6 +3,8 @@ function serialize_save_map_contents_meta(buffer) {
     var map_contents = map.contents;
     
     buffer_write(buffer, buffer_u32, SerializeThings.MAP_META);
+    var addr_skip = buffer_tell(buffer);
+    buffer_write(buffer, buffer_u64, 0);
     
     // signed because it's allowed to be -1
     buffer_write(buffer, buffer_s32, map.tiled_map_id);
@@ -138,4 +140,6 @@ function serialize_save_map_contents_meta(buffer) {
     for (var i = 0; i < n_lights; i++) {
         buffer_write(buffer, buffer_datatype, map_contents.active_lights[| i]);
     }
+    
+    buffer_poke(buffer, addr_skip, buffer_u64, buffer_tell(buffer));
 }

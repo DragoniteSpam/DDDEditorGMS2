@@ -88,6 +88,7 @@ function serialize_save_data() {
     
     ds_map_destroy(global.error_map);
     
+    #macro LAST_SAFE_VERSION DataVersions.NUKE_UNUSED_BOOLS
     enum DataVersions {
         NUKE_UNUSED_BOOLS                   = 98,
         BASE_SCREEN_DIMENSIONS              = 99,
@@ -108,6 +109,7 @@ function serialize_save_data() {
         MAP_FROZEN_TAGS                     = 114,
         ENTITY_PRESERVE_FLAG                = 115,
         ENTITY_REFLECT_FLAG                 = 116,
+        MAP_SKIP_ADDRESSES                  = 117,
         _CURRENT /* = whatever the last one is + 1 */
     }
 }

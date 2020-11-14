@@ -56,7 +56,6 @@
 #macro MAGIC_ZLIB_HEADER 0x9c78
 // instance IDs begin here
 #macro MAGIC_INSTANCE_ID 100000
-#macro LAST_SAFE_VERSION DataVersions.NUKE_UNUSED_BOOLS
 #macro LAST_SAFE_RELEASE "2019.4.1.19";
 
 #macro FILE_TEXT_EXTENSION Stuff.setting_text_extension_map[Stuff.setting_text_extension]

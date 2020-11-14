@@ -63,6 +63,19 @@ function language_extract() {
             }
         }
         #endregion
-        clipboard_set_text(json_stringify(Stuff.all_localized_text))
+        #region entity generics
+        var scrape_entity_generics = function(map) {
+            for (var j = 0; j < ds_list_size(map.contents.all_entities); j++) {
+                var entity = map.contents.all_entities[| j];
+            }
+        }
+        for (var i = 0; i < ds_list_size(Stuff.all_maps); i++) {
+            var map = Stuff.all_maps[| i];
+            if (map.contents) {
+                scrape_entity_generics(map);
+            } else {
+            }
+        }
+        #endregion
     }
 }

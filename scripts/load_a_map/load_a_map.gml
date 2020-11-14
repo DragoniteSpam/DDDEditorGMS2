@@ -1,4 +1,5 @@
-function load_a_map(map) {
+function load_a_map(map_container) {
+    var map = map_container;
     var version = map.version;
     var buffer = map.data_buffer;
     

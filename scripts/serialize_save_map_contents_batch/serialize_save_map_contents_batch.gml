@@ -3,6 +3,8 @@ function serialize_save_map_contents_batch(buffer) {
     var map_contents = map.contents;
     
     buffer_write(buffer, buffer_u32, SerializeThings.MAP_BATCH);
+    var addr_skip = buffer_tell(buffer);
+    buffer_write(buffer, buffer_u64, 0);
     
     buffer_write(buffer, buffer_u64, int64(buffer_get_size(map_contents.frozen_data)));
     buffer_write(buffer, buffer_u64, int64(map_contents.frozen_data_size));
@@ -47,4 +49,5 @@ function serialize_save_map_contents_batch(buffer) {
     ds_map_destroy(exported);
     buffer_poke(buffer, addr_count, buffer_u32, count);
     buffer_poke(buffer, addr_cache, buffer_u32, buffer_tell(buffer));
+    buffer_poke(buffer, addr_skip, buffer_u64, buffer_tell(buffer));
 }

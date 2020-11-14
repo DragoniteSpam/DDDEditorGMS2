@@ -2,6 +2,10 @@ function serialize_load_map_contents_meta(buffer, version, map) {
     var map_contents = map.contents;
     version = map.version;
     
+    if (version >= DataVersions.MAP_SKIP_ADDRESSES) {
+        var skip_addr = buffer_read(buffer, buffer_u64);
+    }
+    
     map.tiled_map_id = buffer_read(buffer, buffer_s32);
     var xx = buffer_read(buffer, buffer_u16);
     var yy = buffer_read(buffer, buffer_u16);

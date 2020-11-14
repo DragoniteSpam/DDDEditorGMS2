@@ -1,6 +1,10 @@
 function serialize_load_map_contents_batch(buffer, version, map) {
     var map_contents = map.contents;
     
+    if (version >= DataVersions.MAP_SKIP_ADDRESSES) {
+        var skip_addr = buffer_read(buffer, buffer_u64);
+    }
+    
     buffer_delete(map_contents.frozen_data);
     buffer_delete(map_contents.frozen_data_wire);
     

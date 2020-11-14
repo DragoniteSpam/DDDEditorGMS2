@@ -1,6 +1,10 @@
 function serialize_load_map_contents_dynamic(buffer, version, map_container, is_temp) {
     if (is_temp == undefined) is_temp = false;
     
+    if (version >= DataVersions.MAP_SKIP_ADDRESSES) {
+        var skip_addr = buffer_read(buffer, buffer_u64);
+    }
+    
     var n_things = buffer_read(buffer, buffer_u32);
     
     repeat (n_things) {
