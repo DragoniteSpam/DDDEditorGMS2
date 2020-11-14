@@ -1,12 +1,9 @@
-/// @param DataMapContainer
-function load_a_map(argument0) {
-
-    var map = argument0;
+function load_a_map(map) {
     var version = map.version;
     var buffer = map.data_buffer;
-
+    
     if (Stuff.map.active_map) {
-    #region clear active map
+        #region clear active map
         buffer_delete(Stuff.map.active_map.data_buffer);
         Stuff.map.active_map.version = DataVersions._CURRENT - 1;
         Stuff.map.active_map.data_buffer = serialize_save_current_map();
@@ -40,19 +37,19 @@ function load_a_map(argument0) {
         if (cache_destroy > 0) {
             ui_create_notification("[c_red]There are " + string(cache_destroy) + " collision objects to destroy. Clearing them is unfathomably slow so the editor may lag for a bit.[]", 15);
         }
-    #endregion
+        #endregion
     }
-
+    
     Stuff.map.active_map = map;
-
+    
     map.contents = instance_create_depth(0, 0, 0, MapContents);
     instance_deactivate_object(map.contents);
-
+    
     data_resize_map(map, map.xx, map.yy, map.zz);
-
+    
     if (buffer_md5(buffer, 0, buffer_get_size(buffer)) != EMPTY_BUFFER_MD5) {
         buffer_seek(buffer, buffer_seek_start, 0);
-
+        
         buffer_read(buffer, buffer_u32);
         serialize_load_map_contents_meta(buffer, version, map);
         buffer_read(buffer, buffer_u32);
@@ -62,7 +59,7 @@ function load_a_map(argument0) {
         buffer_read(buffer, buffer_u32);
         serialize_load_map_contents_zones(buffer, version, map);
     } // else the map has not been initialized yet and it just uses its default values
-
+    
     // this also
     var list = Stuff.map.ui.t_maps.el_map_list;
     for (var i = 0; i < ds_list_size(Stuff.all_maps); i++) {
@@ -72,8 +69,6 @@ function load_a_map(argument0) {
             break;
         }
     }
-
+    
     graphics_create_grids();
-
-
 }

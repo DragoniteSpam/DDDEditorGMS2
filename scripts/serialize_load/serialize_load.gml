@@ -1,16 +1,9 @@
-/// @param buffer
-/// @param filename
-/// @param proj-name
-function serialize_load(argument0, argument1, argument2) {
-
-    var buffer = argument0;
-    var filename = argument1;
-    var proj_name = argument2;
+function serialize_load(buffer, filename, proj_name) {
     var proj_path = filename_path(filename);
     var erroneous = false;
-
+    
     setting_project_create_local(proj_name, filename_name(filename), buffer);
-
+    
     var header_zlib_data = buffer_peek(buffer, 0, buffer_u16);
     if (header_zlib_data == MAGIC_ZLIB_HEADER) {
         var decompressed = buffer_decompress(buffer);
@@ -18,16 +11,16 @@ function serialize_load(argument0, argument1, argument2) {
         buffer = decompressed;
         Stuff.game_data_current_file.compressed = true;
     }
-
+    
     buffer_seek(buffer, buffer_seek_start, 0);
-
+    
     // get on with the header
     buffer_read(buffer, buffer_u8);
     buffer_read(buffer, buffer_u8);
     buffer_read(buffer, buffer_u8);
-
+    
     var version = buffer_read(buffer, buffer_u32);
-
+    
     if (version < LAST_SAFE_VERSION) {
         dialog_create_notice(noone,
             "We stopped supporting versions of the data file before " + string(LAST_SAFE_VERSION) +
@@ -37,7 +30,7 @@ function serialize_load(argument0, argument1, argument2) {
         buffer_delete(buffer);
         return;
     }
-
+    
     if (version >= DataVersions._CURRENT) {
             dialog_create_notice(noone,
                 "The file(s) appear to be from a future version of the data format (" + string(version) +
@@ -48,9 +41,9 @@ function serialize_load(argument0, argument1, argument2) {
         buffer_delete(buffer);
         return;
     }
-
+    
     var what = buffer_read(buffer, buffer_u8);
-
+    
     switch (what) {
         case SERIALIZE_DATA_AND_MAP:
             var summary_string = buffer_read(buffer, buffer_string);
@@ -61,17 +54,13 @@ function serialize_load(argument0, argument1, argument2) {
             var file_hour = buffer_read(buffer, buffer_u8);
             var file_minute = buffer_read(buffer, buffer_u8);
             var file_second = buffer_read(buffer, buffer_u8);
-        
+            
             instance_activate_object(Data);
-            with (Data) {
-                instance_destroy(id);
-            }
+            with (Data) instance_destroy();
             // i seriously have no idea why this isn't being included in the above with() so
             // let's try deleting them manually
-            with (DataDataFile) {
-                instance_destroy();
-            }
-        
+            with (DataDataFile) instance_destroy();
+            
             // i'd like there to be a default event, although potentially in the future there will not be
             ds_list_clear(Stuff.all_events);
             // these contain arrays, which are garbage collected and need to be there
@@ -83,22 +72,22 @@ function serialize_load(argument0, argument1, argument2) {
             // data file list
             ds_list_clear(Stuff.game_asset_lists);
             var n_files = buffer_read(buffer, buffer_u8);
-        
+            
             repeat (n_files) {
                 var name = buffer_read(buffer, buffer_string);
                 var guid = buffer_read(buffer, buffer_get_datatype(version));
                 var bools = buffer_read(buffer, buffer_u32);
-            
+                
                 // the "compressed" parameter can be set later
                 var file_data = create_data_file(name, false);
                 guid_set(file_data, guid);
                 ds_list_add(Stuff.game_asset_lists, file_data);
-            
+                
                 file_data.critical = unpack(bools, 0);
             }
-        
+            
             Stuff.game_data_current_file = Stuff.game_asset_lists[| 0];
-        
+            
             Stuff.game_file_summary = summary_string;
             Stuff.game_file_author = author_string;
             break;
@@ -106,15 +95,15 @@ function serialize_load(argument0, argument1, argument2) {
         default:
             break;
     }
-
+    
     while (true) {
         var datatype = buffer_read(buffer, buffer_u32);
         if (datatype == SerializeThings.END_OF_FILE) {
             break;
         }
-    
+        
         switch (datatype) {
-        #region big ol' switch statement
+            #region big ol' switch statement
             // assets
             case SerializeThings.IMAGE_TILE_ANIMATION:
                 Stuff.game_data_location[GameDataCategories.TILE_ANIMATIONS] = Stuff.game_data_current_file.GUID;
@@ -197,10 +186,10 @@ function serialize_load(argument0, argument1, argument2) {
                 Stuff.game_data_location[GameDataCategories.MAP] = Stuff.game_data_current_file.GUID;
                 serialize_load_maps(buffer, version);
                 break;
-        #endregion
+            #endregion
         }
     }
-
+    
     switch (what) {
         case SERIALIZE_DATA_AND_MAP:
             for (var i = 1; i < ds_list_size(Stuff.game_asset_lists); i++) {
@@ -214,6 +203,6 @@ function serialize_load(argument0, argument1, argument2) {
             load_a_map(guid_get(Stuff.game_starting_map));
             break;
     }
-
+    
     buffer_delete(buffer);
 }
