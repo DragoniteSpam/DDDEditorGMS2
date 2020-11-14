@@ -24,8 +24,8 @@ function language_remove(name) {
 }
 
 function language_extract() {
-    for (var l = 0; l < ds_list_size(Stuff.all_languages); l++) {
-        var lang = Stuff.all_localized_text[$ Stuff.all_languages[| l]];
+    for (var lang_index = 0; lang_index < ds_list_size(Stuff.all_languages); lang_index++) {
+        var lang = Stuff.all_localized_text[$ Stuff.all_languages[| lang_index]];
         #region data
         for (var i = 0; i < ds_list_size(Stuff.all_data); i++) {
             var datadata = Stuff.all_data[| i];
