@@ -104,6 +104,7 @@ function ui_init_text(mode) {
                 var lang_name = Stuff.all_languages[| lang_selection];
                 return (Stuff.all_localized_text[$ Stuff.all_languages[| lang_selection]][$ list.entries[| index]] == "") ? c_red : c_black;
             }
+            return c_black;
         };
         ds_list_add(contents, element);
         el_language_text = element;
