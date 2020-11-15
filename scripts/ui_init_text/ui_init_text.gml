@@ -86,6 +86,26 @@ function ui_init_text(mode) {
         
         element = create_button(c2x, yy, "Extract Text", ew * 2, eh, fa_center, function(button) {
             language_extract();
+            var lang_json = "{\n";
+            ui_list_clear(button.root.el_language_text);
+            for (var lang_index = 0; lang_index < ds_list_size(Stuff.all_languages); lang_index++) {
+                var lang = Stuff.all_localized_text[$ Stuff.all_languages[| lang_index]];
+                lang_json += "    \"" + Stuff.all_languages[| lang_index] + "\": {\n";
+                var all_keys = variable_struct_get_names(lang);
+                array_sort(all_keys, true);
+                for (var i = 0; i < array_length(all_keys); i++) {
+                    var base_text = lang[$ all_keys[i]];
+                    var base_json_text = base_text;
+                    base_json_text = string_replace_all(base_json_text, "\\", "\\\\");
+                    base_json_text = string_replace_all(base_json_text, "\"", "\\\"");
+                    lang_json += "        \"" + all_keys[i] + "\": \"" + base_json_text + "\"" + ((i < array_length(all_keys) - 1) ? "," : "") + "\n";
+                    if (lang_index == 0) {
+                        ds_list_add(button.root.el_language_text.entries, all_keys[i]);
+                    }
+                }
+                lang_json += "    }" + ((lang_index < ds_list_size(Stuff.all_languages) - 1) ? "," : "") + "\n";
+            }
+            lang_json += "}";
         }, id);
         element.tooltip = "Extract all player-visible text from the game's data; this includes String types in the database, cutscene event nodes, and other such things.";
         ds_list_add(contents, element);
