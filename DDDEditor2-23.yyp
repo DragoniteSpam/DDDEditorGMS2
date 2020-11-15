@@ -2049,6 +2049,7 @@
     {"id":{"name":"DataEventNode","path":"objects/DataEventNode/DataEventNode.yy",},"order":3,},
     {"id":{"name":"DataEventNodeCustom","path":"objects/DataEventNodeCustom/DataEventNodeCustom.yy",},"order":4,},
     {"id":{"name":"DataEventNodeCustomPersistent","path":"objects/DataEventNodeCustomPersistent/DataEventNodeCustomPersistent.yy",},"order":5,},
+    {"id":{"name":"Group_DS_Collections","path":"scripts/Group_DS_Collections/Group_DS_Collections.yy",},"order":0,},
     {"id":{"name":"DataInstantiatedEvent","path":"objects/DataInstantiatedEvent/DataInstantiatedEvent.yy",},"order":6,},
     {"id":{"name":"DataObject","path":"objects/DataObject/DataObject.yy",},"order":7,},
     {"id":{"name":"DataImage","path":"objects/DataImage/DataImage.yy",},"order":9,},
