@@ -163,7 +163,13 @@ function ui_init_text(mode) {
         yy += element.height + spacing;
         
         element = create_input(c4x, yy, "", ew * 2, eh * 8, function(input) {
-            
+            var selection = ui_list_selection(input.root.el_language_text);
+            var lang_selection = ui_list_selection(input.root.el_language_list);
+            if ((selection + 1) && (lang_selection + 1)) {
+                var key_name = input.root.el_language_text.entries[| selection];
+                var lang_name = Stuff.all_languages[| lang_selection];
+                Stuff.all_localized_text[$ lang_name][$ key_name] = input.value;
+            }
         }, "", "Translated text...", validate_string, 0, 1, 1000, 0, 0, ew * 2, eh * 8, id);
         element.multi_line = true;
         ds_list_add(contents, element);
