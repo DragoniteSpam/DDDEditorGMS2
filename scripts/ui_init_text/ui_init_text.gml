@@ -95,6 +95,16 @@ function ui_init_text(mode) {
             list.root.list_selection_action(list);
         }, true, id);
         element.tooltip = "Text strings in the game. The list is not updated automatically; you should periodically click \"Extract\" to update the list.";
+        element.render_colors = function(list, index) {
+            var lang_selection = ui_list_selection(list.root.el_language_list);
+            if (lang_selection == 0) {
+                return c_black;
+            }
+            if (lang_selection) {
+                var lang_name = Stuff.all_languages[| lang_selection];
+                return (Stuff.all_localized_text[$ Stuff.all_languages[| lang_selection]][$ list.entries[| index]] == "") ? c_red : c_black;
+            }
+        };
         ds_list_add(contents, element);
         el_language_text = element;
         yy += ui_get_list_height(element) + spacing;
