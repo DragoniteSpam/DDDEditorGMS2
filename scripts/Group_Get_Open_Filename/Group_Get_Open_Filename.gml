@@ -123,3 +123,17 @@ function get_open_filename_tiled() {
     
     return path;
 }
+
+function get_open_filename_text() {
+    var path = get_open_filename_ext("Localization files (*.json;*.csv)|*.json;*.csv", "", Stuff.setting_location_text, "Select a localization file");
+    
+    if (file_exists(path)) {
+        var dir = filename_dir(path);
+        if (string_length(dir) > 0) {
+            Stuff.setting_location_text = dir;
+            setting_set("Location", "text", dir);
+        }
+    }
+    
+    return path;
+}

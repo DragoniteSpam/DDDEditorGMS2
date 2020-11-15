@@ -148,6 +148,7 @@ setting_location_terrain = setting_get("Location", "terrain", "./");
 setting_location_image = setting_get("Location", "image", "./");
 setting_location_gml = setting_get("Location", "gml", "./");
 setting_location_audio = setting_get("Location", "audio", "./");
+setting_location_text = setting_get("Location", "text", "./");
 setting_location_tiled = setting_get("Location", "tiled", "./");
 
 setting_selection_mode = setting_get("Selection", "mode", SelectionModes.RECTANGLE);

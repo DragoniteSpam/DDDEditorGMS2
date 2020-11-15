@@ -118,3 +118,18 @@ function get_save_filename_terrain(name) {
     
     return path;
 }
+
+function get_save_filename_text(name) {
+    if (name == undefined) name = "";
+    var path = get_save_filename_ext("Localization files (*.json;*.csv)|*.json;*.csv", name, Stuff.setting_location_text, "Select a localization file");
+    
+    if (path != "") {
+        var dir = filename_dir(path);
+        if (string_length(dir) > 0) {
+            Stuff.setting_location_text = dir;
+            setting_set("Location", "text", dir);
+        }
+    }
+    
+    return path;
+}
