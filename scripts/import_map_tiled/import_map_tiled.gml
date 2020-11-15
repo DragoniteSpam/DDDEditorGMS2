@@ -1,6 +1,19 @@
 function import_map_tiled(ask_clear) {
     if (ask_clear) {
-        dialog_create_yes_or_no(noone, "Do you want to import a Tiled map? If there is any frozen terrain data, it will be removed.", dmu_data_import_map_act);
+        dialog_create_yes_or_no(noone, "Do you want to import a Tiled map? If there is any frozen terrain data, it will be removed.", function(button) {
+            var map = Stuff.map.active_map;
+            var map_contents = map.contents;
+            buffer_delete(map_contents.frozen_data);
+            buffer_delete(map_contents.frozen_data_wire);
+            map_contents.frozen_data = buffer_create(1, buffer_grow, 1);
+            map_contents.frozen_data_wire = buffer_create(1, buffer_grow, 1);
+            map_contents.frozen_data_size = 0;
+            map_contents.frozen_data_wire_size = 0;
+            // the vertex buffers are created elsewhere - since they need to be
+            // destroyed and recreated regardless
+            import_map_tiled(false);
+            dialog_destroy();
+        });
         return;
     }
     
