@@ -27,18 +27,18 @@ function ui_init_text(mode) {
         var this_column = 0;
         var xx = this_column * cw + spacing;
         
-        list_selection_action = function(list) {
-            var selection = ui_list_selection(list.root.el_language_text);
-            var lang_selection = ui_list_selection(list.root.el_language_list);
+        list_selection_action = function(element) {
+            var selection = ui_list_selection(element.root.el_language_text);
+            var lang_selection = ui_list_selection(element.root.el_language_list);
             if ((selection + 1) && (lang_selection + 1)) {
-                var key_name = list.root.el_language_text.entries[| selection];
+                var key_name = element.root.el_language_text.entries[| selection];
                 var lang_name = Stuff.all_languages[| lang_selection];
-                list.root.el_text_default.text = key_name + "\n" + Stuff.all_localized_text[$ Stuff.all_languages[| 0]][$ key_name];
-                ui_input_set_value(list.root.el_text_translated, Stuff.all_localized_text[$ lang_name][$ key_name]);
+                element.root.el_text_default.text = key_name + "\n" + Stuff.all_localized_text[$ Stuff.all_languages[| 0]][$ key_name];
+                ui_input_set_value(element.root.el_text_translated, Stuff.all_localized_text[$ lang_name][$ key_name]);
             } else {
-                list.root.el_text_default.text = "";
+                element.root.el_text_default.text = "";
             }
-            list.root.el_text_translated.interactive = (ui_list_selection(list.root.el_language_list) > 0);
+            element.root.el_text_translated.interactive = (ui_list_selection(element.root.el_language_list) > 0);
         };
         
         var element = create_list(c1x, yy, "Languages:", "(default)", ew, eh, 26, function(list) {
@@ -127,7 +127,16 @@ function ui_init_text(mode) {
         yy += element.height + spacing;
         
         element = create_button(c2x, yy, "Set From Default", ew * 2, eh, fa_center, function(button) {
-            
+            var selection = ui_list_selection(button.root.el_language_list);
+            if (selection + 1) {
+                var lang_name = Stuff.all_languages[| selection];
+                var base_lang = Stuff.all_languages[| 0];
+                var keys = variable_struct_get_names(Stuff.all_localized_text[$ lang_name]);
+                for (var i = 0; i < array_length(keys); i++) {
+                    Stuff.all_localized_text[$ lang_name][$ keys[i]] = Stuff.all_localized_text[$ base_lang][$ keys[i]];
+                }
+                button.root.list_selection_action(button);
+            }
         }, id);
         element.tooltip = "Set each of the localized strings for this language to the default value (i.e. the text that has been entered into the editor itself).";
         ds_list_add(contents, element);
