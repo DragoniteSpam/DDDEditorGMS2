@@ -131,11 +131,22 @@ function ui_init_text(mode) {
             if (selection + 1) {
                 var lang_name = Stuff.all_languages[| selection];
                 var base_lang = Stuff.all_languages[| 0];
-                var keys = variable_struct_get_names(Stuff.all_localized_text[$ lang_name]);
-                for (var i = 0; i < array_length(keys); i++) {
-                    Stuff.all_localized_text[$ lang_name][$ keys[i]] = Stuff.all_localized_text[$ base_lang][$ keys[i]];
-                }
-                button.root.list_selection_action(button);
+                var dg = dialog_create_yes_or_no(button.root, "Would you like to set each string for " + lang_name + " to the default" + (string_lower(base_lang) == "default" ? "" : " (" + base_lang + ")") + "? Any strings already defined will be overwritten.",
+                    function(button) {
+                        var base_element = button.root.root;
+                        var selection = ui_list_selection(base_element.el_language_list);
+                        if (selection + 1) {
+                            var lang_name = Stuff.all_languages[| selection];
+                            var base_lang = Stuff.all_languages[| 0];
+                            var keys = variable_struct_get_names(Stuff.all_localized_text[$ lang_name]);
+                            for (var i = 0; i < array_length(keys); i++) {
+                                Stuff.all_localized_text[$ lang_name][$ keys[i]] = Stuff.all_localized_text[$ base_lang][$ keys[i]];
+                            }
+                            base_element.list_selection_action(base_element.el_language_text);
+                        }
+                        dialog_destroy();
+                    }
+                );
             }
         }, id);
         element.tooltip = "Set each of the localized strings for this language to the default value (i.e. the text that has been entered into the editor itself).";
