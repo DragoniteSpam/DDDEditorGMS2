@@ -111,26 +111,18 @@ function ui_init_text(mode) {
         
         element = create_button(c2x, yy, "Extract Text", ew * 2, eh, fa_center, function(button) {
             language_extract();
-            var lang_json = "{\n";
             ui_list_clear(button.root.el_language_text);
             for (var lang_index = 0; lang_index < ds_list_size(Stuff.all_languages); lang_index++) {
                 var lang = Stuff.all_localized_text[$ Stuff.all_languages[| lang_index]];
-                lang_json += "    \"" + Stuff.all_languages[| lang_index] + "\": {\n";
                 var all_keys = variable_struct_get_names(lang);
                 array_sort(all_keys, true);
                 for (var i = 0; i < array_length(all_keys); i++) {
                     var base_text = lang[$ all_keys[i]];
-                    var base_json_text = base_text;
-                    base_json_text = string_replace_all(base_json_text, "\\", "\\\\");
-                    base_json_text = string_replace_all(base_json_text, "\"", "\\\"");
-                    lang_json += "        \"" + all_keys[i] + "\": \"" + base_json_text + "\"" + ((i < array_length(all_keys) - 1) ? "," : "") + "\n";
                     if (lang_index == 0) {
                         ds_list_add(button.root.el_language_text.entries, all_keys[i]);
                     }
                 }
-                lang_json += "    }" + ((lang_index < ds_list_size(Stuff.all_languages) - 1) ? "," : "") + "\n";
             }
-            lang_json += "}";
         }, id);
         element.tooltip = "Extract all player-visible text from the game's data; this includes String types in the database, cutscene event nodes, and other such things.";
         ds_list_add(contents, element);
@@ -164,7 +156,58 @@ function ui_init_text(mode) {
         yy += element.height + spacing;
         
         element = create_button(c2x, yy, "Export Strings", ew - 16, eh, fa_center, function(button) {
-            
+            var fn = get_save_filename_text("output");
+            var all_keys = variable_struct_get_names(Stuff.all_localized_text[$ Stuff.all_languages[| 0]]);
+            array_sort(all_keys, true);
+            switch (string_lower(filename_ext(fn))) {
+                case ".json":
+                    var lang_output = "{\n";
+                    ui_list_clear(button.root.el_language_text);
+                    for (var lang_index = 0; lang_index < ds_list_size(Stuff.all_languages); lang_index++) {
+                        var lang = Stuff.all_localized_text[$ Stuff.all_languages[| lang_index]];
+                        lang_output += "    \"" + Stuff.all_languages[| lang_index] + "\": {\n";
+                        for (var i = 0; i < array_length(all_keys); i++) {
+                            var base_text = lang[$ all_keys[i]];
+                            var base_json_text = base_text;
+                            base_json_text = string_replace_all(base_json_text, "\\", "\\\\");
+                            base_json_text = string_replace_all(base_json_text, "\"", "\\\"");
+                            lang_output += "        \"" + all_keys[i] + "\": \"" + base_json_text + "\"" + ((i < array_length(all_keys) - 1) ? "," : "") + "\n";
+                            if (lang_index == 0) {
+                                ds_list_add(button.root.el_language_text.entries, all_keys[i]);
+                            }
+                        }
+                        lang_output += "    }" + ((lang_index < ds_list_size(Stuff.all_languages) - 1) ? "," : "") + "\n";
+                    }
+                    lang_output += "}";
+                    var fbuffer = buffer_create(string_byte_length(lang_output), buffer_fixed, 1);
+                    buffer_write(fbuffer, buffer_text, lang_output);
+                    buffer_save(fbuffer, fn);
+                    buffer_delete(fbuffer);
+                    break;
+                case ".csv":
+                    var lang_output = "ID,";
+                    for (var i = 0; i < ds_list_size(Stuff.all_languages); i++) {
+                        lang_output += "\"" + Stuff.all_languages[| i] + "\"" + ((i < ds_list_size(Stuff.all_languages) - 1) ? "," : "");
+                    }
+                    lang_output += "\n";
+                    for (var i = 0; i < array_length(all_keys); i++) {
+                        lang_output += all_keys[i] + ",";
+                        for (var j = 0; j < ds_list_size(Stuff.all_languages); j++) {
+                            var base_text = Stuff.all_localized_text[$ Stuff.all_languages[| j]][$ all_keys[i]];
+                            var base_csv_text = base_text;
+                            base_csv_text = string_replace_all(base_csv_text, "\\", "\\\\");
+                            base_csv_text = string_replace_all(base_csv_text, "\"", "\\\"");
+                            lang_output += "\"" + base_csv_text + "\"" + ((j < ds_list_size(Stuff.all_languages) - 1) ? "," : "");
+                        }
+                        lang_output += "\n";
+                    }
+                    wtf(lang_output)
+                    var fbuffer = buffer_create(string_byte_length(lang_output), buffer_fixed, 1);
+                    buffer_write(fbuffer, buffer_text, lang_output);
+                    buffer_save(fbuffer, fn);
+                    buffer_delete(fbuffer);
+                    break;
+            }
         }, id);
         element.tooltip = "Save the extracted text strings to a file to be edited in external software.";
         ds_list_add(contents, element);
