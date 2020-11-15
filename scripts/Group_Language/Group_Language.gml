@@ -126,22 +126,28 @@ function language_extract() {
             var event = Stuff.all_events[| i];
             for (var j = 0; j < ds_list_size(event.nodes); j++) {
                 var node = event.nodes[| j];
-                for (var k = 0; k < ds_list_size(node.data); k++) {
-                    var key = "Event." + event.name + "." + node.name + ".data." + string(k);
-                    lang[$ key] = node.data[| k];
-                    existing_keys[$ key] = false;
-                }
-                if (node.type == EventNodeTypes.CUSTOM) {
-                    var custom = guid_get(node.custom_guid);
-                    for (var k = 0; k < ds_list_size(custom.types); k++) {
-                        if (custom.types[| k][EventNodeCustomData.TYPE] == DataTypes.STRING) {
-                            for (var l = 0; l < ds_list_size(node.custom_data[| k]); l++) {
-                                var key = "Event." + event.name + "." + node.name + ".custom." + string(k) + "." + string(l);
-                                lang[$ key] = node.custom_data[| k][| l];
-                                existing_keys[$ key] = false;
+                switch (node.type) {
+                    case EventNodeTypes.TEXT:
+                    case EventNodeTypes.SHOW_SCROLLING_TEXT:
+                    case EventNodeTypes.SHOW_CHOICES:
+                        for (var k = 0; k < ds_list_size(node.data); k++) {
+                            var key = "Event." + event.name + "." + node.name + ".data." + string(k);
+                            lang[$ key] = node.data[| k];
+                            existing_keys[$ key] = false;
+                        }
+                        break;
+                    case EventNodeTypes.CUSTOM:
+                        var custom = guid_get(node.custom_guid);
+                        for (var k = 0; k < ds_list_size(custom.types); k++) {
+                            if (custom.types[| k][EventNodeCustomData.TYPE] == DataTypes.STRING) {
+                                for (var l = 0; l < ds_list_size(node.custom_data[| k]); l++) {
+                                    var key = "Event." + event.name + "." + node.name + ".custom." + string(k) + "." + string(l);
+                                    lang[$ key] = node.custom_data[| k][| l];
+                                    existing_keys[$ key] = false;
+                                }
                             }
                         }
-                    }
+                        break;
                 }
             }
         }
