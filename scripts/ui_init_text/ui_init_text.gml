@@ -38,6 +38,7 @@ function ui_init_text(mode) {
             } else {
                 list.root.el_text_default.text = "";
             }
+            list.root.el_text_translated.interactive = (ui_list_selection(list.root.el_language_list) > 0);
         };
         
         var element = create_list(c1x, yy, "Languages:", "(default)", ew, eh, 26, function(list) {
