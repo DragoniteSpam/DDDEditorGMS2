@@ -27,11 +27,25 @@ function ui_init_text(mode) {
         var this_column = 0;
         var xx = this_column * cw + spacing;
         
+        list_selection_action = function(list) {
+            var selection = ui_list_selection(list.root.el_language_text);
+            var lang_selection = ui_list_selection(list.root.el_language_list);
+            if ((selection + 1) && (lang_selection + 1)) {
+                var key_name = list.root.el_language_text.entries[| selection];
+                var lang_name = Stuff.all_languages[| lang_selection];
+                list.root.el_text_default.text = key_name + "\n" + Stuff.all_localized_text[$ Stuff.all_languages[| 0]][$ key_name];
+                ui_input_set_value(list.root.el_text_translated, Stuff.all_localized_text[$ lang_name][$ key_name]);
+            } else {
+                list.root.el_text_default.text = "";
+            }
+        };
+        
         var element = create_list(c1x, yy, "Languages:", "(default)", ew, eh, 26, function(list) {
             var selection = ui_list_selection(list);
             if (selection + 1) {
                 ui_input_set_value(list.root.el_language_name, Stuff.all_languages[| selection]);
             }
+            list.root.list_selection_action(list);
         }, true, id, Stuff.all_languages);
         element.tooltip = "Every language which text in the game data may be translated to.";
         ds_list_add(contents, element);
@@ -77,7 +91,7 @@ function ui_init_text(mode) {
         yy = yy_base;
         
         var element = create_list(c2x, yy, "Text strings:", "(no text)", ew * 2, eh, 26, function(list) {
-            
+            list.root.list_selection_action(list);
         }, true, id);
         element.tooltip = "Text strings in the game. The list is not updated automatically; you should periodically click \"Extract\" to update the list.";
         ds_list_add(contents, element);
