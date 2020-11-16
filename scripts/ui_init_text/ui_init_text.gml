@@ -202,7 +202,6 @@ function ui_init_text(mode) {
                         }
                         lang_output += "\n";
                     }
-                    wtf(lang_output)
                     var fbuffer = buffer_create(string_byte_length(lang_output), buffer_fixed, 1);
                     buffer_write(fbuffer, buffer_text, lang_output);
                     buffer_save(fbuffer, fn);
@@ -214,7 +213,45 @@ function ui_init_text(mode) {
         ds_list_add(contents, element);
         
         element = create_button(c2x + ew + 16, yy, "Import Strings", ew - 16, eh, fa_center, function(button) {
-            
+            var fn = get_open_filename_text();
+            if (file_exists(fn)) {
+                var fbuffer = buffer_load(fn);
+                var lang_input = buffer_read(fbuffer, buffer_text);
+                buffer_delete(fbuffer);
+                switch (string_lower(filename_ext(fn))) {
+                    case ".json":
+                        break;
+                    case ".csv":
+                        var lines = split(lang_input, "\n", false, false);
+                        var rows = ds_collection_create();
+                        while (!ds_queue_empty(lines)) {
+                            var line = ds_queue_dequeue(lines);
+                            var row_collection = ds_collection_create();
+                            ds_collection_add(rows, row_collection);
+                            var block = "";
+                            var enquoted = false;
+                            for (var j = 1; j <= string_length(line); j++) {
+                                var cprevious = string_char_at(line, j - 1);
+                                var c = string_char_at(line, j);
+                                var cnext = string_char_at(line, j + 1);
+                                if (!enquoted && c == "," || j == string_length(line)) {
+                                    ds_collection_add(row_collection, block);
+                                    block = "";
+                                    continue;
+                                }
+                                if (c == "\\" && cprevious != "\\") {
+                                    continue;
+                                }
+                                if (c == "\"" && cprevious != "\\") {
+                                    enquoted = !enquoted;
+                                    continue;
+                                }
+                                block += c;
+                            }
+                        }
+                        break;
+                }
+            }
         }, id);
         element.tooltip = "Import translated text strings.";
         ds_list_add(contents, element);
