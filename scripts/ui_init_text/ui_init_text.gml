@@ -223,11 +223,12 @@ function ui_init_text(mode) {
                         break;
                     case ".csv":
                         var lines = split(lang_input, "\n", false, false);
-                        var rows = ds_collection_create();
+                        var rows = array_create(ds_queue_size(lines));
+                        var row_index = 0;
                         while (!ds_queue_empty(lines)) {
                             var line = ds_queue_dequeue(lines);
                             var row_collection = ds_collection_create();
-                            ds_collection_add(rows, row_collection);
+                            rows[row_index++] = row_collection;
                             var block = "";
                             var enquoted = false;
                             for (var j = 1; j <= string_length(line); j++) {
@@ -247,6 +248,18 @@ function ui_init_text(mode) {
                                     continue;
                                 }
                                 block += c;
+                            }
+                        }
+                        var lcarr = rows[0][@ 0];
+                        for (var i = 1; i < rows[0][@ 2]; i++) {
+                            var lang_name = lcarr[i];
+                            if (!variable_struct_exists(Stuff.all_localized_text, lang_name)) continue;
+                            for (var j = 1; j < array_length(rows); j++) {
+                                var key = rows[j][@ 0][0];
+                                var lang = Stuff.all_localized_text[$ lang_name];
+                                if (variable_struct_exists(lang, key)) {
+                                    lang[$ key] = rows[j][@ 0][i];
+                                }
                             }
                         }
                         break;
