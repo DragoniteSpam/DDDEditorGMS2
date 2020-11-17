@@ -3,8 +3,10 @@ function ui_render_surface_control_map(surface, x1, y1, x2, y2) {
     var map = Stuff.event.map;
     var map_contents = map.contents;
     
-    var mfx = (mouse_x - x1) / (x2 - x1);
-    var mfy = (mouse_y - y1) / (y2 - y1);
+    var mx = window_mouse_get_x() - x1;
+    var my = window_mouse_get_y() - y1;
+    var mfx = mx / (x2 - x1);
+    var mfy = my / (y2 - y1);
     
     var data_x = real(surface.root.el_input_x.value);
     var data_y = real(surface.root.el_input_y.value);
@@ -14,8 +16,11 @@ function ui_render_surface_control_map(surface, x1, y1, x2, y2) {
         ui_activate(noone);
         // please stop trying to use the (xto - x) trick, that only works if
         // you want the vector coming out of the center of the camera
-        var mouse_vector = update_mouse_vector(Stuff.event.x, Stuff.event.y, Stuff.event.z, Stuff.event.xto, Stuff.event.yto, Stuff.event.zto,
-            Stuff.event.xup, Stuff.event.yup, Stuff.event.zup, Stuff.event.fov, (x2 - x1) / (y2 - y1), mfx, mfy);
+        var mouse_vector = screen_to_world(mx, my,
+            matrix_build_lookat(Stuff.event.x, Stuff.event.y, Stuff.event.z, Stuff.event.xto, Stuff.event.yto, Stuff.event.zto, Stuff.event.xup, Stuff.event.yup, Stuff.event.zup),
+            matrix_build_projection_perspective_fov(Stuff.event.fov, (x2 - x1) / (y2 - y1), 1, 1000),
+            x2 - x1, y2 - y1
+        );
         
         var xx = mouse_vector[vec3.xx] * MILLION;
         var yy = mouse_vector[vec3.yy] * MILLION;

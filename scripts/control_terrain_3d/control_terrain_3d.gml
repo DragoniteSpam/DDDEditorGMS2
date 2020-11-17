@@ -3,9 +3,10 @@ function control_terrain_3d(terrain) {
         return false;
     }
     
-    var mouse_vector = update_mouse_vector(
-        Stuff.terrain.x, Stuff.terrain.y, Stuff.terrain.z, Stuff.terrain.xto, Stuff.terrain.yto, Stuff.terrain.zto,
-        Stuff.terrain.xup, Stuff.terrain.yup, Stuff.terrain.zup, Stuff.terrain.fov, CW / CH
+    var mouse_vector = screen_to_world(window_mouse_get_x(), window_mouse_get_y(),
+        matrix_build_lookat(Stuff.terrain.x, Stuff.terrain.y, Stuff.terrain.z, Stuff.terrain.xto, Stuff.terrain.yto, Stuff.terrain.zto, Stuff.terrain.xup, Stuff.terrain.yup, Stuff.terrain.zup),
+        matrix_build_projection_perspective_fov(Stuff.terrain.fov, CW / CH, 1, 1000),
+        CW, CH
     );
     
     var xx = mouse_vector[vec3.xx] * MILLION;

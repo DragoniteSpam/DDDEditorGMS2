@@ -6,7 +6,7 @@
     "path": "folders/Scripts/Math.yy",
   },
   "resourceVersion": "1.0",
-  "name": "screen_to_world",
+  "name": "Group_3D",
   "tags": [],
   "resourceType": "GMScript",
 }
