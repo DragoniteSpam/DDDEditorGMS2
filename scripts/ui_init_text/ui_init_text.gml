@@ -117,18 +117,7 @@ function ui_init_text(mode) {
         
         element = create_button(c2x, yy, "Extract Text", ew * 2, eh, fa_center, function(button) {
             language_extract();
-            ui_list_clear(button.root.el_language_text);
-            for (var lang_index = 0; lang_index < ds_list_size(Stuff.all_languages); lang_index++) {
-                var lang = Stuff.all_localized_text[$ Stuff.all_languages[| lang_index]];
-                var all_keys = variable_struct_get_names(lang);
-                array_sort(all_keys, true);
-                for (var i = 0; i < array_length(all_keys); i++) {
-                    var base_text = lang[$ all_keys[i]];
-                    if (lang_index == 0) {
-                        ds_list_add(button.root.el_language_text.entries, all_keys[i]);
-                    }
-                }
-            }
+            language_refresh_ui();
         }, id);
         element.tooltip = "Extract all player-visible text from the game's data; this includes String types in the database, cutscene event nodes, and other such things.";
         ds_list_add(contents, element);

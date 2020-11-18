@@ -162,3 +162,19 @@ function language_extract() {
         }
     }
 }
+
+function language_refresh_ui() {
+    var ui = Stuff.text.ui;
+    ui_list_clear(ui.el_language_text);
+    for (var lang_index = 0; lang_index < ds_list_size(Stuff.all_languages); lang_index++) {
+        var lang = Stuff.all_localized_text[$ Stuff.all_languages[| lang_index]];
+        var all_keys = variable_struct_get_names(lang);
+        array_sort(all_keys, true);
+        for (var i = 0; i < array_length(all_keys); i++) {
+            var base_text = lang[$ all_keys[i]];
+            if (lang_index == 0) {
+                ds_list_add(ui.el_language_text.entries, all_keys[i]);
+            }
+        }
+    }
+}

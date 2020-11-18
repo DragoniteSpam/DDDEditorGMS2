@@ -22,4 +22,6 @@ function serialize_load_language(buffer, version) {
             lang[$ keys[j]] = buffer_read(buffer, buffer_string);
         }
     }
+    
+    language_refresh_ui();
 }
