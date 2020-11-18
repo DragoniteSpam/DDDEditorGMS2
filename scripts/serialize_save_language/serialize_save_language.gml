@@ -1,48 +1,41 @@
 function serialize_save_language(buffer) {
-    var terrain = Stuff.terrain;
-
-    buffer_write(buffer, buffer_u32, SerializeThings.TERRAIN);
+    buffer_write(buffer, buffer_u32, SerializeThings.LANGUAGE_TEXT);
     var addr_next = buffer_tell(buffer);
     buffer_write(buffer, buffer_u64, 0);
-
-    // in the event that i set this up so it can have more than one terrain - although i probably
-    // won't because they're fairly memory-intensive
-    buffer_write(buffer, buffer_u16, 1);
-
-    buffer_write(buffer, buffer_u16, terrain.height);
-    buffer_write(buffer, buffer_u16, terrain.width);
-
-    // i'm also going to save the settings, just in case - i decided not to read most of
-    // them back out but still
-    var bools = pack(0, terrain.export_all, terrain.view_water, terrain.export_swap_uvs, terrain.export_swap_zup, terrain.smooth_shading, terrain.dual_layer);
-    buffer_write(buffer, buffer_u32, bools);
-    buffer_write(buffer, buffer_f32, terrain.view_scale);
-    buffer_write(buffer, buffer_f32, terrain.save_scale);
-
-    buffer_write(buffer, buffer_f32, terrain.rate);
-    buffer_write(buffer, buffer_f32, terrain.radius);
-    buffer_write(buffer, buffer_u8, terrain.mode);
-    buffer_write(buffer, buffer_u8, terrain.submode);
-    buffer_write(buffer, buffer_u8, terrain.style);
-
-    buffer_write(buffer, buffer_f32, terrain.tile_brush_x);
-    buffer_write(buffer, buffer_f32, terrain.tile_brush_y);
-    buffer_write(buffer, buffer_u32, terrain.paint_color);
-    buffer_write(buffer, buffer_f32, terrain.paint_strength);
-    // this is an unused byte, you can get rid of it later i guess
-    buffer_write(buffer, buffer_u8, 0);
-
-    // the actual data
-    buffer_write(buffer, buffer_u32, buffer_get_size(terrain.height_data));
-    buffer_write(buffer, buffer_u32, buffer_get_size(terrain.color_data));
-    buffer_write(buffer, buffer_u32, buffer_get_size(terrain.terrain_buffer_data));
-    buffer_write_buffer(buffer, terrain.height_data);
-    buffer_write_buffer(buffer, terrain.color_data);
-    buffer_write_buffer(buffer, terrain.terrain_buffer_data);
-
+    
+    buffer_write(buffer, buffer_u8, ds_list_size(Stuff.all_languages));
+    for (var i = 0; i < ds_list_size(Stuff.all_languages); i++) {
+        buffer_write(buffer, buffer_string, Stuff.all_languages[| i]);
+    }
+    
+    for (var i = 0; i < ds_list_size(Stuff.all_languages); i++) {
+        var lang = Stuff.all_localized_text[$ Stuff.all_languages[| i]];
+        var keys = variable_struct_get_names(lang);
+        buffer_write(buffer, buffer_u32, array_length(lang));
+        for (var j = 0; j < array_length(lang); j++) {
+            buffer_write(buffer, buffer_string, lang[$ keys[i]]);
+        }
+    }
+    
     buffer_poke(buffer, addr_next, buffer_u64, buffer_tell(buffer));
-
+    
     return buffer_tell(buffer);
-
-
 }
+
+/*
+___________________________________________
+############################################################################################
+ERROR in
+action number 1
+of Draw Event
+for object Stuff:
+
+variable_struct_get argument 1 incorrect type (undefined) expecting a Number (YYGI32)
+ at gml_Script_anon_ui_init_text_gml_GlobalScript_ui_init_text_4458_ui_init_text_gml_GlobalScript_ui_init_text (line 105) -                 return (Stuff.all_localized_text[$ Stuff.all_languages[| lang_selection]][$ list.entries[| index]] == "") ? c_red : c_black;
+############################################################################################
+gml_Script_anon_ui_init_text_gml_GlobalScript_ui_init_text_4458_ui_init_text_gml_GlobalScript_ui_init_text (line 105)
+gml_Script_ui_render_list (line 63) -             var c = list.colorize ? list.render_colors(list, index) : c_black;
+gml_Script_ui_render (line 13)
+gml_Script_draw_editor_fullscreen (line 10) -     if (ui) ui.render(ui, 0, 0);
+gml_Script_anon_EditorModeText_gml_GlobalScript_Group_Mode_Text_Main_106_EditorModeText_gml_GlobalScript_Group_Mode_Text_Main (line 6) -             case view_fullscreen: draw_editor_fullscreen(mode); break;
+gml_Object_Stuff_Draw_0 (line 1) - mode.render(mode);
