@@ -56,9 +56,14 @@ function ui_init_text(mode) {
         element = create_input(c1x, yy, "Name:", ew, eh, function(input) {
             var selection = ui_list_selection(input.root.el_language_list);
             if (selection + 1) {
+                var old_name = Stuff.all_languages[| selection];
                 Stuff.all_languages[| selection] = input.value;
+                Stuff.all_localized_text[$ input.value] = Stuff.all_localized_text[$ old_name];
+                variable_struct_remove(Stuff.all_localized_text, old_name);
             }
-        }, "", "language name", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, id);
+        }, "", "language name", function(str) {
+            return (string_length(str) > 1);
+        }, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, id);
         element.tooltip = "";
         ds_list_add(contents, element);
         el_language_name = element;
