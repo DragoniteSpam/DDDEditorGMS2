@@ -17,7 +17,7 @@ function serialize_save_language(buffer) {
     for (var i = 0; i < ds_list_size(Stuff.all_languages); i++) {
         var lang = Stuff.all_localized_text[$ Stuff.all_languages[| i]];
         for (var j = 0; j < array_length(keys); j++) {
-            buffer_write(buffer, buffer_string, lang[$ keys[i]]);
+            buffer_write(buffer, buffer_string, lang[$ keys[j]]);
         }
     }
     
