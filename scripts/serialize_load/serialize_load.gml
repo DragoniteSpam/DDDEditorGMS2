@@ -186,6 +186,10 @@ function serialize_load(buffer, filename, proj_name) {
                 Stuff.game_data_location[GameDataCategories.MAP] = Stuff.game_data_current_file.GUID;
                 serialize_load_maps(buffer, version);
                 break;
+            case SerializeThings.LANGUAGE_TEXT:
+                Stuff.game_data_location[GameDataCategories.LANGUAGE_TEXT] = Stuff.game_data_current_file.GUID;
+                serialize_load_language(buffer, version);
+                break;
             #endregion
         }
     }

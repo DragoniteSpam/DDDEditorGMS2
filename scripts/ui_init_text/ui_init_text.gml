@@ -62,7 +62,7 @@ function ui_init_text(mode) {
                 variable_struct_remove(Stuff.all_localized_text, old_name);
             }
         }, "", "language name", function(str) {
-            return (string_length(str) > 1);
+            return (string_length(str) > 0);
         }, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, id);
         element.tooltip = "";
         ds_list_add(contents, element);
