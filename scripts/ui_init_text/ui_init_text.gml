@@ -220,11 +220,28 @@ function ui_init_text(mode) {
                 buffer_delete(fbuffer);
                 switch (string_lower(filename_ext(fn))) {
                     case ".json":
+                        var json = json_parse(lang_input);
+                        var lang_names = variable_struct_get_names(json);
+                        for (var i = 0; i < array_length(lang_names); i++) {
+                            var lang_new = json[$ lang_names[i]];
+                            var lang = Stuff.all_localized_text[$ lang_names[i]];
+                            if (lang) {
+                                var new_keys = variable_struct_get_names(lang_new);
+                                for (var j = 0; j < array_length(new_keys); j++) {
+                                    var key = new_keys[j];
+                                    if (variable_struct_exists(lang, key)) {
+                                        lang[$ key] = lang_new[$ key];
+                                    }
+                                }
+                            }
+                            
+                        }
                         break;
                     case ".csv":
                         var lines = split(lang_input, "\n", false, false);
                         var rows = array_create(ds_queue_size(lines));
                         var row_index = 0;
+                        // "split" doesn't quite do it here
                         while (!ds_queue_empty(lines)) {
                             var line = ds_queue_dequeue(lines);
                             var row_collection = ds_collection_create();
