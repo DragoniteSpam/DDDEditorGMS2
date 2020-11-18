@@ -57,7 +57,7 @@ function dialog_create_settings_data_asset_files(argument0) {
         ["Image: Particles", c_blue], ["Image: UI", c_blue],
         ["Image: Skybox", c_blue], ["Image: Misc.", c_blue],
         ["Audio: BGM", c_purple], ["Audio: SE", c_purple],
-        ["Meshes", c_green],
+        ["Meshes", c_green], ["Language Text", c_black],
     );
     el_types.tooltip = "This is the list of all the types of stuff you can sort into different files. I recommend putting each of the audio / visual resources (colorized) into their own files, especially if you use source control, so that changing one doesn't cause the entire wad of data to have to be updated. The main game data must be in the master data file, since other things may depend on their existence.";
     el_types.auto_multi_select = true;

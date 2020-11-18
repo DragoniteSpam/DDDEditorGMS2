@@ -12,7 +12,7 @@ enum SerializeThings {
     IMAGE_TILESET           = 0x00000007,
     IMAGE_PARTICLES         = 0x00000008, //+
     IMAGE_OVERWORLD         = 0x00000009, //+
-    // 0a
+    LANGUAGE_TEXT           = 0x0000000A,
     IMAGE_BATTLERS          = 0x0000000B, //+
     // 0c
     IMAGE_MISC              = 0x0000000D, //+

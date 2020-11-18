@@ -177,7 +177,7 @@ function ui_init_text(mode) {
                 );
             }
         }, id);
-        element.tooltip = "Clear all of the translated strings in the selected language.";
+        element.tooltip = "Clear all of the translated strings in the selected language. (You cannot clear the default language.)";
         ds_list_add(contents, element);
         yy += element.height + spacing;
         

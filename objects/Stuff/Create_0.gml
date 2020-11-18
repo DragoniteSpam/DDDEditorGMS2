@@ -557,6 +557,7 @@ game_data_location[GameDataCategories.DATADATA] = file_default.GUID;
 game_data_location[GameDataCategories.DATA_INST] = file_default.GUID;
 game_data_location[GameDataCategories.ANIMATIONS] = file_default.GUID;
 game_data_location[GameDataCategories.TERRAIN] = file_terrain.GUID;
+game_data_location[GameDataCategories.LANGUAGE_TEXT] = file_default.GUID;
 
 game_data_save_scripts = array_create(GameDataCategories.SIZE);
 game_data_save_scripts[GameDataCategories.TILE_ANIMATIONS] = serialize_save_image_tile_animations;
@@ -577,6 +578,7 @@ game_data_save_scripts[GameDataCategories.DATADATA] = serialize_save_datadata;
 game_data_save_scripts[GameDataCategories.DATA_INST] = serialize_save_data_instances;
 game_data_save_scripts[GameDataCategories.ANIMATIONS] = serialize_save_animations;
 game_data_save_scripts[GameDataCategories.TERRAIN] = serialize_save_terrain;
+game_data_save_scripts[GameDataCategories.LANGUAGE_TEXT] = serialize_save_language;
 
 game_data_current_file = noone;
 
@@ -605,6 +607,7 @@ enum GameDataCategories {
     SE,
     // other assets
     MESH,
+    LANGUAGE_TEXT,
     SIZE
 }
 
