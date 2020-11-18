@@ -129,7 +129,7 @@ function ui_init_text(mode) {
         ds_list_add(contents, element);
         yy += element.height + spacing;
         
-        element = create_button(c2x, yy, "Set From Default", ew * 2, eh, fa_center, function(button) {
+        element = create_button(c2x, yy, "Set From Default", ew - 16, eh, fa_center, function(button) {
             var selection = ui_list_selection(button.root.el_language_list);
             if (selection + 1) {
                 var lang_name = Stuff.all_languages[| selection];
@@ -153,6 +153,31 @@ function ui_init_text(mode) {
             }
         }, id);
         element.tooltip = "Set each of the localized strings for this language to the default value (i.e. the text that has been entered into the editor itself).";
+        ds_list_add(contents, element);
+        
+        element = create_button(c2x + ew + 16, yy, "Clear Language", ew - 16, eh, fa_center, function(button) {
+            var selection = ui_list_selection(button.root.el_language_list);
+            if (selection + 1) {
+                var lang_name = Stuff.all_languages[| selection];
+                var base_lang = Stuff.all_languages[| 0];
+                var dg = dialog_create_yes_or_no(button.root, "Would you like to remove all translated strings for " + lang_name + "?",
+                    function(button) {
+                        var base_element = button.root.root;
+                        var selection = ui_list_selection(base_element.el_language_list);
+                        if (selection > 0) {
+                            var lang_name = Stuff.all_languages[| selection];
+                            var keys = variable_struct_get_names(Stuff.all_localized_text[$ lang_name]);
+                            for (var i = 0; i < array_length(keys); i++) {
+                                Stuff.all_localized_text[$ lang_name][$ keys[i]] = "";
+                            }
+                            base_element.list_selection_action(base_element.el_language_text);
+                        }
+                        dialog_destroy();
+                    }
+                );
+            }
+        }, id);
+        element.tooltip = "Clear all of the translated strings in the selected language.";
         ds_list_add(contents, element);
         yy += element.height + spacing;
         
