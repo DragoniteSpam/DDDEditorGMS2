@@ -49,6 +49,9 @@ function dialog_data_type_enable_by_type(dialog) {
                 ui_input_set_value(dialog.el_property_char_limit, string(dialog.selected_property.char_limit));
                 dialog.el_property_default_string.enabled = true;
                 ui_input_set_value(dialog.el_property_default_string, dialog.selected_property.default_string);
+                dialog.el_property_localize.interactive = true;
+                dialog.el_property_localize.enabled = true;
+                dialog.el_property_localize.value = !!(dialog.selected_property.flags & DataPropertyFlags.NO_LOCALIZE);
                 break;
             case DataTypes.BOOL:
                 dialog.el_property_default_bool.enabled = true;

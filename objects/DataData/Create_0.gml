@@ -10,3 +10,7 @@ properties = ds_list_create();
 
 // all of the instances of the data type; nested lists
 instances = ds_list_create();
+
+enum DataDataFlags {
+    NO_LOCALIZE         = 0x010000,
+}

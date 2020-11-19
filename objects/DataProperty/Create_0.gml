@@ -89,3 +89,7 @@ enum NumberScales {
     QUADRATIC,
     EXPONENTIAL,
 }
+
+enum DataPropertyFlags {
+    NO_LOCALIZE         = 0x010000,
+}

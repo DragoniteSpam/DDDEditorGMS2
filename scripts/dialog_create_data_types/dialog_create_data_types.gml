@@ -26,12 +26,10 @@ function dialog_create_data_types(dialog) {
     var b_width = 128;
     var b_height = 32;
     
-    var n_slots = 14;
-    
     var yy = 64;
     var yy_base = yy;
     
-    var el_list = create_list(col1_x, yy, "Data Types: ", "<no data types>", ew, eh, n_slots, uivc_list_data_data, false, dg, Stuff.all_data);
+    var el_list = create_list(col1_x, yy, "Data Types: ", "<no data types>", ew, eh, 18, uivc_list_data_data, false, dg, Stuff.all_data);
     el_list.render = ui_render_list_data_data;
     el_list.render_colors = ui_list_color_data_type;
     el_list.onmiddleclick = uivc_list_data_alphabetize;
@@ -58,7 +56,15 @@ function dialog_create_data_types(dialog) {
     
     yy += el_data_name.height + spacing;
     
-    var el_list_p = create_list(col2_x, yy, "Properties: ", "<name is implicit>", ew, eh, n_slots, uivc_list_data_property, false, dg, noone);
+    var el_data_localize = create_checkbox(col2_x, yy, "Localize", ew, eh, function(checkbox) {
+        checkbox.root.selected_data.flags ^= DataDataFlags.NO_LOCALIZE;
+    }, true, dg);
+    el_data_localize.interactive = false;
+    dg.el_data_localize = el_data_localize;
+    
+    yy += el_data_localize.height + spacing;
+    
+    var el_list_p = create_list(col2_x, yy, "Properties: ", "<name is implicit>", ew, eh, 13, uivc_list_data_property, false, dg, noone);
     el_list_p.render = ui_render_list_data_properties;
     el_list_p.entries_are = ListEntries.INSTANCES;
     dg.el_list_p = el_list_p;
@@ -137,7 +143,7 @@ function dialog_create_data_types(dialog) {
     var el_property_default_int = create_input(col3_x, yy, "Default:", ew, eh, uivc_input_data_default_int, "0", "int", validate_int, -0x80000000, 0x7fffffff, 11, vx1, vy1, vx2, vy2, dg);
     el_property_default_int.enabled = false;
     dg.el_property_default_int = el_property_default_int;
-    var el_property_default_bool = create_checkbox(col3_x, yy, "Default", ew, eh, uivc_check_data_default_bool, false, dg);
+    var el_property_default_bool = create_checkbox(col3_x, yy, "Default value", ew, eh, uivc_check_data_default_bool, false, dg);
     el_property_default_bool.enabled = false;
     dg.el_property_default_bool = el_property_default_bool;
     
@@ -159,6 +165,12 @@ function dialog_create_data_types(dialog) {
     var el_property_char_limit = create_input(col3_x, yy, "Char. Limit:", ew, eh, uivc_input_data_char_limit, "20", "1000", validate_int, 1, 1000, 4, vx1, vy1, vx2, vy2, dg);
     el_property_char_limit.enabled = false;
     dg.el_property_char_limit = el_property_char_limit;
+    
+    var el_property_localize = create_checkbox(col3_x, yy + el_property_char_limit.height + spacing, "Localize", ew, eh, function(checkbox) {
+        checkbox.root.selected_property.flags ^= DataPropertyFlags.NO_LOCALIZE;
+    }, true, dg);
+    el_property_localize.enabled = false;
+    dg.el_property_localize = el_property_localize;
     
     yy += eh + spacing;
     
@@ -188,6 +200,7 @@ function dialog_create_data_types(dialog) {
         el_remove,
         // data type
         el_data_name,
+        el_data_localize,
         el_list_p,
         el_add_p,
         el_move_up,
@@ -195,6 +208,7 @@ function dialog_create_data_types(dialog) {
         el_remove_p,
         // properties
         el_property_name,
+        el_property_localize,
         el_property_type,
         el_property_ext_type,
         el_property_size,

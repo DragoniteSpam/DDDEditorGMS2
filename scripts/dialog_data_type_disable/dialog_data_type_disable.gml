@@ -20,6 +20,7 @@ function dialog_data_type_disable(dialog) {
     
     dialog.el_property_min.enabled = false;
     dialog.el_property_char_limit.enabled = false;
+    dialog.el_property_localize.enabled = false;
     dialog.el_property_max.enabled = false;
     dialog.el_property_scale.enabled = false;
     
