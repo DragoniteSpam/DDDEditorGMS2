@@ -1,15 +1,4 @@
-/// @param UIRenderSurface
-/// @param x1
-/// @param y1
-/// @param x2
-/// @param y2
-function ui_render_surface_control_mesh_ed(argument0, argument1, argument2, argument3, argument4) {
-
-    var surface = argument0;
-    var x1 = argument1;
-    var y1 = argument2;
-    var x2 = argument3;
-    var y2 = argument4;
+function ui_render_surface_control_mesh_ed(surface, x1, y1, x2, y2) {
     var mx = mouse_x_view;
     var my = mouse_y_view;
     var mode = Stuff.mesh_ed;
@@ -41,7 +30,7 @@ function ui_render_surface_control_mesh_ed(argument0, argument1, argument2, argu
             xspeed += dsin(mode.direction) * mspd;
             yspeed += dcos(mode.direction) * mspd;
         }
-    
+        
         if (CONTROL_3D_LOOK) {
             var camera_cx = x1 + (x2 - x1) / 2;
             var camera_cy = y1 + (y2 - y1) / 2;
@@ -54,7 +43,7 @@ function ui_render_surface_control_mesh_ed(argument0, argument1, argument2, argu
             mode.yto = mode.y - dsin(mode.direction) * dcos(mode.pitch);
             mode.zto = mode.z - dsin(mode.pitch);
         }
-    
+        
         mode.x += xspeed;
         mode.y += yspeed;
         mode.z += zspeed;
@@ -64,7 +53,7 @@ function ui_render_surface_control_mesh_ed(argument0, argument1, argument2, argu
         mode.xup = xup;
         mode.yup = yup;
         mode.zup = zup;
-    
+        
         var light_rotate_speed = 90 * delta_time / MILLION;
         if (keyboard_check(ord("Q"))) {
             mode.draw_light_direction += light_rotate_speed;
@@ -74,6 +63,4 @@ function ui_render_surface_control_mesh_ed(argument0, argument1, argument2, argu
         }
         mode.draw_light_direction = (mode.draw_light_direction + 360) % 360;
     }
-
-
 }
