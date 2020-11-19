@@ -36,21 +36,23 @@ function language_extract() {
         #region data
         for (var i = 0; i < ds_list_size(Stuff.all_data); i++) {
             var datadata = Stuff.all_data[| i];
-            if (datadata.type != DataTypes.DATA || !(datadata.flags & DataDataFlags.NO_LOCALIZE)) continue;
+            if (datadata.type != DataTypes.DATA) continue;
             for (var j = 0; j < ds_list_size(datadata.properties); j++) {
                 var property = datadata.properties[| j];
-                if (property.type != DataTypes.STRING || !(property.flags & DataPropertyFlags.NO_LOCALIZE)) continue;
+                if (property.type != DataTypes.STRING || !!(property.flags & DataPropertyFlags.NO_LOCALIZE)) continue;
                 for (var k = 0; k < ds_list_size(datadata.instances); k++) {
                     var inst = datadata.instances[| k];
-                    if (inst.name != "") {
-                        var key = "Data." + inst.internal_name + ".@NAME@";
-                        lang[$ key] = inst.name;
-                        existing_keys[$ key] = false;
-                    }
-                    if (inst.summary != "") {
-                        var key = "Data." + inst.internal_name + ".@SUMMARY@";
-                        lang[$ key] = inst.summary;
-                        existing_keys[$ key] = false;
+                    if (!(datadata.flags & DataDataFlags.NO_LOCALIZE)) {
+                        if (inst.name != "") {
+                            var key = "Data." + inst.internal_name + ".@NAME@";
+                            lang[$ key] = inst.name;
+                            existing_keys[$ key] = false;
+                        }
+                        if (inst.summary != "") {
+                            var key = "Data." + inst.internal_name + ".@SUMMARY@";
+                            lang[$ key] = inst.summary;
+                            existing_keys[$ key] = false;
+                        }
                     }
                     for (var m = 0; m < ds_list_size(inst.values[| j]); m++) {
                         var text = inst.values[| j][| m];
