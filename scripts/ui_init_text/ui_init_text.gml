@@ -123,10 +123,13 @@ function ui_init_text(mode) {
         ds_list_add(contents, element);
         
         element = create_button(c2x + ew + 16, yy, "Clear Text", ew - 16, eh, fa_center, function(button) {
-            for (var i = 0; i < ds_list_size(Stuff.all_languages); i++) {
-                Stuff.all_localized_text[$ Stuff.all_languages[| i]] = { };
-            }
-            language_refresh_ui();
+            var dg = dialog_create_yes_or_no(button.root, "This will delete all extracted and localized strings, forcing you to start over. Are you [shake]ABSOLUTELY CERTAIN[/shake] you want to do this?", function(button) {
+                for (var i = 0; i < ds_list_size(Stuff.all_languages); i++) {
+                    Stuff.all_localized_text[$ Stuff.all_languages[| i]] = { };
+                }
+                language_refresh_ui();
+                dialog_destroy();
+            });
         }, id);
         element.tooltip = "Extract all player-visible text from the game's data; this includes String types in the database, cutscene event nodes, and other such things.";
         ds_list_add(contents, element);
