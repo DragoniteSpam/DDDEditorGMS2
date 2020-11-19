@@ -14,8 +14,13 @@ function uivc_list_data_data(list) {
             list.root.el_data_name.interactive = true;
             list.root.el_add_p.interactive = true;
             list.root.el_remove_p.interactive = true;
-            list.root.el_data_localize.interactive = true;
-            list.root.el_data_localize.value = !!(list.root.selected_data.flags & DataDataFlags.NO_LOCALIZE);
+            
+            if (list.root.selected_data.type == DataTypes.DATA) {
+                list.root.el_data_localize.interactive = true;
+                list.root.el_data_localize.value = !!(list.root.selected_data.flags & DataDataFlags.NO_LOCALIZE);
+            } else {
+                list.root.el_data_localize.interactive = false;
+            }
             
             ui_input_set_value(list.root.el_data_name, list.root.selected_data.name);
             
