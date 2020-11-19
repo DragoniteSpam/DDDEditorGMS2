@@ -147,14 +147,14 @@ function dialog_create_data_types(dialog) {
     el_property_default_bool.enabled = false;
     dg.el_property_default_bool = el_property_default_bool;
     
-    yy += eh + spacing;
-    
-    var yy_base_special = yy;
-    
     // data and enum - onmouseup is assigned when the radio button is clicked
     var el_property_type_guid = create_button(col3_x, yy, "Select Type...", ew, eh, fa_center, null, dg);
     el_property_type_guid.enabled = false;
     dg.el_property_type_guid = el_property_type_guid;
+    
+    yy += eh + spacing;
+    
+    var yy_base_special = yy;
     
     // int only
     var el_property_min = create_input(col3_x, yy, "Min. Value:", ew, eh, uivc_input_data_value_min, "0", "+" + string(0x80000000), validate_double, -0x80000000, 0x7fffffff, 10, vx1, vy1, vx2, vy2, dg);
