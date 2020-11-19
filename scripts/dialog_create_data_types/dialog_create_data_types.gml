@@ -117,7 +117,7 @@ function dialog_create_data_types(dialog) {
     
     yy += el_data_name.height + spacing;
     
-    var el_data_localize = create_checkbox(col2_x, yy, "Localize", ew, eh, function(checkbox) {
+    var el_data_localize = create_checkbox(col2_x, yy, "Don't Localize", ew, eh, function(checkbox) {
         checkbox.root.selected_data.flags ^= DataDataFlags.NO_LOCALIZE;
     }, true, dg);
     el_data_localize.interactive = false;
@@ -389,7 +389,7 @@ function dialog_create_data_types(dialog) {
     el_property_char_limit.enabled = false;
     dg.el_property_char_limit = el_property_char_limit;
     
-    var el_property_localize = create_checkbox(col3_x, yy + el_property_char_limit.height + spacing, "Localize", ew, eh, function(checkbox) {
+    var el_property_localize = create_checkbox(col3_x, yy + el_property_char_limit.height + spacing, "Don't Localize", ew, eh, function(checkbox) {
         checkbox.root.selected_property.flags ^= DataPropertyFlags.NO_LOCALIZE;
     }, true, dg);
     el_property_localize.enabled = false;
