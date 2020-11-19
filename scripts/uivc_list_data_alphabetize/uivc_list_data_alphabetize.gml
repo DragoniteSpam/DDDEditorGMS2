@@ -1,8 +1,4 @@
-/// @param UIList
-function uivc_list_data_alphabetize(argument0) {
-
-    var list = argument0;
-
+function uivc_list_data_alphabetize(list) {
     // put the enums at the top
     var list_data = ds_list_create();
     var list_enums = ds_list_create();
@@ -14,7 +10,7 @@ function uivc_list_data_alphabetize(argument0) {
             ds_list_add(list_data, data);
         }
     }
-
+    
     // Normally you'd just use the list sort funciton on the source lists since they
     // don't modify them, but in this case we want the enums to always go at the top
     var list_enums_sorted = ds_list_sort_name(list_enums);
@@ -30,13 +26,11 @@ function uivc_list_data_alphabetize(argument0) {
     ds_list_destroy(list_enums);
     ds_list_destroy(list_data_sorted);
     ds_list_destroy(list_enums_sorted);
-
+    
     var selection = ui_list_selection(list);
-
+    
     if (selection + 1) {
         ui_list_deselect(list);
         ui_list_select(list, ds_list_find_index(Stuff.all_data, list.root.selected_data), true);
     }
-
-
 }

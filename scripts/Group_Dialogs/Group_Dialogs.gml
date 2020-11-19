@@ -133,7 +133,7 @@ function dialog_default(dialog) {
     for (var i = 0; i < ds_list_size(dialog.contents); i++) {
         var thing = dialog.contents[| i];
         if (thing.enabled) {
-            script_execute(thing.render, thing, dialog.x, dialog.y);
+            thing.render(thing, dialog.x, dialog.y);
         }
     }
     
@@ -148,7 +148,7 @@ function dialog_default(dialog) {
     
     // the x button/escape key does not commit changes
     if (kill && dialog.close) {
-        script_execute(dialog.close, dialog);
+        dialog.close(dialog);
     }
 }
 
