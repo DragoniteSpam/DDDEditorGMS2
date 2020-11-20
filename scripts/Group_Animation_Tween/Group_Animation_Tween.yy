@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "get tween values",
-    "path": "folders/Scripts/animation/get tween values.yy",
+    "name": "animation",
+    "path": "folders/Scripts/animation.yy",
   },
   "resourceVersion": "1.0",
-  "name": "animation_get_tween_scale_z",
+  "name": "Group_Animation_Tween",
   "tags": [],
   "resourceType": "GMScript",
 }

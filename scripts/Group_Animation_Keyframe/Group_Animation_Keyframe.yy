@@ -6,7 +6,7 @@
     "path": "folders/Scripts/animation.yy",
   },
   "resourceVersion": "1.0",
-  "name": "animation_get_layer",
+  "name": "Group_Animation_Keyframe",
   "tags": [],
   "resourceType": "GMScript",
 }
