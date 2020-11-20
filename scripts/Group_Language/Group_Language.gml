@@ -69,7 +69,7 @@ function language_extract() {
         for (var i = 0; i < ds_list_size(Stuff.all_game_constants); i++) {
             var const = Stuff.all_game_constants[| i];
             if (const.type != DataTypes.STRING) continue;
-            var key = "Const." + string(i) + "." + const.name;
+            var key = "Const." + "." + const.name;
             lang[$ key] = const.value_string;
             existing_keys[$ key] = false;
         }
