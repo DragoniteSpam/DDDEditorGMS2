@@ -10,9 +10,9 @@ function animation_get_next_keyframe(animation, timeline_layer, moment) {
     return noone;
 }
 
-function animation_get_layer(animation, timeline_layer) {
-    if (timeline_layer < ds_list_size(animation.layers)) {
-        var timeline_layer = animation.layers[| timeline_layer];
+function animation_get_layer(animation, layer) {
+    if (layer < ds_list_size(animation.layers)) {
+        var timeline_layer = animation.layers[| layer];
         return timeline_layer ? timeline_layer : noone;
     }
     

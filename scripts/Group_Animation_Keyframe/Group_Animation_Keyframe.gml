@@ -44,8 +44,8 @@ function animation_get_keyframe_parameter(keyframe, param) {
     }
 }
 
-function animation_get_keyframe(animation, timeline_layer, moment) {
-    var timeline_layer = animation_get_layer(animation, timeline_layer);
+function animation_get_keyframe(animation, layer, moment) {
+    var timeline_layer = animation_get_layer(animation, layer);
     if (timeline_layer) {
         var keyframe = timeline_layer.keyframes[| moment];
         return keyframe ? keyframe : noone;
