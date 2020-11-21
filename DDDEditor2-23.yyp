@@ -570,6 +570,7 @@
     {"id":{"name":"smf_camera_create","path":"scripts/smf_camera_create/smf_camera_create.yy",},"order":3,},
     {"id":{"name":"smf_camera_set_projmat","path":"scripts/smf_camera_set_projmat/smf_camera_set_projmat.yy",},"order":4,},
     {"id":{"name":"smf_camera_set_viewmat","path":"scripts/smf_camera_set_viewmat/smf_camera_set_viewmat.yy",},"order":5,},
+    {"id":{"name":"Group_Refid","path":"scripts/Group_Refid/Group_Refid.yy",},"order":0,},
     {"id":{"name":"smf_camera_clear","path":"scripts/smf_camera_clear/smf_camera_clear.yy",},"order":6,},
     {"id":{"name":"smf_transform_set_identity","path":"scripts/smf_transform_set_identity/smf_transform_set_identity.yy",},"order":0,},
     {"id":{"name":"smf_transform_set_translation","path":"scripts/smf_transform_set_translation/smf_transform_set_translation.yy",},"order":1,},
