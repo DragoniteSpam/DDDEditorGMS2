@@ -11,7 +11,7 @@ ds_list_destroy_instances(movement_routes);
 ds_list_destroy(switches);
 ds_list_destroy(variables);
 
-refid_remove(REFID);
+refid_remove(id);
 
 if (cobject) {
     // it turns out removing these things is REALLY SLOW, so instead we'll pool

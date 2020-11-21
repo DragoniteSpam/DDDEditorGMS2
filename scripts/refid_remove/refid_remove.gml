@@ -1,16 +1,10 @@
-/// @param refid
-/// @param [map]
-function refid_remove() {
-
-    var refid = argument[0];
-    var map = (argument_count > 1 && argument[1] != undefined) ? argument[1] : Stuff.map.active_map;
-
-    if (ds_map_exists(map.contents.refids, refid)) {
-        ds_map_delete(map.contents.refids, refid);
+function refid_remove(entity, map) {
+    if (map == undefined) map = Stuff.map.active_map;
+    
+    if (map.contents.refids[? entity.REFID] == entity) {
+        ds_map_delete(map.contents.refids, entity.REFID);
         return true;
     }
 
     return false;
-
-
 }
