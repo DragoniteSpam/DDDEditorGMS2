@@ -196,7 +196,7 @@ fmod_paused = false;
 #endregion
 
 #region asset lists
-all_guids = ds_map_create();
+all_guids = { };
 guid_current = 0;
 all_internal_names = ds_map_create();
 
