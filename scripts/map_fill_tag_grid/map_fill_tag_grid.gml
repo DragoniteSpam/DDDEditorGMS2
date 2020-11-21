@@ -1,10 +1,4 @@
-/// @param grid
-/// @param zz
-function map_fill_tag_grid(argument0, argument1) {
-
-    var grid = argument0;
-    var zz = argument1;
-
+function map_fill_tag_grid(grid, zz) {
     for (var i = 0; i < ds_grid_width(grid); i++) {
         for (var j = 0; j < ds_grid_height(grid); j++) {
             // if something already exists, use its data
@@ -24,8 +18,5 @@ function map_fill_tag_grid(argument0, argument1) {
             grid[# i, j] = contents;
         }
     }
-
     // @gml update LWO - these may need to be destroyed manually in the data_resize_map script
-
-
 }
