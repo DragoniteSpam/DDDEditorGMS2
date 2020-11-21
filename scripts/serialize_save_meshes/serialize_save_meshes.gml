@@ -1,30 +1,26 @@
-/// @param buffer
-function serialize_save_meshes(argument0) {
-
-    var buffer = argument0;
-
+function serialize_save_meshes(buffer) {
     buffer_write(buffer, buffer_u32, SerializeThings.MESHES);
     var addr_next = buffer_tell(buffer);
     buffer_write(buffer, buffer_u64, 0);
-
+    
     var n_meshes = ds_list_size(Stuff.all_meshes);
     buffer_write(buffer, buffer_u32, n_meshes);
-
+    
     for (var i = 0; i < n_meshes; i++) {
         var mesh = Stuff.all_meshes[| i];
-    
+        
         serialize_save_generic(buffer, mesh);
-    
+        
         buffer_write(buffer, buffer_u8, mesh.type);
-    
-        var list_proto_guids = ds_map_to_list(mesh.proto_guids);
+        
+        var all_proto_guids = variable_struct_get_names(mesh.proto_guids);
         var n_submeshes = ds_list_size(mesh.submeshes);
         buffer_write(buffer, buffer_u16, n_submeshes);
         for (var j = 0; j < n_submeshes; j++) {
             var submesh = mesh.submeshes[| j];
-            var index = mesh.proto_guids[? list_proto_guids[| j]];
+            var index = mesh.proto_guids[$ all_proto_guids[j]];
             buffer_write(buffer, buffer_u16, index);
-            buffer_write(buffer, buffer_datatype, list_proto_guids[| j]);
+            buffer_write(buffer, buffer_datatype, all_proto_guids[j]);
             buffer_write(buffer, buffer_u32, buffer_get_size(submesh.buffer));
             buffer_write(buffer, buffer_string, submesh.name);
             buffer_write(buffer, buffer_string, submesh.path);
@@ -32,15 +28,14 @@ function serialize_save_meshes(argument0) {
             // don't bother saving the wireframe buffers - we need to re-create the collision
             // shape as well, so we might as well recreate the wireframe at the same time =/
         }
-        ds_list_destroy(list_proto_guids);
-    
+        
         buffer_write(buffer, buffer_f32, mesh.xmin);
         buffer_write(buffer, buffer_f32, mesh.ymin);
         buffer_write(buffer, buffer_f32, mesh.zmin);
         buffer_write(buffer, buffer_f32, mesh.xmax);
         buffer_write(buffer, buffer_f32, mesh.ymax);
         buffer_write(buffer, buffer_f32, mesh.zmax);
-    
+        
         var xx = ds_grid_width(mesh.collision_flags);
         var yy = ds_grid_height(mesh.collision_flags);
         var zz = -1;
@@ -60,9 +55,8 @@ function serialize_save_meshes(argument0) {
                 }
             }
         }
-    
+        
         buffer_write(buffer, buffer_u32, mesh.marker);
-    
         buffer_write(buffer, buffer_datatype, mesh.tex_base);
         buffer_write(buffer, buffer_datatype, mesh.tex_ambient);
         buffer_write(buffer, buffer_datatype, mesh.tex_specular_color);
@@ -72,10 +66,8 @@ function serialize_save_meshes(argument0) {
         buffer_write(buffer, buffer_datatype, mesh.tex_displacement);
         buffer_write(buffer, buffer_datatype, mesh.tex_stencil);
     }
-
+    
     buffer_poke(buffer, addr_next, buffer_u64, buffer_tell(buffer));
-
+    
     return buffer_tell(buffer);
-
-
 }
