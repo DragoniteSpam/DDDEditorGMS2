@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "resources",
-    "path": "folders/Scripts/resources.yy",
+    "name": "DDDEditor2-23",
+    "path": "DDDEditor2-23.yyp",
   },
   "resourceVersion": "1.0",
-  "name": "refid_remove",
+  "name": "Group_GUID",
   "tags": [],
   "resourceType": "GMScript",
 }
