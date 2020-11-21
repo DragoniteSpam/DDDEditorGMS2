@@ -3,7 +3,7 @@ function refid_generate(map_container) {
     
     do {
         var n = Stuff.game_asset_id + ":" + string_hex(map_container.contents.refid_current++, 8);
-    } until (!ds_map_exists(map_container.contents.refids, n));
+    } until (!map_container.contents.refids[$ n]);
     
     return n;
 }

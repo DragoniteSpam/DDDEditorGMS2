@@ -5,13 +5,13 @@
 // internal stuff
 batch_data = ds_list_create();              // json
 
-batch_in_the_future = ds_list_create();   // entities
-dynamic = ds_list_create();               // entities
+batch_in_the_future = ds_list_create();     // entities
+dynamic = ds_list_create();                 // entities
 
-all_entities = ds_list_create();          // entities
+all_entities = ds_list_create();            // entities
 all_zones = ds_list_create();
 
-refids = ds_map_create();                // entities (mapped onto refids)
+refids = { };                               // entities (mapped onto refids)
 refid_current = 0;
 
 map_grid = map_create_grid(10, 10, 10);        // this just needs to exist for now, it'll get resized when stuff is loaded

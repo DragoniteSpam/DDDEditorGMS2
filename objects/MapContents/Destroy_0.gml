@@ -20,7 +20,6 @@ ds_list_destroy(dynamic);
 // entities in the map in them. this one is.
 ds_list_destroy_instances(all_entities);
 ds_list_destroy_instances(all_zones);
-ds_map_destroy(refids);
 
 ds_grid_destroy(map_grid);
 ds_grid_destroy(map_grid_frozen_tags);
