@@ -133,7 +133,7 @@ function language_extract() {
                     case EventNodeTypes.SHOW_SCROLLING_TEXT:
                     case EventNodeTypes.SHOW_CHOICES:
                         for (var k = 0; k < ds_list_size(node.data); k++) {
-                            var key = "Event." + event.name + "." + node.name + ".data." + string(k);
+                            var key = "Event." + node.name + "." + string(node.GUID) + ".data." + string(k);
                             lang[$ key] = node.data[| k];
                             existing_keys[$ key] = false;
                         }
@@ -143,7 +143,7 @@ function language_extract() {
                         for (var k = 0; k < ds_list_size(custom.types); k++) {
                             if (custom.types[| k][EventNodeCustomData.TYPE] == DataTypes.STRING) {
                                 for (var l = 0; l < ds_list_size(node.custom_data[| k]); l++) {
-                                    var key = "Event." + event.name + "." + node.name + ".custom." + string(k) + "." + string(l);
+                                    var key = "Event." + node.name + "." + string(node.GUID) + ".custom." + string(k) + "." + string(l);
                                     lang[$ key] = node.custom_data[| k][| l];
                                     existing_keys[$ key] = false;
                                 }
