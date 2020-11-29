@@ -162,6 +162,8 @@ function language_extract() {
             }
         }
     }
+    
+    language_refresh_ui();
 }
 
 function language_refresh_ui() {
