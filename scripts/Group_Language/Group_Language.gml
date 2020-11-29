@@ -40,12 +40,12 @@ function language_extract() {
             if (!!(datadata.flags & DataDataFlags.NO_LOCALIZE)) continue;
             for (var k = 0; k < ds_list_size(datadata.instances); k++) {
                 var inst = datadata.instances[| k];
-                if (inst.name != "") {
+                if (!(datadata.flags & DataDataFlags.NO_LOCALIZE_NAME)) {
                     var key = "Data." + inst.internal_name + ".@NAME@";
                     lang[$ key] = (lang_index == 0) ? inst.name : ((lang[$ key] != undefined) ? lang[$ key] : "");
                     existing_keys[$ key] = false;
                 }
-                if (inst.summary != "") {
+                if (!(datadata.flags & DataDataFlags.NO_LOCALIZE_SUMMARY)) {
                     var key = "Data." + inst.internal_name + ".@SUMMARY@";
                     lang[$ key] = (lang_index == 0) ? inst.summary : ((lang[$ key] != undefined) ? lang[$ key] : "");
                     existing_keys[$ key] = false;
