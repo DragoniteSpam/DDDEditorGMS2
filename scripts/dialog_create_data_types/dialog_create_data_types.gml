@@ -47,6 +47,10 @@ function dialog_create_data_types(dialog) {
                 if (list.root.selected_data.type == DataTypes.DATA) {
                     list.root.el_data_localize.interactive = true;
                     list.root.el_data_localize.value = !!(list.root.selected_data.flags & DataDataFlags.NO_LOCALIZE);
+                    list.root.el_data_localize_name.interactive = true;
+                    list.root.el_data_localize_name.value = !!(list.root.selected_data.flags & DataDataFlags.NO_LOCALIZE_NAME);
+                    list.root.el_data_localize_summary.interactive = true;
+                    list.root.el_data_localize_summary.value = !!(list.root.selected_data.flags & DataDataFlags.NO_LOCALIZE_SUMMARY);
                 } else {
                     list.root.el_data_localize.interactive = false;
                 }
@@ -120,12 +124,29 @@ function dialog_create_data_types(dialog) {
     var el_data_localize = create_checkbox(col2_x, yy, "Don't Localize", ew, eh, function(checkbox) {
         checkbox.root.selected_data.flags ^= DataDataFlags.NO_LOCALIZE;
     }, true, dg);
+    el_data_localize.tooltip = "This data type will not have any of its properties localized (this overrides individual options)";
     el_data_localize.interactive = false;
     dg.el_data_localize = el_data_localize;
     
     yy += el_data_localize.height + spacing;
     
-    var el_list_p = create_list(col2_x, yy, "Properties: ", "<name is implicit>", ew, eh, 13, function(list) {
+    var el_data_localize_name = create_checkbox(col2_x, yy, "Exclude Name", ew / 2, eh, function(checkbox) {
+        checkbox.root.selected_data.flags ^= DataDataFlags.NO_LOCALIZE_NAME;
+    }, true, dg);
+    el_data_localize_name.tooltip = "This data's name will not be localized (regardless of the above setting)";
+    el_data_localize_name.interactive = false;
+    dg.el_data_localize_name = el_data_localize_name;
+    
+    var el_data_localize_summary = create_checkbox(col2_x + 160, yy, "Summary", ew / 2, eh, function(checkbox) {
+        checkbox.root.selected_data.flags ^= DataDataFlags.NO_LOCALIZE_SUMMARY;
+    }, true, dg);
+    el_data_localize_summary.tooltip = "This data's summary will not be localized (regardless of the above setting)";
+    el_data_localize_summary.interactive = false;
+    dg.el_data_localize_summary = el_data_localize_summary;
+    
+    yy += el_data_localize_summary.height + spacing;
+    
+    var el_list_p = create_list(col2_x, yy, "Properties: ", "<name is implicit>", ew, eh, 12, function(list) {
         var selection = ui_list_selection(list);
         if (selection + 1) {
             var listofthings = list.root.selected_data.properties;
@@ -435,6 +456,8 @@ function dialog_create_data_types(dialog) {
         el_remove_p,
         // properties
         el_property_name,
+        el_data_localize_name,
+        el_data_localize_summary,
         el_property_localize,
         el_property_type,
         el_property_ext_type,

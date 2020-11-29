@@ -13,4 +13,6 @@ instances = ds_list_create();
 
 enum DataDataFlags {
     NO_LOCALIZE         = 0x010000,
+    NO_LOCALIZE_NAME    = 0x020000,
+    NO_LOCALIZE_SUMMARY = 0x040000,
 }

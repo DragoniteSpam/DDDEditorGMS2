@@ -2,6 +2,9 @@ function dialog_data_type_disable(dialog) {
     // turns off all of the UI elements associated with properties of data
     
     dialog.el_data_name.interactive = false;
+    dialog.el_data_localize.interactive = false;
+    dialog.el_data_localize_name.interactive = false;
+    dialog.el_data_localize_summary.interactive = false;
     dialog.el_add_p.interactive = false;
     dialog.el_remove_p.interactive = false;
     
