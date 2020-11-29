@@ -48,7 +48,7 @@ function dialog_create_mesh_normal_settings(root, selection) {
         var selection = button.root.selection;
         for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
             var mesh = Stuff.all_meshes[| index];
-            mesh_set_normals_smooth(mesh, Stuff.setting_normal_threshold);
+            mesh_set_normals_smooth(mesh, Stuff.settings.config.normal_threshold);
         }
         batch_again();
     }, dg);
@@ -56,9 +56,9 @@ function dialog_create_mesh_normal_settings(root, selection) {
     yy += el_smooth.height + spacing;
     
     var el_smooth_threshold = create_input(c1x, yy, "Threshold:", ew, eh, function(input) {
-        Stuff.setting_normal_threshold = real(input.value);
-        setting_set("Config", "normal-threshold", Stuff.setting_normal_threshold);
-    }, Stuff.setting_normal_threshold, "angle", validate_double, 0, 360, 5, vx1, vy1, vx2, vy2, dg);
+        Stuff.settings.config.normal_threshold = real(input.value);
+        setting_set("Config", "normal-threshold", Stuff.settings.config.normal_threshold);
+    }, Stuff.settings.config.normal_threshold, "angle", validate_double, 0, 360, 5, vx1, vy1, vx2, vy2, dg);
     el_smooth_threshold.tooltip = "The threshold which the angle between two triangles must be less than in order for their vertix normals to be smoothed. (A threshold of zero is the same as flat shading.)";
     yy += el_smooth_threshold.height + spacing;
     

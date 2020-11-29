@@ -5,7 +5,7 @@ function draw_editor_spart() {
     draw_clear(c_black);
     
     gpu_set_zwriteenable(true);
-    gpu_set_cullmode(Stuff.setting_view_backface ? cull_noculling : cull_counterclockwise);
+    gpu_set_cullmode(Stuff.settings.view.backface ? cull_noculling : cull_counterclockwise);
     // this used to be turned off for 2D maps and there was a comment saying weird things
     // would happen, but it was causing layering issues and i havent seen anything bad
     // happen from turning it off yet
@@ -22,7 +22,7 @@ function draw_editor_spart() {
     
     graphics_draw_water();
     
-    if (Stuff.setting_view_grid) {
+    if (Stuff.settings.view.grid) {
         transform_set(0, 0, Stuff.map.edit_z * TILE_DEPTH + 0.5, 0, 0, 0, 1, 1, 1);
         vertex_submit(Stuff.graphics.grid, pr_linelist, -1);
         transform_reset();

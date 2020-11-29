@@ -3,7 +3,7 @@
 function selected_border() {
 
     var entity = argument[0];
-    var mask = (argument_count > 1) ? argument[1] : Stuff.setting_selection_mask;
+    var mask = (argument_count > 1) ? argument[1] : Stuff.settings.selection.mask;
 
     if (entity.etype_flags & mask) {
         for (var i = 0; i < ds_list_size(Stuff.map.selection); i++) {

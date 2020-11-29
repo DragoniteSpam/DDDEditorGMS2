@@ -7,7 +7,7 @@ function ui_render_bitfield_option_text_selection_mask(argument0, argument1, arg
     var xx = argument1;
     var yy = argument2;
 
-    bitfield.state = (Stuff.setting_selection_mask & bitfield.value) == bitfield.value;
+    bitfield.state = (Stuff.settings.selection.mask & bitfield.value) == bitfield.value;
     ui_render_bitfield_option_text(bitfield, xx, yy);
 
 

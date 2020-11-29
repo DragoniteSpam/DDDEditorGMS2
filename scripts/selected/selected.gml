@@ -3,7 +3,7 @@
 function selected() {
 
     var entity = argument[0];
-    var mask = (argument_count > 1) ? argument[1] : Stuff.setting_selection_mask;
+    var mask = (argument_count > 1) ? argument[1] : Stuff.settings.selection.mask;
 
     if (!entity.exist_in_map) {
         return false;

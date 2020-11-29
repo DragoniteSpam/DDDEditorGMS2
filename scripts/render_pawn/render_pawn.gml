@@ -12,7 +12,7 @@ function render_pawn(argument0) {
     var spritesheet_frames = data ? data.hframes : 4;
 
     if (pawn.is_animating) {
-        pawn.frame = (pawn.frame + Stuff.setting_npc_animate_rate * (delta_time / MILLION)) % spritesheet_frames;
+        pawn.frame = (pawn.frame + Stuff.settings.config.npc_animate_rate * (delta_time / MILLION)) % spritesheet_frames;
     }
 
     var index = pawn.map_direction * data.hframes + floor(pawn.frame);

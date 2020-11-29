@@ -8,9 +8,9 @@ function draw_bezier(x1, y1, x2, y2) {
     var xb = xa;
     var yb = y2;
     
-    for (var i = 0; i < Stuff.setting_bezier_precision; i++) {
+    for (var i = 0; i < Stuff.settings.config.bezier_precision; i++) {
         p1 = p2;
-        p2 = bezier_point((i + 1) / Stuff.setting_bezier_precision, x1, y1, xa, ya, xb, yb, x2, y2);
+        p2 = bezier_point((i + 1) / Stuff.settings.config.bezier_precision, x1, y1, xa, ya, xb, yb, x2, y2);
         draw_line(p1[vec3.xx], p1[vec3.yy], p2[vec3.xx], p2[vec3.yy]);
     }
 }

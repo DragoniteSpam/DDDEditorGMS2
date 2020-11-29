@@ -1,10 +1,4 @@
-/// @param UIColorPicker
-function uivc_ui_color(argument0) {
-
-    var picker = argument0;
-
-    Stuff.setting_color = picker.value;
-    setting_set("Config", "color", Stuff.setting_color);
-
-
+function uivc_ui_color(picker) {
+    Stuff.settings.config.color = picker.value;
+    setting_set("Config", "color", Stuff.settings.config.color);
 }

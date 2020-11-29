@@ -54,18 +54,18 @@ function ui_init_main(mode) {
         #region tab: general
         var yy = legal_y + spacing;
         
-        element = create_radio_array(col1_x, yy, "Selection mode", col_width, element_height, uivc_radio_selection_mode, Stuff.setting_selection_mode, t_general);
+        element = create_radio_array(col1_x, yy, "Selection mode", col_width, element_height, uivc_radio_selection_mode, Stuff.settings.selection.mode, t_general);
         create_radio_array_options(element, ["Single", "Rectangle", "Circle"]);
         ds_list_add(t_general.contents, element);
         
         yy += ui_get_radio_array_height(element) + spacing;
         
-        element = create_checkbox(col1_x, yy, "Additive Selection", col_width, element_height, uivc_check_selection_addition, Stuff.setting_selection_addition, t_general);
+        element = create_checkbox(col1_x, yy, "Additive Selection", col_width, element_height, uivc_check_selection_addition, Stuff.settings.selection.addition, t_general);
         ds_list_add(t_general.contents, element);
         
         yy += element.height + spacing;
         
-        element = create_radio_array(col1_x, yy, "Fill Type", col_width, element_height, uivc_radio_fill_type, Stuff.setting_selection_fill_type, t_general);
+        element = create_radio_array(col1_x, yy, "Fill Type", col_width, element_height, uivc_radio_fill_type, Stuff.settings.selection.fill_type, t_general);
         create_radio_array_options(element, ["Tile", "Animated Tile", "Mesh", "Pawn", "Effect", "Mesh Autotile", "Zone"]);
         ds_list_add(t_general.contents, element);
         
@@ -100,55 +100,55 @@ function ui_init_main(mode) {
         
         yy = legal_y + spacing;
         
-        element = create_checkbox(col2_x, yy, "View Wireframes", col_width, element_height, uivc_check_view_wireframe, Stuff.setting_view_wireframe, t_general);
+        element = create_checkbox(col2_x, yy, "View Wireframes", col_width, element_height, uivc_check_view_wireframe, Stuff.settings.view.wireframe, t_general);
         element.tooltip = "Whether or not you want to view the wireframes to go with visual data.";
         ds_list_add(t_general.contents, element);
         
         yy += element.height + spacing;
         
-        element = create_checkbox(col2_x, yy, "View Grid and Markers", col_width, element_height, uivc_check_view_grids, Stuff.setting_view_grid, t_general);
+        element = create_checkbox(col2_x, yy, "View Grid and Markers", col_width, element_height, uivc_check_view_grids, Stuff.settings.view.grid, t_general);
         element.tooltip = "Whether or not you want to view the cell grid and grid axes.";
         ds_list_add(t_general.contents, element);
         
         yy += element.height + spacing;
         
-        element = create_checkbox(col2_x, yy, "View Texture", col_width, element_height, uivc_check_view_texture, Stuff.setting_view_texture, t_general);
+        element = create_checkbox(col2_x, yy, "View Texture", col_width, element_height, uivc_check_view_texture, Stuff.settings.view.texture, t_general);
         element.tooltip = "Whether or not to texture the visuals (to use the tilesets, in common terms). If off, a flat orange texture will be used instead. Most of the time you want this on.";
         ds_list_add(t_general.contents, element);
         
         yy += element.height + spacing;
         
-        element = create_checkbox(col2_x, yy, "View Entities", col_width, element_height, uivc_check_view_entities, Stuff.setting_view_entities, t_general);
+        element = create_checkbox(col2_x, yy, "View Entities", col_width, element_height, uivc_check_view_entities, Stuff.settings.view.entities, t_general);
         element.tooltip = "Whether or not entites should be visible. This is almost everything in the map, and turning it off is quite pointless.";
         ds_list_add(t_general.contents, element);
         
         yy += element.height + spacing;
         
-        element = create_checkbox(col2_x, yy, "View Backfaces", col_width, element_height, uivc_check_view_backface, Stuff.setting_view_backface, t_general);
+        element = create_checkbox(col2_x, yy, "View Backfaces", col_width, element_height, uivc_check_view_backface, Stuff.settings.view.backface, t_general);
         element.tooltip = "Whether the backs of triangles should be visible. There is a very small performance cost to turning them on. Generally, this is not needed.";
         ds_list_add(t_general.contents, element);
         
         yy += element.height + spacing;
         
-        element = create_checkbox(col2_x, yy, "View Zones", col_width, element_height, uivc_check_view_zones, Stuff.setting_view_zones, t_general);
+        element = create_checkbox(col2_x, yy, "View Zones", col_width, element_height, uivc_check_view_zones, Stuff.settings.view.zones, t_general);
         element.tooltip = "Map zones for things like camera and lighting controls. If you have a lot of them, it can become hard to see through them. Zones can only be blicked on when this is turned on.";
         ds_list_add(t_general.contents, element);
         
         yy += element.height + spacing;
         
-        element = create_checkbox(col2_x, yy, "View Lighting", col_width, element_height, uivc_check_view_lighting, Stuff.setting_view_lighting, t_general);
+        element = create_checkbox(col2_x, yy, "View Lighting", col_width, element_height, uivc_check_view_lighting, Stuff.settings.view.lighting, t_general);
         element.tooltip = "See how the scene looks with lighting. This also affects fog. You may wish to turn this off if you find yourself having a hard time seeing with the lights enabled.";
         ds_list_add(t_general.contents, element);
         
         yy += element.height + spacing;
         
-        element = create_checkbox(col2_x, yy, "View Gizmos", col_width, element_height, uivc_check_view_gizmos, Stuff.setting_view_gizmos, t_general);
+        element = create_checkbox(col2_x, yy, "View Gizmos", col_width, element_height, uivc_check_view_gizmos, Stuff.settings.view.gizmos, t_general);
         element.tooltip = "The helpful frames you see around light sources and other effects and that sort of thing.";
         ds_list_add(t_general.contents, element);
         
         yy += element.height + spacing;
         
-        element = create_checkbox(col2_x, yy, "View Terrain", col_width, element_height, uivc_check_view_terrain, Stuff.setting_view_gizmos, t_general);
+        element = create_checkbox(col2_x, yy, "View Terrain", col_width, element_height, uivc_check_view_terrain, Stuff.settings.view.gizmos, t_general);
         element.tooltip = "The helpful frames you see around light sources and other effects and that sort of thing.";
         ds_list_add(t_general.contents, element);
         
@@ -960,7 +960,7 @@ function ui_init_main(mode) {
         element = create_list(col1_x, yy, "Zone type", "<no zone types>", col_width, element_height, 8, uivc_zone_type, false, t_p_other_editor);
         element.colorize = false;
         element.allow_deselect = false;
-        ui_list_select(element, Stuff.setting_selection_zone_type);
+        ui_list_select(element, Stuff.settings.selection.zone_type);
         create_list_entries(element, ["Camera Zone"], ["Light Zone"], ["Flag Zone"]);
         ds_list_add(t_p_other_editor.contents, element);
         t_p_other_editor.el_zone_type = element;
