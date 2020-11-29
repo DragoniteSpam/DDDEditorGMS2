@@ -74,7 +74,7 @@ function hex(str) {
             result = result + (c - A + 10);
         // otherwise complain
         } else {
-            show_error("bad input for hex(str): " + str, true);
+            throw "bad input for hex(str): " + str;
         }
     }
     

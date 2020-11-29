@@ -40,8 +40,8 @@ function string_hash_simple(str) {
 
 /// @param value
 /// @param [pad=0]
-function string_hex() {
-    var value = argument[0];
+function string_hex(value) {
+    value = argument[0];
     var padding = (argument_count > 1) ? argument[1] : 0;
     
     var s = sign(value);
