@@ -141,6 +141,7 @@ setting_normal_threshold = setting_get("Config", "normal-threshold", 30);   // d
 setting_tooltip = setting_get("Config", "tooltip", true);                   // bool
 setting_camera_fly_rate = setting_get("Config", "camera-fly", 1);           // 0.5 ... 4
 setting_alternate_middle = setting_get("Config", "alt-mid", false);         // bool
+setting_color_world = setting_get("Config", "color-world", c_white);        // BGR
 
 setting_location_ddd = setting_get("Location", "ddd", "./");
 setting_location_mesh = setting_get("Location", "mesh", "./");

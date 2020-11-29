@@ -6,7 +6,7 @@ function momu_exit() {
 
 function momu_preferences() {
     menu_activate(noone);
-    dialog_create_preferences(noone);
+    dialog_create_preferences();
 }
 
 function momu_save_data() {
