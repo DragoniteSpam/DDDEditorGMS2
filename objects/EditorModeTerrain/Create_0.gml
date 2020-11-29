@@ -35,7 +35,7 @@ update = editor_update_terrain;
 render = function() {
     gpu_set_cullmode(cull_noculling);
     switch (view_current) {
-        case view_3d: draw_clear(c_black); draw_editor_terrain(); draw_editor_3d(Stuff.map); break;
+        case view_3d: draw_clear(Stuff.setting_color_world); draw_editor_terrain(); draw_editor_3d(Stuff.map); break;
         case view_ribbon: draw_editor_terrain_menu(); break;
         case view_hud: draw_editor_hud(); break;
     }

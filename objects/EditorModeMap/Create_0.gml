@@ -31,7 +31,7 @@ direction = point_direction(x, y, xto, yto);
 update = editor_update_map;
 render = function() {
     switch (view_current) {
-        case view_3d: draw_clear(c_black); draw_editor_3d(); break;
+        case view_3d: draw_clear(Stuff.setting_color_world); draw_editor_3d(); break;
         case view_ribbon: draw_editor_menu(true); break;
         case view_hud: draw_editor_hud(); break;
     }
