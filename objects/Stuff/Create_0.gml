@@ -177,7 +177,13 @@ if (!EDITOR_FORCE_SINGLE_MODE) {
 setting_code_extension_map = [".txt", ".lua", ".gml"];
 setting_text_extension_map = [".txt", ".md"];
 
-setting_hide_warnings = ds_map_create();
+setting_hide_warnings = { };
+
+#region warning types
+#macro warn_untranslated_strings "EXPORT-UNTRANSLATED"
+#macro warn_untranslated_strings_as_is 1
+#macro warn_untranslated_strings_as_default 2
+#endregion
 
 alarm[ALARM_SETTINGS_SAVE] = room_speed * CAMERA_SAVE_FREQUENCY;
 #endregion

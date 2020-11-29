@@ -181,3 +181,14 @@ function language_refresh_ui() {
         }
     }
 }
+
+function language_set_default_text() {
+    var default_lang = Stuff.all_localized_text[$ Stuff.all_languages[| 0]];
+    var keys = variable_struct_get_names(default_lang);
+    for (var i = 1; i < ds_list_size(Stuff.all_languages); i++) {
+        var lang = Stuff.all_localized_text[$ Stuff.all_languages[| i]];
+        for (var j = 0; j < array_length(keys); j++) {
+            if (lang[$ keys[j]] == "") lang[$ keys[j]] = default_lang[$ keys[j]];
+        }
+    }
+}
