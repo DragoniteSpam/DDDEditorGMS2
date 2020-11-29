@@ -45,12 +45,12 @@ function language_extract() {
                     if (!(datadata.flags & DataDataFlags.NO_LOCALIZE)) {
                         if (inst.name != "") {
                             var key = "Data." + inst.internal_name + ".@NAME@";
-                            lang[$ key] = (lang_index == 0) ? inst.name : "";
+                            lang[$ key] = (lang_index == 0) ? inst.name : ((lang[$ key] != undefined) ? lang[$ key] : "");
                             existing_keys[$ key] = false;
                         }
                         if (inst.summary != "") {
                             var key = "Data." + inst.internal_name + ".@SUMMARY@";
-                            lang[$ key] = (lang_index == 0) ? inst.summary : "";
+                            lang[$ key] = (lang_index == 0) ? inst.summary : ((lang[$ key] != undefined) ? lang[$ key] : "");
                             existing_keys[$ key] = false;
                         }
                     }
@@ -58,7 +58,7 @@ function language_extract() {
                         var text = inst.values[| j][| m];
                         if (text == "") continue;
                         var key = "Data." + inst.internal_name + "." + property.name + ((m > 0) ? "." + string(m) : "");
-                        lang[$ key] = (lang_index == 0) ? text : "";
+                        lang[$ key] = (lang_index == 0) ? text : ((lang[$ key] != undefined) ? lang[$ key] : "");
                         existing_keys[$ key] = false;
                     }
                 }
@@ -70,7 +70,7 @@ function language_extract() {
             var const = Stuff.all_game_constants[| i];
             if (const.type != DataTypes.STRING) continue;
             var key = "Const." + const.name;
-            lang[$ key] = (lang_index == 0) ? const.value_string : "";
+            lang[$ key] = (lang_index == 0) ? const.value_string : ((lang[$ key] != undefined) ? lang[$ key] : "");
             existing_keys[$ key] = false;
         }
         #endregion
@@ -81,7 +81,7 @@ function language_extract() {
                 var gen = map.generic_data[| j];
                 if (gen.type != DataTypes.STRING) continue;
                 var key = "Map." + map.internal_name + "." + gen.name;
-                lang[$ key] = (lang_index == 0) ? gen.value_string : "";
+                lang[$ key] = (lang_index == 0) ? gen.value_string : ((lang[$ key] != undefined) ? lang[$ key] : "");
                 existing_keys[$ key] = false;
             }
         }
@@ -97,7 +97,7 @@ function language_extract() {
                         var gen = entity.generic_data[| j];
                         if (gen.type != DataTypes.STRING) continue;
                         var key = "Map." + entity.name + "." + entity.REFID + "." + gen.name;
-                        lang[$ key] = (lang_index == 0) ? gen.value_string : "";
+                        lang[$ key] = (lang_index == 0) ? gen.value_string : ((lang[$ key] != undefined) ? lang[$ key] : "");
                         existing_keys[$ key] = false;
                     }
                 }
@@ -110,7 +110,7 @@ function language_extract() {
                             var gen = entity.generic_data[| j];
                             if (gen.type != DataTypes.STRING) continue;
                             var key = "Map." + map.name + "." + entity.name + "." + entity.REFID + "." + gen.name;
-                            lang[$ key] = (lang_index == 0) ? gen.value_string : "";
+                            lang[$ key] = (lang_index == 0) ? gen.value_string : ((lang[$ key] != undefined) ? lang[$ key] : "");
                             existing_keys[$ key] = false;
                         }
                         instance_activate_object(entity);
@@ -134,7 +134,7 @@ function language_extract() {
                     case EventNodeTypes.SHOW_CHOICES:
                         for (var k = 0; k < ds_list_size(node.data); k++) {
                             var key = "Event." + node.name + "." + string(node.GUID) + ".data." + string(k);
-                            lang[$ key] = (lang_index == 0) ? node.data[| k] : "";
+                            lang[$ key] = (lang_index == 0) ? node.data[| k] : ((lang[$ key] != undefined) ? lang[$ key] : "");
                             existing_keys[$ key] = false;
                         }
                         break;
@@ -144,7 +144,7 @@ function language_extract() {
                             if (custom.types[| k][EventNodeCustomData.TYPE] == DataTypes.STRING) {
                                 for (var l = 0; l < ds_list_size(node.custom_data[| k]); l++) {
                                     var key = "Event." + node.name + "." + string(node.GUID) + ".custom." + string(k) + "." + string(l);
-                                    lang[$ key] = (lang_index == 0) ? node.custom_data[| k][| l] : "";
+                                    lang[$ key] = (lang_index == 0) ? node.custom_data[| k][| l] : ((lang[$ key] != undefined) ? lang[$ key] : "");
                                     existing_keys[$ key] = false;
                                 }
                             }
