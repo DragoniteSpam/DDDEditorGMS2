@@ -320,7 +320,7 @@ function ui_init_text(mode) {
         
         yy = yy_base;
         
-        element = create_text(c4x, yy, "Default text:", ew, eh, fa_left, ew, id);
+        element = create_text(c4x, yy, "Default text value:", ew, eh, fa_left, ew, id);
         ds_list_add(contents, element);
         yy += element.height + spacing;
         

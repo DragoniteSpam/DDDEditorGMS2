@@ -30,7 +30,7 @@ if (schedule_rebuild_autotile_texture) {
 }
 
 if (schedule_save) {
-    serialize_save_data();
+    serialize_save_complete();
     schedule_save = false;
 }
 

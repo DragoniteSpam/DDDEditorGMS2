@@ -1372,6 +1372,7 @@
     {"id":{"name":"dmu_input_audio_se_rate_441","path":"scripts/dmu_input_audio_se_rate_441/dmu_input_audio_se_rate_441.yy",},"order":5,},
     {"id":{"name":"dmu_input_audio_se_rate_48","path":"scripts/dmu_input_audio_se_rate_48/dmu_input_audio_se_rate_48.yy",},"order":6,},
     {"id":{"name":"dmu_input_audio_bgm_rate_48","path":"scripts/dmu_input_audio_bgm_rate_48/dmu_input_audio_bgm_rate_48.yy",},"order":7,},
+    {"id":{"name":"serialize_save_complete","path":"scripts/serialize_save_complete/serialize_save_complete.yy",},"order":10,},
     {"id":{"name":"dmu_input_audio_bgm_rate_441","path":"scripts/dmu_input_audio_bgm_rate_441/dmu_input_audio_bgm_rate_441.yy",},"order":8,},
     {"id":{"name":"uivc_input_audio_bgm_rate","path":"scripts/uivc_input_audio_bgm_rate/uivc_input_audio_bgm_rate.yy",},"order":9,},
     {"id":{"name":"uivc_input_audio_loop_start","path":"scripts/uivc_input_audio_loop_start/uivc_input_audio_loop_start.yy",},"order":10,},
