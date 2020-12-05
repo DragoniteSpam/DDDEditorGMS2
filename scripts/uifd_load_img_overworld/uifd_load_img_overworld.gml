@@ -4,5 +4,8 @@ function uifd_load_img_overworld(thing, files) {
         var data = graphics_add_generic(filtered_list[| i], PREFIX_GRAPHIC_OVERWORLD, thing.root.el_list.entries);
         data.hframes = 4;
         data.vframes = 4;
+    
+        data_image_force_power_two(data);
+        data_image_npc_frames(data);
     }
 }
