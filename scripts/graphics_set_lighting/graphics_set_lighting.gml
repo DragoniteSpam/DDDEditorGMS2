@@ -2,7 +2,7 @@ function graphics_set_lighting(shader) {
     // this will need to be modified if / when it gets added to the terrain editor
     var map = Stuff.map.active_map;
     var map_contents = map.contents;
-    var light_enabled = Stuff.settings.view.lighting && map.light_enabled;
+    var light_enabled = Settings.view.lighting && map.light_enabled;
     
     shader_set(shader);
     var light_data = array_create(MAX_LIGHTS * 12);
@@ -59,7 +59,7 @@ function graphics_set_lighting(shader) {
         shader_set_uniform_f(shader_get_uniform(shader, "lightWeatherColor"), (weather_color & 0x0000ff) / 0xff, ((weather_color & 0x00ff00) >> 8) / 0xff, (weather_color >> 16) / 0xff);
     shader_set_uniform_f_array(shader_get_uniform(shader, "lightData"), light_data);
     
-    shader_set_uniform_f(shader_get_uniform(shader, "fogStrength"), (Stuff.settings.view.lighting && map.fog_enabled) ? 1 : 0);
+    shader_set_uniform_f(shader_get_uniform(shader, "fogStrength"), (Settings.view.lighting && map.fog_enabled) ? 1 : 0);
     shader_set_uniform_f(shader_get_uniform(shader, "fogStart"), map.fog_start);
     shader_set_uniform_f(shader_get_uniform(shader, "fogEnd"), map.fog_end);
     shader_set_uniform_f(shader_get_uniform(shader, "fogColor"), (map.fog_colour & 0x0000ff) / 0xff, ((map.fog_colour & 0x00ff00) >> 8) / 0xff, ((map.fog_colour & 0xff0000) >> 16) / 0xff);

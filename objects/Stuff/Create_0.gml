@@ -74,74 +74,8 @@ if (file_exists("projects.json")) {
     ds_map_add_list(all_projects, "projects", ds_list_create());
 }
 
-try {
-    var json_buffer = buffer_load(FILE_SETTINGS);
-    settings = json_parse(buffer_read(json_buffer, buffer_string));
-    buffer_delete(json_buffer);
-} catch (e) {
-    settings = {
-        map: { },
-        animation: { },
-        terrain: { },
-        event: { },
-        data: { },
-        config: { },
-        location: { },
-        selection: { },
-        view: { },
-        particle: { },
-        mesh: { },
-        spart: { },
-        hide_warnings: { },
-    };
-}
-
-if (settings.config[$ "color"] == undefined)                settings.config.color = c_green;
-if (settings.config[$ "focus_alpha"] == undefined)          settings.config.focus_alpha = 0;
-if (settings.config[$ "bezier_precision"] == undefined)     settings.config.bezier_precision = 6;
-if (settings.config[$ "npc_animate_rate"] == undefined)     settings.config.npc_animate_rate = 4;
-if (settings.config[$ "code_extension"] == undefined)       settings.config.code_extension = 1;
-if (settings.config[$ "text_extension"] == undefined)       settings.config.text_extension = 0;
-if (settings.config[$ "normal_threshold"] == undefined)     settings.config.normal_threshold = 30;
-if (settings.config[$ "tooltip"] == undefined)              settings.config.tooltip = true;
-if (settings.config[$ "camera_fly_rate"] == undefined)      settings.config.camera_fly_rate = 1;
-if (settings.config[$ "alternate_middle"] == undefined)     settings.config.alternate_middle = false;
-if (settings.config[$ "color_world"] == undefined)          settings.config.color_world = c_black;
-if (settings.config[$ "mode"] == undefined)                 settings.config.mode = EDITOR_BASE_MODE;
-
-if (settings.location[$ "ddd"] == undefined)                settings.location.ddd = "";
-if (settings.location[$ "mesh"] == undefined)               settings.location.mesh = "";
-if (settings.location[$ "terrain"] == undefined)            settings.location.terrain = "";
-if (settings.location[$ "image"] == undefined)              settings.location.image = "";
-if (settings.location[$ "gml"] == undefined)                settings.location.gml = "";
-if (settings.location[$ "audio"] == undefined)              settings.location.audio = "";
-if (settings.location[$ "text"] == undefined)               settings.location.text = "";
-if (settings.location[$ "tiled"] == undefined)              settings.location.tiled = "";
-
-if (settings.selection[$ "mode"] == undefined)              settings.selection.mode = SelectionModes.RECTANGLE;
-if (settings.selection[$ "addition"] == undefined)          settings.selection.addition = false;
-if (settings.selection[$ "fill_type"] == undefined)         settings.selection.fill_type = FillTypes.TILE;
-if (settings.selection[$ "zone_type"] == undefined)         settings.selection.zone_type = MapZoneTypes.CAMERA;
-if (settings.selection[$ "mask"] == undefined)              settings.selection.mask = ETypeFlags.ENTITY_ANY;
-
-if (settings.view[$ "wireframe"] == undefined)              settings.view.wireframe = false;
-if (settings.view[$ "grid"] == undefined)                   settings.view.grid = true;
-if (settings.view[$ "backface"] == undefined)               settings.view.backface = false;
-if (settings.view[$ "texture"] == undefined)                settings.view.texture = true;
-if (settings.view[$ "entities"] == undefined)               settings.view.entities = true;
-if (settings.view[$ "zones"] == undefined)                  settings.view.zones = true;
-if (settings.view[$ "lighting"] == undefined)               settings.view.lighting = true;
-if (settings.view[$ "gizmos"] == undefined)                 settings.view.gizmos = true;
-if (settings.view[$ "terrain"] == undefined)                settings.view.terrain = true;
-
 code_extension_map = [".txt", ".lua", ".gml"];
 text_extension_map = [".txt", ".md"];
-
-#region warning types
-#macro warn_untranslated_strings "EXPORT-UNTRANSLATED"
-#macro warn_untranslated_strings_as_is 1
-#macro warn_untranslated_strings_as_default 2
-#endregion
 
 alarm[ALARM_SETTINGS_SAVE] = room_speed * CAMERA_SAVE_FREQUENCY;
 #endregion
@@ -579,7 +513,7 @@ enum GameDataCategories {
 #endregion
 
 // default editor mode
-switch (EDITOR_FORCE_SINGLE_MODE ? EDITOR_BASE_MODE : settings.config.mode) {
+switch (EDITOR_FORCE_SINGLE_MODE ? EDITOR_BASE_MODE : Settings.config.mode) {
     case ModeIDs.MAP: editor_mode_3d(); break;
     case ModeIDs.EVENT: editor_mode_event(); break;
     case ModeIDs.DATA: editor_mode_data(); break;

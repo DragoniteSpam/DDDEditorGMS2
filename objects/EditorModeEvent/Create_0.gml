@@ -3,11 +3,11 @@ event_inherited();
 def_x = 0;
 def_y = 100;
 
-if (Stuff.settings.event[$ "x"] == undefined)                 Stuff.settings.event.x = def_x;
-if (Stuff.settings.event[$ "y"] == undefined)                 Stuff.settings.event.y = def_y;
+if (Settings.event[$ "x"] == undefined)                 Settings.event.x = def_x;
+if (Settings.event[$ "y"] == undefined)                 Settings.event.y = def_y;
 
-x = Stuff.settings.event.x;
-y = Stuff.settings.event.y;
+x = Settings.event.x;
+y = Settings.event.y;
 
 render = function() {
     gpu_set_cullmode(cull_noculling);
@@ -18,8 +18,8 @@ render = function() {
     }
 };
 save = function() {
-    Stuff.settings.event.x = self.x;
-    Stuff.settings.event.y = self.y;
+    Settings.event.x = self.x;
+    Settings.event.y = self.y;
 };
 
 canvas_active_node = noone;

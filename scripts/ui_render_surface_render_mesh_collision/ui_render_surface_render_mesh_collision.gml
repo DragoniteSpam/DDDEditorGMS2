@@ -21,7 +21,7 @@ function ui_render_surface_render_mesh_collision(argument0, argument1, argument2
 
     gpu_set_zwriteenable(true);
     gpu_set_ztestenable(true);
-    gpu_set_cullmode(Stuff.settings.view.backface ? cull_noculling : cull_counterclockwise);
+    gpu_set_cullmode(Settings.view.backface ? cull_noculling : cull_counterclockwise);
 
     var s = 256;
     var fov = 45;   // meh

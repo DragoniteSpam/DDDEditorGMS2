@@ -9,7 +9,7 @@ function render_mesh_smf(argument0) {
     transform_add(0, 0, 0, 0, 0, 0, entity.scale_xx, entity.scale_yy, entity.scale_zz);
     transform_add((entity.xx + entity.off_xx) * TILE_WIDTH, (entity.yy + entity.off_yy) * TILE_HEIGHT, (entity.zz + entity.off_zz) * TILE_DEPTH, 0, 0, 0, 1, 1, 1);
 
-    if (Stuff.settings.view.entities) {
+    if (Settings.view.entities) {
         if (entity.animated) {
             var animation_index = entity.animation_index;
             var animation_type = entity.animation_type;

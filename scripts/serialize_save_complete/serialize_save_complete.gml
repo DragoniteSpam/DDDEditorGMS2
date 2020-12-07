@@ -9,7 +9,7 @@ function serialize_save_complete() {
         }
     }
     
-    switch (Stuff.settings.hide_warnings[$ warn_untranslated_strings]) {
+    switch (Settings.hide_warnings[$ warn_untranslated_strings]) {
         case undefined:
             if (untranslated) {
                 var dw = 560;
@@ -27,14 +27,14 @@ function serialize_save_complete() {
                 }, dg);
                 var el_confirm_as_is = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Export as-is", b_width, b_height, fa_center, function(button) {
                     if (button.root.el_remember.value) {
-                        Stuff.settings.hide_warnings[$ warn_untranslated_strings] = warn_untranslated_strings_as_is;
+                        Settings.hide_warnings[$ warn_untranslated_strings] = warn_untranslated_strings_as_is;
                     }
                     serialize_save_data();
                     dialog_destroy();
                 }, dg);
                 var el_confirm_default = create_button(dw * 3 / 4 - b_width / 2, dh - 32 - b_height / 2, "Export defaults", b_width, b_height, fa_center, function(button) {
                     if (button.root.el_remember.value) {
-                        Stuff.settings.hide_warnings[$ warn_untranslated_strings] = warn_untranslated_strings_as_default;
+                        Settings.hide_warnings[$ warn_untranslated_strings] = warn_untranslated_strings_as_default;
                     }
                     language_set_default_text();
                     serialize_save_data();

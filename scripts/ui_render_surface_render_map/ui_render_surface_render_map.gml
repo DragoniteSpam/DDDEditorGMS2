@@ -5,10 +5,10 @@ function ui_render_surface_render_map(surface, x1, y1, x2, y2) {
     var camera = view_get_camera(view_current);
     var active_view_mat = camera_get_view_mat(camera);
     var active_proj_mat = camera_get_proj_mat(camera);
-    draw_clear(Stuff.settings.config.color_world);
+    draw_clear(Settings.config.color_world);
     
     gpu_set_zwriteenable(true);
-    gpu_set_cullmode(Stuff.settings.view.backface ? cull_noculling : cull_counterclockwise);
+    gpu_set_cullmode(Settings.view.backface ? cull_noculling : cull_counterclockwise);
     gpu_set_ztestenable(map.is_3d);        // this will make things rather odd with the wrong setting
     
     draw_set_color(c_white);
@@ -37,7 +37,7 @@ function ui_render_surface_render_map(surface, x1, y1, x2, y2) {
         vertex_submit(map.wpreview, pr_linelist, -1);
     }
     
-    if (Stuff.settings.view.grid) {
+    if (Settings.view.grid) {
         transform_set(0, 0, 0.5, 0, 0, 0, 1, 1, 1);
         vertex_submit(Stuff.graphics.grid, pr_linelist, -1);
     }

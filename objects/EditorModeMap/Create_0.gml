@@ -11,27 +11,27 @@ def_yup = 0;
 def_zup = 1;
 def_fov = 60;
 
-if (Stuff.settings.map[$ "x"] == undefined)                   Stuff.settings.map.x = def_x;
-if (Stuff.settings.map[$ "y"] == undefined)                   Stuff.settings.map.y = def_y;
-if (Stuff.settings.map[$ "z"] == undefined)                   Stuff.settings.map.z = def_z;
-if (Stuff.settings.map[$ "xto"] == undefined)                 Stuff.settings.map.xto = def_xto;
-if (Stuff.settings.map[$ "yto"] == undefined)                 Stuff.settings.map.yto = def_yto;
-if (Stuff.settings.map[$ "zto"] == undefined)                 Stuff.settings.map.zto = def_zto;
-if (Stuff.settings.map[$ "xup"] == undefined)                 Stuff.settings.map.xup = def_xup;
-if (Stuff.settings.map[$ "yup"] == undefined)                 Stuff.settings.map.yup = def_yup;
-if (Stuff.settings.map[$ "zup"] == undefined)                 Stuff.settings.map.zup = def_zup;
-if (Stuff.settings.map[$ "fov"] == undefined)                 Stuff.settings.map.fov = def_fov;
+if (Settings.map[$ "x"] == undefined)                   Settings.map.x = def_x;
+if (Settings.map[$ "y"] == undefined)                   Settings.map.y = def_y;
+if (Settings.map[$ "z"] == undefined)                   Settings.map.z = def_z;
+if (Settings.map[$ "xto"] == undefined)                 Settings.map.xto = def_xto;
+if (Settings.map[$ "yto"] == undefined)                 Settings.map.yto = def_yto;
+if (Settings.map[$ "zto"] == undefined)                 Settings.map.zto = def_zto;
+if (Settings.map[$ "xup"] == undefined)                 Settings.map.xup = def_xup;
+if (Settings.map[$ "yup"] == undefined)                 Settings.map.yup = def_yup;
+if (Settings.map[$ "zup"] == undefined)                 Settings.map.zup = def_zup;
+if (Settings.map[$ "fov"] == undefined)                 Settings.map.fov = def_fov;
 
-x = Stuff.settings.map.x;
-y = Stuff.settings.map.y;
-z = Stuff.settings.map.z;
-xto = Stuff.settings.map.xto;
-yto = Stuff.settings.map.yto;
-zto = Stuff.settings.map.zto;
-xup = Stuff.settings.map.xup;
-yup = Stuff.settings.map.yup;
-zup = Stuff.settings.map.zup;
-fov = Stuff.settings.map.fov;
+x = Settings.map.x;
+y = Settings.map.y;
+z = Settings.map.z;
+xto = Settings.map.xto;
+yto = Settings.map.yto;
+zto = Settings.map.zto;
+xup = Settings.map.xup;
+yup = Settings.map.yup;
+zup = Settings.map.zup;
+fov = Settings.map.fov;
 
 pitch = darctan2(z - zto, point_distance(x, y, xto, yto));
 direction = point_direction(x, y, xto, yto);
@@ -39,23 +39,23 @@ direction = point_direction(x, y, xto, yto);
 update = editor_update_map;
 render = function() {
     switch (view_current) {
-        case view_3d: draw_clear(Stuff.settings.config.color_world); draw_editor_3d(); break;
+        case view_3d: draw_clear(Settings.config.color_world); draw_editor_3d(); break;
         case view_ribbon: draw_editor_menu(true); break;
         case view_hud: draw_editor_hud(); break;
     }
 };
 cleanup = editor_cleanup_map;
 save = function() {
-    Stuff.settings.map.x = self.x;
-    Stuff.settings.map.y = self.y;
-    Stuff.settings.map.z = self.z;
-    Stuff.settings.map.xto = self.xto;
-    Stuff.settings.map.yto = self.yto;
-    Stuff.settings.map.zto = self.zto;
-    Stuff.settings.map.xup = self.xup;
-    Stuff.settings.map.yup = self.yup;
-    Stuff.settings.map.zup = self.zup;
-    Stuff.settings.map.fov = self.fov;
+    Settings.map.x = self.x;
+    Settings.map.y = self.y;
+    Settings.map.z = self.z;
+    Settings.map.xto = self.xto;
+    Settings.map.yto = self.yto;
+    Settings.map.zto = self.zto;
+    Settings.map.xup = self.xup;
+    Settings.map.yup = self.yup;
+    Settings.map.zup = self.zup;
+    Settings.map.fov = self.fov;
 };
 changes = ds_list_create();
 

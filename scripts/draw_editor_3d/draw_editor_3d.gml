@@ -3,7 +3,7 @@ function draw_editor_3d() {
     var map_contents = map.contents;
     
     draw_set_color(c_white);
-    gpu_set_cullmode(Stuff.settings.view.backface ? cull_noculling : cull_counterclockwise);
+    gpu_set_cullmode(Settings.view.backface ? cull_noculling : cull_counterclockwise);
     
     var camera = view_get_camera(view_current);
     var z2d = 1600;
@@ -35,7 +35,7 @@ function draw_editor_3d() {
     gpu_set_zwriteenable(true);
     gpu_set_ztestenable(true);
     
-    if (Stuff.settings.view.terrain) {
+    if (Settings.view.terrain) {
         graphics_set_lighting(shd_terrain);
         matrix_set(matrix_world, matrix_build(0, 0, 0, 0, 0, 0, 16, 16, 16));
         vertex_submit(Stuff.terrain.terrain_buffer, pr_trianglelist, -1);
@@ -45,22 +45,22 @@ function draw_editor_3d() {
     graphics_set_lighting(shd_ddd);
     
     // this will need to be dynamic at some point
-    var tex = Stuff.settings.view.texture ? sprite_get_texture(get_active_tileset().picture, 0) : sprite_get_texture(b_tileset_textureless, 0);
+    var tex = Settings.view.texture ? sprite_get_texture(get_active_tileset().picture, 0) : sprite_get_texture(b_tileset_textureless, 0);
     
     #region entities
-    if (map_contents.frozen && Stuff.settings.view.entities) {
+    if (map_contents.frozen && Settings.view.entities) {
         vertex_submit(map_contents.frozen, pr_trianglelist, tex);
     }
-    if (map_contents.frozen_wire && Stuff.settings.view.entities && Stuff.settings.view.wireframe) {
+    if (map_contents.frozen_wire && Settings.view.entities && Settings.view.wireframe) {
         vertex_submit(map_contents.frozen_wire, pr_linelist, -1);
     }
     
     for (var i = 0; i < ds_list_size(map_contents.batch_data); i++) {
         var data = map_contents.batch_data[| i];
-        if (Stuff.settings.view.entities) {
+        if (Settings.view.entities) {
             vertex_submit(data[? "vertex"], pr_trianglelist, tex);
         }
-        if (Stuff.settings.view.wireframe) {
+        if (Settings.view.wireframe) {
             vertex_submit(data[? "wire"], pr_linelist, -1);
         }
     }
@@ -112,7 +112,7 @@ function draw_editor_3d() {
     #endregion
     
     #region grids, selection boxes, zones
-    if (Stuff.settings.view.grid) {
+    if (Settings.view.grid) {
         transform_set(0, 0, Stuff.map.edit_z * TILE_DEPTH + 0.5, 0, 0, 0, 1, 1, 1);
         vertex_submit(Stuff.graphics.grid, pr_linelist, -1);
         transform_reset();
@@ -126,7 +126,7 @@ function draw_editor_3d() {
         script_execute(sel.render, sel);
     }
     
-    if (Stuff.settings.view.zones) {
+    if (Settings.view.zones) {
         for (var i = 0; i < ds_list_size(map_contents.all_zones); i++) {
             zone_render_rectangle(map_contents.all_zones[| i]);
         }

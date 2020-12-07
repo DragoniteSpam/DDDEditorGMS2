@@ -108,7 +108,7 @@ function dialog_default(dialog) {
     var ty = y1 + header_height / 2;
     
     if (active && dialog.active_shade && !Stuff.drawn_dialog_shade) {
-        draw_set_alpha(Stuff.settings.config.focus_alpha);
+        draw_set_alpha(Settings.config.focus_alpha);
         draw_rectangle_colour(0, 0, window_get_width(), window_get_height(), c_black, c_black, c_black, c_black, false);
         draw_set_alpha(1);
         Stuff.drawn_dialog_shade = true;
@@ -118,7 +118,7 @@ function dialog_default(dialog) {
     draw_rectangle_colour(x1, y1, x2, y2, c_white, c_white, c_white, c_white, false);
     draw_rectangle_colour(x1, y1, x2, y2, c_black, c_black, c_black, c_black, true);
     
-    var hc = active ? Stuff.settings.config.color : merge_colour(Stuff.settings.config.color, c_white, 0.75);
+    var hc = active ? Settings.config.color : merge_colour(Settings.config.color, c_white, 0.75);
     
     draw_rectangle_colour(x1, y1, x2, y1 + header_height, hc, hc, hc, hc, false);
     draw_line_colour(x1, y1 + header_height, x2, y1 + header_height, c_black, c_black);

@@ -127,15 +127,15 @@ function control_map(mode) {
                 
                 if (Controller.press_left) {
                     if (ds_list_size(mode.selection) < MAX_SELECTION_COUNT) {
-                        if (!keyboard_check(Controller.input_selection_add) && !Stuff.settings.selection.addition) {
+                        if (!keyboard_check(Controller.input_selection_add) && !Settings.selection.addition) {
                             selection_clear();
                         }
-                        switch (Stuff.settings.selection.mode) {
+                        switch (Settings.selection.mode) {
                             case SelectionModes.SINGLE: var stype = SelectionSingle; break;
                             case SelectionModes.RECTANGLE: var stype = SelectionRectangle; break;
                             case SelectionModes.CIRCLE: var stype = SelectionCircle; break;
                             // not sure why it broke once, but just in case
-                            default: Stuff.settings.selection.mode = SelectionModes.RECTANGLE; var stype = SelectionRectangle; break;
+                            default: Settings.selection.mode = SelectionModes.RECTANGLE; var stype = SelectionRectangle; break;
                         }
                         
                         var button = Stuff.map.ui.t_p_other.el_zone_data;

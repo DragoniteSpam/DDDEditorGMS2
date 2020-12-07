@@ -8,7 +8,7 @@ function ui_render_bitfield_option_text_selection_mask_all(argument0, argument1,
     var yy = argument2;
 
     // bitwise has its limits
-    bitfield.state = (Stuff.settings.selection.mask == ETypeFlags.ENTITY_ANY);
+    bitfield.state = (Settings.selection.mask == ETypeFlags.ENTITY_ANY);
 
     ui_render_bitfield_option_text(bitfield, xx, yy);
 

@@ -39,7 +39,7 @@ function map_zone_collision(argument0) {
     c_object_set_userid(zone.cobject, zone);
     c_world_add_object(zone.cobject);
 
-    if (!Stuff.settings.view.zones) {
+    if (!Settings.view.zones) {
         c_object_set_mask(zone.cobject, 0, 0);
     }
 

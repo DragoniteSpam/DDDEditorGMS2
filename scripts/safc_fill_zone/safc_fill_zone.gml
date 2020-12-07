@@ -32,7 +32,7 @@ function safc_fill_zone() {
 
     selection_clear();
 
-    if (!Stuff.settings.view.zones) {
+    if (!Settings.view.zones) {
         dialog_create_notice(noone, "zones are currently set to be invisible. It is recommended that you turn on Zone Visibility in the General tab.");
     }
 
