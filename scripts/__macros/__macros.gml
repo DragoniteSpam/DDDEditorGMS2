@@ -58,8 +58,8 @@
 #macro MAGIC_INSTANCE_ID 100000
 #macro LAST_SAFE_RELEASE "2019.4.1.19";
 
-#macro FILE_TEXT_EXTENSION Stuff.setting_text_extension_map[Settings.config.text_extension]
-#macro FILE_CODE_EXTENSION Stuff.setting_code_extension_map[Settings.config.code_extension]
+#macro FILE_TEXT_EXTENSION Stuff.text_extension_map[Settings.config.text_extension]
+#macro FILE_CODE_EXTENSION Stuff.code_extension_map[Settings.config.code_extension]
 
 #macro ALARM_SETTINGS_SAVE 0
 #macro AUTOTILE_AVAILABLE_MAX 100
