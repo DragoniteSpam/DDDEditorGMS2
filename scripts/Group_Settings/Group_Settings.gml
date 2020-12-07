@@ -43,8 +43,13 @@ function setting_set(object, name, value) {
 
 try {
     var json_buffer = buffer_load(FILE_SETTINGS);
-    Settings = json_parse(buffer_read(json_buffer, buffer_string));
+    var loaded = json_parse(buffer_read(json_buffer, buffer_string));
     buffer_delete(json_buffer);
+    
+    var names = variable_struct_get_names(loaded);
+    for (var i = 0; i < array_length(names); i++) {
+        Settings[$ string_lower(names[i])] = loaded[$ names[i]];
+    }
 } catch (e) {
     Settings = {
         map: { },
