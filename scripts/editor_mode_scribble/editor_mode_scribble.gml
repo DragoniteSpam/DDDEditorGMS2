@@ -2,7 +2,7 @@ function editor_mode_scribble() {
     Stuff.mode = Stuff.scribble;
 
     if (!EDITOR_FORCE_SINGLE_MODE) {
-        setting_set("Config", "mode", ModeIDs.SCRIBBLE);
+        Settings.config.mode = ModeIDs.SCRIBBLE;
     }
 
     view_set_visible(view_fullscreen, true);

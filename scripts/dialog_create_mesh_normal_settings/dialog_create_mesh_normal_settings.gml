@@ -57,7 +57,6 @@ function dialog_create_mesh_normal_settings(root, selection) {
     
     var el_smooth_threshold = create_input(c1x, yy, "Threshold:", ew, eh, function(input) {
         Settings.config.normal_threshold = real(input.value);
-        setting_set("Config", "normal-threshold", Settings.config.normal_threshold);
     }, Settings.config.normal_threshold, "angle", validate_double, 0, 360, 5, vx1, vy1, vx2, vy2, dg);
     el_smooth_threshold.tooltip = "The threshold which the angle between two triangles must be less than in order for their vertix normals to be smoothed. (A threshold of zero is the same as flat shading.)";
     yy += el_smooth_threshold.height + spacing;

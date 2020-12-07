@@ -5,7 +5,6 @@ function get_open_filename_mesh_autotile() {
         var dir = filename_dir(path);
         if (string_length(dir) > 0) {
             Settings.location.mesh = dir;
-            setting_set("Location", "mesh", dir);
         }
     }
     
@@ -19,7 +18,6 @@ function get_open_filename_audio_effect() {
         var dir = filename_dir(path);
         if (string_length(dir) > 0) {
             Settings.location.audio = dir;
-            setting_set("Location", "audio", dir);
         }
     }
     
@@ -33,7 +31,6 @@ function get_open_filename_audio_fmod() {
         var dir = filename_dir(path);
         if (string_length(dir) > 0) {
             Settings.location.audio = dir;
-            setting_set("Location", "audio", dir);
         }
     }
     
@@ -47,7 +44,6 @@ function get_open_filename_ddd() {
         var dir = filename_dir(path);
         if (string_length(dir) > 0) {
             Settings.location.ddd = dir;
-            setting_set("Location", "ddd", dir);
         }
     }
     
@@ -61,7 +57,6 @@ function get_open_filename_image() {
         var dir = filename_dir(path);
         if (string_length(dir) > 0) {
             Settings.location.image = dir;
-            setting_set("Location", "image", dir);
         }
     }
     
@@ -75,7 +70,6 @@ function get_open_filename_mesh() {
         var dir = filename_dir(path);
         if (string_length(dir) > 0) {
             Settings.location.mesh = dir;
-            setting_set("Location", "mesh", dir);
         }
     }
     
@@ -89,7 +83,6 @@ function get_open_filename_mesh_d3d() {
         var dir = filename_dir(path);
         if (string_length(dir) > 0) {
             Settings.location.mesh = dir;
-            setting_set("Location", "mesh", dir);
         }
     }
     
@@ -103,7 +96,6 @@ function get_open_filename_terrain() {
         var dir = filename_dir(path);
         if (string_length(dir) > 0) {
             Settings.location.terrain = dir;
-            setting_set("Location", "terrain", dir);
         }
     }
     
@@ -117,7 +109,6 @@ function get_open_filename_tiled() {
         var dir = filename_dir(path);
         if (string_length(dir) > 0) {
             Settings.location.tiled = dir;
-            setting_set("Location", "tiled", dir);
         }
     }
     
@@ -131,7 +122,6 @@ function get_open_filename_text() {
         var dir = filename_dir(path);
         if (string_length(dir) > 0) {
             Settings.location.text = dir;
-            setting_set("Location", "text", dir);
         }
     }
     

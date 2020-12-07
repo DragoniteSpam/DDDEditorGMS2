@@ -38,7 +38,6 @@ function dialog_create_preferences() {
     
     var el_world_color = create_color_picker(col1_x, yy, "World Color:", ew, eh, function(picker) {
         Settings.config.color_world = picker.value;
-        setting_set("Config", "color-world", Settings.config.color_world);
     }, Settings.config.color_world, vx1, vy1, vx2, vy2, dg);
     el_world_color.tooltip = "The default background color of the game world. Using a skybox will (most likely) render this pointless.";
     yy += el_world_color.height + spacing;

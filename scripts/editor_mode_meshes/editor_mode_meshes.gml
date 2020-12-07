@@ -2,7 +2,7 @@ function editor_mode_meshes() {
     Stuff.mode = Stuff.mesh_ed;
 
     if (!EDITOR_FORCE_SINGLE_MODE) {
-        setting_set("Config", "mode", ModeIDs.MESH);
+        Settings.config.mode = ModeIDs.MESH;
     }
 
     view_set_visible(view_fullscreen, true);

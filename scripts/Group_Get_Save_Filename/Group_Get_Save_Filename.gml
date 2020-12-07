@@ -6,7 +6,6 @@ function get_save_filename_image(name) {
         var dir = filename_dir(path);
         if (string_length(dir) > 0) {
             Settings.location.image = dir;
-            setting_set("Location", "image", dir);
         }
     }
     
@@ -21,7 +20,6 @@ function get_save_filename_dddd(name) {
         var dir = filename_dir(path);
         if (string_length(dir) > 0) {
             Settings.location.ddd = dir;
-            setting_set("Location", "ddd", dir);
         }
     }
     
@@ -36,7 +34,6 @@ function get_save_filename_gml(name) {
         var dir = filename_dir(path);
         if (string_length(dir) > 0) {
             Settings.location.gml = dir;
-            setting_set("Location", "gml", dir);
         }
     }
     
@@ -52,7 +49,6 @@ function get_save_filename_mesh(name, filter) {
         var dir = filename_dir(path);
         if (string_length(dir) > 0) {
             Settings.location.mesh = dir;
-            setting_set("Location", "mesh", dir);
         }
     }
     
@@ -67,7 +63,6 @@ function get_save_filename_mesh_autotile() {
         var dir = filename_dir(path);
         if (string_length(dir) > 0) {
             Settings.location.mesh = dir;
-            setting_set("Location", "mesh", dir);
         }
     }
     
@@ -82,7 +77,6 @@ function get_save_filename_mesh_qma() {
         var dir = filename_dir(path);
         if (string_length(dir) > 0) {
             Settings.location.mesh = dir;
-            setting_set("Location", "mesh", dir);
         }
     }
     
@@ -97,7 +91,6 @@ function get_save_filename_mesh_vrax() {
         var dir = filename_dir(path);
         if (string_length(dir) > 0) {
             Settings.location.mesh = dir;
-            setting_set("Location", "mesh", dir);
         }
     }
     
@@ -112,7 +105,6 @@ function get_save_filename_terrain(name) {
         var dir = filename_dir(path);
         if (string_length(dir) > 0) {
             Settings.location.terrain = dir;
-            setting_set("Location", "terrain", dir);
         }
     }
     
@@ -127,7 +119,6 @@ function get_save_filename_text(name) {
         var dir = filename_dir(path);
         if (string_length(dir) > 0) {
             Settings.location.text = dir;
-            setting_set("Location", "text", dir);
         }
     }
     

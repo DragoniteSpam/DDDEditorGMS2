@@ -11,19 +11,19 @@ def_yup = 0;
 def_zup = 1;
 def_fov = 60;
 
-x = setting_get("Animation", "x", def_x);
-y = setting_get("Animation", "y", def_y);
-z = setting_get("Animation", "z", def_z);
+x = setting_get("animation", "x", def_x);
+y = setting_get("animation", "y", def_y);
+z = setting_get("animation", "z", def_z);
 
-xto = setting_get("Animation", "xto", def_x);
-yto = setting_get("Animation", "yto", def_y);
-zto = setting_get("Animation", "zto", def_z);
+xto = setting_get("animation", "xto", def_x);
+yto = setting_get("animation", "yto", def_y);
+zto = setting_get("animation", "zto", def_z);
 
 xup = def_xup;
 yup = def_yup;
 zup = def_zup;
 
-fov = setting_get("Animation", "fov", def_fov);
+fov = setting_get("animation", "fov", def_fov);
 pitch = darctan2(z - zto, point_distance(x, y, xto, yto));
 direction = point_direction(x, y, xto, yto);
 
@@ -37,13 +37,13 @@ render = function() {
     }
 };
 save = function() {
-    setting_set("Animation", "x", x);
-    setting_set("Animation", "y", y);
-    setting_set("Animation", "z", z);
-    setting_set("Animation", "xto", xto);
-    setting_set("Animation", "yto", yto);
-    setting_set("Animation", "zto", zto);
-    setting_set("Animation", "fov", fov);
+    Settings.animation.x = x;
+    Settings.animation.y = y;
+    Settings.animation.z = z;
+    Settings.animation.xto = xto;
+    Settings.animation.yto = yto;
+    Settings.animation.zto = zto;
+    Settings.animation.fov = fov;
 };
 
 ui = ui_init_animation(id);

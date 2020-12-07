@@ -2,7 +2,7 @@ function editor_mode_animation() {
     Stuff.mode = Stuff.animation;
 
     if (!EDITOR_FORCE_SINGLE_MODE) {
-        setting_set("Config", "mode", ModeIDs.ANIMATION);
+        Settings.config.mode = ModeIDs.ANIMATION;
     }
 
     view_set_visible(view_fullscreen, true);

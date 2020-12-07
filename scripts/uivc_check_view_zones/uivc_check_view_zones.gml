@@ -4,7 +4,6 @@ function uivc_check_view_zones(argument0) {
     var checkbox = argument0;
 
     Settings.view.zones = checkbox.value;
-    setting_set("View", "zones", Settings.view.zones);
 
     var map = Stuff.map.active_map;
     var map_contents = map.contents;

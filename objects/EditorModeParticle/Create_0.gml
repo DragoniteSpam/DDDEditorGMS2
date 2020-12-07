@@ -2,8 +2,8 @@ event_inherited();
 
 Stuff.particle = id;
 
-back_color = setting_get("Particle", "back", c_black);
-system_auto_update = setting_get("Particle", "auto-update", true);
+back_color = setting_get("particle", "back", c_black);
+system_auto_update = setting_get("particle", "auto_update", true);
 emitter_set_snap = false;
 emitter_set_snap_size = 32;
 

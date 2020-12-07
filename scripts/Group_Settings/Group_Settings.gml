@@ -1,7 +1,7 @@
 function setting_get(object, name, def) {
     var domain = Settings[? object];
     if (domain) {
-        if (ds_map_exists(domain, name)) return domain[? name];
+        if (ds_map_exists(domain, name)) return domain[$ name];
         return def;
     }
     
@@ -29,15 +29,6 @@ function setting_project_create_local(projname, filename, buffer) {
     buffer_save_ext(buffer, auto_folder + filename, 0, buffer_get_size(buffer));
 }
 
-function setting_set(object, name, value) {
-    var domain = Settings[? object];
-    
-    if (domain) {
-        domain[? name] = value;
-    } else {
-        show_error("Setting object not found: " + object, false);
-    }
-}
 
 #macro Settings global.__settings
 
