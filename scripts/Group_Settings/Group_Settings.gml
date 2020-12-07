@@ -1,8 +1,8 @@
 function setting_get(object, name, def) {
-    var domain = Settings[? object];
+    var domain = Settings[$ object];
     if (domain) {
-        if (ds_map_exists(domain, name)) return domain[$ name];
-        return def;
+        if (domain[$ name] == undefined) return def;
+        return domain[$ name];
     }
     
     throw "Setting object not found: " + object;
