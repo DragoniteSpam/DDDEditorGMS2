@@ -1371,8 +1371,6 @@
     {"id":{"name":"uivc_input_map_zone_priority","path":"scripts/uivc_input_map_zone_priority/uivc_input_map_zone_priority.yy",},"order":8,},
     {"id":{"name":"uivc_input_map_camera_zone_time","path":"scripts/uivc_input_map_camera_zone_time/uivc_input_map_camera_zone_time.yy",},"order":9,},
     {"id":{"name":"uivc_input_map_camera_zone_transition","path":"scripts/uivc_input_map_camera_zone_transition/uivc_input_map_camera_zone_transition.yy",},"order":10,},
-    {"id":{"name":"uivc_input_map_select_light","path":"scripts/uivc_input_map_select_light/uivc_input_map_select_light.yy",},"order":11,},
-    {"id":{"name":"uivc_input_map_select_active_light","path":"scripts/uivc_input_map_select_active_light/uivc_input_map_select_active_light.yy",},"order":12,},
     {"id":{"name":"uivc_input_map_zone_name","path":"scripts/uivc_input_map_zone_name/uivc_input_map_zone_name.yy",},"order":13,},
     {"id":{"name":"uivc_input_map_flag_zone_flag","path":"scripts/uivc_input_map_flag_zone_flag/uivc_input_map_flag_zone_flag.yy",},"order":14,},
     {"id":{"name":"uivc_scribble_text","path":"scripts/uivc_scribble_text/uivc_scribble_text.yy",},"order":0,},
