@@ -62,7 +62,7 @@ function dialog_create_credits(dialog) {
         ds_stuff_open("https://github.com/JujuAdams/scribble");
     }, dg);
     el_ex_scribble_url.tooltip = "https://github.com/JujuAdams/scribble";
-    var el_ex_scribble = create_text(32 + bw + spacing, yy - 12, "[rainbow]Scribble[/rainbow], a Game Maker text renderer by Juju Adams (v" + string(__SCRIBBLE_VERSION) + ", slightly customized)", ew, eh, fa_left, dw - 32, dg);
+    var el_ex_scribble = create_text(32 + bw + spacing, yy, "[rainbow][wave]Scribble,[] a Game Maker text renderer by Juju Adams (v" + string(__SCRIBBLE_VERSION) + ", slightly customized)", ew, eh, fa_left, dw - 32, dg);
     yy += 40;
     var el_ex_xpanda_url = create_button(32, yy, "Github", bw, eh, fa_center, function(button) {
         ds_stuff_open("https://github.com/GameMakerDiscord/Xpanda/");
