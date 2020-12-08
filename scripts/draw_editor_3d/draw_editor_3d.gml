@@ -66,8 +66,7 @@ function draw_editor_3d() {
     }
     
     for (var i = 0; i < ds_list_size(map_contents.batch_in_the_future); i++) {
-        var ent = map_contents.batch_in_the_future[| i];
-        script_execute(ent.render, ent);
+        map_contents.batch_in_the_future[| i].render(map_contents.batch_in_the_future[| i]);
         // batchable entities don't make use of move routes, so don't bother
     }
     
@@ -79,7 +78,7 @@ function draw_editor_3d() {
     
     for (var i = 0; i < ds_list_size(map_contents.dynamic); i++) {
         var ent = map_contents.dynamic[| i];
-        script_execute(ent.render, ent);
+        ent.render(ent);
         for (var j = 0; j < MAX_VISIBLE_MOVE_ROUTES; j++) {
             var route = guid_get(ent.visible_routes[j]);
             if (route && route.buffer) {
@@ -123,7 +122,7 @@ function draw_editor_3d() {
     // tried using ztestenable for this - didn't look good. at all.
     for (var i = 0; i < ds_list_size(Stuff.map.selection); i++) {
         var sel = Stuff.map.selection[| i];
-        script_execute(sel.render, sel);
+        sel.render(sel);
     }
     
     if (Settings.view.zones) {

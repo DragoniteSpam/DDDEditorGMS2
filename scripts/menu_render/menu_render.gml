@@ -53,7 +53,7 @@ function menu_render(menu, x1, y1) {
                 var my1 = yy + menu.height * i + separation;
                 var mx2 = mx1 + ww + 2;
                 var my2 = my1 + menu.height;
-                script_execute(thing.render, thing, mx1, my1, mx2, my2);
+                thing.render(thing, mx1, my1, mx2, my2);
             }
         }
         

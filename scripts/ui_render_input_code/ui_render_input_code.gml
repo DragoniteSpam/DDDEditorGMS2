@@ -32,8 +32,8 @@ function ui_render_input_code(argument0, argument1, argument2) {
     var vty = mean(vy1, vy2);
 
     if (code.editor_handle) {
-        script_execute(code.onsave, code);
-        script_execute(code.onvaluechange, code);
+        code.onsave(code);
+        code.onvaluechange(code);
     
         if (ds_stuff_process_complete(code.editor_handle)) {
             code.editor_handle = noone;

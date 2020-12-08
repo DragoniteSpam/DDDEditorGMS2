@@ -6,16 +6,14 @@ function sa_process_selection() {
     var map = Stuff.map.active_map;
 
     for (var i = 0; i < ds_list_size(Stuff.map.selected_entities); i++) {
-        var thing = Stuff.map.selected_entities[| i];
-        script_execute(thing.on_deselect, thing);
+        Stuff.map.selected_entities[| i].on_deselect(Stuff.map.selected_entities[| i]);
     }
 
     ds_list_destroy(Stuff.map.selected_entities);
     Stuff.map.selected_entities = list;
 
     for (var i = 0; i < ds_list_size(Stuff.map.selected_entities); i++) {
-        var thing = Stuff.map.selected_entities[| i];
-        script_execute(thing.on_select, thing);
+        Stuff.map.selected_entities[| i].on_select(Stuff.map.selected_entities[| i]);
     }
 
     if (ds_list_size(list) == 0) {

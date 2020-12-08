@@ -84,10 +84,10 @@ function ui_render_tile_selector(argument0, argument1, argument2) {
             // this is kinda dumb because realistically you're not going to be doing anything besides this with the
             // tileset picker, but for now make it look the same as the other value change code
             ui_activate(selector);
-            script_execute(selector.onvaluechange, selector, tx, ty);
+            selector.onvaluechange(selector, tx, ty);
         } else if (Controller.press_right) {
             ui_activate(selector);
-            script_execute(selector.onvaluechangebackwards, selector, tx, ty);
+            selector.onvaluechangebackwards(selector, tx, ty);
         }
         Stuff.element_tooltip = selector;
     }

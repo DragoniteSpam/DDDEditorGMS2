@@ -22,7 +22,7 @@ function selection_foreach_cell_rectangle(argument0, argument1, argument2, argum
                 var str = string(i) + ","+string(j) + "," + string(k);
                 if (!ds_map_exists(processed, str)) {
                     ds_map_add(processed, str, true);
-                    script_execute(script, i, j, k, params);
+                    script(i, j, k, params);
                 }
             }
         }

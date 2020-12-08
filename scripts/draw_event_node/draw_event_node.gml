@@ -164,7 +164,7 @@ function draw_event_node(node) {
                     // but you need to do this if you want it to not be changed
                     var radio = node.ui_things[| i];
                     radio.value = list_type[| i];
-                    script_execute(radio.render, radio, x1, y1);
+                    radio.render(radio, x1, y1);
                     
                     // this should be in an onvaluechange script but that's a huge hassle for something really minor
                     list_type[| i] = radio.value;
@@ -516,7 +516,7 @@ function draw_event_node(node) {
                                             break;
                                     }
                                 } else {
-                                    script_execute(attainment, noone, node, i);
+                                    attainment(noone, node, i);
                                 }
                             }
                         }
@@ -669,7 +669,7 @@ function draw_event_node(node) {
                                 break;
                         }
                         
-                        message = message + ((output_script == null) ? output_string : script_execute(output_script, node, i));
+                        message = message + ((output_script == null) ? output_string : output_script(node, i));
                     } else {
                         message = message + ": multiple values (" + string(ds_list_size(custom_data_list)) + ")";
                     }

@@ -8,7 +8,7 @@ function sa_foreach_global(argument0, argument1) {
     var params = argument1;
 
     for (var i = 0; i < ds_list_size(Stuff.map.active_map.contents.all_entities); i++) {
-        script_execute(script, Stuff.map.active_map.contents.all_entities[| i], params);
+        script(Stuff.map.active_map.contents.all_entities[| i], params);
     }
 
 

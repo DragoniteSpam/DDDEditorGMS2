@@ -65,7 +65,7 @@ function menu_render_element(menumenu, x1, y1, x2, y2) {
                 var my1 = yy + menumenu.height * i + separation
                 var mx2 = mx1 + ww;
                 var my2 = my1 + menumenu.height;
-                script_execute(thing.render, thing, mx1, my1, mx2, my2);
+                thing.render(thing, mx1, my1, mx2, my2);
             }
         }
         draw_rectangle_colour(xx, yy, xx + ww - 1, yy + hh - 1, c_black, c_black, c_black, c_black, true);

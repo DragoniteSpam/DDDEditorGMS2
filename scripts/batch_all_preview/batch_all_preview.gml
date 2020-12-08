@@ -36,8 +36,8 @@ function batch_all_preview(argument0) {
     
         for (var i = 0; i < ds_list_size(map.all_entities); i++) {
             var thing = map.all_entities[| i];
-            script_execute(thing.batch, map.preview, map.wpreview, thing);
-            script_execute(thing.batch_collision, map.cspreview, thing);
+            thing.batch(map.preview, map.wpreview, thing);
+            thing.batch_collision(map.cspreview, thing);
         }
     
         vertex_end(map.preview);

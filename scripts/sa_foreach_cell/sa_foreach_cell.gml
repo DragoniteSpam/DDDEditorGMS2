@@ -6,7 +6,7 @@ function sa_foreach_cell(script, params) {
     
     for (var s = 0; s < ds_list_size(Stuff.map.selection); s++) {
         var sel = Stuff.map.selection[| s];
-        script_execute(sel.foreach_cell, sel, processed, script, params);
+        sel.foreach_cell(sel, processed, script, params);
     }
     
     ds_map_destroy(processed);

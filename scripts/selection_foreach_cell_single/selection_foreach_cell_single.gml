@@ -13,7 +13,7 @@ function selection_foreach_cell_single(argument0, argument1, argument2, argument
 
     if (!ds_map_exists(processed, str)) {
         ds_map_add(processed, str, true);
-        script_execute(script, selection.x, selection.y, selection.z, params);
+        script(selection.x, selection.y, selection.z, params);
     }
 
 

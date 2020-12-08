@@ -15,7 +15,7 @@ function serialize_save_map_contents_zones(buffer) {
     for (var i = 0; i < n_zones; i++) {
         var zone = Stuff.map.active_map.contents.all_zones[| i];
         buffer_write(buffer, buffer_u16, zone.ztype);
-        script_execute(zone.save_script, buffer, zone);
+        zone.save_script(buffer, zone);
     }
     
     buffer_poke(buffer, addr_skip, buffer_u64, buffer_tell(buffer));

@@ -9,7 +9,7 @@ function uivc_stash(argument0) {
     // though, since you already know that kind of data is good.
 
     // the value conversion is needed, since this is a genric type
-    argument0.root.data[? argument0.key] = script_execute(argument0.value_conversion, argument0.value);
+    argument0.root.data[? argument0.key] = argument0.value_conversion(argument0.value);
 
 
 }

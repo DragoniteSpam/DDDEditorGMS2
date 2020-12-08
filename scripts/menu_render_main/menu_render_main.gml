@@ -10,7 +10,7 @@ function menu_render_main(menu, xx, yy) {
     for (var i = 0; i < ds_list_size(menu.contents); i++) {
         var thing = menu.contents[| i];
         if (thing.enabled) {
-            script_execute(thing.render, thing, xx + menu.element_width * i, yy);
+            thing.render(thing, xx + menu.element_width * i, yy);
         }
     }
     
@@ -18,7 +18,7 @@ function menu_render_main(menu, xx, yy) {
     
     var element = Stuff.menu.extra_element;
     if (element) {
-        script_execute(element.render, element, element.x, element.y);
+        element.render(element, element.x, element.y);
     }
     
     if (!dialog_exists()) {

@@ -32,7 +32,7 @@ function batch_again() {
         for (var i = 0; i < ds_list_size(list_instances); i++) {
             // in case the buffer gets recreated, you need to return it in every
             // iteration of the loop
-            var results = script_execute(list_instances[| i].batch, buffer, buffer_wire, list_instances[| i]);
+            var results = list_instances[| i].batch(buffer, buffer_wire, list_instances[| i]);
             buffer = results[0];
             buffer_wire = results[1];
         }
