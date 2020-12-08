@@ -66,7 +66,7 @@ function load_a_map(map_container) {
     for (var i = 0; i < ds_list_size(Stuff.all_maps); i++) {
         if (Stuff.all_maps[| i] == Stuff.map.active_map) {
             ui_list_select(list, i);
-            script_execute(list.onvaluechange, list);
+            list.onvaluechange(list);
             break;
         }
     }

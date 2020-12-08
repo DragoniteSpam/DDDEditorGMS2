@@ -2,7 +2,7 @@ function editor_mode_text() {
     Stuff.mode = Stuff.text;
     
     if (!EDITOR_FORCE_SINGLE_MODE) {
-        setting_set("Config", "mode", ModeIDs.TEXT);
+        Settings.config.mode = ModeIDs.TEXT;
     }
     
     view_set_visible(view_fullscreen, true);

@@ -48,7 +48,7 @@ release_middle = mouse_check_button_released(mb_middle);
 release_wasd = last_wasd && !wasd;
 release_enter = keyboard_check_released(vk_enter);
 
-if (Stuff.setting_alternate_middle) {
+if (Settings.config.alternate_middle) {
     mouse_middle = mouse_middle || (keyboard_check(vk_control) && keyboard_check(vk_space));
     press_middle = press_middle || (keyboard_check_pressed(vk_control) && keyboard_check_pressed(vk_space));
     release_middle = release_middle || (keyboard_check_released(vk_control) && keyboard_check_released(vk_space));

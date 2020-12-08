@@ -2,7 +2,7 @@ function editor_mode_particle() {
     Stuff.mode = Stuff.particle;
 
     if (!EDITOR_FORCE_SINGLE_MODE) {
-        setting_set("Config", "mode", ModeIDs.PARTICLE);
+        Settings.config.mode = ModeIDs.PARTICLE;
     }
 
     view_set_visible(view_fullscreen, false);

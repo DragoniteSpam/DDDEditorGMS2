@@ -8,7 +8,7 @@ function draw_event_node_delete(xx, yy, node) {
             if (Controller.release_left) {
                 var dialog = dialog_create_yes_or_no(noone, "Do you actually want to delete " + node.name + "?", function(button) {
                     instance_destroy_later(button.root.node);
-                    script_execute(button.root.commit, button.root);
+                    button.root.commit(button.root);
                 });
                 dialog.node = node;
             }

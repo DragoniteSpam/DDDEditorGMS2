@@ -7,14 +7,14 @@ function render_tile(tile) {
     
     var ts = get_active_tileset();
     
-    if (Stuff.setting_view_entities) {
-        var tex = sprite_get_texture(Stuff.setting_view_texture ? ts.picture : b_tileset_textureless, 0);
+    if (Settings.view.entities) {
+        var tex = sprite_get_texture(Settings.view.texture ? ts.picture : b_tileset_textureless, 0);
         transform_set(xx, yy, zz, 0, 0, 0, 1, 1, 1);
         vertex_submit(tile.vbuffer, pr_trianglelist, tex);
         transform_reset();
     }
     
-    if (Stuff.setting_view_wireframe) {
+    if (Settings.view.wireframe) {
         transform_set(xx, yy, zz, 0, 0, 0, 1, 1, 1);
         vertex_submit(tile.wbuffer, pr_linelist, -1);
         transform_reset();

@@ -2,7 +2,7 @@ function editor_mode_spart() {
     Stuff.mode = Stuff.spart;
 
     if (!EDITOR_FORCE_SINGLE_MODE) {
-        setting_set("Config", "mode", ModeIDs.SPART);
+        Settings.config.mode = ModeIDs.SPART;
     }
 
     view_set_visible(view_fullscreen, false);

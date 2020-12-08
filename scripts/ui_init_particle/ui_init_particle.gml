@@ -59,7 +59,7 @@ function ui_init_particle(mode) {
         
         var element = create_color_picker(col1_x, yy, "Back:", ew, eh, function(picker) {
             Stuff.particle.back_color = picker.value;
-            setting_set("Particle", "back", picker.value);
+            Settings.oarticle.back = picker.value;
         }, mode.back_color, vx1, vy1, vx2, vy2, t_system);
         element.tooltip = "The background color.";
         element.active_shade = false;
@@ -72,7 +72,7 @@ function ui_init_particle(mode) {
             Stuff.particle.system_auto_update = checkbox.value;
             checkbox.root.manual_update.interactive = !checkbox.value;
             part_system_automatic_update(Stuff.particle.system, checkbox.value);
-            setting_set("Particle", "auto-update", checkbox.value);
+            Settings.particle.auto_update = checkbox.value;
         }, mode.system_auto_update, t_system);
         element.tooltip = "Whehter or not the particle system will update automatically. If this is turned off, you must update the system manually.";
         ds_list_add(t_system.contents, element);
@@ -194,8 +194,8 @@ function ui_init_particle(mode) {
                 buffer_seek(Stuff.particle.demo_fire, buffer_seek_start, 0);
                 ui_list_select(Stuff.particle.ui.t_emitter.list, 0);
                 ui_list_select(Stuff.particle.ui.t_type.list, 0);
-                script_execute(Stuff.particle.ui.t_emitter.list.onvaluechange, Stuff.particle.ui.t_emitter.list);
-                script_execute(Stuff.particle.ui.t_type.list.onvaluechange, Stuff.particle.ui.t_type.list);
+                Stuff.particle.ui.t_emitter.list.onvaluechange(Stuff.particle.ui.t_emitter.list);
+                Stuff.particle.ui.t_type.list.onvaluechange(Stuff.particle.ui.t_type.list);
                 dialog_destroy();
             });
         }, t_system);
@@ -210,8 +210,8 @@ function ui_init_particle(mode) {
                 buffer_seek(Stuff.particle.demo_water, buffer_seek_start, 0);
                 ui_list_select(Stuff.particle.ui.t_emitter.list, 0);
                 ui_list_select(Stuff.particle.ui.t_type.list, 0);
-                script_execute(Stuff.particle.ui.t_emitter.list.onvaluechange, Stuff.particle.ui.t_emitter.list);
-                script_execute(Stuff.particle.ui.t_type.list.onvaluechange, Stuff.particle.ui.t_type.list);
+                Stuff.particle.ui.t_emitter.list.onvaluechange(Stuff.particle.ui.t_emitter.list);
+                Stuff.particle.ui.t_type.list.onvaluechange(Stuff.particle.ui.t_type.list);
                 dialog_destroy();
             });
         }, t_system);
@@ -227,8 +227,8 @@ function ui_init_particle(mode) {
                 buffer_seek(Stuff.particle.demo_glow, buffer_seek_start, 0);
                 ui_list_select(Stuff.particle.ui.t_emitter.list, 0);
                 ui_list_select(Stuff.particle.ui.t_type.list, 0);
-                script_execute(Stuff.particle.ui.t_emitter.list.onvaluechange, Stuff.particle.ui.t_emitter.list);
-                script_execute(Stuff.particle.ui.t_type.list.onvaluechange, Stuff.particle.ui.t_type.list);
+                Stuff.particle.ui.t_emitter.list.onvaluechange(Stuff.particle.ui.t_emitter.list);
+                Stuff.particle.ui.t_type.list.onvaluechange(Stuff.particle.ui.t_type.list);
                 dialog_destroy();
             });
         }, t_system);

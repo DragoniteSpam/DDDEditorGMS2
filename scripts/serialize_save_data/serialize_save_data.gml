@@ -48,7 +48,7 @@ function serialize_save_data() {
             // okay now you can *actually* write out the addresses of all the things
             // there's no need to save the size here because it reads until the EOF
             for (var j = 0; j < ds_list_size(contents); j++) {
-                var addr = script_execute(Stuff.game_data_save_scripts[contents[| j]], buffer);
+                var addr = Stuff.game_data_save_scripts[contents[| j]](buffer);
             }
             
             buffer_write(buffer, buffer_u32, SerializeThings.END_OF_FILE);

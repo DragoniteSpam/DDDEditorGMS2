@@ -14,8 +14,8 @@ function render_mesh_autotile(argument0) {
 
     transform_set(terrain.xx * TILE_WIDTH, terrain.yy * TILE_HEIGHT, terrain.zz * TILE_DEPTH, 0, 0, 0, 1, 1, 1);
 
-    if (vbuffer && Stuff.setting_view_entities) {
-        var tex = Stuff.setting_view_texture ? sprite_get_texture(get_active_tileset().picture, 0) : sprite_get_texture(b_tileset_textureless, 0);
+    if (vbuffer && Settings.view.entities) {
+        var tex = Settings.view.texture ? sprite_get_texture(get_active_tileset().picture, 0) : sprite_get_texture(b_tileset_textureless, 0);
         vertex_submit(vbuffer, pr_trianglelist, tex);
     }
 

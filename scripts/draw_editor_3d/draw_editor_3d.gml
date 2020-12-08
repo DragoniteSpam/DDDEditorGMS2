@@ -3,7 +3,7 @@ function draw_editor_3d() {
     var map_contents = map.contents;
     
     draw_set_color(c_white);
-    gpu_set_cullmode(Stuff.setting_view_backface ? cull_noculling : cull_counterclockwise);
+    gpu_set_cullmode(Settings.view.backface ? cull_noculling : cull_counterclockwise);
     
     var camera = view_get_camera(view_current);
     var z2d = 1600;
@@ -35,7 +35,7 @@ function draw_editor_3d() {
     gpu_set_zwriteenable(true);
     gpu_set_ztestenable(true);
     
-    if (Stuff.setting_view_terrain) {
+    if (Settings.view.terrain) {
         graphics_set_lighting(shd_terrain);
         matrix_set(matrix_world, matrix_build(0, 0, 0, 0, 0, 0, 16, 16, 16));
         vertex_submit(Stuff.terrain.terrain_buffer, pr_trianglelist, -1);
@@ -45,29 +45,28 @@ function draw_editor_3d() {
     graphics_set_lighting(shd_ddd);
     
     // this will need to be dynamic at some point
-    var tex = Stuff.setting_view_texture ? sprite_get_texture(get_active_tileset().picture, 0) : sprite_get_texture(b_tileset_textureless, 0);
+    var tex = Settings.view.texture ? sprite_get_texture(get_active_tileset().picture, 0) : sprite_get_texture(b_tileset_textureless, 0);
     
     #region entities
-    if (map_contents.frozen && Stuff.setting_view_entities) {
+    if (map_contents.frozen && Settings.view.entities) {
         vertex_submit(map_contents.frozen, pr_trianglelist, tex);
     }
-    if (map_contents.frozen_wire && Stuff.setting_view_entities && Stuff.setting_view_wireframe) {
+    if (map_contents.frozen_wire && Settings.view.entities && Settings.view.wireframe) {
         vertex_submit(map_contents.frozen_wire, pr_linelist, -1);
     }
     
     for (var i = 0; i < ds_list_size(map_contents.batch_data); i++) {
         var data = map_contents.batch_data[| i];
-        if (Stuff.setting_view_entities) {
+        if (Settings.view.entities) {
             vertex_submit(data[? "vertex"], pr_trianglelist, tex);
         }
-        if (Stuff.setting_view_wireframe) {
+        if (Settings.view.wireframe) {
             vertex_submit(data[? "wire"], pr_linelist, -1);
         }
     }
     
     for (var i = 0; i < ds_list_size(map_contents.batch_in_the_future); i++) {
-        var ent = map_contents.batch_in_the_future[| i];
-        script_execute(ent.render, ent);
+        map_contents.batch_in_the_future[| i].render(map_contents.batch_in_the_future[| i]);
         // batchable entities don't make use of move routes, so don't bother
     }
     
@@ -79,7 +78,7 @@ function draw_editor_3d() {
     
     for (var i = 0; i < ds_list_size(map_contents.dynamic); i++) {
         var ent = map_contents.dynamic[| i];
-        script_execute(ent.render, ent);
+        ent.render(ent);
         for (var j = 0; j < MAX_VISIBLE_MOVE_ROUTES; j++) {
             var route = guid_get(ent.visible_routes[j]);
             if (route && route.buffer) {
@@ -112,7 +111,7 @@ function draw_editor_3d() {
     #endregion
     
     #region grids, selection boxes, zones
-    if (Stuff.setting_view_grid) {
+    if (Settings.view.grid) {
         transform_set(0, 0, Stuff.map.edit_z * TILE_DEPTH + 0.5, 0, 0, 0, 1, 1, 1);
         vertex_submit(Stuff.graphics.grid, pr_linelist, -1);
         transform_reset();
@@ -123,10 +122,10 @@ function draw_editor_3d() {
     // tried using ztestenable for this - didn't look good. at all.
     for (var i = 0; i < ds_list_size(Stuff.map.selection); i++) {
         var sel = Stuff.map.selection[| i];
-        script_execute(sel.render, sel);
+        sel.render(sel);
     }
     
-    if (Stuff.setting_view_zones) {
+    if (Settings.view.zones) {
         for (var i = 0; i < ds_list_size(map_contents.all_zones); i++) {
             zone_render_rectangle(map_contents.all_zones[| i]);
         }

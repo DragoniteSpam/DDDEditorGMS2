@@ -28,7 +28,7 @@ function serialize_load_map_contents_dynamic(buffer, version, map_container, is_
         var type = buffer_read(buffer, buffer_u16);
         var thing = instance_create_depth(0, 0, 0, global.etype_objects[type]);
         thing.tmx_id = buffer_read(buffer, buffer_u32);
-        script_execute(thing.load_script, buffer, thing, version);
+        thing.load_script(buffer, thing, version);
         
         // some things don't need to exist in the map grid
         if (thing.exist_in_map && !list_only) {

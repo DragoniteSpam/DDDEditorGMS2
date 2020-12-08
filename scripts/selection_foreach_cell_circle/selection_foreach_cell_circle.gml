@@ -21,7 +21,7 @@ function selection_foreach_cell_circle(argument0, argument1, argument2, argument
                 var str = string(i) + "," + string(j) + "," + string(selection.z);
                 if (!ds_map_exists(processed, str)) {
                     ds_map_add(processed, str, true);
-                    script_execute(script, i, j, selection.z, params);
+                    script(i, j, selection.z, params);
                 }
             }
         }

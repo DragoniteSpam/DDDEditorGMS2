@@ -10,12 +10,12 @@ function render_mesh_raw(argument0) {
 
     var ts = get_active_tileset();
 
-    if (Stuff.setting_view_entities) {
-        var tex = Stuff.setting_view_texture ? sprite_get_texture(ts.picture, 0) : sprite_get_texture(b_tileset_textureless, 0);
+    if (Settings.view.entities) {
+        var tex = Settings.view.texture ? sprite_get_texture(ts.picture, 0) : sprite_get_texture(b_tileset_textureless, 0);
         vertex_submit(entity_mesh_get_vbuffer(entity), pr_trianglelist, tex);
     }
 
-    if (Stuff.setting_view_wireframe) {
+    if (Settings.view.wireframe) {
         vertex_submit(entity_mesh_get_wbuffer(entity), pr_linelist, -1);
     }
 

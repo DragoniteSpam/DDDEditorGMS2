@@ -151,7 +151,7 @@ function ui_render_list_timeline(argument0, argument1, argument2) {
                     ui_list_deselect(layer_list);
                     ui_list_select(layer_list, my);
                 
-                    script_execute(timeline.onvaluechange, timeline);
+                    timeline.onvaluechange(timeline);
                 } else if (Controller.press_right) {
                     if (timeline.allow_deselect) {
                         timeline.selected_moment = -1;
@@ -162,7 +162,7 @@ function ui_render_list_timeline(argument0, argument1, argument2) {
                 // oninteract doesn't care if the mouse is inbounds so if you're going to run any code that
                 // might break in special circumstances you're going to need to check for that - but it might
                 // depend on the selected moment / layer being set, so we'll execute it at the end here
-                script_execute(timeline.oninteract, timeline, xx, yy);
+                timeline.oninteract(timeline, xx, yy);
             
                 var control = keyboard_check(vk_shift);
                 if (mouse_wheel_up()) {

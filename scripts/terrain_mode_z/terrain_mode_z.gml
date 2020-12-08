@@ -24,7 +24,7 @@ function terrain_mode_z(terrain, position, dir) {
     
     for (var i = 0; i < ds_list_size(list_range); i++) {
         var coordinates = list_range[| i];
-        script_execute(terrain.submode_equation[terrain.submode], terrain, coordinates[vec3.xx], coordinates[vec3.yy], dir, avg, coordinates[vec3.zz]);
+        terrain.submode_equation[terrain.submode](terrain, coordinates[vec3.xx], coordinates[vec3.yy], dir, avg, coordinates[vec3.zz]);
     }
     
     for (var i = 0; i < ds_list_size(list_range); i++) {

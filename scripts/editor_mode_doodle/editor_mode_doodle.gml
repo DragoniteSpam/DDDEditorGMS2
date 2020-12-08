@@ -2,7 +2,7 @@ function editor_mode_doodle() {
     Stuff.mode = Stuff.doodle;
 
     if (!EDITOR_FORCE_SINGLE_MODE) {
-        setting_set("Config", "mode", ModeIDs.DOODLE);
+        Settings.config.mode = ModeIDs.DOODLE;
     }
 
     view_set_visible(view_fullscreen, true);

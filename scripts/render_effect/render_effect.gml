@@ -37,15 +37,15 @@ function render_effect(argument0) {
 
     if (effect.com_light) {
         render_effect_add_sprite(effect.com_light.sprite, position, [-com_offset, com_offset]);
-        script_execute(effect.com_light.render, effect.com_light);
+        effect.com_light.render(effect.com_light);
     }
     if (effect.com_particle) {
         render_effect_add_sprite(effect.com_particle.sprite, position, [0, com_offset]);
-        script_execute(effect.com_particle.render, effect.com_particle);
+        effect.com_particle.render(effect.com_particle);
     }
     if (effect.com_audio) {
         render_effect_add_sprite(effect.com_audio.sprite, position, [com_offset, com_offset]);
-        script_execute(effect.com_audio.render, effect.com_audio);
+        effect.com_audio.render(effect.com_audio);
     }
 
     entity_effect_position_colliders(effect);

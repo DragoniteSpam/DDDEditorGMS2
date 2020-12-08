@@ -7,6 +7,6 @@ function uivc_list_all_entities(list) {
         new_mask |= thing.etype_flags;
         selection_add(SelectionSingle, thing.xx, thing.yy, thing.zz);
     }
-    Stuff.setting_selection_mask = new_mask;
+    Settings.selection.mask = new_mask;
     sa_process_selection();
 }

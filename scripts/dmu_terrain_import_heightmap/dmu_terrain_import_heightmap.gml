@@ -7,7 +7,7 @@ function dmu_terrain_import_heightmap(argument0) {
 
     if (fn != "") {
         terrain_import_heightmap(button, fn);
-        script_execute(button.root.commit, button.root);
+        button.root.commit(button.root);
     }
 
 

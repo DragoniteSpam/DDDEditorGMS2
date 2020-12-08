@@ -18,7 +18,7 @@ function batch_cache() {
         var thing = map_contents.batch_in_the_future[| i];
         thing.batch_addr = ds_list_top(map_contents.batch_data);
         // see comments on the buffer in batch_again
-        var results = script_execute(thing.batch, buffer, buffer_wire, thing);
+        var results = thing.batch(buffer, buffer_wire, thing);
         buffer = results[0];
         buffer_wire = results[1];
     

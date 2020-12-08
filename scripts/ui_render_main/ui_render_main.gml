@@ -71,11 +71,11 @@ function ui_render_main(argument0) {
             thing = trow[| j];
             // i think windows forms allow you to disable tabs, but i'm not
             // because that's a pain and i don't see it happening all that much
-            script_execute(thing.render, thing, 0, 0);
+            thing.render(thing, 0, 0);
         }
     }
 
-    script_execute(ui.active_tab.render_contents, ui.active_tab, 0, 0);
+    ui.active_tab.render_contents(ui.active_tab, 0, 0);
 
     ui_handle_dropped_files(ui);
 

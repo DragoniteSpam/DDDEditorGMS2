@@ -16,7 +16,7 @@ function serialize_save_map_contents_dynamic(buffer) {
         var thing = Stuff.map.active_map.contents.all_entities[| i];
         buffer_write(buffer, buffer_u16, thing.etype);
         buffer_write(buffer, buffer_u32, thing.tmx_id);
-        script_execute(thing.save_script, buffer, thing);
+        thing.save_script(buffer, thing);
     }
     
     buffer_poke(buffer, addr_skip, buffer_u64, buffer_tell(buffer));

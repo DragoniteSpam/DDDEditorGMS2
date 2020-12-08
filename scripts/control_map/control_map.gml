@@ -78,25 +78,25 @@ function control_map(mode) {
         if (instanceof_classic(instance_under_cursor, ComponentData)) {
             // check mouse down
             if (Controller.press_left) {
-                script_execute(instance_under_cursor.on_mouse_down, instance_under_cursor);
+                instance_under_cursor.on_mouse_down(instance_under_cursor);
                 Controller.mouse_pick_mask = CollisionMasks.AXES;
                 Controller.mouse_hit_previous = [c_hit_x(), c_hit_y(), c_hit_z()];
             }
             // check mouse hold
             if (Controller.mouse_left) {
                 if (Controller.mouse_hit_previous != undefined) {
-                    var delta = script_execute(instance_under_cursor.on_mouse_stay, instance_under_cursor);
+                    var delta = instance_under_cursor.on_mouse_stay(instance_under_cursor);
                 }
             }
             // check mouse release
             if (Controller.release_left) {
                 if (Controller.mouse_hit_previous != undefined) {
-                    script_execute(instance_under_cursor.on_mouse_up, instance_under_cursor);
+                    instance_under_cursor.on_mouse_up(instance_under_cursor);
                     Controller.mouse_hit_previous = undefined;
                 }
             }
             // anything on hover
-            script_execute(instance_under_cursor.on_mouse_hover, instance_under_cursor);
+            instance_under_cursor.on_mouse_hover(instance_under_cursor);
             // discard the data and don't set the persistent under cursor value
             instance_under_cursor = noone;
             process_main = false;
@@ -127,15 +127,15 @@ function control_map(mode) {
                 
                 if (Controller.press_left) {
                     if (ds_list_size(mode.selection) < MAX_SELECTION_COUNT) {
-                        if (!keyboard_check(Controller.input_selection_add) && !Stuff.setting_selection_addition) {
+                        if (!keyboard_check(Controller.input_selection_add) && !Settings.selection.addition) {
                             selection_clear();
                         }
-                        switch (Stuff.setting_selection_mode) {
+                        switch (Settings.selection.mode) {
                             case SelectionModes.SINGLE: var stype = SelectionSingle; break;
                             case SelectionModes.RECTANGLE: var stype = SelectionRectangle; break;
                             case SelectionModes.CIRCLE: var stype = SelectionCircle; break;
                             // not sure why it broke once, but just in case
-                            default: Stuff.setting_selection_mode = SelectionModes.RECTANGLE; var stype = SelectionRectangle; break;
+                            default: Settings.selection.mode = SelectionModes.RECTANGLE; var stype = SelectionRectangle; break;
                         }
                         
                         var button = Stuff.map.ui.t_p_other.el_zone_data;
@@ -159,14 +159,14 @@ function control_map(mode) {
                 
                 if (Controller.mouse_left) {
                     if (mode.last_selection) {
-                        script_execute(mode.last_selection.onmousedrag, mode.last_selection, floor_cx + 1, floor_cy + 1);
+                        mode.last_selection.onmousedrag(mode.last_selection, floor_cx + 1, floor_cy + 1);
                     }
                 }
                 
                 if (Controller.release_left) {
                     // selections of zero area are just deleted outright
                     if (mode.last_selection) {
-                        if (script_execute(mode.last_selection.area, mode.last_selection) == 0) {
+                        if (mode.last_selection.area(mode.last_selection) == 0) {
                             instance_activate_object(mode.last_selection);
                             instance_destroy(mode.last_selection);
                             ds_list_pop(mode.selection);
@@ -186,7 +186,7 @@ function control_map(mode) {
                         var tz = instance_under_cursor ? instance_under_cursor.zz : 0;
                         mode.last_selection = instance_create_depth(0, 0, 0, SelectionSingle);
                         ds_list_add(mode.selection, mode.last_selection);
-                        script_execute(mode.last_selection.onmousedown, mode.last_selection, floor_cx, floor_cy, tz);
+                        mode.last_selection.onmousedown(mode.last_selection, floor_cx, floor_cy, tz);
                     }
                     
                     var menu = Stuff.menu.menu_right_click;

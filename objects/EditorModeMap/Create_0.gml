@@ -11,40 +11,51 @@ def_yup = 0;
 def_zup = 1;
 def_fov = 60;
 
-x = setting_get("Map", "x", def_x);
-y = setting_get("Map", "y", def_y);
-z = setting_get("Map", "z", def_z);
+if (Settings.map[$ "x"] == undefined)                   Settings.map.x = def_x;
+if (Settings.map[$ "y"] == undefined)                   Settings.map.y = def_y;
+if (Settings.map[$ "z"] == undefined)                   Settings.map.z = def_z;
+if (Settings.map[$ "xto"] == undefined)                 Settings.map.xto = def_xto;
+if (Settings.map[$ "yto"] == undefined)                 Settings.map.yto = def_yto;
+if (Settings.map[$ "zto"] == undefined)                 Settings.map.zto = def_zto;
+if (Settings.map[$ "xup"] == undefined)                 Settings.map.xup = def_xup;
+if (Settings.map[$ "yup"] == undefined)                 Settings.map.yup = def_yup;
+if (Settings.map[$ "zup"] == undefined)                 Settings.map.zup = def_zup;
+if (Settings.map[$ "fov"] == undefined)                 Settings.map.fov = def_fov;
 
-xto = setting_get("Map", "xto", def_xto);
-yto = setting_get("Map", "yto", def_yto);
-zto = setting_get("Map", "zto", def_zto);
+x = Settings.map.x;
+y = Settings.map.y;
+z = Settings.map.z;
+xto = Settings.map.xto;
+yto = Settings.map.yto;
+zto = Settings.map.zto;
+xup = Settings.map.xup;
+yup = Settings.map.yup;
+zup = Settings.map.zup;
+fov = Settings.map.fov;
 
-// don't put the up vector in the settings file
-xup = def_xup;
-yup = def_yup;
-zup = def_zup;
-
-fov = setting_get("Map", "fov", def_fov);
 pitch = darctan2(z - zto, point_distance(x, y, xto, yto));
 direction = point_direction(x, y, xto, yto);
 
 update = editor_update_map;
 render = function() {
     switch (view_current) {
-        case view_3d: draw_clear(Stuff.setting_color_world); draw_editor_3d(); break;
+        case view_3d: draw_clear(Settings.config.color_world); draw_editor_3d(); break;
         case view_ribbon: draw_editor_menu(true); break;
         case view_hud: draw_editor_hud(); break;
     }
 };
 cleanup = editor_cleanup_map;
 save = function() {
-    setting_set("Map", "x", x);
-    setting_set("Map", "y", y);
-    setting_set("Map", "z", z);
-    setting_set("Map", "xto", xto);
-    setting_set("Map", "yto", yto);
-    setting_set("Map", "zto", zto);
-    setting_set("Map", "fov", fov);
+    Settings.map.x = self.x;
+    Settings.map.y = self.y;
+    Settings.map.z = self.z;
+    Settings.map.xto = self.xto;
+    Settings.map.yto = self.yto;
+    Settings.map.zto = self.zto;
+    Settings.map.xup = self.xup;
+    Settings.map.yup = self.yup;
+    Settings.map.zup = self.zup;
+    Settings.map.fov = self.fov;
 };
 changes = ds_list_create();
 

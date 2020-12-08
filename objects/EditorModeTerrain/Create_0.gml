@@ -15,19 +15,19 @@ def_yup = 0;
 def_zup = 1;
 def_fov = 60;
 
-x = setting_get("Terrain", "x", def_x);
-y = setting_get("Terrain", "y", def_y);
-z = setting_get("Terrain", "z", def_z);
+x = setting_get("terrain", "x", def_x);
+y = setting_get("terrain", "y", def_y);
+z = setting_get("terrain", "z", def_z);
 
-xto = setting_get("Terrain", "xto", def_xto);
-yto = setting_get("Terrain", "yto", def_yto);
-zto = setting_get("Terrain", "zto", def_zto);
+xto = setting_get("terrain", "xto", def_xto);
+yto = setting_get("terrain", "yto", def_yto);
+zto = setting_get("terrain", "zto", def_zto);
 
 xup = def_xup;
 yup = def_yup;
 zup = def_zup;
 
-fov = setting_get("Terrain", "fov", def_fov);
+fov = setting_get("terrain", "fov", def_fov);
 pitch = darctan2(z - zto, point_distance(x, y, xto, yto));
 direction = point_direction(x, y, xto, yto);
 
@@ -35,19 +35,19 @@ update = editor_update_terrain;
 render = function() {
     gpu_set_cullmode(cull_noculling);
     switch (view_current) {
-        case view_3d: draw_clear(Stuff.setting_color_world); draw_editor_terrain(); draw_editor_3d(Stuff.map); break;
+        case view_3d: draw_clear(Settings.config.color_world); draw_editor_terrain(); draw_editor_3d(Stuff.map); break;
         case view_ribbon: draw_editor_terrain_menu(); break;
         case view_hud: draw_editor_hud(); break;
     }
 };
 save = function() {
-    setting_set("Terrain", "x", x);
-    setting_set("Terrain", "y", y);
-    setting_set("Terrain", "z", z);
-    setting_set("Terrain", "xto", xto);
-    setting_set("Terrain", "yto", yto);
-    setting_set("Terrain", "zto", zto);
-    setting_set("Terrain", "fov", fov);
+    Settings.terrain.x = x;
+    Settings.terrain.y = y;
+    Settings.terrain.z = z;
+    Settings.terrain.xto = xto;
+    Settings.terrain.yto = yto;
+    Settings.terrain.zto = zto;
+    Settings.terrain.fov = fov;
 };
 
 texture_name = DEFAULT_TILESET;
@@ -161,13 +161,13 @@ lights[| 0].x = 1;
 lights[| 0].y = 1;
 lights[| 0].z = -1;
 
-terrain_light_enabled = setting_get("Terrain", "light-enabled", true);
-terrain_light_ambient = setting_get("Terrain", "light-ambient", c_black);
+terrain_light_enabled = setting_get("terrain", "light_enabled", true);
+terrain_light_ambient = setting_get("terrain", "light_ambient", c_black);
 
-terrain_fog_enabled = setting_get("Terrain", "fog-enabled", true);
-terrain_fog_color = setting_get("Terrain", "fog-color", c_white);
-terrain_fog_start = setting_get("Terrain", "fog-start", 1000);
-terrain_fog_end = setting_get("Terrain", "fog-end", 32000);
+terrain_fog_enabled = setting_get("terrain", "fog_enabled", true);
+terrain_fog_color = setting_get("terrain", "fog_color", c_white);
+terrain_fog_start = setting_get("terrain", "fog_start", 1000);
+terrain_fog_end = setting_get("terrain", "fog_end", 32000);
 
 ui = ui_init_terrain(id);
 mode_id = ModeIDs.TERRAIN;

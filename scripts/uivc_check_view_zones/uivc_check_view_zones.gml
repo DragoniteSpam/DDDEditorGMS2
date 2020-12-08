@@ -3,13 +3,12 @@ function uivc_check_view_zones(argument0) {
 
     var checkbox = argument0;
 
-    Stuff.setting_view_zones = checkbox.value;
-    setting_set("View", "zones", Stuff.setting_view_zones);
+    Settings.view.zones = checkbox.value;
 
     var map = Stuff.map.active_map;
     var map_contents = map.contents;
 
-    if (Stuff.setting_view_zones) {
+    if (Settings.view.zones) {
         for (var i = 0; i < ds_list_size(map_contents.all_zones); i++) {
             var zone = map_contents.all_zones[| i];
             c_object_set_mask(zone.cobject, CollisionMasks.MAIN, CollisionMasks.MAIN);

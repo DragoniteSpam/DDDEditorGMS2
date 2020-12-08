@@ -22,7 +22,7 @@ function dmu_dialog_event_save_prefab(argument0) {
     node.prefab_guid = prefab.GUID;
 #endregion
 
-    script_execute(thing.root.commit, thing.root);
+    thing.root.commit(thing.root);
 
 
 }

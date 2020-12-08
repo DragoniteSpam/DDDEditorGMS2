@@ -2,7 +2,7 @@ function momu_set_starting_position_down() {
     menu_activate(noone);
     if (ds_list_size(Stuff.map.selection) == 1) {
         var selection = Stuff.map.selection[| 0];
-        if (script_execute(selection.area, selection) == 1) {
+        if (selection.area(selection) == 1) {
             Stuff.game_starting_map = Stuff.map.active_map.GUID;
             Stuff.game_starting_x = selection.x;
             Stuff.game_starting_y = selection.y;
@@ -19,7 +19,7 @@ function momu_set_starting_position_up() {
     // selection in map mode, even though it kinda looks like it.
     if (ds_list_size(Stuff.map.selection) == 1) {
         var selection = Stuff.map.selection[| 0];
-        if (script_execute(selection.area, selection) == 1) {
+        if (selection.area(selection) == 1) {
             Stuff.game_starting_map = Stuff.map.active_map.GUID;
             Stuff.game_starting_x = selection.x;
             Stuff.game_starting_y = selection.y;
@@ -33,7 +33,7 @@ function momu_set_starting_position_left() {
     menu_activate(noone);
     if (ds_list_size(Stuff.map.selection) == 1) {
         var selection = Stuff.map.selection[| 0];
-        if (script_execute(selection.area, selection) == 1) {
+        if (selection.area(selection) == 1) {
             Stuff.game_starting_map = Stuff.map.active_map.GUID;
             Stuff.game_starting_x = selection.x;
             Stuff.game_starting_y = selection.y;
@@ -47,7 +47,7 @@ function momu_set_starting_position_right() {
     menu_activate(noone);
     if (ds_list_size(Stuff.map.selection) == 1) {
         var selection = Stuff.map.selection[| 0];
-        if (script_execute(selection.area, selection) == 1) {
+        if (selection.area(selection) == 1) {
             Stuff.game_starting_map = Stuff.map.active_map.GUID;
             Stuff.game_starting_x = selection.x;
             Stuff.game_starting_y = selection.y;

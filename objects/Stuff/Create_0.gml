@@ -74,116 +74,8 @@ if (file_exists("projects.json")) {
     ds_map_add_list(all_projects, "projects", ds_list_create());
 }
 
-if (file_exists(FILE_SETTINGS)) {
-    var json_buffer = buffer_load(FILE_SETTINGS);
-    settings = json_decode(buffer_read(json_buffer, buffer_string));
-    buffer_delete(json_buffer);
-} else {
-    settings = ds_map_create();
-}
-
-if (!ds_map_exists(settings, "Map")) {
-    var settings_map = ds_map_create();
-    ds_map_add_map(settings, "Map", settings_map);
-}
-if (!ds_map_exists(settings, "Animation")) {
-    var settings_animation = ds_map_create();
-    ds_map_add_map(settings, "Animation", settings_animation);
-}
-if (!ds_map_exists(settings, "Terrain")) {
-    var settings_terrain = ds_map_create();
-    ds_map_add_map(settings, "Terrain", settings_terrain);
-}
-if (!ds_map_exists(settings, "Event")) {
-    var settings_event = ds_map_create();
-    ds_map_add_map(settings, "Event", settings_event);
-}
-if (!ds_map_exists(settings, "Data")) {
-    var settings_data = ds_map_create();
-    ds_map_add_map(settings, "Data", settings_data);
-}
-if (!ds_map_exists(settings, "Config")) {
-    var settings_config = ds_map_create();
-    ds_map_add_map(settings, "Config", settings_config);
-}
-if (!ds_map_exists(settings, "Location")) {
-    var settings_location = ds_map_create();
-    ds_map_add_map(settings, "Location", settings_location);
-}
-if (!ds_map_exists(settings, "Selection")) {
-    var settings_selection = ds_map_create();
-    ds_map_add_map(settings, "Selection", settings_selection);
-}
-if (!ds_map_exists(settings, "View")) {
-    var settings_view = ds_map_create();
-    ds_map_add_map(settings, "View", settings_view);
-}
-if (!ds_map_exists(settings, "Particle")) {
-    var settings_particle = ds_map_create();
-    ds_map_add_map(settings, "Particle", settings_particle);
-}
-if (!ds_map_exists(settings, "Mesh")) {
-    var settings_mesh = ds_map_create();
-    ds_map_add_map(settings, "Mesh", settings_mesh);
-}
-if (!ds_map_exists(settings, "Spart")) {
-    var settings_spart = ds_map_create();
-    ds_map_add_map(settings, "Spart", settings_spart);
-}
-
-setting_color = setting_get("Config", "color", c_green);                    // BGR
-setting_focus_alpha = setting_get("Config", "focus-alpha", 0);              // 0 ... 1
-setting_bezier_precision = setting_get("Config", "bezier", 6);              // preferably keep this between like 4 and 16ish?
-setting_npc_animate_rate = setting_get("Config", "npc-speed", 4);           // bool
-setting_code_extension = setting_get("Config", "code-ext", 1);              // 0 = txt, 1 = lua
-setting_text_extension = setting_get("Config", "text-ext", 0);              // 0 = txt, 1 = md
-setting_normal_threshold = setting_get("Config", "normal-threshold", 30);   // degrees
-setting_tooltip = setting_get("Config", "tooltip", true);                   // bool
-setting_camera_fly_rate = setting_get("Config", "camera-fly", 1);           // 0.5 ... 4
-setting_alternate_middle = setting_get("Config", "alt-mid", false);         // bool
-setting_color_world = setting_get("Config", "color-world", c_black);        // BGR
-
-setting_location_ddd = setting_get("Location", "ddd", "./");
-setting_location_mesh = setting_get("Location", "mesh", "./");
-setting_location_terrain = setting_get("Location", "terrain", "./");
-setting_location_image = setting_get("Location", "image", "./");
-setting_location_gml = setting_get("Location", "gml", "./");
-setting_location_audio = setting_get("Location", "audio", "./");
-setting_location_text = setting_get("Location", "text", "./");
-setting_location_tiled = setting_get("Location", "tiled", "./");
-
-setting_selection_mode = setting_get("Selection", "mode", SelectionModes.RECTANGLE);
-setting_selection_addition = setting_get("Selection", "addition", false);
-setting_selection_fill_type = setting_get("Selection", "fill-type", FillTypes.TILE);
-setting_selection_zone_type = setting_get("Selection", "zone-type", MapZoneTypes.CAMERA);
-setting_selection_mask = setting_get("Selection", "mask", ETypeFlags.ENTITY_ANY);
-
-setting_view_wireframe = setting_get("View", "wireframe", false);
-setting_view_grid = setting_get("View", "grid", true);
-setting_view_backface = setting_get("View", "backface", false);
-setting_view_texture = setting_get("View", "texture", true);
-setting_view_entities = setting_get("View", "entities", true);
-setting_view_zones = setting_get("View", "zones", true);
-setting_view_lighting = setting_get("View", "lighting", true);
-setting_view_gizmos = setting_get("View", "gizmos", true);
-setting_view_terrain = setting_get("View", "terrain", true);
-
-if (!EDITOR_FORCE_SINGLE_MODE) {
-    var stashed_mode = setting_get("Config", "mode", EDITOR_BASE_MODE);
-} else {
-    var stashed_mode = EDITOR_BASE_MODE;
-}
-
-setting_code_extension_map = [".txt", ".lua", ".gml"];
-setting_text_extension_map = [".txt", ".md"];
-
-setting_hide_warnings = { };
-
-#region warning types
-#macro warn_untranslated_strings "EXPORT-UNTRANSLATED"
-#macro warn_untranslated_strings_as_is 1
-#macro warn_untranslated_strings_as_default 2
-#endregion
+code_extension_map = [".txt", ".lua", ".gml"];
+text_extension_map = [".txt", ".md"];
 
 alarm[ALARM_SETTINGS_SAVE] = room_speed * CAMERA_SAVE_FREQUENCY;
 #endregion
@@ -621,7 +513,7 @@ enum GameDataCategories {
 #endregion
 
 // default editor mode
-switch (stashed_mode) {
+switch (EDITOR_FORCE_SINGLE_MODE ? EDITOR_BASE_MODE : Settings.config.mode) {
     case ModeIDs.MAP: editor_mode_3d(); break;
     case ModeIDs.EVENT: editor_mode_event(); break;
     case ModeIDs.DATA: editor_mode_data(); break;

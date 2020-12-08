@@ -2,7 +2,7 @@ function editor_mode_heightmap() {
     Stuff.mode = Stuff.terrain;
 
     if (!EDITOR_FORCE_SINGLE_MODE) {
-        setting_set("Config", "mode", ModeIDs.TERRAIN);
+        Settings.config.mode = ModeIDs.TERRAIN;
     }
 
     view_set_visible(view_fullscreen, false);

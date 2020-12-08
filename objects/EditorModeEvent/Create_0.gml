@@ -1,20 +1,13 @@
 event_inherited();
 
-x = setting_get("Event", "x", 0);
-y = setting_get("Event", "y", 100);
-z = setting_get("Event", "z", 100);
+def_x = 0;
+def_y = 100;
 
-xto = setting_get("Event", "xto", 0);
-yto = setting_get("Event", "yto", 0);
-zto = setting_get("Event", "zto", 0);
+if (Settings.event[$ "x"] == undefined)                 Settings.event.x = def_x;
+if (Settings.event[$ "y"] == undefined)                 Settings.event.y = def_y;
 
-xup = 0;
-yup = 0;
-zup = 1;
-
-fov = setting_get("Event", "fov", 50);
-pitch = setting_get("Event", "pitch", 0);
-direction = setting_get("Event", "direction", 0);
+x = Settings.event.x;
+y = Settings.event.y;
 
 render = function() {
     gpu_set_cullmode(cull_noculling);
@@ -25,15 +18,8 @@ render = function() {
     }
 };
 save = function() {
-    setting_set("Event", "x", x);
-    setting_set("Event", "y", y);
-    setting_set("Event", "z", z);
-    setting_set("Event", "xto", xto);
-    setting_set("Event", "yto", yto);
-    setting_set("Event", "zto", zto);
-    setting_set("Event", "fov", fov);
-    setting_set("Event", "pitch", pitch);
-    setting_set("Event", "direction", direction);
+    Settings.event.x = self.x;
+    Settings.event.y = self.y;
 };
 
 canvas_active_node = noone;

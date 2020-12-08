@@ -41,7 +41,7 @@ function ui_render_progress_bar(argument0, argument1, argument2) {
         if (Controller.mouse_left && bar.clicked) {
             bar.value = clamp((mouse_x_view - x1) / (x2 - x1), 0, 1);
             ui_activate(bar);
-            script_execute(bar.onvaluechange, bar);
+            bar.onvaluechange(bar);
         } else {
             bar.clicked = false;
         }

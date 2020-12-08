@@ -2,7 +2,7 @@ function editor_mode_3d() {
     Stuff.mode = Stuff.map;
 
     if (!EDITOR_FORCE_SINGLE_MODE) {
-        setting_set("Config", "mode", ModeIDs.MAP);
+        Settings.config.mode = ModeIDs.MAP;
     }
 
     view_set_visible(view_fullscreen, false);

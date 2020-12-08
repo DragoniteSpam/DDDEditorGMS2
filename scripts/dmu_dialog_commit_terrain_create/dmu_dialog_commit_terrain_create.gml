@@ -37,7 +37,7 @@ function dmu_dialog_commit_terrain_create(argument0) {
 
     vertex_freeze(terrain.terrain_buffer);
 
-    script_execute(button.root.commit, button.root);
+    button.root.commit(button.root);
 
 
 }

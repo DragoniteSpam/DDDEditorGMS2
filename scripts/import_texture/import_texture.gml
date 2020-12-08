@@ -15,7 +15,7 @@ function import_texture() {
 
     ui_list_deselect(top.el_list);
     ui_list_select(top.el_list, ds_list_size(Stuff.all_graphic_tilesets) - 1);
-    script_execute(top.el_list.onvaluechange, top.el_list);
+    top.el_list.onvaluechange(top.el_list);
 
     return ts;
 

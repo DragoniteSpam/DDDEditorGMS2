@@ -40,7 +40,7 @@ function ui_render_tab(argument0, argument1, argument2) {
         if (inbounds) {
             if (Controller.release_left) {
                 ui_activate(tab);
-                script_execute(tab.onmouseup, tab);
+                tab.onmouseup(tab);
             }
             Stuff.element_tooltip = tab;
         }

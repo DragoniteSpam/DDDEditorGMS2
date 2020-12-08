@@ -26,7 +26,7 @@ function ui_render_bitfield(argument0, argument1, argument2) {
         var thing = bitfield.contents[| i];
         //ui_activate(bitfield);
         // these are all part of the same UIThing so there's no point in turning them off
-        script_execute(thing.render, thing, bitfield.x + xx, bitfield.y + yy); 
+        thing.render(thing, bitfield.x + xx, bitfield.y + yy); 
     }
 
     draw_set_halign(fa_left);

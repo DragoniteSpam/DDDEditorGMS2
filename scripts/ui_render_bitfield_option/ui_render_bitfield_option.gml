@@ -24,7 +24,7 @@ function ui_render_bitfield_option(argument0, argument1, argument2) {
         if (inbounds) {
             if (Controller.release_left) {
                 ui_activate(bitfield);
-                script_execute(bitfield.onvaluechange, bitfield);
+                bitfield.onvaluechange(bitfield);
             }
             Stuff.element_tooltip = bitfield.root;
         }

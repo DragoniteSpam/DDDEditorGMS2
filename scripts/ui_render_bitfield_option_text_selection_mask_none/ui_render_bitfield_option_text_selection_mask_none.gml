@@ -8,7 +8,7 @@ function ui_render_bitfield_option_text_selection_mask_none(argument0, argument1
     var yy = argument2;
 
     // bitwise has its limits
-    bitfield.state = (Stuff.setting_selection_mask == 0);
+    bitfield.state = (Settings.selection.mask == 0);
 
     ui_render_bitfield_option_text(bitfield, xx, yy);
 
