@@ -31,6 +31,7 @@ function setting_project_create_local(projname, filename, buffer) {
 
 
 #macro Settings global.__settings
+Settings = { };
 
 try {
     var json_buffer = buffer_load(FILE_SETTINGS);
@@ -42,6 +43,8 @@ try {
         Settings[$ string_lower(names[i])] = loaded[$ names[i]];
     }
 } catch (e) {
+    wtf("Something went wrong loading the settings file:");
+    wtf(e);
     Settings = {
         map: { },
         animation: { },
