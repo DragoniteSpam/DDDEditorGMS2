@@ -150,6 +150,7 @@ function dialog_create_settings_map(dialog) {
     var el_code = create_input_code(col3_x, yy, "Code:", ew, eh, vx1, vy1, vx2, vy2, map.code, function(code) {
         code.root.map.code = code.value;
     }, dg);
+    el_code.interactive = false;
     el_code.tooltip = "Code which runs in each update step for the map";
     yy += el_code.height + spacing;
     
@@ -161,12 +162,14 @@ function dialog_create_settings_map(dialog) {
         input.root.map.base_encounter_rate = real(input.value);
     }, map.base_encounter_rate, "0 for off", validate_int, 0, 1000000, 7, vx1, vy1, vx2, vy2, dg);
     el_encounter_base.tooltip = "The base number of steps between random encounters; if movement is set to be off-grid, this can be approximated in tiles";
+    el_encounter_base.interactive = false;
     yy += el_encounter_base.height + spacing;
     
     var el_encounter_deviation = create_input(col3_x, yy, "Deviation", ew, eh, function(input) {
         input.root.map.base_encounter_deviation = real(input.value);
     }, map.base_encounter_deviation, "Probably steps", validate_int, 0, 1000000, 7, vx1, vy1, vx2, vy2, dg);
     el_encounter_deviation.tooltip = "The deviation in steps between random encounters; if movement is set to be off-grid, this can be approximated in tiles";
+    el_encounter_deviation.interactive = false;
     yy += el_encounter_deviation.height + spacing;
     #endregion
     
