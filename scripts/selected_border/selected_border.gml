@@ -7,7 +7,7 @@ function selected_border() {
 
     if (entity.etype_flags & mask) {
         for (var i = 0; i < ds_list_size(Stuff.map.selection); i++) {
-            if (Stuff.map.selection[| i].selected_border_determination(Stuff.map.selection[| i], entity)) {
+            if (Stuff.map.selection[| i].selected_border_determination(entity)) {
                 return true;
             }
         }

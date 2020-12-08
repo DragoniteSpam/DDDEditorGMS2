@@ -159,14 +159,14 @@ function control_map(mode) {
                 
                 if (Controller.mouse_left) {
                     if (mode.last_selection) {
-                        mode.last_selection.onmousedrag(mode.last_selection, floor_cx + 1, floor_cy + 1);
+                        mode.last_selection.onmousedrag(floor_cx + 1, floor_cy + 1);
                     }
                 }
                 
                 if (Controller.release_left) {
                     // selections of zero area are just deleted outright
                     if (mode.last_selection) {
-                        if (mode.last_selection.area(mode.last_selection) == 0) {
+                        if (mode.last_selection.area() == 0) {
                             instance_activate_object(mode.last_selection);
                             instance_destroy(mode.last_selection);
                             ds_list_pop(mode.selection);
@@ -186,7 +186,7 @@ function control_map(mode) {
                         var tz = instance_under_cursor ? instance_under_cursor.zz : 0;
                         mode.last_selection = instance_create_depth(0, 0, 0, SelectionSingle);
                         ds_list_add(mode.selection, mode.last_selection);
-                        mode.last_selection.onmousedown(mode.last_selection, floor_cx, floor_cy, tz);
+                        mode.last_selection.onmousedown(floor_cx, floor_cy, tz);
                     }
                     
                     var menu = Stuff.menu.menu_right_click;

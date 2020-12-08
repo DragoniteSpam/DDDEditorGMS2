@@ -7,31 +7,31 @@ x2 = 0;
 y2 = 0;
 z2 = 0;
 
-onmousedown = function(selection, x, y, z) {
-    selection.x = x;
-    selection.y = y;
-    selection.z = z;
-    selection.x2 = x;
-    selection.y2 = y;
-    selection.z2 = z + 1;
+onmousedown = function(x, y, z) {
+    self.x = x;
+    self.y = y;
+    self.z = z;
+    self.x2 = x;
+    self.y2 = y;
+    self.z2 = z + 1;
 };
 
-onmousedrag = function(selection, x, y) {
-    selection.x2 = x;
-    selection.y2 = y;
+onmousedrag = function(x, y) {
+    self.x2 = x;
+    self.y2 = y;
 };
 
-area = function(selection) {
-    return (selection.x - selection.x2) * (selection.y - selection.y2);
+area = function() {
+    return (x - x2) * (y - y2);
 };
 
-render = function(selection) {
-    var minx = min(selection.x, selection.x2);
-    var miny = min(selection.y, selection.y2);
-    var minz = min(selection.z, selection.z2);
-    var maxx = max(selection.x, selection.x2);
-    var maxy = max(selection.y, selection.y2);
-    var maxz = max(selection.z, selection.z2);
+render = function() {
+    var minx = min(self.x, self.x2);
+    var miny = min(self.y, self.y2);
+    var minz = min(self.z, self.z2);
+    var maxx = max(self.x, self.x2);
+    var maxy = max(self.y, self.y2);
+    var maxz = max(self.z, self.z2);
     
     var x1 = minx * TILE_WIDTH;
     var y1 = miny * TILE_HEIGHT;
@@ -60,62 +60,62 @@ render = function(selection) {
     shader_reset();
 };
 
-onmove = function(selection, dx, dy, dz) {
+onmove = function(dx, dy, dz) {
     var map = Stuff.map.active_map;
     
-    selection.x = clamp(selection.x + dx, 0, map.xx - 1);
-    selection.y = clamp(selection.y + dy, 0, map.yy - 1);
-    selection.z = clamp(selection.z + dz, 0, map.zz - 1);
+    x = clamp(x + dx, 0, map.xx - 1);
+    y = clamp(y + dy, 0, map.yy - 1);
+    z = clamp(z + dz, 0, map.zz - 1);
     
-    selection.x2 = clamp(selection.x2 + dx, 0, map.xx - 1);
-    selection.y2 = clamp(selection.y2 + dy, 0, map.yy - 1);
-    selection.z2 = clamp(selection.z2 + dz, 0, map.zz - 1);
+    x2 = clamp(x2 + dx, 0, map.xx - 1);
+    y2 = clamp(y2 + dy, 0, map.yy - 1);
+    z2 = clamp(z2 + dz, 0, map.zz - 1);
     
-    var minx = min(selection.x, selection.x2);
-    var miny = min(selection.y, selection.y2);
-    var minz = min(selection.z, selection.z2);
-    var maxx = max(selection.x, selection.x2);
-    var maxy = max(selection.y, selection.y2);
-    var maxz = max(selection.z, selection.z2);
+    var minx = min(x, x2);
+    var miny = min(y, y2);
+    var minz = min(z, z2);
+    var maxx = max(x, x2);
+    var maxy = max(y, y2);
+    var maxz = max(z, z2);
     
     // we like to avoid having zero-area selections, so try to force it out if that thappens
-    selection.x = minx;
-    selection.y = miny;
-    selection.z = minz;
-    selection.x2 = maxx;
-    selection.y2 = maxy;
-    selection.z2 = maxz;
+    x = minx;
+    y = miny;
+    z = minz;
+    x2 = maxx;
+    y2 = maxy;
+    z2 = maxz;
     
-    if (selection.x == selection.x2) {
-        selection.x--;
+    if (x == x2) {
+        x--;
     }
-    if (selection.y == selection.y2) {
-        selection.y--;
+    if (y == y2) {
+        y--;
     }
-    if (selection.z == selection.z2) {
-        selection.z--;
+    if (z == z2) {
+        z--;
     }
-    if (selection.x < 0) {
-        selection.x++;
-        selection.x2++;
+    if (x < 0) {
+        x++;
+        x2++;
     }
-    if (selection.y < 0) {
-        selection.y++;
-        selection.y2++;
+    if (y < 0) {
+        y++;
+        y2++;
     }
-    if (selection.z < 0) {
-        selection.z++;
-        selection.z2++;
+    if (z < 0) {
+        z++;
+        z2++;
     }
 };
 
-foreach_cell = function(selection, processed, script, params) {
-    var minx = min(selection.x, selection.x2);
-    var miny = min(selection.y, selection.y2);
-    var minz = min(selection.z, selection.z2);
-    var maxx = max(selection.x, selection.x2);
-    var maxy = max(selection.y, selection.y2);
-    var maxz = max(selection.z, selection.z2);
+foreach_cell = function(processed, script, params) {
+    var minx = min(x, x2);
+    var miny = min(y, y2);
+    var minz = min(z, z2);
+    var maxx = max(x, x2);
+    var maxy = max(y, y2);
+    var maxz = max(z, z2);
     
     for (var i = minx; i < maxx; i++) {
         for (var j = miny; j < maxy; j++) {
@@ -130,13 +130,13 @@ foreach_cell = function(selection, processed, script, params) {
     }
 };
 
-selected_determination = function(selection, entity) {
-    var minx = min(selection.x, selection.x2);
-    var miny = min(selection.y, selection.y2);
-    var minz = min(selection.z, selection.z2);
-    var maxx = max(selection.x, selection.x2);
-    var maxy = max(selection.y, selection.y2);
-    var maxz = max(selection.z, selection.z2);
+selected_determination = function(entity) {
+    var minx = min(x, x2);
+    var miny = min(y, y2);
+    var minz = min(z, z2);
+    var maxx = max(x, x2);
+    var maxy = max(y, y2);
+    var maxz = max(z, z2);
     
     // exclude the outer edge but don't have a negative area
     var maxex = max(minx, maxx - 1);
@@ -145,13 +145,14 @@ selected_determination = function(selection, entity) {
     
     return (is_clamped(entity.xx, minx, maxex) && is_clamped(entity.yy, miny, maxey)) && (!Stuff.map.active_map.is_3d || is_clamped(entity.zz, minz, maxez));
 };
-selected_border_determination = function(selection, entity) {
-    var minx = min(selection.x, selection.x2) - 1;
-    var miny = min(selection.y, selection.y2) - 1;
-    var minz = min(selection.z, selection.z2) - 1;
-    var maxx = max(selection.x, selection.x2) + 1;
-    var maxy = max(selection.y, selection.y2) + 1;
-    var maxz = max(selection.z, selection.z2) + 1;
+
+selected_border_determination = function(entity) {
+    var minx = min(x, x2) - 1;
+    var miny = min(y, y2) - 1;
+    var minz = min(z, z2) - 1;
+    var maxx = max(x, x2) + 1;
+    var maxy = max(y, y2) + 1;
+    var maxz = max(z, z2) + 1;
     // exclude the outer edge but don't have a negative area
     var maxex = max(minx, maxx - 1);
     var maxey = max(miny, maxy - 1);
