@@ -84,7 +84,6 @@
     {"id":{"name":"safc_on_pawn_ui","path":"scripts/safc_on_pawn_ui/safc_on_pawn_ui.yy",},"order":8,},
     {"id":{"name":"safc_on_tile_ui","path":"scripts/safc_on_tile_ui/safc_on_tile_ui.yy",},"order":9,},
     {"id":{"name":"safc_fill_zone","path":"scripts/safc_fill_zone/safc_fill_zone.yy",},"order":9,},
-    {"id":{"name":"zone_render_rectangle","path":"scripts/zone_render_rectangle/zone_render_rectangle.yy",},"order":15,},
     {"id":{"name":"graphics_create_grids","path":"scripts/graphics_create_grids/graphics_create_grids.yy",},"order":0,},
     {"id":{"name":"scribble_init","path":"scripts/scribble_init/scribble_init.yy",},"order":4,},
     {"id":{"name":"uifd_load_mesh_autotile_vertical","path":"scripts/uifd_load_mesh_autotile_vertical/uifd_load_mesh_autotile_vertical.yy",},"order":15,},

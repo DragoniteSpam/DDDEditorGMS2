@@ -126,7 +126,7 @@ function draw_editor_3d() {
     
     if (Settings.view.zones) {
         for (var i = 0; i < ds_list_size(map_contents.all_zones); i++) {
-            zone_render_rectangle(map_contents.all_zones[| i]);
+            map_contents.all_zones[| i].Render();
         }
     }
     #endregion

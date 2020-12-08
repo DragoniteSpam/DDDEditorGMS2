@@ -24,3 +24,39 @@ editor_color = [1, 1, 1, 1];
 // this is the base class, do not instantiate
 save_script = null;
 load_script = null;
+
+Render = function() {
+    var minx = min(self.x1, self.x2);
+    var miny = min(self.y1, self.y2);
+    var minz = min(self.z1, self.z2);
+    var maxx = max(self.x2, self.x2);
+    var maxy = max(self.y2, self.y2);
+    var maxz = max(self.z2, self.z2);
+    
+    var x1 = minx * TILE_WIDTH;
+    var y1 = miny * TILE_HEIGHT;
+    var z1 = minz * TILE_DEPTH;
+    // the outer corner of the cube is already at (32, 32, 32) so we need to
+    // compensate for that
+    var cube_bound = 32;
+    var x2 = maxx * TILE_WIDTH - cube_bound;
+    var y2 = maxy * TILE_HEIGHT - cube_bound;
+    var z2 = maxz * TILE_DEPTH - cube_bound;
+    var zone_color = (Stuff.map.selected_zone == id) ? c_array_zone_selected : editor_color;
+    
+    shader_set(shd_bounding_box);
+    shader_set_uniform_f_array(shader_get_uniform(shd_bounding_box, "actual_color"), zone_color);
+    shader_set_uniform_f_array(shader_get_uniform(shd_bounding_box, "offsets"), [
+        x1, y1, z1,
+        x2, y1, z1,
+        x1, y2, z1,
+        x2, y2, z1,
+        x1, y1, z2,
+        x2, y1, z2,
+        x1, y2, z2,
+        x2, y2, z2,
+    ]);
+    
+    vertex_submit(Stuff.graphics.indexed_cage_full, pr_trianglelist, -1);
+    shader_reset();
+};
