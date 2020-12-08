@@ -265,9 +265,52 @@ function ui_init_main(mode) {
         #region tab: map
         yy = legal_y + spacing;
         
-        element = create_list(col1_x, yy, "Maps: ", "no maps. (how?!)", col_width, element_height, 20, uivc_list_maps, false, t_maps, Stuff.all_maps);
+        element = create_list(col1_x, yy, "Maps: ", "no maps. (how?!)", col_width, element_height, 20, function(list) {
+            var selection = ui_list_selection(list);
+            if (selection + 1) {
+                var what = list.entries[| selection];
+                list.root.el_name.interactive = true;
+                ui_input_set_value(list.root.el_name, what.name);
+                list.root.el_internal_name.interactive = true;
+                ui_input_set_value(list.root.el_internal_name, what.internal_name);
+                list.root.el_summary.interactive = true;
+                ui_input_set_value(list.root.el_summary, what.summary);
+                // resizing a map checks if any entities will be deleted and warns you if any
+                // will; maps that are not loaded do not have a list of their entities on hand,
+                // and trying to check this is not worth the trouble
+                list.root.el_dim_x.interactive = (what == Stuff.map.active_map);
+                ui_input_set_value(list.root.el_dim_x, string(what.xx));
+                list.root.el_dim_y.interactive = (what == Stuff.map.active_map);
+                ui_input_set_value(list.root.el_dim_y, string(what.yy));
+                list.root.el_dim_z.interactive = (what == Stuff.map.active_map);
+                ui_input_set_value(list.root.el_dim_z, string(what.zz));
+                list.root.el_other.interactive = true;
+                list.root.el_3d.value = what.is_3d;
+                list.root.el_3d.interactive = true;
+            } else {
+                list.root.el_name.interactive = false;
+                list.root.el_internal_name.interactive = false;
+                list.root.el_summary.interactive = false;
+                list.root.el_dim_x.interactive = false;
+                list.root.el_dim_y.interactive = false;
+                list.root.el_dim_z.interactive = false;
+                list.root.el_other.interactive = false;
+                list.root.el_3d.interactive = false;
+            }
+        }, false, t_maps, Stuff.all_maps);
         element.tooltip = "This is a list of all the maps currently in the game.";
-        element.render = ui_render_list_all_maps;
+        element.render = method(element, function(list, xx, yy) {
+            list.text = list.text + string(ds_list_size(list.entries));
+            ds_list_clear(list.entry_colors);
+            for (var i = 0; i < ds_list_size(list.entries); i++) {
+                ds_list_add(list.entry_colors, );
+            }
+            ui_render_list(list, xx, yy);
+        });
+        element.render_colors = method(element, function(list, index) {
+            return (Stuff.game_starting_map == list.entries[| index].GUID) ? c_blue : c_black
+        });
+        element.colorize = true;
         element.ondoubleclick = dmu_data_open_map;
         element.entries_are = ListEntries.INSTANCES;
         t_maps.el_map_list = element;
@@ -275,31 +318,59 @@ function ui_init_main(mode) {
         
         yy += ui_get_list_height(element) + spacing;
         
-        element = create_button(col1_x, yy, "Add Map", col_width, element_height, fa_center, dmu_data_add_map, t_maps);
+        element = create_button(col1_x, yy, "Add Map", col_width, element_height, fa_center, function(button) {
+            dialog_create_new_map(noone);
+        }, t_maps);
         element.tooltip = "Add a map. You can have up to " + string(0xffff) + " maps in the game. I seriously doubt anyone will need anywhere near that many.";
         ds_list_add(t_maps.contents, element);
         
         yy += element.height + spacing;
         
-        element = create_button(col1_x, yy, "Delete Map", col_width, element_height, fa_center, dmu_data_remove_map, t_maps);
+        element = create_button(col1_x, yy, "Delete Map", col_width, element_height, fa_center, function(button) {
+            var list = button.root.el_map_list;
+            var index = ui_list_selection(list);
+            var map = Stuff.all_maps[| index];
+            if (map == Stuff.map.active_map) {
+                dialog_create_notice(button.root, "Please don't delete a map that you currently have loaded. If you want to delete this map, load a different one first.")
+            } else {
+                instance_activate_object(map);
+                instance_destroy(map);
+                ui_list_deselect(button.root.el_map_list);
+                ui_list_select(button.root.el_map_list, ds_list_find_index(Stuff.all_maps, Stuff.map.active_map));
+            }
+        }, t_maps);
         element.tooltip = "Delete the currently selected map. Any existing references to it will no longer work. You should only use this if you're absolutely sure; generally speaking, maps not loaded into memory will not affect the game very much.";
         ds_list_add(t_maps.contents, element);
         
         yy += element.height + spacing;
         
-        element = create_button(col1_x, yy, "Open Map", col_width, element_height, fa_center, dmu_data_open_map, t_maps);
+        element = create_button(col1_x, yy, "Open Map", col_width, element_height, fa_center, function(button) {
+            var list = button.root.el_map_list;
+            var index = ui_list_selection(list);
+            var map = Stuff.all_maps[| index];
+            if (map != Stuff.map.active_map) {
+                selection_clear();
+                load_a_map(map);
+            }
+        }, t_maps);
         element.tooltip = "Open the currently selected map for editing. Double-clicking it in the list will have the same effect.";
         ds_list_add(t_maps.contents, element);
         
         yy += element.height + spacing;
         
-        element = create_button(col1_x, yy, "Make Starting Map", col_width, element_height, fa_center, dmu_data_starting_map, t_maps);
+        element = create_button(col1_x, yy, "Make Starting Map", col_width, element_height, fa_center, function(button) {
+            var list = button.root.el_map_list;
+            var index = ui_list_selection(list);
+            Stuff.game_starting_map = list.entries[| index].GUID;
+        }, t_maps);
         element.tooltip = "Designate the currently selected map as the first one entered when the game starts. What this means to your game is up to you.";
         ds_list_add(t_maps.contents, element);
         
         yy += element.height + spacing;
         
-        element = create_button(col1_x, yy, "Import Tiled", col_width, element_height, fa_center, dmu_data_import_map, t_maps);
+        element = create_button(col1_x, yy, "Import Tiled", col_width, element_height, fa_center, function(button) {
+            import_map_tiled(true);
+        }, t_maps);
         element.tooltip = "Import a Tiled map editor file (json version). Tile data will be imported as frozen terrain; the editor will attempt to convert other data to Entities.";
         ds_list_add(t_maps.contents, element);
         
@@ -310,7 +381,12 @@ function ui_init_main(mode) {
         
         yy += element.height + spacing;
         
-        element = create_input(col2_x, yy, "", col_width, element_height, uivc_settings_map_name, "", "Name", validate_string, 0, 0, VISIBLE_NAME_LENGTH, 0, vy1, vx2, vy2, t_maps);
+        element = create_input(col2_x, yy, "", col_width, element_height, function(input) {
+            var selection = ui_list_selection(input.root.el_map_list);
+            if (selection + 1) {
+                Stuff.all_maps[| selection].name = input.value;
+            }
+        }, "", "Name", validate_string, 0, 0, VISIBLE_NAME_LENGTH, 0, vy1, vx2, vy2, t_maps);
         element.tooltip = "The name of the map, as it appears to the player.";
         ds_list_add(t_maps.contents, element);
         t_maps.el_name = element;
@@ -322,7 +398,12 @@ function ui_init_main(mode) {
         
         yy += element.height + spacing;
         
-        element = create_input(col2_x, yy, "", col_width, element_height, uivc_settings_map_internal, "", "[A-Za-z0-9_]+", validate_string_internal_name, 0, 0, INTERNAL_NAME_LENGTH, 0, vy1, vx2, vy2, t_maps);
+        element = create_input(col2_x, yy, "", col_width, element_height, function(input) {
+            var selection = ui_list_selection(input.root.el_map_list);
+            if (selection + 1) {
+                internal_name_set(Stuff.all_maps[| selection], input.value);
+            }
+        }, "", "[A-Za-z0-9_]+", validate_string_internal_name, 0, 0, INTERNAL_NAME_LENGTH, 0, vy1, vx2, vy2, t_maps);
         element.tooltip = "The internal name of the map, as it appears to the developer. Standard restrictions on internal names apply.";
         ds_list_add(t_maps.contents, element);
         t_maps.el_internal_name = element;
@@ -334,7 +415,12 @@ function ui_init_main(mode) {
         
         yy += element.height + spacing;
         
-        element = create_input(col2_x, yy, "", col_width, element_height, uivc_settings_map_summary, "", "Words", validate_string, 0, 0, 400, 0, vy1, vx2, vy2, t_maps);
+        element = create_input(col2_x, yy, "", col_width, element_height, function(input) {
+            var selection = ui_list_selection(input.root.el_map_list);
+            if (selection + 1) {
+                Stuff.all_maps[| selection].summary = input.value;
+            }
+        }, "", "Words", validate_string, 0, 0, 400, 0, vy1, vx2, vy2, t_maps);
         element.tooltip = "A description of the map. Try not to make this too long. You may wish to use Scribble formatting tags.";
         ds_list_add(t_maps.contents, element);
         t_maps.el_summary = element;
@@ -375,14 +461,19 @@ function ui_init_main(mode) {
         
         yy += element.height + spacing * 3;
         
-        element = create_checkbox(col2_x, yy, "Is 3D?", col_width, element_height, uivc_settings_map_3d, false, t_maps);
+        element = create_checkbox(col2_x, yy, "Is 3D?", col_width, element_height, function(checkbox) {
+            var selection = ui_list_selection(checkbox.root.el_map_list);
+            if (selection + 1) {
+                Stuff.all_maps[| selection].is_3d = checkbox.value;
+            }
+        }, false, t_maps);
         element.tooltip = "This is my favorite checkbox in the whole entire editor.";
         ds_list_add(t_maps.contents, element);
         t_maps.el_3d = element;
         
         yy += element.height + spacing;
         
-        element = create_button(col2_x, yy,  "Generic Data", col_width, element_height, fa_center, omu_map_generic_data, t_maps);
+        element = create_button(col2_x, yy,  "Generic Data", col_width, element_height, fa_center, dialog_create_map_generic_data, t_maps);
         element.tooltip = "You can attach generic data properties to each map, to give the game extra information about it. How you use this is up to you. These properties aren't guaranteed to exist, so the game should always check first before trying to access them.";
         ds_list_add(t_maps.contents, element);
         t_maps.el_other = element;
