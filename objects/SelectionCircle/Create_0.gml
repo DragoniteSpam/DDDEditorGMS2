@@ -3,12 +3,48 @@ event_inherited();
 z = 0;
 radius = 1;
 
-onmousedown = sme_down_circle;
-onmousedrag = sme_drag_circle;
-area = selected_area_circle;
-render = selection_render_circle;
+onmousedown = function(selection, x, y, z) {
+    selection.x = x;
+    selection.y = y;
+    selection.z = z;
+};
 
-onmove = selection_move_circle;
+onmousedrag = function(selection, x, y) {
+    selection.radius = floor(point_distance(selection.x, selection.y, x, y));
+};
+
+area = function(selection) {
+    return selection.radius * selection.radius * pi;
+};
+
+render = function(selection) {
+    transform_set(0, 0, selection.z * TILE_DEPTH + 1, 0, 0, 0, 1, 1, 1);
+    
+    var precision = 24;
+    var step = 360 / precision;
+    var cx = selection.x * TILE_WIDTH;
+    var cy = selection.y * TILE_HEIGHT;
+    var cz = selection.z * TILE_DEPTH;
+    var rw = selection.radius * TILE_WIDTH;
+    var rh = selection.radius * TILE_HEIGHT;
+    var rd = selection.radius * TILE_DEPTH;
+    var w = 12;
+    
+    for (var i = 0; i < precision; i++) {
+        var angle = i * step;
+        var angle2 = (i + 1) * step;
+        draw_line_width_colour(cx + rw * dcos(angle), cy - rh * dsin(angle), cx + rw * dcos(angle2), cy - rh * dsin(angle2), w, c_red, c_red);
+    }
+    
+    transform_reset();
+};
+
+onmove = function(selection, dx, dy, dz) {
+    var map = Stuff.map.active_map;
+    selection.x = clamp(selection.x + dx, 0, map.xx - 1);
+    selection.y = clamp(selection.y + dy, 0, map.yy - 1);
+    selection.z = clamp(selection.z + dz, 0, map.zz - 1);
+};
 
 foreach_cell = function(selection, processed, script, params) {
     var minx = max(selection.x - selection.radius, 0);
