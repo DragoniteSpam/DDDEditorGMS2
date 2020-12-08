@@ -148,7 +148,7 @@ function ui_init_main(mode) {
         
         yy += element.height + spacing;
         
-        element = create_checkbox(col2_x, yy, "View Terrain", col_width, element_height, uivc_check_view_terrain, Settings.view.gizmos, t_general);
+        element = create_checkbox(col2_x, yy, "View Terrain", col_width, element_height, uivc_check_view_terrain, Settings.view.terrain, t_general);
         element.tooltip = "The helpful frames you see around light sources and other effects and that sort of thing.";
         ds_list_add(t_general.contents, element);
         
