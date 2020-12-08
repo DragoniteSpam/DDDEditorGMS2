@@ -6,7 +6,7 @@
     "path": "folders/Scripts/Selection.yy",
   },
   "resourceVersion": "1.0",
-  "name": "selection_add",
+  "name": "Group_Selection",
   "tags": [],
   "resourceType": "GMScript",
 }
