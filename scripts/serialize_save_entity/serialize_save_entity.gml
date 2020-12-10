@@ -98,7 +98,5 @@ function serialize_save_entity(buffer, entity) {
         }
     }
     
-    // event flags - unused
-    buffer_write(buffer, buffer_u32, 0);
     buffer_write(buffer, buffer_u8, entity.slope);
 }
