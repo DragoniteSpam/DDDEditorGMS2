@@ -990,7 +990,7 @@ function ui_init_main(mode) {
         
         yy += element.height + spacing;
         
-        element = create_button(col2_x, yy, "Collision Data", col_width, element_height, fa_center, omu_mesh_collision_data, t_p_tile_editor);
+        element = create_button(col2_x, yy, "Flag Data", col_width, element_height, fa_center, omu_mesh_collision_data, t_p_tile_editor);
         ds_list_add(t_p_mesh_editor.contents, element);
         
         yy += element.height + spacing;
