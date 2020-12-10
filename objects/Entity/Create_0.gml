@@ -92,7 +92,6 @@ previous_xx = xx;
 previous_yy = yy;
 previous_zz = zz;
 
-/* * */ collision_flags = 0x1;
 /* s */ is_static = false;
 
 // editor properties
