@@ -750,146 +750,134 @@ function ui_init_main(mode) {
         yy += ui_get_list_height(element_entity_mesh_submesh) + spacing;
         
         yy = legal_y + spacing;
-        
+            
         element_entity_mesh_autotile_data = create_button(col2_x, yy, "Mesh Autotile Data", col_width, element_height, fa_center, uivc_entity_mesh_autotile_properties, t_p_mesh);
         ds_list_add(t_p_mesh.contents, element_entity_mesh_autotile_data);
         element_entity_mesh_autotile_data.interactive = false;
-    
+        
         yy += element_entity_mesh_autotile_data.height + spacing;
-    
+        
         element_entity_mesh_animated = create_checkbox(col2_x, yy, "Animated", col_width, element_height, uivc_entity_mesh_animated, false, t_p_mesh);
         ds_list_add(t_p_mesh.contents, element_entity_mesh_animated);
         element_entity_mesh_animated.interactive = false;
-    
+        
         yy += element_entity_mesh_animated.height + spacing;
-    
+        
         element_entity_mesh_animation_speed = create_input(col2_x, yy, "Anim. Spd:", col_width, element_height, uivc_entity_mesh_animation_speed, 1, "-60 to 60", validate_int, -60, 60, 3, vx1, vy1, vx2, vy2, t_p_mesh);
         element_entity_mesh_animation_speed.tooltip = "The number of complete animation frames per second. (Animations will not be previewed in the editor.)";
         ds_list_add(t_p_mesh.contents, element_entity_mesh_animation_speed);
         element_entity_mesh_animation_speed.interactive = false;
-    
+        
         yy += element_entity_mesh_animation_speed.height + spacing;
-    
+        
         element_entity_mesh_animation_end_action = create_radio_array(col2_x, yy, "End Action:", col_width, element_height, uivc_entity_mesh_animation_end_action, 0, t_p_mesh);
         create_radio_array_options(element_entity_mesh_animation_end_action, ["Stop", "Loop", "Reverse"]);
         element_entity_mesh_animation_end_action.tooltip = "The number of complete animation cycles per second";
         ds_list_add(t_p_mesh.contents, element_entity_mesh_animation_end_action);
         element_entity_mesh_animation_end_action.interactive = false;
-    
+        
         yy += ui_get_radio_array_height(element_entity_mesh_animation_end_action) + spacing;
-    
-    #endregion
-    
-    #region tab: entity: pawn
-    
+        #endregion
+        
+        #region tab: entity: pawn
         yy = legal_y + spacing;
-    
+        
         element_entity_pawn_frame = create_input(col1_x, yy, "Frame:", col_width, element_height, uivc_entity_pawn_editor_frame, 0, "0...3", validate_int, 0, 3, 1, vx1, vy1, vx2, vy2, t_p_pawn);
         ds_list_add(t_p_pawn.contents, element_entity_pawn_frame);
-    
+        
         yy += element_entity_pawn_frame.height + spacing;
-    
+        
         element_entity_pawn_direction = create_radio_array(col1_x, yy, "Direction", col_width, element_height, uivc_entity_pawn_direction, 0, t_p_pawn);
         create_radio_array_options(element_entity_pawn_direction, ["Down", "Left", "Right", "Up"]);
         ds_list_add(t_p_pawn.contents, element_entity_pawn_direction);
-    
+        
         yy += ui_get_radio_array_height(element_entity_pawn_direction) + spacing;
-    
+        
         element_entity_pawn_animating = create_checkbox(col1_x, yy, "Animating", col_width, element_height, uivc_entity_pawn_animating, false, t_p_pawn);
         ds_list_add(t_p_pawn.contents, element_entity_pawn_animating);
-    
+        
         yy += element_entity_pawn_animating.height + spacing;
-    
+        
         element_entity_pawn_sprite = create_list(col1_x, yy, "Overworld Sprite", "<no overworlds>", col_width, element_height, 12, uivc_entity_pawn_set_sprite, false, t_p_pawn, Stuff.all_graphic_overworlds);
         element_entity_pawn_sprite.entries_are = ListEntries.INSTANCES;
         ds_list_add(t_p_pawn.contents, element_entity_pawn_sprite);
-    
+        
         yy += ui_get_list_height(element_entity_pawn_sprite) + spacing;
-    #endregion
-    
-    #region tab: entity: effect
-    
+        #endregion
+        
+        #region tab: entity: effect
         yy = legal_y + spacing;
-    
+        
         element = create_text(col1_x, yy, "Effect Components", col_width, element_height, fa_left, col_width, t_p_effect);
         ds_list_add(t_p_effect.contents, element);
-    
+        
         yy += element.height + spacing;
-    
+        
         element_effect_com_light = create_button(col1_x, yy, "Light", col_width, element_height, fa_center, uivc_entity_effect_com_lighting, t_p_effect);
         element_effect_com_light.interactive = false;
         ds_list_add(t_p_effect.contents, element_effect_com_light);
-    
+        
         yy += element_effect_com_light.height + spacing;
-    
+        
         element_effect_com_particle = create_button(col1_x, yy, "Particle", col_width, element_height, fa_center, null, t_p_effect);
         element_effect_com_particle.interactive = false;
         ds_list_add(t_p_effect.contents, element_effect_com_particle);
-    
+        
         yy += element_effect_com_particle.height + spacing;
-    
+        
         element_effect_com_audio = create_button(col1_x, yy, "Audio", col_width, element_height, fa_center, null, t_p_effect);
         element_effect_com_audio.interactive = false;
         ds_list_add(t_p_effect.contents, element_effect_com_audio);
-    
+        
         yy += element_effect_com_audio.height + spacing;
-    
-    #endregion
-    
-    #region tab: entity: other
-    
+        #endregion
+        
+        #region tab: entity: other
         yy = legal_y + spacing;
-    
+        
         element = create_text(col1_x, yy, "These are settings that don't really fit anywhere else", col_width, element_height, fa_left, legal_width, t_p_other);
         ds_list_add(t_p_other.contents, element);
-    
+        
         yy += element.height + spacing;
-    
+        
         element = create_button(col1_x, yy, "Zone Data", col_width, element_height, fa_center, null, t_p_other);
         element.tooltip = "If you click on a map zone (camera, weather, audio, encounters, etc), you can edit the parameters of it here.";
         element.interactive = false;
         ds_list_add(t_p_other.contents, element);
         t_p_other.el_zone_data = element;
-    
+        
         yy += element.height + spacing;
-    
-    #endregion
-    
-    #region tab: general: tiles
-    
+        #endregion
+        
+        #region tab: general: tiles
+        
         yy = legal_y + spacing;
-    
+        
         element = create_button(col1_x, yy, "Change Tileset", 128, element_height, fa_center, omu_manager_tileset_selector, t_p_tile_editor);
         ds_list_add(t_p_tile_editor.contents, element);
-    
+        
         element = create_button(col1_x + (spacing + 128), yy, "Import Main", 128, element_height, fa_center, dmu_dialog_load_tileset_main, t_p_tile_editor);
         ds_list_add(t_p_tile_editor.contents, element);
-    
+        
         element = create_button(col1_x + (spacing + 128) * 2, yy, "Export Main", 128, element_height, fa_center, dmu_dialog_save_tileset_main, t_p_tile_editor);
         ds_list_add(t_p_tile_editor.contents, element);
-    
+        
         yy += element.height + spacing;
-    
+        
         element = create_tile_selector(col1_x, yy, legal_width - spacing * 2, (legal_width div Stuff.tile_width) * Stuff.tile_width - element_height, uivc_select_tile, uivc_select_tile_backwards, t_p_tile_editor);
         element.tile_x = mode.selection_fill_tile_x;
         element.tile_y = mode.selection_fill_tile_y;
         ds_list_add(t_p_tile_editor.contents, element);
-    
+        
         yy += element.height + spacing;
         var yy_aftergrid = yy;
-    
+        
         element = create_text(col1_x, yy, "Tile Properties: x, y", col_width, element_height, fa_left, col_width, t_p_tile_editor);
         element.render = ui_render_text_tile_label;
         ds_list_add(t_p_tile_editor.contents, element);
-    
+        
         yy += element.height + spacing;
-    
-        element = create_button(col1_x, yy, "Tile Flags", col_width, element_height, fa_center, omu_tile_flags, t_p_tile_editor);
-        ds_list_add(t_p_tile_editor.contents, element);
-    
-        yy += element.height + spacing;
-    
-    #endregion
+        #endregion
         
         #region tab: general: meshes
         yy = legal_y + spacing;
@@ -991,11 +979,6 @@ function ui_init_main(mode) {
         yy += element.height + spacing;
         
         element = create_button(col2_x, yy, "Flag Data", col_width, element_height, fa_center, omu_mesh_collision_data, t_p_tile_editor);
-        ds_list_add(t_p_mesh_editor.contents, element);
-        
-        yy += element.height + spacing;
-        
-        element = create_button(col2_x, yy, "Mesh Flags", col_width, element_height, fa_center, omu_mesh_flags, t_p_tile_editor);
         ds_list_add(t_p_mesh_editor.contents, element);
         
         yy += element.height + spacing;
