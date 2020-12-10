@@ -108,7 +108,7 @@ function dialog_create_mesh_collision_data(root, mesh) {
             ui_render_bitfield_option_text(option, x, y);
         }, function(option) {
             option.root.value ^= (1 << option.value);
-            var slice = option.root.root.mesh.asset_flags[option.root.root.xx][option.root.root.yy][option.root.root.zz] = option.root.value;
+            var slice = option.root.root.mesh.asset_flags[@ option.root.root.xx][@ option.root.root.yy][@ option.root.root.zz] = option.root.value;
         }, label, -1, 0, ew / 2, spacing / 2, 0, 0, color_active, color_inactive)]);
         var option = el_collision_triggers.contents[| ds_list_size(el_collision_triggers.contents) - 1];
         option.x = ew * (i div rows);
