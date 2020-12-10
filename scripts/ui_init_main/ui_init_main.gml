@@ -301,14 +301,6 @@ function ui_init_main(mode) {
         };
         element.onvaluechange = method(element, f_map_open);
         element.tooltip = "This is a list of all the maps currently in the game.";
-        element.render = method(element, function(list, xx, yy) {
-            list.text = list.text + string(ds_list_size(list.entries));
-            ds_list_clear(list.entry_colors);
-            for (var i = 0; i < ds_list_size(list.entries); i++) {
-                ds_list_add(list.entry_colors, );
-            }
-            ui_render_list(list, xx, yy);
-        });
         element.render_colors = method(element, function(list, index) {
             return (Stuff.game_starting_map == list.entries[| index].GUID) ? c_blue : c_black;
         });
