@@ -68,6 +68,7 @@
 #macro BATCH_CACHE_SIZE 160
 #macro buffer_datatype buffer_string
 #macro buffer_datatype_old buffer_u32
+#macro buffer_flag buffer_u64
 #macro CAMERA_SAVE_FREQUENCY 5
 #macro CAMERA_ZNEAR 0x0004
 #macro CAMERA_ZFAR 0x4000
@@ -82,7 +83,8 @@
 #macro EXPORT_EXTENSION_MAP ".dddm"
 #macro EXPORT_EXTENSION_ASSETS ".ddda"
 #macro EXPORT_EXTENSION_PARTICLES ".dddp"
-#macro FLAG_COUNT 32
+#macro OLD_FLAG_COUNT 32
+#macro FLAG_COUNT 64
 #macro HH 900
 #macro HW 520
 #macro IMPORT_GRID_SIZE 32          // for setting the bounds of imported meshes, and possibly other things

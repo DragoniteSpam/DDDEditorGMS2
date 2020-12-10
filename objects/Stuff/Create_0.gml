@@ -140,19 +140,12 @@ all_event_triggers[| 1] = "Player Touch";
 all_event_triggers[| 2] = "Event Touch";
 all_event_triggers[| 3] = "Autorun";
 
-all_collision_triggers = ds_list_create();
-repeat (FLAG_COUNT) {
-    ds_list_add(all_collision_triggers, "");
-}
-all_collision_triggers[| 0] = "Player";
-all_collision_triggers[| 1] = "NPC";
-
 all_asset_flags = ds_list_create();
 repeat (FLAG_COUNT) {
     ds_list_add(all_asset_flags, "");
 }
-all_asset_flags[| 0] = "Bush";
-all_asset_flags[| 1] = "Counter";
+all_asset_flags[| 0] = "CollidePlayer";
+all_asset_flags[| 1] = "CollideNPC";
 all_asset_flags[| 2] = "Danger";
 all_asset_flags[| 3] = "Safe";
 all_asset_flags[| 4] = "Water";

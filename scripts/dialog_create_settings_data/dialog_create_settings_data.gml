@@ -127,16 +127,12 @@ function dialog_create_settings_data(dialog) {
     el_trigger_title.color = c_blue;
     yy += el_trigger_title.height + spacing;
     
-    var el_collision_triggers = create_button(col2_x, yy, "Collision Triggers", ew, eh, fa_center, dialog_create_settings_data_collision_triggers, dg);
-    el_collision_triggers.tooltip = "In addition to the default collision trigger (Player contact) you may define your own.";
-    yy += el_collision_triggers.height + spacing;
-    
     var el_event_triggers = create_button(col2_x, yy, "Event Triggers", ew, eh, fa_center, dialog_create_settings_data_event_triggers, dg);
     el_event_triggers.tooltip = "In addition to the default event triggers (action button, player touch, etc) you may define your own, such as \"on contact with a magic spell\" or something.";
     yy += el_event_triggers.height + spacing;
 
     var el_asset_flags = create_button(col2_x, yy, "Asset Flags", ew, eh, fa_center, dialog_create_settings_data_asset_flags, dg);
-    el_asset_flags.tooltip = "Some extra flags you can assign to various game assets.";
+    el_asset_flags.tooltip = "Some extra flags you can assign to various game assets. This now includes collision triggers.";
     yy += el_asset_flags.height + spacing;
     
     var el_common_code = create_text(col2_x, yy, "Common Code", ew, eh, fa_left, dw / 2, dg);
@@ -197,7 +193,6 @@ function dialog_create_settings_data(dialog) {
         el_switches,
         el_game_constants,
         el_trigger_title,
-        el_collision_triggers,
         el_event_triggers,
         el_asset_flags,
         // global code pieces
