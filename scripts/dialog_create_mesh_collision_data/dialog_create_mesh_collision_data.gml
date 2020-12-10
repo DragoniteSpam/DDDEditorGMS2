@@ -1,18 +1,10 @@
 function dialog_create_mesh_collision_data(root, mesh) {
     var valid = true;
-    var ww = ds_grid_width(mesh.collision_flags);
-    var hh = ds_grid_height(mesh.collision_flags);
+    var ww = mesh.xmax - mesh.xmin;
+    var hh = mesh.ymax - mesh.ymin;
+    var dd = mesh.zmax - mesh.zmin;
     
-    if (ww * hh) {
-        var slice = mesh.collision_flags[# 0, 0];
-        if (!is_array(slice) || array_length(slice) == 0) {
-            valid = false;
-        }
-    } else {
-        valid = false;
-    }
-    
-    if (!valid) {
+    if (ww * hh * dd == 0) {
         dialog_create_notice(root, "The bounding box of " + mesh.name + " has a volume of zero; if you want to assign it collision data, please make sure it has a non-zero volume.");
         return noone;
     }
@@ -103,8 +95,8 @@ function dialog_create_mesh_collision_data(root, mesh) {
     yy = yy_base;
     
     #region collision triggers
-    var slice = mesh.collision_flags[# dg.xx, dg.yy];
-    var default_value = slice[@ dg.zz];
+    var slice = mesh.collision_flags[dg.xx][dg.yy];
+    var default_value = slice[dg.zz];
     var el_collision_triggers = create_bitfield(c4, yy, "Asset and Collision Flags", ew, eh, default_value, dg);
     dg.el_collision_triggers = el_collision_triggers;
     
@@ -115,9 +107,8 @@ function dialog_create_mesh_collision_data(root, mesh) {
             option.state = option.root.value & (1 << option.value);
             ui_render_bitfield_option_text(option, x, y);
         }, function(option) {
-            var slice = option.root.root.mesh.collision_flags[# option.root.root.xx, option.root.root.yy];
             option.root.value ^= (1 << option.value);
-            slice[@ option.root.root.zz] = option.root.value;
+            var slice = option.root.root.mesh.collision_flags[option.root.root.xx][option.root.root.yy][option.root.root.zz] = option.root.value;
         }, label, -1, 0, ew / 2, spacing / 2, 0, 0, color_active, color_inactive)]);
         var option = el_collision_triggers.contents[| ds_list_size(el_collision_triggers.contents) - 1];
         option.x = ew * (i div rows);
@@ -129,17 +120,15 @@ function dialog_create_mesh_collision_data(root, mesh) {
             option.state = (option.root.value == FLAG_MAX_VALUE);
             ui_render_bitfield_option_text(option, x, y);
         }, function(option) {
-            var slice = option.root.root.mesh.collision_flags[# option.root.root.xx, option.root.root.yy];
+            var slice = option.root.root.mesh.collision_flags[@ option.root.root.xx][@ option.root.root.yy][@ option.root.root.zz] = FLAG_MAX_VALUE;
             option.root.value = FLAG_MAX_VALUE;
-            slice[@ option.root.root.zz] = option.root.value;
         }, "All", -1, 0, ew / 2, spacing / 2, ew * (i div rows), 0, color_active, color_inactive),
         create_bitfield_option_data(i, function(option, x, y) {
             option.state = !option.root.value;
             ui_render_bitfield_option_text(option, x, y);
         }, function(option) {
-            var slice = option.root.root.mesh.collision_flags[# option.root.root.xx, option.root.root.yy];
+            var slice = option.root.root.mesh.collision_flags[@ option.root.root.xx][@ option.root.root.yy][@ option.root.root.zz] = 0;
             option.root.value = 0;
-            slice[@ option.root.root.zz] = option.root.value;
         }, "None", -1, 0, ew / 2, spacing / 2, ew * (i div rows), 0, color_active, color_inactive),
     ]);
     
@@ -147,21 +136,19 @@ function dialog_create_mesh_collision_data(root, mesh) {
     
     yy += (rows + 1) * eh + spacing;
     var el_button_apply_layer = create_button(c5 + ew / 2 - b_width - spacing / 2, yy, "Apply to Layer", b_width, b_height, fa_center, function(button) {
-        var grid = button.root.mesh.collision_flags;
-        for (var i = 0; i < ds_grid_width(grid); i++) {
-            for (var j = 0; j < ds_grid_height(grid); j++) {
-                var slice = grid[# i, j];
-                slice[@ button.root.zz] = button.root.el_collision_triggers.value;
+        var flag_grid = button.root.mesh.collision_flags;
+        for (var i = 0; i < array_length(flag_grid); i++) {
+            for (var j = 0; j < ds_grid_height(flag_grid[0]); j++) {
+                flag_grid[@ i][@ j][@ button.root.zz] = button.root.el_collision_triggers.value;
             }
         }
     }, dg);
     var el_button_apply_all = create_button(c5 + ew / 2 + spacing / 2, yy, "Apply to All", b_width, b_height, fa_center, function(button) {
-        var grid = button.root.mesh.collision_flags;
-        for (var i = 0; i < ds_grid_width(grid); i++) {
-            for (var j = 0; j < ds_grid_height(grid); j++) {
-                var slice = grid[# i, j];
-                for (var k = 0; k < array_length(slice); k++) {
-                    slice[@ k] = button.root.el_collision_triggers.value;
+        var flag_grid = button.root.mesh.collision_flags;
+        for (var i = 0; i < array_length(flag_grid); i++) {
+            for (var j = 0; j < array_length(flag_grid[0]); j++) {
+                for (var k = 0; k < array_length(flag_grid[0][0]); k++) {
+                    flag_grid[@ i][@ j][@ k] = button.root.el_collision_triggers.value;
                 }
             }
         }

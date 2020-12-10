@@ -1,13 +1,7 @@
-/// @param UIInput
-function uivc_mesh_collision_cell_z(argument0) {
-
-    var input = argument0;
+function uivc_mesh_collision_cell_z(input) {
     input.root.zz = real(input.value);
     input.root.el_z.value = input.root.zz / max(input.value_upper, 1);
-
-    var mesh = input.root.mesh;
-    var slice = mesh.collision_flags[# input.root.xx, input.root.yy];
-    input.root.el_collision_triggers.value = slice[@ input.root.zz];
-
-
+    
+    var mesh = slider.root.mesh;
+    input.root.el_collision_triggers.value = mesh.collision_flags[@ slider.root.xx][@ slider.root.yy][@ slider.root.zz];
 }

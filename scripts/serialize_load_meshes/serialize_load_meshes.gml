@@ -43,13 +43,13 @@ function serialize_load_meshes(buffer, version) {
         var xx = buffer_read(buffer, buffer_u16);
         var yy = buffer_read(buffer, buffer_u16);
         var zz = buffer_read(buffer, buffer_u16);
-        ds_grid_resize(mesh.collision_flags, xx, yy);
+        mesh.collision_flags = array_create(xx);
         for (var i = 0; i < xx; i++) {
+            mesh.collision_flags[@ i] = array_create(yy);
             for (var j = 0; j < yy; j++) {
-                var slice = array_create(zz);
-                mesh.collision_flags[# i, j] = slice;
+                mesh.collision_flags[@ i][@ j] = array_create(zz);
                 for (var k = 0; k < zz; k++) {
-                    slice[@ k] = buffer_read(buffer, buffer_u32);
+                    mesh.collision_flags[@ i][@ j][@ k] = buffer_read(buffer, buffer_u32);
                 }
             }
         }

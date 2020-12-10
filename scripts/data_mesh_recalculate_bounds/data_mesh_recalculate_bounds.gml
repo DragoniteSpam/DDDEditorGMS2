@@ -1,22 +1,12 @@
 function data_mesh_recalculate_bounds(mesh) {
-    var new_grid = ds_grid_create(mesh.xmax - mesh.xmin, mesh.ymax - mesh.ymin);
-    for (var i = 0; i < mesh.xmax - mesh.xmin; i++) {
-        for (var j = 0; j < mesh.ymax - mesh.ymin; j++) {
-            var new_array = array_create(mesh.zmax - mesh.zmin);
-            new_grid[# i, j] = new_array;
-            if (i < ds_grid_width(mesh.collision_flags) && j < ds_grid_height(mesh.collision_flags)) {
-                for (var k = 0; k < mesh.zmax - mesh.zmin; k++) {
-                    var old_array = mesh.collision_flags[# i, j];
-                    if (k < array_length(old_array)) {
-                        new_array[@ k] = old_array[@ k];
-                    } else {
-                        new_array[@ k] = 0xffffffff;
-                    }
-                }
-            }
+    var xx = mesh.xmax - mesh.xmin;
+    var yy = mesh.ymax - mesh.ymin;
+    var zz = mesh.zmax - mesh.zmin;
+    array_resize(mesh.collision_flags, xx);
+    for (var i = 0; i < xx; i++) {
+        array_resize(mesh.collision_flags[@ i], yy);
+        for (var j = 0; j < yy; j++) {
+            array_resize(mesh.collision_flags[@ i][@ j], zz);
         }
     }
-    
-    ds_grid_destroy(mesh.collision_flags);
-    mesh.collision_flags = new_grid;
 }
