@@ -10,10 +10,8 @@ function ui_render_surface_control_mesh_collision_grid(surface, x1, y1, x2, y2) 
         vstep = hstep;
         
         if (Controller.press_left) {
-            var base_x = mouse_x_view - x1;
-            var base_y = mouse_y_view - y1;
-            var xcell = base_x div hstep;
-            var ycell = base_y div vstep;
+            var xcell = min((mouse_x_view - x1) div hstep, surface.root.el_x_input.value_upper);
+            var ycell = min((mouse_y_view - y1) div vstep, surface.root.el_y_input.value_upper);
             surface.root.xx = xcell;
             surface.root.yy = ycell;
             surface.root.el_x_input.value = string(xcell);
