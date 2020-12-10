@@ -265,7 +265,8 @@ function ui_init_main(mode) {
         #region tab: map
         yy = legal_y + spacing;
         
-        element = create_list(col1_x, yy, "Maps: ", "no maps. (how?!)", col_width, element_height, 20, function(list) {
+        element = create_list(col1_x, yy, "Maps: ", "no maps. (how?!)", col_width, element_height, 20, null, false, t_maps, Stuff.all_maps);
+        var f_map_open = function(list) {
             var selection = ui_list_selection(list);
             if (selection + 1) {
                 var what = list.entries[| selection];
@@ -297,7 +298,8 @@ function ui_init_main(mode) {
                 list.root.el_other.interactive = false;
                 list.root.el_3d.interactive = false;
             }
-        }, false, t_maps, Stuff.all_maps);
+        };
+        element.onvaluechange = method(element, f_map_open);
         element.tooltip = "This is a list of all the maps currently in the game.";
         element.render = method(element, function(list, xx, yy) {
             list.text = list.text + string(ds_list_size(list.entries));
@@ -308,10 +310,10 @@ function ui_init_main(mode) {
             ui_render_list(list, xx, yy);
         });
         element.render_colors = method(element, function(list, index) {
-            return (Stuff.game_starting_map == list.entries[| index].GUID) ? c_blue : c_black
+            return (Stuff.game_starting_map == list.entries[| index].GUID) ? c_blue : c_black;
         });
         element.colorize = true;
-        element.ondoubleclick = dmu_data_open_map;
+        element.ondoubleclick = method(element, f_map_open);
         element.entries_are = ListEntries.INSTANCES;
         t_maps.el_map_list = element;
         ds_list_add(t_maps.contents, element);
