@@ -4,9 +4,17 @@ function data_mesh_recalculate_bounds(mesh) {
     var zz = mesh.zmax - mesh.zmin;
     array_resize(mesh.asset_flags, xx);
     for (var i = 0; i < xx; i++) {
-        array_resize(mesh.asset_flags[@ i], yy);
+        if (!is_array(mesh.asset_flags[i])) {
+            mesh.asset_flags[@ i] = array_create(yy);
+        } else {
+            array_resize(mesh.asset_flags[@ i], yy);
+        }
         for (var j = 0; j < yy; j++) {
-            array_resize(mesh.asset_flags[@ i][@ j], zz);
+            if (!is_array(mesh.asset_flags[i][j])) {
+                mesh.asset_flags[@ i][@ j] = array_create(zz);
+            } else {
+                array_resize(mesh.asset_flags[@ i][@ j], zz);
+            }
         }
     }
 }
