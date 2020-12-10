@@ -40,7 +40,7 @@ function ui_init_mesh(mode) {
         element.evaluate_text = function(list, index) {
             var mesh = list.entries[| index];
             var prefix = "";
-            if (mesh.marker & MeshMarkers.PARTICLE) {
+            if (mesh.flags & MeshFlags.PARTICLE) {
                 prefix = "(p)" + prefix;
             }
             if (ds_list_size(mesh.submeshes) == 1) {

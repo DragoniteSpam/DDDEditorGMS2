@@ -59,9 +59,9 @@ function serialize_load_meshes(buffer, version) {
         }
         
         if (version >= DataVersions.UNIFIED_FLAGS) {
-            mesh.marker = buffer_read(buffer, buffer_flag);
+            
         } else {
-            mesh.marker = buffer_read(buffer, buffer_u32);
+            mesh.flags = buffer_read(buffer, buffer_u32);
         }
         
         if (version >= DataVersions.MESH_MATERIALS) {

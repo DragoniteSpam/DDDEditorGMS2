@@ -86,7 +86,7 @@ function dialog_create_mesh_advanced(root, mesh) {
     el_markers.tooltip = "Some extra flags you can assign on a mesh that will have no bearing on how they're used in-game, but may be useful to you as the game designer.";
     el_markers.select_toggle = true;
     for (var i = 0; i < 32; i++) {
-        if (mesh.marker & (1 << i)) {
+        if (mesh.flags & (1 << i)) {
             ui_list_select(el_markers, i);
         }
     }

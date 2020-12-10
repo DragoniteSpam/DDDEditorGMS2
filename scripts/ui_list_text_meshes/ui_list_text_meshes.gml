@@ -8,7 +8,7 @@ function ui_list_text_meshes(argument0, argument1) {
 
     var prefix = "";
 
-    if (mesh.marker & MeshMarkers.PARTICLE) {
+    if (mesh.flags & MeshFlags.PARTICLE) {
         prefix = "(p)" + prefix;
     }
 

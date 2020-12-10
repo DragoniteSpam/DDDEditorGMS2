@@ -3,7 +3,6 @@ event_inherited();
 type = MeshTypes.RAW;
 
 animations = ds_map_create();           // this should map an animation name onto an index
-marker = 0;                             // this is basically a flag but for metadata
 
 submeshes = ds_list_create();
 // there will only be one collision shape, defined as the first mesh
@@ -44,6 +43,6 @@ enum MeshTypes {
     SMF
 }
 
-enum MeshMarkers {
+enum MeshFlags {
     PARTICLE            = 0x0001,
 }
