@@ -111,6 +111,7 @@ function serialize_load_entity(buffer, entity, version) {
         ds_list_add(entity.generic_data, data);
     }
     
-    entity.event_flags = buffer_read(buffer, buffer_u32);
+    // event flags - no longer used
+    buffer_read(buffer, buffer_u32);
     entity.slope = buffer_read(buffer, buffer_u8);
 }
