@@ -126,11 +126,11 @@ function dialog_create_mesh_collision_data(root, mesh) {
     
     create_bitfield_options_vertical(el_collision_triggers, [
         create_bitfield_option_data(i, function(option, x, y) {
-            option.state = (option.root.value == 0xffffffffffffffff);
+            option.state = (option.root.value == FLAG_MAX_VALUE);
             ui_render_bitfield_option_text(option, x, y);
         }, function(option) {
             var slice = option.root.root.mesh.collision_flags[# option.root.root.xx, option.root.root.yy];
-            option.root.value = 0xffffffffffffffff;
+            option.root.value = FLAG_MAX_VALUE;
             slice[@ option.root.root.zz] = option.root.value;
         }, "All", -1, 0, ew / 2, spacing / 2, ew * (i div rows), 0, color_active, color_inactive),
         create_bitfield_option_data(i, function(option, x, y) {

@@ -84,7 +84,8 @@
 #macro EXPORT_EXTENSION_ASSETS ".ddda"
 #macro EXPORT_EXTENSION_PARTICLES ".dddp"
 #macro OLD_FLAG_COUNT 32
-#macro FLAG_COUNT 64
+#macro FLAG_COUNT 63
+#macro FLAG_MAX_VALUE 0x7fffffffffffffff
 #macro HH 900
 #macro HW 520
 #macro IMPORT_GRID_SIZE 32          // for setting the bounds of imported meshes, and possibly other things

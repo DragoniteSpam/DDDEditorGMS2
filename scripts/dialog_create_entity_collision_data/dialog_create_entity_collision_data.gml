@@ -49,10 +49,10 @@ function dialog_create_entity_collision_data(root) {
     
     create_bitfield_options_vertical(el_collision_flags, [
         create_bitfield_option_data(i, function(bitfield, x, y) {
-            bitfield.state = (bitfield.root.root.entity.collision_flags == 0xffffffffffffffff);
+            bitfield.state = (bitfield.root.root.entity.collision_flags == FLAG_MAX_VALUE);
             ui_render_bitfield_option_text(bitfield, x, y);
         }, function(bitfield) {
-            bitfield.root.root.entity.collision_flags = 0xffffffffffffffff;
+            bitfield.root.root.entity.collision_flags = FLAG_MAX_VALUE;
         }, "All", -1, 0, ew / 2, spacing / 2, 0, 0, color_active, color_inactive),
         create_bitfield_option_data(i, function(bitfield, x, y) {
             bitfield.state = (bitfield.root.root.entity.collision_flags == 0);
