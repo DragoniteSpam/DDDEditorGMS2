@@ -95,8 +95,7 @@ function dialog_create_mesh_collision_data(root, mesh) {
     yy = yy_base;
     
     #region collision and asset flags
-    var slice = mesh.asset_flags[dg.xx][dg.yy];
-    var default_value = slice[dg.zz];
+    var default_value = mesh.asset_flags[dg.xx][dg.yy][dg.zz];
     var el_collision_triggers = create_bitfield(c4, yy, "Asset and Collision Flags", ew, eh, default_value, dg);
     dg.el_collision_triggers = el_collision_triggers;
     
@@ -108,7 +107,7 @@ function dialog_create_mesh_collision_data(root, mesh) {
             ui_render_bitfield_option_text(option, x, y);
         }, function(option) {
             option.root.value ^= (1 << option.value);
-            var slice = option.root.root.mesh.asset_flags[@ option.root.root.xx][@ option.root.root.yy][@ option.root.root.zz] = option.root.value;
+            option.root.root.mesh.asset_flags[@ option.root.root.xx][@ option.root.root.yy][@ option.root.root.zz] = option.root.value;
         }, label, -1, 0, ew / 2, spacing / 2, 0, 0, color_active, color_inactive)]);
         var option = el_collision_triggers.contents[| ds_list_size(el_collision_triggers.contents) - 1];
         option.x = ew * (i div rows);
@@ -120,14 +119,14 @@ function dialog_create_mesh_collision_data(root, mesh) {
             option.state = (option.root.value == FLAG_MAX_VALUE);
             ui_render_bitfield_option_text(option, x, y);
         }, function(option) {
-            var slice = option.root.root.mesh.asset_flags[@ option.root.root.xx][@ option.root.root.yy][@ option.root.root.zz] = FLAG_MAX_VALUE;
+            option.root.root.mesh.asset_flags[@ option.root.root.xx][@ option.root.root.yy][@ option.root.root.zz] = FLAG_MAX_VALUE;
             option.root.value = FLAG_MAX_VALUE;
         }, "All", -1, 0, ew / 2, spacing / 2, ew * (i div rows), 0, color_active, color_inactive),
         create_bitfield_option_data(i, function(option, x, y) {
             option.state = !option.root.value;
             ui_render_bitfield_option_text(option, x, y);
         }, function(option) {
-            var slice = option.root.root.mesh.asset_flags[@ option.root.root.xx][@ option.root.root.yy][@ option.root.root.zz] = 0;
+            option.root.root.mesh.asset_flags[@ option.root.root.xx][@ option.root.root.yy][@ option.root.root.zz] = 0;
             option.root.value = 0;
         }, "None", -1, 0, ew / 2, spacing / 2, ew * (i div rows), 0, color_active, color_inactive),
     ]);
