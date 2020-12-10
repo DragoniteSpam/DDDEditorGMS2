@@ -49,12 +49,20 @@ function serialize_load_meshes(buffer, version) {
             for (var j = 0; j < yy; j++) {
                 mesh.asset_flags[@ i][@ j] = array_create(zz);
                 for (var k = 0; k < zz; k++) {
-                    mesh.asset_flags[@ i][@ j][@ k] = buffer_read(buffer, buffer_u32);
+                    if (version >= DataVersions.UNIFIED_FLAGS) {
+                        mesh.asset_flags[@ i][@ j][@ k] = buffer_read(buffer, buffer_flag);
+                    } else {
+                        mesh.asset_flags[@ i][@ j][@ k] = buffer_read(buffer, buffer_u32);
+                    }
                 }
             }
         }
         
-        mesh.marker = buffer_read(buffer, buffer_u32);
+        if (version >= DataVersions.UNIFIED_FLAGS) {
+            mesh.marker = buffer_read(buffer, buffer_flag);
+        } else {
+            mesh.marker = buffer_read(buffer, buffer_u32);
+        }
         
         if (version >= DataVersions.MESH_MATERIALS) {
             mesh.tex_base = buffer_read(buffer, buffer_datatype);

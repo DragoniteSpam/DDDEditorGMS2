@@ -50,7 +50,7 @@ function serialize_save_meshes(buffer) {
             }
         }
         
-        buffer_write(buffer, buffer_u32, mesh.marker);
+        buffer_write(buffer, buffer_flag, mesh.marker);
         buffer_write(buffer, buffer_datatype, mesh.tex_base);
         buffer_write(buffer, buffer_datatype, mesh.tex_ambient);
         buffer_write(buffer, buffer_datatype, mesh.tex_specular_color);
