@@ -20,7 +20,7 @@ function ui_render_surface_control_mesh_collision_grid(surface, x1, y1, x2, y2) 
             surface.root.el_x.value = xcell / max(surface.root.el_x_input.value_upper, 1);
             surface.root.el_y_input.value = string(ycell);
             surface.root.el_y.value = ycell / max(surface.root.el_y_input.value_upper, 1);
-            surface.root.el_collision_triggers.value = mesh.collision_flags[@ xcell][@ ycell][@ surface.root.zz];
+            surface.root.el_collision_triggers.value = mesh.asset_flags[xcell][ycell][surface.root.zz];
         }
     }
 }

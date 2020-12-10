@@ -22,7 +22,7 @@ first_proto_guid = NULL;
 /* s */ ymax = 1;
 /* s */ zmax = 1;
 
-/* s */ collision_flags = [[[0]]];
+/* s */ asset_flags = [[[0]]];
 
 /* s */ flags = 0;          // overrides Data.flags
 

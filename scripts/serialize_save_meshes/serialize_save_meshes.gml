@@ -45,7 +45,7 @@ function serialize_save_meshes(buffer) {
         for (var j = 0; j < xx; j++) {
             for (var k = 0; k < yy; k++) {
                 for (var l = 0; l < zz; l++) {
-                    buffer_write(buffer, buffer_u32, mesh.collision_flags[j][k][l]);
+                    buffer_write(buffer, buffer_u32, mesh.asset_flags[j][k][l]);
                 }
             }
         }
