@@ -39,12 +39,27 @@ function dialog_create_entity_collision_data(root) {
         // only need to move them up once otherwise they'll keep moving up the screen
         var field_yy = (i == 16) ? -(eh * 16) : 0;
         var label = (i >= ds_list_size(Stuff.all_asset_flags)) ? "<" + string(i) + ">" : Stuff.all_asset_flags[| i];
-        create_bitfield_options_vertical(el_collision_flags, [create_bitfield_option_data(i, ui_render_bitfield_option_text_collision, uivc_bitfield_entity_collision, label, -1, 0, ew / 2, spacing / 2, field_xx, field_yy, color_active, color_inactive)]);
+        create_bitfield_options_vertical(el_collision_flags, [create_bitfield_option_data(i, function(bitfield, x, y) {
+            bitfield.state = bitfield.root.root.entity.collision_flags & (1 << bitfield.value);
+            ui_render_bitfield_option_text(bitfield, x, y);
+        }, function(bitfield) {
+            bitfield.root.root.entity.collision_flags ^= (1 << bitfield.value);
+        }, label, -1, 0, ew / 2, spacing / 2, field_xx, field_yy, color_active, color_inactive)]);
     }
     
     create_bitfield_options_vertical(el_collision_flags, [
-        create_bitfield_option_data(i, ui_render_bitfield_option_text_collision_all, uivc_bitfield_entity_collision_all, "All", -1, 0, ew / 2, spacing / 2, 0, 0, color_active, color_inactive),
-        create_bitfield_option_data(i, ui_render_bitfield_option_text_collision_none, uivc_bitfield_entity_collision_none, "None", -1, 0, ew / 2, spacing / 2, ew, -eh, color_active, color_inactive),
+        create_bitfield_option_data(i, function(bitfield, x, y) {
+            bitfield.state = (bitfield.root.root.entity.collision_flags == 0xffffffffffffffff);
+            ui_render_bitfield_option_text(bitfield, x, y);
+        }, function(bitfield) {
+            bitfield.root.root.entity.collision_flags = 0xffffffffffffffff;
+        }, "All", -1, 0, ew / 2, spacing / 2, 0, 0, color_active, color_inactive),
+        create_bitfield_option_data(i, function(bitfield, x, y) {
+            bitfield.state = (bitfield.root.root.entity.collision_flags == 0);
+            ui_render_bitfield_option_text(bitfield, x, y);
+        }, function(bitfield) {
+            bitfield.root.root.entity.collision_flags = 0;
+        }, "None", -1, 0, ew / 2, spacing / 2, ew, -eh, color_active, color_inactive),
     ]);
     
     el_collision_flags.tooltip = "You can turn on or off various collision flags. The one of interest is usually the Player collisions (the first one) but you may want to toggle the others, as well. You can define collision triggers in Global Game Settings.";
