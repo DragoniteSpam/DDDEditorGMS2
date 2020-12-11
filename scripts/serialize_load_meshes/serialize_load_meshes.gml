@@ -43,28 +43,23 @@ function serialize_load_meshes(buffer, version) {
         var xx = buffer_read(buffer, buffer_u16);
         var yy = buffer_read(buffer, buffer_u16);
         var zz = buffer_read(buffer, buffer_u16);
-        array_resize(mesh.asset_flags, xx);
+        
+        var asset_flags = array_create(xx);
         for (var i = 0; i < xx; i++) {
-            if (!is_array(mesh.asset_flags[i])) {
-                mesh.asset_flags[@ i] = array_create(yy);
-            } else {
-                array_resize(mesh.asset_flags[@ i], yy);
-            }
+            asset_flags[i] = array_create(yy);
             for (var j = 0; j < yy; j++) {
-                if (!is_array(mesh.asset_flags[i][j])) {
-                    mesh.asset_flags[@ i][@ j] = array_create(zz);
-                } else {
-                    array_resize(mesh.asset_flags[@ i][@ j], zz);
-                }
+                asset_flags[i][j] = array_create(zz);
                 for (var k = 0; k < zz; k++) {
                     if (version >= DataVersions.UNIFIED_FLAGS) {
-                        mesh.asset_flags[@ i][@ j][@ k] = buffer_read(buffer, buffer_flag);
+                        asset_flags[i][j][k] = buffer_read(buffer, buffer_flag);
                     } else {
-                        mesh.asset_flags[@ i][@ j][@ k] = buffer_read(buffer, buffer_u32);
+                        asset_flags[i][j][k] = buffer_read(buffer, buffer_u32);
                     }
-                }
-            }
+               }
+           }
         }
+        
+        mesh.asset_flags = asset_flags;
         
         if (version >= DataVersions.UNIFIED_FLAGS) {
             

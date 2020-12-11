@@ -54,11 +54,6 @@ function serialize_load_global_meta(buffer, version) {
         for (var i = 0; i < OLD_FLAG_COUNT; i++) {
             Stuff.all_event_triggers[| i] = buffer_read(buffer, buffer_string);
         }
-    }
-    
-    if (version >= DataVersions.UNIFIED_FLAGS) {
-        // these are no longer located here
-    } else {
         for (var i = 0; i < OLD_FLAG_COUNT; i++) {
             Stuff.all_asset_flags[| i] = buffer_read(buffer, buffer_string);
         }
