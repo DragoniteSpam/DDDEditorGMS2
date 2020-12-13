@@ -79,7 +79,9 @@ zone_edit_script = function(root) {
     var color_inactive = c_white;
     
     var el_asset_flags = create_bitfield(col2_x, yy, "Asset Flags", ew, eh, 0, dg);
-    el_asset_flags.onvaluechange = uivc_input_map_flag_zone_flag;
+    el_asset_flags.onvaluechange = function(bitfield) {
+        Stuff.map.selected_zone.zone_flags = bitfield.value;
+    };
     el_asset_flags.value = zone.zone_flags;
     
     for (var i = 0; i < 32; i++) {
@@ -88,12 +90,33 @@ zone_edit_script = function(root) {
         // only need to move them up once otherwise they'll keep moving up the screen
         var field_yy = (i == 16) ? -(eh * 16) : 0;
         var label = (i >= ds_list_size(Stuff.all_asset_flags)) ? "<" + string(i) + ">" : Stuff.all_asset_flags[| i];
-        create_bitfield_options_vertical(el_asset_flags, [create_bitfield_option_data(i, ui_render_bitfield_option_text_generic_flag, uivc_bitfield_generic_flag, label, -1, 0, ew / 2, spacing / 2, field_xx, field_yy, color_active, color_inactive)]);
+        create_bitfield_options_vertical(el_asset_flags, [create_bitfield_option_data(i, function(bitfield, x, y) {
+            bitfield.state = bitfield.root.value & (1 << bitfield.value);
+            ui_render_bitfield_option_text(bitfield, xx, yy);
+        }, function(bitfield) {
+            var base = bitfield.root;
+            base.value = base.value ^ (1 << bitfield.value);
+            base.onvaluechange(base);
+        }, label, -1, 0, ew / 2, spacing / 2, field_xx, field_yy, color_active, color_inactive)]);
     }
     
     create_bitfield_options_vertical(el_asset_flags, [
-        create_bitfield_option_data(i, ui_render_bitfield_option_text_generic_flag_all, uivc_bitfield_generic_flag_all, "All", -1, 0, ew / 2, spacing / 2, 0, 0, color_active, color_inactive),
-        create_bitfield_option_data(i, ui_render_bitfield_option_text_generic_flag_none, uivc_bitfield_generic_flag_none, "None", -1, 0, ew / 2, spacing / 2, ew, -eh, color_active, color_inactive),
+        create_bitfield_option_data(i, function(bitfield, x, y) {
+            bitfield.state = (base.value == 0xffffffff);
+            ui_render_bitfield_option_text(bitfield.root, x, y);
+        }, function(bitfield) {
+            var base = bitfield.root;
+            base.value = 0xffffffff;
+            base.onvaluechange(base);
+        }, "All", -1, 0, ew / 2, spacing / 2, 0, 0, color_active, color_inactive),
+        create_bitfield_option_data(i, function(bitfield, x, y) {
+            bitfield.state = (bitfield.root.value == 0);
+            ui_render_bitfield_option_text(bitfield, x, y);
+        }, function(bitfield) {
+            var base = bitfield.root;
+            base.value = 0;
+            base.onvaluechange(base);
+        }, "None", -1, 0, ew / 2, spacing / 2, ew, -eh, color_active, color_inactive),
     ]);
     
     el_asset_flags.tooltip = "Misc. flags which you may enable or disable. You can define asset flags in Global Game Settings.";
