@@ -16,7 +16,7 @@ function serialize_save_map_contents_batch(buffer) {
     for (var i = 0; i < map.xx; i++) {
         for (var j = 0; j < map.yy; j++) {
             for (var k = 0; k < map.zz; k++) {
-                buffer_write(buffer, buffer_flag, int64(map_get_tag_grid(i, j, k)));
+                buffer_write(buffer, buffer_flag, int64(map.GetFlag(i, j, k)));
             }
         }
     }

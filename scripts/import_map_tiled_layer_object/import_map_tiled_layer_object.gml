@@ -14,7 +14,9 @@ function import_map_tiled_layer_object() {
     var yy = (argument_count > 5) ? argument[5] : 0;
     var tiled_cache = (argument_count > 6) ? argument[6] : noone;
     var zz = z;
-    var layer_tag = 0;
+    var layer_flag = 0;
+    
+    var map = Stuff.map.active_map;
     
     var layer_objects = json[? "objects"];
     var layer_name = json[? "name"];
@@ -32,7 +34,7 @@ function import_map_tiled_layer_object() {
                 var imported = string_lettersdigits(string_lower(string(property_data[? "value"])));
                 for (var j = 0; j < ds_list_size(Stuff.all_asset_flags); j++) {
                     if (string_lettersdigits(string_lower(Stuff.all_asset_flags[| j])) == imported) {
-                        layer_tag |= (1 << j);
+                        layer_flag |= (1 << j);
                         break;
                     }
                 }
@@ -48,9 +50,9 @@ function import_map_tiled_layer_object() {
         var obj_x = object[? "x"];
         var obj_y = object[? "y"];
         
-        if (!is_clamped((xx + obj_x) / TILE_WIDTH, 0, Stuff.map.active_map.xx - 1)) continue;
-        if (!is_clamped((yy + obj_y) / TILE_HEIGHT, 0, Stuff.map.active_map.yy - 1)) continue;
-        if (!is_clamped(zz, 0, Stuff.map.active_map.zz - 1)) continue;
+        if (!is_clamped((xx + obj_x) / TILE_WIDTH, 0, map.xx - 1)) continue;
+        if (!is_clamped((yy + obj_y) / TILE_HEIGHT, 0, map.yy - 1)) continue;
+        if (!is_clamped(zz, 0, map.zz - 1)) continue;
         
         var obj_gid_local = object[? "gid"];
         var obj_name = object[? "name"];
@@ -63,14 +65,14 @@ function import_map_tiled_layer_object() {
         
         // if the layer has a tag assigned to it, instead of creating an instance
         // of a mesh or whatever, convert its area to a tag
-        if (layer_tag) {
+        if (layer_flag) {
             var x1 = obj_x div TILE_WIDTH;
             var y1 = obj_y div TILE_HEIGHT;
             var x2 = x1 + (obj_width div TILE_WIDTH);
             var y2 = y1 + (obj_height div TILE_HEIGHT);
             for (var j = x1; j < x2; j++) {
                 for (var k = y1; k < y2; k++) {
-                    map_set_tag_grid(j, k, zz, layer_tag);
+                    map.SetFlag(j, k, zz, layer_flag);
                 }
             }
             continue;
@@ -200,7 +202,7 @@ function import_map_tiled_layer_object() {
                     if (thing) {
                         instance.overworld_sprite = thing.GUID;
                         // position for NPCs is at -1 because of where the origin for sprites is in Tiled
-                        Stuff.map.active_map.Add(instance, (xx + obj_x) div TILE_WIDTH, (yy + obj_y) div TILE_HEIGHT - 1, zz, false, false);
+                        map.Add(instance, (xx + obj_x) div TILE_WIDTH, (yy + obj_y) div TILE_HEIGHT - 1, zz, false, false);
                     } else {
                         instance_activate_object(thing);
                         instance_destroy(thing);
@@ -211,7 +213,7 @@ function import_map_tiled_layer_object() {
                     instance.tmx_id = obj_id;
                     instance.overworld_sprite = thing.GUID;
                     // position for NPCs is at -1 because of where the origin for sprites is in Tiled
-                    Stuff.map.active_map.Add(instance, (xx + obj_x) div TILE_WIDTH, (yy + obj_y) div TILE_HEIGHT - 1, zz);
+                    map.Add(instance, (xx + obj_x) div TILE_WIDTH, (yy + obj_y) div TILE_HEIGHT - 1, zz);
                 }
                 break;
             #endregion
@@ -235,11 +237,11 @@ function import_map_tiled_layer_object() {
                         // The entity only needs to be relocated; it doesn't need to be removed from
                         // the lists, or re-added later, because that would take a lot of time
                         map_remove_thing(instance);
-                        Stuff.map.active_map.Add(instance, (xx + obj_x) div TILE_WIDTH, (yy + obj_y) div TILE_HEIGHT, zz, false, false);
+                        map.Add(instance, (xx + obj_x) div TILE_WIDTH, (yy + obj_y) div TILE_HEIGHT, zz, false, false);
                     } else {
                         instance = instance_create_mesh(pr_mesh_data);
                         instance.tmx_id = obj_id;
-                        Stuff.map.active_map.Add(instance, (xx + obj_x) div TILE_WIDTH, (yy + obj_y) div TILE_HEIGHT, zz);
+                        map.Add(instance, (xx + obj_x) div TILE_WIDTH, (yy + obj_y) div TILE_HEIGHT, zz);
                     }
                     instance.off_xx = pr_offset_x / TILE_WIDTH;
                     instance.off_yy = pr_offset_y / TILE_HEIGHT;

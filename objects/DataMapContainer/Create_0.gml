@@ -119,3 +119,11 @@ GetMeshAutotileData = function(x, y, z) {
     
     return result;
 };
+
+GetFlag = function(x, y, z) {
+    return contents.map_grid_tags[x][y][z];
+};
+
+SetFlag = function(x, y, z, flag) {
+    contents.map_grid_tags[@ x][@ y][@ z] = flag;
+};
