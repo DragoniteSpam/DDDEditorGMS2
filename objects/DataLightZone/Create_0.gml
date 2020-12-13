@@ -134,7 +134,7 @@ zone_edit_script = function(root) {
     
     return dg;
 };
-editor_color = [1, 1, 0, 1];
+editor_color = c_yellow;
 
 /* s */ name = "LightZone " + name;
 /* s */ ztype = MapZoneTypes.LIGHT;

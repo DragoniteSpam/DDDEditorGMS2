@@ -118,7 +118,7 @@ zone_edit_script = function(root) {
     
     return dg;
 };
-editor_color = [0, 1, 0, 1];
+editor_color = c_green;
 
 /* s */ name = "FlagZone " + name;
 /* s */ ztype = MapZoneTypes.FLAG;

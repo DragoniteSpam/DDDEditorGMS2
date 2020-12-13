@@ -19,7 +19,7 @@ zz = 0;
 zone_edit_script = null;
 cobject = noone;
 cshape = noone;
-editor_color = [1, 1, 1, 1];
+editor_color = c_white;
 
 // this is the base class, do not instantiate
 save_script = null;
@@ -45,7 +45,7 @@ Render = function() {
     var zone_color = (Stuff.map.selected_zone == id) ? c_array_zone_selected : editor_color;
     
     shader_set(shd_bounding_box);
-    shader_set_uniform_f_array(shader_get_uniform(shd_bounding_box, "actual_color"), zone_color);
+    shader_set_uniform_f(shader_get_uniform(shd_bounding_box, "actual_color"), (zone_color & 0xff) / 0xff, ((zone_color > 8) & 0xff) / 0xff, ((zone_color >> 16) & 0xff) / 0xff);
     shader_set_uniform_f_array(shader_get_uniform(shd_bounding_box, "offsets"), [
         x1, y1, z1,
         x2, y1, z1,

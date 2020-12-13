@@ -129,7 +129,7 @@ zone_edit_script = function(root) {
     
     return dg;
 };
-editor_color = [0, 0, 1, 1];
+editor_color = c_blue;
 
 /* s */ name = "CamZone " + name;
 /* s */ ztype = MapZoneTypes.CAMERA;
