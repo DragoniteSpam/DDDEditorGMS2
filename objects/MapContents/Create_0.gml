@@ -15,7 +15,7 @@ refids = { };                               // entities (mapped onto refids)
 refid_current = 0;
 
 // these just needs to exist for now, it'll get resized when stuff is loaded
-map_grid = array_create_3d(10, 10, 10);
+map_grid = array_create_4d(10, 10, 10, MapCellContents._COUNT);
 map_grid_tags = array_create_3d(10, 10, 10);
 
 frozen = noone;                                // everything that will be a single batch in the game

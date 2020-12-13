@@ -13,8 +13,8 @@ function data_resize_map(map_container, xx, yy, zz) {
     
     graphics_create_grids();
     
+    array_resize_4d(map_contents.map_grid, xx, yy, zz, MapCellContents._COUNT);
     array_resize_3d(map_contents.map_grid_tags, xx, yy, zz);
-    array_resize_3d(map_contents.map_grid, xx, yy, zz);
     
     if (Stuff.game_starting_map == map_container.GUID) {
         Stuff.game_starting_x = min(Stuff.game_starting_x, xx - 1);
