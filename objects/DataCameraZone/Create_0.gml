@@ -76,11 +76,15 @@ zone_edit_script = function(root) {
     
     yy += el_properties_text.height + spacing;
     
-    var el_camera_distance = create_input(col2_x, yy, "Distance:", ew, eh, uivc_input_map_camera_zone_distance, zone.camera_distance, "float", validate_double, 0, 32, 10, vx1, vy1, vx2, vy2, dg);
+    var el_camera_distance = create_input(col2_x, yy, "Distance:", ew, eh, function(input) {
+        Stuff.map.selected_zone.camera_distance = real(input.value);
+    }, zone.camera_distance, "float", validate_double, 0, 32, 10, vx1, vy1, vx2, vy2, dg);
     el_camera_distance.tooltip = "How far the camera is to be from its target, measured in tile distances. (Only affects 3D).";
     yy += el_camera_distance.height + spacing;
     
-    var el_camera_angle = create_input(col2_x, yy, "Angle:", ew, eh, uivc_input_map_camera_zone_angle, zone.camera_angle, "float", validate_double, -89, 89, 4, vx1, vy1, vx2, vy2, dg);
+    var el_camera_angle = create_input(col2_x, yy, "Angle:", ew, eh, function(input) {
+        Stuff.map.selected_zone.camera_angle = real(input.value);
+    }, zone.camera_angle, "float", validate_double, -89, 89, 4, vx1, vy1, vx2, vy2, dg);
     el_camera_angle.tooltip = "The angle above the ground of the camera, measured in degrees; a positive angle is looking down on the camera target, and a negative angle is looking up";
     yy += el_camera_angle.height + spacing;
     
@@ -94,13 +98,17 @@ zone_edit_script = function(root) {
     el_transition_text.color = c_blue;
     yy += el_transition_text.height + spacing;
     
-    var el_transition_style = create_list(col3_x, yy, "Easing Mode:", "(no easings)", ew, eh, 8, uivc_input_map_camera_zone_transition, false, dg, global.animation_tween_names);
+    var el_transition_style = create_list(col3_x, yy, "Easing Mode:", "(no easings)", ew, eh, 8, function(list) {
+        Stuff.map.selected_zone.camera_easing_method = ui_list_selection(list);
+    }, false, dg, global.animation_tween_names);
     el_transition_style.entries_are = ListEntries.STRINGS;
     el_transition_style.tooltip = "The transition used when you enter this camera zone. In almost all cases, Linear or Quadratic In / Out should be fine.";
     ui_list_select(el_transition_style, zone.camera_easing_method, true);
     yy += ui_get_list_height(el_transition_style) + spacing;
     
-    var el_transition_rate = create_input(col3_x, yy, "Time:", ew, eh, uivc_input_map_camera_zone_time, zone.camera_easing_time, "float", validate_double, 0, 60, 4, vx1, vy1, vx2, vy2, dg);
+    var el_transition_rate = create_input(col3_x, yy, "Time:", ew, eh, function(input) {
+        Stuff.map.selected_zone.camera_easing_time = real(input.value);
+    }, zone.camera_easing_time, "float", validate_double, 0, 60, 4, vx1, vy1, vx2, vy2, dg);
     el_transition_rate.tooltip = "How long camera position transitions should take, in seconds. A speed value of 0 is an instantaneous transition, and is not recommended.";
     yy += el_transition_rate.height + spacing;
     
