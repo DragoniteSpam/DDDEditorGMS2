@@ -18,7 +18,7 @@ function map_move_thing() {
     var zz = argument[3];
     var mark_changed = (argument_count > 4) ? argument[4] : true;
 
-    if (map_get_free_at(xx, yy, zz, entity.slot)) {
+    if (Stuff.map.active_map.FreeAt(xx, yy, zz, entity.slot)) {
         map_remove_thing(entity);
         Stuff.map.active_map.Add(entity, xx, yy, zz, false, false);
         if (mark_changed) {

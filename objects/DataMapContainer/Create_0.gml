@@ -95,3 +95,7 @@ Add = function(entity, x, y, z, is_temp, add_to_lists) {
         safa_delete(entity);
     }
 };
+
+FreeAt = function(x, y, z, slot) {
+    return !Stuff.map.active_map.contents.map_grid[x][y][z][slot];
+};
