@@ -15,7 +15,7 @@ function safc_fill_mesh(argument0, argument1, argument2, argument3) {
         var addition = instance_create_mesh(Stuff.all_meshes[| Stuff.map.selection_fill_mesh]);
     
         if (addition) {
-            map_add_thing(addition, xx, yy, zz);
+            Stuff.map.active_map.Add(addition, xx, yy, zz);
         }
     }
 

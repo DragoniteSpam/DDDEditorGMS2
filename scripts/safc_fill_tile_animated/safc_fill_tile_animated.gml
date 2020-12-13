@@ -16,7 +16,7 @@ function safc_fill_tile_animated(argument0, argument1, argument2, argument3) {
 
     if (!cell[@ MapCellContents.TILE]) {
         var addition = instance_create_tile_animated();
-        map_add_thing(addition, xx, yy, zz);
+        Stuff.map.active_map.Add(addition, xx, yy, zz);
     }
 
 

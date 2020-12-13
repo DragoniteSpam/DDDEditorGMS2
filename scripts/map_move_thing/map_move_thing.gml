@@ -20,7 +20,7 @@ function map_move_thing() {
 
     if (map_get_free_at(xx, yy, zz, entity.slot)) {
         map_remove_thing(entity);
-        map_add_thing(entity, xx, yy, zz, undefined, false, false);
+        Stuff.map.active_map.Add(entity, xx, yy, zz, false, false);
         if (mark_changed) {
             editor_map_mark_changed(entity);
         }

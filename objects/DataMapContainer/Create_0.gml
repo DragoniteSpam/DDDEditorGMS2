@@ -51,3 +51,47 @@ code = Stuff.default_lua_map;               // code
 generic_data = ds_list_create();            // similar to that attached to Entities
 
 ds_list_add(Stuff.all_maps, id);
+
+Add = function(entity, x, y, z, is_temp, add_to_lists) {
+    if (x == undefined) x = entity.xx;
+    if (y == undefined) y = entity.yy;
+    if (z == undefined) z = entity.zz;
+    if (is_temp == undefined) is_temp = false;
+    if (add_to_lists == undefined) add_to_lists = true;
+    // Does not check to see if the specified coordinates are in bounds.
+    // You are responsible for that.
+    
+    var cell = map_get_grid_cell(x, y, z, self.id);
+    
+    // only add thing if the space is not already occupied
+    if (!cell[@ entity.slot]) {
+        cell[@ entity.slot] = entity;
+        
+        entity.xx = x;
+        entity.yy = y;
+        entity.zz = z;
+        
+        map_transform_thing(entity);
+        
+        if (add_to_lists) {
+            ds_list_add(all_entities, entity);
+        }
+        
+        // set that argument to false to avoid adding the instance to a list - this might
+        // be because it's a temporary instance, or perhaps it's already in the map and you're
+        // just trying to move it
+        if (!is_temp && add_to_lists) {
+            var list = entity.batchable ? batch_in_the_future : dynamic;
+            // smf meshes simply aren't allowed to be batched, or static, so exert your authority over them
+            if (instanceof_classic(entity, EntityMesh) && guid_get(entity.mesh) && guid_get(entity.mesh).type == MeshTypes.SMF) {
+                list = map.dynamic;
+            }
+            
+            ds_list_add(list, entity);
+            entity.listed = true;
+            ds_list_add(changes, entity);
+        }
+    } else {
+        safa_delete(entity);
+    }
+};

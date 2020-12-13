@@ -13,11 +13,7 @@ function safc_fill_terrain(argument0, argument1, argument2, argument3) {
     
     if (!cell[@ MapCellContents.MESH]) {
         var addition = instance_create_terrain();
-        
-        // there's no reason this should fail but just in case
-        if (addition) {
-            map_add_thing(addition, xx, yy, zz);
-        }
+        Stuff.map.active_map.Add(addition, xx, yy, zz);
     }
 
 

@@ -13,7 +13,7 @@ function safc_fill_pawn(argument0, argument1, argument2, argument3) {
 
     if (!cell[@ MapCellContents.PAWN]) {
         var addition = instance_create_pawn();
-        map_add_thing(addition, xx, yy, zz);
+        Stuff.map.active_map.Add(addition, xx, yy, zz);
     }
 
 

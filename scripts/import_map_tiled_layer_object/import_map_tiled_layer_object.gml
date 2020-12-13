@@ -200,7 +200,7 @@ function import_map_tiled_layer_object() {
                     if (thing) {
                         instance.overworld_sprite = thing.GUID;
                         // position for NPCs is at -1 because of where the origin for sprites is in Tiled
-                        map_add_thing(instance, (xx + obj_x) div TILE_WIDTH, (yy + obj_y) div TILE_HEIGHT - 1, zz, undefined, undefined, false);
+                        Stuff.map.active_map.Add(instance, (xx + obj_x) div TILE_WIDTH, (yy + obj_y) div TILE_HEIGHT - 1, zz, false, false);
                     } else {
                         instance_activate_object(thing);
                         instance_destroy(thing);
@@ -211,7 +211,7 @@ function import_map_tiled_layer_object() {
                     instance.tmx_id = obj_id;
                     instance.overworld_sprite = thing.GUID;
                     // position for NPCs is at -1 because of where the origin for sprites is in Tiled
-                    map_add_thing(instance, (xx + obj_x) div TILE_WIDTH, (yy + obj_y) div TILE_HEIGHT - 1, zz);
+                    Stuff.map.active_map.Add(instance, (xx + obj_x) div TILE_WIDTH, (yy + obj_y) div TILE_HEIGHT - 1, zz);
                 }
                 break;
             #endregion
@@ -235,11 +235,11 @@ function import_map_tiled_layer_object() {
                         // The entity only needs to be relocated; it doesn't need to be removed from
                         // the lists, or re-added later, because that would take a lot of time
                         map_remove_thing(instance);
-                        map_add_thing(instance, (xx + obj_x) div TILE_WIDTH, (yy + obj_y) div TILE_HEIGHT, zz, undefined, undefined, false);
+                        Stuff.map.active_map.Add(instance, (xx + obj_x) div TILE_WIDTH, (yy + obj_y) div TILE_HEIGHT, zz, false, false);
                     } else {
                         instance = instance_create_mesh(pr_mesh_data);
                         instance.tmx_id = obj_id;
-                        map_add_thing(instance, (xx + obj_x) div TILE_WIDTH, (yy + obj_y) div TILE_HEIGHT, zz);
+                        Stuff.map.active_map.Add(instance, (xx + obj_x) div TILE_WIDTH, (yy + obj_y) div TILE_HEIGHT, zz);
                     }
                     instance.off_xx = pr_offset_x / TILE_WIDTH;
                     instance.off_yy = pr_offset_y / TILE_HEIGHT;

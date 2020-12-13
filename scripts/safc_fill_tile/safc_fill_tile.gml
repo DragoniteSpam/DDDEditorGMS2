@@ -12,7 +12,7 @@ function safc_fill_tile(argument0, argument1, argument2, argument3) {
 
     if (!cell[@ MapCellContents.TILE]) {
         var addition = instance_create_tile(Stuff.map.selection_fill_tile_x, Stuff.map.selection_fill_tile_y);
-        map_add_thing(addition, xx, yy, zz);
+        Stuff.map.active_map.Add(addition, xx, yy, zz);
     }
 
 

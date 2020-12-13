@@ -32,7 +32,7 @@ function serialize_load_map_contents_dynamic(buffer, version, map_container, is_
         
         // some things don't need to exist in the map grid
         if (thing.exist_in_map && !list_only) {
-            map_add_thing(thing, thing.xx, thing.yy, thing.zz, map_container, is_temp);
+            map_container.Add(thing, thing.xx, thing.yy, thing.zz, is_temp);
         }
         
         entities[n++] = thing;
