@@ -74,22 +74,22 @@ Add = function(entity, x, y, z, is_temp, add_to_lists) {
         entity.SetCollisionTransform();
         
         if (add_to_lists) {
-            ds_list_add(all_entities, entity);
+            ds_list_add(contents.all_entities, entity);
         }
         
         // set that argument to false to avoid adding the instance to a list - this might
         // be because it's a temporary instance, or perhaps it's already in the map and you're
         // just trying to move it
         if (!is_temp && add_to_lists) {
-            var list = entity.batchable ? batch_in_the_future : dynamic;
+            var list = entity.batchable ? contents.batch_in_the_future : contents.dynamic;
             // smf meshes simply aren't allowed to be batched, or static, so exert your authority over them
             if (instanceof_classic(entity, EntityMesh) && guid_get(entity.mesh) && guid_get(entity.mesh).type == MeshTypes.SMF) {
-                list = map.dynamic;
+                list = contents.dynamic;
             }
             
             ds_list_add(list, entity);
             entity.listed = true;
-            ds_list_add(changes, entity);
+            ds_list_add(Stuff.map.changes, entity);
         }
     } else {
         safa_delete(entity);
