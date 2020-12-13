@@ -21,8 +21,6 @@ ds_list_destroy(dynamic);
 ds_list_destroy_instances(all_entities);
 ds_list_destroy_instances(all_zones);
 
-ds_grid_destroy(map_grid);
-
 if (frozen) vertex_delete_buffer(frozen);
 if (frozen_wire) vertex_delete_buffer(frozen_wire);
 buffer_delete(frozen_data);
