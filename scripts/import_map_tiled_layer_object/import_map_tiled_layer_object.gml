@@ -198,7 +198,7 @@ function import_map_tiled_layer_object() {
                 
                 if (tmx_cache[? obj_id]) {
                     instance = tmx_cache[? obj_id];
-                    map_remove_thing(instance);
+                    map.Remove(instance);
                     if (thing) {
                         instance.overworld_sprite = thing.GUID;
                         // position for NPCs is at -1 because of where the origin for sprites is in Tiled
@@ -236,7 +236,7 @@ function import_map_tiled_layer_object() {
                         update = true;
                         // The entity only needs to be relocated; it doesn't need to be removed from
                         // the lists, or re-added later, because that would take a lot of time
-                        map_remove_thing(instance);
+                        map.Remove(instance);
                         map.Add(instance, (xx + obj_x) div TILE_WIDTH, (yy + obj_y) div TILE_HEIGHT, zz, false, false);
                     } else {
                         instance = instance_create_mesh(pr_mesh_data);

@@ -131,11 +131,18 @@ SetFlag = function(x, y, z, flag) {
 Move = function(entity, x, y, z, mark_changed) {
     if (mark_changed == undefined) mark_changed = true;
     
-    if (FreeAt(xx, yy, zz, entity.slot)) {
-        map_remove_thing(entity);
-        Add(entity, xx, yy, zz, false, false);
+    if (FreeAt(x, y, z, entity.slot)) {
+        Remove(entity);
+        Add(entity, x, y, z, false, false);
         if (mark_changed) {
             editor_map_mark_changed(entity);
         }
+    }
+};
+
+Remove = function(entity) {
+    var cell = contents.map_grid[entity.xx][entity.yy][entity.zz];
+    if (cell[entity.slot] == entity) {
+        cell[@ entity.slot] = undefined;
     }
 };
