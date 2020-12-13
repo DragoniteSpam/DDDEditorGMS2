@@ -35,6 +35,21 @@ function array_create_3d(x, y, z, value) {
     return arr;
 }
 
+function array_create_4d(x, y, z, w, value) {
+    if (value == undefined) value = 0;
+    var arr = array_create(x);
+    for (var i = 0; i < x; i++) {
+        arr[@ i] = array_create(y);
+        for (var j = 0; j < y; j++) {
+            arr[@ i][@ j] = array_create(z, value);
+            for (var k = 0; k < z; k++) {
+                arr[@ i][@ j][@ k] = array_create(w, value);
+            }
+        }
+    }
+    return arr;
+}
+
 function array_clear_2d(array, value) {
     if (value == undefined) value = 0;
     for (var i = 0; i < array_length(array); i++) {
@@ -50,6 +65,19 @@ function array_clear_3d(array, value) {
         for (var j = 0; j < array_length(array[i]); j++) {
             for (var k = 0; k < array_length(array[i][j]); k++) {
                 array[@ i][@ j][@ k] = value;
+            }
+        }
+    }
+}
+
+function array_clear_4d(array, value) {
+    if (value == undefined) value = 0;
+    for (var i = 0; i < array_length(array); i++) {
+        for (var j = 0; j < array_length(array[i]); j++) {
+            for (var k = 0; k < array_length(array[i][j]); k++) {
+                for (var l = 0; l < array_length(array[i][j][k]); l++) {
+                    array[@ i][@ j][@ k][@ l] = value;
+                }
             }
         }
     }
@@ -72,6 +100,23 @@ function array_resize_3d(array, x, y, z) {
         for (var j = 0; j < array_length(array[i]); j++) {
             if (is_array(array[i][j])) array_resize(array[i][j], z);
             else array[@ i][@ j] = array_create(z);
+        }
+    }
+}
+
+function array_resize_4d(array, x, y, z, w) {
+    var old_x = array_length(array);
+    array_resize(array, x);
+    for (var i = 0; i < array_length(array); i++) {
+        if (is_array(array[i])) array_resize(array[i], y);
+        else array[@ i] = array_create(y);
+        for (var j = 0; j < array_length(array[i]); j++) {
+            if (is_array(array[i][j])) array_resize(array[i][j], z);
+            else array[@ i][@ j] = array_create(z);
+            for (var k = 0; k < array_length(array[i][j]); k++) {
+                if (is_array(array[i][j][k])) array_resize(array[i][j][k], w);
+                else array[@ i][@ j][@ k] = array_create(w);
+            }
         }
     }
 }
