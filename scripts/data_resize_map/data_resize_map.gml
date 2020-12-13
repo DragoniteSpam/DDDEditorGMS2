@@ -13,7 +13,7 @@ function data_resize_map(map_container, xx, yy, zz) {
     
     graphics_create_grids();
     
-    array_resize_3d(map_contents.map_grid_frozen_tags, xx, yy, zz);
+    array_resize_3d(map_contents.map_grid_tags, xx, yy, zz);
     ds_grid_resize(map_contents.map_grid, xx, yy);
     map_fill_grid(map_contents.map_grid, zz);
     
