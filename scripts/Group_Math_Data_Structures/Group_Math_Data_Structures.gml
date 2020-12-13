@@ -58,16 +58,20 @@ function array_clear_3d(array, value) {
 function array_resize_2d(array, x, y) {
     array_resize(array, x);
     for (var i = 0; i < array_length(array); i++) {
-        array_resize(array[i], y);
+        if (is_array(array[i])) array_resize(array[i], y);
+        else array[@ i] = array_create(y);
     }
 }
 
 function array_resize_3d(array, x, y, z) {
+    var old_x = array_length(array);
     array_resize(array, x);
     for (var i = 0; i < array_length(array); i++) {
-        array_resize(array[i], y);
+        if (is_array(array[i])) array_resize(array[i], y);
+        else array[@ i] = array_create(y);
         for (var j = 0; j < array_length(array[i]); j++) {
-            array_resize(array[i][j], z);
+            if (is_array(array[i][j])) array_resize(array[i][j], z);
+            else array[@ i][@ j] = array_create(z);
         }
     }
 }
