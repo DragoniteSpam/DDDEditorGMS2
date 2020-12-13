@@ -30,10 +30,12 @@ function tileset_create() {
             picture = sprite_duplicate(b_tileset_magenta);
             wtf("Missing tileset image; using default instead: " + picture_name);
         }
-    
+        
         array_clear(autotiles, noone);
-    
-        flags = tileset_create_grid(picture, 0);
+        hframes = sprite_get_width(picture) div Stuff.tile_size;
+        vframes = sprite_get_height(picture) div Stuff.tile_size;
+        flags = array_create_2d(hframes, vframes, 0);
+        
         at_flags = array_create(AUTOTILE_MAX);
         array_clear(at_flags, 0);
     

@@ -7,5 +7,5 @@ picture_name = "";
 autotiles = array_create(AUTOTILE_MAX);
 array_clear(autotiles, noone);
 
-flags = noone;
+flags = [[]];
 at_flags = noone;

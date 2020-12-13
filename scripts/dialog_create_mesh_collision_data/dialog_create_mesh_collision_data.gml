@@ -137,7 +137,7 @@ function dialog_create_mesh_collision_data(root, mesh) {
     var el_button_apply_layer = create_button(c5 + ew / 2 - b_width - spacing / 2, yy, "Apply to Layer", b_width, b_height, fa_center, function(button) {
         var flag_grid = button.root.mesh.asset_flags;
         for (var i = 0; i < array_length(flag_grid); i++) {
-            for (var j = 0; j < ds_grid_height(flag_grid[0]); j++) {
+            for (var j = 0; j < array_length(flag_grid[0]); j++) {
                 flag_grid[@ i][@ j][@ button.root.zz] = button.root.el_collision_triggers.value;
             }
         }

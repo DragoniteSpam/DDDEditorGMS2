@@ -38,15 +38,12 @@ function serialize_save_image_tilesets(argument0) {
         // all of these grids will be the same dimensions so the
         // data can be saved in one loop
     
-        var t_grid_width = ds_grid_width(ts.flags);
-        var t_grid_height = ds_grid_height(ts.flags);
+        buffer_write(buffer, buffer_u16, ts.hframes);
+        buffer_write(buffer, buffer_u16, ts.vframes);
     
-        buffer_write(buffer, buffer_u16, t_grid_width);
-        buffer_write(buffer, buffer_u16, t_grid_height);
-    
-        for (var j = 0; j < t_grid_width; j++) {
-            for (var k = 0; k < t_grid_height; k++) {
-                buffer_write(buffer, buffer_u32, ts.flags[# j, k]);
+        for (var j = 0; j < ts.hframes; j++) {
+            for (var k = 0; k < ts.vframes; k++) {
+                buffer_write(buffer, buffer_u32, ts.flags[j][k]);
             }
         }
     }
