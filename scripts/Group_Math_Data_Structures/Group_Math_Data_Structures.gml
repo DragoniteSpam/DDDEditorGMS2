@@ -13,6 +13,25 @@ function array_clear(array, value) {
         array[@ i] = value;
     }
 }
+
+function array_create_2d(x, y, value) {
+    var arr = array_create(x);
+    for (var i = 0; i < x; i++) {
+        arr[@ i] = array_create(y, value);
+    }
+    return arr;
+}
+
+function array_create_3d(x, y, z, value) {
+    var arr = array_create(x);
+    for (var i = 0; i < x; i++) {
+        arr[@ i] = array_create(y);
+        for (var j = 0; j < y; j++) {
+            arr[@ i][@ j] = array_create(z, value);
+        }
+    }
+    return arr;
+}
 #endregion
 
 #region buffer stuff
