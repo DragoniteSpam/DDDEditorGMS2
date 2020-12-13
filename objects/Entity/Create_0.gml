@@ -128,3 +128,13 @@ on_select = safc_on_entity;
 on_deselect = safc_on_entity_deselect;
 on_select_ui = safc_on_entity_ui;
 get_bounding_box = entity_bounds_one;
+
+SetCollisionTransform = function() {
+    if (c_object_exists(cobject)) {
+        c_world_add_object(cobject);
+        c_object_set_userid(cobject, self.id);
+        c_transform_position(xx * TILE_WIDTH, yy * TILE_HEIGHT, zz * TILE_DEPTH);
+        c_object_apply_transform(cobject);
+        c_transform_identity();
+    }
+};

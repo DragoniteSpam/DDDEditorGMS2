@@ -71,7 +71,7 @@ Add = function(entity, x, y, z, is_temp, add_to_lists) {
         entity.yy = y;
         entity.zz = z;
         
-        map_transform_thing(entity);
+        entity.SetCollisionTransform();
         
         if (add_to_lists) {
             ds_list_add(all_entities, entity);

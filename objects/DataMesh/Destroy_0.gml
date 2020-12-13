@@ -10,7 +10,7 @@ for (var i = 0; i < ds_list_size(map.contents.all_entities); i++) {
     if (instanceof_classic(thing, EntityMesh) && thing.mesh == GUID) {
         c_world_destroy_object(thing.cobject);
         thing.cobject = c_object_create_cached(Stuff.graphics.c_shape_block, CollisionMasks.MAIN, CollisionMasks.MAIN);
-        map_transform_thing(thing);
+        thing.SetCollisionTransform();
         editor_map_mark_changed(thing);
     }
 }

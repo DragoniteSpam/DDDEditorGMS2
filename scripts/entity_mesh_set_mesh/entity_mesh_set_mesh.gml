@@ -19,7 +19,7 @@ function entity_mesh_set_mesh(argument0, argument1) {
     
         entity.cobject = c_object_create_cached(mesh_data.cshape, CollisionMasks.MAIN, CollisionMasks.MAIN);
     
-        map_transform_thing(entity);
+        entity.SetCollisionTransform();
         editor_map_mark_changed(entity);
     
         return true;
