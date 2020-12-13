@@ -43,7 +43,7 @@ function editor_cleanup_map(mode) {
                     }
                     
                     if (thing.listed) {
-                        map.Remove(thing);
+                        base_map.Remove(thing);
                     }
                     
                     ds_list_delete(map.all_entities, ds_list_find_index(map.all_entities, thing));
@@ -91,7 +91,7 @@ function editor_cleanup_map(mode) {
                     }
                 
                     if (thing.listed) {
-                        map.Remove(thing);
+                        base_map.Remove(thing);
                     }
                 
                     ds_list_delete(map.all_entities, ds_list_find_index(map.all_entities, thing));
