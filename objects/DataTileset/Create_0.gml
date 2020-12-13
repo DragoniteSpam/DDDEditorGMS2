@@ -4,4 +4,3 @@ event_inherited();
 picture_name = "";
 
 flags = [[]];
-at_flags = noone;
