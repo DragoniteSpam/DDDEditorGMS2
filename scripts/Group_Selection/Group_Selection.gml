@@ -46,7 +46,7 @@ function selected(entity, mask) {
 
 function selected_affected_terrain() {
     // this is O(n). will not scale as well as i'd like. Use with caution.
-    
+    var map = Stuff.map.active_map;
     var list = ds_list_create();
     var mask_mesh_auto = ETypeFlags.ENTITY_MESH_AUTO;
     var mask_tile = ETypeFlags.ENTITY_TILE;
@@ -62,7 +62,7 @@ function selected_affected_terrain() {
         
         // above
         if (map_get_grid_cell_mesh_autotile_data(thing.xx, thing.yy, thing.zz + 1)) {
-            var neighbor = map_get_grid_cell(thing.xx, thing.yy, thing.zz + 1);
+            var neighbor = map.Get(thing.xx, thing.yy, thing.zz + 1);
             var neighbor_mesh = neighbor[@ MapCellContents.MESH];
             var neighbor_tile = neighbor[@ MapCellContents.TILE];
             if (instanceof_classic(neighbor_mesh, EntityMeshAutotile) && selected_border(neighbor_mesh, mask_mesh_auto) ||
@@ -74,7 +74,7 @@ function selected_affected_terrain() {
         
         // below
         if (map_get_grid_cell_mesh_autotile_data(thing.xx, thing.yy, thing.zz - 1)) {
-            var neighbor = map_get_grid_cell(thing.xx, thing.yy, thing.zz - 1);
+            var neighbor = map.Get(thing.xx, thing.yy, thing.zz - 1);
             var neighbor_mesh = neighbor[@ MapCellContents.MESH];
             var neighbor_tile = neighbor[@ MapCellContents.TILE];
             if (instanceof_classic(neighbor_mesh, EntityMeshAutotile) && selected_border(neighbor_mesh, mask_mesh_auto) ||
@@ -86,7 +86,7 @@ function selected_affected_terrain() {
         
         // north
         if (map_get_grid_cell_mesh_autotile_data(thing.xx, thing.yy - 1, thing.zz)) {
-            var neighbor = map_get_grid_cell(thing.xx, thing.yy - 1, thing.zz);
+            var neighbor = map.Get(thing.xx, thing.yy - 1, thing.zz);
             var neighbor_mesh = neighbor[@ MapCellContents.MESH];
             var neighbor_tile = neighbor[@ MapCellContents.TILE];
             if (instanceof_classic(neighbor_mesh, EntityMeshAutotile) && selected_border(neighbor_mesh, mask_mesh_auto) ||
@@ -98,7 +98,7 @@ function selected_affected_terrain() {
         
         // south
         if (map_get_grid_cell_mesh_autotile_data(thing.xx, thing.yy + 1, thing.zz)) {
-            var neighbor = map_get_grid_cell(thing.xx, thing.yy + 1, thing.zz);
+            var neighbor = map.Get(thing.xx, thing.yy + 1, thing.zz);
             var neighbor_mesh = neighbor[@ MapCellContents.MESH];
             var neighbor_tile = neighbor[@ MapCellContents.TILE];
             if (instanceof_classic(neighbor_mesh, EntityMeshAutotile) && selected_border(neighbor_mesh, mask_mesh_auto) ||
@@ -110,7 +110,7 @@ function selected_affected_terrain() {
         
         // east
         if (map_get_grid_cell_mesh_autotile_data(thing.xx + 1, thing.yy, thing.zz)) {
-            var neighbor = map_get_grid_cell(thing.xx + 1, thing.yy, thing.zz);
+            var neighbor = map.Get(thing.xx + 1, thing.yy, thing.zz);
             var neighbor_mesh = neighbor[@ MapCellContents.MESH];
             var neighbor_tile = neighbor[@ MapCellContents.TILE];
             if (instanceof_classic(neighbor_mesh, EntityMeshAutotile) && selected_border(neighbor_mesh, mask_mesh_auto) ||
@@ -122,7 +122,7 @@ function selected_affected_terrain() {
         
         // west
         if (map_get_grid_cell_mesh_autotile_data(thing.xx - 1, thing.yy, thing.zz)) {
-            var neighbor = map_get_grid_cell(thing.xx - 1, thing.yy, thing.zz);
+            var neighbor = map.Get(thing.xx - 1, thing.yy, thing.zz);
             var neighbor_mesh = neighbor[@ MapCellContents.MESH];
             var neighbor_tile = neighbor[@ MapCellContents.TILE];
             if (instanceof_classic(neighbor_mesh, EntityMeshAutotile) && selected_border(neighbor_mesh, mask_mesh_auto) ||
@@ -134,7 +134,7 @@ function selected_affected_terrain() {
         
         // northwest
         if (map_get_grid_cell_mesh_autotile_data(thing.xx - 1, thing.yy - 1, thing.zz)) {
-            var neighbor = map_get_grid_cell(thing.xx - 1, thing.yy - 1, thing.zz);
+            var neighbor = map.Get(thing.xx - 1, thing.yy - 1, thing.zz);
             var neighbor_mesh = neighbor[@ MapCellContents.MESH];
             var neighbor_tile = neighbor[@ MapCellContents.TILE];
             if (instanceof_classic(neighbor_mesh, EntityMeshAutotile) && selected_border(neighbor_mesh, mask_mesh_auto) ||
@@ -146,7 +146,7 @@ function selected_affected_terrain() {
         
         // northeast
         if (map_get_grid_cell_mesh_autotile_data(thing.xx + 1, thing.yy - 1, thing.zz)) {
-            var neighbor = map_get_grid_cell(thing.xx + 1, thing.yy - 1, thing.zz);
+            var neighbor = map.Get(thing.xx + 1, thing.yy - 1, thing.zz);
             var neighbor_mesh = neighbor[@ MapCellContents.MESH];
             var neighbor_tile = neighbor[@ MapCellContents.TILE];
             if (instanceof_classic(neighbor_mesh, EntityMeshAutotile) && selected_border(neighbor_mesh, mask_mesh_auto) ||
@@ -158,7 +158,7 @@ function selected_affected_terrain() {
         
         // southwest
         if (map_get_grid_cell_mesh_autotile_data(thing.xx - 1, thing.yy + 1, thing.zz)) {
-            var neighbor = map_get_grid_cell(thing.xx - 1, thing.yy + 1, thing.zz);
+            var neighbor = map.Get(thing.xx - 1, thing.yy + 1, thing.zz);
             var neighbor_mesh = neighbor[@ MapCellContents.MESH];
             var neighbor_tile = neighbor[@ MapCellContents.TILE];
             if (instanceof_classic(neighbor_mesh, EntityMeshAutotile) && selected_border(neighbor_mesh, mask_mesh_auto) ||
@@ -170,7 +170,7 @@ function selected_affected_terrain() {
         
         // southeast
         if (map_get_grid_cell_mesh_autotile_data(thing.xx + 1, thing.yy + 1, thing.zz)) {
-            var neighbor = map_get_grid_cell(thing.xx + 1, thing.yy + 1, thing.zz);
+            var neighbor = map.Get(thing.xx + 1, thing.yy + 1, thing.zz);
             var neighbor_mesh = neighbor[@ MapCellContents.MESH];
             var neighbor_tile = neighbor[@ MapCellContents.TILE];
             if (instanceof_classic(neighbor_mesh, EntityMeshAutotile) && selected_border(neighbor_mesh, mask_mesh_auto) ||
@@ -288,8 +288,8 @@ function selection_update_autotiles() {
         
         // evaluate top, base or middle
         if (thing.zz < map.zz - 1 && thing_is_mesh) {
-            var above = (thing.zz < map.zz - 1) ? map_get_grid_cell(thing.xx, thing.yy, thing.zz + 1) : array_create(MapCellContents._COUNT, noone);
-            var below = (thing.zz > 0) ? map_get_grid_cell(thing.xx, thing.yy, thing.zz - 1) : array_create(MapCellContents._COUNT, noone);
+            var above = (thing.zz < map.zz - 1) ? map.Get(thing.xx, thing.yy, thing.zz + 1) : array_create(MapCellContents._COUNT, noone);
+            var below = (thing.zz > 0) ? map.Get(thing.xx, thing.yy, thing.zz - 1) : array_create(MapCellContents._COUNT, noone);
             // if an entity is marked as "removed," even if it's still there, it might as well not be there
             var above_exists = instanceof_classic(above[MapCellContents.MESH], EntityMeshAutotile) && (above[MapCellContents.MESH].modification != Modifications.REMOVE);
             var below_exists = instanceof_classic(below[MapCellContents.MESH], EntityMeshAutotile) && (below[MapCellContents.MESH].modification != Modifications.REMOVE);

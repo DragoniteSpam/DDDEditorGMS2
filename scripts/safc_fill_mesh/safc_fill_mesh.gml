@@ -9,7 +9,7 @@ function safc_fill_mesh(argument0, argument1, argument2, argument3) {
     var zz = argument2;
     var params = argument3;
 
-    var cell = map_get_grid_cell(xx, yy, zz);
+    var cell = Stuff.map.active_map.Get(xx, yy, zz);
     
     if (!cell[@ MapCellContents.MESH]) {
         var addition = instance_create_mesh(Stuff.all_meshes[| Stuff.map.selection_fill_mesh]);

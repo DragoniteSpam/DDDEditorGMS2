@@ -61,7 +61,7 @@ Add = function(entity, x, y, z, is_temp, add_to_lists) {
     // Does not check to see if the specified coordinates are in bounds.
     // You are responsible for that.
     
-    var cell = map_get_grid_cell(x, y, z, self.id);
+    var cell = contents.map_grid[x][y][z]
     
     // only add thing if the space is not already occupied
     if (!cell[@ entity.slot]) {
@@ -97,5 +97,9 @@ Add = function(entity, x, y, z, is_temp, add_to_lists) {
 };
 
 FreeAt = function(x, y, z, slot) {
-    return !Stuff.map.active_map.contents.map_grid[x][y][z][slot];
+    return !contents.map_grid[x][y][z][slot];
+};
+
+Get = function(x, y, z) {
+    return contents.map_grid[x][y][z];
 };

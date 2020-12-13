@@ -16,7 +16,7 @@ function map_get_grid_cell_mesh_autotile_data() {
 
     var result = false;
 
-    var cell = map_get_grid_cell(xx, yy, zz, map);
+    var cell = map.Get(xx, yy, zz);
     if (is_array(cell)) {
         var what = cell[@ MapCellContents.MESH];
         result = result || (instanceof_classic(what, EntityMeshAutotile) && what.modification != Modifications.REMOVE);
@@ -24,7 +24,7 @@ function map_get_grid_cell_mesh_autotile_data() {
 
     // check the cell above you for a tile, because tiles kinda appear to
     // exist on the layer below where they actually are
-    var cell = map_get_grid_cell(xx, yy, zz + 1, map);
+    var cell = map.Get(xx, yy, zz + 1);
     if (is_array(cell)) {
         var what = cell[@ MapCellContents.TILE];
         result = result || (what && what.modification != Modifications.REMOVE);
