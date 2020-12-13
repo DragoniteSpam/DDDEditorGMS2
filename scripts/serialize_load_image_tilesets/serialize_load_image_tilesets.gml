@@ -17,15 +17,13 @@ function serialize_load_image_tilesets(buffer, version) {
         
         var sprite = buffer_read_sprite(buffer);
         
-        // all of the other things
-        var n_autotiles = buffer_read(buffer, buffer_u8);
-        var at_array = array_create(n_autotiles);
-        var at_flags = array_create(n_autotiles);
-        
-        for (var j = 0; j < n_autotiles; j++) {
-            // s16 because no tile is "noone"
-            at_array[j] = buffer_read(buffer, buffer_s16);
-            at_flags[j] = buffer_read(buffer, buffer_u32);
+        if (version >= DataVersions.NUKE_AUTOTILES_FROM_TILESETS) {
+            // gone
+        } else {
+            repeat (buffer_read(buffer, buffer_u8)) {
+                buffer_read(buffer, buffer_s16);
+                buffer_read(buffer, buffer_u32);
+            }
         }
         
         var ts = tileset_create(ts_name, sprite);
@@ -34,8 +32,6 @@ function serialize_load_image_tilesets(buffer, version) {
         ts.internal_name = internal_name;
         ts.summary = summary;
         guid_set(ts, guid, true);
-        
-        ts.at_flags = at_flags;
         
         ts.hframes = buffer_read(buffer, buffer_u16);
         ts.vframes = buffer_read(buffer, buffer_u16);

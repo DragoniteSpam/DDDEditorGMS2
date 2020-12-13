@@ -111,6 +111,7 @@ function serialize_save_data() {
         ENTITY_REFLECT_FLAG                 = 116,
         MAP_SKIP_ADDRESSES                  = 117,
         UNIFIED_FLAGS                       = 118,
+        NUKE_AUTOTILES_FROM_TILESETS        = 119,
         _CURRENT /* = whatever the last one is + 1 */
     }
 }
