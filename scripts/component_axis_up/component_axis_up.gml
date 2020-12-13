@@ -30,7 +30,7 @@ function component_axis_up(argument0) {
             entity.off_xx = frac(new_x);
             entity.off_yy = frac(new_y);
             entity.off_zz = frac(new_z);
-            map_move_thing(entity, floor(new_x), floor(new_y), floor(new_z), false);
+            Stuff.map.active_map.Move(entity, floor(new_x), floor(new_y), floor(new_z), false);
         }
     }
 

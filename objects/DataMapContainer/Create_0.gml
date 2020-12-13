@@ -127,3 +127,15 @@ GetFlag = function(x, y, z) {
 SetFlag = function(x, y, z, flag) {
     contents.map_grid_tags[@ x][@ y][@ z] = flag;
 };
+
+Move = function(entity, x, y, z, mark_changed) {
+    if (mark_changed == undefined) mark_changed = true;
+    
+    if (FreeAt(xx, yy, zz, entity.slot)) {
+        map_remove_thing(entity);
+        Add(entity, xx, yy, zz, false, false);
+        if (mark_changed) {
+            editor_map_mark_changed(entity);
+        }
+    }
+};

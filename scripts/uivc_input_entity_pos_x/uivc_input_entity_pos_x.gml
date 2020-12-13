@@ -10,7 +10,7 @@ function uivc_input_entity_pos_x(argument0) {
             // you could probably do a Modification thing here but since you need
             // to deal with removing and re-adding Things into the grid this is
             // way easier
-            map_move_thing(thing, real(input.value), thing.yy, thing.zz);
+            Stuff.map.active_map.Move(thing, real(input.value), thing.yy, thing.zz);
         }
     }
 

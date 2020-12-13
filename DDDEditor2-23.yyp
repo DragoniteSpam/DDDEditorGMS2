@@ -131,7 +131,6 @@
     {"id":{"name":"sprite_get_cropped_dimensions","path":"scripts/sprite_get_cropped_dimensions/sprite_get_cropped_dimensions.yy",},"order":9,},
     {"id":{"name":"sprite_crop","path":"scripts/sprite_crop/sprite_crop.yy",},"order":10,},
     {"id":{"name":"surface_rebuild","path":"scripts/surface_rebuild/surface_rebuild.yy",},"order":11,},
-    {"id":{"name":"map_move_thing","path":"scripts/map_move_thing/map_move_thing.yy",},"order":11,},
     {"id":{"name":"map_remove_thing","path":"scripts/map_remove_thing/map_remove_thing.yy",},"order":12,},
     {"id":{"name":"map_transform_thing","path":"scripts/map_transform_thing/map_transform_thing.yy",},"order":13,},
     {"id":{"name":"map_zone_camera","path":"scripts/map_zone_camera/map_zone_camera.yy",},"order":0,},
