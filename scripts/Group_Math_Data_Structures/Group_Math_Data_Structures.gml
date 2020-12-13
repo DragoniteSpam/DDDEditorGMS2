@@ -54,6 +54,23 @@ function array_clear_3d(array, value) {
         }
     }
 }
+
+function array_resize_2d(array, x, y) {
+    array_resize(array, x);
+    for (var i = 0; i < array_length(array); i++) {
+        array_resize(array[i], y);
+    }
+}
+
+function array_resize_3d(array, x, y, z) {
+    array_resize(array, x);
+    for (var i = 0; i < array_length(array); i++) {
+        array_resize(array[i], y);
+        for (var j = 0; j < array_length(array[i]); j++) {
+            array_resize(array[i][j], z);
+        }
+    }
+}
 #endregion
 
 #region buffer stuff
