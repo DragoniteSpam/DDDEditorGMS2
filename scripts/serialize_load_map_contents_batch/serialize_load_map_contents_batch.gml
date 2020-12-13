@@ -22,7 +22,7 @@ function serialize_load_map_contents_batch(buffer, version, map_container) {
         for (var i = 0; i < map.xx; i++) {
             for (var j = 0; j < map.yy; j++) {
                 for (var k = 0; k < map.zz; k++) {
-                    map_set_tag_grid(i, j, k, buffer_read(buffer, buffer_u64), map);
+                    map_set_tag_grid(i, j, k, buffer_read(buffer, buffer_flag), map);
                 }
             }
         }

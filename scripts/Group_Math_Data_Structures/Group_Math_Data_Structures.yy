@@ -3,7 +3,7 @@
   "isCompatibility": false,
   "parent": {
     "name": "Math",
-    "path": "folders/Scripts/Math.yy",
+    "path": "folders/Math.yy",
   },
   "resourceVersion": "1.0",
   "name": "Group_Math_Data_Structures",
