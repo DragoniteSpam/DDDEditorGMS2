@@ -250,7 +250,7 @@ function import_obj() {
                                     var texfn = "";
                                     while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
-                                    var ts = tileset_create(texfn, undefined, undefined);
+                                    var ts = tileset_create(texfn, undefined);
                                     ts.name = base_name + ".BaseTexture";
                                     if (ds_map_size(mtl_map_diffuse) == 1) warnings |= warn_map_1;
                                     else mtl_map_diffuse[? mtl_name] = ts;
@@ -259,7 +259,7 @@ function import_obj() {
                                     var texfn = "";
                                     while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
-                                    var ts = tileset_create(texfn, undefined, undefined);
+                                    var ts = tileset_create(texfn, undefined);
                                     ts.name = base_name + ".AmbientMap";
                                     if (ds_map_size(mtl_map_ambient) == 1) warnings |= warn_map_2;
                                     else mtl_map_ambient[? mtl_name] = ts;
@@ -268,7 +268,7 @@ function import_obj() {
                                     var texfn = "";
                                     while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
-                                    var ts = tileset_create(texfn, undefined, undefined);
+                                    var ts = tileset_create(texfn, undefined);
                                     ts.name = base_name + ".SpecularColorMap";
                                     if (ds_map_size(mtl_map_specular_color) == 1) warnings |= warn_map_3;
                                     else mtl_map_specular_color[? mtl_name] = ts;
@@ -277,7 +277,7 @@ function import_obj() {
                                     var texfn = "";
                                     while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
-                                    var ts = tileset_create(texfn, undefined, undefined);
+                                    var ts = tileset_create(texfn, undefined);
                                     ts.name = base_name + ".SpecularHighlightMap";
                                     if (ds_map_size(mtl_map_specular_highlight) == 1) warnings |= warn_map_4;
                                     else mtl_map_specular_highlight[? mtl_name] = ts;
@@ -286,7 +286,7 @@ function import_obj() {
                                     var texfn = "";
                                     while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
-                                    var ts = tileset_create(texfn, undefined, undefined);
+                                    var ts = tileset_create(texfn, undefined);
                                     ts.name = base_name + ".AlphaMap";
                                     if (ds_map_size(mtl_map_alpha) == 1) warnings |= warn_map_5;
                                     else mtl_map_alpha[? mtl_name] = ts;
@@ -295,7 +295,7 @@ function import_obj() {
                                     var texfn = "";
                                     while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
-                                    var ts = tileset_create(texfn, undefined, undefined);
+                                    var ts = tileset_create(texfn, undefined);
                                     ts.name = base_name + ".BumpMap";
                                     if (ds_map_size(mtl_map_bump) == 1) warnings |= warn_map_6;
                                     else mtl_map_bump[? mtl_name] = ts;
@@ -307,7 +307,7 @@ function import_obj() {
                                     var texfn = "";
                                     while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
-                                    var ts = tileset_create(texfn, undefined, undefined);
+                                    var ts = tileset_create(texfn, undefined);
                                     ts.name = base_name + ".DisplacementMap";
                                     if (ds_map_size(mtl_map_displace) == 1) warnings |= warn_map_7;
                                     else mtl_map_displace[? mtl_name] = ts;
@@ -316,7 +316,7 @@ function import_obj() {
                                     var texfn = "";
                                     while (!ds_queue_empty(spl)) texfn += ds_queue_dequeue(spl) + (ds_queue_empty(spl) ? "" : " ");
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
-                                    var ts = tileset_create(texfn, undefined, undefined);
+                                    var ts = tileset_create(texfn, undefined);
                                     ts.name = base_name + ".StencilDecal";
                                     if (ds_map_size(mtl_map_decal) == 1) warnings |= warn_map_8;
                                     else mtl_map_decal[? mtl_name] = ts;

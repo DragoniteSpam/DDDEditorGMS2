@@ -28,7 +28,7 @@ function serialize_load_image_tilesets(buffer, version) {
             at_flags[j] = buffer_read(buffer, buffer_u32);
         }
         
-        var ts = tileset_create(ts_name, at_array, sprite);
+        var ts = tileset_create(ts_name, sprite);
         
         ts.name = name;
         ts.internal_name = internal_name;

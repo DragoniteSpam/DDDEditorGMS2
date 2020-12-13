@@ -1,5 +1,4 @@
 /// @param file/name
-/// @param [autotiles]
 /// @param [sprite-index]
 function tileset_create() {
 
@@ -22,8 +21,7 @@ function tileset_create() {
     
         internal_name_generate(id, PREFIX_GRAPHIC_TILESET + string_lettersdigits(filename_change_ext(filename_name(picture_name), "")));
     
-        autotiles = (argument_count > 1 && argument[1] != undefined) ? argument[1] : autotiles;
-        picture = (argument_count > 2 && argument[2] != undefined) ? argument[2] : sprite_add(picture_name, 0, false, false, 0, 0);
+        picture = (argument_count > 1 && argument[1] != undefined) ? argument[1] : sprite_add(picture_name, 0, false, false, 0, 0);
         hash = file_hash;
     
         if (!sprite_exists(picture)) {
@@ -31,7 +29,6 @@ function tileset_create() {
             wtf("Missing tileset image; using default instead: " + picture_name);
         }
         
-        array_clear(autotiles, noone);
         hframes = sprite_get_width(picture) div Stuff.tile_size;
         vframes = sprite_get_height(picture) div Stuff.tile_size;
         flags = array_create_2d(hframes, vframes, 0);
