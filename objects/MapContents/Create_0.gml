@@ -15,7 +15,7 @@ refids = { };                               // entities (mapped onto refids)
 refid_current = 0;
 
 map_grid = map_create_grid(10, 10, 10);        // this just needs to exist for now, it'll get resized when stuff is loaded
-map_grid_frozen_tags = map_create_tag_grid(10, 10, 10);
+map_grid_frozen_tags = array_create_3d(10, 10, 10);
 
 frozen = noone;                                // everything that will be a single batch in the game
 frozen_wire = noone;                        // the wireframe for the frozen vertex buffer

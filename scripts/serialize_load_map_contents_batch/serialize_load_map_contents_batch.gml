@@ -1,5 +1,4 @@
-function serialize_load_map_contents_batch(buffer, version, map_container) {
-    var map = map_container;
+function serialize_load_map_contents_batch(buffer, version, map) {
     var map_contents = map.contents;
     
     if (version >= DataVersions.MAP_SKIP_ADDRESSES) {
@@ -18,11 +17,10 @@ function serialize_load_map_contents_batch(buffer, version, map_container) {
     map_contents.frozen_data_wire = buffer_read_buffer(buffer, length);
     
     if (version >= DataVersions.MAP_FROZEN_TAGS) {
-        map_clear_tag_grid(map);
         for (var i = 0; i < map.xx; i++) {
             for (var j = 0; j < map.yy; j++) {
                 for (var k = 0; k < map.zz; k++) {
-                    map_set_tag_grid(i, j, k, buffer_read(buffer, buffer_flag), map);
+                    map_set_tag_grid(i, j, k, buffer_read(buffer, buffer_flag));
                 }
             }
         }
