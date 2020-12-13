@@ -103,3 +103,19 @@ FreeAt = function(x, y, z, slot) {
 Get = function(x, y, z) {
     return contents.map_grid[x][y][z];
 };
+
+GetMeshAutotileData = function(x, y, z) {
+    if (!is_clamped(x, 0, xx - 1) || !is_clamped(y, 0, yy - 1) || !is_clamped(z, 0, zz - 1)) return false;
+    
+    var what = contents.map_grid[x][y][z][MapCellContents.MESH];
+    var result = (instanceof_classic(what, EntityMeshAutotile) && what.modification != Modifications.REMOVE);
+    
+    if (z < zz - 1) {
+        // check the cell above you for a tile, because tiles kinda appear to
+        // exist on the layer below where they actually are
+        var what = contents.map_grid[x][y][z + 1][MapCellContents.MESH];
+        result = result || (what && what.modification != Modifications.REMOVE);
+    }
+    
+    return result;
+};

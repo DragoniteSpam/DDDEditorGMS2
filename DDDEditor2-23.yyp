@@ -133,7 +133,6 @@
     {"id":{"name":"surface_rebuild","path":"scripts/surface_rebuild/surface_rebuild.yy",},"order":11,},
     {"id":{"name":"map_set_tag_grid","path":"scripts/map_set_tag_grid/map_set_tag_grid.yy",},"order":6,},
     {"id":{"name":"map_get_tag_grid","path":"scripts/map_get_tag_grid/map_get_tag_grid.yy",},"order":7,},
-    {"id":{"name":"map_get_grid_cell_mesh_autotile_data","path":"scripts/map_get_grid_cell_mesh_autotile_data/map_get_grid_cell_mesh_autotile_data.yy",},"order":9,},
     {"id":{"name":"map_move_thing","path":"scripts/map_move_thing/map_move_thing.yy",},"order":11,},
     {"id":{"name":"map_remove_thing","path":"scripts/map_remove_thing/map_remove_thing.yy",},"order":12,},
     {"id":{"name":"map_transform_thing","path":"scripts/map_transform_thing/map_transform_thing.yy",},"order":13,},

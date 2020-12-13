@@ -61,7 +61,7 @@ function selected_affected_terrain() {
         }
         
         // above
-        if (map_get_grid_cell_mesh_autotile_data(thing.xx, thing.yy, thing.zz + 1)) {
+        if (map.GetMeshAutotileData(thing.xx, thing.yy, thing.zz + 1)) {
             var neighbor = map.Get(thing.xx, thing.yy, thing.zz + 1);
             var neighbor_mesh = neighbor[@ MapCellContents.MESH];
             var neighbor_tile = neighbor[@ MapCellContents.TILE];
@@ -73,7 +73,7 @@ function selected_affected_terrain() {
         }
         
         // below
-        if (map_get_grid_cell_mesh_autotile_data(thing.xx, thing.yy, thing.zz - 1)) {
+        if (map.GetMeshAutotileData(thing.xx, thing.yy, thing.zz - 1)) {
             var neighbor = map.Get(thing.xx, thing.yy, thing.zz - 1);
             var neighbor_mesh = neighbor[@ MapCellContents.MESH];
             var neighbor_tile = neighbor[@ MapCellContents.TILE];
@@ -85,7 +85,7 @@ function selected_affected_terrain() {
         }
         
         // north
-        if (map_get_grid_cell_mesh_autotile_data(thing.xx, thing.yy - 1, thing.zz)) {
+        if (map.GetMeshAutotileData(thing.xx, thing.yy - 1, thing.zz)) {
             var neighbor = map.Get(thing.xx, thing.yy - 1, thing.zz);
             var neighbor_mesh = neighbor[@ MapCellContents.MESH];
             var neighbor_tile = neighbor[@ MapCellContents.TILE];
@@ -97,7 +97,7 @@ function selected_affected_terrain() {
         }
         
         // south
-        if (map_get_grid_cell_mesh_autotile_data(thing.xx, thing.yy + 1, thing.zz)) {
+        if (map.GetMeshAutotileData(thing.xx, thing.yy + 1, thing.zz)) {
             var neighbor = map.Get(thing.xx, thing.yy + 1, thing.zz);
             var neighbor_mesh = neighbor[@ MapCellContents.MESH];
             var neighbor_tile = neighbor[@ MapCellContents.TILE];
@@ -109,7 +109,7 @@ function selected_affected_terrain() {
         }
         
         // east
-        if (map_get_grid_cell_mesh_autotile_data(thing.xx + 1, thing.yy, thing.zz)) {
+        if (map.GetMeshAutotileData(thing.xx + 1, thing.yy, thing.zz)) {
             var neighbor = map.Get(thing.xx + 1, thing.yy, thing.zz);
             var neighbor_mesh = neighbor[@ MapCellContents.MESH];
             var neighbor_tile = neighbor[@ MapCellContents.TILE];
@@ -121,7 +121,7 @@ function selected_affected_terrain() {
         }
         
         // west
-        if (map_get_grid_cell_mesh_autotile_data(thing.xx - 1, thing.yy, thing.zz)) {
+        if (map.GetMeshAutotileData(thing.xx - 1, thing.yy, thing.zz)) {
             var neighbor = map.Get(thing.xx - 1, thing.yy, thing.zz);
             var neighbor_mesh = neighbor[@ MapCellContents.MESH];
             var neighbor_tile = neighbor[@ MapCellContents.TILE];
@@ -133,7 +133,7 @@ function selected_affected_terrain() {
         }
         
         // northwest
-        if (map_get_grid_cell_mesh_autotile_data(thing.xx - 1, thing.yy - 1, thing.zz)) {
+        if (map.GetMeshAutotileData(thing.xx - 1, thing.yy - 1, thing.zz)) {
             var neighbor = map.Get(thing.xx - 1, thing.yy - 1, thing.zz);
             var neighbor_mesh = neighbor[@ MapCellContents.MESH];
             var neighbor_tile = neighbor[@ MapCellContents.TILE];
@@ -145,7 +145,7 @@ function selected_affected_terrain() {
         }
         
         // northeast
-        if (map_get_grid_cell_mesh_autotile_data(thing.xx + 1, thing.yy - 1, thing.zz)) {
+        if (map.GetMeshAutotileData(thing.xx + 1, thing.yy - 1, thing.zz)) {
             var neighbor = map.Get(thing.xx + 1, thing.yy - 1, thing.zz);
             var neighbor_mesh = neighbor[@ MapCellContents.MESH];
             var neighbor_tile = neighbor[@ MapCellContents.TILE];
@@ -157,7 +157,7 @@ function selected_affected_terrain() {
         }
         
         // southwest
-        if (map_get_grid_cell_mesh_autotile_data(thing.xx - 1, thing.yy + 1, thing.zz)) {
+        if (map.GetMeshAutotileData(thing.xx - 1, thing.yy + 1, thing.zz)) {
             var neighbor = map.Get(thing.xx - 1, thing.yy + 1, thing.zz);
             var neighbor_mesh = neighbor[@ MapCellContents.MESH];
             var neighbor_tile = neighbor[@ MapCellContents.TILE];
@@ -169,7 +169,7 @@ function selected_affected_terrain() {
         }
         
         // southeast
-        if (map_get_grid_cell_mesh_autotile_data(thing.xx + 1, thing.yy + 1, thing.zz)) {
+        if (map.GetMeshAutotileData(thing.xx + 1, thing.yy + 1, thing.zz)) {
             var neighbor = map.Get(thing.xx + 1, thing.yy + 1, thing.zz);
             var neighbor_mesh = neighbor[@ MapCellContents.MESH];
             var neighbor_tile = neighbor[@ MapCellContents.TILE];
