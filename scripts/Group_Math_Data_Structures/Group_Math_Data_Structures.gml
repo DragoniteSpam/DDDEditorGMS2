@@ -15,6 +15,7 @@ function array_clear(array, value) {
 }
 
 function array_create_2d(x, y, value) {
+    if (value == undefined) value = 0;
     var arr = array_create(x);
     for (var i = 0; i < x; i++) {
         arr[@ i] = array_create(y, value);
@@ -23,6 +24,7 @@ function array_create_2d(x, y, value) {
 }
 
 function array_create_3d(x, y, z, value) {
+    if (value == undefined) value = 0;
     var arr = array_create(x);
     for (var i = 0; i < x; i++) {
         arr[@ i] = array_create(y);
@@ -31,6 +33,26 @@ function array_create_3d(x, y, z, value) {
         }
     }
     return arr;
+}
+
+function array_clear_2d(array, value) {
+    if (value == undefined) value = 0;
+    for (var i = 0; i < array_length(array); i++) {
+        for (var j = 0; j < array_length(array[i]); j++) {
+            array[@ i][@ j] = value;
+        }
+    }
+}
+
+function array_clear_3d(array, value) {
+    if (value == undefined) value = 0;
+    for (var i = 0; i < array_length(array); i++) {
+        for (var j = 0; j < array_length(array[i]); j++) {
+            for (var k = 0; k < array_length(array[i][j]); k++) {
+                array[@ i][@ j][@ k] = value;
+            }
+        }
+    }
 }
 #endregion
 
