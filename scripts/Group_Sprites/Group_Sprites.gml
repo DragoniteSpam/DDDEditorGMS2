@@ -18,6 +18,14 @@ function sprite_to_buffer(sprite, subimg) {
     return buffer;
 }
 
+function sprite_from_buffer(buffer, w, h) {
+    var surface = surface_create(w, h);
+    buffer_set_surface(buffer, surface, 0);
+    var sprite = sprite_create_from_surface(surface, 0, 0, w, h, false, false, 0, 0);
+    surface_free(surface);
+    return sprite;
+}
+
 function sprite_to_surface(sprite, subimg) {
     // by yellowafterlife
     var sw = sprite_get_width(sprite);
@@ -30,4 +38,10 @@ function sprite_to_surface(sprite, subimg) {
     gpu_set_blendmode(bm_normal);
     surface_reset_target();
     return t;
+}
+
+function sprite_from_surface(surface) {
+    var sw = surface_get_width(surface);
+    var sh = surface_get_height(surface);
+    return sprite_create_from_surface(surface, 0, 0, sw, sh, false, false, 0, 0);
 }
