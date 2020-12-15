@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "resources",
-    "path": "folders/Scripts/resources.yy",
+    "name": "Game data",
+    "path": "folders/Scripts/Game data.yy",
   },
   "resourceVersion": "1.0",
-  "name": "sprite_add_autotile",
+  "name": "Group_Manage_Audio",
   "tags": [],
   "resourceType": "GMScript",
 }

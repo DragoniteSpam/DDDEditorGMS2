@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "creation",
-    "path": "folders/Scripts/Game data/creation.yy",
+    "name": "Game data",
+    "path": "folders/Scripts/Game data.yy",
   },
   "resourceVersion": "1.0",
-  "name": "simple_map_data",
+  "name": "Group_Manage_Graphics",
   "tags": [],
   "resourceType": "GMScript",
 }

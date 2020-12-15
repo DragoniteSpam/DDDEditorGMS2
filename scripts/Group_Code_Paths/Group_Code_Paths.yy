@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "audio",
-    "path": "folders/Scripts/Game data/audio.yy",
+    "name": "misc code",
+    "path": "folders/Scripts/misc code.yy",
   },
   "resourceVersion": "1.0",
-  "name": "audio_remove_bgm",
+  "name": "Group_Code_Paths",
   "tags": [],
   "resourceType": "GMScript",
 }
