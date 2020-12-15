@@ -1,5 +1,6 @@
 function graphics_add_generic(filename, prefix, list, name, remove_back) {
     if (name == undefined) name = filename_name(filename);
+    if (remove_back == undefined) remove_back = true;
     var internal_name = string_lettersdigits(string_replace_all(name, filename_ext(filename), ""));
     remove_back &= !keyboard_check(vk_control);
     
