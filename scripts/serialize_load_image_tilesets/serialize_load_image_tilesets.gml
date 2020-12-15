@@ -20,10 +20,8 @@ function serialize_load_image_tilesets(buffer, version) {
         if (version >= DataVersions.NUKE_AUTOTILES_FROM_TILESETS) {
             // gone
         } else {
-            repeat (buffer_read(buffer, buffer_u8)) {
-                buffer_read(buffer, buffer_s16);
-                buffer_read(buffer, buffer_u32);
-            }
+            var n = buffer_read(buffer, buffer_u8);
+            buffer_seek(buffer, buffer_seek_relative, n * (buffer_sizeof(buffer_s16) + buffer_sizeof(buffer_u32)));
         }
         
         var ts = tileset_create(ts_name, sprite);
