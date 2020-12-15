@@ -35,6 +35,7 @@ function draw_editor_3d() {
     gpu_set_zwriteenable(true);
     gpu_set_ztestenable(true);
     
+    // 3D terrain
     if (Settings.view.terrain) {
         graphics_set_lighting(shd_terrain);
         matrix_set(matrix_world, matrix_build(0, 0, 0, 0, 0, 0, 16, 16, 16));
@@ -76,6 +77,8 @@ function draw_editor_3d() {
     // move routes are logged when dynamic entities are being drawn
     var list_routes = ds_list_create();       // [buffer, x, y, z, extra?, extra x, extra y, extra z], positions are absolute
     
+    // reset the lighting shader after the water has been drawn
+    graphics_set_lighting(shd_ddd);
     for (var i = 0; i < ds_list_size(map_contents.dynamic); i++) {
         var ent = map_contents.dynamic[| i];
         ent.render(ent);
