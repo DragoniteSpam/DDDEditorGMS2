@@ -75,7 +75,6 @@ void CommonLightEvaluate(int i, inout Vec4 finalColor) {
         float f = clamp((lightAngleDifference - cutoff) / epsilon, 0., 1.);
         float att = f * pow(clamp((1. - dist * dist / (range * range)), 0., 1.), 2.);
         
-        lightColor.a = 1.;
         finalColor += att * lightColor * max(0., -dot(v_LightWorldNormal, lightDir));
     }
 }

@@ -79,7 +79,6 @@ void CommonLightEvaluate(int i, inout vec4 finalColor) {
         float f = clamp((lightAngleDifference - cutoff) / epsilon, 0., 1.);
         float att = f * pow(clamp((1. - dist * dist / (range * range)), 0., 1.), 2.);
         
-        lightColor.a = 1.;
         finalColor += att * lightColor * max(0., -dot(v_LightWorldNormal, lightDir));
     }
 }
@@ -107,10 +106,14 @@ void CommonFog(inout vec4 baseColor) {
 #define ALPHA_REF 0.2
 
 void main() {
-    vec4 color = v_vColour * texture2D(gm_BaseTexture, v_vTexcoord);
+    vec4 baseColor = texture2D(gm_BaseTexture, v_vTexcoord);
+    vec4 color = v_vColour * baseColor;
+    float sourceAlpha = baseColor.a;
     
     CommonLight(color);
     CommonFog(color);
+    
+    color.a = sourceAlpha;
     
     if (color.a < ALPHA_REF) {
         discard;
