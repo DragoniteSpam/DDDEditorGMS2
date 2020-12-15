@@ -17,7 +17,7 @@ function graphics_add_generic() {
     data.picture = sprite_add(filename, 0, remove_back, false, 0, 0);
     data.width = sprite_get_width(data.picture);
     data.height = sprite_get_height(data.picture);
-
+    
     internal_name_generate(data, prefix + internal_name);
 
     ds_list_add(list, data);
