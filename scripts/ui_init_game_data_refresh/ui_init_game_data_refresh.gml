@@ -110,6 +110,7 @@ function ui_init_game_data_refresh() {
                             }
                             break;
                         case DataTypes.MESH:
+                        case DataTypes.MESH_AUTOTILE:
                         case DataTypes.AUDIO_BGM:
                         case DataTypes.AUDIO_SE:
                         case DataTypes.IMG_TEXTURE:
@@ -157,6 +158,7 @@ function ui_init_game_data_refresh() {
                         thingy.value = c_black;
                         break;
                     case DataTypes.MESH:
+                    case DataTypes.MESH_AUTOTILE:
                     case DataTypes.TILE:
                     case DataTypes.IMG_TEXTURE:
                     case DataTypes.IMG_BATTLER:

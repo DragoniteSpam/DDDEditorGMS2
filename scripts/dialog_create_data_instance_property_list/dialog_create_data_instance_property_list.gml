@@ -1,39 +1,36 @@
-/// @param root
-function dialog_create_data_instance_property_list(argument0) {
-
-    var root = argument0;
+function dialog_create_data_instance_property_list(root) {
     var selection = ui_list_selection(Stuff.data.ui.el_instances);
-
+    
     // this is honestly easier than disabling/enabling interface elements when stuff is deselected
     if (!(selection + 1)) {
         return noone;
     }
-
+    
     var dw = 320;
     var dh = 64;
-
+    
     var data = guid_get(Stuff.data.ui.active_type_guid);
     var property = data.properties[| root.key];
     var instance = guid_get(data.instances[| selection].GUID);
-
+    
     var dg = dialog_create(dw, dh, instance.name + ": " + property.name, dialog_default, dc_close_no_questions_asked, root);
     dg.property = property;
-
+    
     var columns = 1;
     var spacing = 16;
     var ew = dw / columns - spacing * 2;
     var eh = 24;
-
+    
     var vx1 = dw / (columns * 2) - 16;
     var vy1 = 0;
     var vx2 = vx1 + dw / (columns * 2) - 16;
     var vy2 = eh;
-
+    
     var b_width = 128;
     var b_height = 32;
-
+    
     var yy = 64;
-
+    
     var plist = instance.values[| root.key];
     var el_list = create_list(16, yy,
         "Values (" + string(ds_list_size(plist)) + " / " + string(property.max_size) + ")",
@@ -41,7 +38,7 @@ function dialog_create_data_instance_property_list(argument0) {
     );
     el_list.numbered = true;
     el_list.key = root.key;
-
+    
     switch (property.type) {
         case DataTypes.ENUM:
         case DataTypes.DATA:
@@ -49,6 +46,7 @@ function dialog_create_data_instance_property_list(argument0) {
         case DataTypes.AUDIO_SE:
         case DataTypes.IMG_TILE_ANIMATION:
         case DataTypes.MESH:
+        case DataTypes.MESH_AUTOTILE:
         case DataTypes.IMG_TEXTURE:
         case DataTypes.IMG_BATTLER:
         case DataTypes.IMG_OVERWORLD:
@@ -72,9 +70,9 @@ function dialog_create_data_instance_property_list(argument0) {
             break;
     }
     dg.el_list_main = el_list;
-
+    
     yy += ui_get_list_height(el_list) + spacing;
-
+    
     var el_add = create_button(16, yy, "Add", ew, eh, fa_center, omu_data_list_add, dg);
     el_add.key = root.key;
     dg.el_add = el_add;
@@ -83,7 +81,7 @@ function dialog_create_data_instance_property_list(argument0) {
     el_remove.key = root.key;
     dg.el_remove = el_remove;
     yy += el_remove.height + spacing;
-
+    
     switch (property.type) {
         case DataTypes.INT:
             var el_value = create_input(16, yy, "Value: ", ew, eh, uivc_data_property_list_number,
@@ -119,31 +117,26 @@ function dialog_create_data_instance_property_list(argument0) {
         case DataTypes.DATA:
             var base_type = guid_get(property.type_guid);
             var base_list = (property.type == DataTypes.ENUM) ? base_type.properties : base_type.instances;
-        
             var el_value = create_list(16, yy, "Select " + guid_get(property.type_guid).name + ":", "<no options>", ew, eh, 8, uivc_data_property_list_guid, false, dg, base_list);
             el_value.entries_are = ListEntries.INSTANCES;
-        
             el_value.key = root.key;
             yy += ui_get_list_height(el_value) + spacing;
             break;
         case DataTypes.AUDIO_BGM:
             var el_value = create_list(16, yy, "Select a BGM resource:", "<no BGM>", ew, eh, 8, uivc_data_property_list_guid, false, dg, Stuff.all_bgm);
             el_value.entries_are = ListEntries.INSTANCES;
-        
             el_value.key = root.key;
             yy += ui_get_list_height(el_value) + spacing;
             break;
         case DataTypes.AUDIO_SE:
             var el_value = create_list(16, yy, "Select an SE resource:", "<no SE>", ew, eh, 8, uivc_data_property_list_guid, false, dg, Stuff.all_se);
             el_value.entries_are = ListEntries.INSTANCES;
-        
             el_value.key = root.key;
             yy += ui_get_list_height(el_value) + spacing;
             break;
         case DataTypes.IMG_TILE_ANIMATION:
             var el_value = create_list(16, yy, "Select a Tile Animation resource:", "<no Autotiles>", ew, eh, 8, uivc_data_property_list_guid, false, dg, Stuff.all_graphic_tile_animations);
             el_value.entries_are = ListEntries.INSTANCES;
-        
             el_value.key = root.key;
             yy += ui_get_list_height(el_value) + spacing;
             break;
@@ -155,7 +148,12 @@ function dialog_create_data_instance_property_list(argument0) {
         case DataTypes.MESH:
             var el_value = create_list(16, yy, "Select a Mesh resource:", "<no Meshes>", ew, eh, 8, uivc_data_property_list_guid, false, dg, Stuff.all_meshes);
             el_value.entries_are = ListEntries.INSTANCES;
-        
+            el_value.key = root.key;
+            yy += ui_get_list_height(el_value) + spacing;
+            break;
+        case DataTypes.MESH_AUTOTILE:
+            var el_value = create_list(16, yy, "Select a Mesh Autotile resource:", "<no Mesh Autotiles>", ew, eh, 8, uivc_data_property_list_guid, false, dg, Stuff.all_mesh_autotiles);
+            el_value.entries_are = ListEntries.INSTANCES;
             el_value.key = root.key;
             yy += ui_get_list_height(el_value) + spacing;
             break;
@@ -163,49 +161,42 @@ function dialog_create_data_instance_property_list(argument0) {
             not_yet_implemented();
             var el_value = create_list(16, yy, "Select a Tileset resource:", "<no Tilesets>", ew, eh, 8, uivc_data_property_list_guid, false, dg);
             el_value.entries_are = ListEntries.INSTANCES;
-        
             el_value.key = root.key;
             yy += ui_get_list_height(el_value) + spacing;
             break;
         case DataTypes.IMG_BATTLER:
             var el_value = create_list(16, yy, "Select a Battler sprite:", "<no Battlers>", ew, eh, 8, uivc_data_property_list_guid, false, dg, Stuff.all_graphic_battlers);
             el_value.entries_are = ListEntries.INSTANCES;
-        
             el_value.key = root.key;
             yy += ui_get_list_height(el_value) + spacing;
             break;
         case DataTypes.IMG_OVERWORLD:
             var el_value = create_list(16, yy, "Select am Overworld sprite:", "<no Overworlds>", ew, eh, 8, uivc_data_property_list_guid, false, dg, Stuff.all_graphic_overworlds);
             el_value.entries_are = ListEntries.INSTANCES;
-        
             el_value.key = root.key;
             yy += ui_get_list_height(el_value) + spacing;
             break;
         case DataTypes.IMG_PARTICLE:
             var el_value = create_list(16, yy, "Select a Particle sprite:", "<no Particles>", ew, eh, 8, uivc_data_property_list_guid, false, dg, Stuff.all_graphic_particles);
             el_value.entries_are = ListEntries.INSTANCES;
-        
             el_value.key = root.key;
             yy += ui_get_list_height(el_value) + spacing;
             break;
         case DataTypes.IMG_UI:
             var el_value = create_list(16, yy, "Select a UI images:", "<no UI images>", ew, eh, 8, uivc_data_property_list_guid, false, dg, Stuff.all_graphic_ui);
             el_value.entries_are = ListEntries.INSTANCES;
-        
             el_value.key = root.key;
             yy += ui_get_list_height(el_value) + spacing;
             break;
         case DataTypes.IMG_ETC:
             var el_value = create_list(16, yy, "Select a misc. image:", "<no misc. images>", ew, eh, 8, uivc_data_property_list_guid, false, dg, Stuff.all_graphic_etc);
             el_value.entries_are = ListEntries.INSTANCES;
-        
             el_value.key = root.key;
             yy += ui_get_list_height(el_value) + spacing;
             break;
         case DataTypes.IMG_SKYBOX:
             var el_value = create_list(16, yy, "Select a skybox image:", "<no skybox images>", ew, eh, 8, uivc_data_property_list_guid, false, dg, Stuff.all_graphic_skybox);
             el_value.entries_are = ListEntries.INSTANCES;
-        
             el_value.key = root.key;
             yy += ui_get_list_height(el_value) + spacing;
             break;
@@ -215,19 +206,18 @@ function dialog_create_data_instance_property_list(argument0) {
         case DataTypes.ANIMATION:
             var el_value = create_list(16, yy, "Select an Animation resource:", "<no Animation>", ew, eh, 8, uivc_data_property_list_guid, false, dg);
             el_value.entries_are = ListEntries.GUIDS;
-        
             el_value.key = root.key;
             yy += ui_get_list_height(el_value) + spacing;
             break;
     }
-
+    
     dg.el_value = el_value;
-
+    
     dg.height = dg.height + yy;
-
+    
     var el_confirm = create_button(dw / 2 - b_width / 2, dg.height - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
     dg.el_confirm = el_confirm;
-
+    
     ds_list_add(dg.contents,
         el_list,
         el_add,
@@ -235,8 +225,6 @@ function dialog_create_data_instance_property_list(argument0) {
         el_value,
         el_confirm
     );
-
+    
     return dg;
-
-
 }

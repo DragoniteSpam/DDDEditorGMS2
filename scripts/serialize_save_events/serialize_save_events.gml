@@ -107,6 +107,7 @@ function serialize_save_events(buffer) {
                             case DataTypes.ENTITY:
                             case DataTypes.MAP:
                             case DataTypes.MESH:
+                            case DataTypes.MESH_AUTOTILE:
                             case DataTypes.EVENT:
                                 var save_type = buffer_datatype;
                                 break;

@@ -82,7 +82,8 @@ enum DataTypes {
  *  21. case in serialize_load_map_contents_meta
  *          and the equivalent in the game
  *  22. Stuff.Create - game data location and game data save scripts
- *  23. the main save and load script(s)
+ *  23. enum DataVersions - you most likely will need a new data version to handle the new data
+ *  24. serialize_load - read the data out
  */
 
 enum NumberScales {

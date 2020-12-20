@@ -4,13 +4,13 @@ function draw_active_event() {
         draw_set_halign(fa_left);
         draw_set_valign(fa_middle);
         draw_set_color(c_black);
-    
+        
         Stuff.event.node_info = noone;
-    
+        
         for (var i = 0; i < ds_list_size(Stuff.event.active.nodes); i++) {
             draw_event_node(Stuff.event.active.nodes[| i]);
         }
-    
+        
         // if you're hovering over an event to show info for, draw it at
         // the end otherwise another event might get drawn on top of it
         if (Stuff.event.node_info) {
@@ -22,10 +22,10 @@ function draw_active_event() {
                     var x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
                     var y2 = Stuff.event.node_info.y - 32;
                     var vertical_padding = 8;
-        
+                    
                     draw_roundrect_colour(x1, y1 - vertical_padding, x2, y2 + vertical_padding, c_white, c_white, false);
                     draw_roundrect(x1, y1 - vertical_padding, x2, y2 + vertical_padding, true);
-            
+                    
                     draw_text(x1 + 16, mean(y1, y2), "Conditional branch -\n" +
                     "select a condition type, or evaluate\n" +
                     "some code");
@@ -37,10 +37,10 @@ function draw_active_event() {
                     var x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
                     var y2 = Stuff.event.node_info.y - 32;
                     var vertical_padding = 8;
-        
+                    
                     draw_roundrect_colour(x1, y1 - vertical_padding, x2, y2 + vertical_padding, c_white, c_white, false);
                     draw_roundrect(x1, y1 - vertical_padding, x2, y2 + vertical_padding, true);
-            
+                    
                     draw_text(x1 + 16, mean(y1, y2), "Show choices -\n" +
                     "each choice can link to a different node;\n" +
                     "if no node is selected the default is used");
@@ -52,10 +52,10 @@ function draw_active_event() {
                     var x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
                     var y2 = Stuff.event.node_info.y - 32;
                     var vertical_padding = 8;
-        
+                    
                     draw_roundrect_colour(x1, y1 - vertical_padding, x2, y2 + vertical_padding, c_white, c_white, false);
                     draw_roundrect(x1, y1 - vertical_padding, x2, y2 + vertical_padding, true);
-                
+                    
                     draw_text(x1 + 16, mean(y1, y2), "Show text -\n" +
                     "each block of text will be shown in its\n" +
                     "own box (this way you can write long\n" +
@@ -69,10 +69,10 @@ function draw_active_event() {
                     var x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
                     var y2 = Stuff.event.node_info.y - 32;
                     var vertical_padding = 8;
-                
+                    
                     draw_roundrect_colour(x1, y1 - vertical_padding, x2, y2 + vertical_padding, c_white, c_white, false);
                     draw_roundrect(x1, y1 - vertical_padding, x2, y2 + vertical_padding, true);
-                
+                    
                     draw_text(x1 + 16, mean(y1, y2), "Show text crawl -\n" +
                     "each block of text will be its own\n" +
                     "paragraph");
@@ -85,13 +85,13 @@ function draw_active_event() {
                     var x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
                     var y2 = Stuff.event.node_info.y - 32;
                     var vertical_padding = 8;
-        
+                    
                     draw_roundrect_colour(x1, y1 - vertical_padding, x2, y2 + vertical_padding, c_white, c_white, false);
                     draw_roundrect(x1, y1 - vertical_padding, x2, y2 + vertical_padding, true);
-        
+                    
                     draw_text(x1 + 16, y1 + 8, string(base.name));
                     draw_line(x1 + 16, y1 + 24, x2 - 16, y1 + 24);
-        
+                    
                     if (n == 0) {
                         draw_text_colour(x1 + 16, y1 + 40, string("No data properties"), c_gray, c_gray, c_gray, c_gray, 1);
                     } else {
@@ -113,6 +113,7 @@ function draw_active_event() {
                                 case DataTypes.CODE: var type_name = "code"; break;
                                 case DataTypes.COLOR: var type_name = "color"; break;
                                 case DataTypes.MESH: var type_name = "mesh"; break;
+                                case DataTypes.MESH_AUTOTILE: var type_name = "mesh autotile"; break;
                                 case DataTypes.TILE: var type_name = "tile"; break;
                                 case DataTypes.IMG_TEXTURE: var type_name = "tileset"; break;
                                 case DataTypes.IMG_BATTLER: var type_name = "battler"; break;
@@ -133,6 +134,4 @@ function draw_active_event() {
             }
         }
     }
-
-
 }

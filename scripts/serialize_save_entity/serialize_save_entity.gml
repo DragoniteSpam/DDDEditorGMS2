@@ -77,6 +77,7 @@ function serialize_save_entity(buffer, entity) {
                 break;
             
             case DataTypes.MESH:
+            case DataTypes.MESH_AUTOTILE:
             case DataTypes.IMG_TEXTURE:
             case DataTypes.AUDIO_BGM:
             case DataTypes.AUDIO_SE:

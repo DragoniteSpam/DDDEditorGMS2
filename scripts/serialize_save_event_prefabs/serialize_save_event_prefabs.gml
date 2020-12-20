@@ -72,6 +72,7 @@ function serialize_save_event_prefabs(buffer) {
                         case DataTypes.MAP:
                         case DataTypes.EVENT:
                         case DataTypes.MESH:
+                        case DataTypes.MESH_AUTOTILE:
                         case DataTypes.IMG_TEXTURE:
                         case DataTypes.IMG_BATTLER:
                         case DataTypes.IMG_ETC:

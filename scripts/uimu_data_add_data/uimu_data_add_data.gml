@@ -37,6 +37,7 @@ function uimu_data_add_data(thing) {
                 case DataTypes.ENUM:
                 case DataTypes.DATA:
                 case DataTypes.MESH:
+                case DataTypes.MESH_AUTOTILE:
                 case DataTypes.IMG_TEXTURE:
                 case DataTypes.IMG_BATTLER:
                 case DataTypes.IMG_OVERWORLD:

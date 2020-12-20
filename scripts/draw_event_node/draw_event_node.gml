@@ -347,6 +347,7 @@ function draw_event_node(node) {
                     case DataTypes.CODE:
                     case DataTypes.COLOR:
                     case DataTypes.MESH:
+                    case DataTypes.MESH_AUTOTILE:
                     case DataTypes.TILE:
                     case DataTypes.IMG_TEXTURE:
                     case DataTypes.IMG_BATTLER:
@@ -403,6 +404,7 @@ function draw_event_node(node) {
                             break;
                         case DataTypes.COLOR:
                         case DataTypes.MESH:
+                        case DataTypes.MESH_AUTOTILE:
                         case DataTypes.TILE:
                         case DataTypes.IMG_TEXTURE:
                         case DataTypes.IMG_BATTLER:
@@ -472,9 +474,11 @@ function draw_event_node(node) {
                                             picker.node = node;
                                             picker.index = i;
                                             break;
-                                        // @todo data types
                                         case DataTypes.MESH:
                                             dialog_create_event_node_meshes(noone, node, i, 0);
+                                            break;
+                                        case DataTypes.MESH_AUTOTILE:
+                                            not_yet_implemented_polite();
                                             break;
                                         case DataTypes.IMG_TEXTURE:
                                             dialog_create_event_node_img_tileset(noone, node, i, 0);
@@ -583,6 +587,11 @@ function draw_event_node(node) {
                             case DataTypes.MESH:
                                 var setdata = guid_get(custom_data_list[| 0]);
                                 message = message + "(mesh): ";
+                                output_string = setdata ? setdata.name : "<null>";
+                                break;
+                            case DataTypes.MESH_AUTOTILE:
+                                var setdata = guid_get(custom_data_list[| 0]);
+                                message = message + "(mesh autotile): ";
                                 output_string = setdata ? setdata.name : "<null>";
                                 break;
                             case DataTypes.TILE:

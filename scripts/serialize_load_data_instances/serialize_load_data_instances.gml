@@ -1,28 +1,22 @@
-/// @param buffer
-/// @param version
-function serialize_load_data_instances(argument0, argument1) {
-
-    var buffer = argument0;
-    var version = argument1;
-
+function serialize_load_data_instances(buffer, version) {
     var addr_next = buffer_read(buffer, buffer_u64);
-
+    
     var n_datadata = ds_list_size(Stuff.all_data);
-
+    
     for (var i = 0; i < n_datadata; i++) {
         var datadata = Stuff.all_data[| i];
-    
+        
         if (datadata.type == DataTypes.DATA) {
             var n_properties = ds_list_size(datadata.properties);
             var n_instances = buffer_read(buffer, buffer_u16);
-        
+            
             for (var j = 0; j < n_instances; j++) {
                 var instance = instance_create_depth(0, 0, 0, DataInstantiated);
                 instance.base_guid = datadata.GUID;
                 ds_list_add(datadata.instances, instance);
-            
+                
                 serialize_load_generic(buffer, instance, version);
-            
+                
                 for (var k = 0; k < n_properties; k++) {
                     var property = datadata.properties[| k];
                     switch (property.type) {
@@ -47,6 +41,7 @@ function serialize_load_data_instances(argument0, argument1) {
                         case DataTypes.ENUM:
                         case DataTypes.DATA:
                         case DataTypes.MESH:
+                        case DataTypes.MESH_AUTOTILE:
                         case DataTypes.IMG_TEXTURE:
                         case DataTypes.IMG_BATTLER:
                         case DataTypes.IMG_OVERWORLD:
@@ -77,8 +72,6 @@ function serialize_load_data_instances(argument0, argument1) {
             }
         }
     }
-
+    
     instance_deactivate_object(DataInstantiated);
-
-
 }

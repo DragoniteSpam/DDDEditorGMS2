@@ -103,6 +103,7 @@ function serialize_load_map_contents_meta(buffer, version, map_container) {
                 break;
             
             case DataTypes.MESH:
+            case DataTypes.MESH_AUTOTILE:
             case DataTypes.IMG_TEXTURE:
             case DataTypes.AUDIO_BGM:
             case DataTypes.AUDIO_SE:

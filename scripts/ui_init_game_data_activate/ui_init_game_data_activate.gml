@@ -137,6 +137,12 @@ function ui_init_game_data_activate() {
                                 element.entries_are = ListEntries.INSTANCES;
                                 var hh = ui_get_list_height(element);
                                 break;
+                            case DataTypes.MESH_AUTOTILE:   // list
+                                var element = create_list(0, yy, property.name, "<no Mesh Autotiles>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Stuff.all_mesh_autotiles);
+                                element.key = i;
+                                element.entries_are = ListEntries.INSTANCES;
+                                var hh = ui_get_list_height(element);
+                                break;
                             case DataTypes.TILE:
                                 not_yet_implemented();
                                 break;

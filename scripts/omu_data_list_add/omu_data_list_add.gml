@@ -1,14 +1,10 @@
-/// @param UIThing
-function omu_data_list_add(argument0) {
-
-    var thing = argument0;
-
+function omu_data_list_add(thing) {
     var selection = ui_list_selection(Stuff.data.ui.el_instances);
     var data = guid_get(Stuff.data.ui.active_type_guid);
     var property = data.properties[| thing.key];
     var instance = guid_get(data.instances[| selection].GUID);
     var plist = instance.values[| thing.key];
-
+    
     if (ds_list_size(plist) < property.max_size) {
         switch (property.type) {
             case DataTypes.INT:
@@ -30,6 +26,7 @@ function omu_data_list_add(argument0) {
             case DataTypes.AUDIO_SE:
             case DataTypes.IMG_TILE_ANIMATION:
             case DataTypes.MESH:
+            case DataTypes.MESH_AUTOTILE:
             case DataTypes.IMG_TEXTURE:
             case DataTypes.IMG_BATTLER:
             case DataTypes.IMG_OVERWORLD:
@@ -53,6 +50,4 @@ function omu_data_list_add(argument0) {
                 break;
         }
     }
-
-
 }

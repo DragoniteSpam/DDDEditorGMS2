@@ -1,16 +1,13 @@
-/// @param UIList
-function uivc_list_data_list_select(argument0) {
-
-    var list = argument0;
+function uivc_list_data_list_select(list) {
     var pselection = ui_list_selection(list);
-
+    
     if (pselection + 1) {
         var selection = ui_list_selection(Stuff.data.ui.el_instances);
         var data = guid_get(Stuff.data.ui.active_type_guid);
         var property = data.properties[| list.key];
         var instance = data.instances[| selection];
         var plist = instance.values[| list.key];
-    
+        
         switch (property.type) {
             case DataTypes.INT:
             case DataTypes.FLOAT:
@@ -27,6 +24,7 @@ function uivc_list_data_list_select(argument0) {
             case DataTypes.AUDIO_SE:
             case DataTypes.IMG_TILE_ANIMATION:
             case DataTypes.MESH:
+            case DataTypes.MESH_AUTOTILE:
             case DataTypes.IMG_TEXTURE:
             case DataTypes.IMG_BATTLER:
             case DataTypes.IMG_OVERWORLD:
@@ -54,6 +52,4 @@ function uivc_list_data_list_select(argument0) {
                 break;
         }
     }
-
-
 }
