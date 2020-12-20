@@ -2,12 +2,12 @@ function dialog_create_manager_mesh_autotile(root) {
     var map = Stuff.map.active_map;
     var map_contents = map.contents;
 
-    var dw = 960;
+    var dw = 1280;
     var dh = 640;
 
     var dg = dialog_create(dw, dh, "Data: Mesh Autotiles", undefined, undefined, root);
 
-    var columns = 3;
+    var columns = 4;
     var spacing = 16;
     var ew = dw / columns - spacing * 2;
     var eh = 24;
@@ -18,6 +18,7 @@ function dialog_create_manager_mesh_autotile(root) {
     var c1x = dw / columns * 0 + spacing;
     var c2x = dw / columns * 1 + spacing;
     var c3x = dw / columns * 2 + spacing;
+    var c4x = dw / columns * 3 + spacing;
     var yy = 64;
     var yy_base = yy;
     
@@ -96,55 +97,69 @@ function dialog_create_manager_mesh_autotile(root) {
     
     yy += el_name_internal.height * 2 + spacing;
     
-/*
-    dg.buttons = array_create(array_length(map_contents.mesh_autotiles_top));
-    dg.icons = array_create(array_length(map_contents.mesh_autotiles_top));
-    array_clear(dg.buttons, noone);
-
-    for (var i = 0; i < array_length(map_contents.mesh_autotiles_top); i++) {
-        var button = create_button(xx, yy, string(i), mbw, mbh, fa_center, dmu_dialog_load_mesh_autotile, dg);
+    var el_layers = create_list(c2x, yy, "Layers:", "no layers???", ew, eh, 6, function(list) {
+        
+    }, false, dg);
+    create_list_entries(el_layers, "Top", "Middle", "Base", "Bottom");
+    ui_list_select(el_layers, 0);
+    el_layers.allow_deselect = false;
+    dg.el_layers = el_layers;
+    
+    yy += ui_get_list_height(el_layers) + spacing;
+    
+    yy = yy_base;
+    
+    dg.buttons = array_create(AUTOTILE_COUNT);
+    dg.icons = array_create(AUTOTILE_COUNT);
+    array_clear(dg.buttons, undefined);
+    
+    var bw = 32;
+    var bh = 32;
+    var xx = c3x;
+    
+    for (var i = 0; i < AUTOTILE_COUNT; i++) {
+        var button = create_button(xx, yy, string(i), bw, bh, fa_center, dmu_dialog_load_mesh_autotile, dg);
         button.tooltip = "Import a mesh for top mesh autotile #" + string(i) + ". It should take the shape of the icon below, with green representing the outer part and brown representing the inner part.";
-        button.color = map_contents.mesh_autotiles_top[i] ? c_black : c_gray;
+        button.color = c_gray;
         button.key = i;
         button.file_dropper_action = uifd_load_mesh_autotile;
         ds_list_add(dg.contents, button);
         dg.buttons[i] = button;
-    
-        var icon = create_image_button(xx + spacing / 2, yy + button.height + spacing, "b", spr_autotile_blueprint, 32, 32, fa_center, null, dg);
+        
+        var icon = create_image_button(xx, yy + button.height + spacing, "b", spr_autotile_blueprint, 32, 32, fa_center, null, dg);
         icon.index = i;
         icon.outline = false;
         icon.interactive = false;
-    
-        xx = xx + mbw + spacing;
-    
-        if (i % columns == columns - 1) {
-            xx = xx_start;
-            yy += mbh + icon.height + spacing * 2;
+        
+        xx = xx + bw + spacing;
+        
+        if (xx > c3x + ew + ew + spacing) {
+            xx = c3x;
+            yy += button.height + icon.height + spacing * 2;
         }
-    
+        
         ds_list_add(dg.contents, icon);
         dg.icon[i] = icon;
     }
-*/
+    
     var el_import_series = create_button(dw / 4 - b_width / 2, dh - 32 - b_height / 2, "Import Batch", b_width, b_height, fa_center, dmu_dialog_mesh_autotile_import_batch, dg);
     el_import_series.tooltip = "Import autotile meshes in batch. If you want to load an entire series at once you should probably choose this option, because selecting them one-by-one would be very slow.";
     var el_clear = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Clear All", b_width, b_height, fa_center, dmu_dialog_mesh_autotile_remove_all, dg);
     el_clear.tooltip = "Deletes all imported mesh autotiles. Entities which use them will continue to exist, but will be invisible."
     
     var el_confirm = create_button(dw * 3 / 4 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
-
+    
     ds_list_add(dg.contents,
         el_list,
         el_add,
         el_remove,
         el_name,
         el_name_internal,
+        el_layers,
         el_import_series,
         el_clear,
         el_confirm
     );
-
+    
     return dg;
-
-
 }
