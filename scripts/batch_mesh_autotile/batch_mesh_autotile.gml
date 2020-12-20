@@ -1,28 +1,16 @@
-/// @param vertex-buffer
-/// @param wireframe-buffer
-/// @param EntityMeshAutotile
-function batch_mesh_autotile(argument0, argument1, argument2) {
-
-    var buffer = argument0;
-    var wire = argument1;
-    var mesh = argument2;
-
-    var mapping = global.at_map[? mesh.terrain_id];
-
-    switch (mesh.terrain_type) {
-        case ATTerrainTypes.TOP: var raw = Stuff.map.active_map.contents.mesh_autotiles_top_raw[mapping]; break;
-        case ATTerrainTypes.VERTICAL: var raw = Stuff.map.active_map.contents.mesh_autotiles_vertical_raw[mapping]; break;
-        case ATTerrainTypes.BASE: var raw = Stuff.map.active_map.contents.mesh_autotiles_base_raw[mapping]; break;
-        case ATTerrainTypes.SLOPE: var raw = Stuff.map.active_map.contents.mesh_autotiles_slope_raw[mapping]; break;
+function batch_mesh_autotile(buffer, wire, mesh_autotile) {
+    var mapping = global.at_map[? mesh_autotile.terrain_id];
+    
+    switch (mesh_autotile.terrain_type) {
         default: var raw = noone; break;
     }
-
-    if (raw) {
-        var xx = mesh.xx * TILE_WIDTH;
-        var yy = mesh.yy * TILE_HEIGHT;
-        var zz = mesh.zz * TILE_DEPTH;
-        buffer_seek(raw, buffer_seek_start, 0);
     
+    if (raw) {
+        var xx = mesh_autotile.xx * TILE_WIDTH;
+        var yy = mesh_autotile.yy * TILE_HEIGHT;
+        var zz = mesh_autotile.zz * TILE_DEPTH;
+        buffer_seek(raw, buffer_seek_start, 0);
+        
         var vc = 0;
         
         // @gml update lightweight objects
@@ -30,7 +18,7 @@ function batch_mesh_autotile(argument0, argument1, argument2) {
         var py = array_create(3);
         var pz = array_create(3);
         var nx, ny, nz, xtex, ytex, color, alpha, extra;
-    
+        
         while (buffer_tell(raw) < buffer_get_size(raw)) {
             // script arguments are parsed backwards and i don't think there's a way to
             // turn that off, and in any case it's a better idea to just fetch the
@@ -38,7 +26,7 @@ function batch_mesh_autotile(argument0, argument1, argument2) {
             var npx = buffer_read(raw, buffer_f32);
             var npy = buffer_read(raw, buffer_f32);
             var npz = buffer_read(raw, buffer_f32);
-            var transformed = transform_entity_point(mesh, npx, npy, npz);
+            var transformed = transform_entity_point(mesh_autotile, npx, npy, npz);
             px[vc] = transformed[vec3.xx];
             py[vc] = transformed[vec3.yy];
             pz[vc] = transformed[vec3.zz];
@@ -49,32 +37,28 @@ function batch_mesh_autotile(argument0, argument1, argument2) {
             ytex = buffer_read(raw, buffer_f32);
             color = buffer_read(raw, buffer_u32);
             extra = buffer_read(raw, buffer_u32);
-        
+            
             alpha = color >> 24;
             color = color & 0xffffff;
-        
+            
             if (buffer) {
                 vertex_point_complete(buffer, px[vc], py[vc], pz[vc], nx, ny, nz, xtex, ytex, color, alpha);
             }
-        
+            
             vc = ++vc % 3;
-        
+            
             if (wire) {
                 if (vc == 0) {
                     vertex_point_line(wire, px[0], py[0], pz[0], c_white, 1);
                     vertex_point_line(wire, px[1], py[1], pz[1], c_white, 1);
-            
                     vertex_point_line(wire, px[1], py[1], pz[1], c_white, 1);
                     vertex_point_line(wire, px[2], py[2], pz[2], c_white, 1);
-            
                     vertex_point_line(wire, px[2], py[2], pz[2], c_white, 1);
                     vertex_point_line(wire, px[0], py[0], pz[0], c_white, 1);
                 }
             }
         }
     }
-
+    
     return [buffer, wire];
-
-
 }

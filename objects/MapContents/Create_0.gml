@@ -25,15 +25,6 @@ frozen_data_size = 0;
 frozen_data_wire = buffer_create(1, buffer_grow, 1);                    // the raw data in the frozen wireframe vertex buffer
 frozen_data_wire_size = 0;
 
-mesh_autotiles_top = array_create(AUTOTILE_COUNT, noone);
-mesh_autotiles_top_raw = array_create(AUTOTILE_COUNT, noone);
-mesh_autotiles_vertical = array_create(AUTOTILE_COUNT, noone);
-mesh_autotiles_vertical_raw = array_create(AUTOTILE_COUNT, noone);
-mesh_autotiles_base = array_create(AUTOTILE_COUNT, noone);
-mesh_autotiles_base_raw = array_create(AUTOTILE_COUNT, noone);
-mesh_autotiles_slope = array_create(AUTOTILE_COUNT, noone);
-mesh_autotiles_slope_raw = array_create(AUTOTILE_COUNT, noone);
-
 population = [0, 0, 0, 0, 0, 0, 0];
 population_static = 0;
 

@@ -25,10 +25,3 @@ if (frozen) vertex_delete_buffer(frozen);
 if (frozen_wire) vertex_delete_buffer(frozen_wire);
 buffer_delete(frozen_data);
 buffer_delete(frozen_data_wire);
-
-for (var i = 0; i < array_length(mesh_autotiles_top_raw); i++) {
-    if (mesh_autotiles_top_raw[i]) {
-        buffer_delete(mesh_autotiles_top_raw[i]);
-        vertex_delete_buffer(mesh_autotiles_top[i]);
-    }
-}

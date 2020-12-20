@@ -40,55 +40,6 @@ function serialize_save_map_contents_meta(buffer) {
     buffer_write(buffer, buffer_u32, bools);
     buffer_write(buffer, buffer_string, map.code);
     
-    #region autotiles
-    var at_count = array_length(map_contents.mesh_autotiles_top_raw);
-    buffer_write(buffer, buffer_u16, at_count);
-    
-    for (var i = 0; i < at_count; i++) {
-        var data = map_contents.mesh_autotiles_top_raw[i];
-        if (data) {
-            buffer_write(buffer, buffer_bool, true);
-            buffer_write(buffer, buffer_u32, buffer_get_size(data));
-            buffer_write_buffer(buffer, data);
-        } else {
-            buffer_write(buffer, buffer_bool, false);
-        }
-    }
-    
-    for (var i = 0; i < at_count; i++) {
-        var data = map_contents.mesh_autotiles_vertical_raw[i];
-        if (data) {
-            buffer_write(buffer, buffer_bool, true);
-            buffer_write(buffer, buffer_u32, buffer_get_size(data));
-            buffer_write_buffer(buffer, data);
-        } else {
-            buffer_write(buffer, buffer_bool, false);
-        }
-    }
-    
-    for (var i = 0; i < at_count; i++) {
-        var data = map_contents.mesh_autotiles_base_raw[i];
-        if (data) {
-            buffer_write(buffer, buffer_bool, true);
-            buffer_write(buffer, buffer_u32, buffer_get_size(data));
-            buffer_write_buffer(buffer, data);
-        } else {
-            buffer_write(buffer, buffer_bool, false);
-        }
-    }
-    
-    for (var i = 0; i < at_count; i++) {
-        var data = map_contents.mesh_autotiles_slope_raw[i];
-        if (data) {
-            buffer_write(buffer, buffer_bool, true);
-            buffer_write(buffer, buffer_u32, buffer_get_size(data));
-            buffer_write_buffer(buffer, data);
-        } else {
-            buffer_write(buffer, buffer_bool, false);
-        }
-    }
-    #endregion
-    
     #region generic data
     var n_generic = ds_list_size(map.generic_data);
     buffer_write(buffer, buffer_u8, n_generic);
