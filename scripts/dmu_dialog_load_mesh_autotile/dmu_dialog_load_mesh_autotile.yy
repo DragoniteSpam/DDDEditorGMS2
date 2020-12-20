@@ -6,7 +6,7 @@
     "path": "folders/Scripts/ui stuff/dialogs/on mouse up/data.yy",
   },
   "resourceVersion": "1.0",
-  "name": "dmu_dialog_load_mesh_autotile_vertical",
+  "name": "dmu_dialog_load_mesh_autotile",
   "tags": [],
   "resourceType": "GMScript",
 }

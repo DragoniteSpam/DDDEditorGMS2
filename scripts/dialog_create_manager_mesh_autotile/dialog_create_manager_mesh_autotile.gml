@@ -26,11 +26,11 @@ function dialog_create_manager_mesh_autotile(root) {
     array_clear(dg.buttons, noone);
 
     for (var i = 0; i < array_length(map_contents.mesh_autotiles_top); i++) {
-        var button = create_button(xx, yy, string(i), mbw, mbh, fa_center, dmu_dialog_load_mesh_autotile_top, dg);
+        var button = create_button(xx, yy, string(i), mbw, mbh, fa_center, dmu_dialog_load_mesh_autotile, dg);
         button.tooltip = "Import a mesh for top mesh autotile #" + string(i) + ". It should take the shape of the icon below, with green representing the outer part and brown representing the inner part.";
         button.color = map_contents.mesh_autotiles_top[i] ? c_black : c_gray;
         button.key = i;
-        button.file_dropper_action = uifd_load_mesh_autotile_top;
+        button.file_dropper_action = uifd_load_mesh_autotile;
         ds_list_add(dg.contents, button);
         dg.buttons[i] = button;
     
@@ -52,7 +52,7 @@ function dialog_create_manager_mesh_autotile(root) {
 
     var el_import_series = create_button(dw / 4 - b_width / 2, dh - 32 - b_height / 2, "Import Batch", b_width, b_height, fa_center, dmu_dialog_mesh_autotile_import_batch, dg);
     el_import_series.tooltip = "Import autotile meshes in batch. If you want to load an entire series at once you should probably choose this option, because selecting them one-by-one would be very slow.";
-    var el_clear = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Clear All", b_width, b_height, fa_center, dmu_dialog_mesh_autotile_remove_all_top, dg);
+    var el_clear = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Clear All", b_width, b_height, fa_center, dmu_dialog_mesh_autotile_remove_all, dg);
     el_clear.tooltip = "Deletes all imported mesh autotiles. Entities which use them will continue to exist, but will be invisible."
     var el_confirm = create_button(dw * 3 / 4 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
 

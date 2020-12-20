@@ -1,4 +1,4 @@
-function dmu_dialog_load_mesh_autotile_top(thing) {
+function dmu_dialog_load_mesh_autotile(thing) {
     var fn = get_open_filename_mesh_d3d();
     
     if (file_exists(fn)) {
