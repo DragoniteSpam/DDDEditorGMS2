@@ -478,17 +478,14 @@ game_data_current_file = noone;
 
 // these may all go to different save locations
 enum GameDataCategories {
-    // core
-    DATADATA,
+/**/DATADATA,           // core
     DATA_INST,
     GLOBAL,
-    // other
-    ANIMATIONS,
+/**/ANIMATIONS,         // other
     EVENTS,
     TERRAIN,
     MAP,
-    // image assets
-    TILE_ANIMATIONS,
+/**/TILE_ANIMATIONS,    // image assets
     TILESETS,
     BATTLERS,
     OVERWORLDS,
@@ -496,12 +493,10 @@ enum GameDataCategories {
     UI,
     SKYBOX,
     MISC,
-    // audio assets
-    BGM,
+/**/BGM,                // audio assets
     SE,
-    // other assets
-    MESH,
-    LANGUAGE_TEXT,
+/**/MESH,               // mesh
+/**/LANGUAGE_TEXT,      // appended later
     MESH_AUTOTILES,
     SIZE
 }

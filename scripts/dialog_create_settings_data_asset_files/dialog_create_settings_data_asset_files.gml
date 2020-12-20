@@ -31,7 +31,8 @@ function dialog_create_settings_data_asset_files(dialog) {
             list.root.el_critical.interactive = (selection > 0);
             list.root.el_compressed.value = file_data.compressed;
             list.root.el_critical.value = file_data.critical;
-            // the first file in the list is special, and its name is just whatever you give it when you save
+            // the first file in the list is special, and its name is just
+            // whatever you give it when you save
             if (selection) {
                 list.root.el_name.interactive = true;
                 ui_input_set_value(list.root.el_name, file_data.internal_name);
@@ -41,17 +42,18 @@ function dialog_create_settings_data_asset_files(dialog) {
             for (var i = 0; i < array_length(Stuff.game_data_location); i++) {
                 // the first three get special treatment
                 if (i < 3) {
-                    if (selection == 0) {
-                        ui_list_select(list.root.el_types, i);
-                    }
+                    if (selection == 0) ui_list_select(list.root.el_types, i);
                     continue;
                 }
-                // otherwise, the data belongs in the selected file if its location is set to the file's GUID,
-                // or the file is unassigned and the selected file is the master one
+                // otherwise, the data belongs in the selected file if its
+                // location is set to the file's GUID, or the file is unassigned
+                // and the selected file is the master one
+                var mapped_list_index = list.root.el_types.mapping_cat_to_index[i];
+                
                 if (Stuff.game_data_location[i] == file_data.GUID) {
-                    ui_list_select(list.root.el_types, i);
+                    ui_list_select(list.root.el_types, mapped_list_index);
                 } else if (selection == 0 && !guid_get(Stuff.game_data_location[i])) {
-                    ui_list_select(list.root.el_types, i);
+                    ui_list_select(list.root.el_types, mapped_list_index);
                 }
             }
         } else {
@@ -123,23 +125,78 @@ function dialog_create_settings_data_asset_files(dialog) {
                 }
                 // otherwise, if a thing is selected, assign it
                 if (ui_list_is_selected(list, i)) {
-                    Stuff.game_data_location[i] = file_data.GUID;
+                    Stuff.game_data_location[list.mapping_index_to_cat[i]] = file_data.GUID;
                 }
             }
         }
     }, false, dg);
+    
+    static map_index_to_cat = [
+        GameDataCategories.GLOBAL,
+        GameDataCategories.DATADATA,
+        GameDataCategories.DATA_INST,
+        GameDataCategories.ANIMATIONS,
+        GameDataCategories.EVENTS,
+        GameDataCategories.MAP,
+        GameDataCategories.TERRAIN,
+        GameDataCategories.MESH,
+        GameDataCategories.MESH_AUTOTILES,
+        GameDataCategories.TILE_ANIMATIONS,
+        GameDataCategories.TILESETS,
+        GameDataCategories.BATTLERS,
+        GameDataCategories.OVERWORLDS,
+        GameDataCategories.PARTICLES,
+        GameDataCategories.UI,
+        GameDataCategories.SKYBOX,
+        GameDataCategories.MISC /* image */,
+        GameDataCategories.BGM,
+        GameDataCategories.SE,
+        GameDataCategories.LANGUAGE_TEXT,
+    ];
+    
+    static map_cat_to_index = array_create(GameDataCategories.SIZE);
+    map_cat_to_index[GameDataCategories.GLOBAL] = 0;
+    map_cat_to_index[GameDataCategories.DATADATA] = 1;
+    map_cat_to_index[GameDataCategories.DATA_INST] = 2;
+    map_cat_to_index[GameDataCategories.ANIMATIONS] = 3;
+    map_cat_to_index[GameDataCategories.EVENTS]  = 4;
+    map_cat_to_index[GameDataCategories.MAP] = 5;
+    map_cat_to_index[GameDataCategories.TERRAIN] = 6;
+    map_cat_to_index[GameDataCategories.MESH] = 7;
+    map_cat_to_index[GameDataCategories.MESH_AUTOTILES] = 8;
+    map_cat_to_index[GameDataCategories.TILE_ANIMATIONS] = 9;
+    map_cat_to_index[GameDataCategories.TILESETS] = 10;
+    map_cat_to_index[GameDataCategories.BATTLERS] = 11;
+    map_cat_to_index[GameDataCategories.OVERWORLDS] = 12;
+    map_cat_to_index[GameDataCategories.PARTICLES] = 13;
+    map_cat_to_index[GameDataCategories.UI] = 14;
+    map_cat_to_index[GameDataCategories.SKYBOX] = 15;
+    map_cat_to_index[GameDataCategories.MISC /* image */] = 16;
+    map_cat_to_index[GameDataCategories.BGM] = 17;
+    map_cat_to_index[GameDataCategories.SE] = 18;
+    map_cat_to_index[GameDataCategories.LANGUAGE_TEXT] = 19;
+    
+    el_types.mapping_cat_to_index = map_cat_to_index;
+    el_types.mapping_index_to_cat = map_index_to_cat;
+    
     create_list_entries(el_types,
-        ["Data: Datadata", c_gray], ["Data: Instances", c_gray],  ["Data: Global", c_gray],
+        // these three are special and need to stay at the beginning of the list
+        ["Data: Global", c_gray], ["Data: Datadata", c_gray], ["Data: Instances", c_gray],  
+        // the rest can float around, as long as they're correctly mapped by the above array
         ["Data: Animations", c_black], ["Data: Events", c_black],
-        ["Terrain", c_black], ["Maps", c_black],
-        ["Image: Autotiles", c_blue], ["Image: Tilesets", c_blue],
+        ["Maps", c_black], ["Terrain", c_black],
+        ["Meshes", c_green], ["Mesh Autotiles", c_green],
+        
+        ["Image: Animated Tiles", c_blue], ["Image: Tilesets", c_blue],
         ["Image: Battlers", c_blue], ["Image: Overworlds", c_blue],
         ["Image: Particles", c_blue], ["Image: UI", c_blue],
         ["Image: Skybox", c_blue], ["Image: Misc.", c_blue],
+        
         ["Audio: BGM", c_purple], ["Audio: SE", c_purple],
-        ["Meshes", c_green], ["Mesh Autotiles", c_green],
+        
         ["Language Text", c_black],
     );
+    
     el_types.tooltip = "This is the list of all the types of stuff you can sort into different files. I recommend putting each of the audio / visual resources (colorized) into their own files, especially if you use source control, so that changing one doesn't cause the entire wad of data to have to be updated. The main game data must be in the master data file, since other things may depend on their existence.";
     el_types.auto_multi_select = true;
     el_types.interactive = false;
