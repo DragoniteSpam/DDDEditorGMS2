@@ -62,9 +62,7 @@
 #macro FILE_CODE_EXTENSION Stuff.code_extension_map[Settings.config.code_extension]
 
 #macro ALARM_SETTINGS_SAVE 0
-#macro AUTOTILE_AVAILABLE_MAX 100
 #macro AUTOTILE_COUNT 48
-#macro AUTOTILE_MAX 32
 #macro BATCH_CACHE_SIZE 160
 #macro buffer_datatype buffer_string
 #macro buffer_datatype_old buffer_u32
