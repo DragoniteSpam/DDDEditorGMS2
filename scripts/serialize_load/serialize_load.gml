@@ -149,6 +149,10 @@ function serialize_load(buffer, filename, proj_name) {
                 Stuff.game_data_location[GameDataCategories.MESH] = Stuff.game_data_current_file.GUID;
                 serialize_load_meshes(buffer, version);
                 break;
+            case SerializeThings.MESH_AUTOTILES:
+                Stuff.game_data_location[GameDataCategories.MESH_AUTOTILES] = Stuff.game_data_current_file.GUID;
+                
+                break;
             // game stuff
             case SerializeThings.EVENTS:
                 Stuff.game_data_location[GameDataCategories.EVENTS] = Stuff.game_data_current_file.GUID;

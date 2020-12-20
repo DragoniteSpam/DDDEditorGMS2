@@ -56,6 +56,7 @@ enum DataTypes {
  *  1. add it to the following enums:
  *           - SerializeThings
  *           - GameDataCategories
+ *           - entry in dialog_create_settings_data_asset_files (with color)
  *  2. case in omu_data_list_add
  *  3. case in uivc_list_data_list_select
  *  4. case in draw_event_node - in four different switch statements (can that be simplified?)
