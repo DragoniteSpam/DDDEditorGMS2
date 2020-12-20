@@ -1,8 +1,8 @@
 #region array stuff
 function array_to_list(array) {
     var list = ds_list_create();
-    for (var i = 0; i < array_length(argument0); i++) {
-        ds_list_add(list, argument0[@ i]);
+    for (var i = 0; i < array_length(array); i++) {
+        ds_list_add(list, array[@ i]);
     }
     
     return list;
@@ -324,7 +324,7 @@ function ds_list_sort_internal() {
     var l = (argument_count > 1) ? argument[1] : 0;
     var r = (argument_count > 2) ? argument[2] : ds_list_size(list) - 1;
     return ds_list_sort_fast(list, function(list, index) {
-        return list[| index].internal_name;
+        return string_lower(list[| index].internal_name);
     }, l, r);
 }
 
@@ -338,7 +338,7 @@ function ds_list_sort_name() {
     var r = (argument_count > 2) ? argument[2] : ds_list_size(list) - 1;
     
     return ds_list_sort_fast(list, function(list, index) {
-        return list[| index].name;
+        return string_lower(list[| index].name);
     }, l, r);
 }
 
