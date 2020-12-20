@@ -1,5 +1,5 @@
 /// @param UIButton
-function dmu_dialog_mesh_autotile_import_batch_top(argument0) {
+function dmu_dialog_mesh_autotile_import_batch(argument0) {
 
     var button = argument0;
     var map = Stuff.map.active_map
