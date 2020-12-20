@@ -26,9 +26,22 @@ function dialog_create_manager_mesh_autotile(root) {
     var vx2 = ew;
     var vy2 = eh * 2;
     
+    dg.Select = method(dg, function(index) {
+        if (index + 1) {
+            var autotile = Stuff.all_mesh_autotiles[| index];
+            ui_input_set_value(el_name, autotile.name);
+            ui_input_set_value(el_name_internal, autotile.internal_name);
+            el_name_internal.color = c_black;
+            el_name_internal.emphasis = false;
+        }
+    });
+    
     var el_list = create_list(c1x, yy, "All Mesh Autotiles", "<no mesh autotiles>", ew, eh, 16, function(list) {
-        
+        list.root.Select(ui_list_selection(list));
     }, false, dg, Stuff.all_mesh_autotiles);
+    el_list.onmiddleclick = function(list) {
+        ds_list_sort_name(Stuff.all_mesh_autotiles);
+    };
     el_list.entries_are = ListEntries.INSTANCES;
     dg.el_list = el_list;
     

@@ -6,7 +6,7 @@ function SData(name) constructor {
     self.GUID = NULL;
     self.internal_name = "";
     guid_set(self, guid_generate());
-    internal_name_set(self, "SData:" + string_lettersdigits(self.GUID));
+    internal_name_set(self, "SData" + string_lettersdigits(self.GUID));
     
     self.Destroy = function() {
         if (Stuff.is_quitting) exit;
