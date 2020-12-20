@@ -1390,6 +1390,7 @@
     {"id":{"name":"omu_mr_move_forward","path":"scripts/omu_mr_move_forward/omu_mr_move_forward.yy",},"order":12,},
     {"id":{"name":"omu_mr_move_backward","path":"scripts/omu_mr_move_backward/omu_mr_move_backward.yy",},"order":13,},
     {"id":{"name":"omu_mr_move_jump","path":"scripts/omu_mr_move_jump/omu_mr_move_jump.yy",},"order":14,},
+    {"id":{"name":"Group_SData","path":"scripts/Group_SData/Group_SData.yy",},"order":0,},
     {"id":{"name":"omu_mr_move_actually_jump","path":"scripts/omu_mr_move_actually_jump/omu_mr_move_actually_jump.yy",},"order":15,},
     {"id":{"name":"omu_mr_wait","path":"scripts/omu_mr_wait/omu_mr_wait.yy",},"order":16,},
     {"id":{"name":"omu_mr_turn_down","path":"scripts/omu_mr_turn_down/omu_mr_turn_down.yy",},"order":17,},
@@ -2010,6 +2011,7 @@
     {"folderPath":"folders/Scribble/Shaders.yy","order":5,"resourceVersion":"1.0","name":"Shaders","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Mode - Text.yy","order":1311,"resourceVersion":"1.0","name":"Mode - Text","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Language.yy","order":1312,"resourceVersion":"1.0","name":"Language","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/SData.yy","order":1314,"resourceVersion":"1.0","name":"SData","tags":[],"resourceType":"GMFolder",},
   ],
   "AudioGroups": [
     {"targets":-1,"resourceVersion":"1.3","name":"audiogroup_default","resourceType":"GMAudioGroup",},
