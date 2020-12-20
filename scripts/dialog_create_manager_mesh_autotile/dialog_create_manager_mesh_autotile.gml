@@ -25,19 +25,26 @@ function dialog_create_manager_mesh_autotile(root) {
     var el_list = create_list(xx, yy, "All Mesh Autotiles", "<no mesh autotiles>", ew, eh, 16, function(list) {
         
     }, false, dg, Stuff.all_mesh_autotiles);
+    el_list.entries_are = ListEntries.INSTANCES;
     dg.el_list = el_list;
     
     yy += ui_get_list_height(el_list) + spacing;
     
     var el_add = create_button(xx, yy, "Add Mesh Autotile", ew, eh, fa_center, function(button) {
-        
+        var autotile = new DataMeshAutotile("MeshAutotile" + string(ds_list_size(Stuff.all_mesh_autotiles)));
+        ds_list_add(Stuff.all_mesh_autotiles, autotile);
     }, dg);
     dg.el_add = el_add;
     
     yy += el_add.height + spacing;
     
     var el_remove = create_button(xx, yy, "Remove Mesh Autotile", ew, eh, fa_center, function(button) {
-        
+        var selection = ui_list_selection(button.root.el_list);
+        if (selection + 1) {
+            Stuff.all_mesh_autotiles[| selection].Destroy();
+            ds_list_delete(Stuff.all_mesh_autotiles, selection);
+            ui_list_deselect(button.root.el_list);
+        }
     }, dg);
     dg.el_remove = el_remove;
     
