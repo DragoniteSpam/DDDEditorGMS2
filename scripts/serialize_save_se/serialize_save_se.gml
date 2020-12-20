@@ -1,22 +1,18 @@
-/// @param buffer
-function serialize_save_se(argument0) {
-
-    var buffer = argument0;
-
+function serialize_save_se(buffer) {
     buffer_write(buffer, buffer_u32, SerializeThings.AUDIO_SE);
     var addr_next = buffer_tell(buffer);
     buffer_write(buffer, buffer_u64, 0);
-
+    
     var n_se = ds_list_size(Stuff.all_se);
     buffer_write(buffer, buffer_u16, n_se);
-
+    
     for (var i = 0; i < n_se; i++) {
         var se = Stuff.all_se[| i];
-    
+        
         serialize_save_generic(buffer, se);
-    
+        
         buffer_write(buffer, buffer_string, se.temp_name);
-    
+        
         if (file_exists(se.temp_name)) {
             var fbuffer = buffer_load(se.temp_name);
             var len = buffer_get_size(fbuffer);
@@ -29,13 +25,11 @@ function serialize_save_se(argument0) {
             buffer_write(buffer, buffer_u32, 0 /* this is important for something i think */);
             wtf("Audio file not found: " + string(se.GUID) + " [" + se.name + "]");
         }
-    
+        
         buffer_write(buffer, buffer_u32, se.fmod_rate);
     }
-
+    
     buffer_poke(buffer, addr_next, buffer_u64, buffer_tell(buffer));
-
+    
     return buffer_tell(buffer);
-
-
 }

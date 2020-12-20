@@ -45,37 +45,37 @@ function serialize_load_map_contents_meta(buffer, version, map_container) {
     map.code =                      buffer_read(buffer, buffer_string);
     
     #region autotiles
-    var at_count = buffer_read(buffer, buffer_u16);
-    
-    for (var i = 0; i < at_count; i++) {
-        var exists = buffer_read(buffer, buffer_bool);
-        if (exists) {
-            var size = buffer_read(buffer, buffer_u32);
-            buffer_delete(buffer_read_buffer(buffer, size));
+    if (version >= DataVersions.MAP_REMOVE_MESH_AUTOTILES) {
+        // gone
+    } else {
+        var at_count = buffer_read(buffer, buffer_u16);
+        for (var i = 0; i < at_count; i++) {
+            var exists = buffer_read(buffer, buffer_bool);
+            if (exists) {
+                var size = buffer_read(buffer, buffer_u32);
+                buffer_delete(buffer_read_buffer(buffer, size));
+            }
         }
-    }
-    
-    for (var i = 0; i < at_count; i++) {
-        var exists = buffer_read(buffer, buffer_bool);
-        if (exists) {
-            var size = buffer_read(buffer, buffer_u32);
-            buffer_delete(buffer_read_buffer(buffer, size));
+        for (var i = 0; i < at_count; i++) {
+            var exists = buffer_read(buffer, buffer_bool);
+            if (exists) {
+                var size = buffer_read(buffer, buffer_u32);
+                buffer_delete(buffer_read_buffer(buffer, size));
+            }
         }
-    }
-    
-    for (var i = 0; i < at_count; i++) {
-        var exists = buffer_read(buffer, buffer_bool);
-        if (exists) {
-            var size = buffer_read(buffer, buffer_u32);
-            buffer_delete(buffer_read_buffer(buffer, size));
+        for (var i = 0; i < at_count; i++) {
+            var exists = buffer_read(buffer, buffer_bool);
+            if (exists) {
+                var size = buffer_read(buffer, buffer_u32);
+                buffer_delete(buffer_read_buffer(buffer, size));
+            }
         }
-    }
-    
-    for (var i = 0; i < at_count; i++) {
-        var exists = buffer_read(buffer, buffer_bool);
-        if (exists) {
-            var size = buffer_read(buffer, buffer_u32);
-            buffer_delete(buffer_read_buffer(buffer, size));
+        for (var i = 0; i < at_count; i++) {
+            var exists = buffer_read(buffer, buffer_bool);
+            if (exists) {
+                var size = buffer_read(buffer, buffer_u32);
+                buffer_delete(buffer_read_buffer(buffer, size));
+            }
         }
     }
     #endregion

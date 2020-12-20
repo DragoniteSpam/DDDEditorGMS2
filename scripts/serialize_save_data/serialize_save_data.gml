@@ -112,7 +112,7 @@ function serialize_save_data() {
         MAP_SKIP_ADDRESSES                  = 117,
         UNIFIED_FLAGS                       = 118,
         NUKE_AUTOTILES_FROM_TILESETS        = 119,
-        MESH_AUTOTILE_REWORK                = 120,
+        MAP_REMOVE_MESH_AUTOTILES           = 120,
         _CURRENT /* = whatever the last one is + 1 */
     }
 }
