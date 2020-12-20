@@ -6,7 +6,7 @@
     "path": "folders/Scripts/ui stuff/file dropper listeners.yy",
   },
   "resourceVersion": "1.0",
-  "name": "uifd_load_mesh_autotile_top",
+  "name": "uifd_load_mesh_autotile",
   "tags": [],
   "resourceType": "GMScript",
 }
