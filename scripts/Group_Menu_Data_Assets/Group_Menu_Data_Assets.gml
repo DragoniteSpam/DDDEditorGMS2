@@ -18,24 +18,9 @@ function momu_graphic_etc() {
     dialog_create_manager_graphic_etc(noone);
 }
 
-function momu_graphic_mesh_autotiles_base() {
+function momu_graphic_mesh_autotiles() {
     menu_activate(noone);
-    dialog_create_manager_mesh_autotile_base(noone);
-}
-
-function momu_graphic_mesh_autotiles_slope() {
-    menu_activate(noone);
-    dialog_create_manager_mesh_autotile_slope(noone);
-}
-
-function momu_graphic_mesh_autotiles_top() {
-    menu_activate(noone);
-    dialog_create_manager_mesh_autotile_top(noone);
-}
-
-function momu_graphic_mesh_autotiles_vertical() {
-    menu_activate(noone);
-    dialog_create_manager_mesh_autotile_vertical(noone);
+    dialog_create_manager_mesh_autotile(noone);
 }
 
 function momu_graphic_overworld() {

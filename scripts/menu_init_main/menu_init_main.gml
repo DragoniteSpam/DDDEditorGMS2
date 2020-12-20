@@ -92,25 +92,11 @@ function menu_init_main() {
                 md_aud_bgm,
                 md_aud_se
             );
+        var md_mesh_at = create_menu_element("Mesh Autotiles", momu_graphic_mesh_autotiles, menu_data);
         md_audio.interactive = MENU_EDITOR_ENABLED;
         md_aud_bgm.interactive = MENU_EDITOR_ENABLED;
         md_aud_se.interactive = MENU_EDITOR_ENABLED;
-        var md_mesh_at = create_menu_element("Mesh Autotiles", momu_expand, menu_data, true);
-            var md_mesh_at_top = create_menu_element("Top", momu_graphic_mesh_autotiles_top, md_graphics);
-            var md_mesh_at_vertical = create_menu_element("Vertical", momu_graphic_mesh_autotiles_vertical, md_graphics);
-            var md_mesh_at_base = create_menu_element("Base", momu_graphic_mesh_autotiles_base, md_graphics);
-            var md_mesh_at_slope = create_menu_element("Slopes", momu_graphic_mesh_autotiles_slope, md_graphics);
-            ds_list_add(md_mesh_at.contents,
-                md_mesh_at_top,
-                md_mesh_at_vertical,
-                md_mesh_at_base,
-                md_mesh_at_slope,
-            );
         md_mesh_at.interactive = MENU_EDITOR_ENABLED;
-        md_mesh_at_top.interactive = MENU_EDITOR_ENABLED;
-        md_mesh_at_vertical.interactive = MENU_EDITOR_ENABLED;
-        md_mesh_at_base.interactive = MENU_EDITOR_ENABLED;
-        md_mesh_at_slope.interactive = MENU_EDITOR_ENABLED;
         var md_data_types = create_menu_element("Define Data Types", momu_data_types, menu_data);
         var md_meshes = create_menu_element("Mesh Editor (F5)", momu_meshes, menu_data);
         var md_3d = create_menu_element("Map Editor (F6)", momu_editor_3d, menu_data);
