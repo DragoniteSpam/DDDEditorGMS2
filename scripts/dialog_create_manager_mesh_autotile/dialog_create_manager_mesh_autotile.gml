@@ -15,14 +15,18 @@ function dialog_create_manager_mesh_autotile(root) {
     var b_width = 128;
     var b_height = 32;
 
-    var xx = 16;
+    var c1x = dw / columns * 0 + spacing;
+    var c2x = dw / columns * 1 + spacing;
+    var c3x = dw / columns * 2 + spacing;
     var yy = 64;
-    var xx_base = xx;
     var yy_base = yy;
-    var mbw = 64 - spacing;
-    var mbh = eh;
     
-    var el_list = create_list(xx, yy, "All Mesh Autotiles", "<no mesh autotiles>", ew, eh, 16, function(list) {
+    var vx1 = 0;
+    var vy1 = eh;
+    var vx2 = ew;
+    var vy2 = eh * 2;
+    
+    var el_list = create_list(c1x, yy, "All Mesh Autotiles", "<no mesh autotiles>", ew, eh, 16, function(list) {
         
     }, false, dg, Stuff.all_mesh_autotiles);
     el_list.entries_are = ListEntries.INSTANCES;
@@ -30,7 +34,7 @@ function dialog_create_manager_mesh_autotile(root) {
     
     yy += ui_get_list_height(el_list) + spacing;
     
-    var el_add = create_button(xx, yy, "Add Mesh Autotile", ew, eh, fa_center, function(button) {
+    var el_add = create_button(c1x, yy, "Add Mesh Autotile", ew, eh, fa_center, function(button) {
         var autotile = new DataMeshAutotile("MeshAutotile" + string(ds_list_size(Stuff.all_mesh_autotiles)));
         ds_list_add(Stuff.all_mesh_autotiles, autotile);
     }, dg);
@@ -38,7 +42,7 @@ function dialog_create_manager_mesh_autotile(root) {
     
     yy += el_add.height + spacing;
     
-    var el_remove = create_button(xx, yy, "Remove Mesh Autotile", ew, eh, fa_center, function(button) {
+    var el_remove = create_button(c1x, yy, "Remove Mesh Autotile", ew, eh, fa_center, function(button) {
         var selection = ui_list_selection(button.root.el_list);
         if (selection + 1) {
             Stuff.all_mesh_autotiles[| selection].Destroy();
@@ -49,6 +53,35 @@ function dialog_create_manager_mesh_autotile(root) {
     dg.el_remove = el_remove;
     
     yy += el_remove.height + spacing;
+    
+    yy = yy_base;
+    
+    var el_name = create_input(c2x, yy, "Name:", ew, eh, function(input) {
+        var selection = ui_list_selection(input.root.el_list);
+        if (selection + 1) {
+            Stuff.all_mesh_autotiles[| selection].name = input.value;
+        }
+    }, "", "name", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
+    dg.el_name = el_name;
+    
+    yy += el_name.height * 2 + spacing;
+    
+    var el_name_internal = create_input(c2x, yy, "Internal Name:", ew, eh, function(input) {
+        var selection = ui_list_selection(input.root.el_list);
+        if (selection + 1) {
+            var already = internal_name_get(input.value);
+            if (!already || already == Stuff.all_mesh_autotiles[| selection]) {
+                internal_name_remove(Stuff.all_mesh_autotiles[| selection].internal_name);
+                internal_name_set(Stuff.all_mesh_autotiles[| selection], input.value);
+                input.color = c_black;
+            } else {
+                input.color = c_red;
+            }
+        }
+    }, "", "internal name", validate_string_internal_name, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
+    dg.el_name_internal = el_name_internal;
+    
+    yy += el_name_internal.height * 2 + spacing;
     
 /*
     dg.buttons = array_create(array_length(map_contents.mesh_autotiles_top));
@@ -91,6 +124,8 @@ function dialog_create_manager_mesh_autotile(root) {
         el_list,
         el_add,
         el_remove,
+        el_name,
+        el_name_internal,
         el_import_series,
         el_clear,
         el_confirm
