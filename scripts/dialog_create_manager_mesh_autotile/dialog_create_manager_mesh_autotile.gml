@@ -28,12 +28,24 @@ function dialog_create_manager_mesh_autotile(root) {
     var vy2 = eh * 2;
     
     dg.Select = method(dg, function(index) {
-        if (index + 1) {
-            var autotile = Stuff.all_mesh_autotiles[| index];
+        var autotile = Stuff.all_mesh_autotiles[| index];
+        if (autotile) {
             ui_input_set_value(el_name, autotile.name);
             ui_input_set_value(el_name_internal, autotile.internal_name);
             el_name_internal.color = c_black;
             el_name_internal.emphasis = false;
+            button.root.Colorize();
+        }
+    });
+    
+    dg.Colorize = method(dg, function() {
+        var selection = ui_list_selection(el_list);
+        var layer_index = ui_list_selection(el_layers);
+        var autotile = Stuff.all_mesh_autotiles[| selection];
+        if (autotile) {
+            for (var i = 0; i < AUTOTILE_COUNT; i++) {
+                buttons[i].color = (!!autotile.layers[layer_index].buffer) ? c_black : c_red;
+            }
         }
     });
     
@@ -107,12 +119,34 @@ function dialog_create_manager_mesh_autotile(root) {
     
     yy += ui_get_list_height(el_layers) + spacing;
     
-    var el_import_series = create_button(c2x, yy, "Import Batch", ew, eh, fa_center, dmu_dialog_mesh_autotile_import_batch, dg);
+    var el_import_series = create_button(c2x, yy, "Import Batch", ew, eh, fa_center, /*dmu_dialog_mesh_autotile_import_batch*/function(button) {
+        button.root.Colorize();
+    }, dg);
     el_import_series.tooltip = "Import autotile meshes in batch. If you want to load an entire series at once you should probably choose this option, because selecting them one-by-one would be very slow.";
     
     yy += el_import_series.height + spacing;
     
-    var el_clear = create_button(c2x, yy, "Clear All", ew, eh, fa_center, dmu_dialog_mesh_autotile_remove_all, dg);
+    var el_clear = create_button(c2x, yy, "Clear All", ew, eh, fa_center, function(button) {
+        var selection = ui_list_selection(button.root.el_list);
+        var layer_index = ui_list_selection(button.root.el_layers);
+        if (selection + 1) {
+            var autotile = Stuff.all_mesh_autotiles[| selection];
+            var map = Stuff.map.active_map;
+            var map_contents = map.contents;
+            var changes = ds_map_create();
+            
+            for (var i = 0; i < AUTOTILE_COUNT; i++) {
+                if (autotile.layers[layer_index].Destroy()) {
+                    changes[? i] = true;
+                }
+            }
+            
+            entity_mesh_autotile_check_changes(changes, ATTerrainTypes.TOP);
+            ds_map_destroy(changes);
+            
+            button.root.Colorize();
+        }
+    }, dg);
     el_clear.tooltip = "Deletes all imported mesh autotiles. Entities which use them will continue to exist, but will be invisible."
     
     yy += el_clear.height + spacing;
@@ -130,7 +164,7 @@ function dialog_create_manager_mesh_autotile(root) {
     for (var i = 0; i < AUTOTILE_COUNT; i++) {
         var button = create_button(xx, yy, string(i), bw, bh, fa_center, dmu_dialog_load_mesh_autotile, dg);
         button.tooltip = "Import a mesh for top mesh autotile #" + string(i) + ". It should take the shape of the icon below, with green representing the outer part and brown representing the inner part.";
-        button.color = c_gray;
+        button.color = c_red;
         button.key = i;
         button.file_dropper_action = uifd_load_mesh_autotile;
         ds_list_add(dg.contents, button);
