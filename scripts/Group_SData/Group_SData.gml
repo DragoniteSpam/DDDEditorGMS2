@@ -8,7 +8,7 @@ function SData(name) constructor {
     guid_set(self, guid_generate());
     internal_name_set(self, "SData:" + string_lettersdigits(self.GUID));
     
-    Destroy = function() {
+    self.Destroy = function() {
         if (Stuff.is_quitting) exit;
         guid_remove(self.GUID);
         internal_name_remove(self.internal_name);
