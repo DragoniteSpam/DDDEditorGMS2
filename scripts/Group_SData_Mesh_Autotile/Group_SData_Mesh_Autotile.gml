@@ -3,8 +3,12 @@ function DataMeshAutotile(name) : SData(name) constructor {
         self.buffer = buffer;
         self.vbuffer = vbuffer;
         self.Destroy = function() {
+            var valid = !!self.vbuffer;
             if (self.buffer) buffer_delete(self.buffer);
             if (self.vbuffer) vertex_delete_buffer(self.vbuffer);
+            self.buffer = undefined;
+            self.vbuffer = undefined;
+            return valid;
         }
     };
     
