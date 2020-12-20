@@ -1,4 +1,4 @@
-function DataMeshAutotile() : SData() constructor {
+function DataMeshAutotile(name) : SData(name) constructor {
     static MeshVertexBufferData = function(buffer, vbuffer) {
         self.buffer = buffer;
         self.vbuffer = vbuffer;
