@@ -442,6 +442,7 @@ game_data_location[GameDataCategories.MISC] = file_asset.GUID;
 game_data_location[GameDataCategories.BGM] = file_asset.GUID;
 game_data_location[GameDataCategories.SE] = file_asset.GUID;
 game_data_location[GameDataCategories.MESH] = file_asset.GUID;
+game_data_location[GameDataCategories.MESH_AUTOTILES] = file_asset.GUID;
 game_data_location[GameDataCategories.MAP] = file_default.GUID;
 game_data_location[GameDataCategories.GLOBAL] = file_default.GUID;
 game_data_location[GameDataCategories.EVENTS]  = file_default.GUID;
@@ -463,6 +464,7 @@ game_data_save_scripts[GameDataCategories.MISC] = serialize_save_image_etc;
 game_data_save_scripts[GameDataCategories.BGM] = serialize_save_bgm;
 game_data_save_scripts[GameDataCategories.SE] = serialize_save_se;
 game_data_save_scripts[GameDataCategories.MESH] = serialize_save_meshes;
+game_data_save_scripts[GameDataCategories.MESH_AUTOTILES] = not_yet_implemented;
 game_data_save_scripts[GameDataCategories.MAP] = serialize_save_maps;
 game_data_save_scripts[GameDataCategories.GLOBAL] = serialize_save_global_meta;
 game_data_save_scripts[GameDataCategories.EVENTS]  = serialize_save_events;
@@ -500,6 +502,7 @@ enum GameDataCategories {
     // other assets
     MESH,
     LANGUAGE_TEXT,
+    MESH_AUTOTILES,
     SIZE
 }
 

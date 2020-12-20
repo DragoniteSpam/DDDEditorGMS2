@@ -22,30 +22,31 @@ default_code =
 @"-- write Lua here";
 
 enum DataTypes {
-    INT,            // input
-    ENUM,           // list
-    FLOAT,          // input
-    STRING,         // input
-    BOOL,           // checkbox
-    DATA,           // list
-    CODE,           // opens in text editor
-    COLOR,            // color picker
-    MESH,            // list
-    IMG_TEXTURE,
-    TILE,
-    IMG_TILE_ANIMATION,
-    AUDIO_BGM,        // list
-    AUDIO_SE,        // list
-    ANIMATION,        // list
-    ENTITY,
+    INT,                // input
+    ENUM,               // list
+    FLOAT,              // input
+    STRING,             // input
+    BOOL,               // checkbox
+    DATA,               // list
+    CODE,               // opens in text editor
+    COLOR,              // color picker
+    MESH,               // list
+    IMG_TEXTURE,        // list
+    TILE,               
+    IMG_TILE_ANIMATION, // list
+    AUDIO_BGM,          // list
+    AUDIO_SE,           // list
+    ANIMATION,          // list
+    ENTITY,             // list (refid)
     MAP,                // list
-    IMG_BATTLER,
-    IMG_OVERWORLD,
-    IMG_PARTICLE,
-    IMG_UI,
-    IMG_ETC,
-    EVENT,
-    IMG_SKYBOX,
+    IMG_BATTLER,        // list
+    IMG_OVERWORLD,      // list
+    IMG_PARTICLE,       // list
+    IMG_UI,             // list
+    IMG_ETC,            // list
+    EVENT,              // list
+    IMG_SKYBOX,         // list
+    MESH_AUTOTILE,      // list
     _COUNT
 }
 
