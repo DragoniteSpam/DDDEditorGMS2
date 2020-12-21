@@ -1,36 +1,22 @@
-/// @param vertex-buffer
-/// @param wireframe-buffer
-/// @param EntityMesh
-function batch_mesh(argument0, argument1, argument2) {
-
-    var buffer = argument0;
-    var wire = argument1;
-    var mesh = argument2;
-
+function batch_mesh(buffer, wire, mesh) {
     var data = guid_get(mesh.mesh); // lol
-
+    
     // smf meshes won't be batched, please
-    if (data && data.type == MeshTypes.SMF) {
-        return [buffer, wire];
-    }
-
+    if (data && data.type == MeshTypes.SMF) return [buffer, wire];
+    
     var xx = mesh.xx * TILE_WIDTH;
     var yy = mesh.yy * TILE_HEIGHT;
     var zz = mesh.zz * TILE_DEPTH;
-
+    
     // if no valid mesh is found, use the big ol' ? instead
     var dbuffer = entity_mesh_get_buffer(mesh);
     if (!dbuffer) dbuffer = Stuff.graphics.mesh_missing_data;
     buffer_seek(dbuffer, buffer_seek_start, 0);
-
+    
     var vc = 0;
-
-    // @gml update lightweight objects
-    var px = array_create(3);
-    var py = array_create(3);
-    var pz = array_create(3);
-    var nx, ny, nz, xtex, ytex, color, alpha, extra;
-
+    
+    var data/*:Triangle*/ = new Triangle();
+    
     while (buffer_tell(dbuffer) < buffer_get_size(dbuffer)) {
         // script arguments are parsed backwards and i don't think there's a way to
         // turn that off, and in any case it's a better idea to just fetch the
@@ -39,36 +25,42 @@ function batch_mesh(argument0, argument1, argument2) {
         var npy = buffer_read(dbuffer, buffer_f32);
         var npz = buffer_read(dbuffer, buffer_f32);
         var transformed = transform_entity_point(mesh, npx, npy, npz);
-        px[vc] = transformed[vec3.xx];
-        py[vc] = transformed[vec3.yy];
-        pz[vc] = transformed[vec3.zz];
-        nx = buffer_read(dbuffer, buffer_f32);
-        ny = buffer_read(dbuffer, buffer_f32);
-        nz = buffer_read(dbuffer, buffer_f32);
-        xtex = buffer_read(dbuffer, buffer_f32);
-        ytex = buffer_read(dbuffer, buffer_f32);
-        color = buffer_read(dbuffer, buffer_u32);
-        extra = buffer_read(dbuffer, buffer_u32);
-    
-        alpha = color >> 24;
-        color = color & 0xffffff;
-    
+        var vertex/*:Vertex*/ = data.vertex[vc];
+        vertex.position.x = transformed[vec3.xx];
+        vertex.position.y = transformed[vec3.yy];
+        vertex.position.z = transformed[vec3.zz];
+        vertex.normal.x = buffer_read(dbuffer, buffer_f32);
+        vertex.normal.y = buffer_read(dbuffer, buffer_f32);
+        vertex.normal.z = buffer_read(dbuffer, buffer_f32);
+        vertex.tex.x = buffer_read(dbuffer, buffer_f32);
+        vertex.tex.y = buffer_read(dbuffer, buffer_f32);
+        vertex.color = buffer_read(dbuffer, buffer_u32);
+        vertex.extra = buffer_read(dbuffer, buffer_u32);
+        
+        var alpha = vertex.color >> 24;
+        var color = vertex.color & 0xffffff;
+        
         if (buffer) {
-            vertex_point_complete(buffer, px[vc], py[vc], pz[vc], nx, ny, nz, xtex, ytex, color, alpha);
+            vertex_point_complete(buffer,
+                vertex.position.x, vertex.position.y, vertex.position.z,
+                vertex.normal.x, vertex.normal.y, vertex.normal.z,
+                vertex.tex.x, vertex.tex.y, color, alpha
+            );
         }
-    
+        
         vc = ++vc % 3;
-    
+        
         if (wire) {
             if (vc == 0) {
-                vertex_point_line(wire, px[0], py[0], pz[0], c_white, 1);
-                vertex_point_line(wire, px[1], py[1], pz[1], c_white, 1);
-            
-                vertex_point_line(wire, px[1], py[1], pz[1], c_white, 1);
-                vertex_point_line(wire, px[2], py[2], pz[2], c_white, 1);
-            
-                vertex_point_line(wire, px[2], py[2], pz[2], c_white, 1);
-                vertex_point_line(wire, px[0], py[0], pz[0], c_white, 1);
+                var v1 = triangle.vertex[0];
+                var v2 = triangle.vertex[1];
+                var v3 = triangle.vertex[2];
+                vertex_point_line(wire, v1.position.x, v1.position.y, v1.position.z, c_white, 1);
+                vertex_point_line(wire, v2.position.x, v2.position.y, v2.position.z, c_white, 1);
+                vertex_point_line(wire, v2.position.x, v2.position.y, v2.position.z, c_white, 1);
+                vertex_point_line(wire, v3.position.x, v3.position.y, v3.position.z, c_white, 1);
+                vertex_point_line(wire, v3.position.x, v3.position.y, v3.position.z, c_white, 1);
+                vertex_point_line(wire, v1.position.x, v1.position.y, v1.position.z, c_white, 1);
             }
         }
     }
@@ -76,6 +68,4 @@ function batch_mesh(argument0, argument1, argument2) {
     buffer_seek(dbuffer, buffer_seek_start, 0);
 
     return [buffer, wire];
-
-
 }
