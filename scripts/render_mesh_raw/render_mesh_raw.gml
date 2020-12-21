@@ -8,10 +8,8 @@ function render_mesh_raw(argument0) {
     transform_add(0, 0, 0, 0, 0, 0, entity.scale_xx, entity.scale_yy, entity.scale_zz);
     transform_add((entity.xx + entity.off_xx) * TILE_WIDTH, (entity.yy + entity.off_yy) * TILE_HEIGHT, (entity.zz + entity.off_zz) * TILE_DEPTH, 0, 0, 0, 1, 1, 1);
 
-    var ts = get_active_tileset();
-
     if (Settings.view.entities) {
-        var tex = Settings.view.texture ? sprite_get_texture(ts.picture, 0) : sprite_get_texture(b_tileset_textureless, 0);
+        var tex = entity_mesh_get_texture(entity);
         vertex_submit(entity_mesh_get_vbuffer(entity), pr_trianglelist, tex);
     }
 
