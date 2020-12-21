@@ -1,3 +1,5 @@
+// these are for utility; please don't delete them just because they're not used
+// in the program anywhere
 enum vec3 {
     xx, yy, zz
 }
@@ -14,4 +16,21 @@ function vector3_normalize(vector) {
 function vec2(x, y) constructor {
     self.x = x;
     self.y = y;
+}
+
+function Vertex() constructor {
+    self.position = {
+        x: 0, y: 0, z: 0
+    };
+    self.normal = {
+        x: 0, y: 0, z: 1
+    };
+    self.tex = new vec2(0, 0);
+    self.color = c_white;
+    self.alpha = 1;
+    self.extra = 0;
+}
+
+function Triangle() constructor {
+    self.vertex = [new Vertex(), new Vertex(), new Vertex()];
 }
