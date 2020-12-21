@@ -47,7 +47,7 @@ function dialog_create_settings_data_asset_files(dialog) {
                 // otherwise, the data belongs in the selected file if its
                 // location is set to the file, or the file is unassigned
                 // and the selected file is the master one
-                var mapped_list_index = list.root.el_types.mapping_cat_to_index[i];
+                var mapped_list_index = list.root.el_types.mapping_cat_to_index[$ i];
                 
                 if (Stuff.game_data_location[i] == file_data) {
                     ui_list_select(list.root.el_types, mapped_list_index);
@@ -157,27 +157,28 @@ function dialog_create_settings_data_asset_files(dialog) {
         GameDataCategories.LANGUAGE_TEXT,
     ];
     
-    static map_cat_to_index = array_create(GameDataCategories);
-    map_cat_to_index[GameDataCategories.GLOBAL] = 0;
-    map_cat_to_index[GameDataCategories.DATADATA] = 1;
-    map_cat_to_index[GameDataCategories.DATA_INST] = 2;
-    map_cat_to_index[GameDataCategories.ANIMATIONS] = 3;
-    map_cat_to_index[GameDataCategories.EVENTS]  = 4;
-    map_cat_to_index[GameDataCategories.MAP] = 5;
-    map_cat_to_index[GameDataCategories.TERRAIN] = 6;
-    map_cat_to_index[GameDataCategories.MESH] = 7;
-    map_cat_to_index[GameDataCategories.MESH_AUTOTILES] = 8;
-    map_cat_to_index[GameDataCategories.TILE_ANIMATIONS] = 9;
-    map_cat_to_index[GameDataCategories.TILESETS] = 10;
-    map_cat_to_index[GameDataCategories.BATTLERS] = 11;
-    map_cat_to_index[GameDataCategories.OVERWORLDS] = 12;
-    map_cat_to_index[GameDataCategories.PARTICLES] = 13;
-    map_cat_to_index[GameDataCategories.UI] = 14;
-    map_cat_to_index[GameDataCategories.SKYBOX] = 15;
-    map_cat_to_index[GameDataCategories.MISC /* image */] = 16;
-    map_cat_to_index[GameDataCategories.BGM] = 17;
-    map_cat_to_index[GameDataCategories.SE] = 18;
-    map_cat_to_index[GameDataCategories.LANGUAGE_TEXT] = 19;
+    // GMEdit keeps messing up this line, it's pretty annoying, so instead
+    static map_cat_to_index = { };
+    map_cat_to_index[$ GameDataCategories.GLOBAL] = 0;
+    map_cat_to_index[$ GameDataCategories.DATADATA] = 1;
+    map_cat_to_index[$ GameDataCategories.DATA_INST] = 2;
+    map_cat_to_index[$ GameDataCategories.ANIMATIONS] = 3;
+    map_cat_to_index[$ GameDataCategories.EVENTS]  = 4;
+    map_cat_to_index[$ GameDataCategories.MAP] = 5;
+    map_cat_to_index[$ GameDataCategories.TERRAIN] = 6;
+    map_cat_to_index[$ GameDataCategories.MESH] = 7;
+    map_cat_to_index[$ GameDataCategories.MESH_AUTOTILES] = 8;
+    map_cat_to_index[$ GameDataCategories.TILE_ANIMATIONS] = 9;
+    map_cat_to_index[$ GameDataCategories.TILESETS] = 10;
+    map_cat_to_index[$ GameDataCategories.BATTLERS] = 11;
+    map_cat_to_index[$ GameDataCategories.OVERWORLDS] = 12;
+    map_cat_to_index[$ GameDataCategories.PARTICLES] = 13;
+    map_cat_to_index[$ GameDataCategories.UI] = 14;
+    map_cat_to_index[$ GameDataCategories.SKYBOX] = 15;
+    map_cat_to_index[$ GameDataCategories.MISC /* image */] = 16;
+    map_cat_to_index[$ GameDataCategories.BGM] = 17;
+    map_cat_to_index[$ GameDataCategories.SE] = 18;
+    map_cat_to_index[$ GameDataCategories.LANGUAGE_TEXT] = 19;
     
     el_types.mapping_cat_to_index = map_cat_to_index;
     el_types.mapping_index_to_cat = map_index_to_cat;

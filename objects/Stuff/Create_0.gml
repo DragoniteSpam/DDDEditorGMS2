@@ -428,7 +428,7 @@ var file_asset = new DataFile("assets", false, false);
 var file_terrain = new DataFile("terrain", true, false);
 ds_list_add(game_asset_lists, file_default, file_asset, file_terrain);
 
-game_data_location = array_create(GameDataCategories.SIZE);
+game_data_location = array_create(GameDataCategories.__COUNT);
 game_data_location[GameDataCategories.TILE_ANIMATIONS] = file_asset;
 game_data_location[GameDataCategories.TILESETS] = file_asset;
 game_data_location[GameDataCategories.BATTLERS] = file_asset;
@@ -450,7 +450,7 @@ game_data_location[GameDataCategories.ANIMATIONS] = file_default;
 game_data_location[GameDataCategories.TERRAIN] = file_terrain;
 game_data_location[GameDataCategories.LANGUAGE_TEXT] = file_default;
 
-game_data_save_scripts = array_create(GameDataCategories.SIZE);
+game_data_save_scripts = array_create(GameDataCategories.__COUNT);
 game_data_save_scripts[GameDataCategories.TILE_ANIMATIONS] = serialize_save_image_tile_animations;
 game_data_save_scripts[GameDataCategories.TILESETS] = serialize_save_image_tilesets;
 game_data_save_scripts[GameDataCategories.BATTLERS] = serialize_save_image_battlers;
@@ -496,7 +496,7 @@ enum GameDataCategories {
 /**/MESH,               // mesh
 /**/LANGUAGE_TEXT,      // appended later
     MESH_AUTOTILES,
-    SIZE
+    __COUNT
 }
 
 #endregion
