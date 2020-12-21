@@ -127,27 +127,75 @@ function dialog_create_manager_mesh_autotile(root) {
         if (autotile) {
             var root = filename_dir(get_open_filename_mesh_d3d()) + "\\";
             var at_layer = autotile.layers[layer_index];
+            var failures = 0;
             
             for (var i = 0; i < AUTOTILE_COUNT; i++) {
                 var fn = root + string(i) + ".d3d";
                 if (file_exists(fn)) {
-                    at_layer.tiles[i].Destroy();
-                    var vbuffer = import_d3d(fn, false);
-                    at_layer.tiles[i].vbuffer = vbuffer;
-                    if (vbuffer) {
-                        at_layer.tiles[i].buffer = buffer_create_from_vertex_buffer(vbuffer, buffer_fixed, 1);
-                        vertex_freeze(vbuffer);
+                    try {
+                        var data = import_d3d(fn, false, true);
+                        at_layer.tiles[i].Destroy();
+                        at_layer.tiles[i].vbuffer = data[0];
+                        at_layer.tiles[i].buffer = data[1];
+                    } catch (e) {
+                        
                     }
                 }
             }
+            if (failures) {
+                dialog_create_notice(undefined, "Unable to import " + string(failures) + " of the " + string(ds_list_size(files)) + " files.");
+            }
+            button.root.Colorize();
         }
-        button.root.Colorize();
     }, dg);
+    el_import_series.file_dropper_action = function(button, files) {
+        var filtered_list = ui_handle_dropped_files_filter(files, [".d3d", ".gmmod", ".obj"]);
+        var selection = ui_list_selection(button.root.el_list);
+        var layer_index = ui_list_selection(button.root.el_layers);
+        var autotile = Stuff.all_mesh_autotiles[| selection];
+        if (autotile) {
+            var at_layer = autotile.layers[layer_index];
+            var failures = 0;
+            for (var i = 0; i < ds_list_size(filtered_list); i++) {
+                var fn = filtered_list[| i];
+                var name = filename_change_ext(filename_name(fn), "");
+                if (validate_int(name) && is_clamped(string(name), 0, AUTOTILE_COUNT - 1)) {
+                    var index = string(name);
+                    switch (filename_ext(fn)) {
+                        case ".d3d": case ".gmmod":
+                            try {
+                                var data = import_d3d(fn, false, true);
+                                at_layer.tiles[index].Destroy();
+                                at_layer.tiles[index].vbuffer = data[0];
+                                at_layer.tiles[index].buffer = data[1];
+                            } catch (e) {
+                                failures++;
+                            }
+                            break;
+                        case ".obj":
+                            try {
+                                var data = import_obj(fn, false, true);
+                                at_layer.tiles[index].Destroy();
+                                at_layer.tiles[index].vbuffer = data[0];
+                                at_layer.tiles[index].buffer = data[1];
+                            } catch (e) {
+                                failures++;
+                            }
+                            break;
+                    }
+                }
+            }
+            if (failures) {
+                dialog_create_notice(undefined, "Unable to import " + string(failures) + " of the " + string(ds_list_size(files)) + " files.");
+            }
+            button.root.Colorize();
+        }
+    };
     el_import_series.tooltip = "Import autotile meshes in batch. If you want to load an entire series at once you should probably choose this option, because selecting them one-by-one would be very slow.";
     
     yy += el_import_series.height + spacing;
     
-    var el_clear = create_button(c2x, yy, "Clear All", ew, eh, fa_center, function(button) {
+    var el_clear = create_button(c2x, yy, "Clear Layer", ew, eh, fa_center, function(button) {
         var selection = ui_list_selection(button.root.el_list);
         var layer_index = ui_list_selection(button.root.el_layers);
         var autotile = Stuff.all_mesh_autotiles[| selection];
@@ -166,7 +214,7 @@ function dialog_create_manager_mesh_autotile(root) {
             button.root.Colorize();
         }
     }, dg);
-    el_clear.tooltip = "Deletes all imported mesh autotiles. Entities which use them will continue to exist, but will be invisible."
+    el_clear.tooltip = "Deletes all imported mesh autotiles. Entities which use them will continue to exist, but will be invisible.";
     
     yy += el_clear.height + spacing;
     
@@ -185,7 +233,6 @@ function dialog_create_manager_mesh_autotile(root) {
         button.tooltip = "Import a mesh for top mesh autotile #" + string(i) + ". It should take the shape of the icon below, with green representing the outer part and brown representing the inner part.";
         button.color = c_red;
         button.key = i;
-        button.file_dropper_action = uifd_load_mesh_autotile;
         ds_list_add(dg.contents, button);
         dg.buttons[i] = button;
         

@@ -1627,7 +1627,6 @@
     {"id":{"name":"sh_smf_f_norm_reflection","path":"shaders/sh_smf_f_norm_reflection/sh_smf_f_norm_reflection.yy",},"order":13,},
     {"id":{"name":"sh_smf_f_norm_height_reflection","path":"shaders/sh_smf_f_norm_height_reflection/sh_smf_f_norm_height_reflection.yy",},"order":14,},
     {"id":{"name":"sh_smf_f_shadow","path":"shaders/sh_smf_f_shadow/sh_smf_f_shadow.yy",},"order":15,},
-    {"id":{"name":"uifd_load_mesh_autotile","path":"scripts/uifd_load_mesh_autotile/uifd_load_mesh_autotile.yy",},"order":14,},
     {"id":{"name":"sh_smf_shadowmap","path":"shaders/sh_smf_shadowmap/sh_smf_shadowmap.yy",},"order":16,},
     {"id":{"name":"sh_smf_debug","path":"shaders/sh_smf_debug/sh_smf_debug.yy",},"order":17,},
     {"id":{"name":"sh_shadow","path":"shaders/sh_shadow/sh_shadow.yy",},"order":6,},
