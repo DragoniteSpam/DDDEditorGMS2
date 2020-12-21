@@ -111,7 +111,7 @@ function dialog_create_manager_mesh_autotile(root) {
     yy += el_name_internal.height * 2 + spacing;
     
     var el_layers = create_list(c2x, yy, "Layers:", "no layers???", ew, eh, 6, function(list) {
-        
+        list.root.Colorize();
     }, false, dg);
     create_list_entries(el_layers, "Top", "Middle", "Base", "Bottom");
     ui_list_select(el_layers, 0);
