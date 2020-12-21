@@ -1,6 +1,6 @@
 function SData(name) constructor {
+    if (name == undefined) name = "data";
     self.name = name;
-    if (self.name == undefined) name = "data"
     self.flags = 0;
     self.summary = "";
     self.GUID = NULL;
@@ -13,4 +13,9 @@ function SData(name) constructor {
         guid_remove(self.GUID);
         internal_name_remove(self.internal_name);
     };
+}
+
+function SDataFile(name, compressed, critical) : SData(name) constructor {
+    self.compressed = compressed;
+    self.critical = critical;
 }
