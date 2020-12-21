@@ -18,21 +18,20 @@ function control_terrain_3d(terrain) {
     if (zz < Stuff.terrain.z) {
         var f = abs(Stuff.terrain.z / zz);
         
-        // @gml update lwo
         terrain.cursor_position = new vec2((Stuff.terrain.x + xx * f) / terrain.view_scale, (Stuff.terrain.y + yy * f) / terrain.view_scale);
         
         if (Controller.mouse_left) {
             switch (terrain.mode) {
                 case TerrainModes.Z: terrain_mode_z(terrain, terrain.cursor_position, 1); break;
                 case TerrainModes.TEXTURE: terrain_mode_texture(terrain, terrain.cursor_position); break;
-                case TerrainModes.COLOR: terrain_mode_color(terrain, terrain.cursor_position) break;
+                case TerrainModes.COLOR: terrain_mode_color(terrain, terrain.cursor_position); break;
             }
         }
         if (Controller.mouse_right) {
             switch (terrain.mode) {
                 case TerrainModes.Z: terrain_mode_z(terrain, terrain.cursor_position, -1); break;
                 case TerrainModes.TEXTURE: terrain_mode_texture(terrain, terrain.cursor_position); break;
-                case TerrainModes.COLOR: terrain_mode_color(terrain, terrain.cursor_position, 0xffffffff) break;
+                case TerrainModes.COLOR: terrain_mode_color(terrain, terrain.cursor_position, 0xffffffff); break;
             }
         }
     }
