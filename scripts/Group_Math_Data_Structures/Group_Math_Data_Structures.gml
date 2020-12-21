@@ -216,6 +216,21 @@ function ds_list_clear_instances(list) {
     return n;
 }
 
+function ds_list_clear_disposable(list) {
+    // this was implemented some time into the project. there are probably
+    // a couple destroy events that could use this but don't.
+    var n = ds_list_size(list);
+    
+    for (var i = 0; i < n; i++) {
+        var what = list[| i];
+        if (what) what.Destroy();
+    }
+    
+    ds_list_clear(list);
+    
+    return n;
+}
+
 function ds_list_clone(source) {
     // this doesn't really do anything special, it just makes ds_list_copy
     // slightly shorter
