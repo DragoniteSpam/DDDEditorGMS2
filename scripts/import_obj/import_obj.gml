@@ -205,9 +205,9 @@ function import_obj() {
                         }
                         // faces are triangle fans
                         for (var i = 2; i < array_length(xx); i++) {
-                            ds_list_add(temp_vertices, [xx[0],      yy[0],      zz[0],      nx[0],      ny[0],      nz[0],      xtex[0],        ytex[0],        (b[0] << 16) |      (g[0] << 8) |       r[0],       a[0]], active_mtl);
-                            ds_list_add(temp_vertices, [xx[i - 1],  yy[i - 1],  zz[i - 1],  nx[i - 1],  ny[i - 1],  nz[i - 1],  xtex[i - 1],    ytex[i - 1],    (b[i - 1] << 16) |  (g[i - 1] << 8) |   r[i - 1],   a[i - 1]], active_mtl);
-                            ds_list_add(temp_vertices, [xx[i - 0],  yy[i - 0],  zz[i - 0],  nx[i - 0],  ny[i - 0],  nz[i - 0],  xtex[i - 0],    ytex[i - 0],    (b[i - 0] << 16) |  (g[i - 0] << 8) |   r[i - 0],   a[i - 0]], active_mtl);
+                            ds_list_add(temp_vertices, [xx[0],      yy[0],      zz[0],      nx[0],      ny[0],      nz[0],      xtex[0],        ytex[0],        (b[0] << 16) |      (g[0] << 8) |       r[0],       a[0], active_mtl]);
+                            ds_list_add(temp_vertices, [xx[i - 1],  yy[i - 1],  zz[i - 1],  nx[i - 1],  ny[i - 1],  nz[i - 1],  xtex[i - 1],    ytex[i - 1],    (b[i - 1] << 16) |  (g[i - 1] << 8) |   r[i - 1],   a[i - 1], active_mtl]);
+                            ds_list_add(temp_vertices, [xx[i - 0],  yy[i - 0],  zz[i - 0],  nx[i - 0],  ny[i - 0],  nz[i - 0],  xtex[i - 0],    ytex[i - 0],    (b[i - 0] << 16) |  (g[i - 0] << 8) |   r[i - 0],   a[i - 0], active_mtl]);
                         }
                         ds_queue_destroy(vertex_q);
                     } else {
@@ -462,9 +462,9 @@ function import_obj() {
         if (!ds_map_exists(vbuffers, bmtl)) {
             vbuffers[? bmtl] = vertex_create_buffer();
             wbuffers[? bmtl] = vertex_create_buffer();
-            vertex_begin(vb, Stuff.graphics.vertex_format);
+            vertex_begin(vbuffers[? bmtl], Stuff.graphics.vertex_format);
             if (everything) {
-                vertex_begin(wb, Stuff.graphics.vertex_format);
+                vertex_begin(wbuffers[? bmtl], Stuff.graphics.vertex_format);
                 c_shape_begin_trimesh();
             }
         }
@@ -494,6 +494,9 @@ function import_obj() {
     
     var vb_base = vbuffers[? base_mtl];
     var wb_base = wbuffers[? base_mtl];
+    
+    vertex_end(vb_base);
+    vertex_end(wb_base);
     
     ds_map_delete(vbuffers, base_mtl);
     ds_map_delete(wbuffers, base_mtl);
@@ -529,7 +532,7 @@ function import_obj() {
         }
         
         if (vertex_get_number(vb_base) > 0) {
-            mesh_create_submesh(mesh, buffer_create_from_vertex_buffer(vb_base, buffer_fixed, 1), vb_base, wb_base, undefined, base_name + "." + base_mtl, -1, fn);
+            mesh_create_submesh(mesh, buffer_create_from_vertex_buffer(vb_base, buffer_fixed, 1), vb_base, wb_base, undefined, base_name + "." + string(base_mtl), -1, fn);
             if (mesh.cshape) {
                 c_shape_destroy(cshape);
             } else {
@@ -558,9 +561,6 @@ function import_obj() {
         return mesh;
     }
     
-    var primary = vbuffers[? base_mtl];
-    ds_map_delete(vbuffers, base_mtl);
-    
     for (var key = ds_map_find_first(wbuffers); key != undefined; key = ds_map_find_next(wbuffers, key)) {
         if (vbuffers[? key]) vertex_delete_buffer(vbuffers[? key]);
         vertex_delete_buffer(wbuffers[? key]);
@@ -571,12 +571,12 @@ function import_obj() {
     ds_map_destroy(vbuffers);
     ds_map_destroy(wbuffers);
     
-    if (vertex_get_number(primary) > 0) {
-        vertex_freeze(primary);
-        return primary;
+    if (vertex_get_number(vb_base) > 0) {
+        vertex_freeze(vb_base);
+        return vb_base;
     }
     
-    vertex_delete_buffer(primary);
+    vertex_delete_buffer(vb_base);
     
     return noone;
 }
