@@ -34,7 +34,7 @@ function dialog_create_manager_mesh_autotile(root) {
             ui_input_set_value(el_name_internal, autotile.internal_name);
             el_name_internal.color = c_black;
             el_name_internal.emphasis = false;
-            button.root.Colorize();
+            Colorize();
         }
     });
     
@@ -43,8 +43,9 @@ function dialog_create_manager_mesh_autotile(root) {
         var layer_index = ui_list_selection(el_layers);
         var autotile = Stuff.all_mesh_autotiles[| selection];
         if (autotile) {
+            var at_layer = autotile.layers[layer_index];
             for (var i = 0; i < AUTOTILE_COUNT; i++) {
-                buttons[i].color = (!!autotile.layers[layer_index].buffer) ? c_black : c_red;
+                buttons[i].color = (!!at_layer.tiles[i].buffer) ? c_black : c_red;
             }
         }
     });
@@ -119,7 +120,27 @@ function dialog_create_manager_mesh_autotile(root) {
     
     yy += ui_get_list_height(el_layers) + spacing;
     
-    var el_import_series = create_button(c2x, yy, "Import Batch", ew, eh, fa_center, /*dmu_dialog_mesh_autotile_import_batch*/function(button) {
+    var el_import_series = create_button(c2x, yy, "Import Batch", ew, eh, fa_center, function(button) {
+        var selection = ui_list_selection(button.root.el_list);
+        var layer_index = ui_list_selection(button.root.el_layers);
+        var autotile = Stuff.all_mesh_autotiles[| selection];
+        if (autotile) {
+            var root = filename_dir(get_open_filename_mesh_d3d()) + "\\";
+            var at_layer = autotile.layers[layer_index];
+            
+            for (var i = 0; i < AUTOTILE_COUNT; i++) {
+                var fn = root + string(i) + ".d3d";
+                if (file_exists(fn)) {
+                    at_layer.tiles[i].Destroy();
+                    var vbuffer = import_d3d(fn, false);
+                    at_layer.tiles[i].vbuffer = vbuffer;
+                    if (vbuffer) {
+                        at_layer.tiles[i].buffer = buffer_create_from_vertex_buffer(vbuffer, buffer_fixed, 1);
+                        vertex_freeze(vbuffer);
+                    }
+                }
+            }
+        }
         button.root.Colorize();
     }, dg);
     el_import_series.tooltip = "Import autotile meshes in batch. If you want to load an entire series at once you should probably choose this option, because selecting them one-by-one would be very slow.";
@@ -129,14 +150,12 @@ function dialog_create_manager_mesh_autotile(root) {
     var el_clear = create_button(c2x, yy, "Clear All", ew, eh, fa_center, function(button) {
         var selection = ui_list_selection(button.root.el_list);
         var layer_index = ui_list_selection(button.root.el_layers);
-        if (selection + 1) {
-            var autotile = Stuff.all_mesh_autotiles[| selection];
-            var map = Stuff.map.active_map;
-            var map_contents = map.contents;
+        var autotile = Stuff.all_mesh_autotiles[| selection];
+        if (autotile) {
             var changes = ds_map_create();
             
             for (var i = 0; i < AUTOTILE_COUNT; i++) {
-                if (autotile.layers[layer_index].Destroy()) {
+                if (autotile.layers[layer_index].tiles[i].Destroy()) {
                     changes[? i] = true;
                 }
             }

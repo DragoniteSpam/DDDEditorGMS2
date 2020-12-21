@@ -943,7 +943,6 @@
     {"id":{"name":"dmu_dialog_load_tileset_main","path":"scripts/dmu_dialog_load_tileset_main/dmu_dialog_load_tileset_main.yy",},"order":0,},
     {"id":{"name":"scribble_bake_outline","path":"scripts/scribble_bake_outline/scribble_bake_outline.yy",},"order":3,},
     {"id":{"name":"dmu_dialog_load_mesh_autotile","path":"scripts/dmu_dialog_load_mesh_autotile/dmu_dialog_load_mesh_autotile.yy",},"order":3,},
-    {"id":{"name":"dmu_dialog_mesh_autotile_import_batch","path":"scripts/dmu_dialog_mesh_autotile_import_batch/dmu_dialog_mesh_autotile_import_batch.yy",},"order":7,},
     {"id":{"name":"dmu_dialog_load_bgm","path":"scripts/dmu_dialog_load_bgm/dmu_dialog_load_bgm.yy",},"order":0,},
     {"id":{"name":"dmu_dialog_remove_bgm","path":"scripts/dmu_dialog_remove_bgm/dmu_dialog_remove_bgm.yy",},"order":1,},
     {"id":{"name":"dmu_dialog_remove_se","path":"scripts/dmu_dialog_remove_se/dmu_dialog_remove_se.yy",},"order":2,},
