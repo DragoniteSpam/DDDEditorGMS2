@@ -145,7 +145,7 @@ function serialize_load(buffer, filename, proj_name) {
                 break;
             case SerializeThings.MESH_AUTOTILES:
                 Stuff.game_data_location[GameDataCategories.MESH_AUTOTILES] = Stuff.game_data_current_file;
-                
+                serialize_load_mesh_autotiles(buffer, version);
                 break;
             // game stuff
             case SerializeThings.EVENTS:
