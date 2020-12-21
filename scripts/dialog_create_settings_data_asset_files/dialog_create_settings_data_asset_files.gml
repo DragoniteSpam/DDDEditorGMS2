@@ -3,6 +3,7 @@ function dialog_create_settings_data_asset_files(dialog) {
     var dh = 400;
     
     var dg = dialog_create(dw, dh, "Data and Asset Files", dialog_default, dc_close_no_questions_asked, dialog);
+    dg.file = undefined;
     
     var columns = 3;
     var ew = dw / columns - 32 * columns;
@@ -23,8 +24,9 @@ function dialog_create_settings_data_asset_files(dialog) {
     
     var el_list = create_list(col1_x, yy, "Asset Files", "", ew, eh, 8, function(list) {
         var selection = ui_list_selection(list);
-        if (selection + 1) {
-            var file_data = list.entries[| selection];
+        var file_data = list.entries[| selection];
+        list.root.file = file_data;
+        if (file_data) {
             list.root.el_name.interactive = (selection > 0);
             list.root.el_compressed.interactive = true;
             list.root.el_types.interactive = true;
@@ -33,10 +35,7 @@ function dialog_create_settings_data_asset_files(dialog) {
             list.root.el_critical.value = file_data.critical;
             // the first file in the list is special, and its name is just
             // whatever you give it when you save
-            if (selection) {
-                list.root.el_name.interactive = true;
-                ui_input_set_value(list.root.el_name, file_data.internal_name);
-            }
+            ui_input_set_value(list.root.el_name, (selection > 0) ? file_data.name : "");
             // pick out data types that go to this data file
             ui_list_deselect(list.root.el_types);
             for (var i = 0; i < array_length(Stuff.game_data_location); i++) {
@@ -46,13 +45,13 @@ function dialog_create_settings_data_asset_files(dialog) {
                     continue;
                 }
                 // otherwise, the data belongs in the selected file if its
-                // location is set to the file's GUID, or the file is unassigned
+                // location is set to the file, or the file is unassigned
                 // and the selected file is the master one
                 var mapped_list_index = list.root.el_types.mapping_cat_to_index[i];
                 
-                if (Stuff.game_data_location[i] == file_data.GUID) {
+                if (Stuff.game_data_location[i] == file_data) {
                     ui_list_select(list.root.el_types, mapped_list_index);
-                } else if (selection == 0 && !guid_get(Stuff.game_data_location[i])) {
+                } else if (selection == 0 && !Stuff.game_data_location[i]) {
                     ui_list_select(list.root.el_types, mapped_list_index);
                 }
             }
@@ -79,7 +78,7 @@ function dialog_create_settings_data_asset_files(dialog) {
             while (internal_name_get(name)) {
                 name = base_name + string(n++);
             }
-            ds_list_add(list_main.entries, new SDataFile(name, false, false));
+            ds_list_add(list_main.entries, new DataFile(name, false, false));
             button.interactive = (ds_list_size(list_main.entries) < 0xff);
             button.root.el_remove.interactive = (ds_list_size(list_main.entries) > 0x01);
         }
@@ -123,7 +122,7 @@ function dialog_create_settings_data_asset_files(dialog) {
                 }
                 // otherwise, if a thing is selected, assign it
                 if (ui_list_is_selected(list, i)) {
-                    Stuff.game_data_location[list.mapping_index_to_cat[i]] = file_data.GUID;
+                    Stuff.game_data_location[list.mapping_index_to_cat[i]] = file_data;
                 }
             }
         }
@@ -206,11 +205,15 @@ function dialog_create_settings_data_asset_files(dialog) {
     var el_name = create_input(col3_x, yy, "Name:", ew, eh, function(input) {
         var list = input.root.el_list;
         var selection = ui_list_selection(list);
-        if (selection + 1) {
-            var file_data = list.entries[| selection];
-            internal_name_set(file_data, input.value, false, true);
-        }
-    }, "", "name", validate_string_internal_name, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
+        var file_data/*:DataFile*/ = list.entries[| selection];
+        if (file_data) file_data.Rename(input.value);
+    }, "", "name", function(str, input) {
+        if (string_length(str) == 0) return false;
+        if (!validate_string_internal_name(str)) return false;
+        if (input.value == input.root.file.name) return true;
+        if (input.root.file) return input.root.file.ValidName(str);
+        return true;
+    }, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
     el_name.tooltip = "The name of the data file. Names must be unique. (This shares the Internal Name scheme with other kinds of game data / assets, so you can't give a file the same name as an Animation or Mesh or anything either, but realistically you won't be trying to give any of these things the same name anyway.)";
     el_name.interactive = false;
     dg.el_name = el_name;

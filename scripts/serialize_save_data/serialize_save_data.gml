@@ -26,8 +26,8 @@ function serialize_save_data() {
                 for (var j = 0; j < ds_list_size(Stuff.game_asset_lists); j++) {
                     var asset_file = Stuff.game_asset_lists[| j];
                     var bools = pack(asset_file.critical);
-                    buffer_write(buffer, buffer_string, asset_file.internal_name);
-                    buffer_write(buffer, buffer_datatype, asset_file.GUID);
+                    buffer_write(buffer, buffer_string, asset_file.name);
+                    buffer_write(buffer, buffer_datatype, "");
                     buffer_write(buffer, buffer_u32, bools);
                 }
             }
@@ -36,11 +36,11 @@ function serialize_save_data() {
             ds_list_clear(contents);
             for (var j = 0; j < array_length(Stuff.game_data_location); j++) {
                 // the files that are sorted
-                if (Stuff.game_data_location[j] == file_data.GUID) {
+                if (Stuff.game_data_location[j] == file_data) {
                     ds_list_add(contents, j);
                 }
                 // any data categories that aren't sorted into files go to the default
-                if (i == 0 && !guid_get(Stuff.game_data_location[j])) {
+                if (i == 0 && !Stuff.game_data_location[j]) {
                     ds_list_add(contents, j);
                 }
             }
@@ -53,7 +53,7 @@ function serialize_save_data() {
             
             buffer_write(buffer, buffer_u32, SerializeThings.END_OF_FILE);
             
-            var this_files_name = (i == 0) ? fn : (save_directory + file_data.internal_name + EXPORT_EXTENSION_ASSETS);
+            var this_files_name = (i == 0) ? fn : (save_directory + file_data.name + EXPORT_EXTENSION_ASSETS);
             
             if (file_data.compressed) {
                 var compressed = buffer_compress(buffer, 0, buffer_tell(buffer));
@@ -112,7 +112,7 @@ function serialize_save_data() {
         MAP_SKIP_ADDRESSES                  = 117,
         UNIFIED_FLAGS                       = 118,
         NUKE_AUTOTILES_FROM_TILESETS        = 119,
-        MAP_REMOVE_MESH_AUTOTILES           = 120,
+        MAP_REMOVE_MESH_AUTOTILES           = 120, /* 21 dec 2020 */
         _CURRENT /* = whatever the last one is + 1 */
     }
 }
