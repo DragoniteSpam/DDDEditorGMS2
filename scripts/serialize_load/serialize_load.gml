@@ -72,7 +72,11 @@ function serialize_load(buffer, filename, proj_name) {
             
             repeat (n_files) {
                 var name = buffer_read(buffer, buffer_string);
-                var guid = buffer_read(buffer, buffer_get_datatype(version));
+                if (version >= DataVersions.REMOVE_DATA_FILE_DATATYPE) {
+                    // gone
+                } else {
+                    buffer_read(buffer, buffer_get_datatype(version));
+                }
                 var bools = buffer_read(buffer, buffer_u32);
                 
                 // the "compressed" parameter can be set later

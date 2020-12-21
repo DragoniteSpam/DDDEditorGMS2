@@ -27,7 +27,6 @@ function serialize_save_data() {
                     var asset_file = Stuff.game_asset_lists[| j];
                     var bools = pack(asset_file.critical);
                     buffer_write(buffer, buffer_string, asset_file.name);
-                    buffer_write(buffer, buffer_datatype, "");
                     buffer_write(buffer, buffer_u32, bools);
                 }
             }
@@ -112,7 +111,8 @@ function serialize_save_data() {
         MAP_SKIP_ADDRESSES                  = 117,
         UNIFIED_FLAGS                       = 118,
         NUKE_AUTOTILES_FROM_TILESETS        = 119,
-        MAP_REMOVE_MESH_AUTOTILES           = 120, /* 21 dec 2020 */
+        MAP_REMOVE_MESH_AUTOTILES           = 120, /* 20 dec 2020 */
+        REMOVE_DATA_FILE_DATATYPE           = 121, /* 21 dec 2020 */
         _CURRENT /* = whatever the last one is + 1 */
     }
 }
