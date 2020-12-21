@@ -63,7 +63,7 @@ function dialog_create_settings_data_asset_files(dialog) {
             list.root.el_critical.interactive = false;
         }
     }, false, dg, Stuff.game_asset_lists);
-    el_list.tooltip = "This is the list of data / asset files you currently have linked to the project. The master file is special, is always critical and can't be renamed as it has the same name as the project by default.\n\nCompressed files are shown in blue. Non-critical files are denoted with an asterisk*."
+    el_list.tooltip = "This is the list of data / asset files you currently have linked to the project. The master file is special, is always critical and can't be renamed as it has the same name as the project by default.\n\nCompressed files are shown in blue. Non-critical files are denoted with an asterisk*.";
     el_list.entries_are = ListEntries.SCRIPT;
     el_list.evaluate_text = ui_list_text_asset_files;
     el_list.render_colors = ui_list_colors_asset_files;
@@ -79,7 +79,7 @@ function dialog_create_settings_data_asset_files(dialog) {
             while (internal_name_get(name)) {
                 name = base_name + string(n++);
             }
-            ds_list_add(list_main.entries, create_data_file(name, false));
+            ds_list_add(list_main.entries, new SDataFile(name, false, false));
             button.interactive = (ds_list_size(list_main.entries) < 0xff);
             button.root.el_remove.interactive = (ds_list_size(list_main.entries) > 0x01);
         }
@@ -95,8 +95,6 @@ function dialog_create_settings_data_asset_files(dialog) {
         if (selection + 1 && ds_list_size(list_main.entries) > 0x01 && selection < ds_list_size(list_main.entries)) {
             var file_data = list_main.entries[| selection];
             ds_list_delete(list_main.entries, selection);
-            instance_activate_object(file_data);
-            instance_destroy(file_data);
             button.interactive = (ds_list_size(list_main.entries) > 0x01);
             button.root.el_add.interactive = (ds_list_size(list_main.entries) < 0xff);
         }

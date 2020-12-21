@@ -401,11 +401,9 @@ default_pawn.aframes = 0;
 default_pawn.aspeed = 0;
 default_pawn.picture_with_frames = -1;
 data_image_npc_frames(default_pawn);
-
 #endregion
 
 #region global game settings
-
 game_starting_map = map.active_map.GUID;
 game_starting_x = 0;
 game_starting_y = 0;
@@ -425,10 +423,9 @@ game_file_summary = "Write a short summary in Global Game Settings";
 game_file_author = "Who made this?";
 
 game_asset_lists = ds_list_create();
-// @gml update lightweight objects
-var file_default = create_data_file("data", false);
-var file_asset = create_data_file("assets", false);
-var file_terrain = create_data_file("terrain", true);
+var file_default = new SDataFile("data", false, true);
+var file_asset = new SDataFile("assets", false, false);
+var file_terrain = new SDataFile("terrain", true, false);
 ds_list_add(game_asset_lists, file_default, file_asset, file_terrain);
 
 game_data_location = array_create(GameDataCategories.SIZE);

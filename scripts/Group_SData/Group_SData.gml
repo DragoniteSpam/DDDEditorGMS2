@@ -18,4 +18,5 @@ function SData(name) constructor {
 function SDataFile(name, compressed, critical) : SData(name) constructor {
     self.compressed = compressed;
     self.critical = critical;
+    internal_name_set(self, name);
 }

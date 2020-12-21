@@ -57,9 +57,6 @@ function serialize_load(buffer, filename, proj_name) {
             
             instance_activate_object(Data);
             with (Data) instance_destroy();
-            // i seriously have no idea why this isn't being included in the above with() so
-            // let's try deleting them manually
-            with (DataDataFile) instance_destroy();
             
             // i'd like there to be a default event, although potentially in the future there will not be
             ds_list_clear(Stuff.all_events);
@@ -69,7 +66,7 @@ function serialize_load(buffer, filename, proj_name) {
             ds_list_clear(Stuff.switches);
             // reset the active map
             Stuff.map.active_map = noone;
-            // data file list
+            // these are garbage collected
             ds_list_clear(Stuff.game_asset_lists);
             var n_files = buffer_read(buffer, buffer_u8);
             
@@ -79,11 +76,9 @@ function serialize_load(buffer, filename, proj_name) {
                 var bools = buffer_read(buffer, buffer_u32);
                 
                 // the "compressed" parameter can be set later
-                var file_data = create_data_file(name, false);
+                var file_data = new SDataFile(name, false, unpack(bools, 0));
                 guid_set(file_data, guid);
                 ds_list_add(Stuff.game_asset_lists, file_data);
-                
-                file_data.critical = unpack(bools, 0);
             }
             
             Stuff.game_data_current_file = Stuff.game_asset_lists[| 0];
