@@ -80,6 +80,10 @@ function serialize_load(buffer, filename, proj_name) {
                 ds_list_add(Stuff.game_asset_lists, file_data);
             }
             
+            // erase the default game data locations and replace them with
+            // whatever file bundle this project uses
+            array_clear(Stuff.game_data_location, undefined);
+            
             Stuff.game_data_current_file = Stuff.game_asset_lists[| 0];
             
             Stuff.game_file_summary = summary_string;
