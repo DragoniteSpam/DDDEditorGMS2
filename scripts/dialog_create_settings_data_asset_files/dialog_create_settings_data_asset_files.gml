@@ -64,8 +64,14 @@ function dialog_create_settings_data_asset_files(dialog) {
     }, false, dg, Stuff.game_asset_lists);
     el_list.tooltip = "This is the list of data / asset files you currently have linked to the project. The master file is special, is always critical and can't be renamed as it has the same name as the project by default.\n\nCompressed files are shown in blue. Non-critical files are denoted with an asterisk*.";
     el_list.entries_are = ListEntries.SCRIPT;
-    el_list.evaluate_text = ui_list_text_asset_files;
-    el_list.render_colors = ui_list_colors_asset_files;
+    el_list.evaluate_text = function(list, index) {
+        var file_data = list.entries[| index];
+        return (index ? (file_data.name + ".ddda") : "(master.dddd)") + (file_data.critical ? "" : "*");
+    };
+    el_list.render_colors = function(list, index) {
+        var file_data = list.entries[| index];
+        return file_data.compressed ? c_blue : c_black;
+    };
     dg.el_list = el_list;
     yy += ui_get_list_height(el_list) + spacing;
     
@@ -151,7 +157,7 @@ function dialog_create_settings_data_asset_files(dialog) {
         GameDataCategories.LANGUAGE_TEXT,
     ];
     
-    static map_cat_to_index = array_create(GameDataCategories.SIZE);
+    static map_cat_to_index = array_create(GameDataCategories);
     map_cat_to_index[GameDataCategories.GLOBAL] = 0;
     map_cat_to_index[GameDataCategories.DATADATA] = 1;
     map_cat_to_index[GameDataCategories.DATA_INST] = 2;

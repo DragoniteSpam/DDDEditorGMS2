@@ -1562,8 +1562,6 @@
     {"id":{"name":"ui_list_color_game_data_instances","path":"scripts/ui_list_color_game_data_instances/ui_list_color_game_data_instances.yy",},"order":40,},
     {"id":{"name":"ui_list_color_data_type","path":"scripts/ui_list_color_data_type/ui_list_color_data_type.yy",},"order":42,},
     {"id":{"name":"ui_list_colors_data_types","path":"scripts/ui_list_colors_data_types/ui_list_colors_data_types.yy",},"order":43,},
-    {"id":{"name":"ui_list_colors_asset_files","path":"scripts/ui_list_colors_asset_files/ui_list_colors_asset_files.yy",},"order":44,},
-    {"id":{"name":"ui_list_text_asset_files","path":"scripts/ui_list_text_asset_files/ui_list_text_asset_files.yy",},"order":46,},
     {"id":{"name":"ui_list_text_meshes","path":"scripts/ui_list_text_meshes/ui_list_text_meshes.yy",},"order":47,},
     {"id":{"name":"Group_Math","path":"scripts/Group_Math/Group_Math.yy",},"order":15,},
     {"id":{"name":"ui_list_text_particle_emitters","path":"scripts/ui_list_text_particle_emitters/ui_list_text_particle_emitters.yy",},"order":48,},
