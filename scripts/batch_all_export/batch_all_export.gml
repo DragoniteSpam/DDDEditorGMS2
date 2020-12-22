@@ -1,23 +1,14 @@
-/// @param DataMapContainer
-/// @param chunk-size
-function batch_all_export(argument0, argument1) {
-
-    var map = argument0;
-    var chunk_size = argument1;
-
+function batch_all_export(map, chunk_size) {
     var contents = map.contents;
     var buffers = ds_map_create();
-
+    
     for (var index = 0; index < ds_list_size(contents.all_entities); index++) {
         var thing = contents.all_entities[| index];
         if (thing.is_static) {
             var bounds = thing.get_bounding_box(thing);
-            bounds[0] = bounds[0] div chunk_size;
-            bounds[1] = bounds[1] div chunk_size;
-            bounds[3] = bounds[3] div chunk_size;
-            bounds[4] = bounds[4] div chunk_size;
-            for (var i = bounds[0]; i <= bounds[3]; i++) {
-                for (var j = bounds[1]; j <= bounds[4]; j++) {
+            bounds.Chunk(chunk_size);
+            for (var i = bounds.x1; i <= bounds.x2; i++) {
+                for (var j = bounds.y1; j <= bounds.y2; j++) {
                     var key = (i << 24) | j;
                     if (!ds_map_exists(buffers, key)) {
                         buffers[? key] = vertex_create_buffer();
@@ -29,12 +20,10 @@ function batch_all_export(argument0, argument1) {
             }
         }
     }
-
+    
     for (var i = ds_map_find_first(buffers); i != undefined; i = ds_map_find_next(buffers, i)) {
         vertex_end(buffers[? i]);
     }
-
+    
     return buffers;
-
-
 }
