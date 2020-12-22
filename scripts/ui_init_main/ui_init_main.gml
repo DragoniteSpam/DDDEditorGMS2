@@ -817,23 +817,51 @@ function ui_init_main(mode) {
         #region tab: entity: pawn
         yy = legal_y + spacing;
         
-        element_entity_pawn_frame = create_input(col1_x, yy, "Frame:", col_width, element_height, uivc_entity_pawn_editor_frame, 0, "0...3", validate_int, 0, 3, 1, vx1, vy1, vx2, vy2, t_p_pawn);
+        element_entity_pawn_frame = create_input(col1_x, yy, "Frame:", col_width, element_height, function(input) {
+            // this assumes that every selected entity is already an instance of Pawn
+            var list = Stuff.map.selected_entities;
+            var conversion = real(thing.value);
+            for (var i = 0; i < ds_list_size(list); i++) {
+                list[| i].frame = conversion;
+            }
+        }, 0, "0...3", validate_int, 0, 3, 1, vx1, vy1, vx2, vy2, t_p_pawn);
         ds_list_add(t_p_pawn.contents, element_entity_pawn_frame);
         
         yy += element_entity_pawn_frame.height + spacing;
         
-        element_entity_pawn_direction = create_radio_array(col1_x, yy, "Direction", col_width, element_height, uivc_entity_pawn_direction, 0, t_p_pawn);
+        element_entity_pawn_direction = create_radio_array(col1_x, yy, "Direction", col_width, element_height, function(radio) {
+            // this assumes that every selected entity is already an instance of Pawn
+            var list = Stuff.map.selected_entities;
+            for (var i = 0; i < ds_list_size(list); i++) {
+                list[| i].map_direction = radio.value;
+            }
+        }, 0, t_p_pawn);
         create_radio_array_options(element_entity_pawn_direction, ["Down", "Left", "Right", "Up"]);
         ds_list_add(t_p_pawn.contents, element_entity_pawn_direction);
         
         yy += ui_get_radio_array_height(element_entity_pawn_direction) + spacing;
         
-        element_entity_pawn_animating = create_checkbox(col1_x, yy, "Animating", col_width, element_height, uivc_entity_pawn_animating, false, t_p_pawn);
+        element_entity_pawn_animating = create_checkbox(col1_x, yy, "Animating", col_width, element_height, function(checkbox) {
+            // this assumes that every selected entity is already an instance of Pawn
+            var list = Stuff.map.selected_entities;
+            for (var i = 0; i < ds_list_size(list); i++) {
+                list[| i].is_animating = checkbox.value;
+            }
+        }, false, t_p_pawn);
         ds_list_add(t_p_pawn.contents, element_entity_pawn_animating);
         
         yy += element_entity_pawn_animating.height + spacing;
         
-        element_entity_pawn_sprite = create_list(col1_x, yy, "Overworld Sprite", "<no overworlds>", col_width, element_height, 12, uivc_entity_pawn_set_sprite, false, t_p_pawn, Stuff.all_graphic_overworlds);
+        element_entity_pawn_sprite = create_list(col1_x, yy, "Overworld Sprite", "<no overworlds>", col_width, element_height, 12, function(list) {
+            // this assumes that every selected entity is already an instance of Pawn
+            var list = Stuff.map.selected_entities;
+            var selection = ui_list_selection(list_element);
+            if (selection + 1) {
+                for (var i = 0; i < ds_list_size(list); i++) {
+                    list[| i].overworld_sprite = Stuff.all_graphic_overworlds[| selection].GUID;
+                }
+            }
+        }, false, t_p_pawn, Stuff.all_graphic_overworlds);
         element_entity_pawn_sprite.entries_are = ListEntries.INSTANCES;
         ds_list_add(t_p_pawn.contents, element_entity_pawn_sprite);
         
