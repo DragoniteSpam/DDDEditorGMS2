@@ -1,7 +1,4 @@
-/// @param UIRadioArray
-function uivc_entity_effect_com_lighting_type(argument0) {
-
-    var radio = argument0;
+function uivc_entity_effect_com_lighting_type(radio) {
     var base_dialog = radio.root.root;
     var list = Stuff.map.selected_entities;
     // it doesn't actually matter if more than one effect entities are selected or not
@@ -9,10 +6,10 @@ function uivc_entity_effect_com_lighting_type(argument0) {
     // but i don't want people to forget that they have more than one thing selected
     var single = (ds_list_size(list) == 1);
     var first = list[| 0];
-
+    
     var map = Stuff.map.active_map;
     var map_contents = map.contents;
-
+    
     // reset everything (but if an effect has the same light compoment as the type to be added, keep it)
     for (var i = 0; i < ds_list_size(list); i++) {
         var effect = list[| i];
@@ -22,7 +19,7 @@ function uivc_entity_effect_com_lighting_type(argument0) {
             effect.com_light = noone;
         }
     }
-
+    
     base_dialog.el_color.enabled = false;
     base_dialog.el_dir_x.enabled = false;
     base_dialog.el_dir_y.enabled = false;
@@ -34,7 +31,7 @@ function uivc_entity_effect_com_lighting_type(argument0) {
     base_dialog.el_spot_z.enabled = false;
     base_dialog.el_spot_radius.enabled = false;
     base_dialog.el_spot_cutoff.enabled = false;
-
+    
     switch (radio.value) {
         case LightTypes.NONE:
             break;
@@ -44,7 +41,7 @@ function uivc_entity_effect_com_lighting_type(argument0) {
             base_dialog.el_dir_y.enabled = true;
             base_dialog.el_dir_z.enabled = true;
             base_dialog.el_script.enabled = true;
-        
+            
             for (var i = 0; i < ds_list_size(list); i++) {
                 var effect = list[| i];
                 if (!effect.com_light) {
@@ -52,7 +49,7 @@ function uivc_entity_effect_com_lighting_type(argument0) {
                     effect.com_light.parent = effect;
                 }
             }
-        
+            
             base_dialog.el_color.value = first.com_light.light_colour;
             ui_input_set_value(base_dialog.el_dir_x, string(single ? first.com_light.light_dx : "-"));
             ui_input_set_value(base_dialog.el_dir_y, string(single ? first.com_light.light_dy : "-"));
@@ -62,7 +59,7 @@ function uivc_entity_effect_com_lighting_type(argument0) {
             base_dialog.el_color.enabled = true;
             base_dialog.el_script.enabled = true;
             base_dialog.el_point_radius.enabled = true;
-        
+            
             for (var i = 0; i < ds_list_size(list); i++) {
                 var effect = list[| i];
                 if (!effect.com_light) {
@@ -70,7 +67,7 @@ function uivc_entity_effect_com_lighting_type(argument0) {
                     effect.com_light.parent = effect;
                 }
             }
-        
+            
             base_dialog.el_color.value = first.com_light.light_colour;
             ui_input_set_value(base_dialog.el_point_radius, string(single ? first.com_light.light_radius : "-"));
             break;
@@ -82,7 +79,7 @@ function uivc_entity_effect_com_lighting_type(argument0) {
             base_dialog.el_spot_z.enabled = true;
             base_dialog.el_spot_radius.enabled = true;
             base_dialog.el_spot_cutoff.enabled = true;
-        
+            
             for (var i = 0; i < ds_list_size(list); i++) {
                 var effect = list[| i];
                 if (!effect.com_light) {
@@ -90,7 +87,7 @@ function uivc_entity_effect_com_lighting_type(argument0) {
                     effect.com_light.parent = effect;
                 }
             }
-        
+            
             ui_input_set_value(base_dialog.el_spot_x, string(single ? first.com_light.light_dx : "-"));
             ui_input_set_value(base_dialog.el_spot_y, string(single ? first.com_light.light_dy : "-"));
             ui_input_set_value(base_dialog.el_spot_z, string(single ? first.com_light.light_dz : "-"));
@@ -98,7 +95,7 @@ function uivc_entity_effect_com_lighting_type(argument0) {
             ui_input_set_value(base_dialog.el_spot_cutoff, string(single ? first.com_light.light_cutoff : "-"));
             break;
     }
-
+    
     for (var i = 0; i < ds_list_size(list); i++) {
         var effect = list[| i];
         if (ds_list_find_index(map_contents.active_lights, effect.REFID) == -1) {
@@ -110,6 +107,4 @@ function uivc_entity_effect_com_lighting_type(argument0) {
             }
         }
     }
-
-
 }

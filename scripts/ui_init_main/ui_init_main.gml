@@ -876,7 +876,9 @@ function ui_init_main(mode) {
         
         yy += element.height + spacing;
         
-        element_effect_com_light = create_button(col1_x, yy, "Light", col_width, element_height, fa_center, uivc_entity_effect_com_lighting, t_p_effect);
+        element_effect_com_light = create_button(col1_x, yy, "Light", col_width, element_height, fa_center, function(button) {
+            dialog_create_entity_effect_com_lighting(button);
+        }, t_p_effect);
         element_effect_com_light.interactive = false;
         ds_list_add(t_p_effect.contents, element_effect_com_light);
         
