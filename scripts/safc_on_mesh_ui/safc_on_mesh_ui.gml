@@ -1,14 +1,10 @@
-/// @param EntityMesh
-function safc_on_mesh_ui(argument0) {
-
-    var mesh = argument0;
-
+function safc_on_mesh_ui(mesh) {
     safc_on_entity_ui(mesh);
-
+    
     if (instanceof_classic(mesh, EntityMeshAutotile)) {
         // turn these on
         Stuff.map.ui.element_entity_mesh_autotile_data.interactive = true;
-    
+        
         // turn these off
         Stuff.map.ui.element_entity_mesh_animated.interactive = false;
         Stuff.map.ui.element_entity_mesh_animation_speed.interactive = false;
@@ -23,7 +19,7 @@ function safc_on_mesh_ui(argument0) {
         Stuff.map.ui.element_entity_mesh_animation_speed.interactive = true;
         Stuff.map.ui.element_entity_mesh_animation_end_action.value = mesh.animation_end_action;
         Stuff.map.ui.element_entity_mesh_animation_end_action.interactive = true;
-    
+        
         var mesh_data = guid_get(mesh.mesh);
         ui_list_deselect(Stuff.map.ui.element_entity_mesh_list);
         Stuff.map.ui.element_entity_mesh_list.interactive = true;
@@ -35,10 +31,8 @@ function safc_on_mesh_ui(argument0) {
             Stuff.map.ui.element_entity_mesh_submesh.entries = mesh_data.submeshes;
             ui_list_select(Stuff.map.ui.element_entity_mesh_submesh, proto_guid_get(mesh_data, mesh.mesh_submesh), true);
         }
-    
+        
         // turn these off
         Stuff.map.ui.element_entity_mesh_autotile_data.interactive = false;
     }
-
-
 }

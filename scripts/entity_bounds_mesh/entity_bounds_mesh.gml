@@ -1,9 +1,5 @@
-/// @param EntityMesh
-function entity_bounds_mesh(argument0) {
-
-    var mesh = argument0;
+function entity_bounds_mesh(mesh) {
     var mesh_data = guid_get(mesh.mesh);
-
     return [
         mesh.xx + mesh_data.xmin,
         mesh.yy + mesh_data.ymin,
@@ -12,6 +8,4 @@ function entity_bounds_mesh(argument0) {
         mesh.yy + mesh_data.ymax,
         mesh.zz + mesh_data.zmax
     ];
-
-
 }
