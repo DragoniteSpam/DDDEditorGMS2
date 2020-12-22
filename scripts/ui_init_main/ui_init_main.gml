@@ -725,7 +725,22 @@ function ui_init_main(mode) {
         #region tab: entity: mesh
         yy = legal_y + spacing;
         
-        element_entity_mesh_list = create_list(col1_x, yy, "Mesh", "<no meshes>", col_width, element_height, 16, uivc_entity_mesh_list, false, t_p_mesh, Stuff.all_meshes);
+        element_entity_mesh_list = create_list(col1_x, yy, "Mesh", "<no meshes>", col_width, element_height, 16, function(list) {
+            var mesh = Stuff.all_meshes[| ui_list_selection(list)];
+            // this assumes that every selected entity is already an instance of Mesh
+            var entities = Stuff.map.selected_entities;
+            for (var i = 0; i < ds_list_size(entities); i++) {
+                // if the mesh changes, you should probably also reset the proto guid
+                if (guid_get(entities[| i].mesh) != mesh) {
+                    entities[| i].mesh_submesh = mesh.first_proto_guid;
+                }
+                entities[| i].mesh = mesh.GUID;
+            }
+            batch_again();
+            Stuff.map.ui.element_entity_mesh_submesh.entries = mesh.submeshes;
+            ui_list_deselect(Stuff.map.ui.element_entity_mesh_submesh);
+            ui_list_select(Stuff.map.ui.element_entity_mesh_submesh, proto_guid_get(mesh, mesh.first_proto_guid), true);
+        }, false, t_p_mesh, Stuff.all_meshes);
         element_entity_mesh_list.allow_deselect = false;
         element_entity_mesh_list.entries_are = ListEntries.INSTANCES;
         ds_list_add(t_p_mesh.contents, element_entity_mesh_list);
@@ -733,7 +748,15 @@ function ui_init_main(mode) {
         
         yy += ui_get_list_height(element_entity_mesh_list) + spacing;
         
-        element_entity_mesh_submesh = create_list(col1_x, yy, "Submesh", "<choose a single mesh>", col_width, element_height, 10, uivc_entity_mesh_submesh, false, t_p_mesh, noone);
+        element_entity_mesh_submesh = create_list(col1_x, yy, "Submesh", "<choose a single mesh>", col_width, element_height, 10, function(list) {
+            var entities = Stuff.map.selected_entities;
+            var mesh_data = guid_get(entities[| 0].mesh);
+            var submesh = mesh_data.submeshes[| ui_list_selection(list)].proto_guid;
+            for (var i = 0; i < ds_list_size(entities); i++) {
+                entities[| i].mesh_submesh = submesh;
+            }
+            batch_again();
+        }, false, t_p_mesh, noone);
         element_entity_mesh_submesh.allow_deselect = false;
         element_entity_mesh_submesh.entries_are = ListEntries.INSTANCES;
         ds_list_add(t_p_mesh.contents, element_entity_mesh_submesh);
@@ -743,26 +766,46 @@ function ui_init_main(mode) {
         
         yy = legal_y + spacing;
             
-        element_entity_mesh_autotile_data = create_button(col2_x, yy, "Mesh Autotile Data", col_width, element_height, fa_center, uivc_entity_mesh_autotile_properties, t_p_mesh);
+        element_entity_mesh_autotile_data = create_button(col2_x, yy, "Mesh Autotile Data", col_width, element_height, fa_center, function(button) {
+            dialog_create_entity_mesh_autotile_properties(button);
+        }, t_p_mesh);
         ds_list_add(t_p_mesh.contents, element_entity_mesh_autotile_data);
         element_entity_mesh_autotile_data.interactive = false;
         
         yy += element_entity_mesh_autotile_data.height + spacing;
         
-        element_entity_mesh_animated = create_checkbox(col2_x, yy, "Animated", col_width, element_height, uivc_entity_mesh_animated, false, t_p_mesh);
+        element_entity_mesh_animated = create_checkbox(col2_x, yy, "Animated", col_width, element_height, function(checkbox) {
+            // this assumes that every selected entity is already an instance of Mesh
+            var list = Stuff.map.selected_entities;
+            for (var i = 0; i < ds_list_size(list); i++) {
+                list[| i].animated = checkbox.value;
+            }
+        }, false, t_p_mesh);
         ds_list_add(t_p_mesh.contents, element_entity_mesh_animated);
         element_entity_mesh_animated.interactive = false;
         
         yy += element_entity_mesh_animated.height + spacing;
         
-        element_entity_mesh_animation_speed = create_input(col2_x, yy, "Anim. Spd:", col_width, element_height, uivc_entity_mesh_animation_speed, 1, "-60 to 60", validate_int, -60, 60, 3, vx1, vy1, vx2, vy2, t_p_mesh);
+        element_entity_mesh_animation_speed = create_input(col2_x, yy, "Anim. Spd:", col_width, element_height, function(input) {
+            // this assumes that every selected entity is already an instance of Mesh
+            var list = Stuff.map.selected_entities;
+            for (var i = 0; i < ds_list_size(list); i++) {
+                list[| i].animation_speed = real(input.value);
+            }
+        }, 1, "-60 to 60", validate_int, -60, 60, 3, vx1, vy1, vx2, vy2, t_p_mesh);
         element_entity_mesh_animation_speed.tooltip = "The number of complete animation frames per second. (Animations will not be previewed in the editor.)";
         ds_list_add(t_p_mesh.contents, element_entity_mesh_animation_speed);
         element_entity_mesh_animation_speed.interactive = false;
         
         yy += element_entity_mesh_animation_speed.height + spacing;
         
-        element_entity_mesh_animation_end_action = create_radio_array(col2_x, yy, "End Action:", col_width, element_height, uivc_entity_mesh_animation_end_action, 0, t_p_mesh);
+        element_entity_mesh_animation_end_action = create_radio_array(col2_x, yy, "End Action:", col_width, element_height, function(radio) {
+            // this assumes that every selected entity is already an instance of Mesh
+            var list = Stuff.map.selected_entities;
+            for (var i = 0; i < ds_list_size(list); i++) {
+                list[| i].animation_end_action = radio.value;
+            }
+        }, 0, t_p_mesh);
         create_radio_array_options(element_entity_mesh_animation_end_action, ["Stop", "Loop", "Reverse"]);
         element_entity_mesh_animation_end_action.tooltip = "The number of complete animation cycles per second";
         ds_list_add(t_p_mesh.contents, element_entity_mesh_animation_end_action);
