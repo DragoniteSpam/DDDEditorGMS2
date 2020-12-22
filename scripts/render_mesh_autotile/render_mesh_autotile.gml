@@ -1,8 +1,8 @@
 function render_mesh_autotile(mesh_autotile) {
     var mapping = global.at_map[? mesh_autotile.terrain_id];
     
-    var at = Stuff.all_mesh_autotiles[| 0];
-    var vbuffer = at.layers[mesh_autotile.terrain_type].tiles[mapping].vbuffer;
+    var at = guid_get(mesh_autotile.autotile_id);
+    var vbuffer = at ? at.layers[mesh_autotile.terrain_type].tiles[mapping].vbuffer : Stuff.graphics.missing_autotile;
     
     transform_set(mesh_autotile.xx * TILE_WIDTH, mesh_autotile.yy * TILE_HEIGHT, mesh_autotile.zz * TILE_DEPTH, 0, 0, 0, 1, 1, 1);
     

@@ -35,7 +35,7 @@ function import_d3d(fn, everything, raw_buffer, existing, replace_index) {
     var ny = [0, 0, 0];
     var nz = [0, 0, 0];
     var xtex = [0, 0, 0];
-    var ytex = [0, 0, 0]
+    var ytex = [0, 0, 0];
     var color = [0, 0, 0];
     var alpha = [0, 0, 0];
     
