@@ -113,7 +113,7 @@ function dialog_create_manager_mesh_autotile(root) {
     var el_layers = create_list(c2x, yy, "Layers:", "no layers???", ew, eh, 6, function(list) {
         list.root.Colorize();
     }, false, dg);
-    create_list_entries(el_layers, "Top", "Middle", "Base", "Bottom");
+    create_list_entries(el_layers, "Top", "Middle", "Base", "Slope");
     ui_list_select(el_layers, 0);
     el_layers.allow_deselect = false;
     dg.el_layers = el_layers;
@@ -208,7 +208,7 @@ function dialog_create_manager_mesh_autotile(root) {
                 }
             }
             
-            entity_mesh_autotile_check_changes(changes, ATTerrainTypes.TOP);
+            entity_mesh_autotile_check_changes(changes);
             ds_map_destroy(changes);
             
             button.root.Colorize();

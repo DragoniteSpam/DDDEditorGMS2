@@ -23,7 +23,7 @@ function dmu_dialog_load_mesh_autotile(thing) {
         
         var changes = ds_map_create();
         changes[? thing.key] = true;
-        entity_mesh_autotile_check_changes(changes, ATTerrainTypes.TOP);
+        entity_mesh_autotile_check_changes(changes);
         ds_map_destroy(changes);
     }
 }

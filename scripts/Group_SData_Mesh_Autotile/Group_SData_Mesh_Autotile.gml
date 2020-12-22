@@ -32,8 +32,3 @@ function DataMeshAutotile(name) : SData(name) constructor {
         }
     };
 }
-
-enum MeshAutotileLayers {
-    TOP, MIDDLE, BASE, BOTTOM,
-    __COUNT
-}

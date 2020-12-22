@@ -4,6 +4,7 @@ function sa_fill() {
         safc_fill_mesh, safc_fill_pawn,
         safc_fill_effect, safc_fill_terrain
     ];
+    
     if (Settings.selection.fill_type == FillTypes.ZONE) {
         safc_fill_zone();
         return;

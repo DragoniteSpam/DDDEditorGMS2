@@ -295,23 +295,23 @@ function selection_update_autotiles() {
             var below_exists = instanceof_classic(below[MapCellContents.MESH], EntityMeshAutotile) && (below[MapCellContents.MESH].modification != Modifications.REMOVE);
             if (above_exists && below_exists) {
                 // is in middle?
-                thing.terrain_type = ATTerrainTypes.VERTICAL;
+                thing.terrain_type = MeshAutotileLayers.VERTICAL;
             } else if (below_exists) {
                 // is on top?
                 if (thing.slope) {
-                    thing.terrain_type = ATTerrainTypes.SLOPE;
+                    thing.terrain_type = MeshAutotileLayers.SLOPE;
                 } else {
-                    thing.terrain_type = ATTerrainTypes.TOP;
+                    thing.terrain_type = MeshAutotileLayers.TOP;
                 }
             } else if (above_exists) {
                 // is on bottom?
-                thing.terrain_type = ATTerrainTypes.BASE;
+                thing.terrain_type = MeshAutotileLayers.BASE;
             } else {
                 // is standalone?
                 if (thing.slope) {
-                    thing.terrain_type = ATTerrainTypes.SLOPE;
+                    thing.terrain_type = MeshAutotileLayers.SLOPE;
                 } else {
-                    thing.terrain_type = ATTerrainTypes.TOP;
+                    thing.terrain_type = MeshAutotileLayers.TOP;
                 }
             }
             
@@ -320,7 +320,7 @@ function selection_update_autotiles() {
             // in which case it should go back to using the top one
             if (below_exists) {
                 var below_thing = below[MapCellContents.MESH];
-                below_thing.terrain_type = (thing.modification == Modifications.REMOVE) ? ATTerrainTypes.TOP : ATTerrainTypes.VERTICAL;
+                below_thing.terrain_type = (thing.modification == Modifications.REMOVE) ? MeshAutotileLayers.TOP : MeshAutotileLayers.VERTICAL;
                 editor_map_mark_changed(below_thing);
             }
         }

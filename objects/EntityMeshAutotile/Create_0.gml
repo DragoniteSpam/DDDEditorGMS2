@@ -8,7 +8,7 @@ etype = ETypes.ENTITY_MESH_AUTO;
 etype_flags = ETypeFlags.ENTITY_MESH_AUTO;
 
 terrain_id = 0;
-terrain_type = ATTerrainTypes.TOP;
+terrain_type = MeshAutotileLayers.TOP;
 
 // editor properties
 slot = MapCellContents.MESH;
@@ -22,9 +22,6 @@ selector = select_single;
 on_select_ui = safc_on_mesh_ui;
 get_bounding_box = entity_bounds_one;
 
-enum ATTerrainTypes {
-    TOP,
-    VERTICAL,
-    BASE,
-    SLOPE,
+enum MeshAutotileLayers {
+    TOP, VERTICAL, BASE, SLOPE, __COUNT,
 }
