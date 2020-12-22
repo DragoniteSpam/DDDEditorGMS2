@@ -34,3 +34,12 @@ function Vertex() constructor {
 function Triangle() constructor {
     self.vertex = [new Vertex(), new Vertex(), new Vertex()];
 }
+
+function BoundingBox(x1, y1, z1, x2, y2, z2) constructor {
+    self.x1 = x1;
+    self.y1 = y1;
+    self.z1 = z1;
+    self.x2 = x1;
+    self.y2 = y1;
+    self.z2 = z1;
+}
