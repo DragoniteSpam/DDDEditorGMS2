@@ -1,9 +1,8 @@
 function batch_mesh_autotile(buffer, wire, mesh_autotile) {
     var mapping = global.at_map[? mesh_autotile.terrain_id];
     
-    switch (mesh_autotile.terrain_type) {
-        default: var raw = noone; break;
-    }
+    var at = Stuff.all_mesh_autotiles[| 0];
+    var raw = at.layers[mesh_autotile.terrain_type].tiles[mapping].buffer;
     
     if (raw) {
         var xx = mesh_autotile.xx * TILE_WIDTH;
