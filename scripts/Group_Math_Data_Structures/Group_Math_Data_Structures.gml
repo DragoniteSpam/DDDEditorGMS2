@@ -357,6 +357,14 @@ function ds_list_sort_name() {
     }, l, r);
 }
 
+function ds_list_to_array(list) {
+    var array = array_create(ds_list_size(list));
+    for (var i = 0; i < array_length(array); i++) {
+        array[@ i] = list[| i];
+    }
+    return array;
+}
+
 function ds_list_top(list) {
     // for when you want to be using a stack, but need to
     // do stuff with it that you need a list for.
