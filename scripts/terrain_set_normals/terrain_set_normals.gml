@@ -1,7 +1,7 @@
 function terrain_set_normals(terrain, x, y) {
     var smooth = true;
     var threshold = 0.3;
-    var normal_map = ds_map_create();
+    var normal_map = { };
     
     if (x > 0 && y > 0) {
         #region northwest
@@ -43,11 +43,11 @@ function terrain_set_normals(terrain, x, y) {
             for (var i = 0; i < 6; i++) {
                 var normal = normals[i];
                 var vertex = vertices[i];
-                if (!ds_map_exists(normal_map, vertex)) {
-                    normal_map[? vertex] = [normal[vec3.xx], normal[vec3.yy], normal[vec3.zz]];
+                if (normal_map[$ vertex] == undefined) {
+                    normal_map[$ vertex] = [normal[vec3.xx], normal[vec3.yy], normal[vec3.zz]];
                 } else {
-                    var sN = normal_map[? vertex];
-                    normal_map[? vertex] = [sN[vec3.xx] + normal[vec3.xx], sN[vec3.yy] + normal[vec3.yy], sN[vec3.zz] + normal[vec3.zz]];
+                    var sN = normal_map[$ vertex];
+                    normal_map[$ vertex] = [sN[vec3.xx] + normal[vec3.xx], sN[vec3.yy] + normal[vec3.yy], sN[vec3.zz] + normal[vec3.zz]];
                 }
             }
         } else {
@@ -100,11 +100,11 @@ function terrain_set_normals(terrain, x, y) {
             for (var i = 0; i < 3; i++) {
                 var normal = normals[i];
                 var vertex = vertices[i];
-                if (!ds_map_exists(normal_map, vertex)) {
-                    normal_map[? vertex] = [normal[vec3.xx], normal[vec3.yy], normal[vec3.zz]];
+                if (normal_map[$ vertex] == undefined) {
+                    normal_map[$ vertex] = [normal[vec3.xx], normal[vec3.yy], normal[vec3.zz]];
                 } else {
-                    var sN = normal_map[? vertex];
-                    normal_map[? vertex] = [sN[vec3.xx] + normal[vec3.xx], sN[vec3.yy] + normal[vec3.yy], sN[vec3.zz] + normal[vec3.zz]];
+                    var sN = normal_map[$ vertex];
+                    normal_map[$ vertex] = [sN[vec3.xx] + normal[vec3.xx], sN[vec3.yy] + normal[vec3.yy], sN[vec3.zz] + normal[vec3.zz]];
                 }
             }
         } else {
@@ -147,11 +147,11 @@ function terrain_set_normals(terrain, x, y) {
             for (var i = 0; i < 3; i++) {
                 var normal = normals[i];
                 var vertex = vertices[i];
-                if (!ds_map_exists(normal_map, vertex)) {
-                    normal_map[? vertex] = [normal[vec3.xx], normal[vec3.yy], normal[vec3.zz]];
+                if (normal_map[$ vertex] == undefined) {
+                    normal_map[$ vertex] = [normal[vec3.xx], normal[vec3.yy], normal[vec3.zz]];
                 } else {
-                    var sN = normal_map[? vertex];
-                    normal_map[? vertex] = [sN[vec3.xx] + normal[vec3.xx], sN[vec3.yy] + normal[vec3.yy], sN[vec3.zz] + normal[vec3.zz]];
+                    var sN = normal_map[$ vertex];
+                    normal_map[$ vertex] = [sN[vec3.xx] + normal[vec3.xx], sN[vec3.yy] + normal[vec3.yy], sN[vec3.zz] + normal[vec3.zz]];
                 }
             }
         } else {
@@ -208,11 +208,11 @@ function terrain_set_normals(terrain, x, y) {
             for (var i = 0; i < 6; i++) {
                 var normal = normals[i];
                 var vertex = vertices[i];
-                if (!ds_map_exists(normal_map, vertex)) {
-                    normal_map[? vertex] = [normal[vec3.xx], normal[vec3.yy], normal[vec3.zz]];
+                if (normal_map[$ vertex] == undefined) {
+                    normal_map[$ vertex] = [normal[vec3.xx], normal[vec3.yy], normal[vec3.zz]];
                 } else {
-                    var sN = normal_map[? vertex];
-                    normal_map[? vertex] = [sN[vec3.xx] + normal[vec3.xx], sN[vec3.yy] + normal[vec3.yy], sN[vec3.zz] + normal[vec3.zz]];
+                    var sN = normal_map[$ vertex];
+                    normal_map[$ vertex] = [sN[vec3.xx] + normal[vec3.xx], sN[vec3.yy] + normal[vec3.yy], sN[vec3.zz] + normal[vec3.zz]];
                 }
             }
         } else {
@@ -240,8 +240,9 @@ function terrain_set_normals(terrain, x, y) {
     }
     
     if (smooth) {
-        for (var vertex = ds_map_find_first(normal_map); vertex != ds_map_find_last(normal_map); vertex = ds_map_find_next(normal_map, vertex)) {
-            var normal = vector3_normalize(normal_map[? vertex]);
+        var vertices = variable_struct_get_names(normal_map);
+        for (var vertex = 0; vertex < array_length(vertices); i++) {
+            var normal = vector3_normalize(normal_map[$ vertex]);
             // it's most likely not worth using lightweight objects here
             
             buffer_poke(terrain.terrain_buffer_data, vertex[3] + 12, buffer_f32, normal[vec3.xx]);
@@ -249,6 +250,4 @@ function terrain_set_normals(terrain, x, y) {
             buffer_poke(terrain.terrain_buffer_data, vertex[3] + 20, buffer_f32, normal[vec3.zz]);
         }
     }
-    
-    ds_map_destroy(normal_map);
 }

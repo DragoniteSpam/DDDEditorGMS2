@@ -1,11 +1,11 @@
 function export_qma(fn) {
     var buffer = buffer_create(1024, buffer_grow, 1);
     
-    var data = ds_map_create();
-    data[? "version"] = 1;
+    var data = {
+        version: 1,
+    };
     
-    buffer_write(buffer, buffer_string, json_encode(data));
-    ds_map_destroy(data);
+    buffer_write(buffer, buffer_string, json_stringify(data));
     
     var n_meshes = ds_list_size(Stuff.all_meshes);
     var addr_count = buffer_tell(buffer);

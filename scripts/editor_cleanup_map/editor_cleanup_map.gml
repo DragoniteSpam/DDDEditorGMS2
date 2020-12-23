@@ -27,7 +27,7 @@ function editor_cleanup_map(mode) {
 
     if (ds_list_size(modifications) > 0) {
         var rebatch_all_threshold = 25;
-        var rebatch_these = ds_map_create();
+        var rebatch_these = { };
         // if there aren't enough changes to merit rebatching all
         if (ds_list_size(modifications) < rebatch_all_threshold) {
             for (var i = 0; i < ds_list_size(modifications); i++) {
@@ -47,12 +47,12 @@ function editor_cleanup_map(mode) {
                     }
                     
                     ds_list_delete(map.all_entities, ds_list_find_index(map.all_entities, thing));
-                    rebatch_these[? thing.batch_addr] = true;
+                    rebatch_these[$ thing.batch_addr] = true;
                     instance_activate_object(thing);
                     instance_destroy(thing);
                 } else if (thing.modification == Modifications.UPDATE) {
                     thing.modification = Modifications.NONE;
-                    rebatch_these[? thing.batch_addr] = true;
+                    rebatch_these[$ thing.batch_addr] = true;
                 }
             }
         } else {
@@ -95,11 +95,11 @@ function editor_cleanup_map(mode) {
                     }
                 
                     ds_list_delete(map.all_entities, ds_list_find_index(map.all_entities, thing));
-                    rebatch_these[? thing.batch_addr] = true;
+                    rebatch_these[$ thing.batch_addr] = true;
                     instance_activate_object(thing);
                     instance_destroy(thing);
                 } else {
-                    rebatch_these[? thing.batch_addr] = true;
+                    rebatch_these[$ thing.batch_addr] = true;
                     thing.modification = Modifications.NONE;
                 }
             }
@@ -109,11 +109,10 @@ function editor_cleanup_map(mode) {
         }
     
         // once the batches that need to be recalculated have been worked out, re-batch them
-        var rebatch_indices = ds_map_to_list(rebatch_these);
-        for (var i = 0; i < ds_list_size(rebatch_indices); i++) {
-            batch_again(rebatch_indices[| i]);
+        var rebatch_indices = variable_struct_get_names(rebatch_these);
+        for (var i = 0; i < array_length(rebatch_indices); i++) {
+            batch_again(rebatch_indices[i]);
         }
-        ds_list_destroy(rebatch_indices);
     }
 
     ds_list_clear(modifications);

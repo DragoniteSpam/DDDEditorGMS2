@@ -1,7 +1,7 @@
 function serialize_save_data() {
     var fn = get_save_filename_dddd(Stuff.save_name);
     
-    global.error_map = ds_map_create();
+    global.error_map = { };
     
     if (string_length(fn) > 0) {
         var save_directory = filename_path(fn);
@@ -70,22 +70,19 @@ function serialize_save_data() {
         ds_list_destroy(contents);
     }
     
-    if (!ds_map_empty(global.error_map)) {
-        var error_list = ds_map_to_list(global.error_map);
-        ds_list_sort(error_list, false);
+    if (variable_struct_names_count(global.error_map) > 0) {
+        var error_list = variable_struct_get_names(global.error_map);
+        array_sort(error_list, false);
         var err_str = "";
-        for (var i = 0; i < ds_list_size(error_list); i++) {
-            err_str = err_str + "    - " + global.error_map[? error_list[| i]] + "\n";
+        for (var i = 0; i < array_length(error_list); i++) {
+            err_str = err_str + "    - " + global.error_map[$ error_list[i]] + "\n";
         }
         var dialog = dialog_create_notice(noone, "Some warnings were generated when saving your data file:\n\n" + err_str, "Warning!", undefined, undefined, 560);
         dialog.el_text.x = 32;
         dialog.el_text.y = 64;
         dialog.el_text.alignment = fa_left;
         dialog.el_text.valignment = fa_top;
-        ds_list_destroy(error_list);
     }
-    
-    ds_map_destroy(global.error_map);
     
     #macro LAST_SAFE_VERSION DataVersions.NUKE_UNUSED_BOOLS
     enum DataVersions {

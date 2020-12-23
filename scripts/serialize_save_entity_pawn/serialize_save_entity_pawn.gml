@@ -11,7 +11,7 @@ function serialize_save_entity_pawn(argument0, argument1) {
     buffer_write(buffer, buffer_datatype, pawn.overworld_sprite);
 
     if (!guid_get(pawn.overworld_sprite)) {
-        global.error_map[? "ow-undefined"] = "One or more EntityPawns do not have an overworld sprite set";
+        global.error_map[$ "ow-undefined"] = "One or more EntityPawns do not have an overworld sprite set";
     }
 
 
