@@ -180,7 +180,10 @@ function ui_init_main(mode) {
         ds_list_add(t_stats.contents, element);
         
         element = create_text(stat_x, yy, "0", col_width, element_height, fa_left, col_width, t_stats);
-        element.render = ui_render_text_stats_entities;
+        element.render = method(element, function(text, x, y) {
+            text.text = string(ds_list_size(Stuff.map.active_map.contents.all_entities));
+            ui_render_text(text, x, y);
+        });
         ds_list_add(t_stats.contents, element);
         
         yy += element.height + spacing;
@@ -189,7 +192,10 @@ function ui_init_main(mode) {
         ds_list_add(t_stats.contents, element);
         
         element = create_text(stat_x, yy, "0", col_width, element_height, fa_left, col_width, t_stats);
-        element.render = ui_render_text_stats_static;
+        element.render = method(element, function(text, x, y) {
+            text.text = string(Stuff.map.active_map.contents.population_static);
+            ui_render_text(text, x, y);
+        });
         ds_list_add(t_stats.contents, element);
         
         yy += element.height;
@@ -203,7 +209,10 @@ function ui_init_main(mode) {
         ds_list_add(t_stats.contents, element);
         
         element = create_text(stat_x, yy, "0", col_width, element_height, fa_left, col_width, t_stats);
-        element.render = ui_render_text_stats_entities_tiles;
+        element.render = method(element, function(text, x, y) {
+            text.text = string(Stuff.map.active_map.contents.population[ETypes.ENTITY_TILE]);
+            ui_render_text(text, x, y);
+        });
         ds_list_add(t_stats.contents, element);
         
         yy += element.height;
@@ -212,7 +221,10 @@ function ui_init_main(mode) {
         ds_list_add(t_stats.contents, element);
         
         element = create_text(stat_x, yy, "0", col_width, element_height, fa_left, col_width, t_stats);
-        element.render = ui_render_text_stats_entities_tiles_auto;
+        element.render = method(element, function(text, x, y) {
+            text.text = string(Stuff.map.active_map.contents.population[ETypes.ENTITY_TILE_ANIMATED]);
+            ui_render_text(text, x, y);
+        });
         ds_list_add(t_stats.contents, element);
         
         yy += element.height;
@@ -221,7 +233,10 @@ function ui_init_main(mode) {
         ds_list_add(t_stats.contents, element);
         
         element = create_text(stat_x, yy, "0", col_width, element_height, fa_left, col_width, t_stats);
-        element.render = ui_render_text_stats_entities_meshes;
+        element.render = method(element, function(text, x, y) {
+            text.text = string(Stuff.map.active_map.contents.population[ETypes.ENTITY_MESH]);
+            ui_render_text(text, x, y);
+        });
         ds_list_add(t_stats.contents, element);
         
         yy += element.height;
@@ -230,7 +245,10 @@ function ui_init_main(mode) {
         ds_list_add(t_stats.contents, element);
         
         element = create_text(stat_x, yy, "0", col_width, element_height, fa_left, col_width, t_stats);
-        element.render = ui_render_text_stats_entities_pawns;
+        element.render = method(element, function(text, x, y) {
+            text.text = string(Stuff.map.active_map.contents.population[ETypes.ENTITY_PAWN]);
+            ui_render_text(text, x, y);
+        });
         ds_list_add(t_stats.contents, element);
         
         yy += element.height;
@@ -239,7 +257,10 @@ function ui_init_main(mode) {
         ds_list_add(t_stats.contents, element);
         
         element = create_text(stat_x, yy, "0", col_width, element_height, fa_left, col_width, t_stats);
-        element.render = ui_render_text_stats_entities_effects;
+        element.render = method(element, function(text, x, y) {
+            text.text = string(Stuff.map.active_map.contents.population[ETypes.ENTITY_EFFECT]);
+            ui_render_text(text, x, y);
+        });
         ds_list_add(t_stats.contents, element);
         
         yy += element.height + spacing;
@@ -250,13 +271,21 @@ function ui_init_main(mode) {
         yy += spacing;
         
         element = create_text(col2_x, yy, "    - kb", col_width, element_height, fa_left, col_width, t_stats);
-        element.render = ui_render_text_stats_entities_frozen_size_kb;
+        element.render = method(element, function(text, x, y) {
+            var size = Stuff.map.active_map.contents.frozen_data_size;
+            text.text = "    " + ((size > 1) ? string_comma(ceil(size / 1024)) : "-") + " kb";
+            ui_render_text(text, x, y);
+        });
         ds_list_add(t_stats.contents, element);
         
         yy += spacing;
         
         element = create_text(col2_x, yy, "    ( - bytes)", col_width, element_height, fa_left, col_width, t_stats);
-        element.render = ui_render_text_stats_entities_frozen_size;
+        element.render = method(element, function(text, x, y) {
+            var size = Stuff.map.active_map.contents.frozen_data_size;
+            text.text = "    (" + ((size > 1) ? string(size) : "-") + " bytes)";
+            ui_render_text(text, x, y);
+        });
         ds_list_add(t_stats.contents, element);
         
         yy += spacing;
