@@ -948,13 +948,37 @@ function ui_init_main(mode) {
         yy = legal_y + spacing;
         
         // this is an object variable
-        element_mesh_list = create_list(col1_x, yy, "Available meshes: ", "<no meshes>", col_width, element_height, 25, uivc_list_selection_mesh, false, t_p_mesh_editor);
+        element_mesh_list = create_list(col1_x, yy, "Available meshes: ", "<no meshes>", col_width, element_height, 25, function(list) {
+            Stuff.map.selection_fill_mesh = ui_list_selection(list);
+            uivc_select_mesh_refresh(Stuff.map.selection_fill_mesh);
+        }, false, t_p_mesh_editor, Stuff.all_meshes);
         element_mesh_list.entries_are = ListEntries.SCRIPT;
         element_mesh_list.colorize = true;
-        element_mesh_list.render = ui_render_list_all_meshes;
-        element_mesh_list.render_colors = ui_list_color_meshes;
-        element_mesh_list.ondoubleclick = omu_mesh_advanced;
-        element_mesh_list.evaluate_text = ui_list_text_meshes;
+        element_mesh_list.render = method(element_mesh_list, function(list, x, y) {
+            var oldtext = list.text;
+            list.text = list.text + string(ds_list_size(list.entries));
+            ui_render_list(list, x, y);
+            list.text = oldtext;
+        });
+        element_mesh_list.render_colors = method(element_mesh_list, function(list, index) {
+            switch (list.entries[| index].type) {
+                case MeshTypes.RAW: return c_black;
+                case MeshTypes.SMF: return c_blue;
+            }
+        });
+        element_mesh_list.ondoubleclick = method(element_mesh_list, function(list) {
+            var data = Stuff.all_meshes[| Stuff.map.selection_fill_mesh];
+            if (data) {
+                dialog_create_mesh_advanced(noone, data);
+            }
+        });
+        element_mesh_list.evaluate_text = method(element_mesh_list, function(list, index) {
+            var prefix = "";
+            if (list.entries[| index].flags & MeshFlags.PARTICLE) {
+                prefix = "(p)" + prefix;
+            }
+            return prefix + mesh.name;
+        });
         ds_list_add(t_p_mesh_editor.contents, element_mesh_list);
         
         yy += ui_get_list_height(element_mesh_list) + spacing;
