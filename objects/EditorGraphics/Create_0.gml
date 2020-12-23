@@ -94,6 +94,7 @@ basic_cube = import_d3d("data\\basic\\cube.d3d", false);
 missing_autotile = import_d3d("data\\basic\\missing_autotile.d3d", false, true);
 missing_autotile_raw = missing_autotile[1];
 missing_autotile = missing_autotile[0];
+missing_autotile_wire = vertex_buffer_to_wireframe(missing_autotile);
 indexed_cube = import_d3d("data\\basic\\cube-indexed.d3d", false);
 base_npc = import_d3d("data\\basic\\base-npc.d3d", false);
 axes_rotation = import_d3d("data\\basic\\rotation.d3d", false);

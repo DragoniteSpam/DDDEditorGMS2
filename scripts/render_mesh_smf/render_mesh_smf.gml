@@ -1,14 +1,11 @@
-/// @param EntityMesh
-function render_mesh_smf(argument0) {
-
-    var entity = argument0;
+function render_mesh_smf(entity) {
     var mesh = guid_get(entity.mesh);
     var vbuffer = entity_mesh_get_vbuffer(entity);
-
+    
     transform_set(0, 0, 0, entity.rot_xx, entity.rot_yy, entity.rot_zz, 1, 1, 1);
     transform_add(0, 0, 0, 0, 0, 0, entity.scale_xx, entity.scale_yy, entity.scale_zz);
     transform_add((entity.xx + entity.off_xx) * TILE_WIDTH, (entity.yy + entity.off_yy) * TILE_HEIGHT, (entity.zz + entity.off_zz) * TILE_DEPTH, 0, 0, 0, 1, 1, 1);
-
+    
     if (Settings.view.entities) {
         if (entity.animated) {
             var animation_index = entity.animation_index;
@@ -20,8 +17,6 @@ function render_mesh_smf(argument0) {
         }
         shader_set(shd_ddd);
     }
-
+    
     transform_reset();
-
-
 }
