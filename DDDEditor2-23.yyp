@@ -939,7 +939,6 @@
     {"id":{"name":"dmu_close_no_questions_asked","path":"scripts/dmu_close_no_questions_asked/dmu_close_no_questions_asked.yy",},"order":4,},
     {"id":{"name":"dmu_dialog_commit__select_tileset","path":"scripts/dmu_dialog_commit__select_tileset/dmu_dialog_commit__select_tileset.yy",},"order":5,},
     {"id":{"name":"scribble_bake_outline","path":"scripts/scribble_bake_outline/scribble_bake_outline.yy",},"order":3,},
-    {"id":{"name":"dmu_dialog_load_mesh_autotile","path":"scripts/dmu_dialog_load_mesh_autotile/dmu_dialog_load_mesh_autotile.yy",},"order":3,},
     {"id":{"name":"dmu_dialog_load_bgm","path":"scripts/dmu_dialog_load_bgm/dmu_dialog_load_bgm.yy",},"order":0,},
     {"id":{"name":"dmu_dialog_remove_bgm","path":"scripts/dmu_dialog_remove_bgm/dmu_dialog_remove_bgm.yy",},"order":1,},
     {"id":{"name":"dmu_dialog_remove_se","path":"scripts/dmu_dialog_remove_se/dmu_dialog_remove_se.yy",},"order":2,},

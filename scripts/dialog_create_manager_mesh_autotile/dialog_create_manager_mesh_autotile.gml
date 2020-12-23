@@ -223,10 +223,41 @@ function dialog_create_manager_mesh_autotile(root) {
     var xx = c3x;
     
     for (var i = 0; i < AUTOTILE_COUNT; i++) {
-        var button = create_button(xx, yy, string(i), bw, bh, fa_center, dmu_dialog_load_mesh_autotile, dg);
+        var button = create_button(xx, yy, string(i), bw, bh, fa_center, function(button) {
+            var selection = ui_list_selection(button.root.el_list);
+            var layer_index = ui_list_selection(button.root.el_layers);
+            var autotile = Stuff.all_mesh_autotiles[| selection];
+            if (autotile) {
+                var tile_data = autotile.layers[layer_index].tiles[button.index];
+                var fn = get_open_filename_mesh_d3d();
+                
+                if (file_exists(fn)) {
+                    switch (filename_ext(fn)) {
+                        case ".d3d": case ".gmmod":
+                            try {
+                                var data = import_d3d(fn, false, true);
+                                tile_data.Set(data[0], data[1]);
+                            } catch (e) {
+                                dialog_create_notice(button, "Unable to load file: " + e.message);
+                            }
+                            break;
+                        case ".obj":
+                            try {
+                                var data = import_obj(fn, false, true);
+                                tile_data.Set(data[0], data[1]);
+                            } catch (e) {
+                                dialog_create_notice(button, "Unable to load file: " + e.message);
+                            }
+                            break;
+                    }
+                    
+                    button.color = tile_data.vbuffer ? c_black : c_red;
+                }
+            }
+        }, dg);
         button.tooltip = "Import a mesh for top mesh autotile #" + string(i) + ". It should take the shape of the icon below, with green representing the outer part and brown representing the inner part.";
         button.color = c_red;
-        button.key = i;
+        button.index = i;
         ds_list_add(dg.contents, button);
         dg.buttons[i] = button;
         
