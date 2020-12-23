@@ -1090,7 +1090,6 @@
     {"id":{"name":"uivc_check_view_zones","path":"scripts/uivc_check_view_zones/uivc_check_view_zones.yy",},"order":9,},
     {"id":{"name":"uivc_check_view_lighting","path":"scripts/uivc_check_view_lighting/uivc_check_view_lighting.yy",},"order":10,},
     {"id":{"name":"uivc_check_view_gizmos","path":"scripts/uivc_check_view_gizmos/uivc_check_view_gizmos.yy",},"order":11,},
-    {"id":{"name":"uivc_zone_type","path":"scripts/uivc_zone_type/uivc_zone_type.yy",},"order":12,},
     {"id":{"name":"uivc_check_view_grids","path":"scripts/uivc_check_view_grids/uivc_check_view_grids.yy",},"order":13,},
     {"id":{"name":"uivc_check_view_texture","path":"scripts/uivc_check_view_texture/uivc_check_view_texture.yy",},"order":14,},
     {"id":{"name":"uivc_check_view_wireframe","path":"scripts/uivc_check_view_wireframe/uivc_check_view_wireframe.yy",},"order":15,},

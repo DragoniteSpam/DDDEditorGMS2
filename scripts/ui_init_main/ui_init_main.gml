@@ -854,11 +854,11 @@ function ui_init_main(mode) {
         
         element_entity_pawn_sprite = create_list(col1_x, yy, "Overworld Sprite", "<no overworlds>", col_width, element_height, 12, function(list) {
             // this assumes that every selected entity is already an instance of Pawn
-            var list = Stuff.map.selected_entities;
-            var selection = ui_list_selection(list_element);
+            var entities = Stuff.map.selected_entities;
+            var selection = ui_list_selection(list);
             if (selection + 1) {
-                for (var i = 0; i < ds_list_size(list); i++) {
-                    list[| i].overworld_sprite = Stuff.all_graphic_overworlds[| selection].GUID;
+                for (var i = 0; i < ds_list_size(entities); i++) {
+                    entities[| i].overworld_sprite = Stuff.all_graphic_overworlds[| selection].GUID;
                 }
             }
         }, false, t_p_pawn, Stuff.all_graphic_overworlds);
@@ -1070,53 +1070,50 @@ function ui_init_main(mode) {
         yy += element.height + spacing;
         #endregion
     
-    #region tab: general: tile animation
-    
+        #region tab: general: tile animation
         yy = legal_y + spacing;
-    
+        
         element = create_list(col1_x, yy, "Animated Tiles: ", "<something is wrong>", col_width, element_height, 28, null, false, t_p_tile_animation_editor);
         element.entries_are = ListEntries.GUIDS;
         element.numbered = true;
         ds_list_add(t_p_tile_animation_editor.contents, element);
-    
+        
         t_p_tile_animation_editor.element_list = element;
-    
+        
         element = create_text(col2_x, yy, "Animated Tile Properties", col_width, element_height, fa_left, col_width, t_p_tile_animation_editor);
         element.color = c_blue;
         ds_list_add(t_p_tile_animation_editor.contents, element);
-    
+        
         yy += element.height + spacing;
-    
+        
         element = create_image_button(col2_x, yy, "Select", noone, col_width, element_height, fa_center, null, t_p_tile_animation_editor);
         ds_list_add(t_p_tile_animation_editor.contents, element);
-    
+        
         yy += element.height + spacing;
-    
-    #endregion
-    
-    #region tab: general: other
-    
+        #endregion
+        
+        #region tab: general: other
         yy = legal_y + spacing;
-    
-        element = create_list(col1_x, yy, "Zone type", "<no zone types>", col_width, element_height, 8, uivc_zone_type, false, t_p_other_editor);
+        
+        element = create_list(col1_x, yy, "Zone type", "<no zone types>", col_width, element_height, 8, function(list) {
+            Settings.selection.zone_type = ui_list_selection(list);
+        }, false, t_p_other_editor);
         element.colorize = false;
         element.allow_deselect = false;
         ui_list_select(element, Settings.selection.zone_type);
         create_list_entries(element, ["Camera Zone"], ["Light Zone"], ["Flag Zone"]);
         ds_list_add(t_p_other_editor.contents, element);
         t_p_other_editor.el_zone_type = element;
-    
+        
         yy += ui_get_list_height(element) + spacing;
-    
+        
         element = create_checkbox(col1_x, yy, "Click to Drag", col_width, element_height, null, false, t_p_other_editor);
         // if this is ever implemented properly, reactivate this
         element.interactive = false;
         t_p_other_editor.el_click_to_drag = element;
         ds_list_add(t_p_other_editor.contents, element);
-    #endregion
-    
+        #endregion
+        
         return id;
     }
-
-
 }
