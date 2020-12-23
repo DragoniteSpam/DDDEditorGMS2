@@ -918,18 +918,40 @@ function ui_init_main(mode) {
         
         yy = legal_y + spacing;
         
-        element = create_button(col1_x, yy, "Change Tileset", 128, element_height, fa_center, omu_manager_tileset_selector, t_p_tile_editor);
+        element = create_button(col1_x, yy, "Change Tileset", 128, element_height, fa_center, function(button) {
+            (omu_manager_tileset(button)).el_confirm.select_tileset = true;
+        }, t_p_tile_editor);
         ds_list_add(t_p_tile_editor.contents, element);
         
-        element = create_button(col1_x + (spacing + 128), yy, "Import Main", 128, element_height, fa_center, dmu_dialog_load_tileset_main, t_p_tile_editor);
+        element = create_button(col1_x + (spacing + 128), yy, "Import Main", 128, element_height, fa_center, function(button) {
+            var fn = get_open_filename_image();
+            if (file_exists(fn)) {
+                var picture = sprite_add(fn, 0, false, false, 0, 0);
+                var ts = get_active_tileset();
+                sprite_delete(ts.picture);
+                ts.picture = picture;
+            }
+        }, t_p_tile_editor);
         ds_list_add(t_p_tile_editor.contents, element);
         
-        element = create_button(col1_x + (spacing + 128) * 2, yy, "Export Main", 128, element_height, fa_center, dmu_dialog_save_tileset_main, t_p_tile_editor);
+        element = create_button(col1_x + (spacing + 128) * 2, yy, "Export Main", 128, element_height, fa_center, function(button) {
+            var fn = get_save_filename_image("output.png");
+            if (fn != "") {
+                sprite_save(get_active_tileset().picture, 0, fn);
+            }
+        }, t_p_tile_editor);
         ds_list_add(t_p_tile_editor.contents, element);
         
         yy += element.height + spacing;
         
-        element = create_tile_selector(col1_x, yy, legal_width - spacing * 2, (legal_width div Stuff.tile_width) * Stuff.tile_width - element_height, uivc_select_tile, uivc_select_tile_backwards, t_p_tile_editor);
+        element = create_tile_selector(col1_x, yy, legal_width - spacing * 2, (legal_width div Stuff.tile_width) * Stuff.tile_width - element_height, function(selector, tx, ty) {
+            Stuff.map.selection_fill_tile_x = tx;
+            Stuff.map.selection_fill_tile_y = ty;
+            selector.tile_x = tx;
+            selector.tile_y = ty;
+        }, function(selector, tx, ty) {
+            var ts = get_active_tileset();
+        }, t_p_tile_editor);
         element.tile_x = mode.selection_fill_tile_x;
         element.tile_y = mode.selection_fill_tile_y;
         ds_list_add(t_p_tile_editor.contents, element);
@@ -938,7 +960,10 @@ function ui_init_main(mode) {
         var yy_aftergrid = yy;
         
         element = create_text(col1_x, yy, "Tile Properties: x, y", col_width, element_height, fa_left, col_width, t_p_tile_editor);
-        element.render = ui_render_text_tile_label;
+        element.render = method(element, function(text, x, y) {
+            text.text = "Tile Properties: " + string(Stuff.map.selection_fill_tile_x) + ", " + string(Stuff.map.selection_fill_tile_y);
+            ui_render_text(text, x, y);
+        });
         ds_list_add(t_p_tile_editor.contents, element);
         
         yy += element.height + spacing;
