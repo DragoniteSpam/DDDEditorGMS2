@@ -17,6 +17,12 @@ function DataMeshAutotile(name) : SData(name) constructor {
         for (var i = 0; i < AUTOTILE_COUNT; i++) {
             self.tiles[i] = new MeshVertexBufferData(undefined, undefined);
         }
+        
+        self.Destroy = function() {
+            for (var i = 0; i < AUTOTILE_COUNT; i++) {
+                self.tiles[i].Destroy();
+            }
+        };
     };
     
     self.layers = array_create(MeshAutotileLayers.__COUNT);
