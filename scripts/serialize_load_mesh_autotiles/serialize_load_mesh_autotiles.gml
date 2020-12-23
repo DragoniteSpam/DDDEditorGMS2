@@ -14,8 +14,9 @@ function serialize_load_mesh_autotiles(buffer, version) {
                 var data = autotile.layers[i].tiles[j];
                 var length = buffer_read(buffer, buffer_u32);
                 if (length > 0) {
-                    data.buffer = buffer_read_buffer(buffer, length);
-                    data.vbuffer = vertex_create_buffer_from_buffer(data.buffer, Stuff.graphics.vertex_format);
+                    var dbuffer = buffer_read_buffer(buffer, length);
+                    var vbuffer = vertex_create_buffer_from_buffer(dbuffer, Stuff.graphics.vertex_format);
+                    data.Set(dbuffer, vbuffer);
                 }
             }
         }

@@ -134,9 +134,7 @@ function dialog_create_manager_mesh_autotile(root) {
                 if (file_exists(fn)) {
                     try {
                         var data = import_d3d(fn, false, true);
-                        at_layer.tiles[i].Destroy();
-                        at_layer.tiles[i].vbuffer = data[0];
-                        at_layer.tiles[i].buffer = data[1];
+                        at_layer.tiles[i].Set(data[0], data[1]);
                     } catch (e) {
                         
                     }
@@ -165,9 +163,7 @@ function dialog_create_manager_mesh_autotile(root) {
                         case ".d3d": case ".gmmod":
                             try {
                                 var data = import_d3d(fn, false, true);
-                                at_layer.tiles[index].Destroy();
-                                at_layer.tiles[index].vbuffer = data[0];
-                                at_layer.tiles[index].buffer = data[1];
+                                at_layer.tiles[index].Set(data[0], data[1]);
                             } catch (e) {
                                 failures++;
                             }
@@ -175,9 +171,7 @@ function dialog_create_manager_mesh_autotile(root) {
                         case ".obj":
                             try {
                                 var data = import_obj(fn, false, true);
-                                at_layer.tiles[index].Destroy();
-                                at_layer.tiles[index].vbuffer = data[0];
-                                at_layer.tiles[index].buffer = data[1];
+                                at_layer.tiles[index].Set(data[0], data[1]);
                             } catch (e) {
                                 failures++;
                             }
