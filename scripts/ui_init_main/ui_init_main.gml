@@ -83,14 +83,34 @@ function ui_init_main(mode) {
         
         var s = 16;
         
+        var f_render_bitfield_selection_mask = function(bitfield, x, y) {
+            bitfield.state = (Settings.selection.mask & bitfield.value) == bitfield.value;
+            ui_render_bitfield_option_text(bitfield, x, y);
+        };
+        var f_bitfield_selection_mask = function(bitfield) {
+            Settings.selection.mask = Settings.selection.mask ^ bitfield.value;
+            sa_process_selection();
+        };
         element = create_bitfield(col1_x, yy, "Selection Mask:", col_width, element_height, ETypeFlags.ENTITY_ANY, t_general);
         create_bitfield_options_vertical(element, [
-            create_bitfield_option_data(ETypeFlags.ENTITY_TILE, ui_render_bitfield_option_text_selection_mask, uivc_bitfield_selection_mask, "Tile", -1, 0, col_width / 2, s),
-            create_bitfield_option_data(ETypeFlags.ENTITY_MESH, ui_render_bitfield_option_text_selection_mask, uivc_bitfield_selection_mask, "Mesh", -1, 0, col_width / 2, s),
-            create_bitfield_option_data(ETypeFlags.ENTITY_PAWN, ui_render_bitfield_option_text_selection_mask, uivc_bitfield_selection_mask, "Pawn", -1, 0, col_width / 2, s),
-            create_bitfield_option_data(ETypeFlags.ENTITY_EFFECT, ui_render_bitfield_option_text_selection_mask, uivc_bitfield_selection_mask, "Effect", -1, 0, col_width / 2, s),
-            create_bitfield_option_data(ETypeFlags.ENTITY_ANY, ui_render_bitfield_option_text_selection_mask_all, uivc_bitfield_selection_mask_all, "All", -1, 0, col_width / 2, s),
-            create_bitfield_option_data(0, ui_render_bitfield_option_text_selection_mask_none, uivc_bitfield_selection_mask_none, "None", -1, 0, col_width / 2, s)
+            create_bitfield_option_data(ETypeFlags.ENTITY_TILE, f_render_bitfield_selection_mask, f_bitfield_selection_mask, "Tile", -1, 0, col_width / 2, s),
+            create_bitfield_option_data(ETypeFlags.ENTITY_MESH, f_render_bitfield_selection_mask, f_bitfield_selection_mask, "Mesh", -1, 0, col_width / 2, s),
+            create_bitfield_option_data(ETypeFlags.ENTITY_PAWN, f_render_bitfield_selection_mask, f_bitfield_selection_mask, "Pawn", -1, 0, col_width / 2, s),
+            create_bitfield_option_data(ETypeFlags.ENTITY_EFFECT, f_render_bitfield_selection_mask, f_bitfield_selection_mask, "Effect", -1, 0, col_width / 2, s),
+            create_bitfield_option_data(ETypeFlags.ENTITY_ANY, function(bitfield, x, y) {
+                bitfield.state = (Settings.selection.mask == ETypeFlags.ENTITY_ANY);
+                ui_render_bitfield_option_text(bitfield, x, y);
+            }, function(bitfield) {
+                Settings.selection.mask = ETypeFlags.ENTITY_ANY;
+                sa_process_selection();
+            }, "All", -1, 0, col_width / 2, s),
+            create_bitfield_option_data(0, function(bitfield, x, y) {
+                bitfield.state = (Settings.selection.mask == 0);
+                ui_render_bitfield_option_text(bitfield, x, y);
+            }, function(bitfield) {
+                Settings.selection.mask = 0;
+                sa_process_selection();
+            }, "None", -1, 0, col_width / 2, s)
         ]);
         ds_list_add(t_general.contents, element);
         
