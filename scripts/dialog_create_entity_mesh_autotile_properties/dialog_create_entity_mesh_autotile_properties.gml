@@ -24,18 +24,22 @@ function dialog_create_entity_mesh_autotile_properties(root) {
     var yy = 64;
     var yy_base = yy;
     
-    //var el_slope = create_checkbox
-    var el_slope = create_radio_array(col1_x, yy, "Slope Direction", ew, eh, function(radio) {
-        var mesh = radio.root.root.mesh;
-        var start_slope = mesh.slope;
-        mesh.slope = global.at_mask_values[radio.value];
-        if (start_slope != mesh.slope) {
-            selection_update_autotiles();
-        }
-    }, global.at_mask_lookup[? mesh.slope], dg);
-    create_radio_array_options(el_slope, ["None", "Northwest", "North", "Northeast", "West", "East", "Southwest", "South", "East"]);
-    el_slope.tooltip = "I realize this is ambiguous. Pick the direction of the top of the slope (i.e. if the bottom is on the West side and the top is on the East side, pick East). I'll probably change this to have it auto-calculate later because there's literally no reason to ever pick a direction other than the face of the mesh autotile.";
+    var el_slope = create_checkbox(col1_x, yy, "Slope", ew, eh, function(checkbox) {
+        var mesh = checkbox.root.mesh;
+        mesh.terrain_type = checkbox.value ? MeshAutotileLayers.SLOPE : MeshAutotileLayers.BASE;
+        selection_update_autotiles();
+    }, false, dg);
+    el_slope.tooltip = "Is the selected autotile(s) a slope?";
+    
     yy += el_slope.height + spacing;
+    
+    var el_type = create_list(col1_x, yy, "Mesh Autotile type", "<no mesh autotiles types>", ew, eh, 8, function(list) {
+        var mesh = list.root.mesh;
+        var selection = ui_list_selection(list);
+        mesh.autotile_id = list.entries[| selection];
+    }, false, dg, Stuff.all_mesh_autotiles);
+    el_type.allow_deselect = false;
+    el_type.entries_are = ListEntries.INSTANCES;
     
     var b_width = 128;
     var b_height = 32;
@@ -43,7 +47,8 @@ function dialog_create_entity_mesh_autotile_properties(root) {
     
     ds_list_add(dg.contents,
         el_slope,
-        el_confirm
+        el_type,
+        el_confirm,
     );
     
     return dg;
