@@ -282,6 +282,7 @@ function selection_update_autotiles() {
     for (var i = 0; i < ds_list_size(terrain); i++) {
         var thing = terrain[| i];
         var thing_is_mesh = instanceof_classic(thing, EntityMeshAutotile);
+        if (thing_is_mesh && thing.terrain_type == MeshAutotileLayers.SLOPE) continue;
         var original_id = thing_is_mesh ? thing.terrain_id : -1;
         var original_type = thing.terrain_type;
         thing.terrain_id = get_autotile_id(thing);
@@ -298,21 +299,12 @@ function selection_update_autotiles() {
                 thing.terrain_type = MeshAutotileLayers.VERTICAL;
             } else if (below_exists) {
                 // is on top?
-                if (thing.slope) {
-                    thing.terrain_type = MeshAutotileLayers.SLOPE;
-                } else {
-                    thing.terrain_type = MeshAutotileLayers.TOP;
-                }
+                thing.terrain_type = MeshAutotileLayers.TOP;
             } else if (above_exists) {
                 // is on bottom?
                 thing.terrain_type = MeshAutotileLayers.BASE;
             } else {
-                // is standalone?
-                if (thing.slope) {
-                    thing.terrain_type = MeshAutotileLayers.SLOPE;
-                } else {
-                    thing.terrain_type = MeshAutotileLayers.TOP;
-                }
+                thing.terrain_type = MeshAutotileLayers.TOP;
             }
             
             // if the cell below contains another EntityMeshAutotile, it should be set to use
