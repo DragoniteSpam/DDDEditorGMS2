@@ -128,6 +128,8 @@ function dialog_create_manager_mesh_autotile(root) {
             var root = filename_dir(get_open_filename_mesh_d3d()) + "\\";
             var at_layer = autotile.layers[layer_index];
             var failures = 0;
+            var changes = { };
+            changes[$ button.index] = true;
             
             for (var i = 0; i < AUTOTILE_COUNT; i++) {
                 var fn = root + string(i) + ".d3d";
@@ -140,6 +142,8 @@ function dialog_create_manager_mesh_autotile(root) {
                     }
                 }
             }
+            
+            entity_mesh_autotile_check_changes(changes);
             if (failures) {
                 dialog_create_notice(undefined, "Unable to import " + string(failures) + " of the " + string(ds_list_size(files)) + " files.");
             }
@@ -154,6 +158,9 @@ function dialog_create_manager_mesh_autotile(root) {
         if (autotile) {
             var at_layer = autotile.layers[layer_index];
             var failures = 0;
+            var changes = { };
+            changes[$ button.index] = true;
+            
             for (var i = 0; i < ds_list_size(filtered_list); i++) {
                 var fn = filtered_list[| i];
                 var name = filename_change_ext(filename_name(fn), "");
@@ -179,6 +186,8 @@ function dialog_create_manager_mesh_autotile(root) {
                     }
                 }
             }
+            
+            entity_mesh_autotile_check_changes(changes);
             if (failures) {
                 dialog_create_notice(undefined, "Unable to import " + string(failures) + " of the " + string(ds_list_size(files)) + " files.");
             }
@@ -194,17 +203,15 @@ function dialog_create_manager_mesh_autotile(root) {
         var layer_index = ui_list_selection(button.root.el_layers);
         var autotile = Stuff.all_mesh_autotiles[| selection];
         if (autotile) {
-            var changes = ds_map_create();
+            var changes = { };
             
             for (var i = 0; i < AUTOTILE_COUNT; i++) {
                 if (autotile.layers[layer_index].tiles[i].Destroy()) {
-                    changes[? i] = true;
+                    changes[$ i] = true;
                 }
             }
             
             entity_mesh_autotile_check_changes(changes);
-            ds_map_destroy(changes);
-            
             button.root.Colorize();
         }
     }, dg);
@@ -251,7 +258,10 @@ function dialog_create_manager_mesh_autotile(root) {
                             break;
                     }
                     
-                    button.color = tile_data.vbuffer ? c_black : c_red;
+                    var changes = { };
+                    changes[$ button.index] = true;
+                    entity_mesh_autotile_check_changes(changes);
+                    button.root.Colorize();
                 }
             }
         }, dg);
