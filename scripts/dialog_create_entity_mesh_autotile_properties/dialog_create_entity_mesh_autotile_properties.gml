@@ -23,11 +23,12 @@ function dialog_create_entity_mesh_autotile_properties(root) {
     
     var el_slope = create_checkbox(col1_x, yy, "Slope", ew, eh, function(checkbox) {
         for (var i = 0; i < array_length(checkbox.root.list); i++) {
-            checkbox.root.list[i].terrain_type = checkbox.value ? MeshAutotileLayers.SLOPE : MeshAutotileLayers.BASE;
-            list.root.list[i].terrain_id = -1;
+            var entity = checkbox.root.list[i];
+            entity.terrain_type = checkbox.value ? MeshAutotileLayers.SLOPE : MeshAutotileLayers.BASE;
+            entity.terrain_id = -1;
+            editor_map_mark_changed(entity);
         }
         selection_update_autotiles();
-        batch_again();
     }, false, dg);
     el_slope.tooltip = "Is the selected autotile(s) a slope?";
     
@@ -36,11 +37,12 @@ function dialog_create_entity_mesh_autotile_properties(root) {
     var el_type = create_list(col1_x, yy, "Mesh Autotile type", "<no mesh autotiles types>", ew, eh, 8, function(list) {
         var selection = ui_list_selection(list);
         for (var i = 0; i < array_length(list.root.list); i++) {
-            list.root.list[i].autotile_id = list.entries[| selection].GUID;
-            list.root.list[i].terrain_id = -1;
+            var entity = list.root.list[i];
+            entity.autotile_id = list.entries[| selection].GUID;
+            entity.terrain_id = -1;
+            editor_map_mark_changed(entity);
         }
         selection_update_autotiles();
-        batch_again();
     }, false, dg, Stuff.all_mesh_autotiles);
     el_type.allow_deselect = false;
     el_type.entries_are = ListEntries.INSTANCES;
