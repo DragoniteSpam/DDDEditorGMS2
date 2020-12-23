@@ -959,14 +959,32 @@ function ui_init_main(mode) {
         
         yy += ui_get_list_height(element_mesh_list) + spacing;
         
-        element = create_button(col1_x, yy, "Import", col_width, element_height, fa_center, omu_mesh_import, t_p_mesh_editor);
+        element = create_button(col1_x, yy, "Import", col_width, element_height, fa_center, function(button) {
+            var fn = get_open_filename_mesh();
+            if (file_exists(fn)) {
+                switch (filename_ext(fn)) {
+                    case ".obj": import_obj(fn, undefined); break;
+                    case ".d3d": case ".gmmod": import_d3d(fn, undefined); break;
+                    case ".vrax": import_vrax(fn); break;
+                    case ".smf": import_smf(fn); break;
+                    case ".qma": import_qma(fn); break;
+                    case ".dae": import_dae(fn); break;
+                }
+            }
+        }, t_p_mesh_editor);
         element.file_dropper_action = uifd_load_meshes_textureless;
         element.tooltip = "Imports a 3D model. The texture coordinates will automatically be scaled on importing; to override this, press the Control key.";
         ds_list_add(t_p_mesh_editor.contents, element);
         
         yy += element.height + spacing;
         
-        element = create_button(col1_x, yy, "Delete", col_width, element_height, fa_center, omu_mesh_remove, t_p_mesh_editor);
+        element = create_button(col1_x, yy, "Delete", col_width, element_height, fa_center, function(button) {
+            var data = Stuff.all_meshes[| Stuff.map.selection_fill_mesh];
+            if (data) {
+                instance_activate_object(data);
+                instance_destroy(data);
+            }
+        }, t_p_mesh_editor);
         element.color = c_red;
         ds_list_add(t_p_mesh_editor.contents, element);
         
@@ -983,7 +1001,12 @@ function ui_init_main(mode) {
         
         yy += element.height + spacing;
         
-        element = create_input(col2_x, yy, "", col_width, element_height, uivc_input_mesh_name, "", "Name", validate_string, 0, 1, VISIBLE_NAME_LENGTH, 0, vy1, vx2, vy2, t_p_mesh_editor);
+        element = create_input(col2_x, yy, "", col_width, element_height, function(input) {
+            var data = Stuff.all_meshes[| Stuff.map.selection_fill_mesh];
+            if (data) {
+                data.name = input.value;
+            }
+        }, "", "Name", validate_string, 0, 1, VISIBLE_NAME_LENGTH, 0, vy1, vx2, vy2, t_p_mesh_editor);
         ds_list_add(t_p_mesh_editor.contents, element);
         
         t_p_mesh_editor.mesh_name = element;
@@ -995,7 +1018,12 @@ function ui_init_main(mode) {
         
         yy += element.height + spacing;
         
-        element = create_input(col2_x, yy, "", col_width, element_height, uivc_input_mesh_internal_name, "", "A-Za-z0-9_", validate_string_internal_name, 0, 1, INTERNAL_NAME_LENGTH, 0, vy1, vx2, vy2, t_p_mesh_editor);
+        element = create_input(col2_x, yy, "", col_width, element_height, function(input) {
+            var data = Stuff.all_meshes[| Stuff.map.selection_fill_mesh];
+            if (data) {
+                internal_name_set(data, input.value);
+            }
+        }, "", "A-Za-z0-9_", validate_string_internal_name, 0, 1, INTERNAL_NAME_LENGTH, 0, vy1, vx2, vy2, t_p_mesh_editor);
         ds_list_add(t_p_mesh_editor.contents, element);
         
         t_p_mesh_editor.mesh_name_internal = element;
