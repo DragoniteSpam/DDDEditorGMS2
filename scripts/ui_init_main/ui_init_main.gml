@@ -1013,42 +1013,106 @@ function ui_init_main(mode) {
         
         yy += element.height + spacing;
         
-        element = create_input(bounds_x, yy, "xmin:", col_width / 2, element_height, uivc_mesh_set_xmin, 0, "integer", validate_int, -128, 127, 4, 64, vy1, col_width / 2, vy2, t_p_mesh_editor);
+        element = create_input(bounds_x, yy, "xmin:", col_width / 2, element_height, function(input) {
+            var data = Stuff.all_meshes[| Stuff.map.selection_fill_mesh];
+            if (data) {
+                var old_value = data.xmin;
+                data.xmin = real(input.value);
+                if (old_value != data.xmin) {
+                    data_mesh_recalculate_bounds(data);
+                }
+            }
+        }, 0, "integer", validate_int, -128, 127, 4, 64, vy1, col_width / 2, vy2, t_p_mesh_editor);
         ds_list_add(t_p_mesh_editor.contents, element);
         t_p_mesh_editor.xmin = element;
         
-        element = create_input(bounds_x_2, yy, "xmax:", col_width / 2, element_height, uivc_mesh_set_xmax, 0, "integer", validate_int, -128, 127, 4, 64, vy1, col_width / 2, vy2, t_p_mesh_editor);
+        element = create_input(bounds_x_2, yy, "xmax:", col_width / 2, element_height, function(input) {
+            var data = Stuff.all_meshes[| Stuff.map.selection_fill_mesh];
+            if (data) {
+                var old_value = data.xmax;
+                data.xmax = real(input.value);
+                if (old_value != data.xmax) {
+                    data_mesh_recalculate_bounds(data);
+                }
+            }
+        }, 0, "integer", validate_int, -128, 127, 4, 64, vy1, col_width / 2, vy2, t_p_mesh_editor);
         ds_list_add(t_p_mesh_editor.contents, element);
         t_p_mesh_editor.xmax = element;
         
         yy += element.height + spacing;
         
-        element = create_input(bounds_x, yy, "ymin:", col_width / 2, element_height, uivc_mesh_set_ymin, 0, "integer", validate_int, -128, 127, 4, 64, vy1, col_width / 2, vy2, t_p_mesh_editor);
+        element = create_input(bounds_x, yy, "ymin:", col_width / 2, element_height, function(input) {
+            var data = Stuff.all_meshes[| Stuff.map.selection_fill_mesh];
+            if (data) {
+                var old_value = data.ymin;
+                data.ymin = real(input.value);
+                if (old_value != data.ymin) {
+                    data_mesh_recalculate_bounds(data);
+                }
+            }
+        }, 0, "integer", validate_int, -128, 127, 4, 64, vy1, col_width / 2, vy2, t_p_mesh_editor);
         ds_list_add(t_p_mesh_editor.contents, element);
         t_p_mesh_editor.ymin = element;
         
-        element = create_input(bounds_x_2, yy, "ymax:", col_width / 2, element_height, uivc_mesh_set_ymax, 0, "integer", validate_int, -128, 127, 4, 64, vy1, col_width / 2, vy2, t_p_mesh_editor);
+        element = create_input(bounds_x_2, yy, "ymax:", col_width / 2, element_height, function(input) {
+            var data = Stuff.all_meshes[| Stuff.map.selection_fill_mesh];
+            if (data) {
+                var old_value = data.ymax;
+                data.ymax = real(input.value);
+                if (old_value != data.ymax) {
+                    data_mesh_recalculate_bounds(data);
+                }
+            }
+        }, 0, "integer", validate_int, -128, 127, 4, 64, vy1, col_width / 2, vy2, t_p_mesh_editor);
         ds_list_add(t_p_mesh_editor.contents, element);
         t_p_mesh_editor.ymax = element;
         
         yy += element.height + spacing;
         
-        element = create_input(bounds_x, yy, "zmin:", col_width / 2, element_height, uivc_mesh_set_zmin, 0, "integer", validate_int, -128, 127, 4, 64, vy1, col_width / 2, vy2, t_p_mesh_editor);
+        element = create_input(bounds_x, yy, "zmin:", col_width / 2, element_height, function(input) {
+            var data = Stuff.all_meshes[| Stuff.map.selection_fill_mesh];
+            if (data) {
+                var old_value = data.zmin;
+                data.zmin = real(input.value);
+                if (old_value != data.zmin) {
+                    data_mesh_recalculate_bounds(data);
+                }
+            }
+        }, 0, "integer", validate_int, -128, 127, 4, 64, vy1, col_width / 2, vy2, t_p_mesh_editor);
         ds_list_add(t_p_mesh_editor.contents, element);
         t_p_mesh_editor.zmin = element;
         
-        element = create_input(bounds_x_2, yy, "zmax:", col_width / 2, element_height, uivc_mesh_set_zmax, 0, "integer", validate_int, -128, 127, 4, 64, vy1, col_width / 2, vy2, t_p_mesh_editor);
+        element = create_input(bounds_x_2, yy, "zmax:", col_width / 2, element_height, function(input) {
+            var data = Stuff.all_meshes[| Stuff.map.selection_fill_mesh];
+            if (data) {
+                var old_value = data.zmax;
+                data.zmax = real(input.value);
+                if (old_value != data.zmax) {
+                    data_mesh_recalculate_bounds(data);
+                }
+            }
+        }, 0, "integer", validate_int, -128, 127, 4, 64, vy1, col_width / 2, vy2, t_p_mesh_editor);
         ds_list_add(t_p_mesh_editor.contents, element);
         t_p_mesh_editor.zmax = element;
         
         yy += element.height + spacing;
         
-        element = create_button(col2_x, yy, "Flag Data", col_width, element_height, fa_center, omu_mesh_collision_data, t_p_tile_editor);
+        element = create_button(col2_x, yy, "Flag Data", col_width, element_height, fa_center, function(button) {
+            var data = Stuff.all_meshes[| Stuff.map.selection_fill_mesh];
+            if (data) {
+                dialog_create_mesh_collision_data(noone, data);
+            }
+        }, t_p_tile_editor);
         ds_list_add(t_p_mesh_editor.contents, element);
         
         yy += element.height + spacing;
         
-        element = create_button(col2_x, yy, "Advanced", col_width, element_height, fa_center, omu_mesh_advanced, t_p_mesh_editor);
+        element = create_button(col2_x, yy, "Advanced", col_width, element_height, fa_center, function(button) {
+            var data = Stuff.all_meshes[| Stuff.map.selection_fill_mesh];
+            if (data) {
+                dialog_create_mesh_advanced(noone, data);
+            }
+        }, t_p_mesh_editor);
         ds_list_add(t_p_mesh_editor.contents, element);
         
         yy += element.height + spacing;
@@ -1059,12 +1123,28 @@ function ui_init_main(mode) {
         
         yy += element.height + spacing;
         
-        element = create_button(col2_x, yy, "Export Selected", col_width, element_height, fa_center, omu_mesh_export_selected, t_p_mesh_editor);
+        element = create_button(col2_x, yy, "Export Selected", col_width, element_height, fa_center, function(button) {
+            var data = Stuff.all_meshes[| Stuff.map.selection_fill_mesh];
+            if (data) {
+                var fn = get_save_filename_mesh();
+                if (string_length(fn) > 0) {
+                    switch (filename_ext(fn)) {
+                        case ".obj": export_obj(fn, data); break;
+                        case ".d3d": case ".gmmod": export_d3d(fn, data); break;
+                    }
+                }
+            }
+        }, t_p_mesh_editor);
         ds_list_add(t_p_mesh_editor.contents, element);
         
         yy += element.height + spacing;
         
-        element = create_button(col2_x, yy, "Export All", col_width, element_height, fa_center, omu_mesh_export_archive, t_p_mesh_editor);
+        element = create_button(col2_x, yy, "Export All", col_width, element_height, fa_center, function(button) {
+            var fn = get_save_filename_mesh_qma("");
+            if (string_length(fn) > 0) {
+                export_qma(fn);
+            }
+        }, t_p_mesh_editor);
         ds_list_add(t_p_mesh_editor.contents, element);
         
         yy += element.height + spacing;
