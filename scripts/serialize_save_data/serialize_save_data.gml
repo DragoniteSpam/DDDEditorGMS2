@@ -113,6 +113,7 @@ function serialize_save_data() {
         NUKE_AUTOTILES_FROM_TILESETS        = 119,
         MAP_REMOVE_MESH_AUTOTILES           = 120, /* 20 dec 2020 */
         REMOVE_DATA_FILE_DATATYPE           = 121, /* 21 dec 2020 */
+        MESH_AUTOTILE_IMPLEMENTATION        = 122, /* 23 dec 2020 */
         _CURRENT /* = whatever the last one is + 1 */
     }
 }

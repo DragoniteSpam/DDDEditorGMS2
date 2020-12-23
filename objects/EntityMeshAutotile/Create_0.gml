@@ -1,7 +1,19 @@
 event_inherited();
 
-save_script = serialize_save_entity_mesh_autotile;
-load_script = serialize_load_entity_mesh_autotile;
+save_script = function(buffer, entity) {
+    serialize_save_entity_mesh(buffer, entity);
+    buffer_write(buffer, buffer_u8, entity.terrain_id);
+    buffer_write(buffer, buffer_u8, entity.terrain_type);
+    buffer_write(buffer, buffer_datatype, entity.autotile_id);
+};
+load_script = function(buffer, entity, version) {
+    serialize_load_entity_mesh(buffer, entity, version);
+    entity.terrain_id = buffer_read(buffer, buffer_u8);
+    entity.terrain_type = buffer_read(buffer, buffer_u8);
+    if (version >= DataVersions.MESH_AUTOTILE_IMPLEMENTATION) {
+        entity.autotile_id = buffer_read(buffer, buffer_datatype);
+    }
+};
 
 name = "Terrain";
 etype = ETypes.ENTITY_MESH_AUTO;
