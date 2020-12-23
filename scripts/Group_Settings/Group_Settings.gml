@@ -89,6 +89,7 @@ if (Settings.selection[$ "addition"] == undefined)          Settings.selection.a
 if (Settings.selection[$ "fill_type"] == undefined)         Settings.selection.fill_type = FillTypes.TILE;
 if (Settings.selection[$ "zone_type"] == undefined)         Settings.selection.zone_type = MapZoneTypes.CAMERA;
 if (Settings.selection[$ "mask"] == undefined)              Settings.selection.mask = ETypeFlags.ENTITY_ANY;
+Settings.selection.mesh_autotile_type = NULL;               // this will technically be saved, but ignored on load
 
 if (Settings.view[$ "wireframe"] == undefined)              Settings.view.wireframe = false;
 if (Settings.view[$ "grid"] == undefined)                   Settings.view.grid = true;

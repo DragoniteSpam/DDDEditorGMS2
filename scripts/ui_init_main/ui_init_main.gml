@@ -1002,7 +1002,7 @@ function ui_init_main(mode) {
             if (list.entries[| index].flags & MeshFlags.PARTICLE) {
                 prefix = "(p)" + prefix;
             }
-            return prefix + mesh.name;
+            return prefix + list.entries[| index].name;
         });
         ds_list_add(t_p_mesh_editor.contents, element_mesh_list);
         
@@ -1261,6 +1261,15 @@ function ui_init_main(mode) {
         create_list_entries(element, ["Camera Zone"], ["Light Zone"], ["Flag Zone"]);
         ds_list_add(t_p_other_editor.contents, element);
         t_p_other_editor.el_zone_type = element;
+        
+        yy += ui_get_list_height(element) + spacing;
+        
+        element = create_list(col1_x, yy, "Mesh Autotile type", "<no mesh autotiles types>", col_width, element_height, 8, function(list) {
+            Settings.selection.mesh_autotile_type = ui_list_selection(list);
+        }, false, t_p_other_editor, Stuff.all_mesh_autotiles);
+        element.entries_are = ListEntries.INSTANCES;
+        ds_list_add(t_p_other_editor.contents, element);
+        t_p_other_editor.el_mesh_autotile_type = element;
         
         yy += ui_get_list_height(element) + spacing;
         
