@@ -30,34 +30,51 @@ function import_obj() {
     
     var base_mtl = undefined;
     var active_mtl = -1;
-    var mtl_alpha = ds_map_create();
-    var mtl_color_r = ds_map_create();
-    var mtl_color_g = ds_map_create();
-    var mtl_color_b = ds_map_create();
-    var mtl_map_diffuse = ds_map_create();
-    var mtl_map_ambient = ds_map_create();
-    var mtl_map_specular_color = ds_map_create();
-    var mtl_map_specular_highlight = ds_map_create();
-    var mtl_map_alpha = ds_map_create();
-    var mtl_map_bump = ds_map_create();
-    var mtl_map_displace = ds_map_create();
-    var mtl_map_decal = ds_map_create();
-    ds_map_set(mtl_alpha, active_mtl, 1);
-    ds_map_set(mtl_color_r, active_mtl, 255);
-    ds_map_set(mtl_color_g, active_mtl, 255);
-    ds_map_set(mtl_color_b, active_mtl, 255);
+    var mtl_alpha = { };
+    var mtl_color_r = { };
+    var mtl_color_g = { };
+    var mtl_color_b = { };
+    var mtl_map_diffuse = { };
+    var mtl_map_ambient = { };
+    var mtl_map_specular_color = { };
+    var mtl_map_specular_highlight = { };
+    var mtl_map_alpha = { };
+    var mtl_map_bump = { };
+    var mtl_map_displace = { };
+    var mtl_map_decal = { };
+    mtl_alpha[$ active_mtl] = 1;
+    mtl_color_r[$ active_mtl] = 255;
+    mtl_color_g[$ active_mtl] = 255;
+    mtl_color_b[$ active_mtl] = 255;
+    
+    var tex_base = undefined;
+    var tex_ambient = undefined;
+    var tex_specular_color = undefined;
+    var tex_specular_highlight = undefined;
+    var tex_alpha = undefined;
+    var tex_bump = undefined;
+    var tex_displace = undefined;
+    var tex_decal = undefined;
     
     var f = file_text_open_read(fn);
     var line_number = 0;
     
-    var v_x = ds_list_create();
-    var v_y = ds_list_create();
-    var v_z = ds_list_create();
-    var v_nx = ds_list_create();
-    var v_ny = ds_list_create();
-    var v_nz = ds_list_create();
-    var v_xtex = ds_list_create();
-    var v_ytex = ds_list_create();
+    static v_x = ds_list_create();
+    static v_y = ds_list_create();
+    static v_z = ds_list_create();
+    static v_nx = ds_list_create();
+    static v_ny = ds_list_create();
+    static v_nz = ds_list_create();
+    static v_xtex = ds_list_create();
+    static v_ytex = ds_list_create();
+    ds_list_clear(v_x);
+    ds_list_clear(v_y);
+    ds_list_clear(v_z);
+    ds_list_clear(v_nx);
+    ds_list_clear(v_ny);
+    ds_list_clear(v_nz);
+    ds_list_clear(v_xtex);
+    ds_list_clear(v_ytex);
     
     var xx = [0, 0, 0];
     var yy = [0, 0, 0];
@@ -72,7 +89,8 @@ function import_obj() {
     var xtex = [0, 0, 0];
     var ytex = [0, 0, 0];
     
-    var temp_vertices = ds_list_create();
+    static temp_vertices = ds_list_create();
+    ds_list_clear(temp_vertices);
     var first_line_read = false;
     var is_blender = false;
     
@@ -155,10 +173,10 @@ function import_obj() {
                                     nz[i] = 1;
                                     xtex[i] = 0;
                                     ytex[i] = 0;
-                                    r[i] = ds_map_exists(mtl_color_r, active_mtl) ? mtl_color_r[? active_mtl] : 255;
-                                    g[i] = ds_map_exists(mtl_color_g, active_mtl) ? mtl_color_g[? active_mtl] : 255;
-                                    b[i] = ds_map_exists(mtl_color_b, active_mtl) ? mtl_color_b[? active_mtl] : 255;
-                                    a[i] = ds_map_exists(mtl_alpha, active_mtl) ? mtl_alpha[? active_mtl] : 1;
+                                    r[i] = (mtl_color_r[$ active_mtl] != undefined) ? mtl_color_r[$ active_mtl] : 255;
+                                    g[i] = (mtl_color_g[$ active_mtl] != undefined) ? mtl_color_g[$ active_mtl] : 255;
+                                    b[i] = (mtl_color_b[$ active_mtl] != undefined) ? mtl_color_b[$ active_mtl] : 255;
+                                    a[i] = (mtl_alpha[$ active_mtl] != undefined) ? mtl_alpha[$ active_mtl] : 1;
                                     break;
                                 case 2:
                                     var vert = real(ds_queue_dequeue(vertex_q)) - 1;
@@ -171,10 +189,10 @@ function import_obj() {
                                     nx[i] = 0;
                                     ny[i] = 0;
                                     nz[i] = 1;
-                                    r[i] = ds_map_exists(mtl_color_r, active_mtl) ? mtl_color_r[? active_mtl] : 255;
-                                    g[i] = ds_map_exists(mtl_color_g, active_mtl) ? mtl_color_g[? active_mtl] : 255;
-                                    b[i] = ds_map_exists(mtl_color_b, active_mtl) ? mtl_color_b[? active_mtl] : 255;
-                                    a[i] = ds_map_exists(mtl_alpha, active_mtl) ? mtl_alpha[? active_mtl] : 1;
+                                    r[i] = (mtl_color_r[$ active_mtl] != undefined) ? mtl_color_r[$ active_mtl] : 255;
+                                    g[i] = (mtl_color_g[$ active_mtl] != undefined) ? mtl_color_g[$ active_mtl] : 255;
+                                    b[i] = (mtl_color_b[$ active_mtl] != undefined) ? mtl_color_b[$ active_mtl] : 255;
+                                    a[i] = (mtl_alpha[$ active_mtl] != undefined) ? mtl_alpha[$ active_mtl] : 1;
                                     break;
                                 case 3:
                                     var vert = real(ds_queue_dequeue(vertex_q)) - 1;
@@ -196,10 +214,10 @@ function import_obj() {
                                         xtex[i] = v_xtex[| tex];
                                         ytex[i] = v_ytex[| tex];
                                     }
-                                    r[i] = ds_map_exists(mtl_color_r, active_mtl) ? mtl_color_r[? active_mtl] : 255;
-                                    g[i] = ds_map_exists(mtl_color_g, active_mtl) ? mtl_color_g[? active_mtl] : 255;
-                                    b[i] = ds_map_exists(mtl_color_b, active_mtl) ? mtl_color_b[? active_mtl] : 255;
-                                    a[i] = ds_map_exists(mtl_alpha, active_mtl) ? mtl_alpha[? active_mtl] : 1;
+                                    r[i] = (mtl_color_r[$ active_mtl] != undefined) ? mtl_color_r[$ active_mtl] : 255;
+                                    g[i] = (mtl_color_g[$ active_mtl] != undefined) ? mtl_color_g[$ active_mtl] : 255;
+                                    b[i] = (mtl_color_b[$ active_mtl] != undefined) ? mtl_color_b[$ active_mtl] : 255;
+                                    a[i] = (mtl_alpha[$ active_mtl] != undefined) ? mtl_alpha[$ active_mtl] : 1;
                                     break;
                             }
                         }
@@ -236,15 +254,15 @@ function import_obj() {
                                     mtl_name = ds_queue_dequeue(spl);
                                     break;
                                 case "Kd":  // Diffuse color (the color we're concerned with)
-                                    mtl_color_r[? mtl_name] = real(ds_queue_dequeue(spl)) * 255;
-                                    mtl_color_g[? mtl_name] = real(ds_queue_dequeue(spl)) * 255;
-                                    mtl_color_b[? mtl_name] = real(ds_queue_dequeue(spl)) * 255;
+                                    mtl_color_r[$ mtl_name] = real(ds_queue_dequeue(spl)) * 255;
+                                    mtl_color_g[$ mtl_name] = real(ds_queue_dequeue(spl)) * 255;
+                                    mtl_color_b[$ mtl_name] = real(ds_queue_dequeue(spl)) * 255;
                                     break;
                                 case "d":   // "dissolved" (alpha)
-                                    mtl_alpha[? mtl_name] = real(ds_queue_dequeue(spl));
+                                    mtl_alpha[$ mtl_name] = real(ds_queue_dequeue(spl));
                                     break;
                                 case "Tr":  // "transparent" (1 - alpha)
-                                    mtl_alpha[? mtl_name] = 1 - real(ds_queue_dequeue(spl));
+                                    mtl_alpha[$ mtl_name] = 1 - real(ds_queue_dequeue(spl));
                                     break;
                                 case "map_Kd":                  // dissolve (base) texture
                                     var texfn = "";
@@ -252,8 +270,9 @@ function import_obj() {
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
                                     var ts = tileset_create(texfn, undefined);
                                     ts.name = base_name + ".BaseTexture";
-                                    if (ds_map_size(mtl_map_diffuse) == 1) warnings |= warn_map_1;
-                                    else mtl_map_diffuse[? mtl_name] = ts;
+                                    if (tex_base) warnings |= warn_map_1;
+                                    else mtl_map_diffuse[$ mtl_name] = ts;
+                                    tex_base = (tex_base) ? tex_base : ts;
                                     break;
                                 case "map_Ka":                  // ambient texture
                                     var texfn = "";
@@ -261,8 +280,9 @@ function import_obj() {
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
                                     var ts = tileset_create(texfn, undefined);
                                     ts.name = base_name + ".AmbientMap";
-                                    if (ds_map_size(mtl_map_ambient) == 1) warnings |= warn_map_2;
-                                    else mtl_map_ambient[? mtl_name] = ts;
+                                    if (tex_ambient) warnings |= warn_map_2;
+                                    else mtl_map_ambient[$ mtl_name] = ts;
+                                    tex_ambient = (tex_ambient) ? tex_ambient : ts;
                                     break;
                                 case "map_Ks":                  // specular color texture
                                     var texfn = "";
@@ -270,8 +290,9 @@ function import_obj() {
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
                                     var ts = tileset_create(texfn, undefined);
                                     ts.name = base_name + ".SpecularColorMap";
-                                    if (ds_map_size(mtl_map_specular_color) == 1) warnings |= warn_map_3;
-                                    else mtl_map_specular_color[? mtl_name] = ts;
+                                    if (tex_specular_color) warnings |= warn_map_3;
+                                    else mtl_map_specular_color[$ mtl_name] = ts;
+                                    tex_specular_color = (tex_specular_color) ? tex_specular_color : ts;
                                     break;
                                 case "map_Ns":                  // specular highlight texture
                                     var texfn = "";
@@ -279,8 +300,9 @@ function import_obj() {
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
                                     var ts = tileset_create(texfn, undefined);
                                     ts.name = base_name + ".SpecularHighlightMap";
-                                    if (ds_map_size(mtl_map_specular_highlight) == 1) warnings |= warn_map_4;
-                                    else mtl_map_specular_highlight[? mtl_name] = ts;
+                                    if (tex_specular_highlight) warnings |= warn_map_4;
+                                    else mtl_map_specular_highlight[$ mtl_name] = ts;
+                                    tex_specular_highlight = (tex_specular_highlight) ? tex_specular_highlight : ts;
                                     break;
                                 case "map_d":                   // alpha texture
                                     var texfn = "";
@@ -288,8 +310,9 @@ function import_obj() {
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
                                     var ts = tileset_create(texfn, undefined);
                                     ts.name = base_name + ".AlphaMap";
-                                    if (ds_map_size(mtl_map_alpha) == 1) warnings |= warn_map_5;
-                                    else mtl_map_alpha[? mtl_name] = ts;
+                                    if (tex_alpha) warnings |= warn_map_5;
+                                    else mtl_map_alpha[$ mtl_name] = ts;
+                                    tex_alpha = (tex_alpha) ? tex_alpha : ts;
                                     break;
                                 case "map_bump":                // bump texture
                                     var texfn = "";
@@ -297,8 +320,9 @@ function import_obj() {
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
                                     var ts = tileset_create(texfn, undefined);
                                     ts.name = base_name + ".BumpMap";
-                                    if (ds_map_size(mtl_map_bump) == 1) warnings |= warn_map_6;
-                                    else mtl_map_bump[? mtl_name] = ts;
+                                    if (tex_bump) warnings |= warn_map_6;
+                                    else mtl_map_bump[$ mtl_name] = ts;
+                                    tex_bump = (tex_bump) ? tex_bump : ts;
                                     break;
                                 case "bump":
                                     warnings |= warn_alt_bump;
@@ -309,8 +333,9 @@ function import_obj() {
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
                                     var ts = tileset_create(texfn, undefined);
                                     ts.name = base_name + ".DisplacementMap";
-                                    if (ds_map_size(mtl_map_displace) == 1) warnings |= warn_map_7;
-                                    else mtl_map_displace[? mtl_name] = ts;
+                                    if (tex_displace) warnings |= warn_map_7;
+                                    else mtl_map_displace[$ mtl_name] = ts;
+                                    tex_displace = (tex_displace) ? tex_displace : ts;
                                     break;
                                 case "decal":                   // stencil decal texture
                                     var texfn = "";
@@ -318,8 +343,9 @@ function import_obj() {
                                     if (!file_exists(texfn)) texfn = base_path + texfn;
                                     var ts = tileset_create(texfn, undefined);
                                     ts.name = base_name + ".StencilDecal";
-                                    if (ds_map_size(mtl_map_decal) == 1) warnings |= warn_map_8;
-                                    else mtl_map_decal[? mtl_name] = ts;
+                                    if (tex_decal) warnings |= warn_map_8;
+                                    else mtl_map_decal[$ mtl_name] = ts;
+                                    tex_decal = (tex_decal) ? tex_decal : ts;
                                     break;
                                 default:    // There are way more attributes available than I'm going to use later - maybe
                                     break;
@@ -346,37 +372,6 @@ function import_obj() {
     file_text_close(f);
     #endregion
     
-    ds_list_destroy(v_x);
-    ds_list_destroy(v_y);
-    ds_list_destroy(v_z);
-    ds_list_destroy(v_nx);
-    ds_list_destroy(v_ny);
-    ds_list_destroy(v_nz);
-    ds_list_destroy(v_xtex);
-    ds_list_destroy(v_ytex);
-    
-    var tex_base = mtl_map_diffuse[? ds_map_find_first(mtl_map_diffuse)];
-    var tex_ambient = mtl_map_ambient[?ds_map_find_first(mtl_map_ambient)];
-    var tex_specular_color = mtl_map_specular_color[?ds_map_find_first(mtl_map_specular_color)];
-    var tex_specular_highlight = mtl_map_specular_highlight[?ds_map_find_first(mtl_map_specular_highlight)];
-    var tex_alpha = mtl_map_alpha[?ds_map_find_first(mtl_map_alpha)];
-    var tex_bump = mtl_map_bump[?ds_map_find_first(mtl_map_bump)];
-    var tex_displace = mtl_map_displace[?ds_map_find_first(mtl_map_displace)];
-    var tex_decal = mtl_map_decal[?ds_map_find_first(mtl_map_decal)];
-    
-    ds_map_destroy(mtl_alpha);
-    ds_map_destroy(mtl_color_r);
-    ds_map_destroy(mtl_color_g);
-    ds_map_destroy(mtl_color_b);
-    ds_map_destroy(mtl_map_diffuse);
-    ds_map_destroy(mtl_map_ambient);
-    ds_map_destroy(mtl_map_specular_color);
-    ds_map_destroy(mtl_map_specular_highlight);
-    ds_map_destroy(mtl_map_alpha);
-    ds_map_destroy(mtl_map_bump);
-    ds_map_destroy(mtl_map_displace);
-    ds_map_destroy(mtl_map_decal);
-    
     if (warnings) {
         var warn_header = "Warnings generated regarding the imported mesh:\n";
         var warn_header_plural = "Warnings generated regarding the a number of the imported meshes:\n";
@@ -400,14 +395,13 @@ function import_obj() {
     
     if (err != "") {
         dialog_create_notice(noone, "Could not load the model: " + err);
-        ds_list_destroy(temp_vertices);
         return noone;
     }
     
     var n = ds_list_size(temp_vertices);
     
-    var vbuffers = ds_map_create();
-    var wbuffers = ds_map_create();
+    var vbuffers = { };
+    var wbuffers = { };
     var cshape = c_shape_create();
     
     var vc = 0;
@@ -459,18 +453,18 @@ function import_obj() {
         maxy = max(maxy, v[1]);
         maxz = max(maxz, v[2]);
         
-        if (!ds_map_exists(vbuffers, bmtl)) {
-            vbuffers[? bmtl] = vertex_create_buffer();
-            wbuffers[? bmtl] = vertex_create_buffer();
-            vertex_begin(vbuffers[? bmtl], Stuff.graphics.vertex_format);
+        if (!vbuffers[$ bmtl]) {
+            vbuffers[$ bmtl] = vertex_create_buffer();
+            wbuffers[$ bmtl] = vertex_create_buffer();
+            vertex_begin(vbuffers[$ bmtl], Stuff.graphics.vertex_format);
             if (everything) {
-                vertex_begin(wbuffers[? bmtl], Stuff.graphics.vertex_format);
+                vertex_begin(wbuffers[$ bmtl], Stuff.graphics.vertex_format);
                 c_shape_begin_trimesh();
             }
         }
         
-        var vb = vbuffers[? bmtl];
-        var wb = wbuffers[? bmtl];
+        var vb = vbuffers[$ bmtl];
+        var wb = wbuffers[$ bmtl];
         
         vertex_point_complete(vb, bxx[vc], byy[vc], bzz[vc], bnx, bny, bnz, bxtex, bytex, bcolor, balpha);
         
@@ -492,24 +486,26 @@ function import_obj() {
     
     ds_list_destroy(temp_vertices);
     
-    var vb_base = vbuffers[? base_mtl];
-    var wb_base = wbuffers[? base_mtl];
+    var vb_base = vbuffers[$ base_mtl];
+    var wb_base = wbuffers[$ base_mtl];
     
     vertex_end(vb_base);
     vertex_end(wb_base);
     
-    ds_map_delete(vbuffers, base_mtl);
-    ds_map_delete(wbuffers, base_mtl);
+    variable_struct_remove(vbuffers, base_mtl);
+    variable_struct_remove(wbuffers, base_mtl);
+    var vbuffer_materials = variable_struct_get_names(vbuffers);
     
-    for (var key = ds_map_find_first(vbuffers); key != undefined; key = ds_map_find_next(vbuffers, key)) {
-        if (vertex_get_number(vbuffers[? key]) == 0) {
-            vertex_delete_buffer(vbuffers[? key]);
-            vertex_delete_buffer(wbuffers[? key]);
-            vbuffers[? key] = undefined;
-            wbuffers[? key] = undefined;
+    for (var i = 0; i < array_length(vbuffer_materials); i++) {
+        var mat = vbuffer_materials[i];
+        if (vertex_get_number(vbuffers[$ mat]) == 0) {
+            vertex_delete_buffer(vbuffers[$ key]);
+            vertex_delete_buffer(wbuffers[$ key]);
+            variable_struct_remove(vbuffers, key);
+            variable_struct_remove(wbuffers, key);
         } else {
-            vertex_end(vbuffers[? key]);
-            vertex_end(wbuffers[? key]);
+            vertex_end(vbuffers[$ key]);
+            vertex_end(wbuffers[$ key]);
         }
     }
     
@@ -541,11 +537,13 @@ function import_obj() {
         }
         
         //This is untested and will probably break in a lot of places
-        
-        for (var key = ds_map_find_first(vbuffers); key != undefined; key = ds_map_find_next(vbuffers, key)) {
-            mesh_create_submesh(mesh, buffer_create_from_vertex_buffer(vbuffers[? key], buffer_fixed, 1), vbuffers[? key], wbuffers[? key], undefined, base_name + "." + key, -1, fn);
+        var vbuffer_materials = variable_struct_get_names(vbuffers);
+        for (var i = 0; i < array_length(vbuffer_materials); i++) {
+            var mat = vbuffer_materials[i];
+            mesh_create_submesh(mesh, buffer_create_from_vertex_buffer(vbuffers[$ mat], buffer_fixed, 1), vbuffers[$ mat], wbuffers[$ mat], undefined, base_name + "." + key, -1, fn);
         }
         
+        // assign these based on the material lookup eventually
         mesh.tex_base = tex_base ? tex_base.GUID : NULL;
         mesh.tex_ambient = tex_ambient ? tex_ambient.GUID : NULL;
         mesh.tex_specular_color = tex_specular_color ? tex_specular_color.GUID : NULL;
@@ -555,21 +553,10 @@ function import_obj() {
         mesh.tex_displacement = tex_displace ? tex_displace.GUID : NULL;
         mesh.tex_stencil = tex_decal ? tex_decal.GUID : NULL;
         
-        ds_map_destroy(vbuffers);
-        ds_map_destroy(wbuffers);
-        
         return mesh;
     }
     
-    for (var key = ds_map_find_first(wbuffers); key != undefined; key = ds_map_find_next(wbuffers, key)) {
-        if (vbuffers[? key]) vertex_delete_buffer(vbuffers[? key]);
-        vertex_delete_buffer(wbuffers[? key]);
-    }
-    
     c_shape_destroy(cshape);
-    
-    ds_map_destroy(vbuffers);
-    ds_map_destroy(wbuffers);
     
     if (vertex_get_number(vb_base) > 0) {
         vertex_freeze(vb_base);
