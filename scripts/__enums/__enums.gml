@@ -154,20 +154,6 @@ enum ATMask {
     SOUTHEAST   = 0x0080,
 }
 
-// there are other ways i'd prefer to do this but i also would kinda like to not make
-// a second cardinal directions enum
-global.at_mask_values = [ATMask.NONE, ATMask.NORTHWEST, ATMask.NORTH, ATMask.NORTHEAST, ATMask.WEST, ATMask.EAST, ATMask.SOUTHWEST, ATMask.SOUTH, ATMask.SOUTHEAST];
-global.at_mask_lookup = ds_map_create();
-global.at_mask_lookup[? ATMask.NONE] = 0;
-global.at_mask_lookup[? ATMask.NORTHWEST] = 1;
-global.at_mask_lookup[? ATMask.NORTH] = 2;
-global.at_mask_lookup[? ATMask.NORTHEAST] = 3;
-global.at_mask_lookup[? ATMask.WEST] = 4;
-global.at_mask_lookup[? ATMask.EAST] = 5;
-global.at_mask_lookup[? ATMask.SOUTHWEST] = 6;
-global.at_mask_lookup[? ATMask.SOUTH] = 7;
-global.at_mask_lookup[? ATMask.SOUTHEAST] = 8;
-
 global.at_map = ds_map_create();
 global.at_map[? 2] = 1;
 global.at_map[? 8] = 2;
