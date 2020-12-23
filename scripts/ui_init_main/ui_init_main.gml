@@ -1265,7 +1265,12 @@ function ui_init_main(mode) {
         yy += ui_get_list_height(element) + spacing;
         
         element = create_list(col1_x, yy, "Mesh Autotile type", "<no mesh autotiles types>", col_width, element_height, 8, function(list) {
-            Settings.selection.mesh_autotile_type = ui_list_selection(list);
+            var selection = ui_list_selection(list);
+            if (selection + 1) {
+                Settings.selection.mesh_autotile_type = list.entries[| selection].GUID;
+            } else {
+                Settings.selection.mesh_autotile_type = NULL;
+            }
         }, false, t_p_other_editor, Stuff.all_mesh_autotiles);
         element.entries_are = ListEntries.INSTANCES;
         ds_list_add(t_p_other_editor.contents, element);

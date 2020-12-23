@@ -9,7 +9,7 @@ etype_flags = ETypeFlags.ENTITY_MESH_AUTO;
 
 terrain_id = 0;
 terrain_type = MeshAutotileLayers.TOP;
-autotile_id = NULL;
+autotile_id = Settings.selection.mesh_autotile_type;
 
 // editor properties
 slot = MapCellContents.MESH;
