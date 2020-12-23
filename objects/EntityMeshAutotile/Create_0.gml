@@ -7,9 +7,9 @@ name = "Terrain";
 etype = ETypes.ENTITY_MESH_AUTO;
 etype_flags = ETypeFlags.ENTITY_MESH_AUTO;
 
-terrain_id = 0;
-terrain_type = MeshAutotileLayers.TOP;
-autotile_id = Settings.selection.mesh_autotile_type;
+terrain_id = 0;                                             // mask
+terrain_type = MeshAutotileLayers.TOP;                      // layer
+autotile_id = Settings.selection.mesh_autotile_type;        // autotile asset
 
 // editor properties
 slot = MapCellContents.MESH;
