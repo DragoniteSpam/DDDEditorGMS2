@@ -484,8 +484,6 @@ function import_obj() {
         }
     }
     
-    ds_list_destroy(temp_vertices);
-    
     var vb_base = vbuffers[$ base_mtl];
     var wb_base = wbuffers[$ base_mtl];
     
