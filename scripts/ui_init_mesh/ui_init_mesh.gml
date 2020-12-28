@@ -29,13 +29,14 @@ function ui_init_mesh(mode) {
         var this_column = 0;
         var xx = this_column * cw + spacing;
         
-        var create_vertex_format_editor = function(root, format_index) {
+        var create_vertex_format_editor = function(element) {
             var mode = Stuff.mesh_ed;
+            var format_index = ui_list_selection(element.root.format_list);
             
             var dw = 720;
             var dh = 480;
             
-            var dg = dialog_create(dw, dh, "Vertex Format Settings", dialog_default, dc_close_no_questions_asked, root);
+            var dg = dialog_create(dw, dh, "Vertex Format Settings", dialog_default, dc_close_no_questions_asked, element);
             dg.format_index = format_index;
             
             var columns = 2;
@@ -108,7 +109,7 @@ function ui_init_mesh(mode) {
                 if (!(index + 1)) return;
                 list.entries[| index] = input.value;
                 format[? "attributes"][| index][? "name"] = input.value;
-            }, "", "string", validate_string_internal_name, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
+            }, "", "string", validate_string, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
             el_list.tooltip = "The name of the vertex attribute (this is for your benefit and has no impact on how the mesh is exported)";
             dg.el_attribute_name = el_attribute_name;
             yy += el_attribute_name.height + spacing;
@@ -281,9 +282,7 @@ function ui_init_mesh(mode) {
         
         element = create_list(c2x, yy, "Available Vertex Formats", "no vertex formats", ew, eh, 6, null, false, id, mode.format_names);
         element.tooltip = "Vertex formats available to be exported to. Extra fields beyond the original position / normal / texture / color will be set to zero.";
-        element.ondoubleclick = function(list) {
-            create_vertex_format_editor(list, ui_list_selection(list.root.format_list));
-        };
+        element.ondoubleclick = create_vertex_format_editor;
         ds_list_add(contents, element);
         format_list = element;
         yy += ui_get_list_height(element) + spacing;
@@ -300,9 +299,7 @@ function ui_init_mesh(mode) {
         ds_list_add(contents, element);
         yy += element.height + spacing;
         
-        element = create_button(c2x, yy, "Edit Vertex Format", ew, eh, fa_center, function(button) {
-            create_vertex_format_editor(button, ui_list_selection(button.root.format_list));
-        }, id);
+        element = create_button(c2x, yy, "Edit Vertex Format", ew, eh, fa_center, create_vertex_format_editor, id);
         element.tooltip = "Mirror the selected meshes over the Z axis.";
         ds_list_add(contents, element);
         yy += element.height + spacing;
