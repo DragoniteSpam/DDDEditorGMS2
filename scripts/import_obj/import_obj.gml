@@ -499,13 +499,13 @@ function import_obj() {
     for (var i = 0; i < array_length(vbuffer_materials); i++) {
         var mat = vbuffer_materials[i];
         if (vertex_get_number(vbuffers[$ mat]) == 0) {
-            vertex_delete_buffer(vbuffers[$ key]);
-            vertex_delete_buffer(wbuffers[$ key]);
-            variable_struct_remove(vbuffers, key);
-            variable_struct_remove(wbuffers, key);
+            vertex_delete_buffer(vbuffers[$ mat]);
+            vertex_delete_buffer(wbuffers[$ mat]);
+            variable_struct_remove(vbuffers, mat);
+            variable_struct_remove(wbuffers, mat);
         } else {
-            vertex_end(vbuffers[$ key]);
-            vertex_end(wbuffers[$ key]);
+            vertex_end(vbuffers[$ mat]);
+            vertex_end(wbuffers[$ mat]);
         }
     }
     
@@ -540,7 +540,7 @@ function import_obj() {
         var vbuffer_materials = variable_struct_get_names(vbuffers);
         for (var i = 0; i < array_length(vbuffer_materials); i++) {
             var mat = vbuffer_materials[i];
-            mesh_create_submesh(mesh, buffer_create_from_vertex_buffer(vbuffers[$ mat], buffer_fixed, 1), vbuffers[$ mat], wbuffers[$ mat], undefined, base_name + "." + key, -1, fn);
+            mesh_create_submesh(mesh, buffer_create_from_vertex_buffer(vbuffers[$ mat], buffer_fixed, 1), vbuffers[$ mat], wbuffers[$ mat], undefined, base_name + "." + mat, -1, fn);
         }
         
         // assign these based on the material lookup eventually
