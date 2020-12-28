@@ -58,11 +58,15 @@ function ui_render_surface_render_mesh_ed(surface, x1, y1, x2, y2) {
                 } else {
                     var this_tex = guid_get(mesh_data.tex_base) ? sprite_get_texture(guid_get(mesh_data.tex_base).picture, 0) : def_tex;
                 }
-                if (mode.draw_meshes) vertex_submit(mesh_data.submeshes[| 0].vbuffer, pr_trianglelist, this_tex);
-                if (mode.draw_wireframes) vertex_submit(mesh_data.submeshes[| 0].wbuffer, pr_linelist, -1);
+                for (var sm_index = 0; sm_index < ds_list_size(mesh_data.submeshes); sm_index++) {
+                    if (mode.draw_meshes) vertex_submit(mesh_data.submeshes[| sm_index].vbuffer, pr_trianglelist, this_tex);
+                    if (mode.draw_wireframes) vertex_submit(mesh_data.submeshes[| sm_index].wbuffer, pr_linelist, -1);
+                }
                 break;
             case MeshTypes.SMF:
-                if (mode.draw_meshes) smf_model_draw(mesh_data.submeshes[| 0].vbuffer);
+                for (var sm_index = 0; sm_index < ds_list_size(mesh_data.submeshes); sm_index++) {
+                    if (mode.draw_meshes) smf_model_draw(mesh_data.submeshes[| sm_index].vbuffer);
+                }
                 break;
         }
         if (++n > limit) break;

@@ -83,8 +83,6 @@ format_default = format_default[| 0];
 formats = format_json[? "formats"];
 format_names = format_json[? "names"];
 
-
-
 ui = ui_init_mesh(id);
 
 enum VertexFormatData {
