@@ -3,6 +3,7 @@ function batch_mesh_autotile(buffer, wire, mesh_autotile) {
     
     var at = guid_get(mesh_autotile.autotile_id);
     var raw = at ? at.layers[mesh_autotile.terrain_type].tiles[mapping].buffer : Stuff.graphics.missing_autotile_raw;
+    if (!raw) raw = Stuff.graphics.missing_autotile_raw;
     
     if (raw) {
         var xx = mesh_autotile.xx * TILE_WIDTH;
