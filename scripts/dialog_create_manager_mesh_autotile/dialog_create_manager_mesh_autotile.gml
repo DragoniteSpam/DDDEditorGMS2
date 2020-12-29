@@ -129,7 +129,6 @@ function dialog_create_manager_mesh_autotile(root) {
             var at_layer = autotile.layers[layer_index];
             var failures = 0;
             var changes = { };
-            changes[$ button.index] = true;
             
             for (var i = 0; i < AUTOTILE_COUNT; i++) {
                 var fn = root + string(i) + ".d3d";
@@ -137,6 +136,7 @@ function dialog_create_manager_mesh_autotile(root) {
                     try {
                         var data = import_d3d(fn, false, true);
                         at_layer.tiles[i].Set(data[0], data[1]);
+                        changes[$ button.root.buttons[i].index] = true;
                     } catch (e) {
                         
                     }
