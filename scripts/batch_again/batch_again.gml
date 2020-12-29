@@ -1,22 +1,19 @@
-function batch_again(index) {
+function batch_again(batch) {
     var map = Stuff.map.active_map.contents;
     
     // If no index is provided it just rebatches EVERYTHING. This is very slow.
     // Please don't use it constantly otherwise the program will become very
     // unenjoyable to use.
-    if (index == undefined) {
-        for (var i = 0; i < ds_list_size(map.batch_data); i++) {
-            batch_again(i);
+    if (!batch) {
+        for (var i = 0; i < ds_list_size(map.batches); i++) {
+            batch_again(map.batches[i]);
         }
         return;
     }
     
-    if (index == -1) return;
-    
-    var data = map.batch_data[| index];
-    vertex_delete_buffer(data.vertex);
-    vertex_delete_buffer(data.wire);
-    var list_instances = data.instances;
+    vertex_delete_buffer(batch.vertex);
+    vertex_delete_buffer(batch.wire);
+    var list_instances = batch.instances;
     
     if (ds_list_size(list_instances) > 0) {
         var buffer = vertex_create_buffer();
@@ -38,12 +35,11 @@ function batch_again(index) {
         vertex_end(buffer_wire);
         vertex_freeze(buffer_wire);
         
-        data.vertex = buffer;
-        data.wire = buffer_wire;
+        batch.vertex = buffer;
+        batch.wire = buffer_wire;
     } else {
         // empty batch lists should be deleted, for obvious reasons
         ds_list_destroy(list_instances);
-        ds_map_destroy(data);
-        ds_list_delete(map.batch_data, ds_list_find_index(map.batch_data, data));
+        array_delete(map.batches, array_search(map.batches, batch), 1);
     }
 }

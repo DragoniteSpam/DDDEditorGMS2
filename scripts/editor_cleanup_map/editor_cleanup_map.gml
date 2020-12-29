@@ -23,9 +23,9 @@ function editor_cleanup_map(mode) {
                 break;
         }
     }
-
+    
     ds_list_clear(mode.changes);
-
+    
     if (ds_list_size(modifications) > 0) {
         var rebatch_all_threshold = 25;
         var rebatch_these = { };
@@ -35,7 +35,7 @@ function editor_cleanup_map(mode) {
                 var thing = modifications[| i];
                 if (thing.modification == Modifications.REMOVE) {
                     if (thing.batch_addr) {
-                        var list_instances = thing.batch_addr[? "instances"];
+                        var list_instances = thing.batch_addr.instances;
                         ds_list_delete(list_instances, ds_list_find_index(list_instances, thing));
                     } else if (thing.batchable) {
                         ds_list_delete(map.batch_in_the_future, ds_list_find_index(map.batch_in_the_future, thing));
@@ -61,7 +61,7 @@ function editor_cleanup_map(mode) {
             var clone_all = ds_list_clone(map.all_entities);
             ds_list_clear(map.dynamic);
             ds_list_clear(map.all_entities);
-        
+            
             // after a certain point, it's easier to just re-add the entities to the
             // appropriate lists than it is to delete a buttload of things in O(n) time
             for (var i = 0; i < ds_list_size(clone_all); i++) {
@@ -70,31 +70,31 @@ function editor_cleanup_map(mode) {
                     ds_list_add(map.all_entities, thing);
                 }
             }
-        
+            
             for (var i = 0; i < ds_list_size(clone_dynamic); i++) {
                 var thing = clone_dynamic[| i];
                 if (thing.modification != Modifications.REMOVE) {
                     ds_list_add(map.dynamic, thing);
                 }
             }
-    
+        
             for (var i = 0; i < ds_list_size(modifications); i++) {
                 var thing = modifications[| i];
-            
+                
                 if (thing.modification == Modifications.REMOVE) {
                     if (thing.batch_addr) {
-                        var list_instances = thing.batch_addr[? "instances"];
+                        var list_instances = thing.batch_addr.instances;
                         ds_list_delete(list_instances, ds_list_find_index(list_instances, thing));
                     } else if (thing.batchable) {
                         ds_list_delete(map.batch_in_the_future, ds_list_find_index(map.batch_in_the_future, thing));
                     } else {
                         ds_list_delete(map.dynamic, ds_list_find_index(map.dynamic, thing));
                     }
-                
+                    
                     if (thing.listed) {
                         base_map.Remove(thing);
                     }
-                
+                    
                     ds_list_delete(map.all_entities, ds_list_find_index(map.all_entities, thing));
                     rebatch_these[$ thing.batch_addr] = true;
                     instance_activate_object(thing);
@@ -104,15 +104,15 @@ function editor_cleanup_map(mode) {
                     thing.modification = Modifications.NONE;
                 }
             }
-        
+            
             ds_list_destroy(clone_dynamic);
             ds_list_destroy(clone_all);
         }
-    
+        
         // once the batches that need to be recalculated have been worked out, re-batch them
         var rebatch_indices = variable_struct_get_names(rebatch_these);
-        for (var i = 0; i < array_length(rebatch_indices); i++) {
-            batch_again(rebatch_indices[i]);
+        for (var i = 0; i < array_length(map.batches); i++) {
+            if (rebatch_these[$ map.batches[i]]) batch_again(map.batches[i]);
         }
     }
     

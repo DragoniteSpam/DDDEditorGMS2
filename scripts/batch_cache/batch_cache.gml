@@ -6,22 +6,22 @@ function batch_cache() {
     vertex_begin(buffer, Stuff.graphics.vertex_format);
     vertex_begin(buffer_wire, Stuff.graphics.vertex_format);
     
-    var batch_data = {
+    var batch = {
         instances: ds_list_create(),
         vertex: buffer,
         wire: buffer_wire,
     };
-    ds_list_add(map_contents.batch_data, batch_data);
+    array_push(map_contents.batches, batch);
     
     for (var i = 0; i < ds_list_size(map_contents.batch_in_the_future); i++) {
         var thing = map_contents.batch_in_the_future[| i];
-        thing.batch_addr = ds_list_top(map_contents.batch_data);
+        thing.batch_addr = map_contents.batches[array_length(map_contents.batches) - 1];
         // see comments on the buffer in batch_again
         var results = thing.batch(buffer, buffer_wire, thing);
         buffer = results[0];
         buffer_wire = results[1];
         
-        ds_list_add(batch_data.instances, thing);
+        ds_list_add(batch.instances, thing);
     }
     
     vertex_end(buffer);

@@ -56,8 +56,8 @@ function draw_editor_3d() {
         vertex_submit(map_contents.frozen_wire, pr_linelist, -1);
     }
     
-    for (var i = 0; i < ds_list_size(map_contents.batch_data); i++) {
-        var data = map_contents.batch_data[| i];
+    for (var i = 0; i < array_length(map_contents.batches); i++) {
+        var data = map_contents.batches[i];
         if (Settings.view.entities) {
             vertex_submit(data.vertex, pr_trianglelist, tex);
         }
