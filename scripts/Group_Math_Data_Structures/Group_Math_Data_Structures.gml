@@ -14,6 +14,13 @@ function array_clear(array, value) {
     }
 }
 
+function array_search(array, value) {
+    for (var i = 0; i < array_length(array); i++) {
+        if (array[i] == value) return i;
+    }
+    return -1;
+}
+
 function array_create_2d(x, y, value) {
     if (value == undefined) value = 0;
     var arr = array_create(x);
