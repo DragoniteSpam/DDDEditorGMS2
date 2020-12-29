@@ -59,10 +59,10 @@ function draw_editor_3d() {
     for (var i = 0; i < ds_list_size(map_contents.batch_data); i++) {
         var data = map_contents.batch_data[| i];
         if (Settings.view.entities) {
-            vertex_submit(data[? "vertex"], pr_trianglelist, tex);
+            vertex_submit(data.vertex, pr_trianglelist, tex);
         }
         if (Settings.view.wireframe) {
-            vertex_submit(data[? "wire"], pr_linelist, -1);
+            vertex_submit(data.wire, pr_linelist, -1);
         }
     }
     

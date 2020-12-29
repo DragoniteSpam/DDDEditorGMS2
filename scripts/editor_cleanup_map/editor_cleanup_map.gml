@@ -1,7 +1,8 @@
 function editor_cleanup_map(mode) {
     var base_map = Stuff.map.active_map;
     var map = base_map.contents;
-    var modifications = ds_list_create();
+    static modifications = ds_list_create();
+    ds_list_clear(modifications);
     
     // let's try to keep the Modifications list separate because batching / rebatching
     // behaves differently depending on how many things are in it
@@ -114,9 +115,7 @@ function editor_cleanup_map(mode) {
             batch_again(rebatch_indices[i]);
         }
     }
-
-    ds_list_clear(modifications);
-
+    
     // you may add/delete/move stuff in bulk and doing this for each
     // entity that was changed would slow the editor down quite a lot
     if (ds_list_size(map.batch_in_the_future) > BATCH_CACHE_SIZE) {

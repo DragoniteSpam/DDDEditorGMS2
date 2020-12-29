@@ -3,7 +3,7 @@
 // stored in the DataMapContainer
 
 // internal stuff
-batch_data = ds_list_create();              // json
+batch_data = ds_list_create();              // list of structs
 
 batch_in_the_future = ds_list_create();     // entities
 dynamic = ds_list_create();                 // entities

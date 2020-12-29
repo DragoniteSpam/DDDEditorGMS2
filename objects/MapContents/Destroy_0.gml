@@ -4,8 +4,8 @@ event_inherited();
 var t0 = get_timer() / 1000;
 for (var i = 0; i < ds_list_size(batch_data); i++) {
     var data = batch_data[| i];
-    vertex_delete_buffer(data[? "vertex"]);
-    vertex_delete_buffer(data[? "wire"]);
+    vertex_delete_buffer(data.vertex);
+    vertex_delete_buffer(data.wire);
 }
 
 // this is a json, so all of the sub-objects and stuff will be taken care
