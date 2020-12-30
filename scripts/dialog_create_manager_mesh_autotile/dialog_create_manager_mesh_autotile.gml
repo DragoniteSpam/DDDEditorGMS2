@@ -128,24 +128,26 @@ function dialog_create_manager_mesh_autotile(root) {
             var root = filename_dir(get_open_filename_mesh_d3d()) + "\\";
             var at_layer = autotile.layers[layer_index];
             var failures = 0;
+            var file_count = 0;
             var changes = { };
             
             for (var i = 0; i < AUTOTILE_COUNT; i++) {
                 var fn = root + string(i) + ".d3d";
                 if (file_exists(fn)) {
+                    file_count++;
                     try {
                         var data = import_d3d(fn, false, true);
                         at_layer.tiles[i].Set(data[0], data[1]);
                         changes[$ button.root.buttons[i].index] = true;
                     } catch (e) {
-                        
+                        failures++;
                     }
                 }
             }
             
             entity_mesh_autotile_check_changes(changes);
             if (failures) {
-                dialog_create_notice(undefined, "Unable to import " + string(failures) + " of the " + string(ds_list_size(files)) + " files.");
+                dialog_create_notice(undefined, "Unable to import " + string(failures) + " of " + string(file_count) + " attempted files.");
             }
             button.root.Colorize();
         }
