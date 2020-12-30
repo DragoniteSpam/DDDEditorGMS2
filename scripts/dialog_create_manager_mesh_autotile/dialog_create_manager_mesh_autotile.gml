@@ -130,6 +130,7 @@ function dialog_create_manager_mesh_autotile(root) {
             var failures = 0;
             var file_count = 0;
             var changes = { };
+            var change_prefix = autotile.GUID + ":" + string(layer_index) + ":";
             
             for (var i = 0; i < AUTOTILE_COUNT; i++) {
                 var fn = root + string(i) + ".d3d";
@@ -138,7 +139,7 @@ function dialog_create_manager_mesh_autotile(root) {
                     try {
                         var data = import_d3d(fn, false, true);
                         at_layer.tiles[i].Set(data[0], data[1]);
-                        changes[$ button.root.buttons[i].index] = true;
+                        changes[$ change_prefix + string(i)] = true;
                     } catch (e) {
                         failures++;
                     }
@@ -161,7 +162,7 @@ function dialog_create_manager_mesh_autotile(root) {
             var at_layer = autotile.layers[layer_index];
             var failures = 0;
             var changes = { };
-            changes[$ button.index] = true;
+            var change_prefix = autotile.GUID + ":" + string(layer_index) + ":";
             
             for (var i = 0; i < ds_list_size(filtered_list); i++) {
                 var fn = filtered_list[| i];
@@ -173,6 +174,7 @@ function dialog_create_manager_mesh_autotile(root) {
                             try {
                                 var data = import_d3d(fn, false, true);
                                 at_layer.tiles[index].Set(data[0], data[1]);
+                                changes[$ change_prefix + name] = true;
                             } catch (e) {
                                 failures++;
                             }
@@ -181,6 +183,7 @@ function dialog_create_manager_mesh_autotile(root) {
                             try {
                                 var data = import_obj(fn, false, true);
                                 at_layer.tiles[index].Set(data[0], data[1]);
+                                changes[$ change_prefix + name] = true;
                             } catch (e) {
                                 failures++;
                             }
@@ -206,10 +209,11 @@ function dialog_create_manager_mesh_autotile(root) {
         var autotile = Stuff.all_mesh_autotiles[| selection];
         if (autotile) {
             var changes = { };
+            var change_prefix = autotile.GUID + ":" + string(layer_index) + ":";
             
             for (var i = 0; i < AUTOTILE_COUNT; i++) {
                 if (autotile.layers[layer_index].tiles[i].Destroy()) {
-                    changes[$ i] = true;
+                    changes[$ change_prefix + string(i)] = true;
                 }
             }
             
@@ -261,7 +265,7 @@ function dialog_create_manager_mesh_autotile(root) {
                     }
                     
                     var changes = { };
-                    changes[$ button.index] = true;
+                    changes[$ autotile.GUID + ":" + string(layer_index) + ":" + string(button.index)] = true;
                     entity_mesh_autotile_check_changes(changes);
                     button.root.Colorize();
                 }

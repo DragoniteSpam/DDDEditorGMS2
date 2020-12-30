@@ -4,7 +4,7 @@ function entity_mesh_autotile_check_changes(changes) {
     
     for (var i = 0; i < ds_list_size(map_contents.all_entities); i++) {
         var thing = map_contents.all_entities[| i];
-        if (instanceof_classic(thing, EntityMeshAutotile) && changes[$ thing.terrain_id]) {
+        if (thing.etype == ETypes.ENTITY_MESH_AUTO && changes[$ thing.AutotileUniqueIdentifier()]) {
             editor_map_mark_changed(thing);
         }
     }
