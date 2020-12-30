@@ -138,7 +138,7 @@ function dialog_create_manager_mesh_autotile(root) {
                     file_count++;
                     try {
                         var data = import_d3d(fn, false, true);
-                        at_layer.tiles[i].Set(data[0], data[1]);
+                        at_layer.tiles[i].Set(data[1], data[0]);
                         changes[$ change_prefix + string(i)] = true;
                     } catch (e) {
                         failures++;
@@ -173,7 +173,7 @@ function dialog_create_manager_mesh_autotile(root) {
                         case ".d3d": case ".gmmod":
                             try {
                                 var data = import_d3d(fn, false, true);
-                                at_layer.tiles[index].Set(data[0], data[1]);
+                                at_layer.tiles[index].Set(data[1], data[0]);
                                 changes[$ change_prefix + name] = true;
                             } catch (e) {
                                 failures++;
@@ -182,7 +182,7 @@ function dialog_create_manager_mesh_autotile(root) {
                         case ".obj":
                             try {
                                 var data = import_obj(fn, false, true);
-                                at_layer.tiles[index].Set(data[0], data[1]);
+                                at_layer.tiles[index].Set(data[1], data[0]);
                                 changes[$ change_prefix + name] = true;
                             } catch (e) {
                                 failures++;
@@ -249,7 +249,7 @@ function dialog_create_manager_mesh_autotile(root) {
                         case ".d3d": case ".gmmod":
                             try {
                                 var data = import_d3d(fn, false, true);
-                                tile_data.Set(data[0], data[1]);
+                                tile_data.Set(data[1], data[0]);
                             } catch (e) {
                                 dialog_create_notice(button, "Unable to load file: " + e.message);
                             }
@@ -257,7 +257,7 @@ function dialog_create_manager_mesh_autotile(root) {
                         case ".obj":
                             try {
                                 var data = import_obj(fn, false, true);
-                                tile_data.Set(data[0], data[1]);
+                                tile_data.Set(data[1], data[0]);
                             } catch (e) {
                                 dialog_create_notice(button, "Unable to load file: " + e.message);
                             }

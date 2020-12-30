@@ -1,9 +1,9 @@
 function DataMeshAutotile(name) : SData(name) constructor {
     static MeshAutotileLayer = function() constructor {
         static MeshVertexBufferData = function(buffer, vbuffer) constructor {
-            self.buffer = -1;
-            self.vbuffer = -1;
-            self.wbuffer = -1;
+            self.buffer = undefined;
+            self.vbuffer = undefined;
+            self.wbuffer = undefined;
             
             static Set = function(buffer, vbuffer) {
                 Destroy();
