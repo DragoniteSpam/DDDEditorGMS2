@@ -82,11 +82,14 @@ function editor_cleanup_map(mode) {
                 var thing = modifications[| i];
                 
                 if (thing.modification == Modifications.REMOVE) {
+                    // Update the current batch
                     if (thing.batch_addr) {
-                        var list_instances = thing.batch_addr.instances;
-                        ds_list_delete(list_instances, ds_list_find_index(list_instances, thing));
+                        ds_list_delete(list_instances, ds_list_find_index(thing.batch_addr.instances, thing));
+                        rebatch_these[$ thing.batch_addr] = true;
+                    // Remove from the future batch list
                     } else if (thing.batchable) {
                         ds_list_delete(map.batch_in_the_future, ds_list_find_index(map.batch_in_the_future, thing));
+                    // Remove from the dynamic list
                     } else {
                         ds_list_delete(map.dynamic, ds_list_find_index(map.dynamic, thing));
                     }
@@ -96,11 +99,12 @@ function editor_cleanup_map(mode) {
                     }
                     
                     ds_list_delete(map.all_entities, ds_list_find_index(map.all_entities, thing));
-                    rebatch_these[$ thing.batch_addr] = true;
                     instance_activate_object(thing);
                     instance_destroy(thing);
                 } else {
-                    rebatch_these[$ thing.batch_addr] = true;
+                    if (thing.batch_addr) {
+                        rebatch_these[$ thing.batch_addr] = true;
+                    }
                     thing.modification = Modifications.NONE;
                 }
             }
