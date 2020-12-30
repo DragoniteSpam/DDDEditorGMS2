@@ -5,7 +5,7 @@ function batch_again(batch) {
     // Please don't use it constantly otherwise the program will become very
     // unenjoyable to use.
     if (!batch) {
-        for (var i = 0; i < ds_list_size(map.batches); i++) {
+        for (var i = 0; i < array_length(map.batches); i++) {
             batch_again(map.batches[i]);
         }
         return;

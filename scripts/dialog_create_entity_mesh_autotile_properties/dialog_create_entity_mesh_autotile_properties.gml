@@ -25,7 +25,6 @@ function dialog_create_entity_mesh_autotile_properties(root) {
         for (var i = 0; i < array_length(checkbox.root.list); i++) {
             var entity = checkbox.root.list[i];
             entity.terrain_type = checkbox.value ? MeshAutotileLayers.SLOPE : MeshAutotileLayers.BASE;
-            entity.terrain_id = -1;
             editor_map_mark_changed(entity);
         }
         selection_update_autotiles();
