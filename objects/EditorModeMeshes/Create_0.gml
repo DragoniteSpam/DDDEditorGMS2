@@ -66,6 +66,9 @@ fov = setting_get("mesh", "fov", def_fov);
 pitch = darctan2(z - zto, point_distance(x, y, xto, yto));
 direction = point_direction(x, y, xto, yto);
 
+// please don't keep trying to turn this into structs;
+// the format and format names list need to be in a ds_list
+// and accommodating for those would be a bit of work
 var fbuffer = buffer_load("data\\vertex-formats.json");
 format_default = json_decode(buffer_read(fbuffer, buffer_text));
 buffer_delete(fbuffer);
@@ -78,8 +81,6 @@ if (json_string == "") {
 }
 
 // if you screw this up, that's on you
-format_default = format_default[? "formats"];
-format_default = format_default[| 0];
 formats = format_json[? "formats"];
 format_names = format_json[? "names"];
 
