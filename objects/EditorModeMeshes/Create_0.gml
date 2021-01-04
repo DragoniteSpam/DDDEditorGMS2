@@ -92,4 +92,6 @@ enum VertexFormatData {
     NORMAL,
     TEXCOORD,
     COLOUR,
+    TANGENT,
+    BITANGENT,
 }

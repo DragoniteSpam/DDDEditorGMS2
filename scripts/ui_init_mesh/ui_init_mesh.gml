@@ -122,7 +122,7 @@ function ui_init_mesh(mode) {
                 format[? "attributes"][| index][? "type"] = radio.value;
             }, -1, dg);
             el_attribute_type.tooltip = "The data type of the vertex attribute";
-            create_radio_array_options(el_attribute_type, ["Position (2D)", "Position (3D)", "Normal", "Texture Coordinate", "Color"]);
+            create_radio_array_options(el_attribute_type, ["Position (2D)", "Position (3D)", "Normal", "Texture Coordinate", "Color", "Tangent", "Bitangent"]);
             dg.el_attribute_type = el_attribute_type;
             yy += ui_get_radio_array_height(el_attribute_type) + spacing;
             

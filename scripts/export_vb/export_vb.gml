@@ -1,6 +1,10 @@
 function export_vb(base_filename, mesh, format) {
     var mesh_filename = filename_path(base_filename) + filename_change_ext(filename_name(base_filename), "");
     
+    static warn_tangent = 0x01;
+    static warn_bitangent = 0x02;
+    var warnings = 0;
+    
     if (format) {
         format = format[? "attributes"];
         var vertex_new_size = 0;
@@ -14,6 +18,8 @@ function export_vb(base_filename, mesh, format) {
                 case VertexFormatData.NORMAL: vertex_new_size += 12; break;
                 case VertexFormatData.TEXCOORD: vertex_new_size += 8; break;
                 case VertexFormatData.COLOUR: vertex_new_size += 4; break;
+                case VertexFormatData.TANGENT: vertex_new_size += 12; break;
+                case VertexFormatData.BITANGENT: vertex_new_size += 12; break;
             }
         }
         
@@ -83,6 +89,32 @@ function export_vb(base_filename, mesh, format) {
                             buffer_write(formatted_buffer, buffer_u32, 0);
                         }
                         break;
+                    case VertexFormatData.TANGENT:
+                        if (!attributes_used[1]) {
+                            attributes_used[1] = true;
+                            warnings |= warn_tangent;
+                            buffer_write(formatted_buffer, buffer_f32, 0);
+                            buffer_write(formatted_buffer, buffer_f32, 0);
+                            buffer_write(formatted_buffer, buffer_f32, 0);
+                        } else {
+                            buffer_write(formatted_buffer, buffer_f32, 0);
+                            buffer_write(formatted_buffer, buffer_f32, 0);
+                            buffer_write(formatted_buffer, buffer_f32, 0);
+                        }
+                        break;
+                    case VertexFormatData.BITANGENT:
+                        if (!attributes_used[1]) {
+                            attributes_used[1] = true;
+                            warnings |= warn_bitangent;
+                            buffer_write(formatted_buffer, buffer_f32, 0);
+                            buffer_write(formatted_buffer, buffer_f32, 0);
+                            buffer_write(formatted_buffer, buffer_f32, 0);
+                        } else {
+                            buffer_write(formatted_buffer, buffer_f32, 0);
+                            buffer_write(formatted_buffer, buffer_f32, 0);
+                            buffer_write(formatted_buffer, buffer_f32, 0);
+                        }
+                        break;
                 }
             
                 if (current_attribute_count == attribute_count) {
@@ -94,6 +126,13 @@ function export_vb(base_filename, mesh, format) {
         
             buffer_save(formatted_buffer, fn);
             buffer_delete(formatted_buffer);
+            
+            if (warnings & warn_tangent) {
+                wtf("To do: calculate tangent vectors when exporting a mesh with a vertex format using the tangent vector");
+            }
+            if (warnings & warn_bitangent) {
+                wtf("To do: calculate bitangent vectors when exporting a mesh with a vertex format using the bitangent vector");
+            }
         }
     } else {
         for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
