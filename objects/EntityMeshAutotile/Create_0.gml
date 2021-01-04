@@ -24,7 +24,7 @@ terrain_type = MeshAutotileLayers.TOP;                      // layer
 autotile_id = Settings.selection.mesh_autotile_type;        // autotile asset
 
 AutotileUniqueIdentifier = function() {
-    return autotile_id + ":" + string(global.at_map[? terrain_id]) + ":" + string(terrain_type);
+    return autotile_id + ":" + string(global.at_map[$ terrain_id]) + ":" + string(terrain_type);
 };
 
 // editor properties
