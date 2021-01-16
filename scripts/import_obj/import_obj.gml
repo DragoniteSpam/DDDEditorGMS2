@@ -12,6 +12,7 @@ function import_obj() {
     var replace_index = (argument_count > 4 && argument[4] != undefined) ? argument[4] : -1;
     var err = "";
     var warnings = 0;
+    static warn_invisible = false;
     
     var warn_map_1 =            0x0001;
     var warn_map_2 =            0x0002;
@@ -418,6 +419,8 @@ function import_obj() {
     var maxy = 0;
     var maxz = 0;
     
+    var max_alpha = 0;
+    
     for (var i = 0; i < n; i++) {
         var v = temp_vertices[| i];
         
@@ -443,6 +446,8 @@ function import_obj() {
         bcolor = v[8];
         balpha = v[9];
         bmtl = v[10];
+        
+        max_alpha = max(max_alpha, balpha);
         
         if (base_mtl == undefined) base_mtl = bmtl;
         
@@ -482,6 +487,11 @@ function import_obj() {
                 c_shape_add_triangle(bxx[0], byy[0], bzz[0], bxx[1], byy[1], bzz[1], bxx[2], byy[2], bzz[2]);
             }
         }
+    }
+    
+    if (max_alpha < 0.05 && !warn_invisible) {
+        dialog_create_notice(undefined, "All of the vertices in this model have a very low alpha. If this is intentional, you can ignore this message; if this is otherwise due to a quirk of the tool used to create it, you might want to hit the Invert Transparency button to correct it.");
+        warn_invisible = true;
     }
     
     var vb_base = vbuffers[$ base_mtl];

@@ -447,7 +447,7 @@ function ui_init_mesh(mode) {
             }
             batch_again();
         }, id);
-        element.tooltip = "Some 3D modelling programs (I'm looking at you, Blender) insist on using the bottom-left of the texture image as the (0, 0) origin. We prefer the origin to be in the top-left. Use this button to flip the texture coordinates vertically.";
+        element.tooltip = "Some 3D modelling programs insist on using the bottom-left of the texture image as the (0, 0) origin. We prefer the origin to be in the top-left. Use this button to flip the texture coordinates vertically.";
         ds_list_add(contents, element);
         yy += element.height + spacing;
         
