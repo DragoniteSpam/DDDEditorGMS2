@@ -108,16 +108,14 @@ void CommonFog(inout vec4 baseColor) {
 void main() {
     vec4 baseColor = texture2D(gm_BaseTexture, v_vTexcoord);
     vec4 color = v_vColour * baseColor;
-    float sourceAlpha = baseColor.a;
+    float sourceAlpha = color.a;
     
     CommonLight(color);
     CommonFog(color);
     
     color.a = sourceAlpha;
     
-    if (color.a < ALPHA_REF) {
-        discard;
-    }
+    if (color.a < ALPHA_REF) discard;
     
     gl_FragColor = color;
 }
