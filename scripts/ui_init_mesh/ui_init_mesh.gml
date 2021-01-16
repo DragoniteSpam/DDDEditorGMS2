@@ -377,7 +377,7 @@ function ui_init_mesh(mode) {
         ds_list_add(contents, element);
         yy += element.height + spacing;
         
-        element = create_button(c2x, yy, "Rotate Up Axis", ew, eh, fa_center, function(button) {
+        element = create_button(c2x, yy, "Rotate Up Axis", ew / 2, eh, fa_center, function(button) {
             var selection = button.root.mesh_list.selected_entries;
             for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
                 var mesh = Stuff.all_meshes[| index];
@@ -386,6 +386,16 @@ function ui_init_mesh(mode) {
             batch_again();
         }, id);
         element.tooltip = "Rotate the \"up\" axis for the selected meshes. It would be nice if the world could standardize around either Y-up or Z-up, but that's never going to happen.";
+        ds_list_add(contents, element);
+        element = create_button(c2x + ew / 2, yy, "Invert Transparency", ew / 2, eh, fa_center, function(button) {
+            var selection = button.root.mesh_list.selected_entries;
+            for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
+                var mesh = Stuff.all_meshes[| index];
+                mesh_all_invert_alpha(mesh);
+            }
+            batch_again();
+        }, id);
+        element.tooltip = "Because literally nothing is standard with the OBJ file format, sometimes the \"Tr\" material attribute is \"transparency,\" and sometimes it's \"opacity.\" Click here to toggle between them.";
         ds_list_add(contents, element);
         yy += element.height + spacing;
         

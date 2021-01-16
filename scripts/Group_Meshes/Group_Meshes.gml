@@ -242,6 +242,32 @@ function mesh_rotate_up_axis(mesh, index) {
     vertex_freeze(wbuffer);
 }
 
+function mesh_all_invert_alpha(mesh) {
+    for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
+        mesh_invert_alpha(mesh, i);
+    }
+}
+
+function mesh_invert_alpha(mesh, index) {
+    if (mesh.type == MeshTypes.SMF) return;
+    
+    var submesh = mesh.submeshes[| index];
+    var buffer = submesh.buffer;
+    buffer_seek(buffer, buffer_seek_start, 0);
+    
+    while (buffer_tell(buffer) < buffer_get_size(buffer)) {
+        var position = buffer_tell(buffer);
+        buffer_poke(buffer, position + 35, buffer_u8, 255 - buffer_peek(buffer, position + 35, buffer_u8));
+        buffer_seek(buffer, buffer_seek_relative, VERTEX_SIZE);
+    }
+    
+    buffer_seek(buffer, buffer_seek_start, 0);
+    
+    vertex_delete_buffer(submesh.vbuffer);
+    submesh.vbuffer = vertex_create_buffer_from_buffer(buffer, Stuff.graphics.vertex_format);
+    vertex_freeze(submesh.vbuffer);
+}
+
 function mesh_set_all_flip_tex_h(mesh) {
     for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
         mesh_set_flip_tex_h(mesh, i);
