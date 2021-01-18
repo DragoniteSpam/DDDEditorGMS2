@@ -691,7 +691,6 @@
     {"id":{"name":"entity_mesh_get_buffer","path":"scripts/entity_mesh_get_buffer/entity_mesh_get_buffer.yy",},"order":2,},
     {"id":{"name":"entity_mesh_autotile_check_changes","path":"scripts/entity_mesh_autotile_check_changes/entity_mesh_autotile_check_changes.yy",},"order":3,},
     {"id":{"name":"mesh_create_submesh","path":"scripts/mesh_create_submesh/mesh_create_submesh.yy",},"order":4,},
-    {"id":{"name":"mesh_replace_submesh","path":"scripts/mesh_replace_submesh/mesh_replace_submesh.yy",},"order":5,},
     {"id":{"name":"entity_effect_position_colliders","path":"scripts/entity_effect_position_colliders/entity_effect_position_colliders.yy",},"order":0,},
     {"id":{"name":"entity_effect_colliders_active","path":"scripts/entity_effect_colliders_active/entity_effect_colliders_active.yy",},"order":1,},
     {"id":{"name":"component_axis_down","path":"scripts/component_axis_down/component_axis_down.yy",},"order":0,},
