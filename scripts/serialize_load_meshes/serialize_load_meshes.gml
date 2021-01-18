@@ -22,8 +22,19 @@ function serialize_load_meshes(buffer, version) {
             } else {
                 path = "";
             }
-            var dbuffer = buffer_read_buffer(buffer, blength);
-            mesh_create_submesh(mesh, dbuffer, noone, noone, proto_guid, name, undefined, path);
+            
+            proto_guid_set(mesh, index, proto_guid);
+            var submesh = instance_create_depth(0, 0, 0, MeshSubmesh);
+            instance_deactivate_object(submesh);
+            submesh.proto_guid = proto_guid;
+            submesh.name = name;
+            submesh.owner = mesh;
+            ds_list_add(mesh.submeshes, submesh);
+            
+            submesh.buffer = buffer_read_buffer(buffer, blength);
+            submesh.vbuffer = undefined;
+            submesh.wbuffer = undefined;
+            submesh.path = path;
         }
         
         mesh.xmin = buffer_read(buffer, buffer_f32);

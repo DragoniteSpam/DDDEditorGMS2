@@ -38,4 +38,6 @@ function mesh_create_submesh() {
     if (path != undefined) {
         submesh.path = path;
     }
+    
+    return submesh;
 }
