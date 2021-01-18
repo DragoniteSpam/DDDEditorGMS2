@@ -6,7 +6,7 @@
     "path": "folders/Game data.yy",
   },
   "resourceVersion": "1.0",
-  "name": "Group_Movement_Routes",
+  "name": "Group_Mesh_Actions",
   "tags": [],
   "resourceType": "GMScript",
 }

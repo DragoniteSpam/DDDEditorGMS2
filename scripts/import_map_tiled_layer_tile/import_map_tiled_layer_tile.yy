@@ -3,7 +3,7 @@
   "isCompatibility": false,
   "parent": {
     "name": "Tiled",
-    "path": "folders/Scripts/Game data/Tiled.yy",
+    "path": "folders/Game data/Tiled.yy",
   },
   "resourceVersion": "1.0",
   "name": "import_map_tiled_layer_tile",

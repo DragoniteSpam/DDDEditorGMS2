@@ -24,16 +24,12 @@ function serialize_load_meshes(buffer, version) {
             }
             
             proto_guid_set(mesh, index, proto_guid);
-            var submesh = instance_create_depth(0, 0, 0, MeshSubmesh);
-            instance_deactivate_object(submesh);
+            var submesh = new MeshSubmesh(name);
             submesh.proto_guid = proto_guid;
-            submesh.name = name;
             submesh.owner = mesh;
             ds_list_add(mesh.submeshes, submesh);
             
             submesh.buffer = buffer_read_buffer(buffer, blength);
-            submesh.vbuffer = undefined;
-            submesh.wbuffer = undefined;
             submesh.path = path;
         }
         

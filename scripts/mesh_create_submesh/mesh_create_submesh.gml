@@ -23,8 +23,7 @@ function mesh_create_submesh() {
         vertex_delete_buffer(submesh.wbuffer);
     } else {
         proto_guid_set(mesh, ds_list_size(mesh.submeshes), proto_guid);
-        var submesh = instance_create_depth(0, 0, 0, MeshSubmesh);
-        instance_deactivate_object(submesh);
+        var submesh = new MeshSubmesh(name);
         submesh.proto_guid = proto_guid;
         submesh.name = name;
         submesh.owner = mesh;
