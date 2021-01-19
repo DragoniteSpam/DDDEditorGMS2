@@ -34,6 +34,12 @@ function uimu_data_add_data(thing) {
                     ds_list_add(plist, property.default_real);
                     ds_list_add(instance.values, plist);
                     break;
+                case DataTypes.ASSET_FLAG:
+                    var plist = ds_list_create();
+                    ds_list_add(plist, 0);
+                    ds_list_add(instance.values, plist);
+                    break;
+                    break;
                 case DataTypes.ENUM:
                 case DataTypes.DATA:
                 case DataTypes.MESH:

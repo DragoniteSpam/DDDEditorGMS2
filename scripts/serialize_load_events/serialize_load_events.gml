@@ -120,6 +120,9 @@ function serialize_load_events(buffer, version) {
                             case DataTypes.CODE:
                                 var buffer_type = buffer_string;
                                 break;
+                            case DataTypes.ASSET_FLAG:
+                                var buffer_type = buffer_flag;
+                                break;
                             case DataTypes.ENUM:
                             case DataTypes.DATA:
                             case DataTypes.AUDIO_BGM:

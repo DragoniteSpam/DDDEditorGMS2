@@ -144,7 +144,8 @@ function dialog_entity_data_enable_by_type(dialog) {
             dialog.el_data_builtin_list.entries = Stuff.all_graphic_etc;
             break;
         case DataTypes.EVENT:
-            not_yet_implemented();
+        case DataTypes.ASSET_FLAG:
+            not_yet_implemented_polite();
             break;
     }
     

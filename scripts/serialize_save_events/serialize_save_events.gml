@@ -114,6 +114,9 @@ function serialize_save_events(buffer) {
                             case DataTypes.TILE:
                                 not_yet_implemented();
                                 break;
+                            case DataTypes.ASSET_FLAG:
+                                var save_type = buffer_flag;
+                                break;
                         }
                     
                         var n_custom_data = ds_list_size(node.custom_data[| k]);

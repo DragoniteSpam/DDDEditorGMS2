@@ -44,8 +44,8 @@ function dialog_create_mesh_advanced(root, mesh) {
         batch_again();
     }
     
-    var el_list = create_list(col1_x, yy, mesh.name + " submeshes", "(none)", ew, eh, 10, function(list, selection) {
-        var selection = ui_list_selection(list);
+    var el_list = create_list(col1_x, yy, mesh.name + " submeshes", "(none)", ew, eh, 10, function(list) {
+        selection = ui_list_selection(list);
         ui_input_set_value(list.root.el_name, list.root.mesh.submeshes[| selection].name);
     }, false, dg, mesh.submeshes);
     el_list.tooltip = "Each mesh can have a number of different sub-meshes. This can be used to give multiple meshes different visual skins, or to imitate primitive frame-based animation.";

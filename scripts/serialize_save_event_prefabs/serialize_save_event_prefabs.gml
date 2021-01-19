@@ -59,6 +59,9 @@ function serialize_save_event_prefabs(buffer) {
                         case DataTypes.BOOL:
                             var save_type = buffer_u8;
                             break;
+                        case DataTypes.ASSET_FLAG:
+                            var save_type = buffer_flag;
+                            break;
                         case DataTypes.STRING:
                         case DataTypes.CODE:
                             var save_type = buffer_string;

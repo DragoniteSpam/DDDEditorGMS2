@@ -85,6 +85,9 @@ function serialize_load_event_prefabs(buffer, version) {
                         case DataTypes.COLOR:
                             var buffer_type = buffer_u32;
                             break;
+                        case DataTypes.ASSET_FLAG:
+                            var buffer_type = buffer_flag;
+                            break;
                         case DataTypes.ENUM:
                         case DataTypes.DATA:
                         case DataTypes.AUDIO_BGM:

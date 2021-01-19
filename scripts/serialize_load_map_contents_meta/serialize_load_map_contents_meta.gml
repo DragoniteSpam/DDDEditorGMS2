@@ -95,6 +95,7 @@ function serialize_load_map_contents_meta(buffer, version, map_container) {
             case DataTypes.BOOL: data.value_bool = buffer_read(buffer, buffer_u8); break;
             case DataTypes.CODE: data.value_code = buffer_read(buffer, buffer_string); break;
             case DataTypes.COLOR: data.value_color = buffer_read(buffer, buffer_u32); break;
+            case DataTypes.ASSET_FLAG: data.value_bool = buffer_read(buffer, buffer_flag); break;
             
             case DataTypes.ENUM:
             case DataTypes.DATA:

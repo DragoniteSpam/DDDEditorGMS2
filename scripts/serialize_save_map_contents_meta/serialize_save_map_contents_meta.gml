@@ -56,6 +56,7 @@ function serialize_save_map_contents_meta(buffer) {
             case DataTypes.BOOL: buffer_write(buffer, buffer_u8, data.value_bool); break;
             case DataTypes.CODE: buffer_write(buffer, buffer_string, data.value_code); break;
             case DataTypes.COLOR: buffer_write(buffer, buffer_u32, data.value_color); break;
+            case DataTypes.ASSET_FLAG: buffer_write(buffer, buffer_u32, data.value_bool); break;
             
             case DataTypes.ENUM:
             case DataTypes.DATA:

@@ -360,6 +360,7 @@ function draw_event_node(node) {
                     case DataTypes.ENTITY:
                     case DataTypes.MAP:
                     case DataTypes.EVENT:
+                    case DataTypes.ASSET_FLAG:
                         y2 = y2 + 32;
                         break;
                     case DataTypes.STRING:
@@ -397,6 +398,7 @@ function draw_event_node(node) {
                         case DataTypes.AUDIO_SE:
                         case DataTypes.ANIMATION:
                         case DataTypes.CODE:
+                        case DataTypes.ASSET_FLAG:
                             eh = 32;
                             break;
                         case DataTypes.STRING:
@@ -517,6 +519,9 @@ function draw_event_node(node) {
                                             break;
                                         case DataTypes.MAP:
                                             show_error("okay you actually need to implement this soon, please", true);
+                                            break;
+                                        case DataTypes.ASSET_FLAG:
+                                            dialog_create_notice("please make an Asset Flag button at some point");
                                             break;
                                     }
                                 } else {
@@ -675,6 +680,10 @@ function draw_event_node(node) {
                                 var setdata = guid_get(custom_data_list[| 0]);
                                 message = message + "(map): ";
                                 output_string = setdata ? setdata.name : "<null>";
+                                break;
+                            case DataTypes.ASSET_FLAG:
+                                message = message + "(flags): ";
+                                output_string = string(custom_data_list[| 0]);
                                 break;
                         }
                         

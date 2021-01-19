@@ -93,6 +93,12 @@ function ui_init_game_data_activate() {
                                 element.key = i;
                                 var hh = element.height + eh / 2;
                                 break;
+                            case DataTypes.ASSET_FLAG:     // button which leads to a dialog with a list of flags
+                                var element = create_button(0, yy, property.name, ew, eh * 2, fa_center, function(button) {
+                                }, noone);
+                                element.key = i;
+                                var hh = element.height;
+                                break;
                             case DataTypes.ENUM:           // list
                             case DataTypes.DATA:           // list
                                 var datadata = guid_get(property.type_guid);

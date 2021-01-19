@@ -48,6 +48,9 @@ function omu_data_list_add(thing) {
             case DataTypes.MAP:
                 not_yet_implemented_polite();
                 break;
+            case DataTypes.ASSET_FLAG:
+                ds_list_add(plist, 0);
+                break;
         }
     }
 }

@@ -65,9 +65,11 @@ function ui_init_game_data_refresh() {
                     } else {
                         ui_input_set_value(thingy, string(instance.values[| n][| 0]));
                     }
-                    // if you re-select a data that already has one of these fields set, it should
-                    // be re-selected when you re-select the instance - there should be some indication
-                    // that the value is set
+                    // if you re-select a data that already has one of these
+                    // fields set, it should be re-selected when you re-select
+                    // the instance - there should be some indication that the
+                    // value is set; this is ONLY for data types represented
+                    // by a list in this editor
                     switch (property.type) {
                         case DataTypes.DATA:
                             ui_list_deselect(thingy);
@@ -181,6 +183,9 @@ function ui_init_game_data_refresh() {
                         break;
                     case DataTypes.ENTITY:
                         // not allowed
+                        break;
+                    case DataTypes.ASSET_FLAG:
+                        // this is just a button and doesn't display anything
                         break;
                 }
             }

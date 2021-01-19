@@ -47,13 +47,14 @@ enum DataTypes {
     EVENT,              // list
     IMG_SKYBOX,         // list
     MESH_AUTOTILE,      // list
+    ASSET_FLAG,         // button (-> bitfield)
     _COUNT
 }
 
 /*
  * if you want to add a new data type, you need to:
  *  0. add it to the list here
- *  1. add it to the following enums:
+ *  1. add it to the following enums, if it's a serialized field:
  *           - SerializeThings
  *           - GameDataCategories
  *           - entry in dialog_create_settings_data_asset_files (with color)
@@ -77,7 +78,7 @@ enum DataTypes {
  *  17. the equilvalent in serialize_load_entity
  *          and the equivalent in the game
  *  18. case in serialize_load_event_prefabs
- *          and the equivalent in the game
+ *          event prefabs are IGNORED in the game
  *  19. case in serialize_save_event_prefabs
  *  20. case in serialize_save_map_contents_meta
  *  21. case in serialize_load_map_contents_meta

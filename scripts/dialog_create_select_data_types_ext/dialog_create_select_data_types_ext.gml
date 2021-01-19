@@ -25,7 +25,7 @@ function dialog_create_select_data_types_ext(root, value, onvaluechange) {
     create_radio_array_options(el_list, [
         "Int", "Enum", "Float", "String", "Boolean", "Data", "Code", "Color", "Mesh", "Tileset", "Tile", "Autotile",
         "Audio (BGM)", "Audio (SE)", "Animation", "Entity (RefID)", "Map", "Battler sprite", "Overworld sprite",
-        "Particle", "UI image", "Misc. image", "Event", "Skybox",
+        "Particle", "UI image", "Misc. image", "Event", "Skybox", "Mesh Autotile", "Asset Flag",
     ]);
     
     el_list.contents[| DataTypes.AUDIO_BGM].color = c_green;
@@ -43,6 +43,8 @@ function dialog_create_select_data_types_ext(root, value, onvaluechange) {
     el_list.contents[| DataTypes.MAP].color = c_blue;
     el_list.contents[| DataTypes.ENTITY].color = c_blue;
     el_list.contents[| DataTypes.ANIMATION].color = c_blue;
+    el_list.contents[| DataTypes.IMG_SKYBOX].color = c_purple;
+    el_list.contents[| DataTypes.MESH_AUTOTILE].color = c_blue;
     
     create_radio_array_option_column(el_list, DataTypes.AUDIO_BGM, c2 + 32);
     

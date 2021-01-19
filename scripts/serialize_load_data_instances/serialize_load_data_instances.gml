@@ -38,6 +38,9 @@ function serialize_load_data_instances(buffer, version) {
                         case DataTypes.COLOR:
                             var btype = buffer_u32;
                             break;
+                        case DataTypes.ASSET_FLAG:
+                            var btype = buffer_flag;
+                            break;
                         case DataTypes.ENUM:
                         case DataTypes.DATA:
                         case DataTypes.MESH:
