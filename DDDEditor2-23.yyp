@@ -260,6 +260,7 @@
     {"id":{"name":"serialize_save_events","path":"scripts/serialize_save_events/serialize_save_events.yy",},"order":6,},
     {"id":{"name":"serialize_save_global_meta","path":"scripts/serialize_save_global_meta/serialize_save_global_meta.yy",},"order":7,},
     {"id":{"name":"serialize_save_datadata","path":"scripts/serialize_save_datadata/serialize_save_datadata.yy",},"order":8,},
+    {"id":{"name":"dialog_create_game_data_asset_flags","path":"scripts/dialog_create_game_data_asset_flags/dialog_create_game_data_asset_flags.yy",},"order":25,},
     {"id":{"name":"serialize_save_animations","path":"scripts/serialize_save_animations/serialize_save_animations.yy",},"order":9,},
     {"id":{"name":"serialize_save_event_custom","path":"scripts/serialize_save_event_custom/serialize_save_event_custom.yy",},"order":10,},
     {"id":{"name":"serialize_save_terrain","path":"scripts/serialize_save_terrain/serialize_save_terrain.yy",},"order":11,},

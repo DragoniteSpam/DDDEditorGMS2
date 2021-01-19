@@ -94,7 +94,8 @@ function ui_init_game_data_activate() {
                                 var hh = element.height + eh / 2;
                                 break;
                             case DataTypes.ASSET_FLAG:     // button which leads to a dialog with a list of flags
-                                var element = create_button(0, yy, property.name, ew, eh * 2, fa_center, function(button) {
+                                var element = create_button(0, yy, property.name, ew, eh, fa_center, function(button) {
+                                    dialog_create_game_data_asset_flags(button, button.key);
                                 }, noone);
                                 element.key = i;
                                 var hh = element.height;
