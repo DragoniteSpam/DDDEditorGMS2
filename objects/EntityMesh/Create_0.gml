@@ -35,12 +35,12 @@ get_bounding_box = entity_bounds_mesh;
 
 SetStatic = function(state) {
     // Meshes with no mesh are not allowed to be marked as static
-    if (!guid_get(entity.mesh)) return false;
+    if (!guid_get(mesh)) return false;
     // SMF meshes are simply not allowed to be marked as static
-    if (guid_get(entity.mesh).type == MeshTypes.SMF) return false;
+    if (guid_get(mesh).type == MeshTypes.SMF) return false;
     
     if (state != is_static) {
-        entity.is_static = state;
+        is_static = state;
         Stuff.map.active_map.contents.population_static = Stuff.map.active_map.contents.population_static + (is_static ? 1 : -1);
     }
 };
