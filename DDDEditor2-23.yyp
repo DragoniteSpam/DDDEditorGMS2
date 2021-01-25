@@ -141,7 +141,6 @@
     {"id":{"name":"entity_init_collision_pawn","path":"scripts/entity_init_collision_pawn/entity_init_collision_pawn.yy",},"order":1,},
     {"id":{"name":"entity_init_collision_mesh","path":"scripts/entity_init_collision_mesh/entity_init_collision_mesh.yy",},"order":2,},
     {"id":{"name":"entity_mesh_set_mesh","path":"scripts/entity_mesh_set_mesh/entity_mesh_set_mesh.yy",},"order":0,},
-    {"id":{"name":"entity_set_static","path":"scripts/entity_set_static/entity_set_static.yy",},"order":6,},
     {"id":{"name":"tileset_create","path":"scripts/tileset_create/tileset_create.yy",},"order":2,},
     {"id":{"name":"get_active_tileset","path":"scripts/get_active_tileset/get_active_tileset.yy",},"order":9,},
     {"id":{"name":"create_event_node_basic","path":"scripts/create_event_node_basic/create_event_node_basic.yy",},"order":3,},

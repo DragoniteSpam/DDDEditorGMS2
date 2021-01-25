@@ -42,3 +42,10 @@ get_bounding_box = entity_bounds_one;
 enum MeshAutotileLayers {
     TOP, VERTICAL, BASE, SLOPE, __COUNT,
 }
+
+SetStatic = function(state) {
+    if (state != is_static) {
+        is_static = state;
+        Stuff.map.active_map.contents.population_static = Stuff.map.active_map.contents.population_static + (is_static ? 1 : -1);
+    }
+};

@@ -138,3 +138,7 @@ SetCollisionTransform = function() {
         c_transform_identity();
     }
 };
+
+SetStatic = function(state) {
+    return false;
+};

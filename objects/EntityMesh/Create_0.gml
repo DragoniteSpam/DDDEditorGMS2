@@ -32,3 +32,15 @@ render = render_mesh;
 selector = select_single;
 on_select_ui = safc_on_mesh_ui;
 get_bounding_box = entity_bounds_mesh;
+
+SetStatic = function(state) {
+    // Meshes with no mesh are not allowed to be marked as static
+    if (!guid_get(entity.mesh)) return false;
+    // SMF meshes are simply not allowed to be marked as static
+    if (guid_get(entity.mesh).type == MeshTypes.SMF) return false;
+    
+    if (state != is_static) {
+        entity.is_static = state;
+        Stuff.map.active_map.contents.population_static = Stuff.map.active_map.contents.population_static + (is_static ? 1 : -1);
+    }
+};
