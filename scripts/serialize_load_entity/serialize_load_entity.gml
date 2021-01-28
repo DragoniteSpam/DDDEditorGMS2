@@ -11,6 +11,7 @@ function serialize_load_entity(buffer, entity, version) {
     if (version >= DataVersions.ENTITY_PRESERVE_FLAG) {
         entity.preserve_on_save = unpack(entity_bools, 1);
     }
+    
     if (version >= DataVersions.ENTITY_REFLECT_FLAG) {
         entity.reflect = unpack(entity_bools, 2);
     }

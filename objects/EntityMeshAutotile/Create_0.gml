@@ -13,6 +13,7 @@ load_script = function(buffer, entity, version) {
     if (version >= DataVersions.MESH_AUTOTILE_IMPLEMENTATION) {
         entity.autotile_id = buffer_read(buffer, buffer_datatype);
     }
+    entity.is_static = true;
 };
 
 name = "Terrain";
@@ -43,9 +44,7 @@ enum MeshAutotileLayers {
     TOP, VERTICAL, BASE, SLOPE, __COUNT,
 }
 
+is_static = true;
 SetStatic = function(state) {
-    if (state != is_static) {
-        is_static = state;
-        Stuff.map.active_map.contents.population_static = Stuff.map.active_map.contents.population_static + (is_static ? 1 : -1);
-    }
+    return false;
 };
