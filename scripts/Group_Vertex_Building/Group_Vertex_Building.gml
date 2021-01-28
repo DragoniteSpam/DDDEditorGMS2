@@ -132,8 +132,8 @@ function buffer_to_reflect(buffer) {
     static fsize = buffer_sizeof(buffer_f32);
     
     try {
-        var wbuffer = vertex_create_buffer();
-        vertex_begin(wbuffer, Stuff.graphics.vertex_format);
+        var rbuffer = vertex_create_buffer();
+        vertex_begin(rbuffer, Stuff.graphics.vertex_format);
         var vertex_size = Stuff.graphics.format_size;
         for (var i = 0; i < buffer_get_size(buffer); i += vertex_size * 3) {
             var x1 = buffer_peek(buffer, i + 0 * vertex_size + 0 * fsize, buffer_f32);
@@ -193,7 +193,7 @@ function buffer_to_reflect(buffer) {
             vertex_point_complete(rbuffer, x2, y2, z2, nx2, ny2, nz2, u2, v2, c2, a2);
             vertex_point_complete(rbuffer, x3, y3, z3, nx3, ny3, nz3, u3, v3, c3, a3);
         }
-        vertex_end(wbuffer);
+        vertex_end(rbuffer);
     } catch (e) {
         if (rbuffer) vertex_delete_buffer(rbuffer);
         rbuffer = -1;

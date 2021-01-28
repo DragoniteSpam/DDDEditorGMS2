@@ -254,7 +254,7 @@ function dialog_create_manager_mesh_autotile(root) {
             for (var i = 0; i < array_length(autotile.layers); i++) {
                 var change_prefix = autotile.GUID + ":" + string(i) + ":";
                 for (var j = 0; j < AUTOTILE_COUNT; j++) {
-                    if (autotile.layers[layer_index].tiles[j].AutoReflect()) {
+                    if (autotile.layers[i].tiles[j].AutoReflect()) {
                         changes[$ change_prefix + string(j)] = true;
                     }
                 }
