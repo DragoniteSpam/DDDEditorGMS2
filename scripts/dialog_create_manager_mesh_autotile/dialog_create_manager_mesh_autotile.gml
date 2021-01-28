@@ -220,28 +220,6 @@ function dialog_create_manager_mesh_autotile(root) {
     
     yy += el_import_series.height + spacing;
     
-    var el_clear = create_button(c2x, yy, "Clear Layer", ew, eh, fa_center, function(button) {
-        var selection = ui_list_selection(button.root.el_list);
-        var layer_index = ui_list_selection(button.root.el_layers);
-        var autotile = Stuff.all_mesh_autotiles[| selection];
-        if (autotile) {
-            var changes = { };
-            var change_prefix = autotile.GUID + ":" + string(layer_index) + ":";
-            
-            for (var i = 0; i < AUTOTILE_COUNT; i++) {
-                if (autotile.layers[layer_index].tiles[i].Destroy()) {
-                    changes[$ change_prefix + string(i)] = true;
-                }
-            }
-            
-            entity_mesh_autotile_check_changes(changes);
-            button.root.Colorize();
-        }
-    }, dg);
-    el_clear.tooltip = "Deletes all imported mesh autotiles. Entities which use them will continue to exist, but will be invisible. (Both upright and reflection meshes will be deleted.)";
-    
-    yy += el_clear.height + spacing;
-    
     var el_reflect_layer = create_button(c2x, yy, "Auto Reflections (Layer)", ew, eh, fa_center, function(button) {
         var selection = ui_list_selection(button.root.el_list);
         var layer_index = ui_list_selection(button.root.el_layers);
@@ -285,6 +263,28 @@ function dialog_create_manager_mesh_autotile(root) {
     el_reflect_all.tooltip = "Automatically generate Reflection meshes for each of the autotiles by flipping the base ones upside-down.";
     
     yy += el_reflect_all.height + spacing;
+    
+    var el_clear = create_button(c2x, yy, "Clear Layer", ew, eh, fa_center, function(button) {
+        var selection = ui_list_selection(button.root.el_list);
+        var layer_index = ui_list_selection(button.root.el_layers);
+        var autotile = Stuff.all_mesh_autotiles[| selection];
+        if (autotile) {
+            var changes = { };
+            var change_prefix = autotile.GUID + ":" + string(layer_index) + ":";
+            
+            for (var i = 0; i < AUTOTILE_COUNT; i++) {
+                if (autotile.layers[layer_index].tiles[i].Destroy()) {
+                    changes[$ change_prefix + string(i)] = true;
+                }
+            }
+            
+            entity_mesh_autotile_check_changes(changes);
+            button.root.Colorize();
+        }
+    }, dg);
+    el_clear.tooltip = "Deletes all imported mesh autotiles. Entities which use them will continue to exist, but will be invisible. (Both upright and reflection meshes will be deleted.)";
+    
+    yy += el_clear.height + spacing;
     
     yy = yy_base;
     
