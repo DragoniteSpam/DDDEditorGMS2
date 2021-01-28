@@ -195,7 +195,11 @@ function dialog_create_mesh_advanced(root, mesh) {
     yy += el_auto_reflect.height + spacing;
     
     var el_swap_reflect = create_button(col3_x, yy, "Swap Upright and Reflection", ew, eh, fa_center, function(button) {
-        
+        var mesh = button.root.mesh;
+        var submesh = ui_list_selection(button.root.el_list);
+        if (submesh + 1) {
+            mesh.submeshes[| submesh].SwapReflections();
+        }
     }, dg);
     el_swap_reflect.tooltip = "The upright mesh will become the reflection mesh, and vice versa.";
     yy += el_swap_reflect.height + spacing;
@@ -223,12 +227,6 @@ function dialog_create_mesh_advanced(root, mesh) {
     var el_text_all = create_text(col4_x, yy, "All Submeshes", ew, eh, fa_left, ew, dg);
     yy += el_text_all.height + spacing;
     
-    var el_import_reflect_all = create_button(col4_x, yy, "Import Reflection", ew, eh, fa_center, function(button) {
-        
-    }, dg);
-    el_import_reflect_all.tooltip = "Import a reflection mesh.";
-    yy += el_import_reflect_all.height + spacing;
-    
     var el_auto_reflect_all = create_button(col4_x, yy, "Auto-Genreate Reflection", ew, eh, fa_center, function(button) {
         
     }, dg);
@@ -236,7 +234,7 @@ function dialog_create_mesh_advanced(root, mesh) {
     yy += el_auto_reflect_all.height + spacing;
     
     var el_swap_reflect_all = create_button(col4_x, yy, "Swap Upright and Reflection", ew, eh, fa_center, function(button) {
-        
+        button.root.mesh.SwapReflections();
     }, dg);
     el_swap_reflect_all.tooltip = "The upright mesh will become the reflection mesh, and vice versa.";
     yy += el_swap_reflect_all.height + spacing;
@@ -281,7 +279,6 @@ function dialog_create_mesh_advanced(root, mesh) {
         el_up_axis,
         el_markers,
         el_text_all,
-        el_import_reflect_all,
         el_auto_reflect_all,
         el_swap_reflect_all,
         el_all_normal_flat,

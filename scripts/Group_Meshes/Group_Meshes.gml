@@ -29,4 +29,18 @@ function MeshSubmesh(name) constructor {
             }
         }
     };
+    
+    static SwapReflections = function() {
+        var t = self.buffer;
+        self.buffer = self.reflect_buffer;
+        self.reflect_buffer = t;
+        
+        var t = self.vbuffer;
+        self.vbuffer = self.reflect_vbuffer;
+        self.reflect_vbuffer = t;
+        
+        var t = self.wbuffer;
+        self.wbuffer = self.reflect_wbuffer;
+        self.reflect_wbuffer = t;
+    };
 }

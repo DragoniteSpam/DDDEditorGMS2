@@ -77,3 +77,9 @@ AutoCalculateBounds = function() {
     
     data_mesh_recalculate_bounds(id);
 };
+
+SwapReflections = function() {
+    for (var i = 0; i < ds_list_size(submeshes); i++) {
+        submeshes[| i].SwapReflections();
+    }
+};
