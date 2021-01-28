@@ -125,7 +125,7 @@ function dialog_create_manager_mesh_autotile(root) {
     
     yy += ui_get_list_height(el_layers) + spacing;
     
-    var el_import_series = create_button(c2x, yy, "Import Batch", ew, eh, fa_center, function(button) {
+    var el_import_series = create_button(c2x, yy, "Import Layer", ew, eh, fa_center, function(button) {
         var selection = ui_list_selection(button.root.el_list);
         var layer_index = ui_list_selection(button.root.el_layers);
         var autotile = Stuff.all_mesh_autotiles[| selection];
@@ -219,6 +219,28 @@ function dialog_create_manager_mesh_autotile(root) {
     el_import_series.tooltip = "Import autotile meshes in batch. If you want to load an entire series at once you should probably choose this option, because selecting them one-by-one would be very slow.";
     
     yy += el_import_series.height + spacing;
+    
+    var el_export_series = create_button(c2x, yy, "Export Layer", ew, eh, fa_center, function(button) {
+        var selection = ui_list_selection(button.root.el_list);
+        var layer_index = ui_list_selection(button.root.el_layers);
+        var autotile = Stuff.all_mesh_autotiles[| selection];
+        if (autotile) {
+            var folder = filename_path(get_save_filename_mesh("save destination", "Game Maker model files|*.d3d;*.gmmod"));
+            if (folder != "") {
+                for (var i = 0; i < AUTOTILE_COUNT; i++) {
+                    if (autotile.layers[layer_index].tiles[i].buffer) {
+                        export_d3d_raw(folder + string(i) + ".d3d", autotile.layers[layer_index].tiles[i].buffer);
+                    }
+                    if (autotile.layers[layer_index].tiles[i].reflect_buffer) {
+                        export_d3d_raw(folder + string(i) + "r.d3d", autotile.layers[layer_index].tiles[i].reflect_buffer);
+                    }
+                }
+            }
+        }
+    }, dg);
+    el_export_series.tooltip = "Export the selected layer of mesh autotiles.";
+    
+    yy += el_export_series.height + spacing;
     
     var el_reflect_layer = create_button(c2x, yy, "Auto Reflections (Layer)", ew, eh, fa_center, function(button) {
         var selection = ui_list_selection(button.root.el_list);
@@ -381,6 +403,7 @@ function dialog_create_manager_mesh_autotile(root) {
         el_name_internal,
         el_layers,
         el_import_series,
+        el_export_series,
         el_clear,
         el_reflect_layer,
         el_reflect_all,
