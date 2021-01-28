@@ -200,10 +200,6 @@ function dialog_create_mesh_advanced(root, mesh) {
     el_swap_reflect.tooltip = "The upright mesh will become the reflection mesh, and vice versa.";
     yy += el_swap_reflect.height + spacing;
     
-    var el_auto_bounds = create_button(col3_x, yy, "Auto-calculate bounds", ew, eh, fa_center, omu_mesh_auto_bounds, dg);
-    el_auto_bounds.tooltip = "Automatically calculate the bounds of a mesh. Rounds to the nearest 32, i.e. [0, 0, 0] to [28, 36, 32] would be assigned bounds of [0, 0, 0] to [1, 1, 1].";
-    yy += el_auto_bounds.height + spacing;
-    
     var el_normal_flat = create_button(col3_x, yy, "Normals: Flat", ew, eh, fa_center, omu_mesh_normal_flat, dg);
     el_normal_flat.tooltip = "Flattens all normals in all submeshes mesh.";
     yy += el_normal_flat.height + spacing;
@@ -244,6 +240,19 @@ function dialog_create_mesh_advanced(root, mesh) {
     }, dg);
     el_swap_reflect_all.tooltip = "The upright mesh will become the reflection mesh, and vice versa.";
     yy += el_swap_reflect_all.height + spacing;
+    
+    var el_auto_bounds = create_button(col4_x, yy, "Auto-calculate bounds", ew, eh, fa_center, function(button) {
+        var mesh = button.root.mesh;
+        mesh.AutoCalculateBounds();
+        ui_input_set_value(Stuff.map.ui.t_p_mesh_editor.xmin, string(mesh.xmin));
+        ui_input_set_value(Stuff.map.ui.t_p_mesh_editor.ymin, string(mesh.ymin));
+        ui_input_set_value(Stuff.map.ui.t_p_mesh_editor.zmin, string(mesh.zmin));
+        ui_input_set_value(Stuff.map.ui.t_p_mesh_editor.xmax, string(mesh.xmax));
+        ui_input_set_value(Stuff.map.ui.t_p_mesh_editor.ymax, string(mesh.ymax));
+        ui_input_set_value(Stuff.map.ui.t_p_mesh_editor.zmax, string(mesh.zmax));
+    }, dg);
+    el_auto_bounds.tooltip = "Automatically calculate the bounds of a mesh. Rounds to the nearest 32, i.e. [0, 0, 0] to [28, 36, 32] would be assigned bounds of [0, 0, 0] to [1, 1, 1].";
+    yy += el_auto_bounds.height + spacing;
     
     var el_all_normal_flat = create_button(col4_x, yy, "Normals: Flat", ew, eh, fa_center, not_yet_implemented_polite, dg);
     el_all_normal_flat.tooltip = "Flattens all normals in every mesh in the data file.";
