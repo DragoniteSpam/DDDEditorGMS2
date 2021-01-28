@@ -225,6 +225,48 @@ function dialog_create_manager_mesh_autotile(root) {
     
     yy += el_clear.height + spacing;
     
+    var el_reflect_layer = create_button(c2x, yy, "Auto Reflections (Layer)", ew, eh, fa_center, function(button) {
+        var selection = ui_list_selection(button.root.el_list);
+        var layer_index = ui_list_selection(button.root.el_layers);
+        var autotile = Stuff.all_mesh_autotiles[| selection];
+        if (autotile) {
+            var changes = { };
+            var change_prefix = autotile.GUID + ":" + string(layer_index) + ":";
+            
+            for (var i = 0; i < AUTOTILE_COUNT; i++) {
+                if (autotile.layers[layer_index].tiles[i].AutoReflect()) {
+                    changes[$ change_prefix + string(i)] = true;
+                }
+            }
+            
+            entity_mesh_autotile_check_changes(changes);
+        }
+    }, dg);
+    el_reflect_layer.tooltip = "Automatically generate Reflection meshes for each of the autotiles by flipping the base ones upside-down.";
+    
+    yy += el_reflect_layer.height + spacing;
+    
+    var el_reflect_all = create_button(c2x, yy, "Auto Reflections (All)", ew, eh, fa_center, function(button) {
+        var selection = ui_list_selection(button.root.el_list);
+        var autotile = Stuff.all_mesh_autotiles[| selection];
+        if (autotile) {
+            var changes = { };
+            for (var i = 0; i < array_length(autotile.layers); i++) {
+                var change_prefix = autotile.GUID + ":" + string(i) + ":";
+                for (var j = 0; j < AUTOTILE_COUNT; j++) {
+                    if (autotile.layers[layer_index].tiles[j].AutoReflect()) {
+                        changes[$ change_prefix + string(j)] = true;
+                    }
+                }
+            }
+            
+            entity_mesh_autotile_check_changes(changes);
+        }
+    }, dg);
+    el_reflect_all.tooltip = "Automatically generate Reflection meshes for each of the autotiles by flipping the base ones upside-down.";
+    
+    yy += el_reflect_all.height + spacing;
+    
     yy = yy_base;
     
     dg.buttons = array_create(AUTOTILE_COUNT);
@@ -304,6 +346,8 @@ function dialog_create_manager_mesh_autotile(root) {
         el_layers,
         el_import_series,
         el_clear,
+        el_reflect_layer,
+        el_reflect_all,
         el_confirm
     );
     
