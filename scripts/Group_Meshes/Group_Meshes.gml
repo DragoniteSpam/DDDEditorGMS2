@@ -47,46 +47,46 @@ function MeshSubmesh(name) constructor {
     static SetNormalsZero = function() {
         if (self.buffer) {
             internalSetNormalsZero(self.buffer, 1);
-            vertex_delete_buffer(self.vbuffer);
-            self.vbuffer = vertex_create_buffer_from_buffer(self.vbuffer, Stuff.graphics.vertex_format);
-            vertex_freeze(self.vbuffer);
+            internalSetVertexBuffer();
         }
         if (self.reflect_buffer) {
             internalSetNormalsZero(self.reflect_buffer, -1);
-            vertex_delete_buffer(self.reflect_vbuffer);
-            self.reflect_vbuffer = vertex_create_buffer_from_buffer(self.reflect_vbuffer, Stuff.graphics.vertex_format);
-            vertex_freeze(self.reflect_vbuffer);
+            internalSetReflectVertexBuffer();
         }
     };
     
     static SetNormalsFlat = function() {
         if (self.buffer) {
             internalSetNormalsFlat(self.buffer);
-            vertex_delete_buffer(self.vbuffer);
-            self.vbuffer = vertex_create_buffer_from_buffer(self.reflect_vbuffer, Stuff.graphics.vertex_format);
-            vertex_freeze(self.vbuffer);
+            internalSetVertexBuffer();
         }
         if (self.reflect_buffer) {
             internalSetNormalsFlat(self.reflect_buffer);
-            vertex_delete_buffer(self.reflect_vbuffer);
-            self.reflect_vbuffer = vertex_create_buffer_from_buffer(self.reflect_vbuffer, Stuff.graphics.vertex_format);
-            vertex_freeze(self.reflect_vbuffer);
+            internalSetReflectVertexBuffer();
         }
     };
     
     static SetNormalsSmooth = function(threshold) {
         if (self.buffer) {
             internalSetNormalsSmooth(self.buffer, threshold);
-            vertex_delete_buffer(self.vbuffer);
-            self.vbuffer = vertex_create_buffer_from_buffer(self.reflect_vbuffer, Stuff.graphics.vertex_format);
-            vertex_freeze(self.vbuffer);
+            internalSetVertexBuffer();
         }
         if (self.reflect_buffer) {
             internalSetNormalsSmooth(self.reflect_buffer, threshold);
-            vertex_delete_buffer(self.reflect_vbuffer);
-            self.reflect_vbuffer = vertex_create_buffer_from_buffer(self.reflect_vbuffer, Stuff.graphics.vertex_format);
-            vertex_freeze(self.reflect_vbuffer);
+            internalSetReflectVertexBuffer();
         }
+    };
+    
+    static internalSetVertexBuffer = function() {
+        if (self.buffer) vertex_delete_buffer(self.vbuffer);
+        self.vbuffer = vertex_create_buffer_from_buffer(self.buffer, Stuff.graphics.vertex_format);
+        vertex_freeze(self.vbuffer);
+    };
+    
+    static internalSetReflectVertexBuffer = function() {
+        if (self.reflect_buffer) vertex_delete_buffer(self.reflect_vbuffer);
+        self.reflect_vbuffer = vertex_create_buffer_from_buffer(self.reflect_buffer, Stuff.graphics.vertex_format);
+        vertex_freeze(self.reflect_vbuffer);
     };
     
     static internalSetNormalsZero = function(buffer, nz) {
