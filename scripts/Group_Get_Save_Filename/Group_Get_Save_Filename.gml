@@ -55,7 +55,7 @@ function get_save_filename_mesh(name, filter) {
     return path;
 }
 
-function get_save_filename_mesh_autotile() {
+function get_save_filename_mesh_autotile(name) {
     if (name == undefined) name = "";
     var path = get_save_filename_ext("Mesh Autotile files (*.ddd_atm)|*.ddd_atm", name, Settings.location.mesh, "Select a mesh autotile collection");
     

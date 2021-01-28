@@ -35,5 +35,5 @@ function export_d3d_raw(filename, buffer) {
     }
     
     buffer_write(export_buffer, buffer_text, "1\r\n");
-    buffer_save_ext(export_buffer, fn, 0, buffer_tell(export_buffer));
+    buffer_save_ext(export_buffer, filename, 0, buffer_tell(export_buffer));
 }
