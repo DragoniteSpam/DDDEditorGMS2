@@ -45,8 +45,7 @@ function dialog_create_mesh_normal_settings(root, selection) {
     var el_smooth = create_button(c1x, yy, "Set Smooth Normals", ew, eh, fa_center, function(button) {
         var selection = button.root.selection;
         for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-            var mesh = Stuff.all_meshes[| index];
-            mesh_set_normals_smooth(mesh, Settings.config.normal_threshold);
+            Stuff.all_meshes[| index].SetNormalsSmooth(Settings.config.normal_threshold);
         }
         batch_again();
     }, dg);

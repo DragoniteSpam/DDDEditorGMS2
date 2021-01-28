@@ -90,6 +90,12 @@ SetNormalsFlat = function() {
     }
 };
 
+SetNormalsSmooth = function() {
+    for (var i = 0; i < ds_list_size(submeshes); i++) {
+        submeshes[| i].SetNormalsSmooth();
+    }
+};
+
 SwapReflections = function() {
     for (var i = 0; i < ds_list_size(submeshes); i++) {
         submeshes[| i].SwapReflections();
