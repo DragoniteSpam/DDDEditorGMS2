@@ -6,6 +6,7 @@ function dialog_create_manager_mesh_autotile(root) {
     var dh = 640;
 
     var dg = dialog_create(dw, dh, "Data: Mesh Autotiles", undefined, undefined, root);
+    dg.type = 0;
 
     var columns = 4;
     var spacing = 16;
@@ -269,6 +270,14 @@ function dialog_create_manager_mesh_autotile(root) {
     
     yy = yy_base;
     
+    var el_layer_type = create_radio_array(c3x, yy, "Type:", ew * 2, eh, function(option) {
+        option.root.root.type = option.value;
+    }, dg.type, dg);
+    create_radio_array_options(el_layer_type, ["Standard", "Reflected"]);
+    create_radio_array_option_column(el_layer_type, 1, c3x + ew);
+    
+    yy += ui_get_radio_array_height(el_layer_type);
+    
     dg.buttons = array_create(AUTOTILE_COUNT);
     dg.icons = array_create(AUTOTILE_COUNT);
     array_clear(dg.buttons, undefined);
@@ -348,6 +357,7 @@ function dialog_create_manager_mesh_autotile(root) {
         el_clear,
         el_reflect_layer,
         el_reflect_all,
+        el_layer_type,
         el_confirm
     );
     
