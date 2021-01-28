@@ -118,7 +118,7 @@ function dialog_create_mesh_advanced(root, mesh) {
     } else {
         var text = mesh.submeshes[| 0].path;
     }
-    var el_text_submesh_path = create_text(col1_x, yy, text, ew, eh, fa_left, ew, dg);
+    var el_text_submesh_path = create_text(col1_x, yy, text, ew * 1.5, eh, fa_left, ew * 1.5, dg);
     el_text_submesh_path.render = function(text, x, y) {
         var selection = ui_list_selection(text.root.el_list);
         var mesh_data = text.root.mesh;
@@ -134,14 +134,18 @@ function dialog_create_mesh_advanced(root, mesh) {
             var str = "";
         }
         
-        text.text = "";
-        for (var i = string_length(str); i > 0; i--) {
-            text.text = string_char_at(str, i) + text.text;
-            if (string_width(text.text) > (text.wrap_width - string_width("...") - text.offset)) {
-                if (i < string_length(str)) {
-                    text.text = "..." + text.text;
+        if (string_width(str) <= text.wrap_width - text.offset) {
+            text.text = str;
+        } else {
+            var prefix = string_copy(str, 1, 10) + "...   ";
+            var prefix_width = string_width(prefix);
+            text.text = "";
+            for (var i = string_length(str); i > 0; i--) {
+                text.text = string_char_at(str, i) + text.text;
+                if (string_width(text.text) > (text.wrap_width - prefix_width - text.offset)) {
+                    text.text = prefix + text.text;
+                    break;
                 }
-                break;
             }
         }
         text.tooltip = str;
@@ -152,6 +156,9 @@ function dialog_create_mesh_advanced(root, mesh) {
     yy += el_text_submesh_path.height + spacing;
     
     yy = yy_base;
+    
+    var el_text_submesh = create_text(col2_x, yy, "This Submesh", ew, eh, fa_left, ew, dg);
+    yy += el_text_submesh.height + spacing;
     
     var el_auto_bounds = create_button(col2_x, yy, "Auto-calculate bounds", ew, eh, fa_center, omu_mesh_auto_bounds, dg);
     el_auto_bounds.tooltip = "Automatically calculate the bounds of a mesh. Rounds to the nearest 32, i.e. [0, 0, 0] to [28, 36, 32] would be assigned bounds of [0, 0, 0] to [1, 1, 1].";
@@ -177,7 +184,20 @@ function dialog_create_mesh_advanced(root, mesh) {
     
     yy = yy_base;
     
-    var el_markers = create_list(col3_x, yy, "Extra Mesh Markers", "", ew, eh, 8, function(list) {
+    var el_text_all = create_text(col3_x, yy, "All Submeshes", ew, eh, fa_left, ew, dg);
+    yy += el_text_all.height + spacing;
+    
+    var el_all_normal_flat = create_button(col3_x, yy, "Normals: Flat", ew, eh, fa_center, not_yet_implemented_polite, dg);
+    el_all_normal_flat.tooltip = "Flattens all normals in every mesh in the data file.";
+    yy += el_all_normal_flat.height + spacing;
+    
+    var el_all_normal_smooth = create_button(col3_x, yy, "Normals: Smooth", ew, eh, fa_center, not_yet_implemented_polite, dg);
+    el_all_normal_smooth.tooltip = "Smooths all normals in every mesh in the data file. Note that this will have no effect until I finally go and implement smooth shading in a shader.";
+    yy += el_all_normal_smooth.height + spacing;
+    
+    yy = yy_base;
+    
+    var el_markers = create_list(col4_x, yy, "Extra Mesh Markers", "", ew, eh, 8, function(list) {
         var mesh = list.root.mesh;
         var selection = ds_map_to_list(list.selected_entries);
         mesh.flags = 0;
@@ -196,19 +216,6 @@ function dialog_create_mesh_advanced(root, mesh) {
     }
     yy += ui_get_list_height(el_markers) + spacing;
     
-    yy = yy_base;
-    
-    var el_text_all = create_text(col4_x, yy, "All Submeshes", ew, eh, fa_left, ew, dg);
-    yy += el_text_all.height + spacing;
-    
-    var el_all_normal_flat = create_button(col4_x, yy, "Normals: Flat", ew, eh, fa_center, not_yet_implemented_polite, dg);
-    el_all_normal_flat.tooltip = "Flattens all normals in every mesh in the data file.";
-    yy += el_all_normal_flat.height + spacing;
-    
-    var el_all_normal_smooth = create_button(col4_x, yy, "Normals: Smooth", ew, eh, fa_center, not_yet_implemented_polite, dg);
-    el_all_normal_smooth.tooltip = "Smooths all normals in every mesh in the data file. Note that this will have no effect until I finally go and implement smooth shading in a shader.";
-    yy += el_all_normal_smooth.height + spacing;
-    
     var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
     
     ds_list_add(dg.contents,
@@ -218,6 +225,7 @@ function dialog_create_mesh_advanced(root, mesh) {
         el_replace,
         el_name,
         el_text_submesh_path,
+        el_text_submesh,
         el_auto_bounds,
         el_normal_flat,
         el_normal_smooth,
