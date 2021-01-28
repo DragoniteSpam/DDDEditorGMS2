@@ -4,6 +4,7 @@ function dialog_create_mesh_advanced(root, mesh) {
     
     var dg = dialog_create(dw, dh, "Advanced Mesh Options: " + mesh.name, dialog_default, dc_close_no_questions_asked, root);
     dg.mesh = mesh;
+    dg.type = 0;
     
     var columns = 4;
     var spacing = 16;
@@ -157,47 +158,7 @@ function dialog_create_mesh_advanced(root, mesh) {
     
     yy = yy_base;
     
-    var el_text_submesh = create_text(col2_x, yy, "This Submesh", ew, eh, fa_left, ew, dg);
-    yy += el_text_submesh.height + spacing;
-    
-    var el_auto_bounds = create_button(col2_x, yy, "Auto-calculate bounds", ew, eh, fa_center, omu_mesh_auto_bounds, dg);
-    el_auto_bounds.tooltip = "Automatically calculate the bounds of a mesh. Rounds to the nearest 32, i.e. [0, 0, 0] to [28, 36, 32] would be assigned bounds of [0, 0, 0] to [1, 1, 1].";
-    yy += el_auto_bounds.height + spacing;
-    
-    var el_normal_flat = create_button(col2_x, yy, "Normals: Flat", ew, eh, fa_center, omu_mesh_normal_flat, dg);
-    el_normal_flat.tooltip = "Flattens all normals in all submeshes mesh.";
-    yy += el_normal_flat.height + spacing;
-    
-    var el_normal_smooth = create_button(col2_x, yy, "Normals: Smooth", ew, eh, fa_center, omu_mesh_normal_smooth, dg);
-    el_normal_smooth.tooltip = "Smooths all normals in all submeshes. Note that this will have no effect until I finally go and implement smooth shading in a shader.";
-    yy += el_normal_smooth.height + spacing;
-    
-    var el_up_axis = create_button(col2_x, yy, "Rotate Up Axis", ew, eh, fa_center, function(button) {
-        var mesh = button.root.mesh;
-        for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
-            mesh_rotate_up_axis(mesh, i);
-        }
-        batch_again();
-    }, dg);
-    el_up_axis.tooltip = "Rotates the axes of all submeshes. Useful if you exported it from a 3D modelling program that insists on using Y+Up instead of Z+Up (cough cough, Blender).";
-    yy += el_up_axis.height + spacing;
-    
-    yy = yy_base;
-    
-    var el_text_all = create_text(col3_x, yy, "All Submeshes", ew, eh, fa_left, ew, dg);
-    yy += el_text_all.height + spacing;
-    
-    var el_all_normal_flat = create_button(col3_x, yy, "Normals: Flat", ew, eh, fa_center, not_yet_implemented_polite, dg);
-    el_all_normal_flat.tooltip = "Flattens all normals in every mesh in the data file.";
-    yy += el_all_normal_flat.height + spacing;
-    
-    var el_all_normal_smooth = create_button(col3_x, yy, "Normals: Smooth", ew, eh, fa_center, not_yet_implemented_polite, dg);
-    el_all_normal_smooth.tooltip = "Smooths all normals in every mesh in the data file. Note that this will have no effect until I finally go and implement smooth shading in a shader.";
-    yy += el_all_normal_smooth.height + spacing;
-    
-    yy = yy_base;
-    
-    var el_markers = create_list(col4_x, yy, "Extra Mesh Markers", "", ew, eh, 8, function(list) {
+    var el_markers = create_list(col2_x, yy, "Extra Mesh Markers", "", ew, eh, 8, function(list) {
         var mesh = list.root.mesh;
         var selection = ds_map_to_list(list.selected_entries);
         mesh.flags = 0;
@@ -216,6 +177,82 @@ function dialog_create_mesh_advanced(root, mesh) {
     }
     yy += ui_get_list_height(el_markers) + spacing;
     
+    yy = yy_base;
+    
+    var el_text_submesh = create_text(col3_x, yy, "This Submesh", ew, eh, fa_left, ew, dg);
+    yy += el_text_submesh.height + spacing;
+    
+    var el_import_reflect  = create_button(col3_x, yy, "Import Reflection", ew, eh, fa_center, function(button) {
+        
+    }, dg);
+    el_import_reflect.tooltip = "Import a reflection mesh.";
+    yy += el_import_reflect.height + spacing;
+    
+    var el_auto_reflect = create_button(col3_x, yy, "Auto-Genreate Reflection", ew, eh, fa_center, function(button) {
+        
+    }, dg);
+    el_auto_reflect.tooltip = "Generate a reflection mesh for this submesh by flipping the model upside down over the XY plane.";
+    yy += el_auto_reflect.height + spacing;
+    
+    var el_swap_reflect = create_button(col3_x, yy, "Swap Upright and Reflection", ew, eh, fa_center, function(button) {
+        
+    }, dg);
+    el_swap_reflect.tooltip = "The upright mesh will become the reflection mesh, and vice versa.";
+    yy += el_swap_reflect.height + spacing;
+    
+    var el_auto_bounds = create_button(col3_x, yy, "Auto-calculate bounds", ew, eh, fa_center, omu_mesh_auto_bounds, dg);
+    el_auto_bounds.tooltip = "Automatically calculate the bounds of a mesh. Rounds to the nearest 32, i.e. [0, 0, 0] to [28, 36, 32] would be assigned bounds of [0, 0, 0] to [1, 1, 1].";
+    yy += el_auto_bounds.height + spacing;
+    
+    var el_normal_flat = create_button(col3_x, yy, "Normals: Flat", ew, eh, fa_center, omu_mesh_normal_flat, dg);
+    el_normal_flat.tooltip = "Flattens all normals in all submeshes mesh.";
+    yy += el_normal_flat.height + spacing;
+    
+    var el_normal_smooth = create_button(col3_x, yy, "Normals: Smooth", ew, eh, fa_center, omu_mesh_normal_smooth, dg);
+    el_normal_smooth.tooltip = "Smooths all normals in all submeshes. Note that this will have no effect until I finally go and implement smooth shading in a shader.";
+    yy += el_normal_smooth.height + spacing;
+    
+    var el_up_axis = create_button(col3_x, yy, "Rotate Up Axis", ew, eh, fa_center, function(button) {
+        var mesh = button.root.mesh;
+        for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
+            mesh_rotate_up_axis(mesh, i);
+        }
+        batch_again();
+    }, dg);
+    el_up_axis.tooltip = "Rotates the axes of all submeshes. Useful if you exported it from a 3D modelling program that insists on using Y+Up instead of Z+Up (cough cough, Blender).";
+    yy += el_up_axis.height + spacing;
+    
+    yy = yy_base;
+    
+    var el_text_all = create_text(col4_x, yy, "All Submeshes", ew, eh, fa_left, ew, dg);
+    yy += el_text_all.height + spacing;
+    
+    var el_import_reflect_all = create_button(col4_x, yy, "Import Reflection", ew, eh, fa_center, function(button) {
+        
+    }, dg);
+    el_import_reflect_all.tooltip = "Import a reflection mesh.";
+    yy += el_import_reflect_all.height + spacing;
+    
+    var el_auto_reflect_all = create_button(col4_x, yy, "Auto-Genreate Reflection", ew, eh, fa_center, function(button) {
+        
+    }, dg);
+    el_auto_reflect_all.tooltip = "Generate a reflection mesh for all submeshes by flipping the model upside down over the XY plane.";
+    yy += el_auto_reflect_all.height + spacing;
+    
+    var el_swap_reflect_all = create_button(col4_x, yy, "Swap Upright and Reflection", ew, eh, fa_center, function(button) {
+        
+    }, dg);
+    el_swap_reflect_all.tooltip = "The upright mesh will become the reflection mesh, and vice versa.";
+    yy += el_swap_reflect_all.height + spacing;
+    
+    var el_all_normal_flat = create_button(col4_x, yy, "Normals: Flat", ew, eh, fa_center, not_yet_implemented_polite, dg);
+    el_all_normal_flat.tooltip = "Flattens all normals in every mesh in the data file.";
+    yy += el_all_normal_flat.height + spacing;
+    
+    var el_all_normal_smooth = create_button(col4_x, yy, "Normals: Smooth", ew, eh, fa_center, not_yet_implemented_polite, dg);
+    el_all_normal_smooth.tooltip = "Smooths all normals in every mesh in the data file. Note that this will have no effect until I finally go and implement smooth shading in a shader.";
+    yy += el_all_normal_smooth.height + spacing;
+    
     var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
     
     ds_list_add(dg.contents,
@@ -226,12 +263,18 @@ function dialog_create_mesh_advanced(root, mesh) {
         el_name,
         el_text_submesh_path,
         el_text_submesh,
+        el_import_reflect,
+        el_auto_reflect,
+        el_swap_reflect,
         el_auto_bounds,
         el_normal_flat,
         el_normal_smooth,
         el_up_axis,
         el_markers,
         el_text_all,
+        el_import_reflect_all,
+        el_auto_reflect_all,
+        el_swap_reflect_all,
         el_all_normal_flat,
         el_all_normal_smooth,
         el_confirm
