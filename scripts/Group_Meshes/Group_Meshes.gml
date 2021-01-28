@@ -7,6 +7,10 @@ function MeshSubmesh(name) constructor {
     self.path = "";
     self.proto_guid = NULL;
     
+    self.reflect_buffer = undefined;
+    self.reflect_vbuffer = undefined;
+    self.reflect_wbuffer = undefined;
+    
     static _destructor = function() {
         if (buffer) buffer_delete(buffer);
         if (wbuffer) vertex_delete_buffer(wbuffer);
@@ -14,6 +18,14 @@ function MeshSubmesh(name) constructor {
             switch (owner.type) {
                 case MeshTypes.RAW: vertex_delete_buffer(vbuffer); break;
                 case MeshTypes.SMF: smf_model_destroy(vbuffer); break;
+            }
+        }
+        if (reflect_buffer) buffer_delete(reflect_buffer);
+        if (reflect_wbuffer) buffer_delete(reflect_wbuffer);
+        if (reflect_wbuffer) {
+            switch (owner.type) {
+                case MeshTypes.RAW: vertex_delete_buffer(reflect_wbuffer); break;
+                case MeshTypes.SMF: smf_model_destroy(reflect_wbuffer); break;
             }
         }
     };
