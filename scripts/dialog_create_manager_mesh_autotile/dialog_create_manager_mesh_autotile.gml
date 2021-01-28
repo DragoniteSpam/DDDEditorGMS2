@@ -143,7 +143,11 @@ function dialog_create_manager_mesh_autotile(root) {
                     file_count++;
                     try {
                         var data = import_d3d(fn, false, true);
-                        at_layer.tiles[i].Set(data[1], data[0]);
+                        if (button.root.type == 0) {
+                            at_layer.tiles[i].Set(data[1], data[0]);
+                        } else {
+                            at_layer.tiles[i].SetReflect(data[1], data[0]);
+                        }
                         changes[$ change_prefix + string(i)] = true;
                     } catch (e) {
                         failures++;
@@ -178,7 +182,11 @@ function dialog_create_manager_mesh_autotile(root) {
                         case ".d3d": case ".gmmod":
                             try {
                                 var data = import_d3d(fn, false, true);
-                                at_layer.tiles[index].Set(data[1], data[0]);
+                                if (button.type == 0) {
+                                    at_layer.tiles[index].Set(data[1], data[0]);
+                                } else {
+                                    at_layer.tiles[index].SetReflect(data[1], data[0]);
+                                }
                                 changes[$ change_prefix + name] = true;
                             } catch (e) {
                                 failures++;
@@ -187,7 +195,11 @@ function dialog_create_manager_mesh_autotile(root) {
                         case ".obj":
                             try {
                                 var data = import_obj(fn, false, true);
-                                at_layer.tiles[index].Set(data[1], data[0]);
+                                if (button.type == 0) {
+                                    at_layer.tiles[index].Set(data[1], data[0]);
+                                } else {
+                                    at_layer.tiles[index].SetReflect(data[1], data[0]);
+                                }
                                 changes[$ change_prefix + name] = true;
                             } catch (e) {
                                 failures++;
@@ -226,7 +238,7 @@ function dialog_create_manager_mesh_autotile(root) {
             button.root.Colorize();
         }
     }, dg);
-    el_clear.tooltip = "Deletes all imported mesh autotiles. Entities which use them will continue to exist, but will be invisible.";
+    el_clear.tooltip = "Deletes all imported mesh autotiles. Entities which use them will continue to exist, but will be invisible. (Both standard and reflection meshes will be deleted.)";
     
     yy += el_clear.height + spacing;
     
@@ -307,7 +319,11 @@ function dialog_create_manager_mesh_autotile(root) {
                         case ".d3d": case ".gmmod":
                             try {
                                 var data = import_d3d(fn, false, true);
-                                tile_data.Set(data[1], data[0]);
+                                if (button.root.type == 0) {
+                                    tile_data.Set(data[1], data[0]);
+                                } else {
+                                    tile_data.SetReflect(data[1], data[0]);
+                                }
                             } catch (e) {
                                 dialog_create_notice(button, "Unable to load file: " + e.message);
                             }
@@ -315,7 +331,11 @@ function dialog_create_manager_mesh_autotile(root) {
                         case ".obj":
                             try {
                                 var data = import_obj(fn, false, true);
-                                tile_data.Set(data[1], data[0]);
+                                if (button.root.type == 0) {
+                                    tile_data.Set(data[1], data[0]);
+                                } else {
+                                    tile_data.SetReflect(data[1], data[0]);
+                                }
                             } catch (e) {
                                 dialog_create_notice(button, "Unable to load file: " + e.message);
                             }

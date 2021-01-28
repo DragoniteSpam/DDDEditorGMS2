@@ -17,7 +17,6 @@ function DataMeshAutotile(name) : SData(name) constructor {
             
             static SetReflect = function(buffer, vbuffer) {
                 DestroyReflect();
-                DestroyUpright();
                 self.reflect_buffer = buffer;
                 self.reflect_vbuffer = vbuffer;
                 if (buffer) self.reflect_wbuffer = buffer_to_wireframe(buffer);
