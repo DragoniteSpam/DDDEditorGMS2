@@ -23,6 +23,14 @@ function DataMeshAutotile(name) : SData(name) constructor {
                 if (buffer) self.reflect_wbuffer = buffer_to_wireframe(buffer);
             };
             
+            static AutoReflect = function() {
+                if (!self.buffer) return;
+                DestroyReflect();
+                self.reflect_vbuffer = buffer_to_reflect(self.buffer);
+                self.reflect_buffer = buffer_create_from_vertex_buffer(self.reflect_vbuffer, buffer_fixed, 1);
+                self.reflect_wbuffer = buffer_to_wireframe(self.reflect_buffer);
+            };
+            
             static Destroy = function() {
                 DestroyUpright();
                 DestroyReflect();

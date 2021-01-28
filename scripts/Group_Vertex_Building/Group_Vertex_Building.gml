@@ -127,6 +127,81 @@ function buffer_to_wireframe(buffer) {
     return wbuffer;
 }
 
+function buffer_to_reflect(buffer) {
+    var rbuffer = -1;
+    static fsize = buffer_sizeof(buffer_f32);
+    
+    try {
+        var wbuffer = vertex_create_buffer();
+        vertex_begin(wbuffer, Stuff.graphics.vertex_format);
+        var vertex_size = Stuff.graphics.format_size;
+        for (var i = 0; i < buffer_get_size(buffer); i += vertex_size * 3) {
+            var x1 = buffer_peek(buffer, i + 0 * vertex_size + 0 * fsize, buffer_f32);
+            var y1 = buffer_peek(buffer, i + 0 * vertex_size + 1 * fsize, buffer_f32);
+            var z1 = buffer_peek(buffer, i + 0 * vertex_size + 2 * fsize, buffer_f32);
+            var nx1 = buffer_peek(buffer, i + 0 * vertex_size + 3 * fsize, buffer_f32);
+            var ny1 = buffer_peek(buffer, i + 0 * vertex_size + 4 * fsize, buffer_f32);
+            var nz1 = buffer_peek(buffer, i + 0 * vertex_size + 5 * fsize, buffer_f32);
+            var u1 = buffer_peek(buffer, i + 0 * vertex_size + 6 * fsize, buffer_f32);
+            var v1 = buffer_peek(buffer, i + 0 * vertex_size + 7 * fsize, buffer_f32);
+            var c1 = buffer_peek(buffer, i + 0 * vertex_size + 8 * fsize, buffer_u32);
+            var a1 = (c1 >> 24) / 0xff;
+            c1 &= 0xffffff;
+            
+            var x2 = buffer_peek(buffer, i + 1 * vertex_size + 0 * fsize, buffer_f32);
+            var y2 = buffer_peek(buffer, i + 1 * vertex_size + 1 * fsize, buffer_f32);
+            var z2 = buffer_peek(buffer, i + 1 * vertex_size + 2 * fsize, buffer_f32);
+            var nx2 = buffer_peek(buffer, i + 1 * vertex_size + 3 * fsize, buffer_f32);
+            var ny2 = buffer_peek(buffer, i + 1 * vertex_size + 4 * fsize, buffer_f32);
+            var nz2 = buffer_peek(buffer, i + 1 * vertex_size + 5 * fsize, buffer_f32);
+            var u2 = buffer_peek(buffer, i + 1 * vertex_size + 6 * fsize, buffer_f32);
+            var v2 = buffer_peek(buffer, i + 1 * vertex_size + 7 * fsize, buffer_f32);
+            var c2 = buffer_peek(buffer, i + 1 * vertex_size + 8 * fsize, buffer_u32);
+            var a2 = (c2 >> 24) / 0xff;
+            c2 &= 0xffffff;
+            
+            var x3 = buffer_peek(buffer, i + 2 * vertex_size + 0 * fsize, buffer_f32);
+            var y3 = buffer_peek(buffer, i + 2 * vertex_size + 1 * fsize, buffer_f32);
+            var z3 = buffer_peek(buffer, i + 2 * vertex_size + 2 * fsize, buffer_f32);
+            var nx3 = buffer_peek(buffer, i + 2 * vertex_size + 3 * fsize, buffer_f32);
+            var ny3 = buffer_peek(buffer, i + 2 * vertex_size + 4 * fsize, buffer_f32);
+            var nz3 = buffer_peek(buffer, i + 2 * vertex_size + 5 * fsize, buffer_f32);
+            var u3 = buffer_peek(buffer, i + 2 * vertex_size + 6 * fsize, buffer_f32);
+            var v3 = buffer_peek(buffer, i + 2 * vertex_size + 7 * fsize, buffer_f32);
+            var c3 = buffer_peek(buffer, i + 2 * vertex_size + 8 * fsize, buffer_u32);
+            var a3 = (c3 >> 24) / 0xff;
+            c3 &= 0xffffff;
+            
+            var t = x3; x3 = x2; x2 = t;
+            t = y3; y3 = y2; y2 = t;
+            t = z3; z3 = z2; z2 = t;
+            t = nx3; nx3 = nx2; nx2 = t;
+            t = ny3; ny3 = ny2; ny2 = t;
+            t = nz3; nz3 = nz2; nz2 = t;
+            t = u3; u3 = u2; u2 = t;
+            t = v3; v3 = v2; v2 = t;
+            t = c3; c3 = c2; c2 = t;
+            t = a3; a3 = a2; a2 = t;
+            z1 = -z1;
+            z2 = -z2;
+            z3 = -z3;
+            nz1 = -nz1;
+            nz2 = -nz2;
+            nz3 = -nz3;
+            
+            vertex_point_complete(rbuffer, x1, y1, z1, nx1, ny1, nz1, u1, v1, c1, a1);
+            vertex_point_complete(rbuffer, x2, y2, z2, nx2, ny2, nz2, u2, v2, c2, a2);
+            vertex_point_complete(rbuffer, x3, y3, z3, nx3, ny3, nz3, u3, v3, c3, a3);
+        }
+        vertex_end(wbuffer);
+    } catch (e) {
+        if (rbuffer) vertex_delete_buffer(rbuffer);
+        rbuffer = -1;
+    }
+    
+    return rbuffer;
+}
+
 function vertex_buffer_to_wireframe(vbuffer) {
     var buffer = -1;
     var wbuffer = -1;
