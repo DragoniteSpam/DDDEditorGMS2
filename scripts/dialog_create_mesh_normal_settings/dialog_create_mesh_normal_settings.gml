@@ -35,8 +35,7 @@ function dialog_create_mesh_normal_settings(root, selection) {
     var el_flat = create_button(c1x, yy, "Set Flat Normals", ew, eh, fa_center, function(button) {
         var selection = button.root.selection;
         for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-            var mesh = Stuff.all_meshes[| index];
-            mesh_set_normals_flat(mesh);
+            Stuff.all_meshes[| index].SetNormalsFlat();
         }
         batch_again();
     }, dg);

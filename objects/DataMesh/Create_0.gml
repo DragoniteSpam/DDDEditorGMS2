@@ -84,6 +84,12 @@ SetNormalsZero = function() {
     }
 };
 
+SetNormalsFlat = function() {
+    for (var i = 0; i < ds_list_size(submeshes); i++) {
+        submeshes[| i].SetNormalsFlat();
+    }
+};
+
 SwapReflections = function() {
     for (var i = 0; i < ds_list_size(submeshes); i++) {
         submeshes[| i].SwapReflections();
