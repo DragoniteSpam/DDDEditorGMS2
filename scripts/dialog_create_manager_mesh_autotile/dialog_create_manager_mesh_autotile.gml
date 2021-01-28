@@ -46,7 +46,11 @@ function dialog_create_manager_mesh_autotile(root) {
         if (autotile) {
             var at_layer = autotile.layers[layer_index];
             for (var i = 0; i < AUTOTILE_COUNT; i++) {
-                buttons[i].color = (!!at_layer.tiles[i].buffer) ? c_black : c_red;
+                if (type == 0) {
+                    buttons[i].color = (!!at_layer.tiles[i].buffer) ? c_black : c_red;
+                } else {
+                    buttons[i].color = (!!at_layer.tiles[i].reflect_buffer) ? c_black : c_red;
+                }
             }
         }
     });
@@ -241,6 +245,7 @@ function dialog_create_manager_mesh_autotile(root) {
             }
             
             entity_mesh_autotile_check_changes(changes);
+            button.root.Colorize();
         }
     }, dg);
     el_reflect_layer.tooltip = "Automatically generate Reflection meshes for each of the autotiles by flipping the base ones upside-down.";
@@ -262,6 +267,7 @@ function dialog_create_manager_mesh_autotile(root) {
             }
             
             entity_mesh_autotile_check_changes(changes);
+            button.root.Colorize();
         }
     }, dg);
     el_reflect_all.tooltip = "Automatically generate Reflection meshes for each of the autotiles by flipping the base ones upside-down.";
@@ -272,6 +278,7 @@ function dialog_create_manager_mesh_autotile(root) {
     
     var el_layer_type = create_radio_array(c3x, yy, "Type:", ew * 2, eh, function(option) {
         option.root.root.type = option.value;
+        option.root.root.Colorize();
     }, dg.type, dg);
     create_radio_array_options(el_layer_type, ["Standard", "Reflected"]);
     create_radio_array_option_column(el_layer_type, 1, c3x + ew);
