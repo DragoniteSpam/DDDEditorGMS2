@@ -204,11 +204,23 @@ function dialog_create_mesh_advanced(root, mesh) {
     el_swap_reflect.tooltip = "The upright mesh will become the reflection mesh, and vice versa.";
     yy += el_swap_reflect.height + spacing;
     
-    var el_normal_flat = create_button(col3_x, yy, "Normals: Flat", ew, eh, fa_center, omu_mesh_normal_flat, dg);
+    var el_normal_flat = create_button(col3_x, yy, "Normals: Flat", ew, eh, fa_center, function(button) {
+        var mesh = button.root.mesh;
+        var submesh = ui_list_selection(button.root.el_list);
+        if (submesh + 1) {
+            mesh.submeshes[| submesh].SetNormalsFlat();
+        }
+    }, dg);
     el_normal_flat.tooltip = "Flattens all normals in all submeshes mesh.";
     yy += el_normal_flat.height + spacing;
     
-    var el_normal_smooth = create_button(col3_x, yy, "Normals: Smooth", ew, eh, fa_center, omu_mesh_normal_smooth, dg);
+    var el_normal_smooth = create_button(col3_x, yy, "Normals: Smooth", ew, eh, fa_center, function(button) {
+        var mesh = button.root.mesh;
+        var submesh = ui_list_selection(button.root.el_list);
+        if (submesh + 1) {
+            mesh.submeshes[| submesh].SetNormalsSmooth(Settings.config.normal_threshold);
+        }
+    }, dg);
     el_normal_smooth.tooltip = "Smooths all normals in all submeshes. Note that this will have no effect until I finally go and implement smooth shading in a shader.";
     yy += el_normal_smooth.height + spacing;
     
@@ -252,11 +264,15 @@ function dialog_create_mesh_advanced(root, mesh) {
     el_auto_bounds.tooltip = "Automatically calculate the bounds of a mesh. Rounds to the nearest 32, i.e. [0, 0, 0] to [28, 36, 32] would be assigned bounds of [0, 0, 0] to [1, 1, 1].";
     yy += el_auto_bounds.height + spacing;
     
-    var el_all_normal_flat = create_button(col4_x, yy, "Normals: Flat", ew, eh, fa_center, not_yet_implemented_polite, dg);
+    var el_all_normal_flat = create_button(col4_x, yy, "Normals: Flat", ew, eh, fa_center, function(button) {
+        button.root.mesh.SetNormalsFlat();
+    }, dg);
     el_all_normal_flat.tooltip = "Flattens all normals in every mesh in the data file.";
     yy += el_all_normal_flat.height + spacing;
     
-    var el_all_normal_smooth = create_button(col4_x, yy, "Normals: Smooth", ew, eh, fa_center, not_yet_implemented_polite, dg);
+    var el_all_normal_smooth = create_button(col4_x, yy, "Normals: Smooth", ew, eh, fa_center, function(button) {
+        button.root.mesh.SetNormalsSmooth(Settings.config.normal_threshold);
+    }, dg);
     el_all_normal_smooth.tooltip = "Smooths all normals in every mesh in the data file. Note that this will have no effect until I finally go and implement smooth shading in a shader.";
     yy += el_all_normal_smooth.height + spacing;
     
