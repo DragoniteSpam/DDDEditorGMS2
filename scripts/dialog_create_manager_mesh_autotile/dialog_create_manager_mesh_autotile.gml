@@ -238,7 +238,7 @@ function dialog_create_manager_mesh_autotile(root) {
             button.root.Colorize();
         }
     }, dg);
-    el_clear.tooltip = "Deletes all imported mesh autotiles. Entities which use them will continue to exist, but will be invisible. (Both standard and reflection meshes will be deleted.)";
+    el_clear.tooltip = "Deletes all imported mesh autotiles. Entities which use them will continue to exist, but will be invisible. (Both upright and reflection meshes will be deleted.)";
     
     yy += el_clear.height + spacing;
     
@@ -292,7 +292,7 @@ function dialog_create_manager_mesh_autotile(root) {
         option.root.root.type = option.value;
         option.root.root.Colorize();
     }, dg.type, dg);
-    create_radio_array_options(el_layer_type, ["Standard", "Reflected"]);
+    create_radio_array_options(el_layer_type, ["Upright", "Reflected"]);
     create_radio_array_option_column(el_layer_type, 1, c3x + ew);
     
     yy += ui_get_radio_array_height(el_layer_type);
