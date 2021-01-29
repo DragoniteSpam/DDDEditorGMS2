@@ -16,8 +16,8 @@
   "includeTTF": false,
   "TTFName": "",
   "textureGroupId": {
-    "name": "scribble",
-    "path": "texturegroups/scribble",
+    "name": "Default",
+    "path": "texturegroups/Default",
   },
   "ascenderOffset": 0,
   "glyphs": {
@@ -815,11 +815,11 @@
   "canGenerateBitmap": true,
   "maintainGms1Font": false,
   "parent": {
-    "name": "scribble",
-    "path": "folders/Fonts/scribble.yy",
+    "name": "Fonts",
+    "path": "folders/Fonts.yy",
   },
   "resourceVersion": "1.0",
-  "name": "FDefaultBold",
+  "name": "FDefault12Bold",
   "tags": [],
   "resourceType": "GMFont",
 }
