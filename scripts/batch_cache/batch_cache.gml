@@ -20,10 +20,7 @@ function batch_cache() {
     for (var i = 0; i < ds_list_size(map_contents.batch_in_the_future); i++) {
         var thing = map_contents.batch_in_the_future[| i];
         thing.batch_addr = map_contents.batches[array_length(map_contents.batches) - 1];
-        // see comments on the buffer in batch_again
-        var results = thing.batch(buffer, buffer_wire, thing);
-        buffer = results[0];
-        buffer_wire = results[1];
+        thing.batch(buffer, buffer_wire, thing);
         
         ds_list_add(batch.instances, thing);
     }

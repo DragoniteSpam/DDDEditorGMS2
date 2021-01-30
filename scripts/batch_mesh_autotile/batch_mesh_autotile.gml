@@ -1,4 +1,4 @@
-function batch_mesh_autotile(buffer, wire, mesh_autotile) {
+function batch_mesh_autotile(vbuff, wire, mesh_autotile) {
     var mapping = global.at_map[$ mesh_autotile.terrain_id];
     
     var at = guid_get(mesh_autotile.autotile_id);
@@ -37,8 +37,8 @@ function batch_mesh_autotile(buffer, wire, mesh_autotile) {
         var alpha = vertex.color >> 24;
         var color = vertex.color & 0xffffff;
         
-        if (buffer) {
-            vertex_point_complete(buffer,
+        if (vbuff) {
+            vertex_point_complete(vbuff,
                 vertex.position.x, vertex.position.y, vertex.position.z,
                 vertex.normal.x, vertex.normal.y, vertex.normal.z,
                 vertex.tex.x, vertex.tex.y, color, alpha
@@ -61,6 +61,4 @@ function batch_mesh_autotile(buffer, wire, mesh_autotile) {
             }
         }
     }
-    
-    return [buffer, wire];
 }

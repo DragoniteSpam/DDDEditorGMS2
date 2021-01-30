@@ -61,7 +61,7 @@ Add = function(entity, x, y, z, is_temp, add_to_lists) {
     // Does not check to see if the specified coordinates are in bounds.
     // You are responsible for that.
     
-    var cell = contents.map_grid[x][y][z]
+    var cell = contents.map_grid[x][y][z];
     
     // only add thing if the space is not already occupied
     if (!cell[@ entity.slot]) {

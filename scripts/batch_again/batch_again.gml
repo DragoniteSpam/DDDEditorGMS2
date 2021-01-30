@@ -28,11 +28,7 @@ function batch_again(batch) {
         vertex_begin(buffer_reflect_wire, Stuff.graphics.vertex_format);
         
         for (var i = 0; i < ds_list_size(list_instances); i++) {
-            // in case the buffer gets recreated, you need to return it in every
-            // iteration of the loop
-            var results = list_instances[| i].batch(buffer, buffer_wire, list_instances[| i]);
-            buffer = results[0];
-            buffer_wire = results[1];
+            list_instances[| i].batch(buffer, buffer_wire, list_instances[| i]);
         }
         
         vertex_end(buffer);
@@ -46,12 +42,6 @@ function batch_again(batch) {
         
         vertex_end(buffer_reflect_wire);
         vertex_freeze(buffer_reflect_wire);
-        
-        batch.vertex = buffer;
-        batch.wire = buffer_wire;
-        
-        batch.reflect_vertex = buffer_reflect;
-        batch.reflect_wire = buffer_reflect_wire;
     } else {
         // empty batch lists should be deleted, for obvious reasons
         ds_list_destroy(list_instances);

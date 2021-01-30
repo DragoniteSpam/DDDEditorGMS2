@@ -1,8 +1,8 @@
-function batch_mesh(buffer, wire, mesh) {
+function batch_mesh(vbuff, wire, mesh) {
     var data = guid_get(mesh.mesh); // lol
     
     // smf meshes won't be batched, please
-    if (data && data.type == MeshTypes.SMF) return [buffer, wire];
+    if (data && data.type == MeshTypes.SMF) return;
     
     var xx = mesh.xx * TILE_WIDTH;
     var yy = mesh.yy * TILE_HEIGHT;
@@ -40,8 +40,8 @@ function batch_mesh(buffer, wire, mesh) {
         var alpha = vertex.color >> 24;
         var color = vertex.color & 0xffffff;
         
-        if (buffer) {
-            vertex_point_complete(buffer,
+        if (vbuff) {
+            vertex_point_complete(vbuff,
                 vertex.position.x, vertex.position.y, vertex.position.z,
                 vertex.normal.x, vertex.normal.y, vertex.normal.z,
                 vertex.tex.x, vertex.tex.y, color, alpha
@@ -66,6 +66,4 @@ function batch_mesh(buffer, wire, mesh) {
     }
     
     buffer_seek(raw, buffer_seek_start, 0);
-    
-    return [buffer, wire];
 }
