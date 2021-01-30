@@ -288,7 +288,27 @@ function ui_init_main(mode) {
         element = create_text(col2_x, yy, "Frozen terrain data:", col_width, element_height, fa_left, col_width, t_stats);
         ds_list_add(t_stats.contents, element);
         
-        yy += spacing;
+        yy += element.height + spacing / 2;
+        
+        element = create_text(col2_x, yy, "     - triangles", col_width, element_height, fa_left, col_width, t_stats);
+        element.render = method(element, function(text, x, y) {
+            var size = buffer_get_size(Stuff.map.active_map.contents.frozen_data);
+            text.text = "    (" + ((size > 1) ? string(size / VERTEX_SIZE / 3) : "-") + " triangles)";
+            ui_render_text(text, x, y);
+        });
+        ds_list_add(t_stats.contents, element);
+        
+        yy += element.height;
+        
+        element = create_text(col2_x, yy, "     - vertices", col_width, element_height, fa_left, col_width, t_stats);
+        element.render = method(element, function(text, x, y) {
+            var size = buffer_get_size(Stuff.map.active_map.contents.frozen_data);
+            text.text = "    (" + ((size > 1) ? string(size / VERTEX_SIZE) : "-") + " vertices)";
+            ui_render_text(text, x, y);
+        });
+        ds_list_add(t_stats.contents, element);
+        
+        yy += element.height + spacing;
         
         element = create_text(col2_x, yy, "    - kb", col_width, element_height, fa_left, col_width, t_stats);
         element.render = method(element, function(text, x, y) {
@@ -298,7 +318,7 @@ function ui_init_main(mode) {
         });
         ds_list_add(t_stats.contents, element);
         
-        yy += spacing;
+        yy += element.height;
         
         element = create_text(col2_x, yy, "    ( - bytes)", col_width, element_height, fa_left, col_width, t_stats);
         element.render = method(element, function(text, x, y) {
@@ -308,7 +328,7 @@ function ui_init_main(mode) {
         });
         ds_list_add(t_stats.contents, element);
         
-        yy += spacing;
+        yy += element.height + spacing / 2;
         #endregion
         
         #region tab: map
