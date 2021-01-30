@@ -240,7 +240,7 @@ function dialog_create_mesh_advanced(root, mesh) {
     yy += el_text_all.height + spacing;
     
     var el_auto_reflect_all = create_button(col4_x, yy, "Auto-Genreate Reflection", ew, eh, fa_center, function(button) {
-        
+        button.root.mesh.GenerateReflections();
     }, dg);
     el_auto_reflect_all.tooltip = "Generate a reflection mesh for all submeshes by flipping the model upside down over the XY plane.";
     yy += el_auto_reflect_all.height + spacing;

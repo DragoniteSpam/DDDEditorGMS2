@@ -30,6 +30,19 @@ function MeshSubmesh(name) constructor {
         }
     };
     
+    static GenerateReflections = function() {
+        if (!self.buffer) return;
+        internalDeleteReflect();
+        var size = buffer_get_size(self.buffer);
+        self.reflect_buffer = buffer_create(size, buffer_fixed, 1);
+        buffer_copy(self.buffer, 0, size, self.reflect_buffer, 0);
+        for (var position = 0; position < size; position += VERTEX_SIZE) {
+            buffer_poke(self.reflect_buffer, position + 08, buffer_f32, -buffer_peek(self.reflect_buffer, position + 08, buffer_f32));
+            buffer_poke(self.reflect_buffer, position + 16, buffer_f32, -buffer_peek(self.reflect_buffer, position + 16, buffer_f32));
+        }
+        internalSetReflectVertexBuffer();
+    };
+    
     static SwapReflections = function() {
         var t = self.buffer;
         self.buffer = self.reflect_buffer;
