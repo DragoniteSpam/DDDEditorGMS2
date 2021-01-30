@@ -78,47 +78,34 @@ function MeshSubmesh(name) constructor {
     };
     
     static internalSetVertexBuffer = function() {
-        if (self.buffer) vertex_delete_buffer(self.vbuffer);
+        if (self.vbuffer) vertex_delete_buffer(self.vbuffer);
         self.vbuffer = vertex_create_buffer_from_buffer(self.buffer, Stuff.graphics.vertex_format);
         vertex_freeze(self.vbuffer);
     };
     
     static internalSetReflectVertexBuffer = function() {
-        if (self.reflect_buffer) vertex_delete_buffer(self.reflect_vbuffer);
+        if (self.reflect_vbuffer) vertex_delete_buffer(self.reflect_vbuffer);
         self.reflect_vbuffer = vertex_create_buffer_from_buffer(self.reflect_buffer, Stuff.graphics.vertex_format);
         vertex_freeze(self.reflect_vbuffer);
     };
     
-    static internalSetNormalsZero = function(buffer, nz) {
+    static internalSetNormalsZero = function(buffer, val) {
         buffer_seek(buffer, buffer_seek_start, 0);
+        var position = 0;
         
-        while (buffer_tell(buffer) < buffer_get_size(buffer)) {
-            var position = buffer_tell(buffer);
-            
-            buffer_poke(buffer, position + VERTEX_SIZE * 0 + 12, buffer_f32, 0);
-            buffer_poke(buffer, position + VERTEX_SIZE * 1 + 12, buffer_f32, 0);
-            buffer_poke(buffer, position + VERTEX_SIZE * 2 + 12, buffer_f32, nz);
-            
-            buffer_poke(buffer, position + VERTEX_SIZE * 0 + 16, buffer_f32, 0);
-            buffer_poke(buffer, position + VERTEX_SIZE * 1 + 16, buffer_f32, 0);
-            buffer_poke(buffer, position + VERTEX_SIZE * 2 + 16, buffer_f32, nz);
-            
-            buffer_poke(buffer, position + VERTEX_SIZE * 0 + 20, buffer_f32, 0);
-            buffer_poke(buffer, position + VERTEX_SIZE * 1 + 20, buffer_f32, 0);
-            buffer_poke(buffer, position + VERTEX_SIZE * 2 + 20, buffer_f32, nz);
-            
-            buffer_seek(buffer, buffer_seek_relative, VERTEX_SIZE * 3);
+        while (position < buffer_get_size(buffer)) {
+            buffer_poke(buffer, position + VERTEX_SIZE + 12, buffer_f32, 0);
+            buffer_poke(buffer, position + VERTEX_SIZE + 16, buffer_f32, 0);
+            buffer_poke(buffer, position + VERTEX_SIZE + 20, buffer_f32, val);
+            position += VERTEX_SIZE;
         }
-        
-        buffer_seek(buffer, buffer_seek_start, 0);
     };
     
     static internalSetNormalsFlat = function(buffer) {
         buffer_seek(buffer, buffer_seek_start, 0);
+        var position = 0;
         
-        while (buffer_tell(buffer) < buffer_get_size(buffer)) {
-            var position = buffer_tell(buffer);
-            
+        while (position < buffer_get_size(buffer)) {
             var normals = triangle_normal(
                 // t1
                 buffer_peek(buffer, position, buffer_f32),
@@ -146,74 +133,78 @@ function MeshSubmesh(name) constructor {
             buffer_poke(buffer, position + VERTEX_SIZE * 1 + 20, buffer_f32, normals[2]);
             buffer_poke(buffer, position + VERTEX_SIZE * 2 + 20, buffer_f32, normals[2]);
             
-            buffer_seek(buffer, buffer_seek_relative, VERTEX_SIZE * 3);
+            position += VERTEX_SIZE * 3;
         }
-        
-        buffer_seek(buffer, buffer_seek_start, 0);
     }
     
     static internalSetNormalsSmooth = function(buffer, threshold) {
         threshold = dcos(threshold);
         internalSetNormalsFlat(buffer);
         
-        buffer_seek(buffer, buffer_seek_start, 0);
-        var normal_map = { };
+        static triangleKey = function(x, y, z) {
+            var p = 3;
+            return string_format(x, 1, p) + "," + string_format(y, 1, p) + "," + string_format(z, 1, p);
+        };
         
-        while (buffer_tell(buffer) < buffer_get_size(buffer)) {
-            var position = buffer_tell(buffer);
-            
+        buffer_seek(buffer, buffer_seek_start, 0);
+        var normal_cache = { };
+        var position = 0;
+        
+        while (position < buffer_get_size(buffer)) {
             var xx = [
-                buffer_peek(buffer, position, buffer_f32),
-                buffer_peek(buffer, position + VERTEX_SIZE, buffer_f32),
-                buffer_peek(buffer, position + VERTEX_SIZE * 2, buffer_f32)
+                buffer_peek(buffer, position + VERTEX_SIZE * 0 + 00, buffer_f32),
+                buffer_peek(buffer, position + VERTEX_SIZE * 1 + 00, buffer_f32),
+                buffer_peek(buffer, position + VERTEX_SIZE * 2 + 00, buffer_f32)
             ];
             var yy = [
-                buffer_peek(buffer, position + 4, buffer_f32),
-                buffer_peek(buffer, position + VERTEX_SIZE + 4, buffer_f32),
-                buffer_peek(buffer, position + VERTEX_SIZE * 2 + 4, buffer_f32)
+                buffer_peek(buffer, position + VERTEX_SIZE * 0 + 04, buffer_f32),
+                buffer_peek(buffer, position + VERTEX_SIZE * 1 + 04, buffer_f32),
+                buffer_peek(buffer, position + VERTEX_SIZE * 2 + 04, buffer_f32)
             ];
             var zz = [
-                buffer_peek(buffer, position + 8, buffer_f32),
-                buffer_peek(buffer, position + VERTEX_SIZE + 8, buffer_f32),
-                buffer_peek(buffer, position + VERTEX_SIZE * 2 + 8, buffer_f32)
+                buffer_peek(buffer, position + VERTEX_SIZE * 0 + 08, buffer_f32),
+                buffer_peek(buffer, position + VERTEX_SIZE * 1 + 08, buffer_f32),
+                buffer_peek(buffer, position + VERTEX_SIZE * 2 + 08, buffer_f32)
+            ];
+            var normals = [
+                buffer_peek(buffer, position + VERTEX_SIZE * 0 + 12, buffer_f32),
+                buffer_peek(buffer, position + VERTEX_SIZE * 0 + 16, buffer_f32),
+                buffer_peek(buffer, position + VERTEX_SIZE * 0 + 20, buffer_f32)
             ];
             
-            var normals = triangle_normal(xx[0], yy[0], zz[0], xx[1], yy[1], zz[1], xx[2], yy[2], zz[2]);
-            
             for (var i = 0; i < 3; i++) {
-                var key = string(xx[i]) + "," + string(yy[i]) + "," + string(zz[i]);
-                if (normal_map[$ key] != undefined) {
-                    var existing = normal_map[? key];
-                    normal_map[$ key] = [existing[0] + normals[0], existing[1] + normals[1], existing[2] + normals[2]];
+                var key = triangleKey(xx[i], yy[i], zz[i]);
+                if (normal_cache[$ key] != undefined) {
+                    var existing = normal_cache[$ key];
+                    existing[@ 0] += normals[0];
+                    existing[@ 1] += normals[1];
+                    existing[@ 2] += normals[2];
                 } else {
-                    normal_map[$ key] = normals;
+                    normal_cache[$ key] = normals;
                 }
             }
             
-            buffer_seek(buffer, buffer_seek_relative, VERTEX_SIZE * 3);
+            position += VERTEX_SIZE * 3;
         }
         
-        buffer_seek(buffer, buffer_seek_start, 0);
+        var position = 0;
         
-        while (buffer_tell(buffer) < buffer_get_size(buffer)) {
-            var position = buffer_tell(buffer);
-            
-            var xx = buffer_peek(buffer, position, buffer_f32);
-            var yy = buffer_peek(buffer, position + 4, buffer_f32);
-            var zz = buffer_peek(buffer, position + 8, buffer_f32);
+        while (position < buffer_get_size(buffer)) {
+            var xx = buffer_peek(buffer, position + 00, buffer_f32);
+            var yy = buffer_peek(buffer, position + 04, buffer_f32);
+            var zz = buffer_peek(buffer, position + 08, buffer_f32);
             var nx = buffer_peek(buffer, position + 12, buffer_f32);
             var ny = buffer_peek(buffer, position + 16, buffer_f32);
             var nz = buffer_peek(buffer, position + 20, buffer_f32);
-            var key = string(xx) + "," + string(yy) + "," + string(zz);
             
-            var n = vector3_normalize(normal_map[$ key]);
+            var n = vector3_normalize(normal_cache[$ triangleKey(xx, yy, zz)]);
             if (dot_product_3d(n[0], n[1], n[2], nx, ny, nz) > threshold) {
                 buffer_poke(buffer, position + 12, buffer_f32, n[0]);
                 buffer_poke(buffer, position + 16, buffer_f32, n[1]);
                 buffer_poke(buffer, position + 20, buffer_f32, n[2]);
             }
             
-            buffer_seek(buffer, buffer_seek_relative, VERTEX_SIZE);
+            position += VERTEX_SIZE;
         }
     }
 }

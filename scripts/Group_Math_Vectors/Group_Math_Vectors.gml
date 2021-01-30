@@ -10,6 +10,7 @@ function vector3_normalize(vector) {
     if (l != 0) {
         return [vector[0] / l, vector[1] / l, vector[2] / l];
     }
+    
     return [0, 0, 1];
 }
 
