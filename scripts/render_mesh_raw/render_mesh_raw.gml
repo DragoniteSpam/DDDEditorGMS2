@@ -8,10 +8,14 @@ function render_mesh_raw(entity) {
     if (Settings.view.entities) {
         var tex = entity_mesh_get_texture(entity);
         vertex_submit(entity_mesh_get_vbuffer(entity), pr_trianglelist, tex);
+        var reflect = entity_mesh_get_reflect_vbuffer(entity);
+        if (reflect) vertex_submit(reflect, pr_trianglelist, tex);
     }
     
     if (Settings.view.wireframe) {
         vertex_submit(entity_mesh_get_wbuffer(entity), pr_linelist, -1);
+        var reflect = entity_mesh_get_reflect_wbuffer(entity);
+        if (reflect) vertex_submit(reflect, pr_trianglelist, tex);
     }
     
     transform_reset();
