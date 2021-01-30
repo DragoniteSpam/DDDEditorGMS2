@@ -45,6 +45,7 @@ function ui_render_surface_render_mesh_ed(surface, x1, y1, x2, y2) {
     shader_set_uniform_f(shader_get_uniform(shd_ddd, "fogEnd"), CAMERA_ZFAR * 3);
     #endregion
     
+    gpu_set_cullmode(Stuff.mesh_ed.draw_back_faces ? cull_noculling : cull_counterclockwise);
     transform_set(0, 0, 0, mode.draw_rot_x, mode.draw_rot_y, mode.draw_rot_z, mode.draw_scale, mode.draw_scale, mode.draw_scale);
     var n = 0;
     var limit = 10;
@@ -76,6 +77,7 @@ function ui_render_surface_render_mesh_ed(surface, x1, y1, x2, y2) {
     shader_reset();
     gpu_set_ztestenable(false);
     gpu_set_zwriteenable(false);
+    gpu_set_cullmode(cull_noculling);
     
     #region draw the overlay
     var cwidth = camera_get_view_width(cam);

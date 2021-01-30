@@ -511,6 +511,13 @@ function ui_init_mesh(mode) {
         element.tooltip = "Whether or not to draw the red, green, and blue axes in the 3D view.";
         ds_list_add(contents, element);
         yy += element.height + spacing;
+        
+        element = create_checkbox(c4x, yy, "Show Back Faces?", ew, eh, function(checkbox) {
+            Stuff.mesh_ed.draw_back_faces = checkbox.value;
+        }, mode.draw_back_faces, id);
+        element.tooltip = "For backface culling.";
+        ds_list_add(contents, element);
+        yy += element.height + spacing;
         #endregion
         return id;
     }

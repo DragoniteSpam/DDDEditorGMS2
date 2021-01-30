@@ -24,12 +24,14 @@ save = function() {
     Settings.mesh.draw_tex = draw_textures;
     Settings.mesh.draw_light = draw_lighting;
     Settings.mesh.draw_axes = draw_axes;
+    Settings.mesh.draw_back_faces = draw_back_faces;
 };
 
 draw_meshes = setting_get("mesh", "draw_mesh", true);
 draw_wireframes = setting_get("mesh", "draw_wire", true);
 draw_textures = setting_get("mesh", "draw_tex", true);
 draw_lighting = setting_get("mesh", "draw_light", false);
+draw_back_faces = setting_get("mesh", "backfaces", false);
 draw_scale = 1;
 draw_rot_x = 0;
 draw_rot_y = 0;
