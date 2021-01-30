@@ -407,7 +407,7 @@ function ui_init_mesh(mode) {
             }
             batch_again();
         }, id);
-        element.tooltip = "Mirror the selected meshes over the X axis.";
+        element.tooltip = "Mirror the selected meshes over the X axis. Triangle vertex order will not be changed.";
         ds_list_add(contents, element);
         element = create_button(c2x + ew / 3, yy, "Mirror Y Axis", ew / 3, eh, fa_center, function(button) {
             var selection = button.root.mesh_list.selected_entries;
@@ -417,7 +417,7 @@ function ui_init_mesh(mode) {
             }
             batch_again();
         }, id);
-        element.tooltip = "Mirror the selected meshes over the Y axis.";
+        element.tooltip = "Mirror the selected meshes over the Y axis. Triangle vertex order will not be changed.";
         ds_list_add(contents, element);
         element = create_button(c2x + 2 * ew / 3, yy, "Mirror Z Axis", ew / 3, eh, fa_center, function(button) {
             var selection = button.root.mesh_list.selected_entries;
@@ -427,7 +427,7 @@ function ui_init_mesh(mode) {
             }
             batch_again();
         }, id);
-        element.tooltip = "Mirror the selected meshes over the Z axis.";
+        element.tooltip = "Mirror the selected meshes over the Z axis. Triangle vertex order will not be changed.";
         ds_list_add(contents, element);
         yy += element.height + spacing;
         
