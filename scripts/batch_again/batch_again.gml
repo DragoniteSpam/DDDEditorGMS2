@@ -13,13 +13,19 @@ function batch_again(batch) {
     
     vertex_delete_buffer(batch.vertex);
     vertex_delete_buffer(batch.wire);
+    vertex_delete_buffer(batch.reflect_vertex);
+    vertex_delete_buffer(batch.reflect_wire);
     var list_instances = batch.instances;
     
     if (ds_list_size(list_instances) > 0) {
         var buffer = vertex_create_buffer();
         var buffer_wire = vertex_create_buffer();
+        var buffer_reflect = vertex_create_buffer();
+        var buffer_reflect_wire = vertex_create_buffer();
         vertex_begin(buffer, Stuff.graphics.vertex_format);
         vertex_begin(buffer_wire, Stuff.graphics.vertex_format);
+        vertex_begin(buffer_reflect, Stuff.graphics.vertex_format);
+        vertex_begin(buffer_reflect_wire, Stuff.graphics.vertex_format);
         
         for (var i = 0; i < ds_list_size(list_instances); i++) {
             // in case the buffer gets recreated, you need to return it in every
@@ -35,8 +41,17 @@ function batch_again(batch) {
         vertex_end(buffer_wire);
         vertex_freeze(buffer_wire);
         
+        vertex_end(buffer_reflect);
+        vertex_freeze(buffer_reflect);
+        
+        vertex_end(buffer_reflect_wire);
+        vertex_freeze(buffer_reflect_wire);
+        
         batch.vertex = buffer;
         batch.wire = buffer_wire;
+        
+        batch.reflect_vertex = buffer_reflect;
+        batch.reflect_wire = buffer_reflect_wire;
     } else {
         // empty batch lists should be deleted, for obvious reasons
         ds_list_destroy(list_instances);

@@ -7,6 +7,8 @@ function serialize_load_map_contents_batch(buffer, version, map) {
     
     buffer_delete(map_contents.frozen_data);
     buffer_delete(map_contents.frozen_data_wire);
+    buffer_delete(map_contents.reflect_frozen_data);
+    buffer_delete(map_contents.reflect_frozen_data_wire);
     
     var length = buffer_read(buffer, buffer_u64);
     buffer_read(buffer, buffer_u64);            // no longer needed
