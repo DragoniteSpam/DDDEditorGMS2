@@ -181,7 +181,7 @@ function draw_event_node(node) {
                                     case ConditionBasicTypes.SCRIPT:
                                         if (node.editor_handle == noone) {
                                             var location = get_temp_code_path(node);
-                                            var buffer = buffer_create(1, buffer_grow, 1);
+                                            var buffer = buffer_create(1, buffer_grow, DEFAULT_FROZEN_BUFFER_SIZE);
                                             buffer_write(buffer, buffer_text, list_code[| i]);
                                             buffer_save_ext(buffer, location, 0, buffer_tell(buffer));
                                             buffer_delete(buffer);
@@ -461,7 +461,7 @@ function draw_event_node(node) {
                                         case DataTypes.CODE:
                                             if (node.editor_handle == noone) {
                                                 var location = get_temp_code_path(node);
-                                                var buffer = buffer_create(1, buffer_grow, 1);
+                                                var buffer = buffer_create(1, buffer_grow, DEFAULT_FROZEN_BUFFER_SIZE);
                                                 buffer_write(buffer, buffer_text, custom_data_list[| i]);
                                                 buffer_save_ext(buffer, location, 0, buffer_tell(buffer));
                                                 buffer_delete(buffer);
