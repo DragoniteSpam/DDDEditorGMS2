@@ -18,30 +18,27 @@ function batch_again(batch) {
     var list_instances = batch.instances;
     
     if (ds_list_size(list_instances) > 0) {
-        var buffer = vertex_create_buffer();
-        var buffer_wire = vertex_create_buffer();
-        var buffer_reflect = vertex_create_buffer();
-        var buffer_reflect_wire = vertex_create_buffer();
-        vertex_begin(buffer, Stuff.graphics.vertex_format);
-        vertex_begin(buffer_wire, Stuff.graphics.vertex_format);
-        vertex_begin(buffer_reflect, Stuff.graphics.vertex_format);
-        vertex_begin(buffer_reflect_wire, Stuff.graphics.vertex_format);
+        batch.vertex = vertex_create_buffer();
+        batch.wire = vertex_create_buffer();
+        batch.reflect_vertex = vertex_create_buffer();
+        batch.reflect_wire = vertex_create_buffer();
+        vertex_begin(batch.vertex, Stuff.graphics.vertex_format);
+        vertex_begin(batch.wire, Stuff.graphics.vertex_format);
+        vertex_begin(batch.reflect_vertex, Stuff.graphics.vertex_format);
+        vertex_begin(batch.reflect_wire, Stuff.graphics.vertex_format);
         
         for (var i = 0; i < ds_list_size(list_instances); i++) {
-            list_instances[| i].batch(buffer, buffer_wire, list_instances[| i]);
+            list_instances[| i].batch(batch.vertex, batch.wire, list_instances[| i]);
         }
         
-        vertex_end(buffer);
-        vertex_freeze(buffer);
-        
-        vertex_end(buffer_wire);
-        vertex_freeze(buffer_wire);
-        
-        vertex_end(buffer_reflect);
-        vertex_freeze(buffer_reflect);
-        
-        vertex_end(buffer_reflect_wire);
-        vertex_freeze(buffer_reflect_wire);
+        vertex_end(batch.vertex);
+        vertex_freeze(batch.vertex);
+        vertex_end(batch.wire);
+        vertex_freeze(batch.wire);
+        vertex_end(batch.reflect_vertex);
+        vertex_freeze(batch.reflect_vertex);
+        vertex_end(batch.reflect_wire);
+        vertex_freeze(batch.reflect_wire);
     } else {
         // empty batch lists should be deleted, for obvious reasons
         ds_list_destroy(list_instances);
