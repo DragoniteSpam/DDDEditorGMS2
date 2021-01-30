@@ -36,9 +36,13 @@ function batch_again(batch) {
         vertex_end(batch.wire);
         vertex_freeze(batch.wire);
         vertex_end(batch.reflect_vertex);
-        vertex_freeze(batch.reflect_vertex);
+        if (vertex_get_number(batch.reflect_vertex) > 0) {
+            vertex_freeze(batch.reflect_vertex);
+        }
         vertex_end(batch.reflect_wire);
-        vertex_freeze(batch.reflect_wire);
+        if (vertex_get_number(batch.reflect_wire) > 0) {
+            vertex_freeze(batch.reflect_wire);
+        }
     } else {
         // empty batch lists should be deleted, for obvious reasons
         ds_list_destroy(list_instances);

@@ -27,9 +27,13 @@ function batch_cache() {
     vertex_end(batch.wire);
     vertex_freeze(batch.wire);
     vertex_end(batch.reflect_vertex);
-    vertex_freeze(batch.reflect_vertex);
+    if (vertex_get_number(batch.reflect_vertex) > 0) {
+        vertex_freeze(batch.reflect_vertex);
+    }
     vertex_end(batch.reflect_wire);
-    vertex_freeze(batch.reflect_wire);
+    if (vertex_get_number(batch.reflect_wire) > 0) {
+        vertex_freeze(batch.reflect_wire);
+    }
     
     ds_list_clear(map_contents.batch_in_the_future);
 }

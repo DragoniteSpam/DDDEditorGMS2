@@ -1062,9 +1062,7 @@ function ui_init_main(mode) {
         });
         element_mesh_list.ondoubleclick = method(element_mesh_list, function(list) {
             var data = Stuff.all_meshes[| Stuff.map.selection_fill_mesh];
-            if (data) {
-                dialog_create_mesh_advanced(noone, data);
-            }
+            if (data) dialog_create_mesh_advanced(undefined, data);
         });
         element_mesh_list.evaluate_text = method(element_mesh_list, function(list, index) {
             var prefix = "";
@@ -1255,9 +1253,7 @@ function ui_init_main(mode) {
         
         element = create_button(col2_x, yy, "Advanced", col_width, element_height, fa_center, function(button) {
             var data = Stuff.all_meshes[| Stuff.map.selection_fill_mesh];
-            if (data) {
-                dialog_create_mesh_advanced(noone, data);
-            }
+            if (data) dialog_create_mesh_advanced(undefined, data);
         }, t_p_mesh_editor);
         ds_list_add(t_p_mesh_editor.contents, element);
         
