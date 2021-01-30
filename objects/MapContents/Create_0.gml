@@ -18,12 +18,17 @@ refid_current = 0;
 map_grid = array_create_4d(10, 10, 10, MapCellContents._COUNT);
 map_grid_tags = array_create_3d(10, 10, 10);
 
-frozen = noone;                                // everything that will be a single batch in the game
-frozen_wire = noone;                        // the wireframe for the frozen vertex buffer
-frozen_data = buffer_create(1, buffer_grow, 1);                        // the raw data in the frozen vertex buffer
+frozen = undefined;                         // everything that will be a single batch in the game
+frozen_wire = undefined;                    // the wireframe for the frozen vertex buffer
+frozen_data = buffer_create(1, buffer_grow, 1);                 // the raw data in the frozen vertex buffer
 frozen_data_size = 0;
-frozen_data_wire = buffer_create(1, buffer_grow, 1);                    // the raw data in the frozen wireframe vertex buffer
+frozen_data_wire = buffer_create(1, buffer_grow, 1);            // the raw data in the frozen wireframe vertex buffer
 frozen_data_wire_size = 0;
+
+reflect_frozen = undefined;
+reflect_frozen_wire = undefined;
+reflect_frozen_data = buffer_create(1, buffer_grow, 1);
+reflect_frozen_data_wire = buffer_create(1, buffer_grow, 1);
 
 population = [0, 0, 0, 0, 0, 0, 0];
 population_static = 0;

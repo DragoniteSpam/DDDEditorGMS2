@@ -3,6 +3,8 @@ function batch_cache() {
     
     var buffer = vertex_create_buffer();
     var buffer_wire = vertex_create_buffer();
+    var reflect_buffer = vertex_create_buffer();
+    var reflect_buffer_wire = vertex_create_buffer();
     vertex_begin(buffer, Stuff.graphics.vertex_format);
     vertex_begin(buffer_wire, Stuff.graphics.vertex_format);
     
@@ -10,6 +12,8 @@ function batch_cache() {
         instances: ds_list_create(),
         vertex: buffer,
         wire: buffer_wire,
+        reflect_vertex: reflect_buffer,
+        reflect_wire: reflect_buffer_wire,
     };
     array_push(map_contents.batches, batch);
     
