@@ -77,6 +77,16 @@ function MeshSubmesh(name) constructor {
         }
     };
     
+    static internalDeleteUpright = function() {
+        if (self.buffer) buffer_delete(self.buffer);
+        if (self.vbuffer) vertex_delete_buffer(self.vbuffer);
+    };
+    
+    static internalDeleteReflect = function() {
+        if (self.reflect_buffer) buffer_delete(self.reflect_buffer);
+        if (self.reflect_vbuffer) vertex_delete_buffer(self.reflect_vbuffer);
+    };
+    
     static internalSetVertexBuffer = function() {
         if (self.vbuffer) vertex_delete_buffer(self.vbuffer);
         self.vbuffer = vertex_create_buffer_from_buffer(self.buffer, Stuff.graphics.vertex_format);
