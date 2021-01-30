@@ -1,4 +1,4 @@
-function batch_mesh(vbuff, wire, mesh) {
+function batch_mesh(vbuff, wire, reflect, reflect_wire, mesh) {
     var data = guid_get(mesh.mesh); // lol
     
     // smf meshes won't be batched, please

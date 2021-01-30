@@ -1,4 +1,4 @@
-function batch_tile(vbuff, wire, tile) {
+function batch_tile(vbuff, wire, reflect, reflect_wire, tile) {
     var TEXEL = 1 / TEXTURE_SIZE;
     
     var xx = tile.xx * TILE_WIDTH;
@@ -46,4 +46,6 @@ function batch_tile(vbuff, wire, tile) {
         vertex_point_line(wire, xx, yy + TILE_HEIGHT, zz, c_white, 1);
         vertex_point_line(wire, xx, yy, zz, c_white, 1);
     }
+    
+    // Tiles don't get reflected
 }

@@ -16,11 +16,13 @@ function batch_all_export(map, chunk_size) {
                         vertex_begin(buffers[$ key], Stuff.graphics.vertex_format);
                     }
                     var vbuff = buffers[$ key];
-                    thing.batch(vbuff, noone, thing);
+                    thing.batch(vbuff, noone, undefined, undefined, thing);
                 }
             }
         }
     }
+    
+    wtf("batch_all_export: figure out how to deal with wireframe buffers");
     
     var keys = variable_struct_get_names(buffers);
     for (var i = 0; i < array_length(keys); i++) {

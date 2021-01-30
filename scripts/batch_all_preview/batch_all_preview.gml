@@ -32,7 +32,7 @@ function batch_all_preview(map) {
         
         for (var i = 0; i < ds_list_size(map.all_entities); i++) {
             var thing = map.all_entities[| i];
-            thing.batch(map.preview, map.wpreview, thing);
+            thing.batch(map.preview, map.wpreview, undefined, undefined, thing);
             thing.batch_collision(map.cspreview, thing);
         }
         

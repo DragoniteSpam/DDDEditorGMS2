@@ -1,4 +1,4 @@
-function batch_autotile(vbuff, wire, tile) {
+function batch_autotile(vbuff, wire, reflect, reflect_wire, tile) {
     var TEXEL = 1 / TEXTURE_SIZE;
     
     var xx = tile.xx * TILE_WIDTH;
@@ -52,4 +52,6 @@ function batch_autotile(vbuff, wire, tile) {
         vertex_point_line(wire, xx, yy + TILE_HEIGHT, zz, c_white, 1);
         vertex_point_line(wire, xx, yy, zz, c_white, 1);
     }
+    
+    // autotiles don't get reflected
 }

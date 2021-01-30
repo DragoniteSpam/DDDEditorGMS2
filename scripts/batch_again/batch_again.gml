@@ -28,7 +28,7 @@ function batch_again(batch) {
         vertex_begin(batch.reflect_wire, Stuff.graphics.vertex_format);
         
         for (var i = 0; i < ds_list_size(list_instances); i++) {
-            list_instances[| i].batch(batch.vertex, batch.wire, list_instances[| i]);
+            list_instances[| i].batch(batch.vertex, batch.wire, batch.reflect_vertex, batch.reflect_wire, list_instances[| i]);
         }
         
         vertex_end(batch.vertex);

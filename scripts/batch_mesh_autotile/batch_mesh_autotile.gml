@@ -1,4 +1,4 @@
-function batch_mesh_autotile(vbuff, wire, mesh_autotile) {
+function batch_mesh_autotile(vbuff, wire, reflect, reflect_wire, mesh_autotile) {
     var mapping = global.at_map[$ mesh_autotile.terrain_id];
     
     var at = guid_get(mesh_autotile.autotile_id);

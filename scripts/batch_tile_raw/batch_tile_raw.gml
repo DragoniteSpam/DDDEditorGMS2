@@ -70,4 +70,6 @@ function batch_tile_raw() {
         vertex_point_line_raw(wire, xx, yy + TILE_HEIGHT, zz, c_white, 1);
         vertex_point_line_raw(wire, xx, yy, zz, c_white, 1);
     }
+    
+    // tiles don't get reflected
 }
