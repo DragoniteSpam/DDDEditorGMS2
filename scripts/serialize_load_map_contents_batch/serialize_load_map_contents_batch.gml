@@ -9,11 +9,11 @@ function serialize_load_map_contents_batch(buffer, version, map) {
     buffer_delete(map_contents.frozen_data_wire);
     
     var length = buffer_read(buffer, buffer_u64);
-    map_contents.frozen_data_size = buffer_read(buffer, buffer_u64);
+    buffer_read(buffer, buffer_u64);            // no longer needed
     map_contents.frozen_data = buffer_read_buffer(buffer, length);
     
     var length = buffer_read(buffer, buffer_u64);
-    map_contents.frozen_data_wire_size = buffer_read(buffer, buffer_u64);
+    buffer_read(buffer, buffer_u64);            // no longer needed
     map_contents.frozen_data_wire = buffer_read_buffer(buffer, length);
     
     if (version >= DataVersions.MAP_FROZEN_TAGS) {

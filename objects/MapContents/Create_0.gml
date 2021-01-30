@@ -21,9 +21,7 @@ map_grid_tags = array_create_3d(10, 10, 10);
 frozen = undefined;                         // everything that will be a single batch in the game
 frozen_wire = undefined;                    // the wireframe for the frozen vertex buffer
 frozen_data = buffer_create(1, buffer_grow, 1);                 // the raw data in the frozen vertex buffer
-frozen_data_size = 0;
 frozen_data_wire = buffer_create(1, buffer_grow, 1);            // the raw data in the frozen wireframe vertex buffer
-frozen_data_wire_size = 0;
 
 reflect_frozen = undefined;
 reflect_frozen_wire = undefined;

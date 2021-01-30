@@ -7,8 +7,6 @@ function import_map_tiled(ask_clear) {
             buffer_delete(map_contents.frozen_data_wire);
             map_contents.frozen_data = buffer_create(1, buffer_grow, 1);
             map_contents.frozen_data_wire = buffer_create(1, buffer_grow, 1);
-            map_contents.frozen_data_size = 0;
-            map_contents.frozen_data_wire_size = 0;
             // the vertex buffers are created elsewhere - since they need to be
             // destroyed and recreated regardless
             import_map_tiled(false);
@@ -84,8 +82,6 @@ function import_map_tiled(ask_clear) {
             ds_map_add_map(tiled_cache, "&tmx-ids", tmx_ids);
             
             if (tileset_columns) {
-                buffer_seek(map_contents.frozen_data, buffer_seek_start, map_contents.frozen_data_size);
-                buffer_seek(map_contents.frozen_data_wire, buffer_seek_start, map_contents.frozen_data_wire_size);
                 array_clear_3d(map_contents.map_grid_tags, 0);
                 
                 var json_layers = json[? "layers"];
@@ -93,7 +89,7 @@ function import_map_tiled(ask_clear) {
                 for (var i = 0; i < ds_list_size(json_layers); i++) {
                     var layer_data = json_layers[| i];
                     var layer_type = layer_data[? "type"];
-            
+                    
                     switch (layer_type) {
                         case "group": layer_z = import_map_tiled_layer_folder(layer_data, tileset_columns, layer_z, 1, 0, 0, tiled_cache); break;
                         case "objectgroup": layer_z = import_map_tiled_layer_object(layer_data, tileset_columns, layer_z, 1, 0, 0, tiled_cache); break;
@@ -104,8 +100,8 @@ function import_map_tiled(ask_clear) {
                 if (map_contents.frozen) vertex_delete_buffer(map_contents.frozen);
                 if (map_contents.frozen_wire) vertex_delete_buffer(map_contents.frozen_wire);
                 
-                map_contents.frozen_data_size = buffer_tell(map_contents.frozen_data);
-                map_contents.frozen_data_wire_size = buffer_tell(map_contents.frozen_data_wire);
+                buffer_resize(map_contents.frozen_data, buffer_tell(map_contents.frozen_data));
+                buffer_resize(map_contents.frozen_data_wire, buffer_tell(map_contents.frozen_data_wire));
                 
                 if (buffer_get_size(map_contents.frozen_data) - 1) {
                     map_contents.frozen = vertex_create_buffer_from_buffer(map_contents.frozen_data, Stuff.graphics.vertex_format);

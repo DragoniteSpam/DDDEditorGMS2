@@ -292,8 +292,8 @@ function ui_init_main(mode) {
         
         element = create_text(col2_x, yy, "    - kb", col_width, element_height, fa_left, col_width, t_stats);
         element.render = method(element, function(text, x, y) {
-            var size = Stuff.map.active_map.contents.frozen_data_size;
-            text.text = "    " + ((size > 1) ? string_comma(ceil(size / 1024)) : "-") + " kb";
+            var size = buffer_get_size(Stuff.map.active_map.contents.frozen_data);
+            text.text = "    " + ((size > 1) ? string_comma(ceil(size >> 10)) : "-") + " kb";
             ui_render_text(text, x, y);
         });
         ds_list_add(t_stats.contents, element);
@@ -302,7 +302,7 @@ function ui_init_main(mode) {
         
         element = create_text(col2_x, yy, "    ( - bytes)", col_width, element_height, fa_left, col_width, t_stats);
         element.render = method(element, function(text, x, y) {
-            var size = Stuff.map.active_map.contents.frozen_data_size;
+            var size = buffer_get_size(Stuff.map.active_map.contents.frozen_data);
             text.text = "    (" + ((size > 1) ? string(size) : "-") + " bytes)";
             ui_render_text(text, x, y);
         });
