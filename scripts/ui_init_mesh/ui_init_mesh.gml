@@ -166,7 +166,15 @@ function ui_init_mesh(mode) {
                 prefix = "(p)" + prefix;
             }
             if (ds_list_size(mesh.submeshes) == 1) {
-                var suffix = " (" + string(buffer_get_size(mesh.submeshes[| 0].buffer) / VERTEX_SIZE / 3) + " triangles)";
+                var buffer = mesh.submeshes[| 0].buffer;
+                var reflect_buffer = mesh.submeshes[| 0].reflect_buffer;
+                var buffer_size = (buffer ? buffer_get_size(buffer) : 0) / VERTEX_SIZE / 3;
+                var reflect_buffer_size = (reflect_buffer ? buffer_get_size(reflect_buffer) : 0) / VERTEX_SIZE / 3;
+                if (buffer_size == reflect_buffer_size || reflect_buffer_size == 0) {
+                    var suffix = " (" + string(buffer_size) + " triangles)";
+                } else {
+                    var suffix = " (" + string(buffer_size) + " / " + string(reflect_buffer_size) + " triangles)";
+                }
             } else {
                 var suffix = " (" + string(ds_list_size(mesh.submeshes)) + " submeshes)";
             }
