@@ -481,6 +481,13 @@ function ui_init_mesh(mode) {
         ds_list_add(contents, element);
         yy += element.height + spacing;
         
+        element = create_checkbox(c3x, yy, "Draw reflections?", ew, eh, function(checkbox) {
+            Stuff.mesh_ed.draw_reflections = checkbox.value;
+        }, mode.draw_wireframes, id);
+        element.tooltip = "If you have a reflection mesh set up, you may draw it, as well.";
+        ds_list_add(contents, element);
+        yy += element.height + spacing;
+        
         element = create_button(c3x, yy, "Object Materials...", ew, eh, fa_center, function(button) {
             if (ds_map_empty(button.root.mesh_list.selected_entries)) return;
             dialog_create_mesh_material_settings(button, button.root.mesh_list.selected_entries);
