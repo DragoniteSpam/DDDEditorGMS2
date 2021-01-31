@@ -182,6 +182,12 @@ function buffer_to_reflect(buffer) {
             t = v3; v3 = v2; v2 = t;
             t = c3; c3 = c2; c2 = t;
             t = a3; a3 = a2; a2 = t;
+            y1 = -y1;
+            y2 = -y2;
+            y3 = -y3;
+            ny1 = -ny1;
+            ny2 = -ny2;
+            ny3 = -ny3;
             z1 = -z1;
             z2 = -z2;
             z3 = -z3;
