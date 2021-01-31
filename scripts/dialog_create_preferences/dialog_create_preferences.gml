@@ -111,7 +111,7 @@ function dialog_create_preferences() {
         create_bitfield_option_data(MeshReflectionSettings.REVERSE, f_reflect_render, f_reflect_option, "Reverse Triangles", -1, 0, (ew - spacing) / 2, eh),
         create_bitfield_option_data(MeshReflectionSettings.COLORIZE, f_reflect_render, f_reflect_option, "Colorize", -1, 0, (ew - spacing) / 2, eh),
     ]);
-    el_text_ext.tooltip = "Automatically generating a reflection mesh may involve different operations for different games. The Mirror options will reflect the mesh across the specified axis; the Rotate options will rotate the mesh 180 degrees around the specified axis; Reverse Triangles will reverse the culling direction of each triangle; Colorize will blend the color of each vertex to another color (see below), allowing you to make objects intended to be underwater to appear bluer, etc.";
+    el_mesh_reflect_settings.tooltip = "Automatically generating a reflection mesh may involve different operations for different games. The Mirror options will reflect the mesh across the specified axis; the Rotate options will rotate the mesh 180 degrees around the specified axis; Reverse Triangles will reverse the culling direction of each triangle; Colorize will blend the color of each vertex to another color (see below), allowing you to make objects intended to be underwater to appear bluer, etc.";
     
     enum MeshReflectionSettings {
         MIRROR_X            = 0x0001,
