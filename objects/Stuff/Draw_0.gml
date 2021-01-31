@@ -33,8 +33,8 @@ if (view_current == view_overlay) {
             var scribble = scribble_cache(str, "", true, true);
             var str_width = scribble_get_width(scribble) + str_padding * 2;
             var str_height = scribble_get_height(scribble) + str_padding * 2;
-            var tooltip_x = min(window_mouse_get_x(), view_get_wport(view_current) - str_width);
-            var tooltip_y = min(window_mouse_get_y(), view_get_hport(view_current) - str_height);
+            var tooltip_x = min(window_mouse_get_x() + 16, view_get_wport(view_current) - str_width);
+            var tooltip_y = min(window_mouse_get_y() + 16, view_get_hport(view_current) - str_height);
             draw_rectangle_colour(
                 tooltip_x, tooltip_y, tooltip_x + str_width, tooltip_y + str_height,
                 c_tooltip, c_tooltip, c_tooltip, c_tooltip, false
