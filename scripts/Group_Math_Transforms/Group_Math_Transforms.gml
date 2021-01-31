@@ -30,3 +30,19 @@ function transform_entity_point(entity, xx, yy, zz) {
     transform_reset();
     return result;
 }
+
+function transform_entity_point_reflected(entity, xx, yy, zz) {
+    transform_set(0, 0, 0, entity.rot_xx, entity.rot_yy, entity.rot_zz, 1, 1, 1);
+    transform_add(0, 0, 0, 0, 0, 0, entity.scale_xx, entity.scale_yy, entity.scale_zz);
+    var water = Stuff.map.active_map.water_level;
+    var matrix = transform_add(
+        (entity.xx + entity.off_xx) * TILE_WIDTH,
+        (entity.yy + entity.off_yy) * TILE_HEIGHT,
+        (water - (entity.zz + entity.off_zz - water)) * TILE_DEPTH,
+        0, 0, 0, 1, 1, 1
+    );
+    
+    var result = matrix_transform_vertex(matrix, xx, yy, zz);
+    transform_reset();
+    return result;
+}
