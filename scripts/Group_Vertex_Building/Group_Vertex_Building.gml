@@ -144,7 +144,7 @@ function buffer_to_reflect(buffer) {
         var op_rotate_z = Stuff.mesh_ed.reflect_settings & MeshReflectionSettings.ROTATE_Z;
         var op_reverse = Stuff.mesh_ed.reflect_settings & MeshReflectionSettings.REVERSE;
         var op_colorize = Stuff.mesh_ed.reflect_settings & MeshReflectionSettings.COLORIZE;
-        var op_color_amt = (Stuff.mesh_ed.reflect_color >> 24) / 0xff;
+        var op_color_amt = clamp((Stuff.mesh_ed.reflect_color >> 24) / 0xff, 0, 1);
         var op_color_value = Stuff.mesh_ed.reflect_color & 0xffffff;
         
         var transform_matrix = matrix_build_identity();
@@ -203,6 +203,12 @@ function buffer_to_reflect(buffer) {
                 t = v3; v3 = v2; v2 = t;
                 t = c3; c3 = c2; c2 = t;
                 t = a3; a3 = a2; a2 = t;
+            }
+            
+            if (op_colorize) {
+                c1 = merge_colour(c1, op_color_value, op_color_amt);
+                c2 = merge_colour(c2, op_color_value, op_color_amt);
+                c3 = merge_colour(c3, op_color_value, op_color_amt);
             }
             
             var new_p1 = matrix_transform_vertex(transform_matrix, x1, y1, z1);
