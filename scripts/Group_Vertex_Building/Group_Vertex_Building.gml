@@ -135,6 +135,26 @@ function buffer_to_reflect(buffer) {
         var rbuffer = vertex_create_buffer();
         vertex_begin(rbuffer, Stuff.graphics.vertex_format);
         var vertex_size = Stuff.graphics.format_size;
+        
+        var op_mirror_x = Stuff.mesh_ed.reflect_settings & MeshReflectionSettings.MIRROR_X;
+        var op_mirror_y = Stuff.mesh_ed.reflect_settings & MeshReflectionSettings.MIRROR_Y;
+        var op_mirror_z = Stuff.mesh_ed.reflect_settings & MeshReflectionSettings.MIRROR_Z;
+        var op_rotate_x = Stuff.mesh_ed.reflect_settings & MeshReflectionSettings.ROTATE_X;
+        var op_rotate_y = Stuff.mesh_ed.reflect_settings & MeshReflectionSettings.ROTATE_Y;
+        var op_rotate_z = Stuff.mesh_ed.reflect_settings & MeshReflectionSettings.ROTATE_Z;
+        var op_reverse = Stuff.mesh_ed.reflect_settings & MeshReflectionSettings.REVERSE;
+        var op_colorize = Stuff.mesh_ed.reflect_settings & MeshReflectionSettings.COLORIZE;
+        var op_color_amt = (Stuff.mesh_ed.reflect_color >> 24) / 0xff;
+        var op_color_value = Stuff.mesh_ed.reflect_color & 0xffffff;
+        
+        var transform_matrix = matrix_build_identity();
+        if (op_mirror_x) transform_matrix = matrix_multiply(transform_matrix, matrix_build(0, 0, 0, 0, 0, 0, -1, 1, 1));
+        if (op_mirror_y) transform_matrix = matrix_multiply(transform_matrix, matrix_build(0, 0, 0, 0, 0, 0, 1, -1, 1));
+        if (op_mirror_z) transform_matrix = matrix_multiply(transform_matrix, matrix_build(0, 0, 0, 0, 0, 0, 1, 1, -1));
+        if (op_rotate_x) transform_matrix = matrix_multiply(transform_matrix, matrix_build(0, 0, 0, 180, 0, 0, 1, 1, 1));
+        if (op_rotate_y) transform_matrix = matrix_multiply(transform_matrix, matrix_build(0, 0, 0, 0, 180, 0, 1, 1, 1));
+        if (op_rotate_z) transform_matrix = matrix_multiply(transform_matrix, matrix_build(0, 0, 0, 0, 0, 180, 1, 1, 1));
+        
         for (var i = 0; i < buffer_get_size(buffer); i += vertex_size * 3) {
             var x1 = buffer_peek(buffer, i + 0 * vertex_size + 0 * fsize, buffer_f32);
             var y1 = buffer_peek(buffer, i + 0 * vertex_size + 1 * fsize, buffer_f32);
@@ -172,32 +192,29 @@ function buffer_to_reflect(buffer) {
             var a3 = (c3 >> 24) / 0xff;
             c3 &= 0xffffff;
             
-            var t = x3; x3 = x2; x2 = t;
-            t = y3; y3 = y2; y2 = t;
-            t = z3; z3 = z2; z2 = t;
-            t = nx3; nx3 = nx2; nx2 = t;
-            t = ny3; ny3 = ny2; ny2 = t;
-            t = nz3; nz3 = nz2; nz2 = t;
-            t = u3; u3 = u2; u2 = t;
-            t = v3; v3 = v2; v2 = t;
-            t = c3; c3 = c2; c2 = t;
-            t = a3; a3 = a2; a2 = t;
-            y1 = -y1;
-            y2 = -y2;
-            y3 = -y3;
-            ny1 = -ny1;
-            ny2 = -ny2;
-            ny3 = -ny3;
-            z1 = -z1;
-            z2 = -z2;
-            z3 = -z3;
-            nz1 = -nz1;
-            nz2 = -nz2;
-            nz3 = -nz3;
+            if (op_reverse) {
+                var t = x3; x3 = x2; x2 = t;
+                t = y3; y3 = y2; y2 = t;
+                t = z3; z3 = z2; z2 = t;
+                t = nx3; nx3 = nx2; nx2 = t;
+                t = ny3; ny3 = ny2; ny2 = t;
+                t = nz3; nz3 = nz2; nz2 = t;
+                t = u3; u3 = u2; u2 = t;
+                t = v3; v3 = v2; v2 = t;
+                t = c3; c3 = c2; c2 = t;
+                t = a3; a3 = a2; a2 = t;
+            }
             
-            vertex_point_complete(rbuffer, x1, y1, z1, nx1, ny1, nz1, u1, v1, c1, a1);
-            vertex_point_complete(rbuffer, x2, y2, z2, nx2, ny2, nz2, u2, v2, c2, a2);
-            vertex_point_complete(rbuffer, x3, y3, z3, nx3, ny3, nz3, u3, v3, c3, a3);
+            var new_p1 = matrix_transform_vertex(transform_matrix, x1, y1, z1);
+            var new_p2 = matrix_transform_vertex(transform_matrix, x2, y2, z2);
+            var new_p3 = matrix_transform_vertex(transform_matrix, x3, y3, z3);
+            var new_n1 = matrix_transform_vertex(transform_matrix, nx1, ny1, nz1);
+            var new_n2 = matrix_transform_vertex(transform_matrix, nx2, ny2, nz2);
+            var new_n3 = matrix_transform_vertex(transform_matrix, nx3, ny3, nz3);
+            
+            vertex_point_complete(rbuffer, new_p1[0], new_p1[1], new_p1[2], new_n1[0], new_n1[1], new_n1[2], u1, v1, c1, a1);
+            vertex_point_complete(rbuffer, new_p2[0], new_p2[1], new_p2[2], new_n2[0], new_n2[1], new_n2[2], u2, v2, c2, a2);
+            vertex_point_complete(rbuffer, new_p3[0], new_p3[1], new_p3[2], new_n3[0], new_n3[1], new_n3[2], u3, v3, c3, a3);
         }
         vertex_end(rbuffer);
     } catch (e) {
