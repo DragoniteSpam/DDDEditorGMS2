@@ -102,21 +102,32 @@ function dialog_create_preferences() {
     
     var el_mesh_reflect_settings = create_bitfield(col2_x + col1_x, yy, "Mesh Reflection Actions:", ew, eh, Settings.mesh.reflect_settings, dg);
     create_bitfield_options_vertical(el_mesh_reflect_settings, [
-        create_bitfield_option_data(0x0001, f_reflect_render, f_reflect_option, "Mirror (X)", -1, 0, (ew - spacing) / 2, eh),
-        create_bitfield_option_data(0x0002, f_reflect_render, f_reflect_option, "Mirror (Y)", -1, 0, (ew - spacing) / 2, eh),
-        create_bitfield_option_data(0x0004, f_reflect_render, f_reflect_option, "Mirror (Z)", -1, 0, (ew - spacing) / 2, eh),
-        create_bitfield_option_data(0x0008, f_reflect_render, f_reflect_option, "Half Turn (X)", -1, 0, (ew - spacing) / 2, eh),
-        create_bitfield_option_data(0x0010, f_reflect_render, f_reflect_option, "Half Turn (Y)", -1, 0, (ew - spacing) / 2, eh),
-        create_bitfield_option_data(0x0020, f_reflect_render, f_reflect_option, "Half Turn (Z)", -1, 0, (ew - spacing) / 2, eh),
-        create_bitfield_option_data(0x0040, f_reflect_render, f_reflect_option, "Reverse Triangles", -1, 0, (ew - spacing) / 2, eh),
-        create_bitfield_option_data(0x0080, f_reflect_render, f_reflect_option, "Colorize", -1, 0, (ew - spacing) / 2, eh),
+        create_bitfield_option_data(MeshReflectionSettings.MIRROR_X, f_reflect_render, f_reflect_option, "Mirror (X)", -1, 0, (ew - spacing) / 2, eh),
+        create_bitfield_option_data(MeshReflectionSettings.MIRROR_Y, f_reflect_render, f_reflect_option, "Mirror (Y)", -1, 0, (ew - spacing) / 2, eh),
+        create_bitfield_option_data(MeshReflectionSettings.MIRROR_Z, f_reflect_render, f_reflect_option, "Mirror (Z)", -1, 0, (ew - spacing) / 2, eh),
+        create_bitfield_option_data(MeshReflectionSettings.ROTATE_X, f_reflect_render, f_reflect_option, "Half Turn (X)", -1, 0, (ew - spacing) / 2, eh),
+        create_bitfield_option_data(MeshReflectionSettings.ROTATE_Y, f_reflect_render, f_reflect_option, "Half Turn (Y)", -1, 0, (ew - spacing) / 2, eh),
+        create_bitfield_option_data(MeshReflectionSettings.ROTATE_Z, f_reflect_render, f_reflect_option, "Half Turn (Z)", -1, 0, (ew - spacing) / 2, eh),
+        create_bitfield_option_data(MeshReflectionSettings.REVERSE, f_reflect_render, f_reflect_option, "Reverse Triangles", -1, 0, (ew - spacing) / 2, eh),
+        create_bitfield_option_data(MeshReflectionSettings.COLORIZE, f_reflect_render, f_reflect_option, "Colorize", -1, 0, (ew - spacing) / 2, eh),
     ]);
     el_text_ext.tooltip = "Automatically generating a reflection mesh may involve different operations for different games.";
+    
+    enum MeshReflectionSettings {
+        MIRROR_X            = 0x0001,
+        MIRROR_Y            = 0x0002,
+        MIRROR_Z            = 0x0004,
+        ROTATE_X            = 0x0008,
+        ROTATE_Y            = 0x0010,
+        ROTATE_Z            = 0x0020,
+        REVERSE             = 0x0040,
+        COLORIZE            = 0x0080,
+    }
     
     yy += el_mesh_reflect_settings.height * 9 + spacing;
     
     var el_mesh_reflect_color = create_color_picker(col2_x + col1_x, yy, "Reflection color:", ew, eh, function(picker) {
-        Stuff.mesh_ed.reflect_color = picker.value | floor(picker.alpha * 0xff);
+        Stuff.mesh_ed.reflect_color = picker.value | (floor(picker.alpha * 0xff) << 24);
     }, Settings.mesh.reflect_color & 0xffffff, vx1, vy1, vx2, vy2, dg);
     el_mesh_reflect_color.tooltip = "The color for reflected meshes wo be blended with. You probably want to pick something blue-ish. The alpha channel will determine the amount of blending; you should probably go with a low number, like 0.1 or 0.25. Color will only be applied if the Color option is enabled above.";
     el_mesh_reflect_color.allow_alpha = true;
