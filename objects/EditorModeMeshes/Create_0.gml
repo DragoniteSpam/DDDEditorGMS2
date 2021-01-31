@@ -44,8 +44,8 @@ draw_rot_z = 0;
 draw_axes = setting_get("mesh", "draw_axes", true);
 draw_light_direction = 180;
 
-reflect_settings = setting_get("mesh", "reflect_settings", 0);
-reflect_color = setting_get("mesh", "reflect_color", 0x00ffffff);
+reflect_settings = setting_get("mesh", "reflect_settings", MeshReflectionSettings.MIRROR_Y | MeshReflectionSettings.MIRROR_Z | MeshReflectionSettings.REVERSE | MeshReflectionSettings.COLORIZE);
+reflect_color = setting_get("mesh", "reflect_color", 0x7fff6600);
 
 def_x = 256;
 def_y = 256;

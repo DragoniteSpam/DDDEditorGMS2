@@ -111,7 +111,7 @@ function dialog_create_preferences() {
         create_bitfield_option_data(MeshReflectionSettings.REVERSE, f_reflect_render, f_reflect_option, "Reverse Triangles", -1, 0, (ew - spacing) / 2, eh),
         create_bitfield_option_data(MeshReflectionSettings.COLORIZE, f_reflect_render, f_reflect_option, "Colorize", -1, 0, (ew - spacing) / 2, eh),
     ]);
-    el_text_ext.tooltip = "Automatically generating a reflection mesh may involve different operations for different games.";
+    el_text_ext.tooltip = "Automatically generating a reflection mesh may involve different operations for different games. The Mirror options will reflect the mesh across the specified axis; the Rotate options will rotate the mesh 180 degrees around the specified axis; Reverse Triangles will reverse the culling direction of each triangle; Colorize will blend the color of each vertex to another color (see below), allowing you to make objects intended to be underwater to appear bluer, etc.";
     
     enum MeshReflectionSettings {
         MIRROR_X            = 0x0001,
@@ -129,7 +129,7 @@ function dialog_create_preferences() {
     var el_mesh_reflect_color = create_color_picker(col2_x + col1_x, yy, "Reflection color:", ew, eh, function(picker) {
         Stuff.mesh_ed.reflect_color = picker.value | (floor(picker.alpha * 0xff) << 24);
     }, Settings.mesh.reflect_color & 0xffffff, vx1, vy1, vx2, vy2, dg);
-    el_mesh_reflect_color.tooltip = "The color for reflected meshes wo be blended with. You probably want to pick something blue-ish. The alpha channel will determine the amount of blending; you should probably go with a low number, like 0.1 or 0.25. Color will only be applied if the Color option is enabled above.";
+    el_mesh_reflect_color.tooltip = "The color for reflected meshes wo be blended with. You probably want to pick something blue-ish. The alpha channel will determine the amount of blending; a value around 0.5 should be good for most cases. Color will only be applied if the Colorize option is enabled above.";
     el_mesh_reflect_color.allow_alpha = true;
     el_mesh_reflect_color.alpha = (Settings.mesh.reflect_color >> 24) / 0xff;
     
