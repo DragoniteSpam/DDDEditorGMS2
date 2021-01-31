@@ -91,6 +91,39 @@ function dialog_create_preferences() {
     
     yy += ui_get_radio_array_height(el_text_ext) + spacing;
     
+    var f_reflect_render = function(option, x, y) {
+        option.state = option.root.value & option.value;
+        ui_render_bitfield_option_text(option, x, y);
+    };
+    var f_reflect_option = function(option) {
+        Stuff.mesh_ed.reflect_settings ^= option.value;
+        option.root.value = Stuff.mesh_ed.reflect_settings;
+    };
+    
+    var el_mesh_reflect_settings = create_bitfield(col2_x + col1_x, yy, "Mesh Reflection Actions:", ew, eh, Settings.mesh.reflect_settings, dg);
+    create_bitfield_options_vertical(el_mesh_reflect_settings, [
+        create_bitfield_option_data(0x0001, f_reflect_render, f_reflect_option, "Mirror (X)", -1, 0, (ew - spacing) / 2, eh),
+        create_bitfield_option_data(0x0002, f_reflect_render, f_reflect_option, "Mirror (Y)", -1, 0, (ew - spacing) / 2, eh),
+        create_bitfield_option_data(0x0004, f_reflect_render, f_reflect_option, "Mirror (Z)", -1, 0, (ew - spacing) / 2, eh),
+        create_bitfield_option_data(0x0008, f_reflect_render, f_reflect_option, "Half Turn (X)", -1, 0, (ew - spacing) / 2, eh),
+        create_bitfield_option_data(0x0010, f_reflect_render, f_reflect_option, "Half Turn (Y)", -1, 0, (ew - spacing) / 2, eh),
+        create_bitfield_option_data(0x0020, f_reflect_render, f_reflect_option, "Half Turn (Z)", -1, 0, (ew - spacing) / 2, eh),
+        create_bitfield_option_data(0x0040, f_reflect_render, f_reflect_option, "Reverse Triangles", -1, 0, (ew - spacing) / 2, eh),
+        create_bitfield_option_data(0x0080, f_reflect_render, f_reflect_option, "Colorize", -1, 0, (ew - spacing) / 2, eh),
+    ]);
+    el_text_ext.tooltip = "Automatically generating a reflection mesh may involve different operations for different games.";
+    
+    yy += el_mesh_reflect_settings.height * 9 + spacing;
+    
+    var el_mesh_reflect_color = create_color_picker(col2_x + col1_x, yy, "Reflection color:", ew, eh, function(picker) {
+        Stuff.mesh_ed.reflect_color = picker.value | floor(picker.alpha * 0xff);
+    }, Settings.mesh.reflect_color & 0xffffff, vx1, vy1, vx2, vy2, dg);
+    el_mesh_reflect_color.tooltip = "The color for reflected meshes wo be blended with. You probably want to pick something blue-ish. The alpha channel will determine the amount of blending; you should probably go with a low number, like 0.1 or 0.25. Color will only be applied if the Color option is enabled above.";
+    el_mesh_reflect_color.allow_alpha = true;
+    el_mesh_reflect_color.alpha = (Settings.mesh.reflect_color >> 24) / 0xff;
+    
+    yy += el_mesh_reflect_color.height + spacing;
+    
     var b_width = 128;
     var b_height = 32;
     var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
@@ -108,6 +141,8 @@ function dialog_create_preferences() {
         el_text_ext,
         el_focus_alpha_text,
         el_focus_alpha,
+        el_mesh_reflect_settings,
+        el_mesh_reflect_color,
         el_confirm
     );
     

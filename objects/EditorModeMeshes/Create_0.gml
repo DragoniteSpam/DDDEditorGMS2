@@ -26,6 +26,8 @@ save = function() {
     Settings.mesh.draw_axes = draw_axes;
     Settings.mesh.draw_back_faces = draw_back_faces;
     Settings.mesh.draw_reflections = draw_reflections;
+    Settings.mesh.reflect_settings = reflect_settings;
+    Settings.mesh.reflect_color = reflect_color;
 };
 
 draw_meshes = setting_get("mesh", "draw_mesh", true);
@@ -41,6 +43,9 @@ draw_rot_z = 0;
 
 draw_axes = setting_get("mesh", "draw_axes", true);
 draw_light_direction = 180;
+
+reflect_settings = setting_get("mesh", "reflect_settings", 0);
+reflect_color = setting_get("mesh", "reflect_color", 0x00ffffff);
 
 def_x = 256;
 def_y = 256;

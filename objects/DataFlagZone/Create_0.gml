@@ -84,6 +84,7 @@ zone_edit_script = function(root) {
     };
     el_asset_flags.value = zone.zone_flags;
     
+    // todo all flags, not just the first 32 bits
     for (var i = 0; i < 32; i++) {
         var field_xx = (i >= 16) ? ew : 0;
         // Each element will be positioned based on the one directly above it, so you
