@@ -210,6 +210,7 @@ function dialog_create_mesh_advanced(root, mesh) {
         if (submesh + 1) {
             mesh.submeshes[| submesh].SetNormalsFlat();
         }
+        batch_again();
     }, dg);
     el_normal_flat.tooltip = "Flattens all normals in all submeshes mesh.";
     yy += el_normal_flat.height + spacing;
@@ -220,6 +221,7 @@ function dialog_create_mesh_advanced(root, mesh) {
         if (submesh + 1) {
             mesh.submeshes[| submesh].SetNormalsSmooth(Settings.config.normal_threshold);
         }
+        batch_again();
     }, dg);
     el_normal_smooth.tooltip = "Smooths all normals in all submeshes. Note that this will have no effect until I finally go and implement smooth shading in a shader.";
     yy += el_normal_smooth.height + spacing;
@@ -241,12 +243,14 @@ function dialog_create_mesh_advanced(root, mesh) {
     
     var el_auto_reflect_all = create_button(col4_x, yy, "Auto-Genreate Reflection", ew, eh, fa_center, function(button) {
         button.root.mesh.GenerateReflections();
+        batch_again();
     }, dg);
     el_auto_reflect_all.tooltip = "Generate a reflection mesh for all submeshes by flipping the model upside down over the XY plane.";
     yy += el_auto_reflect_all.height + spacing;
     
     var el_swap_reflect_all = create_button(col4_x, yy, "Swap Upright and Reflection", ew, eh, fa_center, function(button) {
         button.root.mesh.SwapReflections();
+        batch_again();
     }, dg);
     el_swap_reflect_all.tooltip = "The upright mesh will become the reflection mesh, and vice versa.";
     yy += el_swap_reflect_all.height + spacing;
@@ -266,12 +270,14 @@ function dialog_create_mesh_advanced(root, mesh) {
     
     var el_all_normal_flat = create_button(col4_x, yy, "Normals: Flat", ew, eh, fa_center, function(button) {
         button.root.mesh.SetNormalsFlat();
+        batch_again();
     }, dg);
     el_all_normal_flat.tooltip = "Flattens all normals in every mesh in the data file.";
     yy += el_all_normal_flat.height + spacing;
     
     var el_all_normal_smooth = create_button(col4_x, yy, "Normals: Smooth", ew, eh, fa_center, function(button) {
         button.root.mesh.SetNormalsSmooth(Settings.config.normal_threshold);
+        batch_again();
     }, dg);
     el_all_normal_smooth.tooltip = "Smooths all normals in every mesh in the data file. Note that this will have no effect until I finally go and implement smooth shading in a shader.";
     yy += el_all_normal_smooth.height + spacing;
