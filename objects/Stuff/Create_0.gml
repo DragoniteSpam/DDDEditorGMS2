@@ -393,8 +393,8 @@ default_pawn = instance_create_depth(0, 0, 0, DataImage);
 instance_deactivate_object(default_pawn);
 default_pawn.texture_exclude = true;
 default_pawn.picture = spr_pawn_missing;
-default_pawn.width = sprite_get_width(spr_pawn_missing);
-default_pawn.height = sprite_get_height(spr_pawn_missing);
+default_pawn.width = sprite_get_width(default_pawn.picture);
+default_pawn.height = sprite_get_height(default_pawn.picture);
 default_pawn.hframes = 4;
 default_pawn.vframes = 4;
 default_pawn.aframes = 0;
@@ -475,6 +475,7 @@ game_data_save_scripts[GameDataCategories.LANGUAGE_TEXT] = serialize_save_langua
 game_data_current_file = noone;
 
 // these may all go to different save locations
+// comment lines denote asset sections to make this list easier to read
 enum GameDataCategories {
 /**/DATADATA,           // core
     DATA_INST,
