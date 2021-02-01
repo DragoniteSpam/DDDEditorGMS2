@@ -44,3 +44,23 @@ active_lights = ds_list_create();
 repeat (MAX_LIGHTS) {
     ds_list_add(active_lights, noone);
 }
+
+ClearFrozenData = function() {
+    if (frozen) vertex_delete_buffer(frozen);
+    if (frozen_wire) vertex_delete_buffer(frozen_wire);
+    if (reflect_frozen) vertex_delete_buffer(reflect_frozen);
+    if (reflect_frozen_wire) vertex_delete_buffer(reflect_frozen_wire);
+    if (frozen_data) buffer_delete(frozen_data);
+    if (frozen_data_wire) buffer_delete(frozen_data_wire);
+    if (reflect_frozen_data) buffer_delete(reflect_frozen_data);
+    if (reflect_frozen_data_wire) buffer_delete(reflect_frozen_data_wire);
+    frozen = undefined;
+    frozen_wire = undefined;
+    frozen_data = buffer_create(1, buffer_grow, DEFAULT_FROZEN_BUFFER_SIZE);
+    frozen_data_wire = buffer_create(1, buffer_grow, DEFAULT_FROZEN_BUFFER_SIZE);
+    
+    reflect_frozen = undefined;
+    reflect_frozen_wire = undefined;
+    reflect_frozen_data = buffer_create(1, buffer_grow, DEFAULT_FROZEN_BUFFER_SIZE);
+    reflect_frozen_data_wire = buffer_create(1, buffer_grow, DEFAULT_FROZEN_BUFFER_SIZE);
+};

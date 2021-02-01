@@ -19,11 +19,4 @@ ds_list_destroy(dynamic);
 ds_list_destroy_instances(all_entities);
 ds_list_destroy_instances(all_zones);
 
-if (frozen) vertex_delete_buffer(frozen);
-if (frozen_wire) vertex_delete_buffer(frozen_wire);
-if (reflect_frozen) vertex_delete_buffer(reflect_frozen);
-if (reflect_frozen_wire) vertex_delete_buffer(reflect_frozen_wire);
-if (frozen_data) buffer_delete(frozen_data);
-if (frozen_data_wire) buffer_delete(frozen_data_wire);
-if (reflect_frozen_data) buffer_delete(reflect_frozen_data);
-if (reflect_frozen_data_wire) buffer_delete(reflect_frozen_data_wire);
+ClearFrozenData();
