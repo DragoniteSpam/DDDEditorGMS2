@@ -394,7 +394,7 @@ function ui_init_main(mode) {
             var index = ui_list_selection(list);
             var map = Stuff.all_maps[| index];
             if (map == Stuff.map.active_map) {
-                dialog_create_notice(button.root, "Please don't delete a map that you currently have loaded. If you want to delete this map, load a different one first.")
+                dialog_create_notice(button.root, "Please don't delete a map that you currently have loaded. If you want to delete this map, load a different one first.");
             } else {
                 instance_activate_object(map);
                 instance_destroy(map);
@@ -552,7 +552,15 @@ function ui_init_main(mode) {
         
         element = create_button(col2_x, yy, "Freeze Selected Objects", col_width, element_height, fa_center, null, t_maps);
         element.tooltip = "Selected objects will be converted to a frozen vertex buffer and will no longer be editable. This means they will be significantly faster to process and render, but they will otherwise be effectively permanently removed. Use with caution.";
-        element.interactive = false;
+        element.inheritRender = element.render;
+        element.render = function(button, x, y) {
+            var selection = ui_list_selection(button.root.el_map_list);
+            button.interactive = false;
+            if (Stuff.all_maps[| selection] == Stuff.map.active_map) button.interactive = true;
+            // remove this line if this feature ever gets added
+            button.interactive = false;
+            button.inheritRender(button, x, y);
+        };
         ds_list_add(t_maps.contents, element);
         
         yy += element.height + spacing;
@@ -563,6 +571,13 @@ function ui_init_main(mode) {
                 dialog_destroy();
             });
         }, t_maps);
+        element.inheritRender = element.render;
+        element.render = function(button, x, y) {
+            var selection = ui_list_selection(button.root.el_map_list);
+            button.interactive = false;
+            if (Stuff.all_maps[| selection] == Stuff.map.active_map) button.interactive = true;
+            button.inheritRender(button, x, y);
+        };
         element.tooltip = "Clear the frozen vertex buffer data. There is no way to get it back. Use with caution.";
         ds_list_add(t_maps.contents, element);
         
