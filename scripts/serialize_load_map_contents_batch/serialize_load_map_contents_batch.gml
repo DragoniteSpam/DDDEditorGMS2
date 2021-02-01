@@ -20,14 +20,14 @@ function serialize_load_map_contents_batch(buffer, version, map) {
     } else {
         buffer_read(buffer, buffer_u64);            // no longer needed
     }
-    map_contents.frozen_data = buffer_read_buffer(buffer, length);
+    if (length > 0) map_contents.frozen_data = buffer_read_buffer(buffer, length);
     
     var length = buffer_read(buffer, buffer_u64);
     if (version >= DataVersions.MESH_REFLECTION_DATA) {
     } else {
         buffer_read(buffer, buffer_u64);            // no longer needed
     }
-    map_contents.frozen_data_wire = buffer_read_buffer(buffer, length);
+    if (length > 0) map_contents.frozen_data_wire = buffer_read_buffer(buffer, length);
     
     if (version >= DataVersions.MESH_REFLECTION_DATA) {
         var length = buffer_read(buffer, buffer_u64);
@@ -47,22 +47,22 @@ function serialize_load_map_contents_batch(buffer, version, map) {
         }
     }
     
-    if (map_contents.frozen_data) {
+    if (map_contents.frozen_data && buffer_get_size(map_contents.frozen_data) > 0) {
         map_contents.frozen = vertex_create_buffer_from_buffer(map_contents.frozen_data, Stuff.graphics.vertex_format);
         vertex_freeze(map_contents.frozen);
     }
     
-    if (map_contents.frozen_data_wire) {
+    if (map_contents.frozen_data_wire && buffer_get_size(map_contents.frozen_data_wire) > 0) {
         map_contents.frozen_wire = vertex_create_buffer_from_buffer(map_contents.frozen_data_wire, Stuff.graphics.vertex_format);
         vertex_freeze(map_contents.frozen_wire);
     }
     
-    if (map_contents.reflect_frozen_data) {
+    if (map_contents.reflect_frozen_data && buffer_get_size(map_contents.reflect_frozen_data) > 0) {
         map_contents.reflect_frozen = vertex_create_buffer_from_buffer(map_contents.reflect_frozen_data, Stuff.graphics.vertex_format);
         vertex_freeze(map_contents.reflect_frozen);
     }
     
-    if (map_contents.reflect_frozen_data_wire) {
+    if (map_contents.reflect_frozen_data_wire && buffer_get_size(map_contents.reflect_frozen_data_wire) > 0) {
         map_contents.reflect_frozen_wire = vertex_create_buffer_from_buffer(map_contents.reflect_frozen_data_wire, Stuff.graphics.vertex_format);
         vertex_freeze(map_contents.reflect_frozen_wire);
     }
