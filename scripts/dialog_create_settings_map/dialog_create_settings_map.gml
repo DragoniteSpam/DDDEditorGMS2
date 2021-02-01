@@ -9,13 +9,14 @@ function dialog_create_settings_map(dialog) {
     var dh = 640;
     
     var dg = dialog_create(dw, dh, "More Map Settings", undefined, function(dialog) {
-        if (dialog.map == Stuff.map.active_map) batch_again();
+        if (dialog.map == Stuff.map.active_map && dialog.original_water_level != dialog.map.water_level) batch_again();
         dialog_destroy();
     }, dialog, function(dialog) {
-        if (dialog.map == Stuff.map.active_map) batch_again();
+        if (dialog.map == Stuff.map.active_map && dialog.original_water_level != dialog.map.water_level) batch_again();
         dialog_destroy();
     });
     dg.map = map;
+    dg.original_water_level = map.water_level;
     
     var columns = 3;
     var spacing = 16;
