@@ -53,7 +53,7 @@ function draw_editor_3d() {
         if (map_contents.frozen) {
             vertex_submit(map_contents.frozen, pr_trianglelist, tex);
         }
-        if (map_contents.reflect_frozen) {
+        if (map.reflections_enabled && map_contents.reflect_frozen) {
             vertex_submit(map_contents.reflect_frozen, pr_trianglelist, tex);
         }
     }
@@ -62,7 +62,7 @@ function draw_editor_3d() {
         if (map_contents.frozen_wire && Settings.view.wireframe) {
             vertex_submit(map_contents.frozen_wire, pr_linelist, -1);
         }
-        if (map_contents.reflect_frozen_wire && Settings.view.wireframe) {
+        if (map.reflections_enabled && map_contents.reflect_frozen_wire && Settings.view.wireframe) {
             vertex_submit(map_contents.reflect_frozen_wire, pr_linelist, -1);
         }
     }
@@ -73,7 +73,7 @@ function draw_editor_3d() {
             vertex_submit(data.vertex, pr_trianglelist, tex);
             vertex_submit(data.reflect_vertex, pr_trianglelist, tex);
         }
-        if (Settings.view.wireframe) {
+        if (map.reflections_enabled && Settings.view.wireframe) {
             vertex_submit(data.wire, pr_linelist, -1);
             vertex_submit(data.reflect_wire, pr_linelist, -1);
         }
