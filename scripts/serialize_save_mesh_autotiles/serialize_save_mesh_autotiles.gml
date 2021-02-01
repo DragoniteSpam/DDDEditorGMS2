@@ -20,6 +20,12 @@ function serialize_save_mesh_autotiles(buffer) {
                 } else {
                     buffer_write(buffer, buffer_u32, 0);
                 }
+                if (data.reflect_buffer) {
+                    buffer_write(buffer, buffer_u32, buffer_get_size(data.reflect_buffer));
+                    buffer_write_buffer(buffer, data.reflect_buffer);
+                } else {
+                    buffer_write(buffer, buffer_u32, 0);
+                }
             }
         }
     }
