@@ -292,7 +292,7 @@ function ui_init_main(mode) {
         
         element = create_text(col2_x, yy, "     - triangles", col_width, element_height, fa_left, col_width, t_stats);
         element.render = method(element, function(text, x, y) {
-            var size = buffer_get_size(Stuff.map.active_map.contents.frozen_data);
+            var size = Stuff.map.active_map.contents.frozen_data ? buffer_get_size(Stuff.map.active_map.contents.frozen_data) : 0;
             text.text = "    (" + ((size > 1) ? string(size / VERTEX_SIZE / 3) : "-") + " triangles)";
             ui_render_text(text, x, y);
         });
@@ -302,7 +302,7 @@ function ui_init_main(mode) {
         
         element = create_text(col2_x, yy, "     - vertices", col_width, element_height, fa_left, col_width, t_stats);
         element.render = method(element, function(text, x, y) {
-            var size = buffer_get_size(Stuff.map.active_map.contents.frozen_data);
+            var size = Stuff.map.active_map.contents.frozen_data ? buffer_get_size(Stuff.map.active_map.contents.frozen_data) : 0;
             text.text = "    (" + ((size > 1) ? string(size / VERTEX_SIZE) : "-") + " vertices)";
             ui_render_text(text, x, y);
         });
@@ -312,7 +312,7 @@ function ui_init_main(mode) {
         
         element = create_text(col2_x, yy, "    - kb", col_width, element_height, fa_left, col_width, t_stats);
         element.render = method(element, function(text, x, y) {
-            var size = buffer_get_size(Stuff.map.active_map.contents.frozen_data);
+            var size = Stuff.map.active_map.contents.frozen_data ? buffer_get_size(Stuff.map.active_map.contents.frozen_data) : 0;
             text.text = "    " + ((size > 1) ? string_comma(ceil(size >> 10)) : "-") + " kb";
             ui_render_text(text, x, y);
         });
@@ -322,7 +322,7 @@ function ui_init_main(mode) {
         
         element = create_text(col2_x, yy, "    ( - bytes)", col_width, element_height, fa_left, col_width, t_stats);
         element.render = method(element, function(text, x, y) {
-            var size = buffer_get_size(Stuff.map.active_map.contents.frozen_data);
+            var size = Stuff.map.active_map.contents.frozen_data ? buffer_get_size(Stuff.map.active_map.contents.frozen_data) : 0;
             text.text = "    (" + ((size > 1) ? string(size) : "-") + " bytes)";
             ui_render_text(text, x, y);
         });

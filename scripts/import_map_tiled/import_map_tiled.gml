@@ -3,8 +3,8 @@ function import_map_tiled(ask_clear) {
         dialog_create_yes_or_no(noone, "Do you want to import a Tiled map? If there is any frozen terrain data, it will be removed.", function(button) {
             var map = Stuff.map.active_map;
             var map_contents = map.contents;
-            buffer_delete(map_contents.frozen_data);
-            buffer_delete(map_contents.frozen_data_wire);
+            if (map_contents.frozen_data) buffer_delete(map_contents.frozen_data);
+            if (map_contents.frozen_data_wire) buffer_delete(map_contents.frozen_data_wire);
             map_contents.frozen_data = buffer_create(1, buffer_grow, DEFAULT_FROZEN_BUFFER_SIZE);
             map_contents.frozen_data_wire = buffer_create(1, buffer_grow, DEFAULT_FROZEN_BUFFER_SIZE);
             // the vertex buffers are created elsewhere - since they need to be
@@ -41,7 +41,7 @@ function import_map_tiled(ask_clear) {
                     var property_type = ds_map_find_value(json_properties[| i], "type");
                     var property_value = ds_map_find_value(json_properties[| i], "value");
             
-                    if (property_name = "id") {
+                    if (property_name == "id") {
                         map_id = property_value;
                     }
                 }
@@ -106,10 +106,16 @@ function import_map_tiled(ask_clear) {
                 if (buffer_get_size(map_contents.frozen_data) - 1) {
                     map_contents.frozen = vertex_create_buffer_from_buffer(map_contents.frozen_data, Stuff.graphics.vertex_format);
                     vertex_freeze(map_contents.frozen);
+                } else {
+                    buffer_delete(map_contents.frozen_data);
+                    map_contents.frozen_data = undefined;
                 }
                 if (buffer_get_size(map_contents.frozen_data_wire) - 1) {
                     map_contents.frozen_wire = vertex_create_buffer_from_buffer(map_contents.frozen_data_wire, Stuff.graphics.vertex_format);
                     vertex_freeze(map_contents.frozen_wire);
+                } else {
+                    buffer_delete(map_contents.reflect_frozen_data);
+                    map_contents.reflect_frozen_data = undefined;
                 }
             } else {
                 dialog_create_notice(noone, "No valid tileset file found for " + filename_name(filename) + ". Please find one.");

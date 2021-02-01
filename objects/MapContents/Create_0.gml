@@ -20,13 +20,13 @@ map_grid_tags = array_create_3d(10, 10, 10);
 
 frozen = undefined;                         // everything that will be a single batch in the game
 frozen_wire = undefined;                    // the wireframe for the frozen vertex buffer
-frozen_data = buffer_create(1, buffer_grow, DEFAULT_FROZEN_BUFFER_SIZE);        // the raw data in the frozen vertex buffer
-frozen_data_wire = buffer_create(1, buffer_grow, DEFAULT_FROZEN_BUFFER_SIZE);   // the raw data in the frozen wireframe vertex buffer
+frozen_data = undefined;                    // the raw data in the frozen vertex buffer
+frozen_data_wire = undefined;               // the raw data in the frozen wireframe vertex buffer
 
 reflect_frozen = undefined;
 reflect_frozen_wire = undefined;
-reflect_frozen_data = buffer_create(1, buffer_grow, DEFAULT_FROZEN_BUFFER_SIZE);
-reflect_frozen_data_wire = buffer_create(1, buffer_grow, DEFAULT_FROZEN_BUFFER_SIZE);
+reflect_frozen_data = undefined;
+reflect_frozen_data_wire = undefined;
 
 population = [0, 0, 0, 0, 0, 0, 0];
 population_static = 0;
@@ -56,11 +56,11 @@ ClearFrozenData = function() {
     if (reflect_frozen_data_wire) buffer_delete(reflect_frozen_data_wire);
     frozen = undefined;
     frozen_wire = undefined;
-    frozen_data = buffer_create(1, buffer_grow, DEFAULT_FROZEN_BUFFER_SIZE);
-    frozen_data_wire = buffer_create(1, buffer_grow, DEFAULT_FROZEN_BUFFER_SIZE);
+    frozen_data = undefined;
+    frozen_data_wire = undefined;
     
     reflect_frozen = undefined;
     reflect_frozen_wire = undefined;
-    reflect_frozen_data = buffer_create(1, buffer_grow, DEFAULT_FROZEN_BUFFER_SIZE);
-    reflect_frozen_data_wire = buffer_create(1, buffer_grow, DEFAULT_FROZEN_BUFFER_SIZE);
+    reflect_frozen_data = undefined;
+    reflect_frozen_data_wire = undefined;
 };

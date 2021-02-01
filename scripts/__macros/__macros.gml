@@ -57,7 +57,7 @@
 // instance IDs begin here
 #macro MAGIC_INSTANCE_ID 100000
 #macro LAST_SAFE_RELEASE "2019.4.1.19";
-#macro DEFAULT_FROZEN_BUFFER_SIZE 1024
+#macro DEFAULT_FROZEN_BUFFER_SIZE 1
 
 #macro FILE_TEXT_EXTENSION Stuff.text_extension_map[Settings.config.text_extension]
 #macro FILE_CODE_EXTENSION Stuff.code_extension_map[Settings.config.code_extension]
