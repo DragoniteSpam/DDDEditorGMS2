@@ -18,7 +18,7 @@ function dialog_create(width, height, text, render, commit, root, close) {
     dg.render = render;
     dg.commit = commit;
     dg.root = root;
-    // "close" can be undefined if you want to hide the button entirely.
+    // "close" can be set to undefined if you want to hide the button entirely
     dg.close = close;
     
     ds_list_add(Stuff.dialogs, dg);
@@ -139,9 +139,9 @@ function dialog_default(dialog) {
     
     try {
         // do this at the end in case some inner element needs to use the escape key
-        kill = kill || (active && Controller.release_escape && (!Stuff.mode.ui.active_element || !Stuff.mode.ui.active_element.override_escape));
+        kill |= (active && Controller.release_escape && (!Stuff.mode.ui.active_element || !Stuff.mode.ui.active_element.override_escape));
     } catch (e) {
-        wtf("deal with later, maybe")
+        wtf("deal with later, maybe");
         wtf(e.longMessage);
         wtf(e.stacktrace);
     }
