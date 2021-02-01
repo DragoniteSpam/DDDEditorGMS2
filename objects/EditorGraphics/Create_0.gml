@@ -113,7 +113,7 @@ mesh_missing_data = qmark_data[1];
 water_tile_size = 0x1000;
 water_reptition = 80;
 water_units = 80;
-water_depth = -24;
+water_depth = -1;
 
 mesh_water_base = vertex_create_buffer();
 mesh_water_bright = vertex_create_buffer();
