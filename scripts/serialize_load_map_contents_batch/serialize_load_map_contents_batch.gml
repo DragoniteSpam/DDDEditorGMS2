@@ -10,13 +10,32 @@ function serialize_load_map_contents_batch(buffer, version, map) {
     buffer_delete(map_contents.reflect_frozen_data);
     buffer_delete(map_contents.reflect_frozen_data_wire);
     
+    map_contents.frozen_data = undefined;
+    map_contents.frozen_data_wire = undefined;
+    map_contents.reflect_frozen_data = undefined;
+    map_contents.reflect_frozen_data_wire = undefined;
+    
     var length = buffer_read(buffer, buffer_u64);
-    buffer_read(buffer, buffer_u64);            // no longer needed
+    if (version >= DataVersions.MESH_REFLECTION_DATA) {
+    } else {
+        buffer_read(buffer, buffer_u64);            // no longer needed
+    }
     map_contents.frozen_data = buffer_read_buffer(buffer, length);
     
     var length = buffer_read(buffer, buffer_u64);
-    buffer_read(buffer, buffer_u64);            // no longer needed
+    if (version >= DataVersions.MESH_REFLECTION_DATA) {
+    } else {
+        buffer_read(buffer, buffer_u64);            // no longer needed
+    }
     map_contents.frozen_data_wire = buffer_read_buffer(buffer, length);
+    
+    if (version >= DataVersions.MESH_REFLECTION_DATA) {
+        var length = buffer_read(buffer, buffer_u64);
+        if (length > 0) map_contents.reflect_frozen_data = buffer_read_buffer(buffer, length);
+        
+        var length = buffer_read(buffer, buffer_u64);
+        if (length > 0) map_contents.reflect_frozen_data_wire = buffer_read_buffer(buffer, length);
+    }
     
     if (version >= DataVersions.MAP_FROZEN_TAGS) {
         for (var i = 0; i < map.xx; i++) {

@@ -6,12 +6,20 @@ function serialize_save_map_contents_batch(buffer) {
     var addr_skip = buffer_tell(buffer);
     buffer_write(buffer, buffer_u64, 0);
     
-    buffer_write(buffer, buffer_u64, int64(buffer_get_size(map_contents.frozen_data)));
-    buffer_write(buffer, buffer_u64, 0);            // no longer needed
+    buffer_write(buffer, buffer_u64, buffer_get_size(map_contents.frozen_data));
     buffer_write_buffer(buffer, map_contents.frozen_data);
-    buffer_write(buffer, buffer_u64, int64(buffer_get_size(map_contents.frozen_data_wire)));
-    buffer_write(buffer, buffer_u64, 0);            // no longer needed
+    buffer_write(buffer, buffer_u64, buffer_get_size(map_contents.frozen_data_wire));
     buffer_write_buffer(buffer, map_contents.frozen_data_wire);
+    
+    if (map_contents.reflect_frozen_data) {
+        buffer_write(buffer, buffer_u64, buffer_get_size(map_contents.reflect_frozen_data));
+        buffer_write_buffer(buffer, map_contents.reflect_frozen_data);
+        buffer_write(buffer, buffer_u64, buffer_get_size(map_contents.reflect_frozen_data_wire));
+        buffer_write_buffer(buffer, map_contents.reflect_frozen_data_wire);
+    } else {
+        buffer_write(buffer, buffer_u64, 0);
+        buffer_write(buffer, buffer_u64, 0);
+    }
     
     for (var i = 0; i < map.xx; i++) {
         for (var j = 0; j < map.yy; j++) {
