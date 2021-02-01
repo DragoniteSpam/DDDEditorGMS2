@@ -1055,22 +1055,40 @@ function ui_init_main(mode) {
             list.text = oldtext;
         });
         element_mesh_list.render_colors = method(element_mesh_list, function(list, index) {
-            switch (list.entries[| index].type) {
+            var mesh = list.entries[| index];
+            for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
+                if (!mesh.submeshes[| i].buffer) {
+                    return c_red;
+                }
+            }
+            switch (mesh.type) {
                 case MeshTypes.RAW: return c_black;
                 case MeshTypes.SMF: return c_blue;
             }
+            return c_black;
         });
         element_mesh_list.ondoubleclick = method(element_mesh_list, function(list) {
             var data = Stuff.all_meshes[| Stuff.map.selection_fill_mesh];
             if (data) dialog_create_mesh_advanced(undefined, data);
         });
         element_mesh_list.evaluate_text = method(element_mesh_list, function(list, index) {
+            var mesh = list.entries[| index];
             var prefix = "";
-            if (list.entries[| index].flags & MeshFlags.PARTICLE) {
-                prefix = "(p)" + prefix;
+            if (mesh.flags & MeshFlags.PARTICLE) {
+                prefix += "p";
             }
-            return prefix + list.entries[| index].name;
+            for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
+                if (mesh.submeshes[| i].reflect_buffer) {
+                    prefix += "r";
+                    break;
+                }
+            }
+            if (string_length(prefix) > 0) {
+                prefix = "(" + prefix + ")";
+            }
+            return prefix + mesh.name;
         });
+        element_mesh_list.tooltip = "All meshes available. Legend:\n - RED meshes have one or more submeshes with no vertex buffer associated with it\n - BLUE meshes are SMF meshes, and may have special animations or materials\n - Meshes marked with \"p\" represent particles\n - Meshes marked with \"r\" have one or more reflection meshes associated with them";
         ds_list_add(t_p_mesh_editor.contents, element_mesh_list);
         
         yy += ui_get_list_height(element_mesh_list) + spacing;
