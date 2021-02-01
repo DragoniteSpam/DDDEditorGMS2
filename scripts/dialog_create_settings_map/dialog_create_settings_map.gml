@@ -104,7 +104,11 @@ function dialog_create_settings_map(dialog) {
     yy += el_other_water.height + spacing;
     
     var el_other_water_reflect = create_checkbox(col1_x + string_width("     "), yy, "Reflections enabled?", ew, eh, function(checkbox) {
-        checkbox.root.map.reflections_enabled = checkbox.value;
+        var map = checkbox.root.map;
+        map.reflections_enabled = checkbox.value;
+        if (!checkbox.value && map.contents && map.contents.reflect_frozen && (vertex_get_number(map.contents.reflect_frozen) > 0)) {
+            dialog_create_notice(checkbox, "This map currently has about [c_blue]" + string(vertex_get_number(map.contents.reflect_frozen) / 3) + "[/c] frozen vertices. If reflections are disabled, this will not be preserved when saving the data file. Presumably, you are okay with this.");
+        }
     }, map.reflections_enabled, dg);
     el_other_water_reflect.tooltip = "Whether or not reflections will be shown; most of the time this should be turned off if you have the water level turned off, and it should probably be turned off if the map is marked as indoors, but you may choose otherwise";
     yy += el_other_water_reflect.height + spacing;
