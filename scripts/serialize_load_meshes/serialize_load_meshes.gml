@@ -15,22 +15,40 @@ function serialize_load_meshes(buffer, version) {
         for (var i = 0; i < n_submeshes; i++) {
             var index = buffer_read(buffer, buffer_u16);
             var proto_guid = buffer_read(buffer, buffer_get_datatype(version));
-            var blength = buffer_read(buffer, buffer_u32);
-            var name = buffer_read(buffer, buffer_string);
-            if (version >= DataVersions.EVEN_MORE_MESH_METADATA) {
-                var path = buffer_read(buffer, buffer_string);
-            } else {
-                path = "";
-            }
-            
             proto_guid_set(mesh, index, proto_guid);
-            var submesh = new MeshSubmesh(name);
+            
+            if (version >= DataVersions.MESH_REFLECTION_DATA) {
+                var name = buffer_read(buffer, buffer_string);
+                var path = buffer_read(buffer, buffer_string);
+                var submesh = new MeshSubmesh(name);
+                
+                var blength = buffer_read(buffer, buffer_u32); 
+                if (blength > 0) {
+                    submesh.buffer = buffer_read_buffer(buffer, blength);
+                    submesh.internalSetVertexBuffer();
+                }
+                
+                var blength = buffer_read(buffer, buffer_u32);
+                if (blength > 0) {
+                    submesh.reflect_buffer = buffer_read_buffer(buffer, blength);
+                    submesh.internalSetReflectVertexBuffer();
+                }
+            } else {
+                var blength = buffer_read(buffer, buffer_u32);
+                var name = buffer_read(buffer, buffer_string);
+                if (version >= DataVersions.EVEN_MORE_MESH_METADATA) {
+                    var path = buffer_read(buffer, buffer_string);
+                } else {
+                    path = "";
+                }
+                
+                var submesh = new MeshSubmesh(name);
+                submesh.buffer = buffer_read_buffer(buffer, blength);
+                submesh.path = path;
+            }
             submesh.proto_guid = proto_guid;
             submesh.owner = mesh;
             ds_list_add(mesh.submeshes, submesh);
-            
-            submesh.buffer = buffer_read_buffer(buffer, blength);
-            submesh.path = path;
         }
         
         mesh.xmin = buffer_read(buffer, buffer_f32);

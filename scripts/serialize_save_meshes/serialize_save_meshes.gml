@@ -21,10 +21,21 @@ function serialize_save_meshes(buffer) {
             var index = mesh.proto_guids[$ all_proto_guids[j]];
             buffer_write(buffer, buffer_u16, index);
             buffer_write(buffer, buffer_datatype, all_proto_guids[j]);
-            buffer_write(buffer, buffer_u32, buffer_get_size(submesh.buffer));
+            
             buffer_write(buffer, buffer_string, submesh.name);
             buffer_write(buffer, buffer_string, submesh.path);
-            buffer_write_buffer(buffer, submesh.buffer);
+            if (submesh.buffer) {
+                buffer_write(buffer, buffer_u32, buffer_get_size(submesh.buffer));
+                buffer_write_buffer(buffer, submesh.buffer);
+            } else {
+                buffer_write(buffer, buffer_u32, 0);
+            }
+            if (submesh.reflect_buffer) {
+                buffer_write(buffer, buffer_u32, buffer_get_size(submesh.reflect_buffer));
+                buffer_write_buffer(buffer, submesh.reflect_buffer);
+            } else {
+                buffer_write(buffer, buffer_u32, 0);
+            }
             // don't bother saving the wireframe buffers - we need to re-create the collision
             // shape as well, so we might as well recreate the wireframe at the same time =/
         }
