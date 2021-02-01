@@ -10,7 +10,7 @@ function batch_mesh(vbuff, wire, reflect, reflect_wire, mesh) {
     
     #region upright
     // if no valid mesh is found, use the big ol' ? instead
-    var raw = entity_mesh_get_buffer(mesh);
+    var raw = mesh.GetBuffer();
     if (!raw) raw = Stuff.graphics.mesh_missing_data;
     buffer_seek(raw, buffer_seek_start, 0);
     
@@ -73,7 +73,7 @@ function batch_mesh(vbuff, wire, reflect, reflect_wire, mesh) {
     
     #region reflected
     // if no valid mesh is found, use the big ol' ? instead
-    var raw = entity_mesh_get_reflect_buffer(mesh);
+    var raw = mesh.GetReflectBuffer();
     if (!raw) return;
     buffer_seek(raw, buffer_seek_start, 0);
     

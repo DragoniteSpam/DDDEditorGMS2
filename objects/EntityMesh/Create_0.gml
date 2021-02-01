@@ -44,3 +44,53 @@ SetStatic = function(state) {
         Stuff.map.active_map.contents.population_static = Stuff.map.active_map.contents.population_static + (is_static ? 1 : -1);
     }
 };
+
+GetBuffer = function() {
+    // the lookup for an entity's exact mesh is now somewhat complicated, so this
+    // script is here to make yoru life easier
+    var mesh_data = guid_get(mesh);
+    return mesh_data ? mesh_data.submeshes[| proto_guid_get(mesh_data, mesh_submesh)].buffer : undefined;
+};
+
+GetVertexBuffer = function() {
+    // the lookup for an entity's exact mesh is now somewhat complicated, so this
+    // script is here to make yoru life easier
+    var mesh_data = guid_get(mesh);
+    return mesh_data ? mesh_data.submeshes[| proto_guid_get(mesh_data, mesh_submesh)].vbuffer : undefined;
+};
+
+GetWireBuffer = function() {
+    // the lookup for an entity's exact mesh is now somewhat complicated, so this
+    // script is here to make yoru life easier
+    var mesh_data = guid_get(mesh);
+    return mesh_data ? mesh_data.submeshes[| proto_guid_get(mesh_data, mesh_submesh)].wbuffer : undefined;
+};
+
+GetReflectBuffer = function() {
+    // the lookup for an entity's exact mesh is now somewhat complicated, so this
+    // script is here to make yoru life easier
+    var mesh_data = guid_get(mesh);
+    return mesh_data ? mesh_data.submeshes[| proto_guid_get(mesh_data, mesh_submesh)].reflect_buffer : undefined;
+};
+
+GetReflectVertexBuffer = function() {
+    // the lookup for an entity's exact mesh is now somewhat complicated, so this
+    // script is here to make yoru life easier
+    var mesh_data = guid_get(mesh);
+    return mesh_data ? mesh_data.submeshes[| proto_guid_get(mesh_data, mesh_submesh)].reflect_vbuffer : undefined;
+};
+
+GetReflectWireBuffer = function() {
+    // the lookup for an entity's exact mesh is now somewhat complicated, so this
+    // script is here to make yoru life easier
+    var mesh_data = guid_get(mesh);
+    return mesh_data ? mesh_data.submeshes[| proto_guid_get(mesh_data, mesh_submesh)].reflect_wbuffer : undefined;
+};
+
+GetTexture = function() {
+    // the lookup for an entity's exact mesh is now somewhat complicated, so this
+    // script is here to make yoru life easier
+    var mesh_data = guid_get(mesh);
+    var def_texture = Settings.view.texture ? sprite_get_texture(get_active_tileset().picture, 0) : sprite_get_texture(b_tileset_textureless, 0);
+    return (mesh_data && guid_get(mesh_data.tex_base)) ? sprite_get_texture(guid_get(mesh_data.tex_base).picture, 0) : def_texture;
+};
