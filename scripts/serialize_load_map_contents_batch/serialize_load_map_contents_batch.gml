@@ -47,14 +47,24 @@ function serialize_load_map_contents_batch(buffer, version, map) {
         }
     }
     
-    if (buffer_get_size(map_contents.frozen_data) - 1) {
+    if (map_contents.frozen_data) {
         map_contents.frozen = vertex_create_buffer_from_buffer(map_contents.frozen_data, Stuff.graphics.vertex_format);
         vertex_freeze(map_contents.frozen);
     }
     
-    if (buffer_get_size(map_contents.frozen_data_wire) - 1) {
+    if (map_contents.frozen_data_wire) {
         map_contents.frozen_wire = vertex_create_buffer_from_buffer(map_contents.frozen_data_wire, Stuff.graphics.vertex_format);
         vertex_freeze(map_contents.frozen_wire);
+    }
+    
+    if (map_contents.reflect_frozen_data) {
+        map_contents.reflect_frozen = vertex_create_buffer_from_buffer(map_contents.reflect_frozen_data, Stuff.graphics.vertex_format);
+        vertex_freeze(map_contents.reflect_frozen);
+    }
+    
+    if (map_contents.reflect_frozen_data_wire) {
+        map_contents.reflect_frozen_wire = vertex_create_buffer_from_buffer(map_contents.reflect_frozen_data_wire, Stuff.graphics.vertex_format);
+        vertex_freeze(map_contents.reflect_frozen_wire);
     }
     
     if (version >= DataVersions.MAP_STATIC_BATCHES) {
