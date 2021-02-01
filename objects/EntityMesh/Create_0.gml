@@ -44,11 +44,29 @@ SetStatic = function(state) {
         Stuff.map.active_map.contents.population_static = Stuff.map.active_map.contents.population_static + (is_static ? 1 : -1);
     }
 };
+/*
+___________________________________________
+############################################################################################
+ERROR in
+action number 1
+of Draw Event
+for object Stuff:
 
+ds_list_find_value argument 2 incorrect type (undefined) expecting a Number (YYGI32)
+ at gml_Script_anon_gml_Object_EntityMesh_Create_0_1289_gml_Object_EntityMesh_Create_0 (line 52) -     return mesh_data ? mesh_data.submeshes[| proto_guid_get(mesh_data, mesh_submesh)].buffer : undefined;
+############################################################################################
+gml_Script_anon_gml_Object_EntityMesh_Create_0_1289_gml_Object_EntityMesh_Create_0 (line 52)
+gml_Script_batch_mesh (line 13) -     var raw = mesh.GetBuffer();
+gml_Script_batch_cache (line 21) -         thing.batch(batch.vertex, batch.wire, batch.reflect_vertex, batch.reflect_wire, thing);
+gml_Script_editor_cleanup_map (line 130) -         batch_cache();
+gml_Object_Stuff_Draw_75 (line 7) - mode.cleanup(mode);
+*/
 GetBuffer = function() {
     // the lookup for an entity's exact mesh is now somewhat complicated, so this
     // script is here to make yoru life easier
     var mesh_data = guid_get(mesh);
+    if (!mesh_data) return undefined;
+    if (proto_guid_get(mesh_data, mesh_submesh) == undefined) return undefined;
     return mesh_data ? mesh_data.submeshes[| proto_guid_get(mesh_data, mesh_submesh)].buffer : undefined;
 };
 
@@ -56,6 +74,8 @@ GetVertexBuffer = function() {
     // the lookup for an entity's exact mesh is now somewhat complicated, so this
     // script is here to make yoru life easier
     var mesh_data = guid_get(mesh);
+    if (!mesh_data) return undefined;
+    if (proto_guid_get(mesh_data, mesh_submesh) == undefined) return undefined;
     return mesh_data ? mesh_data.submeshes[| proto_guid_get(mesh_data, mesh_submesh)].vbuffer : undefined;
 };
 
@@ -63,6 +83,8 @@ GetWireBuffer = function() {
     // the lookup for an entity's exact mesh is now somewhat complicated, so this
     // script is here to make yoru life easier
     var mesh_data = guid_get(mesh);
+    if (!mesh_data) return undefined;
+    if (proto_guid_get(mesh_data, mesh_submesh) == undefined) return undefined;
     return mesh_data ? mesh_data.submeshes[| proto_guid_get(mesh_data, mesh_submesh)].wbuffer : undefined;
 };
 
@@ -70,6 +92,8 @@ GetReflectBuffer = function() {
     // the lookup for an entity's exact mesh is now somewhat complicated, so this
     // script is here to make yoru life easier
     var mesh_data = guid_get(mesh);
+    if (!mesh_data) return undefined;
+    if (proto_guid_get(mesh_data, mesh_submesh) == undefined) return undefined;
     return mesh_data ? mesh_data.submeshes[| proto_guid_get(mesh_data, mesh_submesh)].reflect_buffer : undefined;
 };
 
@@ -77,6 +101,8 @@ GetReflectVertexBuffer = function() {
     // the lookup for an entity's exact mesh is now somewhat complicated, so this
     // script is here to make yoru life easier
     var mesh_data = guid_get(mesh);
+    if (!mesh_data) return undefined;
+    if (proto_guid_get(mesh_data, mesh_submesh) == undefined) return undefined;
     return mesh_data ? mesh_data.submeshes[| proto_guid_get(mesh_data, mesh_submesh)].reflect_vbuffer : undefined;
 };
 
@@ -84,6 +110,8 @@ GetReflectWireBuffer = function() {
     // the lookup for an entity's exact mesh is now somewhat complicated, so this
     // script is here to make yoru life easier
     var mesh_data = guid_get(mesh);
+    if (!mesh_data) return undefined;
+    if (proto_guid_get(mesh_data, mesh_submesh) == undefined) return undefined;
     return mesh_data ? mesh_data.submeshes[| proto_guid_get(mesh_data, mesh_submesh)].reflect_wbuffer : undefined;
 };
 
