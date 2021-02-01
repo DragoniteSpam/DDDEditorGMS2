@@ -49,20 +49,33 @@ function draw_editor_3d() {
     var tex = Settings.view.texture ? sprite_get_texture(get_active_tileset().picture, 0) : sprite_get_texture(b_tileset_textureless, 0);
     
     #region entities
-    if (map_contents.frozen && Settings.view.entities) {
-        vertex_submit(map_contents.frozen, pr_trianglelist, tex);
+    if (Settings.view.entities) {
+        if (map_contents.frozen) {
+            vertex_submit(map_contents.frozen, pr_trianglelist, tex);
+        }
+        if (map_contents.reflect_frozen) {
+            vertex_submit(map_contents.reflect_frozen, pr_trianglelist, tex);
+        }
     }
-    if (map_contents.frozen_wire && Settings.view.entities && Settings.view.wireframe) {
-        vertex_submit(map_contents.frozen_wire, pr_linelist, -1);
+    
+    if (Settings.view.wireframe) {
+        if (map_contents.frozen_wire && Settings.view.wireframe) {
+            vertex_submit(map_contents.frozen_wire, pr_linelist, -1);
+        }
+        if (map_contents.reflect_frozen_wire && Settings.view.wireframe) {
+            vertex_submit(map_contents.reflect_frozen_wire, pr_linelist, -1);
+        }
     }
     
     for (var i = 0; i < array_length(map_contents.batches); i++) {
         var data = map_contents.batches[i];
         if (Settings.view.entities) {
             vertex_submit(data.vertex, pr_trianglelist, tex);
+            vertex_submit(data.reflect_vertex, pr_trianglelist, tex);
         }
         if (Settings.view.wireframe) {
             vertex_submit(data.wire, pr_linelist, -1);
+            vertex_submit(data.reflect_wire, pr_linelist, -1);
         }
     }
     
