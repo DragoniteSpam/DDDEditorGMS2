@@ -5,10 +5,10 @@ function serialize_load_map_contents_batch(buffer, version, map) {
         var skip_addr = buffer_read(buffer, buffer_u64);
     }
     
-    buffer_delete(map_contents.frozen_data);
-    buffer_delete(map_contents.frozen_data_wire);
-    buffer_delete(map_contents.reflect_frozen_data);
-    buffer_delete(map_contents.reflect_frozen_data_wire);
+    if (map_contents.frozen_data) buffer_delete(map_contents.frozen_data);
+    if (map_contents.frozen_data_wire) buffer_delete(map_contents.frozen_data_wire);
+    if (map_contents.reflect_frozen_data) buffer_delete(map_contents.reflect_frozen_data);
+    if (map_contents.reflect_frozen_data_wire) buffer_delete(map_contents.reflect_frozen_data_wire);
     
     map_contents.frozen_data = undefined;
     map_contents.frozen_data_wire = undefined;
