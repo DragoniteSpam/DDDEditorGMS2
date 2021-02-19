@@ -95,7 +95,11 @@ function ui_init_game_data_activate() {
                                 break;
                             case DataTypes.ASSET_FLAG:     // button which leads to a dialog with a list of flags
                                 var element = create_button(0, yy, property.name, ew, eh, fa_center, function(button) {
-                                    dialog_create_game_data_asset_flags(button, button.key);
+                                    var data = guid_get(Stuff.data.ui.active_type_guid);
+                                    var instance_selection = ui_list_selection(Stuff.data.ui.el_instances);
+                                    if (instance_selection + 1) {
+                                        dialog_create_game_data_asset_flags(button, button.key);
+                                    }
                                 }, noone);
                                 element.key = i;
                                 var hh = element.height;
