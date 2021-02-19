@@ -31,7 +31,7 @@ function export_obj() {
         var xx, yy, zz, nx, ny, nz, xtex, ytex;
     
         var n = 1;
-    
+        
         while (buffer_tell(sub.buffer) < buffer_get_size(sub.buffer)) {
             for (var j = 0; j < 3; j++) {
                 xx = buffer_read(sub.buffer, buffer_f32);

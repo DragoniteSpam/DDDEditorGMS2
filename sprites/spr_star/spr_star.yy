@@ -67,6 +67,7 @@
   "layers": [
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"c52d4c04-8d5b-4315-a6d3-3fa7ffa67e3a","tags":[],"resourceType":"GMImageLayer",},
   ],
+  "nineSlice": null,
   "parent": {
     "name": "screen icons",
     "path": "folders/Sprites/user interface/screen icons.yy",
