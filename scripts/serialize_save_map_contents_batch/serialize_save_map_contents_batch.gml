@@ -46,7 +46,17 @@ function serialize_save_map_contents_batch(buffer) {
     buffer_write(buffer, buffer_u32, chunk_size);
     
     for (var i = 0; i < array_length(exported); i++) {
-        var vbuffer = exported[i];
+        var vbuffer = exported[i].vbuffer;
+        if (vertex_get_number(vbuffer) > 0) {
+            buffer_write(buffer, buffer_u16, i >> 24);
+            buffer_write(buffer, buffer_u16, i & 0xffffff);
+            var chunk = buffer_create_from_vertex_buffer(vbuffer, buffer_fixed, 1);
+            buffer_write(buffer, buffer_u32, buffer_get_size(chunk));
+            buffer_write_buffer(buffer, chunk);
+            buffer_delete(chunk);
+        }
+        vertex_delete_buffer(vbuffer);
+        var vbuffer = exported[i].reflected;
         if (vertex_get_number(vbuffer) > 0) {
             buffer_write(buffer, buffer_u16, i >> 24);
             buffer_write(buffer, buffer_u16, i & 0xffffff);
