@@ -824,7 +824,7 @@ function ui_init_main(mode) {
                 }
                 entities[| i].mesh = mesh.GUID;
             }
-            batch_again();
+            batch_again(undefined);
             Stuff.map.ui.element_entity_mesh_submesh.entries = mesh.submeshes;
             ui_list_deselect(Stuff.map.ui.element_entity_mesh_submesh);
             ui_list_select(Stuff.map.ui.element_entity_mesh_submesh, proto_guid_get(mesh, mesh.first_proto_guid), true);
@@ -843,7 +843,7 @@ function ui_init_main(mode) {
             for (var i = 0; i < ds_list_size(entities); i++) {
                 entities[| i].mesh_submesh = submesh;
             }
-            batch_again();
+            batch_again(undefined);
         }, false, t_p_mesh, noone);
         element_entity_mesh_submesh.allow_deselect = false;
         element_entity_mesh_submesh.entries_are = ListEntries.INSTANCES;

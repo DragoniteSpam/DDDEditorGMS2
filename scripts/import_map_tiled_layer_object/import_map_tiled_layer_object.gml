@@ -224,8 +224,8 @@ function import_map_tiled_layer_object() {
                 var pr_offset_y = data_properties[? "OffsetY"];
                 
                 if (pr_static == undefined) break;
-                if (pr_offset_x == undefined) pr_offset_x = 0; else pr_offset_x = pr_offset_x[? "value"];
-                if (pr_offset_y == undefined) pr_offset_y = 0; else pr_offset_y = pr_offset_y[? "value"];
+                pr_offset_x = (pr_offset_x == undefined) ? 0 : pr_offset_x[? "value"];
+                pr_offset_y = (pr_offset_y == undefined) ? 0 : pr_offset_y[? "value"];
                 
                 pr_static = pr_static[? "value"];
                 
