@@ -22,12 +22,12 @@ function terrain_mode_z(terrain, position, dir) {
     
     for (var i = 0; i < ds_list_size(list_range); i++) {
         var coordinates = list_range[| i];
-        terrain.submode_equation[terrain.submode](terrain, coordinates[vec3.position.x], coordinates[vec3.position.y], dir, avg, coordinates[vec3.zz]);
+        terrain.submode_equation[terrain.submode](terrain, coordinates[vec3.xx], coordinates[vec3.yy], dir, avg, coordinates[vec3.zz]);
     }
     
     for (var i = 0; i < ds_list_size(list_range); i++) {
         var coordinates = list_range[| i];
-        terrain_set_normals(terrain, coordinates[vec3.position.x], coordinates[vec3.position.y]);
+        terrain_set_normals(terrain, coordinates[vec3.xx], coordinates[vec3.yy]);
     }
     
     if (!ds_list_empty(list_range)) {
