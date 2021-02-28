@@ -133,8 +133,9 @@ function dialog_create_mesh_collision_data(root, mesh) {
     
     el_collision_triggers.tooltip = "Each cell occupied by a mesh can have each flag data toggled on or off.\n\nShaded cells are solid, while unshaded cells are passable.";
     
+    var xx = c5 + ew / 2 - 2.5 * b_width - spacing / 2;
     yy += (rows + 1) * eh + spacing;
-    var el_button_apply_layer = create_button(c5 + ew / 2 - b_width - spacing / 2, yy, "Apply to Layer", b_width, b_height, fa_center, function(button) {
+    var el_button_apply_layer = create_button(xx, yy, "Apply to Layer", b_width, b_height, fa_center, function(button) {
         var flag_grid = button.root.mesh.asset_flags;
         for (var i = 0; i < array_length(flag_grid); i++) {
             for (var j = 0; j < array_length(flag_grid[0]); j++) {
@@ -142,7 +143,8 @@ function dialog_create_mesh_collision_data(root, mesh) {
             }
         }
     }, dg);
-    var el_button_apply_all = create_button(c5 + ew / 2 + spacing / 2, yy, "Apply to All", b_width, b_height, fa_center, function(button) {
+    xx += b_width;
+    var el_button_apply_all = create_button(xx, yy, "Apply to All", b_width, b_height, fa_center, function(button) {
         var flag_grid = button.root.mesh.asset_flags;
         for (var i = 0; i < array_length(flag_grid); i++) {
             for (var j = 0; j < array_length(flag_grid[0]); j++) {
@@ -151,6 +153,18 @@ function dialog_create_mesh_collision_data(root, mesh) {
                 }
             }
         }
+    }, dg);
+    xx += b_width;
+    var el_button_clear = create_button(xx, yy, "Clear", b_width, b_height, fa_center, function(button) {
+        
+    }, dg);
+    xx += b_width;
+    var el_button_copy = create_button(xx, yy, "Copy", b_width, b_height, fa_center, function(button) {
+        
+    }, dg);
+    xx += b_width;
+    var el_button_paste = create_button(xx, yy, "Paste", b_width, b_height, fa_center, function(button) {
+        
     }, dg);
     #endregion
     
@@ -188,6 +202,9 @@ function dialog_create_mesh_collision_data(root, mesh) {
         el_collision_triggers,
         el_button_apply_layer,
         el_button_apply_all,
+        el_button_clear,
+        el_button_copy,
+        el_button_paste,
         el_confirm
     );
     
