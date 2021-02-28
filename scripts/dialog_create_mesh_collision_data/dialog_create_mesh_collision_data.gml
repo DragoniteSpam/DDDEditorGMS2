@@ -156,7 +156,8 @@ function dialog_create_mesh_collision_data(root, mesh) {
     }, dg);
     xx += b_width;
     var el_button_clear = create_button(xx, yy, "Clear", b_width, b_height, fa_center, function(button) {
-        
+        button.root.mesh.asset_flags[@ button.root.xx][@ button.root.yy][@ button.root.zz] = 0;
+        button.root.el_collision_triggers.value = 0;
     }, dg);
     xx += b_width;
     var el_button_copy = create_button(xx, yy, "Copy", b_width, b_height, fa_center, function(button) {
