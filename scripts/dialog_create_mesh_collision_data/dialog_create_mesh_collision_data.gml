@@ -17,6 +17,7 @@ function dialog_create_mesh_collision_data(root, mesh) {
     dg.xx = 0;
     dg.yy = 0;
     dg.zz = 0;
+    dg.stored_value = undefined;
     
     var columns = 6;
     var spacing = 16;
@@ -161,11 +162,14 @@ function dialog_create_mesh_collision_data(root, mesh) {
     }, dg);
     xx += b_width;
     var el_button_copy = create_button(xx, yy, "Copy", b_width, b_height, fa_center, function(button) {
-        
+        button.root.stored_value = button.root.el_collision_triggers.value;
     }, dg);
     xx += b_width;
     var el_button_paste = create_button(xx, yy, "Paste", b_width, b_height, fa_center, function(button) {
-        
+        if (button.root.stored_value != undefined) {
+            button.root.mesh.asset_flags[@ button.root.xx][@ button.root.yy][@ button.root.zz] = button.root.stored_value;
+            button.root.el_collision_triggers.value = button.root.stored_value;
+        }
     }, dg);
     #endregion
     
