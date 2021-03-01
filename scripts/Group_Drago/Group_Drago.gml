@@ -48,6 +48,8 @@ function ds_stuff_fetch_dropped_files() {
         array[i] = external_call(global._ds_stuff_file_drop_get, i);
     }
     
+    array_sort(array, true);
+    
     external_call(global._ds_stuff_file_drop_flush);
     return array;
 }
