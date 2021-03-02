@@ -87,6 +87,17 @@ function MeshSubmesh(name) constructor {
         }
     };
     
+    static Reload = function() {
+        var index = ds_list_find_index(self.owner.submeshes, self);
+        if (file_exists(self.path)) {
+            switch (filename_ext(self.path)) {
+                case ".obj": import_obj(self.path, undefined, self.owner, index); break;
+                case ".d3d": case ".gmmod": import_d3d(self.path, undefined, false, self.owner, index); break;
+                case ".smf": import_smf(self.path, self.owner, index); break;
+            }
+        }
+    };
+    
     static internalDeleteUpright = function() {
         if (self.buffer) buffer_delete(self.buffer);
         if (self.vbuffer) vertex_delete_buffer(self.vbuffer);

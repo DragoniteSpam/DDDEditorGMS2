@@ -1,15 +1,9 @@
-/// @param filename
-/// @param [complete-object?]
-/// @param [raw-buffer?]
-/// @param [existing-object]
-/// @param [replace-index]
-function import_obj() {
-    var fn = argument[0];
-    // setting "everything" to false will mean only the vertex buffer is returned
-    var everything = (argument_count > 1 && argument[1] != undefined) ? argument[1] : true;
-    var raw_buffer = (argument_count > 2 && argument[2] != undefined) ? argument[2] : false;
-    var existing = (argument_count > 3 && argument[3] != undefined) ? argument[3] : noone;
-    var replace_index = (argument_count > 4 && argument[4] != undefined) ? argument[4] : -1;
+function import_obj(fn, everything, raw_buffer, existing, replace_index) {
+    if (everything == undefined) everything = true;
+    if (raw_buffer == undefined) raw_buffer = false;
+    if (existing == undefined) existing = undefined;
+    if (replace_index == undefined) replace_index = -1;
+    
     var err = "";
     var warnings = 0;
     static warn_invisible = false;

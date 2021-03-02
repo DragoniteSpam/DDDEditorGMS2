@@ -107,3 +107,9 @@ SwapReflections = function() {
         submeshes[| i].SwapReflections();
     }
 };
+
+Reload = function() {
+    for (var i = 0; i < ds_list_size(submeshes); i++) {
+        submeshes[| i].Reload();
+    }
+};

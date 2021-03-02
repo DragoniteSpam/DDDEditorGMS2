@@ -236,6 +236,18 @@ function dialog_create_mesh_advanced(root, mesh) {
     el_up_axis.tooltip = "Rotates the axes of all submeshes. Useful if you exported it from a 3D modelling program that insists on using Y+Up instead of Z+Up (cough cough, Blender).";
     yy += el_up_axis.height + spacing;
     
+    var el_reload = create_button(col3_x, yy, "Reload", ew, eh, fa_center, function(button) {
+        var mesh = button.root.mesh;
+        var submesh = ui_list_selection(button.root.el_list);
+        if (submesh + 1) {
+            mesh.submeshes[| submesh].Reload();
+        }
+        
+        batch_again(false);
+    }, dg);
+    el_reload.tooltip = "Reload the submesh from its source file (if its source file still exists).";
+    yy += el_reload.height + spacing;
+    
     yy = yy_base;
     
     var el_text_all = create_text(col4_x, yy, "All Submeshes", ew, eh, fa_left, ew, dg);
@@ -282,6 +294,13 @@ function dialog_create_mesh_advanced(root, mesh) {
     el_all_normal_smooth.tooltip = "Smooths all normals in every mesh in the data file. Note that this will have no effect until I finally go and implement smooth shading in a shader.";
     yy += el_all_normal_smooth.height + spacing;
     
+    var el_all_reload = create_button(col4_x, yy, "Reload", ew, eh, fa_center, function(button) {
+        button.root.mesh.Reload();
+        batch_again(false);
+    }, dg);
+    el_all_reload.tooltip = "Reload all submeshes from their source file (if their source file exists).";
+    yy += el_all_reload.height + spacing;
+    
     var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
     
     ds_list_add(dg.contents,
@@ -299,12 +318,14 @@ function dialog_create_mesh_advanced(root, mesh) {
         el_normal_flat,
         el_normal_smooth,
         el_up_axis,
+        el_reload,
         el_markers,
         el_text_all,
         el_auto_reflect_all,
         el_swap_reflect_all,
         el_all_normal_flat,
         el_all_normal_smooth,
+        el_all_reload,
         el_confirm
     );
     
