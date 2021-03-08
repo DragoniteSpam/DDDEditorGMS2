@@ -15,7 +15,13 @@ global._ds_stuff_file_drop_count = external_define(dll, "file_drop_count", callt
 global._ds_stuff_file_drop_get = external_define(dll, "file_drop_get", calltype, ty_string, 1, ty_real);
 global._ds_stuff_file_drop_flush = external_define(dll, "file_drop_flush", calltype, ty_real, 0);
 
+global._ds_stuff_pack_textures = external_define(dll, "pack_textures", calltype, ty_real, 3, ty_real, ty_real, ty_real);
+
 external_call(external_define(dll, "init", calltype, ty_real, 2, ty_string, ty_real), window_handle(), true);
+
+function ds_stuff_pack_textures(addr, length) {
+    return external_call(global._ds_stuff_pack_textures, addr, length);
+}
 
 function ds_stuff_copy(source, destination) {
     // Copies a file from the source to the destination
