@@ -20,7 +20,7 @@ global._ds_stuff_pack_textures = external_define(dll, "pack_textures", calltype,
 external_call(external_define(dll, "init", calltype, ty_real, 2, ty_string, ty_real), window_handle(), true);
 
 function ds_stuff_pack_textures(addr, length) {
-    return external_call(global._ds_stuff_pack_textures, addr, length);
+    return external_call(global._ds_stuff_pack_textures, addr, length, 0);
 }
 
 function ds_stuff_copy(source, destination) {
