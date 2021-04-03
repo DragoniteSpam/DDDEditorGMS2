@@ -1,8 +1,4 @@
-/// @param UIMain
-function ui_render_main(argument0) {
-
-    var ui = argument0;
-
+function ui_render_main(ui) {
     var camera = view_get_camera(view_current);
     var ui_x = camera_get_view_x(camera);
     var ui_y = camera_get_view_x(camera);

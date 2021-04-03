@@ -45,6 +45,7 @@ enum MeshTypes {
 
 enum MeshFlags {
     PARTICLE            = 0x0001,
+    SILHOUETTE          = 0x0002,
 }
 
 AutoCalculateBounds = function() {

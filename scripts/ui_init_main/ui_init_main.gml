@@ -1096,6 +1096,9 @@ function ui_init_main(mode) {
             if (mesh.flags & MeshFlags.PARTICLE) {
                 prefix += "p";
             }
+            if (mesh.flags & MeshFlags.SILHOUETTE) {
+                prefix += "s";
+            }
             for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
                 if (mesh.submeshes[| i].reflect_buffer) {
                     prefix += "r";
