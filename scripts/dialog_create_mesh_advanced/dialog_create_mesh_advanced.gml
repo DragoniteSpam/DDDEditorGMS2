@@ -158,24 +158,22 @@ function dialog_create_mesh_advanced(root, mesh) {
     
     yy = yy_base;
     
-    var el_markers = create_list(col2_x, yy, "Extra Mesh Markers", "", ew, eh, 8, function(list) {
-        var mesh = list.root.mesh;
-        var selection = ds_map_to_list(list.selected_entries);
-        mesh.flags = 0;
-        for (var i = 0; i < ds_list_size(selection); i++) {
-            mesh.flags |= (1 << selection[| i]);
-        }
-        ds_list_destroy(selection);
-    }, true, dg);
-    create_list_entries(el_markers, "Particle Mesh", "Silhouette Layer");
-    el_markers.tooltip = "Some extra flags you can assign on a mesh that will have no bearing on how they're used in-game, but may be useful to you as the game designer.";
-    el_markers.select_toggle = true;
-    for (var i = 0; i < 32; i++) {
-        if (mesh.flags & (1 << i)) {
-            ui_list_select(el_markers, i);
-        }
-    }
-    yy += ui_get_list_height(el_markers) + spacing;
+    var f_attr_render = function(option, x, y) {
+        option.state = option.root.value & option.value;
+        ui_render_bitfield_option_text(option, x, y);
+    };
+    var f_attr_interact = function(option) {
+        var mesh = option.root.root.mesh;
+        mesh.flags ^= option.value;
+        option.root.value ^= option.value;
+    };
+    
+    var el_markers = create_bitfield(col2_x + col1_x, yy, "Mesh Attributes:", ew, eh, mesh.flags, dg);
+    create_bitfield_options_vertical(el_markers, [
+        create_bitfield_option_data(MeshFlags.PARTICLE, f_attr_render, f_attr_interact, "Particle Mesh", -1, 0, (ew - spacing) / 2, eh),
+        create_bitfield_option_data(MeshFlags.SILHOUETTE, f_attr_render, f_attr_interact, "Player Silhouette", -1, 0, (ew - spacing) / 2, eh),
+    ]);
+    el_markers.tooltip = "Extra attributes you can assign to meshes.";
     
     yy = yy_base;
     
