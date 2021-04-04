@@ -112,6 +112,7 @@ function serialize_save_data() {
         REMOVE_DATA_FILE_DATATYPE           = 121, /* 21 dec 2020 */
         MESH_AUTOTILE_IMPLEMENTATION        = 122, /* 23 dec 2020 */
         MESH_REFLECTION_DATA                = 123, /* 01 feb 2021 */
+        THIRTY_SIX_BYTES                    = 124, /* 04 apr 2021 */
         _CURRENT /* = whatever the last one is + 1 */
     }
 }

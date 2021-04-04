@@ -19,8 +19,6 @@ vertex_format_add_texcoord();
 format_size = format_size + 8;
 vertex_format_add_colour();
 format_size = format_size + 4;
-vertex_format_add_colour();     // second color information is for extra data
-format_size = format_size + 4;
 vertex_format = vertex_format_end();
 
 vertex_format_begin();
