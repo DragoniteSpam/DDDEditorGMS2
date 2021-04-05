@@ -35,9 +35,7 @@ function sprite_save_fixed(sprite, subimg, path) {
 function sprite_to_buffer(sprite, subimg) {
     // by yellowafterlife
     var surface = sprite_to_surface(sprite, subimg);
-    var sw = sprite_get_width(sprite);
-    var sh = sprite_get_height(sprite);
-    var buffer = buffer_create(sw * sh * 4, buffer_fixed, 1);
+    var buffer = buffer_create(sprite_get_width(sprite) * sprite_get_height(sprite) * 4, buffer_fixed, 1);
     buffer_get_surface(buffer, surface, 0);
     surface_free(surface);
     return buffer;
@@ -53,9 +51,7 @@ function sprite_from_buffer(buffer, w, h) {
 
 function sprite_to_surface(sprite, subimg) {
     // https://www.yoyogames.com/blog/60/alpha-and-surfaces
-    var sw = sprite_get_width(sprite);
-    var sh = sprite_get_height(sprite);
-    var t = surface_create(sw, sh);
+    var t = surface_create(sprite_get_width(sprite), sprite_get_height(sprite));
     surface_set_target(t);
     draw_clear_alpha(c_black, 0);
     gpu_set_blendmode(bm_add);
@@ -68,7 +64,5 @@ function sprite_to_surface(sprite, subimg) {
 }
 
 function sprite_from_surface(surface) {
-    var sw = surface_get_width(surface);
-    var sh = surface_get_height(surface);
-    return sprite_create_from_surface(surface, 0, 0, sw, sh, false, false, 0, 0);
+    return sprite_create_from_surface(surface, 0, 0, surface_get_width(surface), surface_get_height(surface), false, false, 0, 0);
 }
