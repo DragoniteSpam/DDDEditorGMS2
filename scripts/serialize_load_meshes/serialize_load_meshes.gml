@@ -2,7 +2,6 @@ function serialize_load_meshes(buffer, version) {
     var addr_next = buffer_read(buffer, buffer_u64);
     
     ds_list_clear_instances(Stuff.all_meshes);
-    
     var n_meshes = buffer_read(buffer, buffer_u32);
     
     repeat (n_meshes) {
@@ -103,10 +102,8 @@ function serialize_load_meshes(buffer, version) {
             mesh.tex_stencil = buffer_read(buffer, buffer_datatype);
         }
         
-        // flags are saved in save_generic
-        
         switch (mesh.type) {
-            case MeshTypes.RAW: serialize_load_mesh_raw(mesh); break;
+            case MeshTypes.RAW: serialize_load_mesh_raw(mesh, version < DataVersions.THIRTY_SIX_BYTES); break;
             case MeshTypes.SMF: serialize_load_mesh_smf(mesh); break;
         }
     }

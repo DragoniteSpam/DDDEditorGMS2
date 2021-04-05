@@ -1,4 +1,5 @@
-function serialize_load_mesh_raw(mesh) {
+function serialize_load_mesh_raw(mesh, use_legacy_format) {
+    if (use_legacy_format == undefined) use_legacy_format = false;
     var vc = 0;
     var xx = [0, 0, 0];
     var yy = [0, 0, 0];
@@ -9,7 +10,11 @@ function serialize_load_mesh_raw(mesh) {
         var submesh = mesh.submeshes[| i];
         var buffer = submesh.buffer;
         
-        submesh.vbuffer = vertex_create_buffer_from_buffer(buffer, Stuff.graphics.vertex_format);
+        if (use_legacy_format) {
+            submesh.vbuffer = vertex_create_buffer_from_buffer_legacy(buffer);
+        } else {
+            submesh.vbuffer = vertex_create_buffer_from_buffer(buffer, Stuff.graphics.vertex_format);
+        }
         vertex_freeze(submesh.vbuffer);
         
         var wbuffer = vertex_create_buffer();
@@ -33,21 +38,19 @@ function serialize_load_mesh_raw(mesh) {
             xtex = buffer_read(buffer, buffer_f32);
             ytex = buffer_read(buffer, buffer_f32);
             color = buffer_read(buffer, buffer_u32);
-            buffer_read(buffer, buffer_u32);
+            if (use_legacy_format) buffer_read(buffer, buffer_u32);
             
             vc = ++vc % 3;
             
             if (vc == 0) {
                 vertex_point_line(wbuffer, xx[0], yy[0], zz[0], c_white, 1);
                 vertex_point_line(wbuffer, xx[1], yy[1], zz[1], c_white, 1);
-                
                 vertex_point_line(wbuffer, xx[1], yy[1], zz[1], c_white, 1);
                 vertex_point_line(wbuffer, xx[2], yy[2], zz[2], c_white, 1);
-                
                 vertex_point_line(wbuffer, xx[2], yy[2], zz[2], c_white, 1);
                 vertex_point_line(wbuffer, xx[0], yy[0], zz[0], c_white, 1);
                 
-                if (i == 0) {
+                if (i % 3 == 0) {
                     c_shape_add_triangle(xx[0], yy[0], zz[0], xx[1], yy[1], zz[1], xx[2], yy[2], zz[2]);
                 }
             }
