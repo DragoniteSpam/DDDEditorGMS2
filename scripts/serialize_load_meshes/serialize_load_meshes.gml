@@ -24,12 +24,18 @@ function serialize_load_meshes(buffer, version) {
                 var blength = buffer_read(buffer, buffer_u32); 
                 if (blength > 0) {
                     submesh.buffer = buffer_read_buffer(buffer, blength);
+                    if (version < DataVersions.THIRTY_SIX_BYTES) {
+                        submesh.buffer = buffer_from_buffer_legacy(submesh.buffer);
+                    }
                     submesh.internalSetVertexBuffer();
                 }
                 
                 var blength = buffer_read(buffer, buffer_u32);
                 if (blength > 0) {
                     submesh.reflect_buffer = buffer_read_buffer(buffer, blength);
+                    if (version < DataVersions.THIRTY_SIX_BYTES) {
+                        submesh.reflect_buffer = buffer_from_buffer_legacy(submesh.reflect_buffer);
+                    }
                     submesh.internalSetReflectVertexBuffer();
                 }
             } else {
@@ -43,6 +49,7 @@ function serialize_load_meshes(buffer, version) {
                 
                 var submesh = new MeshSubmesh(name);
                 submesh.buffer = buffer_read_buffer(buffer, blength);
+                submesh.buffer = buffer_from_buffer_legacy(submesh.buffer);
                 submesh.path = path;
             }
             submesh.proto_guid = proto_guid;
