@@ -55,8 +55,6 @@ function vertex_point_complete(buffer, x, y, z, nx, ny, nz, xtex, ytex, color, a
     vertex_normal(buffer, nx, ny, nz);
     vertex_texcoord(buffer, xtex, ytex);
     vertex_colour(buffer, color, alpha);
-    // todo this - extra 32 bits for whatever you want
-    vertex_colour(buffer, 0, 0);
 }
 
 function vertex_point_complete_raw(buffer, x, y, z, nx, ny, nz, xtex, ytex, color, alpha) {
@@ -69,7 +67,6 @@ function vertex_point_complete_raw(buffer, x, y, z, nx, ny, nz, xtex, ytex, colo
     buffer_write(buffer, buffer_f32, xtex);
     buffer_write(buffer, buffer_f32, ytex);
     buffer_write(buffer, buffer_u32, (floor(alpha * 0xff) << 24) | colour_reverse(color));
-    buffer_write(buffer, buffer_u32, 0x00000000);
 }
 
 function vertex_point_line(buffer, x, y, z, color, alpha) {
@@ -77,7 +74,6 @@ function vertex_point_line(buffer, x, y, z, color, alpha) {
     vertex_normal(buffer, 0, 0, 1);
     vertex_texcoord(buffer, 0, 0);
     vertex_colour(buffer, color, alpha);
-    vertex_colour(buffer, 0x000000, 1);
 }
 
 function vertex_point_line_raw(buffer, x, y, z, color, alpha) {
@@ -90,17 +86,17 @@ function vertex_point_line_raw(buffer, x, y, z, color, alpha) {
     buffer_write(buffer, buffer_f32, 0);
     buffer_write(buffer, buffer_f32, 0);
     buffer_write(buffer, buffer_u32, (floor(alpha * 0xff) << 24) | colour_reverse(color));
-    buffer_write(buffer, buffer_u32, 0x00000000);
 }
 
-function buffer_to_wireframe(buffer) {
+function buffer_to_wireframe(buffer, use_legacy) {
+    if (use_legacy == undefined) use_legacy = false;
     var wbuffer = -1;
     static fsize = buffer_sizeof(buffer_f32);
     
     try {
         var wbuffer = vertex_create_buffer();
         vertex_begin(wbuffer, Stuff.graphics.vertex_format);
-        var vertex_size = Stuff.graphics.format_size;
+        var vertex_size = use_legacy ? 40 : VERTEX_SIZE;
         for (var i = 0; i < buffer_get_size(buffer); i += vertex_size * 3) {
             var x1 = buffer_peek(buffer, i + 0 * vertex_size + 0 * fsize, buffer_f32);
             var y1 = buffer_peek(buffer, i + 0 * vertex_size + 1 * fsize, buffer_f32);
