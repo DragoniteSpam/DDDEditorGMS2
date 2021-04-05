@@ -13,7 +13,6 @@ function batch_mesh_autotile(vbuff, wire, reflect, reflect_wire, mesh_autotile) 
     var vc = 0;
     
     var data/*:Triangle*/ = new Triangle();
-    
     while (buffer_tell(raw) < buffer_get_size(raw)) {
         // script arguments are parsed backwards and i don't think there's a way to
         // turn that off, and in any case it's a better idea to just fetch the
@@ -32,7 +31,6 @@ function batch_mesh_autotile(vbuff, wire, reflect, reflect_wire, mesh_autotile) 
         vertex.tex.x = buffer_read(raw, buffer_f32);
         vertex.tex.y = buffer_read(raw, buffer_f32);
         vertex.color = buffer_read(raw, buffer_u32);
-        vertex.extra = buffer_read(raw, buffer_u32);
         
         var alpha = vertex.color >> 24;
         var color = vertex.color & 0xffffff;
