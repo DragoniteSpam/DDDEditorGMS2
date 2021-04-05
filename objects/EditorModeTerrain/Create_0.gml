@@ -105,7 +105,7 @@ buffer_fill(color_data, 0, buffer_u32, 0xffffffff, buffer_get_size(color_data));
 // you don't need a texture UV buffer, since that will only be set and not mutated
 
 terrain_buffer = vertex_create_buffer();
-vertex_begin(terrain_buffer, Stuff.graphics.vertex_format_basic);
+vertex_begin(terrain_buffer, Stuff.graphics.vertex_format);
 
 for (var i = 0; i < width - 1; i++) {
     for (var j = 0; j < height - 1; j++) {

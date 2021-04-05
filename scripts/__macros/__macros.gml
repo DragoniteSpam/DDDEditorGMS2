@@ -119,7 +119,6 @@
 #macro TILE_WIDTH Stuff.tile_width
 #macro TILESET_MAX_SIZE 2048
 #macro VERTEX_SIZE Stuff.graphics.format_size
-#macro VERTEX_SIZE_BASIC Stuff.graphics.format_size_basic
 
 #macro FILE_SETTINGS "settings.json"
 

@@ -1,8 +1,4 @@
-/// @param ParticleEmitter
-function editor_particle_emitter_create_region(argument0) {
-
-    var emitter = argument0;
-
+function editor_particle_emitter_create_region(emitter) {
     var x1 = min(emitter.region_x1, emitter.region_x2);
     var y1 = min(emitter.region_y1, emitter.region_y2);
     var x2 = max(emitter.region_x1, emitter.region_x2);
@@ -17,8 +13,8 @@ function editor_particle_emitter_create_region(argument0) {
     var ytexc = mean(ytex1, ytex2);
     var ao = (emitter.region_distribution == PartEmitterDistributions.GAUSSIAN) ? 0 : 0.125;
     var ac = (emitter.region_distribution == PartEmitterDistributions.INVGAUSSIAN) ? 0 : 0.125;
-
-    vertex_begin(emitter.region, Stuff.graphics.vertex_format_basic);
+    
+    vertex_begin(emitter.region, Stuff.graphics.vertex_format);
     switch (emitter.region_shape) {
         case PartEmitterShapes.RECTANGLE:
             vertex_point_basic(emitter.region, xc, yc, 0, 0, 0, 1, xtexc, ytexc, c_white, ac);
@@ -152,6 +148,4 @@ function editor_particle_emitter_create_region(argument0) {
             break;
     }
     vertex_end(emitter.region);
-
-
 }

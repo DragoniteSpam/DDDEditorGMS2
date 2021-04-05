@@ -21,18 +21,6 @@ vertex_format_add_colour();
 format_size = format_size + 4;
 vertex_format = vertex_format_end();
 
-vertex_format_begin();
-format_size_basic = 0;
-vertex_format_add_position_3d();
-format_size_basic = format_size_basic + 12;
-vertex_format_add_normal();
-format_size_basic = format_size_basic + 12;
-vertex_format_add_texcoord();
-format_size_basic = format_size_basic + 8;
-vertex_format_add_colour();
-format_size_basic = format_size_basic + 4;
-vertex_format_basic = vertex_format_end();
-
 mesh_preview_grid = vertex_create_buffer();
 vertex_begin(mesh_preview_grid, vertex_format);
 
@@ -116,8 +104,8 @@ water_depth = -1;
 mesh_water_base = vertex_create_buffer();
 mesh_water_bright = vertex_create_buffer();
 
-vertex_begin(mesh_water_base, vertex_format_basic);
-vertex_begin(mesh_water_bright, vertex_format_basic);
+vertex_begin(mesh_water_base, vertex_format);
+vertex_begin(mesh_water_bright, vertex_format);
 
 for (var i = -water_tile_size / 2; i < water_tile_size / 2; i += (water_tile_size / water_units)) {
     for (var j = -water_tile_size / 2; j < water_tile_size / 2; j += (water_tile_size / water_units)) {
