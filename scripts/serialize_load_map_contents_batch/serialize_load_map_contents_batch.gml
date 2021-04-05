@@ -49,45 +49,33 @@ function serialize_load_map_contents_batch(buffer, version, map) {
     
     if (map_contents.frozen_data && buffer_get_size(map_contents.frozen_data) > 0) {
         if (version < DataVersions.THIRTY_SIX_BYTES) {
-            map_contents.frozen = vertex_create_buffer_from_buffer_legacy(map_contents.frozen_data);
-            buffer_delete(map_contents.frozen_data);
-            map_contents.frozen_data = buffer_create_from_vertex_buffer(map_contents.reflect_frozen_wire, buffer_fixed, 4);
-        } else {
-            map_contents.frozen = vertex_create_buffer_from_buffer(map_contents.frozen_data, Stuff.graphics.vertex_format);
+            map_contents.frozen_data = buffer_from_buffer_legacy(map_contents.frozen_data);
         }
+        map_contents.frozen = vertex_create_buffer_from_buffer(map_contents.frozen_data, Stuff.graphics.vertex_format);
         vertex_freeze(map_contents.frozen);
     }
     
     if (map_contents.frozen_data_wire && buffer_get_size(map_contents.frozen_data_wire) > 0) {
         if (version < DataVersions.THIRTY_SIX_BYTES) {
-            map_contents.frozen_wire = vertex_create_buffer_from_buffer_legacy(map_contents.frozen_data_wire);
-            buffer_delete(map_contents.frozen_data_wire);
-            map_contents.frozen_data_wire = buffer_create_from_vertex_buffer(map_contents.reflect_frozen_wire, buffer_fixed, 4);
-        } else {
-            map_contents.frozen_wire = vertex_create_buffer_from_buffer(map_contents.frozen_data_wire, Stuff.graphics.vertex_format);
+            map_contents.frozen_data_wire = buffer_from_buffer_legacy(map_contents.frozen_data_wire);
         }
+        map_contents.frozen_wire = vertex_create_buffer_from_buffer(map_contents.frozen_data_wire, Stuff.graphics.vertex_format);
         vertex_freeze(map_contents.frozen_wire);
     }
     
     if (map_contents.reflect_frozen_data && buffer_get_size(map_contents.reflect_frozen_data) > 0) {
         if (version < DataVersions.THIRTY_SIX_BYTES) {
-            map_contents.reflect_frozen = vertex_create_buffer_from_buffer_legacy(map_contents.reflect_frozen_data);
-            buffer_delete(map_contents.reflect_frozen_data);
-            map_contents.reflect_frozen_data = buffer_create_from_vertex_buffer(map_contents.reflect_frozen_wire, buffer_fixed, 4);
-        } else {
-            map_contents.reflect_frozen = vertex_create_buffer_from_buffer(map_contents.reflect_frozen_data, Stuff.graphics.vertex_format);
+            map_contents.reflect_frozen_data = buffer_from_buffer_legacy(map_contents.reflect_frozen_data);
         }
+        map_contents.reflect_frozen = vertex_create_buffer_from_buffer(map_contents.reflect_frozen_data, Stuff.graphics.vertex_format);
         vertex_freeze(map_contents.reflect_frozen);
     }
     
     if (map_contents.reflect_frozen_data_wire && buffer_get_size(map_contents.reflect_frozen_data_wire) > 0) {
         if (version < DataVersions.THIRTY_SIX_BYTES) {
-            map_contents.reflect_frozen_wire = vertex_create_buffer_from_buffer_legacy(map_contents.reflect_frozen_data_wire);
-            buffer_delete(map_contents.reflect_frozen_data_wire);
-            map_contents.reflect_frozen_data_wire = buffer_create_from_vertex_buffer(map_contents.reflect_frozen_wire, buffer_fixed, 4);
-        } else {
-            map_contents.reflect_frozen_wire = vertex_create_buffer_from_buffer(map_contents.reflect_frozen_data_wire, Stuff.graphics.vertex_format);
+            map_contents.reflect_frozen_data_wire = buffer_from_buffer_legacy(map_contents.reflect_frozen_data_wire);
         }
+        map_contents.reflect_frozen_wire = vertex_create_buffer_from_buffer(map_contents.reflect_frozen_data_wire, Stuff.graphics.vertex_format);
         vertex_freeze(map_contents.reflect_frozen_wire);
     }
     
