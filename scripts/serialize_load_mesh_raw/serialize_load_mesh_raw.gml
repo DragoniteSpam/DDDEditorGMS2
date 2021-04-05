@@ -1,5 +1,4 @@
-function serialize_load_mesh_raw(mesh, use_legacy_format) {
-    if (use_legacy_format == undefined) use_legacy_format = false;
+function serialize_load_mesh_raw(mesh) {
     var vc = 0;
     var xx = [0, 0, 0];
     var yy = [0, 0, 0];
@@ -10,11 +9,7 @@ function serialize_load_mesh_raw(mesh, use_legacy_format) {
         var submesh = mesh.submeshes[| i];
         var buffer = submesh.buffer;
         
-        if (use_legacy_format) {
-            submesh.vbuffer = vertex_create_buffer_from_buffer_legacy(buffer);
-        } else {
-            submesh.vbuffer = vertex_create_buffer_from_buffer(buffer, Stuff.graphics.vertex_format);
-        }
+        submesh.vbuffer = vertex_create_buffer_from_buffer(buffer, Stuff.graphics.vertex_format);
         vertex_freeze(submesh.vbuffer);
         
         var wbuffer = vertex_create_buffer();
@@ -38,7 +33,6 @@ function serialize_load_mesh_raw(mesh, use_legacy_format) {
             xtex = buffer_read(buffer, buffer_f32);
             ytex = buffer_read(buffer, buffer_f32);
             color = buffer_read(buffer, buffer_u32);
-            if (use_legacy_format) buffer_read(buffer, buffer_u32);
             
             vc = ++vc % 3;
             

@@ -110,7 +110,7 @@ function serialize_load_meshes(buffer, version) {
         }
         
         switch (mesh.type) {
-            case MeshTypes.RAW: serialize_load_mesh_raw(mesh, version < DataVersions.THIRTY_SIX_BYTES); break;
+            case MeshTypes.RAW: serialize_load_mesh_raw(mesh); break;
             case MeshTypes.SMF: serialize_load_mesh_smf(mesh); break;
         }
     }
