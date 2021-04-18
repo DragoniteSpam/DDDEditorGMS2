@@ -30,8 +30,8 @@ function control_animator(argument0) {
         yspeed = yspeed + dcos(mode.direction) * mspd;
     }
     if (CONTROL_3D_LOOK) {
-        var camera_cx = view_get_xport(view_3d) + view_get_wport(view_3d) / 2;
-        var camera_cy = view_get_yport(view_3d) + view_get_hport(view_3d) / 2;
+        var camera_cx = (view_get_xport(view_3d) + view_get_wport(view_3d)) div 2;
+        var camera_cy = (view_get_yport(view_3d) + view_get_hport(view_3d)) div 2;
         var dx = (mouse_x - camera_cx) / 16;
         var dy = (mouse_y - camera_cy) / 16;
         mode.direction = (360 + mode.direction - dx) % 360;

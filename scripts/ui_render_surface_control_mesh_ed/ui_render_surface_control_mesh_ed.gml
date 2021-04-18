@@ -32,8 +32,8 @@ function ui_render_surface_control_mesh_ed(surface, x1, y1, x2, y2) {
         }
         
         if (CONTROL_3D_LOOK) {
-            var camera_cx = x1 + (x2 - x1) / 2;
-            var camera_cy = y1 + (y2 - y1) / 2;
+            var camera_cx = x1 + (x2 - x1) div 2;
+            var camera_cy = y1 + (y2 - y1) div 2;
             var dx = (mouse_x - camera_cx) / 16;
             var dy = (mouse_y - camera_cy) / 16;
             mode.direction = (360 + mode.direction - dx) % 360;
