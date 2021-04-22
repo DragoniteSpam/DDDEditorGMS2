@@ -151,7 +151,7 @@ function ui_init_mesh(mode) {
             return dg;
         }
         
-        var element = create_list(c1x, yy, "Meshes:", "no meshes", ew0, eh, 26, null, true, id, Stuff.all_meshes);
+        var element = create_list(c1x, yy, "Meshes:", "no meshes", ew0, eh, 24, null, true, id, Stuff.all_meshes);
         element.tooltip = "All of the 3D meshes currently loaded. You can drag them from Windows Explorer into the program window to add them in bulk. Middle-click the list to alphabetize the meshes.";
         element.render_colors = function(list, index) {
             return (Stuff.all_meshes[| index].type == MeshTypes.SMF) ? c_red : c_black;
@@ -231,6 +231,58 @@ function ui_init_mesh(mode) {
             ds_list_destroy(to_delete);
             ui_list_deselect(list);
             batch_again();
+        }, id);
+        element.tooltip = "Remove the selected 3D meshes.";
+        ds_list_add(contents, element);
+        yy += element.height + spacing;
+        
+        element = create_button(c1x, yy, "Combine Submeshes", ew0, eh, fa_center, function(button) {
+            var list = button.root.mesh_list;
+            var selection = list.selected_entries;
+            var valid_count = 0;
+            var first_mesh = undefined;
+            
+            for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
+                if (!first_mesh) first_mesh = Stuff.all_meshes[| index];
+                if (ds_list_size(Stuff.all_meshes[| index].submeshes) > 1) {
+                    valid_count++;
+                }
+            }
+            
+            if (valid_count == 0) return;
+            
+            var dg = dialog_create_yes_or_no(button.root, "Would you like to combine the submeshes in " + ((valid_count == 1) ? first_mesh.name : (string(valid_count) + " meshes")) + "?", function(button) {
+                var selection = button.root.selection;
+                for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
+                    var mesh = Stuff.all_meshes[| index];
+                    if (ds_list_size(mesh.submeshes) > 1) {
+                        var old_submesh_list = mesh.submeshes;
+                        mesh.submeshes = ds_list_create();
+                        mesh.proto_guids = { };
+                        var combine_submesh = new MeshSubmesh(mesh.name + "!Combine");
+                        
+                        for (var i = 0, n = ds_list_size(old_submesh_list); i < n; i++) {
+                            combine_submesh.AddBufferData(old_submesh_list[| i].buffer);
+                            old_submesh_list[| i]._destructor();
+                        }
+                        
+                        ds_list_destroy(old_submesh_list);
+aaa                        
+                        combine_submesh.proto_guid = proto_guid_set(mesh, ds_list_size(mesh.submeshes), undefined);
+                        combine_submesh.owner = mesh;
+                        ds_list_add(mesh.submeshes, combine_submesh);
+                    }
+                }
+                
+                batch_again();
+            });
+            
+            dg.selection = selection;
+            
+            dg.height -= 64;
+            dg.el_confirm.y -= 64;
+            dg.el_cancel.y -= 64;
+            dg.el_text.y -= 32;
         }, id);
         element.tooltip = "Remove the selected 3D meshes.";
         ds_list_add(contents, element);

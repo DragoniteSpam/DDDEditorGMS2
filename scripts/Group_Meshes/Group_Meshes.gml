@@ -98,7 +98,7 @@ function MeshSubmesh(name) constructor {
         }
     };
     
-    static AddVertexBuffer = function(raw_buffer) {
+    static AddBufferData = function(raw_buffer) {
         if (self.vbuffer) vertex_delete_buffer(self.vbuffer);
         if (self.wbuffer) vertex_delete_buffer(self.wbuffer);
         var new_size = buffer_get_size(raw_buffer);
