@@ -22,7 +22,7 @@ function mesh_create_submesh() {
         vertex_delete_buffer(submesh.vbuffer);
         vertex_delete_buffer(submesh.wbuffer);
     } else {
-        proto_guid_set(mesh, ds_list_size(mesh.submeshes), proto_guid);
+        proto_guid = proto_guid_set(mesh, ds_list_size(mesh.submeshes), proto_guid);
         var submesh = new MeshSubmesh(name);
         submesh.proto_guid = proto_guid;
         submesh.name = name;

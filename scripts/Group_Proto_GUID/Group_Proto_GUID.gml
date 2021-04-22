@@ -23,4 +23,5 @@ function proto_guid_set(container, data, value) {
     if (container.first_proto_guid == NULL) {
         container.first_proto_guid = value;
     }
+    return value;
 }
