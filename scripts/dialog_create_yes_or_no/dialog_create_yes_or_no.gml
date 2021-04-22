@@ -12,11 +12,11 @@ function dialog_create_yes_or_no(root, message, action_confirm, caption_message,
     var b_height = 32;
     var dg = dialog_create(dw, dh, caption_message, dialog_default, action_cancel, root);
     
-    var el_text = create_text(dw / 2, 32 + (dh - 32 - b_height) / 2, message, 0, 0, fa_center, dw - 96, dg);
-    var el_cancel = create_button(dw / 3 - b_width / 2, dh - 32 - b_height / 2, cancel_message, b_width, b_height, fa_center, action_cancel, dg);
-    var el_confirm = create_button(dw * 2 / 3 - b_width / 2, dh - 32 - b_height / 2, confirm_message, b_width, b_height, fa_center, action_confirm, dg);
+    dg.el_text = create_text(dw / 2, 32 + (dh - 32 - b_height) / 2, message, 0, 0, fa_center, dw - 96, dg);
+    dg.el_cancel = create_button(dw / 3 - b_width / 2, dh - 32 - b_height / 2, cancel_message, b_width, b_height, fa_center, action_cancel, dg);
+    dg.el_confirm = create_button(dw * 2 / 3 - b_width / 2, dh - 32 - b_height / 2, confirm_message, b_width, b_height, fa_center, action_confirm, dg);
     
-    ds_list_add(dg.contents, el_text, el_cancel, el_confirm);
+    ds_list_add(dg.contents, dg.el_text, dg.el_cancel, dg.el_confirm);
     
     return dg;
 } 
