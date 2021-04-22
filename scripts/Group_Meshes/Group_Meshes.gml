@@ -22,10 +22,10 @@ function MeshSubmesh(name) constructor {
         }
         if (reflect_buffer) buffer_delete(reflect_buffer);
         if (reflect_wbuffer) buffer_delete(reflect_wbuffer);
-        if (reflect_wbuffer) {
+        if (reflect_vbuffer) {
             switch (owner.type) {
-                case MeshTypes.RAW: vertex_delete_buffer(reflect_wbuffer); break;
-                case MeshTypes.SMF: smf_model_destroy(reflect_wbuffer); break;
+                case MeshTypes.RAW: vertex_delete_buffer(reflect_vbuffer); break;
+                case MeshTypes.SMF: smf_model_destroy(reflect_vbuffer); break;
             }
         }
     };
@@ -95,6 +95,29 @@ function MeshSubmesh(name) constructor {
                 case ".d3d": case ".gmmod": import_d3d(self.path, undefined, false, self.owner, index); break;
                 case ".smf": import_smf(self.path, self.owner, index); break;
             }
+        }
+    };
+    
+    static AddVertexBuffer = function(raw_buffer) {
+        if (self.vbuffer) vertex_delete_buffer(self.vbuffer);
+        if (self.wbuffer) vertex_delete_buffer(self.wbuffer);
+        var new_size = buffer_get_size(raw_buffer);
+        if (!self.buffer) {
+            self.buffer = buffer_create(new_size, buffer_grow, 1);
+        }
+        var old_size = buffer_get_size(self.buffer);
+        buffer_resize(self.buffer, old_size + new_size);
+        buffer_copy(raw_buffer, 0, new_size, self.buffer, old_size);
+        self.vbuffer = vertex_create_buffer_from_buffer(self.buffer, Stuff.graphics.vertex_format);
+        vertex_freeze(self.vbuffer);
+        self.wbuffer = buffer_to_wireframe(self.buffer);
+        vertex_freeze(self.wbuffer);
+        
+        if (self.reflect_buffer) {
+            buffer_delete(self.reflect_buffer);
+            vertex_delete_buffer(self.reflect_wbuffer);
+            vertex_delete_buffer(self.reflect_vbuffer);
+            self.GenerateReflections();
         }
     };
     
