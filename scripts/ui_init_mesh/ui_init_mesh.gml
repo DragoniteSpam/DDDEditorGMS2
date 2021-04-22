@@ -267,10 +267,11 @@ function ui_init_mesh(mode) {
                         }
                         
                         ds_list_destroy(old_submesh_list);
-aaa                        
+                        
                         combine_submesh.proto_guid = proto_guid_set(mesh, ds_list_size(mesh.submeshes), undefined);
                         combine_submesh.owner = mesh;
                         ds_list_add(mesh.submeshes, combine_submesh);
+                        mesh.first_proto_guid = combine_submesh.proto_guid;
                     }
                 }
                 
