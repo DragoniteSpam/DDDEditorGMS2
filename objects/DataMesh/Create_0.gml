@@ -114,3 +114,9 @@ Reload = function() {
         submeshes[| i].Reload();
     }
 };
+
+RemoveSubmesh = function(index) {
+    proto_guid_remove(self, submeshes[| index].proto_guid);
+    submeshes[| index]._destructor();
+    ds_list_delete(submeshes, index);
+};
