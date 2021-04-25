@@ -69,7 +69,7 @@ function get_save_filename_mesh_autotile(name) {
     return path;
 }
 
-function get_save_filename_mesh_qma() {
+function get_save_filename_mesh_qma(name) {
     if (name == undefined) name = "";
     var path = get_save_filename_ext("quack model archive files (*.qma)|*.qma", name, Settings.location.mesh, "Select a file");
     
@@ -83,7 +83,7 @@ function get_save_filename_mesh_qma() {
     return path;
 }
 
-function get_save_filename_mesh_vrax() {
+function get_save_filename_mesh_vrax(name) {
     if (name == undefined) name = "";
     var path = get_save_filename_ext("drago's old file format (*.vrax)|*.vrax", name, Settings.location.mesh, "Select an vrax file");
     
