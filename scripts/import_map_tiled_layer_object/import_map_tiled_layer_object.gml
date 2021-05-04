@@ -214,6 +214,8 @@ function import_map_tiled_layer_object() {
                     instance.overworld_sprite = thing.GUID;
                     // position for NPCs is at -1 because of where the origin for sprites is in Tiled
                     map.Add(instance, (xx + obj_x) div TILE_WIDTH, (yy + obj_y) div TILE_HEIGHT - 1, zz);
+                } else {
+                    wtf("GID not found: " + gid_to_image_name);
                 }
                 break;
             #endregion
