@@ -998,6 +998,7 @@
     {"id":{"name":"scribble_add_font","path":"scripts/scribble_add_font/scribble_add_font.yy",},"order":1,},
     {"id":{"name":"uivc_entity_move_route_wait","path":"scripts/uivc_entity_move_route_wait/uivc_entity_move_route_wait.yy",},"order":7,},
     {"id":{"name":"uivc_entity_move_route_name","path":"scripts/uivc_entity_move_route_name/uivc_entity_move_route_name.yy",},"order":8,},
+    {"id":{"name":"import_3d_model_generic","path":"scripts/import_3d_model_generic/import_3d_model_generic.yy",},"order":15,},
     {"id":{"name":"uivc_entity_event_enable_switch_self","path":"scripts/uivc_entity_event_enable_switch_self/uivc_entity_event_enable_switch_self.yy",},"order":9,},
     {"id":{"name":"uivc_entity_event_enable_variable_global","path":"scripts/uivc_entity_event_enable_variable_global/uivc_entity_event_enable_variable_global.yy",},"order":10,},
     {"id":{"name":"uivc_entity_event_enable_variable_self","path":"scripts/uivc_entity_event_enable_variable_self/uivc_entity_event_enable_variable_self.yy",},"order":11,},
