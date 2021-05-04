@@ -30,6 +30,19 @@ function MeshSubmesh(name) constructor {
         }
     };
     
+    static ImportReflection = function() {
+        var fn = get_open_filename_mesh();
+        if (file_exists(fn)) {
+            var data = import_3d_model_generic(fn, false, true, undefined, 0);
+            internalDeleteReflect();
+            self.reflect_vbuffer = data[0];
+            self.reflect_buffer = data[1];
+            vertex_freeze(self.reflect_vbuffer);
+            self.reflect_wbuffer = buffer_to_wireframe(self.reflect_buffer);
+            vertex_freeze(self.reflect_wbuffer);
+        }
+    };
+    
     static GenerateReflections = function() {
         if (!self.buffer) return;
         internalDeleteReflect();
