@@ -180,7 +180,12 @@ function dialog_create_mesh_advanced(root, mesh) {
     yy += el_text_submesh.height + spacing;
     
     var el_import_reflect  = create_button(col3_x, yy, "Import Reflection", ew, eh, fa_center, function(button) {
-        
+        var mesh = button.root.mesh;
+        var submesh = mesh.submeshes[| ui_list_selection(button.root.el_list)];
+        if (submesh) {
+            submesh.ImportReflection();
+            batch_again(false);
+        }
     }, dg);
     el_import_reflect.tooltip = "Import a reflection mesh.";
     yy += el_import_reflect.height + spacing;
@@ -196,6 +201,7 @@ function dialog_create_mesh_advanced(root, mesh) {
         var submesh = ui_list_selection(button.root.el_list);
         if (submesh + 1) {
             mesh.submeshes[| submesh].SwapReflections();
+            batch_again(false);
         }
     }, dg);
     el_swap_reflect.tooltip = "The upright mesh will become the reflection mesh, and vice versa.";
