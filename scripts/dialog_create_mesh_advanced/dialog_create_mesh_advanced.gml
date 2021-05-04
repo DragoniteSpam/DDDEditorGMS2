@@ -191,16 +191,21 @@ function dialog_create_mesh_advanced(root, mesh) {
     yy += el_import_reflect.height + spacing;
     
     var el_auto_reflect = create_button(col3_x, yy, "Auto-Genreate Reflection", ew, eh, fa_center, function(button) {
-        
+        var mesh = button.root.mesh;
+        var submesh = mesh.submeshes[| ui_list_selection(button.root.el_list)];
+        if (submesh) {
+            submesh.GenerateReflections();
+            batch_again(false);
+        }
     }, dg);
     el_auto_reflect.tooltip = "Generate a reflection mesh for this submesh by flipping the model upside down over the XY plane.";
     yy += el_auto_reflect.height + spacing;
     
     var el_swap_reflect = create_button(col3_x, yy, "Swap Upright and Reflection", ew, eh, fa_center, function(button) {
         var mesh = button.root.mesh;
-        var submesh = ui_list_selection(button.root.el_list);
-        if (submesh + 1) {
-            mesh.submeshes[| submesh].SwapReflections();
+        var submesh = mesh.submeshes[| ui_list_selection(button.root.el_list)];
+        if (submesh) {
+            submesh.SwapReflections();
             batch_again(false);
         }
     }, dg);
@@ -209,9 +214,9 @@ function dialog_create_mesh_advanced(root, mesh) {
     
     var el_normal_flat = create_button(col3_x, yy, "Normals: Flat", ew, eh, fa_center, function(button) {
         var mesh = button.root.mesh;
-        var submesh = ui_list_selection(button.root.el_list);
-        if (submesh + 1) {
-            mesh.submeshes[| submesh].SetNormalsFlat();
+        var submesh = mesh.submeshes[| ui_list_selection(button.root.el_list)];
+        if (submesh) {
+            submesh.SetNormalsFlat();
         }
         batch_again(false);
     }, dg);
@@ -220,9 +225,9 @@ function dialog_create_mesh_advanced(root, mesh) {
     
     var el_normal_smooth = create_button(col3_x, yy, "Normals: Smooth", ew, eh, fa_center, function(button) {
         var mesh = button.root.mesh;
-        var submesh = ui_list_selection(button.root.el_list);
-        if (submesh + 1) {
-            mesh.submeshes[| submesh].SetNormalsSmooth(Settings.config.normal_threshold);
+        var submesh = mesh.submeshes[| ui_list_selection(button.root.el_list)];
+        if (submesh) {
+            submesh.SetNormalsSmooth(Settings.config.normal_threshold);
         }
         batch_again(false);
     }, dg);
@@ -241,9 +246,9 @@ function dialog_create_mesh_advanced(root, mesh) {
     
     var el_reload = create_button(col3_x, yy, "Reload", ew, eh, fa_center, function(button) {
         var mesh = button.root.mesh;
-        var submesh = ui_list_selection(button.root.el_list);
-        if (submesh + 1) {
-            mesh.submeshes[| submesh].Reload();
+        var submesh = mesh.submeshes[| ui_list_selection(button.root.el_list)];
+        if (submesh) {
+            submesh.Reload();
         }
         
         batch_again(false);
