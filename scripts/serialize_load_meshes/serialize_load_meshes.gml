@@ -109,6 +109,10 @@ function serialize_load_meshes(buffer, version) {
             mesh.tex_stencil = buffer_read(buffer, buffer_datatype);
         }
         
+        if (version >= DataVersions.MESH_TEXTURE_SCALE) {
+            mesh.texture_scale = buffer_read(buffer, buffer_f32);
+        }
+        
         switch (mesh.type) {
             case MeshTypes.RAW: serialize_load_mesh_raw(mesh); break;
             case MeshTypes.SMF: serialize_load_mesh_smf(mesh); break;

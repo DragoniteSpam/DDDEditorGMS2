@@ -34,6 +34,8 @@ tex_bump = NULL;                    // map_bump
 tex_displacement = NULL;            // disp
 tex_stencil = NULL;                 // decal
 
+texture_scale = 1;
+
 ds_list_add(Stuff.all_meshes, id);
 
 preview_index = 0;

@@ -28,6 +28,9 @@ function serialize_save_image_tilesets(buffer) {
                 buffer_write(buffer, buffer_u32, ts.flags[j][k]);
             }
         }
+        
+        buffer_write(buffer, buffer_u16, ts.width);
+        buffer_write(buffer, buffer_u16, ts.height);
     }
     
     buffer_poke(buffer, addr_next, buffer_u64, buffer_tell(buffer));

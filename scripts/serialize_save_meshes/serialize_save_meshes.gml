@@ -69,6 +69,8 @@ function serialize_save_meshes(buffer) {
         buffer_write(buffer, buffer_datatype, mesh.tex_bump);
         buffer_write(buffer, buffer_datatype, mesh.tex_displacement);
         buffer_write(buffer, buffer_datatype, mesh.tex_stencil);
+        
+        buffer_write(buffer, buffer_f32, mesh.texture_scale);
     }
     
     buffer_poke(buffer, addr_next, buffer_u64, buffer_tell(buffer));

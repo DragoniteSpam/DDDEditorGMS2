@@ -113,6 +113,7 @@ function serialize_save_data() {
         MESH_AUTOTILE_IMPLEMENTATION        = 122, /* 23 dec 2020 */
         MESH_REFLECTION_DATA                = 123, /* 01 feb 2021 */
         THIRTY_SIX_BYTES                    = 124, /* 04 apr 2021 */
+        MESH_TEXTURE_SCALE                  = 125, /* 18 may 2021 */
         _CURRENT /* = whatever the last one is + 1 */
     }
 }

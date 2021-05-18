@@ -40,5 +40,10 @@ function serialize_load_image_tilesets(buffer, version) {
                 ts.flags[@ j][@ k] = buffer_read(buffer, buffer_u32);
             }
         }
+        
+        if (version >= DataVersions.MESH_TEXTURE_SCALE) {
+            ts.width = buffer_read(buffer, buffer_u16);
+            ts.height = buffer_read(buffer, buffer_u16);
+        }
     }
 }
