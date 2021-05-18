@@ -43,7 +43,6 @@ function export_obj() {
                 xtex = buffer_read(sub.buffer, buffer_f32);
                 ytex = buffer_read(sub.buffer, buffer_f32);
                 color[j] = buffer_read(sub.buffer, buffer_u32);
-                buffer_read(sub.buffer, buffer_u32);
             
                 buffer_write(buffer, buffer_text, "v " + decimal(xx) + " " + decimal(yy) + " " + decimal(zz) + "\r\n");
                 buffer_write(buffer, buffer_text, "vt " + decimal(xtex) + " " + decimal(ytex) + "\r\n");

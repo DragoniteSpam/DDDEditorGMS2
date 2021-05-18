@@ -26,7 +26,6 @@ function export_d3d_raw(filename, buffer) {
         var xtex = buffer_read(buffer, buffer_f32);
         var ytex = buffer_read(buffer, buffer_f32);
         var color = buffer_read(buffer, buffer_u32);
-        buffer_read(buffer, buffer_u32);
         
         buffer_write(export_buffer, buffer_text, "9 " + decimal(xx) + " " + decimal(yy) + " " + decimal(zz) +
             " " + decimal(nx) + " " + decimal(ny) + " " + decimal(nz) + " " + decimal(xtex) + " " +
