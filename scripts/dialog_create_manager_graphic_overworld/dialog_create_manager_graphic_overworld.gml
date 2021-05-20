@@ -64,24 +64,56 @@ function dialog_create_manager_graphic_overworld(argument0) {
     yy += el_name_internal.height + spacing;
 
     vx1 = ew / 2;
-
-    var el_frames_horizontal = create_input(c2 + 16, yy, "X frames:", ew, eh, uivc_input_graphic_set_frames_h_npc, "1", "0...255", validate_int, 0, 255, 3, vx1, vy1, vx2, vy2, dg);
+    
+    var el_frames_horizontal = create_input(c2 + 16, yy, "X frames:", ew, eh, function(input) {
+        var list = input.root.el_list;
+        var selection = ui_list_selection(list);
+        if (selection + 1) {
+            uivc_input_graphic_set_frames_h(input);
+            data_image_npc_frames(list.entries[| selection]);
+        }
+    }, "1", "0...255", validate_int, 0, 255, 3, vx1, vy1, vx2, vy2, dg);
     dg.el_frames_horizontal = el_frames_horizontal;
     yy += el_name_internal.height + spacing;
+    
+    var el_frames_vertical = create_input(c2 + 16, yy, "Y frames:", ew, eh, function(input) {
+        var list = input.root.el_list;
+        var selection = ui_list_selection(list);
 
-    var el_frames_vertical = create_input(c2 + 16, yy, "Y frames:", ew, eh, uivc_input_graphic_set_frames_v, "1", "0...255", validate_int, 0, 255, 3, vx1, vy1, vx2, vy2, dg);
+        if (selection + 1) {
+            list.entries[| selection].vframes = real(input.value);
+        }
+    }, "1", "0...255", validate_int, 0, 255, 3, vx1, vy1, vx2, vy2, dg);
     dg.el_frames_vertical = el_frames_vertical;
     el_frames_vertical.interactive = false;
     yy += el_frames_vertical.height + spacing;
-
-    var el_texture_exclude = create_checkbox(c2 + 16, yy, "Exclude from texture page?", ew, eh, uivc_input_graphic_texture_exclude, false, dg);
+    
+    var el_texture_exclude = create_checkbox(c2 + 16, yy, "Exclude from texture page?", ew, eh, function(checkbox) {
+        var list = checkbox.root.el_list;
+        var selection = ui_list_selection(list);
+        if (selection + 1) {
+            list.entries[| selection].texture_exclude = checkbox.value;
+        }
+    }, false, dg);
+    el_texture_exclude.render = function(checkbox, x, y) {
+        var list = checkbox.root.el_list;
+        var selection = ui_list_selection(list);
+        if (selection + 1) {
+            checkbox.value = list.entries[| selection].texture_exclude;
+        }
+        ui_render_checkbox(checkbox, x, y);
+    };
     el_texture_exclude.tooltip = "For optimization purposes the game may attempt to pack related sprites onto a single texture. In some cases you may wish for that to not happen.";
     el_texture_exclude.enabled = false;
     dg.el_texture_exclude = el_texture_exclude;
-
+    
     yy = yy_base;
 
-    var el_image = create_image_button(c3 + 16, yy, "", -1, ew, ew, fa_center, dmu_dialog_show_big_picture, dg);
+    var el_image = create_image_button(c3 + 16, yy, "", -1, ew, ew, fa_center, function(button) {
+        if (button.image) {
+            dialog_create_big_picture(button, button.image);
+        }
+    }, dg);
     el_image.draw_checker_behind = true;
     el_image.render = ui_render_image_button_graphic;
     el_image.interactive = false;
