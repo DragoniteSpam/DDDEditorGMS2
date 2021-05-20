@@ -1057,6 +1057,7 @@
     {"id":{"name":"uivc_input_event_attain_transfer_z","path":"scripts/uivc_input_event_attain_transfer_z/uivc_input_event_attain_transfer_z.yy",},"order":27,},
     {"id":{"name":"uivc_input_event_attain_transfer_color","path":"scripts/uivc_input_event_attain_transfer_color/uivc_input_event_attain_transfer_color.yy",},"order":28,},
     {"id":{"name":"uivc_input_event_attain_transfer_time","path":"scripts/uivc_input_event_attain_transfer_time/uivc_input_event_attain_transfer_time.yy",},"order":29,},
+    {"id":{"name":"Manager_Graphics","path":"scripts/Manager_Graphics/Manager_Graphics.yy",},"order":16,},
     {"id":{"name":"uivc_event_condition_attain_variable_index","path":"scripts/uivc_event_condition_attain_variable_index/uivc_event_condition_attain_variable_index.yy",},"order":0,},
     {"id":{"name":"uivc_event_condition_attain_switch_index","path":"scripts/uivc_event_condition_attain_switch_index/uivc_event_condition_attain_switch_index.yy",},"order":1,},
     {"id":{"name":"uivc_event_condition_attain_variable_self_index","path":"scripts/uivc_event_condition_attain_variable_self_index/uivc_event_condition_attain_variable_self_index.yy",},"order":2,},

@@ -1,9 +1,8 @@
-/// @param DataImage
 function data_image_force_power_two(data) {
     var ww = sprite_get_width(data.picture);
     var hh = sprite_get_height(data.picture);
     
-    if (log2(hh) == floor(log2(hh)) && log2(ww) == floor(log2(ww))) {
+    if (frac(log2(hh)) == 0 && frac(log2(ww)) == 0) {
         return;
     }
     

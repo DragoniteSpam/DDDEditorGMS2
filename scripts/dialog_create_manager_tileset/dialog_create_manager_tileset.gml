@@ -1,81 +1,18 @@
-function dialog_create_manager_graphic(root, list, load_function, drag_function, delete_function, change_function, export_function) {
+function dialog_create_manager_graphic(root, list, prefix, load_function, drag_function, delete_function, change_function, export_function) {
     if (list == undefined) list = Stuff.all_graphic_tilesets;
-    if (load_function == undefined) {
-        load_function = function(button) {
-            var fn = get_open_filename_image();
-            if (file_exists(fn)) {
-                tileset_create(fn);
-            }
-        }
-    }
-    if (drag_function == undefined) {
-        drag_function = function(element, files) {
-            var filtered_list = ui_handle_dropped_files_filter(files, [".png", ".bmp", ".jpg", ".jpeg"]);
-            for (var i = 0; i < ds_list_size(filtered_list); i++) {
-                import_texture(filtered_list[| i]);
-            }
-        }
-    }
-    if (delete_function == undefined) {
-        delete_function = function(button) {
-            var list = button.root.el_list;
-            var selection = ui_list_selection(list);
-            ui_list_deselect(list);
-            if (selection + 1) {
-                if (ds_list_size(Stuff.all_graphic_tilesets) > 1) {
-                    var data = list.entries[| selection];
-                    ds_list_delete(Stuff.all_graphic_tilesets, ds_list_find_index(Stuff.all_graphic_tilesets, data));
-                    instance_activate_object(data);
-                    instance_destroy(data);
-                    ui_list_deselect(list);
-                    list.root.el_image.image = -1;
-                } else {
-                    dialog_create_notice(button.root, "Please don't try to delete the last tileset. That would cause issues.");
-                }
-            }
-        }
-    }
-    if (change_function == undefined) {
-        change_function = function(button) {
-            var list = button.root.el_list;
-            var selection = ui_list_selection(list);
-    
-            if (selection + 1) {
-                var fn = get_open_filename_image();
-                if (file_exists(fn)) {
-                    var data = list.entries[| selection];
-                    sprite_delete(data.picture);
-                    data.picture = sprite_add(fn, 0, false, false, 0, 0);
-                    uivc_list_graphic_generic(list);
-            
-                    data_image_force_power_two(data);
-                    data_image_npc_frames(data);
-            
-                    button.root.el_list.onvaluechange(button.root.el_list);
-                }
-            }
-        }
-    }
-    if (export_function == undefined) {
-        export_function = function(button) {
-            var list = button.root.el_list;
-            var selection = ui_list_selection(list);
-            if (selection + 1) {
-                var what = list.entries[| selection];
-                var fn = get_save_filename_image(what.name + ".png");
-                if (fn != "") {
-                    sprite_save(what.picture, 0, fn);
-                    //ds_stuff_open(fn);
-                }
-            }
-        }
-    }
+    if (prefix == undefined) prefix = PREFIX_GRAPHIC_TILESET;
+    if (load_function == undefined) load_function = dmu_graphic_add_tileset;
+    if (drag_function == undefined) drag_function = dmu_graphic_add_tileset_drag;
+    if (delete_function == undefined) delete_function = dmu_graphic_delete_generic;
+    if (change_function == undefined) change_function = dmu_graphic_change_generic;
+    if (export_function == undefined) export_function = dmu_graphic_export_generic;
     
     var dw = 1280;
     var dh = 720;
     
     var dg = dialog_create(dw, dh, "Data: Textures and Tilesets", dialog_default, dc_close_no_questions_asked, root);
     dg.dialog_flags |= DialogFlags.IS_GENERIC_WARNING;
+    dg.graphics_prefix = prefix;
     var columns = 4;
     var spacing = 16;
     var ew = dw / columns - spacing * 2;
