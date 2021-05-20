@@ -17,3 +17,4 @@ picture_with_frames = -1;
 npc_frames = [];
 
 hash = "";
+source_filename = "";

@@ -13,7 +13,7 @@ function serialize_load_image_tilesets(buffer, version) {
         var summary = buffer_read(buffer, buffer_string);
         var guid = buffer_read(buffer, buffer_get_datatype(version));
         
-        var ts_name = buffer_read(buffer, buffer_string);
+        var ts_source_name = buffer_read(buffer, buffer_string);
         
         var sprite = buffer_read_sprite(buffer);
         
@@ -24,7 +24,7 @@ function serialize_load_image_tilesets(buffer, version) {
             buffer_seek(buffer, buffer_seek_relative, n * (buffer_sizeof(buffer_s16) + buffer_sizeof(buffer_u32)));
         }
         
-        var ts = tileset_create(ts_name, sprite);
+        var ts = tileset_create(ts_source_name, sprite);
         
         ts.name = name;
         ts.internal_name = internal_name;

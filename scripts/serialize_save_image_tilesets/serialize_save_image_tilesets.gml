@@ -16,7 +16,7 @@ function serialize_save_image_tilesets(buffer) {
         buffer_write(buffer, buffer_string, ts.summary);
         buffer_write(buffer, buffer_datatype, ts.GUID);
         
-        buffer_write(buffer, buffer_string, ts.picture_name);
+        buffer_write(buffer, buffer_string, ts.source_filename);
         
         // stash the sprite in the buffer (via surface)
         buffer_write_sprite(buffer, ts.picture);

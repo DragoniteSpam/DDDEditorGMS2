@@ -14,16 +14,16 @@ function tileset_create(filename, sprite) {
     with (instance_create_depth(0, 0, 0, DataTileset)) {
         name = filename_change_ext(filename_name(filename), "");
         // this needs to be the file path
-        picture_name = filename;
+        source_filename = filename;
         
-        internal_name_generate(id, PREFIX_GRAPHIC_TILESET + string_lettersdigits(filename_change_ext(filename_name(picture_name), "")));
+        internal_name_generate(id, PREFIX_GRAPHIC_TILESET + string_lettersdigits(filename_change_ext(filename_name(source_filename), "")));
         
-        picture = (sprite != undefined) ? sprite : sprite_add(picture_name, 0, false, false, 0, 0);
+        picture = (sprite != undefined) ? sprite : sprite_add(source_filename, 0, false, false, 0, 0);
         hash = file_hash;
         
         if (!sprite_exists(picture)) {
             picture = sprite_duplicate(b_tileset_magenta);
-            wtf("Missing tileset image; using default instead: " + picture_name);
+            wtf("Missing tileset image; using default instead: " + source_filename);
         }
         
         hframes = sprite_get_width(picture) div Stuff.tile_size;
