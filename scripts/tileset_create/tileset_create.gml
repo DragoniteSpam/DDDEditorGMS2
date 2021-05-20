@@ -26,8 +26,10 @@ function tileset_create(filename, sprite) {
             wtf("Missing tileset image; using default instead: " + source_filename);
         }
         
-        hframes = sprite_get_width(picture) div Stuff.tile_size;
-        vframes = sprite_get_height(picture) div Stuff.tile_size;
+        width = sprite_get_width(picture);
+        height = sprite_get_height(picture);
+        hframes = width div Stuff.tile_size;
+        vframes = height div Stuff.tile_size;
         flags = array_create_2d(hframes, vframes, 0);
         
         ds_list_add(Stuff.all_graphic_tilesets, id);
