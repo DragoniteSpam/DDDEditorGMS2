@@ -47,6 +47,17 @@ function dialog_create_manager_tileset(root) {
     var el_export = create_button(c2 + 16, yy, "Export Image", ew, eh, fa_center, dmu_dialog_export_graphic, dg);
     yy += el_export.height + spacing;
     
+    var el_remove_background = create_button(c2 + 16, yy, "Remove Background Color", ew, eh, fa_center, function(button) {
+        var list = button.root.el_list;
+        var selection = ui_list_selection(list);
+        if (selection + 1) {
+            var data = list.entries[| selection];
+            data.picture = sprite_remove_transparent_color(data.picture);
+            button.root.el_image.image = data.picture;
+        }
+    }, dg);
+    yy += el_remove_background.height + spacing;
+    
     var el_name_text = create_text(c2 + 16, yy, "Name:", ew, eh, fa_left, ew, dg);
     yy += el_name_text.height + spacing;
     var el_name = create_input(c2 + 16, yy, "", ew, eh, uivc_input_graphic_name, "", "", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
@@ -92,6 +103,7 @@ function dialog_create_manager_tileset(root) {
         el_remove,
         el_change,
         el_export,
+        el_remove_background,
         el_name_text,
         el_name,
         el_name_internal_text,

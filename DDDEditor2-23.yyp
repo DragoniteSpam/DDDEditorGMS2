@@ -1314,6 +1314,7 @@
     {"id":{"name":"omu_mr_move_left","path":"scripts/omu_mr_move_left/omu_mr_move_left.yy",},"order":3,},
     {"id":{"name":"omu_mr_move_right","path":"scripts/omu_mr_move_right/omu_mr_move_right.yy",},"order":4,},
     {"id":{"name":"omu_mr_move_lower_left","path":"scripts/omu_mr_move_lower_left/omu_mr_move_lower_left.yy",},"order":5,},
+    {"id":{"name":"sprite_remove_transparent_color","path":"scripts/sprite_remove_transparent_color/sprite_remove_transparent_color.yy",},"order":12,},
     {"id":{"name":"omu_mr_move_lower_right","path":"scripts/omu_mr_move_lower_right/omu_mr_move_lower_right.yy",},"order":6,},
     {"id":{"name":"omu_mr_move_upper_left","path":"scripts/omu_mr_move_upper_left/omu_mr_move_upper_left.yy",},"order":7,},
     {"id":{"name":"omu_mr_move_upper_right","path":"scripts/omu_mr_move_upper_right/omu_mr_move_upper_right.yy",},"order":8,},

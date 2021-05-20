@@ -1,10 +1,7 @@
-/// @param UIThing
-function dmu_dialog_export_graphic(argument0) {
-
-    var button = argument0;
+function dmu_dialog_export_graphic(thing) {
     var list = button.root.el_list;
     var selection = ui_list_selection(list);
-
+    
     if (selection + 1) {
         var what = list.entries[| selection];
         var fn = get_save_filename_image(what.name + ".png");
@@ -13,6 +10,4 @@ function dmu_dialog_export_graphic(argument0) {
             //ds_stuff_open(fn);
         }
     }
-
-
 }

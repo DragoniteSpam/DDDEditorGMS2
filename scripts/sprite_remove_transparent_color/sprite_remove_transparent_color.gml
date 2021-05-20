@@ -1,6 +1,8 @@
 function sprite_remove_transparent_color(sprite, color) {
     if (color == undefined) color = 0xff00ff;
     
+    var w = sprite_get_width(sprite);
+    var h = sprite_get_height(sprite);
     var buffer = sprite_to_buffer(sprite, 0);
     var changed = false;
     for (var i = 0, len = buffer_get_size(buffer); i < len; i += 4) {
@@ -12,7 +14,7 @@ function sprite_remove_transparent_color(sprite, color) {
     
     if (changed) {
         sprite_delete(sprite);
-        sprite = sprite_from_buffer(buffer);
+        sprite = sprite_from_buffer(buffer, w, h);
     }
     
     buffer_delete(buffer);
