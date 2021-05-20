@@ -85,7 +85,16 @@ function dialog_create_manager_tileset(root) {
     
     var el_image = create_image_button(c3 + 16, yy, "", -1, ew * 2, ew * 2, fa_center, dmu_dialog_show_big_picture, dg);
     el_image.draw_checker_behind = true;
-    el_image.render = ui_render_image_button_graphic;
+    el_image.render = function(button, x, y) {
+        var list = button.root.el_list;
+        var selection = ui_list_selection(list);
+        if (selection + 1) {
+            button.image = list.entries[| selection].picture;
+        } else {
+            button.image = -1;
+        }
+        ui_render_image_button(button, x, y);
+    };
     dg.el_image = el_image;
     yy += el_image.height + spacing;
     
