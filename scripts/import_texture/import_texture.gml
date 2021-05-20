@@ -5,7 +5,7 @@ function import_texture(fn) {
     
     var top = ds_list_top(Stuff.dialogs);
     if (!top || !(top.dialog_flags & DialogFlags.IS_GENERIC_WARNING)) {
-        var top = dialog_create_manager_tileset(noone);
+        var top = dialog_create_manager_graphic(undefined);
         top.dialog_flags |= DialogFlags.IS_GENERIC_WARNING;
     }
     

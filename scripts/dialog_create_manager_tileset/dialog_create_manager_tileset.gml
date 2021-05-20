@@ -1,4 +1,76 @@
-function dialog_create_manager_tileset(root) {
+function dialog_create_manager_graphic(root, list, load_function, drag_function, delete_function, change_function, export_function) {
+    if (list == undefined) list = Stuff.all_graphic_tilesets;
+    if (load_function == undefined) {
+        load_function = function(button) {
+            var fn = get_open_filename_image();
+            if (file_exists(fn)) {
+                tileset_create(fn);
+            }
+        }
+    }
+    if (drag_function == undefined) {
+        drag_function = function(element, files) {
+            var filtered_list = ui_handle_dropped_files_filter(files, [".png", ".bmp", ".jpg", ".jpeg"]);
+            for (var i = 0; i < ds_list_size(filtered_list); i++) {
+                import_texture(filtered_list[| i]);
+            }
+        }
+    }
+    if (delete_function == undefined) {
+        delete_function = function(button) {
+            var list = button.root.el_list;
+            var selection = ui_list_selection(list);
+            ui_list_deselect(list);
+            if (selection + 1) {
+                if (ds_list_size(Stuff.all_graphic_tilesets) > 1) {
+                    var data = list.entries[| selection];
+                    ds_list_delete(Stuff.all_graphic_tilesets, ds_list_find_index(Stuff.all_graphic_tilesets, data));
+                    instance_activate_object(data);
+                    instance_destroy(data);
+                    ui_list_deselect(list);
+                    list.root.el_image.image = -1;
+                } else {
+                    dialog_create_notice(button.root, "Please don't try to delete the last tileset. That would cause issues.");
+                }
+            }
+        }
+    }
+    if (change_function == undefined) {
+        change_function = function(button) {
+            var list = button.root.el_list;
+            var selection = ui_list_selection(list);
+    
+            if (selection + 1) {
+                var fn = get_open_filename_image();
+                if (file_exists(fn)) {
+                    var data = list.entries[| selection];
+                    sprite_delete(data.picture);
+                    data.picture = sprite_add(fn, 0, false, false, 0, 0);
+                    uivc_list_graphic_generic(list);
+            
+                    data_image_force_power_two(data);
+                    data_image_npc_frames(data);
+            
+                    button.root.el_list.onvaluechange(button.root.el_list);
+                }
+            }
+        }
+    }
+    if (export_function == undefined) {
+        export_function = function(button) {
+            var list = button.root.el_list;
+            var selection = ui_list_selection(list);
+            if (selection + 1) {
+                var what = list.entries[| selection];
+                var fn = get_save_filename_image(what.name + ".png");
+                if (fn != "") {
+                    sprite_save(what.picture, 0, fn);
+                    //ds_stuff_open(fn);
+                }
+            }
+        }
+    }
+    
     var dw = 1280;
     var dh = 720;
     
@@ -35,18 +107,18 @@ function dialog_create_manager_tileset(root) {
     
     yy += ui_get_list_height(el_list) + spacing;
     
-    var el_add = create_button(16, yy, "Add Image", ew, eh, fa_center, dmu_dialog_load_graphic_texture, dg);
-    el_add.file_dropper_action = uifd_load_img_tileset;
+    var el_add = create_button(16, yy, "Add Image", ew, eh, fa_center, load_function, dg);
+    el_add.file_dropper_action = drag_function;
     yy += el_add.height + spacing;
     
-    var el_remove = create_button(16, yy, "Delete Image", ew, eh, fa_center, dmu_dialog_remove_graphic_texture, dg);
+    var el_remove = create_button(16, yy, "Delete Image", ew, eh, fa_center, delete_function, dg);
     
     yy = yy_base;
     
-    var el_change = create_button(c2 + 16, yy, "Change Image", ew, eh, fa_center, dmu_dialog_change_graphic_general, dg);
+    var el_change = create_button(c2 + 16, yy, "Change Image", ew, eh, fa_center, change_function, dg);
     yy += el_change.height + spacing;
     
-    var el_export = create_button(c2 + 16, yy, "Export Image", ew, eh, fa_center, dmu_dialog_export_graphic, dg);
+    var el_export = create_button(c2 + 16, yy, "Export Image", ew, eh, fa_center, export_function, dg);
     yy += el_export.height + spacing;
     
     var el_remove_background = create_button(c2 + 16, yy, "Remove Background Color", ew, eh, fa_center, function(button) {

@@ -35,7 +35,7 @@ function momu_graphic_particle() {
 
 function momu_graphic_tileset() {
     menu_activate(noone);
-    dialog_create_manager_tileset(noone);
+    dialog_create_manager_graphic(undefined);
 }
 
 function momu_graphic_ui() {
