@@ -1,16 +1,8 @@
 function dialog_create_manager_graphic(root, name, list, prefix, load_function, drag_function, delete_function, change_function, export_function) {
-    if (list == undefined) list = Stuff.all_graphic_tilesets;
-    if (prefix == undefined) prefix = PREFIX_GRAPHIC_TILESET;
-    if (load_function == undefined) load_function = dmu_graphic_add_tileset;
-    if (drag_function == undefined) drag_function = dmu_graphic_add_tileset_drag;
-    if (delete_function == undefined) delete_function = dmu_graphic_delete_generic;
-    if (change_function == undefined) change_function = dmu_graphic_change_generic;
-    if (export_function == undefined) export_function = dmu_graphic_export_generic;
-    
     var dw = 1280;
     var dh = 720;
     
-    var dg = dialog_create(dw, dh, "Data: Textures and Tilesets", dialog_default, dc_close_no_questions_asked, root);
+    var dg = dialog_create(dw, dh, name, dialog_default, dc_close_no_questions_asked, root);
     dg.dialog_flags |= DialogFlags.IS_GENERIC_WARNING;
     dg.graphics_prefix = prefix;
     var columns = 4;

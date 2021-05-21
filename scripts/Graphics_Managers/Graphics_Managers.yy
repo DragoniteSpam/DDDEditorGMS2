@@ -6,7 +6,7 @@
     "path": "folders/Scripts/ui stuff/dialogs/creation/basic data.yy",
   },
   "resourceVersion": "1.0",
-  "name": "dialog_create_manager_autotile",
+  "name": "Graphics_Managers",
   "tags": [],
   "resourceType": "GMScript",
 }
