@@ -26,7 +26,23 @@ function dialog_create_manager_graphic(root, name, list, prefix, load_function, 
     var yy = 64;
     var yy_base = yy;
     
-    var el_list = create_list(16, yy, name, "<no images>", ew, eh, 20, uivc_list_graphic_generic, false, dg, list);
+    var el_list = create_list(16, yy, name, "<no images>", ew, eh, 20, function(list) {
+        var selection = ui_list_selection(list);
+        if (selection + 1) {
+            // direct references to the texture images are dealt with elsewhere
+            var what = list.entries[| selection];
+            ui_input_set_value(list.root.el_name, what.name);
+            ui_input_set_value(list.root.el_name_internal, what.internal_name);
+            ui_input_set_value(list.root.el_frames_horizontal, string(what.hframes));
+            ui_input_set_value(list.root.el_frames_vertical, string(what.vframes));
+            ui_input_set_value(list.root.el_frame_speed, string(what.aspeed));
+            list.root.el_texture_exclude.value = what.texture_exclude;
+            list.root.el_dim_x.value = string(what.width);
+            list.root.el_dim_y.value = string(what.height);
+            list.root.el_dim_x.value_upper = sprite_get_width(what.picture);
+            list.root.el_dim_y.value_upper = sprite_get_height(what.picture);
+        }
+    }, false, dg, list);
     el_list.render_colors = function(list, index) {
         return list.entries[| index].texture_exclude ? c_dkgray : c_black;
     };
@@ -112,7 +128,13 @@ function dialog_create_manager_graphic(root, name, list, prefix, load_function, 
         var list = input.root.el_list;
         var selection = ui_list_selection(list);
         if (selection + 1) {
-            uivc_input_graphic_set_frames_h(input);
+            var image = list.entries[| selection];
+            image.hframes = real(input.value);
+            sprite_delete(image.picture_with_frames);
+            var temp_name = PATH_TEMP + "particle_strip" + string(image.hframes) + ".png";
+            sprite_save(image.picture, 0, temp_name);
+            image.picture_with_frames = sprite_add(temp_name, image.hframes, false, false, 0, 0);
+            sprite_set_speed(image.picture_with_frames, image.aspeed, spritespeed_framespersecond);
             data_image_npc_frames(list.entries[| selection]);
         }
     }, "1", "0...255", validate_int, 0, 255, 3, vx1, vy1, vx2, vy2, dg);
