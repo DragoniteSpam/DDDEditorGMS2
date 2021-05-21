@@ -63,11 +63,13 @@ function dialog_create_manager_audio(dialog, name, prefix, list, show_loop_contr
         var list = button.root.el_list;
         var selection = ui_list_selection(list);
         if (selection + 1) {
-            var data = guid_get(guid);
+            var data = list.entries[| selection];
             FMODGMS_Snd_Unload(data.fmod);
             ds_list_delete(list.entries, ds_list_find_index(list.entries, data));
             instance_activate_object(data);
             instance_destroy(data);
+            ui_list_deselect(list);
+            list.onvaluechange(list);
         }
     }, dg);
     yy += el_remove.height + spacing;
