@@ -121,6 +121,9 @@ function dialog_create_manager_graphic(root, name, list, prefix, load_function, 
         if (selection + 1) {
             var image = list.entries[| selection];
             text.text = "Dimensions: " + string(image.width) + " x " + string(image.height);
+            if (image.width != sprite_get_width(image.picture) || image.height != sprite_get_height(image.picture)) {
+                text.text += " (" + string(sprite_get_width(image.picture)) + " x " + string(sprite_get_height(image.picture)) + ")";
+            }
         } else {
             text.text = "Dimensions: N/A";
         }
