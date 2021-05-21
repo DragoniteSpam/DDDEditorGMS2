@@ -914,7 +914,7 @@
     {"id":{"name":"dialog_create_color_picker_options","path":"scripts/dialog_create_color_picker_options/dialog_create_color_picker_options.yy",},"order":21,},
     {"id":{"name":"dialog_create_refid_list","path":"scripts/dialog_create_refid_list/dialog_create_refid_list.yy",},"order":22,},
     {"id":{"name":"dialog_create_manager_mesh_autotile","path":"scripts/dialog_create_manager_mesh_autotile/dialog_create_manager_mesh_autotile.yy",},"order":1,},
-    {"id":{"name":"dialog_create_manager_bgm","path":"scripts/dialog_create_manager_bgm/dialog_create_manager_bgm.yy",},"order":5,},
+    {"id":{"name":"dialog_create_manager_audio","path":"scripts/dialog_create_manager_audio/dialog_create_manager_audio.yy",},"order":5,},
     {"id":{"name":"scribble_add_spritefont","path":"scripts/scribble_add_spritefont/scribble_add_spritefont.yy",},"order":2,},
     {"id":{"name":"dialog_create_manager_se","path":"scripts/dialog_create_manager_se/dialog_create_manager_se.yy",},"order":12,},
     {"id":{"name":"dialog_create_manager_graphic","path":"scripts/dialog_create_manager_graphic/dialog_create_manager_graphic.yy",},"order":13,},

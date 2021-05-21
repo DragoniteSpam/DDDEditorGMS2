@@ -6,7 +6,7 @@
     "path": "folders/Scripts/ui stuff/dialogs/creation/basic data.yy",
   },
   "resourceVersion": "1.0",
-  "name": "dialog_create_manager_bgm",
+  "name": "dialog_create_manager_audio",
   "tags": [],
   "resourceType": "GMScript",
 }
