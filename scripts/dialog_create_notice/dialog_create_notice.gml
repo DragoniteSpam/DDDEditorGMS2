@@ -31,7 +31,7 @@ function dialog_create_notice() {
             break;
     }
 
-    var el_ok = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, confirm_message, b_width, b_height, fa_center, dmu_close_no_questions_asked, dg);
+    var el_ok = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, confirm_message, b_width, b_height, fa_center, dialog_destroy, dg);
 
     ds_list_add(dg.contents, el_text, el_ok);
 

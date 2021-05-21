@@ -54,7 +54,7 @@ function ui_particle_type_sprite(argument0) {
     
         var b_width = 128;
         var b_height = 32;
-        var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_close_no_questions_asked, dg);
+        var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dialog_destroy, dg);
 
         ds_list_add(dg.contents,
             el_update_list,
