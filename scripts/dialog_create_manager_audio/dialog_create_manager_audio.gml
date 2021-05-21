@@ -1,8 +1,10 @@
-function dialog_create_manager_audio(dialog, name, list, show_loop_controls) {
+function dialog_create_manager_audio(dialog, name, prefix, list, show_loop_controls) {
     var dw = 768;
     var dh = 480;
     
     var dg = dialog_create(dw, dh, name, dialog_default, dc_default, dialog);
+    dg.prefix = prefix;
+    dg.show_loop_controls = show_loop_controls;
     
     var columns = 3;
     var spacing = 16;
@@ -43,10 +45,31 @@ function dialog_create_manager_audio(dialog, name, list, show_loop_controls) {
     el_list.numbered = true;
     dg.el_list = el_list;
     
-    var el_add = create_button(c2 + 16, yy, "Add", ew, eh, fa_center, dmu_dialog_load_bgm, dg);
-    el_add.file_dropper_action = uifd_load_bgm;
+    var el_add = create_button(c2 + 16, yy, "Add", ew, eh, fa_center, function(button) {
+        var fn = get_open_filename_audio_fmod();
+        if (file_exists(fn)) {
+            ds_list_add(button.root.el_list.entries, audio_add(fn, button.root.prefix, button.root.show_loop_controls));
+        }
+    }, dg);
+    el_add.file_dropper_action = function(dropper, files) {
+        var filtered_list = ui_handle_dropped_files_filter(files, [".wav", ".mid", ".ogg", ".mp3"]);
+        for (var i = 0; i < ds_list_size(filtered_list); i++) {
+            ds_list_add(dropper.root.el_list.entries, audio_add(filtered_list[| i], dropper.root.prefix, dropper.root.show_loop_controls));
+        }
+        ds_list_destroy(filtered_list);
+    };
     yy += el_add.height + spacing;
-    var el_remove = create_button(c2 + 16, yy, "Delete", ew, eh, fa_center, dmu_dialog_remove_bgm, dg);
+    var el_remove = create_button(c2 + 16, yy, "Delete", ew, eh, fa_center, function(button) {
+        var list = button.root.el_list;
+        var selection = ui_list_selection(list);
+        if (selection + 1) {
+            var data = guid_get(guid);
+            FMODGMS_Snd_Unload(data.fmod);
+            ds_list_delete(list.entries, ds_list_find_index(list.entries, data));
+            instance_activate_object(data);
+            instance_destroy(data);
+        }
+    }, dg);
     yy += el_remove.height + spacing;
     
     var el_name_text = create_text(c2 + 16, yy, "Name:", ew, eh, fa_left, ew, dg);

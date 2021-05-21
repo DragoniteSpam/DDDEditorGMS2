@@ -5,7 +5,7 @@ function momu_graphic_skybox() {
 
 function momu_bgm() {
     menu_activate(noone);
-    dialog_create_manager_audio(undefined, "BGM", Stuff.all_bgm, true);
+    dialog_create_manager_audio(undefined, "BGM", PREFIX_AUDIO_BGM, Stuff.all_bgm, true);
 }
 
 function momu_graphic_battle() {
