@@ -159,7 +159,6 @@
     {"id":{"name":"control_duration_middle","path":"scripts/control_duration_middle/control_duration_middle.yy",},"order":6,},
     {"id":{"name":"control_global","path":"scripts/control_global/control_global.yy",},"order":7,},
     {"id":{"name":"data_resize_map","path":"scripts/data_resize_map/data_resize_map.yy",},"order":0,},
-    {"id":{"name":"uifd_load_meshes_textureless","path":"scripts/uifd_load_meshes_textureless/uifd_load_meshes_textureless.yy",},"order":4,},
     {"id":{"name":"event_prefab_render_switch_name","path":"scripts/event_prefab_render_switch_name/event_prefab_render_switch_name.yy",},"order":0,},
     {"id":{"name":"event_prefab_render_input_type_name","path":"scripts/event_prefab_render_input_type_name/event_prefab_render_input_type_name.yy",},"order":1,},
     {"id":{"name":"event_prefab_render_self_switch_name","path":"scripts/event_prefab_render_self_switch_name/event_prefab_render_self_switch_name.yy",},"order":2,},

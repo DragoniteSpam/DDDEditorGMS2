@@ -1128,7 +1128,17 @@ function ui_init_main(mode) {
                 }
             }
         }, t_p_mesh_editor);
-        element.file_dropper_action = uifd_load_meshes_textureless;
+        element.file_dropper_action = function(element, files) {
+            var filtered_list = ui_handle_dropped_files_filter(files, [".d3d", ".gmmod", ".obj", ".smf"]);
+            for (var i = 0; i < array_length(filtered_list); i++) {
+                var fn = filtered_list[i];
+                switch (filename_ext(fn)) {
+                    case ".obj": import_obj(fn, true); break;
+                    case ".d3d": case ".gmmod": import_d3d(fn, true); break;
+                    case ".smf": import_smf(fn);
+                }
+            }
+        };
         element.tooltip = "Imports a 3D model. The texture coordinates will automatically be scaled on importing; to override this, press the Control key.";
         ds_list_add(t_p_mesh_editor.contents, element);
         
