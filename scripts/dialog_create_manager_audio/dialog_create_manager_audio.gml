@@ -1,10 +1,9 @@
-function dialog_create_manager_audio(dialog, name, prefix, list, show_loop_controls) {
+function dialog_create_manager_audio(dialog, name, prefix, list) {
     var dw = 768;
     var dh = 480;
     
     var dg = dialog_create(dw, dh, name, dialog_default, dc_default, dialog);
     dg.prefix = prefix;
-    dg.show_loop_controls = show_loop_controls;
     
     var columns = 3;
     var spacing = 16;
@@ -32,8 +31,8 @@ function dialog_create_manager_audio(dialog, name, prefix, list, show_loop_contr
             ui_input_set_value(list.root.el_name, audio.name);
             ui_input_set_value(list.root.el_sample_rate, string(audio.fmod_rate));
             ui_input_set_value(list.root.el_name_internal, audio.internal_name);
-            if (list.root.el_loop_start) ui_input_set_value(list.root.el_loop_start, string(audio.loop_start / audio.fmod_rate));
-            if (list.root.el_loop_end) ui_input_set_value(list.root.el_loop_end, string(audio.loop_end / audio.fmod_rate));
+            ui_input_set_value(list.root.el_loop_start, string(audio.loop_start / audio.fmod_rate));
+            ui_input_set_value(list.root.el_loop_end, string(audio.loop_end / audio.fmod_rate));
             
             if (Stuff.fmod_sound) {
                 FMODGMS_Chan_StopChannel(Stuff.fmod_channel);
@@ -192,6 +191,72 @@ function dialog_create_manager_audio(dialog, name, prefix, list, show_loop_contr
     dg.el_length = el_length;
     yy += el_length.height + spacing;
     
+    var el_loop_start = create_input(c3 + 16, yy, "Loop Start:", ew, eh, function(input) {
+        var list = input.root.el_list;
+        var selection = ui_list_selection(list);
+        if (selection + 1) {
+            var audio = list.entries[| selection];
+            audio.loop_start = real(input.value) * audio.fmod_rate;
+            var position = FMODGMS_Chan_Get_Position(audio.fmod);
+            FMODGMS_Snd_Set_LoopPoints(audio.fmod, audio.loop_start, audio.loop_end);
+            // setting a loop point while the sound is playing makes audio weird so we just stop it instead
+            FMODGMS_Chan_StopChannel(Stuff.fmod_channel);
+            FMODGMS_Chan_Set_Position(Stuff.fmod_channel, position);
+        }
+    }, 0, "seconds", validate_double, 0, 10000, 5, vx1, vy1, vx2, vy2, dg);
+    dg.el_loop_start = el_loop_start;
+    yy += el_loop_start.height + spacing;
+    var el_loop_end = create_input(c3 + 16, yy, "Loop End:", ew, eh, function(input) {
+        var list = input.root.el_list;
+        var selection = ui_list_selection(list);
+        if (selection + 1) {
+            var audio = list.entries[| selection];
+            audio.loop_end = real(input.value) * audio.fmod_rate;
+            var position = FMODGMS_Chan_Get_Position(audio.fmod);
+            FMODGMS_Snd_Set_LoopPoints(audio.fmod, audio.loop_start, audio.loop_end);
+            // setting a loop point while the sound is playing makes things weird so we just stop it instead
+            FMODGMS_Chan_StopChannel(Stuff.fmod_channel);
+            FMODGMS_Chan_Set_Position(Stuff.fmod_channel, position);
+        }
+    }, 0, "seconds", validate_double, 0, 10000, 5, vx1, vy1, vx2, vy2, dg);
+    dg.el_loop_end = el_loop_end;
+    yy += el_loop_end.height + spacing;
+    var el_loop_progress = create_progress_bar(c3 + 16, yy, ew, eh, function(progress) {
+        FMODGMS_Chan_Set_Position(Stuff.fmod_channel, progress.value * FMODGMS_Snd_Get_Length(Stuff.fmod_sound));
+    }, 8, 0, dg);
+    el_loop_progress.render = function(progress, x, y) {
+        if (Stuff.fmod_sound + 1) {
+            progress.value = FMODGMS_Chan_Get_Position(Stuff.fmod_channel) / FMODGMS_Snd_Get_Length(Stuff.fmod_sound);
+        }
+        
+        var list = progress.root.el_list;
+        var selection = ui_list_selection(list);
+        if (selection + 1) {
+            var audio = list.entries[| selection];
+            var length = FMODGMS_Snd_Get_Length(audio.fmod);
+            var padding = 16;
+            var x1 = x + progress.x + padding;
+            var y1 = y + progress.y;
+            var x2 = x1 + progress.width - padding * 2;
+            var y2 = y1 + progress.height;
+            
+            var mid_yy = mean(y1, y2);
+            var bar_y1 = mid_yy - progress.thickness / 2 + 2;
+            var bar_y2 = mid_yy + progress.thickness / 2 - 2;
+            var loop_start_x = x1 + audio.loop_start / length * (x2 - x1);
+            var loop_end_x = x1 + audio.loop_end / length * (x2 - x1);
+            
+            draw_line_width_color(loop_start_x, bar_y1, loop_start_x, bar_y2, 2, c_red, c_red);
+            draw_line_width_color(loop_end_x, bar_y1, loop_end_x, bar_y2, 2, c_red, c_red);
+        }
+        
+        ui_render_progress_bar(progress, x, y);
+    };
+    dg.el_loop_progress = el_loop_progress;
+    yy += el_loop_progress.height + spacing;
+    
+    var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
+    
     ds_list_add(dg.contents,
         el_list,
         el_add,
@@ -209,85 +274,9 @@ function dialog_create_manager_audio(dialog, name, prefix, list, show_loop_contr
         el_rate_441,
         el_rate_48,
         el_length,
-    );
-    
-    if (show_loop_controls) {
-        var el_loop_start = create_input(c3 + 16, yy, "Loop Start:", ew, eh, function(input) {
-            var list = input.root.el_list;
-            var selection = ui_list_selection(list);
-            if (selection + 1) {
-                var audio = list.entries[| selection];
-                audio.loop_start = real(input.value) * audio.fmod_rate;
-                var position = FMODGMS_Chan_Get_Position(audio.fmod);
-                FMODGMS_Snd_Set_LoopPoints(audio.fmod, audio.loop_start, audio.loop_end);
-                // setting a loop point while the sound is playing makes audio weird so we just stop it instead
-                FMODGMS_Chan_StopChannel(Stuff.fmod_channel);
-                FMODGMS_Chan_Set_Position(Stuff.fmod_channel, position);
-            }
-        }, 0, "seconds", validate_double, 0, 10000, 5, vx1, vy1, vx2, vy2, dg);
-        dg.el_loop_start = el_loop_start;
-        yy += el_loop_start.height + spacing;
-        var el_loop_end = create_input(c3 + 16, yy, "Loop End:", ew, eh, function(input) {
-            var list = input.root.el_list;
-            var selection = ui_list_selection(list);
-            if (selection + 1) {
-                var audio = list.entries[| selection];
-                audio.loop_end = real(input.value) * audio.fmod_rate;
-                var position = FMODGMS_Chan_Get_Position(audio.fmod);
-                FMODGMS_Snd_Set_LoopPoints(audio.fmod, audio.loop_start, audio.loop_end);
-                // setting a loop point while the sound is playing makes things weird so we just stop it instead
-                FMODGMS_Chan_StopChannel(Stuff.fmod_channel);
-                FMODGMS_Chan_Set_Position(Stuff.fmod_channel, position);
-            }
-        }, 0, "seconds", validate_double, 0, 10000, 5, vx1, vy1, vx2, vy2, dg);
-        dg.el_loop_end = el_loop_end;
-        yy += el_loop_end.height + spacing;
-        var el_loop_progress = create_progress_bar(c3 + 16, yy, ew, eh, function(progress) {
-            FMODGMS_Chan_Set_Position(Stuff.fmod_channel, progress.value * FMODGMS_Snd_Get_Length(Stuff.fmod_sound));
-        }, 8, 0, dg);
-        el_loop_progress.render = function(progress, x, y) {
-            if (Stuff.fmod_sound + 1) {
-                progress.value = FMODGMS_Chan_Get_Position(Stuff.fmod_channel) / FMODGMS_Snd_Get_Length(Stuff.fmod_sound);
-            }
-            
-            var list = progress.root.el_list;
-            var selection = ui_list_selection(list);
-            if (selection + 1) {
-                var audio = list.entries[| selection];
-                var length = FMODGMS_Snd_Get_Length(audio.fmod);
-                var padding = 16;
-                var x1 = x + progress.x + padding;
-                var y1 = y + progress.y;
-                var x2 = x1 + progress.width - padding * 2;
-                var y2 = y1 + progress.height;
-                
-                var mid_yy = mean(y1, y2);
-                var bar_y1 = mid_yy - progress.thickness / 2 + 2;
-                var bar_y2 = mid_yy + progress.thickness / 2 - 2;
-                var loop_start_x = x1 + audio.loop_start / length * (x2 - x1);
-                var loop_end_x = x1 + audio.loop_end / length * (x2 - x1);
-                
-                draw_line_width_color(loop_start_x, bar_y1, loop_start_x, bar_y2, 2, c_red, c_red);
-                draw_line_width_color(loop_end_x, bar_y1, loop_end_x, bar_y2, 2, c_red, c_red);
-            }
-
-            ui_render_progress_bar(progress, x, y);
-        };
-        yy += el_loop_progress.height + spacing;
-        
-        ds_list_add(dg.contents,
-            el_loop_start,
-            el_loop_end,
-            el_loop_progress,
-        );
-    } else {
-        dg.el_loop_start = undefined;
-        dg.el_loop_end = undefined;
-    }
-    
-    var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
-    
-    ds_list_add(dg.contents,
+        el_loop_start,
+        el_loop_end,
+        el_loop_progress,
         el_confirm
     );
     

@@ -1293,6 +1293,7 @@
     {"id":{"name":"omu_mr_play_se","path":"scripts/omu_mr_play_se/omu_mr_play_se.yy",},"order":45,},
     {"id":{"name":"omu_mr_event","path":"scripts/omu_mr_event/omu_mr_event.yy",},"order":46,},
     {"id":{"name":"omu_entity_data_add","path":"scripts/omu_entity_data_add/omu_entity_data_add.yy",},"order":14,},
+    {"id":{"name":"Audio_Managers","path":"scripts/Audio_Managers/Audio_Managers.yy",},"order":18,},
     {"id":{"name":"omu_entity_data_remove","path":"scripts/omu_entity_data_remove/omu_entity_data_remove.yy",},"order":16,},
     {"id":{"name":"omu_entity_data_select_type","path":"scripts/omu_entity_data_select_type/omu_entity_data_select_type.yy",},"order":18,},
     {"id":{"name":"omu_event_custom_data_select_type","path":"scripts/omu_event_custom_data_select_type/omu_event_custom_data_select_type.yy",},"order":21,},
