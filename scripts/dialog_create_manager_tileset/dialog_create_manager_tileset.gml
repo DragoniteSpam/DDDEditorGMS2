@@ -37,10 +37,6 @@ function dialog_create_manager_graphic(root, name, list, prefix, load_function, 
             ui_input_set_value(list.root.el_frames_vertical, string(what.vframes));
             ui_input_set_value(list.root.el_frame_speed, string(what.aspeed));
             list.root.el_texture_exclude.value = what.texture_exclude;
-            list.root.el_dim_x.value = string(what.width);
-            list.root.el_dim_y.value = string(what.height);
-            list.root.el_dim_x.value_upper = sprite_get_width(what.picture);
-            list.root.el_dim_y.value_upper = sprite_get_height(what.picture);
         }
     }, false, dg, list);
     el_list.render_colors = function(list, index) {
@@ -166,32 +162,6 @@ function dialog_create_manager_graphic(root, name, list, prefix, load_function, 
     el_texture_exclude.enabled = false;
     dg.el_texture_exclude = el_texture_exclude;
     
-    var el_dim_x = create_input(c2 + 16, yy, "Width:", ew, eh, function(input) {
-        var list = input.root.el_list;
-        var selection = ui_list_selection(list);
-        if (selection + 1) {
-            var data = list.entries[| selection];
-            data.width = real(input.value);
-            data_image_force_power_two(data);
-            data_image_npc_frames(data);
-        }
-    }, "", "int", validate_int, 1, 0xffff, 5, vx1, vy1, vx2, vy2, dg);
-    dg.el_dim_x = el_dim_x;
-    yy += el_dim_x.height + spacing;
-
-    var el_dim_y = create_input(c2 + 16, yy, "Height:", ew, eh, function(input) {
-        var list = input.root.el_list;
-        var selection = ui_list_selection(list);
-        if (selection + 1) {
-            var data = list.entries[| selection];
-            data.height = real(input.value);
-            data_image_force_power_two(data);
-            data_image_npc_frames(data);
-        }
-    }, "", "int", validate_int, 1, 0xffff, 5, vx1, vy1, vx2, vy2, dg);
-    dg.el_dim_y = el_dim_y;
-    yy += el_dim_y.height + spacing;
-
     var el_frame_speed = create_input(c2 + 16, yy, "Speed:", ew, eh, function(input) {
         var list = input.root.el_list;
         var selection = ui_list_selection(list);
@@ -212,12 +182,10 @@ function dialog_create_manager_graphic(root, name, list, prefix, load_function, 
             var data = list.entries[| selection];
             // @todo impelment a cutoff value
             var dim = sprite_get_cropped_dimensions(data.picture, 0, 127);
-            // @todo implement a value to round to
+            // @todo implement a value to round to?
             var round_to = 16;
             data.width = round_ext(dim[vec3.xx], round_to);
             data.height = round_ext(dim[vec3.yy], round_to);
-            list.root.el_dim_x.value = string(data.width);
-            list.root.el_dim_y.value = string(data.height);
             data_image_npc_frames(data);
         }
     }, dg);
@@ -228,10 +196,8 @@ function dialog_create_manager_graphic(root, name, list, prefix, load_function, 
         var selection = ui_list_selection(list);
         if (selection + 1) {
             var data = list.entries[| selection];
-            data.width = sprite_get_width(data.picture); 
-            data.height = sprite_get_height(data.picture); 
-            list.root.el_dim_x.value = string(data.width);
-            list.root.el_dim_y.value = string(data.height);
+            data.width = sprite_get_width(data.picture);
+            data.height = sprite_get_height(data.picture);
             data_image_npc_frames(data);
         }
     }, dg);
@@ -278,8 +244,6 @@ function dialog_create_manager_graphic(root, name, list, prefix, load_function, 
         el_frames_vertical,
         el_texture_exclude,
         el_image,
-        el_dim_x,
-        el_dim_y,
         el_frame_speed,
         el_dim_set_crop,
         el_dim_set_full,
