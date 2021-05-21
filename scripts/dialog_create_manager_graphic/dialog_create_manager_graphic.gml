@@ -207,7 +207,18 @@ function dialog_create_manager_graphic(root, name, list, prefix, load_function, 
     
     var el_image = create_image_button(c3 + 16, yy, "", -1, ew * 2, ew * 2, fa_center, function(button) {
         if (button.image) {
-            dialog_create_big_picture(button, button.image);
+            var xpadding = 64;
+            var ypadding = 128;
+            var dw = clamp(sprite_get_width(button.image), 192, 960) + xpadding;
+            var dh = clamp(sprite_get_height(button.image), 192, 960) + ypadding;
+            var dg = dialog_create(dw, dh, "Picture", dialog_default, dc_default, button.root);
+            var b_width = 128;
+            var b_height = 32;
+            var el_picture = create_image_button(xpadding / 2, ypadding / 2, "", button.image, dw - xpadding, dh - ypadding, fa_center, null, dg);
+            el_picture.draw_checker_behind = true;
+            el_picture.interactive = false;
+            var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Okay", b_width, b_height, fa_center, dmu_dialog_commit, dg);
+            ds_list_add(dg.contents, el_picture, el_confirm);
         }
     }, dg);
     el_image.draw_checker_behind = true;
