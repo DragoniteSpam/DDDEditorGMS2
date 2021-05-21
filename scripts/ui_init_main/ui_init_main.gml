@@ -1008,7 +1008,13 @@ function ui_init_main(mode) {
         
         element = create_button(col1_x, yy, "Change Tileset", 128, element_height, fa_center, function(button) {
             var dg = dialog_create_manager_graphic_tileset(button);
-            dg.el_confirm.select_tileset = true;
+            dg.el_confirm.onmouseup = function(button) {
+                var selection = ui_list_selection(button.root.el_list);
+                if(selection + 1) {
+                    Stuff.map.active_map.tileset = Stuff.all_graphic_tilesets[| selection].GUID;
+                }
+                dmu_dialog_commit(button);
+            };
         }, t_p_tile_editor);
         ds_list_add(t_p_tile_editor.contents, element);
         
