@@ -1,4 +1,4 @@
-function dialog_create_manager_graphic(root, list, prefix, load_function, drag_function, delete_function, change_function, export_function) {
+function dialog_create_manager_graphic(root, name, list, prefix, load_function, drag_function, delete_function, change_function, export_function) {
     if (list == undefined) list = Stuff.all_graphic_tilesets;
     if (prefix == undefined) prefix = PREFIX_GRAPHIC_TILESET;
     if (load_function == undefined) load_function = dmu_graphic_add_tileset;
@@ -34,7 +34,7 @@ function dialog_create_manager_graphic(root, list, prefix, load_function, drag_f
     var yy = 64;
     var yy_base = yy;
     
-    var el_list = create_list(16, yy, "Tilesets and Textures", "<no tilesets or textures>", ew, eh, 20, uivc_list_graphic_generic, false, dg, Stuff.all_graphic_tilesets);
+    var el_list = create_list(16, yy, name, "<no images>", ew, eh, 20, uivc_list_graphic_generic, false, dg, list);
     el_list.render_colors = function(list, index) {
         return list.entries[| index].texture_exclude ? c_dkgray : c_black;
     };
@@ -139,7 +139,6 @@ function dialog_create_manager_graphic(root, list, prefix, load_function, drag_f
         }
     }, "1", "0...255", validate_int, 0, 255, 3, vx1, vy1, vx2, vy2, dg);
     dg.el_frames_vertical = el_frames_vertical;
-    el_frames_vertical.interactive = false;
     yy += el_frames_vertical.height + spacing;
     
     var el_texture_exclude = create_checkbox(c2 + 16, yy, "Exclude from texture page?", ew, eh, function(checkbox) {
