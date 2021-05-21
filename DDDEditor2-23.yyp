@@ -1317,7 +1317,6 @@
     {"id":{"name":"omu_event_custom_enum_select","path":"scripts/omu_event_custom_enum_select/omu_event_custom_enum_select.yy",},"order":33,},
     {"id":{"name":"omu_event_custom_remove_property","path":"scripts/omu_event_custom_remove_property/omu_event_custom_remove_property.yy",},"order":34,},
     {"id":{"name":"scribble_set_line_height","path":"scripts/scribble_set_line_height/scribble_set_line_height.yy",},"order":4,},
-    {"id":{"name":"omu_manager_tileset","path":"scripts/omu_manager_tileset/omu_manager_tileset.yy",},"order":36,},
     {"id":{"name":"omu_data_previous","path":"scripts/omu_data_previous/omu_data_previous.yy",},"order":38,},
     {"id":{"name":"omu_data_next","path":"scripts/omu_data_next/omu_data_next.yy",},"order":39,},
     {"id":{"name":"omu_data_list_add","path":"scripts/omu_data_list_add/omu_data_list_add.yy",},"order":40,},

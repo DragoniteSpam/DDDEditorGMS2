@@ -1007,7 +1007,8 @@ function ui_init_main(mode) {
         yy = legal_y + spacing;
         
         element = create_button(col1_x, yy, "Change Tileset", 128, element_height, fa_center, function(button) {
-            (omu_manager_tileset(button)).el_confirm.select_tileset = true;
+            var dg = dialog_create_manager_graphic_tileset(button);
+            dg.el_confirm.select_tileset = true;
         }, t_p_tile_editor);
         ds_list_add(t_p_tile_editor.contents, element);
         
