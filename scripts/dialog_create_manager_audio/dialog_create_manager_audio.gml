@@ -53,10 +53,9 @@ function dialog_create_manager_audio(dialog, name, prefix, list, show_loop_contr
     }, dg);
     el_add.file_dropper_action = function(dropper, files) {
         var filtered_list = ui_handle_dropped_files_filter(files, [".wav", ".mid", ".ogg", ".mp3"]);
-        for (var i = 0; i < ds_list_size(filtered_list); i++) {
-            ds_list_add(dropper.root.el_list.entries, audio_add(filtered_list[| i], dropper.root.prefix, dropper.root.show_loop_controls));
+        for (var i = 0; i < array_length(filtered_list); i++) {
+            ds_list_add(dropper.root.el_list.entries, audio_add(filtered_list[i], dropper.root.prefix, dropper.root.show_loop_controls));
         }
-        ds_list_destroy(filtered_list);
     };
     yy += el_add.height + spacing;
     var el_remove = create_button(c2 + 16, yy, "Delete", ew, eh, fa_center, function(button) {

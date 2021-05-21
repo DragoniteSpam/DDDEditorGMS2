@@ -173,8 +173,8 @@ function dialog_create_manager_mesh_autotile(root) {
             var changes = { };
             var change_prefix = autotile.GUID + ":" + string(layer_index) + ":";
             
-            for (var i = 0; i < ds_list_size(filtered_list); i++) {
-                var fn = filtered_list[| i];
+            for (var i = 0; i < array_length(filtered_list); i++) {
+                var fn = filtered_list[i];
                 var name = filename_change_ext(filename_name(fn), "");
                 if (validate_int(name) && is_clamped(string(name), 0, AUTOTILE_COUNT - 1)) {
                     var index = string(name);
