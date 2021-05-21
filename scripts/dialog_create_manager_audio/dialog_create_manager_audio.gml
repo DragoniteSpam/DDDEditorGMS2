@@ -45,7 +45,7 @@ function dialog_create_manager_audio(dialog, name, prefix, list) {
     dg.el_list = el_list;
     
     var el_add = create_button(c2 + 16, yy, "Add", ew, eh, fa_center, function(button) {
-        var fn = get_open_filename_audio_fmod();
+        var fn = get_open_filename_audio();
         if (file_exists(fn)) {
             ds_list_add(button.root.el_list.entries, audio_add(fn, button.root.prefix, button.root.show_loop_controls));
         }

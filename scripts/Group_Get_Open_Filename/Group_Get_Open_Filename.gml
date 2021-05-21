@@ -11,20 +11,7 @@ function get_open_filename_mesh_autotile() {
     return path;
 }
 
-function get_open_filename_audio_effect() {
-    var path = get_open_filename_ext("Audio files (*.wav)|*.wav", "", Settings.location.audio, "Select an audio file");
-    
-    if (file_exists(path)) {
-        var dir = filename_dir(path);
-        if (string_length(dir) > 0) {
-            Settings.location.audio = dir;
-        }
-    }
-    
-    return path;
-}
-
-function get_open_filename_audio_fmod() {
+function get_open_filename_audio() {
     var path = get_open_filename_ext("Audio files (*.ogg, *.mid)|*.ogg;*.mid", "", Settings.location.audio, "Select an audio file");
     
     if (file_exists(path)) {
