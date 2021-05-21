@@ -115,6 +115,17 @@ function dialog_create_manager_graphic(root, name, list, prefix, load_function, 
     yy += el_name_internal.height + spacing;
     
     var el_dimensions = create_text(c2 + 16, yy, "Dimensions:", ew, eh, fa_left, ew, dg);
+    el_dimensions.render = function(text, x, y) {
+        var list = text.root.el_list;
+        var selection = ui_list_selection(list);
+        if (selection + 1) {
+            var image = list.entries[| selection];
+            text.text = "Dimensions: " + string(image.width) + " x " + string(image.height);
+        } else {
+            text.text = "Dimensions: N/A";
+        }
+        ui_render_text(text, x, y);
+    };
     dg.el_dimensions = el_dimensions;
     yy += el_dimensions.height + spacing;
     
