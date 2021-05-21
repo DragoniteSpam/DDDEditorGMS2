@@ -90,8 +90,7 @@ FMODGMS_Sys_Create();
 FMODGMS_Sys_Initialize(32);
 
 fmod_channel = FMODGMS_Chan_CreateChannel();
-fmod_sound = noone;
-fmod_paused = false;
+fmod_sound = -1;
 #endregion
 
 #region asset lists

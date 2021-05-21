@@ -33,11 +33,8 @@ function dialog_create_manager_audio(dialog, name, prefix, list) {
             ui_input_set_value(list.root.el_name_internal, audio.internal_name);
             ui_input_set_value(list.root.el_loop_start, string(audio.loop_start / audio.fmod_rate));
             ui_input_set_value(list.root.el_loop_end, string(audio.loop_end / audio.fmod_rate));
-            
-            if (Stuff.fmod_sound) {
-                FMODGMS_Chan_StopChannel(Stuff.fmod_channel);
-                Stuff.fmod_sound = -1;
-            }
+            FMODGMS_Chan_StopChannel(Stuff.fmod_channel);
+            Stuff.fmod_sound = -1;
         }
     }, false, dg, list);
     el_list.entries_are = ListEntries.INSTANCES;
@@ -115,23 +112,15 @@ function dialog_create_manager_audio(dialog, name, prefix, list) {
     }, dg);
     xx = xx + ((ew - 32) / 4);
     var el_pause = create_button(xx, yy, "Pause", ew / 4, eh, fa_center, function(button) {
-        if (Stuff.fmod_sound) {
-            FMODGMS_Chan_PauseChannel(Stuff.fmod_channel);
-            Stuff.fmod_paused = true;
-        }
+        FMODGMS_Chan_PauseChannel(Stuff.fmod_channel);
     }, dg);
     xx = xx + ((ew - 32) / 4);
     var el_resume = create_button(xx, yy, "Rsm.", ew / 4, eh, fa_center, function(button) {
-        if (Stuff.fmod_sound) {
-            FMODGMS_Chan_ResumeChannel(Stuff.fmod_channel);
-            Stuff.fmod_paused = false;
-        }
+        FMODGMS_Chan_ResumeChannel(Stuff.fmod_channel);
     }, dg);
     xx = xx + ((ew - 32) / 4);
     var el_stop = create_button(xx, yy, "Stop", ew / 4, eh, fa_center, function(button) {
-        if (Stuff.fmod_sound) {
-            FMODGMS_Chan_StopChannel(Stuff.fmod_channel);
-        }
+        FMODGMS_Chan_StopChannel(Stuff.fmod_channel);
     }, dg);
     
     yy += el_play.height + spacing * 2;
@@ -227,6 +216,8 @@ function dialog_create_manager_audio(dialog, name, prefix, list) {
     el_loop_progress.render = function(progress, x, y) {
         if (Stuff.fmod_sound + 1) {
             progress.value = FMODGMS_Chan_Get_Position(Stuff.fmod_channel) / FMODGMS_Snd_Get_Length(Stuff.fmod_sound);
+        } else {
+            progress.value = 0;
         }
         
         var list = progress.root.el_list;
