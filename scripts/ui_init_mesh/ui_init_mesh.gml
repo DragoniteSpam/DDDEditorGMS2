@@ -151,7 +151,7 @@ function ui_init_mesh(mode) {
             return dg;
         }
         
-        var element = create_list(c1x, yy, "Meshes:", "no meshes", ew0, eh, 24, null, true, id, Stuff.all_meshes);
+        var element = create_list(c1x, yy, "Meshes:", "no meshes", ew0, eh, 22, null, true, id, Stuff.all_meshes);
         element.tooltip = "All of the 3D meshes currently loaded. You can drag them from Windows Explorer into the program window to add them in bulk. Middle-click the list to alphabetize the meshes.";
         element.render_colors = function(list, index) {
             return (Stuff.all_meshes[| index].type == MeshTypes.SMF) ? c_red : c_black;
@@ -286,6 +286,25 @@ function ui_init_mesh(mode) {
             dg.el_text.y -= 32;
         }, id);
         element.tooltip = "Remove the selected 3D meshes.";
+        ds_list_add(contents, element);
+        yy += element.height + spacing;
+        
+        element = create_button(c1x, yy, "Separate Submeshes", ew0, eh, fa_center, function(button) {
+            var list = button.root.mesh_list;
+            var selection = list.selected_entries;
+            
+            for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
+                var mesh = Stuff.all_meshes[| index];
+                if (ds_list_size(mesh.submeshes) > 1) {
+                    for (var i = 0, n = ds_list_size(mesh.submeshes); i < n; i++) {
+                        var new_mesh = instance_create_depth(0, 0, 0, DataMesh);
+                        var submesh = new_mesh.AddSubmesh(mesh.submeshes[| i].Clone());
+                        new_mesh.name = mesh.name + "!Separated" + string_pad(i, " ", 3);
+                    }
+                }
+            }
+        }, id);
+        element.tooltip = "Separate the selected 3D meshes into individual models.";
         ds_list_add(contents, element);
         yy += element.height + spacing;
         
