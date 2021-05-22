@@ -300,6 +300,7 @@ function ui_init_mesh(mode) {
                         var new_mesh = instance_create_depth(0, 0, 0, DataMesh);
                         var submesh = new_mesh.AddSubmesh(mesh.submeshes[| i].Clone());
                         new_mesh.name = mesh.name + "!Separated" + string_pad(i, " ", 3);
+                        new_mesh.CopyPropertiesFrom(mesh);
                     }
                 }
             }

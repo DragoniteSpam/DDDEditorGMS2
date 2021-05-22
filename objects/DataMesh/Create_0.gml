@@ -38,6 +38,42 @@ texture_scale = 1;
 
 ds_list_add(Stuff.all_meshes, id);
 
+CopyPropertiesFrom = function(mesh) {
+    // cshape is currently NOT copied!
+    
+    self.xmin = mesh.xmin;
+    self.ymin = mesh.ymin;
+    self.zmin = mesh.zmin;
+    self.xmax = mesh.xmax;
+    self.ymax = mesh.ymax;
+    self.zmax = mesh.zmax;
+    
+    self.tex_base = mesh.tex_base;
+    self.tex_ambient = mesh.tex_ambient;
+    self.tex_specular_color = mesh.tex_specular_color;
+    self.tex_specular_highlight = mesh.tex_specular_highlight;
+    self.tex_alpha = mesh.tex_alpha;
+    self.tex_bump = mesh.tex_bump;
+    self.tex_displacement = mesh.tex_displacement;
+    self.tex_stencil = mesh.tex_stencil;
+    self.texture_scale = mesh.texture_scale;
+    
+    var hh = abs(mesh.xmax - mesh.xmin);
+    var ww = abs(mesh.ymax - mesh.ymin);
+    var dd = abs(mesh.zmax - mesh.zmin);
+    
+    self.asset_flags = array_create(hh);
+    for (var i = 0; i < hh; i++) {
+        self.asset_flags[i] = array_create(ww);
+        for (var j = 0; j < ww; j++) {
+            self.asset_flags[i][j] = array_create(dd);
+            for (var k = 0; k < dd; k++) {
+                self.asset_flags[i][j][k] = mesh.asset_flags[i][j][k];
+            }
+        }
+    }
+};
+
 enum MeshTypes {
     RAW,
     SMF
