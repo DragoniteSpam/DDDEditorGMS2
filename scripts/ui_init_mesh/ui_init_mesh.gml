@@ -152,7 +152,16 @@ function ui_init_mesh(mode) {
             return dg;
         }
         
-        var element = create_list(c1x, yy, "Meshes:", "no meshes", ew0, eh, 22, null, true, id, Stuff.all_meshes);
+        var element = create_list(c1x, yy, "Meshes:", "no meshes", ew0, eh, 22, function(list) {
+            var selection = list.selected_entries;
+            if (ds_map_size(selection) == 0) {
+                ui_input_set_value(list.root.mesh_name, "");
+            } else if (ds_map_size(selection) == 1) {
+                ui_input_set_value(list.root.mesh_name, Stuff.all_meshes[| ds_map_find_first(selection)].name);
+            } else {
+                ui_input_set_value(list.root.mesh_name, "(multiple)");
+            }
+        }, true, id, Stuff.all_meshes);
         element.tooltip = "All of the 3D meshes currently loaded. You can drag them from Windows Explorer into the program window to add them in bulk. Middle-click the list to alphabetize the meshes.";
         element.render_colors = function(list, index) {
             return (Stuff.all_meshes[| index].type == MeshTypes.SMF) ? c_red : c_black;
@@ -212,6 +221,17 @@ function ui_init_mesh(mode) {
                 }
             }
         };
+        ds_list_add(contents, element);
+        yy += element.height + spacing;
+        
+        element = create_input(c1x, yy, "Name:", ew0, eh, function(input) {
+            var selection = input.root.mesh_list.selected_entries;
+            for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
+                Stuff.all_meshes[| index].name = input.value;
+            }
+        }, "", "name", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, ew0, vy2, id);
+        element.tooltip = "The name of the selected mesh(es).";
+        mesh_name = element;
         ds_list_add(contents, element);
         yy += element.height + spacing;
         
@@ -467,7 +487,7 @@ function ui_init_mesh(mode) {
             }
             batch_again();
         }, id);
-        element.tooltip = "Rotate the \"up\" axis for the selected meshes. It would be nice if the world could standardize around either Y-up or Z-up, but that's never going to happen.";
+        element.tooltip = "Rotate the \"up\" axis for the selected meshes. It would be nice if the world could standardize around either Y-up or Z-up, but that's never going to happen. https://xkcd.com/927/";
         ds_list_add(contents, element);
         element = create_button(c2x + ew / 2, yy, "Invert Transparency", ew / 2, eh, fa_center, function(button) {
             var selection = button.root.mesh_list.selected_entries;
@@ -477,7 +497,7 @@ function ui_init_mesh(mode) {
             }
             batch_again();
         }, id);
-        element.tooltip = "Because literally nothing is standard with the OBJ file format, sometimes the \"Tr\" material attribute is \"transparency,\" and sometimes it's \"opacity.\" Click here to toggle between them.";
+        element.tooltip = "Because literally nothing is standard with the OBJ file format, sometimes the \"Tr\" material attribute is \"transparency,\" and sometimes it's \"opacity\" (1 - transparency). Click here to toggle between them.";
         ds_list_add(contents, element);
         yy += element.height + spacing;
         
