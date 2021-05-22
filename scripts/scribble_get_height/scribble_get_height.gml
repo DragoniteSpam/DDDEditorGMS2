@@ -4,11 +4,11 @@
 
 function scribble_get_height()
 {
-    var _scribble_array = argument[0];
+	var _scribble_array = argument[0];
     var _page           = (argument_count > 1)? argument[1] : undefined;
     
-    _scribble_array = scribble_cache(_scribble_array);
-    if (_scribble_array == undefined) return 0;
+	_scribble_array = scribble_cache(_scribble_array);
+	if (_scribble_array == undefined) return 0;
     
     if (_page != undefined)
     {

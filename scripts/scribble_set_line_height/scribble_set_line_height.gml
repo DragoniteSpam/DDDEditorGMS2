@@ -8,6 +8,6 @@
 
 function scribble_set_line_height()
 {
-    global.scribble_state_line_min_height = argument0;
-    global.scribble_state_line_max_height = argument1;
+	global.scribble_state_line_min_height = argument0;
+	global.scribble_state_line_max_height = argument1;
 }

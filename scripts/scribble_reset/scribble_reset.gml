@@ -5,7 +5,7 @@
 function scribble_reset()
 {
     global.scribble_state_starting_font   = global.__scribble_default_font; //Name of the starting font for every text element. Name must be a string. This is the font that is set when [/] or [/font] is used in a string
-    global.scribble_state_starting_color  = c_white;                        //Starting colour for every text element
+    global.scribble_state_starting_color  = EMU_COLOR_DEFAULT;                        //Starting colour for every text element
     global.scribble_state_starting_halign = fa_left;                        //Starting horizontal alignment for every text element
     global.scribble_state_xscale          = 1;                              //x-scale of the textbox
     global.scribble_state_yscale          = 1;                              //y-scale of the textbox
@@ -20,6 +20,11 @@ function scribble_reset()
     global.scribble_state_box_halign      = fa_left;                        //fa_left places the left-hand side of the box at the draw coordinate when using scribble_draw().
     global.scribble_state_box_valign      = fa_top;                         //fa_top places the top of the box at the draw coordinate when using scribble_draw().
     global.scribble_state_box_align_page  = false;                          //Whether to use text element sizes (false) or page sizes (true)
+    global.scribble_state_fog_colour      = c_fuchsia;                      //Fog colour
+    global.scribble_state_fog_alpha       = 0.0;                            //Fog blend factor
+    global.scribble_state_ignore_commands = false;                          //Whether to ignore command tags and to write strings out literally
+    
+    scribble_set_bezier();
     
     scribble_set_animation(SCRIBBLE_ANIM.WAVE_SIZE       ,  4   );
     scribble_set_animation(SCRIBBLE_ANIM.WAVE_FREQ       , 50   );
