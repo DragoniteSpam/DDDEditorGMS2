@@ -165,6 +165,30 @@ function dialog_create_mesh_material_settings(dialog, selection) {
     }
     #endregion
     
+    var container = instance_create_depth(0, 0, 0, UIMain);
+    
+    with (container) {
+        t_base = create_tab("Base Texture", 0, self.id);
+        t_ambient = create_tab("AmbientMap", 0, self.id);
+        t_specular_color = create_tab("Specular Color", 0, self.id);
+        t_specular_map = create_tab("Specular Map", 0, self.id);
+        
+        t_alpha = create_tab("Alpha Map", 1, self.id);
+        t_bump = create_tab("Bump Map", 1, self.id);
+        t_displacement = create_tab("Displacement Map", 1, self.id);
+        t_stencil = create_tab("Stencil Map", 1, self.id);
+        
+        // the game will crash if you create a tab row with zero width.
+        var tr_first = ds_list_create();
+        ds_list_add(tr_first, t_base, t_ambient, t_specular_color, t_specular_map);
+        var tr_second = ds_list_create();
+        ds_list_add(tr_second, t_alpha, t_bump, t_displacement, t_stencil);
+    
+        ds_list_add(tabs, tr_first, tr_second);
+        
+        active_tab = t_base;
+    }
+    
     var el_base = create_list(c1x, yy, "Base Texture", "no textures", ew, eh, 8, function(list) {
         var selection = ui_list_selection(list);
         for (var i = ds_map_find_first(list.root.selection); i != undefined; i = ds_map_find_next(list.root.selection, i)) {
