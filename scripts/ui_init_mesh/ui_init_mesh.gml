@@ -10,9 +10,10 @@ function ui_init_mesh(mode) {
         
         var c1x = cw * 0 + spacing;
         // the first column is a bit wider
-        var c2x = cw * 1 + spacing + spacing * 4;
-        var c3x = cw * 2 + spacing + spacing * 4;
-        var c4x = cw * 3 + spacing + spacing * 4;
+        var c2x = cw * 1.00 + spacing + spacing * 4;
+        var c3x = cw * 2.00 + spacing + spacing * 4;
+        var c4x = cw * 2.75 + spacing + spacing * 4;
+        var c5x = cw * 3.50 + spacing + spacing * 4;
         
         var vx1 = ew / 2;
         var vy1 = 0;
@@ -593,17 +594,26 @@ function ui_init_mesh(mode) {
         ds_list_add(contents, element);
         yy += element.height + spacing;
         
-        element = create_checkbox(c4x, yy, "Show Axes?", ew, eh, function(checkbox) {
-            Stuff.mesh_ed.draw_axes = checkbox.value;
-        }, mode.draw_axes, id);
-        element.tooltip = "Whether or not to draw the red, green, and blue axes in the 3D view.";
-        ds_list_add(contents, element);
-        yy += element.height + spacing;
-        
         element = create_checkbox(c4x, yy, "Show Back Faces?", ew, eh, function(checkbox) {
             Stuff.mesh_ed.draw_back_faces = checkbox.value;
         }, mode.draw_back_faces, id);
         element.tooltip = "For backface culling.";
+        ds_list_add(contents, element);
+        yy += element.height + spacing;
+        
+        yy = yy_base_rs;
+        
+        element = create_checkbox(c5x, yy, "Show Grid?", ew, eh, function(checkbox) {
+            Stuff.mesh_ed.draw_grid = checkbox.value;
+        }, mode.draw_grid, id);
+        element.tooltip = "Whether or not to draw the tile grid on the Z = 0 plane.";
+        ds_list_add(contents, element);
+        yy += element.height + spacing;
+        
+        element = create_checkbox(c5x, yy, "Show Axes?", ew, eh, function(checkbox) {
+            Stuff.mesh_ed.draw_axes = checkbox.value;
+        }, mode.draw_axes, id);
+        element.tooltip = "Whether or not to draw the red, green, and blue axes in the 3D view.";
         ds_list_add(contents, element);
         yy += element.height + spacing;
         #endregion

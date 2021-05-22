@@ -24,6 +24,7 @@ save = function() {
     Settings.mesh.draw_tex = draw_textures;
     Settings.mesh.draw_light = draw_lighting;
     Settings.mesh.draw_axes = draw_axes;
+    Settings.mesh.draw_grid = draw_grid;
     Settings.mesh.draw_back_faces = draw_back_faces;
     Settings.mesh.draw_reflections = draw_reflections;
     Settings.mesh.reflect_settings = reflect_settings;
@@ -43,6 +44,7 @@ draw_rot_z = 0;
 
 draw_axes = setting_get("mesh", "draw_axes", true);
 draw_light_direction = 180;
+draw_grid = setting_get("mesh", "draw_grid", true);
 
 reflect_settings = setting_get("mesh", "reflect_settings", MeshReflectionSettings.MIRROR_Y | MeshReflectionSettings.MIRROR_Z | MeshReflectionSettings.REVERSE | MeshReflectionSettings.COLORIZE);
 reflect_color = setting_get("mesh", "reflect_color", 0x7fff6600);
