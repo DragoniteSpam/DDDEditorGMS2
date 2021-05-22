@@ -34,15 +34,13 @@ function MeshSubmesh(name) constructor {
         var cloned_data = new MeshSubmesh(self.name);
         if (self.buffer) {
             cloned_data.buffer = buffer_clone(self.buffer, buffer_fixed, 1);
-            cloned_data.reflect_buffer = vertex_create_buffer_from_buffer(cloned_data.buffer, Stuff.graphics.vertex_format);
+            cloned_data.vbuffer = vertex_create_buffer_from_buffer(cloned_data.buffer, Stuff.graphics.vertex_format);
+            cloned_data.wbuffer = buffer_to_wireframe(cloned_data.buffer);
         }
-        if (self.vbuffer) {
-            cloned_data.vbuffer = buffer_clone(self.vbuffer, buffer_fixed, 1);
-            cloned_data.reflect_vbuffer = vertex_create_buffer_from_buffer(cloned_data.vbuffer, Stuff.graphics.vertex_format);
-        }
-        if (self.wbuffer) {
-            cloned_data.wbuffer = buffer_clone(self.wbuffer, buffer_fixed, 1);
-            cloned_data.reflect_wbuffer = vertex_create_buffer_from_buffer(cloned_data.wbuffer, Stuff.graphics.vertex_format);
+        if (self.reflect_buffer) {
+            cloned_data.reflect_buffer = buffer_clone(self.reflect_buffer, buffer_fixed, 1);
+            cloned_data.reflect_vbuffer = vertex_create_buffer_from_buffer(cloned_data.reflect_buffer, Stuff.graphics.vertex_format);
+            cloned_data.reflect_wbuffer = buffer_to_wireframe(cloned_data.reflect_buffer);
         }
         cloned_data.path = self.path;
         
