@@ -50,6 +50,14 @@ enum MeshFlags {
     SILHOUETTE          = 0x0002,
 }
 
+AddSubmesh = function(submesh, proto_guid) {
+    var mesh = self.id;
+    submesh.proto_guid = proto_guid_set(mesh, ds_list_size(mesh.submeshes), proto_guid);
+    submesh.owner = mesh;
+    ds_list_add(mesh.submeshes, submesh);
+    return submesh;
+};
+
 AutoCalculateBounds = function() {
     xmin = infinity;
     ymin = infinity;
