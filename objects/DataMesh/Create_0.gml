@@ -38,8 +38,6 @@ texture_scale = 1;
 
 ds_list_add(Stuff.all_meshes, id);
 
-preview_index = 0;
-
 enum MeshTypes {
     RAW,
     SMF
