@@ -202,6 +202,12 @@ function buffer_write_sprite(buffer, sprite) {
     surface_free(surface);
     buffer_delete(sbuffer);
 }
+
+function buffer_clone(buffer, type, alignment) {
+    var new_buffer = buffer_create(buffer_get_size(buffer), type, alignment);
+    buffer_copy(buffer, 0, buffer_get_size(buffer), new_buffer, 0);
+    return new_buffer;
+}
 #endregion
 
 #region ds_list stuff
