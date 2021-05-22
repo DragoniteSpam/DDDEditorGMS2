@@ -4,8 +4,8 @@ function dialog_exists() {
 
 function dialog_create(width, height, text, render, commit, root, close) {
     if (render == undefined) render = dialog_default;
-    if (commit == undefined) commit = dc_default;
-    if (close == undefined) close = dc_default;
+    if (commit == undefined) commit = dialog_destroy;
+    if (close == undefined) close = dialog_destroy;
     var base_x = 64;
     var base_y = 64;
     var offset = 48;

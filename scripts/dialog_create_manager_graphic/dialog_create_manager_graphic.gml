@@ -2,7 +2,7 @@ function dialog_create_manager_graphic(root, name, list, prefix, load_function, 
     var dw = 1280;
     var dh = 720;
     
-    var dg = dialog_create(dw, dh, name, dialog_default, dc_close_no_questions_asked, root);
+    var dg = dialog_create(dw, dh, name, dialog_default, dialog_destroy, root);
     dg.dialog_flags |= DialogFlags.IS_GENERIC_WARNING;
     dg.graphics_prefix = prefix;
     var columns = 4;
@@ -225,7 +225,7 @@ function dialog_create_manager_graphic(root, name, list, prefix, load_function, 
             var ypadding = 128;
             var dw = clamp(sprite_get_width(button.image), 192, 960) + xpadding;
             var dh = clamp(sprite_get_height(button.image), 192, 960) + ypadding;
-            var dg = dialog_create(dw, dh, "Picture", dialog_default, dc_default, button.root);
+            var dg = dialog_create(dw, dh, "Picture", dialog_default, dialog_destroy, button.root);
             var b_width = 128;
             var b_height = 32;
             var el_picture = create_image_button(xpadding / 2, ypadding / 2, "", button.image, dw - xpadding, dh - ypadding, fa_center, null, dg);

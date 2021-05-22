@@ -5,7 +5,7 @@ function dialog_create_event_condition_switch(node, index) {
     var dw = 320;
     var dh = 560;
     
-    var dg = dialog_create(dw, dh, "Condition: Global Switch", dialog_default, dc_close_no_questions_asked, node);
+    var dg = dialog_create(dw, dh, "Condition: Global Switch", dialog_default, dialog_destroy, node);
     dg.node = node;
     dg.index = index;
     

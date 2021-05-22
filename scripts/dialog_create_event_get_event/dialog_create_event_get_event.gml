@@ -12,7 +12,7 @@ function dialog_create_event_get_event(argument0, argument1, argument2, argument
     var dw = 320;
     var dh = 640;
 
-    var dg = dialog_create(dw, dh, "Select Event", dialog_default, dc_close_no_questions_asked, root);
+    var dg = dialog_create(dw, dh, "Select Event", dialog_default, dialog_destroy, root);
     dg.event = noone;
     dg.node = node;
     dg.index = index;

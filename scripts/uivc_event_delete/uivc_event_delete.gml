@@ -12,7 +12,7 @@ function uivc_event_delete(argument0) {
 
     Stuff.event.active = Stuff.all_events[| 0];
 
-    dc_default(button);
+    dialog_destroy(button);
 
 
 }

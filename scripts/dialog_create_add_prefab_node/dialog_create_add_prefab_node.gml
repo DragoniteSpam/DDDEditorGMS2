@@ -7,7 +7,7 @@ function dialog_create_add_prefab_node(argument0) {
     var dh = 640;
 
     // todo cache the custom event and only commit the changes when you're done
-    var dg = dialog_create(dw, dh, "Prefab Nodes", dialog_default, dc_close_no_questions_asked, root);
+    var dg = dialog_create(dw, dh, "Prefab Nodes", dialog_default, dialog_destroy, root);
 
     var columns = 1;
     var spacing = 16;

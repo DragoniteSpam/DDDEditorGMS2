@@ -4,7 +4,7 @@ function dialog_create_mesh_material_settings(dialog, selection) {
     var dw = 1200;
     var dh = 840;
     
-    var dg = dialog_create(dw, dh, "Materials", dialog_default, dc_close_no_questions_asked, root);
+    var dg = dialog_create(dw, dh, "Materials", dialog_default, dialog_destroy, root);
     dg.selection = selection;
     
     var columns = 3;

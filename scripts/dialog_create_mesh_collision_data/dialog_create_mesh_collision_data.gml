@@ -12,7 +12,7 @@ function dialog_create_mesh_collision_data(root, mesh) {
     var dw = 1440;
     var dh = 800;
     
-    var dg = dialog_create(dw, dh, "Mesh flag data: " + mesh.name, dialog_default, dc_close_no_questions_asked, root);
+    var dg = dialog_create(dw, dh, "Mesh flag data: " + mesh.name, dialog_default, dialog_destroy, root);
     dg.mesh = mesh;
     dg.xx = 0;
     dg.yy = 0;

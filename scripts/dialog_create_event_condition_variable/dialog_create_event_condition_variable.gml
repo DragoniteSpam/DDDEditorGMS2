@@ -5,7 +5,7 @@ function dialog_create_event_condition_variable(node, index) {
     var dw = 640;
     var dh = 560;
     
-    var dg = dialog_create(dw, dh, "Condition: Global Variable", dialog_default, dc_close_no_questions_asked, node);
+    var dg = dialog_create(dw, dh, "Condition: Global Variable", dialog_default, dialog_destroy, node);
     dg.node = node;
     dg.index = index;
     

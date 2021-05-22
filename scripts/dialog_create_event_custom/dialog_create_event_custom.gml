@@ -6,7 +6,7 @@ function dialog_create_event_custom(argument0) {
     var dw = 960;
     var dh = 560;
 
-    var dg = dialog_create(dw, dh, "Custom Event Node Properties", dialog_note_changes, dc_close_no_questions_asked, dialog);
+    var dg = dialog_create(dw, dh, "Custom Event Node Properties", dialog_note_changes, dialog_destroy, dialog);
     dg.x = dg.x - 32;
 
     // later on this will be a clone; elements on the dialog should check this instead of the permenant one,

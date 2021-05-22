@@ -2,7 +2,7 @@ function dialog_create_settings_data_asset_files(dialog) {
     var dw = 960;
     var dh = 400;
     
-    var dg = dialog_create(dw, dh, "Data and Asset Files", dialog_default, dc_close_no_questions_asked, dialog);
+    var dg = dialog_create(dw, dh, "Data and Asset Files", dialog_default, dialog_destroy, dialog);
     dg.file = undefined;
     
     var columns = 3;

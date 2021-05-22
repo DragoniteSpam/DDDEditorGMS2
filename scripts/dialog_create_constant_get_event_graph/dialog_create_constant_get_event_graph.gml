@@ -8,7 +8,7 @@ function dialog_create_constant_get_event_graph(argument0, argument1) {
     var dw = 320;
     var dh = 640;
 
-    var dg = dialog_create(dw, dh, "Select Event", dialog_default, dc_close_no_questions_asked, dialog);
+    var dg = dialog_create(dw, dh, "Select Event", dialog_default, dialog_destroy, dialog);
     dg.constant = constant;
 
     var columns = 1;

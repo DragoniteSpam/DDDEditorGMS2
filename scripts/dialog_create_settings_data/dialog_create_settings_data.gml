@@ -2,7 +2,7 @@ function dialog_create_settings_data(dialog) {
     var dw = 960;
     var dh = 640;
     
-    var dg = dialog_create(dw, dh, "Data Settings", dialog_default, dc_close_no_questions_asked, dialog);
+    var dg = dialog_create(dw, dh, "Data Settings", dialog_default, dialog_destroy, dialog);
     
     var columns = 3;
     var spacing = 16;

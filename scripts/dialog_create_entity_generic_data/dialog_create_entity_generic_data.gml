@@ -5,7 +5,7 @@ function dialog_create_entity_generic_data(dialog) {
     // you can assume that this is valid data because this won't be called otherwise
     var list = Stuff.map.selected_entities;
     var entity = list[| 0];
-    var dg = dialog_create(dw, dh, "Generic Data", dialog_default, dc_close_no_questions_asked, dialog);
+    var dg = dialog_create(dw, dh, "Generic Data", dialog_default, dialog_destroy, dialog);
     dg.entity = entity;
     
     var columns = 2;

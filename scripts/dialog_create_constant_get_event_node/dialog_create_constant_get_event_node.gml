@@ -13,7 +13,7 @@ function dialog_create_constant_get_event_node(dialog) {
     var dw = 320;
     var dh = 640;
     
-    var dg = dialog_create(dw, dh, event.name, dialog_default, dc_close_no_questions_asked, dialog);
+    var dg = dialog_create(dw, dh, event.name, dialog_default, dialog_destroy, dialog);
     dg.constant = constant;
     dg.event = event;
     

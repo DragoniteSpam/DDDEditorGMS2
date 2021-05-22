@@ -16,7 +16,7 @@ function dialog_create_event_node_custom_data(argument0, argument1, argument2, a
     var dh = 640;
 
     // todo cache the custom event and only commit the changes when you're done
-    var dg = dialog_create(dw, dh, "Data Type: " + type.name, dialog_default, dc_close_no_questions_asked, dialog);
+    var dg = dialog_create(dw, dh, "Data Type: " + type.name, dialog_default, dialog_destroy, dialog);
 
     var columns = 1;
     var spacing = 16;

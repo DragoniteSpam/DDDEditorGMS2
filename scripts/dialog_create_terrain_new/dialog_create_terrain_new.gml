@@ -6,7 +6,7 @@ function dialog_create_terrain_new(argument0) {
     var dw = 400;
     var dh = 320;
 
-    var dg = dialog_create(dw, dh, "New Terrain", dialog_default, dc_default, dialog);
+    var dg = dialog_create(dw, dh, "New Terrain", dialog_default, dialog_destroy, dialog);
 
     var columns = 1;
     var spacing = 16;

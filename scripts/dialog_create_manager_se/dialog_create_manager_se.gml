@@ -2,7 +2,7 @@ function dialog_create_manager_se(dialog) {
     var dw = 768;
     var dh = 480;
     
-    var dg = dialog_create(dw, dh, "Data: Available Sound Effects", dialog_default, dc_default, dialog);
+    var dg = dialog_create(dw, dh, "Data: Available Sound Effects", dialog_default, dialog_destroy, dialog);
     
     var columns = 3;
     var spacing = 16;

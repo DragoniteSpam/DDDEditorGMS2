@@ -10,7 +10,7 @@ function dialog_create_refid_list() {
     var dw = 640;
     var dh = 640;
 
-    var dg = dialog_create(dw, dh, "Entities", dialog_default, dc_close_no_questions_asked, dialog);
+    var dg = dialog_create(dw, dh, "Entities", dialog_default, dialog_destroy, dialog);
 
     var columns = 2;
     var ew = dw / columns - 32 * columns;

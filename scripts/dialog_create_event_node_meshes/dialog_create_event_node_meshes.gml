@@ -7,7 +7,7 @@ function dialog_create_event_node_meshes(argument0, argument1, argument2, argume
     var dw = 320;
     var dh = 640;
 
-    var dg = dialog_create(dw, dh, "Meshes", dialog_default, dc_close_no_questions_asked, argument0);
+    var dg = dialog_create(dw, dh, "Meshes", dialog_default, dialog_destroy, argument0);
 
     var columns = 1;
     var spacing = 16;

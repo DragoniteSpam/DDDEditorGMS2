@@ -7,7 +7,7 @@ function dialog_create_event_node_audio_se(argument0, argument1, argument2, argu
     var dw = 320;
     var dh = 640;
 
-    var dg = dialog_create(dw, dh, "Audio: Sound Effects", dialog_default, dc_close_no_questions_asked, argument0);
+    var dg = dialog_create(dw, dh, "Audio: Sound Effects", dialog_default, dialog_destroy, argument0);
 
     var columns = 1;
     var spacing = 16;

@@ -2,7 +2,7 @@ event_inherited();
 
 data = ds_map_create();
 commit = null;
-close = dc_default;
+close = dialog_destroy;
 changed = false;
 
 // for dragging the dialog around with the mouse

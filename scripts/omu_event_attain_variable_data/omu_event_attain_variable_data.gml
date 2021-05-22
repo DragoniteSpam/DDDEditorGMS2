@@ -5,7 +5,7 @@ function omu_event_attain_variable_data(thing, event_node, data_index) {
     var dw = 320;
     var dh = 560;
     
-    var dg = dialog_create(dw, dh, "Modify Global Variable", dialog_default, dc_close_no_questions_asked, thing);
+    var dg = dialog_create(dw, dh, "Modify Global Variable", dialog_default, dialog_destroy, thing);
     dg.node = event_node;
     dg.index = data_index;
     

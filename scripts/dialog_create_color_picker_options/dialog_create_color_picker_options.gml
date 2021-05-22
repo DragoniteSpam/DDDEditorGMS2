@@ -4,7 +4,7 @@ function dialog_create_color_picker_options(dialog, color, onvaluechange) {
     var dw = 480;
     var dh = 400;
     
-    var dg = dialog_create(dw, dh, "Pick a color", dialog_default, dc_close_no_questions_asked, dialog);
+    var dg = dialog_create(dw, dh, "Pick a color", dialog_default, dialog_destroy, dialog);
     
     var ew = 320 - 64;
     var eh = 24;

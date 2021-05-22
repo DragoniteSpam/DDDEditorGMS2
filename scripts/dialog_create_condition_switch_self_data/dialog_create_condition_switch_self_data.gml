@@ -8,7 +8,7 @@ function dialog_create_condition_switch_self_data(argument0, argument1) {
     var dw = 320;
     var dh = 320;
 
-    var dg = dialog_create(dw, dh, "Condition: Self Switch", dialog_default, dc_close_no_questions_asked, node);
+    var dg = dialog_create(dw, dh, "Condition: Self Switch", dialog_default, dialog_destroy, node);
     dg.node = node;
     dg.index = index;
 

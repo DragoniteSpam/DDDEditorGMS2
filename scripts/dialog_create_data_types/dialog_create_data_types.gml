@@ -438,7 +438,7 @@ function dialog_create_data_types(dialog) {
     
     yy += eh + spacing;
     
-    var el_confirm = create_button(dw / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dc_default, dg, fa_center);
+    var el_confirm = create_button(dw / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dialog_destroy, dg, fa_center);
     
     ds_list_add(dg.contents,
         // data types

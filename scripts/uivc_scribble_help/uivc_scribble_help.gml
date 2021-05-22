@@ -7,7 +7,7 @@ function uivc_scribble_help(argument0) {
     var dw = 1280;
     var dh = 760;
 
-    var dg = dialog_create(dw, dh, "Scribble Cheat Sheet", dialog_default, dc_default, button);
+    var dg = dialog_create(dw, dh, "Scribble Cheat Sheet", dialog_default, dialog_destroy, button);
 
     var columns = 1;
     var spacing = 16;

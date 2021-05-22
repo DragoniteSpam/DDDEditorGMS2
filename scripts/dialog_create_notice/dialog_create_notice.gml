@@ -17,7 +17,7 @@ function dialog_create_notice() {
     var b_width = 128;
     var b_height = 32;
 
-    var dg = dialog_create(dw, dh, caption_message, dialog_default, dc_close_no_questions_asked, root);
+    var dg = dialog_create(dw, dh, caption_message, dialog_default, dialog_destroy, root);
 
     var el_text = create_text(dw / 2, 32 + (dh - 32 - b_height) / 2, message, 0, 0, fa_center, dw - 128, dg);
     dg.el_text = el_text;

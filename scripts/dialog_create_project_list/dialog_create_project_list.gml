@@ -2,7 +2,7 @@ function dialog_create_project_list(root) {
     var dw = 640;
     var dh = 512;
     
-    var dg = dialog_create(dw, dh, "Open Project", dialog_default, dc_default, root);
+    var dg = dialog_create(dw, dh, "Open Project", dialog_default, dialog_destroy, root);
     dg.dialog_flags |= DialogFlags.NO_CLOSE_BUTTON;
     
     var columns = 2;

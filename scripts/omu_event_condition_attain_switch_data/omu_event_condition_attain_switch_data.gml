@@ -7,7 +7,7 @@ function omu_event_condition_attain_switch_data(thing) {
     var dw = 320;
     var dh = 560;
     
-    var dg = dialog_create(dw, dh, "Global Switch", dialog_default, dc_close_no_questions_asked, thing);
+    var dg = dialog_create(dw, dh, "Global Switch", dialog_default, dialog_destroy, thing);
     
     var columns = 1;
     var spacing = 16;

@@ -7,7 +7,7 @@ function uivc_scribble_available_fonts(argument0) {
     var dw = 320;
     var dh = 560;
 
-    var dg = dialog_create(dw, dh, "Scribble Fonts", dialog_default, dc_default, button);
+    var dg = dialog_create(dw, dh, "Scribble Fonts", dialog_default, dialog_destroy, button);
 
     var spacing = 16;
     var columns = 1;

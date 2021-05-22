@@ -20,7 +20,7 @@ function uivc_event_custom_delete(argument0) {
     instance_activate_object(custom);
     instance_destroy(custom);
 
-    dc_default(button);
+    dialog_destroy(button);
 
 
 }

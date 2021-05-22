@@ -34,7 +34,7 @@ function dialog_create_data_instance_alphabetize(argument0) {
 
     yy += eh + spacing;
 
-    var el_cancel = create_button(dw / 2 - b_width - spacing, dh - 32 - b_height / 2, "Cancel", b_width, b_height, fa_center, dc_default, dg, fa_center);
+    var el_cancel = create_button(dw / 2 - b_width - spacing, dh - 32 - b_height / 2, "Cancel", b_width, b_height, fa_center, dialog_destroy, dg, fa_center);
     var el_alphabet_name = create_button(dw / 2, dh - 32 - b_height / 2, "By Name", b_width, b_height, fa_center, uimu_data_alphabetize_name, dg, fa_center);
     var el_alphabet_internal = create_button(dw / 2 + b_width + spacing, dh - 32 - b_height / 2, "By Internal Name", b_width, b_height, fa_center, uimu_data_alphabetize_internal, dg, fa_center);
 

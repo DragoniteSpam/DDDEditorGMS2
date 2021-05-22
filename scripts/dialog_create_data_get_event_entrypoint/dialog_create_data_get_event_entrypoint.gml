@@ -9,7 +9,7 @@ function dialog_create_data_get_event_entrypoint(argument0) {
     var dw = 320;
     var dh = 544;
 
-    var dg = dialog_create(dw, dh, "Select entrypoint", dialog_default, dc_close_no_questions_asked, dialog);
+    var dg = dialog_create(dw, dh, "Select entrypoint", dialog_default, dialog_destroy, dialog);
 
     var columns = 1;
     var spacing = 16;

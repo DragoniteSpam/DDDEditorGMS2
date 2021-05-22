@@ -5,7 +5,7 @@ function dc_data_why(argument0) {
     var dw=400;
     var dh=360;
 
-    var dg=dialog_create(dw, dh, "this is work", dialog_default, dc_close_no_questions_asked, argument0);
+    var dg=dialog_create(dw, dh, "this is work", dialog_default, dialog_destroy, argument0);
 
     var b_width=128;
     var b_height=32;

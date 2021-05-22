@@ -10,7 +10,7 @@ function ui_particle_type_secondary(argument0) {
         var dw = 640;
         var dh = 480;
     
-        var dg = dialog_create(dw, dh, "Secondary Emission", dialog_default, dc_close_no_questions_asked, button);
+        var dg = dialog_create(dw, dh, "Secondary Emission", dialog_default, dialog_destroy, button);
         dg.type = type;
         dg.active_shade = false;
     

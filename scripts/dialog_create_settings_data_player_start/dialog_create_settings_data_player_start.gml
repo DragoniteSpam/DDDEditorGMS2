@@ -2,7 +2,7 @@ function dialog_create_settings_data_player_start(dialog) {
     var dw = 640;
     var dh = 640;
     
-    var dg = dialog_create(dw, dh, "Data Settings: Player Starting Location", dialog_default, dc_close_no_questions_asked, dialog);
+    var dg = dialog_create(dw, dh, "Data Settings: Player Starting Location", dialog_default, dialog_destroy, dialog);
     
     var columns = 2;
     var ew = dw / columns - 64;

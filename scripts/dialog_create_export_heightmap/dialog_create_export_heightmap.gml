@@ -6,7 +6,7 @@ function dialog_create_export_heightmap(argument0) {
     var dw = 400;
     var dh = 320;
 
-    var dg = dialog_create(dw, dh, "Heightmap Settings", dialog_default, dc_close_no_questions_asked, dialog);
+    var dg = dialog_create(dw, dh, "Heightmap Settings", dialog_default, dialog_destroy, dialog);
 
     var columns = 1;
     var spacing = 16;

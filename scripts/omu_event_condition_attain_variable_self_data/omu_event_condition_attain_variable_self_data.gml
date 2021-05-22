@@ -12,7 +12,7 @@ function omu_event_condition_attain_variable_self_data(argument0) {
     var dw = 640;
     var dh = 360;
 
-    var dg = dialog_create(dw, dh, "Self Variable", dialog_default, dc_close_no_questions_asked, thing);
+    var dg = dialog_create(dw, dh, "Self Variable", dialog_default, dialog_destroy, thing);
 
     var columns = 2;
     var spacing = 16;

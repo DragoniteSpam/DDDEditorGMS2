@@ -2,7 +2,7 @@ function dialog_create_preferences() {
     var dw = 640;
     var dh = 640;
     
-    var dg = dialog_create(dw, dh, "Preferences", dialog_default, dc_close_no_questions_asked, undefined);
+    var dg = dialog_create(dw, dh, "Preferences", dialog_default, dialog_destroy, undefined);
     
     var columns = 2;
     var spacing = 16;

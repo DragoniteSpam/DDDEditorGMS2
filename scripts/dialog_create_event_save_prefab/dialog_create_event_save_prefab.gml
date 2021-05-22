@@ -8,7 +8,7 @@ function dialog_create_event_save_prefab(argument0, argument1) {
     var dw = 400;
     var dh = 280;
 
-    var dg = dialog_create(dw, dh, "Save As Prefab?", dialog_note_changes, dc_close_no_questions_asked, dialog);
+    var dg = dialog_create(dw, dh, "Save As Prefab?", dialog_note_changes, dialog_destroy, dialog);
     dg.node = node;
 
     var columns = 1;

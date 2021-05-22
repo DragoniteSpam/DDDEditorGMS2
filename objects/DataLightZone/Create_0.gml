@@ -13,7 +13,7 @@ zone_edit_script = function(root) {
     var dw = 960;
     var dh = 480;
     
-    var dg = dialog_create(dw, dh, "Light Zone Settings: " + zone.name, dialog_default, dc_close_no_questions_asked, root);
+    var dg = dialog_create(dw, dh, "Light Zone Settings: " + zone.name, dialog_default, dialog_destroy, root);
     dg.zone = zone;
     
     var columns = 3;

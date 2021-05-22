@@ -2,7 +2,7 @@ function dialog_create_game_data_asset_flags(root, index) {
     var dw = 960;
     var dh = 800;
     
-    var dg = dialog_create(dw, dh, "Asset Flags", dialog_default, dc_close_no_questions_asked, root);
+    var dg = dialog_create(dw, dh, "Asset Flags", dialog_default, dialog_destroy, root);
     var data = guid_get(Stuff.data.ui.active_type_guid);
     var selection = ui_list_selection(Stuff.data.ui.el_instances);
     dg.inst = data.instances[| selection];

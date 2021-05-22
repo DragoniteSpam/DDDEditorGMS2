@@ -19,7 +19,7 @@ function uimu_data_alphabetize_internal(argument0) {
         }
     }
 
-    dc_default(thing.root);
+    dialog_destroy(thing.root);
 
 
 }

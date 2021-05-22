@@ -2,7 +2,7 @@ function dialog_create_settings_data_variables(dialog) {
     var dw = 640;
     var dh = 640;
     
-    var dg = dialog_create(dw, dh, "Data Settings: Global Variables", dialog_default, dc_close_no_questions_asked, dialog);
+    var dg = dialog_create(dw, dh, "Data Settings: Global Variables", dialog_default, dialog_destroy, dialog);
     
     var ew = dw / 2 - 64;
     var eh = 24;

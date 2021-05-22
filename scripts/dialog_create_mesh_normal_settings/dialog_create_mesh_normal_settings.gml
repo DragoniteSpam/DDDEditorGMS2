@@ -4,7 +4,7 @@ function dialog_create_mesh_normal_settings(root, selection) {
     var dw = 320;
     var dh = 320;
     
-    var dg = dialog_create(dw, dh, "Normals", dialog_default, dc_close_no_questions_asked, root);
+    var dg = dialog_create(dw, dh, "Normals", dialog_default, dialog_destroy, root);
     dg.selection = selection;
     
     var columns = 1;

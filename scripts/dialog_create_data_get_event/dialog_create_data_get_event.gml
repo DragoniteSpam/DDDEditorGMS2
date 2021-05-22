@@ -6,7 +6,7 @@ function dialog_create_data_get_event(argument0) {
     var dw = 320;
     var dh = 640;
 
-    var dg = dialog_create(dw, dh, "Select Event", dialog_default, dc_close_no_questions_asked, root);
+    var dg = dialog_create(dw, dh, "Select Event", dialog_default, dialog_destroy, root);
     dg.event = noone;
 
     var columns = 1;

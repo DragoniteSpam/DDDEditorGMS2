@@ -17,7 +17,7 @@ function dialog_create_entity_get_event_entrypoint(argument0, argument1) {
     var entity = list[| 0];
     var page = entity.object_events[| index];
 
-    var dg = dialog_create(dw, dh, "Select entrypoint: " + event.name, dialog_default, dc_close_no_questions_asked, dialog);
+    var dg = dialog_create(dw, dh, "Select entrypoint: " + event.name, dialog_default, dialog_destroy, dialog);
 
     var columns = 1;
     var spacing = 16;

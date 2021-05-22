@@ -4,7 +4,7 @@ function dialog_create_map_generic_data(root) {
     var dw = 640;
     var dh = 640;
     
-    var dg = dialog_create(dw, dh, "Generic Data", dialog_default, dc_close_no_questions_asked, root);
+    var dg = dialog_create(dw, dh, "Generic Data", dialog_default, dialog_destroy, root);
     
     var columns = 2;
     var spacing = 16;

@@ -11,7 +11,7 @@ function dialog_create_entity_move_route(argument0, argument1) {
     // you can assume that this is valid data because this won't be called otherwise
     var list = Stuff.map.selected_entities;
     var entity = list[| 0];
-    var dg = dialog_create(dw, dh, "Edit Move Route", dialog_default, dc_close_no_questions_asked, dialog);
+    var dg = dialog_create(dw, dh, "Edit Move Route", dialog_default, dialog_destroy, dialog);
     dg.route = route;
 
     var columns = 4;

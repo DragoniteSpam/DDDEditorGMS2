@@ -12,7 +12,7 @@ function uivc_move_route_delete(argument0) {
     instance_activate_object(route);
     instance_destroy(route);
 
-    dc_default(button);
+    dialog_destroy(button);
 
 
 }

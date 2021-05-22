@@ -2,7 +2,7 @@ function dialog_create_manager_audio(dialog, name, prefix, list) {
     var dw = 768;
     var dh = 480;
     
-    var dg = dialog_create(dw, dh, name, dialog_default, dc_default, dialog);
+    var dg = dialog_create(dw, dh, name, dialog_default, dialog_destroy, dialog);
     dg.prefix = prefix;
     
     var columns = 3;

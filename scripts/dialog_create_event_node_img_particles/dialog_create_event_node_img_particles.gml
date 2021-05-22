@@ -9,7 +9,7 @@ function dialog_create_event_node_img_particles(argument0, argument1, argument2,
     var dw = 320;
     var dh = 640;
 
-    var dg = dialog_create(dw, dh, "Particles", dialog_default, dc_close_no_questions_asked, root);
+    var dg = dialog_create(dw, dh, "Particles", dialog_default, dialog_destroy, root);
 
     var columns = 1;
     var spacing = 16;

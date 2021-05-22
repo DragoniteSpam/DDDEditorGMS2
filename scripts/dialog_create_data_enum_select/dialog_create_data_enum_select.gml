@@ -6,7 +6,7 @@ function dialog_create_data_enum_select(argument0) {
     var dw = 320;
     var dh = 640;
 
-    var dg = dialog_create(dw, dh, "Select Enum", dialog_default, dc_close_no_questions_asked, root);
+    var dg = dialog_create(dw, dh, "Select Enum", dialog_default, dialog_destroy, root);
 
     var columns = 1;
     var spacing = 16;

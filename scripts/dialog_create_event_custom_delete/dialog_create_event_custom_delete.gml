@@ -58,7 +58,7 @@ function dialog_create_event_custom_delete(argument0, argument1) {
     yy += el_text.height + spacing;
 
     var el_yes = create_button(dw / 2 - b_width / 2 - spacing, dh - 32 - b_height / 2, "Yes", b_width, b_height, fa_center, uivc_event_custom_delete, dg, fa_center);
-    var el_no = create_button(dw / 2 + b_width / 2 + spacing, dh - 32 - b_height / 2, "No", b_width, b_height, fa_center, dc_default, dg, fa_center);
+    var el_no = create_button(dw / 2 + b_width / 2 + spacing, dh - 32 - b_height / 2, "No", b_width, b_height, fa_center, dialog_destroy, dg, fa_center);
 
     ds_list_add(dg.contents,
         el_text,

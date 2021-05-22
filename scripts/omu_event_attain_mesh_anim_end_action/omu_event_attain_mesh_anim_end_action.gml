@@ -4,7 +4,7 @@ function omu_event_attain_mesh_anim_end_action(thing, event_node, data_index) {
     var dw = 320;
     var dh = 320;
     
-    var dg = dialog_create(dw, dh, "Mesh Animation Settings", dialog_default, dc_close_no_questions_asked, thing);
+    var dg = dialog_create(dw, dh, "Mesh Animation Settings", dialog_default, dialog_destroy, thing);
     dg.node = event_node;
     dg.index = data_index;
     

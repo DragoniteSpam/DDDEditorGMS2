@@ -10,7 +10,7 @@ function omu_event_condition_attain_switch_self_data(argument0) {
     var dw = 320;
     var dh = 320;
 
-    var dg = dialog_create(dw, dh, "Self Switch", dialog_default, dc_close_no_questions_asked, thing);
+    var dg = dialog_create(dw, dh, "Self Switch", dialog_default, dialog_destroy, thing);
 
     var columns = 1;
     var spacing = 16;

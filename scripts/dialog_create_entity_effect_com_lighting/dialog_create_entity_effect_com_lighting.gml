@@ -10,7 +10,7 @@ function dialog_create_entity_effect_com_lighting(root) {
     var dw = 320;
     var dh = 540;
     
-    var dg = dialog_create(dw, dh, "Effect Component: Lighting", dialog_default, dc_close_no_questions_asked, root);
+    var dg = dialog_create(dw, dh, "Effect Component: Lighting", dialog_default, dialog_destroy, root);
     
     var spacing = 16;
     var columns = 1;

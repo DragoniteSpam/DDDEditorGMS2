@@ -2,7 +2,7 @@ function dialog_create_select_data_types_ext(root, value, onvaluechange) {
     var dw = 560;
     var dh = 480;
     
-    var dg = dialog_create(dw, dh, "Other Data Types", dialog_default, dc_close_no_questions_asked, root);
+    var dg = dialog_create(dw, dh, "Other Data Types", dialog_default, dialog_destroy, root);
     
     var columns = 2;
     var spacing = 16;
@@ -50,7 +50,7 @@ function dialog_create_select_data_types_ext(root, value, onvaluechange) {
     
     dg.el_list = el_list;
     
-    var el_confirm = create_button(dw / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dc_close_no_questions_asked, dg, fa_center);
+    var el_confirm = create_button(dw / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dialog_destroy, dg, fa_center);
     
     ds_list_add(dg.contents,
         el_list,

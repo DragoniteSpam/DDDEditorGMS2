@@ -11,7 +11,7 @@ function uivc_entity_remove_event_page(argument0) {
     instance_activate_object(event);
     instance_destroy(event);
 
-    dc_default(button);
+    dialog_destroy(button);
 
 
 }

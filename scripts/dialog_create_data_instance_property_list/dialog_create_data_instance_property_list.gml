@@ -13,7 +13,7 @@ function dialog_create_data_instance_property_list(root) {
     var property = data.properties[| root.key];
     var instance = guid_get(data.instances[| selection].GUID);
     
-    var dg = dialog_create(dw, dh, instance.name + ": " + property.name, dialog_default, dc_close_no_questions_asked, root);
+    var dg = dialog_create(dw, dh, instance.name + ": " + property.name, dialog_default, dialog_destroy, root);
     dg.property = property;
     
     var columns = 1;

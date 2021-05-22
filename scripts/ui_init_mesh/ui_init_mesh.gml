@@ -37,7 +37,7 @@ function ui_init_mesh(mode) {
             var dw = 720;
             var dh = 480;
             
-            var dg = dialog_create(dw, dh, "Vertex Format Settings", dialog_default, dc_close_no_questions_asked, element);
+            var dg = dialog_create(dw, dh, "Vertex Format Settings", dialog_default, dialog_destroy, element);
             dg.format_index = format_index;
             
             var columns = 2;

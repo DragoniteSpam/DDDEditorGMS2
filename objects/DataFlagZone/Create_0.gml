@@ -12,7 +12,7 @@ zone_edit_script = function(root) {
     var dw = 960;
     var dh = 640;
     
-    var dg = dialog_create(dw, dh, "Flag Zone Settings: " + zone.name, dialog_default, dc_close_no_questions_asked, root);
+    var dg = dialog_create(dw, dh, "Flag Zone Settings: " + zone.name, dialog_default, dialog_destroy, root);
     
     var columns = 3;
     var spacing = 16;

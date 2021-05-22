@@ -2,7 +2,7 @@ function dialog_create_credits(dialog) {
     var dw = 960;
     var dh = 400;
     
-    var dg = dialog_create(dw, dh, "Credits", dialog_default, dc_close_no_questions_asked, dialog);
+    var dg = dialog_create(dw, dh, "Credits", dialog_default, dialog_destroy, dialog);
     
     var columns = 1;
     var spacing = 16;

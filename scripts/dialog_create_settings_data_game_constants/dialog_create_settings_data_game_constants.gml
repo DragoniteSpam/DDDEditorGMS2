@@ -2,7 +2,7 @@ function dialog_create_settings_data_game_constants(root) {
     var dw = 960;
     var dh = 640;
     
-    var dg = dialog_create(dw, dh, "Data Settings: Game Constants", dialog_default, dc_close_no_questions_asked, root);
+    var dg = dialog_create(dw, dh, "Data Settings: Game Constants", dialog_default, dialog_destroy, root);
     
     var columns = 3;
     var ew = dw / columns - 64;

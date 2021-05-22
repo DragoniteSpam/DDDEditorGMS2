@@ -10,7 +10,7 @@ function ui_particle_type_sprite(argument0) {
         var dw = 320;
         var dh = 540;
     
-        var dg = dialog_create(dw, dh, "Particle Sprite", dialog_default, dc_close_no_questions_asked, button);
+        var dg = dialog_create(dw, dh, "Particle Sprite", dialog_default, dialog_destroy, button);
         dg.type = type;
         dg.active_shade = false;
     
