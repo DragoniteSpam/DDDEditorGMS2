@@ -4,7 +4,11 @@ if (!dialog_exists()) {
     control_global();
 }
 
-mode.cleanup(mode);
+if (is_struct(mode)) {
+    mode.Cleanup();
+} else {
+    mode.cleanup(mode);
+}
 
 // dialogs (or other things) to be killed
 

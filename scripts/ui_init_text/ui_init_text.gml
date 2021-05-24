@@ -1,4 +1,4 @@
-function ui_init_text(mode) {
+function ui_init_text() {
     with (instance_create_depth(0, 0, 0, UIThing)) {
         var columns = 5;
         var spacing = 16;

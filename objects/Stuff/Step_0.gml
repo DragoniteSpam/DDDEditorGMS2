@@ -5,4 +5,8 @@ if (array_length(files) > 0) {
     files_dropped = [];
 }
 
-mode.update(mode);
+if (is_struct(mode)) {
+    mode.Update();
+} else {
+    mode.update(mode);
+}
