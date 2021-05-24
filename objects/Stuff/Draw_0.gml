@@ -1,4 +1,8 @@
-mode.render(mode);
+if (is_struct(mode)) {
+    mode.Render();
+} else {
+    mode.render(mode);
+}
 
 // these shouldn't be attached to any one view or anything
 // would put this in the draw gui event except i dont know what would
@@ -6,7 +10,11 @@ mode.render(mode);
 if (view_current == view_overlay) {
     for (var i = 0; i < ds_list_size(dialogs); i++) {
         var thing = dialogs[| i];
-        thing.render(thing);
+        if (is_struct(thing)) {
+            thing.Render();
+        } else {
+            thing.render(thing);
+        }
     }
     
     if (Stuff.element_tooltip_previous && !Stuff.element_tooltip_t) {
