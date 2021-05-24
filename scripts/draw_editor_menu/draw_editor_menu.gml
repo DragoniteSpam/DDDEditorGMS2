@@ -12,7 +12,11 @@ function draw_editor_menu(camera_controls) {
     
     gpu_set_cullmode(cull_noculling);
     
-    Stuff.menu.render(Stuff.menu, 0, yy);
+    if (is_struct(Stuff.menu)) {
+        Stuff.menu.Render(0, 0);
+    } else {
+        Stuff.menu.render(Stuff.menu, 0, 0);
+    }
     
     // these are going to be uncommon and short-lived, so don't bother deactivating them.
     with (UINotification) {

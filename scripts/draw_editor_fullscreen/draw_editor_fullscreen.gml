@@ -7,5 +7,11 @@ function draw_editor_fullscreen() {
     draw_set_valign(fa_middle);
     draw_clear(c_white);
     
-    if (ui) ui.render(ui, 0, 0);
+    if (ui) {
+        if (is_struct(ui)) {
+            ui.Render(0, 0);
+        } else {
+            ui.render(ui, 0, 0);
+        }
+    }
 }

@@ -164,7 +164,11 @@ function draw_event_node(node) {
                     // but you need to do this if you want it to not be changed
                     var radio = node.ui_things[| i];
                     radio.value = list_type[| i];
-                    radio.render(radio, x1, y1);
+                    if (is_struct(radio)) {
+                        radio.Render(x1, y1); 
+                    } else {
+                        radio.render(radio, x1, y1); 
+                    }
                     
                     // this should be in an onvaluechange script but that's a huge hassle for something really minor
                     list_type[| i] = radio.value;

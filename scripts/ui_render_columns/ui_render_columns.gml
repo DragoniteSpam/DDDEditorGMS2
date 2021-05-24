@@ -1,14 +1,12 @@
-/// @param UIThing
-/// @param x
-/// @param y
-function ui_render_columns(argument0, argument1, argument2) {
-
-    for (var i = 0; i < ds_list_size(argument0.contents); i++) {
-        var thing = argument0.contents[| i];
-        if (thing.enabled) {
-            thing.render(thing, argument0.x + argument1, argument0.y + argument2);
+function ui_render_columns(thing, x, y) {
+    for (var i = 0; i < ds_list_size(thing.contents); i++) {
+        var content = thing.contents[| i];
+        if (content.enabled) {
+            if (is_struct(content)) {
+                content.Render(thing.x + x, thing.y + y); 
+            } else {
+                content.render(content, thing.x + x, thing.y + y); 
+            }
         }
     }
-
-
 }

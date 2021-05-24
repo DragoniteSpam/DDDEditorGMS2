@@ -67,7 +67,11 @@ function ui_render_main(ui) {
             thing = trow[| j];
             // i think windows forms allow you to disable tabs, but i'm not
             // because that's a pain and i don't see it happening all that much
-            thing.render(thing, 0, 0);
+            if (is_struct(thing)) {
+                thing.Render(0, 0);
+            } else {
+                thing.render(thing, 0, 0);
+            }
         }
     }
 

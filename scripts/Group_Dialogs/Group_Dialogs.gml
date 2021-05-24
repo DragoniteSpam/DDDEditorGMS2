@@ -133,7 +133,11 @@ function dialog_default(dialog) {
     for (var i = 0; i < ds_list_size(dialog.contents); i++) {
         var thing = dialog.contents[| i];
         if (thing.enabled) {
-            thing.render(thing, dialog.x, dialog.y);
+            if (is_struct(thing)) {
+                thing.Render(dialog.x, dialog.y); 
+            } else {
+                thing.render(thing, dialog.x, dialog.y); 
+            }
         }
     }
     

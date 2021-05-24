@@ -10,7 +10,11 @@ function menu_render_main(menu, xx, yy) {
     for (var i = 0; i < ds_list_size(menu.contents); i++) {
         var thing = menu.contents[| i];
         if (thing.enabled) {
-            thing.render(thing, xx + menu.element_width * i, yy);
+            if (is_struct(thing)) {
+                thing.Render(xx + menu.element_width * i, yy); 
+            } else {
+                thing.render(thing, xx + menu.element_width * i, yy); 
+            }
         }
     }
     
@@ -18,7 +22,11 @@ function menu_render_main(menu, xx, yy) {
     
     var element = Stuff.menu.extra_element;
     if (element) {
-        element.render(element, element.x, element.y);
+        if (is_struct(element)) {
+            element.Render(element.x, element.y); 
+        } else {
+            element.render(element, element.x, element.y); 
+        }
     }
     
     if (!dialog_exists()) {

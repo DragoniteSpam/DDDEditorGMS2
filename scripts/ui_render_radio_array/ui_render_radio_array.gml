@@ -19,7 +19,11 @@ function ui_render_radio_array(array, xx, yy) {
     for (var i = 0; i < ds_list_size(array.contents); i++) {
         var thing = array.contents[| i];
         // these are all part of the same UIThing so there's no point in turning them off
-        thing.render(thing, x1, y1);
+        if (is_struct(thing)) {
+            thing.Render(thing.x + xx, thing.y + yy); 
+        } else {
+            thing.render(thing, thing.x + xx, thing.y + yy); 
+        }
     }
     
     ui_handle_dropped_files(array);

@@ -1,12 +1,4 @@
-/// @param UIBitfield
-/// @param x
-/// @param y
-function ui_render_bitfield(argument0, argument1, argument2) {
-
-    var bitfield = argument0;
-    var xx = argument1;
-    var yy = argument2;
-
+function ui_render_bitfield(bitfield, x, y) {
     /*
      * this is horizontal and the buttons are in line with the text. if you end up needing this
      * to be vertical or not in line, you probably want to add customization to this instead of
@@ -17,7 +9,7 @@ function ui_render_bitfield(argument0, argument1, argument2) {
      * ----------------------
      */
 
-    ui_render_text(bitfield, xx, yy);
+    ui_render_text(bitfield, x, y);
 
     draw_set_halign(fa_center);
     // default valign is middle
@@ -26,12 +18,14 @@ function ui_render_bitfield(argument0, argument1, argument2) {
         var thing = bitfield.contents[| i];
         //ui_activate(bitfield);
         // these are all part of the same UIThing so there's no point in turning them off
-        thing.render(thing, bitfield.x + xx, bitfield.y + yy); 
+        if (is_struct(thing)) {
+            thing.Render(bitfield.x + x, bitfield.y + y); 
+        } else {
+            thing.render(thing, bitfield.x + x, bitfield.y + y); 
+        }
     }
 
     draw_set_halign(fa_left);
 
     ui_handle_dropped_files(bitfield);
-
-
 }

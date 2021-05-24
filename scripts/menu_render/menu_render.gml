@@ -53,7 +53,11 @@ function menu_render(menu, x1, y1) {
                 var my1 = yy + menu.height * i + separation;
                 var mx2 = mx1 + ww + 2;
                 var my2 = my1 + menu.height;
-                thing.render(thing, mx1, my1, mx2, my2);
+                if (is_struct(thing)) {
+                    thing.Render(mx1, my1, mx2, my2); 
+                } else {
+                    thing.render(thing, mx1, my1, mx2, my2); 
+                }
             }
         }
         
