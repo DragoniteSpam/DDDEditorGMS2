@@ -20,9 +20,9 @@ function ui_render_radio_array(array, xx, yy) {
         var thing = array.contents[| i];
         // these are all part of the same UIThing so there's no point in turning them off
         if (is_struct(thing)) {
-            thing.Render(thing.x + xx, thing.y + yy); 
+            thing.Render(x1, y1); 
         } else {
-            thing.render(thing, thing.x + xx, thing.y + yy); 
+            thing.render(thing, x1, y1); 
         }
     }
     
