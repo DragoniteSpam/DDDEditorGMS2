@@ -13,9 +13,9 @@ function draw_editor_menu(camera_controls) {
     gpu_set_cullmode(cull_noculling);
     
     if (is_struct(Stuff.menu)) {
-        Stuff.menu.Render(0, 0);
+        Stuff.menu.Render(0, yy);
     } else {
-        Stuff.menu.render(Stuff.menu, 0, 0);
+        Stuff.menu.render(Stuff.menu, 0, yy);
     }
     
     // these are going to be uncommon and short-lived, so don't bother deactivating them.
