@@ -16,6 +16,7 @@ if (view_current == view_overlay) {
             thing.render(thing);
         }
     }
+    EmuOverlay.Render();
     
     if (Stuff.element_tooltip_previous && !Stuff.element_tooltip_t) {
         Stuff.element_tooltip_t = -1;
