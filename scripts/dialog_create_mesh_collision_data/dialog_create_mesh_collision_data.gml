@@ -130,6 +130,20 @@ function dialog_create_mesh_collision_data(root, mesh) {
             option.root.root.mesh.asset_flags[@ option.root.root.xx][@ option.root.root.yy][@ option.root.root.zz] = 0;
             option.root.value = 0;
         }, "None", -1, 0, ew / 2, spacing / 2, ew * (i div rows), 0, color_active, color_inactive),
+        create_bitfield_option_data(i, function(option, x, y) {
+            option.state = (option.root.value == 0xffffffff);
+            ui_render_bitfield_option_text(option, x, y);
+        }, function(option) {
+            option.root.root.mesh.asset_flags[@ option.root.root.xx][@ option.root.root.yy][@ option.root.root.zz] = 0xffffffff;
+            option.root.value = 0xffffffff;
+        }, "First Half", -1, 0, ew / 2, spacing / 2, ew * (i div rows), 0, color_active, color_inactive),
+        create_bitfield_option_data(i, function(option, x, y) {
+            option.state = (option.root.value == 0x7fffff00000000);
+            ui_render_bitfield_option_text(option, x, y);
+        }, function(option) {
+            option.root.root.mesh.asset_flags[@ option.root.root.xx][@ option.root.root.yy][@ option.root.root.zz] = 0x7fffff00000000;
+            option.root.value = 0x7fffff00000000;
+        }, "Latter Half", -1, 0, ew / 2, spacing / 2, ew * (i div rows), 0, color_active, color_inactive),
     ]);
     
     el_collision_triggers.tooltip = "Each cell occupied by a mesh can have each flag data toggled on or off.\n\nShaded cells are solid, while unshaded cells are passable.";
