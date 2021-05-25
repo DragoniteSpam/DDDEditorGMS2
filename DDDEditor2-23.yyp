@@ -452,7 +452,7 @@
     {"id":{"name":"smf_dualquat_get_translation","path":"scripts/smf_dualquat_get_translation/smf_dualquat_get_translation.yy",},"order":3,},
     {"id":{"name":"smf_dualquat_get_conjugate","path":"scripts/smf_dualquat_get_conjugate/smf_dualquat_get_conjugate.yy",},"order":4,},
     {"id":{"name":"serialize_save_mesh_autotiles","path":"scripts/serialize_save_mesh_autotiles/serialize_save_mesh_autotiles.yy",},"order":24,},
-    {"id":{"name":"emu_init","path":"scripts/emu_init/emu_init.yy",},"order":3,},
+    {"id":{"name":"emu_init_customized","path":"scripts/emu_init_customized/emu_init_customized.yy",},"order":3,},
     {"id":{"name":"smf_dualquat_lerp","path":"scripts/smf_dualquat_lerp/smf_dualquat_lerp.yy",},"order":5,},
     {"id":{"name":"smf_dualquat_multiply","path":"scripts/smf_dualquat_multiply/smf_dualquat_multiply.yy",},"order":6,},
     {"id":{"name":"smf_dualquat_set_translation","path":"scripts/smf_dualquat_set_translation/smf_dualquat_set_translation.yy",},"order":7,},
