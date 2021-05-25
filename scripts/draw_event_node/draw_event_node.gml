@@ -525,7 +525,7 @@ function draw_event_node(node) {
                                             show_error("okay you actually need to implement this soon, please", true);
                                             break;
                                         case DataTypes.ASSET_FLAG:
-                                            dialog_create_notice("please make an Asset Flag button at some point");
+                                            emu_dialog_notice("please make an Asset Flag button at some point");
                                             break;
                                     }
                                 } else {

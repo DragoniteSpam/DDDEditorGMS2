@@ -18,7 +18,7 @@ function ui_particle_type_secondary_death_type(list) {
         emissive_type = Stuff.particle.types[| selection];
         while (emissive_type) {
             if (emissive_type == type) {
-                dialog_create_notice(list.root, "Please don't recursively create particles. This will most likely slow down the editor and cause it to crash within seconds.");
+                emu_dialog_notice("Please don't recursively create particles. This will most likely slow down the editor and cause it to crash within seconds.");
                 ui_list_deselect(list);
                 ui_list_select(list, ds_list_find_index(Stuff.particle.types, type.death_type), false);
                 return;

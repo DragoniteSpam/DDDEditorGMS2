@@ -32,5 +32,5 @@ function momu_select_all() {
 }
 
 function momu_undo() {
-    dialog_create_notice(noone, "undo: we haven't implemented this yet. pleaes stand by!");
+    emu_dialog_notice("undo: we haven't implemented this yet. pleaes stand by!");
 }
