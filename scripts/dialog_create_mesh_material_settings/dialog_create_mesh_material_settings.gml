@@ -1,14 +1,11 @@
 function dialog_create_mesh_material_settings(dialog, selection) {
     var mode = Stuff.mesh_ed;
     
-    var dw = 1200;
-    var dh = 840;
+    var dw = 560;
+    var dh = 480;
     
-    var dg = dialog_create(dw, dh, "Materials", dialog_default, dialog_destroy, root);
-    dg.selection = selection;
-    
-    var columns = 3;
-    var ew = dw / columns - 64;
+    var columns = 1;
+    var ew = dw / columns - 64 - 64;
     var eh = 24;
     
     var vx1 = ew / 2;
@@ -16,287 +13,124 @@ function dialog_create_mesh_material_settings(dialog, selection) {
     var vx2 = ew;
     var vy2 = eh;
     
-    var c1x = 0 * dw / columns + 32;
-    var c2x = 1 * dw / columns + 32;
-    var c3x = 2 * dw / columns + 32;
     var spacing = 16;
     
     var yy = 64;
     var yy_base = 64;
     
-    var id_base = -1;
-    var id_ambient = -1;
-    var id_specular_color = -1;
-    var id_specular_highlight = -1;
-    var id_alpha = -1;
-    var id_bump = -1;
-    var id_displacement = -1;
-    var id_decal = -1;
+    var selected_things = ds_map_to_array(selection);
     
-    #region figure out what is supposed to be selected
-    var selected_things = ds_map_to_list(selection);
-    
-    var stop = false;
-    for (var i = 0; i < ds_list_size(selected_things); i++) {
-        var thing = Stuff.all_meshes[| selected_things[| i]];
-        for (var j = 0; j < ds_list_size(Stuff.all_graphic_tilesets); j++) {
-            if (Stuff.all_graphic_tilesets[| j].GUID == thing.tex_base) {
-                if (id_base != -1) {
-                    id_base = -1;
-                    stop = true;
-                    break;
+    var find_tileset_index = function(selected_things, accessor) {
+        var target_index = -1;
+        for (var i = 0; i < array_length(selected_things); i++) {
+            var thing = Stuff.all_meshes[| selected_things[i]];
+            for (var j = 0; j < ds_list_size(Stuff.all_graphic_tilesets); j++) {
+                if (Stuff.all_graphic_tilesets[| j].GUID == accessor(thing)) {
+                    if (target_index != -1) {
+                        return -1;
+                    }
+                    target_index = j;
                 }
-                id_base = j;
             }
         }
-        if (stop) break;
-    }
+        return target_index;
+    };
     
-    var stop = false;
-    for (var i = 0; i < ds_list_size(selected_things); i++) {
-        var thing = Stuff.all_meshes[| selected_things[| i]];
-        for (var j = 0; j < ds_list_size(Stuff.all_graphic_tilesets); j++) {
-            if (Stuff.all_graphic_tilesets[| j].GUID == thing.tex_ambient) {
-                if (id_ambient != -1) {
-                    id_ambient = -1;
-                    stop = true;
-                    break;
-                }
-                id_ambient = j;
-            }
+    var id_base = find_tileset_index(selected_things, function(thing) { return thing.tex_base; });
+    var id_ambient = find_tileset_index(selected_things, function(thing) { return thing.tex_ambient; });
+    var id_specular_color = find_tileset_index(selected_things, function(thing) { return thing.tex_specular_color; });
+    var id_specular_highlight = find_tileset_index(selected_things, function(thing) { return thing.tex_specular_highlight; });
+    var id_alpha = find_tileset_index(selected_things, function(thing) { return thing.tex_alpha; });
+    var id_bump = find_tileset_index(selected_things, function(thing) { return thing.tex_bump; });
+    var id_displacement = find_tileset_index(selected_things, function(thing) { return thing.tex_displacement; });
+    var id_decal = find_tileset_index(selected_things, function(thing) { return thing.tex_stencil; });
+    
+    var dg = new EmuDialog(dw, dh, "Materials");
+    dg.selection = selection;
+    
+    var tab_base = new EmuTab("Base Texture");
+    var tab_ambient = new EmuTab("Ambient Map");
+    var tab_specular_color = new EmuTab("Specular Color");
+    var tab_specular = new EmuTab("Specular Map");
+    var tab_alpha = new EmuTab("Alpha Map");
+    var tab_bump = new EmuTab("Bump Map");
+    var tab_displacement = new EmuTab("Displacement Map");
+    var tab_stencil = new EmuTab("Stencil Map");
+    
+    var tabs = new EmuTabGroup(32, 32, dw - 64, dh - 96, 2, 32);
+    tabs.AddTabs(0, [tab_base, tab_ambient, tab_specular_color, tab_specular]);
+    tabs.AddTabs(1, [tab_alpha, tab_bump, tab_displacement, tab_stencil]);
+    tabs.RequestActivateTab(tab_base);
+    dg.AddContent(tabs);
+    
+    var callback_set_map_to_selection = function() {
+        var selection = GetSelection();
+        var new_tex = (selection + 1) ? Stuff.all_graphic_tilesets[| selection].GUID : NULL;;
+        var mesh_selection = self.root.root.root.selection;
+        for (var i = ds_map_find_first(mesh_selection); i != undefined; i = ds_map_find_next(mesh_selection, i)) {
+            self.callback_set_texture(Stuff.all_meshes[| i], new_tex);
         }
-        if (stop) break;
-    }
+    };
     
-    var stop = false;
-    for (var i = 0; i < ds_list_size(selected_things); i++) {
-        var thing = Stuff.all_meshes[| selected_things[| i]];
-        for (var j = 0; j < ds_list_size(Stuff.all_graphic_tilesets); j++) {
-            if (Stuff.all_graphic_tilesets[| j].GUID == thing.tex_specular_color) {
-                if (id_specular_color != -1) {
-                    id_specular_color = -1;
-                    stop = true;
-                    break;
-                }
-                id_specular_color = j;
-            }
-        }
-        if (stop) break;
-    }
+    var list = new EmuList(32, 32, ew, eh, "Textures:", eh, 9, callback_set_map_to_selection);
+    tab_base.AddContent(list);
+    list.callback_set_texture = function(mesh, tex) { mesh.tex_base = tex; };
+    list.SetList(Stuff.all_graphic_tilesets);
+    list.SetEntryTypes(E_ListEntryTypes.STRUCTS);
+    list.Select(id_base, true);
     
-    var stop = false;
-    for (var i = 0; i < ds_list_size(selected_things); i++) {
-        var thing = Stuff.all_meshes[| selected_things[| i]];
-        for (var j = 0; j < ds_list_size(Stuff.all_graphic_tilesets); j++) {
-            if (Stuff.all_graphic_tilesets[| j].GUID == thing.tex_specular_highlight) {
-                if (id_specular_highlight != -1) {
-                    id_specular_highlight = -1;
-                    stop = true;
-                    break;
-                }
-                id_specular_highlight = j;
-            }
-        }
-        if (stop) break;
-    }
+    var list = new EmuList(32, 32, ew, eh, "Ambient map:", eh, 9, callback_set_map_to_selection);
+    tab_ambient.AddContent(list);
+    list.callback_set_texture = function(mesh, tex) { mesh.tex_ambient = tex; };
+    list.SetList(Stuff.all_graphic_tilesets);
+    list.SetEntryTypes(E_ListEntryTypes.STRUCTS);
+    list.Select(id_ambient, true);
     
-    var stop = false;
-    for (var i = 0; i < ds_list_size(selected_things); i++) {
-        var thing = Stuff.all_meshes[| selected_things[| i]];
-        for (var j = 0; j < ds_list_size(Stuff.all_graphic_tilesets); j++) {
-            if (Stuff.all_graphic_tilesets[| j].GUID == thing.tex_base) {
-                if (id_alpha != -1) {
-                    id_alpha = -1;
-                    stop = true;
-                    break;
-                }
-                id_alpha = j;
-            }
-        }
-        if (stop) break;
-    }
+    var list = new EmuList(32, 32, ew, eh, "Specular color:", eh, 9, callback_set_map_to_selection);
+    tab_specular_color.AddContent(list);
+    list.callback_set_texture = function(mesh, tex) { mesh.tex_specular_color = tex; };
+    list.SetList(Stuff.all_graphic_tilesets);
+    list.SetEntryTypes(E_ListEntryTypes.STRUCTS);
+    list.Select(id_specular_color, true);
     
-    var stop = false;
-    for (var i = 0; i < ds_list_size(selected_things); i++) {
-        var thing = Stuff.all_meshes[| selected_things[| i]];
-        for (var j = 0; j < ds_list_size(Stuff.all_graphic_tilesets); j++) {
-            if (Stuff.all_graphic_tilesets[| j].GUID == thing.tex_bump) {
-                if (id_bump != -1) {
-                    id_bump = -1;
-                    stop = true;
-                    break;
-                }
-                id_bump = j;
-            }
-        }
-        if (stop) break;
-    }
+    var list = new EmuList(32, 32, ew, eh, "Specular highlight map:", eh, 9, callback_set_map_to_selection);
+    tab_specular.AddContent(list);
+    list.callback_set_texture = function(mesh, tex) { mesh.tex_specular_highlight = tex; };
+    list.SetList(Stuff.all_graphic_tilesets);
+    list.SetEntryTypes(E_ListEntryTypes.STRUCTS);
+    list.Select(id_specular_highlight, true);
     
-    var stop = false;
-    for (var i = 0; i < ds_list_size(selected_things); i++) {
-        var thing = Stuff.all_meshes[| selected_things[| i]];
-        for (var j = 0; j < ds_list_size(Stuff.all_graphic_tilesets); j++) {
-            if (Stuff.all_graphic_tilesets[| j].GUID == thing.tex_displacement) {
-                if (id_displacement != -1) {
-                    id_displacement = -1;
-                    stop = true;
-                    break;
-                }
-                id_displacement = j;
-            }
-        }
-        if (stop) break;
-    }
+    var list = new EmuList(32, 32, ew, eh, "Alpha map:", eh, 9, callback_set_map_to_selection);
+    tab_alpha.AddContent(list);
+    list.callback_set_texture = function(mesh, tex) { mesh.tex_alpha = tex; };
+    list.SetList(Stuff.all_graphic_tilesets);
+    list.SetEntryTypes(E_ListEntryTypes.STRUCTS);
+    list.Select(id_alpha, true);
     
-    var stop = false;
-    for (var i = 0; i < ds_list_size(selected_things); i++) {
-        var thing = Stuff.all_meshes[| selected_things[| i]];
-        for (var j = 0; j < ds_list_size(Stuff.all_graphic_tilesets); j++) {
-            if (Stuff.all_graphic_tilesets[| j].GUID == thing.tex_stencil) {
-                if (id_decal != -1) {
-                    id_decal = -1;
-                    stop = true;
-                    break;
-                }
-                id_decal = j;
-            }
-        }
-        if (stop) break;
-    }
-    #endregion
+    var list = new EmuList(32, 32, ew, eh, "Bump map:", eh, 9, callback_set_map_to_selection);
+    tab_bump.AddContent(list);
+    list.callback_set_texture = function(mesh, tex) { mesh.tex_bump = tex; };
+    list.SetList(Stuff.all_graphic_tilesets);
+    list.SetEntryTypes(E_ListEntryTypes.STRUCTS);
+    list.Select(id_bump, true);
     
-    var container = instance_create_depth(0, 0, 0, UIMain);
+    var list = new EmuList(32, 32, ew, eh, "Displacement map:", eh, 9, callback_set_map_to_selection);
+    tab_displacement.AddContent(list);
+    list.callback_set_texture = function(mesh, tex) { mesh.tex_displacement = tex; };
+    list.SetList(Stuff.all_graphic_tilesets);
+    list.SetEntryTypes(E_ListEntryTypes.STRUCTS);
+    list.Select(id_displacement, true);
     
-    with (container) {
-        t_base = create_tab("Base Texture", 0, self.id);
-        t_ambient = create_tab("AmbientMap", 0, self.id);
-        t_specular_color = create_tab("Specular Color", 0, self.id);
-        t_specular_map = create_tab("Specular Map", 0, self.id);
-        
-        t_alpha = create_tab("Alpha Map", 1, self.id);
-        t_bump = create_tab("Bump Map", 1, self.id);
-        t_displacement = create_tab("Displacement Map", 1, self.id);
-        t_stencil = create_tab("Stencil Map", 1, self.id);
-        
-        // the game will crash if you create a tab row with zero width.
-        var tr_first = ds_list_create();
-        ds_list_add(tr_first, t_base, t_ambient, t_specular_color, t_specular_map);
-        var tr_second = ds_list_create();
-        ds_list_add(tr_second, t_alpha, t_bump, t_displacement, t_stencil);
-    
-        ds_list_add(tabs, tr_first, tr_second);
-        
-        active_tab = t_base;
-    }
-    
-    var el_base = create_list(c1x, yy, "Base Texture", "no textures", ew, eh, 8, function(list) {
-        var selection = ui_list_selection(list);
-        for (var i = ds_map_find_first(list.root.selection); i != undefined; i = ds_map_find_next(list.root.selection, i)) {
-            Stuff.all_meshes[| i].tex_base = (selection + 1) ? Stuff.all_graphic_tilesets[| selection].GUID : NULL;
-        }
-    }, false, dg, Stuff.all_graphic_tilesets);
-    el_base.tooltip = "The main texture the model is rendered with (known as the \"diffuse\" texture in material-speak).";
-    el_base.entries_are = ListEntries.INSTANCES;
-    ui_list_select(el_base, id_base, true);
-    yy += ui_get_list_height(el_base) + spacing;
-    
-    var el_ambient = create_list(c1x, yy, "Ambient Map", "no textures", ew, eh, 8, function(list) {
-        var selection = ui_list_selection(list);
-        for (var i = ds_map_find_first(list.root.selection); i != undefined; i = ds_map_find_next(list.root.selection, i)) {
-            Stuff.all_meshes[| i].tex_ambient = (selection + 1) ? Stuff.all_graphic_tilesets[| selection].GUID : NULL;
-        }
-    }, false, dg, Stuff.all_graphic_tilesets);
-    el_ambient.tooltip = "Texture map defining the ambient color of the material. Not currently supported.";
-    el_ambient.interactive = false;
-    el_ambient.entries_are = ListEntries.INSTANCES;
-    ui_list_select(el_ambient, id_ambient, true);
-    yy += ui_get_list_height(el_ambient) + spacing;
-    
-    var el_specular_color = create_list(c1x, yy, "Specular Color Map", "no textures", ew, eh, 8, function(list) {
-        var selection = ui_list_selection(list);
-        for (var i = ds_map_find_first(list.root.selection); i != undefined; i = ds_map_find_next(list.root.selection, i)) {
-            Stuff.all_meshes[| i].tex_specular_color = (selection + 1) ? Stuff.all_graphic_tilesets[| selection].GUID : NULL;
-        }
-    }, false, dg, Stuff.all_graphic_tilesets);
-    el_specular_color.tooltip = "Texture map defining the specular color of the material. Not currently supported.";
-    el_specular_color.interactive = false;
-    el_specular_color.entries_are = ListEntries.INSTANCES;
-    ui_list_select(el_specular_color, id_specular_color, true);
-    yy += ui_get_list_height(el_specular_color) + spacing;
-    
-    yy = yy_base;
-    
-    var el_specular_highlight = create_list(c2x, yy, "Specular Highlight Map", "no textures", ew, eh, 8, function(list) {
-        var selection = ui_list_selection(list);
-        for (var i = ds_map_find_first(list.root.selection); i != undefined; i = ds_map_find_next(list.root.selection, i)) {
-            Stuff.all_meshes[| i].tex_specular_highlight = (selection + 1) ? Stuff.all_graphic_tilesets[| selection].GUID : NULL;
-        }
-    }, false, dg, Stuff.all_graphic_tilesets);
-    el_specular_highlight.tooltip = "Texture map defining the highlight of the material. Not currently supported.";
-    el_specular_highlight.interactive = false;
-    el_specular_highlight.entries_are = ListEntries.INSTANCES;
-    ui_list_select(el_specular_highlight, id_specular_highlight, true);
-    yy += ui_get_list_height(el_specular_highlight) + spacing;
-    
-    var el_alpha = create_list(c2x, yy, "Alpha Map", "no textures", ew, eh, 8, function(list) {
-        var selection = ui_list_selection(list);
-        for (var i = ds_map_find_first(list.root.selection); i != undefined; i = ds_map_find_next(list.root.selection, i)) {
-            Stuff.all_meshes[| i].tex_alpha = (selection + 1) ? Stuff.all_graphic_tilesets[| selection].GUID : NULL;
-        }
-    }, false, dg, Stuff.all_graphic_tilesets);
-    el_alpha.tooltip = "Texture map defining the alpha of the material. Not currently supported.";
-    el_alpha.interactive = false;
-    el_alpha.entries_are = ListEntries.INSTANCES;
-    ui_list_select(el_alpha, id_alpha, true);
-    yy += ui_get_list_height(el_alpha) + spacing;
-    
-    var el_bump = create_list(c2x, yy, "Bump Map", "no textures", ew, eh, 8, function(list) {
-        var selection = ui_list_selection(list);
-        for (var i = ds_map_find_first(list.root.selection); i != undefined; i = ds_map_find_next(list.root.selection, i)) {
-            Stuff.all_meshes[| i].tex_bump = (selection + 1) ? Stuff.all_graphic_tilesets[| selection].GUID : NULL;
-        }
-    }, false, dg, Stuff.all_graphic_tilesets);
-    el_bump.tooltip = "Texture map defining the roughness of the material (look up bump mapping, it's very cool). Not currently supported.";
-    el_bump.interactive = false;
-    el_bump.entries_are = ListEntries.INSTANCES;
-    ui_list_select(el_bump, id_bump, true);
-    yy += ui_get_list_height(el_bump) + spacing;
-    
-    yy = yy_base;
-    
-    var el_displacement = create_list(c3x, yy, "Displacement Map", "no textures", ew, eh, 8, function(list) {
-        var selection = ui_list_selection(list);
-        for (var i = ds_map_find_first(list.root.selection); i != undefined; i = ds_map_find_next(list.root.selection, i)) {
-            Stuff.all_meshes[| i].tex_displacement = (selection + 1) ? Stuff.all_graphic_tilesets[| selection].GUID : NULL;
-        }
-    }, false, dg, Stuff.all_graphic_tilesets);
-    el_displacement.tooltip = "Texture map defining the displacement of the material. Not currently supported.";
-    el_displacement.interactive = false;
-    el_displacement.entries_are = ListEntries.INSTANCES;
-    ui_list_select(el_displacement, id_displacement, true);
-    yy += ui_get_list_height(el_displacement) + spacing;
-    
-    var el_stencil = create_list(c3x, yy, "Stencil Map", "no textures", ew, eh, 8, function(list) {
-        var selection = ui_list_selection(list);
-        for (var i = ds_map_find_first(list.root.selection); i != undefined; i = ds_map_find_next(list.root.selection, i)) {
-            Stuff.all_meshes[| i].tex_decal = (selection + 1) ? Stuff.all_graphic_tilesets[| selection].GUID : NULL;
-        }
-    }, false, dg, Stuff.all_graphic_tilesets);
-    el_stencil.tooltip = "Texture map defining the stencil decals of the material. I have not been able to find an example of these in use, but I assume that they're very cool. Not currently supported.";
-    el_stencil.interactive = false;
-    el_stencil.entries_are = ListEntries.INSTANCES;
-    ui_list_select(el_stencil, id_decal, true);
-    yy += ui_get_list_height(el_stencil) + spacing;
+    var list = new EmuList(32, 32, ew, eh, "Stencil map:", eh, 9, callback_set_map_to_selection);
+    tab_stencil.AddContent(list);
+    list.callback_set_texture = function(mesh, tex) { mesh.tex_stencil = tex; };
+    list.SetList(Stuff.all_graphic_tilesets);
+    list.SetEntryTypes(E_ListEntryTypes.STRUCTS);
+    list.Select(id_decal, true);
     
     var b_width = 128;
     var b_height = 32;
-    var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
-    
-    ds_list_add(dg.contents,
-        el_base, el_ambient, el_specular_color, el_specular_highlight,
-        el_alpha, el_bump, el_displacement, el_stencil,
-        el_confirm
-    );
+    dg.AddContent(new EmuButton(dw / 2 - b_width / 2, dh - 32 - b_height / 2, b_width, b_height, "Done", emu_dialog_close_auto));
     
     return dg;
 }
