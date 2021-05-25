@@ -47,6 +47,7 @@ function dialog_create_mesh_material_settings(dialog, selection) {
     
     var dg = new EmuDialog(dw, dh, "Materials");
     dg.selection = selection;
+    dg.active_shade = false;
     
     var tab_base = new EmuTab("Base Texture");
     var tab_ambient = new EmuTab("Ambient Map");
