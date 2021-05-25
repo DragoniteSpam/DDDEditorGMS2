@@ -66,7 +66,7 @@ function dialog_create_data_instance_property_list(root) {
             not_yet_implemented();
             break;
         case DataTypes.ASSET_FLAG:
-            not_yet_implemented_polite();
+            not_yet_implemented();
             break;
         default:
             el_list.entries_are = ListEntries.STRINGS;
@@ -113,7 +113,7 @@ function dialog_create_data_instance_property_list(root) {
             yy += el_value.height + spacing;
             break;
         case DataTypes.ASSET_FLAG:
-            not_yet_implemented_polite();
+            not_yet_implemented();
             break;
         case DataTypes.CODE:
             var el_value = create_input_code(16, yy, "Code: ", ew, eh, vx1, vy1, vx2, vy2, "-- write Lua here", uivc_data_property_list_string, dg, root.key);

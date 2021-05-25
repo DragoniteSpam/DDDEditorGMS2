@@ -4,20 +4,11 @@ function instance_destroy_later(what) {
 }
 
 function not_yet_implemented() {
-    throw @"Stack trace requested, probably in lieu of a NotImplementedException.
-(If you're an end user and seeing this, most of the time this means the developer meant to add a
-feature and probably forgot.)";
-}
-
-function not_yet_implemented_polite() {
     // you're only allowed to have one; if more than one are requested at the same time,
     // only the first will be created
     var top = ds_list_top(Stuff.dialogs);
     if (!(top && (top.flags & DialogFlags.IS_EXCEPTION))) {
-        var dialog = emu_dialog_notice(
-            "Stack trace requested, probably in lieu of a NotImplementedException. (If you're an end user and seeing this, most of the time this means the developer meant to add a feature and probably forgot.)\n\n",
-            "Whoa, whoa!", "Okay", 640, 400
-        );
+        var dialog = emu_dialog_notice("Stack trace requested, probably in lieu of a NotImplementedException. (If you're an end user and seeing this, most of the time this means the developer meant to add a feature and probably forgot.)\n\n", 640, 400);
         
         dialog.flags |= DialogFlags.IS_EXCEPTION;
         dialog.el_text.x = 32;

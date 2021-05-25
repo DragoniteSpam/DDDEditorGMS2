@@ -145,7 +145,7 @@ function dialog_entity_data_enable_by_type(dialog) {
             break;
         case DataTypes.EVENT:
         case DataTypes.ASSET_FLAG:
-            not_yet_implemented_polite();
+            not_yet_implemented();
             break;
     }
     

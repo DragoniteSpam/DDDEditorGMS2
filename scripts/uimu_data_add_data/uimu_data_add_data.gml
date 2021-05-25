@@ -80,7 +80,7 @@ function uimu_data_add_data(thing) {
                 case DataTypes.ENTITY:
                     instance_activate_object(instance);
                     instance_destroy(instance);
-                    not_yet_implemented_polite();
+                    not_yet_implemented();
                     break;
             }
         }

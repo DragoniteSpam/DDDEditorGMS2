@@ -130,7 +130,7 @@ function dialog_create_settings_data_game_constants(root) {
                 list.index = 0;
                 break;
             case DataTypes.TILE:
-                not_yet_implemented_polite();
+                not_yet_implemented();
                 break;
             case DataTypes.IMG_TILE_ANIMATION:
                 var list = base_dialog.el_value_other;

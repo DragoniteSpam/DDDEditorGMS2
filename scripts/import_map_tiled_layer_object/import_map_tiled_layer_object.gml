@@ -255,7 +255,7 @@ function import_map_tiled_layer_object() {
             #endregion
             case "effect":
             default:
-                not_yet_implemented_polite();
+                not_yet_implemented();
                 break;
         }
         

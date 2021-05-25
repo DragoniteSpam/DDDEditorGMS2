@@ -106,7 +106,7 @@ function ui_constant_data_activate(base_dialog, what) {
             list.index = 0;
             break;
         case DataTypes.TILE:
-            not_yet_implemented_polite();
+            not_yet_implemented();
             break;
         case DataTypes.IMG_TILE_ANIMATION:
             var list = base_dialog.el_value_other;

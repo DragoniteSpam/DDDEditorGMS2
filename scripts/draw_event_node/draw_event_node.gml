@@ -484,7 +484,7 @@ function draw_event_node(node) {
                                             dialog_create_event_node_meshes(noone, node, i, 0);
                                             break;
                                         case DataTypes.MESH_AUTOTILE:
-                                            not_yet_implemented_polite();
+                                            not_yet_implemented();
                                             break;
                                         case DataTypes.IMG_TEXTURE:
                                             dialog_create_event_node_img_tileset(noone, node, i, 0);

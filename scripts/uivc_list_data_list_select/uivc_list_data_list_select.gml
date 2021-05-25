@@ -48,10 +48,10 @@ function uivc_list_data_list_select(list) {
             case DataTypes.TILE:
             case DataTypes.ENTITY:
             case DataTypes.MAP:
-                not_yet_implemented_polite();
+                not_yet_implemented();
                 break;
             case DataTypes.ASSET_FLAG:
-                not_yet_implemented_polite();
+                not_yet_implemented();
                 break;
         }
     }

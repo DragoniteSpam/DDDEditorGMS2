@@ -136,13 +136,13 @@ function ui_init_event(mode) {
         
         yy += ui_get_list_height(el_list_prefabs) + spacing;
         
-        element = create_button(legal_x + spacing, yy, "Rename", element_width, element_height, fa_center, not_yet_implemented_polite, t_custom);
+        element = create_button(legal_x + spacing, yy, "Rename", element_width, element_height, fa_center, not_yet_implemented, t_custom);
         element.tooltip = "Rename the selected prefab.";
         ds_list_add(t_custom.contents, element);
         
         yy += element_height + spacing;
         
-        element = create_button(legal_x + spacing, yy, "Delete", element_width, element_height, fa_center, not_yet_implemented_polite, t_custom);
+        element = create_button(legal_x + spacing, yy, "Delete", element_width, element_height, fa_center, not_yet_implemented, t_custom);
         element.tooltip = "Delete the selected prefab. Existing nodes derived from it will still exist, but the prefab link will be broken.";
         ds_list_add(t_custom.contents, element);
         #endregion
@@ -242,15 +242,15 @@ function ui_init_event(mode) {
         element.tooltip = "Move the player to another location on the map (or on a different map).";
         ds_list_add(t_action1.contents, element);
         yy += element_height;
-        element = create_button(legal_x + spacing, yy, "Set Entity Location", element_width, element_height, fa_left, not_yet_implemented_polite, t_action1);
+        element = create_button(legal_x + spacing, yy, "Set Entity Location", element_width, element_height, fa_left, not_yet_implemented, t_action1);
         element.tooltip = "Move an entity who isn't the player to another location on the map.";
         ds_list_add(t_action1.contents, element);
         yy += element_height;
-        element = create_button(legal_x + spacing, yy, "Scroll Map", element_width, element_height, fa_left, not_yet_implemented_polite, t_action1);
+        element = create_button(legal_x + spacing, yy, "Scroll Map", element_width, element_height, fa_left, not_yet_implemented, t_action1);
         element.tooltip = "Move the game camera to focus on another area of the map.";
         ds_list_add(t_action1.contents, element);
         yy += element_height;
-        element = create_button(legal_x + spacing, yy, "Set Movement Route", element_width, element_height, fa_left, not_yet_implemented_polite, t_action1);
+        element = create_button(legal_x + spacing, yy, "Set Movement Route", element_width, element_height, fa_left, not_yet_implemented, t_action1);
         element.tooltip = "Define a movement sequence for the player or another entity on the map.";
         ds_list_add(t_action1.contents, element);
         yy += element_height;
@@ -320,7 +320,7 @@ function ui_init_event(mode) {
         element = create_text(legal_x + spacing, yy, "Scene", element_width, element_height, fa_left, element_width, t_action2);
         ds_list_add(t_action2.contents, element);
         yy += element_height + spacing / 2;
-        element = create_button(legal_x + spacing, yy, "Return to Title Screen", element_width, element_height, fa_left, not_yet_implemented_polite, t_action2);
+        element = create_button(legal_x + spacing, yy, "Return to Title Screen", element_width, element_height, fa_left, not_yet_implemented, t_action2);
         element.tooltip = "Exit the game to the title screen.";
         ds_list_add(t_action2.contents, element);
         yy += element_height;
@@ -334,15 +334,15 @@ function ui_init_event(mode) {
         element.tooltip = "Change the name of the map, as visible to the player. (This will not affect the map's internal name.)";
         ds_list_add(t_action2.contents, element);
         yy += element_height;
-        element = create_button(legal_x + spacing, yy, "Change Map Tileset", element_width, element_height, fa_left, not_yet_implemented_polite, t_action2);
+        element = create_button(legal_x + spacing, yy, "Change Map Tileset", element_width, element_height, fa_left, not_yet_implemented, t_action2);
         element.tooltip = "Change the tileset used by the map. This may cause a temporary hiccup if large images need to be loaded or unloaded from memory.";
         ds_list_add(t_action2.contents, element);
         yy += element_height;
-        element = create_button(legal_x + spacing, yy, "Change Map Battle Scene", element_width, element_height, fa_left, not_yet_implemented_polite, t_action2);
+        element = create_button(legal_x + spacing, yy, "Change Map Battle Scene", element_width, element_height, fa_left, not_yet_implemented, t_action2);
         element.tooltip = "Change the battle scene associated with the map.";
         ds_list_add(t_action2.contents, element);
         yy += element_height;
-        element = create_button(legal_x + spacing, yy, "Change Map Skybox", element_width, element_height, fa_left, not_yet_implemented_polite, t_action2);
+        element = create_button(legal_x + spacing, yy, "Change Map Skybox", element_width, element_height, fa_left, not_yet_implemented, t_action2);
         element.tooltip = "Change the skybox used by the map.";
         ds_list_add(t_action2.contents, element);
         yy += element_height;
@@ -356,7 +356,7 @@ function ui_init_event(mode) {
         element.tooltip = "Invoke a piece of Lua code. Errors in Lua code may cause unpredictable behavior, or crash the game; use carefully.";
         ds_list_add(t_action2.contents, element);
         yy += element_height;
-        element = create_button(legal_x + spacing, yy, "Audio Controls", element_width, element_height, fa_left, not_yet_implemented_polite, t_action2);
+        element = create_button(legal_x + spacing, yy, "Audio Controls", element_width, element_height, fa_left, not_yet_implemented, t_action2);
         element.tooltip = "Advanced audio controls (using the FMOD audio interface).";
         ds_list_add(t_action2.contents, element);
         yy += element_height;
