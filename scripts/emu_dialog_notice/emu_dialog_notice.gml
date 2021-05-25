@@ -5,7 +5,7 @@ function emu_dialog_notice(message, dw, dh) {
     var b_width = 128;
     var b_height = 32;
     
-    var el_text = new EmuText(dw / 2, 32, dw - 64, dh - 64 - b_height, "[fa_center]" + message);
+    var el_text = new EmuText(32, 32, dw - 64, dh - 64 - b_height, message);
     el_text.alignment = fa_center;
     el_text.valignment = fa_middle;
     
