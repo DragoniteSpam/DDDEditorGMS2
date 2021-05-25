@@ -41,7 +41,7 @@ function dialog_create_map_generic_data(root) {
             ds_list_add(map.generic_data, data);
             instance_deactivate_object(data);
         } else {
-            dialog_create_notice(button.root, "Please don't try to create more than " + string(0xff) + " data types. If you need a lot of generic data grouped together you may want to create a type to represent instantiated enemies instead.", "Hey!");
+            emu_dialog_notice("Please don't try to create more than " + string(0xff) + " data types. If you need a lot of generic data grouped together you may want to create a type to represent instantiated enemies instead.");
         }
     }, dg);
     yy += el_data_add.height + spacing;

@@ -138,7 +138,8 @@ function terrain_save_obj(fn) {
     }
     
     if (string_length(warning_str) > 0) {
-        var dialog = dialog_create_notice(noone, warning_str, "Warnings!", "Okay", 720, max(240, warning_size), fa_left);
+        var dialog = emu_dialog_notice(warning_str, "Warnings!", "Okay", 720, max(240, warning_size));
+        dialog.el_text.alignment = fa_left;
     }
     
     buffer_poke(buffer, addr_vertex_count, buffer_text, string_pad(vertices, "0", 8));

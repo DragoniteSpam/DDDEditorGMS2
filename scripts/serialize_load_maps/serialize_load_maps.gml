@@ -9,7 +9,7 @@ function serialize_load_maps(buffer, version) {
         map.version = buffer_read(buffer, buffer_u32);
         
         if (version < LAST_SAFE_VERSION) {
-            dialog_create_notice(noone,
+            emu_dialog_notice(
                 "We stopped supporting versions of the data file before " + string(LAST_SAFE_VERSION) +
                 ". This current version is " + string(version) + ".\nPlease find a version of " + map.name +
                 " saved with the last compatible version of the editor. Can't open this one.",
@@ -19,7 +19,7 @@ function serialize_load_maps(buffer, version) {
         }
         
         if (version >= DataVersions._CURRENT) {
-            dialog_create_notice(noone,
+            emu_dialog_notice(
                 "The file(s) appear to be from a future version of the data format (" + string(version) +
                 "). The latest version supported by this program is " + string(DataVersions._CURRENT) + ".\n" +
                 "Please find a version of " + map.name + " saved with the an older version of the editor "+

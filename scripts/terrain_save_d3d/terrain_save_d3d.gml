@@ -51,9 +51,7 @@ function terrain_save_d3d(fn) {
     buffer_poke(buffer, addr_capacity, buffer_text, string_pad(vertices + 2, "0", 8));
     
     if (vertices / 3 >= 32000) {
-        dialog_create_notice(noone, "This terrain contains " + string_comma(vertices / 3) + " triangles (" + string_comma(vertices) + " total vertices). You may still use it for your own purposes, but it will not be able to view it in Model Creator, which has a limit of 32000 vertices.",
-            "Hey!", "Okay", 540, 240
-        );
+        emu_dialog_notice("This terrain contains " + string_comma(vertices / 3) + " triangles (" + string_comma(vertices) + " total vertices). You may still use it for your own purposes, but it will not be able to view it in Model Creator, which has a limit of 32000 vertices.", 540, 240);
     }
     
     buffer_write(buffer, buffer_text, "1\n");

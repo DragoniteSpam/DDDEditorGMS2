@@ -382,15 +382,15 @@ function import_obj(fn, everything, raw_buffer, existing, replace_index) {
             if (warnings & warn_map_7) warn_string += "Tried to load more than one displacement texture map (disp) - this is not yet supported\n";
             if (warnings & warn_map_8) warn_string += "Tried to load more than one stencil decal texture map (decal) - this is not yet supported\n";
             if (warnings & warn_alt_bump) warn_string += "Alternate bump map material data found - this is not yet supported\n";
-            (dialog_create_notice(noone, warn_header + warn_string)).flags |= DialogFlags.IS_GENERIC_WARNING;
+            (emu_dialog_notice(warn_header + warn_string)).flags |= DialogFlags.IS_GENERIC_WARNING;
         } else {
             top.el_text.text = string_replace(top.el_text.text, warn_header, warn_header_plural);
         }
     }
     
     if (err != "") {
-        dialog_create_notice(noone, "Could not load the model: " + err);
-        return noone;
+        emu_dialog_notice("Could not load the model: " + err);
+        return undefined;
     }
     
     var n = ds_list_size(temp_vertices);
@@ -484,7 +484,7 @@ function import_obj(fn, everything, raw_buffer, existing, replace_index) {
     }
     
     if (max_alpha < 0.05 && !warn_invisible) {
-        dialog_create_notice(undefined, "All of the vertices in this model have a very low alpha. If this is intentional, you can ignore this message; if this is otherwise due to a quirk of the tool used to create it, you might want to hit the Invert Transparency button to correct it.");
+        emu_dialog_notice("All of the vertices in this model have a very low alpha. If this is intentional, you can ignore this message; if this is otherwise due to a quirk of the tool used to create it, you might want to hit the Invert Transparency button to correct it.");
         warn_invisible = true;
     }
     

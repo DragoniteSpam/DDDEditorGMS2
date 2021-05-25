@@ -116,7 +116,7 @@ function language_extract() {
                         instance_destroy(entity);
                     }
                 } else if (!map_warned) {
-                    dialog_create_notice(noone, "The map [c_blue]" + map.name + "[/c] is not of Version " + string(DataVersions.MAP_SKIP_ADDRESSES) + " or later, and will not have its text extracted. Update the map by opening and closing it.");
+                    emu_dialog_notice("The map [c_blue]" + map.name + "[/c] is not of Version " + string(DataVersions.MAP_SKIP_ADDRESSES) + " or later, and will not have its text extracted. Update the map by opening and closing it.");
                     map_warned = true;
                 }
             }

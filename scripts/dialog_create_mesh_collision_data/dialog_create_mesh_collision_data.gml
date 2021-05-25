@@ -5,8 +5,8 @@ function dialog_create_mesh_collision_data(root, mesh) {
     var dd = mesh.zmax - mesh.zmin;
     
     if (ww * hh * dd == 0) {
-        dialog_create_notice(root, "The bounding box of " + mesh.name + " has a volume of zero; if you want to assign it collision data, please make sure it has a non-zero volume.");
-        return noone;
+        emu_dialog_notice("The bounding box of " + mesh.name + " has a volume of zero; if you want to assign it collision data, please make sure it has a non-zero volume.");
+        return undefined;
     }
     
     var dw = 1440;

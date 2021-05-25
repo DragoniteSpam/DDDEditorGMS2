@@ -92,7 +92,7 @@ function dialog_create_mesh_advanced(root, mesh) {
         var selection = ui_list_selection(list);
         if (selection + 1) {
             if (ds_list_size(mesh.submeshes) == 1) {
-                dialog_create_notice(button, "Please don't delete the last submesh!");
+                emu_dialog_notice("Please don't delete the last submesh!");
             } else {
                 mesh.RemoveSubmesh(selection);
                 ui_list_deselect(list);

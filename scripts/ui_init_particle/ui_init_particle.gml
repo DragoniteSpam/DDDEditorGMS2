@@ -172,7 +172,7 @@ function ui_init_particle(mode) {
         
         var element = create_button(col2_x, yy, "Copy Code", ew, eh, fa_center, function(button) {
             clipboard_set_text(editor_particle_generate_code());
-            (dialog_create_notice(noone, "Code has been copied to the clipboard!")).active_shade = false;
+            (emu_dialog_notice("Code has been copied to the clipboard!")).active_shade = false;
         }, t_system);
         element.tooltip = "Copy the GML code that will generate the particles to the Windows clipboard.";
         ds_list_add(t_system.contents, element);

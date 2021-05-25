@@ -6,7 +6,7 @@
     "path": "folders/Emu_Shortcuts.yy",
   },
   "resourceVersion": "1.0",
-  "name": "dialog_create_notice",
+  "name": "emu_dialog_notice",
   "tags": [],
   "resourceType": "GMScript",
 }

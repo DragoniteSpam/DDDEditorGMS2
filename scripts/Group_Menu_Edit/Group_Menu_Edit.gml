@@ -1,10 +1,9 @@
-
 function momu_copy() {
-    dialog_create_notice(noone, "copy: we haven't implemented this yet. pleaes stand by!");
+    emu_dialog_notice("copy: we haven't implemented this yet. pleaes stand by!");
 }
 
 function momu_cut() {
-    dialog_create_notice(noone, "cut: we haven't implemented this yet. pleaes stand by!");
+    emu_dialog_notice("cut: we haven't implemented this yet. pleaes stand by!");
 }
 
 function momu_deselect() {
@@ -12,11 +11,11 @@ function momu_deselect() {
 }
 
 function momu_paste() {
-    dialog_create_notice(noone, "paste: we haven't implemented this yet. pleaes stand by!");
+    emu_dialog_notice("paste: we haven't implemented this yet. pleaes stand by!");
 }
 
 function momu_redo() {
-    dialog_create_notice(noone, "redo: we haven't implemented this yet. pleaes stand by!");
+    emu_dialog_notice("redo: we haven't implemented this yet. pleaes stand by!");
 }
 
 function momu_select_all() {

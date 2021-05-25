@@ -78,7 +78,7 @@ function dialog_create_data_types(dialog) {
             button.root.selected_property = noone;
             dialog_data_type_disable(button.root);
         } else {
-            dialog_create_notice(button.root, "Please don't try to create more than ten thousand generic data types. Bad things will happen. Why do you even want that many?", "Hey!");
+            emu_dialog_notice("Please don't try to create more than ten thousand generic data types. Bad things will happen. Why do you even want that many?");
         }
     }, dg);
     yy += el_add.height + spacing;
@@ -91,7 +91,7 @@ function dialog_create_data_types(dialog) {
             button.root.selected_property = noone;
             dialog_data_type_disable(button.root);
         } else {
-            dialog_create_notice(button.root, "Please don't try to create more than ten thousand generic data types. Bad things will happen.", "Hey!");
+            emu_dialog_notice("Please don't try to create more than ten thousand generic data types. Bad things will happen.");
         }
     }, dg);
     yy += el_add.height + spacing;
@@ -207,7 +207,7 @@ function dialog_create_data_types(dialog) {
             button.root.el_move_down.interactive = true;
             button.root.el_remove_p.interactive = true;
         } else {
-            dialog_create_notice(button.root, "Please don't try to create more than a thousand properties on a single data type. Bad things will happen.", "Hey!");
+            emu_dialog_notice("Please don't try to create more than a thousand properties on a single data type. Bad things will happen.");
         }
     }, dg);
     el_add_p.interactive = false;
@@ -348,7 +348,7 @@ function dialog_create_data_types(dialog) {
                 }
             }
             if (n > 0) {
-                dialog_create_notice(checkbox.root, string(n) + " instances of " + checkbox.root.selected_data.name + " have default values auto-assigned to their " + checkbox.root.selected_property.name + " property.");
+                emu_dialog_notice(string(n) + " instances of " + checkbox.root.selected_data.name + " have default values auto-assigned to their " + checkbox.root.selected_property.name + " property.");
             }
         }
     }, false, dg);

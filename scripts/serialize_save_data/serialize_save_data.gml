@@ -77,7 +77,7 @@ function serialize_save_data() {
         for (var i = 0; i < array_length(error_list); i++) {
             err_str = err_str + "    - " + global.error_map[$ error_list[i]] + "\n";
         }
-        var dialog = dialog_create_notice(noone, "Some warnings were generated when saving your data file:\n\n" + err_str, "Warning!", undefined, undefined, 560);
+        var dialog = emu_dialog_notice("Some warnings were generated when saving your data file:\n\n" + err_str, "Warning!", 560);
         dialog.el_text.x = 32;
         dialog.el_text.y = 64;
         dialog.el_text.alignment = fa_left;

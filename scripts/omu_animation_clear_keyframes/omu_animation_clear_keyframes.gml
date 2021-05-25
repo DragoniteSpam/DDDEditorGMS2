@@ -13,7 +13,7 @@ function omu_animation_clear_keyframes(thing) {
         }
     }
     if (n == 0) {
-        dialog_create_notice(thing, "There are no out-of-bounds keyframes in this animation. You don't have to worry!");
+        emu_dialog_notice("There are no out-of-bounds keyframes in this animation. You don't have to worry!");
     } else {
         var msg = (n > 1) ? "There are " + string(n) + " out-of-bounds keyframes in this animation. Would you like to get rid of them?" : "There is 1 out-of-bounds keyframe in this animation. Would you like to get rid of it?";
         emu_dialog_confirm(thing, msg, function() {

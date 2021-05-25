@@ -157,7 +157,7 @@ function dialog_create_manager_mesh_autotile(root) {
             
             entity_mesh_autotile_check_changes(changes);
             if (failures) {
-                dialog_create_notice(undefined, "Unable to import " + string(failures) + " of " + string(file_count) + " attempted files.");
+                emu_dialog_notice("Unable to import " + string(failures) + " of " + string(file_count) + " attempted files.");
             }
             button.root.Colorize();
         }
@@ -211,7 +211,7 @@ function dialog_create_manager_mesh_autotile(root) {
             
             entity_mesh_autotile_check_changes(changes);
             if (failures) {
-                dialog_create_notice(undefined, "Unable to import " + string(failures) + " of the " + string(ds_list_size(files)) + " files.");
+                emu_dialog_notice("Unable to import " + string(failures) + " of the " + string(ds_list_size(files)) + " files.");
             }
             button.root.Colorize();
         }
@@ -347,7 +347,7 @@ function dialog_create_manager_mesh_autotile(root) {
                                     tile_data.SetReflect(data[1], data[0]);
                                 }
                             } catch (e) {
-                                dialog_create_notice(button, "Unable to load file: " + e.message);
+                                emu_dialog_notice("Unable to load file: " + e.message);
                             }
                             break;
                         case ".obj":
@@ -359,7 +359,7 @@ function dialog_create_manager_mesh_autotile(root) {
                                     tile_data.SetReflect(data[1], data[0]);
                                 }
                             } catch (e) {
-                                dialog_create_notice(button, "Unable to load file: " + e.message);
+                                emu_dialog_notice("Unable to load file: " + e.message);
                             }
                             break;
                     }

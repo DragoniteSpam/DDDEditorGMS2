@@ -118,7 +118,7 @@ function import_map_tiled(ask_clear) {
                     map_contents.reflect_frozen_data = undefined;
                 }
             } else {
-                dialog_create_notice(noone, "No valid tileset file found for " + filename_name(filename) + ". Please find one.");
+                emu_dialog_notice("No valid tileset file found for " + filename_name(filename) + ". Please find one.");
             }
             
             ds_map_destroy(tiled_cache);

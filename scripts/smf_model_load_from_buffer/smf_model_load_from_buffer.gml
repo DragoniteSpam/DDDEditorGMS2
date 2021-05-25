@@ -34,14 +34,14 @@ function smf_model_load_from_buffer() {
     buffer_seek(loadBuff, buffer_seek_start, 0);
     HeaderText = buffer_read(loadBuff, buffer_string);
     if HeaderText != "SnidrsModelFormat"{
-        dialog_create_notice(noone, "File " + modelName + " is not a valid SMF file");
+        emu_dialog_notice("File " + modelName + " is not a valid SMF file");
         if compressed{buffer_delete(loadBuff);}
         return -1;}
 
     //Check if the version is supported
     versionNum = buffer_read(loadBuff, buffer_f32);
     if versionNum != 7{
-        dialog_create_notice(noone, "Error when loading SMF file " + string(modelName) + "\nAttempting to load version " + string(versionNum) + ". This importer only supports SMF version 7.");
+        emu_dialog_notice("Error when loading SMF file " + string(modelName) + "\nAttempting to load version " + string(versionNum) + ". This importer only supports SMF version 7.");
         if compressed{buffer_delete(loadBuff);}
         return -1;}
 

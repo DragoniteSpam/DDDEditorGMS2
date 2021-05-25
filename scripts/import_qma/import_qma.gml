@@ -11,6 +11,6 @@ function import_qma(filename, adjust) {
         }
         buffer_delete(buffer);
     } catch (e) {
-        dialog_create_notice(undefined, "Could not import QMA - " + e.message);
+        emu_dialog_notice("Could not import QMA - " + e.message);
     }
 }

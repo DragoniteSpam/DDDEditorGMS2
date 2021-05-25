@@ -46,7 +46,7 @@ function dmu_graphic_delete_generic(button) {
 
 function dmu_graphic_delete_tileset(button) {
     if (ds_list_size(Stuff.all_graphic_tilesets) == 1) {
-        return dialog_create_notice(button.root, "Please don't try to delete the last tileset. That would cause issues.");
+        return emu_dialog_notice("Please don't try to delete the last tileset. That would cause issues.");
     }
     dmu_graphic_delete_generic(button);
 }
