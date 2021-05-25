@@ -15,9 +15,12 @@ function dialog_create_yes_or_no(root, message, action_confirm, caption_message,
     text.alignment = fa_center;
     text.valignment = fa_middle;
     
-    return new EmuDialog(dw, dh, caption_message).AddContent([
+    var dialog = new EmuDialog(dw, dh, caption_message);
+    dialog.AddContent([
         text,
         new EmuButton(dw / 3 - b_width / 2, dh - 32 - b_height / 2, b_width, b_height, cancel_message, action_cancel),
         new EmuButton(dw * 2 / 3 - b_width / 2, dh - 32 - b_height / 2, b_width, b_height, confirm_message, action_confirm),
     ]);
+    dialog.root = root;
+    return dialog;
 } 
