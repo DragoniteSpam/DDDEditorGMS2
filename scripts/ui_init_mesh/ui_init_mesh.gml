@@ -572,21 +572,21 @@ function ui_init_mesh(mode) {
         
         var yy_base_rs = yy;
         #region options
-        element = create_checkbox(c3x, yy, "Draw filled meshes?", ew, eh, function(checkbox) {
+        element = create_checkbox(c3x, yy, "Draw filled meshes?", ew * 0.75, eh, function(checkbox) {
             Stuff.mesh_ed.draw_meshes = checkbox.value;
         }, mode.draw_meshes, id);
         element.tooltip = "Draw the filled part of the 3D meshes.";
         ds_list_add(contents, element);
         yy += element.height + spacing;
         
-        element = create_checkbox(c3x, yy, "Draw wireframes?", ew, eh, function(checkbox) {
+        element = create_checkbox(c3x, yy, "Draw wireframes?", ew * 0.75, eh, function(checkbox) {
             Stuff.mesh_ed.draw_wireframes = checkbox.value;
         }, mode.draw_wireframes, id);
         element.tooltip = "Draw a wireframe over the 3D mesh. Turn this off if it gets annoying.";
         ds_list_add(contents, element);
         yy += element.height + spacing;
         
-        element = create_checkbox(c3x, yy, "Draw reflections?", ew, eh, function(checkbox) {
+        element = create_checkbox(c3x, yy, "Draw reflections?", ew * 0.75, eh, function(checkbox) {
             Stuff.mesh_ed.draw_reflections = checkbox.value;
         }, mode.draw_wireframes, id);
         element.tooltip = "If you have a reflection mesh set up, you may draw it, as well.";
@@ -603,21 +603,21 @@ function ui_init_mesh(mode) {
         
         yy = yy_base_rs;
         
-        element = create_checkbox(c4x, yy, "Show Textures?", ew, eh, function(checkbox) {
+        element = create_checkbox(c4x, yy, "Show Textures?", ew * 0.75, eh, function(checkbox) {
             Stuff.mesh_ed.draw_textures = checkbox.value;
         }, mode.draw_textures, id);
         element.tooltip = "Whether or not to draw the meshes in the preview window using a texture.";
         ds_list_add(contents, element);
         yy += element.height + spacing;
         
-        element = create_checkbox(c4x, yy, "Show Lighting?", ew, eh, function(checkbox) {
+        element = create_checkbox(c4x, yy, "Show Lighting?", ew * 0.75, eh, function(checkbox) {
             Stuff.mesh_ed.draw_lighting = checkbox.value;
         }, mode.draw_lighting, id);
         element.tooltip = "Whether or not to lighting should be enabled.";
         ds_list_add(contents, element);
         yy += element.height + spacing;
         
-        element = create_checkbox(c4x, yy, "Show Back Faces?", ew, eh, function(checkbox) {
+        element = create_checkbox(c4x, yy, "Show Back Faces?", ew * 0.75, eh, function(checkbox) {
             Stuff.mesh_ed.draw_back_faces = checkbox.value;
         }, mode.draw_back_faces, id);
         element.tooltip = "For backface culling.";
@@ -626,14 +626,14 @@ function ui_init_mesh(mode) {
         
         yy = yy_base_rs;
         
-        element = create_checkbox(c5x, yy, "Show Grid?", ew, eh, function(checkbox) {
+        element = create_checkbox(c5x, yy, "Show Grid?", ew * 0.75, eh, function(checkbox) {
             Stuff.mesh_ed.draw_grid = checkbox.value;
         }, mode.draw_grid, id);
         element.tooltip = "Whether or not to draw the tile grid on the Z = 0 plane.";
         ds_list_add(contents, element);
         yy += element.height + spacing;
         
-        element = create_checkbox(c5x, yy, "Show Axes?", ew, eh, function(checkbox) {
+        element = create_checkbox(c5x, yy, "Show Axes?", ew * 0.75, eh, function(checkbox) {
             Stuff.mesh_ed.draw_axes = checkbox.value;
         }, mode.draw_axes, id);
         element.tooltip = "Whether or not to draw the red, green, and blue axes in the 3D view.";
