@@ -68,10 +68,9 @@ files_dropped = [];
 save_name = "game";
 
 if (file_exists("projects.json")) {
-    all_projects = json_decode(file_get_contents("projects.json"));
+    all_projects = json_parse(file_get_contents("projects.json"));
 } else {
-    all_projects = ds_map_create();
-    ds_map_add_list(all_projects, "projects", ds_list_create());
+    all_projects = { projects: [] };
 }
 
 code_extension_map = [".txt", ".lua", ".gml"];

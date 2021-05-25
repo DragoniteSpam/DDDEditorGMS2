@@ -10,12 +10,12 @@ function setting_get(object, name, def) {
 
 function setting_project_add(name) {
     // this just logs it in projects.json; it doesn't add any of the data files
-    if (ds_list_find_index(Stuff.all_projects[? "projects"], name) == -1) {
-        ds_list_add(Stuff.all_projects[? "projects"], name);
+    if (array_search(Stuff.all_projects[$ "projects"], name) == -1) {
+        array_push(Stuff.all_projects[$ "projects"], name);
     }
     
     var buffer = buffer_create(32, buffer_grow, 1);
-    buffer_write(buffer, buffer_text, json_encode(Stuff.all_projects));
+    buffer_write(buffer, buffer_text, json_stringify(Stuff.all_projects));
     buffer_save_ext(buffer, "projects.json", 0, buffer_tell(buffer));
     buffer_delete(buffer);
 }
@@ -28,7 +28,6 @@ function setting_project_create_local(projname, filename, buffer) {
     
     buffer_save_ext(buffer, auto_folder + filename, 0, buffer_get_size(buffer));
 }
-
 
 #macro Settings global.__settings
 Settings = { };
