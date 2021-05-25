@@ -12,7 +12,7 @@ function uivc_input_map_size_x(input) {
         if (clear) {
             data_resize_map(map, xx, map.yy, map.zz);
         } else {
-            var dialog = dialog_create_yes_or_no(input, "If you do this, entities will be deleted and you will not be able to get them back. Is this okay?", function(dialog) {
+            var dialog = emu_dialog_confirm(input, "If you do this, entities will be deleted and you will not be able to get them back. Is this okay?", function(dialog) {
                     data_resize_map(dialog.root.map, dialog.root.xx, dialog.root.yy, dialog.root.zz);
                     dialog_destroy();
             }, undefined, undefined, undefined, function(button) {

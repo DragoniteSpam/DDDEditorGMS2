@@ -275,7 +275,7 @@ function ui_init_mesh(mode) {
             
             if (valid_count == 0) return;
             
-            var dg = dialog_create_yes_or_no(button.root, "Would you like to combine the submeshes in " + ((valid_count == 1) ? first_mesh.name : (string(valid_count) + " meshes")) + "?", function() {
+            var dg = emu_dialog_confirm(button.root, "Would you like to combine the submeshes in " + ((valid_count == 1) ? first_mesh.name : (string(valid_count) + " meshes")) + "?", function() {
                 var selection = self.root.selection;
                 for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
                     var mesh = Stuff.all_meshes[| index];

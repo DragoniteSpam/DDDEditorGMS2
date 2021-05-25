@@ -132,7 +132,7 @@ function dialog_create_project_list(root) {
         var selected_project = ui_list_selection(button.root.el_list);
         if (selected_project + 1) {
             var project = button.root.el_list.entries[| selected_project];
-            var dialog = dialog_create_yes_or_no(button, "Do you want to remove " + project + "? Its autosave files will be deleted, but any files you saved elsewhere on your computer will still be there and you will be able to re-load them later.", function() {
+            var dialog = emu_dialog_confirm(button, "Do you want to remove " + project + "? Its autosave files will be deleted, but any files you saved elsewhere on your computer will still be there and you will be able to re-load them later.", function() {
                 var project = self.root.project;
                 var list = Stuff.all_projects[$ "projects"];
                 var name = list[| project];

@@ -566,7 +566,7 @@ function ui_init_main(mode) {
         yy += element.height + spacing;
         
         element = create_button(col2_x, yy, "Clear Frozen Data", col_width, element_height, fa_center, function(button) {
-            dialog_create_yes_or_no(button, "This will permanently delete the frozen vertex buffer data. If you want to get it back, you will have to re-create it (e.g. by re-importing the Tiled map). Are you sure you want to do this?", function() {
+            emu_dialog_confirm(button, "This will permanently delete the frozen vertex buffer data. If you want to get it back, you will have to re-create it (e.g. by re-importing the Tiled map). Are you sure you want to do this?", function() {
                 Stuff.map.active_map.contents.ClearFrozenData();
                 self.root.Dispose();
             });

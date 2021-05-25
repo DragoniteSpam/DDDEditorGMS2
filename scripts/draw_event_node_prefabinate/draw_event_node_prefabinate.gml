@@ -12,7 +12,7 @@ function draw_event_node_prefabinate(xx, yy, node) {
             if (prefab) {
                 index = 1;
                 if (Controller.release_left) {
-                    var dialog = dialog_create_yes_or_no(undefined, "Break the prefab connection? The data will not be changed, but you will no longer be able to revert.", function() {
+                    var dialog = emu_dialog_confirm(undefined, "Break the prefab connection? The data will not be changed, but you will no longer be able to revert.", function() {
                         self.root.node.prefab_guid = NULL;
                         self.root.Dispose();
                     });
@@ -31,7 +31,7 @@ function draw_event_node_prefabinate(xx, yy, node) {
                 if (prefab) {
                     index2 = 1;
                     if (Controller.release_left) {
-                        var dialog = dialog_create_yes_or_no(noone, "Revert the prefab? Any changes you have made will be lost.", function() {
+                        var dialog = emu_dialog_confirm(noone, "Revert the prefab? Any changes you have made will be lost.", function() {
                             var node = self.root.node;
                             var prefab = guid_get(node.prefab_guid);
                             // not all of the variables can change so we don't

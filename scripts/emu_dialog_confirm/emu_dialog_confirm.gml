@@ -1,4 +1,4 @@
-function dialog_create_yes_or_no(root, message, action_confirm, caption_message, confirm_message, cancel_message, action_cancel) {
+function emu_dialog_confirm(root, message, action_confirm, caption_message, confirm_message, cancel_message, action_cancel) {
     // if the order of these parameters seems a little weird, it's because all of
     // the required ones have to go at the beginning and the optional ones at the end
     if (caption_message == undefined) caption_message = "Important!";

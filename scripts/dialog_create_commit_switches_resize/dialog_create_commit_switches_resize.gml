@@ -14,7 +14,7 @@ function dialog_create_commit_switches_resize(root) {
     }
     
     if (value < count) {
-        return dialog_create_yes_or_no(root,
+        return emu_dialog_confirm(root,
             "Reduce the number of global switches? Anything beyond the new limit will be lost. (If in doubt, leave it alone. The memory footprint is pretty low and there isn't really a consequence to having too many.)",
             function() {
                 var value = real(self.root.root.value);
