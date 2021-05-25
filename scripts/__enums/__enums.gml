@@ -83,40 +83,6 @@ enum ETypeFlags {
     ENTITY_ANY              = 0xffffffff,
 }
 
-enum AnimationTweens {
-    IGNORE, NONE, LINEAR,
-    EASE_QUAD_I, EASE_QUAD_O, EASE_QUAD_IO,
-    EASE_CUBE_I, EASE_CUBE_O, EASE_CUBE_IO,
-    EASE_QUART_I, EASE_QUART_O, EASE_QUART_IO,
-    EASE_QUINT_I, EASE_QUINT_O, EASE_QUINT_IO,
-    EASE_SINE_I, EASE_SINE_O, EASE_SINE_IO,
-    EASE_EXP_I, EASE_EXP_O, EASE_EXP_IO,
-    EASE_CIRC_I, EASE_CIRC_O, EASE_CIRC_IO,
-}
-
-global.animation_tween_names = ds_list_create();
-ds_list_add(global.animation_tween_names,
-    "Ignore", "None", "Linear",
-    "Quadratic In", "Quadratic Out", "Quadratic In / Out",
-    "Cubic In", "Cubic Out", "Cubic In / Out",
-    "Quartic In", "Quartic Out", "Quartic In / Out",
-    "Quintic In", "Quintic Out", "Quintic In / Out",
-    "Sinusoidal In", "Sinusoidal Out", "Sinusoidal In / Out",
-    "Exponential In", "Exponential Out", "Exponential In / Out",
-    "Circular In", "Circular Out", "Circular In / Out",
-);
-
-global.easing_equations = [
-    ease_none, ease_none, ease_linear,
-    ease_quad_i, ease_quad_o, ease_quad_io,
-    ease_cube_i, ease_cube_o, ease_cube_io,
-    ease_quart_i, ease_quart_o, ease_quart_io,
-    ease_quint_i, ease_quint_o, ease_quint_io,
-    ease_sine_i, ease_sine_o, ease_sine_io,
-    ease_exp_i, ease_exp_o, ease_exp_io,
-    ease_circ_i, ease_circ_o, ease_circ_io,
-];
-
 enum Dimensions {
     TWOD,
     THREED
