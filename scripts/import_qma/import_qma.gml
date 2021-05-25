@@ -7,7 +7,7 @@ function import_qma(filename, adjust) {
         var version = data.version;
         var n = buffer_read(buffer, buffer_u32);
         repeat (n) {
-            var mesh = import_qma_next(buffer, version);
+            ds_list_add(Stuff.all_meshes, import_qma_next(buffer, version));
         }
         buffer_delete(buffer);
     } catch (e) {
