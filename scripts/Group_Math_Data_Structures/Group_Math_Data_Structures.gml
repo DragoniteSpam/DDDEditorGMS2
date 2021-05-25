@@ -392,6 +392,15 @@ function ds_list_top(list) {
 #endregion
 
 #region ds_map stuff
+function ds_map_to_array(map) {
+    var array = array_create(ds_map_size(map));
+    var index = 0;
+    for (var i = ds_map_find_first(map); i != undefined; i = ds_map_find_next(map, i)) {
+        array[index++] = i;
+    }
+    return array;
+}
+
 function ds_map_to_list(map) {
     var list = ds_list_create();
     for (var i = ds_map_find_first(map); i != undefined; i = ds_map_find_next(map, i)) {
