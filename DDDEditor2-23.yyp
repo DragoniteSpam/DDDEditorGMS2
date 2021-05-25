@@ -723,7 +723,6 @@
     {"id":{"name":"spart_type_mesh_rotation_axis","path":"scripts/spart_type_mesh_rotation_axis/spart_type_mesh_rotation_axis.yy",},"order":5,},
     {"id":{"name":"scribble_autotype_get","path":"scripts/scribble_autotype_get/scribble_autotype_get.yy",},"order":3,},
     {"id":{"name":"spart_type_mesh_lighting","path":"scripts/spart_type_mesh_lighting/spart_type_mesh_lighting.yy",},"order":6,},
-    {"id":{"name":"Group_Math_Easings","path":"scripts/Group_Math_Easings/Group_Math_Easings.yy",},"order":11,},
     {"id":{"name":"spart_type_mesh_cullmode","path":"scripts/spart_type_mesh_cullmode/spart_type_mesh_cullmode.yy",},"order":7,},
     {"id":{"name":"spart_type_direction","path":"scripts/spart_type_direction/spart_type_direction.yy",},"order":8,},
     {"id":{"name":"spart_type_size","path":"scripts/spart_type_size/spart_type_size.yy",},"order":9,},
