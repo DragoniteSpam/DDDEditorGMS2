@@ -39,9 +39,9 @@ function animation_get_tween_color(animation, timeline_layer, moment) {
     
     // only need to check for previous keyframe because if there is no next keyframe, the "next"
     // value will be the same as previous and tweening will just output the same value anyway
-    var r_current = tween(r_previous, r_next, f, type);
-    var g_current = tween(g_previous, g_next, f, type);
-    var b_current = tween(b_previous, b_next, f, type);
+    var r_current = easing_easing_tween(r_previous, r_next, f, type);
+    var g_current = easing_easing_tween(g_previous, g_next, f, type);
+    var b_current = easing_easing_tween(b_previous, b_next, f, type);
     
     return (b_current << 16) | (g_current << 8) | r_current;
 }
@@ -77,7 +77,7 @@ function animation_get_tween_alpha(animation, timeline_layer, moment) {
     
     // only need to check for previous keyframe because if there is no next keyframe, the "next"
     // value will be the same as previous and tweening will just output the same value anyway
-    return tween(value_previous, value_next, f, kf_previous ? kf_previous.tween_alpha : AnimationTweens.NONE);
+    return easing_tween(value_previous, value_next, f, kf_previous ? kf_previous.tween_alpha : AnimationTweens.NONE);
 }
 
 function animation_get_tween_rotate_x(animation, timeline_layer, moment) {
@@ -111,7 +111,7 @@ function animation_get_tween_rotate_x(animation, timeline_layer, moment) {
     
     // only need to check for previous keyframe because if there is no next keyframe, the "next"
     // value will be the same as previous and tweening will just output the same value anyway
-    return tween(value_previous, value_next, f, kf_previous ? kf_previous.tween_xrot : AnimationTweens.NONE);
+    return easing_tween(value_previous, value_next, f, kf_previous ? kf_previous.tween_xrot : AnimationTweens.NONE);
 }
 
 function animation_get_tween_rotate_y(animation, timeline_layer, moment) {
@@ -145,7 +145,7 @@ function animation_get_tween_rotate_y(animation, timeline_layer, moment) {
     
     // only need to check for previous keyframe because if there is no next keyframe, the "next"
     // value will be the same as previous and tweening will just output the same value anyway
-    return tween(value_previous, value_next, f, kf_previous ? kf_previous.tween_yrot : AnimationTweens.NONE);
+    return easing_tween(value_previous, value_next, f, kf_previous ? kf_previous.tween_yrot : AnimationTweens.NONE);
 }
 
 function animation_get_tween_rotate_z(animation, timeline_layer, moment) {
@@ -179,7 +179,7 @@ function animation_get_tween_rotate_z(animation, timeline_layer, moment) {
     
     // only need to check for previous keyframe because if there is no next keyframe, the "next"
     // value will be the same as previous and tweening will just output the same value anyway
-    return tween(value_previous, value_next, f, kf_previous ? kf_previous.tween_zrot : AnimationTweens.NONE);
+    return easing_tween(value_previous, value_next, f, kf_previous ? kf_previous.tween_zrot : AnimationTweens.NONE);
 }
 
 function animation_get_tween_scale_x(animation, timeline_layer, moment) {
@@ -213,7 +213,7 @@ function animation_get_tween_scale_x(animation, timeline_layer, moment) {
     
     // only need to check for previous keyframe because if there is no next keyframe, the "next"
     // value will be the same as previous and tweening will just output the same value anyway
-    return tween(value_previous, value_next, f, kf_previous ? kf_previous.tween_xscale : AnimationTweens.NONE);
+    return easing_tween(value_previous, value_next, f, kf_previous ? kf_previous.tween_xscale : AnimationTweens.NONE);
 }
 
 function animation_get_tween_scale_y(animation, timeline_layer, moment) {
@@ -247,7 +247,7 @@ function animation_get_tween_scale_y(animation, timeline_layer, moment) {
     
     // only need to check for previous keyframe because if there is no next keyframe, the "next"
     // value will be the same as previous and tweening will just output the same value anyway
-    return tween(value_previous, value_next, f, kf_previous ? kf_previous.tween_yscale : AnimationTweens.NONE);
+    return easing_tween(value_previous, value_next, f, kf_previous ? kf_previous.tween_yscale : AnimationTweens.NONE);
 }
 
 function animation_get_tween_scale_z(animation, timeline_layer, moment) {
@@ -281,7 +281,7 @@ function animation_get_tween_scale_z(animation, timeline_layer, moment) {
     
     // only need to check for previous keyframe because if there is no next keyframe, the "next"
     // value will be the same as previous and tweening will just output the same value anyway
-    return tween(value_previous, value_next, f, kf_previous ? kf_previous.tween_zscale : AnimationTweens.NONE);
+    return easing_tween(value_previous, value_next, f, kf_previous ? kf_previous.tween_zscale : AnimationTweens.NONE);
 }
 
 function animation_get_tween_translate_x(animation, timeline_layer, moment) {
@@ -316,7 +316,7 @@ function animation_get_tween_translate_x(animation, timeline_layer, moment) {
     
     // only need to check for previous keyframe because if there is no next keyframe, the "next"
     // value will be the same as previous and tweening will just output the same value anyway
-    return tween(value_previous, value_next, f, kf_previous ? kf_previous.tween_xx : AnimationTweens.NONE);
+    return easing_tween(value_previous, value_next, f, kf_previous ? kf_previous.tween_xx : AnimationTweens.NONE);
 }
 
 function animation_get_tween_translate_y(animation, timeline_layer, moment) {
@@ -350,7 +350,7 @@ function animation_get_tween_translate_y(animation, timeline_layer, moment) {
     
     // only need to check for previous keyframe because if there is no next keyframe, the "next"
     // value will be the same as previous and tweening will just output the same value anyway
-    return tween(value_previous, value_next, f, kf_previous ? kf_previous.tween_yy : AnimationTweens.NONE);
+    return easing_tween(value_previous, value_next, f, kf_previous ? kf_previous.tween_yy : AnimationTweens.NONE);
 }
 
 function animation_get_tween_translate_z(animation, timeline_layer, moment) {
@@ -386,5 +386,5 @@ function animation_get_tween_translate_z(animation, timeline_layer, moment) {
     
     // only need to check for previous keyframe because if there is no next keyframe, the "next"
     // value will be the same as previous and tweening will just output the same value anyway
-    return tween(value_previous, value_next, f, kf_previous ? kf_previous.tween_zz : AnimationTweens.NONE);
+    return easing_tween(value_previous, value_next, f, kf_previous ? kf_previous.tween_zz : AnimationTweens.NONE);
 }

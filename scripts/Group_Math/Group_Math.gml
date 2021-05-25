@@ -101,8 +101,3 @@ function number_max_digits(n) {
 function round_ext(value, to) {
     return round(value / to) * to;
 }
-
-function tween(v0, v1, f, type) {
-    // big help: http://www.gizma.com/easing
-    return global.easing_equations[type](v0, v1, f);
-}
