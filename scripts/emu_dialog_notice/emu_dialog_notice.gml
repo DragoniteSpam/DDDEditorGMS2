@@ -8,6 +8,7 @@ function emu_dialog_notice(message, dw, dh) {
     var el_text = new EmuText(dw / 2, 32, dw - 64, dh - 64 - b_height, "[fa_center]" + message);
     el_text.alignment = fa_center;
     el_text.valignment = fa_middle;
+    
     var el_button = new EmuButton(dw / 2 - b_width / 2, dh - 32 - b_height / 2, b_width, b_height, "okay", function() {
         self.root.Dispose();
     });
