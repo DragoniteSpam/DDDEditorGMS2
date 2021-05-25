@@ -2,7 +2,7 @@ function dialog_create_mesh_material_settings(dialog, selection) {
     var mode = Stuff.mesh_ed;
     
     var dw = 560;
-    var dh = 480;
+    var dh = 640;
     
     var columns = 1;
     var ew = dw / columns - 64 - 64;
@@ -73,7 +73,7 @@ function dialog_create_mesh_material_settings(dialog, selection) {
         }
     };
     
-    var list = new EmuList(32, 32, ew, eh, "Textures:", eh, 9, callback_set_map_to_selection);
+    var list = new EmuList(32, 32, ew, eh, "Textures:", eh, 16, callback_set_map_to_selection);
     tab_base.AddContent(list);
     list.callback_set_texture = function(mesh, tex) { mesh.tex_base = tex; };
     list.SetList(Stuff.all_graphic_tilesets);
