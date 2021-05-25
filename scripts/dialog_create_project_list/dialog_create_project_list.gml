@@ -3,7 +3,7 @@ function dialog_create_project_list(root) {
     var dh = 512;
     
     var dg = dialog_create(dw, dh, "Open Project", dialog_default, dialog_destroy, root);
-    dg.dialog_flags |= DialogFlags.NO_CLOSE_BUTTON;
+    dg.flags |= DialogFlags.NO_CLOSE_BUTTON;
     
     var columns = 2;
     var spacing = 16;

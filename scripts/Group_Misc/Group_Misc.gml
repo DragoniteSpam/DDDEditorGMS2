@@ -13,13 +13,13 @@ function not_yet_implemented_polite() {
     // you're only allowed to have one; if more than one are requested at the same time,
     // only the first will be created
     var top = ds_list_top(Stuff.dialogs);
-    if (!(top && (top.dialog_flags & DialogFlags.IS_EXCEPTION))) {
+    if (!(top && (top.flags & DialogFlags.IS_EXCEPTION))) {
         var dialog = dialog_create_notice(noone,
             "Stack trace requested, probably in lieu of a NotImplementedException. (If you're an end user and seeing this, most of the time this means the developer meant to add a feature and probably forgot.)\n\n",
             "Whoa, whoa!", "Okay", 640, 400
         );
         
-        dialog.dialog_flags |= DialogFlags.IS_EXCEPTION;
+        dialog.flags |= DialogFlags.IS_EXCEPTION;
         dialog.el_text.x = 32;
         dialog.el_text.y = 32;
         dialog.el_text.wrap_width = dialog.width - 64;

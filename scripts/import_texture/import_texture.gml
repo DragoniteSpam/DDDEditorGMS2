@@ -4,9 +4,9 @@ function import_texture(fn) {
     ts.name = filename_change_ext(filename_name(fn),"");
     
     var top = ds_list_top(Stuff.dialogs);
-    if (!top || !(top.dialog_flags & DialogFlags.IS_GENERIC_WARNING)) {
+    if (!top || !(top.flags & DialogFlags.IS_GENERIC_WARNING)) {
         var top = dialog_create_manager_graphic_tileset(undefined);
-        top.dialog_flags |= DialogFlags.IS_GENERIC_WARNING;
+        top.flags |= DialogFlags.IS_GENERIC_WARNING;
     }
     
     ui_list_deselect(top.el_list);

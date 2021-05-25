@@ -9,7 +9,7 @@ changed = false;
 cmx = -1;
 cmy = -1;
 
-dialog_flags = 0;
+flags = 0;
 active_shade = true;
 
 enum DialogFlags {

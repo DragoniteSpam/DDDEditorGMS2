@@ -3,7 +3,7 @@ function dialog_create_manager_graphic(root, name, list, prefix, load_function, 
     var dh = 720;
     
     var dg = dialog_create(dw, dh, name, dialog_default, dialog_destroy, root);
-    dg.dialog_flags |= DialogFlags.IS_GENERIC_WARNING;
+    dg.flags |= DialogFlags.IS_GENERIC_WARNING;
     dg.graphics_prefix = prefix;
     var columns = 4;
     var spacing = 16;

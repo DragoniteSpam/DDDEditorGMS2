@@ -371,7 +371,7 @@ function import_obj(fn, everything, raw_buffer, existing, replace_index) {
         var warn_header = "Warnings generated regarding the imported mesh:\n";
         var warn_header_plural = "Warnings generated regarding the a number of the imported meshes:\n";
         var top = ds_list_top(Stuff.dialogs);
-        if (!top || !(top.dialog_flags & DialogFlags.IS_GENERIC_WARNING)) {
+        if (!top || !(top.flags & DialogFlags.IS_GENERIC_WARNING)) {
             var warn_string = "";
             if (warnings & warn_map_1) warn_string += "Tried to load more than one diffuse texture map (map_Kd) - this is not yet supported\n";
             if (warnings & warn_map_2) warn_string += "Tried to load more than one ambient texture map (map_Ka) - this is not yet supported\n";
@@ -382,7 +382,7 @@ function import_obj(fn, everything, raw_buffer, existing, replace_index) {
             if (warnings & warn_map_7) warn_string += "Tried to load more than one displacement texture map (disp) - this is not yet supported\n";
             if (warnings & warn_map_8) warn_string += "Tried to load more than one stencil decal texture map (decal) - this is not yet supported\n";
             if (warnings & warn_alt_bump) warn_string += "Alternate bump map material data found - this is not yet supported\n";
-            (dialog_create_notice(noone, warn_header + warn_string)).dialog_flags |= DialogFlags.IS_GENERIC_WARNING;
+            (dialog_create_notice(noone, warn_header + warn_string)).flags |= DialogFlags.IS_GENERIC_WARNING;
         } else {
             top.el_text.text = string_replace(top.el_text.text, warn_header, warn_header_plural);
         }
