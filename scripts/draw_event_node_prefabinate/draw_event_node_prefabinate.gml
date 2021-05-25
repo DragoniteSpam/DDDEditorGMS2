@@ -12,9 +12,9 @@ function draw_event_node_prefabinate(xx, yy, node) {
             if (prefab) {
                 index = 1;
                 if (Controller.release_left) {
-                    var dialog = dialog_create_yes_or_no(noone, "Break the prefab connection? The data will not be changed, but you will no longer be able to revert.", function(button) {
-                        button.root.node.prefab_guid = NULL;
-                        button.root.commit(button.root);
+                    var dialog = dialog_create_yes_or_no(undefined, "Break the prefab connection? The data will not be changed, but you will no longer be able to revert.", function() {
+                        self.root.node.prefab_guid = NULL;
+                        self.root.Dispose();
                     });
                     dialog.node = node;
                 }
@@ -31,8 +31,8 @@ function draw_event_node_prefabinate(xx, yy, node) {
                 if (prefab) {
                     index2 = 1;
                     if (Controller.release_left) {
-                        var dialog = dialog_create_yes_or_no(noone, "Revert the prefab? Any changes you have made will be lost.", function(button) {
-                            var node = button.root.node;
+                        var dialog = dialog_create_yes_or_no(noone, "Revert the prefab? Any changes you have made will be lost.", function() {
+                            var node = self.root.node;
                             var prefab = guid_get(node.prefab_guid);
                             // not all of the variables can change so we don't
                             // have TOO mcuh work to do (for the most part the
@@ -42,7 +42,7 @@ function draw_event_node_prefabinate(xx, yy, node) {
                             for (var i = 0; i < ds_list_size(node.custom_data); i++) {
                                 ds_list_copy(node.custom_data[| i], prefab.custom_data[| i]);
                             }
-                            button.root.commit(button.root);
+                            self.root.Dispose();
                         });
                         dialog.node = node;
                     }

@@ -188,7 +188,7 @@ function ui_init_particle(mode) {
         yy += element.height + spacing;
         
         var element = create_button(col3_x, yy, "Fire", ew, eh, fa_center, function(button) {
-            dialog_create_yes_or_no(button.root, "Would you like to load the demo fire particles? (Any current particle types and emitters will be cleared.)", function(button) {
+            dialog_create_yes_or_no(button.root, "Would you like to load the demo fire particles? (Any current particle types and emitters will be cleared.)", function() {
                 var version = buffer_peek(Stuff.particle.demo_fire, 0, buffer_u32);
                 serialize_load_particles(Stuff.particle.demo_fire, version);
                 buffer_seek(Stuff.particle.demo_fire, buffer_seek_start, 0);
@@ -196,7 +196,7 @@ function ui_init_particle(mode) {
                 ui_list_select(Stuff.particle.ui.t_type.list, 0);
                 Stuff.particle.ui.t_emitter.list.onvaluechange(Stuff.particle.ui.t_emitter.list);
                 Stuff.particle.ui.t_type.list.onvaluechange(Stuff.particle.ui.t_type.list);
-                dialog_destroy();
+                self.root.Dispose();
             });
         }, t_system);
         element.tooltip = "A demo of fire and smoke";
@@ -205,14 +205,15 @@ function ui_init_particle(mode) {
         yy += element.height + spacing;
         
         var element = create_button(col3_x, yy, "Waterfall", ew, eh, fa_center, function(button) {
-            dialog_create_yes_or_no(button.root, "Would you like to load the demo water particles? (Any current particle types and emitters will be cleared.)", function(button) {var version = buffer_peek(Stuff.particle.demo_water, 0, buffer_u32);
+            dialog_create_yes_or_no(button.root, "Would you like to load the demo water particles? (Any current particle types and emitters will be cleared.)", function() {
+                var version = buffer_peek(Stuff.particle.demo_water, 0, buffer_u32);
                 serialize_load_particles(Stuff.particle.demo_water, version);
                 buffer_seek(Stuff.particle.demo_water, buffer_seek_start, 0);
                 ui_list_select(Stuff.particle.ui.t_emitter.list, 0);
                 ui_list_select(Stuff.particle.ui.t_type.list, 0);
                 Stuff.particle.ui.t_emitter.list.onvaluechange(Stuff.particle.ui.t_emitter.list);
                 Stuff.particle.ui.t_type.list.onvaluechange(Stuff.particle.ui.t_type.list);
-                dialog_destroy();
+                self.root.Dispose();
             });
         }, t_system);
         element.tooltip = "A demo of water";
@@ -221,7 +222,7 @@ function ui_init_particle(mode) {
         yy += element.height + spacing;
         
         var element = create_button(col3_x, yy, "Glowing Blobs", ew, eh, fa_center, function(button) {
-            dialog_create_yes_or_no(button.root, "Would you like to load the demo glow particles? (Any current particle types and emitters will be cleared.)", function(button) {
+            dialog_create_yes_or_no(button.root, "Would you like to load the demo glow particles? (Any current particle types and emitters will be cleared.)", function() {
                 var version = buffer_peek(Stuff.particle.demo_glow, 0, buffer_u32);
                 serialize_load_particles(Stuff.particle.demo_glow, version);
                 buffer_seek(Stuff.particle.demo_glow, buffer_seek_start, 0);
@@ -229,7 +230,7 @@ function ui_init_particle(mode) {
                 ui_list_select(Stuff.particle.ui.t_type.list, 0);
                 Stuff.particle.ui.t_emitter.list.onvaluechange(Stuff.particle.ui.t_emitter.list);
                 Stuff.particle.ui.t_type.list.onvaluechange(Stuff.particle.ui.t_type.list);
-                dialog_destroy();
+                self.root.Dispose();
             });
         }, t_system);
         element.tooltip = "A demo of glowing particles that you can draw on the screen and stuff with (click the mouse to spawn particles at the cursor location)";

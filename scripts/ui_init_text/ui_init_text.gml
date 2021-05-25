@@ -123,12 +123,12 @@ function ui_init_text() {
         ds_list_add(contents, element);
         
         element = create_button(c2x + ew + 16, yy, "Clear All Text", ew - 16, eh, fa_center, function(button) {
-            var dg = dialog_create_yes_or_no(button.root, "This will delete all extracted and localized strings, forcing you to start over. Are you [shake]ABSOLUTELY CERTAIN[/shake] you want to do this?", function(button) {
+            var dg = dialog_create_yes_or_no(button.root, "This will delete all extracted and localized strings, forcing you to start over. Are you [shake]ABSOLUTELY CERTAIN[/shake] you want to do this?", function() {
                 for (var i = 0; i < ds_list_size(Stuff.all_languages); i++) {
                     Stuff.all_localized_text[$ Stuff.all_languages[| i]] = { };
                 }
                 language_refresh_ui();
-                dialog_destroy();
+                self.root.Dispose();
             });
         }, id);
         element.tooltip = "Extract all player-visible text from the game's data; this includes String types in the database, cutscene event nodes, and other such things.";
@@ -141,8 +141,8 @@ function ui_init_text() {
                 var lang_name = Stuff.all_languages[| selection];
                 var base_lang = Stuff.all_languages[| 0];
                 var dg = dialog_create_yes_or_no(button.root, "Would you like to set each string for " + lang_name + " to the default" + (string_lower(base_lang) == "default" ? "" : " (" + base_lang + ")") + "? Any strings already defined will be overwritten.",
-                    function(button) {
-                        var base_element = button.root.root;
+                    function() {
+                        var base_element = self.root.root;
                         var selection = ui_list_selection(base_element.el_language_list);
                         if (selection + 1) {
                             var lang_name = Stuff.all_languages[| selection];
@@ -153,7 +153,7 @@ function ui_init_text() {
                             }
                             base_element.list_selection_action(base_element.el_language_text);
                         }
-                        dialog_destroy();
+                        self.root.Dispose();
                     }
                 );
             }
@@ -167,8 +167,8 @@ function ui_init_text() {
                 var lang_name = Stuff.all_languages[| selection];
                 var base_lang = Stuff.all_languages[| 0];
                 var dg = dialog_create_yes_or_no(button.root, "Would you like to remove all translated strings for " + lang_name + "?",
-                    function(button) {
-                        var base_element = button.root.root;
+                    function() {
+                        var base_element = self.root.root;
                         var selection = ui_list_selection(base_element.el_language_list);
                         if (selection > 0) {
                             var lang_name = Stuff.all_languages[| selection];

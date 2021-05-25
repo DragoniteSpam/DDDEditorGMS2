@@ -1,6 +1,6 @@
 function import_map_tiled(ask_clear) {
     if (ask_clear) {
-        dialog_create_yes_or_no(noone, "Do you want to import a Tiled map? If there is any frozen terrain data, it will be removed.", function(button) {
+        dialog_create_yes_or_no(undefined, "Do you want to import a Tiled map? If there is any frozen terrain data, it will be removed.", function() {
             var map = Stuff.map.active_map;
             var map_contents = map.contents;
             if (map_contents.frozen_data) buffer_delete(map_contents.frozen_data);
@@ -10,7 +10,7 @@ function import_map_tiled(ask_clear) {
             // the vertex buffers are created elsewhere - since they need to be
             // destroyed and recreated regardless
             import_map_tiled(false);
-            dialog_destroy();
+            self.root.Dispose();
         });
         return;
     }

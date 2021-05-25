@@ -12,16 +12,16 @@ function uivc_input_map_size_z(input) {
         if (clear) {
             data_resize_map(map, map.xx, map.yy, zz);
         } else {
-            var dialog = dialog_create_yes_or_no(input, "If you do this, entities will be deleted and you will not be able to get them back. Is this okay?", function(dialog) {
-                    data_resize_map(dialog.root.map, dialog.root.xx, dialog.root.yy, dialog.root.zz);
-                    dialog_destroy();
-            }, undefined, undefined, undefined, function(button) {
-                var map = button.root.map;
-                var base_ui = button.root.root.root;
+            var dialog = dialog_create_yes_or_no(input, "If you do this, entities will be deleted and you will not be able to get them back. Is this okay?", function() {
+                data_resize_map(self.root.map, self.root.xx, self.root.yy, self.root.zz);
+                self.root.Dispose();
+            }, undefined, undefined, undefined, function() {
+                var map = self.root.map;
+                var base_ui = self.root.root.root;
                 ui_input_set_value(base_ui.el_dim_x, string(map.xx));
                 ui_input_set_value(base_ui.el_dim_y, string(map.yy));
                 ui_input_set_value(base_ui.el_dim_z, string(map.zz));
-                dialog_destroy();
+                self.root.Dispose();
             });
             dialog.map = map;
             dialog.xx = map.xx;

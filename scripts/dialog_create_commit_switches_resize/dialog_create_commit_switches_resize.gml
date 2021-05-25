@@ -16,12 +16,12 @@ function dialog_create_commit_switches_resize(root) {
     if (value < count) {
         return dialog_create_yes_or_no(root,
             "Reduce the number of global switches? Anything beyond the new limit will be lost. (If in doubt, leave it alone. The memory footprint is pretty low and there isn't really a consequence to having too many.)",
-            function(dialog) {
-                var value = real(dialog.root.root.value);
+            function() {
+                var value = real(self.root.root.value);
                 var times = ds_list_size(Stuff.switches) - value;
                 repeat (times) ds_list_pop(Stuff.switches);
                 
-                var base_dialog = dialog.root.root.root;
+                var base_dialog = self.root.root.root;
                 if (value <= ui_list_selection(base_dialog.el_list)) {
                     ui_list_deselect(base_dialog.el_list);
                 }
@@ -31,7 +31,7 @@ function dialog_create_commit_switches_resize(root) {
                 }
                 
                 ui_list_reset_view(base_dialog.el_list);
-                dialog_destroy();
+                self.root.Dispose();
             }
         );
     }

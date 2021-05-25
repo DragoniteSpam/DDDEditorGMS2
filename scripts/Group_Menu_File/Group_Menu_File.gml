@@ -1,5 +1,5 @@
 function momu_exit() {
-    dialog_create_yes_or_no(noone, "Do you want to close the program?", function(button) {
+    dialog_create_yes_or_no(undefined, "Do you want to close the program?", function() {
         game_end();
     }).flags |= DialogFlags.IS_QUIT;
 }

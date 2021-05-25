@@ -16,8 +16,9 @@ function omu_animation_clear_keyframes(thing) {
         dialog_create_notice(thing, "There are no out-of-bounds keyframes in this animation. You don't have to worry!");
     } else {
         var msg = (n > 1) ? "There are " + string(n) + " out-of-bounds keyframes in this animation. Would you like to get rid of them?" : "There is 1 out-of-bounds keyframe in this animation. Would you like to get rid of it?";
-        dialog_create_yes_or_no(thing, msg, function(button) {
-            var animation = button.root.root.root.root.root.active_animation;
+        dialog_create_yes_or_no(thing, msg, function() {
+            // everything is terrible
+            var animation = self.root.root.root.root.root.active_animation;
             // we can safely assume animation exists if we got to this point
             for (var i = 0; i < ds_list_size(animation.layers); i++) {
                 var timeline_layer = animation.layers[| i];
@@ -30,7 +31,7 @@ function omu_animation_clear_keyframes(thing) {
                     }
                 }
             }
-            dialog_destroy();
+            self.root.Dispose();
         });
     }
 }
