@@ -334,8 +334,18 @@ function ui_init_main(mode) {
         #region tab: map
         yy = legal_y + spacing;
         
+        var f_map_open = function(element) {
+            var list = element.root.el_map_list;
+            var index = ui_list_selection(list);
+            var map = Stuff.all_maps[| index];
+            if (map != Stuff.map.active_map) {
+                selection_clear();
+                load_a_map(map);
+            }
+        };
+        
         element = create_list(col1_x, yy, "Maps: ", "no maps. (how?!)", col_width, element_height, 20, null, false, t_maps, Stuff.all_maps);
-        var f_map_open = function(list) {
+        element.onvaluechange = method(element, function(list) {
             var selection = ui_list_selection(list);
             if (selection + 1) {
                 var what = list.entries[| selection];
@@ -367,8 +377,7 @@ function ui_init_main(mode) {
                 list.root.el_other.interactive = false;
                 list.root.el_3d.interactive = false;
             }
-        };
-        element.onvaluechange = method(element, f_map_open);
+        });
         element.tooltip = "This is a list of all the maps currently in the game.";
         element.render_colors = method(element, function(list, index) {
             return (Stuff.game_starting_map == list.entries[| index].GUID) ? c_blue : c_black;
@@ -407,15 +416,7 @@ function ui_init_main(mode) {
         
         yy += element.height + spacing;
         
-        element = create_button(col1_x, yy, "Open Map", col_width, element_height, fa_center, function(button) {
-            var list = button.root.el_map_list;
-            var index = ui_list_selection(list);
-            var map = Stuff.all_maps[| index];
-            if (map != Stuff.map.active_map) {
-                selection_clear();
-                load_a_map(map);
-            }
-        }, t_maps);
+        element = create_button(col1_x, yy, "Open Map", col_width, element_height, fa_center, f_map_open, t_maps);
         element.tooltip = "Open the currently selected map for editing. Double-clicking it in the list will have the same effect.";
         ds_list_add(t_maps.contents, element);
         
