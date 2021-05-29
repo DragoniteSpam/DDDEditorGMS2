@@ -296,7 +296,7 @@ function selection_update_autotiles() {
             // if an entity is marked as "removed," even if it's still there, it might as well not be there
             var above_exists = instanceof_classic(above[MapCellContents.MESH], EntityMeshAutotile) && (above[MapCellContents.MESH].modification != Modifications.REMOVE);
             var below_exists = instanceof_classic(below[MapCellContents.MESH], EntityMeshAutotile) && (below[MapCellContents.MESH].modification != Modifications.REMOVE);
-            if (above_exists && thing.terrain_id & surrounded_mask) {
+            if (Settings.config.remove_covered_mesh_at && above_exists && thing.terrain_id & surrounded_mask) {
                 if ((get_autotile_id(above[MapCellContents.MESH]) & surrounded_mask) == surrounded_mask) {
                     thing.modification = Modifications.REMOVE;
                     ds_list_add(Stuff.map.changes, thing);
