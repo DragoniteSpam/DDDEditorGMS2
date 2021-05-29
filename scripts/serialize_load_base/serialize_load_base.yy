@@ -2,8 +2,8 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "serialization",
-    "path": "folders/Scripts/serialization.yy",
+    "name": "binary",
+    "path": "folders/Serialization/binary.yy",
   },
   "resourceVersion": "1.0",
   "name": "serialize_load_base",
