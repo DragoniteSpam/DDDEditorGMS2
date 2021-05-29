@@ -5,10 +5,13 @@ function control_global() {
         ui_activate(noone);
         // file
         if (keyboard_check_pressed(ord("S"))) {
-            momu_save_data(noone);
+            momu_save_data();
         }
         if (keyboard_check_pressed(ord("G"))) {
-            momu_settings_data(noone);
+            momu_settings_data();
+        }
+        if (keyboard_check_pressed(ord("E"))) {
+            momu_export_data();
         }
         // edit
         if (keyboard_check_pressed(ord("A"))) {

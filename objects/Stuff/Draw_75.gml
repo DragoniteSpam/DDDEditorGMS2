@@ -34,8 +34,13 @@ if (schedule_rebuild_autotile_texture) {
 }
 
 if (schedule_save) {
-    serialize_save_complete();
+    // todo
     schedule_save = false;
+}
+
+if (schedule_export) {
+    serialize_save_complete();
+    schedule_export = false;
 }
 
 Controller.mouse_x_previous = mouse_x;

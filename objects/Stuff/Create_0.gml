@@ -360,6 +360,7 @@ c_object_cache = ds_queue_create();
 #region end of step actions
 schedule_rebuild_autotile_texture = false;
 schedule_save = false;
+schedule_export = false;
 
 gpu_base_state = gpu_get_state();
 #endregion

@@ -14,6 +14,11 @@ function momu_save_data() {
     Stuff.schedule_save = true;
 }
 
+function momu_export_data() {
+    menu_activate(noone);
+    Stuff.schedule_export = true;
+}
+
 function momu_settings_data() {
     menu_activate(noone);
     dialog_create_settings_data(noone);
