@@ -58,7 +58,7 @@ function dialog_create_preferences() {
     
     dg.AddContent(new EmuText(col1_x, EMU_AUTO, ew, eh, "Camera Acceleration:"));
     
-    element = new EmuProgressBar(col1_x, EMU_AUTO, ew, eh, 4, 0.5, 4, true, Settings.config.camera_fly_rate, function() {
+    element = new EmuProgressBar(col1_x, EMU_AUTO, ew, eh, 8, 0.5, 4, true, Settings.config.camera_fly_rate, function() {
         Settings.config.camera_fly_rate = self.value;
     });
     element.tooltip = "How fast the camera accelerates in editor modes that use it (2D and 3D).";
@@ -78,7 +78,7 @@ function dialog_create_preferences() {
     
     dg.AddContent(new EmuText(col1_x, EMU_AUTO, ew, eh, "Out-of-focus opacity:"));
     
-    element = new EmuProgressBar(col1_x, EMU_AUTO, ew, eh, 4, 0, 1, true, Settings.config.focus_alpha, function() {
+    element = new EmuProgressBar(col1_x, EMU_AUTO, ew, eh, 8, 0, 1, true, Settings.config.focus_alpha, function() {
         Settings.config.focus_alpha = self.value;
     });
     element.tooltip = "The opacity behind the active dialog box. Not all dialog boxes may show the opacity, although most will.";
