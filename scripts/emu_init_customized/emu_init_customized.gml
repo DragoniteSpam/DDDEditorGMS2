@@ -18,7 +18,8 @@
 // !
 #macro EMU_COLOR_WINDOWSKIN Settings.config.color
 
-#macro EMU_DIALOG_SHADE_ALPHA 0.5
+// !
+#macro EMU_DIALOG_SHADE_ALPHA Settings.config.focus_alpha
 #macro EMU_DIALOG_SHADE_COLOR 0x000000
 
 #macro EMU_FONT_DEFAULT FDefault12
