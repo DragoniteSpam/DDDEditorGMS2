@@ -55,7 +55,7 @@ function serialize_load_event_prefabs(buffer, version) {
                 break;
             case EventNodeTypes.CUSTOM:
             default:
-                prefab.custom_guid = buffer_read(buffer, buffer_get_datatype(version));
+                prefab.custom_guid = buffer_read(buffer, buffer_datatype);
                 if (prefab.type != EventNodeTypes.CUSTOM) {
                     // other types also save the custom guid, even though there's really no reason
                     // for them to do so
@@ -106,7 +106,7 @@ function serialize_load_event_prefabs(buffer, version) {
                         case DataTypes.IMG_UI:
                         case DataTypes.IMG_SKYBOX:
                         case DataTypes.IMG_TILE_ANIMATION:
-                            var buffer_type = buffer_get_datatype(version);
+                            var buffer_type = buffer_datatype;
                             break;
                         case DataTypes.TILE:
                             not_yet_implemented();

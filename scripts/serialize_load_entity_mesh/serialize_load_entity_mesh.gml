@@ -1,18 +1,15 @@
 function serialize_load_entity_mesh(buffer, entity, version) {
     serialize_load_entity(buffer, entity, version);
-    entity.mesh = buffer_read(buffer, buffer_get_datatype(version));
-    entity.mesh_submesh = buffer_read(buffer, buffer_get_datatype(version));
+    entity.mesh = buffer_read(buffer, buffer_datatype);
+    entity.mesh_submesh = buffer_read(buffer, buffer_datatype);
     
     var bools = buffer_read(buffer, buffer_u32);
     
     entity.animated = unpack(bools, 0);
     entity.animation_index = buffer_read(buffer, buffer_u32);
     entity.animation_type = buffer_read(buffer, buffer_u8);
-    
-    if (version >= DataVersions.MESH_ANIMATION) {
-        entity.animation_speed = buffer_read(buffer, buffer_f32);
-        entity.animation_end_action = buffer_read(buffer, buffer_u8);
-    }
+    entity.animation_speed = buffer_read(buffer, buffer_f32);
+    entity.animation_end_action = buffer_read(buffer, buffer_u8);
     
     var mesh_data = guid_get(entity.mesh);
     

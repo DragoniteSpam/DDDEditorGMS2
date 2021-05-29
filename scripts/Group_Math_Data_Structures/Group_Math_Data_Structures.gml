@@ -130,10 +130,6 @@ function array_resize_4d(array, x, y, z, w) {
 #endregion
 
 #region buffer stuff
-function buffer_get_datatype(version) {
-    return (version >= DataVersions.ID_OVERHAUL) ? buffer_datatype : buffer_datatype_old;
-}
-
 function buffer_get_pixel(surface, buffer, x, y) {
     x = floor(x);
     y = floor(y);

@@ -265,23 +265,3 @@ function vertex_create_buffer_from_buffer_legacy(buffer) {
     vertex_end(vbuff);
     return vbuff;
 }
-
-function buffer_from_buffer_legacy(buffer) {
-    var buff = buffer_create((buffer_get_size(buffer) div 40) * 36, buffer_fixed, 4);
-    repeat (buffer_get_size(buffer) div 40) {
-        var xx = buffer_read(buffer, buffer_f32);
-        var yy = buffer_read(buffer, buffer_f32);
-        var zz = buffer_read(buffer, buffer_f32);
-        var nx = buffer_read(buffer, buffer_f32);
-        var ny = buffer_read(buffer, buffer_f32);
-        var nz = buffer_read(buffer, buffer_f32);
-        var xtex = buffer_read(buffer, buffer_f32);
-        var ytex = buffer_read(buffer, buffer_f32);
-        var c = buffer_read(buffer, buffer_u32);
-        buffer_read(buffer, buffer_u32);
-        vertex_point_complete_raw(buff, xx, yy, zz, nx, ny, nz, xtex, ytex, c & 0xffffff, (c >> 24) / 255);
-    }
-    buffer_seek(buffer, buffer_seek_start, 0);
-    buffer_delete(buffer);
-    return buff;
-}

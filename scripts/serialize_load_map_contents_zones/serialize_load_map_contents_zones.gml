@@ -1,8 +1,5 @@
 function serialize_load_map_contents_zones(buffer, version, map_container) {
-    if (version >= DataVersions.MAP_SKIP_ADDRESSES) {
-        var skip_addr = buffer_read(buffer, buffer_u64);
-    }
-    
+    var skip_addr = buffer_read(buffer, buffer_u64);
     var n_zones = buffer_read(buffer, buffer_u32);
     
     repeat (n_zones) {

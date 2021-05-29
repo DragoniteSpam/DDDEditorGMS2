@@ -3,18 +3,13 @@ function serialize_load_entity(buffer, entity, version) {
     entity.xx = buffer_read(buffer, buffer_u32);
     entity.yy = buffer_read(buffer, buffer_u32);
     entity.zz = buffer_read(buffer, buffer_u32);
-    refid_set(entity, buffer_read(buffer, buffer_get_datatype(version)));
+    refid_set(entity, buffer_read(buffer, buffer_datatype));
     
     var state_static = entity.is_static;
     var entity_bools = buffer_read(buffer, buffer_u32);
     entity.is_static = unpack(entity_bools, 0);
-    if (version >= DataVersions.ENTITY_PRESERVE_FLAG) {
-        entity.preserve_on_save = unpack(entity_bools, 1);
-    }
-    
-    if (version >= DataVersions.ENTITY_REFLECT_FLAG) {
-        entity.reflect = unpack(entity_bools, 2);
-    }
+    entity.preserve_on_save = unpack(entity_bools, 1);
+    entity.reflect = unpack(entity_bools, 2);
     entity.direction_fix = unpack(entity_bools, 3);
     entity.always_update = unpack(entity_bools, 5);
     // same for statics
@@ -44,7 +39,7 @@ function serialize_load_entity(buffer, entity, version) {
     entity.autonomous_movement = buffer_read(buffer, buffer_u8);
     entity.autonomous_movement_speed = buffer_read(buffer, buffer_u8);
     entity.autonomous_movement_frequency = buffer_read(buffer, buffer_u8);
-    entity.autonomous_movement_route = buffer_read(buffer, buffer_get_datatype(version));
+    entity.autonomous_movement_route = buffer_read(buffer, buffer_datatype);
     
     var n_move_routes = buffer_read(buffer, buffer_u8);
     repeat (n_move_routes) {
@@ -85,8 +80,8 @@ function serialize_load_entity(buffer, entity, version) {
             
             case DataTypes.ENUM:
             case DataTypes.DATA:
-                data.value_type_guid = buffer_read(buffer, buffer_get_datatype(version));
-                data.value_data = buffer_read(buffer, buffer_get_datatype(version));
+                data.value_type_guid = buffer_read(buffer, buffer_datatype);
+                data.value_data = buffer_read(buffer, buffer_datatype);
                 break;
             
             case DataTypes.MESH:
@@ -104,7 +99,7 @@ function serialize_load_entity(buffer, entity, version) {
             case DataTypes.IMG_ETC:
             case DataTypes.EVENT:
             case DataTypes.IMG_TILE_ANIMATION:
-                data.value_data = buffer_read(buffer, buffer_get_datatype(version));
+                data.value_data = buffer_read(buffer, buffer_datatype);
                 break;
             
             case DataTypes.TILE: not_yet_implemented(); break;
@@ -114,10 +109,5 @@ function serialize_load_entity(buffer, entity, version) {
         ds_list_add(entity.generic_data, data);
     }
     
-    if (version >= DataVersions.UNIFIED_FLAGS) {
-        // gone
-    } else {
-        buffer_read(buffer, buffer_u32);
-    }
     entity.slope = buffer_read(buffer, buffer_u8);
 }

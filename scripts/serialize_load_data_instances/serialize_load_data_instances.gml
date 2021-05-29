@@ -59,7 +59,7 @@ function serialize_load_data_instances(buffer, version) {
                         case DataTypes.MAP:
                         case DataTypes.EVENT:
                         case DataTypes.ENTITY:
-                            var btype = buffer_get_datatype(version);
+                            var btype = buffer_datatype;
                             break;
                         case DataTypes.TILE:
                             not_yet_implemented();

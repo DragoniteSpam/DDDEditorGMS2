@@ -84,35 +84,8 @@ function serialize_save_data() {
         dialog.el_text.valignment = fa_top;
     }
     
-    #macro LAST_SAFE_VERSION DataVersions.NUKE_UNUSED_BOOLS
+    #macro LAST_SAFE_VERSION DataVersions.MESH_TEXTURE_SCALE
     enum DataVersions {
-        NUKE_UNUSED_BOOLS                   = 98,
-        BASE_SCREEN_DIMENSIONS              = 99,
-        PROPERTY_SIZE_CAN_BE_ZERO           = 100,
-        MAP_PLAYER_LIGHT                    = 101,
-        ID_OVERHAUL                         = 102,  // sequential IDs, and IDs are strings rather than ints
-        ASSET_ID                            = 103,
-        ANIMATED_TILES                      = 104,
-        EVEN_MORE_MESH_METADATA             = 105,
-        MAP_STATIC_BATCHES                  = 106,
-        NO_EVENT_PAGE_GUID                  = 107,
-        MESH_ANIMATION                      = 108,
-        UPDATED_EVENT_NODE_CONNECTIONS      = 109,
-        MAP_SKYBOX_DATA                     = 110,
-        MAP_ENTITY_CHUNKS                   = 111,
-        MESH_MATERIALS                      = 112,
-        REMOVE_MESH_TEX_SCALE               = 113,
-        MAP_FROZEN_TAGS                     = 114,
-        ENTITY_PRESERVE_FLAG                = 115,
-        ENTITY_REFLECT_FLAG                 = 116,
-        MAP_SKIP_ADDRESSES                  = 117,
-        UNIFIED_FLAGS                       = 118,
-        NUKE_AUTOTILES_FROM_TILESETS        = 119,
-        MAP_REMOVE_MESH_AUTOTILES           = 120, /* 20 dec 2020 */
-        REMOVE_DATA_FILE_DATATYPE           = 121, /* 21 dec 2020 */
-        MESH_AUTOTILE_IMPLEMENTATION        = 122, /* 23 dec 2020 */
-        MESH_REFLECTION_DATA                = 123, /* 01 feb 2021 */
-        THIRTY_SIX_BYTES                    = 124, /* 04 apr 2021 */
         MESH_TEXTURE_SCALE                  = 125, /* 18 may 2021 */
         _CURRENT /* = whatever the last one is + 1 */
     }

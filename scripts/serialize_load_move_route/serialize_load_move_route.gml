@@ -68,7 +68,7 @@ function serialize_load_move_route(argument0, argument1, argument2) {
                 var data = [type, frequency];
                 break;
             case MoveRouteActions.CHANGE_GRAPHIC:
-                var graphic = buffer_read(buffer, buffer_get_datatype(version));
+                var graphic = buffer_read(buffer, buffer_datatype);
                 var data = [type, graphic];
                 break;
             case MoveRouteActions.CHANGE_OPACITY:
@@ -80,12 +80,12 @@ function serialize_load_move_route(argument0, argument1, argument2) {
                 var data = [type, color];
                 break;
             case MoveRouteActions.PLAY_SE:
-                var sound = buffer_read(buffer, buffer_get_datatype(version));
+                var sound = buffer_read(buffer, buffer_datatype);
                 var data = [type, sound];
                 break;
             case MoveRouteActions.EVENT:
-                var event = buffer_read(buffer, buffer_get_datatype(version));
-                var entrypoint = buffer_read(buffer, buffer_get_datatype(version));
+                var event = buffer_read(buffer, buffer_datatype);
+                var entrypoint = buffer_read(buffer, buffer_datatype);
                 var data = [type, event, entrypoint];
                 break;
             case MoveRouteActions.MOVE_TO:

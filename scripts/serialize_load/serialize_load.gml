@@ -72,13 +72,7 @@ function serialize_load(buffer, filename, proj_name) {
             
             repeat (n_files) {
                 var name = buffer_read(buffer, buffer_string);
-                if (version >= DataVersions.REMOVE_DATA_FILE_DATATYPE) {
-                    // gone
-                } else {
-                    buffer_read(buffer, buffer_get_datatype(version));
-                }
                 var bools = buffer_read(buffer, buffer_u32);
-                
                 // the "compressed" parameter can be set later
                 var file_data = new DataFile(name, false, unpack(bools, 0));
                 ds_list_add(Stuff.game_asset_lists, file_data);
@@ -100,9 +94,7 @@ function serialize_load(buffer, filename, proj_name) {
     
     while (true) {
         var datatype = buffer_read(buffer, buffer_u32);
-        if (datatype == SerializeThings.END_OF_FILE) {
-            break;
-        }
+        if (datatype == SerializeThings.END_OF_FILE) break;
         
         switch (datatype) {
             #region big ol' switch statement

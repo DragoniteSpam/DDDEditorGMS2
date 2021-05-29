@@ -10,9 +10,7 @@ load_script = function(buffer, entity, version) {
     serialize_load_entity_mesh(buffer, entity, version);
     entity.terrain_id = buffer_read(buffer, buffer_u8);
     entity.terrain_type = buffer_read(buffer, buffer_u8);
-    if (version >= DataVersions.MESH_AUTOTILE_IMPLEMENTATION) {
-        entity.autotile_id = buffer_read(buffer, buffer_datatype);
-    }
+    entity.autotile_id = buffer_read(buffer, buffer_datatype);
     entity.is_static = true;
 };
 

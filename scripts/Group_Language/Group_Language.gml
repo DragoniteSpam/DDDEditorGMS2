@@ -101,23 +101,18 @@ function language_extract() {
                     }
                 }
             } else {
-                if (map.version >= DataVersions.MAP_SKIP_ADDRESSES) {
-                    var entities = serialize_load_map_contents_dynamic(map.data_buffer, map.version, undefined, false, true);
-                    for (var i = 0; i < array_length(entities); i++) {
-                        var entity = entities[i];
-                        for (var j = 0; j < ds_list_size(entity.generic_data); j++) {
-                            var gen = entity.generic_data[| j];
-                            if (gen.type != DataTypes.STRING) continue;
-                            var key = "Map." + map.name + "." + entity.name + "." + entity.REFID + "." + gen.name;
-                            lang[$ key] = (lang_index == 0) ? gen.value_string : ((lang[$ key] != undefined) ? lang[$ key] : "");
-                            existing_keys[$ key] = false;
-                        }
-                        instance_activate_object(entity);
-                        instance_destroy(entity);
+                var entities = serialize_load_map_contents_dynamic(map.data_buffer, map.version, undefined, false, true);
+                for (var i = 0; i < array_length(entities); i++) {
+                    var entity = entities[i];
+                    for (var j = 0; j < ds_list_size(entity.generic_data); j++) {
+                        var gen = entity.generic_data[| j];
+                        if (gen.type != DataTypes.STRING) continue;
+                        var key = "Map." + map.name + "." + entity.name + "." + entity.REFID + "." + gen.name;
+                        lang[$ key] = (lang_index == 0) ? gen.value_string : ((lang[$ key] != undefined) ? lang[$ key] : "");
+                        existing_keys[$ key] = false;
                     }
-                } else if (!map_warned) {
-                    emu_dialog_notice("The map [c_blue]" + map.name + "[/c] is not of Version " + string(DataVersions.MAP_SKIP_ADDRESSES) + " or later, and will not have its text extracted. Update the map by opening and closing it.");
-                    map_warned = true;
+                    instance_activate_object(entity);
+                    instance_destroy(entity);
                 }
             }
         }

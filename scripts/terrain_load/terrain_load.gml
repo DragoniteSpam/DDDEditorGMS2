@@ -19,10 +19,9 @@ function terrain_load(filename) {
     
     if (header == "DDD") {
         var version = buffer_read(buffer, buffer_u32);
-        var last_safe_version = DataVersions.NUKE_UNUSED_BOOLS;
         
-        if (version < last_safe_version) {
-            show_error("We stopped supporting versions of the data file before " + string(last_safe_version) +
+        if (version < LAST_SAFE_VERSION) {
+            show_error("We stopped supporting versions of the data file before " + string(LAST_SAFE_VERSION) +
                 ". This current version is " + string(version) + ". Please find a version of " + filename_name(filename) +
                 " made with a more up-to-date version of the editor.", true
             );
@@ -30,7 +29,7 @@ function terrain_load(filename) {
         
         buffer_read(buffer, buffer_u8);
         
-        var datatype = buffer_read(buffer, buffer_get_datatype(version));
+        var datatype = buffer_read(buffer, buffer_datatype);
         
         if (datatype == SerializeThings.TERRAIN) {
             serialize_load_terrain(buffer, version);

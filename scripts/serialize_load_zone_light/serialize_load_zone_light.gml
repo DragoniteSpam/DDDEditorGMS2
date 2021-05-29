@@ -12,7 +12,7 @@ function serialize_load_zone_light(argument0, argument1, argument2) {
     ds_list_clear(zone.active_lights);
     var n_active = buffer_read(buffer, buffer_u8);
     repeat (n_active) {
-        var data = buffer_read(buffer, buffer_get_datatype(version));
+        var data = buffer_read(buffer, buffer_datatype);
         if (ds_list_size(zone.active_lights) < MAX_LIGHTS) {
             ds_list_add(zone.active_lights, data);
         }

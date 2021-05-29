@@ -46,8 +46,8 @@ function serialize_load_animations(argument0, argument1) {
             timeline_layer.alpha = buffer_read(buffer, buffer_f32);
         
             timeline_layer.graphic_type = buffer_read(buffer, buffer_u8);
-            timeline_layer.graphic_sprite = buffer_read(buffer, buffer_get_datatype(version));
-            timeline_layer.graphic_mesh = buffer_read(buffer, buffer_get_datatype(version));
+            timeline_layer.graphic_sprite = buffer_read(buffer, buffer_datatype);
+            timeline_layer.graphic_mesh = buffer_read(buffer, buffer_datatype);
         
             var n_keyframes = buffer_read(buffer, buffer_u16);
             repeat (n_keyframes) {
@@ -72,12 +72,12 @@ function serialize_load_animations(argument0, argument1) {
                     keyframe.alpha = buffer_read(buffer, buffer_f32);
                 
                     keyframe.graphic_type = buffer_read(buffer, buffer_u8);
-                    keyframe.graphic_sprite = buffer_read(buffer, buffer_get_datatype(version));
-                    keyframe.graphic_mesh = buffer_read(buffer, buffer_get_datatype(version));
+                    keyframe.graphic_sprite = buffer_read(buffer, buffer_datatype);
+                    keyframe.graphic_mesh = buffer_read(buffer, buffer_datatype);
                     keyframe.graphic_frame = buffer_read(buffer, buffer_u32);
                     keyframe.graphic_direction = buffer_read(buffer, buffer_u8);
                 
-                    keyframe.audio = buffer_read(buffer, buffer_get_datatype(version));
+                    keyframe.audio = buffer_read(buffer, buffer_datatype);
                     keyframe.event = buffer_read(buffer, buffer_string);
                 
                     keyframe.tween_xx = buffer_read(buffer, buffer_u16);

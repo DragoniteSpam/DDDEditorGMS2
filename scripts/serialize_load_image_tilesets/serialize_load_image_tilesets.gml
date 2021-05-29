@@ -11,19 +11,10 @@ function serialize_load_image_tilesets(buffer, version) {
         var name = buffer_read(buffer, buffer_string);
         var internal_name = buffer_read(buffer, buffer_string);
         var summary = buffer_read(buffer, buffer_string);
-        var guid = buffer_read(buffer, buffer_get_datatype(version));
+        var guid = buffer_read(buffer, buffer_datatype);
         
         var ts_source_name = buffer_read(buffer, buffer_string);
-        
         var sprite = buffer_read_sprite(buffer);
-        
-        if (version >= DataVersions.NUKE_AUTOTILES_FROM_TILESETS) {
-            // gone
-        } else {
-            var n = buffer_read(buffer, buffer_u8);
-            buffer_seek(buffer, buffer_seek_relative, n * (buffer_sizeof(buffer_s16) + buffer_sizeof(buffer_u32)));
-        }
-        
         var ts = tileset_create(ts_source_name, sprite);
         
         ts.name = name;
@@ -41,9 +32,7 @@ function serialize_load_image_tilesets(buffer, version) {
             }
         }
         
-        if (version >= DataVersions.MESH_TEXTURE_SCALE) {
-            ts.width = buffer_read(buffer, buffer_u16);
-            ts.height = buffer_read(buffer, buffer_u16);
-        }
+        ts.width = buffer_read(buffer, buffer_u16);
+        ts.height = buffer_read(buffer, buffer_u16);
     }
 }

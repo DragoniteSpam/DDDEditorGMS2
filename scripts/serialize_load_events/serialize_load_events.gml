@@ -11,7 +11,7 @@ function serialize_load_events(buffer, version) {
         var event_name = buffer_read(buffer, buffer_string);
         var event = event_create(event_name);
         ds_list_add(Stuff.all_events, event);
-        guid_set(event, buffer_read(buffer, buffer_get_datatype(version)));
+        guid_set(event, buffer_read(buffer, buffer_datatype));
         
         // events are created with an entrypoint by default - you could pass an optional
         // parameter to the constructor to have it not do this, but this is the only place
@@ -30,9 +30,9 @@ function serialize_load_events(buffer, version) {
             event_rename_node(event, node, node_name);
             node.event = event;
             
-            guid_set(node, buffer_read(buffer, buffer_get_datatype(version)));
+            guid_set(node, buffer_read(buffer, buffer_datatype));
             
-            node.prefab_guid = buffer_read(buffer, buffer_get_datatype(version));
+            node.prefab_guid = buffer_read(buffer, buffer_datatype);
             
             // some preliminary data may be created
             ds_list_clear(node.data);
@@ -41,11 +41,7 @@ function serialize_load_events(buffer, version) {
             // read out the GUIDs and link them later
             var n_outbound = buffer_read(buffer, buffer_u8);
             repeat (n_outbound) {
-                if (version >= DataVersions.UPDATED_EVENT_NODE_CONNECTIONS) {
-                    ds_list_add(node.outbound, buffer_read(buffer, buffer_datatype));
-                } else {
-                    ds_list_add(node.outbound, buffer_read(buffer, buffer_string));
-                }
+                ds_list_add(node.outbound, buffer_read(buffer, buffer_datatype));
             }
             
             var n_data = buffer_read(buffer, buffer_u8);
@@ -93,7 +89,7 @@ function serialize_load_events(buffer, version) {
                     break;
                 case EventNodeTypes.CUSTOM:
                 default:
-                    node.custom_guid = buffer_read(buffer, buffer_get_datatype(version));
+                    node.custom_guid = buffer_read(buffer, buffer_datatype);
                     
                     if (node_type != EventNodeTypes.CUSTOM) {
                         // other types also save the custom guid, even though there's really no reason
@@ -142,7 +138,7 @@ function serialize_load_events(buffer, version) {
                             case DataTypes.MESH_AUTOTILE:
                             case DataTypes.EVENT:
                             case DataTypes.IMG_TILE_ANIMATION:
-                                var buffer_type = buffer_get_datatype(version);
+                                var buffer_type = buffer_datatype;
                                 break;
                             case DataTypes.TILE:
                                 not_yet_implemented();
@@ -183,30 +179,9 @@ function serialize_load_events(buffer, version) {
                     node.outbound[| k] = noone;
                     continue;
                 }
-                
-                if (version >= DataVersions.UPDATED_EVENT_NODE_CONNECTIONS) {
-                    var dest = guid_get(node.outbound[| k]);
-                    dest.parents[? node] = true;
-                    node.outbound[| k] = dest;
-                // the trials and tribulations of backwards compatibility
-                } else {
-                    var dest = event_get_node(Stuff.all_events[| i], node.outbound[| k]);
-                    if (dest) {
-                        dest.parents[? node] = true;
-                        node.outbound[| k] = dest;
-                    } else {
-                        for (var inefficient = 0; inefficient < ds_list_size(Stuff.all_events); inefficient++) {
-                            var dest = event_get_node(Stuff.all_events[| inefficient], node.outbound[| k]);
-                            if (dest) {
-                                dest.parents[? node] = true;
-                                node.outbound[| k] = dest;
-                            }
-                        }
-                        if (typeof(node.outbound[| k]) == typeof(NULL)) {
-                            node.outbound[| k] = noone;
-                        }
-                    }
-                }
+                var dest = guid_get(node.outbound[| k]);
+                dest.parents[? node] = true;
+                node.outbound[| k] = dest;
             }
         }
     }

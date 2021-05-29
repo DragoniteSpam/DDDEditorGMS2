@@ -13,44 +13,24 @@ function serialize_load_meshes(buffer, version) {
         var n_submeshes = buffer_read(buffer, buffer_u16);
         for (var i = 0; i < n_submeshes; i++) {
             var index = buffer_read(buffer, buffer_u16);
-            var proto_guid = buffer_read(buffer, buffer_get_datatype(version));
+            var proto_guid = buffer_read(buffer, buffer_datatype);
             proto_guid_set(mesh, index, proto_guid);
             
-            if (version >= DataVersions.MESH_REFLECTION_DATA) {
-                var name = buffer_read(buffer, buffer_string);
-                var path = buffer_read(buffer, buffer_string);
-                var submesh = new MeshSubmesh(name);
+            
+            var name = buffer_read(buffer, buffer_string);
+            var path = buffer_read(buffer, buffer_string);
+            var submesh = new MeshSubmesh(name);
                 
-                var blength = buffer_read(buffer, buffer_u32); 
-                if (blength > 0) {
-                    submesh.buffer = buffer_read_buffer(buffer, blength);
-                    if (version < DataVersions.THIRTY_SIX_BYTES) {
-                        submesh.buffer = buffer_from_buffer_legacy(submesh.buffer);
-                    }
-                    submesh.internalSetVertexBuffer();
-                }
-                
-                var blength = buffer_read(buffer, buffer_u32);
-                if (blength > 0) {
-                    submesh.reflect_buffer = buffer_read_buffer(buffer, blength);
-                    if (version < DataVersions.THIRTY_SIX_BYTES) {
-                        submesh.reflect_buffer = buffer_from_buffer_legacy(submesh.reflect_buffer);
-                    }
-                    submesh.internalSetReflectVertexBuffer();
-                }
-            } else {
-                var blength = buffer_read(buffer, buffer_u32);
-                var name = buffer_read(buffer, buffer_string);
-                if (version >= DataVersions.EVEN_MORE_MESH_METADATA) {
-                    var path = buffer_read(buffer, buffer_string);
-                } else {
-                    path = "";
-                }
-                
-                var submesh = new MeshSubmesh(name);
+            var blength = buffer_read(buffer, buffer_u32); 
+            if (blength > 0) {
                 submesh.buffer = buffer_read_buffer(buffer, blength);
-                submesh.buffer = buffer_from_buffer_legacy(submesh.buffer);
-                submesh.path = path;
+                submesh.internalSetVertexBuffer();
+            }
+                
+            var blength = buffer_read(buffer, buffer_u32);
+            if (blength > 0) {
+                submesh.reflect_buffer = buffer_read_buffer(buffer, blength);
+                submesh.internalSetReflectVertexBuffer();
             }
             submesh.proto_guid = proto_guid;
             submesh.owner = mesh;
@@ -64,13 +44,6 @@ function serialize_load_meshes(buffer, version) {
         mesh.ymax = buffer_read(buffer, buffer_f32);
         mesh.zmax = buffer_read(buffer, buffer_f32);
         
-        if (version >= DataVersions.EVEN_MORE_MESH_METADATA) {
-            if (version >= DataVersions.REMOVE_MESH_TEX_SCALE) {
-            } else {
-                buffer_read(buffer, buffer_f32);
-            }
-        }
-        
         var xx = buffer_read(buffer, buffer_u16);
         var yy = buffer_read(buffer, buffer_u16);
         var zz = buffer_read(buffer, buffer_u16);
@@ -81,37 +54,22 @@ function serialize_load_meshes(buffer, version) {
             for (var j = 0; j < yy; j++) {
                 asset_flags[i][j] = array_create(zz);
                 for (var k = 0; k < zz; k++) {
-                    if (version >= DataVersions.UNIFIED_FLAGS) {
-                        asset_flags[i][j][k] = buffer_read(buffer, buffer_flag);
-                    } else {
-                        asset_flags[i][j][k] = buffer_read(buffer, buffer_u32);
-                    }
-               }
-           }
+                    asset_flags[i][j][k] = buffer_read(buffer, buffer_flag);
+                }
+            }
         }
         
         mesh.asset_flags = asset_flags;
         
-        if (version >= DataVersions.UNIFIED_FLAGS) {
-            
-        } else {
-            mesh.flags = buffer_read(buffer, buffer_u32);
-        }
-        
-        if (version >= DataVersions.MESH_MATERIALS) {
-            mesh.tex_base = buffer_read(buffer, buffer_datatype);
-            mesh.tex_ambient = buffer_read(buffer, buffer_datatype);
-            mesh.tex_specular_color = buffer_read(buffer, buffer_datatype);
-            mesh.tex_specular_highlight = buffer_read(buffer, buffer_datatype);
-            mesh.tex_alpha = buffer_read(buffer, buffer_datatype);
-            mesh.tex_bump = buffer_read(buffer, buffer_datatype);
-            mesh.tex_displacement = buffer_read(buffer, buffer_datatype);
-            mesh.tex_stencil = buffer_read(buffer, buffer_datatype);
-        }
-        
-        if (version >= DataVersions.MESH_TEXTURE_SCALE) {
-            mesh.texture_scale = buffer_read(buffer, buffer_f32);
-        }
+        mesh.tex_base = buffer_read(buffer, buffer_datatype);
+        mesh.tex_ambient = buffer_read(buffer, buffer_datatype);
+        mesh.tex_specular_color = buffer_read(buffer, buffer_datatype);
+        mesh.tex_specular_highlight = buffer_read(buffer, buffer_datatype);
+        mesh.tex_alpha = buffer_read(buffer, buffer_datatype);
+        mesh.tex_bump = buffer_read(buffer, buffer_datatype);
+        mesh.tex_displacement = buffer_read(buffer, buffer_datatype);
+        mesh.tex_stencil = buffer_read(buffer, buffer_datatype);
+        mesh.texture_scale = buffer_read(buffer, buffer_f32);
         
         switch (mesh.type) {
             case MeshTypes.RAW: serialize_load_mesh_raw(mesh); break;

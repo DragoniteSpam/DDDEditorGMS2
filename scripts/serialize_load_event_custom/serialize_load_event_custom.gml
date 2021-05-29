@@ -11,7 +11,7 @@ function serialize_load_event_custom(buffer, version) {
         repeat (n_types) {
             var name = buffer_read(buffer, buffer_string);
             var type = buffer_read(buffer, buffer_u8);
-            var guid = buffer_read(buffer, buffer_get_datatype(version));
+            var guid = buffer_read(buffer, buffer_datatype);
             var max_size = buffer_read(buffer, buffer_u8);
             var required = buffer_read(buffer, buffer_u8);
             

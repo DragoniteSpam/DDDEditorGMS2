@@ -15,22 +15,14 @@ function serialize_load_mesh_autotiles(buffer, version) {
                 var length = buffer_read(buffer, buffer_u32);
                 if (length > 0) {
                     var dbuffer = buffer_read_buffer(buffer, length);
-                    if (version < DataVersions.THIRTY_SIX_BYTES) {
-                        dbuffer = buffer_from_buffer_legacy(dbuffer);
-                    }
                     var vbuffer = vertex_create_buffer_from_buffer(dbuffer, Stuff.graphics.vertex_format);
                     data.Set(dbuffer, vbuffer);
                 }
-                if (version >= DataVersions.MESH_REFLECTION_DATA) {
-                    var length = buffer_read(buffer, buffer_u32);
-                    if (length > 0) {
-                        var dbuffer = buffer_read_buffer(buffer, length);
-                        if (version < DataVersions.THIRTY_SIX_BYTES) {
-                            dbuffer = buffer_from_buffer_legacy(dbuffer);
-                        }
-                        var vbuffer = vertex_create_buffer_from_buffer(dbuffer, Stuff.graphics.vertex_format);
-                        data.SetReflect(dbuffer, vbuffer);
-                    }
+                var length = buffer_read(buffer, buffer_u32);
+                if (length > 0) {
+                    var dbuffer = buffer_read_buffer(buffer, length);
+                    var vbuffer = vertex_create_buffer_from_buffer(dbuffer, Stuff.graphics.vertex_format);
+                    data.SetReflect(dbuffer, vbuffer);
                 }
             }
         }
