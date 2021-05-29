@@ -25,6 +25,19 @@ function get_open_filename_audio() {
 }
 
 function get_open_filename_ddd() {
+    var path = get_open_filename_ext("DDD project files (" + EXPORT_EXTENSION_PROJECT + ")|*" + EXPORT_EXTENSION_PROJECT, "", Settings.location.project, "Select a game project file");
+    
+    if (file_exists(path)) {
+        var dir = filename_dir(path);
+        if (string_length(dir) > 0) {
+            Settings.location.project = dir;
+        }
+    }
+    
+    return path;
+}
+
+function get_open_filename_project() {
     var path = get_open_filename_ext("DDD game files (" + EXPORT_EXTENSION_DATA + ", " + EXPORT_EXTENSION_MAP + ", " + EXPORT_EXTENSION_ASSETS + ")|*" + EXPORT_EXTENSION_DATA + ";*" + EXPORT_EXTENSION_MAP + ";*" + EXPORT_EXTENSION_ASSETS, "", Settings.location.ddd, "Select a game data file");
     
     if (file_exists(path)) {

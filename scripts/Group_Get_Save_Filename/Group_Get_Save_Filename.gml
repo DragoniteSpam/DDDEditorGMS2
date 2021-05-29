@@ -26,6 +26,20 @@ function get_save_filename_dddd(name) {
     return path;
 }
 
+function get_save_filename_project(name) {
+    if (name == undefined) name = "";
+    var path = get_save_filename_ext("DDD project files (" + EXPORT_EXTENSION_PROJECT + ")|*" + EXPORT_EXTENSION_PROJECT, name, Settings.location.project, "Select a project file");
+    
+    if (path != "") {
+        var dir = filename_dir(path);
+        if (string_length(dir) > 0) {
+            Settings.location.project = dir;
+        }
+    }
+    
+    return path;
+}
+
 function get_save_filename_gml(name) {
     if (name == undefined) name = "";
     var path = get_save_filename_ext("GML code files|*.gml", name, Settings.location.gml, "Save a code file");

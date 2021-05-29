@@ -83,6 +83,7 @@ if (Settings.location[$ "gml"] == undefined)                Settings.location.gm
 if (Settings.location[$ "audio"] == undefined)              Settings.location.audio = "";
 if (Settings.location[$ "text"] == undefined)               Settings.location.text = "";
 if (Settings.location[$ "tiled"] == undefined)              Settings.location.tiled = "";
+if (Settings.location[$ "project"] == undefined)            Settings.location.project = "";
 
 if (Settings.selection[$ "mode"] == undefined)              Settings.selection.mode = SelectionModes.RECTANGLE;
 if (Settings.selection[$ "addition"] == undefined)          Settings.selection.addition = false;

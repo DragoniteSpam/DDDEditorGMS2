@@ -82,6 +82,7 @@
 #macro EXPORT_EXTENSION_MAP ".dddm"
 #macro EXPORT_EXTENSION_ASSETS ".ddda"
 #macro EXPORT_EXTENSION_PARTICLES ".dddp"
+#macro EXPORT_EXTENSION_PROJECT ".dragon"
 #macro OLD_FLAG_COUNT 32
 #macro FLAG_COUNT 63
 #macro FLAG_MAX_VALUE 0x7fffffffffffffff
