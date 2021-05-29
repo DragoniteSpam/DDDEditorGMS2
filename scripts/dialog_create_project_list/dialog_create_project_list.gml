@@ -136,9 +136,10 @@ function dialog_create_project_list(root) {
             var dialog = emu_dialog_confirm(button, "Do you want to remove " + project + "? Its autosave files will be deleted, but any files you saved elsewhere on your computer will still be there and you will be able to re-load them later.", function() {
                 var project = self.root.project;
                 var list = Stuff.all_projects[$ "projects"];
-                var name = list[| project];
-                ds_list_delete(list, project);
+                var name = list[project];
+                array_delete(list, project, 1);
                 ui_list_deselect(self.root.root.root.el_list);
+                ds_list_delete(self.root.root.root.el_list.entries, project);
                 directory_destroy(PATH_PROJECTS + name);
                 var buffer = buffer_create(32, buffer_grow, 1);
                 buffer_write(buffer, buffer_text, json_stringify(Stuff.all_projects));
