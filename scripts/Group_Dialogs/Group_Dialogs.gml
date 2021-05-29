@@ -1,5 +1,5 @@
 function dialog_exists() {
-    return !ds_list_empty(Stuff.dialogs);
+    return !ds_list_empty(Stuff.dialogs) || !ds_list_empty(EmuOverlay._contents);
 }
 
 function dialog_create(width, height, text, render, commit, root, close) {
