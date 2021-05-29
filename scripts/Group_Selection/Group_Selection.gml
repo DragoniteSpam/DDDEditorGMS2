@@ -279,6 +279,8 @@ function selection_update_autotiles() {
     var terrain = selected_affected_terrain();
     var map = Stuff.map.active_map;
     
+    static surrounded_mask = ATMask.NORTHWEST | ATMask.NORTH | ATMask.NORTHEAST | ATMask.WEST | ATMask.EAST | ATMask.SOUTHWEST | ATMask.SOUTH | ATMask.SOUTHEAST;
+    
     for (var i = 0; i < ds_list_size(terrain); i++) {
         var thing = terrain[| i];
         var thing_is_mesh = instanceof_classic(thing, EntityMeshAutotile);
@@ -294,7 +296,12 @@ function selection_update_autotiles() {
             // if an entity is marked as "removed," even if it's still there, it might as well not be there
             var above_exists = instanceof_classic(above[MapCellContents.MESH], EntityMeshAutotile) && (above[MapCellContents.MESH].modification != Modifications.REMOVE);
             var below_exists = instanceof_classic(below[MapCellContents.MESH], EntityMeshAutotile) && (below[MapCellContents.MESH].modification != Modifications.REMOVE);
-            if (above_exists && below_exists) {
+            if (above_exists && thing.terrain_id & surrounded_mask) {
+                if ((get_autotile_id(above[MapCellContents.MESH]) & surrounded_mask) == surrounded_mask) {
+                    thing.modification = Modifications.REMOVE;
+                    ds_list_add(Stuff.map.changes, thing);
+                }
+            } else if (above_exists && below_exists) {
                 // is in middle?
                 thing.terrain_type = MeshAutotileLayers.VERTICAL;
             } else if (below_exists) {
