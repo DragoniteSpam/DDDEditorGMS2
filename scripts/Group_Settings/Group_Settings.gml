@@ -73,6 +73,7 @@ if (Settings.config[$ "camera_fly_rate"] == undefined)      Settings.config.came
 if (Settings.config[$ "alternate_middle"] == undefined)     Settings.config.alternate_middle = false;
 if (Settings.config[$ "color_world"] == undefined)          Settings.config.color_world = c_black;
 if (Settings.config[$ "mode"] == undefined)                 Settings.config.mode = EDITOR_BASE_MODE;
+if (Settings.config[$ "remove_covered_mesh_at"] == undefined)   Settings.config.remove_covered_mesh_at = false;
 
 if (Settings.location[$ "ddd"] == undefined)                Settings.location.ddd = "";
 if (Settings.location[$ "mesh"] == undefined)               Settings.location.mesh = "";

@@ -65,6 +65,12 @@ function dialog_create_preferences() {
     el_alt_middle.tooltip = "My mouse is slightly broken and middle click doesn't always work, so I need an alternate method to use it. This is turned off by default so that it's harder to accidentally invoke, but you may turn it on if you need it.\n\n(The alternate input is Control + Space.)";
     yy += el_alt_middle.height + spacing;
     
+    var el_automatic_remove_surrounded_mesh_at = new EmuCheckbox(col1_x, yy, ew, eh, "Clear surrounded mesh autotiles?", Settings.config.remove_covered_mesh_at, function() {
+        Settings.config.remove_covered_mesh_at = self.value;
+    });
+    el_automatic_remove_surrounded_mesh_at.tooltip = "Mesh autotiles that are surrounded on all sides, and are surrounded on all sides above, will be automatically deleted.";
+    yy += el_automatic_remove_surrounded_mesh_at.GetHeight() + spacing;
+    
     var el_focus_alpha_text = create_text(col1_x, yy, "Out-of-focus opacity:", ew, eh, fa_left, ew, dg);
     yy += el_focus_alpha_text.height + spacing;
     
@@ -154,6 +160,7 @@ function dialog_create_preferences() {
         el_focus_alpha,
         el_mesh_reflect_settings,
         el_mesh_reflect_color,
+        el_automatic_remove_surrounded_mesh_at,
         el_confirm
     );
     
