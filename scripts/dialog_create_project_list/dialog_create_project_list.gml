@@ -50,8 +50,9 @@ function dialog_create_project_list(root) {
             var date_str = list.root.timestamp_dates[selection];
             var time_str = list.root.timestamp_times[selection];
             var file_count = list.root.file_counts[selection];
+            var out_of_date = (real(version_str) < LAST_SAFE_VERSION) ? "[c_red]" : "";
             list.root.el_summary_name.text = "Name: " + list.root.names[selection];
-            list.root.el_summary_version.text = "File version: " + ((string_length(version_str) > 0) ? (version_str + " (0x" + string_hex(real(version_str)) + ")") : "N/A");
+            list.root.el_summary_version.text = "File version: " + out_of_date + ((string_length(version_str) > 0) ? (version_str + " (0x" + string_hex(real(version_str)) + ")") : "N/A");
             list.root.el_summary_summary.text = "Summary: " + list.root.strings[selection];
             list.root.el_summary_author.text = "Author: " + list.root.authors[selection];
             list.root.el_summary_timestamp_date.text = "Date Modified: " + ((string_length(date_str) > 0) ? date_str : "N/A");
