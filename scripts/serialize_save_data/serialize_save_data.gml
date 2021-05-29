@@ -87,6 +87,7 @@ function serialize_save_data() {
     #macro LAST_SAFE_VERSION DataVersions.MESH_TEXTURE_SCALE
     enum DataVersions {
         MESH_TEXTURE_SCALE                  = 125, /* 18 may 2021 */
+        NO_EDITOR_DATA                      = 126, /* 29 may 2021 */
         _CURRENT /* = whatever the last one is + 1 */
     }
 }
