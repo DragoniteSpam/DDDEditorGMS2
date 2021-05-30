@@ -11,6 +11,13 @@ function project_save() {
         return json;
     };
     
+    static save_json = function(filename, json) {
+        static buffer = buffer_create(1000, buffer_grow, 1);
+        buffer_seek(buffer, buffer_seek_start, 0);
+        buffer_write(buffer, buffer_text, json_stringify(json));
+        buffer_save_ext(buffer, filename, 0, buffer_tell(buffer));
+    };
+    
     var id_file = file_text_open_write(fn);
     file_text_write_string(id_file, Stuff.game_asset_id);
     file_text_close(id_file);
