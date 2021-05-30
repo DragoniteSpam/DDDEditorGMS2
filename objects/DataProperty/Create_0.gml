@@ -21,6 +21,27 @@ default_string = "";
 default_code =
 @"-- write Lua here";
 
+CreateJSONProperty = function() {
+    var json = self.CreateJSONBase();
+    json.type = self.type;
+    json.range_min = self.range_min;
+    json.range_max = self.range_max;
+    json.number_scale = self.number_scale;
+    json.char_limit = self.char_limit;
+    json.type_guid = self.type_guid;
+    json.max_size = self.max_size;
+    json.size_can_be_zero = self.size_can_be_zero;
+    json.default_real = self.default_real;
+    json.default_int = self.default_int;
+    json.default_string = self.default_string;
+    json.default_code = self.default_code;
+    return json;
+};
+
+CreateJSON = function() {
+    return self.CreateJSONProperty();
+};
+
 enum DataTypes {
     INT,                // input
     ENUM,               // list

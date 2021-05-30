@@ -16,3 +16,17 @@ enum DataDataFlags {
     NO_LOCALIZE_NAME    = 0x020000,
     NO_LOCALIZE_SUMMARY = 0x040000,
 }
+
+CreateJSONData = function() {
+    var json = self.CreateJSONBase();
+    var n = ds_list_size(self.properties);
+    json.properties = array_create(n);
+    for (var i = 0; i < n; i++) {
+        json.properties[i] = self.properties[| i].CreateJSON();
+    }
+    return json;
+};
+
+CreateJSON = function() {
+    return self.CreateJSONData();
+};
