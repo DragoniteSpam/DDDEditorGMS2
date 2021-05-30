@@ -13,4 +13,18 @@ function SData(name) constructor {
         guid_remove(self.GUID);
         internal_name_remove(self.internal_name);
     };
+    
+    self.CreateJSONBase = function() {
+        return {
+            name: name,
+            internal_name: internal_name,
+            flags: flags,
+            summary: summary,
+            guid: GUID,
+        };
+    };
+    
+    self.CreateJSON = function() {
+        return self.CreateJSONBase();
+    };
 }
