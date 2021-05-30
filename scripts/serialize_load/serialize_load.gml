@@ -46,14 +46,18 @@ function serialize_load(buffer, filename, proj_name) {
     
     switch (what) {
         case SERIALIZE_DATA_AND_MAP:
-            var summary_string = buffer_read(buffer, buffer_string);
-            var author_string = buffer_read(buffer, buffer_string);
-            var file_year = buffer_read(buffer, buffer_u16);
-            var file_month = buffer_read(buffer, buffer_u8);
-            var file_day = buffer_read(buffer, buffer_u8);
-            var file_hour = buffer_read(buffer, buffer_u8);
-            var file_minute = buffer_read(buffer, buffer_u8);
-            var file_second = buffer_read(buffer, buffer_u8);
+            if (version >= DataVersions.NO_EDITOR_DATA) {
+                var summary_string = buffer_read(buffer, buffer_string);
+                var author_string = buffer_read(buffer, buffer_string);
+                var file_year = buffer_read(buffer, buffer_u16);
+                var file_month = buffer_read(buffer, buffer_u8);
+                var file_day = buffer_read(buffer, buffer_u8);
+                var file_hour = buffer_read(buffer, buffer_u8);
+                var file_minute = buffer_read(buffer, buffer_u8);
+                var file_second = buffer_read(buffer, buffer_u8);
+                Stuff.game_file_summary = summary_string;
+                Stuff.game_file_author = author_string;
+            }
             
             instance_activate_object(Data);
             with (Data) instance_destroy();
@@ -84,8 +88,6 @@ function serialize_load(buffer, filename, proj_name) {
             
             Stuff.game_data_current_file = Stuff.game_asset_lists[| 0];
             
-            Stuff.game_file_summary = summary_string;
-            Stuff.game_file_author = author_string;
             break;
         case SERIALIZE_ASSETS:
         default:
