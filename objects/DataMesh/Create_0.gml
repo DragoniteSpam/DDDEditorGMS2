@@ -74,16 +74,6 @@ CopyPropertiesFrom = function(mesh) {
     }
 };
 
-enum MeshTypes {
-    RAW,
-    SMF
-}
-
-enum MeshFlags {
-    PARTICLE            = 0x0001,
-    SILHOUETTE          = 0x0002,
-}
-
 AddSubmesh = function(submesh, proto_guid) {
     var mesh = self.id;
     submesh.proto_guid = proto_guid_set(mesh, ds_list_size(mesh.submeshes), proto_guid);
@@ -164,3 +154,40 @@ RemoveSubmesh = function(index) {
     submeshes[| index]._destructor();
     ds_list_delete(submeshes, index);
 };
+
+CreateJSONMesh = function() {
+    var json = self.CreateJSONBase();
+    json.type = self.type;
+    json.tex_base = self.tex_base;
+    json.tex_ambient = self.tex_ambient;
+    json.tex_specular_color = self.tex_specular_color;
+    json.tex_specular_highlight = self.tex_specular_highlight;
+    json.tex_alpha = self.tex_alpha;
+    json.tex_bump = self.tex_bump;
+    json.tex_displacement = self.tex_displacement;
+    json.tex_stencil = self.tex_stencil;
+    json.texture_scale = self.texture_scale;
+    
+    json.asset_flags = self.asset_flags;
+    json.xmin = self.xmin;
+    json.ymin = self.ymin;
+    json.zmin = self.zmin;
+    json.xmax = self.xmax;
+    json.ymax = self.ymax;
+    json.zmax = self.zmax;
+    return json;
+};
+
+CreateJSON = function() {
+    return self.CreateJSONMesh();
+};
+
+enum MeshTypes {
+    RAW,
+    SMF
+}
+
+enum MeshFlags {
+    PARTICLE            = 0x0001,
+    SILHOUETTE          = 0x0002,
+}

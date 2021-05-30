@@ -59,20 +59,25 @@ function project_save() {
     }, true));
     
     file_copy(fn, folder_name + "project" + EXPORT_EXTENSION_PROJECT);
-    save_file(folder_name + "data.json", json_stringify(project_write_json(Stuff.all_data)));
+    save_file(folder_name + "data.json", json_stringify({
+        data: project_write_json(Stuff.all_data),
+    }));
     save_file(folder_name + "images.json", json_stringify({
         tilesets: project_write_json(Stuff.all_graphic_tilesets),
         overworlds: project_write_json(Stuff.all_graphic_overworlds),
         battlers: project_write_json(Stuff.all_graphic_battlers),
         particles: project_write_json(Stuff.all_graphic_particles),
         ui: project_write_json(Stuff.all_graphic_ui),
-        animations: project_write_json(Stuff.all_graphic_tile_animations),
+        tile_animations: project_write_json(Stuff.all_graphic_tile_animations),
         etc: project_write_json(Stuff.all_graphic_etc),
         skybox: project_write_json(Stuff.all_graphic_skybox),
     }));
     save_file(folder_name + "audio.json", json_stringify({
         se: project_write_json(Stuff.all_se),
         bgm: project_write_json(Stuff.all_bgm),
+    }));
+    save_file(folder_name + "meshes.json", json_stringify({
+        meshes: project_write_json(Stuff.all_meshes),
     }));
     
     save_assets(folder_image_name, Stuff.all_graphic_tilesets);
