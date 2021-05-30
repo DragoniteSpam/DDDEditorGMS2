@@ -184,3 +184,4 @@
 #macro PROJECT_PATH_MAP "map"
 #macro PROJECT_PATH_MESH "mesh"
 #macro PROJECT_PATH_MESH_AUTOTILE "autotile"
+#macro PROJECT_PATH_TERRAIN "terrain"
