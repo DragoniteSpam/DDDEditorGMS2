@@ -22,7 +22,7 @@ function dialog_create_project_list(root) {
     
     var yy = 64;
     var yy_base = yy;
-    var project_list = Stuff.all_projects[$ "projects"];
+    var project_list = Stuff.all_projects.projects;
     
     var f_project_load = function(button) {
         var selected_project = ui_list_selection(button.root.el_list);
@@ -68,7 +68,7 @@ function dialog_create_project_list(root) {
     }, false, dg);
     for (var i = 0, n = array_length(project_list); i < n; i++) {
         if (is_string(project_list[i])) {
-            project_list[i] = { name: project_list[i], legacy: true, id: "", };
+            project_list[@ i] = { name: project_list[i], legacy: true, id: "", };
         }
         ds_list_add(el_list.entries, project_list[i].name);
     }
@@ -143,7 +143,7 @@ function dialog_create_project_list(root) {
             var project = button.root.el_list.entries[| selected_project];
             var dialog = emu_dialog_confirm(button, "Do you want to remove " + project + "? Its autosave files will be deleted, but any files you saved elsewhere on your computer will still be there and you will be able to re-load them later.", function() {
                 var project = self.root.project;
-                var list = Stuff.all_projects[$ "projects"];
+                var list = Stuff.all_projects.projects;
                 var name = list[project];
                 array_delete(list, project, 1);
                 ui_list_deselect(self.root.root.root.el_list);

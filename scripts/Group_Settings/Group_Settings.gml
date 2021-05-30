@@ -10,8 +10,15 @@ function setting_get(object, name, def) {
 
 function setting_project_add(name) {
     // this just logs it in projects.json; it doesn't add any of the data files
-    if (array_search(Stuff.all_projects[$ "projects"], name) == -1) {
-        array_push(Stuff.all_projects[$ "projects"], name);
+    var exists = false;
+    for (var i = 0; i < array_length(Stuff.all_projects.projects); i++) {
+        if (Stuff.all_projects.projects[i].name == name) {
+            exists = true;
+            break;
+        }
+    }
+    if (!exists) {
+        array_push(Stuff.all_projects.projects, { name: name, id: Stuff.game_asset_id, legacy: false });
     }
     
     var buffer = buffer_create(32, buffer_grow, 1);
@@ -21,7 +28,7 @@ function setting_project_add(name) {
 }
 
 function setting_project_create_local(projname, filename, buffer) {
-    var auto_folder = PATH_PROJECTS + projname + "\\";
+    var auto_folder = PATH_PROJECTS + projname + "/";
     if (!directory_exists(auto_folder)) {
         directory_create(auto_folder);
     }

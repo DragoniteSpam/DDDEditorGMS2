@@ -5,6 +5,7 @@ function serialize_load_base(fn, project_name) {
     
     var original_data = -1;
     var decompressed_data = -1;
+    var buffer_data = -1;
     
     if (!file_exists(fn_data)) {
         emu_dialog_notice("Could not find a data file (it should be named \"" + filename_name(fn_data) +"\".");
@@ -15,16 +16,16 @@ function serialize_load_base(fn, project_name) {
     // each point it needs to be wrapped in another check because trying to proceed would make
     // the whole thing explode
     if (outcome) {
-        var original_data = buffer_load(fn_data);
+        original_data = buffer_load(fn_data);
         
         var header_zlib_data = buffer_peek(original_data, 0, buffer_u16);
         
         if (header_zlib_data == MAGIC_ZLIB_HEADER) {
-            var decompressed_data = buffer_decompress(original_data);
-            var buffer_data = decompressed_data;
+            decompressed_data = buffer_decompress(original_data);
+            buffer_data = decompressed_data;
             buffer_delete(original_data);
         } else {
-            var buffer_data = original_data;
+            buffer_data = original_data;
         }
         
         // header
