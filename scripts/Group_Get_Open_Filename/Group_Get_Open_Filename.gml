@@ -1,129 +1,70 @@
-function get_open_filename_mesh_autotile() {
-    var path = get_open_filename_ext("Mesh Autotile files (*.ddd_atm)|*.ddd_atm", "", Settings.location.mesh, "Select a mesh autotile collection");
+function __get_open_filename_general(filter, name, directory, title, set) {
+    var path = get_open_filename_ext(filter, name, directory, title);
     
     if (file_exists(path)) {
-        var dir = filename_dir(path);
-        if (string_length(dir) > 0) {
-            Settings.location.mesh = dir;
-        }
+        directory = filename_dir(path);
+        if (string_length(directory) > 0) set(directory);
     }
     
     return path;
+}
+
+function get_open_filename_mesh_autotile() {
+    return __get_open_filename_general("Mesh Autotile files|*.ddd_atm", "", Settings.location.mesh, "Select a mesh autotile collection", function(directory) {
+        Settings.location.mesh = directory;
+    });
 }
 
 function get_open_filename_audio() {
-    var path = get_open_filename_ext("Audio files (*.ogg, *.mid)|*.ogg;*.mid", "", Settings.location.audio, "Select an audio file");
-    
-    if (file_exists(path)) {
-        var dir = filename_dir(path);
-        if (string_length(dir) > 0) {
-            Settings.location.audio = dir;
-        }
-    }
-    
-    return path;
+    return __get_open_filename_general("Audio files|*.ogg;*.mid", "", Settings.location.audio, "Select an audio file", function(directory) {
+        Settings.location.audio = directory;
+    });
 }
 
 function get_open_filename_ddd() {
-    var path = get_open_filename_ext("DDD project files (" + EXPORT_EXTENSION_PROJECT + ")|*" + EXPORT_EXTENSION_PROJECT, "", Settings.location.project, "Select a game project file");
-    
-    if (file_exists(path)) {
-        var dir = filename_dir(path);
-        if (string_length(dir) > 0) {
-            Settings.location.project = dir;
-        }
-    }
-    
-    return path;
+    return __get_open_filename_general("DDD project files|*" + EXPORT_EXTENSION_PROJECT, "", Settings.location.project, "Select a game project file", function(directory) {
+        Settings.location.project = directory;
+    });
 }
 
 function get_open_filename_project() {
-    var path = get_open_filename_ext("DDD game files (" + EXPORT_EXTENSION_DATA + ", " + EXPORT_EXTENSION_MAP + ", " + EXPORT_EXTENSION_ASSETS + ")|*" + EXPORT_EXTENSION_DATA + ";*" + EXPORT_EXTENSION_MAP + ";*" + EXPORT_EXTENSION_ASSETS, "", Settings.location.ddd, "Select a game data file");
-    
-    if (file_exists(path)) {
-        var dir = filename_dir(path);
-        if (string_length(dir) > 0) {
-            Settings.location.ddd = dir;
-        }
-    }
-    
-    return path;
+    return __get_open_filename_general("DDD project files|*" + EXPORT_EXTENSION_PROJECT, "", Settings.location.project, "Select a game project file", function(directory) {
+        Settings.location.project = directory;
+    });
 }
 
 function get_open_filename_image() {
-    var path = get_open_filename_ext("Image files (*.png, *.bmp)|*.png;*.bmp|PNG files|*.png|Bitmap files|*.bmp", "", Settings.location.image, "Select an image");
-    
-    if (file_exists(path)) {
-        var dir = filename_dir(path);
-        if (string_length(dir) > 0) {
-            Settings.location.image = dir;
-        }
-    }
-    
-    return path;
+    return __get_open_filename_general("Image files|*.png;*.bmp|PNG files|*.png|Bitmap files|*.bmp", "", Settings.location.image, "Select an image", function(directory) {
+        Settings.location.image = directory;
+    });
 }
 
 function get_open_filename_mesh() {
-    var path = get_open_filename_ext("Any valid mesh file|*.d3d;*.gmmod;*.obj;*.vrax;*.smf;*.qma;|Game Maker model files|*.d3d;*.gmmod|Object files|*.obj|drago's old file format|*.vrax|drago's newer file format|*.qma|SMF files (advanced)|*.smf", "", Settings.location.mesh, "Select a 3D model file");
-
-    if (file_exists(path)) {
-        var dir = filename_dir(path);
-        if (string_length(dir) > 0) {
-            Settings.location.mesh = dir;
-        }
-    }
-    
-    return path;
+    return __get_open_filename_general("Any valid mesh file|*.d3d;*.gmmod;*.obj;*.vrax;*.smf;*.qma;|Game Maker model files|*.d3d;*.gmmod|Object files|*.obj|drago's old file format|*.vrax|drago's newer file format|*.qma|SMF files (advanced)|*.smf", "", Settings.location.mesh, "Select a 3D model file", function(directory) {
+        Settings.location.mesh = directory;
+    });
 }
 
 function get_open_filename_mesh_d3d() {
-    var path = get_open_filename_ext("Game Maker model files (*.d3d;*.gmmod)|*.d3d;*.gmmod", "", Settings.location.mesh, "Select a mesh");
-    
-    if (file_exists(path)) {
-        var dir = filename_dir(path);
-        if (string_length(dir) > 0) {
-            Settings.location.mesh = dir;
-        }
-    }
-    
-    return path;
+    return __get_open_filename_general("Game Maker model files|*.d3d;*.gmmod", "", Settings.location.mesh, "Select a mesh", function(directory) {
+        Settings.location.mesh = directory;
+    });
 }
 
 function get_open_filename_terrain() {
-    var path = get_open_filename_ext("Terrain files (*.dddt)|*.dddt;*.ddd_terrain", "", Settings.location.terrain, "terrain file");
-    
-    if (file_exists(path)) {
-        var dir = filename_dir(path);
-        if (string_length(dir) > 0) {
-            Settings.location.terrain = dir;
-        }
-    }
-    
-    return path;
+    return __get_open_filename_general("Terrain files|*.dddt;*.ddd_terrain", "", Settings.location.terrain, "terrain file", function(directory) {
+        Settings.location.terrain = directory;
+    });
 }
 
 function get_open_filename_tiled() {
-    var path = get_open_filename_ext("Tiled JSON files (*.json)|*.json", "", Settings.location.tiled, "Select a Tiled file");
-    
-    if (file_exists(path)) {
-        var dir = filename_dir(path);
-        if (string_length(dir) > 0) {
-            Settings.location.tiled = dir;
-        }
-    }
-    
-    return path;
+    return __get_open_filename_general("Tiled JSON files|*.json", "", Settings.location.tiled, "Select a Tiled file", function(directory) {
+        Settings.location.tiled = directory;
+    });
 }
 
 function get_open_filename_text() {
-    var path = get_open_filename_ext("Localization files (*.json;*.csv)|*.json;*.csv", "", Settings.location.text, "Select a localization file");
-    
-    if (file_exists(path)) {
-        var dir = filename_dir(path);
-        if (string_length(dir) > 0) {
-            Settings.location.text = dir;
-        }
-    }
-    
-    return path;
+    return __get_open_filename_general("Localization files|*.json;*.csv", "", Settings.location.text, "Select a localization file", function(directory) {
+        Settings.location.text = directory;
+    });
 }
