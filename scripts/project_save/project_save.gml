@@ -24,6 +24,66 @@ function project_save() {
         buffer_save_ext(buffer, filename, 0, buffer_tell(buffer));
     };
     
+    static project_write_global = function() {
+        var switch_json = array_create(ds_list_size(Stuff.switches));
+        for (var i = 0, n = ds_list_size(Stuff.switches); i < n; i++) {
+            switch_json[i] = {
+                name: Stuff.switches[| i][0],
+                value: Stuff.switches[| i][1],
+            };
+        }
+        var var_json = array_create(ds_list_size(Stuff.variables));
+        for (var i = 0, n = ds_list_size(Stuff.variables); i < n; i++) {
+            var_json[i] = {
+                name: Stuff.variables[| i][0],
+                value: Stuff.variables[| i][1],
+            };
+        }
+        var const_json = array_create(ds_list_size(Stuff.all_game_constants));
+        for (var i = 0, n = ds_list_size(Stuff.all_game_constants); i < n; i++) {
+            const_json[i] = Stuff.all_game_constants[| i].CreateJSON();
+        }
+        var trigger_json = array_create(ds_list_size(Stuff.all_event_triggers));
+        for (var i = 0, n = ds_list_size(Stuff.all_event_triggers); i < n; i++) {
+            trigger_json[i] = Stuff.all_event_triggers[| i];
+        }
+        var flag_json = array_create(ds_list_size(Stuff.all_asset_flags));
+        for (var i = 0, n = ds_list_size(Stuff.all_asset_flags); i < n; i++) {
+            flag_json[i] = Stuff.all_asset_flags[| i];
+        }
+        return {
+            id: Stuff.game_asset_id,
+            notes: Stuff.game_notes,
+            start: {
+                map: Stuff.game_starting_map,
+                x: Stuff.game_starting_x,
+                y: Stuff.game_starting_y,
+                z: Stuff.game_starting_z,
+                direction: Stuff.game_starting_direction,
+            },
+            lighting: {
+                buckets: Stuff.game_lighting_buckets,
+                ambient: Stuff.game_lighting_default_ambient,
+            },
+            grid: {
+                chunk_size: Stuff.game_base_map_chunk_size,
+                player_snap: Stuff.game_player_grid,
+            },
+            base_screen: {
+                width: Stuff.game_screen_base_width,
+                height: Stuff.game_screen_base_height,
+            },
+            title: {
+                map: Stuff.game_title_screen,
+            },
+            switches: switch_json,
+            variables: var_json,
+            constants: const_json,
+            triggers: trigger_json,
+            flags: flag_json,
+        };
+    };
+    
     var folder_name = PATH_PROJECTS + Stuff.game_asset_id + "/";
     var folder_audio_name = folder_name + PROJECT_PATH_AUDIO;
     var folder_image_name = folder_name + PROJECT_PATH_IMAGE;
@@ -63,6 +123,9 @@ function project_save() {
     file_copy(fn, folder_name + "project" + EXPORT_EXTENSION_PROJECT);
     save_file(folder_name + "data.json", json_stringify({
         data: project_write_json(Stuff.all_data),
+    }));
+    save_file(folder_name + "meta.json", json_stringify({
+        core: project_write_global(),
     }));
     save_file(folder_name + "images.json", json_stringify({
         tilesets: project_write_json(Stuff.all_graphic_tilesets),
