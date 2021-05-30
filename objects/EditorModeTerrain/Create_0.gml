@@ -117,6 +117,37 @@ vertex_end(terrain_buffer);
 terrain_buffer_data = buffer_create_from_vertex_buffer(terrain_buffer, buffer_fixed, 1);
 vertex_freeze(terrain_buffer);
 
+CreateJSONTerrain = function() {
+    return {
+        width: self.width,
+        height: self.height,
+        
+        settings: {
+            export_all: self.export_all,
+            view_water: self.view_water,
+            export_swap_uvs: self.export_swap_uvs,
+            export_swap_zup: self.export_swap_zup,
+            smooth_shading: self.smooth_shading,
+            dual_layer: self.dual_layer,
+            view_scale: self.view_scale,
+            save_scale: self.save_scale,
+            rate: self.rate,
+            radius: self.radius,
+            mode: self.mode,
+            submode: self.submode,
+            style: self.style,
+            tile_brush_x: self.tile_brush_x,
+            tile_brush_y: self.tile_brush_y,
+            paint_color: self.paint_color,
+            paint_strength: self.paint_strength,
+        },
+    };
+}
+
+CreateJSON = function() {
+    return self.CreateJSONTerrain();
+};
+
 wtf("Terrain creation took " + string((get_timer() - t) / 1000) + " milliseconds");
 
 enum TerrainModes {

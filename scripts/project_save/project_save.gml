@@ -147,6 +147,9 @@ function project_save() {
     save_file(folder_name + "meshautotiles.json", json_stringify({
         autotiles: project_write_json(Stuff.all_mesh_autotiles),
     }));
+    save_file(folder_name + "terrain.json", json_stringify({
+        terrain: Stuff.terrain.CreateJSON(),
+    }));
     
     save_assets(folder_image_name, Stuff.all_graphic_tilesets);
     save_assets(folder_image_name, Stuff.all_graphic_overworlds);
