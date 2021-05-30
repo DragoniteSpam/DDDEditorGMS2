@@ -19,13 +19,13 @@ repeat (moments) {
 
 CreateJSONAnimation = function() {
     var json = self.CreateJSONBase();
-    json.fps = self.frames_per_second;
+    json.frames_per_second = self.frames_per_second;
     json.moments = self.moments;
     json.loops = self.loops;
     json.code = self.code;
     json.layers = array_create(ds_list_size(self.layers));
     for (var i = 0, n = ds_list_size(self.layers); i < n; i++) {
-        json.layers = self.layers[| i].CreateJSON();
+        json.layers[i] = self.layers[| i].CreateJSON();
     }
     return json;
 };
