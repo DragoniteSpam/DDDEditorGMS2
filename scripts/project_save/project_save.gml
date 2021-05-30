@@ -26,9 +26,19 @@ function project_save() {
 # If you would like to compile the game files for use in a game, go to 
 # Export and save the project as a set of DDD files.
 
-    " + snap_to_yaml({
+" + snap_to_yaml({
         id: Stuff.game_asset_id,
-    });
+        summary: Stuff.game_file_summary,
+        author: Stuff.game_file_author,
+        date: {
+            year: current_year,
+            month: current_month,
+            day: current_day,
+            hour: current_hour,
+            minute: current_minute,
+            second: current_second,
+        },
+    }, true);
     
     save_file(fn, main_yaml);
     
