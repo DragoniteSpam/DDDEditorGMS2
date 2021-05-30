@@ -10,6 +10,13 @@ function DataMeshAutotile(name) : SData(name) constructor {
             self.reflect_wbuffer = undefined;
             self.reflect_wrawbuffer = undefined;
             
+            static SaveAsset = function(filename) {
+                if (self.buffer) buffer_save(self.buffer, filename + ".vertex");
+                if (self.reflect_buffer) buffer_save(self.reflect_buffer, filename + ".reflect");
+                if (self.wrawbuffer) buffer_save(self.wrawbuffer, filename + ".wire");
+                if (self.reflect_wrawbuffer) buffer_save(self.reflect_wrawbuffer, filename + ".rwire");
+            };
+            
             static Set = function(buffer, vbuffer) {
                 DestroyUpright();
                 self.buffer = buffer;
@@ -95,4 +102,12 @@ function DataMeshAutotile(name) : SData(name) constructor {
             self.layers[i].Destroy();
         }
     };
+    
+    static SaveAsset = function(directory) {
+        directory += "/" + string_replace_all(self.GUID, ":", "_");
+        for (var i = 0, n = array_length(self.layers); i < n; i++) {
+            self.layers[i].SaveAsset(directory + "!" + string(i));
+        }
+    };
+    
 }

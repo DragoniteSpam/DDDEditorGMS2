@@ -94,4 +94,5 @@ function project_save() {
     save_assets(folder_audio_name, Stuff.all_se);
     save_assets(folder_audio_name, Stuff.all_bgm);
     save_assets(folder_mesh_name, Stuff.all_meshes);
+    save_assets(folder_mesh_name, Stuff.all_mesh_autotiles);
 }
