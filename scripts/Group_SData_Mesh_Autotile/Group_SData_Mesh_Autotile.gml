@@ -4,15 +4,20 @@ function DataMeshAutotile(name) : SData(name) constructor {
             self.buffer = undefined;
             self.vbuffer = undefined;
             self.wbuffer = undefined;
+            self.wrawbuffer = undefined;
             self.reflect_buffer = undefined;
             self.reflect_vbuffer = undefined;
             self.reflect_wbuffer = undefined;
+            self.reflect_wrawbuffer = undefined;
             
             static Set = function(buffer, vbuffer) {
                 DestroyUpright();
                 self.buffer = buffer;
                 self.vbuffer = vbuffer;
-                if (buffer) self.wbuffer = buffer_to_wireframe(buffer);
+                if (buffer) {
+                    self.wbuffer = buffer_to_wireframe(buffer);
+                    self.wrawbuffer = buffer_create_from_vertex_buffer(self.buffer, buffer_fixed, 1);
+                }
             };
             
             static SetReflect = function(buffer, vbuffer) {
@@ -28,6 +33,7 @@ function DataMeshAutotile(name) : SData(name) constructor {
                 self.reflect_vbuffer = buffer_to_reflect(self.buffer);
                 self.reflect_buffer = buffer_create_from_vertex_buffer(self.reflect_vbuffer, buffer_fixed, 1);
                 self.reflect_wbuffer = buffer_to_wireframe(self.reflect_buffer);
+                self.reflect_wrawbuffer = buffer_create_from_vertex_buffer(self.reflect_buffer, buffer_fixed, 1);
                 return true;
             };
             
@@ -41,9 +47,11 @@ function DataMeshAutotile(name) : SData(name) constructor {
                 if (self.buffer) buffer_delete(self.buffer);
                 if (self.vbuffer) vertex_delete_buffer(self.vbuffer);
                 if (self.wbuffer) vertex_delete_buffer(self.wbuffer);
+                if (self.wrawbuffer) vertex_delete_buffer(self.wrawbuffer);
                 self.buffer = undefined;
                 self.vbuffer = undefined;
                 self.wbuffer = undefined;
+                self.wrawbuffer = undefined;
                 return valid;
             };
             
@@ -52,9 +60,11 @@ function DataMeshAutotile(name) : SData(name) constructor {
                 if (self.reflect_buffer) buffer_delete(self.reflect_buffer);
                 if (self.reflect_vbuffer) vertex_delete_buffer(self.reflect_vbuffer);
                 if (self.reflect_wbuffer) vertex_delete_buffer(self.reflect_wbuffer);
+                if (self.reflect_wrawbuffer) vertex_delete_buffer(self.reflect_wrawbuffer);
                 self.reflect_buffer = undefined;
                 self.reflect_vbuffer = undefined;
                 self.reflect_wbuffer = undefined;
+                self.reflect_wrawbuffer = undefined;
                 return valid;
             };
             
