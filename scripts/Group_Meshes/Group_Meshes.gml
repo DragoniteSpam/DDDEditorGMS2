@@ -11,6 +11,18 @@ function MeshSubmesh(name) constructor {
     self.reflect_vbuffer = undefined;
     self.reflect_wbuffer = undefined;
     
+    static CreateJSONSubmesh = function() {
+        var json = { };
+        json.name = self.name;
+        json.path = self.path;
+        json.proto_guid = self.proto_guid;
+        return json;
+    };
+    
+    static CreateJSON = function() {
+        return self.CreateJSONSubmesh();
+    };
+    
     static _destructor = function() {
         if (buffer) buffer_delete(buffer);
         if (wbuffer) vertex_delete_buffer(wbuffer);

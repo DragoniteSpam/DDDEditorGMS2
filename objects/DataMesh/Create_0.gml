@@ -171,6 +171,11 @@ CreateJSONMesh = function() {
     json.xmax = self.xmax;
     json.ymax = self.ymax;
     json.zmax = self.zmax;
+    
+    json.submeshes = array_create(ds_list_size(self.submeshes));
+    for (var i = 0, n = ds_list_size(self.submeshes); i < n; i++) {
+        json.submeshes[i] = self.submeshes[| i].CreateJSON();
+    }
     return json;
 };
 
