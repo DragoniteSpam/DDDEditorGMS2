@@ -24,11 +24,11 @@ function project_save() {
         buffer_save_ext(buffer, filename, 0, buffer_tell(buffer));
     };
     
-    var folder_name = PATH_PROJECTS + Stuff.game_asset_id;
-    var folder_audio_name = folder_name + "/" + PROJECT_PATH_AUDIO;
-    var folder_image_name = folder_name + "/" + PROJECT_PATH_IMAGE;
-    var folder_map_name = folder_name + "/" + PROJECT_PATH_MAP;
-    var folder_mesh_name = folder_name + "/" + PROJECT_PATH_MESH;
+    var folder_name = PATH_PROJECTS + Stuff.game_asset_id + "/";
+    var folder_audio_name = folder_name + PROJECT_PATH_AUDIO;
+    var folder_image_name = folder_name + PROJECT_PATH_IMAGE;
+    var folder_map_name = folder_name + PROJECT_PATH_MAP;
+    var folder_mesh_name = folder_name + PROJECT_PATH_MESH;
     
     if (!directory_exists(folder_name)) directory_create(folder_name);
     if (!directory_exists(folder_audio_name)) directory_create(folder_audio_name);
@@ -58,9 +58,9 @@ function project_save() {
         },
     }, true));
     
-    file_copy(fn, folder_name + "/project" + EXPORT_EXTENSION_PROJECT);
-    save_file(folder_name + "/data.json", json_stringify(project_write_json(Stuff.all_data)));
-    save_file(folder_name + "/images.json", json_stringify({
+    file_copy(fn, folder_name + "project" + EXPORT_EXTENSION_PROJECT);
+    save_file(folder_name + "data.json", json_stringify(project_write_json(Stuff.all_data)));
+    save_file(folder_name + "images.json", json_stringify({
         tilesets: project_write_json(Stuff.all_graphic_tilesets),
         overworlds: project_write_json(Stuff.all_graphic_overworlds),
         battlers: project_write_json(Stuff.all_graphic_battlers),
@@ -70,7 +70,7 @@ function project_save() {
         etc: project_write_json(Stuff.all_graphic_etc),
         skybox: project_write_json(Stuff.all_graphic_skybox),
     }));
-    save_file(folder_name + "/audio.json", json_stringify({
+    save_file(folder_name + "audio.json", json_stringify({
         se: project_write_json(Stuff.all_se),
         bgm: project_write_json(Stuff.all_bgm),
     }));
@@ -83,6 +83,6 @@ function project_save() {
     save_assets(folder_image_name, Stuff.all_graphic_tile_animations);
     save_assets(folder_image_name, Stuff.all_graphic_etc);
     save_assets(folder_image_name, Stuff.all_graphic_skybox);
-    save_assets(folder_audio_name, Stuff.all_se);
+    //save_assets(folder_audio_name, Stuff.all_se);
     save_assets(folder_audio_name, Stuff.all_bgm);
 }
