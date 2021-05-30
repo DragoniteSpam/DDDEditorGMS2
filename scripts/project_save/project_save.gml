@@ -70,6 +70,10 @@ function project_save() {
         etc: project_write_json(Stuff.all_graphic_etc),
         skybox: project_write_json(Stuff.all_graphic_skybox),
     }));
+    save_file(folder_name + "/audio.json", json_stringify({
+        se: project_write_json(Stuff.all_se),
+        bgm: project_write_json(Stuff.all_bgm),
+    }));
     
     save_assets(folder_image_name, Stuff.all_graphic_tilesets);
     save_assets(folder_image_name, Stuff.all_graphic_overworlds);
