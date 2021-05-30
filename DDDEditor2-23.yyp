@@ -482,6 +482,7 @@
     {"id":{"name":"smf_camera_init","path":"scripts/smf_camera_init/smf_camera_init.yy",},"order":0,},
     {"id":{"name":"smf_3d_enable","path":"scripts/smf_3d_enable/smf_3d_enable.yy",},"order":1,},
     {"id":{"name":"smf_3d_disable","path":"scripts/smf_3d_disable/smf_3d_disable.yy",},"order":2,},
+    {"id":{"name":"project_save","path":"scripts/project_save/project_save.yy",},"order":0,},
     {"id":{"name":"smf_camera_create","path":"scripts/smf_camera_create/smf_camera_create.yy",},"order":3,},
     {"id":{"name":"smf_camera_set_projmat","path":"scripts/smf_camera_set_projmat/smf_camera_set_projmat.yy",},"order":4,},
     {"id":{"name":"smf_camera_set_viewmat","path":"scripts/smf_camera_set_viewmat/smf_camera_set_viewmat.yy",},"order":5,},
@@ -1866,6 +1867,7 @@
     {"folderPath":"folders/Emu_Shortcuts.yy","order":83,"resourceVersion":"1.0","name":"Emu_Shortcuts","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Easing.yy","order":84,"resourceVersion":"1.0","name":"Easing","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Serialization.yy","order":85,"resourceVersion":"1.0","name":"Serialization","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Serialization/project.yy","order":1,"resourceVersion":"1.0","name":"project","tags":[],"resourceType":"GMFolder",},
   ],
   "AudioGroups": [
     {"targets":-1,"resourceVersion":"1.3","name":"audiogroup_default","resourceType":"GMAudioGroup",},

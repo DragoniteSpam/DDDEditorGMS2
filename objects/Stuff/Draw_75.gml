@@ -34,7 +34,7 @@ if (schedule_rebuild_autotile_texture) {
 }
 
 if (schedule_save) {
-    // todo
+    project_save();
     schedule_save = false;
 }
 
