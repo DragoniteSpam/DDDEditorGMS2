@@ -11,7 +11,7 @@ function audio_add(filename, prefix, loop_mode) {
     data.loop_end = FMODGMS_Snd_Get_Length(data.fmod);
     FMODGMS_Snd_Set_LoopPoints(data.fmod, 0, data.loop_end);
     
-    data.temp_name = PATH_AUDIO + string(data.GUID) + filename_ext(filename);
+    data.temp_name = PATH_AUDIO + string_replace_all(string(data.GUID), ":", "_") + filename_ext(filename);
     file_copy(filename, data.temp_name);
     
     internal_name_generate(data, prefix + internal_name);

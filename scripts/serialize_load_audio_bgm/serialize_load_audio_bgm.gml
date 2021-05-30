@@ -16,7 +16,7 @@ function serialize_load_audio_bgm(argument0, argument1) {
     
         serialize_load_generic(buffer, bgm, version);
     
-        bgm.temp_name = buffer_read(buffer, buffer_string);
+        bgm.temp_name = string_replace_all(buffer_read(buffer, buffer_string), ":", "_");
         bgm.loop_start = buffer_read(buffer, buffer_f32);
         bgm.loop_end = buffer_read(buffer, buffer_f32);
     

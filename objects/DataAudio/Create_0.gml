@@ -17,7 +17,7 @@ GetBuffer = function() {
 SaveAsset = function(directory) {
     directory += "/";
     var guid = string_replace(self.GUID, ":", "_");
-    var temp_name = string_replace(filename_name(self.temp_name), ":", "_");
+    var temp_name = string_replace_all(filename_name(self.temp_name), ":", "_");
     var fbuffer = self.GetBuffer();
     if (buffer_exists(fbuffer)) buffer_save(fbuffer, directory + temp_name);
     buffer_delete(fbuffer);

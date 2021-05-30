@@ -16,7 +16,7 @@ function serialize_load_audio_se(argument0, argument1) {
     
         serialize_load_generic(buffer, se, version);
     
-        se.temp_name = buffer_read(buffer, buffer_string);
+        se.temp_name = string_replace_all(buffer_read(buffer, buffer_string), ":", "_");
         var length = buffer_read(buffer, buffer_u32);
         var fbuffer = buffer_create(length, buffer_fixed, 1);
         buffer_copy(buffer, buffer_tell(buffer), length, fbuffer, 0);
