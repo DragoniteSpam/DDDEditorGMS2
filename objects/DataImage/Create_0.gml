@@ -17,7 +17,17 @@ hash = "";
 source_filename = "";
 
 SaveAsset = function(directory) {
-    
+    directory += "/";
+    var guid = string_replace(self.GUID, ":", "_");
+    if (sprite_exists(self.picture)) sprite_save(self.picture, 0, directory + guid + ".png");
+    if (sprite_exists(self.picture_with_frames)) {
+        for (var i = 0, n = sprite_get_number(self.picture_with_frames); i < n; i++) {
+            sprite_save(self.picture_with_frames, i, directory + guid + "_frames_" + string(i) + ".png");
+        }
+    }
+    for (var i = 0, n = array_length(self.npc_frames); i < n; i++) {
+        if (sprite_exists(self.npc_frames[i])) sprite_save(self.npc_frames[i], 0, directory + guid + "_npc_" + string(i) + ".png");
+    }
 };
 
 CreateJSONImage = function() {
