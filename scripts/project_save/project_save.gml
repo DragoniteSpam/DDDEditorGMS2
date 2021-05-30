@@ -70,4 +70,13 @@ function project_save() {
         etc: project_write_json(Stuff.all_graphic_etc),
         skybox: project_write_json(Stuff.all_graphic_skybox),
     }));
+    
+    save_assets(folder_image_name, Stuff.all_graphic_tilesets);
+    save_assets(folder_image_name, Stuff.all_graphic_overworlds);
+    save_assets(folder_image_name, Stuff.all_graphic_battlers);
+    save_assets(folder_image_name, Stuff.all_graphic_particles);
+    save_assets(folder_image_name, Stuff.all_graphic_ui);
+    save_assets(folder_image_name, Stuff.all_graphic_tile_animations);
+    save_assets(folder_image_name, Stuff.all_graphic_etc);
+    save_assets(folder_image_name, Stuff.all_graphic_skybox);
 }
