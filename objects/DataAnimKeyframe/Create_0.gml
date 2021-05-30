@@ -44,6 +44,49 @@ tween_alpha = AnimationTweens.NONE;
 moment = 0;
 timeline_layer = 0;
 
+CreateJSONAnimKeyframe = function() {
+    var json = self.CreateJSONBase();
+    json.relative = self.relative;
+    json.xx = self.xx;
+    json.yy = self.yy;
+    json.zz = self.zz;
+    json.xrot = self.xrot;
+    json.yrot = self.yrot;
+    json.zrot = self.zrot;
+    json.xscale = self.xscale;
+    json.yscale = self.yscale;
+    json.zscale = self.zscale;
+    json.color = self.color;
+    json.alpha = self.alpha;
+    json.audio = self.audio;
+    
+    json.graphic_type = self.graphic_type;
+    json.graphic_sprite = self.graphic_sprite;
+    json.graphic_mesh = self.graphic_mesh;
+    json.graphic_frame = self.graphic_frame;
+    json.graphic_direction = self.graphic_direction;
+    
+    json.tween = {
+        x: self.tween_xx,
+        y: self.tween_yy,
+        z: self.tween_zz,
+        xrot: self.tween_xrot,
+        yrot: self.tween_yrot,
+        zrot: self.tween_zrot,
+        xscale: self.tween_xscale,
+        yscale: self.tween_yscale,
+        zscale: self.tween_zscale,
+        color: self.tween_color,
+        alpha: self.tween_alpha,
+    };
+    
+    return json;
+};
+
+CreateJSON = function() {
+    return self.CreateJSONAnimKeyframe();
+};
+
 enum KeyframeParameters {
     TRANS_X, TRANS_Y, TRANS_Z,
     ROT_X, ROT_Y, ROT_Z,

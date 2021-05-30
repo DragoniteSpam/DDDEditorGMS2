@@ -44,6 +44,10 @@ CreateJSONAnimLayer = function() {
     json.graphic_sprite = self.graphic_sprite;
     json.graphic_mesh = self.graphic_mesh;
     json.graphic_frame = self.graphic_frame;
+    json.keyframes = array_create(ds_list_size(self.keyframes));
+    for (var i = 0, n = ds_list_size(self.keyframes); i < n; i++) {
+        json.keyframes[i] = self.keyframes[| i].CreateJSON();
+    }
     return json;
 };
 
