@@ -93,4 +93,5 @@ function project_save() {
     save_assets(folder_image_name, Stuff.all_graphic_skybox);
     save_assets(folder_audio_name, Stuff.all_se);
     save_assets(folder_audio_name, Stuff.all_bgm);
+    save_assets(folder_mesh_name, Stuff.all_meshes);
 }

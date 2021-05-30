@@ -11,6 +11,12 @@ function MeshSubmesh(name) constructor {
     self.reflect_vbuffer = undefined;
     self.reflect_wbuffer = undefined;
     
+    static SaveAsset = function(directory) {
+        var proto = string_replace_all(self.proto_guid, ":", "_");
+        if (self.buffer) buffer_save(self.buffer, directory  + proto + ".vertex");
+        if (self.reflect_buffer) buffer_save(self.reflect_buffer, directory + proto + ".reflect");
+    };
+    
     static CreateJSONSubmesh = function() {
         var json = { };
         json.name = self.name;
@@ -24,20 +30,20 @@ function MeshSubmesh(name) constructor {
     };
     
     static _destructor = function() {
-        if (buffer) buffer_delete(buffer);
-        if (wbuffer) vertex_delete_buffer(wbuffer);
-        if (vbuffer) {
-            switch (owner.type) {
-                case MeshTypes.RAW: vertex_delete_buffer(vbuffer); break;
-                case MeshTypes.SMF: smf_model_destroy(vbuffer); break;
+        if (self.buffer) buffer_delete(self.buffer);
+        if (self.wbuffer) vertex_delete_buffer(self.wbuffer);
+        if (self.vbuffer) {
+            switch (self.owner.type) {
+                case MeshTypes.RAW: vertex_delete_buffer(self.vbuffer); break;
+                case MeshTypes.SMF: smf_model_destroy(self.vbuffer); break;
             }
         }
-        if (reflect_buffer) buffer_delete(reflect_buffer);
-        if (reflect_wbuffer) buffer_delete(reflect_wbuffer);
-        if (reflect_vbuffer) {
-            switch (owner.type) {
-                case MeshTypes.RAW: vertex_delete_buffer(reflect_vbuffer); break;
-                case MeshTypes.SMF: smf_model_destroy(reflect_vbuffer); break;
+        if (self.reflect_buffer) buffer_delete(self.reflect_buffer);
+        if (self.reflect_wbuffer) vertex_delete_buffer(self.reflect_wbuffer);
+        if (self.reflect_vbuffer) {
+            switch (self.owner.type) {
+                case MeshTypes.RAW: vertex_delete_buffer(self.reflect_vbuffer); break;
+                case MeshTypes.SMF: smf_model_destroy(self.reflect_vbuffer); break;
             }
         }
     };
@@ -87,11 +93,11 @@ function MeshSubmesh(name) constructor {
         self.buffer = self.reflect_buffer;
         self.reflect_buffer = t;
         
-        var t = self.vbuffer;
+        t = self.vbuffer;
         self.vbuffer = self.reflect_vbuffer;
         self.reflect_vbuffer = t;
         
-        var t = self.wbuffer;
+        t = self.wbuffer;
         self.wbuffer = self.reflect_wbuffer;
         self.reflect_wbuffer = t;
     };
@@ -291,7 +297,7 @@ function MeshSubmesh(name) constructor {
             position += VERTEX_SIZE * 3;
         }
         
-        var position = 0;
+        position = 0;
         
         while (position < buffer_get_size(buffer)) {
             var xx = buffer_peek(buffer, position + 00, buffer_f32);

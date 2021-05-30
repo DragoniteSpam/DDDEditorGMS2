@@ -151,6 +151,14 @@ RemoveSubmesh = function(index) {
     ds_list_delete(submeshes, index);
 };
 
+SaveAsset = function(directory) {
+    directory += "/";
+    var guid = string_replace(self.GUID, ":", "_");
+    for (var i = 0, n = ds_list_size(self.submeshes); i < n; i++) {
+        self.submeshes[| i].SaveAsset(directory + guid + "_");
+    }
+};
+
 CreateJSONMesh = function() {
     var json = self.CreateJSONBase();
     json.type = self.type;

@@ -94,7 +94,7 @@ function buffer_to_wireframe(buffer, use_legacy) {
     static fsize = buffer_sizeof(buffer_f32);
     
     try {
-        var wbuffer = vertex_create_buffer();
+        wbuffer = vertex_create_buffer();
         vertex_begin(wbuffer, Stuff.graphics.vertex_format);
         var vertex_size = use_legacy ? 40 : VERTEX_SIZE;
         for (var i = 0; i < buffer_get_size(buffer); i += vertex_size * 3) {
@@ -128,7 +128,7 @@ function buffer_to_reflect(buffer) {
     static fsize = buffer_sizeof(buffer_f32);
     
     try {
-        var rbuffer = vertex_create_buffer();
+        rbuffer = vertex_create_buffer();
         vertex_begin(rbuffer, Stuff.graphics.vertex_format);
         var vertex_size = Stuff.graphics.format_size;
         
@@ -233,8 +233,8 @@ function vertex_buffer_to_wireframe(vbuffer) {
     static fsize = buffer_sizeof(buffer_f32);
     
     try {
-        var buffer = buffer_create_from_vertex_buffer(vbuffer, buffer_fixed, 4);
-        var wbuffer = buffer_to_wireframe(buffer);
+        buffer = buffer_create_from_vertex_buffer(vbuffer, buffer_fixed, 4);
+        wbuffer = buffer_to_wireframe(buffer);
     } catch (e) {
         if (wbuffer) vertex_delete_buffer(wbuffer);
         wbuffer = -1;

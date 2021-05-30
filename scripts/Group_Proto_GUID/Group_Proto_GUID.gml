@@ -5,8 +5,9 @@ function proto_guid_remove(container, guid) {
 }
 
 function proto_guid_generate(container) {
+    var n;
     do {
-        var n = Stuff.game_asset_id + ":" + string_hex(container.proto_guid_current++, 8);
+        n = Stuff.game_asset_id + ":" + string_hex(container.proto_guid_current++, 8);
     } until (!container.proto_guids[$ n]);
     
     return n;
