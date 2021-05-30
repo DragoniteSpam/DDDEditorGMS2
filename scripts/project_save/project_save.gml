@@ -160,6 +160,9 @@ function project_save() {
     save_file(folder_name + "meshautotiles.json", json_stringify({
         autotiles: project_write_json(Stuff.all_mesh_autotiles),
     }));
+    save_file(folder_name + "animations.json", json_stringify({
+        animations: project_write_json(Stuff.all_animations),
+    }));
     save_file(folder_name + "terrain.json", json_stringify({
         terrain: Stuff.terrain.CreateJSON(),
     }));

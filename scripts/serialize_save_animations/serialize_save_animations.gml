@@ -30,7 +30,7 @@ function serialize_save_animations(argument0) {
         
             buffer_write(buffer, buffer_string, timeline_layer.name);
         
-            var bools = pack(timeline_layer.is_actor);
+            bools = pack(timeline_layer.is_actor);
             buffer_write(buffer, buffer_u8, bools);
         
             buffer_write(buffer, buffer_f32, timeline_layer.xx);
