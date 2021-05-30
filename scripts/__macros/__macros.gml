@@ -183,3 +183,4 @@
 #macro PROJECT_PATH_IMAGE "image"
 #macro PROJECT_PATH_MAP "map"
 #macro PROJECT_PATH_MESH "mesh"
+#macro PROJECT_PATH_MESH_AUTOTILE "autotile"

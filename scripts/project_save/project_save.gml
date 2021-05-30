@@ -29,12 +29,14 @@ function project_save() {
     var folder_image_name = folder_name + PROJECT_PATH_IMAGE;
     var folder_map_name = folder_name + PROJECT_PATH_MAP;
     var folder_mesh_name = folder_name + PROJECT_PATH_MESH;
+    var folder_mesh_autotile_name = folder_name + PROJECT_PATH_MESH_AUTOTILE;
     
     if (!directory_exists(folder_name)) directory_create(folder_name);
     if (!directory_exists(folder_audio_name)) directory_create(folder_audio_name);
     if (!directory_exists(folder_image_name)) directory_create(folder_image_name);
     if (!directory_exists(folder_map_name)) directory_create(folder_map_name);
     if (!directory_exists(folder_mesh_name)) directory_create(folder_mesh_name);
+    if (!directory_exists(folder_mesh_autotile_name)) directory_create(folder_mesh_autotile_name);
     
     save_file(fn, @"
 # The project files for " + Stuff.save_name + @" are not stored here.
@@ -94,5 +96,5 @@ function project_save() {
     save_assets(folder_audio_name, Stuff.all_se);
     save_assets(folder_audio_name, Stuff.all_bgm);
     save_assets(folder_mesh_name, Stuff.all_meshes);
-    save_assets(folder_mesh_name, Stuff.all_mesh_autotiles);
+    save_assets(folder_mesh_autotile_name, Stuff.all_mesh_autotiles);
 }
