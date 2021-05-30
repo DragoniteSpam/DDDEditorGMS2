@@ -79,6 +79,9 @@ function project_save() {
     save_file(folder_name + "meshes.json", json_stringify({
         meshes: project_write_json(Stuff.all_meshes),
     }));
+    save_file(folder_name + "meshautotiles.json", json_stringify({
+        autotiles: project_write_json(Stuff.all_mesh_autotiles),
+    }));
     
     save_assets(folder_image_name, Stuff.all_graphic_tilesets);
     save_assets(folder_image_name, Stuff.all_graphic_overworlds);
