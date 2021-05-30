@@ -117,6 +117,13 @@ vertex_end(terrain_buffer);
 terrain_buffer_data = buffer_create_from_vertex_buffer(terrain_buffer, buffer_fixed, 1);
 vertex_freeze(terrain_buffer);
 
+SaveAsset = function(directory) {
+    directory += "/";
+    buffer_save(self.height_data, directory + "height.terrain");
+    buffer_save(self.color_data, directory + "color.terrain");
+    buffer_save(self.terrain_buffer_data, directory + "terrain.terrain");
+};
+
 CreateJSONTerrain = function() {
     return {
         width: self.width,
