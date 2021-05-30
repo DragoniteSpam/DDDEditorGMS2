@@ -26,6 +26,31 @@ graphic_sprite = noone;
 graphic_mesh = noone;
 graphic_frame = 1;
 
+CreateJSONAnimLayer = function() {
+    var json = self.CreateJSONBase();
+    json.is_actor = self.is_actor;
+    json.xx = self.xx;
+    json.yy = self.yy;
+    json.zz = self.zz;
+    json.xrot = self.xrot;
+    json.yrot = self.yrot;
+    json.zrot = self.zrot;
+    json.xscale = self.xscale;
+    json.yscale = self.yscale;
+    json.zscale = self.zscale;
+    json.color = self.color;
+    json.alpha = self.alpha;
+    json.graphic_type = self.graphic_type;
+    json.graphic_sprite = self.graphic_sprite;
+    json.graphic_mesh = self.graphic_mesh;
+    json.graphic_frame = self.graphic_frame;
+    return json;
+};
+
+CreateJSON = function() {
+    return self.CreateJSONAnimLayer();
+};
+
 enum GraphicTypes {
     NONE,
     NO_CHANGE,

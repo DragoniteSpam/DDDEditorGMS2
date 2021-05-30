@@ -23,6 +23,10 @@ CreateJSONAnimation = function() {
     json.moments = self.moments;
     json.loops = self.loops;
     json.code = self.code;
+    json.layers = array_create(ds_list_size(self.layers));
+    for (var i = 0, n = ds_list_size(self.layers); i < n; i++) {
+        json.layers = self.layers[| i].CreateJSON();
+    }
     return json;
 };
 
