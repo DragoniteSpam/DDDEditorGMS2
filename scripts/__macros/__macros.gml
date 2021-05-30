@@ -178,3 +178,8 @@
 
 #macro BASE_GAME_VARIABLES 100      // this also counts for switches
 #macro BASE_SELF_VARIABLES 4        // this also counts for switches
+
+#macro PROJECT_PATH_AUDIO "audio"
+#macro PROJECT_PATH_IMAGE "image"
+#macro PROJECT_PATH_MAP "map"
+#macro PROJECT_PATH_MESH "mesh"
