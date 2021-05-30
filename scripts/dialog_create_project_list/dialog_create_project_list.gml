@@ -46,30 +46,31 @@ function dialog_create_project_list(root) {
     var el_list = create_list(16, yy, "Recent Projects", "<no projects>", ew, eh, 10, function(list) {
         var selection = ui_list_selection(list);
         if (selection + 1) {
-            var version_str = list.root.versions[selection];
+            var version = list.root.versions[selection];
             var date_str = list.root.timestamp_dates[selection];
             var time_str = list.root.timestamp_times[selection];
-            var file_count = list.root.file_counts[selection];
-            var out_of_date = (real(version_str) < LAST_SAFE_VERSION) ? "[c_red]" : "";
             list.root.el_summary_name.text = "Name: " + list.root.names[selection];
-            list.root.el_summary_version.text = "File version: " + out_of_date + ((string_length(version_str) > 0) ? (version_str + " (0x" + string_hex(real(version_str)) + ")") : "N/A");
             list.root.el_summary_summary.text = "Summary: " + list.root.strings[selection];
             list.root.el_summary_author.text = "Author: " + list.root.authors[selection];
             list.root.el_summary_timestamp_date.text = "Date Modified: " + ((string_length(date_str) > 0) ? date_str : "N/A");
             list.root.el_summary_timestamp_time.text = "Time Modified: " + ((string_length(time_str) > 0) ? time_str : "N/A");
-            list.root.el_summary_file_count.text = "Asset files: " + ((file_count > 0) ? string(file_count) : "N/A");
+            if (version > 0) {
+                var out_of_date = (version < LAST_SAFE_VERSION) ? "[c_red]" : "";
+                list.root.el_summary_summary.text += out_of_date + "\n\n(Legacy file version: " + string(version) + " (0x" + string_hex(version) + "))";
+            }
         } else {
             list.root.el_summary_name.text = "";
-            list.root.el_summary_version.text = "";
             list.root.el_summary_summary.text = "";
             list.root.el_summary_author.text = "";
             list.root.el_summary_timestamp_date.text = "";
             list.root.el_summary_timestamp_time.text = "";
-            list.root.el_summary_file_count.text = "";
         }
     }, false, dg);
     for (var i = 0, n = array_length(project_list); i < n; i++) {
-        ds_list_add(el_list.entries, project_list[i]);
+        if (is_string(project_list[i])) {
+            project_list[i] = { name: project_list[i], legacy: true, id: "", };
+        }
+        ds_list_add(el_list.entries, project_list[i].name);
     }
     el_list.tooltip = "Here's a list of projects you've worked on recently.";
     el_list.entries_are = ListEntries.STRINGS;
@@ -84,44 +85,51 @@ function dialog_create_project_list(root) {
     dg.versions = array_create(n_projects);
     dg.timestamp_dates = array_create(n_projects);
     dg.timestamp_times = array_create(n_projects);
-    dg.file_counts = array_create(n_projects);
     
-    var fbuffer = buffer_create(1600, buffer_fixed, 1);
     for (var i = 0; i < n_projects; i++) {
-        dg.names[i] = project_list[i];
+        var project = project_list[i];
+        dg.names[i] = project.name;
         dg.strings[i] = "";
         dg.authors[i] = "";
-        dg.versions[i] = "";
+        dg.versions[i] = 0;
         dg.timestamp_dates[i] = "";
         dg.timestamp_times[i] = "";
-        dg.file_counts[i] = 0;
-        var path_new = PATH_PROJECTS + project_list[i] + "\\" + project_list[i] + ".dddd";
         try {
-            buffer_load_partial(fbuffer, path_new, 0, 1600, 0);
-            buffer_seek(fbuffer, buffer_seek_start, 0);
-            var header = chr(buffer_read(fbuffer, buffer_u8)) + chr(buffer_read(fbuffer, buffer_u8)) + chr(buffer_read(fbuffer, buffer_u8));
-            if (header == "DDD") {
-                var version = buffer_read(fbuffer, buffer_u32);
-                dg.versions[i] = string(version);
-                dg.strings[i] = buffer_read(fbuffer, buffer_string);
-                dg.authors [i] = buffer_read(fbuffer, buffer_string);
-                dg.timestamp_dates[i] = string(buffer_read(fbuffer, buffer_u16)) + " / " + string(buffer_read(fbuffer, buffer_u8)) + " / " +
-                    string(buffer_read(fbuffer, buffer_u8));
-                dg.timestamp_times[i] = string(buffer_read(fbuffer, buffer_u8)) + ":" + string_pad(buffer_read(fbuffer, buffer_u8), "0", 2) + ":" +
-                    string_pad(buffer_read(fbuffer, buffer_u8), "0", 2);
-                dg.file_counts[i] = buffer_read(fbuffer, buffer_u8);
+            if (project.legacy) {
+                var path_new = PATH_PROJECTS + project.name + "\\" + project.name + ".dddd";
+                var fbuffer = buffer_create(1600, buffer_fixed, 1);
+                buffer_load_partial(fbuffer, path_new, 0, 1600, 0);
+                buffer_seek(fbuffer, buffer_seek_start, 0);
+                var header = chr(buffer_read(fbuffer, buffer_u8)) + chr(buffer_read(fbuffer, buffer_u8)) + chr(buffer_read(fbuffer, buffer_u8));
+                if (header == "DDD") {
+                    dg.versions[i] = buffer_read(fbuffer, buffer_u32);
+                    dg.strings[i] = buffer_read(fbuffer, buffer_string);
+                    dg.authors [i] = buffer_read(fbuffer, buffer_string);
+                    dg.timestamp_dates[i] = string(buffer_read(fbuffer, buffer_u16)) + " / " + string(buffer_read(fbuffer, buffer_u8)) + " / " +
+                        string(buffer_read(fbuffer, buffer_u8));
+                    dg.timestamp_times[i] = string(buffer_read(fbuffer, buffer_u8)) + ":" + string_pad(buffer_read(fbuffer, buffer_u8), "0", 2) + ":" +
+                        string_pad(buffer_read(fbuffer, buffer_u8), "0", 2);
+                }
+                buffer_delete(fbuffer);
+            } else {
+                var path_new = PATH_PROJECTS + "/" + project.id + "/" + project.name + ".dragon";
+                var yaml = snap_from_yaml(path_new);
+                dg.names[i] = project.name;
+                dg.strings[i] = yaml.summary;
+                dg.authors[i] = yaml.author;
+                dg.versions[i] = 0;
+                dg.timestamp_dates[i] = string(yaml.date.year) + "-" + string(yaml.date.month) + "-" + string(yaml.date.day);
+                dg.timestamp_times[i] = string(yaml.date.hour) + ":" + string_pad(yaml.date.minute, "0", 2) + ":" + string_pad(yaml.date.second, "0", 2);
             }
         } catch (e) {
             dg.names[i] = "invalid project";
             dg.strings[i] = "";
             dg.authors[i] = "";
-            dg.versions[i] = "";
+            dg.versions[i] = 0;
             dg.timestamp_dates[i] = "";
             dg.timestamp_times[i] = "";
-            dg.file_counts[i] = 0;
         }
     }
-    buffer_delete(fbuffer);
     #endregion
     
     yy += ui_get_list_height(el_list) + spacing;
@@ -181,10 +189,6 @@ function dialog_create_project_list(root) {
     dg.el_summary_name = el_summary_name;
     yy += el_summary_name.height + spacing;
     
-    var el_summary_version = create_text(c2 + 16, yy, "", ew, eh, fa_left, ew, dg);
-    dg.el_summary_version = el_summary_version;
-    yy += el_summary_version.height + spacing;
-    
     var el_summary_timestamp_date = create_text(c2 + 16, yy, "", ew, eh, fa_left, ew, dg);
     dg.el_summary_timestamp_date = el_summary_timestamp_date;
     yy += el_summary_timestamp_date.height + spacing;
@@ -197,14 +201,10 @@ function dialog_create_project_list(root) {
     dg.el_summary_author = el_summary_author;
     yy += el_summary_author.height + spacing;
     
-    var el_summary_file_count = create_text(c2 + 16, yy, "", ew, eh, fa_left, ew, dg);
-    dg.el_summary_file_count = el_summary_file_count;
-    yy += el_summary_file_count.height + spacing;
-    
     var el_summary_summary = create_text(c2 + 16, yy - 8, "", ew, eh, fa_left, ew, dg);
     el_summary_summary.valignment = fa_top;
     dg.el_summary_summary = el_summary_summary;
-    yy += el_summary_summary.height + spacing - 8;
+    yy += el_summary_summary.height + spacing;
     
     var el_new = create_button(dw /2 - b_width / 2, dh - 32 - b_height / 2, "Create New", b_width, b_height, fa_center, dmu_dialog_commit, dg);
     el_new.tooltip = "New maps will be created with a default white directional light with a vector of (-1, -1, -1).";
@@ -216,12 +216,10 @@ function dialog_create_project_list(root) {
         el_other,
         el_summary,
         el_summary_name,
-        el_summary_version,
         el_summary_summary,
         el_summary_author,
         el_summary_timestamp_date,
         el_summary_timestamp_time,
-        el_summary_file_count,
         el_new
     );
     
