@@ -2,8 +2,6 @@ event_inherited();
 
 type = MeshTypes.RAW;
 
-animations = ds_map_create();           // this should map an animation name onto an index
-
 submeshes = ds_list_create();
 // there will only be one collision shape, defined as the first mesh
 // you import; this is a good reason to make all meshes in a series
@@ -22,8 +20,6 @@ first_proto_guid = NULL;
 /* s */ zmax = 1;
 
 /* s */ asset_flags = [[[0]]];
-
-/* s */ flags = 0;          // overrides Data.flags
 
 tex_base = NULL;                    // map_Kd
 tex_ambient = NULL;                 // map_Ka
