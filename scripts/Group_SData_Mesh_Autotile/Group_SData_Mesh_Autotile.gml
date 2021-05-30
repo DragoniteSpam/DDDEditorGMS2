@@ -23,7 +23,7 @@ function DataMeshAutotile(name) : SData(name) constructor {
                 self.vbuffer = vbuffer;
                 if (buffer) {
                     self.wbuffer = buffer_to_wireframe(buffer);
-                    self.wrawbuffer = buffer_create_from_vertex_buffer(self.buffer, buffer_fixed, 1);
+                    self.wrawbuffer = buffer_create_from_vertex_buffer(self.wbuffer, buffer_fixed, 1);
                 }
             };
             
@@ -40,7 +40,7 @@ function DataMeshAutotile(name) : SData(name) constructor {
                 self.reflect_vbuffer = buffer_to_reflect(self.buffer);
                 self.reflect_buffer = buffer_create_from_vertex_buffer(self.reflect_vbuffer, buffer_fixed, 1);
                 self.reflect_wbuffer = buffer_to_wireframe(self.reflect_buffer);
-                self.reflect_wrawbuffer = buffer_create_from_vertex_buffer(self.reflect_buffer, buffer_fixed, 1);
+                self.reflect_wrawbuffer = buffer_create_from_vertex_buffer(self.reflect_wbuffer, buffer_fixed, 1);
                 return true;
             };
             
