@@ -11,16 +11,26 @@ function project_save() {
         return json;
     };
     
-    static save_json = function(filename, json) {
+    static save_file = function(filename, text) {
         static buffer = buffer_create(1000, buffer_grow, 1);
         buffer_seek(buffer, buffer_seek_start, 0);
-        buffer_write(buffer, buffer_text, json_stringify(json));
+        buffer_write(buffer, buffer_text, text);
         buffer_save_ext(buffer, filename, 0, buffer_tell(buffer));
     };
     
-    var id_file = file_text_open_write(fn);
-    file_text_write_string(id_file, Stuff.game_asset_id);
-    file_text_close(id_file);
+    var main_yaml = @"
+# The project files for " + Stuff.save_name + @" are not stored here.
+# This file simply contains a reference to the ID of the project in local
+# storage. If you would like to archive the project as a whole (e.g. to
+# send to another computer), go to Export and save the project as a zip.
+# If you would like to compile the game files for use in a game, go to 
+# Export and save the project as a set of DDD files.
+
+    " + snap_to_yaml({
+        id: Stuff.game_asset_id,
+    });
+    
+    save_file(fn, main_yaml);
     
     var folder_name = PATH_PROJECTS + "/" + Stuff.game_asset_id;
     var folder_audio_name = folder_name + "/" + PROJECT_PATH_AUDIO;
@@ -48,5 +58,5 @@ function project_save() {
         directory_create(folder_mesh_name);
     }
     
-    save_json(folder_name + "/data.json", project_write_json(Stuff.all_data));
+    save_file(folder_name + "/data.json", json_stringify(project_write_json(Stuff.all_data)));
 }
