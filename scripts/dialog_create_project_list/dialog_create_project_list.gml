@@ -28,7 +28,7 @@ function dialog_create_project_list(root) {
         var selected_project = ui_list_selection(button.root.el_list);
         if (selected_project + 1) {
             var name = button.root.el_list.entries[| selected_project];
-            var path_new = PATH_PROJECTS + name + "\\" + name + ".dddd";
+            var path_new = PATH_PROJECTS + name + "/" + name + ".dddd";
             if (serialize_load_base(path_new, name)) {
                 dialog_destroy();
             } // else the files could not be loaded
@@ -96,7 +96,7 @@ function dialog_create_project_list(root) {
         dg.timestamp_times[i] = "";
         try {
             if (project.legacy) {
-                var path_new = PATH_PROJECTS + project.name + "\\" + project.name + ".dddd";
+                var path_new = PATH_PROJECTS + project.name + "/" + project.name + ".dddd";
                 var fbuffer = buffer_create(1600, buffer_fixed, 1);
                 buffer_load_partial(fbuffer, path_new, 0, 1600, 0);
                 buffer_seek(fbuffer, buffer_seek_start, 0);
@@ -112,7 +112,7 @@ function dialog_create_project_list(root) {
                 }
                 buffer_delete(fbuffer);
             } else {
-                var path_new = PATH_PROJECTS + "/" + project.id + "/project" + EXPORT_EXTENSION_PROJECT;
+                var path_new = PATH_PROJECTS + project.id + "/project" + EXPORT_EXTENSION_PROJECT;
                 var yaml = snap_from_yaml(path_new);
                 dg.names[i] = project.name;
                 dg.strings[i] = yaml.summary;
