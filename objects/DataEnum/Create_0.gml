@@ -9,7 +9,12 @@ type = DataTypes.ENUM;
 
 CreateJSONEnum = function() {
     var json = self.CreateJSONBase();
-    json.type = self.type;
+    var n = ds_list_size(self.properties);
+    json.properties = array_create(n);
+    for (var i = 0; i < n; i++) {
+        json.properties[i] = self.properties[| i].CreateJSON();
+    }
+    // don't save the instances, because enums have none
     return json;
 };
 

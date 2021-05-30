@@ -10,7 +10,7 @@ range_min = 0;                        // int, float
 range_max = 10;                       // int, float
 number_scale = NumberScales.LINEAR;   // int, float
 char_limit = 20;                      // string
-type_guid = NULL;                        // Data, enum
+type_guid = NULL;                     // Data, enum
 
 max_size = 1;
 size_can_be_zero = false;
