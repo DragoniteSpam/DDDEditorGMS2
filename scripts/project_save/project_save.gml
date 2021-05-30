@@ -11,6 +11,12 @@ function project_save() {
         return json;
     };
     
+    static save_assets = function(folder, data_list) {
+        for (var i = 0, n = ds_list_size(data_list); i < n; i++) {
+            data_list[| i].SaveAsset(folder);
+        }
+    };
+    
     static save_file = function(filename, text) {
         static buffer = buffer_create(1000, buffer_grow, 1);
         buffer_seek(buffer, buffer_seek_start, 0);
