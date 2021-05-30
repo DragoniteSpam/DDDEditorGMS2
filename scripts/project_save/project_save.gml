@@ -27,4 +27,6 @@ function project_save() {
     if (!directory_exists(folder_name)) {
         directory_create(folder_name);
     }
+    
+    save_json(folder_name + "/data.json", project_write_json(Stuff.all_data));
 }
