@@ -16,3 +16,16 @@ code = Stuff.default_lua_animation;
 repeat (moments) {
     ds_list_add(base_layer.keyframes, noone);
 }
+
+CreateJSONAnimation = function() {
+    var json = self.CreateJSONBase();
+    json.fps = self.frames_per_second;
+    json.moments = self.moments;
+    json.loops = self.loops;
+    json.code = self.code;
+    return json;
+};
+
+CreateJSON = function() {
+    return self.CreateJSONAnimation();
+};
