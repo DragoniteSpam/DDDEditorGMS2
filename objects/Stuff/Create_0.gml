@@ -111,7 +111,7 @@ all_graphic_skybox = ds_list_create();
 var surface = surface_create(2048, 2048);
 all_graphic_particle_texture = sprite_create_from_surface(surface, 0, 0, surface_get_width(surface), surface_get_width(surface), false, false, 0, 0);
 surface_free(surface);
-var surface = surface_create(4096, 4096);
+surface = surface_create(4096, 4096);
 all_graphic_ui_texture = sprite_create_from_surface(surface, 0, 0, surface_get_width(surface), surface_get_width(surface), false, false, 0, 0);
 surface_free(surface);
 

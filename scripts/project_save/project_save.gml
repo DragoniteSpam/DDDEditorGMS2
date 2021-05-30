@@ -18,30 +18,6 @@ function project_save() {
         buffer_save_ext(buffer, filename, 0, buffer_tell(buffer));
     };
     
-    var main_yaml = @"
-# The project files for " + Stuff.save_name + @" are not stored here.
-# This file simply contains a reference to the ID of the project in local
-# storage. If you would like to archive the project as a whole (e.g. to
-# send to another computer), go to Export and save the project as a zip.
-# If you would like to compile the game files for use in a game, go to 
-# Export and save the project as a set of DDD files.
-
-" + snap_to_yaml({
-        id: Stuff.game_asset_id,
-        summary: Stuff.game_file_summary,
-        author: Stuff.game_file_author,
-        date: {
-            year: current_year,
-            month: current_month,
-            day: current_day,
-            hour: current_hour,
-            minute: current_minute,
-            second: current_second,
-        },
-    }, true);
-    
-    save_file(fn, main_yaml);
-    
     var folder_name = PATH_PROJECTS + "/" + Stuff.game_asset_id;
     var folder_audio_name = folder_name + "/" + PROJECT_PATH_AUDIO;
     var folder_image_name = folder_name + "/" + PROJECT_PATH_IMAGE;
@@ -68,6 +44,38 @@ function project_save() {
         directory_create(folder_mesh_name);
     }
     
-    save_file(folder_name + "/project" + EXPORT_EXTENSION_PROJECT, main_yaml);
+    save_file(fn, @"
+# The project files for " + Stuff.save_name + @" are not stored here.
+# This file simply contains a reference to the ID of the project in local
+# storage. If you would like to archive the project as a whole (e.g. to
+# send to another computer), go to Export and save the project as a zip.
+# If you would like to compile the game files for use in a game, go to 
+# Export and save the project as a set of DDD files.
+
+" + snap_to_yaml({
+        id: Stuff.game_asset_id,
+        summary: Stuff.game_file_summary,
+        author: Stuff.game_file_author,
+        date: {
+            year: current_year,
+            month: current_month,
+            day: current_day,
+            hour: current_hour,
+            minute: current_minute,
+            second: current_second,
+        },
+    }, true));
+    
+    file_copy(fn, folder_name + "/project" + EXPORT_EXTENSION_PROJECT);
     save_file(folder_name + "/data.json", json_stringify(project_write_json(Stuff.all_data)));
+    save_file(folder_name + "/images.json", json_stringify({
+        tilesets: project_write_json(Stuff.all_graphic_tilesets),
+        overworlds: project_write_json(Stuff.all_graphic_overworlds),
+        battlers: project_write_json(Stuff.all_graphic_battlers),
+        particles: project_write_json(Stuff.all_graphic_particles),
+        ui: project_write_json(Stuff.all_graphic_ui),
+        animations: project_write_json(Stuff.all_graphic_tile_animations),
+        etc: project_write_json(Stuff.all_graphic_etc),
+        skybox: project_write_json(Stuff.all_graphic_skybox),
+    }));
 }
