@@ -88,6 +88,12 @@ function DataMeshAutotile(name) : SData(name) constructor {
                 self.tiles[i].Destroy();
             }
         };
+        
+        static SaveAsset = function(filename) {
+            for (var i = 0, n = array_length(self.tiles); i < n; i++) {
+                self.tiles[i].SaveAsset(filename + "!" + string(i));
+            }
+        };
     };
     
     self.layers = array_create(MeshAutotileLayers.__COUNT);
@@ -109,5 +115,4 @@ function DataMeshAutotile(name) : SData(name) constructor {
             self.layers[i].SaveAsset(directory + "!" + string(i));
         }
     };
-    
 }
