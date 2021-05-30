@@ -84,6 +84,17 @@ function project_save() {
         };
     };
     
+    static project_write_text = function() {
+        var lang_json = array_create(ds_list_size(Stuff.all_languages));
+        for (var i = 0, n = ds_list_size(Stuff.all_languages); i < n; i++) {
+            lang_json[i] = Stuff.all_languages[| i];
+        }
+        return {
+            langs: lang_json,
+            data: Stuff.all_localized_text,
+        };
+    };
+    
     var folder_name = PATH_PROJECTS + Stuff.game_asset_id + "/";
     var folder_audio_name = folder_name + PROJECT_PATH_AUDIO;
     var folder_image_name = folder_name + PROJECT_PATH_IMAGE;
@@ -151,6 +162,9 @@ function project_save() {
     }));
     save_file(folder_name + "terrain.json", json_stringify({
         terrain: Stuff.terrain.CreateJSON(),
+    }));
+    save_file(folder_name + "text.json", json_stringify({
+        lang: project_write_text(),
     }));
     
     save_assets(folder_image_name, Stuff.all_graphic_tilesets);
