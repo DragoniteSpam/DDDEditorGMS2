@@ -18,5 +18,5 @@ CreateJSONBase = function() {
 };
 
 CreateJSON = function() {
-    self.CreateJSON();
+    self.CreateJSONBase();
 };
