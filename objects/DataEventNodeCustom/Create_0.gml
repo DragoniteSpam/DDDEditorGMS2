@@ -6,6 +6,30 @@ types = ds_list_create();
 outbound = ds_list_create();
 ds_list_add(outbound, "");
 
+CreateJSONEventCustom = function() {
+    var json = self.CreateJSONBase();
+    json.types = array_create(ds_list_size(self.types));
+    for (var i = 0, n = ds_list_size(self.types); i < n; i++) {
+        var type = self.types[| i];
+        json.types[i] = {
+            name: type[0],
+            type: type[1],
+            guid: type[2],
+            max_size: type[3],
+            all_required: type[4],
+        };
+    }
+    json.outbound = array_create(ds_list_size(self.outbound));
+    for (var i = 0, n = ds_list_size(self.outbound); i < n; i++) {
+        json.outbound[i] = self.outbound[| i];
+    }
+    return json;
+};
+
+CreateJSON = function() {
+    return self.CreateJSONEventCustom();
+};
+
 enum EventNodeCustomData {
     NAME,
     TYPE,
