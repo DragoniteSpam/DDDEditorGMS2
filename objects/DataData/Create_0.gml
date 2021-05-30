@@ -24,6 +24,11 @@ CreateJSONData = function() {
     for (var i = 0; i < n; i++) {
         json.properties[i] = self.properties[| i].CreateJSON();
     }
+    n = ds_list_size(self.instances);
+    json.instances = array_create(n);
+    for (var i = 0; i < n; i++) {
+        json.instances[i] = self.instances[| i].CreateJSON();
+    }
     return json;
 };
 

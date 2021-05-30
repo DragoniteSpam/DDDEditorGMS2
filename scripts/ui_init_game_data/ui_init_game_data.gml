@@ -33,7 +33,7 @@ function ui_init_game_data(mode) {
         #endregion
         
         #region administrative things
-        var this_column = 1;
+        this_column = 1;
         yy = yy_header;
         
         element = create_text(this_column * cw + spacing, yy, "Data Name", ew, eh, fa_left, ew, id);
@@ -79,7 +79,7 @@ function ui_init_game_data(mode) {
         #endregion
         
         #region the contents list is just an empty container by default
-        var this_column = 2;
+        this_column = 2;
         yy = yy_base;
     
         el_dynamic = instance_create_depth(this_column * cw + spacing, yy, 0, UIThing);
