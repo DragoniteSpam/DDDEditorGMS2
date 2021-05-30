@@ -112,7 +112,7 @@ function dialog_create_project_list(root) {
                 }
                 buffer_delete(fbuffer);
             } else {
-                var path_new = PATH_PROJECTS + "/" + project.id + "/" + project.name + ".dragon";
+                var path_new = PATH_PROJECTS + "/" + project.id + "/project" + EXPORT_EXTENSION_PROJECT;
                 var yaml = snap_from_yaml(path_new);
                 dg.names[i] = project.name;
                 dg.strings[i] = yaml.summary;

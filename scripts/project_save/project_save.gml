@@ -68,5 +68,6 @@ function project_save() {
         directory_create(folder_mesh_name);
     }
     
+    save_file(folder_name + "/project" + EXPORT_EXTENSION_PROJECT, main_yaml);
     save_file(folder_name + "/data.json", json_stringify(project_write_json(Stuff.all_data)));
 }
