@@ -14,7 +14,7 @@ function serialize_save_se(buffer) {
         buffer_write(buffer, buffer_string, se.temp_name);
         
         if (file_exists(se.temp_name)) {
-            var fbuffer = buffer_load(se.temp_name);
+            var fbuffer = se.GetBuffer();
             var len = buffer_get_size(fbuffer);
             buffer_write(buffer, buffer_u32, len);
             buffer_copy(fbuffer, 0, len, buffer, buffer_tell(buffer));

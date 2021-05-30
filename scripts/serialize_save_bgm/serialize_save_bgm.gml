@@ -20,7 +20,7 @@ function serialize_save_bgm(argument0) {
         buffer_write(buffer, buffer_f32, bgm.loop_end);
     
         if (file_exists(bgm.temp_name)) {
-            var fbuffer = buffer_load(bgm.temp_name);
+            var fbuffer = bgm.GetBuffer();
             var len = buffer_get_size(fbuffer);
             buffer_write(buffer, buffer_u32, len);
             buffer_copy(fbuffer, 0, len, buffer, buffer_tell(buffer));
