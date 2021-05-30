@@ -72,7 +72,7 @@ function serialize_save_data_instances(buffer) {
                     buffer_write(buffer, buffer_u8, n_vlist);
                     
                     for (var l = 0; l < ds_list_size(vlist); l++) {
-                        buffer_write(buffer, btype, ds_list_find_value(vlist, l));
+                        buffer_write(buffer, btype, vlist[| l]);
                     }
                 }
             }
