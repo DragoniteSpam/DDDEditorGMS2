@@ -169,6 +169,9 @@ function project_save() {
     save_file(folder_name + "text.json", json_stringify({
         lang: project_write_text(),
     }));
+    save_file(folder_name + "events.json", json_stringify({
+        meshes: project_write_json(Stuff.all_events),
+    }));
     
     save_assets(folder_image_name, Stuff.all_graphic_tilesets);
     save_assets(folder_image_name, Stuff.all_graphic_overworlds);
