@@ -249,9 +249,7 @@ function dialog_create_settings_data_game_constants(root) {
     
     var el_add = create_button(col1_x, yy, "Add Constant", ew, eh, fa_center, function(button) {
         if (ds_list_size(Stuff.all_game_constants) < 0xffff) {
-            var data = instance_create_depth(0, 0, 0, DataConstant);
-            data.name = "Constant " + string(ds_list_size(Stuff.all_game_constants));
-            instance_deactivate_object(data);
+            var data = new DataConstant("Constant " + string(ds_list_size(Stuff.all_game_constants)));
             ds_list_add(Stuff.all_game_constants, data);
         }
     }, dg);
@@ -263,8 +261,7 @@ function dialog_create_settings_data_game_constants(root) {
         var list = button.root.el_list;
         var selection = ui_list_selection(list);
         if (selection + 1) {
-            instance_activate_object(Stuff.all_game_constants[| selection]);
-            instance_destroy(Stuff.all_game_constants[| selection]);
+            Stuff.all_game_constants[| selection].Destroy();
             ds_list_delete(Stuff.all_game_constants, selection);
         }
     }, dg);

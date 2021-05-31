@@ -1,15 +1,11 @@
 function guid_remove(guid) {
-    if (Stuff.all_guids[$ guid]) {
-        variable_struct_remove(Stuff.all_guids, guid);
-        return true;
-    }
-    
-    return false;
+    if (Stuff.all_guids[$ guid]) variable_struct_remove(Stuff.all_guids, guid);
 }
 
 function guid_generate() {
+    var n;
     do {
-        var n = Stuff.game_asset_id + ":" + string_hex(Stuff.guid_current++, 8);
+        n = Stuff.game_asset_id + ":" + string_hex(Stuff.guid_current++, 8);
     } until (!Stuff.all_guids[$ n]);
     
     return  n;
@@ -30,7 +26,7 @@ function guid_set(data, addition, force) {
     
     // if there's a collision, you ought to be informed (and explode)
     if (Stuff.all_guids[$ addition]) {
-        show_error("guid conflict: " + data.name + " is trying to overwrite " + guid_get(addition).name + " [" + string(addition) + "]", false)
+        show_error("guid conflict: " + data.name + " is trying to overwrite " + guid_get(addition).name + " [" + string(addition) + "]", false);
     }
     
     Stuff.all_guids[$ addition] = data;

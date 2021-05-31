@@ -18,9 +18,9 @@ function serialize_load_image_tilesets(buffer, version) {
         var ts = tileset_create(ts_source_name, sprite);
         
         ts.name = name;
-        ts.internal_name = internal_name;
         ts.summary = summary;
         guid_set(ts, guid, true);
+        internal_name_set(ts, internal_name, false);
         
         ts.hframes = buffer_read(buffer, buffer_u16);
         ts.vframes = buffer_read(buffer, buffer_u16);

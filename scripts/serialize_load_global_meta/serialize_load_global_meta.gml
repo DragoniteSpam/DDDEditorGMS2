@@ -43,7 +43,7 @@ function serialize_load_global_meta(buffer, version) {
     
     var n_constants = buffer_read(buffer, buffer_u16);
     repeat (n_constants) {
-        var what = instance_create_depth(0, 0, 0, DataConstant);
+        var what = new DataConstant("");
         serialize_load_generic(buffer, what, version);
         
         what.type = buffer_read(buffer, buffer_u16);
