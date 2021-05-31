@@ -74,7 +74,7 @@ function validate_string_event_name(str, input) {
     
     if (input) {
         var node = input.root.node;
-        if (node.event.name_map[? str] && node.event.name_map[? str] != node) {
+        if (node.event.name_map[$ str] && node.event.name_map[$ str] != node) {
             return false;
         }
     }

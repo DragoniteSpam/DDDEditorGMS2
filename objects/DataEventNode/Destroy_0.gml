@@ -27,7 +27,7 @@ if (event) {
         ds_list_delete(event.nodes, event_index);
     }
     // remove this node from the registered names for nodes in the event
-    ds_map_delete(event.name_map, name);
+    variable_struct_remove(event.name_map, name);
 }
 
 // data structures

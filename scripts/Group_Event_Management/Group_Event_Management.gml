@@ -1,8 +1,8 @@
 function event_rename_node(event, node, new_name) {
     // it attempts to, anyway
     if (validate_string_event_name(new_name, undefined)) {
-        ds_map_delete(event.name_map, node.name);
-        ds_map_add(event.name_map, new_name, node);
+        variable_struct_remove(event.name_map, node.name);
+        event.name_map[$ new_name] = node;
         node.name = new_name;
     }
 }
@@ -154,10 +154,10 @@ function event_create_node() {
             // old game maker still used the stupid version of newlines and now that i'm on the
             // new version i don't feel like changing it
             node.name = base_name + "$" + string(n++);
-        } until(!ds_map_exists(event.name_map, node.name));
+        } until (!event.name_map[$ node.name]);
 
         ds_list_add(event.nodes, node);
-        ds_map_add(event.name_map, node.name, node);
+        event.name_map[$ node.name] = node;
     }
     
     instance_deactivate_object(node);
@@ -180,8 +180,8 @@ function event_get_node_global(name) {
     // @todo preferably replace this with a global constant-time map lookup later
     for (var i = 0; i < ds_list_size(Stuff.all_events); i++) {
         var event = Stuff.all_events[| i];
-        if (event.name_map[? name]) {
-            return [event, event.name_map[? name]];
+        if (event.name_map[$ name]) {
+            return [event, event.name_map[$ name]];
         }
     }
     
