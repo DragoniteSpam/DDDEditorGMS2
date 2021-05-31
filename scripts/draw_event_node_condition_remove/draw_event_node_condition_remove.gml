@@ -16,8 +16,8 @@ function draw_event_node_condition_remove(argument0, argument1, argument2, argum
         draw_sprite(spr_plus_minus, 3, xx, yy);
         draw_tooltip(xx, yy + 16, "Delete Data");
         if (Controller.release_left) {
-            for (var i = 0; i < ds_list_size(node.custom_data); i++) {
-                ds_list_delete(node.custom_data[| i], index);
+            for (var i = 0; i < array_length(node.custom_data); i++) {
+                array_delete(node.custom_data[i], index, 1);
             }
         
             array_delete(node.ui_things, index, 1);

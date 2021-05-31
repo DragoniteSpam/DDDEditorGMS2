@@ -88,21 +88,13 @@ function event_create_node() {
             break;
         case EventNodeTypes.CONDITIONAL:
             node.name = "Branch";
-            var list_branch_types = ds_list_create();
-            var list_branch_indices = ds_list_create();
-            var list_branch_comparisons = ds_list_create();
-            var list_branch_values = ds_list_create();
-            var list_branch_code = ds_list_create();
-            ds_list_add(list_branch_types, ConditionBasicTypes.SWITCH);
-            ds_list_add(list_branch_indices, -1);
-            ds_list_add(list_branch_comparisons, Comparisons.EQUAL);
-            ds_list_add(list_branch_values, 1);
-            ds_list_add(list_branch_code, Stuff.default_lua_event_node_conditional);
-            ds_list_add(node.custom_data, list_branch_types);
-            ds_list_add(node.custom_data, list_branch_indices);
-            ds_list_add(node.custom_data, list_branch_comparisons);
-            ds_list_add(node.custom_data, list_branch_values);
-            ds_list_add(node.custom_data, list_branch_code);
+            node.custom_data = [
+                [ConditionBasicTypes.SWITCH],
+                [-1],
+                [Comparisons.EQUAL],
+                [1],
+                [Stuff.default_lua_event_node_conditional],
+            ];
             
             var radio = create_radio_array(16, 48, "If condition:", EVENT_NODE_CONTACT_WIDTH - 32, 24, null, ConditionBasicTypes.SWITCH, node);
             radio.adjust_view = true;
@@ -123,18 +115,18 @@ function event_create_node() {
                 
                 // pre-allocate space for the properties of the event
                 for (var i = 0; i < ds_list_size(custom.types); i++) {
-                    var new_list = ds_list_create();
                     type = custom.types[| i];
-                    ds_list_add(node.custom_data, new_list);
-                    ds_list_add(new_list, type[5]);
+                    var new_list;
                     
                     // if all values are required, populate them with defaults
                     // (adding and deleting will be disabled)
                     if (type[4]) {
-                        repeat (type[3] - 1) {
-                            ds_list_add(new_list, value);
-                        }
+                        new_list = array_create(type[3], type[5]);
+                    } else {
+                        new_list = [type[5]];
                     }
+                    
+                    array_push(node.custom_data, new_list);
                 }
                 
                 for (var i = 0; i < array_length(custom.outbound); i++) {

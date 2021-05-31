@@ -126,7 +126,7 @@ function draw_event_node(node) {
             #endregion
         case EventNodeTypes.CONDITIONAL:
             #region if-else if-else
-            var size = ds_list_size(node.custom_data[| 0]);
+            var size = array_length(node.custom_data[0]);
             eh = 32;
             var rh = ((ui_get_radio_array_height(node.ui_things[0]) div eh) * eh) + 16;
             x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
@@ -154,16 +154,16 @@ function draw_event_node(node) {
                         break;
                     }
                     
-                    var list_type = node.custom_data[| 0];
-                    var list_index = node.custom_data[| 1];
-                    var list_comparison = node.custom_data[| 2];
-                    var list_value = node.custom_data[| 3];
-                    var list_code = node.custom_data[| 4];
+                    var list_type = node.custom_data[0];
+                    var list_index = node.custom_data[1];
+                    var list_comparison = node.custom_data[2];
+                    var list_value = node.custom_data[3];
+                    var list_code = node.custom_data[4];
                     
                     // not sure why the value of the radio array is getting reset somewhere that i can't find,
                     // but you need to do this if you want it to not be changed
                     var radio = node.ui_things[i];
-                    radio.value = list_type[| i];
+                    radio.value = list_type[i];
                     if (is_struct(radio)) {
                         radio.Render(x1, y1); 
                     } else {
@@ -171,13 +171,13 @@ function draw_event_node(node) {
                     }
                     
                     // this should be in an onvaluechange script but that's a huge hassle for something really minor
-                    list_type[| i] = radio.value;
+                    list_type[i] = radio.value;
                     
                     if (!dialog_exists()) {
                         if (mouse_within_rectangle_adjusted(x1 + tolerance, entry_yy + tolerance + rh, x2 - tolerance, entry_yy + eh + rh - tolerance)) {
                             draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance + rh, x2 - tolerance, entry_yy - tolerance + rh + eh, c, c, c, c, false);
                             if (Controller.release_left) {
-                                switch (list_type[| i]) {
+                                switch (list_type[i]) {
                                     case ConditionBasicTypes.SWITCH: dialog_create_event_condition_switch(node, i); break;
                                     case ConditionBasicTypes.VARIABLE: dialog_create_event_condition_variable(node, i); break;
                                     case ConditionBasicTypes.SELF_SWITCH: dialog_create_condition_switch_self_data(node, i); break;
@@ -186,7 +186,7 @@ function draw_event_node(node) {
                                         if (node.editor_handle == noone) {
                                             var location = get_temp_code_path(node);
                                             var buffer = buffer_create(1, buffer_grow, DEFAULT_FROZEN_BUFFER_SIZE);
-                                            buffer_write(buffer, buffer_text, list_code[| i]);
+                                            buffer_write(buffer, buffer_text, list_code[i]);
                                             buffer_save_ext(buffer, location, 0, buffer_tell(buffer));
                                             buffer_delete(buffer);
                                             
@@ -200,43 +200,43 @@ function draw_event_node(node) {
                     }
                     
                     #region what gets drawn in the Data spot
-                    switch (list_type[| i]) {
+                    switch (list_type[i]) {
                         case ConditionBasicTypes.SWITCH:
-                            var index = list_index[| i];
+                            var index = list_index[i];
                             if (index > -1) {
                                 var switch_data = Stuff.switches[| index];
-                                var str = "Switch " + switch_data[0] + " is " + Stuff.on_off[list_value[| i]];
+                                var str = "Switch " + switch_data[0] + " is " + Stuff.on_off[list_value[i]];
                             } else {
                                 var str = "Switch data not set";
                             }
                             break;
                         case ConditionBasicTypes.VARIABLE:
-                            var index = list_index[| i];
+                            var index = list_index[i];
                             if (index > -1) {
                                 var variable_data = Stuff.variables[| index];
-                                var str = "Variable " + variable_data[0] + " " + Stuff.comparison_text[list_comparison[| i]] + " " + string(list_value[| i]);
+                                var str = "Variable " + variable_data[0] + " " + Stuff.comparison_text[list_comparison[i]] + " " + string(list_value[i]);
                             } else {
                                 var str = "Variable data not set";
                             }
                             break;
                         case ConditionBasicTypes.SELF_SWITCH:
-                            var index = list_index[| i];
+                            var index = list_index[i];
                             if (index > -1) {
-                                var str = "Self switch " + chr(ord("A") + index) + " is " + Stuff.on_off[list_value[| i]];
+                                var str = "Self switch " + chr(ord("A") + index) + " is " + Stuff.on_off[list_value[i]];
                             } else {
                                 var str = "Self switch data not set";
                             }
                             break;
                         case ConditionBasicTypes.SELF_VARIABLE:
-                            var index = list_index[| i];
+                            var index = list_index[i];
                             if (index > -1) {
-                                var str = "Self variable " + chr(ord("A") + index) + " " + Stuff.comparison_text[list_comparison[| i]] + " " + string(list_value[| i]);
+                                var str = "Self variable " + chr(ord("A") + index) + " " + Stuff.comparison_text[list_comparison[i]] + " " + string(list_value[i]);
                             } else {
                                 var str = "Self variable data not set";
                             }
                             break;
                         case ConditionBasicTypes.SCRIPT:
-                            var str = "Code: " + string_comma(string_length(list_code[| i])) + " bytes";
+                            var str = "Code: " + string_comma(string_length(list_code[i])) + " bytes";
                         
                             if (node.editor_handle_index == i) {
                                 draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance + rh, x2 - tolerance, entry_yy - tolerance + rh + eh, c, c, c, c, false);
@@ -255,7 +255,7 @@ function draw_event_node(node) {
                 }
                 
                 if (node.editor_handle) {
-                    list_code[| node.editor_handle_index] = uios_code_text(node, list_code[| node.editor_handle_index]);
+                    list_code[node.editor_handle_index] = uios_code_text(node, list_code[node.editor_handle_index]);
                     if (ds_stuff_process_complete(node.editor_handle)) {
                         node.editor_handle = noone;
                         node.editor_handle_index = -1;
@@ -336,9 +336,9 @@ function draw_event_node(node) {
             y2 = y1 + max(24 + 32 + entry_offset, array_length(node.outbound) * EVENT_NODE_CONTACT_HEIGHT * 2 / 3);
             var ncolor = (node.type == EventNodeTypes.CUSTOM) ? c_ev_custom : c_ev_basic;
             
-            for (var i = 0; i < ds_list_size(custom.types); i++) {
-                var custom_data_list = node.custom_data[| i];
-                var type = custom.types[| i];
+            for (var i = 0; i < array_length(custom.types); i++) {
+                var custom_data_list = node.custom_data[i];
+                var type = custom.types[i];
                 switch (type[1]) {
                     case DataTypes.INT:
                     case DataTypes.FLOAT:
@@ -368,7 +368,7 @@ function draw_event_node(node) {
                         y2 = y2 + 32;
                         break;
                     case DataTypes.STRING:
-                        y2 = y2 + ((ds_list_size(custom_data_list) == 1) ? entry_height + 24 : 32);
+                        y2 = y2 + ((array_length(custom_data_list) == 1) ? entry_height + 24 : 32);
                         break;
                 }
             }
@@ -389,7 +389,7 @@ function draw_event_node(node) {
                 entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
                 
                 for (var i = 0; i < ds_list_size(custom.types); i++) {
-                    var custom_data_list = node.custom_data[| i];
+                    var custom_data_list = node.custom_data[i];
                     var type = custom.types[| i];
                     
                     switch (type[1]) {
@@ -406,7 +406,7 @@ function draw_event_node(node) {
                             eh = 32;
                             break;
                         case DataTypes.STRING:
-                            eh = (ds_list_size(custom_data_list) == 1) ? entry_height + 24 : 32;
+                            eh = (array_length(custom_data_list) == 1) ? entry_height + 24 : 32;
                             break;
                         case DataTypes.COLOR:
                         case DataTypes.MESH:
@@ -436,16 +436,16 @@ function draw_event_node(node) {
                                 if (attainment == null) {
                                     switch (type[EventNodeCustomData.TYPE]) {
                                         case DataTypes.INT:
-                                            dialog_create_event_node_input_real(custom_data_list, 0, type[0] + "?", custom_data_list[| 0], validate_int, -0x1000000, 0xffffff);
+                                            dialog_create_event_node_input_real(custom_data_list, 0, type[0] + "?", custom_data_list[0], validate_int, -0x1000000, 0xffffff);
                                             break;
                                         case DataTypes.FLOAT:
-                                            dialog_create_event_node_input_real(custom_data_list, 0, type[0] + "?", custom_data_list[| 0], validate_double, -0x1000000, 0xffffff);
+                                            dialog_create_event_node_input_real(custom_data_list, 0, type[0] + "?", custom_data_list[0], validate_double, -0x1000000, 0xffffff);
                                             break;
                                         case DataTypes.STRING:
-                                            dialog_create_event_node_input_string(custom_data_list, 0, type[0] + "?", custom_data_list[| 0]);
+                                            dialog_create_event_node_input_string(custom_data_list, 0, type[0] + "?", custom_data_list[0]);
                                             break;
                                         case DataTypes.BOOL:
-                                            custom_data_list[| 0] =! custom_data_list[| 0];
+                                            custom_data_list[0] = !custom_data_list[0];
                                             break;
                                         case DataTypes.ENUM:
                                         case DataTypes.DATA:
@@ -466,7 +466,7 @@ function draw_event_node(node) {
                                             if (node.editor_handle == noone) {
                                                 var location = get_temp_code_path(node);
                                                 var buffer = buffer_create(1, buffer_grow, DEFAULT_FROZEN_BUFFER_SIZE);
-                                                buffer_write(buffer, buffer_text, custom_data_list[| i]);
+                                                buffer_write(buffer, buffer_text, custom_data_list[i]);
                                                 buffer_save_ext(buffer, location, 0, buffer_tell(buffer));
                                                 buffer_delete(buffer);
                                     
@@ -474,8 +474,8 @@ function draw_event_node(node) {
                                             }
                                             break;
                                         case DataTypes.COLOR:
-                                            var picker = dialog_create_color_picker_options(node, custom_data_list[| 0], function(picker) {
-                                                picker.root.node.custom_data[| picker.root.index][| 0] = picker.value;
+                                            var picker = dialog_create_color_picker_options(node, custom_data_list[0], function(picker) {
+                                                picker.root.node.custom_data[picker.root.index][0] = picker.value;
                                             });
                                             picker.node = node;
                                             picker.index = i;
@@ -517,7 +517,7 @@ function draw_event_node(node) {
                                             dialog_create_event_get_event(noone, node, i, 0);
                                             break;
                                         case DataTypes.ENTITY:
-                                            var dialog = dialog_create_refid_list(node, custom_data_list[| 0], uivc_refid_picker_event_node);
+                                            var dialog = dialog_create_refid_list(node, custom_data_list[0], uivc_refid_picker_event_node);
                                             dialog.node = node;
                                             dialog.index = i;
                                             break;
@@ -536,7 +536,7 @@ function draw_event_node(node) {
                     }
                     
                     if (node.editor_handle && type[EventNodeCustomData.TYPE] == DataTypes.CODE) {
-                        custom_data_list[| i] = uios_code_text(node, custom_data_list[| i]);
+                        custom_data_list[i] = uios_code_text(node, custom_data_list[i]);
                         draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy - tolerance + eh, c, c, c, c, false);
                         if (ds_stuff_process_complete(node.editor_handle)) {
                             node.editor_handle = noone;
@@ -546,18 +546,18 @@ function draw_event_node(node) {
                     
                     var message = type[0] + " ";
                     
-                    if (ds_list_size(custom_data_list) == 1) {
+                    if (array_length(custom_data_list) == 1) {
                         var output_script = type[EventNodeCustomData.OUTPUT];
                         var output_string = "";
                         
                         switch (type[1]) {
                             case DataTypes.INT:
                                 message = message + "(int): ";
-                                output_string = string(custom_data_list[| 0]);
+                                output_string = string(custom_data_list[0]);
                                 break;
                             case DataTypes.FLOAT:
                                 message = message + "(float): ";
-                                output_string = string(custom_data_list[| 0]);
+                                output_string = string(custom_data_list[0]);
                                 break;
                             case DataTypes.STRING:
                                 message = message + "(string): ";
@@ -565,12 +565,12 @@ function draw_event_node(node) {
                                 break;
                             case DataTypes.BOOL:
                                 message = message + "(boolean): ";
-                                output_string = Stuff.tf[custom_data_list[| 0]];
+                                output_string = Stuff.tf[custom_data_list[0]];
                                 break;
                             case DataTypes.ENUM:
                             case DataTypes.DATA:
                                 var datadata = guid_get(type[EventNodeCustomData.TYPE_GUID]);
-                                var setdata = guid_get(custom_data_list[| 0]);
+                                var setdata = guid_get(custom_data_list[0]);
                             
                                 if (!datadata) {
                                     message = message + "(<no type set>)";
@@ -588,18 +588,18 @@ function draw_event_node(node) {
                                 break;
                             case DataTypes.COLOR:
                                 message = message + "(color): ";
-                                var color_value = custom_data_list[| 0];
+                                var color_value = custom_data_list[0];
                                 output_string = "#" + string_hex(color_value, 6);
                                 draw_rectangle_colour(x2 - 64, entry_yy + 8, x2 - 32, entry_yy + eh - 8, color_value, color_value, color_value, color_value, false);
                                 draw_rectangle_colour(x2 - 64, entry_yy + 8, x2 - 32, entry_yy + eh - 8, c_black, c_black, c_black, c_black, true);
                                 break;
                             case DataTypes.MESH:
-                                var setdata = guid_get(custom_data_list[| 0]);
+                                var setdata = guid_get(custom_data_list[0]);
                                 message = message + "(mesh): ";
                                 output_string = setdata ? setdata.name : "<null>";
                                 break;
                             case DataTypes.MESH_AUTOTILE:
-                                var setdata = guid_get(custom_data_list[| 0]);
+                                var setdata = guid_get(custom_data_list[0]);
                                 message = message + "(mesh autotile): ";
                                 output_string = setdata ? setdata.name : "<null>";
                                 break;
@@ -608,97 +608,97 @@ function draw_event_node(node) {
                                 output_string = "TBD";
                                 break;
                             case DataTypes.IMG_TEXTURE:
-                                var setdata = guid_get(custom_data_list[| 0]);
+                                var setdata = guid_get(custom_data_list[0]);
                                 message = message + "(tileset): ";
                                 output_string = setdata ? setdata.name : "<null>";
                                 break;
                             case DataTypes.IMG_BATTLER:
-                                var setdata = guid_get(custom_data_list[| 0]);
+                                var setdata = guid_get(custom_data_list[0]);
                                 message = message + "(battler): ";
                                 output_string = setdata ? setdata.name : "<null>";
                                 break;
                             case DataTypes.IMG_OVERWORLD:
-                                var setdata = guid_get(custom_data_list[| 0]);
+                                var setdata = guid_get(custom_data_list[0]);
                                 message = message + "(OW): ";
                                 output_string = setdata ? setdata.name : "<null>";
                                 break;
                             case DataTypes.IMG_PARTICLE:
-                                var setdata = guid_get(custom_data_list[| 0]);
+                                var setdata = guid_get(custom_data_list[0]);
                                 message = message + "(particle): ";
                                 output_string = setdata ? setdata.name : "<null>";
                                 break;
                             case DataTypes.IMG_UI:
-                                var setdata = guid_get(custom_data_list[| 0]);
+                                var setdata = guid_get(custom_data_list[0]);
                                 message = message + "(ui): ";
                                 output_string = setdata ? setdata.name : "<null>";
                                 break;
                             case DataTypes.IMG_ETC:
-                                var setdata = guid_get(custom_data_list[| 0]);
+                                var setdata = guid_get(custom_data_list[0]);
                                 message = message + "(misc): ";
                                 output_string = setdata ? setdata.name : "<null>";
                                 break;
                             case DataTypes.IMG_SKYBOX:
-                                var setdata = guid_get(custom_data_list[| 0]);
+                                var setdata = guid_get(custom_data_list[0]);
                                 message = message + "(sky): ";
                                 output_string = setdata ? setdata.name : "<null>";
                                 break;
                             case DataTypes.IMG_TILE_ANIMATION:
-                                var setdata = guid_get(custom_data_list[| 0]);
+                                var setdata = guid_get(custom_data_list[0]);
                                 message = message + "(tile animation): ";
                                 output_string = setdata ? setdata.name : "<null>";
                                 break;
                             case DataTypes.AUDIO_BGM:
-                                var setdata = guid_get(custom_data_list[| 0]);
+                                var setdata = guid_get(custom_data_list[0]);
                                 message = message + "(bgm): ";
                                 output_string = setdata ? setdata.name : "<null>";
                                 break;
                             case DataTypes.AUDIO_SE:
-                                var setdata = guid_get(custom_data_list[| 0]);
+                                var setdata = guid_get(custom_data_list[0]);
                                 message = message + "(se): ";
                                 output_string = setdata ? setdata.name : "<null>";
                                 break;
                             case DataTypes.ANIMATION:
-                                var setdata = guid_get(custom_data_list[| 0]);
+                                var setdata = guid_get(custom_data_list[0]);
                                 message = message + "(animation): ";
                                 output_string = setdata ? setdata.name : "<null>";
                                 break;
                             case DataTypes.EVENT:
-                                var setdata = guid_get(custom_data_list[| 0]);
+                                var setdata = guid_get(custom_data_list[0]);
                                 message = message + "(event): ";
                                 output_string = setdata ? setdata.name : "<null>";
                                 break;
                             case DataTypes.ENTITY:
-                                var refid = custom_data_list[| 0];
+                                var refid = custom_data_list[0];
                                 var setdata = refid_get(refid);
                                 var strh = string(refid);
                                 message = message + "(entity): ";
                                 // If the value is 0, it's automatically "this". If it has a value, it's
                                 // an entity reference somewhere (which could also be self, but probably not)
-                                if (custom_data_list[| 0]) {
+                                if (custom_data_list[0]) {
                                     output_string = (setdata ? setdata.name : "<not loaded>") + ":" + strh;
                                 } else {
                                     output_string = "<self>";
                                 }
                                 break;
                             case DataTypes.MAP:
-                                var setdata = guid_get(custom_data_list[| 0]);
+                                var setdata = guid_get(custom_data_list[0]);
                                 message = message + "(map): ";
                                 output_string = setdata ? setdata.name : "<null>";
                                 break;
                             case DataTypes.ASSET_FLAG:
                                 message = message + "(flags): ";
-                                output_string = string(custom_data_list[| 0]);
+                                output_string = string(custom_data_list[0]);
                                 break;
                         }
                         
                         message = message + ((output_script == null) ? output_string : output_script(node, i));
                     } else {
-                        message = message + ": multiple values (" + string(ds_list_size(custom_data_list)) + ")";
+                        message = message + ": multiple values (" + string(array_length(custom_data_list)) + ")";
                     }
                     
-                    if (type[1] == DataTypes.STRING && ds_list_size(custom_data_list) == 1) {
+                    if (type[1] == DataTypes.STRING && array_length(custom_data_list) == 1) {
                         draw_text(x1 + 16, entry_yy + 12, string(message));
-                        draw_text_ext(x1 + 16, mean(entry_yy + 12, entry_yy + eh), string(custom_data_list[| 0]), -1, EVENT_NODE_CONTACT_WIDTH - 16);
+                        draw_text_ext(x1 + 16, mean(entry_yy + 12, entry_yy + eh), string(custom_data_list[0]), -1, EVENT_NODE_CONTACT_WIDTH - 16);
                     } else {
                         draw_text_ext(x1 + 16, mean(entry_yy, entry_yy + eh), string(message), -1, EVENT_NODE_CONTACT_WIDTH - 16);
                     }

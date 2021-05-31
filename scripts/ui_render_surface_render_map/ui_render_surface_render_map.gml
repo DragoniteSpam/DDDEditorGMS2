@@ -42,14 +42,10 @@ function ui_render_surface_render_map(surface, x1, y1, x2, y2) {
         vertex_submit(Stuff.graphics.grid, pr_linelist, -1);
     }
     
-    var dest_x = surface.root.node.custom_data[| 1];
-    var dest_y = surface.root.node.custom_data[| 2];
-    var dest_z = surface.root.node.custom_data[| 3];
-    var dest_direction = surface.root.node.custom_data[| 4];
-    dest_x = dest_x[| 0];
-    dest_y = dest_y[| 0];
-    dest_z = dest_z[| 0];
-    dest_direction = dest_direction[| 0];
+    var dest_x = surface.root.node.custom_data[1][0];
+    var dest_y = surface.root.node.custom_data[2][0];
+    var dest_z = surface.root.node.custom_data[3][0];
+    var dest_direction = surface.root.node.custom_data[4][0];
     
     transform_set(0, 0, 0, 0, 0, Stuff.direction_lookup[dest_direction], 1, 1, 1);
     transform_add((dest_x + 0.5) * TILE_WIDTH, (dest_y + 0.5) * TILE_HEIGHT, dest_z * TILE_DEPTH, 0, 0, 0, 1, 1, 1);

@@ -39,8 +39,8 @@ function draw_event_node_prefabinate(xx, yy, node) {
                             // only things you care about are the data and
                             // custom data lists)
                             ds_list_copy(node.data, prefab.data);
-                            for (var i = 0; i < ds_list_size(node.custom_data); i++) {
-                                ds_list_copy(node.custom_data[| i], prefab.custom_data[| i]);
+                            for (var i = 0; i < array_length(node.custom_data); i++) {
+                                node.custom_data[i] = array_clone(prefab.custom_data[i]);
                             }
                             self.root.Dispose();
                         });

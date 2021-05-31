@@ -9,9 +9,9 @@ function omu_event_attain_variable_data(thing, event_node, data_index) {
     dg.node = event_node;
     dg.index = data_index;
     
-    var custom_data_variable = event_node.custom_data[| 0];
-    var custom_data_value = event_node.custom_data[| 1];
-    var custom_data_relative = event_node.custom_data[| 2];
+    var custom_data_variable = event_node.custom_data[0];
+    var custom_data_value = event_node.custom_data[1];
+    var custom_data_relative = event_node.custom_data[2];
     
     var ew = dw - 64;
     var eh = 24;
@@ -28,19 +28,19 @@ function omu_event_attain_variable_data(thing, event_node, data_index) {
     for (var i = 0; i < ds_list_size(Stuff.variables); i++) {
         create_list_entries(el_list, Stuff.variables[| i][0]);
     }
-    if (custom_data_variable[| 0] > -1) {
-        ui_list_select(el_list, custom_data_variable[| 0]);
+    if (custom_data_variable[0] > -1) {
+        ui_list_select(el_list, custom_data_variable[0]);
     }
     dg.el_list = el_list;
     
     yy += ui_get_list_height(el_list) + spacing;
     
-    var el_value = create_input(16, yy, "Value", ew, eh, uivc_check_event_attain_variable_value, custom_data_value[| 0], "float", validate_double, -0x80000000, 0x7fffffff, 11, vx1, vy1, vx2, vy2, dg);
+    var el_value = create_input(16, yy, "Value", ew, eh, uivc_check_event_attain_variable_value, custom_data_value[0], "float", validate_double, -0x80000000, 0x7fffffff, 11, vx1, vy1, vx2, vy2, dg);
     dg.el_value = el_value;
     
     yy += el_value.height + spacing;
     
-    var el_relative = create_checkbox(16, yy, "Relative?", ew, eh, uivc_check_event_attain_variable_relative, custom_data_relative[| 0], dg);
+    var el_relative = create_checkbox(16, yy, "Relative?", ew, eh, uivc_check_event_attain_variable_relative, custom_data_relative[0], dg);
     dg.el_relative = el_relative;
     
     var b_width = 128;

@@ -15,15 +15,11 @@ function omu_event_add_prefab_event(argument0) {
         event_rename_node(event, instantiated, prefab.name + "$" + string(ds_list_size(Stuff.event.active.nodes) - 1));
         instantiated.prefab_guid = prefab.GUID;
         ds_list_copy(instantiated.data, prefab.data);
+        
+        instantiated.custom_data = [];
     
-        for (var i = 0; i < ds_list_size(instantiated.custom_data); i++) {
-            ds_list_destroy(instantiated.custom_data[| i]);
-        }
-    
-        ds_list_clear(instantiated.custom_data);
-    
-        for (var i = 0; i < ds_list_size(prefab.custom_data); i++) {
-            ds_list_add(instantiated.custom_data, ds_list_clone(prefab.custom_data[| i]));
+        for (var i = 0; i < array_length(prefab.custom_data); i++) {
+            array_push(instantiated.custom_data, array_clone(prefab.custom_data[i]));
         }
     }
 

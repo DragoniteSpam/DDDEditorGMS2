@@ -26,19 +26,19 @@ function serialize_save_event_prefabs(buffer) {
             case EventNodeTypes.SHOW_CHOICES:
                 break;
             case EventNodeTypes.CONDITIONAL:
-                var list_types = prefab.custom_data[| 0];
-                var list_indices = prefab.custom_data[| 1];
-                var list_comparisons = prefab.custom_data[| 2];
-                var list_values = prefab.custom_data[| 3];
-                var list_code = prefab.custom_data[| 4];
+                var list_types = prefab.custom_data[0];
+                var list_indices = prefab.custom_data[1];
+                var list_comparisons = prefab.custom_data[2];
+                var list_values = prefab.custom_data[3];
+                var list_code = prefab.custom_data[4];
                 
-                buffer_write(buffer, buffer_u8, ds_list_size(list_types));
-                for (var j = 0; j < ds_list_size(list_types); j++) {
-                    buffer_write(buffer, buffer_u8, list_types[| j]);
-                    buffer_write(buffer, buffer_s32, list_indices[| j]);
-                    buffer_write(buffer, buffer_u8, list_comparisons[| j]);
-                    buffer_write(buffer, buffer_f32, list_values[| j]);
-                    buffer_write(buffer, buffer_string, list_code[| j]);
+                buffer_write(buffer, buffer_u8, array_length(list_types));
+                for (var j = 0; j < array_length(list_types); j++) {
+                    buffer_write(buffer, buffer_u8, list_types[j]);
+                    buffer_write(buffer, buffer_s32, list_indices[j]);
+                    buffer_write(buffer, buffer_u8, list_comparisons[j]);
+                    buffer_write(buffer, buffer_f32, list_values[j]);
+                    buffer_write(buffer, buffer_string, list_code[j]);
                 }
                 break;
             case EventNodeTypes.CUSTOM:
@@ -47,8 +47,8 @@ function serialize_save_event_prefabs(buffer) {
                 // the size of this list should already be known by the custom event node
                 var custom = guid_get(prefab.custom_guid);
                 
-                for (var j = 0; j < ds_list_size(prefab.custom_data); j++) {
-                    var type = custom.types[| j];
+                for (var j = 0; j < array_length(prefab.custom_data); j++) {
+                    var type = custom.types[j];
                     switch (type[EventNodeCustomData.TYPE]) {
                         case DataTypes.INT:
                             var save_type = buffer_s32;
@@ -94,10 +94,10 @@ function serialize_save_event_prefabs(buffer) {
                             break;
                     }
                     
-                    var n_custom_data = ds_list_size(prefab.custom_data[| j]);
+                    var n_custom_data = array_length(prefab.custom_data[j]);
                     buffer_write(buffer, buffer_u8, n_custom_data);
                     for (var k = 0; k < n_custom_data; k++) {
-                        buffer_write(buffer, save_type, ds_list_find_value(prefab.custom_data[| j], k));
+                        buffer_write(buffer, save_type, prefab.custom_data[j][k]);
                     }
                 }
                 break;

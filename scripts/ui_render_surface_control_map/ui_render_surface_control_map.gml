@@ -129,9 +129,9 @@ function ui_render_surface_control_map(surface, x1, y1, x2, y2) {
         }
     }
     
-    surface.root.node.custom_data[| 1][| 0] = data_x;
-    surface.root.node.custom_data[| 2][| 0] = data_y;
-    surface.root.node.custom_data[| 3][| 0] = data_z;
+    surface.root.node.custom_data[1][0] = data_x;
+    surface.root.node.custom_data[2][0] = data_y;
+    surface.root.node.custom_data[3][0] = data_z;
     
     ui_input_set_value(surface.root.el_input_x, string(data_x));
     ui_input_set_value(surface.root.el_input_y, string(data_y));

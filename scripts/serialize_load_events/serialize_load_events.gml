@@ -57,26 +57,26 @@ function serialize_load_events(buffer, version) {
                 case EventNodeTypes.SHOW_CHOICES:
                     break;
                 case EventNodeTypes.CONDITIONAL:
-                    var list_types = node.custom_data[| 0];
-                    var list_indices = node.custom_data[| 1];
-                    var list_comparisons = node.custom_data[| 2];
-                    var list_values = node.custom_data[| 3];
-                    var list_code = node.custom_data[| 4];
+                    var list_types = node.custom_data[0];
+                    var list_indices = node.custom_data[1];
+                    var list_comparisons = node.custom_data[2];
+                    var list_values = node.custom_data[3];
+                    var list_code = node.custom_data[4];
                     
-                    ds_list_clear(list_types);
-                    ds_list_clear(list_indices);
-                    ds_list_clear(list_comparisons);
-                    ds_list_clear(list_values);
-                    ds_list_clear(list_code);
+                    list_types = [];
+                    list_indices = [];
+                    list_comparisons = [];
+                    list_values = [];
+                    list_code = [];
                     
                     var n = buffer_read(buffer, buffer_u8);
                     repeat (n) {
                         var condition_type = buffer_read(buffer, buffer_u8);
-                        ds_list_add(list_types, condition_type);
-                        ds_list_add(list_indices, buffer_read(buffer, buffer_s32));
-                        ds_list_add(list_comparisons, buffer_read(buffer, buffer_u8));
-                        ds_list_add(list_values, buffer_read(buffer, buffer_f32));
-                        ds_list_add(list_code, buffer_read(buffer, buffer_string));
+                        array_push(list_types, condition_type);
+                        array_push(list_indices, buffer_read(buffer, buffer_s32));
+                        array_push(list_comparisons, buffer_read(buffer, buffer_u8));
+                        array_push(list_values, buffer_read(buffer, buffer_f32));
+                        array_push(list_code, buffer_read(buffer, buffer_string));
                         
                         var eh = 32;
                         var radio = create_radio_array(16, 48, "If condition:", EVENT_NODE_CONTACT_WIDTH - 32, 24, null, condition_type, node);
@@ -99,7 +99,7 @@ function serialize_load_events(buffer, version) {
                     var custom = guid_get(node.custom_guid);
                     
                     for (var i = 0; i < ds_list_size(custom.types); i++) {
-                        var sub_list = ds_list_create();
+                        var sub_list = [];
                         var type = custom.types[| i];
                         var buffer_type;
                         
@@ -152,14 +152,14 @@ function serialize_load_events(buffer, version) {
                         // some reason - although as far as i can tell they ought to be?
                         if (node_type == EventNodeTypes.CUSTOM) {
                             repeat (n_custom_data) {
-                                ds_list_add(sub_list, buffer_read(buffer, buffer_type));
+                                array_push(sub_list, buffer_read(buffer, buffer_type));
                             }
-                            ds_list_add(node.custom_data, sub_list);
+                            array_push(node.custom_data, sub_list);
                         } else {
-                            sub_list = node.custom_data[| i];
-                            ds_list_clear(sub_list);
+                            sub_list = node.custom_data[i];
+                            sub_list = [];
                             repeat (n_custom_data) {
-                                ds_list_add(sub_list, buffer_read(buffer, buffer_type));
+                                array_push(sub_list, buffer_read(buffer, buffer_type));
                             }
                         }
                     }

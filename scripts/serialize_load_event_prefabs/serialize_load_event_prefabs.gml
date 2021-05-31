@@ -32,25 +32,25 @@ function serialize_load_event_prefabs(buffer, version) {
             case EventNodeTypes.SHOW_CHOICES:
                 break;
             case EventNodeTypes.CONDITIONAL:
-                var list_types = prefab.custom_data[| 0];
-                var list_indices = prefab.custom_data[| 1];
-                var list_comparisons = node.custom_data[| 2];
-                var list_values = prefab.custom_data[| 3];
-                var list_code = prefab.custom_data[| 4];
+                var list_types = prefab.custom_data[0];
+                var list_indices = prefab.custom_data[1];
+                var list_comparisons = prefab.custom_data[2];
+                var list_values = prefab.custom_data[3];
+                var list_code = prefab.custom_data[4];
                 
-                ds_list_clear(list_types);
-                ds_list_clear(list_indices);
-                ds_list_clear(list_comparisons);
-                ds_list_clear(list_values);
-                ds_list_clear(list_code);
+                list_types = [];
+                list_indices = [];
+                list_comparisons = [];
+                list_values = [];
+                list_code = [];
                 
                 var n = buffer_read(buffer, buffer_u8);
                 repeat (n) {
-                    ds_list_add(list_types, buffer_read(buffer, buffer_u8));
-                    ds_list_add(list_indices, buffer_read(buffer, buffer_s32));
-                    ds_list_add(list_comparisons, buffer_read(buffer, buffer_u8));
-                    ds_list_add(list_values, buffer_read(buffer, buffer_f32));
-                    ds_list_add(list_code, buffer_read(buffer, buffer_string));
+                    array_push(list_types, buffer_read(buffer, buffer_u8));
+                    array_push(list_indices, buffer_read(buffer, buffer_s32));
+                    array_push(list_comparisons, buffer_read(buffer, buffer_u8));
+                    array_push(list_values, buffer_read(buffer, buffer_f32));
+                    array_push(list_code, buffer_read(buffer, buffer_string));
                 }
                 break;
             case EventNodeTypes.CUSTOM:
@@ -66,7 +66,7 @@ function serialize_load_event_prefabs(buffer, version) {
                 
                 for (var i = 0; i < ds_list_size(custom.types); i++) {
                     var sub_list = ds_list_create();
-                    var type = custom.types[| i];
+                    type = custom.types[| i];
                     
                     switch (type[EventNodeCustomData.TYPE]) {
                         case DataTypes.INT:
@@ -119,14 +119,14 @@ function serialize_load_event_prefabs(buffer, version) {
                     // some reason - although as far as i can tell they ought to be?
                     if (prefab.type == EventNodeTypes.CUSTOM) {
                         repeat (n_custom_data) {
-                            ds_list_add(sub_list, buffer_read(buffer, buffer_type));
+                            array_push(sub_list, buffer_read(buffer, buffer_type));
                         }
-                        ds_list_add(prefab.custom_data, sub_list);
+                        array_push(prefab.custom_data, sub_list);
                     } else {
-                        var sub_list = prefab.custom_data[| i];
-                        ds_list_clear(sub_list);
+                        var sub_list = prefab.custom_data[i];
+                        sub_list = [];
                         repeat (n_custom_data) {
-                            ds_list_add(sub_list, buffer_read(buffer, buffer_type));
+                            array_push(sub_list, buffer_read(buffer, buffer_type));
                         }
                     }
                 }

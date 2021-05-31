@@ -34,8 +34,7 @@ function dialog_create_event_get_event(argument0, argument1, argument2, argument
     el_list.entries_are = ListEntries.INSTANCES;
     dg.el_list = el_list;
 
-    var data = dg.node.custom_data[| dg.index];
-    var current = guid_get(data[| multi_index]);
+    var current = guid_get(dg.node.custom_data[dg.index][multi_index]);
     if (current) {
         ui_list_select(el_list, ds_list_find_index(Stuff.all_events, current.event));
     }

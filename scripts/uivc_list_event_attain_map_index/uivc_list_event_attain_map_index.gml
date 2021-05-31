@@ -29,8 +29,7 @@ function uivc_list_event_attain_map_index(argument0) {
             }
         }
     
-        var data = list.root.node.custom_data[| 0];
-        data[| 0] = visible_map.GUID;
+        list.root.node.custom_data[0][0] = visible_map.GUID;
     
         if (visible_map.preview) {
             vertex_delete_buffer(visible_map.preview);

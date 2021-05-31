@@ -14,6 +14,12 @@ function array_clear(array, value) {
     }
 }
 
+function array_clone(array) {
+    var new_array = array_create(array_length(array));
+    array_copy(new_array, 0, array, 0, array_length(array));
+    return new_array;
+}
+
 function array_search(array, value) {
     for (var i = 0; i < array_length(array); i++) {
         if (array[i] == value) return i;

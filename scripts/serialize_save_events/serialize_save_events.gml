@@ -52,19 +52,19 @@ function serialize_save_events(buffer) {
                 case EventNodeTypes.SHOW_CHOICES:
                     break;
                 case EventNodeTypes.CONDITIONAL:
-                    var list_types = node.custom_data[| 0];
-                    var list_indices = node.custom_data[| 1];
-                    var list_comparisons = node.custom_data[| 2];
-                    var list_values = node.custom_data[| 3];
-                    var list_code = node.custom_data[| 4];
+                    var list_types = node.custom_data[0];
+                    var list_indices = node.custom_data[1];
+                    var list_comparisons = node.custom_data[2];
+                    var list_values = node.custom_data[3];
+                    var list_code = node.custom_data[4];
                 
-                    buffer_write(buffer, buffer_u8, ds_list_size(list_types));
-                    for (var k = 0; k < ds_list_size(list_types); k++) {
-                        buffer_write(buffer, buffer_u8, list_types[| k]);
-                        buffer_write(buffer, buffer_s32, list_indices[| k]);
-                        buffer_write(buffer, buffer_u8, list_comparisons[| k]);
-                        buffer_write(buffer, buffer_f32, list_values[| k]);
-                        buffer_write(buffer, buffer_string, list_code[| k]);
+                    buffer_write(buffer, buffer_u8, array_length(list_types));
+                    for (var k = 0; k < array_length(list_types); k++) {
+                        buffer_write(buffer, buffer_u8, list_types[k]);
+                        buffer_write(buffer, buffer_s32, list_indices[k]);
+                        buffer_write(buffer, buffer_u8, list_comparisons[k]);
+                        buffer_write(buffer, buffer_f32, list_values[k]);
+                        buffer_write(buffer, buffer_string, list_code[k]);
                     }
                     break;
                 case EventNodeTypes.CUSTOM:
@@ -73,7 +73,7 @@ function serialize_save_events(buffer) {
                     // the size of this list should already be known by the custom event node
                     var custom = guid_get(node.custom_guid);
                 
-                    for (var k = 0; k < ds_list_size(node.custom_data); k++) {
+                    for (var k = 0; k < array_length(node.custom_data); k++) {
                         var type = custom.types[| k];
                         
                         switch (type[EventNodeCustomData.TYPE]) {
@@ -119,10 +119,10 @@ function serialize_save_events(buffer) {
                                 break;
                         }
                     
-                        var n_custom_data = ds_list_size(node.custom_data[| k]);
+                        var n_custom_data = array_length(node.custom_data[k]);
                         buffer_write(buffer, buffer_u8, n_custom_data);
                         for (var l = 0; l < n_custom_data; l++) {
-                            buffer_write(buffer, save_type, ds_list_find_value(node.custom_data[| k], l));
+                            buffer_write(buffer, save_type, node.custom_data[k][l]);
                         }
                     }
                     break;

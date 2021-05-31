@@ -13,7 +13,7 @@ outbound = [undefined];                                                 // seria
 ds_list_add(data, "");                                                  // serialize: buffer_string
 
 custom_guid = NULL;                                                     // serialize: buffer_datatype
-custom_data = ds_list_create();                                         // list of lists - contents determined by custom_guid
+custom_data = [];                                                       // list of lists - contents determined by custom_guid
 
 prefab_guid = NULL;                                                     // serialize: buffer_datatype
 
@@ -53,14 +53,7 @@ CreateJSONEventNode = function() {
     for (var i = 0, n = array_length(self.outbound); i < n; i++) {
         if (self.outbound[i]) json.outbound[i] = self.outbound[i].GUID;
     }
-    json.custom_data = array_create(ds_list_size(self.custom_data));
-    for (var i = 0, n = ds_list_size(self.custom_data); i < n; i++) {
-        var data = self.custom_data[| i];
-        json.custom_data[i] = array_create(ds_list_size(data));
-        for (var j = 0, n2 = ds_list_size(data); j < n2; j++) {
-            json.custom_data[i][j] = data[| j];
-        }
-    }
+    json.custom_data = self.custom_data;
     return json;
 };
 

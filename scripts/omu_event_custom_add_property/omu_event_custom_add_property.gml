@@ -7,12 +7,10 @@ function omu_event_custom_add_property(thing) {
         
         // add the data to existing nodes
         for (var i = 0; i < ds_list_size(Stuff.all_events); i++) {
-            var event = Stuff.all_events[| i];
+            event = Stuff.all_events[| i];
             for (var j = 0; j < ds_list_size(event.nodes); j++) {
                 if (event.nodes[| j].custom_guid == thing.root.event.GUID) {
-                    var data = ds_list_create();
-                    ds_list_add(data, 0);
-                    ds_list_add(event.nodes[| j].custom_data, data);
+                    array_push(event.nodes[| j].custom_data, [0]);
                 }
             }
         }
@@ -21,9 +19,7 @@ function omu_event_custom_add_property(thing) {
         for (var i = 0; i < ds_list_size(Stuff.all_event_prefabs); i++) {
             var prefab = Stuff.all_event_prefabs[| i];
             if (prefab.custom_guid == thing.root.event.GUID) {
-                var data = ds_list_create();
-                ds_list_add(data, 0);
-                ds_list_add(event.nodes[| j].custom_data, data);
+                array_push(event.nodes[| i].custom_data, [0]);
             }
         }
     } else {

@@ -15,8 +15,8 @@ function dmu_dialog_event_save_prefab(argument0) {
     prefab.outbound = [];
 
     prefab.custom_guid = node.custom_guid;
-    for (var i = 0; i < ds_list_size(node.custom_data); i++) {
-        ds_list_add(prefab.custom_data, ds_list_clone(node.custom_data[| i]));
+    for (var i = 0; i < array_length(node.custom_data); i++) {
+        array_push(prefab.custom_data, array_clone(node.custom_data[i]));
     }
 
     node.prefab_guid = prefab.GUID;

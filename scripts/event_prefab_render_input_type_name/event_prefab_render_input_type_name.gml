@@ -1,5 +1,5 @@
 function event_prefab_render_input_type_name(event, index) {
-    switch (event.custom_data[| 2][| 0]) {
+    switch (event.custom_data[2][0]) {
         case 0: return "Text";
         case 1: return "Text (Scribble safe)";
         case 2: return "Integer";

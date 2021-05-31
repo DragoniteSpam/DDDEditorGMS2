@@ -9,8 +9,8 @@ function omu_event_attain_switch_data(thing, event_node, data_index) {
     dg.node = event_node;
     dg.index = data_index;
 
-    var custom_data_switch = event_node.custom_data[| 0];
-    var custom_data_state = event_node.custom_data[| 1];
+    var custom_data_switch = event_node.custom_data[0];
+    var custom_data_state = event_node.custom_data[1];
 
     var ew = dw - 64;
     var eh = 24;
@@ -22,8 +22,8 @@ function omu_event_attain_switch_data(thing, event_node, data_index) {
     for (var i = 0; i < ds_list_size(Stuff.switches); i++) {
         create_list_entries(el_list, Stuff.switches[| i][0]);
     }
-    if (custom_data_switch[| 0] > -1) {
-        ui_list_select(el_list, custom_data_switch[| 0]);
+    if (custom_data_switch[0] > -1) {
+        ui_list_select(el_list, custom_data_switch[0]);
     }
     dg.el_list = el_list;
 

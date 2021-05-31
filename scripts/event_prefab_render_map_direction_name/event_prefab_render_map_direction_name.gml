@@ -5,9 +5,7 @@ function event_prefab_render_map_direction_name(argument0, argument1) {
     var event = argument0;
     var index = argument1;
 
-    // @gml update
-    var custom_data = event.custom_data[| 4];
-    var raw = custom_data[| 0];
+    var raw = event.custom_data[4][0];
 
     switch (raw) {
         case 0: return "Down";
