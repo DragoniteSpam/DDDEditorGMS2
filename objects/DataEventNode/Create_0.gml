@@ -51,7 +51,7 @@ CreateJSONEventNode = function() {
     }
     json.outbound = array_create(array_length(self.outbound));
     for (var i = 0, n = array_length(self.outbound); i < n; i++) {
-        json.outbound[i] = self.outbound[i].GUID;
+        if (self.outbound[i]) json.outbound[i] = self.outbound[i].GUID;
     }
     json.custom_data = array_create(ds_list_size(self.custom_data));
     for (var i = 0, n = ds_list_size(self.custom_data); i < n; i++) {

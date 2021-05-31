@@ -20,7 +20,7 @@ CreateJSONEventCustom = function() {
     }
     json.outbound = array_create(array_length(self.outbound));
     for (var i = 0, n = array_length(self.outbound); i < n; i++) {
-        json.outbound[i] = self.outbound[i];
+        if (self.outbound[i]) json.outbound[i] = self.outbound[i];
     }
     return json;
 };
