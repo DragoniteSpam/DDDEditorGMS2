@@ -27,13 +27,17 @@ function omu_event_attain_self_switch_data(argument0, argument1, argument2) {
     var yy = 64;
     var spacing = 16;
 
-    var el_choices = create_radio_array(16, yy, "Switches", ew, eh, uivc_list_event_attain_self_switch_index, custom_data_switch[0], dg);
+    var el_choices = create_radio_array(16, yy, "Switches", ew, eh, function(radio) {
+        radio.root.root.node.custom_data[@ 1][@ 0] = radio.value;
+    }, custom_data_switch[0], dg);
     create_radio_array_options(el_choices, ["A", "B", "C", "D"]);
     dg.el_choices = el_choices;
 
     yy += ui_get_radio_array_height(el_choices) + spacing;
 
-    var el_state = create_checkbox(16, yy, "Enabled?", ew, eh, uivc_check_event_attain_switch_state, custom_data_state[0], dg);
+    var el_state = create_checkbox(16, yy, "Enabled?", ew, eh, function(checkbox) {
+        checkbox.root.node.custom_data[@ 2][@ 0] = checkbox.value;
+    }, custom_data_state[0], dg);
     dg.el_state = el_state;
 
     var b_width = 128;

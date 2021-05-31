@@ -18,7 +18,9 @@ function omu_event_attain_switch_data(thing, event_node, data_index) {
     var yy = 64;
     var spacing = 16;
 
-    var el_list = create_list(16, yy, "Switches", "<no switches>", ew, eh, 14, uivc_list_event_attain_switch_index, false, dg);
+    var el_list = create_list(16, yy, "Switches", "<no switches>", ew, eh, 14, function(list) {
+        list.root.node.custom_data[@ 0][@ 0] = ui_list_selection(list);
+    }, false, dg);
     for (var i = 0; i < ds_list_size(Stuff.switches); i++) {
         create_list_entries(el_list, Stuff.switches[| i][0]);
     }
@@ -29,7 +31,9 @@ function omu_event_attain_switch_data(thing, event_node, data_index) {
 
     yy += ui_get_list_height(el_list) + spacing;
 
-    var el_state = create_checkbox(16, yy, "Enabled?", ew, eh, uivc_check_event_attain_switch_state, custom_data_state[|0], dg);
+    var el_state = create_checkbox(16, yy, "Enabled?", ew, eh, function(checkbox) {
+        checkbox.root.node.custom_data[@ 1][@ 0] = checkbox.value;
+    }, custom_data_state[|0], dg);
     dg.el_state = el_state;
 
     var b_width = 128;

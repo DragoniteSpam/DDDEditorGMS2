@@ -24,7 +24,9 @@ function omu_event_attain_variable_data(thing, event_node, data_index) {
     var yy = 64;
     var spacing = 16;
     
-    var el_list = create_list(16, yy, "Variables", "<no variables>", ew, eh, 14, uivc_list_event_attain_variable_index, false, dg);
+    var el_list = create_list(16, yy, "Variables", "<no variables>", ew, eh, 14, function(list) {
+        list.root.node.custom_data[@ 0][@ 0] = ui_list_selection(list);
+    }, false, dg);
     for (var i = 0; i < ds_list_size(Stuff.variables); i++) {
         create_list_entries(el_list, Stuff.variables[| i][0]);
     }
@@ -35,12 +37,16 @@ function omu_event_attain_variable_data(thing, event_node, data_index) {
     
     yy += ui_get_list_height(el_list) + spacing;
     
-    var el_value = create_input(16, yy, "Value", ew, eh, uivc_check_event_attain_variable_value, custom_data_value[0], "float", validate_double, -0x80000000, 0x7fffffff, 11, vx1, vy1, vx2, vy2, dg);
+    var el_value = create_input(16, yy, "Value", ew, eh, function(input) {
+        input.root.node.custom_data[@ 1][@ 0] = real(input.value);
+    }, custom_data_value[0], "float", validate_double, -0x80000000, 0x7fffffff, 11, vx1, vy1, vx2, vy2, dg);
     dg.el_value = el_value;
     
     yy += el_value.height + spacing;
     
-    var el_relative = create_checkbox(16, yy, "Relative?", ew, eh, uivc_check_event_attain_variable_relative, custom_data_relative[0], dg);
+    var el_relative = create_checkbox(16, yy, "Relative?", ew, eh, function(checkbox) {
+        checkbox.root.node.custom_data[@ 2][@ 0] = checkbox.value;
+    }, custom_data_relative[0], dg);
     dg.el_relative = el_relative;
     
     var b_width = 128;
