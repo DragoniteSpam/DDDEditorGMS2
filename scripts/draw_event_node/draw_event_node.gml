@@ -336,10 +336,8 @@ function draw_event_node(node) {
             y2 = y1 + max(24 + 32 + entry_offset, array_length(node.outbound) * EVENT_NODE_CONTACT_HEIGHT * 2 / 3);
             var ncolor = (node.type == EventNodeTypes.CUSTOM) ? c_ev_custom : c_ev_basic;
             
-            for (var i = 0; i < array_length(custom.types); i++) {
-                var custom_data_list = node.custom_data[i];
-                var type = custom.types[i];
-                switch (type[1]) {
+            for (var i = 0; i < ds_list_size(custom.types); i++) {
+                switch (custom.types[| i][1]) {
                     case DataTypes.INT:
                     case DataTypes.FLOAT:
                     case DataTypes.BOOL:
@@ -368,7 +366,7 @@ function draw_event_node(node) {
                         y2 = y2 + 32;
                         break;
                     case DataTypes.STRING:
-                        y2 = y2 + ((array_length(custom_data_list) == 1) ? entry_height + 24 : 32);
+                        y2 = y2 + ((array_length(node.custom_data[i]) == 1) ? entry_height + 24 : 32);
                         break;
                 }
             }
