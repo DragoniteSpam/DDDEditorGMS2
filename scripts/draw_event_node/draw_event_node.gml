@@ -171,7 +171,7 @@ function draw_event_node(node) {
                     }
                     
                     // this should be in an onvaluechange script but that's a huge hassle for something really minor
-                    list_type[i] = radio.value;
+                    list_type[@ i] = radio.value;
                     
                     if (!dialog_exists()) {
                         if (mouse_within_rectangle_adjusted(x1 + tolerance, entry_yy + tolerance + rh, x2 - tolerance, entry_yy + eh + rh - tolerance)) {
@@ -255,7 +255,7 @@ function draw_event_node(node) {
                 }
                 
                 if (node.editor_handle) {
-                    list_code[node.editor_handle_index] = uios_code_text(node, list_code[node.editor_handle_index]);
+                    list_code[@ node.editor_handle_index] = uios_code_text(node, list_code[node.editor_handle_index]);
                     if (ds_stuff_process_complete(node.editor_handle)) {
                         node.editor_handle = noone;
                         node.editor_handle_index = -1;
@@ -443,7 +443,7 @@ function draw_event_node(node) {
                                             dialog_create_event_node_input_string(custom_data_list, 0, type[0] + "?", custom_data_list[0]);
                                             break;
                                         case DataTypes.BOOL:
-                                            custom_data_list[0] = !custom_data_list[0];
+                                            custom_data_list[@ 0] = !custom_data_list[0];
                                             break;
                                         case DataTypes.ENUM:
                                         case DataTypes.DATA:
@@ -534,7 +534,7 @@ function draw_event_node(node) {
                     }
                     
                     if (node.editor_handle && type[EventNodeCustomData.TYPE] == DataTypes.CODE) {
-                        custom_data_list[i] = uios_code_text(node, custom_data_list[i]);
+                        custom_data_list[@ i] = uios_code_text(node, custom_data_list[i]);
                         draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy - tolerance + eh, c, c, c, c, false);
                         if (ds_stuff_process_complete(node.editor_handle)) {
                             node.editor_handle = noone;
@@ -672,7 +672,7 @@ function draw_event_node(node) {
                                 message = message + "(entity): ";
                                 // If the value is 0, it's automatically "this". If it has a value, it's
                                 // an entity reference somewhere (which could also be self, but probably not)
-                                if (custom_data_list[0]) {
+                                if (setdata) {
                                     output_string = (setdata ? setdata.name : "<not loaded>") + ":" + strh;
                                 } else {
                                     output_string = "<self>";
