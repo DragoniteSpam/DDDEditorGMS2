@@ -52,7 +52,7 @@ function serialize_load_global_meta(buffer, version) {
         what.value_string = buffer_read(buffer, buffer_string);
         what.value_guid = buffer_read(buffer, buffer_datatype);
         
-        ds_list_add(Stuff.all_game_constants, what);
+        array_push(Stuff.all_game_constants, what);
     }
     
     Stuff.game_notes = buffer_read(buffer, buffer_string);

@@ -39,9 +39,9 @@ function project_save() {
                 value: Stuff.variables[| i][1],
             };
         }
-        var const_json = array_create(ds_list_size(Stuff.all_game_constants));
-        for (var i = 0, n = ds_list_size(Stuff.all_game_constants); i < n; i++) {
-            const_json[i] = Stuff.all_game_constants[| i].CreateJSON();
+        var const_json = array_create(array_length(Stuff.all_game_constants));
+        for (var i = 0, n = array_length(Stuff.all_game_constants); i < n; i++) {
+            const_json[i] = Stuff.all_game_constants[i].CreateJSON();
         }
         var trigger_json = array_create(ds_list_size(Stuff.all_event_triggers));
         for (var i = 0, n = ds_list_size(Stuff.all_event_triggers); i < n; i++) {

@@ -232,7 +232,7 @@ function dialog_create_settings_data_game_constants(root) {
         var selection = ui_list_selection(list);
         var base_dialog = list.root;
         if (selection + 1) {
-            var what = Stuff.all_game_constants[| selection];
+            var what = Stuff.all_game_constants[selection];
             ui_input_set_value(base_dialog.el_name, what.name);
             base_dialog.el_type.interactive = true;
             base_dialog.el_type.value = what.type;
@@ -248,9 +248,8 @@ function dialog_create_settings_data_game_constants(root) {
     yy += ui_get_list_height(el_list) + spacing;
     
     var el_add = create_button(col1_x, yy, "Add Constant", ew, eh, fa_center, function(button) {
-        if (ds_list_size(Stuff.all_game_constants) < 0xffff) {
-            var data = new DataConstant("Constant " + string(ds_list_size(Stuff.all_game_constants)));
-            ds_list_add(Stuff.all_game_constants, data);
+        if (array_length(Stuff.all_game_constants) < 0xffff) {
+            array_push(Stuff.all_game_constants, new DataConstant("Constant " + string(array_length(Stuff.all_game_constants))));
         }
     }, dg);
     dg.el_add = el_add;
@@ -261,8 +260,8 @@ function dialog_create_settings_data_game_constants(root) {
         var list = button.root.el_list;
         var selection = ui_list_selection(list);
         if (selection + 1) {
-            Stuff.all_game_constants[| selection].Destroy();
-            ds_list_delete(Stuff.all_game_constants, selection);
+            Stuff.all_game_constants[selection].Destroy();
+            array_delete(Stuff.all_game_constants, selection, 1);
         }
     }, dg);
     dg.el_remove = el_remove;
@@ -279,7 +278,7 @@ function dialog_create_settings_data_game_constants(root) {
     var el_name = create_input(col2_x, yy, "Name:", ew, eh, function(input) {
         var selection = ui_list_selection(input.root.el_list);
         if (selection + 1) {
-            Stuff.all_game_constants[| selection].name = input.value;
+            Stuff.all_game_constants[selection].name = input.value;
         }
     }, "", "16 characters", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
     dg.el_name = el_name;
@@ -289,7 +288,7 @@ function dialog_create_settings_data_game_constants(root) {
     var el_type = create_radio_array(col2_x, yy, "Type:", ew, eh, function(option) {
         var selection = ui_list_selection(option.root.root.el_list);
         if (selection + 1) {
-            var what = Stuff.all_game_constants[| selection];
+            var what = Stuff.all_game_constants[selection];
             what.type = option.value;
             option.root.root.function_activate(option.root.root, what);
         }
@@ -313,7 +312,7 @@ function dialog_create_settings_data_game_constants(root) {
     var el_value_code = create_input_code(col3_x, yy, "Value:", ew, eh, vx1, vy1, vx2, vy2, "", function(input) {
         var selection = ui_list_selection(input.root.el_list);
         if (selection + 1) {
-            Stuff.all_game_constants[| selection].value_string = input.value;
+            Stuff.all_game_constants[selection].value_string = input.value;
         }
     }, dg);
     el_value_code.enabled = false;
@@ -321,7 +320,7 @@ function dialog_create_settings_data_game_constants(root) {
     var el_value_string = create_input(col3_x, yy, "Value:", ew, eh, function(input) {
         var selection = ui_list_selection(input.root.el_list);
         if (selection + 1) {
-            Stuff.all_game_constants[| selection].value_string = input.value;
+            Stuff.all_game_constants[selection].value_string = input.value;
         }
     }, "", "text", validate_string, 0, 1, 160, vx1, vy1, vx2, vy2, dg);
     el_value_string.enabled = false;
@@ -329,7 +328,7 @@ function dialog_create_settings_data_game_constants(root) {
     var el_value_real = create_input(col3_x, yy, "Value:", ew, eh, function(input) {
         var selection = ui_list_selection(input.root.el_list);
         if (selection + 1) {
-            Stuff.all_game_constants[| selection].value_real = real(input.value);
+            Stuff.all_game_constants[selection].value_real = real(input.value);
         }
     }, "0", "number", validate_double, -0x80000000, 0x7fffffff, 10, vx1, vy1, vx2, vy2, dg);
     el_value_real.enabled = false;
@@ -337,7 +336,7 @@ function dialog_create_settings_data_game_constants(root) {
     var el_value_int = create_input(col3_x, yy, "Value:", ew, eh, function(input) {
         var selection = ui_list_selection(input.root.el_list);
         if (selection + 1) {
-            Stuff.all_game_constants[| selection].value_real = real(input.value);
+            Stuff.all_game_constants[selection].value_real = real(input.value);
         }
     }, "0", "int", validate_int, -0x80000000, 0x7fffffff, 11, vx1, vy1, vx2, vy2, dg);
     el_value_int.enabled = false;
@@ -345,7 +344,7 @@ function dialog_create_settings_data_game_constants(root) {
     var el_value_bool = create_checkbox(col3_x, yy, "Value", ew, eh, function(input) {
         var selection = ui_list_selection(input.root.el_list);
         if (selection + 1) {
-            Stuff.all_game_constants[| selection].value_real = real(input.value);
+            Stuff.all_game_constants[selection].value_real = real(input.value);
         }
     }, false, dg);
     el_value_bool.enabled = false;
@@ -353,7 +352,7 @@ function dialog_create_settings_data_game_constants(root) {
     var el_value_color = create_color_picker(col3_x, yy, "Color", ew, eh, function(input) {
         var selection = ui_list_selection(input.root.el_list);
         if (selection + 1) {
-            Stuff.all_game_constants[| selection].value_real = real(input.value);
+            Stuff.all_game_constants[selection].value_real = real(input.value);
         }
     }, c_black, vx1, vy1, vx2, vy2, dg);
     el_value_color.enabled = false;
@@ -363,7 +362,7 @@ function dialog_create_settings_data_game_constants(root) {
         var selection = ui_list_selection(list.root.el_list);
         if (selection + 1) {
             var datadata = list.entries[| ui_list_selection(list.root.el_type_guid)];
-            var what = Stuff.all_game_constants[| selection];
+            var what = Stuff.all_game_constants[selection];
             what.type_guid = datadata.GUID;
             what.value_guid = NULL;
             var type = guid_get(what.type_guid);
@@ -379,7 +378,7 @@ function dialog_create_settings_data_game_constants(root) {
     var el_value_other = create_list(col3_x, yy, "Data:", "<no data>", ew, eh, 20, function(list) {
         var selection = ui_list_selection(list.root.el_list);
         if (selection + 1) {
-            Stuff.all_game_constants[| selection].value_guid = list.entries[| ui_list_selection(list)].GUID;
+            Stuff.all_game_constants[selection].value_guid = list.entries[| ui_list_selection(list)].GUID;
         }
     }, false, dg, noone);
     el_value_other.enabled = false;
@@ -389,7 +388,7 @@ function dialog_create_settings_data_game_constants(root) {
     var el_value_data = create_list(col3_x, yy + ui_get_list_height(el_type_guid) + spacing, "Instance:", "<no data>", ew, eh, 8, function(list) {
         var selection = ui_list_selection(list.root.el_list);
         if (selection + 1) {
-            Stuff.all_game_constants[| selection].value_guid = list.entries[| ui_list_selection(list)].GUID;
+            Stuff.all_game_constants[selection].value_guid = list.entries[| ui_list_selection(list)].GUID;
         }
     }, false, dg, noone);
     el_value_data.enabled = false;
@@ -398,7 +397,7 @@ function dialog_create_settings_data_game_constants(root) {
     // for events
     var el_event = create_button(col3_x, yy, "Event: ", ew, eh, fa_left, function(button) {
         var selection = ui_list_selection(button.root.el_list);
-        var constant = Stuff.all_game_constants[| selection];
+        var constant = Stuff.all_game_constants[selection];
         if (constant) {
             dialog_create_constant_get_event_graph(button.root, constant);
         }
@@ -407,7 +406,7 @@ function dialog_create_settings_data_game_constants(root) {
     dg.el_event = el_event;
     var el_event_entrypoint = create_button(col3_x, yy + el_event.height + spacing, "Entrypoint: ", ew, eh, fa_left, function(button) {
         var selection = ui_list_selection(button.root.el_list);
-        var constant = Stuff.all_game_constants[| selection];
+        var constant = Stuff.all_game_constants[selection];
         if (constant) {
             dialog_create_constant_get_event_entrypoint(button.root, constant);
         }

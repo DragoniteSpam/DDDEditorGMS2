@@ -65,8 +65,8 @@ function language_extract() {
         }
         #endregion
         #region constants
-        for (var i = 0; i < ds_list_size(Stuff.all_game_constants); i++) {
-            var const = Stuff.all_game_constants[| i];
+        for (var i = 0; i < array_length(Stuff.all_game_constants); i++) {
+            var const = Stuff.all_game_constants[i];
             if (const.type != DataTypes.STRING) continue;
             var key = "Const." + const.name;
             lang[$ key] = (lang_index == 0) ? const.value_string : ((lang[$ key] != undefined) ? lang[$ key] : "");
@@ -90,10 +90,10 @@ function language_extract() {
         for (var i = 0; i < ds_list_size(Stuff.all_maps); i++) {
             var map = Stuff.all_maps[| i];
             if (map.contents) {
-                for (var i = 0; i < ds_list_size(map.contents.all_entities); i++) {
-                    var entity = map.contents.all_entities[| i];
-                    for (var j = 0; j < ds_list_size(entity.generic_data); j++) {
-                        var gen = entity.generic_data[| j];
+                for (var j = 0; j < ds_list_size(map.contents.all_entities); j++) {
+                    var entity = map.contents.all_entities[| j];
+                    for (var k = 0; k < ds_list_size(entity.generic_data); k++) {
+                        var gen = entity.generic_data[| k];
                         if (gen.type != DataTypes.STRING) continue;
                         var key = "Map." + entity.name + "." + entity.REFID + "." + gen.name;
                         lang[$ key] = (lang_index == 0) ? gen.value_string : ((lang[$ key] != undefined) ? lang[$ key] : "");
@@ -102,10 +102,10 @@ function language_extract() {
                 }
             } else {
                 var entities = serialize_load_map_contents_dynamic(map.data_buffer, map.version, undefined, false, true);
-                for (var i = 0; i < array_length(entities); i++) {
-                    var entity = entities[i];
-                    for (var j = 0; j < ds_list_size(entity.generic_data); j++) {
-                        var gen = entity.generic_data[| j];
+                for (var j = 0; j < array_length(entities); j++) {
+                    var entity = entities[j];
+                    for (var k = 0; k < ds_list_size(entity.generic_data); k++) {
+                        var gen = entity.generic_data[| k];
                         if (gen.type != DataTypes.STRING) continue;
                         var key = "Map." + map.name + "." + entity.name + "." + entity.REFID + "." + gen.name;
                         lang[$ key] = (lang_index == 0) ? gen.value_string : ((lang[$ key] != undefined) ? lang[$ key] : "");

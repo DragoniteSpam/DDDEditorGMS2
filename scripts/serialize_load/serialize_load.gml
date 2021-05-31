@@ -63,7 +63,7 @@ function serialize_load(buffer, filename, proj_name) {
             // i'd like there to be a default event, although potentially in the future there will not be
             ds_list_clear(Stuff.all_events);
             // these contain arrays, which are garbage collected and need to be there
-            ds_list_clear(Stuff.all_game_constants);
+            Stuff.all_game_constants = [];
             ds_list_clear(Stuff.variables);
             ds_list_clear(Stuff.switches);
             // reset the active map
