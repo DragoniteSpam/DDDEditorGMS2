@@ -27,7 +27,7 @@ function dialog_create_event_get_event_graph(argument0, argument1, argument2) {
     var yy = 64;
 
     var custom = guid_get(node.custom_guid);
-    var outbound_label = (custom ? custom.outbound[| index] : "#" + string(index));
+    var outbound_label = (custom ? custom.outbound[index] : "#" + string(index));
     var label = node.name + " / " + (string_length(outbound_label) > 0 ? outbound_label : "default");
 
     var el_title_text = create_text(16, yy, label, ew, eh, fa_left, ew, dg);

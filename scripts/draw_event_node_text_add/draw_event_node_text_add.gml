@@ -15,7 +15,7 @@ function draw_event_node_text_add(argument0, argument1, argument2) {
         draw_tooltip(xx, yy + 16, "Add Text");
         if (Controller.release_left) {
             ds_list_add(node.data, "Text line " + string(ds_list_size(node.data)));
-            ds_list_add(node.outbound, noone);
+            array_push(node.outbound, undefined);
         }
     }
 

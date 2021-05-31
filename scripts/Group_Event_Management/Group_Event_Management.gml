@@ -1,6 +1,6 @@
 function event_rename_node(event, node, new_name) {
     // it attempts to, anyway
-    if (validate_string_event_name(new_name)) {
+    if (validate_string_event_name(new_name, undefined)) {
         ds_map_delete(event.name_map, node.name);
         ds_map_add(event.name_map, new_name, node);
         node.name = new_name;
@@ -19,16 +19,16 @@ function event_connect_node() {
     
     // because this would be silly
     if (source != destination && (destination && destination.valid_destination) || force_null) {
-        var old_node = source.outbound[| index];
+        var old_node = source.outbound[index];
         if (old_node) {
-            ds_map_delete(old_node.parents, source);
+            variable_struct_remove(old_node.parents, source);
         }
         
         if (destination) {
-            destination.parents[? source] = true;
+            destination.parents[$ source] = true;
         }
         
-        source.outbound[| index] = destination;
+        source.outbound[index] = destination;
     }
 }
 
@@ -61,8 +61,8 @@ function event_create_node() {
     if (type != EventNodeTypes.CUSTOM) {
         var base = Stuff.event_prefab[type];
         if (base) {
-            repeat (ds_list_size(base.outbound) - 1) {
-                ds_list_add(node.outbound, noone);
+            repeat (array_length(base.outbound) - 1) {
+                array_push(node.outbound, undefined);
             }
         }
     }
@@ -124,7 +124,7 @@ function event_create_node() {
                 // pre-allocate space for the properties of the event
                 for (var i = 0; i < ds_list_size(custom.types); i++) {
                     var new_list = ds_list_create();
-                    var type = custom.types[| i];
+                    type = custom.types[| i];
                     ds_list_add(node.custom_data, new_list);
                     ds_list_add(new_list, type[5]);
                     
@@ -137,8 +137,8 @@ function event_create_node() {
                     }
                 }
                 
-                for (var i = 0; i < ds_list_size(custom.outbound); i++) {
-                    node.outbound[| i] = noone;
+                for (var i = 0; i < array_length(custom.outbound); i++) {
+                    node.outbound[i] = undefined;
                 }
             }
             break;

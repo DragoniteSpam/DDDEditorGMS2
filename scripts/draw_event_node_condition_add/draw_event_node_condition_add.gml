@@ -35,7 +35,7 @@ function draw_event_node_condition_add(argument0, argument1, argument2) {
         
             ds_list_add(node.ui_things, radio);
             // insert at the second to last position so that the "else" outbound node stays where it is
-            ds_list_insert(node.outbound, ds_list_size(node.outbound) - 1, noone);
+            array_insert(node.outbound, array_length(node.outbound) - 1, noone);
         }
     }
 

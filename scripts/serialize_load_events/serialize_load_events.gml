@@ -36,12 +36,12 @@ function serialize_load_events(buffer, version) {
             
             // some preliminary data may be created
             ds_list_clear(node.data);
-            ds_list_clear(node.outbound);
+            node.outbound = [];
             
             // read out the GUIDs and link them later
             var n_outbound = buffer_read(buffer, buffer_u8);
             repeat (n_outbound) {
-                ds_list_add(node.outbound, buffer_read(buffer, buffer_datatype));
+                array_push(node.outbound, buffer_read(buffer, buffer_datatype));
             }
             
             var n_data = buffer_read(buffer, buffer_u8);
@@ -101,23 +101,24 @@ function serialize_load_events(buffer, version) {
                     for (var i = 0; i < ds_list_size(custom.types); i++) {
                         var sub_list = ds_list_create();
                         var type = custom.types[| i];
+                        var buffer_type;
                         
                         switch (type[EventNodeCustomData.TYPE]) {
                             case DataTypes.INT:
-                                var buffer_type = buffer_s32;
+                                buffer_type = buffer_s32;
                                 break;
                             case DataTypes.FLOAT:
-                                var buffer_type = buffer_f32;
+                                buffer_type = buffer_f32;
                                 break;
                             case DataTypes.BOOL:
-                                var buffer_type = buffer_u8;
+                                buffer_type = buffer_u8;
                                 break;
                             case DataTypes.STRING:
                             case DataTypes.CODE:
-                                var buffer_type = buffer_string;
+                                buffer_type = buffer_string;
                                 break;
                             case DataTypes.ASSET_FLAG:
-                                var buffer_type = buffer_flag;
+                                buffer_type = buffer_flag;
                                 break;
                             case DataTypes.ENUM:
                             case DataTypes.DATA:
@@ -138,7 +139,7 @@ function serialize_load_events(buffer, version) {
                             case DataTypes.MESH_AUTOTILE:
                             case DataTypes.EVENT:
                             case DataTypes.IMG_TILE_ANIMATION:
-                                var buffer_type = buffer_datatype;
+                                buffer_type = buffer_datatype;
                                 break;
                             case DataTypes.TILE:
                                 not_yet_implemented();
@@ -155,7 +156,7 @@ function serialize_load_events(buffer, version) {
                             }
                             ds_list_add(node.custom_data, sub_list);
                         } else {
-                            var sub_list = node.custom_data[| i];
+                            sub_list = node.custom_data[| i];
                             ds_list_clear(sub_list);
                             repeat (n_custom_data) {
                                 ds_list_add(sub_list, buffer_read(buffer, buffer_type));
@@ -174,14 +175,12 @@ function serialize_load_events(buffer, version) {
         for (var j = 0; j < ds_list_size(Stuff.all_events[| i].nodes); j++) {
             var node = Stuff.all_events[| i].nodes[| j];
             
-            for (var k = 0; k < ds_list_size(node.outbound); k++) {
-                if (node.outbound[| k] == "") {
-                    node.outbound[| k] = noone;
-                    continue;
+            for (var k = 0; k < array_length(node.outbound); k++) {
+                var dest = guid_get(node.outbound[k]);
+                node.outbound[k] = dest;
+                if (dest) {
+                    dest.parents[$ node] = true;
                 }
-                var dest = guid_get(node.outbound[| k]);
-                dest.parents[? node] = true;
-                node.outbound[| k] = dest;
             }
         }
     }

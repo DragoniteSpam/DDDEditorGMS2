@@ -9,9 +9,8 @@ event_inherited();
 type = EventNodeTypes.ENTRYPOINT;                                       // serialize: buffer_u16
 
 data = ds_list_create();
-outbound = ds_list_create();
+outbound = [undefined];                                                 // serialize: buffer_string (this is an instance ref, but you serialize the unique name of the destination)
 ds_list_add(data, "");                                                  // serialize: buffer_string
-ds_list_add(outbound, noone);                                           // serialize: buffer_string (this is an instance ID, but you serialize the unique name of the destination)
 
 custom_guid = NULL;                                                     // serialize: buffer_datatype
 custom_data = ds_list_create();                                         // list of lists - contents determined by custom_guid
@@ -33,7 +32,7 @@ offset_y = -1;
 // keep track of the nodes that refer to it when you delete it, so they can have
 // their outbound references set to zero.
 
-parents = ds_map_create();
+parents = { };
 
 ui_things = ds_list_create();
 editor_handle = noone;
@@ -50,9 +49,9 @@ CreateJSONEventNode = function() {
     for (var i = 0, n = ds_list_size(self.data); i < n; i++) {
         json.data[i] = self.data[| i];
     }
-    json.outbound = array_create(ds_list_size(self.outbound));
-    for (var i = 0, n = ds_list_size(self.outbound); i < n; i++) {
-        json.outbound[i] = self.outbound[| i];
+    json.outbound = array_create(array_length(self.outbound));
+    for (var i = 0, n = array_length(self.outbound); i < n; i++) {
+        json.outbound[i] = self.outbound[i].GUID;
     }
     json.custom_data = array_create(ds_list_size(self.custom_data));
     for (var i = 0, n = ds_list_size(self.custom_data); i < n; i++) {

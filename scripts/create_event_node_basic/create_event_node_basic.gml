@@ -26,7 +26,7 @@ function create_event_node_basic() {
         }
     
         for (var i = 0; i < array_length(outbound_names); i++) {
-            ds_list_add(outbound, outbound_names[i]);
+            array_push(outbound, outbound_names[i]);
         }
     
         return id;

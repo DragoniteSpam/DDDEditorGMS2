@@ -21,7 +21,7 @@ function draw_event_node_condition_remove(argument0, argument1, argument2, argum
             }
         
             ds_list_delete(node.ui_things, index);
-            ds_list_delete(node.outbound, index);
+            array_delete(node.outbound, index, 1);
         }
     }
 

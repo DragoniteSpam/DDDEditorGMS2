@@ -3,21 +3,20 @@ if (Stuff.is_quitting) exit;
 event_inherited();
 
 // remove references from other objects: things that contain this as an outbound node
-var parent_nodes = ds_map_to_list(parents);
-for (var i = 0; i < ds_list_size(parent_nodes); i++) {
-    var parent = parent_nodes[| i];
-    for (var j = 0; j < ds_list_size(parent.outbound); j++) {
-        if (parent.outbound[| j] == id) {
-            parent.outbound[| j] = noone;
+var parent_nodes = variable_struct_get_names(self.parents);
+for (var i = 0; i < array_length(parent_nodes); i++) {
+    var parent = self.parents[$ parent_nodes[i]];
+    for (var j = 0; j < array_length(parent.outbound); j++) {
+        if (parent.outbound[j] == self.id) {
+            parent.outbound[j] = undefined;
         }
     }
 }
-ds_list_destroy(parent_nodes);
 
 // outbound nodes which contain this as a parent
-for (var i = 0; i < ds_list_size(outbound); i++) {
-    if (outbound[| i]) {
-        ds_map_delete(outbound[| i].parents, id);
+for (var i = 0; i < array_length(self.outbound); i++) {
+    if (self.outbound[i]) {
+        variable_struct_remove(self.outbound[i].parents, self.id);
     }
 }
 
@@ -32,9 +31,7 @@ if (event) {
 }
 
 // data structures
-ds_list_destroy(outbound);
 ds_list_destroy(data);
-ds_map_destroy(parents);
 
 // custom data - list of lists
 for (var i = 0; i < ds_list_size(custom_data); i++) {

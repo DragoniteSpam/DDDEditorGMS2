@@ -19,7 +19,7 @@ function draw_event_node_outbound() {
         if (mouse_within_rectangle_adjusted(xx - tolerance, yy - tolerance, xx + tolerance, yy + tolerance)) {
             var custom = guid_get(node.custom_guid);
             if (custom) {
-                var str = custom.outbound[| index];
+                var str = custom.outbound[index];
                 if (string_length(str) > 0) {
                     draw_tooltip(floor(xx - 16 - string_width(str) / 2 - 4), floor(yy - string_height(str) / 2 - 4), str);
                 }

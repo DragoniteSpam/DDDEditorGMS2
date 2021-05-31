@@ -22,7 +22,7 @@ function draw_event_ghost(argument0, argument1, argument2, argument3, argument4,
     draw_roundrect_colour(x1, y1, x2, y2, c, c, false);
     draw_roundrect(x1, y1, x2, y2, true);
 
-    var c = colour_mute(c);
+    c = colour_mute(c);
     if (mouse_within_rectangle_adjusted(x1, y1, x2, y2)) {
         draw_roundrect_colour(x1 + padding, y1 + padding, x2 - padding, y2 - padding, c, c, false);
         if (!dialog_exists()) {

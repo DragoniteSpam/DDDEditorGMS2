@@ -96,7 +96,7 @@ function dialog_create_event_custom(argument0) {
     dg.el_outbound_add = el_outbound_add;
     yy += el_outbound_add.height + spacing;
     var el_outbound_remove = create_button(col3_x, yy, "Delete", ew, eh, fa_center, omu_event_custom_remove_outbound, dg);
-    el_outbound_remove.interactive = ds_list_size(dg.event.outbound) > 1;
+    el_outbound_remove.interactive = array_length(dg.event.outbound) > 1;
     dg.el_outbound_remove = el_outbound_remove;
     yy += el_outbound_remove.height + spacing;
 

@@ -16,7 +16,7 @@ function draw_event_node_choice_add(argument0, argument1, argument2) {
         if (Controller.release_left) {
             ds_list_add(node.data, "Option " + string(ds_list_size(node.data)));
             // insert at the second to last position so that the "default" outbound node stays where it is
-            ds_list_insert(node.outbound, ds_list_size(node.outbound) - 1, noone);
+            array_insert(node.outbound, array_length(node.outbound) - 1, undefined);
         }
     }
 

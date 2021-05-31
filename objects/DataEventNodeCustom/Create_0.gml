@@ -3,8 +3,7 @@
 event_inherited();
 
 types = ds_list_create();
-outbound = ds_list_create();
-ds_list_add(outbound, "");
+outbound = [NULL];
 
 CreateJSONEventCustom = function() {
     var json = self.CreateJSONBase();
@@ -19,9 +18,9 @@ CreateJSONEventCustom = function() {
             all_required: type[4],
         };
     }
-    json.outbound = array_create(ds_list_size(self.outbound));
-    for (var i = 0, n = ds_list_size(self.outbound); i < n; i++) {
-        json.outbound[i] = self.outbound[| i];
+    json.outbound = array_create(array_length(self.outbound));
+    for (var i = 0, n = array_length(self.outbound); i < n; i++) {
+        json.outbound[i] = self.outbound[i];
     }
     return json;
 };

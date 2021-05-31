@@ -10,4 +10,4 @@ guid_set(id, guid_generate());
 internal_name = "DATA_" + string(GUID);
 
 types = ds_list_create();
-outbound = ds_list_create();
+outbound = [];

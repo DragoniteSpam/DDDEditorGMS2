@@ -17,7 +17,7 @@ function draw_event_node_choice_remove(argument0, argument1, argument2, argument
         draw_tooltip(xx, yy + 16, "Delete Option");
         if (Controller.release_left) {
             ds_list_delete(node.data, index);
-            ds_list_delete(node.outbound, index);
+            array_delete(node.outbound, index, 1);
         }
     }
 

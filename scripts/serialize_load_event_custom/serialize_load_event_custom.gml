@@ -21,10 +21,10 @@ function serialize_load_event_custom(buffer, version) {
         }
         
         var n_outbound = buffer_read(buffer, buffer_u8);
-        ds_list_clear(custom.outbound);
         
-        repeat (n_outbound) {
-            ds_list_add(custom.outbound, buffer_read(buffer, buffer_string));
+        custom.outbound = array_create(n_outbound);
+        for (var i = 0; i < n_outbound; i++) {
+            custom.outbound[i] = buffer_read(buffer, buffer_string);
         }
         
         ds_list_add(Stuff.all_event_custom, custom);

@@ -28,11 +28,11 @@ function serialize_save_events(buffer) {
             
             buffer_write(buffer, buffer_datatype, node.prefab_guid);
             
-            var n_outbound = ds_list_size(node.outbound);
+            var n_outbound = array_length(node.outbound);
             buffer_write(buffer, buffer_u8, n_outbound);
             for (var k = 0; k < n_outbound; k++) {
-                if (node.outbound[| k]) {
-                    buffer_write(buffer, buffer_datatype, node.outbound[| k].GUID);
+                if (node.outbound[k]) {
+                    buffer_write(buffer, buffer_datatype, node.outbound[k].GUID);
                 } else {
                     // empty string signifies a terminal node
                     buffer_write(buffer, buffer_string, "");

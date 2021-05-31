@@ -31,7 +31,7 @@ function dialog_create_event_get_event_node(argument0) {
         var yy = 64;
     
         var custom = guid_get(node.custom_guid);
-        var outbound_label = (custom ? custom.outbound[| index] : "#" + string(index));
+        var outbound_label = (custom ? custom.outbound[index] : "#" + string(index));
         var label = node.name + " / " + (string_length(outbound_label) > 0 ? outbound_label : "default");
     
         var el_title_text = create_text(16, yy, label, ew, eh, fa_left, ew, dg);
@@ -44,7 +44,7 @@ function dialog_create_event_get_event_node(argument0) {
                 ds_list_add(el_list.entries, event.nodes[| i]);
             }
         }
-        ui_list_select(el_list, ds_list_find_index(event.nodes, node.outbound[| index]));
+        ui_list_select(el_list, ds_list_find_index(event.nodes, node.outbound[index]));
         el_list.entries_are = ListEntries.INSTANCES;
         el_list.colorize = false;
         dg.el_list = el_list;

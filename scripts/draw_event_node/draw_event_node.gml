@@ -43,7 +43,7 @@ function draw_event_node(node) {
             #region comment
             // cut down version of Text
             x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
-            y2 = y1 + max(24 + 32 + ds_list_size(node.data) * entry_height + entry_offset, ds_list_size(node.outbound) * EVENT_NODE_CONTACT_HEIGHT * 2 / 3);
+            y2 = y1 + max(24 + 32 + ds_list_size(node.data) * entry_height + entry_offset, array_length(node.outbound) * EVENT_NODE_CONTACT_HEIGHT * 2 / 3);
             
             if (rectangle_within_view(view_current, x1, y1, x2, y2)) {
                 var c = colour_mute(c_ev_comment);
@@ -74,7 +74,7 @@ function draw_event_node(node) {
             x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
             // the above will be very painful for nodes with many data entries because loops so just assume
             // each entry won't have more than four lines
-            y2 = y1 + max(24 + 32 + ds_list_size(node.data) * entry_height + entry_offset, ds_list_size(node.outbound) * EVENT_NODE_CONTACT_HEIGHT * 2 / 3);
+            y2 = y1 + max(24 + 32 + ds_list_size(node.data) * entry_height + entry_offset, array_length(node.outbound) * EVENT_NODE_CONTACT_HEIGHT * 2 / 3);
             
             if (rectangle_within_view(view_current, x1, y1, x2, y2)) {
                 var c = colour_mute(c_ev_basic);
@@ -118,7 +118,7 @@ function draw_event_node(node) {
                 
                 draw_event_node_delete(x2, y1, node);
                 
-                if (ds_list_size(node.outbound) < 250) {
+                if (array_length(node.outbound) < 250) {
                     draw_event_node_text_add(mean(x1, x2), y2, node);
                 }
             }
@@ -130,7 +130,7 @@ function draw_event_node(node) {
             eh = 32;
             var rh = ((ui_get_radio_array_height(node.ui_things[| 0]) div eh) * eh) + 16;
             x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
-            y2 = y1 + max(24 + 64 + (eh + rh + 1) * size + entry_offset, ds_list_size(node.outbound) * EVENT_NODE_CONTACT_HEIGHT * 2 / 3);
+            y2 = y1 + max(24 + 64 + (eh + rh + 1) * size + entry_offset, array_length(node.outbound) * EVENT_NODE_CONTACT_HEIGHT * 2 / 3);
             
             if (rectangle_within_view(view_current, x1, y1, x2, y2)) {
                 var ncolor = c_ev_basic;
@@ -263,7 +263,7 @@ function draw_event_node(node) {
                     }
                 }
                 
-                var n = ds_list_size(node.outbound);
+                var n = array_length(node.outbound);
                 
                 if (n < 250) {
                     draw_event_node_condition_add(mean(x1, x2), y2, node);
@@ -276,7 +276,7 @@ function draw_event_node(node) {
             var size = ds_list_size(node.data);
             eh = 64;
             x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
-            y2 = y1 + max(24 + 32 + eh * (size + 1) + entry_offset, ds_list_size(node.outbound) * EVENT_NODE_CONTACT_HEIGHT * 2 / 3);
+            y2 = y1 + max(24 + 32 + eh * (size + 1) + entry_offset, array_length(node.outbound) * EVENT_NODE_CONTACT_HEIGHT * 2 / 3);
             
             if (rectangle_within_view(view_current, x1, y1, x2, y2)) {
                 var ncolor = c_ev_basic;
@@ -320,7 +320,7 @@ function draw_event_node(node) {
                     entry_yy = entry_yy + eh;
                 }
                 
-                var n = ds_list_size(node.outbound);
+                var n = array_length(node.outbound);
                 
                 if (n < 16) {
                     draw_event_node_choice_add(mean(x1, x2), y2, node);
@@ -333,7 +333,7 @@ function draw_event_node(node) {
             #region everything else
             custom = guid_get(node.custom_guid);
             x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
-            y2 = y1 + max(24 + 32 + entry_offset, ds_list_size(node.outbound) * EVENT_NODE_CONTACT_HEIGHT * 2 / 3);
+            y2 = y1 + max(24 + 32 + entry_offset, array_length(node.outbound) * EVENT_NODE_CONTACT_HEIGHT * 2 / 3);
             var ncolor = (node.type == EventNodeTypes.CUSTOM) ? c_ev_custom : c_ev_basic;
             
             for (var i = 0; i < ds_list_size(custom.types); i++) {
@@ -386,7 +386,7 @@ function draw_event_node(node) {
                 draw_event_node_prefabinate(x2 - 48, y1, node);
                 draw_event_node_delete(x2, y1, node);
                 
-                var entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
+                entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
                 
                 for (var i = 0; i < ds_list_size(custom.types); i++) {
                     var custom_data_list = node.custom_data[| i];
@@ -710,7 +710,7 @@ function draw_event_node(node) {
             #endregion
     }
     
-    var entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
+    entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
     var node_spr_width = sprite_get_width(spr_event_outbound);
     var node_spr_height = sprite_get_height(spr_event_outbound);
     var drag_from_yy = 0;
@@ -721,8 +721,8 @@ function draw_event_node(node) {
         case EventNodeTypes.TEXT:
         case EventNodeTypes.SHOW_SCROLLING_TEXT:
             #region single-output nodes
-            var entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
-            var outbound = node.outbound[| 0];
+            entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
+            var outbound = node.outbound[0];
             
             var by = entry_yy;
             
@@ -754,7 +754,7 @@ function draw_event_node(node) {
             #region Entrypoint
             // vertical middle of the box; entrypoints will only ever have one outbound node so we can cheat
             var by = y1 + entrypoint_height / 2;
-            var outbound = node.outbound[| 0];
+            var outbound = node.outbound[0];
             
             if (!outbound) {
                 draw_event_node_outbound(x2 + ext_node_padding, by, node, 0, true);
@@ -789,11 +789,11 @@ function draw_event_node(node) {
             // are spaced slightly differently for this so it wouldn't really work
             bezier_override = true;
             var by = entry_yy + entry_height - ext_node_padding;
-            var n = ds_list_size(node.outbound);
+            var n = array_length(node.outbound);
             var bezier_y = 0;
             
             for (var i = 0; i < n; i++) {
-                var outbound = node.outbound[| i];
+                var outbound = node.outbound[i];
                 if (!outbound) {
                     draw_event_node_outbound(x2 + ext_node_padding, by, node, i, true);
                 } else {
@@ -840,11 +840,11 @@ function draw_event_node(node) {
         case EventNodeTypes.SHOW_CHOICES:
             #region Choices
             bezier_override = true;
-            var n = ds_list_size(node.outbound);
+            var n = array_length(node.outbound);
             var bezier_y = 0;
             
             for (var i = 0; i < n; i++) {
-                var outbound = node.outbound[| i];
+                var outbound = node.outbound[i];
                 var by = entry_yy + eh / 2;
                 
                 if (!outbound) {
@@ -891,10 +891,10 @@ function draw_event_node(node) {
             #endregion
         default:
             #region other node types (usually)
-            var entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
+            entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
             
-            for (var i = 0; i < ds_list_size(node.outbound); i++) {
-                var outbound = node.outbound[| i];
+            for (var i = 0; i < array_length(node.outbound); i++) {
+                var outbound = node.outbound[i];
                 var by = entry_yy + 32 * i;
                 
                 if (!outbound) {
