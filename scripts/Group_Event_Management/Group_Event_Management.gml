@@ -108,7 +108,7 @@ function event_create_node() {
             radio.adjust_view = true;
             create_radio_array_options(radio, ["Variable", "Switch", "Self Variable", "Self Switch", "Code"]);
         
-            ds_list_add(node.ui_things, radio);
+            array_push(node.ui_things, radio);
             break;
         case EventNodeTypes.CUSTOM:
         default:

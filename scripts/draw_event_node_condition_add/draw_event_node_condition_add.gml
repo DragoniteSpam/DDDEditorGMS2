@@ -31,9 +31,9 @@ function draw_event_node_condition_add(argument0, argument1, argument2) {
             create_radio_array_options(radio, ["Variable", "Switch", "Self Variable", "Self Switch", "Code"]);
         
             var eh = 32;
-            radio.y = radio.y + (((ui_get_radio_array_height(radio) div eh) * eh) + eh + 16) * ds_list_size(node.ui_things);
+            radio.y = radio.y + (((ui_get_radio_array_height(radio) div eh) * eh) + eh + 16) * array_length(node.ui_things);
         
-            ds_list_add(node.ui_things, radio);
+            array_push(node.ui_things, radio);
             // insert at the second to last position so that the "else" outbound node stays where it is
             array_insert(node.outbound, array_length(node.outbound) - 1, noone);
         }

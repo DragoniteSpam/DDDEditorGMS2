@@ -34,7 +34,7 @@ offset_y = -1;
 
 parents = { };
 
-ui_things = ds_list_create();
+ui_things = [];
 editor_handle = noone;
 editor_handle_index = -1;       // because sometimes the same node might want to spawn multiple editors and want to tell them apart
 

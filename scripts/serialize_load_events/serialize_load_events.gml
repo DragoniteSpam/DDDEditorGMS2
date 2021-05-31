@@ -82,9 +82,9 @@ function serialize_load_events(buffer, version) {
                         var radio = create_radio_array(16, 48, "If condition:", EVENT_NODE_CONTACT_WIDTH - 32, 24, null, condition_type, node);
                         radio.adjust_view = true;
                         create_radio_array_options(radio, ["Variable", "Switch", "Self Variable", "Self Switch", "Code"]);
-                        radio.y = radio.y + (((ui_get_radio_array_height(radio) div eh) * eh) + eh + 16) * ds_list_size(node.ui_things);
+                        radio.y = radio.y + (((ui_get_radio_array_height(radio) div eh) * eh) + eh + 16) * array_length(node.ui_things);
                         
-                        ds_list_add(node.ui_things, radio);
+                        array_push(node.ui_things, radio);
                     }
                     break;
                 case EventNodeTypes.CUSTOM:

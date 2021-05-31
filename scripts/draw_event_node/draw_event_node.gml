@@ -128,7 +128,7 @@ function draw_event_node(node) {
             #region if-else if-else
             var size = ds_list_size(node.custom_data[| 0]);
             eh = 32;
-            var rh = ((ui_get_radio_array_height(node.ui_things[| 0]) div eh) * eh) + 16;
+            var rh = ((ui_get_radio_array_height(node.ui_things[0]) div eh) * eh) + 16;
             x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
             y2 = y1 + max(24 + 64 + (eh + rh + 1) * size + entry_offset, array_length(node.outbound) * EVENT_NODE_CONTACT_HEIGHT * 2 / 3);
             
@@ -162,7 +162,7 @@ function draw_event_node(node) {
                     
                     // not sure why the value of the radio array is getting reset somewhere that i can't find,
                     // but you need to do this if you want it to not be changed
-                    var radio = node.ui_things[| i];
+                    var radio = node.ui_things[i];
                     radio.value = list_type[| i];
                     if (is_struct(radio)) {
                         radio.Render(x1, y1); 
