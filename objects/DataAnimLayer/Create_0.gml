@@ -27,7 +27,7 @@ graphic_mesh = noone;
 graphic_frame = 1;
 
 CreateJSONAnimLayer = function() {
-    var json = self.CreateJSONBase();
+    var json = { };
     json.is_actor = self.is_actor;
     json.xx = self.xx;
     json.yy = self.yy;

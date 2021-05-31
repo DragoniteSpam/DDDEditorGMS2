@@ -45,7 +45,7 @@ moment = 0;
 timeline_layer = 0;
 
 CreateJSONAnimKeyframe = function() {
-    var json = self.CreateJSONBase();
+    var json = { };
     json.relative = self.relative;
     json.xx = self.xx;
     json.yy = self.yy;
