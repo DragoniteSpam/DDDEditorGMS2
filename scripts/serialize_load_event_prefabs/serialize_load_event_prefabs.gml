@@ -13,7 +13,7 @@ function serialize_load_event_prefabs(buffer, version) {
         
         var type = buffer_read(buffer, buffer_u16);
         
-        var prefab = event_create_node(noone, type);
+        prefab = event_create_node(noone, type);
         prefab.name = name;
         guid_set(prefab, guid);
         prefab.type = type;

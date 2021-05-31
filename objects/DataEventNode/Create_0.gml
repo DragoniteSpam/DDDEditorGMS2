@@ -38,3 +38,33 @@ parents = ds_map_create();
 ui_things = ds_list_create();
 editor_handle = noone;
 editor_handle_index = -1;       // because sometimes the same node might want to spawn multiple editors and want to tell them apart
+
+CreateJSONEventNode = function() {
+    var json = self.CreateJSONBase();
+    json.type = self.type;
+    json.custom_guid = self.custom_guid;
+    json.prefab_guid = self.prefab_guid;
+    json.x = self.x;
+    json.y = self.y;
+    json.data = array_create(ds_list_size(self.data));
+    for (var i = 0, n = ds_list_size(self.data); i < n; i++) {
+        json.data[i] = self.data[| i];
+    }
+    json.outbound = array_create(ds_list_size(self.outbound));
+    for (var i = 0, n = ds_list_size(self.outbound); i < n; i++) {
+        json.outbound[i] = self.outbound[| i];
+    }
+    json.custom_data = array_create(ds_list_size(self.custom_data));
+    for (var i = 0, n = ds_list_size(self.custom_data); i < n; i++) {
+        var data = self.custom_data[| i];
+        json.custom_data[i] = array_create(ds_list_size(data));
+        for (var j = 0, n2 = ds_list_size(data); j < n2; j++) {
+            json.custom_data[i][j] = data[| j];
+        }
+    }
+    return json;
+};
+
+CreateJSON = function() {
+    return self.CreateJSONEventNode();
+};
