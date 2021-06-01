@@ -140,15 +140,13 @@ function dialog_create_project_list(root) {
     var el_remove = create_button(16, yy, "Delete", ew, eh, fa_center, function(button) {
         var selected_project = ui_list_selection(button.root.el_list);
         if (selected_project + 1) {
-            var project = button.root.el_list.entries[| selected_project];
-            var dialog = emu_dialog_confirm(button, "Do you want to remove " + project + "? Its autosave files will be deleted, but any files you saved elsewhere on your computer will still be there and you will be able to re-load them later.", function() {
-                var project = self.root.project;
-                var list = Stuff.all_projects.projects;
-                var name = list[project];
-                array_delete(list, project, 1);
+            var project = Stuff.all_projects.projects[selected_project];
+            var dialog = emu_dialog_confirm(button, "Do you want to remove " + project.name + "? Its autosave files will be deleted, but any files you saved elsewhere on your computer will still be there and you will be able to re-load them later.", function() {
+                var project = Stuff.all_projects.projects[self.root.project];
+                array_delete(Stuff.all_projects.projects, self.root.project, 1);
                 ui_list_deselect(self.root.root.root.el_list);
-                ds_list_delete(self.root.root.root.el_list.entries, project);
-                directory_destroy(PATH_PROJECTS + name);
+                ds_list_delete(self.root.root.root.el_list.entries, self.root.project);
+                directory_destroy(PATH_PROJECTS + project.name);
                 var buffer = buffer_create(32, buffer_grow, 1);
                 buffer_write(buffer, buffer_text, json_stringify(Stuff.all_projects));
                 buffer_save_ext(buffer, "projects.json", 0, buffer_tell(buffer));
