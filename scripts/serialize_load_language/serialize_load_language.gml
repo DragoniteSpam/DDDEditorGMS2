@@ -2,13 +2,12 @@ function serialize_load_language(buffer, version) {
     var addr_next = buffer_read(buffer, buffer_u64);
     
     var n_languages = buffer_read(buffer, buffer_u8);
-    Stuff.all_languages = array_create(n_languages);
+    array_resize(Stuff.all_languages, n_languages);
     for (var i = 0; i < n_languages; i++) {
         var lang_name = buffer_read(buffer, buffer_string);
-        Stuff.all_languages[i] = lang_name;
+        Stuff.all_languages[@ i] = lang_name;
         Stuff.all_localized_text[$ lang_name] = { };
     }
-    Stuff.text.ui.el_language_list.entries = Stuff.all_languages;
     
     var n_keys = buffer_read(buffer, buffer_u32);
     var keys = array_create(n_keys);
