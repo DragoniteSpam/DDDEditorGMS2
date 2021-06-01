@@ -155,8 +155,7 @@ all_game_constants = [];
 
 all_data = ds_list_create();
 
-all_languages = ds_list_create();
-ds_list_add(all_languages, "English");
+all_languages = ["English"];
 
 /*
  * example:

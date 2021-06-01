@@ -1,9 +1,9 @@
 function serialize_save_complete() {
     language_extract();
     var untranslated = 0;
-    var lang_keys = variable_struct_get_names(Stuff.all_localized_text[$ Stuff.all_languages[| 0]]);
-    for (var i = 0; i < ds_list_size(Stuff.all_languages); i++) {
-        var lang = Stuff.all_localized_text[$ Stuff.all_languages[| i]];
+    var lang_keys = variable_struct_get_names(Stuff.all_localized_text[$ Stuff.all_languages[0]]);
+    for (var i = 0; i < array_length(Stuff.all_languages); i++) {
+        var lang = Stuff.all_localized_text[$ Stuff.all_languages[i]];
         for (var j = 0; j < array_length(lang_keys); j++) {
             untranslated += (lang[$ lang_keys[j]] == "");
         }

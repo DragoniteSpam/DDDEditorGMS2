@@ -1,37 +1,38 @@
 function language_add(name) {
-    var first = Stuff.all_languages[| 0];
+    var first = Stuff.all_languages[0];
     first = Stuff.all_localized_text[$ first];
+    var new_lang_data;
     try {
-        var new_lang_data = json_parse(json_stringify(first));
+        new_lang_data = json_parse(json_stringify(first));
     } catch (e) {
-        var new_lang_data = { };
+        new_lang_data = { };
     }
     Stuff.all_localized_text[$ name] = new_lang_data;
     var keys = variable_struct_get_names(new_lang_data);
     for (var i = 0; i < array_length(keys); i++) {
         new_lang_data[$ keys[i]] = "";
     }
-    ds_list_add(Stuff.all_languages, name);
+    array_push(Stuff.all_languages, name);
 }
 
 function language_remove(name) {
-    if (ds_list_empty(Stuff.all_languages)) return;
-    var index = ds_list_find_index(Stuff.all_languages, name);
+    if (array_length(Stuff.all_languages) == 0) return;
+    var index = array_search(Stuff.all_languages, name);
     if (index + 1) {
-        ds_list_delete(Stuff.all_languages, index);
+        array_delete(Stuff.all_languages, index, 1);
         variable_struct_remove(Stuff.all_localized_text, name);
     }
 }
 
 function language_extract() {
-    var existing_key_names = variable_struct_get_names(Stuff.all_localized_text[$ Stuff.all_languages[| 0]]);
+    var existing_key_names = variable_struct_get_names(Stuff.all_localized_text[$ Stuff.all_languages[0]]);
     var existing_keys = { };
     for (var i = 0; i < array_length(existing_key_names); i++) {
         existing_keys[$ existing_key_names[i]] = true;
     }
     
-    for (var lang_index = 0; lang_index < ds_list_size(Stuff.all_languages); lang_index++) {
-        var lang = Stuff.all_localized_text[$ Stuff.all_languages[| lang_index]];
+    for (var lang_index = 0; lang_index < array_length(Stuff.all_languages); lang_index++) {
+        var lang = Stuff.all_localized_text[$ Stuff.all_languages[lang_index]];
         
         #region data
         for (var i = 0; i < ds_list_size(Stuff.all_data); i++) {
@@ -152,8 +153,8 @@ function language_extract() {
     
     for (var i = 0; i < array_length(existing_key_names); i++) {
         if (existing_keys[$ existing_key_names[i]]) {
-            for (var lang_index = 0; lang_index < ds_list_size(Stuff.all_languages); lang_index++) {
-                variable_struct_remove(Stuff.all_localized_text[$ Stuff.all_languages[| lang_index]], existing_key_names[i]);
+            for (var lang_index = 0; lang_index < array_length(Stuff.all_languages); lang_index++) {
+                variable_struct_remove(Stuff.all_localized_text[$ Stuff.all_languages[lang_index]], existing_key_names[i]);
             }
         }
     }
@@ -164,8 +165,8 @@ function language_extract() {
 function language_refresh_ui() {
     var ui = Stuff.text.ui;
     ui_list_clear(ui.el_language_text);
-    for (var lang_index = 0; lang_index < ds_list_size(Stuff.all_languages); lang_index++) {
-        var lang = Stuff.all_localized_text[$ Stuff.all_languages[| lang_index]];
+    for (var lang_index = 0; lang_index < array_length(Stuff.all_languages); lang_index++) {
+        var lang = Stuff.all_localized_text[$ Stuff.all_languages[lang_index]];
         var all_keys = variable_struct_get_names(lang);
         array_sort(all_keys, true);
         for (var i = 0; i < array_length(all_keys); i++) {
@@ -178,10 +179,10 @@ function language_refresh_ui() {
 }
 
 function language_set_default_text() {
-    var default_lang = Stuff.all_localized_text[$ Stuff.all_languages[| 0]];
+    var default_lang = Stuff.all_localized_text[$ Stuff.all_languages[0]];
     var keys = variable_struct_get_names(default_lang);
-    for (var i = 1; i < ds_list_size(Stuff.all_languages); i++) {
-        var lang = Stuff.all_localized_text[$ Stuff.all_languages[| i]];
+    for (var i = 1; i < array_length(Stuff.all_languages); i++) {
+        var lang = Stuff.all_localized_text[$ Stuff.all_languages[i]];
         for (var j = 0; j < array_length(keys); j++) {
             if (lang[$ keys[j]] == "") lang[$ keys[j]] = default_lang[$ keys[j]];
         }

@@ -59,12 +59,8 @@ function project_save() {
     };
     
     static project_write_text = function() {
-        var lang_json = array_create(ds_list_size(Stuff.all_languages));
-        for (var i = 0, n = ds_list_size(Stuff.all_languages); i < n; i++) {
-            lang_json[i] = Stuff.all_languages[| i];
-        }
         return {
-            langs: lang_json,
+            langs: Stuff.all_languages,
             data: Stuff.all_localized_text,
         };
     };
