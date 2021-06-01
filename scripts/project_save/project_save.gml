@@ -101,14 +101,17 @@ function project_save() {
             minute: current_minute,
             second: current_second,
         },
+        version: ProjectSaveVersions._CURRENT - 1,
     }, true));
     
     file_copy(fn, folder_name + "project" + EXPORT_EXTENSION_PROJECT);
     save_file(folder_name + "data.json", json_stringify({
         data: project_write_json(Stuff.all_data),
+        version: ProjectSaveVersions._CURRENT - 1,
     }));
     save_file(folder_name + "meta.json", json_stringify({
         core: project_write_global(),
+        version: ProjectSaveVersions._CURRENT - 1,
     }));
     save_file(folder_name + "images.json", json_stringify({
         tilesets: project_write_json(Stuff.all_graphic_tilesets),
@@ -119,28 +122,36 @@ function project_save() {
         tile_animations: project_write_json(Stuff.all_graphic_tile_animations),
         etc: project_write_json(Stuff.all_graphic_etc),
         skybox: project_write_json(Stuff.all_graphic_skybox),
+        version: ProjectSaveVersions._CURRENT - 1,
     }));
     save_file(folder_name + "audio.json", json_stringify({
         se: project_write_json(Stuff.all_se),
         bgm: project_write_json(Stuff.all_bgm),
+        version: ProjectSaveVersions._CURRENT - 1,
     }));
     save_file(folder_name + "meshes.json", json_stringify({
         meshes: project_write_json(Stuff.all_meshes),
+        version: ProjectSaveVersions._CURRENT - 1,
     }));
     save_file(folder_name + "meshautotiles.json", json_stringify({
         autotiles: project_write_json(Stuff.all_mesh_autotiles),
+        version: ProjectSaveVersions._CURRENT - 1,
     }));
     save_file(folder_name + "animations.json", json_stringify({
         animations: project_write_json(Stuff.all_animations),
+        version: ProjectSaveVersions._CURRENT - 1,
     }));
     save_file(folder_name + "terrain.json", json_stringify({
         terrain: Stuff.terrain.CreateJSON(),
+        version: ProjectSaveVersions._CURRENT - 1,
     }));
     save_file(folder_name + "text.json", json_stringify({
         lang: project_write_text(),
+        version: ProjectSaveVersions._CURRENT - 1,
     }));
     save_file(folder_name + "events.json", json_stringify({
         events: project_write_json(Stuff.all_events),
+        version: ProjectSaveVersions._CURRENT - 1,
     }));
     
     save_assets(folder_image_name, Stuff.all_graphic_tilesets);
@@ -156,4 +167,9 @@ function project_save() {
     save_assets(folder_mesh_name, Stuff.all_meshes);
     save_assets(folder_mesh_autotile_name, Stuff.all_mesh_autotiles);
     Stuff.terrain.SaveAsset(folder_terrain_name);
+}
+
+enum ProjectSaveVersions {
+    INITIAL                         = 0x01,
+    _CURRENT,
 }
