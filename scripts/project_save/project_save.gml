@@ -25,10 +25,6 @@ function project_save() {
     };
     
     static project_write_global = function() {
-        var const_json = array_create(array_length(Stuff.all_game_constants));
-        for (var i = 0, n = array_length(Stuff.all_game_constants); i < n; i++) {
-            const_json[i] = Stuff.all_game_constants[i].CreateJSON();
-        }
         return {
             id: Stuff.game_asset_id,
             notes: Stuff.game_notes,
@@ -56,7 +52,7 @@ function project_save() {
             },
             switches: Stuff.switches,
             variables: Stuff.variables,
-            constants: const_json,
+            constants: Stuff.all_game_constants,
             triggers: Stuff.all_event_triggers,
             flags: Stuff.all_asset_flags,
         };

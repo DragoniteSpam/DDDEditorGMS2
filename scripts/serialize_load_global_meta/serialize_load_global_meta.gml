@@ -46,7 +46,12 @@ function serialize_load_global_meta(buffer, version) {
     var n_constants = buffer_read(buffer, buffer_u16);
     repeat (n_constants) {
         var what = new DataConstant("");
-        serialize_load_generic(buffer, what, version);
+        
+        what.name = buffer_read(buffer, buffer_string);
+        buffer_read(buffer, buffer_string);
+        what.flags = buffer_read(buffer, buffer_u32);
+        buffer_read(buffer, buffer_datatype);
+        buffer_read(buffer, buffer_string);
         
         what.type = buffer_read(buffer, buffer_u16);
         what.type_guid = buffer_read(buffer, buffer_datatype);
