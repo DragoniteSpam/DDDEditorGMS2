@@ -57,7 +57,7 @@ function dialog_create_settings_data_switches(dialog) {
         var selection = ui_list_selection(base_dialog.el_list);
         if (selection + 1) {
             var sw_data = Stuff.switches[selection];
-            sw_data.name = checkbox.value;
+            sw_data.value = checkbox.value;
             base_dialog.el_list.entries[| selection] = sw_data.name + ": " + Stuff.tf[sw_data.value];
         }
     }, false, dg);
