@@ -48,9 +48,26 @@ function serialize_load_global_meta(buffer, version) {
         
         what.type = buffer_read(buffer, buffer_u16);
         what.type_guid = buffer_read(buffer, buffer_datatype);
-        what.value_real = buffer_read(buffer, buffer_f32);
-        what.value_string = buffer_read(buffer, buffer_string);
-        what.value_guid = buffer_read(buffer, buffer_datatype);
+        var val_real = buffer_read(buffer, buffer_f32);
+        var val_string = buffer_read(buffer, buffer_string);
+        var val_guid = buffer_read(buffer, buffer_datatype);
+        
+        switch (what.type) {
+            case DataTypes.INT:
+            case DataTypes.FLOAT:
+            case DataTypes.BOOL:
+            case DataTypes.ASSET_FLAG:
+            case DataTypes.COLOR:
+                what.value = val_real;
+                break;
+            case DataTypes.STRING:
+            case DataTypes.CODE:
+                what.val = val_string;
+                break;
+            default:
+                what.val = val_guid;
+                break;
+        }
         
         array_push(Stuff.all_game_constants, what);
     }
