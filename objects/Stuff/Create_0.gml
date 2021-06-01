@@ -122,11 +122,11 @@ all_events = ds_list_create();
 all_event_custom = ds_list_create();
 all_event_prefabs = ds_list_create();
 
-switches = ds_list_create();         // [name, value]
-variables = ds_list_create();        // [name, value]
+switches = array_create(BASE_GAME_VARIABLES);                                   // { name, value }
+variables = array_create(BASE_GAME_VARIABLES);                                  // { name, value }
 for (var i = 0; i < BASE_GAME_VARIABLES; i++) {
-    ds_list_add(switches, ["Switch" + string(i), false]);
-    ds_list_add(variables, ["Variable" + string(i), 0]);
+    switches[i] = { name: "Switch" + string(i), value: false };
+    variables[i] = { name: "Variable" + string(i), value: 0 };
 }
 
 all_event_triggers = array_create(FLAG_COUNT, "");

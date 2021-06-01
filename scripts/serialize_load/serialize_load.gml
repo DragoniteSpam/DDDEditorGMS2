@@ -64,8 +64,8 @@ function serialize_load(buffer, filename, proj_name) {
             ds_list_clear(Stuff.all_events);
             // these contain arrays, which are garbage collected and need to be there
             Stuff.all_game_constants = [];
-            ds_list_clear(Stuff.variables);
-            ds_list_clear(Stuff.switches);
+            Stuff.variables = [];
+            Stuff.switches = [];
             // reset the active map
             Stuff.map.active_map = noone;
             // these are garbage collected

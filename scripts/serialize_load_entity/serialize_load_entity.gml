@@ -46,20 +46,20 @@ function serialize_load_entity(buffer, entity, version) {
         serialize_load_move_route(buffer, entity, version);
     }
     
-    ds_list_clear(entity.switches);
-    ds_list_clear(entity.variables);
+    entity.switches = [];
+    entity.variables = [];
     
     var n_variables = buffer_read(buffer, buffer_u8);
     repeat (n_variables) {
-        ds_list_add(entity.switches, buffer_read(buffer, buffer_bool));
-        ds_list_add(entity.variables, buffer_read(buffer, buffer_f32));
+        array_push(entity.switches, buffer_read(buffer, buffer_bool));
+        array_push(entity.variables, buffer_read(buffer, buffer_f32));
     }
     
-    while (ds_list_size(entity.switches) < BASE_SELF_VARIABLES) {
-        ds_list_add(entity.switches, false);
+    while (array_length(entity.switches) < BASE_SELF_VARIABLES) {
+        array_push(entity.switches, false);
     }
-    while (ds_list_size(entity.variables) < BASE_SELF_VARIABLES) {
-        ds_list_add(entity.variables, 0);
+    while (array_length(entity.variables) < BASE_SELF_VARIABLES) {
+        array_push(entity.variables, 0);
     }
     
     var n_generic = buffer_read(buffer, buffer_u8);

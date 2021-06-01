@@ -200,43 +200,44 @@ function draw_event_node(node) {
                     }
                     
                     #region what gets drawn in the Data spot
+                    var str;
                     switch (list_type[i]) {
                         case ConditionBasicTypes.SWITCH:
                             var index = list_index[i];
                             if (index > -1) {
-                                var switch_data = Stuff.switches[| index];
-                                var str = "Switch " + switch_data[0] + " is " + Stuff.on_off[list_value[i]];
+                                var switch_data = Stuff.switches[index];
+                                str = "Switch " + switch_data.name + " is " + Stuff.on_off[list_value[i]];
                             } else {
-                                var str = "Switch data not set";
+                                str = "Switch data not set";
                             }
                             break;
                         case ConditionBasicTypes.VARIABLE:
                             var index = list_index[i];
                             if (index > -1) {
-                                var variable_data = Stuff.variables[| index];
-                                var str = "Variable " + variable_data[0] + " " + Stuff.comparison_text[list_comparison[i]] + " " + string(list_value[i]);
+                                var variable_data = Stuff.variables[index];
+                                str = "Variable " + variable_data.name + " " + Stuff.comparison_text[list_comparison[i]] + " " + string(list_value[i]);
                             } else {
-                                var str = "Variable data not set";
+                                str = "Variable data not set";
                             }
                             break;
                         case ConditionBasicTypes.SELF_SWITCH:
                             var index = list_index[i];
                             if (index > -1) {
-                                var str = "Self switch " + chr(ord("A") + index) + " is " + Stuff.on_off[list_value[i]];
+                                str = "Self switch " + chr(ord("A") + index) + " is " + Stuff.on_off[list_value[i]];
                             } else {
-                                var str = "Self switch data not set";
+                                str = "Self switch data not set";
                             }
                             break;
                         case ConditionBasicTypes.SELF_VARIABLE:
                             var index = list_index[i];
                             if (index > -1) {
-                                var str = "Self variable " + chr(ord("A") + index) + " " + Stuff.comparison_text[list_comparison[i]] + " " + string(list_value[i]);
+                                str = "Self variable " + chr(ord("A") + index) + " " + Stuff.comparison_text[list_comparison[i]] + " " + string(list_value[i]);
                             } else {
-                                var str = "Self variable data not set";
+                                str = "Self variable data not set";
                             }
                             break;
                         case ConditionBasicTypes.SCRIPT:
-                            var str = "Code: " + string_comma(string_length(list_code[i])) + " bytes";
+                            str = "Code: " + string_comma(string_length(list_code[i])) + " bytes";
                         
                             if (node.editor_handle_index == i) {
                                 draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance + rh, x2 - tolerance, entry_yy - tolerance + rh + eh, c, c, c, c, false);

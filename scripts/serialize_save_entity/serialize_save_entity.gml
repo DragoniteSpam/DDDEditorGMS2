@@ -46,12 +46,12 @@ function serialize_save_entity(buffer, entity) {
     }
     
     // these two lists are the same size and won't really be changing sizes
-    var n_variables = ds_list_size(entity.switches);
+    var n_variables = array_length(entity.switches);
     buffer_write(buffer, buffer_u8, n_variables);
     
     for (var i = 0; i < n_variables; i++) {
-        buffer_write(buffer, buffer_bool, entity.switches[| i]);
-        buffer_write(buffer, buffer_f32, entity.variables[| i]);
+        buffer_write(buffer, buffer_bool, entity.switches[i]);
+        buffer_write(buffer, buffer_f32, entity.variables[i]);
     }
     
     var n_generic = ds_list_size(entity.generic_data);

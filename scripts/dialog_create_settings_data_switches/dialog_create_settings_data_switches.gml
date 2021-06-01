@@ -18,17 +18,17 @@ function dialog_create_settings_data_switches(dialog) {
     var yy = 64;
     var yy_start = 64;
     
-    var n_switches = ds_list_size(Stuff.switches);
+    var n_switches = array_length(Stuff.switches);
     var el_list = create_list(32, yy, "Global Switches (" + string(n_switches) + ")", "<no swiches>", ew, eh, 20, function(list) {
         var selection = ui_list_selection(list);
-        var sw_data = Stuff.switches[| selection];
+        var sw_data = Stuff.switches[selection];
         var base_dialog = list.root;
-        ui_input_set_value(base_dialog.el_name, sw_data[0]);
-        base_dialog.el_default.value = sw_data[1];
+        ui_input_set_value(base_dialog.el_name, sw_data.name);
+        base_dialog.el_default.value = sw_data.value;
     }, false, dg);
     for (var i = 0; i < n_switches; i++) {
-        var sw_data = Stuff.switches[| i];
-        create_list_entries(el_list, sw_data[0] + ": " + Stuff.tf[sw_data[1]]);
+        var sw_data = Stuff.switches[i];
+        create_list_entries(el_list, sw_data.name + ": " + Stuff.tf[sw_data.value]);
     }
     el_list.numbered = true;
     dg.el_list = el_list;
@@ -45,9 +45,9 @@ function dialog_create_settings_data_switches(dialog) {
         var base_dialog = input.root;
         var selection = ui_list_selection(base_dialog.el_list);
         if (selection + 1) {
-            var sw_data = Stuff.switches[| selection];
-            sw_data[@ 0] = input.value;
-            base_dialog.el_list.entries[| selection] = sw_data[@ 0] + ": " + Stuff.tf[sw_data[@ 1]];
+            var sw_data = Stuff.switches[selection];
+            sw_data.name = input.value;
+            base_dialog.el_list.entries[| selection] = sw_data.name + ": " + Stuff.tf[sw_data.value];
         }
     }, "", "16 characters", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
     yy += el_name.height + spacing;
@@ -56,9 +56,9 @@ function dialog_create_settings_data_switches(dialog) {
         var base_dialog = checkbox.root;
         var selection = ui_list_selection(base_dialog.el_list);
         if (selection + 1) {
-            var sw_data = Stuff.switches[| selection];
-            sw_data[@ 1] = checkbox.value;
-            base_dialog.el_list.entries[| selection] = sw_data[@ 0] + ": " + Stuff.tf[sw_data[@ 1]];
+            var sw_data = Stuff.switches[selection];
+            sw_data.name = checkbox.value;
+            base_dialog.el_list.entries[| selection] = sw_data.name + ": " + Stuff.tf[sw_data.value];
         }
     }, false, dg);
     yy += el_default.height + spacing;

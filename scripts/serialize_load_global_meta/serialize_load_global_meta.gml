@@ -23,18 +23,20 @@ function serialize_load_global_meta(buffer, version) {
     var n_switches = buffer_read(buffer, buffer_u16);
     var n_variables = buffer_read(buffer, buffer_u16);
     
+    Stuff.switches = array_create(n_switches);
+    Stuff.variables = array_create(n_variables);
     for (var i = 0; i < n_switches; i++) {
-        var sw_data = ["", false];
-        sw_data[0] = buffer_read(buffer, buffer_string);
-        sw_data[1] = buffer_read(buffer, buffer_bool);
-        ds_list_add(Stuff.switches, sw_data);
+        var sw_data = { name: "", value: false };
+        sw_data.name = buffer_read(buffer, buffer_string);
+        sw_data.value = buffer_read(buffer, buffer_bool);
+        Stuff.switches[i] = sw_data;
     }
     
     for (var i = 0; i < n_variables; i++) {
-        var var_data = ["", false];
-        var_data[0] = buffer_read(buffer, buffer_string);
-        var_data[1] = buffer_read(buffer, buffer_f32);
-        ds_list_add(Stuff.variables, var_data);
+        var var_data = { name: "", value: 0 };
+        var_data.name = buffer_read(buffer, buffer_string);
+        var_data.value = buffer_read(buffer, buffer_f32);
+        Stuff.variables[i] = var_data;
     }
     
     for (var i = 0; i < FLAG_COUNT; i++) {

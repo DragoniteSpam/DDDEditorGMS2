@@ -52,12 +52,8 @@ scale_zz = 1;     // f32
 
 object_events = ds_list_create();         // i'm imposing a hard limit of 10 of these
 
-switches = ds_list_create();
-variables = ds_list_create();
-for (var i = 0; i < BASE_SELF_VARIABLES; i++) {
-    ds_list_add(switches, false);
-    ds_list_add(variables, 0);
-}
+switches = array_create(BASE_SELF_VARIABLES, 0);
+variables = array_create(BASE_SELF_VARIABLES, 0);
 
 // options
 direction_fix = true;

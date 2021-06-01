@@ -8,8 +8,6 @@ if (is_static) {
 
 ds_list_destroy_instances(object_events);
 ds_list_destroy_instances(movement_routes);
-ds_list_destroy(switches);
-ds_list_destroy(variables);
 
 refid_remove(id);
 

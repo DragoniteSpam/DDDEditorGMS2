@@ -25,20 +25,6 @@ function project_save() {
     };
     
     static project_write_global = function() {
-        var switch_json = array_create(ds_list_size(Stuff.switches));
-        for (var i = 0, n = ds_list_size(Stuff.switches); i < n; i++) {
-            switch_json[i] = {
-                name: Stuff.switches[| i][0],
-                value: Stuff.switches[| i][1],
-            };
-        }
-        var var_json = array_create(ds_list_size(Stuff.variables));
-        for (var i = 0, n = ds_list_size(Stuff.variables); i < n; i++) {
-            var_json[i] = {
-                name: Stuff.variables[| i][0],
-                value: Stuff.variables[| i][1],
-            };
-        }
         var const_json = array_create(array_length(Stuff.all_game_constants));
         for (var i = 0, n = array_length(Stuff.all_game_constants); i < n; i++) {
             const_json[i] = Stuff.all_game_constants[i].CreateJSON();
@@ -68,8 +54,8 @@ function project_save() {
             title: {
                 map: Stuff.game_title_screen,
             },
-            switches: switch_json,
-            variables: var_json,
+            switches: Stuff.switches,
+            variables: Stuff.variables,
             constants: const_json,
             triggers: Stuff.all_event_triggers,
             flags: Stuff.all_asset_flags,

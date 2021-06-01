@@ -7,7 +7,7 @@ function dialog_create_commit_switches_resize(root) {
         return noone;
     }
     
-    var count = ds_list_size(Stuff.switches);
+    var count = array_length(Stuff.switches);
     
     if (value == count) {
         return noone;
@@ -18,8 +18,8 @@ function dialog_create_commit_switches_resize(root) {
             "Reduce the number of global switches? Anything beyond the new limit will be lost. (If in doubt, leave it alone. The memory footprint is pretty low and there isn't really a consequence to having too many.)",
             function() {
                 var value = real(self.root.root.value);
-                var times = ds_list_size(Stuff.switches) - value;
-                repeat (times) ds_list_pop(Stuff.switches);
+                var times = array_length(Stuff.switches) - value;
+                repeat (times) array_pop(Stuff.switches);
                 
                 var base_dialog = self.root.root.root;
                 if (value <= ui_list_selection(base_dialog.el_list)) {
@@ -36,9 +36,9 @@ function dialog_create_commit_switches_resize(root) {
         );
     }
     
-    for (var i = ds_list_size(Stuff.switches); i < value; i++) {
+    for (var i = array_length(Stuff.switches); i < value; i++) {
         var name = "Switch" + string(i);
-        ds_list_add(Stuff.switches, [name, 0]);
+        array_push(Stuff.switches, { name: name, value: 0 });
         create_list_entries(root.root.el_list, name);
     }
     
