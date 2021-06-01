@@ -8,6 +8,7 @@ function serialize_load_language(buffer, version) {
         Stuff.all_languages[i] = lang_name;
         Stuff.all_localized_text[$ lang_name] = { };
     }
+    Stuff.text.el_language_list.entries = Stuff.all_languages;
     
     var n_keys = buffer_read(buffer, buffer_u32);
     var keys = array_create(n_keys);
