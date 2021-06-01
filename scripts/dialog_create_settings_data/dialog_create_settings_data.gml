@@ -23,7 +23,7 @@ function dialog_create_settings_data(dialog) {
     var el_summary = create_input(col1_x, yy, "Summary:", dw - 64, eh, function(input) {
         Stuff.game_file_summary = input.value;
     }, Stuff.game_file_summary, "Write a short description here", validate_string, 0, 1, 128, vx1, vy1, dw - 32, vy2, dg);
-    el_summary.tooltip = "A quick summary of the game that the data files are to be used for; will be shown in the project list when you open the editor. Has no impact on gameplay (unless you code it to)."
+    el_summary.tooltip = "A quick summary of the game that the data files are to be used for; will be shown in the project list when you open the editor. Has no impact on gameplay (unless you code it to).";
     yy += el_summary.height + spacing;
     
     var yy_base = yy;
@@ -31,7 +31,7 @@ function dialog_create_settings_data(dialog) {
     var el_summary_author = create_input(col1_x, yy, "Author:", ew, eh, function(input) {
         Stuff.game_file_author = input.value;
     }, Stuff.game_file_author, "Author", validate_string, 0, 1, 20, vx1, vy1, vx2, vy2, dg);
-    el_summary_author.tooltip = "The name of the person who made this; will be shown in the project list when you open the editor. Has no impact on gameplay (unless you code it to) and is not a substitute for full game credits."
+    el_summary_author.tooltip = "The name of the person who made this; will be shown in the project list when you open the editor. Has no impact on gameplay (unless you code it to) and is not a substitute for full game credits.";
     yy += el_summary_author.height + spacing;
     
     var el_gameplay_title = create_text(col1_x, yy, "General Gameplay Settings", ew, eh, fa_left, dw / 2, dg);
@@ -50,7 +50,7 @@ function dialog_create_settings_data(dialog) {
     
     var el_graphics_title = create_text(col1_x, yy, "Graphical Settings", ew, eh, fa_left, dw / 2, dg);
     el_graphics_title.color = c_blue;
-    yy += el_graphics_title.height + spacing
+    yy += el_graphics_title.height + spacing;
     
     var el_lighting_buckets = create_input(col1_x, yy, "Lighting levels:", ew, eh, function(input) {
         Stuff.game_lighting_buckets = real(input.value);

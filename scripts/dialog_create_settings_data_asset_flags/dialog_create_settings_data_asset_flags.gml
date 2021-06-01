@@ -32,7 +32,7 @@ function dialog_create_settings_data_asset_flags(dialog) {
     var el_name = create_input(32, yy, "Name:", ew, eh, function(input) {
         var selection = ui_list_selection(input.root.el_list);
         if (selection + 1) {
-            Stuff.all_asset_flags[selection] = input.value;
+            Stuff.all_asset_flags[@ selection] = input.value;
         }
     }, "", "16 characters", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
     ui_input_set_value(el_name, Stuff.all_asset_flags[0]);
