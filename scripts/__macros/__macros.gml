@@ -101,12 +101,12 @@
 #macro mouse_x_view_previous (Controller.mouse_x_previous - view_get_xport(view_current))
 #macro mouse_y_view_previous (Controller.mouse_y_previous - view_get_yport(view_current))
 #macro NULL ""
-#macro PATH_AUTOTILE ".\\autotile\\"
-#macro PATH_GRAPHICS ".\\data\\graphics\\"  // local storage - no leading punctuation - used for opening files
-#macro PATH_LUA ".\\data\\lua\\"
-#macro PATH_PROJECTS ".\\projects\\"
-#macro PATH_TEMP "temp\\"              // local storage - no leading punctuation - used for opening files
-#macro PATH_AUDIO "audio\\"                 // local storage - no leading punctuation - used for opening files
+#macro PATH_AUTOTILE "autotile/"
+#macro PATH_GRAPHICS "data/graphics/"  // local storage - no leading punctuation - used for opening files
+#macro PATH_LUA "data/lua/"
+#macro PATH_PROJECTS "projects/"
+#macro PATH_TEMP "temp/"              // local storage - no leading punctuation - used for opening files
+#macro PATH_AUDIO "audio/"                 // local storage - no leading punctuation - used for opening files
 #macro SERIALIZE_ASSETS 2
 #macro SERIALIZE_DATA 1
 #macro SERIALIZE_DATA_AND_MAP 3

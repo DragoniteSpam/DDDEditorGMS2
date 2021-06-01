@@ -27,8 +27,8 @@ function dialog_create_project_list(root) {
     var f_project_load = function(button) {
         var selected_project = ui_list_selection(button.root.el_list);
         if (selected_project + 1) {
-            var name = button.root.el_list.entries[| selected_project];
-            var path_new = PATH_PROJECTS + name + "\\" + name + ".dddd";
+            var name = button.root.el_list.entries[| selected_project].name;
+            var path_new = PATH_PROJECTS + name + "/" + name + ".dddd";
             if (serialize_load_base(path_new, name)) {
                 dialog_destroy();
             } // else the files could not be loaded
@@ -71,7 +71,7 @@ function dialog_create_project_list(root) {
         ds_list_add(el_list.entries, project_list[i]);
     }
     el_list.tooltip = "Here's a list of projects you've worked on recently.";
-    el_list.entries_are = ListEntries.STRINGS;
+    el_list.entries_are = ListEntries.INSTANCES;
     el_list.ondoubleclick = f_project_load;
     dg.el_list = el_list;
     
@@ -87,14 +87,14 @@ function dialog_create_project_list(root) {
     
     var fbuffer = buffer_create(1600, buffer_fixed, 1);
     for (var i = 0; i < n_projects; i++) {
-        dg.names[i] = project_list[i];
+        dg.names[i] = project_list[i].name;
         dg.strings[i] = "";
         dg.authors[i] = "";
         dg.versions[i] = "";
         dg.timestamp_dates[i] = "";
         dg.timestamp_times[i] = "";
         dg.file_counts[i] = 0;
-        var path_new = PATH_PROJECTS + project_list[i] + "\\" + project_list[i] + ".dddd";
+        var path_new = PATH_PROJECTS + dg.names[i] + "/" + dg.names[i] + ".dddd";
         try {
             buffer_load_partial(fbuffer, path_new, 0, 1600, 0);
             buffer_seek(fbuffer, buffer_seek_start, 0);
@@ -135,14 +135,14 @@ function dialog_create_project_list(root) {
             var dialog = emu_dialog_confirm(button, "Do you want to remove " + project + "? Its autosave files will be deleted, but any files you saved elsewhere on your computer will still be there and you will be able to re-load them later.", function() {
                 var project = self.root.project;
                 var list = Stuff.all_projects[$ "projects"];
-                var name = list[| project];
+                var name = list[| project].name;
                 ds_list_delete(list, project);
                 ui_list_deselect(self.root.root.root.el_list);
                 directory_destroy(PATH_PROJECTS + name);
                 var buffer = buffer_create(32, buffer_grow, 1);
-                buffer_write(buffer, buffer_text, json_stringify(Stuff.all_projects));
+                /*buffer_write(buffer, buffer_text, json_stringify(Stuff.all_projects));
                 buffer_save_ext(buffer, "projects.json", 0, buffer_tell(buffer));
-                buffer_delete(buffer);
+                buffer_delete(buffer);*/
                 self.root.Dispose();
             });
             dialog.project = selected_project;
