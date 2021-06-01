@@ -153,6 +153,10 @@ function project_save() {
         events: project_write_json(Stuff.all_events),
         version: ProjectSaveVersions._CURRENT - 1,
     }));
+    save_file(folder_name + "maps.json", json_stringify({
+        maps: project_write_json(Stuff.all_maps),
+        version: ProjectSaveVersions._CURRENT - 1,
+    }));
     
     save_assets(folder_image_name, Stuff.all_graphic_tilesets);
     save_assets(folder_image_name, Stuff.all_graphic_overworlds);
