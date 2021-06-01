@@ -113,7 +113,7 @@ GetMeshAutotileData = function(x, y, z) {
     if (z < zz - 1) {
         // check the cell above you for a tile, because tiles kinda appear to
         // exist on the layer below where they actually are
-        var what = contents.map_grid[x][y][z + 1][MapCellContents.MESH];
+        what = contents.map_grid[x][y][z + 1][MapCellContents.MESH];
         result = result || (what && what.modification != Modifications.REMOVE);
     }
     
@@ -145,4 +145,39 @@ Remove = function(entity) {
     if (cell[entity.slot] == entity) {
         cell[@ entity.slot] = undefined;
     }
+};
+
+CreateJSONMap = function() {
+    var json = self.CreateJSONBase();
+    json.xx = self.xx;
+    json.yy = self.yy;
+    json.zz = self.zz;
+    json.tiled_map_id = self.tiled_map_id;
+    json.on_grid = self.on_grid;
+    json.tileset = self.tileset;
+    json.is_3d = self.is_3d;
+    json.fog_start = self.fog_start;
+    json.fog_end = self.fog_end;
+    json.fog_enabled = self.fog_enabled;
+    json.fog_colour = self.fog_colour;
+    json.indoors = self.indoors;
+    json.draw_water = self.draw_water;
+    json.water_level = self.water_level;
+    json.reflections_enabled = self.reflections_enabled;
+    json.fast_travel_to = self.fast_travel_to;
+    json.fast_travel_from = self.fast_travel_from;
+    json.base_encounter_rate = self.base_encounter_rate;
+    json.base_encounter_deviation = self.base_encounter_deviation;
+    json.light_enabled = self.light_enabled;
+    json.light_ambient_colour = self.light_ambient_colour;
+    json.light_player_enabled = self.light_player_enabled;
+    json.skybox = self.skybox;
+    json.map_chunk_size = self.map_chunk_size;
+    json.discovery = self.discovery;
+    json.code = self.code;
+    return json;
+};
+
+CreateJSON = function() {
+    return self.CreateJSONMap();
 };
