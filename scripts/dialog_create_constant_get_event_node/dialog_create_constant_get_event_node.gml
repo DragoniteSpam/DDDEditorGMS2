@@ -38,7 +38,7 @@ function dialog_create_constant_get_event_node(dialog) {
             ds_list_add(el_list.entries, event.nodes[| i]);
         }
     }
-    ui_list_select(el_list, ds_list_find_index(el_list.entries, guid_get(constant.value_guid)));
+    ui_list_select(el_list, ds_list_find_index(el_list.entries, guid_get(constant.value)));
     el_list.entries_are = ListEntries.INSTANCES;
     el_list.colorize = false;
     dg.el_list = el_list;
@@ -53,7 +53,7 @@ function dialog_create_constant_get_event_node(dialog) {
         var entrypoint = button.root.el_list.entries[| selection];
         
         if (entrypoint) {
-            constant.value_guid = entrypoint.GUID;
+            constant.value = entrypoint.GUID;
             var constant_dialog = button.root.root.root.root;
             constant_dialog.el_event.text = "Event: " + event.name;
             constant_dialog.el_event_entrypoint.text = "Entrypoint: " + entrypoint.name;

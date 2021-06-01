@@ -1,7 +1,7 @@
 function dialog_create_constant_get_event_entrypoint(dialog, constant) {
     // this is for when you select the Entrypoint button directly, instead of
     // finding it through the Event button
-    var entrypoint = guid_get(constant.value_guid);
+    var entrypoint = guid_get(constant.value);
     var event = entrypoint ? entrypoint.event : noone;
     
     if (!event) {
@@ -53,7 +53,7 @@ function dialog_create_constant_get_event_entrypoint(dialog, constant) {
         var constant = button.root.constant;
         var entrypoint = button.root.el_list.entries[| selection];
         if (entrypoint) {
-            constant.value_guid = entrypoint.GUID;
+            constant.value = entrypoint.GUID;
             var constant_dialog = button.root.root;
             constant_dialog.el_event.text = "Event: " + event.name;
             constant_dialog.el_event_entrypoint.text = "Entrypoint: " + entrypoint.name;
