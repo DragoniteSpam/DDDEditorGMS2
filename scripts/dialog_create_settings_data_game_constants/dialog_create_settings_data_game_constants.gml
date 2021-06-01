@@ -50,27 +50,27 @@ function dialog_create_settings_data_game_constants(root) {
         
         switch (const.type) {
             case DataTypes.INT:
-                const.value_real = floor(const.value_real);
+                const.value = floor(const.value);
                 base_dialog.el_value_int.enabled = true;
-                base_dialog.el_value_int.value = string(const.value_real);
+                base_dialog.el_value_int.value = string(const.value);
                 break;
             case DataTypes.FLOAT:
                 // no need to cast, since anything in here will already be a valid float
                 base_dialog.el_value_real.enabled = true;
-                base_dialog.el_value_real.value = string(const.value_real);
+                base_dialog.el_value_real.value = string(const.value);
                 break;
             case DataTypes.STRING:
                 base_dialog.el_value_string.enabled = true;
-                base_dialog.el_value_string.value = const.value_string;
+                base_dialog.el_value_string.value = const.value;
                 break;
             case DataTypes.BOOL:
-                const.value_real = !!const.value_real;
+                const.value = !!const.value;
                 base_dialog.el_value_bool.enabled = true;
-                base_dialog.el_value_bool.value = const.value_real;
+                base_dialog.el_value_bool.value = const.value;
                 break;
             case DataTypes.CODE:
                 base_dialog.el_value_code.enabled = true;
-                base_dialog.el_value_code.value = const.value_string;
+                base_dialog.el_value_code.value = const.value;
                 break;
             case DataTypes.ENUM:
             case DataTypes.DATA:
@@ -83,7 +83,7 @@ function dialog_create_settings_data_game_constants(root) {
                 ui_list_deselect(list_data);
         
                 if (type && (const.type != type.type)) {
-                    const.value_guid = NULL;
+                    const.value = NULL;
                     const.type_guid = NULL;
                     type = noone;
                 }
@@ -102,7 +102,7 @@ function dialog_create_settings_data_game_constants(root) {
                     // set the data in the data list
                     list_data.entries = (const.type == DataTypes.DATA) ? type.instances : type.properties;
             
-                    var data = guid_get(const.value_guid);
+                    var data = guid_get(const.value);
             
                     if (data) {
                         ui_list_select(list_data, ds_list_find_index(list_data.entries, data), true);
@@ -117,7 +117,7 @@ function dialog_create_settings_data_game_constants(root) {
                 var list = base_dialog.el_value_other;
                 list.entries = Stuff.all_meshes;
                 ui_list_deselect(list);
-                ui_list_select(list, ds_list_find_index(list.entries, guid_get(const.value_guid)), true);
+                ui_list_select(list, ds_list_find_index(list.entries, guid_get(const.value)), true);
                 list.enabled = true;
                 list.index = 0;
                 break;
@@ -125,7 +125,7 @@ function dialog_create_settings_data_game_constants(root) {
                 var list = base_dialog.el_value_other;
                 list.entries = Stuff.all_graphic_tilesets;
                 ui_list_deselect(list);
-                ui_list_select(list, ds_list_find_index(list.entries, guid_get(const.value_guid)), true);
+                ui_list_select(list, ds_list_find_index(list.entries, guid_get(const.value)), true);
                 list.enabled = true;
                 list.index = 0;
                 break;
@@ -136,7 +136,7 @@ function dialog_create_settings_data_game_constants(root) {
                 var list = base_dialog.el_value_other;
                 list.entries = Stuff.all_graphic_tile_animations;
                 ui_list_deselect(list);
-                ui_list_select(list, ds_list_find_index(list.entries, guid_get(const.value_guid)), true);
+                ui_list_select(list, ds_list_find_index(list.entries, guid_get(const.value)), true);
                 list.enabled = true;
                 list.index = 0;
                 break;
@@ -144,7 +144,7 @@ function dialog_create_settings_data_game_constants(root) {
                 var list = base_dialog.el_value_other;
                 list.entries = Stuff.all_bgm;
                 ui_list_deselect(list);
-                ui_list_select(list, ds_list_find_index(list.entries, guid_get(const.value_guid)), true);
+                ui_list_select(list, ds_list_find_index(list.entries, guid_get(const.value)), true);
                 list.enabled = true;
                 list.index = 0;
                 break;
@@ -152,7 +152,7 @@ function dialog_create_settings_data_game_constants(root) {
                 var list = base_dialog.el_value_other;
                 list.entries = Stuff.all_se;
                 ui_list_deselect(list);
-                ui_list_select(list, ds_list_find_index(list.entries, guid_get(const.value_guid)), true);
+                ui_list_select(list, ds_list_find_index(list.entries, guid_get(const.value)), true);
                 list.enabled = true;
                 list.index = 0;
                 break;
@@ -160,7 +160,7 @@ function dialog_create_settings_data_game_constants(root) {
                 var list = base_dialog.el_value_other;
                 list.entries = Stuff.all_animations;
                 ui_list_deselect(list);
-                ui_list_select(list, ds_list_find_index(list.entries, guid_get(const.value_guid)), true);
+                ui_list_select(list, ds_list_find_index(list.entries, guid_get(const.value)), true);
                 list.enabled = true;
                 list.index = 0;
                 break;
@@ -168,7 +168,7 @@ function dialog_create_settings_data_game_constants(root) {
                 var list = base_dialog.el_value_other;
                 list.entries = Stuff.all_maps;
                 ui_list_deselect(list);
-                ui_list_select(list, ds_list_find_index(list.entries, guid_get(const.value_guid)), true);
+                ui_list_select(list, ds_list_find_index(list.entries, guid_get(const.value)), true);
                 list.enabled = true;
                 list.index = 0;
                 break;
@@ -176,7 +176,7 @@ function dialog_create_settings_data_game_constants(root) {
                 var list = base_dialog.el_value_other;
                 list.entries = Stuff.all_graphic_battlers;
                 ui_list_deselect(list);
-                ui_list_select(list, ds_list_find_index(list.entries, guid_get(const.value_guid)), true);
+                ui_list_select(list, ds_list_find_index(list.entries, guid_get(const.value)), true);
                 list.enabled = true;
                 list.index = 0;
                 break;
@@ -184,7 +184,7 @@ function dialog_create_settings_data_game_constants(root) {
                 var list = base_dialog.el_value_other;
                 list.entries = Stuff.all_graphic_overworlds;
                 ui_list_deselect(list);
-                ui_list_select(list, ds_list_find_index(list.entries, guid_get(const.value_guid)), true);
+                ui_list_select(list, ds_list_find_index(list.entries, guid_get(const.value)), true);
                 list.enabled = true;
                 list.index = 0;
                 break;
@@ -192,7 +192,7 @@ function dialog_create_settings_data_game_constants(root) {
                 var list = base_dialog.el_value_other;
                 list.entries = Stuff.all_graphic_particles;
                 ui_list_deselect(list);
-                ui_list_select(list, ds_list_find_index(list.entries, guid_get(const.value_guid)), true);
+                ui_list_select(list, ds_list_find_index(list.entries, guid_get(const.value)), true);
                 list.enabled = true;
                 list.index = 0;
                 break;
@@ -200,7 +200,7 @@ function dialog_create_settings_data_game_constants(root) {
                 var list = base_dialog.el_value_other;
                 list.entries = Stuff.all_graphic_ui;
                 ui_list_deselect(list);
-                ui_list_select(list, ds_list_find_index(list.entries, guid_get(const.value_guid)), true);
+                ui_list_select(list, ds_list_find_index(list.entries, guid_get(const.value)), true);
                 list.enabled = true;
                 list.index = 0;
                 break;
@@ -208,19 +208,19 @@ function dialog_create_settings_data_game_constants(root) {
                 var list = base_dialog.el_value_other;
                 list.entries = Stuff.all_graphic_etc;
                 ui_list_deselect(list);
-                ui_list_select(list, ds_list_find_index(list.entries, guid_get(const.value_guid)), true);
+                ui_list_select(list, ds_list_find_index(list.entries, guid_get(const.value)), true);
                 list.enabled = true;
                 list.index = 0;
                 break;
             case DataTypes.COLOR:
-                const.value_real = c_black;
+                const.value = c_black;
                 base_dialog.el_value_color.enabled = true;
                 base_dialog.el_value_color.value = c_black;
                 break;
             case DataTypes.EVENT:
                 base_dialog.el_event.enabled = true;
                 base_dialog.el_event_entrypoint.enabled = true;
-                var entrypoint = guid_get(const.value_guid);
+                var entrypoint = guid_get(const.value);
                 var event = entrypoint ? entrypoint.event : noone;
                 base_dialog.el_event.text = "Event: " + (event ? event.name : "");
                 base_dialog.el_event_entrypoint.text = "Entrypoint: " + (entrypoint ? entrypoint.name : "");
@@ -290,6 +290,7 @@ function dialog_create_settings_data_game_constants(root) {
         if (selection + 1) {
             var what = Stuff.all_game_constants[selection];
             what.type = option.value;
+            what.value = Stuff.data_type_default_values[option.value];
             option.root.root.function_activate(option.root.root, what);
         }
     }, 0, dg);
@@ -312,7 +313,7 @@ function dialog_create_settings_data_game_constants(root) {
     var el_value_code = create_input_code(col3_x, yy, "Value:", ew, eh, vx1, vy1, vx2, vy2, "", function(input) {
         var selection = ui_list_selection(input.root.el_list);
         if (selection + 1) {
-            Stuff.all_game_constants[selection].value_string = input.value;
+            Stuff.all_game_constants[selection].value = input.value;
         }
     }, dg);
     el_value_code.enabled = false;
@@ -320,7 +321,7 @@ function dialog_create_settings_data_game_constants(root) {
     var el_value_string = create_input(col3_x, yy, "Value:", ew, eh, function(input) {
         var selection = ui_list_selection(input.root.el_list);
         if (selection + 1) {
-            Stuff.all_game_constants[selection].value_string = input.value;
+            Stuff.all_game_constants[selection].value = input.value;
         }
     }, "", "text", validate_string, 0, 1, 160, vx1, vy1, vx2, vy2, dg);
     el_value_string.enabled = false;
@@ -328,7 +329,7 @@ function dialog_create_settings_data_game_constants(root) {
     var el_value_real = create_input(col3_x, yy, "Value:", ew, eh, function(input) {
         var selection = ui_list_selection(input.root.el_list);
         if (selection + 1) {
-            Stuff.all_game_constants[selection].value_real = real(input.value);
+            Stuff.all_game_constants[selection].value = real(input.value);
         }
     }, "0", "number", validate_double, -0x80000000, 0x7fffffff, 10, vx1, vy1, vx2, vy2, dg);
     el_value_real.enabled = false;
@@ -336,7 +337,7 @@ function dialog_create_settings_data_game_constants(root) {
     var el_value_int = create_input(col3_x, yy, "Value:", ew, eh, function(input) {
         var selection = ui_list_selection(input.root.el_list);
         if (selection + 1) {
-            Stuff.all_game_constants[selection].value_real = real(input.value);
+            Stuff.all_game_constants[selection].value = real(input.value);
         }
     }, "0", "int", validate_int, -0x80000000, 0x7fffffff, 11, vx1, vy1, vx2, vy2, dg);
     el_value_int.enabled = false;
@@ -344,7 +345,7 @@ function dialog_create_settings_data_game_constants(root) {
     var el_value_bool = create_checkbox(col3_x, yy, "Value", ew, eh, function(input) {
         var selection = ui_list_selection(input.root.el_list);
         if (selection + 1) {
-            Stuff.all_game_constants[selection].value_real = real(input.value);
+            Stuff.all_game_constants[selection].value = real(input.value);
         }
     }, false, dg);
     el_value_bool.enabled = false;
@@ -352,7 +353,7 @@ function dialog_create_settings_data_game_constants(root) {
     var el_value_color = create_color_picker(col3_x, yy, "Color", ew, eh, function(input) {
         var selection = ui_list_selection(input.root.el_list);
         if (selection + 1) {
-            Stuff.all_game_constants[selection].value_real = real(input.value);
+            Stuff.all_game_constants[selection].value = real(input.value);
         }
     }, c_black, vx1, vy1, vx2, vy2, dg);
     el_value_color.enabled = false;
@@ -364,7 +365,7 @@ function dialog_create_settings_data_game_constants(root) {
             var datadata = list.entries[| ui_list_selection(list.root.el_type_guid)];
             var what = Stuff.all_game_constants[selection];
             what.type_guid = datadata.GUID;
-            what.value_guid = NULL;
+            what.value = NULL;
             var type = guid_get(what.type_guid);
             var list_data = list.root.el_value_data;
             list_data.entries = (what.type == DataTypes.DATA) ? type.instances : type.properties;
@@ -378,7 +379,7 @@ function dialog_create_settings_data_game_constants(root) {
     var el_value_other = create_list(col3_x, yy, "Data:", "<no data>", ew, eh, 20, function(list) {
         var selection = ui_list_selection(list.root.el_list);
         if (selection + 1) {
-            Stuff.all_game_constants[selection].value_guid = list.entries[| ui_list_selection(list)].GUID;
+            Stuff.all_game_constants[selection].value = list.entries[| ui_list_selection(list)].GUID;
         }
     }, false, dg, noone);
     el_value_other.enabled = false;
@@ -388,7 +389,7 @@ function dialog_create_settings_data_game_constants(root) {
     var el_value_data = create_list(col3_x, yy + ui_get_list_height(el_type_guid) + spacing, "Instance:", "<no data>", ew, eh, 8, function(list) {
         var selection = ui_list_selection(list.root.el_list);
         if (selection + 1) {
-            Stuff.all_game_constants[selection].value_guid = list.entries[| ui_list_selection(list)].GUID;
+            Stuff.all_game_constants[selection].value = list.entries[| ui_list_selection(list)].GUID;
         }
     }, false, dg, noone);
     el_value_data.enabled = false;
