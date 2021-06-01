@@ -43,14 +43,6 @@ function project_save() {
         for (var i = 0, n = array_length(Stuff.all_game_constants); i < n; i++) {
             const_json[i] = Stuff.all_game_constants[i].CreateJSON();
         }
-        var trigger_json = array_create(ds_list_size(Stuff.all_event_triggers));
-        for (var i = 0, n = ds_list_size(Stuff.all_event_triggers); i < n; i++) {
-            trigger_json[i] = Stuff.all_event_triggers[| i];
-        }
-        var flag_json = array_create(ds_list_size(Stuff.all_asset_flags));
-        for (var i = 0, n = ds_list_size(Stuff.all_asset_flags); i < n; i++) {
-            flag_json[i] = Stuff.all_asset_flags[| i];
-        }
         return {
             id: Stuff.game_asset_id,
             notes: Stuff.game_notes,
@@ -79,8 +71,8 @@ function project_save() {
             switches: switch_json,
             variables: var_json,
             constants: const_json,
-            triggers: trigger_json,
-            flags: flag_json,
+            triggers: Stuff.all_event_triggers,
+            flags: Stuff.all_asset_flags,
         };
     };
     

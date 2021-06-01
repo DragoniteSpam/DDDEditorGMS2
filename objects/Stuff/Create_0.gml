@@ -129,24 +129,18 @@ for (var i = 0; i < BASE_GAME_VARIABLES; i++) {
     ds_list_add(variables, ["Variable" + string(i), 0]);
 }
 
-all_event_triggers = ds_list_create();
-repeat (FLAG_COUNT) {
-    ds_list_add(all_event_triggers, "");
-}
-all_event_triggers[| 0] = "Action Button";
-all_event_triggers[| 1] = "Player Touch";
-all_event_triggers[| 2] = "Event Touch";
-all_event_triggers[| 3] = "Autorun";
+all_event_triggers = array_create(FLAG_COUNT, "");
+all_event_triggers[0] = "Action Button";
+all_event_triggers[1] = "Player Touch";
+all_event_triggers[2] = "Event Touch";
+all_event_triggers[3] = "Autorun";
 
-all_asset_flags = ds_list_create();
-repeat (FLAG_COUNT) {
-    ds_list_add(all_asset_flags, "");
-}
-all_asset_flags[| 0] = "CollidePlayer";
-all_asset_flags[| 1] = "CollideNPC";
-all_asset_flags[| 2] = "Danger";
-all_asset_flags[| 3] = "Safe";
-all_asset_flags[| 4] = "Water";
+all_asset_flags = array_create(FLAG_COUNT, "");
+all_asset_flags[0] = "CollidePlayer";
+all_asset_flags[1] = "CollideNPC";
+all_asset_flags[2] = "Danger";
+all_asset_flags[3] = "Safe";
+all_asset_flags[4] = "Water";
 
 all_maps = ds_list_create();
 

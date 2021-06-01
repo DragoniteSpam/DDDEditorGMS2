@@ -39,7 +39,7 @@ function dialog_create_game_data_asset_flags(root, index) {
     
     var rows = 24;
     for (var i = 0; i < FLAG_COUNT; i++) {
-        var label = (Stuff.all_asset_flags[| i] == "") ? "<" + string(i) + ">" : Stuff.all_asset_flags[| i];
+        var label = (Stuff.all_asset_flags[i] == "") ? "<" + string(i) + ">" : Stuff.all_asset_flags[i];
         create_bitfield_options_vertical(el_flags, [create_bitfield_option_data(i, function(option, x, y) {
             option.state = option.root.value & (1 << option.value);
             ui_render_bitfield_option_text(option, x, y);
@@ -53,20 +53,20 @@ function dialog_create_game_data_asset_flags(root, index) {
     }
     
     create_bitfield_options_vertical(el_flags, [
-        create_bitfield_option_data(i, function(option, x, y) {
+        create_bitfield_option_data(FLAG_COUNT, function(option, x, y) {
             option.state = (option.root.value == FLAG_MAX_VALUE);
             ui_render_bitfield_option_text(option, x, y);
         }, function(option) {
             option.root.value = FLAG_MAX_VALUE;
             option.root.root.inst.values[| option.root.root.index][| option.root.root.multi_index] = FLAG_MAX_VALUE;
-        }, "All", -1, 0, ew / 2, spacing / 2, ew * (i div rows), 0, color_active, color_inactive),
-        create_bitfield_option_data(i, function(option, x, y) {
+        }, "All", -1, 0, ew / 2, spacing / 2, ew * (FLAG_COUNT div rows), 0, color_active, color_inactive),
+        create_bitfield_option_data(FLAG_COUNT + 1, function(option, x, y) {
             option.state = !option.root.value;
             ui_render_bitfield_option_text(option, x, y);
         }, function(option) {
             option.root.value = 0;
             option.root.root.inst.values[| option.root.root.index][| option.root.root.multi_index] = 0;
-        }, "None", -1, 0, ew / 2, spacing / 2, ew * (i div rows), 0, color_active, color_inactive),
+        }, "None", -1, 0, ew / 2, spacing / 2, ew * ((FLAG_COUNT + 1) div rows), 0, color_active, color_inactive),
     ]);
     
     el_flags.tooltip = "Asset flags can be toggled on or off. Shaded cells are on, while unshaded cells are off.";

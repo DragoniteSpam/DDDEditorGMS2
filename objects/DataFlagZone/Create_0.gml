@@ -90,7 +90,7 @@ zone_edit_script = function(root) {
         // Each element will be positioned based on the one directly above it, so you
         // only need to move them up once otherwise they'll keep moving up the screen
         var field_yy = (i == 16) ? -(eh * 16) : 0;
-        var label = (i >= ds_list_size(Stuff.all_asset_flags)) ? "<" + string(i) + ">" : Stuff.all_asset_flags[| i];
+        var label = (i >= array_length(Stuff.all_asset_flags)) ? "<" + string(i) + ">" : Stuff.all_asset_flags[i];
         create_bitfield_options_vertical(el_asset_flags, [create_bitfield_option_data(i, function(bitfield, x, y) {
             bitfield.state = bitfield.root.value & (1 << bitfield.value);
             ui_render_bitfield_option_text(bitfield, xx, yy);
@@ -102,7 +102,7 @@ zone_edit_script = function(root) {
     }
     
     create_bitfield_options_vertical(el_asset_flags, [
-        create_bitfield_option_data(i, function(bitfield, x, y) {
+        create_bitfield_option_data(32, function(bitfield, x, y) {
             bitfield.state = (base.value == 0xffffffff);
             ui_render_bitfield_option_text(bitfield.root, x, y);
         }, function(bitfield) {
@@ -110,7 +110,7 @@ zone_edit_script = function(root) {
             base.value = 0xffffffff;
             base.onvaluechange(base);
         }, "All", -1, 0, ew / 2, spacing / 2, 0, 0, color_active, color_inactive),
-        create_bitfield_option_data(i, function(bitfield, x, y) {
+        create_bitfield_option_data(33, function(bitfield, x, y) {
             bitfield.state = (bitfield.root.value == 0);
             ui_render_bitfield_option_text(bitfield, x, y);
         }, function(bitfield) {

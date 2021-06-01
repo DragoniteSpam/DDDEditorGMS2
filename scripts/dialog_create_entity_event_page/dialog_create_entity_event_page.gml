@@ -70,25 +70,26 @@ function dialog_create_entity_event_page(argument0) {
 
     yy += el_condition_explanation.height + spacing;
 
-    var yy = 64;
+    yy = 64;
     
     var el_trigger = create_list(c2 + 16, yy, "Trigger Method(s)", "<please define some>", ew, eh, 8, uivc_entity_event_trigger_method, true, dg, Stuff.all_event_triggers);
     el_trigger.select_toggle = true;
     dg.el_trigger = el_trigger;
     
-    for (var i = 0; i < ds_list_size(Stuff.all_event_triggers); i++) {
+    for (var i = 0; i < array_length(Stuff.all_event_triggers); i++) {
         if (page.trigger & (1 << i)) {
             ui_list_select(el_trigger, i);
         }
     }
-
+    
     yy += ui_get_list_height(el_trigger) + spacing;
-
+    
+    var text_event;
     var page_entrypoint = guid_get(page.event_entrypoint);
     if (page_entrypoint) {
-        var text_event = page_entrypoint.event.name + " / " + page_entrypoint.name;
+        text_event = page_entrypoint.event.name + "/" + page_entrypoint.name;
     } else{
-        var text_event = "<not set>";
+        text_event = "<not set>";
     }
 
     var el_event_text = create_text(c2 + 16, yy, "Event and Entrypoint", ew, eh, fa_left, ew, dg);
