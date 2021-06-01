@@ -18,8 +18,7 @@ size_can_be_zero = false;
 default_real = 0;
 default_int = 0;
 default_string = "";
-default_code =
-@"-- write Lua here";
+default_code = "";
 
 CreateJSONProperty = function() {
     var json = self.CreateJSONBase();
