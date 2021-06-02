@@ -165,6 +165,7 @@ CreateJSONBase = function() {
         switches: self.switches,
         variables: self.variables,
         generic_data: self.generic_data,
+        events: self.object_events,
         options: {
             direction_fix: self.direction_fix,
             always_update: self.always_update,
