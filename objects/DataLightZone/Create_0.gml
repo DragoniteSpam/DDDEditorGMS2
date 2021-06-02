@@ -144,11 +144,8 @@ editor_color = c_yellow;
 CreateJSONZoneLights = function() {
     var json = self.CreateJSONZone();
     json.lights = {
-        data: array_create(array_length(self.active_lights)),
+        data: self.active_lights,
     };
-    for (var i = 0, n = array_length(self.active_lights); i < n; i++) {
-        
-    }
     return json;
 };
 
