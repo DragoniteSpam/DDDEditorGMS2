@@ -210,6 +210,13 @@ function buffer_clone(buffer, type, alignment) {
     buffer_copy(buffer, 0, buffer_get_size(buffer), new_buffer, 0);
     return new_buffer;
 }
+
+function buffer_write_file(str, filename) {
+    static buffer = buffer_create(1000, buffer_grow, 1);
+    buffer_seek(buffer, buffer_seek_start, 0);
+    buffer_write(buffer, buffer_text, str);
+    buffer_save_ext(buffer, filename, 0, buffer_tell(buffer));
+}
 #endregion
 
 #region ds_list stuff
