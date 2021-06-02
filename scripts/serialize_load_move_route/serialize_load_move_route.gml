@@ -22,6 +22,7 @@ function serialize_load_move_route(argument0, argument1, argument2) {
 
     repeat (n_steps) {
         var type = buffer_read(buffer, buffer_u16);
+        var data;
     
         switch (type) {
             case MoveRouteActions.MOVE_DOWN:
@@ -33,7 +34,7 @@ function serialize_load_move_route(argument0, argument1, argument2) {
             case MoveRouteActions.MOVE_UPPER_LEFT:
             case MoveRouteActions.MOVE_UPPER_RIGHT:
                 var ext = buffer_read(buffer, buffer_u8);
-                var data = [type, ext];
+                data = [type, ext];
                 break;
             case MoveRouteActions.MOVE_JUMP:
                 var map = buffer_read(buffer, buffer_string);
@@ -41,66 +42,64 @@ function serialize_load_move_route(argument0, argument1, argument2) {
                 var yy = buffer_read(buffer, buffer_u16);
                 var zz = buffer_read(buffer, buffer_u16);
                 var dir = buffer_read(buffer, buffer_u8);
-                var data = [type, map, xx, yy, zz, dir];
+                data = [type, map, xx, yy, zz, dir];
                 break;
             case MoveRouteActions.MOVE_ACTUALLY_JUMP:
                 var height = buffer_read(buffer, buffer_f32);
-                var data = [type, height];
+                data = [type, height];
                 break;
             case MoveRouteActions.WAIT:
                 var t = buffer_read(buffer, buffer_f32);
-                var data = [type, t];
+                data = [type, t];
                 break;
             case MoveRouteActions.SWITCH_ON:
                 var self_switch = buffer_read(buffer, buffer_u8);
-                var data = [type, self_switch];
+                data = [type, self_switch];
                 break;
             case MoveRouteActions.SWITCH_OFF:
                 var self_switch = buffer_read(buffer, buffer_u8);
-                var data = [type, self_switch];
+                data = [type, self_switch];
                 break;
             case MoveRouteActions.CHANGE_SPEED:
                 var spd = buffer_read(buffer, buffer_u8);
-                var data = [type, spd];
+                data = [type, spd];
                 break;
             case MoveRouteActions.CHANGE_FREQUENCY:
                 var frequency = buffer_read(buffer, buffer_u8);
-                var data = [type, frequency];
+                data = [type, frequency];
                 break;
             case MoveRouteActions.CHANGE_GRAPHIC:
                 var graphic = buffer_read(buffer, buffer_datatype);
-                var data = [type, graphic];
+                data = [type, graphic];
                 break;
             case MoveRouteActions.CHANGE_OPACITY:
                 var alpha = buffer_read(buffer, buffer_f32);
-                var data = [type, alpha];
+                data = [type, alpha];
                 break;
             case MoveRouteActions.CHANGE_TINT:
                 var color = buffer_read(buffer, buffer_u8);
-                var data = [type, color];
+                data = [type, color];
                 break;
             case MoveRouteActions.PLAY_SE:
                 var sound = buffer_read(buffer, buffer_datatype);
-                var data = [type, sound];
+                data = [type, sound];
                 break;
             case MoveRouteActions.EVENT:
                 var event = buffer_read(buffer, buffer_datatype);
                 var entrypoint = buffer_read(buffer, buffer_datatype);
-                var data = [type, event, entrypoint];
+                data = [type, event, entrypoint];
                 break;
             case MoveRouteActions.MOVE_TO:
                 var xx = buffer_read(buffer, buffer_u16);
                 var yy = buffer_read(buffer, buffer_u16);
-                var data = [type, xx, yy];
+                data = [type, xx, yy];
                 break;
             default:
-                var data = [type];
+                data = [type];
                 break;
         }
-        ds_list_add(route.steps, data);
+        array_push(route.steps, data);
     }
-
-    move_route_update_buffer(route);
 
 
 }
