@@ -183,6 +183,8 @@ CreateJSONMap = function() {
     json.map_chunk_size = self.map_chunk_size;
     json.discovery = self.discovery;
     json.code = self.code;
+    
+    json.generic_data = self.generic_data;
     return json;
 };
 
