@@ -86,11 +86,12 @@ function serialize_load_map_contents_meta(buffer, version, map_container) {
     #endregion
     
     var n_lights = buffer_read(buffer, buffer_u16);
-    ds_list_clear(map_contents.active_lights);
+    array_resize(map_contents.active_lights, min(MAX_LIGHTS, n_lights));
+    index = 0;
     repeat (n_lights) {
         var data = buffer_read(buffer, buffer_datatype);
-        if (ds_list_size(map_contents.active_lights) < MAX_LIGHTS) {
-            ds_list_add(map_contents.active_lights, data);
+        if (index < MAX_LIGHTS) {
+            map_contents.active_lights[@ index++] = data;
         }
     }
 }

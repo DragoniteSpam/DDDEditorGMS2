@@ -98,10 +98,10 @@ function uivc_entity_effect_com_lighting_type(radio) {
     
     for (var i = 0; i < ds_list_size(list); i++) {
         var effect = list[| i];
-        if (ds_list_find_index(map_contents.active_lights, effect.REFID) == -1) {
+        if (array_search(map_contents.active_lights, effect.REFID) == -1) {
             for (var j = 0; j < MAX_LIGHTS; j++) {
-                if (!refid_get(map_contents.active_lights[| j])) {
-                    map_contents.active_lights[| j] = effect.REFID;
+                if (!refid_get(map_contents.active_lights[j])) {
+                    map_contents.active_lights[@ j] = effect.REFID;
                     break;
                 }
             }

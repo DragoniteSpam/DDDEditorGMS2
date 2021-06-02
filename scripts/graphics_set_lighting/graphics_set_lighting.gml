@@ -11,7 +11,7 @@ function graphics_set_lighting(shader) {
     
     var n = 0;
     for (var i = 0; i < MAX_LIGHTS; i++) {
-        var effect = refid_get(map_contents.active_lights[| i]);
+        var effect = refid_get(map_contents.active_lights[i]);
         if (!effect) continue;
         var data = effect.com_light;
         if (!data) continue;

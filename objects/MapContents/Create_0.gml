@@ -40,10 +40,7 @@ enum MapCellContents {
     _COUNT
 }
 
-active_lights = ds_list_create();
-repeat (MAX_LIGHTS) {
-    ds_list_add(active_lights, noone);
-}
+active_lights = array_create(MAX_LIGHTS, NULL);
 
 ClearFrozenData = function() {
     if (frozen) vertex_delete_buffer(frozen);

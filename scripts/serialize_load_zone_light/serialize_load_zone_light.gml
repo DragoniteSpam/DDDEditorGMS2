@@ -9,12 +9,13 @@ function serialize_load_zone_light(argument0, argument1, argument2) {
 
     serialize_load_zone(buffer, zone, version);
 
-    ds_list_clear(zone.active_lights);
     var n_active = buffer_read(buffer, buffer_u8);
+    array_resize(zone.active_lights, min(n_active, MAX_LIGHTS));
+    var index = 0;
     repeat (n_active) {
         var data = buffer_read(buffer, buffer_datatype);
-        if (ds_list_size(zone.active_lights) < MAX_LIGHTS) {
-            ds_list_add(zone.active_lights, data);
+        if (index < MAX_LIGHTS) {
+            zone.active_lights[@ index++] = data;
         }
     }
 

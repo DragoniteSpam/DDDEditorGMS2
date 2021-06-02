@@ -12,7 +12,6 @@ function dialog_create_map_default_lights(root) {
     var spacing = 16;
     var ew = dw / columns - spacing * 2;
     var eh = 24;
-    var spacing = 16;
     
     var col1_x = dw * 0 / columns + spacing;
     var col2_x = dw * 1 / columns + spacing;
@@ -31,7 +30,7 @@ function dialog_create_map_default_lights(root) {
         var all_selection = ui_list_selection(all_list);
         if (active_selection + 1) {
             ui_list_deselect(all_list);
-            ui_list_select(all_list, ds_list_find_index(all_list.entries, list.entries[| active_selection]), true);
+            ui_list_select(all_list, ds_list_find_index(all_list.entries, list.entries[active_selection]), true);
         }
     }, false, dg, map_contents.active_lights);
     el_light_list.tooltip = "Directional lights will be shown in green. Point lights will be shown in blue. Effects with no light component (i.e. the light component has been removed) will be shown in red. Duplicate entries will be shown in orange. I recommend giving, at the very least, all of your Light entities unique names.";
