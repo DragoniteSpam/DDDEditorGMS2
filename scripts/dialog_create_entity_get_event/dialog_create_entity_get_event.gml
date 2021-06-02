@@ -11,7 +11,7 @@ function dialog_create_entity_get_event(argument0) {
     var list = Stuff.map.selected_entities;
     var entity = list[| 0];
 
-    var page = entity.object_events[| index];
+    var page = entity.object_events[index];
     var dg = dialog_create(dw, dh, "Select Event", dialog_default, dialog_destroy, dialog);
 
     var columns = 1;

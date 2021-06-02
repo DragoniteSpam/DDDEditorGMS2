@@ -24,9 +24,9 @@ function serialize_load_entity_event_page(buffer, entity, version) {
     page.condition_variable_self_comparison = buffer_read(buffer, buffer_u8);
     page.condition_variable_self_value = buffer_read(buffer, buffer_f32);
     
-    var bools = buffer_read(buffer, buffer_u16);
+    bools = buffer_read(buffer, buffer_u16);
     page.trigger = buffer_read(buffer, buffer_u32);
     page.event_entrypoint = buffer_read(buffer, buffer_datatype);
     
-    ds_list_add(entity.object_events, page);
+    array_push(entity.object_events, page);
 }

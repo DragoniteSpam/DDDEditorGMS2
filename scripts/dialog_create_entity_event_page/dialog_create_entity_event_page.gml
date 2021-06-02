@@ -10,7 +10,7 @@ function dialog_create_entity_event_page(argument0) {
     var index = ui_list_selection(Stuff.map.ui.element_entity_events);
     var list = Stuff.map.selected_entities;
     var entity = list[| 0];
-    var page = entity.object_events[| index];
+    var page = entity.object_events[index];
     var dg = dialog_create(dw, dh, "Event Page: " + page.name, dialog_default, dialog_destroy, dialog);
 
     dg.page = page;

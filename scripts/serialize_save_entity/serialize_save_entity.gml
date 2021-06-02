@@ -15,10 +15,10 @@ function serialize_save_entity(buffer, entity) {
     );
     buffer_write(buffer, buffer_u32, entity_bools);
     
-    var n_events = ds_list_size(entity.object_events);
+    var n_events = array_length(entity.object_events);
     buffer_write(buffer, buffer_u8, n_events);
     for (var i = 0; i < n_events; i++) {
-        serialize_save_entity_event_page(buffer, entity.object_events[| i]);
+        serialize_save_entity_event_page(buffer, entity.object_events[i]);
     }
     
     buffer_write(buffer, buffer_f32, entity.off_xx);

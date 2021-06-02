@@ -20,6 +20,10 @@ function array_clone(array) {
     return new_array;
 }
 
+function array_empty(array) {
+    return array_length(array) == 0;
+}
+
 function array_search(array, value) {
     for (var i = 0; i < array_length(array); i++) {
         if (array[i] == value) return i;

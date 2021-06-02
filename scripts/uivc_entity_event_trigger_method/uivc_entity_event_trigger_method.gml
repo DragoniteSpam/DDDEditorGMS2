@@ -1,7 +1,7 @@
 function uivc_entity_event_trigger_method(list) {
     var index = ui_list_selection(Stuff.map.ui.element_entity_events);
     var entity = Stuff.map.selected_entities[| 0];
-    var page = entity.object_events[| index];
+    var page = entity.object_events[index];
     var flag = 0;
     
     for (var i = 0; i < array_length(Stuff.all_event_triggers); i++) {

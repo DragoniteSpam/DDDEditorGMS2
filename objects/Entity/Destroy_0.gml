@@ -6,7 +6,6 @@ if (is_static) {
     Stuff.map.active_map.contents.population_static--;
 }
 
-ds_list_destroy_instances(object_events);
 ds_list_destroy_instances(movement_routes);
 
 refid_remove(id);

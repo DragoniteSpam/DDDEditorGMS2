@@ -50,7 +50,7 @@ scale_xx = 1;     // f32
 scale_yy = 1;     // f32
 scale_zz = 1;     // f32
 
-object_events = ds_list_create();         // i'm imposing a hard limit of 10 of these
+object_events = [];         // i'm imposing a hard limit of 10 of these
 
 switches = array_create(BASE_SELF_VARIABLES, 0);
 variables = array_create(BASE_SELF_VARIABLES, 0);

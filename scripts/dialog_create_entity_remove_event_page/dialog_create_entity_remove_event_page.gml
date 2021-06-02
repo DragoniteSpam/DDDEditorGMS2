@@ -32,7 +32,7 @@ function dialog_create_entity_remove_event_page(argument0, argument1, argument2)
     var yy = 64;
     var yy_base = yy;
 
-    var el_text = create_text(col1_x, yy, "Are you sure you want to delete " + entity.object_events[| index].name + "?", ew, eh, fa_left, ew, dg);
+    var el_text = create_text(col1_x, yy, "Are you sure you want to delete " + entity.object_events[index].name + "?", ew, eh, fa_left, ew, dg);
     el_text.valignment = fa_top;
     yy += el_text.height + spacing;
 

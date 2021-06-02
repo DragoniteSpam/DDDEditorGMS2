@@ -14,7 +14,7 @@ function safc_on_entity_ui(entity) {
     Stuff.map.ui.element_entity_event_remove.interactive = true;
     Stuff.map.ui.element_entity_event_edit.interactive = true;
     
-    if (!ds_list_empty(entity.object_events)) {
+    if (array_empty(entity.object_events)) {
         // this has to be done manually since the list doesn't have an actual
         // list assigned to it (which it may be a good idea to change in the
         // future, but for now this will do)

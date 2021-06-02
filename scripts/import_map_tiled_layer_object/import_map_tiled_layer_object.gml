@@ -270,15 +270,14 @@ function import_map_tiled_layer_object() {
             // arrays don't have a truth value apparently
             if (pr_cutscene_entrypoint != undefined) {
                 var page = undefined;
-                for (var j = 0; j < ds_list_size(instance.object_events); j++) {
-                    if (instance.object_events[| j].trigger = 0x01) {
-                        page = instance.object_events[| j];
+                for (var j = 0; j < array_length(instance.object_events); j++) {
+                    if (instance.object_events[j].trigger == 0x01) {
+                        page = instance.object_events[j];
                         break;
                     }
                 }
                 if (!page) {
-                    page = create_instantiated_event("");
-                    ds_list_add(instance.object_events, page);
+                    array_push(instance.object_events, create_instantiated_event(""));
                 }
                 page.name = "Conversation:" + pr_cutscene_entrypoint[1].name;
                 page.trigger = 0x01;   // action button
@@ -286,15 +285,15 @@ function import_map_tiled_layer_object() {
             }
             if (pr_autorun_entrypoint != undefined) {
                 var page = undefined;
-                for (var j = 0; j < ds_list_size(instance.object_events); j++) {
-                    if (instance.object_events[| j].trigger = 0x08) {
-                        page = instance.object_events[| j];
+                for (var j = 0; j < array_length(instance.object_events); j++) {
+                    if (instance.object_events[j].trigger == 0x08) {
+                        page = instance.object_events[j];
                         break;
                     }
                 }
                 if (!page) {
                     page = create_instantiated_event("");
-                    ds_list_add(instance.object_events, page);
+                    array_push(instance.object_events, page);
                 }
                 page.name = "Autorun:" + pr_autorun_entrypoint[1].name;
                 page.trigger = 0x08;   // autorun
