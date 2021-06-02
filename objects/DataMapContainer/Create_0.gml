@@ -48,7 +48,7 @@ discovery = 0;                              // index
 
 code = Stuff.default_lua_map;               // code
 
-generic_data = ds_list_create();            // similar to that attached to Entities
+generic_data = [];                          // similar to that attached to Entities
 
 ds_list_add(Stuff.all_maps, id);
 

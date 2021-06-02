@@ -8,7 +8,7 @@ function uivc_radio_entity_data_type_ext(argument0) {
     var offset = 0;
     var value = radio.value + offset;
 
-    entity.generic_data[| selection].type = value;
+    entity.generic_data[selection].type = value;
     base_dialog.el_data_type.value = value;
 
     dialog_entity_data_type_disable(base_dialog);

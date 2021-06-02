@@ -7,7 +7,7 @@ function dc_map_data_property_set_data(argument0) {
     var data_index = ui_list_selection(base_dialog.el_list);
 
     if (selection_index + 1) {
-        var data = Stuff.map.active_map.generic_data[| data_index];
+        var data = Stuff.map.active_map.generic_data[data_index];
     
         var list_enum = ds_list_create();
     

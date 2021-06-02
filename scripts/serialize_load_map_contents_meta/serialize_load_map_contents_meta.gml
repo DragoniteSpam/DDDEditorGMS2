@@ -38,6 +38,8 @@ function serialize_load_map_contents_meta(buffer, version, map_container) {
     
     #region generic data
     var n_generic = buffer_read(buffer, buffer_u8);
+    var index = 0;
+    map.generic_data = array_create(n_generic);
     repeat (n_generic) {
         var data = instance_create_depth(0, 0, 0, DataAnonymous);
         
@@ -81,7 +83,7 @@ function serialize_load_map_contents_meta(buffer, version, map_container) {
             case DataTypes.TILE: not_yet_implemented(); break;
         }
         
-        ds_list_add(map.generic_data, data);
+        map.generic_data[@ index++] = data;
     }
     #endregion
     

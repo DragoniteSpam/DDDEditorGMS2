@@ -353,8 +353,8 @@ function import_map_tiled_layer_object() {
                     // value instead of creating a new one, since you're not really supposed to
                     // have duplicate generic properties
                     var data_generic_instance = undefined;
-                    for (var k = 0; k < ds_list_size(instance.generic_data); k++) {
-                        var existing_generic = instance.generic_data[| k];
+                    for (var k = 0; k < array_length(instance.generic_data); k++) {
+                        var existing_generic = instance.generic_data[k];
                         if (string_lower(string_lettersdigits(existing_generic.name)) == string_lower(string_lettersdigits(base_property_name))) {
                             data_generic_instance = existing_generic;
                             break;
@@ -362,9 +362,9 @@ function import_map_tiled_layer_object() {
                     }
                     // otherwise, create one
                     if (!data_generic_instance) {
-                        var data_generic_instance = instance_create_depth(0, 0, 0, DataAnonymous);
+                        data_generic_instance = instance_create_depth(0, 0, 0, DataAnonymous);
                         data_generic_instance.name = base_property_name;
-                        ds_list_add(instance.generic_data, data_generic_instance);
+                        array_push(instance.generic_data, data_generic_instance);
                     }
                     data_generic_instance.value_real = property_value_real;
                     data_generic_instance.value_int = property_value_int;

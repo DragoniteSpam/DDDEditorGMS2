@@ -14,7 +14,6 @@ function dialog_create_select_data_types_ext(root, value, onvaluechange) {
     var b_width = 128;
     var b_height = 32;
     
-    var spacing = 16;
     var n_slots = 14;
     
     var yy = 64;

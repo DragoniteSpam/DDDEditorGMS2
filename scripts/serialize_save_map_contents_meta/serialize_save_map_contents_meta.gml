@@ -41,11 +41,11 @@ function serialize_save_map_contents_meta(buffer) {
     buffer_write(buffer, buffer_string, map.code);
     
     #region generic data
-    var n_generic = ds_list_size(map.generic_data);
+    var n_generic = array_length(map.generic_data);
     buffer_write(buffer, buffer_u8, n_generic);
     
     for (var i = 0; i < n_generic; i++) {
-        var data = map.generic_data[| i];
+        var data = map.generic_data[i];
         buffer_write(buffer, buffer_string, data.name);
         buffer_write(buffer, buffer_u8, data.type);
         

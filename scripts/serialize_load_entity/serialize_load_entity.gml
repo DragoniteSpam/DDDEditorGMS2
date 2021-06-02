@@ -63,6 +63,8 @@ function serialize_load_entity(buffer, entity, version) {
     }
     
     var n_generic = buffer_read(buffer, buffer_u8);
+    var index = 0;
+    entity.generic_data = array_create(n_generic);
     repeat (n_generic) {
         var data = instance_create_depth(0, 0, 0, DataAnonymous);
         
@@ -106,7 +108,7 @@ function serialize_load_entity(buffer, entity, version) {
             case DataTypes.ENTITY: not_yet_implemented(); break;
         }
         
-        ds_list_add(entity.generic_data, data);
+        entity.generic_data[@ index++] = data;
     }
     
     entity.slope = buffer_read(buffer, buffer_u8);

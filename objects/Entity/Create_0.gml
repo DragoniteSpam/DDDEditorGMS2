@@ -62,7 +62,7 @@ preserve_on_save = false;
 reflect = false;
 slope = ATMask.NONE;
 
-generic_data = ds_list_create();
+generic_data = [];
 
 // autonomous movement - only useful for things not marked as "static"
 

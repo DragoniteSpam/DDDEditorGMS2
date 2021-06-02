@@ -4,7 +4,7 @@ function dialog_map_data_enable_by_type(argument0) {
     var dialog = argument0;
     var map = Stuff.map.active_map;
     var selection = ui_list_selection(dialog.el_list);
-    var data = map.generic_data[| selection];
+    var data = map.generic_data[selection];
 
     dialog.el_name.interactive = true;
     ui_input_set_value(dialog.el_name, data.name);
