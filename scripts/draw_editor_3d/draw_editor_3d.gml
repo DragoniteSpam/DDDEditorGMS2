@@ -90,7 +90,7 @@ function draw_editor_3d() {
     // reset the lighting shader after the water has been drawn
     graphics_set_lighting(shd_ddd);
     for (var i = 0; i < ds_list_size(map_contents.dynamic); i++) {
-        map_contents.dynamic[| i].render(ent);
+        map_contents.dynamic[| i].render(map_contents.dynamic[| i]);
     }
     #endregion
     
