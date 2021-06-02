@@ -147,10 +147,7 @@ function dialog_create_project_list(root) {
                 ui_list_deselect(self.root.root.root.el_list);
                 ds_list_delete(self.root.root.root.el_list.entries, self.root.project);
                 directory_destroy(PATH_PROJECTS + project.name);
-                var buffer = buffer_create(32, buffer_grow, 1);
-                buffer_write(buffer, buffer_text, json_stringify(Stuff.all_projects));
-                buffer_save_ext(buffer, "projects.json", 0, buffer_tell(buffer));
-                buffer_delete(buffer);
+                buffer_write_file(json_stringify(Stuff.all_projects), "projects.json");
                 self.root.Dispose();
             });
             dialog.project = selected_project;

@@ -17,13 +17,6 @@ function project_save() {
         }
     };
     
-    static save_file = function(filename, text) {
-        static buffer = buffer_create(1000, buffer_grow, 1);
-        buffer_seek(buffer, buffer_seek_start, 0);
-        buffer_write(buffer, buffer_text, text);
-        buffer_save_ext(buffer, filename, 0, buffer_tell(buffer));
-    };
-    
     static project_write_global = function() {
         return {
             id: Stuff.game_asset_id,
@@ -81,7 +74,7 @@ function project_save() {
     if (!directory_exists(folder_mesh_autotile_name)) directory_create(folder_mesh_autotile_name);
     if (!directory_exists(folder_terrain_name)) directory_create(folder_terrain_name);
     
-    save_file(fn, @"
+    buffer_write_file(@"
 # The project files for " + Stuff.save_name + @" are not stored here.
 # This file simply contains a reference to the ID of the project in local
 # storage. If you would like to archive the project as a whole (e.g. to
@@ -102,18 +95,18 @@ function project_save() {
             second: current_second,
         },
         version: ProjectSaveVersions._CURRENT - 1,
-    }, true));
+    }, true), fn);
     
     file_copy(fn, folder_name + "project" + EXPORT_EXTENSION_PROJECT);
-    save_file(folder_name + "data.json", json_stringify({
+    buffer_write_file(json_stringify({
         data: project_write_json(Stuff.all_data),
         version: ProjectSaveVersions._CURRENT - 1,
-    }));
-    save_file(folder_name + "meta.json", json_stringify({
+    }), folder_name + "data.json");
+    buffer_write_file(json_stringify({
         core: project_write_global(),
         version: ProjectSaveVersions._CURRENT - 1,
-    }));
-    save_file(folder_name + "images.json", json_stringify({
+    }), folder_name + "meta.json");
+    buffer_write_file(json_stringify({
         tilesets: project_write_json(Stuff.all_graphic_tilesets),
         overworlds: project_write_json(Stuff.all_graphic_overworlds),
         battlers: project_write_json(Stuff.all_graphic_battlers),
@@ -123,40 +116,40 @@ function project_save() {
         etc: project_write_json(Stuff.all_graphic_etc),
         skybox: project_write_json(Stuff.all_graphic_skybox),
         version: ProjectSaveVersions._CURRENT - 1,
-    }));
-    save_file(folder_name + "audio.json", json_stringify({
+    }), folder_name + "images.json");
+    buffer_write_file(json_stringify({
         se: project_write_json(Stuff.all_se),
         bgm: project_write_json(Stuff.all_bgm),
         version: ProjectSaveVersions._CURRENT - 1,
-    }));
-    save_file(folder_name + "meshes.json", json_stringify({
+    }), folder_name + "audio.json");
+    buffer_write_file(json_stringify({
         meshes: project_write_json(Stuff.all_meshes),
         version: ProjectSaveVersions._CURRENT - 1,
-    }));
-    save_file(folder_name + "meshautotiles.json", json_stringify({
+    }), folder_name + "meshes.json");
+    buffer_write_file(json_stringify({
         autotiles: project_write_json(Stuff.all_mesh_autotiles),
         version: ProjectSaveVersions._CURRENT - 1,
-    }));
-    save_file(folder_name + "animations.json", json_stringify({
+    }), folder_name + "meshautotiles.json");
+    buffer_write_file(json_stringify({
         animations: project_write_json(Stuff.all_animations),
         version: ProjectSaveVersions._CURRENT - 1,
-    }));
-    save_file(folder_name + "terrain.json", json_stringify({
+    }), folder_name + "animations.json");
+    buffer_write_file(json_stringify({
         terrain: Stuff.terrain.CreateJSON(),
         version: ProjectSaveVersions._CURRENT - 1,
-    }));
-    save_file(folder_name + "text.json", json_stringify({
+    }), folder_name + "terrain.json");
+    buffer_write_file(json_stringify({
         lang: project_write_text(),
         version: ProjectSaveVersions._CURRENT - 1,
-    }));
-    save_file(folder_name + "events.json", json_stringify({
+    }), folder_name + "text.json");
+    buffer_write_file(json_stringify({
         events: project_write_json(Stuff.all_events),
         version: ProjectSaveVersions._CURRENT - 1,
-    }));
-    save_file(folder_name + "maps.json", json_stringify({
+    }), folder_name + "events.json");
+    buffer_write_file(json_stringify({
         maps: project_write_json(Stuff.all_maps),
         version: ProjectSaveVersions._CURRENT - 1,
-    }));
+    }), folder_name + "maps.json");
     
     save_assets(folder_image_name, Stuff.all_graphic_tilesets);
     save_assets(folder_image_name, Stuff.all_graphic_overworlds);
