@@ -32,6 +32,7 @@ function DataValue(name) constructor {
     self.name = name;
     
     self.type = DataTypes.INT;
+    self.value = 0;
     self.value_real = 0;
     self.value_int = 0;
     self.value_string = "";

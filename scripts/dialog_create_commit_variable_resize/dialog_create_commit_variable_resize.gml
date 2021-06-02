@@ -33,7 +33,7 @@ function dialog_create_commit_variable_resize(root) {
     
     for (var i = array_length(Stuff.variables); i < value; i++) {
         var name = "Variable" + string(i);
-        array_push(Stuff.variables, { name: name, value: 0 });
+        array_push(Stuff.variables, new DataValue(name));
         create_list_entries(root.root.el_list, name);
     }
     

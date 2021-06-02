@@ -125,8 +125,8 @@ all_event_prefabs = ds_list_create();
 switches = array_create(BASE_GAME_VARIABLES);                                   // { name, value }
 variables = array_create(BASE_GAME_VARIABLES);                                  // { name, value }
 for (var i = 0; i < BASE_GAME_VARIABLES; i++) {
-    switches[i] = { name: "Switch" + string(i), value: false };
-    variables[i] = { name: "Variable" + string(i), value: 0 };
+    switches[i] = new DataValue("Switch" + string(i));
+    variables[i] = new DataValue("Variable" + string(i));
 }
 
 all_event_triggers = array_create(FLAG_COUNT, "");

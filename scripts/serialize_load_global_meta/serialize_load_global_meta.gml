@@ -26,14 +26,14 @@ function serialize_load_global_meta(buffer, version) {
     Stuff.switches = array_create(n_switches);
     Stuff.variables = array_create(n_variables);
     for (var i = 0; i < n_switches; i++) {
-        var sw_data = { name: "", value: false };
+        var sw_data = new DataValue("");
         sw_data.name = buffer_read(buffer, buffer_string);
         sw_data.value = buffer_read(buffer, buffer_bool);
         Stuff.switches[i] = sw_data;
     }
     
     for (var i = 0; i < n_variables; i++) {
-        var var_data = { name: "", value: 0 };
+        var var_data = new DataValue("");
         var_data.name = buffer_read(buffer, buffer_string);
         var_data.value = buffer_read(buffer, buffer_f32);
         Stuff.variables[i] = var_data;

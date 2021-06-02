@@ -38,7 +38,7 @@ function dialog_create_commit_switches_resize(root) {
     
     for (var i = array_length(Stuff.switches); i < value; i++) {
         var name = "Switch" + string(i);
-        array_push(Stuff.switches, { name: name, value: 0 });
+        array_push(Stuff.switches, new DataValue(name));
         create_list_entries(root.root.el_list, name);
     }
     
