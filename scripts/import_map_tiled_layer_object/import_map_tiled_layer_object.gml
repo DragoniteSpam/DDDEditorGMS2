@@ -362,8 +362,7 @@ function import_map_tiled_layer_object() {
                     }
                     // otherwise, create one
                     if (!data_generic_instance) {
-                        data_generic_instance = instance_create_depth(0, 0, 0, DataAnonymous);
-                        data_generic_instance.name = base_property_name;
+                        data_generic_instance = new DataValue(base_property_name);
                         array_push(instance.generic_data, data_generic_instance);
                     }
                     data_generic_instance.value_real = property_value_real;

@@ -36,10 +36,7 @@ function dialog_create_map_generic_data(root) {
     var el_data_add = create_button(col1_x, yy, "Add Data", ew, eh, fa_center, function(button) {
         var map = Stuff.map.active_map;
         if (array_length(map.generic_data) < 0xff) {
-            var data = instance_create_depth(0, 0, 0, DataAnonymous);
-            data.name = "GenericData" + string(array_length(map.generic_data));
-            array_push(map.generic_data, data);
-            instance_deactivate_object(data);
+            array_push(map.generic_data, new DataValue("GenericData" + string(array_length(map.generic_data))));
         } else {
             emu_dialog_notice("Please don't try to create more than " + string(0xff) + " data types. If you need a lot of generic data grouped together you may want to create a type to represent instantiated enemies instead.");
         }
@@ -53,10 +50,7 @@ function dialog_create_map_generic_data(root) {
         
         if (array_length(map.generic_data) > 0) {
             if (is_clamped(selection, 0, array_length(map.generic_data) - 1)) {
-                var data = map.generic_data[selection];
                 array_delete(map.generic_data, selection, 1);
-                instance_activate_object(data);
-                instance_destroy(data);
             }
             
             // enable by type whatever is currently selected; if the last entry in the

@@ -27,3 +27,17 @@ function DataFile(name, compressed, critical) constructor {
     self.name = name;
     names[$ name] = self;
 }
+
+function DataValue(name) constructor {
+    self.name = name;
+    
+    self.type = DataTypes.INT;
+    self.value_real = 0;
+    self.value_int = 0;
+    self.value_string = "";
+    self.value_bool = false;         // we also use this for u64s
+    self.value_color = c_black;
+    self.value_code = "";
+    self.value_type_guid = NULL;
+    self.value_data = 0;
+}

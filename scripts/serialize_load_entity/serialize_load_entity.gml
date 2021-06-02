@@ -66,9 +66,7 @@ function serialize_load_entity(buffer, entity, version) {
     var index = 0;
     entity.generic_data = array_create(n_generic);
     repeat (n_generic) {
-        var data = instance_create_depth(0, 0, 0, DataAnonymous);
-        
-        data.name = buffer_read(buffer, buffer_string);
+        var data = new DataValue(buffer_read(buffer, buffer_string));
         data.type = buffer_read(buffer, buffer_u8);
         
         switch (data.type) {

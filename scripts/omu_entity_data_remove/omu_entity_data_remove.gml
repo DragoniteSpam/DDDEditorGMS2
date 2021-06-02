@@ -5,10 +5,7 @@ function omu_entity_data_remove(button) {
 
     if (array_length(entity.generic_data) > 0) {
         if (is_clamped(selection, 0, array_length(entity.generic_data) - 1)) {
-            var data = entity.generic_data[selection];
             array_delete(entity.generic_data, selection, 1);
-            instance_activate_object(data);
-            instance_destroy(data);
         }
         
         ui_list_deselect(button.root.el_data_list);
