@@ -1,43 +1,37 @@
-/// @param Dialog
-/// @param DataMoveRoute
-function dialog_create_entity_move_route(argument0, argument1) {
-
-    var dialog = argument0;
-    var route = argument1;
-
+function dialog_create_entity_move_route(dialog, route) {
     var dw = 1024;
     var dh = 560;
-
+    
     // you can assume that this is valid data because this won't be called otherwise
     var list = Stuff.map.selected_entities;
     var entity = list[| 0];
     var dg = dialog_create(dw, dh, "Edit Move Route", dialog_default, dialog_destroy, dialog);
     dg.route = route;
-
+    
     var columns = 4;
     var spacing = 16;
     var spacing2 = 0;
     var ew = dw / columns - spacing * 2;
     var eh = 24;
     var eh2 = 20;
-
+    
     var c2 = dw / columns;
     var c3 = dw * 2 / columns;
     var c4 = dw * 3 / columns;
-
+    
     var vx1 = ew / 2;
     var vy1 = 0;
     var vx2 = ew;
     var vy2 = eh;
-
+    
     var yy = 64;
-
+    
     var n = 10;
-
+    
     var el_name = create_input(16, yy, "Name:", ew * 2, eh, uivc_entity_move_route_name, route.name, "", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2 + c2, vy2, dg);
-
+    
     yy += el_name.height + spacing;
-
+    
     var yy_grid = yy;
 
     var el_steps = create_list(16, yy, "Steps: ", "<No move route steps>", ew, eh2, n, null, false, dg);

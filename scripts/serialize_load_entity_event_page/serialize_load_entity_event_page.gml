@@ -1,6 +1,10 @@
 function serialize_load_entity_event_page(buffer, entity, version) {
-    var page = create_instantiated_event("");
-    serialize_load_generic(buffer, page, version);
+    var page = new InstantiatedEvent(buffer_read(buffer, buffer_string));
+    
+    buffer_read(buffer, buffer_string);
+    buffer_read(buffer, buffer_u32);
+    buffer_read(buffer, buffer_datatype);
+    buffer_read(buffer, buffer_string);
     
     var bools = buffer_read(buffer, buffer_u16);
     page.enabled = unpack(bools, 0);

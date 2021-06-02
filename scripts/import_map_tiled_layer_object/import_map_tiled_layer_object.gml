@@ -277,7 +277,7 @@ function import_map_tiled_layer_object() {
                     }
                 }
                 if (!page) {
-                    array_push(instance.object_events, create_instantiated_event(""));
+                    array_push(instance.object_events, new InstantiatedEvent(""));
                 }
                 page.name = "Conversation:" + pr_cutscene_entrypoint[1].name;
                 page.trigger = 0x01;   // action button
@@ -292,8 +292,7 @@ function import_map_tiled_layer_object() {
                     }
                 }
                 if (!page) {
-                    page = create_instantiated_event("");
-                    array_push(instance.object_events, page);
+                    array_push(instance.object_events, new InstantiatedEvent(""));
                 }
                 page.name = "Autorun:" + pr_autorun_entrypoint[1].name;
                 page.trigger = 0x08;   // autorun

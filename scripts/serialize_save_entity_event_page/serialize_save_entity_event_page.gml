@@ -33,7 +33,7 @@ function serialize_save_entity_event_page(argument0, argument1) {
     buffer_write(buffer, buffer_u8, event.condition_variable_self_comparison);
     buffer_write(buffer, buffer_f32, event.condition_variable_self_value);
 
-    var bools = 0;
+    bools = 0;
 
     // more future-proofing
     buffer_write(buffer, buffer_u16, bools);
