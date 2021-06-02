@@ -147,6 +147,14 @@ Remove = function(entity) {
     }
 };
 
+SaveAsset = function(directory) {
+    directory += "/";
+    var guid = string_replace(self.GUID, ":", "_");
+    if (!directory_exists(directory + guid)) {
+        directory_create(directory + guid);
+    }
+};
+
 CreateJSONMap = function() {
     var json = self.CreateJSONBase();
     json.xx = self.xx;
