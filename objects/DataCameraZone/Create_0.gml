@@ -146,3 +146,18 @@ editor_color = c_blue;
 /* s */ camera_angle = 45;                              // f32
 /* s */ camera_easing_method = AnimationTweens.LINEAR;  // u8
 /* s */ camera_easing_time = 1;                         // f32
+
+CreateJSONZoneCamera = function() {
+    var json = self.CreateJSONZone();
+    json.camera = {
+        distance: self.distance,
+        angle: self.angle,
+        easing: self.camera_easing_method,
+        time: self.camera_easing_time,
+    };
+    return json;
+};
+
+CreateJSON = function() {
+    return self.CreateJSONZoneCamera();
+};

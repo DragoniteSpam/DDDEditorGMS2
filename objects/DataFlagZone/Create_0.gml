@@ -148,3 +148,15 @@ editor_color = c_green;
 /* s */ ztype = MapZoneTypes.FLAG;
 
 zone_flags = 0;
+
+CreateJSONZoneFlags = function() {
+    var json = self.CreateJSONZone();
+    json.flags = {
+        flag: self.zone_flags,
+    };
+    return json;
+};
+
+CreateJSON = function() {
+    return self.CreateJSONZoneFlags();
+};

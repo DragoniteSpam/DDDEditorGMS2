@@ -60,3 +60,22 @@ Render = function() {
     vertex_submit(Stuff.graphics.indexed_cage_full, pr_trianglelist, -1);
     shader_reset();
 };
+
+CreateJSONZone = function() {
+    return {
+        bounds: {
+            x1: self.x1,
+            y1: self.y1,
+            z1: self.z1,
+            x2: self.x2,
+            y2: self.y2,
+            z2: self.z2,
+        },
+        type: self.ztype,
+        priority: self.zone_priority,
+    };
+};
+
+CreateJSON = function() {
+    return self.CreateJSONZone();
+};

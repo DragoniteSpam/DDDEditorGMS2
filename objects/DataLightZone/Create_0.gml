@@ -143,3 +143,18 @@ editor_color = c_yellow;
 repeat (MAX_LIGHTS) {
     ds_list_add(active_lights, noone);
 }
+
+CreateJSONZoneLights = function() {
+    var json = self.CreateJSONZone();
+    json.lights = {
+        data: array_create(ds_list_size(self.active_lights)),
+    };
+    for (var i = 0, n = ds_list_size(self.active_lights); i < n; i++) {
+        
+    }
+    return json;
+};
+
+CreateJSON = function() {
+    return self.CreateJSONZoneLights();
+};
