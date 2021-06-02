@@ -148,19 +148,29 @@ Remove = function(entity) {
 };
 
 SaveAsset = function(directory) {
+    if (!self.contents) return;
     directory += "/" + string_replace(self.GUID, ":", "_") + "/";
-    if (!directory_exists(directory)) {
-        directory_create(directory);
+    if (!directory_exists(directory)) directory_create(directory);
+    
+    #region zones
+    var zone_meta = {
+        zones: array_create(ds_list_size(self.contents.all_zones)),
     }
-    if (self.contents) {
-        var zone_meta = {
-            zones: array_create(ds_list_size(self.contents.all_zones)),
-        }
-        for (var i = 0, n = ds_list_size(self.contents.all_zones); i < n; i++) {
-            zone_meta.zones[i] = self.contents.all_zones[| i].CreateJSON();
-        }
-        buffer_write_file(json_stringify(zone_meta), directory + "zones.json");
+    for (var i = 0, n = ds_list_size(self.contents.all_zones); i < n; i++) {
+        zone_meta.zones[i] = self.contents.all_zones[| i].CreateJSON();
     }
+    buffer_write_file(json_stringify(zone_meta), directory + "zones.json");
+    #endregion
+    
+    #region entities
+    var entity_meta = {
+        entities: array_create(ds_list_size(self.contents.all_entities)),
+    };
+    for (var i = 0, n = ds_list_size(self.contents.all_entities); i < n; i++) {
+        entity_meta.entities[i] = self.contents.all_entities[| i].REFID;
+    }
+    buffer_write_file(json_stringify(entity_meta), directory + "entities.json");
+    #endregion
 };
 
 CreateJSONMap = function() {
