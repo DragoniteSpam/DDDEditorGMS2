@@ -67,8 +67,7 @@ autonomous_movement = AutonomousMovementTypes.FIXED;
 autonomous_movement_speed = 3;                            // 0: 0.125, 1: 0.25, 2: 0.5, 3: 1, 4: 2, 5: 4
 autonomous_movement_frequency = 2;                        // 0 through 4
 autonomous_movement_route = NULL;
-
-movement_routes = [];                                                           // list of DataMovementRoutes
+movement_routes = [];                                                           // array of MoveRoute structs
 
 enum AutonomousMovementTypes {
     FIXED,
@@ -172,12 +171,14 @@ CreateJSONBase = function() {
             preserve: self.preserve_on_save,
             reflect: self.reflect,
             slope: self.slope,
+            is_static: self.is_static,
         },
         autonomous: {
-            movement_type: self.autonomous_movement,
-            movement_speed: self.autonomous_movement_speed,
-            movement_frequency: self.autonomous_movement_frequency,
-            movement_route: self.autonomous_movement_route,
+            type: self.autonomous_movement,
+            speed: self.autonomous_movement_speed,
+            frequency: self.autonomous_movement_frequency,
+            route: self.autonomous_movement_route,
+            routes: self.movement_routes,
         },
     };
 };
