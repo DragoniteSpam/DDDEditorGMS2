@@ -38,11 +38,11 @@ function serialize_save_entity(buffer, entity) {
     buffer_write(buffer, buffer_u8, entity.autonomous_movement_frequency);
     buffer_write(buffer, buffer_datatype, entity.autonomous_movement_route);
     
-    var n_move_routes = ds_list_size(entity.movement_routes);
+    var n_move_routes = array_length(entity.movement_routes);
     buffer_write(buffer, buffer_u8, n_move_routes);
     
     for (var i = 0; i < n_move_routes; i++) {
-        serialize_save_move_route(buffer, entity.movement_routes[| i]);
+        serialize_save_move_route(buffer, entity.movement_routes[i]);
     }
     
     // these two lists are the same size and won't really be changing sizes

@@ -8,7 +8,7 @@ function serialize_load_move_route(argument0, argument1, argument2) {
     var version = argument2;
 
     var route = instance_create_depth(0, 0, 0, DataMoveRoute);
-    ds_list_add(entity.movement_routes, route);
+    array_push(entity.movement_routes, route);
 
     serialize_load_generic(buffer, route, version);
 

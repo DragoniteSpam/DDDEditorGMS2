@@ -70,7 +70,7 @@ autonomous_movement_speed = 3;                            // 0: 0.125, 1: 0.25, 
 autonomous_movement_frequency = 2;                        // 0 through 4
 autonomous_movement_route = NULL;
 
-movement_routes = ds_list_create();             // list of DataMovementRoutes
+movement_routes = [];                                                           // list of DataMovementRoutes
 
 enum AutonomousMovementTypes {
     FIXED,

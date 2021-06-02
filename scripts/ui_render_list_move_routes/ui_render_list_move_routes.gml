@@ -10,16 +10,16 @@ function ui_render_list_move_routes(argument0, argument1, argument2) {
     argument0.entries = argument0.root.entity.movement_routes;
     ds_list_clear(argument0.entry_colors);
 
-    for (var i = 0; i < ds_list_size(argument0.entries); i++) {
+    for (var i = 0; i < array_length(argument0.entries); i++) {
         var is_drawn = false;
         for (var j = 0; j < array_length(visible_things); j++) {
-            if (visible_things[j] == argument0.entries[| i].GUID) {
+            if (visible_things[j] == argument0.entries[i].GUID) {
                 is_drawn = true;
                 break;
             }
         }
     
-        if (argument0.entries[| i].GUID == argument0.root.entity.autonomous_movement_route) {
+        if (argument0.entries[i].GUID == argument0.root.entity.autonomous_movement_route) {
             // drawn and autonomous
             if (is_drawn) {
                 ds_list_add(argument0.entry_colors, c_purple);
