@@ -168,6 +168,7 @@ SaveAsset = function(directory) {
     };
     for (var i = 0, n = ds_list_size(self.contents.all_entities); i < n; i++) {
         entity_meta.entities[i] = self.contents.all_entities[| i].REFID;
+        self.contents.all_entities[| i].SaveAsset(directory);
     }
     buffer_write_file(json_stringify(entity_meta), directory + "entities.json");
     #endregion

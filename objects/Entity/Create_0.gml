@@ -65,7 +65,6 @@ slope = ATMask.NONE;
 generic_data = [];
 
 // autonomous movement - only useful for things not marked as "static"
-
 autonomous_movement = AutonomousMovementTypes.FIXED;
 autonomous_movement_speed = 3;                            // 0: 0.125, 1: 0.25, 2: 0.5, 3: 1, 4: 2, 5: 4
 autonomous_movement_frequency = 2;                        // 0 through 4
@@ -140,9 +139,55 @@ SetStatic = function(state) {
 };
 
 SaveAsset = function(directory) {
-    directory += "/";
+    directory = self.GetSaveAssetName(directory);
+    buffer_write_file(json_stringify(self.CreateJSON()), directory);
+};
+
+CreateJSONBase = function() {
+    return {
+        position: {
+            x: self.xx,
+            y: self.yy,
+            z: self.zz,
+        },
+        offset: {
+            x: self.off_xx,
+            y: self.off_yy,
+            z: self.off_zz,
+        },
+        rotation: {
+            x: self.rot_xx,
+            y: self.rot_yy,
+            z: self.rot_zz,
+        },
+        scale: {
+            x: self.scale_xx,
+            y: self.scale_yy,
+            z: self.scale_zz,
+        },
+        switches: self.switches,
+        variables: self.variables,
+        generic_data: self.generic_data,
+        options: {
+            direction_fix: self.direction_fix,
+            always_update: self.always_update,
+            preserve: self.preserve_on_save,
+            reflect: self.reflect,
+            slope: self.slope,
+        },
+        autonomous: {
+            movement_type: self.autonomous_movement,
+            movement_speed: self.autonomous_movement_speed,
+            movement_frequency: self.autonomous_movement_frequency,
+            movement_route: self.autonomous_movement_route,
+        },
+    };
+};
+
+CreateJSON = function() {
+    return self.CreateJSONBase();
 };
 
 GetSaveAssetName = function(directory) {
-    return directory + "/" + string_replace_all(self.refid, ":", "_") + ".ass";
+    return directory + string_replace_all(self.REFID, ":", "_") + ".ass";
 };
