@@ -148,17 +148,19 @@ Remove = function(entity) {
 };
 
 SaveAsset = function(directory) {
-    directory += "/" + guid + string_replace(self.GUID, ":", "_");
+    directory += "/" + string_replace(self.GUID, ":", "_") + "/";
     if (!directory_exists(directory)) {
         directory_create(directory);
     }
-    var zone_meta = {
-        zones: array_create(ds_list_size(self.contents.all_zones)),
+    if (self.contents) {
+        var zone_meta = {
+            zones: array_create(ds_list_size(self.contents.all_zones)),
+        }
+        for (var i = 0, n = ds_list_size(self.contents.all_zones); i < n; i++) {
+            zone_meta.zones[i] = self.contents.all_zones[| i].CreateJSON();
+        }
+        buffer_write_file(json_stringify(zone_meta), directory + "zones.json");
     }
-    for (var i = 0, n = ds_list_size(self.contents.all_zones); i < n; i++) {
-        zone_meta.zones[i] = self.contents.all_zones[| i].CreateJSON();
-    }
-    buffer_write_file(json_stringify(zone_meta), directory + "zones.json");
 };
 
 CreateJSONMap = function() {

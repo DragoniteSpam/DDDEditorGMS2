@@ -56,7 +56,7 @@ function serialize_save_map_contents_batch(buffer) {
             buffer_delete(chunk);
         }
         vertex_delete_buffer(vbuffer);
-        var vbuffer = exported[i].reflected;
+        vbuffer = exported[i].reflected;
         if (vertex_get_number(vbuffer) > 0) {
             buffer_write(buffer, buffer_u16, i >> 24);
             buffer_write(buffer, buffer_u16, i & 0xffffff);

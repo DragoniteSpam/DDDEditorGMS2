@@ -150,8 +150,8 @@ editor_color = c_blue;
 CreateJSONZoneCamera = function() {
     var json = self.CreateJSONZone();
     json.camera = {
-        distance: self.distance,
-        angle: self.angle,
+        distance: self.camera_distance,
+        angle: self.camera_angle,
         easing: self.camera_easing_method,
         time: self.camera_easing_time,
     };
