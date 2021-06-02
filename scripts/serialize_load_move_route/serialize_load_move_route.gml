@@ -7,10 +7,13 @@ function serialize_load_move_route(argument0, argument1, argument2) {
     var entity = argument1;
     var version = argument2;
 
-    var route = instance_create_depth(0, 0, 0, DataMoveRoute);
+    var route = new MoveRoute(buffer_read(buffer, buffer_string));
     array_push(entity.movement_routes, route);
 
-    serialize_load_generic(buffer, route, version);
+    buffer_read(buffer, buffer_string);
+    buffer_read(buffer, buffer_u32);
+    buffer_read(buffer, buffer_datatype);
+    buffer_read(buffer, buffer_string);
 
     var bools = buffer_read(buffer, buffer_u16);
 
