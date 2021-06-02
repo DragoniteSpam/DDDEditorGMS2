@@ -15,7 +15,7 @@ function dialog_create_entity_get_event_entrypoint(argument0, argument1) {
     var index = ui_list_selection(Stuff.map.ui.element_entity_events);
     var list = Stuff.map.selected_entities;
     var entity = list[| 0];
-    var page = entity.object_events[| index];
+    var page = entity.object_events[index];
 
     var dg = dialog_create(dw, dh, "Select entrypoint: " + event.name, dialog_default, dialog_destroy, dialog);
 
