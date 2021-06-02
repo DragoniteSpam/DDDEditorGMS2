@@ -12,42 +12,6 @@ function MoveRoute() {
     self.steps = [];
 };
 
-function move_route_make_visible(entity, route) {
-    var n = array_length(entity.visible_routes);
-    
-    // are you already visible?
-    for (var i = 0; i < n; i++) {
-        if (entity.visible_routes[i] == route.GUID) return;
-    }
-    
-    // are there any open slots?
-    for (var i = 0; i < n; i++) {
-        if (!guid_get(entity.visible_routes[i])) {
-            entity.visible_routes[i] = route.GUID;
-            return;
-        }
-    }
-    
-    // shift everything down
-    for (var i = 0; i < n - 1; i++) {
-        entity.visible_routes[i] = entity.visible_routes[i + 1];
-    }
-    
-    entity.visible_routes[n - 1] = route.GUID;
-}
-
-function move_route_make_invisible(entity, route) {
-    var n = array_length(entity.visible_routes);
-    
-    // are you already visible?
-    for (var i = 0; i < n; i++) {
-        if (entity.visible_routes[i] == route.GUID) {
-            entity.visible_routes[i] = 0;
-            return;
-        }
-    }
-}
-
 enum MoveRouteActions {
     MOVE_DOWN,                  // [id, u8 distance]
     MOVE_LEFT,                  // [id, u8 distance]

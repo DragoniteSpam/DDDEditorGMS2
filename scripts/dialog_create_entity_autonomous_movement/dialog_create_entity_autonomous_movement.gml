@@ -43,8 +43,7 @@ function dialog_create_entity_autonomous_movement(argument0) {
     yy = 64;
     var n = 8;
 
-    var el_move_routes = create_list(col2_x, yy, "Move Routes", "<No move routes>", ew, eh, n, null, false, dg);
-    el_move_routes.render = ui_render_list_move_routes;
+    var el_move_routes = create_list(col2_x, yy, "Move Routes", "<No move routes>", ew, eh, n, null, false, dg, entity.movement_routes);
     el_move_routes.entries_are = ListEntries.INSTANCES;
     el_move_routes.ondoubleclick = omu_entity_edit_move_route;
     yy += ui_get_list_height(el_move_routes) + spacing;
@@ -63,10 +62,6 @@ function dialog_create_entity_autonomous_movement(argument0) {
     var el_move_route_auto_remove = create_button(col2_x + ew / 2, yy, "Delete Auto", ew / 2, eh, fa_center, omu_entity_remove_auto_move_route, dg);
     yy += el_move_route_auto_remove.height + spacing;
 
-    var el_move_route_make_visible = create_button(col2_x, yy, "Show", ew / 2, eh, fa_center, omu_entity_move_route_make_visible, dg);
-    var el_move_route_make_invisible = create_button(col2_x + ew / 2, yy, "Hide", ew / 2, eh, fa_center, omu_entity_move_route_make_invisible, dg);
-    yy += el_move_route_make_invisible.height + spacing;
-
     var b_width = 128;
     var b_height = 32;
     var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
@@ -81,8 +76,6 @@ function dialog_create_entity_autonomous_movement(argument0) {
         el_move_route_delete,
         el_move_route_auto,
         el_move_route_auto_remove,
-        el_move_route_make_visible,
-        el_move_route_make_invisible,
         el_confirm
     );
 

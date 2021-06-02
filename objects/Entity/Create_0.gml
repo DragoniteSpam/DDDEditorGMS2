@@ -9,8 +9,6 @@ tmx_id = 0;
 
 Stuff.map.active_map.contents.population[ETypes.ENTITY]++;
 
-visible_routes = array_create(MAX_VISIBLE_MOVE_ROUTES);
-
 // for fusing all static objects such as ground tiles and houses together,
 // so the computer doesn't waste time drawing every single visible Entity
 // individually

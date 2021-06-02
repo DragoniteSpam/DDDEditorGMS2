@@ -4,7 +4,6 @@
 function ui_render_list_move_routes(argument0, argument1, argument2) {
 
     var oldentries = argument0.entries;
-    var visible_things = argument0.root.entity.visible_routes;
     argument0.colorize = true;
 
     argument0.entries = argument0.root.entity.movement_routes;
