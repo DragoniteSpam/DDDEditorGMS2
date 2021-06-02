@@ -138,3 +138,11 @@ SetCollisionTransform = function() {
 SetStatic = function(state) {
     return false;
 };
+
+SaveAsset = function(directory) {
+    directory += "/";
+};
+
+GetSaveAssetName = function(directory) {
+    return directory + "/" + string_replace_all(self.refid, ":", "_") + ".ass";
+};
