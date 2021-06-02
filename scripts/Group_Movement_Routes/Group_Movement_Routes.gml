@@ -1,4 +1,6 @@
-function MoveRoute() {
+function MoveRoute(name) constructor {
+    self.name = name;
+    
     self.repeat_action = false;
     self.skip = true;
     self.wait = true;
