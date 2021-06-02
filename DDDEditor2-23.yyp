@@ -1593,7 +1593,6 @@
     {"id":{"name":"DataInstantiated","path":"objects/DataInstantiated/DataInstantiated.yy",},"order":4,},
     {"id":{"name":"spr_emu_not_found","path":"sprites/spr_emu_not_found/spr_emu_not_found.yy",},"order":14,},
     {"id":{"name":"ui_particle_type_direction_min_auto_360","path":"scripts/ui_particle_type_direction_min_auto_360/ui_particle_type_direction_min_auto_360.yy",},"order":92,},
-    {"id":{"name":"DataMoveRoute","path":"objects/DataMoveRoute/DataMoveRoute.yy",},"order":14,},
     {"id":{"name":"DataAnimation","path":"objects/DataAnimation/DataAnimation.yy",},"order":0,},
     {"id":{"name":"DataAnimLayer","path":"objects/DataAnimLayer/DataAnimLayer.yy",},"order":1,},
     {"id":{"name":"DataAnimKeyframe","path":"objects/DataAnimKeyframe/DataAnimKeyframe.yy",},"order":2,},
