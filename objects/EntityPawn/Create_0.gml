@@ -33,3 +33,16 @@ batch = null;                     // you don't batch pawns
 render = render_pawn;
 selector = select_single;
 on_select_ui = safc_on_pawn_ui;
+
+CreateJSONPawn = function() {
+    var json = self.CreateJSONBase();
+    json.pawn = {
+        direction: self.map_direction,
+        sprite: self.overworld_sprite,
+    };
+    return json;
+};
+
+CreateJSON = function() {
+    return self.CreateJSONPawn();
+};
