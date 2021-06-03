@@ -58,7 +58,8 @@ function project_save() {
         };
     };
     
-    var folder_name = PATH_PROJECTS + Stuff.game_asset_id + "/";
+    var t0 = get_timer();
+    var folder_name = PATH_PROJECTS + Stuff.game_asset_id + "_" + md5_string_utf8(fn) + "/";
     var folder_audio_name = folder_name + PROJECT_PATH_AUDIO;
     var folder_image_name = folder_name + PROJECT_PATH_IMAGE;
     var folder_map_name = folder_name + PROJECT_PATH_MAP;
@@ -165,6 +166,8 @@ function project_save() {
     save_assets(folder_mesh_autotile_name, Stuff.all_mesh_autotiles);
     save_assets(folder_map_name, Stuff.all_maps);
     Stuff.terrain.SaveAsset(folder_terrain_name);
+    
+    wtf("Saving took " + string((get_timer() - t0) / 1000) + " ms");
 }
 
 enum ProjectSaveVersions {
