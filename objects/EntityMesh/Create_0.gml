@@ -106,3 +106,23 @@ GetTexture = function() {
     var def_texture = Settings.view.texture ? sprite_get_texture(get_active_tileset().picture, 0) : sprite_get_texture(b_tileset_textureless, 0);
     return (mesh_data && guid_get(mesh_data.tex_base)) ? sprite_get_texture(guid_get(mesh_data.tex_base).picture, 0) : def_texture;
 };
+
+CreateJSONMesh = function() {
+    var json = self.CreateJSONBase();
+    json.mesh = {
+        mesh: self.mesh,
+        submesh: self.mesh_submesh,
+        animation: {
+            animated: self.animated,
+            index: self.animation_index,
+            type: self.animation_type,
+            speed: self.animation_speed,
+            end_action: self.animation_end_action,
+        },
+    };
+    return json;
+};
+
+CreateJSON = function() {
+    return self.CreateJSONMesh();
+};
