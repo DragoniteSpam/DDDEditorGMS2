@@ -47,3 +47,18 @@ batch_collision = batch_collision_tile;
 render = render_tile;
 selector = select_single;
 on_select_ui = safc_on_tile_ui;
+
+CreateJSONTile = function() {
+    var json = self.CreateJSONBase();
+    json.tile = {
+        x: self.tile_x,
+        y: self.tile_y,
+        color: self.tile_color,
+        alpha: self.tile_alpha,
+    };
+    return json;
+};
+
+CreateJSON = function() {
+    return self.CreateJSONTile();
+};
