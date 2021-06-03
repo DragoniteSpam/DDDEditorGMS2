@@ -14,3 +14,20 @@ light_cutoff = 45;
 light_dx = 0;
 light_dy = 0;
 light_dz = -1;
+
+CreateJSONSpotLight = function() {
+    var json = self.CreateJSONComponent();
+    json.light = {
+        color: self.light_color,
+        radius: self.light_radius,
+        cutoff: self.light_cutoff,
+        dx: self.dx,
+        dy: self.dy,
+        dz: self.dz,
+    };
+    return json;
+};
+
+CreateJSON = function() {
+    return self.CreateJSONSpotLight();
+};
