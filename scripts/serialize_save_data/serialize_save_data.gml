@@ -9,7 +9,6 @@ function serialize_save_data() {
         
         Stuff.save_name = string_replace(filename_name(fn), EXPORT_EXTENSION_DATA, "");
         var proj_name = filename_change_ext(filename_name(fn), "");
-        setting_project_add(proj_name);
         
         game_auto_title();
         

@@ -49,7 +49,6 @@ function serialize_load_base(fn, project_name) {
             }
             
             if (outcome) {
-                setting_project_add(project_name);
                 game_auto_title();
                 Stuff.save_name = project_name;
                 

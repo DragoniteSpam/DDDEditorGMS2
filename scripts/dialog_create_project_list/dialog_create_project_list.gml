@@ -27,19 +27,23 @@ function dialog_create_project_list(root) {
     var f_project_load = function(button) {
         var selected_project = ui_list_selection(button.root.el_list);
         if (selected_project + 1) {
-            var name = button.root.el_list.entries[| selected_project];
-            var path_new = PATH_PROJECTS + name + "/" + name + ".dddd";
-            if (serialize_load_base(path_new, name)) {
-                dialog_destroy();
-            } // else the files could not be loaded
-            // un-register the mouse
-            Controller.mouse_left = false;
-            Controller.press_left = false;
-            Controller.release_left = false;
-            Controller.double_left = false;
-            Controller.time_left = -1;
-            Controller.last_time_left = -1;
-            Controller.ignore_next = 1;
+            var project = Stuff.all_projects.projects[selected_project];
+            if (project.legacy) {
+                var name = project.name;
+                var path_new = PATH_PROJECTS + name + "/" + name + ".dddd";
+                if (serialize_load_base(path_new, name)) {
+                    dialog_destroy();
+                } // else the files could not be loaded
+                // un-register the mouse
+                Controller.mouse_left = false;
+                Controller.press_left = false;
+                Controller.release_left = false;
+                Controller.double_left = false;
+                Controller.time_left = -1;
+                Controller.last_time_left = -1;
+                Controller.ignore_next = 1;
+                return;
+            }
         }
     };
     
@@ -70,7 +74,11 @@ function dialog_create_project_list(root) {
         if (is_string(project_list[i])) {
             project_list[@ i] = { name: project_list[i], legacy: true, id: "", };
         }
-        ds_list_add(el_list.entries, project_list[i].name);
+        if (project_list[@ i].legacy) {
+            ds_list_add(el_list.entries, project_list[i].name);
+        } else {
+            ds_list_add(el_list.entries, filename_change_ext(filename_name(project_list[i].name), ""));
+        }
     }
     el_list.tooltip = "Here's a list of projects you've worked on recently.";
     el_list.entries_are = ListEntries.STRINGS;
