@@ -22,6 +22,22 @@ com_light = noone;
 com_particle = noone;
 com_audio = noone;
 
+CreateJSONEffect = function() {
+    var json = self.CreateJSONBase();
+    json.effects = {
+        com: {
+            light: self.com_light ? self.com_light.CreateJSON() : undefined,
+            particle: self.com_particle ? self.com_particle.CreateJSON() : undefined,
+            audio: self.com_audio ? self.com_audio.CreateJSON() : undefined,
+        },
+    };
+    return json;
+};
+
+CreateJSON = function() {
+    return self.CreateJSONEffect();
+};
+
 // editor garbage
 cobject_x_axis = instance_create_depth(0, 0, 0, ComponentAxis);
 cobject_y_axis = instance_create_depth(0, 0, 0, ComponentAxis);
