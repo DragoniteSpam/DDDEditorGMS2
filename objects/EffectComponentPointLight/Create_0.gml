@@ -10,3 +10,16 @@ label_colour = c_blue;
 // specific
 light_colour = c_white;
 light_radius = 255;
+
+CreateJSONPointLight = function() {
+    var json = self.CreateJSONComponent();
+    json.light = {
+        color: self.light_color,
+        radius: self.light_radius,
+    };
+    return json;
+};
+
+CreateJSON = function() {
+    return self.CreateJSONPointLight();
+};
