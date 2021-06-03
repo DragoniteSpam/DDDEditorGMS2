@@ -6,7 +6,11 @@ function serialize_save_entity_event_page(argument0, argument1) {
     var event = argument1;
 
     // name, guid, flags
-    serialize_save_generic(buffer, event);
+    buffer_write(buffer, buffer_string, event.name);
+    buffer_write(buffer, buffer_string, "");
+    buffer_write(buffer, buffer_u32, 0);
+    buffer_write(buffer, buffer_datatype, NULL);
+    buffer_write(buffer, buffer_string, "");
 
     var bools = pack(event.enabled,
         event.condition_switch_global_enabled,
