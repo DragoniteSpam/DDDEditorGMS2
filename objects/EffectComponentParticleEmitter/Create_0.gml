@@ -9,3 +9,15 @@ particle_type = ParticleTypes.NONE;
 // specific
 
 instance_deactivate_object(id);
+
+CreateJSONParticle = function() {
+    var json = self.CreateJSONComponent();
+    json.particle = {
+        type: self.particle_type,
+    };
+    return json;
+};
+
+CreateJSON = function() {
+    return self.CreateJSONParticle();
+};
