@@ -166,11 +166,15 @@ SaveAsset = function(directory) {
     var entity_meta = {
         entities: array_create(ds_list_size(self.contents.all_entities)),
     };
+    var entity_data = {
+        entities: array_create(ds_list_size(self.contents.all_entities)),
+    };
     for (var i = 0, n = ds_list_size(self.contents.all_entities); i < n; i++) {
         entity_meta.entities[i] = self.contents.all_entities[| i].REFID;
-        self.contents.all_entities[| i].SaveAsset(directory);
+        entity_data.entities[i] = self.contents.all_entities[| i].CreateJSON(directory);
     }
     buffer_write_file(json_stringify(entity_meta), directory + "entities.json");
+    buffer_write_file(json_stringify(entity_data), directory + "entities.ass");
     #endregion
 };
 
