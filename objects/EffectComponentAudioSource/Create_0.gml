@@ -9,3 +9,15 @@ audio_type = AudioTypes.NONE;
 // specific
 
 instance_deactivate_object(id);
+
+CreateJSONAudio = function() {
+    var json = self.CreateJSONComponent();
+    json.audio = {
+        type: self.audio_type,
+    };
+    return json;
+};
+
+CreateJSON = function() {
+    return self.CreateJSONAudio();
+};
