@@ -85,6 +85,7 @@ function project_save() {
 
 " + snap_to_yaml({
         id: Stuff.game_asset_id,
+        md5: md5_string_utf8(fn),
         summary: Stuff.game_file_summary,
         author: Stuff.game_file_author,
         date: {
