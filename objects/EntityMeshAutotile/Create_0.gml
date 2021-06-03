@@ -46,3 +46,17 @@ is_static = true;
 SetStatic = function(state) {
     return false;
 };
+
+CreateJSONMeshAT = function() {
+    var json = self.CreateJSONMesh();
+    json.mesh_at = {
+        id: self.terrain_id,
+        type: self.terrain_type,
+        autotile_id: self.autotile_id,
+    };
+    return json;
+};
+
+CreateJSON = function() {
+    return self.CreateJSONMeshAT();
+};
