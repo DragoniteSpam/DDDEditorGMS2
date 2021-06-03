@@ -14,3 +14,18 @@ light_dz = -1;
 light_colour = c_white;
 
 instance_deactivate_object(id);
+
+CreateJSONDirectionalLight = function() {
+    var json = self.CreateJSONComponent();
+    json.light = {
+        color: self.light_color,
+        dx: self.dx,
+        dy: self.dy,
+        dz: self.dz,
+    };
+    return json;
+};
+
+CreateJSON = function() {
+    return self.CreateJSONDirectionalLight();
+};
