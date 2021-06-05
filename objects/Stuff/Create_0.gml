@@ -9,7 +9,6 @@ default_lua_event_page_condition = file_get_contents(PATH_LUA + "event-page-cond
 default_lua_event_node_conditional = file_get_contents(PATH_LUA + "event-node-conditional.lua");
 default_lua_event_script = file_get_contents(PATH_LUA + "event-script.lua");
 default_lua_animation = file_get_contents(PATH_LUA + "animation.lua");
-default_lua_effect_common = file_get_contents(PATH_LUA + "global-effect-common.lua");
 
 // local storage folders
 
