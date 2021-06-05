@@ -59,34 +59,34 @@ function dialog_create_settings_data(dialog) {
     yy += el_lighting_default_ambient.height + spacing;
     
     var el_screen_width = create_input(col1_x, yy, "Screen Width:", ew, eh, function(input) {
-        Stuff.game_screen_base_width = real(input.value);
-    }, Stuff.game_screen_base_width, "signed short int", validate_int, -0x10000, 0xffff, 6, vx1, vy1, vx2, vy2, dg);
+        Game.screen.width = real(input.value);
+    }, Game.screen.width, "signed short int", validate_int, -0x10000, 0xffff, 6, vx1, vy1, vx2, vy2, dg);
     el_screen_width.tooltip = "How you want the game to be scaled. If you are making a game that is primarily pixel art, you may want to use a base resolution such as 640x360 or 320x180. Set these to -1 if you do not want scaling.";
     dg.el_screen_width = el_screen_width;
     yy += el_screen_width.height + spacing;
     
     var el_screen_height = create_input(col1_x, yy, "Screen Height:", ew, eh, function(input) {
-        Stuff.game_screen_base_height = real(input.value);
-    }, Stuff.game_screen_base_height, "signed short int", validate_int, -0x10000, 0xffff, 6, vx1, vy1, vx2, vy2, dg);
+        Game.screen.height = real(input.value);
+    }, Game.screen.height, "signed short int", validate_int, -0x10000, 0xffff, 6, vx1, vy1, vx2, vy2, dg);
     el_screen_height.tooltip = el_screen_width.tooltip;
     dg.el_screen_height = el_screen_height;
     yy += el_screen_height.height + spacing;
     
     var el_screen_full = create_button(col1_x, yy, "Full", ew / 3, eh, fa_center, function(button) {
-        Stuff.game_screen_base_width = -1;
-        Stuff.game_screen_base_height = -1;
+        Game.screen.width = -1;
+        Game.screen.height = -1;
         ui_input_set_value(button.root.el_screen_width, "-1");
         ui_input_set_value(button.root.el_screen_height, "-1");
     }, dg);
     var el_screen_320 = create_button(col1_x + ew / 3, yy, "320x180", ew / 3, eh, fa_center, function(button) {
-        Stuff.game_screen_base_width = 320;
-        Stuff.game_screen_base_height = 180;
+        Game.screen.width = 320;
+        Game.screen.height = 180;
         ui_input_set_value(button.root.el_screen_width, "320");
         ui_input_set_value(button.root.el_screen_height, "180");
     }, dg);
     var el_screen_640 = create_button(col1_x + ew * 2 / 3, yy, "640x360", ew / 3, eh, fa_center, function(button) {
-        Stuff.game_screen_base_width = 640;
-        Stuff.game_screen_base_height = 360;
+        Game.screen.width = 640;
+        Game.screen.height = 360;
         ui_input_set_value(button.root.el_screen_width, "640");
         ui_input_set_value(button.root.el_screen_height, "360");
     }, dg);

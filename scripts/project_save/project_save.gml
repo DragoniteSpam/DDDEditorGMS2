@@ -36,8 +36,8 @@ function project_save() {
                 player_snap: Game.grid.snap,
             },
             base_screen: {
-                width: Stuff.game_screen_base_width,
-                height: Stuff.game_screen_base_height,
+                width: Game.screen.width,
+                height: Game.screen.height,
             },
             title: {
                 map: Game.game_title_screen,

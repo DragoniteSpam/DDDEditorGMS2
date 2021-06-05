@@ -17,8 +17,8 @@ function serialize_load_global_meta(buffer, version) {
     var bools = buffer_read(buffer, buffer_u32);
     Game.grid.snap = unpack(bools, 0);
     
-    Stuff.game_screen_base_width = buffer_read(buffer, buffer_s16);
-    Stuff.game_screen_base_height = buffer_read(buffer, buffer_s16);
+    Game.screen.width = buffer_read(buffer, buffer_s16);
+    Game.screen.height = buffer_read(buffer, buffer_s16);
     
     var n_switches = buffer_read(buffer, buffer_u16);
     var n_variables = buffer_read(buffer, buffer_u16);

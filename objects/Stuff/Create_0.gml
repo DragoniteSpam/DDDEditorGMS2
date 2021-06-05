@@ -373,9 +373,6 @@ data_image_npc_frames(default_pawn);
 #endregion
 
 #region global game settings
-game_screen_base_width = -1;
-game_screen_base_height = -1;
-
 game_common_effect_code = default_lua_effect_common;
 
 game_asset_lists = ds_list_create();

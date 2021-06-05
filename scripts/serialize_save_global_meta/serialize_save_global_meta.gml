@@ -18,8 +18,8 @@ function serialize_save_global_meta(buffer) {
     var bools = pack(Game.grid.snap);
     buffer_write(buffer, buffer_u32, bools);
     
-    buffer_write(buffer, buffer_s16, Stuff.game_screen_base_width);
-    buffer_write(buffer, buffer_s16, Stuff.game_screen_base_height);
+    buffer_write(buffer, buffer_s16, Game.screen.width);
+    buffer_write(buffer, buffer_s16, Game.screen.height);
     
     var n_switches = array_length(Game.switches);
     var n_variables = array_length(Game.variables);

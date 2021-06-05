@@ -20,8 +20,8 @@ function project_load(id) {
         Game.grid.chunk_size =        json.core.grid.chunk_size;
         Game.grid.snap =                json.core.grid.player_snap;
         
-        Stuff.game_screen_base_width =          json.core.base_screen.width;
-        Stuff.game_screen_base_height =         json.core.base_screen.height;
+        Game.screen.width =          json.core.base_screen.width;
+        Game.screen.height =         json.core.base_screen.height;
         
         Game.game_title_screen =               json.core.title.map;
         

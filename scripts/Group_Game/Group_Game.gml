@@ -30,7 +30,11 @@ Game = {
     },
     lighting: {
         ambient: c_white,
-    }
+    },
+    screen: {
+        width: -1,
+        height: -1,
+    },
 };
 
 for (var i = 0; i < BASE_GAME_VARIABLES; i++) {
