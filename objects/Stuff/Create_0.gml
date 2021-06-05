@@ -121,19 +121,6 @@ all_events = ds_list_create();
 all_event_custom = ds_list_create();
 all_event_prefabs = ds_list_create();
 
-all_event_triggers = array_create(FLAG_COUNT, "");
-all_event_triggers[0] = "Action Button";
-all_event_triggers[1] = "Player Touch";
-all_event_triggers[2] = "Event Touch";
-all_event_triggers[3] = "Autorun";
-
-all_asset_flags = array_create(FLAG_COUNT, "");
-all_asset_flags[0] = "CollidePlayer";
-all_asset_flags[1] = "CollideNPC";
-all_asset_flags[2] = "Danger";
-all_asset_flags[3] = "Safe";
-all_asset_flags[4] = "Water";
-
 all_maps = ds_list_create();
 
 all_bgm = ds_list_create();

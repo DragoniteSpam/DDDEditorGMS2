@@ -4,7 +4,7 @@ function uivc_entity_event_trigger_method(list) {
     var page = entity.object_events[index];
     var flag = 0;
     
-    for (var i = 0; i < array_length(Stuff.all_event_triggers); i++) {
+    for (var i = 0; i < array_length(Game.all_event_triggers); i++) {
         if (ui_list_is_selected(list, i)) {
             flag = flag | (1 << i);
         }

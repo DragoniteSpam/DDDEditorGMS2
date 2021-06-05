@@ -29,8 +29,8 @@ function project_load(id) {
         Game.switches =                        json.core.switches;
         Game.variables =                       json.core.variables;
         Stuff.all_game_constants =              json.core.constants;
-        Stuff.all_event_triggers =              json.core.triggers;
-        Stuff.all_asset_flags =                 json.core.flags;
+        Game.all_event_triggers =              json.core.triggers;
+        Game.all_asset_flags =                 json.core.flags;
     };
     
     static project_load_images = function(filename) {
