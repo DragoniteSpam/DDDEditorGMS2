@@ -1,37 +1,60 @@
 function project_load(id) {
     #region helper functions
     static project_load_data = function(filename) {
-        
+        var json = json_parse(buffer_read_file(filename));
+        var version = json.version;
+        var data = json.data;
     };
     
     static project_load_global = function(filename) {
         var json = json_parse(buffer_read_file(filename));
+        var version = json.version;
         Game.meta = json.meta;
         Game.vars = json.vars;
     };
     
     static project_load_images = function(filename) {
-        
+        var json = json_parse(buffer_read_file(filename));
+        var version = json.version;
+        var tilesets = json.tilesets;
+        var overworlds = json.overworlds;
+        var battlers = json.battlers;
+        var particles = json.particles;
+        var ui = json.ui;
+        var tile_animations = json.tile_animations;
+        var etc = json.etc;
+        var skybox = json.skybox;
     };
     
     static project_load_audio = function(filename) {
-        
+        var json = json_parse(buffer_read_file(filename));
+        var version = json.version;
+        var se = json.se;
+        var bgm = json.bgm;
     };
     
     static project_load_meshes = function(filename) {
-        
+        var json = json_parse(buffer_read_file(filename));
+        var version = json.version;
+        var meshes = json.meshes;
     };
     
     static project_load_meshat = function(filename) {
-        
+        var json = json_parse(buffer_read_file(filename));
+        var version = json.version;
+        var autotiles = json.autotiles;
     };
     
     static project_load_animations = function(filename) {
-        
+        var json = json_parse(buffer_read_file(filename));
+        var version = json.version;
+        var animations = json.animations;
     };
     
     static project_load_terrain = function(filename) {
-        
+        var json = json_parse(buffer_read_file(filename));
+        var version = json.version;
+        var terrain = json.terrain;
     };
     
     static project_load_text = function(filename) {
@@ -43,11 +66,15 @@ function project_load(id) {
     };
     
     static project_load_events = function(filename) {
-        
+        var json = json_parse(buffer_read_file(filename));
+        var version = json.version;
+        var events = json.events;
     };
     
     static project_load_maps = function(filename) {
-        
+        var json = json_parse(buffer_read_file(filename));
+        var version = json.version;
+        var maps = json.maps;
     };
     #endregion
     var folder_name = PATH_PROJECTS + id + "/";
