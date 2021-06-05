@@ -10,7 +10,7 @@ function serialize_save_global_meta(buffer) {
     buffer_write(buffer, buffer_u8, Stuff.game_starting_direction);
     buffer_write(buffer, buffer_f32, Stuff.game_lighting_buckets);
     buffer_write(buffer, buffer_u32, Stuff.game_lighting_default_ambient);
-    buffer_write(buffer, buffer_string, Stuff.game_asset_id);
+    buffer_write(buffer, buffer_string, Stuff.project.id);
     buffer_write(buffer, buffer_u16, Stuff.game_base_map_chunk_size);
     
     buffer_write(buffer, buffer_string, Stuff.game_common_effect_code);
@@ -55,7 +55,7 @@ function serialize_save_global_meta(buffer) {
         buffer_write(buffer, buffer_datatype, what.value_guid);
     }
     
-    buffer_write(buffer, buffer_string, Stuff.game_notes);
+    buffer_write(buffer, buffer_string, Stuff.project.notes);
     
     for (var i = 0; i < FLAG_COUNT; i++) {
         buffer_write(buffer, buffer_string, Stuff.all_asset_flags[i]);

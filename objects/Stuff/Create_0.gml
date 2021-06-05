@@ -10,7 +10,13 @@ default_lua_event_node_conditional = file_get_contents(PATH_LUA + "event-node-co
 default_lua_event_script = file_get_contents(PATH_LUA + "event-script.lua");
 default_lua_animation = file_get_contents(PATH_LUA + "animation.lua");
 default_lua_effect_common = file_get_contents(PATH_LUA + "global-effect-common.lua");
-game_asset_id = string_hex(irandom(0xffffffff), 8);
+
+project = {
+    notes: "",
+    summary: "Write a short summary in Global Game Settings",
+    author: "Who made this?",
+    id: string_hex(irandom(0xffffffff), 8),
+}
 
 // local storage folders
 
@@ -410,10 +416,6 @@ game_screen_base_height = -1;
 game_base_map_chunk_size = 32;
 
 game_common_effect_code = default_lua_effect_common;
-
-game_notes = "";
-game_file_summary = "Write a short summary in Global Game Settings";
-game_file_author = "Who made this?";
 
 game_asset_lists = ds_list_create();
 var file_default = new DataFile("data", false, true);

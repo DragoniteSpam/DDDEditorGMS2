@@ -5,7 +5,7 @@ function guid_remove(guid) {
 function guid_generate() {
     var n;
     do {
-        n = Stuff.game_asset_id + ":" + string_hex(Stuff.guid_current++, 8);
+        n = Stuff.project.id + ":" + string_hex(Stuff.guid_current++, 8);
     } until (!Stuff.all_guids[$ n]);
     
     return  n;
