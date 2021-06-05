@@ -10,17 +10,13 @@ function setting_get(object, name, def) {
 
 function setting_project_add(filename, id) {
     // this just logs it in projects.json; it doesn't add any of the data files
-    var exists = false;
     for (var i = 0; i < array_length(Stuff.all_projects.projects); i++) {
-        if (Stuff.all_projects.projects[i].name == filename_change_ext(filename_name(filename), "")) {
-            exists = true;
-            break;
+        if (Stuff.all_projects.projects[i].source == filename) {
+            return;
         }
     }
-    if (!exists) {
-        array_push(Stuff.all_projects.projects, { name: filename_name(filename_change_ext(filename, "")), source: filename, id: id, legacy: false });
-    }
     
+    array_push(Stuff.all_projects.projects, { name: filename_name(filename_change_ext(filename, "")), source: filename, id: id, legacy: false });
     buffer_write_file(json_stringify(Stuff.all_projects), "projects.json");
 }
 
