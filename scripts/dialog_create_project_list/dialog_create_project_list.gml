@@ -187,7 +187,10 @@ function dialog_create_project_list(root) {
     dg.el_summary_summary = el_summary_summary;
     yy += el_summary_summary.height + spacing;
     
-    var el_new = create_button(dw /2 - b_width / 2, dh - 32 - b_height / 2, "Create New", b_width, b_height, fa_center, dmu_dialog_commit, dg);
+    var el_new = create_button(dw /2 - b_width / 2, dh - 32 - b_height / 2, "Create New", b_width, b_height, fa_center, function(button) {
+        dialog_destroy();
+        Game.start.map = Stuff.map.active_map.GUID;
+    }, dg);
     el_new.tooltip = "New maps will be created with a default white directional light with a vector of (-1, -1, -1).";
     
     ds_list_add(dg.contents,
