@@ -50,17 +50,27 @@ function dialog_create_project_list(root) {
     var el_list = create_list(16, yy, "Recent Projects", "<no projects>", ew, eh, 10, function(list) {
         var selection = ui_list_selection(list);
         if (selection + 1) {
-            var version = list.root.versions[selection];
-            var date_str = list.root.timestamp_dates[selection];
-            var time_str = list.root.timestamp_times[selection];
-            list.root.el_summary_name.text = "Name: " + list.root.names[selection];
-            list.root.el_summary_summary.text = "Summary: " + list.root.strings[selection];
-            list.root.el_summary_author.text = "Author: " + list.root.authors[selection];
-            list.root.el_summary_timestamp_date.text = "Date Modified: " + ((string_length(date_str) > 0) ? date_str : "N/A");
-            list.root.el_summary_timestamp_time.text = "Time Modified: " + ((string_length(time_str) > 0) ? time_str : "N/A");
-            if (version > 0) {
-                var out_of_date = (version < LAST_SAFE_VERSION) ? "[c_red]" : "";
-                list.root.el_summary_summary.text += out_of_date + "\n\n(Legacy file version: " + string(version) + " (0x" + string_hex(version) + "))";
+            var project = Stuff.all_projects.projects[selection];
+            if (project.failed) {
+                list.root.el_summary_name.text = "Name: " + project.name;
+                list.root.el_summary_summary.text = "Summary: [c_red]failed to load";
+                list.root.el_summary_author.text = "Author:";
+                list.root.el_summary_timestamp_date.text = "Date Modified:";
+                list.root.el_summary_timestamp_time.text = "Time Modified:";
+            } else {
+                if (project.legacy) {
+                    list.root.el_summary_name.text = "Name: " + project.name;
+                    list.root.el_summary_summary.text = "Summary: (legacy)";
+                    list.root.el_summary_author.text = "Author: (legacy)";
+                    list.root.el_summary_timestamp_date.text = "Date Modified: (legacy)";
+                    list.root.el_summary_timestamp_time.text = "Time Modified: (legacy)";
+                } else {
+                    list.root.el_summary_name.text = "Name: " + project.name;
+                    list.root.el_summary_summary.text = "Summary: " + project.summary;
+                    list.root.el_summary_author.text = "Author: " + project.author;
+                    list.root.el_summary_timestamp_date.text = "Date Modified: " + project.timestamp_major;
+                    list.root.el_summary_timestamp_time.text = "Time Modified: " + project.timestamp_minor;
+                }
             }
         } else {
             list.root.el_summary_name.text = "";
@@ -72,13 +82,9 @@ function dialog_create_project_list(root) {
     }, false, dg);
     for (var i = 0, n = array_length(project_list); i < n; i++) {
         if (is_string(project_list[i])) {
-            project_list[@ i] = { name: project_list[i], legacy: true, id: "", };
+            project_list[@ i] = { name: project_list[i], legacy: true, id: "", source: "", };
         }
-        if (project_list[@ i].legacy) {
-            ds_list_add(el_list.entries, project_list[i].name);
-        } else {
-            ds_list_add(el_list.entries, filename_change_ext(filename_name(project_list[i].name), ""));
-        }
+        ds_list_add(el_list.entries, project_list[i].name);
     }
     el_list.tooltip = "Here's a list of projects you've worked on recently.";
     el_list.entries_are = ListEntries.STRINGS;
@@ -87,55 +93,21 @@ function dialog_create_project_list(root) {
     
     #region metadata
     var n_projects = array_length(project_list);
-    dg.names = array_create(n_projects);
-    dg.strings = array_create(n_projects);
-    dg.authors = array_create(n_projects);
-    dg.versions = array_create(n_projects);
-    dg.timestamp_dates = array_create(n_projects);
-    dg.timestamp_times = array_create(n_projects);
     
     for (var i = 0; i < n_projects; i++) {
         var project = project_list[i];
-        dg.names[i] = project.name;
-        dg.strings[i] = "";
-        dg.authors[i] = "";
-        dg.versions[i] = 0;
-        dg.timestamp_dates[i] = "";
-        dg.timestamp_times[i] = "";
         try {
-            if (project.legacy) {
-                var path_new = PATH_PROJECTS + project.name + "/" + project.name + ".dddd";
-                var fbuffer = buffer_create(1600, buffer_fixed, 1);
-                buffer_load_partial(fbuffer, path_new, 0, 1600, 0);
-                buffer_seek(fbuffer, buffer_seek_start, 0);
-                var header = chr(buffer_read(fbuffer, buffer_u8)) + chr(buffer_read(fbuffer, buffer_u8)) + chr(buffer_read(fbuffer, buffer_u8));
-                if (header == "DDD") {
-                    dg.versions[i] = buffer_read(fbuffer, buffer_u32);
-                    dg.strings[i] = buffer_read(fbuffer, buffer_string);
-                    dg.authors [i] = buffer_read(fbuffer, buffer_string);
-                    dg.timestamp_dates[i] = string(buffer_read(fbuffer, buffer_u16)) + " / " + string(buffer_read(fbuffer, buffer_u8)) + " / " +
-                        string(buffer_read(fbuffer, buffer_u8));
-                    dg.timestamp_times[i] = string(buffer_read(fbuffer, buffer_u8)) + ":" + string_pad(buffer_read(fbuffer, buffer_u8), "0", 2) + ":" +
-                        string_pad(buffer_read(fbuffer, buffer_u8), "0", 2);
-                }
-                buffer_delete(fbuffer);
-            } else {
+            project.failed = false;
+            if (!project.legacy) {
                 var path_new = PATH_PROJECTS + project.id + "/project" + EXPORT_EXTENSION_PROJECT;
-                var yaml = snap_from_yaml(path_new);
-                dg.names[i] = project.name;
-                dg.strings[i] = yaml.summary;
-                dg.authors[i] = yaml.author;
-                dg.versions[i] = 0;
-                dg.timestamp_dates[i] = string(yaml.date.year) + "-" + string(yaml.date.month) + "-" + string(yaml.date.day);
-                dg.timestamp_times[i] = string(yaml.date.hour) + ":" + string_pad(yaml.date.minute, "0", 2) + ":" + string_pad(yaml.date.second, "0", 2);
+                var yaml = snap_from_yaml(buffer_read_file(path_new));
+                project.summary = yaml.summary;
+                project.author = yaml.author;
+                project.timestamp_major = string(yaml.date.year) + "-" + string(yaml.date.month) + "-" + string(yaml.date.day);
+                project.timestamp_minor = string(yaml.date.hour) + ":" + string_pad(yaml.date.minute, "0", 2) + ":" + string_pad(yaml.date.second, "0", 2);
             }
         } catch (e) {
-            dg.names[i] = "invalid project";
-            dg.strings[i] = "";
-            dg.authors[i] = "";
-            dg.versions[i] = 0;
-            dg.timestamp_dates[i] = "";
-            dg.timestamp_times[i] = "";
+            project.failed = true;
         }
     }
     #endregion
