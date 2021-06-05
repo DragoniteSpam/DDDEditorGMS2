@@ -38,7 +38,7 @@ function dialog_create_settings_data_asset_files(dialog) {
             ui_input_set_value(list.root.el_name, (selection > 0) ? file_data.name : "");
             // pick out data types that go to this data file
             ui_list_deselect(list.root.el_types);
-            for (var i = 0; i < array_length(Stuff.game_data_location); i++) {
+            for (var i = 0; i < array_length(Game.data_location); i++) {
                 // the first three get special treatment
                 if (i < 3) {
                     if (selection == 0) ui_list_select(list.root.el_types, i);
@@ -49,9 +49,9 @@ function dialog_create_settings_data_asset_files(dialog) {
                 // and the selected file is the master one
                 var mapped_list_index = list.root.el_types.mapping_cat_to_index[$ i];
                 
-                if (Stuff.game_data_location[i] == file_data) {
+                if (Game.data_location[i] == file_data) {
                     ui_list_select(list.root.el_types, mapped_list_index);
-                } else if (selection == 0 && !Stuff.game_data_location[i]) {
+                } else if (selection == 0 && !Game.data_location[i]) {
                     ui_list_select(list.root.el_types, mapped_list_index);
                 }
             }
@@ -89,7 +89,7 @@ function dialog_create_settings_data_asset_files(dialog) {
             button.root.el_remove.interactive = (ds_list_size(list_main.entries) > 0x01);
         }
     }, dg);
-    el_add.tooltip = "Add a data / asset file. You can have up to " + string(0xff) + ", which is realistically way the heck more than you'll need since there are only " + string(array_length(Stuff.game_data_location)) + " things you can sort into them.";
+    el_add.tooltip = "Add a data / asset file. You can have up to " + string(0xff) + ", which is realistically way the heck more than you'll need since there are only " + string(array_length(Game.data_location)) + " things you can sort into them.";
     el_add.interactive = (array_length(Game.asset_lists) < 0xff);
     dg.el_add = el_add;
     yy += el_add.height + spacing;
@@ -128,7 +128,7 @@ function dialog_create_settings_data_asset_files(dialog) {
                 }
                 // otherwise, if a thing is selected, assign it
                 if (ui_list_is_selected(list, i)) {
-                    Stuff.game_data_location[list.mapping_index_to_cat[i]] = file_data;
+                    Game.data_location[list.mapping_index_to_cat[i]] = file_data;
                 }
             }
         }

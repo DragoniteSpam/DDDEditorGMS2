@@ -1,5 +1,9 @@
 #macro Game global.__game
 
+var file_default = new DataFile("data", false, true);
+var file_asset = new DataFile("assets", false, false);
+var file_terrain = new DataFile("terrain", true, false);
+
 Game = {
     project: {
         notes: "",
@@ -35,7 +39,30 @@ Game = {
         width: -1,
         height: -1,
     },
+    asset_lists: [file_default, file_asset, file_terrain],
+    data_location: [],
 };
+
+Game.data_location[GameDataCategories.TILE_ANIMATIONS] = file_asset;
+Game.data_location[GameDataCategories.TILESETS] = file_asset;
+Game.data_location[GameDataCategories.BATTLERS] = file_asset;
+Game.data_location[GameDataCategories.OVERWORLDS] = file_asset;
+Game.data_location[GameDataCategories.PARTICLES] = file_asset;
+Game.data_location[GameDataCategories.UI] = file_asset;
+Game.data_location[GameDataCategories.SKYBOX] = file_asset;
+Game.data_location[GameDataCategories.MISC] = file_asset;
+Game.data_location[GameDataCategories.BGM] = file_asset;
+Game.data_location[GameDataCategories.SE] = file_asset;
+Game.data_location[GameDataCategories.MESH] = file_asset;
+Game.data_location[GameDataCategories.MESH_AUTOTILES] = file_asset;
+Game.data_location[GameDataCategories.MAP] = file_default;
+Game.data_location[GameDataCategories.GLOBAL] = file_default;
+Game.data_location[GameDataCategories.EVENTS]  = file_default;
+Game.data_location[GameDataCategories.DATADATA] = file_default;
+Game.data_location[GameDataCategories.DATA_INST] = file_default;
+Game.data_location[GameDataCategories.ANIMATIONS] = file_default;
+Game.data_location[GameDataCategories.TERRAIN] = file_terrain;
+Game.data_location[GameDataCategories.LANGUAGE_TEXT] = file_default;
 
 for (var i = 0; i < BASE_GAME_VARIABLES; i++) {
     Game.switches[i] = new DataValue("Switch" + string(i));

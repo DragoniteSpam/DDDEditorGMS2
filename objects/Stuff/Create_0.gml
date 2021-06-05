@@ -372,33 +372,6 @@ data_image_npc_frames(default_pawn);
 #endregion
 
 #region global game settings
-var file_default = new DataFile("data", false, true);
-var file_asset = new DataFile("assets", false, false);
-var file_terrain = new DataFile("terrain", true, false);
-Game.asset_lists = [file_default, file_asset, file_terrain];
-
-game_data_location = array_create(GameDataCategories.__COUNT);
-game_data_location[GameDataCategories.TILE_ANIMATIONS] = file_asset;
-game_data_location[GameDataCategories.TILESETS] = file_asset;
-game_data_location[GameDataCategories.BATTLERS] = file_asset;
-game_data_location[GameDataCategories.OVERWORLDS] = file_asset;
-game_data_location[GameDataCategories.PARTICLES] = file_asset;
-game_data_location[GameDataCategories.UI] = file_asset;
-game_data_location[GameDataCategories.SKYBOX] = file_asset;
-game_data_location[GameDataCategories.MISC] = file_asset;
-game_data_location[GameDataCategories.BGM] = file_asset;
-game_data_location[GameDataCategories.SE] = file_asset;
-game_data_location[GameDataCategories.MESH] = file_asset;
-game_data_location[GameDataCategories.MESH_AUTOTILES] = file_asset;
-game_data_location[GameDataCategories.MAP] = file_default;
-game_data_location[GameDataCategories.GLOBAL] = file_default;
-game_data_location[GameDataCategories.EVENTS]  = file_default;
-game_data_location[GameDataCategories.DATADATA] = file_default;
-game_data_location[GameDataCategories.DATA_INST] = file_default;
-game_data_location[GameDataCategories.ANIMATIONS] = file_default;
-game_data_location[GameDataCategories.TERRAIN] = file_terrain;
-game_data_location[GameDataCategories.LANGUAGE_TEXT] = file_default;
-
 game_data_save_scripts = array_create(GameDataCategories.__COUNT);
 game_data_save_scripts[GameDataCategories.TILE_ANIMATIONS] = serialize_save_image_tile_animations;
 game_data_save_scripts[GameDataCategories.TILESETS] = serialize_save_image_tilesets;

@@ -32,13 +32,13 @@ function serialize_save_data() {
             
             // generate a list of all of the things that are in this file
             ds_list_clear(contents);
-            for (var j = 0; j < array_length(Stuff.game_data_location); j++) {
+            for (var j = 0; j < array_length(Game.data_location); j++) {
                 // the files that are sorted
-                if (Stuff.game_data_location[j] == file_data) {
+                if (Game.data_location[j] == file_data) {
                     ds_list_add(contents, j);
                 }
                 // any data categories that aren't sorted into files go to the default
-                if (i == 0 && !Stuff.game_data_location[j]) {
+                if (i == 0 && !Game.data_location[j]) {
                     ds_list_add(contents, j);
                 }
             }

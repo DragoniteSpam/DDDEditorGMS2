@@ -82,7 +82,7 @@ function serialize_load(buffer, filename, proj_name) {
             
             // erase the default game data locations and replace them with
             // whatever file bundle this project uses
-            array_clear(Stuff.game_data_location, undefined);
+            array_clear(Game.data_location, undefined);
             
             Stuff.game_data_current_file = Game.asset_lists[0];
             
@@ -100,56 +100,56 @@ function serialize_load(buffer, filename, proj_name) {
             #region big ol' switch statement
             // assets
             case SerializeThings.IMAGE_TILE_ANIMATION:
-                Stuff.game_data_location[GameDataCategories.TILE_ANIMATIONS] = Stuff.game_data_current_file;
+                Game.data_location[GameDataCategories.TILE_ANIMATIONS] = Stuff.game_data_current_file;
                 serialize_load_image_tile_animations(buffer, version);
                 break;
             case SerializeThings.IMAGE_TILESET:
-                Stuff.game_data_location[GameDataCategories.TILESETS] = Stuff.game_data_current_file;
+                Game.data_location[GameDataCategories.TILESETS] = Stuff.game_data_current_file;
                 serialize_load_image_tilesets(buffer, version);
                 break;
             case SerializeThings.IMAGE_BATTLERS:
-                Stuff.game_data_location[GameDataCategories.BATTLERS] = Stuff.game_data_current_file;
+                Game.data_location[GameDataCategories.BATTLERS] = Stuff.game_data_current_file;
                 serialize_load_image_battlers(buffer, version);
                 break;
             case SerializeThings.IMAGE_OVERWORLD:
-                Stuff.game_data_location[GameDataCategories.OVERWORLDS] = Stuff.game_data_current_file;
+                Game.data_location[GameDataCategories.OVERWORLDS] = Stuff.game_data_current_file;
                 serialize_load_image_overworlds(buffer, version);
                 break;
             case SerializeThings.IMAGE_PARTICLES:
-                Stuff.game_data_location[GameDataCategories.PARTICLES] = Stuff.game_data_current_file;
+                Game.data_location[GameDataCategories.PARTICLES] = Stuff.game_data_current_file;
                 serialize_load_image_particles(buffer, version);
                 break;
             case SerializeThings.IMAGE_UI:
-                Stuff.game_data_location[GameDataCategories.UI] = Stuff.game_data_current_file;
+                Game.data_location[GameDataCategories.UI] = Stuff.game_data_current_file;
                 serialize_load_image_ui(buffer, version);
                 break;
             case SerializeThings.IMAGE_SKYBOX:
-                Stuff.game_data_location[GameDataCategories.SKYBOX] = Stuff.game_data_current_file;
+                Game.data_location[GameDataCategories.SKYBOX] = Stuff.game_data_current_file;
                 serialize_load_image_skybox(buffer, version);
                 break;
             case SerializeThings.IMAGE_MISC:
-                Stuff.game_data_location[GameDataCategories.MISC] = Stuff.game_data_current_file;
+                Game.data_location[GameDataCategories.MISC] = Stuff.game_data_current_file;
                 serialize_load_image_etc(buffer, version);
                 break;
             case SerializeThings.AUDIO_BGM:
-                Stuff.game_data_location[GameDataCategories.BGM] = Stuff.game_data_current_file;
+                Game.data_location[GameDataCategories.BGM] = Stuff.game_data_current_file;
                 serialize_load_audio_bgm(buffer, version);
                 break;
             case SerializeThings.AUDIO_SE:
-                Stuff.game_data_location[GameDataCategories.SE] = Stuff.game_data_current_file;
+                Game.data_location[GameDataCategories.SE] = Stuff.game_data_current_file;
                 serialize_load_audio_se(buffer, version);
                 break;
             case SerializeThings.MESHES:
-                Stuff.game_data_location[GameDataCategories.MESH] = Stuff.game_data_current_file;
+                Game.data_location[GameDataCategories.MESH] = Stuff.game_data_current_file;
                 serialize_load_meshes(buffer, version);
                 break;
             case SerializeThings.MESH_AUTOTILES:
-                Stuff.game_data_location[GameDataCategories.MESH_AUTOTILES] = Stuff.game_data_current_file;
+                Game.data_location[GameDataCategories.MESH_AUTOTILES] = Stuff.game_data_current_file;
                 serialize_load_mesh_autotiles(buffer, version);
                 break;
             // game stuff
             case SerializeThings.EVENTS:
-                Stuff.game_data_location[GameDataCategories.EVENTS] = Stuff.game_data_current_file;
+                Game.data_location[GameDataCategories.EVENTS] = Stuff.game_data_current_file;
                 serialize_load_events(buffer, version);
                 break;
             case SerializeThings.EVENT_CUSTOM:
@@ -161,31 +161,31 @@ function serialize_load(buffer, filename, proj_name) {
                 serialize_load_event_prefabs(buffer, version);
                 break;
             case SerializeThings.GLOBAL_METADATA:
-                Stuff.game_data_location[GameDataCategories.GLOBAL] = Stuff.game_data_current_file;
+                Game.data_location[GameDataCategories.GLOBAL] = Stuff.game_data_current_file;
                 serialize_load_global_meta(buffer, version);
                 break;
             case SerializeThings.DATADATA:
-                Stuff.game_data_location[GameDataCategories.DATADATA] = Stuff.game_data_current_file;
+                Game.data_location[GameDataCategories.DATADATA] = Stuff.game_data_current_file;
                 serialize_load_datadata(buffer, version);
                 break;
             case SerializeThings.DATA_INSTANCES:
-                Stuff.game_data_location[GameDataCategories.DATA_INST] = Stuff.game_data_current_file;
+                Game.data_location[GameDataCategories.DATA_INST] = Stuff.game_data_current_file;
                 serialize_load_data_instances(buffer, version);
                 break;
             case SerializeThings.ANIMATIONS:
-                Stuff.game_data_location[GameDataCategories.ANIMATIONS] = Stuff.game_data_current_file;
+                Game.data_location[GameDataCategories.ANIMATIONS] = Stuff.game_data_current_file;
                 serialize_load_animations(buffer, version);
                 break;
             case SerializeThings.TERRAIN:
-                Stuff.game_data_location[GameDataCategories.TERRAIN] = Stuff.game_data_current_file;
+                Game.data_location[GameDataCategories.TERRAIN] = Stuff.game_data_current_file;
                 serialize_load_terrain(buffer, version);
                 break;
             case SerializeThings.MAPS:
-                Stuff.game_data_location[GameDataCategories.MAP] = Stuff.game_data_current_file;
+                Game.data_location[GameDataCategories.MAP] = Stuff.game_data_current_file;
                 serialize_load_maps(buffer, version);
                 break;
             case SerializeThings.LANGUAGE_TEXT:
-                Stuff.game_data_location[GameDataCategories.LANGUAGE_TEXT] = Stuff.game_data_current_file;
+                Game.data_location[GameDataCategories.LANGUAGE_TEXT] = Stuff.game_data_current_file;
                 serialize_load_language(buffer, version);
                 break;
             #endregion
