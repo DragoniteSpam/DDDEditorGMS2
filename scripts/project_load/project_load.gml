@@ -5,31 +5,7 @@ function project_load(id) {
     };
     
     static project_load_global = function(filename) {
-        var json = json_parse(buffer_read_file(filename));
-        var version = json.version;
-        
-        Game.project.notes =                    json.core.notes;
-        Game.start.map =                        json.core.start.map;
-        Game.start.x =                          json.core.start.x;
-        Game.start.y =                          json.core.start.y;
-        Game.start.z =                          json.core.start.z;
-        Game.start.direction =                  json.core.start.direction;
-        
-        Game.lighting.ambient =                 json.core.lighting.ambient;
-        
-        Game.grid.chunk_size =                  json.core.grid.chunk_size;
-        Game.grid.snap =                        json.core.grid.player_snap;
-        
-        Game.screen.width =                     json.core.base_screen.width;
-        Game.screen.height =                    json.core.base_screen.height;
-        
-        Game.start.title =                      json.core.title.map;
-        
-        Game.switches =                         json.core.switches;
-        Game.variables =                        json.core.variables;
-        Game.constants =               json.core.constants;
-        Game.event_triggers =               json.core.triggers;
-        Game.asset_flags =                  json.core.flags;
+        Game = json_parse(buffer_read_file(filename)).core;
     };
     
     static project_load_images = function(filename) {

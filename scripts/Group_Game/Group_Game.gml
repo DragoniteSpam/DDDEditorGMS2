@@ -11,6 +11,10 @@ Game = {
         author: "Who made this?",
         id: string_hex(irandom(0xffffffff), 8),
     },
+    export: {
+        files: [file_default, file_asset, file_terrain],
+        locations: [],
+    },
     
     switches: array_create(BASE_GAME_VARIABLES),
     variables: array_create(BASE_GAME_VARIABLES),
@@ -38,10 +42,6 @@ Game = {
     screen: {
         width: -1,
         height: -1,
-    },
-    export: {
-        files: [file_default, file_asset, file_terrain],
-        locations: [],
     },
 };
 

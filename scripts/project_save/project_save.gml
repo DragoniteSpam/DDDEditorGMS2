@@ -17,39 +17,6 @@ function project_save() {
         }
     };
     
-    static project_write_global = function() {
-        return {
-            id: Game.project.id,
-            notes: Game.project.notes,
-            start: {
-                map: Game.start.map,
-                x: Game.start.x,
-                y: Game.start.y,
-                z: Game.start.z,
-                direction: Game.start.direction,
-            },
-            lighting: {
-                ambient: Game.lighting.ambient,
-            },
-            grid: {
-                chunk_size: Game.grid.chunk_size,
-                player_snap: Game.grid.snap,
-            },
-            base_screen: {
-                width: Game.screen.width,
-                height: Game.screen.height,
-            },
-            title: {
-                map: Game.start.title,
-            },
-            switches: Game.switches,
-            variables: Game.variables,
-            constants: Game.constants,
-            triggers: Game.event_triggers,
-            flags: Game.asset_flags,
-        };
-    };
-    
     static project_write_text = function() {
         return {
             langs: Stuff.all_languages,
@@ -105,7 +72,7 @@ function project_save() {
         version: ProjectSaveVersions._CURRENT - 1,
     }), folder_name + "data.json");
     buffer_write_file(json_stringify({
-        core: project_write_global(),
+        core: Game,
         version: ProjectSaveVersions._CURRENT - 1,
     }), folder_name + "meta.json");
     buffer_write_file(json_stringify({
