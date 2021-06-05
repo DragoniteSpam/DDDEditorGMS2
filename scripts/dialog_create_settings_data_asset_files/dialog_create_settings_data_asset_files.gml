@@ -24,7 +24,7 @@ function dialog_create_settings_data_asset_files(dialog) {
     
     var el_list = create_list(col1_x, yy, "Asset Files", "", ew, eh, 8, function(list) {
         var selection = ui_list_selection(list);
-        var file_data = list.entries[| selection];
+        var file_data = Game.export.files[selection];
         list.root.file = file_data;
         if (file_data) {
             list.root.el_name.interactive = (selection > 0);
@@ -65,11 +65,11 @@ function dialog_create_settings_data_asset_files(dialog) {
     el_list.tooltip = "This is the list of data / asset files you currently have linked to the project. The master file is special, is always critical and can't be renamed as it has the same name as the project by default.\n\nCompressed files are shown in blue. Non-critical files are denoted with an asterisk*.";
     el_list.entries_are = ListEntries.SCRIPT;
     el_list.evaluate_text = function(list, index) {
-        var file_data = list.entries[| index];
+        var file_data = Game.export.files[index];
         return (index ? (file_data.name + ".ddda") : "(master.dddd)") + (file_data.critical ? "" : "*");
     };
     el_list.render_colors = function(list, index) {
-        var file_data = list.entries[| index];
+        var file_data = Game.export.files[index];
         return file_data.compressed ? c_blue : c_black;
     };
     dg.el_list = el_list;
@@ -77,16 +77,16 @@ function dialog_create_settings_data_asset_files(dialog) {
     
     var el_add = create_button(col1_x, yy, "Add File", ew, eh, fa_center, function(button) {
         var list_main = button.root.el_list;
-        if (ds_list_size(list_main.entries) < 0xff) {
+        if (array_length(Game.export.files) < 0xff) {
             var base_name = "data";
             var name = base_name;
             var n = 1;
             while (internal_name_get(name)) {
                 name = base_name + string(n++);
             }
-            ds_list_add(list_main.entries, new DataFile(name, false, false));
-            button.interactive = (ds_list_size(list_main.entries) < 0xff);
-            button.root.el_remove.interactive = (ds_list_size(list_main.entries) > 0x01);
+            array_push(Game.export.files, new DataFile(name, false, false));
+            button.interactive = (array_length(Game.export.files) < 0xff);
+            button.root.el_remove.interactive = (array_length(Game.export.files) > 0x01);
         }
     }, dg);
     el_add.tooltip = "Add a data / asset file. You can have up to " + string(0xff) + ", which is realistically way the heck more than you'll need since there are only " + string(array_length(Game.export.locations)) + " things you can sort into them.";
@@ -97,11 +97,11 @@ function dialog_create_settings_data_asset_files(dialog) {
     var el_remove = create_button(col1_x, yy, "Delete File", ew, eh, fa_center, function(button) {
         var list_main = button.root.el_list;
         var selection = ui_list_selection(list_main);
-        if (selection + 1 && ds_list_size(list_main.entries) > 0x01 && selection < ds_list_size(list_main.entries)) {
-            var file_data = list_main.entries[| selection];
-            ds_list_delete(list_main.entries, selection);
-            button.interactive = (ds_list_size(list_main.entries) > 0x01);
-            button.root.el_add.interactive = (ds_list_size(list_main.entries) < 0xff);
+        if (selection + 1 && array_length(Game.export.files) > 0x01 && selection < array_length(Game.export.files)) {
+            var file_data = Game.export.files[selection];
+            array_delete(Game.export.files, selection, 1);
+            button.interactive = (array_length(Game.export.files) > 0x01);
+            button.root.el_add.interactive = (array_length(Game.export.files) < 0xff);
         }
     }, dg);
     el_remove.tooltip = "Delete a data / asset file. You must have at least one. If you remove a data file that is still assigned to be used, anything that would have been saved to it will instead be saved to the one at the top of the list.";
@@ -115,8 +115,8 @@ function dialog_create_settings_data_asset_files(dialog) {
         var list_main = list.root.el_list;
         var selection_main = ui_list_selection(list_main);
         if (selection_main + 1) {
-            var file_data = list_main.entries[| selection_main];
-            for (var i = 0; i < ds_list_size(list.entries); i++) {
+            var file_data = Game.export.files[selection_main];
+            for (var i = 0; i < array_length(Game.export.files); i++) {
                 // the first three types will always be in the main data file, and will never be moved
                 if (i < 3) {
                     if (selection_main == 0) {
@@ -212,7 +212,7 @@ function dialog_create_settings_data_asset_files(dialog) {
     var el_name = create_input(col3_x, yy, "Name:", ew, eh, function(input) {
         var list = input.root.el_list;
         var selection = ui_list_selection(list);
-        var file_data/*:DataFile*/ = list.entries[| selection];
+        var file_data/*:DataFile*/ = Game.export.files[selection];
         if (file_data) file_data.Rename(input.value);
     }, "", "name", function(str, input) {
         if (string_length(str) == 0) return false;
@@ -230,8 +230,7 @@ function dialog_create_settings_data_asset_files(dialog) {
         var list = checkbox.root.el_list;
         var selection = ui_list_selection(list);
         if (selection + 1) {
-            var file_data = list.entries[| selection];
-            file_data.compressed = checkbox.value;
+            Game.export.files[selection].compressed = checkbox.value;
         }
     }, false, dg);
     el_compressed.tooltip = "Whether or not the data file should be compressed. Compressing files allows them to take up less space, but makes them take longer to load.";
@@ -243,8 +242,7 @@ function dialog_create_settings_data_asset_files(dialog) {
         var list = checkbox.root.el_list;
         var selection = ui_list_selection(list);
         if (selection + 1) {
-            var file_data = list.entries[| selection];
-            file_data.critical = checkbox.value;
+            Game.export.files[selection].critical = checkbox.value;
         }
     }, false, dg);
     el_critical.tooltip = "The game is programmed to complain if any of its asset files can't be found, but in some cases (i.e. files containing Terrain) this may not be necessary and you can choose to ignore them. Note that this only affects how the game itself handles the data files; non-critical files are still needed by the editor.";
