@@ -40,7 +40,7 @@ function project_save() {
                 height: Game.screen.height,
             },
             title: {
-                map: Game.game_title_screen,
+                map: Game.start.title,
             },
             switches: Game.switches,
             variables: Game.variables,

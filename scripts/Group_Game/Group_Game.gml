@@ -15,13 +15,13 @@ Game = {
     all_asset_flags: array_create(FLAG_COUNT, ""),
     all_game_constants: [],
     
-    title_screen: NULL,
     start: {
         x: 0,
         y: 0,
         z: 0,
         direction: 0,
         map: NULL,
+        title: NULL,
     },
     
     grid: {
