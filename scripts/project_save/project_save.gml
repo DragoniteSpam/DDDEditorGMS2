@@ -72,7 +72,8 @@ function project_save() {
         version: ProjectSaveVersions._CURRENT - 1,
     }), folder_name + "data.json");
     buffer_write_file(json_stringify({
-        core: Game,
+        meta: Game.meta,
+        vars: Game.vars,
         version: ProjectSaveVersions._CURRENT - 1,
     }), folder_name + "meta.json");
     buffer_write_file(json_stringify({

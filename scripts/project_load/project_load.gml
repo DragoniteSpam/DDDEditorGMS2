@@ -5,7 +5,9 @@ function project_load(id) {
     };
     
     static project_load_global = function(filename) {
-        Game = json_parse(buffer_read_file(filename)).core;
+        var json = json_parse(buffer_read_file(filename));
+        Game.meta = json.meta;
+        Game.vars = json.vars;
     };
     
     static project_load_images = function(filename) {
