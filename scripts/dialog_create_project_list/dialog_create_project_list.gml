@@ -28,6 +28,9 @@ function dialog_create_project_list(root) {
         var selected_project = ui_list_selection(button.root.el_list);
         if (selected_project + 1) {
             var project = Stuff.all_projects.projects[selected_project];
+            if (project.failed) {
+                emu_dialog_notice("Unable to load the project: " + project.name);
+            }
             if (project.legacy) {
                 var name = project.name;
                 var path_new = PATH_PROJECTS + name + "/" + name + ".dddd";
@@ -108,6 +111,7 @@ function dialog_create_project_list(root) {
             }
         } catch (e) {
             project.failed = true;
+            el_list.entries[| i] = "(" + el_list.entries[| i] + ")";
         }
     }
     #endregion
