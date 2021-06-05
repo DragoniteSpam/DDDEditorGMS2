@@ -20,3 +20,15 @@ CreateJSONBase = function() {
 CreateJSON = function() {
     self.CreateJSONBase();
 };
+
+LoadJSONBase = function(struct) {
+    self.name = struct.name;
+    internal_name_set(self.id, struct.internal_name);
+    self.flags = struct.flags;
+    self.summary = struct.summary;
+    guid_set(self.id, struct.guid);
+};
+
+LoadJSON = function(struct) {
+    self.LoadJSONBase(struct);
+};
