@@ -20,6 +20,26 @@ default_int = 0;
 default_string = "";
 default_code = "";
 
+LoadJSONProperty = function(struct) {
+    self.LoadJSONBase(struct);
+    self.type = struct.type;
+    self.range_min = struct.range_min;
+    self.range_max = struct.range_max;
+    self.number_scale = struct.number_scale;
+    self.char_limit = struct.char_limit;
+    self.type_guid = struct.type_guid;
+    self.max_size = struct.max_size;
+    self.size_can_be_zero = struct.size_can_be_zero;
+    self.default_real = struct.default_real;
+    self.default_int = struct.default_int;
+    self.default_string = struct.default_string;
+    self.default_code = struct.default_code;
+};
+
+LoadJSON = function(struct) {
+    self.LoadJSONProperty(struct);
+};
+
 CreateJSONProperty = function() {
     var json = self.CreateJSONBase();
     json.type = self.type;
