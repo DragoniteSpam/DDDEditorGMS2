@@ -5,7 +5,7 @@ function serialize_save_data() {
     
     if (string_length(fn) > 0) {
         var save_directory = filename_path(fn);
-        var buffers = array_create(array_length(Game.export.files));
+        var buffers = array_create(array_length(Game.meta.export.files));
         
         Stuff.save_name = string_replace(filename_name(fn), EXPORT_EXTENSION_DATA, "");
         var proj_name = filename_change_ext(filename_name(fn), "");
@@ -14,16 +14,16 @@ function serialize_save_data() {
         
         var contents = ds_list_create();
         
-        for (var i = 0; i < array_length(Game.export.files); i++) {
-            var file_data = Game.export.files[i];
+        for (var i = 0; i < array_length(Game.meta.export.files); i++) {
+            var file_data = Game.meta.export.files[i];
             var buffer = buffer_create(1024, buffer_grow, 1);
             serialize_save_header(buffer, file_data, (i == 0));
             
             // the default file should have a list of all of the other files
             if (i == 0) {
-                buffer_write(buffer, buffer_u8, array_length(Game.export.files));
-                for (var j = 0; j < array_length(Game.export.files); j++) {
-                    var asset_file = Game.export.files[j];
+                buffer_write(buffer, buffer_u8, array_length(Game.meta.export.files));
+                for (var j = 0; j < array_length(Game.meta.export.files); j++) {
+                    var asset_file = Game.meta.export.files[j];
                     var bools = pack(asset_file.critical);
                     buffer_write(buffer, buffer_string, asset_file.name);
                     buffer_write(buffer, buffer_u32, bools);
@@ -32,13 +32,13 @@ function serialize_save_data() {
             
             // generate a list of all of the things that are in this file
             ds_list_clear(contents);
-            for (var j = 0; j < array_length(Game.export.locations); j++) {
+            for (var j = 0; j < array_length(Game.meta.export.locations); j++) {
                 // the files that are sorted
-                if (Game.export.locations[j] == file_data) {
+                if (Game.meta.export.locations[j] == file_data) {
                     ds_list_add(contents, j);
                 }
                 // any data categories that aren't sorted into files go to the default
-                if (i == 0 && !Game.export.locations[j]) {
+                if (i == 0 && !Game.meta.export.locations[j]) {
                     ds_list_add(contents, j);
                 }
             }

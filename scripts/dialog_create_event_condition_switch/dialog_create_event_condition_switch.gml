@@ -22,8 +22,8 @@ function dialog_create_event_condition_switch(node, index) {
     var spacing = 16;
     
     var el_list = create_list(16, yy, "Switches", "<no switches>", ew, eh, 14, uivc_list_event_condition_index, false, dg);
-    for (var i = 0; i < array_length(Game.switches); i++) {
-        create_list_entries(el_list, Game.switches[i].name);
+    for (var i = 0; i < array_length(Game.vars.switches); i++) {
+        create_list_entries(el_list, Game.vars.switches[i].name);
     }
     
     if (list_index[index] > -1) {

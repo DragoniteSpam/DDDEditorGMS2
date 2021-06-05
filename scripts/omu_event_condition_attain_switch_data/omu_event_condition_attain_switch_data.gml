@@ -17,8 +17,8 @@ function omu_event_condition_attain_switch_data(thing) {
     var yy = 64;
     
     var el_list = create_list(16, yy, "Switches", "<no switches>", ew, eh, 16, uivc_event_condition_attain_switch_index, false, dg);
-    for (var i = 0; i < array_length(Game.switches); i++) {
-        create_list_entries(el_list, Game.switches[i].name);
+    for (var i = 0; i < array_length(Game.vars.switches); i++) {
+        create_list_entries(el_list, Game.vars.switches[i].name);
     }
     if (index + 1) {
         ui_list_select(el_list, index);

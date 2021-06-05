@@ -52,9 +52,9 @@ function project_load(id) {
     
     var yaml = snap_from_yaml(buffer_read_file(folder_name + "project" + EXPORT_EXTENSION_PROJECT));
     var version = yaml.version;
-    Game.project.id = yaml.id;
-    Game.project.summary = yaml.summary;
-    Game.project.author = yaml.author;
+    Game.meta.project.id = yaml.id;
+    Game.meta.project.summary = yaml.summary;
+    Game.meta.project.author = yaml.author;
     
     project_load_data(folder_name + "data.json");
     project_load_global(folder_name + "meta.json");

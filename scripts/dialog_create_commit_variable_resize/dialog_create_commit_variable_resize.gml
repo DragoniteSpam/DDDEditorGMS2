@@ -4,7 +4,7 @@ function dialog_create_commit_variable_resize(root) {
     var value = real(root.value);
     
     if (value > 65535) return noone;
-    var count = array_length(Game.variables);
+    var count = array_length(Game.vars.variables);
     if (value == count) return noone;
     
     if (value < count) {
@@ -12,8 +12,8 @@ function dialog_create_commit_variable_resize(root) {
             "Reduce the number of global variables? Anything beyond the new limit will be lost. (If in doubt, leave it alone. The memory footprint is pretty low and there isn't really a consequence to having too many.)",
             function() {
                 var value = real(self.root.root.value);
-                var times = array_length(Game.variables) - value;
-                repeat (times) array_pop(Game.variables);
+                var times = array_length(Game.vars.variables) - value;
+                repeat (times) array_pop(Game.vars.variables);
                 
                 var base_dialog = self.root.root.root;
                 if (value <= ui_list_selection(base_dialog.el_list)) {
@@ -31,9 +31,9 @@ function dialog_create_commit_variable_resize(root) {
         );
     }
     
-    for (var i = array_length(Game.variables); i < value; i++) {
+    for (var i = array_length(Game.vars.variables); i < value; i++) {
         var name = "Variable" + string(i);
-        array_push(Game.variables, new DataValue(name));
+        array_push(Game.vars.variables, new DataValue(name));
         create_list_entries(root.root.el_list, name);
     }
     

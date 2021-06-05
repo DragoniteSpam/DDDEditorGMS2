@@ -7,7 +7,7 @@ function dialog_create_commit_switches_resize(root) {
         return noone;
     }
     
-    var count = array_length(Game.switches);
+    var count = array_length(Game.vars.switches);
     
     if (value == count) {
         return noone;
@@ -18,8 +18,8 @@ function dialog_create_commit_switches_resize(root) {
             "Reduce the number of global switches? Anything beyond the new limit will be lost. (If in doubt, leave it alone. The memory footprint is pretty low and there isn't really a consequence to having too many.)",
             function() {
                 var value = real(self.root.root.value);
-                var times = array_length(Game.switches) - value;
-                repeat (times) array_pop(Game.switches);
+                var times = array_length(Game.vars.switches) - value;
+                repeat (times) array_pop(Game.vars.switches);
                 
                 var base_dialog = self.root.root.root;
                 if (value <= ui_list_selection(base_dialog.el_list)) {
@@ -36,9 +36,9 @@ function dialog_create_commit_switches_resize(root) {
         );
     }
     
-    for (var i = array_length(Game.switches); i < value; i++) {
+    for (var i = array_length(Game.vars.switches); i < value; i++) {
         var name = "Switch" + string(i);
-        array_push(Game.switches, new DataValue(name));
+        array_push(Game.vars.switches, new DataValue(name));
         create_list_entries(root.root.el_list, name);
     }
     

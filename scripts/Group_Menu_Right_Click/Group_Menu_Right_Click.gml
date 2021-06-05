@@ -3,11 +3,11 @@ function momu_set_starting_position_down() {
     if (ds_list_size(Stuff.map.selection) == 1) {
         var selection = Stuff.map.selection[| 0];
         if (selection.area() == 1) {
-            Game.start.map = Stuff.map.active_map.GUID;
-            Game.start.x = selection.x;
-            Game.start.y = selection.y;
-            Game.start.z = selection.z;
-            Game.start.direction = 0;
+            Game.meta.start.map = Stuff.map.active_map.GUID;
+            Game.meta.start.x = selection.x;
+            Game.meta.start.y = selection.y;
+            Game.meta.start.z = selection.z;
+            Game.meta.start.direction = 0;
         }
     }
 }
@@ -20,11 +20,11 @@ function momu_set_starting_position_up() {
     if (ds_list_size(Stuff.map.selection) == 1) {
         var selection = Stuff.map.selection[| 0];
         if (selection.area() == 1) {
-            Game.start.map = Stuff.map.active_map.GUID;
-            Game.start.x = selection.x;
-            Game.start.y = selection.y;
-            Game.start.z = selection.z;
-            Game.start.direction = 3;
+            Game.meta.start.map = Stuff.map.active_map.GUID;
+            Game.meta.start.x = selection.x;
+            Game.meta.start.y = selection.y;
+            Game.meta.start.z = selection.z;
+            Game.meta.start.direction = 3;
         }
     }
 }
@@ -34,11 +34,11 @@ function momu_set_starting_position_left() {
     if (ds_list_size(Stuff.map.selection) == 1) {
         var selection = Stuff.map.selection[| 0];
         if (selection.area() == 1) {
-            Game.start.map = Stuff.map.active_map.GUID;
-            Game.start.x = selection.x;
-            Game.start.y = selection.y;
-            Game.start.z = selection.z;
-            Game.start.direction = 1;
+            Game.meta.start.map = Stuff.map.active_map.GUID;
+            Game.meta.start.x = selection.x;
+            Game.meta.start.y = selection.y;
+            Game.meta.start.z = selection.z;
+            Game.meta.start.direction = 1;
         }
     }
 }
@@ -48,11 +48,11 @@ function momu_set_starting_position_right() {
     if (ds_list_size(Stuff.map.selection) == 1) {
         var selection = Stuff.map.selection[| 0];
         if (selection.area() == 1) {
-            Game.start.map = Stuff.map.active_map.GUID;
-            Game.start.x = selection.x;
-            Game.start.y = selection.y;
-            Game.start.z = selection.z;
-            Game.start.direction = 2;
+            Game.meta.start.map = Stuff.map.active_map.GUID;
+            Game.meta.start.x = selection.x;
+            Game.meta.start.y = selection.y;
+            Game.meta.start.z = selection.z;
+            Game.meta.start.direction = 2;
         }
     }
 }

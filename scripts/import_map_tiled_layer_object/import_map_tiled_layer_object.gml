@@ -32,8 +32,8 @@ function import_map_tiled_layer_object() {
             var property_name = property_data[? "name"];
             if (string_copy(property_name, 1, 4) == "Tag_") {
                 var imported = string_lettersdigits(string_lower(string(property_data[? "value"])));
-                for (var j = 0; j < array_length(Game.asset_flags); j++) {
-                    if (string_lettersdigits(string_lower(Game.asset_flags[j])) == imported) {
+                for (var j = 0; j < array_length(Game.vars.flags); j++) {
+                    if (string_lettersdigits(string_lower(Game.vars.flags[j])) == imported) {
                         layer_flag |= (1 << j);
                         break;
                     }

@@ -25,7 +25,7 @@ function project_save() {
     };
     
     var t0 = get_timer();
-    var project_id = Game.project.id + "_" + md5_string_utf8(fn);
+    var project_id = Game.meta.project.id + "_" + md5_string_utf8(fn);
     var folder_name = PATH_PROJECTS + project_id + "/";
     var folder_audio_name = folder_name + PROJECT_PATH_AUDIO;
     var folder_image_name = folder_name + PROJECT_PATH_IMAGE;
@@ -51,10 +51,10 @@ function project_save() {
 # Export and save the project as a set of DDD files.
 
 " + snap_to_yaml({
-        id: Game.project.id,
+        id: Game.meta.project.id,
         folder: folder_name,
-        summary: Game.project.summary,
-        author: Game.project.author,
+        summary: Game.meta.project.summary,
+        author: Game.meta.project.author,
         date: {
             year: current_year,
             month: current_month,

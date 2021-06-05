@@ -21,16 +21,16 @@ function dialog_create_settings_data(dialog) {
     var yy = 64;
     
     var el_summary = create_input(col1_x, yy, "Summary:", dw - 64, eh, function(input) {
-        Game.project.summary = input.value;
-    }, Game.project.summary, "Write a short description here", validate_string, 0, 1, 128, vx1, vy1, dw - 32, vy2, dg);
+        Game.meta.project.summary = input.value;
+    }, Game.meta.project.summary, "Write a short description here", validate_string, 0, 1, 128, vx1, vy1, dw - 32, vy2, dg);
     el_summary.tooltip = "A quick summary of the game that the data files are to be used for; will be shown in the project list when you open the editor. Has no impact on gameplay (unless you code it to).";
     yy += el_summary.height + spacing;
     
     var yy_base = yy;
     
     var el_summary_author = create_input(col1_x, yy, "Author:", ew, eh, function(input) {
-        Game.project.author = input.value;
-    }, Game.project.author, "Author", validate_string, 0, 1, 20, vx1, vy1, vx2, vy2, dg);
+        Game.meta.project.author = input.value;
+    }, Game.meta.project.author, "Author", validate_string, 0, 1, 20, vx1, vy1, vx2, vy2, dg);
     el_summary_author.tooltip = "The name of the person who made this; will be shown in the project list when you open the editor. Has no impact on gameplay (unless you code it to) and is not a substitute for full game credits.";
     yy += el_summary_author.height + spacing;
     
@@ -39,8 +39,8 @@ function dialog_create_settings_data(dialog) {
     yy += el_gameplay_title.height + spacing;
     
     var el_gameplay_grid = create_checkbox(col1_x, yy, "Snap Player to Grid", ew, eh, function(checkbox) {
-        Game.grid.snap = checkbox.value;
-    }, Game.grid.snap, dg);
+        Game.meta.grid.snap = checkbox.value;
+    }, Game.meta.grid.snap, dg);
     el_gameplay_grid.tooltip = "Whether the player's position will be restricted to the grid, or whether they will be allowed to move freely between cells";
     yy += el_gameplay_grid.height + spacing;
     
@@ -53,48 +53,48 @@ function dialog_create_settings_data(dialog) {
     yy += el_graphics_title.height + spacing;
     
     var el_lighting_default_ambient = create_color_picker(col1_x, yy, "Default ambient:", ew, eh, function(picker) {
-        Game.lighting.ambient = picker.value;
-    }, Game.lighting.ambient, vx1, vy1, vx2, vy2, dg);
+        Game.meta.lighting.ambient = picker.value;
+    }, Game.meta.lighting.ambient, vx1, vy1, vx2, vy2, dg);
     el_lighting_default_ambient.tooltip = "The default ambient lighting color. New maps will use this value. Existing maps will not be updated.";
     yy += el_lighting_default_ambient.height + spacing;
     
     var el_screen_width = create_input(col1_x, yy, "Screen Width:", ew, eh, function(input) {
-        Game.screen.width = real(input.value);
-    }, Game.screen.width, "signed short int", validate_int, -0x10000, 0xffff, 6, vx1, vy1, vx2, vy2, dg);
+        Game.meta.screen.width = real(input.value);
+    }, Game.meta.screen.width, "signed short int", validate_int, -0x10000, 0xffff, 6, vx1, vy1, vx2, vy2, dg);
     el_screen_width.tooltip = "How you want the game to be scaled. If you are making a game that is primarily pixel art, you may want to use a base resolution such as 640x360 or 320x180. Set these to -1 if you do not want scaling.";
     dg.el_screen_width = el_screen_width;
     yy += el_screen_width.height + spacing;
     
     var el_screen_height = create_input(col1_x, yy, "Screen Height:", ew, eh, function(input) {
-        Game.screen.height = real(input.value);
-    }, Game.screen.height, "signed short int", validate_int, -0x10000, 0xffff, 6, vx1, vy1, vx2, vy2, dg);
+        Game.meta.screen.height = real(input.value);
+    }, Game.meta.screen.height, "signed short int", validate_int, -0x10000, 0xffff, 6, vx1, vy1, vx2, vy2, dg);
     el_screen_height.tooltip = el_screen_width.tooltip;
     dg.el_screen_height = el_screen_height;
     yy += el_screen_height.height + spacing;
     
     var el_screen_full = create_button(col1_x, yy, "Full", ew / 3, eh, fa_center, function(button) {
-        Game.screen.width = -1;
-        Game.screen.height = -1;
+        Game.meta.screen.width = -1;
+        Game.meta.screen.height = -1;
         ui_input_set_value(button.root.el_screen_width, "-1");
         ui_input_set_value(button.root.el_screen_height, "-1");
     }, dg);
     var el_screen_320 = create_button(col1_x + ew / 3, yy, "320x180", ew / 3, eh, fa_center, function(button) {
-        Game.screen.width = 320;
-        Game.screen.height = 180;
+        Game.meta.screen.width = 320;
+        Game.meta.screen.height = 180;
         ui_input_set_value(button.root.el_screen_width, "320");
         ui_input_set_value(button.root.el_screen_height, "180");
     }, dg);
     var el_screen_640 = create_button(col1_x + ew * 2 / 3, yy, "640x360", ew / 3, eh, fa_center, function(button) {
-        Game.screen.width = 640;
-        Game.screen.height = 360;
+        Game.meta.screen.width = 640;
+        Game.meta.screen.height = 360;
         ui_input_set_value(button.root.el_screen_width, "640");
         ui_input_set_value(button.root.el_screen_height, "360");
     }, dg);
     yy += el_screen_640.height + spacing;
     
     var el_base_chunk_size = create_input(col1_x, yy, "Base Chunk Size:", ew, eh, function(input) {
-        Game.grid.chunk_size = real(input.value);
-    }, Game.grid.chunk_size, "short int", validate_int, 16, MAP_AXIS_LIMIT, 4, vx1, vy1, vx2, vy2, dg);
+        Game.meta.grid.chunk_size = real(input.value);
+    }, Game.meta.grid.chunk_size, "short int", validate_int, 16, MAP_AXIS_LIMIT, 4, vx1, vy1, vx2, vy2, dg);
     el_base_chunk_size.tooltip = "The default map chunk size";
     dg.el_base_chunk_size = el_base_chunk_size;
     yy += el_base_chunk_size.height + spacing;
@@ -139,8 +139,8 @@ function dialog_create_settings_data(dialog) {
     el_edit_title.color = c_blue;
     yy += el_edit_title.height + spacing;
     
-    var el_edit_notes = create_input_code(col3_x, yy, "Game notes:", ew, eh, vx1, vy1, vx2, vy2, Game.project.notes, function(code) {
-        Game.project.notes = code.value;
+    var el_edit_notes = create_input_code(col3_x, yy, "Game notes:", ew, eh, vx1, vy1, vx2, vy2, Game.meta.project.notes, function(code) {
+        Game.meta.project.notes = code.value;
     }, dg);
     el_edit_notes.tooltip = "This doesn't affect the game, but you may find it helpful to keep a set of notes for things you want to remember while working on it.";
     el_edit_notes.is_code = false;

@@ -18,16 +18,16 @@ function dialog_create_settings_data_switches(dialog) {
     var yy = 64;
     var yy_start = 64;
     
-    var n_switches = array_length(Game.switches);
+    var n_switches = array_length(Game.vars.switches);
     var el_list = create_list(32, yy, "Global Switches (" + string(n_switches) + ")", "<no swiches>", ew, eh, 20, function(list) {
         var selection = ui_list_selection(list);
-        var sw_data = Game.switches[selection];
+        var sw_data = Game.vars.switches[selection];
         var base_dialog = list.root;
         ui_input_set_value(base_dialog.el_name, sw_data.name);
         base_dialog.el_default.value = sw_data.value;
     }, false, dg);
     for (var i = 0; i < n_switches; i++) {
-        var sw_data = Game.switches[i];
+        var sw_data = Game.vars.switches[i];
         create_list_entries(el_list, sw_data.name + ": " + Stuff.tf[sw_data.value]);
     }
     el_list.numbered = true;
@@ -45,7 +45,7 @@ function dialog_create_settings_data_switches(dialog) {
         var base_dialog = input.root;
         var selection = ui_list_selection(base_dialog.el_list);
         if (selection + 1) {
-            var sw_data = Game.switches[selection];
+            var sw_data = Game.vars.switches[selection];
             sw_data.name = input.value;
             base_dialog.el_list.entries[| selection] = sw_data.name + ": " + Stuff.tf[sw_data.value];
         }
@@ -56,7 +56,7 @@ function dialog_create_settings_data_switches(dialog) {
         var base_dialog = checkbox.root;
         var selection = ui_list_selection(base_dialog.el_list);
         if (selection + 1) {
-            var sw_data = Game.switches[selection];
+            var sw_data = Game.vars.switches[selection];
             sw_data.value = checkbox.value;
             base_dialog.el_list.entries[| selection] = sw_data.name + ": " + Stuff.tf[sw_data.value];
         }

@@ -26,8 +26,8 @@ function omu_event_condition_attain_variable_data(thing) {
     var yy = 64;
     
     var el_list = create_list(16, yy, "Variables", "<no variables>", ew, eh, 16, uivc_event_condition_attain_variable_index, false, dg);
-    for (var i = 0; i < array_length(Game.variables); i++) {
-        create_list_entries(el_list, Game.variables[i].name);
+    for (var i = 0; i < array_length(Game.vars.variables); i++) {
+        create_list_entries(el_list, Game.vars.variables[i].name);
     }
     if (index + 1) {
         ui_list_select(el_list, index);

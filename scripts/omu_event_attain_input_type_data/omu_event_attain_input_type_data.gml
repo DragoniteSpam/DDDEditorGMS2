@@ -26,8 +26,8 @@ function omu_event_attain_input_type_data(thing, event_node, data_index) {
     var spacing = 16;
     
     var el_list = create_list(16, yy, "Destination Variable", "<no variables>", ew, eh, 10, uivc_list_event_attain_input_variable_index, false, dg);
-    for (var i = 0; i < array_length(Game.variables); i++) {
-        create_list_entries(el_list, Game.variables[i].name);
+    for (var i = 0; i < array_length(Game.vars.variables); i++) {
+        create_list_entries(el_list, Game.vars.variables[i].name);
     }
     if (custom_data_index[0] > -1) {
         ui_list_select(el_list, custom_data_index[0]);

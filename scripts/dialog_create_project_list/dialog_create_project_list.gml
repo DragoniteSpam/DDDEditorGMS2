@@ -189,7 +189,7 @@ function dialog_create_project_list(root) {
     
     var el_new = create_button(dw /2 - b_width / 2, dh - 32 - b_height / 2, "Create New", b_width, b_height, fa_center, function(button) {
         dialog_destroy();
-        Game.start.map = Stuff.map.active_map.GUID;
+        Game.meta.start.map = Stuff.map.active_map.GUID;
     }, dg);
     el_new.tooltip = "New maps will be created with a default white directional light with a vector of (-1, -1, -1).";
     

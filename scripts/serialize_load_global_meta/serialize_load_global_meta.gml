@@ -1,46 +1,46 @@
 function serialize_load_global_meta(buffer, version) {
     var addr_next = buffer_read(buffer, buffer_u64);
     
-    Game.start.map = buffer_read(buffer, buffer_datatype);
-    Game.start.x = buffer_read(buffer, buffer_u16);
-    Game.start.y = buffer_read(buffer, buffer_u16);
-    Game.start.z = buffer_read(buffer, buffer_u16);
-    Game.start.direction = buffer_read(buffer, buffer_u8);
+    Game.meta.start.map = buffer_read(buffer, buffer_datatype);
+    Game.meta.start.x = buffer_read(buffer, buffer_u16);
+    Game.meta.start.y = buffer_read(buffer, buffer_u16);
+    Game.meta.start.z = buffer_read(buffer, buffer_u16);
+    Game.meta.start.direction = buffer_read(buffer, buffer_u8);
     buffer_read(buffer, buffer_f32);
-    Game.lighting.ambient = buffer_read(buffer, buffer_u32);
+    Game.meta.lighting.ambient = buffer_read(buffer, buffer_u32);
     
-    Game.project.id = buffer_read(buffer, buffer_string);
-    Game.grid.chunk_size = buffer_read(buffer, buffer_u16);
+    Game.meta.project.id = buffer_read(buffer, buffer_string);
+    Game.meta.grid.chunk_size = buffer_read(buffer, buffer_u16);
     
     buffer_read(buffer, buffer_string);
     
     var bools = buffer_read(buffer, buffer_u32);
-    Game.grid.snap = unpack(bools, 0);
+    Game.meta.grid.snap = unpack(bools, 0);
     
-    Game.screen.width = buffer_read(buffer, buffer_s16);
-    Game.screen.height = buffer_read(buffer, buffer_s16);
+    Game.meta.screen.width = buffer_read(buffer, buffer_s16);
+    Game.meta.screen.height = buffer_read(buffer, buffer_s16);
     
     var n_switches = buffer_read(buffer, buffer_u16);
     var n_variables = buffer_read(buffer, buffer_u16);
     
-    Game.switches = array_create(n_switches);
-    Game.variables = array_create(n_variables);
+    Game.vars.switches = array_create(n_switches);
+    Game.vars.variables = array_create(n_variables);
     for (var i = 0; i < n_switches; i++) {
         var sw_data = new DataValue("");
         sw_data.name = buffer_read(buffer, buffer_string);
         sw_data.value = buffer_read(buffer, buffer_bool);
-        Game.switches[i] = sw_data;
+        Game.vars.switches[i] = sw_data;
     }
     
     for (var i = 0; i < n_variables; i++) {
         var var_data = new DataValue("");
         var_data.name = buffer_read(buffer, buffer_string);
         var_data.value = buffer_read(buffer, buffer_f32);
-        Game.variables[i] = var_data;
+        Game.vars.variables[i] = var_data;
     }
     
     for (var i = 0; i < FLAG_COUNT; i++) {
-        Game.event_triggers[i] = buffer_read(buffer, buffer_string);
+        Game.vars.triggers[i] = buffer_read(buffer, buffer_string);
     }
     
     var n_constants = buffer_read(buffer, buffer_u16);
@@ -76,12 +76,12 @@ function serialize_load_global_meta(buffer, version) {
                 break;
         }
         
-        array_push(Game.constants, what);
+        array_push(Game.vars.constants, what);
     }
     
-    Game.project.notes = buffer_read(buffer, buffer_string);
+    Game.meta.project.notes = buffer_read(buffer, buffer_string);
     
     for (var i = 0; i < FLAG_COUNT; i++) {
-        Game.asset_flags[i] = buffer_read(buffer, buffer_string);
+        Game.vars.flags[i] = buffer_read(buffer, buffer_string);
     }
 }

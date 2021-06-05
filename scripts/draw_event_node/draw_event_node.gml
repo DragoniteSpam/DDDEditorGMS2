@@ -201,7 +201,7 @@ function draw_event_node(node) {
                         case ConditionBasicTypes.SWITCH:
                             var index = list_index[i];
                             if (index > -1) {
-                                var switch_data = Game.switches[index];
+                                var switch_data = Game.vars.switches[index];
                                 str = "Switch " + switch_data.name + " is " + Stuff.on_off[list_value[i]];
                             } else {
                                 str = "Switch data not set";
@@ -210,7 +210,7 @@ function draw_event_node(node) {
                         case ConditionBasicTypes.VARIABLE:
                             var index = list_index[i];
                             if (index > -1) {
-                                var variable_data = Game.variables[index];
+                                var variable_data = Game.vars.variables[index];
                                 str = "Variable " + variable_data.name + " " + Stuff.comparison_text[list_comparison[i]] + " " + string(list_value[i]);
                             } else {
                                 str = "Variable data not set";

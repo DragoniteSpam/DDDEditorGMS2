@@ -72,11 +72,11 @@ function dialog_create_entity_event_page(argument0) {
 
     yy = 64;
     
-    var el_trigger = create_list(c2 + 16, yy, "Trigger Method(s)", "<please define some>", ew, eh, 8, uivc_entity_event_trigger_method, true, dg, Game.event_triggers);
+    var el_trigger = create_list(c2 + 16, yy, "Trigger Method(s)", "<please define some>", ew, eh, 8, uivc_entity_event_trigger_method, true, dg, Game.vars.triggers);
     el_trigger.select_toggle = true;
     dg.el_trigger = el_trigger;
     
-    for (var i = 0; i < array_length(Game.event_triggers); i++) {
+    for (var i = 0; i < array_length(Game.vars.triggers); i++) {
         if (page.trigger & (1 << i)) {
             ui_list_select(el_trigger, i);
         }

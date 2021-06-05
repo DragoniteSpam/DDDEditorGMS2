@@ -18,17 +18,17 @@ function dialog_create_settings_data_variables(dialog) {
     var yy = 64;
     var yy_start = 64;
     
-    var n_variables = array_length(Game.variables);
+    var n_variables = array_length(Game.vars.variables);
     var el_list = create_list(32, yy, "Global Variables (" + string(n_variables) + ")", "<no variables>", ew, eh, 18, function(list) {
         var selection = ui_list_selection(list);
         if (selection + 1) {
-            var var_data = Game.variables[selection];
+            var var_data = Game.vars.variables[selection];
             ui_input_set_value(list.root.el_name, var_data.name);
             list.root.el_default.value = string(var_data.value);
         }
     }, false, dg);
     for (var i = 0; i < n_variables; i++) {
-        var var_data = Game.variables[i];
+        var var_data = Game.vars.variables[i];
         create_list_entries(el_list, var_data.name + ": " + string(var_data.value));
     }
     el_list.numbered = true;
@@ -46,7 +46,7 @@ function dialog_create_settings_data_variables(dialog) {
         var base_dialog = list.root;
         var selection = ui_list_selection(base_dialog.el_list);
         if (selection + 1) {
-            var var_data = Game.variables[selection];
+            var var_data = Game.vars.variables[selection];
             var_data.name = base_dialog.el_name.value;
             base_dialog.el_list.entries[| selection] = var_data.name + ": " + string(var_data.value);
         }
@@ -57,7 +57,7 @@ function dialog_create_settings_data_variables(dialog) {
         var base_dialog = input.root;
         var selection = ui_list_selection(base_dialog.el_list);
         if (selection + 1) {
-            var var_data = Game.variables[selection];
+            var var_data = Game.vars.variables[selection];
             var_data.value = real(input.value);
             input.root.el_list.entries[| selection] = var_data.name + ": " + string(var_data.value);
         }

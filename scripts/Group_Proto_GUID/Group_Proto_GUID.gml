@@ -7,7 +7,7 @@ function proto_guid_remove(container, guid) {
 function proto_guid_generate(container) {
     var n;
     do {
-        n = Game.project.id + ":" + string_hex(container.proto_guid_current++, 8);
+        n = Game.meta.project.id + ":" + string_hex(container.proto_guid_current++, 8);
     } until (!container.proto_guids[$ n]);
     
     return n;
