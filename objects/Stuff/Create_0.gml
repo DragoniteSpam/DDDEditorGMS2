@@ -130,8 +130,6 @@ all_mesh_autotiles = ds_list_create();
 
 all_animations = ds_list_create();
 
-all_game_constants = [];
-
 all_data = ds_list_create();
 
 all_languages = ["English"];

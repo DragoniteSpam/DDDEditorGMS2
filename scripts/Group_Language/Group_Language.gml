@@ -66,8 +66,8 @@ function language_extract() {
         }
         #endregion
         #region constants
-        for (var i = 0; i < array_length(Stuff.all_game_constants); i++) {
-            var const = Stuff.all_game_constants[i];
+        for (var i = 0; i < array_length(Game.all_game_constants); i++) {
+            var const = Game.all_game_constants[i];
             if (const.type != DataTypes.STRING) continue;
             var key = "Const." + const.name;
             lang[$ key] = (lang_index == 0) ? const.value_string : ((lang[$ key] != undefined) ? lang[$ key] : "");

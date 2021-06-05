@@ -76,7 +76,7 @@ function serialize_load_global_meta(buffer, version) {
                 break;
         }
         
-        array_push(Stuff.all_game_constants, what);
+        array_push(Game.all_game_constants, what);
     }
     
     Game.project.notes = buffer_read(buffer, buffer_string);
