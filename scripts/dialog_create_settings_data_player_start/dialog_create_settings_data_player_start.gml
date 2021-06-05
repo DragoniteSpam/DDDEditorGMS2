@@ -19,25 +19,25 @@ function dialog_create_settings_data_player_start(dialog) {
     var yy = 64;
     var yy_start = 64;
     
-    var starting = guid_get(Game.game_starting_map);
+    var starting = guid_get(Game.start.map);
     
     var el_list_map = create_list(32, yy, "Map:", "<how did you manage that?>", ew, eh, 16, function(list) {
         var map = Stuff.all_maps[| list.value];
-        Game.game_starting_map = map.GUID;
+        Game.start.map = map.GUID;
         list.root.el_x.value_upper = map.xx;
         list.root.el_y.value_upper = map.yy;
         list.root.el_z.value_upper = map.zz;
         
-        Stuff.game_starting_x = min(map.xx - 1, Stuff.game_starting_x);
-        Stuff.game_starting_y = min(map.yy - 1, Stuff.game_starting_y);
-        Stuff.game_starting_z = min(map.zz - 1, Stuff.game_starting_z);
+        Game.start.x = min(map.xx - 1, Game.start.x);
+        Game.start.y = min(map.yy - 1, Game.start.y);
+        Game.start.z = min(map.zz - 1, Game.start.z);
         
-        ui_input_set_value(list.root.el_x, string(Stuff.game_starting_x));
-        ui_input_set_value(list.root.el_y, string(Stuff.game_starting_y));
-        ui_input_set_value(list.root.el_z, string(Stuff.game_starting_z));
+        ui_input_set_value(list.root.el_x, string(Game.start.x));
+        ui_input_set_value(list.root.el_y, string(Game.start.y));
+        ui_input_set_value(list.root.el_z, string(Game.start.z));
     }, false, dg, Stuff.all_maps);
     for (var i = 0; i < ds_list_size(Stuff.all_maps); i++) {
-        if (Game.game_starting_map == Stuff.all_maps[| i].GUID) {
+        if (Game.start.map == Stuff.all_maps[| i].GUID) {
             ui_list_select(el_list_map, i);
             break;
         }
@@ -48,26 +48,26 @@ function dialog_create_settings_data_player_start(dialog) {
     yy = yy_start;
     
     var el_x = create_input(c2 + 32, yy, "X:", ew, eh, function(input) {
-        Stuff.game_starting_x = real(input.value);
-    }, Stuff.game_starting_x, "x coordinate", validate_int, 0, starting.xx, 5, vx1, vy1, vx2, vy2, dg);
+        Game.start.x = real(input.value);
+    }, Game.start.x, "x coordinate", validate_int, 0, starting.xx, 5, vx1, vy1, vx2, vy2, dg);
     dg.el_x = el_x;
     yy += el_x.height + spacing;
     
     var el_y = create_input(c2 + 32, yy, "Y:", ew, eh, function(input) {
-        Stuff.game_starting_y = real(input.value);
-    }, Stuff.game_starting_y, "y coordinate", validate_int, 0, starting.yy, 5, vx1, vy1, vx2, vy2, dg);
+        Game.start.y = real(input.value);
+    }, Game.start.y, "y coordinate", validate_int, 0, starting.yy, 5, vx1, vy1, vx2, vy2, dg);
     dg.el_y = el_y;
     yy += el_y.height + spacing;
     
     var el_z = create_input(c2 + 32, yy, "Z:", ew, eh, function(input) {
-        Stuff.game_starting_z = real(input.value);
-    }, Stuff.game_starting_z, "z coordinate", validate_int, 0, starting.zz, 5, vx1, vy1, vx2, vy2, dg);
+        Game.start.z = real(input.value);
+    }, Game.start.z, "z coordinate", validate_int, 0, starting.zz, 5, vx1, vy1, vx2, vy2, dg);
     dg.el_z = el_z;
     yy += el_z.height + spacing;
     
     var el_direction = create_radio_array(c2 + 32, yy, "Direction:", ew, eh, function(radio) {
-        Stuff.game_starting_direction = radio.value;
-    }, Stuff.game_starting_direction, dg);
+        Game.start.direction = radio.value;
+    }, Game.start.direction, dg);
     create_radio_array_options(el_direction, ["Down", "Left", "Right", "Up"]);
     
     var b_width = 128;

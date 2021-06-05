@@ -22,11 +22,11 @@ function project_save() {
             id: Game.project.id,
             notes: Game.project.notes,
             start: {
-                map: Game.game_starting_map,
-                x: Stuff.game_starting_x,
-                y: Stuff.game_starting_y,
-                z: Stuff.game_starting_z,
-                direction: Stuff.game_starting_direction,
+                map: Game.start.map,
+                x: Game.start.x,
+                y: Game.start.y,
+                z: Game.start.z,
+                direction: Game.start.direction,
             },
             lighting: {
                 buckets: Stuff.game_lighting_buckets,

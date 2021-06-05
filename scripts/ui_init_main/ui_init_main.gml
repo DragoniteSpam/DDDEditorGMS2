@@ -380,7 +380,7 @@ function ui_init_main(mode) {
         });
         element.tooltip = "This is a list of all the maps currently in the game.";
         element.render_colors = method(element, function(list, index) {
-            return (Game.game_starting_map == list.entries[| index].GUID) ? c_blue : c_black;
+            return (Game.start.map == list.entries[| index].GUID) ? c_blue : c_black;
         });
         element.colorize = true;
         element.ondoubleclick = method(element, f_map_open);
@@ -425,7 +425,7 @@ function ui_init_main(mode) {
         element = create_button(col1_x, yy, "Make Starting Map", col_width, element_height, fa_center, function(button) {
             var list = button.root.el_map_list;
             var index = ui_list_selection(list);
-            Game.game_starting_map = list.entries[| index].GUID;
+            Game.start.map = list.entries[| index].GUID;
         }, t_maps);
         element.tooltip = "Designate the currently selected map as the first one entered when the game starts. What this means to your game is up to you.";
         ds_list_add(t_maps.contents, element);

@@ -1,11 +1,11 @@
 function serialize_load_global_meta(buffer, version) {
     var addr_next = buffer_read(buffer, buffer_u64);
     
-    Game.game_starting_map = buffer_read(buffer, buffer_datatype);
-    Stuff.game_starting_x = buffer_read(buffer, buffer_u16);
-    Stuff.game_starting_y = buffer_read(buffer, buffer_u16);
-    Stuff.game_starting_z = buffer_read(buffer, buffer_u16);
-    Stuff.game_starting_direction = buffer_read(buffer, buffer_u8);
+    Game.start.map = buffer_read(buffer, buffer_datatype);
+    Game.start.x = buffer_read(buffer, buffer_u16);
+    Game.start.y = buffer_read(buffer, buffer_u16);
+    Game.start.z = buffer_read(buffer, buffer_u16);
+    Game.start.direction = buffer_read(buffer, buffer_u8);
     Stuff.game_lighting_buckets = buffer_read(buffer, buffer_f32);
     Stuff.game_lighting_default_ambient = buffer_read(buffer, buffer_u32);
     

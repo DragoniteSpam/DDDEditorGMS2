@@ -9,11 +9,11 @@ function project_load(id) {
         var version = json.version;
         
         Game.project.notes =                   json.core.notes;
-        Game.game_starting_map =               json.core.start.map;
-        Stuff.game_starting_x =                 json.core.start.x;
-        Stuff.game_starting_y =                 json.core.start.y;
-        Stuff.game_starting_z =                 json.core.start.z;
-        Stuff.game_starting_direction =         json.core.start.direction;
+        Game.start.map =               json.core.start.map;
+        Game.start.x =                 json.core.start.x;
+        Game.start.y =                 json.core.start.y;
+        Game.start.z =                 json.core.start.z;
+        Game.start.direction =         json.core.start.direction;
         
         Stuff.game_lighting_buckets =           json.core.lighting.buckets;
         Stuff.game_lighting_default_ambient =   json.core.lighting.ambient;

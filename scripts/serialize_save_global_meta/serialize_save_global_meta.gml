@@ -3,11 +3,11 @@ function serialize_save_global_meta(buffer) {
     var addr_next = buffer_tell(buffer);
     buffer_write(buffer, buffer_u64, 0);
     
-    buffer_write(buffer, buffer_datatype, Game.game_starting_map);
-    buffer_write(buffer, buffer_u16, Stuff.game_starting_x);
-    buffer_write(buffer, buffer_u16, Stuff.game_starting_y);
-    buffer_write(buffer, buffer_u16, Stuff.game_starting_z);
-    buffer_write(buffer, buffer_u8, Stuff.game_starting_direction);
+    buffer_write(buffer, buffer_datatype, Game.start.map);
+    buffer_write(buffer, buffer_u16, Game.start.x);
+    buffer_write(buffer, buffer_u16, Game.start.y);
+    buffer_write(buffer, buffer_u16, Game.start.z);
+    buffer_write(buffer, buffer_u8, Game.start.direction);
     buffer_write(buffer, buffer_f32, Stuff.game_lighting_buckets);
     buffer_write(buffer, buffer_u32, Stuff.game_lighting_default_ambient);
     buffer_write(buffer, buffer_string, Game.project.id);

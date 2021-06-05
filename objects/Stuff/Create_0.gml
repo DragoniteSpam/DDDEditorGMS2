@@ -373,10 +373,6 @@ data_image_npc_frames(default_pawn);
 #endregion
 
 #region global game settings
-game_starting_x = 0;
-game_starting_y = 0;
-game_starting_z = 0;
-game_starting_direction = 0;
 game_player_grid = true;
 game_lighting_buckets = 100;
 game_lighting_default_ambient = c_white;

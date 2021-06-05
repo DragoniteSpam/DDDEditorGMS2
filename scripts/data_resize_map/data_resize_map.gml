@@ -16,10 +16,10 @@ function data_resize_map(map_container, xx, yy, zz) {
     array_resize_4d(map_contents.map_grid, xx, yy, zz, MapCellContents._COUNT);
     array_resize_3d(map_contents.map_grid_tags, xx, yy, zz);
     
-    if (Game.game_starting_map == map_container.GUID) {
-        Stuff.game_starting_x = min(Stuff.game_starting_x, xx - 1);
-        Stuff.game_starting_y = min(Stuff.game_starting_y, yy - 1);
-        Stuff.game_starting_z = min(Stuff.game_starting_z, zz - 1);
+    if (Game.start.map == map_container.GUID) {
+        Game.start.x = min(Game.start.x, xx - 1);
+        Game.start.y = min(Game.start.y, yy - 1);
+        Game.start.z = min(Game.start.z, zz - 1);
     }
     
     Stuff.map.ui.element_entity_pos_x.value_upper = xx - 1;
