@@ -42,10 +42,10 @@ function serialize_save_global_meta(buffer) {
         buffer_write(buffer, buffer_string, Game.all_event_triggers[i]);
     }
     
-    var n_constants = array_length(Game.all_game_constants);
+    var n_constants = array_length(Game.all_constants);
     buffer_write(buffer, buffer_u16, n_constants);
     for (var i = 0; i < n_constants; i++) {
-        var what = Game.all_game_constants[i];
+        var what = Game.all_constants[i];
         serialize_save_generic(buffer, what);
         
         buffer_write(buffer, buffer_u16, what.type);

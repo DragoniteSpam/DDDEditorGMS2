@@ -13,7 +13,7 @@ Game = {
     
     all_event_triggers: array_create(FLAG_COUNT, ""),
     all_asset_flags: array_create(FLAG_COUNT, ""),
-    all_game_constants: [],
+    all_constants: [],
     
     start: {
         x: 0,
