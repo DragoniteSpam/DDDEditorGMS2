@@ -7,7 +7,7 @@ function serialize_load_global_meta(buffer, version) {
     Game.start.z = buffer_read(buffer, buffer_u16);
     Game.start.direction = buffer_read(buffer, buffer_u8);
     Stuff.game_lighting_buckets = buffer_read(buffer, buffer_f32);
-    Stuff.game_lighting_default_ambient = buffer_read(buffer, buffer_u32);
+    Game.lighting.ambient = buffer_read(buffer, buffer_u32);
     
     Game.project.id = buffer_read(buffer, buffer_string);
     Game.grid.chunk_size = buffer_read(buffer, buffer_u16);

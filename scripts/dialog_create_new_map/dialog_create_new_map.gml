@@ -77,7 +77,7 @@ function dialog_create_new_map(root) {
         map.yy = real(button.root.el_y.value);
         map.zz = real(button.root.el_z.value);
         map.on_grid = button.root.el_grid.value;
-        map.light_ambient_colour = Stuff.game_lighting_default_ambient;
+        map.light_ambient_colour = Game.lighting.ambient;
         map.map_chunk_size = real(button.root.el_chunk_size.value);
         button.root.commit(button.root);
     }, dg);

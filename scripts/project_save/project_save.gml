@@ -30,7 +30,7 @@ function project_save() {
             },
             lighting: {
                 buckets: Stuff.game_lighting_buckets,
-                ambient: Stuff.game_lighting_default_ambient,
+                ambient: Game.lighting.ambient,
             },
             grid: {
                 chunk_size: Game.grid.chunk_size,

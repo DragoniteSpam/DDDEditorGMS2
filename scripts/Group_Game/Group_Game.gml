@@ -28,6 +28,9 @@ Game = {
         snap: true,
         chunk_size: 32,
     },
+    lighting: {
+        ambient: c_white,
+    }
 };
 
 for (var i = 0; i < BASE_GAME_VARIABLES; i++) {

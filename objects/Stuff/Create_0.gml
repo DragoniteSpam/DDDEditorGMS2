@@ -374,7 +374,6 @@ data_image_npc_frames(default_pawn);
 
 #region global game settings
 game_lighting_buckets = 100;
-game_lighting_default_ambient = c_white;
 game_screen_base_width = -1;
 game_screen_base_height = -1;
 

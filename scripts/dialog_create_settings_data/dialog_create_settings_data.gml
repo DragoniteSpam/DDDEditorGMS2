@@ -59,8 +59,8 @@ function dialog_create_settings_data(dialog) {
     yy += el_lighting_buckets.height + spacing;
     
     var el_lighting_default_ambient = create_color_picker(col1_x, yy, "Default ambient:", ew, eh, function(picker) {
-        Stuff.game_lighting_default_ambient = picker.value;
-    }, Stuff.game_lighting_default_ambient, vx1, vy1, vx2, vy2, dg);
+        Game.lighting.ambient = picker.value;
+    }, Game.lighting.ambient, vx1, vy1, vx2, vy2, dg);
     el_lighting_default_ambient.tooltip = "The default ambient lighting color. New maps will use this value. Existing maps will not be updated.";
     yy += el_lighting_default_ambient.height + spacing;
     
