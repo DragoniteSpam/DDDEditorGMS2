@@ -19,8 +19,8 @@ function project_save() {
     
     static project_write_global = function() {
         return {
-            id: Stuff.project.id,
-            notes: Stuff.project.notes,
+            id: Game.project.id,
+            notes: Game.project.notes,
             start: {
                 map: Stuff.game_starting_map,
                 x: Stuff.game_starting_x,
@@ -59,7 +59,7 @@ function project_save() {
     };
     
     var t0 = get_timer();
-    var project_id = Stuff.project.id + "_" + md5_string_utf8(fn);
+    var project_id = Game.project.id + "_" + md5_string_utf8(fn);
     var folder_name = PATH_PROJECTS + project_id + "/";
     var folder_audio_name = folder_name + PROJECT_PATH_AUDIO;
     var folder_image_name = folder_name + PROJECT_PATH_IMAGE;
@@ -85,10 +85,10 @@ function project_save() {
 # Export and save the project as a set of DDD files.
 
 " + snap_to_yaml({
-        id: Stuff.project.id,
+        id: Game.project.id,
         folder: folder_name,
-        summary: Stuff.project.summary,
-        author: Stuff.project.author,
+        summary: Game.project.summary,
+        author: Game.project.author,
         date: {
             year: current_year,
             month: current_month,

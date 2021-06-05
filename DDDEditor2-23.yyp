@@ -686,6 +686,7 @@
     {"id":{"name":"ui_particle_type_life_min","path":"scripts/ui_particle_type_life_min/ui_particle_type_life_min.yy",},"order":80,},
     {"id":{"name":"ui_particle_type_life_max","path":"scripts/ui_particle_type_life_max/ui_particle_type_life_max.yy",},"order":81,},
     {"id":{"name":"ui_particle_type_secondary","path":"scripts/ui_particle_type_secondary/ui_particle_type_secondary.yy",},"order":82,},
+    {"id":{"name":"Group_Game","path":"scripts/Group_Game/Group_Game.yy",},"order":87,},
     {"id":{"name":"ui_particle_type_sprite","path":"scripts/ui_particle_type_sprite/ui_particle_type_sprite.yy",},"order":83,},
     {"id":{"name":"ui_particle_type_secondary_update_type","path":"scripts/ui_particle_type_secondary_update_type/ui_particle_type_secondary_update_type.yy",},"order":84,},
     {"id":{"name":"ui_particle_type_secondary_update_rate","path":"scripts/ui_particle_type_secondary_update_rate/ui_particle_type_secondary_update_rate.yy",},"order":85,},

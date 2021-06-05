@@ -8,7 +8,7 @@ function project_load(id) {
         var json = json_parse(buffer_read_file(filename));
         var version = json.version;
         
-        Stuff.project.notes =                   json.core.notes;
+        Game.project.notes =                   json.core.notes;
         Stuff.game_starting_map =               json.core.start.map;
         Stuff.game_starting_x =                 json.core.start.x;
         Stuff.game_starting_y =                 json.core.start.y;
@@ -77,9 +77,9 @@ function project_load(id) {
     
     var yaml = snap_from_yaml(buffer_read_file(folder_name + "project" + EXPORT_EXTENSION_PROJECT));
     var version = yaml.version;
-    Stuff.project.id = yaml.id;
-    Stuff.project.summary = yaml.summary;
-    Stuff.project.author = yaml.author;
+    Game.project.id = yaml.id;
+    Game.project.summary = yaml.summary;
+    Game.project.author = yaml.author;
     
     project_load_data(folder_name + "data.json");
     project_load_global(folder_name + "meta.json");

@@ -54,8 +54,8 @@ function serialize_load(buffer, filename, proj_name) {
             var file_hour = buffer_read(buffer, buffer_u8);
             var file_minute = buffer_read(buffer, buffer_u8);
             var file_second = buffer_read(buffer, buffer_u8);
-            Stuff.project.summary = summary_string;
-            Stuff.project.author = author_string;
+            Game.project.summary = summary_string;
+            Game.project.author = author_string;
             
             instance_activate_object(Data);
             with (Data) instance_destroy();

@@ -9,7 +9,7 @@ function serialize_load_global_meta(buffer, version) {
     Stuff.game_lighting_buckets = buffer_read(buffer, buffer_f32);
     Stuff.game_lighting_default_ambient = buffer_read(buffer, buffer_u32);
     
-    Stuff.project.id = buffer_read(buffer, buffer_string);
+    Game.project.id = buffer_read(buffer, buffer_string);
     Stuff.game_base_map_chunk_size = buffer_read(buffer, buffer_u16);
     
     Stuff.game_common_effect_code = buffer_read(buffer, buffer_string);
@@ -79,7 +79,7 @@ function serialize_load_global_meta(buffer, version) {
         array_push(Stuff.all_game_constants, what);
     }
     
-    Stuff.project.notes = buffer_read(buffer, buffer_string);
+    Game.project.notes = buffer_read(buffer, buffer_string);
     
     for (var i = 0; i < FLAG_COUNT; i++) {
         Stuff.all_asset_flags[i] = buffer_read(buffer, buffer_string);

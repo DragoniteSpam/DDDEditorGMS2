@@ -13,7 +13,7 @@ function refid_generate(map_container) {
     if (map_container == undefined) map_container = Stuff.map.active_map;
     var n;
     do {
-        n = Stuff.project.id + ":" + string_hex(map_container.contents.refid_current++, 8);
+        n = Game.project.id + ":" + string_hex(map_container.contents.refid_current++, 8);
     } until (!map_container.contents.refids[$ n]);
     
     return n;

@@ -21,16 +21,16 @@ function dialog_create_settings_data(dialog) {
     var yy = 64;
     
     var el_summary = create_input(col1_x, yy, "Summary:", dw - 64, eh, function(input) {
-        Stuff.project.summary = input.value;
-    }, Stuff.project.summary, "Write a short description here", validate_string, 0, 1, 128, vx1, vy1, dw - 32, vy2, dg);
+        Game.project.summary = input.value;
+    }, Game.project.summary, "Write a short description here", validate_string, 0, 1, 128, vx1, vy1, dw - 32, vy2, dg);
     el_summary.tooltip = "A quick summary of the game that the data files are to be used for; will be shown in the project list when you open the editor. Has no impact on gameplay (unless you code it to).";
     yy += el_summary.height + spacing;
     
     var yy_base = yy;
     
     var el_summary_author = create_input(col1_x, yy, "Author:", ew, eh, function(input) {
-        Stuff.project.author = input.value;
-    }, Stuff.project.author, "Author", validate_string, 0, 1, 20, vx1, vy1, vx2, vy2, dg);
+        Game.project.author = input.value;
+    }, Game.project.author, "Author", validate_string, 0, 1, 20, vx1, vy1, vx2, vy2, dg);
     el_summary_author.tooltip = "The name of the person who made this; will be shown in the project list when you open the editor. Has no impact on gameplay (unless you code it to) and is not a substitute for full game credits.";
     yy += el_summary_author.height + spacing;
     
@@ -151,8 +151,8 @@ function dialog_create_settings_data(dialog) {
     el_edit_title.color = c_blue;
     yy += el_edit_title.height + spacing;
     
-    var el_edit_notes = create_input_code(col3_x, yy, "Game notes:", ew, eh, vx1, vy1, vx2, vy2, Stuff.project.notes, function(code) {
-        Stuff.project.notes = code.value;
+    var el_edit_notes = create_input_code(col3_x, yy, "Game notes:", ew, eh, vx1, vy1, vx2, vy2, Game.project.notes, function(code) {
+        Game.project.notes = code.value;
     }, dg);
     el_edit_notes.tooltip = "This doesn't affect the game, but you may find it helpful to keep a set of notes for things you want to remember while working on it.";
     el_edit_notes.is_code = false;
