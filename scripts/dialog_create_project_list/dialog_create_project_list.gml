@@ -47,6 +47,8 @@ function dialog_create_project_list(root) {
                 Controller.ignore_next = 1;
                 return;
             }
+            dialog_destroy();
+            project_load(project.id);
         }
     };
     
