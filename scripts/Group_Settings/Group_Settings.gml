@@ -8,7 +8,7 @@ function setting_get(object, name, def) {
     throw "Setting object not found: " + object;
 }
 
-function setting_project_add(filename, folder) {
+function setting_project_add(filename, id) {
     // this just logs it in projects.json; it doesn't add any of the data files
     var exists = false;
     for (var i = 0; i < array_length(Stuff.all_projects.projects); i++) {
@@ -18,7 +18,7 @@ function setting_project_add(filename, folder) {
         }
     }
     if (!exists) {
-        array_push(Stuff.all_projects.projects, { name: filename, folder: folder, legacy: false });
+        array_push(Stuff.all_projects.projects, { name: filename_name(filename_change_ext(filename, "")), source: filename, id: id, legacy: false });
     }
     
     buffer_write_file(json_stringify(Stuff.all_projects), "projects.json");
