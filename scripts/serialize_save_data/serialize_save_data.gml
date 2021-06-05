@@ -5,7 +5,7 @@ function serialize_save_data() {
     
     if (string_length(fn) > 0) {
         var save_directory = filename_path(fn);
-        var buffers = array_create(array_length(Stuff.game_asset_lists));
+        var buffers = array_create(array_length(Game.asset_lists));
         
         Stuff.save_name = string_replace(filename_name(fn), EXPORT_EXTENSION_DATA, "");
         var proj_name = filename_change_ext(filename_name(fn), "");
@@ -14,16 +14,16 @@ function serialize_save_data() {
         
         var contents = ds_list_create();
         
-        for (var i = 0; i < array_length(Stuff.game_asset_lists); i++) {
-            var file_data = Stuff.game_asset_lists[i];
+        for (var i = 0; i < array_length(Game.asset_lists); i++) {
+            var file_data = Game.asset_lists[i];
             var buffer = buffer_create(1024, buffer_grow, 1);
             serialize_save_header(buffer, file_data, (i == 0));
             
             // the default file should have a list of all of the other files
             if (i == 0) {
-                buffer_write(buffer, buffer_u8, array_length(Stuff.game_asset_lists));
-                for (var j = 0; j < array_length(Stuff.game_asset_lists); j++) {
-                    var asset_file = Stuff.game_asset_lists[j];
+                buffer_write(buffer, buffer_u8, array_length(Game.asset_lists));
+                for (var j = 0; j < array_length(Game.asset_lists); j++) {
+                    var asset_file = Game.asset_lists[j];
                     var bools = pack(asset_file.critical);
                     buffer_write(buffer, buffer_string, asset_file.name);
                     buffer_write(buffer, buffer_u32, bools);

@@ -61,7 +61,7 @@ function dialog_create_settings_data_asset_files(dialog) {
             list.root.el_types.interactive = false;
             list.root.el_critical.interactive = false;
         }
-    }, false, dg, Stuff.game_asset_lists);
+    }, false, dg, Game.asset_lists);
     el_list.tooltip = "This is the list of data / asset files you currently have linked to the project. The master file is special, is always critical and can't be renamed as it has the same name as the project by default.\n\nCompressed files are shown in blue. Non-critical files are denoted with an asterisk*.";
     el_list.entries_are = ListEntries.SCRIPT;
     el_list.evaluate_text = function(list, index) {
@@ -90,7 +90,7 @@ function dialog_create_settings_data_asset_files(dialog) {
         }
     }, dg);
     el_add.tooltip = "Add a data / asset file. You can have up to " + string(0xff) + ", which is realistically way the heck more than you'll need since there are only " + string(array_length(Stuff.game_data_location)) + " things you can sort into them.";
-    el_add.interactive = (array_length(Stuff.game_asset_lists) < 0xff);
+    el_add.interactive = (array_length(Game.asset_lists) < 0xff);
     dg.el_add = el_add;
     yy += el_add.height + spacing;
     
@@ -105,7 +105,7 @@ function dialog_create_settings_data_asset_files(dialog) {
         }
     }, dg);
     el_remove.tooltip = "Delete a data / asset file. You must have at least one. If you remove a data file that is still assigned to be used, anything that would have been saved to it will instead be saved to the one at the top of the list.";
-    el_remove.interactive = (array_length(Stuff.game_asset_lists) > 0x01);
+    el_remove.interactive = (array_length(Game.asset_lists) > 0x01);
     dg.el_remove = el_remove;
     yy += el_remove.height + spacing;
     

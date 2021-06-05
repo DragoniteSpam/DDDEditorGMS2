@@ -375,7 +375,7 @@ data_image_npc_frames(default_pawn);
 var file_default = new DataFile("data", false, true);
 var file_asset = new DataFile("assets", false, false);
 var file_terrain = new DataFile("terrain", true, false);
-game_asset_lists = [file_default, file_asset, file_terrain];
+Game.asset_lists = [file_default, file_asset, file_terrain];
 
 game_data_location = array_create(GameDataCategories.__COUNT);
 game_data_location[GameDataCategories.TILE_ANIMATIONS] = file_asset;
