@@ -39,7 +39,7 @@ function dialog_create_game_data_asset_flags(root, index) {
     
     var rows = 24;
     for (var i = 0; i < FLAG_COUNT; i++) {
-        var label = (Game.all_asset_flags[i] == "") ? "<" + string(i) + ">" : Game.all_asset_flags[i];
+        var label = (Game.asset_flags[i] == "") ? "<" + string(i) + ">" : Game.asset_flags[i];
         create_bitfield_options_vertical(el_flags, [create_bitfield_option_data(i, function(option, x, y) {
             option.state = option.root.value & (1 << option.value);
             ui_render_bitfield_option_text(option, x, y);

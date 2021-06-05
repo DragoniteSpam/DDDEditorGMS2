@@ -39,13 +39,13 @@ function serialize_save_global_meta(buffer) {
     }
     
     for (var i = 0; i < FLAG_COUNT; i++) {
-        buffer_write(buffer, buffer_string, Game.all_event_triggers[i]);
+        buffer_write(buffer, buffer_string, Game.event_triggers[i]);
     }
     
-    var n_constants = array_length(Game.all_constants);
+    var n_constants = array_length(Game.constants);
     buffer_write(buffer, buffer_u16, n_constants);
     for (var i = 0; i < n_constants; i++) {
-        var what = Game.all_constants[i];
+        var what = Game.constants[i];
         serialize_save_generic(buffer, what);
         
         buffer_write(buffer, buffer_u16, what.type);
@@ -58,7 +58,7 @@ function serialize_save_global_meta(buffer) {
     buffer_write(buffer, buffer_string, Game.project.notes);
     
     for (var i = 0; i < FLAG_COUNT; i++) {
-        buffer_write(buffer, buffer_string, Game.all_asset_flags[i]);
+        buffer_write(buffer, buffer_string, Game.asset_flags[i]);
     }
     
     buffer_poke(buffer, addr_next, buffer_u64, buffer_tell(buffer));

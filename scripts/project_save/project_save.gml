@@ -44,9 +44,9 @@ function project_save() {
             },
             switches: Game.switches,
             variables: Game.variables,
-            constants: Game.all_constants,
-            triggers: Game.all_event_triggers,
-            flags: Game.all_asset_flags,
+            constants: Game.constants,
+            triggers: Game.event_triggers,
+            flags: Game.asset_flags,
         };
     };
     

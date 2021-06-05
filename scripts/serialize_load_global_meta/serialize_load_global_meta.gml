@@ -40,7 +40,7 @@ function serialize_load_global_meta(buffer, version) {
     }
     
     for (var i = 0; i < FLAG_COUNT; i++) {
-        Game.all_event_triggers[i] = buffer_read(buffer, buffer_string);
+        Game.event_triggers[i] = buffer_read(buffer, buffer_string);
     }
     
     var n_constants = buffer_read(buffer, buffer_u16);
@@ -76,12 +76,12 @@ function serialize_load_global_meta(buffer, version) {
                 break;
         }
         
-        array_push(Game.all_constants, what);
+        array_push(Game.constants, what);
     }
     
     Game.project.notes = buffer_read(buffer, buffer_string);
     
     for (var i = 0; i < FLAG_COUNT; i++) {
-        Game.all_asset_flags[i] = buffer_read(buffer, buffer_string);
+        Game.asset_flags[i] = buffer_read(buffer, buffer_string);
     }
 }

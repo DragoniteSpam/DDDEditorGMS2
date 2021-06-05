@@ -19,8 +19,8 @@ function dialog_create_settings_data_asset_flags(dialog) {
     
     var el_list = create_list(32, yy, "Asset Flags", "", ew, eh, 20, function(list) {
         var selection = ui_list_selection(list);
-        ui_input_set_value(list.root.el_name, Game.all_asset_flags[selection]);
-    }, false, dg, Game.all_asset_flags);
+        ui_input_set_value(list.root.el_name, Game.asset_flags[selection]);
+    }, false, dg, Game.asset_flags);
     el_list.tooltip = "Any flags you may want to assign to assets such as Meshes or Tiles. These are stored in the form of a 32-bit mask, which means you can use up to 32 of them and they may be toggled on or off independantly of each other.";
     el_list.numbered = true;
     el_list.allow_deselect = false;
@@ -32,10 +32,10 @@ function dialog_create_settings_data_asset_flags(dialog) {
     var el_name = create_input(32, yy, "Name:", ew, eh, function(input) {
         var selection = ui_list_selection(input.root.el_list);
         if (selection + 1) {
-            Game.all_asset_flags[@ selection] = input.value;
+            Game.asset_flags[@ selection] = input.value;
         }
     }, "", "16 characters", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
-    ui_input_set_value(el_name, Game.all_asset_flags[0]);
+    ui_input_set_value(el_name, Game.asset_flags[0]);
     yy += el_name.height + spacing;
     dg.el_name = el_name;
     
