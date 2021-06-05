@@ -4,6 +4,9 @@ function project_load(id) {
         var json = json_parse(buffer_read_file(filename));
         var version = json.version;
         var data = json.data;
+        for (var i = 0, n = array_length(data); i < n; i++) {
+            instance_create_depth(0, 0, 0, DataData).LoadJSON(data[i]);
+        }
     };
     
     static project_load_global = function(filename) {

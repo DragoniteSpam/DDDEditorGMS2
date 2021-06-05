@@ -5,8 +5,7 @@ function project_save() {
     static project_write_json = function(data_list) {
         var json = array_create(ds_list_size(data_list));
         for (var i = 0, n = ds_list_size(data_list); i < n; i++) {
-            var data_json = data_list[| i].CreateJSON();
-            json[i] = data_json;
+            json[i] = data_list[| i].CreateJSON();
         }
         return json;
     };
