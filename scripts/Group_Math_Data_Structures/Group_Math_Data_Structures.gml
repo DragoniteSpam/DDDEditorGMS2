@@ -221,6 +221,13 @@ function buffer_write_file(str, filename) {
     buffer_write(buffer, buffer_text, str);
     buffer_save_ext(buffer, filename, 0, buffer_tell(buffer));
 }
+
+function buffer_read_file(filename) {
+    var data = buffer_load(filename);
+    var str = buffer_read(data, buffer_string);
+    buffer_delete(data);
+    return str;
+}
 #endregion
 
 #region ds_list stuff
