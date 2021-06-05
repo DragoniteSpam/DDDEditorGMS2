@@ -12,7 +12,6 @@ varying vec4 v_vColour;
 varying vec3 v_LightWorldNormal;
 varying vec3 v_LightWorldPosition;
 
-uniform float lightBuckets;
 uniform vec3 lightAmbientColor;
 uniform vec4 lightData[MAX_LIGHTS * 3];
 uniform vec3 lightDayTimeColor;

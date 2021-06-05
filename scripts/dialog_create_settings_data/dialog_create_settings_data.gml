@@ -52,12 +52,6 @@ function dialog_create_settings_data(dialog) {
     el_graphics_title.color = c_blue;
     yy += el_graphics_title.height + spacing;
     
-    var el_lighting_buckets = create_input(col1_x, yy, "Lighting levels:", ew, eh, function(input) {
-        Stuff.game_lighting_buckets = real(input.value);
-    }, Stuff.game_lighting_buckets, "float", validate_double, 1, 1000, 4, vx1, vy1, vx2, vy2, dg);
-    el_lighting_buckets.tooltip = "The number of level of shading the lighting can have. Use a small number for a more cartoony lighting effect. Use a higher value for smoother lighting. A value over 100 is largely pointless, but this is a constant-time operation so you can go higher if you want.";
-    yy += el_lighting_buckets.height + spacing;
-    
     var el_lighting_default_ambient = create_color_picker(col1_x, yy, "Default ambient:", ew, eh, function(picker) {
         Game.lighting.ambient = picker.value;
     }, Game.lighting.ambient, vx1, vy1, vx2, vy2, dg);
@@ -179,7 +173,6 @@ function dialog_create_settings_data(dialog) {
         el_player_start,
         // graphics
         el_graphics_title,
-        el_lighting_buckets,
         el_lighting_default_ambient,
         el_screen_width,
         el_screen_height,

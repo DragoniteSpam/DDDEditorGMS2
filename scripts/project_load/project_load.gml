@@ -15,7 +15,6 @@ function project_load(id) {
         Game.start.z =                 json.core.start.z;
         Game.start.direction =         json.core.start.direction;
         
-        Stuff.game_lighting_buckets =           json.core.lighting.buckets;
         Game.lighting.ambient =   json.core.lighting.ambient;
         
         Game.grid.chunk_size =        json.core.grid.chunk_size;

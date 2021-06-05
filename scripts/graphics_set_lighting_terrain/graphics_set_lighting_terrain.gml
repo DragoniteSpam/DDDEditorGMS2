@@ -31,7 +31,6 @@ function graphics_set_lighting_terrain(argument0) {
         }
     }
 
-    shader_set_uniform_f(shader_get_uniform(shader, "lightBuckets"), Stuff.game_lighting_buckets);
     shader_set_uniform_f(shader_get_uniform(shader, "lightAmbientColor"), (ambient & 0x0000ff) / 0xff, ((ambient & 0x00ff00) >> 8) / 0xff, ((ambient & 0xff0000) >> 16) / 0xff);
     shader_set_uniform_f_array(shader_get_uniform(shader, "lightData"), light_data);
 

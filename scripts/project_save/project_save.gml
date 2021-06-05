@@ -29,7 +29,6 @@ function project_save() {
                 direction: Game.start.direction,
             },
             lighting: {
-                buckets: Stuff.game_lighting_buckets,
                 ambient: Game.lighting.ambient,
             },
             grid: {

@@ -8,7 +8,7 @@ function serialize_save_global_meta(buffer) {
     buffer_write(buffer, buffer_u16, Game.start.y);
     buffer_write(buffer, buffer_u16, Game.start.z);
     buffer_write(buffer, buffer_u8, Game.start.direction);
-    buffer_write(buffer, buffer_f32, Stuff.game_lighting_buckets);
+    buffer_write(buffer, buffer_f32, 255);
     buffer_write(buffer, buffer_u32, Game.lighting.ambient);
     buffer_write(buffer, buffer_string, Game.project.id);
     buffer_write(buffer, buffer_u16, Game.grid.chunk_size);
