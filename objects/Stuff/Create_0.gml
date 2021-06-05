@@ -372,11 +372,10 @@ data_image_npc_frames(default_pawn);
 #endregion
 
 #region global game settings
-game_asset_lists = ds_list_create();
 var file_default = new DataFile("data", false, true);
 var file_asset = new DataFile("assets", false, false);
 var file_terrain = new DataFile("terrain", true, false);
-ds_list_add(game_asset_lists, file_default, file_asset, file_terrain);
+game_asset_lists = [file_default, file_asset, file_terrain];
 
 game_data_location = array_create(GameDataCategories.__COUNT);
 game_data_location[GameDataCategories.TILE_ANIMATIONS] = file_asset;

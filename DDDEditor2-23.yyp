@@ -1950,7 +1950,6 @@
     {"CopyToMask":-1,"filePath":"datafiles/data/lua","resourceVersion":"1.0","name":"event-node-conditional.lua","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/data/lua","resourceVersion":"1.0","name":"event-page-condition.lua","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/data/lua","resourceVersion":"1.0","name":"event-script.lua","resourceType":"GMIncludedFile",},
-    {"CopyToMask":-1,"filePath":"datafiles/data/lua","resourceVersion":"1.0","name":"global-effect-common.lua","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/data/lua","resourceVersion":"1.0","name":"map.lua","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/data/particles","resourceVersion":"1.0","name":"fire.dddp","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/data/particles","resourceVersion":"1.0","name":"waterfall.dddp","resourceType":"GMIncludedFile",},

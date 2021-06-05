@@ -90,7 +90,7 @@ function dialog_create_settings_data_asset_files(dialog) {
         }
     }, dg);
     el_add.tooltip = "Add a data / asset file. You can have up to " + string(0xff) + ", which is realistically way the heck more than you'll need since there are only " + string(array_length(Stuff.game_data_location)) + " things you can sort into them.";
-    el_add.interactive = (ds_list_size(Stuff.game_asset_lists) < 0xff);
+    el_add.interactive = (array_length(Stuff.game_asset_lists) < 0xff);
     dg.el_add = el_add;
     yy += el_add.height + spacing;
     
@@ -105,7 +105,7 @@ function dialog_create_settings_data_asset_files(dialog) {
         }
     }, dg);
     el_remove.tooltip = "Delete a data / asset file. You must have at least one. If you remove a data file that is still assigned to be used, anything that would have been saved to it will instead be saved to the one at the top of the list.";
-    el_remove.interactive = (ds_list_size(Stuff.game_asset_lists) > 0x01);
+    el_remove.interactive = (array_length(Stuff.game_asset_lists) > 0x01);
     dg.el_remove = el_remove;
     yy += el_remove.height + spacing;
     

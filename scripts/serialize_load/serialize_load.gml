@@ -69,7 +69,7 @@ function serialize_load(buffer, filename, proj_name) {
             // reset the active map
             Stuff.map.active_map = noone;
             // these are garbage collected
-            ds_list_clear(Stuff.game_asset_lists);
+            Stuff.game_asset_lists = [];
             var n_files = buffer_read(buffer, buffer_u8);
             
             repeat (n_files) {
@@ -77,14 +77,14 @@ function serialize_load(buffer, filename, proj_name) {
                 var bools = buffer_read(buffer, buffer_u32);
                 // the "compressed" parameter can be set later
                 var file_data = new DataFile(name, false, unpack(bools, 0));
-                ds_list_add(Stuff.game_asset_lists, file_data);
+                array_push(Stuff.game_asset_lists, file_data);
             }
             
             // erase the default game data locations and replace them with
             // whatever file bundle this project uses
             array_clear(Stuff.game_data_location, undefined);
             
-            Stuff.game_data_current_file = Stuff.game_asset_lists[| 0];
+            Stuff.game_data_current_file = Stuff.game_asset_lists[0];
             
             break;
         case SERIALIZE_ASSETS:
@@ -194,8 +194,8 @@ function serialize_load(buffer, filename, proj_name) {
     
     switch (what) {
         case SERIALIZE_DATA_AND_MAP:
-            for (var i = 1; i < ds_list_size(Stuff.game_asset_lists); i++) {
-                Stuff.game_data_current_file = Stuff.game_asset_lists[| i];
+            for (var i = 1; i < array_length(Stuff.game_asset_lists); i++) {
+                Stuff.game_data_current_file = Stuff.game_asset_lists[i];
                 var next_file_name = proj_path + Stuff.game_data_current_file.name + EXPORT_EXTENSION_ASSETS;
                 if (file_exists(next_file_name)) {
                     var buffer_next = buffer_load(next_file_name);
