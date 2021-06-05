@@ -373,8 +373,6 @@ data_image_npc_frames(default_pawn);
 #endregion
 
 #region global game settings
-game_common_effect_code = default_lua_effect_common;
-
 game_asset_lists = ds_list_create();
 var file_default = new DataFile("data", false, true);
 var file_asset = new DataFile("assets", false, false);

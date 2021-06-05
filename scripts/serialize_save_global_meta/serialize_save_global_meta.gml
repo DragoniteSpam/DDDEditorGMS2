@@ -13,7 +13,7 @@ function serialize_save_global_meta(buffer) {
     buffer_write(buffer, buffer_string, Game.project.id);
     buffer_write(buffer, buffer_u16, Game.grid.chunk_size);
     
-    buffer_write(buffer, buffer_string, Stuff.game_common_effect_code);
+    buffer_write(buffer, buffer_string, "");
     
     var bools = pack(Game.grid.snap);
     buffer_write(buffer, buffer_u32, bools);

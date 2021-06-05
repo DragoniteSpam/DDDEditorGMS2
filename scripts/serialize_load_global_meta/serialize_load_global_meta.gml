@@ -12,7 +12,7 @@ function serialize_load_global_meta(buffer, version) {
     Game.project.id = buffer_read(buffer, buffer_string);
     Game.grid.chunk_size = buffer_read(buffer, buffer_u16);
     
-    Stuff.game_common_effect_code = buffer_read(buffer, buffer_string);
+    buffer_read(buffer, buffer_string);
     
     var bools = buffer_read(buffer, buffer_u32);
     Game.grid.snap = unpack(bools, 0);
