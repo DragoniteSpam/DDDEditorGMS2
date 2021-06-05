@@ -41,7 +41,7 @@ function project_save() {
                 height: Stuff.game_screen_base_height,
             },
             title: {
-                map: Stuff.game_title_screen,
+                map: Game.game_title_screen,
             },
             switches: Game.switches,
             variables: Game.variables,

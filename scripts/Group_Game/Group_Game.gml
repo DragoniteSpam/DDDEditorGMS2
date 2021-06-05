@@ -14,6 +14,8 @@ Game = {
     all_event_triggers: array_create(FLAG_COUNT, ""),
     all_asset_flags: array_create(FLAG_COUNT, ""),
     all_game_constants: [],
+    
+    title_screen: NULL,
 };
 
 for (var i = 0; i < BASE_GAME_VARIABLES; i++) {

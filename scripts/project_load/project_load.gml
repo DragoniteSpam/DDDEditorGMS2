@@ -24,7 +24,7 @@ function project_load(id) {
         Stuff.game_screen_base_width =          json.core.base_screen.width;
         Stuff.game_screen_base_height =         json.core.base_screen.height;
         
-        Stuff.game_title_screen =               json.core.title.map;
+        Game.game_title_screen =               json.core.title.map;
         
         Game.switches =                        json.core.switches;
         Game.variables =                       json.core.variables;
