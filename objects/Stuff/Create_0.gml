@@ -121,13 +121,6 @@ all_events = ds_list_create();
 all_event_custom = ds_list_create();
 all_event_prefabs = ds_list_create();
 
-switches = array_create(BASE_GAME_VARIABLES);                                   // { name, value }
-variables = array_create(BASE_GAME_VARIABLES);                                  // { name, value }
-for (var i = 0; i < BASE_GAME_VARIABLES; i++) {
-    switches[i] = new DataValue("Switch" + string(i));
-    variables[i] = new DataValue("Variable" + string(i));
-}
-
 all_event_triggers = array_create(FLAG_COUNT, "");
 all_event_triggers[0] = "Action Button";
 all_event_triggers[1] = "Player Touch";

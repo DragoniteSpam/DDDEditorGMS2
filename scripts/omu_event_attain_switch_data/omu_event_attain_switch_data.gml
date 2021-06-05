@@ -21,8 +21,8 @@ function omu_event_attain_switch_data(thing, event_node, data_index) {
     var el_list = create_list(16, yy, "Switches", "<no switches>", ew, eh, 14, function(list) {
         list.root.node.custom_data[@ 0][@ 0] = ui_list_selection(list);
     }, false, dg);
-    for (var i = 0; i < array_length(Stuff.switches); i++) {
-        create_list_entries(el_list, Stuff.switches[i].name);
+    for (var i = 0; i < array_length(Game.switches); i++) {
+        create_list_entries(el_list, Game.switches[i].name);
     }
     if (custom_data_switch[0] > -1) {
         ui_list_select(el_list, custom_data_switch[0]);

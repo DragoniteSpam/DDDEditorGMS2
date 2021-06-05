@@ -26,8 +26,8 @@ function project_load(id) {
         
         Stuff.game_title_screen =               json.core.title.map;
         
-        Stuff.switches =                        json.core.switches;
-        Stuff.variables =                       json.core.variables;
+        Game.switches =                        json.core.switches;
+        Game.variables =                       json.core.variables;
         Stuff.all_game_constants =              json.core.constants;
         Stuff.all_event_triggers =              json.core.triggers;
         Stuff.all_asset_flags =                 json.core.flags;

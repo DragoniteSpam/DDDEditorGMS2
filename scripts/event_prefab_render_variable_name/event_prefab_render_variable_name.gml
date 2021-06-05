@@ -7,11 +7,11 @@ function event_prefab_render_variable_name(argument0, argument1) {
 
     var raw = event.custom_data[0][0];
 
-    if (!is_clamped(raw, 0, array_length(Stuff.variables))) {
+    if (!is_clamped(raw, 0, array_length(Game.variables))) {
         return "n/a";
     }
 
-    return Stuff.variables[raw].name;
+    return Game.variables[raw].name;
 
 
 }

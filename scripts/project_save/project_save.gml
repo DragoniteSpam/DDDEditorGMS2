@@ -43,8 +43,8 @@ function project_save() {
             title: {
                 map: Stuff.game_title_screen,
             },
-            switches: Stuff.switches,
-            variables: Stuff.variables,
+            switches: Game.switches,
+            variables: Game.variables,
             constants: Stuff.all_game_constants,
             triggers: Stuff.all_event_triggers,
             flags: Stuff.all_asset_flags,

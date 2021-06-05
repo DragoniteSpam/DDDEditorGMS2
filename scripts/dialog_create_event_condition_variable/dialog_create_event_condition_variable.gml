@@ -30,8 +30,8 @@ function dialog_create_event_condition_variable(node, index) {
     var yy = 64;
     
     var el_list = create_list(16, yy, "Variables", "<no variables>", ew, eh, 14, uivc_list_event_condition_index, false, dg);
-    for (var i = 0; i < array_length(Stuff.variables); i++) {
-        create_list_entries(el_list, Stuff.variables[i].name);
+    for (var i = 0; i < array_length(Game.variables); i++) {
+        create_list_entries(el_list, Game.variables[i].name);
     }
     if (list_index[0] > -1) {
         ui_list_select(el_list, list_index[index]);
