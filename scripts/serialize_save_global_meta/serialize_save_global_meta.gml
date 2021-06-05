@@ -3,7 +3,7 @@ function serialize_save_global_meta(buffer) {
     var addr_next = buffer_tell(buffer);
     buffer_write(buffer, buffer_u64, 0);
     
-    buffer_write(buffer, buffer_datatype, Stuff.game_starting_map);
+    buffer_write(buffer, buffer_datatype, Game.game_starting_map);
     buffer_write(buffer, buffer_u16, Stuff.game_starting_x);
     buffer_write(buffer, buffer_u16, Stuff.game_starting_y);
     buffer_write(buffer, buffer_u16, Stuff.game_starting_z);

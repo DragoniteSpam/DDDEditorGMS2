@@ -119,7 +119,7 @@ function draw_editor_3d() {
     #endregion
     
     #region unlit meshes - UI stuff like axes and gizmos
-    if (Stuff.game_starting_map == Stuff.map.active_map.GUID) {
+    if (Game.game_starting_map == Stuff.map.active_map.GUID) {
         transform_set(0, 0, 0, 0, 0, Stuff.direction_lookup[Stuff.game_starting_direction], 1, 1, 1);
         transform_add((Stuff.game_starting_x + 0.5) * TILE_WIDTH, (Stuff.game_starting_y + 0.5) * TILE_HEIGHT, Stuff.game_starting_z * TILE_DEPTH, 0, 0, 0, 1, 1, 1);
         vertex_submit(Stuff.graphics.basic_cage, pr_trianglelist, -1);

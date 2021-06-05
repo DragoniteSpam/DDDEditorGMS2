@@ -19,11 +19,11 @@ function dialog_create_settings_data_player_start(dialog) {
     var yy = 64;
     var yy_start = 64;
     
-    var starting = guid_get(Stuff.game_starting_map);
+    var starting = guid_get(Game.game_starting_map);
     
     var el_list_map = create_list(32, yy, "Map:", "<how did you manage that?>", ew, eh, 16, function(list) {
         var map = Stuff.all_maps[| list.value];
-        Stuff.game_starting_map = map.GUID;
+        Game.game_starting_map = map.GUID;
         list.root.el_x.value_upper = map.xx;
         list.root.el_y.value_upper = map.yy;
         list.root.el_z.value_upper = map.zz;
@@ -37,7 +37,7 @@ function dialog_create_settings_data_player_start(dialog) {
         ui_input_set_value(list.root.el_z, string(Stuff.game_starting_z));
     }, false, dg, Stuff.all_maps);
     for (var i = 0; i < ds_list_size(Stuff.all_maps); i++) {
-        if (Stuff.game_starting_map == Stuff.all_maps[| i].GUID) {
+        if (Game.game_starting_map == Stuff.all_maps[| i].GUID) {
             ui_list_select(el_list_map, i);
             break;
         }

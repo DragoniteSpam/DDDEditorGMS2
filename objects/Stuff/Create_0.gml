@@ -373,7 +373,6 @@ data_image_npc_frames(default_pawn);
 #endregion
 
 #region global game settings
-game_starting_map = map.active_map.GUID;
 game_starting_x = 0;
 game_starting_y = 0;
 game_starting_z = 0;

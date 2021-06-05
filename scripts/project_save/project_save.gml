@@ -22,7 +22,7 @@ function project_save() {
             id: Game.project.id,
             notes: Game.project.notes,
             start: {
-                map: Stuff.game_starting_map,
+                map: Game.game_starting_map,
                 x: Stuff.game_starting_x,
                 y: Stuff.game_starting_y,
                 z: Stuff.game_starting_z,

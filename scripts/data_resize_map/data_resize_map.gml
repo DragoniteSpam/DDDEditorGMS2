@@ -16,7 +16,7 @@ function data_resize_map(map_container, xx, yy, zz) {
     array_resize_4d(map_contents.map_grid, xx, yy, zz, MapCellContents._COUNT);
     array_resize_3d(map_contents.map_grid_tags, xx, yy, zz);
     
-    if (Stuff.game_starting_map == map_container.GUID) {
+    if (Game.game_starting_map == map_container.GUID) {
         Stuff.game_starting_x = min(Stuff.game_starting_x, xx - 1);
         Stuff.game_starting_y = min(Stuff.game_starting_y, yy - 1);
         Stuff.game_starting_z = min(Stuff.game_starting_z, zz - 1);

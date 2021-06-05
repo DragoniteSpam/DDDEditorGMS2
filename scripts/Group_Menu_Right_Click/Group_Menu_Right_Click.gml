@@ -3,7 +3,7 @@ function momu_set_starting_position_down() {
     if (ds_list_size(Stuff.map.selection) == 1) {
         var selection = Stuff.map.selection[| 0];
         if (selection.area() == 1) {
-            Stuff.game_starting_map = Stuff.map.active_map.GUID;
+            Game.game_starting_map = Stuff.map.active_map.GUID;
             Stuff.game_starting_x = selection.x;
             Stuff.game_starting_y = selection.y;
             Stuff.game_starting_z = selection.z;
@@ -20,7 +20,7 @@ function momu_set_starting_position_up() {
     if (ds_list_size(Stuff.map.selection) == 1) {
         var selection = Stuff.map.selection[| 0];
         if (selection.area() == 1) {
-            Stuff.game_starting_map = Stuff.map.active_map.GUID;
+            Game.game_starting_map = Stuff.map.active_map.GUID;
             Stuff.game_starting_x = selection.x;
             Stuff.game_starting_y = selection.y;
             Stuff.game_starting_z = selection.z;
@@ -34,7 +34,7 @@ function momu_set_starting_position_left() {
     if (ds_list_size(Stuff.map.selection) == 1) {
         var selection = Stuff.map.selection[| 0];
         if (selection.area() == 1) {
-            Stuff.game_starting_map = Stuff.map.active_map.GUID;
+            Game.game_starting_map = Stuff.map.active_map.GUID;
             Stuff.game_starting_x = selection.x;
             Stuff.game_starting_y = selection.y;
             Stuff.game_starting_z = selection.z;
@@ -48,7 +48,7 @@ function momu_set_starting_position_right() {
     if (ds_list_size(Stuff.map.selection) == 1) {
         var selection = Stuff.map.selection[| 0];
         if (selection.area() == 1) {
-            Stuff.game_starting_map = Stuff.map.active_map.GUID;
+            Game.game_starting_map = Stuff.map.active_map.GUID;
             Stuff.game_starting_x = selection.x;
             Stuff.game_starting_y = selection.y;
             Stuff.game_starting_z = selection.z;

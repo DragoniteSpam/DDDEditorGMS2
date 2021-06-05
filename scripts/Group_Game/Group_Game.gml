@@ -16,6 +16,7 @@ Game = {
     all_game_constants: [],
     
     title_screen: NULL,
+    game_starting_map: NULL,
 };
 
 for (var i = 0; i < BASE_GAME_VARIABLES; i++) {

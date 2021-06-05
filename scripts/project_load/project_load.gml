@@ -9,7 +9,7 @@ function project_load(id) {
         var version = json.version;
         
         Game.project.notes =                   json.core.notes;
-        Stuff.game_starting_map =               json.core.start.map;
+        Game.game_starting_map =               json.core.start.map;
         Stuff.game_starting_x =                 json.core.start.x;
         Stuff.game_starting_y =                 json.core.start.y;
         Stuff.game_starting_z =                 json.core.start.z;
