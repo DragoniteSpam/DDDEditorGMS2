@@ -39,30 +39,32 @@ Game = {
         width: -1,
         height: -1,
     },
-    asset_lists: [file_default, file_asset, file_terrain],
-    data_location: [],
+    export: {
+        files: [file_default, file_asset, file_terrain],
+        locations: [],
+    },
 };
 
-Game.data_location[GameDataCategories.TILE_ANIMATIONS] = file_asset;
-Game.data_location[GameDataCategories.TILESETS] = file_asset;
-Game.data_location[GameDataCategories.BATTLERS] = file_asset;
-Game.data_location[GameDataCategories.OVERWORLDS] = file_asset;
-Game.data_location[GameDataCategories.PARTICLES] = file_asset;
-Game.data_location[GameDataCategories.UI] = file_asset;
-Game.data_location[GameDataCategories.SKYBOX] = file_asset;
-Game.data_location[GameDataCategories.MISC] = file_asset;
-Game.data_location[GameDataCategories.BGM] = file_asset;
-Game.data_location[GameDataCategories.SE] = file_asset;
-Game.data_location[GameDataCategories.MESH] = file_asset;
-Game.data_location[GameDataCategories.MESH_AUTOTILES] = file_asset;
-Game.data_location[GameDataCategories.MAP] = file_default;
-Game.data_location[GameDataCategories.GLOBAL] = file_default;
-Game.data_location[GameDataCategories.EVENTS]  = file_default;
-Game.data_location[GameDataCategories.DATADATA] = file_default;
-Game.data_location[GameDataCategories.DATA_INST] = file_default;
-Game.data_location[GameDataCategories.ANIMATIONS] = file_default;
-Game.data_location[GameDataCategories.TERRAIN] = file_terrain;
-Game.data_location[GameDataCategories.LANGUAGE_TEXT] = file_default;
+Game.export.locations[GameDataCategories.TILE_ANIMATIONS] = file_asset;
+Game.export.locations[GameDataCategories.TILESETS] = file_asset;
+Game.export.locations[GameDataCategories.BATTLERS] = file_asset;
+Game.export.locations[GameDataCategories.OVERWORLDS] = file_asset;
+Game.export.locations[GameDataCategories.PARTICLES] = file_asset;
+Game.export.locations[GameDataCategories.UI] = file_asset;
+Game.export.locations[GameDataCategories.SKYBOX] = file_asset;
+Game.export.locations[GameDataCategories.MISC] = file_asset;
+Game.export.locations[GameDataCategories.BGM] = file_asset;
+Game.export.locations[GameDataCategories.SE] = file_asset;
+Game.export.locations[GameDataCategories.MESH] = file_asset;
+Game.export.locations[GameDataCategories.MESH_AUTOTILES] = file_asset;
+Game.export.locations[GameDataCategories.MAP] = file_default;
+Game.export.locations[GameDataCategories.GLOBAL] = file_default;
+Game.export.locations[GameDataCategories.EVENTS]  = file_default;
+Game.export.locations[GameDataCategories.DATADATA] = file_default;
+Game.export.locations[GameDataCategories.DATA_INST] = file_default;
+Game.export.locations[GameDataCategories.ANIMATIONS] = file_default;
+Game.export.locations[GameDataCategories.TERRAIN] = file_terrain;
+Game.export.locations[GameDataCategories.LANGUAGE_TEXT] = file_default;
 
 for (var i = 0; i < BASE_GAME_VARIABLES; i++) {
     Game.switches[i] = new DataValue("Switch" + string(i));

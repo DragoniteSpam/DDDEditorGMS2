@@ -421,7 +421,6 @@ enum GameDataCategories {
     MESH_AUTOTILES,
     __COUNT
 }
-
 #endregion
 
 #region data types

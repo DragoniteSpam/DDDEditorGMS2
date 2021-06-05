@@ -69,7 +69,7 @@ function serialize_load(buffer, filename, proj_name) {
             // reset the active map
             Stuff.map.active_map = noone;
             // these are garbage collected
-            Game.asset_lists = [];
+            Game.export.files = [];
             var n_files = buffer_read(buffer, buffer_u8);
             
             repeat (n_files) {
@@ -77,14 +77,14 @@ function serialize_load(buffer, filename, proj_name) {
                 var bools = buffer_read(buffer, buffer_u32);
                 // the "compressed" parameter can be set later
                 var file_data = new DataFile(name, false, unpack(bools, 0));
-                array_push(Game.asset_lists, file_data);
+                array_push(Game.export.files, file_data);
             }
             
             // erase the default game data locations and replace them with
             // whatever file bundle this project uses
-            array_clear(Game.data_location, undefined);
+            array_clear(Game.export.locations, undefined);
             
-            Stuff.game_data_current_file = Game.asset_lists[0];
+            Stuff.game_data_current_file = Game.export.files[0];
             
             break;
         case SERIALIZE_ASSETS:
@@ -100,56 +100,56 @@ function serialize_load(buffer, filename, proj_name) {
             #region big ol' switch statement
             // assets
             case SerializeThings.IMAGE_TILE_ANIMATION:
-                Game.data_location[GameDataCategories.TILE_ANIMATIONS] = Stuff.game_data_current_file;
+                Game.export.locations[GameDataCategories.TILE_ANIMATIONS] = Stuff.game_data_current_file;
                 serialize_load_image_tile_animations(buffer, version);
                 break;
             case SerializeThings.IMAGE_TILESET:
-                Game.data_location[GameDataCategories.TILESETS] = Stuff.game_data_current_file;
+                Game.export.locations[GameDataCategories.TILESETS] = Stuff.game_data_current_file;
                 serialize_load_image_tilesets(buffer, version);
                 break;
             case SerializeThings.IMAGE_BATTLERS:
-                Game.data_location[GameDataCategories.BATTLERS] = Stuff.game_data_current_file;
+                Game.export.locations[GameDataCategories.BATTLERS] = Stuff.game_data_current_file;
                 serialize_load_image_battlers(buffer, version);
                 break;
             case SerializeThings.IMAGE_OVERWORLD:
-                Game.data_location[GameDataCategories.OVERWORLDS] = Stuff.game_data_current_file;
+                Game.export.locations[GameDataCategories.OVERWORLDS] = Stuff.game_data_current_file;
                 serialize_load_image_overworlds(buffer, version);
                 break;
             case SerializeThings.IMAGE_PARTICLES:
-                Game.data_location[GameDataCategories.PARTICLES] = Stuff.game_data_current_file;
+                Game.export.locations[GameDataCategories.PARTICLES] = Stuff.game_data_current_file;
                 serialize_load_image_particles(buffer, version);
                 break;
             case SerializeThings.IMAGE_UI:
-                Game.data_location[GameDataCategories.UI] = Stuff.game_data_current_file;
+                Game.export.locations[GameDataCategories.UI] = Stuff.game_data_current_file;
                 serialize_load_image_ui(buffer, version);
                 break;
             case SerializeThings.IMAGE_SKYBOX:
-                Game.data_location[GameDataCategories.SKYBOX] = Stuff.game_data_current_file;
+                Game.export.locations[GameDataCategories.SKYBOX] = Stuff.game_data_current_file;
                 serialize_load_image_skybox(buffer, version);
                 break;
             case SerializeThings.IMAGE_MISC:
-                Game.data_location[GameDataCategories.MISC] = Stuff.game_data_current_file;
+                Game.export.locations[GameDataCategories.MISC] = Stuff.game_data_current_file;
                 serialize_load_image_etc(buffer, version);
                 break;
             case SerializeThings.AUDIO_BGM:
-                Game.data_location[GameDataCategories.BGM] = Stuff.game_data_current_file;
+                Game.export.locations[GameDataCategories.BGM] = Stuff.game_data_current_file;
                 serialize_load_audio_bgm(buffer, version);
                 break;
             case SerializeThings.AUDIO_SE:
-                Game.data_location[GameDataCategories.SE] = Stuff.game_data_current_file;
+                Game.export.locations[GameDataCategories.SE] = Stuff.game_data_current_file;
                 serialize_load_audio_se(buffer, version);
                 break;
             case SerializeThings.MESHES:
-                Game.data_location[GameDataCategories.MESH] = Stuff.game_data_current_file;
+                Game.export.locations[GameDataCategories.MESH] = Stuff.game_data_current_file;
                 serialize_load_meshes(buffer, version);
                 break;
             case SerializeThings.MESH_AUTOTILES:
-                Game.data_location[GameDataCategories.MESH_AUTOTILES] = Stuff.game_data_current_file;
+                Game.export.locations[GameDataCategories.MESH_AUTOTILES] = Stuff.game_data_current_file;
                 serialize_load_mesh_autotiles(buffer, version);
                 break;
             // game stuff
             case SerializeThings.EVENTS:
-                Game.data_location[GameDataCategories.EVENTS] = Stuff.game_data_current_file;
+                Game.export.locations[GameDataCategories.EVENTS] = Stuff.game_data_current_file;
                 serialize_load_events(buffer, version);
                 break;
             case SerializeThings.EVENT_CUSTOM:
@@ -161,31 +161,31 @@ function serialize_load(buffer, filename, proj_name) {
                 serialize_load_event_prefabs(buffer, version);
                 break;
             case SerializeThings.GLOBAL_METADATA:
-                Game.data_location[GameDataCategories.GLOBAL] = Stuff.game_data_current_file;
+                Game.export.locations[GameDataCategories.GLOBAL] = Stuff.game_data_current_file;
                 serialize_load_global_meta(buffer, version);
                 break;
             case SerializeThings.DATADATA:
-                Game.data_location[GameDataCategories.DATADATA] = Stuff.game_data_current_file;
+                Game.export.locations[GameDataCategories.DATADATA] = Stuff.game_data_current_file;
                 serialize_load_datadata(buffer, version);
                 break;
             case SerializeThings.DATA_INSTANCES:
-                Game.data_location[GameDataCategories.DATA_INST] = Stuff.game_data_current_file;
+                Game.export.locations[GameDataCategories.DATA_INST] = Stuff.game_data_current_file;
                 serialize_load_data_instances(buffer, version);
                 break;
             case SerializeThings.ANIMATIONS:
-                Game.data_location[GameDataCategories.ANIMATIONS] = Stuff.game_data_current_file;
+                Game.export.locations[GameDataCategories.ANIMATIONS] = Stuff.game_data_current_file;
                 serialize_load_animations(buffer, version);
                 break;
             case SerializeThings.TERRAIN:
-                Game.data_location[GameDataCategories.TERRAIN] = Stuff.game_data_current_file;
+                Game.export.locations[GameDataCategories.TERRAIN] = Stuff.game_data_current_file;
                 serialize_load_terrain(buffer, version);
                 break;
             case SerializeThings.MAPS:
-                Game.data_location[GameDataCategories.MAP] = Stuff.game_data_current_file;
+                Game.export.locations[GameDataCategories.MAP] = Stuff.game_data_current_file;
                 serialize_load_maps(buffer, version);
                 break;
             case SerializeThings.LANGUAGE_TEXT:
-                Game.data_location[GameDataCategories.LANGUAGE_TEXT] = Stuff.game_data_current_file;
+                Game.export.locations[GameDataCategories.LANGUAGE_TEXT] = Stuff.game_data_current_file;
                 serialize_load_language(buffer, version);
                 break;
             #endregion
@@ -194,8 +194,8 @@ function serialize_load(buffer, filename, proj_name) {
     
     switch (what) {
         case SERIALIZE_DATA_AND_MAP:
-            for (var i = 1; i < array_length(Game.asset_lists); i++) {
-                Stuff.game_data_current_file = Game.asset_lists[i];
+            for (var i = 1; i < array_length(Game.export.files); i++) {
+                Stuff.game_data_current_file = Game.export.files[i];
                 var next_file_name = proj_path + Stuff.game_data_current_file.name + EXPORT_EXTENSION_ASSETS;
                 if (file_exists(next_file_name)) {
                     var buffer_next = buffer_load(next_file_name);
