@@ -33,7 +33,11 @@ function project_load(id) {
     };
     
     static project_load_text = function(filename) {
-        
+        var json = json_parse(buffer_read_file(filename));
+        var version = json.version;
+        Stuff.all_languages = json.lang.langs;
+        Stuff.all_localized_text = json.lang.data;
+        language_refresh_ui();
     };
     
     static project_load_events = function(filename) {
