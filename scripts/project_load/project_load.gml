@@ -5,7 +5,32 @@ function project_load(id) {
     };
     
     static project_load_global = function(filename) {
+        var json = json_parse(buffer_read_file(filename));
+        var version = json.version;
         
+        Stuff.project.notes =                   json.core.notes;
+        Stuff.game_starting_map =               json.core.start.map;
+        Stuff.game_starting_x =                 json.core.start.x;
+        Stuff.game_starting_y =                 json.core.start.y;
+        Stuff.game_starting_z =                 json.core.start.z;
+        Stuff.game_starting_direction =         json.core.start.direction;
+        
+        Stuff.game_lighting_buckets =           json.core.lighting.buckets;
+        Stuff.game_lighting_default_ambient =   json.core.lighting.ambient;
+        
+        Stuff.game_base_map_chunk_size =        json.core.grid.chunk_size;
+        Stuff.game_player_grid =                json.core.grid.player_snap;
+        
+        Stuff.game_screen_base_width =          json.core.base_screen.width;
+        Stuff.game_screen_base_height =         json.core.base_screen.height;
+        
+        Stuff.game_title_screen =               json.core.title.map;
+        
+        Stuff.switches =                        json.core.switches;
+        Stuff.variables =                       json.core.variables;
+        Stuff.all_game_constants =              json.core.constants;
+        Stuff.all_event_triggers =              json.core.triggers;
+        Stuff.all_asset_flags =                 json.core.flags;
     };
     
     static project_load_images = function(filename) {
