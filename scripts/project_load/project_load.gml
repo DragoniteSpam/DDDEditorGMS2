@@ -18,8 +18,8 @@ function project_load(id) {
         Stuff.game_lighting_buckets =           json.core.lighting.buckets;
         Stuff.game_lighting_default_ambient =   json.core.lighting.ambient;
         
-        Stuff.game_base_map_chunk_size =        json.core.grid.chunk_size;
-        Stuff.game_player_grid =                json.core.grid.player_snap;
+        Game.grid.chunk_size =        json.core.grid.chunk_size;
+        Game.grid.snap =                json.core.grid.player_snap;
         
         Stuff.game_screen_base_width =          json.core.base_screen.width;
         Stuff.game_screen_base_height =         json.core.base_screen.height;

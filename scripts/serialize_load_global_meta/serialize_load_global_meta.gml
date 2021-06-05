@@ -10,12 +10,12 @@ function serialize_load_global_meta(buffer, version) {
     Stuff.game_lighting_default_ambient = buffer_read(buffer, buffer_u32);
     
     Game.project.id = buffer_read(buffer, buffer_string);
-    Stuff.game_base_map_chunk_size = buffer_read(buffer, buffer_u16);
+    Game.grid.chunk_size = buffer_read(buffer, buffer_u16);
     
     Stuff.game_common_effect_code = buffer_read(buffer, buffer_string);
     
     var bools = buffer_read(buffer, buffer_u32);
-    Stuff.game_player_grid = unpack(bools, 0);
+    Game.grid.snap = unpack(bools, 0);
     
     Stuff.game_screen_base_width = buffer_read(buffer, buffer_s16);
     Stuff.game_screen_base_height = buffer_read(buffer, buffer_s16);

@@ -39,8 +39,8 @@ function dialog_create_settings_data(dialog) {
     yy += el_gameplay_title.height + spacing;
     
     var el_gameplay_grid = create_checkbox(col1_x, yy, "Snap Player to Grid", ew, eh, function(checkbox) {
-        Stuff.game_player_grid = checkbox.value;
-    }, Stuff.game_player_grid, dg);
+        Game.grid.snap = checkbox.value;
+    }, Game.grid.snap, dg);
     el_gameplay_grid.tooltip = "Whether the player's position will be restricted to the grid, or whether they will be allowed to move freely between cells";
     yy += el_gameplay_grid.height + spacing;
     
@@ -99,8 +99,8 @@ function dialog_create_settings_data(dialog) {
     yy += el_screen_640.height + spacing;
     
     var el_base_chunk_size = create_input(col1_x, yy, "Base Chunk Size:", ew, eh, function(input) {
-        Stuff.game_base_map_chunk_size = real(input.value);
-    }, Stuff.game_base_map_chunk_size, "short int", validate_int, 16, MAP_AXIS_LIMIT, 4, vx1, vy1, vx2, vy2, dg);
+        Game.grid.chunk_size = real(input.value);
+    }, Game.grid.chunk_size, "short int", validate_int, 16, MAP_AXIS_LIMIT, 4, vx1, vy1, vx2, vy2, dg);
     el_base_chunk_size.tooltip = "The default map chunk size";
     dg.el_base_chunk_size = el_base_chunk_size;
     yy += el_base_chunk_size.height + spacing;

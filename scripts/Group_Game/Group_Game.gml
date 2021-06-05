@@ -23,6 +23,11 @@ Game = {
         direction: 0,
         map: NULL,
     },
+    
+    grid: {
+        snap: true,
+        chunk_size: 32,
+    },
 };
 
 for (var i = 0; i < BASE_GAME_VARIABLES; i++) {

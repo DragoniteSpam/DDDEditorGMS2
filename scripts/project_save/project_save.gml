@@ -33,8 +33,8 @@ function project_save() {
                 ambient: Stuff.game_lighting_default_ambient,
             },
             grid: {
-                chunk_size: Stuff.game_base_map_chunk_size,
-                player_snap: Stuff.game_player_grid,
+                chunk_size: Game.grid.chunk_size,
+                player_snap: Game.grid.snap,
             },
             base_screen: {
                 width: Stuff.game_screen_base_width,
