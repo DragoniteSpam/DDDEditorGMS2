@@ -11,7 +11,7 @@ function setting_get(object, name, def) {
 function setting_project_add(filename, id) {
     // this just logs it in projects.json; it doesn't add any of the data files
     for (var i = 0; i < array_length(Stuff.all_projects.projects); i++) {
-        if (Stuff.all_projects.projects[i].source == filename) {
+        if (!Stuff.all_projects.projects[i].legacy && Stuff.all_projects.projects[i].source == filename) {
             return;
         }
     }
