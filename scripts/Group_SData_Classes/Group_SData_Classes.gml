@@ -26,8 +26,9 @@ function SDataClass(name) : SData(name) constructor {
         }
     };
     
-    static AddInstance = function(inst) {
-        array_push(self.instances, inst);
+    static AddInstance = function(inst, position) {
+        if (position == undefined) position = array_length(self.instances);
+        self.instances[position] = inst;
     };
     
     static RemoveInstance = function(inst) {

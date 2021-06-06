@@ -2,37 +2,28 @@ function uimu_data_add_data(thing) {
     var data = guid_get(thing.root.active_type_guid);
     
     if (data) {
-        var instance = new SDataInstance("");
+        var instance = new SDataInstance(data.name + string(array_length(data.instances)));
         instance.base_guid = data.GUID;
         
         var current_index = ui_list_selection(thing.root.el_instances);
         if (current_index + 1) {
-            ds_list_insert(data.instances, current_index + 1, instance);
+            data.AddInstance(instance, current_index + 1);
         } else {
-            ds_list_add(data.instances, instance);
+            data.AddInstance(instance, current_index);
         }
         
-        instance.name = data.name + string(ds_list_size(data.instances));
-        
-        for (var i = 0; i < ds_list_size(data.properties); i++) {
-            var property = data.properties[| i];
+        for (var i = 0; i < array_length(data.properties); i++) {
+            var property = data.properties[i];
             switch (property.type) {
                 case DataTypes.INT:
                 case DataTypes.COLOR:
-                    var plist = ds_list_create();
-                    ds_list_add(plist, property.default_int);
-                    ds_list_add(instance.values, plist);
+                    array_push(instance.values, [property.default_int]);
                     break;
                 case DataTypes.FLOAT:
-                    var plist = ds_list_create();
-                    ds_list_add(plist, property.default_real);
-                    ds_list_add(instance.values, plist);
+                    array_push(instance.values, [property.default_real]);
                     break;
                 case DataTypes.ASSET_FLAG:
-                    var plist = ds_list_create();
-                    ds_list_add(plist, 0);
-                    ds_list_add(instance.values, plist);
-                    break;
+                    array_push(instance.values, [0]);
                     break;
                 case DataTypes.ENUM:
                 case DataTypes.DATA:
@@ -51,24 +42,16 @@ function uimu_data_add_data(thing) {
                 case DataTypes.ANIMATION:
                 case DataTypes.MAP:
                 case DataTypes.EVENT:
-                    var plist = ds_list_create();
-                    ds_list_add(plist, 0);
-                    ds_list_add(instance.values, plist);
+                    array_push(instance.values, [NULL]);
                     break;
                 case DataTypes.STRING:
-                    var plist = ds_list_create();
-                    ds_list_add(plist, property.default_string);
-                    ds_list_add(instance.values, plist);
+                    array_push(instance.values, [property.default_string]);
                     break;
                 case DataTypes.BOOL:
-                    var plist = ds_list_create();
-                    ds_list_add(plist, clamp(property.default_int, 0, 1));
-                    ds_list_add(instance.values, plist);
+                    array_push(instance.values, [!!property.default_int]);
                     break;
                 case DataTypes.CODE:
-                    var plist = ds_list_create();
-                    ds_list_add(plist, property.default_code);
-                    ds_list_add(instance.values, plist);
+                    array_push(instance.values, [property.default_code]);
                     break;
                 case DataTypes.TILE:
                 case DataTypes.ENTITY:
