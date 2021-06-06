@@ -62,7 +62,9 @@ function dialog_create_data_types(dialog) {
         }
     }, false, dg, Stuff.all_data);
     el_list.render = ui_render_list_data_data;
-    el_list.render_colors = ui_list_color_data_type;
+    el_list.render_colors = function(list, index) {
+        return (list.entries[| index].type == DataTypes.ENUM) ? c_blue : c_black;
+    };
     el_list.onmiddleclick = uivc_list_data_alphabetize;
     el_list.entries_are = ListEntries.INSTANCES;
     

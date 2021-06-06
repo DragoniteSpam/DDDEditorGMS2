@@ -45,7 +45,9 @@ function ui_init_game_data(mode) {
             ui_render_list(list, xx, yy);
             list.text = otext;
         };
-        el_master.render_colors = ui_list_colors_data_types;
+        el_master.render_colors = function (list, index) {
+            return (list.entries[| index].type == DataTypes.ENUM) ? c_blue : c_black;
+        };
         el_master.allow_deselect = false;
         el_master.entries_are = ListEntries.INSTANCES;
         ds_list_add(contents, el_master);
