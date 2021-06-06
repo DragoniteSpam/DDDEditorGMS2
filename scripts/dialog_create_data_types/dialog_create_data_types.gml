@@ -180,9 +180,9 @@ function dialog_create_data_types(dialog) {
         var datadata = button.root.selected_data;
         
         if (ds_list_size(datadata.properties) < 1000) {
-            var property = new SDataProperty("Property" + string(ds_list_size(datadata.properties)));
+            var property = new SDataProperty("Property" + string(ds_list_size(datadata.properties)), datadata);
+            datadata.AddProperty(property);
             
-            ds_list_add(datadata.properties, property);
             ui_list_deselect(button.root.el_list_p);
             
             button.root.selected_property = noone;
@@ -253,7 +253,7 @@ function dialog_create_data_types(dialog) {
             if (datadata.type == DataTypes.DATA) {
                 for (var i = 0; i < ds_list_size(datadata.instances); i++) {
                     var inst = datadata.instances[| i];
-                    var t = inst.values[| index];
+                    t = inst.values[| index];
                     inst.values[| index] = inst.values[| index] + 1;
                     inst.values[| index + 1] = t;
                 }
@@ -271,16 +271,7 @@ function dialog_create_data_types(dialog) {
     var el_remove_p = create_button(col2_x, yy, "Delete Property", ew, eh, fa_center, function(button) {
         if (button.root.selected_property) {
             var data = button.root.selected_data;
-            var index = ds_list_find_index(data.properties, button.root.selected_property);
-            ds_list_delete(data.properties, index);
-            
-            if (data.type == DataTypes.DATA) {
-                var instances = data.instances;
-                for (var i = 0; i < ds_list_size(instances); i++) {
-                    ds_list_destroy(instances[| i].values[| index]);
-                    ds_list_delete(instances[| i].values, index);
-                }
-            }
+            button.root.selected_property.Destroy();
             
             ui_list_deselect(button.root.el_list_p);
             button.interactive = false;
@@ -351,7 +342,7 @@ function dialog_create_data_types(dialog) {
             }
         }
     }, false, dg);
-    el_property_size_can_be_zero.tooltip = "List values are optionally allowed to have their capacity be zero."
+    el_property_size_can_be_zero.tooltip = "List values are optionally allowed to have their capacity be zero.";
     el_property_size_can_be_zero.interactive = false;
     dg.el_property_size_can_be_zero = el_property_size_can_be_zero;
     
@@ -359,7 +350,7 @@ function dialog_create_data_types(dialog) {
     
     var el_property_default_code = create_input_code(col3_x, yy, "Default:", ew, eh, vx1, vy1, vx2, vy2, "", function(input) {
         // @todo else make it red or something
-        if (validate_code(input.value, input)) {
+        if (validate_code(input.value)) {
             input.root.selected_property.default_code = input.value;
         }
     }, dg);

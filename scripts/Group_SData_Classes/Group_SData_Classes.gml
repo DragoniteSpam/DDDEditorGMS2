@@ -18,7 +18,8 @@ function SDataClass(name) : SData(name) constructor {
         }
     };
     
-    static RemoveProperty = function(index) {
+    static RemoveProperty = function(property) {
+        var index = array_search(self.properties, property);
         array_delete(self.properties, index, 1);
         for (var i = 0, n = array_length(self.instances); i < n; i++) {
             array_delete(self.instances[i].values, index, 1);
@@ -29,7 +30,8 @@ function SDataClass(name) : SData(name) constructor {
         array_push(self.instances, inst);
     };
     
-    static RemoveInstance = function(index) {
+    static RemoveInstance = function(inst) {
+        var index = array_search(self.instances, inst);
         array_delete(self.instances, index, 1);
     };
     
@@ -87,7 +89,9 @@ function SDataClass(name) : SData(name) constructor {
     };
 }
 
-function SDataProperty(name) : SData(name) constructor {
+function SDataProperty(name, class) : SData(name) constructor {
+    self.class = class;
+    
     self.type = DataTypes.INT;
     self.range_min = 0;                        // int, float
     self.range_max = 10;                       // int, float
@@ -140,6 +144,11 @@ function SDataProperty(name) : SData(name) constructor {
     
     static CreateJSON = function() {
         return self.CreateJSONProperty();
+    };
+    
+    static Destroy = function() {
+        self.parent.RemoveProperty(self);
+        self.DestroyBase();
     };
     
     enum NumberScales {
