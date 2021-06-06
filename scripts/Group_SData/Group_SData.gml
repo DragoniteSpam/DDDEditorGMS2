@@ -14,6 +14,18 @@ function SData(name) constructor {
         internal_name_remove(self.internal_name);
     };
     
+    self.LoadJSONBase = function(json) {
+        self.name = json.name;
+        internal_name_set(self, json.internal_name);
+        self.flags = json.flags;
+        self.summary = json.summary;
+        guid_set(self, json.guid);
+    };
+    
+    self.LoadJSON = function(json) {
+        
+    };
+    
     self.CreateJSONBase = function() {
         return {
             name: name,
