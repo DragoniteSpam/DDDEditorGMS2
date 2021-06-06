@@ -31,7 +31,17 @@ function omu_animation_properties(argument0) {
         yy += el_name.height + spacing;
     
         var el_internal_name = create_input(16, yy, "Internal Name:", ew, eh, uivc_animation_set_internal_name, animation.internal_name, "Internal name", validate_string_internal_name, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
-        el_internal_name.render = ui_render_text_animation_internal_name;
+        el_internal_name.render = function(input) {
+            var data = text.root.root.root.active_animation;
+            var selection = ui_list_selection(text.root.root.root.el_master);
+            var original_color = text.color;
+            if (selection + 1) {
+                var exists = internal_name_get(text.value);
+                if (exists && exists != data) text.color = c_red;
+            }
+            ui_render_input(text, xx, yy);
+            text.color = original_color;
+        };
     
         yy += el_internal_name.height + spacing;
     
@@ -52,10 +62,10 @@ function omu_animation_properties(argument0) {
     
         yy += el_clear.height + spacing;
     
-        var vx1 = ew / 2 - 16;
-        var vy1 = 0;
-        var vx2 = ew;
-        var vy2 = eh;
+        vx1 = ew / 2 - 16;
+        vy1 = 0;
+        vx2 = ew;
+        vy2 = eh;
     
         var el_code = create_input_code(16, yy, "Code", ew, eh, vx1, vy1, vx2, vy2, animation.code, uivc_animation_set_code, dg);
     
