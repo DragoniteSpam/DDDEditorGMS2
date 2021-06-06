@@ -61,7 +61,7 @@ function ui_init_game_data_activate() {
             
                 element = create_input(0, yy, "Internal Name:", ew, eh * 2, uivc_data_set_internal_name, "", "Internal name", validate_string_internal_name, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, noone);
                 element.valignment = fa_top;
-                element.render = function(text) {
+                element.render = function(text, x, y) {
                     var data = guid_get(Stuff.data.ui.active_type_guid);
                     var selection = ui_list_selection(Stuff.data.ui.el_instances);
                     var original_color = text.color;
@@ -69,7 +69,7 @@ function ui_init_game_data_activate() {
                         var exists = internal_name_get(text.value);
                         if (exists && exists != data.instances[selection]) text.color = c_red;
                     }
-                    ui_render_input(text, xx, yy);
+                    ui_render_input(text, x, y);
                     text.color = original_color;
                 };
                 yy += element.height + spacing + eh / 2;

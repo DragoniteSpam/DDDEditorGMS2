@@ -35,16 +35,16 @@ function omu_animation_properties(root) {
                 internal_name_set(input.root.root.root.active_animation, input.value);
             }
         }, animation.internal_name, "Internal name", validate_string_internal_name, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
-        el_internal_name.render = function(input) {
-            var data = text.root.root.root.active_animation;
-            var selection = ui_list_selection(text.root.root.root.el_master);
-            var original_color = text.color;
+        el_internal_name.render = function(input, x, y) {
+            var data = input.root.root.root.active_animation;
+            var selection = ui_list_selection(input.root.root.root.el_master);
+            var original_color = input.color;
             if (selection + 1) {
-                var exists = internal_name_get(text.value);
-                if (exists && exists != data) text.color = c_red;
+                var exists = internal_name_get(input.value);
+                if (exists && exists != data) input.color = c_red;
             }
-            ui_render_input(text, xx, yy);
-            text.color = original_color;
+            ui_render_input(input, x, y);
+            input.color = original_color;
         };
         
         yy += el_internal_name.height + spacing;
