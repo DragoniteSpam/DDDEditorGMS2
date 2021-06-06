@@ -37,7 +37,11 @@ function ui_init_game_data(mode) {
         yy = yy_header;
         
         element = create_text(this_column * cw + spacing, yy, "Data Name", ew, eh, fa_left, ew, id);
-        element.render = ui_render_text_data_name;
+        element.render = function(text, x, y) {
+            var val = guid_get(text.root.active_type_guid);
+            text.text = val ? val.name : "No Data Selected";
+            ui_render_text(text, x, y);
+        };
         ds_list_add(contents, element);
         
         el_previous = create_button((this_column + 1) * cw + spacing, yy, "<", ew / 6, eh, fa_center, omu_data_previous, id);
