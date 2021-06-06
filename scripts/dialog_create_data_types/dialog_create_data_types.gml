@@ -72,7 +72,7 @@ function dialog_create_data_types(dialog) {
     
     var el_add = create_button(col1_x, yy, "Add Data", ew, eh, fa_center, function(button) {
         if (ds_list_size(Stuff.all_data) < 10000) {
-            ds_list_add(Stuff.all_data, new SDataClass("DataType" + string(ds_list_size(Stuff.all_data))));
+            (new SDataClass("DataType" + string(ds_list_size(Stuff.all_data)))).GoLive();
             ui_list_deselect(button.root.el_list_main);
             button.root.selected_data = noone;
             button.root.selected_property = noone;
@@ -87,7 +87,7 @@ function dialog_create_data_types(dialog) {
         if (ds_list_size(Stuff.all_data) < 10000) {
             var addition = new SDataClass("Enum" + string(ds_list_size(Stuff.all_data)));
             addition.type = DataTypes.ENUM;
-            ds_list_add(Stuff.all_data, addition);
+            addition.GoLive();
             ui_list_deselect(button.root.el_list_main);
             button.root.selected_data = noone;
             button.root.selected_property = noone;
@@ -101,7 +101,6 @@ function dialog_create_data_types(dialog) {
     var el_remove = create_button(col1_x, yy, "Delete", ew, eh, fa_center, function(button) {
         if (button.root.selected_data) {
             button.root.selected_data.Destroy();
-            ds_list_delete(Stuff.all_data, ds_list_find_index(Stuff.all_data, button.root.selected_data));
             ui_list_deselect(button.root.el_list_main);
             ui_list_deselect(button.root.el_list_p);
             button.root.el_list_main.onvaluechange(button.root.el_list_main);
