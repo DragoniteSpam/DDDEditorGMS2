@@ -9,6 +9,28 @@ function SDataGame(name) : SData(name) constructor {
         NO_LOCALIZE_SUMMARY = 0x040000,
     }
     
+    static AddProperty = function(property) {
+        array_push(self.properties, property);
+        for (var i = 0, n = array_length(self.instances); i < n; i++) {
+            array_push(self.instances[i].values, 0);
+        }
+    };
+    
+    static RemoveProperty = function(index) {
+        array_delete(self.properties, index, 1);
+        for (var i = 0, n = array_length(self.instances); i < n; i++) {
+            array_delete(self.instances[i].values, index, 1);
+        }
+    };
+    
+    static AddInstance = function(inst) {
+        array_push(self.instances, inst);
+    };
+    
+    static RemoveInstance = function(index) {
+        array_delete(self.instances, index, 1);
+    };
+    
     static LoadJSONData = function(struct) {
         self.LoadJSONBase(struct);
         self.type = struct.type;
