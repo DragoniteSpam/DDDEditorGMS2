@@ -1122,7 +1122,6 @@
     {"id":{"name":"uivc_input_map_size_x","path":"scripts/uivc_input_map_size_x/uivc_input_map_size_x.yy",},"order":70,},
     {"id":{"name":"uivc_input_map_size_y","path":"scripts/uivc_input_map_size_y/uivc_input_map_size_y.yy",},"order":71,},
     {"id":{"name":"uivc_input_map_size_z","path":"scripts/uivc_input_map_size_z/uivc_input_map_size_z.yy",},"order":72,},
-    {"id":{"name":"uivc_list_data_editor_instances","path":"scripts/uivc_list_data_editor_instances/uivc_list_data_editor_instances.yy",},"order":74,},
     {"id":{"name":"uivc_data_property_list_number","path":"scripts/uivc_data_property_list_number/uivc_data_property_list_number.yy",},"order":76,},
     {"id":{"name":"uivc_data_property_list_string","path":"scripts/uivc_data_property_list_string/uivc_data_property_list_string.yy",},"order":77,},
     {"id":{"name":"shd_emu_color_buckets","path":"shaders/shd_emu_color_buckets/shd_emu_color_buckets.yy",},"order":3,},
