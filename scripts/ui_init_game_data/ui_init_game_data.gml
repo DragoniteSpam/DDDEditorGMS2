@@ -59,12 +59,36 @@ function ui_init_game_data(mode) {
         
         yy += spacing + ui_get_list_height(el_instances);
         
-        el_inst_add = create_button(this_column * cw + spacing, yy, "Move Up", ew, eh, fa_center, uimu_data_move_up, id);
+        el_inst_add = create_button(this_column * cw + spacing, yy, "Move Up", ew, eh, fa_center, function(button) {
+            var data = guid_get(button.root.active_type_guid);
+            var selection = ui_list_selection(button.root.el_instances);
+            var instance = data.instances[selection];
+            
+            if (instance && (selection > 0)) {
+                var t = data.instances[selection - 1];
+                data.instances[selection - 1] = instance;
+                data.instances[selection] = t;
+                ui_list_deselect(button.root.el_instances);
+                ui_list_select(button.root.el_instances, selection - 1, true);
+            }
+        }, id);
         ds_list_add(contents, el_inst_add);
         
         yy += spacing + element.height;
         
-        el_inst_add = create_button(this_column * cw + spacing, yy, "Move Down", ew, eh, fa_center, uimu_data_move_down, id);
+        el_inst_add = create_button(this_column * cw + spacing, yy, "Move Down", ew, eh, fa_center, function(button) {
+            var data = guid_get(button.root.active_type_guid);
+            var selection = ui_list_selection(button.root.el_instances);
+            var instance = data.instances[selection];
+            
+            if (instance && (selection < array_length(data.instances) - 1)) {
+                var t = data.instances[selection + 1];
+                data.instances[selection + 1] = instance;
+                data.instances[selection] = t;
+                ui_list_deselect(button.root.el_instances);
+                ui_list_select(button.root.el_instances, selection + 1, true);
+            }
+        }, id);
         ds_list_add(contents, el_inst_add);
         
         yy += spacing + element.height;
@@ -80,8 +104,8 @@ function ui_init_game_data(mode) {
             var instance = data.instances[| selection];
             if (instance) {
                 ui_list_deselect(thing.root.el_instances);
+                data.RemoveInstance(instance);
                 instance.Destroy();
-                array_delete(data.instances, selection, 1);
                 ui_init_game_data_refresh();
             }
         }, id);
