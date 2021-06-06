@@ -39,10 +39,10 @@ function ui_init_game_data(mode) {
                 ui_init_game_data_activate();
             }
         }, false, id, Stuff.all_data);
-        el_master.render = function(list) {
+        el_master.render = function(list, x, y) {
             var otext = list.text;
             list.text = otext + string(ds_list_size(Stuff.all_data));
-            ui_render_list(list, xx, yy);
+            ui_render_list(list, x, y);
             list.text = otext;
         };
         el_master.render_colors = function (list, index) {

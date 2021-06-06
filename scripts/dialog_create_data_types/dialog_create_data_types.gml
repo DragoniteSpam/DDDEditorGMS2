@@ -61,7 +61,12 @@ function dialog_create_data_types(dialog) {
             }
         }
     }, false, dg, Stuff.all_data);
-    el_list.render = ui_render_list_data_data;
+    el_list.render = function(list, x, y) {
+        var otext = list.text;
+        list.text = otext + string(ds_list_size(Stuff.all_data));
+        ui_render_list(list, x, y);
+        list.text = otext;
+    };
     el_list.render_colors = function(list, index) {
         return (list.entries[| index].type == DataTypes.ENUM) ? c_blue : c_black;
     };
