@@ -37,7 +37,7 @@ function SDataGame(name) : SData(name) constructor {
         self.LoadJSONBase(struct);
         self.type = struct.type;
         for (var i = 0, n = array_length(struct.properties); i < n; i++) {
-            var property = instance_create_depth(0, 0, 0, DataProperty);
+            var property = new DataProperty(struct.properties[i].name);
             property.CreateJSON(struct.properties[i]);
             ds_list_add(self.properties, property);
         }
@@ -72,4 +72,70 @@ function SDataGame(name) : SData(name) constructor {
     static CreateJSON = function() {
         return self.CreateJSONData();
     };
+}
+
+function SDataProperty(name) : SData(name) constructor {
+    self.type = DataTypes.INT;
+    self.range_min = 0;                        // int, float
+    self.range_max = 10;                       // int, float
+    self.number_scale = NumberScales.LINEAR;   // int, float
+    self.char_limit = 20;                      // string
+    self.type_guid = NULL;                     // Data, enum
+    self.max_size = 1;
+    self.size_can_be_zero = false;
+    self.default_real = 0;
+    self.default_int = 0;
+    self.default_string = "";
+    self.default_code = "";
+    
+    static LoadJSONProperty = function(struct) {
+        self.LoadJSONBase(struct);
+        self.type = struct.type;
+        self.range_min = struct.range_min;
+        self.range_max = struct.range_max;
+        self.number_scale = struct.number_scale;
+        self.char_limit = struct.char_limit;
+        self.type_guid = struct.type_guid;
+        self.max_size = struct.max_size;
+        self.size_can_be_zero = struct.size_can_be_zero;
+        self.default_real = struct.default_real;
+        self.default_int = struct.default_int;
+        self.default_string = struct.default_string;
+        self.default_code = struct.default_code;
+    };
+    
+    static LoadJSON = function(struct) {
+        self.LoadJSONProperty(struct);
+    };
+    
+    static CreateJSONProperty = function() {
+        var json = self.CreateJSONBase();
+        json.type = self.type;
+        json.range_min = self.range_min;
+        json.range_max = self.range_max;
+        json.number_scale = self.number_scale;
+        json.char_limit = self.char_limit;
+        json.type_guid = self.type_guid;
+        json.max_size = self.max_size;
+        json.size_can_be_zero = self.size_can_be_zero;
+        json.default_real = self.default_real;
+        json.default_int = self.default_int;
+        json.default_string = self.default_string;
+        json.default_code = self.default_code;
+        return json;
+    };
+    
+    static CreateJSON = function() {
+        return self.CreateJSONProperty();
+    };
+    
+    enum NumberScales {
+        LINEAR,
+        QUADRATIC,
+        EXPONENTIAL,
+    }
+    
+    enum DataPropertyFlags {
+        NO_LOCALIZE         = 0x010000,
+    }
 }

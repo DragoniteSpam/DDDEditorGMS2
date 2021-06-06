@@ -13,9 +13,8 @@ function serialize_load_datadata(buffer, version) {
         
         var n_properties = buffer_read(buffer, buffer_u16);
         repeat (n_properties) {
-            var property = instance_create_depth(0, 0, 0, DataProperty);
+            var property = new SDataProperty("");
             ds_list_add(data.properties, property);
-            guid_remove(property.GUID);
             
             serialize_load_generic(buffer, property, version);
             
