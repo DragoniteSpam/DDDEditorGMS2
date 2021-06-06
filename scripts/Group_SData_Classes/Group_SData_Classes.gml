@@ -39,12 +39,12 @@ function SDataClass(name) : SData(name) constructor {
         for (var i = 0, n = array_length(json.properties); i < n; i++) {
             var property = new DataProperty(json.properties[i].name);
             property.CreateJSON(json.properties[i]);
-            ds_list_add(self.properties, property);
+            array_push(self.properties, property);
         }
         for (var i = 0, n = array_length(json.instances); i < n; i++) {
-            var instance = instance_create_depth(0, 0, 0, DataInstantiated);
+            var instance = new SDataInstance("");
             instance.CreateJSON(json.instances[i]);
-            ds_list_add(self.instances, instance);
+            array_push(self.instances, instance);
         }
     };
     
@@ -55,13 +55,13 @@ function SDataClass(name) : SData(name) constructor {
     static CreateJSONData = function() {
         var json = self.CreateJSONBase();
         json.type = self.type;
-        var n = ds_list_size(self.properties);
+        var n = array_length(self.properties);
         json.properties = array_create(n);
         json.is_enum = false;
         for (var i = 0; i < n; i++) {
             json.properties[i] = self.properties[| i].CreateJSON();
         }
-        n = ds_list_size(self.instances);
+        n = array_length(self.instances);
         json.instances = array_create(n);
         for (var i = 0; i < n; i++) {
             json.instances[i] = self.instances[| i].CreateJSON();

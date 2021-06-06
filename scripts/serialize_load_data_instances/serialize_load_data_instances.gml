@@ -11,7 +11,7 @@ function serialize_load_data_instances(buffer, version) {
             var n_instances = buffer_read(buffer, buffer_u16);
             
             for (var j = 0; j < n_instances; j++) {
-                var instance = instance_create_depth(0, 0, 0, DataInstantiated);
+                var instance = new SDataInstance("");
                 instance.base_guid = datadata.GUID;
                 ds_list_add(datadata.instances, instance);
                 
@@ -75,6 +75,4 @@ function serialize_load_data_instances(buffer, version) {
             }
         }
     }
-    
-    instance_deactivate_object(DataInstantiated);
 }

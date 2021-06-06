@@ -2,9 +2,8 @@ function uimu_data_add_data(thing) {
     var data = guid_get(thing.root.active_type_guid);
     
     if (data) {
-        var instance = instance_create_depth(0, 0, 0, DataInstantiated);
+        var instance = new SDataInstance("");
         instance.base_guid = data.GUID;
-        instance_deactivate_object(instance);
         
         var current_index = ui_list_selection(thing.root.el_instances);
         if (current_index + 1) {
@@ -13,12 +12,7 @@ function uimu_data_add_data(thing) {
             ds_list_add(data.instances, instance);
         }
         
-        var n = ds_list_size(data.instances);
-        while (internal_name_get(string_upper(data.name) + string(n))) {
-            n++;
-        }
-        instance.name = data.name + string(n);
-        internal_name_set(instance, string_upper(data.name) + string(n));
+        instance.name = data.name + string(ds_list_size(data.instances));
         
         for (var i = 0; i < ds_list_size(data.properties); i++) {
             var property = data.properties[| i];
