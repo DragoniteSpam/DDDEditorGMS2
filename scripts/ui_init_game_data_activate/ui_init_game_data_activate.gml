@@ -59,9 +59,19 @@ function ui_init_game_data_activate() {
                 ds_list_add(col_data.contents, element);
                 Stuff.data.ui.el_inst_name = element;
             
-                var element = create_input(0, yy, "Internal Name:", ew, eh * 2, uivc_data_set_internal_name, "", "Internal name", validate_string_internal_name, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, noone);
+                element = create_input(0, yy, "Internal Name:", ew, eh * 2, uivc_data_set_internal_name, "", "Internal name", validate_string_internal_name, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, noone);
                 element.valignment = fa_top;
-                element.render = ui_render_text_data_internal_name;
+                element.render = function(text) {
+                    var data = guid_get(Stuff.data.ui.active_type_guid);
+                    var selection = ui_list_selection(Stuff.data.ui.el_instances);
+                    var original_color = text.color;
+                    if (selection + 1) {
+                        var exists = internal_name_get(text.value);
+                        if (exists && exists != data.instances[| selection]) text.color = c_red;
+                    }
+                    ui_render_input(text, xx, yy);
+                    text.color = original_color;
+                };
                 yy += element.height + spacing + eh / 2;
                 Stuff.data.ui.el_inst_internal_name = element;
                 ds_list_add(col_data.contents, element);

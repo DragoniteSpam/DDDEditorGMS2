@@ -1405,7 +1405,6 @@
     {"id":{"name":"ui_render_list_event_custom_outbound","path":"scripts/ui_render_list_event_custom_outbound/ui_render_list_event_custom_outbound.yy",},"order":28,},
     {"id":{"name":"ui_render_list_all_entities","path":"scripts/ui_render_list_all_entities/ui_render_list_all_entities.yy",},"order":29,},
     {"id":{"name":"ui_render_columns","path":"scripts/ui_render_columns/ui_render_columns.yy",},"order":32,},
-    {"id":{"name":"ui_render_text_data_internal_name","path":"scripts/ui_render_text_data_internal_name/ui_render_text_data_internal_name.yy",},"order":33,},
     {"id":{"name":"ui_render_text_animation_internal_name","path":"scripts/ui_render_text_animation_internal_name/ui_render_text_animation_internal_name.yy",},"order":34,},
     {"id":{"name":"ui_render_list_animations","path":"scripts/ui_render_list_animations/ui_render_list_animations.yy",},"order":0,},
     {"id":{"name":"ui_render_list_animation_layers","path":"scripts/ui_render_list_animation_layers/ui_render_list_animation_layers.yy",},"order":1,},
