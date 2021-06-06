@@ -78,30 +78,22 @@ function dialog_create_data_types(dialog) {
     yy += ui_get_list_height(el_list) + spacing;
     
     var el_add = create_button(col1_x, yy, "Add Data", ew, eh, fa_center, function(button) {
-        if (ds_list_size(Stuff.all_data) < 10000) {
-            (new SDataClass("DataType" + string(ds_list_size(Stuff.all_data)))).GoLive();
-            ui_list_deselect(button.root.el_list_main);
-            button.root.selected_data = noone;
-            button.root.selected_property = noone;
-            dialog_data_type_disable(button.root);
-        } else {
-            emu_dialog_notice("Please don't try to create more than ten thousand generic data types. Bad things will happen. Why do you even want that many?");
-        }
+        (new SDataClass("DataType" + string(ds_list_size(Stuff.all_data)))).GoLive();
+        ui_list_deselect(button.root.el_list_main);
+        button.root.selected_data = noone;
+        button.root.selected_property = noone;
+        dialog_data_type_disable(button.root);
     }, dg);
     yy += el_add.height + spacing;
     
     var el_add_enum = create_button(col1_x, yy, "Add Enum", ew, eh, fa_center, function(button) {
-        if (ds_list_size(Stuff.all_data) < 10000) {
-            var addition = new SDataClass("Enum" + string(ds_list_size(Stuff.all_data)));
-            addition.type = DataTypes.ENUM;
-            addition.GoLive();
-            ui_list_deselect(button.root.el_list_main);
-            button.root.selected_data = noone;
-            button.root.selected_property = noone;
-            dialog_data_type_disable(button.root);
-        } else {
-            emu_dialog_notice("Please don't try to create more than ten thousand generic data types. Bad things will happen.");
-        }
+        var addition = new SDataClass("Enum" + string(ds_list_size(Stuff.all_data)));
+        addition.type = DataTypes.ENUM;
+        addition.GoLive();
+        ui_list_deselect(button.root.el_list_main);
+        button.root.selected_data = noone;
+        button.root.selected_property = noone;
+        dialog_data_type_disable(button.root);
     }, dg);
     yy += el_add.height + spacing;
     
@@ -186,32 +178,28 @@ function dialog_create_data_types(dialog) {
     var el_add_p = create_button(col2_x, yy, "Add Property", ew, eh, fa_center, function(button) {
         var datadata = button.root.selected_data;
         
-        if (array_length(datadata.properties) < 1000) {
-            var property = new SDataProperty("Property" + string(array_length(datadata.properties)), datadata);
-            datadata.AddProperty(property);
-            
-            ui_list_deselect(button.root.el_list_p);
-            
-            button.root.selected_property = noone;
-            
-            // don't do this for enums - iterate over all data instances and add an empty
-            // list to each value
-            if (datadata.type == DataTypes.DATA) {
-                for (var i = 0; i < array_length(datadata.instances); i++) {
-                    array_push(datadata.instances[i].values, [0]);
-                }
+        var property = new SDataProperty("Property" + string(array_length(datadata.properties)), datadata);
+        datadata.AddProperty(property);
+        
+        ui_list_deselect(button.root.el_list_p);
+        
+        button.root.selected_property = noone;
+        
+        // don't do this for enums - iterate over all data instances and add an empty
+        // list to each value
+        if (datadata.type == DataTypes.DATA) {
+            for (var i = 0; i < array_length(datadata.instances); i++) {
+                array_push(datadata.instances[i].values, [0]);
             }
-            
-            dialog_data_type_disable(button.root);
-            
-            button.root.el_data_name.interactive = true;
-            button.root.el_add_p.interactive = true;
-            button.root.el_move_up.interactive = true;
-            button.root.el_move_down.interactive = true;
-            button.root.el_remove_p.interactive = true;
-        } else {
-            emu_dialog_notice("Please don't try to create more than a thousand properties on a single data type. Bad things will happen.");
         }
+        
+        dialog_data_type_disable(button.root);
+        
+        button.root.el_data_name.interactive = true;
+        button.root.el_add_p.interactive = true;
+        button.root.el_move_up.interactive = true;
+        button.root.el_move_down.interactive = true;
+        button.root.el_remove_p.interactive = true;
     }, dg);
     el_add_p.interactive = false;
     dg.el_add_p = el_add_p;
