@@ -15,8 +15,15 @@ function dialog_create_data_data_select(root) {
     
     var yy = 64;
     
-    var el_list = create_list(16, yy, "Data Types:", "<no data types>", ew, eh, n_slots, null, false, dg);
-    el_list.render = ui_render_list_data_data_only;
+    var el_list = create_list(16, yy, "Data Types:", "<no data types>", ew, eh, n_slots, null, false, dg, []);
+    for (var i = 0; i < ds_list_size(Stuff.all_data); i++) {
+        if (Stuff.all_data[| i].type == DataTypes.DATA) {
+            array_push(el_list.entries, Stuff.all_data[| i]);
+        }
+    }
+    array_sort(el_list.entries, function(a, b) {
+        return a.name > b.name;
+    });
     el_list.entries_are = ListEntries.INSTANCES;
     
     dg.el_list_main = el_list;
