@@ -30,7 +30,13 @@ function omu_animation_properties(argument0) {
     
         yy += el_name.height + spacing;
     
-        var el_internal_name = create_input(16, yy, "Internal Name:", ew, eh, uivc_animation_set_internal_name, animation.internal_name, "Internal name", validate_string_internal_name, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
+        var el_internal_name = create_input(16, yy, "Internal Name:", ew, eh, function(input) {
+            if (input.root.root.root.active_animation) {
+                if (!internal_name_get(input.value)) {
+                    internal_name_set(input.root.root.root.active_animation, input.value);
+                }
+            }
+        }, animation.internal_name, "Internal name", validate_string_internal_name, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
         el_internal_name.render = function(input) {
             var data = text.root.root.root.active_animation;
             var selection = ui_list_selection(text.root.root.root.el_master);
