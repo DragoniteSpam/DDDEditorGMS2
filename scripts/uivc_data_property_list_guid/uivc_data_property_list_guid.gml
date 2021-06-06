@@ -9,10 +9,10 @@ function uivc_data_property_list_guid(argument0) {
 
     if (pselection >= 0 && selection >= 0) {
         var data = guid_get(Stuff.data.ui.active_type_guid);
-        var instance = data.instances[| selection];
-        var plist = instance.values[| list.key];
+        var instance = data.instances[selection];
+        var plist = instance.values[list.key];
     
-        plist[| pselection] = (data_selection + 1) ? list.entries[| data_selection].GUID : 0;
+        plist[@ pselection] = (data_selection + 1) ? list.entries[data_selection].GUID : NULL;
     }
 
 

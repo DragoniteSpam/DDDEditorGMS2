@@ -39,8 +39,8 @@ function language_extract() {
             var datadata = Stuff.all_data[| i];
             if (datadata.type != DataTypes.DATA) continue;
             if (!!(datadata.flags & DataDataFlags.NO_LOCALIZE)) continue;
-            for (var k = 0; k < ds_list_size(datadata.instances); k++) {
-                var inst = datadata.instances[| k];
+            for (var k = 0; k < array_length(datadata.instances); k++) {
+                var inst = datadata.instances[k];
                 if (!(datadata.flags & DataDataFlags.NO_LOCALIZE_NAME)) {
                     var key = "Data." + inst.internal_name + ".@NAME@";
                     lang[$ key] = (lang_index == 0) ? inst.name : ((lang[$ key] != undefined) ? lang[$ key] : "");
@@ -51,11 +51,11 @@ function language_extract() {
                     lang[$ key] = (lang_index == 0) ? inst.summary : ((lang[$ key] != undefined) ? lang[$ key] : "");
                     existing_keys[$ key] = false;
                 }
-                for (var j = 0; j < ds_list_size(datadata.properties); j++) {
-                    var property = datadata.properties[| j];
+                for (var j = 0; j < array_length(datadata.properties); j++) {
+                    var property = datadata.properties[j];
                     if (property.type != DataTypes.STRING || !!(property.flags & DataPropertyFlags.NO_LOCALIZE)) continue;
-                    for (var m = 0; m < ds_list_size(inst.values[| j]); m++) {
-                        var text = inst.values[| j][| m];
+                    for (var m = 0; m < array_length(inst.values[j]); m++) {
+                        var text = inst.values[j][m];
                         if (text == "") continue;
                         var key = "Data." + inst.internal_name + "." + property.name + ((m > 0) ? "." + string(m) : "");
                         lang[$ key] = (lang_index == 0) ? text : ((lang[$ key] != undefined) ? lang[$ key] : "");

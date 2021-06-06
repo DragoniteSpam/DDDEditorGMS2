@@ -10,8 +10,8 @@ function dialog_create_data_instance_property_list(root) {
     var dh = 64;
     
     var data = guid_get(Stuff.data.ui.active_type_guid);
-    var property = data.properties[| root.key];
-    var instance = guid_get(data.instances[| selection].GUID);
+    var property = data.properties[root.key];
+    var instance = guid_get(data.instances[selection].GUID);
     
     var dg = dialog_create(dw, dh, instance.name + ": " + property.name, dialog_default, dialog_destroy, root);
     dg.property = property;
@@ -31,9 +31,9 @@ function dialog_create_data_instance_property_list(root) {
     
     var yy = 64;
     
-    var plist = instance.values[| root.key];
+    var plist = instance.values[root.key];
     var el_list = create_list(16, yy,
-        "Values (" + string(ds_list_size(plist)) + " / " + string(property.max_size) + ")",
+        "Values (" + string(array_length(plist)) + " / " + string(property.max_size) + ")",
         "<no values>", ew, eh, 8, uivc_list_data_list_select, false, dg, plist
     );
     el_list.numbered = true;

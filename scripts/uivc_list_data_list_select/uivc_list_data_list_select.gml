@@ -4,19 +4,19 @@ function uivc_list_data_list_select(list) {
     if (pselection + 1) {
         var selection = ui_list_selection(Stuff.data.ui.el_instances);
         var data = guid_get(Stuff.data.ui.active_type_guid);
-        var property = data.properties[| list.key];
-        var instance = data.instances[| selection];
-        var plist = instance.values[| list.key];
+        var property = data.properties[list.key];
+        var instance = data.instances[selection];
+        var plist = instance.values[list.key];
         
         switch (property.type) {
             case DataTypes.INT:
             case DataTypes.FLOAT:
             case DataTypes.STRING:
             case DataTypes.CODE:
-                ui_input_set_value(list.root.el_value, string(plist[| pselection]));
+                ui_input_set_value(list.root.el_value, string(plist[pselection]));
                 break;
             case DataTypes.BOOL:
-                list.root.el_value.value = plist[| pselection];
+                list.root.el_value.value = !!plist[pselection];
                 break;
             case DataTypes.ENUM:
             case DataTypes.DATA:
@@ -37,10 +37,19 @@ function uivc_list_data_list_select(list) {
                 var found = -1;
                 var data_list = list.root.el_value;
                 ui_list_deselect(data_list);
-                for (var i = 0; i < ds_list_size(data_list.entries); i++) {
-                    if (data_list.entries[| i].GUID == plist[| pselection]) {
-                        ui_list_select(data_list, i, true);
-                        break;
+                if (is_numeric(data_list.entries)) {
+                    for (var i = 0; i < ds_list_size(data_list.entries); i++) {
+                        if (data_list.entries[| i].GUID == plist[pselection]) {
+                            ui_list_select(data_list, i, true);
+                            break;
+                        }
+                    }
+                } else {
+                    for (var i = 0; i < array_length(data_list.entries); i++) {
+                        if (data_list.entries[i].GUID == plist[pselection]) {
+                            ui_list_select(data_list, i, true);
+                            break;
+                        }
                     }
                 }
                 break;

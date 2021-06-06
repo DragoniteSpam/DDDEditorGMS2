@@ -9,8 +9,8 @@ function dc_custom_event_set_data(argument0) {
         var type = guid_get(property[EventNodeCustomData.TYPE_GUID]);
     
         switch (type.type) {
-            case DataTypes.ENUM: list.node.custom_data[@ list.property_index][@ list.multi_index] = type.properties[| selection].GUID; break;
-            case DataTypes.DATA: list.node.custom_data[@ list.property_index][@ list.multi_index] = type.instances[| selection].GUID; break;
+            case DataTypes.ENUM: list.node.custom_data[@ list.property_index][@ list.multi_index] = type.properties[selection].GUID; break;
+            case DataTypes.DATA: list.node.custom_data[@ list.property_index][@ list.multi_index] = type.instances[selection].GUID; break;
         }
     }
 

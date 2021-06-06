@@ -78,7 +78,7 @@ function ui_constant_data_activate(base_dialog, what) {
                 // set the data in the data list
                 list_data.entries = (what.type == DataTypes.DATA) ? type.instances : type.properties;
                 
-                ui_list_select(list_data, ds_list_find_index(list_data.entries, guid_get(what.value)), true);
+                ui_list_select(list_data, array_search(list_data.entries, guid_get(what.value)), true);
             } else {
                 list_data.entries = noone;
             }

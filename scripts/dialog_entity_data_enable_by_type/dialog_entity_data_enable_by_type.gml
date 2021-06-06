@@ -52,7 +52,7 @@ function dialog_entity_data_enable_by_type(dialog) {
                 if (type.type == data.type) {
                     dialog.el_data_list.entries = (data.type == DataTypes.ENUM) ? type.properties : type.instances;
                 } else {
-                    dialog.el_data_list.entries = -1;
+                    dialog.el_data_list.entries = [];
                 }
             } else {
                 dialog.el_data_type_guid.text = "Select";

@@ -4,11 +4,11 @@ function uivc_data_set_property_built_in_data(list) {
     var data_selection = ui_list_selection(list);
 
     if (selection + 1) {
-        var instance = data.instances[| selection];
+        var instance = data.instances[selection];
         if (data_selection + 1) {
-            ds_list_set(instance.values[| list.key], 0, list.entries[| data_selection].GUID);
+            instance.values[@ list.key][@ 0] = list.entries[data_selection].GUID;
         } else {
-            ds_list_set(instance.values[| list.key], 0, 0);
+            instance.values[@ list.key][@ 0] = NULL;
         }
     }
 }

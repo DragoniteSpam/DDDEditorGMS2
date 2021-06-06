@@ -12,7 +12,7 @@ function ui_init_game_data_refresh() {
     }
     
     if (selection + 1) {
-        var instance = guid_get(data.instances[| selection].GUID);
+        var instance = guid_get(data.instances[selection].GUID);
     } else {
         var instance = noone;
     }
@@ -41,7 +41,7 @@ function ui_init_game_data_refresh() {
             // list without having to "physically" go down each column and row, but then
             // the list would be orphaned/memory leak unless i do some other things that
             // i don't feel like doing
-            var property = data.properties[| n];
+            var property = data.properties[n];
             
             // only check data, not enums
             if (property.type == DataTypes.DATA) {
@@ -50,8 +50,8 @@ function ui_init_game_data_refresh() {
                     if (property.type_guid == data.GUID) {
                         // element
                         ui_list_clear(thingy);
-                        for (var k = 0; k < ds_list_size(data.instances); k++) {
-                            create_list_entries(thingy, data.instances[| k]);
+                        for (var k = 0; k < array_length(data.instances); k++) {
+                            array_push(thingy.entries, data.instances[k]);
                         }
                     }
                 } // else it's a button
@@ -61,9 +61,9 @@ function ui_init_game_data_refresh() {
                 if (property.max_size == 1) {
                     // no need to mess with the list
                     if (property.type == DataTypes.BOOL) {
-                        thingy.value = instance.values[| n][| 0];
+                        thingy.value = instance.values[n][0];
                     } else {
-                        ui_input_set_value(thingy, string(instance.values[| n][| 0]));
+                        ui_input_set_value(thingy, string(instance.values[n][0]));
                     }
                     // if you re-select a data that already has one of these
                     // fields set, it should be re-selected when you re-select
@@ -75,9 +75,9 @@ function ui_init_game_data_refresh() {
                             ui_list_deselect(thingy);
                             var datatype = guid_get(property.type_guid);
                             if (datatype) {
-                                for (var k = 0; k < ds_list_size(datatype.instances); k++) {
+                                for (var k = 0; k < array_length(datatype.instances); k++) {
                                     // still no need to mess with the list
-                                    if (datatype.instances[| k].GUID == instance.values[| n][| 0]) {
+                                    if (datatype.instances[k].GUID == instance.values[n][0]) {
                                         ui_list_select(thingy, k, true);
                                         break;
                                     }
@@ -87,8 +87,8 @@ function ui_init_game_data_refresh() {
                         case DataTypes.ENUM:
                             ui_list_deselect(thingy);
                             var datatype = guid_get(property.type_guid);
-                            for (var k = 0; k < ds_list_size(datatype.properties); k++) {
-                                if (datatype.properties[| k].GUID == instance.values[| n][| 0]) {
+                            for (var k = 0; k < array_length(datatype.properties); k++) {
+                                if (datatype.properties[k].GUID == instance.values[n][0]) {
                                     ui_list_select(thingy, k, true);
                                     break;
                                 }
@@ -105,7 +105,7 @@ function ui_init_game_data_refresh() {
                             ui_list_deselect(thingy);
                             for (var k = 0; k < ds_list_size(Stuff.all_animations); k++) {
                                 // still no need to mess with the list
-                                if (Stuff.all_animations[| k].GUID == instance.values[| n][| 0]) {
+                                if (Stuff.all_animations[k].GUID == instance.values[n][0]) {
                                     ui_list_select(thingy, k, true);
                                     break;
                                 }
@@ -124,17 +124,17 @@ function ui_init_game_data_refresh() {
                         case DataTypes.IMG_SKYBOX:
                             ui_list_deselect(thingy);
                             for (var k = 0; k < ds_list_size(thingy.entries); k++) {
-                                if (thingy.entries[| k].GUID == instance.values[| n][| 0]) {
+                                if (thingy.entries[k].GUID == instance.values[n][0]) {
                                     ui_list_select(thingy, k, true);
                                     break;
                                 }
                             }
                             break;
                         case DataTypes.EVENT:
-                            var existing_data = guid_get(instance.values[| n][| 0]);
+                            var existing_data = guid_get(instance.values[n][0]);
                             thingy.text = existing_data ? get_event_entrypoint_short_name(existing_data) : "Select Event";
                             thingy.tooltip = existing_data ? (existing_data.event.name + " / " + existing_data.name) : "";
-                            thingy.event_guid = instance.values[| n];
+                            thingy.event_guid = instance.values[n];
                             thingy.instance = instance;
                             break;
                     }

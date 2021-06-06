@@ -1,24 +1,24 @@
 function omu_data_list_add(thing) {
     var selection = ui_list_selection(Stuff.data.ui.el_instances);
     var data = guid_get(Stuff.data.ui.active_type_guid);
-    var property = data.properties[| thing.key];
-    var instance = guid_get(data.instances[| selection].GUID);
-    var plist = instance.values[| thing.key];
+    var property = data.properties[thing.key];
+    var instance = guid_get(data.instances[selection].GUID);
+    var plist = instance.values[thing.key];
     
-    if (ds_list_size(plist) < property.max_size) {
+    if (array_length(plist) < property.max_size) {
         switch (property.type) {
             case DataTypes.INT:
             case DataTypes.BOOL:
-                ds_list_add(plist, property.default_int);
+                array_push(plist, property.default_int);
                 break;
             case DataTypes.FLOAT:
-                ds_list_add(plist, property.default_real);
+                array_push(plist, property.default_real);
                 break;
             case DataTypes.STRING:
-                ds_list_add(plist, property.default_string);
+                array_push(plist, property.default_string);
                 break;
             case DataTypes.CODE:
-                ds_list_add(plist, property.default_code);
+                array_push(plist, property.default_code);
                 break;
             case DataTypes.ENUM:
             case DataTypes.DATA:
@@ -37,11 +37,11 @@ function omu_data_list_add(thing) {
             case DataTypes.ANIMATION:
             case DataTypes.EVENT:
                 // no default - this is just a null value
-                ds_list_add(plist, 0);
+                array_push(plist, NULL);
                 break;
             case DataTypes.COLOR:
                 // no default - for now
-                ds_list_add(plist, c_black);
+                array_push(plist, c_black);
                 break;
             case DataTypes.TILE:
             case DataTypes.ENTITY:
@@ -49,7 +49,7 @@ function omu_data_list_add(thing) {
                 not_yet_implemented();
                 break;
             case DataTypes.ASSET_FLAG:
-                ds_list_add(plist, 0);
+                array_push(plist, 0);
                 break;
         }
     }

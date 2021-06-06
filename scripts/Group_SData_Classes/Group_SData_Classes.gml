@@ -62,12 +62,12 @@ function SDataClass(name) : SData(name) constructor {
         json.properties = array_create(n);
         json.is_enum = false;
         for (var i = 0; i < n; i++) {
-            json.properties[i] = self.properties[| i].CreateJSON();
+            json.properties[i] = self.properties[i].CreateJSON();
         }
         n = array_length(self.instances);
         json.instances = array_create(n);
         for (var i = 0; i < n; i++) {
-            json.instances[i] = self.instances[| i].CreateJSON();
+            json.instances[i] = self.instances[i].CreateJSON();
         }
         return json;
     };

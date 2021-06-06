@@ -13,8 +13,8 @@ function serialize_load_datadata(buffer, version) {
         
         var n_properties = buffer_read(buffer, buffer_u16);
         repeat (n_properties) {
-            var property = new SDataProperty("");
-            ds_list_add(data.properties, property);
+            var property = new SDataProperty("", data);
+            data.AddProperty(property);
             
             serialize_load_generic(buffer, property, version);
             

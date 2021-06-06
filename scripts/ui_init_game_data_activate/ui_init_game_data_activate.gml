@@ -67,7 +67,7 @@ function ui_init_game_data_activate() {
                     var original_color = text.color;
                     if (selection + 1) {
                         var exists = internal_name_get(text.value);
-                        if (exists && exists != data.instances[| selection]) text.color = c_red;
+                        if (exists && exists != data.instances[selection]) text.color = c_red;
                     }
                     ui_render_input(text, xx, yy);
                     text.color = original_color;
@@ -76,8 +76,8 @@ function ui_init_game_data_activate() {
                 Stuff.data.ui.el_inst_internal_name = element;
                 ds_list_add(col_data.contents, element);
             
-                for (var i = 0; i < ds_list_size(data.properties); i++) {
-                    var property = data.properties[| i];
+                for (var i = 0; i < array_length(data.properties); i++) {
+                    var property = data.properties[i];
                     if (property.max_size == 1) {
                         switch (property.type) {
                             case DataTypes.INT:            // input
@@ -85,26 +85,26 @@ function ui_init_game_data_activate() {
                                 if (property.range_min < 0 || property.range_max < 0) {
                                     char_limit++;
                                 }
-                                var element = create_input(0, yy, property.name, ew, eh, uivc_data_set_property_input, property.default_int, string(property.range_min) + " - " + string(property.range_max), validate_int,
+                                element = create_input(0, yy, property.name, ew, eh, uivc_data_set_property_input, property.default_int, string(property.range_min) + " - " + string(property.range_max), validate_int,
                                     property.range_min, property.range_max, char_limit, vx1n, vy1n, vx2n, vy2n, noone);
                                 element.key = i;
                                 var hh = element.height;
                                 break;
                             case DataTypes.FLOAT:          // input
-                                var element = create_input(0, yy, property.name, ew, eh, uivc_data_set_property_input, property.default_real, string(property.range_min) + " - " + string(property.range_max), validate_double,
+                                element = create_input(0, yy, property.name, ew, eh, uivc_data_set_property_input, property.default_real, string(property.range_min) + " - " + string(property.range_max), validate_double,
                                     property.range_min, property.range_max, 10 /* hard-coded, please do not touch */, vx1n, vy1n, vx2n, vy2n, noone);
                                 element.key = i;
                                 var hh = element.height;
                                 break;
                             case DataTypes.STRING:         // input
-                                var element = create_input(0, yy, property.name, ew, eh * 2, uivc_data_set_property_input, "", "string", validate_string,
+                                element = create_input(0, yy, property.name, ew, eh * 2, uivc_data_set_property_input, "", "string", validate_string,
                                     0, 1, property.char_limit, vx1, vy1, vx2, vy2, noone);
                                 element.valignment = fa_top;
                                 element.key = i;
                                 var hh = element.height + eh / 2;
                                 break;
                             case DataTypes.ASSET_FLAG:     // button which leads to a dialog with a list of flags
-                                var element = create_button(0, yy, property.name, ew, eh, fa_center, function(button) {
+                                element = create_button(0, yy, property.name, ew, eh, fa_center, function(button) {
                                     var data = guid_get(Stuff.data.ui.active_type_guid);
                                     var instance_selection = ui_list_selection(Stuff.data.ui.el_instances);
                                     if (instance_selection + 1) {
@@ -118,48 +118,48 @@ function ui_init_game_data_activate() {
                             case DataTypes.DATA:           // list
                                 var datadata = guid_get(property.type_guid);
                                 if (datadata) {
-                                    var element = create_list(0, yy, property.name, "<no options: " + datadata.name + ">", ew, eh, 8, uivc_data_set_property_list, false, noone);
+                                    element = create_list(0, yy, property.name, "<no options: " + datadata.name + ">", ew, eh, 8, uivc_data_set_property_list, false, noone);
                                     if (datadata.type == DataTypes.DATA) {
-                                        for (var j = 0; j < ds_list_size(datadata.instances); j++) {
-                                            create_list_entries(element, datadata.instances[| j]);
+                                        for (var j = 0; j < array_length(datadata.instances); j++) {
+                                            create_list_entries(element, datadata.instances[j]);
                                         }
                                     } else {
-                                        for (var j = 0; j < ds_list_size(datadata.properties); j++) {
-                                            create_list_entries(element, datadata.properties[| j]);
+                                        for (var j = 0; j < array_length(datadata.properties); j++) {
+                                            create_list_entries(element, datadata.properties[j]);
                                         }
                                     }
                                 } else {
-                                    var element = create_list(0, yy, "<missing data type>", "<n/a>", ew, eh, 8, null, false, noone);
+                                    element = create_list(0, yy, "<missing data type>", "<n/a>", ew, eh, 8, null, false, noone);
                                 }
                                 element.key = i;
                                 element.entries_are = ListEntries.INSTANCES;
                                 var hh = ui_get_list_height(element);
                                 break;
                             case DataTypes.BOOL:           // checkbox
-                                var element = create_checkbox(0, yy, property.name, ew, eh, uivc_data_set_property_boolean, false, noone);
+                                element = create_checkbox(0, yy, property.name, ew, eh, uivc_data_set_property_boolean, false, noone);
                                 element.key = i;
                                 var hh = element.height;
                                 break;
                             case DataTypes.CODE:
-                                var element_header = create_text(0, yy, property.name, ew, eh, fa_left, ew, noone);
+                                element_header = create_text(0, yy, property.name, ew, eh, fa_left, ew, noone);
                                 // the vx, vy coordinates are already located below the actual element, so the actual
                                 // element should be in the same for it to appear correctly (it's weird, i know)
-                                var element = create_input_code(0, yy, "", ew, eh, 0, vy1, vx2, vy2, property.default_code, uivc_data_set_property_code, noone, i);
+                                element = create_input_code(0, yy, "", ew, eh, 0, vy1, vx2, vy2, property.default_code, uivc_data_set_property_code, noone, i);
                                 var hh = vy2;
                                 break;
                             case DataTypes.COLOR:
-                                var element = create_color_picker(0, yy, property.name, ew, eh, uivc_data_set_property_color, c_white, vx1n, vy1n, vx2n, vy2n, noone);
+                                element = create_color_picker(0, yy, property.name, ew, eh, uivc_data_set_property_color, c_white, vx1n, vy1n, vx2n, vy2n, noone);
                                 element.key = i;
                                 var hh = element.height;
                                 break;
                             case DataTypes.MESH:           // list
-                                var element = create_list(0, yy, property.name, "<no Meshes>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Stuff.all_meshes);
+                                element = create_list(0, yy, property.name, "<no Meshes>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Stuff.all_meshes);
                                 element.key = i;
                                 element.entries_are = ListEntries.INSTANCES;
                                 var hh = ui_get_list_height(element);
                                 break;
                             case DataTypes.MESH_AUTOTILE:   // list
-                                var element = create_list(0, yy, property.name, "<no Mesh Autotiles>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Stuff.all_mesh_autotiles);
+                                element = create_list(0, yy, property.name, "<no Mesh Autotiles>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Stuff.all_mesh_autotiles);
                                 element.key = i;
                                 element.entries_are = ListEntries.INSTANCES;
                                 var hh = ui_get_list_height(element);
@@ -168,84 +168,84 @@ function ui_init_game_data_activate() {
                                 not_yet_implemented();
                                 break;
                             case DataTypes.IMG_TEXTURE:           // list
-                                var element = create_list(0, yy, property.name, "<no Tilesets>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Stuff.all_graphic_tilesets);
+                                element = create_list(0, yy, property.name, "<no Tilesets>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Stuff.all_graphic_tilesets);
                                 element.key = i;
                                 element.entries_are = ListEntries.INSTANCES;
                                 var hh = ui_get_list_height(element);
                                 break;
                             case DataTypes.IMG_BATTLER:           // list
-                                var element = create_list(0, yy, property.name, "<no Battler sprites>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Stuff.all_graphic_battlers);
+                                element = create_list(0, yy, property.name, "<no Battler sprites>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Stuff.all_graphic_battlers);
                                 element.key = i;
                                 element.entries_are = ListEntries.INSTANCES;
                                 var hh = ui_get_list_height(element);
                                 break;
                             case DataTypes.IMG_OVERWORLD:       // list
-                                var element = create_list(0, yy, property.name, "<no Overworld sprites>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Stuff.all_graphic_overworlds);
+                                element = create_list(0, yy, property.name, "<no Overworld sprites>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Stuff.all_graphic_overworlds);
                                 element.key = i;
                                 element.entries_are = ListEntries.INSTANCES;
                                 var hh = ui_get_list_height(element);
                                 break;
                             case DataTypes.IMG_PARTICLE:           // list
-                                var element = create_list(0, yy, property.name, "<no Particle sprites>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Stuff.all_graphic_particles);
+                                element = create_list(0, yy, property.name, "<no Particle sprites>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Stuff.all_graphic_particles);
                                 element.key = i;
                                 element.entries_are = ListEntries.INSTANCES;
                                 var hh = ui_get_list_height(element);
                                 break;
                             case DataTypes.IMG_UI:           // list
-                                var element = create_list(0, yy, property.name, "<no UI images>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Stuff.all_graphic_ui);
+                                element = create_list(0, yy, property.name, "<no UI images>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Stuff.all_graphic_ui);
                                 element.key = i;
                                 element.entries_are = ListEntries.INSTANCES;
                                 var hh = ui_get_list_height(element);
                                 break;
                             case DataTypes.IMG_ETC:           // list
-                                var element = create_list(0, yy, property.name, "<no Misc images>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Stuff.all_graphic_etc);
+                                element = create_list(0, yy, property.name, "<no Misc images>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Stuff.all_graphic_etc);
                                 element.key = i;
                                 element.entries_are = ListEntries.INSTANCES;
                                 var hh = ui_get_list_height(element);
                                 break;
                             case DataTypes.IMG_SKYBOX:       // list
-                                var element = create_list(0, yy, property.name, "<no Skybox images>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Stuff.all_graphic_skybox);
+                                element = create_list(0, yy, property.name, "<no Skybox images>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Stuff.all_graphic_skybox);
                                 element.key = i;
                                 element.entries_are = ListEntries.INSTANCES;
                                 var hh = ui_get_list_height(element);
                                 break;
                             case DataTypes.IMG_TILE_ANIMATION:// list
-                                var element = create_list(0, yy, property.name, "<no Tile Animations>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Stuff.all_graphic_tile_animations);
+                                element = create_list(0, yy, property.name, "<no Tile Animations>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Stuff.all_graphic_tile_animations);
                                 element.key = i;
                                 element.entries_are = ListEntries.INSTANCES;
                                 var hh = ui_get_list_height(element);
                                 break;
                             case DataTypes.AUDIO_BGM:           // list
-                                var element = create_list(0, yy, property.name, "<no BGM>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Stuff.all_bgm);
+                                element = create_list(0, yy, property.name, "<no BGM>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Stuff.all_bgm);
                                 element.key = i;
                                 element.entries_are = ListEntries.INSTANCES;
                                 var hh = ui_get_list_height(element);
                                 break;
                             case DataTypes.AUDIO_SE:           // list
-                                var element = create_list(0, yy, property.name, "<no SE>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Stuff.all_se);
+                                element = create_list(0, yy, property.name, "<no SE>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Stuff.all_se);
                                 element.key = i;
                                 element.entries_are = ListEntries.INSTANCES;
                                 var hh = ui_get_list_height(element);
                                 break;
                             case DataTypes.ANIMATION:          // list
-                                var element = create_list(0, yy, property.name, "<no Animations>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Stuff.all_animations);
+                                element = create_list(0, yy, property.name, "<no Animations>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Stuff.all_animations);
                                 element.key = i;
                                 element.entries_are = ListEntries.INSTANCES;
                                 var hh = ui_get_list_height(element);
                                 break;
                             case DataTypes.ENTITY:          // list
-                                var element = create_text(0, yy, property.name + " - invalid data type", ew, eh, fa_left, ew, noone);
+                                element = create_text(0, yy, property.name + " - invalid data type", ew, eh, fa_left, ew, noone);
                                 var hh = element.height;
                                 break;
                             case DataTypes.MAP:             // list
-                                var element = create_list(0, yy, property.name, "<no Maps - how?>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Stuff.all_maps);
+                                element = create_list(0, yy, property.name, "<no Maps - how?>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Stuff.all_maps);
                                 element.key = i;
                                 element.entries_are = ListEntries.INSTANCES;
                                 var hh = ui_get_list_height(element);
                                 break;
                             case DataTypes.EVENT:           // list
-                                var element_header = create_text(0, yy, property.name, ew, eh, fa_left, ew, noone);
-                                var element = create_button(0, yy + vy1, "Select Event", ew, eh, fa_center, dialog_create_data_get_event, noone);
+                                element_header = create_text(0, yy, property.name, ew, eh, fa_left, ew, noone);
+                                element = create_button(0, yy + vy1, "Select Event", ew, eh, fa_center, dialog_create_data_get_event, noone);
                                 element.event_guid = noone;
                                 element.instance = noone;
                                 element.key = i;
@@ -253,7 +253,7 @@ function ui_init_game_data_activate() {
                                 break;
                         }
                     } else {
-                        var element = create_button(0, yy, property.name + " (List)", ew, eh, fa_middle, dialog_create_data_instance_property_list, noone);
+                        element = create_button(0, yy, property.name + " (List)", ew, eh, fa_middle, dialog_create_data_instance_property_list, noone);
                         element.key = i;
                         var hh = element.height;
                     }

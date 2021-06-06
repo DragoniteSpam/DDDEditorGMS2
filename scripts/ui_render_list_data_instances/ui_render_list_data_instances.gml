@@ -14,11 +14,11 @@ function ui_render_list_data_instances(argument0, argument1, argument2) {
         if (data.type == DataTypes.DATA) {
             list.entries = data.instances;
         } else {
-            list.text_vacant = "<Enums can't be instantiated>"
-            list.entries = Stuff.empty_list;
+            list.text_vacant = "<Enums can't be instantiated>";
+            list.entries = [];
         }
     } else {
-        list.entries = Stuff.empty_list;
+        list.entries = [];
     }
 
     ui_render_list(list, xx, yy);

@@ -198,9 +198,9 @@ function dialog_create_map_generic_data(root) {
         var selection = ui_list_selection(list);
         var generic_index = ui_list_selection(list.root.el_list);
         if (selection + 1) {
-            map.generic_data[generic_index].value_data = list.entries[| selection].GUID;
+            map.generic_data[generic_index].value_data = list.entries[selection].GUID;
         }
-    }, false, dg, noone);
+    }, false, dg, []);
     el_data_list.interactive = false;
     el_data_list.enabled = false;
     el_data_list.entries_are = ListEntries.INSTANCES;

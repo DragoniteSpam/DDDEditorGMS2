@@ -8,13 +8,13 @@ function uivc_data_property_list_number(argument0) {
 
     if (pselection >= 0) {
         var data = guid_get(Stuff.data.ui.active_type_guid);
-        var instance = guid_get(data.instances[| selection].GUID);
-        var plist = instance.values[| input.key];
+        var instance = guid_get(data.instances[selection].GUID);
+        var plist = instance.values[input.key];
     
         var rv = real(input.value);
-        plist[| pselection] = rv;
+        plist[@ pselection] = rv;
     
-        input.root.el_list_main.entries[| pselection] = string(rv);
+        input.root.el_list_main.entries[@ pselection] = string(rv);
     }
 
 

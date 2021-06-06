@@ -7,18 +7,18 @@ function serialize_load_data_instances(buffer, version) {
         var datadata = Stuff.all_data[| i];
         
         if (datadata.type == DataTypes.DATA) {
-            var n_properties = ds_list_size(datadata.properties);
+            var n_properties = array_length(datadata.properties);
             var n_instances = buffer_read(buffer, buffer_u16);
             
             for (var j = 0; j < n_instances; j++) {
                 var instance = new SDataInstance("");
                 instance.base_guid = datadata.GUID;
-                ds_list_add(datadata.instances, instance);
+                datadata.AddInstance(instance);
                 
                 serialize_load_generic(buffer, instance, version);
                 
                 for (var k = 0; k < n_properties; k++) {
-                    var property = datadata.properties[| k];
+                    var property = datadata.properties[k];
                     switch (property.type) {
                         case DataTypes.INT:
                             // constraining this to the range allowed by the property (u8, s8,
@@ -65,12 +65,13 @@ function serialize_load_data_instances(buffer, version) {
                             not_yet_implemented();
                             break;
                     }
-                    var plist = ds_list_create();
+                    
                     var n = buffer_read(buffer, buffer_u8);
+                    var plist = array_length(n);
                     repeat (n) {
-                        ds_list_add(plist, buffer_read(buffer, btype));
+                        array_push(plist, buffer_read(buffer, btype));
                     }
-                    ds_list_add(instance.values, plist);
+                    array_push(instance.values, plist);
                 }
             }
         }

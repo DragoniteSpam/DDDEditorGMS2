@@ -14,11 +14,11 @@ function serialize_save_datadata(buffer) {
         
         serialize_save_generic(buffer, datadata);
         
-        var n_properties = ds_list_size(datadata.properties);
+        var n_properties = array_length(datadata.properties);
         buffer_write(buffer, buffer_u16, n_properties);
         
         for (var j = 0; j < n_properties; j++) {
-            var property = datadata.properties[| j];
+            var property = datadata.properties[j];
             
             serialize_save_generic(buffer, property);
             

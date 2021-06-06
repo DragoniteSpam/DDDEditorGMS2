@@ -74,7 +74,7 @@ function ui_init_game_data(mode) {
         
         yy += spacing + element.height;
         
-        el_instances = create_list(this_column * cw + spacing, yy, "Instances: ", "<No instances>", ew, eh, 24, ui_init_game_data_refresh, false, id, noone);
+        el_instances = create_list(this_column * cw + spacing, yy, "Instances: ", "<No instances>", ew, eh, 24, ui_init_game_data_refresh, false, id, []);
         el_instances.render = ui_render_list_data_instances;
         el_instances.onmiddleclick = dialog_create_data_instance_alphabetize;
         el_instances.render_colors = function(list, index) {
@@ -131,8 +131,8 @@ function ui_init_game_data(mode) {
         el_inst_remove = create_button(this_column * cw + spacing, yy, "Delete Instance", ew, eh, fa_center, function(button) {
             var data = guid_get(thing.root.active_type_guid);
             var selection = ui_list_selection(thing.root.el_instances);
-            var instance = data.instances[| selection];
-            if (instance) {
+            if (selection + 1) {
+                var instance = data.instances[selection];
                 ui_list_deselect(thing.root.el_instances);
                 data.RemoveInstance(instance);
                 instance.Destroy();

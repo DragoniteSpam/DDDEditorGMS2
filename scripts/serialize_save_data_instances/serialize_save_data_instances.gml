@@ -11,17 +11,17 @@ function serialize_save_data_instances(buffer) {
         var datadata = Stuff.all_data[| i];
         
         if (datadata.type == DataTypes.DATA) {
-            var n_properties = ds_list_size(datadata.properties);
-            var n_instances = ds_list_size(datadata.instances);
+            var n_properties = array_length(datadata.properties);
+            var n_instances = array_length(datadata.instances);
             
             buffer_write(buffer, buffer_u16, n_instances);
             for (var j = 0; j < n_instances; j++) {
-                var instance = datadata.instances[| j];
+                var instance = datadata.instances[j];
                 
                 serialize_save_generic(buffer, instance);
                 
                 for (var k = 0; k < n_properties; k++) {
-                    var property = datadata.properties[| k];
+                    var property = datadata.properties[k];
                     switch (property.type) {
                         case DataTypes.INT:
                             var btype = buffer_s32;
@@ -67,12 +67,12 @@ function serialize_save_data_instances(buffer) {
                             break;
                     }
                     
-                    var vlist = instance.values[| k];
-                    var n_vlist = ds_list_size(vlist);
+                    var vlist = instance.values[k];
+                    var n_vlist = array_length(vlist);
                     buffer_write(buffer, buffer_u8, n_vlist);
                     
-                    for (var l = 0; l < ds_list_size(vlist); l++) {
-                        buffer_write(buffer, btype, vlist[| l]);
+                    for (var l = 0; l < n_vlist; l++) {
+                        buffer_write(buffer, btype, vlist[l]);
                     }
                 }
             }

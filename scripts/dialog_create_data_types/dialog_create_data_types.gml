@@ -152,8 +152,8 @@ function dialog_create_data_types(dialog) {
         var selection = ui_list_selection(list);
         if (selection + 1) {
             var listofthings = list.root.selected_data.properties;
-            if (listofthings[| selection] != list.root.selected_property) {
-                list.root.selected_property = listofthings[| selection];
+            if (listofthings[selection] != list.root.selected_property) {
+                list.root.selected_property = listofthings[selection];
                 dialog_data_type_disable(list.root);
                 dialog_data_type_enable_by_type(list.root);
             }
@@ -165,7 +165,7 @@ function dialog_create_data_types(dialog) {
         var otext = list.text;
         var datadata = list.root.selected_data;
         if (datadata) {
-            list.text = otext + string(ds_list_size(datadata.properties));
+            list.text = otext + string(array_length(datadata.properties));
             list.entries = datadata.properties;
         } else {
             list.entries = Stuff.empty_list;
@@ -181,8 +181,8 @@ function dialog_create_data_types(dialog) {
     var el_add_p = create_button(col2_x, yy, "Add Property", ew, eh, fa_center, function(button) {
         var datadata = button.root.selected_data;
         
-        if (ds_list_size(datadata.properties) < 1000) {
-            var property = new SDataProperty("Property" + string(ds_list_size(datadata.properties)), datadata);
+        if (array_length(datadata.properties) < 1000) {
+            var property = new SDataProperty("Property" + string(array_length(datadata.properties)), datadata);
             datadata.AddProperty(property);
             
             ui_list_deselect(button.root.el_list_p);
@@ -192,11 +192,8 @@ function dialog_create_data_types(dialog) {
             // don't do this for enums - iterate over all data instances and add an empty
             // list to each value
             if (datadata.type == DataTypes.DATA) {
-                for (var i = 0; i < ds_list_size(datadata.instances); i++) {
-                    var inst = datadata.instances[| i];
-                    var plist = ds_list_create();
-                    ds_list_add(plist, 0);
-                    ds_list_add(inst.values, plist);
+                for (var i = 0; i < array_length(datadata.instances); i++) {
+                    array_push(datadata.instances[i].values, [0]);
                 }
             }
             
@@ -221,16 +218,16 @@ function dialog_create_data_types(dialog) {
         var index = ui_list_selection(button.root.el_list_p);
         
         if (index > 0) {
-            var t = datadata.properties[| index];
-            datadata.properties[| index] = datadata.properties[| index - 1];
-            datadata.properties[| index - 1] = t;
+            var t = datadata.properties[index];
+            datadata.properties[@ index] = datadata.properties[index - 1];
+            datadata.properties[@ index - 1] = t;
             
             if (datadata.type == DataTypes.DATA) {
-                for (var i = 0; i < ds_list_size(datadata.instances); i++) {
-                    var inst = datadata.instances[| i];
-                    t = inst.values[| index];
-                    inst.values[| index] = inst.values[| index] - 1;
-                    inst.values[| index - 1] = t;
+                for (var i = 0; i < array_length(datadata.instances); i++) {
+                    var inst = datadata.instances[i];
+                    t = inst.values[index];
+                    inst.values[@ index] = inst.values[index] - 1;
+                    inst.values[@ index - 1] = t;
                 }
             }
             
@@ -247,17 +244,17 @@ function dialog_create_data_types(dialog) {
         var datadata = button.root.selected_data;
         var index = ui_list_selection(button.root.el_list_p);
         
-        if (index < ds_list_size(datadata.properties) - 1) {
-            var t = datadata.properties[| index];
-            datadata.properties[| index] = datadata.properties[| index + 1];
-            datadata.properties[| index + 1] = t;
+        if (index < array_length(datadata.properties) - 1) {
+            var t = datadata.properties[index];
+            datadata.properties[@ index] = datadata.properties[index + 1];
+            datadata.properties[@ index + 1] = t;
             
             if (datadata.type == DataTypes.DATA) {
-                for (var i = 0; i < ds_list_size(datadata.instances); i++) {
-                    var inst = datadata.instances[| i];
-                    t = inst.values[| index];
-                    inst.values[| index] = inst.values[| index] + 1;
-                    inst.values[| index + 1] = t;
+                for (var i = 0; i < array_length(datadata.instances); i++) {
+                    var inst = datadata.instances[i];
+                    t = inst.values[index];
+                    inst.values[@ index] = inst.values[index] + 1;
+                    inst.values[@ index + 1] = t;
                 }
             }
             
@@ -329,13 +326,13 @@ function dialog_create_data_types(dialog) {
         checkbox.root.selected_property.size_can_be_zero = checkbox.value;
         if (!checkbox.root.selected_property.size_can_be_zero) {
             var instances = checkbox.root.selected_data.instances;
-            var index = ds_list_find_index(checkbox.root.selected_data.properties, checkbox.root.selected_property);
+            var index = array_search(checkbox.root.selected_data.properties, checkbox.root.selected_property);
             var n = 0;
-            for (var i = 0; i < ds_list_size(instances); i++) {
-                var instance = instances[| i];
-                var inst_property = instance.values[| index];
-                if (!ds_list_size(inst_property)) {
-                    ds_list_add(inst_property, 0);
+            for (var i = 0; i < array_length(instances); i++) {
+                var instance = instances[i];
+                var inst_property = instance.values[index];
+                if (array_length(inst_property) == 0) {
+                    array_push(inst_property, 0);
                     n++;
                 }
             }
