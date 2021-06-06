@@ -33,10 +33,8 @@ function omu_animation_properties(argument0) {
         yy += el_name.height + spacing;
     
         var el_internal_name = create_input(16, yy, "Internal Name:", ew, eh, function(input) {
-            if (input.root.root.root.active_animation) {
-                if (!internal_name_get(input.value)) {
-                    internal_name_set(input.root.root.root.active_animation, input.value);
-                }
+            if (!internal_name_get(input.value)) {
+                internal_name_set(input.root.root.root.active_animation, input.value);
             }
         }, animation.internal_name, "Internal name", validate_string_internal_name, 0, 1, INTERNAL_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
         el_internal_name.render = function(input) {
@@ -54,13 +52,18 @@ function omu_animation_properties(argument0) {
         yy += el_internal_name.height + spacing;
     
         var el_frame_rate = create_input(16, yy, "Moment rate:", ew, eh, function(input) {
-            input.root.root.root.active_animation.frames_per_second = real(input.value);
+            var animation = thing.root.root.root.active_animation;
+            animation.frames_per_second = real(input.value);
             input.root.el_seconds.text = "Duration (seconds): " + string(animation.moments / animation.frames_per_second);
         }, string(animation.frames_per_second), "integer", validate_int, 1, 96, 2, vx1, vy1, vx2, vy2, dg);
     
         yy += el_frame_rate.height + spacing;
     
-        var el_moments = create_input(16, yy, "Moments:", ew, eh, uivc_animation_set_moments, string(animation.moments), "integer", validate_int, 1, 65535, 3, vx1, vy1, vx2, vy2, dg);
+        var el_moments = create_input(16, yy, "Moments:", ew, eh, function(input) {
+            var animation = thing.root.root.root.active_animation;
+            animation.moments = real(thing.value);
+            thing.root.el_seconds.text = "Duration (seconds): " + string(animation.moments / animation.frames_per_second);
+        }, string(animation.moments), "integer", validate_int, 1, 65535, 3, vx1, vy1, vx2, vy2, dg);
     
         yy += el_moments.height + spacing;
     
