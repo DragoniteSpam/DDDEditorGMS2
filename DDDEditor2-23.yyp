@@ -1085,7 +1085,6 @@
     {"id":{"name":"uivc_select_autotile","path":"scripts/uivc_select_autotile/uivc_select_autotile.yy",},"order":26,},
     {"id":{"name":"uivc_select_mesh_refresh","path":"scripts/uivc_select_mesh_refresh/uivc_select_mesh_refresh.yy",},"order":27,},
     {"id":{"name":"uimu_data_add_data","path":"scripts/uimu_data_add_data/uimu_data_add_data.yy",},"order":1,},
-    {"id":{"name":"uimu_data_remove_data","path":"scripts/uimu_data_remove_data/uimu_data_remove_data.yy",},"order":2,},
     {"id":{"name":"uimu_data_move_up","path":"scripts/uimu_data_move_up/uimu_data_move_up.yy",},"order":3,},
     {"id":{"name":"uimu_data_alphabetize_name","path":"scripts/uimu_data_alphabetize_name/uimu_data_alphabetize_name.yy",},"order":4,},
     {"id":{"name":"uimu_data_alphabetize_internal","path":"scripts/uimu_data_alphabetize_internal/uimu_data_alphabetize_internal.yy",},"order":5,},

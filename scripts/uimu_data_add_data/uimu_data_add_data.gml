@@ -72,8 +72,7 @@ function uimu_data_add_data(thing) {
                     break;
                 case DataTypes.TILE:
                 case DataTypes.ENTITY:
-                    instance_activate_object(instance);
-                    instance_destroy(instance);
+                    instance.Destroy();
                     not_yet_implemented();
                     break;
             }

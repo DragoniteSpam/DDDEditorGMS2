@@ -74,7 +74,17 @@ function ui_init_game_data(mode) {
         
         yy += spacing + element.height;
         
-        el_inst_remove = create_button(this_column * cw + spacing, yy, "Delete Instance", ew, eh, fa_center, uimu_data_remove_data, id);
+        el_inst_remove = create_button(this_column * cw + spacing, yy, "Delete Instance", ew, eh, fa_center, function(button) {
+            var data = guid_get(thing.root.active_type_guid);
+            var selection = ui_list_selection(thing.root.el_instances);
+            var instance = data.instances[| selection];
+            if (instance) {
+                ui_list_deselect(thing.root.el_instances);
+                instance.Destroy();
+                array_delete(data.instances, selection, 1);
+                ui_init_game_data_refresh();
+            }
+        }, id);
         ds_list_add(contents, el_inst_remove);
         #endregion
         

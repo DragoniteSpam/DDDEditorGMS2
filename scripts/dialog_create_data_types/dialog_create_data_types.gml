@@ -100,8 +100,7 @@ function dialog_create_data_types(dialog) {
     
     var el_remove = create_button(col1_x, yy, "Delete", ew, eh, fa_center, function(button) {
         if (button.root.selected_data) {
-            instance_activate_object(button.root.selected_data);
-            instance_destroy(button.root.selected_data);
+            button.root.selected_data.Destroy();
             ds_list_delete(Stuff.all_data, ds_list_find_index(Stuff.all_data, button.root.selected_data));
             ui_list_deselect(button.root.el_list_main);
             ui_list_deselect(button.root.el_list_p);
