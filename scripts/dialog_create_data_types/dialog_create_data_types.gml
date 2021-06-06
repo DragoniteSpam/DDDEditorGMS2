@@ -85,7 +85,9 @@ function dialog_create_data_types(dialog) {
     
     var el_add_enum = create_button(col1_x, yy, "Add Enum", ew, eh, fa_center, function(button) {
         if (ds_list_size(Stuff.all_data) < 10000) {
-            ds_list_add(Stuff.all_data, new SDataGameEnum("Enum" + string(ds_list_size(Stuff.all_data))));
+            var addition = new SDataGame("Enum" + string(ds_list_size(Stuff.all_data)));
+            addition.type = DataTypes.ENUM;
+            ds_list_add(Stuff.all_data, addition);
             ui_list_deselect(button.root.el_list_main);
             button.root.selected_data = noone;
             button.root.selected_property = noone;

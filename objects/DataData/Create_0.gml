@@ -21,7 +21,7 @@ LoadJSONData = function(struct) {
     self.LoadJSONBase(struct);
     self.type = struct.type;
     for (var i = 0, n = array_length(struct.properties); i < n; i++) {
-        var property = instance_create_depth(0, 0, 0, struct.properties[i].type == DataTypes.ENUM ? DataEnum : DataProperty);
+        var property = instance_create_depth(0, 0, 0, DataProperty);
         property.CreateJSON(struct.properties[i]);
         ds_list_add(self.properties, property);
     }

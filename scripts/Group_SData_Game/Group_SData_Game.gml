@@ -73,7 +73,3 @@ function SDataGame(name) : SData(name) constructor {
         return self.CreateJSONData();
     };
 }
-
-function SDataGameEnum(name) : SDataGame(name) constructor {
-    self.type = DataTypes.ENUM;
-}
