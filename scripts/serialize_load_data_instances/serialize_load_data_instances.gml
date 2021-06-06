@@ -16,7 +16,6 @@ function serialize_load_data_instances(buffer, version) {
                 datadata.AddInstance(instance);
                 
                 serialize_load_generic(buffer, instance, version);
-                
                 for (var k = 0; k < n_properties; k++) {
                     var property = datadata.properties[k];
                     switch (property.type) {
@@ -67,7 +66,7 @@ function serialize_load_data_instances(buffer, version) {
                     }
                     
                     var n = buffer_read(buffer, buffer_u8);
-                    var plist = array_length(n);
+                    var plist = array_create(n);
                     repeat (n) {
                         array_push(plist, buffer_read(buffer, btype));
                     }

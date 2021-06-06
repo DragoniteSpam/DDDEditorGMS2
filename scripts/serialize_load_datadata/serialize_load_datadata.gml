@@ -6,6 +6,7 @@ function serialize_load_datadata(buffer, version) {
         var type = buffer_read(buffer, buffer_u16);
         var data = new SDataClass("");
         data.type = type;
+        data.GoLive();
         
         guid_remove(data.GUID);
         
