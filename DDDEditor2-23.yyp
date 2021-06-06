@@ -1331,7 +1331,6 @@
     {"id":{"name":"omu_animation_add","path":"scripts/omu_animation_add/omu_animation_add.yy",},"order":1,},
     {"id":{"name":"omu_animation_layer_add","path":"scripts/omu_animation_layer_add/omu_animation_layer_add.yy",},"order":2,},
     {"id":{"name":"omu_animation_remove","path":"scripts/omu_animation_remove/omu_animation_remove.yy",},"order":3,},
-    {"id":{"name":"omu_animation_layer_remove","path":"scripts/omu_animation_layer_remove/omu_animation_layer_remove.yy",},"order":4,},
     {"id":{"name":"omu_data_data_select","path":"scripts/omu_data_data_select/omu_data_data_select.yy",},"order":5,},
     {"id":{"name":"omu_entity_data_data_select","path":"scripts/omu_entity_data_data_select/omu_entity_data_data_select.yy",},"order":6,},
     {"id":{"name":"omu_map_data_data_select","path":"scripts/omu_map_data_data_select/omu_map_data_data_select.yy",},"order":7,},

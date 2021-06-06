@@ -81,7 +81,16 @@ function ui_init_animation(argument0) {
     
         yy += element.height + spacing;
     
-        var element = create_button(xx, yy, "Delete Layer", ew, eh, fa_middle, omu_animation_layer_remove, id);
+        var element = create_button(xx, yy, "Delete Layer", ew, eh, fa_middle, function(button) {
+            var list = button.root.active_animation.layers;
+            var selection = ui_list_selection(button.root.el_layers);
+            ui_list_deselect(button.root.el_layers);
+            if (ds_list_size(list) > 0 && button.root.active_animation && selection >= 0) {
+                instance_activate_object(list[| selection]);
+                instance_destroy(list[| selection]);
+                ds_list_delete(list, selection);
+            }
+        }, id);
         ds_list_add(contents, element);
     
         yy += element.height + spacing;
