@@ -1091,7 +1091,6 @@
     {"id":{"name":"uivc_custom_data_property_required","path":"scripts/uivc_custom_data_property_required/uivc_custom_data_property_required.yy",},"order":8,},
     {"id":{"name":"uivc_custom_data_property_type","path":"scripts/uivc_custom_data_property_type/uivc_custom_data_property_type.yy",},"order":9,},
     {"id":{"name":"uivc_data_set_name","path":"scripts/uivc_data_set_name/uivc_data_set_name.yy",},"order":10,},
-    {"id":{"name":"uivc_animation_set_name","path":"scripts/uivc_animation_set_name/uivc_animation_set_name.yy",},"order":11,},
     {"id":{"name":"uivc_data_set_internal_name","path":"scripts/uivc_data_set_internal_name/uivc_data_set_internal_name.yy",},"order":12,},
     {"id":{"name":"uivc_data_set_property_boolean","path":"scripts/uivc_data_set_property_boolean/uivc_data_set_property_boolean.yy",},"order":13,},
     {"id":{"name":"uivc_data_set_property_built_in_data","path":"scripts/uivc_data_set_property_built_in_data/uivc_data_set_property_built_in_data.yy",},"order":14,},
