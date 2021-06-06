@@ -1,4 +1,4 @@
-function SDataGame(name) : SData(name) constructor {
+function SDataClass(name) : SData(name) constructor {
     self.properties = [];
     // all of the instances of the data type; nested lists
     self.instances = [];
@@ -33,23 +33,23 @@ function SDataGame(name) : SData(name) constructor {
         array_delete(self.instances, index, 1);
     };
     
-    static LoadJSONData = function(struct) {
-        self.LoadJSONBase(struct);
-        self.type = struct.type;
-        for (var i = 0, n = array_length(struct.properties); i < n; i++) {
-            var property = new DataProperty(struct.properties[i].name);
-            property.CreateJSON(struct.properties[i]);
+    static LoadJSONData = function(json) {
+        self.LoadJSONBase(json);
+        self.type = json.type;
+        for (var i = 0, n = array_length(json.properties); i < n; i++) {
+            var property = new DataProperty(json.properties[i].name);
+            property.CreateJSON(json.properties[i]);
             ds_list_add(self.properties, property);
         }
-        for (var i = 0, n = array_length(struct.instances); i < n; i++) {
+        for (var i = 0, n = array_length(json.instances); i < n; i++) {
             var instance = instance_create_depth(0, 0, 0, DataInstantiated);
-            instance.CreateJSON(struct.instances[i]);
+            instance.CreateJSON(json.instances[i]);
             ds_list_add(self.instances, instance);
         }
     };
     
-    static LoadJSON = function(struct) {
-        self.LoadJSONData(struct);
+    static LoadJSON = function(json) {
+        self.LoadJSONData(json);
     };
     
     static CreateJSONData = function() {
@@ -88,24 +88,24 @@ function SDataProperty(name) : SData(name) constructor {
     self.default_string = "";
     self.default_code = "";
     
-    static LoadJSONProperty = function(struct) {
-        self.LoadJSONBase(struct);
-        self.type = struct.type;
-        self.range_min = struct.range_min;
-        self.range_max = struct.range_max;
-        self.number_scale = struct.number_scale;
-        self.char_limit = struct.char_limit;
-        self.type_guid = struct.type_guid;
-        self.max_size = struct.max_size;
-        self.size_can_be_zero = struct.size_can_be_zero;
-        self.default_real = struct.default_real;
-        self.default_int = struct.default_int;
-        self.default_string = struct.default_string;
-        self.default_code = struct.default_code;
+    static LoadJSONProperty = function(json) {
+        self.LoadJSONBase(json);
+        self.type = json.type;
+        self.range_min = json.range_min;
+        self.range_max = json.range_max;
+        self.number_scale = json.number_scale;
+        self.char_limit = json.char_limit;
+        self.type_guid = json.type_guid;
+        self.max_size = json.max_size;
+        self.size_can_be_zero = json.size_can_be_zero;
+        self.default_real = json.default_real;
+        self.default_int = json.default_int;
+        self.default_string = json.default_string;
+        self.default_code = json.default_code;
     };
     
-    static LoadJSON = function(struct) {
-        self.LoadJSONProperty(struct);
+    static LoadJSON = function(json) {
+        self.LoadJSONProperty(json);
     };
     
     static CreateJSONProperty = function() {

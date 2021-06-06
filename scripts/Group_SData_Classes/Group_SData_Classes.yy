@@ -6,7 +6,7 @@
     "path": "folders/Game data/SData.yy",
   },
   "resourceVersion": "1.0",
-  "name": "Group_SData_Game",
+  "name": "Group_SData_Classes",
   "tags": [],
   "resourceType": "GMScript",
 }

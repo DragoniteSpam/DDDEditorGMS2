@@ -4,7 +4,7 @@ function serialize_load_datadata(buffer, version) {
     
     repeat (n_datadata) {
         var type = buffer_read(buffer, buffer_u16);
-        var data = new SDataGame("");
+        var data = new SDataClass("");
         data.type = type;
         
         guid_remove(data.GUID);
