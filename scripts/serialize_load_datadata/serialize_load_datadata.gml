@@ -4,7 +4,7 @@ function serialize_load_datadata(buffer, version) {
     
     repeat (n_datadata) {
         var type = buffer_read(buffer, buffer_u16);
-        var data = instance_create_depth(0, 0, 0, (type == DataTypes.ENUM ? DataEnum : DataData));
+        var data = (type == DataTypes.ENUM) ? (new SDataGameEnum("")) : (new SDataGame(""));
         
         guid_remove(data.GUID);
         

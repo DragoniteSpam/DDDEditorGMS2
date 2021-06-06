@@ -5,7 +5,11 @@ function project_load(id) {
         var version = json.version;
         var data = json.data;
         for (var i = 0, n = array_length(data); i < n; i++) {
-            instance_create_depth(0, 0, 0, DataData).LoadJSON(data[i]);
+            if (data[i].type == DataTypes.ENUM) {
+                
+            } else {
+                
+            }
         }
     };
     

@@ -3,6 +3,8 @@ function SDataGame(name) : SData(name) constructor {
     // all of the instances of the data type; nested lists
     self.instances = [];
     
+    self.type = DataTypes.DATA;
+    
     enum DataDataFlags {
         NO_LOCALIZE         = 0x010000,
         NO_LOCALIZE_NAME    = 0x020000,
@@ -35,7 +37,7 @@ function SDataGame(name) : SData(name) constructor {
         self.LoadJSONBase(struct);
         self.type = struct.type;
         for (var i = 0, n = array_length(struct.properties); i < n; i++) {
-            var property = instance_create_depth(0, 0, 0, struct.properties[i].type == DataTypes.ENUM ? DataEnum : DataProperty);
+            var property = instance_create_depth(0, 0, 0, DataProperty);
             property.CreateJSON(struct.properties[i]);
             ds_list_add(self.properties, property);
         }
@@ -70,4 +72,8 @@ function SDataGame(name) : SData(name) constructor {
     static CreateJSON = function() {
         return self.CreateJSONData();
     };
+}
+
+function SDataGameEnum(name) : SDataGame(name) constructor {
+    self.type = DataTypes.ENUM;
 }

@@ -72,7 +72,7 @@ function dialog_create_data_types(dialog) {
     
     var el_add = create_button(col1_x, yy, "Add Data", ew, eh, fa_center, function(button) {
         if (ds_list_size(Stuff.all_data) < 10000) {
-            instance_deactivate_object(instance_create_depth(0, 0, 0, DataData));
+            ds_list_add(Stuff.all_data, new SDataGame("DataType" + string(ds_list_size(Stuff.all_data))));
             ui_list_deselect(button.root.el_list_main);
             button.root.selected_data = noone;
             button.root.selected_property = noone;
@@ -85,7 +85,7 @@ function dialog_create_data_types(dialog) {
     
     var el_add_enum = create_button(col1_x, yy, "Add Enum", ew, eh, fa_center, function(button) {
         if (ds_list_size(Stuff.all_data) < 10000) {
-            instance_deactivate_object(instance_create_depth(0, 0, 0, DataEnum));
+            ds_list_add(Stuff.all_data, new SDataGameEnum("Enum" + string(ds_list_size(Stuff.all_data))));
             ui_list_deselect(button.root.el_list_main);
             button.root.selected_data = noone;
             button.root.selected_property = noone;
