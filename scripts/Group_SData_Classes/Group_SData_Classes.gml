@@ -80,6 +80,11 @@ function SDataClass(name) : SData(name) constructor {
     static Retire = function() {
         ds_list_delete(Stuff.all_data, ds_list_find_index(Stuff.all_data, self));
     };
+    
+    static Destroy = function() {
+        self.Retire();
+        self.DestroyBase();
+    };
 }
 
 function SDataProperty(name) : SData(name) constructor {

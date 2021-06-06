@@ -8,13 +8,17 @@ function SData(name) constructor {
     guid_set(self, guid_generate());
     internal_name_set(self, "SData" + string_lettersdigits(self.GUID));
     
-    self.Destroy = function() {
+    static DestroyBase = function() {
         if (Stuff.is_quitting) exit;
         guid_remove(self.GUID);
         internal_name_remove(self.internal_name);
     };
     
-    self.LoadJSONBase = function(json) {
+    static Destroy = function() {
+        self.DestroyBase();
+    };
+    
+    static LoadJSONBase = function(json) {
         self.name = json.name;
         internal_name_set(self, json.internal_name);
         self.flags = json.flags;
@@ -22,11 +26,11 @@ function SData(name) constructor {
         guid_set(self, json.guid);
     };
     
-    self.LoadJSON = function(json) {
+    static LoadJSON = function(json) {
         
     };
     
-    self.CreateJSONBase = function() {
+    static CreateJSONBase = function() {
         return {
             name: name,
             internal_name: internal_name,
@@ -36,7 +40,7 @@ function SData(name) constructor {
         };
     };
     
-    self.CreateJSON = function() {
+    static CreateJSON = function() {
         return self.CreateJSONBase();
     };
 }
