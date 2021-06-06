@@ -24,7 +24,21 @@ function ui_init_game_data(mode) {
         #region data types
         var this_column = 0;
         
-        el_master = create_list(this_column * cw + spacing, yy_header, "All Game Data Types: ", "<Click to define some.>", ew, eh, 32, uivc_list_data_editor, false, id, Stuff.all_data);
+        el_master = create_list(this_column * cw + spacing, yy_header, "All Game Data Types: ", "<Click to define some.>", ew, eh, 32, function(list) {
+            if (ds_list_empty(Stuff.all_data)) {
+                momu_data_types();
+            } else {
+                var selection = ui_list_selection(list);
+                list.root.active_type_guid = NULL;      // assume null until proven otherwise
+                if (selection + 1) {
+                    var listofthings = Stuff.all_data;
+                    if (listofthings[| selection].GUID != list.root.active_type_guid) {
+                        list.root.active_type_guid = listofthings[| selection].GUID;
+                    }
+                }
+                ui_init_game_data_activate();
+            }
+        }, false, id, Stuff.all_data);
         el_master.render = ui_render_list_data_data;
         el_master.render_colors = ui_list_colors_data_types;
         el_master.allow_deselect = false;
