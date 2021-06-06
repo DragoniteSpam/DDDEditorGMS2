@@ -19,8 +19,9 @@ enum DataDataFlags {
 
 LoadJSONData = function(struct) {
     self.LoadJSONBase(struct);
+    self.type = struct.type;
     for (var i = 0, n = array_length(struct.properties); i < n; i++) {
-        var property = instance_create_depth(0, 0, 0, DataProperty);
+        var property = instance_create_depth(0, 0, 0, struct.properties[i].type == DataTypes.ENUM ? DataEnum : DataProperty);
         property.CreateJSON(struct.properties[i]);
         ds_list_add(self.properties, property);
     }
@@ -37,8 +38,10 @@ LoadJSON = function(struct) {
 
 CreateJSONData = function() {
     var json = self.CreateJSONBase();
+    json.type = self.type;
     var n = ds_list_size(self.properties);
     json.properties = array_create(n);
+    json.is_enum = false;
     for (var i = 0; i < n; i++) {
         json.properties[i] = self.properties[| i].CreateJSON();
     }

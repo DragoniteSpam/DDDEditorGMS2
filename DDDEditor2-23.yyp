@@ -1289,6 +1289,7 @@
     {"id":{"name":"omu_mr_move_upper_right","path":"scripts/omu_mr_move_upper_right/omu_mr_move_upper_right.yy",},"order":8,},
     {"id":{"name":"omu_mr_move_random","path":"scripts/omu_mr_move_random/omu_mr_move_random.yy",},"order":9,},
     {"id":{"name":"omu_mr_move_towards_player","path":"scripts/omu_mr_move_towards_player/omu_mr_move_towards_player.yy",},"order":10,},
+    {"id":{"name":"Group_SData_Game","path":"scripts/Group_SData_Game/Group_SData_Game.yy",},"order":2,},
     {"id":{"name":"spr_emu_help","path":"sprites/spr_emu_help/spr_emu_help.yy",},"order":9,},
     {"id":{"name":"omu_mr_move_away_player","path":"scripts/omu_mr_move_away_player/omu_mr_move_away_player.yy",},"order":11,},
     {"id":{"name":"omu_mr_move_forward","path":"scripts/omu_mr_move_forward/omu_mr_move_forward.yy",},"order":12,},
