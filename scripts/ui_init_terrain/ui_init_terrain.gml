@@ -213,7 +213,10 @@ function ui_init_terrain(argument0) {
         element = create_list(legal_x + spacing, yy, "Terrain Lights", "", col_width, element_height, MAX_TERRAIN_LIGHTS, uivc_terrain_light_select, false, t_lighting, mode.lights);
         element.allow_deselect = false;
         element.entries_are = ListEntries.SCRIPT;
-        element.render_colors = ui_list_color_terrain_lights;
+        element.render_colors = function(list, index) {
+            var light = list.entries[| index];
+            return (light.type == LightTypes.SPOT || light.type == LightTypes.NONE) ? c_gray : c_black;
+        };
         element.evaluate_text = ui_list_text_terrain_lights;
         ui_list_select(element, 0);
         ds_list_add(t_lighting.contents, element);

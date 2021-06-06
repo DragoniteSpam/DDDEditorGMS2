@@ -1440,7 +1440,6 @@
     {"id":{"name":"ui_render_surface_control_mesh_ed","path":"scripts/ui_render_surface_control_mesh_ed/ui_render_surface_control_mesh_ed.yy",},"order":7,},
     {"id":{"name":"Group_UI_Map_Zone_Common","path":"scripts/Group_UI_Map_Zone_Common/Group_UI_Map_Zone_Common.yy",},"order":37,},
     {"id":{"name":"ui_render_surface_recreate_doodle","path":"scripts/ui_render_surface_recreate_doodle/ui_render_surface_recreate_doodle.yy",},"order":8,},
-    {"id":{"name":"ui_list_color_terrain_lights","path":"scripts/ui_list_color_terrain_lights/ui_list_color_terrain_lights.yy",},"order":39,},
     {"id":{"name":"Group_Math","path":"scripts/Group_Math/Group_Math.yy",},"order":15,},
     {"id":{"name":"ui_list_text_particle_emitters","path":"scripts/ui_list_text_particle_emitters/ui_list_text_particle_emitters.yy",},"order":48,},
     {"id":{"name":"ui_list_text_terrain_lights","path":"scripts/ui_list_text_terrain_lights/ui_list_text_terrain_lights.yy",},"order":49,},
