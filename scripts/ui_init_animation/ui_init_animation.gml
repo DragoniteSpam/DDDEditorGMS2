@@ -89,8 +89,19 @@ function ui_init_animation(argument0) {
         xx = this_column * cw + spacing;
     
     #region keyframes
-        el_layers = create_list(xx, yy_header, "Layers: ", "<no layers>", ew, eh, 8, uivc_list_animation_layers_editor, false, id);
-        el_layers.render = ui_render_list_animation_layers;
+        el_layers = create_list(xx, yy_header, "Layers: ", "<no layers>", ew, eh, 8, uivc_list_animation_layers_editor, false, id, []);
+        el_layers.render = function(list, x, y) {
+            var otext = list.text;
+            if (list.root.active_animation) {
+                list.text = otext + string(ds_list_size(list.root.active_animation.layers));
+                list.entries = list.root.active_animation.layers;
+                ui_render_list(list, x, y);
+                list.text = otext;
+            } else {
+                list.entries = [];
+                ui_render_list(list, x, y);
+            }
+        };
         el_layers.ondoubleclick = uivc_animation_layer_properties;
         el_layers.entries_are = ListEntries.INSTANCES;
         ds_list_add(contents, el_layers);

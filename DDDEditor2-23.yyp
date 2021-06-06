@@ -1398,7 +1398,6 @@
     {"id":{"name":"ui_render_columns","path":"scripts/ui_render_columns/ui_render_columns.yy",},"order":32,},
     {"id":{"name":"ui_render_text_animation_internal_name","path":"scripts/ui_render_text_animation_internal_name/ui_render_text_animation_internal_name.yy",},"order":34,},
     {"id":{"name":"ui_render_list_animations","path":"scripts/ui_render_list_animations/ui_render_list_animations.yy",},"order":0,},
-    {"id":{"name":"ui_render_list_animation_layers","path":"scripts/ui_render_list_animation_layers/ui_render_list_animation_layers.yy",},"order":1,},
     {"id":{"name":"spr_emu_checker","path":"sprites/spr_emu_checker/spr_emu_checker.yy",},"order":6,},
     {"id":{"name":"ui_render_animation_keyframe_translate_x","path":"scripts/ui_render_animation_keyframe_translate_x/ui_render_animation_keyframe_translate_x.yy",},"order":0,},
     {"id":{"name":"ui_render_animation_keyframe_translate_y","path":"scripts/ui_render_animation_keyframe_translate_y/ui_render_animation_keyframe_translate_y.yy",},"order":1,},
