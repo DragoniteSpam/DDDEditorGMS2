@@ -137,6 +137,18 @@ function array_resize_4d(array, x, y, z, w) {
         }
     }
 }
+
+function array_sort_name(array) {
+    array_sort(array, function(a, b) {
+        return a.name > b.name;
+    });
+}
+
+function array_sort_internal(array) {
+    array_sort(array, function(a, b) {
+        return a.internal_name > b.internal_name;
+    });
+}
 #endregion
 
 #region buffer stuff
