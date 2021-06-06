@@ -39,7 +39,12 @@ function ui_init_game_data(mode) {
                 ui_init_game_data_activate();
             }
         }, false, id, Stuff.all_data);
-        el_master.render = ui_render_list_data_data;
+        el_master.render = function(list) {
+            var otext = list.text;
+            list.text = otext + string(ds_list_size(Stuff.all_data));
+            ui_render_list(list, xx, yy);
+            list.text = otext;
+        };
         el_master.render_colors = ui_list_colors_data_types;
         el_master.allow_deselect = false;
         el_master.entries_are = ListEntries.INSTANCES;
