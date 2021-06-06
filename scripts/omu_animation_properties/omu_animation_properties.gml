@@ -51,7 +51,11 @@ function omu_animation_properties(argument0) {
     
         yy += el_internal_name.height + spacing;
     
-        var el_frame_rate = create_input(16, yy, "Moment rate:", ew, eh, uivc_animation_set_frame_rate, string(animation.frames_per_second), "integer", validate_int, 1, 96, 2, vx1, vy1, vx2, vy2, dg);
+        var el_frame_rate = create_input(16, yy, "Moment rate:", ew, eh, function(input) {
+            var animation = input.root.root.root.active_animation;
+            animation.frames_per_second = real(input.value);
+            input.root.el_seconds.text = "Duration (seconds): " + string(animation.moments / animation.frames_per_second);
+        }, string(animation.frames_per_second), "integer", validate_int, 1, 96, 2, vx1, vy1, vx2, vy2, dg);
     
         yy += el_frame_rate.height + spacing;
     

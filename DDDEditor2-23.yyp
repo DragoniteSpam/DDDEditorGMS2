@@ -1162,7 +1162,6 @@
     {"id":{"name":"uivc_animation_keyframe_relative","path":"scripts/uivc_animation_keyframe_relative/uivc_animation_keyframe_relative.yy",},"order":17,},
     {"id":{"name":"uivc_animation_keyframe_audio","path":"scripts/uivc_animation_keyframe_audio/uivc_animation_keyframe_audio.yy",},"order":18,},
     {"id":{"name":"uivc_animation_set_moments","path":"scripts/uivc_animation_set_moments/uivc_animation_set_moments.yy",},"order":9,},
-    {"id":{"name":"uivc_animation_set_frame_rate","path":"scripts/uivc_animation_set_frame_rate/uivc_animation_set_frame_rate.yy",},"order":10,},
     {"id":{"name":"uivc_animation_set_code","path":"scripts/uivc_animation_set_code/uivc_animation_set_code.yy",},"order":11,},
     {"id":{"name":"uivc_animation_layer_translation_x","path":"scripts/uivc_animation_layer_translation_x/uivc_animation_layer_translation_x.yy",},"order":0,},
     {"id":{"name":"uivc_animation_layer_translation_y","path":"scripts/uivc_animation_layer_translation_y/uivc_animation_layer_translation_y.yy",},"order":1,},
