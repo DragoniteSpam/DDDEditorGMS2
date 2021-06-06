@@ -90,8 +90,8 @@ function SDataClass(name) : SData(name) constructor {
     };
 }
 
-function SDataProperty(name, class) : SData(name) constructor {
-    self.class = class;
+function SDataProperty(name, parent) : SData(name) constructor {
+    self.parent = parent;
     
     self.type = DataTypes.INT;
     self.range_min = 0;                        // int, float
