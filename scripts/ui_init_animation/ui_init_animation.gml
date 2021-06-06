@@ -76,12 +76,22 @@ function ui_init_animation(argument0) {
         yy += ui_get_list_height(el_layers);
         var yy_beneath_timeline = yy - 16;
     
-        var element = create_button(xx, yy, "Add Layer", ew, eh, fa_middle, omu_animation_layer_add, id);
+        element = create_button(xx, yy, "Add Layer", ew, eh, fa_middle, function(button) {
+            if (button.root.active_animation) {
+                if (ds_list_size(button.root.active_animation.layers) < 250) {
+                    var n = string(ds_list_size(button.root.active_animation.layers));
+                    var timeline_layer = animation_layer_create(button.root.active_animation, "Layer " + n);
+                    ui_list_deselect(button.root.el_layers);
+                } else {
+                    emu_dialog_notice("Please don't try to create more than 250 animations.");
+                }
+            }
+        }, id);
         ds_list_add(contents, element);
     
         yy += element.height + spacing;
     
-        var element = create_button(xx, yy, "Delete Layer", ew, eh, fa_middle, function(button) {
+        element = create_button(xx, yy, "Delete Layer", ew, eh, fa_middle, function(button) {
             var list = button.root.active_animation.layers;
             var selection = ui_list_selection(button.root.el_layers);
             ui_list_deselect(button.root.el_layers);
@@ -95,7 +105,7 @@ function ui_init_animation(argument0) {
     
         yy += element.height + spacing;
     
-        var element = create_button(xx, yy, "Edit Layer Properties", ew, eh, fa_middle, uivc_animation_layer_properties, id);
+        element = create_button(xx, yy, "Edit Layer Properties", ew, eh, fa_middle, uivc_animation_layer_properties, id);
         ds_list_add(contents, element);
     
         yy += element.height + spacing;

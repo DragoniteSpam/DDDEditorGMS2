@@ -1329,7 +1329,6 @@
     {"id":{"name":"omu_event_custom_data_select_type","path":"scripts/omu_event_custom_data_select_type/omu_event_custom_data_select_type.yy",},"order":21,},
     {"id":{"name":"omu_global_data_select_type","path":"scripts/omu_global_data_select_type/omu_global_data_select_type.yy",},"order":22,},
     {"id":{"name":"omu_animation_add","path":"scripts/omu_animation_add/omu_animation_add.yy",},"order":1,},
-    {"id":{"name":"omu_animation_layer_add","path":"scripts/omu_animation_layer_add/omu_animation_layer_add.yy",},"order":2,},
     {"id":{"name":"omu_animation_remove","path":"scripts/omu_animation_remove/omu_animation_remove.yy",},"order":3,},
     {"id":{"name":"omu_data_data_select","path":"scripts/omu_data_data_select/omu_data_data_select.yy",},"order":5,},
     {"id":{"name":"omu_entity_data_data_select","path":"scripts/omu_entity_data_data_select/omu_entity_data_data_select.yy",},"order":6,},
