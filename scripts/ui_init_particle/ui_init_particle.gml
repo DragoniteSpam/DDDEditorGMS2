@@ -240,11 +240,16 @@ function ui_init_particle(mode) {
         #endregion
         
         #region tab: emitters
-        var yy = legal_y + spacing;
+        yy = legal_y + spacing;
         
-        var element = create_list(col1_x, yy, "Particle Emitters", "<no emitters>", ew, eh, 26, ui_particle_emitter_select, false, t_emitter, mode.emitters);
+        element = create_list(col1_x, yy, "Particle Emitters", "<no emitters>", ew, eh, 26, ui_particle_emitter_select, false, t_emitter, mode.emitters);
         element.tooltip = "All of the currently-defined emitters types.";
-        element.evaluate_text = ui_list_text_particle_emitters;
+        element.evaluate_text = function(list, index) {
+            var emitter = list.entries[| index];
+            var text = emitter.name;
+            if (!emitter.streaming) text = "(" + text + ")";
+            return text;
+        };
         element.entries_are = ListEntries.SCRIPT;
         t_emitter.list = element;
         ds_list_add(t_emitter.contents, element);

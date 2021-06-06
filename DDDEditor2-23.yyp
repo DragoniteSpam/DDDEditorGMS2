@@ -1441,7 +1441,6 @@
     {"id":{"name":"Group_UI_Map_Zone_Common","path":"scripts/Group_UI_Map_Zone_Common/Group_UI_Map_Zone_Common.yy",},"order":37,},
     {"id":{"name":"ui_render_surface_recreate_doodle","path":"scripts/ui_render_surface_recreate_doodle/ui_render_surface_recreate_doodle.yy",},"order":8,},
     {"id":{"name":"Group_Math","path":"scripts/Group_Math/Group_Math.yy",},"order":15,},
-    {"id":{"name":"ui_list_text_particle_emitters","path":"scripts/ui_list_text_particle_emitters/ui_list_text_particle_emitters.yy",},"order":48,},
     {"id":{"name":"ui_list_text_terrain_lights","path":"scripts/ui_list_text_terrain_lights/ui_list_text_terrain_lights.yy",},"order":49,},
     {"id":{"name":"ui_activate","path":"scripts/ui_activate/ui_activate.yy",},"order":8,},
     {"id":{"name":"ui_button_down","path":"scripts/ui_button_down/ui_button_down.yy",},"order":9,},
