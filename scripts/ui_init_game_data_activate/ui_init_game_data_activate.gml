@@ -3,7 +3,7 @@ function ui_init_game_data_activate() {
     var selection = ui_list_selection(Stuff.data.ui.el_master);
 
     if (selection + 1) {
-        Stuff.data.ui.active_type_guid = Game.data[| selection].GUID;
+        Stuff.data.ui.active_type_guid = Game.data[selection].GUID;
 
         var data = guid_get(Stuff.data.ui.active_type_guid);
 

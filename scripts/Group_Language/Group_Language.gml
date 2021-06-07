@@ -35,8 +35,8 @@ function language_extract() {
         var lang = Stuff.all_localized_text[$ Stuff.all_languages[lang_index]];
         
         #region data
-        for (var i = 0; i < ds_list_size(Game.data); i++) {
-            var datadata = Game.data[| i];
+        for (var i = 0; i < array_length(Game.data); i++) {
+            var datadata = Game.data[i];
             if (datadata.type != DataTypes.DATA) continue;
             if (!!(datadata.flags & DataDataFlags.NO_LOCALIZE)) continue;
             for (var k = 0; k < array_length(datadata.instances); k++) {

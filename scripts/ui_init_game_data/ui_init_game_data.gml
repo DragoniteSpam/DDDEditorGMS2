@@ -25,15 +25,14 @@ function ui_init_game_data(mode) {
         var this_column = 0;
         
         el_master = create_list(this_column * cw + spacing, yy_header, "All Game Data Types: ", "<Click to define some.>", ew, eh, 32, function(list) {
-            if (ds_list_empty(Game.data)) {
+            if (array_empty(Game.data)) {
                 momu_data_types();
             } else {
                 var selection = ui_list_selection(list);
                 list.root.active_type_guid = NULL;      // assume null until proven otherwise
                 if (selection + 1) {
-                    var listofthings = Game.data;
-                    if (listofthings[| selection].GUID != list.root.active_type_guid) {
-                        list.root.active_type_guid = listofthings[| selection].GUID;
+                    if (Game.data[selection].GUID != list.root.active_type_guid) {
+                        list.root.active_type_guid = Game.data[selection].GUID;
                     }
                 }
                 ui_init_game_data_activate();
@@ -41,7 +40,7 @@ function ui_init_game_data(mode) {
         }, false, id, Game.data);
         el_master.render = function(list, x, y) {
             var otext = list.text;
-            list.text = otext + string(ds_list_size(Game.data));
+            list.text = otext + string(array_length(Game.data));
             ui_render_list(list, x, y);
             list.text = otext;
         };

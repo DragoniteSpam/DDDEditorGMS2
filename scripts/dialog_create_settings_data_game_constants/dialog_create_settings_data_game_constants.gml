@@ -88,8 +88,8 @@ function dialog_create_settings_data_game_constants(root) {
                     type = noone;
                 }
         
-                for (var i = 0; i < ds_list_size(Game.data); i++) {
-                    var datadata = Game.data[| i];
+                for (var i = 0; i < array_length(Game.data); i++) {
+                    var datadata = Game.data[i];
                     if (const.type == datadata.type) {
                         ds_list_add(list.entries, datadata);
                     }

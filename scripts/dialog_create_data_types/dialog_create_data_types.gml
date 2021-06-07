@@ -32,9 +32,8 @@ function dialog_create_data_types(dialog) {
     var el_list = create_list(col1_x, yy, "Data Types: ", "<no data types>", ew, eh, 18, function(list) {
         var selection = ui_list_selection(list);
         if (selection + 1) {
-            var listofthings = Game.data;
-            if (listofthings[| selection] != list.root.selected_data) {
-                list.root.selected_data = listofthings[| selection];
+            if (Game.data[selection] != list.root.selected_data) {
+                list.root.selected_data = Game.data[selection];
                 list.root.selected_property = noone;
                 
                 ui_list_deselect(list.root.el_list_p);
@@ -63,7 +62,7 @@ function dialog_create_data_types(dialog) {
     }, false, dg, Game.data);
     el_list.render = function(list, x, y) {
         var otext = list.text;
-        list.text = otext + string(ds_list_size(Game.data));
+        list.text = otext + string(array_length(Game.data));
         ui_render_list(list, x, y);
         list.text = otext;
     };
@@ -78,7 +77,7 @@ function dialog_create_data_types(dialog) {
     yy += ui_get_list_height(el_list) + spacing;
     
     var el_add = create_button(col1_x, yy, "Add Data", ew, eh, fa_center, function(button) {
-        (new SDataClass("DataType" + string(ds_list_size(Game.data)))).GoLive();
+        (new SDataClass("DataType" + string(array_length(Game.data)))).GoLive();
         ui_list_deselect(button.root.el_list_main);
         button.root.selected_data = noone;
         button.root.selected_property = noone;
@@ -87,7 +86,7 @@ function dialog_create_data_types(dialog) {
     yy += el_add.height + spacing;
     
     var el_add_enum = create_button(col1_x, yy, "Add Enum", ew, eh, fa_center, function(button) {
-        var addition = new SDataClass("Enum" + string(ds_list_size(Game.data)));
+        var addition = new SDataClass("Enum" + string(array_length(Game.data)));
         addition.type = DataTypes.ENUM;
         addition.GoLive();
         ui_list_deselect(button.root.el_list_main);

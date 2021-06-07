@@ -2,8 +2,8 @@ function uivc_list_data_alphabetize(list) {
     // put the enums at the top
     var list_data = ds_list_create();
     var list_enums = ds_list_create();
-    for (var i = 0; i < ds_list_size(Game.data); i++) {
-        var data = Game.data[| i];
+    for (var i = 0; i < array_length(Game.data); i++) {
+        var data = Game.data[i];
         if (data.type == DataTypes.ENUM) {
             ds_list_add(list_enums, data);
         } else {
@@ -15,12 +15,12 @@ function uivc_list_data_alphabetize(list) {
     // don't modify them, but in this case we want the enums to always go at the top
     var list_enums_sorted = ds_list_sort_name(list_enums);
     var list_data_sorted = ds_list_sort_name(list_data);
-    ds_list_clear(Game.data);
+    array_resize(Game.data, 0);
     for (var i = 0; i < ds_list_size(list_enums_sorted); i++) {
-        ds_list_add(Game.data, list_enums_sorted[| i]);
+        array_push(Game.data, list_enums_sorted[| i]);
     }
     for (var i = 0; i < ds_list_size(list_data_sorted); i++) {
-        ds_list_add(Game.data, list_data_sorted[| i]);
+        array_push(Game.data, list_data_sorted[| i]);
     }
     ds_list_destroy(list_data);
     ds_list_destroy(list_enums);
@@ -31,6 +31,6 @@ function uivc_list_data_alphabetize(list) {
     
     if (selection + 1) {
         ui_list_deselect(list);
-        ui_list_select(list, ds_list_find_index(Game.data, list.root.selected_data), true);
+        ui_list_select(list, array_search(Game.data, list.root.selected_data), true);
     }
 }

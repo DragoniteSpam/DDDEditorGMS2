@@ -64,8 +64,8 @@ function ui_constant_data_activate(base_dialog, what) {
                 type = noone;
             }
             
-            for (var i = 0; i < ds_list_size(Game.data); i++) {
-                var datadata = Game.data[| i];
+            for (var i = 0; i < array_length(Game.data); i++) {
+                var datadata = Game.data[i];
                 if (what.type == datadata.type) {
                     ds_list_add(list.entries, datadata);
                 }

@@ -26,9 +26,9 @@ function dialog_create_data_enum_select(argument0) {
     var yy = 64;
 
     var el_list = create_list(16, yy, "Enums:", "<no enums>", ew, eh, n_slots, null, false, dg);
-    for (var i = 0; i < ds_list_size(Game.data); i++) {
-        if (Game.data[| i].type == DataTypes.ENUM) {
-            array_push(el_list.entries, Game.data[| i]);
+    for (var i = 0; i < array_length(Game.data); i++) {
+        if (Game.data[i].type == DataTypes.ENUM) {
+            array_push(el_list.entries, Game.data[i]);
         }
     }
     array_sort(el_list.entries, function(a, b) {
