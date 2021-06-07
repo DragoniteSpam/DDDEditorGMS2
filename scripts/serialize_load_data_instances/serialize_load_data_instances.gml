@@ -1,10 +1,10 @@
 function serialize_load_data_instances(buffer, version) {
     var addr_next = buffer_read(buffer, buffer_u64);
     
-    var n_datadata = ds_list_size(Stuff.all_data);
+    var n_datadata = ds_list_size(Game.data);
     
     for (var i = 0; i < n_datadata; i++) {
-        var datadata = Stuff.all_data[| i];
+        var datadata = Game.data[| i];
         
         if (datadata.type == DataTypes.DATA) {
             var n_properties = array_length(datadata.properties);

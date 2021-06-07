@@ -45,6 +45,7 @@ Game = {
         event_triggers: array_create(FLAG_COUNT, ""),
         asset_flags: array_create(FLAG_COUNT, ""),
     },
+    data: [],
 };
 
 Game.meta.export.locations[GameDataCategories.TILE_ANIMATIONS] = file_asset;

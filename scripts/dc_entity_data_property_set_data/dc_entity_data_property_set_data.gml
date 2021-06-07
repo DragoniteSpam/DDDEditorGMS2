@@ -11,9 +11,9 @@ function dc_entity_data_property_set_data(argument0) {
     
         var list_enum = ds_list_create();
     
-        for (var i = 0; i < ds_list_size(Stuff.all_data); i++) {
-            if (Stuff.all_data[| i].type == DataTypes.DATA) {
-                ds_list_add(list_enum, Stuff.all_data[| i]);
+        for (var i = 0; i < ds_list_size(Game.data); i++) {
+            if (Game.data[| i].type == DataTypes.DATA) {
+                ds_list_add(list_enum, Game.data[| i]);
             }
         }
     

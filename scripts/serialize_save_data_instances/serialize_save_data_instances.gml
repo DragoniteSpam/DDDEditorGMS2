@@ -5,10 +5,10 @@ function serialize_save_data_instances(buffer) {
     var addr_next = buffer_tell(buffer);
     buffer_write(buffer, buffer_u64, 0);
     
-    var n_datadata = ds_list_size(Stuff.all_data);
+    var n_datadata = ds_list_size(Game.data);
     
     for (var i = 0; i < n_datadata; i++) {
-        var datadata = Stuff.all_data[| i];
+        var datadata = Game.data[| i];
         
         if (datadata.type == DataTypes.DATA) {
             var n_properties = array_length(datadata.properties);

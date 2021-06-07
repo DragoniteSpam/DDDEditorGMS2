@@ -3,11 +3,11 @@ function serialize_save_datadata(buffer) {
     var addr_next = buffer_tell(buffer);
     buffer_write(buffer, buffer_u64, 0);
     
-    var n_datadata = ds_list_size(Stuff.all_data);
+    var n_datadata = ds_list_size(Game.data);
     buffer_write(buffer, buffer_u16, n_datadata);
     
     for (var i = 0; i < n_datadata; i++) {
-        var datadata = Stuff.all_data[| i];
+        var datadata = Game.data[| i];
         
         buffer_write(buffer, buffer_u16, datadata.type);
         // type is looked at to determine if you're a data type or enum, so save it first

@@ -129,8 +129,6 @@ all_mesh_autotiles = ds_list_create();
 
 all_animations = ds_list_create();
 
-all_data = ds_list_create();
-
 all_languages = ["English"];
 
 /*

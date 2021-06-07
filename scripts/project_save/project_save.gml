@@ -67,7 +67,7 @@ function project_save() {
     
     file_copy(fn, folder_name + "project" + EXPORT_EXTENSION_PROJECT);
     buffer_write_file(json_stringify({
-        data: project_write_json(Stuff.all_data),
+        data: project_write_json(Game.data),
         version: ProjectSaveVersions._CURRENT - 1,
     }), folder_name + "data.json");
     buffer_write_file(json_stringify({

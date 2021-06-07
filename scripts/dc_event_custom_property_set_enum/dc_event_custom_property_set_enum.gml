@@ -11,9 +11,9 @@ function dc_event_custom_property_set_enum(argument0) {
     if (selection >= 0) {
         var list_data = ds_list_create();
     
-        for (var i = 0; i < ds_list_size(Stuff.all_data); i++) {
-            if (Stuff.all_data[| i].type == DataTypes.ENUM) {
-                ds_list_add(list_data, Stuff.all_data[| i]);
+        for (var i = 0; i < ds_list_size(Game.data); i++) {
+            if (Game.data[| i].type == DataTypes.ENUM) {
+                ds_list_add(list_data, Game.data[| i]);
             }
         }
     

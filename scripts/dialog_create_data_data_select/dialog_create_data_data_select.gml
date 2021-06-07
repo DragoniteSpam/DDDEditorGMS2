@@ -16,9 +16,9 @@ function dialog_create_data_data_select(root) {
     var yy = 64;
     
     var el_list = create_list(16, yy, "Data Types:", "<no data types>", ew, eh, n_slots, null, false, dg, []);
-    for (var i = 0; i < ds_list_size(Stuff.all_data); i++) {
-        if (Stuff.all_data[| i].type == DataTypes.DATA) {
-            array_push(el_list.entries, Stuff.all_data[| i]);
+    for (var i = 0; i < ds_list_size(Game.data); i++) {
+        if (Game.data[| i].type == DataTypes.DATA) {
+            array_push(el_list.entries, Game.data[| i]);
         }
     }
     array_sort(el_list.entries, function(a, b) {

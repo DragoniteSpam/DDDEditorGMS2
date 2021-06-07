@@ -25,23 +25,23 @@ function ui_init_game_data(mode) {
         var this_column = 0;
         
         el_master = create_list(this_column * cw + spacing, yy_header, "All Game Data Types: ", "<Click to define some.>", ew, eh, 32, function(list) {
-            if (ds_list_empty(Stuff.all_data)) {
+            if (ds_list_empty(Game.data)) {
                 momu_data_types();
             } else {
                 var selection = ui_list_selection(list);
                 list.root.active_type_guid = NULL;      // assume null until proven otherwise
                 if (selection + 1) {
-                    var listofthings = Stuff.all_data;
+                    var listofthings = Game.data;
                     if (listofthings[| selection].GUID != list.root.active_type_guid) {
                         list.root.active_type_guid = listofthings[| selection].GUID;
                     }
                 }
                 ui_init_game_data_activate();
             }
-        }, false, id, Stuff.all_data);
+        }, false, id, Game.data);
         el_master.render = function(list, x, y) {
             var otext = list.text;
-            list.text = otext + string(ds_list_size(Stuff.all_data));
+            list.text = otext + string(ds_list_size(Game.data));
             ui_render_list(list, x, y);
             list.text = otext;
         };

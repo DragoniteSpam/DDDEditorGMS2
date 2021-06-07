@@ -77,11 +77,11 @@ function SDataClass(name) : SData(name) constructor {
     };
     
     static GoLive = function() {
-        ds_list_add(Stuff.all_data, self);
+        ds_list_add(Game.data, self);
     };
     
     static Retire = function() {
-        ds_list_delete(Stuff.all_data, ds_list_find_index(Stuff.all_data, self));
+        ds_list_delete(Game.data, ds_list_find_index(Game.data, self));
     };
     
     static Destroy = function() {

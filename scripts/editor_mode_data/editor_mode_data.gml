@@ -24,7 +24,7 @@ function editor_mode_data() {
     
     Stuff.data.ui = ui_init_game_data(Stuff.data);
     
-    if (ds_list_size(Stuff.all_data) > 0) {
+    if (ds_list_size(Game.data) > 0) {
         ui_list_select(Stuff.data.ui.el_master, 0);
     }
     

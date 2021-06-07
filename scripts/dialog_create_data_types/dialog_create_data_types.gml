@@ -32,7 +32,7 @@ function dialog_create_data_types(dialog) {
     var el_list = create_list(col1_x, yy, "Data Types: ", "<no data types>", ew, eh, 18, function(list) {
         var selection = ui_list_selection(list);
         if (selection + 1) {
-            var listofthings = Stuff.all_data;
+            var listofthings = Game.data;
             if (listofthings[| selection] != list.root.selected_data) {
                 list.root.selected_data = listofthings[| selection];
                 list.root.selected_property = noone;
@@ -60,10 +60,10 @@ function dialog_create_data_types(dialog) {
                 list.root.el_list_p.index = 0;
             }
         }
-    }, false, dg, Stuff.all_data);
+    }, false, dg, Game.data);
     el_list.render = function(list, x, y) {
         var otext = list.text;
-        list.text = otext + string(ds_list_size(Stuff.all_data));
+        list.text = otext + string(ds_list_size(Game.data));
         ui_render_list(list, x, y);
         list.text = otext;
     };
@@ -78,7 +78,7 @@ function dialog_create_data_types(dialog) {
     yy += ui_get_list_height(el_list) + spacing;
     
     var el_add = create_button(col1_x, yy, "Add Data", ew, eh, fa_center, function(button) {
-        (new SDataClass("DataType" + string(ds_list_size(Stuff.all_data)))).GoLive();
+        (new SDataClass("DataType" + string(ds_list_size(Game.data)))).GoLive();
         ui_list_deselect(button.root.el_list_main);
         button.root.selected_data = noone;
         button.root.selected_property = noone;
@@ -87,7 +87,7 @@ function dialog_create_data_types(dialog) {
     yy += el_add.height + spacing;
     
     var el_add_enum = create_button(col1_x, yy, "Add Enum", ew, eh, fa_center, function(button) {
-        var addition = new SDataClass("Enum" + string(ds_list_size(Stuff.all_data)));
+        var addition = new SDataClass("Enum" + string(ds_list_size(Game.data)));
         addition.type = DataTypes.ENUM;
         addition.GoLive();
         ui_list_deselect(button.root.el_list_main);
