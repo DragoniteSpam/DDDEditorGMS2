@@ -46,12 +46,7 @@ LoadAsset = function(directory) {
     } else {
         self.picture = sprite_duplicate(b_tileset_magenta);
     }
-    self.npc_frames = array_create(self.width * self.height);
-    for (var i = 0; i < array_length(self.npc_frames); i++) {
-        var data = buffer_load(directory + guid + "_npc_" + string(i) + ".png");
-        self.npc_frames[i] = vertex_create_buffer_from_buffer(data, Stuff.graphics.vertex_format);
-        buffer_delete(data);
-    }
+    data_image_npc_frames(self);
 };
 
 SaveAsset = function(directory) {
@@ -59,13 +54,6 @@ SaveAsset = function(directory) {
     var guid = string_replace(self.GUID, ":", "_");
     if (sprite_exists(self.picture)) sprite_save(self.picture, 0, directory + guid + ".png");
     if (sprite_exists(self.picture_with_frames)) sprite_save_strip(self.picture_with_frames, directory + guid + "_strip" + string(self.hframes) + ".png");
-    for (var i = 0, n = array_length(self.npc_frames); i < n; i++) {
-        if (self.npc_frames[i]) {
-            var data = buffer_create_from_vertex_buffer(self.npc_frames[i], buffer_fixed, 1);
-            buffer_save(data, directory + guid + "_npc_" + string(i) + ".png");
-            buffer_delete(data);
-        }
-    }
 };
 
 CreateJSONImage = function() {

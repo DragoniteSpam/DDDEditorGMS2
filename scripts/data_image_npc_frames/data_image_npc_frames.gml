@@ -1,19 +1,19 @@
-function data_image_npc_frames(data) {
-    var ww = 1 / data.hframes * (data.width / sprite_get_width(data.picture));
-    var hh = 1 / data.vframes * (data.height / sprite_get_height(data.picture));
+function data_image_npc_frames(image) {
+    var ww = 1 / image.hframes * (image.width / sprite_get_width(image.picture));
+    var hh = 1 / image.vframes * (image.height / sprite_get_height(image.picture));
     
-    for (var i = 0; i < array_length(data.npc_frames); i++) {
-        vertex_delete_buffer(data.npc_frames[i]);
+    for (var i = 0; i < array_length(image.npc_frames); i++) {
+        vertex_delete_buffer(image.npc_frames[i]);
     }
     
-    data.npc_frames = array_create(data.hframes * data.vframes);
+    image.npc_frames = array_create(image.hframes * image.vframes);
     
-    for (var i = 0; i < data.hframes * data.vframes; i++) {
+    for (var i = 0; i < image.hframes * image.vframes; i++) {
         var vbuffer = vertex_create_buffer();
         vertex_begin(vbuffer, Stuff.graphics.vertex_format);
         
-        var uu = (i % data.hframes) * ww;
-        var vv = (i div data.hframes) * hh;
+        var uu = (i % image.hframes) * ww;
+        var vv = (i div image.hframes) * hh;
         
         vertex_point_complete(vbuffer, 0, 0, TILE_DEPTH,            0, sqrt(2), sqrt(2),    uu, vv,             c_white, 1);
         vertex_point_complete(vbuffer, TILE_WIDTH, 0, TILE_DEPTH,   0, sqrt(2), sqrt(2),    uu + ww, vv,        c_white, 1);
@@ -25,6 +25,6 @@ function data_image_npc_frames(data) {
         
         vertex_end(vbuffer);
         vertex_freeze(vbuffer);
-        data.npc_frames[i] = vbuffer;
+        image.npc_frames[i] = vbuffer;
     }
 }
