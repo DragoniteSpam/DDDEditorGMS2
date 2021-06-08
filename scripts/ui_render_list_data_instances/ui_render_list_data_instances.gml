@@ -9,7 +9,7 @@ function ui_render_list_data_instances(argument0, argument1, argument2) {
     var otextvacant = list.text_vacant;
 
     var data = guid_get(list.root.active_type_guid);
-
+    
     if (data) {
         if (data.type == DataTypes.DATA) {
             list.entries = data.instances;
