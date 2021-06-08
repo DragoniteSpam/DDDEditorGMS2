@@ -576,6 +576,7 @@
     {"id":{"name":"ui_input_terrain_set_brush_radius","path":"scripts/ui_input_terrain_set_brush_radius/ui_input_terrain_set_brush_radius.yy",},"order":25,},
     {"id":{"name":"ui_input_terrain_set_paint_strength","path":"scripts/ui_input_terrain_set_paint_strength/ui_input_terrain_set_paint_strength.yy",},"order":26,},
     {"id":{"name":"ui_input_terrain_set_paint_color","path":"scripts/ui_input_terrain_set_paint_color/ui_input_terrain_set_paint_color.yy",},"order":27,},
+    {"id":{"name":"Group_SData_Image","path":"scripts/Group_SData_Image/Group_SData_Image.yy",},"order":4,},
     {"id":{"name":"ui_input_terrain_set_deformation_rate","path":"scripts/ui_input_terrain_set_deformation_rate/ui_input_terrain_set_deformation_rate.yy",},"order":28,},
     {"id":{"name":"uivc_terrain_export","path":"scripts/uivc_terrain_export/uivc_terrain_export.yy",},"order":29,},
     {"id":{"name":"uivc_terrain_light_select","path":"scripts/uivc_terrain_light_select/uivc_terrain_light_select.yy",},"order":30,},
