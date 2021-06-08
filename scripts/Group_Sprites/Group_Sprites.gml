@@ -6,19 +6,21 @@ function sprite_add_fixed(filename, imagenum, removeback, smooth, xorig, yorig) 
     var sprite = __sprite_add_old(filename, imagenum, false, false, xorig, yorig);
     
     if (removeback) {
-        var buffer = sprite_to_buffer(sprite, 0);
-        var sh = sprite_get_height(sprite);
-        var sw = sprite_get_width(sprite);
-        var addr_remove = (sh - 1) * sw * buffer_sizeof(buffer_u32);
-        var color_remove = buffer_peek(buffer, addr_remove, buffer_u32) & 0x00ffffff;
-        for (var i = 0; i < sw * sh; i++) {
-            var addr = i * buffer_sizeof(buffer_u32);
-            if ((buffer_peek(buffer, addr, buffer_u32) & 0x00ffffff) == color_remove) {
-                buffer_poke(buffer, addr, buffer_u32, 0x00000000);
+        for (var i = 0; i < sprite_get_number(sprite); i++) {
+            var buffer = sprite_to_buffer(sprite, i);
+            var sh = sprite_get_height(sprite);
+            var sw = sprite_get_width(sprite);
+            var addr_remove = (sh - 1) * sw * buffer_sizeof(buffer_u32);
+            var color_remove = buffer_peek(buffer, addr_remove, buffer_u32) & 0x00ffffff;
+            for (var j = 0; j < sw * sh; j++) {
+                var addr = j * buffer_sizeof(buffer_u32);
+                if ((buffer_peek(buffer, addr, buffer_u32) & 0x00ffffff) == color_remove) {
+                    buffer_poke(buffer, addr, buffer_u32, 0x00000000);
+                }
             }
+            sprite_delete(sprite);
+            sprite = sprite_from_buffer(buffer, sw, sh);
         }
-        sprite_delete(sprite);
-        sprite = sprite_from_buffer(buffer, sw, sh);
     }
     
     return sprite;
