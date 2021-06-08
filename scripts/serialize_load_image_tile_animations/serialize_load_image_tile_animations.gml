@@ -4,7 +4,7 @@ function serialize_load_image_tile_animations(buffer, version) {
     var addr_next = buffer_read(buffer, buffer_u64);
     var n_images = buffer_read(buffer, buffer_u32);
     repeat (n_images) {
-        var data = instance_create_depth(0, 0, 0, DataImage);
+        var data = new DataImage();
         
         serialize_load_generic(buffer, data, version);
         

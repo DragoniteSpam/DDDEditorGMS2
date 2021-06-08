@@ -346,8 +346,7 @@ element_tooltip_t = -1;
 screen_icons = ds_queue_create();
 unlit_meshes = ds_queue_create();
 
-default_pawn = instance_create_depth(0, 0, 0, DataImage);
-instance_deactivate_object(default_pawn);
+default_pawn = new DataImage();
 default_pawn.texture_exclude = true;
 default_pawn.picture = spr_pawn_missing;
 default_pawn.width = sprite_get_width(default_pawn.picture);

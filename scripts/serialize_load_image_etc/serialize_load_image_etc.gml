@@ -13,7 +13,7 @@ function serialize_load_image_etc(argument0, argument1) {
     var n_images = buffer_read(buffer, buffer_u32);
 
     repeat (n_images) {
-        var data = instance_create_depth(0, 0, 0, DataImage);
+        var data = new DataImage();
     
         serialize_load_generic(buffer, data, version);
         data.hframes = buffer_read(buffer, buffer_u16);

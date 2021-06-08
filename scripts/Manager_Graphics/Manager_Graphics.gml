@@ -37,8 +37,7 @@ function dmu_graphic_delete_generic(button) {
     if (selection + 1) {
         var data = list.entries[| selection];
         ds_list_delete(list.entries, ds_list_find_index(list.entries, data));
-        instance_activate_object(data);
-        instance_destroy(data);
+        data.Destroy();
         ui_list_deselect(list);
         list.root.el_image.image = -1;
     }

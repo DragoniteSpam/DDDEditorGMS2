@@ -1,4 +1,4 @@
-function DataImage(name) : SData(name) constructor {
+function DataImage(name = "") : SData(name) constructor {
     self.texture_exclude = false;
     
     self.picture = -1;
@@ -85,7 +85,7 @@ function DataImage(name) : SData(name) constructor {
     };
 }
 
-function DataImageTileset(name) : DataImage(name) constructor {
+function DataImageTileset(name = "") : DataImage(name) constructor {
     self.flags = [[]];
     
     static CreateJSONTS = function() {
