@@ -56,6 +56,18 @@ Game = {
         etc: ds_list_create(),
         skybox: ds_list_create(),
     },
+    
+    // leave this here for now
+    Clear: function() {
+        ds_list_clear_instances(self.graphics.tilesets);
+        ds_list_clear_instances(self.graphics.overworlds);
+        ds_list_clear_instances(self.graphics.battlers);
+        ds_list_clear_instances(self.graphics.particles);
+        ds_list_clear_instances(self.graphics.ui);
+        ds_list_clear_instances(self.graphics.tile_animations);
+        ds_list_clear_instances(self.graphics.etc);
+        ds_list_clear_instances(self.graphics.skybox);
+    },
 };
 
 Game.meta.export.locations[GameDataCategories.TILE_ANIMATIONS] = file_asset;
