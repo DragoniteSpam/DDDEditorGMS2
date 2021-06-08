@@ -288,7 +288,8 @@ enum EventNodeTypes {
 // map in existence for this to work, but for now there does
 instance_create_depth(0, 0, 0, Controller);
 all_modes = ds_list_create();
-graphics = instance_create_depth(0, 0, 0, EditorGraphics);
+graphics = new EditorGraphics();
+graphics.Init();
 // various types of editors
 map = instance_create_depth(0, 0, 0, EditorModeMap);
 data = instance_create_depth(0, 0, 0, EditorModeData);

@@ -406,6 +406,7 @@
     {"id":{"name":"smf_light_clear","path":"scripts/smf_light_clear/smf_light_clear.yy",},"order":0,},
     {"id":{"name":"smf_light_add_point","path":"scripts/smf_light_add_point/smf_light_add_point.yy",},"order":1,},
     {"id":{"name":"smf_light_add_direction","path":"scripts/smf_light_add_direction/smf_light_add_direction.yy",},"order":2,},
+    {"id":{"name":"Editor_Graphics","path":"scripts/Editor_Graphics/Editor_Graphics.yy",},"order":0,},
     {"id":{"name":"smf_light_add_cone","path":"scripts/smf_light_add_cone/smf_light_add_cone.yy",},"order":3,},
     {"id":{"name":"smf_light_add_lights_from_model","path":"scripts/smf_light_add_lights_from_model/smf_light_add_lights_from_model.yy",},"order":4,},
     {"id":{"name":"smf_light_set_pos","path":"scripts/smf_light_set_pos/smf_light_set_pos.yy",},"order":5,},
@@ -1602,7 +1603,6 @@
     {"id":{"name":"EditorModeData","path":"objects/EditorModeData/EditorModeData.yy",},"order":8,},
     {"id":{"name":"EditorModeMap","path":"objects/EditorModeMap/EditorModeMap.yy",},"order":9,},
     {"id":{"name":"EditorModeAnimation","path":"objects/EditorModeAnimation/EditorModeAnimation.yy",},"order":10,},
-    {"id":{"name":"EditorGraphics","path":"objects/EditorGraphics/EditorGraphics.yy",},"order":11,},
     {"id":{"name":"ParticleEmitter","path":"objects/ParticleEmitter/ParticleEmitter.yy",},"order":0,},
     {"id":{"name":"ParticleType","path":"objects/ParticleType/ParticleType.yy",},"order":1,},
     {"id":{"name":"editor","path":"rooms/editor/editor.yy",},"order":0,},
@@ -1838,6 +1838,7 @@
     {"folderPath":"folders/Struct N' Array Parser/Messagepack.yy","order":6,"resourceVersion":"1.0","name":"Messagepack","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Struct N' Array Parser/XML.yy","order":7,"resourceVersion":"1.0","name":"XML","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Struct N' Array Parser/YAML.yy","order":8,"resourceVersion":"1.0","name":"YAML","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Editor.yy","order":88,"resourceVersion":"1.0","name":"Editor","tags":[],"resourceType":"GMFolder",},
   ],
   "AudioGroups": [
     {"targets":-1,"resourceVersion":"1.3","name":"audiogroup_default","resourceType":"GMAudioGroup",},
