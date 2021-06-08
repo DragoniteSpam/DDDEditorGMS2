@@ -67,7 +67,7 @@ function dialog_create_data_types(dialog) {
         list.text = otext;
     };
     el_list.render_colors = function(list, index) {
-        return (list.entries[| index].type == DataTypes.ENUM) ? c_blue : c_black;
+        return (list.entries[index].type == DataTypes.ENUM) ? c_blue : c_black;
     };
     el_list.onmiddleclick = uivc_list_data_alphabetize;
     el_list.entries_are = ListEntries.INSTANCES;
