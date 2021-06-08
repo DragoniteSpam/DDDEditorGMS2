@@ -77,7 +77,7 @@ function dialog_create_manager_graphic(root, name, list, prefix, load_function, 
     yy += el_name_text.height + spacing;
     var el_name = create_input(c2 + 16, yy, "", ew, eh, function(input) {
         var list = input.root.el_list;
-        var selection = ui_list_selection(list)
+        var selection = ui_list_selection(list);
         if (selection + 1) {
             list.entries[| selection].name = input.value;
         }

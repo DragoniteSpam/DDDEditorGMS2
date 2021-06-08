@@ -43,7 +43,11 @@ SaveAsset = function(directory) {
         }
     }
     for (var i = 0, n = array_length(self.npc_frames); i < n; i++) {
-        if (sprite_exists(self.npc_frames[i])) sprite_save(self.npc_frames[i], 0, directory + guid + "_npc_" + string(i) + ".png");
+        if (self.npc_frames[i]) {
+            var data = buffer_create_from_vertex_buffer(self.npc_frames[i], buffer_fixed, 1);
+            buffer_save(data, directory + guid + "_npc_" + string(i) + ".png");
+            buffer_delete(data);
+        }
     }
 };
 

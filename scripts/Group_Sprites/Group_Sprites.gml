@@ -22,7 +22,6 @@ function sprite_add_fixed(filename, imagenum, removeback, smooth, xorig, yorig) 
     }
     
     return sprite;
-
 }
 
 function sprite_save_fixed(sprite, subimg, path) {
