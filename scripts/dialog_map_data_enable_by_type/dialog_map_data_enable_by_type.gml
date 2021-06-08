@@ -85,16 +85,16 @@ function dialog_map_data_enable_by_type(argument0) {
         case DataTypes.IMG_TEXTURE:
             dialog.el_data_builtin_list.interactive = true;
             dialog.el_data_builtin_list.enabled = true;
-            dialog.el_data_builtin_list.entries = Stuff.all_graphic_tilesets;
-            var data_index = ds_list_find_index(Stuff.all_graphic_tilesets, guid_get(data.value_data));
+            dialog.el_data_builtin_list.entries = Game.graphics.tilesets;
+            var data_index = ds_list_find_index(Game.graphics.tilesets, guid_get(data.value_data));
             ui_list_deselect(dialog.el_data_builtin_list);
             ui_list_select(dialog.el_data_builtin_list, data_index, true);
             break;
         case DataTypes.IMG_TILE_ANIMATION:
             dialog.el_data_builtin_list.interactive = true;
             dialog.el_data_builtin_list.enabled = true;
-            dialog.el_data_builtin_list.entries = Stuff.all_graphic_tile_animations;
-            var data_index = ds_list_find_index(Stuff.all_graphic_tile_animations, guid_get(data.value_data));
+            dialog.el_data_builtin_list.entries = Game.graphics.tile_animations;
+            var data_index = ds_list_find_index(Game.graphics.tile_animations, guid_get(data.value_data));
             ui_list_deselect(dialog.el_data_builtin_list);
             ui_list_select(dialog.el_data_builtin_list, data_index, true);
             break;
@@ -143,40 +143,40 @@ function dialog_map_data_enable_by_type(argument0) {
         case DataTypes.IMG_BATTLER:
             dialog.el_data_builtin_list.interactive = true;
             dialog.el_data_builtin_list.enabled = true;
-            dialog.el_data_builtin_list.entries = Stuff.all_graphic_battlers;
-            var data_index = ds_list_find_index(Stuff.all_graphic_battlers, guid_get(data.value_data));
+            dialog.el_data_builtin_list.entries = Game.graphics.battlers;
+            var data_index = ds_list_find_index(Game.graphics.battlers, guid_get(data.value_data));
             ui_list_deselect(dialog.el_data_builtin_list);
             ui_list_select(dialog.el_data_builtin_list, data_index, true);
             break;
         case DataTypes.IMG_OVERWORLD:
             dialog.el_data_builtin_list.interactive = true;
             dialog.el_data_builtin_list.enabled = true;
-            dialog.el_data_builtin_list.entries = Stuff.all_graphic_overworlds;
-            var data_index = ds_list_find_index(Stuff.all_graphic_overworlds, guid_get(data.value_data));
+            dialog.el_data_builtin_list.entries = Game.graphics.overworlds;
+            var data_index = ds_list_find_index(Game.graphics.overworlds, guid_get(data.value_data));
             ui_list_deselect(dialog.el_data_builtin_list);
             ui_list_select(dialog.el_data_builtin_list, data_index, true);
             break;
         case DataTypes.IMG_PARTICLE:
             dialog.el_data_builtin_list.interactive = true;
             dialog.el_data_builtin_list.enabled = true;
-            dialog.el_data_builtin_list.entries = Stuff.all_graphic_particles;
-            var data_index = ds_list_find_index(Stuff.all_graphic_particles, guid_get(data.value_data));
+            dialog.el_data_builtin_list.entries = Game.graphics.particles;
+            var data_index = ds_list_find_index(Game.graphics.particles, guid_get(data.value_data));
             ui_list_deselect(dialog.el_data_builtin_list);
             ui_list_select(dialog.el_data_builtin_list, data_index, true);
             break;
         case DataTypes.IMG_UI:
             dialog.el_data_builtin_list.interactive = true;
             dialog.el_data_builtin_list.enabled = true;
-            dialog.el_data_builtin_list.entries = Stuff.all_graphic_ui;
-            var data_index = ds_list_find_index(Stuff.all_graphic_ui, guid_get(data.value_data));
+            dialog.el_data_builtin_list.entries = Game.graphics.ui;
+            var data_index = ds_list_find_index(Game.graphics.ui, guid_get(data.value_data));
             ui_list_deselect(dialog.el_data_builtin_list);
             ui_list_select(dialog.el_data_builtin_list, data_index, true);
             break;
         case DataTypes.IMG_ETC:
             dialog.el_data_builtin_list.interactive = true;
             dialog.el_data_builtin_list.enabled = true;
-            dialog.el_data_builtin_list.entries = Stuff.all_graphic_etc;
-            var data_index = ds_list_find_index(Stuff.all_graphic_etc, guid_get(data.value_data));
+            dialog.el_data_builtin_list.entries = Game.graphics.etc;
+            var data_index = ds_list_find_index(Game.graphics.etc, guid_get(data.value_data));
             ui_list_deselect(dialog.el_data_builtin_list);
             ui_list_select(dialog.el_data_builtin_list, data_index, true);
             break;

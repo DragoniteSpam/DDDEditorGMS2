@@ -31,49 +31,49 @@ function project_load(id) {
             var ts = instance_create_depth(0, 0, 0, DataTileset);
             ts.LoadJSON(tilesets[i]);
             ts.LoadAsset(directory);
-            ds_list_add(Stuff.all_graphic_tilesets, ts);
+            ds_list_add(Game.graphics.tilesets, ts);
         }
         for (var i = 0; i < array_length(overworlds); i++) {
             var image = instance_create_depth(0, 0, 0, DataImage);
             image.LoadJSON(overworlds[i]);
             image.LoadAsset(directory);
-            ds_list_add(Stuff.all_graphic_overworlds, image);
+            ds_list_add(Game.graphics.overworlds, image);
         }
         for (var i = 0; i < array_length(battlers); i++) {
             var image = instance_create_depth(0, 0, 0, DataImage);
             image.LoadJSON(battlers[i]);
             image.LoadAsset(directory);
-            ds_list_add(Stuff.all_graphic_battlers, image);
+            ds_list_add(Game.graphics.battlers, image);
         }
         for (var i = 0; i < array_length(particles); i++) {
             var image = instance_create_depth(0, 0, 0, DataImage);
             image.LoadJSON(particles[i]);
             image.LoadAsset(directory);
-            ds_list_add(Stuff.all_graphic_particles, image);
+            ds_list_add(Game.graphics.particles, image);
         }
         for (var i = 0; i < array_length(ui); i++) {
             var image = instance_create_depth(0, 0, 0, DataImage);
             image.LoadJSON(ui[i]);
             image.LoadAsset(directory);
-            ds_list_add(Stuff.all_graphic_ui, image);
+            ds_list_add(Game.graphics.ui, image);
         }
         for (var i = 0; i < array_length(tile_animations); i++) {
             var image = instance_create_depth(0, 0, 0, DataImage);
             image.LoadJSON(tile_animations[i]);
             image.LoadAsset(directory);
-            ds_list_add(Stuff.all_graphic_tile_animations, image);
+            ds_list_add(Game.graphics.tile_animations, image);
         }
         for (var i = 0; i < array_length(etc); i++) {
             var image = instance_create_depth(0, 0, 0, DataImage);
             image.LoadJSON(etc[i]);
             image.LoadAsset(directory);
-            ds_list_add(Stuff.all_graphic_etc, image);
+            ds_list_add(Game.graphics.etc, image);
         }
         for (var i = 0; i < array_length(skybox); i++) {
             var image = instance_create_depth(0, 0, 0, DataImage);
             image.LoadJSON(skybox[i]);
             image.LoadAsset(directory);
-            ds_list_add(Stuff.all_graphic_skybox, image);
+            ds_list_add(Game.graphics.skybox, image);
         }
     };
     

@@ -6,7 +6,7 @@ function serialize_save_image_tile_animations(argument0) {
     buffer_write(buffer, buffer_u32, SerializeThings.IMAGE_TILE_ANIMATION);
     var addr_next = buffer_tell(buffer);
     buffer_write(buffer, buffer_u64, 0);
-    var list = Stuff.all_graphic_tile_animations;
+    var list = Game.graphics.tile_animations;
 
     var n_images = ds_list_size(list);
     buffer_write(buffer, buffer_u32, n_images);

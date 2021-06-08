@@ -1,5 +1,5 @@
 function serialize_load_image_tile_animations(buffer, version) {
-    var list = Stuff.all_graphic_tile_animations;
+    var list = Game.graphics.tile_animations;
     
     var addr_next = buffer_read(buffer, buffer_u64);
     var n_images = buffer_read(buffer, buffer_u32);

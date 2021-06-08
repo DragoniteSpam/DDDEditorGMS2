@@ -2,7 +2,7 @@
 function serialize_save_image_overworlds(argument0) {
 
     var buffer = argument0;
-    var list = Stuff.all_graphic_overworlds;
+    var list = Game.graphics.overworlds;
 
     buffer_write(buffer, buffer_u32, SerializeThings.IMAGE_OVERWORLD);
     var addr_next = buffer_tell(buffer);

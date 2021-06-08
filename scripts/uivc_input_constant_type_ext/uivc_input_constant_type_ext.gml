@@ -95,7 +95,7 @@ function ui_constant_data_activate(base_dialog, what) {
             break;
         case DataTypes.IMG_TEXTURE:
             var list = base_dialog.el_value_other;
-            list.entries = Stuff.all_graphic_tilesets;
+            list.entries = Game.graphics.tilesets;
             ui_list_deselect(list);
             ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value)), true);
             list.enabled = true;
@@ -106,7 +106,7 @@ function ui_constant_data_activate(base_dialog, what) {
             break;
         case DataTypes.IMG_TILE_ANIMATION:
             var list = base_dialog.el_value_other;
-            list.entries = Stuff.all_graphic_tile_animations;
+            list.entries = Game.graphics.tile_animations;
             ui_list_deselect(list);
             ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value)), true);
             list.enabled = true;
@@ -146,7 +146,7 @@ function ui_constant_data_activate(base_dialog, what) {
             break;
         case DataTypes.IMG_BATTLER:
             var list = base_dialog.el_value_other;
-            list.entries = Stuff.all_graphic_battlers;
+            list.entries = Game.graphics.battlers;
             ui_list_deselect(list);
             ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value)), true);
             list.enabled = true;
@@ -154,7 +154,7 @@ function ui_constant_data_activate(base_dialog, what) {
             break;
         case DataTypes.IMG_OVERWORLD:
             var list = base_dialog.el_value_other;
-            list.entries = Stuff.all_graphic_overworlds;
+            list.entries = Game.graphics.overworlds;
             ui_list_deselect(list);
             ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value)), true);
             list.enabled = true;
@@ -162,7 +162,7 @@ function ui_constant_data_activate(base_dialog, what) {
             break;
         case DataTypes.IMG_PARTICLE:
             var list = base_dialog.el_value_other;
-            list.entries = Stuff.all_graphic_particles;
+            list.entries = Game.graphics.particles;
             ui_list_deselect(list);
             ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value)), true);
             list.enabled = true;
@@ -170,7 +170,7 @@ function ui_constant_data_activate(base_dialog, what) {
             break;
         case DataTypes.IMG_UI:
             var list = base_dialog.el_value_other;
-            list.entries = Stuff.all_graphic_ui;
+            list.entries = Game.graphics.ui;
             ui_list_deselect(list);
             ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value)), true);
             list.enabled = true;
@@ -178,7 +178,7 @@ function ui_constant_data_activate(base_dialog, what) {
             break;
         case DataTypes.IMG_ETC:
             var list = base_dialog.el_value_other;
-            list.entries = Stuff.all_graphic_etc;
+            list.entries = Game.graphics.etc;
             ui_list_deselect(list);
             ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value)), true);
             list.enabled = true;

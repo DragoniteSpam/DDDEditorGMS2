@@ -4,7 +4,7 @@ function serialize_load_image_overworlds(argument0, argument1) {
 
     var buffer = argument0;
     var version = argument1;
-    var list = Stuff.all_graphic_overworlds;
+    var list = Game.graphics.overworlds;
 
     var addr_next = buffer_read(buffer, buffer_u64);
 

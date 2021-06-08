@@ -2,7 +2,7 @@
 function serialize_save_image_skybox(argument0) {
 
     var buffer = argument0;
-    var list = Stuff.all_graphic_skybox;
+    var list = Game.graphics.skybox;
 
     buffer_write(buffer, buffer_u32, SerializeThings.IMAGE_SKYBOX);
     var addr_next = buffer_tell(buffer);

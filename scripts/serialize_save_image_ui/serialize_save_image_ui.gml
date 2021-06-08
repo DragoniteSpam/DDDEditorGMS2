@@ -2,7 +2,7 @@
 function serialize_save_image_ui(argument0) {
 
     var buffer = argument0;
-    var list = Stuff.all_graphic_ui;
+    var list = Game.graphics.ui;
 
     buffer_write(buffer, buffer_u32, SerializeThings.IMAGE_UI);
     var addr_next = buffer_tell(buffer);
@@ -35,7 +35,7 @@ function serialize_save_image_ui(argument0) {
     }
 
     if (!individual_images) {
-        buffer_write_sprite(buffer, Stuff.all_graphic_ui_texture);
+        buffer_write_sprite(buffer, Game.graphics.ui_texture);
     }
 
     buffer_poke(buffer, addr_next, buffer_u64, buffer_tell(buffer));

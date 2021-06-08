@@ -6,7 +6,7 @@ function serialize_save_image_battlers(argument0) {
     buffer_write(buffer, buffer_u32, SerializeThings.IMAGE_BATTLERS);
     var addr_next = buffer_tell(buffer);
     buffer_write(buffer, buffer_u64, 0);
-    var list = Stuff.all_graphic_battlers;
+    var list = Game.graphics.battlers;
 
     var n_images = ds_list_size(list);
     buffer_write(buffer, buffer_u32, n_images);

@@ -12,8 +12,8 @@ function safc_on_pawn_ui(argument0) {
     Stuff.map.ui.element_entity_pawn_animating.value = pawn.is_animating;
 
     ui_list_deselect(Stuff.map.ui.element_entity_pawn_sprite);
-    for (var i = 0; i < ds_list_size(Stuff.all_graphic_overworlds); i++) {
-        if (Stuff.all_graphic_overworlds[| i].GUID == pawn.overworld_sprite) {
+    for (var i = 0; i < ds_list_size(Game.graphics.overworlds); i++) {
+        if (Game.graphics.overworlds[| i].GUID == pawn.overworld_sprite) {
             ui_list_select(Stuff.map.ui.element_entity_pawn_sprite, i, true);
             break;
         }

@@ -21,7 +21,7 @@ function dialog_create_event_node_img_tileset(argument0, argument1, argument2, a
 
     var yy = 64;
 
-    var el_list = create_list(16, yy, "All Tilesets", "<no tilesets>", ew, eh, n_slots, null, false, dg, Stuff.all_graphic_tilesets);
+    var el_list = create_list(16, yy, "All Tilesets", "<no tilesets>", ew, eh, n_slots, null, false, dg, Game.graphics.tilesets);
     el_list.entries_are = ListEntries.INSTANCES;
     el_list.node = argument1;
     el_list.property_index = argument2;

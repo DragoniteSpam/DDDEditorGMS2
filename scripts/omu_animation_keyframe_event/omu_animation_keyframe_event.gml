@@ -62,12 +62,12 @@ function omu_animation_keyframe_event(argument0) {
     el_graphic_no_change.enabled = (keyframe.graphic_type == GraphicTypes.NO_CHANGE);
     dg.el_graphic_no_change = el_graphic_no_change;
 
-    var el_graphic_overworld_sprite_list = create_list(col2_x, yy, "Sprite: Overworlds", "<no overworld sprites>", ew, eh, 8, uivc_animation_keyframe_graphic_sprite, false, dg, Stuff.all_graphic_overworlds);
+    var el_graphic_overworld_sprite_list = create_list(col2_x, yy, "Sprite: Overworlds", "<no overworld sprites>", ew, eh, 8, uivc_animation_keyframe_graphic_sprite, false, dg, Game.graphics.overworlds);
     el_graphic_overworld_sprite_list.enabled = (keyframe.graphic_type == GraphicTypes.SPRITE);
     el_graphic_overworld_sprite_list.entries_are = ListEntries.INSTANCES;
     dg.el_graphic_overworld_sprite_list = el_graphic_overworld_sprite_list;
 
-    var el_graphic_battler_sprite_list = create_list(col3_x, yy, "Sprite: Battlers", "<no battler sprites>", ew, eh, 8, uivc_animation_keyframe_graphic_sprite, false, dg, Stuff.all_graphic_battlers);
+    var el_graphic_battler_sprite_list = create_list(col3_x, yy, "Sprite: Battlers", "<no battler sprites>", ew, eh, 8, uivc_animation_keyframe_graphic_sprite, false, dg, Game.graphics.battlers);
     el_graphic_battler_sprite_list.enabled = (keyframe.graphic_type == GraphicTypes.SPRITE);
     el_graphic_battler_sprite_list.entries_are = ListEntries.INSTANCES;
     dg.el_graphic_battler_sprite_list = el_graphic_battler_sprite_list;
@@ -86,10 +86,10 @@ function omu_animation_keyframe_event(argument0) {
     dg.el_graphic_direction = el_graphic_direction;
     yy += el_graphic_direction.height + spacing;
 
-    var sprite_overworld_index = ds_list_find_index(Stuff.all_graphic_overworlds, keyframe.graphic_sprite);
+    var sprite_overworld_index = ds_list_find_index(Game.graphics.overworlds, keyframe.graphic_sprite);
     ui_list_select(el_graphic_overworld_sprite_list, sprite_overworld_index, true);
 
-    var sprite_battler_index = ds_list_find_index(Stuff.all_graphic_battlers, keyframe.graphic_sprite);
+    var sprite_battler_index = ds_list_find_index(Game.graphics.battlers, keyframe.graphic_sprite);
     ui_list_select(el_graphic_battler_sprite_list, sprite_battler_index, true);
 
     var el_graphic_mesh_list = create_list(col2_x, yy, "Mesh", "<no meshes>", ew, eh, 16, uivc_animation_keyframe_graphic_mesh, false, dg, Stuff.all_meshes);

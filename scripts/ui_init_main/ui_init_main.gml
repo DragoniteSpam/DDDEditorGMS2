@@ -947,10 +947,10 @@ function ui_init_main(mode) {
             var selection = ui_list_selection(list);
             if (selection + 1) {
                 for (var i = 0; i < ds_list_size(entities); i++) {
-                    entities[| i].overworld_sprite = Stuff.all_graphic_overworlds[| selection].GUID;
+                    entities[| i].overworld_sprite = Game.graphics.overworlds[| selection].GUID;
                 }
             }
-        }, false, t_p_pawn, Stuff.all_graphic_overworlds);
+        }, false, t_p_pawn, Game.graphics.overworlds);
         element_entity_pawn_sprite.entries_are = ListEntries.INSTANCES;
         ds_list_add(t_p_pawn.contents, element_entity_pawn_sprite);
         
@@ -1012,7 +1012,7 @@ function ui_init_main(mode) {
             dg.el_confirm.onmouseup = function(button) {
                 var selection = ui_list_selection(button.root.el_list);
                 if(selection + 1) {
-                    Stuff.map.active_map.tileset = Stuff.all_graphic_tilesets[| selection].GUID;
+                    Stuff.map.active_map.tileset = Game.graphics.tilesets[| selection].GUID;
                 }
                 dmu_dialog_commit(button);
             };

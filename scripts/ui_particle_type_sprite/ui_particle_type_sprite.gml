@@ -29,9 +29,9 @@ function ui_particle_type_sprite(argument0) {
         var yy = 64;
         var yy_base = yy;
     
-        var el_update_list = create_list(col1_x, yy, "Particle Sprites", "<no particle sprites>", ew, eh, 10, ui_particle_type_sprite_assign, false, dg, Stuff.all_graphic_particles);
+        var el_update_list = create_list(col1_x, yy, "Particle Sprites", "<no particle sprites>", ew, eh, 10, ui_particle_type_sprite_assign, false, dg, Game.graphics.particles);
         var sprite = guid_get(type.sprite);
-        ui_list_select(el_update_list, ds_list_find_index(Stuff.all_graphic_particles, sprite), true);
+        ui_list_select(el_update_list, ds_list_find_index(Game.graphics.particles, sprite), true);
         el_update_list.tooltip = "The custom sprite to be used by the particle type. Go to Data > Graphics > Particles to manage particle sprites. When you import the generated code into your game, make sure your project has a sprite with the same Internal Name as the sprite used here.";
         el_update_list.entries_are = ListEntries.INSTANCES;
     

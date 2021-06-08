@@ -80,17 +80,17 @@ function dialog_entity_data_enable_by_type(dialog) {
         case DataTypes.IMG_TEXTURE:
             dialog.el_data_builtin_list.interactive = true;
             dialog.el_data_builtin_list.enabled = true;
-            dialog.el_data_builtin_list.entries = Stuff.all_graphic_tilesets;
+            dialog.el_data_builtin_list.entries = Game.graphics.tilesets;
             break;
         case DataTypes.IMG_SKYBOX:
             dialog.el_data_builtin_list.interactive = true;
             dialog.el_data_builtin_list.enabled = true;
-            dialog.el_data_builtin_list.entries = Stuff.all_graphic_skybox;
+            dialog.el_data_builtin_list.entries = Game.graphics.skybox;
             break;
         case DataTypes.IMG_TILE_ANIMATION:
             dialog.el_data_builtin_list.interactive = true;
             dialog.el_data_builtin_list.enabled = true;
-            dialog.el_data_builtin_list.entries = Stuff.all_graphic_tile_animations;
+            dialog.el_data_builtin_list.entries = Game.graphics.tile_animations;
             break;
         case DataTypes.TILE:
             not_yet_implemented();
@@ -121,27 +121,27 @@ function dialog_entity_data_enable_by_type(dialog) {
         case DataTypes.IMG_BATTLER:
             dialog.el_data_builtin_list.interactive = true;
             dialog.el_data_builtin_list.enabled = true;
-            dialog.el_data_builtin_list.entries = Stuff.all_graphic_battlers;
+            dialog.el_data_builtin_list.entries = Game.graphics.battlers;
             break;
         case DataTypes.IMG_OVERWORLD:
             dialog.el_data_builtin_list.interactive = true;
             dialog.el_data_builtin_list.enabled = true;
-            dialog.el_data_builtin_list.entries = Stuff.all_graphic_overworlds;
+            dialog.el_data_builtin_list.entries = Game.graphics.overworlds;
             break;
         case DataTypes.IMG_PARTICLE:
             dialog.el_data_builtin_list.interactive = true;
             dialog.el_data_builtin_list.enabled = true;
-            dialog.el_data_builtin_list.entries = Stuff.all_graphic_particles;
+            dialog.el_data_builtin_list.entries = Game.graphics.particles;
             break;
         case DataTypes.IMG_UI:
             dialog.el_data_builtin_list.interactive = true;
             dialog.el_data_builtin_list.enabled = true;
-            dialog.el_data_builtin_list.entries = Stuff.all_graphic_ui;
+            dialog.el_data_builtin_list.entries = Game.graphics.ui;
             break;
         case DataTypes.IMG_ETC:
             dialog.el_data_builtin_list.interactive = true;
             dialog.el_data_builtin_list.enabled = true;
-            dialog.el_data_builtin_list.entries = Stuff.all_graphic_etc;
+            dialog.el_data_builtin_list.entries = Game.graphics.etc;
             break;
         case DataTypes.EVENT:
         case DataTypes.ASSET_FLAG:

@@ -23,7 +23,7 @@ function dialog_create_event_node_img_particles(argument0, argument1, argument2,
 
     var yy = 64;
 
-    var el_list = create_list(16, yy, "All Particles", "<no particles>", ew, eh, n_slots, null, false, dg, Stuff.all_graphic_particles);
+    var el_list = create_list(16, yy, "All Particles", "<no particles>", ew, eh, n_slots, null, false, dg, Game.graphics.particles);
     el_list.entries_are = ListEntries.INSTANCES;
     el_list.node = argument1;
     el_list.property_index = argument2;

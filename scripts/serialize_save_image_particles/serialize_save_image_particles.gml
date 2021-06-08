@@ -2,7 +2,7 @@
 function serialize_save_image_particles(argument0) {
 
     var buffer = argument0;
-    var list = Stuff.all_graphic_particles;
+    var list = Game.graphics.particles;
 
     buffer_write(buffer, buffer_u32, SerializeThings.IMAGE_PARTICLES);
     var addr_next = buffer_tell(buffer);
@@ -35,7 +35,7 @@ function serialize_save_image_particles(argument0) {
     }
 
     if (!individual_images) {
-        buffer_write_sprite(buffer, Stuff.all_graphic_particle_texture);
+        buffer_write_sprite(buffer, Game.graphics.particle_texture);
     }
 
     buffer_poke(buffer, addr_next, buffer_u64, buffer_tell(buffer));

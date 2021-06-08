@@ -6,7 +6,7 @@ function ui_particle_type_sprite_assign(argument0) {
     var selection = ui_list_selection(list);
 
     if (selection + 1) {
-        type.sprite = Stuff.all_graphic_particles[| selection].GUID;
+        type.sprite = Game.graphics.particles[| selection].GUID;
         editor_particle_type_set_sprite(type);
     }
 

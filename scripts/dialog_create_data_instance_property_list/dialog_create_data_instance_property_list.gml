@@ -141,7 +141,7 @@ function dialog_create_data_instance_property_list(root) {
             yy += ui_get_list_height(el_value) + spacing;
             break;
         case DataTypes.IMG_TILE_ANIMATION:
-            var el_value = create_list(16, yy, "Select a Tile Animation resource:", "<no Autotiles>", ew, eh, 8, uivc_data_property_list_guid, false, dg, Stuff.all_graphic_tile_animations);
+            var el_value = create_list(16, yy, "Select a Tile Animation resource:", "<no Autotiles>", ew, eh, 8, uivc_data_property_list_guid, false, dg, Game.graphics.tile_animations);
             el_value.entries_are = ListEntries.INSTANCES;
             el_value.key = root.key;
             yy += ui_get_list_height(el_value) + spacing;
@@ -171,37 +171,37 @@ function dialog_create_data_instance_property_list(root) {
             yy += ui_get_list_height(el_value) + spacing;
             break;
         case DataTypes.IMG_BATTLER:
-            var el_value = create_list(16, yy, "Select a Battler sprite:", "<no Battlers>", ew, eh, 8, uivc_data_property_list_guid, false, dg, Stuff.all_graphic_battlers);
+            var el_value = create_list(16, yy, "Select a Battler sprite:", "<no Battlers>", ew, eh, 8, uivc_data_property_list_guid, false, dg, Game.graphics.battlers);
             el_value.entries_are = ListEntries.INSTANCES;
             el_value.key = root.key;
             yy += ui_get_list_height(el_value) + spacing;
             break;
         case DataTypes.IMG_OVERWORLD:
-            var el_value = create_list(16, yy, "Select am Overworld sprite:", "<no Overworlds>", ew, eh, 8, uivc_data_property_list_guid, false, dg, Stuff.all_graphic_overworlds);
+            var el_value = create_list(16, yy, "Select am Overworld sprite:", "<no Overworlds>", ew, eh, 8, uivc_data_property_list_guid, false, dg, Game.graphics.overworlds);
             el_value.entries_are = ListEntries.INSTANCES;
             el_value.key = root.key;
             yy += ui_get_list_height(el_value) + spacing;
             break;
         case DataTypes.IMG_PARTICLE:
-            var el_value = create_list(16, yy, "Select a Particle sprite:", "<no Particles>", ew, eh, 8, uivc_data_property_list_guid, false, dg, Stuff.all_graphic_particles);
+            var el_value = create_list(16, yy, "Select a Particle sprite:", "<no Particles>", ew, eh, 8, uivc_data_property_list_guid, false, dg, Game.graphics.particles);
             el_value.entries_are = ListEntries.INSTANCES;
             el_value.key = root.key;
             yy += ui_get_list_height(el_value) + spacing;
             break;
         case DataTypes.IMG_UI:
-            var el_value = create_list(16, yy, "Select a UI images:", "<no UI images>", ew, eh, 8, uivc_data_property_list_guid, false, dg, Stuff.all_graphic_ui);
+            var el_value = create_list(16, yy, "Select a UI images:", "<no UI images>", ew, eh, 8, uivc_data_property_list_guid, false, dg, Game.graphics.ui);
             el_value.entries_are = ListEntries.INSTANCES;
             el_value.key = root.key;
             yy += ui_get_list_height(el_value) + spacing;
             break;
         case DataTypes.IMG_ETC:
-            var el_value = create_list(16, yy, "Select a misc. image:", "<no misc. images>", ew, eh, 8, uivc_data_property_list_guid, false, dg, Stuff.all_graphic_etc);
+            var el_value = create_list(16, yy, "Select a misc. image:", "<no misc. images>", ew, eh, 8, uivc_data_property_list_guid, false, dg, Game.graphics.etc);
             el_value.entries_are = ListEntries.INSTANCES;
             el_value.key = root.key;
             yy += ui_get_list_height(el_value) + spacing;
             break;
         case DataTypes.IMG_SKYBOX:
-            var el_value = create_list(16, yy, "Select a skybox image:", "<no skybox images>", ew, eh, 8, uivc_data_property_list_guid, false, dg, Stuff.all_graphic_skybox);
+            var el_value = create_list(16, yy, "Select a skybox image:", "<no skybox images>", ew, eh, 8, uivc_data_property_list_guid, false, dg, Game.graphics.skybox);
             el_value.entries_are = ListEntries.INSTANCES;
             el_value.key = root.key;
             yy += ui_get_list_height(el_value) + spacing;

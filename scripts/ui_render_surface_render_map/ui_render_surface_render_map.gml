@@ -33,7 +33,7 @@ function ui_render_surface_render_map(surface, x1, y1, x2, y2) {
     
     // @todo tileset update
     if (map.preview) {
-        vertex_submit(map.preview, pr_trianglelist, sprite_get_texture(Stuff.all_graphic_tilesets[| Stuff.event.map.tileset].picture, 0));
+        vertex_submit(map.preview, pr_trianglelist, sprite_get_texture(Game.graphics.tilesets[| Stuff.event.map.tileset].picture, 0));
         vertex_submit(map.wpreview, pr_linelist, -1);
     }
     

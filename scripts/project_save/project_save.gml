@@ -76,14 +76,14 @@ function project_save() {
         version: ProjectSaveVersions._CURRENT - 1,
     }), folder_name + "meta.json");
     buffer_write_file(json_stringify({
-        tilesets: project_write_json(Stuff.all_graphic_tilesets),
-        overworlds: project_write_json(Stuff.all_graphic_overworlds),
-        battlers: project_write_json(Stuff.all_graphic_battlers),
-        particles: project_write_json(Stuff.all_graphic_particles),
-        ui: project_write_json(Stuff.all_graphic_ui),
-        tile_animations: project_write_json(Stuff.all_graphic_tile_animations),
-        etc: project_write_json(Stuff.all_graphic_etc),
-        skybox: project_write_json(Stuff.all_graphic_skybox),
+        tilesets: project_write_json(Game.graphics.tilesets),
+        overworlds: project_write_json(Game.graphics.overworlds),
+        battlers: project_write_json(Game.graphics.battlers),
+        particles: project_write_json(Game.graphics.particles),
+        ui: project_write_json(Game.graphics.ui),
+        tile_animations: project_write_json(Game.graphics.tile_animations),
+        etc: project_write_json(Game.graphics.etc),
+        skybox: project_write_json(Game.graphics.skybox),
         version: ProjectSaveVersions._CURRENT - 1,
     }), folder_name + "images.json");
     buffer_write_file(json_stringify({
@@ -120,14 +120,14 @@ function project_save() {
         version: ProjectSaveVersions._CURRENT - 1,
     }), folder_name + "maps.json");
     
-    save_assets(folder_image_name, Stuff.all_graphic_tilesets);
-    save_assets(folder_image_name, Stuff.all_graphic_overworlds);
-    save_assets(folder_image_name, Stuff.all_graphic_battlers);
-    save_assets(folder_image_name, Stuff.all_graphic_particles);
-    save_assets(folder_image_name, Stuff.all_graphic_ui);
-    save_assets(folder_image_name, Stuff.all_graphic_tile_animations);
-    save_assets(folder_image_name, Stuff.all_graphic_etc);
-    save_assets(folder_image_name, Stuff.all_graphic_skybox);
+    save_assets(folder_image_name, Game.graphics.tilesets);
+    save_assets(folder_image_name, Game.graphics.overworlds);
+    save_assets(folder_image_name, Game.graphics.battlers);
+    save_assets(folder_image_name, Game.graphics.particles);
+    save_assets(folder_image_name, Game.graphics.ui);
+    save_assets(folder_image_name, Game.graphics.tile_animations);
+    save_assets(folder_image_name, Game.graphics.etc);
+    save_assets(folder_image_name, Game.graphics.skybox);
     save_assets(folder_audio_name, Stuff.all_se);
     save_assets(folder_audio_name, Stuff.all_bgm);
     save_assets(folder_mesh_name, Stuff.all_meshes);
