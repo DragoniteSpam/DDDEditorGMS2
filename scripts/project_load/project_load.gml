@@ -24,6 +24,47 @@ function project_load(id) {
         var tile_animations = json.tile_animations;
         var etc = json.etc;
         var skybox = json.skybox;
+        
+        for (var i = 0; i < array_length(tilesets); i++) {
+            var ts = instance_create_depth(0, 0, 0, DataTileset);
+            ts.LoadJSON(tilesets[i]);
+            ds_list_add(Stuff.all_graphic_tilesets, ts);
+        }
+        for (var i = 0; i < array_length(overworlds); i++) {
+            var ts = instance_create_depth(0, 0, 0, DataImage);
+            ts.LoadJSON(overworlds[i]);
+            ds_list_add(Stuff.all_graphic_overworlds, ts);
+        }
+        for (var i = 0; i < array_length(battlers); i++) {
+            var ts = instance_create_depth(0, 0, 0, DataImage);
+            ts.LoadJSON(battlers[i]);
+            ds_list_add(Stuff.all_graphic_battlers, ts);
+        }
+        for (var i = 0; i < array_length(particles); i++) {
+            var ts = instance_create_depth(0, 0, 0, DataImage);
+            ts.LoadJSON(particles[i]);
+            ds_list_add(Stuff.all_graphic_particles, ts);
+        }
+        for (var i = 0; i < array_length(ui); i++) {
+            var ts = instance_create_depth(0, 0, 0, DataImage);
+            ts.LoadJSON(ui[i]);
+            ds_list_add(Stuff.all_graphic_ui, ts);
+        }
+        for (var i = 0; i < array_length(tile_animations); i++) {
+            var ts = instance_create_depth(0, 0, 0, DataImage);
+            ts.LoadJSON(tile_animations[i]);
+            ds_list_add(Stuff.all_graphic_tile_animations, ts);
+        }
+        for (var i = 0; i < array_length(etc); i++) {
+            var ts = instance_create_depth(0, 0, 0, DataImage);
+            ts.LoadJSON(etc[i]);
+            ds_list_add(Stuff.all_graphic_etc, ts);
+        }
+        for (var i = 0; i < array_length(skybox); i++) {
+            var ts = instance_create_depth(0, 0, 0, DataImage);
+            ts.LoadJSON(skybox[i]);
+            ds_list_add(Stuff.all_graphic_skybox, ts);
+        }
     };
     
     static project_load_audio = function(filename) {
