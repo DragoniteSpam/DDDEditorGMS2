@@ -105,7 +105,7 @@ all_graphic_ui_texture = sprite_create_from_surface(surface, 0, 0, surface_get_w
 surface_free(surface);
 
 tileset_create(PATH_GRAPHICS + DEFAULT_TILESET);
-all_graphic_tilesets[| 0].name = "Default";
+Game.graphics.tilesets[| 0].name = "Default";
 
 all_events = ds_list_create();
 all_event_custom = ds_list_create();
