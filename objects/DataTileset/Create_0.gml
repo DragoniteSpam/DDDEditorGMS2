@@ -5,7 +5,7 @@ event_inherited();
 flags = [[]];
 
 CreateJSONTS = function() {
-    var json = self.CreateJSONBase();
+    var json = self.CreateJSONImage();
     json.flags = flags;
     return json;
 };
