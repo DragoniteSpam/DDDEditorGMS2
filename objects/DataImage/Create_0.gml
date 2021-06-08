@@ -37,14 +37,20 @@ LoadAsset = function(directory) {
     directory += "/";
     var guid = string_replace(self.GUID, ":", "_");
     if (file_exists(directory + guid + ".png")) {
-        picture = sprite_add(directory + guid + ".png", 0, false, false, 0, 0);
+        self.picture = sprite_add(directory + guid + ".png", 0, false, false, 0, 0);
     } else {
-        picture = sprite_duplicate(b_tileset_magenta);
+        self.picture = sprite_duplicate(b_tileset_magenta);
     }
     if (file_exists(directory + guid + "_strip" + string(self.hframes) + ".png")) {
-        picture = sprite_add(directory + guid + ".png", -1, false, false, 0, 0);
+        self.picture = sprite_add(directory + guid + ".png", -1, false, false, 0, 0);
     } else {
-        picture = sprite_duplicate(b_tileset_magenta);
+        self.picture = sprite_duplicate(b_tileset_magenta);
+    }
+    self.npc_frames = array_create(self.width * self.height);
+    for (var i = 0; i < array_length(self.npc_frames); i++) {
+        var data = buffer_load(directory + guid + "_npc_" + string(i) + ".png");
+        self.npc_frames[i] = vertex_create_buffer_from_buffer(data, Stuff.graphics.vertex_format);
+        buffer_delete(data);
     }
 };
 
