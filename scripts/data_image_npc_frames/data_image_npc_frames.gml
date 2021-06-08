@@ -6,7 +6,7 @@ function data_image_npc_frames(data) {
         vertex_delete_buffer(data.npc_frames[i]);
     }
     
-    data.npc_frames = array_create(data.hframes, data.vframes);
+    data.npc_frames = array_create(data.hframes * data.vframes);
     
     for (var i = 0; i < data.hframes * data.vframes; i++) {
         var vbuffer = vertex_create_buffer();
