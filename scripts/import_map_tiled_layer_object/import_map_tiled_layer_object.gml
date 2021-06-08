@@ -323,7 +323,7 @@ function import_map_tiled_layer_object() {
                         if (data) {
                             base_property_name = string_replace(property_name, "@", "");
                             property_value_data = data.GUID;
-                            property_value_type_guid = guid_get(data.base_guid).GUID;
+                            property_value_type_guid = guid_get(data.parent).GUID;
                             property_type = DataTypes.DATA;
                         } else {
                             wtf("internal name not found - " + property[? "value"]);

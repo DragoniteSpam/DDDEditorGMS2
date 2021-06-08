@@ -12,7 +12,7 @@ function serialize_load_data_instances(buffer, version) {
             
             for (var j = 0; j < n_instances; j++) {
                 var instance = new SDataInstance("");
-                instance.base_guid = datadata.GUID;
+                instance.parent = datadata.GUID;
                 datadata.AddInstance(instance);
                 var btype;
                 

@@ -3,7 +3,7 @@ function uimu_data_add_data(thing) {
     
     if (data) {
         var instance = new SDataInstance(data.name + string(array_length(data.instances)));
-        instance.base_guid = data.GUID;
+        instance.parent = data.GUID;
         
         var current_index = ui_list_selection(thing.root.el_instances);
         if (current_index + 1) {

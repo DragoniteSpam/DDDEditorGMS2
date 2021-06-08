@@ -1,11 +1,11 @@
 function SDataInstance(name) : SData(name) constructor {
-    base_guid = NULL;
+    parent = NULL;
     values = [];
     
     LoadJSONInst = function(struct) {
         self.LoadJSONBase(struct);
         self.values = struct.values;
-        self.base_guid = struct.base_guid;
+        self.parent = struct.parent;
     };
     
     LoadJSON = function(struct) {
@@ -14,7 +14,7 @@ function SDataInstance(name) : SData(name) constructor {
     
     CreateJSONInst = function() {
         var json = self.CreateJSONBase();
-        json.base_guid = self.base_guid;
+        json.parent = self.parent;
         json.values = self.values;
         return json;
     };
