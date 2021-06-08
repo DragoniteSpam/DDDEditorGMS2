@@ -16,6 +16,23 @@ aspeed = 1;
 hash = "";
 source_filename = "";
 
+LoadJSONImage = function(json) {
+    self.LoadJSONBase(json);
+    self.texture_exclude = json.texture_exclude;
+    self.width = json.width;
+    self.height = json.height;
+    self.vframes = json.vframes;
+    self.hframes = json.hframes;
+    self.aframes = json.aframes;
+    self.aspeed = json.aspeed;
+    self.hash = json.hash;
+    self.source_filename = json.source_filename;
+};
+
+LoadJSON = function(json) {
+    self.LoadJSONImage(json);
+};
+
 SaveAsset = function(directory) {
     directory += "/";
     var guid = string_replace(self.GUID, ":", "_");
