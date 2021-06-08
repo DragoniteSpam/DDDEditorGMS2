@@ -91,7 +91,7 @@ function SDataClass(name) : SData(name) constructor {
 }
 
 function SDataProperty(name, parent) : SData(name) constructor {
-    self.parent = parent;
+    self.parent = parent.GUID;
     
     self.type = DataTypes.INT;
     self.range_min = 0;                        // int, float
@@ -148,7 +148,7 @@ function SDataProperty(name, parent) : SData(name) constructor {
     };
     
     static Destroy = function() {
-        self.parent.RemoveProperty(self);
+        guid_get(self.parent).RemoveProperty(self);
         self.DestroyBase();
     };
     
