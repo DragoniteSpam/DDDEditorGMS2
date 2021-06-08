@@ -3,14 +3,7 @@ function project_load(id) {
     static project_load_data = function(filename) {
         var json = json_parse(buffer_read_file(filename));
         var version = json.version;
-        var data = json.data;
-        for (var i = 0, n = array_length(data); i < n; i++) {
-            if (data[i].type == DataTypes.ENUM) {
-                
-            } else {
-                
-            }
-        }
+        Game.data = json.data;
     };
     
     static project_load_global = function(filename) {
