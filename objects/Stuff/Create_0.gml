@@ -104,6 +104,9 @@ surface = surface_create(4096, 4096);
 all_graphic_ui_texture = sprite_create_from_surface(surface, 0, 0, surface_get_width(surface), surface_get_width(surface), false, false, 0, 0);
 surface_free(surface);
 
+tileset_create(PATH_GRAPHICS + DEFAULT_TILESET);
+all_graphic_tilesets[| 0].name = "Default";
+
 all_events = ds_list_create();
 all_event_custom = ds_list_create();
 all_event_prefabs = ds_list_create();

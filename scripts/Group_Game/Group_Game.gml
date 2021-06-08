@@ -70,9 +70,6 @@ Game = {
     },
 };
 
-tileset_create(PATH_GRAPHICS + DEFAULT_TILESET);
-Game.graphics.tilesets[| 0].name = "Default";
-
 Game.meta.export.locations[GameDataCategories.TILE_ANIMATIONS] = file_asset;
 Game.meta.export.locations[GameDataCategories.TILESETS] = file_asset;
 Game.meta.export.locations[GameDataCategories.BATTLERS] = file_asset;
