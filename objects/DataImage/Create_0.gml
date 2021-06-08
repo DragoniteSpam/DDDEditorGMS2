@@ -33,6 +33,21 @@ LoadJSON = function(json) {
     self.LoadJSONImage(json);
 };
 
+LoadAsset = function(directory) {
+    directory += "/";
+    var guid = string_replace(self.GUID, ":", "_");
+    if (file_exists(directory + guid + ".png")) {
+        picture = sprite_add(directory + guid + ".png", 0, false, false, 0, 0);
+    } else {
+        picture = sprite_duplicate(b_tileset_magenta);
+    }
+    if (file_exists(directory + guid + ".png")) {
+        picture = sprite_add(directory + guid + ".png", 0, false, false, 0, 0);
+    } else {
+        picture = sprite_duplicate(b_tileset_magenta);
+    }
+};
+
 SaveAsset = function(directory) {
     directory += "/";
     var guid = string_replace(self.GUID, ":", "_");
