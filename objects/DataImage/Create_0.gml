@@ -42,9 +42,9 @@ LoadAsset = function(directory) {
         self.picture = sprite_duplicate(b_tileset_magenta);
     }
     if (file_exists(directory + guid + "_strip" + string(self.hframes) + ".png")) {
-        self.picture = sprite_add(directory + guid + ".png", -1, false, false, 0, 0);
+        self.picture_with_frames = sprite_add(directory + guid + ".png", -1, false, false, 0, 0);
     } else {
-        self.picture = sprite_duplicate(b_tileset_magenta);
+        self.picture_with_frames = sprite_duplicate(b_tileset_magenta);
     }
     data_image_npc_frames(self);
 };
