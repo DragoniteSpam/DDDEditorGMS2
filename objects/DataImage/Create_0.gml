@@ -41,8 +41,8 @@ LoadAsset = function(directory) {
     } else {
         picture = sprite_duplicate(b_tileset_magenta);
     }
-    if (file_exists(directory + guid + ".png")) {
-        picture = sprite_add(directory + guid + ".png", 0, false, false, 0, 0);
+    if (file_exists(directory + guid + "_strip" + string(self.hframes) + ".png")) {
+        picture = sprite_add(directory + guid + ".png", -1, false, false, 0, 0);
     } else {
         picture = sprite_duplicate(b_tileset_magenta);
     }
@@ -52,11 +52,7 @@ SaveAsset = function(directory) {
     directory += "/";
     var guid = string_replace(self.GUID, ":", "_");
     if (sprite_exists(self.picture)) sprite_save(self.picture, 0, directory + guid + ".png");
-    if (sprite_exists(self.picture_with_frames)) {
-        for (var i = 0, n = sprite_get_number(self.picture_with_frames); i < n; i++) {
-            sprite_save(self.picture_with_frames, i, directory + guid + "_frames_" + string(i) + ".png");
-        }
-    }
+    if (sprite_exists(self.picture_with_frames)) sprite_save_strip(self.picture_with_frames, directory + guid + "_strip" + string(self.hframes) + ".png");
     for (var i = 0, n = array_length(self.npc_frames); i < n; i++) {
         if (self.npc_frames[i]) {
             var data = buffer_create_from_vertex_buffer(self.npc_frames[i], buffer_fixed, 1);
