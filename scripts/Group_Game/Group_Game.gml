@@ -46,6 +46,16 @@ Game = {
         asset_flags: array_create(FLAG_COUNT, ""),
     },
     data: [],
+    graphics: {
+        tilesets: ds_list_create(),
+        overworlds: ds_list_create(),
+        battlers: ds_list_create(),
+        particles: ds_list_create(),
+        ui: ds_list_create(),
+        tile_animations: ds_list_create(),
+        etc: ds_list_create(),
+        skybox: ds_list_create(),
+    },
 };
 
 Game.meta.export.locations[GameDataCategories.TILE_ANIMATIONS] = file_asset;
