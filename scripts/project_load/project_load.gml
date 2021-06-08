@@ -148,6 +148,8 @@ function project_load(id) {
     if (!directory_exists(folder_terrain_name)) directory_create(folder_terrain_name);
     #endregion
     
+    Game.Clear();
+    
     var yaml = snap_from_yaml(buffer_read_file(folder_name + "project" + EXPORT_EXTENSION_PROJECT));
     var version = yaml.version;
     Game.meta.project.id = yaml.id;
