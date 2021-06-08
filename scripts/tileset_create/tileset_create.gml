@@ -17,7 +17,7 @@ function tileset_create(filename, sprite) {
         // this needs to be the file path
         source_filename = filename;
         
-        internal_name_generate(id, PREFIX_GRAPHIC_TILESET + string_lettersdigits(filename_change_ext(filename_name(source_filename), "")));
+        internal_name_generate(self, PREFIX_GRAPHIC_TILESET + string_lettersdigits(filename_change_ext(filename_name(source_filename), "")));
         
         picture = (sprite != undefined) ? sprite : sprite_add(source_filename, 0, false, false, 0, 0);
         hash = file_hash;
