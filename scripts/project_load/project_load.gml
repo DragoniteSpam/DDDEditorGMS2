@@ -1,4 +1,6 @@
 function project_load(id) {
+    var t0 = get_timer();
+    
     #region helper functions
     static project_load_data = function(filename) {
         var json = json_parse(buffer_read_file(filename));
@@ -13,7 +15,7 @@ function project_load(id) {
         Game.vars = json.vars;
     };
     
-    static project_load_images = function(filename) {
+    static project_load_images = function(filename, directory) {
         var json = json_parse(buffer_read_file(filename));
         var version = json.version;
         var tilesets = json.tilesets;
@@ -28,59 +30,67 @@ function project_load(id) {
         for (var i = 0; i < array_length(tilesets); i++) {
             var ts = instance_create_depth(0, 0, 0, DataTileset);
             ts.LoadJSON(tilesets[i]);
+            ts.LoadAsset(directory);
             ds_list_add(Stuff.all_graphic_tilesets, ts);
         }
         for (var i = 0; i < array_length(overworlds); i++) {
-            var ts = instance_create_depth(0, 0, 0, DataImage);
-            ts.LoadJSON(overworlds[i]);
-            ds_list_add(Stuff.all_graphic_overworlds, ts);
+            var image = instance_create_depth(0, 0, 0, DataImage);
+            image.LoadJSON(overworlds[i]);
+            image.LoadAsset(directory);
+            ds_list_add(Stuff.all_graphic_overworlds, image);
         }
         for (var i = 0; i < array_length(battlers); i++) {
-            var ts = instance_create_depth(0, 0, 0, DataImage);
-            ts.LoadJSON(battlers[i]);
-            ds_list_add(Stuff.all_graphic_battlers, ts);
+            var image = instance_create_depth(0, 0, 0, DataImage);
+            image.LoadJSON(battlers[i]);
+            image.LoadAsset(directory);
+            ds_list_add(Stuff.all_graphic_battlers, image);
         }
         for (var i = 0; i < array_length(particles); i++) {
-            var ts = instance_create_depth(0, 0, 0, DataImage);
-            ts.LoadJSON(particles[i]);
-            ds_list_add(Stuff.all_graphic_particles, ts);
+            var image = instance_create_depth(0, 0, 0, DataImage);
+            image.LoadJSON(particles[i]);
+            image.LoadAsset(directory);
+            ds_list_add(Stuff.all_graphic_particles, image);
         }
         for (var i = 0; i < array_length(ui); i++) {
-            var ts = instance_create_depth(0, 0, 0, DataImage);
-            ts.LoadJSON(ui[i]);
-            ds_list_add(Stuff.all_graphic_ui, ts);
+            var image = instance_create_depth(0, 0, 0, DataImage);
+            image.LoadJSON(ui[i]);
+            image.LoadAsset(directory);
+            ds_list_add(Stuff.all_graphic_ui, image);
         }
         for (var i = 0; i < array_length(tile_animations); i++) {
-            var ts = instance_create_depth(0, 0, 0, DataImage);
-            ts.LoadJSON(tile_animations[i]);
-            ds_list_add(Stuff.all_graphic_tile_animations, ts);
+            var image = instance_create_depth(0, 0, 0, DataImage);
+            image.LoadJSON(tile_animations[i]);
+            image.LoadAsset(directory);
+            ds_list_add(Stuff.all_graphic_tile_animations, image);
         }
         for (var i = 0; i < array_length(etc); i++) {
-            var ts = instance_create_depth(0, 0, 0, DataImage);
-            ts.LoadJSON(etc[i]);
-            ds_list_add(Stuff.all_graphic_etc, ts);
+            var image = instance_create_depth(0, 0, 0, DataImage);
+            image.LoadJSON(etc[i]);
+            image.LoadAsset(directory);
+            ds_list_add(Stuff.all_graphic_etc, image);
         }
         for (var i = 0; i < array_length(skybox); i++) {
-            var ts = instance_create_depth(0, 0, 0, DataImage);
-            ts.LoadJSON(skybox[i]);
-            ds_list_add(Stuff.all_graphic_skybox, ts);
+            var image = instance_create_depth(0, 0, 0, DataImage);
+            image.LoadJSON(skybox[i]);
+            image.LoadAsset(directory);
+            ds_list_add(Stuff.all_graphic_skybox, image);
         }
     };
     
-    static project_load_audio = function(filename) {
+    static project_load_audio = function(filename, directory) {
         var json = json_parse(buffer_read_file(filename));
         var version = json.version;
         var se = json.se;
         var bgm = json.bgm;
     };
     
-    static project_load_meshes = function(filename) {
+    static project_load_meshes = function(filename, directory) {
         var json = json_parse(buffer_read_file(filename));
         var version = json.version;
         var meshes = json.meshes;
     };
     
-    static project_load_meshat = function(filename) {
+    static project_load_meshat = function(filename, directory) {
         var json = json_parse(buffer_read_file(filename));
         var version = json.version;
         var autotiles = json.autotiles;
@@ -92,7 +102,7 @@ function project_load(id) {
         var animations = json.animations;
     };
     
-    static project_load_terrain = function(filename) {
+    static project_load_terrain = function(filename, directory) {
         var json = json_parse(buffer_read_file(filename));
         var version = json.version;
         var terrain = json.terrain;
@@ -112,13 +122,31 @@ function project_load(id) {
         var events = json.events;
     };
     
-    static project_load_maps = function(filename) {
+    static project_load_maps = function(filename, directory) {
         var json = json_parse(buffer_read_file(filename));
         var version = json.version;
         var maps = json.maps;
     };
     #endregion
+    
     var folder_name = PATH_PROJECTS + id + "/";
+    
+    #region directories
+    var folder_audio_name = folder_name + PROJECT_PATH_AUDIO;
+    var folder_image_name = folder_name + PROJECT_PATH_IMAGE;
+    var folder_map_name = folder_name + PROJECT_PATH_MAP;
+    var folder_mesh_name = folder_name + PROJECT_PATH_MESH;
+    var folder_mesh_autotile_name = folder_name + PROJECT_PATH_MESH_AUTOTILE;
+    var folder_terrain_name = folder_name + PROJECT_PATH_TERRAIN;
+    
+    if (!directory_exists(folder_name)) directory_create(folder_name);
+    if (!directory_exists(folder_audio_name)) directory_create(folder_audio_name);
+    if (!directory_exists(folder_image_name)) directory_create(folder_image_name);
+    if (!directory_exists(folder_map_name)) directory_create(folder_map_name);
+    if (!directory_exists(folder_mesh_name)) directory_create(folder_mesh_name);
+    if (!directory_exists(folder_mesh_autotile_name)) directory_create(folder_mesh_autotile_name);
+    if (!directory_exists(folder_terrain_name)) directory_create(folder_terrain_name);
+    #endregion
     
     var yaml = snap_from_yaml(buffer_read_file(folder_name + "project" + EXPORT_EXTENSION_PROJECT));
     var version = yaml.version;
@@ -128,13 +156,13 @@ function project_load(id) {
     
     project_load_data(folder_name + "data.json");
     project_load_global(folder_name + "meta.json");
-    project_load_images(folder_name + "images.json");
-    project_load_audio(folder_name + "audio.json");
-    project_load_meshes(folder_name + "meshes.json");
-    project_load_meshat(folder_name + "meshautotiles.json");
+    project_load_images(folder_name + "images.json", folder_image_name);
+    project_load_audio(folder_name + "audio.json", folder_audio_name);
+    project_load_meshes(folder_name + "meshes.json", folder_mesh_name);
+    project_load_meshat(folder_name + "meshautotiles.json", folder_mesh_autotile_name);
     project_load_animations(folder_name + "animations.json");
-    project_load_terrain(folder_name + "terrain.json");
+    project_load_terrain(folder_name + "terrain.json", folder_terrain_name);
     project_load_text(folder_name + "text.json");
     project_load_events(folder_name + "events.json");
-    project_load_maps(folder_name + "maps.json");
+    project_load_maps(folder_name + "maps.json", folder_map_name);
 }
