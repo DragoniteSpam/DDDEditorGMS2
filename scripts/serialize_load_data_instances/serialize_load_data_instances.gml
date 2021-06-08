@@ -17,6 +17,9 @@ function serialize_load_data_instances(buffer, version) {
                 var btype;
                 
                 serialize_load_generic(buffer, instance, version);
+                
+                instance.values = array_create(n_properties);
+                
                 for (var k = 0; k < n_properties; k++) {
                     var property = datadata.properties[k];
                     switch (property.type) {
@@ -68,10 +71,10 @@ function serialize_load_data_instances(buffer, version) {
                     
                     var n = buffer_read(buffer, buffer_u8);
                     var plist = array_create(n);
-                    repeat (n) {
-                        array_push(plist, buffer_read(buffer, btype));
+                    for (var l = 0; l < n; l++) {
+                        plist[@ l] = buffer_read(buffer, btype);
                     }
-                    array_push(instance.values, plist);
+                    instance.values[@ k] = plist;
                 }
             }
         }

@@ -14,7 +14,7 @@ function uivc_data_property_list_number(argument0) {
         var rv = real(input.value);
         plist[@ pselection] = rv;
     
-        input.root.el_list_main.entries[@ pselection] = string(rv);
+        input.root.el_list_main.entries[@ pselection] = input.value;
     }
 
 

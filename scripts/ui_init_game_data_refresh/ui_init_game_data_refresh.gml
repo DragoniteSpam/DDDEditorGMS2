@@ -9,10 +9,11 @@ function ui_init_game_data_refresh() {
     
     if (!data) return;
     
+    var instance;
     if (selection + 1) {
-        var instance = guid_get(data.instances[selection].GUID);
+        instance = guid_get(data.instances[selection].GUID);
     } else {
-        var instance = noone;
+        instance = noone;
     }
     
     // this is causing issues with the YYC (I32 argument is undefined) - please try to
@@ -103,7 +104,7 @@ function ui_init_game_data_refresh() {
                             ui_list_deselect(thingy);
                             for (var k = 0; k < ds_list_size(Stuff.all_animations); k++) {
                                 // still no need to mess with the list
-                                if (Stuff.all_animations[k].GUID == instance.values[n][0]) {
+                                if (Stuff.all_animations[| k].GUID == instance.values[n][0]) {
                                     ui_list_select(thingy, k, true);
                                     break;
                                 }
@@ -122,7 +123,7 @@ function ui_init_game_data_refresh() {
                         case DataTypes.IMG_SKYBOX:
                             ui_list_deselect(thingy);
                             for (var k = 0; k < ds_list_size(thingy.entries); k++) {
-                                if (thingy.entries[k].GUID == instance.values[n][0]) {
+                                if (thingy.entries[| k].GUID == instance.values[n][0]) {
                                     ui_list_select(thingy, k, true);
                                     break;
                                 }

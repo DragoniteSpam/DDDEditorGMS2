@@ -12,7 +12,7 @@ function uivc_data_property_list_guid(argument0) {
         var instance = data.instances[selection];
         var plist = instance.values[list.key];
     
-        plist[@ pselection] = (data_selection + 1) ? list.entries[data_selection].GUID : NULL;
+        plist[@ pselection] = (data_selection + 1) ? list.entries[| data_selection].GUID : NULL;
     }
 
 
