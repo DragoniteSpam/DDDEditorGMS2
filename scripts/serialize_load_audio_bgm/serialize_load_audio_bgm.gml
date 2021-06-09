@@ -7,8 +7,6 @@ function serialize_load_audio_bgm(argument0, argument1) {
 
     var addr_next = buffer_read(buffer, buffer_u64);
 
-    ds_list_clear_instances(Stuff.all_bgm);
-
     var n_bgm = buffer_read(buffer, buffer_u16);
 
     for (var i = 0; i < n_bgm; i++) {

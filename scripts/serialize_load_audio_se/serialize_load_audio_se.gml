@@ -7,8 +7,6 @@ function serialize_load_audio_se(argument0, argument1) {
 
     var addr_next = buffer_read(buffer, buffer_u64);
 
-    ds_list_clear_instances(Stuff.all_se);
-
     var n_se = buffer_read(buffer, buffer_u16);
 
     for (var i = 0; i < n_se; i++) {
