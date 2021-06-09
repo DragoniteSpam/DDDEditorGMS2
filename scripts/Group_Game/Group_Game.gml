@@ -56,6 +56,10 @@ Game = {
         etc: ds_list_create(),
         skybox: ds_list_create(),
     },
+    audio: {
+        bgm: ds_list_create(),
+        se: ds_list_create(),
+    },
     
     // leave this here for now
     Clear: function() {
