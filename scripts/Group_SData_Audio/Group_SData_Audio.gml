@@ -12,6 +12,19 @@ function DataAudio(name) : SData(name) constructor {
         return -1;
     };
     
+    static LoadJSONAudio = function(json) {
+        self.LoadJSONBase(json);
+        self.fmod_type = json.fmod_type;
+        self.fmod_rate = json.fmod_rate;
+        self.temp_name = json.temp_name;
+        self.loop_start = json.loop_start;
+        self.loop_end = json.loop_end;
+    };
+    
+    static LoadJSON = function(json) {
+        self.LoadJSONAudio(json);
+    };
+    
     static SaveAsset = function(directory) {
         directory += "/";
         var guid = string_replace(self.GUID, ":", "_");
