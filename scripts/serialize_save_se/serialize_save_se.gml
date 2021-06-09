@@ -3,11 +3,11 @@ function serialize_save_se(buffer) {
     var addr_next = buffer_tell(buffer);
     buffer_write(buffer, buffer_u64, 0);
     
-    var n_se = ds_list_size(Stuff.all_se);
+    var n_se = ds_list_size(Game.audio.se);
     buffer_write(buffer, buffer_u16, n_se);
     
     for (var i = 0; i < n_se; i++) {
-        var se = Stuff.all_se[| i];
+        var se = Game.audio.se[| i];
         
         serialize_save_generic(buffer, se);
         

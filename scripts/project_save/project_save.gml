@@ -87,8 +87,8 @@ function project_save() {
         version: ProjectSaveVersions._CURRENT - 1,
     }), folder_name + "images.json");
     buffer_write_file(json_stringify({
-        se: project_write_json(Stuff.all_se),
-        bgm: project_write_json(Stuff.all_bgm),
+        se: project_write_json(Game.audio.se),
+        bgm: project_write_json(Game.audio.bgm),
         version: ProjectSaveVersions._CURRENT - 1,
     }), folder_name + "audio.json");
     buffer_write_file(json_stringify({
@@ -128,8 +128,8 @@ function project_save() {
     save_assets(folder_image_name, Game.graphics.tile_animations);
     save_assets(folder_image_name, Game.graphics.etc);
     save_assets(folder_image_name, Game.graphics.skybox);
-    save_assets(folder_audio_name, Stuff.all_se);
-    save_assets(folder_audio_name, Stuff.all_bgm);
+    save_assets(folder_audio_name, Game.audio.se);
+    save_assets(folder_audio_name, Game.audio.bgm);
     save_assets(folder_mesh_name, Stuff.all_meshes);
     save_assets(folder_mesh_autotile_name, Stuff.all_mesh_autotiles);
     save_assets(folder_map_name, Stuff.all_maps);

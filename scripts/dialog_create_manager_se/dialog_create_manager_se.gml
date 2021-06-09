@@ -23,7 +23,7 @@ function dialog_create_manager_se(dialog) {
     var yy = 64;
     var yy_base = yy;
     
-    var el_list = create_list(16, yy, "Sound Effects", "<no sound effects>", ew, eh, 12, uivc_list_audio_se, false, dg, Stuff.all_se);
+    var el_list = create_list(16, yy, "Sound Effects", "<no sound effects>", ew, eh, 12, uivc_list_audio_se, false, dg, Game.audio.se);
     el_list.entries_are = ListEntries.INSTANCES;
     el_list.numbered = true;
     dg.el_list = el_list;

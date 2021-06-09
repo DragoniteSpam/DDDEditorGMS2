@@ -98,12 +98,12 @@ function dialog_entity_data_enable_by_type(dialog) {
         case DataTypes.AUDIO_BGM:
             dialog.el_data_builtin_list.interactive = true;
             dialog.el_data_builtin_list.enabled = true;
-            dialog.el_data_builtin_list.entries = Stuff.all_bgm;
+            dialog.el_data_builtin_list.entries = Game.audio.bgm;
             break;
         case DataTypes.AUDIO_SE:
             dialog.el_data_builtin_list.interactive = true;
             dialog.el_data_builtin_list.enabled = true;
-            dialog.el_data_builtin_list.entries = Stuff.all_se;
+            dialog.el_data_builtin_list.entries = Game.audio.se;
             break;
         case DataTypes.ANIMATION:
             dialog.el_data_builtin_list.interactive = true;

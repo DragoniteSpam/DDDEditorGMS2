@@ -30,7 +30,7 @@ function serialize_load_audio_se(argument0, argument1) {
             se.fmod = FMODGMS_Snd_LoadStream(environment_get_variable("localappdata") + "\\" + game_project_name + "\\" + se.temp_name);
         }
     
-        ds_list_add(Stuff.all_se, se);
+        ds_list_add(Game.audio.se, se);
     }
 
 

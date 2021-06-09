@@ -7,11 +7,11 @@ function serialize_save_bgm(argument0) {
     var addr_next = buffer_tell(buffer);
     buffer_write(buffer, buffer_u64, 0);
 
-    var n_bgm = ds_list_size(Stuff.all_bgm);
+    var n_bgm = ds_list_size(Game.audio.bgm);
     buffer_write(buffer, buffer_u16, n_bgm);
 
     for (var i = 0; i < n_bgm; i++) {
-        var bgm = Stuff.all_bgm[| i];
+        var bgm = Game.audio.bgm[| i];
     
         serialize_save_generic(buffer, bgm);
     

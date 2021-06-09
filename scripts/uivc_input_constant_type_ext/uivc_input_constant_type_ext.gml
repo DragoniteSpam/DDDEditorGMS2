@@ -114,7 +114,7 @@ function ui_constant_data_activate(base_dialog, what) {
             break;
         case DataTypes.AUDIO_BGM:
             var list = base_dialog.el_value_other;
-            list.entries = Stuff.all_bgm;
+            list.entries = Game.audio.bgm;
             ui_list_deselect(list);
             ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value)), true);
             list.enabled = true;
@@ -122,7 +122,7 @@ function ui_constant_data_activate(base_dialog, what) {
             break;
         case DataTypes.AUDIO_SE:
             var list = base_dialog.el_value_other;
-            list.entries = Stuff.all_se;
+            list.entries = Game.audio.se;
             ui_list_deselect(list);
             ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value)), true);
             list.enabled = true;

@@ -216,13 +216,13 @@ function ui_init_game_data_activate() {
                                 var hh = ui_get_list_height(element);
                                 break;
                             case DataTypes.AUDIO_BGM:           // list
-                                element = create_list(0, yy, property.name, "<no BGM>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Stuff.all_bgm);
+                                element = create_list(0, yy, property.name, "<no BGM>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Game.audio.bgm);
                                 element.key = i;
                                 element.entries_are = ListEntries.INSTANCES;
                                 var hh = ui_get_list_height(element);
                                 break;
                             case DataTypes.AUDIO_SE:           // list
-                                element = create_list(0, yy, property.name, "<no SE>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Stuff.all_se);
+                                element = create_list(0, yy, property.name, "<no SE>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Game.audio.se);
                                 element.key = i;
                                 element.entries_are = ListEntries.INSTANCES;
                                 var hh = ui_get_list_height(element);

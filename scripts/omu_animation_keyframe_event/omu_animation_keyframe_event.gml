@@ -42,11 +42,11 @@ function omu_animation_keyframe_event(argument0) {
     var el_event = create_input(col1_x, yy, "Function call", ew, eh, uivc_animation_keyframe_function, keyframe.event, "string", validate_string, 0, 1, 16, vx1, vy1, vx2, vy2, dg);
     yy += el_event.height + spacing;
 
-    var el_audio = create_list(col1_x, yy, "Sound Effect", "<no sound effects>", ew, eh, 10, uivc_animation_keyframe_audio, false, dg, Stuff.all_se);
+    var el_audio = create_list(col1_x, yy, "Sound Effect", "<no sound effects>", ew, eh, 10, uivc_animation_keyframe_audio, false, dg, Game.audio.se);
     el_audio.entries_are = ListEntries.INSTANCES;
     dg.el_audio = el_audio;
 
-    var audio_index = ds_list_find_index(Stuff.all_se, keyframe.audio);
+    var audio_index = ds_list_find_index(Game.audio.se, keyframe.audio);
     ui_list_select(el_audio, audio_index);
 
     yy += ui_get_list_height(el_audio) + spacing;

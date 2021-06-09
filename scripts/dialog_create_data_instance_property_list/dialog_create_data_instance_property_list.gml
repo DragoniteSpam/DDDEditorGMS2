@@ -129,13 +129,13 @@ function dialog_create_data_instance_property_list(root) {
             yy += ui_get_list_height(el_value) + spacing;
             break;
         case DataTypes.AUDIO_BGM:
-            var el_value = create_list(16, yy, "Select a BGM resource:", "<no BGM>", ew, eh, 8, uivc_data_property_list_guid, false, dg, Stuff.all_bgm);
+            var el_value = create_list(16, yy, "Select a BGM resource:", "<no BGM>", ew, eh, 8, uivc_data_property_list_guid, false, dg, Game.audio.bgm);
             el_value.entries_are = ListEntries.INSTANCES;
             el_value.key = root.key;
             yy += ui_get_list_height(el_value) + spacing;
             break;
         case DataTypes.AUDIO_SE:
-            var el_value = create_list(16, yy, "Select an SE resource:", "<no SE>", ew, eh, 8, uivc_data_property_list_guid, false, dg, Stuff.all_se);
+            var el_value = create_list(16, yy, "Select an SE resource:", "<no SE>", ew, eh, 8, uivc_data_property_list_guid, false, dg, Game.audio.se);
             el_value.entries_are = ListEntries.INSTANCES;
             el_value.key = root.key;
             yy += ui_get_list_height(el_value) + spacing;

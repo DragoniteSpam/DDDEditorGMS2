@@ -35,7 +35,7 @@ function serialize_load_audio_bgm(argument0, argument1) {
             FMODGMS_Snd_Set_LoopPoints(bgm.fmod, bgm.loop_start, bgm.loop_end);
         }
     
-        ds_list_add(Stuff.all_bgm, bgm);
+        ds_list_add(Game.audio.bgm, bgm);
     }
 
 

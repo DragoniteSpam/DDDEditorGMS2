@@ -22,8 +22,8 @@ function dialog_create_event_node_audio_se(argument0, argument1, argument2, argu
     var yy = 64;
 
     var el_list = create_list(16, yy, "All Sound Effects", "<no se>", ew, eh, n_slots, null, false, dg);
-    for (var i = 0; i < ds_list_size(Stuff.all_se); i++) {
-        create_list_entries(el_list, Stuff.all_se[| i]);
+    for (var i = 0; i < ds_list_size(Game.audio.se); i++) {
+        create_list_entries(el_list, Game.audio.se[| i]);
     }
     el_list.entries_are = ListEntries.INSTANCES;
     el_list.node = argument1;
