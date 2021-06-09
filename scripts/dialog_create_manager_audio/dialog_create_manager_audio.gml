@@ -61,8 +61,7 @@ function dialog_create_manager_audio(dialog, name, prefix, list) {
             var data = list.entries[| selection];
             FMODGMS_Snd_Unload(data.fmod);
             ds_list_delete(list.entries, ds_list_find_index(list.entries, data));
-            instance_activate_object(data);
-            instance_destroy(data);
+            data.Destroy();
             ui_list_deselect(list);
             list.onvaluechange(list);
         }
