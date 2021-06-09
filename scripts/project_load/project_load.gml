@@ -82,6 +82,13 @@ function project_load(id) {
         var version = json.version;
         var se = json.se;
         var bgm = json.bgm;
+        
+        for (var i = 0; i < array_length(se); i++) {
+            var audio = new DataAudio();
+            audio.LoadJSON(se[i]);
+            audio.LoadAsset(directory);
+            ds_list_add(Game.audio.se, audio);
+        }
     };
     
     static project_load_meshes = function(filename, directory) {
