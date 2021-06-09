@@ -10,6 +10,14 @@ function project_save() {
         return json;
     };
     
+    static project_write_json_simple = function(data_list) {
+        var json = array_create(ds_list_size(data_list));
+        for (var i = 0, n = ds_list_size(data_list); i < n; i++) {
+            json[i] = data_list[| i];
+        }
+        return json;
+    };
+    
     static save_assets = function(folder, data_list) {
         for (var i = 0, n = ds_list_size(data_list); i < n; i++) {
             data_list[| i].SaveAsset(folder);
@@ -87,8 +95,8 @@ function project_save() {
         version: ProjectSaveVersions._CURRENT - 1,
     }), folder_name + "images.json");
     buffer_write_file(json_stringify({
-        se: project_write_json(Game.audio.se),
-        bgm: project_write_json(Game.audio.bgm),
+        se: project_write_json_simple(Game.audio.se),
+        bgm: project_write_json_simple(Game.audio.bgm),
         version: ProjectSaveVersions._CURRENT - 1,
     }), folder_name + "audio.json");
     buffer_write_file(json_stringify({
