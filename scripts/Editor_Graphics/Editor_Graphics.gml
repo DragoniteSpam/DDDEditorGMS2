@@ -37,13 +37,12 @@ function EditorGraphics() constructor {
         
         c_transform_scaling(Stuff.tile_width, Stuff.tile_height, Stuff.tile_depth);
         self.c_shape_tile = c_shape_create();
-        c_shape_begin_trimesh();
-        c_shape_load_trimesh("data/basic/ctile.d3d");
-        c_shape_end_trimesh(self.c_shape_tile);
+        c_transform_position(0.5, 0.5, 0);
+        c_shape_add_box(self.c_shape_tile, 0.5, 0.5, 0);
+        c_transform_identity();
         self.c_shape_block = c_shape_create();
-        c_shape_begin_trimesh();
-        c_shape_load_trimesh("data/basic/cube.d3d");
-        c_shape_end_trimesh(self.c_shape_block);
+        c_transform_position(0.5, 0.5, 0.5);
+        c_shape_add_box(self.c_shape_block, 0.5, 0.5, 0.5);
         c_transform_identity();
         self.c_shape_sphere = c_shape_create();
         c_shape_add_sphere(self.c_shape_sphere, 1);
