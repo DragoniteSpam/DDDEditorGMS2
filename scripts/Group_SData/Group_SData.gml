@@ -23,7 +23,7 @@ function SData(name) constructor {
         internal_name_set(self, json.internal_name);
         self.flags = json.flags;
         self.summary = json.summary;
-        guid_set(self, json.guid);
+        guid_set(self, json.GUID);
     };
     
     static LoadJSON = function(json) {

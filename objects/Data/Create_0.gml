@@ -26,7 +26,7 @@ LoadJSONBase = function(struct) {
     internal_name_set(self.id, struct.internal_name);
     self.flags = struct.flags;
     self.summary = struct.summary;
-    guid_set(self.id, struct.guid);
+    guid_set(self.id, struct.GUID);
 };
 
 LoadJSON = function(struct) {
