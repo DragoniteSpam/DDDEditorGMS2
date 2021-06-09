@@ -12,7 +12,7 @@ function serialize_load_audio_bgm(argument0, argument1) {
     var n_bgm = buffer_read(buffer, buffer_u16);
 
     for (var i = 0; i < n_bgm; i++) {
-        var bgm = instance_create_depth(0, 0, 0, DataAudio);
+        var bgm = new DataAudio();
     
         serialize_load_generic(buffer, bgm, version);
     

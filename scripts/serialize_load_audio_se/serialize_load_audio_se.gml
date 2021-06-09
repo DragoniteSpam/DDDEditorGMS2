@@ -12,7 +12,7 @@ function serialize_load_audio_se(argument0, argument1) {
     var n_se = buffer_read(buffer, buffer_u16);
 
     for (var i = 0; i < n_se; i++) {
-        var se = instance_create_depth(0, 0, 0, DataAudio);
+        var se = new DataAudio();
     
         serialize_load_generic(buffer, se, version);
     

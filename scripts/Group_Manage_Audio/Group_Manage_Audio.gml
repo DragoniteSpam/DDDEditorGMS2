@@ -2,8 +2,7 @@ function audio_add(filename, prefix, loop_mode) {
     var name = filename_name(filename);
     var internal_name = string_lettersdigits(string_replace_all(name, filename_ext(filename), ""));
     
-    var data = instance_create_depth(0, 0, 0, DataAudio);
-    data.name = name;
+    var data = new DataAudio(name);
     data.fmod = FMODGMS_Snd_LoadStream(filename);
     data.fmod_type = FMODGMS_Snd_Get_Type(data.fmod);
     FMODGMS_Snd_Set_LoopMode(data.fmod, loop_mode, -1);
