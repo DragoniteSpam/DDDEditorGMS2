@@ -44,37 +44,6 @@ function DataAnimationKeyframe() constructor {
     
     self.moment = 0;
     self.timeline_layer = 0;
-    
-    static CreateJSONAnimKeyframe = function() {
-        var json = { };
-        json.relative = self.relative;
-        json.xx = self.xx;
-        json.yy = self.yy;
-        json.zz = self.zz;
-        json.xrot = self.xrot;
-        json.yrot = self.yrot;
-        json.zrot = self.zrot;
-        json.xscale = self.xscale;
-        json.yscale = self.yscale;
-        json.zscale = self.zscale;
-        json.color = self.color;
-        json.alpha = self.alpha;
-        json.audio = self.audio;
-        
-        json.graphic_type = self.graphic_type;
-        json.graphic_sprite = self.graphic_sprite;
-        json.graphic_mesh = self.graphic_mesh;
-        json.graphic_frame = self.graphic_frame;
-        json.graphic_direction = self.graphic_direction;
-        
-        json.tween = self.tween;
-        
-        return json;
-    };
-    
-    static CreateJSON = function() {
-        return self.CreateJSONAnimKeyframe();
-    };
 }
 
 enum KeyframeParameters {
