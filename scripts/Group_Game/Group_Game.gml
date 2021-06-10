@@ -89,6 +89,7 @@ Game = {
     
     temp: {
         guids: { },
+        current: 0,
     },
     
     // leave this here for now

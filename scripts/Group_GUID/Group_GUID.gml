@@ -5,7 +5,7 @@ function guid_remove(guid) {
 function guid_generate() {
     var n;
     do {
-        n = Game.meta.project.id + ":" + string_hex(Stuff.guid_current++, 8);
+        n = Game.meta.project.id + ":" + string_hex(Game.temp.current++, 8);
     } until (!Game.temp.guids[$ n]);
     
     return  n;
