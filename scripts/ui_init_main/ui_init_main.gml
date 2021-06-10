@@ -1154,10 +1154,8 @@ function ui_init_main(mode) {
         
         element = create_button(col1_x, yy, "Delete", col_width, element_height, fa_center, function(button) {
             var data = Game.meshes[| Stuff.map.selection_fill_mesh];
-            if (data) {
-                instance_activate_object(data);
-                instance_destroy(data);
-            }
+            if (data) data.Destroy();
+            batch_again();
         }, t_p_mesh_editor);
         element.color = c_red;
         ds_list_add(t_p_mesh_editor.contents, element);
