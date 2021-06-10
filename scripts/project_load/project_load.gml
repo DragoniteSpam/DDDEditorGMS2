@@ -116,7 +116,7 @@ function project_load(id) {
         var version = json.version;
         var autotiles = json.autotiles;
         
-        for (var i = 0; i < array_length(meshes); i++) {
+        for (var i = 0; i < array_length(autotiles); i++) {
             var autotile = new DataMeshAutotile();
             autotile.LoadJSON(autotiles[i]);
             autotile.LoadAsset(directory);
@@ -128,6 +128,12 @@ function project_load(id) {
         var json = json_parse(buffer_read_file(filename));
         var version = json.version;
         var animations = json.animations;
+        
+        for (var i = 0; i < array_length(animations); i++) {
+            var animation = instance_create_depth(0, 0, 0, DataAnimation);
+            animation.LoadJSON(animations[i]);
+            ds_list_add(Stuff.all_animations, animation);
+        }
     };
     
     static project_load_terrain = function(filename, directory) {
