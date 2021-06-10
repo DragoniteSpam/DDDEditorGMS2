@@ -114,9 +114,7 @@ Game = {
 };
 
 Identifiers = {
-    guid: {
-        guids: { },
-    },
+    guids: { },
     
     Clear: function() {
         guid.guids = { };

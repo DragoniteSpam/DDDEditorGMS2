@@ -1,18 +1,18 @@
 function guid_remove(guid) {
-    if (Identifiers.guid[$ guid]) variable_struct_remove(Identifiers.guid, guid);
+    if (Identifiers.guids[$ guid]) variable_struct_remove(Identifiers.guids, guid);
 }
 
 function guid_generate() {
     var n;
     do {
         n = Game.meta.project.id + ":" + string_hex(Game.meta.extra.guid_current++, 8);
-    } until (!Identifiers.guid[$ n]);
+    } until (!Identifiers.guids[$ n]);
     
     return  n;
 }
 
 function guid_get(value) {
-    return Identifiers.guid[$ value];
+    return Identifiers.guids[$ value];
 }
 
 function guid_set(data, addition, force) {
@@ -20,15 +20,15 @@ function guid_set(data, addition, force) {
     if (force == undefined) force = false;
     
     // almost all data is automatically created with a GUID, so remove it
-    if (Identifiers.guid[$ data.GUID]) {
-        variable_struct_remove(Identifiers.guid, addition);
+    if (Identifiers.guids[$ data.GUID]) {
+        variable_struct_remove(Identifiers.guids, addition);
     }
     
     // if there's a collision, you ought to be informed (and explode)
-    if (Identifiers.guid[$ addition]) {
+    if (Identifiers.guids[$ addition]) {
         show_error("guid conflict: " + data.name + " is trying to overwrite " + guid_get(addition).name + " [" + string(addition) + "]", false);
     }
     
-    Identifiers.guid[$ addition] = data;
+    Identifiers.guids[$ addition] = data;
     data.GUID = addition;
 }
