@@ -32,7 +32,7 @@ tex_stencil = NULL;                 // decal
 
 texture_scale = 1;
 
-ds_list_add(Stuff.all_meshes, id);
+ds_list_add(Game.meshes, id);
 
 CopyPropertiesFrom = function(mesh) {
     // cshape is currently NOT copied!

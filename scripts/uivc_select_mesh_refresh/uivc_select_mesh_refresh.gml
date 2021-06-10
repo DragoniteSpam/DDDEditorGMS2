@@ -3,7 +3,7 @@ function uivc_select_mesh_refresh(argument0) {
 
     var index = argument0;
 
-    var data = Stuff.all_meshes[| Stuff.map.selection_fill_mesh];
+    var data = Game.meshes[| Stuff.map.selection_fill_mesh];
     Stuff.map.ui.t_p_mesh_editor.element_tag = !!data;
 
     if (data) {

@@ -6,7 +6,7 @@ function ui_init_game_data_activate() {
         Stuff.data.ui.active_type_guid = Game.data[selection].GUID;
 
         var data = guid_get(Stuff.data.ui.active_type_guid);
-
+        
         Stuff.data.ui.el_inst_add.interactive = false;
         Stuff.data.ui.el_inst_remove.interactive = false;
 
@@ -153,7 +153,7 @@ function ui_init_game_data_activate() {
                                 var hh = element.height;
                                 break;
                             case DataTypes.MESH:           // list
-                                element = create_list(0, yy, property.name, "<no Meshes>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Stuff.all_meshes);
+                                element = create_list(0, yy, property.name, "<no Meshes>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Game.meshes);
                                 element.key = i;
                                 element.entries_are = ListEntries.INSTANCES;
                                 var hh = ui_get_list_height(element);

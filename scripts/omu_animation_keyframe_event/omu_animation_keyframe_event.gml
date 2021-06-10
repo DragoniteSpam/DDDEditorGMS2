@@ -92,12 +92,12 @@ function omu_animation_keyframe_event(argument0) {
     var sprite_battler_index = ds_list_find_index(Game.graphics.battlers, keyframe.graphic_sprite);
     ui_list_select(el_graphic_battler_sprite_list, sprite_battler_index, true);
 
-    var el_graphic_mesh_list = create_list(col2_x, yy, "Mesh", "<no meshes>", ew, eh, 16, uivc_animation_keyframe_graphic_mesh, false, dg, Stuff.all_meshes);
+    var el_graphic_mesh_list = create_list(col2_x, yy, "Mesh", "<no meshes>", ew, eh, 16, uivc_animation_keyframe_graphic_mesh, false, dg, Game.meshes);
     el_graphic_mesh_list.enabled = (keyframe.graphic_type == GraphicTypes.MESH);
     el_graphic_mesh_list.entries_are = ListEntries.INSTANCES;
     dg.el_graphic_mesh_list = el_graphic_mesh_list;
 
-    var mesh_index = ds_list_find_index(Stuff.all_meshes, keyframe.graphic_mesh);
+    var mesh_index = ds_list_find_index(Game.meshes, keyframe.graphic_mesh);
     ui_list_select(el_graphic_mesh_list, mesh_index);
 
     yy += ui_get_list_height(el_graphic_mesh_list) + spacing;

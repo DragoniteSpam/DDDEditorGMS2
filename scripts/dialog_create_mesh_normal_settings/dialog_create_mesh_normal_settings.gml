@@ -25,7 +25,7 @@ function dialog_create_mesh_normal_settings(root, selection) {
     var el_none = create_button(c1x, yy, "Remove Normals", ew, eh, fa_center, function(button) {
         var selection = button.root.selection;
         for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-            Stuff.all_meshes[| index].SetNormalsZero();
+            Game.meshes[| index].SetNormalsZero();
         }
         batch_again();
     }, dg);
@@ -35,7 +35,7 @@ function dialog_create_mesh_normal_settings(root, selection) {
     var el_flat = create_button(c1x, yy, "Set Flat Normals", ew, eh, fa_center, function(button) {
         var selection = button.root.selection;
         for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-            Stuff.all_meshes[| index].SetNormalsFlat();
+            Game.meshes[| index].SetNormalsFlat();
         }
         batch_again();
     }, dg);
@@ -45,7 +45,7 @@ function dialog_create_mesh_normal_settings(root, selection) {
     var el_smooth = create_button(c1x, yy, "Set Smooth Normals", ew, eh, fa_center, function(button) {
         var selection = button.root.selection;
         for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-            Stuff.all_meshes[| index].SetNormalsSmooth(Settings.config.normal_threshold);
+            Game.meshes[| index].SetNormalsSmooth(Settings.config.normal_threshold);
         }
         batch_again();
     }, dg);

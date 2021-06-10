@@ -5,7 +5,14 @@ function project_load(id) {
     static project_load_data = function(filename) {
         var json = json_parse(buffer_read_file(filename));
         var version = json.version;
-        Game.data = json.data;
+        var data = json.data;
+        
+        for (var i = 0; i < array_length(data); i++) {
+            var data = new SDataClass();
+            data.LoadJSON(sedata);
+            array_push(Game.data, data);
+        }
+        
         if (Stuff.data.ui) Stuff.data.ui.el_master.entries = Game.data;
     };
     
@@ -108,7 +115,7 @@ function project_load(id) {
             var mesh = instance_create_depth(0, 0, 0, DataMesh);
             mesh.LoadJSON(meshes[i]);
             mesh.LoadAsset(directory);
-            ds_list_add(Stuff.all_meshes, mesh);
+            ds_list_add(Game.meshes, mesh);
         }
     };
     

@@ -815,7 +815,7 @@ function ui_init_main(mode) {
         yy = legal_y + spacing;
         
         element_entity_mesh_list = create_list(col1_x, yy, "Mesh", "<no meshes>", col_width, element_height, 16, function(list) {
-            var mesh = Stuff.all_meshes[| ui_list_selection(list)];
+            var mesh = Game.meshes[| ui_list_selection(list)];
             // this assumes that every selected entity is already an instance of Mesh
             var entities = Stuff.map.selected_entities;
             for (var i = 0; i < ds_list_size(entities); i++) {
@@ -829,7 +829,7 @@ function ui_init_main(mode) {
             Stuff.map.ui.element_entity_mesh_submesh.entries = mesh.submeshes;
             ui_list_deselect(Stuff.map.ui.element_entity_mesh_submesh);
             ui_list_select(Stuff.map.ui.element_entity_mesh_submesh, proto_guid_get(mesh, mesh.first_proto_guid), true);
-        }, false, t_p_mesh, Stuff.all_meshes);
+        }, false, t_p_mesh, Game.meshes);
         element_entity_mesh_list.allow_deselect = false;
         element_entity_mesh_list.entries_are = ListEntries.INSTANCES;
         ds_list_add(t_p_mesh.contents, element_entity_mesh_list);
@@ -1072,7 +1072,7 @@ function ui_init_main(mode) {
         element_mesh_list = create_list(col1_x, yy, "Available meshes: ", "<no meshes>", col_width, element_height, 25, function(list) {
             Stuff.map.selection_fill_mesh = ui_list_selection(list);
             uivc_select_mesh_refresh(Stuff.map.selection_fill_mesh);
-        }, false, t_p_mesh_editor, Stuff.all_meshes);
+        }, false, t_p_mesh_editor, Game.meshes);
         element_mesh_list.entries_are = ListEntries.SCRIPT;
         element_mesh_list.colorize = true;
         element_mesh_list.render = method(element_mesh_list, function(list, x, y) {
@@ -1095,7 +1095,7 @@ function ui_init_main(mode) {
             return c_black;
         });
         element_mesh_list.ondoubleclick = method(element_mesh_list, function(list) {
-            var data = Stuff.all_meshes[| Stuff.map.selection_fill_mesh];
+            var data = Game.meshes[| Stuff.map.selection_fill_mesh];
             if (data) dialog_create_mesh_advanced(undefined, data);
         });
         element_mesh_list.evaluate_text = method(element_mesh_list, function(list, index) {
@@ -1153,7 +1153,7 @@ function ui_init_main(mode) {
         yy += element.height + spacing;
         
         element = create_button(col1_x, yy, "Delete", col_width, element_height, fa_center, function(button) {
-            var data = Stuff.all_meshes[| Stuff.map.selection_fill_mesh];
+            var data = Game.meshes[| Stuff.map.selection_fill_mesh];
             if (data) {
                 instance_activate_object(data);
                 instance_destroy(data);
@@ -1176,7 +1176,7 @@ function ui_init_main(mode) {
         yy += element.height + spacing;
         
         element = create_input(col2_x, yy, "", col_width, element_height, function(input) {
-            var data = Stuff.all_meshes[| Stuff.map.selection_fill_mesh];
+            var data = Game.meshes[| Stuff.map.selection_fill_mesh];
             if (data) {
                 data.name = input.value;
             }
@@ -1193,7 +1193,7 @@ function ui_init_main(mode) {
         yy += element.height + spacing;
         
         element = create_input(col2_x, yy, "", col_width, element_height, function(input) {
-            var data = Stuff.all_meshes[| Stuff.map.selection_fill_mesh];
+            var data = Game.meshes[| Stuff.map.selection_fill_mesh];
             if (data) {
                 internal_name_set(data, input.value);
             }
@@ -1216,7 +1216,7 @@ function ui_init_main(mode) {
         yy += element.height + spacing;
         
         element = create_input(bounds_x, yy, "xmin:", col_width / 2, element_height, function(input) {
-            var data = Stuff.all_meshes[| Stuff.map.selection_fill_mesh];
+            var data = Game.meshes[| Stuff.map.selection_fill_mesh];
             if (data) {
                 var old_value = data.xmin;
                 data.xmin = real(input.value);
@@ -1229,7 +1229,7 @@ function ui_init_main(mode) {
         t_p_mesh_editor.xmin = element;
         
         element = create_input(bounds_x_2, yy, "xmax:", col_width / 2, element_height, function(input) {
-            var data = Stuff.all_meshes[| Stuff.map.selection_fill_mesh];
+            var data = Game.meshes[| Stuff.map.selection_fill_mesh];
             if (data) {
                 var old_value = data.xmax;
                 data.xmax = real(input.value);
@@ -1244,7 +1244,7 @@ function ui_init_main(mode) {
         yy += element.height + spacing;
         
         element = create_input(bounds_x, yy, "ymin:", col_width / 2, element_height, function(input) {
-            var data = Stuff.all_meshes[| Stuff.map.selection_fill_mesh];
+            var data = Game.meshes[| Stuff.map.selection_fill_mesh];
             if (data) {
                 var old_value = data.ymin;
                 data.ymin = real(input.value);
@@ -1257,7 +1257,7 @@ function ui_init_main(mode) {
         t_p_mesh_editor.ymin = element;
         
         element = create_input(bounds_x_2, yy, "ymax:", col_width / 2, element_height, function(input) {
-            var data = Stuff.all_meshes[| Stuff.map.selection_fill_mesh];
+            var data = Game.meshes[| Stuff.map.selection_fill_mesh];
             if (data) {
                 var old_value = data.ymax;
                 data.ymax = real(input.value);
@@ -1272,7 +1272,7 @@ function ui_init_main(mode) {
         yy += element.height + spacing;
         
         element = create_input(bounds_x, yy, "zmin:", col_width / 2, element_height, function(input) {
-            var data = Stuff.all_meshes[| Stuff.map.selection_fill_mesh];
+            var data = Game.meshes[| Stuff.map.selection_fill_mesh];
             if (data) {
                 var old_value = data.zmin;
                 data.zmin = real(input.value);
@@ -1285,7 +1285,7 @@ function ui_init_main(mode) {
         t_p_mesh_editor.zmin = element;
         
         element = create_input(bounds_x_2, yy, "zmax:", col_width / 2, element_height, function(input) {
-            var data = Stuff.all_meshes[| Stuff.map.selection_fill_mesh];
+            var data = Game.meshes[| Stuff.map.selection_fill_mesh];
             if (data) {
                 var old_value = data.zmax;
                 data.zmax = real(input.value);
@@ -1300,7 +1300,7 @@ function ui_init_main(mode) {
         yy += element.height + spacing;
         
         element = create_button(col2_x, yy, "Flag Data", col_width, element_height, fa_center, function(button) {
-            var data = Stuff.all_meshes[| Stuff.map.selection_fill_mesh];
+            var data = Game.meshes[| Stuff.map.selection_fill_mesh];
             if (data) {
                 dialog_create_mesh_collision_data(noone, data);
             }
@@ -1310,7 +1310,7 @@ function ui_init_main(mode) {
         yy += element.height + spacing;
         
         element = create_button(col2_x, yy, "Advanced", col_width, element_height, fa_center, function(button) {
-            var data = Stuff.all_meshes[| Stuff.map.selection_fill_mesh];
+            var data = Game.meshes[| Stuff.map.selection_fill_mesh];
             if (data) dialog_create_mesh_advanced(undefined, data);
         }, t_p_mesh_editor);
         ds_list_add(t_p_mesh_editor.contents, element);
@@ -1324,7 +1324,7 @@ function ui_init_main(mode) {
         yy += element.height + spacing;
         
         element = create_button(col2_x, yy, "Export Selected", col_width, element_height, fa_center, function(button) {
-            var data = Stuff.all_meshes[| Stuff.map.selection_fill_mesh];
+            var data = Game.meshes[| Stuff.map.selection_fill_mesh];
             if (data) {
                 var fn = get_save_filename_mesh();
                 if (string_length(fn) > 0) {

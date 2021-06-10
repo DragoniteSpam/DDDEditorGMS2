@@ -15,4 +15,4 @@ for (var i = 0; i < ds_list_size(map.contents.all_entities); i++) {
     }
 }
 
-ds_list_delete(Stuff.all_meshes, ds_list_find_index(Stuff.all_meshes, id));
+ds_list_delete(Game.meshes, ds_list_find_index(Game.meshes, id));

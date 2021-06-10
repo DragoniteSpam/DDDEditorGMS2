@@ -100,7 +100,7 @@ function project_save() {
         version: ProjectSaveVersions._CURRENT - 1,
     }), folder_name + "audio.json");
     buffer_write_file(json_stringify({
-        meshes: project_write_json(Stuff.all_meshes),
+        meshes: project_write_json(Game.meshes),
         version: ProjectSaveVersions._CURRENT - 1,
     }), folder_name + "meshes.json");
     buffer_write_file(json_stringify({
@@ -138,7 +138,7 @@ function project_save() {
     save_assets(folder_image_name, Game.graphics.skybox);
     save_assets(folder_audio_name, Game.audio.se);
     save_assets(folder_audio_name, Game.audio.bgm);
-    save_assets(folder_mesh_name, Stuff.all_meshes);
+    save_assets(folder_mesh_name, Game.meshes);
     save_assets(folder_mesh_autotile_name, Stuff.all_mesh_autotiles);
     save_assets(folder_map_name, Stuff.all_maps);
     Stuff.terrain.SaveAsset(folder_terrain_name);

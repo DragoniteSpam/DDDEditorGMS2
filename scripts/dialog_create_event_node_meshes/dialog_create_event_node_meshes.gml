@@ -21,7 +21,7 @@ function dialog_create_event_node_meshes(argument0, argument1, argument2, argume
 
     var yy = 64;
 
-    var el_list = create_list(16, yy, "All Meshes", "<no meshes>", ew, eh, n_slots, null, false, dg, Stuff.all_meshes);
+    var el_list = create_list(16, yy, "All Meshes", "<no meshes>", ew, eh, n_slots, null, false, dg, Game.meshes);
     el_list.entries_are = ListEntries.INSTANCES;
     el_list.node = argument1;
     el_list.property_index = argument2;

@@ -27,7 +27,7 @@ function SData(name) constructor {
     };
     
     static LoadJSON = function(json) {
-        
+        self.LoadJSONBase(json);
     };
     
     static CreateJSONBase = function() {

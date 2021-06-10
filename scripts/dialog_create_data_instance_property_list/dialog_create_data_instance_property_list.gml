@@ -152,7 +152,7 @@ function dialog_create_data_instance_property_list(root) {
             yy += el_value.height + spacing;
             break;
         case DataTypes.MESH:
-            var el_value = create_list(16, yy, "Select a Mesh resource:", "<no Meshes>", ew, eh, 8, uivc_data_property_list_guid, false, dg, Stuff.all_meshes);
+            var el_value = create_list(16, yy, "Select a Mesh resource:", "<no Meshes>", ew, eh, 8, uivc_data_property_list_guid, false, dg, Game.meshes);
             el_value.entries_are = ListEntries.INSTANCES;
             el_value.key = root.key;
             yy += ui_get_list_height(el_value) + spacing;

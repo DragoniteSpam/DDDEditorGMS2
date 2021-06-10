@@ -60,6 +60,7 @@ Game = {
         bgm: ds_list_create(),
         se: ds_list_create(),
     },
+    meshes: ds_list_create(),
     
     // leave this here for now
     Clear: function() {
@@ -71,6 +72,7 @@ Game = {
         ds_list_clear_instances(self.graphics.tile_animations);
         ds_list_clear_instances(self.graphics.etc);
         ds_list_clear_instances(self.graphics.skybox);
+        ds_list_clear_instances(self.meshes);
     },
 };
 

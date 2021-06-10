@@ -27,7 +27,7 @@ function safc_on_mesh_ui(mesh) {
         Stuff.map.ui.element_entity_mesh_submesh.interactive = true;
         // if you try to do this with a mesh that does not exist bad things will happen
         if (mesh_data) {
-            ui_list_select(Stuff.map.ui.element_entity_mesh_list, ds_list_find_index(Stuff.all_meshes, mesh_data), true);
+            ui_list_select(Stuff.map.ui.element_entity_mesh_list, ds_list_find_index(Game.meshes, mesh_data), true);
             Stuff.map.ui.element_entity_mesh_submesh.entries = mesh_data.submeshes;
             ui_list_select(Stuff.map.ui.element_entity_mesh_submesh, proto_guid_get(mesh_data, mesh.mesh_submesh), true);
         }
