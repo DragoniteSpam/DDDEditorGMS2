@@ -110,21 +110,6 @@ Game.graphics.tilesets[| 0].name = "Default";
 all_event_custom = ds_list_create();
 all_event_prefabs = ds_list_create();
 
-/*
- * example:
- * {
- *      "English": {
- *          "string1": "string1",
- *          "string2": "string2"
- *      },
- *      "Portuguese": {
- *          "string1": "texto1",
- *          "string2": "texto2"
- *      }
- * }
- */
-all_localized_text = { English: { } };
-
 #endregion
 
 #region prefab events

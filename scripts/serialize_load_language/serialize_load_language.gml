@@ -6,7 +6,7 @@ function serialize_load_language(buffer, version) {
     for (var i = 0; i < n_languages; i++) {
         var lang_name = buffer_read(buffer, buffer_string);
         Game.languages.names[@ i] = lang_name;
-        Stuff.all_localized_text[$ lang_name] = { };
+        Game.languages.text[$ lang_name] = { };
     }
     
     var n_keys = buffer_read(buffer, buffer_u32);
@@ -16,7 +16,7 @@ function serialize_load_language(buffer, version) {
     }
     
     for (var i = 0; i < n_languages; i++) {
-        var lang = Stuff.all_localized_text[$ Game.languages.names[i]];
+        var lang = Game.languages.text[$ Game.languages.names[i]];
         for (var j = 0; j < n_keys; j++) {
             lang[$ keys[j]] = buffer_read(buffer, buffer_string);
         }

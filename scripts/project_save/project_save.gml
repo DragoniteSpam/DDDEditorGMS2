@@ -27,7 +27,7 @@ function project_save() {
     static project_write_text = function() {
         return {
             langs: Game.languages.names,
-            data: Stuff.all_localized_text,
+            data: Game.languages.text,
         };
     };
     

@@ -157,7 +157,7 @@ function project_load(id) {
         var json = json_parse(buffer_read_file(filename));
         var version = json.version;
         Game.languages.names = json.lang.langs;
-        Stuff.all_localized_text = json.lang.data;
+        Game.languages.text = json.lang.data;
         language_refresh_ui();
     };
     

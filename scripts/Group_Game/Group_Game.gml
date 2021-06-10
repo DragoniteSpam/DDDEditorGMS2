@@ -66,7 +66,21 @@ Game = {
     events: ds_list_create(),
     maps: ds_list_create(),
     languages: {
+        /*
+         * example:
+         * {
+         *      "English": {
+         *          "string1": "string1",
+         *          "string2": "string2"
+         *      },
+         *      "Portuguese": {
+         *          "string1": "texto1",
+         *          "string2": "texto2"
+         *      }
+         * }
+         */
         names: ["English"],
+        text: { English: { } },
     },
     
     // leave this here for now
