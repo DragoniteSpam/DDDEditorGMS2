@@ -142,6 +142,7 @@ function project_load(id) {
         var terrain = json.terrain;
         
         Stuff.terrain.LoadJSON(terrain);
+        Stuff.terrain.LoadAsset(directory);
     };
     
     static project_load_text = function(filename) {

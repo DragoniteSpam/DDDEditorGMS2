@@ -117,6 +117,17 @@ vertex_end(terrain_buffer);
 terrain_buffer_data = buffer_create_from_vertex_buffer(terrain_buffer, buffer_fixed, 1);
 vertex_freeze(terrain_buffer);
 
+LoadAsset = function(directory) {
+    directory += "/";
+    buffer_delete(self.height_data);
+    buffer_delete(self.color_data);
+    buffer_delete(self.terrain_buffer_data);
+    self.height_data = buffer_load(directory + "height.terrain");
+    self.color_data = buffer_load(directory + "color.terrain");
+    self.terrain_buffer_data = buffer_load(directory + "terrain.terrain");
+    self.terrain_buffer = vertex_create_buffer_from_buffer(self.terrain_buffer_data, Stuff.graphics.vertex_format);
+};
+
 SaveAsset = function(directory) {
     directory += "/";
     buffer_save(self.height_data, directory + "height.terrain");
