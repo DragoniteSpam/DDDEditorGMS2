@@ -102,6 +102,13 @@ function project_load(id) {
         var json = json_parse(buffer_read_file(filename));
         var version = json.version;
         var meshes = json.meshes;
+        
+        for (var i = 0; i < array_length(meshes); i++) {
+            var mesh = instance_create_depth(0, 0, 0, DataMesh);
+            mesh.LoadJSON(meshes[i]);
+            mesh.LoadAsset(directory);
+            ds_list_add(Stuff.all_meshes, mesh);
+        }
     };
     
     static project_load_meshat = function(filename, directory) {
