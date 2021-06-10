@@ -156,6 +156,12 @@ function project_load(id) {
         var json = json_parse(buffer_read_file(filename));
         var version = json.version;
         var events = json.events;
+        
+        for (var i = 0; i < array_length(events); i++) {
+            var event = instance_create_depth(0, 0, 0, DataEvent);
+            event.LoadJSON(events[i]);
+            ds_list_add(Stuff.all_events, event);
+        }
     };
     
     static project_load_maps = function(filename, directory) {
