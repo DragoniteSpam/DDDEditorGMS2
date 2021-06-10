@@ -102,6 +102,8 @@ Game = {
         ds_list_clear_instances(self.animations);
         ds_list_clear_instances(self.maps);
         ds_list_clear_instances(self.events.events);
+        ds_list_clear_instances(self.events.prefabs);
+        ds_list_clear_instances(self.events.custom);
     },
 };
 
