@@ -147,6 +147,11 @@ Remove = function(entity) {
     }
 };
 
+LoadAsset = function(directory) {
+    directory += "/";
+    var guid = string_replace(self.GUID, ":", "_");
+};
+
 SaveAsset = function(directory) {
     if (!self.contents) return;
     directory += "/" + string_replace(self.GUID, ":", "_") + "/";
