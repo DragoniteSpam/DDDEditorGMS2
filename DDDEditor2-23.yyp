@@ -1551,7 +1551,6 @@
     {"id":{"name":"ui_particle_type_direction_min_auto_360","path":"scripts/ui_particle_type_direction_min_auto_360/ui_particle_type_direction_min_auto_360.yy",},"order":92,},
     {"id":{"name":"DataAnimation","path":"objects/DataAnimation/DataAnimation.yy",},"order":0,},
     {"id":{"name":"DataAnimLayer","path":"objects/DataAnimLayer/DataAnimLayer.yy",},"order":1,},
-    {"id":{"name":"DataAnimKeyframe","path":"objects/DataAnimKeyframe/DataAnimKeyframe.yy",},"order":2,},
     {"id":{"name":"DataMapZone","path":"objects/DataMapZone/DataMapZone.yy",},"order":3,},
     {"id":{"name":"DataCameraZone","path":"objects/DataCameraZone/DataCameraZone.yy",},"order":0,},
     {"id":{"name":"DataFlagZone","path":"objects/DataFlagZone/DataFlagZone.yy",},"order":1,},
