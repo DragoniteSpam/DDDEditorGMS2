@@ -151,6 +151,11 @@ RemoveSubmesh = function(index) {
     ds_list_delete(submeshes, index);
 };
 
+LoadAsset = function(directory) {
+    directory += "/";
+    var guid = string_replace(self.GUID, ":", "_");
+};
+
 SaveAsset = function(directory) {
     directory += "/";
     var guid = string_replace(self.GUID, ":", "_");
