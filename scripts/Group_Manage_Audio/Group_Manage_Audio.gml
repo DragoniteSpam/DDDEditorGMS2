@@ -13,10 +13,3 @@ function audio_add(filename, prefix, loop_mode) {
     
     return data;
 }
-
-function audio_set_sample_rate(audio, rate) {
-    audio.fmod_rate = rate;
-    if (Stuff.fmod_sound == audio.fmod) {
-        FMODGMS_Chan_Set_Frequency(Stuff.fmod_channel, rate);
-    }
-}

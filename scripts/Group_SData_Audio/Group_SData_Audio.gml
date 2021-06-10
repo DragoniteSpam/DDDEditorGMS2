@@ -22,6 +22,13 @@ function DataAudio(name) : SData(name) constructor {
         FMODGMS_Snd_Set_LoopPoints(self.fmod, start, finish);
     };
     
+    static SetSampleRate = function(rate) {
+        self.fmod_rate = rate;
+        if (Stuff.fmod_sound == self.fmod) {
+            FMODGMS_Chan_Set_Frequency(Stuff.fmod_channel, rate);
+        }
+    };
+    
     static GetBuffer = function() {
         if (file_exists(self.temp_name)) return buffer_load(self.temp_name);
         return -1;

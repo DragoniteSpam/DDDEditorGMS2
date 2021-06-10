@@ -137,7 +137,7 @@ function dialog_create_manager_audio(dialog, name, prefix, list) {
         var list = input.root.el_list;
         var selection = ui_list_selection(list);
         if (selection + 1) {
-            audio_set_sample_rate(list.entries[| selection], real(input.value));
+            list.entries[| selection].SetSampleRate(real(input.value));
         }
     }, 0, "hertz", validate_int, 0, 0xffffff, 8, vx1, vy1, vx2, vy2, dg);
     dg.el_sample_rate = el_sample_rate;
@@ -148,7 +148,7 @@ function dialog_create_manager_audio(dialog, name, prefix, list) {
         var selection = ui_list_selection(list);
         if (selection + 1) {
             var what = list.entries[| selection];
-            audio_set_sample_rate(what, 44100);
+            what.SetSampleRate(44100);
             ui_input_set_value(button.root.el_sample_rate, string(what.fmod_rate));
         }
     }, dg);
@@ -158,7 +158,7 @@ function dialog_create_manager_audio(dialog, name, prefix, list) {
         var selection = ui_list_selection(list);
         if (selection + 1) {
             var what = list.entries[| selection];
-            audio_set_sample_rate(what, 48000);
+            what.SetSampleRate(48000);
             ui_input_set_value(button.root.el_sample_rate, string(what.fmod_rate));
         }
     }, dg);
