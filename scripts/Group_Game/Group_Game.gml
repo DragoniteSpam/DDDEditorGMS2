@@ -1,4 +1,5 @@
 #macro Game global.__game
+#macro Identifiers global.__identifiers
 
 var file_default = new DataFile("data", false, true);
 var file_asset = new DataFile("assets", false, false);
@@ -87,11 +88,6 @@ Game = {
         text: { English: { } },
     },
     
-    temp: {
-        guids: { },
-        current: 0,
-    },
-    
     // leave this here for now
     Clear: function() {
         ds_list_clear_instances(self.graphics.tilesets);
@@ -109,6 +105,20 @@ Game = {
         ds_list_clear_instances(self.events.events);
         ds_list_clear_instances(self.events.prefabs);
         ds_list_clear_instances(self.events.custom);
+        
+        Identifiers.Clear();
+    },
+};
+
+Identifiers = {
+    guid: {
+        guids: { },
+        current: 0,
+    },
+    
+    Clear: function() {
+        guid.guids = { };
+        guid.current = 0;
     },
 };
 
