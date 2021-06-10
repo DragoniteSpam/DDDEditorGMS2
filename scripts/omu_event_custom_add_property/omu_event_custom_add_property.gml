@@ -16,8 +16,8 @@ function omu_event_custom_add_property(thing) {
         }
         
         // add the data to prefab nodes
-        for (var i = 0; i < ds_list_size(Stuff.Game.events.prefabs); i++) {
-            var prefab = Stuff.Game.events.prefabs[| i];
+        for (var i = 0; i < ds_list_size(Game.events.prefabs); i++) {
+            var prefab = Game.events.prefabs[| i];
             if (prefab.custom_guid == thing.root.event.GUID) {
                 array_push(event.nodes[| i].custom_data, [0]);
             }
