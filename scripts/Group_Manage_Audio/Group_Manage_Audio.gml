@@ -3,12 +3,8 @@ function audio_add(filename, prefix, loop_mode) {
     var internal_name = string_lettersdigits(string_replace_all(name, filename_ext(filename), ""));
     
     var data = new DataAudio(name);
-    data.fmod = FMODGMS_Snd_LoadStream(filename);
-    data.fmod_type = FMODGMS_Snd_Get_Type(data.fmod);
-    FMODGMS_Snd_Set_LoopMode(data.fmod, loop_mode, -1);
-    data.loop_start = 0;
-    data.loop_end = FMODGMS_Snd_Get_Length(data.fmod);
-    FMODGMS_Snd_Set_LoopPoints(data.fmod, 0, data.loop_end);
+    data.SetFMOD(filename);
+    data.SetFMODLoop(loop_mode);
     
     data.temp_name = PATH_AUDIO + string_replace_all(string(data.GUID), ":", "_") + filename_ext(filename);
     file_copy(filename, data.temp_name);

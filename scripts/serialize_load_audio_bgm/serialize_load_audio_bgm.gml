@@ -30,9 +30,8 @@ function serialize_load_audio_bgm(argument0, argument1) {
         if (length == 0) {
             wtf("Audio file was not embedded properly, you probably want to re-load: " + string(bgm.GUID) + " [" + bgm.name + "]");
         } else {
-            bgm.fmod = FMODGMS_Snd_LoadStream(environment_get_variable("localappdata") + "\\" + game_project_name + "\\" + bgm.temp_name);
-            FMODGMS_Snd_Set_LoopMode(bgm.fmod, FMODGMS_LOOPMODE_NORMAL, -1);
-            FMODGMS_Snd_Set_LoopPoints(bgm.fmod, bgm.loop_start, bgm.loop_end);
+            bgm.SetFMOD(environment_get_variable("localappdata") + "\\" + game_project_name + "\\" + bgm.temp_name);
+            bgm.SetFMODLoop(FMODGMS_LOOPMODE_NORMAL);
         }
     
         ds_list_add(Game.audio.bgm, bgm);

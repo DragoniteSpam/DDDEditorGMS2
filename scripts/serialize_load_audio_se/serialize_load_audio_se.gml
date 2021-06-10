@@ -27,7 +27,7 @@ function serialize_load_audio_se(argument0, argument1) {
         if (length == 0) {
             wtf("Audio file was not embedded properly, you probably want to re-load: " + string(se.GUID) + " [" + se.name + "]");
         } else {
-            se.fmod = FMODGMS_Snd_LoadStream(environment_get_variable("localappdata") + "\\" + game_project_name + "\\" + se.temp_name);
+            se.SetFMOD(environment_get_variable("localappdata") + "\\" + game_project_name + "\\" + se.temp_name);
         }
     
         ds_list_add(Game.audio.se, se);
