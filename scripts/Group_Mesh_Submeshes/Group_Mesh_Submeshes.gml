@@ -56,7 +56,7 @@ function MeshSubmesh(name) constructor {
         return self.CreateJSONSubmesh();
     };
     
-    static _destructor = function() {
+    static Destroy = function() {
         if (self.buffer) buffer_delete(self.buffer);
         if (self.wrawbuffer) buffer_delete(self.wrawbuffer);
         if (self.wbuffer) vertex_delete_buffer(self.wbuffer);

@@ -143,7 +143,7 @@ function DataMesh(name) : SData(name) constructor {
     
     static RemoveSubmesh = function(index) {
         proto_guid_remove(self, submeshes[| index].proto_guid);
-        submeshes[| index]._destructor();
+        submeshes[| index].Destroy();
         ds_list_delete(submeshes, index);
     };
     
@@ -233,7 +233,7 @@ function DataMesh(name) : SData(name) constructor {
         var map = Stuff.map.active_map;
 
         for (var i = 0; i < ds_list_size(self.submeshes); i++) {
-            self.submeshes[| i]._destructor();
+            self.submeshes[| i].Destroy();
         }
         
         for (var i = 0; i < ds_list_size(map.contents.all_entities); i++) {

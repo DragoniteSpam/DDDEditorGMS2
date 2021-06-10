@@ -287,7 +287,7 @@ function ui_init_mesh(mode) {
                         
                         for (var i = 0, n = ds_list_size(old_submesh_list); i < n; i++) {
                             combine_submesh.AddBufferData(old_submesh_list[| i].buffer);
-                            old_submesh_list[| i]._destructor();
+                            old_submesh_list[| i].Destroy();
                         }
                         
                         ds_list_destroy(old_submesh_list);

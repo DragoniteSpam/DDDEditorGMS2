@@ -252,9 +252,7 @@ function ds_list_clear_instances(list) {
         var what = list[| i];
         if (what) {
             if (is_struct(what)) {
-                // this is very duct tapey, please fix once the editor as a whole uses structs
-                if (what[$ "_destructor"]) what._destructor();
-                if (what[$ "Destroy"]) what.Destroy();
+                what.Destroy();
             } else {
                 instance_activate_object(what);
                 instance_destroy(what);
