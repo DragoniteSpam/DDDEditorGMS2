@@ -154,6 +154,9 @@ RemoveSubmesh = function(index) {
 LoadAsset = function(directory) {
     directory += "/";
     var guid = string_replace(self.GUID, ":", "_");
+    for (var i = 0, n = ds_list_size(self.submeshes); i < n; i++) {
+        self.submeshes[| i].LoadAsset(directory + guid + "_");
+    }
 };
 
 SaveAsset = function(directory) {

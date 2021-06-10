@@ -13,6 +13,19 @@ function MeshSubmesh(name) constructor {
     self.reflect_wbuffer = undefined;
     self.reflect_wrawbuffer = undefined;
     
+    static LoadAsset = function(directory) {
+        var proto = string_replace_all(self.proto_guid, ":", "_");
+        self.buffer = buffer_load(directory  + proto + ".vertex");
+        self.reflect_buffer = buffer_load(directory  + proto + ".reflect");
+        self.wrawbuffer = buffer_load(directory  + proto + ".wire");
+        self.reflect_wrawbuffer = buffer_load(directory  + proto + ".rwire");
+        
+        self.vbuffer = vertex_create_buffer_from_buffer(self.buffer, Stuff.graphics.vertex_format);
+        self.vbuffer = vertex_create_buffer_from_buffer(self.reflect_buffer, Stuff.graphics.vertex_format);
+        self.wbuffer = vertex_create_buffer_from_buffer(self.wrawbuffer, Stuff.graphics.vertex_format);
+        self.wrawbuffer = vertex_create_buffer_from_buffer(self.reflect_wrawbuffer, Stuff.graphics.vertex_format);
+    };
+    
     static SaveAsset = function(directory) {
         var proto = string_replace_all(self.proto_guid, ":", "_");
         if (self.buffer) buffer_save(self.buffer, directory  + proto + ".vertex");
