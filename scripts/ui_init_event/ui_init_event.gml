@@ -31,7 +31,7 @@ function ui_init_event(mode) {
         #region event list
         var yy = legal_y;
         
-        element = create_list(legal_x + spacing, yy, "All Events", "No events!", element_width, list_entry_height, 24, uivc_list_selection_event, false, t_events, Game.evenst);
+        element = create_list(legal_x + spacing, yy, "All Events", "No events!", element_width, list_entry_height, 24, uivc_list_selection_event, false, t_events, Game.events.events);
         element.tooltip = "All of the event graphs currently defined. Middle-click the list to sort it alphabetically.";
         element.entries_are = ListEntries.INSTANCES;
         element.onmiddleclick = omu_event_list_alphabetize;

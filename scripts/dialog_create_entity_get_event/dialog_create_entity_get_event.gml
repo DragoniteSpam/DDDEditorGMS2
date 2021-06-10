@@ -26,12 +26,12 @@ function dialog_create_entity_get_event(argument0) {
 
     var yy = 64;
 
-    var el_list = create_list(16, yy, "Select an event", "<how do you even have no events?>", ew, eh, 20, null, false, dg, Game.evenst);
+    var el_list = create_list(16, yy, "Select an event", "<how do you even have no events?>", ew, eh, 20, null, false, dg, Game.events.events);
     el_list.entries_are = ListEntries.INSTANCES;
     dg.el_list = el_list;
 
-    for (var i = 0; i < ds_list_size(Game.evenst); i++) {
-        if (Game.evenst[| i].GUID == page.event_entrypoint) {
+    for (var i = 0; i < ds_list_size(Game.events.events); i++) {
+        if (Game.events.events[| i].GUID == page.event_entrypoint) {
             ui_list_select(el_list, i);
             break;
         }

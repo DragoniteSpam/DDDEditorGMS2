@@ -402,7 +402,7 @@ function dialog_create_settings_data_game_constants(root) {
         if (constant) {
             dialog_create_constant_get_event_graph(button.root, constant);
         }
-    }, dg, Game.evenst);
+    }, dg, Game.events.events);
     el_event.enabled = false;
     dg.el_event = el_event;
     var el_event_entrypoint = create_button(col3_x, yy + el_event.height + spacing, "Entrypoint: ", ew, eh, fa_left, function(button) {

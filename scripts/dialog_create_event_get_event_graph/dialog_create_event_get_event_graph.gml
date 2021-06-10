@@ -34,12 +34,12 @@ function dialog_create_event_get_event_graph(argument0, argument1, argument2) {
 
     yy += el_title_text.height + spacing;
 
-    var el_list = create_list(16, yy, "Select an event", "<how do you even have no events?>", ew, eh, 18, null, false, dg, Game.evenst);
+    var el_list = create_list(16, yy, "Select an event", "<how do you even have no events?>", ew, eh, 18, null, false, dg, Game.events.events);
     el_list.entries_are = ListEntries.INSTANCES;
     dg.el_list = el_list;
 
-    for (var i = 0; i < ds_list_size(Game.evenst); i++) {
-        if (Game.evenst[| i] == Stuff.event.active) {
+    for (var i = 0; i < ds_list_size(Game.events.events); i++) {
+        if (Game.events.events[| i] == Stuff.event.active) {
             ui_list_select(el_list, i);
             break;
         }

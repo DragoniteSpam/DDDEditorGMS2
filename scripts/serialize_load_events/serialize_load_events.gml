@@ -10,7 +10,7 @@ function serialize_load_events(buffer, version) {
         // so don't use it here otherwise things will break
         var event_name = buffer_read(buffer, buffer_string);
         var event = event_create(event_name);
-        ds_list_add(Game.evenst, event);
+        ds_list_add(Game.events.events, event);
         guid_set(event, buffer_read(buffer, buffer_datatype));
         
         // events are created with an entrypoint by default - you could pass an optional
@@ -171,9 +171,9 @@ function serialize_load_events(buffer, version) {
         }
     }
     
-    for (var i = 0; i < ds_list_size(Game.evenst); i++) {
-        for (var j = 0; j < ds_list_size(Game.evenst[| i].nodes); j++) {
-            var node = Game.evenst[| i].nodes[| j];
+    for (var i = 0; i < ds_list_size(Game.events.events); i++) {
+        for (var j = 0; j < ds_list_size(Game.events.events[| i].nodes); j++) {
+            var node = Game.events.events[| i].nodes[| j];
             
             for (var k = 0; k < array_length(node.outbound); k++) {
                 var dest = guid_get(node.outbound[k]);
@@ -186,9 +186,9 @@ function serialize_load_events(buffer, version) {
     }
     
     // by default, set the 0th event as the active event
-    if (ds_list_empty(Game.evenst)) {
-        ds_list_add(all_events, event_create("DefaultEvent"));
+    if (ds_list_empty(Game.events.events)) {
+        ds_list_add(Game.events.events, event_create("DefaultEvent"));
     }
     
-    Stuff.event.active = Game.evenst[| 0];
+    Stuff.event.active = Game.events.events[| 0];
 }

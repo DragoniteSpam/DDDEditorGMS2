@@ -170,8 +170,8 @@ function event_get_node(event, name) {
 
 function event_get_node_global(name) {
     // @todo preferably replace this with a global constant-time map lookup later
-    for (var i = 0; i < ds_list_size(Game.evenst); i++) {
-        var event = Game.evenst[| i];
+    for (var i = 0; i < ds_list_size(Game.events.events); i++) {
+        var event = Game.events.events[| i];
         if (event.name_map[$ name]) {
             return [event, event.name_map[$ name]];
         }
@@ -201,7 +201,7 @@ function event_view_node(node) {
     camera_set_view_pos(camera, floor(node.x - room_width / 2), floor(node.y - room_height / 3));
     Stuff.event.active = node.event;
     
-    var index = ds_list_find_index(Game.evenst, node.event);
+    var index = ds_list_find_index(Game.events.events, node.event);
     var event_list = Stuff.event.ui.t_events.el_event_list;
     ui_list_deselect(event_list);
     ui_list_select(event_list, index);
