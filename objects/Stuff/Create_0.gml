@@ -113,8 +113,6 @@ all_event_prefabs = ds_list_create();
 
 all_maps = ds_list_create();
 
-all_animations = ds_list_create();
-
 all_languages = ["English"];
 
 /*

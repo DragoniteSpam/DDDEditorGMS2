@@ -6,7 +6,7 @@ function animation_create(name, internal_name) {
     if (name != "") animation.name = name;
     if (internal_name != "") internal_name_set(animation, internal_name);
     instance_deactivate_object(animation);
-    ds_list_add(Stuff.all_animations, animation);
+    ds_list_add(Game.animations, animation);
     
     return animation;
 }

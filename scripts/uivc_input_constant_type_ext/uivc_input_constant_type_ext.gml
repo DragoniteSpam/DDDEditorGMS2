@@ -130,7 +130,7 @@ function ui_constant_data_activate(base_dialog, what) {
             break;
         case DataTypes.ANIMATION:
             var list = base_dialog.el_value_other;
-            list.entries = Stuff.all_animations;
+            list.entries = Game.animations;
             ui_list_deselect(list);
             ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value)), true);
             list.enabled = true;

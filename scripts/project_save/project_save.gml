@@ -108,7 +108,7 @@ function project_save() {
         version: ProjectSaveVersions._CURRENT - 1,
     }), folder_name + "meshautotiles.json");
     buffer_write_file(json_stringify({
-        animations: project_write_json(Stuff.all_animations),
+        animations: project_write_json(Game.animations),
         version: ProjectSaveVersions._CURRENT - 1,
     }), folder_name + "animations.json");
     buffer_write_file(json_stringify({

@@ -10,8 +10,8 @@ function ui_render_list_animations(argument0, argument1, argument2) {
     var otext = list.text;
     var oentries = list.entries;
 
-    list.text = otext + string(ds_list_size(Stuff.all_animations));
-    list.entries = Stuff.all_animations;
+    list.text = otext + string(ds_list_size(Game.animations));
+    list.entries = Game.animations;
 
     ui_render_list(list, xx, yy);
 

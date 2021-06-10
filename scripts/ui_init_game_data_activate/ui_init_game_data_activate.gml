@@ -228,7 +228,7 @@ function ui_init_game_data_activate() {
                                 var hh = ui_get_list_height(element);
                                 break;
                             case DataTypes.ANIMATION:          // list
-                                element = create_list(0, yy, property.name, "<no Animations>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Stuff.all_animations);
+                                element = create_list(0, yy, property.name, "<no Animations>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Game.animations);
                                 element.key = i;
                                 element.entries_are = ListEntries.INSTANCES;
                                 var hh = ui_get_list_height(element);

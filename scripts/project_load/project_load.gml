@@ -140,7 +140,7 @@ function project_load(id) {
         for (var i = 0; i < array_length(animations); i++) {
             var animation = instance_create_depth(0, 0, 0, DataAnimation);
             animation.LoadJSON(animations[i]);
-            ds_list_add(Stuff.all_animations, animation);
+            ds_list_add(Game.animations, animation);
         }
     };
     

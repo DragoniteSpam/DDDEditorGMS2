@@ -108,7 +108,7 @@ function dialog_entity_data_enable_by_type(dialog) {
         case DataTypes.ANIMATION:
             dialog.el_data_builtin_list.interactive = true;
             dialog.el_data_builtin_list.enabled = true;
-            dialog.el_data_builtin_list.entries = Stuff.all_animations;
+            dialog.el_data_builtin_list.entries = Game.animations;
             break;
         case DataTypes.ENTITY:
             not_yet_implemented();

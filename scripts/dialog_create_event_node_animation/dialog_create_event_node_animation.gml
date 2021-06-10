@@ -21,7 +21,7 @@ function dialog_create_event_node_animation(argument0, argument1, argument2, arg
 
     var yy = 64;
 
-    var el_list = create_list(16, yy, "All Animations", "<no animations>", ew, eh, n_slots, null, false, dg, Stuff.all_animations);
+    var el_list = create_list(16, yy, "All Animations", "<no animations>", ew, eh, n_slots, null, false, dg, Game.animations);
     el_list.entries_are = ListEntries.INSTANCES;
     el_list.node = argument1;
     el_list.property_index = argument2;

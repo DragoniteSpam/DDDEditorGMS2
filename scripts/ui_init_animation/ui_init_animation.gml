@@ -43,8 +43,8 @@ function ui_init_animation(argument0) {
         yy += ui_get_list_height(el_master);
     
         var element = create_button(xx, yy, "Add Animation", ew, eh, fa_middle, function(button) {
-            if (ds_list_size(Stuff.all_animations) < 1000) {
-                var n = string(ds_list_size(Stuff.all_animations));
+            if (ds_list_size(Game.animations) < 1000) {
+                var n = string(ds_list_size(Game.animations));
                 var animation = animation_create("Animation" + n, "Anim" + n);
                 ui_list_deselect(button);
             } else {
@@ -59,9 +59,9 @@ function ui_init_animation(argument0) {
             var selection = ui_list_selection(button.root.el_master);
             ui_list_deselect(button.root.el_master);
             if (selection + 1) {
-                for (var i = 0; i < ds_list_size(Stuff.all_animations); i++) {
-                    if (Stuff.all_animations[| i] == button.root.active_animation) {
-                        ds_list_delete(Stuff.all_animations, i);
+                for (var i = 0; i < ds_list_size(Game.animations); i++) {
+                    if (Game.animations[| i] == button.root.active_animation) {
+                        ds_list_delete(Game.animations, i);
                         instance_activate_object(button.root.active_animation);
                         instance_destroy(button.root.active_animation);
                         ui_list_deselect(button.root.el_master);
