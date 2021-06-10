@@ -38,6 +38,9 @@ Game = {
             width: -1,
             height: -1,
         },
+        extra: {
+            guid_current: 0,
+        },
     },
     vars: {
         switches: array_create(BASE_GAME_VARIABLES),
@@ -113,12 +116,10 @@ Game = {
 Identifiers = {
     guid: {
         guids: { },
-        current: 0,
     },
     
     Clear: function() {
         guid.guids = { };
-        guid.current = 0;
     },
 };
 
