@@ -92,8 +92,6 @@ fmod_sound = -1;
 
 #region asset lists
 
-spr_character_default = sprite_add(PATH_GRAPHICS + "b_chr_default.png", 0, false, false, 0, 0);
-
 tileset_create(PATH_GRAPHICS + DEFAULT_TILESET);
 Game.graphics.tilesets[| 0].name = "Default";
 
