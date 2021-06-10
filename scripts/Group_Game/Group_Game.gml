@@ -115,9 +115,11 @@ Game = {
 
 Identifiers = {
     guids: { },
+    internal: { },
     
     Clear: function() {
-        guid.guids = { };
+        self.guids = { };
+        self.internal = { };
     },
 };
 

@@ -10,16 +10,16 @@ function internal_name_generate(data, base_name) {
 }
 
 function internal_name_get(name) {
-    if (ds_map_exists(Stuff.all_internal_names, name)) {
-        return Stuff.all_internal_names[? name];
+    if (ds_map_exists(Identifiers.internal, name)) {
+        return Identifiers.internal[? name];
     }
     
     return noone;
 }
 
 function internal_name_remove(name) {
-    if (ds_map_exists(Stuff.all_internal_names, name)) {
-        ds_map_delete(Stuff.all_internal_names, name);
+    if (ds_map_exists(Identifiers.internal, name)) {
+        ds_map_delete(Identifiers.internal, name);
         return true;
     }
     
@@ -31,19 +31,19 @@ function internal_name_set(data, new_name, force) {
     if (force == undefined) force = false;
     
     if (string_length(data.internal_name) > 0) {
-        ds_map_delete(Stuff.all_internal_names, data.internal_name);
+        ds_map_delete(Identifiers.internal, data.internal_name);
     }
     
-    if (ds_map_exists(Stuff.all_internal_names, new_name)) {
+    if (ds_map_exists(Identifiers.internal, new_name)) {
         return false;
     }
     
     // unset the data's existing internal name
-    if (ds_map_exists(Stuff.all_internal_names, data.internal_name)) {
-        ds_map_delete(Stuff.all_internal_names, data.internal_name);
+    if (ds_map_exists(Identifiers.internal, data.internal_name)) {
+        ds_map_delete(Identifiers.internal, data.internal_name);
     }
     
-    ds_map_add(Stuff.all_internal_names, new_name, data);
+    ds_map_add(Identifiers.internal, new_name, data);
     data.internal_name = new_name;
     return true;
 }
