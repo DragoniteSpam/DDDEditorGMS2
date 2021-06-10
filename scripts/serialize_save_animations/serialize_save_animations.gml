@@ -85,18 +85,18 @@ function serialize_save_animations(argument0) {
                     buffer_write(buffer, buffer_datatype, keyframe.audio);
                     buffer_write(buffer, buffer_string, keyframe.event);
             
-                    buffer_write(buffer, buffer_u16, keyframe.tween_xx);
-                    buffer_write(buffer, buffer_u16, keyframe.tween_yy);
-                    buffer_write(buffer, buffer_u16, keyframe.tween_zz);
-                    buffer_write(buffer, buffer_u16, keyframe.tween_xrot);
-                    buffer_write(buffer, buffer_u16, keyframe.tween_yrot);
-                    buffer_write(buffer, buffer_u16, keyframe.tween_zrot);
-                    buffer_write(buffer, buffer_u16, keyframe.tween_xscale);
-                    buffer_write(buffer, buffer_u16, keyframe.tween_yscale);
-                    buffer_write(buffer, buffer_u16, keyframe.tween_zscale);
+                    buffer_write(buffer, buffer_u16, keyframe.tween.x);
+                    buffer_write(buffer, buffer_u16, keyframe.tween.y);
+                    buffer_write(buffer, buffer_u16, keyframe.tween.z);
+                    buffer_write(buffer, buffer_u16, keyframe.tween.xrot);
+                    buffer_write(buffer, buffer_u16, keyframe.tween.yrot);
+                    buffer_write(buffer, buffer_u16, keyframe.tween.zrot);
+                    buffer_write(buffer, buffer_u16, keyframe.tween.xscale);
+                    buffer_write(buffer, buffer_u16, keyframe.tween.yscale);
+                    buffer_write(buffer, buffer_u16, keyframe.tween.zscale);
             
-                    buffer_write(buffer, buffer_u16, keyframe.tween_color);
-                    buffer_write(buffer, buffer_u16, keyframe.tween_alpha);
+                    buffer_write(buffer, buffer_u16, keyframe.tween.color);
+                    buffer_write(buffer, buffer_u16, keyframe.tween.alpha);
                 
                     buffer_write(buffer, buffer_s16, keyframe.relative);
                 }

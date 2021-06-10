@@ -28,18 +28,18 @@ event = "";     // lua function name (i.e. "invoke")
 
 // tweens
 
-tween_xx = AnimationTweens.NONE;
-tween_yy = AnimationTweens.NONE;
-tween_zz = AnimationTweens.NONE;
-tween_xrot = AnimationTweens.NONE;
-tween_yrot = AnimationTweens.NONE;
-tween_zrot = AnimationTweens.NONE;
-tween_xscale = AnimationTweens.NONE;
-tween_yscale = AnimationTweens.NONE;
-tween_zscale = AnimationTweens.NONE;
+tween.x = AnimationTweens.NONE;
+tween.y = AnimationTweens.NONE;
+tween.z = AnimationTweens.NONE;
+tween.xrot = AnimationTweens.NONE;
+tween.yrot = AnimationTweens.NONE;
+tween.zrot = AnimationTweens.NONE;
+tween.xscale = AnimationTweens.NONE;
+tween.yscale = AnimationTweens.NONE;
+tween.zscale = AnimationTweens.NONE;
 
-tween_color = AnimationTweens.NONE;
-tween_alpha = AnimationTweens.NONE;
+tween.color = AnimationTweens.NONE;
+tween.alpha = AnimationTweens.NONE;
 
 moment = 0;
 timeline_layer = 0;
@@ -67,17 +67,17 @@ CreateJSONAnimKeyframe = function() {
     json.graphic_direction = self.graphic_direction;
     
     json.tween = {
-        x: self.tween_xx,
-        y: self.tween_yy,
-        z: self.tween_zz,
-        xrot: self.tween_xrot,
-        yrot: self.tween_yrot,
-        zrot: self.tween_zrot,
-        xscale: self.tween_xscale,
-        yscale: self.tween_yscale,
-        zscale: self.tween_zscale,
-        color: self.tween_color,
-        alpha: self.tween_alpha,
+        x: self.tween.x,
+        y: self.tween.y,
+        z: self.tween.z,
+        xrot: self.tween.xrot,
+        yrot: self.tween.yrot,
+        zrot: self.tween.zrot,
+        xscale: self.tween.xscale,
+        yscale: self.tween.yscale,
+        zscale: self.tween.zscale,
+        color: self.tween.color,
+        alpha: self.tween.alpha,
     };
     
     return json;

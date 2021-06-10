@@ -80,18 +80,18 @@ function serialize_load_animations(argument0, argument1) {
                     keyframe.audio = buffer_read(buffer, buffer_datatype);
                     keyframe.event = buffer_read(buffer, buffer_string);
                 
-                    keyframe.tween_xx = buffer_read(buffer, buffer_u16);
-                    keyframe.tween_yy = buffer_read(buffer, buffer_u16);
-                    keyframe.tween_zz = buffer_read(buffer, buffer_u16);
-                    keyframe.tween_xrot = buffer_read(buffer, buffer_u16);
-                    keyframe.tween_yrot = buffer_read(buffer, buffer_u16);
-                    keyframe.tween_zrot = buffer_read(buffer, buffer_u16);
-                    keyframe.tween_xscale = buffer_read(buffer, buffer_u16);
-                    keyframe.tween_yscale = buffer_read(buffer, buffer_u16);
-                    keyframe.tween_zscale = buffer_read(buffer, buffer_u16);
+                    keyframe.tween.x = buffer_read(buffer, buffer_u16);
+                    keyframe.tween.y = buffer_read(buffer, buffer_u16);
+                    keyframe.tween.z = buffer_read(buffer, buffer_u16);
+                    keyframe.tween.xrot = buffer_read(buffer, buffer_u16);
+                    keyframe.tween.yrot = buffer_read(buffer, buffer_u16);
+                    keyframe.tween.zrot = buffer_read(buffer, buffer_u16);
+                    keyframe.tween.xscale = buffer_read(buffer, buffer_u16);
+                    keyframe.tween.yscale = buffer_read(buffer, buffer_u16);
+                    keyframe.tween.zscale = buffer_read(buffer, buffer_u16);
                 
-                    keyframe.tween_color = buffer_read(buffer, buffer_u16);
-                    keyframe.tween_alpha = buffer_read(buffer, buffer_u16);
+                    keyframe.tween.color = buffer_read(buffer, buffer_u16);
+                    keyframe.tween.alpha = buffer_read(buffer, buffer_u16);
                 
                     keyframe.relative = buffer_read(buffer, buffer_s16);
                 }

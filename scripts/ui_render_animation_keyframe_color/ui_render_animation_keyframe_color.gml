@@ -22,7 +22,7 @@ function ui_render_animation_keyframe_color(argument0, argument1, argument2) {
 
     // we must abuse truthiness wherever possible
     input.interactive = !!keyframe;
-    input.root.tween_color.interactive = input.interactive;
+    input.root.tween.color.interactive = input.interactive;
 
     ui_render_color_picker(input, xx, yy);
 

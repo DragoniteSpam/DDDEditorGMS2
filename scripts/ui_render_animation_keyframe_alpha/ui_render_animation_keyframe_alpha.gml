@@ -27,7 +27,7 @@ function ui_render_animation_keyframe_alpha(argument0, argument1, argument2) {
 
     // we must abuse truthiness wherever possible
     input.interactive = !!keyframe;
-    input.root.tween_alpha.interactive = input.interactive;
+    input.root.tween.alpha.interactive = input.interactive;
 
     ui_render_input(input, xx, yy);
 

@@ -274,18 +274,18 @@ function ui_init_animation(argument0) {
         el_keyframe.color = create_color_picker(xx, yy, "      color:", ew, eh, uivc_animation_keyframe_color, c_white, vx1, vy1, vx2, vy2, el_keyframe);
         el_keyframe.color.render = ui_render_animation_keyframe_color;
         ds_list_add(el_keyframe.contents, el_keyframe.color);
-        el_keyframe.tween_color = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, omu_animation_keyframe_tween, el_keyframe);
-        el_keyframe.tween_color.parameter = KeyframeParameters.COLOR;
-        ds_list_add(el_keyframe.contents, el_keyframe.tween_color);
+        el_keyframe.tween.color = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, omu_animation_keyframe_tween, el_keyframe);
+        el_keyframe.tween.color.parameter = KeyframeParameters.COLOR;
+        ds_list_add(el_keyframe.contents, el_keyframe.tween.color);
     
         yy += el_keyframe.color.height;
     
         el_keyframe.alpha = create_input(xx, yy, "      alpha:", ew, eh, uivc_animation_keyframe_alpha, "1", "float", validate_double, 0, 1, 6, vx1, vy1, vx2, vy2, el_keyframe);
         el_keyframe.alpha.render = ui_render_animation_keyframe_alpha;
         ds_list_add(el_keyframe.contents, el_keyframe.alpha);
-        el_keyframe.tween_alpha = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, omu_animation_keyframe_tween, el_keyframe);
-        el_keyframe.tween_alpha.parameter = KeyframeParameters.ALPHA;
-        ds_list_add(el_keyframe.contents, el_keyframe.tween_alpha);
+        el_keyframe.tween.alpha = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, omu_animation_keyframe_tween, el_keyframe);
+        el_keyframe.tween.alpha.parameter = KeyframeParameters.ALPHA;
+        ds_list_add(el_keyframe.contents, el_keyframe.tween.alpha);
     
         yy += el_keyframe.alpha.height + spacing;
     

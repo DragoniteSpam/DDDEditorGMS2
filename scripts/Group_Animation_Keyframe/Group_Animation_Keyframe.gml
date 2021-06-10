@@ -1,7 +1,7 @@
 function animation_add_keyframe(animation, timeline_layer, moment, auto_fill) {
     var inst_layer = animation_get_layer(animation, timeline_layer);
     if (auto_fill == undefined) auto_fill = false;
-    var keyframe = instance_create_depth(0, 0, 0, DataAnimKeyframe);
+    var keyframe = new DataAnimationKeyframe();
     
     if (auto_fill) {
         // you need to set the values before adding the keyframe to the timeline, because
@@ -57,33 +57,33 @@ function animation_get_keyframe(animation, layer, moment) {
 function animation_get_keyframe_has_tween(keyframe) {
     // just checks to see if *any* of the tweens it uses are typed - it doesn't really
     // care which ones they are
-    if (keyframe.tween_xx != AnimationTweens.NONE && keyframe.tween_xx != AnimationTweens.IGNORE) return true;
-    if (keyframe.tween_yy != AnimationTweens.NONE && keyframe.tween_yy != AnimationTweens.IGNORE) return true;
-    if (keyframe.tween_zz != AnimationTweens.NONE && keyframe.tween_zz != AnimationTweens.IGNORE) return true;
-    if (keyframe.tween_xrot != AnimationTweens.NONE && keyframe.tween_xrot != AnimationTweens.IGNORE) return true;
-    if (keyframe.tween_yrot != AnimationTweens.NONE && keyframe.tween_yrot != AnimationTweens.IGNORE) return true;
-    if (keyframe.tween_zrot != AnimationTweens.NONE && keyframe.tween_zrot != AnimationTweens.IGNORE) return true;
-    if (keyframe.tween_xscale != AnimationTweens.NONE && keyframe.tween_xscale != AnimationTweens.IGNORE) return true;
-    if (keyframe.tween_yscale != AnimationTweens.NONE && keyframe.tween_yscale != AnimationTweens.IGNORE) return true;
-    if (keyframe.tween_zscale != AnimationTweens.NONE && keyframe.tween_zscale != AnimationTweens.IGNORE) return true;
-    if (keyframe.tween_color != AnimationTweens.NONE && keyframe.tween_color != AnimationTweens.IGNORE) return true;
-    if (keyframe.tween_alpha != AnimationTweens.NONE && keyframe.tween_alpha != AnimationTweens.IGNORE) return true;
+    if (keyframe.tween.x != AnimationTweens.NONE && keyframe.tween.x != AnimationTweens.IGNORE) return true;
+    if (keyframe.tween.y != AnimationTweens.NONE && keyframe.tween.y != AnimationTweens.IGNORE) return true;
+    if (keyframe.tween.z != AnimationTweens.NONE && keyframe.tween.z != AnimationTweens.IGNORE) return true;
+    if (keyframe.tween.xrot != AnimationTweens.NONE && keyframe.tween.xrot != AnimationTweens.IGNORE) return true;
+    if (keyframe.tween.yrot != AnimationTweens.NONE && keyframe.tween.yrot != AnimationTweens.IGNORE) return true;
+    if (keyframe.tween.zrot != AnimationTweens.NONE && keyframe.tween.zrot != AnimationTweens.IGNORE) return true;
+    if (keyframe.tween.xscale != AnimationTweens.NONE && keyframe.tween.xscale != AnimationTweens.IGNORE) return true;
+    if (keyframe.tween.yscale != AnimationTweens.NONE && keyframe.tween.yscale != AnimationTweens.IGNORE) return true;
+    if (keyframe.tween.zscale != AnimationTweens.NONE && keyframe.tween.zscale != AnimationTweens.IGNORE) return true;
+    if (keyframe.tween.color != AnimationTweens.NONE && keyframe.tween.color != AnimationTweens.IGNORE) return true;
+    if (keyframe.tween.alpha != AnimationTweens.NONE && keyframe.tween.alpha != AnimationTweens.IGNORE) return true;
     return false;
 }
 
 function animation_get_keyframe_parameter_tween(keyframe, param) {
     switch (param) {
-        case KeyframeParameters.TRANS_X: return keyframe.tween_xx;
-        case KeyframeParameters.TRANS_Y: return keyframe.tween_yy;
-        case KeyframeParameters.TRANS_Z: return keyframe.tween_zz;
-        case KeyframeParameters.ROT_X: return keyframe.tween_xrot;
-        case KeyframeParameters.ROT_Y: return keyframe.tween_yrot;
-        case KeyframeParameters.ROT_Z: return keyframe.tween_zrot;
-        case KeyframeParameters.SCALE_X: return keyframe.tween_xscale;
-        case KeyframeParameters.SCALE_Y: return keyframe.tween_yscale;
-        case KeyframeParameters.SCALE_Z: return keyframe.tween_zscale;
-        case KeyframeParameters.COLOR: return keyframe.tween_color;
-        case KeyframeParameters.ALPHA: return keyframe.tween_alpha;
+        case KeyframeParameters.TRANS_X: return keyframe.tween.x;
+        case KeyframeParameters.TRANS_Y: return keyframe.tween.y;
+        case KeyframeParameters.TRANS_Z: return keyframe.tween.z;
+        case KeyframeParameters.ROT_X: return keyframe.tween.xrot;
+        case KeyframeParameters.ROT_Y: return keyframe.tween.yrot;
+        case KeyframeParameters.ROT_Z: return keyframe.tween.zrot;
+        case KeyframeParameters.SCALE_X: return keyframe.tween.xscale;
+        case KeyframeParameters.SCALE_Y: return keyframe.tween.yscale;
+        case KeyframeParameters.SCALE_Z: return keyframe.tween.zscale;
+        case KeyframeParameters.COLOR: return keyframe.tween.color;
+        case KeyframeParameters.ALPHA: return keyframe.tween.alpha;
     }
 }
 
@@ -105,17 +105,17 @@ function animation_set_keyframe_parameter(keyframe, param, value) {
 
 function animation_set_keyframe_parameter_tween(keyframe, param, value) {
     switch (param) {
-        case KeyframeParameters.TRANS_X: keyframe.tween_xx = value; break;
-        case KeyframeParameters.TRANS_Y: keyframe.tween_yy = value; break;
-        case KeyframeParameters.TRANS_Z: keyframe.tween_zz = value; break;
-        case KeyframeParameters.ROT_X: keyframe.tween_xrot = value; break;
-        case KeyframeParameters.ROT_Y: keyframe.tween_yrot = value; break;
-        case KeyframeParameters.ROT_Z: keyframe.tween_zrot = value; break;
-        case KeyframeParameters.SCALE_X: keyframe.tween_xscale = value; break;
-        case KeyframeParameters.SCALE_Y: keyframe.tween_yscale = value; break;
-        case KeyframeParameters.SCALE_Z: keyframe.tween_zscale = value; break;
-        case KeyframeParameters.COLOR: keyframe.tween_color = value; break;
-        case KeyframeParameters.ALPHA: keyframe.tween_alpha = value; break;
+        case KeyframeParameters.TRANS_X: keyframe.tween.x = value; break;
+        case KeyframeParameters.TRANS_Y: keyframe.tween.y = value; break;
+        case KeyframeParameters.TRANS_Z: keyframe.tween.z = value; break;
+        case KeyframeParameters.ROT_X: keyframe.tween.xrot = value; break;
+        case KeyframeParameters.ROT_Y: keyframe.tween.yrot = value; break;
+        case KeyframeParameters.ROT_Z: keyframe.tween.zrot = value; break;
+        case KeyframeParameters.SCALE_X: keyframe.tween.xscale = value; break;
+        case KeyframeParameters.SCALE_Y: keyframe.tween.yscale = value; break;
+        case KeyframeParameters.SCALE_Z: keyframe.tween.zscale = value; break;
+        case KeyframeParameters.COLOR: keyframe.tween.color = value; break;
+        case KeyframeParameters.ALPHA: keyframe.tween.alpha = value; break;
     }
 }
 

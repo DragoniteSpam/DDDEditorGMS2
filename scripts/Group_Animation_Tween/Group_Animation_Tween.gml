@@ -6,12 +6,12 @@ function animation_get_tween_color(animation, timeline_layer, moment) {
     kf_current = animation_get_keyframe(animation, timeline_layer, moment);
     do {
         kf_previous = animation_get_preivous_keyframe(animation, timeline_layer, kf_previous ? kf_previous.moment : moment);
-    } until (!kf_previous || kf_previous.tween_color != AnimationTweens.IGNORE);
+    } until (!kf_previous || kf_previous.tween.color != AnimationTweens.IGNORE);
     do {
         kf_next = animation_get_next_keyframe(animation, timeline_layer, kf_next ? kf_next.moment : moment);
-    } until (!kf_next || kf_next.tween_color != AnimationTweens.IGNORE);
+    } until (!kf_next || kf_next.tween.color != AnimationTweens.IGNORE);
     
-    var type = kf_previous ? kf_previous.tween_color : AnimationTweens.NONE;
+    var type = kf_previous ? kf_previous.tween.color : AnimationTweens.NONE;
     var rel_current = (kf_current && kf_current.relative > -1) ? animation.layers[| kf_current.relative] : noone;
     var rel_previous = (kf_previous && kf_previous.relative > -1) ? animation.layers[| kf_previous.relative] : noone;
     var rel_next = (kf_next && kf_next.relative > -1) ? animation.layers[| kf_next.relative] : noone;
@@ -54,10 +54,10 @@ function animation_get_tween_alpha(animation, timeline_layer, moment) {
     kf_current = animation_get_keyframe(animation, timeline_layer, moment);
     do {
         kf_previous = animation_get_preivous_keyframe(animation, timeline_layer, kf_previous ? kf_previous.moment : moment);
-    } until (!kf_previous || kf_previous.tween_alpha != AnimationTweens.IGNORE);
+    } until (!kf_previous || kf_previous.tween.alpha != AnimationTweens.IGNORE);
     do {
         kf_next = animation_get_next_keyframe(animation, timeline_layer, kf_next ? kf_next.moment : moment);
-    } until (!kf_next || kf_next.tween_alpha != AnimationTweens.IGNORE);
+    } until (!kf_next || kf_next.tween.alpha != AnimationTweens.IGNORE);
     
     var rel_current = (kf_current && kf_current.relative > -1) ? animation.layers[| kf_current.relative] : noone;
     var rel_previous = (kf_previous && kf_previous.relative > -1) ? animation.layers[| kf_previous.relative] : noone;
@@ -73,11 +73,11 @@ function animation_get_tween_alpha(animation, timeline_layer, moment) {
     var moment_next = kf_next ? kf_next.moment : animation.moments;
     var f = normalize(moment, moment_previous, moment_next);
     
-    if (kf_current && kf_current.tween_alpha != AnimationTweens.IGNORE) return value_now;
+    if (kf_current && kf_current.tween.alpha != AnimationTweens.IGNORE) return value_now;
     
     // only need to check for previous keyframe because if there is no next keyframe, the "next"
     // value will be the same as previous and tweening will just output the same value anyway
-    return easing_tween(value_previous, value_next, f, kf_previous ? kf_previous.tween_alpha : AnimationTweens.NONE);
+    return easing_tween(value_previous, value_next, f, kf_previous ? kf_previous.tween.alpha : AnimationTweens.NONE);
 }
 
 function animation_get_tween_rotate_x(animation, timeline_layer, moment) {
@@ -88,10 +88,10 @@ function animation_get_tween_rotate_x(animation, timeline_layer, moment) {
     kf_current = animation_get_keyframe(animation, timeline_layer, moment);
     do {
         kf_previous = animation_get_preivous_keyframe(animation, timeline_layer, kf_previous ? kf_previous.moment : moment);
-    } until (!kf_previous || kf_previous.tween_xrot != AnimationTweens.IGNORE);
+    } until (!kf_previous || kf_previous.tween.xrot != AnimationTweens.IGNORE);
     do {
         kf_next = animation_get_next_keyframe(animation, timeline_layer, kf_next ? kf_next.moment : moment);
-    } until (!kf_next || kf_next.tween_xrot != AnimationTweens.IGNORE);
+    } until (!kf_next || kf_next.tween.xrot != AnimationTweens.IGNORE);
     
     var rel_current = (kf_current && kf_current.relative > -1) ? animation.layers[| kf_current.relative] : noone;
     var rel_previous = (kf_previous && kf_previous.relative > -1) ? animation.layers[| kf_previous.relative] : noone;
@@ -107,11 +107,11 @@ function animation_get_tween_rotate_x(animation, timeline_layer, moment) {
     var moment_next = kf_next ? kf_next.moment : animation.moments;
     var f = normalize(moment, moment_previous, moment_next);
     
-    if (kf_current && kf_current.tween_xrot != AnimationTweens.IGNORE) return value_now;
+    if (kf_current && kf_current.tween.xrot != AnimationTweens.IGNORE) return value_now;
     
     // only need to check for previous keyframe because if there is no next keyframe, the "next"
     // value will be the same as previous and tweening will just output the same value anyway
-    return easing_tween(value_previous, value_next, f, kf_previous ? kf_previous.tween_xrot : AnimationTweens.NONE);
+    return easing_tween(value_previous, value_next, f, kf_previous ? kf_previous.tween.xrot : AnimationTweens.NONE);
 }
 
 function animation_get_tween_rotate_y(animation, timeline_layer, moment) {
@@ -122,10 +122,10 @@ function animation_get_tween_rotate_y(animation, timeline_layer, moment) {
     kf_current = animation_get_keyframe(animation, timeline_layer, moment);
     do {
         kf_previous = animation_get_preivous_keyframe(animation, timeline_layer, kf_previous ? kf_previous.moment : moment);
-    } until (!kf_previous || kf_previous.tween_yrot != AnimationTweens.IGNORE);
+    } until (!kf_previous || kf_previous.tween.yrot != AnimationTweens.IGNORE);
     do {
         kf_next = animation_get_next_keyframe(animation, timeline_layer, kf_next ? kf_next.moment : moment);
-    } until (!kf_next || kf_next.tween_yrot != AnimationTweens.IGNORE);
+    } until (!kf_next || kf_next.tween.yrot != AnimationTweens.IGNORE);
     
     var rel_current = (kf_current && kf_current.relative > -1) ? animation.layers[| kf_current.relative] : noone;
     var rel_previous = (kf_previous && kf_previous.relative > -1) ? animation.layers[| kf_previous.relative] : noone;
@@ -141,11 +141,11 @@ function animation_get_tween_rotate_y(animation, timeline_layer, moment) {
     var moment_next = kf_next ? kf_next.moment : animation.moments;
     var f = normalize(moment, moment_previous, moment_next);
     
-    if (kf_current && kf_current.tween_yrot != AnimationTweens.IGNORE) return value_now;
+    if (kf_current && kf_current.tween.yrot != AnimationTweens.IGNORE) return value_now;
     
     // only need to check for previous keyframe because if there is no next keyframe, the "next"
     // value will be the same as previous and tweening will just output the same value anyway
-    return easing_tween(value_previous, value_next, f, kf_previous ? kf_previous.tween_yrot : AnimationTweens.NONE);
+    return easing_tween(value_previous, value_next, f, kf_previous ? kf_previous.tween.yrot : AnimationTweens.NONE);
 }
 
 function animation_get_tween_rotate_z(animation, timeline_layer, moment) {
@@ -156,10 +156,10 @@ function animation_get_tween_rotate_z(animation, timeline_layer, moment) {
     kf_current = animation_get_keyframe(animation, timeline_layer, moment);
     do {
         kf_previous = animation_get_preivous_keyframe(animation, timeline_layer, kf_previous ? kf_previous.moment : moment);
-    } until (!kf_previous || kf_previous.tween_zrot != AnimationTweens.IGNORE);
+    } until (!kf_previous || kf_previous.tween.zrot != AnimationTweens.IGNORE);
     do {
         kf_next = animation_get_next_keyframe(animation, timeline_layer, kf_next ? kf_next.moment : moment);
-    } until (!kf_next || kf_next.tween_zrot != AnimationTweens.IGNORE);
+    } until (!kf_next || kf_next.tween.zrot != AnimationTweens.IGNORE);
     
     var rel_current = (kf_current && kf_current.relative > -1) ? animation.layers[| kf_current.relative] : noone;
     var rel_previous = (kf_previous && kf_previous.relative > -1) ? animation.layers[| kf_previous.relative] : noone;
@@ -175,11 +175,11 @@ function animation_get_tween_rotate_z(animation, timeline_layer, moment) {
     var moment_next = kf_next ? kf_next.moment : animation.moments;
     var f = normalize(moment, moment_previous, moment_next);
     
-    if (kf_current && kf_current.tween_zrot != AnimationTweens.IGNORE) return value_now;
+    if (kf_current && kf_current.tween.zrot != AnimationTweens.IGNORE) return value_now;
     
     // only need to check for previous keyframe because if there is no next keyframe, the "next"
     // value will be the same as previous and tweening will just output the same value anyway
-    return easing_tween(value_previous, value_next, f, kf_previous ? kf_previous.tween_zrot : AnimationTweens.NONE);
+    return easing_tween(value_previous, value_next, f, kf_previous ? kf_previous.tween.zrot : AnimationTweens.NONE);
 }
 
 function animation_get_tween_scale_x(animation, timeline_layer, moment) {
@@ -190,10 +190,10 @@ function animation_get_tween_scale_x(animation, timeline_layer, moment) {
     kf_current = animation_get_keyframe(animation, timeline_layer, moment);
     do {
         kf_previous = animation_get_preivous_keyframe(animation, timeline_layer, kf_previous ? kf_previous.moment : moment);
-    } until (!kf_previous || kf_previous.tween_xscale != AnimationTweens.IGNORE);
+    } until (!kf_previous || kf_previous.tween.xscale != AnimationTweens.IGNORE);
     do {
         kf_next = animation_get_next_keyframe(animation, timeline_layer, kf_next ? kf_next.moment : moment);
-    } until (!kf_next || kf_next.tween_xscale != AnimationTweens.IGNORE);
+    } until (!kf_next || kf_next.tween.xscale != AnimationTweens.IGNORE);
     
     var rel_current = (kf_current && kf_current.relative > -1) ? animation.layers[| kf_current.relative] : noone;
     var rel_previous = (kf_previous && kf_previous.relative > -1) ? animation.layers[| kf_previous.relative] : noone;
@@ -209,11 +209,11 @@ function animation_get_tween_scale_x(animation, timeline_layer, moment) {
     var moment_next = kf_next ? kf_next.moment : animation.moments;
     var f = normalize(moment, moment_previous, moment_next);
     
-    if (kf_current && kf_current.tween_xscale != AnimationTweens.IGNORE) return value_now;
+    if (kf_current && kf_current.tween.xscale != AnimationTweens.IGNORE) return value_now;
     
     // only need to check for previous keyframe because if there is no next keyframe, the "next"
     // value will be the same as previous and tweening will just output the same value anyway
-    return easing_tween(value_previous, value_next, f, kf_previous ? kf_previous.tween_xscale : AnimationTweens.NONE);
+    return easing_tween(value_previous, value_next, f, kf_previous ? kf_previous.tween.xscale : AnimationTweens.NONE);
 }
 
 function animation_get_tween_scale_y(animation, timeline_layer, moment) {
@@ -224,10 +224,10 @@ function animation_get_tween_scale_y(animation, timeline_layer, moment) {
     kf_current = animation_get_keyframe(animation, timeline_layer, moment);
     do {
         kf_previous = animation_get_preivous_keyframe(animation, timeline_layer, kf_previous ? kf_previous.moment : moment);
-    } until (!kf_previous || kf_previous.tween_yscale != AnimationTweens.IGNORE);
+    } until (!kf_previous || kf_previous.tween.yscale != AnimationTweens.IGNORE);
     do {
         kf_next = animation_get_next_keyframe(animation, timeline_layer, kf_next ? kf_next.moment : moment);
-    } until (!kf_next || kf_next.tween_yscale != AnimationTweens.IGNORE);
+    } until (!kf_next || kf_next.tween.yscale != AnimationTweens.IGNORE);
     
     var rel_current = (kf_current && kf_current.relative > -1) ? animation.layers[| kf_current.relative] : noone;
     var rel_previous = (kf_previous && kf_previous.relative > -1) ? animation.layers[| kf_previous.relative] : noone;
@@ -243,11 +243,11 @@ function animation_get_tween_scale_y(animation, timeline_layer, moment) {
     var moment_next = kf_next ? kf_next.moment : animation.moments;
     var f = normalize(moment, moment_previous, moment_next);
     
-    if (kf_current && kf_current.tween_yscale != AnimationTweens.IGNORE) return value_now;
+    if (kf_current && kf_current.tween.yscale != AnimationTweens.IGNORE) return value_now;
     
     // only need to check for previous keyframe because if there is no next keyframe, the "next"
     // value will be the same as previous and tweening will just output the same value anyway
-    return easing_tween(value_previous, value_next, f, kf_previous ? kf_previous.tween_yscale : AnimationTweens.NONE);
+    return easing_tween(value_previous, value_next, f, kf_previous ? kf_previous.tween.yscale : AnimationTweens.NONE);
 }
 
 function animation_get_tween_scale_z(animation, timeline_layer, moment) {
@@ -258,10 +258,10 @@ function animation_get_tween_scale_z(animation, timeline_layer, moment) {
     kf_current = animation_get_keyframe(animation, timeline_layer, moment);
     do {
         kf_previous = animation_get_preivous_keyframe(animation, timeline_layer, kf_previous ? kf_previous.moment : moment);
-    } until (!kf_previous || kf_previous.tween_zrot != AnimationTweens.IGNORE);
+    } until (!kf_previous || kf_previous.tween.zrot != AnimationTweens.IGNORE);
     do {
         kf_next = animation_get_next_keyframe(animation, timeline_layer, kf_next ? kf_next.moment : moment);
-    } until (!kf_next || kf_next.tween_zrot != AnimationTweens.IGNORE);
+    } until (!kf_next || kf_next.tween.zrot != AnimationTweens.IGNORE);
     
     var rel_current = (kf_current && kf_current.relative > -1) ? animation.layers[| kf_current.relative] : noone;
     var rel_previous = (kf_previous && kf_previous.relative > -1) ? animation.layers[| kf_previous.relative] : noone;
@@ -277,11 +277,11 @@ function animation_get_tween_scale_z(animation, timeline_layer, moment) {
     var moment_next = kf_next ? kf_next.moment : animation.moments;
     var f = normalize(moment, moment_previous, moment_next);
     
-    if (kf_current && kf_current.tween_zscale != AnimationTweens.IGNORE) return value_now;
+    if (kf_current && kf_current.tween.zscale != AnimationTweens.IGNORE) return value_now;
     
     // only need to check for previous keyframe because if there is no next keyframe, the "next"
     // value will be the same as previous and tweening will just output the same value anyway
-    return easing_tween(value_previous, value_next, f, kf_previous ? kf_previous.tween_zscale : AnimationTweens.NONE);
+    return easing_tween(value_previous, value_next, f, kf_previous ? kf_previous.tween.zscale : AnimationTweens.NONE);
 }
 
 function animation_get_tween_translate_x(animation, timeline_layer, moment) {
@@ -292,10 +292,10 @@ function animation_get_tween_translate_x(animation, timeline_layer, moment) {
     kf_current = animation_get_keyframe(animation, timeline_layer, moment);
     do {
         kf_previous = animation_get_preivous_keyframe(animation, timeline_layer, kf_previous ? kf_previous.moment : moment);
-    } until (!kf_previous || kf_previous.tween_xx != AnimationTweens.IGNORE);
+    } until (!kf_previous || kf_previous.tween.x != AnimationTweens.IGNORE);
     do {
         kf_next = animation_get_next_keyframe(animation, timeline_layer, kf_next ? kf_next.moment : moment);
-    } until (!kf_next || kf_next.tween_xx != AnimationTweens.IGNORE);
+    } until (!kf_next || kf_next.tween.x != AnimationTweens.IGNORE);
     
     var rel_current = (kf_current && kf_current.relative > -1) ? animation.layers[| kf_current.relative] : noone;
     var rel_previous = (kf_previous && kf_previous.relative > -1) ? animation.layers[| kf_previous.relative] : noone;
@@ -312,11 +312,11 @@ function animation_get_tween_translate_x(animation, timeline_layer, moment) {
     var moment_next = kf_next ? kf_next.moment : animation.moments;
     var f = normalize(moment, moment_previous, moment_next);
     
-    if (kf_current && kf_current.tween_xx != AnimationTweens.IGNORE) return value_now;
+    if (kf_current && kf_current.tween.x != AnimationTweens.IGNORE) return value_now;
     
     // only need to check for previous keyframe because if there is no next keyframe, the "next"
     // value will be the same as previous and tweening will just output the same value anyway
-    return easing_tween(value_previous, value_next, f, kf_previous ? kf_previous.tween_xx : AnimationTweens.NONE);
+    return easing_tween(value_previous, value_next, f, kf_previous ? kf_previous.tween.x : AnimationTweens.NONE);
 }
 
 function animation_get_tween_translate_y(animation, timeline_layer, moment) {
@@ -327,10 +327,10 @@ function animation_get_tween_translate_y(animation, timeline_layer, moment) {
     kf_current = animation_get_keyframe(animation, timeline_layer, moment);
     do {
         kf_previous = animation_get_preivous_keyframe(animation, timeline_layer, kf_previous ? kf_previous.moment : moment);
-    } until (!kf_previous || kf_previous.tween_yy != AnimationTweens.IGNORE);
+    } until (!kf_previous || kf_previous.tween.y != AnimationTweens.IGNORE);
     do {
         kf_next = animation_get_next_keyframe(animation, timeline_layer, kf_next ? kf_next.moment : moment);
-    } until (!kf_next || kf_next.tween_yy != AnimationTweens.IGNORE);
+    } until (!kf_next || kf_next.tween.y != AnimationTweens.IGNORE);
     
     var rel_current = (kf_current && kf_current.relative > -1) ? animation.layers[| kf_current.relative] : noone;
     var rel_previous = (kf_previous && kf_previous.relative > -1) ? animation.layers[| kf_previous.relative] : noone;
@@ -346,11 +346,11 @@ function animation_get_tween_translate_y(animation, timeline_layer, moment) {
     var moment_next = kf_next ? kf_next.moment : animation.moments;
     var f = normalize(moment, moment_previous, moment_next);
     
-    if (kf_current && kf_current.tween_yy != AnimationTweens.IGNORE) return value_now;
+    if (kf_current && kf_current.tween.y != AnimationTweens.IGNORE) return value_now;
     
     // only need to check for previous keyframe because if there is no next keyframe, the "next"
     // value will be the same as previous and tweening will just output the same value anyway
-    return easing_tween(value_previous, value_next, f, kf_previous ? kf_previous.tween_yy : AnimationTweens.NONE);
+    return easing_tween(value_previous, value_next, f, kf_previous ? kf_previous.tween.y : AnimationTweens.NONE);
 }
 
 function animation_get_tween_translate_z(animation, timeline_layer, moment) {
@@ -361,10 +361,10 @@ function animation_get_tween_translate_z(animation, timeline_layer, moment) {
     kf_current = animation_get_keyframe(animation, timeline_layer, moment);
     do {
         kf_previous = animation_get_preivous_keyframe(animation, timeline_layer, kf_previous ? kf_previous.moment : moment);
-    } until (!kf_previous || kf_previous.tween_zz != AnimationTweens.IGNORE);
+    } until (!kf_previous || kf_previous.tween.z != AnimationTweens.IGNORE);
     do {
         kf_next = animation_get_next_keyframe(animation, timeline_layer, kf_next ? kf_next.moment : moment);
-    } until (!kf_next || kf_next.tween_zz != AnimationTweens.IGNORE);
+    } until (!kf_next || kf_next.tween.z != AnimationTweens.IGNORE);
     
     var rel_current = (kf_current && kf_current.relative > -1) ? animation.layers[| kf_current.relative] : noone;
     var rel_previous = (kf_previous && kf_previous.relative > -1) ? animation.layers[| kf_previous.relative] : noone;
@@ -380,11 +380,11 @@ function animation_get_tween_translate_z(animation, timeline_layer, moment) {
     var moment_next = kf_next ? kf_next.moment : animation.moments;
     var f = normalize(moment, moment_previous, moment_next);
     
-    if (kf_current && kf_current.tween_zz != AnimationTweens.IGNORE) {
+    if (kf_current && kf_current.tween.z != AnimationTweens.IGNORE) {
         return value_now;
     }
     
     // only need to check for previous keyframe because if there is no next keyframe, the "next"
     // value will be the same as previous and tweening will just output the same value anyway
-    return easing_tween(value_previous, value_next, f, kf_previous ? kf_previous.tween_zz : AnimationTweens.NONE);
+    return easing_tween(value_previous, value_next, f, kf_previous ? kf_previous.tween.z : AnimationTweens.NONE);
 }
