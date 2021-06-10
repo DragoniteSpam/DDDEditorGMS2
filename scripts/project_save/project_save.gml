@@ -10,6 +10,14 @@ function project_save() {
         return json;
     };
     
+    static project_write_json_array = function(data_array) {
+        var json = array_create(array_length(data_array));
+        for (var i = 0, n = array_length(data_array); i < n; i++) {
+            json[i] = data_array[i].CreateJSON();
+        }
+        return json;
+    };
+    
     static project_write_json_simple = function(data_list) {
         var json = array_create(ds_list_size(data_list));
         for (var i = 0, n = ds_list_size(data_list); i < n; i++) {
@@ -100,7 +108,7 @@ function project_save() {
         version: ProjectSaveVersions._CURRENT - 1,
     }), folder_name + "audio.json");
     buffer_write_file(json_stringify({
-        meshes: project_write_json(Game.meshes),
+        meshes: project_write_json_array(Game.meshes),
         version: ProjectSaveVersions._CURRENT - 1,
     }), folder_name + "meshes.json");
     buffer_write_file(json_stringify({
