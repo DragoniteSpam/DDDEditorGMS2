@@ -32,8 +32,8 @@ function ui_init_text() {
             var lang_selection = ui_list_selection(element.root.el_language_list);
             if ((selection + 1) && (lang_selection + 1)) {
                 var key_name = element.root.el_language_text.entries[| selection];
-                var lang_name = Stuff.all_languages[lang_selection];
-                element.root.el_text_default.text = key_name + "\n" + Stuff.all_localized_text[$ Stuff.all_languages[0]][$ key_name];
+                var lang_name = Game.languages.names[lang_selection];
+                element.root.el_text_default.text = key_name + "\n" + Stuff.all_localized_text[$ Game.languages.names[0]][$ key_name];
                 ui_input_set_value(element.root.el_text_translated, Stuff.all_localized_text[$ lang_name][$ key_name]);
             } else {
                 element.root.el_text_default.text = "";
@@ -44,10 +44,10 @@ function ui_init_text() {
         var element = create_list(c1x, yy, "Languages:", "(default)", ew, eh, 26, function(list) {
             var selection = ui_list_selection(list);
             if (selection + 1) {
-                ui_input_set_value(list.root.el_language_name, Stuff.all_languages[selection]);
+                ui_input_set_value(list.root.el_language_name, Game.languages.names[selection]);
             }
             list.root.list_selection_action(list);
-        }, true, id, Stuff.all_languages);
+        }, true, id, Game.languages.names);
         element.tooltip = "Every language which text in the game data may be translated to.";
         ds_list_add(contents, element);
         el_language_list = element;
@@ -56,8 +56,8 @@ function ui_init_text() {
         element = create_input(c1x, yy, "Name:", ew, eh, function(input) {
             var selection = ui_list_selection(input.root.el_language_list);
             if (selection + 1) {
-                var old_name = Stuff.all_languages[selection];
-                Stuff.all_languages[selection] = input.value;
+                var old_name = Game.languages.names[selection];
+                Game.languages.names[selection] = input.value;
                 Stuff.all_localized_text[$ input.value] = Stuff.all_localized_text[$ old_name];
                 variable_struct_remove(Stuff.all_localized_text, old_name);
             }
@@ -70,10 +70,10 @@ function ui_init_text() {
         yy += element.height + spacing;
         
         element = create_button(c1x, yy, "Add Language", ew, eh, fa_center, function() {
-            if (array_length(Stuff.all_languages) >= 255) return;
+            if (array_length(Game.languages.names) >= 255) return;
             var n = 0;
-            for (var i = array_length(Stuff.all_languages); i < 1000; i++) {
-                if (!(array_search(Stuff.all_languages, "Language" + string(i)) + 1)) {
+            for (var i = array_length(Game.languages.names); i < 1000; i++) {
+                if (!(array_search(Game.languages.names, "Language" + string(i)) + 1)) {
                     language_add("Language" + string(i));
                     break;
                 }
@@ -85,8 +85,8 @@ function ui_init_text() {
         
         element = create_button(c1x, yy, "Remove Language", ew, eh, fa_center, function(button) {
             var selection = ui_list_selection(button.root.el_language_list);
-            if (selection + 1 && array_length(Stuff.all_languages) > 1) {
-                language_remove(Stuff.all_languages[selection]);
+            if (selection + 1 && array_length(Game.languages.names) > 1) {
+                language_remove(Game.languages.names[selection]);
                 ui_list_deselect(button.root.el_language_list);
             }
         }, id);
@@ -106,8 +106,8 @@ function ui_init_text() {
                 return c_black;
             }
             if (lang_selection) {
-                var lang_name = Stuff.all_languages[lang_selection];
-                return (Stuff.all_localized_text[$ Stuff.all_languages[lang_selection]][$ list.entries[| index]] == "") ? c_red : c_black;
+                var lang_name = Game.languages.names[lang_selection];
+                return (Stuff.all_localized_text[$ Game.languages.names[lang_selection]][$ list.entries[| index]] == "") ? c_red : c_black;
             }
             return c_black;
         };
@@ -124,8 +124,8 @@ function ui_init_text() {
         
         element = create_button(c2x + ew + 16, yy, "Clear All Text", ew - 16, eh, fa_center, function(button) {
             var dg = emu_dialog_confirm(button.root, "This will delete all extracted and localized strings, forcing you to start over. Are you [shake]ABSOLUTELY CERTAIN[/shake] you want to do this?", function() {
-                for (var i = 0; i < array_length(Stuff.all_languages); i++) {
-                    Stuff.all_localized_text[$ Stuff.all_languages[i]] = { };
+                for (var i = 0; i < array_length(Game.languages.names); i++) {
+                    Stuff.all_localized_text[$ Game.languages.names[i]] = { };
                 }
                 language_refresh_ui();
                 self.root.Dispose();
@@ -138,15 +138,15 @@ function ui_init_text() {
         element = create_button(c2x, yy, "Set From Default", ew - 16, eh, fa_center, function(button) {
             var selection = ui_list_selection(button.root.el_language_list);
             if (selection + 1) {
-                var lang_name = Stuff.all_languages[selection];
-                var base_lang = Stuff.all_languages[0];
+                var lang_name = Game.languages.names[selection];
+                var base_lang = Game.languages.names[0];
                 var dg = emu_dialog_confirm(button.root, "Would you like to set each string for " + lang_name + " to the default" + (string_lower(base_lang) == "default" ? "" : " (" + base_lang + ")") + "? Any strings already defined will be overwritten.",
                     function() {
                         var base_element = self.root.root;
                         var selection = ui_list_selection(base_element.el_language_list);
                         if (selection + 1) {
-                            var lang_name = Stuff.all_languages[selection];
-                            var base_lang = Stuff.all_languages[0];
+                            var lang_name = Game.languages.names[selection];
+                            var base_lang = Game.languages.names[0];
                             var keys = variable_struct_get_names(Stuff.all_localized_text[$ lang_name]);
                             for (var i = 0; i < array_length(keys); i++) {
                                 Stuff.all_localized_text[$ lang_name][$ keys[i]] = Stuff.all_localized_text[$ base_lang][$ keys[i]];
@@ -164,14 +164,14 @@ function ui_init_text() {
         element = create_button(c2x + ew + 16, yy, "Clear Language", ew - 16, eh, fa_center, function(button) {
             var selection = ui_list_selection(button.root.el_language_list);
             if (selection + 1) {
-                var lang_name = Stuff.all_languages[selection];
-                var base_lang = Stuff.all_languages[0];
+                var lang_name = Game.languages.names[selection];
+                var base_lang = Game.languages.names[0];
                 var dg = emu_dialog_confirm(button.root, "Would you like to remove all translated strings for " + lang_name + "?",
                     function() {
                         var base_element = self.root.root;
                         var selection = ui_list_selection(base_element.el_language_list);
                         if (selection > 0) {
-                            var lang_name = Stuff.all_languages[selection];
+                            var lang_name = Game.languages.names[selection];
                             var keys = variable_struct_get_names(Stuff.all_localized_text[$ lang_name]);
                             for (var i = 0; i < array_length(keys); i++) {
                                 Stuff.all_localized_text[$ lang_name][$ keys[i]] = "";
@@ -189,15 +189,15 @@ function ui_init_text() {
         
         element = create_button(c2x, yy, "Export Strings", ew - 16, eh, fa_center, function(button) {
             var fn = get_save_filename_text("output");
-            var all_keys = variable_struct_get_names(Stuff.all_localized_text[$ Stuff.all_languages[0]]);
+            var all_keys = variable_struct_get_names(Stuff.all_localized_text[$ Game.languages.names[0]]);
             array_sort(all_keys, true);
             switch (string_lower(filename_ext(fn))) {
                 case ".json":
                     var lang_output = "{\n";
                     ui_list_clear(button.root.el_language_text);
-                    for (var lang_index = 0; lang_index < array_length(Stuff.all_languages); lang_index++) {
-                        var lang = Stuff.all_localized_text[$ Stuff.all_languages[lang_index]];
-                        lang_output += "    \"" + Stuff.all_languages[lang_index] + "\": {\n";
+                    for (var lang_index = 0; lang_index < array_length(Game.languages.names); lang_index++) {
+                        var lang = Stuff.all_localized_text[$ Game.languages.names[lang_index]];
+                        lang_output += "    \"" + Game.languages.names[lang_index] + "\": {\n";
                         for (var i = 0; i < array_length(all_keys); i++) {
                             var base_text = lang[$ all_keys[i]];
                             var base_json_text = base_text;
@@ -208,7 +208,7 @@ function ui_init_text() {
                                 ds_list_add(button.root.el_language_text.entries, all_keys[i]);
                             }
                         }
-                        lang_output += "    }" + ((lang_index < array_length(Stuff.all_languages) - 1) ? "," : "") + "\n";
+                        lang_output += "    }" + ((lang_index < array_length(Game.languages.names) - 1) ? "," : "") + "\n";
                     }
                     lang_output += "}";
                     var fbuffer = buffer_create(string_byte_length(lang_output), buffer_fixed, 1);
@@ -218,18 +218,18 @@ function ui_init_text() {
                     break;
                 case ".csv":
                     var lang_output = "ID,";
-                    for (var i = 0; i < array_length(Stuff.all_languages); i++) {
-                        lang_output += "\"" + Stuff.all_languages[i] + "\"" + ((i < array_length(Stuff.all_languages) - 1) ? "," : "");
+                    for (var i = 0; i < array_length(Game.languages.names); i++) {
+                        lang_output += "\"" + Game.languages.names[i] + "\"" + ((i < array_length(Game.languages.names) - 1) ? "," : "");
                     }
                     lang_output += "\n";
                     for (var i = 0; i < array_length(all_keys); i++) {
                         lang_output += all_keys[i] + ",";
-                        for (var j = 0; j < array_length(Stuff.all_languages); j++) {
-                            var base_text = Stuff.all_localized_text[$ Stuff.all_languages[j]][$ all_keys[i]];
+                        for (var j = 0; j < array_length(Game.languages.names); j++) {
+                            var base_text = Stuff.all_localized_text[$ Game.languages.names[j]][$ all_keys[i]];
                             var base_csv_text = base_text;
                             base_csv_text = string_replace_all(base_csv_text, "\\", "\\\\");
                             base_csv_text = string_replace_all(base_csv_text, "\"", "\\\"");
-                            lang_output += "\"" + base_csv_text + "\"" + ((j < array_length(Stuff.all_languages) - 1) ? "," : "");
+                            lang_output += "\"" + base_csv_text + "\"" + ((j < array_length(Game.languages.names) - 1) ? "," : "");
                         }
                         lang_output += "\n";
                     }
@@ -339,7 +339,7 @@ function ui_init_text() {
             var lang_selection = ui_list_selection(input.root.el_language_list);
             if ((selection + 1) && (lang_selection + 1)) {
                 var key_name = input.root.el_language_text.entries[| selection];
-                var lang_name = Stuff.all_languages[lang_selection];
+                var lang_name = Game.languages.names[lang_selection];
                 Stuff.all_localized_text[$ lang_name][$ key_name] = input.value;
             }
         }, "", "Translated text...", validate_string, 0, 1, 1000, 0, 0, ew * 2, eh * 8, id);

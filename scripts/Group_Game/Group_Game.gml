@@ -65,6 +65,9 @@ Game = {
     animations: ds_list_create(),
     events: ds_list_create(),
     maps: ds_list_create(),
+    languages: {
+        names: ["English"],
+    },
     
     // leave this here for now
     Clear: function() {

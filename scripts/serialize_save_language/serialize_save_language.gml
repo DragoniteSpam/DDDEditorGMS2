@@ -3,19 +3,19 @@ function serialize_save_language(buffer) {
     var addr_next = buffer_tell(buffer);
     buffer_write(buffer, buffer_u64, 0);
     
-    buffer_write(buffer, buffer_u8, array_length(Stuff.all_languages));
-    for (var i = 0; i < array_length(Stuff.all_languages); i++) {
-        buffer_write(buffer, buffer_string, Stuff.all_languages[i]);
+    buffer_write(buffer, buffer_u8, array_length(Game.languages.names));
+    for (var i = 0; i < array_length(Game.languages.names); i++) {
+        buffer_write(buffer, buffer_string, Game.languages.names[i]);
     }
     
-    var keys = variable_struct_get_names(Stuff.all_localized_text[$ Stuff.all_languages[0]]);
+    var keys = variable_struct_get_names(Stuff.all_localized_text[$ Game.languages.names[0]]);
     buffer_write(buffer, buffer_u32, array_length(keys));
     for (var i = 0; i < array_length(keys); i++) {
         buffer_write(buffer, buffer_string, keys[i]);
     }
     
-    for (var i = 0; i < array_length(Stuff.all_languages); i++) {
-        var lang = Stuff.all_localized_text[$ Stuff.all_languages[i]];
+    for (var i = 0; i < array_length(Game.languages.names); i++) {
+        var lang = Stuff.all_localized_text[$ Game.languages.names[i]];
         for (var j = 0; j < array_length(keys); j++) {
             buffer_write(buffer, buffer_string, lang[$ keys[j]]);
         }
