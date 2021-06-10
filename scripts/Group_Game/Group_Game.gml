@@ -64,7 +64,7 @@ Game = {
         bgm: ds_list_create(),
         se: ds_list_create(),
     },
-    meshes: ds_list_create(),
+    meshes: [],
     mesh_autotiles: ds_list_create(),
     animations: ds_list_create(),
     events: {
@@ -101,7 +101,7 @@ Game = {
         ds_list_clear_instances(self.graphics.tile_animations);
         ds_list_clear_instances(self.graphics.etc);
         ds_list_clear_instances(self.graphics.skybox);
-        ds_list_clear_instances(self.meshes);
+        array_clear_instances(self.meshes);
         ds_list_clear_instances(self.mesh_autotiles);
         ds_list_clear_instances(self.animations);
         ds_list_clear_instances(self.maps);
