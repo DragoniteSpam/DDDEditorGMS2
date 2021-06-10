@@ -241,14 +241,16 @@ function ui_init_mesh(mode) {
         element = create_button(c1x, yy, "Remove Mesh", ew0, eh, fa_center, function(button) {
             var list = button.root.mesh_list;
             var selection = list.selected_entries;
-            // because mesh deleting is spaghetti
+            // because when you delete stuff from the mesh list, the indices may
+            // change, and if the indices change while you're in the middle of
+            // deleting from it, things will get ugly
             var to_delete = [];
             for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
                 array_push(to_delete, Game.meshes[| index]);
             }
             
-            for (var i = 0; i < ds_list_size(to_delete); i++) {
-                to_delete[| i].Destroy();
+            for (var i = 0; i < array_length(to_delete); i++) {
+                to_delete[i].Destroy();
             }
             
             ui_list_deselect(list);

@@ -31,8 +31,6 @@ function DataMesh(name) : SData(name) constructor {
     
     self.texture_scale = 1;
     
-    ds_list_add(Game.meshes, self);
-    
     self.CopyPropertiesFrom = function(mesh) {
         // cshape is currently NOT copied!
         
