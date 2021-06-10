@@ -15,7 +15,8 @@ function editor_mode_data() {
     camera_set_view_size(camera, room_width, camera_get_view_height(camera));
     view_set_wport(view_fullscreen, room_width);
     
-    // this may need to get stuffed off into its own script later
+    // creating and destroying the data editor UI is probably the easiest way
+    // to do this; this may need to get stuffed off into its own script later
     
     if (Stuff.data.ui) {
         instance_activate_object(Stuff.data.ui);
