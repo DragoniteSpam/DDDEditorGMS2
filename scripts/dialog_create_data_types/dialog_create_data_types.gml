@@ -164,7 +164,7 @@ function dialog_create_data_types(dialog) {
             list.text = otext + string(array_length(datadata.properties));
             list.entries = datadata.properties;
         } else {
-            list.entries = Stuff.empty_list;
+            list.entries = [];
         }
         ui_render_list(list, xx, yy);
         list.text = otext;

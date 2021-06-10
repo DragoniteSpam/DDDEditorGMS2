@@ -11,13 +11,9 @@ default_lua_event_script = file_get_contents(PATH_LUA + "event-script.lua");
 default_lua_animation = file_get_contents(PATH_LUA + "animation.lua");
 
 // local storage folders
-
 if (!directory_exists(PATH_TEMP)) directory_create(PATH_TEMP);
 if (!directory_exists(PATH_AUDIO)) directory_create(PATH_AUDIO);
 if (!directory_exists(PATH_PROJECTS)) directory_create(PATH_PROJECTS);
-
-// dummy list that will always exist and be empty
-empty_list = ds_list_create();
 
 dt = 0;
 time = 0;
@@ -54,8 +50,6 @@ tile_height = 32;
 tile_depth = 32;
 // uv size, not 3D size
 tile_size = 32;
-
-default_camera = camera_get_default();
 
 is_quitting = false;
 files_dropped = [];
