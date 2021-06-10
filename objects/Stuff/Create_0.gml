@@ -94,10 +94,6 @@ fmod_sound = -1;
 
 spr_character_default = sprite_add(PATH_GRAPHICS + "b_chr_default.png", 0, false, false, 0, 0);
 
-surface = surface_create(4096, 4096);
-all_graphic_ui_texture = sprite_create_from_surface(surface, 0, 0, surface_get_width(surface), surface_get_width(surface), false, false, 0, 0);
-surface_free(surface);
-
 tileset_create(PATH_GRAPHICS + DEFAULT_TILESET);
 Game.graphics.tilesets[| 0].name = "Default";
 
