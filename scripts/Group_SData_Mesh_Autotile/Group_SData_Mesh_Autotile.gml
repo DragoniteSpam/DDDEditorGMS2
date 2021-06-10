@@ -109,6 +109,11 @@ function DataMeshAutotile(name) : SData(name) constructor {
         }
     };
     
+    static LoadAsset = function(directory) {
+        directory += "/";
+        var guid = string_replace(self.GUID, ":", "_");
+    };
+
     static SaveAsset = function(directory) {
         directory += "/" + string_replace_all(self.GUID, ":", "_");
         for (var i = 0, n = array_length(self.layers); i < n; i++) {
