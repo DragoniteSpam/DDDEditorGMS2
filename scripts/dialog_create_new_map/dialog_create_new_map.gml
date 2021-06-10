@@ -25,7 +25,7 @@ function dialog_create_new_map(root) {
     
     yy += el_heading.height + spacing;
     
-    var el_name = create_input(col1_x, yy, "Name:", ew, eh, null, "Map " + string(ds_list_size(Stuff.all_maps) + 1), "The name of the map", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
+    var el_name = create_input(col1_x, yy, "Name:", ew, eh, null, "Map " + string(ds_list_size(Game.maps) + 1), "The name of the map", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
     el_name.tooltip = "The name of the map, as it will be visible to the player.";
     dg.el_name = el_name;
     

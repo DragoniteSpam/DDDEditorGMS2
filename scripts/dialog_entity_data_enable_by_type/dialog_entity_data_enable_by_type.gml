@@ -116,7 +116,7 @@ function dialog_entity_data_enable_by_type(dialog) {
         case DataTypes.MAP:
             dialog.el_data_builtin_list.interactive = true;
             dialog.el_data_builtin_list.enabled = true;
-            dialog.el_data_builtin_list.entries = Stuff.all_maps;
+            dialog.el_data_builtin_list.entries = Game.maps;
             break;
         case DataTypes.IMG_BATTLER:
             dialog.el_data_builtin_list.interactive = true;

@@ -110,8 +110,6 @@ Game.graphics.tilesets[| 0].name = "Default";
 all_event_custom = ds_list_create();
 all_event_prefabs = ds_list_create();
 
-all_maps = ds_list_create();
-
 all_languages = ["English"];
 
 /*

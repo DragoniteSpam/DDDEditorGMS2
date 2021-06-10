@@ -50,7 +50,7 @@ code = Stuff.default_lua_map;               // code
 
 generic_data = [];                          // similar to that attached to Entities
 
-ds_list_add(Stuff.all_maps, id);
+ds_list_add(Game.maps, id);
 
 Add = function(entity, x, y, z, is_temp, add_to_lists) {
     if (x == undefined) x = entity.xx;

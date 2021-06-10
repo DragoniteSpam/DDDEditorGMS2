@@ -7,11 +7,11 @@ function serialize_save_maps(buffer) {
     var addr_next = buffer_tell(buffer);
     buffer_write(buffer, buffer_u64, 0);
     
-    var n_maps = ds_list_size(Stuff.all_maps);
+    var n_maps = ds_list_size(Game.maps);
     buffer_write(buffer, buffer_u16, n_maps);
     
     for (var i = 0; i < n_maps; i++) {
-        var map = Stuff.all_maps[| i];
+        var map = Game.maps[| i];
         serialize_save_generic(buffer, map);
         buffer_write(buffer, buffer_u32, map.version);
         buffer_write(buffer, buffer_u32, buffer_get_size(map.data_buffer));

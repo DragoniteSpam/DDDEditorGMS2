@@ -166,7 +166,7 @@ function dialog_create_settings_data_game_constants(root) {
                 break;
             case DataTypes.MAP:
                 var list = base_dialog.el_value_other;
-                list.entries = Stuff.all_maps;
+                list.entries = Game.maps;
                 ui_list_deselect(list);
                 ui_list_select(list, ds_list_find_index(list.entries, guid_get(const.value)), true);
                 list.enabled = true;

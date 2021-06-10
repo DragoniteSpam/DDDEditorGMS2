@@ -182,7 +182,7 @@ function project_load(id) {
             var map = instance_create_depth(0, 0, 0, DataMapContainer);
             map.LoadJSON(maps[i]);
             map.LoadAsset(directory);
-            ds_list_add(Stuff.all_maps, map);
+            ds_list_add(Game.maps, map);
         }
     };
     #endregion

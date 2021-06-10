@@ -238,7 +238,7 @@ function ui_init_game_data_activate() {
                                 var hh = element.height;
                                 break;
                             case DataTypes.MAP:             // list
-                                element = create_list(0, yy, property.name, "<no Maps - how?>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Stuff.all_maps);
+                                element = create_list(0, yy, property.name, "<no Maps - how?>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Game.maps);
                                 element.key = i;
                                 element.entries_are = ListEntries.INSTANCES;
                                 var hh = ui_get_list_height(element);

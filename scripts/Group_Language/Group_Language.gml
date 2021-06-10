@@ -75,8 +75,8 @@ function language_extract() {
         }
         #endregion
         #region map generics
-        for (var i = 0; i < ds_list_size(Stuff.all_maps); i++) {
-            var map = Stuff.all_maps[| i];
+        for (var i = 0; i < ds_list_size(Game.maps); i++) {
+            var map = Game.maps[| i];
             for (var j = 0; j < array_length(map.generic_data); j++) {
                 var gen = map.generic_data[j];
                 if (gen.type != DataTypes.STRING) continue;
@@ -88,8 +88,8 @@ function language_extract() {
         #endregion
         #region entity generics
         var map_warned = false;
-        for (var i = 0; i < ds_list_size(Stuff.all_maps); i++) {
-            var map = Stuff.all_maps[| i];
+        for (var i = 0; i < ds_list_size(Game.maps); i++) {
+            var map = Game.maps[| i];
             if (map.contents) {
                 for (var j = 0; j < ds_list_size(map.contents.all_entities); j++) {
                     var entity = map.contents.all_entities[| j];

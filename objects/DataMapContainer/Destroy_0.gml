@@ -14,4 +14,4 @@ if (cpreview) c_world_remove_object(cpreview);
 if (cpreview) c_object_destroy(cpreview);
 if (cspreview) c_shape_destroy(cspreview);
 
-ds_list_delete(Stuff.all_maps, ds_list_find_index(Stuff.all_maps, id));
+ds_list_delete(Game.maps, ds_list_find_index(Game.maps, id));

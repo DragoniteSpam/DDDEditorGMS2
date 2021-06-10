@@ -124,7 +124,7 @@ function project_save() {
         version: ProjectSaveVersions._CURRENT - 1,
     }), folder_name + "events.json");
     buffer_write_file(json_stringify({
-        maps: project_write_json(Stuff.all_maps),
+        maps: project_write_json(Game.maps),
         version: ProjectSaveVersions._CURRENT - 1,
     }), folder_name + "maps.json");
     
@@ -140,7 +140,7 @@ function project_save() {
     save_assets(folder_audio_name, Game.audio.bgm);
     save_assets(folder_mesh_name, Game.meshes);
     save_assets(folder_mesh_autotile_name, Game.mesh_autotiles);
-    save_assets(folder_map_name, Stuff.all_maps);
+    save_assets(folder_map_name, Game.maps);
     Stuff.terrain.SaveAsset(folder_terrain_name);
     
     setting_project_add(fn, project_id);

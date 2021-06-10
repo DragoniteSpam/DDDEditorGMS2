@@ -47,9 +47,9 @@ function omu_event_attain_map_data(argument0, argument1, argument2) {
     var yy_start = yy;
     var spacing = 16;
 
-    var el_maps = create_list(16, yy, "Maps", "no maps", ew, eh, 8, uivc_list_event_attain_map_index, false, dg, Stuff.all_maps);
-    for (var i = 0; i < ds_list_size(Stuff.all_maps); i++) {
-        if (Stuff.all_maps[| i] == map) {
+    var el_maps = create_list(16, yy, "Maps", "no maps", ew, eh, 8, uivc_list_event_attain_map_index, false, dg, Game.maps);
+    for (var i = 0; i < ds_list_size(Game.maps); i++) {
+        if (Game.maps[| i] == map) {
             ui_list_select(el_maps, i);
             break;
         }

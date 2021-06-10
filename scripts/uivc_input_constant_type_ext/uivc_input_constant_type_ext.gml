@@ -138,7 +138,7 @@ function ui_constant_data_activate(base_dialog, what) {
             break;
         case DataTypes.MAP:
             var list = base_dialog.el_value_other;
-            list.entries = Stuff.all_maps;
+            list.entries = Game.maps;
             ui_list_deselect(list);
             ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value)), true);
             list.enabled = true;

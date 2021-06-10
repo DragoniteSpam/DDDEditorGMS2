@@ -3,8 +3,8 @@ function uivc_list_event_attain_map_index(argument0) {
 
     var list = argument0;
 
-    if (Stuff.event.map != Stuff.all_maps[| ui_list_selection(list)]) {
-        var visible_map = Stuff.all_maps[| ui_list_selection(list)];
+    if (Stuff.event.map != Game.maps[| ui_list_selection(list)]) {
+        var visible_map = Game.maps[| ui_list_selection(list)];
     
         if (Stuff.event.map) {
             if (Stuff.event.map.preview) {
