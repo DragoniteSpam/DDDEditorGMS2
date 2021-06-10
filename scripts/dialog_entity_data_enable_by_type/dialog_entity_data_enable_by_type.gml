@@ -75,7 +75,7 @@ function dialog_entity_data_enable_by_type(dialog) {
         case DataTypes.MESH_AUTOTILE:
             dialog.el_data_builtin_list.interactive = true;
             dialog.el_data_builtin_list.enabled = true;
-            dialog.el_data_builtin_list.entries = Stuff.all_mesh_autotiles;
+            dialog.el_data_builtin_list.entries = Game.mesh_autotiles;
             break;
         case DataTypes.IMG_TEXTURE:
             dialog.el_data_builtin_list.interactive = true;

@@ -1,12 +1,12 @@
 function serialize_load_mesh_autotiles(buffer, version) {
     var addr_next = buffer_read(buffer, buffer_u64);
-    ds_list_clear_disposable(Stuff.all_mesh_autotiles);
+    ds_list_clear_disposable(Game.mesh_autotiles);
     
     var n_mesh_autotiles = buffer_read(buffer, buffer_u32);
     
     repeat (n_mesh_autotiles) {
         var autotile = new DataMeshAutotile("");
-        ds_list_add(Stuff.all_mesh_autotiles, autotile);
+        ds_list_add(Game.mesh_autotiles, autotile);
         serialize_load_generic(buffer, autotile, version);
         
         for (var i = 0; i < MeshAutotileLayers.__COUNT; i++) {

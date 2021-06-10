@@ -61,6 +61,7 @@ Game = {
         se: ds_list_create(),
     },
     meshes: ds_list_create(),
+    mesh_autotiles: ds_list_create(),
     
     // leave this here for now
     Clear: function() {
@@ -73,6 +74,7 @@ Game = {
         ds_list_clear_instances(self.graphics.etc);
         ds_list_clear_instances(self.graphics.skybox);
         ds_list_clear_instances(self.meshes);
+        ds_list_clear_instances(self.mesh_autotiles);
     },
 };
 

@@ -42,7 +42,7 @@ function dialog_create_entity_mesh_autotile_properties(root) {
             editor_map_mark_changed(entity);
         }
         selection_update_autotiles();
-    }, false, dg, Stuff.all_mesh_autotiles);
+    }, false, dg, Game.mesh_autotiles);
     el_type.allow_deselect = false;
     el_type.entries_are = ListEntries.INSTANCES;
     

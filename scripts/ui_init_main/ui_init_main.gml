@@ -1394,7 +1394,7 @@ function ui_init_main(mode) {
             } else {
                 Settings.selection.mesh_autotile_type = NULL;
             }
-        }, false, t_p_other_editor, Stuff.all_mesh_autotiles);
+        }, false, t_p_other_editor, Game.mesh_autotiles);
         element.entries_are = ListEntries.INSTANCES;
         ds_list_add(t_p_other_editor.contents, element);
         t_p_other_editor.el_mesh_autotile_type = element;

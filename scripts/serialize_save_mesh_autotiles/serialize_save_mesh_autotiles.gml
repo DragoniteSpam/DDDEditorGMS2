@@ -3,11 +3,11 @@ function serialize_save_mesh_autotiles(buffer) {
     var addr_next = buffer_tell(buffer);
     buffer_write(buffer, buffer_u64, 0);
     
-    var n_mesh_autotile = ds_list_size(Stuff.all_mesh_autotiles);
+    var n_mesh_autotile = ds_list_size(Game.mesh_autotiles);
     buffer_write(buffer, buffer_u32, n_mesh_autotile);
     
     for (var i = 0; i < n_mesh_autotile; i++) {
-        var autotile = Stuff.all_mesh_autotiles[| i];
+        var autotile = Game.mesh_autotiles[| i];
         serialize_save_generic(buffer, autotile);
         
         // it's pretty safe to assume the autotile count won't ever change
