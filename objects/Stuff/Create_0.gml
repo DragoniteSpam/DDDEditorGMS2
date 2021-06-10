@@ -90,13 +90,6 @@ fmod_channel = FMODGMS_Chan_CreateChannel();
 fmod_sound = -1;
 #endregion
 
-#region asset lists
-
-tileset_create(PATH_GRAPHICS + DEFAULT_TILESET);
-Game.graphics.tilesets[| 0].name = "Default";
-
-#endregion
-
 #region prefab events
 event_prefab[EventNodeTypes.INPUT_TEXT] = create_event_node_basic("InputText", [
     ["Help Text", DataTypes.STRING, 0, 1, false, "For example, \"Please enter your name\""],
@@ -283,7 +276,6 @@ gpu_base_state = gpu_get_state();
 #endregion
 
 #region visual stuff
-
 // it'd be nice to put this in EditorModeMap but it could also be summoned from
 // elsewhere, so it's going here for now; it's not impossible that the deep future
 // will contain a 3D model editor mode but that's at like the bottom of the
@@ -305,7 +297,7 @@ element_tooltip_t = -1;
 screen_icons = ds_queue_create();
 unlit_meshes = ds_queue_create();
 
-default_pawn = new DataImage();
+default_pawn = new DataImage("Default Pawn");
 default_pawn.texture_exclude = true;
 default_pawn.picture = spr_pawn_missing;
 default_pawn.width = sprite_get_width(default_pawn.picture);
@@ -316,6 +308,8 @@ default_pawn.aframes = 0;
 default_pawn.aspeed = 0;
 default_pawn.picture_with_frames = -1;
 data_image_npc_frames(default_pawn);
+
+tileset_create(PATH_GRAPHICS + DEFAULT_TILESET).name = "Default";
 #endregion
 
 #region global game settings
