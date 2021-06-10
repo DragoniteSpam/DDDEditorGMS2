@@ -167,6 +167,38 @@ SaveAsset = function(directory) {
     }
 };
 
+LoadJSONMesh = function(json) {
+    self.LoadJSONBase(json);
+    self.type = json.type;
+    self.tex_base = json.tex_base;
+    self.tex_ambient = json.tex_ambient;
+    self.tex_specular_color = json.tex_specular_color;
+    self.tex_specular_highlight = json.tex_specular_highlight;
+    self.tex_alpha = json.tex_alpha;
+    self.tex_bump = json.tex_bump;
+    self.tex_displacement = json.tex_displacement;
+    self.tex_stencil = json.tex_stencil;
+    self.texture_scale = json.texture_scale;
+    
+    self.asset_flags = json.asset_flags;
+    self.xmin = json.xmin;
+    self.ymin = json.ymin;
+    self.zmin = json.zmin;
+    self.xmax = json.xmax;
+    self.ymax = json.ymax;
+    self.zmax = json.zmax;
+    
+    for (var i = 0; i < array_length(json.submeshes); i++) {
+        var submesh = new MeshSubmesh();
+        submesh.LoadJSON(json.submeshes[i]);
+        ds_list_add(self.submeshes, submesh);
+    }
+};
+
+LoadJSON = function(json) {
+    self.LoadJSONMesh(json);
+};
+
 CreateJSONMesh = function() {
     var json = self.CreateJSONBase();
     json.type = self.type;
