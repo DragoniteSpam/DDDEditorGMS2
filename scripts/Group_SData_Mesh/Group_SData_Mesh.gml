@@ -1,4 +1,4 @@
-function DataMesh(name) : SData(name) {
+function DataMesh(name) : SData(name) constructor {
     self.type = MeshTypes.RAW;
     
     self.submeshes = ds_list_create();
