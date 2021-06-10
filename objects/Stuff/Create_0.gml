@@ -65,9 +65,9 @@ files_dropped = [];
 #region user settings
 save_name = "game";
 
-if (file_exists("projects.json")) {
+try {
     all_projects = json_parse(file_get_contents("projects.json"));
-} else {
+} catch (e) {
     all_projects = { projects: [] };
 }
 
