@@ -36,7 +36,7 @@ function SData(name) constructor {
             internal_name: internal_name,
             flags: flags,
             summary: summary,
-            guid: GUID,
+            GUID: GUID,
         };
     };
     
