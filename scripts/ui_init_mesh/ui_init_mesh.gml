@@ -322,10 +322,10 @@ function ui_init_mesh(mode) {
                 var mesh = Game.meshes[| index];
                 if (ds_list_size(mesh.submeshes) > 1) {
                     for (var i = 0, n = ds_list_size(mesh.submeshes); i < n; i++) {
-                        var new_mesh = instance_create_depth(0, 0, 0, DataMesh);
+                        var new_mesh = new DataMesh(mesh.name + "!Separated" + string_pad(i, " ", 3));
                         var submesh = new_mesh.AddSubmesh(mesh.submeshes[| i].Clone());
-                        new_mesh.name = mesh.name + "!Separated" + string_pad(i, " ", 3);
                         new_mesh.CopyPropertiesFrom(mesh);
+                        array_push(Game.meshes, new_mesh);
                     }
                 }
             }
@@ -342,12 +342,13 @@ function ui_init_mesh(mode) {
 
             var export_count = ds_map_size(selection);
             if (export_count == 0) return;
-
+            
+            var fn;
             if (export_count == 1) {
                 var mesh = Game.meshes[| ds_map_find_first(selection)];
-                var fn = get_save_filename_mesh(mesh.name);
+                fn = get_save_filename_mesh(mesh.name);
             } else {
-                var fn = get_save_filename_mesh("save everything here");
+                fn = get_save_filename_mesh("save everything here");
             }
 
             if (fn == "") return;

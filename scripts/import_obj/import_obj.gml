@@ -514,7 +514,8 @@ function import_obj(fn, everything, raw_buffer, existing, replace_index) {
     c_shape_destroy(cshape);
     
     if (everything) {
-        var mesh = existing ? existing : instance_create_depth(0, 0, 0, DataMesh);
+        var mesh = existing ? existing : new DataMesh(base_name);
+        if (!existing) array_push(Game.meshes, mesh);
         
         if (!existing) {
             mesh.xmin = round(minx / IMPORT_GRID_SIZE);
@@ -525,7 +526,6 @@ function import_obj(fn, everything, raw_buffer, existing, replace_index) {
             mesh.zmax = round(maxz / IMPORT_GRID_SIZE);
             
             data_mesh_recalculate_bounds(mesh);
-            mesh.name = base_name;
             internal_name_generate(mesh, PREFIX_MESH + string_lettersdigits(base_name));
         }
         

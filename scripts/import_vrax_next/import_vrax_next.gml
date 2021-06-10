@@ -8,7 +8,7 @@ function import_vrax_next() {
     var name = argument[2];
 
     var n = buffer_read(data_buffer, buffer_f32);
-    var mesh = instance_create_depth(0, 0, 0, DataMesh);
+    var mesh = new DataMesh(name);
 
     var vbuffer = vertex_create_buffer();
     var wbuffer = vertex_create_buffer();
@@ -70,14 +70,15 @@ function import_vrax_next() {
     vertex_end(wbuffer);
     c_shape_end_trimesh(cdata);
 
-    mesh.name = name;
     internal_name_generate(mesh, PREFIX_MESH + string_lettersdigits(name));
     mesh.cshape = cdata;
 
     mesh_create_submesh(mesh, buffer_create_from_vertex_buffer(vbuffer, buffer_fixed, 1), vbuffer, wbuffer, undefined, name);
     vertex_freeze(vbuffer);
     vertex_freeze(wbuffer);
-
+    
+    array_push(Game.meshes, mesh);
+    
     return mesh;
 
 

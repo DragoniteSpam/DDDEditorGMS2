@@ -14,9 +14,10 @@ function import_d3d(fn, everything, raw_buffer, existing, replace_index) {
     file_text_readln(f);
     
     var vbuffer = vertex_create_buffer();
+    var wbuffer, cshape;
     if (everything) {
-        var wbuffer = vertex_create_buffer();
-        var cshape = c_shape_create();
+        wbuffer = vertex_create_buffer();
+        cshape = c_shape_create();
     }
     
     vertex_begin(vbuffer, Stuff.graphics.vertex_format);
@@ -169,7 +170,8 @@ function import_d3d(fn, everything, raw_buffer, existing, replace_index) {
         }
         
         var base_name = filename_change_ext(filename_name(fn), "");
-        var mesh = existing ? existing : instance_create_depth(0, 0, 0, DataMesh);
+        var mesh = existing ? existing : new DataMesh(base_name);
+        if (!existing) array_push(Game.meshes, mesh);
         
         if (!existing) {
             mesh.xmin = 0;
@@ -179,7 +181,6 @@ function import_d3d(fn, everything, raw_buffer, existing, replace_index) {
             mesh.ymax = 1;
             mesh.zmax = 1;
             
-            mesh.name = base_name;
             data_mesh_recalculate_bounds(mesh);
             internal_name_generate(mesh, PREFIX_MESH + string_lettersdigits(base_name));
         }

@@ -112,7 +112,7 @@ function project_load(id) {
         var meshes = json.meshes;
         
         for (var i = 0; i < array_length(meshes); i++) {
-            var mesh = instance_create_depth(0, 0, 0, DataMesh);
+            var mesh = new DataMesh();
             mesh.LoadJSON(meshes[i]);
             mesh.LoadAsset(directory);
             ds_list_add(Game.meshes, mesh);

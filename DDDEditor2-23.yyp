@@ -1544,7 +1544,6 @@
     {"id":{"name":"DataEventNodeCustom","path":"objects/DataEventNodeCustom/DataEventNodeCustom.yy",},"order":4,},
     {"id":{"name":"DataEventNodeCustomPersistent","path":"objects/DataEventNodeCustomPersistent/DataEventNodeCustomPersistent.yy",},"order":5,},
     {"id":{"name":"Group_DS_Collections","path":"scripts/Group_DS_Collections/Group_DS_Collections.yy",},"order":0,},
-    {"id":{"name":"DataMesh","path":"objects/DataMesh/DataMesh.yy",},"order":11,},
     {"id":{"name":"serialize_load_language","path":"scripts/serialize_load_language/serialize_load_language.yy",},"order":0,},
     {"id":{"name":"EmuDialog","path":"scripts/EmuDialog/EmuDialog.yy",},"order":5,},
     {"id":{"name":"spr_emu_not_found","path":"sprites/spr_emu_not_found/spr_emu_not_found.yy",},"order":14,},

@@ -1,8 +1,7 @@
 function import_qma_next(data_buffer, version) {
-    var mesh = instance_create_depth(0, 0, 0, DataMesh);
-    
     var json = json_parse(buffer_read(data_buffer, buffer_string));
-    mesh.name = json.name;
+    var mesh = new DataMesh(json.name);
+    
     var bsize = json.size;
     
     var raw_buffer = buffer_read_buffer(data_buffer, bsize);
@@ -10,17 +9,18 @@ function import_qma_next(data_buffer, version) {
     var wbuffer = vertex_create_buffer();
     vertex_begin(wbuffer, Stuff.graphics.vertex_format);
     
+    var vsize, voff, vbuffer;
     var cdata = c_shape_create();
     c_shape_begin_trimesh();
     
     if (version >= 2) {
-        var vsize = VERTEX_SIZE;
-        var voff = 0;
-        var vertex_buffer = vertex_create_buffer_from_buffer(raw_buffer, Stuff.graphics.vertex_format);
+        vsize = VERTEX_SIZE;
+        voff = 0;
+        vbuffer = vertex_create_buffer_from_buffer(raw_buffer, Stuff.graphics.vertex_format);
     } else {
-        var vsize = 40;
-        var voff = 4;
-        var vbuffer = vertex_create_buffer();
+        vsize = 40;
+        voff = 4;
+        vbuffer = vertex_create_buffer();
         vertex_begin(vbuffer, Stuff.graphics.vertex_format);
     }
     
@@ -84,6 +84,8 @@ function import_qma_next(data_buffer, version) {
     mesh_create_submesh(mesh, raw_buffer, vbuffer, wbuffer, undefined, mesh.name);
     internal_name_generate(mesh, PREFIX_MESH + string_lettersdigits(mesh.name));
     mesh.cshape = cdata;
+    
+    array_push(Game.meshes, mesh);
     
     return mesh;
 }

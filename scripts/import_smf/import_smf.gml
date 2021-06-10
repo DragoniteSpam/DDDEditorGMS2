@@ -11,13 +11,13 @@ function import_smf() {
     var smf = smf_model_load(fn);
     
     if (smf) {
-        var mesh = existing ? existing : instance_create_depth(0, 0, 0, DataMesh);
-        mesh.type = MeshTypes.SMF;
         var base_name = filename_change_ext(filename_name(fn), "");
+        var mesh = existing ? existing : new DataMesh(base_name);
+        if (!existing) array_push(Game.meshes, mesh);
+        mesh.type = MeshTypes.SMF;
         
         // only do this if an existing mesh is not set
         if (!existing) {
-            mesh.name = base_name;
             internal_name_generate(mesh, PREFIX_MESH + string_lettersdigits(base_name));
         }
         

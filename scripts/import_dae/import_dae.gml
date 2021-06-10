@@ -26,7 +26,8 @@ function import_dae() {
         c_shape_end_trimesh(cshape);
     
         var base_name = filename_change_ext(filename_name(filename), "");
-        var mesh = existing ? existing : instance_create_depth(0, 0, 0, DataMesh);
+        var mesh = existing ? existing : new DataMesh(base_name);
+        if (!existing) array_push(Game.meshes, mesh);
     
         if (!existing) {
             mesh.xmin = 0;
@@ -36,7 +37,6 @@ function import_dae() {
             mesh.ymax = 1;
             mesh.zmax = 1;
         
-            mesh.name = base_name;
             data_mesh_recalculate_bounds(mesh);
             internal_name_generate(mesh, PREFIX_MESH + string_lettersdigits(base_name));
         }

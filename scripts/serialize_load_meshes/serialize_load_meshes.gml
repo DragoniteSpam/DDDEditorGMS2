@@ -5,7 +5,7 @@ function serialize_load_meshes(buffer, version) {
     var n_meshes = buffer_read(buffer, buffer_u32);
     
     repeat (n_meshes) {
-        var mesh = instance_create_depth(0, 0, 0, DataMesh);
+        var mesh = new DataMesh();
         serialize_load_generic(buffer, mesh, version);
         
         mesh.type = buffer_read(buffer, buffer_u8);
@@ -27,7 +27,7 @@ function serialize_load_meshes(buffer, version) {
                 submesh.internalSetVertexBuffer();
             }
                 
-            var blength = buffer_read(buffer, buffer_u32);
+            blength = buffer_read(buffer, buffer_u32);
             if (blength > 0) {
                 submesh.reflect_buffer = buffer_read_buffer(buffer, blength);
                 submesh.internalSetReflectVertexBuffer();
@@ -75,5 +75,7 @@ function serialize_load_meshes(buffer, version) {
             case MeshTypes.RAW: serialize_load_mesh_raw(mesh); break;
             case MeshTypes.SMF: serialize_load_mesh_smf(mesh); break;
         }
+        
+        ds_list_add(Game.meshes, mesh);
     }
 }
