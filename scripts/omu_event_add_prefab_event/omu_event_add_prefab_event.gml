@@ -6,7 +6,7 @@ function omu_event_add_prefab_event(argument0) {
 
     if (selection + 1) {
         var event = Stuff.event.active;
-        var prefab = Stuff.all_event_prefabs[| selection];
+        var prefab = Stuff.Game.events.prefabs[| selection];
     
         var instantiated = event_create_node(event, prefab.type, undefined, undefined, prefab.custom_guid);
         // when the node is named normally the $number is appended before the event is added to the

@@ -127,7 +127,7 @@ function ui_init_event(mode) {
         
         yy += element_height + spacing;
         
-        el_list_prefabs = create_list(legal_x + spacing, yy, "Node Prefabs", "<none>", element_width, list_entry_height, 8, null, false, t_custom, Stuff.all_event_prefabs);
+        el_list_prefabs = create_list(legal_x + spacing, yy, "Node Prefabs", "<none>", element_width, list_entry_height, 8, null, false, t_custom, Stuff.Game.events.prefabs);
         el_list_prefabs.tooltip = "If you have a particular event with particular data you invoke often, such as a certain line of text or custom event node, you may wish to save it as a prefab so you can add it with all of its attributes already defined.\n\nTo create one, click the Save Prefab icon on the top of an existing event node.";
         el_list_prefabs.entries_are = ListEntries.INSTANCES;
         el_list_prefabs.colorized = false;

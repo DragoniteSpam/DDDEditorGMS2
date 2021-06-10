@@ -3,11 +3,11 @@ function serialize_save_event_prefabs(buffer) {
     var addr_next = buffer_tell(buffer);
     buffer_write(buffer, buffer_u64, 0);
 
-    var n_prefabs = ds_list_size(Stuff.all_event_prefabs);
+    var n_prefabs = ds_list_size(Stuff.Game.events.prefabs);
     buffer_write(buffer, buffer_u32, n_prefabs);
     
     for (var i = 0; i < n_prefabs; i++) {
-        var prefab = Stuff.all_event_prefabs[| i];
+        var prefab = Stuff.Game.events.prefabs[| i];
         serialize_save_generic(buffer, prefab);
         buffer_write(buffer, buffer_u16, prefab.type);
         

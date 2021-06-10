@@ -66,6 +66,7 @@ Game = {
     events: {
         events: ds_list_create(),
         custom: ds_list_create(),
+        prefabs: ds_list_create(),
     },
     maps: ds_list_create(),
     languages: {

@@ -26,7 +26,7 @@ function dialog_create_add_prefab_node(argument0) {
 
     var yy = 64;
 
-    var el_list = create_list(16, yy, "Prefab Nodes:", "<no prefab nodes>", ew, eh, n_slots, null, false, dg, Stuff.all_event_prefabs);
+    var el_list = create_list(16, yy, "Prefab Nodes:", "<no prefab nodes>", ew, eh, n_slots, null, false, dg, Stuff.Game.events.prefabs);
     el_list.ondoubleclick = omu_event_add_prefab_event;
     el_list.entries_are = ListEntries.INSTANCES;
 
