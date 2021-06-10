@@ -124,6 +124,33 @@ SaveAsset = function(directory) {
     buffer_save(self.terrain_buffer_data, directory + "terrain.terrain");
 };
 
+LoadJSONTerrain = function(json) {
+    self.width = json.width;
+    self.height = json.height;
+    
+    self.export_all = json.settings.export_all;
+    self.view_water = json.settings.view_water;
+    self.export_swap_uvs = json.settings.export_swap_uvs;
+    self.export_swap_zup = json.settings.export_swap_zup;
+    self.smooth_shading = json.settings.smooth_shading;
+    self.dual_layer = json.settings.dual_layer;
+    self.view_scale = json.settings.view_scale;
+    self.save_scale = json.settings.save_scale;
+    self.rate = json.settings.rate;
+    self.radius = json.settings.radius;
+    self.mode = json.settings.mode;
+    self.submode = json.settings.submode;
+    self.style = json.settings.style;
+    self.tile_brush_x = json.settings.tile_brush_x;
+    self.tile_brush_y = json.settings.tile_brush_y;
+    self.paint_color = json.settings.paint_color;
+    self.paint_strength = json.settings.paint_strength;
+};
+
+LoadJSON = function(json) {
+    self.LoadJSONTerrain(json);
+};
+
 CreateJSONTerrain = function() {
     return {
         width: self.width,
