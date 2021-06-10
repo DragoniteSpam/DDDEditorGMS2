@@ -4,6 +4,7 @@ function DataAudio(name) : SData(name) constructor {
     self.fmod_rate = 44100;
     self.temp_name = "";
     
+    self.loop_mode = FMODGMS_LOOPMODE_NONE;
     self.loop_start = 0;
     self.loop_end = 0;
     
@@ -13,8 +14,10 @@ function DataAudio(name) : SData(name) constructor {
     };
     
     static SetFMODLoop = function(loop_mode, start, finish) {
+        if (loop_mode == undefined) loop_mode = self.loop_mode;
         if (start == undefined) start = 0;
         if (finish == undefined) finish = FMODGMS_Snd_Get_Length(self.fmod);
+        self.loop_mode = loop_mode;
         FMODGMS_Snd_Set_LoopMode(self.fmod, loop_mode, -1);
         FMODGMS_Snd_Set_LoopPoints(self.fmod, start, finish);
     };
@@ -31,6 +34,7 @@ function DataAudio(name) : SData(name) constructor {
         self.temp_name = json.temp_name;
         self.loop_start = json.loop_start;
         self.loop_end = json.loop_end;
+        self.loop_mode = json.loop_mode;
     };
     
     static LoadJSON = function(json) {
@@ -41,6 +45,8 @@ function DataAudio(name) : SData(name) constructor {
         directory += "/";
         var guid = string_replace(self.GUID, ":", "_");
         file_copy(directory + guid, self.temp_name);
+        self.SetFMOD(self.temp_name);
+        self.SetFMODLoop();
     };
     
     static SaveAsset = function(directory) {
@@ -58,6 +64,7 @@ function DataAudio(name) : SData(name) constructor {
         json.temp_name = self.temp_name;
         json.loop_start = self.loop_start;
         json.loop_end = self.loop_end;
+        json.loop_mode = self.loop_mode;
         return json;
     };
     
