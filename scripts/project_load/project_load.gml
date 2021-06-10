@@ -6,6 +6,7 @@ function project_load(id) {
         var json = json_parse(buffer_read_file(filename));
         var version = json.version;
         Game.data = json.data;
+        Stuff.data.ui.el_master.entries = Game.data;
     };
     
     static project_load_global = function(filename) {

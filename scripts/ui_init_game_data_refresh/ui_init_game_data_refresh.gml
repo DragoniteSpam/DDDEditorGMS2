@@ -3,7 +3,7 @@ function ui_init_game_data_refresh() {
      * 1. check to see if there are any lists of the selected type already created; if there are, refresh them
      * 2. assign values to the property field things
      */
-
+    
     var data = guid_get(Stuff.data.ui.active_type_guid);
     var selection = ui_list_selection(Stuff.data.ui.el_instances);
     
