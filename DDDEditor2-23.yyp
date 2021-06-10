@@ -121,6 +121,7 @@
     {"id":{"name":"draw_editor_fullscreen","path":"scripts/draw_editor_fullscreen/draw_editor_fullscreen.yy",},"order":5,},
     {"id":{"name":"draw_editor_animation","path":"scripts/draw_editor_animation/draw_editor_animation.yy",},"order":6,},
     {"id":{"name":"draw_animator_overlay","path":"scripts/draw_animator_overlay/draw_animator_overlay.yy",},"order":7,},
+    {"id":{"name":"Group_SData_Animation","path":"scripts/Group_SData_Animation/Group_SData_Animation.yy",},"order":7,},
     {"id":{"name":"draw_editor_event","path":"scripts/draw_editor_event/draw_editor_event.yy",},"order":8,},
     {"id":{"name":"draw_editor_hud","path":"scripts/draw_editor_hud/draw_editor_hud.yy",},"order":9,},
     {"id":{"name":"draw_editor_menu","path":"scripts/draw_editor_menu/draw_editor_menu.yy",},"order":10,},
