@@ -115,6 +115,13 @@ function project_load(id) {
         var json = json_parse(buffer_read_file(filename));
         var version = json.version;
         var autotiles = json.autotiles;
+        
+        for (var i = 0; i < array_length(meshes); i++) {
+            var autotile = new DataMeshAutotile();
+            autotile.LoadJSON(autotiles[i]);
+            autotile.LoadAsset(directory);
+            ds_list_add(Stuff.all_mesh_autotiles, autotile);
+        }
     };
     
     static project_load_animations = function(filename) {
