@@ -30,7 +30,7 @@ function serialize_load_audio_bgm(argument0, argument1) {
         if (length == 0) {
             wtf("Audio file was not embedded properly, you probably want to re-load: " + string(bgm.GUID) + " [" + bgm.name + "]");
         } else {
-            bgm.SetFMOD(environment_get_variable("localappdata") + "\\" + game_project_name + "\\" + bgm.temp_name);
+            bgm.SetFMOD(PROJECT_PATH_ROOT + bgm.temp_name);
             bgm.SetFMODLoop(FMODGMS_LOOPMODE_NORMAL);
         }
     

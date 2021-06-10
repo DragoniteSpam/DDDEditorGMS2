@@ -45,7 +45,7 @@ function DataAudio(name) : SData(name) constructor {
         directory += "/";
         var guid = string_replace(self.GUID, ":", "_");
         file_copy(directory + guid, self.temp_name);
-        self.SetFMOD(self.temp_name);
+        self.SetFMOD(PROJECT_PATH_ROOT + self.temp_name);
         self.SetFMODLoop();
     };
     

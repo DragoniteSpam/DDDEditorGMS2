@@ -179,6 +179,7 @@
 #macro BASE_GAME_VARIABLES 100      // this also counts for switches
 #macro BASE_SELF_VARIABLES 4        // this also counts for switches
 
+#macro PROJECT_PATH_ROOT (environment_get_variable("localappdata") + "/" + game_project_name + "/")     // in case an extension needs to see the exact path of something in local storage
 #macro PROJECT_PATH_AUDIO "audio"
 #macro PROJECT_PATH_IMAGE "image"
 #macro PROJECT_PATH_MAP "map"
