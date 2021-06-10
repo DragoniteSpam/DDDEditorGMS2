@@ -1,11 +1,23 @@
 function DataAudio(name) : SData(name) constructor {
-    self.fmod = noone;
+    self.fmod = -1;
     self.fmod_type = 0;          // FMODGMS_SOUND_TYPE_*
     self.fmod_rate = 44100;
     self.temp_name = "";
     
     self.loop_start = 0;
     self.loop_end = 0;
+    
+    static SetFMOD = function(filename) {
+        self.fmod = FMODGMS_Snd_LoadStream(filename);
+        self.fmod_type = FMODGMS_Snd_Get_Type(self.fmod);
+    };
+    
+    static SetFMODLoop = function(loop_mode, start, finish) {
+        if (start == undefined) start = 0;
+        if (finish == undefined) finish = FMODGMS_Snd_Get_Length(self.fmod);
+        FMODGMS_Snd_Set_LoopMode(self.fmod, loop_mode, -1);
+        FMODGMS_Snd_Set_LoopPoints(self.fmod, start, finish);
+    };
     
     static GetBuffer = function() {
         if (file_exists(self.temp_name)) return buffer_load(self.temp_name);
