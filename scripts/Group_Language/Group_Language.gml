@@ -119,8 +119,8 @@ function language_extract() {
         }
         #endregion
         #region events
-        for (var i = 0; i < ds_list_size(Stuff.all_events); i++) {
-            var event = Stuff.all_events[| i];
+        for (var i = 0; i < ds_list_size(Game.evenst); i++) {
+            var event = Game.evenst[| i];
             for (var j = 0; j < ds_list_size(event.nodes); j++) {
                 var node = event.nodes[| j];
                 switch (node.type) {

@@ -107,7 +107,6 @@ surface_free(surface);
 tileset_create(PATH_GRAPHICS + DEFAULT_TILESET);
 Game.graphics.tilesets[| 0].name = "Default";
 
-all_events = ds_list_create();
 all_event_custom = ds_list_create();
 all_event_prefabs = ds_list_create();
 

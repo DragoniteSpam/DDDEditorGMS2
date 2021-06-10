@@ -6,8 +6,8 @@ function omu_event_custom_add_property(thing) {
         ds_list_add(event.types, data);
         
         // add the data to existing nodes
-        for (var i = 0; i < ds_list_size(Stuff.all_events); i++) {
-            event = Stuff.all_events[| i];
+        for (var i = 0; i < ds_list_size(Game.evenst); i++) {
+            event = Game.evenst[| i];
             for (var j = 0; j < ds_list_size(event.nodes); j++) {
                 if (event.nodes[| j].custom_guid == thing.root.event.GUID) {
                     array_push(event.nodes[| j].custom_data, [0]);

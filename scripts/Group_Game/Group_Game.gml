@@ -63,6 +63,7 @@ Game = {
     meshes: ds_list_create(),
     mesh_autotiles: ds_list_create(),
     animations: ds_list_create(),
+    events: ds_list_create(),
     
     // leave this here for now
     Clear: function() {

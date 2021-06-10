@@ -5,7 +5,7 @@ function dialog_create_event_get_event_node(argument0) {
     var node = dialog.root.node;
     var index = dialog.root.index;
     var selection = ui_list_selection(dialog.root.el_list);
-    var event = Stuff.all_events[| selection];
+    var event = Game.evenst[| selection];
 
     if (event) {
         // you might think it's odd that this is of a different size than the get_event

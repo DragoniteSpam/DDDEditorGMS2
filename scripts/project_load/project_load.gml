@@ -169,7 +169,7 @@ function project_load(id) {
         for (var i = 0; i < array_length(events); i++) {
             var event = instance_create_depth(0, 0, 0, DataEvent);
             event.LoadJSON(events[i]);
-            ds_list_add(Stuff.all_events, event);
+            ds_list_add(Game.evenst, event);
         }
     };
     

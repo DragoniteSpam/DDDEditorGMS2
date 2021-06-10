@@ -30,13 +30,13 @@ function dialog_create_event_get_event(argument0, argument1, argument2, argument
 
     var yy = 64;
 
-    var el_list = create_list(16, yy, "Select an event", "<how do you even have no events?>", ew, eh, 20, null, false, dg, Stuff.all_events);
+    var el_list = create_list(16, yy, "Select an event", "<how do you even have no events?>", ew, eh, 20, null, false, dg, Game.evenst);
     el_list.entries_are = ListEntries.INSTANCES;
     dg.el_list = el_list;
 
     var current = guid_get(dg.node.custom_data[dg.index][multi_index]);
     if (current) {
-        ui_list_select(el_list, ds_list_find_index(Stuff.all_events, current.event));
+        ui_list_select(el_list, ds_list_find_index(Game.evenst, current.event));
     }
 
     var b_width = 128;
