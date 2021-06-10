@@ -140,6 +140,8 @@ function project_load(id) {
         var json = json_parse(buffer_read_file(filename));
         var version = json.version;
         var terrain = json.terrain;
+        
+        Stuff.terrain.LoadJSON(terrain);
     };
     
     static project_load_text = function(filename) {
