@@ -25,12 +25,17 @@ function DataAudio(name) : SData(name) constructor {
         self.LoadJSONAudio(json);
     };
     
+    static LoadAsset = function(directory) {
+        directory += "/";
+        var guid = string_replace(self.GUID, ":", "_");
+        file_copy(directory + guid, self.temp_name);
+    };
+    
     static SaveAsset = function(directory) {
         directory += "/";
         var guid = string_replace(self.GUID, ":", "_");
-        var temp_name = string_replace_all(filename_name(self.temp_name), ":", "_");
         var fbuffer = self.GetBuffer();
-        if (buffer_exists(fbuffer)) buffer_save(fbuffer, directory + temp_name);
+        if (buffer_exists(fbuffer)) buffer_save(fbuffer, directory + guid);
         buffer_delete(fbuffer);
     };
     
@@ -52,3 +57,4 @@ function DataAudio(name) : SData(name) constructor {
         if (self.fmod) FMODGMS_Snd_Unload(self.fmod);
     }
 }
+    
