@@ -41,8 +41,7 @@ function animation_get_preivous_keyframe(animation, timeline_layer, moment) {
 }
 
 function animation_layer_create(animation, name) {
-    var timeline_layer = instance_create_depth(0, 0, 0, DataAnimLayer);
-    timeline_layer.name = name;
+    var timeline_layer = new DataAnimationLayer(name);
     instance_deactivate_object(timeline_layer);
     ds_list_add(animation.layers, timeline_layer);
     return timeline_layer;

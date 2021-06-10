@@ -113,7 +113,7 @@ function ui_render_list_timeline(argument0, argument1, argument2) {
                     var timeline_layer = timeline.root.active_animation.layers[| index];
                 
                     for (var j = moment_start; j < moment_end; j++) {
-                        var keyframe = timeline_layer.keyframes[| j];
+                        var keyframe = timeline_layer.keyframes[j];
                         if (keyframe) {
                             var kfx = x1 + timeline.moment_width * (keyframe.moment - timeline.moment_index + 0.5);
                             var kfy = y2 + timeline.height * (i + 0.5);

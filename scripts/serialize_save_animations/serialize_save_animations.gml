@@ -52,11 +52,11 @@ function serialize_save_animations(argument0) {
         
             // this is not the same as animation.moments, since old keyframes can exist beyond the end
             // of the animation - or, the list might not be the same size as the animation in general
-            var n_keyframes = ds_list_size(timeline_layer.keyframes);
+            var n_keyframes = array_length(timeline_layer.keyframes);
             buffer_write(buffer, buffer_u16, n_keyframes);
         
             for (var k = 0; k < n_keyframes; k++) {
-                var keyframe = timeline_layer.keyframes[| k];
+                var keyframe = timeline_layer.keyframes[k];
                 buffer_write(buffer, buffer_bool, !!keyframe);
             
                 if (keyframe) {

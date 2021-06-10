@@ -2,8 +2,7 @@ event_inherited();
 
 // list of Layer objects with priority queues of Keyframe objects
 layers = ds_list_create();
-var base_layer = instance_create_depth(0, 0, 0, DataAnimLayer);
-instance_deactivate_object(base_layer);
+var base_layer = new DataAnimationLayer("Layer 0");
 base_layer.is_actor = true;
 ds_list_add(layers, base_layer);
 
