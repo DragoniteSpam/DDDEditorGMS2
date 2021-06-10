@@ -37,6 +37,9 @@ function DataAnimationKeyframe() constructor {
         zscale: AnimationTweens.NONE,
         color: AnimationTweens.NONE,
         alpha: AnimationTweens.NONE,
+        r: AnimationTweens.NONE,
+        g: AnimationTweens.NONE,
+        b: AnimationTweens.NONE,
     };
     
     self.moment = 0;
@@ -78,5 +81,6 @@ enum KeyframeParameters {
     TRANS_X, TRANS_Y, TRANS_Z,
     ROT_X, ROT_Y, ROT_Z,
     SCALE_X, SCALE_Y, SCALE_Z,
-    COLOR, ALPHA
+    COLOR, ALPHA,
+    COLOR_R, COLOR_G, COLOR_B,
 }
