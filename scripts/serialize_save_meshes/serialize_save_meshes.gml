@@ -3,11 +3,11 @@ function serialize_save_meshes(buffer) {
     var addr_next = buffer_tell(buffer);
     buffer_write(buffer, buffer_u64, 0);
     
-    var n_meshes = ds_list_size(Game.meshes);
+    var n_meshes = array_length(Game.meshes);
     buffer_write(buffer, buffer_u32, n_meshes);
     
     for (var i = 0; i < n_meshes; i++) {
-        var mesh = Game.meshes[| i];
+        var mesh = Game.meshes[i];
         
         serialize_save_generic(buffer, mesh);
         

@@ -115,7 +115,7 @@ function project_load(id) {
             var mesh = new DataMesh();
             mesh.LoadJSON(meshes[i]);
             mesh.LoadAsset(directory);
-            ds_list_add(Game.meshes, mesh);
+            array_push(Game.meshes, mesh);
         }
     };
     

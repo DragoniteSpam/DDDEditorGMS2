@@ -97,7 +97,7 @@ function omu_animation_keyframe_event(argument0) {
     el_graphic_mesh_list.entries_are = ListEntries.INSTANCES;
     dg.el_graphic_mesh_list = el_graphic_mesh_list;
 
-    var mesh_index = ds_list_find_index(Game.meshes, keyframe.graphic_mesh);
+    var mesh_index = array_search(Game.meshes, keyframe.graphic_mesh);
     ui_list_select(el_graphic_mesh_list, mesh_index);
 
     yy += ui_get_list_height(el_graphic_mesh_list) + spacing;

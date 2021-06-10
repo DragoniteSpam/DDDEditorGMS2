@@ -51,7 +51,7 @@ function ui_render_surface_render_mesh_ed(surface, x1, y1, x2, y2) {
     var limit = 10;
     var def_tex = sprite_get_texture(get_active_tileset().picture, 0);
     for (var index = ds_map_find_first(mesh_list.selected_entries); index != undefined; index = ds_map_find_next(mesh_list.selected_entries, index)) {
-        var mesh_data = Game.meshes[| index];
+        var mesh_data = Game.meshes[index];
         switch (mesh_data.type) {
             case MeshTypes.RAW:
                 if (mesh_data.tex_base == NULL || !mode.draw_textures) {

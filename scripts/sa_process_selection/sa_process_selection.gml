@@ -168,7 +168,7 @@ function sa_process_selection() {
                     if (!mesh) {
                         if (mesh_data) {
                             mesh = mesh_data;
-                            ui_list_select(Stuff.map.ui.element_entity_mesh_list, ds_list_find_index(Game.meshes, mesh), true);
+                            ui_list_select(Stuff.map.ui.element_entity_mesh_list, array_search(Game.meshes, mesh), true);
                             Stuff.map.ui.element_entity_mesh_submesh.entries = mesh.submeshes;
                             continue;
                         }

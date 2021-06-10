@@ -23,7 +23,7 @@ function dialog_create_mesh_material_settings(dialog, selection) {
     var find_tileset_index = function(selected_things, accessor) {
         var target_index = -1;
         for (var i = 0; i < array_length(selected_things); i++) {
-            var thing = Game.meshes[| selected_things[i]];
+            var thing = Game.meshes[selected_things[i]];
             for (var j = 0; j < ds_list_size(Game.graphics.tilesets); j++) {
                 if (Game.graphics.tilesets[| j].GUID == accessor(thing)) {
                     if (target_index != -1) {
@@ -69,7 +69,7 @@ function dialog_create_mesh_material_settings(dialog, selection) {
         var new_tex = (selection + 1) ? Game.graphics.tilesets[| selection].GUID : NULL;;
         var mesh_selection = self.root.root.root.selection;
         for (var i = ds_map_find_first(mesh_selection); i != undefined; i = ds_map_find_next(mesh_selection, i)) {
-            self.callback_set_texture(Game.meshes[| i], new_tex);
+            self.callback_set_texture(Game.meshes[i], new_tex);
         }
     };
     

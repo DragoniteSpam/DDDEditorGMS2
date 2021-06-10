@@ -85,7 +85,5 @@ function import_qma_next(data_buffer, version) {
     internal_name_generate(mesh, PREFIX_MESH + string_lettersdigits(mesh.name));
     mesh.cshape = cdata;
     
-    array_push(Game.meshes, mesh);
-    
     return mesh;
 }

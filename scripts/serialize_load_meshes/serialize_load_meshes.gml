@@ -1,7 +1,6 @@
 function serialize_load_meshes(buffer, version) {
     var addr_next = buffer_read(buffer, buffer_u64);
     
-    ds_list_clear_instances(Game.meshes);
     var n_meshes = buffer_read(buffer, buffer_u32);
     
     repeat (n_meshes) {
@@ -76,6 +75,6 @@ function serialize_load_meshes(buffer, version) {
             case MeshTypes.SMF: serialize_load_mesh_smf(mesh); break;
         }
         
-        ds_list_add(Game.meshes, mesh);
+        array_push(Game.meshes, mesh);
     }
 }

@@ -160,21 +160,21 @@ function ui_init_mesh(mode) {
             if (ds_map_size(selection) == 0) {
                 ui_input_set_value(list.root.mesh_name, "");
             } else if (ds_map_size(selection) == 1) {
-                ui_input_set_value(list.root.mesh_name, Game.meshes[| ds_map_find_first(selection)].name);
+                ui_input_set_value(list.root.mesh_name, Game.meshes[ds_map_find_first(selection)].name);
             } else {
                 ui_input_set_value(list.root.mesh_name, "(multiple)");
             }
         }, true, id, Game.meshes);
         element.tooltip = "All of the 3D meshes currently loaded. You can drag them from Windows Explorer into the program window to add them in bulk. Middle-click the list to alphabetize the meshes.";
         element.render_colors = function(list, index) {
-            return (Game.meshes[| index].type == MeshTypes.SMF) ? c_red : c_black;
+            return (Game.meshes[index].type == MeshTypes.SMF) ? c_red : c_black;
         };
         element.onmiddleclick = function(list) {
-            ds_list_sort_name(Game.meshes);
+            array_sort_name(Game.meshes);
         }
         element.evaluate_text = function(list, index) {
-            var mesh = list.entries[| index];
-            var prefix = "";
+            var mesh = list.entries[index];
+            var prefix = "", suffix = "";
             if (mesh.flags & MeshFlags.PARTICLE) {
                 prefix = "(p)" + prefix;
             }
@@ -184,12 +184,12 @@ function ui_init_mesh(mode) {
                 var buffer_size = (buffer ? buffer_get_size(buffer) : 0) / VERTEX_SIZE / 3;
                 var reflect_buffer_size = (reflect_buffer ? buffer_get_size(reflect_buffer) : 0) / VERTEX_SIZE / 3;
                 if (buffer_size == reflect_buffer_size || reflect_buffer_size == 0) {
-                    var suffix = " (" + string(buffer_size) + " triangles)";
+                    suffix = " (" + string(buffer_size) + " triangles)";
                 } else {
-                    var suffix = " (" + string(buffer_size) + " / " + string(reflect_buffer_size) + " triangles)";
+                    suffix = " (" + string(buffer_size) + " / " + string(reflect_buffer_size) + " triangles)";
                 }
             } else {
-                var suffix = " (" + string(ds_list_size(mesh.submeshes)) + " submeshes)";
+                suffix = " (" + string(ds_list_size(mesh.submeshes)) + " submeshes)";
             }
             return prefix + mesh.name + suffix;
         };
@@ -230,7 +230,7 @@ function ui_init_mesh(mode) {
         element = create_input(c1x, yy, "Name:", ew0, eh, function(input) {
             var selection = input.root.mesh_list.selected_entries;
             for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                Game.meshes[| index].name = input.value;
+                Game.meshes[index].name = input.value;
             }
         }, "", "name", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, ew0, vy2, id);
         element.tooltip = "The name of the selected mesh(es).";
@@ -246,7 +246,7 @@ function ui_init_mesh(mode) {
             // deleting from it, things will get ugly
             var to_delete = [];
             for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                array_push(to_delete, Game.meshes[| index]);
+                array_push(to_delete, Game.meshes[index]);
             }
             
             for (var i = 0; i < array_length(to_delete); i++) {
@@ -267,8 +267,8 @@ function ui_init_mesh(mode) {
             var first_mesh = undefined;
             
             for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                if (!first_mesh) first_mesh = Game.meshes[| index];
-                if (ds_list_size(Game.meshes[| index].submeshes) > 1) {
+                if (!first_mesh) first_mesh = Game.meshes[index];
+                if (ds_list_size(Game.meshes[index].submeshes) > 1) {
                     valid_count++;
                 }
             }
@@ -278,7 +278,7 @@ function ui_init_mesh(mode) {
             var dg = emu_dialog_confirm(button.root, "Would you like to combine the submeshes in " + ((valid_count == 1) ? first_mesh.name : (string(valid_count) + " meshes")) + "?", function() {
                 var selection = self.root.selection;
                 for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                    var mesh = Game.meshes[| index];
+                    var mesh = Game.meshes[index];
                     if (ds_list_size(mesh.submeshes) > 1) {
                         var old_submesh_list = mesh.submeshes;
                         mesh.submeshes = ds_list_create();
@@ -319,7 +319,7 @@ function ui_init_mesh(mode) {
             var selection = list.selected_entries;
             
             for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                var mesh = Game.meshes[| index];
+                var mesh = Game.meshes[index];
                 if (ds_list_size(mesh.submeshes) > 1) {
                     for (var i = 0, n = ds_list_size(mesh.submeshes); i < n; i++) {
                         var new_mesh = new DataMesh(mesh.name + "!Separated" + string_pad(i, " ", 3));
@@ -345,7 +345,7 @@ function ui_init_mesh(mode) {
             
             var fn;
             if (export_count == 1) {
-                var mesh = Game.meshes[| ds_map_find_first(selection)];
+                var mesh = Game.meshes[ds_map_find_first(selection)];
                 fn = get_save_filename_mesh(mesh.name);
             } else {
                 fn = get_save_filename_mesh("save everything here");
@@ -355,7 +355,7 @@ function ui_init_mesh(mode) {
             var folder = filename_path(fn);
     
             for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                var mesh = Game.meshes[| index];
+                var mesh = Game.meshes[index];
                 var name = (export_count == 1) ? fn : (folder + mesh.name + filename_ext(fn));
                 switch (mesh.type) {
                     case MeshTypes.RAW:
@@ -435,7 +435,7 @@ function ui_init_mesh(mode) {
         element = create_button(c2x, yy, "Apply Scale", ew, eh, fa_center, function(button) {
             var selection = button.root.mesh_list.selected_entries;
             for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                var mesh = Game.meshes[| index];
+                var mesh = Game.meshes[index];
                 mesh_set_all_scale(mesh, Stuff.mesh_ed.draw_scale);
             }
             Stuff.mesh_ed.draw_scale = 1;
@@ -487,7 +487,7 @@ function ui_init_mesh(mode) {
         element = create_button(c2x, yy, "Rotate Up Axis", ew / 2, eh, fa_center, function(button) {
             var selection = button.root.mesh_list.selected_entries;
             for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                var mesh = Game.meshes[| index];
+                var mesh = Game.meshes[index];
                 mesh_rotate_all_up_axis(mesh);
             }
             batch_again();
@@ -497,7 +497,7 @@ function ui_init_mesh(mode) {
         element = create_button(c2x + ew / 2, yy, "Invert Transparency", ew / 2, eh, fa_center, function(button) {
             var selection = button.root.mesh_list.selected_entries;
             for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                var mesh = Game.meshes[| index];
+                var mesh = Game.meshes[index];
                 mesh_all_invert_alpha(mesh);
             }
             batch_again();
@@ -509,7 +509,7 @@ function ui_init_mesh(mode) {
         element = create_button(c2x, yy, "Mirror X Axis", ew / 3, eh, fa_center, function(button) {
             var selection = button.root.mesh_list.selected_entries;
             for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                var mesh = Game.meshes[| index];
+                var mesh = Game.meshes[index];
                 mesh_mirror_all_x(mesh);
             }
             batch_again();
@@ -519,7 +519,7 @@ function ui_init_mesh(mode) {
         element = create_button(c2x + ew / 3, yy, "Mirror Y Axis", ew / 3, eh, fa_center, function(button) {
             var selection = button.root.mesh_list.selected_entries;
             for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                var mesh = Game.meshes[| index];
+                var mesh = Game.meshes[index];
                 mesh_mirror_all_y(mesh);
             }
             batch_again();
@@ -529,7 +529,7 @@ function ui_init_mesh(mode) {
         element = create_button(c2x + 2 * ew / 3, yy, "Mirror Z Axis", ew / 3, eh, fa_center, function(button) {
             var selection = button.root.mesh_list.selected_entries;
             for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                var mesh = Game.meshes[| index];
+                var mesh = Game.meshes[index];
                 mesh_mirror_all_z(mesh);
             }
             batch_again();
@@ -541,7 +541,7 @@ function ui_init_mesh(mode) {
         element = create_button(c2x, yy, "Flip Texture U", ew / 2, eh, fa_center, function(button) {
             var selection = button.root.mesh_list.selected_entries;
             for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                mesh_set_all_flip_tex_h(Game.meshes[| index]);
+                mesh_set_all_flip_tex_h(Game.meshes[index]);
             }
             batch_again();
         }, id);
@@ -550,7 +550,7 @@ function ui_init_mesh(mode) {
         element = create_button(c2x + ew / 2, yy, "Flip Texture V", ew / 2, eh, fa_center, function(button) {
             var selection = button.root.mesh_list.selected_entries;
             for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
-                mesh_set_all_flip_tex_v(Game.meshes[| index]);
+                mesh_set_all_flip_tex_v(Game.meshes[index]);
             }
             batch_again();
         }, id);

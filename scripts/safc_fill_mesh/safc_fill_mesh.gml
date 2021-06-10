@@ -12,7 +12,7 @@ function safc_fill_mesh(argument0, argument1, argument2, argument3) {
     var cell = Stuff.map.active_map.Get(xx, yy, zz);
     
     if (!cell[@ MapCellContents.MESH]) {
-        var addition = instance_create_mesh(Game.meshes[| Stuff.map.selection_fill_mesh]);
+        var addition = instance_create_mesh(Game.meshes[Stuff.map.selection_fill_mesh]);
     
         if (addition) {
             Stuff.map.active_map.Add(addition, xx, yy, zz);

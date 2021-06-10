@@ -246,7 +246,7 @@ function DataMesh(name) : SData(name) constructor {
             }
         }
         
-        ds_list_delete(Game.meshes, ds_list_find_index(Game.meshes, self));
+        array_delete(Game.meshes, array_search(Game.meshes, self), 1);
     };
 }
 
