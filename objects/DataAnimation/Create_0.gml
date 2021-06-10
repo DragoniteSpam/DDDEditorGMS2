@@ -24,7 +24,7 @@ CreateJSONAnimation = function() {
     json.code = self.code;
     json.layers = array_create(ds_list_size(self.layers));
     for (var i = 0, n = ds_list_size(self.layers); i < n; i++) {
-        json.layers[i] = self.layers[| i].CreateJSON();
+        json.layers[i] = self.layers[| i];
     }
     return json;
 };

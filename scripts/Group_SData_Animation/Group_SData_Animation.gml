@@ -20,37 +20,6 @@ function DataAnimationLayer(name) constructor {
     self.graphic_sprite = undefined;
     self.graphic_mesh = undefined;
     self.graphic_frame = 0;
-    
-    static CreateJSONAnimLayer = function() {
-        var json = { };
-        json.is_actor = self.is_actor;
-        json.xx = self.xx;
-        json.yy = self.yy;
-        json.zz = self.zz;
-        json.xrot = self.xrot;
-        json.yrot = self.yrot;
-        json.zrot = self.zrot;
-        json.xscale = self.xscale;
-        json.yscale = self.yscale;
-        json.zscale = self.zscale;
-        json.color = self.color;
-        json.alpha = self.alpha;
-        json.graphic_type = self.graphic_type;
-        json.graphic_sprite = self.graphic_sprite;
-        json.graphic_mesh = self.graphic_mesh;
-        json.graphic_frame = self.graphic_frame;
-        json.keyframes = array_create(array_length(self.keyframes), undefined);
-        for (var i = 0, n = array_length(self.keyframes); i < n; i++) {
-            if (self.keyframes[i]) {
-                json.keyframes[i] = self.keyframes[i];
-            }
-        }
-        return json;
-    };
-    
-    static CreateJSON = function() {
-        return self.CreateJSONAnimLayer();
-    };
 }
 
 enum GraphicTypes {
