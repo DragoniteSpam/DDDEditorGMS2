@@ -7,11 +7,11 @@ function serialize_save_event_custom(argument0) {
     var addr_next = buffer_tell(buffer);
     buffer_write(buffer, buffer_u64, 0);
 
-    var n_custom = ds_list_size(Stuff.all_event_custom);
+    var n_custom = ds_list_size(Stuff.Game.events.custom);
     buffer_write(buffer, buffer_u16, n_custom);
 
     for (var i = 0; i < n_custom; i++) {
-        var custom = Stuff.all_event_custom[| i];
+        var custom = Stuff.Game.events.custom[| i];
         serialize_save_generic(buffer, custom);
     
         var n_types = ds_list_size(custom.types);

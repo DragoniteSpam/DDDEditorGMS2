@@ -99,7 +99,7 @@ function ui_init_event(mode) {
         #region custom nodes
         var yy = legal_y;
         
-        el_list_custom = create_list(legal_x + spacing, yy, "Custom Nodes", "<none>", element_width, list_entry_height, 10, null, false, t_custom, Stuff.all_event_custom);
+        el_list_custom = create_list(legal_x + spacing, yy, "Custom Nodes", "<none>", element_width, list_entry_height, 10, null, false, t_custom, Stuff.Game.events.custom);
         el_list_custom.tooltip = "Any event you want that's specific to your game's data (for example, anything pertaining to Inventory) can be made from a custom event.\n\nYou can attach your own data types and even outbound nodes to custom events.";
         el_list_custom.entries_are = ListEntries.INSTANCES;
         el_list_custom.colorized = false;

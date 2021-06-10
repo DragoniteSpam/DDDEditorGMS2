@@ -22,7 +22,7 @@ function dialog_create_add_custom_node(root) {
     
     var yy = 64;
     
-    var el_list = create_list(16, yy, "Custom Node Types:", "<no custom nodes>", ew, eh, n_slots, null, false, dg, Stuff.all_event_custom);
+    var el_list = create_list(16, yy, "Custom Node Types:", "<no custom nodes>", ew, eh, n_slots, null, false, dg, Stuff.Game.events.custom);
     el_list.ondoubleclick = omu_event_add_custom;
     el_list.entries_are = ListEntries.INSTANCES;
     

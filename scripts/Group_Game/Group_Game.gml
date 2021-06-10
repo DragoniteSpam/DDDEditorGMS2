@@ -65,6 +65,7 @@ Game = {
     animations: ds_list_create(),
     events: {
         events: ds_list_create(),
+        custom: ds_list_create(),
     },
     maps: ds_list_create(),
     languages: {
