@@ -91,7 +91,6 @@ fmod_sound = -1;
 #endregion
 
 #region asset lists
-all_guids = { };
 guid_current = 0;
 all_internal_names = ds_map_create();
 

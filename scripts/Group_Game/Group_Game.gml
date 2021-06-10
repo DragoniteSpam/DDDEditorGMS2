@@ -87,6 +87,10 @@ Game = {
         text: { English: { } },
     },
     
+    temp: {
+        guids: { },
+    },
+    
     // leave this here for now
     Clear: function() {
         ds_list_clear_instances(self.graphics.tilesets);
