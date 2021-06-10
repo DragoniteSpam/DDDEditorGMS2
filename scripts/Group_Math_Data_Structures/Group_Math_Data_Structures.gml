@@ -14,6 +14,25 @@ function array_clear(array, value) {
     }
 }
 
+function array_clear_instances(array) {
+    var n = array_length(array);
+    for (var i = 0; i < n; i++) {
+        var what = array[i];
+        if (what) {
+            if (is_struct(what)) {
+                what.Destroy();
+            } else {
+                instance_activate_object(what);
+                instance_destroy(what);
+            }
+        }
+    }
+    
+    array_resize(array, 0);
+    
+    return n;
+}
+
 function array_clone(array) {
     var new_array = array_create(array_length(array));
     array_copy(new_array, 0, array, 0, array_length(array));
