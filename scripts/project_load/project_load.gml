@@ -168,6 +168,13 @@ function project_load(id) {
         var json = json_parse(buffer_read_file(filename));
         var version = json.version;
         var maps = json.maps;
+        
+        for (var i = 0; i < array_length(maps); i++) {
+            var map = instance_create_depth(0, 0, 0, DataMapContainer);
+            map.LoadJSON(maps[i]);
+            map.LoadAsset(directory);
+            ds_list_add(Stuff.all_maps, map);
+        }
     };
     #endregion
     
