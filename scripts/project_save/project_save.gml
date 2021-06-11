@@ -26,6 +26,14 @@ function project_save() {
         return json;
     };
     
+    static project_write_json_simple_array = function(data_array) {
+        var json = array_create(array_length(data_array));
+        for (var i = 0, n = array_length(data_array); i < n; i++) {
+            json[i] = data_array[| i];
+        }
+        return json;
+    };
+    
     static save_assets = function(folder, data_list) {
         for (var i = 0, n = ds_list_size(data_list); i < n; i++) {
             data_list[| i].SaveAsset(folder);
@@ -116,7 +124,7 @@ function project_save() {
         version: ProjectSaveVersions._CURRENT - 1,
     }), folder_name + "meshautotiles.json");
     buffer_write_file(json_stringify({
-        animations: project_write_json_array(Game.animations),
+        animations: project_write_json_simple_array(Game.animations),
         version: ProjectSaveVersions._CURRENT - 1,
     }), folder_name + "animations.json");
     buffer_write_file(json_stringify({
