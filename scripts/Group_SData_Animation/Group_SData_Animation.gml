@@ -41,19 +41,21 @@ function DataAnimation(name) : SData(name) constructor {
         return undefined;
     };
     
-    static GetNextKeyframe = function(layer, moment) {
+    static GetNextKeyframe = function(layer, moment, ignore_passthrough) {
+        if (ignore_passthrough == undefined) ignore_passthrough = false;
         for (var i = moment + 1; i < self.moments; i++) {
             var keyframe = self.GetKeyframe(layer, i);
-            if (keyframe) return keyframe;
+            if (keyframe && (!ignore_passthrough || keyframe.HasTween())) return keyframe;
         }
         
         return undefined;
     };
     
-    static GetPreviousKeyframe = function(layer, moment) {
+    static GetPreviousKeyframe = function(layer, moment, ignore_passthrough) {
+        if (ignore_passthrough == undefined) ignore_passthrough = false;
         for (var i = moment - 1; i >= 0; i--) {
             var keyframe = self.GetKeyframe(layer, i);
-            if (keyframe) return keyframe;
+            if (keyframe && (!ignore_passthrough || keyframe.HasTween())) return keyframe;
         }
         
         return undefined;
@@ -170,11 +172,11 @@ function DataAnimationKeyframe() constructor {
         self.tween[$ property_map[$ param]] = value;
     };
     
-    static GetHasTween = function() {
+    static HasTween = function() {
         var members = variable_struct_get_names(self.tween);
         for (var i = 0; i < array_length(members); i++) {
             var tween = self.tween[$ property_map[$ param]];
-            if (tween != AnimationTweens.NONE && tween != AnimationTweens.IGNORE) return true;
+            if (/*tween != AnimationTweens.NONE && */tween != AnimationTweens.IGNORE) return true;
         }
         
         return false;
