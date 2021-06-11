@@ -1,17 +1,14 @@
 function DataAnimation(name) : SData(name) constructor {
-    // list of Layer objects with priority queues of Keyframe objects
-    self.layers = [new DataAnimationLayer("Layer 0")];
-    self.layers[0].is_actor = true;
-    
     self.frames_per_second = 24;
     self.moments = self.frames_per_second * 2;
     self.loops = true;
     
     self.code = Stuff.default_lua_animation;
     
-    repeat (self.moments) {
-        ds_list_add(self.layers[0].keyframes, undefined);
-    }
+    // list of Layer objects with priority queues of Keyframe objects
+    self.layers = [new DataAnimationLayer("Layer 0")];
+    self.layers[0].keyframes = array_create(self.moments);
+    self.layers[0].is_actor = true;
     
     static AddLayer = function() {
         var layer = new DataAnimationLayer("Layer " + string(array_length(self.layers)));
@@ -25,19 +22,16 @@ function DataAnimation(name) : SData(name) constructor {
     
     static AddKeyframe = function(layer, moment) {
         var inst_layer = self.GetLayer(layer);
-        var keyframe = new DataAnimationKeyframe();
-        
-        keyframe.moment = moment;
-        keyframe.timeline_layer = timeline_layer;
-        keyframe.relative = timeline_layer;
-        inst_layer.keyframes[| moment] = keyframe;
+        var keyframe = new DataAnimationKeyframe(inst_layer, moment);
+        keyframe.layer_relative = timeline_layer;
+        inst_layer.keyframes[moment] = keyframe;
         
         return keyframe;
     };
     
     static GetKeyframe = function(layer, moment) {
         var timeline_layer = self.GetLayer(layer);
-        if (timeline_layer) return timeline_layer.keyframes[| moment];
+        if (timeline_layer) return timeline_layer.keyframes[moment];
         return undefined;
     };
     
@@ -63,9 +57,9 @@ function DataAnimation(name) : SData(name) constructor {
     
     static SetKeyframePosition = function(layer, keyframe, moment) {
         var inst_layer = self.GetLayer(layer);
-        inst_layer.keyframes[| keyframe.moment] = noone;
+        inst_layer.keyframes[keyframe.moment] = noone;
         keyframe.moment = moment;
-        inst_layer.keyframes[| moment] = keyframe;
+        inst_layer.keyframes[moment] = keyframe;
         return keyframe;
     };
 }
@@ -101,7 +95,7 @@ enum GraphicTypes {
     MESH
 }
 
-function DataAnimationKeyframe() constructor {
+function DataAnimationKeyframe(layer, moment) constructor {
     static property_map = undefined;
     if (!property_map) {
         property_map = { };
@@ -121,7 +115,9 @@ function DataAnimationKeyframe() constructor {
         property_map[$ KeyframeParameters.COLOR_B] = "b";
     }
     
-    self.relative = -1;
+    self.layer = layer;
+    self.moment = moment;
+    self.layer_relative = -1;
     self.xx = 0;
     self.yy = 0;
     self.zz = 0;
