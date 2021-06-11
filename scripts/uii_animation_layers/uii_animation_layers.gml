@@ -40,7 +40,7 @@ function uii_animation_layers(argument0, argument1, argument2) {
             if (timeline_layer) {
                 var keyframe = animation.GetKeyframe(timeline.selected_layer, timeline.selected_moment);
                 if (!keyframe) {
-                    var keyframe = animation_add_keyframe(animation, timeline.selected_layer, timeline.selected_moment);
+                    var keyframe = animation.AddKeyframe(timeline.selected_layer, timeline.selected_moment);
                     animation_timeline_set_active_keyframe(timeline, keyframe);
                 }
             }
