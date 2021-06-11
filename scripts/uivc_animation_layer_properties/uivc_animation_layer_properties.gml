@@ -40,16 +40,16 @@ function uivc_animation_layer_properties(root) {
         var el_def_translation = create_text(16, yy, "Default Translation", ew, eh, fa_left, ew, dg);
         yy += el_def_translation.height + spacing;
         var el_trans_x = create_input(16, yy, "X", ew, eh, function(input) {
-            input.root.timeline_layer.xx = real(input.value);
-        }, timeline_layer.xx, "float", validate_double, -MILLION, MILLION, 8, vx1, vy1, vx2, vy2, dg);
+            input.root.timeline_layer.x = real(input.value);
+        }, timeline_layer.x, "float", validate_double, -MILLION, MILLION, 8, vx1, vy1, vx2, vy2, dg);
         yy += el_trans_x.height;
         var el_trans_y = create_input(16, yy, "Y", ew, eh, function(input) {
-            input.root.timeline_layer.yy = real(input.value);
-        }, timeline_layer.yy, "float", validate_double, -MILLION, MILLION, 8, vx1, vy1, vx2, vy2, dg);
+            input.root.timeline_layer.y = real(input.value);
+        }, timeline_layer.y, "float", validate_double, -MILLION, MILLION, 8, vx1, vy1, vx2, vy2, dg);
         yy += el_trans_y.height;
         var el_trans_z = create_input(16, yy, "Z", ew, eh, function(input) {
-            input.root.timeline_layer.zz = real(input.value);
-        }, timeline_layer.zz, "float", validate_double, -MILLION, MILLION, 8, vx1, vy1, vx2, vy2, dg);
+            input.root.timeline_layer.z = real(input.value);
+        }, timeline_layer.z, "float", validate_double, -MILLION, MILLION, 8, vx1, vy1, vx2, vy2, dg);
         yy += el_trans_z.height + spacing;
         var el_def_rotation = create_text(16, yy, "Default Rotation", ew, eh, fa_left, ew, dg);
         yy += el_def_rotation.height + spacing;

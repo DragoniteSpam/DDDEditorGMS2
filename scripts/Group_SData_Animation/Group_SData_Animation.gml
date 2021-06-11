@@ -102,21 +102,24 @@ enum GraphicTypes {
 }
 
 function DataAnimationKeyframe() constructor {
-    static property_map = { };
-    property_map[$ KeyframeParameters.TRANS_X] = "x";
-    property_map[$ KeyframeParameters.TRANS_Y] = "y";
-    property_map[$ KeyframeParameters.TRANS_Z] = "z";
-    property_map[$ KeyframeParameters.ROT_X] = "xrot";
-    property_map[$ KeyframeParameters.ROT_Y] = "yrot";
-    property_map[$ KeyframeParameters.ROT_Z] = "zrot";
-    property_map[$ KeyframeParameters.SCALE_X] = "xscale";
-    property_map[$ KeyframeParameters.SCALE_Y] = "yscale";
-    property_map[$ KeyframeParameters.SCALE_Z] = "zscale";
-    property_map[$ KeyframeParameters.COLOR] = "color";
-    property_map[$ KeyframeParameters.ALPHA] = "alpha";
-    property_map[$ KeyframeParameters.COLOR_R] = "r";
-    property_map[$ KeyframeParameters.COLOR_G] = "g";
-    property_map[$ KeyframeParameters.COLOR_B] = "b";
+    static property_map = undefined;
+    if (!property_map) {
+        property_map = { };
+        property_map[$ KeyframeParameters.TRANS_X] = "x";
+        property_map[$ KeyframeParameters.TRANS_Y] = "y";
+        property_map[$ KeyframeParameters.TRANS_Z] = "z";
+        property_map[$ KeyframeParameters.ROT_X] = "xrot";
+        property_map[$ KeyframeParameters.ROT_Y] = "yrot";
+        property_map[$ KeyframeParameters.ROT_Z] = "zrot";
+        property_map[$ KeyframeParameters.SCALE_X] = "xscale";
+        property_map[$ KeyframeParameters.SCALE_Y] = "yscale";
+        property_map[$ KeyframeParameters.SCALE_Z] = "zscale";
+        property_map[$ KeyframeParameters.COLOR] = "color";
+        property_map[$ KeyframeParameters.ALPHA] = "alpha";
+        property_map[$ KeyframeParameters.COLOR_R] = "r";
+        property_map[$ KeyframeParameters.COLOR_G] = "g";
+        property_map[$ KeyframeParameters.COLOR_B] = "b";
+    }
     
     self.relative = -1;
     self.xx = 0;

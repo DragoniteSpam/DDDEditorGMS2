@@ -33,9 +33,9 @@ function serialize_save_animations(argument0) {
             bools = pack(timeline_layer.is_actor);
             buffer_write(buffer, buffer_u8, bools);
         
-            buffer_write(buffer, buffer_f32, timeline_layer.xx);
-            buffer_write(buffer, buffer_f32, timeline_layer.yy);
-            buffer_write(buffer, buffer_f32, timeline_layer.zz);
+            buffer_write(buffer, buffer_f32, timeline_layer.x);
+            buffer_write(buffer, buffer_f32, timeline_layer.y);
+            buffer_write(buffer, buffer_f32, timeline_layer.z);
             buffer_write(buffer, buffer_f32, timeline_layer.xrot);
             buffer_write(buffer, buffer_f32, timeline_layer.yrot);
             buffer_write(buffer, buffer_f32, timeline_layer.zrot);
@@ -63,9 +63,9 @@ function serialize_save_animations(argument0) {
                     buffer_write(buffer, buffer_u16, keyframe.moment);
                     buffer_write(buffer, buffer_u8, keyframe.timeline_layer);
                 
-                    buffer_write(buffer, buffer_f32, keyframe.xx);
-                    buffer_write(buffer, buffer_f32, keyframe.yy);
-                    buffer_write(buffer, buffer_f32, keyframe.zz);
+                    buffer_write(buffer, buffer_f32, keyframe.x);
+                    buffer_write(buffer, buffer_f32, keyframe.y);
+                    buffer_write(buffer, buffer_f32, keyframe.z);
                     buffer_write(buffer, buffer_f32, keyframe.xrot);
                     buffer_write(buffer, buffer_f32, keyframe.yrot);
                     buffer_write(buffer, buffer_f32, keyframe.zrot);

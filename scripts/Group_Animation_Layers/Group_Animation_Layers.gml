@@ -3,9 +3,9 @@ function animation_timeline_set_active_keyframe(timeline, keyframe) {
     
     if (keyframe) {
         var keyframe_panel = timeline.root.el_keyframe;
-        ui_input_set_value(keyframe_panel.translate_x, string(keyframe.xx));
-        ui_input_set_value(keyframe_panel.translate_y, string(keyframe.yy));
-        ui_input_set_value(keyframe_panel.translate_z, string(keyframe.zz));
+        ui_input_set_value(keyframe_panel.translate_x, string(keyframe.x));
+        ui_input_set_value(keyframe_panel.translate_y, string(keyframe.y));
+        ui_input_set_value(keyframe_panel.translate_z, string(keyframe.z));
         ui_input_set_value(keyframe_panel.rotate_x, string(keyframe.xrot));
         ui_input_set_value(keyframe_panel.rotate_y, string(keyframe.yrot));
         ui_input_set_value(keyframe_panel.rotate_z, string(keyframe.zrot));

@@ -31,9 +31,9 @@ function serialize_load_animations(argument0, argument1) {
             var layer_bools = buffer_read(buffer, buffer_u8);
             timeline_layer.is_actor = unpack(layer_bools, 0);
         
-            timeline_layer.xx = buffer_read(buffer, buffer_f32);
-            timeline_layer.yy = buffer_read(buffer, buffer_f32);
-            timeline_layer.zz = buffer_read(buffer, buffer_f32);
+            timeline_layer.x = buffer_read(buffer, buffer_f32);
+            timeline_layer.y = buffer_read(buffer, buffer_f32);
+            timeline_layer.z = buffer_read(buffer, buffer_f32);
             timeline_layer.xrot = buffer_read(buffer, buffer_f32);
             timeline_layer.yrot = buffer_read(buffer, buffer_f32);
             timeline_layer.zrot = buffer_read(buffer, buffer_f32);
@@ -57,9 +57,9 @@ function serialize_load_animations(argument0, argument1) {
                     var layer_number = buffer_read(buffer, buffer_u8);
                     var keyframe = animation.AddKeyframe(layer_number, moment);
                 
-                    keyframe.xx = buffer_read(buffer, buffer_f32);
-                    keyframe.yy = buffer_read(buffer, buffer_f32);
-                    keyframe.zz = buffer_read(buffer, buffer_f32);
+                    keyframe.x = buffer_read(buffer, buffer_f32);
+                    keyframe.y = buffer_read(buffer, buffer_f32);
+                    keyframe.z = buffer_read(buffer, buffer_f32);
                     keyframe.xrot = buffer_read(buffer, buffer_f32);
                     keyframe.yrot = buffer_read(buffer, buffer_f32);
                     keyframe.zrot = buffer_read(buffer, buffer_f32);
