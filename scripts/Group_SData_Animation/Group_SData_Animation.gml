@@ -14,23 +14,6 @@ function DataAnimation(name) : SData(name) constructor {
     repeat (self.moments) {
         ds_list_add(base_layer.keyframes, undefined);
     }
-    
-    static CreateJSONAnimation = function() {
-        var json = self.CreateJSONBase();
-        json.frames_per_second = self.frames_per_second;
-        json.moments = self.moments;
-        json.loops = self.loops;
-        json.code = self.code;
-        json.layers = array_create(ds_list_size(self.layers));
-        for (var i = 0, n = ds_list_size(self.layers); i < n; i++) {
-            json.layers[i] = self.layers[| i];
-        }
-        return json;
-    };
-    
-    static CreateJSON = function() {
-        return self.CreateJSONAnimation();
-    };
 }
 
 function DataAnimationLayer(name) constructor {
