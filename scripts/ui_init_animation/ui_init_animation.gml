@@ -87,7 +87,7 @@ function ui_init_animation(argument0) {
         el_layers.render = function(list, x, y) {
             var otext = list.text;
             if (list.root.active_animation) {
-                list.text = otext + string(ds_list_size(list.root.active_animation.layers));
+                list.text = otext + string(array_length(list.root.active_animation.layers));
                 list.entries = list.root.active_animation.layers;
                 ui_render_list(list, x, y);
                 list.text = otext;
@@ -110,8 +110,8 @@ function ui_init_animation(argument0) {
     
         element = create_button(xx, yy, "Add Layer", ew, eh, fa_middle, function(button) {
             if (button.root.active_animation) {
-                if (ds_list_size(button.root.active_animation.layers) < 250) {
-                    var n = string(ds_list_size(button.root.active_animation.layers));
+                if (array_length(button.root.active_animation.layers) < 250) {
+                    var n = string(array_length(button.root.active_animation.layers));
                     var timeline_layer = animation_layer_create(button.root.active_animation, "Layer " + n);
                     ui_list_deselect(button.root.el_layers);
                 } else {
@@ -127,10 +127,10 @@ function ui_init_animation(argument0) {
             var list = button.root.active_animation.layers;
             var selection = ui_list_selection(button.root.el_layers);
             ui_list_deselect(button.root.el_layers);
-            if (ds_list_size(list) > 0 && button.root.active_animation && selection >= 0) {
+            if (!array_empty(list) && button.root.active_animation && selection + 1) {
                 instance_activate_object(list[| selection]);
                 instance_destroy(list[| selection]);
-                ds_list_delete(list, selection);
+                array_delete(list, selection, 1);
             }
         }, id);
         ds_list_add(contents, element);

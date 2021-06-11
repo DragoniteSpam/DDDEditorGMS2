@@ -11,10 +11,8 @@ function serialize_load_animations(argument0, argument1) {
 
     repeat (n_animations) {
         var animation = animation_create();
-        var default_layer = animation.layers[| 0];
-        instance_activate_object(default_layer);
-        instance_destroy(default_layer);
-        ds_list_clear(animation.layers);
+        animation.layers = [];
+        
         serialize_load_generic(buffer, animation, version);
     
         animation.frames_per_second = buffer_read(buffer, buffer_u8);

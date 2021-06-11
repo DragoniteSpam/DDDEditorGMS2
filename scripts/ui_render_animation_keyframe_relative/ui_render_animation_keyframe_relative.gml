@@ -15,7 +15,7 @@ function ui_render_animation_keyframe_relative(argument0, argument1, argument2) 
 
     if (animation && (timeline_layer + 1)) {
         keyframe = animation_get_keyframe(animation, timeline_layer, timeline.playing_moment);
-        button.text = button.text + ((keyframe && (keyframe.relative + 1) && (keyframe.relative < ds_list_size(animation.layers))) ? " " + animation.layers[| keyframe.relative].name : " (None)");
+        button.text = button.text + ((keyframe && (keyframe.relative + 1) && (keyframe.relative < array_length(animation.layers))) ? " " + animation.layers[keyframe.relative].name : " (None)");
     }
 
     // we must abuse truthiness wherever possible

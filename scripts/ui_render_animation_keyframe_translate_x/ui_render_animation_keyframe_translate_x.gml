@@ -16,7 +16,7 @@ function ui_render_animation_keyframe_translate_x(argument0, argument1, argument
         keyframe = animation_get_keyframe(animation, timeline_layer, timeline.playing_moment);
     
         var kf_current = animation_get_keyframe(animation, timeline_layer, timeline.playing_moment);
-        var rel_current = (kf_current && kf_current.relative > -1) ? animation.layers[| kf_current.relative] : noone;
+        var rel_current = (kf_current && kf_current.relative > -1) ? animation.layers[kf_current.relative] : noone;
     
         input.back_color = rel_current ? c_ui_select : c_white;
     

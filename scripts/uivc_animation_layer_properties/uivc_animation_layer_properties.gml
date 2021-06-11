@@ -1,8 +1,8 @@
 function uivc_animation_layer_properties(root) {
     var selection = ui_list_selection(root.root.el_layers);
     
-    if (selection >= 0) {
-        var timeline_layer = root.root.active_animation.layers[| selection];
+    if (selection + 1) {
+        var timeline_layer = root.root.active_animation.layers[selection];
         var dw = 720;
         var dh = 480;
         

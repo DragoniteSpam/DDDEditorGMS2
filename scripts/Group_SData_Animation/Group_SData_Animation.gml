@@ -1,9 +1,7 @@
 function DataAnimation(name) : SData(name) constructor {
     // list of Layer objects with priority queues of Keyframe objects
-    self.layers = ds_list_create();
-    var base_layer = new DataAnimationLayer("Layer 0");
-    base_layer.is_actor = true;
-    ds_list_add(self.layers, base_layer);
+    self.layers = [new DataAnimationLayer("Layer 0")];
+    self.layers[0].is_actor = true;
     
     self.frames_per_second = 24;
     self.moments = self.frames_per_second * 2;
@@ -12,7 +10,7 @@ function DataAnimation(name) : SData(name) constructor {
     self.code = Stuff.default_lua_animation;
     
     repeat (self.moments) {
-        ds_list_add(base_layer.keyframes, undefined);
+        ds_list_add(self.layers[0].keyframes, undefined);
     }
 }
 

@@ -55,7 +55,7 @@ function ui_render_list_timeline(argument0, argument1, argument2) {
     var ty = ui_get_text_y(timeline, y1, y2);
 
     if (animation) {
-        var n = ds_list_size(animation.layers);
+        var n = array_length(animation.layers);
 
         if (n > 0) {
             var c = c_ui_select;
@@ -110,7 +110,7 @@ function ui_render_list_timeline(argument0, argument1, argument2) {
                 // check that the timeline layer is inbounds - the layer list will resize itself later,
                 // but we need to check here just to be safe
                 if (index < ds_list_size(timeline.root.active_animation.layers)) {
-                    var timeline_layer = timeline.root.active_animation.layers[| index];
+                    var timeline_layer = timeline.root.active_animation.layers[index];
                 
                     for (var j = moment_start; j < moment_end; j++) {
                         var keyframe = timeline_layer.keyframes[j];
@@ -298,7 +298,7 @@ function ui_render_list_timeline(argument0, argument1, argument2) {
     var inbounds_loop = mouse_within_rectangle_determine(x1 + spacing + sw * 3, y3 + spacing, x1 + spacing + sw * 4, y3 + spacing + sh, timeline.adjust_view);
 
     if (inbounds_play) {
-        var c_play = timeline.playing ? merge_colour(c_greenish, c_ltgray, 0.5) : c_ltgray;
+        c_play = timeline.playing ? merge_colour(c_greenish, c_ltgray, 0.5) : c_ltgray;
         draw_sprite_ext(spr_play_controls, 0, x1 + spacing, y3 + spacing, 1, 1, 0, c_play, 1);
         if (Controller.release_left && animation) {
             timeline.playing = true;
@@ -316,7 +316,7 @@ function ui_render_list_timeline(argument0, argument1, argument2) {
             timeline.moment_index = 0;
         }
     } else if (inbounds_loop) {
-        var c_loop = timeline.playing_loop ? merge_colour(c_greenish, c_ltgray, 0.5) : c_ltgray;
+        c_loop = timeline.playing_loop ? merge_colour(c_greenish, c_ltgray, 0.5) : c_ltgray;
         draw_sprite_ext(spr_play_controls, 3, x1 + spacing + sw * 3, y3 + spacing, 1, 1, 0, c_loop, 1);
         if (Controller.release_left) {
             timeline.playing_loop = !timeline.playing_loop;

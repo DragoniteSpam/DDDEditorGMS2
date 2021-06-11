@@ -22,11 +22,11 @@ function serialize_save_animations(argument0) {
         var bools = pack(animation.loops);
         buffer_write(buffer, buffer_u32, bools);
     
-        var n_layers = ds_list_size(animation.layers);
+        var n_layers = array_length(animation.layers);
         buffer_write(buffer, buffer_u8, n_layers);
     
         for (var j = 0; j < n_layers; j++) {
-            var timeline_layer = animation.layers[| j];
+            var timeline_layer = animation.layers[j];
         
             buffer_write(buffer, buffer_string, timeline_layer.name);
         

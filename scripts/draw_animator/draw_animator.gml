@@ -21,8 +21,8 @@ function draw_animator() {
     
     if (animation) {
         var moment = ui.el_timeline.playing_moment;
-        for (var i = 0; i < ds_list_size(animation.layers); i++) {
-            var timeline_layer = animation.layers[| i];
+        for (var i = 0; i < array_length(animation.layers); i++) {
+            var timeline_layer = animation.layers[i];
             var kx = animation_get_tween_translate_x(animation, i, moment);
             var ky = animation_get_tween_translate_y(animation, i, moment);
             var kz = animation_get_tween_translate_z(animation, i, moment);

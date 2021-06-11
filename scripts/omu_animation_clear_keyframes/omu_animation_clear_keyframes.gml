@@ -3,8 +3,8 @@ function omu_animation_clear_keyframes(button) {
     
     // we can safely assume animation exists if we got to this point
     var n = 0;
-    for (var i = 0; i < ds_list_size(animation.layers); i++) {
-        var timeline_layer = animation.layers[| i];
+    for (var i = 0; i < array_length(animation.layers); i++) {
+        var timeline_layer = animation.layers[i];
         for (var j = animation.moments; j < array_length(timeline_layer.keyframes); j++) {
             if (timeline_layer.keyframes[j]) {
                 n++;
@@ -19,8 +19,8 @@ function omu_animation_clear_keyframes(button) {
             // everything is terrible
             var animation = self.root.root.root.root.root.active_animation;
             // we can safely assume animation exists if we got to this point
-            for (var i = 0; i < ds_list_size(animation.layers); i++) {
-                var timeline_layer = animation.layers[| i];
+            for (var i = 0; i < array_length(animation.layers); i++) {
+                var timeline_layer = animation.layers[i];
                 for (var j = animation.moments; j < array_length(timeline_layer.keyframes); j++) {
                     timeline_layer.keyframes[j] = undefined;
                 }

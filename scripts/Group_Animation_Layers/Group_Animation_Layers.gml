@@ -11,18 +11,16 @@ function animation_get_next_keyframe(animation, timeline_layer, moment) {
 }
 
 function animation_get_layer(animation, layer) {
-    if (layer < ds_list_size(animation.layers)) {
-        var timeline_layer = animation.layers[| layer];
-        return timeline_layer ? timeline_layer : noone;
+    if (layer < array_length(animation.layers)) {
+        return animation.layers[layer];
     }
     
-    return noone;
+    return undefined;
 }
 
 function animation_get_layer_keyframe(animation, timeline_layer) {
     if (timeline_layer) {
-        var keyframe = timeline_layer.keyframes[| moment];
-        return keyframe ? keyframe : noone;
+        return timeline_layer.keyframes[| moment];
     }
     
     return noone;
@@ -42,8 +40,7 @@ function animation_get_preivous_keyframe(animation, timeline_layer, moment) {
 
 function animation_layer_create(animation, name) {
     var timeline_layer = new DataAnimationLayer(name);
-    instance_deactivate_object(timeline_layer);
-    ds_list_add(animation.layers, timeline_layer);
+    array_push(animation.layers, timeline_layer);
     return timeline_layer;
 }
 

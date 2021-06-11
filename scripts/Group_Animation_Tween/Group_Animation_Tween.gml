@@ -12,9 +12,9 @@ function animation_get_tween_color(animation, timeline_layer, moment) {
     } until (!kf_next || kf_next.tween.color != AnimationTweens.IGNORE);
     
     var type = kf_previous ? kf_previous.tween.color : AnimationTweens.NONE;
-    var rel_current = (kf_current && kf_current.relative > -1) ? animation.layers[| kf_current.relative] : noone;
-    var rel_previous = (kf_previous && kf_previous.relative > -1) ? animation.layers[| kf_previous.relative] : noone;
-    var rel_next = (kf_next && kf_next.relative > -1) ? animation.layers[| kf_next.relative] : noone;
+    var rel_current = (kf_current && kf_current.relative > -1) ? animation.layers[kf_current.relative] : noone;
+    var rel_previous = (kf_previous && kf_previous.relative > -1) ? animation.layers[kf_previous.relative] : noone;
+    var rel_next = (kf_next && kf_next.relative > -1) ? animation.layers[kf_next.relative] : noone;
     
     // if no previous keyframe exists the value will always be the default (here, zero);
     // if not next keyframe exists the value will always be the previous value
@@ -59,9 +59,9 @@ function animation_get_tween_alpha(animation, timeline_layer, moment) {
         kf_next = animation_get_next_keyframe(animation, timeline_layer, kf_next ? kf_next.moment : moment);
     } until (!kf_next || kf_next.tween.alpha != AnimationTweens.IGNORE);
     
-    var rel_current = (kf_current && kf_current.relative > -1) ? animation.layers[| kf_current.relative] : noone;
-    var rel_previous = (kf_previous && kf_previous.relative > -1) ? animation.layers[| kf_previous.relative] : noone;
-    var rel_next = (kf_next && kf_next.relative > -1) ? animation.layers[| kf_next.relative] : noone;
+    var rel_current = (kf_current && kf_current.relative > -1) ? animation.layers[kf_current.relative] : noone;
+    var rel_previous = (kf_previous && kf_previous.relative > -1) ? animation.layers[kf_previous.relative] : noone;
+    var rel_next = (kf_next && kf_next.relative > -1) ? animation.layers[kf_next.relative] : noone;
     
     // if no previous keyframe exists the value will always be the default (here, zero);
     // if not next keyframe exists the value will always be the previous value
@@ -93,9 +93,9 @@ function animation_get_tween_rotate_x(animation, timeline_layer, moment) {
         kf_next = animation_get_next_keyframe(animation, timeline_layer, kf_next ? kf_next.moment : moment);
     } until (!kf_next || kf_next.tween.xrot != AnimationTweens.IGNORE);
     
-    var rel_current = (kf_current && kf_current.relative > -1) ? animation.layers[| kf_current.relative] : noone;
-    var rel_previous = (kf_previous && kf_previous.relative > -1) ? animation.layers[| kf_previous.relative] : noone;
-    var rel_next = (kf_next && kf_next.relative > -1) ? animation.layers[| kf_next.relative] : noone;
+    var rel_current = (kf_current && kf_current.relative > -1) ? animation.layers[kf_current.relative] : noone;
+    var rel_previous = (kf_previous && kf_previous.relative > -1) ? animation.layers[kf_previous.relative] : noone;
+    var rel_next = (kf_next && kf_next.relative > -1) ? animation.layers[kf_next.relative] : noone;
     
     // if no previous keyframe exists the value will always be the default (here, zero);
     // if not next keyframe exists the value will always be the previous value
@@ -127,9 +127,9 @@ function animation_get_tween_rotate_y(animation, timeline_layer, moment) {
         kf_next = animation_get_next_keyframe(animation, timeline_layer, kf_next ? kf_next.moment : moment);
     } until (!kf_next || kf_next.tween.yrot != AnimationTweens.IGNORE);
     
-    var rel_current = (kf_current && kf_current.relative > -1) ? animation.layers[| kf_current.relative] : noone;
-    var rel_previous = (kf_previous && kf_previous.relative > -1) ? animation.layers[| kf_previous.relative] : noone;
-    var rel_next = (kf_next && kf_next.relative > -1) ? animation.layers[| kf_next.relative] : noone;
+    var rel_current = (kf_current && kf_current.relative > -1) ? animation.layers[kf_current.relative] : noone;
+    var rel_previous = (kf_previous && kf_previous.relative > -1) ? animation.layers[kf_previous.relative] : noone;
+    var rel_next = (kf_next && kf_next.relative > -1) ? animation.layers[kf_next.relative] : noone;
     
     // if no previous keyframe exists the value will always be the default (here, zero);
     // if not next keyframe exists the value will always be the previous value
@@ -161,9 +161,9 @@ function animation_get_tween_rotate_z(animation, timeline_layer, moment) {
         kf_next = animation_get_next_keyframe(animation, timeline_layer, kf_next ? kf_next.moment : moment);
     } until (!kf_next || kf_next.tween.zrot != AnimationTweens.IGNORE);
     
-    var rel_current = (kf_current && kf_current.relative > -1) ? animation.layers[| kf_current.relative] : noone;
-    var rel_previous = (kf_previous && kf_previous.relative > -1) ? animation.layers[| kf_previous.relative] : noone;
-    var rel_next = (kf_next && kf_next.relative > -1) ? animation.layers[| kf_next.relative] : noone;
+    var rel_current = (kf_current && kf_current.relative > -1) ? animation.layers[kf_current.relative] : noone;
+    var rel_previous = (kf_previous && kf_previous.relative > -1) ? animation.layers[kf_previous.relative] : noone;
+    var rel_next = (kf_next && kf_next.relative > -1) ? animation.layers[kf_next.relative] : noone;
     
     // if no previous keyframe exists the value will always be the default (here, zero);
     // if not next keyframe exists the value will always be the previous value
@@ -195,9 +195,9 @@ function animation_get_tween_scale_x(animation, timeline_layer, moment) {
         kf_next = animation_get_next_keyframe(animation, timeline_layer, kf_next ? kf_next.moment : moment);
     } until (!kf_next || kf_next.tween.xscale != AnimationTweens.IGNORE);
     
-    var rel_current = (kf_current && kf_current.relative > -1) ? animation.layers[| kf_current.relative] : noone;
-    var rel_previous = (kf_previous && kf_previous.relative > -1) ? animation.layers[| kf_previous.relative] : noone;
-    var rel_next = (kf_next && kf_next.relative > -1) ? animation.layers[| kf_next.relative] : noone;
+    var rel_current = (kf_current && kf_current.relative > -1) ? animation.layers[kf_current.relative] : noone;
+    var rel_previous = (kf_previous && kf_previous.relative > -1) ? animation.layers[kf_previous.relative] : noone;
+    var rel_next = (kf_next && kf_next.relative > -1) ? animation.layers[kf_next.relative] : noone;
     
     // if no previous keyframe exists the value will always be the default (here, zero);
     // if not next keyframe exists the value will always be the previous value
@@ -229,9 +229,9 @@ function animation_get_tween_scale_y(animation, timeline_layer, moment) {
         kf_next = animation_get_next_keyframe(animation, timeline_layer, kf_next ? kf_next.moment : moment);
     } until (!kf_next || kf_next.tween.yscale != AnimationTweens.IGNORE);
     
-    var rel_current = (kf_current && kf_current.relative > -1) ? animation.layers[| kf_current.relative] : noone;
-    var rel_previous = (kf_previous && kf_previous.relative > -1) ? animation.layers[| kf_previous.relative] : noone;
-    var rel_next = (kf_next && kf_next.relative > -1) ? animation.layers[| kf_next.relative] : noone;
+    var rel_current = (kf_current && kf_current.relative > -1) ? animation.layers[kf_current.relative] : noone;
+    var rel_previous = (kf_previous && kf_previous.relative > -1) ? animation.layers[kf_previous.relative] : noone;
+    var rel_next = (kf_next && kf_next.relative > -1) ? animation.layers[kf_next.relative] : noone;
     
     // if no previous keyframe exists the value will always be the default (here, zero);
     // if not next keyframe exists the value will always be the previous value
@@ -263,9 +263,9 @@ function animation_get_tween_scale_z(animation, timeline_layer, moment) {
         kf_next = animation_get_next_keyframe(animation, timeline_layer, kf_next ? kf_next.moment : moment);
     } until (!kf_next || kf_next.tween.zrot != AnimationTweens.IGNORE);
     
-    var rel_current = (kf_current && kf_current.relative > -1) ? animation.layers[| kf_current.relative] : noone;
-    var rel_previous = (kf_previous && kf_previous.relative > -1) ? animation.layers[| kf_previous.relative] : noone;
-    var rel_next = (kf_next && kf_next.relative > -1) ? animation.layers[| kf_next.relative] : noone;
+    var rel_current = (kf_current && kf_current.relative > -1) ? animation.layers[kf_current.relative] : noone;
+    var rel_previous = (kf_previous && kf_previous.relative > -1) ? animation.layers[kf_previous.relative] : noone;
+    var rel_next = (kf_next && kf_next.relative > -1) ? animation.layers[kf_next.relative] : noone;
     
     // if no previous keyframe exists the value will always be the default (here, zero);
     // if not next keyframe exists the value will always be the previous value
@@ -297,9 +297,9 @@ function animation_get_tween_translate_x(animation, timeline_layer, moment) {
         kf_next = animation_get_next_keyframe(animation, timeline_layer, kf_next ? kf_next.moment : moment);
     } until (!kf_next || kf_next.tween.x != AnimationTweens.IGNORE);
     
-    var rel_current = (kf_current && kf_current.relative > -1) ? animation.layers[| kf_current.relative] : noone;
-    var rel_previous = (kf_previous && kf_previous.relative > -1) ? animation.layers[| kf_previous.relative] : noone;
-    var rel_next = (kf_next && kf_next.relative > -1) ? animation.layers[| kf_next.relative] : noone;
+    var rel_current = (kf_current && kf_current.relative > -1) ? animation.layers[kf_current.relative] : noone;
+    var rel_previous = (kf_previous && kf_previous.relative > -1) ? animation.layers[kf_previous.relative] : noone;
+    var rel_next = (kf_next && kf_next.relative > -1) ? animation.layers[kf_next.relative] : noone;
     
     // if no previous keyframe exists the value will always be the default (here, zero);
     // if not next keyframe exists the value will always be the previous value
@@ -332,9 +332,9 @@ function animation_get_tween_translate_y(animation, timeline_layer, moment) {
         kf_next = animation_get_next_keyframe(animation, timeline_layer, kf_next ? kf_next.moment : moment);
     } until (!kf_next || kf_next.tween.y != AnimationTweens.IGNORE);
     
-    var rel_current = (kf_current && kf_current.relative > -1) ? animation.layers[| kf_current.relative] : noone;
-    var rel_previous = (kf_previous && kf_previous.relative > -1) ? animation.layers[| kf_previous.relative] : noone;
-    var rel_next = (kf_next && kf_next.relative > -1) ? animation.layers[| kf_next.relative] : noone;
+    var rel_current = (kf_current && kf_current.relative > -1) ? animation.layers[kf_current.relative] : noone;
+    var rel_previous = (kf_previous && kf_previous.relative > -1) ? animation.layers[kf_previous.relative] : noone;
+    var rel_next = (kf_next && kf_next.relative > -1) ? animation.layers[kf_next.relative] : noone;
     
     // if no previous keyframe exists the value will always be the default (here, zero);
     // if not next keyframe exists the value will always be the previous value
@@ -366,9 +366,9 @@ function animation_get_tween_translate_z(animation, timeline_layer, moment) {
         kf_next = animation_get_next_keyframe(animation, timeline_layer, kf_next ? kf_next.moment : moment);
     } until (!kf_next || kf_next.tween.z != AnimationTweens.IGNORE);
     
-    var rel_current = (kf_current && kf_current.relative > -1) ? animation.layers[| kf_current.relative] : noone;
-    var rel_previous = (kf_previous && kf_previous.relative > -1) ? animation.layers[| kf_previous.relative] : noone;
-    var rel_next = (kf_next && kf_next.relative > -1) ? animation.layers[| kf_next.relative] : noone;
+    var rel_current = (kf_current && kf_current.relative > -1) ? animation.layers[kf_current.relative] : noone;
+    var rel_previous = (kf_previous && kf_previous.relative > -1) ? animation.layers[kf_previous.relative] : noone;
+    var rel_next = (kf_next && kf_next.relative > -1) ? animation.layers[kf_next.relative] : noone;
     
     // if no previous keyframe exists the value will always be the default (here, zero);
     // if not next keyframe exists the value will always be the previous value
