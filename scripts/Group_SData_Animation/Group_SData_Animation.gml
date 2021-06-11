@@ -175,6 +175,11 @@ function DataAnimationKeyframe() constructor {
         
         return false;
     };
+    
+    static GetParameterTween = function(param) {
+        var tween = self.tween[$ property_map[$ param]];
+        return tween != AnimationTweens.NONE && tween != AnimationTweens.IGNORE;
+    };
 }
 
 enum KeyframeParameters {

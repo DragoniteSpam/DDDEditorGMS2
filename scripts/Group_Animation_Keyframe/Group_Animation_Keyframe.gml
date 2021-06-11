@@ -1,19 +1,3 @@
-function animation_get_keyframe_parameter_tween(keyframe, param) {
-    switch (param) {
-        case KeyframeParameters.TRANS_X: return keyframe.tween.x;
-        case KeyframeParameters.TRANS_Y: return keyframe.tween.y;
-        case KeyframeParameters.TRANS_Z: return keyframe.tween.z;
-        case KeyframeParameters.ROT_X: return keyframe.tween.xrot;
-        case KeyframeParameters.ROT_Y: return keyframe.tween.yrot;
-        case KeyframeParameters.ROT_Z: return keyframe.tween.zrot;
-        case KeyframeParameters.SCALE_X: return keyframe.tween.xscale;
-        case KeyframeParameters.SCALE_Y: return keyframe.tween.yscale;
-        case KeyframeParameters.SCALE_Z: return keyframe.tween.zscale;
-        case KeyframeParameters.COLOR: return keyframe.tween.color;
-        case KeyframeParameters.ALPHA: return keyframe.tween.alpha;
-    }
-}
-
 function animation_set_keyframe_parameter(keyframe, param, value) {
     switch (param) {
         case KeyframeParameters.TRANS_X: keyframe.xx = value; break;
