@@ -165,6 +165,16 @@ function DataAnimationKeyframe() constructor {
     static GetKeyframeParameter = function(param) {
         return self.tween[$ property_map[$ param]];
     };
+    
+    static GetHasTween = function() {
+        var members = variable_struct_get_names(self.tween);
+        for (var i = 0; i < array_length(members); i++) {
+            var tween = self.tween[$ property_map[$ param]];
+            if (tween != AnimationTweens.NONE && tween != AnimationTweens.IGNORE) return true;
+        }
+        
+        return false;
+    };
 }
 
 enum KeyframeParameters {

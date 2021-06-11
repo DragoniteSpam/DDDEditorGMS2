@@ -1,20 +1,3 @@
-function animation_get_keyframe_has_tween(keyframe) {
-    // just checks to see if *any* of the tweens it uses are typed - it doesn't really
-    // care which ones they are
-    if (keyframe.tween.x != AnimationTweens.NONE && keyframe.tween.x != AnimationTweens.IGNORE) return true;
-    if (keyframe.tween.y != AnimationTweens.NONE && keyframe.tween.y != AnimationTweens.IGNORE) return true;
-    if (keyframe.tween.z != AnimationTweens.NONE && keyframe.tween.z != AnimationTweens.IGNORE) return true;
-    if (keyframe.tween.xrot != AnimationTweens.NONE && keyframe.tween.xrot != AnimationTweens.IGNORE) return true;
-    if (keyframe.tween.yrot != AnimationTweens.NONE && keyframe.tween.yrot != AnimationTweens.IGNORE) return true;
-    if (keyframe.tween.zrot != AnimationTweens.NONE && keyframe.tween.zrot != AnimationTweens.IGNORE) return true;
-    if (keyframe.tween.xscale != AnimationTweens.NONE && keyframe.tween.xscale != AnimationTweens.IGNORE) return true;
-    if (keyframe.tween.yscale != AnimationTweens.NONE && keyframe.tween.yscale != AnimationTweens.IGNORE) return true;
-    if (keyframe.tween.zscale != AnimationTweens.NONE && keyframe.tween.zscale != AnimationTweens.IGNORE) return true;
-    if (keyframe.tween.color != AnimationTweens.NONE && keyframe.tween.color != AnimationTweens.IGNORE) return true;
-    if (keyframe.tween.alpha != AnimationTweens.NONE && keyframe.tween.alpha != AnimationTweens.IGNORE) return true;
-    return false;
-}
-
 function animation_get_keyframe_parameter_tween(keyframe, param) {
     switch (param) {
         case KeyframeParameters.TRANS_X: return keyframe.tween.x;
