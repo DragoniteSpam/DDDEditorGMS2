@@ -51,7 +51,7 @@ function uii_animation_layers(argument0, argument1, argument2) {
         } else if (Controller.mouse_left) {
             if (keyboard_check(vk_control)) {
                 if (timeline.selected_keyframe && (timeline.selected_keyframe.timeline_layer == timeline.selected_layer)) {
-                    animation_set_keyframe_position(animation, timeline.selected_keyframe, timeline.selected_layer, timeline.selected_moment);
+                    animation.SetKeyframePosition(timeline.selected_layer, timeline.selected_keyframe, timeline.selected_moment);
                 }
             }
         }

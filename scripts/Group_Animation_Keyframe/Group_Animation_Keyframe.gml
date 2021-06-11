@@ -108,11 +108,3 @@ function animation_set_keyframe_parameter_tween(keyframe, param, value) {
         case KeyframeParameters.ALPHA: keyframe.tween.alpha = value; break;
     }
 }
-
-function animation_set_keyframe_position(animation, keyframe, layer, moment) {
-    var inst_layer = animation.GetLayer(layer);
-    inst_layer.keyframes[| keyframe.moment] = noone;
-    keyframe.moment = moment;
-    inst_layer.keyframes[| moment] = keyframe;
-    return keyframe;
-}

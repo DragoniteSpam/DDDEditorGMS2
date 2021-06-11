@@ -24,7 +24,7 @@ function DataAnimation(name) : SData(name) constructor {
     };
     
     static GetKeyframe = function(layer, moment) {
-        var timeline_layer = animation.GetLayer(layer);
+        var timeline_layer = self.GetLayer(layer);
         if (timeline_layer) return timeline_layer.keyframes[| moment];
         return undefined;
     };
@@ -45,6 +45,14 @@ function DataAnimation(name) : SData(name) constructor {
         }
         
         return undefined;
+    };
+    
+    static SetKeyframePosition = function(layer, keyframe, moment) {
+        var inst_layer = self.GetLayer(layer);
+        inst_layer.keyframes[| keyframe.moment] = noone;
+        keyframe.moment = moment;
+        inst_layer.keyframes[| moment] = keyframe;
+        return keyframe;
     };
 }
 
