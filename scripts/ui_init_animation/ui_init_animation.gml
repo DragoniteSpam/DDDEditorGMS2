@@ -62,8 +62,6 @@ function ui_init_animation(argument0) {
                 for (var i = 0; i < ds_list_size(Game.animations); i++) {
                     if (Game.animations[| i] == button.root.active_animation) {
                         ds_list_delete(Game.animations, i);
-                        instance_activate_object(button.root.active_animation);
-                        instance_destroy(button.root.active_animation);
                         ui_list_deselect(button.root.el_master);
                         button.root.active_animation = noone;
                         button.root.active_animation = noone;

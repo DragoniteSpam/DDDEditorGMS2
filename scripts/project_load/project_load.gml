@@ -138,7 +138,7 @@ function project_load(id) {
         var animations = json.animations;
         
         for (var i = 0; i < array_length(animations); i++) {
-            var animation = instance_create_depth(0, 0, 0, DataAnimation);
+            var animation = new DataAnimation();
             animation.LoadJSON(animations[i]);
             ds_list_add(Game.animations, animation);
         }
