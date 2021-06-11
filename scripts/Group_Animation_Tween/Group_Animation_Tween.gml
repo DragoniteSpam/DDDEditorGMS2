@@ -18,7 +18,7 @@ function animation_get_tween_color(animation, timeline_layer, moment) {
     
     // if no previous keyframe exists the value will always be the default (here, zero);
     // if not next keyframe exists the value will always be the previous value
-    var value_default = animation_get_layer(animation, timeline_layer).color;
+    var value_default = animation.GetLayer(timeline_layer).color;
     var value_now = kf_current ? kf_current.color : value_default;
     var value_previous = kf_previous ? kf_previous.color : value_default;
     var value_next = kf_next ? kf_next.color : (animation.loops ? value_default : value_previous);
@@ -65,7 +65,7 @@ function animation_get_tween_alpha(animation, timeline_layer, moment) {
     
     // if no previous keyframe exists the value will always be the default (here, zero);
     // if not next keyframe exists the value will always be the previous value
-    var value_default = animation_get_layer(animation, timeline_layer).alpha;
+    var value_default = animation.GetLayer(timeline_layer).alpha;
     var value_now = (kf_current ? kf_current.alpha : value_default) * (rel_current ? rel_current.alpha : 1);
     var value_previous = (kf_previous ? kf_previous.alpha : value_default) * (rel_previous ? rel_previous.alpha : 1);
     var value_next = (kf_next ? kf_next.alpha : (animation.loops ? value_default : value_previous)) * (rel_next ? rel_next.alpha : 1);
@@ -99,7 +99,7 @@ function animation_get_tween_rotate_x(animation, timeline_layer, moment) {
     
     // if no previous keyframe exists the value will always be the default (here, zero);
     // if not next keyframe exists the value will always be the previous value
-    var value_default = animation_get_layer(animation, timeline_layer).xrot;
+    var value_default = animation.GetLayer(timeline_layer).xrot;
     var value_now = (kf_current ? kf_current.xrot : value_default) + (rel_current ? rel_current.xrot : 0);
     var value_previous = (kf_previous ? kf_previous.xrot : value_default) + (rel_previous ? rel_previous.xrot : 0);
     var value_next = (kf_next ? kf_next.xrot : (animation.loops ? value_default : value_previous)) + (rel_next ? rel_next.xrot : 0);
@@ -133,7 +133,7 @@ function animation_get_tween_rotate_y(animation, timeline_layer, moment) {
     
     // if no previous keyframe exists the value will always be the default (here, zero);
     // if not next keyframe exists the value will always be the previous value
-    var value_default = animation_get_layer(animation, timeline_layer).yrot;
+    var value_default = animation.GetLayer(timeline_layer).yrot;
     var value_now = (kf_current ? kf_current.yrot : value_default) + (rel_current ? rel_current.yrot : 0);
     var value_previous = (kf_previous ? kf_previous.yrot : value_default) + (rel_previous ? rel_previous.yrot : 0);
     var value_next = (kf_next ? kf_next.yrot : (animation.loops ? value_default : value_previous)) + (rel_next ? rel_next.yrot : 0);
@@ -167,7 +167,7 @@ function animation_get_tween_rotate_z(animation, timeline_layer, moment) {
     
     // if no previous keyframe exists the value will always be the default (here, zero);
     // if not next keyframe exists the value will always be the previous value
-    var value_default = animation_get_layer(animation, timeline_layer).zrot;
+    var value_default = animation.GetLayer(timeline_layer).zrot;
     var value_now = (kf_current ? kf_current.zrot : value_default) + (rel_current ? rel_current.zrot : 0);
     var value_previous = (kf_previous ? kf_previous.zrot : value_default) + (rel_previous ? rel_previous.zrot : 0);
     var value_next = (kf_next ? kf_next.zrot : (animation.loops ? value_default : value_previous)) + (rel_next ? rel_next.zrot : 0);
@@ -201,7 +201,7 @@ function animation_get_tween_scale_x(animation, timeline_layer, moment) {
     
     // if no previous keyframe exists the value will always be the default (here, zero);
     // if not next keyframe exists the value will always be the previous value
-    var value_default = animation_get_layer(animation, timeline_layer).xscale;
+    var value_default = animation.GetLayer(timeline_layer).xscale;
     var value_now = (kf_current ? kf_current.xscale : value_default) * (rel_current ? rel_current.xscale : 1);
     var value_previous = (kf_previous ? kf_previous.xscale : value_default) * (rel_previous ? rel_previous.xscale : 1);
     var value_next = (kf_next ? kf_next.xscale : (animation.loops ? value_default : value_previous)) * (rel_next ? rel_next.xscale : 1);
@@ -235,7 +235,7 @@ function animation_get_tween_scale_y(animation, timeline_layer, moment) {
     
     // if no previous keyframe exists the value will always be the default (here, zero);
     // if not next keyframe exists the value will always be the previous value
-    var value_default = animation_get_layer(animation, timeline_layer).yscale;
+    var value_default = animation.GetLayer(timeline_layer).yscale;
     var value_now = (kf_current ? kf_current.yscale : value_default) * (rel_current ? rel_current.yscale : 1);
     var value_previous = (kf_previous ? kf_previous.yscale : value_default) * (rel_previous ? rel_previous.yscale : 1);
     var value_next = (kf_next ? kf_next.yscale : (animation.loops ? value_default : value_previous)) * (rel_next ? rel_next.yscale : 1);
@@ -269,7 +269,7 @@ function animation_get_tween_scale_z(animation, timeline_layer, moment) {
     
     // if no previous keyframe exists the value will always be the default (here, zero);
     // if not next keyframe exists the value will always be the previous value
-    var value_default = animation_get_layer(animation, timeline_layer).zscale;
+    var value_default = animation.GetLayer(timeline_layer).zscale;
     var value_now = (kf_current ? kf_current.zscale : value_default) * (rel_current ? rel_current.zscale : 1);
     var value_previous = (kf_previous ? kf_previous.zscale : value_default) * (rel_previous ? rel_previous.zscale : 1);
     var value_next = (kf_next ? kf_next.zscale : (animation.loops ? value_default : value_previous)) * (rel_next ? rel_next.zscale : 1);
@@ -304,7 +304,7 @@ function animation_get_tween_translate_x(animation, timeline_layer, moment) {
     // if no previous keyframe exists the value will always be the default (here, zero);
     // if not next keyframe exists the value will always be the previous value
     
-    var value_default = animation_get_layer(animation, timeline_layer).xx;
+    var value_default = animation.GetLayer(timeline_layer).xx;
     var value_now = (kf_current ? kf_current.xx : value_default) + (rel_current ? rel_current.xx : 0);
     var value_previous = (kf_previous ? kf_previous.xx : value_default) + (rel_previous ? rel_previous.xx : 0);
     var value_next = (kf_next ? kf_next.xx : (animation.loops ? value_default : value_previous)) + (rel_next ? rel_next.xx : 0);
@@ -338,7 +338,7 @@ function animation_get_tween_translate_y(animation, timeline_layer, moment) {
     
     // if no previous keyframe exists the value will always be the default (here, zero);
     // if not next keyframe exists the value will always be the previous value
-    var value_default = animation_get_layer(animation, timeline_layer).yy;
+    var value_default = animation.GetLayer(timeline_layer).yy;
     var value_now = (kf_current ? kf_current.yy : value_default) + (rel_current ? rel_current.yy : 0);
     var value_previous = (kf_previous ? kf_previous.yy : value_default) + (rel_previous ? rel_previous.yy : 0);
     var value_next = (kf_next ? kf_next.yy : (animation.loops ? value_default : value_previous)) + (rel_next ? rel_next.yy : 0);
@@ -372,7 +372,7 @@ function animation_get_tween_translate_z(animation, timeline_layer, moment) {
     
     // if no previous keyframe exists the value will always be the default (here, zero);
     // if not next keyframe exists the value will always be the previous value
-    var value_default = animation_get_layer(animation, timeline_layer).zz;
+    var value_default = animation.GetLayer(timeline_layer).zz;
     var value_now = (kf_current ? kf_current.zz : value_default) + (rel_current ? rel_current.zz : 0);
     var value_previous = (kf_previous ? kf_previous.zz : value_default) + (rel_previous ? rel_previous.zz : 0);
     var value_next = (kf_next ? kf_next.zz : (animation.loops ? value_default : value_previous)) + (rel_next ? rel_next.zz : 0);

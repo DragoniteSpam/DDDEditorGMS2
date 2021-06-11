@@ -1,6 +1,6 @@
 function animation_add_keyframe(animation, timeline_layer, moment, auto_fill) {
-    var inst_layer = animation_get_layer(animation, timeline_layer);
     if (auto_fill == undefined) auto_fill = false;
+    var inst_layer = animation.GetLayer(timeline_layer);
     var keyframe = new DataAnimationKeyframe();
     
     if (auto_fill) {
@@ -45,13 +45,9 @@ function animation_get_keyframe_parameter(keyframe, param) {
 }
 
 function animation_get_keyframe(animation, layer, moment) {
-    var timeline_layer = animation_get_layer(animation, layer);
-    if (timeline_layer) {
-        var keyframe = timeline_layer.keyframes[| moment];
-        return keyframe ? keyframe : noone;
-    }
-    
-    return noone;
+    var timeline_layer = animation.GetLayer(layer);
+    if (timeline_layer) return timeline_layer.keyframes[| moment];
+    return undefined;
 }
 
 function animation_get_keyframe_has_tween(keyframe) {
@@ -120,7 +116,7 @@ function animation_set_keyframe_parameter_tween(keyframe, param, value) {
 }
 
 function animation_set_keyframe_position(animation, keyframe, layer, moment) {
-    var inst_layer = animation_get_layer(animation, layer);
+    var inst_layer = animation.GetLayer(layer);
     inst_layer.keyframes[| keyframe.moment] = noone;
     keyframe.moment = moment;
     inst_layer.keyframes[| moment] = keyframe;

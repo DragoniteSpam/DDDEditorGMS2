@@ -10,14 +10,6 @@ function animation_get_next_keyframe(animation, timeline_layer, moment) {
     return noone;
 }
 
-function animation_get_layer(animation, layer) {
-    if (layer < array_length(animation.layers)) {
-        return animation.layers[layer];
-    }
-    
-    return undefined;
-}
-
 function animation_get_preivous_keyframe(animation, timeline_layer, moment) {
     for (var i = moment - 1; i >= 0; i--) {
         var keyframe = animation_get_keyframe(animation, timeline_layer, i);

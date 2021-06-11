@@ -17,6 +17,11 @@ function DataAnimation(name) : SData(name) constructor {
         var layer = new DataAnimationLayer("Layer " + string(array_length(self.layers)));
         array_push(self.layers, layer);
     };
+    
+    static GetLayer = function(layer) {
+        if (layer < array_length(self.layers)) return self.layers[layer];
+        return undefined;
+    };
 }
 
 function DataAnimationLayer(name) constructor {
