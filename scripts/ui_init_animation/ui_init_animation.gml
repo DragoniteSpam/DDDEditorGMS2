@@ -43,13 +43,9 @@ function ui_init_animation(argument0) {
         yy += ui_get_list_height(el_master);
     
         var element = create_button(xx, yy, "Add Animation", ew, eh, fa_middle, function(button) {
-            if (array_length(Game.animations) < 1000) {
-                var n = string(array_length(Game.animations));
-                var animation = animation_create("Animation" + n, "Anim" + n);
-                ui_list_deselect(button);
-            } else {
-                emu_dialog_notice("Please don't try to create more than a million animations. Bad things will happen. In fact, they probably happened long before this. Why did you even let it get this far, anyway?");
-            }
+            var n = string(array_length(Game.animations));
+            var animation = animation_create("Animation" + n, "Anim" + n);
+            ui_list_deselect(button);
         }, id);
         ds_list_add(contents, element);
     
