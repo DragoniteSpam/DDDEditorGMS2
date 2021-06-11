@@ -184,6 +184,10 @@ function DataAnimationKeyframe() constructor {
         var tween = self.tween[$ property_map[$ param]];
         return tween != AnimationTweens.NONE && tween != AnimationTweens.IGNORE;
     };
+    
+    static SetParameterTween = function(param, value) {
+        self.tween[$ property_map[$ param]] = value;
+    };
 }
 
 enum KeyframeParameters {

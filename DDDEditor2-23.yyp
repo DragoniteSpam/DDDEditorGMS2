@@ -318,7 +318,6 @@
     {"id":{"name":"Group_FMOD","path":"scripts/Group_FMOD/Group_FMOD.yy",},"order":5,},
     {"id":{"name":"Group_Animation_Layers","path":"scripts/Group_Animation_Layers/Group_Animation_Layers.yy",},"order":1,},
     {"id":{"name":"Group_Animation_Tween","path":"scripts/Group_Animation_Tween/Group_Animation_Tween.yy",},"order":16,},
-    {"id":{"name":"Group_Animation_Keyframe","path":"scripts/Group_Animation_Keyframe/Group_Animation_Keyframe.yy",},"order":7,},
     {"id":{"name":"smf_init","path":"scripts/smf_init/smf_init.yy",},"order":0,},
     {"id":{"name":"smf_model_load","path":"scripts/smf_model_load/smf_model_load.yy",},"order":1,},
     {"id":{"name":"smf_model_draw","path":"scripts/smf_model_draw/smf_model_draw.yy",},"order":2,},
