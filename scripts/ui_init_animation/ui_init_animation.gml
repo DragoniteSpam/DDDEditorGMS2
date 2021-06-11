@@ -44,8 +44,9 @@ function ui_init_animation(argument0) {
     
         var element = create_button(xx, yy, "Add Animation", ew, eh, fa_middle, function(button) {
             var n = string(array_length(Game.animations));
-            var animation = animation_create("Animation" + n, "Anim" + n);
-            ui_list_deselect(button);
+            var animation = new DataAnimation("Animation" + n);
+            array_push(Game.animations, animation);
+            internal_name_set(animation, "Anim" + n);
         }, id);
         ds_list_add(contents, element);
     
