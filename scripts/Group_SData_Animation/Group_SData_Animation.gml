@@ -1,3 +1,38 @@
+function DataAnimation(name) : SData(name) constructor {
+    // list of Layer objects with priority queues of Keyframe objects
+    self.layers = ds_list_create();
+    var base_layer = new DataAnimationLayer("Layer 0");
+    base_layer.is_actor = true;
+    ds_list_add(self.layers, base_layer);
+    
+    self.frames_per_second = 24;
+    self.moments = self.frames_per_second * 2;
+    self.loops = true;
+    
+    self.code = Stuff.default_lua_animation;
+    
+    repeat (self.moments) {
+        ds_list_add(base_layer.keyframes, undefined);
+    }
+    
+    static CreateJSONAnimation = function() {
+        var json = self.CreateJSONBase();
+        json.frames_per_second = self.frames_per_second;
+        json.moments = self.moments;
+        json.loops = self.loops;
+        json.code = self.code;
+        json.layers = array_create(ds_list_size(self.layers));
+        for (var i = 0, n = ds_list_size(self.layers); i < n; i++) {
+            json.layers[i] = self.layers[| i];
+        }
+        return json;
+    };
+    
+    static CreateJSON = function() {
+        return self.CreateJSONAnimation();
+    };
+}
+
 function DataAnimationLayer(name) constructor {
     self.name = name;
     self.is_actor = false;
