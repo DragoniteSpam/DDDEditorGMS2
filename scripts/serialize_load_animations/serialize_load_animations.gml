@@ -25,7 +25,7 @@ function serialize_load_animations(argument0, argument1) {
         var n_layers = buffer_read(buffer, buffer_u8);
         repeat (n_layers) {
             var layer_name = buffer_read(buffer, buffer_string);
-            var timeline_layer = animation_layer_create(animation, layer_name);
+            var timeline_layer = animation.AddLayer(layer_name);
         
             var layer_bools = buffer_read(buffer, buffer_u8);
             timeline_layer.is_actor = unpack(layer_bools, 0);

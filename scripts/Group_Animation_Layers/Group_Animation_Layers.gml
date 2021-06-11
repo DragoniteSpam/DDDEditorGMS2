@@ -30,12 +30,6 @@ function animation_get_preivous_keyframe(animation, timeline_layer, moment) {
     return noone;
 }
 
-function animation_layer_create(animation, name) {
-    var timeline_layer = new DataAnimationLayer(name);
-    array_push(animation.layers, timeline_layer);
-    return timeline_layer;
-}
-
 function animation_timeline_set_active_keyframe(timeline, keyframe) {
     timeline.selected_keyframe = keyframe;
     

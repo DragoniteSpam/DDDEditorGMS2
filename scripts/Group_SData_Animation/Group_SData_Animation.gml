@@ -12,6 +12,11 @@ function DataAnimation(name) : SData(name) constructor {
     repeat (self.moments) {
         ds_list_add(self.layers[0].keyframes, undefined);
     }
+    
+    static AddLayer = function() {
+        var layer = new DataAnimationLayer("Layer " + string(array_length(self.layers)));
+        array_push(self.layers, layer);
+    };
 }
 
 function DataAnimationLayer(name) constructor {
