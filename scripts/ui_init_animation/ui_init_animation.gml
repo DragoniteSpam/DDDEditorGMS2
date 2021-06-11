@@ -127,9 +127,7 @@ function ui_init_animation(argument0) {
             var list = button.root.active_animation.layers;
             var selection = ui_list_selection(button.root.el_layers);
             ui_list_deselect(button.root.el_layers);
-            if (!array_empty(list) && button.root.active_animation && selection + 1) {
-                instance_activate_object(list[| selection]);
-                instance_destroy(list[| selection]);
+            if (!array_empty(list) && selection + 1) {
                 array_delete(list, selection, 1);
             }
         }, id);
