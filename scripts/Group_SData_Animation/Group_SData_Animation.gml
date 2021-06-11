@@ -22,6 +22,24 @@ function DataAnimation(name) : SData(name) constructor {
         if (layer < array_length(self.layers)) return self.layers[layer];
         return undefined;
     };
+    
+    static GetNextKeyframe = function(layer, moment) {
+        for (var i = moment + 1; i < self.moments; i++) {
+            var keyframe = animation_get_keyframe(self, layer, i);
+            if (keyframe) return keyframe;
+        }
+        
+        return undefined;
+    };
+    
+    static GetPreviousKeyframe = function(layer, moment) {
+        for (var i = moment - 1; i >= 0; i--) {
+            var keyframe = animation_get_keyframe(animation, timeline_layer, i);
+            if (keyframe) return keyframe;
+        }
+        
+        return undefined;
+    };
 }
 
 function DataAnimationLayer(name) constructor {
