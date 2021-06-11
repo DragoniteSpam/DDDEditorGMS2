@@ -44,12 +44,6 @@ function animation_get_keyframe_parameter(keyframe, param) {
     }
 }
 
-function animation_get_keyframe(animation, layer, moment) {
-    var timeline_layer = animation.GetLayer(layer);
-    if (timeline_layer) return timeline_layer.keyframes[| moment];
-    return undefined;
-}
-
 function animation_get_keyframe_has_tween(keyframe) {
     // just checks to see if *any* of the tweens it uses are typed - it doesn't really
     // care which ones they are

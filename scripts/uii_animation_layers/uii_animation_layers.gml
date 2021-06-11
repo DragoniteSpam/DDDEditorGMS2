@@ -38,7 +38,7 @@ function uii_animation_layers(argument0, argument1, argument2) {
         if (Controller.double_left) {
             var timeline_layer = animation.GetLayer(timeline.selected_layer);
             if (timeline_layer) {
-                var keyframe = animation_get_keyframe(animation, timeline.selected_layer, timeline.selected_moment);
+                var keyframe = animation.GetKeyframe(timeline.selected_layer, timeline.selected_moment);
                 if (!keyframe) {
                     var keyframe = animation_add_keyframe(animation, timeline.selected_layer, timeline.selected_moment);
                     animation_timeline_set_active_keyframe(timeline, keyframe);
@@ -46,7 +46,7 @@ function uii_animation_layers(argument0, argument1, argument2) {
             }
         } else if (Controller.press_left) {
             if (!keyboard_check(vk_control)) {
-                animation_timeline_set_active_keyframe(timeline, animation_get_keyframe(animation, timeline.selected_layer, timeline.selected_moment));
+                animation_timeline_set_active_keyframe(timeline, animation.GetKeyframe(timeline.selected_layer, timeline.selected_moment));
             }
         } else if (Controller.mouse_left) {
             if (keyboard_check(vk_control)) {

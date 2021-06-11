@@ -13,9 +13,9 @@ function ui_render_animation_keyframe_translate_y(argument0, argument1, argument
     var timeline_layer = ui_list_selection(input.root.root.el_layers);
 
     if (animation && (timeline_layer + 1)) {
-        keyframe = animation_get_keyframe(animation, timeline_layer, timeline.playing_moment);
+        keyframe = animation.GetKeyframe(timeline_layer, timeline.playing_moment);
     
-        var kf_current = animation_get_keyframe(animation, timeline_layer, timeline.playing_moment);
+        var kf_current = animation.GetKeyframe(timeline_layer, timeline.playing_moment);
         var rel_current = (kf_current && kf_current.relative > -1) ? animation.layers[kf_current.relative] : noone;
     
         input.back_color = rel_current ? c_ui_select : c_white;

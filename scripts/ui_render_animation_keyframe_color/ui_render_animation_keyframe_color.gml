@@ -13,7 +13,7 @@ function ui_render_animation_keyframe_color(argument0, argument1, argument2) {
     var timeline_layer = ui_list_selection(input.root.root.el_layers);
 
     if (animation && (timeline_layer + 1)) {
-        keyframe = animation_get_keyframe(animation, timeline_layer, timeline.playing_moment);
+        keyframe = animation.GetKeyframe(timeline_layer, timeline.playing_moment);
     
         if (!ui_is_active(input)) {
             ui_input_set_value(input, animation_get_tween_color(animation, timeline_layer, floor(timeline.playing_moment)));

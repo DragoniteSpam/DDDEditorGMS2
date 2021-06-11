@@ -23,9 +23,15 @@ function DataAnimation(name) : SData(name) constructor {
         return undefined;
     };
     
+    static GetKeyframe = function(layer, moment) {
+        var timeline_layer = animation.GetLayer(layer);
+        if (timeline_layer) return timeline_layer.keyframes[| moment];
+        return undefined;
+    };
+    
     static GetNextKeyframe = function(layer, moment) {
         for (var i = moment + 1; i < self.moments; i++) {
-            var keyframe = animation_get_keyframe(self, layer, i);
+            var keyframe = self.GetKeyframe(layer, i);
             if (keyframe) return keyframe;
         }
         
@@ -34,7 +40,7 @@ function DataAnimation(name) : SData(name) constructor {
     
     static GetPreviousKeyframe = function(layer, moment) {
         for (var i = moment - 1; i >= 0; i--) {
-            var keyframe = animation_get_keyframe(animation, timeline_layer, i);
+            var keyframe = self.GetKeyframe(layer, i);
             if (keyframe) return keyframe;
         }
         

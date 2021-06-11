@@ -3,7 +3,7 @@ function animation_get_tween_color(animation, timeline_layer, moment) {
     var kf_previous = noone;
     var kf_next = noone;
     
-    kf_current = animation_get_keyframe(animation, timeline_layer, moment);
+    kf_current = animation.GetKeyframe(timeline_layer, moment);
     do {
         kf_previous = animation.GetPreviousKeyframe(timeline_layer, kf_previous ? kf_previous.moment : moment);
     } until (!kf_previous || kf_previous.tween.color != AnimationTweens.IGNORE);
@@ -51,7 +51,7 @@ function animation_get_tween_alpha(animation, timeline_layer, moment) {
     var kf_previous = noone;
     var kf_next = noone;
     
-    kf_current = animation_get_keyframe(animation, timeline_layer, moment);
+    kf_current = animation.GetKeyframe(timeline_layer, moment);
     do {
         kf_previous = animation.GetPreviousKeyframe(timeline_layer, kf_previous ? kf_previous.moment : moment);
     } until (!kf_previous || kf_previous.tween.alpha != AnimationTweens.IGNORE);
@@ -85,7 +85,7 @@ function animation_get_tween_rotate_x(animation, timeline_layer, moment) {
     var kf_previous = noone;
     var kf_next = noone;
     
-    kf_current = animation_get_keyframe(animation, timeline_layer, moment);
+    kf_current = animation.GetKeyframe(timeline_layer, moment);
     do {
         kf_previous = animation.GetPreviousKeyframe(timeline_layer, kf_previous ? kf_previous.moment : moment);
     } until (!kf_previous || kf_previous.tween.xrot != AnimationTweens.IGNORE);
@@ -119,7 +119,7 @@ function animation_get_tween_rotate_y(animation, timeline_layer, moment) {
     var kf_previous = noone;
     var kf_next = noone;
     
-    kf_current = animation_get_keyframe(animation, timeline_layer, moment);
+    kf_current = animation.GetKeyframe(timeline_layer, moment);
     do {
         kf_previous = animation.GetPreviousKeyframe(timeline_layer, kf_previous ? kf_previous.moment : moment);
     } until (!kf_previous || kf_previous.tween.yrot != AnimationTweens.IGNORE);
@@ -153,7 +153,7 @@ function animation_get_tween_rotate_z(animation, timeline_layer, moment) {
     var kf_previous = noone;
     var kf_next = noone;
     
-    kf_current = animation_get_keyframe(animation, timeline_layer, moment);
+    kf_current = animation.GetKeyframe(timeline_layer, moment);
     do {
         kf_previous = animation.GetPreviousKeyframe(timeline_layer, kf_previous ? kf_previous.moment : moment);
     } until (!kf_previous || kf_previous.tween.zrot != AnimationTweens.IGNORE);
@@ -187,7 +187,7 @@ function animation_get_tween_scale_x(animation, timeline_layer, moment) {
     var kf_previous = noone;
     var kf_next = noone;
     
-    kf_current = animation_get_keyframe(animation, timeline_layer, moment);
+    kf_current = animation.GetKeyframe(timeline_layer, moment);
     do {
         kf_previous = animation.GetPreviousKeyframe(timeline_layer, kf_previous ? kf_previous.moment : moment);
     } until (!kf_previous || kf_previous.tween.xscale != AnimationTweens.IGNORE);
@@ -221,7 +221,7 @@ function animation_get_tween_scale_y(animation, timeline_layer, moment) {
     var kf_previous = noone;
     var kf_next = noone;
     
-    kf_current = animation_get_keyframe(animation, timeline_layer, moment);
+    kf_current = animation.GetKeyframe(timeline_layer, moment);
     do {
         kf_previous = animation.GetPreviousKeyframe(timeline_layer, kf_previous ? kf_previous.moment : moment);
     } until (!kf_previous || kf_previous.tween.yscale != AnimationTweens.IGNORE);
@@ -255,7 +255,7 @@ function animation_get_tween_scale_z(animation, timeline_layer, moment) {
     var kf_previous = noone;
     var kf_next = noone;
     
-    kf_current = animation_get_keyframe(animation, timeline_layer, moment);
+    kf_current = animation.GetKeyframe(timeline_layer, moment);
     do {
         kf_previous = animation.GetPreviousKeyframe(timeline_layer, kf_previous ? kf_previous.moment : moment);
     } until (!kf_previous || kf_previous.tween.zrot != AnimationTweens.IGNORE);
@@ -289,7 +289,7 @@ function animation_get_tween_translate_x(animation, timeline_layer, moment) {
     var kf_previous = noone;
     var kf_next = noone;
     
-    kf_current = animation_get_keyframe(animation, timeline_layer, moment);
+    kf_current = animation.GetKeyframe(timeline_layer, moment);
     do {
         kf_previous = animation.GetPreviousKeyframe(timeline_layer, kf_previous ? kf_previous.moment : moment);
     } until (!kf_previous || kf_previous.tween.x != AnimationTweens.IGNORE);
@@ -324,7 +324,7 @@ function animation_get_tween_translate_y(animation, timeline_layer, moment) {
     var kf_previous = noone;
     var kf_next = noone;
     
-    kf_current = animation_get_keyframe(animation, timeline_layer, moment);
+    kf_current = animation.GetKeyframe(timeline_layer, moment);
     do {
         kf_previous = animation.GetPreviousKeyframe(timeline_layer, kf_previous ? kf_previous.moment : moment);
     } until (!kf_previous || kf_previous.tween.y != AnimationTweens.IGNORE);
@@ -358,7 +358,7 @@ function animation_get_tween_translate_z(animation, timeline_layer, moment) {
     var kf_previous = noone;
     var kf_next = noone;
     
-    kf_current = animation_get_keyframe(animation, timeline_layer, moment);
+    kf_current = animation.GetKeyframe(timeline_layer, moment);
     do {
         kf_previous = animation.GetPreviousKeyframe(timeline_layer, kf_previous ? kf_previous.moment : moment);
     } until (!kf_previous || kf_previous.tween.z != AnimationTweens.IGNORE);
