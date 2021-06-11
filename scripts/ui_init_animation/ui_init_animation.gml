@@ -109,14 +109,10 @@ function ui_init_animation(argument0) {
         var yy_beneath_timeline = yy - 16;
     
         element = create_button(xx, yy, "Add Layer", ew, eh, fa_middle, function(button) {
-            if (button.root.active_animation) {
-                if (array_length(button.root.active_animation.layers) < 250) {
-                    var n = string(array_length(button.root.active_animation.layers));
-                    var timeline_layer = animation_layer_create(button.root.active_animation, "Layer " + n);
-                    ui_list_deselect(button.root.el_layers);
-                } else {
-                    emu_dialog_notice("Please don't try to create more than 250 animations.");
-                }
+            var animation = button.root.active_animation;
+            if (animation) {
+                var timeline_layer = animation_layer_create(animation, "Layer " + string(array_length(animation.layers)));
+                ui_list_deselect(button.root.el_layers);
             }
         }, id);
         ds_list_add(contents, element);
