@@ -162,8 +162,12 @@ function DataAnimationKeyframe() constructor {
     self.moment = 0;
     self.timeline_layer = 0;
     
-    static GetKeyframeParameter = function(param) {
+    static GetParameter = function(param) {
         return self.tween[$ property_map[$ param]];
+    };
+    
+    static SetParameter = function(param, value) {
+        self.tween[$ property_map[$ param]] = value;
     };
     
     static GetHasTween = function() {
