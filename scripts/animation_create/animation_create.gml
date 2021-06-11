@@ -4,8 +4,7 @@ function animation_create(name, internal_name) {
     
     var animation = new DataAnimation(name != "" ? name : "Animation");
     if (internal_name != "") internal_name_set(animation, internal_name);
-    instance_deactivate_object(animation);
-    ds_list_add(Game.animations, animation);
+    array_push(Game.animations, animation);
     
     return animation;
 }

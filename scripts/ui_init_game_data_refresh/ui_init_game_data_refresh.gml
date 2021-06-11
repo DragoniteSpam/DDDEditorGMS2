@@ -102,9 +102,9 @@ function ui_init_game_data_refresh() {
                             break;
                         case DataTypes.ANIMATION:
                             ui_list_deselect(thingy);
-                            for (var k = 0; k < ds_list_size(Game.animations); k++) {
+                            for (var k = 0; k < array_length(Game.animations); k++) {
                                 // still no need to mess with the list
-                                if (Game.animations[| k].GUID == instance.values[n][0]) {
+                                if (Game.animations[k].GUID == instance.values[n][0]) {
                                     ui_list_select(thingy, k, true);
                                     break;
                                 }

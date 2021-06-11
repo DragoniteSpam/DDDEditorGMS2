@@ -7,12 +7,12 @@ function serialize_save_animations(argument0) {
     var addr_next = buffer_tell(buffer);
     buffer_write(buffer, buffer_u64, 0);
 
-    var n_animations = ds_list_size(Game.animations);
+    var n_animations = array_length(Game.animations);
 
     buffer_write(buffer, buffer_u16, n_animations);
 
     for (var i = 0; i < n_animations; i++) {
-        var animation = Game.animations[| i];
+        var animation = Game.animations[i];
         serialize_save_generic(buffer, animation);
     
         buffer_write(buffer, buffer_u8, animation.frames_per_second);

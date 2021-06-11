@@ -34,7 +34,7 @@ function ui_init_animation(argument0) {
         var this_column = 0;
         var xx = this_column * cw + spacing;
     
-        el_master = create_list(xx, yy_header, "Animations: ", "<no animations>", ew, eh, 26, uivc_list_animation_editor, false, id);
+        el_master = create_list(xx, yy_header, "Animations: ", "<no animations>", ew, eh, 26, uivc_list_animation_editor, false, id, Game.animations);
         el_master.render = ui_render_list_animations;
         el_master.ondoubleclick = omu_animation_properties;
         el_master.entries_are = ListEntries.INSTANCES;
@@ -43,8 +43,8 @@ function ui_init_animation(argument0) {
         yy += ui_get_list_height(el_master);
     
         var element = create_button(xx, yy, "Add Animation", ew, eh, fa_middle, function(button) {
-            if (ds_list_size(Game.animations) < 1000) {
-                var n = string(ds_list_size(Game.animations));
+            if (array_length(Game.animations) < 1000) {
+                var n = string(array_length(Game.animations));
                 var animation = animation_create("Animation" + n, "Anim" + n);
                 ui_list_deselect(button);
             } else {
@@ -59,9 +59,9 @@ function ui_init_animation(argument0) {
             var selection = ui_list_selection(button.root.el_master);
             ui_list_deselect(button.root.el_master);
             if (selection + 1) {
-                for (var i = 0; i < ds_list_size(Game.animations); i++) {
-                    if (Game.animations[| i] == button.root.active_animation) {
-                        ds_list_delete(Game.animations, i);
+                for (var i = 0; i < array_length(Game.animations); i++) {
+                    if (Game.animations[i] == button.root.active_animation) {
+                        array_delete(Game.animations, i, 1);
                         ui_list_deselect(button.root.el_master);
                         button.root.active_animation = noone;
                         button.root.active_animation = noone;

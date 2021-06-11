@@ -8,15 +8,12 @@ function ui_render_list_animations(argument0, argument1, argument2) {
     var yy = argument2;
 
     var otext = list.text;
-    var oentries = list.entries;
-
-    list.text = otext + string(ds_list_size(Game.animations));
+    list.text = otext + string(array_length(Game.animations));
     list.entries = Game.animations;
 
     ui_render_list(list, xx, yy);
 
     list.text = otext;
-    list.entries = oentries;
 
 
 }

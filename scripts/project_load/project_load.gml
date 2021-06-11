@@ -140,7 +140,7 @@ function project_load(id) {
         for (var i = 0; i < array_length(animations); i++) {
             var animation = new DataAnimation();
             animation.LoadJSON(animations[i]);
-            ds_list_add(Game.animations, animation);
+            array_push(Game.animations, animation);
         }
     };
     
