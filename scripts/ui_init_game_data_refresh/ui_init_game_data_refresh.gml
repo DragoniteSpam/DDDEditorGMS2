@@ -122,8 +122,8 @@ function ui_init_game_data_refresh() {
                         case DataTypes.IMG_ETC:
                         case DataTypes.IMG_SKYBOX:
                             ui_list_deselect(thingy);
-                            for (var k = 0; k < ds_list_size(thingy.entries); k++) {
-                                if (thingy.entries[| k].GUID == instance.values[n][0]) {
+                            for (var k = 0; k < array_length(thingy.entries); k++) {
+                                if (thingy.entries[k].GUID == instance.values[n][0]) {
                                     ui_list_select(thingy, k, true);
                                     break;
                                 }
