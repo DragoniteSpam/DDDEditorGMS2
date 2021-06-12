@@ -1,11 +1,11 @@
-function DataMesh(name) : SData(name) constructor {
+function DataMesh(source) : SData(source) constructor {
     self.type = MeshTypes.RAW;
     
     self.submeshes = ds_list_create();
     // there will only be one collision shape, defined as the first mesh
     // you import; this is a good reason to make all meshes in a series
     // the same shape, or almost the same shape
-    self.cshape = noone;
+    self.cshape = undefined;
     
     self.proto_guids = { };
     self.proto_guid_current = 0;
@@ -31,6 +31,31 @@ function DataMesh(name) : SData(name) constructor {
     
     self.texture_scale = 1;
     
+    if (is_struct(source)) {
+        self.type = source.type;
+        self.tex_base = source.tex_base;
+        self.tex_ambient = source.tex_ambient;
+        self.tex_specular_color = source.tex_specular_color;
+        self.tex_specular_highlight = source.tex_specular_highlight;
+        self.tex_alpha = source.tex_alpha;
+        self.tex_bump = source.tex_bump;
+        self.tex_displacement = source.tex_displacement;
+        self.tex_stencil = source.tex_stencil;
+        self.texture_scale = source.texture_scale;
+        
+        self.asset_flags = source.asset_flags;
+        self.xmin = source.xmin;
+        self.ymin = source.ymin;
+        self.zmin = source.zmin;
+        self.xmax = source.xmax;
+        self.ymax = source.ymax;
+        self.zmax = source.zmax;
+        
+        for (var i = 0; i < array_length(source.submeshes); i++) {
+            var submesh = new MeshSubmesh(source.submeshes[i]);
+            ds_list_add(self.submeshes, submesh);
+        }
+    }
     self.CopyPropertiesFrom = function(mesh) {
         // cshape is currently NOT copied!
         
@@ -161,38 +186,6 @@ function DataMesh(name) : SData(name) constructor {
         for (var i = 0, n = ds_list_size(self.submeshes); i < n; i++) {
             self.submeshes[| i].SaveAsset(directory + guid + "_");
         }
-    };
-    
-    static LoadJSONMesh = function(json) {
-        self.LoadJSONBase(json);
-        self.type = json.type;
-        self.tex_base = json.tex_base;
-        self.tex_ambient = json.tex_ambient;
-        self.tex_specular_color = json.tex_specular_color;
-        self.tex_specular_highlight = json.tex_specular_highlight;
-        self.tex_alpha = json.tex_alpha;
-        self.tex_bump = json.tex_bump;
-        self.tex_displacement = json.tex_displacement;
-        self.tex_stencil = json.tex_stencil;
-        self.texture_scale = json.texture_scale;
-        
-        self.asset_flags = json.asset_flags;
-        self.xmin = json.xmin;
-        self.ymin = json.ymin;
-        self.zmin = json.zmin;
-        self.xmax = json.xmax;
-        self.ymax = json.ymax;
-        self.zmax = json.zmax;
-        
-        for (var i = 0; i < array_length(json.submeshes); i++) {
-            var submesh = new MeshSubmesh();
-            submesh.LoadJSON(json.submeshes[i]);
-            ds_list_add(self.submeshes, submesh);
-        }
-    };
-    
-    static LoadJSON = function(json) {
-        self.LoadJSONMesh(json);
     };
     
     static CreateJSONMesh = function() {

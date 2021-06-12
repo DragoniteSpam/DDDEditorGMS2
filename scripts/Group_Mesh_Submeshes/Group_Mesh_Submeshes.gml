@@ -1,5 +1,4 @@
-function MeshSubmesh(name) constructor {
-    self.name = name;
+function MeshSubmesh(source) constructor {
     self.buffer = undefined;
     self.vbuffer = undefined;
     self.wbuffer = undefined;
@@ -12,6 +11,14 @@ function MeshSubmesh(name) constructor {
     self.reflect_vbuffer = undefined;
     self.reflect_wbuffer = undefined;
     self.reflect_wrawbuffer = undefined;
+    
+    if (is_struct(source)) {
+        self.name = source.name;
+        self.path = source.path;
+        self.proto_guid = source.proto_guid;
+    } else {
+        self.name = source;
+    }
     
     static LoadAsset = function(directory) {
         var proto = string_replace_all(self.proto_guid, ":", "_");
@@ -32,16 +39,6 @@ function MeshSubmesh(name) constructor {
         if (self.reflect_buffer) buffer_save(self.reflect_buffer, directory + proto + ".reflect");
         if (self.wrawbuffer) buffer_save(self.wrawbuffer, directory  + proto + ".wire");
         if (self.reflect_wrawbuffer) buffer_save(self.reflect_wrawbuffer, directory + proto + ".rwire");
-    };
-    
-    static LoadJSONSubmesh = function(json) {
-        self.name = json.name;
-        self.path = json.path;
-        self.proto_guid = json.proto_guid;
-    };
-    
-    static LoadJSON = function(json) {
-        return self.LoadJSONSubmesh(json);
     };
     
     static CreateJSONSubmesh = function() {

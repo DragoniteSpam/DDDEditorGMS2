@@ -100,8 +100,7 @@ function project_load(id) {
         var meshes = json.meshes;
         
         for (var i = 0; i < array_length(meshes); i++) {
-            var mesh = new DataMesh();
-            mesh.LoadJSON(meshes[i]);
+            var mesh = new DataMesh(meshes[i]);
             mesh.LoadAsset(directory);
             array_push(Game.meshes, mesh);
         }
