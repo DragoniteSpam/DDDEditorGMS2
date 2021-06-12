@@ -464,7 +464,12 @@ function ui_init_animation(argument0) {
         yy += el_keyframe.alpha.height + spacing;
     
         element = create_button(xx, yy, "More Data", ew, eh, fa_center, omu_animation_keyframe_event, el_keyframe);
-        element.render = ui_render_animation_keyframe_other;
+        element.render = function(button, x, y) {
+            var animation = button.root.root.active_animation;
+            var timeline_layer = ui_list_selection(button.root.root.el_layers);
+            button.interactive = !!(animation && (timeline_layer + 1));
+            ui_render_button(button, x, y);
+        };
         ds_list_add(el_keyframe.contents, element);
     
         yy += element.height;
