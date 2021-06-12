@@ -483,7 +483,20 @@ function ui_init_animation(argument0) {
         var sw = sprite_get_width(spr_camera_icons);
         var sh = sprite_get_height(spr_camera_icons);
     
-        element = create_image_button(room_width - 32 - sw, yy, "", spr_camera_icons, sw, sh, fa_middle, omu_animation_reset_camera, id);
+        element = create_image_button(room_width - 32 - sw, yy, "", spr_camera_icons, sw, sh, fa_middle, function(button) {
+            Stuff.animation.x = 0;
+            Stuff.animation.y = 160;
+            Stuff.animation.z = 80;
+            Stuff.animation.xto = 0;
+            Stuff.animation.yto = 0;
+            Stuff.animation.zto = 0;
+            Stuff.animation.xup = 0;
+            Stuff.animation.yup = 0;
+            Stuff.animation.zup = 1;
+            Stuff.animation.fov = 50;
+            Stuff.animation.pitch = 0;
+            Stuff.animation.direction = 0;
+        }, id);
         element.index = 0;
         ds_list_add(contents, element);
     
