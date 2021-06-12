@@ -23,18 +23,19 @@ function draw_animator() {
         var moment = ui.el_timeline.playing_moment;
         for (var i = 0; i < array_length(animation.layers); i++) {
             var timeline_layer = animation.layers[i];
-            var kx = animation_get_tween_translate_x(animation, i, moment);
-            var ky = animation_get_tween_translate_y(animation, i, moment);
-            var kz = animation_get_tween_translate_z(animation, i, moment);
-            var krx = animation_get_tween_rotate_x(animation, i, moment);
-            var kry = animation_get_tween_rotate_y(animation, i, moment);
-            var krz = animation_get_tween_rotate_z(animation, i, moment);
-            var ksx = animation_get_tween_scale_x(animation, i, moment);
-            var ksy = animation_get_tween_scale_y(animation, i, moment);
-            var ksz = animation_get_tween_scale_z(animation, i, moment);
-            var kcolor = animation_get_tween_color(animation, i, moment);
-            var kalpha = animation_get_tween_alpha(animation, i, moment);
+            var kx = animation.GetValue(i, moment, KeyframeParameters.TRANS_X);
+            var ky = animation.GetValue(i, moment, KeyframeParameters.TRANS_Y);
+            var kz = animation.GetValue(i, moment, KeyframeParameters.TRANS_Z);
+            var krx = animation.GetValue(i, moment, KeyframeParameters.ROT_X);
+            var kry = animation.GetValue(i, moment, KeyframeParameters.ROT_Y);
+            var krz = animation.GetValue(i, moment, KeyframeParameters.ROT_Z);
+            var ksx = animation.GetValue(i, moment, KeyframeParameters.SCALE_X);
+            var ksy = animation.GetValue(i, moment, KeyframeParameters.SCALE_Y);
+            var ksz = animation.GetValue(i, moment, KeyframeParameters.SCALE_Z);
+            var kcolor = animation.GetValue(i, moment, KeyframeParameters.COLOR);
+            var kalpha = animation.GetValue(i, moment, KeyframeParameters.ALPHA);
             transform_set(kx, ky, kz, krx, kry, krz, ksx, ksy, ksz);
+            // todo
             vertex_submit(Stuff.graphics.grid_sphere, pr_linelist, -1);
         }
     }
