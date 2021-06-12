@@ -1325,7 +1325,6 @@
     {"id":{"name":"omu_animation_keyframe_event","path":"scripts/omu_animation_keyframe_event/omu_animation_keyframe_event.yy",},"order":1,},
     {"id":{"name":"omu_animation_clear_keyframes","path":"scripts/omu_animation_clear_keyframes/omu_animation_clear_keyframes.yy",},"order":3,},
     {"id":{"name":"omu_animation_properties","path":"scripts/omu_animation_properties/omu_animation_properties.yy",},"order":5,},
-    {"id":{"name":"omu_animation_reset_camera","path":"scripts/omu_animation_reset_camera/omu_animation_reset_camera.yy",},"order":6,},
     {"id":{"name":"dialog_create_mesh_material_settings","path":"scripts/dialog_create_mesh_material_settings/dialog_create_mesh_material_settings.yy",},"order":39,},
     {"id":{"name":"dialog_create_mesh_normal_settings","path":"scripts/dialog_create_mesh_normal_settings/dialog_create_mesh_normal_settings.yy",},"order":40,},
     {"id":{"name":"Group_Math_Vectors","path":"scripts/Group_Math_Vectors/Group_Math_Vectors.yy",},"order":13,},
