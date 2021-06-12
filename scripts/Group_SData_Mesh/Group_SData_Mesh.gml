@@ -56,6 +56,7 @@ function DataMesh(source) : SData(source) constructor {
             ds_list_add(self.submeshes, submesh);
         }
     }
+    
     self.CopyPropertiesFrom = function(mesh) {
         // cshape is currently NOT copied!
         

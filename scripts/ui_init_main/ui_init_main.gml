@@ -1077,16 +1077,14 @@ function ui_init_main(mode) {
         element_mesh_list.colorize = true;
         element_mesh_list.render = method(element_mesh_list, function(list, x, y) {
             var oldtext = list.text;
-            list.text = list.text + string(ds_list_size(list.entries));
+            list.text = list.text + string(array_length(list.entries));
             ui_render_list(list, x, y);
             list.text = oldtext;
         });
         element_mesh_list.render_colors = method(element_mesh_list, function(list, index) {
-            var mesh = list.entries[| index];
+            var mesh = list.entries[index];
             for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
-                if (!mesh.submeshes[| i].buffer) {
-                    return c_red;
-                }
+                if (!mesh.submeshes[| i].buffer) return c_red;
             }
             switch (mesh.type) {
                 case MeshTypes.RAW: return c_black;
@@ -1099,7 +1097,7 @@ function ui_init_main(mode) {
             if (data) dialog_create_mesh_advanced(undefined, data);
         });
         element_mesh_list.evaluate_text = method(element_mesh_list, function(list, index) {
-            var mesh = list.entries[| index];
+            var mesh = list.entries[index];
             var prefix = "";
             if (mesh.flags & MeshFlags.PARTICLE) {
                 prefix += "p";
