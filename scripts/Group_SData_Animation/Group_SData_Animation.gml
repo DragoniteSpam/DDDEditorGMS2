@@ -133,7 +133,7 @@ function DataAnimationLayer(animation, name) constructor {
     
     static GetNextKeyframe = function(moment, ignore_passthrough) {
         if (ignore_passthrough == undefined) ignore_passthrough = false;
-        for (var i = moment + 1; i < self.moments; i++) {
+        for (var i = moment + 1; i < self.animation.moments; i++) {
             var keyframe = self.GetKeyframe(i);
             if (keyframe && (!ignore_passthrough || keyframe.HasTween())) return keyframe;
         }
@@ -151,11 +151,11 @@ function DataAnimationLayer(animation, name) constructor {
         return undefined;
     };
     
-    static GetValue = function(param) {
+    static GetBaseValue = function(param) {
         return self[$ property_map[$ param]];
     };
     
-    static SetValue = function(param, value) {
+    static SetBaseValue = function(param, value) {
         self[$ property_map[$ param]] = value; 
     };
     
@@ -170,10 +170,10 @@ function DataAnimationLayer(animation, name) constructor {
         
         // if no previous keyframe exists the value will always be the default (here, zero);
         // if not next keyframe exists the value will always be the previous value
-        var value_default = self.GetValue(param);
-        var value_now = (kf_current ? kf_current.Get(param) : value_default) + (rel_current ? rel_current.Get(param) : 0);
-        var value_previous = (kf_previous ? kf_previous.Get(param) : value_default) + (rel_previous ? rel_previous.Get(param) : 0);
-        var value_next = (kf_next ? kf_next.Get(param) : (self.animation.loops ? value_default : value_previous)) + (rel_next ? rel_next.Get(param) : 0);
+        var value_default = self.GetBaseValue(param);
+        var value_now = (kf_current ? kf_current.Get(param) : value_default) + (rel_current ? rel_current.GetBaseValue(param) : 0);
+        var value_previous = (kf_previous ? kf_previous.Get(param) : value_default) + (rel_previous ? rel_previous.GetBaseValue(param) : 0);
+        var value_next = (kf_next ? kf_next.Get(param) : (self.animation.loops ? value_default : value_previous)) + (rel_next ? rel_next.GetBaseValue(param) : 0);
         var moment_previous = kf_previous ? kf_previous.moment : 0;
         var moment_next = kf_next ? kf_next.moment : self.animation.moments;
         var f = normalize(moment, moment_previous, moment_next);

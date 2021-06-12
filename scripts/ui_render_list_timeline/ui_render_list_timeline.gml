@@ -118,7 +118,7 @@ function ui_render_list_timeline(argument0, argument1, argument2) {
                             var kfx = x1 + timeline.moment_width * (keyframe.moment - timeline.moment_index + 0.5);
                             var kfy = y2 + timeline.height * (i + 0.5);
                         
-                            if (keyframe.GetHasTween()) {
+                            if (keyframe.HasTween()) {
                                 var next = animation.GetNextKeyframe(index, j);
                                 var kfnx = next ? x1 + timeline.moment_width * (next.moment - timeline.moment_index + 0.5) : x2;
                                 draw_line_width_colour(kfx, kfy, kfnx, kfy, 2, c_blue, c_blue);
