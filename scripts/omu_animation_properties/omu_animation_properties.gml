@@ -1,4 +1,3 @@
-/// @param UIThing
 function omu_animation_properties(root) {
     var animation = root.root.active_animation;
     

@@ -34,8 +34,24 @@ function ui_init_animation(argument0) {
         var this_column = 0;
         var xx = this_column * cw + spacing;
     
-        el_master = create_list(xx, yy_header, "Animations: ", "<no animations>", ew, eh, 26, uivc_list_animation_editor, false, id, Game.animations);
-        el_master.render = ui_render_list_animations;
+        el_master = create_list(xx, yy_header, "Animations: ", "<no animations>", ew, eh, 26, function(list) {
+            if (!array_empty(Game.animations)) {
+                var selection = ui_list_selection(list);
+                list.root.active_animation = undefined;
+                list.root.el_timeline.playing = false;
+                list.root.el_timeline.playing_moment = 0;
+                if (selection + 1) {
+                    list.root.active_animation = Game.animations[selection];
+                    ui_list_deselect(list.root.el_layers);
+                }
+            }
+        }, false, id, Game.animations);
+        el_master.render = function (list, x, y) {
+            var otext = list.text;
+            list.text = otext + string(array_length(Game.animations));
+            ui_render_list(list, x, y);
+            list.text = otext;
+        };
         el_master.ondoubleclick = omu_animation_properties;
         el_master.entries_are = ListEntries.INSTANCES;
         ds_list_add(contents, el_master);
