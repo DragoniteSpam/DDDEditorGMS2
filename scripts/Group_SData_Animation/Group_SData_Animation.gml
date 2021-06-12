@@ -137,6 +137,32 @@ function DataAnimationLayer(animation, name) constructor {
     static SetValue = function(param, value) {
         self[$ property_map[$ param]] = value; 
     };
+    
+    static GetValue = function(param, moment) {
+        var kf_current = self.GetKeyframe(moment);
+        var kf_previous = self.GetPreviousKeyframe(moment, true);
+        var kf_next = self.GetNextKeyframe(moment, true);
+        
+        var rel_current = (kf_current && kf_current.relative > -1) ? self.animation.layers[kf_current.relative] : undefined;
+        var rel_previous = (kf_previous && kf_previous.relative > -1) ? self.animation.layers[kf_previous.relative] : undefined;
+        var rel_next = (kf_next && kf_next.relative > -1) ? self.animation.layers[kf_next.relative] : undefined;
+        
+        // if no previous keyframe exists the value will always be the default (here, zero);
+        // if not next keyframe exists the value will always be the previous value
+        var value_default = self.GetValue(param);
+        var value_now = (kf_current ? kf_current.Get(param) : value_default) + (rel_current ? rel_current.Get(param) : 0);
+        var value_previous = (kf_previous ? kf_previous.Get(param) : value_default) + (rel_previous ? rel_previous.Get(param) : 0);
+        var value_next = (kf_next ? kf_next.Get(param) : (self.animation.loops ? value_default : value_previous)) + (rel_next ? rel_next.Get(param) : 0);
+        var moment_previous = kf_previous ? kf_previous.moment : 0;
+        var moment_next = kf_next ? kf_next.moment : self.animation.moments;
+        var f = normalize(moment, moment_previous, moment_next);
+        
+        if (kf_current && kf_current.HasParameterTween(param)) return value_now;
+        
+        // only need to check for previous keyframe because if there is no next keyframe, the "next"
+        // value will be the same as previous and tweening will just output the same value anyway
+        return easing_tween(value_previous, value_next, f, kf_previous ? kf_previous.GetParameterTween(param) : AnimationTweens.NONE);
+    };
 }
 
 enum GraphicTypes {
