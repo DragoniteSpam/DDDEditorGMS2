@@ -6,12 +6,12 @@ function DataAnimation(name) : SData(name) constructor {
     self.code = Stuff.default_lua_animation;
     
     // list of Layer objects with priority queues of Keyframe objects
-    self.layers = [new DataAnimationLayer("Layer 0")];
+    self.layers = [new DataAnimationLayer(self, "Layer 0")];
     self.layers[0].keyframes = array_create(self.moments);
     self.layers[0].is_actor = true;
     
     static AddLayer = function() {
-        var new_layer = new DataAnimationLayer("Layer " + string(array_length(self.layers)));
+        var new_layer = new DataAnimationLayer(self, "Layer " + string(array_length(self.layers)));
         array_push(self.layers, new_layer);
         return new_layer;
     };
@@ -129,6 +129,14 @@ function DataAnimationLayer(animation, name) constructor {
         
         return undefined;
     };
+    
+    static GetValue = function(param) {
+        return self[$ property_map[$ param]];
+    };
+    
+    static SetValue = function(param, value) {
+        self[$ property_map[$ param]] = value; 
+    };
 }
 
 enum GraphicTypes {
@@ -206,11 +214,11 @@ function DataAnimationKeyframe(layer, moment) constructor {
     self.moment = 0;
     self.timeline_layer = 0;
     
-    static GetParameter = function(param) {
+    static Get = function(param) {
         return self.tween[$ property_map[$ param]];
     };
     
-    static SetParameter = function(param, value) {
+    static Set = function(param, value) {
         self.tween[$ property_map[$ param]] = value;
     };
     
