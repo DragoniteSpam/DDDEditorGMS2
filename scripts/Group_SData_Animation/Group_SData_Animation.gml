@@ -22,10 +22,7 @@ function DataAnimation(name) : SData(name) constructor {
     };
     
     static AddKeyframe = function(layer, moment) {
-        var inst_layer = self.GetLayer(layer);
-        var keyframe = new DataAnimationKeyframe(inst_layer, moment);
-        inst_layer.keyframes[moment] = keyframe;
-        return keyframe;
+        return self.GetLayer(layer).AddKeyframe(moment);
     };
     
     static GetKeyframe = function(layer, moment) {
@@ -123,6 +120,11 @@ function DataAnimationLayer(animation, name) constructor {
         for (var i = old_moments; i < moments; i++) {
             self.keyframes[i] = undefined;
         }
+    };
+    
+    static AddKeyframe = function(moment) {
+        self.keyframes[moment] = new DataAnimationKeyframe(self, moment);
+        return self.keyframes[moment];
     };
     
     static GetKeyframe = function(moment) {

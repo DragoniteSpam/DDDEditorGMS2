@@ -54,7 +54,7 @@ function serialize_load_animations(argument0, argument1) {
             
                 if (exists) {
                     var moment = buffer_read(buffer, buffer_u16);
-                    var keyframe = animation.AddKeyframe(timeline_layer, moment);
+                    var keyframe = timeline_layer.AddKeyframe(moment);
                     //keyframe.layer = buffer_read(buffer, buffer_u8); // i'm 95% sure this is redundant information
                     
                     keyframe.x = buffer_read(buffer, buffer_f32);
