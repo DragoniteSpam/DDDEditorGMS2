@@ -82,15 +82,13 @@ function project_load(id) {
         var bgm = json.bgm;
         
         for (var i = 0; i < array_length(se); i++) {
-            var audio = new DataAudio();
-            audio.LoadJSON(se[i]);
+            var audio = new DataAudio(se[i]);
             audio.LoadAsset(directory);
             ds_list_add(Game.audio.se, audio);
         }
         
         for (var i = 0; i < array_length(bgm); i++) {
-            var audio = new DataAudio();
-            audio.LoadJSON(bgm[i]);
+            var audio = new DataAudio(bgm[i]);
             audio.LoadAsset(directory);
             ds_list_add(Game.audio.bgm, audio);
         }

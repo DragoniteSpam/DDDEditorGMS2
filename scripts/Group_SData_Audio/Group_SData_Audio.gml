@@ -1,4 +1,4 @@
-function DataAudio(name) : SData(name) constructor {
+function DataAudio(source) : SData(source) constructor {
     self.fmod = -1;
     self.fmod_type = 0;          // FMODGMS_SOUND_TYPE_*
     self.fmod_rate = 44100;
@@ -7,6 +7,15 @@ function DataAudio(name) : SData(name) constructor {
     self.loop_mode = FMODGMS_LOOPMODE_NONE;
     self.loop_start = 0;
     self.loop_end = 0;
+    
+    if (is_struct(source)) {
+        self.fmod_type = source.fmod_type;
+        self.fmod_rate = source.fmod_rate;
+        self.temp_name = source.temp_name;
+        self.loop_start = source.loop_start;
+        self.loop_end = source.loop_end;
+        self.loop_mode = source.loop_mode;
+    }
     
     static SetFMOD = function(filename) {
         self.fmod = FMODGMS_Snd_LoadStream(filename);
@@ -32,20 +41,6 @@ function DataAudio(name) : SData(name) constructor {
     static GetBuffer = function() {
         if (file_exists(self.temp_name)) return buffer_load(self.temp_name);
         return -1;
-    };
-    
-    static LoadJSONAudio = function(json) {
-        self.LoadJSONBase(json);
-        self.fmod_type = json.fmod_type;
-        self.fmod_rate = json.fmod_rate;
-        self.temp_name = json.temp_name;
-        self.loop_start = json.loop_start;
-        self.loop_end = json.loop_end;
-        self.loop_mode = json.loop_mode;
-    };
-    
-    static LoadJSON = function(json) {
-        self.LoadJSONAudio(json);
     };
     
     static LoadAsset = function(directory) {
