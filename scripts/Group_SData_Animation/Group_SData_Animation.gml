@@ -61,6 +61,10 @@ function DataAnimation(name) : SData(name) constructor {
         inst_layer.keyframes[moment] = keyframe;
         return keyframe;
     };
+    
+    static GetValue = function(layer, moment, param) {
+        return self.layers[layer].GetValue(moment, param);
+    };
 }
 
 function DataAnimationLayer(animation, name) constructor {
@@ -138,7 +142,7 @@ function DataAnimationLayer(animation, name) constructor {
         self[$ property_map[$ param]] = value; 
     };
     
-    static GetValue = function(param, moment) {
+    static GetValue = function(moment, param) {
         var kf_current = self.GetKeyframe(moment);
         var kf_previous = self.GetPreviousKeyframe(moment, true);
         var kf_next = self.GetNextKeyframe(moment, true);
