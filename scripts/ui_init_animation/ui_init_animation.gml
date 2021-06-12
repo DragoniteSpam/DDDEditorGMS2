@@ -287,7 +287,7 @@ function ui_init_animation(argument0) {
         
         var keyframe_set_property = function(input) {
             var keyframe = input.root.root.el_timeline.selected_keyframe;
-            if (keyframe) keyframe.SetParam(input.parameter, real(input.value));
+            if (keyframe) keyframe.Set(input.parameter, real(input.value));
         };
         
         var keyframe_property_render = function(input, x, y) {

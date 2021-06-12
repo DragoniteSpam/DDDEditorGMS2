@@ -57,6 +57,7 @@ function omu_animation_properties(root) {
         yy += el_frame_rate.height + spacing;
         
         var el_moments = create_input(16, yy, "Moments:", ew, eh, function(input) {
+            var animation = input.root.root.root.active_animation;
             input.root.el_seconds.text = "Duration (seconds): " + string(animation.moments / animation.frames_per_second);
         }, string(animation.moments), "integer", validate_int, 1, 65535, 3, vx1, vy1, vx2, vy2, dg);
         dg.el_moments = el_moments;
@@ -86,16 +87,21 @@ function omu_animation_properties(root) {
         yy += el_explanation.height + spacing;
         
         var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, function(button) {
-            var animation = input.root.root.root.active_animation;
-            var nmoments = real(button.root.el_moments.value);
-            if (nmoments < animation.moments) {
-                emu_dialog_confirm(button.root, "You are sizing the animation down. Are you sure you want to do this? Keyframes on the end will be lost!", function() {
-                    self.root.animation.SetMoments(real(input.value));
-                    self.root.Close();
-                    self.root.root.Close();
-                }).animation = animation;
+            var animation = button.root.root.root.active_animation;
+            var moments = button.root.el_moments.value;
+            if (!validate_double(moments)) return;
+            
+            moments = real(moments);
+            if (moments < animation.moments) {
+                var dg = emu_dialog_confirm(button.root, "You are sizing the animation down. Are you sure you want to do this? Keyframes on the end will be lost!", function() {
+                    self.root.animation.SetLength(self.root.moments);
+                    self.root.Dispose();
+                    dialog_destroy();
+                });
+                dg.animation = animation;
+                dg.moments = moments;
             } else {
-                animation.SetMoments(real(input.value));
+                animation.SetLength(moments);
                 dmu_dialog_commit(button);
             }
         }, dg);
