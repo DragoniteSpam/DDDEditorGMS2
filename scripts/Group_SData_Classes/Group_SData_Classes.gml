@@ -1,4 +1,4 @@
-function SDataClass(name) : SData(name) constructor {
+function SDataClass(source) : SData(source) constructor {
     self.properties = [];
     // all of the instances of the data type; nested lists
     self.instances = [];
@@ -48,6 +48,11 @@ function SDataClass(name) : SData(name) constructor {
         self.Retire();
         self.DestroyBase();
     };
+    
+    if (is_struct(source)) {
+        self.properties = source.properties;
+        self.instances = source.properties;
+    }
 }
 
 function SDataProperty(name, parent) : SData(name) constructor {
