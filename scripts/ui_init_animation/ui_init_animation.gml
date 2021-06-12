@@ -83,7 +83,7 @@ function ui_init_animation(argument0) {
         this_column = 1;
         xx = this_column * cw + spacing;
     
-    #region keyframes
+        #region keyframes
         el_layers = create_list(xx, yy_header, "Layers: ", "<no layers>", ew, eh, 8, uivc_list_animation_layers_editor, false, id, []);
         el_layers.render = function(list, x, y) {
             var otext = list.text;
@@ -133,15 +133,15 @@ function ui_init_animation(argument0) {
         ds_list_add(contents, element);
     
         yy += element.height + spacing;
-    #endregion
+        #endregion
     
         el_keyframe = instance_create_depth(xx, yy, 0, UIThing);
         el_keyframe.root = id;
         ds_list_add(contents, el_keyframe);
     
-    #region keyframe data panel
-        var xx = 0;
-        var yy = 0;
+        #region keyframe data panel
+        xx = 0;
+        yy = 0;
         var imgw = sprite_get_width(spr_timeline_keyframe_tween);
         var imgh = sprite_get_height(spr_timeline_keyframe_tween);
     
@@ -156,7 +156,7 @@ function ui_init_animation(argument0) {
     
         yy += el_keyframe.relative.height + spacing;
     
-        var element = create_text(xx, yy, "      Keyframe Translation", ew, eh, fa_left, ew, el_keyframe);
+        element = create_text(xx, yy, "      Keyframe Translation", ew, eh, fa_left, ew, el_keyframe);
         ds_list_add(el_keyframe.contents, element);
     
         yy += element.height;
@@ -188,7 +188,7 @@ function ui_init_animation(argument0) {
     
         yy += el_keyframe.translate_z.height;
     
-        var element = create_text(xx, yy, "      Keyframe Rotation", ew, eh, fa_left, ew, el_keyframe);
+        element = create_text(xx, yy, "      Keyframe Rotation", ew, eh, fa_left, ew, el_keyframe);
         ds_list_add(el_keyframe.contents, element);
     
         yy += element.height;
@@ -220,7 +220,7 @@ function ui_init_animation(argument0) {
     
         yy += el_keyframe.rotate_z.height;
     
-        var element = create_text(xx, yy, "      Keyframe Scale", ew, eh, fa_left, ew, el_keyframe);
+        element = create_text(xx, yy, "      Keyframe Scale", ew, eh, fa_left, ew, el_keyframe);
         ds_list_add(el_keyframe.contents, element);
     
         yy += element.height;
@@ -252,7 +252,7 @@ function ui_init_animation(argument0) {
     
         yy += el_keyframe.scale_z.height;
     
-        var element = create_text(xx, yy, "      Other Keyframe Properties", ew, eh, fa_left, ew, el_keyframe);
+        element = create_text(xx, yy, "      Other Keyframe Properties", ew, eh, fa_left, ew, el_keyframe);
         ds_list_add(el_keyframe.contents, element);
     
         yy += element.height;
@@ -260,22 +260,22 @@ function ui_init_animation(argument0) {
         el_keyframe.color = create_color_picker(xx, yy, "      color:", ew, eh, uivc_animation_keyframe_color, c_white, vx1, vy1, vx2, vy2, el_keyframe);
         el_keyframe.color.render = ui_render_animation_keyframe_color;
         ds_list_add(el_keyframe.contents, el_keyframe.color);
-        el_keyframe.tween.color = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, omu_animation_keyframe_tween, el_keyframe);
-        el_keyframe.tween.color.parameter = KeyframeParameters.COLOR;
-        ds_list_add(el_keyframe.contents, el_keyframe.tween.color);
+        el_keyframe.tween_color = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, omu_animation_keyframe_tween, el_keyframe);
+        el_keyframe.tween_color.parameter = KeyframeParameters.COLOR;
+        ds_list_add(el_keyframe.contents, el_keyframe.tween_color);
     
         yy += el_keyframe.color.height;
     
         el_keyframe.alpha = create_input(xx, yy, "      alpha:", ew, eh, uivc_animation_keyframe_alpha, "1", "float", validate_double, 0, 1, 6, vx1, vy1, vx2, vy2, el_keyframe);
         el_keyframe.alpha.render = ui_render_animation_keyframe_alpha;
         ds_list_add(el_keyframe.contents, el_keyframe.alpha);
-        el_keyframe.tween.alpha = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, omu_animation_keyframe_tween, el_keyframe);
-        el_keyframe.tween.alpha.parameter = KeyframeParameters.ALPHA;
-        ds_list_add(el_keyframe.contents, el_keyframe.tween.alpha);
+        el_keyframe.tween_alpha = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, omu_animation_keyframe_tween, el_keyframe);
+        el_keyframe.tween_alpha.parameter = KeyframeParameters.ALPHA;
+        ds_list_add(el_keyframe.contents, el_keyframe.tween_alpha);
     
         yy += el_keyframe.alpha.height + spacing;
     
-        var element = create_button(xx, yy, "More Data", ew, eh, fa_center, omu_animation_keyframe_event, el_keyframe);
+        element = create_button(xx, yy, "More Data", ew, eh, fa_center, omu_animation_keyframe_event, el_keyframe);
         element.render = ui_render_animation_keyframe_other;
         ds_list_add(el_keyframe.contents, element);
     
@@ -283,14 +283,14 @@ function ui_init_animation(argument0) {
     
         el_rectangle.y2 = yy + 8;
         el_rectangle_inner.y2 = el_rectangle.y2;
-    #endregion
+        #endregion
     
         yy = yy_beneath_timeline + spacing;
     
         var sw = sprite_get_width(spr_camera_icons);
         var sh = sprite_get_height(spr_camera_icons);
     
-        var element = create_image_button(room_width - 32 - sw, yy, "", spr_camera_icons, sw, sh, fa_middle, omu_animation_reset_camera, id);
+        element = create_image_button(room_width - 32 - sw, yy, "", spr_camera_icons, sw, sh, fa_middle, omu_animation_reset_camera, id);
         element.index = 0;
         ds_list_add(contents, element);
     
