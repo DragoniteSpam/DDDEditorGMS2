@@ -63,7 +63,8 @@ function DataAnimation(name) : SData(name) constructor {
     };
 }
 
-function DataAnimationLayer(name) constructor {
+function DataAnimationLayer(animation, name) constructor {
+    self.animation = animation;
     self.name = name;
     self.is_actor = false;
     self.keyframes = [];
@@ -139,6 +140,7 @@ function DataAnimationKeyframe(layer, moment) constructor {
     }
     
     self.layer = layer;
+    self.relative = -1;
     self.moment = moment;
     self.xx = 0;
     self.yy = 0;
