@@ -129,8 +129,8 @@ function ui_init_animation(argument0) {
     
         el_timeline = create_timeline(tlx, el_layers.y, 32, eh, el_layers.slots, 30, null, function(timeline, x, y) {
             var animation = timeline.root.active_animation;
-            var x1 = timeline.x + xx;
-            var y1 = timeline.y + yy;
+            var x1 = timeline.x + x;
+            var y1 = timeline.y + y;
             var x2 = x1 + timeline.moment_width * timeline.moment_slots;
             var y2 = y1 + timeline.height;
             var y3 = y2 + timeline.slots * timeline.height;
