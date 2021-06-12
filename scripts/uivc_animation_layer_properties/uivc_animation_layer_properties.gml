@@ -70,16 +70,16 @@ function uivc_animation_layer_properties(root) {
         var el_def_scale = create_text(col2_x + 16, yy, "Default Scale", ew, eh, fa_left, ew, dg);
         yy += el_def_scale.height + spacing;
         var el_scale_x = create_input(col2_x + 16, yy, "X", ew, eh, function(input) {
-            input.root.timeline_layer.scale_x = real(input.value);
-        }, timeline_layer.xrot, "float", validate_double, -MILLION, MILLION, 8, vx1, vy1, vx2, vy2, dg);
+            input.root.timeline_layer.xscale = real(input.value);
+        }, timeline_layer.xscale, "float", validate_double, -MILLION, MILLION, 8, vx1, vy1, vx2, vy2, dg);
         yy += el_scale_x.height;
         var el_scale_y = create_input(col2_x + 16, yy, "Y", ew, eh, function(input) {
-            input.root.timeline_layer.scale_y = real(input.value);
-        }, timeline_layer.yrot, "float", validate_double, -MILLION, MILLION, 8, vx1, vy1, vx2, vy2, dg);
+            input.root.timeline_layer.yscale = real(input.value);
+        }, timeline_layer.yscale, "float", validate_double, -MILLION, MILLION, 8, vx1, vy1, vx2, vy2, dg);
         yy += el_scale_y.height;
         var el_scale_z = create_input(col2_x + 16, yy, "Z", ew, eh, function(input) {
-            input.root.timeline_layer.scale_z = real(input.value);
-        }, timeline_layer.zrot, "float", validate_double, -MILLION, MILLION, 8, vx1, vy1, vx2, vy2, dg);
+            input.root.timeline_layer.zscale = real(input.value);
+        }, timeline_layer.zscale, "float", validate_double, -MILLION, MILLION, 8, vx1, vy1, vx2, vy2, dg);
         yy += el_scale_z.height + spacing;
         var el_def_color = create_text(col2_x + 16, yy, "Default Color", ew, eh, fa_left, ew, dg);
         yy += el_def_color.height + spacing;
