@@ -64,15 +64,34 @@ function DataAnimation(name) : SData(name) constructor {
 }
 
 function DataAnimationLayer(animation, name) constructor {
+    static property_map = undefined;
+    if (!property_map) {
+        property_map = { };
+        property_map[$ KeyframeParameters.TRANS_X] = "x";
+        property_map[$ KeyframeParameters.TRANS_Y] = "y";
+        property_map[$ KeyframeParameters.TRANS_Z] = "z";
+        property_map[$ KeyframeParameters.ROT_X] = "xrot";
+        property_map[$ KeyframeParameters.ROT_Y] = "yrot";
+        property_map[$ KeyframeParameters.ROT_Z] = "zrot";
+        property_map[$ KeyframeParameters.SCALE_X] = "xscale";
+        property_map[$ KeyframeParameters.SCALE_Y] = "yscale";
+        property_map[$ KeyframeParameters.SCALE_Z] = "zscale";
+        property_map[$ KeyframeParameters.COLOR] = "color";
+        property_map[$ KeyframeParameters.ALPHA] = "alpha";
+        property_map[$ KeyframeParameters.COLOR_R] = "r";
+        property_map[$ KeyframeParameters.COLOR_G] = "g";
+        property_map[$ KeyframeParameters.COLOR_B] = "b";
+    }
+    
     self.animation = animation;
     self.name = name;
     self.is_actor = false;
     self.keyframes = [];
     
     // base values
-    self.xx = 0;
-    self.yy = 0;
-    self.zz = 0;
+    self.x = 0;
+    self.y = 0;
+    self.z = 0;
     self.xrot = 0;
     self.yrot = 0;
     self.zrot = 0;
