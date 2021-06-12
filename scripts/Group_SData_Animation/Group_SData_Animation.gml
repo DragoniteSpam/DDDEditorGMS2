@@ -24,9 +24,7 @@ function DataAnimation(name) : SData(name) constructor {
     static AddKeyframe = function(layer, moment) {
         var inst_layer = self.GetLayer(layer);
         var keyframe = new DataAnimationKeyframe(inst_layer, moment);
-        keyframe.layer_relative = timeline_layer;
         inst_layer.keyframes[moment] = keyframe;
-        
         return keyframe;
     };
     
@@ -118,7 +116,6 @@ function DataAnimationKeyframe(layer, moment) constructor {
     
     self.layer = layer;
     self.moment = moment;
-    self.layer_relative = -1;
     self.xx = 0;
     self.yy = 0;
     self.zz = 0;
