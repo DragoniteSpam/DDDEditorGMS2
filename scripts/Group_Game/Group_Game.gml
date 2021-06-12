@@ -66,7 +66,7 @@ Game = {
     },
     meshes: [],
     mesh_autotiles: ds_list_create(),
-    animations: ds_list_create(),
+    animations: [],
     events: {
         events: ds_list_create(),
         custom: ds_list_create(),
@@ -101,13 +101,14 @@ Game = {
         ds_list_clear_instances(self.graphics.tile_animations);
         ds_list_clear_instances(self.graphics.etc);
         ds_list_clear_instances(self.graphics.skybox);
-        array_clear_instances(self.meshes);
         ds_list_clear_instances(self.mesh_autotiles);
-        ds_list_clear_instances(self.animations);
         ds_list_clear_instances(self.maps);
         ds_list_clear_instances(self.events.events);
         ds_list_clear_instances(self.events.prefabs);
         ds_list_clear_instances(self.events.custom);
+        
+        array_clear_instances(self.animations);
+        array_clear_instances(self.meshes);
         
         Identifiers.Clear();
     },

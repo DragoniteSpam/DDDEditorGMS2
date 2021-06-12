@@ -10,7 +10,7 @@ function serialize_load_animations(argument0, argument1) {
     var n_animations = buffer_read(buffer, buffer_u16);
 
     repeat (n_animations) {
-        var animation = new DataAnimation();
+        var animation = new DataAnimation("");
         array_push(Game.animations, animation);
         animation.layers = [];
         

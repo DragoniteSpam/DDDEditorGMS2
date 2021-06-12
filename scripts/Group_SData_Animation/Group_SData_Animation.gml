@@ -11,7 +11,9 @@ function DataAnimation(name) : SData(name) constructor {
     self.layers[0].is_actor = true;
     
     static AddLayer = function() {
-        array_push(self.layers, new DataAnimationLayer("Layer " + string(array_length(self.layers))));
+        var new_layer = new DataAnimationLayer("Layer " + string(array_length(self.layers)));
+        array_push(self.layers, new_layer);
+        return new_layer;
     };
     
     static GetLayer = function(layer) {
