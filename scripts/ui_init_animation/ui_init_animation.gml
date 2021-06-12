@@ -100,7 +100,15 @@ function ui_init_animation(argument0) {
         xx = this_column * cw + spacing;
     
         #region keyframes
-        el_layers = create_list(xx, yy_header, "Layers: ", "<no layers>", ew, eh, 8, uivc_list_animation_layers_editor, false, id, []);
+        el_layers = create_list(xx, yy_header, "Layers: ", "<no layers>", ew, eh, 8, function(list) {
+            list.root.active_layer = undefined;
+            if (list.root.active_animation) {
+                var selection = ui_list_selection(list);
+                if (selection + 1) {
+                    list.root.active_layer = list.root.active_animation.layers[selection];
+                }
+            }
+        }, false, id, []);
         el_layers.render = function(list, x, y) {
             var otext = list.text;
             if (list.root.active_animation) {
@@ -119,7 +127,55 @@ function ui_init_animation(argument0) {
     
         var tlx = el_layers.x + el_layers.width;
     
-        el_timeline = create_timeline(tlx, el_layers.y, 32, eh, el_layers.slots, 30, null, uii_animation_layers, id);
+        el_timeline = create_timeline(tlx, el_layers.y, 32, eh, el_layers.slots, 30, null, function(timeline, x, y) {
+            var animation = timeline.root.active_animation;
+            var x1 = timeline.x + xx;
+            var y1 = timeline.y + yy;
+            var x2 = x1 + timeline.moment_width * timeline.moment_slots;
+            var y2 = y1 + timeline.height;
+            var y3 = y2 + timeline.slots * timeline.height;
+            
+            var inbounds = mouse_within_rectangle_determine(x1, y2, x2, y3, timeline.adjust_view);
+            
+            if (keyboard_check_pressed(vk_delete)) {
+                var timeline_layer = animation.GetLayer(timeline.selected_layer);
+                if (timeline_layer) {
+                    var keyframe = timeline_layer.keyframes[timeline.selected_moment];
+                    timeline_layer.keyframes[timeline.selected_moment] = noone;
+                    if (timeline.selected_keyframe == keyframe) {
+                        animation_timeline_set_active_keyframe(timeline, noone);
+                    }
+                    if (keyframe) {
+                        instance_activate_object(keyframe);
+                        instance_destroy(keyframe);
+                    }
+                }
+            }
+            
+            // anything that should only be handled if the cursor is in bounds
+            if (inbounds) {
+                if (Controller.double_left) {
+                    var timeline_layer = animation.GetLayer(timeline.selected_layer);
+                    if (timeline_layer) {
+                        var keyframe = animation.GetKeyframe(timeline.selected_layer, timeline.selected_moment);
+                        if (!keyframe) {
+                            keyframe = animation.AddKeyframe(timeline.selected_layer, timeline.selected_moment);
+                            animation_timeline_set_active_keyframe(timeline, keyframe);
+                        }
+                    }
+                } else if (Controller.press_left) {
+                    if (!keyboard_check(vk_control)) {
+                        animation_timeline_set_active_keyframe(timeline, animation.GetKeyframe(timeline.selected_layer, timeline.selected_moment));
+                    }
+                } else if (Controller.mouse_left) {
+                    if (keyboard_check(vk_control)) {
+                        if (timeline.selected_keyframe && (timeline.selected_keyframe.timeline_layer == timeline.selected_layer)) {
+                            animation.SetKeyframePosition(timeline.selected_layer, timeline.selected_keyframe, timeline.selected_moment);
+                        }
+                    }
+                }
+            }
+        }, id);
         ds_list_add(contents, el_timeline);
     
         yy += ui_get_list_height(el_layers);
