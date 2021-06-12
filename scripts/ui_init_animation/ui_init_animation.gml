@@ -267,14 +267,14 @@ function ui_init_animation(argument0) {
             var timeline = button.root.root.el_timeline;
             var timeline_layer = ui_list_selection(button.root.root.el_layers);
             
-            var keyframe;
+            var keyframe = undefined;
             if (animation && (timeline_layer + 1)) {
                 keyframe = animation.GetKeyframe(timeline_layer, timeline.playing_moment);
                 button.text = button.text + ((keyframe && (keyframe.relative + 1) && (keyframe.relative < array_length(animation.layers))) ? " " + animation.layers[keyframe.relative].name : " (None)");
             }
             
             button.interactive = !!keyframe;
-            ui_render_button(button, xx, yy);
+            ui_render_button(button, x, y);
         };
         ds_list_add(el_keyframe.contents, el_keyframe.relative);
     
@@ -292,7 +292,7 @@ function ui_init_animation(argument0) {
         
         var keyframe_property_render = function(input, x, y) {
             var animation = input.root.root.active_animation;
-            var keyframe = noone;
+            var keyframe = undefined;
             var timeline = input.root.root.el_timeline;
             var timeline_layer = ui_list_selection(input.root.root.el_layers);
             
@@ -310,6 +310,28 @@ function ui_init_animation(argument0) {
             input.root.linked.interactive = input.interactive;
             
             ui_render_input(input, x, y);
+        };
+        
+        var keyframe_property_render_color = function(input, x, y) {
+            var animation = input.root.root.active_animation;
+            var keyframe = undefined;
+            var timeline = input.root.root.el_timeline;
+            var timeline_layer = ui_list_selection(input.root.root.el_layers);
+            
+            if (animation && (timeline_layer + 1)) {
+                keyframe = animation.GetKeyframe(timeline_layer, timeline.playing_moment);
+                var kf_current = animation.GetKeyframe(timeline_layer, timeline.playing_moment);
+                var rel_current = (kf_current && kf_current.relative > -1) ? animation.layers[kf_current.relative] : noone;
+                input.back_color = rel_current ? c_ui_select : c_white;
+                if (!ui_is_active(input)) {
+                    input.value = animation.GetValue(timeline_layer, floor(timeline.playing_moment));
+                }
+            }
+            
+            input.interactive = !!keyframe;
+            input.root.linked.interactive = input.interactive;
+            
+            ui_render_color_picker(input, x, y);
         };
         
         var keyframe_set_tween = function(button) {
@@ -446,7 +468,7 @@ function ui_init_animation(argument0) {
         yy += element.height;
     
         el_keyframe.color = create_color_picker(xx, yy, "      color:", ew, eh, keyframe_set_property, c_white, vx1, vy1, vx2, vy2, el_keyframe);
-        el_keyframe.color.render = keyframe_property_render;
+        el_keyframe.color.render = keyframe_property_render_color;
         ds_list_add(el_keyframe.contents, el_keyframe.color);
         el_keyframe.linked = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, keyframe_set_tween, el_keyframe);
         el_keyframe.linked.parameter = KeyframeParameters.COLOR;
