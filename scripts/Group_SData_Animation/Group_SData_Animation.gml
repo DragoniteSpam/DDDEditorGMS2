@@ -65,6 +65,13 @@ function DataAnimation(name) : SData(name) constructor {
     static GetValue = function(layer, moment, param) {
         return self.layers[layer].GetValue(moment, param);
     };
+    
+    static SetLength = function(moments) {
+        self.moments = moments;
+        for (var i = 0; i < array_length(self.layers); i++) {
+            self.layers[i].SetLength(moments);
+        }
+    };
 }
 
 function DataAnimationLayer(animation, name) constructor {
@@ -109,6 +116,14 @@ function DataAnimationLayer(animation, name) constructor {
     self.graphic_sprite = undefined;
     self.graphic_mesh = undefined;
     self.graphic_frame = 0;
+    
+    static SetLength = function(moments) {
+        var old_moments = array_length(self.keyframes);
+        array_resize(self.keyframes, moments);
+        for (var i = old_moments; i < moments; i++) {
+            self.keyframes[i] = undefined;
+        }
+    };
     
     static GetKeyframe = function(moment) {
         return self.keyframes[moment];
