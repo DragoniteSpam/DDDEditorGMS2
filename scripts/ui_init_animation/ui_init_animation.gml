@@ -299,10 +299,10 @@ function ui_init_animation(argument0) {
             if (animation && (timeline_layer + 1)) {
                 keyframe = animation.GetKeyframe(timeline_layer, timeline.playing_moment);
                 var kf_current = animation.GetKeyframe(timeline_layer, timeline.playing_moment);
-                var rel_current = (kf_current && kf_current.relative > -1) ? animation.layers[kf_current.relative] : noone;
+                var rel_current = (kf_current && kf_current.relative > -1) ? animation.layers[kf_current.relative] : undefined;
                 input.back_color = rel_current ? c_ui_select : c_white;
                 if (!ui_is_active(input)) {
-                    input.value = string(animation.GetValue(timeline_layer, floor(timeline.playing_moment)));
+                    input.value = string(animation.GetValue(timeline_layer, floor(timeline.playing_moment), input.parameter));
                 }
             }
             
@@ -312,29 +312,29 @@ function ui_init_animation(argument0) {
             ui_render_input(input, x, y);
         };
         
-        var keyframe_property_render_color = function(input, x, y) {
-            var animation = input.root.root.active_animation;
+        var keyframe_property_render_color = function(picker, x, y) {
+            var animation = picker.root.root.active_animation;
             var keyframe = undefined;
-            var timeline = input.root.root.el_timeline;
-            var timeline_layer = ui_list_selection(input.root.root.el_layers);
+            var timeline = picker.root.root.el_timeline;
+            var timeline_layer = ui_list_selection(picker.root.root.el_layers);
             
             if (animation && (timeline_layer + 1)) {
                 keyframe = animation.GetKeyframe(timeline_layer, timeline.playing_moment);
                 var kf_current = animation.GetKeyframe(timeline_layer, timeline.playing_moment);
                 var rel_current = (kf_current && kf_current.relative > -1) ? animation.layers[kf_current.relative] : noone;
-                input.back_color = rel_current ? c_ui_select : c_white;
-                if (!ui_is_active(input)) {
-                    input.value = animation.GetValue(timeline_layer, floor(timeline.playing_moment));
+                picker.back_color = rel_current ? c_ui_select : c_white;
+                if (!ui_is_active(picker)) {
+                    picker.value = animation.GetValue(timeline_layer, floor(timeline.playing_moment), picker.parameter);
                 }
             }
             
-            input.interactive = !!keyframe;
-            input.root.linked.interactive = input.interactive;
+            picker.interactive = !!keyframe;
+            picker.root.linked.interactive = picker.interactive;
             
-            ui_render_color_picker(input, x, y);
+            ui_render_color_picker(picker, x, y);
         };
         
-        var keyframe_set_tween = function(button) {
+        var keyframe_set_tween = function(element) {
             var keyframe = element.root.root.el_timeline.selected_keyframe;
             var param = element.parameter;
             
@@ -372,7 +372,7 @@ function ui_init_animation(argument0) {
         
         el_keyframe.translate_x = create_input(xx, yy, "      x:", ew, eh, keyframe_set_property, "0", "float", validate_double, -MILLION, MILLION, 10, vx1, vy1, vx2, vy2, el_keyframe);
         el_keyframe.translate_x.render = keyframe_property_render;
-        el_keyframe.parameter = KeyframeParameters.TRANS_X;
+        el_keyframe.translate_x.parameter = KeyframeParameters.TRANS_X;
         ds_list_add(el_keyframe.contents, el_keyframe.translate_x);
         el_keyframe.linked = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, keyframe_set_tween, el_keyframe);
         el_keyframe.linked.parameter = KeyframeParameters.TRANS_X;
@@ -382,6 +382,7 @@ function ui_init_animation(argument0) {
     
         el_keyframe.translate_y = create_input(xx, yy, "      y:", ew, eh, keyframe_set_property, "0", "float", validate_double, -MILLION, MILLION, 10, vx1, vy1, vx2, vy2, el_keyframe);
         el_keyframe.translate_y.render = keyframe_property_render;
+        el_keyframe.translate_y.parameter = KeyframeParameters.TRANS_Y;
         ds_list_add(el_keyframe.contents, el_keyframe.translate_y);
         el_keyframe.linked = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, keyframe_set_tween, el_keyframe);
         el_keyframe.linked.parameter = KeyframeParameters.TRANS_Y;
@@ -391,6 +392,7 @@ function ui_init_animation(argument0) {
     
         el_keyframe.translate_z = create_input(xx, yy, "      z:", ew, eh, keyframe_set_property, "0", "float", validate_double, -MILLION, MILLION, 10, vx1, vy1, vx2, vy2, el_keyframe);
         el_keyframe.translate_z.render = keyframe_property_render;
+        el_keyframe.translate_z.parameter = KeyframeParameters.TRANS_Z;
         ds_list_add(el_keyframe.contents, el_keyframe.translate_z);
         el_keyframe.linked = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, keyframe_set_tween, el_keyframe);
         el_keyframe.linked.parameter = KeyframeParameters.TRANS_Z;
@@ -405,6 +407,7 @@ function ui_init_animation(argument0) {
     
         el_keyframe.rotate_x = create_input(xx, yy, "      x:", ew, eh, keyframe_set_property, "0", "float", validate_double, -MILLION, MILLION, 10, vx1, vy1, vx2, vy2, el_keyframe);
         el_keyframe.rotate_x.render = keyframe_property_render;
+        el_keyframe.rotate_x.parameter = KeyframeParameters.ROT_X;
         ds_list_add(el_keyframe.contents, el_keyframe.rotate_x);
         el_keyframe.linked = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, keyframe_set_tween, el_keyframe);
         el_keyframe.linked.parameter = KeyframeParameters.ROT_X;
@@ -414,6 +417,7 @@ function ui_init_animation(argument0) {
     
         el_keyframe.rotate_y = create_input(xx, yy, "      y:", ew, eh, keyframe_set_property, "0", "float", validate_double, -MILLION, MILLION, 10, vx1, vy1, vx2, vy2, el_keyframe);
         el_keyframe.rotate_y.render = keyframe_property_render;
+        el_keyframe.rotate_y.parameter = KeyframeParameters.ROT_Y;
         ds_list_add(el_keyframe.contents, el_keyframe.rotate_y);
         el_keyframe.linked = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, keyframe_set_tween, el_keyframe);
         el_keyframe.linked.parameter = KeyframeParameters.ROT_Y;
@@ -423,6 +427,7 @@ function ui_init_animation(argument0) {
     
         el_keyframe.rotate_z = create_input(xx, yy, "      z:", ew, eh, keyframe_set_property, "0", "float", validate_double, -MILLION, MILLION, 10, vx1, vy1, vx2, vy2, el_keyframe);
         el_keyframe.rotate_z.render = keyframe_property_render;
+        el_keyframe.rotate_z.parameter = KeyframeParameters.ROT_Z;
         ds_list_add(el_keyframe.contents, el_keyframe.rotate_z);
         el_keyframe.linked = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, keyframe_set_tween, el_keyframe);
         el_keyframe.linked.parameter = KeyframeParameters.ROT_Z;
@@ -437,6 +442,7 @@ function ui_init_animation(argument0) {
     
         el_keyframe.scale_x = create_input(xx, yy, "      x:", ew, eh, keyframe_set_property, "1", "float", validate_double, -100, 100, 5, vx1, vy1, vx2, vy2, el_keyframe);
         el_keyframe.scale_x.render = keyframe_property_render;
+        el_keyframe.scale_x.parameter = KeyframeParameters.SCALE_X;
         ds_list_add(el_keyframe.contents, el_keyframe.scale_x);
         el_keyframe.linked = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, keyframe_set_tween, el_keyframe);
         el_keyframe.linked.parameter = KeyframeParameters.SCALE_X;
@@ -446,6 +452,7 @@ function ui_init_animation(argument0) {
     
         el_keyframe.scale_y = create_input(xx, yy, "      y:", ew, eh, keyframe_set_property, "1", "float", validate_double, -100, 100, 5, vx1, vy1, vx2, vy2, el_keyframe);
         el_keyframe.scale_y.render = keyframe_property_render;
+        el_keyframe.scale_y.parameter = KeyframeParameters.SCALE_Y;
         ds_list_add(el_keyframe.contents, el_keyframe.scale_y);
         el_keyframe.linked = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, keyframe_set_tween, el_keyframe);
         el_keyframe.linked.parameter = KeyframeParameters.SCALE_Y;
@@ -455,6 +462,7 @@ function ui_init_animation(argument0) {
     
         el_keyframe.scale_z = create_input(xx, yy, "      z:", ew, eh, keyframe_set_property, "1", "float", validate_double, -100, 100, 5, vx1, vy1, vx2, vy2, el_keyframe);
         el_keyframe.scale_z.render = keyframe_property_render;
+        el_keyframe.scale_z.parameter = KeyframeParameters.SCALE_Z;
         ds_list_add(el_keyframe.contents, el_keyframe.scale_z);
         el_keyframe.linked = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, keyframe_set_tween, el_keyframe);
         el_keyframe.linked.parameter = KeyframeParameters.SCALE_Z;
@@ -469,6 +477,7 @@ function ui_init_animation(argument0) {
     
         el_keyframe.color = create_color_picker(xx, yy, "      color:", ew, eh, keyframe_set_property, c_white, vx1, vy1, vx2, vy2, el_keyframe);
         el_keyframe.color.render = keyframe_property_render_color;
+        el_keyframe.color.parameter = KeyframeParameters.COLOR;
         ds_list_add(el_keyframe.contents, el_keyframe.color);
         el_keyframe.linked = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, keyframe_set_tween, el_keyframe);
         el_keyframe.linked.parameter = KeyframeParameters.COLOR;
@@ -478,6 +487,7 @@ function ui_init_animation(argument0) {
     
         el_keyframe.alpha = create_input(xx, yy, "      alpha:", ew, eh, keyframe_set_property, "1", "float", validate_double, 0, 1, 6, vx1, vy1, vx2, vy2, el_keyframe);
         el_keyframe.alpha.render = keyframe_property_render;
+        el_keyframe.alpha.parameter = KeyframeParameters.ALPHA;
         ds_list_add(el_keyframe.contents, el_keyframe.alpha);
         el_keyframe.linked = create_image_button(xx, yy, "", spr_timeline_keyframe_tween, imgw, imgh, fa_middle, keyframe_set_tween, el_keyframe);
         el_keyframe.linked.parameter = KeyframeParameters.ALPHA;
