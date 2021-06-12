@@ -76,10 +76,10 @@ function ui_init_animation(argument0) {
                     if (Game.animations[i] == button.root.active_animation) {
                         array_delete(Game.animations, i, 1);
                         ui_list_deselect(button.root.el_master);
-                        button.root.active_animation = noone;
-                        button.root.active_animation = noone;
-                        button.root.active_layer = noone;
-                        button.root.el_layers.selected_keyframe = noone;
+                        button.root.active_animation = undefined;
+                        button.root.active_animation = undefined;
+                        button.root.active_layer = undefined;
+                        button.root.el_layers.selected_keyframe = undefined;
                         ui_list_deselect(button.root.el_layers);
                         break;
                     }
@@ -141,13 +141,9 @@ function ui_init_animation(argument0) {
                 var timeline_layer = animation.GetLayer(timeline.selected_layer);
                 if (timeline_layer) {
                     var keyframe = timeline_layer.keyframes[timeline.selected_moment];
-                    timeline_layer.keyframes[timeline.selected_moment] = noone;
+                    timeline_layer.keyframes[timeline.selected_moment] = undefined;
                     if (timeline.selected_keyframe == keyframe) {
-                        animation_timeline_set_active_keyframe(timeline, noone);
-                    }
-                    if (keyframe) {
-                        instance_activate_object(keyframe);
-                        instance_destroy(keyframe);
+                        animation_timeline_set_active_keyframe(timeline, undefined);
                     }
                 }
             }
