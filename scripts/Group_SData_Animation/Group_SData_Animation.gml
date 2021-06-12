@@ -85,6 +85,30 @@ function DataAnimationLayer(name) constructor {
     self.graphic_sprite = undefined;
     self.graphic_mesh = undefined;
     self.graphic_frame = 0;
+    
+    static GetKeyframe = function(moment) {
+        return self.keyframes[moment];
+    };
+    
+    static GetNextKeyframe = function(moment, ignore_passthrough) {
+        if (ignore_passthrough == undefined) ignore_passthrough = false;
+        for (var i = moment + 1; i < self.moments; i++) {
+            var keyframe = self.GetKeyframe(i);
+            if (keyframe && (!ignore_passthrough || keyframe.HasTween())) return keyframe;
+        }
+        
+        return undefined;
+    };
+    
+    static GetPreviousKeyframe = function(moment, ignore_passthrough) {
+        if (ignore_passthrough == undefined) ignore_passthrough = false;
+        for (var i = moment - 1; i >= 0; i--) {
+            var keyframe = self.GetKeyframe(i);
+            if (keyframe && (!ignore_passthrough || keyframe.HasTween())) return keyframe;
+        }
+        
+        return undefined;
+    };
 }
 
 enum GraphicTypes {
