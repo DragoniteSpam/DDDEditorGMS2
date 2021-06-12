@@ -96,8 +96,9 @@ function omu_animation_properties(root) {
                 var dg = emu_dialog_confirm(button.root, "You are sizing the animation down. Are you sure you want to do this? Keyframes on the end will be lost!", function() {
                     self.root.animation.SetLength(self.root.moments);
                     self.root.Dispose();
-                    dialog_destroy();
+                    self.root.root.Dispose();
                 });
+                dg.root = button.root;
                 dg.animation = animation;
                 dg.moments = moments;
             } else {

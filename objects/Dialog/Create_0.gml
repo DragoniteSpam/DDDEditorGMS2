@@ -12,6 +12,10 @@ cmy = -1;
 flags = 0;
 active_shade = true;
 
+Dispose = function() {
+    dialog_destroy();
+};
+
 enum DialogFlags {
     IS_QUIT                 = 0x0001,
     IS_EXCEPTION            = 0x0002,
