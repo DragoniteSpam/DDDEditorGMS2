@@ -109,7 +109,7 @@ function ui_render_list_timeline(argument0, argument1, argument2) {
             
                 // check that the timeline layer is inbounds - the layer list will resize itself later,
                 // but we need to check here just to be safe
-                if (index < ds_list_size(timeline.root.active_animation.layers)) {
+                if (index < array_length(timeline.root.active_animation.layers)) {
                     var timeline_layer = timeline.root.active_animation.layers[index];
                 
                     for (var j = moment_start; j < moment_end; j++) {
