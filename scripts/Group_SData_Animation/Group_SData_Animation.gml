@@ -217,8 +217,7 @@ function DataAnimationKeyframe(layer, moment) constructor {
     static HasTween = function() {
         var members = variable_struct_get_names(self.tween);
         for (var i = 0; i < array_length(members); i++) {
-            var tween = self.tween[$ property_map[$ param]];
-            if (/*tween != AnimationTweens.NONE && */tween != AnimationTweens.IGNORE) return true;
+            if (self.HasParameterTween(i)) return true;
         }
         
         return false;
@@ -231,6 +230,10 @@ function DataAnimationKeyframe(layer, moment) constructor {
     
     static SetParameterTween = function(param, value) {
         self.tween[$ property_map[$ param]] = value;
+    };
+    
+    static HasParameterTween = function(param) {
+        return self.tween[$ property_map[$ param]] != AnimationTweens.IGNORE;
     };
 }
 
