@@ -57,10 +57,9 @@ function omu_animation_properties(root) {
         yy += el_frame_rate.height + spacing;
         
         var el_moments = create_input(16, yy, "Moments:", ew, eh, function(input) {
-            var animation = input.root.root.root.active_animation;
-            animation.moments = real(input.value);
             input.root.el_seconds.text = "Duration (seconds): " + string(animation.moments / animation.frames_per_second);
         }, string(animation.moments), "integer", validate_int, 1, 65535, 3, vx1, vy1, vx2, vy2, dg);
+        dg.el_moments = el_moments;
         
         yy += el_moments.height + spacing;
         
@@ -68,10 +67,6 @@ function omu_animation_properties(root) {
         dg.el_seconds = el_seconds;
         
         yy += el_seconds.height + spacing;
-        
-        var el_clear = create_button(16, yy, "Clear Keyframes After End", ew, eh, fa_center, omu_animation_clear_keyframes, dg);
-        
-        yy += el_clear.height + spacing;
         
         vx1 = ew / 2 - 16;
         vy1 = 0;
@@ -90,7 +85,20 @@ function omu_animation_properties(root) {
         var el_explanation = create_text(dg.width / 2 + 16, dg.height / 2 - 16, "The moment rate only determines how many keyframes you can use per second - the actual animation will play at the same speed as the game (probably 60 fps).\n\nIf you shorten an animation, any keyframes after the end will continue to exist, they'll just be in accessible unless you add time back. If you want to get rid of them, click the button.", ew, eh, fa_left, ew, dg);
         yy += el_explanation.height + spacing;
         
-        var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
+        var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, function(button) {
+            var animation = input.root.root.root.active_animation;
+            var nmoments = real(button.root.el_moments.value);
+            if (nmoments < animation.moments) {
+                emu_dialog_confirm(button.root, "You are sizing the animation down. Are you sure you want to do this? Keyframes on the end will be lost!", function() {
+                    self.root.animation.SetMoments(real(input.value));
+                    self.root.Close();
+                    self.root.root.Close();
+                }).animation = animation;
+            } else {
+                animation.SetMoments(real(input.value));
+                dmu_dialog_commit(button);
+            }
+        }, dg);
         
         ds_list_add(dg.contents,
             el_name,
@@ -98,7 +106,6 @@ function omu_animation_properties(root) {
             el_frame_rate,
             el_moments,
             el_seconds,
-            el_clear,
             el_code,
             el_explanation,
             el_confirm
