@@ -1,4 +1,4 @@
-function DataImage(name) : SData(name) constructor {
+function DataImage(source) : SData(source) constructor {
     self.texture_exclude = false;
     
     self.picture = -1;
@@ -15,22 +15,17 @@ function DataImage(name) : SData(name) constructor {
     self.hash = "";
     self.source_filename = "";
     
-    static LoadJSONImage = function(json) {
-        self.LoadJSONBase(json);
-        self.texture_exclude = json.texture_exclude;
-        self.width = json.width;
-        self.height = json.height;
-        self.vframes = json.vframes;
-        self.hframes = json.hframes;
-        self.aframes = json.aframes;
-        self.aspeed = json.aspeed;
-        self.hash = json.hash;
-        self.source_filename = json.source_filename;
-    };
-    
-    static LoadJSON = function(json) {
-        self.LoadJSONImage(json);
-    };
+    if (is_struct(source)) {
+        self.texture_exclude = source.texture_exclude;
+        self.width = source.width;
+        self.height = source.height;
+        self.vframes = source.vframes;
+        self.hframes = source.hframes;
+        self.aframes = source.aframes;
+        self.aspeed = source.aspeed;
+        self.hash = source.hash;
+        self.source_filename = source.source_filename;
+    }
     
     static LoadAsset = function(directory) {
         directory += "/";
@@ -85,8 +80,12 @@ function DataImage(name) : SData(name) constructor {
     };
 }
 
-function DataImageTileset(name) : DataImage(name) constructor {
+function DataImageTileset(source) : DataImage(source) constructor {
     self.flags = [[]];
+    
+    if (is_struct(source)) {
+        self.flags = source.flags;
+    }
     
     static CreateJSONTS = function() {
         var json = self.CreateJSONImage();
