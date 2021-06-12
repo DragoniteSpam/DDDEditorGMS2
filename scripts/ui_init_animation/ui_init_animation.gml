@@ -270,7 +270,7 @@ function ui_init_animation(argument0) {
             var keyframe = undefined;
             if (animation && (timeline_layer + 1)) {
                 keyframe = animation.GetKeyframe(timeline_layer, timeline.playing_moment);
-                button.text = button.text + ((keyframe && (keyframe.relative + 1) && (keyframe.relative < array_length(animation.layers))) ? " " + animation.layers[keyframe.relative].name : " (None)");
+                button.text = (keyframe && (keyframe.relative + 1) && (keyframe.relative < array_length(animation.layers))) ? " " + animation.layers[keyframe.relative].name : " (None)";
             }
             
             button.interactive = !!keyframe;
