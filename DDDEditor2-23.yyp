@@ -1504,7 +1504,6 @@
     {"id":{"name":"MapContents","path":"objects/MapContents/MapContents.yy",},"order":0,},
     {"id":{"name":"Data","path":"objects/Data/Data.yy",},"order":2,},
     {"id":{"name":"DataMapContainer","path":"objects/DataMapContainer/DataMapContainer.yy",},"order":1,},
-    {"id":{"name":"DataEvent","path":"objects/DataEvent/DataEvent.yy",},"order":2,},
     {"id":{"name":"DataEventNode","path":"objects/DataEventNode/DataEventNode.yy",},"order":3,},
     {"id":{"name":"DataEventNodeCustom","path":"objects/DataEventNodeCustom/DataEventNodeCustom.yy",},"order":4,},
     {"id":{"name":"DataEventNodeCustomPersistent","path":"objects/DataEventNodeCustomPersistent/DataEventNodeCustomPersistent.yy",},"order":5,},
