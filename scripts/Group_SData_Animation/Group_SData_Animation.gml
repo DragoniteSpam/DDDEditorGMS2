@@ -5,17 +5,31 @@ function DataAnimation(source) : SData(source) constructor {
     
     self.code = Stuff.default_lua_animation;
     
-    // list of Layer objects with priority queues of Keyframe objects
-    self.layers = [new DataAnimationLayer(self, "Layer 0")];
-    self.layers[0].keyframes = array_create(self.moments);
-    self.layers[0].is_actor = true;
-    
     if (is_struct(source)) {
         self.frames_per_second = source.frames_per_second;
         self.moments = source.moments;
         self.loops = source.loops;
         self.code = source.code;
         self.layers = source.layers;
+    } else {
+        self.layers = [new DataAnimationLayer(self, "Layer 0")];
+        self.layers[0].keyframes = array_create(self.moments);
+        self.layers[0].is_actor = true;
+    }
+    
+    static CreateJSON = function() {
+        var json = self.CreateJSONBase();
+        json.frames_per_second = self.frames_per_second;
+        json.moments = self.moments;
+        json.loops = self.loops;
+        json.code = self.code;
+        
+        json.layers = array_create(array_length(self.layers));
+        for (var i = 0, n = array_length(self.layers); i < n; i++) {
+            json.layers[i] = self.layers[i].CreateJSON();
+        }
+        
+        return json;
     }
     
     static AddLayer = function() {
@@ -118,9 +132,41 @@ function DataAnimationLayer(animation, name) constructor {
     self.alpha = 1;
     
     self.graphic_type = GraphicTypes.NO_CHANGE;
-    self.graphic_sprite = undefined;
-    self.graphic_mesh = undefined;
+    self.graphic_sprite = NULL;
+    self.graphic_mesh = NULL;
     self.graphic_frame = 0;
+    
+    static CreateJSON = function() {
+        var json = {
+            name: self.name,
+            is_actor: self.is_actor,
+            
+            x: self.x,
+            y: self.y,
+            z: self.z,
+            xrot: self.xrot,
+            yrot: self.yrot,
+            zrot: self.zrot,
+            xscale: self.xscale,
+            yscale: self.yscale,
+            zscale: self.zscale,
+            color: self.color,
+            alpha: self.alpha,
+            
+            graphic_type: self.graphic_type,
+            graphic_sprite: self.graphic_sprite,
+            graphic_mesh: self.graphic_mesh,
+            graphic_frame: self.graphic_frame,
+            
+            keyframes: array_create(array_length(self.keyframes)),
+        };
+        
+        for (var i = 0, n = array_length(self.keyframes); i < n; i++) {
+            json.keyframes[i] = self.keyframes[i].CreateJSON();
+        }
+        
+        return json;
+    };
     
     static SetLength = function(moments) {
         var old_moments = array_length(self.keyframes);
@@ -222,8 +268,8 @@ function DataAnimationKeyframe(layer, moment) constructor {
     }
     
     self.layer = layer;
-    self.relative = -1;
     self.moment = moment;
+    self.relative = -1;
     self.xx = 0;
     self.yy = 0;
     self.zz = 0;
@@ -266,8 +312,30 @@ function DataAnimationKeyframe(layer, moment) constructor {
         b: AnimationTweens.NONE,
     };
     
-    self.moment = 0;
-    self.timeline_layer = 0;
+    static CreateJSON = function() {
+        return {
+            relative: self.relative,
+            x: self.xx,
+            y: self.yy,
+            z: self.zz,
+            xrot: self.xrot,
+            yrot: self.yrot,
+            zrot: self.zrot,
+            xscale: self.xscale,
+            yscale: self.yscale,
+            zscale: self.zscale,
+            color: self.color,
+            alpha: self.color,
+            audio: self.audio,
+            graphic_type: self.graphic_type,
+            graphic_sprite: self.graphic_sprite,
+            graphic_mesh: self.graphic_mesh,
+            graphic_frame: self.graphic_frame,
+            graphic_direction: self.graphic_direction,
+            event: self.event,
+            tween: self.tween,
+        };
+    };
     
     static Get = function(param) {
         return self.tween[$ property_map[$ param]];
