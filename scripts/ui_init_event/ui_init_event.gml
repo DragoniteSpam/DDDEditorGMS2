@@ -42,7 +42,9 @@ function ui_init_event(mode) {
         
         yy += ui_get_list_height(element) + spacing;
         
-        element = create_button(legal_x + spacing, yy, "Add Event", element_width, element_height, fa_center, omu_event_add_event, t_events);
+        element = create_button(legal_x + spacing, yy, "Add Event", element_width, element_height, fa_center, function(button) {
+            ds_list_add(Game.events.events, new DataEvent("Event$" + string(ds_list_size(Game.events.events))));
+        }, t_events);
         element.tooltip = "Add a new event graph. Sequences can link to nodes on other graphs if you need to, but for organizational purposes you most likely want to keep them separate.";
         ds_list_add(t_events.contents, element);
         

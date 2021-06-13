@@ -1188,7 +1188,6 @@
     {"id":{"name":"omu_event_add_custom_event","path":"scripts/omu_event_add_custom_event/omu_event_add_custom_event.yy",},"order":0,},
     {"id":{"name":"omu_event_add_prefab_event","path":"scripts/omu_event_add_prefab_event/omu_event_add_prefab_event.yy",},"order":1,},
     {"id":{"name":"omu_event_add_custom","path":"scripts/omu_event_add_custom/omu_event_add_custom.yy",},"order":2,},
-    {"id":{"name":"omu_event_add_event","path":"scripts/omu_event_add_event/omu_event_add_event.yy",},"order":3,},
     {"id":{"name":"omu_event_custom_dialog","path":"scripts/omu_event_custom_dialog/omu_event_custom_dialog.yy",},"order":4,},
     {"id":{"name":"omu_event_prefab_dialog","path":"scripts/omu_event_prefab_dialog/omu_event_prefab_dialog.yy",},"order":5,},
     {"id":{"name":"omu_event_edit_custom_event","path":"scripts/omu_event_edit_custom_event/omu_event_edit_custom_event.yy",},"order":6,},
