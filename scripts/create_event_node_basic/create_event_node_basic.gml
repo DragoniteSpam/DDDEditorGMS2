@@ -3,7 +3,7 @@
 /// @param outbound-names[]
 function create_event_node_basic() {
 
-    with (instance_create_depth(0, 0, 0, DataEventNodeCustomPersistent)) {
+    with (new DataEventNodeCustomPersistent()) {
         name = argument[0];
         var template = argument[1];
         var outbound_names = (argument_count > 2 && is_array(argument[2])) ? argument[2] : [""];
@@ -29,7 +29,7 @@ function create_event_node_basic() {
             array_push(outbound, outbound_names[i]);
         }
     
-        return id;
+        return self;
     }
 
     // [name, DataType, DataType guid, max = 1, all list elements required = false, default-value = 0,
