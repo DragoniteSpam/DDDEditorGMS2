@@ -3,7 +3,7 @@ function serialize_load_event_prefabs(buffer, version) {
     var n_prefabs = buffer_read(buffer, buffer_u32);
     
     repeat (n_prefabs) {
-        var prefab = instance_create_depth(0, 0, 0, DataEventNode);
+        var prefab = new DataEventNode();
         // serialize_load_generic needs to be unwrapped here
         var name = buffer_read(buffer, buffer_string);
         buffer_read(buffer, buffer_string);

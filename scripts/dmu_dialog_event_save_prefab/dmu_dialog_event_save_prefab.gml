@@ -4,7 +4,7 @@ function dmu_dialog_event_save_prefab(argument0) {
     var thing = argument0;
     var node = thing.root.node;
 
-    var prefab = instance_create_depth(0, 0, 0, DataEventNode);
+    var prefab = new DataEventNode();
     ds_list_add(Game.events.prefabs, prefab);
 
     #region big fat variable copy
