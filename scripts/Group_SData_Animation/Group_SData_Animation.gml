@@ -259,7 +259,7 @@ function DataAnimationLayer(animation, source) constructor {
         var rel_next = (kf_next && kf_next.relative > -1) ? self.animation.layers[kf_next.relative] : undefined;
         
         // if no previous keyframe exists the value will always be the default (here, zero);
-        // if not next keyframe exists the value will always be the previous value
+        // if no next keyframe exists the value will always be the previous value
         var value_default = self.GetBaseValue(param);
         var value_now = (kf_current ? kf_current.Get(param) : value_default) + (rel_current ? rel_current.GetBaseValue(param) : 0);
         var value_previous = (kf_previous ? kf_previous.Get(param) : value_default) + (rel_previous ? rel_previous.GetBaseValue(param) : 0);
@@ -350,9 +350,9 @@ function DataAnimationKeyframe(layer, moment, source) constructor {
     
     if (source) {
         self.relative = source.relative;
-        self.xx = source.x;
-        self.yy = source.y;
-        self.zz = source.z;
+        self.x = source.x;
+        self.y = source.y;
+        self.z = source.z;
         self.xrot = source.xrot;
         self.yrot = source.yrot;
         self.zrot = source.zrot;
@@ -374,9 +374,9 @@ function DataAnimationKeyframe(layer, moment, source) constructor {
     static CreateJSON = function() {
         return {
             relative: self.relative,
-            x: self.xx,
-            y: self.yy,
-            z: self.zz,
+            x: self.x,
+            y: self.y,
+            z: self.z,
             xrot: self.xrot,
             yrot: self.yrot,
             zrot: self.zrot,
@@ -397,11 +397,11 @@ function DataAnimationKeyframe(layer, moment, source) constructor {
     };
     
     static Get = function(param) {
-        return self.tween[$ property_map[$ param]];
+        return self[$ property_map[$ param]];
     };
     
     static Set = function(param, value) {
-        self.tween[$ property_map[$ param]] = value;
+        self[$ property_map[$ param]] = value;
     };
     
     static HasTween = function() {
