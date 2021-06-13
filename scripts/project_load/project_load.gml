@@ -112,8 +112,7 @@ function project_load(id) {
         var autotiles = json.autotiles;
         
         for (var i = 0; i < array_length(autotiles); i++) {
-            var autotile = new DataMeshAutotile();
-            autotile.LoadJSON(autotiles[i]);
+            var autotile = new DataMeshAutotile(autotiles[i]);
             autotile.LoadAsset(directory);
             ds_list_add(Game.mesh_autotiles, autotile);
         }

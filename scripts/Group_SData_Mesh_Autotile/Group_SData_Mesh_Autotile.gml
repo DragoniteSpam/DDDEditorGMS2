@@ -1,4 +1,4 @@
-function DataMeshAutotile(name) : SData(name) constructor {
+function DataMeshAutotile(source) : SData(source) constructor {
     static MeshAutotileLayer = function() constructor {
         static MeshVertexBufferData = function(buffer, vbuffer) constructor {
             self.buffer = undefined;
@@ -113,7 +113,7 @@ function DataMeshAutotile(name) : SData(name) constructor {
         directory += "/";
         var guid = string_replace(self.GUID, ":", "_");
     };
-
+    
     static SaveAsset = function(directory) {
         directory += "/" + string_replace_all(self.GUID, ":", "_");
         for (var i = 0, n = array_length(self.layers); i < n; i++) {
