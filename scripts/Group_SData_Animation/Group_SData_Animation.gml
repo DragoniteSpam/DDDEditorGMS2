@@ -140,6 +140,8 @@ function DataAnimationLayer(animation, source) constructor {
     self.graphic_frame = 0;
     
     if (is_struct(source)) {
+        self.name = source.name;
+        self.is_actor = source.is_actor;
         self.x = source.x;
         self.y = source.y;
         self.z = source.z;
@@ -347,26 +349,26 @@ function DataAnimationKeyframe(layer, moment, source) constructor {
     };
     
     if (source) {
-        self.relative = self.relative;
-        self.x = self.xx;
-        self.y = self.yy;
-        self.z = self.zz;
-        self.xrot = self.xrot;
-        self.yrot = self.yrot;
-        self.zrot = self.zrot;
-        self.xscale = self.xscale;
-        self.yscale = self.yscale;
-        self.zscale = self.zscale;
-        self.color = self.color;
-        self.alpha = self.color;
-        self.audio = self.audio;
-        self.graphic_type = self.graphic_type;
-        self.graphic_sprite = self.graphic_sprite;
-        self.graphic_mesh = self.graphic_mesh;
-        self.graphic_frame = self.graphic_frame;
-        self.graphic_direction = self.graphic_direction;
-        self.event = self.event;
-        self.tween = self.tween;
+        self.relative = source.relative;
+        self.xx = source.x;
+        self.yy = source.y;
+        self.zz = source.z;
+        self.xrot = source.xrot;
+        self.yrot = source.yrot;
+        self.zrot = source.zrot;
+        self.xscale = source.xscale;
+        self.yscale = source.yscale;
+        self.zscale = source.zscale;
+        self.color = source.color;
+        self.alpha = source.color;
+        self.audio = source.audio;
+        self.graphic_type = source.graphic_type;
+        self.graphic_sprite = source.graphic_sprite;
+        self.graphic_mesh = source.graphic_mesh;
+        self.graphic_frame = source.graphic_frame;
+        self.graphic_direction = source.graphic_direction;
+        self.event = source.event;
+        self.tween = source.tween;
     }
     
     static CreateJSON = function() {
