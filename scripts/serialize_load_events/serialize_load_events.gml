@@ -16,7 +16,7 @@ function serialize_load_events(buffer, version) {
         // events are created with an entrypoint by default - you could pass an optional
         // parameter to the constructor to have it not do this, but this is the only place
         // where it's going to happen, so there's not really a point
-        instance_destroy(event.nodes[| 0]);
+        event.nodes[| 0].Destroy();
         ds_list_clear(event.nodes);
         
         var n_nodes = buffer_read(buffer, buffer_u32);
@@ -179,7 +179,7 @@ function serialize_load_events(buffer, version) {
                 var dest = guid_get(node.outbound[k]);
                 node.outbound[k] = dest;
                 if (dest) {
-                    dest.parents[$ node] = true;
+                    dest.parents[$ node.GUID] = true;
                 }
             }
         }

@@ -21,11 +21,11 @@ function event_connect_node() {
     if (source != destination && (destination && destination.valid_destination) || force_null) {
         var old_node = source.outbound[index];
         if (old_node) {
-            variable_struct_remove(old_node.parents, source);
+            variable_struct_remove(old_node.parents, source.GUID);
         }
         
         if (destination) {
-            destination.parents[$ source] = true;
+            destination.parents[$ source.GUID] = true;
         }
         
         source.outbound[index] = destination;

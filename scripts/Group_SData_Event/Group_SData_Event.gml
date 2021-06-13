@@ -81,7 +81,7 @@ function DataEventNode(source) : SData(source) constructor {
         // remove references from other objects: things that contain this as an outbound node
         var parent_nodes = variable_struct_get_names(self.parents);
         for (var i = 0; i < array_length(parent_nodes); i++) {
-            var parent = self.parents[$ parent_nodes[i]];
+            var parent = guid_get(self.parents[$ parent_nodes[i]]);
             for (var j = 0; j < array_length(parent.outbound); j++) {
                 if (parent.outbound[j] == self) {
                     parent.outbound[j] = undefined;
@@ -92,7 +92,7 @@ function DataEventNode(source) : SData(source) constructor {
         // outbound nodes which contain this as a parent
         for (var i = 0; i < array_length(self.outbound); i++) {
             if (self.outbound[i]) {
-                variable_struct_remove(self.outbound[i].parents, self);
+                variable_struct_remove(self.outbound[i].parents, self.GUID);
             }
         }
         
@@ -178,6 +178,11 @@ function EventNodePeristent(name, data, outbound_names) constructor {
     self.summary = "";
     self.types = ds_list_create();
     self.outbound = [];
+    
+    static ev_custom_id = 0;
+    
+    self.GUID = NULL;
+    guid_set(self, "EV**" + string(ev_custom_id++));
     
     for (var i = 0; i < array_length(data); i++) {
         var datum = data[i];
