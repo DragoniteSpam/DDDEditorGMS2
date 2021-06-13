@@ -48,6 +48,8 @@ function event_create_node() {
     var node = new DataEventNode();
     node.event = event;
     node.type = type;
+    node.x = xx;
+    node.y = yy;
     
     // built-in node types have their outbound count specified
     if (type != EventNodeTypes.CUSTOM) {

@@ -41,6 +41,8 @@ function DataEventNode(source) : SData(source) constructor {
     self.is_code = true;                                                         // for when you need code
     
     self.dragging = false;
+    self.x = 0;
+    self.y = 0;
     self.offset_x = -1;
     self.offset_y = -1;
     
