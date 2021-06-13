@@ -4,7 +4,7 @@ function serialize_load_meshes(buffer, version) {
     var n_meshes = buffer_read(buffer, buffer_u32);
     
     repeat (n_meshes) {
-        var mesh = new DataMesh();
+        var mesh = new DataMesh("");
         serialize_load_generic(buffer, mesh, version);
         
         mesh.type = buffer_read(buffer, buffer_u8);
@@ -33,7 +33,7 @@ function serialize_load_meshes(buffer, version) {
             }
             submesh.proto_guid = proto_guid;
             submesh.owner = mesh;
-            ds_list_add(mesh.submeshes, submesh);
+            array_push(mesh.submeshes, submesh);
         }
         
         mesh.xmin = buffer_read(buffer, buffer_f32);

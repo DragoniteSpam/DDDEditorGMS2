@@ -15,8 +15,8 @@ function export_qma(fn) {
     
     for (var i = 0; i < n_meshes; i++) {
         var mesh = Game.meshes[i];
-        for (var j = 0; j < ds_list_size(mesh.submeshes); j++) {
-            var submesh = mesh.submeshes[| j];
+        for (var j = 0; j < array_length(mesh.submeshes); j++) {
+            var submesh = mesh.submeshes[j];
             var json = { 
                 name: submesh.name,
                 size: buffer_get_size(submesh.buffer),

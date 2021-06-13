@@ -1,9 +1,9 @@
 function export_d3d(base_filename, mesh) {
     var mesh_filename = filename_path(base_filename) + filename_change_ext(filename_name(base_filename), "");
     
-    for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
-        var number_ext = (ds_list_size(mesh.submeshes) == 1) ? "" : ("!" + string_hex(i, 3));
-        export_d3d_raw(mesh_filename + number_ext + filename_ext(base_filename), mesh.submeshes[| i].buffer);
+    for (var i = 0; i < array_length(mesh.submeshes); i++) {
+        var number_ext = (array_length(mesh.submeshes) == 1) ? "" : ("!" + string_hex(i, 3));
+        export_d3d_raw(mesh_filename + number_ext + filename_ext(base_filename), mesh.submeshes[i].buffer);
     }
 }
 

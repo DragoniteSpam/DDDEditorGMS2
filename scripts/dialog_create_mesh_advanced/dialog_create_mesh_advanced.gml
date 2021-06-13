@@ -47,7 +47,7 @@ function dialog_create_mesh_advanced(root, mesh) {
     
     var el_list = create_list(col1_x, yy, mesh.name + " submeshes", "(none)", ew, eh, 10, function(list) {
         selection = ui_list_selection(list);
-        ui_input_set_value(list.root.el_name, list.root.mesh.submeshes[| selection].name);
+        ui_input_set_value(list.root.el_name, list.root.mesh.submeshes[selection].name);
     }, false, dg, mesh.submeshes);
     el_list.tooltip = "Each mesh can have a number of different sub-meshes. This can be used to give multiple meshes different visual skins, or to imitate primitive frame-based animation.";
     el_list.entries_are = ListEntries.INSTANCES;
@@ -91,7 +91,7 @@ function dialog_create_mesh_advanced(root, mesh) {
         var list = button.root.el_list;
         var selection = ui_list_selection(list);
         if (selection + 1) {
-            if (ds_list_size(mesh.submeshes) == 1) {
+            if (array_length(mesh.submeshes) == 1) {
                 emu_dialog_notice("Please don't delete the last submesh!");
             } else {
                 mesh.RemoveSubmesh(selection);
@@ -106,17 +106,18 @@ function dialog_create_mesh_advanced(root, mesh) {
         var list = input.root.el_list;
         var selection = ui_list_selection(list);
         if (selection + 1) {
-            list.root.mesh.submeshes[| selection].name = input.value;
+            list.root.mesh.submeshes[selection].name = input.value;
         }
-    }, mesh.submeshes[| 0].name, "Enter a name", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
+    }, mesh.submeshes[0].name, "Enter a name", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
     el_name.tooltip = "You don't have to, but it's generally helpful to give your submeshes names to identify them with.";
     dg.el_name = el_name;
     yy += el_name.height + spacing;
     
-    if (mesh.submeshes[| 0].path == "") {
-        var text = "<no path saved>";
+    var text;
+    if (mesh.submeshes[0].path == "") {
+        text = "<no path saved>";
     } else {
-        var text = mesh.submeshes[| 0].path;
+        text = mesh.submeshes[0].path;
     }
     var el_text_submesh_path = create_text(col1_x, yy, text, ew * 1.5, eh, fa_left, ew * 1.5, dg);
     el_text_submesh_path.render = function(text, x, y) {
@@ -124,14 +125,13 @@ function dialog_create_mesh_advanced(root, mesh) {
         var mesh_data = text.root.mesh;
         var base_text = text.text;
         
+        var str = "";
         if (selection + 1) {
-            if (mesh_data.submeshes[| selection].path == "") {
-                var str = "<no path saved>";
+            if (mesh_data.submeshes[selection].path == "") {
+                str = "<no path saved>";
             } else {
-                var str = mesh_data.submeshes[| selection].path;
+                str = mesh_data.submeshes[selection].path;
             }
-        } else {
-            var str = "";
         }
         
         if (string_width(str) <= text.wrap_width - text.offset) {
@@ -181,7 +181,7 @@ function dialog_create_mesh_advanced(root, mesh) {
     
     var el_import_reflect  = create_button(col3_x, yy, "Import Reflection", ew, eh, fa_center, function(button) {
         var mesh = button.root.mesh;
-        var submesh = mesh.submeshes[| ui_list_selection(button.root.el_list)];
+        var submesh = mesh.submeshes[ui_list_selection(button.root.el_list)];
         if (submesh) {
             submesh.ImportReflection();
             batch_again(false);
@@ -192,7 +192,7 @@ function dialog_create_mesh_advanced(root, mesh) {
     
     var el_auto_reflect = create_button(col3_x, yy, "Auto-Genreate Reflection", ew, eh, fa_center, function(button) {
         var mesh = button.root.mesh;
-        var submesh = mesh.submeshes[| ui_list_selection(button.root.el_list)];
+        var submesh = mesh.submeshes[ui_list_selection(button.root.el_list)];
         if (submesh) {
             submesh.GenerateReflections();
             batch_again(false);
@@ -203,7 +203,7 @@ function dialog_create_mesh_advanced(root, mesh) {
     
     var el_swap_reflect = create_button(col3_x, yy, "Swap Upright and Reflection", ew, eh, fa_center, function(button) {
         var mesh = button.root.mesh;
-        var submesh = mesh.submeshes[| ui_list_selection(button.root.el_list)];
+        var submesh = mesh.submeshes[ui_list_selection(button.root.el_list)];
         if (submesh) {
             submesh.SwapReflections();
             batch_again(false);
@@ -214,7 +214,7 @@ function dialog_create_mesh_advanced(root, mesh) {
     
     var el_normal_flat = create_button(col3_x, yy, "Normals: Flat", ew, eh, fa_center, function(button) {
         var mesh = button.root.mesh;
-        var submesh = mesh.submeshes[| ui_list_selection(button.root.el_list)];
+        var submesh = mesh.submeshes[ui_list_selection(button.root.el_list)];
         if (submesh) {
             submesh.SetNormalsFlat();
         }
@@ -225,7 +225,7 @@ function dialog_create_mesh_advanced(root, mesh) {
     
     var el_normal_smooth = create_button(col3_x, yy, "Normals: Smooth", ew, eh, fa_center, function(button) {
         var mesh = button.root.mesh;
-        var submesh = mesh.submeshes[| ui_list_selection(button.root.el_list)];
+        var submesh = mesh.submeshes[ui_list_selection(button.root.el_list)];
         if (submesh) {
             submesh.SetNormalsSmooth(Settings.config.normal_threshold);
         }
@@ -236,7 +236,7 @@ function dialog_create_mesh_advanced(root, mesh) {
     
     var el_up_axis = create_button(col3_x, yy, "Rotate Up Axis", ew, eh, fa_center, function(button) {
         var mesh = button.root.mesh;
-        for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
+        for (var i = 0; i < array_length(mesh.submeshes); i++) {
             mesh_rotate_up_axis(mesh, i);
         }
         batch_again(false);
@@ -246,7 +246,7 @@ function dialog_create_mesh_advanced(root, mesh) {
     
     var el_reload = create_button(col3_x, yy, "Reload", ew, eh, fa_center, function(button) {
         var mesh = button.root.mesh;
-        var submesh = mesh.submeshes[| ui_list_selection(button.root.el_list)];
+        var submesh = mesh.submeshes[ui_list_selection(button.root.el_list)];
         if (submesh) {
             submesh.Reload();
         }

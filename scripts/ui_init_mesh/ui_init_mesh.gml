@@ -178,9 +178,9 @@ function ui_init_mesh(mode) {
             if (mesh.flags & MeshFlags.PARTICLE) {
                 prefix = "(p)" + prefix;
             }
-            if (ds_list_size(mesh.submeshes) == 1) {
-                var buffer = mesh.submeshes[| 0].buffer;
-                var reflect_buffer = mesh.submeshes[| 0].reflect_buffer;
+            if (array_length(mesh.submeshes) == 1) {
+                var buffer = mesh.submeshes[0].buffer;
+                var reflect_buffer = mesh.submeshes[0].reflect_buffer;
                 var buffer_size = (buffer ? buffer_get_size(buffer) : 0) / VERTEX_SIZE / 3;
                 var reflect_buffer_size = (reflect_buffer ? buffer_get_size(reflect_buffer) : 0) / VERTEX_SIZE / 3;
                 if (buffer_size == reflect_buffer_size || reflect_buffer_size == 0) {
@@ -189,7 +189,7 @@ function ui_init_mesh(mode) {
                     suffix = " (" + string(buffer_size) + " / " + string(reflect_buffer_size) + " triangles)";
                 }
             } else {
-                suffix = " (" + string(ds_list_size(mesh.submeshes)) + " submeshes)";
+                suffix = " (" + string(array_length(mesh.submeshes)) + " submeshes)";
             }
             return prefix + mesh.name + suffix;
         };
@@ -268,7 +268,7 @@ function ui_init_mesh(mode) {
             
             for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
                 if (!first_mesh) first_mesh = Game.meshes[index];
-                if (ds_list_size(Game.meshes[index].submeshes) > 1) {
+                if (array_length(Game.meshes[index].submeshes) > 1) {
                     valid_count++;
                 }
             }
@@ -279,22 +279,20 @@ function ui_init_mesh(mode) {
                 var selection = self.root.selection;
                 for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
                     var mesh = Game.meshes[index];
-                    if (ds_list_size(mesh.submeshes) > 1) {
+                    if (array_length(mesh.submeshes) > 1) {
                         var old_submesh_list = mesh.submeshes;
-                        mesh.submeshes = ds_list_create();
+                        mesh.submeshes = [];
                         mesh.proto_guids = { };
                         var combine_submesh = new MeshSubmesh(mesh.name + "!Combine");
                         
-                        for (var i = 0, n = ds_list_size(old_submesh_list); i < n; i++) {
-                            combine_submesh.AddBufferData(old_submesh_list[| i].buffer);
-                            old_submesh_list[| i].Destroy();
+                        for (var i = 0, n = array_length(old_submesh_list); i < n; i++) {
+                            combine_submesh.AddBufferData(old_submesh_list[i].buffer);
+                            old_submesh_list[i].Destroy();
                         }
                         
-                        ds_list_destroy(old_submesh_list);
-                        
-                        combine_submesh.proto_guid = proto_guid_set(mesh, ds_list_size(mesh.submeshes), undefined);
+                        combine_submesh.proto_guid = proto_guid_set(mesh, array_length(mesh.submeshes), undefined);
                         combine_submesh.owner = mesh;
-                        ds_list_add(mesh.submeshes, combine_submesh);
+                        array_push(mesh.submeshes, combine_submesh);
                         mesh.first_proto_guid = combine_submesh.proto_guid;
                     }
                 }
@@ -320,10 +318,10 @@ function ui_init_mesh(mode) {
             
             for (var index = ds_map_find_first(selection); index != undefined; index = ds_map_find_next(selection, index)) {
                 var mesh = Game.meshes[index];
-                if (ds_list_size(mesh.submeshes) > 1) {
-                    for (var i = 0, n = ds_list_size(mesh.submeshes); i < n; i++) {
+                if (array_length(mesh.submeshes) > 1) {
+                    for (var i = 0, n = array_length(mesh.submeshes); i < n; i++) {
                         var new_mesh = new DataMesh(mesh.name + "!Separated" + string_pad(i, " ", 3));
-                        var submesh = new_mesh.AddSubmesh(mesh.submeshes[| i].Clone());
+                        var submesh = new_mesh.AddSubmesh(mesh.submeshes[i].Clone());
                         new_mesh.CopyPropertiesFrom(mesh);
                         array_push(Game.meshes, new_mesh);
                     }

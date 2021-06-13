@@ -840,7 +840,7 @@ function ui_init_main(mode) {
         element_entity_mesh_submesh = create_list(col1_x, yy, "Submesh", "<choose a single mesh>", col_width, element_height, 10, function(list) {
             var entities = Stuff.map.selected_entities;
             var mesh_data = guid_get(entities[| 0].mesh);
-            var submesh = mesh_data.submeshes[| ui_list_selection(list)].proto_guid;
+            var submesh = mesh_data.submeshes[ui_list_selection(list)].proto_guid;
             for (var i = 0; i < ds_list_size(entities); i++) {
                 entities[| i].mesh_submesh = submesh;
             }
@@ -1083,8 +1083,8 @@ function ui_init_main(mode) {
         });
         element_mesh_list.render_colors = method(element_mesh_list, function(list, index) {
             var mesh = list.entries[index];
-            for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
-                if (!mesh.submeshes[| i].buffer) return c_red;
+            for (var i = 0; i < array_length(mesh.submeshes); i++) {
+                if (!mesh.submeshes[i].buffer) return c_red;
             }
             switch (mesh.type) {
                 case MeshTypes.RAW: return c_black;
@@ -1105,8 +1105,8 @@ function ui_init_main(mode) {
             if (mesh.flags & MeshFlags.SILHOUETTE) {
                 prefix += "s";
             }
-            for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
-                if (mesh.submeshes[| i].reflect_buffer) {
+            for (var i = 0; i < array_length(mesh.submeshes); i++) {
+                if (mesh.submeshes[i].reflect_buffer) {
                     prefix += "r";
                     break;
                 }
@@ -1200,7 +1200,7 @@ function ui_init_main(mode) {
         
         yy += t_p_mesh_editor.mesh_name_internal.height + spacing;
         
-        var s = 10;
+        s = 10;
         
         var bounds_x = col2_x;
         var bounds_x_2 = bounds_x + col_width / 2;

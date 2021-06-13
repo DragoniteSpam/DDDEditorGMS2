@@ -59,11 +59,11 @@ function ui_render_surface_render_mesh_ed(surface, x1, y1, x2, y2) {
                 } else {
                     var this_tex = guid_get(mesh_data.tex_base) ? sprite_get_texture(guid_get(mesh_data.tex_base).picture, 0) : def_tex;
                 }
-                for (var sm_index = 0; sm_index < ds_list_size(mesh_data.submeshes); sm_index++) {
-                    var vbuffer = mesh_data.submeshes[| sm_index].vbuffer;
-                    var wbuffer = mesh_data.submeshes[| sm_index].wbuffer;
-                    var reflect_vbuffer = mesh_data.submeshes[| sm_index].reflect_vbuffer;
-                    var reflect_wbuffer = mesh_data.submeshes[| sm_index].reflect_wbuffer;
+                for (var sm_index = 0; sm_index < array_length(mesh_data.submeshes); sm_index++) {
+                    var vbuffer = mesh_data.submeshes[sm_index].vbuffer;
+                    var wbuffer = mesh_data.submeshes[sm_index].wbuffer;
+                    var reflect_vbuffer = mesh_data.submeshes[sm_index].reflect_vbuffer;
+                    var reflect_wbuffer = mesh_data.submeshes[sm_index].reflect_wbuffer;
                     if (mode.draw_meshes && vbuffer) vertex_submit(vbuffer, pr_trianglelist, this_tex);
                     if (mode.draw_wireframes && wbuffer) vertex_submit(wbuffer, pr_linelist, -1);
                     if (mode.draw_reflections && mode.draw_meshes && reflect_vbuffer) vertex_submit(reflect_vbuffer, pr_trianglelist, this_tex);
@@ -71,9 +71,9 @@ function ui_render_surface_render_mesh_ed(surface, x1, y1, x2, y2) {
                 }
                 break;
             case MeshTypes.SMF:
-                for (var sm_index = 0; sm_index < ds_list_size(mesh_data.submeshes); sm_index++) {
-                    var vbuffer = mesh_data.submeshes[| sm_index].vbuffer;
-                    var reflect_vbuffer = mesh_data.submeshes[| sm_index].reflect_vbuffer;
+                for (var sm_index = 0; sm_index < array_length(mesh_data.submeshes); sm_index++) {
+                    var vbuffer = mesh_data.submeshes[sm_index].vbuffer;
+                    var reflect_vbuffer = mesh_data.submeshes[sm_index].reflect_vbuffer;
                     if (mode.draw_meshes) smf_model_draw(vbuffer);
                     if (mode.draw_reflections && mode.draw_meshes) smf_model_draw(reflect_vbuffer);
                 }

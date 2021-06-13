@@ -14,10 +14,10 @@ function serialize_save_meshes(buffer) {
         buffer_write(buffer, buffer_u8, mesh.type);
         
         var all_proto_guids = variable_struct_get_names(mesh.proto_guids);
-        var n_submeshes = ds_list_size(mesh.submeshes);
+        var n_submeshes = array_length(mesh.submeshes);
         buffer_write(buffer, buffer_u16, n_submeshes);
         for (var j = 0; j < n_submeshes; j++) {
-            var submesh = mesh.submeshes[| j];
+            var submesh = mesh.submeshes[j];
             var index = mesh.proto_guids[$ all_proto_guids[j]];
             buffer_write(buffer, buffer_u16, index);
             buffer_write(buffer, buffer_datatype, all_proto_guids[j]);

@@ -1,7 +1,7 @@
 function DataMesh(source) : SData(source) constructor {
     self.type = MeshTypes.RAW;
     
-    self.submeshes = ds_list_create();
+    self.submeshes = [];
     // there will only be one collision shape, defined as the first mesh
     // you import; this is a good reason to make all meshes in a series
     // the same shape, or almost the same shape
@@ -52,8 +52,7 @@ function DataMesh(source) : SData(source) constructor {
         self.zmax = source.zmax;
         
         for (var i = 0; i < array_length(source.submeshes); i++) {
-            var submesh = new MeshSubmesh(source.submeshes[i]);
-            ds_list_add(self.submeshes, submesh);
+            array_push(self.submeshes, new MeshSubmesh(source.submeshes[i]));
         }
     }
     
@@ -94,9 +93,9 @@ function DataMesh(source) : SData(source) constructor {
     };
     
     static AddSubmesh = function(submesh, proto_guid) {
-        submesh.proto_guid = proto_guid_set(self, ds_list_size(self.submeshes), proto_guid);
+        submesh.proto_guid = proto_guid_set(self, array_length(self.submeshes), proto_guid);
         submesh.owner = self;
-        ds_list_add(self.submeshes, submesh);
+        array_push(self.submeshes, submesh);
         return submesh;
     };
     
@@ -108,8 +107,8 @@ function DataMesh(source) : SData(source) constructor {
         self.ymax = -infinity;
         self.zmax = -infinity;
         
-        for (var i = 0; i < ds_list_size(self.submeshes); i++) {
-            var sub = self.submeshes[| i];
+        for (var i = 0; i < array_length(self.submeshes); i++) {
+            var sub = self.submeshes[i];
             buffer_seek(sub.buffer, buffer_seek_start, 0);
             
             while (buffer_tell(sub.buffer) < buffer_get_size(sub.buffer)) {
@@ -132,60 +131,60 @@ function DataMesh(source) : SData(source) constructor {
     };
     
     static GenerateReflections = function() {
-        for (var i = 0; i < ds_list_size(submeshes); i++) {
-            submeshes[| i].GenerateReflections();
+        for (var i = 0; i < array_length(submeshes); i++) {
+            submeshes[i].GenerateReflections();
         }
     };
     
     static SetNormalsZero = function() {
-        for (var i = 0; i < ds_list_size(submeshes); i++) {
-            submeshes[| i].SetNormalsZero();
+        for (var i = 0; i < array_length(submeshes); i++) {
+            submeshes[i].SetNormalsZero();
         }
     };
     
     static SetNormalsFlat = function() {
-        for (var i = 0; i < ds_list_size(submeshes); i++) {
-            submeshes[| i].SetNormalsFlat();
+        for (var i = 0; i < array_length(submeshes); i++) {
+            submeshes[i].SetNormalsFlat();
         }
     };
     
     static SetNormalsSmooth = function(threshold) {
-        for (var i = 0; i < ds_list_size(submeshes); i++) {
-            submeshes[| i].SetNormalsSmooth(threshold);
+        for (var i = 0; i < array_length(submeshes); i++) {
+            submeshes[i].SetNormalsSmooth(threshold);
         }
     };
     
     static SwapReflections = function() {
-        for (var i = 0; i < ds_list_size(submeshes); i++) {
-            submeshes[| i].SwapReflections();
+        for (var i = 0; i < array_length(submeshes); i++) {
+            submeshes[i].SwapReflections();
         }
     };
     
     static Reload = function() {
-        for (var i = 0; i < ds_list_size(submeshes); i++) {
-            submeshes[| i].Reload();
+        for (var i = 0; i < array_length(submeshes); i++) {
+            submeshes[i].Reload();
         }
     };
     
     static RemoveSubmesh = function(index) {
-        proto_guid_remove(self, submeshes[| index].proto_guid);
-        submeshes[| index].Destroy();
-        ds_list_delete(submeshes, index);
+        proto_guid_remove(self, submeshes[index].proto_guid);
+        submeshes[index].Destroy();
+        array_delete(submeshes, index, 1);
     };
     
     static LoadAsset = function(directory) {
         directory += "/";
         var guid = string_replace(self.GUID, ":", "_");
-        for (var i = 0, n = ds_list_size(self.submeshes); i < n; i++) {
-            self.submeshes[| i].LoadAsset(directory + guid + "_");
+        for (var i = 0, n = array_length(self.submeshes); i < n; i++) {
+            self.submeshes[i].LoadAsset(directory + guid + "_");
         }
     };
     
     static SaveAsset = function(directory) {
         directory += "/";
         var guid = string_replace(self.GUID, ":", "_");
-        for (var i = 0, n = ds_list_size(self.submeshes); i < n; i++) {
-            self.submeshes[| i].SaveAsset(directory + guid + "_");
+        for (var i = 0, n = array_length(self.submeshes); i < n; i++) {
+            self.submeshes[i].SaveAsset(directory + guid + "_");
         }
     };
     
@@ -210,9 +209,9 @@ function DataMesh(source) : SData(source) constructor {
         json.ymax = self.ymax;
         json.zmax = self.zmax;
         
-        json.submeshes = array_create(ds_list_size(self.submeshes));
-        for (var i = 0, n = ds_list_size(self.submeshes); i < n; i++) {
-            json.submeshes[i] = self.submeshes[| i].CreateJSON();
+        json.submeshes = array_create(array_length(self.submeshes));
+        for (var i = 0, n = array_length(self.submeshes); i < n; i++) {
+            json.submeshes[i] = self.submeshes[i].CreateJSON();
         }
         return json;
     };
@@ -226,8 +225,8 @@ function DataMesh(source) : SData(source) constructor {
         
         var map = Stuff.map.active_map;
 
-        for (var i = 0; i < ds_list_size(self.submeshes); i++) {
-            self.submeshes[| i].Destroy();
+        for (var i = 0; i < array_length(self.submeshes); i++) {
+            self.submeshes[i].Destroy();
         }
         
         for (var i = 0; i < ds_list_size(map.contents.all_entities); i++) {

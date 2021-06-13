@@ -171,7 +171,7 @@ function MeshSubmesh(source) constructor {
     };
     
     static Reload = function() {
-        var index = ds_list_find_index(self.owner.submeshes, self);
+        var index = array_search(self.owner.submeshes, self);
         if (file_exists(self.path)) {
             switch (filename_ext(self.path)) {
                 case ".obj": import_obj(self.path, undefined, self.owner, index); break;

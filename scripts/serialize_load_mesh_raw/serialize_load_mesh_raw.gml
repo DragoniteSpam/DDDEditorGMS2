@@ -5,8 +5,8 @@ function serialize_load_mesh_raw(mesh) {
     var zz = [0, 0, 0];
     var nx, ny, nz, xtex, ytex, color;
     
-    for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
-        var submesh = mesh.submeshes[| i];
+    for (var i = 0; i < array_length(mesh.submeshes); i++) {
+        var submesh = mesh.submeshes[i];
         var buffer = submesh.buffer;
         
         submesh.vbuffer = vertex_create_buffer_from_buffer(buffer, Stuff.graphics.vertex_format);

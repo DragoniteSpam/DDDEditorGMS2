@@ -1,17 +1,17 @@
 function mesh_mirror_all_x(mesh) {
-    for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
+    for (var i = 0; i < array_length(mesh.submeshes); i++) {
         mesh_mirror_x(mesh, i);
     }
 }
 
 function mesh_mirror_all_y(mesh) {
-    for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
+    for (var i = 0; i < array_length(mesh.submeshes); i++) {
         mesh_mirror_y(mesh, i);
     }
 }
 
 function mesh_mirror_all_z(mesh) {
-    for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
+    for (var i = 0; i < array_length(mesh.submeshes); i++) {
         mesh_mirror_z(mesh, i);
     }
 }
@@ -19,7 +19,7 @@ function mesh_mirror_all_z(mesh) {
 function mesh_mirror_x(mesh, index) {
     if (mesh.type == MeshTypes.SMF) return;
     
-    var submesh = mesh.submeshes[| index];
+    var submesh = mesh.submeshes[index];
     var buffer = submesh.buffer;
     buffer_seek(buffer, buffer_seek_start, 0);
     
@@ -71,7 +71,7 @@ function mesh_mirror_x(mesh, index) {
 function mesh_mirror_y(mesh, index) {
     if (mesh.type == MeshTypes.SMF) return;
     
-    var submesh = mesh.submeshes[| index];
+    var submesh = mesh.submeshes[index];
     var buffer = submesh.buffer;
     buffer_seek(buffer, buffer_seek_start, 0);
     
@@ -123,7 +123,7 @@ function mesh_mirror_y(mesh, index) {
 function mesh_mirror_z(mesh, index) {
     if (mesh.type == MeshTypes.SMF) return;
     
-    var submesh = mesh.submeshes[| index];
+    var submesh = mesh.submeshes[index];
     var buffer = submesh.buffer;
     buffer_seek(buffer, buffer_seek_start, 0);
     
@@ -173,7 +173,7 @@ function mesh_mirror_z(mesh, index) {
 }
 
 function mesh_rotate_all_up_axis(mesh) {
-    for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
+    for (var i = 0; i < array_length(mesh.submeshes); i++) {
         mesh_rotate_up_axis(mesh, i);
     }
 }
@@ -181,7 +181,7 @@ function mesh_rotate_all_up_axis(mesh) {
 function mesh_rotate_up_axis(mesh, index) {
     if (mesh.type == MeshTypes.SMF) return;
     
-    var submesh = mesh.submeshes[| index];
+    var submesh = mesh.submeshes[index];
     var buffer = submesh.buffer;
     buffer_seek(buffer, buffer_seek_start, 0);
     
@@ -243,7 +243,7 @@ function mesh_rotate_up_axis(mesh, index) {
 }
 
 function mesh_all_invert_alpha(mesh) {
-    for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
+    for (var i = 0; i < array_length(mesh.submeshes); i++) {
         mesh_invert_alpha(mesh, i);
     }
 }
@@ -251,7 +251,7 @@ function mesh_all_invert_alpha(mesh) {
 function mesh_invert_alpha(mesh, index) {
     if (mesh.type == MeshTypes.SMF) return;
     
-    var submesh = mesh.submeshes[| index];
+    var submesh = mesh.submeshes[index];
     var buffer = submesh.buffer;
     buffer_seek(buffer, buffer_seek_start, 0);
     
@@ -269,19 +269,19 @@ function mesh_invert_alpha(mesh, index) {
 }
 
 function mesh_set_all_flip_tex_h(mesh) {
-    for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
+    for (var i = 0; i < array_length(mesh.submeshes); i++) {
         mesh_set_flip_tex_h(mesh, i);
     }
 }
 
 function mesh_set_all_flip_tex_v(mesh) {
-    for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
+    for (var i = 0; i < array_length(mesh.submeshes); i++) {
         mesh_set_flip_tex_v(mesh, i);
     }
 }
 
 function mesh_set_all_scale(mesh, scale) {
-    for (var i = 0; i < ds_list_size(mesh.submeshes); i++) {
+    for (var i = 0; i < array_length(mesh.submeshes); i++) {
         mesh_set_scale(mesh, i, scale);
     }
 }
@@ -289,7 +289,7 @@ function mesh_set_all_scale(mesh, scale) {
 function mesh_set_flip_tex_h(mesh, index) {
     if (mesh.type == MeshTypes.SMF) return;
     
-    var submesh = mesh.submeshes[| index];
+    var submesh = mesh.submeshes[index];
     var buffer = submesh.buffer;
     buffer_seek(buffer, buffer_seek_start, 0);
     
@@ -340,7 +340,7 @@ function mesh_set_flip_tex_h(mesh, index) {
 function mesh_set_flip_tex_v(mesh, index) {
     if (mesh.type == MeshTypes.SMF) return;
     
-    var submesh = mesh.submeshes[| index];
+    var submesh = mesh.submeshes[index];
     var buffer = submesh.buffer;
     buffer_seek(buffer, buffer_seek_start, 0);
     
@@ -391,7 +391,7 @@ function mesh_set_flip_tex_v(mesh, index) {
 function mesh_set_scale(mesh, index, scale) {
     if (mesh.type == MeshTypes.SMF) return;
     
-    var submesh = mesh.submeshes[| index];
+    var submesh = mesh.submeshes[index];
     var buffer = submesh.buffer;
     buffer_seek(buffer, buffer_seek_start, 0);
     

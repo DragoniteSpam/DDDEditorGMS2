@@ -13,7 +13,7 @@ function ui_render_surface_render_mesh_collision(surface, x1, y1, x2, y2) {
     
     var s = 256;
     var fov = 45;   // meh
-    var camera = view_get_camera(view_current);
+    camera = view_get_camera(view_current);
     camera_set_view_mat(camera, matrix_build_lookat(0, s, s / 2, 0, 0, 0, 0, 0, 1));
     camera_set_proj_mat(camera, matrix_build_projection_perspective_fov(-fov, -(x2 - x1) / (y2 - y1), CAMERA_ZNEAR, CAMERA_ZFAR));
     camera_apply(camera);
@@ -40,11 +40,11 @@ function ui_render_surface_render_mesh_collision(surface, x1, y1, x2, y2) {
     matrix_set(matrix_world, matrix_build(Stuff.mesh_x, Stuff.mesh_y, Stuff.mesh_z, Stuff.mesh_xrot, Stuff.mesh_yrot, Stuff.mesh_zrot, Stuff.mesh_scale, Stuff.mesh_scale, Stuff.mesh_scale));
     switch (mesh.type) {
         case MeshTypes.SMF:
-            smf_model_draw(mesh.submeshes[| 0].vbuffer);
+            smf_model_draw(mesh.submeshes[0].vbuffer);
             break;
         case MeshTypes.RAW:
-            vertex_submit(mesh.submeshes[| 0].vbuffer, pr_trianglelist, tex);
-            vertex_submit(mesh.submeshes[| 0].wbuffer, pr_linelist, tex);
+            vertex_submit(mesh.submeshes[0].vbuffer, pr_trianglelist, tex);
+            vertex_submit(mesh.submeshes[0].wbuffer, pr_linelist, tex);
             break;
     }
     shader_reset();

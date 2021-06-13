@@ -51,7 +51,7 @@ GetBuffer = function() {
     var mesh_data = guid_get(mesh);
     if (!mesh_data) return undefined;
     if (proto_guid_get(mesh_data, mesh_submesh) == undefined) return undefined;
-    return mesh_data ? mesh_data.submeshes[| proto_guid_get(mesh_data, mesh_submesh)].buffer : undefined;
+    return mesh_data ? mesh_data.submeshes[proto_guid_get(mesh_data, mesh_submesh)].buffer : undefined;
 };
 
 GetVertexBuffer = function() {
@@ -60,7 +60,7 @@ GetVertexBuffer = function() {
     var mesh_data = guid_get(mesh);
     if (!mesh_data) return undefined;
     if (proto_guid_get(mesh_data, mesh_submesh) == undefined) return undefined;
-    return mesh_data ? mesh_data.submeshes[| proto_guid_get(mesh_data, mesh_submesh)].vbuffer : undefined;
+    return mesh_data ? mesh_data.submeshes[proto_guid_get(mesh_data, mesh_submesh)].vbuffer : undefined;
 };
 
 GetWireBuffer = function() {
@@ -69,7 +69,7 @@ GetWireBuffer = function() {
     var mesh_data = guid_get(mesh);
     if (!mesh_data) return undefined;
     if (proto_guid_get(mesh_data, mesh_submesh) == undefined) return undefined;
-    return mesh_data ? mesh_data.submeshes[| proto_guid_get(mesh_data, mesh_submesh)].wbuffer : undefined;
+    return mesh_data ? mesh_data.submeshes[proto_guid_get(mesh_data, mesh_submesh)].wbuffer : undefined;
 };
 
 GetReflectBuffer = function() {
@@ -78,7 +78,7 @@ GetReflectBuffer = function() {
     var mesh_data = guid_get(mesh);
     if (!mesh_data) return undefined;
     if (proto_guid_get(mesh_data, mesh_submesh) == undefined) return undefined;
-    return mesh_data ? mesh_data.submeshes[| proto_guid_get(mesh_data, mesh_submesh)].reflect_buffer : undefined;
+    return mesh_data ? mesh_data.submeshes[proto_guid_get(mesh_data, mesh_submesh)].reflect_buffer : undefined;
 };
 
 GetReflectVertexBuffer = function() {
@@ -87,7 +87,7 @@ GetReflectVertexBuffer = function() {
     var mesh_data = guid_get(mesh);
     if (!mesh_data) return undefined;
     if (proto_guid_get(mesh_data, mesh_submesh) == undefined) return undefined;
-    return mesh_data ? mesh_data.submeshes[| proto_guid_get(mesh_data, mesh_submesh)].reflect_vbuffer : undefined;
+    return mesh_data ? mesh_data.submeshes[proto_guid_get(mesh_data, mesh_submesh)].reflect_vbuffer : undefined;
 };
 
 GetReflectWireBuffer = function() {
@@ -96,7 +96,7 @@ GetReflectWireBuffer = function() {
     var mesh_data = guid_get(mesh);
     if (!mesh_data) return undefined;
     if (proto_guid_get(mesh_data, mesh_submesh) == undefined) return undefined;
-    return mesh_data ? mesh_data.submeshes[| proto_guid_get(mesh_data, mesh_submesh)].reflect_wbuffer : undefined;
+    return mesh_data ? mesh_data.submeshes[proto_guid_get(mesh_data, mesh_submesh)].reflect_wbuffer : undefined;
 };
 
 GetTexture = function() {
