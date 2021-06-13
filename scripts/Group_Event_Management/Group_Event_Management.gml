@@ -33,11 +33,7 @@ function event_connect_node() {
 }
 
 function event_create(name) {
-    var event = instance_create_depth(0, 0, 0, DataEvent);
-    event.name = name;
-    instance_deactivate_object(event);
-    
-    return event;
+    return new DataEvent(name);
 }
 
 /// @param Event

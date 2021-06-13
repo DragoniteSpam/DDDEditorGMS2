@@ -1,10 +1,4 @@
-/// @param DataEvent
-/// @param root
-function dialog_create_event_delete(argument0, argument1) {
-
-    var event = argument0;
-    var root = argument1;
-
+function dialog_create_event_delete(event, root) {
     var dw = 400;
     var dh = 240;
 

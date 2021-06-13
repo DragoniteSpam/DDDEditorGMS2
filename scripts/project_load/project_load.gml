@@ -151,7 +151,7 @@ function project_load(id) {
         var events = json.events;
         
         for (var i = 0; i < array_length(events); i++) {
-            var event = instance_create_depth(0, 0, 0, DataEvent);
+            var event = new DataEvent();
             event.LoadJSON(events[i]);
             ds_list_add(Game.events.events, event);
         }

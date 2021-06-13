@@ -1,10 +1,4 @@
-/// @param Dialog
-/// @param DataEvent
-function dialog_create_event_get_event_entrypoint(argument0, argument1) {
-
-    var dialog = argument0;
-    var event = argument1;
-
+function dialog_create_event_get_event_entrypoint(dialog, event) {
     // you might think it's odd that this is of a different size than the get_event
     // dialog, except when they're the same size it's easy to not notice the contents
     // changing if there's not a lot of them, and to think that something went wrong
