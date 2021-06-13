@@ -7,8 +7,6 @@ function uivc_event_delete(argument0) {
 
     ds_list_delete(Game.events.events, index);
     ui_list_deselect(button.root.root.el_event_list);
-    instance_activate_object(event);
-    instance_destroy(event);
 
     Stuff.event.active = Game.events.events[| 0];
 

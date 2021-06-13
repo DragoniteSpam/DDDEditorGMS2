@@ -144,8 +144,6 @@ function event_create_node() {
         event.name_map[$ node.name] = node;
     }
     
-    instance_deactivate_object(node);
-    
     return node;
 }
 

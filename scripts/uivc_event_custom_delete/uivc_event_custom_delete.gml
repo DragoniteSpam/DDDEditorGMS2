@@ -17,9 +17,6 @@ function uivc_event_custom_delete(argument0) {
         }
     }
 
-    instance_activate_object(custom);
-    instance_destroy(custom);
-
     dialog_destroy(button);
 
 
