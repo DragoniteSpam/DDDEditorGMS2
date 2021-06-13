@@ -16,6 +16,8 @@ function uivc_event_custom_delete(argument0) {
             }
         }
     }
+    
+    custom.Destroy();
 
     dialog_destroy(button);
 

@@ -10,6 +10,8 @@ function uivc_event_delete(argument0) {
 
     Stuff.event.active = Game.events.events[| 0];
 
+    event.Destroy();
+
     dialog_destroy(button);
 
 
