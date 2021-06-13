@@ -1,4 +1,4 @@
-function DataEvent(source) : SData(source) {
+function DataEvent(source) : SData(source) constructor {
     self.nodes = ds_list_create();
     self.name_map = { };
     event_create_node(self, EventNodeTypes.ENTRYPOINT, 64, 64);
@@ -22,7 +22,7 @@ function DataEvent(source) : SData(source) {
     };
 }
 
-function DataEventNode(source) : SData(source) {
+function DataEventNode(source) : SData(source) constructor {
     self.type = EventNodeTypes.ENTRYPOINT;                                       // serialize: buffer_u16
     
     self.data = ds_list_create();
@@ -119,7 +119,7 @@ function DataEventNode(source) : SData(source) {
     };
 }
 
-function DataEventNodeCustom(source) : SData(source) {
+function DataEventNodeCustom(source) : SData(source) constructor {
     self.types = ds_list_create();
     self.outbound = [NULL];
     
@@ -176,23 +176,21 @@ function EventNodePeristent(name, data, outbound_names) constructor {
     self.name = name;
     self.flags = 0;
     self.summary = "";
-    guid_set(self, guid_generate());
-    self.internal_name = "DATA_" + string(self.GUID);
     self.types = ds_list_create();
     self.outbound = [];
     
     for (var i = 0; i < array_length(data); i++) {
-        var data = data[i];
-        var len = array_length(data);
+        var datum = data[i];
+        var len = array_length(datum);
     
-        var data_name = data[0];
-        var data_type = data[1];
-        var data_guid = (len > 2) ? data[2] : NULL;    // only useful for Data types
-        var data_max = (len > 3) ? data[3] : 1;
-        var data_required = (len > 4) ? data[4] : false;
-        var data_default = (len > 5) ? data[5] : 0;
-        var data_attainment = (len > 6) ? data[6] : null;
-        var data_output = (len > 7) ? data[7] : null;
+        var data_name = datum[0];
+        var data_type = datum[1];
+        var data_guid = (len > 2) ? datum[2] : NULL;    // only useful for Data types
+        var data_max = (len > 3) ? datum[3] : 1;
+        var data_required = (len > 4) ? datum[4] : false;
+        var data_default = (len > 5) ? datum[5] : 0;
+        var data_attainment = (len > 6) ? datum[6] : null;
+        var data_output = (len > 7) ? datum[7] : null;
     
         /// @gml update lightweight objects
         ds_list_add(self.types, [data_name, data_type, data_guid, data_max, data_required, data_default, data_attainment, data_output]);
