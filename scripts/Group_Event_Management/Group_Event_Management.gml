@@ -32,10 +32,6 @@ function event_connect_node() {
     }
 }
 
-function event_create(name) {
-    return new DataEvent(name);
-}
-
 /// @param Event
 /// @param EventNodeType
 /// @param [x]

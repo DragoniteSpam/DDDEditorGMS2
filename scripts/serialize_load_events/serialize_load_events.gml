@@ -9,7 +9,7 @@ function serialize_load_events(buffer, version) {
         // this was written in pieces before serialize_load_generic was
         // so don't use it here otherwise things will break
         var event_name = buffer_read(buffer, buffer_string);
-        var event = event_create(event_name);
+        var event = new DataEvent(event_name);
         ds_list_add(Game.events.events, event);
         guid_set(event, buffer_read(buffer, buffer_datatype));
         
@@ -187,7 +187,7 @@ function serialize_load_events(buffer, version) {
     
     // by default, set the 0th event as the active event
     if (ds_list_empty(Game.events.events)) {
-        ds_list_add(Game.events.events, event_create("DefaultEvent"));
+        ds_list_add(Game.events.events, new DataEvent("DefaultEvent"));
     }
     
     Stuff.event.active = Game.events.events[| 0];
