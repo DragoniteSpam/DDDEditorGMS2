@@ -31,13 +31,13 @@ function dialog_create_constant_get_event_entrypoint(dialog, constant) {
     yy += el_title_text.height + spacing;
     
     var el_list = create_list(16, yy, "Select an entrypoint", "<no entrypoints>", ew, eh, 16, null, false, dg);
-    for (var i = 0; i < ds_list_size(event.nodes); i++) {
-        if (event.nodes[| i].type == EventNodeTypes.ENTRYPOINT) {
+    for (var i = 0; i < array_length(event.nodes); i++) {
+        if (event.nodes[i].type == EventNodeTypes.ENTRYPOINT) {
             // this happens before the list is updated, so you don't need to bother with size minus 1
-            if (entrypoint == event.nodes[| i]) {
+            if (entrypoint == event.nodes[i]) {
                 ui_list_select(el_list, ds_list_size(el_list.entries), true);
             }
-            ds_list_add(el_list.entries, event.nodes[| i]);
+            ds_list_add(el_list.entries, event.nodes[i]);
         }
     }
     

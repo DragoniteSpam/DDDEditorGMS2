@@ -10,9 +10,9 @@ function uivc_event_custom_delete(argument0) {
 
     for (var i = 0; i < ds_list_size(Game.events.events); i++) {
         var event = Game.events.events[| i];
-        for (var j = 0; j < ds_list_size(event.nodes); j++) {
-            if (event.nodes[| j].custom_guid == custom.GUID) {
-                instance_destroy_later(event.nodes[| j]);
+        for (var j = 0; j < array_length(event.nodes); j++) {
+            if (event.nodes[j].custom_guid == custom.GUID) {
+                event.nodes[j].Destroy();
             }
         }
     }

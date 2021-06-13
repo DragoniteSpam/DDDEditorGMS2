@@ -32,13 +32,13 @@ function dialog_create_entity_get_event_entrypoint(argument0, argument1) {
     var yy = 64;
 
     var el_list = create_list(16, yy, "Select an entrypoint", "<no entrypoints>", ew, eh, 20, null, false, dg);
-    for (var i = 0; i < ds_list_size(event.nodes); i++) {
-        if (event.nodes[| i].type == EventNodeTypes.ENTRYPOINT) {
+    for (var i = 0; i < array_length(event.nodes); i++) {
+        if (event.nodes[i].type == EventNodeTypes.ENTRYPOINT) {
             // this happens before the list is updated, so you don't need to bother with size minus 1
-            if (page.event_entrypoint == event.nodes[| i].GUID) {
+            if (page.event_entrypoint == event.nodes[i].GUID) {
                 ui_list_select(el_list, ds_list_size(el_list.entries), true);
             }
-            ds_list_add(el_list.entries, event.nodes[| i]);
+            ds_list_add(el_list.entries, event.nodes[i]);
         }
     }
     el_list.entries_are = ListEntries.INSTANCES;

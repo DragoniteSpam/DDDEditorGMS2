@@ -131,7 +131,7 @@ function event_create_node() {
     }
     
     if (event) {
-        var n = ds_list_size(event.nodes);
+        var n = array_length(event.nodes);
         var base_name = node.name;
     
         // if there's a name collision, try the next number
@@ -142,7 +142,7 @@ function event_create_node() {
             node.name = base_name + "$" + string(n++);
         } until (!event.name_map[$ node.name]);
 
-        ds_list_add(event.nodes, node);
+        array_push(event.nodes, node);
         event.name_map[$ node.name] = node;
     }
     
@@ -151,9 +151,9 @@ function event_create_node() {
 
 function event_get_node(event, name) {
     // @todo preferably replace this with a constant-time map lookup later
-    for (var i = 0; i < ds_list_size(event.nodes); i++) {
-        if (name == event.nodes[| i].name) {
-            return event.nodes[| i];
+    for (var i = 0; i < array_length(event.nodes); i++) {
+        if (name == event.nodes[i].name) {
+            return event.nodes[i];
         }
     }
     
@@ -174,8 +174,8 @@ function event_get_node_global(name) {
 
 function event_seek_node() {
     // Checks to see if there's a node under the mouse position
-    for (var i=0; i<ds_list_size(Stuff.event.active.nodes); i++) {
-        var node=Stuff.event.active.nodes[| i];
+    for (var i=0; i<array_length(Stuff.event.active.nodes); i++) {
+        var node=Stuff.event.active.nodes[i];
         if (mouse_within_rectangle_adjusted(node.x, node.y, node.x+EVENT_NODE_CONTACT_WIDTH, node.y+EVENT_NODE_CONTACT_HEIGHT)) {
             if (!node.is_root) {
                 return node;

@@ -29,8 +29,8 @@ function dialog_create_event_custom_delete(custom, root) {
     for (var i = 0; i < ds_list_size(Game.events.events); i++) {
         var event = Game.events.events[| i];
         var this_event = false;
-        for (var j = 0; j < ds_list_size(event.nodes); j++) {
-            if (event.nodes[| j].custom_guid == custom.GUID) {
+        for (var j = 0; j < array_length(event.nodes); j++) {
+            if (event.nodes[j].custom_guid == custom.GUID) {
                 n_nodes++;
                 if (!this_event) {
                     this_event = true;

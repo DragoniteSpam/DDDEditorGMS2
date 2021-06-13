@@ -33,9 +33,9 @@ function dialog_create_constant_get_event_node(dialog) {
     yy += el_title_text.height + spacing;
     
     var el_list = create_list(16, yy, "Select an entrypoint", "<no entrypoints>", ew, eh, 18, null, false, dg);
-    for (var i = 0; i < ds_list_size(event.nodes); i++) {
-        if (event.nodes[| i].type == EventNodeTypes.ENTRYPOINT) {
-            ds_list_add(el_list.entries, event.nodes[| i]);
+    for (var i = 0; i < array_length(event.nodes); i++) {
+        if (event.nodes[i].type == EventNodeTypes.ENTRYPOINT) {
+            ds_list_add(el_list.entries, event.nodes[i]);
         }
     }
     ui_list_select(el_list, ds_list_find_index(el_list.entries, guid_get(constant.value)));

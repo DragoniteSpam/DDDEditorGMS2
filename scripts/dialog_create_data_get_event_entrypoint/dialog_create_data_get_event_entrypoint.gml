@@ -30,8 +30,8 @@ function dialog_create_data_get_event_entrypoint(argument0) {
 
     var current_index = -1;
     var en = 0;
-    for (var i = 0; i < ds_list_size(dialog.event.nodes); i++) {
-        var node = dialog.event.nodes[| i];
+    for (var i = 0; i < array_length(dialog.event.nodes); i++) {
+        var node = dialog.event.nodes[i];
         if (node.type == EventNodeTypes.ENTRYPOINT) {
             if (node.GUID == dialog.root.root.event_guid) {
                 current_index = en;

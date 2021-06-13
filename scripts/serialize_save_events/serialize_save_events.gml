@@ -11,7 +11,7 @@ function serialize_save_events(buffer) {
     
     for (var i = 0; i < n_events; i++) {
         var event = Game.events.events[| i];
-        var n_nodes = ds_list_size(event.nodes);
+        var n_nodes = array_length(event.nodes);
         // this was written in pieces before serialize_save_generic was
         // implemented so don't use it here
         buffer_write(buffer, buffer_string, event.name);
@@ -19,7 +19,7 @@ function serialize_save_events(buffer) {
         buffer_write(buffer, buffer_u32, n_nodes);
         
         for (var j = 0; j < n_nodes; j++) {
-            var node = event.nodes[| j];
+            var node = event.nodes[j];
             buffer_write(buffer, buffer_string, node.name);
             buffer_write(buffer, buffer_u16, node.type);
             buffer_write(buffer, buffer_s32, floor(node.x));

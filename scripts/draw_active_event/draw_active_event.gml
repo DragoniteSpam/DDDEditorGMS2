@@ -7,8 +7,8 @@ function draw_active_event() {
         
         Stuff.event.node_info = noone;
         
-        for (var i = 0; i < ds_list_size(Stuff.event.active.nodes); i++) {
-            draw_event_node(Stuff.event.active.nodes[| i]);
+        for (var i = 0; i < array_length(Stuff.event.active.nodes); i++) {
+            draw_event_node(Stuff.event.active.nodes[i]);
         }
         
         // if you're hovering over an event to show info for, draw it at

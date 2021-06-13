@@ -31,8 +31,8 @@ function dialog_create_event_get_event_entrypoint(dialog, event) {
     var current_index = -1;
     var en = 0;
     var data = dg.node.custom_data[dg.index];
-    for (var i = 0; i < ds_list_size(dg.event.nodes); i++) {
-        var node = dg.event.nodes[| i];
+    for (var i = 0; i < array_length(dg.event.nodes); i++) {
+        var node = dg.event.nodes[i];
         if (node.type == EventNodeTypes.ENTRYPOINT) {
             if (node.GUID == data[dg.multi_index]) {
                 current_index = en;

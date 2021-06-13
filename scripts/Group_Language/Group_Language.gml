@@ -121,8 +121,8 @@ function language_extract() {
         #region events
         for (var i = 0; i < ds_list_size(Game.events.events); i++) {
             var event = Game.events.events[| i];
-            for (var j = 0; j < ds_list_size(event.nodes); j++) {
-                var node = event.nodes[| j];
+            for (var j = 0; j < array_length(event.nodes); j++) {
+                var node = event.nodes[j];
                 switch (node.type) {
                     case EventNodeTypes.TEXT:
                     case EventNodeTypes.SHOW_SCROLLING_TEXT:

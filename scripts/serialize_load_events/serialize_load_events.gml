@@ -13,11 +13,7 @@ function serialize_load_events(buffer, version) {
         ds_list_add(Game.events.events, event);
         guid_set(event, buffer_read(buffer, buffer_datatype));
         
-        // events are created with an entrypoint by default - you could pass an optional
-        // parameter to the constructor to have it not do this, but this is the only place
-        // where it's going to happen, so there's not really a point
-        event.nodes[| 0].Destroy();
-        ds_list_clear(event.nodes);
+        array_resize(event.nodes, 0);
         
         var n_nodes = buffer_read(buffer, buffer_u32);
         
@@ -172,8 +168,8 @@ function serialize_load_events(buffer, version) {
     }
     
     for (var i = 0; i < ds_list_size(Game.events.events); i++) {
-        for (var j = 0; j < ds_list_size(Game.events.events[| i].nodes); j++) {
-            var node = Game.events.events[| i].nodes[| j];
+        for (var j = 0; j < array_length(Game.events.events[| i].nodes); j++) {
+            var node = Game.events.events[| i].nodes[j];
             
             for (var k = 0; k < array_length(node.outbound); k++) {
                 var dest = guid_get(node.outbound[k]);
