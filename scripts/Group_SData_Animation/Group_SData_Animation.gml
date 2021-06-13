@@ -158,11 +158,11 @@ function DataAnimationLayer(animation, name) constructor {
             graphic_mesh: self.graphic_mesh,
             graphic_frame: self.graphic_frame,
             
-            keyframes: array_create(array_length(self.keyframes)),
+            keyframes: array_create(array_length(self.keyframes), undefined),
         };
         
         for (var i = 0, n = array_length(self.keyframes); i < n; i++) {
-            json.keyframes[i] = self.keyframes[i].CreateJSON();
+            if (self.keyframes[i]) json.keyframes[i] = self.keyframes[i].CreateJSON();
         }
         
         return json;

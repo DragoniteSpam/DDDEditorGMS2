@@ -3,19 +3,19 @@ function project_save() {
     if (fn == "") return;
     
     static project_write_json = function(data_list) {
-        var json = array_create(ds_list_size(data_list));
-        for (var i = 0, n = ds_list_size(data_list); i < n; i++) {
-            json[i] = data_list[| i].CreateJSON();
+        if (is_array(data_list)) {
+            var json = array_create(array_length(data_list));
+            for (var i = 0, n = array_length(data_list); i < n; i++) {
+                json[i] = data_list[i].CreateJSON();
+            }
+            return json;
+        } else {
+            var json = array_create(ds_list_size(data_list));
+            for (var i = 0, n = ds_list_size(data_list); i < n; i++) {
+                json[i] = data_list[| i].CreateJSON();
+            }
+            return json;
         }
-        return json;
-    };
-    
-    static project_write_json_array = function(data_array) {
-        var json = array_create(array_length(data_array));
-        for (var i = 0, n = array_length(data_array); i < n; i++) {
-            json[i] = data_array[i].CreateJSON();
-        }
-        return json;
     };
     
     static project_write_json_simple = function(data_list) {
@@ -26,25 +26,16 @@ function project_save() {
         return json;
     };
     
-    static project_write_json_simple_array = function(data_array) {
-        var json = array_create(array_length(data_array));
-        for (var i = 0, n = array_length(data_array); i < n; i++) {
-            json[i] = data_array[i];
-        }
-        return json;
-    };
-    
     static save_assets = function(folder, data_list) {
-        for (var i = 0, n = ds_list_size(data_list); i < n; i++) {
-            data_list[| i].SaveAsset(folder);
+        if (is_array(data_list)) {
+            for (var i = 0, n = array_length(data_list); i < n; i++) {
+                data_list[i].SaveAsset(folder);
+            }
+        } else {
+            for (var i = 0, n = ds_list_size(data_list); i < n; i++) {
+                data_list[| i].SaveAsset(folder);
+            }
         }
-    };
-    
-    static project_write_text = function() {
-        return {
-            langs: Game.languages.names,
-            data: Game.languages.text,
-        };
     };
     
     var t0 = get_timer();
@@ -116,7 +107,7 @@ function project_save() {
         version: ProjectSaveVersions._CURRENT - 1,
     }), folder_name + "audio.json");
     buffer_write_file(json_stringify({
-        meshes: project_write_json_array(Game.meshes),
+        meshes: project_write_json(Game.meshes),
         version: ProjectSaveVersions._CURRENT - 1,
     }), folder_name + "meshes.json");
     buffer_write_file(json_stringify({
@@ -124,7 +115,7 @@ function project_save() {
         version: ProjectSaveVersions._CURRENT - 1,
     }), folder_name + "meshautotiles.json");
     buffer_write_file(json_stringify({
-        animations: project_write_json_simple_array(Game.animations),
+        animations: project_write_json(Game.animations),
         version: ProjectSaveVersions._CURRENT - 1,
     }), folder_name + "animations.json");
     buffer_write_file(json_stringify({
@@ -132,7 +123,10 @@ function project_save() {
         version: ProjectSaveVersions._CURRENT - 1,
     }), folder_name + "terrain.json");
     buffer_write_file(json_stringify({
-        lang: project_write_text(),
+        lang: {
+            langs: Game.languages.names,
+            data: Game.languages.text,
+        },
         version: ProjectSaveVersions._CURRENT - 1,
     }), folder_name + "text.json");
     buffer_write_file(json_stringify({
