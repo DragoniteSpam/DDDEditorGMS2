@@ -4,7 +4,7 @@ function serialize_load_event_custom(buffer, version) {
     var n_custom = buffer_read(buffer, buffer_u16);
     
     repeat (n_custom) {
-        var custom = instance_create_depth(0, 0, 0, DataEventNodeCustom);
+        var custom = new DataEventNodeCustom();
         serialize_load_generic(buffer, custom, version);
         
         var n_types = buffer_read(buffer, buffer_u8);

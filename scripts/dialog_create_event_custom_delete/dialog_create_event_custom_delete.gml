@@ -1,10 +1,4 @@
-/// @param DataEventNodeCustom
-/// @param root
-function dialog_create_event_custom_delete(argument0, argument1) {
-
-    var custom = argument0;
-    var root = argument1;
-
+function dialog_create_event_custom_delete(custom, root) {
     var dw = 400;
     var dh = 240;
 
