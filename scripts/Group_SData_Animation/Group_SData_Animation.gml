@@ -346,7 +346,7 @@ function DataAnimationKeyframe(layer, moment, source) constructor {
         b: AnimationTweens.NONE,
     };
     
-    if (is_struct(source)) {
+    if (source) {
         self.relative = self.relative;
         self.x = self.xx;
         self.y = self.yy;
