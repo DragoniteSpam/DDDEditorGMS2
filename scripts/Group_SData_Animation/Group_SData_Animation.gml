@@ -160,7 +160,7 @@ function DataAnimationLayer(animation, source) constructor {
         self.keyframes = source.keyframes;
         
         for (var i = 0, n = array_length(self.keyframes); i < n; i++) {
-            if (self.keyframes[i]) {
+            if (is_struct(self.keyframes[i])) {
                 self.keyframes[i] = new DataAnimationKeyframe(self, i, self.keyframes[i]);
             } else {
                 self.keyframes[i] = undefined;
