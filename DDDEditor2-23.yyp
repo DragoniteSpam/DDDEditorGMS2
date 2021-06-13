@@ -1312,6 +1312,7 @@
     {"id":{"name":"uivc_mesh_set_flags","path":"scripts/uivc_mesh_set_flags/uivc_mesh_set_flags.yy",},"order":24,},
     {"id":{"name":"omu_event_custom_add_property","path":"scripts/omu_event_custom_add_property/omu_event_custom_add_property.yy",},"order":29,},
     {"id":{"name":"omu_event_custom_add_outbound","path":"scripts/omu_event_custom_add_outbound/omu_event_custom_add_outbound.yy",},"order":30,},
+    {"id":{"name":"Group_SData_Event","path":"scripts/Group_SData_Event/Group_SData_Event.yy",},"order":8,},
     {"id":{"name":"omu_event_custom_remove_outbound","path":"scripts/omu_event_custom_remove_outbound/omu_event_custom_remove_outbound.yy",},"order":31,},
     {"id":{"name":"omu_event_custom_data_select","path":"scripts/omu_event_custom_data_select/omu_event_custom_data_select.yy",},"order":32,},
     {"id":{"name":"omu_event_custom_enum_select","path":"scripts/omu_event_custom_enum_select/omu_event_custom_enum_select.yy",},"order":33,},
