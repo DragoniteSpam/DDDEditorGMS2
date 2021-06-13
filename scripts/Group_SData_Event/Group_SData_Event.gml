@@ -171,12 +171,34 @@ function DataEventNodeCustom(source) : SData(source) {
     };
 }
 
-function EventNodePeristent() {
-    self.name = "data";
+function EventNodePeristent(name, data, outbound_names) {
+    if (outbound_names == undefined) outbound_names = [""];
+    self.name = name;
     self.flags = 0;
     self.summary = "";
     guid_set(self, guid_generate());
     self.internal_name = "DATA_" + string(self.GUID);
     self.types = ds_list_create();
     self.outbound = [];
+    
+    for (var i = 0; i < array_length(data); i++) {
+        var data = data[i];
+        var len = array_length(data);
+    
+        var data_name = data[0];
+        var data_type = data[1];
+        var data_guid = (len > 2) ? data[2] : NULL;    // only useful for Data types
+        var data_max = (len > 3) ? data[3] : 1;
+        var data_required = (len > 4) ? data[4] : false;
+        var data_default = (len > 5) ? data[5] : 0;
+        var data_attainment = (len > 6) ? data[6] : null;
+        var data_output = (len > 7) ? data[7] : null;
+    
+        /// @gml update lightweight objects
+        ds_list_add(self.types, [data_name, data_type, data_guid, data_max, data_required, data_default, data_attainment, data_output]);
+    }
+
+    for (var i = 0; i < array_length(outbound_names); i++) {
+        array_push(self.outbound, outbound_names[i]);
+    }
 }
