@@ -170,3 +170,13 @@ function DataEventNodeCustom(source) : SData(source) {
         ds_list_destroy(self.types);
     };
 }
+
+function EventNodePeristent() {
+    self.name = "data";
+    self.flags = 0;
+    self.summary = "";
+    guid_set(self, guid_generate());
+    self.internal_name = "DATA_" + string(self.GUID);
+    self.types = ds_list_create();
+    self.outbound = [];
+}
