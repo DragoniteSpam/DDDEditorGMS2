@@ -1,4 +1,4 @@
-function DataAnimation(name) : SData(name) constructor {
+function DataAnimation(source) : SData(source) constructor {
     self.frames_per_second = 24;
     self.moments = self.frames_per_second * 2;
     self.loops = true;
@@ -9,6 +9,14 @@ function DataAnimation(name) : SData(name) constructor {
     self.layers = [new DataAnimationLayer(self, "Layer 0")];
     self.layers[0].keyframes = array_create(self.moments);
     self.layers[0].is_actor = true;
+    
+    if (is_struct(source)) {
+        self.frames_per_second = source.frames_per_second;
+        self.moments = source.moments;
+        self.loops = source.loops;
+        self.code = source.code;
+        self.layers = source.layers;
+    }
     
     static AddLayer = function() {
         var new_layer = new DataAnimationLayer(self, "Layer " + string(array_length(self.layers)));

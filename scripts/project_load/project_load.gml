@@ -124,9 +124,7 @@ function project_load(id) {
         var animations = json.animations;
         
         for (var i = 0; i < array_length(animations); i++) {
-            var animation = new DataAnimation();
-            animation.LoadJSON(animations[i]);
-            array_push(Game.animations, animation);
+            array_push(Game.animations, new DataAnimation(animations[i]));
         }
     };
     
