@@ -26,8 +26,6 @@ if (ds_queue_size(c_object_cache) > C_OBJECT_CACHE_SIZE) {
 
 gpu_set_state(gpu_base_state);
 
-var ts = get_active_tileset();
-
 if (schedule_rebuild_autotile_texture) {
     wtf("this has yet to be implemented");
     schedule_rebuild_autotile_texture = false;

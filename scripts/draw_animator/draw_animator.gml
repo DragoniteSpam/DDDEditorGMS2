@@ -1,8 +1,5 @@
 function draw_animator() {
     draw_clear(c_black);
-    var map = Stuff.map.active_map;
-    var map_contents = map.contents;
-    
     gpu_set_cullmode(Settings.view.backface ? cull_noculling : cull_counterclockwise);
     gpu_set_zwriteenable(true);
     gpu_set_ztestenable(true);

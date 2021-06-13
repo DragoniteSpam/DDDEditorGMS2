@@ -1,16 +1,9 @@
-/// @param EditorModeAnimation
-function control_animator(argument0) {
-
-    var mode = argument0;
-    var map = Stuff.map.active_map;
-    var map_contents = map.contents;
-
-#region camera control
+function control_animator(mode) {
     var mspd = get_camera_speed(mode.z);
     var xspeed = 0;
     var yspeed = 0;
     var zspeed = 0;
-
+    
     if (keyboard_check(vk_up) || keyboard_check(ord("W"))) {
         xspeed = xspeed + dcos(mode.direction) * mspd;
         yspeed = yspeed - dsin(mode.direction) * mspd;
@@ -41,7 +34,7 @@ function control_animator(argument0) {
         mode.yto = mode.y - dsin(mode.direction) * dcos(mode.pitch);
         mode.zto = mode.z - dsin(mode.pitch);
     }
-
+    
     mode.x += xspeed;
     mode.y += yspeed;
     mode.z += zspeed;
@@ -51,7 +44,4 @@ function control_animator(argument0) {
     mode.xup = 0;
     mode.yup = 0;
     mode.zup = 1;
-#endregion
-
-
 }
