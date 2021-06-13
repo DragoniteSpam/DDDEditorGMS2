@@ -29,7 +29,7 @@ function project_save() {
     static project_write_json_simple_array = function(data_array) {
         var json = array_create(array_length(data_array));
         for (var i = 0, n = array_length(data_array); i < n; i++) {
-            json[i] = data_array[| i];
+            json[i] = data_array[i];
         }
         return json;
     };
