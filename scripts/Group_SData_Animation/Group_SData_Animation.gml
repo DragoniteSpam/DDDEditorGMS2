@@ -11,6 +11,10 @@ function DataAnimation(source) : SData(source) constructor {
         self.loops = source.loops;
         self.code = source.code;
         self.layers = source.layers;
+        
+        for (var i = 0, n = array_length(self.layers); i < n; i++) {
+            self.layers[i] = new DataAnimationLayer(self, self.layers[i]);
+        }
     } else {
         self.layers = [new DataAnimationLayer(self, "Layer 0")];
         self.layers[0].keyframes = array_create(self.moments);
@@ -93,7 +97,7 @@ function DataAnimation(source) : SData(source) constructor {
     };
 }
 
-function DataAnimationLayer(animation, name) constructor {
+function DataAnimationLayer(animation, source) constructor {
     static property_map = undefined;
     if (!property_map) {
         property_map = { };
@@ -114,7 +118,6 @@ function DataAnimationLayer(animation, name) constructor {
     }
     
     self.animation = animation;
-    self.name = name;
     self.is_actor = false;
     self.keyframes = [];
     
@@ -135,6 +138,37 @@ function DataAnimationLayer(animation, name) constructor {
     self.graphic_sprite = NULL;
     self.graphic_mesh = NULL;
     self.graphic_frame = 0;
+    
+    if (is_struct(source)) {
+        self.x = source.x;
+        self.y = source.y;
+        self.z = source.z;
+        self.xrot = source.xrot;
+        self.yrot = source.yrot;
+        self.zrot = source.zrot;
+        self.xscale = source.xscale;
+        self.yscale = source.yscale;
+        self.zscale = source.zscale;
+        self.color = source.color;
+        self.alpha = source.alpha;
+        
+        self.graphic_type = source.graphic_type;
+        self.graphic_sprite = source.graphic_sprite;
+        self.graphic_mesh = source.graphic_mesh;
+        self.graphic_frame = source.graphic_frame;
+        
+        self.keyframes = source.keyframes;
+        
+        for (var i = 0, n = array_length(self.keyframes); i < n; i++) {
+            if (self.keyframes[i]) {
+                self.keyframes[i] = new DataAnimationKeyframe(self, i, self.keyframes[i]);
+            } else {
+                self.keyframes[i] = undefined;
+            }
+        }
+    } else {
+        self.name = source;
+    }
     
     static CreateJSON = function() {
         var json = {
@@ -247,7 +281,7 @@ enum GraphicTypes {
     MESH
 }
 
-function DataAnimationKeyframe(layer, moment) constructor {
+function DataAnimationKeyframe(layer, moment, source) constructor {
     static property_map = undefined;
     if (!property_map) {
         property_map = { };
@@ -311,6 +345,29 @@ function DataAnimationKeyframe(layer, moment) constructor {
         g: AnimationTweens.NONE,
         b: AnimationTweens.NONE,
     };
+    
+    if (is_struct(source)) {
+        self.relative = self.relative;
+        self.x = self.xx;
+        self.y = self.yy;
+        self.z = self.zz;
+        self.xrot = self.xrot;
+        self.yrot = self.yrot;
+        self.zrot = self.zrot;
+        self.xscale = self.xscale;
+        self.yscale = self.yscale;
+        self.zscale = self.zscale;
+        self.color = self.color;
+        self.alpha = self.color;
+        self.audio = self.audio;
+        self.graphic_type = self.graphic_type;
+        self.graphic_sprite = self.graphic_sprite;
+        self.graphic_mesh = self.graphic_mesh;
+        self.graphic_frame = self.graphic_frame;
+        self.graphic_direction = self.graphic_direction;
+        self.event = self.event;
+        self.tween = self.tween;
+    }
     
     static CreateJSON = function() {
         return {
