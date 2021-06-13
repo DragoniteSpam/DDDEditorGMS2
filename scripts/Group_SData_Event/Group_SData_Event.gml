@@ -171,7 +171,7 @@ function DataEventNodeCustom(source) : SData(source) {
     };
 }
 
-function EventNodePeristent(name, data, outbound_names) {
+function EventNodePeristent(name, data, outbound_names) constructor {
     if (outbound_names == undefined) outbound_names = [""];
     self.name = name;
     self.flags = 0;
