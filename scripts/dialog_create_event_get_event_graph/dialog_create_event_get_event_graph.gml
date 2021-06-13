@@ -38,8 +38,8 @@ function dialog_create_event_get_event_graph(argument0, argument1, argument2) {
     el_list.entries_are = ListEntries.INSTANCES;
     dg.el_list = el_list;
 
-    for (var i = 0; i < ds_list_size(Game.events.events); i++) {
-        if (Game.events.events[| i] == Stuff.event.active) {
+    for (var i = 0; i < array_length(Game.events.events); i++) {
+        if (Game.events.events[i] == Stuff.event.active) {
             ui_list_select(el_list, i);
             break;
         }

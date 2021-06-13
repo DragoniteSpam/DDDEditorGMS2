@@ -26,8 +26,8 @@ function dialog_create_data_get_event(argument0) {
     dg.el_list = el_list;
 
     if (root.instance) {
-        for (var i = 0; i < ds_list_size(Game.events.events); i++) {
-            if (Game.events.events[| i].GUID == root.event_guid) {
+        for (var i = 0; i < array_length(Game.events.events); i++) {
+            if (Game.events.events[i].GUID == root.event_guid) {
                 ui_list_select(el_list, i);
                 break;
             }

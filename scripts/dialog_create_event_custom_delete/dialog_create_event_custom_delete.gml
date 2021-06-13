@@ -26,8 +26,8 @@ function dialog_create_event_custom_delete(custom, root) {
     var n_events = 0;
     var n_nodes = 0;
 #region count the number of nodes that will be deleted
-    for (var i = 0; i < ds_list_size(Game.events.events); i++) {
-        var event = Game.events.events[| i];
+    for (var i = 0; i < array_length(Game.events.events); i++) {
+        var event = Game.events.events[i];
         var this_event = false;
         for (var j = 0; j < array_length(event.nodes); j++) {
             if (event.nodes[j].custom_guid == custom.GUID) {

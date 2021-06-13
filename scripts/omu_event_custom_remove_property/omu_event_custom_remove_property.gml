@@ -8,8 +8,8 @@ function omu_event_custom_remove_property(argument0) {
     ui_list_clear(thing.root.el_list);
 
     // delete the data from existing nodes
-    for (var i = 0; i < ds_list_size(Game.events.events); i++) {
-        var event = Game.events.events[| i];
+    for (var i = 0; i < array_length(Game.events.events); i++) {
+        var event = Game.events.events[i];
         for (var j = 0; j < array_length(event.nodes); j++) {
             if (event.nodes[j].custom_guid == thing.root.event.GUID) {
                 array_delete(event.nodes[j].custom_data, selection, 1);

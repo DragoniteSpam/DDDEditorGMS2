@@ -110,6 +110,8 @@ Game = {
         array_clear_instances(self.animations);
         array_clear_instances(self.meshes);
         
+        array_resize(self.events, 0);
+        
         Identifiers.Clear();
     },
 };

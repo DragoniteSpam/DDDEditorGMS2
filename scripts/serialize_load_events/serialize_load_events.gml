@@ -10,7 +10,7 @@ function serialize_load_events(buffer, version) {
         // so don't use it here otherwise things will break
         var event_name = buffer_read(buffer, buffer_string);
         var event = new DataEvent(event_name);
-        ds_list_add(Game.events.events, event);
+        array_push(Game.events.events, event);
         guid_set(event, buffer_read(buffer, buffer_datatype));
         
         array_resize(event.nodes, 0);
@@ -167,9 +167,9 @@ function serialize_load_events(buffer, version) {
         }
     }
     
-    for (var i = 0; i < ds_list_size(Game.events.events); i++) {
-        for (var j = 0; j < array_length(Game.events.events[| i].nodes); j++) {
-            var node = Game.events.events[| i].nodes[j];
+    for (var i = 0; i < array_length(Game.events.events); i++) {
+        for (var j = 0; j < array_length(Game.events.events[i].nodes); j++) {
+            var node = Game.events.events[i].nodes[j];
             
             for (var k = 0; k < array_length(node.outbound); k++) {
                 var dest = guid_get(node.outbound[k]);
@@ -182,9 +182,9 @@ function serialize_load_events(buffer, version) {
     }
     
     // by default, set the 0th event as the active event
-    if (ds_list_empty(Game.events.events)) {
-        ds_list_add(Game.events.events, new DataEvent("DefaultEvent"));
+    if (array_empty(Game.events.events)) {
+        array_push(Game.events.events, new DataEvent("DefaultEvent"));
     }
     
-    Stuff.event.active = Game.events.events[| 0];
+    Stuff.event.active = Game.events.events[0];
 }

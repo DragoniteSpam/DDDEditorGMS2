@@ -1,7 +1,7 @@
 function dialog_create_constant_get_event_node(dialog) {
     var selection = ui_list_selection(dialog.root.el_list);
     var constant = dialog.root.constant;
-    var event = Game.events.events[| ui_list_selection(dialog.root.el_list)];
+    var event = Game.events.events[ui_list_selection(dialog.root.el_list)];
     
     if (!event) {
         return noone;

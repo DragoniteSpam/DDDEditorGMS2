@@ -60,8 +60,6 @@ function serialize_load(buffer, filename, proj_name) {
             instance_activate_object(Data);
             with (Data) instance_destroy();
             
-            // i'd like there to be a default event, although potentially in the future there will not be
-            ds_list_clear(Game.events.events);
             // these contain arrays, which are garbage collected and need to be there
             Game.vars.constants = [];
             Game.vars.variables = [];
