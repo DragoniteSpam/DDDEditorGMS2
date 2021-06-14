@@ -68,9 +68,9 @@ Game = {
     mesh_autotiles: ds_list_create(),
     animations: [],
     events: {
-        events: ds_list_create(),
-        custom: ds_list_create(),
-        prefabs: ds_list_create(),
+        events: [],
+        custom: [],
+        prefabs: [],
     },
     maps: ds_list_create(),
     languages: {
@@ -110,7 +110,9 @@ Game = {
         array_clear_instances(self.animations);
         array_clear_instances(self.meshes);
         
-        array_resize(self.events, 0);
+        array_resize(self.events.events, 0);
+        array_resize(self.events.custom, 0);
+        array_resize(self.events.prefabs, 0);
         
         Identifiers.Clear();
     },
