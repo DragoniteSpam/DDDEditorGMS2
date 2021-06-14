@@ -38,7 +38,7 @@ function serialize_save_particles(argument0) {
     buffer_write(buffer, buffer_u8, n_types);
 
     for (var i = 0; i < n_types; i++) {
-        var type = mode.types[| i];
+        var type = mode.types[i];
         var bools = pack(
             type.sprite_custom,
             type.sprite_animated,

@@ -1,13 +1,13 @@
 function ui_render_list_event_custom_properties(list, x, y) {
     var otext = list.text;
     
-    list.text = list.text + " (" + string(ds_list_size(list.root.event.types)) + ")";
+    list.text += " (" + string(array_length(list.root.event.types)) + ")";
     ds_list_clear(list.entries);
     
     // since these are just arrays and not instances we have to do this the hard way
     // @gml update lwo
-    for (var i = 0; i < ds_list_size(list.root.event.types); i++) {
-        var property = list.root.event.types[| i];
+    for (var i = 0; i < array_length(list.root.event.types); i++) {
+        var property = list.root.event.types[i];
         ds_list_add(list.entries, property[EventNodeCustomData.NAME]);
     }
     

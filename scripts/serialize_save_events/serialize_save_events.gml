@@ -74,21 +74,22 @@ function serialize_save_events(buffer) {
                     var custom = guid_get(node.custom_guid);
                 
                     for (var k = 0; k < array_length(node.custom_data); k++) {
-                        var type = custom.types[| k];
+                        var type = custom.types[k];
                         
+                        var save_type;
                         switch (type[EventNodeCustomData.TYPE]) {
                             case DataTypes.INT:
-                                var save_type = buffer_s32;
+                                save_type = buffer_s32;
                                 break;
                             case DataTypes.FLOAT:
-                                var save_type = buffer_f32;
+                                save_type = buffer_f32;
                                 break;
                             case DataTypes.BOOL:
-                                var save_type = buffer_u8;
+                                save_type = buffer_u8;
                                 break;
                             case DataTypes.STRING:
                             case DataTypes.CODE:
-                                var save_type = buffer_string;
+                                save_type = buffer_string;
                                 break; 
                             case DataTypes.ENUM:
                             case DataTypes.DATA:
@@ -109,13 +110,13 @@ function serialize_save_events(buffer) {
                             case DataTypes.MESH:
                             case DataTypes.MESH_AUTOTILE:
                             case DataTypes.EVENT:
-                                var save_type = buffer_datatype;
+                                save_type = buffer_datatype;
                                 break;
                             case DataTypes.TILE:
                                 not_yet_implemented();
                                 break;
                             case DataTypes.ASSET_FLAG:
-                                var save_type = buffer_flag;
+                                save_type = buffer_flag;
                                 break;
                         }
                     

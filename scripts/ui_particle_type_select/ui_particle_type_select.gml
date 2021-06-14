@@ -2,7 +2,7 @@ function ui_particle_type_select(list) {
     var selection = ui_list_selection(list);
     
     if (selection + 1) {
-        var type = Stuff.particle.types[| selection];
+        var type = Stuff.particle.types[selection];
         ui_input_set_value(list.root.name, type.name);
         ui_input_set_value(list.root.speed_min, string_format(type.speed_min, 1, 3));
         ui_input_set_value(list.root.speed_max, string_format(type.speed_max, 1, 3));

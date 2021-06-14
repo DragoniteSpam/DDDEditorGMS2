@@ -64,29 +64,30 @@ function serialize_load_event_prefabs(buffer, version) {
                 
                 var custom = guid_get(prefab.custom_guid);
                 
-                for (var i = 0; i < ds_list_size(custom.types); i++) {
-                    var sub_list = ds_list_create();
-                    type = custom.types[| i];
+                for (var i = 0; i < array_length(custom.types); i++) {
+                    var sub_list = [];
+                    type = custom.types[i];
                     
+                    var buffer_type;
                     switch (type[EventNodeCustomData.TYPE]) {
                         case DataTypes.INT:
-                            var buffer_type = buffer_s32;
+                            buffer_type = buffer_s32;
                             break;
                         case DataTypes.FLOAT:
-                            var buffer_type = buffer_f32;
+                            buffer_type = buffer_f32;
                             break;
                         case DataTypes.BOOL:
-                            var buffer_type = buffer_u8;
+                            buffer_type = buffer_u8;
                             break;
                         case DataTypes.STRING:
                         case DataTypes.CODE:
-                            var buffer_type = buffer_string;
+                            buffer_type = buffer_string;
                             break;
                         case DataTypes.COLOR:
-                            var buffer_type = buffer_u32;
+                            buffer_type = buffer_u32;
                             break;
                         case DataTypes.ASSET_FLAG:
-                            var buffer_type = buffer_flag;
+                            buffer_type = buffer_flag;
                             break;
                         case DataTypes.ENUM:
                         case DataTypes.DATA:
@@ -106,7 +107,7 @@ function serialize_load_event_prefabs(buffer, version) {
                         case DataTypes.IMG_UI:
                         case DataTypes.IMG_SKYBOX:
                         case DataTypes.IMG_TILE_ANIMATION:
-                            var buffer_type = buffer_datatype;
+                            buffer_type = buffer_datatype;
                             break;
                         case DataTypes.TILE:
                             not_yet_implemented();
@@ -123,8 +124,8 @@ function serialize_load_event_prefabs(buffer, version) {
                         }
                         array_push(prefab.custom_data, sub_list);
                     } else {
-                        var sub_list = prefab.custom_data[i];
-                        sub_list = [];
+                        prefab.custom_data[i] = [];
+                        sub_list = prefab.custom_data[i];
                         repeat (n_custom_data) {
                             array_push(sub_list, buffer_read(buffer, buffer_type));
                         }

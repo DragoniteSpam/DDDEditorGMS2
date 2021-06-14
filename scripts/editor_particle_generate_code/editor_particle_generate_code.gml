@@ -11,7 +11,7 @@ function editor_particle_generate_code() {
 
     // part types
     for (var i = 0; i < ds_list_size(Stuff.particle.types); i++) {
-        var type = Stuff.particle.types[| i];
+        var type = Stuff.particle.types[i];
         var type_name = "global._part_type_" + string(i);
         text += "/* " + type.name + " */\n";
         text += "" + type_name + " = part_type_create();\n";
@@ -58,7 +58,7 @@ function editor_particle_generate_code() {
     var secondary = false;
     // secondary emission - particles must be previously defined
     for (var i = 0; i < ds_list_size(Stuff.particle.types); i++) {
-        var type = Stuff.particle.types[| i];
+        var type = Stuff.particle.types[i];
         var type_name = "global._part_type_" + string(i);
         if (type.update_type) {
             var update_name = "global._part_type_" + string(ds_list_find_index(Stuff.particle.types, type.update_type));

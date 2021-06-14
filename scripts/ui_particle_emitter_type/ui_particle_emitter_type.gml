@@ -9,7 +9,7 @@ function ui_particle_emitter_type(argument0) {
         var emitter = Stuff.particle.emitters[| selection];
         editor_particle_emitter_set_region(emitter);
         if (selected_type + 1) {
-            emitter.type = Stuff.particle.types[| selected_type];
+            emitter.type = Stuff.particle.types[selected_type];
             editor_particle_emitter_set_emission(emitter);
         } else {
             emitter.type = noone;

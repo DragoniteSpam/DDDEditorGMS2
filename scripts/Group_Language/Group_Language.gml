@@ -135,8 +135,8 @@ function language_extract() {
                         break;
                     case EventNodeTypes.CUSTOM:
                         var custom = guid_get(node.custom_guid);
-                        for (var k = 0; k < ds_list_size(custom.types); k++) {
-                            if (custom.types[| k][EventNodeCustomData.TYPE] == DataTypes.STRING) {
+                        for (var k = 0; k < array_length(custom.types); k++) {
+                            if (custom.types[k][EventNodeCustomData.TYPE] == DataTypes.STRING) {
                                 for (var l = 0; l < array_length(node.custom_data[k]); l++) {
                                     var key = "Event." + node.name + "." + string(node.GUID) + ".custom." + string(k) + "." + string(l);
                                     lang[$ key] = (lang_index == 0) ? node.custom_data[k][l] : ((lang[$ key] != undefined) ? lang[$ key] : "");

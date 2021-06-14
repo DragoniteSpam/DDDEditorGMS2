@@ -5,7 +5,7 @@ function ui_particle_type_sprite(argument0) {
     var selection = ui_list_selection(button.root.list);
 
     if (selection + 1) {
-        var type = Stuff.particle.types[| selection];
+        var type = Stuff.particle.types[selection];
     
         var dw = 320;
         var dh = 540;

@@ -94,9 +94,9 @@ function serialize_load_events(buffer, version) {
                     }
                     var custom = guid_get(node.custom_guid);
                     
-                    for (var i = 0; i < ds_list_size(custom.types); i++) {
+                    for (var i = 0; i < array_length(custom.types); i++) {
                         var sub_list = [];
-                        var type = custom.types[| i];
+                        var type = custom.types[i];
                         var buffer_type;
                         
                         switch (type[EventNodeCustomData.TYPE]) {
@@ -152,8 +152,8 @@ function serialize_load_events(buffer, version) {
                             }
                             array_push(node.custom_data, sub_list);
                         } else {
+                            node.custom_data[i] = [];
                             sub_list = node.custom_data[i];
-                            sub_list = [];
                             repeat (n_custom_data) {
                                 array_push(sub_list, buffer_read(buffer, buffer_type));
                             }

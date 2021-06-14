@@ -2,7 +2,7 @@ function uivc_list_event_custom_property(list) {
     var selection = ui_list_selection(list);
     
     if (selection + 1) {
-        var property = list.root.event.types[| selection];
+        var property = list.root.event.types[selection];
         
         list.root.el_property_name.interactive = true;
         list.root.el_property_type.interactive = true;

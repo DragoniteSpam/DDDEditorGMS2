@@ -79,7 +79,7 @@ function draw_active_event() {
                     break;
                 default:
                     var base = guid_get(Stuff.event.node_info.custom_guid);
-                    var n = ds_list_size(base.types);
+                    var n = array_length(base.types);
                     var x1 = Stuff.event.node_info.x;
                     var y1 = Stuff.event.node_info.y - 64 - 16 * max(n, 1);
                     var x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
@@ -96,7 +96,7 @@ function draw_active_event() {
                         draw_text_colour(x1 + 16, y1 + 40, string("No data properties"), c_gray, c_gray, c_gray, c_gray, 1);
                     } else {
                         for (var i = 0; i < n; i++) {
-                            var type = base.types[| i];
+                            var type = base.types[i];
                             switch (type[1]) {
                                 case DataTypes.INT: var type_name = "int"; break;
                                 case DataTypes.FLOAT: var type_name = "float"; break;

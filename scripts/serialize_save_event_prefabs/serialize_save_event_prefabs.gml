@@ -49,22 +49,23 @@ function serialize_save_event_prefabs(buffer) {
                 
                 for (var j = 0; j < array_length(prefab.custom_data); j++) {
                     var type = custom.types[j];
+                    var save_type;
                     switch (type[EventNodeCustomData.TYPE]) {
                         case DataTypes.INT:
-                            var save_type = buffer_s32;
+                            save_type = buffer_s32;
                             break;
                         case DataTypes.FLOAT:
-                            var save_type = buffer_f32;
+                            save_type = buffer_f32;
                             break;
                         case DataTypes.BOOL:
-                            var save_type = buffer_u8;
+                            save_type = buffer_u8;
                             break;
                         case DataTypes.ASSET_FLAG:
-                            var save_type = buffer_flag;
+                            save_type = buffer_flag;
                             break;
                         case DataTypes.STRING:
                         case DataTypes.CODE:
-                            var save_type = buffer_string;
+                            save_type = buffer_string;
                             break; 
                         case DataTypes.ENUM:
                         case DataTypes.DATA:
@@ -84,10 +85,10 @@ function serialize_save_event_prefabs(buffer) {
                         case DataTypes.IMG_UI:
                         case DataTypes.IMG_SKYBOX:
                         case DataTypes.IMG_TILE_ANIMATION:
-                            var save_type = buffer_datatype;
+                            save_type = buffer_datatype;
                             break;
                         case DataTypes.COLOR:
-                            var save_type = buffer_u32;
+                            save_type = buffer_u32;
                             break;
                         case DataTypes.TILE:
                             not_yet_implemented();

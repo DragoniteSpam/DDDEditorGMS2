@@ -108,8 +108,8 @@ function event_create_node() {
                 node.name = custom.name;
                 
                 // pre-allocate space for the properties of the event
-                for (var i = 0; i < ds_list_size(custom.types); i++) {
-                    type = custom.types[| i];
+                for (var i = 0; i < array_length(custom.types); i++) {
+                    type = custom.types[i];
                     var new_list;
                     
                     // if all values are required, populate them with defaults

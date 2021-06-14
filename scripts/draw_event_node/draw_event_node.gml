@@ -334,7 +334,7 @@ function draw_event_node(node) {
             var ncolor = (node.type == EventNodeTypes.CUSTOM) ? c_ev_custom : c_ev_basic;
             
             for (var i = 0; i < ds_list_size(custom.types); i++) {
-                switch (custom.types[| i][1]) {
+                switch (custom.types[i][1]) {
                     case DataTypes.INT:
                     case DataTypes.FLOAT:
                     case DataTypes.BOOL:
@@ -383,9 +383,9 @@ function draw_event_node(node) {
                 
                 entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
                 
-                for (var i = 0; i < ds_list_size(custom.types); i++) {
+                for (var i = 0; i < array_length(custom.types); i++) {
                     var custom_data_list = node.custom_data[i];
-                    var type = custom.types[| i];
+                    var type = custom.types[i];
                     
                     switch (type[1]) {
                         case DataTypes.INT:

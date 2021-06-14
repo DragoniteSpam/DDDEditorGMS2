@@ -96,15 +96,15 @@ function serialize_load_particles(buffer, version) {
     #region linkage
     for (var i = 0; i < n_emitters; i++) {
         var emitter = mode.emitters[| i];
-        emitter.type = mode.types[| emitter.type] ? mode.types[| emitter.type] : noone;
+        emitter.type = mode.types[emitter.type] ? mode.types[emitter.type] : noone;
         editor_particle_emitter_set_emission(emitter);
         editor_particle_emitter_set_region(emitter);
         editor_particle_emitter_create_region(emitter);
     }
     for (var i = 0; i < n_types; i++) {
-        var type = mode.types[| i];
-        type.update_type = mode.types[| type.update_type] ? mode.types[| type.update_type] : noone;
-        type.death_type = mode.types[| type.death_type] ? mode.types[| type.death_type] : noone;
+        var type = mode.types[i];
+        type.update_type = mode.types[type.update_type] ? mode.types[type.update_type] : noone;
+        type.death_type = mode.types[type.death_type] ? mode.types[type.death_type] : noone;
         
         part_type_speed(type.type, type.speed_min, type.speed_max, type.speed_incr, type.speed_wiggle);
         part_type_direction(type.type, type.direction_min, type.direction_max, type.direction_incr, type.direction_wiggle);

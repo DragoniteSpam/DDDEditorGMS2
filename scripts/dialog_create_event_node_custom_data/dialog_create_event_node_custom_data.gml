@@ -1,5 +1,5 @@
 function dialog_create_event_node_custom_data(dialog, node, property_index, multi_index) {
-    var property = guid_get(node.custom_guid).types[| property_index];
+    var property = guid_get(node.custom_guid).types[property_index];
     var type = guid_get(property[EventNodeCustomData.TYPE_GUID]);
     
     var dw = 320;

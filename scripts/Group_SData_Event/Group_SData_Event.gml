@@ -111,14 +111,14 @@ function DataEventNode(source) : SData(source) constructor {
 }
 
 function DataEventNodeCustom(source) : SData(source) constructor {
-    self.types = ds_list_create();
+    self.types = [];
     self.outbound = [NULL];
     
     static CreateJSONEventCustom = function() {
         var json = self.CreateJSONBase();
-        json.types = array_create(ds_list_size(self.types));
-        for (var i = 0, n = ds_list_size(self.types); i < n; i++) {
-            var type = self.types[| i];
+        json.types = array_create(array_length(self.types));
+        for (var i = 0, n = array_length(self.types); i < n; i++) {
+            var type = self.types[i];
             json.types[i] = {
                 name: type[0],
                 type: type[1],
@@ -156,10 +156,6 @@ function DataEventNodeCustom(source) : SData(source) constructor {
     // min: -0x80000000
     // max:  0x7fffffff
     // char limit (universal): 100
-    
-    static Destroy = function() {
-        ds_list_destroy(self.types);
-    };
 }
 
 function EventNodePeristent(name, data, outbound_names) constructor {
@@ -167,7 +163,7 @@ function EventNodePeristent(name, data, outbound_names) constructor {
     self.name = name;
     self.flags = 0;
     self.summary = "";
-    self.types = ds_list_create();
+    self.types = [];
     self.outbound = [];
     
     static ev_custom_id = 0;
@@ -189,7 +185,7 @@ function EventNodePeristent(name, data, outbound_names) constructor {
         var data_output = (len > 7) ? datum[7] : null;
     
         /// @gml update lightweight objects
-        ds_list_add(self.types, [data_name, data_type, data_guid, data_max, data_required, data_default, data_attainment, data_output]);
+        array_push(self.types, [data_name, data_type, data_guid, data_max, data_required, data_default, data_attainment, data_output]);
     }
 
     for (var i = 0; i < array_length(outbound_names); i++) {

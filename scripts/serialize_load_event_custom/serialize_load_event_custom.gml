@@ -4,7 +4,7 @@ function serialize_load_event_custom(buffer, version) {
     var n_custom = buffer_read(buffer, buffer_u16);
     
     repeat (n_custom) {
-        var custom = new DataEventNodeCustom();
+        var custom = new DataEventNodeCustom("");
         serialize_load_generic(buffer, custom, version);
         
         var n_types = buffer_read(buffer, buffer_u8);
@@ -17,7 +17,7 @@ function serialize_load_event_custom(buffer, version) {
             
             // @todo if you decide to allow the user to define default values, or other things,
             // remember to save them here
-            ds_list_add(custom.types, [name, type, guid, max_size, required, 0, null, null]);
+            array_push(custom.types, [name, type, guid, max_size, required, 0, null, null]);
         }
         
         var n_outbound = buffer_read(buffer, buffer_u8);

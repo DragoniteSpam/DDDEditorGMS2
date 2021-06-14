@@ -4,7 +4,7 @@ function omu_event_custom_remove_property(argument0) {
     var thing = argument0;
     var selection = ui_list_selection(thing.root.el_list);
 
-    ds_list_delete(thing.root.event.types, selection);
+    array_delete(thing.root.event.types, selection, 1);
     ui_list_clear(thing.root.el_list);
 
     // delete the data from existing nodes

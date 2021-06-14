@@ -14,10 +14,10 @@ function serialize_save_event_custom(argument0) {
         var custom = Game.events.custom[| i];
         serialize_save_generic(buffer, custom);
     
-        var n_types = ds_list_size(custom.types);
+        var n_types = array_length(custom.types);
         buffer_write(buffer, buffer_u8, n_types);
         for (var j = 0; j < n_types; j++) {
-            var type = custom.types[| j];
+            var type = custom.types[j];
             buffer_write(buffer, buffer_string, type[0]);    // name
             buffer_write(buffer, buffer_u8, type[1]);        // data type
             buffer_write(buffer, buffer_datatype, type[2]);  // data guid
