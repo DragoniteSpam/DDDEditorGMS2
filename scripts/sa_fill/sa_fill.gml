@@ -10,7 +10,12 @@ function sa_fill() {
         return;
     }
     
-    sa_foreach_cell(fill_types[Settings.selection.fill_type], noone);
+    // processes each cell in the selection, but only once
+    var processed = { };
+    for (var s = 0; s < ds_list_size(Stuff.map.selection); s++) {
+        Stuff.map.selection[| s].foreach_cell(processed, fill_types[Settings.selection.fill_type], undefined);
+    }
+    
     selection_update_autotiles();
     sa_process_selection();
 }
