@@ -11,7 +11,7 @@ emitter_setting = noone;
 emitter_first_corner = true;
 
 system = part_system_create();
-types = ds_list_create();
+types = [];
 emitters = ds_list_create();
 
 part_system_automatic_update(system, system_auto_update);

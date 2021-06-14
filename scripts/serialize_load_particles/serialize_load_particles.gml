@@ -34,7 +34,7 @@ function serialize_load_particles(buffer, version) {
     repeat (n_types) {
         var type = instance_create_depth(0, 0, 0, ParticleType);
         instance_deactivate_object(type);
-        ds_list_add(mode.types, type);
+        array_push(mode.types, type);
         
         type.name = buffer_read(buffer, buffer_string);
         type.shape = buffer_read(buffer, buffer_u8);

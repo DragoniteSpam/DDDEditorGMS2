@@ -10,7 +10,7 @@ function editor_particle_generate_code() {
     text += "var _fps = game_get_speed(gamespeed_fps);\n\n";
 
     // part types
-    for (var i = 0; i < ds_list_size(Stuff.particle.types); i++) {
+    for (var i = 0; i < array_length(Stuff.particle.types); i++) {
         var type = Stuff.particle.types[i];
         var type_name = "global._part_type_" + string(i);
         text += "/* " + type.name + " */\n";
@@ -57,16 +57,16 @@ function editor_particle_generate_code() {
 
     var secondary = false;
     // secondary emission - particles must be previously defined
-    for (var i = 0; i < ds_list_size(Stuff.particle.types); i++) {
+    for (var i = 0; i < array_length(Stuff.particle.types); i++) {
         var type = Stuff.particle.types[i];
         var type_name = "global._part_type_" + string(i);
         if (type.update_type) {
-            var update_name = "global._part_type_" + string(ds_list_find_index(Stuff.particle.types, type.update_type));
+            var update_name = "global._part_type_" + string(array_search(Stuff.particle.types, type.update_type));
             text += "part_type_step(" + type_name + ", ceil(" + string(type.update_rate) + "/ _fps), " + update_name + ");\n";
             secondary = true;
         }
         if (type.death_type) {
-            var death_name = "global._part_type_" + string(ds_list_find_index(Stuff.particle.types, type.death_type));
+            var death_name = "global._part_type_" + string(array_search(Stuff.particle.types, type.death_type));
             text += "part_type_death(" + type_name + ", " + string(type.death_rate) + ", " + death_name + ");\n";
             secondary = true;
         }
@@ -89,7 +89,7 @@ function editor_particle_generate_code() {
         if (emitter.type) {
             text += "var _odds = " + string(emitter.rate) + ";\n";
             text += "if (_odds < _fps) {\n    var _rate =  -1 / (_odds / _fps);\n} else {\n    var _rate = _odds / _fps;\n}\n";
-            var type_name = "global._part_type_" + string(ds_list_find_index(Stuff.particle.types, emitter.type));
+            var type_name = "global._part_type_" + string(array_search(Stuff.particle.types, emitter.type));
             text += ((!emitter.streaming) ? "// " : "") + "part_emitter_stream(" + sys_name + ", " + em_name + ", " +
                 string(type_name) + ", _rate);\n";
         }

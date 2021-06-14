@@ -14,7 +14,7 @@ function ui_particle_type_remove(argument0) {
     
         instance_activate_object(type);
         instance_destroy(type);
-        ds_list_delete(Stuff.particle.types, selection);
+        array_delete(Stuff.particle.types, selection, 1);
         ui_list_deselect(button.root.list);
     }
 

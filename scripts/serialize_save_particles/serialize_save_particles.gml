@@ -28,13 +28,13 @@ function serialize_save_particles(argument0) {
         buffer_write(buffer, buffer_f32, emitter.region_y1);
         buffer_write(buffer, buffer_f32, emitter.region_y2);
         buffer_write(buffer, buffer_f32, emitter.rate);
-        buffer_write(buffer, buffer_s16, ds_list_find_index(mode.types, emitter.type));
+        buffer_write(buffer, buffer_s16, array_search(mode.types, emitter.type));
         buffer_write(buffer, buffer_u32, bools);
     }
 #endregion
 
 #region types
-    var n_types = ds_list_size(mode.types);
+    var n_types = array_length(mode.types);
     buffer_write(buffer, buffer_u8, n_types);
 
     for (var i = 0; i < n_types; i++) {
@@ -85,9 +85,9 @@ function serialize_save_particles(argument0) {
         buffer_write(buffer, buffer_f32, type.yscale);
         buffer_write(buffer, buffer_f32, type.life_min);
         buffer_write(buffer, buffer_f32, type.life_max);
-        buffer_write(buffer, buffer_s16, ds_list_find_index(mode.types, type.update_type));
+        buffer_write(buffer, buffer_s16, array_search(mode.types, type.update_type));
         buffer_write(buffer, buffer_f32, type.update_rate);
-        buffer_write(buffer, buffer_s16, ds_list_find_index(mode.types, type.death_type));
+        buffer_write(buffer, buffer_s16, array_search(mode.types, type.death_type));
         buffer_write(buffer, buffer_f32, type.death_rate);
         buffer_write(buffer, buffer_u32, bools);
     }

@@ -17,7 +17,7 @@ function ui_particle_emitter_select(argument0) {
         ui_input_set_value(list.root.ymax, string(emitter.region_y2));
         ui_input_set_value(list.root.rate, string(emitter.rate));
         ui_list_deselect(list.root.types);
-        ui_list_select(list.root.types, ds_list_find_index(Stuff.particle.types, emitter.type));
+        ui_list_select(list.root.types, array_search(Stuff.particle.types, emitter.type));
     }
 
 
