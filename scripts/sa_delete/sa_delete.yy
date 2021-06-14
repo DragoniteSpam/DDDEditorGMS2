@@ -2,8 +2,8 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "common",
-    "path": "folders/Scripts/Selection/actions/common.yy",
+    "name": "actions",
+    "path": "folders/Scripts/Selection/actions.yy",
   },
   "resourceVersion": "1.0",
   "name": "sa_delete",
