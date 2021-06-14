@@ -5,7 +5,7 @@ function ui_particle_emitter_set_region(button) {
     if (current_time - button.click_time < 250) return;
     
     if (selection + 1) {
-        Stuff.particle.emitter_setting = Stuff.particle.emitters[| selection];
+        Stuff.particle.emitter_setting = Stuff.particle.emitters[selection];
         Stuff.particle.emitter_first_corner = true;
         // this is the all-time worst hack for disabling the UI i have ever come up with
         var bad = emu_dialog_notice("");

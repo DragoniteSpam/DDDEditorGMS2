@@ -5,7 +5,7 @@ function ui_particle_emitter_distribution(argument0) {
     var selection = ui_list_selection(radio.root.root.list);
 
     if (selection + 1) {
-        var emitter = Stuff.particle.emitters[| selection];
+        var emitter = Stuff.particle.emitters[selection];
         emitter.region_distribution = radio.value;
         var shape = emitter.emitter_shapes[emitter.region_shape];
         var distribution = emitter.emitter_distributions[emitter.region_distribution];

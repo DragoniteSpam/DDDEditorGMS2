@@ -5,7 +5,7 @@ function ui_particle_emitter_rename(argument0) {
     var selection = ui_list_selection(input.root.list);
 
     if (selection + 1) {
-        var emitter = Stuff.particle.emitters[| selection];
+        var emitter = Stuff.particle.emitters[selection];
         emitter.name = input.value;
     }
 

@@ -11,11 +11,11 @@ function serialize_save_particles(argument0) {
     buffer_write(buffer, buffer_u64, 0);
 
 #region emitters
-    var n_emitters = ds_list_size(mode.emitters);
+    var n_emitters = array_length(mode.emitters);
     buffer_write(buffer, buffer_u8, n_emitters);
 
     for (var i = 0; i < n_emitters; i++) {
-        var emitter = mode.emitters[| i];
+        var emitter = mode.emitters[i];
         var bools = pack(
             emitter.streaming,
             emitter.draw_region

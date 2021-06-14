@@ -78,8 +78,8 @@ function editor_particle_generate_code() {
     }
 
     // emitters
-    for (var i = 0; i < ds_list_size(Stuff.particle.emitters); i++) {
-        var emitter = Stuff.particle.emitters[| i];
+    for (var i = 0; i < array_length(Stuff.particle.emitters); i++) {
+        var emitter = Stuff.particle.emitters[i];
         var em_name = "global._part_emitter_" + string(i);
         text += "/* " + emitter.name + " */\n";
         text += em_name + " = part_emitter_create(" + sys_name + ");\n";

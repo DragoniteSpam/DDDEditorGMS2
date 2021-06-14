@@ -5,7 +5,7 @@ function ui_particle_emitter_select(argument0) {
     var selection = ui_list_selection(list);
 
     if (selection + 1) {
-        var emitter = Stuff.particle.emitters[| selection];
+        var emitter = Stuff.particle.emitters[selection];
         list.root.shape.value = emitter.region_shape;
         list.root.distr.value = emitter.region_distribution;
         list.root.streaming.value = emitter.streaming;

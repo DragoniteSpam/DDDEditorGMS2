@@ -11,7 +11,7 @@ function serialize_load_particles(buffer, version) {
     repeat (n_emitters) {
         var emitter = instance_create_depth(0, 0, 0, ParticleEmitter);
         instance_deactivate_object(emitter);
-        ds_list_add(mode.emitters, emitter);
+        array_push(mode.emitters, emitter);
         
         emitter.name = buffer_read(buffer, buffer_string);
         emitter.region_shape = buffer_read(buffer, buffer_u8);
@@ -95,7 +95,7 @@ function serialize_load_particles(buffer, version) {
     
     #region linkage
     for (var i = 0; i < n_emitters; i++) {
-        var emitter = mode.emitters[| i];
+        var emitter = mode.emitters[i];
         emitter.type = mode.types[emitter.type] ? mode.types[emitter.type] : noone;
         editor_particle_emitter_set_emission(emitter);
         editor_particle_emitter_set_region(emitter);

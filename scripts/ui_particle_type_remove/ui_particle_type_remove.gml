@@ -7,13 +7,12 @@ function ui_particle_type_remove(argument0) {
     if (selection + 1) {
         var type = Stuff.particle.types[selection];
     
-        for (var i = 0; i < ds_list_size(Stuff.particle.emitters); i++) {
-            var emitter = Stuff.particle.emitters[| i];
+        for (var i = 0; i < array_length(Stuff.particle.emitters); i++) {
+            var emitter = Stuff.particle.emitters[i];
             emitter.type = (emitter.type == type) ? noone : emitter.type;
         }
     
-        instance_activate_object(type);
-        instance_destroy(type);
+        type.Destroy();
         array_delete(Stuff.particle.types, selection, 1);
         ui_list_deselect(button.root.list);
     }

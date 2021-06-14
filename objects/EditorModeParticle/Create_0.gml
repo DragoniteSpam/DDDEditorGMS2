@@ -12,7 +12,7 @@ emitter_first_corner = true;
 
 system = part_system_create();
 types = [];
-emitters = ds_list_create();
+emitters = [];
 
 part_system_automatic_update(system, system_auto_update);
 part_system_automatic_draw(system, false);

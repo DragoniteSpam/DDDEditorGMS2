@@ -20,7 +20,7 @@ function draw_editor_particle(mode) {
     
     if (Controller.mouse_right || Controller.press_left) {
         if (mouse_within_view(view_current) && ds_list_empty(Stuff.dialogs) && !mode.emitter_setting) {
-            var emitter = mode.emitters[| ui_list_selection(mode.ui.t_emitter.list)];
+            var emitter = mode.emitters[ui_list_selection(mode.ui.t_emitter.list)];
             if (emitter && emitter.type) {
                 part_particles_create(mode.system, mouse_x_view, mouse_y_view, emitter.type.type, emitter.rate * Stuff.dt)
             }
@@ -31,14 +31,14 @@ function draw_editor_particle(mode) {
     var base_ref = gpu_get_alphatestref();
     gpu_set_alphatestref(0.05);
     
-    for (var i = 0; i < ds_list_size(mode.emitters); i++) {
-        if (mode.emitters[| i].draw_region) vertex_submit(mode.emitters[| i].region, pr_trianglelist, tex_checker);
+    for (var i = 0; i < array_length(mode.emitters); i++) {
+        if (mode.emitters[i].draw_region) vertex_submit(mode.emitters[i].region, pr_trianglelist, tex_checker);
     }
     
     part_system_drawit(mode.system);
     
-    for (var i = 0; i < ds_list_size(mode.emitters); i++) {
-        if (mode.emitters[| i].draw_region) vertex_submit(mode.emitters[| i].region, pr_trianglelist, tex_checker);
+    for (var i = 0; i < array_length(mode.emitters); i++) {
+        if (mode.emitters[i].draw_region) vertex_submit(mode.emitters[i].region, pr_trianglelist, tex_checker);
     }
     
     gpu_set_alphatestref(base_ref);
