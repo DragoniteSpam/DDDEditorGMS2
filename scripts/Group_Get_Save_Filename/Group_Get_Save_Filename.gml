@@ -53,12 +53,6 @@ function get_save_filename_mesh_qma(name) {
     });
 }
 
-function get_save_filename_mesh_vrax(name) {
-    return __get_save_filename_generic("drago's old file format|*.vrax", name, Settings.location.mesh, "Select an vrax file", function(directory) {
-        Settings.location.mesh = directory;
-    });
-}
-
 function get_save_filename_terrain(name) {
     return __get_save_filename_generic("Terrain files|*.dddt", name, Settings.location.terrain, "Select a terrain file", function(directory) {
         Settings.location.terrain = directory;
