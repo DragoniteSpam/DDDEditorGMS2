@@ -57,7 +57,6 @@
     {"id":{"name":"editor_mode_text","path":"scripts/editor_mode_text/editor_mode_text.yy",},"order":10,},
     {"id":{"name":"Group_3D","path":"scripts/Group_3D/Group_3D.yy",},"order":7,},
     {"id":{"name":"Group_Selection","path":"scripts/Group_Selection/Group_Selection.yy",},"order":5,},
-    {"id":{"name":"sa_foreach_global","path":"scripts/sa_foreach_global/sa_foreach_global.yy",},"order":1,},
     {"id":{"name":"sa_delete","path":"scripts/sa_delete/sa_delete.yy",},"order":0,},
     {"id":{"name":"sa_fill","path":"scripts/sa_fill/sa_fill.yy",},"order":1,},
     {"id":{"name":"scribble_get_glyph_property","path":"scripts/scribble_get_glyph_property/scribble_get_glyph_property.yy",},"order":6,},
