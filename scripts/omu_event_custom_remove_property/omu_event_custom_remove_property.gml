@@ -18,8 +18,8 @@ function omu_event_custom_remove_property(argument0) {
     }
 
     // delete the data from prefab nodes
-    for (var i = 0; i < ds_list_size(Game.events.prefabs); i++) {
-        var prefab = Game.events.prefabs[| i];
+    for (var i = 0; i < array_length(Game.events.prefabs); i++) {
+        var prefab = Game.events.prefabs[i];
         if (prefab.custom_guid == thing.root.event.GUID) {
             array_delete(prefab.custom_data, selection, 1);
         }

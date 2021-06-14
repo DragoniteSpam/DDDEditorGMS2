@@ -11,7 +11,7 @@ function dialog_create_event_custom(argument0) {
 
     // later on this will be a clone; elements on the dialog should check this instead of the permenant one,
     // and it should be deleted when the dialog is closed
-    dg.event = Game.events.custom[| ui_list_selection(dialog.root.el_list_custom)];
+    dg.event = Game.events.custom[ui_list_selection(dialog.root.el_list_custom)];
 
     var columns = 3;
     var spacing = 16;

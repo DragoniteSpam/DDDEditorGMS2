@@ -5,7 +5,7 @@ function dmu_dialog_event_save_prefab(argument0) {
     var node = thing.root.node;
 
     var prefab = new DataEventNode(thing.root.el_name.value);
-    ds_list_add(Game.events.prefabs, prefab);
+    array_push(Game.events.prefabs, prefab);
 
     #region big fat variable copy
     prefab.type = node.type;

@@ -27,6 +27,6 @@ function serialize_load_event_custom(buffer, version) {
             custom.outbound[i] = buffer_read(buffer, buffer_string);
         }
         
-        ds_list_add(Game.events.custom, custom);
+        array_push(Game.events.custom, custom);
     }
 }
