@@ -1068,6 +1068,7 @@
     {"id":{"name":"uivc_check_view_backface","path":"scripts/uivc_check_view_backface/uivc_check_view_backface.yy",},"order":6,},
     {"id":{"name":"Group_Proto_GUID","path":"scripts/Group_Proto_GUID/Group_Proto_GUID.yy",},"order":66,},
     {"id":{"name":"uivc_check_view_entities","path":"scripts/uivc_check_view_entities/uivc_check_view_entities.yy",},"order":8,},
+    {"id":{"name":"Group_Particles","path":"scripts/Group_Particles/Group_Particles.yy",},"order":0,},
     {"id":{"name":"uivc_check_view_zones","path":"scripts/uivc_check_view_zones/uivc_check_view_zones.yy",},"order":9,},
     {"id":{"name":"uivc_check_view_lighting","path":"scripts/uivc_check_view_lighting/uivc_check_view_lighting.yy",},"order":10,},
     {"id":{"name":"uivc_check_view_gizmos","path":"scripts/uivc_check_view_gizmos/uivc_check_view_gizmos.yy",},"order":11,},
@@ -1791,6 +1792,7 @@
     {"folderPath":"folders/Struct N' Array Parser/XML.yy","order":7,"resourceVersion":"1.0","name":"XML","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Struct N' Array Parser/YAML.yy","order":8,"resourceVersion":"1.0","name":"YAML","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Editor.yy","order":88,"resourceVersion":"1.0","name":"Editor","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Particle Stuff.yy","order":89,"resourceVersion":"1.0","name":"Particle Stuff","tags":[],"resourceType":"GMFolder",},
   ],
   "AudioGroups": [
     {"targets":-1,"resourceVersion":"1.3","name":"audiogroup_default","resourceType":"GMAudioGroup",},
