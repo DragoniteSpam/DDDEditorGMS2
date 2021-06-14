@@ -62,15 +62,14 @@ function EmuTabGroup(x, y, w, h, rows, row_height) : EmuCore(x, y, w, h) constru
         }
         
         _active_tab = tab;
-        var contents_clone = ds_list_create();
-        ds_list_copy(contents_clone, _contents);
+        var contents_clone = ds_list_to_array(_contents);
         var _index = 0;
-        for (var i = 0; i < ds_list_size(contents_clone); i++) {
+        for (var i = 0; i < array_length(contents_clone); i++) {
             if (i == tab._row) continue;
-            _contents[| _index] = contents_clone[| i];
+            _contents[| _index] = contents_clone[i];
             arrangeRow(_index++);
         }
-        _contents[| _rows - 1] = contents_clone[| tab._row];
+        _contents[| _rows - 1] = contents_clone[tab._row];
         arrangeRow(_rows - 1);
     }
     

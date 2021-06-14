@@ -1,8 +1,7 @@
 function editor_cleanup_map(mode) {
     var base_map = Stuff.map.active_map;
     var map = base_map.contents;
-    static modifications = ds_list_create();
-    ds_list_clear(modifications);
+    var modifications = [];
     
     // let's try to keep the Modifications list separate because batching / rebatching
     // behaves differently depending on how many things are in it
@@ -16,23 +15,23 @@ function editor_cleanup_map(mode) {
             // we'd still like to know what the modification status on an entity is for
             // when we re-batch everything
             case Modifications.UPDATE:
-                ds_list_add(modifications, thing);
+                array_push(modifications, thing);
                 break;
             case Modifications.REMOVE:
-                ds_list_add(modifications, thing);
+                array_push(modifications, thing);
                 break;
         }
     }
     
     ds_list_clear(mode.changes);
     
-    if (ds_list_size(modifications) > 0) {
+    if (!array_empty(modifications)) {
         var rebatch_all_threshold = 25;
         var rebatch_these = { };
         // if there aren't enough changes to merit rebatching all
-        if (ds_list_size(modifications) < rebatch_all_threshold) {
-            for (var i = 0; i < ds_list_size(modifications); i++) {
-                var thing = modifications[| i];
+        if (array_length(modifications) < rebatch_all_threshold) {
+            for (var i = 0; i < array_length(modifications); i++) {
+                var thing = modifications[i];
                 if (thing.modification == Modifications.REMOVE) {
                     if (thing.batch_addr) {
                         var list_instances = thing.batch_addr.instances;
@@ -60,29 +59,29 @@ function editor_cleanup_map(mode) {
                 }
             }
         } else {
-            var clone_dynamic = ds_list_clone(map.dynamic);
-            var clone_all = ds_list_clone(map.all_entities);
+            var clone_dynamic = ds_list_to_array(map.dynamic);
+            var clone_all = ds_list_to_array(map.all_entities);
             ds_list_clear(map.dynamic);
             ds_list_clear(map.all_entities);
             
             // after a certain point, it's easier to just re-add the entities to the
             // appropriate lists than it is to delete a buttload of things in O(n) time
-            for (var i = 0; i < ds_list_size(clone_all); i++) {
-                var thing = clone_all[| i];
+            for (var i = 0; i < array_length(clone_all); i++) {
+                var thing = clone_all[i];
                 if (thing.modification != Modifications.REMOVE) {
                     ds_list_add(map.all_entities, thing);
                 }
             }
             
-            for (var i = 0; i < ds_list_size(clone_dynamic); i++) {
-                var thing = clone_dynamic[| i];
+            for (var i = 0; i < array_length(clone_dynamic); i++) {
+                var thing = clone_dynamic[i];
                 if (thing.modification != Modifications.REMOVE) {
                     ds_list_add(map.dynamic, thing);
                 }
             }
         
-            for (var i = 0; i < ds_list_size(modifications); i++) {
-                var thing = modifications[| i];
+            for (var i = 0; i < array_length(modifications); i++) {
+                var thing = modifications[i];
                 
                 if (thing.modification == Modifications.REMOVE) {
                     // Update the current batch
@@ -112,9 +111,6 @@ function editor_cleanup_map(mode) {
                     thing.modification = Modifications.NONE;
                 }
             }
-            
-            ds_list_destroy(clone_dynamic);
-            ds_list_destroy(clone_all);
         }
         
         // once the batches that need to be recalculated have been worked out, re-batch them

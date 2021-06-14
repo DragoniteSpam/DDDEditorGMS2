@@ -12,8 +12,6 @@ function serialize_save_data() {
         
         game_auto_title();
         
-        var contents = ds_list_create();
-        
         for (var i = 0; i < array_length(Game.meta.export.files); i++) {
             var file_data = Game.meta.export.files[i];
             var buffer = buffer_create(1024, buffer_grow, 1);
@@ -31,22 +29,22 @@ function serialize_save_data() {
             }
             
             // generate a list of all of the things that are in this file
-            ds_list_clear(contents);
+            var contents = [];
             for (var j = 0; j < array_length(Game.meta.export.locations); j++) {
                 // the files that are sorted
                 if (Game.meta.export.locations[j] == file_data) {
-                    ds_list_add(contents, j);
+                    array_push(contents, j);
                 }
                 // any data categories that aren't sorted into files go to the default
                 if (i == 0 && !Game.meta.export.locations[j]) {
-                    ds_list_add(contents, j);
+                    array_push(contents, j);
                 }
             }
             
             // okay now you can *actually* write out the addresses of all the things
             // there's no need to save the size here because it reads until the EOF
-            for (var j = 0; j < ds_list_size(contents); j++) {
-                var addr = Stuff.game_data_save_scripts[contents[| j]](buffer);
+            for (var j = 0; j < array_length(contents); j++) {
+                var addr = Stuff.game_data_save_scripts[contents[j]](buffer);
             }
             
             buffer_write(buffer, buffer_u32, SerializeThings.END_OF_FILE);
@@ -65,8 +63,6 @@ function serialize_save_data() {
             
             buffer_delete(buffer);
         }
-        
-        ds_list_destroy(contents);
     }
     
     if (variable_struct_names_count(global.error_map) > 0) {
