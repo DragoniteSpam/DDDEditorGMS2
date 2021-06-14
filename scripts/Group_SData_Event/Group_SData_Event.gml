@@ -58,10 +58,7 @@ function DataEventNode(source) : SData(source) constructor {
         json.prefab_guid = self.prefab_guid;
         json.x = self.x;
         json.y = self.y;
-        json.data = array_create(array_length(self.data));
-        for (var i = 0, n = array_length(self.data); i < n; i++) {
-            json.data[i] = self.data[i];
-        }
+        json.data = self.data;
         json.outbound = array_create(array_length(self.outbound));
         for (var i = 0, n = array_length(self.outbound); i < n; i++) {
             if (self.outbound[i]) json.outbound[i] = self.outbound[i].GUID;
