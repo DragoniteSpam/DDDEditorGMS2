@@ -505,9 +505,9 @@ function ui_init_particle(mode) {
         #endregion
         
         #region tab: types
-        var yy = legal_y + spacing;
+        yy = legal_y + spacing;
         
-        var element = create_list(col1_x, yy, "Particle Types", "<no particle types>", ew, eh, 26, ui_particle_type_select, false, t_type, mode.types);
+        element = create_list(col1_x, yy, "Particle Types", "<no particle types>", ew, eh, 26, ui_particle_type_select, false, t_type, mode.types);
         element.tooltip = "All of the currently-defined particle types.";
         element.entries_are = ListEntries.INSTANCES;
         t_type.list = element;
@@ -515,219 +515,474 @@ function ui_init_particle(mode) {
         
         yy += ui_get_list_height(element) + spacing;
         
-        var element = create_button(col1_x, yy, "Add Type", ew, eh, fa_center, ui_particle_type_add, t_type);
+        element = create_button(col1_x, yy, "Add Type", ew, eh, fa_center, function(button) {
+            if (array_length(Stuff.particle.types) < PART_MAXIMUM_TYPES) {
+                array_push(Stuff.particle.types, new ParticleType("Type " + string(array_length(Stuff.particle.types))));
+            }
+        }, t_type);
         element.tooltip = "Add a particle type.";
         ds_list_add(t_type.contents, element);
         
         yy += element.height + spacing;
         
-        var element = create_button(col1_x, yy, "Remove Type", ew, eh, fa_center, ui_particle_type_remove, t_type);
+        element = create_button(col1_x, yy, "Remove Type", ew, eh, fa_center, function(button) {
+            var selection = ui_list_selection(button.root.list);
+            if (selection + 1) {
+                var type = Stuff.particle.types[selection];
+                for (var i = 0; i < array_length(Stuff.particle.emitters); i++) {
+                    var emitter = Stuff.particle.emitters[i];
+                    emitter.type = (emitter.type == type) ? noone : emitter.type;
+                }
+                type.Destroy();
+                array_delete(Stuff.particle.types, selection, 1);
+                ui_list_deselect(button.root.list);
+            }
+        }, t_type);
         element.tooltip = "Remove a particle type. Any references to the particle type elsewhere will be reset.";
         ds_list_add(t_type.contents, element);
         
         yy = legal_y + spacing;
         
-        var element = create_input(col2_x, yy, "Name:", ew, eh, ui_particle_type_rename, "Part Type", "", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, t_type);
+        element = create_input(col2_x, yy, "Name:", ew, eh, function(input) {
+            var selection = ui_list_selection(input.root.list);
+            if (selection + 1) {
+                var type = Stuff.particle.types[selection];
+                type.name = input.value;
+            }
+        }, "Part Type", "", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, t_type);
         element.tooltip = "The name of the particle type.";
         ds_list_add(t_type.contents, element);
         t_type.name = element;
         
         yy += element.height + spacing;
         
-        var element = create_text(col2_x, yy, "Motion", ew, eh, fa_left, ew, t_type);
+        element = create_text(col2_x, yy, "Motion", ew, eh, fa_left, ew, t_type);
         element.color = c_blue;
         ds_list_add(t_type.contents, element);
         
         yy += element.height + spacing;
         
-        var element = create_text(col2_x, yy, "Speed:", ew, eh, fa_left, ew, t_type);
+        element = create_text(col2_x, yy, "Speed:", ew, eh, fa_left, ew, t_type);
         ds_list_add(t_type.contents, element);
         
         yy += element.height + spacing;
         
-        var element = create_input(col2_x, yy, "min:", ew, eh, ui_particle_type_speed_min, 160, "float", validate_double, -400, 400, 6, ovx1, ovy1, ovx2, ovy2, t_type);
+        element = create_input(col2_x, yy, "min:", ew, eh, function(input) {
+            var selection = ui_list_selection(input.root.list);
+            if (selection + 1) {
+                var type = Stuff.particle.types[selection];
+                type.speed_min = real(input.value);
+                part_type_speed(type.type, type.speed_min, type.speed_max, type.speed_incr, type.speed_wiggle);
+            }
+        }, 160, "float", validate_double, -400, 400, 6, ovx1, ovy1, ovx2, ovy2, t_type);
         element.tooltip = "The minimum starting speed of the particle.";
         ds_list_add(t_type.contents, element);
         t_type.speed_min = element;
         
-        var element = create_input(col2_x + ew / 2, yy, "max:", ew, eh, ui_particle_type_speed_max, 160, "float", validate_double, -400, 400, 6, ovx1, ovy1, ovx2, ovy2, t_type);
+        element = create_input(col2_x + ew / 2, yy, "max:", ew, eh, function(input) {
+            var selection = ui_list_selection(input.root.list);
+            if (selection + 1) {
+                var type = Stuff.particle.types[selection];
+                type.speed_max = real(input.value);
+                part_type_speed(type.type, type.speed_min, type.speed_max, type.speed_incr, type.speed_wiggle);
+            }
+        }, 160, "float", validate_double, -400, 400, 6, ovx1, ovy1, ovx2, ovy2, t_type);
         element.tooltip = "The maximum starting speed of the particle.";
         ds_list_add(t_type.contents, element);
         t_type.speed_max = element;
         
         yy += element.height + spacing;
         
-        var element = create_input(col2_x, yy, "incr:", ew, eh, ui_particle_type_speed_incr, 0, "float", validate_double, -100, 100, 6, ovx1, ovy1, ovx2, ovy2, t_type);
+        element = create_input(col2_x, yy, "incr:", ew, eh, function(input) {
+            var selection = ui_list_selection(input.root.list);
+            if (selection + 1) {
+                var type = Stuff.particle.types[selection];
+                type.speed_incr = real(input.value);
+                part_type_speed(type.type, type.speed_min, type.speed_max, type.speed_incr, type.speed_wiggle);
+            }
+        }, 0, "float", validate_double, -100, 100, 6, ovx1, ovy1, ovx2, ovy2, t_type);
         element.tooltip = "How much the particle speed should increase or decrease each update.";
         ds_list_add(t_type.contents, element);
         t_type.speed_incr = element;
         
-        var element = create_input(col2_x + ew / 2, yy, "wgl:", ew, eh, ui_particle_type_speed_wiggle, 0, "float", validate_double, -100, 100, 6, ovx1, ovy1, ovx2, ovy2, t_type);
+        element = create_input(col2_x + ew / 2, yy, "wgl:", ew, eh, function(input) {
+            var selection = ui_list_selection(input.root.list);
+            if (selection + 1) {
+                var type = Stuff.particle.types[selection];
+                type.speed_wiggle = real(input.value);
+                part_type_speed(type.type, type.speed_min, type.speed_max, type.speed_incr, type.speed_wiggle);
+            }
+        }, 0, "float", validate_double, -100, 100, 6, ovx1, ovy1, ovx2, ovy2, t_type);
         element.tooltip = "How much should randomly be added or subtracted to particle speed each update.";
         ds_list_add(t_type.contents, element);
         t_type.speed_wiggle = element;
         
         yy += element.height + spacing;
         
-        var element = create_text(col2_x, yy, "Direction:", ew, eh, fa_left, ew, t_type);
+        element = create_text(col2_x, yy, "Direction:", ew, eh, fa_left, ew, t_type);
         ds_list_add(t_type.contents, element);
         
         yy += element.height + spacing;
         
-        var element = create_text(col2_x, yy, "min:", ew, eh, fa_left, ew, t_type);
+        element = create_text(col2_x, yy, "min:", ew, eh, fa_left, ew, t_type);
         ds_list_add(t_type.contents, element);
         
-        var element = create_progress_bar(col2_x + ew / 2, yy, ew / 2, eh, ui_particle_type_direction_min, 4, 0, t_type);
+        element = create_progress_bar(col2_x + ew / 2, yy, ew / 2, eh, function(bar) {
+            var selection = ui_list_selection(bar.root.list);
+            if (selection + 1) {
+                var type = Stuff.particle.types[selection];
+                type.direction_min = round(bar.value * 360);
+                part_type_direction(type.type, type.direction_min, type.direction_max, type.direction_incr, type.direction_wiggle);
+            }
+        }, 4, 0, t_type);
         element.tooltip = "The minimum starting direction of the particle.";
         ds_list_add(t_type.contents, element);
         t_type.direction_min = element;
         
         yy += element.height + spacing;
         
-        var element = create_button(col2_x + 0 * ew / 5, yy,   "0°", ew / 5, eh, fa_center, ui_particle_type_direction_min_auto_0, t_type);
+        element = create_button(col2_x + 0 * ew / 5, yy,   "0°", ew / 5, eh, fa_center, function(button) {
+            var selection = ui_list_selection(button.root.list);
+            if (selection + 1) {
+                var type = Stuff.particle.types[selection];
+                type.direction_min = 0;
+                part_type_direction(type.type, type.direction_min, type.direction_max, type.direction_incr, type.direction_wiggle);
+                ui_particle_type_select(button.root.list);
+            }
+        }, t_type);
         ds_list_add(t_type.contents, element);
-        var element = create_button(col2_x + 1 * ew / 5, yy,  "90°", ew / 5, eh, fa_center, ui_particle_type_direction_min_auto_90, t_type);
+        element = create_button(col2_x + 1 * ew / 5, yy,  "90°", ew / 5, eh, fa_center, function(button) {
+            var selection = ui_list_selection(button.root.list);
+            if (selection + 1) {
+                var type = Stuff.particle.types[selection];
+                type.direction_min = 90;
+                part_type_direction(type.type, type.direction_min, type.direction_max, type.direction_incr, type.direction_wiggle);
+                ui_particle_type_select(button.root.list);
+            }
+        }, t_type);
         ds_list_add(t_type.contents, element);
-        var element = create_button(col2_x + 2 * ew / 5, yy, "180°", ew / 5, eh, fa_center, ui_particle_type_direction_min_auto_180, t_type);
+        element = create_button(col2_x + 2 * ew / 5, yy, "180°", ew / 5, eh, fa_center, function(button) {
+            var selection = ui_list_selection(button.root.list);
+            if (selection + 1) {
+                var type = Stuff.particle.types[selection];
+                type.direction_min = 180;
+                part_type_direction(type.type, type.direction_min, type.direction_max, type.direction_incr, type.direction_wiggle);
+                ui_particle_type_select(button.root.list);
+            }
+        }, t_type);
         ds_list_add(t_type.contents, element);
-        var element = create_button(col2_x + 3 * ew / 5, yy, "270°", ew / 5, eh, fa_center, ui_particle_type_direction_min_auto_270, t_type);
+        element = create_button(col2_x + 3 * ew / 5, yy, "270°", ew / 5, eh, fa_center, function(button) {
+            var selection = ui_list_selection(button.root.list);
+            if (selection + 1) {
+                var type = Stuff.particle.types[selection];
+                type.direction_min = 270;
+                part_type_direction(type.type, type.direction_min, type.direction_max, type.direction_incr, type.direction_wiggle);
+                ui_particle_type_select(button.root.list);
+            }
+        }, t_type);
         ds_list_add(t_type.contents, element);
-        var element = create_button(col2_x + 4 * ew / 5, yy, "360°", ew / 5, eh, fa_center, ui_particle_type_direction_min_auto_360, t_type);
+        element = create_button(col2_x + 4 * ew / 5, yy, "360°", ew / 5, eh, fa_center, function(button) {
+            var selection = ui_list_selection(button.root.list);
+            if (selection + 1) {
+                var type = Stuff.particle.types[selection];
+                type.direction_min = 360;
+                part_type_direction(type.type, type.direction_min, type.direction_max, type.direction_incr, type.direction_wiggle);
+                ui_particle_type_select(button.root.list);
+            }
+        }, t_type);
         ds_list_add(t_type.contents, element);
         
         yy += element.height + spacing;
         
-        var element = create_text(col2_x, yy, "max:", ew, eh, fa_left, ew, t_type);
+        element = create_text(col2_x, yy, "max:", ew, eh, fa_left, ew, t_type);
         ds_list_add(t_type.contents, element);
         
-        var element = create_progress_bar(col2_x + ew / 2, yy, ew / 2, eh, ui_particle_type_direction_max, 4, 0, t_type);
+        element = create_progress_bar(col2_x + ew / 2, yy, ew / 2, eh, function(bar) {
+            var selection = ui_list_selection(bar.root.list);
+            if (selection + 1) {
+                var type = Stuff.particle.types[selection];
+                type.direction_max = round(bar.value * 360);
+                part_type_direction(type.type, type.direction_min, type.direction_max, type.direction_incr, type.direction_wiggle);
+            }
+        }, 4, 0, t_type);
         element.tooltip = "The maximum starting direction of the particle.";
         ds_list_add(t_type.contents, element);
         t_type.direction_max = element;
         
         yy += element.height + spacing;
         
-        var element = create_button(col2_x + 0 * ew / 5, yy,   "0°", ew / 5, eh, fa_center, ui_particle_type_direction_max_auto_0, t_type);
+        element = create_button(col2_x + 0 * ew / 5, yy,   "0°", ew / 5, eh, fa_center, function(button) {
+            var selection = ui_list_selection(button.root.list);
+            if (selection + 1) {
+                var type = Stuff.particle.types[selection];
+                type.direction_max = 0;
+                part_type_direction(type.type, type.direction_min, type.direction_max, type.direction_incr, type.direction_wiggle);
+                ui_particle_type_select(button.root.list);
+            }
+        }, t_type);
         ds_list_add(t_type.contents, element);
-        var element = create_button(col2_x + 1 * ew / 5, yy,  "90°", ew / 5, eh, fa_center, ui_particle_type_direction_max_auto_90, t_type);
+        element = create_button(col2_x + 1 * ew / 5, yy,  "90°", ew / 5, eh, fa_center, function(button) {
+            var selection = ui_list_selection(button.root.list);
+        
+            if (selection + 1) {
+                var type = Stuff.particle.types[selection];
+                type.direction_max = 90;
+                part_type_direction(type.type, type.direction_min, type.direction_max, type.direction_incr, type.direction_wiggle);
+                ui_particle_type_select(button.root.list);
+            }
+        }, t_type);
         ds_list_add(t_type.contents, element);
-        var element = create_button(col2_x + 2 * ew / 5, yy, "180°", ew / 5, eh, fa_center, ui_particle_type_direction_max_auto_180, t_type);
+        element = create_button(col2_x + 2 * ew / 5, yy, "180°", ew / 5, eh, fa_center, function(button) {
+            var selection = ui_list_selection(button.root.list);
+            if (selection + 1) {
+                var type = Stuff.particle.types[selection];
+                type.direction_max = 180;
+                part_type_direction(type.type, type.direction_min, type.direction_max, type.direction_incr, type.direction_wiggle);
+                ui_particle_type_select(button.root.list);
+            }
+        }, t_type);
         ds_list_add(t_type.contents, element);
-        var element = create_button(col2_x + 3 * ew / 5, yy, "270°", ew / 5, eh, fa_center, ui_particle_type_direction_max_auto_270, t_type);
+        element = create_button(col2_x + 3 * ew / 5, yy, "270°", ew / 5, eh, fa_center, function(button) {
+            var selection = ui_list_selection(button.root.list);
+            if (selection + 1) {
+                var type = Stuff.particle.types[selection];
+                type.direction_max = 270;
+                part_type_direction(type.type, type.direction_min, type.direction_max, type.direction_incr, type.direction_wiggle);
+                ui_particle_type_select(button.root.list);
+            }
+        }, t_type);
         ds_list_add(t_type.contents, element);
-        var element = create_button(col2_x + 4 * ew / 5, yy, "360°", ew / 5, eh, fa_center, ui_particle_type_direction_max_auto_360, t_type);
+        element = create_button(col2_x + 4 * ew / 5, yy, "360°", ew / 5, eh, fa_center, function(button) {
+            var selection = ui_list_selection(button.root.list);
+            if (selection + 1) {
+                var type = Stuff.particle.types[selection];
+                type.direction_max = 360;
+                part_type_direction(type.type, type.direction_min, type.direction_max, type.direction_incr, type.direction_wiggle);
+                ui_particle_type_select(button.root.list);
+            }
+        }, t_type);
         ds_list_add(t_type.contents, element);
         
         yy += element.height + spacing;
         
-        var element = create_input(col2_x, yy, "incr:", ew, eh, ui_particle_type_direction_incr, 0, "float", validate_double, -100, 100, 6, ovx1, ovy1, ovx2, ovy2, t_type);
+        element = create_input(col2_x, yy, "incr:", ew, eh, function(input) {
+            var selection = ui_list_selection(input.root.list);
+            if (selection + 1) {
+                var type = Stuff.particle.types[selection];
+                type.direction_incr = real(input.value);
+                part_type_direction(type.type, type.direction_min, type.direction_max, type.direction_incr, type.direction_wiggle);
+            }
+        }, 0, "float", validate_double, -100, 100, 6, ovx1, ovy1, ovx2, ovy2, t_type);
         element.tooltip = "How much the particle direction should increase or decrease each update.";
         ds_list_add(t_type.contents, element);
         t_type.direction_incr = element;
         
-        var element = create_input(col2_x + ew / 2, yy, "wgl:", ew, eh, ui_particle_type_direction_wiggle, 0, "float", validate_double, -100, 100, 6, ovx1, ovy1, ovx2, ovy2, t_type);
+        element = create_input(col2_x + ew / 2, yy, "wgl:", ew, eh, function(input) {
+            var selection = ui_list_selection(input.root.list);
+            if (selection + 1) {
+                var type = Stuff.particle.types[selection];
+                type.direction_wiggle = real(input.value);
+                part_type_direction(type.type, type.direction_min, type.direction_max, type.direction_incr, type.direction_wiggle);
+            }
+        }, 0, "float", validate_double, -100, 100, 6, ovx1, ovy1, ovx2, ovy2, t_type);
         element.tooltip = "How much should randomly be added or subtracted to particle direction each update.";
         ds_list_add(t_type.contents, element);
         t_type.direction_wiggle = element;
         
         yy += element.height + spacing;
         
-        var element = create_text(col2_x, yy, "Rotation:", ew, eh, fa_left, ew, t_type);
+        element = create_text(col2_x, yy, "Rotation:", ew, eh, fa_left, ew, t_type);
         ds_list_add(t_type.contents, element);
         
         yy += element.height + spacing;
         
-        var element = create_text(col2_x, yy, "min:", ew, eh, fa_left, ew, t_type);
+        element = create_text(col2_x, yy, "min:", ew, eh, fa_left, ew, t_type);
         ds_list_add(t_type.contents, element);
         
-        var element = create_progress_bar(col2_x + ew / 2, yy, ew / 2, eh, ui_particle_type_rotation_min, 4, 0, t_type);
+        element = create_progress_bar(col2_x + ew / 2, yy, ew / 2, eh, function(bar) {
+            var selection = ui_list_selection(bar.root.list);
+            if (selection + 1) {
+                var type = Stuff.particle.types[selection];
+                type.orientation_min = round(bar.value * 360);
+                part_type_orientation(type.type, type.orientation_min, type.orientation_max, type.orientation_incr, type.orientation_wiggle, type.orientation_relative);
+            }
+        }, 4, 0, t_type);
         element.tooltip = "The minimum starting rotation of the particle.";
         ds_list_add(t_type.contents, element);
         t_type.orientation_min = element;
         
         yy += element.height + spacing;
         
-        var element = create_text(col2_x, yy, "max:", ew, eh, fa_left, ew, t_type);
+        element = create_text(col2_x, yy, "max:", ew, eh, fa_left, ew, t_type);
         ds_list_add(t_type.contents, element);
         
-        var element = create_progress_bar(col2_x + ew / 2, yy, ew / 2, eh, ui_particle_type_rotation_max, 4, 0, t_type);
+        element = create_progress_bar(col2_x + ew / 2, yy, ew / 2, eh, function(bar) {
+            var selection = ui_list_selection(bar.root.list);
+            if (selection + 1) {
+                var type = Stuff.particle.types[selection];
+                type.orientation_max = round(bar.value * 360);
+                part_type_orientation(type.type, type.orientation_min, type.orientation_max, type.orientation_incr, type.orientation_wiggle, type.orientation_relative);
+            }
+        }, 4, 0, t_type);
         element.tooltip = "The maximum starting rotation of the particle.";
         ds_list_add(t_type.contents, element);
         t_type.orientation_max = element;
         
         yy += element.height + spacing;
         
-        var element = create_input(col2_x, yy, "incr:", ew, eh, ui_particle_type_rotation_incr, 0, "float", validate_double, -100, 100, 6, ovx1, ovy1, ovx2, ovy2, t_type);
+        element = create_input(col2_x, yy, "incr:", ew, eh, function(input) {
+            var selection = ui_list_selection(input.root.list);
+            if (selection + 1) {
+                var type = Stuff.particle.types[selection];
+                type.orientation_incr = real(input.value);
+                part_type_orientation(type.type, type.orientation_min, type.orientation_max, type.orientation_incr, type.orientation_wiggle, type.orientation_relative);
+            }
+        }, 0, "float", validate_double, -100, 100, 6, ovx1, ovy1, ovx2, ovy2, t_type);
         element.tooltip = "How much the particle orientation should increase or decrease each update.";
         ds_list_add(t_type.contents, element);
         t_type.orientation_incr = element;
         
-        var element = create_input(col2_x + ew / 2, yy, "wgl:", ew, eh, ui_particle_type_rotation_wiggle, 0, "float", validate_double, -100, 100, 6, ovx1, ovy1, ovx2, ovy2, t_type);
+        element = create_input(col2_x + ew / 2, yy, "wgl:", ew, eh, function(input) {
+            var selection = ui_list_selection(input.root.list);
+            if (selection + 1) {
+                var type = Stuff.particle.types[selection];
+                type.orientation_wiggle = real(input.value);
+                part_type_orientation(type.type, type.orientation_min, type.orientation_max, type.orientation_incr, type.orientation_wiggle, type.orientation_relative);
+            }
+        }, 0, "float", validate_double, -100, 100, 6, ovx1, ovy1, ovx2, ovy2, t_type);
         element.tooltip = "How much should randomly be added or subtracted to particle orientation each update.";
         ds_list_add(t_type.contents, element);
         t_type.orientation_wiggle = element;
         
         yy += element.height + spacing;
         
-        var element = create_checkbox(col2_x, yy, "Relative?", ew, eh, ui_particle_type_rotation_relative, false, t_type);
+        element = create_checkbox(col2_x, yy, "Relative?", ew, eh, function(checkbox) {
+            var selection = ui_list_selection(checkbox.root.list);
+            if (selection + 1) {
+                var type = Stuff.particle.types[selection];
+                type.orientation_relative = checkbox.value;
+                part_type_orientation(type.type, type.orientation_min, type.orientation_max, type.orientation_incr, type.orientation_wiggle, type.orientation_relative);
+            }
+        }, false, t_type);
         element.tooltip = "Whether the particle's rotation is relative to its direction of motion or not.";
         ds_list_add(t_type.contents, element);
         t_type.orientation_relative = element;
         
         yy += element.height + spacing;
         
-        var element = create_input(col2_x, yy, "Gravity:", ew, eh, ui_particle_type_gravity, 0, "float", validate_double, 0, 10, 6, vx1, vy1, vx2, vy2, t_type);
+        element = create_input(col2_x, yy, "Gravity:", ew, eh, function(input) {
+            var selection = ui_list_selection(input.root.list);
+            if (selection + 1) {
+                var type = Stuff.particle.types[selection];
+                type.gravity = real(input.value);
+                part_type_gravity(type.type, type.gravity, type.gravity_direction);
+            }
+        }, 0, "float", validate_double, 0, 10, 6, vx1, vy1, vx2, vy2, t_type);
         element.tooltip = "The strength of gravity acting on the particle, in pixels per step.";
         ds_list_add(t_type.contents, element);
         t_type.gravity = element;
         
         yy += element.height + spacing;
         
-        var element = create_text(col2_x, yy, "direction:", ew, eh, fa_left, ew, t_type);
+        element = create_text(col2_x, yy, "direction:", ew, eh, fa_left, ew, t_type);
         ds_list_add(t_type.contents, element);
         
-        var element = create_progress_bar(col2_x + ew / 2, yy, ew / 2, eh, ui_particle_type_gravity_direction, 4, 0.75, t_type);
+        element = create_progress_bar(col2_x + ew / 2, yy, ew / 2, eh, function(input) {
+            var selection = ui_list_selection(bar.root.list);
+            if (selection + 1) {
+                var type = Stuff.particle.types[selection];
+                type.gravity_direction = round(bar.value * 360);
+                part_type_gravity(type.type, type.gravity, type.gravity_direction);
+            }
+        }, 4, 0.75, t_type);
         element.tooltip = "The minimum starting rotation of the particle.";
         ds_list_add(t_type.contents, element);
         t_type.gravity_direction = element;
         
         yy += element.height + spacing / 2;
         
-        var element = create_button(col2_x + 0 * ew / 4, yy,   "0°", ew / 4, eh, fa_center, ui_particle_type_gravity_direction_auto_0, t_type);
+        element = create_button(col2_x + 0 * ew / 4, yy,   "0°", ew / 4, eh, fa_center, function(button) {
+            var selection = ui_list_selection(button.root.list);
+            if (selection + 1) {
+                var type = Stuff.particle.types[selection];
+                type.gravity_direction = 0;
+                part_type_gravity(type.type, type.gravity, type.gravity_direction);
+                ui_particle_type_select(button.root.list);
+            }
+        }, t_type);
         element.tooltip = "Gravity attracts things to the right";
         ds_list_add(t_type.contents, element);
-        var element = create_button(col2_x + 1 * ew / 4, yy,  "90°", ew / 4, eh, fa_center, ui_particle_type_gravity_direction_auto_90, t_type);
+        element = create_button(col2_x + 1 * ew / 4, yy,  "90°", ew / 4, eh, fa_center, function(button) {
+            var selection = ui_list_selection(button.root.list);
+            if (selection + 1) {
+                var type = Stuff.particle.types[selection];
+                type.gravity_direction = 90;
+                part_type_gravity(type.type, type.gravity, type.gravity_direction);
+                ui_particle_type_select(button.root.list);
+            }
+        }, t_type);
         element.tooltip = "Gravity attracts things upwards";
         ds_list_add(t_type.contents, element);
-        var element = create_button(col2_x + 2 * ew / 4, yy, "180°", ew / 4, eh, fa_center, ui_particle_type_gravity_direction_auto_180, t_type);
+        element = create_button(col2_x + 2 * ew / 4, yy, "180°", ew / 4, eh, fa_center, function(input) {
+            var selection = ui_list_selection(button.root.list);
+            if (selection + 1) {
+                var type = Stuff.particle.types[selection];
+                type.gravity_direction = 180;
+                part_type_gravity(type.type, type.gravity, type.gravity_direction);
+                ui_particle_type_select(button.root.list);
+            }
+        }, t_type);
         element.tooltip = "Gravity attracts things to the left";
         ds_list_add(t_type.contents, element);
-        var element = create_button(col2_x + 3 * ew / 4, yy, "270°", ew / 4, eh, fa_center, ui_particle_type_gravity_direction_auto_270, t_type);
+        element = create_button(col2_x + 3 * ew / 4, yy, "270°", ew / 4, eh, fa_center, function(button) {
+            var selection = ui_list_selection(button.root.list);
+            if (selection + 1) {
+                var type = Stuff.particle.types[selection];
+                type.gravity_direction = 270;
+                part_type_gravity(type.type, type.gravity, type.gravity_direction);
+                ui_particle_type_select(button.root.list);
+            }
+        }, t_type);
         element.tooltip = "Gravity attracts things downwards";
         ds_list_add(t_type.contents, element);
         
         yy = legal_y + spacing;
         
-        var element = create_text(col3_x, yy, "Graphics", ew, eh, fa_left, ew, t_type);
+        element = create_text(col3_x, yy, "Graphics", ew, eh, fa_left, ew, t_type);
         element.color = c_blue;
         ds_list_add(t_type.contents, element);
         
         yy += element.height + spacing;
         
-        var element = create_checkbox(col3_x, yy, "Use sprite?", ew, eh, ui_particle_type_use_sprite, false, t_type);
+        element = create_checkbox(col3_x, yy, "Use sprite?", ew, eh, function(checkbox) {
+            var selection = ui_list_selection(checkbox.root.list);
+            if (selection + 1) {
+                var type = Stuff.particle.types[selection];
+                type.sprite_custom = checkbox.value;
+                editor_particle_type_set_sprite(type);
+            }
+        }, false, t_type);
         element.tooltip = "You can use a custom particle sprite. If no sprite is selected, the particle will draw its built-in shape instead.";
         ds_list_add(t_type.contents, element);
         t_type.use_sprite = element;
         
         yy += element.height + spacing;
         
-        var element = create_button(col3_x, yy, "Sprite", ew, eh, fa_center, ui_particle_type_sprite, t_type);
+        element = create_button(col3_x, yy, "Sprite", ew, eh, fa_center, ui_particle_type_sprite, t_type);
         element.tooltip = t_type.use_sprite.tooltip;
         ds_list_add(t_type.contents, element);
         
         yy += element.height + spacing;
         
-        var element = create_list(col3_x, yy, "Shape:", "", ew, eh, 5, ui_particle_type_shape, false, t_type);
+        element = create_list(col3_x, yy, "Shape:", "", ew, eh, 5, function(list) {
+            var shape_selection = ui_list_selection(list);
+            var selection = ui_list_selection(list.root.list);
+            if (selection + 1 && shape_selection + 1) {
+                var type = Stuff.particle.types[selection];
+                type.shape = shape_selection;
+                part_type_shape(type.type, type.type_shapes[type.shape]);
+            }
+        }, false, t_type);
         create_list_entries(element, "Pixel", "Disk", "Square", "Line", "Star", "Circle", "Ring", "Sphere", "Flare", "Spark", "Explosion", "Cloud", "Smoke", "Snow");
         element.tooltip = "The shape of the particle type. (Support for custom particle sprites may be added later.)";
         ds_list_add(t_type.contents, element);
@@ -735,7 +990,15 @@ function ui_init_particle(mode) {
         
         yy += ui_get_list_height(element) + spacing;
         
-        var element = create_color_picker(col3_x, yy, "Color 1A:", ew, eh, ui_particle_type_color_1a, c_white, vx1, vy1, vx2, vy2, t_type);
+        element = create_color_picker(col3_x, yy, "Color 1A:", ew, eh, function(picker) {
+            var selection = ui_list_selection(picker.root.list);
+            if (selection + 1) {
+                var type = Stuff.particle.types[selection];
+                type.color_1a = picker.value;
+                type.alpha_1 = picker.alpha;
+                editor_particle_type_set_color(type);
+            }
+        }, c_white, vx1, vy1, vx2, vy2, t_type);
         element.tooltip = "The beginning range of colors the particle may be at the beginning of its lifetime. (If multiple colors are disabled, it will be the only color.)";
         element.allow_alpha = true;
         element.active_shade = false;
@@ -744,12 +1007,26 @@ function ui_init_particle(mode) {
         
         yy += element.height;
         
-        var element = create_checkbox(col3_x - spacing, yy, "", 64, eh, ui_particle_type_color_1b_enabled, false, t_type);
+        element = create_checkbox(col3_x - spacing, yy, "", 64, eh, function(checkbox) {
+            var selection = ui_list_selection(checkbox.root.list);
+            if (selection + 1) {
+                var type = Stuff.particle.types[selection];
+                type.color_1b_enabled = checkbox.value;
+                editor_particle_type_set_color(type);
+            }
+        }, false, t_type);
         element.tooltip = "Enable or disable starting color range. (Enabling staring color range will override color transitions.)";
         ds_list_add(t_type.contents, element);
         t_type.base_color_1b_enabled = element;
         
-        var element = create_color_picker(col3_x, yy, "        1B:", ew, eh, ui_particle_type_color_1b, c_white, vx1, vy1, vx2, vy2, t_type);
+        element = create_color_picker(col3_x, yy, "        1B:", ew, eh, function(picker) {
+            var selection = ui_list_selection(picker.root.list);
+            if (selection + 1) {
+                var type = Stuff.particle.types[selection];
+                type.color_1b = picker.value;
+                editor_particle_type_set_color(type);
+            }
+        }, c_white, vx1, vy1, vx2, vy2, t_type);
         element.tooltip = "The end range of colors the particle may be at the beginning of its lifetime. (Color ranges do not support alpha.)";
         element.active_shade = false;
         ds_list_add(t_type.contents, element);
@@ -757,12 +1034,27 @@ function ui_init_particle(mode) {
         
         yy += element.height;
         
-        var element = create_checkbox(col3_x - spacing, yy, "", 64, eh, ui_particle_type_color_2_enabled, false, t_type);
+        element = create_checkbox(col3_x - spacing, yy, "", 64, eh, function(checkbox) {
+            var selection = ui_list_selection(checkbox.root.list);
+            if (selection + 1) {
+                var type = Stuff.particle.types[selection];
+                type.color_2_enabled = checkbox.value;
+                editor_particle_type_set_color(type);
+            }
+        }, false, t_type);
         element.tooltip = "Enable or disable two-color transition. (Enabling staring color range will override color transitions.)";
         ds_list_add(t_type.contents, element);
         t_type.base_color_2_enabled = element;
         
-        var element = create_color_picker(col3_x, yy, "        2:", ew, eh, ui_particle_type_color_2, c_white, vx1, vy1, vx2, vy2, t_type);
+        element = create_color_picker(col3_x, yy, "        2:", ew, eh, function(picker) {
+            var selection = ui_list_selection(picker.root.list);
+            if (selection + 1) {
+                var type = Stuff.particle.types[selection];
+                type.color_2 = picker.value;
+                type.alpha_2 = picker.alpha;
+                editor_particle_type_set_color(type);
+            }
+        }, c_white, vx1, vy1, vx2, vy2, t_type);
         element.tooltip = "The color the particle will be halfway through its lifetime.";
         element.allow_alpha = true;
         element.active_shade = false;
@@ -771,12 +1063,27 @@ function ui_init_particle(mode) {
         
         yy += element.height;
         
-        var element = create_checkbox(col3_x - spacing, yy, "", 64, eh, ui_particle_type_color_3_enabled, false, t_type);
+        element = create_checkbox(col3_x - spacing, yy, "", 64, eh, function(checkbox) {
+            var selection = ui_list_selection(checkbox.root.list);
+            if (selection + 1) {
+                var type = Stuff.particle.types[selection];
+                type.color_3_enabled = checkbox.value;
+                editor_particle_type_set_color(type);
+            }
+        }, false, t_type);
         element.tooltip = "Enable or disable three-color transition. (Enabling staring color range will override color transitions.)";
         ds_list_add(t_type.contents, element);
         t_type.base_color_3_enabled = element;
         
-        var element = create_color_picker(col3_x, yy, "        3:", ew, eh, ui_particle_type_color_3, c_white, vx1, vy1, vx2, vy2, t_type);
+        element = create_color_picker(col3_x, yy, "        3:", ew, eh, function(picker) {
+            var selection = ui_list_selection(picker.root.list);
+            if (selection + 1) {
+                var type = Stuff.particle.types[selection];
+                type.color_3 = picker.value;
+                type.alpha_3 = picker.alpha;
+                editor_particle_type_set_color(type);
+            }
+        }, c_white, vx1, vy1, vx2, vy2, t_type);
         element.tooltip = "The color the particle will be at the end of its lifetime.";
         element.allow_alpha = true;
         element.active_shade = false;
@@ -785,78 +1092,144 @@ function ui_init_particle(mode) {
         
         yy += element.height + spacing;
         
-        var element = create_checkbox(col3_x, yy, "Additive blending?", ew, eh, ui_particle_type_color_additive, false, t_type);
+        element = create_checkbox(col3_x, yy, "Additive blending?", ew, eh, function(checkbox) {
+            var selection = ui_list_selection(checkbox.root.list);
+            if (selection + 1) {
+                var type = Stuff.particle.types[selection];
+                type.blend = checkbox.value;
+                part_type_blend(type.type, type.blend);
+            }
+        }, false, t_type);
         element.tooltip = "Enable or disable additive color blending.";
         ds_list_add(t_type.contents, element);
         t_type.additive_blending = element;
         
         yy += element.height + spacing;
         
-        var element = create_text(col3_x, yy, "Base Scale:", ew, eh, fa_left, ew, t_type);
+        element = create_text(col3_x, yy, "Base Scale:", ew, eh, fa_left, ew, t_type);
         ds_list_add(t_type.contents, element);
         
         yy += element.height + spacing;
         
-        var element = create_input(col3_x, yy, "x:", ew, eh, ui_particle_type_scale_x, 1, "float", validate_double, 0, 40, 6, ovx1, ovy1, ovx2, ovy2, t_type);
+        element = create_input(col3_x, yy, "x:", ew, eh, function(input) {
+            var selection = ui_list_selection(input.root.list);
+            if (selection + 1) {
+                var type = Stuff.particle.types[selection];
+                type.xscale = real(input.value);
+                part_type_scale(type.type, type.xscale, type.yscale);
+            }
+        }, 1, "float", validate_double, 0, 40, 6, ovx1, ovy1, ovx2, ovy2, t_type);
         element.tooltip = "The horizontal scale of the particle, before particle size (below) is applied.";
         ds_list_add(t_type.contents, element);
         t_type.xscale = element;
         
-        var element = create_input(col3_x + ew / 2, yy, "y:", ew, eh, ui_particle_type_scale_y, 1, "float", validate_double, 0, 40, 6, ovx1, ovy1, ovx2, ovy2, t_type);
+        element = create_input(col3_x + ew / 2, yy, "y:", ew, eh, function(input) {
+            var selection = ui_list_selection(input.root.list);
+        
+            if (selection + 1) {
+                var type = Stuff.particle.types[selection];
+                type.yscale = real(input.value);
+                part_type_scale(type.type, type.xscale, type.yscale);
+            }
+        }, 1, "float", validate_double, 0, 40, 6, ovx1, ovy1, ovx2, ovy2, t_type);
         element.tooltip = "The vertical scale of the particle, before particle size (below) is applied.";
         ds_list_add(t_type.contents, element);
         t_type.yscale = element;
         
         yy += element.height + spacing;
         
-        var element = create_text(col3_x, yy, "Size:", ew, eh, fa_left, ew, t_type);
+        element = create_text(col3_x, yy, "Size:", ew, eh, fa_left, ew, t_type);
         ds_list_add(t_type.contents, element);
         
         yy += element.height + spacing;
         
-        var element = create_input(col3_x, yy, "min:", ew, eh, ui_particle_type_size_min, 1, "float", validate_double, 0, 40, 6, ovx1, ovy1, ovx2, ovy2, t_type);
+        element = create_input(col3_x, yy, "min:", ew, eh, function(input) {
+            var selection = ui_list_selection(input.root.list);
+            if (selection + 1) {
+                var type = Stuff.particle.types[selection];
+                type.size_min = real(input.value);
+                part_type_size(type.type, type.size_min, type.size_max, type.size_incr, type.size_wiggle);
+            }
+        }, 1, "float", validate_double, 0, 40, 6, ovx1, ovy1, ovx2, ovy2, t_type);
         element.tooltip = "The minimum starting size of the particle.";
         ds_list_add(t_type.contents, element);
         t_type.size_min = element;
         
-        var element = create_input(col3_x + ew / 2, yy, "max:", ew, eh, ui_particle_type_size_max, 1, "float", validate_double, 0, 40, 6, ovx1, ovy1, ovx2, ovy2, t_type);
+        element = create_input(col3_x + ew / 2, yy, "max:", ew, eh, function(input) {
+            var selection = ui_list_selection(input.root.list);
+            if (selection + 1) {
+                var type = Stuff.particle.types[selection];
+                type.size_max = real(input.value);
+                part_type_size(type.type, type.size_min, type.size_max, type.size_incr, type.size_wiggle);
+            }
+        }, 1, "float", validate_double, 0, 40, 6, ovx1, ovy1, ovx2, ovy2, t_type);
         element.tooltip = "The maximum starting size of the particle.";
         ds_list_add(t_type.contents, element);
         t_type.size_max = element;
         
         yy += element.height + spacing;
         
-        var element = create_input(col3_x, yy, "incr:", ew, eh, ui_particle_type_size_incr, 0, "float", validate_double, -10, 10, 6, ovx1, ovy1, ovx2, ovy2, t_type);
+        element = create_input(col3_x, yy, "incr:", ew, eh, function(input) {
+            var selection = ui_list_selection(input.root.list);
+            if (selection + 1) {
+                var type = Stuff.particle.types[selection];
+                type.size_incr = real(input.value);
+                part_type_size(type.type, type.size_min, type.size_max, type.size_incr, type.size_wiggle);
+            }
+        }, 0, "float", validate_double, -10, 10, 6, ovx1, ovy1, ovx2, ovy2, t_type);
         element.tooltip = "How much the particle size should increase or decrease each update.";
         ds_list_add(t_type.contents, element);
         t_type.size_incr = element;
         
-        var element = create_input(col3_x + ew / 2, yy, "wgl:", ew, eh, ui_particle_type_size_wiggle, 0, "float", validate_double, -10, 10, 6, ovx1, ovy1, ovx2, ovy2, t_type);
+        element = create_input(col3_x + ew / 2, yy, "wgl:", ew, eh, function(input) {
+            var selection = ui_list_selection(input.root.list);
+            if (selection + 1) {
+                var type = Stuff.particle.types[selection];
+                type.size_wiggle = real(input.value);
+                part_type_size(type.type, type.size_min, type.size_max, type.size_incr, type.size_wiggle);
+            }
+        }, 0, "float", validate_double, -10, 10, 6, ovx1, ovy1, ovx2, ovy2, t_type);
         element.tooltip = "How much should randomly be added or subtracted to particle size each update.";
         ds_list_add(t_type.contents, element);
         t_type.size_wiggle = element;
         
         yy += element.height + spacing;
         
-        var element = create_text(col3_x, yy, "Life and Death", ew, eh, fa_left, ew, t_type);
+        element = create_text(col3_x, yy, "Life and Death", ew, eh, fa_left, ew, t_type);
         element.color = c_blue;
         ds_list_add(t_type.contents, element);
         
         yy += element.height + spacing;
         
-        var element = create_input(col3_x, yy, "min:", ew, eh, ui_particle_type_life_min, 10, "float", validate_double, 0.1, 60, 6, ovx1, ovy1, ovx2, ovy2, t_type);
+        element = create_input(col3_x, yy, "min:", ew, eh, function(input) {
+            var selection = ui_list_selection(input.root.list);
+            if (selection + 1) {
+                var type = Stuff.particle.types[selection];
+                type.life_min = real(input.value);
+                var f = game_get_speed(gamespeed_fps);
+                part_type_life(type.type, type.life_min * f, type.life_max * f);
+            }
+        }, 10, "float", validate_double, 0.1, 60, 6, ovx1, ovy1, ovx2, ovy2, t_type);
         element.tooltip = "The minimum lifetime of the particle type, in seconds.";
         ds_list_add(t_type.contents, element);
         t_type.life_min = element;
         
-        var element = create_input(col3_x + ew / 2, yy, "max:", ew, eh, ui_particle_type_life_max, 10, "float", validate_double, 0.1, 60, 6, ovx1, ovy1, ovx2, ovy2, t_type);
+        element = create_input(col3_x + ew / 2, yy, "max:", ew, eh, function(input) {
+            var selection = ui_list_selection(input.root.list);
+            if (selection + 1) {
+                var type = Stuff.particle.types[selection];
+                type.life_max = real(input.value);
+                var f = game_get_speed(gamespeed_fps);
+                part_type_life(type.type, type.life_min * f, type.life_max * f);
+            }
+        }, 10, "float", validate_double, 0.1, 60, 6, ovx1, ovy1, ovx2, ovy2, t_type);
         element.tooltip = "The maximum lifetime of the particle type, in seconds.";
         ds_list_add(t_type.contents, element);
         t_type.life_max = element;
         
         yy += element.height + spacing;
         
-        var element = create_button(col3_x, yy, "Secondary Emission", ew, eh, fa_center, ui_particle_type_secondary, t_type);
+        element = create_button(col3_x, yy, "Secondary Emission", ew, eh, fa_center, ui_particle_type_secondary, t_type);
         element.tooltip = "Particles can emit other particles when they update, or upon death.";
         ds_list_add(t_type.contents, element);
         
