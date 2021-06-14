@@ -26,7 +26,8 @@ canvas_active_node = noone;
 canvas_active_node_index = 0;
 request_cancel_active_node = false;
 
-array_push(Game.events.events, new DataEvent("DefaultEvent"));
+active = new DataEvent("DefaultEvent");
+array_push(Game.events.events, active);
 node_info = noone;
 
 map = noone;
