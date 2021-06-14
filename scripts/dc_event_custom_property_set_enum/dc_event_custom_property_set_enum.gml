@@ -20,7 +20,7 @@ function dc_event_custom_property_set_enum(argument0) {
         array_sort_name(list_data);
         var data = list_data[selection];
         property[@ EventNodeCustomData.TYPE_GUID] = data.GUID;
-        thing.root.root.root.event.types[pselection] = property;
+        thing.root.root.root.event.types[@ pselection] = property;
     
         thing.root.root.root.el_property_type_guid.text = "Select (" + data.name + ")";
         thing.root.root.root.el_property_type_guid.color = c_black;

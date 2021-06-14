@@ -119,7 +119,7 @@ function DataEventNodeCustom(source) : SData(source) constructor {
         json.types = array_create(array_length(self.types));
         for (var i = 0, n = array_length(self.types); i < n; i++) {
             var type = self.types[i];
-            json.types[i] = {
+            json.types[@ i] = {
                 name: type[0],
                 type: type[1],
                 guid: type[2],
