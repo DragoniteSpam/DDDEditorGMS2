@@ -11,7 +11,7 @@ emitter_setting = noone;
 emitter_first_corner = true;
 
 system = part_system_create();
-types = [];
+types = [new ParticleType("Default Type")];
 emitters = [new ParticleEmitter("Default Emitter")];
 
 part_system_automatic_update(system, system_auto_update);
@@ -26,9 +26,6 @@ render = function() {
 };
 ui = ui_init_particle(id);
 mode_id = ModeIDs.PARTICLE;
-
-var default_type = ui_particle_type_add(noone);
-default_type.name = "Default Type";
 
 ui_list_select(ui.t_emitter.list, 0, false);
 ui_list_select(ui.t_emitter.types, 0, false);
