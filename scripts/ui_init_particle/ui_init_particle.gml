@@ -41,7 +41,6 @@ function ui_init_particle(mode) {
         
         active_tab = t_system;
         
-        var spacing = 16;
         var col1_x = legal_x + col_width * 0 + spacing;
         var col2_x = legal_x + col_width * 1 + spacing;
         var col3_x = legal_x + col_width * 2 + spacing;
@@ -49,7 +48,7 @@ function ui_init_particle(mode) {
         var button_width = 128;
         
         #region tab: system
-        var yy = legal_y;
+        yy = legal_y;
         
         var element = create_text(col1_x, yy, "Settings", ew, eh, fa_left, ew, t_system);
         element.color = c_blue;
@@ -57,7 +56,7 @@ function ui_init_particle(mode) {
         
         yy += element.height + spacing;
         
-        var element = create_color_picker(col1_x, yy, "Back:", ew, eh, function(picker) {
+        element = create_color_picker(col1_x, yy, "Back:", ew, eh, function(picker) {
             Stuff.particle.back_color = picker.value;
             Settings.oarticle.back = picker.value;
         }, mode.back_color, vx1, vy1, vx2, vy2, t_system);
@@ -68,7 +67,7 @@ function ui_init_particle(mode) {
         
         yy += element.height + spacing;
         
-        var element = create_checkbox(col1_x, yy, "Automatic Update?", ew, eh, function(checkbox) {
+        element = create_checkbox(col1_x, yy, "Automatic Update?", ew, eh, function(checkbox) {
             Stuff.particle.system_auto_update = checkbox.value;
             checkbox.root.manual_update.interactive = !checkbox.value;
             part_system_automatic_update(Stuff.particle.system, checkbox.value);
@@ -80,7 +79,7 @@ function ui_init_particle(mode) {
         
         yy += element.height + spacing;
         
-        var element = create_button(col1_x, yy, "Update", ew, eh, fa_center, function(button) {
+        element = create_button(col1_x, yy, "Update", ew, eh, fa_center, function(button) {
             part_system_update(Stuff.particle.system);
         }, t_system);
         element.tooltip = "Update the particle system by one step.";
@@ -90,7 +89,7 @@ function ui_init_particle(mode) {
         
         yy += element.height + spacing;
         
-        var element = create_button(col1_x, yy, "Clear All Particles", ew, eh, fa_center, function(button) {
+        element = create_button(col1_x, yy, "Clear All Particles", ew, eh, fa_center, function(button) {
             part_particles_clear(Stuff.particle.system);
         }, t_system);
         element.tooltip = "Clear all particles currently in the system.";
@@ -98,7 +97,7 @@ function ui_init_particle(mode) {
         
         yy += element.height + spacing;
         
-        var element = create_button(col1_x, yy, "Reset System", ew, eh, fa_center, function(button) {
+        element = create_button(col1_x, yy, "Reset System", ew, eh, fa_center, function(button) {
             editor_particle_reset();
         }, t_system);
         element.tooltip = "Destroy all particle types and emitters.";
@@ -106,7 +105,7 @@ function ui_init_particle(mode) {
         
         yy += element.height + spacing;
         
-        var element = create_checkbox(col1_x, yy, "Snap Emitter to Grid?", ew, eh, function(checkbox) {
+        element = create_checkbox(col1_x, yy, "Snap Emitter to Grid?", ew, eh, function(checkbox) {
             Stuff.particle.emitter_set_snap = checkbox.value;
         }, mode.emitter_set_snap, t_system);
         element.tooltip = "When clicking on the particle view to set emitter regions, you may find it helpful to snap to the grid.";
@@ -115,7 +114,7 @@ function ui_init_particle(mode) {
         
         yy += element.height + spacing;
         
-        var element = create_input(col1_x, yy, "Distance:", ew, eh, function(input) {
+        element = create_input(col1_x, yy, "Distance:", ew, eh, function(input) {
             Stuff.particle.emitter_set_snap_size = real(input.value);
         }, mode.emitter_set_snap_size, "reasonable integer", validate_int, 1, 128, 3, vx1, vy1, vx2, vy2, t_system);
         element.tooltip = "The grid-snapping distance.";
@@ -124,13 +123,13 @@ function ui_init_particle(mode) {
         
         yy = legal_y;
         
-        var element = create_text(col2_x, yy, "Save / Load", ew, eh, fa_left, ew, t_system);
+        element = create_text(col2_x, yy, "Save / Load", ew, eh, fa_left, ew, t_system);
         element.color = c_blue;
         ds_list_add(t_system.contents, element);
         
         yy += element.height + spacing;
         
-        var element = create_button(col2_x, yy, "Save Buffer", ew, eh, fa_center, function(button) {
+        element = create_button(col2_x, yy, "Save Buffer", ew, eh, fa_center, function(button) {
             var fn = get_save_filename("DDD Particle files|*" + EXPORT_EXTENSION_PARTICLES, "");
             if (fn == "") return;
             var fbuffer = buffer_create(1024, buffer_grow, 1);
@@ -143,7 +142,7 @@ function ui_init_particle(mode) {
         
         yy += element.height + spacing;
         
-        var element = create_button(col2_x, yy, "Load Buffer", ew, eh, fa_center, function(button) {
+        element = create_button(col2_x, yy, "Load Buffer", ew, eh, fa_center, function(button) {
             var fn = get_open_filename("DDD Particle files|*" + EXPORT_EXTENSION_PARTICLES, "");
             if (!file_exists(fn)) return;
             var fbuffer = buffer_load(fn);
@@ -156,7 +155,7 @@ function ui_init_particle(mode) {
         
         yy += element.height + spacing;
         
-        var element = create_button(col2_x, yy, "Export Code", ew, eh, fa_center, function(button) {
+        element = create_button(col2_x, yy, "Export Code", ew, eh, fa_center, function(button) {
             var fn = get_save_filename_gml("particles.gml");
             if (fn == "") return;
             var text = editor_particle_generate_code();
@@ -170,7 +169,7 @@ function ui_init_particle(mode) {
         
         yy += element.height + spacing;
         
-        var element = create_button(col2_x, yy, "Copy Code", ew, eh, fa_center, function(button) {
+        element = create_button(col2_x, yy, "Copy Code", ew, eh, fa_center, function(button) {
             clipboard_set_text(editor_particle_generate_code());
             (emu_dialog_notice("Code has been copied to the clipboard!")).active_shade = false;
         }, t_system);
@@ -181,13 +180,13 @@ function ui_init_particle(mode) {
         
         yy = legal_y;
         
-        var element = create_text(col3_x, yy, "Demo Particle Types", ew, eh, fa_left, ew, t_system);
+        element = create_text(col3_x, yy, "Demo Particle Types", ew, eh, fa_left, ew, t_system);
         element.color = c_blue;
         ds_list_add(t_system.contents, element);
         
         yy += element.height + spacing;
         
-        var element = create_button(col3_x, yy, "Fire", ew, eh, fa_center, function(button) {
+        element = create_button(col3_x, yy, "Fire", ew, eh, fa_center, function(button) {
             emu_dialog_confirm(button.root, "Would you like to load the demo fire particles? (Any current particle types and emitters will be cleared.)", function() {
                 var version = buffer_peek(Stuff.particle.demo_fire, 0, buffer_u32);
                 serialize_load_particles(Stuff.particle.demo_fire, version);
@@ -204,7 +203,7 @@ function ui_init_particle(mode) {
         
         yy += element.height + spacing;
         
-        var element = create_button(col3_x, yy, "Waterfall", ew, eh, fa_center, function(button) {
+        element = create_button(col3_x, yy, "Waterfall", ew, eh, fa_center, function(button) {
             emu_dialog_confirm(button.root, "Would you like to load the demo water particles? (Any current particle types and emitters will be cleared.)", function() {
                 var version = buffer_peek(Stuff.particle.demo_water, 0, buffer_u32);
                 serialize_load_particles(Stuff.particle.demo_water, version);
@@ -221,7 +220,7 @@ function ui_init_particle(mode) {
         
         yy += element.height + spacing;
         
-        var element = create_button(col3_x, yy, "Glowing Blobs", ew, eh, fa_center, function(button) {
+        element = create_button(col3_x, yy, "Glowing Blobs", ew, eh, fa_center, function(button) {
             emu_dialog_confirm(button.root, "Would you like to load the demo glow particles? (Any current particle types and emitters will be cleared.)", function() {
                 var version = buffer_peek(Stuff.particle.demo_glow, 0, buffer_u32);
                 serialize_load_particles(Stuff.particle.demo_glow, version);
@@ -256,25 +255,49 @@ function ui_init_particle(mode) {
         
         yy += ui_get_list_height(element) + spacing;
         
-        var element = create_button(col1_x, yy, "Add Emitter", ew, eh, fa_center, ui_particle_emitter_add, t_emitter);
+        element = create_button(col1_x, yy, "Add Emitter", ew, eh, fa_center, function(button) {
+            array_push(Stuff.particle.emitters, new ParticleEmitter("Emitter " + string(array_length(Stuff.particle.emitters))));
+        }, t_emitter);
         element.tooltip = "Add a particle emitter.";
         ds_list_add(t_emitter.contents, element);
         
         yy += element.height + spacing;
         
-        var element = create_button(col1_x, yy, "Remove Emitter", ew, eh, fa_center, ui_particle_emitter_remove, t_emitter);
+        element = create_button(col1_x, yy, "Remove Emitter", ew, eh, fa_center, function(button) {
+            var selection = ui_list_selection(button.root.list);
+            if (selection + 1) {
+                Stuff.particle.emitters[selection].Destroy();
+                array_delete(Stuff.particle.emitters, selection, 1);
+                ui_list_deselect(button.root.list);
+            }
+        }, t_emitter);
         element.tooltip = "Remove a particle emitter.";
         ds_list_add(t_emitter.contents, element);
         
         yy = legal_y + spacing;
         
-        var element = create_input(col2_x, yy, "Name:", ew, eh, ui_particle_emitter_rename, "Part Emitter", "", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, t_emitter);
+        element = create_input(col2_x, yy, "Name:", ew, eh, function(button) {
+            var selection = ui_list_selection(input.root.list);
+            if (selection + 1) {
+                Stuff.particle.emitters[selection].name = input.value;
+            }
+        }, "Part Emitter", "", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, t_emitter);
         ds_list_add(t_emitter.contents, element);
         t_emitter.name = element;
         
         yy += element.height + spacing;
         
-        var element = create_radio_array(col2_x, yy, "Shape:", ew, eh, ui_particle_emitter_shape, PartEmitterShapes.ELLIPSE, t_emitter);
+        element = create_radio_array(col2_x, yy, "Shape:", ew, eh, function(radio) {
+            var selection = ui_list_selection(radio.root.root.list);
+            if (selection + 1) {
+                var emitter = Stuff.particle.emitters[selection];
+                emitter.region_shape = radio.value;
+                var shape = emitter.emitter_shapes[emitter.region_shape];
+                var distribution = emitter.emitter_distributions[emitter.region_distribution];
+                part_emitter_region(Stuff.particle.system, emitter.emitter, emitter.region_x1, emitter.region_x2, emitter.region_y1, emitter.region_y2, shape, distribution);
+                editor_particle_emitter_create_region(emitter);
+            }
+        }, PartEmitterShapes.ELLIPSE, t_emitter);
         create_radio_array_options(element, ["Rectangle", "Ellipse", "Diamond", "Line"]);
         element.tooltip = "The shape of the emitter, stretched between the start and end points. Check the \"draw region\" option to see what it looks like.";
         ds_list_add(t_emitter.contents, element);
@@ -282,7 +305,17 @@ function ui_init_particle(mode) {
         
         yy += ui_get_radio_array_height(element) + spacing;
         
-        var element = create_radio_array(col2_x, yy, "Distribution:", ew, eh, ui_particle_emitter_distribution, PartEmitterDistributions.LINEAR, t_emitter);
+        element = create_radio_array(col2_x, yy, "Distribution:", ew, eh, function(radio) {
+            var selection = ui_list_selection(radio.root.root.list);
+            if (selection + 1) {
+                var emitter = Stuff.particle.emitters[selection];
+                emitter.region_distribution = radio.value;
+                var shape = emitter.emitter_shapes[emitter.region_shape];
+                var distribution = emitter.emitter_distributions[emitter.region_distribution];
+                part_emitter_region(Stuff.particle.system, emitter.emitter, emitter.region_x1, emitter.region_x2, emitter.region_y1, emitter.region_y2, shape, distribution);
+                editor_particle_emitter_create_region(emitter);
+            }
+        }, PartEmitterDistributions.LINEAR, t_emitter);
         create_radio_array_options(element, ["Linear", "Gaussian", "Inverse Gaussian"]);
         element.tooltip = "How the particles are distributed over the emission region.\n\nLinear: particles have an equal chance of spawning across the entire region\nGaussian: particles have a greater chance of spawning towards the center of the region.\nInverse Gaussian: particles have a greater chance of spawning towards the edges of the region.";
         ds_list_add(t_emitter.contents, element);
@@ -290,7 +323,21 @@ function ui_init_particle(mode) {
         
         yy += ui_get_radio_array_height(element) + spacing;
         
-        var element = create_button(col2_x, yy, "Set Region", ew, eh, fa_center, ui_particle_emitter_set_region, t_emitter);
+        element = create_button(col2_x, yy, "Set Region", ew, eh, fa_center, function(button) {
+            var selection = ui_list_selection(button.root.list);
+            // 250 ms delay between when you kill the region and when you can click it again
+            if (current_time - button.click_time < 250) return;
+            if (selection + 1) {
+                Stuff.particle.emitter_setting = Stuff.particle.emitters[selection];
+                Stuff.particle.emitter_first_corner = true;
+                // this is the all-time worst hack for disabling the UI i have ever come up with
+                var bad = emu_dialog_notice("");
+                bad.x = -10000;
+                bad.y = -10000;
+                bad.active_shade = false;
+                part_system_automatic_update(Stuff.particle.system, false);
+            }
+        }, t_emitter);
         element.click_time = -100000;
         element.tooltip = "Set the emission region by clicking on the particle view.";
         el_set_region = element;
@@ -298,7 +345,13 @@ function ui_init_particle(mode) {
         
         yy += element.height + spacing;
         
-        var element = create_checkbox(col2_x, yy, "Draw Region?", ew, eh, ui_particle_emitter_draw_region, false, t_emitter);
+        element = create_checkbox(col2_x, yy, "Draw Region?", ew, eh, function(checkbox) {
+            var selection = ui_list_selection(checkbox.root.list);
+            if (selection + 1) {
+                var emitter = Stuff.particle.emitters[selection];
+                emitter.draw_region = checkbox.value;
+            }
+        }, false, t_emitter);
         element.tooltip = "You can display the emitter's region on the screen if you'd like.";
         ds_list_add(t_emitter.contents, element);
         t_emitter.draw = element;
@@ -310,51 +363,125 @@ function ui_init_particle(mode) {
         var ovx2 = ew / 2;
         var ovy2 = eh;
         
-        var element = create_input(col2_x, yy, "X1:", ew, eh, ui_particle_emitter_xmin, 160, "int", validate_int, -CW / 2, floor(1.5 * CW), 4, ovx1, ovy1, ovx2, ovy2, t_emitter);
+        element = create_input(col2_x, yy, "X1:", ew, eh, function(input) {
+            var selection = ui_list_selection(input.root.list);
+            if (selection + 1) {
+                var emitter = Stuff.particle.emitters[selection];
+                emitter.region_x1 = input.value;
+                editor_particle_emitter_set_region(emitter);
+                editor_particle_emitter_create_region(emitter);
+            }
+        }, 160, "int", validate_int, -CW / 2, floor(1.5 * CW), 4, ovx1, ovy1, ovx2, ovy2, t_emitter);
         element.tooltip = "The lower bound of the emission region.";
         ds_list_add(t_emitter.contents, element);
         t_emitter.xmin = element;
         
-        var element = create_input(col2_x + ew / 2, yy, "Y1:", ew, eh, ui_particle_emitter_ymin, 160, "int", validate_int, -CH / 2, floor(1.5 * CH), 4, ovx1, ovy1, ovx2, ovy2, t_emitter);
+        element = create_input(col2_x + ew / 2, yy, "Y1:", ew, eh, function(input) {
+            var selection = ui_list_selection(input.root.list);
+            if (selection + 1) {
+                var emitter = Stuff.particle.emitters[selection];
+                emitter.region_y1 = input.value;
+                editor_particle_emitter_set_region(emitter);
+                editor_particle_emitter_create_region(emitter);
+            }
+        }, 160, "int", validate_int, -CH / 2, floor(1.5 * CH), 4, ovx1, ovy1, ovx2, ovy2, t_emitter);
         element.tooltip = "The lower bound of the emission region.";
         ds_list_add(t_emitter.contents, element);
         t_emitter.ymin = element;
         
         yy += element.height + spacing;
         
-        var element = create_input(col2_x, yy, "X2:", ew, eh, ui_particle_emitter_xmax, 240, "int", validate_int, -CW / 2, floor(1.5 * CW), 4, ovx1, ovy1, ovx2, ovy2, t_emitter);
+        element = create_input(col2_x, yy, "X2:", ew, eh, function(input) {
+            var selection = ui_list_selection(input.root.list);
+            if (selection + 1) {
+                var emitter = Stuff.particle.emitters[selection];
+                emitter.region_x2 = input.value;
+                editor_particle_emitter_set_region(emitter);
+                editor_particle_emitter_create_region(emitter);
+            }
+        }, 240, "int", validate_int, -CW / 2, floor(1.5 * CW), 4, ovx1, ovy1, ovx2, ovy2, t_emitter);
         element.tooltip = "The upper bound of the emission region.";
         ds_list_add(t_emitter.contents, element);
         t_emitter.xmax = element;
         
-        var element = create_input(col2_x + ew / 2, yy, "Y2:", ew, eh, ui_particle_emitter_ymax, 240, "int", validate_int, -CH / 2, floor(1.5 * CH), 4, ovx1, ovy1, ovx2, ovy2, t_emitter);
+        element = create_input(col2_x + ew / 2, yy, "Y2:", ew, eh, function(input) {
+            var selection = ui_list_selection(input.root.list);
+            if (selection + 1) {
+                var emitter = Stuff.particle.emitters[selection];
+                emitter.region_y2 = input.value;
+                editor_particle_emitter_set_region(emitter);
+                editor_particle_emitter_create_region(emitter);
+            }
+        }, 240, "int", validate_int, -CH / 2, floor(1.5 * CH), 4, ovx1, ovy1, ovx2, ovy2, t_emitter);
         element.tooltip = "The upper bound of the emission region.";
         ds_list_add(t_emitter.contents, element);
         t_emitter.ymax = element;
         
         yy += element.height + spacing;
         
-        var element = create_checkbox(col2_x, yy, "Streaming?", ew, eh, ui_particle_emitter_streaming, false, t_emitter);
+        element = create_checkbox(col2_x, yy, "Streaming?", ew, eh, function(input) {
+            var selection = ui_list_selection(checkbox.root.list);
+            if (selection + 1) {
+                var emitter = Stuff.particle.emitters[selection];
+                emitter.streaming = checkbox.value;
+                if (emitter.type) {
+                    editor_particle_emitter_set_region(emitter);
+                    editor_particle_emitter_set_emission(emitter);
+                }
+            }
+        }, false, t_emitter);
         element.tooltip = "Whether or not the emitter is currently streaming particles.";
         ds_list_add(t_emitter.contents, element);
         t_emitter.streaming = element;
         
         yy += element.height + spacing;
         
-        var element = create_input(col2_x, yy, "Rate", ew, eh, ui_particle_emitter_rate, 120, "", validate_int, 0, 1000, 5, vx1, vy1, vx2, vy2, t_emitter);
+        element = create_input(col2_x, yy, "Rate", ew, eh, function(input) {
+            var selection = ui_list_selection(input.root.list);
+            if (selection + 1) {
+                var emitter = Stuff.particle.emitters[selection];
+                emitter.rate = real(input.value);
+                if (emitter.type) {
+                    editor_particle_emitter_set_emission(emitter);
+                }
+            }
+        }, 120, "", validate_int, 0, 1000, 5, vx1, vy1, vx2, vy2, t_emitter);
         element.tooltip = "How many particles will be emitted per second (or per burst). Values less than 60 will result in a random chance of a particle being emitted every update.";
         ds_list_add(t_emitter.contents, element);
         t_emitter.rate = element;
         
         yy += element.height + spacing;
         
-        var element = create_button(col2_x, yy, "Burst", ew, eh, fa_center, ui_particle_emitter_burst, t_emitter);
+        element = create_button(col2_x, yy, "Burst", ew, eh, fa_center, function(button) {
+            var selection = ui_list_selection(button.root.list);
+            if (selection + 1) {
+                var emitter = Stuff.particle.emitters[selection];
+                if (emitter.type) {
+                    editor_particle_emitter_set_region(emitter);
+                    part_emitter_burst(Stuff.particle.system, emitter.emitter, emitter.type.type, emitter.rate);
+                }
+            }
+        }, t_emitter);
         element.tooltip = "Create a one-time burst of particles. The number of particles created is defined by the emission rate. Right-click in the paricle view to create a stream at the position of the mouse, or left-click to create a one-time burst.";
         ds_list_add(t_emitter.contents, element);
         
-        var yy = legal_y + spacing;
+        yy = legal_y + spacing;
         
-        var element = create_list(col3_x, yy, "Type", "<no particle types>", ew, eh, 26, ui_particle_emitter_type, false, t_emitter, mode.types);
+        element = create_list(col3_x, yy, "Type", "<no particle types>", ew, eh, 26, function(list) {
+            var selected_type = ui_list_selection(list);
+            var selection = ui_list_selection(list.root.list);
+            if (selection + 1) {
+                var emitter = Stuff.particle.emitters[selection];
+                editor_particle_emitter_set_region(emitter);
+                if (selected_type + 1) {
+                    emitter.type = Stuff.particle.types[selected_type];
+                    editor_particle_emitter_set_emission(emitter);
+                } else {
+                    emitter.type = noone;
+                    part_emitter_stream(Stuff.particle.system, emitter.emitter, -1, 0);
+                }
+            }
+        }, false, t_emitter, mode.types);
         element.tooltip = "The particle type attached to the emitter.";
         element.entries_are = ListEntries.INSTANCES;
         t_emitter.types = element;
