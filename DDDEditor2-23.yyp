@@ -1597,7 +1597,7 @@
     {"folderPath":"folders/Scripts/modes/terrain/ui.yy","order":16,"resourceVersion":"1.0","name":"ui","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Scripts/modes/terrain/file.yy","order":17,"resourceVersion":"1.0","name":"file","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Scripts/modes/scribble.yy","order":3,"resourceVersion":"1.0","name":"scribble","tags":[],"resourceType":"GMFolder",},
-    {"folderPath":"folders/Scripts/modes/particle.yy","order":9,"resourceVersion":"1.0","name":"particle","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Particle Stuff/helper functions.yy","order":1,"resourceVersion":"1.0","name":"helper functions","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Scripts/entity.yy","order":22,"resourceVersion":"1.0","name":"entity","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Scripts/entity/mesh.yy","order":0,"resourceVersion":"1.0","name":"mesh","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Scripts/entity/effect.yy","order":1,"resourceVersion":"1.0","name":"effect","tags":[],"resourceType":"GMFolder",},
