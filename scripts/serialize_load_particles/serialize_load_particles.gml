@@ -9,11 +9,9 @@ function serialize_load_particles(buffer, version) {
     #region emitters
     var n_emitters = buffer_read(buffer, buffer_u8);
     repeat (n_emitters) {
-        var emitter = instance_create_depth(0, 0, 0, ParticleEmitter);
-        instance_deactivate_object(emitter);
+        var emitter = new ParticleEmitter(buffer_read(buffer, buffer_string));
         array_push(mode.emitters, emitter);
         
-        emitter.name = buffer_read(buffer, buffer_string);
         emitter.region_shape = buffer_read(buffer, buffer_u8);
         emitter.region_distribution = buffer_read(buffer, buffer_u8);
         emitter.region_x1 = buffer_read(buffer, buffer_f32);
