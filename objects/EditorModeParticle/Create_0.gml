@@ -29,7 +29,7 @@ mode_id = ModeIDs.PARTICLE;
 
 ui_list_select(ui.t_emitter.list, 0, false);
 ui_list_select(ui.t_emitter.types, 0, false);
-ui_particle_emitter_type(ui.t_emitter.types);
+ui.t_emitter.types.onvaluechange(ui.t_emitter.types);
 ui_list_deselect(ui.t_emitter.list);
 ui_list_deselect(ui.t_emitter.types);
 

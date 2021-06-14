@@ -91,7 +91,7 @@ function draw_editor_particle(mode) {
                 part_system_automatic_update(mode.system, mode.system_auto_update);
                 editor_particle_emitter_set_region(emitter);
                 editor_particle_emitter_create_region(emitter);
-                mode.ui.t_emitter.list.on_select(mode.ui.t_emitter.list);
+                mode.ui.t_emitter.list.onvaluechange(mode.ui.t_emitter.list);
                 kill = true;
             }
         }
