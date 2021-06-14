@@ -7,17 +7,16 @@ function dc_data_property_set_data(argument0) {
     if (selection >= 0) {
         var property = thing.root.root.root.selected_property;
     
-        var list_data = ds_list_create();
+        var list_data = [];
     
         for (var i = 0; i < array_length(Game.data); i++) {
             if (Game.data[i].type == DataTypes.DATA) {
-                ds_list_add(list_data, Game.data[i]);
+                array_push(list_data, Game.data[i]);
             }
         }
     
-        ds_list_sort_name(list_data);
-        property.type_guid = list_data[| selection].GUID;
-        ds_list_destroy(list_data);
+        array_sort_name(list_data);
+        property.type_guid = list_data[selection].GUID;
     
         thing.root.root.root.el_property_type_guid.text = guid_get(property.type_guid).name;
         thing.root.root.root.el_property_type_guid.color = c_black;

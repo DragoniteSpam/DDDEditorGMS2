@@ -9,18 +9,17 @@ function dc_map_data_property_set_data(argument0) {
     if (selection_index + 1) {
         var data = Stuff.map.active_map.generic_data[data_index];
     
-        var list_enum = ds_list_create();
+        var list_enum = [];
     
         for (var i = 0; i < array_length(Game.data); i++) {
             if (Game.data[i].type == DataTypes.DATA) {
-                ds_list_add(list_enum, Game.data[i]);
+                array_push(list_enum, Game.data[i]);
             }
         }
     
-        ds_list_sort_name(list_enum);
+        array_sort_name(list_enum);
         var type = list_enum[| selection_index];
         data.value_type_guid = type.GUID;
-        ds_list_destroy(list_enum);
     
         base_dialog.el_data_type_guid.text = type.name + "(Select)";
         base_dialog.el_data_type_guid.color = c_black;

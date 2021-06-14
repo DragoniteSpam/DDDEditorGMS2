@@ -1,31 +1,27 @@
 function uivc_list_data_alphabetize(list) {
     // put the enums at the top
-    var list_data = ds_list_create();
-    var list_enums = ds_list_create();
+    var list_data = [];
+    var list_enums = [];
     for (var i = 0; i < array_length(Game.data); i++) {
         var data = Game.data[i];
         if (data.type == DataTypes.ENUM) {
-            ds_list_add(list_enums, data);
+            array_push(list_enums, data);
         } else {
-            ds_list_add(list_data, data);
+            array_push(list_data, data);
         }
     }
     
     // Normally you'd just use the list sort funciton on the source lists since they
     // don't modify them, but in this case we want the enums to always go at the top
-    var list_enums_sorted = ds_list_sort_name(list_enums);
-    var list_data_sorted = ds_list_sort_name(list_data);
+    var list_enums_sorted = array_sort_name(list_enums);
+    var list_data_sorted = array_sort_name(list_data);
     array_resize(Game.data, 0);
-    for (var i = 0; i < ds_list_size(list_enums_sorted); i++) {
-        array_push(Game.data, list_enums_sorted[| i]);
+    for (var i = 0; i < array_length(list_enums_sorted); i++) {
+        array_push(Game.data, list_enums_sorted[i]);
     }
-    for (var i = 0; i < ds_list_size(list_data_sorted); i++) {
-        array_push(Game.data, list_data_sorted[| i]);
+    for (var i = 0; i < array_length(list_data_sorted); i++) {
+        array_push(Game.data, list_data_sorted[i]);
     }
-    ds_list_destroy(list_data);
-    ds_list_destroy(list_enums);
-    ds_list_destroy(list_data_sorted);
-    ds_list_destroy(list_enums_sorted);
     
     var selection = ui_list_selection(list);
     
