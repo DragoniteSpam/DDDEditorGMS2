@@ -121,8 +121,8 @@ foreach_cell = function(processed, script, params) {
         for (var j = miny; j < maxy; j++) {
             for (var k = minz; k < maxz; k++) {
                 var str = string(i) + ","+string(j) + "," + string(k);
-                if (!ds_map_exists(processed, str)) {
-                    ds_map_add(processed, str, true);
+                if (!variable_struct_exists(processed, str)) {
+                    processed[$ str] = true;
                     script(i, j, k, params);
                 }
             }

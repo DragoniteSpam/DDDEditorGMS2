@@ -57,8 +57,8 @@ foreach_cell = function(processed, script, params) {
         for (var j = miny; j < maxy; j++) {
             if (point_distance(x, y, i + 0.5, j + 0.5) < radius) {
                 var str = string(i) + "," + string(j) + "," + string(z);
-                if (!ds_map_exists(processed, str)) {
-                    ds_map_add(processed, str, true);
+                if (!variable_struct_exists(processed, str)) {
+                    processed[$ str] = true;
                     script(i, j, z, params);
                 }
             }

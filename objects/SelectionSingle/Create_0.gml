@@ -44,8 +44,8 @@ onmove = function(dx, dy, dz) {
 
 foreach_cell = function(processed, script, params) {
     var str = string(x) + "," + string(y) + "," + string(z);
-    if (!ds_map_exists(processed, str)) {
-        ds_map_add(processed, str, true);
+    if (!variable_struct_exists(processed, str)) {
+        processed[$ str] = true;
         script(x, y, z, params);
     }
 };
