@@ -32,11 +32,9 @@ function serialize_load_particles(buffer, version) {
     #region types
     var n_types = buffer_read(buffer, buffer_u8);
     repeat (n_types) {
-        var type = instance_create_depth(0, 0, 0, ParticleType);
-        instance_deactivate_object(type);
+        var type = new ParticleType(buffer_read(buffer, buffer_string));
         array_push(mode.types, type);
         
-        type.name = buffer_read(buffer, buffer_string);
         type.shape = buffer_read(buffer, buffer_u8);
         // if a particle sprite with the saved internal name exists, use that;
         // otherwise try to link the GUID

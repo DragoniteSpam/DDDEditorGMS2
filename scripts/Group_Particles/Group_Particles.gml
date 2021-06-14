@@ -1,5 +1,5 @@
-function ParticleType() constructor {
-    self.name = "Type";
+function ParticleType(name) constructor {
+    self.name = name;
     self.type = part_type_create();
     
     self.sprite_custom = false;
