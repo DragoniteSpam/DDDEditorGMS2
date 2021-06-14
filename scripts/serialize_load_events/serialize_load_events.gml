@@ -31,7 +31,7 @@ function serialize_load_events(buffer, version) {
             node.prefab_guid = buffer_read(buffer, buffer_datatype);
             
             // some preliminary data may be created
-            ds_list_clear(node.data);
+            node.data = [];
             node.outbound = [];
             
             // read out the GUIDs and link them later
@@ -42,7 +42,7 @@ function serialize_load_events(buffer, version) {
             
             var n_data = buffer_read(buffer, buffer_u8);
             repeat (n_data) {
-                ds_list_add(node.data, buffer_read(buffer, buffer_string));
+                array_push(node.data, buffer_read(buffer, buffer_string));
             }
             
             // special code for different node types

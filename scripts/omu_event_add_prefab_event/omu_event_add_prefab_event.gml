@@ -14,7 +14,7 @@ function omu_event_add_prefab_event(argument0) {
         // is length minus one
         event_rename_node(event, instantiated, prefab.name + "$" + string(array_length(Stuff.event.active.nodes) - 1));
         instantiated.prefab_guid = prefab.GUID;
-        ds_list_copy(instantiated.data, prefab.data);
+        instantiated.data = array_clone(prefab.data);
         
         instantiated.custom_data = [];
     

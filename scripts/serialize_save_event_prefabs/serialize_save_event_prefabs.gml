@@ -11,11 +11,11 @@ function serialize_save_event_prefabs(buffer) {
         serialize_save_generic(buffer, prefab);
         buffer_write(buffer, buffer_u16, prefab.type);
         
-        var n_data = ds_list_size(prefab.data);
+        var n_data = array_length(prefab.data);
         
         buffer_write(buffer, buffer_u8, n_data);
         for (var j = 0; j < n_data; j++) {
-            buffer_write(buffer, buffer_string, prefab.data[| j]);
+            buffer_write(buffer, buffer_string, prefab.data[j]);
         }
         
         // I like the event prefab idea less than i did before i realized

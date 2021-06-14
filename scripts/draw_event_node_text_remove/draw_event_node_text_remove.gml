@@ -16,7 +16,7 @@ function draw_event_node_text_remove(argument0, argument1, argument2, argument3)
         draw_sprite(spr_plus_minus, 3, xx, yy);
         draw_tooltip(xx, yy + 16, "Delete Text");
         if (Controller.release_left) {
-            ds_list_delete(node.data, index);
+            array_delete(node.data, index, 1);
             array_delete(node.outbound, index, 1);
         }
     }

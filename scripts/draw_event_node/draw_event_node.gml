@@ -43,7 +43,7 @@ function draw_event_node(node) {
             #region comment
             // cut down version of Text
             x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
-            y2 = y1 + max(24 + 32 + ds_list_size(node.data) * entry_height + entry_offset, array_length(node.outbound) * EVENT_NODE_CONTACT_HEIGHT * 2 / 3);
+            y2 = y1 + max(24 + 32 + array_length(node.data) * entry_height + entry_offset, array_length(node.outbound) * EVENT_NODE_CONTACT_HEIGHT * 2 / 3);
             
             if (rectangle_within_view(view_current, x1, y1, x2, y2)) {
                 var c = colour_mute(c_ev_comment);
@@ -57,12 +57,12 @@ function draw_event_node(node) {
                     draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + entry_height - tolerance, c, c, c, c, false);
                     if (!dialog_exists()) {
                         if (Controller.release_left && !Stuff.event.canvas_active_node) {
-                            dialog_create_event_node_input_string(node.data, 0, "Comment text?", node.data[| 0]);
+                            dialog_create_event_node_input_string(node.data, 0, "Comment text?", node.data[0]);
                         }
                     }
                 }
                 
-                draw_text_ext(x1 + 16, mean(entry_yy, entry_yy + entry_height), string(node.data[| 0]), -1, EVENT_NODE_CONTACT_WIDTH - 16);
+                draw_text_ext(x1 + 16, mean(entry_yy, entry_yy + entry_height), string(node.data[0]), -1, EVENT_NODE_CONTACT_WIDTH - 16);
             }
             
             draw_event_node_delete(x2, y1, node);
@@ -74,7 +74,7 @@ function draw_event_node(node) {
             x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
             // the above will be very painful for nodes with many data entries because loops so just assume
             // each entry won't have more than four lines
-            y2 = y1 + max(24 + 32 + ds_list_size(node.data) * entry_height + entry_offset, array_length(node.outbound) * EVENT_NODE_CONTACT_HEIGHT * 2 / 3);
+            y2 = y1 + max(24 + 32 + array_length(node.data) * entry_height + entry_offset, array_length(node.outbound) * EVENT_NODE_CONTACT_HEIGHT * 2 / 3);
             
             if (rectangle_within_view(view_current, x1, y1, x2, y2)) {
                 var c = colour_mute(c_ev_basic);
@@ -90,18 +90,18 @@ function draw_event_node(node) {
                 draw_event_node_custom_info(x2 - 24, y1, node);
                 draw_event_node_prefabinate(x2 - 48, y1, node);
                 
-                for (var i = 0; i < ds_list_size(node.data); i++) {
+                for (var i = 0; i < array_length(node.data); i++) {
                     draw_line(x1 + 16, entry_yy, x2 - 16, entry_yy);
                     if (mouse_within_rectangle_adjusted(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + entry_height - tolerance)) {
                         draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + entry_height - tolerance, c, c, c, c, false);
                         if (!dialog_exists()) {
                             if (Controller.release_left && !Stuff.event.canvas_active_node) {
-                                dialog_create_event_node_input_string(node.data, i, "Node data?", node.data[| i]);
+                                dialog_create_event_node_input_string(node.data, i, "Node data?", node.data[i]);
                             }
                         }
                     }
                     
-                    draw_text_ext(x1 + 16, mean(entry_yy, entry_yy + entry_height), string(node.data[| i]), -1, EVENT_NODE_CONTACT_WIDTH - 16);
+                    draw_text_ext(x1 + 16, mean(entry_yy, entry_yy + entry_height), string(node.data[i]), -1, EVENT_NODE_CONTACT_WIDTH - 16);
                     var yy_center = mean(entry_yy, entry_yy + entry_height);
                     if (i > 0) {
                         // this works out nicely because the outbound node is going to be in the same place at index 0,
@@ -109,7 +109,7 @@ function draw_event_node(node) {
                         draw_event_node_text_remove(x2, yy_center, node, i);
                         draw_event_node_text_move(x2, yy_center - 24, node, i, -1, 0);
                     }
-                    if (i < ds_list_size(node.data) - 1) {
+                    if (i < array_length(node.data) - 1) {
                         draw_event_node_text_move(x2, yy_center + 24, node, i, 1, 2);
                     }
                     
@@ -270,7 +270,7 @@ function draw_event_node(node) {
             #endregion
         case EventNodeTypes.SHOW_CHOICES:
             #region list of choices
-            var size = ds_list_size(node.data);
+            var size = array_length(node.data);
             eh = 64;
             x2 = x1 + EVENT_NODE_CONTACT_WIDTH;
             y2 = y1 + max(24 + 32 + eh * (size + 1) + entry_offset, array_length(node.outbound) * EVENT_NODE_CONTACT_HEIGHT * 2 / 3);
@@ -297,18 +297,18 @@ function draw_event_node(node) {
                         break;
                     }
                     
-                    var text = node.data[| i];
+                    var text = node.data[i];
                     
                     if (mouse_within_rectangle_adjusted(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + eh - tolerance)) {
                         draw_rectangle_colour(x1 + tolerance, entry_yy + tolerance, x2 - tolerance, entry_yy + eh - tolerance, c, c, c, c, false);
                         if (!dialog_exists()) {
                             if (Controller.release_left && !Stuff.event.canvas_active_node) {
-                                dialog_create_event_node_input_string(node.data, i, "Option text?", node.data[| i]);
+                                dialog_create_event_node_input_string(node.data, i, "Option text?", node.data[i]);
                             }
                         }
                     }
                     
-                    draw_text_ext(x1 + 16, mean(entry_yy, entry_yy + eh), node.data[| i], -1, EVENT_NODE_CONTACT_WIDTH - 16);
+                    draw_text_ext(x1 + 16, mean(entry_yy, entry_yy + eh), node.data[i], -1, EVENT_NODE_CONTACT_WIDTH - 16);
                     
                     if (i > 0) {
                         draw_event_node_choice_remove(x2, entry_yy + 16, node, i);
@@ -809,7 +809,7 @@ function draw_event_node(node) {
                 }
                 
                 // this is seriously screwing with scope but it works since nodes can't change type
-                by = by + eh + ((i < n - 2) ? rh : (rh + eh) / 2);
+                by += eh + ((i < n - 2) ? rh : (rh + eh) / 2);
             }
             
             if (Stuff.event.canvas_active_node == node) {

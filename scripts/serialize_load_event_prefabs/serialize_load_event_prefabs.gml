@@ -18,11 +18,11 @@ function serialize_load_event_prefabs(buffer, version) {
         guid_set(prefab, guid);
         prefab.type = type;
         ds_list_add(Game.events.prefabs, prefab);
-        ds_list_clear(prefab.data);
+        prefab.data = [];
         var n_data = buffer_read(buffer, buffer_u8);
         
         repeat (n_data) {
-            ds_list_add(prefab.data, buffer_read(buffer, buffer_string));
+            array_push(prefab.data, buffer_read(buffer, buffer_string));
         }
         
         switch (prefab.type) {

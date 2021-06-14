@@ -127,9 +127,9 @@ function language_extract() {
                     case EventNodeTypes.TEXT:
                     case EventNodeTypes.SHOW_SCROLLING_TEXT:
                     case EventNodeTypes.SHOW_CHOICES:
-                        for (var k = 0; k < ds_list_size(node.data); k++) {
+                        for (var k = 0; k < array_length(node.data); k++) {
                             var key = "Event." + node.name + "." + string(node.GUID) + ".data." + string(k);
-                            lang[$ key] = (lang_index == 0) ? node.data[| k] : ((lang[$ key] != undefined) ? lang[$ key] : "");
+                            lang[$ key] = (lang_index == 0) ? node.data[k] : ((lang[$ key] != undefined) ? lang[$ key] : "");
                             existing_keys[$ key] = false;
                         }
                         break;

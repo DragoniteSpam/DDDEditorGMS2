@@ -21,9 +21,9 @@ function draw_event_node_text_move(argument0, argument1, argument2, argument3, a
         draw_tooltip(xx, yy + 16, (!i_index) ? "Move Up" : "Move Down");
         if (Controller.release_left) {
             // no need to shuffle the outbound things, in this case
-            var t = node.data[| index + dir];
-            node.data[| index + dir] = node.data[| index];
-            node.data[| index] = t;
+            var t = node.data[index + dir];
+            node.data[index + dir] = node.data[index];
+            node.data[index] = t;
         }
     }
 

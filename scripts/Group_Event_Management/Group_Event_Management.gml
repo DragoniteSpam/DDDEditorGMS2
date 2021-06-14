@@ -65,20 +65,20 @@ function event_create_node() {
         case EventNodeTypes.ENTRYPOINT:
             node.is_root = true;
             node.name = "+Entrypoint";
-            node.data[| 0] = "";
+            node.data[0] = "";
             break;
         case EventNodeTypes.TEXT:
             node.name = "Text";
-            node.data[| 0] = "The quick brown fox jumped over the lazy dog";
+            node.data[0] = "The quick brown fox jumped over the lazy dog";
             break;
         case EventNodeTypes.COMMENT:
             node.name = "Comment";
-            node.data[| 0] = "This is a comment";
+            node.data[0] = "This is a comment";
             node.valid_destination = false;
             break;
         case EventNodeTypes.SHOW_CHOICES:
             node.name = "Choose";
-            node.data[| 0] = "Option 0";
+            node.data[0] = "Option 0";
             break;
         case EventNodeTypes.CONDITIONAL:
             node.name = "Branch";

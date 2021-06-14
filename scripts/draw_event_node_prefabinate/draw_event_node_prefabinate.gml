@@ -38,7 +38,7 @@ function draw_event_node_prefabinate(xx, yy, node) {
                             // have TOO mcuh work to do (for the most part the
                             // only things you care about are the data and
                             // custom data lists)
-                            ds_list_copy(node.data, prefab.data);
+                            node.data = array_clone(prefab.data);
                             for (var i = 0; i < array_length(node.custom_data); i++) {
                                 node.custom_data[i] = array_clone(prefab.custom_data[i]);
                             }

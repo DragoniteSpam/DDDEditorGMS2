@@ -39,10 +39,10 @@ function serialize_save_events(buffer) {
                 }
             }
             
-            var n_data = ds_list_size(node.data);
+            var n_data = array_length(node.data);
             buffer_write(buffer, buffer_u8, n_data);
             for (var k = 0; k < n_data; k++) {
-                buffer_write(buffer, buffer_string, node.data[| k]);
+                buffer_write(buffer, buffer_string, node.data[k]);
             }
             
             // if there's anything special in the node, save it here

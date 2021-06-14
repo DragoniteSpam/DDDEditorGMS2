@@ -14,7 +14,7 @@ function draw_event_node_choice_add(argument0, argument1, argument2) {
         draw_sprite(spr_plus_minus, 1, xx, yy);
         draw_tooltip(xx, yy + 16, "Add Option");
         if (Controller.release_left) {
-            ds_list_add(node.data, "Option " + string(ds_list_size(node.data)));
+            array_push(node.data, "Option " + string(array_length(node.data)));
             // insert at the second to last position so that the "default" outbound node stays where it is
             array_insert(node.outbound, array_length(node.outbound) - 1, undefined);
         }

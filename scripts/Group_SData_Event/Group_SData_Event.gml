@@ -21,8 +21,7 @@ function DataEvent(source) : SData(source) constructor {
 function DataEventNode(source) : SData(source) constructor {
     self.type = EventNodeTypes.ENTRYPOINT;                                       // serialize: buffer_u16
     
-    self.data = ds_list_create();
-    ds_list_add(self.data, "");
+    self.data = [""];
     self.outbound = [undefined];                                                 // serialize: buffer_string (this is a struct, but you serialize the ID of the destination)
     
     self.custom_guid = NULL;                                                     // serialize: buffer_datatype
@@ -59,9 +58,9 @@ function DataEventNode(source) : SData(source) constructor {
         json.prefab_guid = self.prefab_guid;
         json.x = self.x;
         json.y = self.y;
-        json.data = array_create(ds_list_size(self.data));
-        for (var i = 0, n = ds_list_size(self.data); i < n; i++) {
-            json.data[i] = self.data[| i];
+        json.data = array_create(array_length(self.data));
+        for (var i = 0, n = array_length(self.data); i < n; i++) {
+            json.data[i] = self.data[i];
         }
         json.outbound = array_create(array_length(self.outbound));
         for (var i = 0, n = array_length(self.outbound); i < n; i++) {
@@ -103,9 +102,6 @@ function DataEventNode(source) : SData(source) constructor {
             // remove this node from the registered names for nodes in the event
             variable_struct_remove(self.event.name_map, self.name);
         }
-        
-        // data structures
-        ds_list_destroy(self.data);
         
         // some special nodes may desire to have actual UI elements
         for (var i = 0; i < array_length(self.ui_things); i++) {
