@@ -1,6 +1,5 @@
 function serialize_save_events(buffer) {
-    serialize_save_event_custom(buffer);
-    serialize_save_event_prefabs(buffer);
+    throw "you removed the prefab and custom events from the top of this script - remember that, it's important";
     
     buffer_write(buffer, buffer_u32, SerializeThings.EVENTS);
     var addr_next = buffer_tell(buffer);

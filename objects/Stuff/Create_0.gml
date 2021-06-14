@@ -446,13 +446,12 @@ data_type_default_values = [
  *          and the equivalent in the game
  *  18. case in serialize_load_event_prefabs
  *          event prefabs are IGNORED in the game
- *  19. case in serialize_save_event_prefabs
- *  20. case in serialize_save_map_contents_meta
- *  21. case in serialize_load_map_contents_meta
+ *  19. case in serialize_save_map_contents_meta
+ *  20. case in serialize_load_map_contents_meta
  *          and the equivalent in the game
- *  22. Stuff.Create - game data location and game data save scripts
- *  23. enum DataVersions - you most likely will need a new data version to handle the new data
- *  24. serialize_load - read the data out
+ *  21. Stuff.Create - game data location and game data save scripts
+ *  22. enum DataVersions - you most likely will need a new data version to handle the new data
+ *  23. serialize_load - read the data out
  */
 #endregion
 
