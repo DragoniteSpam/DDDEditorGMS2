@@ -1,7 +1,6 @@
 function DataEvent(source) : SData(source) constructor {
     self.nodes = [];
     self.name_map = { };
-    event_create_node(self, EventNodeTypes.ENTRYPOINT, 64, 64);
     
     static CreateJSONEvent = function() {
         var json = self.CreateJSONBase();
@@ -22,7 +21,7 @@ function DataEventNode(source) : SData(source) constructor {
     self.type = EventNodeTypes.ENTRYPOINT;                                       // serialize: buffer_u16
     
     self.data = [""];
-    self.outbound = [undefined];                                                 // serialize: buffer_string (this is a struct, but you serialize the ID of the destination)
+    self.outbound = [NULL];                                                     // serialize: buffer_string (this is a struct, but you serialize the ID of the destination)
     
     self.custom_guid = NULL;                                                     // serialize: buffer_datatype
     self.custom_data = [];                                                       // list of lists - contents determined by custom_guid
