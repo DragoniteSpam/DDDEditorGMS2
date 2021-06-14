@@ -524,7 +524,52 @@ function ui_init_particle(mode) {
         #region tab: types
         yy = legal_y + spacing;
         
-        element = create_list(col1_x, yy, "Particle Types", "<no particle types>", ew, eh, 26, ui_particle_type_select, false, t_type, mode.types);
+        f_part_type_select = function(element) {
+            var selection = ui_list_selection(list);
+            if (selection + 1) {
+                var type = Stuff.particle.types[selection];
+                ui_input_set_value(list.root.name, type.name);
+                ui_input_set_value(list.root.speed_min, string_format(type.speed_min, 1, 3));
+                ui_input_set_value(list.root.speed_max, string_format(type.speed_max, 1, 3));
+                ui_input_set_value(list.root.speed_incr, string_format(type.speed_incr, 1, 3));
+                ui_input_set_value(list.root.speed_wiggle, string_format(type.speed_wiggle, 1, 3));
+                list.root.direction_min.value = type.direction_min / 360;
+                list.root.direction_max.value = type.direction_max / 360;
+                ui_input_set_value(list.root.direction_incr, string_format(type.direction_incr, 1, 3));
+                ui_input_set_value(list.root.direction_wiggle, string_format(type.direction_wiggle, 1, 3));
+                list.root.orientation_min.value = type.orientation_min / 360;
+                list.root.orientation_max.value = type.orientation_max / 360;
+                ui_input_set_value(list.root.orientation_incr, string_format(type.orientation_incr, 1, 3));
+                ui_input_set_value(list.root.orientation_wiggle, string_format(type.orientation_wiggle, 1, 3));
+                list.root.orientation_relative.value = type.orientation_relative;
+                ui_input_set_value(list.root.gravity, string_format(type.gravity, 1, 3));
+                list.root.gravity_direction.value = type.gravity_direction / 360;
+                list.root.use_sprite.value = type.sprite_custom;
+                ui_list_deselect(list.root.shape);
+                ui_list_select(list.root.shape, type.shape, true);
+                list.root.base_color_1a.value = type.color_1a;
+                list.root.base_color_1a.alpha = type.alpha_1;
+                list.root.base_color_1b.value = type.color_1b;
+                list.root.base_color_1b_enabled.value = type.color_1b_enabled;
+                list.root.base_color_2.value = type.color_2;
+                list.root.base_color_2.alpha = type.alpha_2;
+                list.root.base_color_2_enabled.value = type.color_2_enabled;
+                list.root.base_color_3.value = type.color_3;
+                list.root.base_color_3.alpha = type.alpha_3;
+                list.root.base_color_3_enabled.value = type.color_3_enabled;
+                list.root.additive_blending.value = type.blend;
+                ui_input_set_value(list.root.xscale, string_format(type.xscale, 1, 3));
+                ui_input_set_value(list.root.yscale, string_format(type.yscale, 1, 3));
+                ui_input_set_value(list.root.size_min, string_format(type.size_min, 1, 3));
+                ui_input_set_value(list.root.size_max, string_format(type.size_max, 1, 3));
+                ui_input_set_value(list.root.size_incr, string_format(type.size_incr, 1, 3));
+                ui_input_set_value(list.root.size_wiggle, string_format(type.size_wiggle, 1, 3));
+                ui_input_set_value(list.root.life_min, string_format(type.life_min, 1, 3));
+                ui_input_set_value(list.root.life_max, string_format(type.life_max, 1, 3));
+            }
+        };
+        
+        element = create_list(col1_x, yy, "Particle Types", "<no particle types>", ew, eh, 26, f_part_type_select, false, t_type, mode.types);
         element.tooltip = "All of the currently-defined particle types.";
         element.entries_are = ListEntries.INSTANCES;
         t_type.list = element;
@@ -664,7 +709,7 @@ function ui_init_particle(mode) {
                 var type = Stuff.particle.types[selection];
                 type.direction_min = 0;
                 part_type_direction(type.type, type.direction_min, type.direction_max, type.direction_incr, type.direction_wiggle);
-                ui_particle_type_select(button.root.list);
+                f_part_type_select(button.root.list);
             }
         }, t_type);
         ds_list_add(t_type.contents, element);
@@ -674,7 +719,7 @@ function ui_init_particle(mode) {
                 var type = Stuff.particle.types[selection];
                 type.direction_min = 90;
                 part_type_direction(type.type, type.direction_min, type.direction_max, type.direction_incr, type.direction_wiggle);
-                ui_particle_type_select(button.root.list);
+                f_part_type_select(button.root.list);
             }
         }, t_type);
         ds_list_add(t_type.contents, element);
@@ -684,7 +729,7 @@ function ui_init_particle(mode) {
                 var type = Stuff.particle.types[selection];
                 type.direction_min = 180;
                 part_type_direction(type.type, type.direction_min, type.direction_max, type.direction_incr, type.direction_wiggle);
-                ui_particle_type_select(button.root.list);
+                f_part_type_select(button.root.list);
             }
         }, t_type);
         ds_list_add(t_type.contents, element);
@@ -694,7 +739,7 @@ function ui_init_particle(mode) {
                 var type = Stuff.particle.types[selection];
                 type.direction_min = 270;
                 part_type_direction(type.type, type.direction_min, type.direction_max, type.direction_incr, type.direction_wiggle);
-                ui_particle_type_select(button.root.list);
+                f_part_type_select(button.root.list);
             }
         }, t_type);
         ds_list_add(t_type.contents, element);
@@ -704,7 +749,7 @@ function ui_init_particle(mode) {
                 var type = Stuff.particle.types[selection];
                 type.direction_min = 360;
                 part_type_direction(type.type, type.direction_min, type.direction_max, type.direction_incr, type.direction_wiggle);
-                ui_particle_type_select(button.root.list);
+                f_part_type_select(button.root.list);
             }
         }, t_type);
         ds_list_add(t_type.contents, element);
@@ -734,7 +779,7 @@ function ui_init_particle(mode) {
                 var type = Stuff.particle.types[selection];
                 type.direction_max = 0;
                 part_type_direction(type.type, type.direction_min, type.direction_max, type.direction_incr, type.direction_wiggle);
-                ui_particle_type_select(button.root.list);
+                f_part_type_select(button.root.list);
             }
         }, t_type);
         ds_list_add(t_type.contents, element);
@@ -745,7 +790,7 @@ function ui_init_particle(mode) {
                 var type = Stuff.particle.types[selection];
                 type.direction_max = 90;
                 part_type_direction(type.type, type.direction_min, type.direction_max, type.direction_incr, type.direction_wiggle);
-                ui_particle_type_select(button.root.list);
+                f_part_type_select(button.root.list);
             }
         }, t_type);
         ds_list_add(t_type.contents, element);
@@ -755,7 +800,7 @@ function ui_init_particle(mode) {
                 var type = Stuff.particle.types[selection];
                 type.direction_max = 180;
                 part_type_direction(type.type, type.direction_min, type.direction_max, type.direction_incr, type.direction_wiggle);
-                ui_particle_type_select(button.root.list);
+                f_part_type_select(button.root.list);
             }
         }, t_type);
         ds_list_add(t_type.contents, element);
@@ -765,7 +810,7 @@ function ui_init_particle(mode) {
                 var type = Stuff.particle.types[selection];
                 type.direction_max = 270;
                 part_type_direction(type.type, type.direction_min, type.direction_max, type.direction_incr, type.direction_wiggle);
-                ui_particle_type_select(button.root.list);
+                f_part_type_select(button.root.list);
             }
         }, t_type);
         ds_list_add(t_type.contents, element);
@@ -775,7 +820,7 @@ function ui_init_particle(mode) {
                 var type = Stuff.particle.types[selection];
                 type.direction_max = 360;
                 part_type_direction(type.type, type.direction_min, type.direction_max, type.direction_incr, type.direction_wiggle);
-                ui_particle_type_select(button.root.list);
+                f_part_type_select(button.root.list);
             }
         }, t_type);
         ds_list_add(t_type.contents, element);
@@ -924,7 +969,7 @@ function ui_init_particle(mode) {
                 var type = Stuff.particle.types[selection];
                 type.gravity_direction = 0;
                 part_type_gravity(type.type, type.gravity, type.gravity_direction);
-                ui_particle_type_select(button.root.list);
+                f_part_type_select(button.root.list);
             }
         }, t_type);
         element.tooltip = "Gravity attracts things to the right";
@@ -935,7 +980,7 @@ function ui_init_particle(mode) {
                 var type = Stuff.particle.types[selection];
                 type.gravity_direction = 90;
                 part_type_gravity(type.type, type.gravity, type.gravity_direction);
-                ui_particle_type_select(button.root.list);
+                f_part_type_select(button.root.list);
             }
         }, t_type);
         element.tooltip = "Gravity attracts things upwards";
@@ -946,7 +991,7 @@ function ui_init_particle(mode) {
                 var type = Stuff.particle.types[selection];
                 type.gravity_direction = 180;
                 part_type_gravity(type.type, type.gravity, type.gravity_direction);
-                ui_particle_type_select(button.root.list);
+                f_part_type_select(button.root.list);
             }
         }, t_type);
         element.tooltip = "Gravity attracts things to the left";
@@ -957,7 +1002,7 @@ function ui_init_particle(mode) {
                 var type = Stuff.particle.types[selection];
                 type.gravity_direction = 270;
                 part_type_gravity(type.type, type.gravity, type.gravity_direction);
-                ui_particle_type_select(button.root.list);
+                f_part_type_select(button.root.list);
             }
         }, t_type);
         element.tooltip = "Gravity attracts things downwards";
