@@ -22,7 +22,7 @@ function draw_editor_particle(mode) {
         if (mouse_within_view(view_current) && ds_list_empty(Stuff.dialogs) && !mode.emitter_setting) {
             var emitter = mode.emitters[ui_list_selection(mode.ui.t_emitter.list)];
             if (emitter && emitter.type) {
-                part_particles_create(mode.system, mouse_x_view, mouse_y_view, emitter.type.type, emitter.rate * Stuff.dt)
+                part_particles_create(mode.system, mouse_x_view, mouse_y_view, emitter.type.type, emitter.rate * Stuff.dt);
             }
         }
     }
@@ -91,7 +91,7 @@ function draw_editor_particle(mode) {
                 part_system_automatic_update(mode.system, mode.system_auto_update);
                 editor_particle_emitter_set_region(emitter);
                 editor_particle_emitter_create_region(emitter);
-                ui_particle_emitter_select(mode.ui.t_emitter.list);
+                mode.ui.t_emitter.list.on_select(mode.ui.t_emitter.list);
                 kill = true;
             }
         }

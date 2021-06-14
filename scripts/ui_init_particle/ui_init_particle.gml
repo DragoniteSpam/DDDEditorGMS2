@@ -241,7 +241,24 @@ function ui_init_particle(mode) {
         #region tab: emitters
         yy = legal_y + spacing;
         
-        element = create_list(col1_x, yy, "Particle Emitters", "<no emitters>", ew, eh, 26, ui_particle_emitter_select, false, t_emitter, mode.emitters);
+        element = create_list(col1_x, yy, "Particle Emitters", "<no emitters>", ew, eh, 26, function(list) {
+            var selection = ui_list_selection(list);
+            if (selection + 1) {
+                var emitter = Stuff.particle.emitters[selection];
+                list.root.shape.value = emitter.region_shape;
+                list.root.distr.value = emitter.region_distribution;
+                list.root.streaming.value = emitter.streaming;
+                list.root.draw.value = emitter.draw_region;
+                ui_input_set_value(list.root.name, string(emitter.name));
+                ui_input_set_value(list.root.xmin, string(emitter.region_x1));
+                ui_input_set_value(list.root.ymin, string(emitter.region_y1));
+                ui_input_set_value(list.root.xmax, string(emitter.region_x2));
+                ui_input_set_value(list.root.ymax, string(emitter.region_y2));
+                ui_input_set_value(list.root.rate, string(emitter.rate));
+                ui_list_deselect(list.root.types);
+                ui_list_select(list.root.types, array_search(Stuff.particle.types, emitter.type));
+            }
+        }, false, t_emitter, mode.emitters);
         element.tooltip = "All of the currently-defined emitters types.";
         element.evaluate_text = function(list, index) {
             var emitter = list.entries[| index];
