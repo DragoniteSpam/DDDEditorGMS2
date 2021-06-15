@@ -15,7 +15,7 @@ mesh = NULL;
 mesh_submesh = NULL;                   // proto-GUID
 animated = false;
 animation_index = 0;
-animation_type = SMF_loop_linear;
+animation_type = 0;                                                             // if smf ever gets re-added, it the loop type would be stored in here
 animation_speed = 0;
 animation_end_action = AnimationEndActions.LOOP;
 
