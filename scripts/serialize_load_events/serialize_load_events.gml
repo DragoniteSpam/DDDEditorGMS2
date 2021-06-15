@@ -173,7 +173,6 @@ function serialize_load_events(buffer, version) {
             
             for (var k = 0; k < array_length(node.outbound); k++) {
                 var dest = guid_get(node.outbound[k]);
-                node.outbound[k] = dest;
                 if (dest) {
                     dest.parents[$ node.GUID] = true;
                 }

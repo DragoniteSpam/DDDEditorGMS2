@@ -30,12 +30,8 @@ function serialize_save_events(buffer) {
             var n_outbound = array_length(node.outbound);
             buffer_write(buffer, buffer_u8, n_outbound);
             for (var k = 0; k < n_outbound; k++) {
-                if (node.outbound[k]) {
-                    buffer_write(buffer, buffer_datatype, node.outbound[k].GUID);
-                } else {
-                    // empty string signifies a terminal node
-                    buffer_write(buffer, buffer_string, "");
-                }
+                // null signifies a terminal node
+                buffer_write(buffer, buffer_datatype, node.outbound[k]);
             }
             
             var n_data = array_length(node.data);

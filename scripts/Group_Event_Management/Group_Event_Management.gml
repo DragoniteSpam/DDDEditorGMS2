@@ -19,7 +19,7 @@ function event_connect_node() {
     
     // because this would be silly
     if (source != destination && (destination && destination.valid_destination) || force_null) {
-        var old_node = source.outbound[index];
+        var old_node = guid_get(source.outbound[index]);
         if (old_node) {
             variable_struct_remove(old_node.parents, source.GUID);
         }
@@ -28,7 +28,7 @@ function event_connect_node() {
             destination.parents[$ source.GUID] = true;
         }
         
-        source.outbound[index] = destination;
+        source.outbound[index] = destination.GUID;
     }
 }
 
@@ -123,9 +123,7 @@ function event_create_node() {
                     array_push(node.custom_data, new_list);
                 }
                 
-                for (var i = 0; i < array_length(custom.outbound); i++) {
-                    node.outbound[i] = undefined;
-                }
+                node.outbound = array_create(array_length(custom.outbound), NULL);
             }
             break;
     }

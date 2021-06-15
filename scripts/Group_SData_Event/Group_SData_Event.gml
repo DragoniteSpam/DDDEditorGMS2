@@ -58,10 +58,7 @@ function DataEventNode(source) : SData(source) constructor {
         json.x = self.x;
         json.y = self.y;
         json.data = self.data;
-        json.outbound = array_create(array_length(self.outbound));
-        for (var i = 0, n = array_length(self.outbound); i < n; i++) {
-            if (self.outbound[i]) json.outbound[i] = self.outbound[i].GUID;
-        }
+        json.outbound = self.outbound;
         json.custom_data = self.custom_data;
         return json;
     };
@@ -76,7 +73,7 @@ function DataEventNode(source) : SData(source) constructor {
         for (var i = 0; i < array_length(parent_nodes); i++) {
             var parent = guid_get(self.parents[$ parent_nodes[i]]);
             for (var j = 0; j < array_length(parent.outbound); j++) {
-                if (parent.outbound[j] == self) {
+                if (parent.outbound[j] == self.GUID) {
                     parent.outbound[j] = undefined;
                 }
             }
@@ -84,8 +81,8 @@ function DataEventNode(source) : SData(source) constructor {
         
         // outbound nodes which contain this as a parent
         for (var i = 0; i < array_length(self.outbound); i++) {
-            if (self.outbound[i]) {
-                variable_struct_remove(self.outbound[i].parents, self.GUID);
+            if (self.outbound[i] != NULL) {
+                variable_struct_remove(guid_get(self.outbound[i]).parents, self.GUID);
             }
         }
         
@@ -126,10 +123,7 @@ function DataEventNodeCustom(source) : SData(source) constructor {
                 all_required: type[4],
             };
         }
-        json.outbound = array_create(array_length(self.outbound));
-        for (var i = 0, n = array_length(self.outbound); i < n; i++) {
-            if (self.outbound[i]) json.outbound[i] = self.outbound[i];
-        }
+        json.outbound = self.outbound;
         return json;
     };
     

@@ -713,7 +713,7 @@ function draw_event_node(node) {
         case EventNodeTypes.SHOW_SCROLLING_TEXT:
             #region single-output nodes
             entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
-            var outbound = node.outbound[0];
+            var outbound = guid_get(node.outbound[0]);
             
             var by = entry_yy;
             
@@ -745,7 +745,7 @@ function draw_event_node(node) {
             #region Entrypoint
             // vertical middle of the box; entrypoints will only ever have one outbound node so we can cheat
             var by = y1 + entrypoint_height / 2;
-            var outbound = node.outbound[0];
+            var outbound = guid_get(node.outbound[0]);
             
             if (!outbound) {
                 draw_event_node_outbound(x2 + ext_node_padding, by, node, 0, true);
@@ -784,7 +784,7 @@ function draw_event_node(node) {
             var bezier_y = 0;
             
             for (var i = 0; i < n; i++) {
-                var outbound = node.outbound[i];
+                var outbound = guid_get(node.outbound[i]);
                 if (!outbound) {
                     draw_event_node_outbound(x2 + ext_node_padding, by, node, i, true);
                 } else {
@@ -835,7 +835,7 @@ function draw_event_node(node) {
             var bezier_y = 0;
             
             for (var i = 0; i < n; i++) {
-                var outbound = node.outbound[i];
+                var outbound = guid_get(node.outbound[i]);
                 var by = entry_yy + eh / 2;
                 
                 if (!outbound) {
@@ -885,7 +885,7 @@ function draw_event_node(node) {
             entry_yy = y1 + EVENT_NODE_CONTACT_HEIGHT;
             
             for (var i = 0; i < array_length(node.outbound); i++) {
-                var outbound = node.outbound[i];
+                var outbound = guid_get(node.outbound[i]);
                 var by = entry_yy + 32 * i;
                 
                 if (!outbound) {
