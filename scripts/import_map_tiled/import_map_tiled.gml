@@ -22,24 +22,23 @@ function import_map_tiled(ask_clear) {
     
     if (file_exists(filename)) {
         var json_buffer = buffer_load(filename);
-        var json = json_decode(buffer_read(json_buffer, buffer_text));
+        var json = json_parse(buffer_read(json_buffer, buffer_text));
         buffer_delete(json_buffer);
         
-        var json_type = json[? "type"];
+        var json_type = json.type;
         if (json_type == "map") {
-            var tiled_cache = ds_map_create();
-            tiled_cache[? "*dir"] = filename_dir(filename);
+            var tiled_cache = { };
+            tiled_cache[$ "*dir"] = filename_dir(filename);
             
-            var json_layers = json[? "layers"];
-            
-            var json_properties = json[? "properties"];
+            var json_layers = json.layers;
+            var json_properties = json.properties;
             var map_id = -1;
             
             if (json_properties) {
-                for (var i = 0; i < ds_list_size(json_properties); i++) {
-                    var property_name = ds_map_find_value(json_properties[| i], "name");
-                    var property_type = ds_map_find_value(json_properties[| i], "type");
-                    var property_value = ds_map_find_value(json_properties[| i], "value");
+                for (var i = 0; i < array_length(json_properties); i++) {
+                    var property_name = json_properties[i].name;
+                    var property_type = json_properties[i].type;
+                    var property_value = json_properties[i].value;
             
                     if (property_name == "id") {
                         map_id = property_value;
@@ -49,46 +48,42 @@ function import_map_tiled(ask_clear) {
             
             Stuff.tiled_map_id = map_id;
             
-            var json_width = json[? "width"];
-            var json_height = json[? "height"];
-            
-            var json_tilesets = json[? "tilesets"];
-            var gid_cache = ds_map_create();
-            ds_map_add(tiled_cache, "%tilesets", json_tilesets); // don't mark as map
-            ds_map_add_map(tiled_cache, "&gid", gid_cache);
+            var json_width = json.width;
+            var json_height = json.height;
+            var json_tilesets = json.tilesets;
+            var gid_cache = { };
+            tiled_cache[$ "%tilesets"] = json_tilesets;
+            tiled_cache[$ "&gid"] = gid_cache;
             var tileset_columns = 0;
             
             // the main ts used by the map
-            if (!ds_list_empty(json_tilesets)) {
-                var tileset_source = json_tilesets[| 0][? "source"];
+            if (!array_empty(json_tilesets)) {
+                var tileset_source = json_tilesets[0].source;
                 if (!file_exists(tileset_source)) {
                     tileset_source = filename_path(filename) + filename_name(tileset_source);
                 }
                 if (file_exists(tileset_source)) {
                     var tileset_buffer = buffer_load(tileset_source);
-                    var tileset_json = json_decode(buffer_read(json_buffer, buffer_text));
+                    var tileset_json = json_parse(buffer_read(json_buffer, buffer_text));
                     buffer_delete(tileset_buffer);
-                    tileset_columns = tileset_json[? "columns"];
-                    ds_map_destroy(tileset_json);
+                    tileset_columns = tileset_json.columns;
                 }
             }
             
             // existing entities need to be logged
-            var tmx_ids = ds_map_create();
-            for (var i = 0; i < ds_list_size(map_contents.all_entities); i++) {
-                var entity = map_contents.all_entities[| i];
-                tmx_ids[? entity.tmx_id] = entity;
+            var tmx_ids = { };
+            for (var i = 0; i < array_length(map_contents.all_entities); i++) {
+                tmx_ids[$ entity.tmx_id] = map_contents.all_entities[i];
             }
-            ds_map_add_map(tiled_cache, "&tmx-ids", tmx_ids);
+            tiled_cache[$ "&tmx-ids"] = tmx_ids;
             
             if (tileset_columns) {
                 array_clear_3d(map_contents.map_grid_tags, 0);
                 
-                var json_layers = json[? "layers"];
                 var layer_z = 0;
-                for (var i = 0; i < ds_list_size(json_layers); i++) {
-                    var layer_data = json_layers[| i];
-                    var layer_type = layer_data[? "type"];
+                for (var i = 0; i < array_length(json_layers); i++) {
+                    var layer_data = json_layers[i];
+                    var layer_type = layer_data.type;
                     
                     switch (layer_type) {
                         case "group": layer_z = import_map_tiled_layer_folder(layer_data, tileset_columns, layer_z, 1, 0, 0, tiled_cache); break;
@@ -120,11 +115,7 @@ function import_map_tiled(ask_clear) {
             } else {
                 emu_dialog_notice("No valid tileset file found for " + filename_name(filename) + ". Please find one.");
             }
-            
-            ds_map_destroy(tiled_cache);
         }
-        
-        ds_map_destroy(json);
         
         batch_again();
     }

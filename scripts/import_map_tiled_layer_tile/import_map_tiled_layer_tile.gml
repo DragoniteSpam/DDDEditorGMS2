@@ -17,39 +17,40 @@ function import_map_tiled_layer_tile() {
     var map_contents = map.contents;
     var ts = get_active_tileset();
     
-    var layer_data = json[? "data"];
-    var layer_name = json[? "name"];
-    var layer_height = json[? "height"];
-    var layer_width = json[? "width"];
-    var layer_alpha = json[? "opacity"];
-    var layer_visible = json[? "visible"];
-    var layer_data_x = json[? "x"];
-    var layer_data_y = json[? "y"];
-    var layer_properties = json[? "properties"];
-    var property_map = ds_map_create();
+    var layer_data = json.data;
+    var layer_name = json.name;
+    var layer_height = json.height;
+    var layer_width = json.width;
+    var layer_alpha = json.opacity;
+    var layer_visible = json.visible;
+    var layer_data_x = json.x;
+    var layer_data_y = json.y;
+    var layer_properties = json.properties;
+    var property_map = { };
     
     if (layer_properties != undefined) {
-        for (var i = 0; i < ds_list_size(layer_properties); i++) {
-            var property = layer_properties[| i];
+        for (var i = 0; i < array_length(layer_properties); i++) {
+            var property = layer_properties[i];
             // don't add map because they're already in the root map
-            property_map[? property[? "name"]] = property;
+            property_map[$ property.name] = property;
         }
     }
     
     var xoffset = 0;
     var yoffset = 0;
     
-    if (property_map[? "Offset"]) {
-        var zoffset = property_map[? "Offset"][? "value"];
+    var zoffset;
+    if (property_map[$ "Offset"]) {
+        zoffset = property_map.Offset.value;
     } else {
-        var zoffset = 0;
+        zoffset = 0;
     }
     
     if (layer_visible) {
-        for (var i = 0; i < ds_list_size(layer_data); i++) {
+        for (var i = 0; i < array_length(layer_data); i++) {
             var tile_x = i mod layer_width;
             var tile_y = i div layer_width;
-            var tile_value = layer_data[| i];
+            var tile_value = layer_data[i];
             
             if (tile_value) {
                 tile_value--;
