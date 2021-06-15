@@ -72,8 +72,6 @@ alarm[ALARM_SETTINGS_SAVE] = room_speed * CAMERA_SAVE_FREQUENCY;
 #endregion
 
 #region initialize standalone systems
-smf_init();
-
 //dotdae_init();
 wtf("re-add the dotdae thing eventually");
 

@@ -60,7 +60,6 @@ function MeshSubmesh(source) constructor {
         if (self.vbuffer) {
             switch (self.owner.type) {
                 case MeshTypes.RAW: vertex_delete_buffer(self.vbuffer); break;
-                case MeshTypes.SMF: smf_model_destroy(self.vbuffer); break;
             }
         }
         if (self.reflect_buffer) buffer_delete(self.reflect_buffer);
@@ -69,7 +68,6 @@ function MeshSubmesh(source) constructor {
         if (self.reflect_vbuffer) {
             switch (self.owner.type) {
                 case MeshTypes.RAW: vertex_delete_buffer(self.reflect_vbuffer); break;
-                case MeshTypes.SMF: smf_model_destroy(self.reflect_vbuffer); break;
             }
         }
     };

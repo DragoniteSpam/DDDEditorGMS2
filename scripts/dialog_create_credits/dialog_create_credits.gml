@@ -52,12 +52,6 @@ function dialog_create_credits(dialog) {
     el_ex_fmod_url.tooltip = "https://quadolorgames.itch.io/fmodgms";
     var el_ex_fmod = create_text(32 + bw + spacing, yy, "FMODGMS by quadolorgames", ew, eh, fa_left, dw - 32, dg);
     yy += 40;
-    var el_ex_smf_url = create_button(32, yy, "Marketplace (free)", bw, eh, fa_center, function(button) {
-        ds_stuff_open("https://marketplace.yoyogames.com/assets/5256/smf-3d-skeletal-animation");
-    }, dg);
-    el_ex_smf_url.tooltip = "https://marketplace.yoyogames.com/assets/5256/smf-3d-skeletal-animation";
-    var el_ex_smf = create_text(32 + bw + spacing, yy, "Snidr's Model Format, by the heavy metal viking dentist himself", ew, eh, fa_left, dw - 32, dg);
-    yy += 40;
     var el_ex_scribble_url = create_button(32, yy, "Github", bw, eh, fa_center, function(button) {
         ds_stuff_open("https://github.com/JujuAdams/scribble");
     }, dg);
@@ -101,7 +95,6 @@ function dialog_create_credits(dialog) {
         el_ex,
         el_ex_venomous, el_ex_venomous_url,
         el_ex_fmod, el_ex_fmod_url,
-        el_ex_smf, el_ex_smf_url,
         el_ex_scribble, el_ex_scribble_url,
         el_ex_xpanda, el_ex_xpanda_url,
         el_ex_regex,
