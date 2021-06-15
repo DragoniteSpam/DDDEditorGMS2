@@ -2,6 +2,14 @@ function DataEvent(source) : SData(source) constructor {
     self.nodes = [];
     self.name_map = { };
     
+    if (is_struct(source)) {
+        self.name_map = json_stringify(source.name_map);
+        self.nodes = array_create(array_length(source.nodes));
+        for (var i = 0, n = array_length(source.nodes); i < n; i++) {
+            self.nodes[i] = new DataEventNode(source.nodes[i]);
+        }
+    }
+    
     static CreateJSONEvent = function() {
         var json = self.CreateJSONBase();
         json.name_map = json_stringify(self.name_map);
@@ -49,6 +57,17 @@ function DataEventNode(source) : SData(source) constructor {
     self.ui_things = [];
     self.editor_handle = noone;
     self.editor_handle_index = -1;       // because sometimes the same node might want to spawn multiple editors and want to tell them apart
+    
+    if (is_struct(source)) {
+        self.type = source.type;
+        self.custom_guid = source.custom_guid;
+        self.prefab_guid = source.prefab_guid;
+        self.x = source.x;
+        self.y = source.y;
+        self.data = source.data;
+        self.outbound = source.outbound;
+        self.custom_data = source.custom_data;
+    }
     
     static CreateJSONEventNode = function() {
         var json = self.CreateJSONBase();

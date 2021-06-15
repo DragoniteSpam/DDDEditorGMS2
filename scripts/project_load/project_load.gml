@@ -151,9 +151,7 @@ function project_load(id) {
         var events = json.events;
         
         for (var i = 0; i < array_length(events); i++) {
-            var event = new DataEvent();
-            event.LoadJSON(events[i]);
-            array_push(Game.events.events, event);
+            array_push(Game.events.events, new DataEvent(events[i]));
         }
     };
     
