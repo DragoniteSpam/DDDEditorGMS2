@@ -163,7 +163,7 @@ function project_load(id) {
         for (var i = 0; i < array_length(maps); i++) {
             var map = instance_create_depth(0, 0, 0, DataMapContainer);
             map.LoadJSON(maps[i]);
-            map.LoadAsset(directory);
+            //map.LoadAsset(directory);                                         // you really only do this for the map that you want to currently load
             ds_list_add(Game.maps, map);
         }
     };

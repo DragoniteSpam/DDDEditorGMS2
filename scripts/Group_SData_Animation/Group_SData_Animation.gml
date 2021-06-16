@@ -284,6 +284,7 @@ enum GraphicTypes {
 }
 
 function DataAnimationKeyframe(layer, moment, source) constructor {
+    if (source == undefined) source = undefined;
     static property_map = undefined;
     if (!property_map) {
         property_map = { };
