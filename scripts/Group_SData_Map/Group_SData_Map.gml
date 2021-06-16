@@ -202,4 +202,17 @@ function DataMap(source) : SData(source) constructor {
     static CreateJSON = function() {
         return self.CreateJSONMap();
     };
+    
+    static Destroy = function() {
+        if (self.contents) self.contents.Destroy();
+        
+        buffer_delete(self.data_buffer);
+        if (self.preview) buffer_delete(self.preview);
+        if (self.wpreview) buffer_delete(self.wpreview);
+        if (self.cpreview) c_world_remove_object(self.cpreview);
+        if (self.cpreview) c_object_destroy(self.cpreview);
+        if (self.cspreview) c_shape_destroy(self.cspreview);
+        
+        ds_list_delete(Game.maps, ds_list_find_index(Game.maps, self));
+    };
 }
