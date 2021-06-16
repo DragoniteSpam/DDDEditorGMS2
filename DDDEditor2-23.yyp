@@ -73,6 +73,7 @@
     {"id":{"name":"safa_on_select_ui","path":"scripts/safa_on_select_ui/safa_on_select_ui.yy",},"order":7,},
     {"id":{"name":"project_load","path":"scripts/project_load/project_load.yy",},"order":1,},
     {"id":{"name":"safc_on_tile_animated_ui","path":"scripts/safc_on_tile_animated_ui/safc_on_tile_animated_ui.yy",},"order":0,},
+    {"id":{"name":"Group_SData_Map_Contents","path":"scripts/Group_SData_Map_Contents/Group_SData_Map_Contents.yy",},"order":10,},
     {"id":{"name":"safc_on_effect_ui","path":"scripts/safc_on_effect_ui/safc_on_effect_ui.yy",},"order":1,},
     {"id":{"name":"safc_on_effect","path":"scripts/safc_on_effect/safc_on_effect.yy",},"order":2,},
     {"id":{"name":"safc_on_effect_deselect","path":"scripts/safc_on_effect_deselect/safc_on_effect_deselect.yy",},"order":3,},
