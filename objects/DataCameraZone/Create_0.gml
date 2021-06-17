@@ -147,6 +147,18 @@ editor_color = c_blue;
 /* s */ camera_easing_method = AnimationTweens.LINEAR;  // u8
 /* s */ camera_easing_time = 1;                         // f32
 
+LoadJSONZoneCamera = function(source) {
+    self.LoadJSONZone(source);
+    self.camera_distance = source.camera.distance;
+    self.camera_angle = source.camera.angle;
+    self.camera_easing_method = source.camera.easing;
+    self.camera_easing_time = source.camera.time;
+};
+
+LoadJSON = function(source) {
+    self.LoadJSONZoneCamera(source);
+};
+
 CreateJSONZoneCamera = function() {
     var json = self.CreateJSONZone();
     json.camera = {
