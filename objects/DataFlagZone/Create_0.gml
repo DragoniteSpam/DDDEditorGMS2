@@ -149,6 +149,14 @@ editor_color = c_green;
 
 zone_flags = 0;
 
+LoadJSONZoneFlags = function(source) {
+    self.LoadJSONZone(source);
+};
+
+LoadJSON = function(source) {
+    self.LoadJSONZoneFlags(source);
+};
+
 CreateJSONZoneFlags = function() {
     var json = self.CreateJSONZone();
     json.flags = {
