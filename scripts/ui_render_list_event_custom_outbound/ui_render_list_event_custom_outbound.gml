@@ -3,8 +3,9 @@
 /// @param y
 function ui_render_list_event_custom_outbound(argument0, argument1, argument2) {
 
-    // this is a lot of the same code as ui_render_list which annoys me slightly, except it looks directly
-    // at DataMapContainer.all_entities in order to minimize code duplication. (Lol!)
+    // this is a lot of the same code as ui_render_list which annoys me slightly,
+    // except it looks directly at DataMap.all_entities in order to minimize
+    // code duplication. (Lol!)
     // as such, entries, entry_colors and entries_are_instances are not used in here
 
     var list = argument0;

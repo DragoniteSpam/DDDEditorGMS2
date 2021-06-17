@@ -9,8 +9,7 @@ function load_a_map(map_container) {
         Stuff.map.active_map.version = DataVersions._CURRENT - 1;
         Stuff.map.active_map.data_buffer = serialize_save_current_map();
         if (Stuff.map.active_map.contents) {
-            instance_activate_object(Stuff.map.active_map.contents);
-            instance_destroy(Stuff.map.active_map.contents);
+            Stuff.map.active_map.contents.Destroy();
             Stuff.map.active_map.contents = noone;
         }
         if (Stuff.map.active_map.preview) {
@@ -43,9 +42,7 @@ function load_a_map(map_container) {
     
     Stuff.map.active_map = map;
     
-    map.contents = instance_create_depth(0, 0, 0, MapContents);
-    instance_deactivate_object(map.contents);
-    
+    map.contents = new MapContents();
     data_resize_map(map, map.xx, map.yy, map.zz);
     
     if (buffer_md5(buffer, 0, buffer_get_size(buffer)) != EMPTY_BUFFER_MD5) {

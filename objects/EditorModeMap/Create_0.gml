@@ -89,8 +89,8 @@ enum FillTypes {
     ZONE,
 }
 
-active_map = instance_create_depth(0, 0, 0, DataMapContainer);
-active_map.contents = instance_create_depth(0, 0, 0, MapContents);
+active_map = new DataMap("Test Map");
+active_map.contents = new MapContents();
 active_map.contents.map_grid = array_create_4d(active_map.xx, active_map.yy, active_map.zz, MapCellContents._COUNT);
 active_map.contents.map_grid_tags = array_create_3d(active_map.xx, active_map.yy, active_map.zz);
 

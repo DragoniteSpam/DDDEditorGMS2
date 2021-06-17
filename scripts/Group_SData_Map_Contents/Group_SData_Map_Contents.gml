@@ -1,7 +1,5 @@
 function MapContents() constructor {
-    // this does NOT extend Data, since all of the Data properties are
-    // stored in the MapContainer
-    
+    // helper struct; does NOT extend Data
     self.batches = [ ];                           // array of structs
     self.batch_in_the_future = ds_list_create();     // entities
     self.dynamic = ds_list_create();                 // entities

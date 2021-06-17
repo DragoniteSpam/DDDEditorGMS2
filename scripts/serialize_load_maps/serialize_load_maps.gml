@@ -3,7 +3,8 @@ function serialize_load_maps(buffer, version) {
     var n_maps = buffer_read(buffer, buffer_u16);
     
     repeat (n_maps) {
-        var map = instance_create_depth(0, 0, 0, DataMapContainer);
+        var map = new DataMap();
+        ds_list_add(Game.maps, map);
         serialize_load_generic(buffer, map, version);
         
         map.version = buffer_read(buffer, buffer_u32);

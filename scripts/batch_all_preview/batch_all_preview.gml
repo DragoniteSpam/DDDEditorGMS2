@@ -1,7 +1,7 @@
 function batch_all_preview(map) {
     /*
     var existing_contents = map.contents;
-    map.contents = instance_create_depth(0, 0, 0, MapContents);
+    map.contents = new MapContents();
     var map = map.contents;
     var buffer = map.data_buffer;
     
