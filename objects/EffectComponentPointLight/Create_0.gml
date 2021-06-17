@@ -11,6 +11,16 @@ label_colour = c_blue;
 light_colour = c_white;
 light_radius = 255;
 
+LoadJSONComponentLight = function(source) {
+    self.LoadJSONComponent(source);
+    self.light_color = source.light.color;
+    self.light_radius = source.light.radius;
+};
+
+LoadJSON = function(source) {
+    self.LoadJSONComponentLight(source);
+};
+
 CreateJSONPointLight = function() {
     var json = self.CreateJSONComponent();
     json.light = {
