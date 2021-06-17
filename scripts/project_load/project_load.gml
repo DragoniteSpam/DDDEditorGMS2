@@ -161,7 +161,6 @@ function project_load(id) {
         var maps = json.maps;
         
         for (var i = 0; i < array_length(maps); i++) {
-            //map.LoadAsset(directory);                                         // you really only do this for the map that you want to currently load
             ds_list_add(Game.maps, new DataMap(maps[i]));
         }
     };
@@ -205,4 +204,8 @@ function project_load(id) {
     project_load_text(folder_name + "text.json");
     project_load_events(folder_name + "events.json");
     project_load_maps(folder_name + "maps.json", folder_map_name);
+    
+    Stuff.map.active_map.Destroy();
+    Stuff.map.active_map = undefined;
+    load_a_map(Game.maps[| 0]);
 }
