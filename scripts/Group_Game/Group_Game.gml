@@ -106,7 +106,7 @@ Game = {
         
         array_clear_instances(self.meshes);
         
-        array_resize(self.events.animations, 0);
+        array_resize(self.animations, 0);
         array_resize(self.events.events, 0);
         array_resize(self.events.prefabs, 0);
         array_resize(self.events.custom, 0);
