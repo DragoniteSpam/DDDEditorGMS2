@@ -10,6 +10,15 @@ audio_type = AudioTypes.NONE;
 
 instance_deactivate_object(id);
 
+LoadJSONComponentAudio = function(source) {
+    self.LoadJSONComponent(source);
+    self.audio_type = source.audio.type;
+};
+
+LoadJSON = function(source) {
+    self.LoadJSONComponentAudio(source);
+};
+
 CreateJSONAudio = function() {
     var json = self.CreateJSONComponent();
     json.audio = {
