@@ -15,6 +15,18 @@ light_colour = c_white;
 
 instance_deactivate_object(id);
 
+LoadJSONComponentLight = function(source) {
+    self.LoadJSONComponent(source);
+    self.light_color = source.light.color;
+    self.dx = source.light.dx;
+    self.dy = source.light.dy;
+    self.dz = source.light.dz;
+};
+
+LoadJSON = function(source) {
+    self.LoadJSONComponentLight(source);
+};
+
 CreateJSONDirectionalLight = function() {
     var json = self.CreateJSONComponent();
     json.light = {
