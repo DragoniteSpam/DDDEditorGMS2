@@ -161,7 +161,7 @@ function project_load(id) {
         var maps = json.maps;
         
         for (var i = 0; i < array_length(maps); i++) {
-            ds_list_add(Game.maps, new DataMap(maps[i]));
+            ds_list_add(Game.maps, new DataMap(maps[i], directory));
         }
     };
     #endregion
@@ -207,5 +207,5 @@ function project_load(id) {
     
     Stuff.map.active_map.Destroy();
     Stuff.map.active_map = undefined;
-    load_a_map(Game.maps[| 0]);
+    Game.maps[| 0].Load();
 }

@@ -1,4 +1,5 @@
-function DataMap(source) : SData(source) constructor {
+function DataMap(source, directory) : SData(source) constructor {
+    self.directory = directory;
     self.data_buffer = buffer_create(1, buffer_grow, 1);
     self.contents = undefined;
     self.version = DataVersions._CURRENT;
@@ -161,9 +162,8 @@ function DataMap(source) : SData(source) constructor {
         }
     };
     
-    static LoadAsset = function(directory) {
-        directory += "/";
-        var guid = string_replace(self.GUID, ":", "_");
+    static Load = function() {
+        var directory = self.directory + "/" + string_replace(self.GUID, ":", "_") + "/";
         
         #region zones
         var zone_meta = json_parse(buffer_read_file(directory + "zones.json"));
