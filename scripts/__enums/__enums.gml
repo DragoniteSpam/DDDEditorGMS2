@@ -176,6 +176,13 @@ enum LightTypes {
     SPOT,
 }
 
+global.light_type_constructors = [
+    undefined,
+    ComponentDirectionalLight,
+    ComponentPointLight,
+    ComponentSpotLight,
+];
+
 enum ParticleTypes {
     NONE,
 }
