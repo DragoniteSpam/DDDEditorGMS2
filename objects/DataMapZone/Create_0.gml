@@ -61,6 +61,21 @@ Render = function() {
     shader_reset();
 };
 
+LoadJSONZone = function(source) {
+    self.LoadJSONBase(source);
+    self.x1 = bounds.x1;
+    self.y1 = bounds.y1;
+    self.z1 = bounds.z1;
+    self.x2 = bounds.x2;
+    self.y2 = bounds.y2;
+    self.z2 = bounds.z2;
+    self.zone_priority = bounds.priority;
+};
+
+LoadJSON = function(source) {
+    self.LoadJSONZone(source);
+};
+
 CreateJSONZone = function() {
     return {
         bounds: {
