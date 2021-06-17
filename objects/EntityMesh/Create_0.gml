@@ -107,6 +107,21 @@ GetTexture = function() {
     return (mesh_data && guid_get(mesh_data.tex_base)) ? sprite_get_texture(guid_get(mesh_data.tex_base).picture, 0) : def_texture;
 };
 
+LoadJSONMesh = function(source) {
+    self.LoadJSON(source);
+    self.mesh = source.mesh.x;
+    self.mesh_submesh = source.mesh.y;
+    self.animated = source.mesh.animation.animated;
+    self.animation_index = source.mesh.animation.index;
+    self.animation_type = source.mesh.animation.type;
+    self.animation_speed = source.mesh.animation.speed;
+    self.animation_end_action = source.mesh.animation.end_action;
+};
+
+LoadJSON = function(source) {
+    self.LoadJSONMesh(source);
+};
+
 CreateJSONMesh = function() {
     var json = self.CreateJSONBase();
     json.mesh = {
