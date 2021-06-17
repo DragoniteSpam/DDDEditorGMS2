@@ -141,6 +141,15 @@ editor_color = c_yellow;
 
 /* s */ active_lights = array_create(MAX_LIGHTS, NULL);
 
+LoadJSONZoneLights = function(source) {
+    self.LoadJSONZone(source);
+    self.active_lights = source.lights.data;
+};
+
+LoadJSON = function(source) {
+    self.LoadJSONZoneLights(source);
+};
+
 CreateJSONZoneLights = function() {
     var json = self.CreateJSONZone();
     json.lights = {
