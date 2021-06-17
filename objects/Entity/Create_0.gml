@@ -176,6 +176,7 @@ LoadJSON = function(source) {
 
 CreateJSONBase = function() {
     return {
+        type: self.etype,
         position: {
             x: self.xx,
             y: self.yy,
