@@ -7,6 +7,15 @@ label_colour = c_black;
 
 script_call = "";
 
+LoadJSONComponent = function(source) {
+    self.LoadJSON(source);
+    self.script_call = source.com.code;
+};
+
+LoadJSON = function(source) {
+    self.LoadJSONComponent(source);
+};
+
 CreateJSONComponent = function() {
     var json = self.CreateJSONBase();
     json.com = {
