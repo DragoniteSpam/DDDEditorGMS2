@@ -841,6 +841,7 @@
     {"id":{"name":"uivc_scribble_default_colour","path":"scripts/uivc_scribble_default_colour/uivc_scribble_default_colour.yy",},"order":11,},
     {"id":{"name":"uivc_scribble_show_grid","path":"scripts/uivc_scribble_show_grid/uivc_scribble_show_grid.yy",},"order":12,},
     {"id":{"name":"uivc_scribble_text_copy","path":"scripts/uivc_scribble_text_copy/uivc_scribble_text_copy.yy",},"order":13,},
+    {"id":{"name":"Group_Effect_Components","path":"scripts/Group_Effect_Components/Group_Effect_Components.yy",},"order":16,},
     {"id":{"name":"uivc_scribble_text_paste","path":"scripts/uivc_scribble_text_paste/uivc_scribble_text_paste.yy",},"order":14,},
     {"id":{"name":"uivc_scribble_available_colors","path":"scripts/uivc_scribble_available_colors/uivc_scribble_available_colors.yy",},"order":15,},
     {"id":{"name":"uivc_scribble_available_fonts","path":"scripts/uivc_scribble_available_fonts/uivc_scribble_available_fonts.yy",},"order":16,},
@@ -1414,6 +1415,7 @@
     {"folderPath":"folders/sPart/Scripts/sPart.yy","order":1,"resourceVersion":"1.0","name":"sPart","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/sPart/Shaders.yy","order":3,"resourceVersion":"1.0","name":"Shaders","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/sPart/WIP.yy","order":4,"resourceVersion":"1.0","name":"WIP","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Game data/Entities.yy","order":17,"resourceVersion":"1.0","name":"Entities","tags":[],"resourceType":"GMFolder",},
   ],
   "AudioGroups": [
     {"targets":-1,"resourceVersion":"1.3","name":"audiogroup_default","resourceType":"GMAudioGroup",},
