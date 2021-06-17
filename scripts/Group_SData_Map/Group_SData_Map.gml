@@ -172,6 +172,16 @@ function DataMap(source) : SData(source) constructor {
             instance_create_depth(0, 0, 0, global.map_zone_type_objects[zone_data.type]).LoadJSON(zone_data);
         }
         #endregion
+        
+        #region entities
+        var entity_meta = json_parse(buffer_read_file(directory + "entities.json"));
+        var entity_data = json_parse(buffer_read_file(directory + "entities.ass"));
+        for (var i = 0; i < array_length(entity_meta); i++) {
+            var refid = entity_meta.entities[i];
+            var ref_data = entity_data.entities[i];
+            instance_create_depth(0, 0, 0, global.etype_objects[ref_data.type]).LoadJSON(ref_data);
+        }
+        #endregion
     };
     
     static SaveAsset = function(directory) {
