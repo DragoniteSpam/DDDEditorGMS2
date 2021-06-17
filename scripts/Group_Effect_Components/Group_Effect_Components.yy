@@ -2,8 +2,8 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Game data",
-    "path": "folders/Game data.yy",
+    "name": "Entities",
+    "path": "folders/Game data/Entities.yy",
   },
   "resourceVersion": "1.0",
   "name": "Group_Effect_Components",
