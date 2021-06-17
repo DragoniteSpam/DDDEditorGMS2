@@ -405,8 +405,7 @@ function ui_init_main(mode) {
             if (map == Stuff.map.active_map) {
                 emu_dialog_notice("Please don't delete a map that you currently have loaded. If you want to delete this map, load a different one first.");
             } else {
-                instance_activate_object(map);
-                instance_destroy(map);
+                map.Destroy();
                 ui_list_deselect(button.root.el_map_list);
                 ui_list_select(button.root.el_map_list, ds_list_find_index(Game.maps, Stuff.map.active_map));
             }

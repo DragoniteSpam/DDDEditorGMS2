@@ -8,7 +8,8 @@ function dc_close_destroy_map_preview() {
     var map = Stuff.event.map;
 
     if (map != Stuff.map.active_map) {
-        instance_destroy(map.contents);
+        map.contents.Destroy();
+        map.contents = undefined;
     }
 
     dialog_destroy();
