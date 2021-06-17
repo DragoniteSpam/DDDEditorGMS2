@@ -36,6 +36,36 @@ function DataMap(source) : SData(source) constructor {
     self.code = Stuff.default_lua_map;               // code
     self.generic_data = [];                          // similar to that attached to Entities
     
+    if (is_struct(source)) {
+        self.xx = source.xx;
+        self.yy = source.yy;
+        self.zz = source.zz;
+        self.tiled_map_id = source.tiled_map_id;
+        self.on_grid = source.on_grid;
+        self.tileset = source.tileset;
+        self.is_3d = source.is_3d;
+        self.fog_start = source.fog_start;
+        self.fog_end = source.fog_end;
+        self.fog_enabled = source.fog_enabled;
+        self.fog_colour = source.fog_colour;
+        self.indoors = source.indoors;
+        self.draw_water = source.draw_water;
+        self.water_level = source.water_level;
+        self.reflections_enabled = source.reflections_enabled;
+        self.fast_travel_to = source.fast_travel_to;
+        self.fast_travel_from = source.fast_travel_from;
+        self.base_encounter_rate = source.base_encounter_rate;
+        self.base_encounter_deviation = source.base_encounter_deviation;
+        self.light_enabled = source.light_enabled;
+        self.light_ambient_colour = source.light_ambient_colour;
+        self.light_player_enabled = source.light_player_enabled;
+        self.skybox = source.skybox;
+        self.map_chunk_size = source.map_chunk_size;
+        self.discovery = source.discovery;
+        self.code = source.code;
+        self.generic_data = source.generic_data;
+    }
+    
     static Add = function(entity, x, y, z, is_temp, add_to_lists) {
         if (x == undefined) x = entity.xx;
         if (y == undefined) y = entity.yy;
