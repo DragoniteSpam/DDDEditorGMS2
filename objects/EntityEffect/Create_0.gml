@@ -22,6 +22,20 @@ com_light = noone;
 com_particle = noone;
 com_audio = noone;
 
+LoadJSONEffect = function(source) {
+    self.LoadJSON(source);
+    var light = source.com.light;
+    var particle = source.com.particle;
+    var audio = source.com.audio;
+    self.com_light = light ? (new global.light_type_constructors[light.type](self, light)) : undefined;
+    self.com_particle = particle ? (new ComponentParticle(self, particle)) : undefined;
+    self.com_audio = audio ? (new ComponentAudio(self, audio)) : undefined;
+};
+
+LoadJSON = function(source) {
+    self.LoadJSONEffect(source);
+};
+
 CreateJSONEffect = function() {
     var json = self.CreateJSONBase();
     json.effects = {
