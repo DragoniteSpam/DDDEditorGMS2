@@ -15,6 +15,20 @@ light_dx = 0;
 light_dy = 0;
 light_dz = -1;
 
+LoadJSONComponentLight = function(source) {
+    self.LoadJSONComponent(source);
+    self.light_color = source.light.color;
+    self.light_radius = source.light.radius;
+    self.light_cutoff = source.light.cutoff;
+    self.dx = source.light.dx;
+    self.dy = source.light.dy;
+    self.dz = source.light.dz;
+};
+
+LoadJSON = function(source) {
+    self.LoadJSONComponentLight(source);
+};
+
 CreateJSONSpotLight = function() {
     var json = self.CreateJSONComponent();
     json.light = {
