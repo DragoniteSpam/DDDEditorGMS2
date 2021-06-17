@@ -48,6 +48,18 @@ render = render_tile;
 selector = select_single;
 on_select_ui = safc_on_tile_ui;
 
+LoadJSONTile = function(source) {
+    self.LoadJSON(source);
+    self.tile_x = source.tile.x;
+    self.tile_y = source.tile.y;
+    self.tile_color = source.tile.color;
+    self.tile_alpha = source.tile.alpha;
+};
+
+LoadJSON = function(source) {
+    self.LoadJSONTile(source);
+};
+
 CreateJSONTile = function() {
     var json = self.CreateJSONBase();
     json.tile = {
