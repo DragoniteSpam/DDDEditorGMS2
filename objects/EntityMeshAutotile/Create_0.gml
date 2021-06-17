@@ -47,6 +47,17 @@ SetStatic = function(state) {
     return false;
 };
 
+LoadJSONMeshAT = function(source) {
+    self.LoadJSON(source);
+    self.terrain_id = source.mesh_at.id;
+    self.terrain_type = source.mesh_at.type;
+    self.autotile_id = source.mesh_at.autotile_id;
+};
+
+LoadJSON = function(source) {
+    self.LoadJSONMeshAT(source);
+};
+
 CreateJSONMeshAT = function() {
     var json = self.CreateJSONMesh();
     json.mesh_at = {
