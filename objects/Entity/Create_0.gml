@@ -140,6 +140,40 @@ SaveAsset = function(directory) {
     buffer_write_file(json_stringify(self.CreateJSON()), directory);
 };
 
+LoadJSONBase = function(source) {
+    self.xx = source.position.x;
+    self.yy = source.position.y;
+    self.zz = source.position.z;
+    self.off_xx = source.offset.x;
+    self.off_yy = source.offset.y;
+    self.off_zz = source.offset.z;
+    self.rot_xx = source.rotation.x;
+    self.rot_yy = source.rotation.y;
+    self.rot_zz = source.rotation.z;
+    self.scale_xx = source.scale.x;
+    self.scale_yy = source.scale.y;
+    self.scale_zz = source.scale.z;
+    self.switches = source.switches;
+    self.variables = source.variables;
+    self.generic_data = source.generic_data;
+    self.object_events = source.object_events;
+    self.direction_fix = source.options.direction_fix;
+    self.always_update = source.options.always_update;
+    self.preserve_on_save = source.options.preserve_on_save;
+    self.reflect = source.options.reflect;
+    self.slope = source.options.slope;
+    self.is_static = source.options.is_static;
+    self.autonomous_movement = source.options.type;
+    self.autonomous_movement_speed = source.autonomous.speed;
+    self.autonomous_movement_frequency = source.autonomous.frequency;
+    self.autonomous_movement_route = source.autonomous.route;
+    self.movement_routes = source.autonomous.routes;
+};
+
+LoadJSON = function(source) {
+    self.LoadJSONBase(source);
+};
+
 CreateJSONBase = function() {
     return {
         position: {
