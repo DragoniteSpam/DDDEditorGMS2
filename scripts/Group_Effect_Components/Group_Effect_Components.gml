@@ -1,7 +1,7 @@
-function Component(source) constructor {
+function Component(parent, source) constructor {
     self.save_script = serialize_save_entity_effect_com;
     self.load_script = serialize_load_entity_effect_com;
-    self.parent = undefined;
+    self.parent = parent;
     self.sprite = -1;
     self.label_colour = c_black;
     self.script_call = "";
@@ -24,7 +24,7 @@ function Component(source) constructor {
     };
 }
 
-function ComponentPointLight(source) : Component(source) constructor {
+function ComponentPointLight(parent, source) : Component(parent, source) constructor {
     self.save_script = serialize_save_entity_effect_com_point_light;
     self.load_script = serialize_load_entity_effect_com_point_light;
     self.render = render_effect_light_point;
@@ -55,9 +55,7 @@ function ComponentPointLight(source) : Component(source) constructor {
     };
 }
 
-
-
-function ComponentSpotLight(source) : Component(source) constructor {
+function ComponentSpotLight(parent, source) : Component(parent, source) constructor {
     self.save_script = serialize_save_entity_effect_com_spot_light;
     self.load_script = serialize_load_entity_effect_com_spot_light;
     self.render = render_effect_light_spot;
@@ -100,7 +98,7 @@ function ComponentSpotLight(source) : Component(source) constructor {
     };
 }
 
-function ComponentDirectionalLight(source) : Component(source) constructor {
+function ComponentDirectionalLight(parent, source) : Component(parent, source) constructor {
     save_script = serialize_save_entity_effect_com_directional_light;
     load_script = serialize_load_entity_effect_com_directional_light;
     render = render_effect_light_direction;
@@ -137,7 +135,7 @@ function ComponentDirectionalLight(source) : Component(source) constructor {
     };
 }
 
-function ComponentParticle(source) : Component(source) constructor {
+function ComponentParticle(parent, source) : Component(parent, source) constructor {
     self.save_script = null;
     self.load_script = null;
     self.render = null;
@@ -161,7 +159,7 @@ function ComponentParticle(source) : Component(source) constructor {
     };
 }
 
-function ComponentAudio(source) : Component(source) constructor {
+function ComponentAudio(parent, source) : Component(parent, source) constructor {
     self.save_script = null;
     self.load_script = null;
     self.render = null;

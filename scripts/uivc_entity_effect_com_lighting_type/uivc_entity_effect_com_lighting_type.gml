@@ -45,8 +45,7 @@ function uivc_entity_effect_com_lighting_type(radio) {
             for (var i = 0; i < ds_list_size(list); i++) {
                 var effect = list[| i];
                 if (!effect.com_light) {
-                    effect.com_light = new ComponentDirectionalLight();
-                    effect.com_light.parent = effect;
+                    effect.com_light = new ComponentDirectionalLight(effect);
                 }
             }
             
@@ -63,8 +62,7 @@ function uivc_entity_effect_com_lighting_type(radio) {
             for (var i = 0; i < ds_list_size(list); i++) {
                 var effect = list[| i];
                 if (!effect.com_light) {
-                    effect.com_light = new ComponentPointLight();
-                    effect.com_light.parent = effect;
+                    effect.com_light = new ComponentPointLight(effect);
                 }
             }
             
@@ -83,8 +81,7 @@ function uivc_entity_effect_com_lighting_type(radio) {
             for (var i = 0; i < ds_list_size(list); i++) {
                 var effect = list[| i];
                 if (!effect.com_light) {
-                    effect.com_light = new ComponentSpotLight();
-                    effect.com_light.parent = effect;
+                    effect.com_light = new ComponentSpotLight(effect);
                 }
             }
             

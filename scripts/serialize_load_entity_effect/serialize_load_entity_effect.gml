@@ -15,12 +15,11 @@ function serialize_load_entity_effect(argument0, argument1, argument2) {
     var light_type = buffer_read(buffer, buffer_u8);
     switch (light_type) {
         case LightTypes.NONE: effect.com_light = undefined; break;
-        case LightTypes.DIRECTIONAL: effect.com_light = new ComponentDirectionalLight(); break;
-        case LightTypes.POINT: effect.com_light = new ComponentPointLight(); break;
-        case LightTypes.SPOT: effect.com_light = new ComponentSpotLight(); break;
+        case LightTypes.DIRECTIONAL: effect.com_light = new ComponentDirectionalLight(effect); break;
+        case LightTypes.POINT: effect.com_light = new ComponentPointLight(effect); break;
+        case LightTypes.SPOT: effect.com_light = new ComponentSpotLight(effect); break;
     }
     if (effect.com_light) {
-        effect.com_light.parent = effect;
         effect.com_light.load_script(buffer, effect.com_light, version);
     }
 
