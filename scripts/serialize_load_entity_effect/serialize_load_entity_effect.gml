@@ -14,10 +14,10 @@ function serialize_load_entity_effect(argument0, argument1, argument2) {
 
     var light_type = buffer_read(buffer, buffer_u8);
     switch (light_type) {
-        case LightTypes.NONE: effect.com_light = noone; break;
-        case LightTypes.DIRECTIONAL: effect.com_light = instance_create_depth(0, 0, 0, EffectComponentDirectionalLight); break;
-        case LightTypes.POINT: effect.com_light = instance_create_depth(0, 0, 0, EffectComponentPointLight); break;
-        case LightTypes.SPOT: effect.com_light = noone; break;
+        case LightTypes.NONE: effect.com_light = undefined; break;
+        case LightTypes.DIRECTIONAL: effect.com_light = new ComponentDirectionalLight(); break;
+        case LightTypes.POINT: effect.com_light = new ComponentPointLight(); break;
+        case LightTypes.SPOT: effect.com_light = new ComponentSpotLight(); break;
     }
     if (effect.com_light) {
         effect.com_light.parent = effect;
@@ -25,14 +25,14 @@ function serialize_load_entity_effect(argument0, argument1, argument2) {
     }
 
     var particle_type = buffer_read(buffer, buffer_u8);
-    effect.com_particle = noone;
+    effect.com_particle = undefined;
     if (effect.com_particle) {
         effect.com_particle.parent = effect;
         effect.com_particle.load_script(buffer, effect.com_particle, version);
     }
 
     var audio_type = buffer_read(buffer, buffer_u8);
-    effect.com_audio = noone;
+    effect.com_audio = undefined;
     if (effect.com_audio) {
         effect.com_audio.parent = effect;
         effect.com_audio.load_script(buffer, effect.com_audio, version);
