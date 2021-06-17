@@ -103,13 +103,13 @@ Game = {
         ds_list_clear_instances(self.graphics.skybox);
         ds_list_clear_instances(self.mesh_autotiles);
         ds_list_clear_instances(self.maps);
-        ds_list_clear_instances(self.events.events);
-        ds_list_clear_instances(self.events.prefabs);
-        ds_list_clear_instances(self.events.custom);
         
         array_clear_instances(self.animations);
         array_clear_instances(self.meshes);
         
+        array_resize(self.events.events, 0);
+        array_resize(self.events.prefabs, 0);
+        array_resize(self.events.custom, 0);
         array_resize(self.events.events, 0);
         array_resize(self.events.custom, 0);
         array_resize(self.events.prefabs, 0);
