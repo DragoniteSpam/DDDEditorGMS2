@@ -10,6 +10,15 @@ particle_type = ParticleTypes.NONE;
 
 instance_deactivate_object(id);
 
+LoadJSONComponentParticle = function(source) {
+    self.LoadJSONComponent(source);
+    self.particle_type = source.particle.type;
+};
+
+LoadJSON = function(source) {
+    self.LoadJSONComponentParticle(source);
+};
+
 CreateJSONParticle = function() {
     var json = self.CreateJSONComponent();
     json.particle = {
