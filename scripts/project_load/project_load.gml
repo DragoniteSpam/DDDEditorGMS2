@@ -205,7 +205,5 @@ function project_load(id) {
     project_load_events(folder_name + "events.json");
     project_load_maps(folder_name + "maps.json", folder_map_name);
     
-    Stuff.map.active_map.Destroy();
-    Stuff.map.active_map = undefined;
     Game.maps[| 0].Load();
 }

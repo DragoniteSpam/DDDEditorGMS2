@@ -163,6 +163,8 @@ function DataMap(source, directory) : SData(source) constructor {
     };
     
     static Load = function() {
+        if (Stuff.map.active_map) Stuff.map.active_map.Destroy();
+        Stuff.map.active_map = self;
         var directory = self.directory + "/" + string_replace(self.GUID, ":", "_") + "/";
         
         #region zones
