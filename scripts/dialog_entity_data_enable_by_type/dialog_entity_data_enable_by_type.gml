@@ -59,7 +59,13 @@ function dialog_entity_data_enable_by_type(dialog) {
                 dialog.el_data_type_guid.color = c_black;
             }
             
-            dialog.el_data_type_guid.onmouseup = (data.type == DataTypes.ENUM) ? omu_entity_data_enum_select : omu_entity_data_data_select;
+            dialog.el_data_type_guid.onmouseup = method(dialog.el_data_type_guid, (data.type == DataTypes.ENUM) ? function(button) {
+                var dialog = dialog_create_data_enum_select(button);
+                dialog.el_confirm.onmouseup = dc_entity_data_property_set_enum;
+            } : function(button) {
+                var dialog = dialog_create_data_data_select(button);
+                dialog.el_confirm.onmouseup = dc_entity_data_property_set_data;
+            });
             
             break;
         case DataTypes.COLOR:
