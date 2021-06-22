@@ -161,6 +161,7 @@ function array_sort_name(array) {
     array_sort(array, function(a, b) {
         return a.name > b.name;
     });
+    return array;
 }
 
 function array_sort_internal(array) {

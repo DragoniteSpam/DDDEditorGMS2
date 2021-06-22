@@ -70,17 +70,14 @@ function dialog_entity_data_enable_by_type(dialog) {
                         var data = base_dialog.entity.generic_data[data_index];
                     
                         var list_enum = [];
-                    
                         for (var i = 0; i < array_length(Game.data); i++) {
                             if (Game.data[i].type == DataTypes.ENUM) {
                                 array_push(list_enum, Game.data[i]);
                             }
                         }
                     
-                        array_sort_name(list_enum);
-                        var type = list_enum[selection_index];
+                        var type = array_sort_name(list_enum)[selection_index];
                         data.value_type_guid = type.GUID;
-                    
                         base_dialog.el_data_type_guid.text = type.name + "(Select)";
                         base_dialog.el_data_type_guid.color = c_black;
                     
@@ -100,17 +97,14 @@ function dialog_entity_data_enable_by_type(dialog) {
                         var data = base_dialog.entity.generic_data[data_index];
                     
                         var list_data = [];
-                    
                         for (var i = 0; i < array_length(Game.data); i++) {
                             if (Game.data[i].type == DataTypes.DATA) {
                                 array_push(list_data, Game.data[i]);
                             }
                         }
                         
-                        array_sort_name(list_data);
-                        var type = list_data[selection_index];
+                        var type = array_sort_name(list_data)[selection_index];
                         data.value_type_guid = type.GUID;
-                    
                         base_dialog.el_data_type_guid.text = type.name + "(Select)";
                         base_dialog.el_data_type_guid.color = c_black;
                     
