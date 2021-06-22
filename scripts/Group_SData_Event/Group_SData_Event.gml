@@ -3,16 +3,15 @@ function DataEvent(source) : SData(source) constructor {
     self.name_map = { };
     
     if (is_struct(source)) {
-        self.name_map = json_stringify(source.name_map);
         self.nodes = array_create(array_length(source.nodes));
         for (var i = 0, n = array_length(source.nodes); i < n; i++) {
             self.nodes[i] = new DataEventNode(source.nodes[i]);
+            self.name_map[$ self.nodes[i].name] = self.nodes[i];
         }
     }
     
     static CreateJSONEvent = function() {
         var json = self.CreateJSONBase();
-        json.name_map = json_stringify(self.name_map);
         json.nodes = array_create(array_length(self.nodes));
         for (var i = 0, n = array_length(self.nodes); i < n; i++) {
             json.nodes[i] = self.nodes[i].CreateJSON();
