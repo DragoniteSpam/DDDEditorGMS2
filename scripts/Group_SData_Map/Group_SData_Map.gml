@@ -163,8 +163,9 @@ function DataMap(source, directory) : SData(source) constructor {
     };
     
     static Load = function() {
-        if (Stuff.map.active_map) Stuff.map.active_map.Destroy();
+        //if (Stuff.map.active_map) Stuff.map.active_map.Destroy();
         Stuff.map.active_map = self;
+        self.contents = new MapContents();
         var directory = self.directory + "/" + string_replace(self.GUID, ":", "_") + "/";
         
         #region zones
@@ -175,6 +176,23 @@ function DataMap(source, directory) : SData(source) constructor {
         }
         #endregion
         
+        #region batched stuff
+        try {
+            self.contents.frozen_data = buffer_load(directory + "frozen.vbuff");
+            self.contents.frozen = vertex_create_buffer_from_buffer(self.contents.frozen_data, Stuff.graphics.vertex_format);
+        } catch (e) {
+            wtf("Unable to load frozen vertex buffer data - " + self.name);
+        }
+        
+        try {
+            self.contents.reflect_frozen_data = buffer_load(directory + "frozen.reflect");
+            self.contents.reflect_frozen = vertex_create_buffer_from_buffer(self.contents.reflect_frozen_data, Stuff.graphics.vertex_format);
+        } catch (e) {
+            wtf("Unable to load frozen reflection buffer data - " + self.name);
+        }
+        #endregion
+        
+        return;
         #region entities
         var entity_meta = json_parse(buffer_read_file(directory + "entities.json"));
         var entity_data = json_parse(buffer_read_file(directory + "entities.ass"));
