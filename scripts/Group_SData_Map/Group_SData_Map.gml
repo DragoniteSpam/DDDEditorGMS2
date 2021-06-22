@@ -193,7 +193,7 @@ function DataMap(source, directory) : SData(source) constructor {
     };
     
     static Load = function() {
-        //if (Stuff.map.active_map) Stuff.map.active_map.Destroy();
+        if (Stuff.map.active_map) Stuff.map.active_map.Close();
         Stuff.map.active_map = self;
         self.contents = new MapContents();
         var directory = self.directory + "/" + string_replace(self.GUID, ":", "_") + "/";
@@ -310,16 +310,19 @@ function DataMap(source, directory) : SData(source) constructor {
         return self.CreateJSONMap();
     };
     
-    static Destroy = function() {
+    static Close = function() {
         if (self.contents) self.contents.Destroy();
-        
-        buffer_delete(self.data_buffer);
+        if (self.data_buffer) buffer_delete(self.data_buffer);
         if (self.preview) buffer_delete(self.preview);
         if (self.wpreview) buffer_delete(self.wpreview);
         if (self.cpreview) c_world_remove_object(self.cpreview);
         if (self.cpreview) c_object_destroy(self.cpreview);
         if (self.cspreview) c_shape_destroy(self.cspreview);
-        
+        self.contents = undefined;
+    };
+    
+    static Destroy = function() {
+        self.Close();
         array_delete(Game.maps, array_search(Game.maps, self), 1);
     };
 }
