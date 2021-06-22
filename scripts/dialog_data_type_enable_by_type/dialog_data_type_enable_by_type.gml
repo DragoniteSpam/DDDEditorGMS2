@@ -76,9 +76,13 @@ function dialog_data_type_enable_by_type(dialog) {
                 }
                 
                 if (dialog.selected_property.type == DataTypes.ENUM) {
-                    dialog.el_property_type_guid.onmouseup = omu_data_enum_select;
+                    dialog.el_property_type_guid.onmouseup = method(dialog.el_property_type_guid, function(button) {
+                        dialog_create_data_enum_select(button);
+                    });
                 } else  {
-                    dialog.el_property_type_guid.onmouseup = omu_data_data_select;
+                    dialog.el_property_type_guid.onmouseup = method(dialog.el_property_type_guid, function(button) {
+                        dialog_create_data_data_select(button);
+                    });
                 }
                 break;
             case DataTypes.CODE:
