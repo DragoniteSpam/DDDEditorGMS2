@@ -61,10 +61,64 @@ function dialog_entity_data_enable_by_type(dialog) {
             
             dialog.el_data_type_guid.onmouseup = method(dialog.el_data_type_guid, (data.type == DataTypes.ENUM) ? function(button) {
                 var dialog = dialog_create_data_enum_select(button);
-                dialog.el_confirm.onmouseup = dc_entity_data_property_set_enum;
+                dialog.el_confirm.onmouseup = method(dialog.el_confirm, function(button) {
+                    var base_dialog = button.root.root.root;
+                    var selection_index = ui_list_selection(button.root.el_list_main);
+                    var data_index = ui_list_selection(base_dialog.el_list);
+                
+                    if (selection_index + 1) {
+                        var data = base_dialog.entity.generic_data[data_index];
+                    
+                        var list_enum = [];
+                    
+                        for (var i = 0; i < array_length(Game.data); i++) {
+                            if (Game.data[i].type == DataTypes.ENUM) {
+                                array_push(list_enum, Game.data[i]);
+                            }
+                        }
+                    
+                        array_sort_name(list_enum);
+                        var type = list_enum[selection_index];
+                        data.value_type_guid = type.GUID;
+                    
+                        base_dialog.el_data_type_guid.text = type.name + "(Select)";
+                        base_dialog.el_data_type_guid.color = c_black;
+                    
+                        dialog_entity_data_enable_by_type(base_dialog);
+                    }
+                
+                    dialog_destroy();
+                });
             } : function(button) {
                 var dialog = dialog_create_data_data_select(button);
-                dialog.el_confirm.onmouseup = dc_entity_data_property_set_data;
+                dialog.el_confirm.onmouseup = method(dialog.el_confirm, function(button) {
+                    var base_dialog = button.root.root.root;
+                    var selection_index = ui_list_selection(button.root.el_list_main);
+                    var data_index = ui_list_selection(base_dialog.el_list);
+                
+                    if (selection_index + 1) {
+                        var data = base_dialog.entity.generic_data[data_index];
+                    
+                        var list_data = [];
+                    
+                        for (var i = 0; i < array_length(Game.data); i++) {
+                            if (Game.data[i].type == DataTypes.DATA) {
+                                array_push(list_data, Game.data[i]);
+                            }
+                        }
+                        
+                        array_sort_name(list_data);
+                        var type = list_data[selection_index];
+                        data.value_type_guid = type.GUID;
+                    
+                        base_dialog.el_data_type_guid.text = type.name + "(Select)";
+                        base_dialog.el_data_type_guid.color = c_black;
+                    
+                        dialog_entity_data_enable_by_type(base_dialog);
+                    }
+                
+                    dialog_destroy();
+                });
             });
             
             break;
