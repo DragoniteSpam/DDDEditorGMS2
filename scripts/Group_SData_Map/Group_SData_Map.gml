@@ -215,6 +215,15 @@ function DataMap(source, directory) : SData(source) constructor {
         buffer_write_file(json_stringify(entity_meta), directory + "entities.json");
         buffer_write_file(json_stringify(entity_data), directory + "entities.ass");
         #endregion
+        
+        #region batched stuff
+        if (self.contents.frozen_data) {
+            buffer_save(self.contents.frozen_data, directory + "frozen.vbuff");
+        }
+        if (self.contents.reflect_frozen_data) {
+            buffer_save(self.contents.reflect_frozen_data, directory + "frozen.reflect");
+        }
+        #endregion
     };
     
     static CreateJSONMap = function() {
