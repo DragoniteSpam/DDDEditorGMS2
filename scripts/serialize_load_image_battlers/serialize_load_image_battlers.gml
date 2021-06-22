@@ -8,8 +8,6 @@ function serialize_load_image_battlers(argument0, argument1) {
 
     var addr_next = buffer_read(buffer, buffer_u64);
 
-    ds_list_clear_instances(list);
-
     var n_images = buffer_read(buffer, buffer_u32);
 
     repeat (n_images) {
@@ -27,7 +25,7 @@ function serialize_load_image_battlers(argument0, argument1) {
         data.width = buffer_read(buffer, buffer_u16);
         data.height = buffer_read(buffer, buffer_u16);
     
-        ds_list_add(list, data);
+        array_push(list, data);
     }
 
 

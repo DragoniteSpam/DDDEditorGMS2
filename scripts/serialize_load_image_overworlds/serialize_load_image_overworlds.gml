@@ -8,8 +8,6 @@ function serialize_load_image_overworlds(argument0, argument1) {
 
     var addr_next = buffer_read(buffer, buffer_u64);
 
-    ds_list_clear_instances(list);
-
     var n_images = buffer_read(buffer, buffer_u32);
 
     repeat (n_images) {
@@ -29,7 +27,7 @@ function serialize_load_image_overworlds(argument0, argument1) {
         data_image_force_power_two(data);
         data_image_npc_frames(data);
     
-        ds_list_add(list, data);
+        array_push(list, data);
     }
 
 

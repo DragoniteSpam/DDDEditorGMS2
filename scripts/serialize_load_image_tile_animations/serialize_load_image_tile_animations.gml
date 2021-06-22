@@ -18,6 +18,6 @@ function serialize_load_image_tile_animations(buffer, version) {
         data.width = buffer_read(buffer, buffer_u16);
         data.height = buffer_read(buffer, buffer_u16);
         
-        ds_list_add(list, data);
+        array_push(list, data);
     }
 }

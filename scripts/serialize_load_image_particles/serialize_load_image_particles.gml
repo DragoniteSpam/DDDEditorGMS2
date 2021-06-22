@@ -8,8 +8,6 @@ function serialize_load_image_particles(argument0, argument1) {
 
     var addr_next = buffer_read(buffer, buffer_u64);
 
-    ds_list_clear_instances(list);
-
     var n_images = buffer_read(buffer, buffer_u32);
     var individual_images = buffer_read(buffer, buffer_u8);
 
@@ -33,7 +31,7 @@ function serialize_load_image_particles(argument0, argument1) {
             data.picture = buffer_read_sprite(buffer);
         }
     
-        ds_list_add(list, data);
+        array_push(list, data);
     }
 
     if (!individual_images) {
