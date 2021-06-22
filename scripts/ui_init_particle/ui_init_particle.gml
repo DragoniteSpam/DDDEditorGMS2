@@ -1061,12 +1061,12 @@ function ui_init_particle(mode) {
                     var type = list.root.type;
                     var selection = ui_list_selection(list);
                     if (selection + 1) {
-                        type.sprite = Game.graphics.particles[| selection].GUID;
+                        type.sprite = Game.graphics.particles[selection].GUID;
                         editor_particle_type_set_sprite(type);
                     }
                 }, false, dg, Game.graphics.particles);
                 var sprite = guid_get(type.sprite);
-                ui_list_select(el_update_list, ds_list_find_index(Game.graphics.particles, sprite), true);
+                ui_list_select(el_update_list, array_search(Game.graphics.particles, sprite), true);
                 el_update_list.tooltip = "The custom sprite to be used by the particle type. Go to Data > Graphics > Particles to manage particle sprites. When you import the generated code into your game, make sure your project has a sprite with the same Internal Name as the sprite used here.";
                 el_update_list.entries_are = ListEntries.INSTANCES;
             

@@ -73,7 +73,7 @@ function ui_constant_data_activate(base_dialog, what) {
             
             if (type) {
                 // select the type in the type list, if there is one
-                var index = ds_list_find_index(list.entries, type);
+                var index = array_search(list.entries, type);
                 ui_list_select(list, index, true);
                 // set the data in the data list
                 list_data.entries = (what.type == DataTypes.DATA) ? type.instances : type.properties;
@@ -89,7 +89,7 @@ function ui_constant_data_activate(base_dialog, what) {
             var list = base_dialog.el_value_other;
             list.entries = Game.meshes;
             ui_list_deselect(list);
-            ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value)), true);
+            ui_list_select(list, array_search(list.entries, guid_get(what.value)), true);
             list.enabled = true;
             list.index = 0;
             break;
@@ -97,7 +97,7 @@ function ui_constant_data_activate(base_dialog, what) {
             var list = base_dialog.el_value_other;
             list.entries = Game.graphics.tilesets;
             ui_list_deselect(list);
-            ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value)), true);
+            ui_list_select(list, array_search(list.entries, guid_get(what.value)), true);
             list.enabled = true;
             list.index = 0;
             break;
@@ -108,7 +108,7 @@ function ui_constant_data_activate(base_dialog, what) {
             var list = base_dialog.el_value_other;
             list.entries = Game.graphics.tile_animations;
             ui_list_deselect(list);
-            ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value)), true);
+            ui_list_select(list, array_search(list.entries, guid_get(what.value)), true);
             list.enabled = true;
             list.index = 0;
             break;
@@ -148,7 +148,7 @@ function ui_constant_data_activate(base_dialog, what) {
             var list = base_dialog.el_value_other;
             list.entries = Game.graphics.battlers;
             ui_list_deselect(list);
-            ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value)), true);
+            ui_list_select(list, array_search(list.entries, guid_get(what.value)), true);
             list.enabled = true;
             list.index = 0;
             break;
@@ -156,7 +156,7 @@ function ui_constant_data_activate(base_dialog, what) {
             var list = base_dialog.el_value_other;
             list.entries = Game.graphics.overworlds;
             ui_list_deselect(list);
-            ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value)), true);
+            ui_list_select(list, array_search(list.entries, guid_get(what.value)), true);
             list.enabled = true;
             list.index = 0;
             break;
@@ -164,7 +164,7 @@ function ui_constant_data_activate(base_dialog, what) {
             var list = base_dialog.el_value_other;
             list.entries = Game.graphics.particles;
             ui_list_deselect(list);
-            ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value)), true);
+            ui_list_select(list, array_search(list.entries, guid_get(what.value)), true);
             list.enabled = true;
             list.index = 0;
             break;
@@ -172,7 +172,7 @@ function ui_constant_data_activate(base_dialog, what) {
             var list = base_dialog.el_value_other;
             list.entries = Game.graphics.ui;
             ui_list_deselect(list);
-            ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value)), true);
+            ui_list_select(list, array_search(list.entries, guid_get(what.value)), true);
             list.enabled = true;
             list.index = 0;
             break;
@@ -180,7 +180,7 @@ function ui_constant_data_activate(base_dialog, what) {
             var list = base_dialog.el_value_other;
             list.entries = Game.graphics.etc;
             ui_list_deselect(list);
-            ui_list_select(list, ds_list_find_index(list.entries, guid_get(what.value)), true);
+            ui_list_select(list, array_search(list.entries, guid_get(what.value)), true);
             list.enabled = true;
             list.index = 0;
             break;

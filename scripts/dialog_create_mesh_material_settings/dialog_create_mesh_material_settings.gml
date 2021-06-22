@@ -24,8 +24,8 @@ function dialog_create_mesh_material_settings(dialog, selection) {
         var target_index = -1;
         for (var i = 0; i < array_length(selected_things); i++) {
             var thing = Game.meshes[selected_things[i]];
-            for (var j = 0; j < ds_list_size(Game.graphics.tilesets); j++) {
-                if (Game.graphics.tilesets[| j].GUID == accessor(thing)) {
+            for (var j = 0; j < array_length(Game.graphics.tilesets); j++) {
+                if (Game.graphics.tilesets[j].GUID == accessor(thing)) {
                     if (target_index != -1) {
                         return -1;
                     }
@@ -66,7 +66,7 @@ function dialog_create_mesh_material_settings(dialog, selection) {
     
     var callback_set_map_to_selection = function() {
         var selection = GetSelection();
-        var new_tex = (selection + 1) ? Game.graphics.tilesets[| selection].GUID : NULL;;
+        var new_tex = (selection + 1) ? Game.graphics.tilesets[selection].GUID : NULL;
         var mesh_selection = self.root.root.root.selection;
         for (var i = ds_map_find_first(mesh_selection); i != undefined; i = ds_map_find_next(mesh_selection, i)) {
             self.callback_set_texture(Game.meshes[i], new_tex);
@@ -80,49 +80,49 @@ function dialog_create_mesh_material_settings(dialog, selection) {
     list.SetEntryTypes(E_ListEntryTypes.STRUCTS);
     list.Select(id_base, true);
     
-    var list = new EmuList(32, 32, ew, eh, "Ambient map:", eh, 9, callback_set_map_to_selection);
+    list = new EmuList(32, 32, ew, eh, "Ambient map:", eh, 9, callback_set_map_to_selection);
     tab_ambient.AddContent(list);
     list.callback_set_texture = function(mesh, tex) { mesh.tex_ambient = tex; };
     list.SetList(Game.graphics.tilesets);
     list.SetEntryTypes(E_ListEntryTypes.STRUCTS);
     list.Select(id_ambient, true);
     
-    var list = new EmuList(32, 32, ew, eh, "Specular color:", eh, 9, callback_set_map_to_selection);
+    list = new EmuList(32, 32, ew, eh, "Specular color:", eh, 9, callback_set_map_to_selection);
     tab_specular_color.AddContent(list);
     list.callback_set_texture = function(mesh, tex) { mesh.tex_specular_color = tex; };
     list.SetList(Game.graphics.tilesets);
     list.SetEntryTypes(E_ListEntryTypes.STRUCTS);
     list.Select(id_specular_color, true);
     
-    var list = new EmuList(32, 32, ew, eh, "Specular highlight map:", eh, 9, callback_set_map_to_selection);
+    list = new EmuList(32, 32, ew, eh, "Specular highlight map:", eh, 9, callback_set_map_to_selection);
     tab_specular.AddContent(list);
     list.callback_set_texture = function(mesh, tex) { mesh.tex_specular_highlight = tex; };
     list.SetList(Game.graphics.tilesets);
     list.SetEntryTypes(E_ListEntryTypes.STRUCTS);
     list.Select(id_specular_highlight, true);
     
-    var list = new EmuList(32, 32, ew, eh, "Alpha map:", eh, 9, callback_set_map_to_selection);
+    list = new EmuList(32, 32, ew, eh, "Alpha map:", eh, 9, callback_set_map_to_selection);
     tab_alpha.AddContent(list);
     list.callback_set_texture = function(mesh, tex) { mesh.tex_alpha = tex; };
     list.SetList(Game.graphics.tilesets);
     list.SetEntryTypes(E_ListEntryTypes.STRUCTS);
     list.Select(id_alpha, true);
     
-    var list = new EmuList(32, 32, ew, eh, "Bump map:", eh, 9, callback_set_map_to_selection);
+    list = new EmuList(32, 32, ew, eh, "Bump map:", eh, 9, callback_set_map_to_selection);
     tab_bump.AddContent(list);
     list.callback_set_texture = function(mesh, tex) { mesh.tex_bump = tex; };
     list.SetList(Game.graphics.tilesets);
     list.SetEntryTypes(E_ListEntryTypes.STRUCTS);
     list.Select(id_bump, true);
     
-    var list = new EmuList(32, 32, ew, eh, "Displacement map:", eh, 9, callback_set_map_to_selection);
+    list = new EmuList(32, 32, ew, eh, "Displacement map:", eh, 9, callback_set_map_to_selection);
     tab_displacement.AddContent(list);
     list.callback_set_texture = function(mesh, tex) { mesh.tex_displacement = tex; };
     list.SetList(Game.graphics.tilesets);
     list.SetEntryTypes(E_ListEntryTypes.STRUCTS);
     list.Select(id_displacement, true);
     
-    var list = new EmuList(32, 32, ew, eh, "Stencil map:", eh, 9, callback_set_map_to_selection);
+    list = new EmuList(32, 32, ew, eh, "Stencil map:", eh, 9, callback_set_map_to_selection);
     tab_stencil.AddContent(list);
     list.callback_set_texture = function(mesh, tex) { mesh.tex_stencil = tex; };
     list.SetList(Game.graphics.tilesets);

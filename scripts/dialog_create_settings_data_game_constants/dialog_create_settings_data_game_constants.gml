@@ -117,7 +117,7 @@ function dialog_create_settings_data_game_constants(root) {
                 var list = base_dialog.el_value_other;
                 list.entries = Game.meshes;
                 ui_list_deselect(list);
-                ui_list_select(list, ds_list_find_index(list.entries, guid_get(const.value)), true);
+                ui_list_select(list, array_search(list.entries, guid_get(const.value)), true);
                 list.enabled = true;
                 list.index = 0;
                 break;
@@ -125,7 +125,7 @@ function dialog_create_settings_data_game_constants(root) {
                 var list = base_dialog.el_value_other;
                 list.entries = Game.graphics.tilesets;
                 ui_list_deselect(list);
-                ui_list_select(list, ds_list_find_index(list.entries, guid_get(const.value)), true);
+                ui_list_select(list, array_search(list.entries, guid_get(const.value)), true);
                 list.enabled = true;
                 list.index = 0;
                 break;
@@ -136,7 +136,7 @@ function dialog_create_settings_data_game_constants(root) {
                 var list = base_dialog.el_value_other;
                 list.entries = Game.graphics.tile_animations;
                 ui_list_deselect(list);
-                ui_list_select(list, ds_list_find_index(list.entries, guid_get(const.value)), true);
+                ui_list_select(list, array_search(list.entries, guid_get(const.value)), true);
                 list.enabled = true;
                 list.index = 0;
                 break;
@@ -168,7 +168,7 @@ function dialog_create_settings_data_game_constants(root) {
                 var list = base_dialog.el_value_other;
                 list.entries = Game.maps;
                 ui_list_deselect(list);
-                ui_list_select(list, ds_list_find_index(list.entries, guid_get(const.value)), true);
+                ui_list_select(list, array_search(list.entries, guid_get(const.value)), true);
                 list.enabled = true;
                 list.index = 0;
                 break;
@@ -176,7 +176,7 @@ function dialog_create_settings_data_game_constants(root) {
                 var list = base_dialog.el_value_other;
                 list.entries = Game.graphics.battlers;
                 ui_list_deselect(list);
-                ui_list_select(list, ds_list_find_index(list.entries, guid_get(const.value)), true);
+                ui_list_select(list, array_search(list.entries, guid_get(const.value)), true);
                 list.enabled = true;
                 list.index = 0;
                 break;
@@ -184,7 +184,7 @@ function dialog_create_settings_data_game_constants(root) {
                 var list = base_dialog.el_value_other;
                 list.entries = Game.graphics.overworlds;
                 ui_list_deselect(list);
-                ui_list_select(list, ds_list_find_index(list.entries, guid_get(const.value)), true);
+                ui_list_select(list, array_search(list.entries, guid_get(const.value)), true);
                 list.enabled = true;
                 list.index = 0;
                 break;
@@ -192,7 +192,7 @@ function dialog_create_settings_data_game_constants(root) {
                 var list = base_dialog.el_value_other;
                 list.entries = Game.graphics.particles;
                 ui_list_deselect(list);
-                ui_list_select(list, ds_list_find_index(list.entries, guid_get(const.value)), true);
+                ui_list_select(list, array_search(list.entries, guid_get(const.value)), true);
                 list.enabled = true;
                 list.index = 0;
                 break;
@@ -200,7 +200,7 @@ function dialog_create_settings_data_game_constants(root) {
                 var list = base_dialog.el_value_other;
                 list.entries = Game.graphics.ui;
                 ui_list_deselect(list);
-                ui_list_select(list, ds_list_find_index(list.entries, guid_get(const.value)), true);
+                ui_list_select(list, array_search(list.entries, guid_get(const.value)), true);
                 list.enabled = true;
                 list.index = 0;
                 break;
@@ -208,7 +208,7 @@ function dialog_create_settings_data_game_constants(root) {
                 var list = base_dialog.el_value_other;
                 list.entries = Game.graphics.etc;
                 ui_list_deselect(list);
-                ui_list_select(list, ds_list_find_index(list.entries, guid_get(const.value)), true);
+                ui_list_select(list, array_search(list.entries, guid_get(const.value)), true);
                 list.enabled = true;
                 list.index = 0;
                 break;

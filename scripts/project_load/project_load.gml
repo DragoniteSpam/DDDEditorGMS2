@@ -36,42 +36,42 @@ function project_load(id) {
         for (var i = 0; i < array_length(tilesets); i++) {
             var ts = new DataImageTileset(tilesets[i]);
             ts.LoadAsset(directory);
-            ds_list_add(Game.graphics.tilesets, ts);
+            array_push(Game.graphics.tilesets, ts);
         }
         for (var i = 0; i < array_length(overworlds); i++) {
             var image = new DataImage(overworlds[i]);
             image.LoadAsset(directory);
-            ds_list_add(Game.graphics.overworlds, image);
+            array_push(Game.graphics.overworlds, image);
         }
         for (var i = 0; i < array_length(battlers); i++) {
             var image = new DataImage(battlers[i]);
             image.LoadAsset(directory);
-            ds_list_add(Game.graphics.battlers, image);
+            array_push(Game.graphics.battlers, image);
         }
         for (var i = 0; i < array_length(particles); i++) {
             var image = new DataImage(particles[i]);
             image.LoadAsset(directory);
-            ds_list_add(Game.graphics.particles, image);
+            array_push(Game.graphics.particles, image);
         }
         for (var i = 0; i < array_length(ui); i++) {
             var image = new DataImage(ui[i]);
             image.LoadAsset(directory);
-            ds_list_add(Game.graphics.ui, image);
+            array_push(Game.graphics.ui, image);
         }
         for (var i = 0; i < array_length(tile_animations); i++) {
             var image = new DataImage(tile_animations[i]);
             image.LoadAsset(directory);
-            ds_list_add(Game.graphics.tile_animations, image);
+            array_push(Game.graphics.tile_animations, image);
         }
         for (var i = 0; i < array_length(etc); i++) {
             var image = new DataImage(etc[i]);
             image.LoadAsset(directory);
-            ds_list_add(Game.graphics.etc, image);
+            array_push(Game.graphics.etc, image);
         }
         for (var i = 0; i < array_length(skybox); i++) {
             var image = new DataImage(skybox[i]);
             image.LoadAsset(directory);
-            ds_list_add(Game.graphics.skybox, image);
+            array_push(Game.graphics.skybox, image);
         }
     };
     

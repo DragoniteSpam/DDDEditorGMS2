@@ -133,12 +133,12 @@ function dialog_create_settings_map(dialog) {
     var el_skybox_image = create_list(col2_x, yy, "Skybox", "<no skyboxes>", ew, eh, 8, function(list) {
         var selection = ui_list_selection(list);
         if (selection + 1) {
-            list.root.map.skybox = Game.graphics.skybox[| selection].GUID;
+            list.root.map.skybox = Game.graphics.skybox[selection].GUID;
         } else {
             list.root.map.skybox = NULL;
         }
     }, false, dg, Game.graphics.skybox);
-    ui_list_select(el_skybox_image, ds_list_find_index(Game.graphics.skybox, guid_get(map.skybox)), true);
+    ui_list_select(el_skybox_image, array_search(Game.graphics.skybox, guid_get(map.skybox)), true);
     el_skybox_image.tooltip = "The skybox to be used by the map. Deselect to clear.";
     el_skybox_image.entries_are = ListEntries.INSTANCES;
     

@@ -3,7 +3,7 @@ event_inherited();
 save_script = serialize_save_entity_pawn;
 load_script = serialize_load_entity_pawn;
 
-overworld_sprite = ds_list_empty(Game.graphics.overworlds) ? 0 : Game.graphics.overworlds[| 0].GUID;
+overworld_sprite = array_empty(Game.graphics.overworlds) ? 0 : Game.graphics.overworlds[0].GUID;
 map_direction = 0;
 
 // not serialized but

@@ -1,7 +1,6 @@
 function serialize_load_image_tilesets(buffer, version) {
     var addr_next = buffer_read(buffer, buffer_u64);
     
-    ds_list_clear_instances(Game.graphics.tilesets);
     gpu_set_state(Stuff.gpu_base_state);
     var n_tilesets = buffer_read(buffer, buffer_u16);
     

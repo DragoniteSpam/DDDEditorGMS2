@@ -30,7 +30,7 @@ function dialog_create_manager_graphic(root, name, list, prefix, load_function, 
         var selection = ui_list_selection(list);
         if (selection + 1) {
             // direct references to the texture images are dealt with elsewhere
-            var what = list.entries[| selection];
+            var what = list.entries[selection];
             ui_input_set_value(list.root.el_name, what.name);
             ui_input_set_value(list.root.el_name_internal, what.internal_name);
             ui_input_set_value(list.root.el_frames_horizontal, string(what.hframes));
@@ -40,7 +40,7 @@ function dialog_create_manager_graphic(root, name, list, prefix, load_function, 
         }
     }, false, dg, list);
     el_list.render_colors = function(list, index) {
-        return list.entries[| index].texture_exclude ? c_dkgray : c_black;
+        return list.entries[index].texture_exclude ? c_dkgray : c_black;
     };
     el_list.entries_are = ListEntries.INSTANCES;
     el_list.numbered = true;
@@ -66,7 +66,7 @@ function dialog_create_manager_graphic(root, name, list, prefix, load_function, 
         var list = button.root.el_list;
         var selection = ui_list_selection(list);
         if (selection + 1) {
-            var data = list.entries[| selection];
+            var data = list.entries[selection];
             data.picture = sprite_remove_transparent_color(data.picture);
             button.root.el_image.image = data.picture;
         }
@@ -79,7 +79,7 @@ function dialog_create_manager_graphic(root, name, list, prefix, load_function, 
         var list = input.root.el_list;
         var selection = ui_list_selection(list);
         if (selection + 1) {
-            list.entries[| selection].name = input.value;
+            list.entries[selection].name = input.value;
         }
     }, "", "", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
     dg.el_name = el_name;
@@ -94,9 +94,9 @@ function dialog_create_manager_graphic(root, name, list, prefix, load_function, 
         
         if (selection + 1) {
             var already = internal_name_get(input.value);
-            if (!already || already == list.entries[| selection]) {
-                internal_name_remove(list.entries[| selection].internal_name);
-                internal_name_set(list.entries[| selection], input.value);
+            if (!already || already == list.entries[selection]) {
+                internal_name_remove(list.entries[selection].internal_name);
+                internal_name_set(list.entries[selection], input.value);
                 input.color = c_black;
             } else {
                 input.color = c_red;
@@ -107,7 +107,7 @@ function dialog_create_manager_graphic(root, name, list, prefix, load_function, 
         var list = input.root.el_list;
         var selection = ui_list_selection(list);
         if (selection + 1) {
-            ui_input_set_value(input, list.entries[| selection].internal_name);
+            ui_input_set_value(input, list.entries[selection].internal_name);
         }
         ui_render_input(input, x, y);
     };
@@ -119,7 +119,7 @@ function dialog_create_manager_graphic(root, name, list, prefix, load_function, 
         var list = text.root.el_list;
         var selection = ui_list_selection(list);
         if (selection + 1) {
-            var image = list.entries[| selection];
+            var image = list.entries[selection];
             text.text = "Dimensions: " + string(image.width) + " x " + string(image.height);
             if (image.width != sprite_get_width(image.picture) || image.height != sprite_get_height(image.picture)) {
                 text.text += " (" + string(sprite_get_width(image.picture)) + " x " + string(sprite_get_height(image.picture)) + ")";
@@ -138,14 +138,14 @@ function dialog_create_manager_graphic(root, name, list, prefix, load_function, 
         var list = input.root.el_list;
         var selection = ui_list_selection(list);
         if (selection + 1) {
-            var image = list.entries[| selection];
+            var image = list.entries[selection];
             image.hframes = real(input.value);
             sprite_delete(image.picture_with_frames);
             var temp_name = PATH_TEMP + "particle_strip" + string(image.hframes) + ".png";
             sprite_save(image.picture, 0, temp_name);
             image.picture_with_frames = sprite_add(temp_name, image.hframes, false, false, 0, 0);
             sprite_set_speed(image.picture_with_frames, image.aspeed, spritespeed_framespersecond);
-            data_image_npc_frames(list.entries[| selection]);
+            data_image_npc_frames(list.entries[selection]);
         }
     }, "1", "0...255", validate_int, 0, 255, 3, vx1, vy1, vx2, vy2, dg);
     el_frames_horizontal.render = function(input, x, y) {
@@ -159,7 +159,7 @@ function dialog_create_manager_graphic(root, name, list, prefix, load_function, 
         var selection = ui_list_selection(list);
 
         if (selection + 1) {
-            list.entries[| selection].vframes = real(input.value);
+            list.entries[selection].vframes = real(input.value);
         }
     }, "1", "0...255", validate_int, 0, 255, 3, vx1, vy1, vx2, vy2, dg);
     dg.el_frames_vertical = el_frames_vertical;
@@ -169,7 +169,7 @@ function dialog_create_manager_graphic(root, name, list, prefix, load_function, 
         var list = checkbox.root.el_list;
         var selection = ui_list_selection(list);
         if (selection + 1) {
-            list.entries[| selection].texture_exclude = checkbox.value;
+            list.entries[selection].texture_exclude = checkbox.value;
         }
     }, false, dg);
     el_texture_exclude.tooltip = "For optimization purposes the game may attempt to pack related sprites onto a single texture. In some cases you may wish for that to not happen.";
@@ -180,7 +180,7 @@ function dialog_create_manager_graphic(root, name, list, prefix, load_function, 
         var list = input.root.el_list;
         var selection = ui_list_selection(list);
         if (selection + 1) {
-            var image = list.entries[| selection];
+            var image = list.entries[selection];
             image.aspeed = real(input.value);
             sprite_set_speed(image.picture_with_frames, image.aspeed, spritespeed_framespersecond);
         }
@@ -193,7 +193,7 @@ function dialog_create_manager_graphic(root, name, list, prefix, load_function, 
         var list = button.root.el_list;
         var selection = ui_list_selection(list);
         if (selection + 1) {
-            var data = list.entries[| selection];
+            var data = list.entries[selection];
             // @todo impelment a cutoff value
             var dim = sprite_get_cropped_dimensions(data.picture, 0, 127);
             // @todo implement a value to round to?
@@ -209,7 +209,7 @@ function dialog_create_manager_graphic(root, name, list, prefix, load_function, 
         var list = button.root.el_list;
         var selection = ui_list_selection(list);
         if (selection + 1) {
-            var data = list.entries[| selection];
+            var data = list.entries[selection];
             data.width = sprite_get_width(data.picture);
             data.height = sprite_get_height(data.picture);
             data_image_npc_frames(data);
@@ -240,7 +240,7 @@ function dialog_create_manager_graphic(root, name, list, prefix, load_function, 
         var list = button.root.el_list;
         var selection = ui_list_selection(list);
         if (selection + 1) {
-            button.image = list.entries[| selection].picture;
+            button.image = list.entries[selection].picture;
         } else {
             button.image = -1;
         }

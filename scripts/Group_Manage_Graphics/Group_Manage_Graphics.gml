@@ -9,49 +9,49 @@ function graphics_add_generic(filename, prefix, list, name, remove_back) {
     data.height = sprite_get_height(data.picture);
     
     internal_name_generate(data, prefix + internal_name);
-    ds_list_add(list, data);
+    array_push(list, data);
     
     return data;
 }
 
 function graphics_remove_overworld(guid) {
     var data = guid_get(guid);
-    ds_list_delete(Game.graphics.overworlds, ds_list_find_index(Game.graphics.overworlds, data));
+    array_delete(Game.graphics.overworlds, array_search(Game.graphics.overworlds, data), 1);
     instance_activate_object(data);
     instance_destroy(data);
 }
 
 function graphics_remove_battler(guid) {
     var data = guid_get(guid);
-    ds_list_delete(Game.graphics.battlers, ds_list_find_index(Game.graphics.battlers, data));
+    array_delete(Game.graphics.battlers, array_search(Game.graphics.battlers, data), 1);
     instance_activate_object(data);
     instance_destroy(data);
 }
 
 function graphics_remove_etc(guid) {
     var data = guid_get(guid);
-    ds_list_delete(Game.graphics.etc, ds_list_find_index(Game.graphics.etc, data));
+    array_delete(Game.graphics.etc, array_search(Game.graphics.etc, data), 1);
     instance_activate_object(data);
     instance_destroy(data);
 }
 
 function graphics_remove_particle(guid) {
     var data = guid_get(guid);
-    ds_list_delete(Game.graphics.particles, ds_list_find_index(Game.graphics.particles, data));
+    array_delete(Game.graphics.particles, array_search(Game.graphics.particles, data), 1);
     instance_activate_object(data);
     instance_destroy(data);
 }
 
 function graphics_remove_skybox(guid) {
     var data = guid_get(guid);
-    ds_list_delete(Game.graphics.skybox, ds_list_find_index(Game.graphics.skybox, data));
+    array_delete(Game.graphics.skybox, array_search(Game.graphics.skybox, data), 1);
     instance_activate_object(data);
     instance_destroy(data);
 }
 
 function graphics_remove_ui(guid) {
     var data = guid_get(guid);
-    ds_list_delete(Game.graphics.ui, ds_list_find_index(Game.graphics.ui, data));
+    array_delete(Game.graphics.ui, array_search(Game.graphics.ui, data), 1);
     instance_activate_object(data);
     instance_destroy(data);
 }

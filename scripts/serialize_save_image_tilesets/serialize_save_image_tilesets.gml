@@ -3,11 +3,11 @@ function serialize_save_image_tilesets(buffer) {
     var addr_next = buffer_tell(buffer);
     buffer_write(buffer, buffer_u64, 0);
     
-    var n_tilesets = ds_list_size(Game.graphics.tilesets);
+    var n_tilesets = array_length(Game.graphics.tilesets);
     buffer_write(buffer, buffer_u16, n_tilesets);
     
     for (var i = 0; i < n_tilesets; i++) {
-        var ts = Game.graphics.tilesets[| i];
+        var ts = Game.graphics.tilesets[i];
         
         // don't use save_generic here because flags is overridden and is now
         // an array, which will break things

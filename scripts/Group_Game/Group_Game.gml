@@ -51,14 +51,14 @@ Game = {
     },
     data: [],
     graphics: {
-        tilesets: ds_list_create(),
-        overworlds: ds_list_create(),
-        battlers: ds_list_create(),
-        particles: ds_list_create(),
-        ui: ds_list_create(),
-        tile_animations: ds_list_create(),
-        etc: ds_list_create(),
-        skybox: ds_list_create(),
+        tilesets: [],
+        overworlds: [],
+        battlers: [],
+        particles: [],
+        ui: [],
+        tile_animations: [],
+        etc: [],
+        skybox: [],
     },
     audio: {
         bgm: [],
@@ -93,14 +93,22 @@ Game = {
     
     // leave this here for now
     Clear: function() {
-        ds_list_clear_instances(self.graphics.tilesets);
-        ds_list_clear_instances(self.graphics.overworlds);
-        ds_list_clear_instances(self.graphics.battlers);
-        ds_list_clear_instances(self.graphics.particles);
-        ds_list_clear_instances(self.graphics.ui);
-        ds_list_clear_instances(self.graphics.tile_animations);
-        ds_list_clear_instances(self.graphics.etc);
-        ds_list_clear_instances(self.graphics.skybox);
+        array_clear_instances(self.graphics.tilesets);
+        array_clear_instances(self.graphics.overworlds);
+        array_clear_instances(self.graphics.battlers);
+        array_clear_instances(self.graphics.particles);
+        array_clear_instances(self.graphics.ui);
+        array_clear_instances(self.graphics.tile_animations);
+        array_clear_instances(self.graphics.etc);
+        array_clear_instances(self.graphics.skybox);
+        array_resize(self.graphics.tilesets, 0);
+        array_resize(self.graphics.overworlds, 0);
+        array_resize(self.graphics.battlers, 0);
+        array_resize(self.graphics.particles, 0);
+        array_resize(self.graphics.ui, 0);
+        array_resize(self.graphics.tile_animations, 0);
+        array_resize(self.graphics.etc, 0);
+        array_resize(self.graphics.skybox, 0);
         
         array_clear_instances(self.audio.bgm);
         array_clear_instances(self.audio.se);

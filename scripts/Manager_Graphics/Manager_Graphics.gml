@@ -2,7 +2,7 @@ function dmu_graphic_export_generic(button) {
     var list = button.root.el_list;
     var selection = ui_list_selection(list);
     if (selection + 1) {
-        var what = list.entries[| selection];
+        var what = list.entries[selection];
         try {
             var fn = get_save_filename_image(what.name + ".png");
             sprite_save(what.picture, 0, fn);
@@ -19,7 +19,7 @@ function dmu_graphic_change_generic(button) {
     if (selection + 1) {
         var fn = get_open_filename_image();
         if (file_exists(fn)) {
-            var data = list.entries[| selection];
+            var data = list.entries[selection];
             sprite_delete(data.picture);
             data.picture = sprite_add(fn, 0, false, false, 0, 0);
             data_image_force_power_two(data);
@@ -35,8 +35,8 @@ function dmu_graphic_delete_generic(button) {
     var selection = ui_list_selection(list);
     ui_list_deselect(list);
     if (selection + 1) {
-        var data = list.entries[| selection];
-        ds_list_delete(list.entries, ds_list_find_index(list.entries, data));
+        var data = list.entries[selection];
+        array_delete(list.entries, array_search(list.entries, data), 1);
         data.Destroy();
         ui_list_deselect(list);
         list.root.el_image.image = -1;
@@ -44,7 +44,7 @@ function dmu_graphic_delete_generic(button) {
 }
 
 function dmu_graphic_delete_tileset(button) {
-    if (ds_list_size(Game.graphics.tilesets) == 1) {
+    if (array_length(Game.graphics.tilesets) == 1) {
         return emu_dialog_notice("Please don't try to delete the last tileset. That would cause issues.");
     }
     dmu_graphic_delete_generic(button);

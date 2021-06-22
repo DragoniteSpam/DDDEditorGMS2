@@ -24,9 +24,9 @@ function ui_render_surface_render_animation_frame(argument0, argument1, argument
     var batt_list = base_dialog.el_graphic_battler_sprite_list;
     var ow_list = base_dialog.el_graphic_overworld_sprite_list;
     if (ui_list_selection(batt_list)) {
-        sprite = Game.graphics.battlers[| ui_list_selection(batt_list)];
+        sprite = Game.graphics.battlers[ui_list_selection(batt_list)];
     } else if (ui_list_selection(ow_list)) {
-        sprite = Game.graphics.overworlds[| ui_list_selection(ow_list)];
+        sprite = Game.graphics.overworlds[ui_list_selection(ow_list)];
     }
 
     if (sprite) {
