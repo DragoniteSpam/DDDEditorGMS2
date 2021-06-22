@@ -105,7 +105,7 @@ function dialog_map_data_enable_by_type(argument0) {
             dialog.el_data_builtin_list.interactive = true;
             dialog.el_data_builtin_list.enabled = true;
             dialog.el_data_builtin_list.entries = Game.audio.bgm;
-            var data_index = ds_list_find_index(Game.audio.bgm, guid_get(data.value_data));
+            var data_index = array_search(Game.audio.bgm, guid_get(data.value_data));
             ui_list_deselect(dialog.el_data_builtin_list);
             ui_list_select(dialog.el_data_builtin_list, data_index, true);
             break;
@@ -113,7 +113,7 @@ function dialog_map_data_enable_by_type(argument0) {
             dialog.el_data_builtin_list.interactive = true;
             dialog.el_data_builtin_list.enabled = true;
             dialog.el_data_builtin_list.entries = Game.audio.se;
-            var data_index = ds_list_find_index(Game.audio.se, guid_get(data.value_data));
+            var data_index = array_search(Game.audio.se, guid_get(data.value_data));
             ui_list_deselect(dialog.el_data_builtin_list);
             ui_list_select(dialog.el_data_builtin_list, data_index, true);
             break;

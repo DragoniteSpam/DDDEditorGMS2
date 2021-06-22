@@ -34,7 +34,7 @@ function serialize_load_audio_bgm(argument0, argument1) {
             bgm.SetFMODLoop(FMODGMS_LOOPMODE_NORMAL);
         }
     
-        ds_list_add(Game.audio.bgm, bgm);
+        array_push(Game.audio.bgm, bgm);
     }
 
 

@@ -46,7 +46,7 @@ function omu_animation_keyframe_event(argument0) {
     el_audio.entries_are = ListEntries.INSTANCES;
     dg.el_audio = el_audio;
 
-    var audio_index = ds_list_find_index(Game.audio.se, keyframe.audio);
+    var audio_index = array_search(Game.audio.se, keyframe.audio);
     ui_list_select(el_audio, audio_index);
 
     yy += ui_get_list_height(el_audio) + spacing;

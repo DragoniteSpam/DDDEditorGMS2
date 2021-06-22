@@ -22,8 +22,8 @@ function dialog_create_event_node_audio_bgm(argument0, argument1, argument2, arg
     var yy = 64;
 
     var el_list = create_list(16, yy, "All BGM", "<no bgm>", ew, eh, n_slots, null, false, dg);
-    for (var i = 0; i < ds_list_size(Game.audio.bgm); i++) {
-        create_list_entries(el_list, Game.audio.bgm[| i]);
+    for (var i = 0; i < array_length(Game.audio.bgm); i++) {
+        create_list_entries(el_list, Game.audio.bgm[i]);
     }
     el_list.entries_are = ListEntries.INSTANCES;
     el_list.node = argument1;

@@ -27,7 +27,7 @@ function dialog_create_manager_audio(dialog, name, prefix, list) {
     var el_list = create_list(16, yy, name, "<no audio>", ew, eh, 12, function(list) {
         var selection = ui_list_selection(list);
         if (selection + 1) {
-            var audio = list.entries[| selection];
+            var audio = list.entries[selection];
             ui_input_set_value(list.root.el_name, audio.name);
             ui_input_set_value(list.root.el_sample_rate, string(audio.fmod_rate));
             ui_input_set_value(list.root.el_name_internal, audio.internal_name);
@@ -44,13 +44,13 @@ function dialog_create_manager_audio(dialog, name, prefix, list) {
     var el_add = create_button(c2 + 16, yy, "Add", ew, eh, fa_center, function(button) {
         var fn = get_open_filename_audio();
         if (file_exists(fn)) {
-            ds_list_add(button.root.el_list.entries, audio_add(fn, button.root.prefix, button.root.show_loop_controls));
+            array_push(button.root.el_list.entries, audio_add(fn, button.root.prefix, button.root.show_loop_controls));
         }
     }, dg);
     el_add.file_dropper_action = function(dropper, files) {
         var filtered_list = ui_handle_dropped_files_filter(files, [".wav", ".mid", ".ogg", ".mp3"]);
         for (var i = 0; i < array_length(filtered_list); i++) {
-            ds_list_add(dropper.root.el_list.entries, audio_add(filtered_list[i], dropper.root.prefix, dropper.root.show_loop_controls));
+            array_push(dropper.root.el_list.entries, audio_add(filtered_list[i], dropper.root.prefix, dropper.root.show_loop_controls));
         }
     };
     yy += el_add.height + spacing;
@@ -58,9 +58,9 @@ function dialog_create_manager_audio(dialog, name, prefix, list) {
         var list = button.root.el_list;
         var selection = ui_list_selection(list);
         if (selection + 1) {
-            var data = list.entries[| selection];
+            var data = list.entries[selection];
             FMODGMS_Snd_Unload(data.fmod);
-            ds_list_delete(list.entries, ds_list_find_index(list.entries, data));
+            array_delete(list.entries, array_search(list.entries, data), 1);
             data.Destroy();
             ui_list_deselect(list);
             list.onvaluechange(list);
@@ -73,7 +73,7 @@ function dialog_create_manager_audio(dialog, name, prefix, list) {
     var el_name = create_input(c2 + 16, yy, "", ew, eh, function(input) {
         var selection = ui_list_selection(input.root.el_list);
         if (selection + 1) {
-            input.root.el_list.entries[| selection].name = input.value;
+            input.root.el_list.entries[selection].name = input.value;
         }
     }, "", "", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
     dg.el_name = el_name;
@@ -85,9 +85,9 @@ function dialog_create_manager_audio(dialog, name, prefix, list) {
         var selection = ui_list_selection(list);
         if (selection + 1) {
             var already = internal_name_get(input.value);
-            if (!already || already == list.entries[| selection]) {
-                internal_name_remove(list.entries[| selection].internal_name);
-                internal_name_set(list.entries[| selection], input.value);
+            if (!already || already == list.entries[selection]) {
+                internal_name_remove(list.entries[selection].internal_name);
+                internal_name_set(list.entries[selection], input.value);
                 input.color = c_black;
             } else {
                 input.color = c_red;
@@ -102,7 +102,7 @@ function dialog_create_manager_audio(dialog, name, prefix, list) {
         var list = button.root.el_list;
         var selection = ui_list_selection(list);
         if (selection + 1) {
-            var what = list.entries[| selection];
+            var what = list.entries[selection];
             Stuff.fmod_sound = what.fmod;
             FMODGMS_Chan_StopChannel(Stuff.fmod_channel);
             FMODGMS_Snd_PlaySound(Stuff.fmod_sound, Stuff.fmod_channel);
@@ -137,7 +137,7 @@ function dialog_create_manager_audio(dialog, name, prefix, list) {
         var list = input.root.el_list;
         var selection = ui_list_selection(list);
         if (selection + 1) {
-            list.entries[| selection].SetSampleRate(real(input.value));
+            list.entries[selection].SetSampleRate(real(input.value));
         }
     }, 0, "hertz", validate_int, 0, 0xffffff, 8, vx1, vy1, vx2, vy2, dg);
     dg.el_sample_rate = el_sample_rate;
@@ -147,7 +147,7 @@ function dialog_create_manager_audio(dialog, name, prefix, list) {
         var list = button.root.el_list;
         var selection = ui_list_selection(list);
         if (selection + 1) {
-            var what = list.entries[| selection];
+            var what = list.entries[selection];
             what.SetSampleRate(44100);
             ui_input_set_value(button.root.el_sample_rate, string(what.fmod_rate));
         }
@@ -157,7 +157,7 @@ function dialog_create_manager_audio(dialog, name, prefix, list) {
         var list = button.root.el_list;
         var selection = ui_list_selection(list);
         if (selection + 1) {
-            var what = list.entries[| selection];
+            var what = list.entries[selection];
             what.SetSampleRate(48000);
             ui_input_set_value(button.root.el_sample_rate, string(what.fmod_rate));
         }
@@ -169,7 +169,7 @@ function dialog_create_manager_audio(dialog, name, prefix, list) {
         var list = text.root.el_list;
         var selection = ui_list_selection(list);
         if (selection + 1) {
-            var audio = list.entries[| selection];
+            var audio = list.entries[selection];
             text.text = "Length: " + string(FMODGMS_Snd_Get_Length(audio.fmod) / audio.fmod_rate) + " s";
         } else {
             text.text = "Length: N.A";
@@ -183,7 +183,7 @@ function dialog_create_manager_audio(dialog, name, prefix, list) {
         var list = input.root.el_list;
         var selection = ui_list_selection(list);
         if (selection + 1) {
-            var audio = list.entries[| selection];
+            var audio = list.entries[selection];
             audio.loop_start = real(input.value) * audio.fmod_rate;
             var position = FMODGMS_Chan_Get_Position(audio.fmod);
             FMODGMS_Snd_Set_LoopPoints(audio.fmod, audio.loop_start, audio.loop_end);
@@ -198,7 +198,7 @@ function dialog_create_manager_audio(dialog, name, prefix, list) {
         var list = input.root.el_list;
         var selection = ui_list_selection(list);
         if (selection + 1) {
-            var audio = list.entries[| selection];
+            var audio = list.entries[selection];
             audio.loop_end = real(input.value) * audio.fmod_rate;
             var position = FMODGMS_Chan_Get_Position(audio.fmod);
             FMODGMS_Snd_Set_LoopPoints(audio.fmod, audio.loop_start, audio.loop_end);
@@ -222,7 +222,7 @@ function dialog_create_manager_audio(dialog, name, prefix, list) {
         var list = progress.root.el_list;
         var selection = ui_list_selection(list);
         if (selection + 1) {
-            var audio = list.entries[| selection];
+            var audio = list.entries[selection];
             var length = FMODGMS_Snd_Get_Length(audio.fmod);
             var padding = 16;
             var x1 = x + progress.x + padding;

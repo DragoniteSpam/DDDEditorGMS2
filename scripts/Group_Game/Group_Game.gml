@@ -61,8 +61,8 @@ Game = {
         skybox: ds_list_create(),
     },
     audio: {
-        bgm: ds_list_create(),
-        se: ds_list_create(),
+        bgm: [],
+        se: [],
     },
     meshes: [],
     mesh_autotiles: [],
@@ -102,10 +102,14 @@ Game = {
         ds_list_clear_instances(self.graphics.etc);
         ds_list_clear_instances(self.graphics.skybox);
         
+        array_clear_instances(self.audio.bgm);
+        array_clear_instances(self.audio.se);
         array_clear_instances(self.maps);
         array_clear_instances(self.meshes);
         array_clear_instances(self.mesh_autotiles);
         
+        array_resize(self.audio.bgm, 0);
+        array_resize(self.audio.se, 0);
         array_resize(self.animations, 0);
         array_resize(self.events.events, 0);
         array_resize(self.events.prefabs, 0);

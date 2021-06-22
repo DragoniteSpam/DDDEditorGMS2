@@ -30,7 +30,7 @@ function serialize_load_audio_se(argument0, argument1) {
             se.SetFMOD(PROJECT_PATH_ROOT + se.temp_name);
         }
     
-        ds_list_add(Game.audio.se, se);
+        array_push(Game.audio.se, se);
     }
 
 
