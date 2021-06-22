@@ -490,8 +490,6 @@
     {"id":{"name":"EmuList","path":"scripts/EmuList/EmuList.yy",},"order":9,},
     {"id":{"name":"dc_map_data_property_set_enum","path":"scripts/dc_map_data_property_set_enum/dc_map_data_property_set_enum.yy",},"order":3,},
     {"id":{"name":"dc_map_data_property_set_data","path":"scripts/dc_map_data_property_set_data/dc_map_data_property_set_data.yy",},"order":5,},
-    {"id":{"name":"dc_event_custom_property_set_enum","path":"scripts/dc_event_custom_property_set_enum/dc_event_custom_property_set_enum.yy",},"order":6,},
-    {"id":{"name":"dc_event_custom_property_set_data","path":"scripts/dc_event_custom_property_set_data/dc_event_custom_property_set_data.yy",},"order":7,},
     {"id":{"name":"dc_data_property_set_data","path":"scripts/dc_data_property_set_data/dc_data_property_set_data.yy",},"order":8,},
     {"id":{"name":"dc_custom_event_set_data","path":"scripts/dc_custom_event_set_data/dc_custom_event_set_data.yy",},"order":9,},
     {"id":{"name":"dc_custom_event_set_bgm","path":"scripts/dc_custom_event_set_bgm/dc_custom_event_set_bgm.yy",},"order":10,},
