@@ -29,7 +29,7 @@ function dialog_create_manager_mesh_autotile(root) {
     var vy2 = eh * 2;
     
     dg.Select = method(dg, function(index) {
-        var autotile = Game.mesh_autotiles[| index];
+        var autotile = Game.mesh_autotiles[index];
         if (autotile) {
             ui_input_set_value(el_name, autotile.name);
             ui_input_set_value(el_name_internal, autotile.internal_name);
@@ -42,7 +42,7 @@ function dialog_create_manager_mesh_autotile(root) {
     dg.Colorize = method(dg, function() {
         var selection = ui_list_selection(el_list);
         var layer_index = ui_list_selection(el_layers);
-        var autotile = Game.mesh_autotiles[| selection];
+        var autotile = Game.mesh_autotiles[selection];
         if (autotile) {
             var at_layer = autotile.layers[layer_index];
             for (var i = 0; i < AUTOTILE_COUNT; i++) {
@@ -59,7 +59,7 @@ function dialog_create_manager_mesh_autotile(root) {
         list.root.Select(ui_list_selection(list));
     }, false, dg, Game.mesh_autotiles);
     el_list.onmiddleclick = function(list) {
-        ds_list_sort_name(Game.mesh_autotiles);
+        array_sort_name(Game.mesh_autotiles);
     };
     el_list.entries_are = ListEntries.INSTANCES;
     dg.el_list = el_list;
@@ -67,8 +67,8 @@ function dialog_create_manager_mesh_autotile(root) {
     yy += ui_get_list_height(el_list) + spacing;
     
     var el_add = create_button(c1x, yy, "Add Mesh Autotile", ew, eh, fa_center, function(button) {
-        var autotile = new DataMeshAutotile("MeshAutotile" + string(ds_list_size(Game.mesh_autotiles)));
-        ds_list_add(Game.mesh_autotiles, autotile);
+        var autotile = new DataMeshAutotile("MeshAutotile" + string(array_length(Game.mesh_autotiles)));
+        array_push(Game.mesh_autotiles, autotile);
     }, dg);
     dg.el_add = el_add;
     
@@ -77,8 +77,8 @@ function dialog_create_manager_mesh_autotile(root) {
     var el_remove = create_button(c1x, yy, "Remove Mesh Autotile", ew, eh, fa_center, function(button) {
         var selection = ui_list_selection(button.root.el_list);
         if (selection + 1) {
-            Game.mesh_autotiles[| selection].Destroy();
-            ds_list_delete(Game.mesh_autotiles, selection);
+            Game.mesh_autotiles[selection].Destroy();
+            array_delete(Game.mesh_autotiles, selection, 1);
             ui_list_deselect(button.root.el_list);
         }
     }, dg);
@@ -91,7 +91,7 @@ function dialog_create_manager_mesh_autotile(root) {
     var el_name = create_input(c2x, yy, "Name:", ew, eh, function(input) {
         var selection = ui_list_selection(input.root.el_list);
         if (selection + 1) {
-            Game.mesh_autotiles[| selection].name = input.value;
+            Game.mesh_autotiles[selection].name = input.value;
         }
     }, "", "name", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
     dg.el_name = el_name;
@@ -102,9 +102,9 @@ function dialog_create_manager_mesh_autotile(root) {
         var selection = ui_list_selection(input.root.el_list);
         if (selection + 1) {
             var already = internal_name_get(input.value);
-            if (!already || already == Game.mesh_autotiles[| selection]) {
-                internal_name_remove(Game.mesh_autotiles[| selection].internal_name);
-                internal_name_set(Game.mesh_autotiles[| selection], input.value);
+            if (!already || already == Game.mesh_autotiles[selection]) {
+                internal_name_remove(Game.mesh_autotiles[selection].internal_name);
+                internal_name_set(Game.mesh_autotiles[selection], input.value);
                 input.color = c_black;
             } else {
                 input.color = c_red;
@@ -128,7 +128,7 @@ function dialog_create_manager_mesh_autotile(root) {
     var el_import_series = create_button(c2x, yy, "Import Layer", ew, eh, fa_center, function(button) {
         var selection = ui_list_selection(button.root.el_list);
         var layer_index = ui_list_selection(button.root.el_layers);
-        var autotile = Game.mesh_autotiles[| selection];
+        var autotile = Game.mesh_autotiles[selection];
         if (autotile) {
             var root = filename_dir(get_open_filename_mesh_d3d()) + "\\";
             var at_layer = autotile.layers[layer_index];
@@ -166,7 +166,7 @@ function dialog_create_manager_mesh_autotile(root) {
         var filtered_list = ui_handle_dropped_files_filter(files, [".d3d", ".gmmod", ".obj"]);
         var selection = ui_list_selection(button.root.el_list);
         var layer_index = ui_list_selection(button.root.el_layers);
-        var autotile = Game.mesh_autotiles[| selection];
+        var autotile = Game.mesh_autotiles[selection];
         if (autotile) {
             var at_layer = autotile.layers[layer_index];
             var failures = 0;
@@ -223,7 +223,7 @@ function dialog_create_manager_mesh_autotile(root) {
     var el_export_series = create_button(c2x, yy, "Export Layer", ew, eh, fa_center, function(button) {
         var selection = ui_list_selection(button.root.el_list);
         var layer_index = ui_list_selection(button.root.el_layers);
-        var autotile = Game.mesh_autotiles[| selection];
+        var autotile = Game.mesh_autotiles[selection];
         if (autotile) {
             var folder = filename_path(get_save_filename_mesh("save destination", "Game Maker model files|*.d3d;*.gmmod"));
             if (folder != "") {
@@ -245,7 +245,7 @@ function dialog_create_manager_mesh_autotile(root) {
     var el_reflect_layer = create_button(c2x, yy, "Auto Reflections (Layer)", ew, eh, fa_center, function(button) {
         var selection = ui_list_selection(button.root.el_list);
         var layer_index = ui_list_selection(button.root.el_layers);
-        var autotile = Game.mesh_autotiles[| selection];
+        var autotile = Game.mesh_autotiles[selection];
         if (autotile) {
             var changes = { };
             var change_prefix = autotile.GUID + ":" + string(layer_index) + ":";
@@ -266,7 +266,7 @@ function dialog_create_manager_mesh_autotile(root) {
     
     var el_reflect_all = create_button(c2x, yy, "Auto Reflections (All)", ew, eh, fa_center, function(button) {
         var selection = ui_list_selection(button.root.el_list);
-        var autotile = Game.mesh_autotiles[| selection];
+        var autotile = Game.mesh_autotiles[selection];
         if (autotile) {
             var changes = { };
             for (var i = 0; i < array_length(autotile.layers); i++) {
@@ -289,7 +289,7 @@ function dialog_create_manager_mesh_autotile(root) {
     var el_clear = create_button(c2x, yy, "Clear Layer", ew, eh, fa_center, function(button) {
         var selection = ui_list_selection(button.root.el_list);
         var layer_index = ui_list_selection(button.root.el_layers);
-        var autotile = Game.mesh_autotiles[| selection];
+        var autotile = Game.mesh_autotiles[selection];
         if (autotile) {
             var changes = { };
             var change_prefix = autotile.GUID + ":" + string(layer_index) + ":";
@@ -331,7 +331,7 @@ function dialog_create_manager_mesh_autotile(root) {
         var button = create_button(xx, yy, string(i), bw, bh, fa_center, function(button) {
             var selection = ui_list_selection(button.root.el_list);
             var layer_index = ui_list_selection(button.root.el_layers);
-            var autotile = Game.mesh_autotiles[| selection];
+            var autotile = Game.mesh_autotiles[selection];
             if (autotile) {
                 var tile_data = autotile.layers[layer_index].tiles[button.index];
                 var fn = get_open_filename_mesh_d3d();

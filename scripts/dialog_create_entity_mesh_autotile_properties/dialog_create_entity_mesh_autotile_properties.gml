@@ -7,7 +7,6 @@ function dialog_create_entity_mesh_autotile_properties(root) {
     
     var spacing = 16;
     var columns = 1;
-    var spacing = 16;
     var ew = dw / columns - spacing * 2;
     var eh = 24;
     
@@ -37,7 +36,7 @@ function dialog_create_entity_mesh_autotile_properties(root) {
         var selection = ui_list_selection(list);
         for (var i = 0; i < array_length(list.root.list); i++) {
             var entity = list.root.list[i];
-            entity.autotile_id = list.entries[| selection].GUID;
+            entity.autotile_id = list.entries[selection].GUID;
             entity.terrain_id = -1;
             editor_map_mark_changed(entity);
         }

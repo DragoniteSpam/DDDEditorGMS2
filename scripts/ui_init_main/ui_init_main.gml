@@ -1383,7 +1383,7 @@ function ui_init_main(mode) {
         element = create_list(col1_x, yy, "Mesh Autotile type", "<no mesh autotiles types>", col_width, element_height, 8, function(list) {
             var selection = ui_list_selection(list);
             if (selection + 1) {
-                Settings.selection.mesh_autotile_type = list.entries[| selection].GUID;
+                Settings.selection.mesh_autotile_type = list.entries[selection].GUID;
             } else {
                 Settings.selection.mesh_autotile_type = NULL;
             }
