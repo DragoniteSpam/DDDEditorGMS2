@@ -337,18 +337,17 @@ function ui_init_main(mode) {
         var f_map_open = function(element) {
             var list = element.root.el_map_list;
             var index = ui_list_selection(list);
-            var map = Game.maps[| index];
+            var map = Game.maps[index];
             if (map != Stuff.map.active_map) {
                 selection_clear();
                 load_a_map(map);
             }
         };
         
-        element = create_list(col1_x, yy, "Maps: ", "no maps. (how?!)", col_width, element_height, 20, null, false, t_maps, Game.maps);
-        element.onvaluechange = method(element, function(list) {
+        element = create_list(col1_x, yy, "Maps: ", "no maps. (how?!)", col_width, element_height, 20, function(list) {
             var selection = ui_list_selection(list);
             if (selection + 1) {
-                var what = list.entries[| selection];
+                var what = list.entries[selection];
                 list.root.el_name.interactive = true;
                 ui_input_set_value(list.root.el_name, what.name);
                 list.root.el_internal_name.interactive = true;
@@ -377,7 +376,7 @@ function ui_init_main(mode) {
                 list.root.el_other.interactive = false;
                 list.root.el_3d.interactive = false;
             }
-        });
+        }, false, t_maps, Game.maps);
         element.tooltip = "This is a list of all the maps currently in the game.";
         element.render_colors = method(element, function(list, index) {
             return (Game.meta.start.map == list.entries[| index].GUID) ? c_blue : c_black;
@@ -401,13 +400,13 @@ function ui_init_main(mode) {
         element = create_button(col1_x, yy, "Delete Map", col_width, element_height, fa_center, function(button) {
             var list = button.root.el_map_list;
             var index = ui_list_selection(list);
-            var map = Game.maps[| index];
+            var map = Game.maps[index];
             if (map == Stuff.map.active_map) {
                 emu_dialog_notice("Please don't delete a map that you currently have loaded. If you want to delete this map, load a different one first.");
             } else {
                 map.Destroy();
                 ui_list_deselect(button.root.el_map_list);
-                ui_list_select(button.root.el_map_list, ds_list_find_index(Game.maps, Stuff.map.active_map));
+                ui_list_select(button.root.el_map_list, array_search(Game.maps, Stuff.map.active_map));
             }
         }, t_maps);
         element.tooltip = "Delete the currently selected map. Any existing references to it will no longer work. You should only use this if you're absolutely sure; generally speaking, maps not loaded into memory will not affect the game very much.";
@@ -447,7 +446,7 @@ function ui_init_main(mode) {
         element = create_input(col2_x, yy, "", col_width, element_height, function(input) {
             var selection = ui_list_selection(input.root.el_map_list);
             if (selection + 1) {
-                Game.maps[| selection].name = input.value;
+                Game.maps[selection].name = input.value;
             }
         }, "", "Name", validate_string, 0, 0, VISIBLE_NAME_LENGTH, 0, vy1, vx2, vy2, t_maps);
         element.tooltip = "The name of the map, as it appears to the player.";
@@ -464,7 +463,7 @@ function ui_init_main(mode) {
         element = create_input(col2_x, yy, "", col_width, element_height, function(input) {
             var selection = ui_list_selection(input.root.el_map_list);
             if (selection + 1) {
-                internal_name_set(Game.maps[| selection], input.value);
+                internal_name_set(Game.maps[selection], input.value);
             }
         }, "", "[A-Za-z0-9_]+", validate_string_internal_name, 0, 0, INTERNAL_NAME_LENGTH, 0, vy1, vx2, vy2, t_maps);
         element.tooltip = "The internal name of the map, as it appears to the developer. Standard restrictions on internal names apply.";
@@ -481,7 +480,7 @@ function ui_init_main(mode) {
         element = create_input(col2_x, yy, "", col_width, element_height, function(input) {
             var selection = ui_list_selection(input.root.el_map_list);
             if (selection + 1) {
-                Game.maps[| selection].summary = input.value;
+                Game.maps[selection].summary = input.value;
             }
         }, "", "Words", validate_string, 0, 0, 400, 0, vy1, vx2, vy2, t_maps);
         element.tooltip = "A description of the map. Try not to make this too long. You may wish to use Scribble formatting tags.";
@@ -527,7 +526,7 @@ function ui_init_main(mode) {
         element = create_checkbox(col2_x, yy, "Is 3D?", col_width, element_height, function(checkbox) {
             var selection = ui_list_selection(checkbox.root.el_map_list);
             if (selection + 1) {
-                Game.maps[| selection].is_3d = checkbox.value;
+                Game.maps[selection].is_3d = checkbox.value;
             }
         }, false, t_maps);
         element.tooltip = "This is my favorite checkbox in the whole entire editor.";
@@ -556,7 +555,7 @@ function ui_init_main(mode) {
         element.render = function(button, x, y) {
             var selection = ui_list_selection(button.root.el_map_list);
             button.interactive = false;
-            if (Game.maps[| selection] == Stuff.map.active_map) button.interactive = true;
+            if (Game.maps[selection] == Stuff.map.active_map) button.interactive = true;
             // remove this line if this feature ever gets added
             button.interactive = false;
             button.inheritRender(button, x, y);
@@ -575,7 +574,7 @@ function ui_init_main(mode) {
         element.render = function(button, x, y) {
             var selection = ui_list_selection(button.root.el_map_list);
             button.interactive = false;
-            if (Game.maps[| selection] == Stuff.map.active_map) button.interactive = true;
+            if (Game.maps[selection] == Stuff.map.active_map) button.interactive = true;
             button.inheritRender(button, x, y);
         };
         element.tooltip = "Clear the frozen vertex buffer data. There is no way to get it back. Use with caution.";

@@ -2,7 +2,7 @@ function uivc_input_map_size_z(input) {
     var selection = ui_list_selection(input.root.el_map_list);
     
     if (selection + 1) {
-        var map = Game.maps[| selection];
+        var map = Game.maps[selection];
         var clear = true;
         var zz = real(input.value);
         for (var i = 0; i < ds_list_size(map.contents.all_entities); i++) {

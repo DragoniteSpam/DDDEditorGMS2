@@ -8,7 +8,6 @@ function dialog_create_new_map(root) {
     var spacing = 16;
     var ew = dw / columns - spacing * 2;
     var eh = 24;
-    var spacing = 16;
     
     var col1_x = dw * 0 / columns + spacing;
     var col2_x = dw * 1 / columns + spacing;
@@ -25,7 +24,7 @@ function dialog_create_new_map(root) {
     
     yy += el_heading.height + spacing;
     
-    var el_name = create_input(col1_x, yy, "Name:", ew, eh, null, "Map " + string(ds_list_size(Game.maps) + 1), "The name of the map", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
+    var el_name = create_input(col1_x, yy, "Name:", ew, eh, null, "Map " + string(array_length(Game.maps) + 1), "The name of the map", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
     el_name.tooltip = "The name of the map, as it will be visible to the player.";
     dg.el_name = el_name;
     
@@ -72,7 +71,7 @@ function dialog_create_new_map(root) {
     var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Okay", b_width, b_height, fa_center, function(button) {
         // automatically pushed onto the list
         var map = new DataMap(button.root.el_name.value);
-        ds_list_add(Game.maps, map);
+        array_push(Game.maps, map);
         map.xx = real(button.root.el_x.value);
         map.yy = real(button.root.el_y.value);
         map.zz = real(button.root.el_z.value);

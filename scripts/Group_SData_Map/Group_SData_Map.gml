@@ -320,6 +320,6 @@ function DataMap(source, directory) : SData(source) constructor {
         if (self.cpreview) c_object_destroy(self.cpreview);
         if (self.cspreview) c_shape_destroy(self.cspreview);
         
-        ds_list_delete(Game.maps, ds_list_find_index(Game.maps, self));
+        array_delete(Game.maps, array_search(Game.maps, self), 1);
     };
 }

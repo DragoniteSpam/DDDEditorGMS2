@@ -60,8 +60,8 @@ function load_a_map(map_container) {
     
     // this also
     var list = Stuff.map.ui.t_maps.el_map_list;
-    for (var i = 0; i < ds_list_size(Game.maps); i++) {
-        if (Game.maps[| i] == Stuff.map.active_map) {
+    for (var i = 0; i < array_length(Game.maps); i++) {
+        if (Game.maps[i] == Stuff.map.active_map) {
             ui_list_select(list, i);
             list.onvaluechange(list);
             break;

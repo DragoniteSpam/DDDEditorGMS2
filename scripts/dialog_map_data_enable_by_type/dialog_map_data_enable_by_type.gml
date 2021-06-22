@@ -136,7 +136,7 @@ function dialog_map_data_enable_by_type(argument0) {
             dialog.el_data_builtin_list.interactive = true;
             dialog.el_data_builtin_list.enabled = true;
             dialog.el_data_builtin_list.entries = Game.maps;
-            var data_index = ds_list_find_index(Game.maps, guid_get(data.value_data));
+            var data_index = array_search(Game.maps, guid_get(data.value_data));
             ui_list_deselect(dialog.el_data_builtin_list);
             ui_list_select(dialog.el_data_builtin_list, data_index, true);
             break;

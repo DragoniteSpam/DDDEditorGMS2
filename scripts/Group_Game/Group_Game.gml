@@ -72,7 +72,7 @@ Game = {
         custom: [],
         prefabs: [],
     },
-    maps: ds_list_create(),
+    maps: [],
     languages: {
         /*
          * example:
@@ -105,11 +105,13 @@ Game = {
         ds_list_clear_instances(self.maps);
         
         array_clear_instances(self.meshes);
+        array_clear_instances(self.maps);
         
         array_resize(self.animations, 0);
         array_resize(self.events.events, 0);
         array_resize(self.events.prefabs, 0);
         array_resize(self.events.custom, 0);
+        array_resize(self.maps, 0);
         
         Identifiers.Clear();
     },

@@ -4,7 +4,7 @@ function serialize_load_maps(buffer, version) {
     
     repeat (n_maps) {
         var map = new DataMap();
-        ds_list_add(Game.maps, map);
+        array_push(Game.maps, map);
         serialize_load_generic(buffer, map, version);
         
         map.version = buffer_read(buffer, buffer_u32);
