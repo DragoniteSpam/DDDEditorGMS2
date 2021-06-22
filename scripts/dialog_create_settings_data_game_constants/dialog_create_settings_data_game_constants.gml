@@ -24,11 +24,11 @@ function dialog_create_settings_data_game_constants(root) {
     
     var function_alphabetize = function(element) {
         var list = element.root.el_list;
-        var selection = list.entries[| ui_list_selection(list)];
+        var selection = list.entries[ui_list_selection(list)];
         ui_list_deselect(list);
-        ds_list_sort_name(list.entries);
-        for (var i = 0; i < ds_list_size(list.entries); i++) {
-            if (list.entries[| i] == selection) {
+        array_sort_name(list.entries);
+        for (var i = 0; i < array_length(list.entries); i++) {
+            if (list.entries[i] == selection) {
                 ui_list_select(list, i);
                 break;
             }
@@ -91,13 +91,13 @@ function dialog_create_settings_data_game_constants(root) {
                 for (var i = 0; i < array_length(Game.data); i++) {
                     var datadata = Game.data[i];
                     if (const.type == datadata.type) {
-                        ds_list_add(list.entries, datadata);
+                        array_push(list.entries, datadata);
                     }
                 }
         
                 if (type) {
                     // select the type in the type list, if there is one
-                    var index = ds_list_find_index(list.entries, type);
+                    var index = array_search(list.entries, type);
                     ui_list_select(list, index, true);
                     // set the data in the data list
                     list_data.entries = (const.type == DataTypes.DATA) ? type.instances : type.properties;
@@ -298,7 +298,7 @@ function dialog_create_settings_data_game_constants(root) {
         "Int", "Enum", "Float", "String", "Boolean", "Data", "Code", "Color", "Mesh", "Tileset", "Tile", "Autotile",
         "Audio (BGM)", "Audio (SE)", "Animation"
     ]);
-    el_type.contents[| DataTypes.TILE].interactive = false;
+    el_type.contents[DataTypes.TILE].interactive = false;
     el_type.interactive = false;
     dg.el_type = el_type;
     
@@ -371,7 +371,7 @@ function dialog_create_settings_data_game_constants(root) {
             list_data.entries = (what.type == DataTypes.DATA) ? type.instances : type.properties;
             ui_list_deselect(list_data);
         }
-    }, false, dg, /* no external entry list */);
+    }, false, dg, []);
     el_type_guid.enabled = false;
     el_type_guid.entries_are = ListEntries.INSTANCES;
     dg.el_type_guid = el_type_guid;
@@ -379,9 +379,9 @@ function dialog_create_settings_data_game_constants(root) {
     var el_value_other = create_list(col3_x, yy, "Data:", "<no data>", ew, eh, 20, function(list) {
         var selection = ui_list_selection(list.root.el_list);
         if (selection + 1) {
-            Game.vars.constants[selection].value = list.entries[| ui_list_selection(list)].GUID;
+            Game.vars.constants[selection].value = list.entries[ui_list_selection(list)].GUID;
         }
-    }, false, dg, noone);
+    }, false, dg, []);
     el_value_other.enabled = false;
     el_value_other.entries_are = ListEntries.INSTANCES;
     dg.el_value_other = el_value_other;

@@ -37,19 +37,10 @@ function uivc_list_data_list_select(list) {
                 var found = -1;
                 var data_list = list.root.el_value;
                 ui_list_deselect(data_list);
-                if (is_numeric(data_list.entries)) {
-                    for (var i = 0; i < ds_list_size(data_list.entries); i++) {
-                        if (data_list.entries[| i].GUID == plist[pselection]) {
-                            ui_list_select(data_list, i, true);
-                            break;
-                        }
-                    }
-                } else {
-                    for (var i = 0; i < array_length(data_list.entries); i++) {
-                        if (data_list.entries[i].GUID == plist[pselection]) {
-                            ui_list_select(data_list, i, true);
-                            break;
-                        }
+                for (var i = 0; i < array_length(data_list.entries); i++) {
+                    if (data_list.entries[i].GUID == plist[pselection]) {
+                        ui_list_select(data_list, i, true);
+                        break;
                     }
                 }
                 break;

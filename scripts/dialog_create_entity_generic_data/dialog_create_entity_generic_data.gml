@@ -86,7 +86,7 @@ function dialog_create_entity_generic_data(dialog) {
     
     // for built-in data types the Select button won't appear, so the list can be slightly bigger
     // and moved up on space; everything else is basically the same
-    var el_data_builtin_list = create_list(col2_x, yy, "Data", "<none>", ew, eh, 8, uivc_list_entity_data_guid, false, dg, noone);
+    var el_data_builtin_list = create_list(col2_x, yy, "Data", "<none>", ew, eh, 8, uivc_list_entity_data_guid, false, dg, []);
     el_data_builtin_list.interactive = false;
     el_data_builtin_list.enabled = false;
     el_data_builtin_list.entries_are = ListEntries.INSTANCES;

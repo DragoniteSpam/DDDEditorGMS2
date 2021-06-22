@@ -180,7 +180,7 @@ function dialog_create_map_generic_data(root) {
         if (selection + 1) {
             map.generic_data[generic_index].value_data = list.entries[| selection].GUID;
         }
-    }, false, dg, noone);
+    }, false, dg, []);
     el_data_builtin_list.interactive = false;
     el_data_builtin_list.enabled = false;
     el_data_builtin_list.entries_are = ListEntries.INSTANCES;

@@ -3,19 +3,11 @@ function project_save() {
     if (fn == "") return;
     
     static project_write_json = function(data_list) {
-        if (is_array(data_list)) {
-            var json = array_create(array_length(data_list));
-            for (var i = 0, n = array_length(data_list); i < n; i++) {
-                json[i] = data_list[i].CreateJSON();
-            }
-            return json;
-        } else {
-            var json = array_create(ds_list_size(data_list));
-            for (var i = 0, n = ds_list_size(data_list); i < n; i++) {
-                json[i] = data_list[| i].CreateJSON();
-            }
-            return json;
+        var json = array_create(array_length(data_list));
+        for (var i = 0, n = array_length(data_list); i < n; i++) {
+            json[i] = data_list[i].CreateJSON();
         }
+        return json;
     };
     
     static project_write_json_simple = function(data_list) {
@@ -27,14 +19,8 @@ function project_save() {
     };
     
     static save_assets = function(folder, data_list) {
-        if (is_array(data_list)) {
-            for (var i = 0, n = array_length(data_list); i < n; i++) {
-                data_list[i].SaveAsset(folder);
-            }
-        } else {
-            for (var i = 0, n = ds_list_size(data_list); i < n; i++) {
-                data_list[| i].SaveAsset(folder);
-            }
+        for (var i = 0, n = array_length(data_list); i < n; i++) {
+            data_list[i].SaveAsset(folder);
         }
     };
     
