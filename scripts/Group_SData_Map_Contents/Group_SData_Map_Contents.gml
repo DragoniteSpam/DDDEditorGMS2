@@ -11,7 +11,6 @@ function MapContents() constructor {
     
     // these just needs to exist for now, it'll get resized when stuff is loaded
     self.map_grid = array_create_4d(10, 10, 10, MapCellContents._COUNT);
-    self.map_grid_tags = array_create_3d(10, 10, 10);
     self.frozen = undefined;                         // everything that will be a single batch in the game
     self.frozen_wire = undefined;                    // the wireframe for the frozen vertex buffer
     self.frozen_data = undefined;                    // the raw data in the frozen vertex buffer

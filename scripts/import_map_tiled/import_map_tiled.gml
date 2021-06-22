@@ -78,7 +78,7 @@ function import_map_tiled(ask_clear) {
             tiled_cache[$ "&tmx-ids"] = tmx_ids;
             
             if (tileset_columns) {
-                array_clear_3d(map_contents.map_grid_tags, 0);
+                array_clear_3d(map.grid_flags, 0);
                 
                 var layer_z = 0;
                 for (var i = 0; i < array_length(json_layers); i++) {

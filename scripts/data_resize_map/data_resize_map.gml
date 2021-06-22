@@ -14,7 +14,7 @@ function data_resize_map(map_container, xx, yy, zz) {
     graphics_create_grids();
     
     array_resize_4d(map_contents.map_grid, xx, yy, zz, MapCellContents._COUNT);
-    array_resize_3d(map_contents.map_grid_tags, xx, yy, zz);
+    array_resize_3d(map_container.grid_flags, xx, yy, zz);
     
     if (Game.meta.start.map == map_container.GUID) {
         Game.meta.start.x = min(Game.meta.start.x, xx - 1);

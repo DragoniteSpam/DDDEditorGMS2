@@ -33,6 +33,8 @@ function DataMap(source, directory) : SData(source) constructor {
     self.skybox = NULL;                              // GUID
     self.map_chunk_size = 32;                        // int
     
+    self.grid_flags = array_create_3d(self.xx, self.yy, self.zz);
+    
     self.discovery = 0;                              // index
     self.code = Stuff.default_lua_map;               // code
     self.generic_data = [];                          // similar to that attached to Entities
@@ -136,11 +138,11 @@ function DataMap(source, directory) : SData(source) constructor {
     };
     
     static GetFlag = function(x, y, z) {
-        return self.contents.map_grid_tags[x][y][z];
+        return self.grid_flags[x][y][z];
     };
     
     static SetFlag = function(x, y, z, flag) {
-        self.contents.map_grid_tags[@ x][@ y][@ z] = flag;
+        self.grid_flags[@ x][@ y][@ z] = flag;
     };
     
     static Move = function(entity, x, y, z, mark_changed) {
