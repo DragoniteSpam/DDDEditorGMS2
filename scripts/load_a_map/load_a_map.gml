@@ -43,7 +43,7 @@ function load_a_map(map_container) {
     Stuff.map.active_map = map;
     
     map.contents = new MapContents();
-    data_resize_map(map, map.xx, map.yy, map.zz);
+    map.SetSize(map.xx, map.yy, map.zz);
     
     if (buffer_md5(buffer, 0, buffer_get_size(buffer)) != EMPTY_BUFFER_MD5) {
         buffer_seek(buffer, buffer_seek_start, 0);

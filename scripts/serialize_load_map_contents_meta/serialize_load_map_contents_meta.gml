@@ -9,7 +9,7 @@ function serialize_load_map_contents_meta(buffer, version, map_container) {
     var xx = buffer_read(buffer, buffer_u16);
     var yy = buffer_read(buffer, buffer_u16);
     var zz = buffer_read(buffer, buffer_u16);
-    data_resize_map(map, xx, yy, zz);
+    map.SetSize(xx, yy, zz);
     
     map.tileset =                   buffer_read(buffer, buffer_datatype);
     map.fog_start =                 buffer_read(buffer, buffer_f32);

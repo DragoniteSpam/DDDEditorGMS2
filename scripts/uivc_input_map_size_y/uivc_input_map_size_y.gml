@@ -10,10 +10,10 @@ function uivc_input_map_size_y(input) {
         }
         
         if (clear) {
-            data_resize_map(map, map.xx, yy, map.zz);
+            map.SetSize(map.xx, yy, map.zz);
         } else {
             var dialog = emu_dialog_confirm(input, "If you do this, entities will be deleted and you will not be able to get them back. Is this okay?", function() {
-                data_resize_map(self.root.map, self.root.xx, self.root.yy, self.root.zz);
+                self.root.map.SetSize(self.root.xx, self.root.yy, self.root.zz);
                 self.root.Dispose();
             }, undefined, undefined, undefined, function() {
                 var map = self.root.map;
