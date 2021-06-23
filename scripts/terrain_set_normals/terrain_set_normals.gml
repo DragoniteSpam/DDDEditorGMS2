@@ -2,6 +2,7 @@ function terrain_set_normals(terrain, x, y) {
     var smooth = true;
     var threshold = 0.3;
     var normal_map = { };
+    var source_vertices = { };
     
     if (x > 0 && y > 0) {
         #region northwest
@@ -43,11 +44,13 @@ function terrain_set_normals(terrain, x, y) {
             for (var i = 0; i < 6; i++) {
                 var normal = normals[i];
                 var vertex = vertices[i];
-                if (normal_map[$ vertex] == undefined) {
-                    normal_map[$ vertex] = [normal[vec3.xx], normal[vec3.yy], normal[vec3.zz]];
+                var key = string(vertex);
+                if (source_vertices[$ key] == undefined) source_vertices[$ key] = vertex;
+                if (normal_map[$ key] == undefined) {
+                    normal_map[$ key] = [normal[vec3.xx], normal[vec3.yy], normal[vec3.zz]];
                 } else {
-                    var sN = normal_map[$ vertex];
-                    normal_map[$ vertex] = [sN[vec3.xx] + normal[vec3.xx], sN[vec3.yy] + normal[vec3.yy], sN[vec3.zz] + normal[vec3.zz]];
+                    var sN = normal_map[$ key];
+                    normal_map[$ key] = [sN[vec3.xx] + normal[vec3.xx], sN[vec3.yy] + normal[vec3.yy], sN[vec3.zz] + normal[vec3.zz]];
                 }
             }
         } else {
@@ -100,11 +103,13 @@ function terrain_set_normals(terrain, x, y) {
             for (var i = 0; i < 3; i++) {
                 var normal = normals[i];
                 var vertex = vertices[i];
-                if (normal_map[$ vertex] == undefined) {
-                    normal_map[$ vertex] = [normal[vec3.xx], normal[vec3.yy], normal[vec3.zz]];
+                var key = string(vertex);
+                if (source_vertices[$ key] == undefined) source_vertices[$ key] = vertex;
+                if (normal_map[$ key] == undefined) {
+                    normal_map[$ key] = [normal[vec3.xx], normal[vec3.yy], normal[vec3.zz]];
                 } else {
-                    var sN = normal_map[$ vertex];
-                    normal_map[$ vertex] = [sN[vec3.xx] + normal[vec3.xx], sN[vec3.yy] + normal[vec3.yy], sN[vec3.zz] + normal[vec3.zz]];
+                    var sN = normal_map[$ key];
+                    normal_map[$ key] = [sN[vec3.xx] + normal[vec3.xx], sN[vec3.yy] + normal[vec3.yy], sN[vec3.zz] + normal[vec3.zz]];
                 }
             }
         } else {
@@ -147,11 +152,13 @@ function terrain_set_normals(terrain, x, y) {
             for (var i = 0; i < 3; i++) {
                 var normal = normals[i];
                 var vertex = vertices[i];
-                if (normal_map[$ vertex] == undefined) {
-                    normal_map[$ vertex] = [normal[vec3.xx], normal[vec3.yy], normal[vec3.zz]];
+                var key = string(vertex);
+                if (source_vertices[$ key] == undefined) source_vertices[$ key] = vertex;
+                if (normal_map[$ key] == undefined) {
+                    normal_map[$ key] = [normal[vec3.xx], normal[vec3.yy], normal[vec3.zz]];
                 } else {
-                    var sN = normal_map[$ vertex];
-                    normal_map[$ vertex] = [sN[vec3.xx] + normal[vec3.xx], sN[vec3.yy] + normal[vec3.yy], sN[vec3.zz] + normal[vec3.zz]];
+                    var sN = normal_map[$ key];
+                    normal_map[$ key] = [sN[vec3.xx] + normal[vec3.xx], sN[vec3.yy] + normal[vec3.yy], sN[vec3.zz] + normal[vec3.zz]];
                 }
             }
         } else {
@@ -208,11 +215,13 @@ function terrain_set_normals(terrain, x, y) {
             for (var i = 0; i < 6; i++) {
                 var normal = normals[i];
                 var vertex = vertices[i];
-                if (normal_map[$ vertex] == undefined) {
-                    normal_map[$ vertex] = [normal[vec3.xx], normal[vec3.yy], normal[vec3.zz]];
+                var key = string(vertex);
+                if (source_vertices[$ key] == undefined) source_vertices[$ key] = vertex;
+                if (normal_map[$ key] == undefined) {
+                    normal_map[$ key] = [normal[vec3.xx], normal[vec3.yy], normal[vec3.zz]];
                 } else {
-                    var sN = normal_map[$ vertex];
-                    normal_map[$ vertex] = [sN[vec3.xx] + normal[vec3.xx], sN[vec3.yy] + normal[vec3.yy], sN[vec3.zz] + normal[vec3.zz]];
+                    var sN = normal_map[$ key];
+                    normal_map[$ key] = [sN[vec3.xx] + normal[vec3.xx], sN[vec3.yy] + normal[vec3.yy], sN[vec3.zz] + normal[vec3.zz]];
                 }
             }
         } else {
@@ -241,8 +250,9 @@ function terrain_set_normals(terrain, x, y) {
     
     if (smooth) {
         var vertices = variable_struct_get_names(normal_map);
-        for (var vertex = 0; vertex < array_length(vertices); i++) {
-            var normal = vector3_normalize(normal_map[$ vertex]);
+        for (var i = 0; i < array_length(vertices); i++) {
+            var vertex = source_vertices[$ vertices[i]];
+            var normal = vector3_normalize(normal_map[$ string(vertex)]);
             // it's most likely not worth using lightweight objects here
             
             buffer_poke(terrain.terrain_buffer_data, vertex[3] + 12, buffer_f32, normal[vec3.xx]);
