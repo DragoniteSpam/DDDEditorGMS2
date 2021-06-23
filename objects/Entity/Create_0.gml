@@ -168,6 +168,7 @@ LoadJSONBase = function(source) {
     self.autonomous_movement_frequency = source.autonomous.frequency;
     self.autonomous_movement_route = source.autonomous.route;
     self.movement_routes = source.autonomous.routes;
+    self.tmx_id = source.tmx.id;
 };
 
 LoadJSON = function(source) {
@@ -218,6 +219,7 @@ CreateJSONBase = function() {
             route: self.autonomous_movement_route,
             routes: self.movement_routes,
         },
+        tmx_id: self.tmx_id,
     };
 };
 
