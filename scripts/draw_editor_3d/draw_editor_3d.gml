@@ -107,8 +107,8 @@ function draw_editor_3d() {
     }
     
     // tried using ztestenable for this - didn't look good. at all.
-    for (var i = 0; i < ds_list_size(Stuff.map.selection); i++) {
-        Stuff.map.selection[| i].render();
+    for (var i = 0; i < array_length(Stuff.map.selection); i++) {
+        Stuff.map.selection[i].render();
     }
     
     if (Settings.view.zones) {

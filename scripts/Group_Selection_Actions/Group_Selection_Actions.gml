@@ -28,8 +28,8 @@ function selected(entity, mask) {
     if (!entity.exist_in_map) return false;
     
     if (entity.etype_flags & mask) {
-        for (var i = 0; i < ds_list_size(Stuff.map.selection); i++) {
-            if (Stuff.map.selection[| i].selected_determination(entity)) {
+        for (var i = 0; i < array_length(Stuff.map.selection); i++) {
+            if (Stuff.map.selection[i].selected_determination(entity)) {
                 return true;
             }
         }
@@ -182,8 +182,8 @@ function selected_border(entity, mask) {
     if (mask == undefined) mask = Settings.selection.mask;
     
     if (entity.etype_flags & mask) {
-        for (var i = 0; i < ds_list_size(Stuff.map.selection); i++) {
-            if (Stuff.map.selection[| i].selected_border_determination(entity)) {
+        for (var i = 0; i < array_length(Stuff.map.selection); i++) {
+            if (Stuff.map.selection[i].selected_border_determination(entity)) {
                 return true;
             }
         }
@@ -245,13 +245,13 @@ function selection_all_type(list) {
 }
 
 function selection_clear() {
-    ds_list_clear(Stuff.map.selection);
+    array_resize(Stuff.map.selection, 0);
     Stuff.map.last_selection = undefined;
     sa_process_selection();
 }
 
 function selection_empty() {
-    return ds_list_empty(Stuff.map.selection);
+    return array_empty(Stuff.map.selection);
 }
 
 function selection_update_autotiles() {

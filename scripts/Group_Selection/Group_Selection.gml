@@ -3,7 +3,7 @@ function Selection(x, y, z) constructor {
     self.y = y;
     self.z = z;
     
-    ds_list_add(Stuff.map.selection, self);
+    array_push(Stuff.map.selection, self);
     
     static onmousedown = null;
     static onmousedrag = null;

@@ -2,8 +2,8 @@ function safc_fill_zone() {
     // not technically a Selection Fill script, but it's used in a similar way
     var button = Stuff.map.ui.t_p_other.el_zone_data;
     
-    for (var i = 0; i < ds_list_size(Stuff.map.selection); i++) {
-        var selection = Stuff.map.selection[| i];
+    for (var i = 0; i < array_length(Stuff.map.selection); i++) {
+        var selection = Stuff.map.selection[i];
         // Only going to do this with rectangle zones. I'm not currently planning on
         // supporting spherical zones, and size-one zones are kinda pointless.
         if (instanceof(selection) == "SelectionRectangle") {
