@@ -13,10 +13,8 @@ function uivc_entity_effect_com_lighting_type(radio) {
     // reset everything (but if an effect has the same light compoment as the type to be added, keep it)
     for (var i = 0; i < ds_list_size(list); i++) {
         var effect = list[| i];
-        if (effect.com_light && effect.com_light.light_type != radio.value) {
-            instance_activate_object(effect.com_light);
-            instance_destroy(effect.com_light);
-            effect.com_light = noone;
+        if (effect.com_light.light_type != radio.value) {
+            effect.com_light = undefined;
         }
     }
     
