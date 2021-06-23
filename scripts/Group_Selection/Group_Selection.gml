@@ -3,6 +3,8 @@ function Selection(x, y, z) constructor {
     self.y = y;
     self.z = z;
     
+    ds_list_add(Stuff.map.selection, self);
+    
     static onmousedown = null;
     static onmousedrag = null;
     static onmove = null;
@@ -158,10 +160,13 @@ function SelectionSingle(x, y, z) : Selection(x, y, z) constructor {
     };
 }
 
-function SelectionRectangle(x, y, z) : Selection(x, y, z) constructor {
-    self.x2 = 0;
-    self.y2 = 0;
-    self.z2 = 0;
+function SelectionRectangle(x, y, z, x2, y2, z2) : Selection(x, y, z) constructor {
+    if (x2 == undefined) x2 = x;
+    if (y2 == undefined) y2 = y;
+    if (z2 == undefined) z2 = z;
+    self.x2 = x2;
+    self.y2 = y2;
+    self.z2 = z2;
     
     static onmousedown = function(x, y, z) {
         self.x = x;

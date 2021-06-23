@@ -6,7 +6,7 @@ function safc_fill_zone() {
         var selection = Stuff.map.selection[| i];
         // Only going to do this with rectangle zones. I'm not currently planning on
         // supporting spherical zones, and size-one zones are kinda pointless.
-        if (instanceof_classic(selection, SelectionRectangle)) {
+        if (instanceof(selection) == "SelectionRectangle") {
             var zone_list = Stuff.map.ui.t_p_other_editor.el_zone_type;
             var type = global.map_zone_type_objects[ui_list_selection(zone_list)];
             var zone = instance_create_depth(0, 0, 0, type);

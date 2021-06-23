@@ -21,24 +21,24 @@ function component_axis_up(argument0) {
     var effect_list = ds_list_create();
 
     for (var i = 0; i < ds_list_size(Stuff.map.selected_entities); i++) {
-        var entity = Stuff.map.selected_entities[| i];
-        if (instanceof_classic(entity, EntityEffect)) {
-            ds_list_add(effect_list, entity);
-            var new_x = clamp(entity.xx + entity.off_xx, 0, map.xx - 1);
-            var new_y = clamp(entity.yy + entity.off_yy, 0, map.yy - 1);
-            var new_z = clamp(entity.zz + entity.off_zz, 0, map.zz - 1);
-            entity.off_xx = frac(new_x);
-            entity.off_yy = frac(new_y);
-            entity.off_zz = frac(new_z);
-            Stuff.map.active_map.Move(entity, floor(new_x), floor(new_y), floor(new_z), false);
+        var ent = Stuff.map.selected_entities[| i];
+        if (instanceof_classic(ent, EntityEffect)) {
+            ds_list_add(effect_list, ent);
+            var new_x = clamp(ent.xx + ent.off_xx, 0, map.xx - 1);
+            var new_y = clamp(ent.yy + ent.off_yy, 0, map.yy - 1);
+            var new_z = clamp(ent.zz + ent.off_zz, 0, map.zz - 1);
+            ent.off_xx = frac(new_x);
+            ent.off_yy = frac(new_y);
+            ent.off_zz = frac(new_z);
+            Stuff.map.active_map.Move(ent, floor(new_x), floor(new_y), floor(new_z), false);
         }
     }
 
     selection_clear();
 
     for (var i = 0; i < ds_list_size(effect_list); i++) {
-        var entity = effect_list[| i];
-        var selection = selection_add(SelectionSingle, entity.xx, entity.yy, entity.zz);
+        var ent = effect_list[| i];
+        var selection = new SelectionSingle(ent.xx, ent.yy, ent.zz);
     }
 
     sa_process_selection();

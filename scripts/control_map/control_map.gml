@@ -8,6 +8,8 @@ function control_map(mode) {
     if (Stuff.menu.active_element) return;
     
     #region mouse picking
+    var rc_xfrom, rc_yfrom, rc_zfrom, rc_xto, rc_yto, rc_zto;
+    var xx, yy, zz, xadjust, yadjust, zadjust;
     if (map.is_3d) {
         var mouse_vector = screen_to_world(window_mouse_get_x(), window_mouse_get_y(),
             matrix_build_lookat(mode.x, mode.y, mode.z, mode.xto, mode.yto, mode.zto, mode.xup, mode.yup, mode.zup),
@@ -16,50 +18,49 @@ function control_map(mode) {
         );
         
         // end point of the mouse vector
-        var xx = mouse_vector[vec3.xx] * MILLION;
-        var yy = mouse_vector[vec3.yy] * MILLION;
-        var zz = mouse_vector[vec3.zz] * MILLION;
+        xx = mouse_vector[vec3.xx] * MILLION;
+        yy = mouse_vector[vec3.yy] * MILLION;
+        zz = mouse_vector[vec3.zz] * MILLION;
         
         // raycast coordinates
-        var rc_xfrom = mode.x;
-        var rc_yfrom = mode.y;
-        var rc_zfrom = mode.z;
-        var rc_xto = mode.x + xx;
-        var rc_yto = mode.y + yy;
-        var rc_zto = mode.z + zz;
+        rc_xfrom = mode.x;
+        rc_yfrom = mode.y;
+        rc_zfrom = mode.z;
+        rc_xto = mode.x + xx;
+        rc_yto = mode.y + yy;
+        rc_zto = mode.z + zz;
         
         // you only need this in 2D
-        var xadjust = 0;
-        var yadjust = 0;
-        var zadjust = 0;
+        xadjust = 0;
+        yadjust = 0;
+        zadjust = 0;
     } else {
         var cwidth = camera_get_view_width(camera);
         var cheight = camera_get_view_height(camera);
         
         // mouse vector (in 2D you always go straight down)
-        var xx = 0;
-        var yy = 0;
-        var zz = -1;
+        xx = 0;
+        yy = 0;
+        zz = -1;
         
         // raycast coordinates
-        var rc_xfrom = mode.x + ((mouse_x_view - cwidth / 2) / view_get_wport(view_3d)) * cwidth;
-        var rc_yfrom = mode.y + ((mouse_y_view - cheight / 2) / view_get_hport(view_3d)) * cheight;
-        var rc_zfrom = MILLION;
-        var rc_xto = rc_xfrom;
-        var rc_yto = rc_yfrom;
-        var rc_zto = -1;
+        rc_xfrom = mode.x + ((mouse_x_view - cwidth / 2) / view_get_wport(view_3d)) * cwidth;
+        rc_yfrom = mode.y + ((mouse_y_view - cheight / 2) / view_get_hport(view_3d)) * cheight;
+        rc_zfrom = MILLION;
+        rc_xto = rc_xfrom;
+        rc_yto = rc_yfrom;
+        rc_zto = -1;
         
         // offset from the center of the screen
-        var xadjust = rc_xfrom - mode.x;
-        var yadjust = rc_yfrom - mode.y;
-        var zadjust = -MILLION;
+        xadjust = rc_xfrom - mode.x;
+        yadjust = rc_yfrom - mode.y;
+        zadjust = -MILLION;
     }
     
+    var instance_under_cursor = undefined;
     // stash the result because you may hit a special value of some type
     if (c_raycast_world(rc_xfrom, rc_yfrom, rc_zfrom, rc_xto, rc_yto, rc_zto, Controller.mouse_pick_mask)) {
-        var instance_under_cursor = c_object_get_userid(c_hit_object(0));
-    } else {
-        var instance_under_cursor = noone;
+        instance_under_cursor = c_object_get_userid(c_hit_object(0));
     }
     #endregion
     
@@ -127,15 +128,16 @@ function control_map(mode) {
                 
                 if (Controller.press_left) {
                     if (ds_list_size(mode.selection) < MAX_SELECTION_COUNT) {
+                        var stype;
                         if (!keyboard_check(Controller.input_selection_add) && !Settings.selection.addition) {
                             selection_clear();
                         }
                         switch (Settings.selection.mode) {
-                            case SelectionModes.SINGLE: var stype = SelectionSingle; break;
-                            case SelectionModes.RECTANGLE: var stype = SelectionRectangle; break;
-                            case SelectionModes.CIRCLE: var stype = SelectionCircle; break;
+                            case SelectionModes.SINGLE: stype = SelectionSingle; break;
+                            case SelectionModes.RECTANGLE: stype = SelectionRectangle; break;
+                            case SelectionModes.CIRCLE: stype = SelectionCircle; break;
                             // not sure why it broke once, but just in case
-                            default: Settings.selection.mode = SelectionModes.RECTANGLE; var stype = SelectionRectangle; break;
+                            default: Settings.selection.mode = SelectionModes.RECTANGLE; stype = SelectionRectangle; break;
                         }
                         
                         var button = Stuff.map.ui.t_p_other.el_zone_data;
@@ -152,7 +154,7 @@ function control_map(mode) {
                             button.text = "Data: " + instance_under_cursor.name;
                             mode.selected_zone = instance_under_cursor;
                         } else {
-                            mode.last_selection = selection_add(stype, max(0, floor_cx), max(0, floor_cy), tz);
+                            mode.last_selection = new stype(max(0, floor_cx), max(0, floor_cy), tz);
                         }
                     }
                 }
@@ -167,10 +169,8 @@ function control_map(mode) {
                     // selections of zero area are just deleted outright
                     if (mode.last_selection) {
                         if (mode.last_selection.area() == 0) {
-                            instance_activate_object(mode.last_selection);
-                            instance_destroy(mode.last_selection);
                             ds_list_pop(mode.selection);
-                            mode.last_selection = noone;
+                            mode.last_selection = undefined;
                         }
                         sa_process_selection();
                     }
@@ -183,10 +183,7 @@ function control_map(mode) {
                     // swaths of entities, so don't clear it or anythign like that.
                     
                     if (selection_empty()) {
-                        var tz = instance_under_cursor ? instance_under_cursor.zz : 0;
-                        mode.last_selection = instance_create_depth(0, 0, 0, SelectionSingle);
-                        ds_list_add(mode.selection, mode.last_selection);
-                        mode.last_selection.onmousedown(floor_cx, floor_cy, tz);
+                        mode.last_selection = new SelectionSingle(floor_cx, floor_cy, instance_under_cursor ? instance_under_cursor.zz : 0);
                     }
                     
                     var menu = Stuff.menu.menu_right_click;
@@ -251,13 +248,13 @@ function control_map(mode) {
                     mode.zto = mode.z - dsin(mode.pitch);
                 }
                 
-                var xup = 0;
-                var yup = 0;
-                var zup = 1;
+                xup = 0;
+                yup = 0;
+                zup = 1;
             } else {
-                var xup = 0;
-                var yup = -1;
-                var zup = 0;
+                xup = 0;
+                yup = -1;
+                zup = 0;
                 
                 if (keyboard_check(vk_up) || keyboard_check(ord("W"))) {
                     yspeed = yspeed - mspd;

@@ -1,7 +1,6 @@
 function select_single(tile) {
-    var ns = instance_create_depth(0, 0, 0, SelectionSingle);
+    var ns = new SelectionSingle(0, 0, 0);
     ns.who = tile;
-    ds_list_add(Stuff.map.selection, ns);
 }
 
 function selection_count() {
@@ -198,16 +197,6 @@ function selected_border(entity, mask) {
     return false;
 }
 
-function selection_add(stype, x, y, z) {
-    var mode = Stuff.map;
-    
-    var selection = instance_create_depth(0, 0, 0, stype);
-    ds_list_add(mode.selection, selection);
-    selection.onmousedown(x, y, z);
-    
-    return selection;
-}
-
 function selection_all() {
     // this is O(n). will not scale as well as i'd like. Use with caution.
     
@@ -261,13 +250,8 @@ function selection_all_type(list) {
 }
 
 function selection_clear() {
-    for (var i = 0; i < ds_list_size(Stuff.map.selection); i++) {
-        instance_activate_object(Stuff.map.selection[| i]);
-        instance_destroy(Stuff.map.selection[| i]);
-    }
-    
     ds_list_clear(Stuff.map.selection);
-    Stuff.map.last_selection = noone;
+    Stuff.map.last_selection = undefined;
     sa_process_selection();
 }
 
