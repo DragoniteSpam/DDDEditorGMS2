@@ -127,17 +127,15 @@ function control_map(mode) {
                 floor_cz = clamp(floor_z div TILE_DEPTH, -1, mode.active_map.zz - 1);
                 
                 if (Controller.press_left) {
-                    if (ds_list_size(mode.selection) < MAX_SELECTION_COUNT) {
-                        var stype;
+                    if (array_length(mode.selection) < MAX_SELECTION_COUNT) {
                         if (!keyboard_check(Controller.input_selection_add) && !Settings.selection.addition) {
                             selection_clear();
                         }
+                        var stype = SelectionRectangle;
                         switch (Settings.selection.mode) {
                             case SelectionModes.SINGLE: stype = SelectionSingle; break;
                             case SelectionModes.RECTANGLE: stype = SelectionRectangle; break;
                             case SelectionModes.CIRCLE: stype = SelectionCircle; break;
-                            // not sure why it broke once, but just in case
-                            default: Settings.selection.mode = SelectionModes.RECTANGLE; stype = SelectionRectangle; break;
                         }
                         
                         var button = Stuff.map.ui.t_p_other.el_zone_data;
@@ -169,7 +167,7 @@ function control_map(mode) {
                     // selections of zero area are just deleted outright
                     if (mode.last_selection) {
                         if (mode.last_selection.area() == 0) {
-                            ds_list_pop(mode.selection);
+                            array_pop(mode.selection);
                             mode.last_selection = undefined;
                         }
                         sa_process_selection();
