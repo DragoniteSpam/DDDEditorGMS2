@@ -1,334 +1,318 @@
-function select_single(tile) {
-    var ns = instance_create_depth(0, 0, 0, SelectionSingle);
-    ns.who = tile;
-    ds_list_add(Stuff.map.selection, ns);
+function Selection(x, y, z) constructor {
+    self.x = x;
+    self.y = y;
+    self.z = z;
+    
+    static onmousedown = null;
+    static onmousedrag = null;
+    static onmove = null;
+    static render = null;
+    static area = null;
+    static foreach_cell = null;
+    static selected_determination = null;
+    static selected_border_determination = null;
 }
 
-function selection_count() {
-    var n = 0;
+function SelectionCircle(x, y, z, radius) : Selection(x, y, z) constructor {
+    self.radius = radius;
     
-    for (var i = 0; i < ds_list_size(Stuff.map.active_map.contents.all_entities); i++) {
-        if (selected(Stuff.map.active_map.contents.all_entities[| i])) {
-            if (++n > 1) {
-                return SelectionCounts.MULTIPLE;
-            }
-        }
-    }
+    static onmousedown = function(x, y, z) {
+        self.x = x;
+        self.y = y;
+        self.z = z;
+    };
     
-    if (n == 0) {
-        return SelectionCounts.NONE;
-    }
+    static onmousedrag = function(x, y) {
+        self.radius = floor(point_distance(self.x, self.y, x, y));
+    };
     
-    return SelectionCounts.ONE;
+    static area = function() {
+        return self.radius * self.radius * pi;
+    };
     
-    enum SelectionCounts {
-        NONE,
-        ONE,
-        MULTIPLE
-    }
-}
-
-function selected(entity, mask) {
-    if (mask == undefined) mask = Settings.selection.mask;
-    
-    if (!entity.exist_in_map) return false;
-    
-    if (entity.etype_flags & mask) {
-        for (var i = 0; i < ds_list_size(Stuff.map.selection); i++) {
-            if (Stuff.map.selection[| i].selected_determination(entity)) {
-                return true;
-            }
-        }
-    }
-    
-    return false;
-}
-
-function selected_affected_terrain() {
-    // this is O(n). will not scale as well as i'd like. Use with caution.
-    var map = Stuff.map.active_map;
-    var list = ds_list_create();
-    var mask_mesh_auto = ETypeFlags.ENTITY_MESH_AUTO;
-    var mask_tile = ETypeFlags.ENTITY_TILE;
-    
-    for (var i = 0; i < ds_list_size(Stuff.map.active_map.contents.all_entities); i++) {
-        var thing = Stuff.map.active_map.contents.all_entities[| i];
+    static render = function() {
+        transform_set(0, 0, self.z * TILE_DEPTH + 1, 0, 0, 0, 1, 1, 1);
         
-        if (!instanceof_classic(thing, EntityMeshAutotile)) continue;
+        var precision = 24;
+        var step = 360 / precision;
+        var cx = self.x * TILE_WIDTH;
+        var cy = self.y * TILE_HEIGHT;
+        var cz = self.z * TILE_DEPTH;
+        var rw = self.radius * TILE_WIDTH;
+        var rh = self.radius * TILE_HEIGHT;
+        var rd = self.radius * TILE_DEPTH;
+        var w = 12;
         
-        if (selected_border(thing)) {
-            ds_list_add(list, thing);
+        for (var i = 0; i < precision; i++) {
+            var angle = i * step;
+            var angle2 = (i + 1) * step;
+            draw_line_width_colour(cx + rw * dcos(angle), cy - rh * dsin(angle), cx + rw * dcos(angle2), cy - rh * dsin(angle2), w, c_red, c_red);
         }
         
-        // above
-        if (map.GetMeshAutotileData(thing.xx, thing.yy, thing.zz + 1)) {
-            var neighbor = map.Get(thing.xx, thing.yy, thing.zz + 1);
-            var neighbor_mesh = neighbor[@ MapCellContents.MESH];
-            var neighbor_tile = neighbor[@ MapCellContents.TILE];
-            if (instanceof_classic(neighbor_mesh, EntityMeshAutotile) && selected_border(neighbor_mesh, mask_mesh_auto) ||
-                    instanceof_classic(neighbor_tile, EntityTile) && selected_border(neighbor_tile, mask_tile)
-                ) {
-                ds_list_add(list, thing);
-            }
-        }
-        
-        // below
-        if (map.GetMeshAutotileData(thing.xx, thing.yy, thing.zz - 1)) {
-            var neighbor = map.Get(thing.xx, thing.yy, thing.zz - 1);
-            var neighbor_mesh = neighbor[@ MapCellContents.MESH];
-            var neighbor_tile = neighbor[@ MapCellContents.TILE];
-            if (instanceof_classic(neighbor_mesh, EntityMeshAutotile) && selected_border(neighbor_mesh, mask_mesh_auto) ||
-                    instanceof_classic(neighbor_tile, EntityTile) && selected_border(neighbor_tile, mask_tile)
-                ) {
-                ds_list_add(list, thing);
-            }
-        }
-        
-        // north
-        if (map.GetMeshAutotileData(thing.xx, thing.yy - 1, thing.zz)) {
-            var neighbor = map.Get(thing.xx, thing.yy - 1, thing.zz);
-            var neighbor_mesh = neighbor[@ MapCellContents.MESH];
-            var neighbor_tile = neighbor[@ MapCellContents.TILE];
-            if (instanceof_classic(neighbor_mesh, EntityMeshAutotile) && selected_border(neighbor_mesh, mask_mesh_auto) ||
-                    instanceof_classic(neighbor_tile, EntityTile) && selected_border(neighbor_tile, mask_tile)
-                ) {
-                ds_list_add(list, thing);
-            }
-        }
-        
-        // south
-        if (map.GetMeshAutotileData(thing.xx, thing.yy + 1, thing.zz)) {
-            var neighbor = map.Get(thing.xx, thing.yy + 1, thing.zz);
-            var neighbor_mesh = neighbor[@ MapCellContents.MESH];
-            var neighbor_tile = neighbor[@ MapCellContents.TILE];
-            if (instanceof_classic(neighbor_mesh, EntityMeshAutotile) && selected_border(neighbor_mesh, mask_mesh_auto) ||
-                    instanceof_classic(neighbor_tile, EntityTile) && selected_border(neighbor_tile, mask_tile)
-                ) {
-                ds_list_add(list, thing);
-            }
-        }
-        
-        // east
-        if (map.GetMeshAutotileData(thing.xx + 1, thing.yy, thing.zz)) {
-            var neighbor = map.Get(thing.xx + 1, thing.yy, thing.zz);
-            var neighbor_mesh = neighbor[@ MapCellContents.MESH];
-            var neighbor_tile = neighbor[@ MapCellContents.TILE];
-            if (instanceof_classic(neighbor_mesh, EntityMeshAutotile) && selected_border(neighbor_mesh, mask_mesh_auto) ||
-                    instanceof_classic(neighbor_tile, EntityTile) && selected_border(neighbor_tile, mask_tile)
-                ) {
-                ds_list_add(list, thing);
-            }
-        }
-        
-        // west
-        if (map.GetMeshAutotileData(thing.xx - 1, thing.yy, thing.zz)) {
-            var neighbor = map.Get(thing.xx - 1, thing.yy, thing.zz);
-            var neighbor_mesh = neighbor[@ MapCellContents.MESH];
-            var neighbor_tile = neighbor[@ MapCellContents.TILE];
-            if (instanceof_classic(neighbor_mesh, EntityMeshAutotile) && selected_border(neighbor_mesh, mask_mesh_auto) ||
-                    instanceof_classic(neighbor_tile, EntityTile) && selected_border(neighbor_tile, mask_tile)
-                ) {
-                ds_list_add(list, thing);
-            }
-        }
-        
-        // northwest
-        if (map.GetMeshAutotileData(thing.xx - 1, thing.yy - 1, thing.zz)) {
-            var neighbor = map.Get(thing.xx - 1, thing.yy - 1, thing.zz);
-            var neighbor_mesh = neighbor[@ MapCellContents.MESH];
-            var neighbor_tile = neighbor[@ MapCellContents.TILE];
-            if (instanceof_classic(neighbor_mesh, EntityMeshAutotile) && selected_border(neighbor_mesh, mask_mesh_auto) ||
-                    instanceof_classic(neighbor_tile, EntityTile) && selected_border(neighbor_tile, mask_tile)
-                ) {
-                ds_list_add(list, thing);
-            }
-        }
-        
-        // northeast
-        if (map.GetMeshAutotileData(thing.xx + 1, thing.yy - 1, thing.zz)) {
-            var neighbor = map.Get(thing.xx + 1, thing.yy - 1, thing.zz);
-            var neighbor_mesh = neighbor[@ MapCellContents.MESH];
-            var neighbor_tile = neighbor[@ MapCellContents.TILE];
-            if (instanceof_classic(neighbor_mesh, EntityMeshAutotile) && selected_border(neighbor_mesh, mask_mesh_auto) ||
-                    instanceof_classic(neighbor_tile, EntityTile) && selected_border(neighbor_tile, mask_tile)
-                ) {
-                ds_list_add(list, thing);
-            }
-        }
-        
-        // southwest
-        if (map.GetMeshAutotileData(thing.xx - 1, thing.yy + 1, thing.zz)) {
-            var neighbor = map.Get(thing.xx - 1, thing.yy + 1, thing.zz);
-            var neighbor_mesh = neighbor[@ MapCellContents.MESH];
-            var neighbor_tile = neighbor[@ MapCellContents.TILE];
-            if (instanceof_classic(neighbor_mesh, EntityMeshAutotile) && selected_border(neighbor_mesh, mask_mesh_auto) ||
-                    instanceof_classic(neighbor_tile, EntityTile) && selected_border(neighbor_tile, mask_tile)
-                ) {
-                ds_list_add(list, thing);
-            }
-        }
-        
-        // southeast
-        if (map.GetMeshAutotileData(thing.xx + 1, thing.yy + 1, thing.zz)) {
-            var neighbor = map.Get(thing.xx + 1, thing.yy + 1, thing.zz);
-            var neighbor_mesh = neighbor[@ MapCellContents.MESH];
-            var neighbor_tile = neighbor[@ MapCellContents.TILE];
-            if (instanceof_classic(neighbor_mesh, EntityMeshAutotile) && selected_border(neighbor_mesh, mask_mesh_auto) ||
-                    instanceof_classic(neighbor_tile, EntityTile) && selected_border(neighbor_tile, mask_tile)
-                ) {
-                ds_list_add(list, thing);
-            }
-        }
-    }
+        transform_reset();
+    };
     
-    return list;
-}
-
-function selected_border(entity, mask) {
-    if (mask == undefined) mask = Settings.selection.mask;
+    static onmove = function(dx, dy, dz) {
+        var map = Stuff.map.active_map;
+        self.x = clamp(self.x + dx, 0, map.xx - 1);
+        self.y = clamp(self.y + dy, 0, map.yy - 1);
+        self.z = clamp(self.z + dz, 0, map.zz - 1);
+    };
     
-    if (entity.etype_flags & mask) {
-        for (var i = 0; i < ds_list_size(Stuff.map.selection); i++) {
-            if (Stuff.map.selection[| i].selected_border_determination(entity)) {
-                return true;
-            }
-        }
-    }
-    
-    return false;
-}
-
-function selection_add(stype, x, y, z) {
-    var mode = Stuff.map;
-    
-    var selection = instance_create_depth(0, 0, 0, stype);
-    ds_list_add(mode.selection, selection);
-    selection.onmousedown(x, y, z);
-    
-    return selection;
-}
-
-function selection_all() {
-    // this is O(n). will not scale as well as i'd like. Use with caution.
-    
-    var list = ds_list_create();
-    for (var i = 0; i < ds_list_size(Stuff.map.active_map.contents.all_entities); i++) {
-        var thing = Stuff.map.active_map.contents.all_entities[| i];
-        if (selected(thing)) {
-            ds_list_add(list, thing);
-        }
-    }
-    
-    return list;
-}
-
-function selection_all_type(list) {
-    // returns the object index; would use an enum but i like to keep things as
-    // simple as possible on occasion, believe it or not
-    // this is O(n). will not scale as well as i'd like. Use with caution.
-    var latest_common_ancestor = noone;
-    
-    var all_tile = true;
-    var all_tile_auto = true;
-    var all_mesh = true;
-    var all_mesh_autotile = true;
-    var all_pawn = true;
-    var all_effect = true;
-    
-    for (var i = 0; i < ds_list_size(list); i++) {
-        var thing = list[| i];
-        var object_type = thing.object_index;
-        // if latest common ancestor is undefined, define it
-        if (!latest_common_ancestor) {
-            latest_common_ancestor = object_type;
-        } else {
-            // if Thing IS AN instance of the latest common ancestor, you're good
-            if (!instanceof_classic(thing, latest_common_ancestor)) {
-                // check each ancestor of Thing, and see if it is a common ancestor for
-                // the current latest common ancestor
-                while (object_type) {
-                    if (instanceof_object(latest_common_ancestor, object_type)) {
-                        latest_common_ancestor = object_type;
-                        break;
+    static foreach_cell = function(processed, script, params) {
+        var minx = max(self.x - self.radius, 0);
+        var miny = max(self.y - self.radius, 0);
+        var maxx = min(self.x + self.radius, Stuff.map.active_map.xx - 1);
+        var maxy = min(self.y + self.radius, Stuff.map.active_map.yy - 1);
+        // no check for z - this only goes over cells in the layer that the that the selection exists on
+        
+        for (var i = minx; i < maxx; i++) {
+            for (var j = miny; j < maxy; j++) {
+                if (point_distance(self.x, self.y, i + 0.5, j + 0.5) < self.radius) {
+                    var str = string(i) + "," + string(j) + "," + string(self.z);
+                    if (!processed[$ str]) {
+                        processed[$ str] = true;
+                        script(i, j, self.z, params);
                     }
-                    object_type = object_get_parent(object_type);
                 }
             }
         }
     }
     
-    return latest_common_ancestor;
+    static selected_determination = function(entity) {
+        return (point_distance(self.x, self.y, entity.xx + 0.5, entity.yy + 0.5) < self.radius) && (!Stuff.map.active_map.is_3d || self.z == entity.zz);
+    };
+    
+    static selected_border_determination = function(entity) {
+        var minx = self.x - 1 - self.radius;
+        var miny = self.y - 1 - self.radius;
+        var minz = self.z - 1 - self.radius;
+        var maxx = self.x + 1 + self.radius;
+        var maxy = self.y + 1 + self.radius;
+        var maxz = self.z + 1 + self.radius;
+        return is_clamped(entity.xx, minx, maxx) && is_clamped(entity.yy, miny, maxy) && (!Stuff.map.active_map.is_3d && is_clamped(entity.zz, minz, maxz));
+    };
 }
 
-function selection_clear() {
-    for (var i = 0; i < ds_list_size(Stuff.map.selection); i++) {
-        instance_activate_object(Stuff.map.selection[| i]);
-        instance_destroy(Stuff.map.selection[| i]);
-    }
+function SelectionSingle(x, y, z) : Selection(x, y, z) constructor {
+    // no drag because you can only ever select the cell you click on
+    static onmousedown = function(x, y, z) {
+        self.x = x;
+        self.y = y;
+        self.z = z;
+    };
     
-    ds_list_clear(Stuff.map.selection);
-    Stuff.map.last_selection = noone;
-    sa_process_selection();
-}
-
-function selection_empty() {
-    return ds_list_empty(Stuff.map.selection);
-}
-
-function selection_update_autotiles() {
-    var terrain = selected_affected_terrain();
-    var map = Stuff.map.active_map;
+    static area = function() {
+        return 1;
+    };
     
-    static surrounded_mask = ATMask.NORTHWEST | ATMask.NORTH | ATMask.NORTHEAST | ATMask.WEST | ATMask.EAST | ATMask.SOUTHWEST | ATMask.SOUTH | ATMask.SOUTHEAST;
-    
-    for (var i = 0; i < ds_list_size(terrain); i++) {
-        var thing = terrain[| i];
-        var thing_is_mesh = instanceof_classic(thing, EntityMeshAutotile);
-        if (thing_is_mesh && thing.terrain_type == MeshAutotileLayers.SLOPE) continue;
-        var original_id = thing_is_mesh ? thing.terrain_id : -1;
-        var original_type = thing.terrain_type;
-        thing.terrain_id = get_autotile_id(thing);
+    static render = function() {
+        var x = self.x * TILE_WIDTH;
+        var y = self.y * TILE_HEIGHT;
+        var z = self.z * TILE_DEPTH;
         
-        // evaluate top, base or middle
-        if (thing.zz < map.zz - 1 && thing_is_mesh) {
-            var above = (thing.zz < map.zz - 1) ? map.Get(thing.xx, thing.yy, thing.zz + 1) : array_create(MapCellContents._COUNT, noone);
-            var below = (thing.zz > 0) ? map.Get(thing.xx, thing.yy, thing.zz - 1) : array_create(MapCellContents._COUNT, noone);
-            // if an entity is marked as "removed," even if it's still there, it might as well not be there
-            var above_exists = instanceof_classic(above[MapCellContents.MESH], EntityMeshAutotile) && (above[MapCellContents.MESH].modification != Modifications.REMOVE);
-            var below_exists = instanceof_classic(below[MapCellContents.MESH], EntityMeshAutotile) && (below[MapCellContents.MESH].modification != Modifications.REMOVE);
-            if (Settings.config.remove_covered_mesh_at && above_exists && thing.terrain_id & surrounded_mask) {
-                if ((get_autotile_id(above[MapCellContents.MESH]) & surrounded_mask) == surrounded_mask) {
-                    thing.modification = Modifications.REMOVE;
-                    ds_list_add(Stuff.map.changes, thing);
+        shader_set(shd_bounding_box);
+        shader_set_uniform_f_array(shader_get_uniform(shd_bounding_box, "actual_color"), [1, 0, 0, 1]);
+        shader_set_uniform_f_array(shader_get_uniform(shd_bounding_box, "offsets"), [
+            x, y, z,
+            x, y, z,
+            x, y, z,
+            x, y, z,
+            x, y, z,
+            x, y, z,
+            x, y, z,
+            x, y, z,
+        ]);
+        
+        vertex_submit(Stuff.graphics.indexed_cage, pr_trianglelist, -1);
+        shader_reset();
+    };
+    
+    static onmove = function(dx, dy, dz) {
+        var map = Stuff.map.active_map;
+        self.x = clamp(self.x + dx, 0, map.xx - 1);
+        self.y = clamp(self.y + dy, 0, map.yy - 1);
+        self.z = clamp(self.z + dz, 0, map.zz - 1);
+    };
+    
+    static foreach_cell = function(processed, script, params) {
+        var str = string(self.x) + "," + string(self.y) + "," + string(self.z);
+        if (!processed[$ str]) {
+            processed[$ str] = true;
+            script(self.x, self.y, self.z, params);
+        }
+    };
+    
+    static selected_determination = function(entity) {
+        return (self.x == entity.xx && self.y == entity.yy) && (!Stuff.map.active_map.is_3d || self.z == entity.zz);
+    };
+    
+    static selected_border_determination = function(entity) {
+        var minx = self.x - 1;
+        var miny = self.y - 1;
+        var minz = self.z - 1;
+        var maxx = self.x + 1;
+        var maxy = self.y + 1;
+        var maxz = self.z + 1;
+        return is_clamped(entity.xx, minx, maxx) && is_clamped(entity.yy, miny, maxy) && (!Stuff.map.active_map.is_3d || is_clamped(entity.zz, minz, maxz));
+    };
+}
+
+function SelectionRectangle(x, y, z) : Selection(x, y, z) constructor {
+    self.x2 = 0;
+    self.y2 = 0;
+    self.z2 = 0;
+    
+    static onmousedown = function(x, y, z) {
+        self.x = x;
+        self.y = y;
+        self.z = z;
+        self.x2 = x;
+        self.y2 = y;
+        self.z2 = z + 1;
+    };
+    
+    static onmousedrag = function(x, y) {
+        self.x2 = x;
+        self.y2 = y;
+    };
+    
+    static area = function() {
+        return (self.x - x2) * (self.y - y2);
+    };
+    
+    static render = function() {
+        var minx = min(self.x, self.x2);
+        var miny = min(self.y, self.y2);
+        var minz = min(self.z, self.z2);
+        var maxx = max(self.x, self.x2);
+        var maxy = max(self.y, self.y2);
+        var maxz = max(self.z, self.z2);
+        
+        var x1 = minx * TILE_WIDTH;
+        var y1 = miny * TILE_HEIGHT;
+        var z1 = minz * TILE_DEPTH;
+        // the outer corner of the cube is already at (32, 32, 32) so we need to
+        // compensate for that
+        var cube_bound = 32;
+        var x2 = maxx * TILE_WIDTH - cube_bound;
+        var y2 = maxy * TILE_HEIGHT - cube_bound;
+        var z2 = maxz * TILE_DEPTH - cube_bound;
+        
+        shader_set(shd_bounding_box);
+        shader_set_uniform_f_array(shader_get_uniform(shd_bounding_box, "actual_color"), [1, 0, 0, 1]);
+        shader_set_uniform_f_array(shader_get_uniform(shd_bounding_box, "offsets"), [
+            x1, y1, z1,
+            x2, y1, z1,
+            x1, y2, z1,
+            x2, y2, z1,
+            x1, y1, z2,
+            x2, y1, z2,
+            x1, y2, z2,
+            x2, y2, z2,
+        ]);
+        
+        vertex_submit(Stuff.graphics.indexed_cage, pr_trianglelist, -1);
+        shader_reset();
+    };
+    
+    static onmove = function(dx, dy, dz) {
+        var map = Stuff.map.active_map;
+        
+        self.x = clamp(self.x + dx, 0, map.xx - 1);
+        self.y = clamp(self.y + dy, 0, map.yy - 1);
+        self.z = clamp(self.z + dz, 0, map.zz - 1);
+        
+        self.x2 = clamp(self.x2 + dx, 0, map.xx - 1);
+        self.y2 = clamp(self.y2 + dy, 0, map.yy - 1);
+        self.z2 = clamp(self.z2 + dz, 0, map.zz - 1);
+        
+        var minx = min(self.x, self.x2);
+        var miny = min(self.y, self.y2);
+        var minz = min(self.z, self.z2);
+        var maxx = max(self.x, self.x2);
+        var maxy = max(self.y, self.y2);
+        var maxz = max(self.z, self.z2);
+        
+        // we like to avoid having zero-area selections, so try to force it out if that thappens
+        self.x = minx;
+        self.y = miny;
+        self.z = minz;
+        self.x2 = maxx;
+        self.y2 = maxy;
+        self.z2 = maxz;
+        
+        if (self.x == x2) {
+            self.x--;
+        }
+        if (self.y == y2) {
+            self.y--;
+        }
+        if (self.z == z2) {
+            self.z--;
+        }
+        if (self.x < 0) {
+            self.x++;
+            self.x2++;
+        }
+        if (self.y < 0) {
+            self.y++;
+            self.y2++;
+        }
+        if (self.z < 0) {
+            self.z++;
+            self.z2++;
+        }
+    };
+    
+    static foreach_cell = function(processed, script, params) {
+        var minx = min(self.x, x2);
+        var miny = min(self.y, y2);
+        var minz = min(self.z, z2);
+        var maxx = max(self.x, x2);
+        var maxy = max(self.y, y2);
+        var maxz = max(self.z, z2);
+        
+        for (var i = minx; i < maxx; i++) {
+            for (var j = miny; j < maxy; j++) {
+                for (var k = minz; k < maxz; k++) {
+                    var str = string(i) + ","+string(j) + "," + string(k);
+                    if (!variable_struct_exists(processed, str)) {
+                        processed[$ str] = true;
+                        script(i, j, k, params);
+                    }
                 }
-            } else if (above_exists && below_exists) {
-                // is in middle?
-                thing.terrain_type = MeshAutotileLayers.VERTICAL;
-            } else if (below_exists) {
-                // is on top?
-                thing.terrain_type = MeshAutotileLayers.TOP;
-            } else if (above_exists) {
-                // is on bottom?
-                thing.terrain_type = MeshAutotileLayers.BASE;
-            } else {
-                thing.terrain_type = MeshAutotileLayers.TOP;
-            }
-            
-            // if the cell below contains another EntityMeshAutotile, it should be set to use
-            // the vertical mesh instead of whatever it was on before, unless you've been deleted,
-            // in which case it should go back to using the top one
-            if (below_exists) {
-                var below_thing = below[MapCellContents.MESH];
-                below_thing.terrain_type = (thing.modification == Modifications.REMOVE) ? MeshAutotileLayers.TOP : MeshAutotileLayers.VERTICAL;
-                editor_map_mark_changed(below_thing);
             }
         }
-        
-        // batched entities will need to be updated when changed
-        if ((original_id != thing.terrain_id && original_id != -1) || (thing.terrain_type != original_type)) {
-            editor_map_mark_changed(thing);
-        }
-    }
+    };
     
-    ds_list_destroy(terrain);
+    static selected_determination = function(entity) {
+        var minx = min(self.x, x2);
+        var miny = min(self.y, y2);
+        var minz = min(self.z, z2);
+        var maxx = max(self.x, x2);
+        var maxy = max(self.y, y2);
+        var maxz = max(self.z, z2);
+        
+        // exclude the outer edge but don't have a negative area
+        var maxex = max(minx, maxx - 1);
+        var maxey = max(miny, maxy - 1);
+        var maxez = max(minz, maxz - 1);
+        
+        return (is_clamped(entity.xx, minx, maxex) && is_clamped(entity.yy, miny, maxey)) && (!Stuff.map.active_map.is_3d || is_clamped(entity.zz, minz, maxez));
+    };
+    
+    static selected_border_determination = function(entity) {
+        var minx = min(self.x, x2) - 1;
+        var miny = min(self.y, y2) - 1;
+        var minz = min(self.z, z2) - 1;
+        var maxx = max(self.x, x2) + 1;
+        var maxy = max(self.y, y2) + 1;
+        var maxz = max(self.z, z2) + 1;
+        // exclude the outer edge but don't have a negative area
+        var maxex = max(minx, maxx - 1);
+        var maxey = max(miny, maxy - 1);
+        var maxez = max(minz, maxz - 1);
+        return (is_clamped(entity.xx, minx, maxex) && is_clamped(entity.yy, miny, maxey)) && (!Stuff.map.active_map.is_3d || is_clamped(entity.zz, minz, maxez));
+    };
 }
