@@ -1,6 +1,6 @@
-#macro EditorComponentCollection global.__editor_component_collection
+#macro BulletUserIDCollection global.__bullet_user_id_collection
 
-EditorComponentCollection = new (function() constructor {
+BulletUserIDCollection = new (function() constructor {
     static current = 0;
     static lookup = { };
     
@@ -23,7 +23,8 @@ function EditorComponent(parent, object) constructor {
     self.parent = parent;
     self.object = object;
     self.current_mask = 0;
-    self.id = EditorComponentCollection.Add(self);
+    self.id = BulletUserIDCollection.Add(self);
+    self.is_component = true;
     
     c_object_set_userid(self.object, self.id);
     c_world_add_object(self.object);
@@ -34,7 +35,7 @@ function EditorComponent(parent, object) constructor {
     self.on_mouse_hover = null;
     
     static Destroy = function() {
-        EditorComponentCollection.Remove(self);
+        BulletUserIDCollection.Remove(self);
         if (self.object) {
             // it turns out removing these things is REALLY SLOW, so instead we'll pool
             // them to be removed in an orderly manner (and nullify their masks so they
