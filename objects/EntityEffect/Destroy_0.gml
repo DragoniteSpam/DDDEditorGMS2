@@ -10,15 +10,9 @@ if (light_index != -1) {
     map_contents.active_lights[@ light_index] = NULL;
 }
 
-instance_activate_object(cobject_x_axis);
-instance_activate_object(cobject_y_axis);
-instance_activate_object(cobject_z_axis);
-instance_activate_object(cobject_x_plane);
-instance_activate_object(cobject_y_plane);
-instance_activate_object(cobject_z_plane);
-instance_destroy(cobject_x_axis);
-instance_destroy(cobject_y_axis);
-instance_destroy(cobject_z_axis);
-instance_destroy(cobject_x_plane);
-instance_destroy(cobject_y_plane);
-instance_destroy(cobject_z_plane);
+cobject_x_axis.Destroy();
+cobject_y_axis.Destroy();
+cobject_z_axis.Destroy();
+cobject_x_plane.Destroy();
+cobject_y_plane.Destroy();
+cobject_z_plane.Destroy();
