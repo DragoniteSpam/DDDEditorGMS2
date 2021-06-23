@@ -61,16 +61,14 @@ changes = ds_list_create();
 
 under_cursor = noone;
 
-selection = ds_list_create();
+selection = [];
 selected_entities = ds_list_create();
-last_selection = noone;
+last_selection = undefined;
 selected_zone = noone;
 
 selection_fill_mesh = -1;       // list index
 selection_fill_tile_x = 4;
 selection_fill_tile_y = 0;
-
-selected_zone = noone;
 edit_z = 0;
 
 enum SelectionModes {
@@ -89,7 +87,7 @@ enum FillTypes {
     ZONE,
 }
 
-active_map = new DataMap("Test Map");
+active_map = new DataMap("Test Map", "");
 active_map.contents = new MapContents();
 active_map.contents.map_grid = array_create_4d(active_map.xx, active_map.yy, active_map.zz, MapCellContents._COUNT);
 active_map.grid_flags = array_create_3d(active_map.xx, active_map.yy, active_map.zz);
