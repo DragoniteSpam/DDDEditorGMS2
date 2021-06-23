@@ -88,9 +88,7 @@ enum FillTypes {
 }
 
 active_map = new DataMap("Test Map", "");
-active_map.contents = new MapContents();
-active_map.contents.map_grid = array_create_4d(active_map.xx, active_map.yy, active_map.zz, MapCellContents._COUNT);
-active_map.grid_flags = array_create_3d(active_map.xx, active_map.yy, active_map.zz);
+active_map.contents = new MapContents(active_map);
 
 ui = ui_init_main(id);
 mode_id = ModeIDs.MAP;

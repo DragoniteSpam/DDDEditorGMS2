@@ -1,5 +1,8 @@
-function MapContents() constructor {
+function MapContents(parent) constructor {
     // helper struct; does NOT extend Data
+    self.parent = parent;
+    self.map_grid = array_create_4d(parent.xx, parent.yy, parent.zz, MapCellContents._COUNT);
+    
     self.batches = [ ];                           // array of structs
     self.batch_in_the_future = ds_list_create();     // entities
     self.dynamic = ds_list_create();                 // entities

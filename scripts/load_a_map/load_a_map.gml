@@ -42,7 +42,7 @@ function load_a_map(map_container) {
     
     Stuff.map.active_map = map;
     
-    map.contents = new MapContents();
+    map.contents = new MapContents(map);
     map.SetSize(map.xx, map.yy, map.zz);
     
     if (buffer_md5(buffer, 0, buffer_get_size(buffer)) != EMPTY_BUFFER_MD5) {
