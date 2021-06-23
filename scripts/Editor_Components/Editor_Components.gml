@@ -1,11 +1,11 @@
 #macro EditorComponentCollection global.__editor_component_collection
 
 EditorComponentCollection = new (function() constructor {
-    static id = 0;
+    static current = 0;
     static lookup = { };
     
     self.Add = function(component) {
-        component.id = id++;
+        component.id = current++;
         lookup[$ string(component.id)] = component;
         return component.id;
     };
