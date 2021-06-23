@@ -5,7 +5,6 @@ function Selection(x, y, z) constructor {
     
     array_push(Stuff.map.selection, self);
     
-    static onmousedown = null;
     static onmousedrag = null;
     static render = null;
     static area = null;
@@ -16,12 +15,6 @@ function Selection(x, y, z) constructor {
 
 function SelectionCircle(x, y, z, radius) : Selection(x, y, z) constructor {
     self.radius = radius;
-    
-    static onmousedown = function(x, y, z) {
-        self.x = x;
-        self.y = y;
-        self.z = z;
-    };
     
     static onmousedrag = function(x, y) {
         self.radius = floor(point_distance(self.x, self.y, x, y));
@@ -89,13 +82,6 @@ function SelectionCircle(x, y, z, radius) : Selection(x, y, z) constructor {
 }
 
 function SelectionSingle(x, y, z) : Selection(x, y, z) constructor {
-    // no drag because you can only ever select the cell you click on
-    static onmousedown = function(x, y, z) {
-        self.x = x;
-        self.y = y;
-        self.z = z;
-    };
-    
     static area = function() {
         return 1;
     };
@@ -152,15 +138,6 @@ function SelectionRectangle(x, y, z, x2, y2, z2) : Selection(x, y, z) constructo
     self.x2 = x2;
     self.y2 = y2;
     self.z2 = z2 + 1;
-    
-    static onmousedown = function(x, y, z) {
-        self.x = x;
-        self.y = y;
-        self.z = z;
-        self.x2 = x;
-        self.y2 = y;
-        self.z2 = z + 1;
-    };
     
     static onmousedrag = function(x, y) {
         self.x2 = x;
