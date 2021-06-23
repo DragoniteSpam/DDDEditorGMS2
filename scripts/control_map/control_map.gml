@@ -61,6 +61,7 @@ function control_map(mode) {
     // stash the result because you may hit a special value of some type
     if (c_raycast_world(rc_xfrom, rc_yfrom, rc_zfrom, rc_xto, rc_yto, rc_zto, Controller.mouse_pick_mask)) {
         instance_under_cursor = c_object_get_userid(c_hit_object(0));
+        if (instance_under_cursor == undefined) instance_under_cursor = BulletUserIDCollection.Get(instance_under_cursor);
     }
     #endregion
     
@@ -76,7 +77,7 @@ function control_map(mode) {
         var process_main = true;
         
         #region general inputs (click-and-drag things)
-        if (instanceof_classic(instance_under_cursor, ComponentData)) {
+        if (instance_under_cursor && instance_under_cursor.is_component) {
             // check mouse down
             if (Controller.press_left) {
                 instance_under_cursor.on_mouse_down(instance_under_cursor);
