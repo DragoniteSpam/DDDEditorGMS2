@@ -226,7 +226,9 @@ function DataMap(source, directory) : SData(source) constructor {
         var entity_data = json_parse(buffer_read_file(directory + "entities.ass"));
         for (var i = 0; i < array_length(entity_data.entities); i++) {
             var ref_data = entity_data.entities[i];
-            instance_create_depth(0, 0, 0, global.etype_objects[ref_data.type]).LoadJSON(ref_data);
+            var entity = instance_create_depth(0, 0, 0, global.etype_objects[ref_data.type]);
+            entity.LoadJSON(ref_data);
+            self.Add(entity, entity.xx, entity.yy, entity.zz);
         }
         #endregion
     };
