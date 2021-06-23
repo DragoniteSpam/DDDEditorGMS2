@@ -1,8 +1,3 @@
-function select_single(tile) {
-    var ns = new SelectionSingle(0, 0, 0);
-    ns.who = tile;
-}
-
 function selection_count() {
     var n = 0;
     

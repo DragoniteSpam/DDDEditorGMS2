@@ -21,9 +21,6 @@ batch_collision = null;
 // to NPCs, things that animate, things that move and things that need special shaders
 render = null;
 
-// for what happens when you click on the entity
-selector = null;
-
 // files
 save_script = serialize_save_entity;
 load_script = serialize_load_entity;
