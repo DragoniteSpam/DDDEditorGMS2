@@ -47,7 +47,7 @@ SetStatic = function(state) {
 };
 
 LoadJSONMeshAT = function(source) {
-    self.LoadJSON(source);
+    self.LoadJSONBase(source);
     self.terrain_id = source.mesh_at.id;
     self.terrain_type = source.mesh_at.type;
     self.autotile_id = source.mesh_at.autotile_id;

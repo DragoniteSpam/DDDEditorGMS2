@@ -34,7 +34,7 @@ render = render_pawn;
 on_select_ui = safc_on_pawn_ui;
 
 LoadJSONPawn = function(source) {
-    self.LoadJSON(source);
+    self.LoadJSONBase(source);
     self.map_direction = source.pawn.direction;
     self.overworld_sprite = source.pawn.sprite;
 };

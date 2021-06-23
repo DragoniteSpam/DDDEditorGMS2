@@ -48,7 +48,7 @@ render = render_tile;
 on_select_ui = safc_on_tile_ui;
 
 LoadJSONTile = function(source) {
-    self.LoadJSON(source);
+    self.LoadJSONBase(source);
     self.tile_x = source.tile.x;
     self.tile_y = source.tile.y;
     self.tile_color = source.tile.color;

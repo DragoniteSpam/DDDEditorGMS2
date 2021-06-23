@@ -23,7 +23,7 @@ com_particle = noone;
 com_audio = noone;
 
 LoadJSONEffect = function(source) {
-    self.LoadJSON(source);
+    self.LoadJSONBase(source);
     var light = source.com.light;
     var particle = source.com.particle;
     var audio = source.com.audio;
