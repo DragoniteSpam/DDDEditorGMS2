@@ -1136,7 +1136,6 @@
     {"id":{"name":"sPart Documentation","path":"notes/sPart Documentation/sPart Documentation.yy",},"order":1,},
     {"id":{"name":"ComponentData","path":"objects/ComponentData/ComponentData.yy",},"order":7,},
     {"id":{"name":"ComponentAxis","path":"objects/ComponentAxis/ComponentAxis.yy",},"order":6,},
-    {"id":{"name":"Data","path":"objects/Data/Data.yy",},"order":2,},
     {"id":{"name":"ParticleSpriteLicence","path":"notes/ParticleSpriteLicence/ParticleSpriteLicence.yy",},"order":0,},
     {"id":{"name":"Group_DS_Collections","path":"scripts/Group_DS_Collections/Group_DS_Collections.yy",},"order":0,},
     {"id":{"name":"serialize_load_language","path":"scripts/serialize_load_language/serialize_load_language.yy",},"order":0,},

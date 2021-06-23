@@ -57,9 +57,6 @@ function serialize_load(buffer, filename, proj_name) {
             Game.meta.project.summary = summary_string;
             Game.meta.project.author = author_string;
             
-            instance_activate_object(Data);
-            with (Data) instance_destroy();
-            
             // these contain arrays, which are garbage collected and need to be there
             Game.vars.constants = [];
             Game.vars.variables = [];
