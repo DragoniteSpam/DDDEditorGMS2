@@ -109,21 +109,21 @@ function SelectionSingle(x, y, z) : Selection(x, y, z) constructor {
     };
     
     static render = function() {
-        var x = self.x * TILE_WIDTH;
-        var y = self.y * TILE_HEIGHT;
-        var z = self.z * TILE_DEPTH;
+        var xx = self.x * TILE_WIDTH;
+        var yy = self.y * TILE_HEIGHT;
+        var zz = self.z * TILE_DEPTH;
         
         shader_set(shd_bounding_box);
         shader_set_uniform_f_array(shader_get_uniform(shd_bounding_box, "actual_color"), [1, 0, 0, 1]);
         shader_set_uniform_f_array(shader_get_uniform(shd_bounding_box, "offsets"), [
-            x, y, z,
-            x, y, z,
-            x, y, z,
-            x, y, z,
-            x, y, z,
-            x, y, z,
-            x, y, z,
-            x, y, z,
+            xx, yy, zz,
+            xx, yy, zz,
+            xx, yy, zz,
+            xx, yy, zz,
+            xx, yy, zz,
+            xx, yy, zz,
+            xx, yy, zz,
+            xx, yy, zz,
         ]);
         
         vertex_submit(Stuff.graphics.indexed_cage, pr_trianglelist, -1);
