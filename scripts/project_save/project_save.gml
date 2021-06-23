@@ -69,14 +69,14 @@ function project_save() {
         version: ProjectSaveVersions._CURRENT - 1,
     }), folder_name + "meta.json");
     buffer_write_file(json_stringify({
-        tilesets: project_write_json(Game.graphics.tilesets),
-        overworlds: project_write_json(Game.graphics.overworlds),
-        battlers: project_write_json(Game.graphics.battlers),
-        particles: project_write_json(Game.graphics.particles),
-        ui: project_write_json(Game.graphics.ui),
-        tile_animations: project_write_json(Game.graphics.tile_animations),
-        etc: project_write_json(Game.graphics.etc),
-        skybox: project_write_json(Game.graphics.skybox),
+        tilesets: Game.graphics.tilesets,
+        overworlds: Game.graphics.overworlds,
+        battlers: Game.graphics.battlers,
+        particles: Game.graphics.particles,
+        ui: Game.graphics.ui,
+        tile_animations: Game.graphics.tile_animations,
+        etc: Game.graphics.etc,
+        skybox: Game.graphics.skybox,
         version: ProjectSaveVersions._CURRENT - 1,
     }), folder_name + "images.json");
     buffer_write_file(json_stringify({

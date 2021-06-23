@@ -20,11 +20,11 @@ function SData(source) constructor {
     
     static CreateJSONBase = function() {
         return {
-            name: name,
-            internal_name: internal_name,
-            flags: flags,
-            summary: summary,
-            GUID: GUID,
+            name: self.name,
+            internal_name: self.internal_name,
+            flags: self.flags,
+            summary: self.summary,
+            GUID: self.GUID,
         };
     };
     
