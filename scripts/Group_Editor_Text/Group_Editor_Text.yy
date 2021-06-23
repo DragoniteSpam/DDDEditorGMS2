@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Mode - Text",
-    "path": "folders/Mode - Text.yy",
+    "name": "Text",
+    "path": "folders/Editor/Modes/Text.yy",
   },
   "resourceVersion": "1.0",
-  "name": "Group_Mode_Text_Main",
+  "name": "Group_Editor_Text",
   "tags": [],
   "resourceType": "GMScript",
 }
