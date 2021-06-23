@@ -20,7 +20,7 @@ function EditorComponent() constructor {
     };
 }
 
-function EditorComponentAxis() constructor {
+function EditorComponentAxis() : EditorComponent() constructor {
     self.object = undefined;
     self.axis = CollisionSpecialValues.NONE;
     self.parent = undefined;
