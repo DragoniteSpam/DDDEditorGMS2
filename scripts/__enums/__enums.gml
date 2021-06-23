@@ -198,13 +198,6 @@ enum CollisionMasks {
     AXES                    = 0x0004,
 }
 
-enum CollisionSpecialValues {
-    NONE,
-    TRANSLATE_X,
-    TRANSLATE_Y,
-    TRANSLATE_Z,
-}
-
 enum AnimationEndActions {
     STOP,
     LOOP,

@@ -1,7 +1,32 @@
-function EditorComponent() constructor {
-    self.object = undefined;
-    self.parent = undefined;
+#macro EditorComponentCollection global.__editor_component_collection
+
+EditorComponentCollection = new (function() constructor {
+    static id = 0;
+    static lookup = { };
+    
+    self.Add = function(component) {
+        component.id = id++;
+        lookup[$ string(component.id)] = component;
+        return component.id;
+    };
+    
+    self.Get = function(id) {
+        return lookup[$ string(id)];
+    };
+    
+    self.Remove = function(component) {
+        variable_struct_remove(lookup, string(component.id));
+    };
+})();
+
+function EditorComponent(parent, object) constructor {
+    self.parent = parent;
+    self.object = object;
     self.current_mask = 0;
+    self.id = EditorComponentCollection.Add(self);
+    
+    c_object_set_userid(self.object, self.id);
+    c_world_add_object(self.object);
     
     self.on_mouse_down = null;
     self.on_mouse_up = null;
@@ -9,6 +34,7 @@ function EditorComponent() constructor {
     self.on_mouse_hover = null;
     
     static Destroy = function() {
+        EditorComponentCollection.Remove(self);
         if (self.object) {
             // it turns out removing these things is REALLY SLOW, so instead we'll pool
             // them to be removed in an orderly manner (and nullify their masks so they
@@ -20,14 +46,18 @@ function EditorComponent() constructor {
     };
 }
 
-function EditorComponentAxis() : EditorComponent() constructor {
-    self.object = undefined;
-    self.axis = CollisionSpecialValues.NONE;
-    self.parent = undefined;
-    self.name = "";
+function EditorComponentAxis(parent, object, axis) : EditorComponent(parent, object) constructor {
+    self.axis = axis;
     
     self.on_mouse_down = component_axis_down;
     self.on_mouse_stay = component_axis_stay;
     self.on_mouse_up = component_axis_up;
     self.on_mouse_hover = component_axis_hover;
+}
+
+enum CollisionSpecialValues {
+    NONE,
+    TRANSLATE_X,
+    TRANSLATE_Y,
+    TRANSLATE_Z,
 }
