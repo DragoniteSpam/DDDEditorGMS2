@@ -1145,7 +1145,6 @@
     {"id":{"name":"DataCameraZone","path":"objects/DataCameraZone/DataCameraZone.yy",},"order":0,},
     {"id":{"name":"DataFlagZone","path":"objects/DataFlagZone/DataFlagZone.yy",},"order":1,},
     {"id":{"name":"DataLightZone","path":"objects/DataLightZone/DataLightZone.yy",},"order":2,},
-    {"id":{"name":"EditorLightData","path":"objects/EditorLightData/EditorLightData.yy",},"order":18,},
     {"id":{"name":"spart_emitter","path":"scripts/spart_emitter/spart_emitter.yy",},"order":1,},
     {"id":{"name":"UIThing","path":"objects/UIThing/UIThing.yy",},"order":22,},
     {"id":{"name":"Dialog","path":"objects/Dialog/Dialog.yy",},"order":0,},
