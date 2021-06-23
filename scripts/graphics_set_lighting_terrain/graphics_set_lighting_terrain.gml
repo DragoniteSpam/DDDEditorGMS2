@@ -11,7 +11,7 @@ function graphics_set_lighting_terrain(argument0) {
 
     var n = 0;
     for (var i = 0; i < MAX_LIGHTS; i++) {
-        var light = lights[| i];
+        var light = lights[i];
         if (!light) break;
     
         var index = n++ * 12;

@@ -223,16 +223,16 @@ submode_equation[TerrainSubmodes.ZERO] = terrain_sub_zero;
 style_radius_coefficient[TerrainStyles.BLOCK] = 2.0;        // this will effectively fill the entire space
 style_radius_coefficient[TerrainStyles.CIRCLE] = 1.0;       // an exact circle
 
-lights = ds_list_create();
+lights = array_create(MAX_TERRAIN_LIGHTS);
 #macro MAX_TERRAIN_LIGHTS 16
 for (var i = 0; i < MAX_TERRAIN_LIGHTS; i++) {
-    ds_list_add(lights, new EditorTerrainLightData("Light" + string(i)));
+    lights[@ i] =new EditorTerrainLightData("Light" + string(i));
 }
 
-lights[| 0].type = LightTypes.DIRECTIONAL;
-lights[| 0].x = 1;
-lights[| 0].y = 1;
-lights[| 0].z = -1;
+lights[0].type = LightTypes.DIRECTIONAL;
+lights[0].x = 1;
+lights[0].y = 1;
+lights[0].z = -1;
 
 terrain_light_enabled = setting_get("terrain", "light_enabled", true);
 terrain_light_ambient = setting_get("terrain", "light_ambient", c_black);

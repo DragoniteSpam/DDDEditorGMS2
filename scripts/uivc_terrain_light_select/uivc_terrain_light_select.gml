@@ -2,7 +2,7 @@ function uivc_terrain_light_select(list) {
     var mode = Stuff.terrain;
     var tab = mode.ui.t_lighting;
     
-    var light = mode.lights[| ui_list_selection(list)];
+    var light = mode.lights[ui_list_selection(list)];
     tab.el_light_type.value = light.type;
     tab.el_light_color.value = light.color;
     

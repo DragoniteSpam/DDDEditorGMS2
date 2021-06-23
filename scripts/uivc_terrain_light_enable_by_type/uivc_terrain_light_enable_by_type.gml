@@ -3,7 +3,7 @@ function uivc_terrain_light_enable_by_type(argument0) {
 
     var list = argument0;
     var mode = Stuff.terrain;
-    var light = mode.lights[| ui_list_selection(list)];
+    var light = mode.lights[ui_list_selection(list)];
 
     list.root.el_dir_x.enabled = false;
     list.root.el_dir_y.enabled = false;
