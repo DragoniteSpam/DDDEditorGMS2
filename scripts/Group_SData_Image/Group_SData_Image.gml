@@ -50,24 +50,6 @@ function DataImage(source) : SData(source) constructor {
         if (sprite_exists(self.picture_with_frames)) sprite_save_strip(self.picture_with_frames, directory + guid + "_strip" + string(self.hframes) + ".png");
     };
     
-    static CreateJSONImage = function() {
-        var json = self.CreateJSONBase();
-        json.texture_exclude = self.texture_exclude;
-        json.width = self.width;
-        json.height = self.height;
-        json.vframes = self.vframes;
-        json.hframes = self.hframes;
-        json.aframes = self.aframes;
-        json.aspeed = self.aspeed;
-        json.hash = self.hash;
-        json.source_filename = self.source_filename;
-        return json;
-    };
-    
-    static CreateJSON = function() {
-        return self.CreateJSONImage();
-    };
-    
     self.baseDestroy = self.Destroy;
     self.Destroy = function() {
         self.baseDestroy();
@@ -86,14 +68,4 @@ function DataImageTileset(source) : DataImage(source) constructor {
     if (is_struct(source)) {
         self.flags = source.flags;
     }
-    
-    static CreateJSONTS = function() {
-        var json = self.CreateJSONImage();
-        json.flags = self.flags;
-        return json;
-    };
-    
-    static CreateJSON = function() {
-        return self.CreateJSONTS();
-    };
 };
