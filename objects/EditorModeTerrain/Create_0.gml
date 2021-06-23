@@ -226,10 +226,7 @@ style_radius_coefficient[TerrainStyles.CIRCLE] = 1.0;       // an exact circle
 lights = ds_list_create();
 #macro MAX_TERRAIN_LIGHTS 16
 for (var i = 0; i < MAX_TERRAIN_LIGHTS; i++) {
-    var light = instance_create_depth(0, 0, 0, EditorLightData);
-    instance_deactivate_object(light);
-    light.name = "Light" + string(i);
-    ds_list_add(lights, light);
+    ds_list_add(lights, new EditorTerrainLightData("Light" + string(i)));
 }
 
 lights[| 0].type = LightTypes.DIRECTIONAL;
