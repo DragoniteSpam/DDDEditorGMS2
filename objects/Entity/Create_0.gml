@@ -139,6 +139,7 @@ SaveAsset = function(directory) {
 };
 
 LoadJSONBase = function(source) {
+    self.name = source.name;
     refid_set(self, source.refid);
     self.xx = source.position.x;
     self.yy = source.position.y;
@@ -155,14 +156,14 @@ LoadJSONBase = function(source) {
     self.switches = source.switches;
     self.variables = source.variables;
     self.generic_data = source.generic_data;
-    self.object_events = source.object_events;
+    self.object_events = source.events;
     self.direction_fix = source.options.direction_fix;
     self.always_update = source.options.always_update;
-    self.preserve_on_save = source.options.preserve_on_save;
+    self.preserve_on_save = source.options.preserve;
     self.reflect = source.options.reflect;
     self.slope = source.options.slope;
     self.is_static = source.options.is_static;
-    self.autonomous_movement = source.options.type;
+    self.autonomous_movement = source.autonomous.type;
     self.autonomous_movement_speed = source.autonomous.speed;
     self.autonomous_movement_frequency = source.autonomous.frequency;
     self.autonomous_movement_route = source.autonomous.route;
@@ -175,6 +176,7 @@ LoadJSON = function(source) {
 
 CreateJSONBase = function() {
     return {
+        name: self.name,
         type: self.etype,
         refid: self.REFID,
         position: {

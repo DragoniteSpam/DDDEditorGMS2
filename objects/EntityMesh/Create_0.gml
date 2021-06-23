@@ -108,8 +108,8 @@ GetTexture = function() {
 
 LoadJSONMesh = function(source) {
     self.LoadJSONBase(source);
-    self.mesh = source.mesh.x;
-    self.mesh_submesh = source.mesh.y;
+    self.mesh = source.mesh.mesh;
+    self.mesh_submesh = source.mesh.submesh;
     self.animated = source.mesh.animation.animated;
     self.animation_index = source.mesh.animation.index;
     self.animation_type = source.mesh.animation.type;
