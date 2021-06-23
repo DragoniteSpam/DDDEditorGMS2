@@ -281,11 +281,11 @@ function ui_init_terrain(mode) {
         element.allow_deselect = false;
         element.entries_are = ListEntries.SCRIPT;
         element.render_colors = function(list, index) {
-            var light = list.entries[| index];
+            var light = list.entries[index];
             return (light.type == LightTypes.SPOT || light.type == LightTypes.NONE) ? c_gray : c_black;
         };
         element.evaluate_text = function(list, index) {
-            var light = list.entries[| index];
+            var light = list.entries[index];
             switch (light.type) {
                 case LightTypes.NONE:
                     return "<disabled light>";
