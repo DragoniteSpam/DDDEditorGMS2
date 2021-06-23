@@ -35,7 +35,7 @@ update = editor_update_terrain;
 render = function() {
     gpu_set_cullmode(cull_noculling);
     switch (view_current) {
-        case view_3d: draw_clear(Settings.config.color_world); draw_editor_terrain(); draw_editor_3d(Stuff.map); break;
+        case view_3d: draw_clear(Settings.config.color_world); draw_editor_terrain(); draw_editor_3d(); break;
         case view_ribbon: draw_editor_terrain_menu(); break;
         case view_hud: draw_editor_hud(); break;
     }
@@ -215,10 +215,18 @@ enum TerrainStyles {
     CIRCLE,
 }
 
-submode_equation[TerrainSubmodes.MOUND] = terrain_sub_mound;
-submode_equation[TerrainSubmodes.AVERAGE] = terrain_sub_avg;
-submode_equation[TerrainSubmodes.AVG_FLAT] = terrain_sub_flat;
-submode_equation[TerrainSubmodes.ZERO] = terrain_sub_zero;
+submode_equation[TerrainSubmodes.MOUND] = function(terrain, x, y, dir, avg, dist) {
+    terrain_add_z(terrain, x, y, dir * terrain.rate * dcos(max(1, dist)));
+};
+submode_equation[TerrainSubmodes.AVERAGE] = function(terrain, x, y, dir, avg, dist) {
+    terrain_set_z(terrain, x, y, lerp(terrain_get_z(terrain, x, y), avg, terrain.rate / 20));
+};
+submode_equation[TerrainSubmodes.AVG_FLAT] = function(terrain, x, y, dir, avg, dist) {
+    terrain_set_z(terrain, x, y, avg);
+};
+submode_equation[TerrainSubmodes.ZERO] = function(terrain, x, y, dir, avg, dist) {
+    terrain_set_z(terrain, x, y, 0);
+};
 
 style_radius_coefficient[TerrainStyles.BLOCK] = 2.0;        // this will effectively fill the entire space
 style_radius_coefficient[TerrainStyles.CIRCLE] = 1.0;       // an exact circle
