@@ -116,21 +116,22 @@ function DataMap(source, directory) : SData(source) constructor {
     };
     
     static SetSize = function(x, y, z) {
-        self.x = x;
-        self.y = y;
-        self.z = z;
+        self.xx = x;
+        self.yy = y;
+        self.zz = z;
         array_resize_3d(self.grid_flags, x, y, z);
         
-        for (var i = 0; i < ds_list_size(self.contents.all_entities); i++) {
-            var thing = self.contents.all_entities[| i];
-            if (thing.xx >= xx || thing.yy >= yy || thing.zz >= zz) {
-                safa_delete(thing);
+        if (self.contents) {
+            for (var i = 0; i < ds_list_size(self.contents.all_entities); i++) {
+                var thing = self.contents.all_entities[| i];
+                if (thing.xx >= xx || thing.yy >= yy || thing.zz >= zz) {
+                    safa_delete(thing);
+                }
             }
+            
+            graphics_create_grids();
+            array_resize_4d(self.contents.map_grid, x, y, z, MapCellContents._COUNT);
         }
-        
-        graphics_create_grids();
-        
-        array_resize_4d(self.contents.map_grid, x, y, z, MapCellContents._COUNT);
         
         if (Game.meta.start.map == self.GUID) {
             Game.meta.start.x = min(Game.meta.start.x, x - 1);
