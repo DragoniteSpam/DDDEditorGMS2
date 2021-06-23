@@ -7,7 +7,6 @@ function Selection(x, y, z) constructor {
     
     static onmousedown = null;
     static onmousedrag = null;
-    static onmove = null;
     static render = null;
     static area = null;
     static foreach_cell = null;
@@ -52,13 +51,6 @@ function SelectionCircle(x, y, z, radius) : Selection(x, y, z) constructor {
         }
         
         transform_reset();
-    };
-    
-    static onmove = function(dx, dy, dz) {
-        var map = Stuff.map.active_map;
-        self.x = clamp(self.x + dx, 0, map.xx - 1);
-        self.y = clamp(self.y + dy, 0, map.yy - 1);
-        self.z = clamp(self.z + dz, 0, map.zz - 1);
     };
     
     static foreach_cell = function(processed, script, params) {
@@ -128,13 +120,6 @@ function SelectionSingle(x, y, z) : Selection(x, y, z) constructor {
         
         vertex_submit(Stuff.graphics.indexed_cage, pr_trianglelist, -1);
         shader_reset();
-    };
-    
-    static onmove = function(dx, dy, dz) {
-        var map = Stuff.map.active_map;
-        self.x = clamp(self.x + dx, 0, map.xx - 1);
-        self.y = clamp(self.y + dy, 0, map.yy - 1);
-        self.z = clamp(self.z + dz, 0, map.zz - 1);
     };
     
     static foreach_cell = function(processed, script, params) {
@@ -219,55 +204,6 @@ function SelectionRectangle(x, y, z, x2, y2, z2) : Selection(x, y, z) constructo
         
         vertex_submit(Stuff.graphics.indexed_cage, pr_trianglelist, -1);
         shader_reset();
-    };
-    
-    static onmove = function(dx, dy, dz) {
-        var map = Stuff.map.active_map;
-        
-        self.x = clamp(self.x + dx, 0, map.xx - 1);
-        self.y = clamp(self.y + dy, 0, map.yy - 1);
-        self.z = clamp(self.z + dz, 0, map.zz - 1);
-        
-        self.x2 = clamp(self.x2 + dx, 0, map.xx - 1);
-        self.y2 = clamp(self.y2 + dy, 0, map.yy - 1);
-        self.z2 = clamp(self.z2 + dz, 0, map.zz - 1);
-        
-        var minx = min(self.x, self.x2);
-        var miny = min(self.y, self.y2);
-        var minz = min(self.z, self.z2);
-        var maxx = max(self.x, self.x2);
-        var maxy = max(self.y, self.y2);
-        var maxz = max(self.z, self.z2);
-        
-        // we like to avoid having zero-area selections, so try to force it out if that thappens
-        self.x = minx;
-        self.y = miny;
-        self.z = minz;
-        self.x2 = maxx;
-        self.y2 = maxy;
-        self.z2 = maxz;
-        
-        if (self.x == x2) {
-            self.x--;
-        }
-        if (self.y == y2) {
-            self.y--;
-        }
-        if (self.z == z2) {
-            self.z--;
-        }
-        if (self.x < 0) {
-            self.x++;
-            self.x2++;
-        }
-        if (self.y < 0) {
-            self.y++;
-            self.y2++;
-        }
-        if (self.z < 0) {
-            self.z++;
-            self.z2++;
-        }
     };
     
     static foreach_cell = function(processed, script, params) {
