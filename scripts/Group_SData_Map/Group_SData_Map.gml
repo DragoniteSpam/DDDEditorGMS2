@@ -222,12 +222,9 @@ function DataMap(source, directory) : SData(source) constructor {
         }
         #endregion
         
-        return;
         #region entities
-        var entity_meta = json_parse(buffer_read_file(directory + "entities.json"));
         var entity_data = json_parse(buffer_read_file(directory + "entities.ass"));
         for (var i = 0; i < array_length(entity_meta.entities); i++) {
-            var refid = entity_meta.entities[i];
             var ref_data = entity_data.entities[i];
             instance_create_depth(0, 0, 0, global.etype_objects[ref_data.type]).LoadJSON(ref_data);
         }
@@ -250,17 +247,12 @@ function DataMap(source, directory) : SData(source) constructor {
         #endregion
         
         #region entities
-        var entity_meta = {
-            entities: array_create(ds_list_size(self.contents.all_entities)),
-        };
         var entity_data = {
             entities: array_create(ds_list_size(self.contents.all_entities)),
         };
         for (var i = 0, n = ds_list_size(self.contents.all_entities); i < n; i++) {
-            entity_meta.entities[i] = self.contents.all_entities[| i].REFID;
             entity_data.entities[i] = self.contents.all_entities[| i].CreateJSON(directory);
         }
-        buffer_write_file(json_stringify(entity_meta), directory + "entities.json");
         buffer_write_file(json_stringify(entity_data), directory + "entities.ass");
         #endregion
         

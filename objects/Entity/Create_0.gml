@@ -141,6 +141,7 @@ SaveAsset = function(directory) {
 };
 
 LoadJSONBase = function(source) {
+    refid_set(self, source.refid);
     self.xx = source.position.x;
     self.yy = source.position.y;
     self.zz = source.position.z;
@@ -177,6 +178,7 @@ LoadJSON = function(source) {
 CreateJSONBase = function() {
     return {
         type: self.etype,
+        refid: self.REFID,
         position: {
             x: self.xx,
             y: self.yy,
