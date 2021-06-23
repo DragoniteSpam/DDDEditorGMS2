@@ -166,7 +166,7 @@ function SelectionRectangle(x, y, z, x2, y2, z2) : Selection(x, y, z) constructo
     if (z2 == undefined) z2 = z;
     self.x2 = x2;
     self.y2 = y2;
-    self.z2 = z2;
+    self.z2 = z2 + 1;
     
     static onmousedown = function(x, y, z) {
         self.x = x;
