@@ -934,7 +934,6 @@
     {"id":{"name":"ui_render_columns","path":"scripts/ui_render_columns/ui_render_columns.yy",},"order":32,},
     {"id":{"name":"ui_render_text_animation_internal_name","path":"scripts/ui_render_text_animation_internal_name/ui_render_text_animation_internal_name.yy",},"order":34,},
     {"id":{"name":"spr_emu_checker","path":"sprites/spr_emu_checker/spr_emu_checker.yy",},"order":6,},
-    {"id":{"name":"serialize_save_language","path":"scripts/serialize_save_language/serialize_save_language.yy",},"order":0,},
     {"id":{"name":"ui_render_surface_render_map","path":"scripts/ui_render_surface_render_map/ui_render_surface_render_map.yy",},"order":0,},
     {"id":{"name":"ui_render_surface_control_map","path":"scripts/ui_render_surface_control_map/ui_render_surface_control_map.yy",},"order":1,},
     {"id":{"name":"ui_render_surface_render_mesh_collision","path":"scripts/ui_render_surface_render_mesh_collision/ui_render_surface_render_mesh_collision.yy",},"order":0,},
