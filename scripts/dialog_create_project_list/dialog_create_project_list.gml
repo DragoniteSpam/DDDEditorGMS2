@@ -31,22 +31,6 @@ function dialog_create_project_list(root) {
             if (project.failed) {
                 emu_dialog_notice("Unable to load the project: " + project.name);
             }
-            if (project.legacy) {
-                var name = project.name;
-                var path_new = PATH_PROJECTS + name + "/" + name + ".dddd";
-                if (serialize_load_base(path_new, name)) {
-                    dialog_destroy();
-                } // else the files could not be loaded
-                // un-register the mouse
-                Controller.mouse_left = false;
-                Controller.press_left = false;
-                Controller.release_left = false;
-                Controller.double_left = false;
-                Controller.time_left = -1;
-                Controller.last_time_left = -1;
-                Controller.ignore_next = 1;
-                return;
-            }
             dialog_destroy();
             project_load(project.id);
         }
@@ -142,20 +126,7 @@ function dialog_create_project_list(root) {
     el_remove.tooltip = "Deletes the project from this list. If you still have it saved on your computer it will not be deleted, but you will need to use Open Other if you want to edit it again.";
     yy += el_remove.height + spacing;
     var el_other = create_button(16, yy, "Open Other", ew, eh, fa_center, function(button) {
-        var fn = get_open_filename_ddd();
-        if (file_exists(fn)) {
-            if (serialize_load_base(fn, filename_name(filename_change_ext(fn, "")))) {
-                dialog_destroy();
-            } // else the files could not be loaded
-            // un-register the mouse
-            Controller.mouse_left = false;
-            Controller.press_left = false;
-            Controller.release_left = false;
-            Controller.double_left = false;
-            Controller.time_left = -1;
-            Controller.last_time_left = -1;
-            Controller.ignore_next = 1;
-        }
+        emu_dialog_notice("I'm not sure what I want to do with this - I'll probably add a Compress Project Archive option at some point");
     }, dg);
     el_other.tooltip = "Open a .dddd game data file somehwere on your computer. The original will not be modified until you save over it; a copy will be saved to the editor's local storage.";
     yy += el_other.height + spacing;
