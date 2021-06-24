@@ -36,25 +36,23 @@ function vertex_point_line_raw(buffer, x, y, z, color, alpha) {
     buffer_write(buffer, buffer_u32, (floor(alpha * 0xff) << 24) | colour_reverse(color));
 }
 
-function buffer_to_wireframe(buffer, use_legacy) {
-    if (use_legacy == undefined) use_legacy = false;
+function buffer_to_wireframe(buffer) {
     var wbuffer = -1;
     static fsize = buffer_sizeof(buffer_f32);
     
     try {
         wbuffer = vertex_create_buffer();
         vertex_begin(wbuffer, Stuff.graphics.vertex_format);
-        var vertex_size = use_legacy ? 40 : VERTEX_SIZE;
-        for (var i = 0; i < buffer_get_size(buffer); i += vertex_size * 3) {
-            var x1 = buffer_peek(buffer, i + 0 * vertex_size + 0 * fsize, buffer_f32);
-            var y1 = buffer_peek(buffer, i + 0 * vertex_size + 1 * fsize, buffer_f32);
-            var z1 = buffer_peek(buffer, i + 0 * vertex_size + 2 * fsize, buffer_f32);
-            var x2 = buffer_peek(buffer, i + 1 * vertex_size + 0 * fsize, buffer_f32);
-            var y2 = buffer_peek(buffer, i + 1 * vertex_size + 1 * fsize, buffer_f32);
-            var z2 = buffer_peek(buffer, i + 1 * vertex_size + 2 * fsize, buffer_f32);
-            var x3 = buffer_peek(buffer, i + 2 * vertex_size + 0 * fsize, buffer_f32);
-            var y3 = buffer_peek(buffer, i + 2 * vertex_size + 1 * fsize, buffer_f32);
-            var z3 = buffer_peek(buffer, i + 2 * vertex_size + 2 * fsize, buffer_f32);
+        for (var i = 0; i < buffer_get_size(buffer); i += VERTEX_SIZE * 3) {
+            var x1 = buffer_peek(buffer, i + 0 * VERTEX_SIZE + 0 * fsize, buffer_f32);
+            var y1 = buffer_peek(buffer, i + 0 * VERTEX_SIZE + 1 * fsize, buffer_f32);
+            var z1 = buffer_peek(buffer, i + 0 * VERTEX_SIZE + 2 * fsize, buffer_f32);
+            var x2 = buffer_peek(buffer, i + 1 * VERTEX_SIZE + 0 * fsize, buffer_f32);
+            var y2 = buffer_peek(buffer, i + 1 * VERTEX_SIZE + 1 * fsize, buffer_f32);
+            var z2 = buffer_peek(buffer, i + 1 * VERTEX_SIZE + 2 * fsize, buffer_f32);
+            var x3 = buffer_peek(buffer, i + 2 * VERTEX_SIZE + 0 * fsize, buffer_f32);
+            var y3 = buffer_peek(buffer, i + 2 * VERTEX_SIZE + 1 * fsize, buffer_f32);
+            var z3 = buffer_peek(buffer, i + 2 * VERTEX_SIZE + 2 * fsize, buffer_f32);
             vertex_point_line(wbuffer, x1, y1, z1, c_white, 1);
             vertex_point_line(wbuffer, x2, y2, z2, c_white, 1);
             vertex_point_line(wbuffer, x2, y2, z2, c_white, 1);
@@ -78,8 +76,6 @@ function buffer_to_reflect(buffer) {
     try {
         rbuffer = vertex_create_buffer();
         vertex_begin(rbuffer, Stuff.graphics.vertex_format);
-        var vertex_size = Stuff.graphics.format_size;
-        
         var op_mirror_x = Stuff.mesh_ed.reflect_settings & MeshReflectionSettings.MIRROR_X;
         var op_mirror_y = Stuff.mesh_ed.reflect_settings & MeshReflectionSettings.MIRROR_Y;
         var op_mirror_z = Stuff.mesh_ed.reflect_settings & MeshReflectionSettings.MIRROR_Z;
@@ -99,40 +95,40 @@ function buffer_to_reflect(buffer) {
         if (op_rotate_y) transform_matrix = matrix_multiply(transform_matrix, matrix_build(0, 0, 0, 0, 180, 0, 1, 1, 1));
         if (op_rotate_z) transform_matrix = matrix_multiply(transform_matrix, matrix_build(0, 0, 0, 0, 0, 180, 1, 1, 1));
         
-        for (var i = 0; i < buffer_get_size(buffer); i += vertex_size * 3) {
-            var x1 = buffer_peek(buffer, i + 0 * vertex_size + 0 * fsize, buffer_f32);
-            var y1 = buffer_peek(buffer, i + 0 * vertex_size + 1 * fsize, buffer_f32);
-            var z1 = buffer_peek(buffer, i + 0 * vertex_size + 2 * fsize, buffer_f32);
-            var nx1 = buffer_peek(buffer, i + 0 * vertex_size + 3 * fsize, buffer_f32);
-            var ny1 = buffer_peek(buffer, i + 0 * vertex_size + 4 * fsize, buffer_f32);
-            var nz1 = buffer_peek(buffer, i + 0 * vertex_size + 5 * fsize, buffer_f32);
-            var u1 = buffer_peek(buffer, i + 0 * vertex_size + 6 * fsize, buffer_f32);
-            var v1 = buffer_peek(buffer, i + 0 * vertex_size + 7 * fsize, buffer_f32);
-            var c1 = buffer_peek(buffer, i + 0 * vertex_size + 8 * fsize, buffer_u32);
+        for (var i = 0; i < buffer_get_size(buffer); i += VERTEX_SIZE * 3) {
+            var x1 = buffer_peek(buffer, i + 0 * VERTEX_SIZE + 0 * fsize, buffer_f32);
+            var y1 = buffer_peek(buffer, i + 0 * VERTEX_SIZE + 1 * fsize, buffer_f32);
+            var z1 = buffer_peek(buffer, i + 0 * VERTEX_SIZE + 2 * fsize, buffer_f32);
+            var nx1 = buffer_peek(buffer, i + 0 * VERTEX_SIZE + 3 * fsize, buffer_f32);
+            var ny1 = buffer_peek(buffer, i + 0 * VERTEX_SIZE + 4 * fsize, buffer_f32);
+            var nz1 = buffer_peek(buffer, i + 0 * VERTEX_SIZE + 5 * fsize, buffer_f32);
+            var u1 = buffer_peek(buffer, i + 0 * VERTEX_SIZE + 6 * fsize, buffer_f32);
+            var v1 = buffer_peek(buffer, i + 0 * VERTEX_SIZE + 7 * fsize, buffer_f32);
+            var c1 = buffer_peek(buffer, i + 0 * VERTEX_SIZE + 8 * fsize, buffer_u32);
             var a1 = (c1 >> 24) / 0xff;
             c1 &= 0xffffff;
             
-            var x2 = buffer_peek(buffer, i + 1 * vertex_size + 0 * fsize, buffer_f32);
-            var y2 = buffer_peek(buffer, i + 1 * vertex_size + 1 * fsize, buffer_f32);
-            var z2 = buffer_peek(buffer, i + 1 * vertex_size + 2 * fsize, buffer_f32);
-            var nx2 = buffer_peek(buffer, i + 1 * vertex_size + 3 * fsize, buffer_f32);
-            var ny2 = buffer_peek(buffer, i + 1 * vertex_size + 4 * fsize, buffer_f32);
-            var nz2 = buffer_peek(buffer, i + 1 * vertex_size + 5 * fsize, buffer_f32);
-            var u2 = buffer_peek(buffer, i + 1 * vertex_size + 6 * fsize, buffer_f32);
-            var v2 = buffer_peek(buffer, i + 1 * vertex_size + 7 * fsize, buffer_f32);
-            var c2 = buffer_peek(buffer, i + 1 * vertex_size + 8 * fsize, buffer_u32);
+            var x2 = buffer_peek(buffer, i + 1 * VERTEX_SIZE + 0 * fsize, buffer_f32);
+            var y2 = buffer_peek(buffer, i + 1 * VERTEX_SIZE + 1 * fsize, buffer_f32);
+            var z2 = buffer_peek(buffer, i + 1 * VERTEX_SIZE + 2 * fsize, buffer_f32);
+            var nx2 = buffer_peek(buffer, i + 1 * VERTEX_SIZE + 3 * fsize, buffer_f32);
+            var ny2 = buffer_peek(buffer, i + 1 * VERTEX_SIZE + 4 * fsize, buffer_f32);
+            var nz2 = buffer_peek(buffer, i + 1 * VERTEX_SIZE + 5 * fsize, buffer_f32);
+            var u2 = buffer_peek(buffer, i + 1 * VERTEX_SIZE + 6 * fsize, buffer_f32);
+            var v2 = buffer_peek(buffer, i + 1 * VERTEX_SIZE + 7 * fsize, buffer_f32);
+            var c2 = buffer_peek(buffer, i + 1 * VERTEX_SIZE + 8 * fsize, buffer_u32);
             var a2 = (c2 >> 24) / 0xff;
             c2 &= 0xffffff;
             
-            var x3 = buffer_peek(buffer, i + 2 * vertex_size + 0 * fsize, buffer_f32);
-            var y3 = buffer_peek(buffer, i + 2 * vertex_size + 1 * fsize, buffer_f32);
-            var z3 = buffer_peek(buffer, i + 2 * vertex_size + 2 * fsize, buffer_f32);
-            var nx3 = buffer_peek(buffer, i + 2 * vertex_size + 3 * fsize, buffer_f32);
-            var ny3 = buffer_peek(buffer, i + 2 * vertex_size + 4 * fsize, buffer_f32);
-            var nz3 = buffer_peek(buffer, i + 2 * vertex_size + 5 * fsize, buffer_f32);
-            var u3 = buffer_peek(buffer, i + 2 * vertex_size + 6 * fsize, buffer_f32);
-            var v3 = buffer_peek(buffer, i + 2 * vertex_size + 7 * fsize, buffer_f32);
-            var c3 = buffer_peek(buffer, i + 2 * vertex_size + 8 * fsize, buffer_u32);
+            var x3 = buffer_peek(buffer, i + 2 * VERTEX_SIZE + 0 * fsize, buffer_f32);
+            var y3 = buffer_peek(buffer, i + 2 * VERTEX_SIZE + 1 * fsize, buffer_f32);
+            var z3 = buffer_peek(buffer, i + 2 * VERTEX_SIZE + 2 * fsize, buffer_f32);
+            var nx3 = buffer_peek(buffer, i + 2 * VERTEX_SIZE + 3 * fsize, buffer_f32);
+            var ny3 = buffer_peek(buffer, i + 2 * VERTEX_SIZE + 4 * fsize, buffer_f32);
+            var nz3 = buffer_peek(buffer, i + 2 * VERTEX_SIZE + 5 * fsize, buffer_f32);
+            var u3 = buffer_peek(buffer, i + 2 * VERTEX_SIZE + 6 * fsize, buffer_f32);
+            var v3 = buffer_peek(buffer, i + 2 * VERTEX_SIZE + 7 * fsize, buffer_f32);
+            var c3 = buffer_peek(buffer, i + 2 * VERTEX_SIZE + 8 * fsize, buffer_u32);
             var a3 = (c3 >> 24) / 0xff;
             c3 &= 0xffffff;
             
