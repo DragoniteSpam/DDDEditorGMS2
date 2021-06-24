@@ -260,6 +260,21 @@ function buffer_read_file(filename) {
     buffer_delete(data);
     return str;
 }
+
+function buffer_reserve_address(buffer) {
+    buffer_write_address(buffer, true);
+}
+
+function buffer_write_address(buffer, reserve) {
+    if (reserve == undefined) reserve = false;
+    static addr = 0;
+    if (reserve) {
+        buffer_write(buffer, buffer_u64, 0);
+        addr = buffer_tell(buffer);
+    } else {
+        buffer_poke(buffer, addr, buffer_u64, buffer_tell(buffer));
+    }
+}
 #endregion
 
 #region ds_list stuff
