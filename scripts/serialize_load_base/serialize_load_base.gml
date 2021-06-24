@@ -43,7 +43,7 @@ function serialize_load_base(fn, project_name) {
                 emu_dialog_notice("We stopped supporting versions of the data file before " + string(LAST_SAFE_VERSION) +
                     ". This file's version is " + string(version_data) + ". Please find a version of " + filename_name(fn_data) +
                     " made with a more up-to-date version of the editor - the last version which nuked compatibility was " +
-                    LAST_SAFE_VERSION + ".", true
+                    string(LAST_SAFE_VERSION) + ".", true
                 );
                 outcome = false;
             }
