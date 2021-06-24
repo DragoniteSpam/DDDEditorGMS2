@@ -17,6 +17,28 @@ function project_export() {
             buffer_write(buffer, buffer_u32, DataVersions._CURRENT - 1);
         }
         
+        static game_data_save_scripts = array_create(GameDataCategories.__COUNT);
+        game_data_save_scripts[GameDataCategories.TILE_ANIMATIONS] = serialize_save_image_tile_animations;
+        game_data_save_scripts[GameDataCategories.TILESETS] = serialize_save_image_tilesets;
+        game_data_save_scripts[GameDataCategories.BATTLERS] = serialize_save_image_battlers;
+        game_data_save_scripts[GameDataCategories.OVERWORLDS] = serialize_save_image_overworlds;
+        game_data_save_scripts[GameDataCategories.PARTICLES] = serialize_save_image_particles;
+        game_data_save_scripts[GameDataCategories.UI] = serialize_save_image_ui;
+        game_data_save_scripts[GameDataCategories.SKYBOX] = serialize_save_image_skybox;
+        game_data_save_scripts[GameDataCategories.MISC] = serialize_save_image_etc;
+        game_data_save_scripts[GameDataCategories.BGM] = serialize_save_bgm;
+        game_data_save_scripts[GameDataCategories.SE] = serialize_save_se;
+        game_data_save_scripts[GameDataCategories.MESH] = serialize_save_meshes;
+        game_data_save_scripts[GameDataCategories.MESH_AUTOTILES] = serialize_save_mesh_autotiles;
+        game_data_save_scripts[GameDataCategories.MAP] = serialize_save_maps;
+        game_data_save_scripts[GameDataCategories.GLOBAL] = serialize_save_global_meta;
+        game_data_save_scripts[GameDataCategories.EVENTS]  = serialize_save_events;
+        game_data_save_scripts[GameDataCategories.DATADATA] = serialize_save_datadata;
+        game_data_save_scripts[GameDataCategories.DATA_INST] = serialize_save_data_instances;
+        game_data_save_scripts[GameDataCategories.ANIMATIONS] = serialize_save_animations;
+        game_data_save_scripts[GameDataCategories.TERRAIN] = serialize_save_terrain;
+        game_data_save_scripts[GameDataCategories.LANGUAGE_TEXT] = serialize_save_language;
+        
         var fn = get_save_filename_dddd(Stuff.save_name);
         
         if (string_length(fn) > 0) {
@@ -55,7 +77,7 @@ function project_export() {
                 // okay now you can *actually* write out the addresses of all the things
                 // there's no need to save the size here because it reads until the EOF
                 for (var j = 0; j < array_length(contents); j++) {
-                    Stuff.game_data_save_scripts[contents[j]](buffer);
+                    game_data_save_scripts[contents[j]](buffer);
                 }
                 
                 buffer_write(buffer, buffer_u32, SerializeThings.END_OF_FILE);
