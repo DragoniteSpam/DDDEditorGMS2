@@ -2,6 +2,9 @@ function project_save() {
     var fn = get_save_filename_project(Stuff.save_name);
     if (fn == "") return;
     
+    Stuff.save_name = filename_name(fn);
+    game_auto_title();
+    
     static project_write_json = function(data_list) {
         var json = array_create(array_length(data_list));
         for (var i = 0, n = array_length(data_list); i < n; i++) {
