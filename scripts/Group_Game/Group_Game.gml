@@ -46,8 +46,8 @@ Game = new (function() constructor {
         switches: array_create(BASE_GAME_VARIABLES),
         variables: [array_create(BASE_GAME_VARIABLES)],
         constants: [],
-        event_triggers: array_create(FLAG_COUNT, ""),
-        asset_flags: array_create(FLAG_COUNT, ""),
+        triggers: array_create(FLAG_COUNT, ""),
+        flags: array_create(FLAG_COUNT, ""),
     };
     self.data = [];
     self.graphics = {
