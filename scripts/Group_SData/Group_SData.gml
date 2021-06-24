@@ -25,10 +25,6 @@ function SData(source) constructor {
         buffer_write(buffer, buffer_flag, self.flags);
     };
     
-    static Export = function(buffer) {
-        self.ExportBase();
-    };
-    
     static CreateJSONBase = function() {
         return {
             name: self.name,
@@ -37,10 +33,6 @@ function SData(source) constructor {
             summary: self.summary,
             GUID: self.GUID,
         };
-    };
-    
-    static CreateJSON = function() {
-        return self.CreateJSONBase();
     };
     
     if (is_string(source)) {
