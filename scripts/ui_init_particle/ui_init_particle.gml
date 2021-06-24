@@ -261,7 +261,7 @@ function ui_init_particle(mode) {
         }, false, t_emitter, mode.emitters);
         element.tooltip = "All of the currently-defined emitters types.";
         element.evaluate_text = function(list, index) {
-            var emitter = list.entries[| index];
+            var emitter = list.entries[index];
             var text = emitter.name;
             if (!emitter.streaming) text = "(" + text + ")";
             return text;
@@ -352,6 +352,7 @@ function ui_init_particle(mode) {
                 bad.x = -10000;
                 bad.y = -10000;
                 bad.active_shade = false;
+                Stuff.particle.ghost_dialog = bad;
                 part_system_automatic_update(Stuff.particle.system, false);
             }
         }, t_emitter);
@@ -436,7 +437,7 @@ function ui_init_particle(mode) {
         
         yy += element.height + spacing;
         
-        element = create_checkbox(col2_x, yy, "Streaming?", ew, eh, function(input) {
+        element = create_checkbox(col2_x, yy, "Streaming?", ew, eh, function(checkbox) {
             var selection = ui_list_selection(checkbox.root.list);
             if (selection + 1) {
                 var emitter = Stuff.particle.emitters[selection];
@@ -525,6 +526,7 @@ function ui_init_particle(mode) {
         yy = legal_y + spacing;
         
         f_part_type_select = function(element) {
+            var list = element.root.list;
             var selection = ui_list_selection(list);
             if (selection + 1) {
                 var type = Stuff.particle.types[selection];

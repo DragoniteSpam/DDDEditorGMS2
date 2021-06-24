@@ -101,8 +101,8 @@ function draw_editor_particle(mode) {
         
         if (kill) {
             mode.ui.el_set_region.click_time = current_time;
-            mode.emitter_setting = noone;
-            dialog_destroy();
+            mode.emitter_setting = undefined;
+            if (mode.ghost_dialog) mode.ghost_dialog.Dispose();
         }
     }
 }

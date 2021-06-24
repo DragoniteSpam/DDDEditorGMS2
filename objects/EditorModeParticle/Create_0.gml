@@ -14,13 +14,15 @@ system = part_system_create();
 types = [new ParticleType("Default Type")];
 emitters = [new ParticleEmitter("Default Emitter")];
 
+ghost_dialog = undefined;
+
 part_system_automatic_update(system, system_auto_update);
 part_system_automatic_draw(system, false);
 
 render = function() {
     switch (view_current) {
-        case view_3d: draw_editor_particle(); break;
-        case view_ribbon: draw_editor_menu(); break;
+        case view_3d: draw_editor_particle(self); break;
+        case view_ribbon: draw_editor_menu(false); break;
         case view_hud: draw_editor_hud(); break;
     }
 };
