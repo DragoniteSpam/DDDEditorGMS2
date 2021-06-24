@@ -362,15 +362,48 @@ function DataAnimationKeyframe(layer, moment, source) constructor {
         self.zscale = source.zscale;
         self.color = source.color;
         self.alpha = source.color;
-        self.audio = source.audio;
         self.graphic_type = source.graphic_type;
         self.graphic_sprite = source.graphic_sprite;
         self.graphic_mesh = source.graphic_mesh;
         self.graphic_frame = source.graphic_frame;
         self.graphic_direction = source.graphic_direction;
         self.event = source.event;
+        self.audio = source.audio;
         self.tween = source.tween;
     }
+    
+    static Export = function(buffer) {
+        buffer_write(buffer, buffer_s32, self.relative);
+        buffer_write(buffer, buffer_f32, self.x);
+        buffer_write(buffer, buffer_f32, self.y);
+        buffer_write(buffer, buffer_f32, self.z);
+        buffer_write(buffer, buffer_f32, self.xrot);
+        buffer_write(buffer, buffer_f32, self.yrot);
+        buffer_write(buffer, buffer_f32, self.zrot);
+        buffer_write(buffer, buffer_f32, self.xscale);
+        buffer_write(buffer, buffer_f32, self.yscale);
+        buffer_write(buffer, buffer_f32, self.zscale);
+        buffer_write(buffer, buffer_u32, self.color);
+        buffer_write(buffer, buffer_f32, self.alpha);
+        buffer_write(buffer, buffer_u8, self.graphic_type);
+        buffer_write(buffer, buffer_datatype, self.graphic_sprite);
+        buffer_write(buffer, buffer_datatype, self.graphic_mesh);
+        buffer_write(buffer, buffer_u32, self.graphic_frame);
+        buffer_write(buffer, buffer_u8, self.graphic_direction);
+        buffer_write(buffer, buffer_datatype, self.audio);
+        buffer_write(buffer, buffer_string, self.event);
+        buffer_write(buffer, buffer_u16, self.tween.x);
+        buffer_write(buffer, buffer_u16, self.tween.y);
+        buffer_write(buffer, buffer_u16, self.tween.z);
+        buffer_write(buffer, buffer_u16, self.tween.xrot);
+        buffer_write(buffer, buffer_u16, self.tween.yrot);
+        buffer_write(buffer, buffer_u16, self.tween.zrot);
+        buffer_write(buffer, buffer_u16, self.tween.xscale);
+        buffer_write(buffer, buffer_u16, self.tween.yscale);
+        buffer_write(buffer, buffer_u16, self.tween.zscale);
+        buffer_write(buffer, buffer_u16, self.tween.color);
+        buffer_write(buffer, buffer_u16, self.tween.alpha);
+    };
     
     static CreateJSON = function() {
         return {
