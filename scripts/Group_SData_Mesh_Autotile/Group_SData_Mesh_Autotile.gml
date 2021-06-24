@@ -10,6 +10,20 @@ function DataMeshAutotile(source) : SData(source) constructor {
             self.reflect_wbuffer = undefined;
             self.reflect_wrawbuffer = undefined;
             
+            static LoadAsset = function(filename) {
+                self.DestroyUpright();
+                self.DestroyReflect();
+                // not all of these may exist
+                if (file_exists(filename + ".vertex")) self.buffer = buffer_load(filename + ".vertex");
+                if (file_exists(filename + ".reflect")) self.reflect_buffer = buffer_load(filename + ".reflect");
+                if (file_exists(filename + ".wire")) self.wrawbuffer = buffer_load(filename + ".wire");
+                if (file_exists(filename + ".rwire")) self.reflect_wrawbuffer = buffer_load(filename + ".rwire");
+                try { self.vbuffer = vertex_create_buffer_from_buffer(self.buffer, Stuff.graphics.vertex_format); } catch (e) { }
+                try { self.reflect_vbuffer = vertex_create_buffer_from_buffer(self.reflect_buffer, Stuff.graphics.vertex_format); } catch (e) { }
+                try { self.wbuffer = vertex_create_buffer_from_buffer(self.wrawbuffer, Stuff.graphics.vertex_format); } catch (e) { }
+                try { self.reflect_wbuffer = vertex_create_buffer_from_buffer(self.reflect_wrawbuffer, Stuff.graphics.vertex_format); } catch (e) { }
+            };
+            
             static SaveAsset = function(filename) {
                 if (self.buffer) buffer_save(self.buffer, filename + ".vertex");
                 if (self.reflect_buffer) buffer_save(self.reflect_buffer, filename + ".reflect");
@@ -18,7 +32,7 @@ function DataMeshAutotile(source) : SData(source) constructor {
             };
             
             static Set = function(buffer, vbuffer) {
-                DestroyUpright();
+                self.DestroyUpright();
                 self.buffer = buffer;
                 self.vbuffer = vbuffer;
                 if (buffer) {
@@ -28,7 +42,7 @@ function DataMeshAutotile(source) : SData(source) constructor {
             };
             
             static SetReflect = function(buffer, vbuffer) {
-                DestroyReflect();
+                self.DestroyReflect();
                 self.reflect_buffer = buffer;
                 self.reflect_vbuffer = vbuffer;
                 if (buffer) self.reflect_wbuffer = buffer_to_wireframe(buffer);
@@ -36,7 +50,7 @@ function DataMeshAutotile(source) : SData(source) constructor {
             
             static AutoReflect = function() {
                 if (!self.buffer) return false;
-                DestroyReflect();
+                self.DestroyReflect();
                 self.reflect_vbuffer = buffer_to_reflect(self.buffer);
                 self.reflect_buffer = buffer_create_from_vertex_buffer(self.reflect_vbuffer, buffer_fixed, 1);
                 self.reflect_wbuffer = buffer_to_wireframe(self.reflect_buffer);
@@ -45,8 +59,8 @@ function DataMeshAutotile(source) : SData(source) constructor {
             };
             
             static Destroy = function() {
-                DestroyUpright();
-                DestroyReflect();
+                self.DestroyUpright();
+                self.DestroyReflect();
             };
             
             static DestroyUpright = function() {
@@ -75,7 +89,7 @@ function DataMeshAutotile(source) : SData(source) constructor {
                 return valid;
             };
             
-            Set(buffer, vbuffer);
+            self.Set(buffer, vbuffer);
         };
         
         self.tiles = array_create(AUTOTILE_COUNT);
@@ -86,6 +100,12 @@ function DataMeshAutotile(source) : SData(source) constructor {
         self.Destroy = function() {
             for (var i = 0; i < AUTOTILE_COUNT; i++) {
                 self.tiles[i].Destroy();
+            }
+        };
+        
+        static LoadAsset = function(filename) {
+            for (var i = 0, n = array_length(self.tiles); i < n; i++) {
+                self.tiles[i].LoadAsset(filename + "!" + string(i));
             }
         };
         
@@ -110,8 +130,10 @@ function DataMeshAutotile(source) : SData(source) constructor {
     };
     
     static LoadAsset = function(directory) {
-        directory += "/";
-        var guid = string_replace(self.GUID, ":", "_");
+        directory += "/" + string_replace_all(self.GUID, ":", "_");
+        for (var i = 0, n = array_length(self.layers); i < n; i++) {
+            self.layers[i].LoadAsset(directory + "!" + string(i));
+        }
     };
     
     static SaveAsset = function(directory) {
