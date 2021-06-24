@@ -172,6 +172,36 @@ function DataAnimationLayer(animation, source) constructor {
         self.name = source;
     }
     
+    static Export = function(buffer) {
+        buffer_write(buffer, buffer_string, self.name);
+        
+        var bools = pack(self.is_actor);
+        buffer_write(buffer, buffer_u8, bools);
+    
+        buffer_write(buffer, buffer_f32, self.x);
+        buffer_write(buffer, buffer_f32, self.y);
+        buffer_write(buffer, buffer_f32, self.z);
+        buffer_write(buffer, buffer_f32, self.xrot);
+        buffer_write(buffer, buffer_f32, self.yrot);
+        buffer_write(buffer, buffer_f32, self.zrot);
+        buffer_write(buffer, buffer_f32, self.xscale);
+        buffer_write(buffer, buffer_f32, self.yscale);
+        buffer_write(buffer, buffer_f32, self.zscale);
+        buffer_write(buffer, buffer_u32, self.color);
+        buffer_write(buffer, buffer_f32, self.alpha);
+        buffer_write(buffer, buffer_u8, self.graphic_type);
+        buffer_write(buffer, buffer_datatype, self.graphic_sprite);
+        buffer_write(buffer, buffer_datatype, self.graphic_mesh);
+        
+        var n_keyframes = array_length(self.keyframes);
+        buffer_write(buffer, buffer_u16, n_keyframes);
+        
+        for (var i = 0; i < n_keyframes; i++) {
+            buffer_write(buffer, buffer_bool, !!self.keyframes[i]);
+            if (self.keyframes[i]) self.keyframes[i].Export(buffer);
+        }
+    };
+    
     static CreateJSON = function() {
         var json = {
             name: self.name,
