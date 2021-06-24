@@ -43,13 +43,6 @@ function vertex_cube_line(buffer, x, y, z, color, alpha, size) {
     vertex_point_line(buffer, x + size, y - size, z - size, color, alpha);
 }
 
-function vertex_point_basic(buffer, x, y, z, nx, ny, nz, xtex, ytex, color, alpha) {
-    vertex_position_3d(buffer, x, y, z);
-    vertex_normal(buffer, nx, ny, nz);
-    vertex_texcoord(buffer, xtex, ytex);
-    vertex_colour(buffer, color, alpha);
-}
-
 function vertex_point_complete(buffer, x, y, z, nx, ny, nz, xtex, ytex, color, alpha) {
     vertex_position_3d(buffer, x, y, z);
     vertex_normal(buffer, nx, ny, nz);
