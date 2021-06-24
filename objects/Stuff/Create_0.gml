@@ -425,31 +425,26 @@ data_type_default_values = [
  *           - entry in dialog_create_settings_data_asset_files (with color)
  *  2. case in omu_data_list_add
  *  3. case in uivc_list_data_list_select
- *  4. case in draw_event_node - in four different switch statements (can that be simplified?)
+ *  4. case in draw_event_node
+ *          - in four different switch statements (can that be simplified?)
  *  5. case in ui_init_game_data_activate (the big one)
  *  6. case in ui_init_game_data_refresh - in two different switch statements
  *  7. case in dialog_create_data_instance_property_list - in two different switch statemetns
- *  8. case in serialize_load_data_instances
- *          and the equivalent in the game
  *  9. case in serialize_save_data_instances
- *  10. case in serialize_load_events
  *          and the equivalent in the game
- *  11. case in serialize_save_events
- *  12. text in the lists in dialog_create_select_data_types_ext (and the color, if applicable)
- *  13. case in draw_active_event
- *  14. case in uimu_data_add_data
- *  15. case in dialog_entity_data_enable_by_type
- *  16. case in serialize_save_entity
- *  17. the equilvalent in serialize_load_entity
+ *  10. case in serialize_save_events
  *          and the equivalent in the game
- *  18. case in serialize_load_event_prefabs
- *          event prefabs are IGNORED in the game
- *  19. case in serialize_save_map_contents_meta
- *  20. case in serialize_load_map_contents_meta
+ *  11. text in the lists in dialog_create_select_data_types_ext (and the color, if applicable)
+ *  12. case in draw_active_event
+ *  13. case in uimu_data_add_data
+ *  14. case in dialog_entity_data_enable_by_type
+ *  15. case in serialize_save_entity
  *          and the equivalent in the game
- *  21. Stuff.Create - game data location and game data save scripts
- *  22. enum DataVersions - you most likely will need a new data version to handle the new data
- *  23. serialize_load - read the data out
+ *  16. case in serialize_save_map_contents_meta
+ *          and the equivalent in the game
+ *  17. Stuff.Create - game data location and game data save scripts
+ *  18. enum DataVersions - you most likely will need a new data version to handle the new data
+ *  19. loading data in the game - read the data out
  */
 #endregion
 

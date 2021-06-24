@@ -12,8 +12,6 @@ function project_export() {
     static fn_export = function() {
         var fn = get_save_filename_dddd(Stuff.save_name);
         
-        global.error_map = { };
-        
         if (string_length(fn) > 0) {
             var save_directory = filename_path(fn);
             var buffers = array_create(array_length(Game.meta.export.files));
@@ -74,20 +72,6 @@ function project_export() {
                 
                 buffer_delete(buffer);
             }
-        }
-        
-        if (variable_struct_names_count(global.error_map) > 0) {
-            var error_list = variable_struct_get_names(global.error_map);
-            array_sort(error_list, false);
-            var err_str = "";
-            for (var i = 0; i < array_length(error_list); i++) {
-                err_str = err_str + "    - " + global.error_map[$ error_list[i]] + "\n";
-            }
-            var dialog = emu_dialog_notice("Some warnings were generated when saving your data file:\n\n" + err_str, "Warning!", 560);
-            dialog.el_text.x = 32;
-            dialog.el_text.y = 64;
-            dialog.el_text.alignment = fa_left;
-            dialog.el_text.valignment = fa_top;
         }
         
         #macro LAST_SAFE_VERSION DataVersions.MESH_TEXTURE_SCALE
