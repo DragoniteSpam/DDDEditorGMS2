@@ -214,8 +214,27 @@ function DataMap(source, directory) : SData(source) constructor {
         graphics_create_grids();
     };
     
+    static SaveUnloaded = function(directory) {
+        var new_directory = directory + "/" + string_replace(self.GUID, ":", "_") + "/";
+        var old_directory = self.directory + "/" + string_replace(self.GUID, ":", "_") + "/";
+        if (!directory_exists(old_directory)) return;
+        if (directory_exists(new_directory)) {
+            directory_destroy(new_directory);
+        }
+        directory_create(new_directory);
+        var file = file_find_first(old_directory + "*.*", 0);
+        while (file_exists(old_directory + file)) {
+            file_copy(old_directory + file, new_directory + file);
+            file = file_find_next();
+        }
+        file_find_close();
+    };
+    
     static SaveAsset = function(directory) {
-        if (!self.contents) return;
+        if (!self.contents) {
+            self.SaveUnloaded(directory);
+            return;
+        }
         directory += "/" + string_replace(self.GUID, ":", "_") + "/";
         if (!directory_exists(directory)) directory_create(directory);
         
