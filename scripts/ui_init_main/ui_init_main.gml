@@ -342,6 +342,7 @@ function ui_init_main(mode) {
                 emu_dialog_confirm(undefined, "Would you like to load the map " + map.name + "? Any unsaved changes will be lost!", function() {
                     selection_clear();
                     self.root.map.Load();
+                    self.root.Dispose();
                 }).map = map;
             }
         };
