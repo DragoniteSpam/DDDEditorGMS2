@@ -16,11 +16,6 @@ function project_export() {
             var save_directory = filename_path(fn);
             var buffers = array_create(array_length(Game.meta.export.files));
             
-            Stuff.save_name = string_replace(filename_name(fn), EXPORT_EXTENSION_DATA, "");
-            var proj_name = filename_change_ext(filename_name(fn), "");
-            
-            game_auto_title();
-            
             for (var i = 0; i < array_length(Game.meta.export.files); i++) {
                 var file_data = Game.meta.export.files[i];
                 var buffer = buffer_create(1024, buffer_grow, 1);
@@ -63,11 +58,9 @@ function project_export() {
                 if (file_data.compressed) {
                     var compressed = buffer_compress(buffer, 0, buffer_tell(buffer));
                     buffer_save_ext(compressed, this_files_name, 0, buffer_get_size(compressed));
-                    setting_project_create_local(proj_name, filename_name(this_files_name), compressed);
                     buffer_delete(compressed);
                 } else {
                     buffer_save_ext(buffer, this_files_name, 0, buffer_tell(buffer));
-                    setting_project_create_local(proj_name, filename_name(this_files_name), buffer);
                 }
                 
                 buffer_delete(buffer);
