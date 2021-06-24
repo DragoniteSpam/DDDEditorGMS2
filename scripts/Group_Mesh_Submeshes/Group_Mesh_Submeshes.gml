@@ -41,16 +41,12 @@ function MeshSubmesh(source) constructor {
         if (self.reflect_wrawbuffer) buffer_save(self.reflect_wrawbuffer, directory + proto + ".rwire");
     };
     
-    static CreateJSONSubmesh = function() {
-        var json = { };
-        json.name = self.name;
-        json.path = self.path;
-        json.proto_guid = self.proto_guid;
-        return json;
-    };
-    
-    static CreateJSON = function() {
-        return self.CreateJSONSubmesh();
+    static CreateJSONS = function() {
+        return {
+            name: self.name,
+            path: self.path,
+            proto_guid: self.proto_guid,
+        };
     };
     
     static Destroy = function() {
