@@ -1,12 +1,12 @@
 #macro Game global.__game
 #macro Identifiers global.__identifiers
 
-var file_default = new DataFile("data", false, true);
-var file_asset = new DataFile("assets", false, false);
-var file_terrain = new DataFile("terrain", true, false);
-
-Game = {
-    meta: {
+Game = new (function() constructor {
+    var file_default = new DataFile("data", false, true);
+    var file_asset = new DataFile("assets", false, false);
+    var file_terrain = new DataFile("terrain", true, false);
+    
+    self.meta = {
         project: {
             notes: "",
             summary: "Write a short summary in Global Game Settings",
@@ -41,16 +41,16 @@ Game = {
         extra: {
             guid_current: 0,
         },
-    },
-    vars: {
+    };
+    self.vars = {
         switches: array_create(BASE_GAME_VARIABLES),
         variables: [array_create(BASE_GAME_VARIABLES)],
         constants: [],
         event_triggers: array_create(FLAG_COUNT, ""),
         asset_flags: array_create(FLAG_COUNT, ""),
-    },
-    data: [],
-    graphics: {
+    };
+    self.data = [];
+    self.graphics = {
         tilesets: [],
         overworlds: [],
         battlers: [],
@@ -59,21 +59,21 @@ Game = {
         tile_animations: [],
         etc: [],
         skybox: [],
-    },
-    audio: {
+    };
+    self.audio = {
         bgm: [],
         se: [],
-    },
-    meshes: [],
-    mesh_autotiles: [],
-    animations: [],
-    events: {
+    };
+    self.meshes = [];
+    self.mesh_autotiles = [];
+    self.animations = [];
+    self.events = {
         events: [],
         custom: [],
         prefabs: [],
-    },
-    maps: [],
-    languages: {
+    };
+    self.maps = [];
+    self.languages = {
         /*
          * example:
          * {
@@ -89,10 +89,10 @@ Game = {
          */
         names: ["English"],
         text: { English: { } },
-    },
+    };
     
     // leave this here for now
-    Clear: function() {
+    static Clear = function() {
         array_clear_instances(self.graphics.tilesets);
         array_clear_instances(self.graphics.overworlds);
         array_clear_instances(self.graphics.battlers);
@@ -126,52 +126,51 @@ Game = {
         array_resize(self.mesh_autotiles, 0);
         
         Identifiers.Clear();
-    },
-};
-
-Identifiers = {
-    guids: { },
-    internal: { },
+    };
     
-    Clear: function() {
+    self.meta.export.locations[GameDataCategories.TILE_ANIMATIONS] = file_asset;
+    self.meta.export.locations[GameDataCategories.TILESETS] = file_asset;
+    self.meta.export.locations[GameDataCategories.BATTLERS] = file_asset;
+    self.meta.export.locations[GameDataCategories.OVERWORLDS] = file_asset;
+    self.meta.export.locations[GameDataCategories.PARTICLES] = file_asset;
+    self.meta.export.locations[GameDataCategories.UI] = file_asset;
+    self.meta.export.locations[GameDataCategories.SKYBOX] = file_asset;
+    self.meta.export.locations[GameDataCategories.MISC] = file_asset;
+    self.meta.export.locations[GameDataCategories.BGM] = file_asset;
+    self.meta.export.locations[GameDataCategories.SE] = file_asset;
+    self.meta.export.locations[GameDataCategories.MESH] = file_asset;
+    self.meta.export.locations[GameDataCategories.MESH_AUTOTILES] = file_asset;
+    self.meta.export.locations[GameDataCategories.MAP] = file_default;
+    self.meta.export.locations[GameDataCategories.GLOBAL] = file_default;
+    self.meta.export.locations[GameDataCategories.EVENTS]  = file_default;
+    self.meta.export.locations[GameDataCategories.DATADATA] = file_default;
+    self.meta.export.locations[GameDataCategories.DATA_INST] = file_default;
+    self.meta.export.locations[GameDataCategories.ANIMATIONS] = file_default;
+    self.meta.export.locations[GameDataCategories.TERRAIN] = file_terrain;
+    self.meta.export.locations[GameDataCategories.LANGUAGE_TEXT] = file_default;
+    
+    for (var i = 0; i < BASE_GAME_VARIABLES; i++) {
+        self.vars.switches[i] = new DataValue("Switch" + string(i));
+        self.vars.variables[i] = new DataValue("Variable" + string(i));
+    }
+    
+    self.vars.triggers[0] = "Action Button";
+    self.vars.triggers[1] = "Player Touch";
+    self.vars.triggers[2] = "Event Touch";
+    self.vars.triggers[3] = "Autorun";
+    self.vars.flags[0] = "CollidePlayer";
+    self.vars.flags[1] = "CollideNPC";
+    self.vars.flags[2] = "Danger";
+    self.vars.flags[3] = "Safe";
+    self.vars.flags[4] = "Water";
+})();
+
+Identifiers = new (function() constructor {
+    self.guids = { };
+    self.internal = { };
+    
+    static Clear = function() {
         self.guids = { };
         self.internal = { };
-    },
-};
-
-Game.meta.export.locations[GameDataCategories.TILE_ANIMATIONS] = file_asset;
-Game.meta.export.locations[GameDataCategories.TILESETS] = file_asset;
-Game.meta.export.locations[GameDataCategories.BATTLERS] = file_asset;
-Game.meta.export.locations[GameDataCategories.OVERWORLDS] = file_asset;
-Game.meta.export.locations[GameDataCategories.PARTICLES] = file_asset;
-Game.meta.export.locations[GameDataCategories.UI] = file_asset;
-Game.meta.export.locations[GameDataCategories.SKYBOX] = file_asset;
-Game.meta.export.locations[GameDataCategories.MISC] = file_asset;
-Game.meta.export.locations[GameDataCategories.BGM] = file_asset;
-Game.meta.export.locations[GameDataCategories.SE] = file_asset;
-Game.meta.export.locations[GameDataCategories.MESH] = file_asset;
-Game.meta.export.locations[GameDataCategories.MESH_AUTOTILES] = file_asset;
-Game.meta.export.locations[GameDataCategories.MAP] = file_default;
-Game.meta.export.locations[GameDataCategories.GLOBAL] = file_default;
-Game.meta.export.locations[GameDataCategories.EVENTS]  = file_default;
-Game.meta.export.locations[GameDataCategories.DATADATA] = file_default;
-Game.meta.export.locations[GameDataCategories.DATA_INST] = file_default;
-Game.meta.export.locations[GameDataCategories.ANIMATIONS] = file_default;
-Game.meta.export.locations[GameDataCategories.TERRAIN] = file_terrain;
-Game.meta.export.locations[GameDataCategories.LANGUAGE_TEXT] = file_default;
-
-for (var i = 0; i < BASE_GAME_VARIABLES; i++) {
-    Game.vars.switches[i] = new DataValue("Switch" + string(i));
-    Game.vars.variables[i] = new DataValue("Variable" + string(i));
-}
-
-Game.vars.triggers[0] = "Action Button";
-Game.vars.triggers[1] = "Player Touch";
-Game.vars.triggers[2] = "Event Touch";
-Game.vars.triggers[3] = "Autorun";
-
-Game.vars.flags[0] = "CollidePlayer";
-Game.vars.flags[1] = "CollideNPC";
-Game.vars.flags[2] = "Danger";
-Game.vars.flags[3] = "Safe";
-Game.vars.flags[4] = "Water";
+    };
+})();
