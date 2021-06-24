@@ -21,6 +21,23 @@ function DataAnimation(source) : SData(source) constructor {
         self.layers[0].is_actor = true;
     }
     
+    static Export = function(buffer) {
+        self.ExportBase(buffer);
+        buffer_write(buffer, buffer_u8, self.frames_per_second);
+        buffer_write(buffer, buffer_u16, self.moments);
+        buffer_write(buffer, buffer_string, self.code);
+        
+        var bools = pack(self.loops);
+        buffer_write(buffer, buffer_field, bools);
+        
+        var n_layers = array_length(animation.layers);
+        buffer_write(buffer, buffer_u32, n_layers);
+        
+        for (var j = 0; j < n_layers; j++) {
+            self.layers[j].Export(buffer);
+        }
+    };
+    
     static CreateJSON = function() {
         var json = self.CreateJSONBase();
         json.frames_per_second = self.frames_per_second;
