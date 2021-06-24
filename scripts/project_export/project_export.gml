@@ -37,7 +37,7 @@ function project_export() {
         game_data_save_scripts[GameDataCategories.DATA_INST] = serialize_save_data_instances;
         game_data_save_scripts[GameDataCategories.ANIMATIONS] = serialize_save_animations;
         game_data_save_scripts[GameDataCategories.TERRAIN] = serialize_save_terrain;
-        game_data_save_scripts[GameDataCategories.LANGUAGE_TEXT] = serialize_save_language;
+        game_data_save_scripts[GameDataCategories.LANGUAGE_TEXT] = project_export_language;
         
         var fn = get_save_filename_dddd(Stuff.save_name);
         
