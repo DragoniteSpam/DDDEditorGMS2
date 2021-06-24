@@ -1027,7 +1027,6 @@
     {"id":{"name":"FCalibriBold","path":"fonts/FCalibriBold/FCalibriBold.yy",},"order":21,},
     {"id":{"name":"FCalibriItalic","path":"fonts/FCalibriItalic/FCalibriItalic.yy",},"order":22,},
     {"id":{"name":"FCalibriBoldItalic","path":"fonts/FCalibriBoldItalic/FCalibriBoldItalic.yy",},"order":23,},
-    {"id":{"name":"ObjectError","path":"objects/ObjectError/ObjectError.yy",},"order":0,},
     {"id":{"name":"Stuff","path":"objects/Stuff/Stuff.yy",},"order":1,},
     {"id":{"name":"Entity","path":"objects/Entity/Entity.yy",},"order":0,},
     {"id":{"name":"EntityTile","path":"objects/EntityTile/EntityTile.yy",},"order":1,},
