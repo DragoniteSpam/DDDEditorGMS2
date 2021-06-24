@@ -23,7 +23,6 @@ editor_color = c_white;
 
 // this is the base class, do not instantiate
 save_script = null;
-load_script = null;
 
 Render = function() {
     var minx = min(self.x1, self.x2);

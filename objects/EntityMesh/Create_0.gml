@@ -1,7 +1,6 @@
 event_inherited();
 
 save_script = serialize_save_entity_mesh;
-load_script = serialize_load_entity_mesh;
 
 name = "Mesh";
 etype = ETypes.ENTITY_MESH;

@@ -1,6 +1,5 @@
 function Component(parent, source) constructor {
     self.save_script = serialize_save_entity_effect_com;
-    self.load_script = serialize_load_entity_effect_com;
     self.parent = parent;
     self.sprite = -1;
     self.label_colour = c_black;
@@ -26,7 +25,6 @@ function Component(parent, source) constructor {
 
 function ComponentPointLight(parent, source) : Component(parent, source) constructor {
     self.save_script = serialize_save_entity_effect_com_point_light;
-    self.load_script = serialize_load_entity_effect_com_point_light;
     self.render = render_effect_light_point;
     self.sprite = spr_light_point;
     self.light_type = LightTypes.POINT;
@@ -57,7 +55,6 @@ function ComponentPointLight(parent, source) : Component(parent, source) constru
 
 function ComponentSpotLight(parent, source) : Component(parent, source) constructor {
     self.save_script = serialize_save_entity_effect_com_spot_light;
-    self.load_script = serialize_load_entity_effect_com_spot_light;
     self.render = render_effect_light_spot;
     self.sprite = spr_light_point;
     self.light_type = LightTypes.SPOT;
@@ -100,7 +97,6 @@ function ComponentSpotLight(parent, source) : Component(parent, source) construc
 
 function ComponentDirectionalLight(parent, source) : Component(parent, source) constructor {
     save_script = serialize_save_entity_effect_com_directional_light;
-    load_script = serialize_load_entity_effect_com_directional_light;
     render = render_effect_light_direction;
     sprite = spr_light_direction;
     light_type = LightTypes.DIRECTIONAL;
@@ -137,7 +133,6 @@ function ComponentDirectionalLight(parent, source) : Component(parent, source) c
 
 function ComponentParticle(parent, source) : Component(parent, source) constructor {
     self.save_script = null;
-    self.load_script = null;
     self.render = null;
     self.sprite = spr_light_direction;
     self.particle_type = ParticleTypes.NONE;
@@ -161,7 +156,6 @@ function ComponentParticle(parent, source) : Component(parent, source) construct
 
 function ComponentAudio(parent, source) : Component(parent, source) constructor {
     self.save_script = null;
-    self.load_script = null;
     self.render = null;
     self.sprite = spr_light_direction;
     self.audio_type = AudioTypes.NONE;

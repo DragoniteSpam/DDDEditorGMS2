@@ -24,7 +24,6 @@ render = null;
 
 // files
 save_script = serialize_save_entity;
-load_script = serialize_load_entity;
 
 // you can have scripts that do both, if you want to have a static thing that
 // sparkles or something

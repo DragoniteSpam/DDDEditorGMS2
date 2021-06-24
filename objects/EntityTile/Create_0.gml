@@ -1,7 +1,6 @@
 event_inherited();
 
 save_script = serialize_save_entity_tile;
-load_script = serialize_load_entity_tile;
 
 name = "Tile";
 etype = ETypes.ENTITY_TILE;

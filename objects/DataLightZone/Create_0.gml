@@ -4,7 +4,7 @@ var map = Stuff.map.active_map;
 var map_contents = map.contents;
 
 save_script = serialize_save_zone_light;
-load_script = serialize_load_zone_light;
+
 zone_edit_script = function(root) {
     var zone = Stuff.map.selected_zone;
     var map = Stuff.map.active_map;

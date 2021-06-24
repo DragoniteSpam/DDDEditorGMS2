@@ -1,7 +1,6 @@
 event_inherited();
 
 save_script = serialize_save_entity_tile_animated;
-load_script = serialize_load_entity_tile_animated;
 
 name = "Animated Tile";
 etype = ETypes.ENTITY_TILE_ANIMATED;
