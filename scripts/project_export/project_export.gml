@@ -31,7 +31,7 @@ function project_export() {
         game_data_save_scripts[GameDataCategories.MESH] = serialize_save_meshes;
         game_data_save_scripts[GameDataCategories.MESH_AUTOTILES] = serialize_save_mesh_autotiles;
         game_data_save_scripts[GameDataCategories.MAP] = serialize_save_maps;
-        game_data_save_scripts[GameDataCategories.GLOBAL] = serialize_save_global_meta;
+        game_data_save_scripts[GameDataCategories.GLOBAL] = project_export_global;
         game_data_save_scripts[GameDataCategories.EVENTS]  = serialize_save_events;
         game_data_save_scripts[GameDataCategories.DATADATA] = serialize_save_datadata;
         game_data_save_scripts[GameDataCategories.DATA_INST] = serialize_save_data_instances;

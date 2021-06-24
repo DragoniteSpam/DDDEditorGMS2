@@ -1006,6 +1006,7 @@
     {"id":{"name":"FDefaultBoldItalic","path":"fonts/FDefaultBoldItalic/FDefaultBoldItalic.yy",},"order":3,},
     {"id":{"name":"FConsolas","path":"fonts/FConsolas/FConsolas.yy",},"order":4,},
     {"id":{"name":"FConsolasBold","path":"fonts/FConsolasBold/FConsolasBold.yy",},"order":5,},
+    {"id":{"name":"Group_Export_Main","path":"scripts/Group_Export_Main/Group_Export_Main.yy",},"order":0,},
     {"id":{"name":"FConsolasItalic","path":"fonts/FConsolasItalic/FConsolasItalic.yy",},"order":6,},
     {"id":{"name":"FConsolasBoldItalic","path":"fonts/FConsolasBoldItalic/FConsolasBoldItalic.yy",},"order":7,},
     {"id":{"name":"FComicSans","path":"fonts/FComicSans/FComicSans.yy",},"order":8,},
@@ -1283,6 +1284,7 @@
     {"folderPath":"folders/Game data/Entities.yy","order":17,"resourceVersion":"1.0","name":"Entities","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Editor/Modes.yy","order":3,"resourceVersion":"1.0","name":"Modes","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Editor/Modes/Terrain.yy","order":1,"resourceVersion":"1.0","name":"Terrain","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Serialization/project/export.yy","order":3,"resourceVersion":"1.0","name":"export","tags":[],"resourceType":"GMFolder",},
   ],
   "AudioGroups": [
     {"targets":-1,"resourceVersion":"1.3","name":"audiogroup_default","resourceType":"GMAudioGroup",},
