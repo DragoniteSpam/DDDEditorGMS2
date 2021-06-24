@@ -231,7 +231,7 @@ function selection_all_type(list) {
                 // check each ancestor of Thing, and see if it is a common ancestor for
                 // the current latest common ancestor
                 while (object_type) {
-                    if (instanceof_object(latest_common_ancestor, object_type)) {
+                    if (latest_common_ancestor == object_type || object_is_ancestor(object_type, latest_common_ancestor)) {
                         latest_common_ancestor = object_type;
                         break;
                     }

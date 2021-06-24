@@ -52,7 +52,6 @@
     {"id":{"name":"Group_Misc","path":"scripts/Group_Misc/Group_Misc.yy",},"order":2,},
     {"id":{"name":"Group_Validation","path":"scripts/Group_Validation/Group_Validation.yy",},"order":18,},
     {"id":{"name":"instanceof_classic","path":"scripts/instanceof_classic/instanceof_classic.yy",},"order":1,},
-    {"id":{"name":"instanceof_object","path":"scripts/instanceof_object/instanceof_object.yy",},"order":2,},
     {"id":{"name":"get_camera_speed","path":"scripts/get_camera_speed/get_camera_speed.yy",},"order":6,},
     {"id":{"name":"editor_mode_text","path":"scripts/editor_mode_text/editor_mode_text.yy",},"order":10,},
     {"id":{"name":"Group_3D","path":"scripts/Group_3D/Group_3D.yy",},"order":7,},
