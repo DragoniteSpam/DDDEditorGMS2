@@ -339,8 +339,10 @@ function ui_init_main(mode) {
             var index = ui_list_selection(list);
             var map = Game.maps[index];
             if (map != Stuff.map.active_map) {
-                selection_clear();
-                load_a_map(map);
+                emu_dialog_confirm(undefined, "Would you like to load the map " + map.name + "? Any unsaved changes will be lost!", function() {
+                    selection_clear();
+                    self.root.map.Load();
+                }).map = map;
             }
         };
         
