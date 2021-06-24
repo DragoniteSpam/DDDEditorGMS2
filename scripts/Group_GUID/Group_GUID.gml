@@ -15,9 +15,8 @@ function guid_get(value) {
     return Identifiers.guids[$ value];
 }
 
-function guid_set(data, addition, force) {
+function guid_set(data, addition) {
     if (addition == undefined) addition = data.GUID;
-    if (force == undefined) force = false;
     
     // almost all data is automatically created with a GUID, so remove it
     if (Identifiers.guids[$ data.GUID]) {

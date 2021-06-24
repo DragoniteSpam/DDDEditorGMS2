@@ -18,7 +18,7 @@ function serialize_load_image_tilesets(buffer, version) {
         
         ts.name = name;
         ts.summary = summary;
-        guid_set(ts, guid, true);
+        guid_set(ts, guid);
         internal_name_set(ts, internal_name, false);
         
         ts.hframes = buffer_read(buffer, buffer_u16);
