@@ -38,7 +38,7 @@ function dialog_create_mesh_advanced(root, mesh) {
             switch (filename_ext(fn)) {
                 case ".obj": import_obj(fn, undefined, mesh_data, selection); break;
                 case ".d3d": case ".gmmod": import_d3d(fn, undefined, false, mesh_data, selection); break;
-                case ".smf": import_smf(fn, mesh_data, selection); break;
+                case ".smf": break;
             }
         }
         
@@ -64,7 +64,7 @@ function dialog_create_mesh_advanced(root, mesh) {
             switch (filename_ext(fn)) {
                 case ".obj": import_obj(fn, undefined, mesh_data); break;
                 case ".d3d": case ".gmmod": import_d3d(fn, undefined, false, mesh_data); break;
-                case ".smf": import_smf(fn, mesh_data); break;
+                case ".smf": break;
             }
         }
     }, dg);
@@ -75,7 +75,7 @@ function dialog_create_mesh_advanced(root, mesh) {
             switch (filename_ext(fn)) {
                 case ".obj": import_obj(fn, true, false, thing.root.mesh); break;
                 case ".d3d": case ".gmmod": import_d3d(fn, true, false, thing.root.mesh); break;
-                case ".smf": import_smf(fn);
+                case ".smf": break;
             }
         }
     };

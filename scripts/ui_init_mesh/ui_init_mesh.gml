@@ -204,7 +204,7 @@ function ui_init_mesh(mode) {
                 switch (filename_ext(fn)) {
                     case ".obj": import_obj(fn, undefined); break;
                     case ".d3d": case ".gmmod": import_d3d(fn, undefined); break;
-                    case ".smf": import_smf(fn); break;
+                    case ".smf": break;
                     case ".qma": import_qma(fn); break;
                     case ".dae": import_dae(fn); break;
                 }
@@ -218,7 +218,7 @@ function ui_init_mesh(mode) {
                 switch (filename_ext(fn)) {
                     case ".obj": import_obj(fn, true); break;
                     case ".d3d": case ".gmmod": import_d3d(fn, true); break;
-                    case ".smf": import_smf(fn);
+                    case ".smf": break;
                     case ".png": case ".bmp": case ".jpg": case ".jpeg": import_texture(fn); break;
                 }
             }
@@ -363,7 +363,6 @@ function ui_init_mesh(mode) {
                         }
                         break;
                     case MeshTypes.SMF:
-                        export_smf(name, mesh);
                         break;
                 }
             }

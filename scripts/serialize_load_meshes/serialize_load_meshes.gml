@@ -59,7 +59,6 @@ function serialize_load_meshes(buffer, version) {
         }
         
         mesh.asset_flags = asset_flags;
-        
         mesh.tex_base = buffer_read(buffer, buffer_datatype);
         mesh.tex_ambient = buffer_read(buffer, buffer_datatype);
         mesh.tex_specular_color = buffer_read(buffer, buffer_datatype);
@@ -72,7 +71,7 @@ function serialize_load_meshes(buffer, version) {
         
         switch (mesh.type) {
             case MeshTypes.RAW: serialize_load_mesh_raw(mesh); break;
-            case MeshTypes.SMF: serialize_load_mesh_smf(mesh); break;
+            case MeshTypes.SMF: break;
         }
         
         array_push(Game.meshes, mesh);

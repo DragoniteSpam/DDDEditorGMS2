@@ -4,7 +4,7 @@ function render_mesh(entity) {
     if (mesh && entity.GetVertexBuffer()) {
         switch (mesh.type) {
             case MeshTypes.RAW: render_mesh_raw(entity); break;
-            case MeshTypes.SMF: render_mesh_smf(entity); break;
+            case MeshTypes.SMF: break;
         }
     } else {
         render_mesh_missing(entity);

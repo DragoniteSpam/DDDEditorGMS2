@@ -174,7 +174,7 @@ function MeshSubmesh(source) constructor {
             switch (filename_ext(self.path)) {
                 case ".obj": import_obj(self.path, undefined, self.owner, index); break;
                 case ".d3d": case ".gmmod": import_d3d(self.path, undefined, false, self.owner, index); break;
-                case ".smf": import_smf(self.path, self.owner, index); break;
+                case ".smf": break;
             }
         }
     };
