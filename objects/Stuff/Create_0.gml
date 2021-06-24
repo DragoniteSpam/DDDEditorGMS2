@@ -335,62 +335,81 @@ enum DataTypes {
     FLOAT,              // input
     STRING,             // input
     BOOL,               // checkbox
+    
     DATA,               // list
     CODE,               // opens in text editor
     COLOR,              // color picker
     MESH,               // list
     IMG_TEXTURE,        // list
+    
     TILE,               
     IMG_TILE_ANIMATION, // list
     AUDIO_BGM,          // list
     AUDIO_SE,           // list
     ANIMATION,          // list
+    
     ENTITY,             // list (refid)
     MAP,                // list
     IMG_BATTLER,        // list
     IMG_OVERWORLD,      // list
     IMG_PARTICLE,       // list
+    
     IMG_UI,             // list
     IMG_ETC,            // list
     EVENT,              // list
     IMG_SKYBOX,         // list
     MESH_AUTOTILE,      // list
+    
     ASSET_FLAG,         // button (-> bitfield)
     _COUNT
 }
 
-data_type_default_values = [
-    0,
-    NULL,
-    0,
-    "",
-    false,
-    NULL,
-    "",
-    c_black,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    0,
+var data_type_class = function(id, name, default_value, buffer_type) constructor {
+    self.id = id;
+    self.name = name;
+    self.default_value = default_value;
+    self.buffer_type = buffer_type;
+}
+
+data_type_meta = [
+    new data_type_class(00, "Integer",          0,          buffer_s32),
+    new data_type_class(01, "Enum",             NULL,       buffer_datatype),
+    new data_type_class(02, "Float",            0,          buffer_f32),
+    new data_type_class(03, "String",           "",         buffer_string),
+    new data_type_class(04, "Boolean",          false,      buffer_u8),
+    
+    new data_type_class(05, "Data",             NULL,       buffer_datatype),
+    new data_type_class(06, "Code",             "",         buffer_string),
+    new data_type_class(07, "Color",            0x000000,   buffer_u32),
+    new data_type_class(08, "Mesh",             NULL,       buffer_datatype),
+    new data_type_class(09, "Image: Texture",   NULL,       buffer_datatype),
+    
+    new data_type_class(10, "Tile",             NULL,       buffer_datatype),
+    new data_type_class(11, "Image: Autotile",  NULL,       buffer_datatype),
+    new data_type_class(12, "Audio: BGM",       NULL,       buffer_datatype),
+    new data_type_class(13, "Audio: SE",        NULL,       buffer_datatype),
+    new data_type_class(14, "Animation",        NULL,       buffer_datatype),
+    
+    new data_type_class(15, "Entity",           NULL,       buffer_datatype),
+    new data_type_class(16, "Map",              NULL,       buffer_datatype),
+    new data_type_class(17, "Image: Battler",   NULL,       buffer_datatype),
+    new data_type_class(18, "Image: Overworld", NULL,       buffer_datatype),
+    new data_type_class(19, "Image: Particle",  NULL,       buffer_datatype),
+    
+    new data_type_class(20, "Image: UI",        NULL,       buffer_datatype),
+    new data_type_class(21, "Image: Misc",      NULL,       buffer_datatype),
+    new data_type_class(22, "Event",            NULL,       buffer_datatype),
+    new data_type_class(23, "Image: SKybox",    NULL,       buffer_datatype),
+    new data_type_class(24, "Mesh Autotile",    NULL,       buffer_datatype),
+    
+    new data_type_class(25, "Asset Flag",       0,          buffer_flag),
 ];
 
 /*
  * if you want to add a new data type, you need to:
  *  0. add it to the list here
+ *           - type enum
+ *           - default value
  *  1. add it to the following enums, if it's a serialized field:
  *           - SerializeThings
  *           - GameDataCategories

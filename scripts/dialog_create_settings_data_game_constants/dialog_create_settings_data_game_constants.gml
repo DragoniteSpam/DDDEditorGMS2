@@ -290,7 +290,7 @@ function dialog_create_settings_data_game_constants(root) {
         if (selection + 1) {
             var what = Game.vars.constants[selection];
             what.type = option.value;
-            what.value = Stuff.data_type_default_values[option.value];
+            what.value = Stuff.data_type_meta[option.value].default_value;
             option.root.root.function_activate(option.root.root, what);
         }
     }, 0, dg);
