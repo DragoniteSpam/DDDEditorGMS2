@@ -244,24 +244,3 @@ function vertex_buffer_to_wireframe(vbuffer) {
     
     return wbuffer;
 }
-
-function vertex_create_buffer_from_buffer_legacy(buffer) {
-    var vbuff = vertex_create_buffer();
-    vertex_begin(vbuff, Stuff.graphics.vertex_format);
-    repeat (buffer_get_size(buffer) div 40) {
-        var xx = buffer_read(buffer, buffer_f32);
-        var yy = buffer_read(buffer, buffer_f32);
-        var zz = buffer_read(buffer, buffer_f32);
-        var nx = buffer_read(buffer, buffer_f32);
-        var ny = buffer_read(buffer, buffer_f32);
-        var nz = buffer_read(buffer, buffer_f32);
-        var xtex = buffer_read(buffer, buffer_f32);
-        var ytex = buffer_read(buffer, buffer_f32);
-        var c = buffer_read(buffer, buffer_u32);
-        buffer_read(buffer, buffer_u32);
-        vertex_point_complete(vbuff, xx, yy, zz, nx, ny, nz, xtex, ytex, c & 0xffffff, (c >> 24) / 255);
-    }
-    buffer_seek(buffer, buffer_seek_start, 0);
-    vertex_end(vbuff);
-    return vbuff;
-}
