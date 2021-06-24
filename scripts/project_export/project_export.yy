@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "binary",
-    "path": "folders/Serialization/binary.yy",
+    "name": "project",
+    "path": "folders/Serialization/project.yy",
   },
   "resourceVersion": "1.0",
-  "name": "serialize_save_data",
+  "name": "project_export",
   "tags": [],
   "resourceType": "GMScript",
 }
