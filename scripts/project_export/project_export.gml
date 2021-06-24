@@ -10,6 +10,13 @@ function project_export() {
     }
     
     static fn_export = function() {
+        static write_header = function(buffer) {
+            buffer_write(buffer, buffer_u8, $44);
+            buffer_write(buffer, buffer_u8, $44);
+            buffer_write(buffer, buffer_u8, $44);
+            buffer_write(buffer, buffer_u32, DataVersions._CURRENT - 1);
+        }
+        
         var fn = get_save_filename_dddd(Stuff.save_name);
         
         if (string_length(fn) > 0) {
@@ -19,7 +26,7 @@ function project_export() {
             for (var i = 0; i < array_length(Game.meta.export.files); i++) {
                 var file_data = Game.meta.export.files[i];
                 var buffer = buffer_create(1024, buffer_grow, 1);
-                serialize_save_header(buffer, file_data, (i == 0));
+                write_header(buffer);
                 
                 // the default file should have a list of all of the other files
                 if (i == 0) {
