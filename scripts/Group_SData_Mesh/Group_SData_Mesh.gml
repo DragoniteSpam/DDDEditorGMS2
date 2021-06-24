@@ -52,7 +52,7 @@ function DataMesh(source) : SData(source) constructor {
         self.zmax = source.zmax;
         
         for (var i = 0; i < array_length(source.submeshes); i++) {
-            array_push(self.submeshes, new MeshSubmesh(source.submeshes[i]));
+            self.AddSubmesh(new MeshSubmesh(source.submeshes[i]), source.submeshes[i].proto_guid);
         }
     }
     
