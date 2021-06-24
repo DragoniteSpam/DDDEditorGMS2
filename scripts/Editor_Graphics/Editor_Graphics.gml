@@ -4,15 +4,15 @@ function EditorGraphics() constructor {
         gpu_set_alphatestref(20);
         gpu_set_tex_repeat(true);
         
-        self.vertex_format_begin();
+        vertex_format_begin();
         self.format_size = 0;
-        self.vertex_format_add_position_3d();
+        vertex_format_add_position_3d();
         self.format_size = self.format_size + 12;
-        self.vertex_format_add_normal();
+        vertex_format_add_normal();
         self.format_size = self.format_size + 12;
-        self.vertex_format_add_texcoord();
+        vertex_format_add_texcoord();
         self.format_size = self.format_size + 8;
-        self.vertex_format_add_colour();
+        vertex_format_add_colour();
         self.format_size = self.format_size + 4;
         self.vertex_format = self.vertex_format_end();
         
