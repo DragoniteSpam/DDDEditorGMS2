@@ -21,7 +21,7 @@ function SData(source) constructor {
     static ExportBase = function(buffer) {
         buffer_write(buffer, buffer_string, self.name);
         buffer_write(buffer, buffer_string, self.internal_name);
-        buffer_write(buffer, buffer_datatype, self.summary);
+        buffer_write(buffer, buffer_datatype, self.GUID);
         buffer_write(buffer, buffer_flag, self.flags);
     };
     
