@@ -20,15 +20,6 @@ function setting_project_add(filename, id) {
     buffer_write_file(json_stringify(Stuff.all_projects), "projects.json");
 }
 
-function setting_project_create_local(projname, filename, buffer) {
-    var auto_folder = PATH_PROJECTS + projname + "/";
-    if (!directory_exists(auto_folder)) {
-        directory_create(auto_folder);
-    }
-    
-    buffer_save_ext(buffer, auto_folder + filename, 0, buffer_get_size(buffer));
-}
-
 #macro Settings global.__settings
 Settings = { };
 
