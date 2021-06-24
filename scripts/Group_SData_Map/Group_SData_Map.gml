@@ -202,6 +202,8 @@ function DataMap(source, directory) : SData(source) constructor {
             self.Add(entity, entity.xx, entity.yy, entity.zz);
         }
         #endregion
+        
+        graphics_create_grids();
     };
     
     static SaveAsset = function(directory) {
