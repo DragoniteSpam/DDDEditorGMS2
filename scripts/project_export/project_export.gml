@@ -35,7 +35,7 @@ function project_export() {
                         var asset_file = Game.meta.export.files[j];
                         var bools = pack(asset_file.critical);
                         buffer_write(buffer, buffer_string, asset_file.name);
-                        buffer_write(buffer, buffer_u32, bools);
+                        buffer_write(buffer, buffer_field, bools);
                     }
                 }
                 
@@ -55,7 +55,7 @@ function project_export() {
                 // okay now you can *actually* write out the addresses of all the things
                 // there's no need to save the size here because it reads until the EOF
                 for (var j = 0; j < array_length(contents); j++) {
-                    var addr = Stuff.game_data_save_scripts[contents[j]](buffer);
+                    Stuff.game_data_save_scripts[contents[j]](buffer);
                 }
                 
                 buffer_write(buffer, buffer_u32, SerializeThings.END_OF_FILE);
@@ -74,10 +74,9 @@ function project_export() {
             }
         }
         
-        #macro LAST_SAFE_VERSION DataVersions.MESH_TEXTURE_SCALE
+        #macro LAST_SAFE_VERSION DataVersions.V2
         enum DataVersions {
-            MESH_TEXTURE_SCALE                  = 125, /* 18 may 2021 */
-            NO_EDITOR_DATA                      = 126, /* 29 may 2021 */
+            V2                                  = 200, /* 24 jun 2021 */
             _CURRENT /* = whatever the last one is + 1 */
         }
     };
