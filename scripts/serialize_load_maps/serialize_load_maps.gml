@@ -4,6 +4,7 @@ function serialize_load_maps(buffer, version) {
     
     repeat (n_maps) {
         var map = new DataMap();
+        map.legacy_format = true;
         array_push(Game.maps, map);
         serialize_load_generic(buffer, map, version);
         

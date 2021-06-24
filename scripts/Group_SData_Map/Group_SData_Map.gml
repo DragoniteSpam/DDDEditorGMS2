@@ -9,6 +9,8 @@ function DataMap(source, directory) : SData(source) constructor {
     self.cspreview = undefined;
     self.cpreview = undefined;
     
+    self.legacy_format = false;
+    
     self.on_grid = true;
     self.xx = 64;
     self.yy = 64;
@@ -164,8 +166,14 @@ function DataMap(source, directory) : SData(source) constructor {
     };
     
     static Load = function() {
+        if (self.legacy_format) {
+            load_a_map(self);
+            return;
+        }
+        
         if (Stuff.map.active_map) Stuff.map.active_map.Close();
         Stuff.map.active_map = self;
+        
         self.contents = new MapContents(self);
         var directory = self.directory + "/" + string_replace(self.GUID, ":", "_") + "/";
         
