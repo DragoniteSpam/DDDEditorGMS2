@@ -77,5 +77,5 @@ function ui_render_surface_render_mesh_collision(surface, x1, y1, x2, y2) {
     camera_apply(camera);
     gpu_set_state(original_state);
     ds_map_destroy(original_state);
-    transform_reset();
+    matrix_set(matrix_world, matrix_build_identity());
 }

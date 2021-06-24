@@ -28,7 +28,7 @@ function draw_editor_terrain() {
     vertex_submit(Stuff.graphics.skybox_base, pr_trianglelist, sprite_get_texture(Stuff.graphics.default_skybox, 0));
     gpu_set_zwriteenable(true);
     gpu_set_ztestenable(true);
-    transform_reset();
+    matrix_set(matrix_world, matrix_build_identity());
     
     if (view_water) {
         graphics_set_lighting_terrain(shd_water);

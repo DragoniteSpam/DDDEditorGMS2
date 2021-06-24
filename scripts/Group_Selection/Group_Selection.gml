@@ -43,7 +43,7 @@ function SelectionCircle(x, y, z, radius) : Selection(x, y, z) constructor {
             draw_line_width_colour(cx + rw * dcos(angle), cy - rh * dsin(angle), cx + rw * dcos(angle2), cy - rh * dsin(angle2), w, c_red, c_red);
         }
         
-        transform_reset();
+        matrix_set(matrix_world, matrix_build_identity());
     };
     
     static foreach_cell = function(processed, script, params) {

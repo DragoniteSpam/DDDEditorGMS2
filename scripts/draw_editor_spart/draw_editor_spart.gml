@@ -25,7 +25,7 @@ function draw_editor_spart() {
     if (Settings.view.grid) {
         transform_set(0, 0, Stuff.map.edit_z * TILE_DEPTH + 0.5, 0, 0, 0, 1, 1, 1);
         vertex_submit(Stuff.graphics.grid, pr_linelist, -1);
-        transform_reset();
+        matrix_set(matrix_world, matrix_build_identity());
         transform_set(0, 0, 0.5, 0, 0, 0, 1, 1, 1);
         vertex_submit(Stuff.graphics.axes, pr_linelist, -1);
     }

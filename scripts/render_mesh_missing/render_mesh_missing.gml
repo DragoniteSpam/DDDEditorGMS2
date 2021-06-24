@@ -11,7 +11,7 @@ function render_mesh_missing(argument0) {
         vertex_submit(Stuff.graphics.mesh_missing, pr_trianglelist, -1);
     }
 
-    transform_reset();
+    matrix_set(matrix_world, matrix_build_identity());
 
 
 }

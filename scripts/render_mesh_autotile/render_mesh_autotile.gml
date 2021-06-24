@@ -18,5 +18,5 @@ function render_mesh_autotile(mesh_autotile) {
         vertex_submit(wbuffer, pr_linelist, -1);
     }
     
-    transform_reset();
+    matrix_set(matrix_world, matrix_build_identity());
 }

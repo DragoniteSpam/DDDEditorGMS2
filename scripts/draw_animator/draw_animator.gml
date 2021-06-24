@@ -42,6 +42,6 @@ function draw_animator() {
     vertex_submit(Stuff.graphics.grid_centered, pr_linelist, -1);
     vertex_submit(Stuff.graphics.axes_centered, pr_linelist, -1);
     
-    transform_reset();
+    matrix_set(matrix_world, matrix_build_identity());
     shader_reset();
 }

@@ -29,7 +29,7 @@ function draw_editor_3d() {
         gpu_set_ztestenable(false);
         transform_set(x, y, map.is_3d ? z : z2d, 0, 0, 0, 1, 1, 1);
         vertex_submit(Stuff.graphics.skybox_base, pr_trianglelist, sprite_get_texture(skybox.picture, 0));
-        transform_reset();
+        matrix_set(matrix_world, matrix_build_identity());
     }
     
     gpu_set_zwriteenable(true);
@@ -101,7 +101,7 @@ function draw_editor_3d() {
     if (Settings.view.grid) {
         transform_set(0, 0, Stuff.map.edit_z * TILE_DEPTH + 0.5, 0, 0, 0, 1, 1, 1);
         vertex_submit(Stuff.graphics.grid, pr_linelist, -1);
-        transform_reset();
+        matrix_set(matrix_world, matrix_build_identity());
         transform_set(0, 0, 0.5, 0, 0, 0, 1, 1, 1);
         vertex_submit(Stuff.graphics.axes_width, pr_linelist, -1);
     }
@@ -136,7 +136,7 @@ function draw_editor_3d() {
     }
     #endregion
     
-    transform_reset();
+    matrix_set(matrix_world, matrix_build_identity());
     
     #region overlay stuff - draw_camera_controls_overlay exists, but i'd actually rather not use it for this
     gpu_set_ztestenable(false);

@@ -13,7 +13,7 @@ function ui_render_surface_render_mesh_ed(surface, x1, y1, x2, y2) {
     gpu_set_ztestenable(true);
     gpu_set_zwriteenable(true);
     
-    transform_reset();
+    matrix_set(matrix_world, matrix_build_identity());
     if (mode.draw_grid) vertex_submit(Stuff.graphics.mesh_preview_grid, pr_linelist, -1);
     if (mode.draw_axes) vertex_submit(Stuff.graphics.axes_width, pr_linelist, -1);
     
@@ -73,7 +73,7 @@ function ui_render_surface_render_mesh_ed(surface, x1, y1, x2, y2) {
         if (++n > limit) break;
     }
     
-    transform_reset();
+    matrix_set(matrix_world, matrix_build_identity());
     shader_reset();
     gpu_set_ztestenable(false);
     gpu_set_zwriteenable(false);

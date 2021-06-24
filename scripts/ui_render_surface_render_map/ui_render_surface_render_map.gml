@@ -29,7 +29,7 @@ function ui_render_surface_render_map(surface, x1, y1, x2, y2) {
     }
     
     shader_set(shd_ddd);
-    transform_reset();
+    matrix_set(matrix_world, matrix_build_identity());
     
     // @todo tileset update
     if (map.preview) {
@@ -51,7 +51,7 @@ function ui_render_surface_render_map(surface, x1, y1, x2, y2) {
     transform_add((dest_x + 0.5) * TILE_WIDTH, (dest_y + 0.5) * TILE_HEIGHT, dest_z * TILE_DEPTH, 0, 0, 0, 1, 1, 1);
     vertex_submit(Stuff.graphics.basic_cage, pr_trianglelist, -1);
     
-    transform_reset();
+    matrix_set(matrix_world, matrix_build_identity());
     
     camera_set_view_mat(camera, active_view_mat);
     camera_set_proj_mat(camera, active_proj_mat);

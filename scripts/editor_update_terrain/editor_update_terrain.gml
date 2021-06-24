@@ -69,5 +69,5 @@ function editor_update_terrain(mode) {
     //surface_reset_target();
     
     shader_reset();
-    transform_reset();
+    matrix_set(matrix_world, matrix_build_identity());
 }

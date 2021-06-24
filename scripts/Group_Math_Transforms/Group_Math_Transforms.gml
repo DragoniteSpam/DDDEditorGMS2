@@ -6,10 +6,6 @@ function transform_add(x, y, z, xrot, yrot, zrot, xscale, yscale, zscale) {
     return matrix_new;
 }
 
-function transform_reset() {
-    matrix_set(matrix_world, matrix_build_identity());
-}
-
 function transform_set(x, y, z, xrot, yrot, zrot, xscale, yscale, zscale) {
     var matrix = matrix_build(x, y, z, xrot, yrot, zrot, xscale, yscale, zscale);
     matrix_set(matrix_world, matrix);

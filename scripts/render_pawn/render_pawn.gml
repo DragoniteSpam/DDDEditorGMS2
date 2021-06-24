@@ -19,7 +19,7 @@ function render_pawn(argument0) {
 
     transform_set(xx * TILE_WIDTH, yy * TILE_HEIGHT, zz * TILE_DEPTH, 0, 0, 0, 1, 1, 1);
     vertex_submit(data ? data.npc_frames[index] : Stuff.graphics.base_npc, pr_trianglelist, sprite_get_texture(data ? data.picture : spr_pawn_missing, 0));
-    transform_reset();
+    matrix_set(matrix_world, matrix_build_identity());
 
 
 }
