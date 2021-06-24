@@ -12,7 +12,8 @@ function ui_list_select() {
     if (set_index) {
         if (!is_clamped(value, list.index, list.index + list.slots - 1)) {
             // clamp() sorta breaks if the max value is lower than the min value
-            list.index = max(0, min(value, ds_list_size(list.entries) - list.slots));
+            var n = is_array(list.entries) ? array_length(list.entries) :  ds_list_size(list.entries);
+            list.index = max(0, min(value, n - list.slots));
         }
     }
 
