@@ -50,6 +50,27 @@ function DataImage(source) : SData(source) constructor {
         if (sprite_exists(self.picture_with_frames)) sprite_save_strip(self.picture_with_frames, directory + guid + "_strip" + string(self.hframes) + ".png");
     };
     
+    static ExportImage = function(buffer) {
+        self.ExportBase(buffer);
+        buffer_write(buffer, buffer_u16, self.width);
+        buffer_write(buffer, buffer_u16, self.height);
+        buffer_write(buffer, buffer_u16, self.vframes);
+        buffer_write(buffer, buffer_u16, self.hframes);
+        buffer_write(buffer, buffer_u16, self.aframes);
+        buffer_write(buffer, buffer_u16, self.aspeed);
+        buffer_write(buffer, buffer_bool, sprite_exists(self.picture));
+        if (sprite_exists(self.picture)) {
+            buffer_write_sprite(buffer, self.picture);
+        }
+    };
+    
+    static Export = function(buffer) {
+        self.ExportImage(buffer);
+    };
+    
+    // we dont have a SaveJSON here because we're literally just saving the
+    // struct verbatim
+    
     self.baseDestroy = self.Destroy;
     self.Destroy = function() {
         self.baseDestroy();
