@@ -59,6 +59,22 @@ function DataAudio(source) : SData(source) constructor {
         buffer_delete(fbuffer);
     };
     
+    static Export = function(buffer) {
+        self.ExportBase(buffer);
+        buffer_write(buffer, buffer_u8, self.fmod_type);
+        buffer_write(buffer, buffer_u32, self.fmod_rate);
+        buffer_write(buffer, buffer_u32, self.loop_start);
+        buffer_write(buffer, buffer_u32, self.loop_end);
+        buffer_write(buffer, buffer_u32, self.loop_mode);
+        var fbuffer = self.GetBuffer();
+        buffer_write(buffer, buffer_bool, buffer_exists(fbuffer));
+        if (buffer_exists(fbuffer)) {
+            buffer_write(buffer, buffer_u32, buffer_get_size(fbuffer));
+            buffer_write_buffer(buffer, fbuffer);
+            buffer_delete(fbuffer);
+        }
+    };
+    
     static CreateJSONAudio = function() {
         var json = self.CreateJSONBase();
         json.fmod_type = self.fmod_type;
