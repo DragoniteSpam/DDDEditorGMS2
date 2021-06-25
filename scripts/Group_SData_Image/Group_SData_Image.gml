@@ -89,4 +89,21 @@ function DataImageTileset(source) : DataImage(source) constructor {
     if (is_struct(source)) {
         self.flags = source.flags;
     }
+    
+    static ExportTileset = function(buffer) {
+        self.ExportImage(buffer);
+        var w = array_length(self.flags);
+        var h = array_length(self.flags[0]);
+        buffer_write(buffer, buffer_u16, w);
+        buffer_write(buffer, buffer_u16, h);
+        for (var i = 0; i < w; i++) {
+            for (var j = 0; j < h; j++) {
+                buffer_write(buffer, buffer_flag, self.flags[i][j]);
+            }
+        }
+    };
+    
+    static Export = function(buffer) {
+        self.ExportTileset(buffer);
+    };
 };
