@@ -70,38 +70,24 @@ function project_export_language(buffer) {
     buffer_write_address(buffer);
 }
 
-function project_export_animations(buffer) {
-    buffer_write(buffer, buffer_u32, SerializeThings.GLOBAL_METADATA);
+function project_export_standard(buffer, type, list) {
+    buffer_write(buffer, buffer_u32, type);
     buffer_reserve_address(buffer);
-    
-    buffer_write(buffer, buffer_u32, array_length(Game.animations));
-    for (var i = 0; i < array_length(Game.animations); i++) {
-        Game.animations[i].Export(buffer);
+    buffer_write(buffer, buffer_u32, array_length(list));
+    for (var i = 0; i < array_length(list); i++) {
+        list[i].Export(buffer);
     }
-    
     buffer_write_address(buffer);
+}
+
+function project_export_animations(buffer) {
+    project_export_standard(buffer, SerializeThings.ANIMATIONS, Game.animations);
 }
 
 function project_export_events(buffer) {
-    buffer_write(buffer, buffer_u32, SerializeThings.EVENTS);
-    buffer_reserve_address(buffer);
-    
-    buffer_write(buffer, buffer_u32, array_length(Game.events));
-    for (var i = 0; i < array_length(Game.events); i++) {
-        Game.events[i].Export(buffer);
-    }
-    
-    buffer_write_address(buffer);
+    project_export_standard(buffer, SerializeThings.EVENTS, Game.events);
 }
 
 function project_export_meshes(buffer) {
-    buffer_write(buffer, buffer_u32, SerializeThings.MESHES);
-    buffer_reserve_address(buffer);
-    
-    buffer_write(buffer, buffer_u32, array_length(Game.meshes));
-    for (var i = 0; i < array_length(Game.meshes); i++) {
-        Game.meshes[i].Export(buffer);
-    }
-    
-    buffer_write_address(buffer);
+    project_export_standard(buffer, SerializeThings.MESHES, Game.meshes);
 }
