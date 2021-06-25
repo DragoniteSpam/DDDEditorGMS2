@@ -18,6 +18,10 @@ function SDataClass(source) : SData(source) constructor {
         for (var i = 0; i < array_length(self.properties); i++) {
             self.properties[i].Export(buffer);
         }
+        buffer_write(buffer, buffer_u32, array_length(self.instances));
+        for (var i = 0; i < array_length(self.instances); i++) {
+            self.instances[i].Export(buffer);
+        }
     };
     
     static AddProperty = function(property) {
