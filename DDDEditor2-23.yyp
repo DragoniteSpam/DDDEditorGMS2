@@ -216,7 +216,6 @@
     {"id":{"name":"serialize_save_image_ui","path":"scripts/serialize_save_image_ui/serialize_save_image_ui.yy",},"order":16,},
     {"id":{"name":"serialize_save_image_skybox","path":"scripts/serialize_save_image_skybox/serialize_save_image_skybox.yy",},"order":17,},
     {"id":{"name":"serialize_save_image_etc","path":"scripts/serialize_save_image_etc/serialize_save_image_etc.yy",},"order":18,},
-    {"id":{"name":"serialize_save_meshes","path":"scripts/serialize_save_meshes/serialize_save_meshes.yy",},"order":19,},
     {"id":{"name":"serialize_save_generic","path":"scripts/serialize_save_generic/serialize_save_generic.yy",},"order":0,},
     {"id":{"name":"serialize_save_data_instances","path":"scripts/serialize_save_data_instances/serialize_save_data_instances.yy",},"order":1,},
     {"id":{"name":"serialize_save_bgm","path":"scripts/serialize_save_bgm/serialize_save_bgm.yy",},"order":0,},
