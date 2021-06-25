@@ -26,8 +26,8 @@ function project_export() {
         game_data_save_scripts[GameDataCategories.UI] =                         project_export_image_ui;
         game_data_save_scripts[GameDataCategories.SKYBOX] =                     project_export_image_skyboxes;
         game_data_save_scripts[GameDataCategories.MISC] =                       project_export_image_misc;
-        game_data_save_scripts[GameDataCategories.BGM] =                        serialize_save_bgm;
-        game_data_save_scripts[GameDataCategories.SE] =                         serialize_save_se;
+        game_data_save_scripts[GameDataCategories.BGM] =                        project_export_audio_bgm;
+        game_data_save_scripts[GameDataCategories.SE] =                         project_export_audio_se;
         game_data_save_scripts[GameDataCategories.MESH] =                       project_export_meshes;
         game_data_save_scripts[GameDataCategories.MESH_AUTOTILES] =             null;
         game_data_save_scripts[GameDataCategories.MAP] =                        serialize_save_maps;

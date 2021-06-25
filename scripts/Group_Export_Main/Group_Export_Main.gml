@@ -123,3 +123,11 @@ function project_export_image_ui(buffer) {
 function project_export_image_tile_animations(buffer) {
     project_export_standard(buffer, SerializeThings.IMAGE_TILE_ANIMATION, Game.graphics.tile_animations);
 }
+
+function project_export_audio_se(buffer) {
+    project_export_standard(buffer, SerializeThings.AUDIO_SE, Game.audio.se);
+}
+
+function project_export_audio_bgm(buffer) {
+    project_export_standard(buffer, SerializeThings.AUDIO_BGM, Game.audio.bgm);
+}
