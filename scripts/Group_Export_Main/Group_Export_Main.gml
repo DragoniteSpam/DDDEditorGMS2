@@ -81,3 +81,15 @@ function project_export_animations(buffer) {
     
     buffer_write_address(buffer);
 }
+
+function project_export_events(buffer) {
+    buffer_write(buffer, buffer_u32, SerializeThings.EVENTS);
+    buffer_reserve_address(buffer);
+    
+    buffer_write(buffer, buffer_u8, array_length(Game.events));
+    for (var i = 0; i < array_length(Game.events); i++) {
+        Game.events[i].Export(buffer);
+    }
+    
+    buffer_write_address(buffer);
+}

@@ -10,6 +10,14 @@ function DataEvent(source) : SData(source) constructor {
         }
     }
     
+    static Export = function(buffer) {
+        self.ExportBase(buffer);
+        buffer_write(buffer, buffer_u32, array_length(self.nodes));
+        for (var i = 0, n = array_length(self.nodes); i < n; i++) {
+            self.nodes[i].Export(buffer);
+        }
+    };
+    
     static CreateJSONEvent = function() {
         var json = self.CreateJSONBase();
         json.nodes = array_create(array_length(self.nodes));
