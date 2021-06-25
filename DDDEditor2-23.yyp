@@ -207,7 +207,6 @@
     {"id":{"name":"serialize_save_map_contents_meta","path":"scripts/serialize_save_map_contents_meta/serialize_save_map_contents_meta.yy",},"order":3,},
     {"id":{"name":"serialize_save_map_contents_batch","path":"scripts/serialize_save_map_contents_batch/serialize_save_map_contents_batch.yy",},"order":4,},
     {"id":{"name":"serialize_save_image_tile_animations","path":"scripts/serialize_save_image_tile_animations/serialize_save_image_tile_animations.yy",},"order":5,},
-    {"id":{"name":"serialize_save_events","path":"scripts/serialize_save_events/serialize_save_events.yy",},"order":6,},
     {"id":{"name":"serialize_save_datadata","path":"scripts/serialize_save_datadata/serialize_save_datadata.yy",},"order":8,},
     {"id":{"name":"dialog_create_game_data_asset_flags","path":"scripts/dialog_create_game_data_asset_flags/dialog_create_game_data_asset_flags.yy",},"order":23,},
     {"id":{"name":"serialize_save_image_tilesets","path":"scripts/serialize_save_image_tilesets/serialize_save_image_tilesets.yy",},"order":12,},
