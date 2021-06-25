@@ -24,7 +24,6 @@ function data_image_npc_frames(image) {
         vertex_point_complete(vbuffer, 0, 0, TILE_DEPTH,            0, sqrt(2), sqrt(2),    uu, vv,             c_white, 1);
         
         vertex_end(vbuffer);
-        vertex_freeze(vbuffer);
         image.npc_frames[i] = vbuffer;
     }
 }
