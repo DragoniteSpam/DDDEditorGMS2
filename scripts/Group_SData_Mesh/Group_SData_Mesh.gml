@@ -58,7 +58,6 @@ function DataMesh(source) : SData(source) constructor {
     
     self.CopyPropertiesFrom = function(mesh) {
         // cshape is currently NOT copied!
-        
         self.xmin = mesh.xmin;
         self.ymin = mesh.ymin;
         self.zmin = mesh.zmin;
@@ -185,6 +184,36 @@ function DataMesh(source) : SData(source) constructor {
         var guid = string_replace(self.GUID, ":", "_");
         for (var i = 0, n = array_length(self.submeshes); i < n; i++) {
             self.submeshes[i].SaveAsset(directory + guid + "_");
+        }
+    };
+    
+    static Export = function(buffer) {
+        self.ExportBase(buffer);
+        buffer_write(buffer, buffer_u8, self.type);
+        buffer_write(buffer, buffer_datatype, self.tex_base);
+        buffer_write(buffer, buffer_datatype, self.tex_ambient);
+        buffer_write(buffer, buffer_datatype, self.tex_specular_color);
+        buffer_write(buffer, buffer_datatype, self.tex_specular_highlight);
+        buffer_write(buffer, buffer_datatype, self.tex_alpha);
+        buffer_write(buffer, buffer_datatype, self.tex_bump);
+        buffer_write(buffer, buffer_datatype, self.tex_displacement);
+        buffer_write(buffer, buffer_datatype, self.tex_stencil);
+        buffer_write(buffer, buffer_s16, self.xmin);
+        buffer_write(buffer, buffer_s16, self.ymin);
+        buffer_write(buffer, buffer_s16, self.zmin);
+        buffer_write(buffer, buffer_s16, self.xmax);
+        buffer_write(buffer, buffer_s16, self.ymax);
+        buffer_write(buffer, buffer_s16, self.zmax);
+        for (var i = 0; i < array_length(self.asset_flags); i++) {
+            for (var j = 0; j < array_length(self.asset_flags[i]); j++) {
+                for (var k = 0; k < array_length(self.asset_flags[i][j]); k++) {
+                    buffer_write(buffer, buffer_flag, self.asset_flags[i][j][k]);
+                }
+            }
+        }
+        buffer_write(buffer, buffer_u32, array_length(self.submeshes));
+        for (var i = 0; i < array_length(self.submeshes); i++) {
+            self.submeshes[i].Export(buffer);
         }
     };
     
