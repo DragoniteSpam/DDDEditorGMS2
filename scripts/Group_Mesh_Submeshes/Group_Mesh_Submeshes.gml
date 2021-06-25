@@ -41,6 +41,21 @@ function MeshSubmesh(source) constructor {
         if (self.reflect_wrawbuffer) buffer_save(self.reflect_wrawbuffer, directory + proto + ".rwire");
     };
     
+    static Export = function(buffer) {
+        buffer_write(buffer, buffer_string, self.name);
+        buffer_write(buffer, buffer_datatype, self.proto_guid);
+        var existence = ((!!self.buffer) << 2) | (!!self.reflect_buffer);
+        buffer_write(buffer, buffer_u8, existence);
+        if (self.buffer) {
+            buffer_write(buffer, buffer_u32, buffer_get_size(self.buffer));
+            buffer_write_buffer(buffer, self.buffer);
+        }
+        if (self.reflect_buffer) {
+            buffer_write(buffer, buffer_u32, buffer_get_size(self.reflect_buffer));
+            buffer_write_buffer(buffer, self.reflect_buffer);
+        }
+    };
+    
     static CreateJSON = function() {
         return {
             name: self.name,
