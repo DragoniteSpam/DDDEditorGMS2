@@ -11,6 +11,15 @@ function SDataClass(source) : SData(source) constructor {
         NO_LOCALIZE_SUMMARY = 0x040000,
     }
     
+    static Export = function(buffer) {
+        self.ExportBase(buffer);
+        buffer_write(buffer, buffer_u32, self.type);
+        buffer_write(buffer, buffer_u32, array_length(self.properties));
+        for (var i = 0; i < array_length(self.properties); i++) {
+            self.properties[i].Export(buffer);
+        }
+    };
+    
     static AddProperty = function(property) {
         array_push(self.properties, property);
         for (var i = 0, n = array_length(self.instances); i < n; i++) {
@@ -70,6 +79,11 @@ function SDataProperty(name, parent) : SData(name) constructor {
     self.default_int = 0;
     self.default_string = "";
     self.default_code = "";
+    
+    static Export = function(buffer) {
+        // this is literally all the data we actually need in the game
+        buffer_write(buffer, buffer_u32, self.type);
+    }
     
     static Destroy = function() {
         guid_get(self.parent).RemoveProperty(self);
