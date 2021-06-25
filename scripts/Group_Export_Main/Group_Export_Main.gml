@@ -131,3 +131,7 @@ function project_export_audio_se(buffer) {
 function project_export_audio_bgm(buffer) {
     project_export_standard(buffer, SerializeThings.AUDIO_BGM, Game.audio.bgm);
 }
+
+function project_export_data(buffer) {
+    project_export_standard(buffer, SerializeThings.DATADATA, Game.data);
+}
