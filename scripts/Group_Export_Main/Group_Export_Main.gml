@@ -93,3 +93,15 @@ function project_export_events(buffer) {
     
     buffer_write_address(buffer);
 }
+
+function project_export_meshes(buffer) {
+    buffer_write(buffer, buffer_u32, SerializeThings.MESHES);
+    buffer_reserve_address(buffer);
+    
+    buffer_write(buffer, buffer_u8, array_length(Game.meshes));
+    for (var i = 0; i < array_length(Game.meshes); i++) {
+        Game.meshes[i].Export(buffer);
+    }
+    
+    buffer_write_address(buffer);
+}
