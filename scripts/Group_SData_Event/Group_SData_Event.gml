@@ -68,6 +68,61 @@ function DataEventNode(source) : SData(source) constructor {
         self.custom_data = source.custom_data;
     }
     
+    static Export = function(buffer) {
+        self.ExportBase(buffer);
+        buffer_write(buffer, buffer_u16, self.type);
+        buffer_write(buffer, buffer_datatype, self.custom_guid);
+        
+        buffer_write(buffer, buffer_u16, array_length(self.data));
+        for (var i = 0; i < array_length(self.data); i++) {
+            buffer_write(buffer, buffer_string, self.data[i]);
+        }
+        
+        buffer_write(buffer, buffer_u16, array_length(self.outbound));
+        for (var i = 0; i < array_length(self.outbound); i++) {
+            buffer_write(buffer, buffer_datatype, self.outbound[i]);
+        }
+        
+        switch (self.type) {
+                case EventNodeTypes.ENTRYPOINT:
+                case EventNodeTypes.TEXT:
+                case EventNodeTypes.SHOW_CHOICES:
+                    break;
+                case EventNodeTypes.CONDITIONAL:
+                    var list_types = self.custom_data[0];
+                    var list_indices = self.custom_data[1];
+                    var list_comparisons = self.custom_data[2];
+                    var list_values = self.custom_data[3];
+                    var list_code = self.custom_data[4];
+                
+                    buffer_write(buffer, buffer_u8, array_length(list_types));
+                    for (var i = 0; i < array_length(list_types); i++) {
+                        buffer_write(buffer, buffer_u8, list_types[i]);
+                        buffer_write(buffer, buffer_s32, list_indices[i]);
+                        buffer_write(buffer, buffer_u8, list_comparisons[i]);
+                        buffer_write(buffer, buffer_f32, list_values[i]);
+                        buffer_write(buffer, buffer_string, list_code[i]);
+                    }
+                    break;
+                case EventNodeTypes.CUSTOM:
+                default:
+                    buffer_write(buffer, buffer_datatype, self.custom_guid);
+                    // the size of this list should already be known by the custom event node
+                    var custom = guid_get(self.custom_guid);
+                
+                    for (var i = 0; i < array_length(self.custom_data); i++) {
+                        var type = custom.types[i];
+                        var n_custom_data = array_length(self.custom_data[i]);
+                        buffer_write(buffer, buffer_u8, n_custom_data);
+                        for (var j = 0; j < n_custom_data; j++) {
+                            buffer_write(buffer, Stuff.data_type_meta[type[EventNodeCustomData.TYPE]].buffer_type, self.custom_data[i][j]);
+                        }
+                    }
+                    break;
+            }
+        }
+    };
+    
     static CreateJSONEventNode = function() {
         var json = self.CreateJSONBase();
         json.type = self.type;
