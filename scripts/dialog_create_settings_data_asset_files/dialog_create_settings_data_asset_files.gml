@@ -93,6 +93,16 @@ function dialog_create_settings_data_asset_files(dialog) {
             array_delete(Game.meta.export.files, selection, 1);
             button.interactive = (array_length(Game.meta.export.files) > 0x01);
             button.root.el_add.interactive = (array_length(Game.meta.export.files) < 0xff);
+            // any categories that previously lived in this file get set to the
+            // master file; any that live in a succeeding file get shifted down
+            for (var i = 0; i < array_length(Game.meta.export.locations); i++) {
+                if (Game.meta.export.locations[i] == selection) {
+                    Game.meta.export.locations[i] = 0;
+                } else if (Game.meta.export.locations[i] > selection) {
+                    Game.meta.export.locations[i]--;
+                }
+            }
+            list_main.onvaluechange(list_main);
         }
     }, dg);
     el_remove.tooltip = "Delete a data / asset file. You must have at least one. If you remove a data file that is still assigned to be used, anything that would have been saved to it will instead be saved to the one at the top of the list.";
