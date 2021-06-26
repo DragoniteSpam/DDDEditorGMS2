@@ -81,7 +81,7 @@ zone_edit_script = function(root) {
             ui_list_deselect(all_list);
             ui_list_select(all_list, ds_list_find_index(all_list.entries, active_list.entries[active_selection]), true);
         }
-    }, false, dg, zone.active_lights);
+    }, false, dg, zone.lights);
     el_light_list.tooltip = "Directional lights will be shown in green. Point lights will be shown in blue. Effects with no light component (i.e. the light component has been removed) will be shown in red. Duplicate entries will be shown in orange. I recommend giving, at the very least, all of your Light entities unique names. One light will be reserved for the player at all times.";
     el_light_list.render_colors = ui_list_color_effect_components;
     el_light_list.entries_are = ListEntries.REFIDS;
@@ -96,9 +96,9 @@ zone_edit_script = function(root) {
         var active_selection = ui_list_selection(active_list);
         if (active_selection + 1) {
             if (selection + 1) {
-                active_list.entries[| active_selection] = list.entries[| selection];
+                active_list.entries[active_selection] = list.entries[| selection];
             } else {
-                active_list.entries[| active_selection] = 0;
+                active_list.entries[active_selection] = 0;
             }
         }
     }, false, dg);
@@ -139,11 +139,11 @@ editor_color = c_yellow;
 /* s */ name = "LightZone " + name;
 /* s */ ztype = MapZoneTypes.LIGHT;
 
-/* s */ active_lights = array_create(MAX_LIGHTS, NULL);
+/* s */ lights = array_create(MAX_LIGHTS, NULL);
 
 LoadJSONZoneLights = function(source) {
     self.LoadJSONZone(source);
-    self.active_lights = source.lights.data;
+    self.lights = source.lights.data;
 };
 
 LoadJSON = function(source) {
@@ -153,7 +153,7 @@ LoadJSON = function(source) {
 CreateJSONZoneLights = function() {
     var json = self.CreateJSONZone();
     json.lights = {
-        data: self.active_lights,
+        data: self.lights,
     };
     return json;
 };

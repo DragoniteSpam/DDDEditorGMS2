@@ -88,10 +88,10 @@ function serialize_save_map_contents_meta(buffer) {
     }
     #endregion
     
-    var n_lights = array_length(map_contents.active_lights);
+    var n_lights = array_length(map.lights);
     buffer_write(buffer, buffer_u16, n_lights);
     for (var i = 0; i < n_lights; i++) {
-        buffer_write(buffer, buffer_datatype, map_contents.active_lights[i]);
+        buffer_write(buffer, buffer_datatype, map.lights[i]);
     }
     
     buffer_poke(buffer, addr_skip, buffer_u64, buffer_tell(buffer));

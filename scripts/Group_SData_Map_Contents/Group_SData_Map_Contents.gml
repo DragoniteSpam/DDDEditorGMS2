@@ -25,8 +25,6 @@ function MapContents(parent) constructor {
     self.population = [0, 0, 0, 0, 0, 0, 0];
     self.population_static = 0;
     
-    self.active_lights = array_create(MAX_LIGHTS, NULL);
-    
     static ClearFrozenData = function() {
         if (self.frozen) vertex_delete_buffer(self.frozen);
         if (self.frozen_wire) vertex_delete_buffer(self.frozen_wire);

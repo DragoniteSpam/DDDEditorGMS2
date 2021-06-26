@@ -5,9 +5,9 @@ Stuff.map.active_map.contents.population[ETypes.ENTITY_EFFECT]--;
 var map = Stuff.map.active_map;
 var map_contents = map.contents;
 
-var light_index = array_search(map_contents.active_lights, REFID);
+var light_index = array_search(map.lights, REFID);
 if (light_index != -1) {
-    map_contents.active_lights[@ light_index] = NULL;
+    map.lights[@ light_index] = NULL;
 }
 
 cobject_x_axis.Destroy();
