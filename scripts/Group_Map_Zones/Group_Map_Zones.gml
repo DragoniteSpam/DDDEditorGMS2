@@ -1,5 +1,5 @@
-function MapZone(name, x1, y1, z1, x2, y2, z2) constructor {
-    self.name = name;
+function MapZone(source, x1, y1, z1, x2, y2, z2) constructor {
+    self.name = "";
     self.ztype = -1;
     self.zone_priority = 100;
     self.x1 = x1;
@@ -71,20 +71,6 @@ function MapZone(name, x1, y1, z1, x2, y2, z2) constructor {
         shader_reset();
     };
     
-    static LoadJSONZone = function(source) {
-        self.x1 = source.bounds.x1;
-        self.y1 = source.bounds.y1;
-        self.z1 = source.bounds.z1;
-        self.x2 = source.bounds.x2;
-        self.y2 = source.bounds.y2;
-        self.z2 = source.bounds.z2;
-        self.zone_priority = source.bounds.priority;
-    };
-    
-    static LoadJSON = function(source) {
-        self.LoadJSONZone(source);
-    };
-    
     static CreateJSONZone = function() {
         return {
             bounds: {
@@ -114,9 +100,19 @@ function MapZone(name, x1, y1, z1, x2, y2, z2) constructor {
         var map_contents = Stuff.map.active_map.contents;
         array_delete(map_contents.all_zones, array_search(map_contents.all_zones, self), 1);
     };
+    
+    if (is_struct(source)) {
+        self.x1 = source.bounds.x1;
+        self.y1 = source.bounds.y1;
+        self.z1 = source.bounds.z1;
+        self.x2 = source.bounds.x2;
+        self.y2 = source.bounds.y2;
+        self.z2 = source.bounds.z2;
+        self.zone_priority = source.bounds.priority;
+    }
 }
 
-function MapZoneCamera(name, x1, y1, z1, x2, y2, z2) : MapZone(name, x1, y1, z1, x2, y2, z2) constructor {
+function MapZoneCamera(source, x1, y1, z1, x2, y2, z2) : MapZone(source, x1, y1, z1, x2, y2, z2) constructor {
     self.editor_color = c_blue;
     self.ztype = MapZoneTypes.CAMERA;
     
@@ -266,18 +262,6 @@ function MapZoneCamera(name, x1, y1, z1, x2, y2, z2) : MapZone(name, x1, y1, z1,
         return dg;
     };
     
-    static LoadJSONZoneCamera = function(source) {
-        self.LoadJSONZone(source);
-        self.camera_distance = source.camera.distance;
-        self.camera_angle = source.camera.angle;
-        self.camera_easing_method = source.camera.easing;
-        self.camera_easing_time = source.camera.time;
-    };
-    
-    static LoadJSON = function(source) {
-        self.LoadJSONZoneCamera(source);
-    };
-    
     static CreateJSONZoneCamera = function() {
         var json = self.CreateJSONZone();
         json.camera = {
@@ -292,9 +276,16 @@ function MapZoneCamera(name, x1, y1, z1, x2, y2, z2) : MapZone(name, x1, y1, z1,
     static CreateJSON = function() {
         return self.CreateJSONZoneCamera();
     };
+    
+    if (is_struct(source)) {
+        self.camera_distance = source.camera.distance;
+        self.camera_angle = source.camera.angle;
+        self.camera_easing_method = source.camera.easing;
+        self.camera_easing_time = source.camera.time;
+    }
 }
 
-function MapZoneFlag(name, x1, y1, z1, x2, y2, z2) : MapZone(name, x1, y1, z1, x2, y2, z2) constructor {
+function MapZoneFlag(source, x1, y1, z1, x2, y2, z2) : MapZone(source, x1, y1, z1, x2, y2, z2) constructor {
     self.editor_color = c_green;
     self.ztype = MapZoneTypes.FLAG;
     
@@ -443,14 +434,6 @@ function MapZoneFlag(name, x1, y1, z1, x2, y2, z2) : MapZone(name, x1, y1, z1, x
         return dg;
     };
     
-    static LoadJSONZoneFlags = function(source) {
-        self.LoadJSONZone(source);
-    };
-    
-    static LoadJSON = function(source) {
-        self.LoadJSONZoneFlags(source);
-    };
-    
     static CreateJSONZoneFlags = function() {
         var json = self.CreateJSONZone();
         json.flags = {
@@ -462,9 +445,13 @@ function MapZoneFlag(name, x1, y1, z1, x2, y2, z2) : MapZone(name, x1, y1, z1, x
     static CreateJSON = function() {
         return self.CreateJSONZoneFlags();
     };
+    
+    if (is_struct(source)) {
+        self.zone_flags = source.flags.flag;
+    }
 }
 
-function MapZoneLight(name, x1, y1, z1, x2, y2, z2) : MapZone(name, x1, y1, z1, x2, y2, z2) constructor {
+function MapZoneLight(source, x1, y1, z1, x2, y2, z2) : MapZone(source, x1, y1, z1, x2, y2, z2) constructor {
     self.editor_color = c_yellow;
     self.ztype = MapZoneTypes.LIGHT;
     
@@ -608,15 +595,6 @@ function MapZoneLight(name, x1, y1, z1, x2, y2, z2) : MapZone(name, x1, y1, z1, 
         return dg;
     };
     
-    static LoadJSONZoneLights = function(source) {
-        self.LoadJSONZone(source);
-        self.lights = source.lights.data;
-    };
-    
-    static LoadJSON = function(source) {
-        self.LoadJSONZoneLights(source);
-    };
-    
     static CreateJSONZoneLights = function() {
         var json = self.CreateJSONZone();
         json.lights = {
@@ -628,4 +606,8 @@ function MapZoneLight(name, x1, y1, z1, x2, y2, z2) : MapZone(name, x1, y1, z1, 
     static CreateJSON = function() {
         return self.CreateJSONZoneLights();
     };
+    
+    if (is_struct(source)) {
+        self.lights = source.lights.data;
+    }
 }
