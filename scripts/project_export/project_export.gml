@@ -21,7 +21,7 @@ function project_export() {
         game_data_save_scripts[GameDataCategories.IMAGES] =                     project_export_images;
         game_data_save_scripts[GameDataCategories.AUDIO] =                      project_export_audio;
         game_data_save_scripts[GameDataCategories.MESHES] =                     project_export_meshes;
-        game_data_save_scripts[GameDataCategories.MAPS] =                       serialize_save_maps;
+        game_data_save_scripts[GameDataCategories.MAPS] =                       project_export_maps;
         game_data_save_scripts[GameDataCategories.EVENTS]  =                    project_export_events;
         game_data_save_scripts[GameDataCategories.DATA] =                       project_export_data;
         game_data_save_scripts[GameDataCategories.ANIMATIONS] =                 project_export_animations;

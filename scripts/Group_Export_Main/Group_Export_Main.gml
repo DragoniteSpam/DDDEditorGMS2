@@ -111,3 +111,7 @@ function project_export_audio(buffer) {
 function project_export_data(buffer) {
     project_export_standard(buffer, SerializeThings.DATADATA, Game.data);
 }
+
+function project_export_maps(buffer) {
+    project_export_standard(buffer, SerializeThings.MAPS, Game.maps);
+}
