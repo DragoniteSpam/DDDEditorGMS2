@@ -322,17 +322,18 @@ function EntityEffect() : Entity() constructor {
     };
 }
 
-function EntityMesh() : Entity() constructor {
+function EntityMesh(mesh) : Entity() constructor {
+    self.name = mesh.name;
+    
     save_script = serialize_save_entity_mesh;
 
-    self.name = "Mesh";
     self.etype = ETypes.ENTITY_MESH;
     self.etype_flags = ETypeFlags.ENTITY_MESH;
     
     self.is_static = true;
     
-    self.mesh = NULL;
-    self.mesh_submesh = NULL;                                                   // proto-GUID
+    self.mesh = mesh.GUID;
+    self.mesh_submesh = mesh.first_proto_guid;                                  // proto-GUID
     self.animated = false;
     self.animation_index = 0;
     self.animation_type = 0;                                                    // if smf ever gets re-added, it the loop type would be stored in here
@@ -354,14 +355,21 @@ function EntityMesh() : Entity() constructor {
     static SetStatic = function(state) {
         // Meshes with no mesh are not allowed to be marked as static
         if (!guid_get(mesh)) return false;
-        // SMF meshes are simply not allowed to be marked as static
-        if (guid_get(mesh).type == MeshTypes.SMF) return false;
-        
         if (state != is_static) {
             is_static = state;
             Stuff.map.active_map.contents.population_static = Stuff.map.active_map.contents.population_static + (is_static ? 1 : -1);
         }
     };
+    
+    switch (mesh.type) {
+        case MeshTypes.RAW:
+            break;
+        case MeshTypes.SMF:
+            self.is_static = false;
+            self.batchable = false;
+            self.SetStatic = function(state) { };
+            break;
+    }
     
     static GetBuffer = function() {
         // the lookup for an entity's exact mesh is now somewhat complicated, so this

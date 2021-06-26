@@ -235,7 +235,7 @@ function import_map_tiled_layer_object() {
                         map.Remove(instance);
                         map.Add(instance, (xx + obj_x) div TILE_WIDTH, (yy + obj_y) div TILE_HEIGHT, zz, false, false);
                     } else {
-                        instance = instance_create_mesh(pr_mesh_data);
+                        instance = new EntityMesh(pr_mesh_data);
                         instance.tmx_id = obj_id;
                         map.Add(instance, (xx + obj_x) div TILE_WIDTH, (yy + obj_y) div TILE_HEIGHT, zz);
                     }

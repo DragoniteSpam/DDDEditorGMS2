@@ -135,7 +135,6 @@
     {"id":{"name":"map_zone_collision","path":"scripts/map_zone_collision/map_zone_collision.yy",},"order":6,},
     {"id":{"name":"instance_create_tile","path":"scripts/instance_create_tile/instance_create_tile.yy",},"order":0,},
     {"id":{"name":"instance_create_tile_animated","path":"scripts/instance_create_tile_animated/instance_create_tile_animated.yy",},"order":2,},
-    {"id":{"name":"instance_create_mesh","path":"scripts/instance_create_mesh/instance_create_mesh.yy",},"order":3,},
     {"id":{"name":"instance_create_terrain","path":"scripts/instance_create_terrain/instance_create_terrain.yy",},"order":4,},
     {"id":{"name":"entity_init_collision_tile","path":"scripts/entity_init_collision_tile/entity_init_collision_tile.yy",},"order":0,},
     {"id":{"name":"tileset_create","path":"scripts/tileset_create/tileset_create.yy",},"order":1,},
