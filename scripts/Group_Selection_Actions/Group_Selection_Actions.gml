@@ -195,41 +195,20 @@ function selection_all() {
 }
 
 function selection_all_type(list) {
-    // returns the object index; would use an enum but i like to keep things as
-    // simple as possible on occasion, believe it or not
-    // this is O(n). will not scale as well as i'd like. Use with caution.
-    var latest_common_ancestor = noone;
-    
-    var all_tile = true;
-    var all_tile_auto = true;
-    var all_mesh = true;
-    var all_mesh_autotile = true;
-    var all_pawn = true;
-    var all_effect = true;
+    // returns the ETypeFlag of the entity, if they're all of the same type;
+    // otherwise it returns ETypeFlags.ENTITY_ANY
+    var common_ancestor = ETypeFlags.ENTITY_ANY;
     
     for (var i = 0; i < ds_list_size(list); i++) {
         var thing = list[| i];
-        var object_type = thing.object_index;
         // if latest common ancestor is undefined, define it
-        if (!latest_common_ancestor) {
-            latest_common_ancestor = object_type;
-        } else {
-            // if Thing IS AN instance of the latest common ancestor, you're good
-            if (!instanceof_classic(thing, latest_common_ancestor)) {
-                // check each ancestor of Thing, and see if it is a common ancestor for
-                // the current latest common ancestor
-                while (object_type) {
-                    if (latest_common_ancestor == object_type || object_is_ancestor(object_type, latest_common_ancestor)) {
-                        latest_common_ancestor = object_type;
-                        break;
-                    }
-                    object_type = object_get_parent(object_type);
-                }
-            }
+        common_ancestor &= thing.mask;
+        if (thing.mask == ETypeFlags.ENTITY) {
+            return ETypeFlags.ENTITY_ANY;
         }
     }
     
-    return latest_common_ancestor;
+    return common_ancestor;
 }
 
 function selection_clear() {

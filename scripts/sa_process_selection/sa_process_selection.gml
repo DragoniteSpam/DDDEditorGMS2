@@ -147,13 +147,13 @@ function sa_process_selection() {
         Stuff.map.ui.element_entity_type.text = "Type: " + object_get_name(type) + suffix;
         
         switch (type) {
-            case EntityTile:
+            case ETypeFlags.ENTITY_TILE:
                 break;
-            case EntityMeshAutotile:
+            case ETypeFlags.ENTITY_MESH_AUTO:
                 // only allow this for individual entities
                 Stuff.map.ui.element_entity_mesh_autotile_data.interactive = true;
                 // fallthrough
-            case EntityMesh:
+            case ETypeFlags.ENTITY_MESH:
                 Stuff.map.ui.element_entity_mesh_animated.value = 2;
                 Stuff.map.ui.element_entity_mesh_animated.interactive = true;
                 ui_list_deselect(Stuff.map.ui.element_entity_mesh_list);
@@ -198,7 +198,7 @@ function sa_process_selection() {
                     }
                 }
                 break;
-            case EntityPawn:
+            case ETypeFlags.ENTITY_PAWN:
                 Stuff.map.ui.element_entity_pawn_frame.value = "0";
                 Stuff.map.ui.element_entity_pawn_direction.value = 0;
                 Stuff.map.ui.element_entity_pawn_animating.value = 2;
@@ -209,7 +209,7 @@ function sa_process_selection() {
                 Stuff.map.ui.element_entity_pawn_animating.interactive = true;
                 Stuff.map.ui.element_entity_pawn_sprite.interactive = true;
                 break;
-            case EntityEffect:
+            case ETypeFlags.ENTITY_EFFECT:
                 // this could be a bit dangerous if you have more than one effect
                 // selected, i'm not going to stop you
                 Stuff.map.ui.element_effect_com_light.interactive = true;

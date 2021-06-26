@@ -2,8 +2,8 @@ function Entity(source) constructor {
     self.bullet_id = BulletUserIDCollection.Add(self);
     self.name = "Entity";
     self.etype = ETypes.ENTITY;
-    self.ztype = undefined;                                                          // for compatibility with zones, which arent technically entities
-    self.etype_flags = 0;
+    self.etype_flags = ETypeFlags.ENTITY;
+    self.ztype = undefined;                                                     // for compatibility with zones, which arent technically entities
     self.is_component = false;
     
     refid_set(self, refid_generate());

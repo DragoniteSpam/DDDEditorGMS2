@@ -60,28 +60,35 @@ enum ETypes {
     ENTITY_MESH_AUTO,
 }
 
-global.etype_objects = [
-    Entity,
-    EntityTile,
-    EntityTileAnimated,
-    EntityMesh,
-    EntityPawn,
-    EntityEffect,
-    EntityMeshAutotile,
-];
-
 // each type includes the parent objects, which includes Entity for everything and
 // some others for objects that are derived from something else
 enum ETypeFlags {
-    ENTITY_TILE             = 0x002,
+    ENTITY                  = 0x001,
+    ENTITY_TILE             = 0x002 | ETypeFlags.ENTITY,
     ENTITY_TILE_ANIMATED    = 0x004 | ETypeFlags.ENTITY_TILE,
-    ENTITY_MESH             = 0x008,
-    ENTITY_PAWN             = 0x010,
-    ENTITY_EFFECT           = 0x020,
+    ENTITY_MESH             = 0x008 | ETypeFlags.ENTITY,
+    ENTITY_PAWN             = 0x010 | ETypeFlags.ENTITY,
+    ENTITY_EFFECT           = 0x020 | ETypeFlags.ENTITY,
     ENTITY_MESH_AUTO        = 0x040 | ETypeFlags.ENTITY_MESH,
     // every mask
     ENTITY_ANY              = 0xffffffff,
 }
+
+var etype = function(id, constructor, mask) constructor {
+    self.id = id;
+    self.constructor = constructor;
+    self.mask = mask;
+}
+
+global.etype_meta = [
+    new etype(ETypes.ENTITY,                Entity,             0),
+    new etype(ETypes.ENTITY_TILE,           EntityTile,         ETypeFlags.ENTITY_TILE),
+    new etype(ETypes.ENTITY_TILE_ANIMATED,  EntityTileAnimated, ETypeFlags.ENTITY_TILE_ANIMATED),
+    new etype(ETypes.ENTITY_MESH,           EntityMesh,         ETypeFlags.ENTITY_MESH),
+    new etype(ETypes.ENTITY_PAWN,           EntityPawn,         ETypeFlags.ENTITY_PAWN),
+    new etype(ETypes.ENTITY_EFFECT,         EntityEffect,       ETypeFlags.ENTITY_EFFECT),
+    new etype(ETypes.ENTITY_MESH_AUTO,      EntityMeshAutotile, ETypeFlags.ENTITY_MESH_AUTO),
+];
 
 enum Dimensions {
     TWOD,
