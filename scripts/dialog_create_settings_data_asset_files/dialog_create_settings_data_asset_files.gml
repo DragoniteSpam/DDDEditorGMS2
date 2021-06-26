@@ -105,40 +105,15 @@ function dialog_create_settings_data_asset_files(dialog) {
     var el_types = create_list(col2_x, yy, "Contents:", "", ew, eh, 10, function(list) {
         var list_main = list.root.el_list;
         var selection_main = ui_list_selection(list_main);
-        if (selection_main + 1) {
-            var file_data = Game.meta.export.files[selection_main];
-            for (var i = 0; i < array_length(Game.meta.export.files); i++) {
-                // the first three types will always be in the main data file, and will never be moved
-                if (i < 3) {
-                    if (selection_main == 0) {
-                        ui_list_select(list, i);
-                    } else {
-                        ds_map_delete(list.selected_entries, i);
-                    }
-                    continue;
-                }
-                // otherwise, if a thing is selected, assign it
-                if (ui_list_is_selected(list, i)) {
-                    Game.meta.export.locations[i] = file_data;
-                }
-            }
+        var selection = ui_list_selection(list);
+        if (selection_main + 1 && selection + 1) {
+            Game.meta.export.locations[selection] = Game.meta.export.files[selection_main];
         }
-    }, false, dg);
-    
-    create_list_entries(el_types,
-        ["Game Data", c_gray],
-        ["Animations", c_black],
-        ["Data: Events", c_black],
-        ["Maps", c_black],
-        ["Terrain", c_black],
-        ["Images", c_black],
-        ["Audio", c_black],
-        ["Meshes", c_black],
-        ["Language Text", c_black],
-    );
+    }, false, dg, ["Game Data", "Animations", "Data: Events", "Maps", "Terrain", "Images", "Audio", "Meshes", "Language Text"]);
     
     el_types.tooltip = "This is the list of all the types of stuff you can sort into different files. I recommend putting each of the audio / visual resources (colorized) into their own files, especially if you use source control, so that changing one doesn't cause the entire wad of data to have to be updated. The main game data must be in the master data file, since other things may depend on their existence.";
     el_types.auto_multi_select = true;
+    el_types.allow_deselect = false;
     el_types.interactive = false;
     dg.el_types = el_types;
     yy += ui_get_list_height(el_types) + spacing;
