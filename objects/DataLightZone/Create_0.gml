@@ -3,7 +3,13 @@ event_inherited();
 var map = Stuff.map.active_map;
 var map_contents = map.contents;
 
-save_script = serialize_save_zone_light;
+Export = function(buffer) {
+    self.ExportBase(buffer);
+    buffer_write(buffer, buffer_u8, array_length(zone.lights));
+    for (var i = 0; i < array_length(zone.lights); i++) {
+        buffer_write(buffer, buffer_datatype, zone.lights[i]);
+    }
+};
 
 zone_edit_script = function(root) {
     var zone = Stuff.map.selected_zone;

@@ -22,7 +22,21 @@ cshape = noone;
 editor_color = c_white;
 
 // this is the base class, do not instantiate
-save_script = null;
+ExportBase = function(buffer) {
+    buffer_write(buffer, buffer_string, self.ztype);
+    buffer_write(buffer, buffer_string, self.name);
+    buffer_write(buffer, buffer_f32, self.x1);
+    buffer_write(buffer, buffer_f32, self.y1);
+    buffer_write(buffer, buffer_f32, self.z1);
+    buffer_write(buffer, buffer_f32, self.x2);
+    buffer_write(buffer, buffer_f32, self.y2);
+    buffer_write(buffer, buffer_f32, self.z2);
+    buffer_write(buffer, buffer_u16, self.zone_priority);
+};
+
+Export = function(buffer) {
+    self.ExportBase(buffer);
+};
 
 Render = function() {
     var minx = min(self.x1, self.x2);

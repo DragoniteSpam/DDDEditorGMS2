@@ -3,7 +3,11 @@ event_inherited();
 var map = Stuff.map.active_map;
 var map_contents = map.contents;
 
-save_script = serialize_save_zone_flag;
+Export = function(buffer) {
+    self.ExportBase(buffer);
+    buffer_write(buffer, buffer_u32, self.zone_flags);
+};
+
 zone_edit_script = function(root) {
     var zone = Stuff.map.selected_zone;
     var map = Stuff.map.active_map;

@@ -3,7 +3,13 @@ event_inherited();
 var map = Stuff.map.active_map;
 var map_contents = map.contents;
 
-save_script = serialize_save_zone_camera;
+Export = function(buffer) {
+    self.ExportBase(buffer);
+    buffer_write(buffer, buffer_u16, self.camera_distance);
+    buffer_write(buffer, buffer_f32, self.camera_angle);
+    buffer_write(buffer, buffer_u8, self.camera_easing_method);
+    buffer_write(buffer, buffer_f32, self.camera_easing_time);
+};
 
 zone_edit_script = function(root) {
     var zone = Stuff.map.selected_zone;

@@ -319,8 +319,7 @@ function DataMap(source, directory) : SData(source) constructor {
             buffer_write(buffer, buffer_u32, ds_list_size(self.contents.all_zones));
             for (var i = 0; i < ds_list_size(self.contents.all_zones); i++) {
                 var zone = self.contents.all_zones[| i];
-                buffer_write(buffer, buffer_u16, zone.ztype);
-                zone.save_script(buffer, zone);
+                zone.Export(buffer);
             }
             #endregion
         } else {
