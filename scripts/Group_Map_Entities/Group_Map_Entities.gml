@@ -616,6 +616,10 @@ function EntityTile() : Entity() constructor {
     
     // other properties
     self.is_static = true;
+    // these things can't *not* be static
+    static SetStatic = function(state) {
+        return false;
+    };
     
     // editor properties
     self.slot = MapCellContents.TILE;
