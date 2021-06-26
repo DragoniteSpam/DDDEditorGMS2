@@ -363,6 +363,7 @@ function EntityMesh(mesh) : Entity() constructor {
     
     switch (mesh.type) {
         case MeshTypes.RAW:
+            self.cobject = c_object_create_cached(mesh.cshape, CollisionMasks.MAIN, CollisionMasks.MAIN);
             break;
         case MeshTypes.SMF:
             self.is_static = false;
