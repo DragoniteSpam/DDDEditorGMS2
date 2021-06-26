@@ -93,13 +93,13 @@ function DataMap(source, directory) : SData(source) constructor {
         if (!is_clamped(x, 0, self.xx - 1) || !is_clamped(y, 0, self.yy - 1) || !is_clamped(z, 0, self.zz - 1)) return false;
         
         var what = self.contents.map_grid[x][y][z][MapCellContents.MESH];
-        var result = (what.etype == ETypes.ENTITY_MESH_AUTO && what.modification != Modifications.REMOVE);
+        var result = (what && what.etype == ETypes.ENTITY_MESH_AUTO && what.modification != Modifications.REMOVE);
         
         if (z < self.zz - 1) {
             // check the cell above you for a tile, because tiles kinda appear to
             // exist on the layer below where they actually are
             what = self.contents.map_grid[x][y][z + 1][MapCellContents.MESH];
-            result = result || (what && what.modification != Modifications.REMOVE);
+            result |= (what && what.etype == ETypes.ENTITY_MESH_AUTO && what.modification != Modifications.REMOVE);
         }
         
         return result;

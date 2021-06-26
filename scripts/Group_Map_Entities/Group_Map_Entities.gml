@@ -315,7 +315,7 @@ function EntityEffect(source) : Entity(source) constructor {
 }
 
 function EntityMesh(source, mesh) : Entity(source) constructor {
-    self.name = mesh.name;
+    self.name = mesh ? mesh.name : self.name;
     
     save_script = serialize_save_entity_mesh;
 
@@ -324,8 +324,8 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
     
     self.is_static = true;
     
-    self.mesh = mesh.GUID;
-    self.mesh_submesh = mesh.first_proto_guid;                                  // proto-GUID
+    self.mesh = mesh ? mesh.GUID : NULL;
+    self.mesh_submesh = mesh ? mesh.first_proto_guid : NULL;                    // proto-GUID
     self.animated = false;
     self.animation_index = 0;
     self.animation_type = 0;                                                    // if smf ever gets re-added, it the loop type would be stored in here
@@ -350,15 +350,17 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
         self.is_static = state;
     };
     
-    switch (mesh.type) {
-        case MeshTypes.RAW:
-            self.cobject = c_object_create_cached(mesh.cshape, CollisionMasks.MAIN, CollisionMasks.MAIN);
-            break;
-        case MeshTypes.SMF:
-            self.is_static = false;
-            self.batchable = false;
-            self.SetStatic = function(state) { };
-            break;
+    if (mesh) {
+        switch (mesh.type) {
+            case MeshTypes.RAW:
+                self.cobject = c_object_create_cached(mesh.cshape, CollisionMasks.MAIN, CollisionMasks.MAIN);
+                break;
+            case MeshTypes.SMF:
+                self.is_static = false;
+                self.batchable = false;
+                self.SetStatic = function(state) { };
+                break;
+        }
     }
     
     static GetBuffer = function() {

@@ -12,7 +12,7 @@ function MapContents(parent) constructor {
     self.refid_current = 0;
     
     // these just needs to exist for now, it'll get resized when stuff is loaded
-    self.map_grid = array_create_4d(parent.xx, parent.yy, parent.zz, MapCellContents._COUNT);
+    self.map_grid = array_create_4d(parent.xx, parent.yy, parent.zz, MapCellContents._COUNT, undefined);
     self.frozen = undefined;                         // everything that will be a single batch in the game
     self.frozen_wire = undefined;                    // the wireframe for the frozen vertex buffer
     self.frozen_data = undefined;                    // the raw data in the frozen vertex buffer
