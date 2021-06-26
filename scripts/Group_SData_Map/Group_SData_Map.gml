@@ -37,6 +37,8 @@ function DataMap(source, directory) : SData(source) constructor {
     
     self.grid_flags = array_create_3d(self.xx, self.yy, self.zz);
     
+    self.lights = array_create(MAX_LIGHTS, NULL);
+    
     self.discovery = 0;                              // index
     self.code = Stuff.default_lua_map;               // code
     self.generic_data = [];                          // similar to that attached to Entities
@@ -289,6 +291,7 @@ function DataMap(source, directory) : SData(source) constructor {
         json.fast_travel_from = self.fast_travel_from;
         json.base_encounter_rate = self.base_encounter_rate;
         json.base_encounter_deviation = self.base_encounter_deviation;
+        json.lights = self.lights;
         json.light_enabled = self.light_enabled;
         json.light_ambient_colour = self.light_ambient_colour;
         json.light_player_enabled = self.light_player_enabled;
@@ -346,5 +349,6 @@ function DataMap(source, directory) : SData(source) constructor {
         self.discovery = source.discovery;
         self.code = source.code;
         self.generic_data = source.generic_data;
+        self.lights = source.lights;
     }
 }
