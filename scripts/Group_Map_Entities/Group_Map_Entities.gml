@@ -356,7 +356,6 @@ function EntityMesh(mesh) : Entity() constructor {
         if (!guid_get(mesh)) return false;
         if (state != is_static) {
             is_static = state;
-            Stuff.map.active_map.contents.population_static = Stuff.map.active_map.contents.population_static + (is_static ? 1 : -1);
         }
     };
     
