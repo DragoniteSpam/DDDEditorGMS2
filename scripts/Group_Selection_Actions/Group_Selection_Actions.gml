@@ -48,7 +48,7 @@ function selected_affected_terrain() {
     for (var i = 0; i < ds_list_size(Stuff.map.active_map.contents.all_entities); i++) {
         var thing = Stuff.map.active_map.contents.all_entities[| i];
         
-        if (!instanceof_classic(thing, EntityMeshAutotile)) continue;
+        if (thing.etype != ETypes.ENTITY_MESH_AUTO) continue;
         
         if (selected_border(thing)) {
             ds_list_add(list, thing);
@@ -59,8 +59,8 @@ function selected_affected_terrain() {
             var neighbor = map.Get(thing.xx, thing.yy, thing.zz + 1);
             var neighbor_mesh = neighbor[@ MapCellContents.MESH];
             var neighbor_tile = neighbor[@ MapCellContents.TILE];
-            if (instanceof_classic(neighbor_mesh, EntityMeshAutotile) && selected_border(neighbor_mesh, mask_mesh_auto) ||
-                    instanceof_classic(neighbor_tile, EntityTile) && selected_border(neighbor_tile, mask_tile)
+            if (neighbor_mesh.etype == ETypes.ENTITY_MESH_AUTO && selected_border(neighbor_mesh, mask_mesh_auto) ||
+                    neighbor_tile.etype == ETypes.ENTITY_MESH_AUTO && selected_border(neighbor_tile, mask_tile)
                 ) {
                 ds_list_add(list, thing);
             }
@@ -71,8 +71,8 @@ function selected_affected_terrain() {
             var neighbor = map.Get(thing.xx, thing.yy, thing.zz - 1);
             var neighbor_mesh = neighbor[@ MapCellContents.MESH];
             var neighbor_tile = neighbor[@ MapCellContents.TILE];
-            if (instanceof_classic(neighbor_mesh, EntityMeshAutotile) && selected_border(neighbor_mesh, mask_mesh_auto) ||
-                    instanceof_classic(neighbor_tile, EntityTile) && selected_border(neighbor_tile, mask_tile)
+            if (neighbor_mesh.etype == ETypes.ENTITY_MESH_AUTO && selected_border(neighbor_mesh, mask_mesh_auto) ||
+                    neighbor_tile.etype == ETypes.ENTITY_MESH_AUTO && selected_border(neighbor_tile, mask_tile)
                 ) {
                 ds_list_add(list, thing);
             }
@@ -83,8 +83,8 @@ function selected_affected_terrain() {
             var neighbor = map.Get(thing.xx, thing.yy - 1, thing.zz);
             var neighbor_mesh = neighbor[@ MapCellContents.MESH];
             var neighbor_tile = neighbor[@ MapCellContents.TILE];
-            if (instanceof_classic(neighbor_mesh, EntityMeshAutotile) && selected_border(neighbor_mesh, mask_mesh_auto) ||
-                    instanceof_classic(neighbor_tile, EntityTile) && selected_border(neighbor_tile, mask_tile)
+            if (neighbor_mesh.etype == ETypes.ENTITY_MESH_AUTO && selected_border(neighbor_mesh, mask_mesh_auto) ||
+                    neighbor_tile.etype == ETypes.ENTITY_MESH_AUTO && selected_border(neighbor_tile, mask_tile)
                 ) {
                 ds_list_add(list, thing);
             }
@@ -95,8 +95,8 @@ function selected_affected_terrain() {
             var neighbor = map.Get(thing.xx, thing.yy + 1, thing.zz);
             var neighbor_mesh = neighbor[@ MapCellContents.MESH];
             var neighbor_tile = neighbor[@ MapCellContents.TILE];
-            if (instanceof_classic(neighbor_mesh, EntityMeshAutotile) && selected_border(neighbor_mesh, mask_mesh_auto) ||
-                    instanceof_classic(neighbor_tile, EntityTile) && selected_border(neighbor_tile, mask_tile)
+            if (neighbor_mesh.etype == ETypes.ENTITY_MESH_AUTO && selected_border(neighbor_mesh, mask_mesh_auto) ||
+                    neighbor_tile.etype == ETypes.ENTITY_MESH_AUTO && selected_border(neighbor_tile, mask_tile)
                 ) {
                 ds_list_add(list, thing);
             }
@@ -107,8 +107,8 @@ function selected_affected_terrain() {
             var neighbor = map.Get(thing.xx + 1, thing.yy, thing.zz);
             var neighbor_mesh = neighbor[@ MapCellContents.MESH];
             var neighbor_tile = neighbor[@ MapCellContents.TILE];
-            if (instanceof_classic(neighbor_mesh, EntityMeshAutotile) && selected_border(neighbor_mesh, mask_mesh_auto) ||
-                    instanceof_classic(neighbor_tile, EntityTile) && selected_border(neighbor_tile, mask_tile)
+            if (neighbor_mesh.etype == ETypes.ENTITY_MESH_AUTO && selected_border(neighbor_mesh, mask_mesh_auto) ||
+                    neighbor_tile.etype == ETypes.ENTITY_MESH_AUTO && selected_border(neighbor_tile, mask_tile)
                 ) {
                 ds_list_add(list, thing);
             }
@@ -119,8 +119,8 @@ function selected_affected_terrain() {
             var neighbor = map.Get(thing.xx - 1, thing.yy, thing.zz);
             var neighbor_mesh = neighbor[@ MapCellContents.MESH];
             var neighbor_tile = neighbor[@ MapCellContents.TILE];
-            if (instanceof_classic(neighbor_mesh, EntityMeshAutotile) && selected_border(neighbor_mesh, mask_mesh_auto) ||
-                    instanceof_classic(neighbor_tile, EntityTile) && selected_border(neighbor_tile, mask_tile)
+            if (neighbor_mesh.etype == ETypes.ENTITY_MESH_AUTO && selected_border(neighbor_mesh, mask_mesh_auto) ||
+                    neighbor_tile.etype == ETypes.ENTITY_MESH_AUTO && selected_border(neighbor_tile, mask_tile)
                 ) {
                 ds_list_add(list, thing);
             }
@@ -131,8 +131,8 @@ function selected_affected_terrain() {
             var neighbor = map.Get(thing.xx - 1, thing.yy - 1, thing.zz);
             var neighbor_mesh = neighbor[@ MapCellContents.MESH];
             var neighbor_tile = neighbor[@ MapCellContents.TILE];
-            if (instanceof_classic(neighbor_mesh, EntityMeshAutotile) && selected_border(neighbor_mesh, mask_mesh_auto) ||
-                    instanceof_classic(neighbor_tile, EntityTile) && selected_border(neighbor_tile, mask_tile)
+            if (neighbor_mesh.etype == ETypes.ENTITY_MESH_AUTO && selected_border(neighbor_mesh, mask_mesh_auto) ||
+                    neighbor_tile.etype == ETypes.ENTITY_MESH_AUTO && selected_border(neighbor_tile, mask_tile)
                 ) {
                 ds_list_add(list, thing);
             }
@@ -143,8 +143,8 @@ function selected_affected_terrain() {
             var neighbor = map.Get(thing.xx + 1, thing.yy - 1, thing.zz);
             var neighbor_mesh = neighbor[@ MapCellContents.MESH];
             var neighbor_tile = neighbor[@ MapCellContents.TILE];
-            if (instanceof_classic(neighbor_mesh, EntityMeshAutotile) && selected_border(neighbor_mesh, mask_mesh_auto) ||
-                    instanceof_classic(neighbor_tile, EntityTile) && selected_border(neighbor_tile, mask_tile)
+            if (neighbor_mesh.etype == ETypes.ENTITY_MESH_AUTO && selected_border(neighbor_mesh, mask_mesh_auto) ||
+                    neighbor_tile.etype == ETypes.ENTITY_MESH_AUTO && selected_border(neighbor_tile, mask_tile)
                 ) {
                 ds_list_add(list, thing);
             }
@@ -155,8 +155,8 @@ function selected_affected_terrain() {
             var neighbor = map.Get(thing.xx - 1, thing.yy + 1, thing.zz);
             var neighbor_mesh = neighbor[@ MapCellContents.MESH];
             var neighbor_tile = neighbor[@ MapCellContents.TILE];
-            if (instanceof_classic(neighbor_mesh, EntityMeshAutotile) && selected_border(neighbor_mesh, mask_mesh_auto) ||
-                    instanceof_classic(neighbor_tile, EntityTile) && selected_border(neighbor_tile, mask_tile)
+            if (neighbor_mesh.etype == ETypes.ENTITY_MESH_AUTO && selected_border(neighbor_mesh, mask_mesh_auto) ||
+                    neighbor_tile.etype == ETypes.ENTITY_MESH_AUTO && selected_border(neighbor_tile, mask_tile)
                 ) {
                 ds_list_add(list, thing);
             }
@@ -167,8 +167,8 @@ function selected_affected_terrain() {
             var neighbor = map.Get(thing.xx + 1, thing.yy + 1, thing.zz);
             var neighbor_mesh = neighbor[@ MapCellContents.MESH];
             var neighbor_tile = neighbor[@ MapCellContents.TILE];
-            if (instanceof_classic(neighbor_mesh, EntityMeshAutotile) && selected_border(neighbor_mesh, mask_mesh_auto) ||
-                    instanceof_classic(neighbor_tile, EntityTile) && selected_border(neighbor_tile, mask_tile)
+            if (neighbor_mesh.etype == ETypes.ENTITY_MESH_AUTO && selected_border(neighbor_mesh, mask_mesh_auto) ||
+                    neighbor_tile.etype == ETypes.ENTITY_MESH_AUTO && selected_border(neighbor_tile, mask_tile)
                 ) {
                 ds_list_add(list, thing);
             }
@@ -262,7 +262,7 @@ function selection_update_autotiles() {
     
     for (var i = 0; i < ds_list_size(terrain); i++) {
         var thing = terrain[| i];
-        var thing_is_mesh = instanceof_classic(thing, EntityMeshAutotile);
+        var thing_is_mesh = (thing.etype == ETypes.ENTITY_MESH_AUTO);
         if (thing_is_mesh && thing.terrain_type == MeshAutotileLayers.SLOPE) continue;
         var original_id = thing_is_mesh ? thing.terrain_id : -1;
         var original_type = thing.terrain_type;
@@ -273,8 +273,8 @@ function selection_update_autotiles() {
             var above = (thing.zz < map.zz - 1) ? map.Get(thing.xx, thing.yy, thing.zz + 1) : array_create(MapCellContents._COUNT, noone);
             var below = (thing.zz > 0) ? map.Get(thing.xx, thing.yy, thing.zz - 1) : array_create(MapCellContents._COUNT, noone);
             // if an entity is marked as "removed," even if it's still there, it might as well not be there
-            var above_exists = instanceof_classic(above[MapCellContents.MESH], EntityMeshAutotile) && (above[MapCellContents.MESH].modification != Modifications.REMOVE);
-            var below_exists = instanceof_classic(below[MapCellContents.MESH], EntityMeshAutotile) && (below[MapCellContents.MESH].modification != Modifications.REMOVE);
+            var above_exists = (above[MapCellContents.MESH].etype == ETypes.ENTITY_MESH_AUTO && (above[MapCellContents.MESH].modification != Modifications.REMOVE));
+            var below_exists = (below[MapCellContents.MESH].etype == ETypes.ENTITY_MESH_AUTO && (below[MapCellContents.MESH].modification != Modifications.REMOVE));
             if (Settings.config.remove_covered_mesh_at && above_exists && thing.terrain_id & surrounded_mask) {
                 if ((get_autotile_id(above[MapCellContents.MESH]) & surrounded_mask) == surrounded_mask) {
                     thing.modification = Modifications.REMOVE;

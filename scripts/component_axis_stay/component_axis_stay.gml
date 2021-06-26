@@ -13,7 +13,7 @@ function component_axis_stay(argument0) {
 
     for (var i = 0; i < ds_list_size(Stuff.map.selected_entities); i++) {
         var entity = Stuff.map.selected_entities[| i];
-        if (instanceof_classic(entity, EntityEffect)) {
+        if (entity.etype == ETypes.ENTITY_EFFECT) {
             entity.off_xx += delta[vec3.xx];
             entity.off_yy += delta[vec3.yy];
             entity.off_zz += delta[vec3.zz];

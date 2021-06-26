@@ -260,7 +260,7 @@ function DataMesh(source) : SData(source) constructor {
         
         for (var i = 0; i < ds_list_size(map.contents.all_entities); i++) {
             var thing = map.contents.all_entities[| i];
-            if (instanceof_classic(thing, EntityMesh) && thing.mesh == self.GUID) {
+            if (entity.etype == ETypes.ENTITY_MESH && thing.mesh == self.GUID) {
                 c_world_destroy_object(thing.cobject);
                 thing.cobject = c_object_create_cached(Stuff.graphics.c_shape_block, CollisionMasks.MAIN, CollisionMasks.MAIN);
                 thing.SetCollisionTransform();

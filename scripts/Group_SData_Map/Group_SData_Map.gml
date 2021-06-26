@@ -70,7 +70,7 @@ function DataMap(source, directory) : SData(source) constructor {
             if (!is_temp && add_to_lists) {
                 var list = entity.batchable ? self.contents.batch_in_the_future : self.contents.dynamic;
                 // smf meshes simply aren't allowed to be batched, or static, so exert your authority over them
-                if (instanceof_classic(entity, EntityMesh) && guid_get(entity.mesh) && guid_get(entity.mesh).type == MeshTypes.SMF) {
+                if (entity.etype == ETypes.ENTITY_MESH && guid_get(entity.mesh) && guid_get(entity.mesh).type == MeshTypes.SMF) {
                     list = self.contents.dynamic;
                 }
                 
@@ -95,7 +95,7 @@ function DataMap(source, directory) : SData(source) constructor {
         if (!is_clamped(x, 0, self.xx - 1) || !is_clamped(y, 0, self.yy - 1) || !is_clamped(z, 0, self.zz - 1)) return false;
         
         var what = self.contents.map_grid[x][y][z][MapCellContents.MESH];
-        var result = (instanceof_classic(what, EntityMeshAutotile) && what.modification != Modifications.REMOVE);
+        var result = (what.etype == ETypes.ENTITY_MESH_AUTO && what.modification != Modifications.REMOVE);
         
         if (z < self.zz - 1) {
             // check the cell above you for a tile, because tiles kinda appear to
@@ -198,7 +198,7 @@ function DataMap(source, directory) : SData(source) constructor {
         var entity_data = json_parse(buffer_read_file(directory + "entities.ass"));
         for (var i = 0; i < array_length(entity_data.entities); i++) {
             var ref_data = entity_data.entities[i];
-            var entity = instance_create_depth(0, 0, 0, global.etype_objects[ref_data.type]);
+            var entity = new global.etype_objects[ref_data.type]();
             entity.LoadJSON(ref_data);
             self.Add(entity, entity.xx, entity.yy, entity.zz);
         }

@@ -1,7 +1,7 @@
 function safc_on_mesh_ui(mesh) {
     safc_on_entity_ui(mesh);
     
-    if (instanceof_classic(mesh, EntityMeshAutotile)) {
+    if (mesh.etype == ETypes.ENTITY_MESH_AUTO) {
         // turn these on
         Stuff.map.ui.element_entity_mesh_autotile_data.interactive = true;
         

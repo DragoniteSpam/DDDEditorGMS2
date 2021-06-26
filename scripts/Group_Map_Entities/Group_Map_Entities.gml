@@ -243,7 +243,7 @@ function Entity() constructor {
     };
 }
 
-function EnttiyEffect() : Entity() constructor {
+function EntityEffect() : Entity() constructor {
     static save_script = serialize_save_entity_effect;
 
     self.name = "Effect";

@@ -22,7 +22,7 @@ function component_axis_up(argument0) {
 
     for (var i = 0; i < ds_list_size(Stuff.map.selected_entities); i++) {
         var ent = Stuff.map.selected_entities[| i];
-        if (instanceof_classic(ent, EntityEffect)) {
+        if (entity.etype == ETypes.ENTITY_EFFECT) {
             ds_list_add(effect_list, ent);
             var new_x = clamp(ent.xx + ent.off_xx, 0, map.xx - 1);
             var new_y = clamp(ent.yy + ent.off_yy, 0, map.yy - 1);

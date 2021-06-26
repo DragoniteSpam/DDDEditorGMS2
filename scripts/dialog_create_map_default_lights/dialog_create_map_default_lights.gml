@@ -58,7 +58,7 @@ function dialog_create_map_default_lights(root) {
     el_available_lights.entries_are = ListEntries.REFIDS;
     for (var i = 0; i < ds_list_size(map_contents.all_entities); i++) {
         var entity = map_contents.all_entities[| i];
-        if (instanceof_classic(entity, EntityEffect) && entity.com_light) {
+        if (entity.etype == ETypes.ENTITY_EFFECT && entity.com_light) {
             create_list_entries(el_available_lights, [entity.REFID, entity.com_light.label_colour]);
         }
     }
