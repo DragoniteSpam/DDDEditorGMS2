@@ -82,6 +82,7 @@ function Entity() constructor {
     // the editor may chance this on the fly. remember to override this in dynamic entities.
     self.batchable = true;
     self.batch_addr = undefined;                // pointer to a batch struct
+    self.modification = Modifications.NONE;
     
     self.translateable = true;
     self.offsettable = false;

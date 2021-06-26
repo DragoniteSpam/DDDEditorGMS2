@@ -75,7 +75,6 @@ function DataMap(source, directory) : SData(source) constructor {
                 }
                 
                 ds_list_add(list, entity);
-                ds_list_add(Stuff.map.changes, entity);
             }
         } else {
             safa_delete(entity);
