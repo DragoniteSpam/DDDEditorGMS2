@@ -1,8 +1,39 @@
 function sa_fill() {
     static fill_types = [
-        safc_fill_tile, safc_fill_tile_animated,
-        safc_fill_mesh, safc_fill_pawn,
-        safc_fill_effect, safc_fill_terrain
+        function(x, y, z) {
+            if (!Stuff.map.active_map.Get(x, y, z)[@ MapCellContents.TILE]) {
+                Stuff.map.active_map.Add(new EntityTile(Stuff.map.selection_fill_tile_x, Stuff.map.selection_fill_tile_y), x, y, z);
+            }
+        },
+        function(x, y, z) {
+            emu_dialog_notice("this is wip");
+            return;
+            if (!Stuff.map.active_map.Get(x, y, z)[@ MapCellContents.TILE]) {
+                Stuff.map.active_map.Add(new EntityTileAnimated(), x, y, z);
+            }
+        },
+        function(x, y, z) {
+            if (!Stuff.map.active_map.Get(x, y, z)[@ MapCellContents.MESH]) {
+                Stuff.map.active_map.Add(new EntityMesh(Game.meshes[Stuff.map.selection_fill_mesh]), x, y, z);
+            }
+        },
+        function(x, y, z) {
+            if (!Stuff.map.active_map.Get(x, y, z)[@ MapCellContents.PAWN]) {
+                Stuff.map.active_map.Add(new EntityPawn(), x, y, z);
+            }
+        },
+        function(x, y, z) {
+            if (!Stuff.map.active_map.Get(x, y, z)[@ MapCellContents.EFFECT]) {
+                var effect = new EntityEffect();
+                Stuff.map.active_map.Add(effect, x, y, z);
+                entity_effect_position_colliders(effect);
+            }
+        },
+        function(x, y, z) {
+            if (!Stuff.map.active_map.Get(x, y, z)[@ MapCellContents.MESH]) {
+                Stuff.map.active_map.Add(new EntityMeshAutotile(), x, y, z);
+            }
+        },
     ];
     
     if (Settings.selection.fill_type == FillTypes.ZONE) {
@@ -13,9 +44,39 @@ function sa_fill() {
     // processes each cell in the selection, but only once
     var processed = { };
     for (var s = 0; s < array_length(Stuff.map.selection); s++) {
-        Stuff.map.selection[s].foreach_cell(processed, fill_types[Settings.selection.fill_type], undefined);
+        Stuff.map.selection[s].foreach_cell(processed, fill_types[Settings.selection.fill_type]);
     }
     
     selection_update_autotiles();
     sa_process_selection();
+}
+
+function safc_fill_zone() {
+    // not technically a Selection Fill script, but it's used in a similar way
+    var button = Stuff.map.ui.t_p_other.el_zone_data;
+    
+    for (var i = 0; i < array_length(Stuff.map.selection); i++) {
+        var selection = Stuff.map.selection[i];
+        // Only going to do this with rectangle zones. I'm not currently planning on
+        // supporting spherical zones, and size-one zones are kinda pointless.
+        if (instanceof(selection) == "SelectionRectangle") {
+            var zone_list = Stuff.map.ui.t_p_other_editor.el_zone_type;
+            var zone = new global.map_zone_type_objects[ui_list_selection(zone_list)](undefined, selection.x, selection.y, selection.z, selection.x2, selection.y2, selection.z2);
+            zone.name = instanceof(zone) + " " + string(array_length(Stuff.map.active_map.contents.all_zones));
+            array_push(Stuff.map.active_map.contents.all_zones, zone);
+            
+            map_zone_collision(zone);
+            
+            button.interactive = true;
+            button.onmouseup = zone.EditScript;
+            button.text = "Data: " + zone.name;
+            Stuff.map.selected_zone = zone;
+        }
+    }
+    
+    selection_clear();
+    
+    if (!Settings.view.zones) {
+        emu_dialog_notice("Zones are currently set to be invisible. It is recommended that you turn on Zone Visibility in the General tab.");
+    }
 }
