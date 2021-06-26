@@ -33,8 +33,8 @@ function project_export() {
         game_data_save_scripts[GameDataCategories.MAP] =                        serialize_save_maps;
         game_data_save_scripts[GameDataCategories.GLOBAL] =                     project_export_global;
         game_data_save_scripts[GameDataCategories.EVENTS]  =                    project_export_events;
-        game_data_save_scripts[GameDataCategories.DATADATA] =                   serialize_save_datadata;
-        game_data_save_scripts[GameDataCategories.DATA_INST] =                  serialize_save_data_instances;
+        game_data_save_scripts[GameDataCategories.DATADATA] =                   project_export_data;
+        game_data_save_scripts[GameDataCategories.DATA_INST] =                  null;
         game_data_save_scripts[GameDataCategories.ANIMATIONS] =                 project_export_animations;
         game_data_save_scripts[GameDataCategories.TERRAIN] =                    null;
         game_data_save_scripts[GameDataCategories.LANGUAGE_TEXT] =              project_export_language;
