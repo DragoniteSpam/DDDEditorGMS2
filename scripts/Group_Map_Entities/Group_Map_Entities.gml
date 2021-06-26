@@ -704,7 +704,7 @@ function EntityTile(tile_x, tile_y) : Entity() constructor {
     };
 }
 
-function EntityTileAnimated() : EntityTile() constructor {
+function EntityTileAnimated() : EntityTile(0, 0) constructor {
     self.name = "Animated Tile";
     self.etype = ETypes.ENTITY_TILE_ANIMATED;
     self.etype_flags = ETypeFlags.ENTITY_TILE_ANIMATED;
