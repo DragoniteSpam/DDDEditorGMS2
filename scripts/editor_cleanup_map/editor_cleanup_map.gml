@@ -8,10 +8,6 @@ function editor_cleanup_map(mode) {
     for (var i = 0; i < ds_list_size(mode.changes); i++) {
         var thing = mode.changes[| i];
         switch (thing.modification) {
-            case Modifications.CREATE:
-                instance_deactivate_object(thing);
-                thing.modification = Modifications.NONE;
-                break;
             // we'd still like to know what the modification status on an entity is for
             // when we re-batch everything
             case Modifications.UPDATE:
