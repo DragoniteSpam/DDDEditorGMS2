@@ -320,6 +320,15 @@ function DataMap(source, directory) : SData(source) constructor {
                 zone.Export(buffer);
             }
             #endregion
+            
+            #region entities
+            buffer_write(buffer, buffer_u32, ds_list_size(self.contents.all_entities));
+            for (var i = 0; i < ds_list_size(self.contents.all_entities); i++) {
+                var thing = self.contents.all_entities[| i];
+                buffer_write(buffer, buffer_u16, thing.etype);
+                thing.save_script(buffer, thing);
+            }
+            #endregion
         } else {
             
         }
