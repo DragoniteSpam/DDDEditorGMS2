@@ -61,8 +61,7 @@ function MapContents(parent) constructor {
         // entities in the map in them. this one is.
         ds_list_destroy_instances(self.all_entities);
         for (var i = 0; i < array_length(self.all_zones); i++) {
-            instance_activate_object(self.all_zones[i]);
-            instance_destroy(self.all_zones[i]);
+            self.all_zones[i].Destroy();
         }
         
         self.ClearFrozenData();
