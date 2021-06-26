@@ -2,54 +2,35 @@
 // this is generally not a great practice and you should do it sparingly
 enum SerializeThings {
     ERROR                   = 0x00000000,
-    // basic stuff
+    
     MAPS                    = 0x00000001,
-    CONSTANTS               = 0x00000002,
-    MESHES                  = 0x00000003,
-    ANIMATIONS              = 0x00000004,
-    TERRAIN                 = 0x00000005,
-    IMAGE_SKYBOX            = 0x00000006,
-    IMAGE_TILESET           = 0x00000007,
-    IMAGE_PARTICLES         = 0x00000008,
-    IMAGE_OVERWORLD         = 0x00000009,
-    LANGUAGE_TEXT           = 0x0000000A,
-    IMAGE_BATTLERS          = 0x0000000B,
-    MESH_AUTOTILES          = 0x0000000C,
-    IMAGE_MISC              = 0x0000000D,
-    // 0e
-    IMAGE_UI                = 0x0000000F,
-    // 10
-    GLOBAL_GRAPHICS         = 0x00000011,
-    AUDIO_SE                = 0x00000012,
-    MAP_ZONES               = 0x00000013,
-    AUDIO_BGM               = 0x00000014,
-    MAP_BATCH               = 0x00000015,
-    MAP_DYNAMIC             = 0x00000016,
-    EVENTS                  = 0x00000017,
-    // 18
-    IMAGE_TILE_ANIMATION    = 0x00000019,
-    MAP_META                = 0x0000001A,
-    DATADATA                = 0x0000001B,
-    EVENT_CUSTOM            = 0x0000001C,
-    EVENT_PREFAB            = 0x0000001D,
-    MAP_STATIC_TERRAIN      = 0x0000001E,
+    TERRAIN                 = 0x00000002,
     
-    // game data
-    DATA_ERROR              = 0x00000100,
-    DATA_INSTANCES          = 0x00000101,
+    DATADATA                = 0x00000010,
+    GLOBAL_METADATA         = 0x00000020,
     
-    // misc
-    MISC_ERROR              = 0x00001000,
-    GLOBAL_METADATA         = 0x00001001,
-    MISC_GLOBAL             = 0x00001002,
-    MISC_UI                 = 0x00001003,
+    ANIMATIONS              = 0x00000100,
+    LANGUAGE_TEXT           = 0x00000200,
+    EVENTS                  = 0x00000400,
+    
+    IMAGE_SKYBOX            = 0x00001000,
+    IMAGE_TILESET           = 0x00002000,
+    IMAGE_PARTICLES         = 0x00004000,
+    IMAGE_OVERWORLD         = 0x00008000,
+    IMAGE_BATTLERS          = 0x00010000,
+    IMAGE_TILE_ANIMATION    = 0x00020000,
+    IMAGE_MISC              = 0x00040000,
+    IMAGE_UI                = 0x00080000,
+    
+    AUDIO_SE                = 0x00100000,
+    AUDIO_BGM               = 0x00200000,
+    
+    MESHES                  = 0x01000000,
     
     // the last one i think
-    END_OF_FILE             = 0x00002000,
+    END_OF_FILE             = 0xffffffff,
 }
 
-// Note: event entites have been removed, owing to the fact that every entity
-// can carry event information now
 enum ETypes {
     ENTITY,
     ENTITY_TILE,

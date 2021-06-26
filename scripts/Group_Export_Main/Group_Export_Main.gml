@@ -47,7 +47,7 @@ function project_export_global(buffer) {
 }
 
 function project_export_language(buffer) {
-    buffer_write(buffer, buffer_u32, SerializeThings.GLOBAL_METADATA);
+    buffer_write(buffer, buffer_u32, SerializeThings.LANGUAGE_TEXT);
     buffer_reserve_address(buffer);
     
     buffer_write(buffer, buffer_u32, array_length(Game.languages.names));
