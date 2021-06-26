@@ -11,7 +11,7 @@ function safc_fill_zone() {
             var type = global.map_zone_type_objects[ui_list_selection(zone_list)];
             var zone = instance_create_depth(0, 0, 0, type);
             instance_deactivate_object(zone);
-            zone.name = object_get_name(type) + " " + string(ds_list_size(Stuff.map.active_map.contents.all_zones));
+            zone.name = object_get_name(type) + " " + string(array_length(Stuff.map.active_map.contents.all_zones));
             
             zone.x1 = selection.x;
             zone.y1 = selection.y;

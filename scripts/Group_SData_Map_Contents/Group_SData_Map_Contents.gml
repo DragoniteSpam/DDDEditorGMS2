@@ -7,7 +7,7 @@ function MapContents(parent) constructor {
     self.dynamic = ds_list_create();                 // entities
     
     self.all_entities = ds_list_create();            // entities
-    self.all_zones = ds_list_create();
+    self.all_zones = [];
     self.refids = { };                               // entities (mapped onto refids)
     self.refid_current = 0;
     
@@ -60,7 +60,10 @@ function MapContents(parent) constructor {
         // the last three lists are not guaranteed to have all
         // entities in the map in them. this one is.
         ds_list_destroy_instances(self.all_entities);
-        ds_list_destroy_instances(self.all_zones);
+        for (var i = 0; i < array_length(self.all_zones); i++) {
+            instance_activate_object(self.all_zones[i]);
+            instance_destroy(self.all_zones[i]);
+        }
         
         self.ClearFrozenData();
     };

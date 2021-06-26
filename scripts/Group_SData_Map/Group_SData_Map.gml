@@ -316,9 +316,9 @@ function DataMap(source, directory) : SData(source) constructor {
             #endregion
             
             #region zones
-            buffer_write(buffer, buffer_u32, ds_list_size(self.contents.all_zones));
-            for (var i = 0; i < ds_list_size(self.contents.all_zones); i++) {
-                var zone = self.contents.all_zones[| i];
+            buffer_write(buffer, buffer_u32, array_length(self.contents.all_zones));
+            for (var i = 0; i < array_length(self.contents.all_zones); i++) {
+                var zone = self.contents.all_zones[i];
                 zone.Export(buffer);
             }
             #endregion
@@ -337,10 +337,10 @@ function DataMap(source, directory) : SData(source) constructor {
         
         #region zones
         var zone_meta = {
-            zones: array_create(ds_list_size(self.contents.all_zones)),
+            zones: array_create(array_length(self.contents.all_zones)),
         }
-        for (var i = 0, n = ds_list_size(self.contents.all_zones); i < n; i++) {
-            zone_meta.zones[i] = self.contents.all_zones[| i].CreateJSON();
+        for (var i = 0, n = array_length(self.contents.all_zones); i < n; i++) {
+            zone_meta.zones[i] = self.contents.all_zones[i].CreateJSON();
         }
         buffer_write_file(json_stringify(zone_meta), directory + "zones.json");
         #endregion

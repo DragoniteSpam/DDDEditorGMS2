@@ -6,4 +6,4 @@ if (cobject) {
 
 var map = Stuff.map.active_map;
 var map_contents = map.contents;
-ds_list_delete(map_contents.all_zones, ds_list_find_index(map_contents.all_zones, id));
+array_delete(map_contents.all_zones, array_search(map_contents.all_zones, self.id), 1);

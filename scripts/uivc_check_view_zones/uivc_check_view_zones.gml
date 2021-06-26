@@ -9,13 +9,13 @@ function uivc_check_view_zones(argument0) {
     var map_contents = map.contents;
 
     if (Settings.view.zones) {
-        for (var i = 0; i < ds_list_size(map_contents.all_zones); i++) {
-            var zone = map_contents.all_zones[| i];
+        for (var i = 0; i < array_length(map_contents.all_zones); i++) {
+            var zone = map_contents.all_zones[i];
             c_object_set_mask(zone.cobject, CollisionMasks.MAIN, CollisionMasks.MAIN);
         }
     } else {
-        for (var i = 0; i < ds_list_size(map_contents.all_zones); i++) {
-            var zone = map_contents.all_zones[| i];
+        for (var i = 0; i < array_length(map_contents.all_zones); i++) {
+            var zone = map_contents.all_zones[i];
             c_object_set_mask(zone.cobject, 0, 0);
         }
     }

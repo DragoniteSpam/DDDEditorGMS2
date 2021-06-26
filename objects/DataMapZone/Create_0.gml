@@ -1,8 +1,8 @@
 var map = Stuff.map.active_map;
 var map_contents = map.contents;
-ds_list_add(map_contents.all_zones, id);
+array_push(map_contents.all_zones, self.id);
 
-/* s */ name = "Zone " + string(ds_list_size(map_contents.all_zones));
+/* s */ name = "Zone " + string(array_length(map_contents.all_zones));
 /* s */ ztype = -1;
 /* s */ zone_priority = 100;        // u16
 
