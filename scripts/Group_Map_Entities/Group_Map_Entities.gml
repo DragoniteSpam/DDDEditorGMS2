@@ -340,7 +340,6 @@ function EntityMesh() : Entity() constructor {
     self.animation_end_action = AnimationEndActions.LOOP;
     
     // editor properties
-    
     self.slot = MapCellContents.MESH;
     self.rotateable = true;
     self.offsettable = true;

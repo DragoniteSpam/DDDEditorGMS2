@@ -14,8 +14,6 @@ function instance_create_mesh(mesh_data) {
                 break;
         }
         
-        entity_init_collision_mesh(mesh);
-        
         return mesh;
     }
     
