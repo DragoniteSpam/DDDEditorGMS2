@@ -63,7 +63,7 @@ function project_save() {
     
     file_copy(fn, folder_name + "project" + EXPORT_EXTENSION_PROJECT);
     buffer_write_file(json_stringify({
-        data: Game.data,
+        data: Game.data,                                                        // save verbatim
         version: ProjectSaveVersions._CURRENT - 1,
     }), folder_name + "data.json");
     buffer_write_file(json_stringify({
@@ -72,19 +72,19 @@ function project_save() {
         version: ProjectSaveVersions._CURRENT - 1,
     }), folder_name + "meta.json");
     buffer_write_file(json_stringify({
-        tilesets: Game.graphics.tilesets,
-        overworlds: Game.graphics.overworlds,
-        battlers: Game.graphics.battlers,
-        particles: Game.graphics.particles,
-        ui: Game.graphics.ui,
-        tile_animations: Game.graphics.tile_animations,
-        etc: Game.graphics.etc,
-        skybox: Game.graphics.skybox,
+        tilesets: Game.graphics.tilesets,                                       // save verbatim
+        overworlds: Game.graphics.overworlds,                                   // save verbatim
+        battlers: Game.graphics.battlers,                                       // save verbatim
+        particles: Game.graphics.particles,                                     // save verbatim
+        ui: Game.graphics.ui,                                                   // save verbatim
+        tile_animations: Game.graphics.tile_animations,                         // save verbatim
+        etc: Game.graphics.etc,                                                 // save verbatim
+        skybox: Game.graphics.skybox,                                           // save verbatim
         version: ProjectSaveVersions._CURRENT - 1,
     }), folder_name + "images.json");
     buffer_write_file(json_stringify({
-        se: Game.audio.se,
-        bgm: Game.audio.bgm,
+        se: Game.audio.se,                                                      // save verbatim
+        bgm: Game.audio.bgm,                                                    // save verbatim
         version: ProjectSaveVersions._CURRENT - 1,
     }), folder_name + "audio.json");
     buffer_write_file(json_stringify({
@@ -92,7 +92,7 @@ function project_save() {
         version: ProjectSaveVersions._CURRENT - 1,
     }), folder_name + "meshes.json");
     buffer_write_file(json_stringify({
-        autotiles: project_write_json(Game.mesh_autotiles),
+        autotiles: Game.mesh_autotiles,                                         // save verbatim
         version: ProjectSaveVersions._CURRENT - 1,
     }), folder_name + "meshautotiles.json");
     buffer_write_file(json_stringify({
@@ -105,8 +105,8 @@ function project_save() {
     }), folder_name + "terrain.json");
     buffer_write_file(json_stringify({
         lang: {
-            langs: Game.languages.names,
-            data: Game.languages.text,
+            langs: Game.languages.names,                                        // save verbatim
+            data: Game.languages.text,                                          // save verbatim
         },
         version: ProjectSaveVersions._CURRENT - 1,
     }), folder_name + "text.json");
