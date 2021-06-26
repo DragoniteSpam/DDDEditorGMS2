@@ -271,6 +271,7 @@ function DataMap(source, directory) : SData(source) constructor {
         }
         
         if (self.contents) {
+            #region data that was frozen ahead of time
             if (self.contents.frozen_data) {
                 buffer_write(buffer, buffer_u64, buffer_get_size(self.contents.frozen_data));
                 buffer_write_buffer(buffer, self.contents.frozen_data);
@@ -283,7 +284,36 @@ function DataMap(source, directory) : SData(source) constructor {
             } else {
                 buffer_write(buffer, buffer_u64, 0);
             }
+            #endregion
+            
+            #region batch static objects in the map into chunks
+            var exported = batch_all_export(self, self.map_chunk_size);
+            buffer_write(buffer, buffer_u32, array_length(exported));
+            
+            for (var i = 0; i < array_length(exported); i++) {
+                var chunk = exported[i];
+                buffer_write(buffer, buffer_u16, chunk.key >> 24);
                 buffer_write(buffer, buffer_u16, chunk.key & 0xffffff);
+                if (vertex_get_number(chunk.vbuffer) > 0) {
+                    var data = buffer_create_from_vertex_buffer(chunk.vbuffer, buffer_fixed, 1);
+                    buffer_write(buffer, buffer_u32, buffer_get_size(data));
+                    buffer_write_buffer(buffer, data);
+                    buffer_delete(data);
+                } else {
+                    buffer_write(buffer, buffer_u32, 0);
+                }
+                vertex_delete_buffer(chunk.vbuffer);
+                if (vertex_get_number(chunk.reflected) > 0) {
+                    var data = buffer_create_from_vertex_buffer(chunk.reflected, buffer_fixed, 1);
+                    buffer_write(buffer, buffer_u32, buffer_get_size(data));
+                    buffer_write_buffer(buffer, data);
+                    buffer_delete(data);
+                } else {
+                    buffer_write(buffer, buffer_u32, 0);
+                }
+                vertex_delete_buffer(chunk.reflected);
+            }
+            #endregion
         } else {
             
         }
