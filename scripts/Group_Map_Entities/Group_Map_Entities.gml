@@ -90,7 +90,6 @@ function Entity() constructor {
     self.scalable = false;
     
     self.slot = MapCellContents.TILE;
-    self.listed = false; // sigh
     
     enum Modifications {
         NONE,

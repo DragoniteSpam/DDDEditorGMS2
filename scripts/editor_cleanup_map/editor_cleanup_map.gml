@@ -43,10 +43,7 @@ function editor_cleanup_map(mode) {
                         ds_list_delete(map.dynamic, ds_list_find_index(map.dynamic, thing));
                     }
                     
-                    if (thing.listed) {
-                        base_map.Remove(thing);
-                    }
-                    
+                    base_map.Remove(thing);
                     ds_list_delete(map.all_entities, ds_list_find_index(map.all_entities, thing));
                     
                     thing.Destroy();
@@ -96,10 +93,7 @@ function editor_cleanup_map(mode) {
                         ds_list_delete(map.dynamic, ds_list_find_index(map.dynamic, thing));
                     }
                     
-                    if (thing.listed) {
-                        base_map.Remove(thing);
-                    }
-                    
+                    base_map.Remove(thing);
                     ds_list_delete(map.all_entities, ds_list_find_index(map.all_entities, thing));
                     thing.Destroy();
                 } else {
