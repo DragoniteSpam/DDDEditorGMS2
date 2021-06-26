@@ -232,6 +232,44 @@ function DataMap(source, directory) : SData(source) constructor {
         file_find_close();
     };
     
+    static Export = function(buffer) {
+        self.ExportBase(buffer);
+        buffer_write(buffer, buffer_u32, self.xx);
+        buffer_write(buffer, buffer_u32, self.yy);
+        buffer_write(buffer, buffer_u32, self.zz);
+        
+        buffer_write(buffer, buffer_datatype, self.tileset);
+        buffer_write(buffer, buffer_f32, self.fog_start);
+        buffer_write(buffer, buffer_f32, self.fog_end);
+        buffer_write(buffer, buffer_u32, self.fog_colour);
+        buffer_write(buffer, buffer_u32, self.base_encounter_rate);
+        buffer_write(buffer, buffer_u32, self.base_encounter_deviation);
+        buffer_write(buffer, buffer_f32, self.water_level);
+        buffer_write(buffer, buffer_u32, self.light_ambient_colour);
+        buffer_write(buffer, buffer_datatype, self.skybox);
+        buffer_write(buffer, buffer_u16, self.map_chunk_size);
+        buffer_write(buffer, buffer_u32, self.discovery);
+        buffer_write(buffer, buffer_string, self.code);
+        
+        buffer_write(buffer, buffer_u8, array_length(self.lights));
+        for (var i = 0; i < array_length(self.lights); i++) {
+            buffer_write(buffer, buffer_datatype, self.lights[i]);
+        }
+        
+        buffer_write(buffer, buffer_field, pack(
+            self.indoors,
+            self.draw_water,
+            self.fast_travel_to,
+            self.fast_travel_from,
+            self.is_3d,
+            self.fog_enabled,
+            self.on_grid,
+            self.reflections_enabled,
+            self.light_player_enabled,
+            self.light_enabled,
+        ));
+    };
+    
     static SaveAsset = function(directory) {
         if (!self.contents) {
             self.SaveUnloaded(directory);
