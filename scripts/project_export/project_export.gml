@@ -44,9 +44,10 @@ function project_export() {
                     buffer_write(buffer, buffer_u8, array_length(Game.meta.export.files));
                     for (var j = 0; j < array_length(Game.meta.export.files); j++) {
                         var asset_file = Game.meta.export.files[j];
-                        var bools = pack(asset_file.critical);
                         buffer_write(buffer, buffer_string, asset_file.name);
-                        buffer_write(buffer, buffer_field, bools);
+                        buffer_write(buffer, buffer_field, pack(
+                            asset_file.critical
+                        ));
                     }
                     
                     project_export_global(buffer);

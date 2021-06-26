@@ -10,8 +10,9 @@ function project_export_global(buffer) {
     buffer_write(buffer, buffer_string, Game.meta.project.id);
     buffer_write(buffer, buffer_u16, Game.meta.grid.chunk_size);
     
-    var bools = pack(Game.meta.grid.snap);
-    buffer_write(buffer, buffer_field, bools);
+    buffer_write(buffer, buffer_field, pack(
+        Game.meta.grid.snap
+    ));
     
     buffer_write(buffer, buffer_s16, Game.meta.screen.width);
     buffer_write(buffer, buffer_s16, Game.meta.screen.height);

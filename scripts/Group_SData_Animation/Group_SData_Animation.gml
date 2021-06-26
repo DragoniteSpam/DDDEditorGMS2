@@ -27,8 +27,9 @@ function DataAnimation(source) : SData(source) constructor {
         buffer_write(buffer, buffer_u16, self.moments);
         buffer_write(buffer, buffer_string, self.code);
         
-        var bools = pack(self.loops);
-        buffer_write(buffer, buffer_field, bools);
+        buffer_write(buffer, buffer_field, pack(
+            self.loops
+        ));
         
         var n_layers = array_length(animation.layers);
         buffer_write(buffer, buffer_u32, n_layers);
@@ -192,8 +193,9 @@ function DataAnimationLayer(animation, source) constructor {
     static Export = function(buffer) {
         buffer_write(buffer, buffer_string, self.name);
         
-        var bools = pack(self.is_actor);
-        buffer_write(buffer, buffer_u8, bools);
+        buffer_write(buffer, buffer_u8, pack(
+            self.is_actor
+        ));
     
         buffer_write(buffer, buffer_f32, self.x);
         buffer_write(buffer, buffer_f32, self.y);
