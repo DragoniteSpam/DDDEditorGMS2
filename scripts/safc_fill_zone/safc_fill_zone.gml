@@ -15,7 +15,7 @@ function safc_fill_zone() {
             map_zone_collision(zone);
             
             button.interactive = true;
-            button.onmouseup = zone.zone_edit_script;
+            button.onmouseup = zone.EditScript;
             button.text = "Data: " + zone.name;
             Stuff.map.selected_zone = zone;
         }

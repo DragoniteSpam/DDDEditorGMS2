@@ -16,7 +16,7 @@ function MapZone(source, x1, y1, z1, x2, y2, z2) constructor {
     self.cshape = noone;
     self.editor_color = c_white;
     
-    static zone_edit_script = function() { };
+    static EditScript = function(root) { };
     
     // this is the base class, do not instantiate
     static ExportBase = function(buffer) {
@@ -129,7 +129,7 @@ function MapZoneCamera(source, x1, y1, z1, x2, y2, z2) : MapZone(source, x1, y1,
         buffer_write(buffer, buffer_f32, self.camera_easing_time);
     };
     
-    static zone_edit_script = function(root) {
+    static EditScript = function(root) {
         var zone = Stuff.map.selected_zone;
         var map = Stuff.map.active_map;
         
@@ -296,7 +296,7 @@ function MapZoneFlag(source, x1, y1, z1, x2, y2, z2) : MapZone(source, x1, y1, z
         buffer_write(buffer, buffer_u32, self.zone_flags);
     };
     
-    static zone_edit_script = function(root) {
+    static EditScript = function(root) {
         var zone = Stuff.map.selected_zone;
         var map = Stuff.map.active_map;
         
@@ -465,7 +465,7 @@ function MapZoneLight(source, x1, y1, z1, x2, y2, z2) : MapZone(source, x1, y1, 
         }
     };
     
-    static zone_edit_script = function(root) {
+    static EditScript = function(root) {
         var zone = Stuff.map.selected_zone;
         var map = Stuff.map.active_map;
         var map_contents = map.contents;

@@ -149,7 +149,7 @@ function control_map(mode) {
                         
                         if (instance_under_cursor && instance_under_cursor.ztype != undefined) {
                             button.interactive = true;
-                            button.onmouseup = instance_under_cursor.zone_edit_script;
+                            button.onmouseup = instance_under_cursor.EditScript;
                             button.text = "Data: " + instance_under_cursor.name;
                             mode.selected_zone = instance_under_cursor;
                         } else {

@@ -13,33 +13,31 @@ function DataMap(source, directory) : SData(source) constructor {
     self.xx = 64;
     self.yy = 64;
     self.zz = 8;
-    self.tileset = NULL;                             // GUID
-    self.is_3d = true;                               // bool
-    self.fog_start = 1024;                           // float
-    self.fog_end = 3072;                             // float
-    self.fog_enabled = true;                         // bool
-    self.fog_colour = c_white;                       // uint
-    self.indoors = false;                            // bool
-    self.draw_water = true;                          // bool
-    self.water_level = 0;                            // float
-    self.reflections_enabled = true;                 // bool
-    self.fast_travel_to = true;                      // bool
-    self.fast_travel_from = true;                    // bool
-    self.base_encounter_rate = 8;                    // steps?
-    self.base_encounter_deviation = 4;               // ehh
-    self.light_enabled = true;                       // bool
-    self.light_ambient_colour = c_white;             // uint
-    self.light_player_enabled = true;                // bool
-    self.skybox = NULL;                              // GUID
-    self.map_chunk_size = 32;                        // int
+    self.tileset = NULL;                                                        // GUID
+    self.is_3d = true;                                                          // bool
+    self.fog_start = 1024;                                                      // float
+    self.fog_end = 3072;                                                        // float
+    self.fog_enabled = true;                                                    // bool
+    self.fog_colour = c_white;                                                  // uint
+    self.indoors = false;                                                       // bool
+    self.draw_water = true;                                                     // bool
+    self.water_level = 0;                                                       // float
+    self.reflections_enabled = true;                                            // bool
+    self.fast_travel_to = true;                                                 // bool
+    self.fast_travel_from = true;                                               // bool
+    self.base_encounter_rate = 8;                                               // steps?
+    self.base_encounter_deviation = 4;                                          // ehh
+    self.light_enabled = true;                                                  // bool
+    self.light_ambient_colour = c_white;                                        // uint
+    self.light_player_enabled = true;                                           // bool
+    self.skybox = NULL;                                                         // GUID
+    self.chunk_size = 32;                                                       // int
     
-    self.grid_flags = array_create_3d(self.xx, self.yy, self.zz);
-    
-    self.lights = array_create(MAX_LIGHTS, NULL);
-    
-    self.discovery = 0;                              // index
-    self.code = Stuff.default_lua_map;               // code
-    self.generic_data = [];                          // similar to that attached to Entities
+    self.grid_flags = array_create_3d(self.xx, self.yy, self.zz);               // 3D flag array
+    self.lights = array_create(MAX_LIGHTS, NULL);                               // GUID array
+    self.discovery = 0;                                                         // index
+    self.code = Stuff.default_lua_map;                                          // code
+    self.generic_data = [];                                                     // similar to that attached to Entities
     
     static Add = function(entity, x, y, z, is_temp, add_to_lists) {
         if (x == undefined) x = entity.xx;
@@ -240,7 +238,7 @@ function DataMap(source, directory) : SData(source) constructor {
         buffer_write(buffer, buffer_f32, self.water_level);
         buffer_write(buffer, buffer_u32, self.light_ambient_colour);
         buffer_write(buffer, buffer_datatype, self.skybox);
-        buffer_write(buffer, buffer_u16, self.map_chunk_size);
+        buffer_write(buffer, buffer_u16, self.chunk_size);
         buffer_write(buffer, buffer_u32, self.discovery);
         buffer_write(buffer, buffer_string, self.code);
         
@@ -287,7 +285,7 @@ function DataMap(source, directory) : SData(source) constructor {
             #endregion
             
             #region batch static objects in the map into chunks
-            var exported = batch_all_export(self, self.map_chunk_size);
+            var exported = batch_all_export(self, self.chunk_size);
             buffer_write(buffer, buffer_u32, array_length(exported));
             
             for (var i = 0; i < array_length(exported); i++) {
@@ -391,7 +389,7 @@ function DataMap(source, directory) : SData(source) constructor {
         json.light_ambient_colour = self.light_ambient_colour;
         json.light_player_enabled = self.light_player_enabled;
         json.skybox = self.skybox;
-        json.map_chunk_size = self.map_chunk_size;
+        json.chunk_size = self.chunk_size;
         json.discovery = self.discovery;
         json.code = self.code;
         json.generic_data = self.generic_data;
@@ -440,7 +438,7 @@ function DataMap(source, directory) : SData(source) constructor {
         self.light_ambient_colour = source.light_ambient_colour;
         self.light_player_enabled = source.light_player_enabled;
         self.skybox = source.skybox;
-        self.map_chunk_size = source.map_chunk_size;
+        self.chunk_size = source.chunk_size;
         self.discovery = source.discovery;
         self.code = source.code;
         self.generic_data = source.generic_data;
