@@ -334,10 +334,10 @@ function EntityMesh() : Entity() constructor {
     self.is_static = true;
     
     self.mesh = NULL;
-    self.mesh_submesh = NULL;                   // proto-GUID
+    self.mesh_submesh = NULL;                                                   // proto-GUID
     self.animated = false;
     self.animation_index = 0;
-    self.animation_type = 0;                                                             // if smf ever gets re-added, it the loop type would be stored in here
+    self.animation_type = 0;                                                    // if smf ever gets re-added, it the loop type would be stored in here
     self.animation_speed = 0;
     self.animation_end_action = AnimationEndActions.LOOP;
     
@@ -465,13 +465,6 @@ function EntityMesh() : Entity() constructor {
 }
 
 function EntityMeshAutotile() : EntityMesh() constructor {
-    static save_script = function(buffer, entity) {
-        serialize_save_entity_mesh(buffer, entity);
-        buffer_write(buffer, buffer_u8, entity.terrain_id);
-        buffer_write(buffer, buffer_u8, entity.terrain_type);
-        buffer_write(buffer, buffer_datatype, entity.autotile_id);
-    };
-    
     self.name = "Terrain";
     self.etype = ETypes.ENTITY_MESH_AUTO;
     self.etype_flags = ETypeFlags.ENTITY_MESH_AUTO;
@@ -514,6 +507,10 @@ function EntityMeshAutotile() : EntityMesh() constructor {
     
     static LoadJSON = function(source) {
         self.LoadJSONMeshAT(source);
+    };
+    
+    static Export = function(buffer) {
+        // these don't get exported individually
     };
     
     static CreateJSONMeshAT = function() {
@@ -584,8 +581,6 @@ function EntityPawn() : Entity() constructor {
 }
 
 function EntityTile() : Entity() constructor {
-    static save_script = serialize_save_entity_tile;
-    
     self.name = "Tile";
     self.etype = ETypes.ENTITY_TILE;
     self.etype_flags = ETypeFlags.ENTITY_TILE;
@@ -641,6 +636,10 @@ function EntityTile() : Entity() constructor {
         self.LoadJSONTile(source);
     };
     
+    static Export = function(buffer) {
+        // these don't get exported individually
+    };
+    
     static CreateJSONTile = function() {
         var json = self.CreateJSONBase();
         json.tile = {
@@ -667,8 +666,6 @@ function EntityTile() : Entity() constructor {
 }
 
 function EntityTileAnimated() : EntityTile() constructor {
-    static save_script = serialize_save_entity_tile_animated;
-    
     self.name = "Animated Tile";
     self.etype = ETypes.ENTITY_TILE_ANIMATED;
     self.etype_flags = ETypeFlags.ENTITY_TILE_ANIMATED;
