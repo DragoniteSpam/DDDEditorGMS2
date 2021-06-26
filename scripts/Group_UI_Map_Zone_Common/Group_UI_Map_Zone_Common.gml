@@ -39,12 +39,12 @@ function uivc_input_map_zone_z2(input) {
 }
 
 function ui_list_color_effect_components(list, index) {
-    var effect = refid_get(list.entries[| index]);
+    var effect = refid_get(list.entries[index]);
     if (!effect) return c_black;
     
     for (var i = 0; i < ds_list_size(list.entries); i++) {
         if (i == index) continue;
-        if (list.entries[| i] == list.entries[| index]) return c_orange;
+        if (list.entries[i] == list.entries[index]) return c_orange;
     }
     
     return effect.com_light ? effect.com_light.label_colour : c_red;
