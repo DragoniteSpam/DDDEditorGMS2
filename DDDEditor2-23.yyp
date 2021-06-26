@@ -346,6 +346,7 @@
     {"id":{"name":"create_text","path":"scripts/create_text/create_text.yy",},"order":5,},
     {"id":{"name":"create_tile_selector","path":"scripts/create_tile_selector/create_tile_selector.yy",},"order":6,},
     {"id":{"name":"scribble_page_get","path":"scripts/scribble_page_get/scribble_page_get.yy",},"order":1,},
+    {"id":{"name":"Group_Map_Entities","path":"scripts/Group_Map_Entities/Group_Map_Entities.yy",},"order":1,},
     {"id":{"name":"create_button","path":"scripts/create_button/create_button.yy",},"order":7,},
     {"id":{"name":"create_rectangle","path":"scripts/create_rectangle/create_rectangle.yy",},"order":8,},
     {"id":{"name":"create_image_button","path":"scripts/create_image_button/create_image_button.yy",},"order":9,},
