@@ -42,7 +42,7 @@ function dialog_create_settings_data_asset_files(dialog) {
                 // the data belongs in the selected file if its location is set
                 // to the file, or the file is unassigned and the selected file
                 // is the master one
-                if (Game.meta.export.locations[i] == file_data) {
+                if (Game.meta.export.locations[i] == selection) {
                     ui_list_select(list.root.el_types, i);
                 }
             }
@@ -80,7 +80,7 @@ function dialog_create_settings_data_asset_files(dialog) {
             button.root.el_remove.interactive = (array_length(Game.meta.export.files) > 0x01);
         }
     }, dg);
-    el_add.tooltip = "Add a data / asset file. You can have up to " + string(0xff) + ", which is realistically way the heck more than you'll need since there are only " + string(array_length(Game.meta.export.locations)) + " things you can sort into them.";
+    el_add.tooltip = "Add a data / asset file. You can have up to " + string(0xff) + ", which is realistically way the heck more than you'll need since there are only " + string(array_length(Game.meta.export.locations)) + " things you can put into them.";
     el_add.interactive = (array_length(Game.meta.export.files) < 0xff);
     dg.el_add = el_add;
     yy += el_add.height + spacing;
@@ -107,7 +107,7 @@ function dialog_create_settings_data_asset_files(dialog) {
         var selection_main = ui_list_selection(list_main);
         var selection = ui_list_selection(list);
         if (selection_main + 1 && selection + 1) {
-            Game.meta.export.locations[selection] = Game.meta.export.files[selection_main];
+            Game.meta.export.locations[selection] = selection_main;
         }
     }, false, dg, ["Game Data", "Animations", "Data: Events", "Maps", "Terrain", "Images", "Audio", "Meshes", "Language Text"]);
     
