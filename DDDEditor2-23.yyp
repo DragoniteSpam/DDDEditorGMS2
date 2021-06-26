@@ -203,7 +203,6 @@
     {"id":{"name":"serialize_save_entity_event_page","path":"scripts/serialize_save_entity_event_page/serialize_save_entity_event_page.yy",},"order":0,},
     {"id":{"name":"serialize_save_move_route","path":"scripts/serialize_save_move_route/serialize_save_move_route.yy",},"order":1,},
     {"id":{"name":"dialog_create_game_data_asset_flags","path":"scripts/dialog_create_game_data_asset_flags/dialog_create_game_data_asset_flags.yy",},"order":23,},
-    {"id":{"name":"serialize_save_generic","path":"scripts/serialize_save_generic/serialize_save_generic.yy",},"order":8,},
     {"id":{"name":"spr_emu_mask_crosshair","path":"sprites/spr_emu_mask_crosshair/spr_emu_mask_crosshair.yy",},"order":13,},
     {"id":{"name":"Group_Math_Bitwise","path":"scripts/Group_Math_Bitwise/Group_Math_Bitwise.yy",},"order":9,},
     {"id":{"name":"serialize_save_particles","path":"scripts/serialize_save_particles/serialize_save_particles.yy",},"order":0,},
