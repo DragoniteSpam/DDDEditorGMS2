@@ -102,6 +102,7 @@ function language_extract() {
                     }
                 }
             } else {
+                // yeah this is all going to need to be redone now
                 var entities = serialize_load_map_contents_dynamic(map.data_buffer, map.version, undefined, false, true);
                 for (var j = 0; j < array_length(entities); j++) {
                     var entity = entities[j];
@@ -112,8 +113,7 @@ function language_extract() {
                         lang[$ key] = (lang_index == 0) ? gen.value_string : ((lang[$ key] != undefined) ? lang[$ key] : "");
                         existing_keys[$ key] = false;
                     }
-                    instance_activate_object(entity);
-                    instance_destroy(entity);
+                    entity.Destroy();
                 }
             }
         }

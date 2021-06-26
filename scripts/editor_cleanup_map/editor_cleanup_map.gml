@@ -49,8 +49,7 @@ function editor_cleanup_map(mode) {
                     
                     ds_list_delete(map.all_entities, ds_list_find_index(map.all_entities, thing));
                     
-                    instance_activate_object(thing);
-                    instance_destroy(thing);
+                    thing.Destroy();
                 } else if (thing.modification == Modifications.UPDATE) {
                     if (thing.batch_addr) {
                         rebatch_these[$ thing.batch_addr] = true;
@@ -102,8 +101,7 @@ function editor_cleanup_map(mode) {
                     }
                     
                     ds_list_delete(map.all_entities, ds_list_find_index(map.all_entities, thing));
-                    instance_activate_object(thing);
-                    instance_destroy(thing);
+                    thing.Destroy();
                 } else {
                     if (thing.batch_addr) {
                         rebatch_these[$ thing.batch_addr] = true;
