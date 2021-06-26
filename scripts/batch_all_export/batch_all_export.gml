@@ -9,11 +9,16 @@ function batch_all_export(map, chunk_size) {
             var bounds = thing.get_bounding_box(thing).Chunk(chunk_size);
             for (var i = bounds.x1; i <= bounds.x2; i++) {
                 for (var j = bounds.y1; j <= bounds.y2; j++) {
+                    // the horizontal coordinate is in the upper 24 bits
+                    // the vertical coordinate is in the lower 24 bits
                     var key = (i << 24) | j;
                     if (!buffers[$ key]) {
                         buffers[$ key] = {
                             vbuffer: vertex_create_buffer(),
                             reflected: vertex_create_buffer(),
+                            // the key could totally be a stirng, but we still
+                            // are going to need to extract the coords later
+                            key: key,
                         };
                         vertex_begin(buffers[$ key].vbuffer, Stuff.graphics.vertex_format);
                         vertex_begin(buffers[$ key].reflected, Stuff.graphics.vertex_format);
@@ -24,8 +29,6 @@ function batch_all_export(map, chunk_size) {
             }
         }
     }
-    
-    wtf("batch_all_export: figure out how to deal with wireframe buffers");
     
     var keys = variable_struct_get_names(buffers);
     for (var i = 0; i < array_length(keys); i++) {

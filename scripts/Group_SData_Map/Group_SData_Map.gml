@@ -283,6 +283,7 @@ function DataMap(source, directory) : SData(source) constructor {
             } else {
                 buffer_write(buffer, buffer_u64, 0);
             }
+                buffer_write(buffer, buffer_u16, chunk.key & 0xffffff);
         } else {
             
         }
