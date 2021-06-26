@@ -1,5 +1,6 @@
 name = "Entity";
 etype = ETypes.ENTITY;
+ztype = undefined;                                                              // for compatibility with zones, which arent technically entities
 etype_flags = 0;
 exist_in_map = true;
 is_component = false;

@@ -147,7 +147,7 @@ function control_map(mode) {
                         
                         var tz = instance_under_cursor ? max(instance_under_cursor.zz, mode.edit_z) : mode.edit_z;
                         
-                        if (instance_under_cursor && instanceof_classic(instance_under_cursor, DataMapZone)) {
+                        if (instance_under_cursor && instance_under_cursor.ztype != undefined) {
                             button.interactive = true;
                             button.onmouseup = instance_under_cursor.zone_edit_script;
                             button.text = "Data: " + instance_under_cursor.name;

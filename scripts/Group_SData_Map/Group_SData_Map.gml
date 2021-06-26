@@ -176,7 +176,7 @@ function DataMap(source, directory) : SData(source) constructor {
         var zone_meta = json_parse(buffer_read_file(directory + "zones.json"));
         for (var i = 0; i < array_length(zone_meta.zones); i++) {
             var zone_data = zone_meta.zones[i];
-            instance_create_depth(0, 0, 0, global.map_zone_type_objects[zone_data.type]).LoadJSON(zone_data);
+            array_push(self.contents.all_zones, new global.map_zone_type_objects[zone_data.type](zone_data));
         }
         #endregion
         

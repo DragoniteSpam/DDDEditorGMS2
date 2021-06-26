@@ -8,17 +8,9 @@ function safc_fill_zone() {
         // supporting spherical zones, and size-one zones are kinda pointless.
         if (instanceof(selection) == "SelectionRectangle") {
             var zone_list = Stuff.map.ui.t_p_other_editor.el_zone_type;
-            var type = global.map_zone_type_objects[ui_list_selection(zone_list)];
-            var zone = instance_create_depth(0, 0, 0, type);
-            instance_deactivate_object(zone);
-            zone.name = object_get_name(type) + " " + string(array_length(Stuff.map.active_map.contents.all_zones));
-            
-            zone.x1 = selection.x;
-            zone.y1 = selection.y;
-            zone.z1 = selection.z;
-            zone.x2 = selection.x2;
-            zone.y2 = selection.y2;
-            zone.z2 = selection.z2;
+            var zone = new global.map_zone_type_objects[ui_list_selection(zone_list)](selection.x, selection.y, selection.z, selection.x2, selection.y2, selection.z2);
+            zone.name = instanceof(zone) + " " + string(array_length(Stuff.map.active_map.contents.all_zones));
+            array_push(Stuff.map.active_map.contents.all_zones, zone);
             
             map_zone_collision(zone);
             
