@@ -233,6 +233,8 @@ function Entity(source) constructor {
         self.autonomous_movement_route = source.autonomous.route;
         self.movement_routes = source.autonomous.routes;
         self.tmx_id = source.tmx_id;
+    } else {
+        self.name = source;
     }
 }
 

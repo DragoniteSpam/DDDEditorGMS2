@@ -2,36 +2,36 @@ function sa_fill() {
     static fill_types = [
         function(x, y, z) {
             if (!Stuff.map.active_map.Get(x, y, z)[@ MapCellContents.TILE]) {
-                Stuff.map.active_map.Add(new EntityTile(Stuff.map.selection_fill_tile_x, Stuff.map.selection_fill_tile_y), x, y, z);
+                Stuff.map.active_map.Add(new EntityTile("Tile", Stuff.map.selection_fill_tile_x, Stuff.map.selection_fill_tile_y), x, y, z);
             }
         },
         function(x, y, z) {
             emu_dialog_notice("this is wip");
             return;
             if (!Stuff.map.active_map.Get(x, y, z)[@ MapCellContents.TILE]) {
-                Stuff.map.active_map.Add(new EntityTileAnimated(), x, y, z);
+                Stuff.map.active_map.Add(new EntityTileAnimated("Animated Tile"), x, y, z);
             }
         },
         function(x, y, z) {
             if (!Stuff.map.active_map.Get(x, y, z)[@ MapCellContents.MESH]) {
-                Stuff.map.active_map.Add(new EntityMesh(Game.meshes[Stuff.map.selection_fill_mesh]), x, y, z);
+                Stuff.map.active_map.Add(new EntityMesh("Mesh", Game.meshes[Stuff.map.selection_fill_mesh]), x, y, z);
             }
         },
         function(x, y, z) {
             if (!Stuff.map.active_map.Get(x, y, z)[@ MapCellContents.PAWN]) {
-                Stuff.map.active_map.Add(new EntityPawn(), x, y, z);
+                Stuff.map.active_map.Add(new EntityPawn("Pawn"), x, y, z);
             }
         },
         function(x, y, z) {
             if (!Stuff.map.active_map.Get(x, y, z)[@ MapCellContents.EFFECT]) {
-                var effect = new EntityEffect();
+                var effect = new EntityEffect("Effect");
                 Stuff.map.active_map.Add(effect, x, y, z);
                 entity_effect_position_colliders(effect);
             }
         },
         function(x, y, z) {
             if (!Stuff.map.active_map.Get(x, y, z)[@ MapCellContents.MESH]) {
-                Stuff.map.active_map.Add(new EntityMeshAutotile(), x, y, z);
+                Stuff.map.active_map.Add(new EntityMeshAutotile("Mesh Autotile"), x, y, z);
             }
         },
     ];
