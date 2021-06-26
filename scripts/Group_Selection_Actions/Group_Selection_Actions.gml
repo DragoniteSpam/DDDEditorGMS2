@@ -25,8 +25,6 @@ function selection_count() {
 function selected(entity, mask) {
     if (mask == undefined) mask = Settings.selection.mask;
     
-    if (!entity.exist_in_map) return false;
-    
     if (entity.etype_flags & mask) {
         for (var i = 0; i < array_length(Stuff.map.selection); i++) {
             if (Stuff.map.selection[i].selected_determination(entity)) {

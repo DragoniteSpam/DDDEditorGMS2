@@ -4,7 +4,6 @@ function Entity() constructor {
     self.etype = ETypes.ENTITY;
     self.ztype = undefined;                                                          // for compatibility with zones, which arent technically entities
     self.etype_flags = 0;
-    self.exist_in_map = true;
     self.is_component = false;
     
     refid_set(self, refid_generate());
