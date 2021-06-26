@@ -181,11 +181,11 @@ function dialog_create_settings_data_asset_files(dialog) {
     
     create_list_entries(el_types,
         // these three are special and need to stay at the beginning of the list
-        ["Data: Global", c_gray], ["Data: Datadata", c_gray], ["Data: Instances", c_gray],  
+        ["Data: Global", c_gray], ["Data: Game Classes", c_gray],
         // the rest can float around, as long as they're correctly mapped by the above array
         ["Data: Animations", c_black], ["Data: Events", c_black],
         ["Maps", c_black], ["Terrain", c_black],
-        ["Meshes", c_green], ["Mesh Autotiles", c_green],
+        ["Meshes", c_green],
         
         ["Image: Animated Tiles", c_blue], ["Image: Tilesets", c_blue],
         ["Image: Battlers", c_blue], ["Image: Overworlds", c_blue],
