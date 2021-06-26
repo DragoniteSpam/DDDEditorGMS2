@@ -1,5 +1,5 @@
 function dialog_create_map_default_lights(root) {
-    var map = dialog.root.map;
+    var map = root.root.map;
     var map_contents = map.contents;
     
     var dw = 640;
@@ -32,7 +32,7 @@ function dialog_create_map_default_lights(root) {
             ui_list_deselect(all_list);
             ui_list_select(all_list, ds_list_find_index(all_list.entries, list.entries[active_selection]), true);
         }
-    }, false, dg, map_contents.active_lights);
+    }, false, dg, map.lights);
     el_light_list.tooltip = "Directional lights will be shown in green. Point lights will be shown in blue. Effects with no light component (i.e. the light component has been removed) will be shown in red. Duplicate entries will be shown in orange. I recommend giving, at the very least, all of your Light entities unique names.";
     el_light_list.render_colors = ui_list_color_effect_components;
     el_light_list.entries_are = ListEntries.REFIDS;
@@ -48,9 +48,9 @@ function dialog_create_map_default_lights(root) {
         var active_selection = ui_list_selection(active_list);
         if (active_selection + 1) {
             if (selection + 1) {
-                active_list.entries[| active_selection] = list.entries[| selection];
+                active_list.entries[active_selection] = list.entries[| selection];
             } else {
-                active_list.entries[| active_selection] = NULL;
+                active_list.entries[active_selection] = NULL;
             }
         }
     }, false, dg);
