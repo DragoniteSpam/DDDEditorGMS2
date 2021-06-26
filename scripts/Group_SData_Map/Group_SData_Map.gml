@@ -261,6 +261,31 @@ function DataMap(source, directory) : SData(source) constructor {
             self.light_player_enabled,
             self.light_enabled,
         ));
+        
+        for (var i = 0; i < self.xx; i++) {
+            for (var j = 0; j < self.yy; j++) {
+                for (var k = 0; k < self.zz; k++) {
+                    buffer_write(buffer, buffer_flag, self.grid_flags[x][y][z]);
+                }
+            }
+        }
+        
+        if (self.contents) {
+            if (self.contents.frozen_data) {
+                buffer_write(buffer, buffer_u64, buffer_get_size(self.contents.frozen_data));
+                buffer_write_buffer(buffer, self.contents.frozen_data);
+            } else {
+                buffer_write(buffer, buffer_u64, 0);
+            }
+            if (self.contents.reflect_frozen_data) {
+                buffer_write(buffer, buffer_u64, buffer_get_size(self.contents.frozen_data));
+                buffer_write_buffer(buffer, self.contents.frozen_data);
+            } else {
+                buffer_write(buffer, buffer_u64, 0);
+            }
+        } else {
+            
+        }
     };
     
     static SaveAsset = function(directory) {
