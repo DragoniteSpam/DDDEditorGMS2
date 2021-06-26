@@ -1,4 +1,4 @@
-function Entity() constructor {
+function Entity(source) constructor {
     self.bullet_id = BulletUserIDCollection.Add(self);
     self.name = "Entity";
     self.etype = ETypes.ENTITY;
@@ -128,43 +128,6 @@ function Entity() constructor {
         buffer_write_file(json_stringify(self.CreateJSON()), directory);
     };
     
-    static LoadJSONBase = function(source) {
-        self.name = source.name;
-        refid_set(self, source.refid);
-        self.xx = source.position.x;
-        self.yy = source.position.y;
-        self.zz = source.position.z;
-        self.off_xx = source.offset.x;
-        self.off_yy = source.offset.y;
-        self.off_zz = source.offset.z;
-        self.rot_xx = source.rotation.x;
-        self.rot_yy = source.rotation.y;
-        self.rot_zz = source.rotation.z;
-        self.scale_xx = source.scale.x;
-        self.scale_yy = source.scale.y;
-        self.scale_zz = source.scale.z;
-        self.switches = source.switches;
-        self.variables = source.variables;
-        self.generic_data = source.generic_data;
-        self.object_events = source.events;
-        self.direction_fix = source.options.direction_fix;
-        self.always_update = source.options.always_update;
-        self.preserve_on_save = source.options.preserve;
-        self.reflect = source.options.reflect;
-        self.slope = source.options.slope;
-        self.is_static = source.options.is_static;
-        self.autonomous_movement = source.autonomous.type;
-        self.autonomous_movement_speed = source.autonomous.speed;
-        self.autonomous_movement_frequency = source.autonomous.frequency;
-        self.autonomous_movement_route = source.autonomous.route;
-        self.movement_routes = source.autonomous.routes;
-        self.tmx_id = source.tmx_id;
-    };
-    
-    static LoadJSON = function(source) {
-        self.LoadJSONBase(source);
-    };
-    
     static CreateJSONBase = function() {
         return {
             name: self.name,
@@ -238,9 +201,42 @@ function Entity() constructor {
     static Destroy = function() {
         self.DestroyBase();
     };
+    
+    if (is_struct(source)) {
+        self.name = source.name;
+        refid_set(self, source.refid);
+        self.xx = source.position.x;
+        self.yy = source.position.y;
+        self.zz = source.position.z;
+        self.off_xx = source.offset.x;
+        self.off_yy = source.offset.y;
+        self.off_zz = source.offset.z;
+        self.rot_xx = source.rotation.x;
+        self.rot_yy = source.rotation.y;
+        self.rot_zz = source.rotation.z;
+        self.scale_xx = source.scale.x;
+        self.scale_yy = source.scale.y;
+        self.scale_zz = source.scale.z;
+        self.switches = source.switches;
+        self.variables = source.variables;
+        self.generic_data = source.generic_data;
+        self.object_events = source.events;
+        self.direction_fix = source.options.direction_fix;
+        self.always_update = source.options.always_update;
+        self.preserve_on_save = source.options.preserve;
+        self.reflect = source.options.reflect;
+        self.slope = source.options.slope;
+        self.is_static = source.options.is_static;
+        self.autonomous_movement = source.autonomous.type;
+        self.autonomous_movement_speed = source.autonomous.speed;
+        self.autonomous_movement_frequency = source.autonomous.frequency;
+        self.autonomous_movement_route = source.autonomous.route;
+        self.movement_routes = source.autonomous.routes;
+        self.tmx_id = source.tmx_id;
+    }
 }
 
-function EntityEffect() : Entity() constructor {
+function EntityEffect(source) : Entity(source) constructor {
     static save_script = serialize_save_entity_effect;
 
     self.name = "Effect";
@@ -259,20 +255,6 @@ function EntityEffect() : Entity() constructor {
     self.com_light = undefined;
     self.com_particle = undefined;
     self.com_audio = undefined;
-    
-    static LoadJSONEffect = function(source) {
-        self.LoadJSONBase(source);
-        var light = source.com.light;
-        var particle = source.com.particle;
-        var audio = source.com.audio;
-        self.com_light = light ? (new global.light_type_constructors[light.type](self, light)) : undefined;
-        self.com_particle = particle ? (new ComponentParticle(self, particle)) : undefined;
-        self.com_audio = audio ? (new ComponentAudio(self, audio)) : undefined;
-    };
-    
-    static LoadJSON = function(source) {
-        self.LoadJSONEffect(source);
-    };
     
     static CreateJSONEffect = function() {
         var json = self.CreateJSONBase();
@@ -319,9 +301,18 @@ function EntityEffect() : Entity() constructor {
         self.DestroyBase();
         self.DestroyEffect();
     };
+    
+    if (is_struct(source)) {
+        var light = source.com.light;
+        var particle = source.com.particle;
+        var audio = source.com.audio;
+        self.com_light = light ? (new global.light_type_constructors[light.type](self, light)) : undefined;
+        self.com_particle = particle ? (new ComponentParticle(self, particle)) : undefined;
+        self.com_audio = audio ? (new ComponentAudio(self, audio)) : undefined;
+    }
 }
 
-function EntityMesh(mesh) : Entity() constructor {
+function EntityMesh(source, mesh) : Entity(source) constructor {
     self.name = mesh.name;
     
     save_script = serialize_save_entity_mesh;
@@ -353,10 +344,8 @@ function EntityMesh(mesh) : Entity() constructor {
     
     static SetStatic = function(state) {
         // Meshes with no mesh are not allowed to be marked as static
-        if (!guid_get(mesh)) return false;
-        if (state != is_static) {
-            is_static = state;
-        }
+        if (!guid_get(mesh)) return;
+        self.is_static = state;
     };
     
     switch (mesh.type) {
@@ -432,21 +421,6 @@ function EntityMesh(mesh) : Entity() constructor {
         return (mesh_data && guid_get(mesh_data.tex_base)) ? sprite_get_texture(guid_get(mesh_data.tex_base).picture, 0) : def_texture;
     };
     
-    static LoadJSONMesh = function(source) {
-        self.LoadJSONBase(source);
-        self.mesh = source.mesh.mesh;
-        self.mesh_submesh = source.mesh.submesh;
-        self.animated = source.mesh.animation.animated;
-        self.animation_index = source.mesh.animation.index;
-        self.animation_type = source.mesh.animation.type;
-        self.animation_speed = source.mesh.animation.speed;
-        self.animation_end_action = source.mesh.animation.end_action;
-    };
-    
-    static LoadJSON = function(source) {
-        self.LoadJSONMesh(source);
-    };
-    
     static CreateJSONMesh = function() {
         var json = self.CreateJSONBase();
         json.mesh = {
@@ -466,9 +440,19 @@ function EntityMesh(mesh) : Entity() constructor {
     static CreateJSON = function() {
         return self.CreateJSONMesh();
     };
+    
+    if (is_struct(source)) {
+        self.mesh = source.mesh.mesh;
+        self.mesh_submesh = source.mesh.submesh;
+        self.animated = source.mesh.animation.animated;
+        self.animation_index = source.mesh.animation.index;
+        self.animation_type = source.mesh.animation.type;
+        self.animation_speed = source.mesh.animation.speed;
+        self.animation_end_action = source.mesh.animation.end_action;
+    }
 }
 
-function EntityMeshAutotile() : EntityMesh() constructor {
+function EntityMeshAutotile(source) : EntityMesh(source) constructor {
     self.name = "Terrain";
     self.etype = ETypes.ENTITY_MESH_AUTO;
     self.etype_flags = ETypeFlags.ENTITY_MESH_AUTO;
@@ -504,17 +488,6 @@ function EntityMeshAutotile() : EntityMesh() constructor {
         return false;
     };
     
-    static LoadJSONMeshAT = function(source) {
-        self.LoadJSONBase(source);
-        self.terrain_id = source.mesh_at.id;
-        self.terrain_type = source.mesh_at.type;
-        self.autotile_id = source.mesh_at.autotile_id;
-    };
-    
-    static LoadJSON = function(source) {
-        self.LoadJSONMeshAT(source);
-    };
-    
     static Export = function(buffer) {
         // these don't get exported individually
     };
@@ -532,9 +505,15 @@ function EntityMeshAutotile() : EntityMesh() constructor {
     static CreateJSON = function() {
         return self.CreateJSONMeshAT();
     };
+    
+    if (is_struct(source)) {
+        self.terrain_id = source.mesh_at.id;
+        self.terrain_type = source.mesh_at.type;
+        self.autotile_id = source.mesh_at.autotile_id;
+    }
 }
 
-function EntityPawn() : Entity() constructor {
+function EntityPawn(source) : Entity(source) constructor {
     static save_script = serialize_save_entity_pawn;
     
     self.overworld_sprite = array_empty(Game.graphics.overworlds) ? NULL : Game.graphics.overworlds[0].GUID;
@@ -563,16 +542,6 @@ function EntityPawn() : Entity() constructor {
     static render = render_pawn;
     static on_select_ui = safc_on_pawn_ui;
     
-    static LoadJSONPawn = function(source) {
-        self.LoadJSONBase(source);
-        self.map_direction = source.pawn.direction;
-        self.overworld_sprite = source.pawn.sprite;
-    };
-    
-    static LoadJSON = function(source) {
-        self.LoadJSONPawn(source);
-    };
-    
     static CreateJSONPawn = function() {
         var json = self.CreateJSONBase();
         json.pawn = {
@@ -585,9 +554,14 @@ function EntityPawn() : Entity() constructor {
     static CreateJSON = function() {
         return self.CreateJSONPawn();
     };
+    
+    if (is_struct(source)) {
+        self.map_direction = source.pawn.direction;
+        self.overworld_sprite = source.pawn.sprite;
+    }
 }
 
-function EntityTile(tile_x, tile_y) : Entity() constructor {
+function EntityTile(source, tile_x, tile_y) : Entity(source) constructor {
     self.name = "Tile";
     self.etype = ETypes.ENTITY_TILE;
     self.etype_flags = ETypeFlags.ENTITY_TILE;
@@ -662,18 +636,6 @@ function EntityTile(tile_x, tile_y) : Entity() constructor {
     
     self.cobject = c_object_create_cached(Stuff.graphics.c_shape_tile, CollisionMasks.MAIN, CollisionMasks.MAIN);
     
-    static LoadJSONTile = function(source) {
-        self.LoadJSONBase(source);
-        self.tile_x = source.tile.x;
-        self.tile_y = source.tile.y;
-        self.tile_color = source.tile.color;
-        self.tile_alpha = source.tile.alpha;
-    };
-    
-    static LoadJSON = function(source) {
-        self.LoadJSONTile(source);
-    };
-    
     static Export = function(buffer) {
         // these don't get exported individually
     };
@@ -701,9 +663,16 @@ function EntityTile(tile_x, tile_y) : Entity() constructor {
     static Destroy = function() {
         self.DestroyTile();
     };
+    
+    if (is_struct(source)) {
+        self.tile_x = source.tile.x;
+        self.tile_y = source.tile.y;
+        self.tile_color = source.tile.color;
+        self.tile_alpha = source.tile.alpha;
+    }
 }
 
-function EntityTileAnimated() : EntityTile(0, 0) constructor {
+function EntityTileAnimated(source) : EntityTile(source, 0, 0) constructor {
     self.name = "Animated Tile";
     self.etype = ETypes.ENTITY_TILE_ANIMATED;
     self.etype_flags = ETypeFlags.ENTITY_TILE_ANIMATED;
@@ -711,4 +680,8 @@ function EntityTileAnimated() : EntityTile(0, 0) constructor {
     static batch = batch_autotile;
     
     static on_select_ui = safc_on_tile_animated_ui;
+    
+    if (is_struct(source)) {
+        
+    }
 }
