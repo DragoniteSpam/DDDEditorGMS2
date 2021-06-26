@@ -139,7 +139,6 @@ Game = new (function() constructor {
     self.meta.export.locations[GameDataCategories.BGM] = file_asset;
     self.meta.export.locations[GameDataCategories.SE] = file_asset;
     self.meta.export.locations[GameDataCategories.MESH] = file_asset;
-    self.meta.export.locations[GameDataCategories.MESH_AUTOTILES] = file_asset;
     self.meta.export.locations[GameDataCategories.MAP] = file_default;
     self.meta.export.locations[GameDataCategories.GLOBAL] = file_default;
     self.meta.export.locations[GameDataCategories.EVENTS]  = file_default;

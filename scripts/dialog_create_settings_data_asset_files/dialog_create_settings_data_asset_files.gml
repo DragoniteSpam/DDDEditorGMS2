@@ -142,7 +142,6 @@ function dialog_create_settings_data_asset_files(dialog) {
         GameDataCategories.MAP,
         GameDataCategories.TERRAIN,
         GameDataCategories.MESH,
-        GameDataCategories.MESH_AUTOTILES,
         GameDataCategories.TILE_ANIMATIONS,
         GameDataCategories.TILESETS,
         GameDataCategories.BATTLERS,
@@ -165,18 +164,17 @@ function dialog_create_settings_data_asset_files(dialog) {
     map_cat_to_index[$ GameDataCategories.MAP] = 4;
     map_cat_to_index[$ GameDataCategories.TERRAIN] = 5;
     map_cat_to_index[$ GameDataCategories.MESH] = 6;
-    map_cat_to_index[$ GameDataCategories.MESH_AUTOTILES] = 7;
-    map_cat_to_index[$ GameDataCategories.TILE_ANIMATIONS] = 8;
-    map_cat_to_index[$ GameDataCategories.TILESETS] = 9;
-    map_cat_to_index[$ GameDataCategories.BATTLERS] = 10;
-    map_cat_to_index[$ GameDataCategories.OVERWORLDS] = 11;
-    map_cat_to_index[$ GameDataCategories.PARTICLES] = 12;
-    map_cat_to_index[$ GameDataCategories.UI] = 13;
-    map_cat_to_index[$ GameDataCategories.SKYBOX] = 14;
-    map_cat_to_index[$ GameDataCategories.MISC /* image */] = 15;
-    map_cat_to_index[$ GameDataCategories.BGM] = 16;
-    map_cat_to_index[$ GameDataCategories.SE] = 17;
-    map_cat_to_index[$ GameDataCategories.LANGUAGE_TEXT] = 18;
+    map_cat_to_index[$ GameDataCategories.TILE_ANIMATIONS] = 7;
+    map_cat_to_index[$ GameDataCategories.TILESETS] = 8;
+    map_cat_to_index[$ GameDataCategories.BATTLERS] = 9;
+    map_cat_to_index[$ GameDataCategories.OVERWORLDS] = 10;
+    map_cat_to_index[$ GameDataCategories.PARTICLES] = 11;
+    map_cat_to_index[$ GameDataCategories.UI] = 12;
+    map_cat_to_index[$ GameDataCategories.SKYBOX] = 13;
+    map_cat_to_index[$ GameDataCategories.MISC /* image */] = 14;
+    map_cat_to_index[$ GameDataCategories.BGM] = 15;
+    map_cat_to_index[$ GameDataCategories.SE] = 16;
+    map_cat_to_index[$ GameDataCategories.LANGUAGE_TEXT] = 17;
     
     el_types.mapping_cat_to_index = map_cat_to_index;
     el_types.mapping_index_to_cat = map_index_to_cat;

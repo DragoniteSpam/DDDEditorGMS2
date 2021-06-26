@@ -29,7 +29,6 @@ function project_export() {
         game_data_save_scripts[GameDataCategories.BGM] =                        project_export_audio_bgm;
         game_data_save_scripts[GameDataCategories.SE] =                         project_export_audio_se;
         game_data_save_scripts[GameDataCategories.MESH] =                       project_export_meshes;
-        game_data_save_scripts[GameDataCategories.MESH_AUTOTILES] =             null;
         game_data_save_scripts[GameDataCategories.MAP] =                        serialize_save_maps;
         game_data_save_scripts[GameDataCategories.GLOBAL] =                     project_export_global;
         game_data_save_scripts[GameDataCategories.EVENTS]  =                    project_export_events;

@@ -323,7 +323,6 @@ enum GameDataCategories {
     SE,
 /**/MESH,               // mesh
 /**/LANGUAGE_TEXT,      // appended later
-    MESH_AUTOTILES,
     __COUNT
 }
 
