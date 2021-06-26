@@ -309,8 +309,8 @@ enum GameDataCategories {
     DATA,
 /**/ANIMATIONS,         // other
     EVENTS,
-    TERRAIN,
     MAPS,
+    TERRAIN,
 /**/IMAGES,
 /**/AUDIO,
 /**/MESHES,

@@ -133,20 +133,15 @@ function dialog_create_settings_data_asset_files(dialog) {
     }, false, dg);
     
     create_list_entries(el_types,
-        // these three are special and need to stay at the beginning of the list
-        ["Data: Global", c_gray], ["Data: Game Classes", c_gray],
-        // the rest can float around, as long as they're correctly mapped by the above array
-        ["Data: Animations", c_black], ["Data: Events", c_black],
-        ["Maps", c_black], ["Terrain", c_black],
-        ["Meshes", c_green],
-        
-        ["Image: Animated Tiles", c_blue], ["Image: Tilesets", c_blue],
-        ["Image: Battlers", c_blue], ["Image: Overworlds", c_blue],
-        ["Image: Particles", c_blue], ["Image: UI", c_blue],
-        ["Image: Skybox", c_blue], ["Image: Misc.", c_blue],
-        
-        ["Audio: BGM", c_purple], ["Audio: SE", c_purple],
-        
+        ["Global Data", c_gray],
+        ["Game Data", c_gray],
+        ["Animations", c_black],
+        ["Data: Events", c_black],
+        ["Maps", c_black],
+        ["Terrain", c_black],
+        ["Images", c_black],
+        ["Audio", c_black],
+        ["Meshes", c_black],
         ["Language Text", c_black],
     );
     
