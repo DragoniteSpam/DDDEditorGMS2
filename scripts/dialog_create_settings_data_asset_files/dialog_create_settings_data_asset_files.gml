@@ -39,20 +39,18 @@ function dialog_create_settings_data_asset_files(dialog) {
             // pick out data types that go to this data file
             ui_list_deselect(list.root.el_types);
             for (var i = 0; i < array_length(Game.meta.export.locations); i++) {
-                // the first three get special treatment
-                if (i < 3) {
+                // global metadata gets special treatment
+                if (i  == 0) {
                     if (selection == 0) ui_list_select(list.root.el_types, i);
                     continue;
                 }
                 // otherwise, the data belongs in the selected file if its
                 // location is set to the file, or the file is unassigned
                 // and the selected file is the master one
-                var mapped_list_index = list.root.el_types.mapping_cat_to_index[$ i];
-                
                 if (Game.meta.export.locations[i] == file_data) {
-                    ui_list_select(list.root.el_types, mapped_list_index);
+                    ui_list_select(list.root.el_types, i);
                 } else if (selection == 0 && !Game.meta.export.locations[i]) {
-                    ui_list_select(list.root.el_types, mapped_list_index);
+                    ui_list_select(list.root.el_types, i);
                 }
             }
         } else {
@@ -128,56 +126,11 @@ function dialog_create_settings_data_asset_files(dialog) {
                 }
                 // otherwise, if a thing is selected, assign it
                 if (ui_list_is_selected(list, i)) {
-                    Game.meta.export.locations[list.mapping_index_to_cat[i]] = file_data;
+                    Game.meta.export.locations[i] = file_data;
                 }
             }
         }
     }, false, dg);
-    
-    static map_index_to_cat = [
-        GameDataCategories.GLOBAL,
-        GameDataCategories.DATADATA,
-        GameDataCategories.ANIMATIONS,
-        GameDataCategories.EVENTS,
-        GameDataCategories.MAP,
-        GameDataCategories.TERRAIN,
-        GameDataCategories.MESH,
-        GameDataCategories.TILE_ANIMATIONS,
-        GameDataCategories.TILESETS,
-        GameDataCategories.BATTLERS,
-        GameDataCategories.OVERWORLDS,
-        GameDataCategories.PARTICLES,
-        GameDataCategories.UI,
-        GameDataCategories.SKYBOX,
-        GameDataCategories.MISC /* image */,
-        GameDataCategories.BGM,
-        GameDataCategories.SE,
-        GameDataCategories.LANGUAGE_TEXT,
-    ];
-    
-    // GMEdit keeps messing up this line, it's pretty annoying, so instead
-    static map_cat_to_index = { };
-    map_cat_to_index[$ GameDataCategories.GLOBAL] = 0;
-    map_cat_to_index[$ GameDataCategories.DATADATA] = 1;
-    map_cat_to_index[$ GameDataCategories.ANIMATIONS] = 2;
-    map_cat_to_index[$ GameDataCategories.EVENTS]  = 3;
-    map_cat_to_index[$ GameDataCategories.MAP] = 4;
-    map_cat_to_index[$ GameDataCategories.TERRAIN] = 5;
-    map_cat_to_index[$ GameDataCategories.MESH] = 6;
-    map_cat_to_index[$ GameDataCategories.TILE_ANIMATIONS] = 7;
-    map_cat_to_index[$ GameDataCategories.TILESETS] = 8;
-    map_cat_to_index[$ GameDataCategories.BATTLERS] = 9;
-    map_cat_to_index[$ GameDataCategories.OVERWORLDS] = 10;
-    map_cat_to_index[$ GameDataCategories.PARTICLES] = 11;
-    map_cat_to_index[$ GameDataCategories.UI] = 12;
-    map_cat_to_index[$ GameDataCategories.SKYBOX] = 13;
-    map_cat_to_index[$ GameDataCategories.MISC /* image */] = 14;
-    map_cat_to_index[$ GameDataCategories.BGM] = 15;
-    map_cat_to_index[$ GameDataCategories.SE] = 16;
-    map_cat_to_index[$ GameDataCategories.LANGUAGE_TEXT] = 17;
-    
-    el_types.mapping_cat_to_index = map_cat_to_index;
-    el_types.mapping_index_to_cat = map_index_to_cat;
     
     create_list_entries(el_types,
         // these three are special and need to stay at the beginning of the list

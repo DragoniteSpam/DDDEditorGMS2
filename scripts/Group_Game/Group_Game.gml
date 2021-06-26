@@ -128,21 +128,13 @@ Game = new (function() constructor {
         Identifiers.Clear();
     };
     
-    self.meta.export.locations[GameDataCategories.TILE_ANIMATIONS] = file_asset;
-    self.meta.export.locations[GameDataCategories.TILESETS] = file_asset;
-    self.meta.export.locations[GameDataCategories.BATTLERS] = file_asset;
-    self.meta.export.locations[GameDataCategories.OVERWORLDS] = file_asset;
-    self.meta.export.locations[GameDataCategories.PARTICLES] = file_asset;
-    self.meta.export.locations[GameDataCategories.UI] = file_asset;
-    self.meta.export.locations[GameDataCategories.SKYBOX] = file_asset;
-    self.meta.export.locations[GameDataCategories.MISC] = file_asset;
-    self.meta.export.locations[GameDataCategories.BGM] = file_asset;
-    self.meta.export.locations[GameDataCategories.SE] = file_asset;
-    self.meta.export.locations[GameDataCategories.MESH] = file_asset;
-    self.meta.export.locations[GameDataCategories.MAP] = file_default;
+    self.meta.export.locations[GameDataCategories.IMAGES] = file_asset;
+    self.meta.export.locations[GameDataCategories.AUDIO] = file_asset;
+    self.meta.export.locations[GameDataCategories.MESHES] = file_asset;
+    self.meta.export.locations[GameDataCategories.MAPS] = file_default;
     self.meta.export.locations[GameDataCategories.GLOBAL] = file_default;
     self.meta.export.locations[GameDataCategories.EVENTS]  = file_default;
-    self.meta.export.locations[GameDataCategories.DATADATA] = file_default;
+    self.meta.export.locations[GameDataCategories.DATA] = file_default;
     self.meta.export.locations[GameDataCategories.ANIMATIONS] = file_default;
     self.meta.export.locations[GameDataCategories.TERRAIN] = file_terrain;
     self.meta.export.locations[GameDataCategories.LANGUAGE_TEXT] = file_default;

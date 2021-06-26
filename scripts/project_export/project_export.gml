@@ -18,23 +18,15 @@ function project_export() {
         }
         
         static game_data_save_scripts = array_create(GameDataCategories.__COUNT);
-        game_data_save_scripts[GameDataCategories.TILE_ANIMATIONS] =            project_export_image_tile_animations;
-        game_data_save_scripts[GameDataCategories.TILESETS] =                   project_export_image_tilesets;
-        game_data_save_scripts[GameDataCategories.BATTLERS] =                   project_export_image_battlers;
-        game_data_save_scripts[GameDataCategories.OVERWORLDS] =                 project_export_image_overworlds;
-        game_data_save_scripts[GameDataCategories.PARTICLES] =                  project_export_image_particles;
-        game_data_save_scripts[GameDataCategories.UI] =                         project_export_image_ui;
-        game_data_save_scripts[GameDataCategories.SKYBOX] =                     project_export_image_skyboxes;
-        game_data_save_scripts[GameDataCategories.MISC] =                       project_export_image_misc;
-        game_data_save_scripts[GameDataCategories.BGM] =                        project_export_audio_bgm;
-        game_data_save_scripts[GameDataCategories.SE] =                         project_export_audio_se;
-        game_data_save_scripts[GameDataCategories.MESH] =                       project_export_meshes;
-        game_data_save_scripts[GameDataCategories.MAP] =                        serialize_save_maps;
+        game_data_save_scripts[GameDataCategories.IMAGES] =                     project_export_images;
+        game_data_save_scripts[GameDataCategories.AUDIO] =                      project_export_audio;
+        game_data_save_scripts[GameDataCategories.MESHES] =                     project_export_meshes;
+        game_data_save_scripts[GameDataCategories.MAPS] =                       serialize_save_maps;
         game_data_save_scripts[GameDataCategories.GLOBAL] =                     project_export_global;
         game_data_save_scripts[GameDataCategories.EVENTS]  =                    project_export_events;
-        game_data_save_scripts[GameDataCategories.DATADATA] =                   project_export_data;
+        game_data_save_scripts[GameDataCategories.DATA] =                       project_export_data;
         game_data_save_scripts[GameDataCategories.ANIMATIONS] =                 project_export_animations;
-        game_data_save_scripts[GameDataCategories.TERRAIN] =                    null;
+        game_data_save_scripts[GameDataCategories.TERRAIN] =                    null;                           // may consider adding this later
         game_data_save_scripts[GameDataCategories.LANGUAGE_TEXT] =              project_export_language;
         
         var fn = get_save_filename_dddd(Stuff.save_name);

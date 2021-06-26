@@ -92,43 +92,19 @@ function project_export_meshes(buffer) {
     project_export_standard(buffer, SerializeThings.MESHES, Game.meshes);
 }
 
-function project_export_image_tilesets(buffer) {
+function project_export_images(buffer) {
     project_export_standard(buffer, SerializeThings.IMAGE_TILESET, Game.graphics.tilesets);
-}
-
-function project_export_image_skyboxes(buffer) {
     project_export_standard(buffer, SerializeThings.IMAGE_SKYBOX, Game.graphics.skybox);
-}
-
-function project_export_image_particles(buffer) {
     project_export_standard(buffer, SerializeThings.IMAGE_PARTICLES, Game.graphics.particles);
-}
-
-function project_export_image_overworlds(buffer) {
     project_export_standard(buffer, SerializeThings.IMAGE_OVERWORLD, Game.graphics.overworlds);
-}
-
-function project_export_image_battlers(buffer) {
     project_export_standard(buffer, SerializeThings.IMAGE_BATTLERS, Game.graphics.battlers);
-}
-
-function project_export_image_misc(buffer) {
     project_export_standard(buffer, SerializeThings.IMAGE_MISC, Game.graphics.etc);
-}
-
-function project_export_image_ui(buffer) {
     project_export_standard(buffer, SerializeThings.IMAGE_UI, Game.graphics.ui);
-}
-
-function project_export_image_tile_animations(buffer) {
     project_export_standard(buffer, SerializeThings.IMAGE_TILE_ANIMATION, Game.graphics.tile_animations);
 }
 
-function project_export_audio_se(buffer) {
+function project_export_audio(buffer) {
     project_export_standard(buffer, SerializeThings.AUDIO_SE, Game.audio.se);
-}
-
-function project_export_audio_bgm(buffer) {
     project_export_standard(buffer, SerializeThings.AUDIO_BGM, Game.audio.bgm);
 }
 

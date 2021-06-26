@@ -305,24 +305,16 @@ tileset_create(PATH_GRAPHICS + DEFAULT_TILESET).name = "Default";
 #endregion
 
 enum GameDataCategories {
-/**/DATADATA,           // core
-    GLOBAL,
+/**/GLOBAL,           // core
+    DATA,
 /**/ANIMATIONS,         // other
     EVENTS,
     TERRAIN,
-    MAP,
-/**/TILE_ANIMATIONS,    // image assets
-    TILESETS,
-    BATTLERS,
-    OVERWORLDS,
-    PARTICLES,
-    UI,
-    SKYBOX,
-    MISC,
-/**/BGM,                // audio assets
-    SE,
-/**/MESH,               // mesh
-/**/LANGUAGE_TEXT,      // appended later
+    MAPS,
+/**/IMAGES,
+/**/AUDIO,
+/**/MESHES,
+/**/LANGUAGE_TEXT,
     __COUNT
 }
 
