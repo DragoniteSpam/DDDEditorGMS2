@@ -548,6 +548,7 @@ function EntityPawn() : Entity() constructor {
     // editor properties
     self.slot = MapCellContents.PAWN;
     self.batchable = false;
+    self.cobject = c_object_create_cached(Stuff.graphics.c_shape_block, CollisionMasks.MAIN, CollisionMasks.MAIN);
     
     // there will be other things here probably
     static batch = null;                     // you don't batch pawns
