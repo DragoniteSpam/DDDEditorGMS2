@@ -607,17 +607,45 @@ function EntityTile(tile_x, tile_y) : Entity() constructor {
     var tw = TILE_WIDTH;
     var th = TILE_HEIGHT;
     
-    self.vbuffer = entity_tile_create_vbuffer(self);
-    self.wbuffer = vertex_create_buffer();
-    vertex_begin(self.wbuffer, Stuff.graphics.vertex_format);
-    vertex_point_line(self.wbuffer, 0, 0, 0, c_white, 1);
-    vertex_point_line(self.wbuffer, tw, 0, 0, c_white, 1);
-    vertex_point_line(self.wbuffer, tw, th, 0, c_white, 1);
-    vertex_point_line(self.wbuffer, tw, th, 0, c_white, 1);
-    vertex_point_line(self.wbuffer, 0, th, 0, c_white, 1);
-    vertex_point_line(self.wbuffer, 0, 0, 0, c_white, 1);
-    vertex_end(self.wbuffer);
+    self.vbuffer = undefined;
+    self.wbuffer = undefined;
     
+    static GenerateVertexBuffers = function() {
+        if (self.vbuffer != undefined) vertex_delete_buffer(self.vbuffer);
+        if (self.wbuffer != undefined) vertex_delete_buffer(self.wbuffer);
+        
+        var texture_width = 1 / (TEXTURE_SIZE / Stuff.tile_size);
+        var texture_height = 1 / (TEXTURE_SIZE / Stuff.tile_size);
+        
+        var texx1 = tile.tile_x * texture_width;
+        var texy1 = tile.tile_y * texture_height;
+        var texx2 = (tile.tile_x + 1) * texture_width;
+        var texy2 = (tile.tile_y + 1) * texture_height;
+        
+        var tw = TILE_WIDTH;
+        var th = TILE_HEIGHT;
+        
+        self.vbuffer = vertex_create_buffer();
+        vertex_begin(self.vbuffer, Stuff.graphics.vertex_format);
+        vertex_point_complete(self.vbuffer, 0, 0, 0, 0, 0, 1, texx1, texy1, tile.tile_color, tile.tile_alpha);
+        vertex_point_complete(self.vbuffer, tw, 0, 0, 0, 0, 1, texx2, texy1, tile.tile_color, tile.tile_alpha);
+        vertex_point_complete(self.vbuffer, tw, th, 0, 0, 0, 1, texx2, texy2, tile.tile_color, tile.tile_alpha);
+        vertex_point_complete(self.vbuffer, tw, th, 0, 0, 0, 1, texx2, texy2, tile.tile_color, tile.tile_alpha);
+        vertex_point_complete(self.vbuffer, 0, th, 0, 0, 0, 1, texx1, texy2, tile.tile_color, tile.tile_alpha);
+        vertex_point_complete(self.vbuffer, 0, 0, 0, 0, 0, 1, texx1, texy1, tile.tile_color, tile.tile_alpha);
+        vertex_end(self.vbuffer);
+        
+        vertex_begin(self.wbuffer, Stuff.graphics.vertex_format);
+        vertex_point_line(self.wbuffer, 0, 0, 0, c_white, 1);
+        vertex_point_line(self.wbuffer, tw, 0, 0, c_white, 1);
+        vertex_point_line(self.wbuffer, tw, th, 0, c_white, 1);
+        vertex_point_line(self.wbuffer, tw, th, 0, c_white, 1);
+        vertex_point_line(self.wbuffer, 0, th, 0, c_white, 1);
+        vertex_point_line(self.wbuffer, 0, 0, 0, c_white, 1);
+        vertex_end(self.wbuffer);
+    };
+    
+    self.GenerateVertexBuffers();
     // other properties
     self.is_static = true;
     // these things can't *not* be static
@@ -633,7 +661,6 @@ function EntityTile(tile_x, tile_y) : Entity() constructor {
     static render = render_tile;
     static on_select_ui = safc_on_tile_ui;
     
-    entity_tile_update_vbuffer(self);
     self.cobject = c_object_create_cached(Stuff.graphics.c_shape_tile, CollisionMasks.MAIN, CollisionMasks.MAIN);
     
     static LoadJSONTile = function(source) {
