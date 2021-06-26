@@ -207,7 +207,6 @@
     {"id":{"name":"spr_emu_mask_crosshair","path":"sprites/spr_emu_mask_crosshair/spr_emu_mask_crosshair.yy",},"order":13,},
     {"id":{"name":"Group_Math_Bitwise","path":"scripts/Group_Math_Bitwise/Group_Math_Bitwise.yy",},"order":9,},
     {"id":{"name":"serialize_save_maps","path":"scripts/serialize_save_maps/serialize_save_maps.yy",},"order":5,},
-    {"id":{"name":"serialize_save_current_map","path":"scripts/serialize_save_current_map/serialize_save_current_map.yy",},"order":6,},
     {"id":{"name":"serialize_save_particles","path":"scripts/serialize_save_particles/serialize_save_particles.yy",},"order":0,},
     {"id":{"name":"serialize_load_particles","path":"scripts/serialize_load_particles/serialize_load_particles.yy",},"order":1,},
     {"id":{"name":"draw_active_event","path":"scripts/draw_active_event/draw_active_event.yy",},"order":0,},
