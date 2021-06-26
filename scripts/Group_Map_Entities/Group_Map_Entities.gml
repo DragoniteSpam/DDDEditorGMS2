@@ -498,6 +498,8 @@ function EntityMeshAutotile() : EntityMesh() constructor {
         TOP, VERTICAL, BASE, SLOPE, __COUNT,
     }
     
+    self.cobject = c_object_create_cached(Stuff.graphics.c_shape_block, CollisionMasks.MAIN, CollisionMasks.MAIN);
+    
     self.is_static = true;
     // these things can't *not* be static
     static SetStatic = function(state) {
