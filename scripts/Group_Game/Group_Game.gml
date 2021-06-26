@@ -2,10 +2,6 @@
 #macro Identifiers global.__identifiers
 
 Game = new (function() constructor {
-    var file_default = new DataFile("data", false, true);
-    var file_asset = new DataFile("assets", false, false);
-    var file_terrain = new DataFile("terrain", true, false);
-    
     self.meta = {
         project: {
             notes: "",
@@ -14,7 +10,7 @@ Game = new (function() constructor {
             id: string_hex(irandom(0xffffffff), 8),
         },
         export: {
-            files: [file_default, file_asset, file_terrain],
+            files: [new DataFile("data", false, true), new DataFile("assets", false, false), new DataFile("terrain", true, false)],
             locations: [],
         },
         
@@ -128,15 +124,15 @@ Game = new (function() constructor {
         Identifiers.Clear();
     };
     
-    self.meta.export.locations[GameDataCategories.IMAGES] = file_asset;
-    self.meta.export.locations[GameDataCategories.AUDIO] = file_asset;
-    self.meta.export.locations[GameDataCategories.MESHES] = file_asset;
-    self.meta.export.locations[GameDataCategories.MAPS] = file_default;
-    self.meta.export.locations[GameDataCategories.EVENTS]  = file_default;
-    self.meta.export.locations[GameDataCategories.DATA] = file_default;
-    self.meta.export.locations[GameDataCategories.ANIMATIONS] = file_default;
-    self.meta.export.locations[GameDataCategories.TERRAIN] = file_terrain;
-    self.meta.export.locations[GameDataCategories.LANGUAGE_TEXT] = file_default;
+    self.meta.export.locations[GameDataCategories.IMAGES] = 1;
+    self.meta.export.locations[GameDataCategories.AUDIO] = 1;
+    self.meta.export.locations[GameDataCategories.MESHES] = 1;
+    self.meta.export.locations[GameDataCategories.MAPS] = 0;
+    self.meta.export.locations[GameDataCategories.EVENTS]  = 0;
+    self.meta.export.locations[GameDataCategories.DATA] = 0;
+    self.meta.export.locations[GameDataCategories.ANIMATIONS] = 0;
+    self.meta.export.locations[GameDataCategories.TERRAIN] = 2;
+    self.meta.export.locations[GameDataCategories.LANGUAGE_TEXT] = 0;
     
     for (var i = 0; i < BASE_GAME_VARIABLES; i++) {
         self.vars.switches[i] = new DataValue("Switch" + string(i));
