@@ -45,11 +45,13 @@ function BoundingBox(x1, y1, z1, x2, y2, z2) constructor {
     self.z2 = z1;
     
     static Chunk = function(scale) {
-        self.x1 /= scale;
-        self.y1 /= scale;
-        self.z1 /= scale;
-        self.x2 /= scale;
-        self.y2 /= scale;
-        self.z2 /= scale;
+        return new BoundingBox(
+            self.x1 / scale, 
+            self.y1 / scale,
+            self.z1 / scale,
+            self.x2 / scale,
+            self.y2 / scale,
+            self.z2 / scale,
+        );
     };
 }
