@@ -1,6 +1,6 @@
 function instance_create_tile_animated() {
     var tile = new EntityTileAnimated();
-    entity_init_collision_tile(tile);
+    tile.cobject = c_object_create_cached(Stuff.graphics.c_shape_tile, CollisionMasks.MAIN, CollisionMasks.MAIN);
     return tile;
 
 

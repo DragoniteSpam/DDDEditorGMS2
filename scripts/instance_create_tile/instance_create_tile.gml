@@ -10,7 +10,7 @@ function instance_create_tile() {
     var other_data = (argument_count > 2) ? argument[2] : undefined;
 
     entity_tile_update_vbuffer(tile);
-    entity_init_collision_tile(tile);
+    tile.cobject = c_object_create_cached(Stuff.graphics.c_shape_tile, CollisionMasks.MAIN, CollisionMasks.MAIN);
 
     return tile;
 
