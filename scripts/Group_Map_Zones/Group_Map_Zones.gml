@@ -535,11 +535,11 @@ function MapZoneLight(source, x1, y1, z1, x2, y2, z2) : MapZone(source, x1, y1, 
         
         var el_light_list = create_list(col2_x, yy, "Active Lights:", "<no active lights>", ew, eh, 12, function(list) {
             var all_list = list.root.el_available_lights;
-            var active_selection = ui_list_selection(active_list);
+            var active_selection = ui_list_selection(list);
             var all_selection = ui_list_selection(all_list);
             if (active_selection + 1) {
                 ui_list_deselect(all_list);
-                ui_list_select(all_list, ds_list_find_index(all_list.entries, active_list.entries[active_selection]), true);
+                ui_list_select(all_list, ds_list_find_index(all_list.entries, list.entries[active_selection]), true);
             }
         }, false, dg, zone.lights);
         el_light_list.tooltip = "Directional lights will be shown in green. Point lights will be shown in blue. Effects with no light component (i.e. the light component has been removed) will be shown in red. Duplicate entries will be shown in orange. I recommend giving, at the very least, all of your Light entities unique names. One light will be reserved for the player at all times.";
