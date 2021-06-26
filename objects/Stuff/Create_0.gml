@@ -306,7 +306,6 @@ tileset_create(PATH_GRAPHICS + DEFAULT_TILESET).name = "Default";
 
 enum GameDataCategories {
 /**/DATADATA,           // core
-    DATA_INST,
     GLOBAL,
 /**/ANIMATIONS,         // other
     EVENTS,

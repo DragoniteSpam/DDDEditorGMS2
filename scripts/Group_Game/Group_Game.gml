@@ -144,7 +144,6 @@ Game = new (function() constructor {
     self.meta.export.locations[GameDataCategories.GLOBAL] = file_default;
     self.meta.export.locations[GameDataCategories.EVENTS]  = file_default;
     self.meta.export.locations[GameDataCategories.DATADATA] = file_default;
-    self.meta.export.locations[GameDataCategories.DATA_INST] = file_default;
     self.meta.export.locations[GameDataCategories.ANIMATIONS] = file_default;
     self.meta.export.locations[GameDataCategories.TERRAIN] = file_terrain;
     self.meta.export.locations[GameDataCategories.LANGUAGE_TEXT] = file_default;
