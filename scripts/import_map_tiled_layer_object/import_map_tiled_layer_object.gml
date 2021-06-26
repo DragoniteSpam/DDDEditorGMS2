@@ -203,7 +203,7 @@ function import_map_tiled_layer_object() {
                         updated = true;
                     }
                 } else if (thing) {
-                    instance = instance_create_pawn();
+                    instance = new EntityPawn();
                     instance.tmx_id = obj_id;
                     instance.overworld_sprite = thing.GUID;
                     // position for NPCs is at -1 because of where the origin for sprites is in Tiled
