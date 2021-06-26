@@ -132,7 +132,6 @@ Game = new (function() constructor {
     self.meta.export.locations[GameDataCategories.AUDIO] = file_asset;
     self.meta.export.locations[GameDataCategories.MESHES] = file_asset;
     self.meta.export.locations[GameDataCategories.MAPS] = file_default;
-    self.meta.export.locations[GameDataCategories.GLOBAL] = file_default;
     self.meta.export.locations[GameDataCategories.EVENTS]  = file_default;
     self.meta.export.locations[GameDataCategories.DATA] = file_default;
     self.meta.export.locations[GameDataCategories.ANIMATIONS] = file_default;

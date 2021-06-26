@@ -39,17 +39,10 @@ function dialog_create_settings_data_asset_files(dialog) {
             // pick out data types that go to this data file
             ui_list_deselect(list.root.el_types);
             for (var i = 0; i < array_length(Game.meta.export.locations); i++) {
-                // global metadata gets special treatment
-                if (i  == 0) {
-                    if (selection == 0) ui_list_select(list.root.el_types, i);
-                    continue;
-                }
-                // otherwise, the data belongs in the selected file if its
-                // location is set to the file, or the file is unassigned
-                // and the selected file is the master one
+                // the data belongs in the selected file if its location is set
+                // to the file, or the file is unassigned and the selected file
+                // is the master one
                 if (Game.meta.export.locations[i] == file_data) {
-                    ui_list_select(list.root.el_types, i);
-                } else if (selection == 0 && !Game.meta.export.locations[i]) {
                     ui_list_select(list.root.el_types, i);
                 }
             }
@@ -133,7 +126,6 @@ function dialog_create_settings_data_asset_files(dialog) {
     }, false, dg);
     
     create_list_entries(el_types,
-        ["Global Data", c_gray],
         ["Game Data", c_gray],
         ["Animations", c_black],
         ["Data: Events", c_black],

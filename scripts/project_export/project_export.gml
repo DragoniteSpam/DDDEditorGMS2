@@ -22,7 +22,6 @@ function project_export() {
         game_data_save_scripts[GameDataCategories.AUDIO] =                      project_export_audio;
         game_data_save_scripts[GameDataCategories.MESHES] =                     project_export_meshes;
         game_data_save_scripts[GameDataCategories.MAPS] =                       serialize_save_maps;
-        game_data_save_scripts[GameDataCategories.GLOBAL] =                     project_export_global;
         game_data_save_scripts[GameDataCategories.EVENTS]  =                    project_export_events;
         game_data_save_scripts[GameDataCategories.DATA] =                       project_export_data;
         game_data_save_scripts[GameDataCategories.ANIMATIONS] =                 project_export_animations;
@@ -49,6 +48,8 @@ function project_export() {
                         buffer_write(buffer, buffer_string, asset_file.name);
                         buffer_write(buffer, buffer_field, bools);
                     }
+                    
+                    project_export_global(buffer);
                 }
                 
                 // generate a list of all of the things that are in this file

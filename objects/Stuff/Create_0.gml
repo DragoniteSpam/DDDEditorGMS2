@@ -305,7 +305,6 @@ tileset_create(PATH_GRAPHICS + DEFAULT_TILESET).name = "Default";
 #endregion
 
 enum GameDataCategories {
-/**/GLOBAL,           // core
     DATA,
 /**/ANIMATIONS,         // other
     EVENTS,
