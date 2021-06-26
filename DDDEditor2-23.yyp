@@ -133,7 +133,6 @@
     {"id":{"name":"sprite_crop","path":"scripts/sprite_crop/sprite_crop.yy",},"order":10,},
     {"id":{"name":"surface_rebuild","path":"scripts/surface_rebuild/surface_rebuild.yy",},"order":11,},
     {"id":{"name":"map_zone_collision","path":"scripts/map_zone_collision/map_zone_collision.yy",},"order":6,},
-    {"id":{"name":"instance_create_tile","path":"scripts/instance_create_tile/instance_create_tile.yy",},"order":0,},
     {"id":{"name":"instance_create_tile_animated","path":"scripts/instance_create_tile_animated/instance_create_tile_animated.yy",},"order":2,},
     {"id":{"name":"tileset_create","path":"scripts/tileset_create/tileset_create.yy",},"order":1,},
     {"id":{"name":"get_active_tileset","path":"scripts/get_active_tileset/get_active_tileset.yy",},"order":8,},

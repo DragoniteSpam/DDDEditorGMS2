@@ -589,14 +589,14 @@ function EntityPawn() : Entity() constructor {
     };
 }
 
-function EntityTile() : Entity() constructor {
+function EntityTile(tile_x, tile_y) : Entity() constructor {
     self.name = "Tile";
     self.etype = ETypes.ENTITY_TILE;
     self.etype_flags = ETypeFlags.ENTITY_TILE;
     
     // serialize
-    self.tile_x = 0;
-    self.tile_y = 0;
+    self.tile_x = tile_x;
+    self.tile_y = tile_y;
     self.tile_color = c_white;
     self.tile_alpha = 1;
     
@@ -632,6 +632,9 @@ function EntityTile() : Entity() constructor {
     static batch_collision = batch_collision_tile;
     static render = render_tile;
     static on_select_ui = safc_on_tile_ui;
+    
+    entity_tile_update_vbuffer(self);
+    self.cobject = c_object_create_cached(Stuff.graphics.c_shape_tile, CollisionMasks.MAIN, CollisionMasks.MAIN);
     
     static LoadJSONTile = function(source) {
         self.LoadJSONBase(source);
