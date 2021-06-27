@@ -323,6 +323,28 @@ function EntityEffect(source) : Entity(source) constructor {
     self.com_particle = undefined;
     self.com_audio = undefined;
     
+    static Export = function(buffer) {
+        self.ExportBase(buffer);
+        if (self.com_light) {
+            buffer_write(buffer, buffer_u8, self.com_light.light_type);
+            self.com_light.Export(buffer);
+        } else {
+            buffer_write(buffer, buffer_u8, LightTypes.NONE);
+        }
+    
+        if (self.com_particle) {
+            self.com_particle.Export(buffer);
+        } else {
+            buffer_write(buffer, buffer_u8, 0);
+        }
+    
+        if (self.com_audio) {
+            self.com_audio.Export(buffer);
+        } else {
+            buffer_write(buffer, buffer_u8, 0);
+        }
+    };
+    
     static CreateJSONEffect = function() {
         var json = self.CreateJSONBase();
         json.effects = {
