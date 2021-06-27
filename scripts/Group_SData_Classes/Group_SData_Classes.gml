@@ -59,7 +59,7 @@ function DataClass(source) : SData(source) constructor {
         self.instances = source.instances;
         
         for (var i = 0; i < array_length(self.properties); i++) {
-            self.properties[i] = new DataProperty(self.properties[i]);
+            self.properties[i] = new DataProperty(self.properties[i], self);
         }
         
         for (var i = 0; i < array_length(self.instances); i++) {
@@ -68,7 +68,7 @@ function DataClass(source) : SData(source) constructor {
     }
 }
 
-function DataProperty(name, parent) : SData(name) constructor {
+function DataProperty(source, parent) : SData(source) constructor {
     self.parent = parent.GUID;
     
     self.type = DataTypes.INT;
@@ -102,6 +102,21 @@ function DataProperty(name, parent) : SData(name) constructor {
     
     enum DataPropertyFlags {
         NO_LOCALIZE         = 0x010000,
+    }
+    
+    if (is_struct(source)) {
+        self.type = source.type;
+        self.range_min = source.range_min;
+        self.range_max = source.range_max;
+        self.number_scale = source.number_scale;
+        self.char_limit = source.char_limit;
+        self.type_guid = source.type_guid;
+        self.max_size = source.max_size;
+        self.size_can_be_zero = source.size_can_be_zero;
+        self.default_real = source.default_real;
+        self.default_int = source.default_int;
+        self.default_string = source.default_string;
+        self.default_code = source.default_code;
     }
 }
 
