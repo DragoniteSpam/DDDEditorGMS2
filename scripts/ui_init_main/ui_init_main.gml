@@ -367,8 +367,6 @@ function ui_init_main(mode) {
                 list.root.el_dim_z.interactive = (what == Stuff.map.active_map);
                 ui_input_set_value(list.root.el_dim_z, string(what.zz));
                 list.root.el_other.interactive = true;
-                list.root.el_3d.value = what.is_3d;
-                list.root.el_3d.interactive = true;
             } else {
                 list.root.el_name.interactive = false;
                 list.root.el_internal_name.interactive = false;
@@ -377,7 +375,6 @@ function ui_init_main(mode) {
                 list.root.el_dim_y.interactive = false;
                 list.root.el_dim_z.interactive = false;
                 list.root.el_other.interactive = false;
-                list.root.el_3d.interactive = false;
             }
         }, false, t_maps, Game.maps);
         element.tooltip = "This is a list of all the maps currently in the game.";
@@ -525,18 +522,6 @@ function ui_init_main(mode) {
         ds_list_add(t_maps.contents, element);
         
         yy += element.height + spacing * 3;
-        
-        element = create_checkbox(col2_x, yy, "Is 3D?", col_width, element_height, function(checkbox) {
-            var selection = ui_list_selection(checkbox.root.el_map_list);
-            if (selection + 1) {
-                Game.maps[selection].is_3d = checkbox.value;
-            }
-        }, false, t_maps);
-        element.tooltip = "This is my favorite checkbox in the whole entire editor.";
-        ds_list_add(t_maps.contents, element);
-        t_maps.el_3d = element;
-        
-        yy += element.height + spacing;
         
         element = create_button(col2_x, yy,  "Generic Data", col_width, element_height, fa_center, dialog_create_map_generic_data, t_maps);
         element.tooltip = "You can attach generic data properties to each map, to give the game extra information about it. How you use this is up to you. These properties aren't guaranteed to exist, so the game should always check first before trying to access them.";

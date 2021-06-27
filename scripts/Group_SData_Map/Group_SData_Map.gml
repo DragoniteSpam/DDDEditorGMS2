@@ -14,7 +14,6 @@ function DataMap(source, directory) : SData(source) constructor {
     self.yy = 64;
     self.zz = 8;
     self.tileset = NULL;                                                        // GUID
-    self.is_3d = true;                                                          // bool
     self.fog_start = 1024;                                                      // float
     self.fog_end = 3072;                                                        // float
     self.fog_enabled = true;                                                    // bool
@@ -249,7 +248,6 @@ function DataMap(source, directory) : SData(source) constructor {
             self.draw_water,
             self.fast_travel_to,
             self.fast_travel_from,
-            self.is_3d,
             self.fog_enabled,
             self.on_grid,
             self.reflections_enabled,
@@ -377,7 +375,6 @@ function DataMap(source, directory) : SData(source) constructor {
         json.tiled_map_id = self.tiled_map_id;
         json.on_grid = self.on_grid;
         json.tileset = self.tileset;
-        json.is_3d = self.is_3d;
         json.fog_start = self.fog_start;
         json.fog_end = self.fog_end;
         json.fog_enabled = self.fog_enabled;
@@ -427,7 +424,6 @@ function DataMap(source, directory) : SData(source) constructor {
         self.tiled_map_id = source.tiled_map_id;
         self.on_grid = source.on_grid;
         self.tileset = source.tileset;
-        self.is_3d = source.is_3d;
         self.fog_start = source.fog_start;
         self.fog_end = source.fog_end;
         self.fog_enabled = source.fog_enabled;

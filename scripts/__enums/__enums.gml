@@ -72,11 +72,6 @@ global.etype_meta = [
     new etype(ETypes.ENTITY_MESH_AUTO,          "EntityMeshAutotile",   EntityMeshAutotile,     ETypeFlags.ENTITY_MESH_AUTO),
 ];
 
-enum Dimensions {
-    TWOD,
-    THREED
-}
-
 enum BattleStyles {
     TEAM_BASED,             // everyone stays on their own side
     GRID_BASED,             // boundaries are not respected

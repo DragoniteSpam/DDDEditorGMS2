@@ -70,7 +70,7 @@ function dialog_create_new_map(root) {
     var b_height = 32;
     var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Okay", b_width, b_height, fa_center, function(button) {
         // automatically pushed onto the list
-        var map = new DataMap(button.root.el_name.value);
+        var map = new DataMap(button.root.el_name.value, "");
         array_push(Game.maps, map);
         map.xx = real(button.root.el_x.value);
         map.yy = real(button.root.el_y.value);

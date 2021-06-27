@@ -10,6 +10,7 @@ def_xup = 0;
 def_yup = 0;
 def_zup = 1;
 def_fov = 60;
+def_threed = true;
 
 if (Settings.map[$ "x"] == undefined)                   Settings.map.x = def_x;
 if (Settings.map[$ "y"] == undefined)                   Settings.map.y = def_y;
@@ -21,6 +22,7 @@ if (Settings.map[$ "xup"] == undefined)                 Settings.map.xup = def_x
 if (Settings.map[$ "yup"] == undefined)                 Settings.map.yup = def_yup;
 if (Settings.map[$ "zup"] == undefined)                 Settings.map.zup = def_zup;
 if (Settings.map[$ "fov"] == undefined)                 Settings.map.fov = def_fov;
+if (Settings.map[$ "threed"] == undefined)              Settings.map.threed = def_threed;
 
 x = Settings.map.x;
 y = Settings.map.y;
@@ -32,6 +34,7 @@ xup = Settings.map.xup;
 yup = Settings.map.yup;
 zup = Settings.map.zup;
 fov = Settings.map.fov;
+threed_mode = Settings.map.threed;
 
 pitch = darctan2(z - zto, point_distance(x, y, xto, yto));
 direction = point_direction(x, y, xto, yto);
@@ -56,6 +59,7 @@ save = function() {
     Settings.map.yup = self.yup;
     Settings.map.zup = self.zup;
     Settings.map.fov = self.fov;
+    Settings.map.threed = self.threed_mode;
 };
 changes = ds_list_create();
 
