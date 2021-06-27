@@ -1,5 +1,4 @@
 function Component(parent, source) constructor {
-    self.save_script = serialize_save_entity_effect_com;
     self.parent = parent;
     self.sprite = -1;
     self.label_colour = c_black;
@@ -28,7 +27,6 @@ function Component(parent, source) constructor {
 }
 
 function ComponentPointLight(parent, source) : Component(parent, source) constructor {
-    self.save_script = serialize_save_entity_effect_com_point_light;
     self.render = render_effect_light_point;
     self.sprite = spr_light_point;
     self.light_type = LightTypes.POINT;
@@ -64,7 +62,6 @@ function ComponentPointLight(parent, source) : Component(parent, source) constru
 }
 
 function ComponentSpotLight(parent, source) : Component(parent, source) constructor {
-    self.save_script = serialize_save_entity_effect_com_spot_light;
     self.render = render_effect_light_spot;
     self.sprite = spr_light_point;
     self.light_type = LightTypes.SPOT;
@@ -116,7 +113,6 @@ function ComponentSpotLight(parent, source) : Component(parent, source) construc
 }
 
 function ComponentDirectionalLight(parent, source) : Component(parent, source) constructor {
-    save_script = serialize_save_entity_effect_com_directional_light;
     self.render = render_effect_light_direction;
     self.sprite = spr_light_direction;
     self.light_type = LightTypes.DIRECTIONAL;
