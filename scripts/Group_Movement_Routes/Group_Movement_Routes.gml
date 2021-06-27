@@ -5,11 +5,6 @@ function MoveRoute(source) constructor {
     self.skip = true;
     self.wait = true;
     
-    self.extra = false;
-    self.extra_xx = 0;
-    self.extra_yy = 0;
-    self.extra_zz = 0;
-    
     // array of structs
     self.steps = [];
     
