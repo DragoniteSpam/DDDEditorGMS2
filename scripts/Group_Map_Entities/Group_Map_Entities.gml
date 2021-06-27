@@ -663,6 +663,11 @@ function EntityPawn(source) : Entity(source) constructor {
     static render = render_pawn;
     static on_select_ui = safc_on_pawn_ui;
     
+    static Export = function(buffer) {
+        buffer_write(buffer, buffer_u8, self.map_direction);
+        buffer_write(buffer, buffer_datatype, self.overworld_sprite);
+    };
+    
     static CreateJSONPawn = function() {
         var json = self.CreateJSONBase();
         json.pawn = {
