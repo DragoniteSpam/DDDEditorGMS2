@@ -516,6 +516,24 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
         return (mesh_data && guid_get(mesh_data.tex_base)) ? sprite_get_texture(guid_get(mesh_data.tex_base).picture, 0) : def_texture;
     };
     
+    static Export = function(buffer) {
+        self.ExportBase(buffer);
+        buffer_write(buffer, buffer_datatype, self.mesh);
+        buffer_write(buffer, buffer_datatype, self.mesh_submesh);
+        buffer_write(buffer, buffer_u32, pack(
+            self.animated
+        ));
+        buffer_write(buffer, buffer_u32, self.animation_index);
+        buffer_write(buffer, buffer_u8, self.animation_type);
+        buffer_write(buffer, buffer_f32, self.animation_speed);
+        buffer_write(buffer, buffer_u8, self.animation_end_action);
+        
+        buffer_write(buffer, buffer_u8, array_length(self.textures));
+        for (var i = 0; i < array_length(self.textures); i++) {
+            buffer_write(buffer, buffer_datatype, self.textures[i]);
+        }
+    };
+    
     static CreateJSONMesh = function() {
         var json = self.CreateJSONBase();
         json.mesh = {
