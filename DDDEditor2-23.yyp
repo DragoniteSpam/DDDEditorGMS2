@@ -182,7 +182,6 @@
     {"id":{"name":"serialize_save_entity_effect_com_directional_light","path":"scripts/serialize_save_entity_effect_com_directional_light/serialize_save_entity_effect_com_directional_light.yy",},"order":6,},
     {"id":{"name":"serialize_save_entity_mesh","path":"scripts/serialize_save_entity_mesh/serialize_save_entity_mesh.yy",},"order":7,},
     {"id":{"name":"serialize_save_entity_pawn","path":"scripts/serialize_save_entity_pawn/serialize_save_entity_pawn.yy",},"order":9,},
-    {"id":{"name":"serialize_save_entity_event_page","path":"scripts/serialize_save_entity_event_page/serialize_save_entity_event_page.yy",},"order":0,},
     {"id":{"name":"serialize_save_move_route","path":"scripts/serialize_save_move_route/serialize_save_move_route.yy",},"order":1,},
     {"id":{"name":"dialog_create_game_data_asset_flags","path":"scripts/dialog_create_game_data_asset_flags/dialog_create_game_data_asset_flags.yy",},"order":23,},
     {"id":{"name":"spr_emu_mask_crosshair","path":"sprites/spr_emu_mask_crosshair/spr_emu_mask_crosshair.yy",},"order":13,},
