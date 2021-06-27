@@ -299,6 +299,14 @@ function Entity(source) constructor {
         self.autonomous_movement_route = source.autonomous.route;
         self.movement_routes = source.autonomous.routes;
         self.tmx_id = source.tmx_id;
+        
+        for (var i = 0; i < array_length(self.movement_routes); i++) {
+            self.movement_routes[i] = new MoveRoute(self.movement_routes[i]);
+        }
+        
+        for (var i = 0; i < array_length(self.object_events); i++) {
+            self.object_events[i] = new InstantiatedEvent(self.object_events[i]);
+        }
     } else {
         self.name = source;
     }
