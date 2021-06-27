@@ -161,16 +161,16 @@ function ComponentParticle(parent, source) : Component(parent, source) construct
     self.sprite = spr_light_direction;
     
     // specific
-    self.particle_type = ParticleTypes.NONE;
+    self.particle_guid = NULL;
     
     if (is_struct(source)) {
-        self.particle_type = source.particle.type;
+        self.particle_guid = source.particle.guid;
     };
     
     static CreateJSONParticle = function() {
         var json = self.CreateJSONComponent();
         json.particle = {
-            type: self.particle_type,
+            guid: self.particle_guid,
         };
         return json;
     };
@@ -181,7 +181,7 @@ function ComponentParticle(parent, source) : Component(parent, source) construct
     
     static Export = function(buffer) {
         self.ExportBase(buffer);
-        buffer_write(buffer, buffer_u32, self.particle_type);
+        buffer_write(buffer, buffer_datatype, self.particle_guid);
     };
 }
 
