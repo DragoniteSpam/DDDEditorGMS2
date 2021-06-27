@@ -49,12 +49,8 @@ function DataClass(source) : SData(source) constructor {
         array_delete(self.instances, index, 1);
     };
     
-    static Retire = function() {
-        array_delete(Game.data, array_search(Game.data, self), 1);
-    };
-    
     static Destroy = function() {
-        self.Retire();
+        array_delete(Game.data, array_search(Game.data, self), 1);
         self.DestroyBase();
     };
     
