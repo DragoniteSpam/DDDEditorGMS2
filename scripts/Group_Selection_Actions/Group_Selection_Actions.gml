@@ -182,6 +182,8 @@ function selected_border(entity, mask) {
 
 function selection_all() {
     // this is O(n). will not scale as well as i'd like. Use with caution.
+    // in the future it may be useful to turn this into some sort of spatial
+    // hierarchy of sorts.
     
     var list = ds_list_create();
     for (var i = 0; i < ds_list_size(Stuff.map.active_map.contents.all_entities); i++) {
@@ -202,13 +204,17 @@ function selection_all_type(list) {
     for (var i = 0; i < ds_list_size(list); i++) {
         var thing = list[| i];
         // if latest common ancestor is undefined, define it
-        common_ancestor &= thing.mask;
-        if (thing.mask == ETypeFlags.ENTITY) {
+        common_ancestor &= thing.etype_flags;
+        if (common_ancestor == ETypeFlags.ENTITY) {
             return ETypeFlags.ENTITY_ANY;
         }
     }
     
-    return common_ancestor;
+    for (var i = 0; i < array_length(global.etype_meta); i++) {
+        if (global.etype_meta[i].mask == common_ancestor) return global.etype_meta[i];
+    }
+    
+    return global.etype_meta[ETypes.ENTITY];
 }
 
 function selection_clear() {

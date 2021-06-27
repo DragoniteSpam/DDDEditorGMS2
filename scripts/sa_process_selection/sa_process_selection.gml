@@ -144,9 +144,9 @@ function sa_process_selection() {
         var type = selection_all_type(list);
         var suffix = (ds_list_size(list) > 0) ? " (" + string(ds_list_size(list)) + ")" : "";
         
-        Stuff.map.ui.element_entity_type.text = "Type: " + object_get_name(type) + suffix;
+        Stuff.map.ui.element_entity_type.text = "Type: " + type.name + suffix;
         
-        switch (type) {
+        switch (type.mask) {
             case ETypeFlags.ENTITY_TILE:
                 break;
             case ETypeFlags.ENTITY_MESH_AUTO:

@@ -55,20 +55,21 @@ enum ETypeFlags {
     ENTITY_ANY              = 0xffffffff,
 }
 
-var etype = function(id, constructor, mask) constructor {
+var etype = function(id, name, constructor, mask) constructor {
     self.id = id;
+    self.name = name;
     self.constructor = constructor;
     self.mask = mask;
 }
 
 global.etype_meta = [
-    new etype(ETypes.ENTITY,                Entity,             0),
-    new etype(ETypes.ENTITY_TILE,           EntityTile,         ETypeFlags.ENTITY_TILE),
-    new etype(ETypes.ENTITY_TILE_ANIMATED,  EntityTileAnimated, ETypeFlags.ENTITY_TILE_ANIMATED),
-    new etype(ETypes.ENTITY_MESH,           EntityMesh,         ETypeFlags.ENTITY_MESH),
-    new etype(ETypes.ENTITY_PAWN,           EntityPawn,         ETypeFlags.ENTITY_PAWN),
-    new etype(ETypes.ENTITY_EFFECT,         EntityEffect,       ETypeFlags.ENTITY_EFFECT),
-    new etype(ETypes.ENTITY_MESH_AUTO,      EntityMeshAutotile, ETypeFlags.ENTITY_MESH_AUTO),
+    new etype(ETypes.ENTITY,                    "Entity",               Entity,                 0),
+    new etype(ETypes.ENTITY_TILE,               "EntityTile",           EntityTile,             ETypeFlags.ENTITY_TILE),
+    new etype(ETypes.ENTITY_TILE_ANIMATED,      "EntityTileAnimated",   EntityTileAnimated,     ETypeFlags.ENTITY_TILE_ANIMATED),
+    new etype(ETypes.ENTITY_MESH,               "EntityMesh",           EntityMesh,             ETypeFlags.ENTITY_MESH),
+    new etype(ETypes.ENTITY_PAWN,               "EntityPawn",           EntityPawn,             ETypeFlags.ENTITY_PAWN),
+    new etype(ETypes.ENTITY_EFFECT,             "EntityEffect",         EntityEffect,           ETypeFlags.ENTITY_EFFECT),
+    new etype(ETypes.ENTITY_MESH_AUTO,          "EntityMeshAutotile",   EntityMeshAutotile,     ETypeFlags.ENTITY_MESH_AUTO),
 ];
 
 enum Dimensions {
