@@ -249,7 +249,7 @@ function dialog_create_settings_data_game_constants(root) {
     
     var el_add = create_button(col1_x, yy, "Add Constant", ew, eh, fa_center, function(button) {
         if (array_length(Game.vars.constants) < 0xffff) {
-            array_push(Game.vars.constants, new DataConstant("Constant " + string(array_length(Game.vars.constants))));
+            array_push(Game.vars.constants, new DataValue("Constant " + string(array_length(Game.vars.constants))));
         }
     }, dg);
     dg.el_add = el_add;
