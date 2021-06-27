@@ -16,7 +16,7 @@ function batch_mesh(vbuff, wire, reflect, reflect_wire, mesh) {
     
     var vc = 0;
     
-    var data/*:Triangle*/ = new Triangle();
+    var tri/*:Triangle*/ = new Triangle();
     while (buffer_tell(raw) < buffer_get_size(raw)) {
         // script arguments are parsed backwards and i don't think there's a way to
         // turn that off, and in any case it's a better idea to just fetch the
@@ -25,7 +25,7 @@ function batch_mesh(vbuff, wire, reflect, reflect_wire, mesh) {
         var npy = buffer_read(raw, buffer_f32);
         var npz = buffer_read(raw, buffer_f32);
         var transformed = transform_entity_point(mesh, npx, npy, npz);
-        var vertex/*:Vertex*/ = data.vertex[vc];
+        var vertex/*:Vertex*/ = tri.vertex[vc];
         vertex.position.x = transformed[vec3.xx];
         vertex.position.y = transformed[vec3.yy];
         vertex.position.z = transformed[vec3.zz];
@@ -51,9 +51,9 @@ function batch_mesh(vbuff, wire, reflect, reflect_wire, mesh) {
         
         if (wire) {
             if (vc == 0) {
-                var v1 = data.vertex[0];
-                var v2 = data.vertex[1];
-                var v3 = data.vertex[2];
+                var v1 = tri.vertex[0];
+                var v2 = tri.vertex[1];
+                var v3 = tri.vertex[2];
                 vertex_point_line(wire, v1.position.x, v1.position.y, v1.position.z, c_white, 1);
                 vertex_point_line(wire, v2.position.x, v2.position.y, v2.position.z, c_white, 1);
                 vertex_point_line(wire, v2.position.x, v2.position.y, v2.position.z, c_white, 1);
@@ -71,13 +71,13 @@ function batch_mesh(vbuff, wire, reflect, reflect_wire, mesh) {
     
     #region reflected
     // if no valid mesh is found, use the big ol' ? instead
-    var raw = mesh.GetReflectBuffer();
+    raw = mesh.GetReflectBuffer();
     if (!raw) return;
     buffer_seek(raw, buffer_seek_start, 0);
     
-    var vc = 0;
+    vc = 0;
     
-    var data/*:Triangle*/ = new Triangle();
+    tri = new Triangle();
     
     while (buffer_tell(raw) < buffer_get_size(raw)) {
         // script arguments are parsed backwards and i don't think there's a way to
@@ -87,7 +87,7 @@ function batch_mesh(vbuff, wire, reflect, reflect_wire, mesh) {
         var npy = buffer_read(raw, buffer_f32);
         var npz = buffer_read(raw, buffer_f32);
         var transformed = transform_entity_point_reflected(mesh, npx, npy, npz);
-        var vertex/*:Vertex*/ = data.vertex[vc];
+        var vertex/*:Vertex*/ = tri.vertex[vc];
         vertex.position.x = transformed[vec3.xx];
         vertex.position.y = transformed[vec3.yy];
         vertex.position.z = transformed[vec3.zz];
@@ -113,9 +113,9 @@ function batch_mesh(vbuff, wire, reflect, reflect_wire, mesh) {
         
         if (reflect_wire) {
             if (vc == 0) {
-                var v1 = data.vertex[0];
-                var v2 = data.vertex[1];
-                var v3 = data.vertex[2];
+                var v1 = tri.vertex[0];
+                var v2 = tri.vertex[1];
+                var v3 = tri.vertex[2];
                 vertex_point_line(reflect_wire, v1.position.x, v1.position.y, v1.position.z, c_white, 1);
                 vertex_point_line(reflect_wire, v2.position.x, v2.position.y, v2.position.z, c_white, 1);
                 vertex_point_line(reflect_wire, v2.position.x, v2.position.y, v2.position.z, c_white, 1);

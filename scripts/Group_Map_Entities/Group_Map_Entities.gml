@@ -130,6 +130,69 @@ function Entity(source) constructor {
         buffer_write_file(json_stringify(self.CreateJSON()), directory);
     };
     
+    static ExportBase = function(buffer) {
+        buffer_write(buffer, buffer_string, self.name);
+        buffer_write(buffer, buffer_u32, self.xx);
+        buffer_write(buffer, buffer_u32, self.yy);
+        buffer_write(buffer, buffer_u32, self.zz);
+        buffer_write(buffer, buffer_datatype, self.REFID);
+        
+        buffer_write(buffer, buffer_field, pack(
+            self.is_static,
+            self.preserve_on_save,
+            self.reflect,
+            self.direction_fix,
+            self.always_update,
+        ));
+        
+        buffer_write(buffer, buffer_u8, array_length(self.object_events));
+        for (var i = 0; i < array_length(self.object_events); i++) {
+            self.object_events[i].Export(buffer);
+        }
+        
+        buffer_write(buffer, buffer_f32, self.off_xx);
+        buffer_write(buffer, buffer_f32, self.off_yy);
+        buffer_write(buffer, buffer_f32, self.off_zz);
+        
+        buffer_write(buffer, buffer_u16, self.rot_xx);
+        buffer_write(buffer, buffer_u16, self.rot_yy);
+        buffer_write(buffer, buffer_u16, self.rot_zz);
+        
+        buffer_write(buffer, buffer_f32, self.scale_xx);
+        buffer_write(buffer, buffer_f32, self.scale_yy);
+        buffer_write(buffer, buffer_f32, self.scale_zz);
+        
+        buffer_write(buffer, buffer_u8, self.autonomous_movement);
+        buffer_write(buffer, buffer_u8, self.autonomous_movement_speed);
+        buffer_write(buffer, buffer_u8, self.autonomous_movement_frequency);
+        buffer_write(buffer, buffer_datatype, self.autonomous_movement_route);
+        
+        buffer_write(buffer, buffer_u8, array_length(self.movement_routes));
+        for (var i = 0; i < array_length(self.movement_routes); i++) {
+            self.movement_routes[i].Export(buffer);
+        }
+        
+        buffer_write(buffer, buffer_u8, array_length(self.switches));
+        for (var i = 0; i < array_length(self.switches); i++) {
+            buffer_write(buffer, buffer_bool, self.switches[i]);
+        }
+        
+        buffer_write(buffer, buffer_u8, array_length(self.variables));
+        for (var i = 0; i < array_length(self.variables); i++) {
+            buffer_write(buffer, buffer_f32, self.variables[i]);
+        }
+        
+        buffer_write(buffer, buffer_u8, array_length(self.generic_data));
+        for (var i = 0; i < array_length(self.generic_data); i++) {
+            var data = self.generic_data[i];
+            buffer_write(buffer, buffer_string, data.name);
+            buffer_write(buffer, buffer_u8, data.type);
+            buffer_write(buffer, Stuff.data_type_meta[data.type].buffer_type, data.value);
+        }
+        
+        buffer_write(buffer, buffer_u8, self.slope);
+    };
+    
     static CreateJSONBase = function() {
         return {
             name: self.name,
@@ -374,8 +437,8 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
         // script is here to make yoru life easier
         var mesh_data = guid_get(mesh);
         if (!mesh_data) return undefined;
-        if (proto_guid_get(mesh_data, mesh_submesh) == undefined) return undefined;
-        return mesh_data ? mesh_data.submeshes[proto_guid_get(mesh_data, mesh_submesh)].buffer : undefined;
+        if (proto_guid_get(mesh_data, self.mesh_submesh) == undefined) return undefined;
+        return mesh_data ? mesh_data.submeshes[proto_guid_get(mesh_data, self.mesh_submesh)].buffer : undefined;
     };
     
     static GetVertexBuffer = function() {
@@ -383,8 +446,8 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
         // script is here to make yoru life easier
         var mesh_data = guid_get(mesh);
         if (!mesh_data) return undefined;
-        if (proto_guid_get(mesh_data, mesh_submesh) == undefined) return undefined;
-        return mesh_data ? mesh_data.submeshes[proto_guid_get(mesh_data, mesh_submesh)].vbuffer : undefined;
+        if (proto_guid_get(mesh_data, self.mesh_submesh) == undefined) return undefined;
+        return mesh_data ? mesh_data.submeshes[proto_guid_get(mesh_data, self.mesh_submesh)].vbuffer : undefined;
     };
     
     static GetWireBuffer = function() {
@@ -392,8 +455,8 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
         // script is here to make yoru life easier
         var mesh_data = guid_get(mesh);
         if (!mesh_data) return undefined;
-        if (proto_guid_get(mesh_data, mesh_submesh) == undefined) return undefined;
-        return mesh_data ? mesh_data.submeshes[proto_guid_get(mesh_data, mesh_submesh)].wbuffer : undefined;
+        if (proto_guid_get(mesh_data, self.mesh_submesh) == undefined) return undefined;
+        return mesh_data ? mesh_data.submeshes[proto_guid_get(mesh_data, self.mesh_submesh)].wbuffer : undefined;
     };
     
     static GetReflectBuffer = function() {
@@ -401,8 +464,8 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
         // script is here to make yoru life easier
         var mesh_data = guid_get(mesh);
         if (!mesh_data) return undefined;
-        if (proto_guid_get(mesh_data, mesh_submesh) == undefined) return undefined;
-        return mesh_data ? mesh_data.submeshes[proto_guid_get(mesh_data, mesh_submesh)].reflect_buffer : undefined;
+        if (proto_guid_get(mesh_data, self.mesh_submesh) == undefined) return undefined;
+        return mesh_data ? mesh_data.submeshes[proto_guid_get(mesh_data, self.mesh_submesh)].reflect_buffer : undefined;
     };
     
     static GetReflectVertexBuffer = function() {
@@ -410,8 +473,8 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
         // script is here to make yoru life easier
         var mesh_data = guid_get(mesh);
         if (!mesh_data) return undefined;
-        if (proto_guid_get(mesh_data, mesh_submesh) == undefined) return undefined;
-        return mesh_data ? mesh_data.submeshes[proto_guid_get(mesh_data, mesh_submesh)].reflect_vbuffer : undefined;
+        if (proto_guid_get(mesh_data, self.mesh_submesh) == undefined) return undefined;
+        return mesh_data ? mesh_data.submeshes[proto_guid_get(mesh_data, self.mesh_submesh)].reflect_vbuffer : undefined;
     };
     
     static GetReflectWireBuffer = function() {
@@ -419,8 +482,8 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
         // script is here to make yoru life easier
         var mesh_data = guid_get(mesh);
         if (!mesh_data) return undefined;
-        if (proto_guid_get(mesh_data, mesh_submesh) == undefined) return undefined;
-        return mesh_data ? mesh_data.submeshes[proto_guid_get(mesh_data, mesh_submesh)].reflect_wbuffer : undefined;
+        if (proto_guid_get(mesh_data, self.mesh_submesh) == undefined) return undefined;
+        return mesh_data ? mesh_data.submeshes[proto_guid_get(mesh_data, self.mesh_submesh)].reflect_wbuffer : undefined;
     };
     
     static GetTexture = function() {
