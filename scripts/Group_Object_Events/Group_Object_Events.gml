@@ -65,14 +65,14 @@ function InstantiatedEvent(source) constructor {
         self.enabled = source.enabled;
         self.condition_switch_global_enabled = source.condition_switch_global_enabled;
         self.condition_switch_global = source.condition_switch_global;
-        self.condition_switch_global_state = source.condition_switch_global_state;
+        try { self.condition_switch_global_state = source.condition_switch_global_state; } catch (e) { /* update */ }
         self.condition_variable_global_enabled = source.condition_variable_global_enabled;
         self.condition_variable_global = source.condition_variable_global;
         self.condition_variable_global_comparison = source.condition_variable_global_comparison;
         self.condition_variable_global_value = source.condition_variable_global_value;
         self.condition_switch_self_enabled = source.condition_switch_self_enabled;
         self.condition_switch_self = source.condition_switch_self;
-        self.condition_switch_self_state = source.condition_switch_self_state;
+        try { self.condition_switch_self_state = source.condition_switch_self_state; } catch (e) { /* update */ }
         self.condition_variable_self_enabled = source.condition_variable_self_enabled;
         self.condition_variable_self = source.condition_variable_self;
         self.condition_variable_self_comparison = source.condition_variable_self_comparison;
