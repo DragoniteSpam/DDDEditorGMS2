@@ -30,3 +30,31 @@ override_escape = false;
 
 next = noone;
 previous = noone;
+
+// interface with emu a bit better
+self._element_spacing_y = 16;
+self._override_root_check = false;
+
+AddContent = function(elements) {
+    if (!is_array(elements)) {
+        elements = [elements];
+    }
+    for (var i = 0; i < array_length(elements); i++) {
+        var thing = elements[i];
+        if (thing.y == undefined) {
+            var top = self.GetTop();
+            if (top) {
+                thing.y = top.y + top.GetHeight() + self._element_spacing_y;
+            } else {
+                thing.y = self._element_spacing_y;
+            }
+        }
+        ds_list_add(self.contents, thing);
+        thing.root = self;
+    }
+    return self;
+}
+
+GetTop = function() {
+    return self.contents[| ds_list_size(self.contents) - 1];
+};

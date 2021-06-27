@@ -180,7 +180,7 @@ function ui_init_main(mode) {
             Settings.view.gizmos = self.value;
         });
         element.tooltip = "The helpful frames you see around light sources and other effects and that sort of thing.";
-        ds_list_add(t_general.contents, element);
+        t_general.AddContent(element);
         
         yy += element.height + spacing;
         
@@ -189,7 +189,7 @@ function ui_init_main(mode) {
         });
         element.tooltip = "The helpful frames you see around light sources and other effects and that sort of thing.";
         element.enabled = false;
-        ds_list_add(t_general.contents, element);
+        t_general.AddContent(element);
         
         yy += element.height + spacing;
         #endregion
