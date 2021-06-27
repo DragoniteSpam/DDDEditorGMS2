@@ -343,6 +343,7 @@ function EntityEffect(source) : Entity(source) constructor {
         } else {
             buffer_write(buffer, buffer_u8, 0);
         }
+        return 1;
     };
     
     static CreateJSONEffect = function() {
@@ -532,6 +533,7 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
         for (var i = 0; i < array_length(self.textures); i++) {
             buffer_write(buffer, buffer_datatype, self.textures[i]);
         }
+        return 1;
     };
     
     static CreateJSONMesh = function() {
@@ -610,7 +612,7 @@ function EntityMeshAutotile(source) : EntityMesh(source) constructor {
     };
     
     static Export = function(buffer) {
-        // these don't get exported individually
+        return 0;
     };
     
     static CreateJSONMeshAT = function() {
@@ -666,6 +668,7 @@ function EntityPawn(source) : Entity(source) constructor {
     static Export = function(buffer) {
         buffer_write(buffer, buffer_u8, self.map_direction);
         buffer_write(buffer, buffer_datatype, self.overworld_sprite);
+        return 1;
     };
     
     static CreateJSONPawn = function() {
@@ -763,7 +766,7 @@ function EntityTile(source, tile_x, tile_y) : Entity(source) constructor {
     self.cobject = c_object_create_cached(Stuff.graphics.c_shape_tile, CollisionMasks.MAIN, CollisionMasks.MAIN);
     
     static Export = function(buffer) {
-        // these don't get exported individually
+        return 0;
     };
     
     static CreateJSONTile = function() {

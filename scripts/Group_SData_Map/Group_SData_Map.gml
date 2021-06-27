@@ -325,12 +325,14 @@ function DataMap(source, directory) : SData(source) constructor {
             #endregion
             
             #region entities
-            buffer_write(buffer, buffer_u32, ds_list_size(self.contents.all_entities));
+            
+            var count_addr = buffer_tell(buffer);
+            buffer_write(buffer, buffer_u32, 0);
+            var exported_entities = 0;
             for (var i = 0; i < ds_list_size(self.contents.all_entities); i++) {
-                var thing = self.contents.all_entities[| i];
-                buffer_write(buffer, buffer_u16, thing.etype);
-                thing.save_script(buffer, thing);
+                exported_entities += self.contents.all_entities[| i].Export(buffer);
             }
+            buffer_poke(buffer, count_addr, buffer_u32, exported_entities);
             #endregion
         } else {
             
