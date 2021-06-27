@@ -408,8 +408,8 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
     
     self.is_static = true;
     
-    self.mesh = mesh ? mesh.GUID : NULL;
-    self.mesh_submesh = mesh ? mesh.first_proto_guid : NULL;                    // proto-GUID
+    self.mesh = NULL;
+    self.mesh_submesh = NULL;                                                   // proto-GUID
     self.textures = array_create(MeshTextureSlots._COUNT, NULL);
     self.animated = false;
     self.animation_index = 0;
@@ -432,21 +432,38 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
         return new BoundingBox(self.xx + mesh_data.xmin, self.yy + mesh_data.ymin, self.zz + mesh_data.zmin, self.xx + mesh_data.xmax, self.yy + mesh_data.ymax, self.zz + mesh_data.zmax);
     };
     
-    if (mesh) {
-        switch (mesh.type) {
-            case MeshTypes.RAW:
-                self.is_static = true;
-                self.batchable = true;
-                self.cobject = c_object_create_cached(mesh.cshape, CollisionMasks.MAIN, CollisionMasks.MAIN);
-                self.SetStatic = function(state) { self.is_static = state; };
-                break;
-            case MeshTypes.SMF:
-                self.is_static = false;
-                self.batchable = false;
-                self.SetStatic = function(state) { };
-                break;
+    static SetMesh = function(mesh, submesh) {
+        if (submesh == undefined) submesh = undefined;
+        c_object_set_mask(self.cobject, 0, 0);
+        c_object_set_userid(self.cobject, 0);
+        ds_queue_enqueue(Stuff.c_object_cache, self.cobject);
+        self.cobject = undefined;
+        self.mesh_submesh = NULL;
+        self.is_static = false;
+        self.batchable = false;
+        self.SetStatic = function(state) { };
+        
+        if (mesh) {
+            self.mesh = mesh;
+            switch (mesh.type) {
+                case MeshTypes.RAW:
+                    self.mesh_submesh = (submesh != undefined) ? submesh : mesh.first_proto_guid;
+                    self.is_static = true;
+                    self.batchable = true;
+                    self.cobject = c_object_create_cached(mesh.cshape, CollisionMasks.MAIN, CollisionMasks.MAIN);
+                    self.SetStatic = function(state) { self.is_static = state; };
+                    break;
+                case MeshTypes.SMF:
+                    self.mesh_submesh = NULL;
+                    self.is_static = false;
+                    self.batchable = false;
+                    self.SetStatic = function(state) { };
+                    break;
+            }
         }
-    }
+    };
+    
+    self.SetMesh(mesh);
     
     static GetBuffer = function() {
         // the lookup for an entity's exact mesh is now somewhat complicated, so this

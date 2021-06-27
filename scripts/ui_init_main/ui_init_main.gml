@@ -833,10 +833,8 @@ function ui_init_main(mode) {
             var entities = Stuff.map.selected_entities;
             for (var i = 0; i < ds_list_size(entities); i++) {
                 // if the mesh changes, you should probably also reset the proto guid
-                if (guid_get(entities[| i].mesh) != mesh) {
-                    entities[| i].mesh_submesh = mesh.first_proto_guid;
-                }
-                entities[| i].mesh = mesh.GUID;
+                var changed = guid_get(entities[| i].mesh) != mesh;
+                entities[| i].SetMesh(mesh, changed ? mesh.first_proto_guid : entities[| i].mesh_submesh);
             }
             batch_again(undefined);
             Stuff.map.ui.element_entity_mesh_submesh.entries = mesh.submeshes;
