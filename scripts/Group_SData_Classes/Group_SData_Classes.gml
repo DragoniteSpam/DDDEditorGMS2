@@ -49,10 +49,6 @@ function DataClass(source) : SData(source) constructor {
         array_delete(self.instances, index, 1);
     };
     
-    static GoLive = function() {
-        array_push(Game.data, self);
-    };
-    
     static Retire = function() {
         array_delete(Game.data, array_search(Game.data, self), 1);
     };
