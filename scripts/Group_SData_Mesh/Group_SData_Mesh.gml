@@ -281,3 +281,8 @@ enum MeshFlags {
     PARTICLE            = 0x0001,
     SILHOUETTE          = 0x0002,
 }
+
+enum MeshTextureSlots {
+    BASE, AMBIENT, SPEC_COLOR, SPEC_HIGHLIGHT, ALPHA, BUMP, DISPLACEMENT, STENCIL,
+    _COUNT
+}
