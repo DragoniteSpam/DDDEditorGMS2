@@ -22,9 +22,6 @@ function Entity(source) constructor {
     // to NPCs, things that animate, things that move and things that need special shaders
     static render = null;
     
-    // files
-    static save_script = serialize_save_entity;
-    
     // you can have scripts that do both, if you want to have a static thing that
     // sparkles or something
     
@@ -308,8 +305,6 @@ function Entity(source) constructor {
 }
 
 function EntityEffect(source) : Entity(source) constructor {
-    static save_script = serialize_save_entity_effect;
-
     self.name = "Effect";
     self.etype = ETypes.ENTITY_EFFECT;
     self.etype_flags = ETypeFlags.ENTITY_EFFECT;
@@ -408,8 +403,6 @@ function EntityEffect(source) : Entity(source) constructor {
 function EntityMesh(source, mesh) : Entity(source) constructor {
     self.name = mesh ? mesh.name : self.name;
     
-    save_script = serialize_save_entity_mesh;
-
     self.etype = ETypes.ENTITY_MESH;
     self.etype_flags = ETypeFlags.ENTITY_MESH;
     
@@ -635,8 +628,6 @@ function EntityMeshAutotile(source) : EntityMesh(source) constructor {
 }
 
 function EntityPawn(source) : Entity(source) constructor {
-    static save_script = serialize_save_entity_pawn;
-    
     self.overworld_sprite = array_empty(Game.graphics.overworlds) ? NULL : Game.graphics.overworlds[0].GUID;
     self.map_direction = 0;
     

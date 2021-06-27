@@ -158,7 +158,6 @@ function ComponentDirectionalLight(parent, source) : Component(parent, source) c
 }
 
 function ComponentParticle(parent, source) : Component(parent, source) constructor {
-    self.save_script = null;
     self.render = null;
     self.sprite = spr_light_direction;
     
@@ -188,7 +187,6 @@ function ComponentParticle(parent, source) : Component(parent, source) construct
 }
 
 function ComponentAudio(parent, source) : Component(parent, source) constructor {
-    self.save_script = null;
     self.render = null;
     self.sprite = spr_light_direction;
     
