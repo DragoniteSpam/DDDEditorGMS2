@@ -21,6 +21,10 @@ function Component(parent, source) constructor {
     static CreateJSON = function() {
         return self.CreateJSONComponent();
     };
+    
+    static ExportBase = function(buffer) {
+        buffer_write(buffer, buffer_string, self.script_call);
+    };
 }
 
 function ComponentPointLight(parent, source) : Component(parent, source) constructor {
@@ -50,6 +54,12 @@ function ComponentPointLight(parent, source) : Component(parent, source) constru
     
     static CreateJSON = function() {
         return self.CreateJSONPointLight();
+    };
+    
+    static Export = function(buffer) {
+        self.ExportBase(buffer);
+        buffer_write(buffer, buffer_u32, self.light_colour);
+        buffer_write(buffer, buffer_f32, self.light_radius);
     };
 }
 
@@ -93,20 +103,30 @@ function ComponentSpotLight(parent, source) : Component(parent, source) construc
     static CreateJSON = function() {
         return self.CreateJSONSpotLight();
     };
+    
+    static Export = function(buffer) {
+        self.ExportBase(buffer);
+        buffer_write(buffer, buffer_u32, self.light_colour);
+        buffer_write(buffer, buffer_f32, self.light_radius);
+        buffer_write(buffer, buffer_u32, self.light_cutoff);
+        buffer_write(buffer, buffer_f32, self.light_dx);
+        buffer_write(buffer, buffer_u32, self.light_dy);
+        buffer_write(buffer, buffer_f32, self.light_dz);
+    };
 }
 
 function ComponentDirectionalLight(parent, source) : Component(parent, source) constructor {
     save_script = serialize_save_entity_effect_com_directional_light;
-    render = render_effect_light_direction;
-    sprite = spr_light_direction;
-    light_type = LightTypes.DIRECTIONAL;
-    label_colour = c_green;
+    self.render = render_effect_light_direction;
+    self.sprite = spr_light_direction;
+    self.light_type = LightTypes.DIRECTIONAL;
+    self.label_colour = c_green;
     
     // specific
-    light_dx = -1;
-    light_dy = -1;
-    light_dz = -1;
-    light_colour = c_white;
+    self.light_dx = -1;
+    self.light_dy = -1;
+    self.light_dz = -1;
+    self.light_colour = c_white;
     
     if (is_struct(source)) {
         self.light_colour = source.light.color;
@@ -129,12 +149,22 @@ function ComponentDirectionalLight(parent, source) : Component(parent, source) c
     static CreateJSON = function() {
         return self.CreateJSONDirectionalLight();
     };
+    
+    static Export = function(buffer) {
+        self.ExportBase(buffer);
+        buffer_write(buffer, buffer_u32, self.light_colour);
+        buffer_write(buffer, buffer_f32, self.light_dx);
+        buffer_write(buffer, buffer_u32, self.light_dy);
+        buffer_write(buffer, buffer_f32, self.light_dz);
+    };
 }
 
 function ComponentParticle(parent, source) : Component(parent, source) constructor {
     self.save_script = null;
     self.render = null;
     self.sprite = spr_light_direction;
+    
+    // specific
     self.particle_type = ParticleTypes.NONE;
     
     if (is_struct(source)) {
@@ -152,12 +182,19 @@ function ComponentParticle(parent, source) : Component(parent, source) construct
     static CreateJSON = function() {
         return self.CreateJSONParticle();
     };
+    
+    static Export = function(buffer) {
+        self.ExportBase(buffer);
+        buffer_write(buffer, buffer_u32, self.particle_type);
+    };
 }
 
 function ComponentAudio(parent, source) : Component(parent, source) constructor {
     self.save_script = null;
     self.render = null;
     self.sprite = spr_light_direction;
+    
+    // specific
     self.audio_type = AudioTypes.NONE;
     
     if (is_struct(source)) {
@@ -174,5 +211,10 @@ function ComponentAudio(parent, source) : Component(parent, source) constructor 
     
     static CreateJSON = function() {
         return self.CreateJSONAudio();
+    };
+    
+    static Export = function(buffer) {
+        self.ExportBase(buffer);
+        buffer_write(buffer, buffer_u32, self.audio_type);
     };
 }
