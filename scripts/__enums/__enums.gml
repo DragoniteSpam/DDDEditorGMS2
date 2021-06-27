@@ -167,14 +167,6 @@ global.light_type_constructors = [
     ComponentSpotLight,
 ];
 
-enum ParticleTypes {
-    NONE,
-}
-
-enum AudioTypes {
-    NONE,
-}
-
 enum CollisionMasks {
     NONE                    = 0x0000,
     MAIN                    = 0x0001,

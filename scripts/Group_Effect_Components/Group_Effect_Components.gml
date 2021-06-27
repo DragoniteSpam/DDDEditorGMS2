@@ -191,16 +191,16 @@ function ComponentAudio(parent, source) : Component(parent, source) constructor 
     self.sprite = spr_light_direction;
     
     // specific
-    self.audio_type = AudioTypes.NONE;
+    self.audio_guid = NULL;
     
     if (is_struct(source)) {
-        self.audio_type = source.audio.type;
+        self.audio_guid = source.audio.guid;
     };
     
     static CreateJSONAudio = function() {
         var json = self.CreateJSONComponent();
         json.audio = {
-            type: self.audio_type,
+            guid: self.audio_guid,
         };
         return json;
     };
@@ -211,6 +211,6 @@ function ComponentAudio(parent, source) : Component(parent, source) constructor 
     
     static Export = function(buffer) {
         self.ExportBase(buffer);
-        buffer_write(buffer, buffer_u32, self.audio_type);
+        buffer_write(buffer, buffer_datatype, self.audio_guid);
     };
 }
