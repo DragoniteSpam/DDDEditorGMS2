@@ -16,10 +16,6 @@ function serialize_save_particles(argument0) {
 
     for (var i = 0; i < n_emitters; i++) {
         var emitter = mode.emitters[i];
-        var bools = pack(
-            emitter.streaming,
-            emitter.draw_region
-        );
         buffer_write(buffer, buffer_string, emitter.name);
         buffer_write(buffer, buffer_u8, emitter.region_shape);
         buffer_write(buffer, buffer_u8, emitter.region_distribution);
@@ -29,7 +25,10 @@ function serialize_save_particles(argument0) {
         buffer_write(buffer, buffer_f32, emitter.region_y2);
         buffer_write(buffer, buffer_f32, emitter.rate);
         buffer_write(buffer, buffer_s16, array_search(mode.types, emitter.type));
-        buffer_write(buffer, buffer_u32, bools);
+        buffer_write(buffer, buffer_u32, pack(
+            emitter.streaming,
+            emitter.draw_region
+        ));
     }
 #endregion
 
@@ -39,19 +38,6 @@ function serialize_save_particles(argument0) {
 
     for (var i = 0; i < n_types; i++) {
         var type = mode.types[i];
-        var bools = pack(
-            type.sprite_custom,
-            type.sprite_animated,
-            type.sprite_stretched,
-            type.sprite_random,
-            // ---------
-            type.color_1b_enabled,
-            type.color_2_enabled,
-            type.color_3_enabled,
-            type.blend,
-            // ---------
-            type.orientation_relative,
-        );
         buffer_write(buffer, buffer_string, type.name);
         buffer_write(buffer, buffer_u8, type.shape);
         buffer_write(buffer, buffer_datatype, type.sprite);
@@ -89,7 +75,19 @@ function serialize_save_particles(argument0) {
         buffer_write(buffer, buffer_f32, type.update_rate);
         buffer_write(buffer, buffer_s16, array_search(mode.types, type.death_type));
         buffer_write(buffer, buffer_f32, type.death_rate);
-        buffer_write(buffer, buffer_u32, bools);
+        buffer_write(buffer, buffer_u32, pack(
+            type.sprite_custom,
+            type.sprite_animated,
+            type.sprite_stretched,
+            type.sprite_random,
+            // ---------
+            type.color_1b_enabled,
+            type.color_2_enabled,
+            type.color_3_enabled,
+            type.blend,
+            // ---------
+            type.orientation_relative,
+        ));
     }
 #endregion
 

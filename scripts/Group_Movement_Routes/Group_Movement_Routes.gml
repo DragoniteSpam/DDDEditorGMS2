@@ -9,7 +9,7 @@ function MoveRoute(source) constructor {
     self.steps = [];
     
     static Export = function(buffer) {
-        buffer_write(buffer, buffer_u16, pack(
+        buffer_write(buffer, buffer_field, pack(
             self.repeat_action,
             self.skip,
             self.wait

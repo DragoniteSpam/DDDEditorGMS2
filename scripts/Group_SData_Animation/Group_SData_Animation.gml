@@ -193,7 +193,7 @@ function DataAnimationLayer(animation, source) constructor {
     static Export = function(buffer) {
         buffer_write(buffer, buffer_string, self.name);
         
-        buffer_write(buffer, buffer_u8, pack(
+        buffer_write(buffer, buffer_field, pack(
             self.is_actor
         ));
     
