@@ -92,6 +92,7 @@ if (Settings.view[$ "zones"] == undefined)                  Settings.view.zones 
 if (Settings.view[$ "lighting"] == undefined)               Settings.view.lighting = true;
 if (Settings.view[$ "gizmos"] == undefined)                 Settings.view.gizmos = true;
 if (Settings.view[$ "terrain"] == undefined)                Settings.view.terrain = true;
+if (Settings.view[$ "threed"] == undefined)                 Settings.view.threed = true;
 
 #macro warn_untranslated_strings "EXPORT-UNTRANSLATED"
 #macro warn_untranslated_strings_as_is 1

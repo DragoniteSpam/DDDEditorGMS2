@@ -119,6 +119,14 @@ function ui_init_main(mode) {
         // second column
         
         yy = legal_y + spacing;
+
+        element = new EmuCheckbox(col2_x, yy, col_width, element_height, "3D View", Settings.view.threed, function() {
+            Settings.view.threed = self.value;
+        });
+        element.tooltip = "View the map in 2D, or in 3D.";
+        ds_list_add(t_general.contents, element);
+        
+        yy += element.GetHeight() + spacing;
         
         element = new EmuCheckbox(col2_x, yy, col_width, element_height, "View Wireframes", Settings.view.wireframe, function() {
             Settings.view.wireframe = self.value;
@@ -134,7 +142,7 @@ function ui_init_main(mode) {
         element.tooltip = "Whether or not you want to view the cell grid and grid axes.";
         ds_list_add(t_general.contents, element);
         
-        yy += element.height + spacing;
+        yy += element.GetHeight() + spacing;
         
         element = new EmuCheckbox(col2_x, yy, col_width, element_height, "View Texture", Settings.view.texture, function() {
             Settings.view.texture = self.value;
@@ -142,7 +150,7 @@ function ui_init_main(mode) {
         element.tooltip = "Whether or not to texture the visuals (to use the tilesets, in common terms). If off, a flat orange texture will be used instead. Most of the time you want this on.";
         ds_list_add(t_general.contents, element);
         
-        yy += element.height + spacing;
+        yy += element.GetHeight() + spacing;
         
         element = new EmuCheckbox(col2_x, yy, col_width, element_height, "View Entities", Settings.view.entities, function() {
             Settings.view.entities = self.value;
@@ -150,7 +158,7 @@ function ui_init_main(mode) {
         element.tooltip = "Whether or not entites should be visible. This is almost everything in the map, and turning it off is quite pointless.";
         ds_list_add(t_general.contents, element);
         
-        yy += element.height + spacing;
+        yy += element.GetHeight() + spacing;
         
         element = new EmuCheckbox(col2_x, yy, col_width, element_height, "View Backfaces", Settings.view.backface, function() {
             Settings.view.backface = self.value;
@@ -158,7 +166,7 @@ function ui_init_main(mode) {
         element.tooltip = "Whether the backs of triangles should be visible. There is a very small performance cost to turning them on. Generally, this is not needed.";
         ds_list_add(t_general.contents, element);
         
-        yy += element.height + spacing;
+        yy += element.GetHeight() + spacing;
         
         element = new EmuCheckbox(col2_x, yy, col_width, element_height, "View Zones", Settings.view.zones, function() {
             Settings.view.zones = self.value;
@@ -166,7 +174,7 @@ function ui_init_main(mode) {
         element.tooltip = "Map zones for things like camera and lighting controls. If you have a lot of them, it can become hard to see through them. Zones can only be blicked on when this is turned on.";
         ds_list_add(t_general.contents, element);
         
-        yy += element.height + spacing;
+        yy += element.GetHeight() + spacing;
         
         element = new EmuCheckbox(col2_x, yy, col_width, element_height, "View Lighting", Settings.view.lighting, function() {
             Settings.view.lighting = self.value;
@@ -174,7 +182,7 @@ function ui_init_main(mode) {
         element.tooltip = "See how the scene looks with lighting. This also affects fog. You may wish to turn this off if you find yourself having a hard time seeing with the lights enabled.";
         ds_list_add(t_general.contents, element);
         
-        yy += element.height + spacing;
+        yy += element.GetHeight() + spacing;
         
         element = new EmuCheckbox(col2_x, yy, col_width, element_height, "View Gizmos", Settings.view.gizmos, function() {
             Settings.view.gizmos = self.value;
@@ -182,7 +190,7 @@ function ui_init_main(mode) {
         element.tooltip = "The helpful frames you see around light sources and other effects and that sort of thing.";
         t_general.AddContent(element);
         
-        yy += element.height + spacing;
+        yy += element.GetHeight() + spacing;
         
         element = new EmuCheckbox(col2_x, yy, col_width, element_height, "View Terrain", Settings.view.terrain, function() {
             Settings.view.terrain = self.value;
@@ -191,7 +199,7 @@ function ui_init_main(mode) {
         element.enabled = false;
         t_general.AddContent(element);
         
-        yy += element.height + spacing;
+        yy += element.GetHeight() + spacing;
         #endregion
         
         #region tab: stats

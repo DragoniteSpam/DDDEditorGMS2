@@ -8,7 +8,7 @@ function draw_editor_3d() {
     var camera = view_get_camera(view_current);
     var z2d = 1600;
     
-    if (Stuff.map.threed_mode) {
+    if (Settings.view.threed) {
         var vw = view_get_wport(view_current);
         var vh = view_get_hport(view_current);
         camera_set_view_mat(camera, matrix_build_lookat(x, y, z, xto, yto, zto, xup, yup, zup));
@@ -27,7 +27,7 @@ function draw_editor_3d() {
     if (skybox && !map.indoors) {
         gpu_set_zwriteenable(false);
         gpu_set_ztestenable(false);
-        transform_set(x, y, Stuff.map.threed_mode ? z : z2d, 0, 0, 0, 1, 1, 1);
+        transform_set(x, y, Settings.view.threed ? z : z2d, 0, 0, 0, 1, 1, 1);
         vertex_submit(Stuff.graphics.skybox_base, pr_trianglelist, sprite_get_texture(skybox.picture, 0));
         matrix_set(matrix_world, matrix_build_identity());
     }

@@ -67,7 +67,7 @@ function SelectionCircle(x, y, z, radius) : Selection(x, y, z) constructor {
     }
     
     static selected_determination = function(entity) {
-        return (point_distance(self.x, self.y, entity.xx + 0.5, entity.yy + 0.5) < self.radius) && (!Stuff.map.threed_mode || self.z == entity.zz);
+        return (point_distance(self.x, self.y, entity.xx + 0.5, entity.yy + 0.5) < self.radius) && (!Settings.view.threed || self.z == entity.zz);
     };
     
     static selected_border_determination = function(entity) {
@@ -77,7 +77,7 @@ function SelectionCircle(x, y, z, radius) : Selection(x, y, z) constructor {
         var maxx = self.x + 1 + self.radius;
         var maxy = self.y + 1 + self.radius;
         var maxz = self.z + 1 + self.radius;
-        return is_clamped(entity.xx, minx, maxx) && is_clamped(entity.yy, miny, maxy) && (!Stuff.map.threed_mode && is_clamped(entity.zz, minz, maxz));
+        return is_clamped(entity.xx, minx, maxx) && is_clamped(entity.yy, miny, maxy) && (!Settings.view.threed && is_clamped(entity.zz, minz, maxz));
     };
 }
 
@@ -117,7 +117,7 @@ function SelectionSingle(x, y, z) : Selection(x, y, z) constructor {
     };
     
     static selected_determination = function(entity) {
-        return (self.x == entity.xx && self.y == entity.yy) && (!Stuff.map.threed_mode || self.z == entity.zz);
+        return (self.x == entity.xx && self.y == entity.yy) && (!Settings.view.threed || self.z == entity.zz);
     };
     
     static selected_border_determination = function(entity) {
@@ -127,7 +127,7 @@ function SelectionSingle(x, y, z) : Selection(x, y, z) constructor {
         var maxx = self.x + 1;
         var maxy = self.y + 1;
         var maxz = self.z + 1;
-        return is_clamped(entity.xx, minx, maxx) && is_clamped(entity.yy, miny, maxy) && (!Stuff.map.threed_mode || is_clamped(entity.zz, minz, maxz));
+        return is_clamped(entity.xx, minx, maxx) && is_clamped(entity.yy, miny, maxy) && (!Settings.view.threed || is_clamped(entity.zz, minz, maxz));
     };
 }
 
@@ -217,7 +217,7 @@ function SelectionRectangle(x, y, z, x2, y2, z2) : Selection(x, y, z) constructo
         var maxey = max(miny, maxy - 1);
         var maxez = max(minz, maxz - 1);
         
-        return (is_clamped(entity.xx, minx, maxex) && is_clamped(entity.yy, miny, maxey)) && (!Stuff.map.threed_mode || is_clamped(entity.zz, minz, maxez));
+        return (is_clamped(entity.xx, minx, maxex) && is_clamped(entity.yy, miny, maxey)) && (!Settings.view.threed || is_clamped(entity.zz, minz, maxez));
     };
     
     static selected_border_determination = function(entity) {
@@ -231,6 +231,6 @@ function SelectionRectangle(x, y, z, x2, y2, z2) : Selection(x, y, z) constructo
         var maxex = max(minx, maxx - 1);
         var maxey = max(miny, maxy - 1);
         var maxez = max(minz, maxz - 1);
-        return (is_clamped(entity.xx, minx, maxex) && is_clamped(entity.yy, miny, maxey)) && (!Stuff.map.threed_mode || is_clamped(entity.zz, minz, maxez));
+        return (is_clamped(entity.xx, minx, maxex) && is_clamped(entity.yy, miny, maxey)) && (!Settings.view.threed || is_clamped(entity.zz, minz, maxez));
     };
 }

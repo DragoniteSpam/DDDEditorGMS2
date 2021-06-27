@@ -10,7 +10,7 @@ function control_map(mode) {
     #region mouse picking
     var rc_xfrom, rc_yfrom, rc_zfrom, rc_xto, rc_yto, rc_zto;
     var xx, yy, zz, xadjust, yadjust, zadjust;
-    if (Stuff.map.threed_mode) {
+    if (Settings.view.threed) {
         var mouse_vector = screen_to_world(window_mouse_get_x(), window_mouse_get_y(),
             matrix_build_lookat(mode.x, mode.y, mode.z, mode.xto, mode.yto, mode.zto, mode.xup, mode.yup, mode.zup),
             matrix_build_projection_perspective_fov(mode.fov, CW / CH, 1, 1000),
@@ -207,7 +207,7 @@ function control_map(mode) {
         
         #region camera movement
         if (CONTROL_3D_LOOK || !input_control) {
-            var mspd = get_camera_speed(Stuff.map.threed_mode ? mode.z : 100);
+            var mspd = get_camera_speed(Settings.view.threed ? mode.z : 100);
             var xspeed = 0;
             var yspeed = 0;
             var zspeed = 0;
@@ -215,7 +215,7 @@ function control_map(mode) {
             var yup = 0;
             var zup = 0;
             
-            if (Stuff.map.threed_mode) {
+            if (Settings.view.threed) {
                 if (keyboard_check(vk_up) || keyboard_check(ord("W"))) {
                     xspeed = xspeed + dcos(mode.direction) * mspd;
                     yspeed = yspeed - dsin(mode.direction) * mspd;

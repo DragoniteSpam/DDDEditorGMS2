@@ -9,11 +9,11 @@ function ui_render_surface_render_map(surface, x1, y1, x2, y2) {
     
     gpu_set_zwriteenable(true);
     gpu_set_cullmode(Settings.view.backface ? cull_noculling : cull_counterclockwise);
-    gpu_set_ztestenable(Stuff.map.threed_mode);        // this will make things rather odd with the wrong setting
+    gpu_set_ztestenable(Settings.view.threed);        // this will make things rather odd with the wrong setting
     
     draw_set_color(c_white);
     
-    if (Stuff.map.threed_mode) {
+    if (Settings.view.threed) {
         var vw = x2 - x1;
         var vh = y2 - y1;
         camera_set_view_mat(camera, matrix_build_lookat(Stuff.event.x, Stuff.event.y, Stuff.event.z, Stuff.event.xto,
