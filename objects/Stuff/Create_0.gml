@@ -257,12 +257,6 @@ instance_deactivate_object(UIThing);
 #region stuff related to garbage collection
 stuff_to_destroy = ds_queue_create();
 c_object_cache = ds_queue_create();
-#endregion
-
-#region end of step actions
-schedule_rebuild_autotile_texture = false;
-schedule_save = false;
-schedule_export = false;
 
 gpu_base_state = gpu_get_state();
 #endregion

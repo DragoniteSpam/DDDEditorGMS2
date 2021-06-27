@@ -26,21 +26,6 @@ if (ds_queue_size(c_object_cache) > C_OBJECT_CACHE_SIZE) {
 
 gpu_set_state(gpu_base_state);
 
-if (schedule_rebuild_autotile_texture) {
-    wtf("this has yet to be implemented");
-    schedule_rebuild_autotile_texture = false;
-}
-
-if (schedule_save) {
-    project_save();
-    schedule_save = false;
-}
-
-if (schedule_export) {
-    project_export();
-    schedule_export = false;
-}
-
 Controller.mouse_x_previous = mouse_x;
 Controller.mouse_y_previous = mouse_y;
 

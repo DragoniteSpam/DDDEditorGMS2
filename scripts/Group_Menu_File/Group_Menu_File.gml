@@ -11,12 +11,12 @@ function momu_preferences() {
 
 function momu_save_data() {
     menu_activate(noone);
-    Stuff.schedule_save = true;
+    project_save();
 }
 
 function momu_export_data() {
     menu_activate(noone);
-    Stuff.schedule_export = true;
+    project_export();
 }
 
 function momu_settings_data() {
