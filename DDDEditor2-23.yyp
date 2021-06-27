@@ -174,7 +174,6 @@
     {"id":{"name":"scribble_bake_outline","path":"scripts/scribble_bake_outline/scribble_bake_outline.yy",},"order":3,},
     {"id":{"name":"snap_to_json","path":"scripts/snap_to_json/snap_to_json.yy",},"order":1,},
     {"id":{"name":"snap_from_yaml","path":"scripts/snap_from_yaml/snap_from_yaml.yy",},"order":0,},
-    {"id":{"name":"serialize_save_entity_effect","path":"scripts/serialize_save_entity_effect/serialize_save_entity_effect.yy",},"order":2,},
     {"id":{"name":"serialize_save_entity_mesh","path":"scripts/serialize_save_entity_mesh/serialize_save_entity_mesh.yy",},"order":7,},
     {"id":{"name":"serialize_save_entity_pawn","path":"scripts/serialize_save_entity_pawn/serialize_save_entity_pawn.yy",},"order":9,},
     {"id":{"name":"dialog_create_game_data_asset_flags","path":"scripts/dialog_create_game_data_asset_flags/dialog_create_game_data_asset_flags.yy",},"order":23,},
