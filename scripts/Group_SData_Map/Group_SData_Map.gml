@@ -325,7 +325,6 @@ function DataMap(source, directory) : SData(source) constructor {
             #endregion
             
             #region entities
-            
             var count_addr = buffer_tell(buffer);
             buffer_write(buffer, buffer_u32, 0);
             var exported_entities = 0;

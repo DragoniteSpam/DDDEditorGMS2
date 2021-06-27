@@ -27,10 +27,20 @@ function MeshSubmesh(source) constructor {
         if (file_exists(directory  + proto + ".wire")) self.wrawbuffer = buffer_load(directory  + proto + ".wire");
         if (file_exists(directory  + proto + ".rwire")) self.reflect_wrawbuffer = buffer_load(directory  + proto + ".rwire");
         
-        if (self.buffer) self.vbuffer = vertex_create_buffer_from_buffer(self.buffer, Stuff.graphics.vertex_format);
+        self.vbuffer = vertex_create_buffer_from_buffer(self.buffer, Stuff.graphics.vertex_format);
         if (self.reflect_buffer) self.reflect_vbuffer = vertex_create_buffer_from_buffer(self.reflect_buffer, Stuff.graphics.vertex_format);
-        if (self.wrawbuffer) self.wbuffer = vertex_create_buffer_from_buffer(self.wrawbuffer, Stuff.graphics.vertex_format);
-        if (self.reflect_wrawbuffer) self.reflect_wbuffer = vertex_create_buffer_from_buffer(self.reflect_wrawbuffer, Stuff.graphics.vertex_format);
+        if (self.wrawbuffer) {
+            self.wbuffer = vertex_create_buffer_from_buffer(self.wrawbuffer, Stuff.graphics.vertex_format);
+        } else {
+            self.wbuffer = buffer_to_wireframe(self.buffer);
+            self.wrawbuffer = buffer_create_from_vertex_buffer(self.wbuffer, buffer_fixed, 1);
+        }
+        if (self.reflect_wrawbuffer) {
+            self.reflect_wbuffer = vertex_create_buffer_from_buffer(self.reflect_wrawbuffer, Stuff.graphics.vertex_format);
+        } else if (self.reflect_buffer) {
+            self.reflect_wbuffer = buffer_to_wireframe(self.reflect_buffer);
+            self.reflect_wrawbuffer = buffer_create_from_vertex_buffer(self.reflect_wbuffer, buffer_fixed, 1);
+        }
     };
     
     static SaveAsset = function(directory) {
