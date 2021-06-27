@@ -263,6 +263,14 @@ function DataMap(source, directory) : SData(source) constructor {
             }
         }
         
+        buffer_write(buffer, buffer_u8, array_length(self.generic_data));
+        for (var i = 0; i < array_length(self.generic_data); i++) {
+            var data = self.generic_data[i];
+            buffer_write(buffer, buffer_string, data.name);
+            buffer_write(buffer, buffer_u8, data.type);
+            buffer_write(buffer, Stuff.data_type_meta[data.type].buffer_type, data.value);
+        }
+        
         if (self.contents) {
             #region data that was frozen ahead of time
             if (self.contents.frozen_data) {
