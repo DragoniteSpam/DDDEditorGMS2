@@ -7,7 +7,7 @@ function EmuCheckbox(x, y, w, h, text, value, callback) : EmuCallback(x, y, w, h
     self.sprite_check = spr_emu_checkbox;
     self.sprite_check_border = spr_emu_checkbox_border;
     self.color_active = EMU_COLOR_RADIO_ACTIVE;
-    self.color_hover = EMU_COLOR_HOVER
+    self.color_hover = EMU_COLOR_HOVER;
     self.color_disabled = EMU_COLOR_DISABLED;
     self.color_back = EMU_COLOR_BACK;
     

@@ -120,56 +120,75 @@ function ui_init_main(mode) {
         
         yy = legal_y + spacing;
         
-        element = create_checkbox(col2_x, yy, "View Wireframes", col_width, element_height, uivc_check_view_wireframe, Settings.view.wireframe, t_general);
+        element = new EmuCheckbox(col2_x, yy, col_width, element_height, "View Wireframes", Settings.view.wireframe, function() {
+            Settings.view.wireframe = self.value;
+        });
         element.tooltip = "Whether or not you want to view the wireframes to go with visual data.";
         ds_list_add(t_general.contents, element);
         
-        yy += element.height + spacing;
+        yy += element.GetHeight() + spacing;
         
-        element = create_checkbox(col2_x, yy, "View Grid and Markers", col_width, element_height, uivc_check_view_grids, Settings.view.grid, t_general);
+        element = new EmuCheckbox(col2_x, yy, col_width, element_height, "View Grid and Markers", Settings.view.grid, function() {
+            Settings.view.grid = self.value;
+        });
         element.tooltip = "Whether or not you want to view the cell grid and grid axes.";
         ds_list_add(t_general.contents, element);
         
         yy += element.height + spacing;
         
-        element = create_checkbox(col2_x, yy, "View Texture", col_width, element_height, uivc_check_view_texture, Settings.view.texture, t_general);
+        element = new EmuCheckbox(col2_x, yy, col_width, element_height, "View Texture", Settings.view.texture, function() {
+            Settings.view.texture = self.value;
+        });
         element.tooltip = "Whether or not to texture the visuals (to use the tilesets, in common terms). If off, a flat orange texture will be used instead. Most of the time you want this on.";
         ds_list_add(t_general.contents, element);
         
         yy += element.height + spacing;
         
-        element = create_checkbox(col2_x, yy, "View Entities", col_width, element_height, uivc_check_view_entities, Settings.view.entities, t_general);
+        element = new EmuCheckbox(col2_x, yy, col_width, element_height, "View Entities", Settings.view.entities, function() {
+            Settings.view.entities = self.value;
+        });
         element.tooltip = "Whether or not entites should be visible. This is almost everything in the map, and turning it off is quite pointless.";
         ds_list_add(t_general.contents, element);
         
         yy += element.height + spacing;
         
-        element = create_checkbox(col2_x, yy, "View Backfaces", col_width, element_height, uivc_check_view_backface, Settings.view.backface, t_general);
+        element = new EmuCheckbox(col2_x, yy, col_width, element_height, "View Backfaces", Settings.view.backface, function() {
+            Settings.view.backface = self.value;
+        });
         element.tooltip = "Whether the backs of triangles should be visible. There is a very small performance cost to turning them on. Generally, this is not needed.";
         ds_list_add(t_general.contents, element);
         
         yy += element.height + spacing;
         
-        element = create_checkbox(col2_x, yy, "View Zones", col_width, element_height, uivc_check_view_zones, Settings.view.zones, t_general);
+        element = new EmuCheckbox(col2_x, yy, col_width, element_height, "View Zones", Settings.view.zones, function() {
+            Settings.view.zones = self.value;
+        });
         element.tooltip = "Map zones for things like camera and lighting controls. If you have a lot of them, it can become hard to see through them. Zones can only be blicked on when this is turned on.";
         ds_list_add(t_general.contents, element);
         
         yy += element.height + spacing;
         
-        element = create_checkbox(col2_x, yy, "View Lighting", col_width, element_height, uivc_check_view_lighting, Settings.view.lighting, t_general);
+        element = new EmuCheckbox(col2_x, yy, col_width, element_height, "View Lighting", Settings.view.lighting, function() {
+            Settings.view.lighting = self.value;
+        });
         element.tooltip = "See how the scene looks with lighting. This also affects fog. You may wish to turn this off if you find yourself having a hard time seeing with the lights enabled.";
         ds_list_add(t_general.contents, element);
         
         yy += element.height + spacing;
         
-        element = create_checkbox(col2_x, yy, "View Gizmos", col_width, element_height, uivc_check_view_gizmos, Settings.view.gizmos, t_general);
+        element = new EmuCheckbox(col2_x, yy, col_width, element_height, "View Gizmos", Settings.view.gizmos, function() {
+            Settings.view.gizmos = self.value;
+        });
         element.tooltip = "The helpful frames you see around light sources and other effects and that sort of thing.";
         ds_list_add(t_general.contents, element);
         
         yy += element.height + spacing;
         
-        element = create_checkbox(col2_x, yy, "View Terrain", col_width, element_height, uivc_check_view_terrain, Settings.view.terrain, t_general);
+        element = new EmuCheckbox(col2_x, yy, col_width, element_height, "View Terrain", Settings.view.terrain, function() {
+            Settings.view.terrain = self.value;
+        });
         element.tooltip = "The helpful frames you see around light sources and other effects and that sort of thing.";
+        element.enabled = false;
         ds_list_add(t_general.contents, element);
         
         yy += element.height + spacing;
