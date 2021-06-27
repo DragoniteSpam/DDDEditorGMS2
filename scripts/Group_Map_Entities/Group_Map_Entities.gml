@@ -131,6 +131,7 @@ function Entity(source) constructor {
     };
     
     static ExportBase = function(buffer) {
+        buffer_write(buffer, buffer_u32, self.etype);
         buffer_write(buffer, buffer_string, self.name);
         buffer_write(buffer, buffer_u32, self.xx);
         buffer_write(buffer, buffer_u32, self.yy);
@@ -326,7 +327,6 @@ function EntityEffect(source) : Entity(source) constructor {
     static Export = function(buffer) {
         self.ExportBase(buffer);
         if (self.com_light) {
-            buffer_write(buffer, buffer_u8, self.com_light.light_type);
             self.com_light.Export(buffer);
         } else {
             buffer_write(buffer, buffer_u8, LightTypes.NONE);

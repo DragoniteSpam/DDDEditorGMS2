@@ -3,6 +3,7 @@ function Component(parent, source) constructor {
     self.sprite = -1;
     self.label_colour = c_black;
     self.script_call = "";
+    self.type = 0;                                                              // used by components to differentiate them from each other
     
     if (is_struct(source)) {
         self.script_call = source.com.code;
@@ -22,6 +23,7 @@ function Component(parent, source) constructor {
     };
     
     static ExportBase = function(buffer) {
+        buffer_write(buffer, buffer_u32, self.type);
         buffer_write(buffer, buffer_string, self.script_call);
     };
 }
@@ -29,7 +31,7 @@ function Component(parent, source) constructor {
 function ComponentPointLight(parent, source) : Component(parent, source) constructor {
     self.render = render_effect_light_point;
     self.sprite = spr_light_point;
-    self.light_type = LightTypes.POINT;
+    self.type = LightTypes.POINT;
     self.label_colour = c_blue;
     
     // specific
@@ -64,7 +66,7 @@ function ComponentPointLight(parent, source) : Component(parent, source) constru
 function ComponentSpotLight(parent, source) : Component(parent, source) constructor {
     self.render = render_effect_light_spot;
     self.sprite = spr_light_point;
-    self.light_type = LightTypes.SPOT;
+    self.type = LightTypes.SPOT;
     self.label_colour = c_orange;
     
     // specific
@@ -115,7 +117,7 @@ function ComponentSpotLight(parent, source) : Component(parent, source) construc
 function ComponentDirectionalLight(parent, source) : Component(parent, source) constructor {
     self.render = render_effect_light_direction;
     self.sprite = spr_light_direction;
-    self.light_type = LightTypes.DIRECTIONAL;
+    self.type = LightTypes.DIRECTIONAL;
     self.label_colour = c_green;
     
     // specific

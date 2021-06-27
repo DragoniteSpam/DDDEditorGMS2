@@ -17,12 +17,12 @@ function graphics_set_lighting(shader) {
         if (!data) continue;
         var index = n++ * 12;
         // common value
-        light_data[index + 3] = data.light_type;
+        light_data[index + 3] = data.type;
         light_data[index + 8] = (data.light_colour & 0x0000ff) / 0xff;
         light_data[index + 9] = ((data.light_colour & 0x00ff00) >> 8) / 0xff;
         light_data[index + 10] = ((data.light_colour & 0xff0000) >> 16) / 0xff;
         // specific to each type
-        switch (data.light_type) {
+        switch (data.type) {
             case LightTypes.DIRECTIONAL:
                 light_data[index + 0] = data.light_dx;
                 light_data[index + 1] = data.light_dy;

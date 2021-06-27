@@ -13,7 +13,7 @@ function uivc_entity_effect_com_lighting_type(radio) {
     // reset everything (but if an effect has the same light compoment as the type to be added, keep it)
     for (var i = 0; i < ds_list_size(list); i++) {
         var effect = list[| i];
-        if (effect.com_light.light_type != radio.value) {
+        if (effect.com_light.type != radio.value) {
             effect.com_light = undefined;
         }
     }
@@ -43,7 +43,7 @@ function uivc_entity_effect_com_lighting_type(radio) {
             for (var i = 0; i < ds_list_size(list); i++) {
                 var effect = list[| i];
                 if (!effect.com_light) {
-                    effect.com_light = new ComponentDirectionalLight(effect);
+                    effect.com_light = new ComponentDirectionalLight(effect, undefined);
                 }
             }
             
@@ -60,7 +60,7 @@ function uivc_entity_effect_com_lighting_type(radio) {
             for (var i = 0; i < ds_list_size(list); i++) {
                 var effect = list[| i];
                 if (!effect.com_light) {
-                    effect.com_light = new ComponentPointLight(effect);
+                    effect.com_light = new ComponentPointLight(effect, undefined);
                 }
             }
             
@@ -79,7 +79,7 @@ function uivc_entity_effect_com_lighting_type(radio) {
             for (var i = 0; i < ds_list_size(list); i++) {
                 var effect = list[| i];
                 if (!effect.com_light) {
-                    effect.com_light = new ComponentSpotLight(effect);
+                    effect.com_light = new ComponentSpotLight(effect, undefined);
                 }
             }
             
