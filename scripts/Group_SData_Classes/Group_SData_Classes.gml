@@ -63,7 +63,7 @@ function DataClass(source) : SData(source) constructor {
         }
         
         for (var i = 0; i < array_length(self.instances); i++) {
-            self.instances[i] = new DataProperty(self.instances[i]);
+            self.instances[i] = new DataInstance(self.instances[i]);
         }
     }
 }
@@ -120,7 +120,7 @@ function DataProperty(source, parent) : SData(source) constructor {
     }
 }
 
-function DataInstance(name) : SData(name) constructor {
+function DataInstance(source) : SData(source) constructor {
     parent = NULL;
     values = [];
     
@@ -135,4 +135,9 @@ function DataInstance(name) : SData(name) constructor {
             }
         }
     };
+    
+    if (is_struct(source)) {
+        self.parent = source.parent;
+        self.values = source.values;
+    }
 }
