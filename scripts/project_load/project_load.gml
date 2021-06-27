@@ -8,7 +8,7 @@ function project_load(id) {
         var data = json.data;
         
         for (var i = 0; i < array_length(data); i++) {
-            array_push(Game.data, new SDataClass(data[i]));
+            array_push(Game.data, new DataClass(data[i]));
         }
         
         if (Stuff.data.ui) Stuff.data.ui.el_master.entries = Game.data;

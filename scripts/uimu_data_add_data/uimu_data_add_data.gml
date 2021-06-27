@@ -2,7 +2,7 @@ function uimu_data_add_data(thing) {
     var data = guid_get(thing.root.active_type_guid);
     
     if (data) {
-        var instance = new SDataInstance(data.name + string(array_length(data.instances)));
+        var instance = new DataInstance(data.name + string(array_length(data.instances)));
         instance.parent = data.GUID;
         
         var current_index = ui_list_selection(thing.root.el_instances);

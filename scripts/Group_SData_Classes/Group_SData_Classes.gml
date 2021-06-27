@@ -1,4 +1,4 @@
-function SDataClass(source) : SData(source) constructor {
+function DataClass(source) : SData(source) constructor {
     self.properties = [];
     // all of the instances of the data type; nested lists
     self.instances = [];
@@ -68,7 +68,7 @@ function SDataClass(source) : SData(source) constructor {
     }
 }
 
-function SDataProperty(name, parent) : SData(name) constructor {
+function DataProperty(name, parent) : SData(name) constructor {
     self.parent = parent.GUID;
     
     self.type = DataTypes.INT;
