@@ -1,5 +1,5 @@
-function MoveRoute(name) constructor {
-    self.name = name;
+function MoveRoute(source) constructor {
+    self.name = source;
     
     self.repeat_action = false;
     self.skip = true;
@@ -86,6 +86,14 @@ function MoveRoute(name) constructor {
             }
         }
     };
+    
+    if (is_struct(source)) {
+        self.name = source.name;
+        self.repeat_action = source.repeat_action;
+        self.skip = source.skip;
+        self.wait = source.wait;
+        self.steps = source.steps;
+    }
 };
 
 enum MoveRouteActions {
