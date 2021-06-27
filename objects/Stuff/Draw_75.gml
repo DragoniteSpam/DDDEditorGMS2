@@ -37,7 +37,7 @@ if (schedule_save) {
 }
 
 if (schedule_export) {
-    serialize_save_complete();
+    project_export();
     schedule_export = false;
 }
 
