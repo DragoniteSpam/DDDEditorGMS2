@@ -131,6 +131,8 @@ function Entity(source) constructor {
     };
     
     static ExportBase = function(buffer) {
+        if (self.is_static) return false;
+        
         buffer_write(buffer, buffer_u32, self.etype);
         buffer_write(buffer, buffer_string, self.name);
         buffer_write(buffer, buffer_u32, self.xx);
@@ -139,7 +141,6 @@ function Entity(source) constructor {
         buffer_write(buffer, buffer_datatype, self.REFID);
         
         buffer_write(buffer, buffer_field, pack(
-            self.is_static,
             self.preserve_on_save,
             self.reflect,
             self.direction_fix,
@@ -192,6 +193,8 @@ function Entity(source) constructor {
         }
         
         buffer_write(buffer, buffer_u8, self.slope);
+        
+        return true;
     };
     
     static CreateJSONBase = function() {
@@ -436,16 +439,13 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
         return new BoundingBox(self.xx + mesh_data.xmin, self.yy + mesh_data.ymin, self.zz + mesh_data.zmin, self.xx + mesh_data.xmax, self.yy + mesh_data.ymax, self.zz + mesh_data.zmax);
     };
     
-    static SetStatic = function(state) {
-        // Meshes with no mesh are not allowed to be marked as static
-        if (!guid_get(mesh)) return;
-        self.is_static = state;
-    };
-    
     if (mesh) {
         switch (mesh.type) {
             case MeshTypes.RAW:
+                self.is_static = true;
+                self.batchable = true;
                 self.cobject = c_object_create_cached(mesh.cshape, CollisionMasks.MAIN, CollisionMasks.MAIN);
+                self.SetStatic = function(state) { self.is_static = state; };
                 break;
             case MeshTypes.SMF:
                 self.is_static = false;
@@ -518,7 +518,7 @@ function EntityMesh(source, mesh) : Entity(source) constructor {
     };
     
     static Export = function(buffer) {
-        self.ExportBase(buffer);
+        if (!self.ExportBase(buffer)) return 0;
         buffer_write(buffer, buffer_datatype, self.mesh);
         buffer_write(buffer, buffer_datatype, self.mesh_submesh);
         buffer_write(buffer, buffer_u32, pack(
@@ -666,6 +666,7 @@ function EntityPawn(source) : Entity(source) constructor {
     static on_select_ui = safc_on_pawn_ui;
     
     static Export = function(buffer) {
+        self.ExportBase(buffer);
         buffer_write(buffer, buffer_u8, self.map_direction);
         buffer_write(buffer, buffer_datatype, self.overworld_sprite);
         return 1;
