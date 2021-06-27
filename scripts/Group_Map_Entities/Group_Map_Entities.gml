@@ -607,9 +607,7 @@ function EntityMeshAutotile(source) : EntityMesh(source) constructor {
     
     self.is_static = true;
     // these things can't *not* be static
-    static SetStatic = function(state) {
-        return false;
-    };
+    static SetStatic = function(state) { };
     
     static Export = function(buffer) {
         return 0;
@@ -671,6 +669,10 @@ function EntityPawn(source) : Entity(source) constructor {
         buffer_write(buffer, buffer_datatype, self.overworld_sprite);
         return 1;
     };
+    
+    // pawns can't be static
+    self.is_static = false;
+    static SetStatic = function(state) { };
     
     static CreateJSONPawn = function() {
         var json = self.CreateJSONBase();
