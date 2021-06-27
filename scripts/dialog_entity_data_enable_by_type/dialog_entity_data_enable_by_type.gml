@@ -15,27 +15,31 @@ function dialog_entity_data_enable_by_type(dialog) {
         case DataTypes.CODE:
             dialog.el_data_property_code.interactive = true;
             dialog.el_data_property_code.enabled = true;
-            dialog.el_data_property_code.value = data.value_code;
+            dialog.el_data_property_code.value = string(data.value);
             break;
         case DataTypes.STRING:
             dialog.el_data_property_string.interactive = true;
             dialog.el_data_property_string.enabled = true;
-            dialog.el_data_property_string.value = data.value_string;
+            dialog.el_data_property_string.value = string(data.value);
             break;
         case DataTypes.FLOAT:
             dialog.el_data_property_real.interactive = true;
             dialog.el_data_property_real.enabled = true;
-            dialog.el_data_property_real.value = string(data.value_real);
+            dialog.el_data_property_real.value = string(data.value);
             break;
         case DataTypes.INT:
             dialog.el_data_property_int.interactive = true;
             dialog.el_data_property_int.enabled = true;
-            dialog.el_data_property_int.value = string(data.value_int);
+            dialog.el_data_property_int.value = string(data.value);
             break;
         case DataTypes.BOOL:
             dialog.el_data_property_bool.interactive = true;
             dialog.el_data_property_bool.enabled = true;
-            dialog.el_data_property_bool.value = data.value_bool;
+            try {
+                dialog.el_data_property_bool.value = real(data.value);
+            } catch (e) {
+                dialog.el_data_property_bool.value = false;
+            }
             break;
         case DataTypes.ENUM:
         case DataTypes.DATA:
@@ -44,7 +48,7 @@ function dialog_entity_data_enable_by_type(dialog) {
             dialog.el_data_list.interactive = true;
             dialog.el_data_list.enabled = true;
             
-            var type = guid_get(data.value_type_guid);
+            var type = guid_get(data.type_guid);
             
             if (type) {
                 dialog.el_data_type_guid.text = type.name + " (Select)";
@@ -77,7 +81,7 @@ function dialog_entity_data_enable_by_type(dialog) {
                         }
                     
                         var type = array_sort_name(list_enum)[selection_index];
-                        data.value_type_guid = type.GUID;
+                        data.type_guid = type.GUID;
                         base_dialog.el_data_type_guid.text = type.name + "(Select)";
                         base_dialog.el_data_type_guid.color = c_black;
                     
@@ -104,7 +108,7 @@ function dialog_entity_data_enable_by_type(dialog) {
                         }
                         
                         var type = array_sort_name(list_data)[selection_index];
-                        data.value_type_guid = type.GUID;
+                        data.type_guid = type.GUID;
                         base_dialog.el_data_type_guid.text = type.name + "(Select)";
                         base_dialog.el_data_type_guid.color = c_black;
                     
@@ -119,7 +123,11 @@ function dialog_entity_data_enable_by_type(dialog) {
         case DataTypes.COLOR:
             dialog.el_data_property_color.interactive = true;
             dialog.el_data_property_color.enabled = true;
-            dialog.el_data_property_bool.value = data.value_color;
+            try {
+                dialog.el_data_property_bool.value = real(data.value);
+            } catch (e) {
+                dialog.el_data_property_bool.value = c_black;
+            }
             break;
         case DataTypes.MESH:
             dialog.el_data_builtin_list.interactive = true;
@@ -208,7 +216,7 @@ function dialog_entity_data_enable_by_type(dialog) {
     if (dialog.el_data_builtin_list.entries) {
         for (var i = 0; i < array_length(dialog.el_data_builtin_list.entries); i++) {
             var entry = dialog.el_data_builtin_list.entries[i];
-            if (data.value_data == entry.GUID) {
+            if (data.value == entry.GUID) {
                 ui_list_select(dialog.el_data_builtin_list, i, true);
                 break;
             }
@@ -218,7 +226,7 @@ function dialog_entity_data_enable_by_type(dialog) {
     if (dialog.el_data_list.entries) {
         for (var i = 0; i < array_length(dialog.el_data_list.entries); i++) {
             var entry = dialog.el_data_list.entries[i];
-            if (data.value_data == entry.GUID) {
+            if (data.value == entry.GUID) {
                 ui_list_select(dialog.el_data_list, i, true);
                 break;
             }

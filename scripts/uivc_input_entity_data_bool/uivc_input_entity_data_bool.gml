@@ -6,7 +6,7 @@ function uivc_input_entity_data_bool(argument0) {
     var selection = ui_list_selection(checkbox.root.el_list);
     var data = entity.generic_data[selection];
 
-    data.value_bool = checkbox.value;
+    data.value = checkbox.value;
 
 
 }

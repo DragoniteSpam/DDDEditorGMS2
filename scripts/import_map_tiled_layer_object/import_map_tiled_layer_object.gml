@@ -300,13 +300,8 @@ function import_map_tiled_layer_object() {
                 var property = data_properties[$ property_list[j]];
                 var property_name = property.name;
                 
-                var property_value_real = 0;
-                var property_value_int = 0;
-                var property_value_string = "";
-                var property_value_bool = false;
-                var property_value_color = c_black;
-                var property_value_type_guid = NULL;
-                var property_value_data = 0;
+                var property_value = undefined;
+                var property_value_guid = NULL;
                 var property_type = DataTypes.INT;
                 var base_property_name = "";
                 var accept = true;
@@ -316,8 +311,8 @@ function import_map_tiled_layer_object() {
                         var data = internal_name_get(property.value);
                         if (data) {
                             base_property_name = string_replace(property_name, "@", "");
-                            property_value_data = data.GUID;
-                            property_value_type_guid = guid_get(data.parent).GUID;
+                            property_value = data.GUID;
+                            property_value_guid = guid_get(data.parent).GUID;
                             property_type = DataTypes.DATA;
                         } else {
                             wtf("internal name not found - " + property.value);
@@ -325,13 +320,28 @@ function import_map_tiled_layer_object() {
                         break;
                     case "$":
                         base_property_name = string_replace(property_name, "$", "");
-                        property_value_string = property.value;
+                        property_value = property.value;
                         property_type = DataTypes.STRING;
                         break;
                     case "#":
                         base_property_name = string_replace(property_name, "#", "");
-                        property_value_string = property.value;
-                        property_type = DataTypes.FLOAT;
+                        property_value = property.value;
+                        switch (property.type) {
+                            case "string":      property_type = DataTypes.STRING;       break;
+                            case "bool":        property_type = DataTypes.BOOL;         break;
+                            case "float":       property_type = DataTypes.FLOAT;        break;
+                            case "int":         property_type = DataTypes.INT;          break;
+                            case "color":
+                                // tiled stores color in ARGB and we need it to be in ABGR
+                                property_type = DataTypes.COLOR;
+                                var a = property_value >> 24;
+                                property_value &= 0x00ffffff;
+                                var b = colour_get_red(property_value);
+                                var g = colour_get_green(property_value);
+                                var r = colour_get_blue(property_value);
+                                property_value = make_colour_rgb(r, g, b) | a;
+                                break;
+                        }
                         break;
                     default:
                         // if a property does not start with a valid sigil, skip it
@@ -357,14 +367,10 @@ function import_map_tiled_layer_object() {
                         data_generic_instance = new DataValue(base_property_name);
                         array_push(instance.generic_data, data_generic_instance);
                     }
-                    data_generic_instance.value_real = property_value_real;
-                    data_generic_instance.value_int = property_value_int;
-                    data_generic_instance.value_string = property_value_string;
-                    data_generic_instance.value_bool = property_value_bool;
-                    data_generic_instance.value_color = property_value_color;
-                    data_generic_instance.value_data = property_value_data;
-                    data_generic_instance.value_type_guid = property_value_type_guid;
+                    
                     data_generic_instance.type = property_type;
+                    data_generic_instance.value = property_value;
+                    data_generic_instance.type_guid = property_value_guid;
                 }
             }
             #endregion

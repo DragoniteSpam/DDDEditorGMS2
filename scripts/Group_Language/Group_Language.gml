@@ -70,7 +70,7 @@ function language_extract() {
             var const = Game.vars.constants[i];
             if (const.type != DataTypes.STRING) continue;
             var key = "Const." + const.name;
-            lang[$ key] = (lang_index == 0) ? const.value_string : ((lang[$ key] != undefined) ? lang[$ key] : "");
+            lang[$ key] = (lang_index == 0) ? const.value : ((lang[$ key] != undefined) ? lang[$ key] : "");
             existing_keys[$ key] = false;
         }
         #endregion
@@ -81,7 +81,7 @@ function language_extract() {
                 var gen = map.generic_data[j];
                 if (gen.type != DataTypes.STRING) continue;
                 var key = "Map." + map.internal_name + "." + gen.name;
-                lang[$ key] = (lang_index == 0) ? gen.value_string : ((lang[$ key] != undefined) ? lang[$ key] : "");
+                lang[$ key] = (lang_index == 0) ? gen.value : ((lang[$ key] != undefined) ? lang[$ key] : "");
                 existing_keys[$ key] = false;
             }
         }
@@ -97,7 +97,7 @@ function language_extract() {
                         var gen = entity.generic_data[k];
                         if (gen.type != DataTypes.STRING) continue;
                         var key = "Map." + entity.name + "." + entity.REFID + "." + gen.name;
-                        lang[$ key] = (lang_index == 0) ? gen.value_string : ((lang[$ key] != undefined) ? lang[$ key] : "");
+                        lang[$ key] = (lang_index == 0) ? gen.value : ((lang[$ key] != undefined) ? lang[$ key] : "");
                         existing_keys[$ key] = false;
                     }
                 }
@@ -110,7 +110,7 @@ function language_extract() {
                         var gen = entity.generic_data[k];
                         if (gen.type != DataTypes.STRING) continue;
                         var key = "Map." + map.name + "." + entity.name + "." + entity.REFID + "." + gen.name;
-                        lang[$ key] = (lang_index == 0) ? gen.value_string : ((lang[$ key] != undefined) ? lang[$ key] : "");
+                        lang[$ key] = (lang_index == 0) ? gen.value : ((lang[$ key] != undefined) ? lang[$ key] : "");
                         existing_keys[$ key] = false;
                     }
                     entity.Destroy();

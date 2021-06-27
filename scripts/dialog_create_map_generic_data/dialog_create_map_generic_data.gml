@@ -114,7 +114,7 @@ function dialog_create_map_generic_data(root) {
         var selection = ui_list_selection(list);
         var generic_index = ui_list_selection(list.root.el_list);
         if (selection + 1) {
-            Stuff.map.active_map.generic_data[generic_index].value_data = list.entries[| selection].REFID;
+            Stuff.map.active_map.generic_data[generic_index].value = list.entries[| selection].REFID;
         }
     }, false, dg, map.contents.all_entities);
     el_data_property_entity.interactive = false;
@@ -124,7 +124,7 @@ function dialog_create_map_generic_data(root) {
     
     var el_data_property_code = create_input_code(col2_x, yy, "Code:", ew, eh, vx1, vy1, vx2, vy2, "", function(code) {
         var selection = ui_list_selection(code.root.el_list);
-        Stuff.map.active_map.generic_data[selection].value_code = code.value;
+        Stuff.map.active_map.generic_data[selection].value = code.value;
     }, dg);
     el_data_property_code.interactive = false;
     el_data_property_code.enabled = false;
@@ -132,7 +132,7 @@ function dialog_create_map_generic_data(root) {
     
     var el_data_property_string = create_input(col2_x, yy, "Value:", ew, eh, function(input) {
         var selection = ui_list_selection(input.root.el_list);
-        Stuff.map.active_map.generic_data[selection].value_int = input.value;
+        Stuff.map.active_map.generic_data[selection].value = input.value;
     }, "", "text", validate_string, 0, 1, 160, vx1, vy1, vx2, vy2, dg);
     el_data_property_string.is_code = false;
     el_data_property_string.interactive = false;
@@ -141,7 +141,7 @@ function dialog_create_map_generic_data(root) {
     
     var el_data_property_real = create_input(col2_x, yy, "Value:", ew, eh, function(input) {
         var selection = ui_list_selection(input.root.el_list);
-        Stuff.map.active_map.generic_data[selection].value_int = real(input.value);
+        Stuff.map.active_map.generic_data[selection].value = real(input.value);
     }, "0", "number", validate_double, -0x80000000, 0x7fffffff, 10, vx1, vy1, vx2, vy2, dg);
     el_data_property_real.interactive = false;
     el_data_property_real.enabled = false;
@@ -149,7 +149,7 @@ function dialog_create_map_generic_data(root) {
     
     var el_data_property_int = create_input(col2_x, yy, "Value:", ew, eh, function(input) {
         var selection = ui_list_selection(input.root.el_list);
-        Stuff.map.active_map.generic_data[selection].value_int = real(input.value);
+        Stuff.map.active_map.generic_data[selection].value = real(input.value);
     }, "0", "int", validate_int, -0x80000000, 0x7fffffff, 11, vx1, vy1, vx2, vy2, dg);
     el_data_property_int.interactive = false;
     el_data_property_int.enabled = false;
@@ -157,7 +157,7 @@ function dialog_create_map_generic_data(root) {
     
     var el_data_property_bool = create_checkbox(col2_x, yy, "Value", ew, eh, function(checkbox) {
         var selection = ui_list_selection(checkbox.root.el_list);
-        Stuff.map.active_map.generic_data[selection].value_bool = checkbox.value;
+        Stuff.map.active_map.generic_data[selection].value = checkbox.value;
     }, false, dg);
     el_data_property_bool.interactive = false;
     el_data_property_bool.enabled = false;
@@ -165,7 +165,7 @@ function dialog_create_map_generic_data(root) {
     
     var el_data_property_color = create_color_picker(col2_x, yy, "Color:", ew, eh, function(picker) {
         var selection = ui_list_selection(picker.root.el_list);
-        Stuff.map.active_map.generic_data[selection].value_color = picker.value;
+        Stuff.map.active_map.generic_data[selection].value = picker.value;
     }, c_black, vx1, vy1, vx2, vy2, dg);
     el_data_property_color.interactive = false;
     el_data_property_color.enabled = false;
@@ -178,7 +178,7 @@ function dialog_create_map_generic_data(root) {
         var selection = ui_list_selection(list);
         var generic_index = ui_list_selection(list.root.el_list);
         if (selection + 1) {
-            map.generic_data[generic_index].value_data = list.entries[| selection].GUID;
+            map.generic_data[generic_index].value = list.entries[| selection].GUID;
         }
     }, false, dg, []);
     el_data_builtin_list.interactive = false;
@@ -198,7 +198,7 @@ function dialog_create_map_generic_data(root) {
         var selection = ui_list_selection(list);
         var generic_index = ui_list_selection(list.root.el_list);
         if (selection + 1) {
-            map.generic_data[generic_index].value_data = list.entries[selection].GUID;
+            map.generic_data[generic_index].value = list.entries[selection].GUID;
         }
     }, false, dg, []);
     el_data_list.interactive = false;

@@ -6,7 +6,7 @@ function uivc_input_entity_data_string(argument0) {
     var selection = ui_list_selection(input.root.el_list);
     var data = entity.generic_data[selection];
 
-    data.value_string = input.value;
+    data.value = input.value;
 
 
 }
