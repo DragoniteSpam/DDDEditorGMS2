@@ -58,7 +58,7 @@ function InstantiatedEvent(source) constructor {
         
         buffer_write(buffer, buffer_flag, self.trigger);
         buffer_write(buffer, buffer_datatype, self.event_entrypoint);
-    }
+    };
     
     if (is_struct(source)) {
         self.name = source.name;
