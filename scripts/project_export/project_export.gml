@@ -54,22 +54,11 @@ function project_export() {
                 }
                 
                 // generate a list of all of the things that are in this file
-                var contents = [];
                 for (var j = 0; j < array_length(Game.meta.export.locations); j++) {
                     // the files that are sorted
-                    if (Game.meta.export.locations[j] == file_data) {
-                        array_push(contents, j);
+                    if (Game.meta.export.locations[j] == i) {
+                        game_data_save_scripts[j](buffer);
                     }
-                    // any data categories that aren't sorted into files go to the default
-                    if (i == 0 && !Game.meta.export.locations[j]) {
-                        array_push(contents, j);
-                    }
-                }
-                
-                // okay now you can *actually* write out the addresses of all the things
-                // there's no need to save the size here because it reads until the EOF
-                for (var j = 0; j < array_length(contents); j++) {
-                    game_data_save_scripts[contents[j]](buffer);
                 }
                 
                 buffer_write(buffer, buffer_u32, SerializeThings.END_OF_FILE);
