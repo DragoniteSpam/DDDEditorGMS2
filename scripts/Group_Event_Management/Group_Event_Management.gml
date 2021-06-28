@@ -45,7 +45,7 @@ function event_create_node() {
     var yy = (argument_count > 3 && argument[3] != undefined) ? argument[3] : camera_get_view_y(camera) + room_height / 2;
     var custom_guid = (argument_count > 4) ? argument[4] : 0;
     
-    var node = new DataEventNode();
+    var node = new DataEventNode(undefined, event);
     node.event = event;
     node.type = type;
     node.x = xx;

@@ -5,7 +5,7 @@ function DataEvent(source) : SData(source) constructor {
     if (is_struct(source)) {
         self.nodes = array_create(array_length(source.nodes));
         for (var i = 0, n = array_length(source.nodes); i < n; i++) {
-            self.nodes[i] = new DataEventNode(source.nodes[i]);
+            self.nodes[i] = new DataEventNode(source.nodes[i], self);
             self.name_map[$ self.nodes[i].name] = self.nodes[i];
         }
     }
@@ -32,22 +32,22 @@ function DataEvent(source) : SData(source) constructor {
     };
 }
 
-function DataEventNode(source) : SData(source) constructor {
-    self.type = EventNodeTypes.ENTRYPOINT;                                       // serialize: buffer_u16
+function DataEventNode(source, parent) : SData(source) constructor {
+    self.type = EventNodeTypes.ENTRYPOINT;                                      // serialize: buffer_u16
     
     self.data = [""];
     self.outbound = [NULL];                                                     // serialize: buffer_string (this is a struct, but you serialize the ID of the destination)
     
-    self.custom_guid = NULL;                                                     // serialize: buffer_datatype
-    self.custom_data = [];                                                       // list of lists - contents determined by custom_guid
+    self.custom_guid = NULL;                                                    // serialize: buffer_datatype
+    self.custom_data = [];                                                      // list of lists - contents determined by custom_guid
     
-    self.prefab_guid = NULL;                                                     // serialize: buffer_datatype
+    self.prefab_guid = NULL;                                                    // serialize: buffer_datatype
     
     // editor only - set upon creation, or reset upon loading
     self.is_root = false;
-    self.event = undefined;
-    self.valid_destination = true;                                               // can other nodes lead to this? basically here to denote comments
-    self.is_code = true;                                                         // for when you need code
+    self.event = parent;                                                        // not a GUID - this doesnt need to be serialized
+    self.valid_destination = true;                                              // can other nodes lead to this? basically here to denote comments
+    self.is_code = true;                                                        // for when you need code
     
     self.dragging = false;
     self.x = 0;
