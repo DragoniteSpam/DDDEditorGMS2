@@ -6,7 +6,7 @@ function dmu_create_data_event_entrypoint_finalize(button) {
         var root_element = button.root.root.root.root;
         var instance = root_element.instance;
         instance.values[@ root_element.key][@ 0] = entrypoint.GUID;
-        root_element.text = get_event_entrypoint_short_name(entrypoint);
+        root_element.text = entrypoint.GetShortName();
         root_element.tooltip = entrypoint.event.name + " / " + entrypoint.name;
     }
     

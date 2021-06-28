@@ -76,6 +76,15 @@ function DataEventNode(source, parent) : SData(source) constructor {
         self.custom_data = source.custom_data;
     }
     
+    static GetShortName = function() {
+        var event_name = self.event.name;
+        var event_length = string_length(event_name);
+        var entrypoint_length = string_length(self.name);
+        var max_length = 12;
+        return string_copy(event_name, 1, min(max_length, event_length)) + ((event_length > max_length) ? "..." : "") + "/" +
+            string_copy(self.name, 1, min(max_length, entrypoint_length)) + ((entrypoint_length > max_length) ? "..." : "");
+    };
+    
     static Export = function(buffer) {
         self.ExportBase(buffer);
         buffer_write(buffer, buffer_u16, self.type);

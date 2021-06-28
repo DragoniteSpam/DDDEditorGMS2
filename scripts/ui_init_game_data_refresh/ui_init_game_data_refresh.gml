@@ -131,7 +131,7 @@ function ui_init_game_data_refresh() {
                             break;
                         case DataTypes.EVENT:
                             var existing_data = guid_get(instance.values[n][0]);
-                            thingy.text = existing_data ? get_event_entrypoint_short_name(existing_data) : "Select Event";
+                            thingy.text = existing_data ? existing_data.GetShortName() : "Select Event";
                             thingy.tooltip = existing_data ? (existing_data.event.name + " / " + existing_data.name) : "";
                             thingy.event_guid = instance.values[n];
                             thingy.instance = instance;

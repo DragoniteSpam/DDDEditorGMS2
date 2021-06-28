@@ -196,7 +196,6 @@
     {"id":{"name":"EmuRenderSurface","path":"scripts/EmuRenderSurface/EmuRenderSurface.yy",},"order":12,},
     {"id":{"name":"draw_event_node_custom_info","path":"scripts/draw_event_node_custom_info/draw_event_node_custom_info.yy",},"order":14,},
     {"id":{"name":"draw_event_node_title","path":"scripts/draw_event_node_title/draw_event_node_title.yy",},"order":15,},
-    {"id":{"name":"get_event_entrypoint_short_name","path":"scripts/get_event_entrypoint_short_name/get_event_entrypoint_short_name.yy",},"order":17,},
     {"id":{"name":"Group_FMOD","path":"scripts/Group_FMOD/Group_FMOD.yy",},"order":5,},
     {"id":{"name":"Group_Animation_Layers","path":"scripts/Group_Animation_Layers/Group_Animation_Layers.yy",},"order":1,},
     {"id":{"name":"fnt_emu_default","path":"fonts/fnt_emu_default/fnt_emu_default.yy",},"order":2,},
