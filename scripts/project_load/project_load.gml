@@ -19,6 +19,13 @@ function project_load(id) {
         var version = json.version;
         Game.meta = json.meta;
         Game.vars = json.vars;
+        
+        // at one point these were stored as structs; this is no longer the
+        // case, as it makes identifying if two export locations are the same
+        // rather messy
+        for (var i = 0; i < array_length(Game.meta.export.locations); i++) {
+            if (!is_numeric(Game.meta.export.locations[i])) Game.meta.export.locations[i] = 0;
+        }
     };
     
     static project_load_images = function(filename, directory) {
