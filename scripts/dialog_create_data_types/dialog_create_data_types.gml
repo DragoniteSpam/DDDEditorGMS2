@@ -177,8 +177,7 @@ function dialog_create_data_types(dialog) {
     var el_add_p = create_button(col2_x, yy, "Add Property", ew, eh, fa_center, function(button) {
         var datadata = button.root.selected_data;
         
-        var property = new DataProperty("Property" + string(array_length(datadata.properties)), datadata);
-        datadata.AddProperty(property);
+        datadata.AddProperty(new DataProperty("Property" + string(array_length(datadata.properties)), datadata));
         
         ui_list_deselect(button.root.el_list_p);
         

@@ -121,8 +121,8 @@ function DataProperty(source, parent) : SData(source) constructor {
 }
 
 function DataInstance(source) : SData(source) constructor {
-    parent = NULL;
-    values = [];
+    self.parent = NULL;
+    self.values = [];
     
     static Export = function(buffer) {
         self.ExportBase(buffer);

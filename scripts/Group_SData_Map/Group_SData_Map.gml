@@ -449,10 +449,14 @@ function DataMap(source, directory) : SData(source) constructor {
         self.light_ambient_colour = source.light_ambient_colour;
         self.light_player_enabled = source.light_player_enabled;
         self.skybox = source.skybox;
-        self.chunk_size = source.chunk_size;
         self.discovery = source.discovery;
         self.code = source.code;
         self.generic_data = source.generic_data;
-        self.lights = source.lights;
+        try {
+            self.chunk_size = source.chunk_size;
+        } catch (e) {
+            try { self.chunk_size = source.map_chunk_size; } catch (e) { }
+        }
+        try { self.lights = source.lights; } catch (e) { }
     }
 }

@@ -50,7 +50,7 @@ function ui_init_game_data_refresh() {
                         // element
                         ui_list_clear(thingy);
                         for (var k = 0; k < array_length(data.instances); k++) {
-                            array_push(thingy.entries, data.instances[k]);
+                            ds_list_add(thingy.entries, data.instances[k]);
                         }
                     }
                 } // else it's a button
