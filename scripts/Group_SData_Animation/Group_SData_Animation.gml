@@ -31,7 +31,7 @@ function DataAnimation(source) : SData(source) constructor {
             self.loops
         ));
         
-        var n_layers = array_length(animation.layers);
+        var n_layers = array_length(self.layers);
         buffer_write(buffer, buffer_u32, n_layers);
         
         for (var j = 0; j < n_layers; j++) {
