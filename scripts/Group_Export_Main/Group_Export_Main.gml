@@ -86,7 +86,7 @@ function project_export_animations(buffer) {
 }
 
 function project_export_events(buffer) {
-    project_export_standard(buffer, SerializeThings.EVENTS, Game.events);
+    project_export_standard(buffer, SerializeThings.EVENTS, Game.events.events);
 }
 
 function project_export_meshes(buffer) {
