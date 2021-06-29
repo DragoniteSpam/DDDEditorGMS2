@@ -43,90 +43,11 @@ function event_create_node() {
     var type = argument[1];
     var xx = (argument_count > 2 && argument[2] != undefined) ? argument[2] : camera_get_view_x(camera) + room_width / 2;
     var yy = (argument_count > 3 && argument[3] != undefined) ? argument[3] : camera_get_view_y(camera) + room_height / 2;
-    var custom_guid = (argument_count > 4) ? argument[4] : 0;
+    var custom_guid = (argument_count > 4) ? argument[4] : NULL;
     
-    var node = new DataEventNode(undefined, event);
-    node.event = event;
-    node.type = type;
+    var node = new DataEventNode(undefined, event, type, custom_guid);
     node.x = xx;
     node.y = yy;
-    
-    // built-in node types have their outbound count specified
-    if (type != EventNodeTypes.CUSTOM) {
-        var base = Stuff.event_prefab[type];
-        if (base) {
-            repeat (array_length(base.outbound) - 1) {
-                array_push(node.outbound, undefined);
-            }
-        }
-    }
-    
-    switch (type) {
-        case EventNodeTypes.ENTRYPOINT:
-            node.is_root = true;
-            node.name = "+Entrypoint";
-            node.data[0] = "";
-            break;
-        case EventNodeTypes.TEXT:
-            node.name = "Text";
-            node.data[0] = "The quick brown fox jumped over the lazy dog";
-            break;
-        case EventNodeTypes.COMMENT:
-            node.name = "Comment";
-            node.data[0] = "This is a comment";
-            node.valid_destination = false;
-            break;
-        case EventNodeTypes.SHOW_CHOICES:
-            node.name = "Choose";
-            node.data[0] = "Option 0";
-            break;
-        case EventNodeTypes.CONDITIONAL:
-            node.name = "Branch";
-            node.custom_data = [
-                [ConditionBasicTypes.SWITCH],
-                [-1],
-                [Comparisons.EQUAL],
-                [1],
-                [Stuff.default_lua_event_node_conditional],
-            ];
-            
-            var radio = create_radio_array(16, 48, "If condition:", EVENT_NODE_CONTACT_WIDTH - 32, 24, null, ConditionBasicTypes.SWITCH, node);
-            radio.adjust_view = true;
-            create_radio_array_options(radio, ["Variable", "Switch", "Self Variable", "Self Switch", "Code"]);
-        
-            array_push(node.ui_things, radio);
-            break;
-        case EventNodeTypes.CUSTOM:
-        default:
-            if (type != EventNodeTypes.CUSTOM) {
-                custom_guid = Stuff.event_prefab[type].GUID;
-            }
-            var custom = guid_get(custom_guid);
-            
-            if (custom) {
-                node.custom_guid = custom_guid;
-                node.name = custom.name;
-                
-                // pre-allocate space for the properties of the event
-                for (var i = 0; i < array_length(custom.types); i++) {
-                    type = custom.types[i];
-                    var new_list;
-                    
-                    // if all values are required, populate them with defaults
-                    // (adding and deleting will be disabled)
-                    if (type[4]) {
-                        new_list = array_create(type[3], type[5]);
-                    } else {
-                        new_list = [type[5]];
-                    }
-                    
-                    array_push(node.custom_data, new_list);
-                }
-                
-                node.outbound = array_create(array_length(custom.outbound), NULL);
-            }
-            break;
-    }
     
     if (event) {
         var n = array_length(event.nodes);

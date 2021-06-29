@@ -32,8 +32,10 @@ function DataEvent(source) : SData(source) constructor {
     };
 }
 
-function DataEventNode(source, parent) : SData(source) constructor {
-    self.type = EventNodeTypes.ENTRYPOINT;                                      // serialize: buffer_u16
+function DataEventNode(source, parent, type, custom) : SData(source) constructor {
+    if (type == undefined) type = EventNodeTypes.ENTRYPOINT;
+    if (custom == undefined) custom = NULL;
+    self.type = type;
     
     self.data = [""];
     self.outbound = [NULL];                                                     // serialize: buffer_string (this is a struct, but you serialize the ID of the destination)
@@ -74,6 +76,80 @@ function DataEventNode(source, parent) : SData(source) constructor {
         self.data = source.data;
         self.outbound = source.outbound;
         self.custom_data = source.custom_data;
+    }
+    
+    // built-in node types have their outbound count specified
+    if (type != EventNodeTypes.CUSTOM && type != undefined) {
+        var base = Stuff.event_prefab[type];
+        if (base) self.outbound = array_create(array_length(base.outbound), undefined);
+    }
+    
+    switch (type) {
+        case EventNodeTypes.ENTRYPOINT:
+            self.is_root = true;
+            self.name = "+Entrypoint";
+            self.data[0] = "";
+            break;
+        case EventNodeTypes.TEXT:
+            self.name = "Text";
+            self.data[0] = "The quick brown fox jumped over the lazy dog";
+            break;
+        case EventNodeTypes.COMMENT:
+            self.name = "Comment";
+            self.data[0] = "This is a comment";
+            self.valid_destination = false;
+            break;
+        case EventNodeTypes.SHOW_CHOICES:
+            self.name = "Choose";
+            self.data[0] = "Option 0";
+            break;
+        case EventNodeTypes.CONDITIONAL:
+            self.name = "Branch";
+            self.custom_data = [
+                [ConditionBasicTypes.SWITCH],
+                [-1],
+                [Comparisons.EQUAL],
+                [1],
+                [Stuff.default_lua_event_node_conditional],
+            ];
+            
+            var radio = create_radio_array(16, 48, "If condition:", EVENT_NODE_CONTACT_WIDTH - 32, 24, null, ConditionBasicTypes.SWITCH, self);
+            radio.adjust_view = true;
+            create_radio_array_options(radio, ["Variable", "Switch", "Self Variable", "Self Switch", "Code"]);
+            array_push(node.ui_things, radio);
+            break;
+        case EventNodeTypes.CUSTOM:
+        default:
+            // if you're one of the built-in (non-special) node types, just grab
+            // that as your "custom guid"
+            if (type != EventNodeTypes.CUSTOM) {
+                custom = Stuff.event_prefab[type].GUID;
+            }
+            custom = guid_get(custom);
+            
+            if (custom) {
+                self.custom_guid = custom;
+                self.name = custom.name;
+                
+                // pre-allocate space for the properties of the event
+                for (var i = 0; i < array_length(custom.types); i++) {
+                    type = custom.types[i];
+                    var new_list;
+                    
+                    // if all values are required, populate them with defaults
+                    // (adding and deleting will be disabled)
+                    if (type[4]) {
+                        new_list = array_create(type[3], type[5]);
+                    } else {
+                        new_list = [type[5]];
+                    }
+                    
+                    array_push(self.custom_data, new_list);
+                }
+                
+                self.outbound = array_create(array_length(custom.outbound), NULL);
+            }
+            break;
     }
     
     static GetShortName = function() {
