@@ -102,7 +102,7 @@ function dialog_create_project_list(root) {
     }
     #endregion
     
-    yy += ui_get_list_height(el_list) + spacing;
+    yy += el_list.GetHeight() + spacing;
     
     var el_load = create_button(16, yy, "Load", ew, eh, fa_center, f_project_load, dg);
     el_load.tooltip = "Alternatively, double-click on the entry in the list.";

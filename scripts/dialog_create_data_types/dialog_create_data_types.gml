@@ -74,7 +74,7 @@ function dialog_create_data_types(dialog) {
     
     dg.el_list_main = el_list;
     
-    yy += ui_get_list_height(el_list) + spacing;
+    yy += el_list.GetHeight() + spacing;
     
     var el_add = create_button(col1_x, yy, "Add Data", ew, eh, fa_center, function(button) {
         array_push(Game.data, new DataClass("DataType" + string(array_length(Game.data))));
@@ -172,7 +172,7 @@ function dialog_create_data_types(dialog) {
     el_list_p.entries_are = ListEntries.INSTANCES;
     dg.el_list_p = el_list_p;
     
-    yy += ui_get_list_height(el_list_p) + spacing;
+    yy += el_list_p.GetHeight() + spacing;
     
     var el_add_p = create_button(col2_x, yy, "Add Property", ew, eh, fa_center, function(button) {
         var datadata = button.root.selected_data;

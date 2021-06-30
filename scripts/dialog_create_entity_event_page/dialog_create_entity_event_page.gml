@@ -82,7 +82,7 @@ function dialog_create_entity_event_page(argument0) {
         }
     }
     
-    yy += ui_get_list_height(el_trigger) + spacing;
+    yy += el_trigger.GetHeight() + spacing;
     
     var text_event;
     var page_entrypoint = guid_get(page.event_entrypoint);

@@ -64,7 +64,7 @@ function dialog_create_settings_data_asset_files(dialog) {
         return file_data.compressed ? c_blue : c_black;
     };
     dg.el_list = el_list;
-    yy += ui_get_list_height(el_list) + spacing;
+    yy += el_list.GetHeight() + spacing;
     
     var el_add = create_button(col1_x, yy, "Add File", ew, eh, fa_center, function(button) {
         var list_main = button.root.el_list;
@@ -126,7 +126,7 @@ function dialog_create_settings_data_asset_files(dialog) {
     el_types.allow_deselect = false;
     el_types.interactive = false;
     dg.el_types = el_types;
-    yy += ui_get_list_height(el_types) + spacing;
+    yy += el_types.GetHeight() + spacing;
     
     yy = yy_start;
     

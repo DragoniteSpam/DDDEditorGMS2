@@ -142,7 +142,7 @@ function dialog_create_settings_map(dialog) {
     el_skybox_image.tooltip = "The skybox to be used by the map. Deselect to clear.";
     el_skybox_image.entries_are = ListEntries.INSTANCES;
     
-    yy += ui_get_list_height(el_skybox_image) + spacing;
+    yy += el_skybox_image.GetHeight() + spacing;
     
     var el_chunk_size = create_input(col2_x, yy, "Chunk Size:", ew, eh, function(input) {
         input.root.map.chunk_size = real(input.value);

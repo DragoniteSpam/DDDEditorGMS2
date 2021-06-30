@@ -133,7 +133,7 @@ function ui_init_game_data_activate() {
                                 }
                                 element.key = i;
                                 element.entries_are = ListEntries.INSTANCES;
-                                var hh = ui_get_list_height(element);
+                                var hh = element.GetHeight();
                                 break;
                             case DataTypes.BOOL:           // checkbox
                                 element = create_checkbox(0, yy, property.name, ew, eh, uivc_data_set_property_boolean, false, noone);
@@ -156,13 +156,13 @@ function ui_init_game_data_activate() {
                                 element = create_list(0, yy, property.name, "<no Meshes>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Game.meshes);
                                 element.key = i;
                                 element.entries_are = ListEntries.INSTANCES;
-                                var hh = ui_get_list_height(element);
+                                var hh = element.GetHeight();
                                 break;
                             case DataTypes.MESH_AUTOTILE:   // list
                                 element = create_list(0, yy, property.name, "<no Mesh Autotiles>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Game.mesh_autotiles);
                                 element.key = i;
                                 element.entries_are = ListEntries.INSTANCES;
-                                var hh = ui_get_list_height(element);
+                                var hh = element.GetHeight();
                                 break;
                             case DataTypes.TILE:
                                 not_yet_implemented();
@@ -171,67 +171,67 @@ function ui_init_game_data_activate() {
                                 element = create_list(0, yy, property.name, "<no Tilesets>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Game.graphics.tilesets);
                                 element.key = i;
                                 element.entries_are = ListEntries.INSTANCES;
-                                var hh = ui_get_list_height(element);
+                                var hh = element.GetHeight();
                                 break;
                             case DataTypes.IMG_BATTLER:           // list
                                 element = create_list(0, yy, property.name, "<no Battler sprites>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Game.graphics.battlers);
                                 element.key = i;
                                 element.entries_are = ListEntries.INSTANCES;
-                                var hh = ui_get_list_height(element);
+                                var hh = element.GetHeight();
                                 break;
                             case DataTypes.IMG_OVERWORLD:       // list
                                 element = create_list(0, yy, property.name, "<no Overworld sprites>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Game.graphics.overworlds);
                                 element.key = i;
                                 element.entries_are = ListEntries.INSTANCES;
-                                var hh = ui_get_list_height(element);
+                                var hh = element.GetHeight();
                                 break;
                             case DataTypes.IMG_PARTICLE:           // list
                                 element = create_list(0, yy, property.name, "<no Particle sprites>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Game.graphics.particles);
                                 element.key = i;
                                 element.entries_are = ListEntries.INSTANCES;
-                                var hh = ui_get_list_height(element);
+                                var hh = element.GetHeight();
                                 break;
                             case DataTypes.IMG_UI:           // list
                                 element = create_list(0, yy, property.name, "<no UI images>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Game.graphics.ui);
                                 element.key = i;
                                 element.entries_are = ListEntries.INSTANCES;
-                                var hh = ui_get_list_height(element);
+                                var hh = element.GetHeight();
                                 break;
                             case DataTypes.IMG_ETC:           // list
                                 element = create_list(0, yy, property.name, "<no Misc images>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Game.graphics.etc);
                                 element.key = i;
                                 element.entries_are = ListEntries.INSTANCES;
-                                var hh = ui_get_list_height(element);
+                                var hh = element.GetHeight();
                                 break;
                             case DataTypes.IMG_SKYBOX:       // list
                                 element = create_list(0, yy, property.name, "<no Skybox images>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Game.graphics.skybox);
                                 element.key = i;
                                 element.entries_are = ListEntries.INSTANCES;
-                                var hh = ui_get_list_height(element);
+                                var hh = element.GetHeight();
                                 break;
                             case DataTypes.IMG_TILE_ANIMATION:// list
                                 element = create_list(0, yy, property.name, "<no Tile Animations>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Game.graphics.tile_animations);
                                 element.key = i;
                                 element.entries_are = ListEntries.INSTANCES;
-                                var hh = ui_get_list_height(element);
+                                var hh = element.GetHeight();
                                 break;
                             case DataTypes.AUDIO_BGM:           // list
                                 element = create_list(0, yy, property.name, "<no BGM>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Game.audio.bgm);
                                 element.key = i;
                                 element.entries_are = ListEntries.INSTANCES;
-                                var hh = ui_get_list_height(element);
+                                var hh = element.GetHeight();
                                 break;
                             case DataTypes.AUDIO_SE:           // list
                                 element = create_list(0, yy, property.name, "<no SE>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Game.audio.se);
                                 element.key = i;
                                 element.entries_are = ListEntries.INSTANCES;
-                                var hh = ui_get_list_height(element);
+                                var hh = element.GetHeight();
                                 break;
                             case DataTypes.ANIMATION:          // list
                                 element = create_list(0, yy, property.name, "<no Animations>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Game.animations);
                                 element.key = i;
                                 element.entries_are = ListEntries.INSTANCES;
-                                var hh = ui_get_list_height(element);
+                                var hh = element.GetHeight();
                                 break;
                             case DataTypes.ENTITY:          // list
                                 element = create_text(0, yy, property.name + " - invalid data type", ew, eh, fa_left, ew, noone);
@@ -241,7 +241,7 @@ function ui_init_game_data_activate() {
                                 element = create_list(0, yy, property.name, "<no Maps - how?>", ew, eh, 8, uivc_data_set_property_built_in_data, false, noone, Game.maps);
                                 element.key = i;
                                 element.entries_are = ListEntries.INSTANCES;
-                                var hh = ui_get_list_height(element);
+                                var hh = element.GetHeight();
                                 break;
                             case DataTypes.EVENT:           // list
                                 element_header = create_text(0, yy, property.name, ew, eh, fa_left, ew, noone);

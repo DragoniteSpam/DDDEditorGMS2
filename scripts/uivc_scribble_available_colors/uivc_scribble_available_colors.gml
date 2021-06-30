@@ -33,7 +33,7 @@ function uivc_scribble_available_colors(argument0) {
     el_list.onmiddleclick = uivc_scribble_color_alphabetize;
     dg.el_list = el_list;
 
-    yy += ui_get_list_height(el_list) + spacing;
+    yy += el_list.GetHeight() + spacing;
 
     var el_add = create_button(xx, yy, "Add Color", ew, eh, fa_center, uivc_scribble_color_add, dg);
     el_add.tooltip = "Add a color for use in Scribble. You may have up to 255.";

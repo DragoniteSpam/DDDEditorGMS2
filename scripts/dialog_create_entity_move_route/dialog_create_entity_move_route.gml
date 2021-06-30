@@ -37,7 +37,7 @@ function dialog_create_entity_move_route(dialog, route) {
     var el_steps = create_list(16, yy, "Steps: ", "<No move route steps>", ew, eh2, n, null, false, dg);
     el_steps.numbered = true;
     el_steps.render = ui_render_list_move_route_steps;
-    yy += ui_get_list_height(el_steps) + spacing;
+    yy += el_steps.GetHeight() + spacing;
     dg.el_steps = el_steps;
 
     var el_step_edit = create_button(16, yy, "Edit Step", ew, eh, fa_center, null, dg);

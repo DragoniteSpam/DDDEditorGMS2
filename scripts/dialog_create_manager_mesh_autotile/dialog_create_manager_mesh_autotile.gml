@@ -64,7 +64,7 @@ function dialog_create_manager_mesh_autotile(root) {
     el_list.entries_are = ListEntries.INSTANCES;
     dg.el_list = el_list;
     
-    yy += ui_get_list_height(el_list) + spacing;
+    yy += el_list.GetHeight() + spacing;
     
     var el_add = create_button(c1x, yy, "Add Mesh Autotile", ew, eh, fa_center, function(button) {
         var autotile = new DataMeshAutotile("MeshAutotile" + string(array_length(Game.mesh_autotiles)));
@@ -123,7 +123,7 @@ function dialog_create_manager_mesh_autotile(root) {
     el_layers.allow_deselect = false;
     dg.el_layers = el_layers;
     
-    yy += ui_get_list_height(el_layers) + spacing;
+    yy += el_layers.GetHeight() + spacing;
     
     var el_import_series = create_button(c2x, yy, "Import Layer", ew, eh, fa_center, function(button) {
         var selection = ui_list_selection(button.root.el_list);

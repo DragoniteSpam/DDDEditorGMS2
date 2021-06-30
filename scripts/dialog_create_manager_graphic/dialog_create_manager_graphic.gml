@@ -46,7 +46,7 @@ function dialog_create_manager_graphic(root, name, list, prefix, load_function, 
     el_list.numbered = true;
     dg.el_list = el_list;
     
-    yy += ui_get_list_height(el_list) + spacing;
+    yy += el_list.GetHeight() + spacing;
     
     var el_add = create_button(16, yy, "Add Image", ew, eh, fa_center, load_function, dg);
     el_add.file_dropper_action = drag_function;

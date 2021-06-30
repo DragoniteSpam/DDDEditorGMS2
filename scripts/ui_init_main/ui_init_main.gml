@@ -414,7 +414,7 @@ function ui_init_main(mode) {
         t_maps.el_map_list = element;
         ds_list_add(t_maps.contents, element);
         
-        yy += ui_get_list_height(element) + spacing;
+        yy += element.GetHeight() + spacing;
         
         element = create_button(col1_x, yy, "Add Map", col_width, element_height, fa_center, function(button) {
             dialog_create_new_map(noone);
@@ -639,7 +639,7 @@ function ui_init_main(mode) {
         ds_list_add(t_p_entity.contents, element_entity_events);
         element_entity_events.interactive = false;
         
-        yy += ui_get_list_height(element_entity_events) + spacing;
+        yy += element_entity_events.GetHeight() + spacing;
         
         element_entity_event_edit = create_button(col1_x, yy, "Edit Event Page", col_width, element_height, fa_center, omu_entity_event_page, t_p_entity);
         ds_list_add(t_p_entity.contents, element_entity_event_edit);
@@ -846,7 +846,7 @@ function ui_init_main(mode) {
         ds_list_add(t_p_mesh.contents, element_entity_mesh_list);
         element_entity_mesh_list.interactive = false;
         
-        yy += ui_get_list_height(element_entity_mesh_list) + spacing;
+        yy += element_entity_mesh_list.GetHeight() + spacing;
         
         element_entity_mesh_submesh = create_list(col1_x, yy, "Submesh", "<choose a single mesh>", col_width, element_height, 10, function(list) {
             var entities = Stuff.map.selected_entities;
@@ -862,7 +862,7 @@ function ui_init_main(mode) {
         ds_list_add(t_p_mesh.contents, element_entity_mesh_submesh);
         element_entity_mesh_submesh.interactive = false;
         
-        yy += ui_get_list_height(element_entity_mesh_submesh) + spacing;
+        yy += element_entity_mesh_submesh.GetHeight() + spacing;
         
         yy = legal_y + spacing;
             
@@ -965,7 +965,7 @@ function ui_init_main(mode) {
         element_entity_pawn_sprite.entries_are = ListEntries.INSTANCES;
         ds_list_add(t_p_pawn.contents, element_entity_pawn_sprite);
         
-        yy += ui_get_list_height(element_entity_pawn_sprite) + spacing;
+        yy += element_entity_pawn_sprite.GetHeight() + spacing;
         #endregion
         
         #region tab: entity: effect
@@ -1130,7 +1130,7 @@ function ui_init_main(mode) {
         element_mesh_list.tooltip = "All meshes available. Legend:\n - RED meshes have one or more submeshes with no vertex buffer associated with it\n - BLUE meshes are SMF meshes, and may have special animations or materials\n - Meshes marked with \"p\" represent particles\n - Meshes marked with \"r\" have one or more reflection meshes associated with them";
         ds_list_add(t_p_mesh_editor.contents, element_mesh_list);
         
-        yy += ui_get_list_height(element_mesh_list) + spacing;
+        yy += element_mesh_list.GetHeight() + spacing;
         
         element = create_button(col1_x, yy, "Import", col_width, element_height, fa_center, function(button) {
             var fn = get_open_filename_mesh();
@@ -1391,7 +1391,7 @@ function ui_init_main(mode) {
         ds_list_add(t_p_other_editor.contents, element);
         t_p_other_editor.el_zone_type = element;
         
-        yy += ui_get_list_height(element) + spacing;
+        yy += element.GetHeight() + spacing;
         
         element = create_list(col1_x, yy, "Mesh Autotile type", "<no mesh autotiles types>", col_width, element_height, 8, function(list) {
             var selection = ui_list_selection(list);
@@ -1405,7 +1405,7 @@ function ui_init_main(mode) {
         ds_list_add(t_p_other_editor.contents, element);
         t_p_other_editor.el_mesh_autotile_type = element;
         
-        yy += ui_get_list_height(element) + spacing;
+        yy += element.GetHeight() + spacing;
         
         element = create_checkbox(col1_x, yy, "Click to Drag", col_width, element_height, null, false, t_p_other_editor);
         // if this is ever implemented properly, reactivate this

@@ -46,7 +46,7 @@ function dialog_create_entity_autonomous_movement(argument0) {
     var el_move_routes = create_list(col2_x, yy, "Move Routes", "<No move routes>", ew, eh, n, null, false, dg, entity.movement_routes);
     el_move_routes.entries_are = ListEntries.INSTANCES;
     el_move_routes.ondoubleclick = omu_entity_edit_move_route;
-    yy += ui_get_list_height(el_move_routes) + spacing;
+    yy += el_move_routes.GetHeight() + spacing;
     dg.el_move_routes = el_move_routes;
 
     var el_move_route_edit = create_button(col2_x, yy, "Edit Move Route", ew, eh, fa_center, omu_entity_edit_move_route, dg);

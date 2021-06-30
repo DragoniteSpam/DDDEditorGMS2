@@ -56,7 +56,7 @@ function ui_init_animation(argument0) {
         el_master.entries_are = ListEntries.INSTANCES;
         ds_list_add(contents, el_master);
     
-        yy += ui_get_list_height(el_master);
+        yy += el_master.GetHeight();
     
         var element = create_button(xx, yy, "Add Animation", ew, eh, fa_middle, function(button) {
             var n = string(array_length(Game.animations));
@@ -174,7 +174,7 @@ function ui_init_animation(argument0) {
         }, id);
         ds_list_add(contents, el_timeline);
     
-        yy += ui_get_list_height(el_layers);
+        yy += el_layers.GetHeight();
         var yy_beneath_timeline = yy - 16;
     
         element = create_button(xx, yy, "Add Layer", ew, eh, fa_middle, function(button) {

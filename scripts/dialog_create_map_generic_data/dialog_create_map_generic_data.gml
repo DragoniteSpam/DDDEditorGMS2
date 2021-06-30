@@ -31,7 +31,7 @@ function dialog_create_map_generic_data(root) {
     }, false, dg, map.generic_data);
     el_list.entries_are = ListEntries.INSTANCES;
     dg.el_list = el_list;
-    yy += ui_get_list_height(el_list) + spacing;
+    yy += el_list.GetHeight() + spacing;
     
     var el_data_add = create_button(col1_x, yy, "Add Data", ew, eh, fa_center, function(button) {
         var map = Stuff.map.active_map;
@@ -205,7 +205,7 @@ function dialog_create_map_generic_data(root) {
     el_data_list.enabled = false;
     el_data_list.entries_are = ListEntries.INSTANCES;
     dg.el_data_list = el_data_list;
-    yy += ui_get_list_height(el_data_list) + spacing;
+    yy += el_data_list.GetHeight() + spacing;
     
     var yy_base = yy;
     

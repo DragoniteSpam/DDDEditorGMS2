@@ -34,7 +34,7 @@ function omu_event_attain_input_type_data(thing, event_node, data_index) {
     }
     dg.el_list = el_list;
     
-    yy += ui_get_list_height(el_list) + spacing;
+    yy += el_list.GetHeight() + spacing;
     
     var el_type = create_radio_array(16, yy, "Input Types", ew, eh, uivc_list_event_attain_input_type_index, custom_data_type[0], dg);
     create_radio_array_options(el_type, ["Text", "Text (Scribble safe)", "Integer", "Unsigned Integer", "Floating Point"]);

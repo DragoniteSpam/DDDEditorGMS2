@@ -72,7 +72,7 @@ function ui_init_mesh(mode) {
                 }, false, dg);
                 el_list.tooltip = "The vertex attributes to be included when you export meshes as vertex buffers. Each of the first 3D position, normal, texture coordinate and color will contain the values of the imported meshes; others will be initialized to zero.";
                 dg.el_list = el_list;
-                yy += ui_get_list_height(el_list) + spacing;
+                yy += el_list.GetHeight() + spacing;
                 
                 var el_add = create_button(c1x, yy, "Add Attribute", ew, eh, fa_center, function(button) {
                     var format = Stuff.mesh_ed.formats[| button.root.format_index];
@@ -196,7 +196,7 @@ function ui_init_mesh(mode) {
         element.entries_are = ListEntries.SCRIPT;
         mesh_list = element;
         ds_list_add(contents, element);
-        yy += ui_get_list_height(element) + spacing;
+        yy += element.GetHeight() + spacing;
         
         element = create_button(c1x, yy, "Add Mesh", ew0, eh, fa_center, function(button) {
             var fn = get_open_filename_mesh();
@@ -387,7 +387,7 @@ function ui_init_mesh(mode) {
         element.ondoubleclick = create_vertex_format_editor;
         ds_list_add(contents, element);
         format_list = element;
-        yy += ui_get_list_height(element) + spacing;
+        yy += element.GetHeight() + spacing;
         
         element = create_button(c2x, yy, "Add Vertex Format", ew, eh, fa_center, function(button) {
             var mode = Stuff.mesh_ed;

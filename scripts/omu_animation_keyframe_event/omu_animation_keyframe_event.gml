@@ -49,7 +49,7 @@ function omu_animation_keyframe_event(argument0) {
     var audio_index = array_search(Game.audio.se, keyframe.audio);
     ui_list_select(el_audio, audio_index);
 
-    yy += ui_get_list_height(el_audio) + spacing;
+    yy += el_audio.GetHeight() + spacing;
 
     yy = yy_base;
 
@@ -72,7 +72,7 @@ function omu_animation_keyframe_event(argument0) {
     el_graphic_battler_sprite_list.entries_are = ListEntries.INSTANCES;
     dg.el_graphic_battler_sprite_list = el_graphic_battler_sprite_list;
 
-    yy += ui_get_list_height(el_graphic_overworld_sprite_list) + spacing;
+    yy += el_graphic_overworld_sprite_list.GetHeight() + spacing;
 
     var el_graphic_battler_sprite_render = create_render_surface(col3_x, yy, ew, ew, ui_render_surface_render_animation_frame, null, c_white, dg);
     el_graphic_battler_sprite_render.enabled = (keyframe.graphic_type == GraphicTypes.SPRITE);
@@ -100,7 +100,7 @@ function omu_animation_keyframe_event(argument0) {
     var mesh_index = array_search(Game.meshes, keyframe.graphic_mesh);
     ui_list_select(el_graphic_mesh_list, mesh_index);
 
-    yy += ui_get_list_height(el_graphic_mesh_list) + spacing;
+    yy += el_graphic_mesh_list.GetHeight() + spacing;
 
     var el_confirm = create_button(dw / 2 - b_width / 2, dh - 32 - b_height / 2, "Done", b_width, b_height, fa_center, dmu_dialog_commit, dg);
 

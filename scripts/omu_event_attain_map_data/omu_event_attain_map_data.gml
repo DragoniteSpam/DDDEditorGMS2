@@ -58,7 +58,7 @@ function omu_event_attain_map_data(argument0, argument1, argument2) {
     el_maps.entries_are = ListEntries.INSTANCES;
     dg.el_maps = el_maps;
 
-    yy += ui_get_list_height(el_maps) + spacing * 2;
+    yy += el_maps.GetHeight() + spacing * 2;
 
     var el_text = create_text(16, yy, "Click on a location in one of the maps to set the destination", ew, eh, fa_left, ew, dg);
 

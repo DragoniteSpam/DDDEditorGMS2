@@ -270,7 +270,7 @@ function ui_init_particle(mode) {
         t_emitter.list = element;
         ds_list_add(t_emitter.contents, element);
         
-        yy += ui_get_list_height(element) + spacing;
+        yy += element.GetHeight() + spacing;
         
         element = create_button(col1_x, yy, "Add Emitter", ew, eh, fa_center, function(button) {
             array_push(Stuff.particle.emitters, new ParticleEmitter("Emitter " + string(array_length(Stuff.particle.emitters))));
@@ -505,7 +505,7 @@ function ui_init_particle(mode) {
         t_emitter.types = element;
         ds_list_add(t_emitter.contents, element);
         
-        yy += ui_get_list_height(element) + spacing;
+        yy += element.GetHeight() + spacing;
         
         t_emitter.name.next = t_emitter.xmin;
         t_emitter.xmin.next = t_emitter.ymin;
@@ -577,7 +577,7 @@ function ui_init_particle(mode) {
         t_type.list = element;
         ds_list_add(t_type.contents, element);
         
-        yy += ui_get_list_height(element) + spacing;
+        yy += element.GetHeight() + spacing;
         
         element = create_button(col1_x, yy, "Add Type", ew, eh, fa_center, function(button) {
             if (array_length(Stuff.particle.types) < PART_MAXIMUM_TYPES) {
@@ -1072,7 +1072,7 @@ function ui_init_particle(mode) {
                 el_update_list.tooltip = "The custom sprite to be used by the particle type. Go to Data > Graphics > Particles to manage particle sprites. When you import the generated code into your game, make sure your project has a sprite with the same Internal Name as the sprite used here.";
                 el_update_list.entries_are = ListEntries.INSTANCES;
             
-                yy += ui_get_list_height(el_update_list) + spacing;
+                yy += el_update_list.GetHeight() + spacing;
             
                 var el_animated = create_checkbox(col1_x, yy, "Animated?", ew, eh, function(checkbox) {
                     var type = checkbox.root.type;
@@ -1133,7 +1133,7 @@ function ui_init_particle(mode) {
         ds_list_add(t_type.contents, element);
         t_type.shape = element;
         
-        yy += ui_get_list_height(element) + spacing;
+        yy += element.GetHeight() + spacing;
         
         element = create_color_picker(col3_x, yy, "Color 1A:", ew, eh, function(picker) {
             var selection = ui_list_selection(picker.root.list);
@@ -1442,7 +1442,7 @@ function ui_init_particle(mode) {
                 el_update_list.tooltip = "The secondary particles emitted over the lifetime of the particle. You're free to create a fork bomb by spawning particles recursively, although I'd like to ask that you don't, and if people abuse this power I'll remove it.";
                 el_update_list.entries_are = ListEntries.INSTANCES;
             
-                yy += ui_get_list_height(el_update_list) + spacing;
+                yy += el_update_list.GetHeight() + spacing;
             
                 var el_update_rate = create_input(col1_x, yy, "Rate:", ew, eh, function(input) {
                     var type = input.root.type;
@@ -1496,7 +1496,7 @@ function ui_init_particle(mode) {
                 el_death_list.tooltip = "The secondary particles emitted when the particle is destroyed. You're free to create a fork bomb by spawning particles recursively, although I'd like to ask that you don't.";
                 el_death_list.entries_are = ListEntries.INSTANCES;
             
-                yy += ui_get_list_height(el_death_list) + spacing;
+                yy += el_death_list.GetHeight() + spacing;
             
                 var el_death_rate = create_input(col2_x, yy, "Count:", ew, eh, function(input) {
                     var type = input.root.type;

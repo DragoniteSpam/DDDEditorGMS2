@@ -38,7 +38,7 @@ function dialog_create_map_default_lights(root) {
     el_light_list.entries_are = ListEntries.REFIDS;
     dg.el_light_list = el_light_list;
     
-    yy += ui_get_list_height(el_light_list) + spacing;
+    yy += el_light_list.GetHeight() + spacing;
     
     yy = yy_base;
     
@@ -64,7 +64,7 @@ function dialog_create_map_default_lights(root) {
     }
     dg.el_available_lights = el_available_lights;
     
-    yy += ui_get_list_height(el_available_lights) + spacing;
+    yy += el_available_lights.GetHeight() + spacing;
     
     var b_width = 128;
     var b_height = 32;

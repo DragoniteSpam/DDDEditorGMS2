@@ -31,7 +31,7 @@ function dialog_create_event_condition_switch(node, index) {
     }
     dg.el_list = el_list;
     
-    yy += ui_get_list_height(el_list) + spacing;
+    yy += el_list.GetHeight() + spacing;
     
     var el_state = create_checkbox(16, yy, "Is enabled?", ew, eh, uivc_check_event_condition_value, list_value[index], dg);
     dg.el_state = el_state;

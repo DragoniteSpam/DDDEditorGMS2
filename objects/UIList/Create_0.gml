@@ -45,3 +45,7 @@ enum ListEntries {
     REFIDS,
     SCRIPT,
 }
+
+GetHeight = function() {
+    return self.height * (1 + self.slots);
+};

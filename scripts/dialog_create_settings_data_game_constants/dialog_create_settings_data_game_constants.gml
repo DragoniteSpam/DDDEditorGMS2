@@ -245,7 +245,7 @@ function dialog_create_settings_data_game_constants(root) {
     el_list.onmiddleclick = function_alphabetize;
     dg.el_list = el_list;
     
-    yy += ui_get_list_height(el_list) + spacing;
+    yy += el_list.GetHeight() + spacing;
     
     var el_add = create_button(col1_x, yy, "Add Constant", ew, eh, fa_center, function(button) {
         if (array_length(Game.vars.constants) < 0xffff) {
@@ -386,7 +386,7 @@ function dialog_create_settings_data_game_constants(root) {
     el_value_other.entries_are = ListEntries.INSTANCES;
     dg.el_value_other = el_value_other;
     // this is for datadata data - it's positioned in a different place
-    var el_value_data = create_list(col3_x, yy + ui_get_list_height(el_type_guid) + spacing, "Instance:", "<no data>", ew, eh, 8, function(list) {
+    var el_value_data = create_list(col3_x, yy + el_type_guid.GetHeight() + spacing, "Instance:", "<no data>", ew, eh, 8, function(list) {
         var selection = ui_list_selection(list.root.el_list);
         if (selection + 1) {
             Game.vars.constants[selection].value = list.entries[ui_list_selection(list)].GUID;

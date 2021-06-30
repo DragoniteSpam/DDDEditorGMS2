@@ -51,7 +51,7 @@ function ui_init_text() {
         element.tooltip = "Every language which text in the game data may be translated to.";
         ds_list_add(contents, element);
         el_language_list = element;
-        yy += ui_get_list_height(element) + spacing;
+        yy += element.GetHeight() + spacing;
         
         element = create_input(c1x, yy, "Name:", ew, eh, function(input) {
             var selection = ui_list_selection(input.root.el_language_list);
@@ -113,7 +113,7 @@ function ui_init_text() {
         };
         ds_list_add(contents, element);
         el_language_text = element;
-        yy += ui_get_list_height(element) + spacing;
+        yy += element.GetHeight() + spacing;
         
         element = create_button(c2x, yy, "Extract Text", ew - 16, eh, fa_center, function(button) {
             language_extract();

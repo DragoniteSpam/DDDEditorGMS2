@@ -228,7 +228,7 @@ function MapZoneCamera(source, x1, y1, z1, x2, y2, z2) : MapZone(source, x1, y1,
         el_transition_style.entries_are = ListEntries.STRINGS;
         el_transition_style.tooltip = "The transition used when you enter this camera zone. In almost all cases, Linear or Quadratic In / Out should be fine.";
         ui_list_select(el_transition_style, zone.camera_easing_method, true);
-        yy += ui_get_list_height(el_transition_style) + spacing;
+        yy += el_transition_style.GetHeight() + spacing;
         
         var el_transition_rate = create_input(col3_x, yy, "Time:", ew, eh, function(input) {
             Stuff.map.selected_zone.camera_easing_time = real(input.value);
@@ -546,7 +546,7 @@ function MapZoneLight(source, x1, y1, z1, x2, y2, z2) : MapZone(source, x1, y1, 
         el_light_list.render_colors = ui_list_color_effect_components;
         el_light_list.entries_are = ListEntries.REFIDS;
         dg.el_light_list = el_light_list;
-        yy += ui_get_list_height(el_light_list) + spacing;
+        yy += el_light_list.GetHeight() + spacing;
         
         yy = yy_base;
         
@@ -572,7 +572,7 @@ function MapZoneLight(source, x1, y1, z1, x2, y2, z2) : MapZone(source, x1, y1, 
         }
         dg.el_available_lights = el_available_lights;
         
-        yy += ui_get_list_height(el_available_lights) + spacing;
+        yy += el_available_lights.GetHeight() + spacing;
         
         var b_width = 128;
         var b_height = 32;

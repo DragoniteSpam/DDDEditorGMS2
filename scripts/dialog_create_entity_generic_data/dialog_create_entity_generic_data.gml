@@ -27,7 +27,7 @@ function dialog_create_entity_generic_data(dialog) {
     var el_list = create_list(col1_x, yy, "Generic Data: " + entity.name, "<No data>", ew, eh, slots, uivc_list_entity_data, false, dg, entity.generic_data);
     el_list.entries_are = ListEntries.INSTANCES;
     dg.el_list = el_list;
-    yy += ui_get_list_height(el_list) + spacing;
+    yy += el_list.GetHeight() + spacing;
     
     var el_data_add = create_button(col1_x, yy, "Add Data", ew, eh, fa_center, omu_entity_data_add, dg);
     yy += el_data_add.height + spacing;
@@ -105,7 +105,7 @@ function dialog_create_entity_generic_data(dialog) {
     el_data_list.enabled = false;
     el_data_list.entries_are = ListEntries.INSTANCES;
     dg.el_data_list = el_data_list;
-    yy += ui_get_list_height(el_data_list) + spacing;
+    yy += el_data_list.GetHeight() + spacing;
     
     var yy_base = yy;
     

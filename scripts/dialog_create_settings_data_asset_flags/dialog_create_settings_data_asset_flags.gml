@@ -27,7 +27,7 @@ function dialog_create_settings_data_asset_flags(dialog) {
     ui_list_select(el_list, 0);
     dg.el_list = el_list;
     
-    yy += ui_get_list_height(el_list) + spacing;
+    yy += el_list.GetHeight() + spacing;
     
     var el_name = create_input(32, yy, "Name:", ew, eh, function(input) {
         var selection = ui_list_selection(input.root.el_list);

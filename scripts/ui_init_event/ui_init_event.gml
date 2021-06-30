@@ -40,7 +40,7 @@ function ui_init_event(mode) {
         
         t_events.el_event_list = element;
         
-        yy += ui_get_list_height(element) + spacing;
+        yy += element.GetHeight() + spacing;
         
         element = create_button(legal_x + spacing, yy, "Add Event", element_width, element_height, fa_center, function(button) {
             array_push(Game.events.events, new DataEvent("Event$" + string(array_length(Game.events.events))));
@@ -73,7 +73,7 @@ function ui_init_event(mode) {
         element.onmiddleclick = omu_event_node_list_alphabetize;
         ds_list_add(t_list.contents, element);
         
-        yy += ui_get_list_height(element) + spacing;
+        yy += element.GetHeight() + spacing;
         
         element = create_button(legal_x + spacing, yy, "Entrypoint", element_width, element_height, fa_center, omu_event_add_entrypoint, t_list);
         element.tooltip = "Add an entrypoint node.";
@@ -99,7 +99,7 @@ function ui_init_event(mode) {
         #endregion
         
         #region custom nodes
-        var yy = legal_y;
+        yy = legal_y;
         
         el_list_custom = create_list(legal_x + spacing, yy, "Custom Nodes", "<none>", element_width, list_entry_height, 10, null, false, t_custom, Game.events.custom);
         el_list_custom.tooltip = "Any event you want that's specific to your game's data (for example, anything pertaining to Inventory) can be made from a custom event.\n\nYou can attach your own data types and even outbound nodes to custom events.";
@@ -109,7 +109,7 @@ function ui_init_event(mode) {
         el_list_custom.onmiddleclick = omu_event_custom_list_alphabetize;
         ds_list_add(t_custom.contents, el_list_custom);
         
-        yy += ui_get_list_height(el_list_custom) + spacing;
+        yy += el_list_custom.GetHeight() + spacing;
         
         element = create_button(legal_x + spacing, yy, "Add", element_width, element_height, fa_center, omu_event_add_custom_event, t_custom);
         element.tooltip = "Create a new custom event node.";
@@ -136,7 +136,7 @@ function ui_init_event(mode) {
         el_list_prefabs.onmiddleclick = omu_event_prefab_list_alphabetize;
         ds_list_add(t_custom.contents, el_list_prefabs);
         
-        yy += ui_get_list_height(el_list_prefabs) + spacing;
+        yy += el_list_prefabs.GetHeight() + spacing;
         
         element = create_button(legal_x + spacing, yy, "Rename", element_width, element_height, fa_center, not_yet_implemented, t_custom);
         element.tooltip = "Rename the selected prefab.";

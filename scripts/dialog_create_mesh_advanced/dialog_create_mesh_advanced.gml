@@ -54,7 +54,7 @@ function dialog_create_mesh_advanced(root, mesh) {
     el_list.ondoubleclick = replace_sub;
     ui_list_select(el_list, 0);
     dg.el_list = el_list;
-    yy += ui_get_list_height(el_list) + spacing;
+    yy += el_list.GetHeight() + spacing;
 
     var el_add = create_button(col1_x, yy, "Add Sub-Mesh", ew, eh, fa_center, function(button) {
         var fn = get_open_filename_mesh();

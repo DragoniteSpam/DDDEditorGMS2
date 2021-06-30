@@ -86,7 +86,7 @@ function ui_init_game_data(mode) {
         el_instances.entries_are = ListEntries.INSTANCES;
         ds_list_add(contents, el_instances);
         
-        yy += spacing + ui_get_list_height(el_instances);
+        yy += el_instances.GetHeight() + spacing;
         
         el_inst_add = create_button(this_column * cw + spacing, yy, "Move Up", ew, eh, fa_center, function(button) {
             var data = guid_get(button.root.active_type_guid);

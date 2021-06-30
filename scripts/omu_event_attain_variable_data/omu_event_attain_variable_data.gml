@@ -35,7 +35,7 @@ function omu_event_attain_variable_data(thing, event_node, data_index) {
     }
     dg.el_list = el_list;
     
-    yy += ui_get_list_height(el_list) + spacing;
+    yy += el_list.GetHeight() + spacing;
     
     var el_value = create_input(16, yy, "Value", ew, eh, function(input) {
         input.root.node.custom_data[@ 1][@ 0] = real(input.value);

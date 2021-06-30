@@ -45,7 +45,7 @@ function dialog_create_event_custom(argument0) {
     el_list.numbered = true;
     dg.el_list = el_list;
 
-    yy += ui_get_list_height(el_list) + spacing;
+    yy += el_list.GetHeight() + spacing;
 
     var el_add = create_button(col1_x, yy, "Add Property", ew, eh, fa_center, omu_event_custom_add_property, dg);
     yy += el_add.height + spacing;
@@ -88,7 +88,7 @@ function dialog_create_event_custom(argument0) {
     ui_list_select(el_outbound, 0);
     el_outbound.render = ui_render_list_event_custom_outbound;
     dg.el_outbound = el_outbound;
-    yy += ui_get_list_height(el_outbound) + spacing;
+    yy += el_outbound.GetHeight() + spacing;
     var el_outbound_name = create_input(col3_x, yy, "Name:", ew, eh, uivc_input_event_custom_outbound_name, "", "Name", validate_string, 0, 1, VISIBLE_NAME_LENGTH, vx1, vy1, vx2, vy2, dg);
     dg.el_outbound_name = el_outbound_name;
     yy += el_outbound_name.height + spacing;

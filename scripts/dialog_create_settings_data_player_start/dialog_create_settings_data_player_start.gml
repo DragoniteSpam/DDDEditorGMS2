@@ -43,7 +43,7 @@ function dialog_create_settings_data_player_start(dialog) {
         }
     }
     el_list_map.entries_are = ListEntries.INSTANCES;
-    yy += ui_get_list_height(el_list_map) + spacing;
+    yy += el_list_map.GetHeight() + spacing;
     
     yy = yy_start;
     

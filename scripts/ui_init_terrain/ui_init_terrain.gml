@@ -301,7 +301,7 @@ function ui_init_terrain(mode) {
         ui_list_select(element, 0);
         ds_list_add(t_lighting.contents, element);
         t_lighting.el_light_list = element;
-        yy += ui_get_list_height(element) + spacing;
+        yy += element.GetHeight() + spacing;
         
         element = create_checkbox(legal_x + spacing, yy, "Fog enabled?", col_width, element_height, function(checkbox) {
             Stuff.terrain.terrain_fog_enabled = checkbox.value;
