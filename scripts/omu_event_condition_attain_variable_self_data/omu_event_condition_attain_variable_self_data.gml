@@ -37,7 +37,7 @@ function omu_event_condition_attain_variable_self_data(argument0) {
     var el_comparison = create_radio_array(c2 + 16, yy, "Comparison", ew, eh, uivc_event_condition_attain_variable_self_comp, comparison, dg);
     create_radio_array_options(el_comparison, ["Less (<)", "Less or Equal (<=)", "Equal (==)", "Greater or Equal (>=)", "Greater (>)", "Not Equal (!=)"]);
 
-    yy += ui_get_radio_array_height(el_comparison) + spacing;
+    yy += el_comparison.GetHeight() + spacing;
 
     var el_value = create_input(c2 + 16, yy, "Value:", ew, eh, uivc_event_condition_attain_variable_self_value, value, "float", validate_double, -0x80000000, 0x7fffffff, 11, vx1, vy1, vx2, vy2, dg);
     dg.el_value = el_value;

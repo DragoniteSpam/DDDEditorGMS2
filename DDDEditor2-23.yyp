@@ -466,7 +466,6 @@
     {"id":{"name":"dmu_dialog_event_set_outbound_null","path":"scripts/dmu_dialog_event_set_outbound_null/dmu_dialog_event_set_outbound_null.yy",},"order":5,},
     {"id":{"name":"snap_from_binary","path":"scripts/snap_from_binary/snap_from_binary.yy",},"order":0,},
     {"id":{"name":"dmu_dialog_event_set_outbound_null_double","path":"scripts/dmu_dialog_event_set_outbound_null_double/dmu_dialog_event_set_outbound_null_double.yy",},"order":6,},
-    {"id":{"name":"ui_get_radio_array_height","path":"scripts/ui_get_radio_array_height/ui_get_radio_array_height.yy",},"order":0,},
     {"id":{"name":"ui_get_list_height","path":"scripts/ui_get_list_height/ui_get_list_height.yy",},"order":1,},
     {"id":{"name":"ui_get_text_x","path":"scripts/ui_get_text_x/ui_get_text_x.yy",},"order":2,},
     {"id":{"name":"scribble_set_transform","path":"scripts/scribble_set_transform/scribble_set_transform.yy",},"order":10,},

@@ -31,7 +31,7 @@ function dialog_create_entity_effect_com_lighting(root) {
     create_radio_array_options(el_type, ["None", "Directional", "Point", "Spot (Cone)"]);
     el_type.tooltip = "The lighting data to be attached to this effect.\n - Directional lights are infinite an illuminate everything\n - Point lights illuminate everything within a radius, fading out smoothly\n - Spot lights can be thought of as a combination of point and directional lights, illuminating everything in a certain direction";
     
-    yy += ui_get_radio_array_height(el_type) + spacing;
+    yy += el_type.GetHeight() + spacing;
     
     var el_color = create_color_picker(col1_x, yy, "Light color:", ew, eh, function(picker) {
         var list = Stuff.map.selected_entities;

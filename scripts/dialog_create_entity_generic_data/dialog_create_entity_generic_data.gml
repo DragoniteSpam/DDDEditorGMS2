@@ -46,7 +46,7 @@ function dialog_create_entity_generic_data(dialog) {
     create_radio_array_options(el_data_type, ["Int", "Enum", "Float", "String", "Boolean", "Data", "Code" /* this is only the first couple of types, the rest are hidden behind a button */]);
     el_data_type.interactive = false;
     dg.el_data_type = el_data_type;
-    yy += ui_get_radio_array_height(el_data_type) + spacing;
+    yy += el_data_type.GetHeight() + spacing;
     
     var el_data_ext_type = create_button(col2_x, yy, "Other Data Types", ew, eh, fa_middle, omu_entity_data_select_type, dg);
     el_data_ext_type.interactive = false;

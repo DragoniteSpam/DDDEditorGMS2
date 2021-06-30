@@ -292,7 +292,7 @@ function dialog_create_data_types(dialog) {
     create_radio_array_options(el_property_type, ["Int", "Enum", "Float", "String", "Boolean", "Data", "Code"]);
     dg.el_property_type = el_property_type;
     
-    yy += ui_get_radio_array_height(el_property_type) + spacing;
+    yy += el_property_type.GetHeight() + spacing;
     
     var el_property_ext_type = create_button(col3_x, yy, "Other Data Types", ew, eh, fa_middle, function(button) {
         dialog_create_select_data_types_ext(button, button.root.selected_property.type, uivc_radio_data_type_ext);

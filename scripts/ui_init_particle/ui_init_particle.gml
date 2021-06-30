@@ -320,7 +320,7 @@ function ui_init_particle(mode) {
         ds_list_add(t_emitter.contents, element);
         t_emitter.shape = element;
         
-        yy += ui_get_radio_array_height(element) + spacing;
+        yy += element.GetHeight() + spacing;
         
         element = create_radio_array(col2_x, yy, "Distribution:", ew, eh, function(radio) {
             var selection = ui_list_selection(radio.root.root.list);
@@ -338,7 +338,7 @@ function ui_init_particle(mode) {
         ds_list_add(t_emitter.contents, element);
         t_emitter.distr = element;
         
-        yy += ui_get_radio_array_height(element) + spacing;
+        yy += element.GetHeight() + spacing;
         
         element = create_button(col2_x, yy, "Set Region", ew, eh, fa_center, function(button) {
             var selection = ui_list_selection(button.root.list);

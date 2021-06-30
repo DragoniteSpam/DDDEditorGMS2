@@ -30,7 +30,7 @@ function omu_event_attain_mesh_anim_end_action(thing, event_node, data_index) {
     var el_end_action = create_radio_array(16, yy, "Animation End Action", ew, eh, uivc_list_event_attain_entity_mesh_anim_end_action, custom_data_endaction[0], dg);
     create_radio_array_options(el_end_action, global.animation_end_action_names);
     
-    yy += ui_get_radio_array_height(el_end_action) + spacing;
+    yy += el_end_action.GetHeight() + spacing;
     
     var b_width = 128;
     var b_height = 32;

@@ -31,7 +31,7 @@ function draw_event_node_condition_add(argument0, argument1, argument2) {
             create_radio_array_options(radio, ["Variable", "Switch", "Self Variable", "Self Switch", "Code"]);
         
             var eh = 32;
-            radio.y = radio.y + (((ui_get_radio_array_height(radio) div eh) * eh) + eh + 16) * array_length(node.ui_things);
+            radio.y = radio.y + (((radio.GetHeight() div eh) * eh) + eh + 16) * array_length(node.ui_things);
         
             array_push(node.ui_things, radio);
             // insert at the second to last position so that the "else" outbound node stays where it is

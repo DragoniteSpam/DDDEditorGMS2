@@ -8,3 +8,7 @@ outline = false;
 
 onvaluechange = null;
 render = ui_render_radio_array;
+
+GetHeight = function() {
+    return self.height * (1 + ds_list_size(self.contents));
+};

@@ -94,7 +94,7 @@ function ui_init_terrain(mode) {
         t_general.element_mode = element;
         ds_list_add(t_general.contents, element);
         
-        yy += ui_get_radio_array_height(element) + spacing;
+        yy += element.GetHeight() + spacing;
         
         element = create_radio_array(legal_x + spacing, yy, "Brush shape:", col_width, element_height, function(option) {
             Stuff.terrain.style = option.root.value;
@@ -104,7 +104,7 @@ function ui_init_terrain(mode) {
         t_general.element_brush_shape = element;
         ds_list_add(t_general.contents, element);
         
-        yy += ui_get_radio_array_height(element) + spacing;
+        yy += element.GetHeight() + spacing;
         
         element = create_text(legal_x + spacing, yy, "Brush radius: " + string(mode.radius) + " cells", col_width, element_height, fa_left, col_width, t_general);
         t_general.element_brush_radius = element;
@@ -341,7 +341,7 @@ function ui_init_terrain(mode) {
         element.contents[| 2].enabled = false;
         ds_list_add(t_lighting.contents, element);
         t_lighting.el_light_type = element;
-        yy += ui_get_radio_array_height(element) + spacing;
+        yy += element.GetHeight() + spacing;
         
         element = create_color_picker(col2_x, yy, "Color:", col_width, element_height, function(picker) {
             Stuff.terrain.lights[ui_list_selection(color.root.el_light_list)].color = color.value;
@@ -509,7 +509,7 @@ function ui_init_terrain(mode) {
         t_heightmap.element_deform_mode = element;
         ds_list_add(t_heightmap.contents, element);
         
-        yy += ui_get_radio_array_height(element) + spacing;
+        yy += element.GetHeight() + spacing;
         
         element = create_text(legal_x + spacing, yy, "Deformation rate: " + string_format(mode.rate, 1, 3), col_width, element_height, fa_left, col_width, t_heightmap);
         t_heightmap.element_deform_rate = element;

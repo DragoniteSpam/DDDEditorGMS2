@@ -29,7 +29,7 @@ function dialog_create_condition_switch_self_data(argument0, argument1) {
     create_radio_array_options(el_list, ["A", "B", "C", "D"]);
     dg.el_list = el_list;
 
-    yy += ui_get_radio_array_height(el_list) + spacing;
+    yy += el_list.GetHeight() + spacing;
 
     var el_state = create_checkbox(16, yy, "Is enabled?", ew, eh, uivc_check_event_condition_value, list_value[index], dg);
     dg.el_state = el_state;

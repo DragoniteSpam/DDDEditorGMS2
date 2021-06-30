@@ -91,7 +91,7 @@ function dialog_create_map_generic_data(root) {
     create_radio_array_options(el_data_type, ["Int", "Enum", "Float", "String", "Boolean", "Data", "Code" /* this is only the first couple of types, the rest are hidden behind a button */]);
     el_data_type.interactive = false;
     dg.el_data_type = el_data_type;
-    yy += ui_get_radio_array_height(el_data_type) + spacing;
+    yy += el_data_type.GetHeight() + spacing;
     
     var el_data_ext_type = create_button(col2_x, yy, "Other Data Types", ew, eh, fa_middle, function(button) {
         var dialog = dialog_create_select_data_types_ext(button, Stuff.map.active_map.generic_data[ui_list_selection(button.root.el_list)].type, function(radio) {

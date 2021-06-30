@@ -25,7 +25,7 @@ function dialog_create_color_picker_options(dialog, color, onvaluechange) {
         radio.root.root.el_picker.axis_channel = radio.value;
     }, 0, dg);
     create_radio_array_options(dg.el_channels, ["Red", "Green", "Blue"]);
-    yy += ui_get_radio_array_height(dg.el_channels) + spacing;
+    yy += dg.el_channels.GetHeight() + spacing;
     dg.el_all = create_checkbox(320, yy, "All colors?", ew / 2, eh, function(checkbox) {
         checkbox.root.el_picker.all_colors = checkbox.value;
     }, true, dg);

@@ -79,7 +79,7 @@ function omu_event_attain_map_data(argument0, argument1, argument2) {
     var el_direction = create_radio_array(16, yy, "Direction", ew, eh, uivc_list_event_attain_transfer_direction, custom_data_direction[0], dg);
     create_radio_array_options(el_direction, ["Down", "Left", "Right", "Up"]);
     dg.el_direction = el_direction;
-    yy += ui_get_radio_array_height(el_direction) + spacing;
+    yy += el_direction.GetHeight() + spacing;
 
     var el_color = create_color_picker(16, yy, "Fade Color", ew, eh, uivc_input_event_attain_transfer_color, custom_data_color[0], vx1, vy1, vx2, vy2, dg);
     dg.el_color = el_color;

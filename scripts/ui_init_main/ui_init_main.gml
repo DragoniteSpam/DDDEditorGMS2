@@ -58,7 +58,7 @@ function ui_init_main(mode) {
         create_radio_array_options(element, ["Single", "Rectangle", "Circle"]);
         ds_list_add(t_general.contents, element);
         
-        yy += ui_get_radio_array_height(element) + spacing;
+        yy += element.GetHeight() + spacing;
         
         element = create_checkbox(col1_x, yy, "Additive Selection", col_width, element_height, uivc_check_selection_addition, Settings.selection.addition, t_general);
         ds_list_add(t_general.contents, element);
@@ -69,7 +69,7 @@ function ui_init_main(mode) {
         create_radio_array_options(element, ["Tile", "Animated Tile", "Mesh", "Pawn", "Effect", "Mesh Autotile", "Zone"]);
         ds_list_add(t_general.contents, element);
         
-        yy += ui_get_radio_array_height(element) + spacing;
+        yy += element.GetHeight() + spacing;
         
         element = create_button(col1_x, yy, "Fill Selection (Space)", col_width, element_height, fa_center, uimu_selection_fill, t_general);
         ds_list_add(t_general.contents, element);
@@ -911,7 +911,7 @@ function ui_init_main(mode) {
         ds_list_add(t_p_mesh.contents, element_entity_mesh_animation_end_action);
         element_entity_mesh_animation_end_action.interactive = false;
         
-        yy += ui_get_radio_array_height(element_entity_mesh_animation_end_action) + spacing;
+        yy += element_entity_mesh_animation_end_action.GetHeight() + spacing;
         #endregion
         
         #region tab: entity: pawn
@@ -939,7 +939,7 @@ function ui_init_main(mode) {
         create_radio_array_options(element_entity_pawn_direction, ["Down", "Left", "Right", "Up"]);
         ds_list_add(t_p_pawn.contents, element_entity_pawn_direction);
         
-        yy += ui_get_radio_array_height(element_entity_pawn_direction) + spacing;
+        yy += element_entity_pawn_direction.GetHeight() + spacing;
         
         element_entity_pawn_animating = create_checkbox(col1_x, yy, "Animating", col_width, element_height, function(checkbox) {
             // this assumes that every selected entity is already an instance of Pawn

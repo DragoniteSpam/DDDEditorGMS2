@@ -39,7 +39,7 @@ function omu_event_attain_self_variable_data(argument0, argument1, argument2) {
     create_radio_array_options(el_choices, ["A", "B", "C", "D"]);
     dg.el_choices = el_choices;
 
-    yy += ui_get_radio_array_height(el_choices) + spacing;
+    yy += el_choices.GetHeight() + spacing;
 
     var el_value = create_input(16, yy, "Value", ew, eh, function(input) {
         input.root.node.custom_data[@ 1][@ 0] = real(input.value);

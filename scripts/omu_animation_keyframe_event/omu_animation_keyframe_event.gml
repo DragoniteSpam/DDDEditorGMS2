@@ -37,7 +37,7 @@ function omu_animation_keyframe_event(argument0) {
 
     var el_graphic_type = create_radio_array(col1_x, yy, "Graphic Type", ew, eh, uivc_animation_keyframe_graphic_type, keyframe.graphic_type, dg);
     create_radio_array_options(el_graphic_type, ["None", "No Change", "Sprite", "Mesh"]);
-    yy += ui_get_radio_array_height(el_graphic_type) + spacing;
+    yy += el_graphic_type.GetHeight() + spacing;
 
     var el_event = create_input(col1_x, yy, "Function call", ew, eh, uivc_animation_keyframe_function, keyframe.event, "string", validate_string, 0, 1, 16, vx1, vy1, vx2, vy2, dg);
     yy += el_event.height + spacing;

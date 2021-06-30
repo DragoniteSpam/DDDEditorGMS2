@@ -30,15 +30,15 @@ function dialog_create_entity_autonomous_movement(argument0) {
 
     var el_movement = create_radio_array(col1_x, yy, "Autonomous Movement", ew, eh, uivc_entity_auto_move, entity.autonomous_movement, dg);
     create_radio_array_options(el_movement, ["Fixed", "Random", "Approach", "Custom"]);
-    yy += ui_get_radio_array_height(el_movement) + spacing;
+    yy += el_movement.GetHeight() + spacing;
 
     var el_movement_speed = create_radio_array(col1_x, yy, "Move Speed", ew, eh, uivc_entity_auto_speed, entity.autonomous_movement_speed, dg);
     create_radio_array_options(el_movement_speed, ["1 / 8x", "1 / 4x", "1 / 2x", "1x", "2x", "4x"]);
-    yy += ui_get_radio_array_height(el_movement_speed) + spacing;
+    yy += el_movement_speed.GetHeight() + spacing;
 
     var el_movement_frequency = create_radio_array(col1_x, yy, "Move Frequency", ew, eh, uivc_entity_auto_frequency, entity.autonomous_movement_frequency, dg);
     create_radio_array_options(el_movement_frequency, ["Slowest", "Slow", "Normal", "Fast", "Fastest"]);
-    yy += ui_get_radio_array_height(el_movement_frequency) + spacing;
+    yy += el_movement_frequency.GetHeight() + spacing;
 
     yy = 64;
     var n = 8;

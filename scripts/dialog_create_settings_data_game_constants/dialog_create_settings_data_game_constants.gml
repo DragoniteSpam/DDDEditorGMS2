@@ -302,7 +302,7 @@ function dialog_create_settings_data_game_constants(root) {
     el_type.interactive = false;
     dg.el_type = el_type;
     
-    yy += ui_get_radio_array_height(el_type) + spacing;
+    yy += el_type.GetHeight() + spacing;
     
     var el_type_ext = create_button(col2_x, yy, "Other Data Types", ew, eh, fa_middle, omu_global_data_select_type, dg);
     el_type_ext.interactive = false;

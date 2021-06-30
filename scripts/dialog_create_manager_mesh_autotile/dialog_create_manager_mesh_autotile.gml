@@ -317,7 +317,7 @@ function dialog_create_manager_mesh_autotile(root) {
     create_radio_array_options(el_layer_type, ["Upright", "Reflected"]);
     create_radio_array_option_column(el_layer_type, 1, c3x + ew);
     
-    yy += ui_get_radio_array_height(el_layer_type);
+    yy += el_layer_type.GetHeight();
     
     dg.buttons = array_create(AUTOTILE_COUNT);
     dg.icons = array_create(AUTOTILE_COUNT);

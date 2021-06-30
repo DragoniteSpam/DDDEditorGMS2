@@ -33,7 +33,7 @@ function omu_event_attain_self_switch_data(argument0, argument1, argument2) {
     create_radio_array_options(el_choices, ["A", "B", "C", "D"]);
     dg.el_choices = el_choices;
 
-    yy += ui_get_radio_array_height(el_choices) + spacing;
+    yy += el_choices.GetHeight() + spacing;
 
     var el_state = create_checkbox(16, yy, "Enabled?", ew, eh, function(checkbox) {
         checkbox.root.node.custom_data[@ 2][@ 0] = checkbox.value;
