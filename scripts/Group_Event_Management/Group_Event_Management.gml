@@ -68,17 +68,6 @@ function event_create_node() {
     return node;
 }
 
-function event_get_node(event, name) {
-    // @todo preferably replace this with a constant-time map lookup later
-    for (var i = 0; i < array_length(event.nodes); i++) {
-        if (name == event.nodes[i].name) {
-            return event.nodes[i];
-        }
-    }
-    
-    return noone;
-}
-
 function event_get_node_global(name) {
     // @todo preferably replace this with a global constant-time map lookup later
     for (var i = 0; i < array_length(Game.events.events); i++) {
