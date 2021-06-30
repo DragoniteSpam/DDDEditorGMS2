@@ -330,10 +330,8 @@ function EventNodePeristent(name, data, outbound_names) constructor {
     self.types = [];
     self.outbound = [];
     
-    static ev_custom_id = 0;
-    
     self.GUID = NULL;
-    guid_set(self, "EV**" + string(ev_custom_id++));
+    guid_set(self, "EV**" + string(Identifiers.event_fixed_id++));
     
     for (var i = 0; i < array_length(data); i++) {
         var datum = data[i];

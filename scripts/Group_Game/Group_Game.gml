@@ -303,9 +303,13 @@ Identifiers = new (function() constructor {
     self.guids = { };
     self.internal = { };
     
+    self.event_fixed_id = 0;
+    
     static Clear = function() {
         self.guids = { };
         self.internal = { };
+        
+        self.event_fixed_id = 0;
         
         Game.InitializeDefaultObjects();
     };
