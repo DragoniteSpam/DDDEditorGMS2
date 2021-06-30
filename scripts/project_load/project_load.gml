@@ -159,14 +159,14 @@ function project_load(id) {
         var custom = json.custom;
         var prefabs = json.prefabs;
         
-        for (var i = 0; i < array_length(events); i++) {
-            array_push(Game.events.events, new DataEvent(events[i]));
-        }
         for (var i = 0; i < array_length(custom); i++) {
             array_push(Game.events.custom, new DataEventNodeCustom(custom[i]));
         }
         for (var i = 0; i < array_length(prefabs); i++) {
             array_push(Game.events.prefabs, new DataEventNode(prefabs[i], undefined));
+        }
+        for (var i = 0; i < array_length(events); i++) {
+            array_push(Game.events.events, new DataEvent(events[i]));
         }
     };
     
