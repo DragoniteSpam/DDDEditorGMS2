@@ -70,7 +70,7 @@ function DataEventNode(source, parent, type, custom) : SData(source) constructor
         if (type == undefined) return;
         // built-in node types have their outbound count specified
         if (type != EventNodeTypes.CUSTOM && type != undefined) {
-            var base = Stuff.event_prefab[type];
+            var base = Game.default_event_nodes[type];
             if (base) self.outbound = array_create(array_length(base.outbound), undefined);
         }
         
@@ -113,7 +113,7 @@ function DataEventNode(source, parent, type, custom) : SData(source) constructor
                 // if you're one of the built-in (non-special) node types, just grab
                 // that as your "custom guid"
                 if (type != EventNodeTypes.CUSTOM) {
-                    custom_guid = Stuff.event_prefab[type].GUID;
+                    custom_guid = Game.default_event_nodes[type].GUID;
                 }
                 
                 var custom = guid_get(custom_guid);
